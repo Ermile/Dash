@@ -214,7 +214,9 @@ trait info
 
 		$db_name = self::$db_name;
 
-		$core_name = core_name.'_tools';
+		// $core_name = core_name.'_tools';
+		// need to fi it!
+		$core_name = 'saloos_tools';
 
 		if($_addons_version === true)
 		{
