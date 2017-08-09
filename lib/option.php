@@ -1,7 +1,6 @@
 <?php
 namespace lib;
 
-
 /**
  * Class for option.
  */
@@ -17,6 +16,7 @@ class option
 	public static $social   = [];
 	public static $sms      = [];
 	public static $language = [];
+	public static $cronjob  = [];
 
 	/**
 	 * { function_description }
@@ -26,9 +26,9 @@ class option
 		if(empty(self::$config))
 		{
 			// load default option
-			if(file_exists('../../saloos/lib/default_option.php'))
+			if(file_exists('../../dash/lib/default_option.php'))
 			{
-				require_once('../../saloos/lib/default_option.php');
+				require_once('../../dash/lib/default_option.php');
 			}
 
 			if(file_exists('../option.php'))
@@ -46,29 +46,41 @@ class option
 
 	/**
 	 * get config
+	 * get sms
+	 * get ...
 	 *
-	 * @param      <type>  $_key    The key
-	 * @param      <type>  $_value  The value
+	 * @param      <type>  $_func  The function
+	 * @param      <type>  $_args  The arguments
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
 	 */
-	public static function config($_key = null, $_value = null)
+	public static function __callStatic($_func, $_args)
 	{
 		self::_construct();
-		if($_key && !$_value)
+
+		if(!isset(self::${$_func}))
 		{
-			if(array_key_exists($_key, self::$config))
+			return null;
+		}
+
+		$temp = self::${$_func};
+
+		if(array_key_exists(0, $_args) && !array_key_exists(1, $_args))
+		{
+			if(array_key_exists($_args[0], $temp))
 			{
-				return self::$config[$_key];
+				return $temp[$_args[0]];
 			}
 			else
 			{
 				return null;
 			}
 		}
-		elseif($_key && $_value)
+		elseif(array_key_exists(0, $_args) && array_key_exists(1, $_args))
 		{
-			if(isset(self::$config[$_key][$_value]))
+			if(isset($temp[$_args[0]][$_args[1]]))
 			{
-				return self::$config[$_key][$_value];
+				return $temp[$_args[0]][$_args[1]];
 			}
 			else
 			{
@@ -77,52 +89,13 @@ class option
 		}
 		else
 		{
-			return self::$config;
+			return $temp;
 		}
 	}
 
 
 	/**
-	 * get the enter option
-	 *
-	 * @param      <type>  $_key    The key
-	 * @param      <type>  $_value  The value
-	 */
-	public static function enter($_key = null, $_value = null)
-	{
-		self::_construct();
-		if($_key && !$_value)
-		{
-			if(array_key_exists($_key, self::$enter))
-			{
-				return self::$enter[$_key];
-			}
-			else
-			{
-				return null;
-			}
-		}
-		elseif($_key && $_value)
-		{
-			if(isset(self::$enter[$_key][$_value]))
-			{
-				return self::$enter[$_key][$_value];
-			}
-			else
-			{
-				return null;
-			}
-		}
-		else
-		{
-			return self::$enter;
-		}
-	}
-
-
-
-	/**
-	 * get the social network option
+	 * { function_description }
 	 *
 	 * @param      <type>  $_key    The key
 	 * @param      <type>  $_value  The value
@@ -132,6 +105,7 @@ class option
 	public static function social($_key = null, $_value = null)
 	{
 		self::_construct();
+
 		if($_key && !$_value)
 		{
 			if(array_key_exists($_key, self::$social))
@@ -164,44 +138,6 @@ class option
 		else
 		{
 			return self::$social;
-		}
-	}
-
-
-	/**
-	 * { function_description }
-	 *
-	 * @param      <type>  $_key    The key
-	 * @param      <type>  $_value  The value
-	 */
-	public static function sms($_key = null, $_value = null)
-	{
-		self::_construct();
-		if($_key && !$_value)
-		{
-			if(array_key_exists($_key, self::$sms))
-			{
-				return self::$sms[$_key];
-			}
-			else
-			{
-				return null;
-			}
-		}
-		elseif($_key && $_value)
-		{
-			if(isset(self::$sms[$_key][$_value]))
-			{
-				return self::$sms[$_key][$_value];
-			}
-			else
-			{
-				return null;
-			}
-		}
-		else
-		{
-			return self::$sms;
 		}
 	}
 

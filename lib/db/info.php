@@ -148,7 +148,9 @@ trait info
 
 		$db_name = self::$db_name;
 
-		$core_name = core_name.'_tools';
+		// $core_name = core_name.'_tools';
+		// need to fix it
+		$core_name = 'saloos_tools';
 
 		if(empty(self::$all_db_addons_version) || empty(self::$all_db_version))
 		{
