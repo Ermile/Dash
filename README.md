@@ -1,23 +1,23 @@
-#[Saloos]
-> [Saloos] is a cirsium vulgare for php programmers! :)
+#[Dash]
+> [Dash] is a cirsium vulgare for php programmers! :)
 
-Visit [Saloos on Github]
+Visit [Dash on Github]
 
-Also you can see [Saloos Official Website]
+Also you can see [Dash Official Website]
 
-#[سالوس]
+#<p dir="rtl">[دش]</p
 <p dir="rtl">اگرچه زبان پی‌اچ‌پی یکی از قدرتمندترین زبان های برنامه‌نویسی وب می‌باشد و پراستفاده‌ترین آنها در جهان نیز بشمار می‌آید، اما باید گفت برای حرکت به سمت برنامه‌های تجاری بزرگ و مقیاس پذیر به‌تنهایی جواب‌گو نیست. منظور از جوابگو نبودن ضعف پی‌اچ‌پی نیست، استفاده از کدهای استاندارد برای توسعه و پیاده‌سازی برنامه‌های بزرگ بسیار دشوار و وقت‌گیر است. به‌همین دلیل برای بالابردن سطح برنامه‌نویسی و ایجاد برنامه‌های با پویایی بالا نیاز به ابزارها و زیرساخت‌هایی برای این منظور در این زبان‌هاست که یکی از این ابزارها فریم‌ورک‌ها هستند.</p>
 
 
-> <p dir="rtl">افریم‌ورک‌ها به یک چارچوب از پیش تعریف شده توسط برنامه‌نویسان حرفه‌ای گفته می‌شود که این کمک را به سایر برنامه نویسان می‌کند تا چرخ را از نو اختراع نکنند!</p>
+> <p dir="rtl">فریم‌ورک‌ها به یک چارچوب از پیش تعریف شده توسط برنامه‌نویسان حرفه‌ای گفته می‌شود که این کمک را به سایر برنامه نویسان می‌کند تا چرخ را از نو اختراع نکنند!</p>
 
 
-<p dir="rtl">ا[سالوس] توسط [ارمایل] با پشتوانه بیش از یک دهه تجربه در وب و با نگاه **[برنامه به عنوان سرویس]** و برای سرعت‌بخشیدن به ایجاد سرویس‌های مدرن و بدور از مشکلات سنتی ساخت نرم‌افزارها طراحی شده و در حال توسعه است.</p>
+<p dir="rtl">[دش] توسط [ارمایل] با پشتوانه بیش از یک دهه تجربه در وب و با نگاه **[برنامه به عنوان سرویس]** و برای سرعت‌بخشیدن به ایجاد سرویس‌های مدرن و بدور از مشکلات سنتی ساخت نرم‌افزارها طراحی شده و در حال توسعه است.</p>
 
-> <p dir="rtl">ا**[سالوس] یک کنگر برای برنامه‌نویسان پی‌اچ‌پی است.**</p>
+> <p dir="rtl">**[دش] یک کنگر برای برنامه‌نویسان پی‌اچ‌پی است.**</p>
 
-
-##مزایای فریم‌ورک سالوس
+<p dir="rtl">
+##مزایای فریم‌ورک دش
  * بروزرسانی و انطباق با آخرین نسخه پی‌اچ‌پی - در حال حاضر نسخه ۷
  * ایجاد خودکار [واسط برنامه‌نویسی استاندارد] برای ایجاد یک وب‌سرویس پویا
  * استفاده از معماری چندلایه بر پایه ساختار [ام‌وی‌سی]
@@ -30,7 +30,7 @@ Also you can see [Saloos Official Website]
  * سامانه اعتبارسنجی خودکار ورودی‌ها
  * سیستم هوشمند نمایش خطاها
  * نحوه نگارش ساده و زیبا
-
+</p>
 
 
 Requirements
@@ -43,8 +43,7 @@ Requirements
 
 Installation
 ------------
- * Boost Saloos with [Saloos Addons]!
- * Start Using Saloos with [Saloos Project]
+ * Start Using Dash with [Saloos Project]
 
 
 Documentation
@@ -59,9 +58,9 @@ Changelog
 
 Author
 ------
-[Saloos] is Created by [Ermile] in IRAN ![alt text][logo]
+[Dash] is Created by [Ermile] in IRAN ![alt text][logo]
 
-[سالوس] در ایران و توسط [ارمایل] خلق شده است.
+<p dir="rtl">[دش] در ایران و توسط [ارمایل] خلق شده است.</p>
 
 [Hasan Salehi], [Javad Evazzadeh], [Reza Mohiti], [Ahmad Karimi]
 
@@ -74,11 +73,10 @@ Licence! What does it mean?
 
 [Ermile]: <http://ermile.com>
 [ارمایل]: <http://ermile.ir>
-[Saloos on Github]: <https://github.com/Ermile/Saloos>
-[Saloos Official Website]: <http://saloos.ir>
-[Saloos]: <http://saloos.ir>
-[سالوس]: <http://saloos.ir>
-[Saloos Addons]: <https://github.com/Ermile/Saloos-Addons>
+[Dash on Github]: <https://github.com/Ermile/dash>
+[Dash Official Website]: <https://ermile.com/dash>
+[Dash]: <https://ermile.com/dash>
+[دش]: <https://ermile.com/dash>
 [Saloos Project]: <https://github.com/Ermile/Saloos-Project>
 [Hasan Salehi]: <http://github.com/baravak>
 [Javad Evazzadeh]: <http://evazzadeh.com>
