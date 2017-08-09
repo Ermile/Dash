@@ -1,0 +1,93 @@
+{%extends display.cp%}
+
+
+{%block content%}
+
+  <p class="alert alert-info">{%trans "You can use our tools"%}. {%trans "If you dont know about this page, leave it!"%}</p>
+
+
+  <h2>{%trans "Info"%}</h2>
+    <div class="btns">
+   <a target='_blank' href="{{url.baseFull}}/tools/server">{%trans "Show server info"%}</a>
+   <a target='_blank' href="{{url.baseFull}}/tools/phpinfo">{%trans "Show PHP info"%}</a>
+  </div>
+
+{%if true or perm.tools.admin%}
+
+{%if url.tld == 'dev'%}
+  <h2>{%trans "Translate"%}</h2>
+  <div class="btns">
+   <a target='_blank' href="{{url.baseFull}}/tools/twigtrans">{%trans "Extract twig trans func in current project"%}</a>
+   <a target='_blank' href="{{url.baseFull}}/tools/twigtrans?path=addons">{%trans "Extract twig trans func in saloos addons"%}</a>
+   <a target='_blank' href="{{url.baseFull}}/tools/twigtrans?path=addons&update=saloos">{%trans "Extract twig trans func in saloos addons and update on saloos addons"%}</a>
+  </div>
+{%endif%}
+
+
+{%if url.tld != 'dev'%}
+  <h2>{%trans "Git Repository"%}</h2>
+  <div class="btns">
+   <a target='_blank' href="{{url.baseFull}}/tools/git?name=saloos">{%trans "Update"%} {%trans "Saloos Repository"%}</a>
+   <a target='_blank' href="{{url.baseFull}}/tools/git?name=addons">{%trans "Update"%} {%trans "Saloos Addons Repository"%}</a>
+   <a target='_blank' href="{{url.baseFull}}/tools/git?name=ermile">{%trans "Update"%} {%trans "Ermile Repository"%}</a>
+   <a target='_blank' href="{{url.baseFull}}/tools/git?name={{site.title | lower}}">{%trans "Update"%} {%trans "Current Project Repository"%}</a>
+  </div>
+{%endif%}
+
+
+  <h2>{%trans "Other Tools"%}</h2>
+  <div class="btns">
+   <!-- <a target='_blank' href="{{url.baseFull}}/tools/sitemap">{%trans "Regenerate sitemap"%}</a> -->
+   <a target='_blank' href="socialnetwork">{%trans "social networks"%}</a>
+  </div>
+
+  <h2>{%trans "Database"%}</h2>
+  <div class="btns">
+
+   <form method="post" action="{{url.baseFull}}/tools/db" data-action >
+     <input type="text" name="username" placeholder="db username">
+     <input type="password" name="password" placeholder="db password" autocomplete="new-password">
+     <select name="type">
+       <option value="upgrade" selected="selected">{%trans "Upgrade"%}</option>
+       <option value="backup" >{%trans "Backup"%}</option>
+       <option value="backup_dump" >{%trans "Backup by dump"%}</option>
+     </select>
+     <input type="submit" value='{%trans "Submit"%}'>
+   </form>
+   <br/>
+
+   <!-- <a target='_blank' href="{{url.baseFull}}/tools/db?upgrade=true">{%trans "Upgrade"%} {%trans "Project Database"%}</a> -->
+   <a target='_blank' href="{{url.baseFull}}/tools/dbtables">{%trans "Automatically read database and create sql files"%}</a>
+   <!-- <a target='_blank' href="{{url.baseFull}}/tools/db?backup=true">{%trans "Backup"%} {%trans "Project Database"%}</a> -->
+  </div>
+{%endif%}
+{%if true or perm.tools.view%}
+  <h2>{%trans "Server Logs"%}</h2>
+  <div class="btns">
+   <a target='_blank' href="{{url.baseFull}}/tools/log?name=accesslog">{%trans "Access logs"%}</a>
+   <a target='_blank' class="warn" href="{{url.baseFull}}/tools/log?name=errorlog">{%trans "Error logs"%}</a>
+   </div>
+
+  <h2>{%trans "Database Logs"%}</h2>
+
+  <div class="btns">
+   <a target='_blank' href="{{url.baseFull}}/tools/log?name=sql">{%trans "Logs"%}</a>
+   <a target='_blank' class="info" href="{{url.baseFull}}/tools/log?name=sql_check">{%trans "Logs - check"%}</a>
+   <a target='_blank' class="info" href="{{url.baseFull}}/tools/log?name=sql_warn">{%trans "Logs - warn"%}</a>
+   <a target='_blank' class="info" href="{{url.baseFull}}/tools/log?name=sql_critical">{%trans "Logs - critical"%}</a>
+   <a target='_blank' class="warn" href="{{url.baseFull}}/tools/log?name=sql_error">{%trans "Error Logs"%}</a>
+   </div>
+
+  <h2>{%trans "Telegram Errors"%}</h2>
+
+  <div class="btns">
+   <a target='_blank' href="{{url.baseFull}}/tools/log?name=telegram">{%trans "telegram Logs"%}</a>
+   <a target='_blank' href="{{url.baseFull}}/tools/log?name=telegram_info">{%trans "telegram Logs"%}</a>
+   <a target='_blank' class="warn" href="{{url.baseFull}}/tools/log?name=telegram_error">{%trans "telegram - Error Logs"%}</a>
+   <br/>
+   </div>
+{%endif%}
+
+   <br/><br/><br/>
+{%endblock%}
+

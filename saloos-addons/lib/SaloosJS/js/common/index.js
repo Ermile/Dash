@@ -1,0 +1,10 @@
+// import "libs/jquery";
+import "libs/jquery.autoComplete";
+import "libs/localstorage";
+import "libs/modal";
+import "libs/utils";
+import "router";
+import "navigate";
+import "notification";
+import "forms";
+import "main";

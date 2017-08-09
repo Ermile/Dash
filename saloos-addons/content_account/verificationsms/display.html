@@ -1,0 +1,58 @@
+{%extends display.account%}
+
+
+{%block desc%}
+   <div id="desc">
+    <p class="desc">{%trans%}Please send number <b>2015</b> to below number{%endtrans%}</p>
+    <b class="smsnumber">+98 1000 666 00 666 00</b>
+    <p class="desc">{%trans "Then wait we receive your message and verificate your account"%}</p>
+  </div>
+{%endblock%}
+
+
+{%block myjs%}
+<script>
+route('/verificationsms', function() {
+  setTimeout(createdelay, 20000);
+});
+
+function createdelay() {
+  var requestDelay = 10000;
+  var $body = $(document.body);
+
+  $body.ajaxify({
+    ajax: {
+      type: 'post',
+      url: location.href
+    },
+    event: 'send',
+    link: true,
+    noLoading: true,
+    success: function(response) {
+      var _super = this;
+      if(response.status == 1) {
+        Navigate({
+          url: '/login'
+        }).done(function() {
+          $.fn.ajaxify.showResults(response,
+            $body,
+            _super);
+        });
+      } else {
+        setTimeout(loop, requestDelay);
+      }
+    },
+    fail: function() {
+      setTimeout(loop, requestDelay);
+    }
+  });
+
+  function loop() {
+    $body.trigger('send');
+    requestDelay += 2000;
+  }
+
+  setTimeout(loop, 1000);
+}
+</script>
+{%endblock%}

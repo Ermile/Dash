@@ -1,0 +1,5 @@
+*.DS_Store
+desktop.ini
+*Thumbs.db
+*.me.*
+*sftp-config.json

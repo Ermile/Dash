@@ -1,0 +1,61 @@
+{% spaceless %}
+{%macro page(page_link, p)%}
+	{% if page_link == p.current%}
+		<span class='current'>{{page_link | fitNumber}}</span>
+	{% elseif page_link == 1%}
+		<a href="{{p.current_url}}">{{page_link | fitNumber}}</a>
+	{% else%}
+		<a href="{{p.current_url}}/page={{page_link}}">{{page_link | fitNumber}}</a>
+	{% endif %}
+{%endmacro%}
+
+
+{% macro make(_first, _end, p)%}
+	{% if p.current > 1 %}
+		<a href="{{p.current_url}}{%if p.prev != 1%}/page={{p.prev}}{%endif%}" class="prev" rel="prev"></a>
+	{% endif %}
+
+	{% if (p.current - (p.count_link/2)) > 1 %}
+		<a href="{{p.current_url}}" class="first">{{1 | fitNumber}}</a>
+		{% if (p.current - (p.count_link/2)) > 2 %}
+			<span>...</span>
+		{% endif %}
+	{% endif %}
+
+	{%for i in _first.._end%}
+		{{_self.page(i, p)}}
+	{%endfor%}
+
+	{% if (p.current + (p.count_link/2) + 1) < p.total_pages %}
+		<span>...</span>
+	{% endif %}
+
+	{% if (p.current + (p.count_link/2)) < p.total_pages %}
+		<a href="{{p.current_url}}/page={{p.total_pages}}" class="last">{{p.total_pages  | fitNumber}}</a>
+	{% endif %}
+
+	{% if p.current != p.total_pages %}
+		<a href="{{p.current_url}}/page={{p.next}}" class="next" rel="next"></a>
+	{% endif %}
+
+{%endmacro%}
+
+
+<nav class="pagination" data-xhr='pagination'>
+{% if pagnation.total_pages > 1%}
+	{% if pagnation.count_link >= pagnation.total_pages%}
+		{{_self.make(1, pagnation.total_pages, pagnation)}}
+
+	{% elseif pagnation.current < (pagnation.count_link/2) %}
+		{{_self.make(1, pagnation.count_link, pagnation)}}
+
+	{% elseif (pagnation.current + (pagnation.count_link/2)| round(0, 'floor')) > pagnation.total_pages  %}
+		{{_self.make(pagnation.total_pages - pagnation.count_link, pagnation.total_pages, pagnation)}}
+
+	{% else %}
+		{{_self.make(pagnation.current - (pagnation.count_link/2) | round(0, 'floor'), pagnation.current + (pagnation.count_link/2) | round(0, 'floor'), pagnation)}}
+	{% endif %}
+
+{% endif %}
+</nav>
+{% endspaceless %}

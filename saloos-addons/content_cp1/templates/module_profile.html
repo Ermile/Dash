@@ -1,0 +1,27 @@
+{%extends display.cp%}
+
+
+{%block content%}
+ <div class="row">
+  <div class="span12">
+   <div class="panel panel-default">
+    <div class="panel-body">
+     <form class="ajx form row inline autostyle" method="post" {%if child == 'add'%}data-clear{%endif%}>
+
+      <div class="field mobile"><label for="mobile">{%trans "Mobile"%}</label><input type="text" name="mobile" maxlength="15" pattern=".{10,}" placeholder='{%trans "Mobile"%}' id="mobile" value='{{datarow.user_mobile}}'></div>
+
+      <div class="field email"><label for="email">{%trans "Email"%}</label><input type="email" name="email" maxlength="50" placeholder='{%trans "Email"%}' value='{{datarow.user_email}}'></div>
+
+      <div class="field displayname"><label for="displayname">{%trans "Display Name"%}</label><input type="text" name="displayname" maxlength="50" placeholder='{%trans "Display Name"%}' value='{{datarow.user_displayname}}'></div>
+
+      <button type="submit" class="button primary row-clear" name="submit" id="submit">{%trans "Save Changes"%}</button>
+     </form>
+    </div>
+    <div class="panel-footer">
+    <a class="float-right label label-info" href="{{url.base}}">{%trans%}Back to{%endtrans%} {%trans "Dashboard"%}</a>
+     {%trans "Edit your profile data"%}
+    </div>
+   </div>
+  </div>
+ </div>
+{%endblock%}

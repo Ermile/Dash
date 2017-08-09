@@ -1,0 +1,1 @@
+ALTER TABLE `db_version` ADD `addons_version` VARCHAR(100) NULL AFTER `version`;

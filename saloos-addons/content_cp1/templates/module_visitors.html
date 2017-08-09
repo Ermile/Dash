@@ -1,0 +1,287 @@
+{%extends display.cp%}
+
+
+{%block content%}
+ <div class="row">
+  <div class="span12">
+   <div class="panel panel-default">
+    <div class="panel-body">
+
+     <div class="row auto unselectable">
+      <div id="chart-signup"></div>
+      <div>
+       <span>{%trans "Change type of chart to"%}: </span>
+       <a href="{{url.path}}?period={{period}}&stype=bar">{%trans "bar"%}</a> -
+       <a href="{{url.path}}?period={{period}}&stype=area">{%trans "area"%}</a> -
+       <a href="{{url.path}}?period={{period}}&stype=areaspline">{%trans "areaspline"%}</a> -
+       <a href="{{url.path}}?period={{period}}&stype=column">{%trans "column"%}</a>
+      </div>
+     </div>
+
+     <br /><br /><br /><hr /><br />
+
+     <div class="row auto unselectable">
+      <div id="chart-answered"></div>
+      <div>
+       <span>{%trans "Change type of chart to"%}: </span>
+       <a href="{{url.path}}?period={{period}}&atype=bar">{%trans "bar"%}</a> -
+       <a href="{{url.path}}?period={{period}}&atype=area">{%trans "area"%}</a> -
+       <a href="{{url.path}}?period={{period}}&atype=areaspline">{%trans "areaspline"%}</a> -
+       <a href="{{url.path}}?period={{period}}&atype=column">{%trans "column"%}</a>
+      </div>
+     </div>
+    </div>
+
+    <div class="panel-footer">
+     {%trans "View signup statistics for your website"%}
+      <div class="float-right">
+       <span>{%trans "Change period of chart"%}: </span>
+       <a href="{{url.path}}?atype={{chart_answered_type}}&stype={{chart_signup_type}}&period=day">{%trans "day"%}</a> -
+       <a href="{{url.path}}?atype={{chart_answered_type}}&stype={{chart_signup_type}}&period=week">{%trans "week"%}</a> -
+       <a href="{{url.path}}?atype={{chart_answered_type}}&stype={{chart_signup_type}}&period=month">{%trans "month"%}</a> -
+       <a href="{{url.path}}?atype={{chart_answered_type}}&stype={{chart_signup_type}}&period=year">{%trans "year"%}</a>
+      </div>
+    </div>
+   </div>
+  </div>
+ </div>
+
+ <div class="row">
+  <div class="span12">
+   <div class="panel panel-default">
+
+    <div class="panel-body">
+{%if visitors%}
+     <div class="row auto unselectable">
+{%if error%}<div id="chart-error">{{error}}</div>{%else%}{%endif%}
+      <div id="chart-pageviews" data-step='5' data-intro='{%trans "Daily Visit Chart"%}'></div>
+      <div>
+       <span>{%trans "Change type of chart to"%}: </span>
+       <a href="{{url.path}}?type=bar">{%trans "bar"%}</a> -
+       <a href="{{url.path}}?type=area">{%trans "area"%}</a> -
+       <a href="{{url.path}}?type=areaspline">{%trans "areaspline"%}</a> -
+       <a href="{{url.path}}?type=column">{%trans "column"%}</a>
+      </div>
+     </div>
+     <br /><br /><br />
+     <div class="row auto unselectable">
+{%if error%}<div id="chart-error">{{error}}</div>{%else%}{%endif%}
+      <div id="chart-unique-visitors1" data-step='5' data-intro='{%trans "Daily Visit Chart"%}'></div>
+     </div>
+{%endif%}
+    </div>
+
+    <div class="panel-footer">
+    <a class="float-right label label-info" href="{{url.baseFull}}">{%trans%}Back to{%endtrans%} {%trans "Dashboard"%}</a>
+     {%trans "View visitor statistics for your website"%}
+    </div>
+   </div>
+  </div>
+ </div>
+{%endblock%}
+
+{%block foot_js%}
+{%if visitors%}
+ <script type="text/javascript">
+  route('*', function()
+  {
+    $(function () {
+      $('#chart-pageviews').highcharts(
+      {
+        chart: { type: '{{chart_type}}' {%if global.lang=='fa_IR'%}, style: {fontFamily: 'IRANSans'}{%endif%} },
+        title: { text: '{%trans "No. of"%} {%trans "Pageviews"%}' },
+        xAxis: { categories: [{%for datarow in visitors%}'{%if global.lang=="fa_IR"%}{{datarow.date|jdate("y/m/j")}} {%else%} {{datarow.date |date("j F")}}{%endif%}', {%endfor%}] ,crosshair: true},
+        yAxis: { title: {text: ''}, floor: 0, allowDecimals: false,},
+        tooltip: {
+          shared:true,
+          useHTML: true,
+
+          headerFormat: '<table><thead><tr><td colspan="3">{%if global.lang=="fa_IR"%}{point.key} {%else%} {{point.key | date("l j F Y")}} {%endif%}</td></tr></thead>',
+          pointFormat: '<tr><td style="color: {series.color}">{series.name}: </td>' + '<td><b>{point.y:0.0f} {%trans "Visit"%}</b></td></tr>',
+          footerFormat: '</table>',
+
+        },
+        legend: {
+          layout: 'vertical',
+          align: 'right',
+          verticalAlign: 'middle',
+          borderWidth: 0
+        },
+        plotOptions: {
+          series: {stacking: 'normal',
+        }
+
+        },
+        series:
+        [
+        {
+         showInLegend: false,
+          name: '{%trans "Page Views"%}',
+          data: [ {%for datarow in visitors%}{{datarow.humans}},{%endfor%} ],
+        },
+        {
+         showInLegend: false,
+          name: '{% trans "Bots"%}',
+          data: [ {%for datarow in visitors%}{{datarow.bots}},{%endfor%} ],
+        },
+        ]
+      });
+
+    });
+  });
+ </script>
+
+
+
+ <script type="text/javascript">
+  route('*', function()
+  {
+    $(function () {
+      $('#chart-unique-visitors').highcharts({
+        chart: { type: '{{chart_unique_type}}' {%if global.lang=='fa_IR'%}, style: {fontFamily: 'IRANSans'}{%endif%} },
+        title: { text: '{%trans "No. of"%} {%trans "visitors"%}' },
+        xAxis: { categories: [{%for datarow in visitors%}'{%if global.lang=="fa_IR"%}{{datarow.date|jdate("y/m/j")}} {%else%} {{datarow.date |date("j F")}}{%endif%}', {%endfor%}] ,crosshair: true},
+        yAxis: { title: {text: ''}, floor: 0, allowDecimals: false,},
+        tooltip: {
+          shared:true,
+          useHTML: true,
+
+          headerFormat: '<table><thead><tr><td colspan="3">{%if global.lang=="fa_IR"%}{point.key} {%else%} {{point.key | date("l j F Y")}} {%endif%}</td></tr></thead>',
+          pointFormat: '<tr><td style="color: {series.color}">{series.name}: </td>' + '<td><b>{point.y:0.0f} {%trans "Visit"%}</b></td></tr>',
+          footerFormat: '</table>',
+
+
+        },
+        legend: {
+          layout: 'vertical',
+          align: 'right',
+          verticalAlign: 'middle',
+          borderWidth: 0
+        },
+        plotOptions: {
+          series: {stacking: 'normal',
+        }
+
+        },
+        series:
+        [
+        {
+         showInLegend: false,
+          name: '{%trans "Page Views"%}',
+          data: [ {%for datarow in visitors%}{{datarow.humans}},{%endfor%} ],
+        },
+        {
+         showInLegend: false,
+          name: '{% trans "Bots"%}',
+          data: [ {%for datarow in visitors%}{{datarow.bots}},{%endfor%} ],
+        },
+        ]
+      });
+    });
+
+  });
+ </script>
+
+
+
+
+
+
+
+<script type="text/javascript">
+  route('*', function()
+  {
+    $(function () {
+      $('#chart-signup').highcharts(
+      {
+        chart: { type: '{{chart_signup_type}}' {%if global.lang=='fa_IR'%}, style: {fontFamily: 'IRANSans'}{%endif%} },
+        title: { text: '{%trans "No. of"%} {%trans "signup"%}' },
+        xAxis: { categories: [{%for datarow in signup%}'{{datarow.date}}', {%endfor%}] ,crosshair: true},
+        yAxis: { title: {text: ''}, floor: 0, allowDecimals: false,},
+        tooltip: {
+          shared:true,
+          useHTML: true,
+
+          headerFormat: '<table><thead><tr><td colspan="3">{%if global.lang=="fa_IR"%}{point.key} {%else%} {{point.key | date("l j F Y")}} {%endif%}</td></tr></thead>',
+          pointFormat: '<tr><td style="color: {series.color}">{series.name}: </td>' + '<td><b>{point.y:0.0f}</b></td></tr>',
+          footerFormat: '</table>',
+
+        },
+        legend: {
+          layout: 'vertical',
+          align: 'right',
+          verticalAlign: 'middle',
+          borderWidth: 0
+        },
+        plotOptions: {
+          series: {stacking: 'normal',
+        }
+
+        },
+        series:
+        [
+        {
+         showInLegend: false,
+          name: '{%trans "signup"%}',
+          data: [ {%for datarow in signup%}{{datarow.total}},{%endfor%} ],
+        }
+        ]
+      });
+
+    });
+  });
+ </script>
+
+
+<script type="text/javascript">
+  route('*', function()
+  {
+    $(function () {
+      $('#chart-answered').highcharts(
+      {
+        chart: { type: '{{chart_answered_type}}' {%if global.lang=='fa_IR'%}, style: {fontFamily: 'IRANSans'}{%endif%} },
+        title: { text: '{%trans "No. of"%} {%trans "answered"%}' },
+        xAxis: { categories: [{%for datarow in answered%}'{{datarow.date}}', {%endfor%}] ,crosshair: true},
+        yAxis: { title: {text: ''}, floor: 0, allowDecimals: false,},
+        tooltip: {
+          shared:true,
+          useHTML: true,
+
+          headerFormat: '<table><thead><tr><td colspan="3">{%if global.lang=="fa_IR"%}{point.key} {%else%} {{point.key | date("l j F Y")}} {%endif%}</td></tr></thead>',
+          pointFormat: '<tr><td style="color: {series.color}">{series.name}: </td>' + '<td><b>{point.y:0.0f}</b></td></tr>',
+          footerFormat: '</table>',
+
+        },
+        legend: {
+          layout: 'vertical',
+          align: 'right',
+          verticalAlign: 'middle',
+          borderWidth: 0
+        },
+        plotOptions: {
+          series: {stacking: 'normal',
+        }
+
+        },
+        series:
+        [
+        {
+         showInLegend: false,
+          name: '{%trans "answered"%}',
+          data: [ {%for datarow in answered%}{{datarow.total}},{%endfor%} ],
+        }
+        ]
+      });
+
+    });
+  });
+ </script>
+
+
+
+
+{%endif%}
+{%endblock%}
+
+
+

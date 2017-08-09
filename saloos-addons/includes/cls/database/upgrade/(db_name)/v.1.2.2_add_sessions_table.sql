@@ -1,0 +1,15 @@
+CREATE TABLE IF NOT EXISTS `sessions` (
+`id` 			BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+`code`	 		VARCHAR(64) NOT NULL,
+`user_id` 		INT(10) UNSIGNED NOT NULL,
+`status` 		ENUM('active','terminate','expire','disable','changed','logout') NOT NULL DEFAULT 'active',
+`agent_id`		INT(10) UNSIGNED NULL DEFAULT NULL,
+`ip`			INT(10) UNSIGNED NULL DEFAULT NULL,
+`count` 		INT(10) UNSIGNED NULL DEFAULT 1,
+`createdate` 	DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+`last_seen` 	DATETIME NULL DEFAULT NULL,
+`date_modified` TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP,
+PRIMARY KEY (`id`),
+UNIQUE KEY `unique` (`code`) USING BTREE,
+CONSTRAINT `sessions_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

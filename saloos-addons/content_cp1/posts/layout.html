@@ -1,0 +1,234 @@
+{%extends display.cp%}
+
+
+
+{%block post_title%}
+   <input type="text" name="title" id="sp-title" class="input" placeholder='{%trans "Enter title here"%}' value='{{datarow.post_title}}' autofocus data-step='5' data-intro='{%trans "Set the title of your content"%}'/>
+{%endblock%}
+
+
+{%block post_url%}
+{%if child == 'edit'%}
+   <div id='url-box' data-xhr='url-box' data-step='6' data-intro='{%trans "Url of your content appear here, click on it to view"%}'>
+
+    <a class="hint--left light-gallery" data-hint='{%trans "Check result"%}'>
+     <span data-iframe="true" data-src="{{url.root}}/{{datarow.post_url}}?preview=yes">{{url.root}}/{{datarow.post_url}}</span>
+    </a>
+
+    <a href="{{url.root}}/{{datarow.post_url}}{%if datarow.post_status != 'publish'%}?preview=yes{%endif%}" target="_blank" id='link-external' class="hint--right" data-hint='{%trans "Show in new tab"%}'><i class="fa fa-external-link"></i></a>
+   </div>
+{%endif%}
+{%endblock%}
+
+
+{%block post_desc%}
+   <textarea name="desc" id='sp-desc' class="sp-content textarea editor" data-placeholder='{%trans "Write your post content here"%}' tabindex='2'>{{datarow.post_content | raw}}</textarea>
+{%endblock%}
+
+
+{%block post_excerpt%}
+   <div class="panel panel-default display-none">
+    <div class="panel-heading">{%trans "Excerpt"%}</div>
+    <div class="panel-body">
+     <textarea name="excerpt" class="sp-excerpt" maxlength='160' placeholder='{%trans "If excerpt is empty we get it automatically from content"%}'>{{datarow.post_meta.excerpt}}</textarea>
+    </div>
+    <div class="panel-footer">{%trans "Summaries of your content that can be used as page description."%}</div>
+   </div>
+{%endblock%}
+
+
+{%block post_tag%}
+  <div class="panel panel-default unselectable" data-step='7' data-intro='{%trans "Write your tag and press enter to add new keyword to content"%}' data-position='top'>
+   <div class="panel-heading">{%trans "Tags"%}</div>
+   <div class="panel-body">
+    <textarea name="tags" id="sp-tags" class="sp-tags input" placeholder='{%trans "Enter Tags here"%}'>{{tagList}}</textarea>
+    <input type="text" id="tag-add" autocomplete="off" placeholder='{%trans "Enter Tags"%}'/>
+    <input type="button" id="tag-add-btn" class='button' value='{%trans "Add"%}' tabindex="-1" />
+    <div id="tag-list"></div>
+   </div>
+   <div class="panel-footer">{% trans "Normally, tags are ad-hoc keywords that identify important information in your post (names, subjects, etc) that may or may not recur in other posts, while categories are pre-determined sections." %} <a href='{{url.baseFull}}/tags' target="_blank">{%trans "View list of tags"%}</a></div>
+  </div>
+{%endblock%}
+
+
+{%block post_slug%}
+    <div class='hint--left hint100' data-hint='{%trans "Slug"%}' data-step='10' data-intro='{%trans "Set slug of content for better addressing in your site and increase SEO rate"%}'>
+      <input name="slug" id="sp-slug" class="input" placeholder='{%trans "Enter slug here"%}' value='{{datarow.post_slug}}' data-xhr='slug' />
+    </div>
+{%endblock%}
+
+
+{%block post_shortURL%}
+{%if shortURL%}
+    <div class='hint--left hint100' data-hint='{%trans "ShortURL"%}' data-step='10' data-intro='{%trans "show short URL of this content"%}'>
+      <input name="shortURL" id="shortURL" class="input" placeholder='{%trans "Enter shortURL here"%}' value='{{url.root}}/{{shortURL}}' data-xhr='shortURL' disabled="disabled"/>
+    </div>
+{%endif%}
+{%endblock%}
+
+
+
+{%block post_shortcode%}
+{%if module == 'books' and child == 'edit' %}
+     <input name="shortcode" id="shortcode" class="input" placeholder='{%trans "Use this shortcode on your posts"%}' value="[ref id='{{datarow.id}}']" disabled="disabled" />
+{%endif%}
+{%endblock%}
+
+
+{%block post_language%}
+{%if module != 'attachments'%}
+    <div class='hint--left hint100' data-hint='{%trans "Language"%}'>
+    <select name="language" class="input disabled" id='sp-language' data-step='11' data-intro='{%trans "Set language of your content to show only in this language"%}'>
+     <!-- <option value="" {%if not datarow.post_language%} selected="selected"{%endif%}>{%trans "All Languages"%}</option> -->
+{%for key, value in site.langlist%}
+     <option value="{{key}}" {%if child == 'edit'%}{%if datarow.post_language in key%}selected{%endif%}{%elseif key == site.currentlang%}selected{%endif%}>{{value}}</option>
+{% endfor %}
+    </select>
+    </div>
+{%endif%}
+{%endblock%}
+
+
+{%block post_status%}
+    <div class='hint--left hint100' data-hint='{%trans "Status"%}' data-step='12' data-intro='{%trans "All of content set as draft in default, for showing it to visitors you must set it to publish"%}'>
+    <select name="status" class="input" id='sp-status'>
+{%for key, value in enum.status.value%}
+     <option value='{{value}}' {% if datarow.post_status == value or (datarow.post_status == null and enum.status.default == value) %}selected="selected"{%endif%}>{%trans value%}</option>
+{% endfor %}
+    </select>
+    </div>
+{%endblock%}
+
+
+{%block post_submit%}
+    <div class='hint--left hint100' data-hint='{%trans "Submit Changes"%}' data-step='13' data-intro='{%trans "After all changes, you must press this key to Submit"%}'>
+     <button type="submit" value="submit" class="button positive">{% if child == 'edit'%}{%trans "Update"%}{%else%}{%trans "Publish"%}{%endif%}</button>
+    </div>
+{%endblock%}
+
+
+{%block post_parent%}
+{%if parentList is iterable %}
+  <div class="panel panel-default unselectable">
+   <div class="panel-heading">{%trans "Page Attributes"%}</div>
+   <div class="panel-body">
+    <div class='hint--left hint100' data-hint='{%trans "Parent Page"%}'>
+    <select name="parent" class="input sp-parent" id='sp-parent' data-step='8' data-intro='{%trans "Select parent page to create a group of pages"%}'>
+     <option value="" {%if not datarow.post_parent%} selected="selected"{%endif%}>({%trans "Without parent"%})</option>
+{%for key, value in parentList if datarow.id != key%}
+     <option value="{{key}}" {%if datarow.post_parent == key%}selected="selected"{%endif%}>{{value | raw}}</option>
+{% endfor %}
+    </select>
+    </div>
+    <label for="sp-parent">{%trans "You can nest Pages under other Pages by making one the “Parent” of the other, creating a group of Pages."%}
+    </label>
+   </div>
+  </div>
+{%endif%}
+{%endblock%}
+
+
+{%block post_cat%}
+{%if catList is iterable%}
+  <div class="panel panel-default cats" data-step='8' data-intro='{%trans "Select a category of your content"%}' data-position='top'>
+   <div class="panel-heading">{%trans "Categories"%} <i class="fa fa-step-backward return hidden"></i></div>
+   <div class="panel-body unselectable">
+    <div id="cat-main">
+    <input name="cat" id="cat" class="sp-cat input" placeholder='{%trans "Enter cat here"%}' value='{{datarow.cat_url}}' tabindex='-1' />
+    </div>
+    <div id="cat-selected"></div>
+    <div id="cat-list">
+{%for id, value in catList%}
+     <label class="item"><input type="checkbox" name="categories[]" value="{{value.id}}" data-slug='{{value.url}}' {% if value.selected%}checked{%endif%}/> <span>{{value.title | raw}}</span></label>
+{% endfor %}
+    </div>
+   </div>
+{%if module == 'posts'%}
+   <div class="panel-footer"><a href='{{url.baseFull}}/categories/add' target="_blank">{%trans "Add New Category"%}</a></div>
+{%elseif module == 'books'%}
+   <div class="panel-footer"><a href='{{url.baseFull}}/bookcategories/add' target="_blank">{%trans "Add New Category"%}</a></div>
+{%elseif module == 'helps'%}
+   <div class="panel-footer"><a href='{{url.baseFull}}/helpcategories/add' target="_blank">{%trans "Add New Category"%}</a></div>
+{%elseif module == 'attachments'%}
+   <div class="panel-footer"><a href='{{url.baseFull}}/filecategories/add' target="_blank">{%trans "Add New Category"%}</a></div>
+{%elseif module == 'polls'%}
+   <div class="panel-footer"><a href='{{url.baseFull}}/pollcategories/add' target="_blank">{%trans "Add New Category"%}</a></div>
+{%else%}
+   <div class="panel-footer"><a href='{{url.baseFull}}/categories/add' target="_blank">{%trans "Add New Category"%}</a></div>
+{%endif%}
+  </div>
+{%endif%}
+{%endblock%}
+
+
+{%block post_thumb%}
+ <div class="panel panel-default thumb">
+  <div class="panel-heading">{%trans "Featured Image"%}</div>
+  <div class="panel-body">
+   <div class='hint--left hint100' data-hint='{%trans "This allows you to associate an image with your content."%}'>
+    <input class="input" type="text" name="thumbid" id="sp-thumbid" placeholder='{%trans "Enter thumb id"%}' value='{{datarow.post_meta.thumbid}}' />
+    <a href="#">{%trans "Set featured image"%}</a>
+   </div>
+  </div>
+ </div>
+{%endblock%}
+
+
+{%block post_meta_type%}
+{%if datarow.post_meta.type%}
+ <div id='file-meta' data-step='8' data-intro='{%trans "You can see type of your file and click on image to direct access to file"%}' data-position='top'>
+  <p>
+{%if datarow.post_meta.type=='image'%}
+  <a href="{{url.base}}{{datarow.post_meta.url}}" class="hint--left light-gallery" data-hint='{%trans "Click to view"%}'>
+   <i id='file-type' class="fa fa-file-{{datarow.post_meta.type}}-o" data-src="{{url.base}}/{{datarow.post_meta.url}}"></i>
+  </a><br />
+   <span>{%trans "Height"%} {{datarow.post_meta.width}}</span> × <span>{%trans "Width"%} {{datarow.post_meta.height}}</span>
+{%else%}
+  <a href="{{url.base}}/{{datarow.post_meta.url}}" target="_blank" class="hint--left" data-hint='{%trans "Click to view"%}'>
+   <i id='file-type' class="fa fa-file-{{datarow.post_meta.type}}-o"></i>
+  </a>
+{%endif%}
+   <br />{{datarow.post_meta.size|readableSize}}
+  </p>
+ </div>
+{%endif%}
+{%endblock%}
+
+
+{%block post_poll%}
+{%if module == 'polls'%}
+ <div class="panel panel-default poll_define">
+  <div class="panel-heading">{%trans "Define poll"%}</div>
+  <div class="panel-body">
+   <ul class="answers sortable">
+{%for id, ans in datarow.meta.answers%}
+    <li data-number={{id}}>
+     <i class="fa fa-times" aria-hidden="true"></i>
+     <input type="number" name="ans{{id}}_point" value="{{ans.point}}" />
+     <input type="text" name="ans{{id}}" value="{{ans.txt}}"/>
+    </li>
+{%endfor%}
+    <li data-number={{id}}>
+     <i class="fa fa-times" aria-hidden="true"></i>
+     <input type="number" name="ans{{id}}_point" value="{{ans.point}}" />
+     <input type="text" name="ans{{id}}" value="{{ans.txt}}"/>
+    </li>
+    <li class="add"><i class="fa fa-plus" aria-hidden="true"></i></li>
+   </ul>
+  </div>
+ </div>
+{{ block('post_conditions') }}
+
+{%endif%}
+{%endblock%}
+
+
+{%block post_conditions%}
+ <div class="panel panel-default">
+  <div class="panel-heading">{%trans "Define poll conditions"%}</div>
+  <div class="panel-body">
+
+  </div>
+ </div>
+{%endblock%}
+

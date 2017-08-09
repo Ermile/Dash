@@ -1,0 +1,14 @@
+{% import macro.forms as forms %}
+
+
+ <div data-xhr="content" class="content">
+  <h1>{{page.desc}}</h1>
+{%block form_def%}
+   <form class="ajx account" method="post">
+{{forms.make(form[myform])}}
+   </form>
+{%endblock%}
+
+{%block content%}{%endblock%}
+{%block desc%}{%endblock%}
+ </div>

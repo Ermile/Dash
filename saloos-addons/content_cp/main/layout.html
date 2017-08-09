@@ -1,0 +1,24 @@
+{%extends display.dash%}
+
+
+
+{%block sidenav%}
+    <li><a href="{{url.base}}/cp"><i class='icon-laptop'></i> <span>{% trans "Dashboard" %}</span></a></li>
+    <li><a href="{{url.base}}/cp/tools"><i class='icon-gavel'></i> <span>{% trans "Tools" %}</span></a></li>
+    <li><a href="{{url.base}}/cp/transactions"><i class='icon-gavel'></i> <span>{% trans "Transactions" %}</span></a></li>
+
+{%if url.tld == 'dev' %}
+    <li><a href="{{url.base}}/cp/sample"><i class='icon-balance-scale'></i> <span>{% trans "Sample Design" %}</span></a></li>
+{%endif%}
+
+{%endblock%}
+
+
+
+{%block copyright%}
+{%set versionHint%}
+{%if saloos.lastUpdate%}data-hint='{%trans "Last update on"%} {{saloos.lastUpdate | tdate}}'{%else%}data-hint='{%trans "wait for next version!"%}'{%endif%}
+{%endset%}
+    <span>{%trans "Powered by"%} <a href='http://saloos.ir' target="_blank" title='{%trans "Some right reserved"%}' tabindex='-1'>{%trans "Saloos"%}</a></span> | <abbr class="hint--left" {{versionHint}}>{%trans "Version"%} {{saloos.version | fitNumber}}</abbr>
+{%endblock%}
+

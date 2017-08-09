@@ -1,0 +1,123 @@
+{% macro make(inputlist) %}
+{% spaceless %}
+{% import _self as form%}
+
+{% for input in inputlist%}
+{%set classlist = input.attr.id ~ ' ' ~ input.attr.parent%}
+
+{% if input.attr.type == 'radio' or input.attr.type == 'select'%}
+ {%set classlist = classlist|trim ~ ' ' ~ input.attr.class%}
+{%endif%}
+
+{%set classdata = ""%}
+{%if attribute(input.attr, "data-before")%}
+ {%set classlist = classlist|trim ~ ' ' ~ 'prepend'%}
+ {%set classdata = "data-before='" ~ attribute(input.attr, "data-before") ~ "'"%}
+{%endif%}
+
+{%if attribute(input.attr, "data-after") or input.attr.required is not null%}
+ {%set classlist = classlist|trim ~ ' ' ~ 'append'%}
+ {%set classdata = classdata|trim ~ "data-after='" ~ attribute(input.attr, "data-after") ~ "'"%}
+{%endif%}
+
+
+{%if input.attr.type == 'seperator'%}
+ <div class="{{classlist|trim}}">
+{%if input.label.txt %}   <label for="{{input.attr.id}}" {% for attr,value in input.attr %}{{attr}}="{{value}}" {% endfor %}>{{input.label.txt}}</label>{%endif%}
+{%elseif input.attr.required is not null%}
+ <div class="field {{classlist|trim}} required" {{classdata|raw}}>
+{%else%}
+ <div class="field {{classlist|trim}}" {{classdata|raw}}>
+{%endif%}
+
+{% if input.attr.pos %}{% set tippos=input.attr.pos %}{%else%}{% set tippos='hint--right' %}{% endif %}
+{% if not input.label and input.attr.desc %}<span class="hint--info {{tippos}}" data-hint="{{input.attr.desc}}">{% endif %}
+
+{% if input.attr.type     == 'radio'%}                                 {{ form.radio(input)    }}
+{% elseif input.attr.type == 'checkbox'%}                              {{ form.checkbox(input) }}
+{% elseif input.attr.type == 'select'%}                                {{ form.select(input)   }}
+{% elseif input.attr.type == 'datalist'%}                              {{ form.datalist(input) }}
+{% elseif input.attr.type == 'textarea'%}                              {{ form.textarea(input) }}
+{% elseif input.attr.type == 'seperator'%}
+{% elseif input.attr.type == 'submit' or input.attr.type == 'button'%} {{ form.submit(input)   }}
+{% else %}                                                             {{ form.input(input)    }}
+{% endif %}
+
+{% if not input.label and input.attr.desc %}</span>{% endif %}
+ </div>
+ {% endfor %}
+
+{% endspaceless %}
+{% endmacro %}
+
+
+
+{% macro radio(_input) %}
+ {{_self.label(_input)}}
+
+ <div class="radio" {% for attr,value in _input.attr if attr starts with 'data-'%}{{attr}}="{{value}}" {% endfor %}>
+ {% for child in _input.child %}
+  <div class="element {{_input.attr.name}}-{{child.attr.value}}">
+   <input type="radio" name="{{_input.attr.name}}" {% for attr,value in child.attr %}{{attr}}="{{value}}" {% endfor %}>
+   <label for="{{child.attr.id}}">{{child.label}}</label>
+  </div>
+ {% endfor %}
+ </div>
+{% endmacro %}
+
+
+{% macro checkbox(_input) %}
+  <input name="{{_input.attr.name}}" {% for attr,value in _input.attr%}{{attr}}="{{value}}" {% endfor %}>
+  {%if false%}<label for="{{_input.attr.id}}"></label>{%endif%}
+{%if _input.label.txt %} <label for="{{_input.attr.id}}"><span>{{_input.label.txt}}</span></label>{%endif%}
+
+{% endmacro %}
+
+
+{% macro select(_input) %}
+ {{_self.label(_input)}}
+
+ <select {% for attr,value in _input.attr%}{{attr}}="{{value}}" {% endfor %}>
+  <option value="">{%trans "Select"%} {{_input.label.txt}}</option>
+  {% for child in _input.child%}
+  <option {% for attr,value in child.attr %}{{attr}}="{{value}}" {% endfor %}>{{child.label}}</option>
+  {% endfor %}
+ </select>
+{% endmacro %}
+
+
+{% macro datalist(_input) %}
+ {{_self.label(_input)}}
+
+ <input list="{{_input.attr.name}}list" type="text" {% for attr,value in _input.attr %}{{attr}}="{{value}}" {% endfor %}>
+ <datalist id="{{_input.attr.name}}list">
+  {% for child in _input.child%}
+  <option data-value="{{child.value}}" value="{{child.label}}">{{child.label}}</option>
+  {% endfor %}
+ </datalist>
+{% endmacro %}
+
+
+{% macro textarea(_input) %}
+ {{_self.label(_input)}}
+
+  <div class="editor" data-placeholder="{{_input.attr.placeholder}}" {% for attr,value in _input.attr%}{%if attr != 'value'%}{{attr}}="{{value}}"{%endif%} {% endfor %}>{{_input.attr.value}}</div>
+{% endmacro %}
+
+
+{% macro submit(_input) %}
+ <button {% for attr,value in _input.attr%}{{attr}}="{{value}}" {% endfor %}>{{_input.attr.value}}</button>
+{% endmacro %}
+
+
+{% macro input(_input) %}
+ {{_self.label(_input)}}
+
+  <input {% for attr,value in _input.attr if attr != 'desc' and attr != 'pos' and attr != 'parent'%}{{attr}}="{{value}}" {% endfor %}>
+{% endmacro %}
+
+
+
+{% macro label (_input) %}{% spaceless %}
+ {%if _input.label.txt %}<label for="{{_input.attr.id}}" {%if _input.label.hint %}class="{{_input.label.class}}" data-hint="{{_input.label.hint}}"{%endif%}>{{_input.label.txt}}</label>{%endif%}
+{% endspaceless %}{% endmacro %}

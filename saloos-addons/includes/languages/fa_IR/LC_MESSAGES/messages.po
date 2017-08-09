@@ -1,0 +1,3126 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Saloos - Persian\n"
+"POT-Creation-Date: 2017-06-16 05:59+0430\n"
+"PO-Revision-Date: 2017-06-16 05:59+0430\n"
+"Last-Translator: Javad Evazzadeh <J.Evazzadeh@gmail.com>\n"
+"Language-Team: Ermile <J.Evazzadeh@gmail.com>\n"
+"Language: fa_IR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.11\n"
+"X-Poedit-Basepath: ../../../..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;T_\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: lib/SaloosJS\n"
+"X-Poedit-SearchPathExcluded-1: lib/PHPMailer\n"
+"X-Poedit-SearchPathExcluded-2: ../Twig\n"
+"X-Poedit-SearchPathExcluded-3: lib/SocialNetwork\n"
+"X-Poedit-SearchPathExcluded-4: *.js\n"
+
+#: content_account/changepass/model.php:18 content_account/login/model.php:25
+#: content_account/signup/model.php:28
+msgid "Password length must be over five characters!"
+msgstr "طول رمز عبور باید بیش از ۵ کاراکتر باشد."
+
+#: content_account/changepass/model.php:22 content_account/login/model.php:30
+#: content_account/signup/model.php:32
+msgid "Password length must be less 50 characters!"
+msgstr "طول رمز عبور باید کمتر از ۵۰ کاراکتر باشد!"
+
+#: content_account/changepass/model.php:74
+#: includes/languages/trans_addons.php:526
+msgid "change password successfully"
+msgstr "تغییر کلمه عبور با موفقیت به انجام رسید"
+
+#: content_account/changepass/model.php:97
+#: includes/languages/trans_addons.php:527
+msgid "change password failed!"
+msgstr "تغییر کلمه عبور ناموفق بود!"
+
+#: content_account/changepass/model.php:103
+msgid "Password is incorrect"
+msgstr "کلمه عبور اشتباه است"
+
+#: content_account/changepass/model.php:109
+msgid "user is incorrect"
+msgstr "نام کاربری اشتباه است"
+
+#: content_account/changepass/model.php:115 content_account/login/model.php:122
+#: includes/languages/trans_addons.php:358
+msgid "Please forward this message to administrator"
+msgstr "لطفا این پیغام را برای مدیر سیستم ارسال کنید"
+
+#: content_account/home/controller.php:46 content_account/home/controller.php:58
+msgid "you can't access to this page!"
+msgstr "شما اجازه دسترسی به این صفحه را ندارید!"
+
+#: content_account/home/controller.php:68 content_account/home/controller.php:81
+#: content_account/signup/controller.php:15
+msgid "you are logined to system!"
+msgstr "شما قبلا یک بار وارد سیستم شده اید!"
+
+#: content_account/home/view.php:26 includes/cls/form/account.php:26
+#: includes/languages/trans_addons.php:394
+msgid "Login"
+msgstr "ورود به سیستم"
+
+#: content_account/home/view.php:30 includes/cls/form/account.php:34
+#: includes/languages/trans_addons.php:395
+msgid "Create an account"
+msgstr "اکانت بسازید"
+
+#: content_account/home/view.php:34 content_account/home/view.php:38
+#: includes/languages/trans_addons.php:516
+msgid "Verificate"
+msgstr "اعتبارسنجی"
+
+#: content_account/home/view.php:42 includes/cls/form/account.php:58
+#: includes/languages/trans_addons.php:512
+msgid "Recovery"
+msgstr "بازیابی کلمه عبور"
+
+#: content_account/home/view.php:46 includes/languages/trans_addons.php:396
+msgid "Change password"
+msgstr "کلمه عبور"
+
+#: content_account/home/view.php:52 includes/languages/trans_addons.php:397
+msgid "SMS Delivery"
+msgstr "رسید دریافت پیامک"
+
+#: content_account/home/view.php:58 includes/languages/trans_addons.php:398
+msgid "SMS Callback"
+msgstr "پیامک های دریافتی"
+
+#: content_account/home/view.php:64 includes/languages/trans_addons.php:320
+msgid "Ermile"
+msgstr "ارمایل"
+
+#: content_account/login/model.php:18 content_account/recovery/model.php:15
+#: content_account/signup/model.php:20
+msgid "Please enter a valid mobile phone number"
+msgstr "لطفا شماره موبایل معتبری وارد کنید"
+
+#: content_account/login/model.php:106 includes/languages/trans_addons.php:356
+msgid "Login failed!"
+msgstr "ورود به سیستم ناموفق بود!"
+
+#: content_account/login/model.php:111 content_account/login/model.php:117
+#: includes/languages/trans_addons.php:357
+msgid "Mobile or password is incorrect"
+msgstr "موبایل یا کلمه عبور اشتباه است"
+
+#: content_account/recovery/model.php:80 includes/languages/trans_addons.php:31
+msgid "we send a verification code for you"
+msgstr "ما کد اعتبارسنجی را برای شما ارسال خواهیم کرد"
+
+#: content_account/recovery/model.php:91 includes/languages/trans_addons.php:514
+msgid "recovery failed!"
+msgstr "بازیابی ناموفق بود!"
+
+#: content_account/recovery/model.php:97 includes/languages/trans_addons.php:515
+msgid "Mobile number is incorrect"
+msgstr "این شماره موبایل اشتباه است."
+
+#: content_account/signup/controller.php:25
+msgid "Public registration is disabled!"
+msgstr "اجازه ثبت‌نام عمومی غیرفعال است!"
+
+#: content_account/signup/model.php:64 includes/languages/trans_addons.php:510
+msgid "Register successfully"
+msgstr "ثبت‌نام با موفقیت به انجام رسید"
+
+#: content_account/signup/model.php:71 content_account/signup/model.php:80
+msgid "Please contact to administrator!"
+msgstr "لطفا با مدیر سیستم تماس بگیرید!"
+
+#: content_account/signup/model.php:76 includes/languages/trans_addons.php:509
+msgid "Mobile number exist!"
+msgstr "شماره موبایل وجود دارد!"
+
+#: content_account/verification/model.php:76
+#: includes/languages/trans_addons.php:518
+msgid "verify successfully."
+msgstr "اعتبارسنجی موفقیت آمیز بود."
+
+#: content_account/verification/model.php:76
+#: includes/languages/trans_addons.php:519
+msgid "please Input your new password"
+msgstr "لطفا کلمه عبور جدید را وارد کنید"
+
+#: content_account/verification/model.php:80
+#: includes/languages/trans_addons.php:520
+msgid "verify failed!"
+msgstr "اعتبارسنجی ناموفق بود!"
+
+#: content_account/verification/model.php:85
+#: includes/languages/trans_addons.php:521
+msgid "this data is incorrect"
+msgstr "این اطلاعات اشتباه است"
+
+#: content_account/verification/model.php:89
+msgid "please forward this message to administrator"
+msgstr "لطفا این پیغام را برای مدیر سیستم ارسال کنید"
+
+#: content_account/verificationsms/model.php:22
+msgid "we are waiting for your message!"
+msgstr "ما در انتظار دریافت پیامک شما هستیم!"
+
+#: content_account/verificationsms/model.php:42
+msgid "we receive your message and your account is now verifited."
+msgstr "ما پیامک شما را دریافت کرده و اکانت شما را برایتان فعال کردیم"
+
+#: content_account/verificationsms/model.php:48
+msgid "error on verify your code!"
+msgstr "خطا در تایید اعتبار کد!"
+
+#: content_cp/home/controller.php:19 content_cp1/home/controller.php:19
+msgid "first of all, you must login to system!"
+msgstr "شما ابتدا باید وارد سیستم شوید!"
+
+#: content_cp/home/controller.php:50 content_cp1/home/controller.php:50
+msgid "Can not access to cp"
+msgstr "نمی‌توانید به کنترل پنل دسترسی داشته باشید"
+
+#: content_cp/home/controller.php:80 content_cp1/home/controller.php:80
+msgid "Not found!"
+msgstr "یافت نشد"
+
+#: content_cp/manifest.php:9 content_cp1/manifest.php:9
+#: includes/languages/trans_addons.php:40
+msgid "Dashboard"
+msgstr "داشبورد"
+
+#: content_cp/manifest.php:13 content_cp1/manifest.php:13
+#: includes/languages/trans_addons.php:363
+msgid "Use posts to share your news in specefic category"
+msgstr "از نوشته ها برای انتشار اخبار در موضوعات دلخواه استفاده کنید"
+
+#: content_cp/manifest.php:21 content_cp1/manifest.php:21
+#: includes/languages/trans_addons.php:360
+msgid "Assign keywords to your posts using tags"
+msgstr ""
+"از عبارات کلیدی برای تعریف کلیدواژه ها و ارتباط آن به نوشته های استفاده کنید"
+
+#: content_cp/manifest.php:26 content_cp1/manifest.php:26
+#: includes/languages/trans_addons.php:361
+msgid "Use categories to define sections of your site and group related posts"
+msgstr "از دسته ها برای تعریف بخش های سایت و دسته بندی نوشته ها استفاده کنید"
+
+#: content_cp/manifest.php:27 content_cp1/manifest.php:27
+#: includes/languages/trans_addons.php:99
+msgid "Categories"
+msgstr "دسته‌ها"
+
+#: content_cp/manifest.php:33 content_cp1/manifest.php:33
+#: includes/languages/trans_addons.php:364
+msgid "Use pages to share your static content"
+msgstr "از برگه ها برای انتشار مطالب ثابت استفاده کنید"
+
+#: content_cp/manifest.php:41 content_cp1/manifest.php:41
+#: includes/languages/trans_addons.php:406
+msgid "Use book to define important parts to use in posts"
+msgstr "کتاب های خود را در این بخش وارد کنید"
+
+#: content_cp/manifest.php:42 content_cp1/manifest.php:42
+msgid "Books"
+msgstr "کتاب‌ها"
+
+#: content_cp/manifest.php:48 content_cp1/manifest.php:48
+msgid "Help Center"
+msgstr "مرکز راهنمایی"
+
+#: content_cp/manifest.php:49 content_cp1/manifest.php:49
+msgid "Help center is ready to use"
+msgstr "مرکز راهنمایی برای استفاده آماده است"
+
+#: content_cp/manifest.php:61 content_cp1/manifest.php:61
+#: includes/languages/trans_addons.php:405
+msgid "Use categories to define sections of your site and group related books"
+msgstr "با استفاده از دسته‌بندی بخش های مختلف کتاب را گروه بندی کنید"
+
+#: content_cp/manifest.php:62 content_cp1/manifest.php:62
+#: includes/languages/trans_addons.php:402
+msgid "Book Categories"
+msgstr "دسته‌بندی کتاب"
+
+#: content_cp/manifest.php:69 content_cp1/manifest.php:69
+#: includes/languages/trans_addons.php:415
+msgid "Publish new post in social networks"
+msgstr "انتشار پست جدید در شبکه‌های اجتماعی"
+
+#: content_cp/manifest.php:76 content_cp1/manifest.php:76
+#: includes/languages/trans_addons.php:365
+msgid "Upload your media"
+msgstr "برای بارگزاری فایل های شما"
+
+#: content_cp/manifest.php:81 content_cp1/manifest.php:81
+#: includes/languages/trans_addons.php:362
+msgid "Use categories to define sections of your site and group related files"
+msgstr ""
+"از دسته‌بندی برای تعریف بخش‌های مختلف برای گروه‌بندی کردن فایل‌ها استفاده کنید"
+
+#: content_cp/manifest.php:82 content_cp1/manifest.php:82
+msgid "File Categories"
+msgstr "دسته‌بندی فایل‌ها"
+
+#: content_cp/tools/controller.php:52 content_cp1/tools/controller.php:54
+msgid "Permission denide for run upgrade database"
+msgstr "دسترسی برای ارتقا دیتابیس امکان پذیر نیست"
+
+#: content_cp/tools/controller.php:106 content_cp1/tools/controller.php:108
+msgid "First you need to enable COM on windows"
+msgstr "در ابتدا شما باید ویژگی Com را در ویندوز فعال کنید"
+
+#: content_cp/tools/controller.php:107 content_cp1/tools/controller.php:109
+msgid "Read More"
+msgstr "بیشتر بخوانید"
+
+#: content_cp/tools/controller.php:170 content_cp1/tools/controller.php:172
+msgid "Create sitemap Successfully!"
+msgstr "بازسازی نقشه سایت با موفقیت انجام شد!"
+
+#: content_cp/tools/controller.php:221 content_cp1/tools/controller.php:223
+msgid "Not Work!"
+msgstr "کار نمیکند!"
+
+#: content_cp/tools/controller.php:360 content_cp1/tools/controller.php:341
+msgid "Do you wanna something here!?"
+msgstr "چیز میخواهید اینجا؟"
+
+#: content_cp1/home/model.php:261
+#: includes/cls/database/saloos/translation.php:85
+#: includes/cls/database/saloos/translation.php:97
+msgid "type"
+msgstr "نوع"
+
+#: content_cp1/home/view.php:81 includes/languages/trans_addons.php:256
+msgid "week"
+msgstr "هفته"
+
+#: content_cp1/home/view.php:97 content_cp1/home/view.php:127
+#: includes/languages/trans_addons.php:390
+msgid "Chart must be contain at least 2 column!"
+msgstr "نمودار باید حداقل شامل دو ستون داده ای باشد!"
+
+#: content_cp1/home/view.php:332 includes/languages/trans_addons.php:368
+msgid "Enter password within 5 to 40 character"
+msgstr "گذرواژه‌ای بین ۵ تا ۴۰ کاراکتر وارد کنید"
+
+#: content_cp1/home/view.php:336 includes/cls/form/account.php:67
+#: includes/languages/trans_addons.php:524
+msgid "New Password"
+msgstr "گذرواژه جدید"
+
+#: content_cp1/home/view.php:336 includes/languages/trans_addons.php:367
+msgid "If you want to change password enter it, else leave it blank"
+msgstr ""
+"در صورت تمایل به تغییر گذرواژه آن را وارد کنید،‌ در غیر این ‌صورت این فیلد را "
+"خالی بگذارید"
+
+#: content_cp1/home/view.php:349
+msgid "position"
+msgstr "موقعیت"
+
+#: content_cp1/options/model.php:40
+msgid "We find a problem and solve it!"
+msgstr "ما به مشکلی برخورده و آن را حل کردیم!"
+
+#: content_cp1/options/model.php:111 content_cp1/permissions/model.php:169
+#: content_cp1/posts/model.php:521 content_cp1/profile/model.php:23
+#: content_cp1/terms/model.php:142 includes/languages/trans_addons.php:293
+#: lib/mvc/models/commit.php:49
+msgid "Update Successfully"
+msgstr "بروزرسانی با موفقیت انجام شد"
+
+#: content_cp1/options/model.php:118 content_cp1/permissions/model.php:180
+#: content_cp1/posts/model.php:534 content_cp1/profile/model.php:30
+#: content_cp1/terms/model.php:158 includes/languages/trans_addons.php:297
+#: lib/mvc/models/commit.php:28
+msgid "Transaction error"
+msgstr "خطای در تراکنش"
+
+#: content_cp1/options/model.php:459
+msgid "Start logging visitors"
+msgstr "ذخیره عملکرد بازدیدکنندگان"
+
+#: content_cp1/options/view.php:9 includes/languages/trans_addons.php:135
+msgid "Edit your site general options"
+msgstr "ویرایش تنظیمات عمومی وب‌سایت"
+
+#: content_cp1/options/view.php:33 includes/languages/trans_addons.php:463
+msgid "Kavenegar"
+msgstr "کاوه‌نگار"
+
+#: content_cp1/permissions/model.php:76 includes/languages/trans_addons.php:533
+msgid "First you must enter name of permission"
+msgstr "در ابتدا نام سطح‌دسترسی جدید را وارد کنید"
+
+#: content_cp1/permissions/model.php:85 includes/languages/trans_addons.php:534
+msgid "This permission name exist!"
+msgstr "این نام برای سطح‌دسترسی از قبل وجود دارد!"
+
+#: content_cp1/permissions/model.php:86 includes/languages/trans_addons.php:535
+msgid "You can edit this permission"
+msgstr "شما توانایی ویرایش این سطح دسترسی را دارید"
+
+#: content_cp1/permissions/model.php:160 content_cp1/posts/model.php:526
+#: content_cp1/terms/model.php:147 includes/languages/trans_addons.php:291
+#: lib/mvc/models/commit.php:22
+msgid "Insert Successfully"
+msgstr "افزودن با موفقیت انجام شد"
+
+#: content_cp1/permissions/model.php:165 includes/languages/trans_addons.php:295
+#: lib/mvc/models/commit.php:75
+msgid "Delete Successfully"
+msgstr "حذف با موفقیت انجام شد"
+
+#: content_cp1/permissions/view.php:9 includes/languages/trans_addons.php:536
+msgid ""
+"Define or edit user permissions to allow or block access to special pages"
+msgstr "تعریف یا ویرایش سطوح‌دسترسی برای اجازه یا ممنوع کردن دسترسی به صفحات خاص"
+
+#: content_cp1/permissions/view.php:15 content_cp1/posts/model.php:712
+#: includes/languages/trans_addons.php:170
+msgid "Edit"
+msgstr "ویرایش"
+
+#: content_cp1/permissions/view.php:15
+#: includes/cls/database/saloos/translation.php:132
+msgid "permission"
+msgstr "سطح دسترسی"
+
+#: content_cp1/posts/model.php:131 includes/languages/trans_addons.php:359
+msgid "Please enter title"
+msgstr "لطفا عنوان را وارد کنید"
+
+#: content_cp1/posts/model.php:629 includes/languages/trans_addons.php:407
+msgid "Duplicate - File exist"
+msgstr "تکراری - فایل وجود دارد"
+
+#: content_cp1/posts/model.php:640 includes/languages/trans_addons.php:408
+msgid "Fail on tranfering file"
+msgstr "خطا در انتقال فایل"
+
+#: content_cp1/posts/model.php:721 includes/languages/trans_addons.php:409
+msgid "Error"
+msgstr "خطا"
+
+#: content_cp1/terms/model.php:114
+msgid "Please enter title!"
+msgstr "لطفا عنوان را وارد کنید!"
+
+#: includes/cls/database/saloos/translation.php:6
+#: includes/cls/database/saloos/translation.php:112
+msgid "comments"
+msgstr "دیدگاه ها"
+
+#: includes/cls/database/saloos/translation.php:7
+#: includes/cls/database/saloos/translation.php:86
+msgid "comment"
+msgstr "دیدگاه"
+
+#: includes/cls/database/saloos/translation.php:8
+msgid "approved"
+msgstr "تایید شده"
+
+#: includes/cls/database/saloos/translation.php:9
+msgid "unapproved"
+msgstr "تایید نشده"
+
+#: includes/cls/database/saloos/translation.php:10
+msgid "spam"
+msgstr "هرزنامه"
+
+#: includes/cls/database/saloos/translation.php:11
+msgid "deleted"
+msgstr "حذف شده"
+
+#: includes/cls/database/saloos/translation.php:12
+msgid "id"
+msgstr "کد"
+
+#: includes/cls/database/saloos/translation.php:13
+#: includes/cls/database/saloos/translation.php:73
+#: includes/languages/trans_addons.php:369
+msgid "post"
+msgstr "نوشته"
+
+#: includes/cls/database/saloos/translation.php:14
+msgid "author"
+msgstr "کاربر"
+
+#: includes/cls/database/saloos/translation.php:15
+#: includes/cls/database/saloos/translation.php:127
+#: includes/languages/trans_addons.php:613
+msgid "email"
+msgstr "رایانامه"
+
+#: includes/cls/database/saloos/translation.php:16
+#: includes/cls/database/saloos/translation.php:59
+#: includes/cls/database/saloos/translation.php:82
+#: includes/cls/database/saloos/translation.php:100
+#: includes/cls/database/saloos/translation.php:141
+msgid "url"
+msgstr "نشانی اینترنتی"
+
+#: includes/cls/database/saloos/translation.php:17
+#: includes/cls/database/saloos/translation.php:57
+#: includes/cls/database/saloos/translation.php:83
+msgid "content"
+msgstr "محتوا"
+
+#: includes/cls/database/saloos/translation.php:18
+#: includes/cls/database/saloos/translation.php:34
+#: includes/cls/database/saloos/translation.php:46
+#: includes/cls/database/saloos/translation.php:58
+#: includes/cls/database/saloos/translation.php:68
+#: includes/cls/database/saloos/translation.php:84
+#: includes/cls/database/saloos/translation.php:102
+#: includes/cls/database/saloos/translation.php:130
+msgid "meta"
+msgstr "متا"
+
+#: includes/cls/database/saloos/translation.php:19
+#: includes/cls/database/saloos/translation.php:47
+#: includes/cls/database/saloos/translation.php:60
+#: includes/cls/database/saloos/translation.php:69
+#: includes/cls/database/saloos/translation.php:89
+#: includes/cls/database/saloos/translation.php:131
+msgid "status"
+msgstr "وضعیت"
+
+#: includes/cls/database/saloos/translation.php:20
+#: includes/cls/database/saloos/translation.php:90
+#: includes/cls/database/saloos/translation.php:103
+msgid "parent"
+msgstr "والد"
+
+#: includes/cls/database/saloos/translation.php:21
+#: includes/cls/database/saloos/translation.php:120
+msgid "user"
+msgstr "کاربر"
+
+#: includes/cls/database/saloos/translation.php:22
+#: includes/cls/database/saloos/translation.php:137
+#: includes/languages/trans_addons.php:381
+msgid "visitor"
+msgstr "بازدیدکننده"
+
+#: includes/cls/database/saloos/translation.php:23
+msgid "modified"
+msgstr "آخرین زمان ویرایش"
+
+#: includes/cls/database/saloos/translation.php:26
+msgid "logitems"
+msgstr "مواردلاگ‌ها"
+
+#: includes/cls/database/saloos/translation.php:27
+#: includes/cls/database/saloos/translation.php:44
+msgid "logitem"
+msgstr "موارد لاگ"
+
+#: includes/cls/database/saloos/translation.php:28
+msgid "critical"
+msgstr "بحرانی"
+
+#: includes/cls/database/saloos/translation.php:29
+msgid "high"
+msgstr "بالا"
+
+#: includes/cls/database/saloos/translation.php:30
+msgid "medium"
+msgstr "متوسط"
+
+#: includes/cls/database/saloos/translation.php:31
+msgid "low"
+msgstr "کم"
+
+#: includes/cls/database/saloos/translation.php:32
+#: includes/cls/database/saloos/translation.php:56
+#: includes/cls/database/saloos/translation.php:80
+#: includes/cls/database/saloos/translation.php:98
+#: includes/cls/form/options.php:27 includes/languages/trans_addons.php:441
+msgid "title"
+msgstr "عنوان"
+
+#: includes/cls/database/saloos/translation.php:33
+#: includes/cls/database/saloos/translation.php:101
+msgid "desc"
+msgstr "توضیح"
+
+#: includes/cls/database/saloos/translation.php:35
+msgid "priority"
+msgstr "اولویت"
+
+#: includes/cls/database/saloos/translation.php:38
+msgid "logs"
+msgstr "لاگ‌ها"
+
+#: includes/cls/database/saloos/translation.php:39
+msgid "log"
+msgstr "لاگ"
+
+#: includes/cls/database/saloos/translation.php:40
+msgid "enable"
+msgstr "فعال"
+
+#: includes/cls/database/saloos/translation.php:41
+msgid "disable"
+msgstr "غیرفعال"
+
+#: includes/cls/database/saloos/translation.php:42
+msgid "expire"
+msgstr "منقضی شده"
+
+#: includes/cls/database/saloos/translation.php:43
+msgid "deliver"
+msgstr "تحویل‌داده‌شده"
+
+#: includes/cls/database/saloos/translation.php:45
+msgid "data"
+msgstr "داده"
+
+#: includes/cls/database/saloos/translation.php:48
+#: includes/cls/database/saloos/translation.php:133
+#: includes/cls/database/saloos/translation.php:145
+msgid "createdate"
+msgstr "تاریخ ایجاد"
+
+#: includes/cls/database/saloos/translation.php:51
+msgid "notifications"
+msgstr "آگاه سازی ها"
+
+#: includes/cls/database/saloos/translation.php:52
+msgid "notification"
+msgstr "آگاه سازی"
+
+#: includes/cls/database/saloos/translation.php:53
+msgid "read"
+msgstr "خوانده شده"
+
+#: includes/cls/database/saloos/translation.php:54
+msgid "unread"
+msgstr "خوانده نشده"
+
+#: includes/cls/database/saloos/translation.php:55
+msgid "user sender"
+msgstr "کاربر فرستنده"
+
+#: includes/cls/database/saloos/translation.php:63
+msgid "options"
+msgstr "تنظیمات"
+
+#: includes/cls/database/saloos/translation.php:64
+#: includes/languages/trans_addons.php:377
+msgid "option"
+msgstr "تنظیمات"
+
+#: includes/cls/database/saloos/translation.php:65
+msgid "cat"
+msgstr "دسته"
+
+#: includes/cls/database/saloos/translation.php:66
+msgid "key"
+msgstr "کلید"
+
+#: includes/cls/database/saloos/translation.php:67
+msgid "value"
+msgstr "مقدار"
+
+#: includes/cls/database/saloos/translation.php:72
+#: includes/cls/database/saloos/translation.php:108
+msgid "posts"
+msgstr "نوشته‌ها"
+
+#: includes/cls/database/saloos/translation.php:74
+msgid "open"
+msgstr "باز"
+
+#: includes/cls/database/saloos/translation.php:75
+msgid "closed"
+msgstr "بسته"
+
+#: includes/cls/database/saloos/translation.php:76
+msgid "publish"
+msgstr "زمان انتشار"
+
+#: includes/cls/database/saloos/translation.php:77
+msgid "draft"
+msgstr "پیش نویس"
+
+#: includes/cls/database/saloos/translation.php:78
+msgid "schedule"
+msgstr "زمان بندی شده"
+
+#: includes/cls/database/saloos/translation.php:79
+#: includes/cls/database/saloos/translation.php:96
+msgid "language"
+msgstr "زبان"
+
+#: includes/cls/database/saloos/translation.php:81
+#: includes/cls/database/saloos/translation.php:99
+msgid "slug"
+msgstr "نامک"
+
+#: includes/cls/database/saloos/translation.php:87
+msgid "count"
+msgstr "تعداد"
+
+#: includes/cls/database/saloos/translation.php:88
+#: includes/cls/database/saloos/translation.php:116
+msgid "order"
+msgstr "ترتیب"
+
+#: includes/cls/database/saloos/translation.php:91
+msgid "publishdate"
+msgstr "زمان انتشار"
+
+#: includes/cls/database/saloos/translation.php:94
+msgid "terms"
+msgstr "عبارت ها"
+
+#: includes/cls/database/saloos/translation.php:95
+#: includes/cls/database/saloos/translation.php:113
+msgid "term"
+msgstr "عبارت"
+
+#: includes/cls/database/saloos/translation.php:106
+msgid "termusages"
+msgstr "موارد استفاده عبارت"
+
+#: includes/cls/database/saloos/translation.php:107
+#: includes/cls/database/saloos/translation.php:114
+msgid "termusage"
+msgstr "محل استفاده عبارت"
+
+#: includes/cls/database/saloos/translation.php:109
+msgid "products"
+msgstr "کالاها"
+
+#: includes/cls/database/saloos/translation.php:110
+#: includes/languages/trans_addons.php:7
+msgid "attachments"
+msgstr "ضمیمه‌ها"
+
+#: includes/cls/database/saloos/translation.php:111
+msgid "files"
+msgstr "فایل ها"
+
+#: includes/cls/database/saloos/translation.php:115
+msgid "foreign"
+msgstr "کلیدخارجی"
+
+#: includes/cls/database/saloos/translation.php:119
+msgid "users"
+msgstr "کاربران"
+
+#: includes/cls/database/saloos/translation.php:121
+msgid "active"
+msgstr "فعال"
+
+#: includes/cls/database/saloos/translation.php:122
+msgid "awaiting"
+msgstr "در حال انتظار"
+
+#: includes/cls/database/saloos/translation.php:123
+msgid "deactive"
+msgstr "غیرفعال"
+
+#: includes/cls/database/saloos/translation.php:124
+msgid "removed"
+msgstr "حذف شده"
+
+#: includes/cls/database/saloos/translation.php:125
+msgid "filter"
+msgstr "فیلتر"
+
+#: includes/cls/database/saloos/translation.php:126
+msgid "mobile"
+msgstr "موبایل"
+
+#: includes/cls/database/saloos/translation.php:128
+msgid "pass"
+msgstr "کلمه عبور"
+
+#: includes/cls/database/saloos/translation.php:129
+msgid "displayname"
+msgstr "نام برای نمایش عمومی"
+
+#: includes/cls/database/saloos/translation.php:136
+#: includes/languages/trans_addons.php:261
+msgid "visitors"
+msgstr "بازدیدکنندگان"
+
+#: includes/cls/database/saloos/translation.php:138
+msgid "yes"
+msgstr "بله"
+
+#: includes/cls/database/saloos/translation.php:139
+msgid "no"
+msgstr "خیر"
+
+#: includes/cls/database/saloos/translation.php:140
+msgid "ip"
+msgstr "آی پی"
+
+#: includes/cls/database/saloos/translation.php:142
+msgid "agent"
+msgstr "عامل"
+
+#: includes/cls/database/saloos/translation.php:143
+msgid "referer"
+msgstr "ارجاع دهنده"
+
+#: includes/cls/database/saloos/translation.php:144
+msgid "robot"
+msgstr "ربات"
+
+#: includes/cls/form/account.php:22 includes/languages/trans_addons.php:507
+msgid "Enter your registered mobile"
+msgstr "موبایل ثبت شده را وارد کنید"
+
+#: includes/cls/form/account.php:24 includes/cls/form/account.php:33
+#: includes/cls/form/symbol.php:23 includes/languages/trans_addons.php:391
+msgid "Password"
+msgstr "کلمه عبور"
+
+#: includes/cls/form/account.php:24 includes/languages/trans_addons.php:508
+msgid "Enter your password"
+msgstr "کلمه عبور خود را وارد کنید"
+
+#: includes/cls/form/account.php:25
+msgid "Remember me"
+msgstr "من را به خاطر بسپار"
+
+#: includes/cls/form/account.php:48
+msgid "Code"
+msgstr "کد"
+
+#: includes/cls/form/account.php:49
+msgid "input 4 number"
+msgstr "کد حاوی 4 عدد را وارد کنید"
+
+#: includes/cls/form/account.php:50 includes/languages/trans_addons.php:522
+msgid "Check your mobile and enter the code"
+msgstr "پس از بررسی موبایل خود کد را وارد کنید"
+
+#: includes/cls/form/account.php:51 includes/languages/trans_addons.php:517
+msgid "Verification"
+msgstr "اعتبارسنجی"
+
+#: includes/cls/form/account.php:65 includes/languages/trans_addons.php:523
+msgid "Current Password"
+msgstr "گذرواژه فعلی"
+
+#: includes/cls/form/account.php:68 includes/languages/trans_addons.php:525
+msgid "Change it"
+msgstr "تغییر بده"
+
+#: includes/cls/form/account.php:68
+msgid "Change my password"
+msgstr "کلمه عبور"
+
+#: includes/cls/form/options.php:27 includes/cls/form/options.php:33
+#: includes/cls/form/options.php:46 includes/languages/trans_addons.php:440
+msgid "Site"
+msgstr "سایت"
+
+#: includes/cls/form/options.php:29
+msgid "Site title"
+msgstr "عنوان سایت"
+
+#: includes/cls/form/options.php:30 includes/languages/trans_addons.php:442
+msgid "For multilanguage sites enter title in English and translate it"
+msgstr ""
+"برای سایت‌های چندزبانه، این بخش را به انگلیسی وارد نموده و توسط برنامه مترجم "
+"آن را به سایر زبان‌ها ترجمه کنید"
+
+#: includes/cls/form/options.php:33 includes/languages/trans_addons.php:418
+msgid "Description"
+msgstr "توضیح"
+
+#: includes/cls/form/options.php:35
+msgid "Site Description"
+msgstr "درباره سایت"
+
+#: includes/cls/form/options.php:36
+msgid "Explain site and porpose of it in a few words"
+msgstr "سایت و هدف آن را در چند کلمه مختصر توضیح دهید"
+
+#: includes/cls/form/options.php:39 includes/cls/form/options.php:41
+#: includes/languages/trans_addons.php:243
+msgid "Email"
+msgstr "رایانامه"
+
+#: includes/cls/form/options.php:46
+msgid "Tab Color"
+msgstr "رنگ تب"
+
+#: includes/cls/form/options.php:48
+msgid "Site Tab Color in Mobile"
+msgstr "رنگ تب سایت در موبایل"
+
+#: includes/cls/form/options.php:69 includes/languages/trans_addons.php:444
+msgid "Enable coming soon"
+msgstr "نمایش صفحه بزودی"
+
+#: includes/cls/form/options.php:74 includes/languages/trans_addons.php:445
+msgid "debug mode status"
+msgstr "وضعیت نمایش خطا"
+
+#: includes/cls/form/options.php:79 includes/languages/trans_addons.php:446
+msgid "Save as cookie"
+msgstr "ذخیره به عنوان کوکی"
+
+#: includes/cls/form/options.php:84 includes/languages/trans_addons.php:447
+msgid "Log visitors"
+msgstr "ذخیره عملکرد بازدیدکنندگان"
+
+#: includes/cls/form/options.php:89 includes/languages/trans_addons.php:448
+msgid "Use main account"
+msgstr "استفاده از اکانت یکپارچه"
+
+#: includes/cls/form/options.php:95 includes/languages/trans_addons.php:449
+msgid "Main account"
+msgstr "اکانت یکپارچه"
+
+#: includes/cls/form/options.php:100 includes/cls/form/options.php:101
+#: includes/languages/trans_addons.php:450
+msgid "Default Language"
+msgstr "زبان پیش‌فرض"
+
+#: includes/cls/form/options.php:105
+msgid "URL Settings"
+msgstr "تنظیمات آدرس"
+
+#: includes/cls/form/options.php:110 includes/languages/trans_addons.php:452
+msgid "Use fake subdomain"
+msgstr "شبیه‌سازی ساب‌دامین"
+
+#: includes/cls/form/options.php:115
+msgid "Support https"
+msgstr "پشتیبانی از https"
+
+#: includes/cls/form/options.php:120
+msgid "allow short URL"
+msgstr "استفاده از آدرس کوتاه"
+
+#: includes/cls/form/options.php:126
+msgid "force using short URL"
+msgstr "نمایش آدرس کوتاه برای این نوشته"
+
+#: includes/cls/form/options.php:130 includes/languages/trans_addons.php:451
+msgid "Feature status"
+msgstr "وضعیت ویژگی‌ها"
+
+#: includes/cls/form/options.php:135 includes/languages/trans_addons.php:453
+msgid "Use SMS service"
+msgstr "استفاده از سرویس پیامک"
+
+#: includes/cls/form/options.php:140 includes/languages/trans_addons.php:454
+msgid "Use social networks"
+msgstr "استفاده از شبکه‌های اجتماعی"
+
+#: includes/cls/form/options.php:145 includes/languages/trans_addons.php:455
+msgid "Use account"
+msgstr "استفاده از اکانت یکپارچه"
+
+#: includes/cls/form/options.php:149
+msgid "Multi domain"
+msgstr "چند دامنه"
+
+#: includes/cls/form/options.php:154
+msgid "Use multi domain"
+msgstr "استفاده از چند دامنه"
+
+#: includes/cls/form/options.php:160 includes/cls/form/options.php:161
+msgid "Default Tld"
+msgstr "Tld پیش فرض"
+
+#: includes/cls/form/options.php:168
+msgid "domain name is different?"
+msgstr "نام دامنه متفاوت است؟"
+
+#: includes/cls/form/options.php:175
+msgid "Main domain name"
+msgstr "نام دامنه اصلی"
+
+#: includes/cls/form/options.php:185 includes/cls/form/options.php:191
+msgid "Redirect to main doamin"
+msgstr "انتقال به دامنه اصلی"
+
+#: includes/cls/form/options.php:207 includes/cls/form/options.php:270
+#: includes/cls/form/options.php:277 includes/cls/form/options.php:284
+#: includes/cls/form/options.php:291 includes/languages/trans_addons.php:139
+msgid "Twitter"
+msgstr "توییتر"
+
+#: includes/cls/form/options.php:214 includes/cls/form/options.php:311
+#: includes/cls/form/options.php:318 includes/cls/form/options.php:325
+#: includes/cls/form/options.php:332 includes/cls/form/options.php:339
+#: includes/cls/form/options.php:346 includes/cls/form/options.php:353
+#: includes/languages/trans_addons.php:140
+msgid "Facebook"
+msgstr "فیس‌بوک"
+
+#: includes/cls/form/options.php:221 includes/languages/trans_addons.php:461
+msgid "Google Plus"
+msgstr "گوگل پلاس"
+
+#: includes/cls/form/options.php:228 includes/languages/trans_addons.php:458
+msgid "Github"
+msgstr "گیت‌هاب"
+
+#: includes/cls/form/options.php:235 includes/languages/trans_addons.php:459
+msgid "Linkedin"
+msgstr "لینکدین"
+
+#: includes/cls/form/options.php:242 includes/cls/form/options.php:373
+#: includes/cls/form/options.php:380 includes/cls/form/options.php:387
+#: includes/cls/form/options.php:394 includes/cls/form/options.php:407
+#: includes/cls/form/options.php:414 includes/languages/trans_addons.php:141
+msgid "Telegram"
+msgstr "تلگرام"
+
+#: includes/cls/form/options.php:249 includes/languages/trans_addons.php:460
+msgid "Aparat"
+msgstr "آپارات"
+
+#: includes/cls/form/options.php:265 includes/languages/trans_addons.php:493
+msgid "Status of twitter sharing"
+msgstr "وضعیت بازنشر در توییتر"
+
+#: includes/cls/form/options.php:270
+msgid "ConsumerKey"
+msgstr "ConsumerKey"
+
+#: includes/cls/form/options.php:277 includes/languages/trans_addons.php:466
+msgid "ConsumerSecret"
+msgstr "ConsumerSecret"
+
+#: includes/cls/form/options.php:284 includes/languages/trans_addons.php:467
+msgid "AccessToken"
+msgstr "AccessToken"
+
+#: includes/cls/form/options.php:291 includes/languages/trans_addons.php:468
+msgid "AccessTokenSecret"
+msgstr "AccessTokenSecret"
+
+#: includes/cls/form/options.php:306 includes/languages/trans_addons.php:494
+msgid "Status of facebook sharing"
+msgstr "وضعیت بازنشر در فیس‌بوک"
+
+#: includes/cls/form/options.php:311 includes/languages/trans_addons.php:469
+msgid "app_id"
+msgstr "app_id"
+
+#: includes/cls/form/options.php:318 includes/languages/trans_addons.php:470
+msgid "app_secret"
+msgstr "app_secret"
+
+#: includes/cls/form/options.php:325 includes/languages/trans_addons.php:471
+msgid "redirect_url"
+msgstr "redirect_url"
+
+#: includes/cls/form/options.php:332 includes/languages/trans_addons.php:472
+msgid "required_scope"
+msgstr "required_scope"
+
+#: includes/cls/form/options.php:339 includes/languages/trans_addons.php:473
+msgid "page_id"
+msgstr "page_id"
+
+#: includes/cls/form/options.php:346 includes/languages/trans_addons.php:474
+msgid "access_token"
+msgstr "access_token"
+
+#: includes/cls/form/options.php:353 includes/languages/trans_addons.php:475
+msgid "client_token"
+msgstr "client_token"
+
+#: includes/cls/form/options.php:368 includes/languages/trans_addons.php:495
+msgid "Status of telegram sharing"
+msgstr "وضعیت بازنشر در تلگرام"
+
+#: includes/cls/form/options.php:373 includes/cls/form/options.php:414
+#: includes/languages/trans_addons.php:353
+msgid "Key"
+msgstr "کلید"
+
+#: includes/cls/form/options.php:380
+msgid "bot name"
+msgstr "نام بات"
+
+#: includes/cls/form/options.php:387
+msgid "hook folder"
+msgstr "پوشه هوک"
+
+#: includes/cls/form/options.php:394
+msgid "hook url"
+msgstr "آدرس هوک"
+
+#: includes/cls/form/options.php:402
+msgid "Debug mode"
+msgstr "وضعیت خطایابی"
+
+#: includes/cls/form/options.php:407
+msgid "channel"
+msgstr "کانال"
+
+#: includes/cls/form/options.php:414
+msgid "botan"
+msgstr "بوتان"
+
+#: includes/cls/form/options.php:429 includes/languages/trans_addons.php:485
+msgid "Simulate SMS (Debugging)"
+msgstr "شبیه‌سازی پیامک (خطایابی)"
+
+#: includes/cls/form/options.php:432 includes/languages/trans_addons.php:492
+msgid "SMS api detail"
+msgstr "جزئیات رابط برنامه‌نویسی پیامک"
+
+#: includes/cls/form/options.php:436 includes/cls/form/options.php:437
+#: includes/languages/trans_addons.php:464
+msgid "SMS service"
+msgstr "سرویس پیامک"
+
+#: includes/cls/form/options.php:441 includes/cls/form/options.php:447
+#: includes/cls/form/options.php:452 includes/languages/trans_addons.php:131
+msgid "SMS"
+msgstr "پیامک"
+
+#: includes/cls/form/options.php:441 includes/languages/trans_addons.php:457
+msgid "apikey"
+msgstr "کلید ای‌پی‌آی"
+
+#: includes/cls/form/options.php:447 includes/cls/form/options.php:452
+#: includes/languages/trans_addons.php:456
+msgid "line number"
+msgstr "شماره خط"
+
+#: includes/cls/form/options.php:458 includes/languages/trans_addons.php:480
+msgid "Regional restriction"
+msgstr "محدودیت منطقه‌ای"
+
+#: includes/cls/form/options.php:461 includes/languages/trans_addons.php:491
+msgid "Message detail"
+msgstr "جزئیات پیامک"
+
+#: includes/cls/form/options.php:465 includes/languages/trans_addons.php:481
+msgid "Message header"
+msgstr "سرصفحه پیام"
+
+#: includes/cls/form/options.php:470 includes/languages/trans_addons.php:482
+msgid "Message footer"
+msgstr "پاصفحه پیام"
+
+#: includes/cls/form/options.php:476 includes/languages/trans_addons.php:483
+msgid "Force one message"
+msgstr "اجبار به یک پیامک"
+
+#: includes/cls/form/options.php:479 includes/languages/trans_addons.php:490
+msgid "Send message in custom situation"
+msgstr "ارسال پیامک در شرایط سفارشی"
+
+#: includes/cls/form/options.php:484 includes/cls/form/options.php:489
+#: includes/cls/form/options.php:494 includes/cls/form/options.php:499
+#: includes/cls/form/options.php:504 includes/languages/trans_addons.php:476
+msgid "Send message for"
+msgstr "ارسال پیام برای"
+
+#: includes/cls/form/options.php:484 includes/languages/trans_addons.php:262
+msgid "signup"
+msgstr "ثبت نام"
+
+#: includes/cls/form/options.php:489 includes/cls/form/options.php:504
+#: includes/languages/trans_addons.php:477
+msgid "verification"
+msgstr "اعتبارسنجی"
+
+#: includes/cls/form/options.php:494 includes/languages/trans_addons.php:478
+msgid "recovery"
+msgstr "بازیابی"
+
+#: includes/cls/form/options.php:499 includes/languages/trans_addons.php:479
+msgid "changepass"
+msgstr "تغییر کلمه‌عبور"
+
+#: includes/cls/form/options.php:516 includes/languages/trans_addons.php:497
+msgid "After login redirect to"
+msgstr "بعد از لاگین انتقال به"
+
+#: includes/cls/form/options.php:520 includes/languages/trans_addons.php:505
+msgid "Increase account security"
+msgstr "افزایش امنیت بخش اکانت"
+
+#: includes/cls/form/options.php:525 includes/languages/trans_addons.php:500
+msgid "Access with pass phrase"
+msgstr "دسترسی با عبارت گذرگاه"
+
+#: includes/cls/form/options.php:530 includes/languages/trans_addons.php:501
+msgid "Pass phrase key"
+msgstr "کلید عبارت گذرگاه"
+
+#: includes/cls/form/options.php:537 includes/languages/trans_addons.php:502
+msgid "Pass phrase value"
+msgstr "مقدار عبارت گذرگاه"
+
+#: includes/cls/form/options.php:542 includes/languages/trans_addons.php:504
+msgid "Status of account service"
+msgstr "وضعیت سرویس اکانت"
+
+#: includes/cls/form/options.php:547 includes/languages/trans_addons.php:496
+msgid "Allow registration"
+msgstr "اجازه ثبت‌نام کاربر جدید"
+
+#: includes/cls/form/options.php:552 includes/cls/form/options.php:553
+#: includes/languages/trans_addons.php:498
+msgid "Default permission"
+msgstr "سطح‌دسترسی پیش فرض"
+
+#: includes/cls/form/options.php:559 includes/languages/trans_addons.php:503
+msgid "Allow recovery account"
+msgstr "اجازه بازیابی اکانت"
+
+#: includes/cls/form/symbol.php:16
+msgid "Tel"
+msgstr "تلفن"
+
+#: includes/cls/form/symbol.php:19 includes/languages/trans_addons.php:242
+msgid "Mobile"
+msgstr "موبایل"
+
+#: includes/cls/form/symbol.php:24 includes/languages/trans_addons.php:392
+msgid "between 5-40 character"
+msgstr "بین ۵ تا ۴۰ کاراکتر."
+
+#: includes/languages/trans_addons.php:6
+msgid "Write your tag and press enter to add new keyword to content"
+msgstr ""
+"کلیدواژه‌ی مورد نظر خود را نوشته و با فشردن انتر آن را به مطلب اضافه کنید"
+
+#: includes/languages/trans_addons.php:8
+msgid "Search"
+msgstr "جستجو"
+
+#: includes/languages/trans_addons.php:11
+msgid "Work with Ermile in your own language"
+msgstr "با زبان خودتان با ارمایل کار کنید"
+
+#: includes/languages/trans_addons.php:12
+msgid "Pending"
+msgstr "در انتظار"
+
+#: includes/languages/trans_addons.php:15
+msgid "Click here for recovery your password"
+msgstr "برای بازیابی کلمه عبور کلیک کنید"
+
+#: includes/languages/trans_addons.php:16
+msgid "Can't access your account?"
+msgstr "نمی توانید به حساب خود وارد شوید؟"
+
+#: includes/languages/trans_addons.php:17
+msgid "Don't have an account?"
+msgstr "اکانت ندارید؟"
+
+#: includes/languages/trans_addons.php:18
+msgid "Click here to create an account"
+msgstr "برای ساخت اکانت کلیک کنید"
+
+#: includes/languages/trans_addons.php:19
+msgid "Sign Up"
+msgstr "ثبت نام"
+
+#: includes/languages/trans_addons.php:22
+msgid "click here to login to your account"
+msgstr "برای ورود به اکانت خود کلیک کنید"
+
+#: includes/languages/trans_addons.php:23
+msgid "Remembered your password?"
+msgstr "کلمه عبور خود را به خاطر آوردید!؟"
+
+#: includes/languages/trans_addons.php:26
+msgid "already have an account?"
+msgstr "اکانت دارید؟"
+
+#: includes/languages/trans_addons.php:27
+msgid "click here to sign in to your account"
+msgstr "برای ورود به اکانت خود کلیک کنید"
+
+#: includes/languages/trans_addons.php:28
+msgid "Sign In"
+msgstr "ورود به سیستم"
+
+#: includes/languages/trans_addons.php:32
+msgid "please check your mobile and enter the code"
+msgstr "پس از بررسی موبایل خود کد را وارد کنید"
+
+#: includes/languages/trans_addons.php:33
+msgid "don't receive message?"
+msgstr "هنوز پیامک ما را دریافت نکردید؟"
+
+#: includes/languages/trans_addons.php:36
+msgid "Please send number <b>2015</b> to below number"
+msgstr "لطفا عدد <b>2015</b> را به شماره زیر پیامک کنید"
+
+#: includes/languages/trans_addons.php:37
+msgid "Then wait we receive your message and verificate your account"
+msgstr ""
+"ما در انتظار پیامک شما بوده و پس از دریافت اکانت را برایتان فعال خواهیم کردیم"
+
+#: includes/languages/trans_addons.php:41
+msgid "Tools"
+msgstr "ابزارها"
+
+#: includes/languages/trans_addons.php:42
+msgid "Sample Design"
+msgstr "نمونه دیزاین"
+
+#: includes/languages/trans_addons.php:43
+msgid "Last update on"
+msgstr "آخرین بروزرسانی در"
+
+#: includes/languages/trans_addons.php:44
+msgid "wait for next version!"
+msgstr "منتظر نسخه بعدی باشید!"
+
+#: includes/languages/trans_addons.php:45
+msgid "Powered by"
+msgstr "قدرت گرفته از"
+
+#: includes/languages/trans_addons.php:46
+msgid "Some right reserved"
+msgstr "برخی از حقوق محفوظ است!"
+
+#: includes/languages/trans_addons.php:47 lib/mvc/viewes/constructor.php:40
+msgid "Saloos"
+msgstr "سالوس"
+
+#: includes/languages/trans_addons.php:48
+msgid "Version"
+msgstr "نسخه"
+
+#: includes/languages/trans_addons.php:51
+msgid "You can use our tools"
+msgstr "شما می توانید از ابزارهای ما استفاده کنید."
+
+#: includes/languages/trans_addons.php:52
+msgid "If you dont know about this page, leave it!"
+msgstr "اگر چیزی در مورد این صفحه نمی‌دانید، آن را ترک کنید!"
+
+#: includes/languages/trans_addons.php:53
+msgid "Info"
+msgstr "درباره"
+
+#: includes/languages/trans_addons.php:54
+msgid "Show server info"
+msgstr "نمایش اطلاعات سرور"
+
+#: includes/languages/trans_addons.php:55
+msgid "Show PHP info"
+msgstr "نمایش اطلاعات پی‌اچ‌پی"
+
+#: includes/languages/trans_addons.php:56
+msgid "Translate"
+msgstr "ترجمه"
+
+#: includes/languages/trans_addons.php:57
+msgid "Extract twig trans func in current project"
+msgstr "بیرون کشیدن متن های قابل ترجمه توئیگ از پروژه جاری"
+
+#: includes/languages/trans_addons.php:58
+msgid "Extract twig trans func in saloos addons"
+msgstr "بیرون کشیدن متن های قابل ترجمه توئیگ از افزونه‌های سالوس"
+
+#: includes/languages/trans_addons.php:59
+msgid "Extract twig trans func in saloos addons and update on saloos addons"
+msgstr ""
+"استخراج توابع ترجمه توییگ در افزودنی‌های سالوس و بروزرسانی افزودنی‌های سالوس"
+
+#: includes/languages/trans_addons.php:60
+msgid "Git Repository"
+msgstr "مخزن گیت"
+
+#: includes/languages/trans_addons.php:61
+msgid "Update"
+msgstr "بروزرسانی"
+
+#: includes/languages/trans_addons.php:62
+msgid "Saloos Repository"
+msgstr "مخزن سالوس"
+
+#: includes/languages/trans_addons.php:63
+msgid "Saloos Addons Repository"
+msgstr "مخزن افزونه‌های سالوس"
+
+#: includes/languages/trans_addons.php:64
+msgid "Ermile Repository"
+msgstr "مخزن ارمایل"
+
+#: includes/languages/trans_addons.php:65
+msgid "Current Project Repository"
+msgstr "مخزن پروژه‌ی کنونی"
+
+#: includes/languages/trans_addons.php:66
+msgid "Other Tools"
+msgstr "سایر ابزارها"
+
+#: includes/languages/trans_addons.php:67
+msgid "Regenerate sitemap"
+msgstr "بازسازی نقشه سایت"
+
+#: includes/languages/trans_addons.php:68
+msgid "social networks"
+msgstr "شبکه‌های اجتماعی"
+
+#: includes/languages/trans_addons.php:69
+msgid "Database"
+msgstr "پایگاه‌داده"
+
+#: includes/languages/trans_addons.php:70
+msgid "Upgrade"
+msgstr "ارتقا"
+
+#: includes/languages/trans_addons.php:71
+msgid "Backup"
+msgstr "پشتیبان‌گیری"
+
+#: includes/languages/trans_addons.php:72
+msgid "Backup by dump"
+msgstr "پشتیبان با دامپ"
+
+#: includes/languages/trans_addons.php:73
+msgid "Submit"
+msgstr "تایید"
+
+#: includes/languages/trans_addons.php:74
+msgid "Project Database"
+msgstr "دیتابیس پروژه"
+
+#: includes/languages/trans_addons.php:75
+msgid "Automatically read database and create sql files"
+msgstr "خواندن دیتابیس و ساخت خودکار فایل های اس کیو ال آن"
+
+#: includes/languages/trans_addons.php:76
+msgid "Server Logs"
+msgstr "لاگ سرور"
+
+#: includes/languages/trans_addons.php:77
+msgid "Access logs"
+msgstr "لاگ دسترسی"
+
+#: includes/languages/trans_addons.php:78
+msgid "Error logs"
+msgstr "لاگ خطاها"
+
+#: includes/languages/trans_addons.php:79
+msgid "Database Logs"
+msgstr "لاگ دیتابیس"
+
+#: includes/languages/trans_addons.php:80
+msgid "Logs"
+msgstr "لاگ"
+
+#: includes/languages/trans_addons.php:81
+msgid "Logs - check"
+msgstr "لاگ - چک"
+
+#: includes/languages/trans_addons.php:82
+msgid "Logs - warn"
+msgstr "لاگ - اخطار"
+
+#: includes/languages/trans_addons.php:83
+msgid "Logs - critical"
+msgstr "لاگ - بحرانی"
+
+#: includes/languages/trans_addons.php:84
+msgid "Error Logs"
+msgstr "لاگ خطاها"
+
+#: includes/languages/trans_addons.php:85
+msgid "Telegram Errors"
+msgstr "خطاهای تلگرام"
+
+#: includes/languages/trans_addons.php:86
+msgid "telegram Logs"
+msgstr "لاگ‌های تلگرام"
+
+#: includes/languages/trans_addons.php:87
+msgid "telegram - Error Logs"
+msgstr "تلگرام - لاگ خطاها"
+
+#: includes/languages/trans_addons.php:90
+msgid "Hello!"
+msgstr "سلام!"
+
+#: includes/languages/trans_addons.php:91
+msgid "Welcome to Saloos control panel."
+msgstr "به کنترل پنل سالوس خوش آمدید."
+
+#: includes/languages/trans_addons.php:92
+msgid "Daily Visit Chart"
+msgstr "نمودار بازدید روزانه"
+
+#: includes/languages/trans_addons.php:93
+msgid "Summarized data of site"
+msgstr "خلاصه داده‌های سایت"
+
+#: includes/languages/trans_addons.php:94
+msgid "No. of"
+msgstr "تعداد"
+
+#: includes/languages/trans_addons.php:95
+msgid "Posts"
+msgstr "نوشته‌ها"
+
+#: includes/languages/trans_addons.php:96
+msgid "Pages"
+msgstr "صفحات"
+
+#: includes/languages/trans_addons.php:97
+msgid "Attachments"
+msgstr "ضمیمه‌ها"
+
+#: includes/languages/trans_addons.php:98
+msgid "Tags"
+msgstr "کلیدواژه‌ها"
+
+#: includes/languages/trans_addons.php:100
+msgid "Users"
+msgstr "کاربران"
+
+#: includes/languages/trans_addons.php:101
+msgid "Top Visited Page"
+msgstr "پربازدیدترین صفحات"
+
+#: includes/languages/trans_addons.php:102
+msgid "Visit"
+msgstr "بازدید"
+
+#: includes/languages/trans_addons.php:103
+msgid "Page Views"
+msgstr "بازدید صفحات"
+
+#: includes/languages/trans_addons.php:104
+msgid "Bots"
+msgstr "ربات‌ها"
+
+#: includes/languages/trans_addons.php:107
+msgid "Add New Record"
+msgstr "افزودن رکورد جدید"
+
+#: includes/languages/trans_addons.php:108
+msgid "View your current location and navigate to parent of it"
+msgstr "مکان فعلی خود را دیده و به مکان‌های والد آن منتقل شوید"
+
+#: includes/languages/trans_addons.php:111
+msgid "Use this menu for navigating to all part of control panel"
+msgstr "با کمک این منو می‌توانید به تمامی بخش‌های کنترل پنل ناوبری داشته باشید"
+
+#: includes/languages/trans_addons.php:112
+msgid "Homepage"
+msgstr "صفحه نخست"
+
+#: includes/languages/trans_addons.php:113
+msgid "Next →"
+msgstr "→ بعدی"
+
+#: includes/languages/trans_addons.php:114
+msgid "← Back"
+msgstr "قبلی ←"
+
+#: includes/languages/trans_addons.php:115
+msgid "Skip"
+msgstr "خروج"
+
+#: includes/languages/trans_addons.php:116
+msgid "Done"
+msgstr "اتمام"
+
+#: includes/languages/trans_addons.php:117
+msgid "Help"
+msgstr "راهنمایی"
+
+#: includes/languages/trans_addons.php:118
+msgid "You can work with control panel in your language"
+msgstr "شما می‌توانید کنترل پنل را با زبان خود تجربه کنید"
+
+#: includes/languages/trans_addons.php:119
+msgid "Go to your profile, change password or logout from conrtol panel"
+msgstr "از این قسمت به پروفایل خود رفته و یا از کنترل پنل خروج امن داشته باشید"
+
+#: includes/languages/trans_addons.php:120
+msgid "My Profile"
+msgstr "پروفایل من"
+
+#: includes/languages/trans_addons.php:121
+msgid "Change Password"
+msgstr "تغییر گذرواژه"
+
+#: includes/languages/trans_addons.php:122
+msgid "Lock Screen"
+msgstr "قفل کردن"
+
+#: includes/languages/trans_addons.php:123
+msgid "Logout"
+msgstr "خروج از سیستم"
+
+#: includes/languages/trans_addons.php:124
+msgid "We glad to working for you and hope you enjoy using our system"
+msgstr ""
+"ما از کار برای شما خوشحال بوده و امیدواریم شما نیز از سیستم ما لذت ببرید"
+
+#: includes/languages/trans_addons.php:129
+msgid "General"
+msgstr "عمومی"
+
+#: includes/languages/trans_addons.php:130
+msgid "Config"
+msgstr "کانفیگ"
+
+#: includes/languages/trans_addons.php:132
+msgid "Social Networks"
+msgstr "شبکه‌های اجتماعی"
+
+#: includes/languages/trans_addons.php:133
+msgid "Account"
+msgstr "اکانت"
+
+#: includes/languages/trans_addons.php:134
+msgid "Save Changes"
+msgstr "ذخیره تغییرات"
+
+#: includes/languages/trans_addons.php:136
+msgid "Edit your site config options"
+msgstr "ویرایش تنظیمات اولیه سایت"
+
+#: includes/languages/trans_addons.php:137
+msgid "Set default settings"
+msgstr "تنظیمات پیش‌فرض"
+
+#: includes/languages/trans_addons.php:138
+msgid "Edit your site social networks options"
+msgstr "تنظیمات شبکه‌های اجتماعی وب‌سایت را ویرایش کنید"
+
+#: includes/languages/trans_addons.php:142
+msgid "Edit SMS settings"
+msgstr "ویرایش تنظیمات پیامک"
+
+#: includes/languages/trans_addons.php:143
+msgid "Edit your site accounting options"
+msgstr "ویرایش تنظیمات اکانت وب‌سایت شما"
+
+#: includes/languages/trans_addons.php:146
+msgid "Define new permission"
+msgstr "تعریف سطح‌دسترسی جدید"
+
+#: includes/languages/trans_addons.php:147
+msgid "Permission Name"
+msgstr "نام سطح‌دسترسی"
+
+#: includes/languages/trans_addons.php:148
+msgid "Insert new permission type"
+msgstr "افزودن سطح‌‌دسترسی جدید"
+
+#: includes/languages/trans_addons.php:149
+msgid "for define new type of permission fill the name and click on insert"
+msgstr "برای تعریف یک سطح‌دسترسی جدید، نام آن را نوشته و بر روی افزودن کلیک کنید"
+
+#: includes/languages/trans_addons.php:150
+msgid "After insert you can edit your custom permission"
+msgstr "پس از افزودن سطح‌دسترسی می‌توانید آن را ویرایش کنید"
+
+#: includes/languages/trans_addons.php:151
+msgid "list of permissions"
+msgstr "لیست سطوح‌دسترسی"
+
+#: includes/languages/trans_addons.php:152
+msgid "Back to"
+msgstr "برگشت به"
+
+#: includes/languages/trans_addons.php:153
+msgid "list of current permissions is listed here, for edit click on it"
+msgstr ""
+"لیست سطوح‌دسترسی فعلی در اینجا وجود دارد که با کلیک بر روی هر کدام می‌توانید آن "
+"را ویرایش کنید"
+
+#: includes/languages/trans_addons.php:154
+msgid "delete permission"
+msgstr "حذف سطح‌دسترسی"
+
+#: includes/languages/trans_addons.php:155
+msgid "seriously, are you sure? There's no coming back."
+msgstr "مطمئنید؟ بعد از حذف امکان  بازگشت وجود ندارد."
+
+#: includes/languages/trans_addons.php:156
+msgid "Cancel"
+msgstr "انصراف"
+
+#: includes/languages/trans_addons.php:157
+msgid "or"
+msgstr "یا"
+
+#: includes/languages/trans_addons.php:158
+msgid "Delete"
+msgstr "حذف"
+
+#: includes/languages/trans_addons.php:161
+msgid "You are change this type of permission"
+msgstr "شما در حال ویرایش این سطح‌دسترسی هستید"
+
+#: includes/languages/trans_addons.php:162
+msgid "Edit permission of"
+msgstr "ویرایش دسترسی به"
+
+#: includes/languages/trans_addons.php:163
+msgid ""
+"Allow or disallow user to access all part of service with full permission!"
+msgstr "اجازه یا عدم اجازه به کاربر برای دسترسی کامل به تمام بخش‌های سرویس!"
+
+#: includes/languages/trans_addons.php:164
+msgid "All"
+msgstr "همه"
+
+#: includes/languages/trans_addons.php:165
+msgid "Allow or disallow user to view all part of service"
+msgstr "اجازه یا عدم اجازه به کاربر برای مشاهده تمام بخش‌های سرویس"
+
+#: includes/languages/trans_addons.php:166
+msgid "View"
+msgstr "نمایش"
+
+#: includes/languages/trans_addons.php:167
+msgid "Allow or disallow user to use and insert in all part of service"
+msgstr "اجازه یا عدم اجازه به کاربر برای مشاهده تمام بخش‌های سرویس"
+
+#: includes/languages/trans_addons.php:168
+msgid "Add"
+msgstr "افزودن"
+
+#: includes/languages/trans_addons.php:169
+msgid "Allow or disallow user to edit all part of service"
+msgstr "اجازه یا عدم اجازه به کاربر برای ویرایش تمام بخش‌های سرویس"
+
+#: includes/languages/trans_addons.php:171
+msgid "Allow or disallow user to delete in all part of service"
+msgstr "اجازه یا عدم اجازه به کاربر برای دسترسی حذف در تمام بخش‌های سرویس"
+
+#: includes/languages/trans_addons.php:172
+msgid "Allow or disallow user to access another user data"
+msgstr "دسترسی یا عدم دسترسی به اطلاعات سایر کاربران"
+
+#: includes/languages/trans_addons.php:173
+msgid "Admin"
+msgstr "مدیریت"
+
+#: includes/languages/trans_addons.php:174
+msgid "Empty"
+msgstr "خالی"
+
+#: includes/languages/trans_addons.php:175
+msgid "In this section you can edit permission of"
+msgstr "در این قسمت شما می‌توانید دسترسی به این بخش را ویرایش کنید"
+
+#: includes/languages/trans_addons.php:178
+msgid "Enter title here"
+msgstr "عنوان را اینجا وارد کنید"
+
+#: includes/languages/trans_addons.php:179
+msgid "Set the title of your content"
+msgstr "عنوان مطلب خود را در اینجا وارد کنید"
+
+#: includes/languages/trans_addons.php:180
+msgid "Url of your content appear here, click on it to view"
+msgstr ""
+"آدرس مطلب شما در این بخش نمایش داده می‌شود که با کلیک می‌توانید آن را مشاهده "
+"کنید"
+
+#: includes/languages/trans_addons.php:181
+msgid "Check result"
+msgstr "بررسی نتیجه"
+
+#: includes/languages/trans_addons.php:182
+msgid "Show in new tab"
+msgstr "نمایش در تب جدید"
+
+#: includes/languages/trans_addons.php:183
+msgid "Write your post content here"
+msgstr "محتوای نوشته خود را در این بخش وارد کنید"
+
+#: includes/languages/trans_addons.php:184
+msgid "Excerpt"
+msgstr "چکیده"
+
+#: includes/languages/trans_addons.php:185
+msgid "If excerpt is empty we get it automatically from content"
+msgstr ""
+"اگر چیکده را خالی بگذارید ما آن را به صورت اتوماتیک از روی محتوا خواهیم گرفت"
+
+#: includes/languages/trans_addons.php:186
+msgid "Summaries of your content that can be used as page description."
+msgstr "چکیده ای از محتوا که به عنوان توضیحات صفحه استفاده خواهد شد."
+
+#: includes/languages/trans_addons.php:187
+msgid "Enter Tags here"
+msgstr "تگ ها را اینجا وارد کنید"
+
+#: includes/languages/trans_addons.php:188
+msgid "Enter Tags"
+msgstr "تگ را وارد کنید"
+
+#: includes/languages/trans_addons.php:189
+msgid ""
+"Normally, tags are ad-hoc keywords that identify important information in "
+"your post (names, subjects, etc) that may or may not recur in other posts, "
+"while categories are pre-determined sections."
+msgstr ""
+"به طول معمول، کلیدواژه ها عبارات تک کاربره ای برای شناسایی اطلاعات مهم در "
+"نوشته شما مانند نام، موضوع یا .. هستند که امکان تکرار آن ها در سایر نوشته ها "
+"مشخص نیست، این در حالی است که دسته ها از قبل مشخص شده هستند."
+
+#: includes/languages/trans_addons.php:190
+msgid "View list of tags"
+msgstr "مشاهده لیست کلیدواژه‌ها"
+
+#: includes/languages/trans_addons.php:191
+msgid "Slug"
+msgstr "نامک"
+
+#: includes/languages/trans_addons.php:192
+msgid ""
+"Set slug of content for better addressing in your site and increase SEO rate"
+msgstr ""
+"نامک همان آدرس صفحه در آدرس بار مرورگر است. با تنظیم نامک برای نوشته خود به "
+"بهبود وضعیت آدرس‌دهی و افزایش رنک سئو کمک کنید. در صورتی که شما نامک را وارد "
+"نکنید ما آن را خودمان خواهیم ساخت"
+
+#: includes/languages/trans_addons.php:193
+msgid "Enter slug here"
+msgstr "نامک را در اینجا وارد کنید"
+
+#: includes/languages/trans_addons.php:194
+msgid "ShortURL"
+msgstr "آدرس کوتاه"
+
+#: includes/languages/trans_addons.php:195
+msgid "show short URL of this content"
+msgstr "نمایش آدرس کوتاه برای این نوشته"
+
+#: includes/languages/trans_addons.php:196
+msgid "Enter shortURL here"
+msgstr "آدرس کوتاه را در اینجا وارد کنید"
+
+#: includes/languages/trans_addons.php:197
+msgid "Use this shortcode on your posts"
+msgstr "از این کدکوتاه شده در مطالب خود استفاده کنید"
+
+#: includes/languages/trans_addons.php:198
+msgid "Language"
+msgstr "زبان"
+
+#: includes/languages/trans_addons.php:199
+msgid "Set language of your content to show only in this language"
+msgstr ""
+"با تنظیم زبان مربوط به این مطلب آن را فقط در زبان انتخاب شده نمایش خواهیم داد"
+
+#: includes/languages/trans_addons.php:200
+msgid "All Languages"
+msgstr "همه زبان ها"
+
+#: includes/languages/trans_addons.php:201
+msgid "Status"
+msgstr "وضعیت"
+
+#: includes/languages/trans_addons.php:202
+msgid ""
+"All of content set as draft in default, for showing it to visitors you must "
+"set it to publish"
+msgstr ""
+"تمام مطالب به صورت پیش فرض در حالت پیش نویس قرار می‌گیرند که شما برای انتشار و "
+"نمایش آن به بازدیدکنندگان باید وضعیت آن را به منتشرشده تغییر دهید"
+
+#: includes/languages/trans_addons.php:203
+msgid "Submit Changes"
+msgstr "ارسال تغییرات"
+
+#: includes/languages/trans_addons.php:204
+msgid "After all changes, you must press this key to Submit"
+msgstr "بعد از همه تغییرات شما باید بر روی این دکمه برای ثبت نهایی کلیک کنید"
+
+#: includes/languages/trans_addons.php:205
+msgid "Publish"
+msgstr "انتشار"
+
+#: includes/languages/trans_addons.php:206
+msgid "Page Attributes"
+msgstr "ویژگی های برگه"
+
+#: includes/languages/trans_addons.php:207
+msgid "Parent Page"
+msgstr "برگه والد"
+
+#: includes/languages/trans_addons.php:208
+msgid "Select parent page to create a group of pages"
+msgstr "با انتخاب برگه والد "
+
+#: includes/languages/trans_addons.php:209
+msgid "Without parent"
+msgstr "بدون والد"
+
+#: includes/languages/trans_addons.php:210
+msgid ""
+"You can nest Pages under other Pages by making one the “Parent” of the other, "
+"creating a group of Pages."
+msgstr ""
+"شما می توانید یک برگه را با کمک ویژگی والد به عنوان زیرشاخته برگه ای دیگر ثبت "
+"کنید و به این شکل گروهی از برگه ها بسازید."
+
+#: includes/languages/trans_addons.php:211
+msgid "Select a category of your content"
+msgstr "دسته مدنظر برای مطلب خود را انتخاب کنید"
+
+#: includes/languages/trans_addons.php:212
+msgid "Enter cat here"
+msgstr "دسته را اینجا وارد کنید"
+
+#: includes/languages/trans_addons.php:213
+msgid "Add New Category"
+msgstr "افزودن دسته‌بندی جدید"
+
+#: includes/languages/trans_addons.php:214
+msgid "Featured Image"
+msgstr "تصویر شاخص"
+
+#: includes/languages/trans_addons.php:215
+msgid "This allows you to associate an image with your content."
+msgstr "این به شما اجازه تنظیم تصویر شاخص برای این مطلب را می‌دهد."
+
+#: includes/languages/trans_addons.php:216
+msgid "Enter thumb id"
+msgstr "کد تصویرک را وارد کنید"
+
+#: includes/languages/trans_addons.php:217
+msgid "Set featured image"
+msgstr "تنظیم تصویر شاخص"
+
+#: includes/languages/trans_addons.php:218
+msgid ""
+"You can see type of your file and click on image to direct access to file"
+msgstr ""
+"شما می‌توانید نوع فایل را دیده و با کلیک روی عکس آن، مستقیما به آن دسترسی "
+"داشته باشید"
+
+#: includes/languages/trans_addons.php:219
+msgid "Click to view"
+msgstr "برای مشاهده کلیک کنید"
+
+#: includes/languages/trans_addons.php:220
+msgid "Height"
+msgstr "طول"
+
+#: includes/languages/trans_addons.php:221
+msgid "Width"
+msgstr "عرض"
+
+#: includes/languages/trans_addons.php:222
+msgid "Define poll"
+msgstr "تعریف نظرسنجی"
+
+#: includes/languages/trans_addons.php:223
+msgid "Define poll conditions"
+msgstr "تعریف شرایط نظرسنجی"
+
+#: includes/languages/trans_addons.php:226
+msgid "Options"
+msgstr "تنظیمات"
+
+#: includes/languages/trans_addons.php:231
+msgid "Click to check result"
+msgstr "برای مشاهده نتیجه کلیک کنید"
+
+#: includes/languages/trans_addons.php:232
+msgid "What’s the difference between categories and tags?"
+msgstr "تفاوت بین دسته ها و کلیدواژه ها در چیست؟"
+
+#: includes/languages/trans_addons.php:233
+msgid ""
+"If you think of your site like a book, the categories are like the Table of "
+"Contents and the tags are like the terms in the index."
+msgstr ""
+"اگر سایت را مانند یک کتاب فرض کنید، دسته ها مثل فهرست مطالب و کلیدواژه ها مثل "
+"عبارات خاص در ایندکس هستند."
+
+#: includes/languages/trans_addons.php:234
+msgid ""
+"You can nest category under other category by making one the “Parent” of the "
+"other."
+msgstr ""
+"شما می‌توانید یک دسته را با کمک ویژگی والد به عنوان زیرشاخه دسته‌ای دیگر ثبت "
+"کنید."
+
+#: includes/languages/trans_addons.php:237
+msgid "Actions"
+msgstr "عملیات"
+
+#: includes/languages/trans_addons.php:238
+msgid "Data not exist!"
+msgstr "داده‌ای برای نمایش وجود ندارد!"
+
+#: includes/languages/trans_addons.php:239
+msgid "delete record"
+msgstr "حذف رکورد"
+
+#: includes/languages/trans_addons.php:244
+msgid "Display Name"
+msgstr "نام برای نمایش عمومی"
+
+#: includes/languages/trans_addons.php:245
+msgid "Edit your profile data"
+msgstr "اطلاعات پروفایل خود را ویرایش کنید"
+
+#: includes/languages/trans_addons.php:248
+msgid "Change type of chart to"
+msgstr "تغییر نوع نمودار به "
+
+#: includes/languages/trans_addons.php:249
+msgid "bar"
+msgstr "خطی"
+
+#: includes/languages/trans_addons.php:250
+msgid "area"
+msgstr "ناحیه‌ای"
+
+#: includes/languages/trans_addons.php:251
+msgid "areaspline"
+msgstr "ناحیه‌ای نرم"
+
+#: includes/languages/trans_addons.php:252
+msgid "column"
+msgstr "ستون"
+
+#: includes/languages/trans_addons.php:253
+msgid "View signup statistics for your website"
+msgstr "مشاهده آمار ثبت‌نام سرویس"
+
+#: includes/languages/trans_addons.php:254
+msgid "Change period of chart"
+msgstr "تغییر بازه‌ی زمانی نمودار"
+
+#: includes/languages/trans_addons.php:255
+msgid "day"
+msgstr "روز"
+
+#: includes/languages/trans_addons.php:257
+msgid "month"
+msgstr "ماه"
+
+#: includes/languages/trans_addons.php:258
+msgid "year"
+msgstr "سال"
+
+#: includes/languages/trans_addons.php:259
+msgid "View visitor statistics for your website"
+msgstr "آمار بازدیدکنندگان وب‌سایت خود را مشاهده کنید"
+
+#: includes/languages/trans_addons.php:260
+msgid "Pageviews"
+msgstr "بازدید صفحه"
+
+#: includes/languages/trans_addons.php:263
+msgid "answered"
+msgstr "پاسخ‌داده‌شده"
+
+#: includes/languages/trans_addons.php:266
+msgid "What’s the difference between posts and pages?"
+msgstr "تفاوت بین نوشته و برگه در چیست؟"
+
+#: includes/languages/trans_addons.php:267
+msgid ""
+"Pages are similar to Posts in that they have a title, body text, and "
+"associated metadata, but they are different in that they are not part of the "
+"chronological blog stream, kind of like permanent posts."
+msgstr ""
+"برگه ها در عنوان، متن و سایر ویژگی ها شبیه به نوشته ها هستند، اما تفاوت اصلی "
+"آن ها در این است که به مانند نوشته ها دارای جریان زمانی دنباله دار نیستند، در "
+"حقیقت شبیه به یک پست دائمی هستند."
+
+#: includes/languages/trans_addons.php:268
+msgid "Pages are not categorized or tagged, but can have a hierarchy."
+msgstr ""
+"برگه ها نمیتوانند دسته بندی شوند ولی میتوانند خود دارای ساختار درختی باشند."
+
+#: includes/languages/trans_addons.php:269
+msgid "Draft"
+msgstr "پیش نویس"
+
+#: includes/languages/trans_addons.php:270
+msgid "Deleted"
+msgstr "حذف شده"
+
+#: includes/languages/trans_addons.php:271
+msgid "Schedule"
+msgstr "زمانبندی شده"
+
+#: includes/languages/trans_addons.php:272
+msgid "Preview"
+msgstr "پیش نمایش"
+
+#: includes/languages/trans_addons.php:275
+msgid "Drag & Drop Files Here"
+msgstr "فایل را کشیده و در اینجا رها کنید"
+
+#: includes/languages/trans_addons.php:276
+msgid "Choose File"
+msgstr "انتخاب فایل"
+
+#: includes/languages/trans_addons.php:277
+msgid "Maximum size allowed"
+msgstr "حداکثر سایز مجاز"
+
+#: includes/languages/trans_addons.php:282
+msgid "saloos"
+msgstr "سالوس"
+
+#: includes/languages/trans_addons.php:283
+msgid "Powered by Saloos"
+msgstr "قدرت گرفته از سالوس"
+
+#: includes/languages/trans_addons.php:284
+msgid "Javad Evazzadeh"
+msgstr "جواد عوض زاده"
+
+#: includes/languages/trans_addons.php:285
+msgid "Hasan Salehi"
+msgstr "حسن صالحی"
+
+#: includes/languages/trans_addons.php:286
+msgid "Ahmad Karimi"
+msgstr "احمد کریمی"
+
+#: includes/languages/trans_addons.php:287
+msgid "Reza Mohiti"
+msgstr "رضا محیطی"
+
+#: includes/languages/trans_addons.php:288 lib/mvc/viewes/constructor.php:41
+msgid "Another Project with Saloos"
+msgstr "یک پروژه دیگر با سالوس"
+
+#: includes/languages/trans_addons.php:289 lib/mvc/viewes/constructor.php:42
+msgid "Saloos is an artichokes for PHP programming!!"
+msgstr "سالوس یک کنگر برای برنامه نویسی با پی اچ پی!"
+
+#: includes/languages/trans_addons.php:290
+msgid "Saloos is powerfull."
+msgstr "سالوس اقتدار بخش!"
+
+#: includes/languages/trans_addons.php:292
+msgid "Insert Failed!"
+msgstr "افزودن ناموفق بود!"
+
+#: includes/languages/trans_addons.php:294
+msgid "Update Failed!"
+msgstr "بروزرسانی ناموفق بود!"
+
+#: includes/languages/trans_addons.php:296 lib/mvc/models/commit.php:81
+msgid "Delete Failed!"
+msgstr "حذف ناموفق بود!"
+
+#: includes/languages/trans_addons.php:298 lib/mvc/models/commit.php:55
+msgid "Transaction Error"
+msgstr "خطا در تراکنش"
+
+#: includes/languages/trans_addons.php:299
+msgid "hour"
+msgstr "ساعت"
+
+#: includes/languages/trans_addons.php:300
+msgid "minute"
+msgstr "دقیقه"
+
+#: includes/languages/trans_addons.php:301
+msgid "second"
+msgstr "ثانیه"
+
+#: includes/languages/trans_addons.php:302
+msgid "ago"
+msgstr "قبل"
+
+#: includes/languages/trans_addons.php:303
+msgid ","
+msgstr " و "
+
+#: includes/languages/trans_addons.php:304
+msgid " ,"
+msgstr " و "
+
+#: includes/languages/trans_addons.php:305
+msgid ", "
+msgstr " و "
+
+#: includes/languages/trans_addons.php:306
+msgid "s "
+msgstr " "
+
+#: includes/languages/trans_addons.php:307
+msgid "A few seconds ago"
+msgstr "چندثانیه پیش"
+
+#: includes/languages/trans_addons.php:308
+msgid "item"
+msgstr "آیتم"
+
+#: includes/languages/trans_addons.php:309
+msgid "empty"
+msgstr "خالی"
+
+#: includes/languages/trans_addons.php:310
+msgid "NaN"
+msgstr "-"
+
+#: includes/languages/trans_addons.php:311
+msgid "Byte"
+msgstr "بایت"
+
+#: includes/languages/trans_addons.php:312
+msgid "KB"
+msgstr "کیلوبایت"
+
+#: includes/languages/trans_addons.php:313
+msgid "MB"
+msgstr "مگابایت"
+
+#: includes/languages/trans_addons.php:314
+msgid "GB"
+msgstr "گیگابایت"
+
+#: includes/languages/trans_addons.php:315
+msgid "TB"
+msgstr "ترابایت"
+
+#: includes/languages/trans_addons.php:316
+msgid "PB"
+msgstr "پترابایت"
+
+#: includes/languages/trans_addons.php:317 lib/mvc/models/cp.php:219
+msgid "id does not exist!"
+msgstr "این کد در سیستم وجود ندارد!"
+
+#: includes/languages/trans_addons.php:318 lib/mvc/models/cp.php:142
+msgid "all require fields must fill"
+msgstr "تمام رکوردهای الزامی باید پر شوند"
+
+#: includes/languages/trans_addons.php:319 lib/mvc/models/cp.php:148
+msgid "some fields must be change for update!"
+msgstr "برای بروزرسانی باید حداقل یک فیلد را تغییر دهید!"
+
+#: includes/languages/trans_addons.php:321
+msgid "ermile"
+msgstr "ارمایل"
+
+#: includes/languages/trans_addons.php:322
+msgid "Made in IRAN"
+msgstr "ساخت ایران"
+
+#: includes/languages/trans_addons.php:323
+msgid "Iran"
+msgstr "ایران"
+
+#: includes/languages/trans_addons.php:324
+msgid "iran"
+msgstr "ایران"
+
+#: includes/languages/trans_addons.php:325
+msgid "Qom"
+msgstr "قم"
+
+#: includes/languages/trans_addons.php:326
+msgid "qom"
+msgstr "قم"
+
+#: includes/languages/trans_addons.php:327
+msgid "submit"
+msgstr "تایید"
+
+#: includes/languages/trans_addons.php:328
+msgid "save"
+msgstr "ذخیره"
+
+#: includes/languages/trans_addons.php:329 lib/mvc/controllers/url.php:46
+msgid "add new"
+msgstr "افزودن"
+
+#: includes/languages/trans_addons.php:330
+msgid "signin"
+msgstr "ورود"
+
+#: includes/languages/trans_addons.php:331
+msgid "sign in"
+msgstr "ورود"
+
+#: includes/languages/trans_addons.php:332
+msgid "sign up"
+msgstr "ثبت نام"
+
+#: includes/languages/trans_addons.php:333
+msgid "register"
+msgstr "ثبت نام"
+
+#: includes/languages/trans_addons.php:334
+msgid "home"
+msgstr "خانه"
+
+#: includes/languages/trans_addons.php:335
+msgid "Home"
+msgstr "صفحه نخست"
+
+#: includes/languages/trans_addons.php:336
+msgid "homepage"
+msgstr "صفحه نخست"
+
+#: includes/languages/trans_addons.php:337
+msgid "admin"
+msgstr "ادمین"
+
+#: includes/languages/trans_addons.php:338
+msgid "cp"
+msgstr "کنترل‌پنل"
+
+#: includes/languages/trans_addons.php:339
+msgid "Cp"
+msgstr "کنترل‌پنل"
+
+#: includes/languages/trans_addons.php:340
+msgid "account"
+msgstr "اکانت"
+
+#: includes/languages/trans_addons.php:341
+msgid "SiteContent"
+msgstr "محتوای سایت"
+
+#: includes/languages/trans_addons.php:342
+msgid "Terms"
+msgstr "عبارات"
+
+#: includes/languages/trans_addons.php:343
+msgid "Comments"
+msgstr "دیدگاه ها"
+
+#: includes/languages/trans_addons.php:344
+msgid "Visitors"
+msgstr "بازدیدکنندگان"
+
+#: includes/languages/trans_addons.php:345
+#: lib/telegram/commands/menu_profile.php:42
+#: lib/telegram/commands/menu_profile.php:86
+msgid "Profile"
+msgstr "پروفایل"
+
+#: includes/languages/trans_addons.php:346
+msgid "Powered by Saloos."
+msgstr "قدرت گرفته از سالوس."
+
+#: includes/languages/trans_addons.php:347
+msgid "All right reserved."
+msgstr "تمام حقوق محفوظ است."
+
+#: includes/languages/trans_addons.php:348
+msgid "Comming Soon"
+msgstr "بزودی"
+
+#: includes/languages/trans_addons.php:349
+msgid "Fantastic"
+msgstr "خارق العاده"
+
+#: includes/languages/trans_addons.php:350
+msgid "Copy"
+msgstr "کپی"
+
+#: includes/languages/trans_addons.php:351
+msgid "Cut"
+msgstr "کات"
+
+#: includes/languages/trans_addons.php:352
+msgid "Successfully"
+msgstr "با موفقیت انجام شد"
+
+#: includes/languages/trans_addons.php:354
+msgid "Value"
+msgstr "مقدار"
+
+#: includes/languages/trans_addons.php:355
+msgid "Login Successfully"
+msgstr "با موفقیت وارد سیستم شدید"
+
+#: includes/languages/trans_addons.php:366
+msgid "page"
+msgstr "صفحه"
+
+#: includes/languages/trans_addons.php:370
+msgid "tag"
+msgstr "کلیدواژه"
+
+#: includes/languages/trans_addons.php:371
+msgid "category"
+msgstr "دسته"
+
+#: includes/languages/trans_addons.php:372
+msgid "filecategory"
+msgstr "دسته‌بندی فایل‌ها"
+
+#: includes/languages/trans_addons.php:373
+msgid "File category"
+msgstr "دسته‌بندی فایل‌ها"
+
+#: includes/languages/trans_addons.php:374
+msgid "File Category"
+msgstr "دسته‌بندی فایل‌ها"
+
+#: includes/languages/trans_addons.php:375
+msgid "Filecategories"
+msgstr "دسته‌بندی فایل‌ها"
+
+#: includes/languages/trans_addons.php:376
+msgid "attachment"
+msgstr "ضمیمه"
+
+#: includes/languages/trans_addons.php:378
+msgid "search"
+msgstr "جستجو"
+
+#: includes/languages/trans_addons.php:379
+msgid "upload"
+msgstr "بارگذاری"
+
+#: includes/languages/trans_addons.php:380
+msgid "Control Panel"
+msgstr "کنترل پنل"
+
+#: includes/languages/trans_addons.php:382
+msgid "Editor"
+msgstr "ویراستار"
+
+#: includes/languages/trans_addons.php:383
+msgid "editor"
+msgstr "ویراستار"
+
+#: includes/languages/trans_addons.php:384
+msgid "Administrator"
+msgstr "مدیر"
+
+#: includes/languages/trans_addons.php:385
+msgid "Writer"
+msgstr "نویسنده"
+
+#: includes/languages/trans_addons.php:386
+msgid "utility"
+msgstr "ابزار"
+
+#: includes/languages/trans_addons.php:387
+msgid "Utility"
+msgstr "ابزارها"
+
+#: includes/languages/trans_addons.php:388
+msgid "tools"
+msgstr "ابزارها"
+
+#: includes/languages/trans_addons.php:389
+msgid "tool"
+msgstr "ابزار"
+
+#: includes/languages/trans_addons.php:393
+msgid "between 5-40 character. be tricky!"
+msgstr "بین ۵ تا ۴۰ کاراکتر. در انتخاب کلمه عبور دقت به خرج دهید"
+
+#: includes/languages/trans_addons.php:399 lib/mvc/controllers/url.php:49
+msgid "edit"
+msgstr "ویرایش"
+
+#: includes/languages/trans_addons.php:400
+msgid "book"
+msgstr "کتاب"
+
+#: includes/languages/trans_addons.php:401
+msgid "books"
+msgstr "کتاب ها"
+
+#: includes/languages/trans_addons.php:403
+msgid "Bookcategories"
+msgstr "دسته‌بندی کتاب"
+
+#: includes/languages/trans_addons.php:404
+msgid "bookcategory"
+msgstr "دسته‌بندی کتاب"
+
+#: includes/languages/trans_addons.php:410
+msgid "Invalid parameters"
+msgstr "پارامتر اشتباه"
+
+#: includes/languages/trans_addons.php:411
+msgid "No file sent"
+msgstr "فایلی ارسال نشده"
+
+#: includes/languages/trans_addons.php:412
+msgid "Exceeded filesize limit"
+msgstr "ظرفیت فایل بیش از حد مجاز"
+
+#: includes/languages/trans_addons.php:413
+msgid "Unknown errors"
+msgstr "خطای نامشخص"
+
+#: includes/languages/trans_addons.php:414
+msgid "We don't support this type of file"
+msgstr "ما این نوع فایل را پشتیبانی نمیکنیم"
+
+#: includes/languages/trans_addons.php:416
+msgid "Socialnetwork"
+msgstr "شبکه‌های اجتماعی"
+
+#: includes/languages/trans_addons.php:417
+msgid "socialnetwork"
+msgstr "شبکه‌اجتماعی"
+
+#: includes/languages/trans_addons.php:419
+msgid "Title"
+msgstr "عنوان"
+
+#: includes/languages/trans_addons.php:420
+msgid "Date"
+msgstr "تاریخ"
+
+#: includes/languages/trans_addons.php:421
+msgid "Size"
+msgstr "اندازه"
+
+#: includes/languages/trans_addons.php:422
+msgid "Ext"
+msgstr "پسوند"
+
+#: includes/languages/trans_addons.php:423
+msgid "pages"
+msgstr "صفحه‌ها"
+
+#: includes/languages/trans_addons.php:424
+msgid "tags"
+msgstr "کلیدواژه‌ها"
+
+#: includes/languages/trans_addons.php:425
+msgid "categories"
+msgstr "دسته‌بندی‌ها"
+
+#: includes/languages/trans_addons.php:426
+msgid "filecategories"
+msgstr "دسته‌بندی فایل‌ها"
+
+#: includes/languages/trans_addons.php:427
+msgid "bookcategories"
+msgstr "دسته‌بندی کتاب‌ها"
+
+#: includes/languages/trans_addons.php:428
+msgid "permissions"
+msgstr "سطوح‌دسترسی"
+
+#: includes/languages/trans_addons.php:429
+msgid "Permissions"
+msgstr "سطوح‌دسترسی"
+
+#: includes/languages/trans_addons.php:430
+msgid "logout"
+msgstr "خروج از سیستم"
+
+#: includes/languages/trans_addons.php:431
+msgid "lock"
+msgstr "قفل سیستم"
+
+#: includes/languages/trans_addons.php:432
+msgid "profile"
+msgstr "پروفایل"
+
+#: includes/languages/trans_addons.php:433
+msgid "You can't view this part of system"
+msgstr "شما نمی‌توانید این بخش از سیستم را مشاهده کنید"
+
+#: includes/languages/trans_addons.php:434
+msgid "You can't add new"
+msgstr "شما نمی‌توانید اضافه کنید"
+
+#: includes/languages/trans_addons.php:435
+msgid "you can't edit"
+msgstr "شما نمی‌توانید ویرایش کنید"
+
+#: includes/languages/trans_addons.php:436
+msgid "You can't delete"
+msgstr "شما نمی‌توانید حذف کنید"
+
+#: includes/languages/trans_addons.php:437
+msgid "You can't access to this part of system"
+msgstr "شما نمی‌توانید به این بخش از سیستم دسترسی داشته باشید"
+
+#: includes/languages/trans_addons.php:438
+msgid "Because of your permission"
+msgstr "به‌دلیل سطح‌دسترسی‌ شما"
+
+#: includes/languages/trans_addons.php:439
+msgid "You can't access to this page!"
+msgstr "شما نمی‌توانید به این صفحه دسترسی داشته باشید!"
+
+#: includes/languages/trans_addons.php:443
+msgid "main URL"
+msgstr "آدرس اصلی"
+
+#: includes/languages/trans_addons.php:462
+msgid "Status of sms service"
+msgstr "وضعیت سرویس پیامک"
+
+#: includes/languages/trans_addons.php:465
+msgid "service"
+msgstr "سرویس"
+
+#: includes/languages/trans_addons.php:484
+msgid "We can't give service to this number"
+msgstr "متاسفانه توانایی ارائه خدمات به این شماره را نداریم"
+
+#: includes/languages/trans_addons.php:486
+msgid "Please set apikey and linenumber"
+msgstr "لطفا کلید رابط برنامه و شماره خط را تنظیم کنید"
+
+#: includes/languages/trans_addons.php:487
+msgid "send"
+msgstr "ارسال"
+
+#: includes/languages/trans_addons.php:488
+msgid " to "
+msgstr " به "
+
+#: includes/languages/trans_addons.php:489
+msgid "Recovery account"
+msgstr "بازیابی اکانت"
+
+#: includes/languages/trans_addons.php:499
+msgid "Account Status"
+msgstr "وضعیت اکانت"
+
+#: includes/languages/trans_addons.php:506
+msgid "Signup Settings"
+msgstr "تنظیمات ثبت‌نام"
+
+#: includes/languages/trans_addons.php:511
+msgid "Register failed!"
+msgstr "ثبت‌نام ناموفق بود!"
+
+#: includes/languages/trans_addons.php:513
+msgid "your recovery code is"
+msgstr "کد بازیابی کلمه عبور شما"
+
+#: includes/languages/trans_addons.php:528
+msgid "Windows"
+msgstr "ویندوز"
+
+#: includes/languages/trans_addons.php:529
+msgid "Linux"
+msgstr "لینوکس"
+
+#: includes/languages/trans_addons.php:530
+msgid "Mac"
+msgstr "مک"
+
+#: includes/languages/trans_addons.php:531
+msgid "Chrome"
+msgstr "کروم"
+
+#: includes/languages/trans_addons.php:532
+msgid "Gecko"
+msgstr "گکو"
+
+#: includes/languages/trans_addons.php:537
+msgid "You are editing permission"
+msgstr "شما در حال ویرایش سطح‌دسترسی"
+
+#: includes/languages/trans_addons.php:538
+msgid "We send a verification code for you"
+msgstr "ما کد اعتبارسنجی را برای شما ارسال خواهیم کرد"
+
+#: includes/languages/trans_addons.php:539
+msgid "We send a verification code to this number"
+msgstr "کد اعتبارسنجی به این شماره ارسال خواهد شد"
+
+#: includes/languages/trans_addons.php:540
+msgid "You account is verified successfully"
+msgstr "اعتبارسنجی اکانت شما با موفقیت به انجام رسید"
+
+#: includes/languages/trans_addons.php:541
+msgid "Your verification code is"
+msgstr "کد اعتبارسنجی شما"
+
+#: includes/languages/trans_addons.php:542
+msgid "Your password is changed successfully"
+msgstr "گذرواژه شما با موفقیت تغییر یافت"
+
+#: includes/languages/trans_addons.php:543
+msgid "Now we only support IRAN!"
+msgstr "در حال حاضر ما فقط به شماره های ایران سرویس می‌دهیم!"
+
+#: includes/languages/trans_addons.php:544
+msgid "Thanks for using our service"
+msgstr "متشکریم که از سرویس ما استفاده می‌کنید"
+
+#: includes/languages/trans_addons.php:545
+#: lib/telegram/commands/step_register.php:45
+msgid "Dear user"
+msgstr "کاربر گرامی"
+
+#: includes/languages/trans_addons.php:546
+#: lib/telegram/commands/step_register.php:46
+msgid "For using this service we need to register your phone number."
+msgstr "برای استفاده از این سرویس ما نیاز به ثبت شماره موبایل شما داریم."
+
+#: includes/languages/trans_addons.php:547
+#: lib/telegram/commands/step_register.php:47
+msgid "Please send your number with below keyboard to complete registeration."
+msgstr "لطفا شماره خود را از طریق منوی زیر برای تکمیل ثبت‌نام ارسال نمایید."
+
+#: includes/languages/trans_addons.php:548
+#: lib/telegram/commands/step_register.php:114
+msgid "Dear friend"
+msgstr "دوست عزیز"
+
+#: includes/languages/trans_addons.php:549
+#: lib/telegram/commands/step_register.php:115
+msgid "We need your phone number to verifying your account."
+msgstr "ما برای اعتبارسنجی اکانت، نیاز به شماره موبایل شما داریم."
+
+#: includes/languages/trans_addons.php:550
+#: lib/telegram/commands/step_register.php:116
+msgid ""
+"If you dont want share your number, we cant presenting our services to you!"
+msgstr ""
+"اگر شما مایل به ارائه شماره خود نباشید، ما امکان سرویس‌دهی به شما را نداریم!"
+
+#: includes/languages/trans_addons.php:551
+#: lib/telegram/commands/step_register.php:122
+msgid "Registering user is successful."
+msgstr "ثبت‌نام کاربر با موفقیت به انجام رسید."
+
+#: includes/languages/trans_addons.php:552
+#: lib/telegram/commands/step_register.php:134
+msgid "Cancel registration and return to main menu"
+msgstr "انصراف از ثبت‌نام و بازگشت به منوی اصلی"
+
+#: includes/languages/trans_addons.php:553
+msgid "Please only use below keyboard"
+msgstr "لطفا تنها از منوی زیر استفاده کنید"
+
+#: includes/languages/trans_addons.php:554
+#: lib/telegram/commands/step_register.php:143
+msgid "We need your contact!"
+msgstr "ما به مخاطب شما نیاز داریم!"
+
+#: includes/languages/trans_addons.php:555
+msgid "Register User 📱"
+msgstr "ثبت کاربر  📱"
+
+#: includes/languages/trans_addons.php:556
+msgid "Register User"
+msgstr "ثبت کاربر"
+
+#: includes/languages/trans_addons.php:557
+#: lib/telegram/commands/menu_profile.php:32
+#: lib/telegram/commands/menu_profile.php:76
+#: lib/telegram/commands/step_register.php:172
+msgid "Return"
+msgstr "بازگشت"
+
+#: includes/languages/trans_addons.php:558
+#: lib/telegram/commands/menu_profile.php:72
+msgid "Register Mobile Number 📱"
+msgstr "ثبت شماره موبایل 📱"
+
+#: includes/languages/trans_addons.php:559
+#: lib/telegram/commands/menu_profile.php:28
+msgid "Register Mobile Number"
+msgstr "ثبت شماره موبایل"
+
+#: includes/languages/trans_addons.php:560
+#: lib/telegram/commands/menu_profile.php:24
+msgid "Register Address"
+msgstr "ثبت آدرس"
+
+#: includes/languages/trans_addons.php:561
+#: lib/telegram/commands/menu_profile.php:43
+#: lib/telegram/commands/menu_profile.php:87
+msgid "By completing your profile, help us to present better service."
+msgstr "با تکمیل پروفایل خود، به ما در ارائه سرویس بهتر کمک کنید."
+
+#: includes/languages/trans_addons.php:562
+#: lib/telegram/commands/menu_profile.php:44
+#: lib/telegram/commands/menu_profile.php:88
+msgid "We will thank you for this."
+msgstr "ما از این اقدام شما تشکر می‌کنیم."
+
+#: includes/languages/trans_addons.php:563
+msgid "Your phone number registered successfully;)"
+msgstr "شماره موبایل شما با موفقیت ثبت شد;)"
+
+#: includes/languages/trans_addons.php:564 lib/telegram/log.php:418
+msgid "We dont need another users contact:?)"
+msgstr "ما به مخاطب سایر کاربران نیاز نداریم:؟)"
+
+#: includes/languages/trans_addons.php:565 lib/telegram/log.php:426
+msgid "We need mobile number!"
+msgstr "ما به شماره موبایل نیاز داریم!"
+
+#: includes/languages/trans_addons.php:566
+msgid " "
+msgstr " "
+
+#: includes/languages/trans_addons.php:567
+msgid "east azerbaijan"
+msgstr "آذربایجان شرقی"
+
+#: includes/languages/trans_addons.php:568
+msgid "west azerbaijan"
+msgstr "آذربایجان غربی"
+
+#: includes/languages/trans_addons.php:569
+msgid "ardabil"
+msgstr "اردبیل"
+
+#: includes/languages/trans_addons.php:570
+msgid "esfahan"
+msgstr "اصفهان"
+
+#: includes/languages/trans_addons.php:571
+msgid "alborz"
+msgstr "البرز"
+
+#: includes/languages/trans_addons.php:572
+msgid "eilam"
+msgstr "ایلام"
+
+#: includes/languages/trans_addons.php:573
+msgid "bushehr"
+msgstr "بوشهر"
+
+#: includes/languages/trans_addons.php:574
+msgid "tehran"
+msgstr "تهران"
+
+#: includes/languages/trans_addons.php:575
+msgid "chaharmahal and bakhtiari"
+msgstr "چهارمحال و بختیاری"
+
+#: includes/languages/trans_addons.php:576
+msgid "south khorasan"
+msgstr "خراسان جنوبی"
+
+#: includes/languages/trans_addons.php:577
+msgid "razavi khorasan"
+msgstr "خراسان رضوی"
+
+#: includes/languages/trans_addons.php:578
+msgid "north khorasan"
+msgstr "خراسان شمالی"
+
+#: includes/languages/trans_addons.php:579
+msgid "khuzestan"
+msgstr "خوزستان"
+
+#: includes/languages/trans_addons.php:580
+msgid "zanjan"
+msgstr "زنجان"
+
+#: includes/languages/trans_addons.php:581
+msgid "semnan"
+msgstr "سمنان"
+
+#: includes/languages/trans_addons.php:582
+msgid "sistan and baluchestan"
+msgstr "سیستان و بلوچستان"
+
+#: includes/languages/trans_addons.php:583
+msgid "fars"
+msgstr "فارس"
+
+#: includes/languages/trans_addons.php:584
+msgid "qazvin"
+msgstr "قزوین"
+
+#: includes/languages/trans_addons.php:585
+msgid "kordestan"
+msgstr "کردستان"
+
+#: includes/languages/trans_addons.php:586
+msgid "kerman"
+msgstr "کرمان"
+
+#: includes/languages/trans_addons.php:587
+msgid "kermanshah"
+msgstr "کرمانشاه"
+
+#: includes/languages/trans_addons.php:588
+msgid "kohgiluyeh and boyerahmad"
+msgstr "کهکیلویه و بویراحمد"
+
+#: includes/languages/trans_addons.php:589
+msgid "golestan"
+msgstr "گلستان"
+
+#: includes/languages/trans_addons.php:590
+msgid "gilan"
+msgstr "گیلان"
+
+#: includes/languages/trans_addons.php:591
+msgid "lorestan"
+msgstr "لرستان"
+
+#: includes/languages/trans_addons.php:592
+msgid "mazandaran"
+msgstr "مازندران"
+
+#: includes/languages/trans_addons.php:593
+msgid "markazi"
+msgstr "مرکزی"
+
+#: includes/languages/trans_addons.php:594
+msgid "hormozgan"
+msgstr "هرمزگان"
+
+#: includes/languages/trans_addons.php:595
+msgid "hamedan"
+msgstr "همدان"
+
+#: includes/languages/trans_addons.php:596
+msgid "yazd"
+msgstr "یزد"
+
+#: includes/languages/trans_addons.php:599
+msgid "Select"
+msgstr "انتخاب"
+
+#: includes/languages/trans_addons.php:602
+msgid "Avatar of you"
+msgstr "آواتار شما"
+
+#: includes/languages/trans_addons.php:603
+msgid "Hello"
+msgstr "سلام"
+
+#: includes/languages/trans_addons.php:606
+msgid "Please enter valid mobile number"
+msgstr "لطفا شماره موبایل معتبری وارد کنید"
+
+#: includes/languages/trans_addons.php:607
+msgid "Enter correct iranian mobile from 10 to 14 character"
+msgstr "شماره موبایل صحیح ایران باید بین ۱۰ تا ۱۴ رقم باشد"
+
+#: includes/languages/trans_addons.php:608
+msgid "7 to 15 characters is allowed for mobile"
+msgstr "بین ۷ تا ۱۵ رقم برای موبایل مجاز است"
+
+#: includes/languages/trans_addons.php:609
+msgid "Enter a valid password from 6 to 40 character"
+msgstr "گذرواژه‌ای معتبر بین ۶ تا ۴۰ کاراکتر انتخاب کنید"
+
+#: includes/languages/trans_addons.php:610
+msgid "Password?"
+msgstr "کلمه عبور؟"
+
+#: includes/languages/trans_addons.php:611
+msgid "Verify Code"
+msgstr "کد اعتبارسنجی"
+
+#: includes/languages/trans_addons.php:612
+msgid "Enter a valid code!"
+msgstr "کد معتبر وارد کنید!"
+
+#: includes/languages/trans_addons.php:614
+msgid "Enter a valid eamil!"
+msgstr "رایانامه‌ی معتبر را وارد کنید!"
+
+#: includes/languages/trans_addons.php:615
+msgid "username"
+msgstr "نام‌کاربری"
+
+#: includes/languages/trans_addons.php:616
+msgid "Enter a valid username from 4 to 50 character"
+msgstr "نام‌کاربری معتبری بین ۴ تا ۵۰ کاراکتر وارد کنید"
+
+#: includes/languages/trans_addons.php:617
+msgid "Go"
+msgstr "برو"
+
+#: includes/languages/trans_addons.php:618
+msgid "Next"
+msgstr "بعدی"
+
+#: includes/languages/trans_addons.php:619
+msgid "Signup"
+msgstr "ثبت‌نام"
+
+#: includes/languages/trans_addons.php:620
+msgid "Log in with another methods"
+msgstr "ورود با سایر روش‌ها"
+
+#: includes/languages/trans_addons.php:621
+msgid "Log in with mobile"
+msgstr "ورود با موبایل"
+
+#: includes/languages/trans_addons.php:624
+msgid "tejarak"
+msgstr "تجارک"
+
+#: lib/db/cats.php:153
+msgid "Cats not found"
+msgstr "دسته یافت نشد"
+
+#: lib/db/cats.php:158
+msgid "Invalid cat"
+msgstr "دسته‌بندی نامعتبر"
+
+#: lib/db/db_errors.php:3
+msgid "user id not found"
+msgstr "کاربر یافت نشد"
+
+#: lib/db/db_errors.php:4
+msgid "old language = new language"
+msgstr "زبان قدیم - زبان جدید"
+
+#: lib/db/db_errors.php:5
+msgid "language was updated"
+msgstr "زبان بروزرسانی شد"
+
+#: lib/db/db_errors.php:6
+msgid "new language was set"
+msgstr "زبان جدید تنظیم شد"
+
+#: lib/db/db_errors.php:7
+msgid "undefined error was happend"
+msgstr "خطای نامشخصی رخ داد!"
+
+#: lib/db/terms.php:64
+msgid "term_slug not found"
+msgstr "term_slug پیدا نشد"
+
+#: lib/db/terms.php:74
+msgid "term_url not found"
+msgstr "term_url پیدا نشد"
+
+#: lib/mvc/controllers/url.php:52
+msgid "delete"
+msgstr "حذف"
+
+#: lib/mvc/models/account.php:187
+msgid "logout successfully"
+msgstr "خروج از سیستم با موفقیت انجام شد"
+
+#: lib/mvc/models/account.php:218
+msgid "you want hijack us!!?"
+msgstr "شما قصد نفوذ دارید!!؟"
+
+#: lib/mvc/models/datarow.php:43
+msgid "id is found 2 or more times. it's imposible!"
+msgstr "کد بیش از یکبار یافت شد. این ممکن نیست!"
+
+#: lib/mvc/models/datarow.php:47
+msgid "Url incorrect: id not found"
+msgstr "آدرس نادرست: کد یافت نشد"
+
+#: lib/mvc/models/terms.php:183
+msgid "Does not exist!"
+msgstr "وجود ندارد!"
+
+#: lib/telegram/commands/step_register.php:84
+msgid "return"
+msgstr "بازگشت"
+
+#: lib/telegram/commands/step_register.php:142
+msgid "Please only use below keyboard."
+msgstr "لطفا تنها از منوی زیر استفاده کنید"
+
+#~ msgid "Repository"
+#~ msgstr "مخزن"
+
+#~ msgid "Show sql log data"
+#~ msgstr "نمایش لاگ داده‌های sql"
+
+#~ msgid "Show sql error data"
+#~ msgstr "نمایش اطلاعات خطای SQL"
+
+#~ msgid "are you remember your password!?"
+#~ msgstr "آیا کلمه عبور خود را به خاطر آوردید!؟"
+
+#~ msgid "Polls"
+#~ msgstr "نظرسنجی‌ها"
+
+#~ msgid "Social networks"
+#~ msgstr "شبکه‌های اجتماعی"
+
+#~ msgid "Change period of signup"
+#~ msgstr "تغییر بازه زمانی ثبت‌نام"
+
+#~ msgid "Site main Address (URL)"
+#~ msgstr "آدرس اصلی سایت"
+
+#~ msgid "Redirect to main address"
+#~ msgstr "انتقال کاربران به دامنه اصلی"
+
+#~ msgid "You can't edit"
+#~ msgstr "شما اجازه ویرایش ندارید"
+
+#~ msgid "Debug mode status"
+#~ msgstr "وضعیت نمایش خطا"
+
+#~ msgid "mobile number exist!"
+#~ msgstr "این شماره موبایل قبلا در سیستم ثبت شده است!"
+
+#~ msgid "register successfully"
+#~ msgstr "ثبت نام با موفقیت انجام شد"
+
+#~ msgid "register failed!"
+#~ msgstr "ثبت نام ناموفق بود!"
+
+#~ msgid "Allow or disallow user to insert in all part of service"
+#~ msgstr "اجازه یا عدم اجازه به کاربر برای افزودن به تمام بخش‌های سرویس"
+
+#~ msgid "Site main URL"
+#~ msgstr "آدرس اصلی سایت"
+
+#~ msgid "made in iran"
+#~ msgstr "ساخت ایران"
+
+#~ msgid "we send a verification code to this number"
+#~ msgstr "کد اعتبارسنجی به این شماره ارسال خواهد شد"
+
+#~ msgid "you account is verified successfully"
+#~ msgstr "اعتبارسنجی اکانت شما با موفقیت به انجام رسید"
+
+#~ msgid "your verification code is"
+#~ msgstr "کد اعتبارسنجی شما"
+
+#~ msgid "your password is changed successfully"
+#~ msgstr "گذرواژه شما با موفقیت تغییر یافت"
+
+#~ msgid "now we only support Iran!"
+#~ msgstr "در حال حاضر ما فقط به شماره های ایران سرویس می دهیم!"
+
+#~ msgid "thanks for using our service"
+#~ msgstr "متشکریم که از سرویس ما استفاده می کنید"
+
+#~ msgid "Utilities"
+#~ msgstr "ابزارها"
+
+#~ msgid "Go to your profile or logout from conrtol panel"
+#~ msgstr ""
+#~ "از این قسمت به پروفایل خود رفته و یا از کنترل پنل خروج امن داشته باشید"
+
+#~ msgid "All right reserved"
+#~ msgstr "تمام حقوق محفوظ است"
+
+#~ msgid "Right Now"
+#~ msgstr "همین الان"
+
+#~ msgid "create an account"
+#~ msgstr "اکانت بسازید"

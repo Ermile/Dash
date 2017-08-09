@@ -1,0 +1,125 @@
+{%extends display.cp%}
+
+{%block header%}
+  <div class="panel panel-default">
+   <div class="panel-body">
+   <form class="ajx form row inline autostyle" method="post">{{forms.make(form[module])}}</form>
+   </div>
+   <div class="panel-footer">
+   <a class="float-right label label-info" href="{{store}}/{{module}}">{%trans%}Back to{%endtrans%} {%trans module%}</a>
+    {%trans module%}
+   </div>
+  </div>
+{%endblock%}
+
+{%block content%}
+<form method="post" id="form_posts">
+ <div class="row auto">
+  <div class="span9">
+   <input type="text" name="title" id="title" class="input sp-title" placeholder='{%trans "Enter title here"%}'></input>
+   <textarea name="desc" class="sp-content textarea editor" data-placeholder='{%trans "Write your post content here"%}'></textarea>
+
+
+   <div class="panel panel-default display-none">
+    <div class="panel-heading">{%trans "Excerpt"%}</div>
+    <div class="panel-body">
+     <textarea name="excerpt" class="sp-excerpt" maxlength='160' placeholder='{%trans "If excerpt is empty we get it automatically from content"%}'></textarea>
+    </div>
+    <div class="panel-footer">{%trans "Summaries of your content that can be used as page description."%}</div>
+   </div>
+
+
+   <div class="row display-none">
+    <div class="span4">
+     <div class="panel text-center no-boder bg-color-green">
+     <div class="panel-body"><i class="fa fa-bar-chart-o fa-5x"></i><h3>8,457</h3></div>
+     <div class="panel-footer back-footer-green">Daily Visits</div>
+    </div>
+    </div>
+    <div class="span4">
+      <div class="panel text-center no-boder bg-color-brown">
+        <div class="panel-body"><i class="fa fa-users fa-5x"></i><h3>36,752 </h3></div>
+        <div class="panel-footer back-footer-brown">No. of Visits</div>
+      </div>
+    </div>
+    <div class="span4">
+      <div class="panel text-center no-boder bg-color-red">
+        <div class="panel-body"><i class="fa fa fa-comments fa-5x"></i><h3>15,823 </h3></div>
+        <div class="panel-footer back-footer-red">Comments</div>
+      </div>
+    </div>
+   </div>
+
+
+   <div class="row">
+{%if module == 'pages'%}
+    <p class="alert alert-info fade"><b>{% trans "What’s the difference between posts and pages?" %}</b><br />{%trans "Pages are similar to Posts in that they have a title, body text, and associated metadata, but they are different in that they are not part of the chronological blog stream, kind of like permanent posts."%} {%trans "Pages are not categorized or tagged, but can have a hierarchy."%} {%trans "You can nest Pages under other Pages by making one the “Parent” of the other, creating a group of Pages."%}</p>
+{%endif%}
+   </div>
+  </div>
+
+
+ <div class="span3">
+
+  <div class="panel panel-default">
+   <div class="panel-heading">{%trans "Publish"%}</div>
+   <div class="panel-body">
+    <input name="slug" id="slug" class="sp-slug input" placeholder='{%trans "Enter slug here"%}'></input>
+    <select name="language" class="sp-language">
+     <option value="" selected="selected">{%trans "All Languages"%}</option>
+{%for key, value in site.langlist%}{%if key == global.lang%}
+     <option value="{{key}}">{{value}}</option>
+{%else%}
+     <option value="{{key}}">{{value}}</option>
+{%endif%}{% endfor %}
+    </select>
+    <select name="status" class="sp-status">
+     <option value="publish" selected="selected">{%trans "Publish"%}</option>
+     <option value="draft">{%trans "Draft"%}</option>
+     <option value="deleted">{%trans "Deleted"%}</option>
+     <option value="schedule">{%trans "Schedule"%}</option>
+    </select>
+{% if child == 'edit'%}
+    <a class="button" href="#">{%trans "Preview"%}</a>
+{%endif%}
+    <button type="submit" value="submit" class="button positive">{%trans "Publish"%}</button>
+   </div>
+  </div>
+
+{%if module == 'pages'%}
+  <div class="panel panel-default">
+   <div class="panel-heading">{%trans "Page Attributes"%}</div>
+   <div class="panel-body">
+   <p>Parent</p>
+   </div>
+   <div class="panel-footer">Panel Footer</div>
+  </div>
+{%else%}
+  <div class="panel panel-default cats">
+   <div class="panel-heading">{%trans "Categories"%}</div>
+   <div class="panel-body">
+
+{%for key, value in cats%}
+    <label><input type="checkbox" name="categories[]" value="{{value.id}}" /> <span>{{value.term_title}}</span></label>
+{% endfor %}
+
+   </div>
+   <div class="panel-footer">Panel Footer</div>
+  </div>
+{%endif%}
+
+  <div class="panel panel-default">
+  <div class="panel-heading">{%trans "Tags"%}</div>
+    <div class="panel-body">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
+    </div>
+    <div class="panel-footer">
+      Panel Footer
+    </div>
+  </div>
+
+ </div>
+ </div>
+
+</form>
+{%endblock%}

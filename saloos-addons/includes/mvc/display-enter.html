@@ -1,0 +1,53 @@
+{%extends display.mvc%}
+
+{% use "includes/mvc/display-enter-blocks.html" %}
+
+
+{%set codeUrl%}{%if url.tld == 'dev'%}http://code.ermile.dev/{%else%}https://code.ermile.com/{%endif%}{%endset%}
+
+
+{%block head_css%}
+ <link rel="stylesheet"       href="{{codeUrl}}css/ermile-10.2.0.css">
+ <link rel="stylesheet"       href="{{codeUrl}}enter/enter.css">
+{%endblock%}
+
+
+{%block foot_js%}
+
+  <script src="{{codeUrl}}enter/enter.js"></script>
+{%endblock%}
+
+
+{%block body%}
+ <div id='enter'>
+{%block card%}
+
+{%block header%}
+  <h1 class='logo'><a href='{{url.base}}' tabindex='1' data-direct>
+{%if site.currentlang =='fa'%}
+    <img src='{{url.static}}images/logo/logo.png' alt='{{site.title}} | {{site.desc}}'>
+{%else%}
+    <img src='{{url.static}}images/logo/logo.png' alt='{{site.title}} | {{site.desc}}'>
+{%endif%}
+    <span>{%trans "tejarak"%}</span>
+  </a></h1>
+{%endblock%}
+
+  <div data-xhr='enter'>
+{%block content%}
+{%block contentTitle%}
+ <h2 class='flex justify-center align-center'>{{page.desc}}</h2>
+{%endblock%}
+{%block contentBody%}
+  <form method="post" autocomplete="off">
+{%block contentForm%}{%endblock%}
+  </form>
+{%endblock%}
+{%endblock%}
+  </div>
+{%endblock%}
+ </div>
+
+{%block footer%} {{langList({'html':true})}}{%endblock%}
+{%endblock%}
+

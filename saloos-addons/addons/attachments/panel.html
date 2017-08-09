@@ -1,0 +1,16 @@
+<div id="addons-attachments-panel" class="panel panel-default unselectable" data-step='8' data-intro='{%trans "Write your tag and press enter to add new keyword to content"%}' data-position='top'>
+	<div class="panel-heading">{%trans "attachments"%}</div>
+	<div class="panel-body">
+		<div class="panel">
+			<input class="input" placeholder="{%trans "Search"%}" name="attachments_search_q" data-ejax-group="attachment-addons">
+			<input type="checkbox" name="attachments_search_image" data-ejax-group="attachment-addons">
+			<input type="checkbox" name="attachments_search_video" data-ejax-group="attachment-addons">
+			<input type="checkbox" name="attachments_search_audio" data-ejax-group="attachment-addons">
+			<input type="checkbox" name="attachments_search_other" data-ejax-group="attachment-addons">
+		</div>
+		{%include 'addons/attachments/files-list.html'%}
+	</div>
+	<div class="panel-footer">
+
+	</div>
+</div>

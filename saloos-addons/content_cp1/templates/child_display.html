@@ -1,0 +1,30 @@
+{%extends display.cp%}
+
+
+{%block content%}
+{% set fieldcounter = 0%}
+{% for key, value in field_list if value.form%}{% set fieldcounter = (fieldcounter+1) %}{% endfor %}
+{%if child and fieldcounter >0%}
+ <div id="options" class="unselectable">
+  <div id="options-meta" class="disappear">
+{% for key, value in field_list if value.form%}
+   <label class="label-custom"><input class="fields-toggle" type="checkbox" name="{{key}}" value="{{value.value}}" {%if value.show%}checked="checked"{%endif%}><span>{{value.name}}</span></label>
+{% endfor %}
+  </div>
+  <a id="options-link" href="javascript: void(0)">{%trans%}Options{%endtrans%}</a>
+ </div>
+{%endif%}
+ <div class="row">
+  <div class="span12">
+   <div class="panel panel-default">
+     <div class="panel-body">
+      <form class="ajx form row inline autostyle" method="post" {%if child == 'add'%}data-clear{%endif%}>{{forms.make(form[module])}}</form>
+     </div>
+     <div class="panel-footer">
+      <a class="float-right label label-info" href="{{url.base}}/{{module}}">{%trans%}Back to{%endtrans%} {%trans module%}</a>
+       {%trans module%}
+     </div>
+   </div>
+  </div>
+ </div>
+{%endblock%}

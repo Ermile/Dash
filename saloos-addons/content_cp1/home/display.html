@@ -1,0 +1,185 @@
+{%extends display.cp%}
+
+
+{%block content%}
+{%if visitor_new%}
+<br />
+<div class="alert alert-info" role="alert"><strong>{%trans "Hello!"%}</strong> {%trans "Welcome to Saloos control panel."%}</div>
+{%endif%}
+
+{%if visitors%}
+ <div class="row auto unselectable">
+{%if error%}<div id="chart-error">{{error}}</div>{%else%}{%endif%}
+  <div id="chart" data-step='5' data-intro='{%trans "Daily Visit Chart"%}'></div>
+ </div>
+{%endif%}
+
+
+ <div class="row auto">
+  <div class="{%if visitors%}span8{%else%}span12{%endif%}" data-step='6' data-intro='{%trans "Summarized data of site"%}' data-position="top">
+
+   <div class="row auto">
+{%if not ('disable' in modules.posts)%}
+    <div class="span4">
+     <div class="panel text-center no-boder bg-color-green summary">
+      <div class="panel-body">
+{%if perm.posts.add%}
+       <a href="{{url.baseFull}}/posts/add"><i class="fa fa-plus fa-4x"></i></a>
+{%endif%}
+       <a href="{{url.baseFull}}/posts" tabindex='-1'><i class="fa fa-5x fa-file-text-o"></i><h3>{{countOf.posts}}</h3></a>
+      </div>
+      <div class="panel-footer back-footer-green">{%trans "No. of"%} {%trans "Posts"%}</div>
+     </div>
+    </div>
+{%endif%}
+
+{%if not ('disable' in modules.pages)%}
+    <div class="span4">
+     <div class="panel text-center no-boder bg-color-blue summary">
+      <div class="panel-body">
+{%if perm.pages.add%}
+       <a href="{{url.baseFull}}/pages/add"><i class="fa fa-plus fa-4x"></i></a>
+{%endif%}
+       <a href="{{url.baseFull}}/pages" tabindex='-1'><i class="fa fa-5x fa-files-o"></i><h3>{{countOf.pages}}</h3></a>
+      </div>
+      <div class="panel-footer back-footer-blue">{%trans "No. of"%} {%trans "Pages"%}</div>
+     </div>
+    </div>
+{%endif%}
+
+{%if not ('disable' in modules.attachments)%}
+    <div class="span4">
+     <div class="panel text-center no-boder bg-color-red summary">
+      <div class="panel-body">
+{%if perm.attachments.add%}
+       <a href="{{url.baseFull}}/attachments/add"><i class="fa fa-plus fa-4x"></i></a>
+{%endif%}
+       <a href="{{url.baseFull}}/attachments" tabindex='-1'><i class="fa fa-5x fa-picture-o"></i><h3>{{countOf.attachments}}</h3></a>
+      </div>
+      <div class="panel-footer back-footer-red">{%trans "No. of"%} {%trans "Attachments"%}</div>
+     </div>
+    </div>
+{%endif%}
+   </div>
+
+   <div class="row auto">
+{%if not ('disable' in modules.tags)%}
+    <div class="span4">
+     <div class="panel text-center no-boder bg-color-blue summary">
+      <div class="panel-body">
+{%if perm.tags.add%}
+       <a href="{{url.baseFull}}/tags/add"><i class="fa fa-plus fa-4x"></i></a>
+{%endif%}
+       <a href="{{url.baseFull}}/tags" tabindex='-1'><i class="fa fa-5x fa-bookmark-o"></i><h3>{{countOf.tags}}</h3></a>
+      </div>
+      <div class="panel-footer back-footer-blue">{%trans "No. of"%} {%trans "Tags"%}</div>
+     </div>
+    </div>
+{%endif%}
+
+{%if not ('disable' in modules.categories)%}
+    <div class="span4">
+     <div class="panel text-center no-boder bg-color-green summary">
+      <div class="panel-body">
+{%if perm.categories.add%}
+       <a href="{{url.baseFull}}/categories/add"><i class="fa fa-plus fa-4x"></i></a>
+{%endif%}
+       <a href="{{url.baseFull}}/categories" tabindex='-1'><i class="fa fa-5x fa-sitemap"></i><h3>{{countOf.categories}}</h3></a>
+      </div>
+      <div class="panel-footer back-footer-green">{%trans "No. of"%} {%trans "Categories"%}</div>
+     </div>
+    </div>
+{%endif%}
+
+{%if not ('disable' in modules.users)%}
+    <div class="span4">
+     <div class="panel text-center no-boder bg-color-brown summary">
+      <div class="panel-body">
+{%if perm.users.add%}
+       <a href="{{url.baseFull}}/users/add"><i class="fa fa-plus fa-4x"></i></a>
+{%endif%}
+       <a href="{{url.baseFull}}/users" tabindex='-1'><i class="fa fa-5x fa-user"></i><h3>{{countOf.users}}</h3></a>
+       </div>
+      <div class="panel-footer back-footer-brown">{%trans "No. of"%} {%trans "Users"%}</div>
+     </div>
+    </div>
+   </div>
+{%endif%}
+  </div>
+
+{%if visitors%}
+  <div class="span4">
+  <div class="span3">
+   <div class="panel text-center no-boder bg-color-brown top-pages">
+    <div class="panel-body">
+     <ul>
+{%for row in visitors_toppages%}
+      <li><a href="{{row.url | raw('html') }}" target="_blank"><span>{{row.total}}</span> {{row.text | raw |raw }}</a></li>
+{%endfor%}
+     </ul>
+    </div>
+    <div class="panel-footer">{%trans "Top Visited Page"%}</div>
+   </div>
+  </div>
+  </div>
+{%endif%}
+
+ </div>
+
+{%endblock%}
+
+
+
+{%block foot_js%}
+{%if visitors%}
+ <script type="text/javascript">
+  route('*', function()
+  {
+    $(function () {
+      $('#chart').highcharts({
+        chart: { type: '{{chart_type}}' {%if global.lang=='fa'%}, style: {fontFamily: 'IRANSans'}{%endif%} },
+        title: { text: '' },
+        xAxis: { categories: [{%for datarow in visitors%}'{%if global.lang=="fa"%}{{datarow.date|jdate("y/m/j")}} {%else%} {{datarow.date |date("j F")}}{%endif%}', {%endfor%}] ,crosshair: true},
+        yAxis: { title: {text: ''}, floor: 0, allowDecimals: false,},
+
+        tooltip: {
+          shared:true,
+          useHTML: true,
+
+          headerFormat: '<table><thead><tr><td colspan="3">{%if global.lang=="fa"%}{point.key} {%else%} {point.key}{%endif%}</td></tr></thead>',
+          pointFormat: '<tr><td style="color: {series.color}">{series.name}: </td>' + '<td><b>{point.y:0.0f} {%trans "Visit"%}</b></td></tr>',
+          footerFormat: '</table>',
+
+
+        },
+        legend: {
+          layout: 'vertical',
+          align: 'right',
+          verticalAlign: 'middle',
+          borderWidth: 0
+        },
+        plotOptions: {
+          series: {stacking: 'normal',
+        }
+
+        },
+        series:
+        [
+        {
+         showInLegend: false,
+          name: '{%trans "Page Views"%}',
+          data: [ {%for datarow in visitors%}{{datarow.humans}},{%endfor%} ],
+        },
+        {
+         showInLegend: false,
+          name: '{% trans "Bots"%}',
+          data: [ {%for datarow in visitors%}{{datarow.bots}},{%endfor%} ],
+        },
+        ]
+      });
+    });
+
+  });
+ </script>
+{%endif%}
+{%endblock%}

@@ -1,0 +1,2 @@
+ALTER TABLE `options` ADD `parent_id` bigint(20) unsigned NULL DEFAULT NULL AFTER `post_id`;
+ALTER TABLE `options` ADD CONSTRAINT `options_parent_id` FOREIGN KEY (`parent_id`) REFERENCES `options` (`id`) ON UPDATE CASCADE;

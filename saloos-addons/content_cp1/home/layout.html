@@ -1,0 +1,71 @@
+{%extends display.mvc%}
+
+
+
+{%block body%}
+ <aside id="page-sidebar" class='unselectable'>
+  <h1 id="page-logo"><a href="{{url.root}}" title="{{site.desc}}" style='font-size:calc(1.1vw - {{(site.title|length)/10}}px)' target="_blank">{{site.title}}</a></h1>
+  <nav class="sidebar-items" data-step='1' data-intro='{%trans "Use this menu for navigating to all part of control panel"%}' data-position="{{dir.right}}">
+   <a href="{{url.baseFull}}"><i class="fa fa-lg fa-desktop"></i> <span>{%trans "Dashboard"%}</span></a>
+   {% include 'content_cp/home/sidemenu.html' %}
+  </nav>
+ </aside>
+
+ <div id="page-sidespace"></div>
+ <div id="page-content">
+  <header id="header" class='unselectable'>
+   <ul id="header-nav">
+    <li><a href="{{url.root}}" tabindex='-1' data-direct><i class="fa fa-home fa-lg fa-2x" title='{%trans "Homepage"%}'></i></a></li>
+    <li>
+{%set introOption%}
+.setOptions({ 'nextLabel': '{%trans "Next →"%}', 'prevLabel': '{%trans "← Back"%}', 'skipLabel': '{%trans "Skip"%}', 'doneLabel': '{%trans "Done"%}', 'showStepNumbers': 'false', 'showProgress': 'true' })
+{%endset%}
+     <a href="javascript:void(0);" onclick="javascript:introJs(){{introOption}}.start();"><i class="fa fa-2x fa-lg fa-question-circle" title='{%trans "Help"%}'></i></a>
+    </li>
+    <li id="languages" data-step='2' data-intro='{%trans "You can work with control panel in your language"%}' data-position='bottom'>
+     <i class="fa fa-language fa-lg fa-2x"></i>
+     {{langList({'html':true, 'class':"vertical-menu", 'all': true})}}
+    </li>
+   </ul>
+
+   <div id="profile" tabindex='1' data-step='3' data-intro='{%trans "Go to your profile, change password or logout from conrtol panel"%}' data-position="{{dir.left}}">
+    <span>{%set dname = login.displayname%}{%trans dname%}
+     <i class="fa fa-user"></i>
+     </span>
+
+    <nav class="vertical-menu">
+     <a id="profile-me" href="{{url.baseFull}}/profile"><i class="fa fa-user"></i> {%trans "My Profile"%}</a>
+     <a id="profile-changepass" href="{{url.root}}/account/changepass?cp=1&from=cp" target="_blank"><i class="fa fa-exchange"></i> {%trans "Change Password"%}</a>
+     <!-- <a id="profile-lock" href="{{url.base}}/lock"><i class="fa fa-lock"></i> {%trans "Lock Screen"%}</a> -->
+     <a id="profile-logout" href="http://{{url.raw}}/logout" data-direct><i class="fa fa-sign-out"></i> {%trans "Logout"%}</a>
+    </nav>
+   </div>
+  </header>
+
+ <nav class="breadcrumb unselectable" data-xhr="breadcrumb" tabindex='-1' data-step='4' data-intro='{%trans "View your current location and navigate to parent of it"%}' data-position='bottom'>
+   {{breadcrumb() | raw}}
+ </nav>
+
+ <section id="content" data-xhr="content">
+{%if page.title and module != 'home'%}
+  <header id="page-title">
+   <h2>{{page.title}} {%if page.desc%}<small>{{page.desc}}</small>{%endif%}</h2>
+{%if page.haschild and child!='add'%}
+   <a class="label label-info label-form" href="{{url.baseFull}}/{{module}}/add">{%trans%}Add New Record{%endtrans%}</a>
+{%endif%}
+  </header>
+{%endif%}
+{%block content%}{%endblock%}
+ </section>
+
+ <footer id="page-footer" class='unselectable' data-step='100' data-intro='{%trans "We glad to working for you and hope you enjoy using our system"%}' data-position='top'>
+
+  <p class="float-left hint--right" data-hint='{%trans "Some right reserved"%}'>{%trans "Powered by"%} <a href='http://saloos.ir' target="_blank" title='{%trans "Some right reserved"%}' tabindex='-1'>{%trans "Saloos"%}</a></p>
+
+  <p class="float-right hint--left" {%if saloos.lastUpdate%}data-hint='{%trans "Last update on"%} {%if global.lang == "fa_IR"%}{{saloos.lastUpdate | jdate}}{%else%}{{saloos.lastUpdate}}{%endif%}'{%else%}data-hint='{%trans "wait for next version!"%}'{%endif%}itemscope><abbr>{%trans "Version"%} {{saloos.version}}</abbr></p>
+ </footer>
+
+
+ </div>
+
+{%endblock%}

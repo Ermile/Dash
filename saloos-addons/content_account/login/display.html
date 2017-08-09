@@ -1,0 +1,13 @@
+{%extends display.account%}
+
+
+{%block desc%}
+   <div id="desc">
+{%if account.meta.recovery%}
+    <p><a href="recovery{{url.param}}" title='{%trans "Click here for recovery your password"%}' tabindex="-1">{%trans "Can't access your account?"%}</a></p>
+{%endif%}
+{%if account.meta.register%}
+    <p>{%trans "Don't have an account?"%} <a href="signup{{url.param}}" title='{%trans "Click here to create an account"%}' tabindex="-1">{%trans "Sign Up"%}</a></p>
+{%endif%}
+   </div>
+{%endblock%}
