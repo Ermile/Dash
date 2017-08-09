@@ -40,7 +40,9 @@ trait connect
 			if($_db_name === '[tools]')
 			{
 				// connect to core db
-				self::$db_name = core_name.'_tools';
+				// self::$db_name = core_name.'_tools';
+				// fix it later
+				self::$db_name = 'saloos_tools';
 			}
 			// else connect to specefic database
 			elseif($_db_name)
