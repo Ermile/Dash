@@ -1,0 +1,11 @@
+*.DS_Store
+desktop.ini
+*sitemap.xml
+*Thumbs.db
+*.me.*
+/public_html/files
+/public_html/data
+/public_html/sitemap
+/saloos-addons*
+*sftp-config.json
+
