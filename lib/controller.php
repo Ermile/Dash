@@ -106,7 +106,7 @@ class controller
 				}
 			}
 		}
-		if(saloos::is_json_accept())
+		if(\dash::is_json_accept())
 		{
 			$this->display = false;
 		}
@@ -175,7 +175,7 @@ class controller
 			$this->controller()->redirector = false;
 
 
-		if(\saloos::is_json_accept() || $force_json || \lib\storage::get_api())
+		if(\dash::is_json_accept() || $force_json || \lib\storage::get_api())
 		{
 			header('Content-Type: application/json');
 			if(isset($this->controller()->redirector) && $this->controller()->redirector)
@@ -189,7 +189,7 @@ class controller
 		{
 			$this->redirector();
 		}
-		if(isset($this->controller()->redirector) && $this->controller()->redirector && !\saloos::is_json_accept())
+		if(isset($this->controller()->redirector) && $this->controller()->redirector && !\dash::is_json_accept())
 		{
 			$_SESSION['debug'][md5( strtok($this->redirector()->redirect(true), '?') )] = debug::compile();
 			$this->redirector()->redirect();

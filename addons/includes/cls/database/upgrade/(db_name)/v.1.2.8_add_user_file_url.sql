@@ -1,0 +1,1 @@
+ALTER TABLE `users` ADD `user_file_url` varchar(2000) NULL DEFAULT NULL;

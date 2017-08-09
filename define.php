@@ -5,28 +5,28 @@
 
 // Define Global variables ****************************************************
 // Core name
-define('core_name'	,'saloos');
+define('core_name'	,'dash');
 
 // Define main service
 if(!defined('MainService'))
 	define('MainService', 'ermile');
 
 
-// Define Saloos variables ****************************************************
+// Define Dash variables ****************************************************
 if(!defined("core"))
 	define("core", preg_replace("[\\\\]", "/", __DIR__).'/' );
 
-// Saloos library
+// Dash library
 if(!defined("lib"))
 	define("lib", "lib/");
 
 // set include path for lib
 
-// Saloos plugin
+// Dash plugin
 if(!defined("addons"))
-	define("addons", core."saloos-addons/");
+	define("addons", core."addons/");
 
-// Saloos helper
+// Dash helper
 if(!defined("helper"))
 	define("helper", core."helper/");
 
@@ -40,7 +40,7 @@ if(!defined("dir_includes"))
 	define("dir_includes", root.'includes/');
 
 set_include_path(get_include_path() . PATH_SEPARATOR . dir_includes);
-set_include_path(get_include_path() . PATH_SEPARATOR . core.'saloos-addons/');
+set_include_path(get_include_path() . PATH_SEPARATOR . core.'addons/');
 set_include_path(get_include_path() . PATH_SEPARATOR . core);
 
 // Project library

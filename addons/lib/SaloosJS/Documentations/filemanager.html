@@ -1,0 +1,666 @@
+<!DOCTYPE html><html>
+
+<head>
+<meta charset="utf-8">
+<title>filemanager</title>
+<style type="text/css">
+body {
+  font-family: 'Iranian Sans';
+  font-size: 14px;
+  direction: rtl;
+  text-align: right;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+<style type="text/css">
+/**
+ * prism.js default theme for JavaScript, CSS and HTML
+ * Based on dabblet (http://dabblet.com)
+ * @author Lea Verou
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: black;
+	text-shadow: 0 1px white;
+	font-family: Consolas, Monaco, 'Andale Mono', monospace;
+	direction: ltr;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+@media print {
+	code[class*="language-"],
+	pre[class*="language-"] {
+		text-shadow: none;
+	}
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #f5f2f0;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: slategray;
+}
+
+.token.punctuation {
+	color: #999;
+}
+
+.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #905;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #690;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+	color: #a67f59;
+	background: hsla(0, 0%, 100%, .5);
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+	color: #07a;
+}
+
+.token.function {
+	color: #DD4A68;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+	color: #e90;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+</style>
+</head>
+<body>
+<h1 id="toc_0">مدیریت فایل ها  </h1>
+
+<p>وظیفه‌ی این ماژول بارگذاری، خواندن و ارسال فایل ها به سرور است. برای خواندن فایل ها از <a href="https://developer.mozilla.org/en-US/docs/Using_files_from_web_applications">HTML5 File API</a> استفاده می شود. همچنین برای ارسال فایل ها به سرور وب‌سوکت از <a href="http://socket.io">Socket.IO</a> استفاده می شود که امکان ارسال فایل ها بر اتصالات وب‌سوکت را می دهد.
+برای مستندات سرور سوکت فایل socket.md را مشاهده کنید.</p>
+
+<h2 id="toc_1">نحوه کار</h2>
+
+<p>نحوه کار این ماژول به این صورت است که شما باید ابتدا یک شی ‍<code>File</code> دریافت کنید و سپس با استفاده از آن نمونه ای جدید از کلاس <code>FileManager</code> بگیرید. پس از این مراحل بسته به نیازتان میتوانید از متد های این کلاس استفاده کنید که در ادامه به آنها اشاره خواهد شد.</p>
+
+<p>نحوه ارسال فایل به سرور به این صورت می‌باشد که فایل قطعه قطعه می‌شود و این قطعه‌ها، به سرور ارسال می‌شوند. برای جلوگیری از حجم زیاد کار مرورگر که ممکن است باعث مشکلاتی برای کاربران و سرور شود، بعد از هر ‍‍<code>n</code> قطعه ارسال شده، برای مدت زمان مشخصی استراحت داده می‌شود و سپس به کار ادامه داده می‌شود.</p>
+
+<p>همچنین امکان <code>pause</code> و <code>resume</code> آپلود وجود دارد.</p>
+
+<h3 id="toc_2">دریافت File</h3>
+
+<p>برای دریافت یک شی از نوع File می توانید از یکی از راه های زیر اقدام کنید:</p>
+
+<h5 id="toc_3">input</h5>
+
+<p>ورودی های <code>&lt;input&gt;</code> از نوع <code>file</code> بعد از انتخاب فایل توسط کاربر،دارای، دارای مشخصه‌ی <code>files</code> هستند که یک <code>FileList</code> است. این شی مجموعه‌ای از فایل هایی است که کاربر انتخاب کرده است. دقت کنید که این نوع داده توسط <code>FileManager</code> پشتیبانی نمی‌شود و شما باید برای هر فایل یک نمونه جداگانه بگیرید؛ این به دلیل سختی مدیریت فایل های مختلف در صورت گروهی بودن است.</p>
+
+<p>نمونه استفاده:</p>
+
+<pre><code class="language-javascript">var selecedFile = input.files[0]; // first selected file</code></pre>
+
+<h5 id="toc_4">درگ دراپ</h5>
+
+<p>راه دیگر دریافت اطلاعات فایل‌های کاربر با استفاده از Drag/Drop است. به این صورت که در رویداد <code>drop</code> شما میتوانید با خواندن مشخصه <code>dataTransfer.files</code> شی رویداد فایل های دراپ شده روی عنصر مورد نظر توسط کاربر رو دریافت کنید، روش استفاده مانند ورودی است.</p>
+
+<pre><code class="language-javascript">$(document.body).on(&#39;drop&#39;, function(e) {
+    console.log( e.dataTransfer.files[0] );
+});</code></pre>
+
+<p>برای اطلاعات بیشتر در مورد اشیاء به لینک های زیر مراجعه کنید:</p>
+
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/FileList">FileList</a></p>
+
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/File">File</a></p>
+
+<p><a href="https://developer.mozilla.org/en-US/docs/Using_files_from_web_applications">Using Files from Web Pages</a></p>
+
+<h3 id="toc_5">ساخت شی جدید</h3>
+
+<p>پس از دریافت فایل باید شی جدیدی را از کلاس <code>FileManager</code> بسازیم. تمامی تنظیمات قابل انجام در زیر توضیح داده شده‌اند.</p>
+
+<pre><code class="language-javascript">new FileManager({
+    url: &#39;localhost:8000&#39;,
+    type: &#39;BinaryString&#39;,
+    file: null,
+    parts: 200,
+    rest: 50,
+    restDuration: 500,
+    data: {}
+});</code></pre>
+
+<h6 id="toc_6">url</h6>
+
+<p>این مشخصه آدرس سرور سوکت را مشخص میکند.</p>
+
+<h6 id="toc_7">type</h6>
+
+<p>این مشخصه نحوه‌ی خواندن فایل را با استفاده از <code>FileReader</code> مشخص میکند که باید بسته به نحوه‌ی عملکرد سرور در برابر داده‌های ورودی تنظیم شود.</p>
+
+<p>برای اطلاعات بیشتر در مورد این تنظیم و شی <code>FileReader</code> به لینک های زیر مراجعه کنید:</p>
+
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/FileReader">FileReader</a></p>
+
+<h6 id="toc_8">file</h6>
+
+<p>فایل دریافتی که از نوع <code>File</code> می باشد.</p>
+
+<h6 id="toc_9">parts</h6>
+
+<p>سایز هر قطعه فایل ارسالی به واحد کیلوبایت (به صورت پیش‌فرض ۲۰۰ کیلوبایت).</p>
+
+<h6 id="toc_10">rest</h6>
+
+<p>این مشخصه تعیین کننده تعداد قطعات ارسالی بین دو استراحت است. یعنی بعد از ارسال موفق ۵۰ قطعه، استراحتی به مرورگر داده می‌شود.</p>
+
+<h6 id="toc_11">restDuration</h6>
+
+<p>برای تعیین میزان زمان استراحت از این مشخصه استفاده کنید که واحد میلی‌ثانیه دارد.</p>
+
+<h6 id="toc_12">data</h6>
+
+<p>این مشخصه از یک شی است که همراه با اولین درخواست برای آغاذ آپلود به سرور ارسال می‌شود و در سرور به سوکت کاربر فعلی تخصیص داده‌می‌شود.</p>
+
+<p>در حال حاظر در قسمت فایل ها اطلاعاتی که به سرور ارسال می‌شود شامل موارد زیر است:</p>
+
+<ul>
+<li>addr: آدرس فایل</li>
+<li>parent: پوشه والد فایل</li>
+<li>size: سایز فایل</li>
+<li>file: نام فایل</li>
+<li>user: کاربر صاحب فایل</li>
+</ul>
+
+<h3 id="toc_13">متد‌های کلاس</h3>
+
+<p>در این کلاس تعدادی متد وجود دارد که در اکثر مواقع شما نیازی به استفاده از آنها ندارید و این متد‌ها به صورت داخلی استفاده می‌شوند، ولی هیچ الزامی وجود ندارد.</p>
+
+<p>در ادامه متد‌های این کلاس برای شما توضیح داده می‌شود.</p>
+
+<p>لازم به ذکر است که اکثر متد‌ها یک شی <code>Promise</code> ساخته شده با <code>jQuery.Deferred</code> بازگشت داده می‌شود که می‌توان از آن برای اجرای تابعی پس از اتمام کار متد استفاده کرد.</p>
+
+<h6 id="toc_14">load → Promise</h6>
+
+<p>این متد <strong>فایل حاظر</strong> را بارگذاری می‌کند و نتیجه‌ی بارگذاری را در مشخصه <code>result</code> شی قرار می‌دهد. این متد یک <code>Promise</code> باز‌میگرداند که می‌توانید از آن برای استفاده مستقیم از شی رویداد <code>onload</code> در صورت موفقیت آمیز بودن و <code>onerror</code> در صورت وجود خطا استفاده کنید.</p>
+
+<p>برای اطلاعات دقیق‌تر در مورد این رویداد ها  لینک زیر را مشاهده کنید:
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/FileReader">FileReader</a></p>
+
+<p>رویدادها:</p>
+
+<ul>
+<li>file:error</li>
+<li>file:load</li>
+</ul>
+
+<pre><code class="language-javascript">fm.load().then(function(e) {
+    // e = FileReader.onload(e)
+    this.result === e.target.result;
+});</code></pre>
+
+<h6 id="toc_15">slice → this</h6>
+
+<h6 id="toc_16">(start: Number, end: Number)</h6>
+
+<p>این متد برای قطعه کردن فایل استفاده می‌شود. دقت کنید که قطعه کردن فایل متناسب با فایل اصلی است نه قسمت قطعه شده فعلی. بعد از قطعه کردن  <strong>فایل حاظر</strong> تغییر می‌کند که باعث می‌شود متد هایی مثل <code>load</code> بجای بارگذاری کل فایل فقط این قسمت از فایل را بارگذاری کنند.</p>
+
+<p>بعد از قطعه کردن فایل، فایل اصلی را میتوانید از مشخصه <code>originalFile</code> در دسترس داشته باشید و مشخصه <code>file</code> به فایل قطعه‌شده یا فایل حاظر اشاره می‌کند. همچنین مشخصه <code>range</code> یک آرایه دو آیتمی است که بعد از هر تغییر در فایل حاظر مشخص کننده محدوده‌ی تعیین شده برای فایل حاظر است.</p>
+
+<p>رویداد‌ها:</p>
+
+<ul>
+<li>file:slice</li>
+</ul>
+
+<pre><code class="language-javascript">var file = new File(new Uint8ClampedArray(1000), &#39;myfile&#39;);
+var f = new FileManager({file: file});
+console.log(f.range); // [0, 1000]
+
+f.slice(500, 600).load(...); // chain
+console.log(f.range); // [500, 600];</code></pre>
+
+<h6 id="toc_17">full → this</h6>
+
+<p>این تابع فایل را به فایل اصلی باز می‌گرداند یعنی همانند <code>this.slice(0, this.size)</code> عمل می‌کند.</p>
+
+<h6 id="toc_18">createStream → Promise</h6>
+
+<p>این متد برای شروع آپلود مورد استفاده است. روش کار این متد به این صورت است که درخواست اولیه‌ای با نام <code>meta</code> به سرور سوکت می‌فرستد که همانطور که گفته شد شامل نام و سایز فایل نیز می‌باشد.
+<a href="#toc_12">data</a></p>
+
+<p>پس از ارسال درخواست بر روی پیغامی با نام <code>ready</code> شنود می‌کند و پس از دریافت پاسخ، که باید آی دی فایل ساخته شده در دیتابیس باشد، مشخصه‌ی <code>data.fileID</code> را معین می‌کند.</p>
+
+<p>دلیل تعیین این مشخصه روی شی <code>data</code> این است که اگر در میان آپلود، اختلالی به وجود بیاید در ارسال بعدی می‌توانیم این آی‌دی را ارسال کنیم تا سرور بداند که این فایل از قبل وجود دارد.</p>
+
+<p>این متد <code>Promise</code> باز‌میگرداند که پس از دریافت پاسخ <code>ready</code> حل می‌شود.</p>
+
+<h6 id="toc_19">send → Promise</h6>
+
+<p>این متد فایل حاظر را  با نام <code>data</code> به سرور ارسال می‌کند و پس از دریافت پاسخ <code>data-answer</code> مقدار بازگشتی خود را حل می‌کند.</p>
+
+<h6 id="toc_20">upload → Promise</h6>
+
+<h6 id="toc_21">(start: Number, end: Number)</h6>
+
+<p>این متد اصلی ترین متد این کلاس است که معمولا جز آن نیازی به متد دیگری ندارید. کار این متد قطعه قطعه کردن فایل به تکه‌هایی با حجم تعیین شده در تنظیمات و ارسال آنها به صورت سری به سرور است. شما میتوانید با استفاده از آرگومان های <code>start</code> و  <code>end</code> فقط قسمتی از فایل را به سرور بفرستید.</p>
+
+<p>نحوه کار مرحله به مرحله:</p>
+
+<ol>
+<li>اطمینان از اتصال سوکت: در صورت متصل نبودم سوکت منتظر اتصال خواهد ماند</li>
+<li>اطمینان از وجود جریانی بین کاربر و سرور: در صورتی که قبلا متد <code>createStream</code> اجرا نشده باشد، این متد از اجرای آن اطمینان حاصل می‌کند</li>
+<li>جرقه زدن رویداد <code>upload:start</code></li>
+<li>ساخت حلقه‌</li>
+<li>در هر اجرای حلقه فایل را به کمک <code>slice</code> به قسمت‌های مساوی تعیین میکند</li>
+<li>با استفاده از متد <code>send</code> قطعه فایل به سرور ارسال می‌شود.</li>
+<li>پس از اطمینان از ارسال این قطعه، رویداد <code>upload:progress</code> جرقه می‌خورد که اطلاعاتی مربوط به تعداد تکه‌های ارسال شده، درصد و غیره دارد.</li>
+<li>در صورتی که به تعداد تنظیم <code>rest</code> قطعه ارسال شده باشد، استراحت کوتاهی میکند و سپس ادامه می‌دهد.</li>
+<li>اجرای دوباره حلقه</li>
+</ol>
+
+<p>در مورد رویداد <code>upload:progress</code> شی زیر به عنوان آرگومان دوم به شنونده‌ها ارسال می‌شود:</p>
+
+<pre><code class="language-javascript">fm.on(&#39;upload:progress&#39;, function(e, data) {
+    console.log(data.min); // برابر با مقدار آرگومان start
+    console.log(data.max); // برابر با مقدار آرگومان end
+    console.log(data.sent); // مقدار بایت‌های ارسالی
+    console.log(data.percentage); // درصد پیشرفت
+});</code></pre>
+
+<h6 id="toc_22">pause → void</h6>
+
+<p>این متد روند آپلود را به طور موقت متوقف می‌کند.</p>
+
+<h6 id="toc_23">resume → void</h6>
+
+<p>این متد در صورت قطع بودن آپلود آن را ادامه می‌دهد.</p>
+
+<h6 id="toc_24">on → void</h6>
+
+<p>از این متد برای اتصال شنونده‌های رویداد‌ها استفاده کنید.</p>
+
+<h6 id="toc_25">destroy → void</h6>
+
+<p>این متد برای از بین بردن شی ساخته شده استفاده می‌شود که رویداد‌های شنود شده را حذف می‌کند و همچنین مشخصاتی که ممکن است باعث اشغال بیهوده‌ی رم شوند را حذف می‌کند.</p>
+
+<script type="text/javascript">
+self="undefined"!=typeof window?window:"undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?self:{};var Prism=function(){var e=/\blang(?:uage)?-(?!\*)(\w+)\b/i,t=self.Prism={util:{encode:function(e){return e instanceof n?new n(e.type,t.util.encode(e.content),e.alias):"Array"===t.util.type(e)?e.map(t.util.encode):e.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/\u00a0/g," ")},type:function(e){return Object.prototype.toString.call(e).match(/\[object (\w+)\]/)[1]},clone:function(e){var n=t.util.type(e);switch(n){case"Object":var a={};for(var r in e)e.hasOwnProperty(r)&&(a[r]=t.util.clone(e[r]));return a;case"Array":return e.map(function(e){return t.util.clone(e)})}return e}},languages:{extend:function(e,n){var a=t.util.clone(t.languages[e]);for(var r in n)a[r]=n[r];return a},insertBefore:function(e,n,a,r){r=r||t.languages;var i=r[e];if(2==arguments.length){a=arguments[1];for(var l in a)a.hasOwnProperty(l)&&(i[l]=a[l]);return i}var s={};for(var o in i)if(i.hasOwnProperty(o)){if(o==n)for(var l in a)a.hasOwnProperty(l)&&(s[l]=a[l]);s[o]=i[o]}return t.languages.DFS(t.languages,function(t,n){n===r[e]&&t!=e&&(this[t]=s)}),r[e]=s},DFS:function(e,n,a){for(var r in e)e.hasOwnProperty(r)&&(n.call(e,r,e[r],a||r),"Object"===t.util.type(e[r])?t.languages.DFS(e[r],n):"Array"===t.util.type(e[r])&&t.languages.DFS(e[r],n,r))}},highlightAll:function(e,n){for(var a,r=document.querySelectorAll('code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'),i=0;a=r[i++];)t.highlightElement(a,e===!0,n)},highlightElement:function(a,r,i){for(var l,s,o=a;o&&!e.test(o.className);)o=o.parentNode;if(o&&(l=(o.className.match(e)||[,""])[1],s=t.languages[l]),s){a.className=a.className.replace(e,"").replace(/\s+/g," ")+" language-"+l,o=a.parentNode,/pre/i.test(o.nodeName)&&(o.className=o.className.replace(e,"").replace(/\s+/g," ")+" language-"+l);var u=a.textContent;if(u){u=u.replace(/^(?:\r?\n|\r)/,"");var g={element:a,language:l,grammar:s,code:u};if(t.hooks.run("before-highlight",g),r&&self.Worker){var c=new Worker(t.filename);c.onmessage=function(e){g.highlightedCode=n.stringify(JSON.parse(e.data),l),t.hooks.run("before-insert",g),g.element.innerHTML=g.highlightedCode,i&&i.call(g.element),t.hooks.run("after-highlight",g)},c.postMessage(JSON.stringify({language:g.language,code:g.code}))}else g.highlightedCode=t.highlight(g.code,g.grammar,g.language),t.hooks.run("before-insert",g),g.element.innerHTML=g.highlightedCode,i&&i.call(a),t.hooks.run("after-highlight",g)}}},highlight:function(e,a,r){var i=t.tokenize(e,a);return n.stringify(t.util.encode(i),r)},tokenize:function(e,n){var a=t.Token,r=[e],i=n.rest;if(i){for(var l in i)n[l]=i[l];delete n.rest}e:for(var l in n)if(n.hasOwnProperty(l)&&n[l]){var s=n[l];s="Array"===t.util.type(s)?s:[s];for(var o=0;o<s.length;++o){var u=s[o],g=u.inside,c=!!u.lookbehind,f=0,h=u.alias;u=u.pattern||u;for(var p=0;p<r.length;p++){var d=r[p];if(r.length>e.length)break e;if(!(d instanceof a)){u.lastIndex=0;var m=u.exec(d);if(m){c&&(f=m[1].length);var y=m.index-1+f,m=m[0].slice(f),v=m.length,k=y+v,b=d.slice(0,y+1),w=d.slice(k+1),N=[p,1];b&&N.push(b);var O=new a(l,g?t.tokenize(m,g):m,h);N.push(O),w&&N.push(w),Array.prototype.splice.apply(r,N)}}}}}return r},hooks:{all:{},add:function(e,n){var a=t.hooks.all;a[e]=a[e]||[],a[e].push(n)},run:function(e,n){var a=t.hooks.all[e];if(a&&a.length)for(var r,i=0;r=a[i++];)r(n)}}},n=t.Token=function(e,t,n){this.type=e,this.content=t,this.alias=n};if(n.stringify=function(e,a,r){if("string"==typeof e)return e;if("Array"===t.util.type(e))return e.map(function(t){return n.stringify(t,a,e)}).join("");var i={type:e.type,content:n.stringify(e.content,a,r),tag:"span",classes:["token",e.type],attributes:{},language:a,parent:r};if("comment"==i.type&&(i.attributes.spellcheck="true"),e.alias){var l="Array"===t.util.type(e.alias)?e.alias:[e.alias];Array.prototype.push.apply(i.classes,l)}t.hooks.run("wrap",i);var s="";for(var o in i.attributes)s+=o+'="'+(i.attributes[o]||"")+'"';return"<"+i.tag+' class="'+i.classes.join(" ")+'" '+s+">"+i.content+"</"+i.tag+">"},!self.document)return self.addEventListener?(self.addEventListener("message",function(e){var n=JSON.parse(e.data),a=n.language,r=n.code;self.postMessage(JSON.stringify(t.util.encode(t.tokenize(r,t.languages[a])))),self.close()},!1),self.Prism):self.Prism;var a=document.getElementsByTagName("script");return a=a[a.length-1],a&&(t.filename=a.src,document.addEventListener&&!a.hasAttribute("data-manual")&&document.addEventListener("DOMContentLoaded",t.highlightAll)),self.Prism}();"undefined"!=typeof module&&module.exports&&(module.exports=Prism);
+</script>
+<script type="text/javascript">
+Prism.languages.clike={comment:[{pattern:/(^|[^\\])\/\*[\w\W]*?\*\//,lookbehind:!0},{pattern:/(^|[^\\:])\/\/.+/,lookbehind:!0}],string:/("|')(\\\n|\\?.)*?\1/,"class-name":{pattern:/((?:(?:class|interface|extends|implements|trait|instanceof|new)\s+)|(?:catch\s+\())[a-z0-9_\.\\]+/i,lookbehind:!0,inside:{punctuation:/(\.|\\)/}},keyword:/\b(if|else|while|do|for|return|in|instanceof|function|new|try|throw|catch|finally|null|break|continue)\b/,"boolean":/\b(true|false)\b/,"function":{pattern:/[a-z0-9_]+\(/i,inside:{punctuation:/\(/}},number:/\b-?(0x[\dA-Fa-f]+|\d*\.?\d+([Ee]-?\d+)?)\b/,operator:/[-+]{1,2}|!|<=?|>=?|={1,3}|&{1,2}|\|?\||\?|\*|\/|~|\^|%/,ignore:/&(lt|gt|amp);/i,punctuation:/[{}[\];(),.:]/};
+</script>
+<script type="text/javascript">
+Prism.languages.javascript=Prism.languages.extend("clike",{keyword:/\b(break|case|catch|class|const|continue|debugger|default|delete|do|else|enum|export|extends|false|finally|for|function|get|if|implements|import|in|instanceof|interface|let|new|null|package|private|protected|public|return|set|static|super|switch|this|throw|true|try|typeof|var|void|while|with|yield)\b/,number:/\b-?(0x[\dA-Fa-f]+|\d*\.?\d+([Ee][+-]?\d+)?|NaN|-?Infinity)\b/,"function":/(?!\d)[a-z0-9_$]+(?=\()/i}),Prism.languages.insertBefore("javascript","keyword",{regex:{pattern:/(^|[^/])\/(?!\/)(\[.+?]|\\.|[^/\r\n])+\/[gim]{0,3}(?=\s*($|[\r\n,.;})]))/,lookbehind:!0}}),Prism.languages.markup&&Prism.languages.insertBefore("markup","tag",{script:{pattern:/<script[\w\W]*?>[\w\W]*?<\/script>/i,inside:{tag:{pattern:/<script[\w\W]*?>|<\/script>/i,inside:Prism.languages.markup.tag.inside},rest:Prism.languages.javascript},alias:"language-javascript"}});
+</script>
+</body>
+
+</html>

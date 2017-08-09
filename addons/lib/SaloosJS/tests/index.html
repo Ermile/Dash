@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mocha Tests</title>
+  <link rel='stylesheet' href='mocha.css'>
+</head>
+<body>
+
+  <div id='mocha'></div>
+
+  <h1>Battleground</h1>
+  <input id='date' value='1393/05/2'>
+  <input id='time' value='18:20'>
+
+  <div id='stateContainer'><h2>State Container</h2></div>
+
+  <script src='libs.js'></script>
+  <script src='mocha.js'></script>
+  <script src='chai.js'></script>
+  <script>mocha.setup('bdd'); var assert = chai.assert;</script>
+
+  <script src='tests/localstorage.js'></script>
+  <script src='tests/navigate.js'></script>
+  <script src='tests/scheduler.js'></script>
+
+  <script>mocha.run()</script>
+</body>
+</html>

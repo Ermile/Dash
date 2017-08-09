@@ -33,7 +33,7 @@ class db_return
 		}
 		if($_name == 'error_code' && class_exists('\lib\db\db_return_errors'))
 		{
-			$this->set_message(\saloos::lib_static('db')->db_return_errors()::get($_args[0]));
+			$this->set_message(\dash::lib_static('db')->db_return_errors()::get($_args[0]));
 		}
 	}
 

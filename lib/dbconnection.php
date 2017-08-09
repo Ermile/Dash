@@ -72,7 +72,7 @@ class dbconnection
 				if(method_exists(\lib\main::$controller, 'redirector'))
 				{
 					\lib\main::$controller->redirector()->set_domain()->set_url('cp/install?time=first_time');
-					if(\lib\saloos::is_ajax())
+					if(\lib\dash::is_ajax())
 					{
 						\lib\main::$controller->_processor(['force_stop' => true, 'force_json' => true]);
 					}

@@ -12,7 +12,7 @@ class api
 
 	public function __call($_name, $_args)
 	{
-		$api_config = saloos::lib('api')->config($this, $_name, $_args[0], $_args[1]);
+		$api_config = \dash::lib('api')->config($this, $_name, $_args[0], $_args[1]);
 		return $api_config;
 	}
 }

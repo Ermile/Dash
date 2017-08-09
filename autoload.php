@@ -148,12 +148,12 @@ else
 
 
 /**
- * define new saloos class
+ * define new dash class
  */
-class saloos extends \lib\saloos
+class dash extends \lib\dash
 {
 
 }
-// create a new instance from saloos
-new saloos;
+// create a new instance from dash
+new dash;
 ?>

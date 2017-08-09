@@ -1,0 +1,8 @@
+<div class="panel panel-attachments-list" data-xhr="attachments-list">
+	{%for files in attachments%}
+		<div>
+			{{files.post_title}}
+		</div>
+	{%endfor%}
+	{%include display.pagination with {'pagnation' : attachment_pagnation}%}
+</div>

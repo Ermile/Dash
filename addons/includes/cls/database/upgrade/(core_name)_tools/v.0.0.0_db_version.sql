@@ -1,0 +1,9 @@
+CREATE TABLE IF NOT EXISTS `db_version` (
+`id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+`db_name` varchar(100) NOT NULL,
+`version` varchar(100) NOT NULL,
+`createdate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+`datemodified` TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP,
+PRIMARY KEY (`id`),
+UNIQUE KEY `unique` (`db_name`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

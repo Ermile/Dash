@@ -1,0 +1,45 @@
+{%extends display.cpMain%}
+
+
+{%block content%}
+
+
+<div class="dt big">
+	<div class="f th">
+		<div class="c">{%trans "user_id"%}</div>
+		<div class="c">{%trans "amount"%}</div>
+		<div class="c">{%trans "payment"%}</div>
+		<div class="c">{%trans "date"%}</div>
+		<div class="c">{%trans "time"%}</div>
+		<div class="c">{%trans "condition"%}</div>
+		<div class="c">{%trans "request"%}</div>
+		<div class="c">{%trans "response"%}</div>
+		<div class="c">{%trans "input"%}</div>
+		<div class="c">{%trans "session"%}</div>
+		<div class="c">{%trans "status"%}</div>
+		<div class="c">{%trans "desc"%}</div>
+		<div class="c">{%trans "createdate"%}</div>
+	</div>
+	{%for key, value in transactions_list%}
+	<div class="f">
+		<div class="c">{{value.user_id}}</div>
+		<div class="c">{{value.amount}}</div>
+		<div class="c">{{value.payment}}</div>
+		<div class="c">{{value.date}}</div>
+		<div class="c">{{value.time}}</div>
+		<div class="c">{{value.condition}}</div>
+		<div class="c">{{value.request}}</div>
+		<div class="c">{{value.response}}</div>
+		<div class="c">{{value.input}}</div>
+		<div class="c">{{value.session}}</div>
+		<div class="c">{{value.status}}</div>
+		<div class="c">{{value.desc}}</div>
+		<div class="c">{{value.createdate}}</div>
+	</div>
+	{%endfor%}
+</div>
+<div class="pagination-container">
+	{%include display.pagination%}
+</div>
+
+{%endblock%}

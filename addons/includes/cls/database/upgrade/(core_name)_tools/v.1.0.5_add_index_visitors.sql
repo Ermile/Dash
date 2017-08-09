@@ -1,0 +1,1 @@
+ALTER TABLE `visitors` ADD INDEX(`visitor_date`);

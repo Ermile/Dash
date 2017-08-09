@@ -1,0 +1,12 @@
+{%if xhr.breadcrumb%}
+<nav data-xhr="breadcrumb">{{breadcrumb() | raw}}</nav>
+{%endif%}
+
+<div id='content' class='scr' data-xhr='content'>{{block ('content')}}</div>
+
+
+<ul class="sidenav" data-xhr='sidenav'>{%block sidenav%}{%endblock%}</ul>
+
+{%if xhr.footjs%}
+<div data-xhr="foot_js" class="foot_js">{%block foot_js%}{%endblock%}</div>
+{%endif%}

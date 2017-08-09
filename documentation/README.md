@@ -70,7 +70,6 @@ Below analytics give form [cloc](work on linux & windows)
 [Saloos on Github]: <https://github.com/Ermile/Saloos>
 [Saloos Official Website]: <http://saloos.ir>
 [Saloos]: <http://saloos.ir>
-[Saloos Addons]: <https://github.com/Ermile/Saloos-Addons>
 [Saloos Project]: <https://github.com/Ermile/Saloos-Project>
 [Hasan Salehi]: <http://github.com/baravak>
 [Javad Evazzadeh]: <http://evazzadeh.com>

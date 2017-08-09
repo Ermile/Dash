@@ -38,7 +38,7 @@ class redirector
 		if($_return)
 			return $newLocation;
 
-		if(\saloos::is_json_accept() || \lib\storage::get_api() || \saloos::is_ajax())
+		if(\dash::is_json_accept() || \lib\storage::get_api() || \dash::is_ajax())
 		{
 			header('Content-Type: application/json');
 			debug::msg('redirect', $newLocation);

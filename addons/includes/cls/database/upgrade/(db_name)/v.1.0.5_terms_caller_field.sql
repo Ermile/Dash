@@ -1,0 +1,1 @@
+ALTER TABLE `terms` ADD `term_caller` VARCHAR(255) NULL AFTER `term_type`;

@@ -1,0 +1,24 @@
+{%extends display.account%}
+
+
+{%block desc%}
+   <div id="desc" >
+    <p>{%trans "we send a verification code for you"%}</p>
+    <p>{%trans "please check your mobile and enter the code"%}</p>
+    <a id="delay" class="hide" href="verificationsms{{url.param}}" target="_blank">{%trans "don't receive message?"%}</a>
+    <p id="timer"></p>
+    <p>{{send_timer_session}}</p>
+   </div>
+{%endblock%}
+
+
+{%block foot_js%}
+<script>
+// setInterval(function)
+function showafterdelay() {
+	console.log(90);
+	$('#delay').removeClass('hide');
+}
+setTimeout(showafterdelay, 100);
+</script>
+{%endblock%}
