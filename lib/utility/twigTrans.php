@@ -115,16 +115,16 @@ class twigTrans
 		file_put_contents(root. "/includes/languages/trans_".$export_file_name.".php", $translation_output);
 		if($_path ==='addons')
 		{
-			if($_update === 'saloos')
+			if($_update === 'dash')
 			{
 				file_put_contents(addons. "includes/languages/trans_".$export_file_name.".php", $translation_output);
 			}
 		}
 
 		echo "</ol><br/><br/><hr/><h1>Finish..!</h1>";
-		if($_update === 'saloos')
+		if($_update === 'dash')
 		{
-			echo "<strong>Translation file in saloos repository is updated</strong>";
+			echo "<strong>Translation file in dash repository is updated</strong>";
 		}
 		echo "<p class='alert alert-success'>Extract string from twig file completed!</p></body></html>";
 	}

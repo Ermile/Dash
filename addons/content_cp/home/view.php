@@ -22,9 +22,9 @@ class view extends \mvc\view
 		$this->data->display['cp_posts'] = "content_cp/posts/layout.html";;
 
 
-		$this->data->saloos['version']    = \lib\dash::getLastVersion();
-		$this->data->saloos['lastUpdate'] = \lib\dash::getLastUpdate();
-		$this->data->saloos['langlist']   = ['fa_IR' => 'Persian - فارسی',
+		$this->data->dash['version']    = \lib\dash::getLastVersion();
+		$this->data->dash['lastUpdate'] = \lib\dash::getLastUpdate();
+		$this->data->dash['langlist']   = ['fa_IR' => 'Persian - فارسی',
 											 'en_US' => 'English',
 											 'ar_SU' => 'Arabic - العربية'];
 

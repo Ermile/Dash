@@ -37,9 +37,9 @@ trait constructor
 		$this->url->param            = \lib\utility::get(null, true);
 		$this->url->all              = $this->url->full.$this->url->param;
 
-		$this->data->site['title']       = T_("Saloos");
-		$this->data->site['desc']        = T_("Another Project with Saloos");
-		$this->data->site['slogan']      = T_("Saloos is an artichokes for PHP programming!!");
+		$this->data->site['title']       = T_("Ermile Dash");
+		$this->data->site['desc']        = T_("Another Project with Ermile dash");
+		$this->data->site['slogan']      = T_("Ermile is intelligent ;)");
 		$this->data->site['langlist']    = \lib\option::language('list');
 		$this->data->site['currentlang'] = \lib\define::get_language();
 		$this->data->site['defaultLang'] = \lib\define::get_language('default');
