@@ -3,13 +3,13 @@
 
 
 {%block sidenav%}
-    <li><a href="{{url.base}}/cp"><i class='icon-laptop'></i> <span>{% trans "Dashboard" %}</span></a></li>
+    <li><a href="{{url.base}}/cp"><i class='icon-gauge'></i> <span>{% trans "Dashboard" %}</span></a></li>
     <li><a href="{{url.base}}/cp/tools"><i class='icon-gavel'></i> <span>{% trans "Tools" %}</span></a></li>
-    <li><a href="{{url.base}}/cp/transactions"><i class='icon-gavel'></i> <span>{% trans "Transactions" %}</span></a></li>
-    <li><a href="{{url.base}}/cp/logs"><i class='icon-gavel'></i> <span>{% trans "Logs" %}</span></a></li>
+    <li><a href="{{url.base}}/cp/transactions"><i class='icon-credit-card'></i> <span>{% trans "Transactions" %}</span></a></li>
+    <li><a href="{{url.base}}/cp/logs"><i class='icon-archive'></i> <span>{% trans "Logs" %}</span></a></li>
 
 {%if url.tld == 'dev' %}
-    <li><a href="{{url.base}}/cp/sample"><i class='icon-balance-scale'></i> <span>{% trans "Sample Design" %}</span></a></li>
+    <li><a href="{{url.base}}/cp/sample"><i class='icon-grid'></i> <span>{% trans "Sample Design" %}</span></a></li>
 {%endif%}
 
 {%endblock%}
