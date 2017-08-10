@@ -24,7 +24,7 @@
 // namespace JJG;
 namespace lib\utility;
 
-class Ping
+class ping
 {
 
   private $host;
