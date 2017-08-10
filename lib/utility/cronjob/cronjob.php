@@ -19,6 +19,7 @@ class cronjob
 		chdir("../../../..");
 
 		$path = realpath(''). DIRECTORY_SEPARATOR;
+		echo $path;
 
 		$directory   = new \RecursiveDirectoryIterator($path);
 		$flattened   = new \RecursiveIteratorIterator($directory);
@@ -40,6 +41,7 @@ class cronjob
 				$this->paths[] = $file_name;
 			}
 		}
+		var_dump($this->paths);
 
 	}
 
