@@ -88,18 +88,29 @@
    </div>
 {%endblock%}
 
+{%block eset%}
+   <div class='flex' id='eset'>
+    <button type="submit">{%trans "Set Password"%}</button>
+   </div>
+{%endblock%}
+
+{%block erecovery%}
+   <div class='flex' id='erecovery'>
+    <button type="submit">{%trans "Recovery password"%}</button>
+   </div>
+{%endblock%}
 
 
 {%block elogin%}
    <div class='flex' id='elogin'>
-    <button type="submit">{%trans "Login"%}</button>
+    <button type="submit">{%trans "Enter"%}</button>
    </div>
 {%endblock%}
 
 
 {%block eloginUsername%}
    <div class='flex hide' id='eloginUsername' data-require='usercode'>
-    <button type="submit">{%trans "Login"%}</button>
+    <button type="submit">{%trans "Enter"%}</button>
    </div>
 {%endblock%}
 
@@ -148,7 +159,7 @@
 
 {%block ebemail%}
    <div id='ebemail' class="c {%if module == 'email'%}active{%endif%}">
-    <a href="{{url.base}}/enter/email">@<abbr>{%trans "Login with email"%}</abbr></a>
+    <a href="{{url.base}}/enter/email">@<abbr>{%trans "Enter with email"%}</abbr></a>
   </div>
 {%endblock%}
 

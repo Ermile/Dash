@@ -36,7 +36,7 @@
   <div data-xhr='enter'>
 {%block content%}
 {%block contentTitle%}
- <h2 class='flex justify-center align-center'>{{page.desc}}</h2>
+ <h2 class='flex justify-center align-center'>{{page.desc|raw}}</h2>
 {%endblock%}
 {%block contentBody%}
   <form method="post" autocomplete="off">
