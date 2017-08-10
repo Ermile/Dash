@@ -22,7 +22,7 @@ class cronjob
 
 		$directory   = new \RecursiveDirectoryIterator($path);
 		$flattened   = new \RecursiveIteratorIterator($directory);
-
+		$flattened->setMaxDepth(1);
 		$files       = new \RegexIterator($flattened, "/cronjob\\.php$/");
 
 		foreach($files as $file)
