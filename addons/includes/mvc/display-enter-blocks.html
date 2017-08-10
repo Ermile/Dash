@@ -211,8 +211,15 @@
 
 
 {%block eresend%}
-<a class="link" href="{{url.base}}/enter/verify/resend" data-direct>{%trans "Resend code"%}</a>
+<div class="c">
+ <a data-href="{{url.base}}/enter/verify/resend" data-direct data-text='{%trans "Resend code"%}' data-timer='60' title='{%trans "After end timer you can request code again"%}' id='timer'></a>
+</div>
 {%endblock%}
+
+{%block ereset%}
+<a class="c" href="{{url.base}}/enter" data-direct>{%trans "Restart with new mobile"%}</a>
+{%endblock%}
+
 
 
 {%block emailNew%}

@@ -36,12 +36,15 @@
   <div data-xhr='enter'>
 {%block content%}
 {%block contentTitle%}
- <h2 class='flex justify-center align-center'>{{page.desc|raw}}</h2>
+   <h2 class='flex justify-center align-center'>{{page.desc|raw}}</h2>
 {%endblock%}
 {%block contentBody%}
-  <form method="post" autocomplete="off">
+   <form method="post" autocomplete="off">
 {%block contentForm%}{%endblock%}
-  </form>
+   </form>
+{%endblock%}
+{%block contentFooter%}
+   <footer class='f'>{{block('ereset')}}</footer>
 {%endblock%}
 {%endblock%}
   </div>
