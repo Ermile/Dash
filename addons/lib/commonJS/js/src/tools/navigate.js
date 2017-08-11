@@ -162,35 +162,31 @@
 
 
     // on navigate if in new page we have autofocus field, set focus to it
-    console.log(focusBeforeChange);
-
-    console.log(pageContentChanged);
-
     if(!pageContentChanged)
     {
       // if page content is not changed, do nothing...
-      console.log(10);
+      // console.log(10);
     }
     // if we have input with autofocus, set focus to first of it
     else if($('input[autofocus]').length)
     {
-      console.log(20);
+      // console.log(20);
       if(focusBeforeChange.is($('input[autofocus]')[0]))
       {
         // if this and old input is equal skip
         // check later
-        console.log(21);
+        // console.log(21);
       }
       else
       {
         $('input[autofocus]')[0].focus();
-        console.log(24);
+        // console.log(24);
       }
     }
     else
     {
       // we dont have autofocus input, skip it
-      console.log(30);
+      // console.log(30);
     }
   }
 
