@@ -58,6 +58,8 @@
 
   function render(obj)
   {
+    var focusBeforeChange  = $(':focus');
+    var pageContentChanged = null;
     $window.trigger('navigate:render:start', obj);
 
     var html = obj.html,
@@ -84,6 +86,7 @@
       // its added by javad, if has bug report this condition
       if($(this).html() !== $target.html())
       {
+        pageContentChanged = true;
         // add content after old one - simple replace
         $target.after(this);
         // remove old one
@@ -156,7 +159,41 @@
 
     if(obj.title) document.title = obj.title;
     $window.trigger('navigate:render:done');
+
+
+    // on navigate if in new page we have autofocus field, set focus to it
+    console.log(focusBeforeChange);
+
+    console.log(pageContentChanged);
+
+    if(!pageContentChanged)
+    {
+      // if page content is not changed, do nothing...
+      console.log(10);
+    }
+    // if we have input with autofocus, set focus to first of it
+    else if($('input[autofocus]').length)
+    {
+      console.log(20);
+      if(focusBeforeChange.is($('input[autofocus]')[0]))
+      {
+        // if this and old input is equal skip
+        // check later
+        console.log(21);
+      }
+      else
+      {
+        $('input[autofocus]')[0].focus();
+        console.log(24);
+      }
+    }
+    else
+    {
+      // we dont have autofocus input, skip it
+      console.log(30);
+    }
   }
+
 
   function fetch(props, md5)
   {
