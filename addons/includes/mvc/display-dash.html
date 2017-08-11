@@ -38,11 +38,13 @@
 
   <figure>
 {%block avatar%}
-  {%if login.file_url%}
-    <div class="avatar"><img src="{{url.root}}/{{login.file_url}}" alt='{%trans "Avatar of you"%}'></div>
-  {%else%}
-    <div class="avatar"><img src="{{codeUrl}}dash/images/logo.jpg" alt='{%trans "Avatar of you"%}'></div>
-  {%endif%}
+   <a href="{{url.baseFull}}/profile" title='{%trans "Edit your profile"%}' class="avatar">
+{%if login.file_url%}
+     <img src="{{url.root}}/{{login.file_url}}" alt='{%trans "Avatar of you"%}'>
+{%else%}
+     <img src="{{codeUrl}}dash/images/logo.jpg" alt='{%trans "Avatar of you"%}'>
+{%endif%}
+   </a>
    <figcaption>{%trans "Hello"%} <b>{{login.displayname}}</b></figcaption>
 {%endblock%}
   </figure>
