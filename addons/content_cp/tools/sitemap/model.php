@@ -129,18 +129,18 @@ class model extends \mvc\model
 			$counter['helps'] += 1;
 		}
 
-		// add attachments
-		foreach ($this->model()->sitemap('posts', 'attachment') as $row)
-		{
-			$myUrl = $row['post_url'];
-			if($row['post_language'] && $row['post_language'] !== 'en')
-			{
-				$myUrl = $row['post_language'].'/'. $myUrl;
-			}
+		// // add attachments
+		// foreach ($this->model()->sitemap('posts', 'attachment') as $row)
+		// {
+		// 	$myUrl = $row['post_url'];
+		// 	if($row['post_language'] && $row['post_language'] !== 'en')
+		// 	{
+		// 		$myUrl = $row['post_language'].'/'. $myUrl;
+		// 	}
 
-			$sitemap->addItem($myUrl, '0.2', 'weekly', $row['post_publishdate']);
-			$counter['attachments'] += 1;
-		}
+		// 	$sitemap->addItem($myUrl, '0.2', 'weekly', $row['post_publishdate']);
+		// 	$counter['attachments'] += 1;
+		// }
 
 		// add other type of post
 		foreach ($this->model()->sitemap('posts', false) as $row)
