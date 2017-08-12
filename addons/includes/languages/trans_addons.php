@@ -115,7 +115,7 @@ private function transtext()
 	echo T_("Upgrade");                                                               // Line 35
 	echo T_("Backup");                                                                // Line 37
 	echo T_("Backup by dump");                                                        // Line 29
-	echo T_("Submit");                                                                // Line 121
+	echo T_("Submit");                                                                // Line 141
 	echo T_("Project Database");                                                      // Line 37
 	echo T_("Automatically read database and create sql files");                      // Line 36
 
@@ -525,29 +525,35 @@ private function transtext()
 	echo T_("Password?");                                                             // Line 31
 	echo T_("Verify Code");                                                           // Line 40
 	echo T_("Enter a valid code!");                                                   // Line 40
-	echo T_("Email");                                                                 // Line 47
-	echo T_("email");                                                                 // Line 48
-	echo T_("Enter a valid eamil!");                                                  // Line 228
-	echo T_("username");                                                              // Line 56
-	echo T_("Enter a valid username from 4 to 50 character");                         // Line 56
-	echo T_("Go");                                                                    // Line 71
-	echo T_("Next");                                                                  // Line 79
-	echo T_("Signup");                                                                // Line 87
-	echo T_("Set Password");                                                          // Line 93
-	echo T_("Recovery password");                                                     // Line 99
-	echo T_("Enter");                                                                 // Line 113
-	echo T_("Enter with another methods");                                            // Line 131
-	echo T_("Log in with mobile");                                                    // Line 142
-	echo T_("Enter with mobile");                                                     // Line 144
-	echo T_("Enter with Google");                                                     // Line 154
-	echo T_("Enter with email");                                                      // Line 162
-	echo T_("Enter with username");                                                   // Line 171
-	echo T_("Resend code");                                                           // Line 215
-	echo T_("After end timer you can request code again");                            // Line 215
-	echo T_("Restart with new mobile");                                               // Line 220
-	echo T_("New email");                                                             // Line 228
-	echo T_("New username");                                                          // Line 236
-	echo T_("Enter a valid username!");                                               // Line 236
+	echo T_("Code");                                                                  // Line 48
+	echo T_("Send this code to our number!");                                         // Line 48
+	echo T_("send to this number");                                                   // Line 55
+	echo T_("Send code to this number!");                                             // Line 55
+	echo T_("Email");                                                                 // Line 62
+	echo T_("email");                                                                 // Line 63
+	echo T_("Enter a valid eamil!");                                                  // Line 269
+	echo T_("username");                                                              // Line 71
+	echo T_("Enter a valid username from 4 to 50 character");                         // Line 71
+	echo T_("Go");                                                                    // Line 91
+	echo T_("Go and check it");                                                       // Line 84
+	echo T_("Next");                                                                  // Line 99
+	echo T_("Signup");                                                                // Line 107
+	echo T_("Set Password");                                                          // Line 113
+	echo T_("Recovery password");                                                     // Line 119
+	echo T_("Enter");                                                                 // Line 133
+	echo T_("Enter with another methods");                                            // Line 151
+	echo T_("Log in with mobile");                                                    // Line 162
+	echo T_("Enter with mobile");                                                     // Line 164
+	echo T_("Enter with Google");                                                     // Line 174
+	echo T_("Enter with email");                                                      // Line 182
+	echo T_("Enter with username");                                                   // Line 191
+	echo T_("Resend code");                                                           // Line 249
+	echo T_("After end timer you can request code again");                            // Line 256
+	echo T_("Another way?");                                                          // Line 256
+	echo T_("Restart with new mobile");                                               // Line 262
+	echo T_("New email");                                                             // Line 269
+	echo T_("New username");                                                          // Line 277
+	echo T_("Enter a valid username!");                                               // Line 277
 
 	//------------------------------------------addons\includes\mvc\display-enter.html
 	echo T_("tejarak");                                                               // Line 32

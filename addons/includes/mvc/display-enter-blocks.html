@@ -42,6 +42,21 @@
 {%endblock%}
 
 
+{%block ecodeSend%}
+   <div class='flex fix' id='ecodeSend'>
+    <label for='code'>Code</label>
+    <input id='code' name="code" type='number' readonly placeholder='{%trans "Code"%}' title='{%trans "Send this code to our number!"%}' value="{{codeSend}}">
+   </div>
+{%endblock%}
+
+{%block enumberSend%}
+   <div class='flex fix' id='enumberSend'>
+    <label for='ErmileMobileNumber'>>></label>
+    <input id='ErmileMobileNumber' name="ErmileMobileNumber" type='tel' readonly placeholder='{%trans "send to this number"%}' title='{%trans "Send code to this number!"%}' value="{{codeSendNum}}">
+   </div>
+{%endblock%}
+
+
 {%block email%}
    <div class='flex fix' id='email'>
     <label for='email' title='{%trans "Email"%}'>@</label>
@@ -64,6 +79,11 @@
    </div>
 {%endblock%}
 
+{%block egoCheck%}
+   <div class='flex' id='egoCheck'>
+    <button type="submit">{%trans "Go and check it"%}</button>
+   </div>
+{%endblock%}
 
 
 {%block egoMobile%}
@@ -216,10 +236,31 @@
 </div>
 {%endblock%}
 
+
+{%block eresend120%}
+<div class="c">
+ <a data-href="{{url.base}}/enter/verify/resend" data-direct data-text='{%trans "Resend code"%}' data-timer='120' title='{%trans "After end timer you can request code again"%}' id='timer'></a>
+</div>
+{%endblock%}
+
+
+{%block eresend180%}
+<div class="c">
+ <a data-href="{{url.base}}/enter/verify/resend" data-direct data-text='{%trans "Resend code"%}' data-timer='180' title='{%trans "After end timer you can request code again"%}' id='timer'></a>
+</div>
+{%endblock%}
+
+
+{%block eresend240%}
+<div class="c">
+ <a data-href="{{url.base}}/enter/verify/resend" data-direct data-text='{%trans "Another way?"%}' data-timer='240' title='{%trans "After end timer you can request code again"%}' id='timer'></a>
+</div>
+{%endblock%}
+
+
 {%block ereset%}
 <a class="c" href="{{url.base}}/enter" data-direct>{%trans "Restart with new mobile"%}</a>
 {%endblock%}
-
 
 
 {%block emailNew%}
