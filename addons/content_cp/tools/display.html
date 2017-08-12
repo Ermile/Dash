@@ -9,82 +9,12 @@
   <h2 class="title">{%trans "Special tools"%}</h2>
   <div class="btns">
    <a target='_blank' href="{{url.baseFull}}/tools/sitemap">{%trans "Sitemap"%}</a>
-   <a target='_blank' href="{{url.baseFull}}/tools/log">{%trans "log"%}</a>
+   <a target='_blank' href="{{url.baseFull}}/tools/info">{%trans "Server information"%}</a>
+   <a target='_blank' href="{{url.baseFull}}/tools/log">{%trans "Log"%}</a>
+   <a target='_blank' href="{{url.baseFull}}/tools/translation">{%trans "Translation tools"%}</a>
+   <a target='_blank' href="{{url.baseFull}}/tools/update" class="warn">{%trans "Update"%}</a>
 
   </div>
  </div>
-
-
-
- <div class="dbox">
-
-  <h2>{%trans "Info"%}</h2>
-    <div class="btns">
-   <a target='_blank' href="{{url.baseFull}}/tools/server">{%trans "Show server info"%}</a>
-   <a target='_blank' href="{{url.baseFull}}/tools/phpinfo">{%trans "Show PHP info"%}</a>
-  </div>
- </div><br/>
-
-
-{%if true or perm.tools.admin%}
-
-{%if url.tld == 'dev'%}
- <div class=" dbox">
-  <h2>{%trans "Translate"%}</h2>
-  <div class="btns">
-   <a target='_blank' href="{{url.baseFull}}/tools/twigtrans">{%trans "Extract twig trans func in current project"%}</a>
-   <a target='_blank' href="{{url.baseFull}}/tools/twigtrans?path=addons">{%trans "Extract twig trans func in dash addons"%}</a>
-   <a target='_blank' href="{{url.baseFull}}/tools/twigtrans?path=addons&update=dash">{%trans "Extract twig trans func in dash addons and update on dash addons"%}</a>
-  </div>
- </div><br/>
-{%endif%}
-
-
-{%if url.tld != 'dev' or true%}
-  <div class="dbox">
-   <h2>{%trans "Git Repository"%}</h2>
-   <div class="btns">
-    <a target='_blank' href="{{url.baseFull}}/tools/git?name=dash">{%trans "Update"%} {%trans "Dash Repository"%}</a>
-    <a target='_blank' href="{{url.baseFull}}/tools/git?name=ermile">{%trans "Update"%} {%trans "Ermile Repository"%}</a>
-    <a target='_blank' href="{{url.baseFull}}/tools/git?name={{site.title | lower}}">{%trans "Update"%} {%trans "Current Project Repository"%}</a><br/><br/>
-    <a target='_blank' href="{{url.baseFull}}/tools/git?name=all" class="info">{%trans "Update"%} {%trans "All: Dash + current project Repository"%}</a>
-   </div>
-  </div><br/>
-{%endif%}
-
- <div class="dbox">
-  <h2>{%trans "Other Tools"%}</h2>
-  <div class="btns">
-   <!-- <a target='_blank' href="{{url.baseFull}}/tools/sitemap">{%trans "Regenerate sitemap"%}</a> -->
-   <a target='_blank' href="socialnetwork">{%trans "social networks"%}</a>
-  </div>
- </div><br/>
-
- <div class="dbox">
-  <h2>{%trans "Database"%}</h2>
-  <div class="btns">
-
-   <form method="post" action="{{url.baseFull}}/tools/db" data-action >
-     <input type="text" name="username" placeholder="db username">
-     <input type="password" name="password" placeholder="db password" autocomplete="new-password">
-     <select name="type">
-       <option value="upgrade" selected="selected">{%trans "Upgrade"%}</option>
-       <option value="backup" >{%trans "Backup"%}</option>
-       <option value="backup_dump" >{%trans "Backup by dump"%}</option>
-     </select>
-     <input type="submit" value='{%trans "Submit"%}'>
-   </form>
-   <br/>
-
-   <!-- <a target='_blank' href="{{url.baseFull}}/tools/db?upgrade=true">{%trans "Upgrade"%} {%trans "Project Database"%}</a> -->
-   <a target='_blank' href="{{url.baseFull}}/tools/dbtables">{%trans "Automatically read database and create sql files"%}</a>
-   <!-- <a target='_blank' href="{{url.baseFull}}/tools/db?backup=true">{%trans "Backup"%} {%trans "Project Database"%}</a> -->
-  </div>
- </div><br/>
-{%endif%}
-
-
-
-   <br/><br/><br/>
 {%endblock%}
 
