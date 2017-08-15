@@ -91,7 +91,16 @@ class units
 	 */
 	public static function user_unit($_user_id)
 	{
+
 		$user_unit = \lib\utility\users::get_unit($_user_id);
+		$force_unit = \lib\option::config('force_unit');
+
+		if($force_unit && (self::get_id($user_unit) != $force_unit))
+		{
+			self::set_user_unit($_user_id, self::get($force_unit, true));
+			return self::get($force_unit, true);
+		}
+
 		if($user_unit)
 		{
 			return $user_unit;
@@ -136,12 +145,21 @@ class units
 
 		if($_set_user_unit_if_find)
 		{
-			if($default_unit = self::get(\lib\option::config('default_unit'), true))
+			if(\lib\option::config('force_unit') && ($force_unit = self::get(\lib\option::config('force_unit'), true)))
 			{
-				self::set_user_unit($_user_id, $default_unit);
+				self::set_user_unit($_user_id, $force_unit);
+				return $force_unit;
+			}
+			else
+			{
+				if(\lib\option::config('default_unit') && ($default_unit = self::get(\lib\option::config('default_unit'), true)))
+				{
+					self::set_user_unit($_user_id, $default_unit);
+					return $default_unit;
+				}
 			}
 		}
-		return isset($default_unit) ? $default_unit : null;
+		return null;
 	}
 }
 ?>
