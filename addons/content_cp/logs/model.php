@@ -11,9 +11,9 @@ class model extends \mvc\model
 		$meta['admin'] = true;
 
 		$search = null;
-		if(isset($_args->get("search")[0]))
+		if(utility::get('search'))
 		{
-			$search = $_args->get("search")[0];
+			$search = utility::get('search');
 		}
 
 		foreach ($_fields as $key => $value)

@@ -313,24 +313,26 @@ class config
 		$default_options =
 		[
 			// just return the count record
-			"get_count"      => false,
+			"get_count"           => false,
 			// enable|disable paignation,
-			"pagenation"     => true,
+			"pagenation"          => true,
 			// for example in get_count mode we needless to limit and pagenation
 			// default limit of record is 15
-			// set the limit = null and pagenation = false to get all record whitout limit
-			"limit"          => 15,
+			// set the limit      = null and pagenation = false to get all record whitout limit
+			"limit"               => 15,
 			// for manual pagenation set the statrt_limit and end limit
-			"start_limit"    => 0,
+			"start_limit"         => 0,
 			// for manual pagenation set the statrt_limit and end limit
-			"end_limit"      => 10,
+			"end_limit"           => 10,
 			// the the last record inserted to post table
-			"get_last"       => false,
+			"get_last"            => false,
 			// default order by DESC you can change to DESC
-			"order"          => "DESC",
+			"order"               => "DESC",
 			// custom sort by field
-			"sort"           => null,
-			"search_field"   => null,
+			"sort"                => null,
+			"search_field"        => null,
+			"public_show_field" => null,
+			"master_join"         => null,
 		];
 
 		$_options = array_merge($default_options, $_options);
@@ -342,6 +344,12 @@ class config
 			$pagenation = true;
 		}
 
+		$master_join = null;
+		if($_options['master_join'])
+		{
+			$master_join = $_options['master_join'];
+		}
+
 		// ------------------ get count
 		$only_one_value = false;
 		$get_count      = false;
@@ -349,14 +357,23 @@ class config
 		if($_options['get_count'] === true)
 		{
 			$get_count      = true;
-			$public_fields  = " COUNT(*) AS 'searchcount' FROM	`$_table`";
+			$public_fields  = " COUNT(*) AS 'searchcount' FROM	`$_table` $master_join";
 			$limit          = null;
 			$only_one_value = true;
 		}
 		else
 		{
 			$limit         = null;
-			$public_fields = " * FROM `$_table`";
+			if($_options['public_show_field'])
+			{
+				$public_show_field = $_options['public_show_field'];
+			}
+			else
+			{
+				$public_show_field = " * ";
+			}
+
+			$public_fields = " $public_show_field FROM `$_table` $master_join";
 
 			if($_options['limit'])
 			{
@@ -394,7 +411,14 @@ class config
 		{
 			if($_options['sort'])
 			{
-				$order = " ORDER BY $_options[sort] $_options[order] ";
+				if(!preg_match("/\./", $_options['sort']))
+				{
+					$order = " ORDER BY `$_options[sort]` $_options[order] ";
+				}
+				else
+				{
+					$order = " ORDER BY $_options[sort] $_options[order] ";
+				}
 			}
 			else
 			{
@@ -426,6 +450,8 @@ class config
 		unset($_options['get_last']);
 		unset($_options['order']);
 		unset($_options['sort']);
+		unset($_options['public_show_field']);
+		unset($_options['master_join']);
 
 		foreach ($_options as $key => $value)
 		{
@@ -453,11 +479,13 @@ class config
 
 		$where = join($where, " AND ");
 		$search = null;
-		if($_string != null)
+		if($_string != null && $search_field)
 		{
 			$_string = trim($_string);
 
-			$search = "($search_field LIKE '%$_string%' )";
+			$search = str_replace('__string__', $_string, $search_field);
+			// "($search_field LIKE '%$_string%' )";
+
 			if($where)
 			{
 				$search = " AND ". $search;
@@ -475,7 +503,7 @@ class config
 
 		if($pagenation && !$get_count)
 		{
-			$pagenation_query = "SELECT	COUNT(*) AS `count`	FROM `$_table`	$where $search ";
+			$pagenation_query = "SELECT	COUNT(*) AS `count`	FROM `$_table` $master_join	$where $search ";
 			$pagenation_query = \lib\db::get($pagenation_query, 'count', true);
 
 			list($limit_start, $limit) = \lib\db::pagnation((int) $pagenation_query, $limit);

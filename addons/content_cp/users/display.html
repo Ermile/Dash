@@ -1,0 +1,65 @@
+{%extends display.cpMain%}
+
+
+{%block content%}
+ <form method="get" class="df f" data-action>
+	<div class="c10">
+		<label for="search">{%trans "Search"%}</label>
+		<input type="text" name="search" class="c1" id="search" value='{{get_search}}' >
+	</div>
+
+	<div class="c1">
+		<label>‌</label>
+		<input type="submit"  class="c1 b1"  value='{%trans "Search"%}'>
+	</div>
+</form>
+<br>
+
+
+<div class="dt big">
+	<div class="f th">
+		<div class="c"><a href="{{url.base}}/cp/users/{{order_url.id}}">{%trans "ID"%}</a></div>
+		<div class="c"><a href="{{url.base}}/cp/users/{{order_url.user_mobile}}">{%trans "Mobile"%}</a></div>
+		<div class="c"><a href="{{url.base}}/cp/users/{{order_url.user_email}}">{%trans "Email"%}</a></div>
+		<div class="c"><a href="{{url.base}}/cp/users/{{order_url.user_displayname}}">{%trans "Display name"%}</a></div>
+		<div class="c"><a href="{{url.base}}/cp/users/{{order_url.user_status}}">{%trans "Status"%}</a></div>
+		<div class="c"><a href="{{url.base}}/cp/users/{{order_url.user_parent}}">{%trans "Parent"%}</a></div>
+		<div class="c"><a href="{{url.base}}/cp/users/{{order_url.user_username}}">{%trans "Username"%}</a></div>
+		<div class="c"><a href="{{url.base}}/cp/users/{{order_url.user_file_url}}">{%trans "Avatar"%}</a></div>
+		<div class="c1">{%trans "More"%}</div>
+		<!-- <div class="c1">{%trans "Edit"%}</div> -->
+		<div class="c1">{%trans "Logs"%}</div>
+		<div class="c1">{%trans "Transactions"%}</div>
+	</div>
+	{%for key, value in users_list%}
+	<div class="f">
+
+		<div class="c">{{value.id|fitNumber}}</div>
+		<div class="c">{{value.user_mobile|fitNumber}}</div>
+		<div class="c">{{value.user_email}}</div>
+		<div class="c">{{value.user_displayname}}</div>
+		<div class="c">{{value.user_status}}</div>
+		<div class="c">{{value.user_parent}}</div>
+		<div class="c">{{value.user_username}}</div>
+		{%if value.user_file_url%}
+			<div class="c">
+				<a href="{{url.root}}/{{value.user_file_url}}" target="_blank"><img src="{{url.root}}/{{value.user_file_url}}" height="25" width="25"></a>
+				</div>
+		{%else%}
+			<div class="c"><span class="icon-file-image-o"></span></div>
+		{%endif%}
+
+		<div class="c1"><a href='{{url.base}}/cp/users/detail/{{value.id}}'><span class="icon-align-left-1"></span></a></div>
+		<!-- <div class="c1"><a href='{{url.base}}/cp/users/edit/{{value.id}}'><span class="icon-edit-write"></span></a></div> -->
+		<div class="c1"><a href='{{url.base}}/cp/logs/sort=id/order=desc/user_id={{value.id}}'><span class="icon-archive"></span></a></div>
+		<div class="c1"><a href='{{url.base}}/cp/transactions/sort=id/order=desc/user_id={{value.id}}'><span class="icon-credit-card"></span></a></div>
+
+	</div>
+	{%endfor%}
+</div>
+<div class="pagination-container">
+	{%include display.pagination%}
+</div>
+
+
+{%endblock%}

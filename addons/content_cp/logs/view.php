@@ -6,33 +6,7 @@ class view extends \mvc\view
 	public function view_list($_args)
 	{
 
-		$field =
-		[
-			'id',
-			'title',
-			'transactionitem_id',
-			'user_id',
-			'type',
-			'unit',
-			'plus',
-			'minus',
-			'budgetbefore',
-			'budget',
-			'status',
-			'meta',
-			'desc',
-			'related_user_id',
-			'parent_id',
-			'finished',
-			'date',
-			'mobile',
-			'displayname',
-			'caller',
-			'order',
-			'sort',
-			'search',
-			'user',
-		];
+		$field = $this->controller()->fields;
 
 		$list = $this->model()->logs_list($_args, $field);
 
@@ -47,14 +21,7 @@ class view extends \mvc\view
 
 		if(\lib\utility::get('search'))
 		{
-			$url = $this->url('full');
-			$url = preg_replace("/search\=(.*)(\/|)/", "search=". \lib\utility::get('search'), $url);
-			$this->redirector($url)->redirect();
-		}
-
-		if(isset($_args->get("search")[0]))
-		{
-			$this->data->get_search = $_args->get("search")[0];
+			$this->data->get_search = \lib\utility::get('search');
 		}
 	}
 

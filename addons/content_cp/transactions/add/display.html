@@ -2,39 +2,54 @@
 
 
 {%block content%}
+{%if transaction_record %}
 <h2>{%trans "Saved record"%}</h2>
-<div class="">
+
+<div class="df">
 	<div class="f">
+		<div class="c">{%trans "Code"%}</div>
+		<div class="c">{%trans "Title"%}</div>
+		<div class="c">{%trans "Type"%}</div>
+		<div class="c">{%trans "Date"%}</div>
+		<div class="c">{%trans "Time"%}</div>
 		<div class="c">{%trans "Plus"%}</div>
-		<div class="c">{{transaction_record.plus}}</div>
-	</div>
-
-	<div class="f">
 		<div class="c">{%trans "Minus"%}</div>
-		<div class="c">{{transaction_record.minus}}</div>
+		<div class="c">{%trans "Condition"%}</div>
+		<div class="c">{%trans "Verify"%}</div>
+		<div class="c">{%trans "Description"%}</div>
 	</div>
-
 	<div class="f">
-		<div class="c">{%trans "Other"%}</div>
-		<div class="c">{{transaction_record|json_encode()}}</div>
+		<div class="c">{{transaction_record.code}}</div>
+		<div class="c">{{transaction_record.title}}</div>
+		<div class="c">{%set my_type = transaction_record.type %}{%trans my_type %}</div>
+		{%if site.currentlang == 'fa'%}
+			<div class="c">{{transaction_record.date|jdate("Y-m-d")}}</div>
+		{%else%}
+			<div class="c">{{transaction_record.date}}</div>
+		{%endif%}
+		<div class="c">{{transaction_record.time| fitNumber}}</div>
+		<div class="c">{{transaction_record.plus | number_format  | fitNumber}}</div>
+		<div class="c">{{transaction_record.minus | number_format  | fitNumber}}</div>
+		<div class="c">{%set my_condition = transaction_record.condition %}{%trans my_condition %}</div>
+		<div class="c">{{transaction_record.verify | fitNumber}}</div>
+		<div class="c">{{transaction_record.desc}}</div>
 	</div>
 </div>
+
 <hr>
 <h2>{%trans "Repair to"%}</h2>
- <form method="post" class="df" >
+{%endif%}
+ <form method="post" class="df g1 form-box" >
 	<div class="f">
-		<label for="caller" class="c2">{%trans "Title"%}</label>
-		<select name="caller" class="c" id="caller">
-			<option value="">{%trans "Please select one item"%}</option>
-			<option value="repair">{%trans "Repair"%}</option>
-		</select>
+		<label for="title" class="c2">{%trans "Title"%}</label>
+		<input type="text" name="title" class="c" id="title" placeholder='{%trans "Title"%} *' required >
 	</div>
 
 	<div class="f">
 		<label for="type" class="c2">{%trans "type"%}</label>
 		<select name="type" class="c" id="type">
 			<option value="">{%trans "Please select one item"%}</option>
-			<option value="real">{%trans "Real"%}</option>
+			<option value="money">{%trans "Money"%}</option>
 			<option value="gift">{%trans "Gift"%}</option>
 			<option value="transfer">{%trans "Transfer"%}</option>
 			<option value="prize">{%trans "Prize"%}</option>
@@ -53,11 +68,6 @@
 		<label for="mobile" class="c2">{%trans "Mobile"%}</label>
 		<input type="text" name="mobile" class="c" id="mobile" placeholder='{%trans "Mobile"%} *' required value="{{get_mobile}}">
 	</div>
-
-<!-- 	<div class="f">
-		<label for="date" class="c2">{%trans "Date"%}</label>
-		<input type="text" name="date" class="c" id="date" placeholder='{%trans "date"%}' value='{{now|date("Y-m-d H:i:s")}}'>
-	</div> -->
 
 	<div class="f">
 		<label for="minus" class="c2">{%trans "Minus"%}</label>

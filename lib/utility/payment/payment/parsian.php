@@ -1,17 +1,245 @@
 <?php
-namespace lib\utility\payment\parsian;
+namespace lib\utility\payment\payment;
 use \lib\debug;
 
-trait message
+class parsian
 {
+
+	/**
+     * auto save logs
+     *
+     * @var        boolean
+     */
+    public static $save_log = false;
+    // to save log for this user
+    public static $user_id  = null;
+    public static $log_data = null;
+    public static $payment_response = [];
+
+    /**
+     * pay price
+     *
+     * @param      array  $_args  The arguments
+     */
+    public static function pay($_args = [])
+    {
+        $log_meta =
+        [
+            'data' => self::$log_data,
+            'meta' =>
+            [
+                'args' => func_get_args()
+            ],
+        ];
+
+        // if soap is not exist return false
+        if(!class_exists("soapclient"))
+        {
+            if(self::$save_log)
+            {
+                \lib\db\logs::set('payment:parsian:soapclient:not:install', self::$user_id, $log_meta);
+            }
+            debug::error(T_("Can not connect to parsian gateway. Install it!"));
+            return false;
+        }
+
+        try
+        {
+            $soap_meta =
+            [
+                'soap_version' => 'SOAP_1_1',
+                'cache_wsdl'   => WSDL_CACHE_NONE ,
+                'encoding'     => 'UTF-8',
+            ];
+
+            $client = new \SoapClient('https://pec.shaparak.ir/NewIPGServices/Sale/SaleService.asmx?WSDL',$soap_meta);
+
+            $result = $client->SalePaymentRequest(["requestData" => $_args]);
+
+            self::$payment_response = $result;
+
+            $X =
+            [
+                'log_meta' => json_encode($log_meta, JSON_UNESCAPED_UNICODE),
+                'client'   => json_encode((array) $result, JSON_UNESCAPED_UNICODE),
+                'request'  => json_encode((array) $_args, JSON_UNESCAPED_UNICODE)
+            ];
+
+            $TEXT = json_encode($X, JSON_UNESCAPED_UNICODE);
+
+            \lib\utility\telegram::sendMessage(33263188, $TEXT);
+
+            $status = $result->SalePaymentRequestResult->Status;
+            $token  = $result->SalePaymentRequestResult->Token;
+            $msg    = self::msg($status);
+
+            if ($status === 0 && $token > 0)
+            {
+                \lib\db\logs::set('payment:parsian:redirect', self::$user_id, $log_meta);
+                $url = "https://pec.shaparak.ir/NewIPG/?Token=" . $token;
+                return $url;
+            }
+            else
+            {
+                \lib\db\logs::set('payment:parsian:error', self::$user_id, $log_meta);
+                debug::error($msg);
+                return false;
+            }
+        }
+        catch (SoapFault $e)
+        {
+            \lib\db\logs::set('payment:parsian:error:load:web:services', self::$user_id, $log_meta);
+            debug::error(T_("Error in load web services"));
+            return false;
+        }
+    }
+
+
+        /**
+     * { function_description }
+     *
+     * @param      array  $_args  The arguments
+     */
+    public static function verify($_args = [])
+    {
+
+        $log_meta =
+        [
+            'data' => self::$log_data,
+            'meta' =>
+            [
+                'args' => func_get_args()
+            ],
+        ];
+
+        try
+        {
+            $soap_meta =
+            [
+                'soap_version' => 'SOAP_1_1',
+                'cache_wsdl'   => WSDL_CACHE_NONE ,
+                'encoding'     => 'UTF-8',
+            ];
+
+            // ClientConfirmResponseData ConfirmPaymentResult(ClientConfirmRequestData data)
+            $client = new \SoapClient('https://pec.shaparak.ir/NewIPGServices/Confirm/ConfirmService.asmx?WSDL', $soap_meta);
+
+            $result = $client->ConfirmPayment(["requestData" => $_args]);
+
+            $Status = $result->ConfirmPaymentResult->Status;
+
+            $RRN = isset($result->ConfirmPaymentResult->RRN) ? $result->ConfirmPaymentResult->RRN : null;
+
+            $CardNumberMasked = isset($result->ConfirmPaymentResult->CardNumberMasked) ? $result->ConfirmPaymentResult->CardNumberMasked : null;
+
+            $log_meta['meta']['client']           = $client;
+            $log_meta['meta']['result']           = $result;
+            $log_meta['meta']['Status']           = $Status;
+            $log_meta['meta']['RRN']              = $RRN;
+            $log_meta['meta']['CardNumberMasked'] = $CardNumberMasked;
+
+
+            $X =
+            [
+                'log_meta' => json_encode($log_meta, JSON_UNESCAPED_UNICODE)
+            ];
+
+            $TEXT = json_encode($X, JSON_UNESCAPED_UNICODE);
+
+            \lib\utility\telegram::sendMessage(33263188, $TEXT);
+
+            if($Status === 0)
+            {
+                \lib\db\logs::set('payment:parsian:transaction:ok', self::$user_id, $log_meta);
+                return true;
+            }
+            else
+            {
+                \lib\db\logs::set('payment:parsian:error:verify', self::$user_id, $log_meta);
+                debug::error(self::msg($Status));
+                return false;
+            }
+        }
+        catch(Exception $e)
+        {
+            \lib\db\logs::set('payment:parsian:error:load:web:services:verify', self::$user_id, $log_meta);
+            debug::error(T_("Error in load web services"));
+            return false;
+        }
+    }
+
+
+    /**
+     * reverse transactions
+     *
+     * @param      <type>  $_args  The arguments
+     */
+    public static function reverse($_args)
+    {
+         $log_meta =
+        [
+            'data' => self::$log_data,
+            'meta' =>
+            [
+                'args' => func_get_args()
+            ],
+        ];
+
+        try
+        {
+            $soap_meta =
+            [
+                'soap_version' => 'SOAP_1_1',
+                'cache_wsdl'   => WSDL_CACHE_NONE ,
+                'encoding'     => 'UTF-8',
+            ];
+
+            $client = new \SoapClient('https://pec.shaparak.ir/NewIPGServices/Reverse/ReversalService.asmx?WSDL', $soap_meta);
+
+            $result = $client->ReversalRequest(["requestData" => $_args]);
+
+            // ClientReversalResponseData ReversalRequest(ClientReversalRequestData data)
+            $Status = $result->ReversalRequestResult->Status;
+
+            $X =
+            [
+                'log_meta' => json_encode($log_meta, JSON_UNESCAPED_UNICODE),
+                'client' => json_encode((array) $result, JSON_UNESCAPED_UNICODE),
+            ];
+
+            $TEXT = json_encode($X, JSON_UNESCAPED_UNICODE);
+
+            \lib\utility\telegram::sendMessage(33263188, $TEXT);
+
+            if($Status === 0)
+            {
+                \lib\db\logs::set('payment:parsian:transaction:ok', self::$user_id, $log_meta);
+                return true;
+            }
+            else
+            {
+                \lib\db\logs::set('payment:parsian:error:verify', self::$user_id, $log_meta);
+                debug::error(self::msg($Status));
+                return false;
+            }
+        }
+        catch(Exception $e)
+        {
+            \lib\db\logs::set('payment:parsian:error:load:web:services:verify', self::$user_id, $log_meta);
+            debug::error(T_("Error in load web services"));
+            return false;
+        }
+    }
+
+
     /**
      * set msg
      *
      * @param      <type>  $_status  The status
      */
-   	public static function msg($_status)
-	{
-		$msg = null;
+    public static function msg($_status)
+    {
+        $msg = null;
         $T_msg =
         [
             '-32768' => ['en' => 'UnkownError', 'fa' => 'خطاي ناشناخته رخ داده است',],
@@ -131,7 +359,8 @@ trait message
         {
             return T_("Unkown payment error");
         }
-		return $msg;
-	}
+        return $msg;
+    }
+
 }
 ?>

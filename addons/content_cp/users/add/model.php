@@ -1,38 +1,26 @@
 <?php
-namespace addons\content_cp\transactions\manage;
+namespace addons\content_cp\users\add;
 
 use \lib\utility;
 use \lib\debug;
 class model extends \mvc\model
 {
-	public function transactions_list($_args, $_fields = [])
+	public function get_load($_args)
 	{
-		$meta   = [];
-		$meta['admin'] = true;
-
-		$search = null;
-		if(isset($_args->get("search")[0]))
+		$id = isset($_args->match->url[0][1]) ? $_args->match->url[0][1] : null;
+		$result = [];
+		if($id)
 		{
-			$search = $_args->get("search")[0];
+			$result = \lib\db\users::get(['id' => $id, 'limit' => 1]);
 		}
-
-		foreach ($_fields as $key => $value)
-		{
-			if(isset($_args->get($value)[0]))
-			{
-				$meta[$value] = $_args->get($value)[0];
-			}
-		}
-
-		$result = \lib\db\transactions::search($search, $meta);
 		return $result;
 	}
 
 
 	/**
-	 * manage a new record of transaction
+	 * add a new record of user
 	 */
-	public function post_manage()
+	public function post_add($_args)
 	{
 
 		$caller = utility::post('caller');
@@ -106,18 +94,20 @@ class model extends \mvc\model
 		$caller = implode(':', [$caller, $type, $unit]);
 		$caller = mb_strtolower($caller);
 
+		$id = isset($_args->match->url[0][1]) ? $_args->match->url[0][1] : null;
+
 		if($minus)
 		{
-			\lib\db\transactions::set($caller, $user_id, ['minus' => $minus, 'desc' => $desc]);
+			\lib\db\users::set($caller, $user_id, ['minus' => $minus, 'desc' => $desc, 'parent_id' => $id]);
 		}
 		elseif($plus)
 		{
-			\lib\db\transactions::set($caller, $user_id, ['plus' => $plus, 'desc' => $desc]);
+			\lib\db\users::set($caller, $user_id, ['plus' => $plus, 'desc' => $desc, 'parent_id' => $id]);
 		}
 
 		if(debug::$status)
 		{
-			debug::true(T_("Transaction inserted"));
+			debug::true(T_("user inserted"));
 		}
 	}
 }

@@ -40,6 +40,28 @@ class users
 
 
 	/**
+	 * Searches for the first match.
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public static function search($_string = null, $_options = [])
+	{
+		if(!is_array($_options))
+		{
+			$_options = [];
+		}
+		$_options['search_field'] =
+		"
+			(
+				users.user_mobile LIKE '%__string__%'
+			)
+		";
+		// public_show_field
+		return \lib\db\config::public_search('users', ...func_get_args());
+	}
+
+
+	/**
 	 * get all data by email
 	 *
 	 * @param      <type>  $_email  The email

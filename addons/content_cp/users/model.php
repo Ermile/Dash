@@ -1,11 +1,11 @@
 <?php
-namespace addons\content_cp\transactions;
+namespace addons\content_cp\users;
 
 use \lib\utility;
 use \lib\debug;
 class model extends \mvc\model
 {
-	public function transactions_list($_args, $_fields = [])
+	public function users_list($_args, $_fields = [])
 	{
 		$meta   = [];
 		$meta['admin'] = true;
@@ -24,7 +24,7 @@ class model extends \mvc\model
 			}
 		}
 
-		$result = \lib\db\transactions::search($search, $meta);
+		$result = \lib\db\users::search($search, $meta);
 		return $result;
 	}
 }

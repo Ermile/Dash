@@ -39,6 +39,26 @@ self::$config['main_site']                    = null;
 self::$config['account_status']               = false;
 
 /**
+ * list of units
+ */
+self::$config['units'] =
+[
+	1 =>
+	[
+		'title' => 'toman',
+		'desc'  => "Toman",
+	],
+
+	2 =>
+	[
+		'title' => 'dollar',
+		'desc'  => "$",
+	],
+];
+// the unit id for default
+self::$config['default_unit'] = 1;
+
+/**
 * get enter option
 */
 // the block type is ['ip', 'session']

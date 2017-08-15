@@ -22,60 +22,91 @@ class model extends \mvc\model
 	 */
 	public function post_add($_args)
 	{
+		$id = isset($_args->match->url[0][1]) ? $_args->match->url[0][1] : null;
+		if(!is_numeric($id))
+		{
+			$id = null;
+		}
 
-		$caller = utility::post('caller');
+		$log_meta =
+		[
+			'data' => $id,
+			'meta' =>
+			[
+				'input'   => utility::post(),
+				'session' => $_SESSION
+			],
+		];
+
+		$title  = utility::post('title');
 		$unit   = utility::post('unit');
 		$mobile = utility::post('mobile');
-		// $date   = utility::post('date');
 		$minus  = utility::post('minus');
 		$plus   = utility::post('plus');
 		$desc   = utility::post('desc');
 		$type   = utility::post('type');
 
-		if(!$caller)
+		if(!$this->login())
 		{
-			debug::error(T_("Please select one of the caller items"));
+			debug::error(T_("You must login to add new transaction"));
+			return false;
+		}
+
+		$user_id = $this->login('id');
+
+
+		if(!$title)
+		{
+			\lib\db\logs::set('cp:transactions:add:title:not:set', $user_id, $log_meta);
+			debug::error(T_("Please set the transaction title"));
 			return false;
 		}
 
 		if(!$unit)
 		{
+			\lib\db\logs::set('cp:transactions:add:unit:not:set', $user_id, $log_meta);
 			debug::error(T_("Please select one of the unit items"));
 			return false;
 		}
 
 		if(!$mobile)
 		{
+			\lib\db\logs::set('cp:transactions:add:mobile:not:set', $user_id, $log_meta);
 			debug::error(T_("Mobile can not be null"));
 			return false;
 		}
 
 		if(!$type)
 		{
+			\lib\db\logs::set('cp:transactions:add:type:not:set', $user_id, $log_meta);
 			debug::error(T_("Please select one of the type items"));
 			return false;
 		}
 
-		if(!in_array($type, ['real', 'gift', 'prize', 'transfer']))
+		if(!in_array($type, ['money', 'gift', 'prize', 'transfer']))
 		{
+			\lib\db\logs::set('cp:transactions:add:invalid:type', $user_id, $log_meta);
 			debug::error(T_("Invalid type"));
 			return false;
 		}
 
 		if(!$plus && !$minus)
 		{
+			\lib\db\logs::set('cp:transactions:add:no:minus:no:plus', $user_id, $log_meta);
 			debug::error(T_("Please fill the minus or plus field"));
 			return false;
 		}
 
 		if($plus && !is_numeric($plus))
 		{
+			\lib\db\logs::set('cp:transactions:add:plus:isnot:numeric', $user_id, $log_meta);
 			debug::error(T_("Invalid plus field"));
 			return false;
 		}
 
 		if($minus && !is_numeric($minus))
 		{
+			\lib\db\logs::set('cp:transactions:add:minus:isnot:numeric', $user_id, $log_meta);
 			debug::error(T_("Invalid minus field"));
 			return false;
 		}
@@ -87,23 +118,45 @@ class model extends \mvc\model
 		}
 		else
 		{
+			\lib\db\logs::set('cp:transactions:add:mobile:notexist', $user_id, $log_meta);
 			debug::error(T_("Mobile not exist"));
 			return false;
 		}
 
-		$caller = implode(':', [$caller, $type, $unit]);
-		$caller = mb_strtolower($caller);
 
-		$id = isset($_args->match->url[0][1]) ? $_args->match->url[0][1] : null;
+		if($plus && $minus)
+		{
+			\lib\db\logs::set('cp:transactions:add:plus:and:minus:set', $user_id, $log_meta);
+			debug::error(T_("One of the plus or minus field must be set"));
+			return false;
+		}
 
 		if($minus)
 		{
-			\lib\db\transactions::set($caller, $user_id, ['minus' => $minus, 'desc' => $desc, 'parent_id' => $id]);
+			$plus = null;
 		}
-		elseif($plus)
+		else
 		{
-			\lib\db\transactions::set($caller, $user_id, ['plus' => $plus, 'desc' => $desc, 'parent_id' => $id]);
+			$minus = null;
 		}
+
+		$insert =
+		[
+			'caller'         => 'manually',
+			'title'          => $title,
+			'user_id'        => $user_id,
+			'plus'           => $plus,
+			'minus'          => $minus,
+			'payment'        => null,
+			'type'           => $type,
+			'unit'           => $unit,
+			'date'           => date("Y-m-d"),
+			'time'           => date("H:i:s"),
+			'parent_id'		 => $id,
+			'verify'		 => 1,
+		];
+
+		\lib\db\transactions::set($insert);
 
 		if(debug::$status)
 		{

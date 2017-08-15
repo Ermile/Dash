@@ -2,6 +2,25 @@
 
 
 {%block content%}
+<h2>{%trans "Saved record"%}</h2>
+<div class="">
+	<div class="f">
+		<div class="c">{%trans "Plus"%}</div>
+		<div class="c">{{user_record.plus}}</div>
+	</div>
+
+	<div class="f">
+		<div class="c">{%trans "Minus"%}</div>
+		<div class="c">{{user_record.minus}}</div>
+	</div>
+
+	<div class="f">
+		<div class="c">{%trans "Other"%}</div>
+		<div class="c">{{user_record|json_encode()}}</div>
+	</div>
+</div>
+<hr>
+<h2>{%trans "Repair to"%}</h2>
  <form method="post" class="df" >
 	<div class="f">
 		<label for="caller" class="c2">{%trans "Title"%}</label>
@@ -32,7 +51,7 @@
 
 	<div class="f">
 		<label for="mobile" class="c2">{%trans "Mobile"%}</label>
-		<input type="text" name="mobile" class="c" id="mobile" placeholder='{%trans "Mobile"%} *' required>
+		<input type="text" name="mobile" class="c" id="mobile" placeholder='{%trans "Mobile"%} *' required value="{{get_mobile}}">
 	</div>
 
 <!-- 	<div class="f">
@@ -57,7 +76,7 @@
 
 	<div class="f">
 		<label class="c2"> ‌</label>
-		<input type="submit"  class="c bp"  value='{%trans "manage"%}'>
+		<input type="submit"  class="c bp"  value='{%trans "Add"%}'>
 	</div>
 </form>
 <br>

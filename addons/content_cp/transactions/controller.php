@@ -3,6 +3,43 @@ namespace addons\content_cp\transactions;
 
 class controller extends \mvc\controller
 {
+	public $fields =
+	[
+		'id',
+		'user_id',
+		'code',
+		'title',
+		'type',
+		'unit_id',
+		'date',
+		'time',
+		'amount_request',
+		'amount_end',
+		'plus',
+		'minus',
+		'budget_before',
+		'budget',
+		'status',
+		'condition',
+		'verify',
+		'parent_id',
+		'related_user_id',
+		'related_foreign',
+		'related_id',
+		'payment',
+		'payment_response',
+		'meta',
+		'desc',
+		'createdate',
+		'date_modified',
+		'mobile',
+		'displayname',
+		'unit',
+		'order',
+		'sort',
+		'search',
+	];
+
 	public function _route()
 	{
 
@@ -10,23 +47,10 @@ class controller extends \mvc\controller
 
 		$property                 = [];
 
-		$property['id']           = ["/.*/", true , 'id'];
-		$property['name']         = ["/.*/", true , 'name'];
-		$property['title']        = ["/.*/", true , 'title'];
-		$property['status']       = ["/.*/", true , 'status'];
-		$property['type']         = ["/.*/", true , 'type'];
-		$property['unit']         = ["/.*/", true , 'unit'];
-		$property['ninus']        = ["/.*/", true , 'ninus'];
-		$property['plus']         = ["/.*/", true , 'plus'];
-		$property['budgetbefore'] = ["/.*/", true , 'budgetbefore'];
-		$property['budget']       = ["/.*/", true , 'budget'];
-		$property['date']         = ["/.*/", true , 'date'];
-		$property['order']        = ["/.*/", true , 'order'];
-		$property['sort']         = ["/.*/", true , 'sort'];
-		$property['search']       = ["/.*/", true , 'search'];
-		$property['mobile']       = ["/.*/", true , 'mobile'];
-		$property['user']       = ["/.*/", true , 'user'];
-		$property['caller']       = ["/.*/", true , 'caller'];
+		foreach ($this->fields as $key => $value)
+		{
+			$property[$value] = ["/.*/", true , $value];
+		}
 
 		$this->get(false, "list")->ALL(['property' => $property]);
 

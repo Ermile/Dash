@@ -1,0 +1,15 @@
+{%extends display.cpMain%}
+
+
+{%block content%}
+<h2>{%trans "Detail of user"%}</h2>
+
+<div class="df">
+	{%for key, value in user_record%}
+	<div class="f">
+		<div class="c">{%trans key%}</div>
+		<div class="c">{{value}}</div>
+	</div>
+	{%endfor%}
+</div>
+{%endblock%}

@@ -1,51 +1,22 @@
 <?php
-namespace addons\content_cp\transactions\manage;
+namespace addons\content_cp\users;
 
 class view extends \mvc\view
 {
-	public function view_manage($_args)
+	public function view_list($_args)
 	{
 
-		$field =
-		[
-			'id',
-			'title',
-			'transactionitem_id',
-			'user_id',
-			'type',
-			'unit',
-			'plus',
-			'minus',
-			'budgetbefore',
-			'budget',
-			'status',
-			'meta',
-			'desc',
-			'related_user_id',
-			'parent_id',
-			'finished',
-			'date',
-			'mobile',
-			'displayname',
-			'caller',
-		];
+		$field = $this->controller()->fields;
 
-		$list = $this->model()->transactions_list($_args, $field);
+		$list = $this->model()->users_list($_args, $field);
 
-		$this->data->transactions_list = $list;
+		$this->data->users_list = $list;
 
 		$this->order_url($_args, $field);
 
 		if(isset($this->controller->pagnation))
 		{
 			$this->data->pagnation = $this->controller->pagnation_get();
-		}
-
-		if(\lib\utility::get('search'))
-		{
-			$url = $this->url('full');
-			$url = preg_replace("/search\=(.*)(\/|)/", "search=". \lib\utility::get('search'), $url);
-			$this->redirector($url)->redirect();
 		}
 
 		if(isset($_args->get("search")[0]))
