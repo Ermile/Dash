@@ -95,7 +95,7 @@ trait parsian
             return self::turn_back();
         }
 
-        if(!$Amount_SESSION != $Amount)
+        if($Amount_SESSION != $Amount)
         {
             logs::set('pay:parsian:Amount_SESSION:amount:is:not:equals', self::$user_id, $log_meta);
             debug::error(T_("Your session is lost! We can not find amount"));
