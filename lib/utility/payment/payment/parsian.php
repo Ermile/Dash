@@ -58,17 +58,6 @@ class parsian
 
             self::$payment_response = $result;
 
-            $X =
-            [
-                'log_meta' => json_encode($log_meta, JSON_UNESCAPED_UNICODE),
-                'client'   => json_encode((array) $result, JSON_UNESCAPED_UNICODE),
-                'request'  => json_encode((array) $_args, JSON_UNESCAPED_UNICODE)
-            ];
-
-            $TEXT = json_encode($X, JSON_UNESCAPED_UNICODE);
-
-            \lib\utility\telegram::sendMessage(33263188, $TEXT);
-
             $status = $result->SalePaymentRequestResult->Status;
             $token  = $result->SalePaymentRequestResult->Token;
             $msg    = self::msg($status);
@@ -138,16 +127,6 @@ class parsian
             $log_meta['meta']['RRN']              = $RRN;
             $log_meta['meta']['CardNumberMasked'] = $CardNumberMasked;
 
-
-            $X =
-            [
-                'log_meta' => json_encode($log_meta, JSON_UNESCAPED_UNICODE)
-            ];
-
-            $TEXT = json_encode($X, JSON_UNESCAPED_UNICODE);
-
-            \lib\utility\telegram::sendMessage(33263188, $TEXT);
-
             if($Status === 0)
             {
                 \lib\db\logs::set('payment:parsian:transaction:ok', self::$user_id, $log_meta);
@@ -200,16 +179,6 @@ class parsian
 
             // ClientReversalResponseData ReversalRequest(ClientReversalRequestData data)
             $Status = $result->ReversalRequestResult->Status;
-
-            $X =
-            [
-                'log_meta' => json_encode($log_meta, JSON_UNESCAPED_UNICODE),
-                'client' => json_encode((array) $result, JSON_UNESCAPED_UNICODE),
-            ];
-
-            $TEXT = json_encode($X, JSON_UNESCAPED_UNICODE);
-
-            \lib\utility\telegram::sendMessage(33263188, $TEXT);
 
             if($Status === 0)
             {

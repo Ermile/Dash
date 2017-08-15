@@ -11,7 +11,7 @@ trait parsian
 
     /**
      * pay by parsian payment
-     * check config of zarinpal
+     * check config of parsian
      * save transaction by conditon request
      * redirect to payment url
      * @param      <type>  $_user_id  The user identifier
@@ -72,12 +72,10 @@ trait parsian
             $parsian['CallBackUrl'] = self::get_callbck_url('parsian');
         }
 
-        if(option::config('parsian', 'exchange'))
-        {
-            $_amount = floatval(option::config('parsian', 'exchange')) * floatval($_amount);
-        }
-
-        $parsian['Amount'] = $_amount;
+        // change rial to toman
+        // but the plus is toman
+        // need less to *10 the plus
+        $parsian['Amount'] = floatval($_amount) * 10;
 
         $transaction_start =
         [
@@ -122,9 +120,9 @@ trait parsian
             if(isset($payment_response->SalePaymentRequestResult->Token))
             {
                 // save amount and autority in session to get when verifying
-                $_SESSION['amount']['zarinpal'][$payment_response->SalePaymentRequestResult->Token]                   = [];
-                $_SESSION['amount']['zarinpal'][$payment_response->SalePaymentRequestResult->Token]['amount']         = $_amount;
-                $_SESSION['amount']['zarinpal'][$payment_response->SalePaymentRequestResult->Token]['transaction_id'] = $transaction_id;
+                $_SESSION['amount']['parsian'][$payment_response->SalePaymentRequestResult->Token]                   = [];
+                $_SESSION['amount']['parsian'][$payment_response->SalePaymentRequestResult->Token]['amount']         = floatval($_amount) * 10;
+                $_SESSION['amount']['parsian'][$payment_response->SalePaymentRequestResult->Token]['transaction_id'] = $transaction_id;
 
                 $payment_response = json_encode((array) $payment_response, JSON_UNESCAPED_UNICODE);
                 \lib\db\transactions::update(['condition' => 'redirect', 'payment_response' => $payment_response], $transaction_id);

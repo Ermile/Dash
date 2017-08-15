@@ -72,7 +72,7 @@ trait parsian
 
         $update =
         [
-            'amount_end'       => $Amount,
+            'amount_end'       => $Amount / 10,
             'condition'        => 'pending',
             'payment_response' => json_encode((array) $_args, JSON_UNESCAPED_UNICODE),
         ];
@@ -86,7 +86,7 @@ trait parsian
 
         if(isset($_SESSION['amount']['parsian'][$Token]['amount']))
         {
-            $Amount_SESSION  = $_SESSION['amount']['parsian'][$Token]['amount'];
+            $Amount_SESSION  = floatval($_SESSION['amount']['parsian'][$Token]['amount']);
         }
         else
         {
@@ -120,7 +120,7 @@ trait parsian
             {
                 $update =
                 [
-                    'amount_end'       => $Amount_SESSION,
+                    'amount_end'       => $Amount_SESSION / 10,
                     'condition'        => 'ok',
                     'verify'           => 1,
                     'payment_response' => $payment_response,
@@ -134,7 +134,7 @@ trait parsian
             {
                 $update =
                 [
-                    'amount_end'       => $Amount_SESSION,
+                    'amount_end'       => $Amount_SESSION / 10,
                     'condition'        => 'verify_error',
                     'payment_response' => $payment_response,
                 ];
@@ -147,7 +147,7 @@ trait parsian
         {
             $update =
             [
-                'amount_end'       => $Amount_SESSION,
+                'amount_end'       => $Amount_SESSION / 10,
                 'condition'        => 'error',
                 'payment_response' => json_encode((array) $_args, JSON_UNESCAPED_UNICODE),
             ];

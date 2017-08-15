@@ -77,11 +77,6 @@ trait zarinpal
             $zarinpal['CallbackURL'] = self::get_callbck_url('zarinpal');
         }
 
-        if(option::config('zarinpal', 'exchange'))
-        {
-            $_amount = floatval(option::config('zarinpal', 'exchange')) * floatval($_amount);
-        }
-
         $zarinpal['Amount'] = $_amount;
 
         if(isset($_options['mobile']))
