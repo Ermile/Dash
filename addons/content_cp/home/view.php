@@ -19,7 +19,8 @@ class view extends \mvc\view
 		// $this->include->uploader      = true;
 		$this->global->js             = [];
 
-		$this->data->display['cp_posts'] = "content_cp/posts/layout.html";;
+		$this->data->display['cp_posts']  = "content_cp/posts/layout.html";
+		$this->data->display['cpSample'] = "content_cp/sample/layout.html";
 
 
 		$this->data->dash['version']    = \lib\dash::getLastVersion();
