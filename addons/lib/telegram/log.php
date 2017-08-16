@@ -406,7 +406,7 @@ class log extends tg
 				if($mobile)
 				{
 					// if this is for current user
-					if($from == $contact)
+					if(isset($contact['user_id']) && isset($from['user_id']) && $from['user_id'] == $contact['user_id'])
 					{
 						\lib\storage::set_user_sync(['mobile' => $mobile]);
 					}
