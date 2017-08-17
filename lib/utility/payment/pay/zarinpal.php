@@ -99,8 +99,7 @@ trait zarinpal
             'payment'        => 'zarinpal',
             'type'           => 'money',
             'unit'           => 'toman',
-            'date'           => date("Y-m-d"),
-            'time'           => date("H:i:s"),
+            'date'           => date("Y-m-d H:i:s"),
             'amount_request' => $_amount,
         ];
 

@@ -3,6 +3,7 @@ CREATE TABLE transactions (
 `user_id`				  INT(10) UNSIGNED NOT NULL,
 `code`					  smallint(5) NOT NULL,
 `title`					  varchar(255) NOT NULL,
+`caller`				  varchar(100) NULL DEFAULT NULL,
 `type`				      ENUM('gift','prize','transfer', 'promo', 'money') NOT NULL,
 `unit_id`				  smallint(3) NOT NULL,
 `date`				  	  date NOT NULL,

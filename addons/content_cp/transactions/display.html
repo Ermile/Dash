@@ -33,7 +33,6 @@
 		<div class="c"><a href="{{url.base}}/cp/transactions/{{order_url.title}}">{%trans "Title"%}</a></div>
 		<div class="c"><a href="{{url.base}}/cp/transactions/{{order_url.type}}">{%trans "Type"%}</a></div>
 		<div class="c"><a href="{{url.base}}/cp/transactions/{{order_url.date}}">{%trans "Date"%}</a></div>
-		<div class="c"><a href="{{url.base}}/cp/transactions/{{order_url.time}}">{%trans "Time"%}</a></div>
 		<div class="c"><a href="{{url.base}}/cp/transactions/{{order_url.amount_request}}">{%trans "Amount request"%}</a></div>
 		<div class="c"><a href="{{url.base}}/cp/transactions/{{order_url.amount_end}}">{%trans "Amount end"%}</a></div>
 		<div class="c"><a href="{{url.base}}/cp/transactions/{{order_url.plus}}">{%trans "Plus"%}</a></div>
@@ -59,11 +58,9 @@
 		<div class="c" >{{value.title}}</div>
 		<div class="c" >{%set my_type = value.type %}{%trans my_type%}</div>
 		{%if site.currentlang == 'fa'%}
-			<div class="c" ><a href='{{url.base}}/cp/transactions/date={{value.date | date("Y-m-d")}}'>{{value.date | jdate("Y-m-d")}}</a></div>
-			<div class="c" ><a href='{{url.base}}/cp/transactions/time={{value.time | date("H:i:s")}}'>{{value.time | jdate("H:i:s")}}</a></div>
+			<div class="c" ><a href='{{url.base}}/cp/transactions/date={{value.date | date("Y-m-d H:i:s")}}'>{{value.date | jdate("Y-m-d H:i:s")}}</a></div>
 		{%else%}
-			<div class="c" ><a href='{{url.base}}/cp/transactions/date={{value.date | date("Y-m-d")}}'>{{value.date | fitNumber}}</a></div>
-			<div class="c" ><a href='{{url.base}}/cp/transactions/time={{value.time | date("H:i:s")}}'>{{value.time | fitNumber}}</a></div>
+			<div class="c" ><a href='{{url.base}}/cp/transactions/date={{value.date | date("Y-m-d H:i:s")}}'>{{value.date | fitNumber}}</a></div>
 		{%endif%}
 		<div class="c" >{{value.amount_request | number_format | fitNumber}}</div>
 		<div class="c" >{{value.amount_end | number_format | fitNumber}}</div>

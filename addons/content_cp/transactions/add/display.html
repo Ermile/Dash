@@ -11,7 +11,6 @@
 		<div class="c">{%trans "Title"%}</div>
 		<div class="c">{%trans "Type"%}</div>
 		<div class="c">{%trans "Date"%}</div>
-		<div class="c">{%trans "Time"%}</div>
 		<div class="c">{%trans "Plus"%}</div>
 		<div class="c">{%trans "Minus"%}</div>
 		<div class="c">{%trans "Condition"%}</div>
@@ -23,11 +22,10 @@
 		<div class="c">{{transaction_record.title}}</div>
 		<div class="c">{%set my_type = transaction_record.type %}{%trans my_type %}</div>
 		{%if site.currentlang == 'fa'%}
-			<div class="c">{{transaction_record.date|jdate("Y-m-d")}}</div>
+			<div class="c">{{transaction_record.date|jdate("Y-m-d H:i:s")}}</div>
 		{%else%}
 			<div class="c">{{transaction_record.date}}</div>
 		{%endif%}
-		<div class="c">{{transaction_record.time| fitNumber}}</div>
 		<div class="c">{{transaction_record.plus | number_format  | fitNumber}}</div>
 		<div class="c">{{transaction_record.minus | number_format  | fitNumber}}</div>
 		<div class="c">{%set my_condition = transaction_record.condition %}{%trans my_condition %}</div>

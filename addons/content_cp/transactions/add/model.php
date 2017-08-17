@@ -150,8 +150,7 @@ class model extends \mvc\model
 			'payment'        => null,
 			'type'           => $type,
 			'unit'           => $unit,
-			'date'           => date("Y-m-d"),
-			'time'           => date("H:i:s"),
+			'date'           => date("Y-m-d H:i:s"),
 			'parent_id'		 => $id,
 			'verify'		 => 1,
 		];
