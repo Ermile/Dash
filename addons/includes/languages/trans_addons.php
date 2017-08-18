@@ -20,16 +20,15 @@ private function transtext()
 	echo T_("Saved record");                                                          // Line 5
 	echo T_("Code");                                                                  // Line 48
 	echo T_("Date");                                                                  // Line 202 Seperate
-	echo T_("Time");                                                                  // Line 36
 	echo T_("Plus");                                                                  // Line 69
 	echo T_("Minus");                                                                 // Line 64
-	echo T_("Condition");                                                             // Line 45
-	echo T_("Verify");                                                                // Line 46
+	echo T_("Condition");                                                             // Line 44
+	echo T_("Verify");                                                                // Line 45
 	echo T_("Description");                                                           // Line 200 Seperate
 	echo T_("Repair to");                                                             // Line 23
 	echo T_("type");                                                                  // Line 34
 	echo T_("Please select one item");                                                // Line 46
-	echo T_("Money");                                                                 // Line 52
+	echo T_("Money");                                                                 // Line 50
 	echo T_("Gift");                                                                  // Line 38
 	echo T_("Transfer");                                                              // Line 39
 	echo T_("Prize");                                                                 // Line 40
@@ -42,18 +41,20 @@ private function transtext()
 	//-------------------------------------addons/content_cp/transactions/display.html
 	echo T_("Add New Transaction");                                                   // Line 7
 	echo T_("Displayname");                                                           // Line 31
-	echo T_("Amount request");                                                        // Line 37
-	echo T_("Amount end");                                                            // Line 38
-	echo T_("Budget before");                                                         // Line 42
-	echo T_("Budget");                                                                // Line 43
-	echo T_("Payment");                                                               // Line 47
+	echo T_("Amount request");                                                        // Line 36
+	echo T_("Amount end");                                                            // Line 37
+	echo T_("Budget before");                                                         // Line 41
+	echo T_("Budget");                                                                // Line 42
+	echo T_("Payment");                                                               // Line 46
 	echo T_("Parent");                                                                // Line 26
 	echo T_("More");                                                                  // Line 29
-	echo T_("Repait");                                                                // Line 50
-	echo T_("Add new");                                                               // Line 51
-	echo T_("Revers");                                                                // Line 52
+	echo T_("Repait");                                                                // Line 49
+	echo T_("Add new");                                                               // Line 50
+	echo T_("Revers");                                                                // Line 51
 
-	//-------------------------------------------addons/content_cp/sample/display.html
+	//------------------------------------addons/content_cp/sample/template/reset.html
+
+	//--------------------------------------addons/content_cp/sample/template/old.html
 
 	//----------------------------------------------addons/content_cp/main/layout.html
 	echo T_("Dashboard");                                                             // Line 93 Seperate
