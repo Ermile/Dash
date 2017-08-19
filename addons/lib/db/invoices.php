@@ -39,6 +39,28 @@ class invoices
 
 
 	/**
+	 * Searches for the first match.
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public static function search($_search = null, $_options = [])
+	{
+		if(!is_array($_options))
+		{
+			$_options = [];
+		}
+
+		$default_options =
+		[
+			'search_field' => "invoices.title LIKE '%__string__%'",
+		];
+		$_options = array_merge($default_options, $_options);
+
+		return \lib\db\config::public_search('invoices', $_search, $_options);
+	}
+
+
+	/**
 	 * get the invoice
 	 *
 	 * @return     <type>  ( description_of_the_return_value )

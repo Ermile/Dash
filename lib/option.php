@@ -16,7 +16,6 @@ class option
 	public static $social   = [];
 	public static $sms      = [];
 	public static $language = [];
-	public static $cronjob  = [];
 
 	/**
 	 * { function_description }

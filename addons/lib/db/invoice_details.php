@@ -26,5 +26,16 @@ class invoice_details
 		\lib\db\config::public_insert('invoice_details', ...func_get_args());
 		return \lib\db::insert_id();
 	}
+
+
+	/**
+	 * Searches for the first match.
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public static function search()
+	{
+		return \lib\db\config::public_search('invoice_details', ...func_get_args());
+	}
 }
 ?>
