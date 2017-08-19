@@ -1,7 +1,7 @@
 <?php
 namespace addons\content_cp\transactions\add;
 
-class view extends \mvc\view
+class view extends \addons\content_cp\main\view
 {
 	public function view_add($_args)
 	{

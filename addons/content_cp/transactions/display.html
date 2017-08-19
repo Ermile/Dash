@@ -4,7 +4,7 @@
 {%block sidenav%}
 {{parent()}}
 <li>
-	<a href="{{url.base}}/cp/transactions/add" title='{%trans "Add New Transaction"%}'><i class="icon-plus"></i><span>{%trans "Add New Transaction"%}</span></a>
+	<a href="{{url.base}}/cp/transactions/add" title='{%trans "Add New Transaction"%}'><i class="sf-plus"></i><span>{%trans "Add New Transaction"%}</span></a>
 </li>
 {%endblock%}
 
@@ -76,18 +76,18 @@
 		<div class="c" >{{value.parent_id|fitNumber}}</div>
 
 		<div class="c">
-			<a href="{{url.base}}/cp/logs/order=desc/sort=id/log_data={{value.id}}"><i class='icon-align-justify-1 b2'></i> <span> </span></a>
+			<a href="{{url.base}}/cp/logs/order=desc/sort=id/log_data={{value.id}}"><i class='sf-align-justify-1 b2'></i> <span> </span></a>
 		</div>
 
 		<div class="c">
-			<a href="{{url.base}}/cp/transactions/add/transactions={{value.id}}"><i class='icon-bug b1'></i> <span> </span></a>
+			<a href="{{url.base}}/cp/transactions/add/transactions={{value.id}}"><i class='sf-bug b1'></i> <span> </span></a>
 		</div>
 
 		<div class="c">
-			<a href="{{url.base}}/cp/transactions/add?mobile={{value.mobile}}"><i class='icon-plus bp'></i> <span> </span></a>
+			<a href="{{url.base}}/cp/transactions/add?mobile={{value.mobile}}"><i class='sf-plus bp'></i> <span> </span></a>
 		</div>
 		<!-- <div class="c">
-			<a href="{{url.base}}/cp/transactions/add?mobile={{value.mobile}}"><i class='icon-history bn'></i> <span> </span></a>
+			<a href="{{url.base}}/cp/transactions/add?mobile={{value.mobile}}"><i class='sf-history bn'></i> <span> </span></a>
 		</div> -->
 	</div>
 	{%endfor%}

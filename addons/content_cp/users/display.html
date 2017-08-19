@@ -46,13 +46,13 @@
 				<a href="{{url.root}}/{{value.user_file_url}}" target="_blank"><img src="{{url.root}}/{{value.user_file_url}}" height="25" width="25"></a>
 				</div>
 		{%else%}
-			<div class="c"><span class="icon-file-image-o"></span></div>
+			<div class="c"><span class="sf-file-image-o"></span></div>
 		{%endif%}
 
-		<div class="c1"><a href='{{url.base}}/cp/users/detail/{{value.id}}'><span class="icon-align-left-1"></span></a></div>
-		<!-- <div class="c1"><a href='{{url.base}}/cp/users/edit/{{value.id}}'><span class="icon-edit-write"></span></a></div> -->
-		<div class="c1"><a href='{{url.base}}/cp/logs/sort=id/order=desc/user_id={{value.id}}'><span class="icon-archive"></span></a></div>
-		<div class="c1"><a href='{{url.base}}/cp/transactions/sort=id/order=desc/user_id={{value.id}}'><span class="icon-credit-card"></span></a></div>
+		<div class="c1"><a href='{{url.base}}/cp/users/detail/{{value.id}}'><span class="sf-align-left-1"></span></a></div>
+		<!-- <div class="c1"><a href='{{url.base}}/cp/users/edit/{{value.id}}'><span class="sf-edit-write"></span></a></div> -->
+		<div class="c1"><a href='{{url.base}}/cp/logs/sort=id/order=desc/user_id={{value.id}}'><span class="sf-archive"></span></a></div>
+		<div class="c1"><a href='{{url.base}}/cp/transactions/sort=id/order=desc/user_id={{value.id}}'><span class="sf-credit-card"></span></a></div>
 
 	</div>
 	{%endfor%}
