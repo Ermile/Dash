@@ -7,15 +7,14 @@
 
 
 {%block head_css%}
- <link rel="stylesheet"       href="{{codeUrl}}css/ermile.css">
- <link rel="stylesheet"       href="{{codeUrl}}dash/dash-2.0.0.css">
+ <link rel="stylesheet"       href="{{codeUrl}}siftal/siftal.css">
 {%endblock%}
 
 
 
 {%block js%}
  <script src="{{codeUrl}}dataResponse/dataResponse.js"></script>
- <script src="{{codeUrl}}dash/dash-2.0.0.js"></script>
+ <script src="{{codeUrl}}siftal/siftal.js"></script>
 {%endblock%}
 
 
@@ -52,7 +51,7 @@
   <div class="menu scr dark">
    <ul class="sidenav" data-xhr='sidenav'>
 {%block sidenav%}
-    <li><a href="{{url.baseFull}}"><i class='icon-tachometer'></i> <span>{% trans "Dashboard" %}</span></a></li>
+    <li><a href="{{url.baseFull}}"><i class='sf-tachometer'></i> <span>{% trans "Dashboard" %}</span></a></li>
 {%endblock%}
    </ul>
   </div>
@@ -61,20 +60,20 @@
 
 
 {%block header%}
-   <div id='sidenavHandler' class="c0 sauto mauto"><i class="icon-ellipsis-v"></i></div>
+   <div id='sidenavHandler' class="c0 sauto mauto"><i class="sf-ellipsis-v"></i></div>
 
    {%block headerTitle%}<h1 class='cauto'><a href="{{url.base}}" data-direct target='_blank' class='flex'><img src="{{url.static}}images/logo.png" alt='{{site.title}}'><span>{{site.title}}</span></a></h1>{%endblock%}
 
    <div class='hm flex cauto'>
 {%block headerMenu%}
-    <div class="vm"><i class="icon-globe"></i>{{langList({'html':true, 'all':true})}}</div>
+    <div class="vm"><i class="sf-globe"></i>{{langList({'html':true, 'all':true})}}</div>
 {%endblock%}
    </div>
    <div class='hm right flex cauto os'>
 {%block headerRight%}
-{%block headerLock%}    <a><i class="icon-unlock-alt"></i></a>
+{%block headerLock%}    <a><i class="sf-unlock-alt"></i></a>
 {%endblock%}
-    <a href="{{url.base}}/logout" title='{%trans "Logout"%}' data-direct><i class="icon-out"></i></a>
+    <a href="{{url.base}}/logout" title='{%trans "Logout"%}' data-direct><i class="sf-out"></i></a>
 {%endblock%}
    </div>
 {%endblock%}

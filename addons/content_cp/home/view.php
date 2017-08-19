@@ -6,7 +6,7 @@ class view extends \mvc\view
 	public function config()
 	{
 		// $this->data->list             = $this->cpModlueList('all');
-		$this->data->bodyclass        = 'fixed unselectable dash';
+		$this->data->bodyclass        = 'fixed unselectable siftal';
 		$this->include->css           = false;
 		$this->include->js            = false;
 		// $this->include->fontawesome   = true;
