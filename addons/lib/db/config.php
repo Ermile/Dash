@@ -455,25 +455,34 @@ class config
 
 		foreach ($_options as $key => $value)
 		{
+			if(!preg_match("/\./", $key))
+			{
+				$fkey = " `$key` ";
+			}
+			else
+			{
+				$fkey = " $key ";
+			}
+
 			if(is_array($value))
 			{
 				if(isset($value[0]) && isset($value[1]) && is_string($value[0]) && is_string($value[1]))
 				{
 					// for similar "search.`field` LIKE '%valud%'"
-					$where[] = " `$key` $value[0] $value[1] ";
+					$where[] = " $fkey $value[0] $value[1] ";
 				}
 			}
 			elseif($value === null)
 			{
-				$where[] = " `$key` IS NULL ";
+				$where[] = " $fkey IS NULL ";
 			}
 			elseif(is_numeric($value))
 			{
-				$where[] = " `$key` = $value ";
+				$where[] = " $fkey = $value ";
 			}
 			elseif(is_string($value))
 			{
-				$where[] = " `$key` = '$value' ";
+				$where[] = " $fkey = '$value' ";
 			}
 		}
 
