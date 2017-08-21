@@ -1,5 +1,6 @@
 {%extends display.cpMain%}
 
+
 {%block content%}
 
 <div class="fs16 center msg mTB10">
@@ -12,6 +13,7 @@
 <div class="f fs16">
   <div class="c4">
     {{block('buttons')}}
+    {{block('badge')}}
 
   </div>
 
@@ -90,4 +92,17 @@
 </div>
 {%endblock%}
 
+
+{%block badge%}
+<div class="pA10">
+  <h3><a href='sample/badge'>Badge</a></h3>
+  <h4 class="fs14">Posts <span class="badge primary">Add New</span></h4>
+  <button class="mA5 btn">Notification <span class="badge">7</span></button>
+  <span class="badge rounded">125</span>
+  <span class="badge rounded success">64</span>
+  <span class="badge rounded warn">7</span>
+
+
+</div>
+{%endblock%}
 
