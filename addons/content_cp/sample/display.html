@@ -3,17 +3,18 @@
 
 {%block content%}
 
-<div class="fs16 center msg mTB10">
+<div class="fs16 center msg mTB20">
   <span class="sf-male-rounded-1 fs50"></span>
   <h3>Unbelievable Styles!</h3>
   <p>Definitions aren't limited to just buttons on a page. Siftal's components allow several distinct types of definitions: elements, collections, views, modules and behaviors which cover the gamut of interface design.</p>
   <p>For improved cross-browser rendering, we use <a href='sample/reset'>special reset</a> to correct inconsistencies across browsers and devices while providing slightly more opinionated resets to common HTML elements.</p>
 </div>
 
-<div class="f fs16">
+<div class="f fs16 bg-white pA10">
+  <div class="c12">{{block('breadcrumb')}}</div>
   <div class="c4">
     {{block('buttons')}}
-    {{block('badge')}}
+    {{block('messages')}}
 
   </div>
 
@@ -23,7 +24,7 @@
   </div>
 
   <div class="c4">
-    {{block('messages')}}
+    {{block('badge')}}
 
   </div>
 </div>
@@ -49,12 +50,11 @@
 <div class="pA10">
   <h3><a href='sample/msg'>Messages</a></h3>
   <div class="msg warn2">This site uses cookies</div>
-
   <div class="msg success2 f">
     <div class="cauto">
-      <span class="sf-yang-ying spiny fs10 pRa25 vlmiddle"></span>
+      <span class="sf-load-c spiny fs10 pRa25 vlmiddle"></span>
     </div>
-    <div class="c">Hello dear Friend!?</div>
+    <div class="c">Hello dear!</div>
   </div>
   <div class="msg danger2">
     <div class="title">Looking for help?</div>
@@ -70,7 +70,6 @@
 {%block icons%}
 <div class="pA10">
   <h3><a href='sample/icon' data-direct>Icons</a></h3>
-
   <div class="fs20">
     <span class="compact pA15 sf-car"></span>
     <span class="compact pA15 sf-trophy"></span>
@@ -101,8 +100,18 @@
   <span class="badge rounded">125</span>
   <span class="badge rounded success">64</span>
   <span class="badge rounded warn">7</span>
+</div>
+{%endblock%}
 
 
+{%block breadcrumb%}
+<div class="pA15">
+  <nav class="breadcrumb">
+    <a href="{{url.base}}" tabindex="-1"><span class="fa fa-home"></span> Home</a>
+    <a href="{{url.base}}/cp" tabindex="-1">Control Panel</a>
+    <a href="{{url.base}}/cp/sample" tabindex="-1">Sample</a>
+    <a href="{{url.base}}/cp/sample/breadcrumb">Breadcrumb</a>
+  </nav>
 </div>
 {%endblock%}
 

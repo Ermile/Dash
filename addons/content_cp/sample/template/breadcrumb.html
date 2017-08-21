@@ -1,0 +1,36 @@
+{%extends display.cpMain%}
+
+
+{%block content%}
+
+<div class="mB25 fs16 msg">
+  <h2 class="mB0">{%trans "Breadcrumb"%}</h2>
+  <p>{%trans "Indicate the current page's location within a navigational hierarchy that automatically adds separators via CSS."%}</p>
+</div>
+
+<div class="bg-white pA20 mB25 fs16">
+  <h3 class="mB0">{%trans "Examples"%}</h3>
+  <p>{%trans "Separators are automatically added in CSS through ::before and content."%}</p>
+
+  <div class="pA15 example">
+    <nav class="breadcrumb">
+      <a href="{{url.base}}" tabindex="-1"><span class="fa fa-home"></span> Home</a>
+      <a href="{{url.base}}/cp" tabindex="-1">Control Panel</a>
+      <a href="{{url.base}}/cp/sample" tabindex="-1">Sample</a>
+      <a>Breadcrumb</a>
+    </nav>
+  </div>
+
+  <div class="pA15 example">
+    <nav class="breadcrumb2">
+      <a href="{{url.base}}" tabindex="-1"><span class="fa fa-home"></span> Home</a>
+      <a href="{{url.base}}/cp" tabindex="-1">Control Panel</a>
+      <a href="{{url.base}}/cp/sample" tabindex="-1">Sample</a>
+      <a>Breadcrumb</a>
+    </nav>
+  </div>
+
+</div>
+
+{%endblock%}
+

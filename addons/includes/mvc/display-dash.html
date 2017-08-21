@@ -82,7 +82,7 @@
 
 {%block footer%}
 
-   <div class="breadcrumb c8" tabindex='-1' data-step='4' data-intro='{%trans "View your current location and navigate to parent of it"%}' data-position='top'><nav data-xhr="breadcrumb">{{breadcrumb() | raw}}</nav></div>
+   <div class="c8" tabindex='-1' data-step='4' data-intro='{%trans "View your current location and navigate to parent of it"%}' data-position='top'><nav data-xhr="breadcrumb" class="breadcrumb">{{breadcrumb() | raw}}</nav></div>
    <div id='copyright'>
 {%block copyright%}{%endblock%}
    </div>
