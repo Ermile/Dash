@@ -46,24 +46,40 @@ class controller extends \lib\controller
 				{
 					case 'signin':
 					case 'login':
-						$this->redirector()->set_domain($domain)->set_url(MyAccount. '/login'.$param)->redirect();
-						break;
-
 					case 'signup':
 					case 'register':
-						$this->redirector()->set_domain($domain)->set_url(MyAccount. '/signup'.$param)->redirect();
+						$this->redirector()->set_domain($domain)->set_url('enter'.$param)->redirect();
 						break;
 
 					case 'signout':
 					case 'logout':
 						// if(Domain !== MainService)
 							// $this->redirector()->set_domain(MainService.'.'.Tld)->set_url('logout')->redirect();
-						$this->redirector()->set_domain()->set_url(MyAccount. '/logout'.$param)->redirect();
+						$this->redirector()->set_domain()->set_url('enter/logout'.$param)->redirect();
 						break;
 
 					// case 'favicon.ico':
 					// 	$this->redirector()->set_domain()->set_url('static/images/favicon.png')->redirect();
 					// 	break;
+				}
+
+				switch (\lib\router::get_url())
+				{
+					case 'account/recovery':
+					case 'account/changepass':
+					case 'account/verification':
+					case 'account/verificationsms':
+					case 'account/signin':
+					case 'account/login':
+					case 'account/signup':
+					case 'account/register':
+						$this->redirector()->set_domain($domain)->set_url('enter'.$param)->redirect();
+						break;
+
+					case 'account/logout':
+					case 'account/signout':
+						$this->redirector()->set_domain()->set_url('enter/logout'.$param)->redirect();
+						break;
 				}
 			}
 
