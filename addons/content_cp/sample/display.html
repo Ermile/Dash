@@ -2,14 +2,92 @@
 
 {%block content%}
 
-123
-<div class="f">
-	<div class="c">c</div>
-	<div class="c1 m6">c1 m6</div>
-	<div class="c2 s6">c2 s6</div>
-	<div class="c3 x6">c3 x6</div>
+<div class="fs16 center msg mTB10">
+  <span class="sf-male-rounded-1 fs50"></span>
+  <h3>Unbelievable Styles!</h3>
+  <p>Definitions aren't limited to just buttons on a page. Siftal's components allow several distinct types of definitions: elements, collections, views, modules and behaviors which cover the gamut of interface design.</p>
+  <p>For improved cross-browser rendering, we use <a href='sample/reset'>special reset</a> to correct inconsistencies across browsers and devices while providing slightly more opinionated resets to common HTML elements.</p>
 </div>
 
+<div class="f fs16">
+  <div class="c4">
+    {{block('buttons')}}
 
+  </div>
+
+  <div class="c4">
+    {{block('icons')}}
+
+  </div>
+
+  <div class="c4">
+    {{block('messages')}}
+
+  </div>
+</div>
 {%endblock%}
+
+
+
+
+
+
+{%block buttons%}
+<div class="pA10">
+  <h3><a href='sample/button'>Button</a></h3>
+  <button class="mA3 btn secondary">Primary</button>
+  <button class="mA3 btn sm warn">Warn</button>
+  <button class="mA3 btn xs info">Info</button>
+  <a href='sample/button' class="btn primary block mA5">Check buttons collection</a>
+</div>
+{%endblock%}
+
+
+{%block messages%}
+<div class="pA10">
+  <h3><a href='sample/msg'>Messages</a></h3>
+  <div class="msg warn2">This site uses cookies</div>
+
+  <div class="msg success2 f">
+    <div class="cauto">
+      <span class="sf-yang-ying spiny fs10 pRa25 vlmiddle"></span>
+    </div>
+    <div class="c">Hello dear Friend!?</div>
+  </div>
+  <div class="msg danger2">
+    <div class="title">Looking for help?</div>
+    <ul class="list">
+      <li>Use our help center</li>
+      <li>Check our FAQ</li>
+    </ul>
+  </div>
+</div>
+{%endblock%}
+
+
+{%block icons%}
+<div class="pA10">
+  <h3><a href='sample/icon' data-direct>Icons</a></h3>
+
+  <div class="fs20">
+    <span class="compact pA15 sf-car"></span>
+    <span class="compact pA15 sf-trophy"></span>
+    <span class="compact pA15 sf-retweet"></span>
+    <span class="compact pA15 sf-search"></span>
+    <span class="compact pA15 sf-out"></span>
+    <span class="compact pA15 sf-star"></span>
+    <span class="compact pA15 sf-hourglass-end"></span>
+    <span class="compact pA15 sf-bookmark-o"></span>
+    <span class="compact pA15 sf-balance-scale"></span>
+    <span class="compact pA15 sf-bolt"></span>
+    <span class="compact pA15 sf-heart-2"></span>
+    <span class="compact pA15 sf-globe-1"></span>
+    <span class="compact pA15 sf-pin-1"></span>
+    <span class="compact pA15 sf-headphones-1"></span>
+    <span class="compact pA15 sf-basket"></span>
+    <span class="compact pA15 sf-bug-2"></span>
+  </div>
+</div>
+{%endblock%}
+
 
