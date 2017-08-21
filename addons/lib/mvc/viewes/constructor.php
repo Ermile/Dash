@@ -32,6 +32,15 @@ trait constructor
 		$this->url->MainSite         = $this->url('MainSite');
 		$this->url->MainProtocol     = $this->url('MainProtocol');
 		$this->url->SubDomain        = SubDomain? SubDomain.'.': null;
+		$this->url->repository       = \lib\router::get_repository_name();
+		if($this->url->repository === 'content')
+		{
+			$this->url->repository = 'site';
+		}
+		else
+		{
+			$this->url->repository = str_replace('content_', '', $this->url->repository);
+		}
 
 		// return all parameters and clean it
 		$this->url->param            = \lib\utility::get(null, true);

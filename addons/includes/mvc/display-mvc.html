@@ -80,7 +80,7 @@
   {% import macro.forms as forms %}
 {% endif %}
 
-<body data-xhr="body" id="{{global.id}}" class="{{global.direction}} {{bodyclass}}" data-page="{{global.id}}" {{bodyel|raw}}>
+<body data-xhr="body" class="{{global.direction}} {{bodyclass}}" data-in='{{url.repository}}' data-page="{{global.id}}" {{bodyel|raw}}>
 {%block body%}
 {%block header%}{%endblock%}
 {%block content%}
