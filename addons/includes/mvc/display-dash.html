@@ -20,7 +20,7 @@
 
 
 {%block body%}
-{%block sideBox%} <aside id='sidebar' class='unselectable scr dark' data-xhr='sidebar'>{{block ('aside')}} </aside>{%endblock%}
+{%block sideBox%} <aside id='sidebar' class='unselectable scr' data-xhr='sidebar'>{{block ('aside')}} </aside>{%endblock%}
 
  <main id='main'>
 {%block headerBox%}  <header id='header' class='f'>{{block ('header')}}  </header>{%endblock%}
@@ -48,7 +48,7 @@
 {%endblock%}
   </figure>
 {%block sideTitle%}  <h2><a href="{{url.base}}" data-direct>{{site.title}}</a></h2>{%endblock%}
-  <div class="menu scr dark">
+  <div class="menu scr">
    <ul class="sidenav" data-xhr='sidenav'>
 {%block sidenav%}
     <li><a href="{{url.baseFull}}"><i class='sf-tachometer'></i> <span>{% trans "Dashboard" %}</span></a></li>
