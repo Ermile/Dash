@@ -20,6 +20,7 @@
 
   <div class="c4">
     {{block('icons')}}
+    {{block('progress')}}
 
   </div>
 
@@ -120,6 +121,7 @@
 
 
 {%block pagination%}
+<div class="pA10">
     <nav class="pagination info">
       <a href='#' class="prev disabled">Previous</a>
       <a href='#'>...</a>
@@ -129,5 +131,17 @@
       <a>...</a>
       <a href='#' class="next">Next</a>
     </nav>
+</div>
+{%endblock%}
+
+
+{%block progress%}
+  <h3><a href='sample/progress'>Progress</a></h3>
+  <div class="pA15">
+    <progress value="76" max="100"></progress>
+  </div>
+  <div class="pA15">
+    <meter value="34" min="0" max="100"></meter>
+  </div>
 {%endblock%}
 

@@ -1,0 +1,58 @@
+{%extends display.cpMain%}
+
+
+{%block content%}
+
+<div class="mB25 fs16 msg">
+  <h2 class="mB0">{%trans "Progress"%}</h2>
+  <p>{%trans "Documentation and examples for using Siftal progress bars."%}</p>
+</div>
+
+<div class="bg-white pA20 mB25 fs16">
+  <h3 class="mB0">{%trans "Progress"%}</h3>
+  <p>{%trans "Siftal use html progress and meter and have some styles on them, each serving its own semantic purpose"%}</p>
+
+  <h4 class="mB0">{%trans "Sizes"%}</h4>
+  <div class="pA15 example">
+    <progress value="20" max="100" class="xs"></progress>
+  </div>
+  <div class="pA15 example">
+    <progress value="30" max="100" class="sm"></progress>
+  </div>
+  <div class="pA15 example">
+    <progress value="50" max="100"></progress>
+  </div>
+  <div class="pA15 example">
+    <progress value="70" max="100" class="lg"></progress>
+  </div>
+  <div class="pA15 example">
+    <progress value="80" max="100" class="xl"></progress>
+  </div>
+</div>
+
+
+<div class="bg-white pA20 mB25 fs16">
+  <h3 class="mB0">{%trans "Meter"%}</h3>
+  <p>{%trans "Use the meter element to measure data within a given range"%}</p>
+
+
+  <div class="pA15 example">
+    <meter value="20" min="0" max="100" class="xs"></meter>
+  </div>
+  <div class="pA15 example">
+    <meter value="30" min="0" max="100" class="sm"></meter>
+  </div>
+  <div class="pA15 example">
+    <meter value="50" min="0" max="100"></meter>
+  </div>
+  <div class="pA15 example">
+    <meter value="70" min="0" max="100" class="lg"></meter>
+  </div>
+  <div class="pA15 example">
+    <meter value="80" min="0" max="100" class="xl"></meter>
+  </div>
+</div>
+
+
+{%endblock%}
+
