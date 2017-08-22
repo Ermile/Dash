@@ -27,6 +27,9 @@
     {{block('badge')}}
 
   </div>
+  <div class="c12">
+    {{block('pagination')}}
+  </div>
 </div>
 {%endblock%}
 
@@ -113,5 +116,18 @@
     <a href="{{url.base}}/cp/sample/breadcrumb">Breadcrumb</a>
   </nav>
 </div>
+{%endblock%}
+
+
+{%block pagination%}
+    <nav class="pagination info">
+      <a href='#' class="prev disabled">Previous</a>
+      <a href='#'>...</a>
+      <a href='#'>6</a>
+      <a class='active'>7</a>
+      <a href='#'>8</a>
+      <a>...</a>
+      <a href='#' class="next">Next</a>
+    </nav>
 {%endblock%}
 
