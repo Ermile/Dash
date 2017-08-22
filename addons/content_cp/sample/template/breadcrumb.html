@@ -11,26 +11,58 @@
 <div class="bg-white pA20 mB25 fs16">
   <h3 class="mB0">{%trans "Examples"%}</h3>
   <p>{%trans "Separators are automatically added in CSS through ::before and content."%}</p>
-
   <div class="pA15 example">
     <nav class="breadcrumb">
-      <a href="{{url.base}}" tabindex="-1"><span class="fa fa-home"></span> Home</a>
-      <a href="{{url.base}}/cp" tabindex="-1">Control Panel</a>
-      <a href="{{url.base}}/cp/sample" tabindex="-1">Sample</a>
-      <a>Breadcrumb</a>
+      {{block('breadcrumbData')}}
     </nav>
   </div>
-
   <div class="pA15 example">
     <nav class="breadcrumb2">
+    {{block('breadcrumbData')}}
+    </nav>
+  </div>
+</div>
+
+
+<div class="bg-white pA20 mB25 fs16">
+  <h3 class="mB0">{%trans "Sizes"%}</h3>
+  <p>{%trans "A breadcrumb can vary in size"%}</p>
+
+  <div class="pA15 example">
+    <nav class="breadcrumb xs">
+    {{block('breadcrumbData')}}
+    </nav>
+  </div>
+  <div class="pA15 example">
+    <nav class="breadcrumb sm">
+    {{block('breadcrumbData')}}
+    </nav>
+  </div>
+  <div class="pA15 example">
+    <nav class="breadcrumb">
+    {{block('breadcrumbData')}}
+    </nav>
+  </div>
+  <div class="pA15 example">
+    <nav class="breadcrumb lg">
+    {{block('breadcrumbData')}}
+    </nav>
+  </div>
+  <div class="pA15 example">
+    <nav class="breadcrumb2 xl">
+    {{block('breadcrumbData')}}
+    </nav>
+  </div>
+</div>
+
+
+{%endblock%}
+
+
+{%block breadcrumbData%}
       <a href="{{url.base}}" tabindex="-1"><span class="fa fa-home"></span> Home</a>
       <a href="{{url.base}}/cp" tabindex="-1">Control Panel</a>
       <a href="{{url.base}}/cp/sample" tabindex="-1">Sample</a>
       <a>Breadcrumb</a>
-    </nav>
-  </div>
-
-</div>
-
 {%endblock%}
 
