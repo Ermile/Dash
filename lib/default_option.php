@@ -63,29 +63,29 @@ self::$config['default_unit'] = 1;
 */
 // the block type is ['ip', 'session']
 // block the user if need on this way
-self::$enter['block_type']                    = null;
+self::$config['enter']['block_type']                    = null;
 // every wrong pass or code wate for ? [second]
-self::$enter['wait']                          = 10;
+self::$config['enter']['wait']                          = 10;
 // send resend code after ? [second]
-self::$enter['resend_after']                  = 60 * 1;
+self::$config['enter']['resend_after']                  = 60 * 1;
 // life time code for ? [second]
-self::$enter['life_time_code']                = 60 * 5;
+self::$config['enter']['life_time_code']                = 60 * 5;
 // you can use from this option by your rating ['telegram','call', 'sms', 'email']
-self::$enter['resend_rate']                   = [];
+self::$config['enter']['resend_rate']                   = [];
 // you can use from this option by your rating ['telegram','call', 'sms', 'email']
-self::$enter['send_rate']                     = [];
+self::$config['enter']['send_rate']                     = [];
 // you can use from this option by your rating ['kavenegar',...]
-self::$enter['sms_rate']                      = [];
+self::$config['enter']['sms_rate']                      = [];
 // after signup user redirect to different page
-self::$enter['signup_redirect']               = null;
+self::$config['enter']['signup_redirect']               = null;
 // after login redirect to what?
 // default self::$config['redirect_url']
-self::$enter['redirect']                      = null;
+self::$config['enter']['redirect']                      = null;
 // check if call mode is enable to call to user
-self::$enter['call']                          = false;
+self::$config['enter']['call']                          = false;
 // get template of call for every language
-self::$enter['call_template']['fa']           = null;
-self::$enter['call_template']['en']           = null;
+self::$config['enter']['call_template']['fa']           = null;
+self::$config['enter']['call_template']['en']           = null;
 
 /**
 * the social network
