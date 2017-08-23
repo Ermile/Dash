@@ -67,6 +67,7 @@
   </div>
 </div>
 
+
 <div class="bg-white pA20 mB25 fs16">
   <h3 class="mB0">{%trans "Table head options"%}</h3>
   <p>Similar to colored tables, use one of modifier classes to make rows appear colored.</p>
@@ -89,11 +90,12 @@
   </table>
 </div>
 
+
 <div class="bg-white pA20 mB25 fs16">
   <h3 class="mB0">{%trans "No Zebra!"%}</h3>
-  <p>{%trans "Use <code class='code1'>.nozebra</code> to add zebra-striping to any table row within the <code class='code1'>&lt;tbody&gt;</code>."%}</p>
+  <p>{%trans "Use <code class='code1'>.dead</code> to add zebra-striping to any table row within the <code class='code1'>&lt;tbody&gt;</code>."%}</p>
   <div class="pA15 example">
-    <table class="tbl nozebra">
+    <table class="tbl dead">
       <thead>
         {{block('thead')}}
       </thead>
@@ -111,8 +113,9 @@
     </table>
   </div>
 
+
   <div class="pA15 example">
-    <table class="tbl dark nozebra">
+    <table class="tbl dark dead">
       <thead>
         {{block('thead')}}
       </thead>
@@ -130,6 +133,33 @@
     </table>
   </div>
 </div>
+
+
+<div class="bg-white pA20 mB25 fs16">
+  <h3 class="mB0">{%trans "Custom cell"%}</h3>
+  <p>{%trans "A cell or row may let a user know whether a value is good or bad."%}</p>
+  <p>{%trans "you can add <code class='code1'>.positive</code>, <code class='code1'>.negative</code>, <code class='code1'>.active</code>, <code class='code1'>.warning</code> and <code class='code1'>.disabled</code> to create custom design on cell or rows"%}</p>
+  <div class="pA15 example">
+    <table class="tbl dead">
+      <thead>
+        {{block('thead')}}
+      </thead>
+      <tbody>
+        <tr class="positive"><th>1</th><td><i class="sf-check"></i>Javad</td><td>Evazzadeh</td><td>@evazzadeh</td></tr>
+        <tr><th>2</th><td>Reza</td><td class="positive">Mohiti</td><td>@biqarar</td></tr>
+        <tr><th>3</th><td class="negative">Hasan</td><td class="negative">Salehi</td><td>@baravak</td></tr>
+        <tr class="negative"><th>1</th><td>Javad</td><td><i class="sf-pencil-square-o"></i>Evazzadeh</td><td>@evazzadeh</td></tr>
+        <tr class="disabled"><th>2</th><td>Reza</td><td>Mohiti</td><td>@biqarar</td></tr>
+        <tr class="active"><th>3</th><td>Hasan</td><td>Salehi</td><td>@baravak</td></tr>
+        <tr class="warning"><th>3</th><td>Hasan</td><td>Salehi</td><td>@baravak</td></tr>
+      </tbody>
+      <tfoot>
+        {{block('tfoot')}}
+      </tfoot>
+    </table>
+  </div>
+</div>
+
 
 <div class="bg-white pA20 mB25 fs16">
   <h3 class="mB0">{%trans "Bordered table"%}</h3>
