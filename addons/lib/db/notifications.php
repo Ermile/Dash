@@ -16,6 +16,17 @@ class notifications
 
 
 	/**
+	 * make multi insert
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public static function multi_insert()
+	{
+		return \lib\db\config::public_multi_insert('notifications', ...func_get_args());
+	}
+
+
+	/**
 	 * update the notification
 	 *
 	 * @return     <type>  ( description_of_the_return_value )
@@ -61,6 +72,25 @@ class notifications
 
 
 	/**
+	 * notifycation
+	 *
+	 * @var        array
+	 */
+	public static $NOTIFICATIONS = [];
+
+	/**
+	 * Sets the multi record.
+	 */
+	public static function set_multi_record()
+	{
+		if(!empty(self::$NOTIFICATIONS))
+		{
+			return self::multi_insert(self::$NOTIFICATIONS);
+		}
+	}
+
+
+	/**
 	 * set new notify
 	 *
 	 * @param      <type>  $_args  The arguments
@@ -88,6 +118,8 @@ class notifications
 			'telegram'   => false,
 			'sms'        => false,
 			'email'      => false,
+			// send multi query
+			'multi'		 => false,
 		];
 
 		$_args = array_merge($default_args, $_args);
@@ -134,7 +166,14 @@ class notifications
 			'meta'          => $_args['meta'],
 		];
 
-		return self::insert($insert);
+		if($_args['multi'])
+		{
+			self::$NOTIFICATIONS[] = $insert;
+		}
+		else
+		{
+			return self::insert($insert);
+		}
 	}
 
 }

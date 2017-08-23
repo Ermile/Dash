@@ -204,7 +204,7 @@ class config
 			$values     = [];
 		}
 
-		$fields = join(array_keys($fields), ",");
+		$fields = '`'.  join(array_keys($fields), "`,`"). '`';
 
 		$values = join($together, "),(");
 
@@ -250,6 +250,23 @@ class config
 
 		}
 		return false;
+	}
+
+
+	/**
+	 * make multi insert
+	 *
+	 * @param      <type>  $_table  The table
+	 * @param      <type>  $_args   The arguments
+	 */
+	public static function public_multi_insert($_table, $_args)
+	{
+		$set = \lib\db\config::make_multi_insert($_args);
+		if($set)
+		{
+			$query = " INSERT INTO $_table $set ";
+			return \lib\db::query($query);
+		}
 	}
 
 

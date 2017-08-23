@@ -365,11 +365,24 @@ class notifications
 			}
 		}
 
-		$user_ids = array_unique($user_ids);
+		$this->find_way($user_ids);
 
-		if($user_ids && is_array($user_ids))
+	}
+
+
+	/**
+	 * find way to send notify
+	 *
+	 * @param      <type>  $_user_ids  The user identifiers
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public function find_way($_user_ids)
+	{
+		if($_user_ids && is_array($_user_ids))
 		{
-			$user_ids = implode(',', $user_ids);
+			$_user_ids = array_unique($_user_ids);
+			$_user_ids = implode(',', $_user_ids);
 			$query =
 			"
 				SELECT
@@ -383,15 +396,15 @@ class notifications
 					users.user_google_mail
 				FROM
 					users
-				WHERE users.id IN ($user_ids)
+				WHERE users.id IN ($_user_ids)
 			";
 			$user_details       = \lib\db::get($query);
 			$user_details       = \lib\utility\filter::meta_decode($user_details, "/user\_notification/");
 			$user_details_id    = array_column($user_details, 'id');
 			$user_details       = array_combine($user_details_id, $user_details);
 			$this->user_details = $user_details;
+			return $user_details;
 		}
-
 	}
 
 
@@ -402,7 +415,7 @@ class notifications
 	 *
 	 * @return     <type>  The mobile.
 	 */
-	private function get_mobile($_user_id)
+	public function get_mobile($_user_id)
 	{
 		if(isset($this->user_details[$_user_id]['user_mobile']))
 		{
@@ -422,7 +435,7 @@ class notifications
 	 *
 	 * @return     <type>  The email.
 	 */
-	private function get_email($_user_id)
+	public function get_email($_user_id)
 	{
 		if(isset($this->user_details[$_user_id]['user_email']) && $this->user_details[$_user_id]['user_email'])
 		{
@@ -455,7 +468,7 @@ class notifications
 	 *
 	 * @return     <type>  The chat identifier.
 	 */
-	private function get_chat_id($_user_id)
+	public function get_chat_id($_user_id)
 	{
 		if(isset($this->user_details[$_user_id]['user_chat_id']))
 		{
@@ -473,7 +486,7 @@ class notifications
 	 *
 	 * @return     boolean  True if block, False otherwise.
 	 */
-	private function is_block($_user_id, $_cat)
+	public function is_block($_user_id, $_cat)
 	{
 		$cat_list = \lib\option::config('notification', 'cat');
 		$cat_keys = array_keys($cat_list);
