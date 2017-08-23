@@ -72,6 +72,40 @@ class notifications
 
 
 	/**
+	 * get unread notify
+	 *
+	 * @param      <type>   $_user_id  The user identifier
+	 * @param      boolean  $_count    The count
+	 */
+	public static function unread($_user_id, $_count = false)
+	{
+		if(!$_user_id || !is_numeric($_user_id))
+		{
+			return false;
+		}
+		if($_count)
+		{
+			$select = " COUNT(notifications.id) AS `count` ";
+		}
+		else
+		{
+			$select = " * ";
+		}
+
+		$query = " SELECT $select FROM notifications WHERE notifications.read IS NULL AND notifications.user_id = $_user_id ";
+
+		if($_count)
+		{
+			return \lib\db::get($query, 'count', true);
+		}
+		else
+		{
+			return \lib\db::get($query);
+		}
+	}
+
+
+	/**
 	 * notifycation
 	 *
 	 * @var        array
