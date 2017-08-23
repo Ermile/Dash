@@ -18,6 +18,12 @@
       {{block('tblSimple')}}
     </table>
   </div>
+
+  <div class="pA15 example">
+    {{block('tblAdvance')}}
+  </div>
+
+
 </div>
 
 
@@ -277,6 +283,40 @@
     <td>Salehi</td>
     <td>@baravak</td>
   </tr>
+{%endblock%}
+
+
+{%block tblAdvance%}
+  <table class="tbl bordered">
+    <thead><tr><th colspan="3">Git Repository</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="collapsing selectable"><a href="#"><i class="sf-folder-2"></i> node_modules</td></a>
+          <td>Initial commit</td>
+          <td class="collapsing">10 hours ago</td>
+        </tr>
+        <tr>
+          <td class="selectable"><a href='#'><i class="sf-folder-2"></i> test</a></td>
+          <td>Initial commit</td>
+          <td>10 hours ago</td>
+        </tr>
+        <tr>
+          <td class="selectable"><a href='#'><i class="sf-folder-2"></i> build</a></td>
+          <td>Initial commit</td>
+          <td>10 hours ago</td>
+        </tr>
+        <tr>
+          <td class="selectable"><a href='#'><i class="sf-file-o"></i> package.json</a></td>
+          <td>Initial commit</td>
+          <td>10 hours ago</td>
+        </tr>
+        <tr>
+          <td class="selectable"><a href='#'><i class="sf-file-o"></i> Gruntfile.js</a></td>
+          <td>Initial commit</td>
+          <td>10 hours ago</td>
+        </tr>
+      </tbody>
+    </table>
 {%endblock%}
 
 
