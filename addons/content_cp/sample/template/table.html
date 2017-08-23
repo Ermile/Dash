@@ -14,35 +14,12 @@
 
   <h4 class="mB0">{%trans "Simple table"%}</h4>
   <div class="pA15 example">
-  <table class="tbl">
-    {{block('tblSimple')}}
-  </table>
+    <table class="tbl">
+      {{block('tblSimple')}}
+    </table>
   </div>
 </div>
 
-
-<div class="bg-white pA20 mB25 fs16">
-  <h3 class="mB0">{%trans "Zebra!"%}</h3>
-  <p>{%trans "Use <code class='code1'>.zebra</code> to add zebra-striping to any table row within the <code class='code1'>&lt;tbody&gt;</code>."%}</p>
-  <div class="pA15 example">
-  <table class="tbl zebra">
-    <thead>
-      {{block('thead')}}
-    </thead>
-    <tbody>
-      {{block('trow1')}}
-      {{block('trow2')}}
-      {{block('trow3')}}
-      {{block('trow1')}}
-      {{block('trow2')}}
-      {{block('trow3')}}
-    </tbody>
-    <tfoot>
-      {{block('tfoot')}}
-    </tfoot>
-  </table>
-  </div>
-</div>
 
 <div class="bg-white pA20 mB25 fs16">
   <h3 class="mB0">{%trans "Colored"%}</h3>
@@ -90,6 +67,84 @@
   </div>
 </div>
 
+<div class="bg-white pA20 mB25 fs16">
+  <h3 class="mB0">{%trans "Table head options"%}</h3>
+  <p>Similar to colored tables, use one of modifier classes to make rows appear colored.</p>
+
+  <table class="tbl">
+    <thead class="primary">
+      {{block('thead')}}
+    </thead>
+    <tbody>
+      {{block('trow1')}}
+      {{block('trow2')}}
+      {{block('trow3')}}
+      {{block('trow1')}}
+      {{block('trow2')}}
+      {{block('trow3')}}
+    </tbody>
+    <tfoot class="dark">
+      {{block('tfoot')}}
+    </tfoot>
+  </table>
+</div>
+
+<div class="bg-white pA20 mB25 fs16">
+  <h3 class="mB0">{%trans "No Zebra!"%}</h3>
+  <p>{%trans "Use <code class='code1'>.nozebra</code> to add zebra-striping to any table row within the <code class='code1'>&lt;tbody&gt;</code>."%}</p>
+  <div class="pA15 example">
+    <table class="tbl nozebra">
+      <thead>
+        {{block('thead')}}
+      </thead>
+      <tbody>
+        {{block('trow1')}}
+        {{block('trow2')}}
+        {{block('trow3')}}
+        {{block('trow1')}}
+        {{block('trow2')}}
+        {{block('trow3')}}
+      </tbody>
+      <tfoot>
+        {{block('tfoot')}}
+      </tfoot>
+    </table>
+  </div>
+
+  <div class="pA15 example">
+    <table class="tbl dark nozebra">
+      <thead>
+        {{block('thead')}}
+      </thead>
+      <tbody>
+        {{block('trow1')}}
+        {{block('trow2')}}
+        {{block('trow3')}}
+        {{block('trow1')}}
+        {{block('trow2')}}
+        {{block('trow3')}}
+      </tbody>
+      <tfoot>
+        {{block('tfoot')}}
+      </tfoot>
+    </table>
+  </div>
+</div>
+
+<div class="bg-white pA20 mB25 fs16">
+  <h3 class="mB0">{%trans "Bordered table"%}</h3>
+  <p>Add <code class='code1'>.bordered</code> for borders on all sides of the table and cells.</p>
+  <div class="pA15 example">
+    <table class="tbl bordered">
+      {{block('tblSimple')}}
+    </table>
+  </div>
+  <div class="pA15 example">
+    <table class="tbl bordered dark">
+      {{block('tblSimple')}}
+    </table>
+  </div>
+</div>
 
 
 <div class="bg-white pA20 mB25 fs16">
@@ -97,16 +152,16 @@
   <h4 class="mB0">{%trans "Compact"%}</h4>
   <p>A table may sometimes need to be more compact to make more rows visible at a time</p>
   <div class="pA15 example">
-  <table class="tbl compact">
-    {{block('tblSimple')}}
-  </table>
+    <table class="tbl compact">
+      {{block('tblSimple')}}
+    </table>
   </div>
 
   <h4 class="mB0">{%trans "Normal"%}</h4>
   <div class="pA15 example">
-  <table class="tbl">
-    {{block('tblSimple')}}
-  </table>
+    <table class="tbl">
+      {{block('tblSimple')}}
+    </table>
   </div>
   <h4 class="mB0">{%trans "Padded"%}</h4>
   <p>A table may sometimes need to be more padded for legibility</p>
