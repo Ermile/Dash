@@ -29,6 +29,7 @@
 
   </div>
   <div class="c12">
+    {{block('tbl')}}
     {{block('pagination')}}
   </div>
 </div>
@@ -111,9 +112,9 @@
 {%block breadcrumb%}
 <div class="pA15">
   <nav class="breadcrumb">
-    <a href="{{url.base}}" tabindex="-1"><span class="fa fa-home"></span> Home</a>
-    <a href="{{url.base}}/cp" tabindex="-1">Control Panel</a>
-    <a href="{{url.base}}/cp/sample" tabindex="-1">Sample</a>
+    <a href="{{url.base}}/cp/sample/breadcrumb" tabindex="-1"><span class="fa fa-home"></span> Home</a>
+    <a href="{{url.base}}/cp/sample/breadcrumb" tabindex="-1">Control Panel</a>
+    <a href="{{url.base}}/cp/sample/breadcrumb" tabindex="-1">Sample</a>
     <a href="{{url.base}}/cp/sample/breadcrumb">Breadcrumb</a>
   </nav>
 </div>
@@ -122,26 +123,50 @@
 
 {%block pagination%}
 <div class="pA10">
+  <h3><a href='sample/pagination'>Pagination</a></h3>
     <nav class="pagination info">
-      <a href='#' class="prev disabled">Previous</a>
-      <a href='#'>...</a>
-      <a href='#'>6</a>
+      <a href='/cp/sample/pagination' class="prev disabled">Previous</a>
+      <a href='/cp/sample/pagination'>...</a>
+      <a href='/cp/sample/pagination'>6</a>
       <a class='active'>7</a>
-      <a href='#'>8</a>
+      <a href='/cp/sample/pagination'>8</a>
       <a>...</a>
-      <a href='#' class="next">Next</a>
+      <a href='/cp/sample/pagination' class="next">Next</a>
     </nav>
 </div>
 {%endblock%}
 
 
 {%block progress%}
+<div class="pA10">
   <h3><a href='sample/progress'>Progress</a></h3>
   <div class="pA15">
     <progress value="76" max="100"></progress>
   </div>
   <div class="pA15">
     <meter value="34" min="0" max="100"></meter>
+  </div>
+</div>
+{%endblock%}
+
+
+
+{%block tbl%}
+<div class="pA10">
+  <h3><a href='sample/table'>Table</a></h3>
+  <table class="tbl zebra">
+    <thead>
+      <tr><th>#</th><th>First Name</th><th>Last Name</th><th>Username</th></tr>
+    </thead>
+    <tbody>
+      <tr><th>1</th><td>Javad</td><td>Evazzadeh</td><td>@evazzadeh</td></tr>
+      <tr><th>2</th><td>Reza</td><td>Mohiti</td><td>@biqarar</td></tr>
+      <tr><th>3</th><td>Hasan</td><td>Salehi</td><td>@baravak</td></tr>
+    </tbody>
+    <tfoot>
+      <tr><th>-</th><th colspan="3">Footer</th></tr>
+    </tfoot>
+  </table>
   </div>
 {%endblock%}
 

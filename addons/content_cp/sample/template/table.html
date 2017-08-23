@@ -1,0 +1,150 @@
+{%extends display.cpMain%}
+
+
+{%block content%}
+
+<div class="mB25 fs16 msg">
+  <h2 class="mB0">{%trans "Tables"%}</h2>
+  <p>{%trans "Documentation and examples for tables with Siftal."%}</p>
+</div>
+
+<div class="bg-white pA20 mB25 fs16">
+  <h3 class="mB0">{%trans "Examples"%}</h3>
+  <p>{%trans "Just add the base class <code class='code1'>.tbl</code> to any <code class='code1'>&lt;table&gt;</code>, then extend with custom styles or our various included modifier classes."%}</p>
+
+  <h4 class="mB0">{%trans "Simple table"%}</h4>
+  <div class="pA15 example">
+  	<table class="tbl">
+		{{block('tblSimple')}}
+  	</table>
+  </div>
+</div>
+
+
+<div class="bg-white pA20 mB25 fs16">
+  <h3 class="mB0">{%trans "Zebra!"%}</h3>
+  <p>{%trans "Use <code class='code1'>.zebra</code> to add zebra-striping to any table row within the <code class='code1'>&lt;tbody&gt;</code>."%}</p>
+  <div class="pA15 example">
+  	<table class="tbl zebra">
+		<thead>
+			{{block('thead')}}
+		</thead>
+		<tbody>
+			{{block('trow1')}}
+			{{block('trow2')}}
+			{{block('trow3')}}
+			{{block('trow1')}}
+			{{block('trow2')}}
+			{{block('trow3')}}
+		</tbody>
+		<tfoot>
+			{{block('tfoot')}}
+		</tfoot>
+  	</table>
+  </div>
+</div>
+
+
+<div class="bg-white pA20 mB25 fs16">
+  <h3 class="mB0">{%trans "Sizes"%}</h3>
+  <h4 class="mB0">{%trans "Compact"%}</h4>
+  <p>A table may sometimes need to be more compact to make more rows visible at a time</p>
+  <div class="pA15 example">
+  	<table class="tbl compact">
+		{{block('tblSimple')}}
+  	</table>
+  </div>
+
+  <h4 class="mB0">{%trans "Normal"%}</h4>
+  <div class="pA15 example">
+  	<table class="tbl">
+		{{block('tblSimple')}}
+  	</table>
+  </div>
+  <h4 class="mB0">{%trans "Padded"%}</h4>
+  <p>A table may sometimes need to be more padded for legibility</p>
+  <div class="pA15 example">
+  	<table class="tbl padded">
+		{{block('tblSimple')}}
+  	</table>
+  </div>
+  <h4 class="mB0">{%trans "Small"%}</h4>
+  <p>A table may sometimes need to be small</p>
+  <div class="pA15 example">
+  	<table class="tbl sm">
+		{{block('tblSimple')}}
+  	</table>
+  </div>
+  <h4 class="mB0">{%trans "Large"%}</h4>
+  <p>A table may sometimes need to be large</p>
+  <div class="pA15 example">
+  	<table class="tbl lg">
+		{{block('tblSimple')}}
+  	</table>
+  </div>
+</div>
+{%endblock%}
+
+
+
+{%block tblSimple%}
+<thead>
+	{{block('thead')}}
+</thead>
+<tbody>
+	{{block('trow1')}}
+	{{block('trow2')}}
+	{{block('trow3')}}
+</tbody>
+<tfoot>
+	{{block('tfoot')}}
+</tfoot>
+{%endblock%}
+
+
+{%block thead%}
+    <tr>
+      <th>#</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Username</th>
+    </tr>
+{%endblock%}
+
+{%block tfoot%}
+    <tr>
+      <th>-</th>
+      <th colspan="3">Footer</th>
+    </tr>
+{%endblock%}
+
+{%block trow1%}
+    <tr>
+      <th>1</th>
+      <td>Javad</td>
+      <td>Evazzadeh</td>
+      <td>@evazzadeh</td>
+    </tr>
+{%endblock%}
+
+
+{%block trow2%}
+    <tr>
+      <th>2</th>
+      <td>Reza</td>
+      <td>Mohiti</td>
+      <td>@biqarar</td>
+    </tr>
+{%endblock%}
+
+
+{%block trow3%}
+    <tr>
+      <th>3</th>
+      <td>Hasan</td>
+      <td>Salehi</td>
+      <td>@baravak</td>
+    </tr>
+{%endblock%}
+
+
