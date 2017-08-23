@@ -221,6 +221,32 @@
   </table>
   </div>
 </div>
+
+
+<div class="bg-white pA20 mB25 fs16">
+  <h3 class="mB0">{%trans "Sortable heading"%}</h3>
+  <p>Add <code class='code1'>.sort</code> to table for allow users to click on headers link to change sort of columns</p>
+  <div class="pA15 example">
+    <table class="tbl bordered sort">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th data-sort='desc'><a href='#'>First Name</a></th>
+          <th data-sort><a href='#'>Last Name</a></th>
+          <th data-sort='asc'><a href='#'>Username</a></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{block('trow1')}}
+        {{block('trow2')}}
+        {{block('trow3')}}
+      </tbody>
+      <tfoot>
+        {{block('tfoot')}}
+      </tfoot>
+    </table>
+  </div>
+</div>
 {%endblock%}
 
 
