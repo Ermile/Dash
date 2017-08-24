@@ -14,7 +14,7 @@
   <p>{%trans "Cards are built with as little markup and styles as possible, but still manage to deliver a ton of control and customization. Built with flexbox, they offer easy alignment and mix well with other  components."%}</p>
 
   <div class="example f">
-      <div class="vcard mA10 s12">
+      <div class="vcard shadow mA10 s12">
         <img src="http://code.ermile.dev/siftal/images/avatar/1.png">
         <div class="content">
           <a class="header">Ermile</a>
@@ -23,7 +23,7 @@
         </div>
         <div class="footer"><i class="sf-users"></i> 123 Friends</div>
       </div>
-      <div class="vcard mA10 s12">
+      <div class="vcard shadow mA10 s12">
         <img src="http://code.ermile.dev/siftal/images/avatar/2.png">
         <div class="content">
           <a class="header">Ermile</a>
@@ -46,7 +46,7 @@
 
 <div class="cbox">
   <div class="example f">
-      <div class="vcard mA10 s12">
+      <div class="vcard shadow mA10 s12">
         <div class="content">
           <div class="floataR meta">10h</div>
           <img src="http://code.ermile.dev/siftal/images/avatar/1.png" class="avatar">Ermile
@@ -97,7 +97,7 @@
 <div class="cbox">
   <p>Cards are designed to be flexible to your content. content blocks can include any custom elements related to your content.</p>
   <div class="example f">
-      <div class="vcard mA10 s12">
+      <div class="vcard shadow mA10 s12">
         <div class="content f">
           <div class="c">
             <a class="header">Ermile</a>
@@ -151,7 +151,7 @@
 <div class="cbox">
   <p>A card can contain a header</p>
   <div class="example f">
-      <div class="vcard mA10 s12">
+      <div class="vcard shadow mA10 s12">
         <div class="content f">
           <div class="c">
             <a class="header">Javad Evazzadeh</a>
@@ -184,11 +184,71 @@
           <div class="desc c12">Hasan is a full-stack developer of Ermile and always trying to be in classrooms!</div>
         </div>
       </div>
-
   </div>
 </div>
 
+<div class="cbox">
+  <p>A card can contain content metadata</p>
+  <div class="example f">
+      <div class="vcard shadow mA10 s12">
+        <div class="content">
+          <a class="header">Javad Evazzadeh</a>
+          <div class="meta"><span>3 days ago</span> <a href="#">Ermile</a></div>
+          <img src="http://code.ermile.dev/siftal/images/tools/paragraph.png" class="mT15 op50">
+        </div>
+      </div>
+      <div class="vcard mA10 s12">
+        <div class="content">
+          <a class="header">Reza Motiti</a>
+          <div class="meta"><span>6 days ago</span> <a href="#">Ermile</a> <a href="#">Haram</a></div>
+          <img src="http://code.ermile.dev/siftal/images/tools/paragraph.png" class="mT15 op50">
+        </div>
+      </div>
+      <div class="vcard mA10 s12">
+        <div class="content">
+          <a class="header">Hasan Salehi</a>
+          <div class="meta"><span>10 days ago</span> <a href="#">School</a> </div>
+          <img src="http://code.ermile.dev/siftal/images/tools/paragraph.png" class="mT15 op50">
+        </div>
+      </div>
+  </div>
+</div>
 
+<div class="cbox">
+  <p>A card can be formatted so that the entire contents link to another page. Also a card can contain contain links as images, headers, or inside content</p>
+  <div class="example f">
+      <div class="vcard shadow mA10 s12">
+        <img src="http://code.ermile.dev/siftal/images/avatar/1.png">
+        <div class="content">
+          <a class="header">Ermile</a>
+          <div class="meta"><span>Joined in 2018</span></div>
+          <div class="desc">Ermile is our company in Qom!</div>
+        </div>
+        <div class="footer"><i class="sf-users"></i> 123 Friends</div>
+      </div>
+
+      <div class="vcard shadow mA10 s12">
+        <a href='#1'><img src="http://code.ermile.dev/siftal/images/avatar/1.png"></a>
+        <div class="content">
+          <a href="#2" class="header">Ermile</a>
+          <a href="#3" class="meta"><span>Joined in 2018</span></a>
+          <a href="#4" class="desc">Ermile is our company in Qom!</a>
+        </div>
+        <a href='#5' class="footer"><i class="sf-users"></i> 123 Friends</a>
+      </div>
+
+      <a class="vcard shadow mA10 s12 c" href='#'>
+        <img src="http://code.ermile.dev/siftal/images/avatar/1.png">
+        <div class="content">
+          <div class="header">Ermile</div>
+          <div class="meta"><span>Joined in 2018</span></div>
+          <div class="desc">Ermile is our company in Qom!</div>
+        </div>
+        <div class="footer"><i class="sf-users"></i> 123 Friends</div>
+      </a>
+
+  </div>
+</div>
 
 
 {%endblock%}
