@@ -3,23 +3,23 @@
 
 {%block content%}
 
-<div class="mB25 fs16 msg">
-  <h2 class="mB0">{%trans "Tables"%}</h2>
+<div class="tbox">
+  <h2>{%trans "Tables"%}</h2>
   <p>{%trans "Documentation and examples for tables with Siftal."%}</p>
 </div>
 
-<div class="bg-white pA20 mB25 fs16">
-  <h3 class="mB0">{%trans "Examples"%}</h3>
+<div class="cbox">
+  <h3>{%trans "Examples"%}</h3>
   <p>{%trans "Just add the base class <code class='code1'>.tbl</code> to any <code class='code1'>&lt;table&gt;</code>, then extend with custom styles or our various included modifier classes."%}</p>
 
-  <h4 class="mB0">{%trans "Simple table"%}</h4>
-  <div class="pA15 example">
+  <h4>{%trans "Simple table"%}</h4>
+  <div class="example">
     <table class="tbl">
       {{block('tblSimple')}}
     </table>
   </div>
 
-  <div class="pA15 example">
+  <div class="example">
     {{block('tblAdvance')}}
   </div>
 
@@ -27,46 +27,46 @@
 </div>
 
 
-<div class="bg-white pA20 mB25 fs16">
-  <h3 class="mB0">{%trans "Colored"%}</h3>
+<div class="cbox">
+  <h3>{%trans "Colored"%}</h3>
   <p>A table's colors can be changed</p>
 
-  <div class="pA15 example">
+  <div class="example">
     <table class="tbl primary">
       {{block('tblSimple')}}
     </table>
   </div>
-  <div class="pA15 example">
+  <div class="example">
     <table class="tbl secondary">
       {{block('tblSimple')}}
     </table>
   </div>
-  <div class="pA15 example">
+  <div class="example">
     <table class="tbl success">
       {{block('tblSimple')}}
     </table>
   </div>
-  <div class="pA15 example">
+  <div class="example">
     <table class="tbl danger">
       {{block('tblSimple')}}
     </table>
   </div>
-  <div class="pA15 example">
+  <div class="example">
     <table class="tbl warn">
       {{block('tblSimple')}}
     </table>
   </div>
-  <div class="pA15 example">
+  <div class="example">
     <table class="tbl info">
       {{block('tblSimple')}}
     </table>
   </div>
-  <div class="pA15 example">
+  <div class="example">
     <table class="tbl light">
       {{block('tblSimple')}}
     </table>
   </div>
-  <div class="pA15 example">
+  <div class="example">
     <table class="tbl dark">
       {{block('tblSimple')}}
     </table>
@@ -74,8 +74,8 @@
 </div>
 
 
-<div class="bg-white pA20 mB25 fs16">
-  <h3 class="mB0">{%trans "Table head options"%}</h3>
+<div class="cbox">
+  <h3>{%trans "Table head options"%}</h3>
   <p>Similar to colored tables, use one of modifier classes to make rows appear colored.</p>
 
   <table class="tbl">
@@ -97,10 +97,10 @@
 </div>
 
 
-<div class="bg-white pA20 mB25 fs16">
-  <h3 class="mB0">{%trans "No Zebra!"%}</h3>
+<div class="cbox">
+  <h3>{%trans "No Zebra!"%}</h3>
   <p>{%trans "Use <code class='code1'>.dead</code> to add zebra-striping to any table row within the <code class='code1'>&lt;tbody&gt;</code>."%}</p>
-  <div class="pA15 example">
+  <div class="example">
     <table class="tbl dead">
       <thead>
         {{block('thead')}}
@@ -120,7 +120,7 @@
   </div>
 
 
-  <div class="pA15 example">
+  <div class="example">
     <table class="tbl dark dead">
       <thead>
         {{block('thead')}}
@@ -141,11 +141,11 @@
 </div>
 
 
-<div class="bg-white pA20 mB25 fs16">
-  <h3 class="mB0">{%trans "Custom cell"%}</h3>
+<div class="cbox">
+  <h3>{%trans "Custom cell"%}</h3>
   <p>{%trans "A cell or row may let a user know whether a value is good or bad."%}</p>
   <p>{%trans "you can add <code class='code1'>.positive</code>, <code class='code1'>.negative</code>, <code class='code1'>.active</code>, <code class='code1'>.warning</code> and <code class='code1'>.disabled</code> to create custom design on cell or rows"%}</p>
-  <div class="pA15 example">
+  <div class="example">
     <table class="tbl dead">
       <thead>
         {{block('thead')}}
@@ -167,15 +167,15 @@
 </div>
 
 
-<div class="bg-white pA20 mB25 fs16">
-  <h3 class="mB0">{%trans "Bordered table"%}</h3>
+<div class="cbox">
+  <h3>{%trans "Bordered table"%}</h3>
   <p>Add <code class='code1'>.bordered</code> for borders on all sides of the table and cells.</p>
-  <div class="pA15 example">
+  <div class="example">
     <table class="tbl bordered">
       {{block('tblSimple')}}
     </table>
   </div>
-  <div class="pA15 example">
+  <div class="example">
     <table class="tbl bordered dark">
       {{block('tblSimple')}}
     </table>
@@ -183,39 +183,39 @@
 </div>
 
 
-<div class="bg-white pA20 mB25 fs16">
-  <h3 class="mB0">{%trans "Sizes"%}</h3>
-  <h4 class="mB0">{%trans "Compact"%}</h4>
+<div class="cbox">
+  <h3>{%trans "Sizes"%}</h3>
+  <h4>{%trans "Compact"%}</h4>
   <p>A table may sometimes need to be more compact to make more rows visible at a time</p>
-  <div class="pA15 example">
+  <div class="example">
     <table class="tbl compact">
       {{block('tblSimple')}}
     </table>
   </div>
 
-  <h4 class="mB0">{%trans "Normal"%}</h4>
-  <div class="pA15 example">
+  <h4>{%trans "Normal"%}</h4>
+  <div class="example">
     <table class="tbl">
       {{block('tblSimple')}}
     </table>
   </div>
-  <h4 class="mB0">{%trans "Padded"%}</h4>
+  <h4>{%trans "Padded"%}</h4>
   <p>A table may sometimes need to be more padded for legibility</p>
-  <div class="pA15 example">
+  <div class="example">
   <table class="tbl padded">
     {{block('tblSimple')}}
   </table>
   </div>
-  <h4 class="mB0">{%trans "Small"%}</h4>
+  <h4>{%trans "Small"%}</h4>
   <p>A table may sometimes need to be small</p>
-  <div class="pA15 example">
+  <div class="example">
   <table class="tbl sm">
     {{block('tblSimple')}}
   </table>
   </div>
-  <h4 class="mB0">{%trans "Large"%}</h4>
+  <h4>{%trans "Large"%}</h4>
   <p>A table may sometimes need to be large</p>
-  <div class="pA15 example">
+  <div class="example">
   <table class="tbl lg">
     {{block('tblSimple')}}
   </table>
@@ -223,11 +223,11 @@
 </div>
 
 
-<div class="bg-white pA20 mB25 fs16">
-  <h3 class="mB0">{%trans "Sortable heading"%}</h3>
-  <p>Add <code class='code1'>.sort</code> to table for allow users to click on headers link to change sort of columns</p>
-  <div class="pA15 example">
-    <table class="tbl bordered sort">
+<div class="cbox">
+  <h3>{%trans "Sortable heading"%}</h3>
+  <p>Add <code class='code1'>data-sort=desc|asc</code> to table header for add icon of sorting</p>
+  <div class="example">
+    <table class="tbl bordered">
       <thead>
         <tr>
           <th>#</th>
