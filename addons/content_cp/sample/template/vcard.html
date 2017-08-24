@@ -15,13 +15,7 @@
 
   <div class="example f">
       <div class="vcard shadow mA10 s12">
-        <img src="http://code.ermile.dev/siftal/images/avatar/1.png">
-        <div class="content">
-          <a class="header">Ermile</a>
-          <div class="meta"><span>Joined in 2018</span></div>
-          <div class="desc">Ermile is our company in Qom!</div>
-        </div>
-        <div class="footer"><i class="sf-users"></i> 123 Friends</div>
+{{block('vcardSample1')}}
       </div>
       <div class="vcard shadow mA10 s12">
         <img src="http://code.ermile.dev/siftal/images/avatar/2.png">
@@ -149,7 +143,7 @@
 </div>
 
 <div class="cbox">
-  <p>A card can contain a header</p>
+  <p>A card can contain a header.</p>
   <div class="example f">
       <div class="vcard shadow mA10 s12">
         <div class="content f">
@@ -188,7 +182,7 @@
 </div>
 
 <div class="cbox">
-  <p>A card can contain content metadata</p>
+  <p>A card can contain content metadata.</p>
   <div class="example f">
       <div class="vcard shadow mA10 s12">
         <div class="content">
@@ -215,18 +209,12 @@
 </div>
 
 <div class="cbox">
-  <p>A card can be formatted so that the entire contents link to another page. Also a card can contain contain links as images, headers, or inside content</p>
+  <h3>Link</h3>
+  <p>A card can be formatted so that the entire contents link to another page. Also a card can contain contain links as images, headers, or inside content.</p>
   <div class="example f">
       <div class="vcard shadow mA10 s12">
-        <img src="http://code.ermile.dev/siftal/images/avatar/1.png">
-        <div class="content">
-          <a class="header">Ermile</a>
-          <div class="meta"><span>Joined in 2018</span></div>
-          <div class="desc">Ermile is our company in Qom!</div>
-        </div>
-        <div class="footer"><i class="sf-users"></i> 123 Friends</div>
+{{block('vcardSample1')}}
       </div>
-
       <div class="vcard shadow mA10 s12">
         <a href='#1'><img src="http://code.ermile.dev/siftal/images/avatar/1.png"></a>
         <div class="content">
@@ -236,8 +224,7 @@
         </div>
         <a href='#5' class="footer"><i class="sf-users"></i> 123 Friends</a>
       </div>
-
-      <a class="vcard shadow mA10 s12 c" href='#'>
+      <a class="vcard shadow mA10 s12 c" href='#allISLink'>
         <img src="http://code.ermile.dev/siftal/images/avatar/1.png">
         <div class="content">
           <div class="header">Ermile</div>
@@ -246,11 +233,41 @@
         </div>
         <div class="footer"><i class="sf-users"></i> 123 Friends</div>
       </a>
-
   </div>
 </div>
 
+<div class="cbox">
+  <h3>Center Card</h3>
+  <p>A card can center itself inside its container.</p>
+  <div class="example">
+      <div class="vcard shadow mA10 mLRa w300">
+{{block('vcardSample1')}}
+      </div>
+  </div>
+</div>
+
+<div class="cbox">
+  <h3>Colored</h3>
+  <p>A card can specify a color.</p>
+  <div class="example f">
+      <div class="vcard green mA10">{{block('vcardSample1')}}</div>
+      <div class="vcard red mA10">{{block('vcardSample1')}}</div>
+      <div class="vcard blue mA10">{{block('vcardSample1')}}</div>
+      <div class="vcard yellow mA10">{{block('vcardSample1')}}</div>
+      <div class="vcard black mA10">{{block('vcardSample1')}}</div>
+  </div>
+</div>
 
 {%endblock%}
 
 
+
+{%block vcardSample1%}
+        <img src="http://code.ermile.dev/siftal/images/avatar/1.png">
+        <div class="content">
+          <a class="header">Ermile</a>
+          <div class="meta"><span>Joined in 2018</span></div>
+          <div class="desc">Ermile is our company in Qom!</div>
+        </div>
+        <div class="footer"><i class="sf-users"></i> 123 Friends</div>
+{%endblock%}
