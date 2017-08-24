@@ -117,9 +117,19 @@ class filter
 			return $slugify->slugify($_string);
 	}
 
+
+	/**
+	 * decode every fileld need to decode in array
+	 *
+	 * @param      <type>  $_array    The array
+	 * @param      <type>  $_field    The field
+	 * @param      array   $_options  The options
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
 	public static function meta_decode($_array, $_field = null, $_options = [])
 	{
-		$field = $_field? $_field : "/^(.+_meta|meta)$/";
+		$field = $_field ? $_field : "/^(.+_meta|meta)$/";
 		if(!is_array($_array))
 		{
 			return $_array;

@@ -55,7 +55,8 @@ class notifications
 	 */
 	public static function search()
 	{
-		return \lib\db\config::public_search('notifications', ...func_get_args());
+		$result = \lib\db\config::public_search('notifications', ...func_get_args());
+		return $result;
 	}
 
 
@@ -138,22 +139,26 @@ class notifications
 
 		$default_args =
 		[
-			'to'         => null,
-			'content'    => null,
-			'title'      => null,
-			'cat'        => null,
-			'from'       => null,
-			'url'        => null,
-			'read'       => null,
-			'status'     => 'enable',
-			'expiredate' => null,
-			'desc'       => null,
-			'meta'       => null,
-			'telegram'   => false,
-			'sms'        => false,
-			'email'      => false,
+			'to'              => null,
+			'needanswer'      => null,
+			'answer'          => null,
+			'content'         => null,
+			'title'           => null,
+			'cat'             => null,
+			'from'            => null,
+			'url'             => null,
+			'related_foreign' => null,
+			'related_id'      => null,
+			'read'            => null,
+			'status'          => 'enable',
+			'expiredate'      => null,
+			'desc'            => null,
+			'meta'            => null,
+			'telegram'        => false,
+			'sms'             => false,
+			'email'           => false,
 			// send multi query
-			'multi'		 => false,
+			'multi'           => false,
 		];
 
 		$_args = array_merge($default_args, $_args);
@@ -184,20 +189,24 @@ class notifications
 
 		$insert =
 		[
-			'user_id'       => $_args['to'],
-			'user_idsender' => $_args['from'],
-			'title'         => $_args['title'],
-			'content'       => $_args['content'],
-			'category'      => $cat_id,
-			'telegram'      => $_args['telegram'] ? 1 : null,
-			'sms'           => $_args['sms'] ? 1 : null,
-			'email'         => $_args['email'] ? 1 : null,
-			'url'           => $_args['url'],
-			'read'          => $_args['read'],
-			'status'        => $_args['status'],
-			'expiredate'    => $_args['expiredate'],
-			'desc'          => $_args['desc'],
-			'meta'          => $_args['meta'],
+			'user_id'         => $_args['to'],
+			'user_idsender'   => $_args['from'],
+			'title'           => $_args['title'],
+			'content'         => $_args['content'],
+			'category'        => $cat_id,
+			'telegram'        => $_args['telegram'] ? 1 : null,
+			'sms'             => $_args['sms'] ? 1 : null,
+			'email'           => $_args['email'] ? 1 : null,
+			'url'             => $_args['url'],
+			'read'            => $_args['read'],
+			'status'          => $_args['status'],
+			'expiredate'      => $_args['expiredate'],
+			'desc'            => $_args['desc'],
+			'meta'            => $_args['meta'],
+			'related_foreign' => $_args['related_foreign'],
+			'related_id'      => $_args['related_id'],
+			'needanswer'      => $_args['needanswer'],
+			'answer'          => $_args['answer'],
 		];
 
 		if($_args['multi'])
