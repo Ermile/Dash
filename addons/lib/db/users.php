@@ -292,6 +292,22 @@ class users
 
 
 	/**
+	 * singup quice user
+	 *
+	 * @param      array   $_args  The arguments
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public static function signup_quice($_args = [])
+	{
+		$_args      = array_merge(['user_createdate' => date('Y-m-d H:i:s')], $_args);
+		$insert_new = self::insert($_args);
+		$insert_id  = \lib\db::insert_id();
+		return $insert_id;
+	}
+
+
+	/**
 	 * check signup and if can add new user
 	 * @return [type] [description]
 	 */
