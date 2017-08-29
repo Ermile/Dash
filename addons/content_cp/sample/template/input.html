@@ -10,44 +10,123 @@
 
 
 <div class="cbox">
-  <h3>{%trans "Examples"%}</h3>
+  <h3>{%trans "Simple Examples with input element"%}</h3>
 
-  <h4>{%trans "All type of inputs"%}</h4>
   <div class="example">
-  	<h4>{%trans "Normal"%}</h4>
-  	<input type="text" placeholder="Type..." class="input">
+    <h4>{%trans "Normal"%}</h4>
+    <input type="text" placeholder="Type..." class="input">
 
-  	<h4>{%trans "Focus"%}</h4>
-  	<input type="text" placeholder="Type..." class="input focus">
+    <h4>{%trans "Focus"%}</h4>
+    <input type="text" placeholder="Type..." class="input focus">
 
-  	<h4>{%trans "Active"%}</h4>
-  	<input type="text" placeholder="Type..." class="input active">
+    <h4>{%trans "Active"%}</h4>
+    <input type="text" placeholder="Type..." class="input active">
 
-  	<h4>{%trans "Readonly"%}</h4>
-  	<input type="text" placeholder="Type..." class="input" readonly>
+    <h4>{%trans "Readonly"%}</h4>
+    <input type="text" placeholder="Type..." class="input" readonly>
 
-  	<h4>{%trans "Disabled"%}</h4>
-  	<input type="text" placeholder="Type..." class="input disabled">
-  	<input type="text" placeholder="Type..." class="input" disabled>
+    <h4>{%trans "Disabled"%}</h4>
+    <input type="text" placeholder="Type..." class="input disabled">
+    <input type="text" placeholder="Type..." class="input" disabled>
+  </div>
+  <h4>{%trans "All type of input conditions"%}</h4>
+  <div class="example">
+    <input type="text" placeholder="Type..." value="Error" class="input error">
+    <input type="text" placeholder="Type..." value="Warn" class="input warning">
+    <input type="text" placeholder="Type..." value="Ok" class="input ok">
+  </div>
+</div>
+
+
+
+<div class="cbox">
+  <h3>{%trans "Extra Examples with input class and multiple part"%}</h3>
+
+  <div class="example">
+    <h4>{%trans "Normal"%}</h4>
+    <div class="input">
+      <input type="text" placeholder="Type...">
+    </div>
+
+    <h4>{%trans "Focus"%}</h4>
+    <div class="input focus">
+      <input type="text" placeholder="Type...">
+    </div>
+
+    <h4>{%trans "Active"%}</h4>
+    <div class="input active">
+      <input type="text" placeholder="Type...">
+    </div>
+
+    <h4>{%trans "Readonly"%}</h4>
+    <div class="input">
+      <input type="text" placeholder="Type..." readonly>
+    </div>
+
+    <h4>{%trans "Disabled"%}</h4>
+    <span class="input disabled">
+      <input type="text" placeholder="Type...">
+    </span>
+    <span class="input">
+      <input type="text" placeholder="Type..." disabled>
+    </span>
   </div>
 
   <h4>{%trans "All type of input conditions"%}</h4>
   <div class="example">
-  	<input type="text" placeholder="Type..." value="Error" class="input error">
-  	<input type="text" placeholder="Type..." value="Warn" class="input warning">
-  	<input type="text" placeholder="Type..." value="Ok" class="input ok">
+    <span class="input error">
+      <input type="text" placeholder="Type..." value="Error">
+    </span>
+    <span class="input warning">
+      <input type="text" placeholder="Type..." value="Warn">
+    </span>
+    <span class="input ok">
+      <input type="text" placeholder="Type..." value="Ok">
+    </span>
   </div>
 
-  <h4>{%trans "With siftal modes"%}</h4>
+  <h4>{%trans "All type of input conditions"%}</h4>
   <div class="example">
-  	<input type="text" placeholder="Type..." class="pA10 input primary">
-  	<input type="text" placeholder="Type..." class="pA10 input secondary">
-  	<input type="text" placeholder="Type..." class="pA10 input success">
-  	<input type="text" placeholder="Type..." class="pA10 input danger">
-  	<input type="text" placeholder="Type..." class="pA10 input warn">
-  	<input type="text" placeholder="Type..." class="pA10 input info">
-  </div>
+    <div class="input pTB10">
+      <label class="addon" for='sAddon1'>@</label>
+      <input type="text" placeholder="Type..." id='sAddon1'>
+    </div>
+    <div class="input pTB10">
+      <input type="text" placeholder="Type..." id='sAddon2'>
+      <label class="addon" for='sAddon2'>@Ermile.com</label>
+    </div>
 
+    <div class="input pTB10">
+      <label class="addon" for='sAddon3'>https://ermile.com/users/</label>
+      <input type="text" placeholder="Your username" id='sAddon3'>
+    </div>
+    <div class="input pTB10">
+      <label class="addon" for='sAddon4'>$</label>
+      <input type="text" placeholder="Type..." id='sAddon4'>
+      <label class="addon" for='sAddon4'>.00</label>
+    </div>
+    <div class="input pTB10">
+      <label class="addon" for='sAddon5'>$</label>
+      <label class="addon" for='sAddon5'>0.00</label>
+      <input type="text" placeholder="Type..." id='sAddon5'>
+    </div>
+    <div class="input pTB10">
+      <label class="addon" for='sAddon5'>$</label>
+      <label class="addon" for='sAddon5'>0.00</label>
+      <input type="text" placeholder="Type..." id='sAddon5'>
+    </div>
+
+
+
+    <br/>
+    <br/>
+    <div class="input pTB10">
+      <i class="sf-at addon"></i>
+      <input type="text" placeholder="Type...">
+    </div>
+
+
+  </div>
 
 
 
