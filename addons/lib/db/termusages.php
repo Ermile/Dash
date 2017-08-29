@@ -15,34 +15,9 @@ class termusages
 	 * @param array $_args fields data
 	 * @return mysql result
 	 */
-	public static function insert($_args)
+	public static function insert()
 	{
-		if(empty($_args))
-		{
-			return null;
-		}
-		$set = [];
-		foreach ($_args as $key => $value)
-		{
-			if($value === null)
-			{
-				$set[] = " `$key` = NULL ";
-			}
-			elseif(is_string($value))
-			{
-				$set[] = " `$key` = '$value' ";
-			}
-		}
-		$set = join($set, ',');
-
-		$query =
-		"
-			INSERT INTO
-				termusages
-			SET
-				$set
-		";
-		return \lib\db::query($query);
+		return \lib\db\config::public_insert('termusages', ...func_get_args());
 	}
 
 
@@ -180,75 +155,5 @@ class termusages
 		return \lib\db::query($query);
 	}
 
-
-	public static function usage($_usageid, $_foreign = 'posts', $_type = null)
-	{
-		if($_foreign === null)
-		{
-			$_foreign = 'posts';
-		}
-		$type = null;
-		if($_type)
-		{
-			$type = " AND terms.term_type = '$_type' ";
-		}
-		$query =
-		"
-			SELECT
-				*
-			FROM
-				terms
-			INNER JOIN termusages ON termusages.term_id = terms.id
-			WHERE
-				termusages.termusage_foreign = '$_foreign' AND
-				termusages.termusage_id      = $_usageid
-				$type
-		";
-		return \lib\db::get($query);
-	}
-
-
-	/**
-	 * remove record
-	 *
-	 * @param      <type>  $_args  The arguments
-	 */
-	public static function remove($_args, $_term_type = 'tag')
-	{
-		if(!is_array($_args))
-		{
-			return false;
-		}
-
-		$default_args =
-		[
-			'term_id'           => false,
-			'termusage_id'      => false,
-			'termusage_foreign' => false
-		];
-
-		$_args = array_merge($default_args, $_args);
-
-		if(!$_args['termusage_foreign'] || !$_args['termusage_id'])
-		{
-			return false;
-		}
-
-		$query =
-		"
-			DELETE termusages.* FROM termusages
-			INNER JOIN terms ON terms.id = termusages.term_id
-			WHERE
-				termusages.termusage_foreign = '$_args[termusage_foreign]' AND
-				termusages.termusage_id = $_args[termusage_id] AND
-				terms.term_type = '$_term_type'
-		";
-
-		if($_args['term_id'])
-		{
-			$query .= " AND termusages.term_id = $_args[term_id] ";
-		}
-		return \lib\db::query($query);
-	}
 }
 ?>

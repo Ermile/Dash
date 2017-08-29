@@ -11,7 +11,7 @@ class model extends \mvc\model
 		$result = [];
 		if($id && is_numeric($id))
 		{
-			$result = \lib\db\users::get($id);
+			$result = \lib\db\users::get_by_id($id);
 		}
 		return $result;
 	}

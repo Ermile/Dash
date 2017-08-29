@@ -15,32 +15,9 @@ class comments
 	 * @param array $_args fields data
 	 * @return mysql result
 	 */
-	public static function insert($_args){
-
-		$set = [];
-		foreach ($_args as $key => $value) {
-			if($value === null)
-			{
-				$set[] = " `$key` = NULL ";
-			}
-			elseif(is_int($value))
-			{
-				$set[] = " `$key` = $value ";
-			}
-			else
-			{
-				$set[] = " `$key` = '$value' ";
-			}
-		}
-		$set = join($set, ',');
-		$query =
-		"
-			INSERT INTO
-				comments
-			SET
-				$set
-		";
-		return \lib\db::query($query);
+	public static function insert()
+	{
+		return \lib\db\config::public_insert('comments', ...func_get_args());
 	}
 
 
@@ -51,23 +28,9 @@ class comments
 	 * @param string || int $_id record id
 	 * @return mysql result
 	 */
-	public static function update($_args, $_id) {
-
-		// ready fields and values to update syntax query [update table set field = 'value' , field = 'value' , .....]
-		$query = [];
-		foreach ($_args as $field => $value) {
-			$query[] = "$field = '$value'";
-		}
-		$query = join($query, ",");
-
-		// make update query
-		$query = "
-				UPDATE comments
-				SET $query
-				WHERE comments.id = $_id;
-				";
-
-		return \lib\db::query($query);
+	public static function update()
+	{
+		return \lib\db\config::public_update('comments', ...func_get_args());
 	}
 
 
@@ -77,7 +40,8 @@ class comments
 	 * @param string || int $_id record id
 	 * @return mysql result
 	 */
-	public static function delete($_id) {
+	public static function delete($_id)
+	{
 		// get id
 		$query = "
 				UPDATE comments
@@ -94,13 +58,20 @@ class comments
 	 * @param string $_query string query
 	 * @return mysql result
 	 */
-	public static function select($_query, $_type = 'query') {
+	public static function select($_query, $_type = 'query')
+	{
 		return \lib\db::$_type($_query);
 	}
 
 
-
-
+	/**
+	 * save a comments
+	 *
+	 * @param      <type>  $_content  The content
+	 * @param      array   $_args     The arguments
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
 	public static function save($_content, $_args = null)
 	{
 		$values =
@@ -185,6 +156,15 @@ class comments
 	}
 
 
+	/**
+	 * Gets the post comment.
+	 *
+	 * @param      <type>   $_post_id  The post identifier
+	 * @param      integer  $_limit    The limit
+	 * @param      boolean  $_user_id  The user identifier
+	 *
+	 * @return     <type>   The post comment.
+	 */
 	public static function get_post_comment($_post_id, $_limit = 6, $_user_id = false)
 	{
 		if(!is_numeric($_limit))
@@ -342,7 +322,8 @@ class comments
 					return false;
 				}
 
-				foreach ($meta as $key => $value) {
+				foreach ($meta as $key => $value)
+				{
 					if($key == 'total' || $key == "rate$_rate")
 					{
 						$meta[$key]['count'] = $meta[$key]['count'] + 1;

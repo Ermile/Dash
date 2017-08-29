@@ -16,26 +16,27 @@ class users
 	 *
 	 * @param      <type>  $_user_id  The user identifier
 	 */
-	public static function get($_user_id, $_field = null)
+	public static function get()
 	{
-		$field     = '*';
-		$get_field = null;
-		if(is_array($_field))
-		{
-			$field     = '`'. join($_field, '`, `'). '`';
-			$get_field = null;
-		}
-		elseif($_field && is_string($_field))
-		{
-			$field     = '`'. $_field. '`';
-			$get_field = $_field;
-		}
+		return \lib\db\config::public_get('users', ...func_get_args());
+	}
 
-		$query = " SELECT $field FROM users WHERE users.id = $_user_id LIMIT 1
-			-- users::get()
-		";
-		$result = \lib\db::get($query, $get_field, true);
-		return $result;
+
+	/**
+	 * Gets the by identifier.
+	 *
+	 * @param      <type>  $_user_id  The user identifier
+	 *
+	 * @return     <type>  The by identifier.
+	 */
+	public static function get_by_id($_user_id)
+	{
+		$args =
+		[
+			'id'    => $_user_id,
+			'limit' => 1
+		];
+		return self::get($args);
 	}
 
 
@@ -77,10 +78,14 @@ class users
 				"
 					SELECT * FROM users
 					WHERE
+					(
 						users.user_email         = '$_email' OR
 						users.user_google_mail   = '$_email' OR
 						users.user_facebook_mail = '$_email' OR
 						users.user_twitter_mail  = '$_email'
+					) AND
+					users.user_status != 'removed'
+					ORDER BY users.id DESC
 					LIMIT 1
 				";
 				break;
@@ -88,13 +93,29 @@ class users
 			case 'user_google_mail':
 			case 'user_facebook_mail':
 			case 'user_twitter_mail':
-				$query = " SELECT * FROM users WHERE users.$_field = '$_email' LIMIT 1 ";
+				$query =
+				"
+					SELECT *
+					FROM users
+					WHERE users.$_field = '$_email'
+					AND users.user_status != 'removed'
+					ORDER BY users.id DESC
+					LIMIT 1
+				";
 				break;
 
 			case false:
 			case 'user_email':
 			default:
-				$query = " SELECT * FROM users WHERE users.user_email = '$_email' LIMIT 1 ";
+				$query =
+				"
+					SELECT *
+					FROM users
+					WHERE users.user_email = '$_email'
+					AND users.user_status != 'removed'
+					ORDER BY users.id DESC
+					LIMIT 1
+				";
 				break;
 		}
 
@@ -111,8 +132,12 @@ class users
 	 */
 	public static function get_by_username($_username)
 	{
-		$query = " SELECT * FROM users WHERE users.user_username = '$_username' LIMIT 1	-- users::get_by_username()";
-		return \lib\db::get($query, null, true);
+		$args =
+		[
+			'user_username' => $_username,
+			'limit'         => 1
+		];
+		return self::get($args);
 	}
 
 
@@ -125,8 +150,13 @@ class users
 	 */
 	public static function get_by_mobile($_mobile)
 	{
-		$query = " SELECT * FROM users WHERE users.user_mobile = '$_mobile' LIMIT 1 -- users::get_id()";
-		return \lib\db::get($query, null, true);
+		$args =
+		[
+			'user_mobile' => $_mobile,
+			'limit'       => 1
+		];
+		$result = self::get($args);
+		return $result;
 	}
 
 
@@ -135,28 +165,9 @@ class users
 	 * @param array $_args fields data
 	 * @return mysql result
 	 */
-	public static function insert($_args)
+	public static function insert()
 	{
-
-		$set = [];
-		foreach ($_args as $key => $value)
-		{
-			if($value === null)
-			{
-				$set[] = " `$key` = NULL ";
-			}
-			elseif(is_numeric($value))
-			{
-				$set[] = " `$key` = $value ";
-			}
-			elseif(is_string($value))
-			{
-				$set[] = " `$key` = '$value' ";
-			}
-		}
-		$set = join($set, ',');
-		$query = " INSERT INTO users SET $set ";
-		return \lib\db::query($query);
+		return \lib\db\config::public_insert('users', ...func_get_args());
 	}
 
 
@@ -167,52 +178,9 @@ class users
 	 *
 	 * @return     boolean  ( description_of_the_return_value )
 	 */
-	public static function insert_multi($_args)
+	public static function insert_multi()
 	{
-		if(!is_array($_args))
-		{
-			return false;
-		}
-		// marge all input array to creat list of field to be insert
-		$fields = [];
-		foreach ($_args as $key => $value)
-		{
-			$fields = array_merge($fields, $value);
-		}
-		// empty record not inserted
-		if(empty($fields))
-		{
-			return true;
-		}
-
-		// creat multi insert query : INSERT INTO TABLE (FIELDS) VLUES (values), (values), ...
-		$values = [];
-		$together = [];
-		foreach ($_args	 as $key => $value)
-		{
-			foreach ($fields as $field_name => $vain)
-			{
-				if(array_key_exists($field_name, $value))
-				{
-					$values[] = "'" . $value[$field_name] . "'";
-				}
-				else
-				{
-					$values[] = "NULL";
-				}
-			}
-			$together[] = join($values, ",");
-			$values     = [];
-		}
-
-		$fields = join(array_keys($fields), ",");
-
-		$values = join($together, "),(");
-
-		// crate string query
-		$query = "INSERT INTO users ($fields) VALUES ($values) ";
-
-		\lib\db::query($query);
+		\lib\db\config::public_insert_multi('users', ...func_get_args());
 		return \lib\db::insert_id();
 	}
 
@@ -224,42 +192,9 @@ class users
 	 * @param string || int $_id record id
 	 * @return mysql result
 	 */
-	public static function update($_args, $_id)
+	public static function update()
 	{
-
-		// ready fields and values to update syntax query [update table set field = 'value' , field = 'value' , .....]
-		$query = [];
-		foreach ($_args as $field => $value)
-		{
-			if($value === null)
-			{
-				$query[] = " `$field` = NULL ";
-			}
-			elseif(is_numeric($value))
-			{
-				$query[] = " `$field` = $value ";
-			}
-			elseif(is_string($value))
-			{
-				$query[] = " `$field` = '$value' ";
-			}
-		}
-
-		if(empty($query))
-		{
-			return true;
-		}
-
-		$query = join($query, ",");
-
-		// make update query
-		$query = "
-				UPDATE users
-				SET $query
-				WHERE users.id = $_id;
-				";
-
-		return \lib\db::query($query);
+		return \lib\db\config::public_update('users', ...func_get_args());
 	}
 
 
@@ -298,7 +233,7 @@ class users
 	 *
 	 * @return     <type>  ( description_of_the_return_value )
 	 */
-	public static function signup_quice($_args = [])
+	public static function signup_quick($_args = [])
 	{
 		$_args      = array_merge(['user_createdate' => date('Y-m-d H:i:s')], $_args);
 		$insert_new = self::insert($_args);
@@ -453,420 +388,6 @@ class users
 	}
 
 
-	/**
-	 * update mobile number of specefic user
-	 * @param  [type] $_user   [description]
-	 * @param  [type] $_mobile [description]
-	 * @return [type]          [description]
-	 */
-	public static function updateMobile($_user, $_mobile)
-	{
-		$qry        = "UPDATE `users` SET `user_mobile` = $_mobile WHERE id = $_user;";
-		$result     = \lib\db::query($qry);
-		$changeDate = date('Y-m-d H:i:s');
-
-		// save mobile number in user history
-		$userDetail =
-		[
-			'user'   => $_user,
-			'cat'    => 'history_'.$_user,
-			'key'    => 'mobile',
-			'value'  => $_mobile,
-			'meta'   => $changeDate,
-		];
-		$result = \lib\utility\option::set($userDetail);
-
-		return $result;
-	}
-
-
-	/**
-	 * { function_description }
-	 *
-	 * @param      <type>  $_user   The user
-	 * @param      <type>  $_type   The type
-	 * @param      <type>  $_value  The value
-	 * @param      <type>  $_args   The arguments
-	 *
-	 * @return     <type>  ( description_of_the_return_value )
-	 */
-	public static function updateDetail($_user, $_type, $_value, $_args)
-	{
-		$changeDate = date('Y-m-d H:i:s');
-		// save mobile number in user history
-		$userDetail =
-		[
-			'user'   => $_user,
-			'cat'    => 'history_'.$_user,
-			'key'    => $_type,
-			'value'  => $_value,
-			'meta'   => $_args,
-		];
-		$result = \lib\utility\option::set($userDetail);
-
-		return $result;
-	}
-
-
-	/**
-	 * Gets the detail.
-	 *
-	 * @param      <type>  $_user   The user
-	 * @param      string  $_field  The field
-	 * @param      <type>  $_cat    The cat
-	 * @param      <type>  $_key    The key
-	 *
-	 * @return     <type>  The detail.
-	 */
-	public static function getDetail($_user, $_field = '*', $_cat = null, $_key = null)
-	{
-		$qry =
-			"SELECT $_field FROM `options` WHERE user_id = $_user ";
-		if($_cat)
-		{
-			$qry .= "AND option_cat LIKE '$_cat'";
-		}
-
-		if($_key)
-		{
-			$qry .= "AND option_key LIKE '$_key'";
-		}
-		if(is_string($_field))
-		{
-			$result = \lib\db::get($qry, $_field, true);
-		}
-		else
-		{
-			$result = \lib\db::get($qry, null, true);
-		}
-		// var_dump($result);
-		// var_dump($qry);
-		return $result;
-	}
-
-
-	/**
-	 * get users data
-	 *
-	 * @param      <type>  $_user_id  The user identifier
-	 * @param      <type>  $_field    The field
-	 *
-	 * @return     <type>  The user data.
-	 */
-	public static function get_user_data($_user_id, $_field = null)
-	{
-		if($_field == null)
-		{
-			$_field = "*";
-		}
-		elseif(is_array($_field))
-		{
-			$field = [];
-			foreach ($_field as $key => $value)
-			{
-				$field[] = " users.$value ";
-			}
-			$_field = join($field, ",");
-		}
-		elseif(is_string($_field))
-		{
-			$_field = " users.$_field AS '$_field' ";
-		}
-		else
-		{
-			return false;
-		}
-		$query =
-		"
-			SELECT
-				$_field
-			FROM
-				users
-			WHERE
-				users.id = $_user_id
-			LIMIT 1
-		";
-		$result = \lib\db::get($query, null, true);
-		return $result;
-	}
-
-
-	/**
-	 * Sets the user data.
-	 *
-	 * @param      <type>  $_user_id  The user identifier
-	 * @param      <type>  $_field    The field
-	 * @param      <type>  $_value    The value
-	 *
-	 * @return     <type>  ( description_of_the_return_value )
-	 */
-	public static function set_user_data($_user_id, $_field, $_value)
-	{
-		$query =
-		"
-			UPDATE
-				users
-			SET
-				users.$_field = '$_value'
-			WHERE
-				users.id = $_user_id
-		";
-		$result = \lib\db::query($query);
-		return $result;
-	}
-
-	/**
-	 * Gets the displayname.
-	 *
-	 * @param      <type>  $_user_id  The user identifier
-	 *
-	 * @return     <type>  The displayname.
-	 */
-	public static function get_displayname($_user_id)
-	{
-		if(isset($_SESSION['user']['displayname']))
-		{
-			return $_SESSION['user']['displayname'];
-		}
-		$result = self::get_user_data($_user_id, "user_displayname");
-		$_SESSION['user']['displayname'] = isset($result["user_displayname"]) ? $result["user_displayname"] : null;
-		return $_SESSION['user']['displayname'];
-	}
-
-
-	/**
-	 * Sets the displayname.
-	 *
-	 * @param      <type>   $_user_id      The user identifier
-	 * @param      <type>   $_displayname  The displayname
-	 *
-	 * @return     boolean  ( description_of_the_return_value )
-	 */
-	public static function set_displayname($_user_id, $_displayname)
-	{
-		// check new display name vs old display name
-		if(isset($_SESSION['user']['displayname']) && $_SESSION['user']['displayname'] == $_displayname )
-		{
-			return true;
-		}
-
-		$_displayname = \lib\utility\safe::safe($_displayname);
-		if(mb_strlen($_displayname) > 99)
-		{
-			$_displayname = null;
-		}
-
-
-		$result = self::set_user_data($_user_id, "user_displayname", $_displayname);
-		if($result)
-		{
-			$_SESSION['user']['displayname'] = $_displayname;
-		}
-		return $result;
-	}
-
-
-	/**
-	 * Sets the displayname.
-	 *
-	 * @param      <type>   $_user_id      The user identifier
-	 * @param      <type>   $_displayname  The displayname
-	 *
-	 * @return     boolean  ( description_of_the_return_value )
-	 */
-	public static function set_mobile($_user_id, $_mobile)
-	{
-		// check new display name vs old display name
-		if(isset($_SESSION['user']['mobile']) && $_SESSION['user']['mobile'] == $_mobile )
-		{
-			return true;
-		}
-		$result = self::set_user_data($_user_id, "user_mobile", $_mobile);
-		if($result)
-		{
-			$_SESSION['user']['mobile'] = $_mobile;
-		}
-		return $result;
-	}
-
-
-	/**
-	 * Gets the email.
-	 *
-	 * @param      <type>  $_user_id  The user identifier
-	 *
-	 * @return     <type>  The email.
-	 */
-	public static function get_mobile($_user_id)
-	{
-		if(isset($_SESSION['user']['mobile']))
-		{
-			return $_SESSION['user']['mobile'];
-		}
-		$result = self::get_user_data($_user_id, "user_mobile");
-		$_SESSION['user']['mobile'] = isset($result["user_mobile"]) ? $result["user_mobile"]: null;
-		return $_SESSION['user']['mobile'];
-	}
-
-
-	/**
-	 * Gets the email.
-	 *
-	 * @param      <type>  $_user_id  The user identifier
-	 *
-	 * @return     <type>  The email.
-	 */
-	public static function get_email($_user_id)
-	{
-		if(isset($_SESSION['user']['email']))
-		{
-			return $_SESSION['user']['email'];
-		}
-		$result = self::get_user_data($_user_id, "user_email");
-		$_SESSION['user']['email'] = isset($result["user_email"]) ? $result["user_email"]: null;
-		return $_SESSION['user']['email'];
-	}
-
-
-	/**
-	 * Sets the email.
-	 *
-	 * @param      <type>  $_user_id  The user identifier
-	 * @param      <type>  $_email    The email
-	 *
-	 * @return     <type>  ( description_of_the_return_value )
-	 */
-	public static function set_email($_user_id, $_email)
-	{
-		if(isset($_SESSION['user']['email']) && $_SESSION['user']['email'] == $_email )
-		{
-			return true;
-		}
-		$result = self::set_user_data($_user_id, "user_email", $_email);
-		if($result)
-		{
-			$_SESSION['user']['email'] = $_email;
-		}
-		return $result;
-	}
-
-
-	/**
-	 * Sets the user language.
-	 *
-	 * @param      <type>  $_language  The language
-	 *
-	 * @return     <type>  ( description_of_the_return_value )
-	 */
-	public static function set_language($_language, $_options = [])
-	{
-		$return = new \lib\db\db_return();
-		$result = null;
-		$default_options =
-		[
-			"update_on_duplicate" => true,
-			"user_id"             => self::$user_id
-		];
-
-		$_options = array_merge($default_options, $_options);
-
-		// set user id
-		if($_options['user_id'] == null)
-		{
-			return $return->set_ok(false)->set_error_code(2000);
-		}
-
-		$arg =
-		[
-			'user_id'      => $_options['user_id'],
-			'option_cat'   => 'user_detail_'. $_options['user_id'],
-			'option_key'   => 'language',
-			'option_value' => $_language
-		];
-
-		$where =
-		[
-			'user_id'    => $_options['user_id'],
-			'option_cat' => 'user_detail_'. $_options['user_id'],
-			'option_key' => 'language'
-		];
-
-		$get_language = self::get_language($_options['user_id']);
-
-		if($get_language)
-		{
-			if($get_language == $_language)
-			{
-				return $return->set_ok(true)
-						->set_error_code(2001)
-						->set_old_language($get_language)
-						->set_new_language($_language);
-			}
-
-			if($_options['update_on_duplicate'])
-			{
-				$result = \lib\db\options::update_on_error($arg, $where);
-				return $return->set_ok(true)
-						->set_error_code(2002)
-						->set_old_language($get_language)
-						->set_new_language($_language);
-			}
-		}
-		else
-		{
-			$result = \lib\db\options::insert($arg);
-		}
-		if($result)
-		{
-			return $return->set_ok(true)
-						->set_error_code(2003)
-						->set_old_language($get_language)
-						->set_new_language($_language);
-		}
-		else
-		{
-			return $return->set_ok(false)
-						->set_error_code(2004)
-						->set_old_language($get_language)
-						->set_new_language($_language);
-		}
-
-		return $result;
-	}
-
-
-	/**
-	 * Gets the user language.
-	 *
-	 * @return     <type>  The language.
-	 */
-	public static function get_language($_user_id = null)
-	{
-		if($_user_id === null)
-		{
-			$user_id = self::$user_id;
-		}
-		else
-		{
-			$user_id = $_user_id;
-		}
-
-		$query =
-		"
-			SELECT
-				option_value AS 'language'
-			FROM
-				options
-			WHERE
-				post_id IS NULL AND
-				user_id = $user_id AND
-				option_cat = 'user_detail_$user_id' AND
-				option_key = 'language'
-			LIMIT 1
-		";
-		return \lib\db::get($query, 'language', true);
-	}
-
 
 	/**
 	 * set login session
@@ -969,6 +490,189 @@ class users
 		}
 		$result = \lib\db::get($query, $field, $only_one_record);
 		return $result;
+	}
+
+
+		/**
+	 * get users method
+	 *
+	 * @param      <type>  $_fuck  The fuck
+	 * @param      <type>  $_args  The arguments
+	 */
+	public static function __callStatic($_fn, $_args)
+	{
+		if(preg_match("/^(is|get|set)\_?(.*)$/", $_fn, $split))
+		{
+			if(isset($split[1]))
+			{
+				if(isset($_args[0]) && is_numeric($_args[0]))
+				{
+					if(!isset(self::$USERS_DETAIL[$_args[0]]))
+					{
+						self::$USERS_DETAIL[$_args[0]] = \lib\db\users::get_by_id($_args[0]);
+					}
+				}
+				if($split[1] === 'get')
+				{
+					return self::static_get($split[2], ...$_args);
+				}
+
+				if($split[1] === 'set')
+				{
+					return self::static_set($split[2], ...$_args);
+				}
+
+				if($split[1] === 'is')
+				{
+					return self::static_is($split[2], ...$_args);
+				}
+			}
+		}
+	}
+
+
+	/**
+	 * get users data
+	 *
+	 * @param      <type>  $_field    The field
+	 * @param      <type>  $_user_id  The user identifier
+	 */
+	private static function static_get($_field, $_user_id)
+	{
+		if($_field)
+		{
+			switch ($_field)
+			{
+				case null:
+					if(isset(self::$USERS_DETAIL[$_user_id]))
+					{
+						return self::$USERS_DETAIL[$_user_id];
+					}
+					else
+					{
+						return false;
+					}
+					break;
+
+				case 'language':
+					if(isset(self::$USERS_DETAIL[$_user_id]['user_language']))
+					{
+						return self::$USERS_DETAIL[$_user_id]['user_language'];
+					}
+					else
+					{
+						return false;
+					}
+					break;
+
+				case 'unit':
+					if(isset(self::$USERS_DETAIL[$_user_id]['unit_id']))
+					{
+						$unit = \lib\utility\units::get(self::$USERS_DETAIL[$_user_id]['unit_id']);
+						if(isset($unit['title']))
+						{
+							return $unit['title'];
+						}
+					}
+					return null;
+					break;
+
+				default:
+					if(isset(self::$USERS_DETAIL[$_user_id][$_field]))
+					{
+						return self::$USERS_DETAIL[$_user_id][$_field];
+					}
+					else
+					{
+						return null;
+					}
+					break;
+			}
+		}
+		else
+		{
+			if(isset(self::$USERS_DETAIL[$_user_id]))
+			{
+				return self::$USERS_DETAIL[$_user_id];
+			}
+			else
+			{
+				return null;
+			}
+		}
+	}
+
+
+	/**
+	 * set users data
+	 *
+	 * @param      <type>  $_field    The field
+	 * @param      <type>  $_user_id  The user identifier
+	 */
+	private static function static_set($_field, $_user_id, $_value = null)
+	{
+		$update = [];
+		switch ($_field)
+		{
+			case 'language':
+				if(\lib\utility\location\languages::check($_value))
+				{
+					$update['user_language'] = $_value;
+				}
+				break;
+
+			case 'unit':
+				$unit_id = \lib\utility\units::get_id($_value);
+				if($unit_id)
+				{
+					$update['unit_id'] = $unit_id;
+				}
+				break;
+
+			case 'unit_id':
+				$check = \lib\utility\units::get($_value);
+				if($check)
+				{
+					$update['unit_id'] = $_value;
+				}
+				break;
+
+			default:
+				$update[$_field] = $_value;
+				break;
+		}
+		if(!empty($update))
+		{
+			\lib\db\users::update($update, $_user_id);
+			unset(self::$USERS_DETAIL[$_user_id]);
+		}
+	}
+
+
+	/**
+	 * check some field by some value and return true or false
+	 * @example self::is_guest(user_id) = false
+	 *
+	 * @param      <type>   $_field    The field
+	 * @param      <type>   $_user_id  The user identifier
+	 *
+	 * @return     boolean  ( description_of_the_return_value )
+	 */
+	private static function static_is($_field, $_user_id)
+	{
+		switch ($_field)
+		{
+			default:
+			if(isset(self::$USERS_DETAIL[$_user_id][$_field]) && self::$USERS_DETAIL[$_user_id][$_field])
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+			break;
+		}
 	}
 }
 ?>

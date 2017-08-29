@@ -18,42 +18,9 @@ class posts
 	 * @param array $_args fields data
 	 * @return mysql result
 	 */
-	public static function insert($_args)
+	public static function insert()
 	{
-		if(!is_array($_args))
-		{
-			return false;
-		}
-
-		$set = [];
-		foreach ($_args as $key => $value)
-		{
-			if($value === null)
-			{
-				$set[] = " `$key` = NULL ";
-			}
-			elseif(is_numeric($value))
-			{
-				$set[] = " `$key` = $value ";
-			}
-			elseif(is_array($value))
-			{
-				$set[] = " `$key` = '".json_encode($value, JSON_UNESCAPED_UNICODE)."' ";
-			}
-			elseif(is_string($value))
-			{
-				$set[] = " `$key` = '$value' ";
-			}
-		}
-		$set = join($set, ',');
-		$query =
-		"
-			INSERT INTO
-				posts
-			SET
-				$set
-		";
-		return \lib\db::query($query);
+		return \lib\db\config::public_insert('posts', ...func_get_args());
 	}
 
 
@@ -64,40 +31,9 @@ class posts
 	 * @param string || int $_id record id
 	 * @return mysql result
 	 */
-	public static function update($_args, $_id)
+	public static function update()
 	{
-
-		if(!is_array($_args))
-		{
-			return false;
-		}
-
-		$query = [];
-		foreach ($_args as $field => $value)
-		{
-			if(is_numeric($value))
-			{
-				$query[] = " $field = $value ";
-			}
-			elseif ($value === null)
-			{
-				$query[] = " $field = NULL ";
-			}
-			else
-			{
-				$query[] = " $field = '$value' ";
-			}
-		}
-		$query = join($query, ",");
-
-		// make update query
-		$query = "
-				UPDATE posts
-				SET $query
-				WHERE posts.id = $_id;
-				";
-
-		return \lib\db::query($query);
+		return \lib\db\config::public_update('posts', ...func_get_args());
 	}
 
 
@@ -117,17 +53,6 @@ class posts
 				";
 
 		return \lib\db::query($query);
-	}
-
-
-	/**
-	 * get string query and return mysql result
-	 * @param string $_query string query
-	 * @return mysql result
-	 */
-	public static function select($_query, $_type = 'query')
-	{
-		return \lib\db::$_type($_query);
 	}
 
 
@@ -209,6 +134,7 @@ class posts
 		return false;
 	}
 
+
 	/**
 	 * get list of polls
 	 * @param  [type] $_user_id set userid
@@ -216,117 +142,9 @@ class posts
 	 * @param  string $_type    set type of post
 	 * @return [type]           an array or number
 	 */
-	public static function get($_user_id = null, $_return = null, $_type = 'post')
+	public static function get()
 	{
-		// calc type if needed
-		if($_type === null)
-		{
-			$_type = "post_type LIKE NOT NULL";
-		}
-		else
-		{
-			$_type = "post_type = '". $_type. "'";
-		}
-		// calc user id if exist
-		if($_user_id)
-		{
-			$_user_id = "AND user_id = $_user_id";
-		}
-		else
-		{
-			$_user_id = null;
-		}
-		// generate query string
-		$qry = "SELECT * FROM posts WHERE $_type $_user_id";
-		// run query
-		if($_return && $_return !== 'count')
-		{
-			$result = \lib\db::get($qry, $_return);
-		}
-		else
-		{
-			$result = \lib\db::get($qry);
-		}
-		// if user want count of result return count of it
-		if($_return === 'count')
-		{
-			return count($result);
-		}
-		// return last insert id
-		return $result;
-	}
-
-
-	/**
-	 * save question into post table
-	 * @param  [type] $_title    [description]
-	 * @param  [type] $_answersList [description]
-	 * @return [type]               [description]
-	 */
-	public static function insertOrder($_title, $_meta, $_user_id = null)
-	{
-		$slug    = \lib\utility\filter::slug($_title);
-		$pubDate = date('Y-m-d H:i:s');
-		$url     = 'order/'.date('Y-m-d').$_user_id.'/'.$slug;
-		$_meta   = json_encode($_meta, JSON_UNESCAPED_UNICODE);
-		// create query string
-		$qry = "INSERT INTO posts
-		(
-			`post_language`,
-			`post_title`,
-			`post_slug`,
-			`post_url`,
-			`post_meta`,
-			`post_type`,
-			`post_status`,
-			`post_publishdate`,
-			`user_id`
-		)
-		VALUES
-		(
-			'fa',
-			'$_title',
-			'$slug',
-			'$url',
-			'$_meta',
-			'order',
-			'draft',
-			'$pubDate',
-			$_user_id
-		)";
-		// run query
-		$result        = \lib\db::query($qry);
-		// return last insert id
-		$newId    = \lib\db::insert_id();
-		// save answers into options table
-		return $newId;
-	}
-
-
-	/**
-	 * Gets the post meta.
-	 *
-	 * @param      <type>  $_post_id  The post identifier
-	 *
-	 * @return     <type>  The post meta.
-	 */
-	public static function get_post_meta($_post_id)
-	{
-		$query =
-		"
-			SELECT
-				*
-			FROM
-				options
-			WHERE
-				options.post_id = $_post_id AND
-				options.option_cat = 'poll_$_post_id' AND
-				options.user_id IS NULL AND
-				options.option_status = 'enable'
-
-		";
-		$result = \lib\db\options::select($query, "get");
-		return \lib\utility\filter::meta_decode($result);
+		return \lib\db\config::public_get('posts', ...func_get_args());
 	}
 }
 ?>

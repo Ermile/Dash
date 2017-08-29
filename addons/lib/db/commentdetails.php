@@ -15,38 +15,9 @@ class commentdetails
 	 * @param array $_args fields data
 	 * @return mysql result
 	 */
-	public static function insert($_args)
+	public static function insert()
 	{
-
-		if(empty($_args))
-		{
-			return null;
-		}
-		$set = [];
-		foreach ($_args as $key => $value) {
-			if($value === null)
-			{
-				$set[] = " `$key` = NULL ";
-			}
-			elseif(is_int($value))
-			{
-				$set[] = " `$key` = $value ";
-			}
-			else
-			{
-				$set[] = " `$key` = '$value' ";
-			}
-		}
-		$set = join($set, ',');
-
-		$query =
-		"
-			INSERT INTO
-				commentdetails
-			SET
-				$set
-		";
-		return \lib\db::query($query);
+		return \lib\db\config::public_insert('commentdetails', ...func_get_args());
 	}
 
 

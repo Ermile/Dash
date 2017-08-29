@@ -218,6 +218,5 @@ class notifications
 			return self::insert($insert);
 		}
 	}
-
 }
 ?>

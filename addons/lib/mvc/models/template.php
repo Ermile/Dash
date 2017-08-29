@@ -11,26 +11,27 @@ trait template
 	function s_template_finder($_args = null)
 	{
 		// first of all search in url field if exist return row data
-		$tmp_result = $this->get_posts(true, $_args);
-		if($tmp_result)
-		{
-			return $tmp_result;
-		}
-		// if url not exist in posts then search in terms table and if exist return row data
-		$tmp_result = $this->get_terms(true, $_args);
-		if($tmp_result)
-		{
-			return $tmp_result;
-		}
+		// $tmp_result = $this->get_posts(true, $_args);
+		// if($tmp_result)
+		// {
+		// 	return $tmp_result;
+		// }
 
-		// if url not exist in terms table then analyze the url to load similar
-		// tag/(.*) || cat/(.*)
-		// this url get from term type
-		$tmp_result = $this->get_terms_type(true, $_args);
-		if($tmp_result)
-		{
-			return $tmp_result;
-		}
+		// // if url not exist in posts then search in terms table and if exist return row data
+		// $tmp_result = $this->get_terms(true, $_args);
+		// if($tmp_result)
+		// {
+		// 	return $tmp_result;
+		// }
+
+		// // if url not exist in terms table then analyze the url to load similar
+		// // tag/(.*) || cat/(.*)
+		// // this url get from term type
+		// $tmp_result = $this->get_terms_type(true, $_args);
+		// if($tmp_result)
+		// {
+		// 	return $tmp_result;
+		// }
 		// else retun false
 		return false;
 	}

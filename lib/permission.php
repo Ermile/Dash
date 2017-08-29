@@ -51,7 +51,7 @@ class permission
 		// else if we have user_id get it from user detail
 		else if(self::$user_id && is_numeric(self::$user_id))
 		{
-			$user_data = \lib\db\users::get(self::$user_id);
+			$user_data = \lib\db\users::get_by_id(self::$user_id);
 			if(isset($user_data['user_permission']))
 			{
 				self::$user_permission = trim($user_data['user_permission']);

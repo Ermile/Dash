@@ -15,33 +15,9 @@ class options
 	 * @param array $_args fields data
 	 * @return mysql result
 	 */
-	public static function insert($_args)
+	public static function insert()
 	{
-		if(!is_array($_args))
-		{
-			return false;
-		}
-
-		$set = [];
-
-		foreach ($_args as $key => $value)
-		{
-			if($value === null)
-			{
-				$set[] = " `$key` = NULL ";
-			}
-			elseif(is_int($value))
-			{
-				$set[] = " `$key` = $value ";
-			}
-			else
-			{
-				$set[] = " `$key` = '$value' ";
-			}
-		}
-		$set = join($set, ',');
-		$query = " INSERT INTO 	options SET $set ";
-		\lib\db::query($query);
+		\lib\db\config::public_insert('options', ...func_get_args());
 		return \lib\db::insert_id();
 	}
 
@@ -53,58 +29,9 @@ class options
 	 *
 	 * @return     boolean  ( description_of_the_return_value )
 	 */
-	public static function insert_multi($_args)
+	public static function insert_multi()
 	{
-		if(!is_array($_args))
-		{
-			return false;
-		}
-		// marge all input array to creat list of field to be insert
-		$fields = [];
-		foreach ($_args as $key => $value)
-		{
-			$fields = array_merge($fields, $value);
-		}
-		// empty record not inserted
-		if(empty($fields))
-		{
-			return true;
-		}
-
-		// creat multi insert query : INSERT INTO TABLE (FIELDS) VLUES (values), (values), ...
-		$values = [];
-		$together = [];
-		foreach ($_args	 as $key => $value)
-		{
-			foreach ($fields as $field_name => $vain)
-			{
-				if(array_key_exists($field_name, $value))
-				{
-					$values[] = "'" . $value[$field_name] . "'";
-				}
-				else
-				{
-					$values[] = "NULL";
-				}
-			}
-			$together[] = join($values, ",");
-			$values     = [];
-		}
-
-		$fields = join(array_keys($fields), ",");
-
-		$values = join($together, "),(");
-
-		// crate string query
-		$query = "
-				INSERT INTO options
-				($fields)
-				VALUES
-				($values)
-				";
-
-		return \lib\db::query($query);
-
+		return \lib\db\config::public_insert_multi('options', ...func_get_args());
 	}
 
 
@@ -169,38 +96,9 @@ class options
 	 * @param string || int $_id record id
 	 * @return mysql result
 	 */
-	public static function update($_args, $_id)
+	public static function update()
 	{
-
-		// ready fields and values to update syntax query [update table set field = 'value' , field = 'value' , .....]
-		$query = [];
-		foreach ($_args as $field => $value)
-		{
-			if(preg_match("/\%/", $value))
-			{
-				$query[] = "$field LIKE '$value'";
-			}
-			else
-			{
-				$query[] = "$field = '$value'";
-			}
-		}
-
-		if(empty($query))
-		{
-			return true;
-		}
-
-		$query = join($query, ",");
-
-		// make update query
-		$query = "
-				UPDATE options
-				SET $query
-				WHERE options.id = $_id;
-				";
-
-		return \lib\db::query($query);
+		return \lib\db\config::public_update('options', ...func_get_args());
 	}
 
 
@@ -285,95 +183,15 @@ class options
 
 
 	/**
-	 * get string query and return mysql result
-	 * @param string $_query string query
-	 * @return mysql result
-	 */
-	public static function select($_query, $_type = 'query')
-	{
-		return \lib\db::$_type($_query);
-	}
-
-
-	/**
 	 * get the record of option table
 	 *
 	 * @param      <type>   $_args  The arguments
 	 *
 	 * @return     boolean  ( description_of_the_return_value )
 	 */
-	public static function get($_args)
+	public static function get()
 	{
-		$only_one_recort = false;
-
-		if(empty($_args) || !is_array($_args))
-		{
-			return false;
-		}
-
-		if(isset($_args['limit']))
-		{
-			if($_args['limit'] == 1)
-			{
-				$only_one_recort = true;
-			}
-
-			$limit = "LIMIT ". $_args['limit'];
-			unset($_args['limit']);
-		}
-		else
-		{
-			$limit = null;
-		}
-
-		$where = [];
-		foreach ($_args as $key => $value)
-		{
-			if(preg_match("/\%/", $value))
-			{
-				$where[] = " options.$key LIKE '$value'";
-			}
-			elseif($value === null)
-			{
-				$where[] = " options.$key IS NULL";
-			}
-			elseif(is_numeric($value))
-			{
-				$where[] = " options.$key = $value ";
-			}
-			elseif(is_string($value))
-			{
-				$where[] = " options.$key = '$value'";
-			}
-		}
-		$where = "WHERE ". join($where, " AND ");
-
-		$parent_id = null;
-
-		if(\lib\db::check_version('>=', '1.1.0', 'addons'))
-		{
-			$parent_id = ", parent_id";
-		}
-
-		$query =
-		"
-			SELECT
-				id,
-				user_id 		AS 'user_id',
-				post_id 		AS 'post_id',
-				option_cat 		AS 'cat',
-				option_key 		AS 'key',
-				option_value 	AS 'value',
-				option_meta 	AS 'meta',
-				option_status 	AS 'status',
-				date_modified
-				$parent_id
-			FROM
-				options
-			$where
-			$limit
-		";
-		$result = \lib\db::get($query, null, $only_one_recort);
+		$result = \lib\db\config::public_get('options', ...func_get_args());
 		if(isset($result['meta']) && substr($result['meta'], 0, 1) == '{')
 		{
 			$result['meta'] = json_decode($result['meta'], true);
