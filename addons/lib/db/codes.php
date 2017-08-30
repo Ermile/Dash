@@ -40,7 +40,7 @@ class codes
 
 		$check_exist_code =
 		[
-			'type'  => $_args['type'],
+			'type'  => 'code',
 			'slug'  => $_args['code'],
 			'limit' => 1,
 		];
@@ -56,8 +56,9 @@ class codes
 
 			$insert_term =
 			[
-				'type'    => $_args['type'],
+				'type'    => 'code',
 				'slug'    => $_args['code'],
+				'title'   => $_args['type'],
 				'user_id' => $_args['creator'],
 				'status'  => 'enable',
 			];
@@ -73,6 +74,7 @@ class codes
 		[
 			'term_id'    => $term_id,
 			'related'    => $_args['related'],
+			'type'       => $_args['type'],
 			'related_id' => $_args['id'],
 			'limit'      => 1,
 		];
@@ -86,6 +88,8 @@ class codes
 				'term_id'    => $term_id,
 				'related'    => $_args['related'],
 				'related_id' => $_args['id'],
+				'type'       => $_args['type'],
+				'status'     => 'enable',
 			];
 			\lib\db\termusages::insert($insert_termusage);
 		}
@@ -94,6 +98,7 @@ class codes
 			$where =
 			[
 				'term_id'    => $term_id,
+				'type'       => $_args['type'],
 				'related'    => $_args['related'],
 				'related_id' => $_args['id'],
 			];
@@ -120,9 +125,11 @@ class codes
 	{
 		$default_args =
 		[
-			'type'    => null,
-			'related' => null,
-			'id'      => null,
+			'type'         => null,
+			'related'      => null,
+			'id'           => null,
+			'status'       => null,
+			'multi_record' => false,
 		];
 
 		if(!is_array($_args))
@@ -132,16 +139,35 @@ class codes
 
 		$_args = array_merge($default_args, $_args);
 
-		if(!$_args['related'] || !$_args['id'] || !is_numeric($_args['id']))
+		if(!$_args['related'] || !$_args['id'])
 		{
 			return false;
 		}
 
+		// check status if need
+		$status_query = null;
+
+		if($_args['status'] && is_string($_args['status']))
+		{
+			$status_query = " AND termusages.status = '$_args[status]' ";
+		}
+
+		// check type if need
 		$type_query = null;
 
 		if($_args['type'] && is_string($_args['type']))
 		{
-			$type_query = " AND terms.type = '$_args[type]' ";
+			$type_query = " AND termusages.type = '$_args[type]' ";
+		}
+
+		// multi or single record
+		if($_args['multi_record'])
+		{
+			$id_query = " termusages.related_id IN ($_args[id]) ";
+		}
+		else
+		{
+			$id_query = " termusages.related_id = $_args[id] ";
 		}
 
 		$query =
@@ -149,18 +175,20 @@ class codes
 			SELECT
 				termusages.*,
 				terms.*,
-				terms.status AS `term_status`
+				terms.status AS `term_status`,
+				terms.title AS `term_title`
 			FROM
 				termusages
 			INNER JOIN terms ON terms.id = termusages.term_id
 			WHERE
 				termusages.related = '$_args[related]' AND
-				termusages.related_id = $_args[id]
+				$id_query
 				$type_query
+				$status_query
 		";
-		return \lib\db::get($query)
-	}
 
+		return \lib\db::get($query);
+	}
 
 
 	/**
@@ -172,7 +200,6 @@ class codes
 	{
 		$default_args =
 		[
-			'code'    => null,
 			'type'    => null,
 			'related' => null,
 			'id'      => null,
@@ -185,10 +212,60 @@ class codes
 
 		$_args = array_merge($default_args, $_args);
 
-		if(!$_args['related'] || !$_args['id'] || !is_numeric($_args['id']))
+		if(!$_args['related'] || !$_args['id'] || !is_numeric($_args['id']) || !$_args['type'])
 		{
 			return false;
 		}
+
+		$where =
+		[
+			'type'       => $_args['type'],
+			'related'    => $_args['related'],
+			'related_id' => $_args['id'],
+		];
+
+		\lib\db\termusages::delete($where);
+	}
+
+
+	/**
+	 * Gets the mulit codes.
+	 *
+	 * @param      <type>  $_args  The arguments
+	 */
+	public static function get_multi_codes($_args)
+	{
+
+		$default_args =
+		[
+			'type'    => null,
+			'status'  => null,
+			'related' => null,
+			'ids'     => null,
+		];
+
+		if(!is_array($_args))
+		{
+			$_args = [];
+		}
+
+		$_args = array_merge($default_args, $_args);
+
+		if(!$_args['related'] || !$_args['ids'] || !is_array($_args['ids']))
+		{
+			return false;
+		}
+
+		$get =
+		[
+			'status'       => $_args['status'],
+			'related'      => $_args['related'],
+			'id'           => implode(',', $_args['ids']),
+			'multi_record' => true,
+			'type'         => $_args['type'],
+		];
+
+		return self::get($get);
 	}
 }
 ?>
