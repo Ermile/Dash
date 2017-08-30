@@ -22,70 +22,66 @@ class termusages
 
 
 	/**
-	 * { function_description }
+	 * get termusage
 	 *
-	 * @param      <type>   $_args  The arguments
-	 *
-	 * @return     boolean  ( description_of_the_return_value )
+	 * @return     <type>  ( description_of_the_return_value )
 	 */
-	public static function check($_args)
+	public static function get()
 	{
-		if(!isset($_args['term_id']))
-		{
-			return false;
-		}
+		return \lib\db\config::public_get('termusages', ...func_get_args());
+	}
 
-		if(!isset($_args['termusage_foreign']))
-		{
-			return false;
-		}
 
-		if(!isset($_args['termusage_id']))
+	/**
+	 * hard delete crod of teamusage from database
+	 *
+	 * @param      <type>  $_where  The where
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public static function hard_delete($_where)
+	{
+		$where = \lib\db\config::make_where($_where);
+		if($where)
 		{
-			return false;
+			$query = "DELETE FROM termusages WHERE $where LIMIT 1";
+			return \lib\db::query($query);
 		}
+	}
 
-		$query =
-		"
-			SELECT
-				*
-			FROM
-				termusages
-			WHERE
-				term_id           = $_args[term_id] AND
-				termusage_id      = $_args[termusage_id] AND
-				termusage_foreign = '$_args[termusage_foreign]'
-			LIMIT 1
-		";
-		return \lib\db::get($query, null, true);
+
+	/**
+	 * set status of termusage as deleted
+	 *
+	 * @param      <type>  $_where  The where
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public static function delete($_where)
+	{
+		$set = ['status' => 'deleted'];
+		return self::update($_where, $set);
 	}
 
 
 	/**
 	 * { function_description }
 	 *
-	 * @param      <type>   $_old   The old
-	 * @param      <type>   $_new   The new
+	 * @param      <type>   $_where   The old
+	 * @param      <type>   $_set   The new
 	 *
 	 * @return     boolean  ( description_of_the_return_value )
 	 */
-	public static function update($_old, $_new)
+	public static function update($_where, $_set)
 	{
-		$set = \lib\db\config::make_set($_new);
-		$where = \lib\db\config::make_where($_old);
+		$set = \lib\db\config::make_set($_set);
+		$where = \lib\db\config::make_where($_where);
 
-		$query =
-		"
-			UPDATE
-				termusages
-			SET
-				$set
-			WHERE
-				$where
-			LIMIT 1
-		";
+		$query = " UPDATE termusages SET $set WHERE $where LIMIT 1 ";
 		return \lib\db::query($query);
 	}
+
+
 	/**
 	 * insert mutli tags (get id of tags) to teruseage
 	 *
