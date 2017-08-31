@@ -191,7 +191,8 @@ class codes
 				termusages.*,
 				terms.*,
 				terms.status AS `term_status`,
-				terms.title AS `term_title`
+				terms.title AS `term_title`,
+				termusages.type AS `termusage_type`
 			FROM
 				termusages
 			INNER JOIN terms ON terms.id = termusages.term_id
