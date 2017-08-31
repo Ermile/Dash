@@ -60,16 +60,15 @@
 {%endset%}
  <link rel="alternate"        href="{{myLangUrl}}" hreflang="{{key|slice(0, 2)}}"/>
 {%endfor%}
-{%if include.fontawesome %}
- <link rel="stylesheet"       href="{{url.myStatic}}css/font-awesome.min.css"/>{{include.newline}}{%endif%}
-{%if include.css_main%}
- <link rel="stylesheet"       href="{{url.myStatic}}css/main.css"/>{{include.newline}}{%endif%}
-{%if include.css_ermile%}
- <link rel="stylesheet"       href="{{url.myStatic}}css/ermile.css"/>{{include.newline}}{%endif%}
-{%if include.css     %}
+
+{%if include.siftal and siftalCSS != 'off' %}
+{%if dev.siftal %}
+ <link rel="stylesheet"       href="http://siftal.dev/css/siftal.css"/>{%else%}
+ <link rel="stylesheet"       href="{{url.static}}{{'siftal/css/siftal.css' | filemtime(true)}}"/>{%endif%}
+{%endif%}
+{%if include.css %}
  <link rel="stylesheet"       href="{{url.static}}css/style.css"/>{{include.newline}}{%endif%}
-{%if include.cp      %}
- <link rel="stylesheet"       href="{{url.myStatic}}css/style-cp.css"/>{{include.newline}}{%endif%}
+
 {%block head_css         %}{%endblock%}
 {%block head_js          %}{%endblock%}
 {%endblock%}
@@ -110,16 +109,14 @@
 {%endblock%}
 {%block foot_css%}{%endblock%}
 
-{%if include.js_main   %} <script src="{{url.myStatic}}js/common.js"></script>{{include.newline}}{%endif%}
-{%if include.datatable %} <script src="{{url.myStatic}}js/datatable/jquery.dataTables.min.js"></script>{{include.newline}}{%endif%}
-{%if include.editor    %} <script src="{{url.myStatic}}js/cp/medium-editor.min.js"></script>{{include.newline}}{%endif%}
-{%if include.telinput  %} <script src="{{url.myStatic}}js/intlTelInput.min.js"></script>{{include.newline}}{%endif%}
-{%if include.lightbox  %} <script src="{{url.myStatic}}js/lightGallery.min.js"></script>{{include.newline}}{%endif%}
-{%if include.chart     %} <script src="{{url.myStatic}}js/highcharts/highcharts.js"></script>{{include.newline}}{%endif%}
-{%if include.chartexp  %} <script src="{{url.myStatic}}js/highcharts/modules/exporting.js"></script>{{include.newline}}{%endif%}
-{%if include.heatmap   %} <script src="{{url.myStatic}}js/simpleheat.min.js"></script>{{include.newline}}{%endif%}
-{%if include.uploader  %} <script src="{{url.myStatic}}js/cp/uploader.js" async></script>{{include.newline}}{%endif%}
-{%if include.cp        %} <script src="{{url.myStatic}}js/cp/cp.js" async></script>{{include.newline}}{%endif%}
+{%if include.siftal  and siftalJS != 'off' %}
+{%if dev.siftal %}
+ <script src="http://siftal.dev/js/siftal.js"></script>
+{%else%}
+ <script src="{{url.static}}{{'siftal/js/siftal.js' | filemtime(true)}}"></script>
+{%endif%}
+{%endif%}
+
 {%if include.js        %} <script src="{{url.static}}{{'js/script.js' | filemtime(true)}}"></script>{{include.newline}}{%endif%}
 {%block js             %}{%endblock%}
  <div data-xhr='foot_js' class="foot_js">{%block foot_js%}{%endblock%}</div>

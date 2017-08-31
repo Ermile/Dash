@@ -91,6 +91,9 @@ trait constructor
 		$this->data->template['sidebar']   = 'content/template/sidebar.html';
 		$this->data->template['footer']    = 'content/template/footer.html';
 
+
+		$this->data->dev = \lib\option::config('dev');
+
 		// if allow to use social then get social network account list
 		if(\lib\option::social('status'))
 		{
@@ -105,16 +108,11 @@ trait constructor
 
 		// define default value for include
 		$this->include->newline      = PHP_EOL;
-		$this->include->css_main     = false;
-		$this->include->css_ermile   = true;
-		$this->include->js_main      = true;
+		$this->include->css_ermile   = false;
+		$this->include->js_main      = false;
+		$this->include->siftal       = true;
 		$this->include->css          = true;
 		$this->include->js           = true;
-		$this->include->fontawesome  = null;
-		$this->include->datatable    = null;
-		$this->include->telinput     = null;
-		$this->include->lightbox     = null;
-		$this->include->editor       = null;
 		if(isset($this->controller->pagnation))
 		{
 			$this->data->pagnation = $this->controller->pagnation_get();
