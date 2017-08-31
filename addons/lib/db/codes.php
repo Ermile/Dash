@@ -41,7 +41,7 @@ class codes
 		$check_exist_code =
 		[
 			'type'  => 'code',
-			'slug'  => $_args['code'],
+			'slug'  => "(SELECT '$_args[code]')",
 			'limit' => 1,
 		];
 
