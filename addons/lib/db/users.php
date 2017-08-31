@@ -8,6 +8,7 @@ class users
 	 * this library work with acoount
 	 * v1.2
 	 */
+	public static $USERS_DETAIL = [];
 
 	public static $user_id;
 
