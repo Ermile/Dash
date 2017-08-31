@@ -57,7 +57,7 @@ class codes
 			$insert_term =
 			[
 				'type'    => 'code',
-				'slug'    => $_args['code'],
+				'slug'    => "(SELECT '$_args[code]')",
 				'title'   => $_args['type'],
 				'user_id' => $_args['creator'],
 				'status'  => 'enable',
