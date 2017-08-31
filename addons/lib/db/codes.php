@@ -72,10 +72,11 @@ class codes
 
 		$check_exist_usage =
 		[
-			'term_id'    => $term_id,
+			// 'term_id'    => $term_id,
 			'related'    => $_args['related'],
-			'type'       => $_args['type'],
 			'related_id' => $_args['id'],
+			'type'       => $_args['type'],
+			'status'     => 'enable',
 			'limit'      => 1,
 		];
 
@@ -93,19 +94,33 @@ class codes
 			];
 			\lib\db\termusages::insert($insert_termusage);
 		}
-		elseif(isset($check_exist_usage['status']) && $check_exist_usage['status'] !== 'enable')
+		elseif(isset($check_exist_usage['term_id']) && isset($check_exist_usage['status']))
 		{
-			$where =
-			[
-				'term_id'    => $term_id,
-				'type'       => $_args['type'],
-				'related'    => $_args['related'],
-				'related_id' => $_args['id'],
-			];
+			if(intval($check_exist_usage['term_id']) !== intval($term_id))
+			{
+				// term id is different
+				// need to disable old and insert new\
+				$where =
+				[
+					'term_id'    => $check_exist_usage['term_id'],
+					'type'       => $_args['type'],
+					'related'    => $_args['related'],
+					'related_id' => $_args['id'],
+					'status'     => 'enable',
+				];
 
-			$set = ['status' => 'enable'];
+				\lib\db\termusages::delete($where);
 
-			\lib\db\termusages::update($where, $set);
+				$insert_termusage =
+				[
+					'term_id'    => $term_id,
+					'related'    => $_args['related'],
+					'related_id' => $_args['id'],
+					'type'       => $_args['type'],
+					'status'     => 'enable',
+				];
+				\lib\db\termusages::insert($insert_termusage);
+			}
 		}
 		else
 		{
@@ -212,6 +227,7 @@ class codes
 
 		$_args = array_merge($default_args, $_args);
 
+
 		if(!$_args['related'] || !$_args['id'] || !is_numeric($_args['id']) || !$_args['type'])
 		{
 			return false;
@@ -222,6 +238,7 @@ class codes
 			'type'       => $_args['type'],
 			'related'    => $_args['related'],
 			'related_id' => $_args['id'],
+			'status'     => 'enable',
 		];
 
 		\lib\db\termusages::delete($where);
