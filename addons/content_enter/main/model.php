@@ -39,7 +39,7 @@ class model extends \mvc\model
 		// in dev mode
 		if(Tld === 'dev')
 		{
-			// self::$dev_mode = true;
+			self::$dev_mode = true;
 		}
 		// load parent::_construct if exist
 		if(method_exists('parent', '_construct'))

@@ -109,6 +109,13 @@ trait login
 			{
 				// set remeber and save session
 				\lib\db\sessions::set(self::user_data('id'));
+				// check user status
+				// if the user status is awaiting
+				// set the user status as enable
+				if(self::user_data('user_status') === 'awaiting' && is_numeric(self::user_data('id')))
+				{
+					\lib\db\users::update(['user_status' => 'active'], self::user_data('id'));
+				}
 			}
 		}
 
