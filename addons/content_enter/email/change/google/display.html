@@ -1,0 +1,18 @@
+{%extends display.enter%}
+
+
+
+{%block contentForm%}
+<p>{% trans "We found your Google Mail that is different from your current google mail" %}</p>
+<p>{% trans "Would you like to change your old google mail?" %}</p>
+{%if old_google_mail and new_google_mail%}
+<p>{{old_google_mail}}</p>
+<p>{% trans "Change to" %}</p>
+<p>{{new_google_mail}}</p>
+{%endif%}
+<div class='flex' id='ego'>
+	<button type="submit">{%trans "Update google mail"%}</button>
+</div>
+<a href="{{url.baseFull}}/email/change/google" data-ajaxify data-method='post' data-data='{"update": "no"}' class="link">{%trans "Don't change" %}</a>
+{%endblock%}
+

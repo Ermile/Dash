@@ -1,0 +1,13 @@
+{%extends display.enter%}
+
+
+
+{%block contentForm%}
+{{block(mobile_username)}}
+{{block('epass')}}
+{{block('eramzNew')}}
+{{block('erecovery')}}
+
+   <a class='link' href="{{url.base}}/enter/pass">{%trans "Remembered your password?"%}</a>
+{%endblock%}
+

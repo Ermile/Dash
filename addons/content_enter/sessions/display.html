@@ -1,0 +1,15 @@
+{%extends display.enter%}
+
+{%block contentBody%}
+  <div class="sessions">
+{%for key, row in sessions_list%}
+   <div>
+    <div class="browser">{{row.browser}} {{row.browserVer | fitNumber}}</div>
+    <div class="os">{{row.os}} {{row.osVer | fitNumber}}</div>
+    <div class="ip">{{row.ip}}</div>
+    <div class="lastseen">{{row.last | sdate}}</div>
+    <a href="{{url.full}}" data-ajaxify data-method="post" data-data='{"id" : "{{row.id}}", "type": "terminate" }' tabindex='-1'>{%trans "Terminate"%}</a>
+   </div>
+{%endfor%}
+  </div>
+{%endblock%}

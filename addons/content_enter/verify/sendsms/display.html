@@ -1,0 +1,25 @@
+{%extends display.enter%}
+
+
+{%block contentForm%}
+
+
+{{block(mobile_username)}}
+{{block('ecodeSend')}}
+{{block('enumberSend')}}
+<p>{{codeSendMsg | raw}}</p>
+
+{{block('egoCheck')}}
+
+
+{%endblock%}
+
+
+
+{%block contentFooter%}
+   <footer class='f'>
+{{block('ereset')}}
+{{block('eresend240')}}
+   </footer>
+{%endblock%}
+
