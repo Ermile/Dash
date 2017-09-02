@@ -9,6 +9,7 @@ class permission
 	public static $user_id         = null;
 	public static $caller          = null;
 	public static $user_permission = null;
+	public static $force_load_user = false;
 
 	/**
 	 * load permission
@@ -44,7 +45,7 @@ class permission
 			return true;
 		}
 		// if permission is exist in session use it
-		if(isset($_SESSION['user']['permission']))
+		if(isset($_SESSION['user']['permission']) && !self::$force_load_user)
 		{
 			self::$user_permission = $_SESSION['user']['permission'];
 		}
@@ -55,7 +56,7 @@ class permission
 			if(isset($user_data['user_permission']))
 			{
 				self::$user_permission = trim($user_data['user_permission']);
-				$_SESSION['user']['permission'] = self::$user_permission;
+				// $_SESSION['user']['permission'] = self::$user_permission;
 			}
 		}
 	}
@@ -73,7 +74,9 @@ class permission
 		if($_user_id && is_numeric($_user_id) && !self::$user_id)
 		{
 			self::$user_id = $_user_id;
+			self::$force_load_user = true;
 		}
+
 		// load permission list and check session if self::$user_id not set
 		self::_construct();
 
@@ -100,7 +103,7 @@ class permission
 			}
 			else
 			{
-				\lib\error::access();
+				\lib\error::access(T_("Access denied"));
 				return false;
 			}
 		}
