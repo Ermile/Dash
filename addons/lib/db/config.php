@@ -221,10 +221,23 @@ class config
 	 *
 	 * @return     <type>  ( description_of_the_return_value )
 	 */
-	public static function public_get($_table, $_where)
+	public static function public_get($_table, $_where, $_options = [])
 	{
 		if($_where && $_table)
 		{
+			$default_options =
+			[
+				'public_show_field' => "*",
+				'master_join'       => null,
+				'table_name'        => null,
+			];
+
+			if(!is_array($_options))
+			{
+				$_options = [];
+			}
+			$_options = array_merge($default_options, $_options);
+
 			$only_one_value = false;
 			$limit          = null;
 
@@ -240,10 +253,10 @@ class config
 
 			unset($_where['limit']);
 
-			$where = \lib\db\config::make_where($_where);
+			$where = \lib\db\config::make_where($_where, $_options);
 			if($where)
 			{
-				$query = "SELECT * FROM $_table WHERE $where $limit";
+				$query = "SELECT $_options[public_show_field] FROM $_table $_options[master_join] WHERE $where $limit";
 				$result = \lib\db::get($query, null, $only_one_value);
 				return $result;
 			}
