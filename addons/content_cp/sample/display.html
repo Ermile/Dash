@@ -15,6 +15,7 @@
   <div class="c4">
     {{block('buttons')}}
     {{block('messages')}}
+    {{block('input')}}
     {{block('progress')}}
     {{block('badge')}}
 
@@ -22,7 +23,7 @@
 
   <div class="c4">
     {{block('icons')}}
-    {{block('input')}}
+    {{block('date')}}
     {{block('clock')}}
     {{block('txt')}}
 
@@ -268,3 +269,25 @@
    </div>
 </div>
 {%endblock%}
+
+
+{%block date%}
+<div class="pA10">
+  <h3><a href='sample/date'>Datepicker</a></h3>
+    <div class="input pB5">
+     <input class="datepicker">
+    </div>
+    <div class="input pB5">
+     <input class="datepicker" data-format='YY/MM/DD' data-view='year' data-alt='#normalAlt' data-altFormat='LLLL' >
+    </div>
+    <div class="input pB5">
+     <input id="normalAlt" disabled>
+    </div>
+
+</div>
+{%endblock%}
+
+
+
+
+
