@@ -1,0 +1,368 @@
+{%extends display.cpMain%}
+
+
+{%block content%}
+
+<div class="tbox">
+  <h2>{%trans "Crop Images"%}</h2>
+  <p>{%trans "A simple and full feature crop for avatar or something else!"%}</p>
+</div>
+
+
+<div class="cbox">
+  <h3>{%trans "Example"%}</h3>
+  <p class="msg info2">{%trans "To specify an approximate text area size use the rows attribute."%}</p>
+
+  <div class="example">
+    <p>Only run cropper without anything!</p>
+    <div class="cropper">
+    {{block('sampleImg')}}
+    </div>
+  </div>
+
+  <div class="example">
+    <p>Only run cropper with aspect ratio and min width and height on cropbox</p>
+    <div class="cropper" data-aspectRatio='1' data-minCropBoxWidth='100' data-minCropBoxHeight='100'>
+    {{block('sampleImg')}}
+    </div>
+  </div>
+
+  <div class="example">
+    <p>run cropper with aspect ratio and min width and height and preview</p>
+    <div class="cropper" data-aspectRatio='1' data-minCropBoxWidth='100' data-minCropBoxHeight='100' data-preview='.prev1'>
+    {{block('sampleImg')}}
+     <div>
+       <div class="prev1 cropperPreview wA200 mA5"><img></div>
+       <div class="prev1 cropperPreview wA100 mA5"><img></div>
+       <div class="prev1 cropperPreview wA50 mA5"><img></div>
+     </div>
+    </div>
+  </div>
+
+</div>
+{%endblock%}
+
+
+{%block sampleImg%}
+    <img src="{{url.static}}siftal/images/bg/bg-ermile.jpg">
+{%endblock%}
+
+
+
+
+{%block foot_js%}
+<script type="text/javascript">
+
+  runCropper();
+
+/**
+ * [runCropper description]
+ * @param  {[type]} _args [description]
+ * @return {[type]}       [description]
+ */
+function runCropper(_args)
+{
+  $('.cropper').each(function()
+  {
+    var $myImgBox      = $(this);
+    var $myImg         = $myImgBox.find('img');
+    var myImgTarget    = $myImgBox.find('img')[0];
+
+    // default format for current selector
+    // mydateOpt.format   = $myImg.attr('data-format');
+
+    // define with default values
+    var myImgOptions     =
+    {
+      aspectRatio: null,
+      viewMode: 2,
+      dragMode: 'move',
+    };
+    // get aspect Ratio
+    if($myImgBox.attr('data-aspectRatio'))
+    {
+      myImgOptions.aspectRatio = $myImgBox.attr('data-aspectRatio');
+    }
+    // change view mode, not need on normal conidtions
+    if($myImgBox.attr('data-view'))
+    {
+      myImgOptions.viewMode = $myImgBox.attr('data-view');
+    }
+    // show clone of image in preview container
+    if($myImgBox.attr('data-preview'))
+    {
+      myImgOptions.preview = $myImgBox.attr('data-preview');
+    }
+    // show clone of image in preview container
+    if($myImgBox.attr('data-preview'))
+    {
+      myImgOptions.preview = $myImgBox.attr('data-preview');
+    }
+    // set min canvas width
+    if($myImgBox.attr('data-minCanvasWidth'))
+    {
+      myImgOptions.minCanvasWidth = $myImgBox.attr('data-minCanvasWidth');
+    }
+    // set min canvas height
+    if($myImgBox.attr('data-minCanvasHeight'))
+    {
+      myImgOptions.minCanvasHeight = $myImgBox.attr('data-minCanvasHeight');
+    }
+    // set min CropBox width
+    if($myImgBox.attr('data-minCropBoxWidth'))
+    {
+      myImgOptions.minCropBoxWidth = $myImgBox.attr('data-minCropBoxWidth');
+    }
+    // set min CropBox height
+    if($myImgBox.attr('data-minCropBoxHeight'))
+    {
+      myImgOptions.minCropBoxHeight = $myImgBox.attr('data-minCropBoxHeight');
+    }
+
+
+
+    var cropper = new Cropper(myImgTarget, myImgOptions);
+
+
+  });
+
+
+  return;
+
+
+  var myArg = _args.data;
+  if(!myArg)
+  {
+    return false;
+  }
+  var ePreview    = myArg.preview;
+  var eTarget     = myArg.targetEl;
+
+  var ePreviewImg = ePreview.find('img');
+  var eTargetImg  = eTarget.find('img')[0];
+  var options     =
+  {
+    aspectRatio: null,
+    viewMode: 2,
+    dragMode: 'move',
+    toggleDragModeOnDblclick: false,
+  };
+
+  // run cropper
+  var cropper = new Cropper(eTargetImg, options);
+  // on press btn, send new Image to server
+  $("#modal-preview .btn.submit").off("click");
+  $("#modal-preview .btn.submit").on("click", function(_e)
+  {
+    cropAsCanvas(cropper, ePreviewImg);
+  });
+
+  // on press btn, send new Image to server
+  $("#modal-preview .btn.cancel").off("click");
+  $("#modal-preview .btn.cancel").on("click", function(_e)
+  {
+    removeFile(ePreview);
+  });
+
+  $('#modal-preview .finalPreview').off("dblclick");
+  $('#modal-preview .finalPreview').on("dblclick", function(_e)
+  {
+    cropper.rotate(90);
+  });
+
+}
+
+
+/**
+ * [cropAsCanvas description]
+ * @param  {[type]} _cropper [description]
+ * @param  {[type]} _preview [description]
+ * @return {[type]}          [description]
+ */
+function cropAsCanvas(_cropper, _preview)
+{
+  if (!_cropper)
+  {
+    return;
+  }
+  // start syncing
+  syncing(true);
+  // create a canvas from selected area
+  canvasImg = _cropper.getCroppedCanvas();
+  // console.log(_cropper);
+  // console.log(canvasImg);
+  if(!canvasImg)
+  {
+    console.log('has error! not found!');
+    return false;
+  }
+  // way 1
+  // convert to data
+  // newImgData = canvasImg.toDataURL('image/jpeg');
+  // _preview.attr('src', newImgData);
+  // console.log(canvasImg.toBlob());
+
+  // way 2
+  // use blob
+  // canvasImg.toBlob(function(_blob)
+  // {
+  //  // create url for new blob
+  //  url = URL.createObjectURL(_blob);
+  //  // set url for src of img
+  //  _preview.attr('src', url);
+  // });
+  canvasImg.toBlob(function (_blob)
+  {
+    var parentBox  = _preview.closest('.preview');
+    var parentLi   = _preview.closest('.ultra').parent();
+    var rowId      = parentLi.attr('data-row');
+    var questionId = $('#question-add').attr('data-id');
+    var filePath   = parentLi.find('.file input').val();
+
+    // create url for new blob
+    url = URL.createObjectURL(_blob);
+    // if(_blob && _blob.type)
+    // {
+
+    // }
+
+    // add progress element if not exist
+    if(!$('.sync .sync-in b').length)
+    {
+      $('.sync .sync-in').append('<b></b>');
+    }
+
+    // create form data to send image to server
+    var formData = new FormData();
+    formData.append('croppedImage', _blob, filePath);
+    formData.append('opt', rowId);
+    formData.append('question', questionId);
+    // Use `jQuery.ajax` method
+    $.ajax('',
+    {
+      method: "POST",
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function (_e)
+      {
+        // if uploaded successfully
+        if(_e.status === 1)
+        {
+          var fileId  = null;
+          var fileSrc = null;
+          if(_e.msg && _e.msg.file_code)
+          {
+            fileId = _e.msg.file_code;
+            fileSrc = _e.msg.file_url;
+
+            // set url for src of img
+            _preview.attr('src', url);
+            parentBox.attr('data-file-url', url);
+
+            parentBox.attr('data-file-id', fileId);
+            parentBox.attr('data-file-url', fileSrc);
+            // first load file, then replace with local addr
+            // _preview.attr('src', fileSrc);
+          }
+
+
+        }
+        else
+        {
+          // else remove it
+          console.log('Error on upload, remove image!');
+          removeFile(parentBox);
+        }
+        // end sync successfully
+        syncing();
+      },
+      error: function ()
+      {
+        console.log('Error on upload! not know!');
+      },
+
+      xhr: function ()
+      {
+        var xhr = new window.XMLHttpRequest();
+        var syncProgerss = $('.sync .sync-in b');
+        xhr.upload.addEventListener("progress", function (evt)
+        {
+          if (evt.lengthComputable)
+          {
+            var percentComplete = evt.loaded / evt.total;
+            console.log(percentComplete);
+            // set progress
+            setUploadProgress(percentComplete);
+
+            // if (percentComplete === 1)
+            // {
+            //  width: 0 + '%'
+            // }
+          }
+        }, false);
+        xhr.addEventListener("progress", function (evt)
+        {
+          if (evt.lengthComputable)
+          {
+            var percentComplete = evt.loaded / evt.total;
+            console.log('progress...');
+            console.log(percentComplete);
+            // set progress
+            setUploadProgress(percentComplete);
+            if (percentComplete >= 0.9)
+            {
+              // after a delay remove progress bar
+              setUploadProgress(false);
+            }
+          }
+        }, false);
+        return xhr;
+      },
+
+    });
+  });
+
+  // close modal at the end
+  $('#modal-preview').trigger('close');
+}
+
+
+/**
+ * [setUploadProgress description]
+ * @param {[type]} _precent [description]
+ */
+function setUploadProgress(_precent)
+{
+  var syncProgerss = $('.sync .sync-in b');
+  // if pass false we reset progress
+  if(_precent === false)
+  {
+    // set opacity to zero at end
+    syncProgerss.css({"opacity":0});
+    setTimeout(function()
+    {
+      // after a delay change width to 0
+      syncProgerss.css({width: 0});
+      // after another delay set opacity to 1
+      setTimeout(function()
+      {
+        syncProgerss.css({"opacity":1});
+      }, 1000);
+    }, 1500);
+
+    return;
+  }
+  else if(_precent > 0 && _precent <= 1)
+  {
+    // set precentage scale
+    _precent = _precent * 100;
+  }
+  // set width
+  syncProgerss.css({width: _precent + '%'});
+}
+
+</script>
+{%endblock%}
+
+
