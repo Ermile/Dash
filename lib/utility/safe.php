@@ -13,6 +13,11 @@ class safe
 		{
 			return self::walk($_string, $_remove_inject);
 		}
+
+		// check baby to not allow to harm yourself
+		// \lib\baby::check($_string);
+		// if uncomment above code we have problem on some codes
+
 		if(
 			gettype($_string) == 'integer' ||
 			gettype($_string) == 'double' ||
@@ -24,7 +29,8 @@ class safe
 		}
 		if(is_string($_remove_inject))
 		{
-			switch ($_remove_inject) {
+			switch ($_remove_inject)
+			{
 				case 'sqlinjection':
 					$_remove_inject = ["'", '"', '\\\\\\', '`', '\*', "\\?", ';'];
 					break;

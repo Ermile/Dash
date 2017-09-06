@@ -1,7 +1,8 @@
 <?php
 namespace lib;
 /**
- * some check for baby to not harm yourself
+ * some check for baby to not allow to harm yourself
+ * v1.1
  */
 class baby
 {
@@ -22,6 +23,23 @@ class baby
 	}
 
 
+	/**
+	 * check some problem on hexas input or someother things
+	 * @param  [type] $_txt [description]
+	 * @return [type]       [description]
+	 */
+	public static function hex($_txt)
+	{
+		if(preg_match("#0x#Ui", $_txt))
+		{
+			\lib\error::bad('Hi Baby!');
+		}
+		if(preg_match("#0x#", $_txt))
+		{
+			\lib\error::bad('Hi Baby!!');
+		}
+	}
+
 
 	/**
 	 * check for using forbiden char in txt
@@ -33,31 +51,17 @@ class baby
 	{
 		if(!$_forbiddenChars || !is_array($_forbiddenChars))
 		{
-			$_forbiddenChars = ['"', "`" , "'", ';', ','];
+			$_forbiddenChars = ['"', "`" , "'", ';', ',', '%', '*', '\\'];
 
 		}
 		foreach ($_forbiddenChars as $name)
 		{
 			if (stripos($_txt, $name) !== FALSE)
 			{
-				\lib\error::page('Hi Baby!');
+				\lib\error::bad('Hi Baby!!!');
 			}
 		}
 	}
-
-
-	public static function hex($_txt)
-	{
-		if(preg_match("#0x#Ui", $_txt))
-		{
-			\lib\error::page('OHH Baby!!');
-		}
-		if(preg_match("#0x#", $_txt))
-		{
-			\lib\error::page('OHH Baby!');
-		}
-	}
-
 
 }
 ?>
