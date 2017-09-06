@@ -14,17 +14,23 @@ class router
 		$clean_url = $_clean_url !== null ? $_clean_url : $_SERVER['REQUEST_URI'];
 		if(preg_match("#0x#", $clean_url))
 		{
-			// error
+			// say hi to babies
+			\lib\error::page('OHH Baby!');
 		}
 		$clean_url = preg_replace("#0x#Ui", "", $clean_url);
 		$clean_url = preg_replace("#^https?://{$_SERVER['HTTP_HOST']}\/#", '', $clean_url);
 		$clean_url = preg_replace("#^$path#", '', $clean_url);
 		$clean_url = urldecode($clean_url);
 
+		// add some filtering
+		if($this->is_forbidden_char($clean_url))
+		{
+			\lib\error::page('Hi Baby!');
+		}
+
 		preg_match("/^([^?]*)(\?.*)?$/", $clean_url, $url);
 
 		self::$real_url_string = self::$url_string = $url[1];
-
 		self::$real_url_array  = self::$url_array = preg_split("[\/]", preg_replace("/^\/|\/$/", '', $url[1]), -1 , PREG_SPLIT_NO_EMPTY);
 
 		// if find 2slash together block!
@@ -208,6 +214,28 @@ class router
 		}
 	}
 
+
+	/**
+	 * check for using forbiden char in txt
+	 * @param  [type]  $_txt            [description]
+	 * @param  [type]  $_forbiddenChars [description]
+	 * @return boolean                  [description]
+	 */
+	public static function is_forbidden_char($_txt, $_forbiddenChars = null)
+	{
+		if(!$_forbiddenChars || !is_array($_forbiddenChars))
+		{
+			$_forbiddenChars = ['"', "`" , "'", ';', ','];
+
+		}
+		foreach ($_forbiddenChars as $name)
+		{
+			if (stripos($_txt, $name) !== FALSE)
+			{
+				return true;
+			}
+		}
+	}
 
 	/**
 	 * check url to detect repository and if find fix route
