@@ -6,20 +6,50 @@ namespace lib;
  */
 class baby
 {
+	private static $level;
+	/**
+	 * add function to full check url and all user parameters
+	 * @return block baby if needed
+	 */
+	public static function block()
+	{
+		// if we dont have request url it was very mysterious, say Hi to hitler
+		if(!isset($_SERVER['REQUEST_URI']))
+		{
+			\lib\error::bad('Hi Father!');
+		}
 
+		// check request uri
+		$_txt = $_SERVER['REQUEST_URI'];
+		if(self::check($_txt ,false))
+		{
+			$msg = 'Hi Baby'. str_repeat('!', self::$level);
+			\lib\error::bad($msg);
+		}
+	}
+
+	/**
+	 * check input text to have problem with hex or invalid chars
+	 * @param  [type]  $_txt       [description]
+	 * @param  boolean $_onlyCheck [description]
+	 * @return [type]              [description]
+	 */
 	public static function check($_txt)
 	{
-		if(!$_txt && isset($_SERVER['REQUEST_URI']))
-		{
-			$_txt = $_SERVER['REQUEST_URI'];
-		}
 		// decode url
 		$_txt = urldecode($_txt);
-
 		// check for problem in hex
-		self::hex($_txt);
+		if(self::hex($_txt))
+		{
+			return true;
+		}
 		// check for problem for containing forbidden chars
-		self::is_forbidden_char($_txt);
+		if(self::forbidden($_txt))
+		{
+			return true;
+		}
+
+		return false;
 	}
 
 
@@ -32,12 +62,16 @@ class baby
 	{
 		if(preg_match("#0x#Ui", $_txt))
 		{
-			\lib\error::bad('Hi Baby!');
+			self::$level = 1;
+			return true;
 		}
 		if(preg_match("#0x#", $_txt))
 		{
-			\lib\error::bad('Hi Baby!!');
+			self::$level = 2;
+			return true;
 		}
+		// if cant find something return false
+		return false;
 	}
 
 
@@ -47,18 +81,18 @@ class baby
 	 * @param  [type]  $_forbiddenChars [description]
 	 * @return boolean                  [description]
 	 */
-	public static function is_forbidden_char($_txt, $_forbiddenChars = null)
+	public static function forbidden($_txt, $_forbiddenChars = null)
 	{
 		if(!$_forbiddenChars || !is_array($_forbiddenChars))
 		{
 			$_forbiddenChars = ['"', "`" , "'", ';', ',', '%', '*', '\\'];
-
 		}
 		foreach ($_forbiddenChars as $name)
 		{
 			if (stripos($_txt, $name) !== FALSE)
 			{
-				\lib\error::bad('Hi Baby!!!');
+				self::$level = 3;
+				return true;
 			}
 		}
 	}

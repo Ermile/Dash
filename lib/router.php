@@ -13,9 +13,6 @@ class router
 		$path = preg_replace("/^\.\//","/",'/');
 		$clean_url = $_clean_url !== null ? $_clean_url : $_SERVER['REQUEST_URI'];
 
-		// check baby to not allow to harm yourself
-		\lib\baby::check($clean_url);
-
 		$clean_url = preg_replace("#^https?://{$_SERVER['HTTP_HOST']}\/#", '', $clean_url);
 		$clean_url = preg_replace("#^$path#", '', $clean_url);
 		$clean_url = urldecode($clean_url);
