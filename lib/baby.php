@@ -20,12 +20,57 @@ class baby
 		}
 
 		// check request uri
-		$_txt = $_SERVER['REQUEST_URI'];
-		if(self::check($_txt ,false))
+		self::check($_SERVER['REQUEST_URI'], true);
+
+		// check for requests
+		foreach ($_REQUEST as $key => $value)
 		{
-			$msg = 'Hi Baby'. str_repeat('!', self::$level);
-			\lib\error::bad($msg);
+			// check key is not using invalid chars
+			self::check($key, true);
+
+			if(is_array($value))
+			{
+				foreach ($value as $key2 => $value2)
+				{
+					// check key2 is not using invalid chars
+					self::check($key2, true);
+					if(is_array($value2))
+					{
+						// now we are not allow to give object in array request
+						self::$level = 20;
+						self::pacifier();
+					}
+					else if(is_object($value2))
+					{
+						// now we are not allow to give object in array request
+						self::$level = 11;
+						self::pacifier();
+					}
+					else
+					{
+						self::check($value2, true);
+					}
+				}
+			}
+			else if(is_object($value))
+			{
+				// now we are not allow to give object in request
+				self::$level = 10;
+				self::pacifier();
+			}
+			else
+			{
+				self::check($value, true);
+			}
 		}
+		// we can add some check on php://input and maybe another one!
+	}
+
+	private static function pacifier()
+	{
+		$msg = 'Hi Baby'. str_repeat('!', self::$level);
+		\lib\error::bad($msg);
+		self::$level = null;
 	}
 
 	/**
@@ -34,22 +79,28 @@ class baby
 	 * @param  boolean $_onlyCheck [description]
 	 * @return [type]              [description]
 	 */
-	public static function check($_txt)
+	public static function check($_txt, $_block = false)
 	{
+		$result = null;
 		// decode url
 		$_txt = urldecode($_txt);
 		// check for problem in hex
 		if(self::hex($_txt))
 		{
-			return true;
+			$result = true;
 		}
 		// check for problem for containing forbidden chars
-		if(self::forbidden($_txt))
+		else if(self::forbidden($_txt))
 		{
-			return true;
+			$result = true;
 		}
-
-		return false;
+		// if needed block
+		if($result === true && $_block)
+		{
+			self::pacifier();
+		}
+		// return final result if not blocked!
+		return $result;
 	}
 
 
