@@ -48,7 +48,7 @@ class baby
 					}
 					else
 					{
-						self::check($value2, true);
+						// self::check($value2, true);
 					}
 				}
 			}
@@ -60,7 +60,7 @@ class baby
 			}
 			else
 			{
-				self::check($value, true);
+				// self::check($value, true);
 			}
 		}
 		// we can add some check on php://input and maybe another one!
@@ -69,7 +69,14 @@ class baby
 	private static function pacifier()
 	{
 		$msg = 'Hi Baby'. str_repeat('!', self::$level);
-		\lib\error::bad($msg);
+		if(\lib\dash::is_json_accept() || \lib\storage::get_api() || \lib\dash::is_ajax())
+		{
+			\lib\error::bad($msg. ' Are you healthy?');
+		}
+		else
+		{
+			\lib\error::bad($msg);
+		}
 		self::$level = null;
 	}
 

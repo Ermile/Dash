@@ -38,7 +38,7 @@ class redirector
 		if($_return)
 			return $newLocation;
 
-		if(\dash::is_json_accept() || \lib\storage::get_api() || \dash::is_ajax())
+		if(\lib\dash::is_json_accept() || \lib\storage::get_api() || \lib\dash::is_ajax())
 		{
 			header('Content-Type: application/json');
 			debug::msg('redirect', $newLocation);
