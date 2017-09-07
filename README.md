@@ -77,7 +77,7 @@ Licence! What does it mean?
 [Saloos Project]: <https://github.com/Ermile/Saloos-Project>
 [Hasan Salehi]: <http://github.com/baravak>
 [Javad Evazzadeh]: <http://evazzadeh.com>
-[Reza Mohiti]: <https://github.com/rmbiqarar>
+[Reza Mohiti]: <https://github.com/biqarar>
 [Ahmad Karimi]: <https://github.com/ahmadkarimi1991>
 [logo]: http://ermile.com/static/images/logo.png "Ermile ارمایل"
 [واسط برنامه‌نویسی استاندارد]: <https://en.wikipedia.org/wiki/Representational_state_transfer>
