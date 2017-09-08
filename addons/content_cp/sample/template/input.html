@@ -156,20 +156,26 @@
 <div class="cbox">
   <h4>{%trans "Button addons"%}</h4>
   <div class="example">
+
+    <div class="input pTB10">
+      <input type="text" placeholder='{%trans "Search..."%}'>
+      <button class="addon btn">{%trans "Search"%}</button>
+    </div>
+
     <div class="input pTB10">
       <label class="addon" for='sAddon31'>@</label>
       <input type="text" placeholder="Type..." id='sAddon31'>
-      <button class="addon btn primary">Go!</button>
+      <button class="addon btn primary">{%trans "Go!"%}</button>
     </div>
     <div class="input pTB10">
       <label class="addon" for='sAddon32'>@</label>
       <input type="text" placeholder="Type..." id='sAddon32'>
-      <button class="addon btn success">Search</button>
+      <button class="addon btn success">{%trans "Search"%}</button>
     </div>
     <div class="input pTB10">
       <button class="addon btn warn">Hey!</button>
       <input type="text" placeholder="Type..." id='sAddon32'>
-      <button class="addon btn info">Ding Ding!</button>
+      <button class="addon btn info">{%trans "Ding Ding!"%}</button>
     </div>
     <div class="input pTB10 lg w200">
       <button class="addon btn warn">+</button>
@@ -185,6 +191,49 @@
   </div>
 </div>
 
+
+<div class="cbox">
+  <h4>{%trans "Simple file input"%}</h4>
+  <div class="example">
+    <div class="input pTB10">
+      <input type="file" placeholder='{%trans "Choose file..."%}'>
+    </div>
+  </div>
+
+  <h4>{%trans "Simple file input only accept images"%}</h4>
+  <div class="example">
+    <div class="input pTB10">
+      <input type="file" accept="image/gif, image/jpeg, image/png">
+    </div>
+  </div>
+
+  <h4>{%trans "Simple avatar selector with simple preview"%}</h4>
+  <div class="example">
+    <div class="input preview pTB10">
+      <input type="file" accept="image/gif, image/jpeg, image/png" id="anyfile1" data-preview>
+      <label for="anyfile1" title="Simple Title"></label>
+    </div>
+
+    <div class="input preview pTB10">
+      <input type="file" accept="image/gif, image/jpeg, image/png" id="avatar1" data-preview>
+      <label for="avatar1" title="Simple Title"></label>
+    </div>
+
+    <div class="input preview pTB10">
+      <input type="file" accept="image/gif, image/jpeg, image/png" id="logo1" data-preview>
+      <label for="logo1" title="Simple Title"></label>
+    </div>
+  </div>
+
+
+  <h4>{%trans "Simple file input with min and max size!"%}</h4>
+  <div class="example">
+    <div class="input pTB10" data-min='100' data-max='300'>
+      <input type="file" placeholder='{%trans "Choose file..."%}'>
+    </div>
+  </div>
+
+</div>
 
 {%endblock%}
 

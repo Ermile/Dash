@@ -61,9 +61,7 @@
          <div class="btn sf-arrow-horizontal" data-func='scaleX_-1' data-toggle></div>
         </div>
         <div class="cauto pA10">
-         <div class="input">
-         <input type="file" accept=".jpg,.jpeg,.png,.gif,.bmp" name="file">
-         </div>
+         <div class="input"><input type="file" accept=".jpg,.jpeg,.png,.gif,.bmp" name="file"></div>
         </div>
        </div>
 
@@ -96,9 +94,16 @@
 
   </div>
 
-  <div class="example cropper" data-aspectRatio='1' data-minCropBoxWidth='100' data-minCropBoxHeight='100' data-img='modal'>
+  <div class="example cropper" data-aspectRatio='1' data-minCropBoxWidth='100' data-minCropBoxHeight='100' data-preview='.prev2' data-img='.modal-body img'>
     <p>run cropper with aspect ratio and min width and height in modal</p>
-    <div class="btn primary" data-modal='cropperModal'>{%trans "Crop image in modal"%}</div>
+    <div class="f">
+      <div class="cauto">
+       <div class="btn primary" data-modal='cropperModal'>{%trans "Crop image in modal"%}</div>
+      </div>
+      <div class="cauto os">
+       <div class="prev2 cropperPreview wA100"><img></div>
+      </div>
+    </div>
 
     <div class=modal fs14' id='cropperModal'>
      <div class='modal-dialog'>
@@ -106,6 +111,9 @@
       <div class='modal-body'>
        <p>Please choose and crop your image</p>
        {{block('sampleImg')}}
+      </div>
+      <div class="modal-footer">
+       <div class="input"><input type="file" accept=".jpg,.jpeg,.png,.gif,.bmp" name="file"></div>
       </div>
      </div>
     </div>
