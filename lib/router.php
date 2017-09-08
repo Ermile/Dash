@@ -242,7 +242,8 @@ class router
 			{
 				$myaddons[\lib\router::get_storage('CMS')] = 'cp';
 				// $myaddons['account'] = 'account';
-				$myaddons['enter']   = 'enter';
+				$myaddons['enter'] = 'enter';
+				$myaddons['api']   = 'api';
 			}
 			// check this sub is exist in our data or not
 			if(array_key_exists($mysub, $myaddons))
