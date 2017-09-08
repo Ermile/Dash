@@ -27,9 +27,9 @@ class model extends \addons\content_enter\main\model
 
 		$my_chat_id = null;
 
-		if(self::user_data('user_chat_id'))
+		if(self::user_data('chatid'))
 		{
-			$my_chat_id = self::user_data('user_chat_id');
+			$my_chat_id = self::user_data('chatid');
 		}
 		elseif(self::get_enter_session('temp_chat_id'))
 		{

@@ -17,7 +17,7 @@ class controller extends \addons\content_enter\main\controller
 		}
 
 		// if step mobile is done
-		if(self::done_step('mobile') && !self::user_data('user_pass'))
+		if(self::done_step('mobile') && !self::user_data('password'))
 		{
 			// parent::_route();
 			$this->get('pass')->ALL('pass/set');

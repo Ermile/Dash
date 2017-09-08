@@ -541,7 +541,7 @@ class upload
 		// 6. add uploaded file record to db
 		$insert_attachment =
 		[
-			'post_title'       => self::$fileName,
+			'post_title'       => self::$fileName ? self::$fileName : rand(1,999),
 			'post_slug'        => self::$fileMd5,
 			'post_meta'        => $file_meta,
 			'post_type'        => 'attachment',

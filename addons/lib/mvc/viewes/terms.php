@@ -26,7 +26,7 @@ trait terms
 			'term_url'      =>'url',
 			'term_desc'     =>'content',
 			'term_parent'   =>'parent',
-			'date_modified' =>'modified'
+			'datemodified' =>'modified'
 		];
 
 		foreach ($tmp_fields as $key => $value)

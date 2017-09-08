@@ -19,13 +19,13 @@
 <div class="dt big">
 	<div class="f th">
 		<div class="c"><a href="{{url.base}}/cp/users/{{order_url.id}}">{%trans "ID"%}</a></div>
-		<div class="c"><a href="{{url.base}}/cp/users/{{order_url.user_mobile}}">{%trans "Mobile"%}</a></div>
-		<div class="c"><a href="{{url.base}}/cp/users/{{order_url.user_email}}">{%trans "Email"%}</a></div>
-		<div class="c"><a href="{{url.base}}/cp/users/{{order_url.user_displayname}}">{%trans "Display name"%}</a></div>
-		<div class="c"><a href="{{url.base}}/cp/users/{{order_url.user_status}}">{%trans "Status"%}</a></div>
-		<div class="c"><a href="{{url.base}}/cp/users/{{order_url.user_parent}}">{%trans "Parent"%}</a></div>
-		<div class="c"><a href="{{url.base}}/cp/users/{{order_url.user_username}}">{%trans "Username"%}</a></div>
-		<div class="c"><a href="{{url.base}}/cp/users/{{order_url.user_file_url}}">{%trans "Avatar"%}</a></div>
+		<div class="c"><a href="{{url.base}}/cp/users/{{order_url.mobile}}">{%trans "Mobile"%}</a></div>
+		<div class="c"><a href="{{url.base}}/cp/users/{{order_url.email}}">{%trans "Email"%}</a></div>
+		<div class="c"><a href="{{url.base}}/cp/users/{{order_url.displayname}}">{%trans "Display name"%}</a></div>
+		<div class="c"><a href="{{url.base}}/cp/users/{{order_url.status}}">{%trans "Status"%}</a></div>
+		<div class="c"><a href="{{url.base}}/cp/users/{{order_url.parent}}">{%trans "Parent"%}</a></div>
+		<div class="c"><a href="{{url.base}}/cp/users/{{order_url.username}}">{%trans "Username"%}</a></div>
+		<div class="c"><a href="{{url.base}}/cp/users/{{order_url.fileurl}}">{%trans "Avatar"%}</a></div>
 		<div class="c1">{%trans "More"%}</div>
 		<!-- <div class="c1">{%trans "Edit"%}</div> -->
 		<div class="c1">{%trans "Logs"%}</div>
@@ -35,15 +35,15 @@
 	<div class="f">
 
 		<div class="c">{{value.id|fitNumber}}</div>
-		<div class="c">{{value.user_mobile|fitNumber}}</div>
-		<div class="c">{{value.user_email}}</div>
-		<div class="c">{{value.user_displayname}}</div>
-		<div class="c">{{value.user_status}}</div>
-		<div class="c">{{value.user_parent}}</div>
-		<div class="c">{{value.user_username}}</div>
-		{%if value.user_file_url%}
+		<div class="c">{{value.mobile|fitNumber}}</div>
+		<div class="c">{{value.email}}</div>
+		<div class="c">{{value.displayname}}</div>
+		<div class="c">{{value.status}}</div>
+		<div class="c">{{value.parent}}</div>
+		<div class="c">{{value.username}}</div>
+		{%if value.fileurl%}
 			<div class="c">
-				<a href="{{url.root}}/{{value.user_file_url}}" target="_blank"><img src="{{url.root}}/{{value.user_file_url}}" height="25" width="25"></a>
+				<a href="{{url.root}}/{{value.fileurl}}" target="_blank"><img src="{{url.root}}/{{value.fileurl}}" height="25" width="25"></a>
 				</div>
 		{%else%}
 			<div class="c"><span class="sf-file-image-o"></span></div>

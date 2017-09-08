@@ -53,9 +53,9 @@ class model extends \addons\content_enter\main\model
 
 
 		// check username exist
-		$check_exist_user_name = \lib\db\users::get_by_username(utility::post('usernameNew'));
+		$check_exist_name = \lib\db\users::get_by_username(utility::post('usernameNew'));
 
-		if(!empty($check_exist_user_name))
+		if(!empty($check_exist_name))
 		{
 			debug::error(T_("This username alreay taked!"));
 			return false;

@@ -8,7 +8,7 @@ class permission
 	public static $perm_list       = [];
 	public static $user_id         = null;
 	public static $caller          = null;
-	public static $user_permission = null;
+	public static $permission = null;
 	public static $force_load_user = false;
 
 	/**
@@ -40,23 +40,23 @@ class permission
 	public static function load_user_data()
 	{
 		// if permission is set before it, return true
-		if(self::$user_permission)
+		if(self::$permission)
 		{
 			return true;
 		}
 		// if permission is exist in session use it
 		if(isset($_SESSION['user']['permission']) && !self::$force_load_user)
 		{
-			self::$user_permission = $_SESSION['user']['permission'];
+			self::$permission = $_SESSION['user']['permission'];
 		}
 		// else if we have user_id get it from user detail
 		else if(self::$user_id && is_numeric(self::$user_id))
 		{
 			$user_data = \lib\db\users::get_by_id(self::$user_id);
-			if(isset($user_data['user_permission']))
+			if(isset($user_data['permission']))
 			{
-				self::$user_permission = trim($user_data['user_permission']);
-				// $_SESSION['user']['permission'] = self::$user_permission;
+				self::$permission = trim($user_data['permission']);
+				// $_SESSION['user']['permission'] = self::$permission;
 			}
 		}
 	}
@@ -150,15 +150,15 @@ class permission
 			// and verify users !
 		}
 		// admin use -f!
-		if(self::$user_permission === 'admin')
+		if(self::$permission === 'admin')
 		{
 			return true;
 		}
 
 		// if permission is not null and exist, explode it
-		if(self::$user_permission && is_string(self::$user_permission))
+		if(self::$permission && is_string(self::$permission))
 		{
-			$explode = explode(',', self::$user_permission);
+			$explode = explode(',', self::$permission);
 
 			if(isset(self::$caller['key']))
 			{

@@ -94,9 +94,9 @@ class userparents
 			{
 				$temp = [];
 				$temp['id']          = $value['id'];
-				$temp['file_url']    = isset($parent_details[$value['parent']]['user_file_url'])? $parent_details[$value['parent']]['user_file_url'] : null;
-				$temp['mobile']      = isset($parent_details[$value['parent']]['user_mobile'])? $parent_details[$value['parent']]['user_mobile'] : null;
-				$temp['displayname'] = isset($parent_details[$value['parent']]['user_displayname'])? $parent_details[$value['parent']]['user_displayname'] : null;
+				$temp['fileurl']    = isset($parent_details[$value['parent']]['fileurl'])? $parent_details[$value['parent']]['fileurl'] : null;
+				$temp['mobile']      = isset($parent_details[$value['parent']]['mobile'])? $parent_details[$value['parent']]['mobile'] : null;
+				$temp['displayname'] = isset($parent_details[$value['parent']]['displayname'])? $parent_details[$value['parent']]['displayname'] : null;
 				$temp['title']       = isset($value['title']) ? $value['title'] : null;
 				$temp['othertitle']  = isset($value['othertitle'])? $value['othertitle'] : null;
 

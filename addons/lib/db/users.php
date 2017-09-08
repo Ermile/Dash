@@ -55,7 +55,7 @@ class users
 		$_options['search_field'] =
 		"
 			(
-				users.user_mobile LIKE '%__string__%'
+				users.mobile LIKE '%__string__%'
 			)
 		";
 		// public_show_field
@@ -80,40 +80,40 @@ class users
 					SELECT * FROM users
 					WHERE
 					(
-						users.user_email         = '$_email' OR
-						users.user_google_mail   = '$_email' OR
-						users.user_facebook_mail = '$_email' OR
-						users.user_twitter_mail  = '$_email'
+						users.email         = '$_email' OR
+						users.googlemail   = '$_email' OR
+						users.facebookmail = '$_email' OR
+						users.twittermail  = '$_email'
 					) AND
-					users.user_status != 'removed'
+					users.status != 'removed'
 					ORDER BY users.id DESC
 					LIMIT 1
 				";
 				break;
 
-			case 'user_google_mail':
-			case 'user_facebook_mail':
-			case 'user_twitter_mail':
+			case 'googlemail':
+			case 'facebookmail':
+			case 'twittermail':
 				$query =
 				"
 					SELECT *
 					FROM users
 					WHERE users.$_field = '$_email'
-					AND users.user_status != 'removed'
+					AND users.status != 'removed'
 					ORDER BY users.id DESC
 					LIMIT 1
 				";
 				break;
 
 			case false:
-			case 'user_email':
+			case 'email':
 			default:
 				$query =
 				"
 					SELECT *
 					FROM users
-					WHERE users.user_email = '$_email'
-					AND users.user_status != 'removed'
+					WHERE users.email = '$_email'
+					AND users.status != 'removed'
 					ORDER BY users.id DESC
 					LIMIT 1
 				";
@@ -135,7 +135,7 @@ class users
 	{
 		$args =
 		[
-			'user_username' => $_username,
+			'username' => $_username,
 			'limit'         => 1
 		];
 		return self::get($args);
@@ -153,7 +153,7 @@ class users
 	{
 		$args =
 		[
-			'user_mobile' => $_mobile,
+			'mobile' => $_mobile,
 			'limit'       => 1
 		];
 		$result = self::get($args);
@@ -236,7 +236,7 @@ class users
 	 */
 	public static function signup_quick($_args = [])
 	{
-		$_args      = array_merge(['user_createdate' => date('Y-m-d H:i:s')], $_args);
+		$_args      = array_merge(['datecreated' => date('Y-m-d H:i:s')], $_args);
 		$insert_new = self::insert($_args);
 		$insert_id  = \lib\db::insert_id();
 		return $insert_id;
@@ -293,7 +293,7 @@ class users
 			$_args['permission'] = null;
 		}
 
-		$query = " SELECT id FROM users WHERE user_mobile = '$_args[mobile]' LIMIT 1 ";
+		$query = " SELECT id FROM users WHERE mobile = '$_args[mobile]' LIMIT 1 ";
 
 		$result = \lib\db::get($query, 'id', true);
 
@@ -365,13 +365,13 @@ class users
 			// signup up users
 			$args =
 			[
-				'user_mobile'      => $_args['mobile'],
-				'user_pass'        => $password,
-				'user_displayname' => $_args['displayname'],
-				'user_permission'  => $_args['permission'],
-				'user_email'       => $_args['email'],
-				'user_parent'      => $ref,
-				'user_createdate'  => date('Y-m-d H:i:s')
+				'mobile'      => $_args['mobile'],
+				'password'        => $password,
+				'displayname' => $_args['displayname'],
+				'permission'  => $_args['permission'],
+				'email'       => $_args['email'],
+				'parent'      => $ref,
+				'datecreated'  => date('Y-m-d H:i:s')
 			];
 
 			$insert_new    = self::insert($args);
@@ -465,7 +465,7 @@ class users
 			case 'deactive':
 			case 'removed':
 			case 'filter':
-				$query = "SELECT COUNT(*) AS 'count' FROM users WHERE users.user_status = '$_type' ";
+				$query = "SELECT COUNT(*) AS 'count' FROM users WHERE users.status = '$_type' ";
 				break;
 
 			case 'valid':
@@ -481,7 +481,7 @@ class users
 			default:
 				$query = "SELECT
 							users.user_validstatus AS 'valid',
-							users.user_status AS 'status',
+							users.status AS 'status',
 							COUNT(*) AS 'count'
 						FROM users
 						GROUP BY valid,status";
@@ -556,9 +556,9 @@ class users
 					break;
 
 				case 'language':
-					if(isset(self::$USERS_DETAIL[$_user_id]['user_language']))
+					if(isset(self::$USERS_DETAIL[$_user_id]['language']))
 					{
-						return self::$USERS_DETAIL[$_user_id]['user_language'];
+						return self::$USERS_DETAIL[$_user_id]['language'];
 					}
 					else
 					{
@@ -618,7 +618,7 @@ class users
 			case 'language':
 				if(\lib\utility\location\languages::check($_value))
 				{
-					$update['user_language'] = $_value;
+					$update['language'] = $_value;
 				}
 				break;
 

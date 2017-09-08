@@ -22,10 +22,10 @@ class users
 			$_period = "%Y-%m";
 		}
 		$qry ="SELECT
-				DATE_FORMAT(user_createdate, '$_period') as date,
+				DATE_FORMAT(datecreated, '$_period') as date,
 				count(id) as total
 			FROM users
-			WHERE user_createdate != 0
+			WHERE datecreated != 0
 			GROUP BY date
 		";
 

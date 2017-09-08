@@ -29,7 +29,7 @@ class model extends \addons\content_enter\main\model
 		if($old_google_mail && $new_google_mail && is_numeric($user_id))
 		{
 			self::$user_id = $user_id;
-			\lib\db\users::update(['user_google_mail' => $new_google_mail], $user_id);
+			\lib\db\users::update(['googlemail' => $new_google_mail], $user_id);
 			self::load_user_data('user_id');
 			self::enter_set_login();
 			self::next_step('okay');

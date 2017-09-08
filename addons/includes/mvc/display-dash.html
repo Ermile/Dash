@@ -7,6 +7,7 @@
 
 
 {%block body%}
+
 {%block sideBox%} <aside id='sidebar' class='unselectable scr' data-xhr='sidebar'>{{block ('aside')}} </aside>{%endblock%}
 
  <main id='main'>
@@ -14,7 +15,6 @@
 {%block contentBox%}  <div id='content' class='scr' data-xhr='content'>{{block ('content')}}  </div>{%endblock%}
 {%block footerBox%}  <footer id='footer' class='flex'>{{block ('footer')}}  </footer>{%endblock%}
  </main>
-
 {%endblock%}
 
 
@@ -25,8 +25,8 @@
   <figure>
 {%block avatar%}
    <a href="{{url.baseFull}}/profile" title='{%trans "Edit your profile"%}' class="avatar">
-{%if login.file_url%}
-     <img src="{{url.root}}/{{login.file_url}}" alt='{%trans "Avatar of you"%}'>
+{%if login.fileurl%}
+     <img src="{{url.root}}/{{login.fileurl}}" alt='{%trans "Avatar of you"%}'>
 {%else%}
      <img src="{{codeUrl}}dash/images/logo.jpg" alt='{%trans "Avatar of you"%}'>
 {%endif%}

@@ -34,7 +34,7 @@ class model extends \mvc\model
 
 			$where =
 			[
-				'user_chat_id' => $telegram_id,
+				'chatid' => $telegram_id,
 				'limit'        => 1
 			];
 
@@ -50,7 +50,7 @@ class model extends \mvc\model
 			];
 			if(isset($exist_chart_id['id']))
 			{
-				$remove_all_this_chat_id = "UPDATE users SET user_chat_id = NULL WHERE user_chat_id = '$telegram_id' ";
+				$remove_all_this_chat_id = "UPDATE users SET chatid = NULL WHERE chatid = '$telegram_id' ";
 				\lib\db::query($remove_all_this_chat_id);
 				\lib\db\logs::set('enter:hook:remove:all:chat:id:by:delete:request', $exist_chart_id['id'], $log_meta);
 			}
@@ -155,7 +155,7 @@ class model extends \mvc\model
 
 		$where =
 		[
-			'user_chat_id' => $telegram_id,
+			'chatid' => $telegram_id,
 			'limit'        => 1
 		];
 
@@ -186,10 +186,10 @@ class model extends \mvc\model
 			}
 
 			$insert_user                     = [];
-			$insert_user['user_mobile']      = $mobile;
-			$insert_user['user_displayname'] = $fullName;
-			$insert_user['user_chat_id']     = $telegram_id;
-			$insert_user['user_createdate']  = date("Y-m-d H:i:s");
+			$insert_user['mobile']      = $mobile;
+			$insert_user['displayname'] = $fullName;
+			$insert_user['chatid']     = $telegram_id;
+			$insert_user['datecreated']  = date("Y-m-d H:i:s");
 			\lib\db\users::insert($insert_user);
 			$this->user_id = \lib\db::insert_id();
 			\lib\db\logs::set('enter:hook:signup:new', $exist_mobile['id'], $log_meta);
@@ -205,10 +205,10 @@ class model extends \mvc\model
 				}
 				else
 				{
-					$remove_all_this_chat_id = "UPDATE users SET user_chat_id = NULL WHERE user_chat_id = '$telegram_id' ";
+					$remove_all_this_chat_id = "UPDATE users SET chatid = NULL WHERE chatid = '$telegram_id' ";
 					\lib\db::query($remove_all_this_chat_id);
 					\lib\db\logs::set('enter:hook:remove:all:chat:id', $exist_mobile['id'], $log_meta);
-					\lib\db\users::update(['user_chat_id' => $telegram_id], $exist_mobile['id']);
+					\lib\db\users::update(['chatid' => $telegram_id], $exist_mobile['id']);
 					$this->user_id = (int) $exist_mobile['id'];
 				}
 			}
@@ -224,13 +224,13 @@ class model extends \mvc\model
 			{
 				if($mobile)
 				{
-					$remove_all_this_chat_id = "UPDATE users SET user_chat_id = NULL WHERE user_chat_id = '$telegram_id' ";
+					$remove_all_this_chat_id = "UPDATE users SET chatid = NULL WHERE chatid = '$telegram_id' ";
 
 					\lib\db::query($remove_all_this_chat_id);
 
 					\lib\db\logs::set('enter:hook:remove:all:chat:id', $exist_chart_id['id'], $log_meta);
 
-					\lib\db\users::update(['user_mobile' => $mobile, 'user_chat_id' => $telegram_id], $exist_chart_id['id']);
+					\lib\db\users::update(['mobile' => $mobile, 'chatid' => $telegram_id], $exist_chart_id['id']);
 
 					\lib\db\logs::set('enter:hook:change:mobile', $exist_chart_id['id'], $log_meta);
 				}
@@ -248,7 +248,7 @@ class model extends \mvc\model
 			{
 				if($telegram_id)
 				{
-					\lib\db\users::update(['user_chat_id' => $telegram_id], $exist_mobile['id']);
+					\lib\db\users::update(['chatid' => $telegram_id], $exist_mobile['id']);
 					\lib\db\logs::set('enter:hook:change:chat_id', $exist_mobile['id'], $log_meta);
 				}
 				$this->user_id = (int) $exist_mobile['id'];

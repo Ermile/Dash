@@ -40,7 +40,7 @@ class model extends \addons\content_enter\main\model
 			debug::error(T_("Username not found"));
 			return false;
 		}
-		elseif(!self::user_data('user_pass'))
+		elseif(!self::user_data('password'))
 		{
 			// BUG username set and password is not set
 
@@ -61,9 +61,9 @@ class model extends \addons\content_enter\main\model
 		{
 			// user enter by username
 			// we need to her mobile to recovery this
-			if(!self::get_enter_session('mobile') && self::user_data('user_mobile'))
+			if(!self::get_enter_session('mobile') && self::user_data('mobile'))
 			{
-				self::set_enter_session('mobile', self::user_data('user_mobile'));
+				self::set_enter_session('mobile', self::user_data('mobile'));
 			}
 
 			// set step session

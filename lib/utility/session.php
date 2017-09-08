@@ -195,7 +195,7 @@ class session
 				FROM users
 				INNER JOIN `options` ON `options`.user_id = `users`.id
 				WHERE `options`.option_cat = 'session' AND
-					user_permission = $perm_id;";
+					permission = $perm_id;";
 			// run query and give result
 			$result = @mysqli_query(\lib\db::$link, $qry);
 			// fetch all records

@@ -281,7 +281,7 @@ trait verification_code
 			  )
 			{
 				// set temp ramz in use pass
-				\lib\db\users::update(['user_pass' => self::get_enter_session('temp_ramz_hash')], self::user_data('id'));
+				\lib\db\users::update(['password' => self::get_enter_session('temp_ramz_hash')], self::user_data('id'));
 			}
 
 
@@ -295,7 +295,7 @@ trait verification_code
 			if(self::get_enter_session('verify_from') === 'username_remove' && is_numeric(self::user_data('id')))
 			{
 				// set temp ramz in use pass
-				\lib\db\users::update(['user_username' => null], self::user_data('id'));
+				\lib\db\users::update(['username' => null], self::user_data('id'));
 				// remove usename from sessions
 				unset($_SESSION['user']['username']);
 				// set the alert message
@@ -320,19 +320,19 @@ trait verification_code
 				{
 					$update_meta  = [];
 
-					$user_meta = self::user_data('user_meta');
-					if(!$user_meta)
+					$meta = self::user_data('meta');
+					if(!$meta)
 					{
 						$update_meta['why'] = self::get_enter_session('why');
 					}
-					elseif(is_string($user_meta) && substr($user_meta, 0, 1) !== '{')
+					elseif(is_string($meta) && substr($meta, 0, 1) !== '{')
 					{
-						$update_meta['other'] = $user_meta;
+						$update_meta['other'] = $meta;
 						$update_meta['why'] = self::get_enter_session('why');
 					}
-					elseif(is_string($user_meta) && substr($user_meta, 0, 1) === '{')
+					elseif(is_string($meta) && substr($meta, 0, 1) === '{')
 					{
-						$json = json_decode($user_meta, true);
+						$json = json_decode($meta, true);
 						$update_meta = array_merge($json, ['why' => self::get_enter_session('why')]);
 					}
 
@@ -341,9 +341,9 @@ trait verification_code
 				$update_user = [];
 				if(!empty($update_meta))
 				{
-					$update_user['user_meta'] = json_encode($update_meta, JSON_UNESCAPED_UNICODE);
+					$update_user['meta'] = json_encode($update_meta, JSON_UNESCAPED_UNICODE);
 				}
-				$update_user['user_status'] = 'removed';
+				$update_user['status'] = 'removed';
 
 				\lib\db\users::update($update_user, self::user_data('id'));
 
@@ -372,7 +372,7 @@ trait verification_code
 			  )
 			{
 				// set temp ramz in use pass
-				\lib\db\users::update(['user_username' => self::get_enter_session('temp_username')], self::user_data('id'));
+				\lib\db\users::update(['username' => self::get_enter_session('temp_username')], self::user_data('id'));
 				// set the alert message
 				if(self::get_enter_session('verify_from') === 'username_set')
 				{
@@ -409,7 +409,7 @@ trait verification_code
 					$load_mobile_data = \lib\db\users::get_by_mobile(self::get_enter_session('temp_mobile'));
 					if($load_mobile_data && isset($load_mobile_data['id']))
 					{
-						if(isset($load_mobile_data['user_status']) && in_array($load_mobile_data['user_status'], self::$block_status))
+						if(isset($load_mobile_data['status']) && in_array($load_mobile_data['status'], self::$block_status))
 						{
 							self::next_step('block');
 							self::go_to('block');
@@ -419,16 +419,16 @@ trait verification_code
 						{
 							if(self::get_enter_session('mobile_request_from') === 'google_email_not_exist')
 							{
-								if(isset($load_mobile_data['user_google_mail']) && $load_mobile_data['user_google_mail'])
+								if(isset($load_mobile_data['googlemail']) && $load_mobile_data['googlemail'])
 								{
-									if(self::get_enter_session('logined_by_email') === $load_mobile_data['user_google_mail'])
+									if(self::get_enter_session('logined_by_email') === $load_mobile_data['googlemail'])
 									{
 										self::$user_id = $load_mobile_data['id'];
 										self::load_user_data('user_id');
 									}
 									else
 									{
-										self::set_enter_session('old_google_mail', $load_mobile_data['user_google_mail']);
+										self::set_enter_session('old_google_mail', $load_mobile_data['googlemail']);
 										self::set_enter_session('new_google_mail', self::get_enter_session('logined_by_email'));
 										self::set_enter_session('user_id_must_change_google_mail', $load_mobile_data['id']);
 										// request from user to change email
@@ -439,7 +439,7 @@ trait verification_code
 								}
 								else
 								{
-									\lib\db\users::update(['user_google_mail' => self::get_enter_session('logined_by_email')], $load_mobile_data['id']);
+									\lib\db\users::update(['googlemail' => self::get_enter_session('logined_by_email')], $load_mobile_data['id']);
 									self::$user_id = $load_mobile_data['id'];
 									self::load_user_data('user_id');
 								}
@@ -463,15 +463,15 @@ trait verification_code
 								$signup = self::get_enter_session('must_signup');
 								if(self::get_enter_session('temp_mobile'))
 								{
-									$signup['user_mobile'] = self::get_enter_session('temp_mobile');
+									$signup['mobile'] = self::get_enter_session('temp_mobile');
 								}
 
 								if(self::get_enter_session('logined_by_email'))
 								{
-									$signup['user_google_mail'] = self::get_enter_session('logined_by_email');
+									$signup['googlemail'] = self::get_enter_session('logined_by_email');
 								}
 
-								$signup['user_status'] = 'active';
+								$signup['status'] = 'active';
 								self::set_enter_session('first_signup', true);
 								self::$user_id = \lib\db\users::signup($signup);
 								self::load_user_data('user_id');
@@ -483,9 +483,9 @@ trait verification_code
 						}
 						elseif(self::get_enter_session('mobile_request_from') === 'google_email_exist')
 						{
-							if(!self::user_data('user_mobile'))
+							if(!self::user_data('mobile'))
 							{
-								\lib\db\users::update(['user_mobile' => self::get_enter_session('temp_mobile')], self::user_data('id'));
+								\lib\db\users::update(['mobile' => self::get_enter_session('temp_mobile')], self::user_data('id'));
 								// login
 							}
 							self::$user_id = self::user_data('id');
@@ -528,7 +528,7 @@ trait verification_code
 			  )
 			{
 				// set temp ramz in use pass
-				\lib\db\users::update(['user_email' => self::get_enter_session('temp_email')], self::user_data('id'));
+				\lib\db\users::update(['email' => self::get_enter_session('temp_email')], self::user_data('id'));
 			}
 
 			/**
@@ -552,7 +552,7 @@ trait verification_code
 			if(self::get_enter_session('verify_from') === 'two_step_set' &&	is_numeric(self::user_data('id')))
 			{
 				// set on two_step of this user
-				\lib\db\users::update(['user_two_step' => 1], self::user_data('id'));
+				\lib\db\users::update(['twostep' => 1], self::user_data('id'));
 			}
 
 
@@ -565,7 +565,7 @@ trait verification_code
 			if(self::get_enter_session('verify_from') === 'two_step_unset' &&	is_numeric(self::user_data('id')))
 			{
 				// set off two_step of this user
-				\lib\db\users::update(['user_two_step' => 0], self::user_data('id'));
+				\lib\db\users::update(['twostep' => 0], self::user_data('id'));
 			}
 
 			// set login session
@@ -652,12 +652,12 @@ trait verification_code
 				if(is_numeric(self::user_data('id')))
 				{
 					// the user click on dont will mobile
-					// we save this time to user_dont_will_set_mobile to never show this message again
+					// we save this time to dontwillsetmobile to never show this message again
 					$update_user_google = [];
 
 					if(self::get_enter_session('dont_will_set_mobile'))
 					{
-						$update_user_google['user_dont_will_set_mobile'] = date("Y-m-d H:i:s");
+						$update_user_google['dontwillsetmobile'] = date("Y-m-d H:i:s");
 					}
 					if(!empty($update_user_google))
 					{

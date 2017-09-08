@@ -5,6 +5,6 @@ CREATE TABLE if not exists `sessions` (
 	`session_expire` datetime NOT NULL,
 	`session_data` text,
 	`session_meta` mediumtext,
-	`date_modified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+	`datemodified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
 	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;

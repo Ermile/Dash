@@ -38,12 +38,12 @@ class model extends \addons\content_enter\main\model
 				// get user email
 				self::$email = google::user_info('email');
 				// load data by email in field user google mail
-				self::load_user_data('email', ['email_field' => 'user_google_mail']);
+				self::load_user_data('email', ['email_field' => 'googlemail']);
 				// the user exist in system
 				if(self::user_data('id'))
 				{
 					// check user status
-					if(in_array(self::user_data('user_status'), self::$block_status))
+					if(in_array(self::user_data('status'), self::$block_status))
 					{
 						// the user was blocked
 						self::next_step('block');
@@ -54,16 +54,16 @@ class model extends \addons\content_enter\main\model
 					}
 					else
 					{
-						if(self::user_data('user_mobile'))
+						if(self::user_data('mobile'))
 						{
 							// no problem to login this user
 							$no_problem_to_login = true;
 						}
 						else
 						{
-							if(self::user_data('user_dont_will_set_mobile'))
+							if(self::user_data('dontwillsetmobile'))
 							{
-								if(strtotime(self::user_data('user_dont_will_set_mobile')) > (60*60*24*365))
+								if(strtotime(self::user_data('dontwillsetmobile')) > (60*60*24*365))
 								{
 									self::set_enter_session('mobile_request_from', 'google_email_exist');
 
@@ -98,15 +98,15 @@ class model extends \addons\content_enter\main\model
 					$args = [];
 					if(google::user_info('name'))
 					{
-						$args['user_displayname'] = google::user_info('name');
+						$args['displayname'] = google::user_info('name');
 					}
 					elseif(google::user_info('familyName') || google::user_info('givenName'))
 					{
-						$args['user_displayname'] = trim(google::user_info('familyName'). ' '. google::user_info('givenName'));
+						$args['displayname'] = trim(google::user_info('familyName'). ' '. google::user_info('givenName'));
 					}
 
-					$args['user_google_mail'] = google::user_info('email');
-					$args['user_createdate']  = date("Y-m-d H:i:s");
+					$args['googlemail'] = google::user_info('email');
+					$args['datecreated']  = date("Y-m-d H:i:s");
 
 					self::set_enter_session('mobile_request_from', 'google_email_not_exist');
 

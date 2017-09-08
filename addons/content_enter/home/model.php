@@ -147,7 +147,7 @@ class model extends \addons\content_enter\main\model
 		else
 		{
 			// if this user is blocked or filtered go to block page
-			if(in_array(self::user_data('user_status'), self::$block_status))
+			if(in_array(self::user_data('status'), self::$block_status))
 			{
 				// block page
 				self::next_step('block');
@@ -156,8 +156,8 @@ class model extends \addons\content_enter\main\model
 				return;
 			}
 
-			// the user_pass field is empty
-			if(!self::user_data('user_pass'))
+			// the password field is empty
+			if(!self::user_data('password'))
 			{
 				// lock all step and set just this page to load
 				self::next_step('pass/set');

@@ -68,8 +68,8 @@ class transactions
 			'search_field' =>
 			"
 				(
-					users.user_mobile LIKE '%__string__%' OR
-					users.user_email LIKE '%__string__%' OR
+					users.mobile LIKE '%__string__%' OR
+					users.email LIKE '%__string__%' OR
 					transactions.title LIKE '%__string__%'
 				)
 
@@ -77,8 +77,8 @@ class transactions
 			'public_show_field' =>
 				"
 					transactions.*,
-					users.user_mobile      AS `mobile`,
-					users.user_displayname AS `displayname`
+					users.mobile      AS `mobile`,
+					users.displayname AS `displayname`
 				",
 			'master_join'         => " INNER JOIN users ON users.id = transactions.user_id ",
 		];

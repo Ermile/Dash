@@ -115,7 +115,7 @@ trait cp
 						{
 							unset($incomplete_fields[$key]);
 						}
-						$qry = $qry->set('user_createdate', date('Y-m-d H:i:s'));
+						$qry = $qry->set('datecreated', date('Y-m-d H:i:s'));
 					}
 					else
 					{
@@ -132,7 +132,7 @@ trait cp
 						$not_change = false;
 					}
 					$meta = json_encode($meta, JSON_FORCE_OBJECT | JSON_UNESCAPED_UNICODE);
-					$qry  = $qry->set('user_meta', $meta);
+					$qry  = $qry->set('meta', $meta);
 					break;
 			}
 		}

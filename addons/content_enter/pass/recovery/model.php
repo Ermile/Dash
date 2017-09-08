@@ -37,9 +37,9 @@ class model extends \addons\content_enter\pass\model
 
 			// check new password = old password
 			// needless to change password
-			if(self::user_data('user_pass'))
+			if(self::user_data('password'))
 			{
-				if(\lib\utility::hasher($temp_ramz, self::user_data('user_pass')))
+				if(\lib\utility::hasher($temp_ramz, self::user_data('password')))
 				{
 					// old pass = new pass
 					// aletr to user the new pass = old pass

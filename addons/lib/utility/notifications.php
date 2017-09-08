@@ -278,7 +278,7 @@ class notifications
 			'createdate',
 			'expiredate',
 			'readdate',
-			'date_modified',
+			'datemodified',
 			'desc',
 			'meta',
 			'telegram',
@@ -387,13 +387,13 @@ class notifications
 			"
 				SELECT
 					users.id,
-					users.user_mobile,
-					users.user_email,
-					users.user_chat_id,
-					users.user_notification,
-					users.user_facebook_mail,
-					users.user_twitter_mail,
-					users.user_google_mail
+					users.mobile,
+					users.email,
+					users.chatid,
+					users.notification,
+					users.facebookmail,
+					users.twittermail,
+					users.googlemail
 				FROM
 					users
 				WHERE users.id IN ($_user_ids)
@@ -417,9 +417,9 @@ class notifications
 	 */
 	public function get_mobile($_user_id)
 	{
-		if(isset($this->user_details[$_user_id]['user_mobile']))
+		if(isset($this->user_details[$_user_id]['mobile']))
 		{
-			if($mobile = \lib\utility\filter::mobile($this->user_details[$_user_id]['user_mobile']))
+			if($mobile = \lib\utility\filter::mobile($this->user_details[$_user_id]['mobile']))
 			{
 				return $mobile;
 			}
@@ -437,24 +437,24 @@ class notifications
 	 */
 	public function get_email($_user_id)
 	{
-		if(isset($this->user_details[$_user_id]['user_email']) && $this->user_details[$_user_id]['user_email'])
+		if(isset($this->user_details[$_user_id]['email']) && $this->user_details[$_user_id]['email'])
 		{
-			return $this->user_details[$_user_id]['user_email'];
+			return $this->user_details[$_user_id]['email'];
 		}
 
-		if(isset($this->user_details[$_user_id]['user_google_mail']) && $this->user_details[$_user_id]['user_google_mail'])
+		if(isset($this->user_details[$_user_id]['googlemail']) && $this->user_details[$_user_id]['googlemail'])
 		{
-			return $this->user_details[$_user_id]['user_google_mail'];
+			return $this->user_details[$_user_id]['googlemail'];
 		}
 
-		if(isset($this->user_details[$_user_id]['user_facebook_mail']) && $this->user_details[$_user_id]['user_facebook_mail'])
+		if(isset($this->user_details[$_user_id]['facebookmail']) && $this->user_details[$_user_id]['facebookmail'])
 		{
-			return $this->user_details[$_user_id]['user_facebook_mail'];
+			return $this->user_details[$_user_id]['facebookmail'];
 		}
 
-		if(isset($this->user_details[$_user_id]['user_twitter_mail']) && $this->user_details[$_user_id]['user_twitter_mail'])
+		if(isset($this->user_details[$_user_id]['twittermail']) && $this->user_details[$_user_id]['twittermail'])
 		{
-			return $this->user_details[$_user_id]['user_twitter_mail'];
+			return $this->user_details[$_user_id]['twittermail'];
 		}
 
 		return null;
@@ -470,9 +470,9 @@ class notifications
 	 */
 	public function get_chat_id($_user_id)
 	{
-		if(isset($this->user_details[$_user_id]['user_chat_id']))
+		if(isset($this->user_details[$_user_id]['chatid']))
 		{
-			return $this->user_details[$_user_id]['user_chat_id'];
+			return $this->user_details[$_user_id]['chatid'];
 		}
 		return null;
 	}
@@ -498,11 +498,11 @@ class notifications
 			$_cat = $cat_list[$_cat];
 		}
 
-		if(isset($this->user_details[$_user_id]['user_notification']))
+		if(isset($this->user_details[$_user_id]['notification']))
 		{
-			if(array_key_exists($_cat, $this->user_details[$_user_id]['user_notification']))
+			if(array_key_exists($_cat, $this->user_details[$_user_id]['notification']))
 			{
-				if(!$this->user_details[$_user_id]['user_notification'][$_cat])
+				if(!$this->user_details[$_user_id]['notification'][$_cat])
 				{
 					return true;
 				}

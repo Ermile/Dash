@@ -64,9 +64,9 @@ trait account
 		// set login session
 		\lib\db\users::set_login_session($_datarow, $_fields);
 
-		if(isset($_datarow['user_permission']) && is_numeric($_datarow['user_permission']))
+		if(isset($_datarow['permission']) && is_numeric($_datarow['permission']))
 		{
-			$this->setPermissionSession($_datarow['user_permission']);
+			$this->setPermissionSession($_datarow['permission']);
 		}
 	}
 
@@ -229,12 +229,12 @@ trait account
 			case is_numeric($_type):
 				$mydatarow	= $this->sql()->tableUsers()->whereId($_type)->select()->assoc();
 				$myfields = array('id',
-										'user_mobile',
-										'user_email',
-										'user_displayname',
-										'user_meta',
-										'user_status',
-										'user_permission',
+										'mobile',
+										'email',
+										'displayname',
+										'meta',
+										'status',
+										'permission',
 										);
 				$this->setLoginSession($mydatarow, $myfields);
 				break;

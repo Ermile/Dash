@@ -130,10 +130,10 @@ class model extends \addons\content_enter\main\model
 
 		$signup =
 		[
-			'user_mobile'      => $mobile,
-			'user_pass'        => null,
-			'user_displayname' => null,
-			'user_createdate'  => date("Y-m-d H:i:s"),
+			'mobile'      => $mobile,
+			'password'        => null,
+			'displayname' => null,
+			'datecreated'  => date("Y-m-d H:i:s"),
 		];
 
 		\lib\db\users::insert($signup);

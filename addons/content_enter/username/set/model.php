@@ -31,15 +31,15 @@ class model extends \addons\content_enter\main\model
 			}
 
 			// check username exist
-			$check_exist_user_name = \lib\db\users::get_by_username($username);
+			$check_exist_name = \lib\db\users::get_by_username($username);
 
-			if(!empty($check_exist_user_name))
+			if(!empty($check_exist_name))
 			{
 				debug::error(T_("This username alreay taked!"));
 				return false;
 			}
 
-			\lib\db\users::update(['user_username' => $username], $this->login('id'));
+			\lib\db\users::update(['username' => $username], $this->login('id'));
 			// set the alert message
 			self::set_alert(T_("Your username was set"));
 			// open lock of alert page

@@ -41,10 +41,10 @@ trait login
 		else
 		{
 
-			$user_language = \lib\utility\users::get_language(self::user_data('id'));
-			if($user_language && \lib\utility\location\languages::check($user_language))
+			$language = \lib\utility\users::get_language(self::user_data('id'));
+			if($language && \lib\utility\location\languages::check($language))
 			{
-				$host .= \lib\define::get_current_language_string($user_language);
+				$host .= \lib\define::get_current_language_string($language);
 			}
 			else
 			{
@@ -112,9 +112,9 @@ trait login
 				// check user status
 				// if the user status is awaiting
 				// set the user status as enable
-				if(self::user_data('user_status') === 'awaiting' && is_numeric(self::user_data('id')))
+				if(self::user_data('status') === 'awaiting' && is_numeric(self::user_data('id')))
 				{
-					\lib\db\users::update(['user_status' => 'active'], self::user_data('id'));
+					\lib\db\users::update(['status' => 'active'], self::user_data('id'));
 				}
 			}
 		}
@@ -174,10 +174,10 @@ trait login
 
 				if(isset($_args['user_id']) && $_args['user_id'])
 				{
-					$user_language = \lib\utility\users::get_language($_args['user_id']);
-					if($user_language && \lib\utility\location\languages::check($user_language))
+					$language = \lib\utility\users::get_language($_args['user_id']);
+					if($language && \lib\utility\location\languages::check($language))
 					{
-						$url .= \lib\define::get_current_language_string($user_language);
+						$url .= \lib\define::get_current_language_string($language);
 					}
 
 				}
@@ -228,8 +228,8 @@ trait login
 			]
 		];
 
-		$user_status = \lib\utility\users::get_status(self::user_data('id'));
-		switch ($user_status)
+		$status = \lib\utility\users::get_status(self::user_data('id'));
+		switch ($status)
 		{
 			case 'active':
 				\lib\db\logs::set('enter:guest:have:active:user', self::user_data('id'), $log_meta);

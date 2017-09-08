@@ -13,7 +13,7 @@ trait user_data
 	{
 		$default_option =
 		[
-			'email_field' => 'user_google_mail',
+			'email_field' => 'googlemail',
 		];
 
 		if(!is_array($_option))
@@ -107,11 +107,11 @@ trait user_data
 
 		$default_args =
 		[
-			'user_mobile'      => null,
-			'user_displayname' => null,
-			'user_pass'        => null,
-			'user_email'       => null,
-			'user_status'      => 'awaiting'
+			'mobile'      => null,
+			'displayname' => null,
+			'password'        => null,
+			'email'       => null,
+			'status'      => 'awaiting'
 		];
 
 		if(is_array($_args))
@@ -123,14 +123,14 @@ trait user_data
 		if($mobile)
 		{
 			$update_user = [];
-			if(isset($_args['user_google_mail']))
+			if(isset($_args['googlemail']))
 			{
-				$update_user['user_google_mail'] = $_args['user_google_mail'];
+				$update_user['googlemail'] = $_args['googlemail'];
 			}
 			// set mobile to use in other function
 			self::$mobile         = $mobile;
-			$_args['user_mobile'] = $mobile;
-			$_args['user_email']  = self::$email;
+			$_args['mobile'] = $mobile;
+			$_args['email']  = self::$email;
 
 			$user_id = \lib\db\users::signup_quick($_args);
 
@@ -154,13 +154,13 @@ trait user_data
 	{
 		if(self::get_enter_session('dont_will_set_mobile'))
 		{
-			$_args['user_dont_will_set_mobile'] = date("Y-m-d H:i:s");
+			$_args['dontwillsetmobile'] = date("Y-m-d H:i:s");
 		}
 		else
 		{
-			if(self::get_enter_session('temp_mobile') && !isset($_args['user_mobile']))
+			if(self::get_enter_session('temp_mobile') && !isset($_args['mobile']))
 			{
-				$_args['user_mobile'] = self::get_enter_session('temp_mobile');
+				$_args['mobile'] = self::get_enter_session('temp_mobile');
 			}
 		}
 

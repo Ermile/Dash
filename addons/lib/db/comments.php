@@ -401,8 +401,8 @@ class comments
 				comments.*,
 				posts.post_title AS 'title',
 				posts.post_url  AS 'url',
-				users.user_status AS 'status',
-				users.user_email AS 'email'
+				users.status AS 'status',
+				users.email AS 'email'
 			FROM
 				comments
 			INNER JOIN posts ON posts.id = comments.post_id

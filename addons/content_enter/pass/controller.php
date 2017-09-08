@@ -13,7 +13,7 @@ class controller extends \addons\content_enter\main\controller
 			return;
 		}
 
-		if((self::done_step('mobile') || self::done_step('username')) && self::user_data('user_pass'))
+		if((self::done_step('mobile') || self::done_step('username')) && self::user_data('password'))
 		{
 			$this->post('check')->ALL('pass');
 		}

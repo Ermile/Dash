@@ -20,13 +20,13 @@ class model extends \addons\content_enter\main\model
 		// get ramz
 		$ramz = utility::post('ramz');
 
-		if(self::user_data('user_pass'))
+		if(self::user_data('password'))
 		{
 			// the password is okay
-			if(\lib\utility::hasher($ramz, self::user_data('user_pass')))
+			if(\lib\utility::hasher($ramz, self::user_data('password')))
 			{
 				// if the user set two step verification send code
-				if(self::user_data('user_two_step'))
+				if(self::user_data('twostep'))
 				{
 					self::set_enter_session('verify_from', 'two_step');
 					// find way and redirect to it

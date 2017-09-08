@@ -13,7 +13,7 @@ class model extends \addons\content_enter\main\model
 	{
 		if($this->login('email') && $this->login('id'))
 		{
-			\lib\db\users::update(['user_email' => null], $this->login('id'));
+			\lib\db\users::update(['email' => null], $this->login('id'));
 			// set the alert message
 			self::set_alert(T_("Your email was removed"));
 			// open lock of alert page
