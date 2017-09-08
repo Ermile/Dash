@@ -1,7 +1,9 @@
 <?php
 namespace addons\content_cp\tools\sitemap;
 use \lib\utility;
-
+/**
+ * this lib need some change to be customized depending on project
+ */
 class model extends \mvc\model
 {
 
@@ -38,7 +40,6 @@ class model extends \mvc\model
 
 		// add list of static pages
 		$sitemap->addItem('', '1', 'daily');
-		$sitemap->addItem('fa', '1', 'daily');
 
 
 		$sitemap->addItem('about', '0.6', 'weekly');
@@ -53,25 +54,43 @@ class model extends \mvc\model
 		$sitemap->addItem('changelog', '0.5', 'daily');
 		$sitemap->addItem('contact', '0.6', 'weekly');
 		$sitemap->addItem('logo', '0.8', 'monthly');
+		$sitemap->addItem('for/school', '0.8', 'monthly');
 
 
 
 
 		// PERSIAN
-		// add static pages of persian
-		$sitemap->addItem('fa/about', '0.8', 'weekly');
-		$sitemap->addItem('fa/social-responsibility', '0.8', 'weekly');
-		$sitemap->addItem('fa/help', '0.6', 'daily');
-		$sitemap->addItem('fa/help/faq', '0.8', 'daily');
+		// add all language static page automatically
+		// we must detect pages automatically and list static pages here
+		$lang_data = \lib\option::$language;
+		if(isset($lang_data['list']))
+		{
+			foreach ($lang_data['list'] as $key => $myLang)
+			{
+				if(isset($lang_data['default']) && $myLang === $lang_data['default'])
+				{
+					// do nothing
+				}
+				else
+				{
+					$sitemap->addItem( $myLang, '1', 'daily');
+					// add static pages of persian
+					$sitemap->addItem( $myLang. '/about', '0.8', 'weekly');
+					$sitemap->addItem( $myLang. '/social-responsibility', '0.8', 'weekly');
+					$sitemap->addItem( $myLang. '/help', '0.6', 'daily');
+					$sitemap->addItem( $myLang. '/help/faq', '0.8', 'daily');
 
-		$sitemap->addItem('fa/benefits', '0.8', 'weekly');
-		$sitemap->addItem('fa/pricing', '0.8', 'weekly');
-		$sitemap->addItem('fa/terms', '0.6', 'weekly');
-		$sitemap->addItem('fa/privacy', '0.6', 'weekly');
-		$sitemap->addItem('fa/changelog', '0.7', 'daily');
-		$sitemap->addItem('fa/contact', '0.8', 'weekly');
-		$sitemap->addItem('fa/logo', '0.8', 'monthly');
-
+					$sitemap->addItem( $myLang. '/benefits', '0.8', 'weekly');
+					$sitemap->addItem( $myLang. '/pricing', '0.8', 'weekly');
+					$sitemap->addItem( $myLang. '/terms', '0.6', 'weekly');
+					$sitemap->addItem( $myLang. '/privacy', '0.6', 'weekly');
+					$sitemap->addItem( $myLang. '/changelog', '0.7', 'daily');
+					$sitemap->addItem( $myLang. '/contact', '0.8', 'weekly');
+					$sitemap->addItem( $myLang. '/logo', '0.8', 'monthly');
+					$sitemap->addItem( $myLang. '/for/school', '0.8', 'monthly');
+				}
+			}
+		}
 
 
 		// add posts
@@ -156,18 +175,18 @@ class model extends \mvc\model
 		}
 
 		// add cats and tags
-		foreach ($this->model()->sitemap('terms') as $row)
-		{
-			$myUrl = $row['term_url'];
-			if($row['term_language'])
-			{
-				$myUrl = $row['term_language'].'/'. $myUrl;
-			}
+		// foreach ($this->model()->sitemap('terms') as $row)
+		// {
+		// 	$myUrl = $row['term_url'];
+		// 	if($row['term_language'])
+		// 	{
+		// 		$myUrl = $row['term_language'].'/'. $myUrl;
+		// 	}
 
 
-			$sitemap->addItem($myUrl, '0.4', 'weekly', $row['date_modified']);
-			$counter['terms'] += 1;
-		}
+		// 	$sitemap->addItem($myUrl, '0.4', 'weekly', $row['date_modified']);
+		// 	$counter['terms'] += 1;
+		// }
 
 		$sitemap->createSitemapIndex();
 		$result .= "</pre>";
@@ -212,7 +231,7 @@ class model extends \mvc\model
 		}
 		else
 		{
-			$qry = $qry->field($prefix.'_url', $date, $lang)->order('id','DESC');
+			// $qry = $qry->field($prefix.'_url', $date, $lang)->order('id','DESC');
 		}
 // var_dump($qry->selectString());exit();
 		return $qry->select()->allassoc();

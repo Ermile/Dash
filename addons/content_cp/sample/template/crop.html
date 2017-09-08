@@ -60,6 +60,11 @@
          <div class="btn sf-arrow-vertical" data-func='scaleY_-1' data-toggle></div>
          <div class="btn sf-arrow-horizontal" data-func='scaleX_-1' data-toggle></div>
         </div>
+        <div class="cauto pA10">
+         <div class="input">
+         <input type="file" accept=".jpg,.jpeg,.png,.gif,.bmp" name="file">
+         </div>
+        </div>
        </div>
 
        <div class="f pTB10">
@@ -226,6 +231,7 @@ function runCropper(_args)
 
     var cropperObj = new Cropper(myImgTarget, myImgOptions);
 
+    // connect all data-func inside cropper to be okay
     $myCropper.find('[data-func]').each(function()
     {
       var myFuncData   = $(this).attr('data-func');
@@ -270,62 +276,105 @@ function runCropper(_args)
         }
        }
       });
-
-
-
-
-
     });
 
 
+    //
+    var URL        = window.URL || window.webkitURL;
+    var inputFiles = $myCropper.find('input[type=file]')
+    if (URL && inputFiles.length > 0)
+    {
+      console.log('exist file change');
+      inputFiles.on('change', function()
+      {
+        var myFiles = this.files;
+        var file;
+
+        if (cropperObj && myFiles && myFiles.length)
+        {
+          file = myFiles[0];
+
+          if (/^image\/\w+/.test(file.type))
+          {
+            uploadedImageType = file.type;
+
+            // if we have url before this, revoke it
+            // if (uploadedImageURL !== undefined)
+            // {
+            //   URL.revokeObjectURL(uploadedImageURL);
+            // }
+
+            // create blob url
+            imageUrl = URL.createObjectURL(file);
+            // replace cropper
+            cropperObj.replace(imageUrl);
+            // this.value = imageUrl;
+            // console.log(imageUrl);
+
+            // another way is change src, destroy and create again
+            // myImgTarget.src = imageUrl;
+            // cropperObj.destroy();
+            // cropperObj      = new Cropper(myImgTarget, myImgOptions);
+            // this.value      = null;
+            $(this).parent('.input').removeClass('error');
+            $(this).parent('.input').addClass('ok');
+          }
+          else
+          {
+            $(this).parent('.input').removeClass('ok');
+            $(this).parent('.input').addClass('error');
+            // console.log('Please choose an image file!');
+          }
+        }
+      })
+    }
+
   });
-
-
-  return;
-
-
-  var myArg = _args.data;
-  if(!myArg)
-  {
-    return false;
-  }
-  var ePreview    = myArg.preview;
-  var eTarget     = myArg.targetEl;
-
-  var ePreviewImg = ePreview.find('img');
-  var eTargetImg  = eTarget.find('img')[0];
-  var options     =
-  {
-    aspectRatio: null,
-    viewMode: 2,
-    dragMode: 'move',
-    toggleDragModeOnDblclick: false,
-  };
-
-  // run cropper
-  var cropper = new Cropper(eTargetImg, options);
-  // on press btn, send new Image to server
-  $("#modal-preview .btn.submit").off("click");
-  $("#modal-preview .btn.submit").on("click", function(_e)
-  {
-    cropAsCanvas(cropper, ePreviewImg);
-  });
-
-  // on press btn, send new Image to server
-  $("#modal-preview .btn.cancel").off("click");
-  $("#modal-preview .btn.cancel").on("click", function(_e)
-  {
-    removeFile(ePreview);
-  });
-
-  $('#modal-preview .finalPreview').off("dblclick");
-  $('#modal-preview .finalPreview').on("dblclick", function(_e)
-  {
-    cropper.rotate(90);
-  });
-
 }
 
+
+
+
+
+  // var myArg = _args.data;
+  // if(!myArg)
+  // {
+  //   return false;
+  // }
+  // var ePreview    = myArg.preview;
+  // var eTarget     = myArg.targetEl;
+
+  // var ePreviewImg = ePreview.find('img');
+  // var eTargetImg  = eTarget.find('img')[0];
+  // var options     =
+  // {
+  //   aspectRatio: null,
+  //   viewMode: 2,
+  //   dragMode: 'move',
+  //   toggleDragModeOnDblclick: false,
+  // };
+
+  // // run cropper
+  // var cropper = new Cropper(eTargetImg, options);
+  // // on press btn, send new Image to server
+  // $("#modal-preview .btn.submit").off("click");
+  // $("#modal-preview .btn.submit").on("click", function(_e)
+  // {
+  //   cropAsCanvas(cropper, ePreviewImg);
+  // });
+
+  // // on press btn, send new Image to server
+  // $("#modal-preview .btn.cancel").off("click");
+  // $("#modal-preview .btn.cancel").on("click", function(_e)
+  // {
+  //   removeFile(ePreview);
+  // });
+
+  // $('#modal-preview .finalPreview').off("dblclick");
+  // $('#modal-preview .finalPreview').on("dblclick", function(_e)
+  // {
+  //   cropper.rotate(90);
+  // });
 
 /**
  * [cropAsCanvas description]
