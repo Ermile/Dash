@@ -2,115 +2,195 @@
 namespace addons\content_api\v1\user\tools;
 use \lib\utility;
 use \lib\debug;
-use \lib\utility\upload;
+use \lib\db\logs;
 
 trait add
 {
 
-
-	public function upload_user($_options = [])
+	use user_check_args;
+	/**
+	 * Adds a user.
+	 *
+	 * @param      array    $_args  The arguments
+	 *
+	 * @return     boolean  ( description_of_the_return_value )
+	 */
+	public function add_user($_args = [])
 	{
-		debug::title(T_("Can not upload user"));
 
-		$default_options =
+		// ready to insert userteam or userbranch record
+		$args                  = [];
+
+		// default args
+		$default_args =
 		[
-			'upload_name' => utility::request('upload_name'),
-			'url'         => null,
-			'debug'       => true,
+			'method'   => 'post',
+			'debug'    => true,
+			'save_log' => true,
 		];
 
-		if(!is_array($_options))
+		if(!is_array($_args))
 		{
-			$_options = [];
+			$_args = [];
+		}
+		// merge default args and args
+		$_args = array_merge($default_args, $_args);
+
+		// set default title of debug
+		if($_args['debug']) debug::title(T_("Operation Faild"));
+
+		// set the log meta
+		$log_meta =
+		[
+			'data' => null,
+			'meta' =>
+			[
+				'user_id' => $this->user_id,
+				'input'   => utility::request(),
+			]
+		];
+
+		// check user id is exist
+		if(!$this->user_id)
+		{
+			if($_args['save_log']) logs::set('api:user:user_id:notfound', $this->user_id, $log_meta);
+			if($_args['debug']) debug::error(T_("User not found"), 'user', 'permission');
+			return false;
 		}
 
-		$_options = array_merge($default_options, $_options);
 
-		if(utility::request('url') && !$_options['url'])
+		$mobile           = null;
+		$mobile_syntax    = null;
+
+
+		// get mobile of user
+		$mobile           = utility::request("mobile");
+		$mobile_syntax    = \lib\utility\filter::mobile($mobile);
+
+		if($mobile && !$mobile_syntax)
 		{
-			$_options['url'] = utility::request('url');
+			if($_args['save_log']) logs::set('api:user:mobile:not:set', $this->user_id, $log_meta);
+			if($_args['debug']) debug::error(T_("Invalid mobile number"), 'mobile', 'arguments');
+			return false;
 		}
-
-		$user_path = false;
-
-		if($_options['url'])
+		elseif($mobile && $mobile_syntax && ctype_digit($mobile))
 		{
-			$user_path = true;
-		}
-		elseif(!utility::users($_options['upload_name']))
-		{
-			return debug::error(T_("Unable to upload, because of selected upload name"), 'upload_name', 'arguments');
-		}
-
-		$ready_upload            = [];
-		$ready_upload['user_id'] = $this->user_id;
-		$ready_upload['debug']   = $_options['debug'];
-
-		if($user_path)
-		{
-			$ready_upload['user_path'] = $_options['url'];
+			$mobile = $mobile_syntax;
 		}
 		else
 		{
-			$ready_upload['upload_name'] = $_options['upload_name'];
+			$mobile_syntax = $mobile = null;
 		}
 
-		// if(\lib\permission::access('admin:admin:view', null, $this->user_id))
-		// {
-		// 	$ready_upload['post_status'] = 'publish';
-		// }
-		// else
-		// {
-		// 	$ready_upload['post_status'] = 'draft';
-		// }
+		if($mobile)
+		{
+			$check_duplicate =
+			[
+				'mobile' => $mobile,
+				'status' => ["IN", "('active', 'awaiting')"],
+				'limit'  => 1,
+			];
 
-		$ready_upload['post_status'] = 'publish';
+			$check_duplicate = \lib\db\users::get($check_duplicate);
 
-		$ready_upload['user_size_remaining'] = self::remaining($this->user_id);
+			if(isset($check_duplicate['id']))
+			{
+				if($_args['method'] === 'post')
+				{
+					if($_args['save_log']) logs::set('api:user:mobile:duplicate', $this->user_id, $log_meta);
+					if($_args['debug']) debug::error(T_("Duplicate mobile"), 'mobile', 'arguments');
+					return false;
+				}
+				else
+				{
+					$id = utility::request('id');
+					$id = utility\shortURL::decode($id);
+					if(intval($id) === intval($check_duplicate['id']))
+					{
+						// no problem this is current user
+					}
+					else
+					{
+						if($_args['save_log']) logs::set('api:user:mobile:duplicate:update', $this->user_id, $log_meta);
+						if($_args['debug']) debug::error(T_("Duplicate mobile"), 'mobile', 'arguments');
+						return false;
+					}
+				}
+			}
+		}
 
-		upload::$extentions = ['png', 'jpeg', 'jpg'];
+		$args['mobile'] = $mobile;
 
-		$upload      = upload::upload($ready_upload);
+		/**
+		 * check and set the args
+		 */
+		$return_function = $this->user_check_args($_args, $args, $log_meta);
 
-		if(!debug::$status)
+		if(!debug::$status || $return_function === false)
 		{
 			return false;
 		}
 
-		$user_detail = \lib\storage::get_upload();
-		$user_id     = null;
-
-		if(isset($user_detail['size']))
+		// insert new user team
+		if($_args['method'] === 'post')
 		{
-			self::user_size_plus($this->user_id, $user_detail['size']);
+			\lib\db\users::insert($args);
+			return \lib\db::insert_id();
+		}
+		elseif($_args['method'] === 'patch')
+		{
+
+			$id = utility::request('id');
+			$id = utility\shortURL::decode($id);
+			if(!$id)
+			{
+				if($_args['save_log']) logs::set('api:user:pathc:id:not:set', $this->user_id, $log_meta);
+				if($_args['debug']) debug::error(T_("Id not set"), 'id', 'arguments');
+				return false;
+			}
+
+			unset($args['team_id']);
+			if(!utility::isset_request('postion'))             unset($args['postion']);
+			if(!utility::isset_request('personnelcode'))       unset($args['personnelcode']);
+			if(!utility::isset_request('firstname'))           unset($args['name']);
+			if(!utility::isset_request('lastname'))            unset($args['lastname']);
+			if(!utility::isset_request('status'))              unset($args['status']);
+			if(!utility::isset_request('displayname'))         unset($args['displayname']);
+			if(!utility::isset_request('nationalcode'))        unset($args['nationalcode']);
+			if(!utility::isset_request('father'))              unset($args['father']);
+			if(!utility::isset_request('birthday'))            unset($args['birthday']);
+			if(!utility::isset_request('gender'))              unset($args['gender']);
+			if(!utility::isset_request('type'))                unset($args['type']);
+			if(!utility::isset_request('marital'))             unset($args['marital']);
+			if(!utility::isset_request('child'))               unset($args['childcount']);
+			if(!utility::isset_request('brithcity'))           unset($args['brithplace']);
+			if(!utility::isset_request('shfrom'))              unset($args['from']);
+			if(!utility::isset_request('shcode'))              unset($args['shcode']);
+			if(!utility::isset_request('education'))           unset($args['education']);
+			if(!utility::isset_request('job'))                 unset($args['job']);
+			if(!utility::isset_request('passportcode'))        unset($args['pasportcode']);
+			if(!utility::isset_request('paymentaccountnumber'))unset($args['cardnumber']);
+			if(!utility::isset_request('shaba'))               unset($args['shaba']);
+
+			if(!empty($args))
+			{
+				\lib\db\users::update($args, $id);
+			}
 		}
 
-		if(isset($user_detail['id']) && is_numeric($user_detail['id']))
+		if(debug::$status)
 		{
-			$user_id = $user_detail['id'];
+			if($_args['debug']) debug::title(T_("Operation Complete"));
+
+			if($_args['method'] === 'post')
+			{
+				if($_args['debug']) debug::true(T_("user successfully added"));
+			}
+			elseif($_args['method'] === 'patch')
+			{
+				if($_args['debug']) debug::true(T_("user successfully updated"));
+			}
 		}
-		else
-		{
-			return debug::error(T_("Can not upload user. undefined error"));
-		}
-
-		$user_id_code = null;
-
-		if($user_id)
-		{
-			$user_id_code = utility\shortURL::encode($user_id);
-		}
-
-		$url = null;
-
-		if(isset($user_detail['url']))
-		{
-			$url = Protocol."://" . \lib\router::get_root_domain() . '/'. $user_detail['url'];
-		}
-
-		debug::title(T_("user upload completed"));
-		return ['code' => $user_id_code, 'url' => $url];
 	}
 }
-
 ?>

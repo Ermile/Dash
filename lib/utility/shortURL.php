@@ -20,8 +20,9 @@ class shortURL
 	 */
 
 	// const ALPHABET = '23456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ';
-	const ALPHABET = SHORTURL_ALPHABET;
-
+	const ALPHABET        = SHORTURL_ALPHABET;
+	const ALPHABET_NUMBER = SHORTURL_ALPHABET_NUMBER;
+	const ALPHABET_ALL    = SHORTURL_ALPHABET_ALL;
 
 	/**
 	 * encode input text
@@ -91,5 +92,78 @@ class shortURL
 			$_alphabet = self::ALPHABET;
 		}
 		return preg_match("/^[". $_alphabet. "]+$/", $_string);
+	}
+
+
+	/**
+	 * encode number to another number
+	 *
+	 * @param      <type>  $_num       The number
+	 * @param      string  $_alphabet  The alphabet
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public static function encode_number($_num, $_alphabet = null)
+	{
+		if($_alphabet == null)
+		{
+			$_alphabet = self::ALPHABET_NUMBER;
+		}
+		return self::encode($_num, $_alphabet);
+	}
+
+
+	/**
+	 * decode number to another number
+	 *
+	 * @param      <type>  $_num       The number
+	 * @param      <type>  $_alphabet  The alphabet
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public static function decode_number($_num, $_alphabet = null)
+	{
+		if($_alphabet == null)
+		{
+			$_alphabet = self::ALPHABET_NUMBER;
+		}
+		return self::decode($_num, $_alphabet);
+	}
+
+
+
+	/**
+	 * encode number whith all alphabet
+	 *
+	 * @param      <type>  $_num       The all
+	 * @param      string  $_alphabet  The alphabet
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public static function encode_all($_num, $_alphabet = null)
+	{
+		if($_alphabet == null)
+		{
+			$_alphabet = self::ALPHABET_ALL;
+		}
+		return self::encode($_num, $_alphabet);
+	}
+
+
+	/**
+	 * decode from all alphabet to number
+	 *
+	 * @param      <type>  $_string       The all
+	 * @param      <type>  $_alphabet  The alphabet
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public static function decode_all($_string, $_alphabet = null)
+	{
+		if($_alphabet == null)
+		{
+			$_alphabet = self::ALPHABET_ALL;
+		}
+		return self::decode($_string, $_alphabet);
 	}
 }
