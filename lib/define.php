@@ -258,8 +258,16 @@ class define
 					$redirectURL = '/';
 				}
 
-				$myredirect = new \lib\redirector($redirectURL);
-				$myredirect->redirect();
+				if(router::get_url(0) === 'api' || router::get_url(1) === 'api')
+				{
+					router::remove_url($my_first_url);
+					// not redirect in api mode
+				}
+				else
+				{
+					$myredirect = new \lib\redirector($redirectURL);
+					$myredirect->redirect();
+				}
 			}
 			else
 			{
