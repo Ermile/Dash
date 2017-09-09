@@ -92,7 +92,7 @@ class units
 	public static function user_unit($_user_id)
 	{
 
-		$user_unit = \lib\utility\users::get_unit($_user_id);
+		$user_unit = \lib\db\users::get_unit($_user_id);
 		$force_unit = \lib\option::config('force_unit');
 
 		if($force_unit && (self::get_id($user_unit) != $force_unit))
@@ -124,7 +124,7 @@ class units
 			return false;
 		}
 
-		\lib\utility\users::set_unit($_user_id, $_unit);
+		\lib\db\users::set_unit($_user_id, $_unit);
 		return true;
 	}
 

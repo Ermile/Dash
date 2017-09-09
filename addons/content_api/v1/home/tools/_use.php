@@ -11,6 +11,9 @@ trait _use
 
 	use \addons\content_api\v1\user\tools\add;
 	use \addons\content_api\v1\user\tools\get;
-}
 
+	use \addons\content_api\v1\parent\tools\add;
+	use \addons\content_api\v1\parent\tools\get;
+	use \addons\content_api\v1\parent\tools\delete;
+}
 ?>

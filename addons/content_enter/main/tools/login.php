@@ -41,7 +41,7 @@ trait login
 		else
 		{
 
-			$language = \lib\utility\users::get_language(self::user_data('id'));
+			$language = \lib\db\users::get_language(self::user_data('id'));
 			if($language && \lib\utility\location\languages::check($language))
 			{
 				$host .= \lib\define::get_current_language_string($language);
@@ -174,7 +174,7 @@ trait login
 
 				if(isset($_args['user_id']) && $_args['user_id'])
 				{
-					$language = \lib\utility\users::get_language($_args['user_id']);
+					$language = \lib\db\users::get_language($_args['user_id']);
 					if($language && \lib\utility\location\languages::check($language))
 					{
 						$url .= \lib\define::get_current_language_string($language);
@@ -228,7 +228,7 @@ trait login
 			]
 		];
 
-		$status = \lib\utility\users::get_status(self::user_data('id'));
+		$status = \lib\db\users::get_status(self::user_data('id'));
 		switch ($status)
 		{
 			case 'active':
