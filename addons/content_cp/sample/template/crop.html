@@ -120,6 +120,42 @@
 
   </div>
 
+
+
+  <div class="example cropper">
+    <p>complete example of crop in modal and show preview after that</p>
+    <div class="f">
+      <div class="input preview pTB10" data-crop='cropperModal2'>
+        <input type="file" accept="image/gif, image/jpeg, image/png" id="anyfile1">
+        <label for="anyfile1" title="Simple Title"></label>
+      </div>
+    </div>
+
+    <div class=modal fs14' id='cropperModal2'>
+     <div class='modal-dialog'>
+      <h3 class='modal-title'>{%trans "Crop your avatar"%}</h3>
+      <div class='modal-body'>
+       {{block('sampleImg')}}
+      </div>
+      <div class="modal-footer f">
+        <div class="c">
+         <div class="btn sf-trash secondary" data-cancel>{%trans "Cancel"%}</div>
+         <div class="btn sf-check primary" data-ok>{%trans "Crop"%}</div>
+        </div>
+        <div class="os">
+          <div class="btn sf-undo" data-func='rotate_-90'></div>
+          <div class="btn sf-repeat" data-func='rotate_90'></div>
+        </div>
+      </div>
+     </div>
+    </div>
+
+  </div>
+
+
+
+
+
 </div>
 {%endblock%}
 
@@ -131,216 +167,8 @@
 
 
 
-{%block foot_js%}
+{%block foot_js2%}
 <script type="text/javascript">
-
-  runCropper();
-
-/**
- * [runCropper description]
- * @param  {[type]} _args [description]
- * @return {[type]}       [description]
- */
-function runCropper(_args)
-{
-  $('.cropper').each(function()
-  {
-    var $myCropper   = $(this);
-    var myImg       = $myCropper.attr('data-img');
-    var myImgTarget = null;
-    var myModal     = null;
-    // if we have defined img use it
-    if(myImg)
-    {
-      if( myImg === 'modal')
-      {
-
-      }
-      else
-      {
-        // else use defined selector
-        myImgTarget = $myCropper.find(myImg);
-      }
-    }
-    else
-    {
-      // if img is not defined try to find one img inside cropper
-      myImgTarget = $myCropper.find('img');
-    }
-    if(myImgTarget && myImgTarget.length>0)
-    {
-      // get first child of this img
-      myImgTarget = myImgTarget.get(0);
-    }
-    else
-    {
-      return false;
-    }
-
-
-    // define with default values
-    var myImgOptions =
-    {
-      aspectRatio: null,
-      viewMode: 2,
-      dragMode: 'move',
-    };
-    // get aspect Ratio
-    if($myCropper.attr('data-aspectRatio'))
-    {
-      myImgOptions.aspectRatio = $myCropper.attr('data-aspectRatio');
-    }
-    // change view mode, not need on normal conidtions
-    if($myCropper.attr('data-view'))
-    {
-      myImgOptions.viewMode = $myCropper.attr('data-view');
-    }
-    // show clone of image in preview container
-    if($myCropper.attr('data-preview'))
-    {
-      myImgOptions.preview = $myCropper.attr('data-preview');
-    }
-    // show clone of image in preview container
-    if($myCropper.attr('data-preview'))
-    {
-      myImgOptions.preview = $myCropper.attr('data-preview');
-    }
-    // set min container width
-    if($myCropper.attr('data-minContainerWidth'))
-    {
-      myImgOptions.minContainerWidth = $myCropper.attr('data-minContainerWidth');
-    }
-    // set min container height
-    if($myCropper.attr('data-minContainerHeight'))
-    {
-      myImgOptions.minContainerHeight = $myCropper.attr('data-minContainerHeight');
-    }
-    // set min canvas width
-    if($myCropper.attr('data-minCanvasWidth'))
-    {
-      myImgOptions.minCanvasWidth = $myCropper.attr('data-minCanvasWidth');
-    }
-    // set min canvas height
-    if($myCropper.attr('data-minCanvasHeight'))
-    {
-      myImgOptions.minCanvasHeight = $myCropper.attr('data-minCanvasHeight');
-    }
-    // set min CropBox width
-    if($myCropper.attr('data-minCropBoxWidth'))
-    {
-      myImgOptions.minCropBoxWidth = $myCropper.attr('data-minCropBoxWidth');
-    }
-    // set min CropBox height
-    if($myCropper.attr('data-minCropBoxHeight'))
-    {
-      myImgOptions.minCropBoxHeight = $myCropper.attr('data-minCropBoxHeight');
-    }
-
-
-    var cropperObj = new Cropper(myImgTarget, myImgOptions);
-
-    // connect all data-func inside cropper to be okay
-    $myCropper.find('[data-func]').each(function()
-    {
-      var myFuncData   = $(this).attr('data-func');
-      var myFunc       = null;
-      var myFuncParam1 = null;
-      var myFuncParam2 = null;
-      // if have parameter, seperate and detect 2 parameter
-      if(myFuncData.indexOf('_') !== -1)
-      {
-        myFunc       = myFuncData.substr(0, myFuncData.indexOf('_'));
-        myFuncParam1 = myFuncData.substr(myFuncData.indexOf('_') + 1);
-        myFuncParam2 = myFuncData.substr(myFuncData.indexOf(',') + 1);
-      }
-      else
-      {
-        // use all of text as func name
-        myFunc = myFuncData;
-      }
-      // bind function to btns in element area
-      $(this).off("click");
-      $(this).on("click", function(_e)
-      {
-       if(myFunc && typeof cropperObj[myFunc] === 'function')
-       {
-        if(myFuncParam1)
-        {
-         if(myFuncParam2)
-         {
-          // call with 2 param
-          cropperObj[myFunc](myFuncParam1, myFuncParam2);
-         }
-         else
-         {
-          // call with one param
-          cropperObj[myFunc](myFuncParam1);
-         }
-        }
-        else
-        {
-         // call without param
-         cropperObj[myFunc]();
-        }
-       }
-      });
-    });
-
-
-    //
-    var URL        = window.URL || window.webkitURL;
-    var inputFiles = $myCropper.find('input[type=file]')
-    if (URL && inputFiles.length > 0)
-    {
-      console.log('exist file change');
-      inputFiles.on('change', function()
-      {
-        var myFiles = this.files;
-        var file;
-
-        if (cropperObj && myFiles && myFiles.length)
-        {
-          file = myFiles[0];
-
-          if (/^image\/\w+/.test(file.type))
-          {
-            uploadedImageType = file.type;
-
-            // if we have url before this, revoke it
-            // if (uploadedImageURL !== undefined)
-            // {
-            //   URL.revokeObjectURL(uploadedImageURL);
-            // }
-
-            // create blob url
-            imageUrl = URL.createObjectURL(file);
-            // replace cropper
-            cropperObj.replace(imageUrl);
-            // this.value = imageUrl;
-            // console.log(imageUrl);
-
-            // another way is change src, destroy and create again
-            // myImgTarget.src = imageUrl;
-            // cropperObj.destroy();
-            // cropperObj      = new Cropper(myImgTarget, myImgOptions);
-            // this.value      = null;
-            $(this).parent('.input').removeClass('error');
-            $(this).parent('.input').addClass('ok');
-          }
-          else
-          {
-            $(this).parent('.input').removeClass('ok');
-            $(this).parent('.input').addClass('error');
-            // console.log('Please choose an image file!');
-          }
-        }
-      })
-    }
-
-  });
-}
-
-
 
 
 

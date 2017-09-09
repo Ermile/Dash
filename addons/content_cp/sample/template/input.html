@@ -196,7 +196,7 @@
   <h4>{%trans "Simple file input"%}</h4>
   <div class="example">
     <div class="input pTB10">
-      <input type="file" placeholder='{%trans "Choose file..."%}'>
+      <input type="file">
     </div>
   </div>
 
@@ -226,14 +226,15 @@
   </div>
 
 
-  <h4>{%trans "Simple file input with min and max size!"%}</h4>
+  <h4>{%trans "Simple file input with min 100kb and max 200kb size!"%}</h4>
   <div class="example">
-    <div class="input pTB10" data-min='100' data-max='300'>
-      <input type="file" placeholder='{%trans "Choose file..."%}'>
+    <div class="input pTB10">
+      <input type="file" data-min='100' data-max='200'>
     </div>
   </div>
 
 </div>
 
 {%endblock%}
+
 
