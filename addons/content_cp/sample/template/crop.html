@@ -20,7 +20,7 @@
     </div>
   </div>
 
-  <div class="example cropper" data-aspectRatio='1' data-minCropBoxWidth='100' data-minCropBoxHeight='100'>
+  <div class="example cropper" data-aspectRatio='1.5' data-minCropBoxWidth='100' data-minCropBoxHeight='100'>
     <p>Only run cropper with aspect ratio and min width and height on cropbox</p>
     <div>
     {{block('sampleImg')}}
@@ -125,8 +125,8 @@
   <div class="example cropper">
     <p>complete example of crop in modal and show preview after that</p>
     <div class="f">
-      <div class="input preview pTB10" data-crop='cropperModal2'>
-        <input type="file" accept="image/gif, image/jpeg, image/png" id="anyfile1">
+      <div class="input preview pTB10">
+        <input type="file" accept="image/gif, image/jpeg, image/png" id="anyfile1" data-crop='cropperModal2'>
         <label for="anyfile1" title="Simple Title"></label>
       </div>
     </div>
