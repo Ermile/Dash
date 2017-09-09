@@ -59,7 +59,7 @@ class model extends \mvc\model
 	public $parent_api_key_user_id = 0;
 
 
-	use addons\content_api\v1\main\_use;
+	use tools\_use;
 
 
 	/**
