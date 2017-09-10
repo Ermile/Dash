@@ -5,6 +5,26 @@ namespace lib\db;
 class config
 {
 	/**
+	 * get multi insert id
+	 *
+	 * @param      <type>  $_args  The arguments
+	 *
+	 * @return     array   ( description_of_the_return_value )
+	 */
+	public static function multi_insert_id($_args)
+	{
+		$first = \lib\db::insert_id();
+		$count = count($_args);
+		$ids = [];
+		for ($i = $first; $i <= ($first + $count) - 1 ; $i++)
+		{
+			$ids[] = $i;
+		}
+		return $ids;
+	}
+
+
+	/**
 	 * Makes a where.
 	 *
 	 * @param      <type>  $_where  The where
