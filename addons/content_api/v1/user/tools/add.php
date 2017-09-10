@@ -53,7 +53,7 @@ trait add
 		// check user id is exist
 		if(!$this->user_id)
 		{
-			if($_args['save_log']) logs::set('api:user:user_id:notfound', $this->user_id, $log_meta);
+			if($_args['save_log']) logs::set('addon:api:user:user_id:notfound', $this->user_id, $log_meta);
 			if($_args['debug']) debug::error(T_("User not found"), 'user', 'permission');
 			return false;
 		}
@@ -69,7 +69,7 @@ trait add
 
 		if($mobile && !$mobile_syntax)
 		{
-			if($_args['save_log']) logs::set('api:user:mobile:not:set', $this->user_id, $log_meta);
+			if($_args['save_log']) logs::set('addon:api:user:mobile:not:set', $this->user_id, $log_meta);
 			if($_args['debug']) debug::error(T_("Invalid mobile number"), 'mobile', 'arguments');
 			return false;
 		}
@@ -97,7 +97,7 @@ trait add
 			{
 				if($_args['method'] === 'post')
 				{
-					if($_args['save_log']) logs::set('api:user:mobile:duplicate', $this->user_id, $log_meta);
+					if($_args['save_log']) logs::set('addon:api:user:mobile:duplicate', $this->user_id, $log_meta);
 					if($_args['debug']) debug::error(T_("Duplicate mobile"), 'mobile', 'arguments');
 					return false;
 				}
@@ -111,7 +111,7 @@ trait add
 					}
 					else
 					{
-						if($_args['save_log']) logs::set('api:user:mobile:duplicate:update', $this->user_id, $log_meta);
+						if($_args['save_log']) logs::set('addon:api:user:mobile:duplicate:update', $this->user_id, $log_meta);
 						if($_args['debug']) debug::error(T_("Duplicate mobile"), 'mobile', 'arguments');
 						return false;
 					}
@@ -144,12 +144,12 @@ trait add
 			$id = utility\shortURL::decode($id);
 			if(!$id)
 			{
-				if($_args['save_log']) logs::set('api:user:pathc:id:not:set', $this->user_id, $log_meta);
+				if($_args['save_log']) logs::set('addon:api:user:pathc:id:not:set', $this->user_id, $log_meta);
 				if($_args['debug']) debug::error(T_("Id not set"), 'id', 'arguments');
 				return false;
 			}
 
-			unset($args['team_id']);
+			if(!utility::isset_request('passportexpire'))      unset($args['passportexpire']);
 			if(!utility::isset_request('postion'))             unset($args['postion']);
 			if(!utility::isset_request('personnelcode'))       unset($args['personnelcode']);
 			if(!utility::isset_request('firstname'))           unset($args['name']);

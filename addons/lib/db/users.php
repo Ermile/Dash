@@ -55,7 +55,8 @@ class users
 		$_options['search_field'] =
 		"
 			(
-				users.mobile LIKE '%__string__%'
+				users.mobile LIKE '%__string__%' OR
+				users.displayname LIKE '%__string__%'
 			)
 		";
 		// public_show_field
