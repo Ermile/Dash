@@ -51,7 +51,7 @@ trait sql
 			{
 				$id = (int) $qry_count['id'];
 			}
-			\lib\storage::set_upload(["id" =>  $id, 'url' => $url, 'size' => $size]);
+			\lib\temp::set('upload', ["id" =>  $id, 'url' => $url, 'size' => $size]);
 			return true;
 		}
 		return false;

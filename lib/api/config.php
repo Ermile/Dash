@@ -23,7 +23,7 @@ class config
 			$this->REST = func_get_args();
 		}
 		$this->REST = !is_array($this->REST) ? array('') : $this->REST;
-		if(\lib\storage::get_api() && $this->api_method == mb_strtolower($_SERVER['REQUEST_METHOD'])){
+		if(\lib\temp::get('api') && $this->api_method == mb_strtolower($_SERVER['REQUEST_METHOD'])){
 			$this->check(...$this->REST);
 		}
 		return $this;
@@ -38,7 +38,7 @@ class config
 			$this->SERVER = func_get_args();
 		}
 		$this->SERVER = !is_array($this->SERVER) ? array('') : $this->SERVER;
-		if(!\lib\storage::get_api()) {
+		if(!\lib\temp::get('api')) {
 			if(
 				(preg_match("/^post|put$/", $this->api_method) && $_SERVER['REQUEST_METHOD'] == "POST") ||
 				(preg_match("/^get|delete$/", $this->api_method) && $_SERVER['REQUEST_METHOD'] == "GET") ||
@@ -97,7 +97,7 @@ class config
 
 				$this->api->controller->model_api_processor = $object = object(array("method" => $model_api_name, "args" => $args_object));
 			}
-			if($this->view_api_name && !\lib\storage::get_api())
+			if($this->view_api_name && !\lib\temp::get('api'))
 			{
 				$view_api_name = "view_".$this->view_api_name;
 				if($this->model_api_name)

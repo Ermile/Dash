@@ -75,7 +75,7 @@ class model extends \mvc\model
 	{
 		$this->url = \lib\router::get_url();
 
-		\lib\storage::set_api(true);
+		\lib\temp::set('api', true);
 
 		$this->api_key();
 

@@ -339,7 +339,7 @@ class log extends tg
 					'port'        => $port, // telegram|telagram_guest; the users answer the inline keyboard or in bot
 					'subport'     => null, // the group code or chanal code
 				]);
-				\lib\storage::set_is_new_user(true);
+				\lib\temp::set('is_new_user', true);
 				self::$user_id = \lib\db\users::$user_id;
 			}
 			elseif (isset($user['id']))
@@ -408,7 +408,7 @@ class log extends tg
 					// if this is for current user
 					if(isset($contact['user_id']) && isset($from['user_id']) && $from['user_id'] == $contact['user_id'])
 					{
-						\lib\storage::set_user_sync(['mobile' => $mobile]);
+						\lib\temp::set('user_sync', ['mobile' => $mobile]);
 					}
 					// else ask real contact detail
 					else

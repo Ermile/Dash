@@ -8,7 +8,7 @@ class model extends \addons\content_enter\main\model
 {
 	public function kavenegar()
 	{
-		\lib\storage::set_api(true);
+		\lib\temp::set('api', true);
 		$log_meta =
 		[
 			'data' => null,

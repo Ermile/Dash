@@ -76,7 +76,7 @@ trait pagnation
 		$current_url = $this->url('baseFull').$path;
 		$this->pagnation_set('current_url', $this->pagnation_get('custom_length') ? $current_url."/length=$length" : $current_url);
 		$this->pagnation_set('length', $length);
-		\lib\storage::set_pagnation($this->pagnation_get());
+		\lib\temp::set('pagnation', $this->pagnation_get());
 
 	}
 

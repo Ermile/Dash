@@ -11,11 +11,11 @@ class controller extends  \mvc\controller
 		$url = \lib\router::get_url();
 		if($url == 'v1')
 		{
-			\lib\storage::set_api(false);
+			\lib\temp::set('api', false);
 		}
 		else
 		{
-			\lib\storage::set_api(true);
+			\lib\temp::set('api', true);
 		}
 
 		parent::__construct();

@@ -76,7 +76,7 @@ class router
 			$route = new router\route("/^api([^\/]*)/", function($reg)
 			{
 				router::remove_url($reg->url);
-				\lib\storage::set_api(true);
+				\lib\temp::set('api', true);
 			});
 		}
 

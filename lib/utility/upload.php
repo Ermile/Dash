@@ -193,7 +193,7 @@ class upload
 
 			@chmod($real_file_path, 0644);
 
-			\lib\storage::set_upload(['url' => $_url]);
+			\lib\temp::set('upload',['url' => $_url]);
 			return true;
 		}
 		else
@@ -243,7 +243,7 @@ class upload
 
 			if(\lib\utility\file::move(self::$upload_from_path, $new_name, true))
 			{
-				\lib\storage::set_upload([
+				\lib\temp::set('upload',[
 					'result'    => $file_name,
 					'file_name' => $master_name,
 					'new_name'  => $new_name,
@@ -554,7 +554,7 @@ class upload
 
 		$post_new_id = \lib\db\posts::insert($insert_attachment);
 
-		$url = \lib\storage::get_upload();
+		$url = \lib\temp::get('upload');
 
 		if(isset($url['url']))
 		{
@@ -564,7 +564,7 @@ class upload
 		{
 			$url = null;
 		}
-		\lib\storage::set_upload(["id" => \lib\db::insert_id(), 'url' => $url, 'size' => self::$fileSize]);
+		\lib\temp::set('upload', ["id" => \lib\db::insert_id(), 'url' => $url, 'size' => self::$fileSize]);
 		if($_options['debug'])
 		{
 			\lib\debug::true("File successful uploaded");

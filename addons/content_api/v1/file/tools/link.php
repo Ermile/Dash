@@ -77,7 +77,7 @@ trait link
 			return false;
 		}
 
-		$file_detail = \lib\storage::get_upload();
+		$file_detail = \lib\temp::get('upload');
 		$file_id     = null;
 
 		if(isset($file_detail['size']))
