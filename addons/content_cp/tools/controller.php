@@ -92,10 +92,10 @@ class controller extends \addons\content_cp\home\controller
 			// 	echo \lib\utility\tools::mergefiles('merged-project.php');
 			// 	if(\lib\utility::get('type') === 'all')
 			// 	{
-			// 		echo \lib\utility\tools::mergefiles('merged-saloos-lib.php', core.lib);
-			// 		echo \lib\utility\tools::mergefiles('merged-saloos-cp.php', addons.'content_cp/');
-			// 		echo \lib\utility\tools::mergefiles('merged-saloos-account.php', addons.'content_account/');
-			// 		echo \lib\utility\tools::mergefiles('merged-saloos-includes.php', addons.'includes/');
+			// 		echo \lib\utility\tools::mergefiles('merged-lib.php', core.lib);
+			// 		echo \lib\utility\tools::mergefiles('merged-cp.php', addons.'content_cp/');
+			// 		echo \lib\utility\tools::mergefiles('merged-account.php', addons.'content_account/');
+			// 		echo \lib\utility\tools::mergefiles('merged-includes.php', addons.'includes/');
 			// 	}
 			// 	break;
 

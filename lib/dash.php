@@ -6,7 +6,7 @@ namespace lib;
 class dash
 {
 	// @var dash core current version
-	const version = '10.2.6';
+	const version = '10.3.0';
 
 	// @var dash core current commit number
 	// now get it automatically from git commands
@@ -22,18 +22,9 @@ class dash
 	 */
 	public function __construct()
 	{
-		$creator = stream_resolve_include_path('creator.php');
-		if($creator)
-		{
-			require_once $creator;
-		}
-		else
-		{
-			self::lib()->router();
-			self::lib()->define();
-
-			self::lib()->main();
-		}
+		self::lib()->router();
+		self::lib()->define();
+		self::lib()->main();
 	}
 
 

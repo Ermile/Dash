@@ -19,7 +19,7 @@ class sessions
 	 */
 	private static function generate_code($_user_id)
 	{
-		$code =  'SALOOS'. $_user_id. '_;)_'. time(). '(^_^)' . rand(1000, 9999);
+		$code =  'Ermile'. $_user_id. '_;)_'. time(). '(^_^)' . rand(1000, 9999);
 		$code = \lib\utility::hasher($code, false);
 		$code = \lib\utility\safe::safe($code);
 		return $code;
@@ -269,7 +269,7 @@ class sessions
 		}
 
 		$result = \lib\db::get($query, null);
-		// get agent list form saloos tools
+		// get agent list form dash tools
 		if($result && is_array($result))
 		{
 			$agent_id    = array_column($result, 'agent_id');

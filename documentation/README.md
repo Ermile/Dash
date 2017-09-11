@@ -1,15 +1,15 @@
-#Saloos Lines Number
-[Saloos] is a cirsium vulgare for php programmers! :)
+#Dash Lines Number
+[Dash] is a cirsium vulgare for php programmers! :)
 
-Visit [Saloos on Github]
+Visit [Dash on Github]
 
-Also you can see [Saloos Official Website]
+Also you can see [Dash Official Website]
 
 
 ##Line of code
 
 
-###Saloos Library
+###Dash Library
 | Data			| Files	| Blank	| Comments	| Code  	|
 | ------------- | ----- | ----- | --------- | --------- |
 | 2014.02.26	| 57	| -		| 1236		| 5446		|
@@ -19,7 +19,7 @@ Also you can see [Saloos Official Website]
 
 
 
-###Saloos Addons
+###Dash Addons
 Below analytics give form [cloc](work on linux & windows)
 
 ####All
@@ -50,14 +50,14 @@ Below analytics give form [cloc](work on linux & windows)
 | 2016.02.29	| 21	| 404	| 549		| 2519 		|
 
 
-####SaloosJs
+####DashJs
 | Data			| Files	| Blank	| Comments	| Code  	|
 | ------------- | ----- | ----- | --------- | ---------	|
 | 2016.02.29	| 32	| 1597	| 2309		| 8446 		|
 
 
 
-###Saloos Project
+###Dash Project
 | Data			| Files	| Blank	| Comments	| Code  	|
 | ------------- | ----- | ----- | --------- | ---------	|
 | 2016.01.26	| 33	| 441	| 331		| 2651 		|
@@ -67,10 +67,10 @@ Below analytics give form [cloc](work on linux & windows)
 
 [Ermile]: <http://ermile.com>
 [ارمایل]: <http://ermile.ir>
-[Saloos on Github]: <https://github.com/Ermile/Saloos>
-[Saloos Official Website]: <http://saloos.ir>
-[Saloos]: <http://saloos.ir>
-[Saloos Project]: <https://github.com/Ermile/Saloos-Project>
+[Dash on Github]: <https://github.com/Ermile/Dash>
+[Dash Official Website]: <http://Ermile.ir>
+[Dash]: <https://Ermile.ir>
+[Dash Project]: <https://github.com/Ermile/Dash-Project>
 [Hasan Salehi]: <http://github.com/baravak>
 [Javad Evazzadeh]: <http://evazzadeh.com>
 [cloc]: <http://cloc.sourceforge.net>

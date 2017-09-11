@@ -9,8 +9,8 @@
  </style>
 </head>
 <body>
- <h1>Saloos Installation</h1>
- <p>Welcome to saloos installation process.</p>
+ <h1>Dash Installation</h1>
+ <p>Welcome to Dash installation process.</p>
  <p>First of all set database connection detail on <b>config.php</b> then we do others!</p>
 <?php
 	if(isset($_POST['username']) && isset($_POST['password']))

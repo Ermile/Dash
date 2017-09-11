@@ -222,7 +222,7 @@ class option
 	 */
 	public static function contentList($_addMain = false)
 	{
-		// get all content exist in saloos and current project
+		// get all content exist in core and current project
 		$addons   = glob(addons. "content_*", GLOB_ONLYDIR);
 		$project  = glob(root. "content_*",   GLOB_ONLYDIR);
 		$contents = array_merge($addons, $project);

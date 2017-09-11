@@ -41,7 +41,7 @@ Requirements
 
 Installation
 ------------
- * Start Using Dash with [Saloos Project]
+ * Start Using Dash with [Dash Project]
 
 
 Documentation
@@ -74,7 +74,7 @@ Licence! What does it mean?
 [Dash on Github]: <https://github.com/Ermile/dash>
 [Dash Official Website]: <https://ermile.com/dash>
 [Dash]: <https://ermile.com/dash>
-[Saloos Project]: <https://github.com/Ermile/Saloos-Project>
+[Dash Project]: <https://github.com/Ermile/Dash-Project>
 [Hasan Salehi]: <http://github.com/baravak>
 [Javad Evazzadeh]: <http://evazzadeh.com>
 [Reza Mohiti]: <https://github.com/biqarar>

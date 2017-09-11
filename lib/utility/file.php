@@ -1,6 +1,6 @@
 <?php
 /** In The name of Allah **/
-/*  Proudly made in IRAN, powered by Saloos, under licence of Ermile */
+/*  Proudly made in IRAN, powered by Dash, under licence of Ermile */
 
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
 // +----------------------------------------------------------------------+
@@ -498,7 +498,7 @@ class file
 		];
 
 		$_options = array_merge($default_options, $_options);
-		$new_path = tempnam($_options['tmp_path'], 'SALOOS_');
+		$new_path = tempnam($_options['tmp_path'], 'ERMILE_');
 
 		$file     = @fopen($_path, 'r');
 

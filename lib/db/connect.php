@@ -36,7 +36,7 @@ trait connect
 			// if at first request do not connected to default db
 			// connect to save link of default db
 			self::connect(true);
-			// if want to connect to saloos tools
+			// if want to connect to core tools
 			if($_db_name === '[tools]')
 			{
 				// connect to core db

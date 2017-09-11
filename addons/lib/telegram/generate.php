@@ -18,7 +18,7 @@ class generate extends tg
 	public static function answer($forceSample = null)
 	{
 		$answer  = null;
-		// read from saloos command template
+		// read from main command template
 		$cmdFolder = __NAMESPACE__ .'\commands\\';
 
 		// use user defined command
@@ -46,7 +46,7 @@ class generate extends tg
 		{
 			if(self::response('chat', 'type') === 'group')
 			{
-				// if saloos bot joied to group show thanks message
+				// if your bot joied to group show thanks message
 				if(self::response('new_chat_member', 'username') === self::$name)
 				{
 					$msg = "Thanks for using me!\r\n\nI'm Bot.";

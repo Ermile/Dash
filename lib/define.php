@@ -8,10 +8,10 @@ class define
 
 	public function __construct()
 	{
-		// check php version to upper than 5.6
-		if(version_compare(phpversion(), '5.6', '<'))
+		// check php version to upper than 7.0
+		if(version_compare(phpversion(), '7.0', '<'))
 		{
-			die("<p>For using Saloos you must update php version to 5.6 or higher!</p>");
+			die("<p>For using Dash you must update php version to 7.0 or higher!</p>");
 		}
 
 		/**
@@ -121,7 +121,8 @@ class define
 			}
 		}
 		// change header and remove php from it
-		header("X-Powered-By: Saloos!");
+		header("X-Made-In: Ermile!");
+		header("X-Powered-By: Dash!");
 
 		self::detect_language();
 		self::set_language(self::$language);
@@ -214,7 +215,7 @@ class define
 			self::$language = \lib\utility\location\languages::get(self::$language_default, 'all');
 		}
 
-		// use saloos php gettext function
+		// use php gettext function
 		require_once(lib.'utility/gettext/gettext.inc');
 		// if we have iso then trans
 		if(isset(self::$language['iso']))

@@ -222,7 +222,7 @@ class upload
 			$move_to = $_options['move_to']. $_options['tmp_path'];
 
 			$master_name = 'tmp_master_name';
-			if(preg_match("/(SALOOS\_[^\/]+)/", self::$upload_from_path, $master_name))
+			if(preg_match("/(ERMILE\_[^\/]+)/", self::$upload_from_path, $master_name))
 			{
 				if(isset($master_name[1]))
 				{

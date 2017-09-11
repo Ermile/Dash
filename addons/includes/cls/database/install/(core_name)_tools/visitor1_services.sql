@@ -4,7 +4,6 @@ Navicat MySQL Data Transfer
 Source Server         : Local
 Source Server Version : 50505
 Source Host           : localhost:3306
-Source Database       : saloos_tools
 
 Target Server Type    : MYSQL
 Target Server Version : 50505

@@ -103,7 +103,7 @@ class token
 		}
 
 		$date  = date("Y-m-d H:i:s");
-		$token = "~Saloos~_!_". $user_id . $key. time(). rand(1,1000). $date;
+		$token = "~ERMILE~_!_". $user_id . $key. time(). rand(1,1000). $date;
 		$token = utility::hasher($token, null, true);
 
 		$token = utility\safe::safe($token);
@@ -489,7 +489,7 @@ class token
 	{
 		self::destroy_api_key($_user_id);
 
-		$api_key = "!~Saloos~!". $_user_id. ':_$_:'. time(). "*Ermile*". rand(2, 200);
+		$api_key = "!~ERMILE~!". $_user_id. ':_$_:'. time(). "*Ermile*". rand(2, 200);
 		$api_key = utility::hasher($api_key, null, true);
 		$api_key = utility\safe::safe($api_key);
 		$arg =

@@ -401,7 +401,7 @@ class utility
 
 
     /**
-     * check saloos language and if needed convert to persian date
+     * check language and if needed convert to persian date
      * else show default date
      * @param  [type] $_date [description]
      * @return [type]        [description]

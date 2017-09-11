@@ -75,12 +75,12 @@ class git
 
 
 
-	public static function createPackage($_saloos = true)
+	public static function createPackage($_dash = true)
 	{
 		echo "<pre>";
 		$res = array();
 		//get details from last commit
-		if($_saloos)
+		if($_dash)
 		{
 			chdir(core);
 		}

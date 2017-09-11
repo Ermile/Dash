@@ -27,7 +27,7 @@ class router
 		if(strpos($_SERVER['REQUEST_URI'], '//') !== false)
 		{
 			// route url like this
-			// http://saloos.dev/enter?referer=http://saloos.dev/cp
+			// http://dash.dev/enter?referer=http://dash.dev/cp
 			if(strpos($_SERVER['REQUEST_URI'], '?') === false || strpos($_SERVER['REQUEST_URI'], '?') > strpos($_SERVER['REQUEST_URI'], '//'))
 			{
 				\lib\error::page('What are you doing!');
@@ -64,7 +64,7 @@ class router
 		 */
 		// detect language before check repository --f
 		\lib\define::detect_language();
-		// if saloos want to load repository automatically call func
+		// if dash want to load repository automatically call func
 		if(self::$auto_repository)
 		{
 			self::check_repository();
@@ -195,7 +195,7 @@ class router
 
 		if(count(explode('.', SubDomain)) > 1)
 		{
-			die("<p>Saloos only support one subdomain!</p>" );
+			die("<p>Dash only support one subdomain!</p>" );
 		}
 		elseif(SubDomain === 'www')
 		{
@@ -228,7 +228,7 @@ class router
 		// set repository name
 		$myrep    = 'content_'.$mysub;
 
-		// check content_aaa folder is exist in project or saloos addons folder
+		// check content_aaa folder is exist in project or dash addons folder
 		if(is_dir(root.$myrep))
 		{
 			$myloc = false;

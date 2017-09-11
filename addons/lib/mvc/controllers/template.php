@@ -178,7 +178,7 @@ trait template
 			// 	header("HTTP/1.1 404 NOT FOUND");
 			// 	$this->display_name	= '404.html';
 			// }
-			// // else show saloos default error page
+			// // else show dash default error page
 			// else
 			// {
 			// 	\lib\error::page(T_("Does not exist!"));

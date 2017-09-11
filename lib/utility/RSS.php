@@ -27,7 +27,7 @@ class RSS
 		$this->rssFeed .= '    <description>'.$_desc.'</description>'."\n";
 		$this->rssFeed .= '    <language>'.str_replace('_', '-', \lib\define::get_language('default')).'</language>'."\n";
 		$this->rssFeed .= '    <copyright>Copyright (C) '.date("Y").' '.$_url.'</copyright>'."\n";
-		$this->rssFeed .= '    <generator>'.'Saloos!'.'</generator>'."\n";
+		$this->rssFeed .= '    <generator>'.'ERMILE!'.'</generator>'."\n";
 
 	}
 
