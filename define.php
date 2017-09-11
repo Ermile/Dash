@@ -73,6 +73,29 @@ if(!defined("timezone"))
 else
 	date_default_timezone_set(constant('timezone'));
 
+
+// if has subdomain and have private database for subdomain, set db
+if(isset($_SERVER['HTTP_HOST']))
+{
+	$subdomain       = null;
+	$urlHostSegments = explode('.', $_SERVER['HTTP_HOST']);
+	// if have subdomain
+    if(count($urlHostSegments) > 2)
+    {
+		$subdomain    = $urlHostSegments[0];
+		$subdomain_db = root.'database/subdomain/'. $subdomain.'.conf';
+		// if file of special database exist
+		if(file_exists($subdomain_db))
+		{
+			$private_db = file_get_contents($subdomain_db);
+			if(!defined('db_name'))
+			{
+				define("db_name", $private_db);
+			}
+		}
+    }
+}
+
 // if personal config exist, require it
 if(file_exists(root .'config.me.php'))
 {
