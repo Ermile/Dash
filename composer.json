@@ -1,0 +1,20 @@
+{
+    "name": "ermile/dash",
+    "description": "dash php framework",
+    "license": "none",
+    "keywords": [
+        "php",
+        "framework"
+    ],
+    "authors": [
+        {
+            "name": "ermile",
+            "email": "info@ermile.com"
+
+        }
+    ],
+    "homepage": "https://github.com/ermile/dash",
+    "require": {
+        "php": ">=7.0"
+    }
+}
