@@ -83,11 +83,11 @@ if(isset($_SERVER['HTTP_HOST']))
     if(count($urlHostSegments) > 2)
     {
 		$subdomain    = $urlHostSegments[0];
-		$subdomain_db = root.'database/subdomain/'. $subdomain.'.conf';
+		$subdomain_db = root.'customer/subdomain/'. $subdomain;
 		// if file of special database exist
 		if(file_exists($subdomain_db))
 		{
-			$private_db = file_get_contents($subdomain_db);
+			$private_db = trim(file_get_contents($subdomain_db));
 			if(!defined('db_name'))
 			{
 				define("db_name", $private_db);
