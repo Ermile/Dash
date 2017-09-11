@@ -517,16 +517,10 @@ class controller
 					}
 				}
 
-				$uri = $myprefix. router::get_root_domain();
-
-				if($url_language)
+				// add subdomain to base
+				if(SubDomain)
 				{
-					$uri .= "/". $url_language;
-				}
-
-				if($content)
-				{
-					$uri .= "/". $content;
+					$myprefix .= SubDomain. '.';
 				}
 
 				if($_type == 'baseContent')

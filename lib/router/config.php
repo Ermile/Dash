@@ -35,6 +35,7 @@ trait config
 
 	// repository
 	public static $repository_name    = 'content';
+	public static $repository_finded  = null;
 
 	// api status, if you want to disable it, change this value
 	static $auto_api                  = true;

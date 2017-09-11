@@ -162,36 +162,35 @@ class router
 		}
 
 		// check for account with specefic name
-		if(!defined('MyAccount') && \lib\router::get_storage('CMS'))
+		if(!defined('MyAccount'))
 		{
 			// set MyAccount for use in all part of services
 			define('MyAccount', 'account');
 		}
 
 		router::$base = Protocol.'://';
-		if(defined('subDevelop'))
-		{
-			if(self::$sub_real === constant('subDevelop'))
-			{
-				router::$base .= constant('subDevelop'). '.';
-			}
-			elseif(SubDomain === constant('subDevelop'))
-			{
+		// if(defined('subDevelop'))
+		// {
+		// 	if(self::$sub_real === constant('subDevelop'))
+		// 	{
+		// 		router::$base .= constant('subDevelop'). '.';
+		// 	}
+		// 	elseif(SubDomain === constant('subDevelop'))
+		// 	{
 
-			}
-		}
+		// 	}
+		// }
 
-		if(router::$sub_is_fake)
+		if(SubDomain)
 		{
-			router::$base .= Service.(router::$prefix_base ? '/'. router::$prefix_base : '') .(SubDomain? '/'.SubDomain: null);
+			router::$base .= SubDomain. '.';
 		}
-		else
+		// add service to base
+		router::$base .= Service .(router::$prefix_base ? '/'. router::$prefix_base : '');
+		// add repository to base
+		if(router::$repository_finded)
 		{
-			if(SubDomain)
-			{
-				router::$base .= SubDomain. '.';
-			}
-			router::$base .= Service .(router::$prefix_base ? '/'. router::$prefix_base : '');
+			router::$base .= '/'. router::$repository_finded;
 		}
 
 		if(count(explode('.', SubDomain)) > 1)
@@ -211,84 +210,58 @@ class router
 	 */
 	public static function check_repository()
 	{
-		// first get subdomain and if not exist get first url part as mysub
-		$mysub = router::get_sub_domain();
-
-		// if user set subDevelop use it and remove from repo check
-		if(defined('subDevelop') && $mysub === constant('subDevelop'))
-		{
-			$mysub = '';
-		}
-
+		$mysub = router::get_url(0);
+		// if sub is not exist return it
 		if(!$mysub)
 		{
-			$mysub = router::get_url(0);
-			if($mysub)
-			{
-				router::$sub_is_fake = true;
-			}
+			return false;
 		}
 
-		if($mysub)
+		// automatically set repository if folder of it exist
+		router::$sub_is_fake = true;
+		$myloc               = null;
+		$mysub_valid         = null;
+
+		// list of addons exist in dash,
+		$dash_addons         = [ 'cp', 'enter', 'api' ];
+
+		// set repository name
+		$myrep    = 'content_'.$mysub;
+
+		// check content_aaa folder is exist in project or saloos addons folder
+		if(is_dir(root.$myrep))
 		{
-			// automatically set repository if folder of it exist
-			$myaddons    = [];
-			$mysub_real  = $mysub;
-			$myloc       = null;
-			$mysub_valid = null;
-
-			// check for account with specefic name
-			if(\lib\router::get_storage('CMS'))
-			{
-				$myaddons[\lib\router::get_storage('CMS')] = 'cp';
-				// $myaddons['account'] = 'account';
-				$myaddons['enter'] = 'enter';
-				$myaddons['api']   = 'api';
-			}
-			// check this sub is exist in our data or not
-			if(array_key_exists($mysub, $myaddons))
-			{
-				$mysub       = $myaddons[$mysub];
-				$mysub_valid = true;
-			}
-
-			// set repository name
-			$myrep    = 'content_'.$mysub;
-
-			// check content_aaa folder is exist in project or saloos addons folder
-			if(is_dir(root.$myrep))
-			{
-				$myloc = false;
-			}
-			// if exist on addons folder
-			elseif($mysub_valid && is_dir(addons.$myrep))
-			{
-				$myloc = addons;
-			}
-
-			// if folder exist
-			if(!is_null($myloc))
-			{
-				// if url is fake, show it like subdomain and remove from url
-				if(router::$sub_is_fake)
-				{
-					// set real sub for use in other part of code
-					self::$sub_real = router::get_sub_domain();
-
-					router::remove_url($mysub_real);
-					router::set_sub_domain($mysub_real);
-				}
-				// set repository to this folder
-				$myparam = array($myrep);
-				if($myloc)
-				{
-					array_push($myparam, $myloc);
-				}
-
-				// call function and pass param value to it
-				router::set_repository(...$myparam);
-			}
+			$myloc = false;
 		}
+		// if exist on addons folder
+		elseif(in_array($mysub, $dash_addons) && is_dir(addons.$myrep))
+		{
+			$myloc = addons;
+		}
+		else
+		{
+			// if folder not exist return false
+			return false;
+		}
+
+		// if url is fake, show it like subdomain and remove from url
+		if(router::$sub_is_fake)
+		{
+			// set finded repository
+			self::$repository_finded = $mysub;
+
+			router::remove_url($mysub);
+			// router::set_sub_domain($mysub);
+		}
+		// set repository to this folder
+		$myparam = array($myrep);
+		if($myloc)
+		{
+			array_push($myparam, $myloc);
+		}
+
+		// call function and pass param value to it
+		router::set_repository(...$myparam);
 	}
 
 
