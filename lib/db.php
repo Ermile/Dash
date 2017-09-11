@@ -28,11 +28,13 @@ class db
 		$default_options =
 		[
 			// set mysql error in debug error
-			'debug_error'     => self::$debug_error,
+			'debug_error'         => self::$debug_error,
 			// return false when debug status is 0
-			'resume_on_error' => false,
+			'resume_on_error'     => false,
 			// run mysqli_multi_query
-			'multi_query'     => false,
+			'multi_query'         => false,
+			// default auto create database
+			'auto_create_database' => false,
 		];
 
 		if(!is_array($_options))
@@ -55,12 +57,12 @@ class db
 		if($_db_name === true)
 		{
 			// connect to main database
-			self::connect(true);
+			self::connect(true, $_options['auto_create_database']);
 		}
 		elseif(is_string($_db_name))
 		{
 			// connect to different db
-			self::connect($_db_name);
+			self::connect($_db_name, $_options['auto_create_database']);
 			// different db used.
 			$different_db = true;
 		}

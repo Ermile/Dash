@@ -144,7 +144,7 @@ trait info
 	public static function db_version($_db_name = true, $_addons_version = false)
 	{
 
-		self::connect($_db_name);
+		self::connect($_db_name, false);
 
 		$db_name = self::$db_name;
 
@@ -210,7 +210,7 @@ trait info
 	 */
 	public static function set_db_version($_version, $_db_name = true, $_addons_version = false)
 	{
-		self::connect($_db_name);
+		self::connect($_db_name, false);
 
 		$db_name = self::$db_name;
 
@@ -274,15 +274,6 @@ trait info
 		}
 
 		return version_compare($version, $_version, $_condition);
-
-		if(version_compare($_version, $version, $_condition))
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
 	}
 }
 ?>

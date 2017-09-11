@@ -47,10 +47,11 @@ class visitor
 	 */
 	private static function createLink($_force = false)
 	{
+
 		if(!self::$link || $_force)
 		{
 			// open database connection and create link
-			if(!\lib\db::connect('[tools]'))
+			if(!\lib\db::connect('[tools]', false))
 			{
 				// cant connect to database
 				return false;

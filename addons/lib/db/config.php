@@ -385,6 +385,14 @@ class config
 			"master_join"         => null,
 		];
 
+		// if limit not set and the pagenation is false
+		// remove limit from query to load add record
+		if(!isset($_options['limit']) && array_key_exists('pagenation', $_options) && $_options['pagenation'] === false)
+		{
+			$default_options['limit'] = null;
+			$default_options['end_limit'] = null;
+		}
+
 		$_options = array_merge($default_options, $_options);
 
 		$pagenation = false;

@@ -1,5 +1,10 @@
 <?php
 namespace lib;
+/**
+ * define error name
+ *
+ * @var        integer
+ */
 const BAD_REQUEST              = 400;
 const UNAUTHORIZED             = 401;
 const FORBIDDEN                = 403;
@@ -18,8 +23,14 @@ const BAD_GATEWAY              = 502;
 const SERVICE_UNAVAILABLE      = 503;
 const VARIANT_ALSO_VARIES      = 506;
 
+
+/**
+ * Class for error.
+ * make error page
+ */
 class error
 {
+
 	public static function string($code)
 	{
 		$error = array();
@@ -43,6 +54,17 @@ class error
 		return $error[$code];
 	}
 
+	public static function service($str = null)
+	{
+		$class = debug_backtrace(true);
+		self::make($str, $class, SERVICE_UNAVAILABLE);
+	}
+
+	public static function unsupport($str = null)
+	{
+		$class = debug_backtrace(true);
+		self::make($str, $class, NOT_IMPLEMENTED);
+	}
 
 	public static function page($str=null)
 	{

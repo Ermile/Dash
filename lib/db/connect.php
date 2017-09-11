@@ -24,7 +24,7 @@ trait connect
 	 * if not exist create it
 	 * @return [type] [description]
 	 */
-	public static function connect($_db_name = null, $_autoCreate = false)
+	public static function connect($_db_name = null, $_autoCreate = null)
 	{
 		if($_db_name === true || $_db_name === db_name)
 		{
@@ -35,7 +35,7 @@ trait connect
 		{
 			// if at first request do not connected to default db
 			// connect to save link of default db
-			self::connect(true);
+			self::connect(true, false);
 			// if want to connect to core tools
 			if($_db_name === '[tools]')
 			{
@@ -67,9 +67,7 @@ trait connect
 		// if mysqli class does not exist or have some problem show related error
 		if(!class_exists('mysqli'))
 		{
-			echo( "<p>"."we can't find database service!"." "
-							."please contact administrator!")."</p>";
-			exit();
+			\lib\error::service(T_("we can't find database service!"). " ". T_("Please contact administrator!"));
 		}
 
 		$link = @mysqli_connect(self::$db_host, self::$db_user, self::$db_pass, self::$db_name);
@@ -79,12 +77,12 @@ trait connect
 		{
 			switch (@mysqli_connect_errno())
 			{
+				// Access denied for user 'user'@'hostname' (using password: YES)
 				case 1045:
-					echo "<p>"."We can't connect to database service!"." "
-								  ."Please contact administrator!!"."</p>";
-					exit();
+					\lib\error::service(T_("We can't connect to database service!"). " ". T_("Please contact administrator!"));
 					break;
 
+				// ERROR 1049 (42000): Unknown database
 				case 1049:
 					// if allow to create then start create database
 					if($_autoCreate)
@@ -116,9 +114,9 @@ trait connect
 					// else only show related message
 					else
 					{
-						echo( "<p>".T_("We can't connect to correct database!")." "
-									  .T_("Please contact administrator!")."</p>" );
-						\lib\main::$controller->_processor(array('force_stop' => true));
+						var_dump(debug_backtrace());
+						exit();
+						\lib\error::unsupport(T_("We can't connect to correct database!"). " ". T_("Please contact administrator!"));
 					}
 					break;
 
@@ -128,10 +126,12 @@ trait connect
 					break;
 			}
 		}
+
 		// link is created and exist,
 		// check if link is exist set it as global variable
 		if($link)
 		{
+
 			// set charset for link
 			@mysqli_set_charset($link, self::$db_charset);
 			// save link as global variable
