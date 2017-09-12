@@ -15,5 +15,9 @@ trait _use
 	use \addons\content_api\v1\parent\tools\add;
 	use \addons\content_api\v1\parent\tools\get;
 	use \addons\content_api\v1\parent\tools\delete;
+
+	use \addons\content_api\v1\comment\tools\add;
+	use \addons\content_api\v1\comment\tools\get;
+
 }
 ?>

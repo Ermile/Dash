@@ -3,12 +3,13 @@ CREATE TABLE `options` (
 `user_id` int(10) UNSIGNED DEFAULT NULL,
 `post_id` bigint(20) UNSIGNED DEFAULT NULL,
 `parent_id` bigint(20) UNSIGNED DEFAULT NULL,
-`option_cat` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-`option_key` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-`option_value` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
-`option_meta` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
-`option_status` enum('enable','disable','expire') NOT NULL DEFAULT 'enable',
-`date_modified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+`cat` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+`key` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+`value` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+`meta` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
+`status` enum('enable','disable','expire') NOT NULL DEFAULT 'enable',
+`datemodified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+`datecreated` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 ALTER TABLE `options`

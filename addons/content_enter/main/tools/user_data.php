@@ -119,6 +119,8 @@ trait user_data
 			$_args = array_merge($default_args, $_args);
 		}
 
+		self::set_enter_session('first_signup', true);
+
 		$mobile = self::get_enter_session('mobile');
 		if($mobile)
 		{
@@ -164,6 +166,7 @@ trait user_data
 			}
 		}
 
+		self::set_enter_session('first_signup', true);
 
 		$user_id = \lib\db\users::insert($_args);
 

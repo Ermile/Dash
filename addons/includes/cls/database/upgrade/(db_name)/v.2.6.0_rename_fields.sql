@@ -19,13 +19,13 @@ ALTER TABLE `posts` ADD `datecreated` timestamp NULL DEFAULT CURRENT_TIMESTAMP;
 ALTER TABLE `comments` CHANGE `comment_author` `author` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL;
 ALTER TABLE `comments` CHANGE `comment_email` `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL;
 ALTER TABLE `comments` CHANGE `comment_url` `url` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL;
-ALTER TABLE `comments` CHANGE `comment_content` `content` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;
+ALTER TABLE `comments` CHANGE `comment_content` `content` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL;
 ALTER TABLE `comments` CHANGE `comment_meta` `meta` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 ALTER TABLE `comments` CHANGE `comment_status` `status` enum('approved','unapproved','spam','deleted') NOT NULL DEFAULT 'unapproved';
-ALTER TABLE `comments` CHANGE `comment_parent` `parent` smallint(5) UNSIGNED DEFAULT NULL;
+ALTER TABLE `comments` CHANGE `comment_parent` `parent` bigint(20) UNSIGNED DEFAULT NULL;
 ALTER TABLE `comments` CHANGE `comment_minus` `minus` int(10) UNSIGNED DEFAULT NULL;
 ALTER TABLE `comments` CHANGE `comment_plus` `plus` int(10) UNSIGNED DEFAULT NULL;
-ALTER TABLE `comments` CHANGE `comment_type` `type` enum('comment','rate') DEFAULT NULL;
+ALTER TABLE `comments` CHANGE `comment_type` `type` varchar(50) NULL DEFAULT NULL;
 
 ALTER TABLE `comments` CHANGE `date_modified` `datemodified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP;
 ALTER TABLE `comments` ADD `datecreated` timestamp NULL DEFAULT CURRENT_TIMESTAMP;

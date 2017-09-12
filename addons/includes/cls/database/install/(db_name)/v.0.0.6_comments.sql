@@ -1,19 +1,20 @@
 CREATE TABLE `comments` (
 `id` bigint(20) UNSIGNED NOT NULL,
 `post_id` bigint(20) UNSIGNED DEFAULT NULL,
-`comment_author` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
-`comment_email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
-`comment_url` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
-`comment_content` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-`comment_meta` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
-`comment_status` enum('approved','unapproved','spam','deleted') NOT NULL DEFAULT 'unapproved',
-`comment_parent` smallint(5) UNSIGNED DEFAULT NULL,
+`author` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+`email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+`url` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+`content` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+`meta` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
+`status` enum('approved','unapproved','spam','deleted') NOT NULL DEFAULT 'unapproved',
+`parent` smallint(5) UNSIGNED DEFAULT NULL,
 `user_id` int(10) UNSIGNED DEFAULT NULL,
-`comment_minus` int(10) UNSIGNED DEFAULT NULL,
-`comment_plus` int(10) UNSIGNED DEFAULT NULL,
-`comment_type` enum('comment','rate') DEFAULT NULL,
+`minus` int(10) UNSIGNED DEFAULT NULL,
+`plus` int(10) UNSIGNED DEFAULT NULL,
+`type` varchar(50) NULL DEFAULT NULL,
 `visitor_id` bigint(20) UNSIGNED DEFAULT NULL,
-`date_modified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+`datemodified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+`datecreated` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
