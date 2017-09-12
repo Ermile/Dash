@@ -22,6 +22,17 @@ class comments
 
 
 	/**
+	 * Searches for the first match.
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public static function search()
+	{
+		return \lib\db\config::public_search('comments', ...func_get_args());
+	}
+
+
+	/**
 	 * update field from comments table
 	 * get fields and value to update
 	 * @param array $_args fields data

@@ -7,11 +7,6 @@ use \lib\db\logs;
 trait get
 {
 
-	public $remote_comment         = false;
-	public $rule                = null;
-	public $show_another_status = false;
-	public $team_privacy        = 'private';
-
 	/**
 	 * Gets the comment.
 	 *
@@ -25,7 +20,8 @@ trait get
 
 		[
 			'pagenation' => true,
-			'admin'  	 => false,
+			'admin'      => false,
+			'get_meta'   => false,
 		];
 
 		if(!is_array($_args))
@@ -44,12 +40,13 @@ trait get
 			]
 		];
 
-		if(!$this->comment_id)
+		if(!$this->user_id)
 		{
 			return false;
 		}
-		$where           = [];
-		$search          = utility::request('search');
+		$where               = [];
+		$where['pagenation'] = $_args['pagenation'];
+		$search              = utility::request('search');
 
 		$get_args = $this->comment_make_where($_args, $where, $log_meta);
 
@@ -66,7 +63,7 @@ trait get
 		{
 			foreach ($result as $key => $value)
 			{
-				$check = $this->ready_comment($value);
+				$check = $this->ready_comment($value, $_args);
 				if($check)
 				{
 					$temp[] = $check;
@@ -97,9 +94,9 @@ trait get
 			]
 		];
 
-		if(!$this->comment_id)
+		if(!$this->user_id)
 		{
-			logs::set('api:comment:comment_id:notfound', $this->comment_id, $log_meta);
+			logs::set('api:comment:comment_id:notfound', $this->user_id, $log_meta);
 			debug::error(T_("User not found"), 'comment', 'permission');
 			return false;
 		}
@@ -109,7 +106,7 @@ trait get
 		$id = utility\shortURL::decode($id);
 		if(!$id)
 		{
-			logs::set('api:comment:id:not:set', $this->comment_id, $log_meta);
+			logs::set('api:comment:id:not:set', $this->user_id, $log_meta);
 			debug::error(T_("Id not set"), 'id', 'arguments');
 			return false;
 		}
@@ -135,7 +132,7 @@ trait get
 	{
 		$default_options =
 		[
-
+			'get_meta' => false,
 		];
 
 		if(!is_array($_options))
@@ -152,9 +149,30 @@ trait get
 		{
 			switch ($key)
 			{
+
 				case 'id':
+				case 'post_id':
+				case 'user_id':
 					$result[$key] = utility\shortURL::encode($value);
 					break;
+
+				case 'meta':
+					if($_options['get_meta'])
+					{
+						$result['meta'] = $value;
+					}
+					else
+					{
+						continue;
+					}
+					break;
+
+				case 'visitor_id':
+				case 'datemodified':
+				case 'datecreated':
+					continue;
+					break;
+
 				default:
 					$result[$key] = $value;
 					break;

@@ -134,6 +134,17 @@ trait comment_check_args
 		{
 			$where['type'] = null;
 		}
+
+		$user_id = utility::request('user_id');
+		if($user_id && is_string($user_id) || is_numeric($user_id))
+		{
+			$where['user_id'] = utility\shortURL::decode($user_id);
+		}
+
+		if(!$user_id && utility::isset_request('user_id'))
+		{
+			$where['user_id'] = null;
+		}
 	}
 }
 ?>
