@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Dash - Persian\n"
-"POT-Creation-Date: 2017-09-11 10:50+0430\n"
-"PO-Revision-Date: 2017-09-11 11:07+0430\n"
+"POT-Creation-Date: 2017-09-12 12:43+0430\n"
+"PO-Revision-Date: 2017-09-12 12:43+0430\n"
 "Last-Translator: Javad Evazzadeh <J.Evazzadeh@gmail.com>\n"
 "Language-Team: Ermile <J.Evazzadeh@gmail.com>\n"
 "Language: fa_IR\n"
@@ -15,11 +15,10 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;T_\n"
 "X-Poedit-SearchPath-0: .\n"
-"X-Poedit-SearchPathExcluded-0: lib/SaloosJS\n"
-"X-Poedit-SearchPathExcluded-1: lib/PHPMailer\n"
-"X-Poedit-SearchPathExcluded-2: ../Twig\n"
-"X-Poedit-SearchPathExcluded-3: lib/SocialNetwork\n"
-"X-Poedit-SearchPathExcluded-4: *.js\n"
+"X-Poedit-SearchPathExcluded-0: lib/PHPMailer\n"
+"X-Poedit-SearchPathExcluded-1: ../Twig\n"
+"X-Poedit-SearchPathExcluded-2: lib/SocialNetwork\n"
+"X-Poedit-SearchPathExcluded-3: *.js\n"
 
 #: content_api/v1/file/tools/link.php:13
 msgid "Can not upload file"
@@ -215,31 +214,31 @@ msgstr ""
 
 #: content_api/v1/user/tools/user_check_args.php:146
 msgid "Invalid marital field"
-msgstr ""
+msgstr "مقدار رشته تاهل اشتباه است"
 
 #: content_api/v1/user/tools/user_check_args.php:154
 msgid "You must set the child less than 50 character"
-msgstr ""
+msgstr "طول رشته تعداد فرزندان باید کمتر از ۵۰ کاراکتر باشد"
 
 #: content_api/v1/user/tools/user_check_args.php:162
 msgid "You must set the brithcity less than 50 character"
-msgstr ""
+msgstr "طول رشته شهر محل تولد باید کمتر از ۵۰ کاراکتر باشد"
 
 #: content_api/v1/user/tools/user_check_args.php:170
 msgid "You must set the shfrom less than 50 character"
-msgstr ""
+msgstr "طول رشته محل صدور شناسنامه باید کمتر از ۵۰ کاراکتر باشد"
 
 #: content_api/v1/user/tools/user_check_args.php:178
 msgid "You must set the shcode less than 50 character"
-msgstr ""
+msgstr "طول رشته شماره شناسنامه باید کمتر از ۵۰ کاراکتر باشد"
 
 #: content_api/v1/user/tools/user_check_args.php:186
 msgid "You must set the education less than 50 character"
-msgstr ""
+msgstr "طول رشته مدرک تحصیلی باید کمتر از ۵۰ کاراکتر باشد"
 
 #: content_api/v1/user/tools/user_check_args.php:194
 msgid "You must set the job less than 50 character"
-msgstr ""
+msgstr "طول رشته شغل باید کمتر از ۵۰ کاراکتر باشد"
 
 #: content_api/v1/user/tools/user_check_args.php:202
 msgid "You must set the passportcode less than 50 character"
@@ -255,7 +254,7 @@ msgstr ""
 
 #: content_api/v1/user/tools/user_check_args.php:226
 msgid "You must set the shaba less than 50 character"
-msgstr ""
+msgstr "طول رشته شماره شبا باید کمتر از ۵۰ کاراکتر باشد"
 
 #: content_api/v1/user/tools/user_check_args.php:234
 msgid "You must set the cardnumber less than 50 character"
@@ -1452,7 +1451,7 @@ msgstr "وضعیت"
 
 #: includes/languages/trans_addons.php:29
 msgid "Count Detail"
-msgstr ""
+msgstr "تعداد جزئیات"
 
 #: includes/languages/trans_addons.php:30
 msgid "Detail"
@@ -1480,7 +1479,7 @@ msgstr ""
 
 #: includes/languages/trans_addons.php:38
 msgid "Priority"
-msgstr ""
+msgstr "اولویت"
 
 #: includes/languages/trans_addons.php:39
 msgid "User_id"
@@ -1496,7 +1495,7 @@ msgstr "تاریخ ایجاد"
 
 #: includes/languages/trans_addons.php:42
 msgid "Meta"
-msgstr ""
+msgstr "متا"
 
 #: includes/languages/trans_addons.php:46
 msgid "Tools"
@@ -1552,7 +1551,7 @@ msgstr "کد کاربر"
 
 #: includes/languages/trans_addons.php:61
 msgid "user_idsender"
-msgstr ""
+msgstr "شناسه کاربر ارسال کننده"
 
 #: includes/languages/trans_addons.php:62
 msgid "content"
@@ -2365,7 +2364,7 @@ msgstr "افزودن تراکنش جدید"
 
 #: includes/languages/trans_addons.php:309
 msgid "Displayname"
-msgstr ""
+msgstr "نام برای نمایش عمومی"
 
 #: includes/languages/trans_addons.php:310
 msgid "Amount request"
