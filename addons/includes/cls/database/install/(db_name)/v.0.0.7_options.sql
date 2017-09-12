@@ -14,7 +14,7 @@ CREATE TABLE `options` (
 
 ALTER TABLE `options`
 ADD PRIMARY KEY (`id`),
-ADD UNIQUE KEY `cat+key+value` (`option_cat`,`option_key`,`option_value`) USING BTREE,
+ADD UNIQUE KEY `cat+key+value` (`cat`,`key`,`value`) USING BTREE,
 ADD KEY `options_users_id` (`user_id`),
 ADD KEY `options_posts_id` (`post_id`),
 ADD KEY `options_parent_id` (`parent_id`);

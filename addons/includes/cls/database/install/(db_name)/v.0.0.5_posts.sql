@@ -20,7 +20,7 @@ CREATE TABLE `posts` (
 
 ALTER TABLE `posts`
 ADD PRIMARY KEY (`id`),
-ADD UNIQUE KEY `url_unique` (`post_url`,`post_language`) USING BTREE,
+ADD UNIQUE KEY `url_unique` (`url`,`language`) USING BTREE,
 ADD KEY `posts_users_id` (`user_id`) USING BTREE;
 
 
