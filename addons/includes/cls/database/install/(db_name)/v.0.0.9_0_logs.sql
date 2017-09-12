@@ -7,7 +7,8 @@ CREATE TABLE `logs` (
 `status` enum('enable','disable','expire','deliver') DEFAULT NULL,
 `desc` varchar(250) DEFAULT NULL,
 `createdate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-`date_modified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+`date_modified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+`datecreated` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
