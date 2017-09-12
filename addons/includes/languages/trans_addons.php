@@ -71,7 +71,7 @@ private function transtext()
 	echo T_("readdate");                                                              // Line 36
 	echo T_("gateway");                                                               // Line 37
 	echo T_("auto");                                                                  // Line 38
-	echo T_("date_modified");                                                         // Line 39
+	echo T_("datemodified");                                                          // Line 39
 
 	//-------------------------------------------addons\content_cp\sample\display.html
 	echo T_("Approve");                                                               // Line 122
@@ -91,7 +91,7 @@ private function transtext()
 
 	//--------------------------------------addons\content_cp\sample\template\box.html
 	echo T_("box");                                                                   // Line 7
-	echo T_("Softal's box provide a flexible and extensible content container fot title and contents.");// Line 8
+	echo T_("Siftal's box provide a flexible and extensible content container for title and contents.");// Line 8
 	echo T_("You can use elements of this page in all part of site and mix them with another elements.");// Line 14
 
 	//-------------------------------addons\content_cp\sample\template\breadcrumb.html
@@ -154,16 +154,20 @@ private function transtext()
 	echo T_("Disabled");                                                              // Line 66
 	echo T_("All type of input conditions");                                          // Line 74
 	echo T_("Extra Examples with input class and multiple part");                     // Line 43
-	echo T_("Extra features");                                                        // Line 89
-	echo T_("Sizing");                                                                // Line 130
-	echo T_("Button addons");                                                         // Line 157
-	echo T_("Search...");                                                             // Line 161
-	echo T_("Go!");                                                                   // Line 168
-	echo T_("Ding Ding!");                                                            // Line 178
-	echo T_("Simple file input");                                                     // Line 196
-	echo T_("Simple file input only accept images");                                  // Line 203
-	echo T_("Simple avatar selector with simple preview");                            // Line 210
-	echo T_("Simple file input with min 100kb and max 200kb size!");                  // Line 229
+	echo T_("Simple input with label");                                               // Line 90
+	echo T_("Name");                                                                  // Line 92
+	echo T_("Family");                                                                // Line 96
+	echo T_("Email");                                                                 // Line 62
+	echo T_("Extra features");                                                        // Line 109
+	echo T_("Sizing");                                                                // Line 150
+	echo T_("Button addons");                                                         // Line 177
+	echo T_("Search...");                                                             // Line 181
+	echo T_("Go!");                                                                   // Line 188
+	echo T_("Ding Ding!");                                                            // Line 198
+	echo T_("Simple file input");                                                     // Line 216
+	echo T_("Simple file input only accept images");                                  // Line 223
+	echo T_("Simple avatar selector with simple preview");                            // Line 230
+	echo T_("Simple file input with min 100kb and max 200kb size!");                  // Line 249
 
 	//--------------------------------------addons\content_cp\sample\template\msg.html
 	echo T_("Messages");                                                              // Line 7
@@ -223,7 +227,7 @@ private function transtext()
 
 	//------------------------------------addons\content_cp\sample\template\vcard.html
 	echo T_("vcard");                                                                 // Line 7
-	echo T_("Softal's cards provide a flexible and extensible content container with multiple variants and options.");// Line 8
+	echo T_("Siftal's cards provide a flexible and extensible content container with multiple variants and options.");// Line 8
 	echo T_("A card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.");// Line 13
 	echo T_("Cards are built with as little markup and styles as possible, but still manage to deliver a ton of control and customization. Built with flexbox, they offer easy alignment and mix well with other  components.");// Line 14
 	echo T_("Accept");                                                                // Line 138
@@ -322,7 +326,6 @@ private function transtext()
 	echo T_("Detail of user");                                                        // Line 5
 
 	//--------------------------------------------addons\content_cp\users\display.html
-	echo T_("Email");                                                                 // Line 62
 	echo T_("Display name");                                                          // Line 24
 	echo T_("Username");                                                              // Line 27
 	echo T_("Avatar");                                                                // Line 28
