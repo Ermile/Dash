@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Dash - Persian\n"
-"POT-Creation-Date: 2017-09-12 12:43+0430\n"
-"PO-Revision-Date: 2017-09-12 12:43+0430\n"
+"POT-Creation-Date: 2017-09-12 19:33+0430\n"
+"PO-Revision-Date: 2017-09-12 19:37+0430\n"
 "Last-Translator: Javad Evazzadeh <J.Evazzadeh@gmail.com>\n"
 "Language-Team: Ermile <J.Evazzadeh@gmail.com>\n"
 "Language: fa_IR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.11\n"
+"X-Generator: Poedit 1.8.7.1\n"
 "X-Poedit-Basepath: ../../../..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -19,6 +19,71 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-1: ../Twig\n"
 "X-Poedit-SearchPathExcluded-2: lib/SocialNetwork\n"
 "X-Poedit-SearchPathExcluded-3: *.js\n"
+
+#: content_api/v1/comment/tools/add.php:40
+#: content_api/v1/comment/tools/get.php:89 content_api/v1/user/tools/add.php:40
+#: content_api/v1/user/tools/get.php:89
+msgid "Operation Faild"
+msgstr "عملیات با خطا مواجه شد"
+
+#: content_api/v1/comment/tools/add.php:80 content_api/v1/user/tools/add.php:183
+msgid "Operation Complete"
+msgstr "عملیات کامل شد"
+
+#: content_api/v1/comment/tools/add.php:85
+msgid "Thank You For contacting us"
+msgstr "ممنون بابت تماس شما ."
+
+#: content_api/v1/comment/tools/add.php:91
+msgid "We could'nt save the request"
+msgstr "ما نمی توانیم در خواست شما را ذخیره کنیم ."
+
+#: content_api/v1/comment/tools/comment_check_args.php:24
+msgid "You must set the author less than 50 character"
+msgstr "نام نویسنده باید کمتر از 50 کاراکتر باشد"
+
+#: content_api/v1/comment/tools/comment_check_args.php:32
+msgid "You must set the email less than 50 character"
+msgstr "ادرس ایمیل باید کمتر از 50 کاراکتر باشد"
+
+#: content_api/v1/comment/tools/comment_check_args.php:40
+msgid "You must set the url less than 1500 character"
+msgstr "ادرس url  باید کمتر از 1500 کاراکتر باشد."
+
+#: content_api/v1/comment/tools/comment_check_args.php:48
+msgid "Your text is too large!"
+msgstr "متن شما خیلی بزرگ است !!"
+
+#: content_api/v1/comment/tools/comment_check_args.php:55
+msgid "Content can not be null"
+msgstr "محتوا نمی توانند خالی باشد."
+
+#: content_api/v1/comment/tools/comment_check_args.php:75
+#: content_api/v1/user/tools/user_check_args.php:93
+msgid "Invalid parameter status"
+msgstr "پارامتر وضعیت نامعتبر است"
+
+#: content_api/v1/comment/tools/comment_check_args.php:91
+msgid "Invalid parameter user_id"
+msgstr "پارامتر user_id نامعتبره"
+
+#: content_api/v1/comment/tools/comment_check_args.php:99
+msgid "You must set the type less than 50 character"
+msgstr "نوع باید کمتر از 50 کاراکتر باشد."
+
+#: content_api/v1/comment/tools/get.php:103
+#: content_api/v1/parent/tools/add.php:44
+#: content_api/v1/parent/tools/delete.php:37
+#: content_api/v1/parent/tools/delete.php:115
+#: content_api/v1/parent/tools/get.php:37 content_api/v1/user/tools/add.php:57
+#: content_api/v1/user/tools/get.php:103 content_enter/home/model.php:44
+msgid "User not found"
+msgstr "کاربر یافت نشد"
+
+#: content_api/v1/comment/tools/get.php:113 content_api/v1/user/tools/add.php:148
+#: content_api/v1/user/tools/get.php:113
+msgid "Id not set"
+msgstr "شناسه تنظیم نشده است"
 
 #: content_api/v1/file/tools/link.php:13
 msgid "Can not upload file"
@@ -65,14 +130,6 @@ msgstr "کاربر یافت نشد، لطفا به آدرس /enter/hook رفته
 #: content_api/v1/home/tools/get_token.php:48
 msgid "Invalid parameter temp_token"
 msgstr "پارامتر temp_token نامعتبر است"
-
-#: content_api/v1/parent/tools/add.php:44
-#: content_api/v1/parent/tools/delete.php:37
-#: content_api/v1/parent/tools/delete.php:115
-#: content_api/v1/parent/tools/get.php:37 content_api/v1/user/tools/add.php:57
-#: content_api/v1/user/tools/get.php:103 content_enter/home/model.php:44
-msgid "User not found"
-msgstr "کاربر یافت نشد"
 
 #: content_api/v1/parent/tools/add.php:54
 msgid "Please set the parent mobile"
@@ -144,29 +201,17 @@ msgstr "والد حذف شد"
 msgid "Waiting to user accept this request"
 msgstr "در انتظار تایید درخواست توسط کاربر"
 
-#: content_api/v1/user/tools/add.php:40 content_api/v1/user/tools/get.php:89
-msgid "Operation Faild"
-msgstr "عملیات با خطا مواجه شد"
-
 #: content_api/v1/user/tools/add.php:101 content_api/v1/user/tools/add.php:115
 msgid "Duplicate mobile"
-msgstr ""
-
-#: content_api/v1/user/tools/add.php:148 content_api/v1/user/tools/get.php:113
-msgid "Id not set"
-msgstr "شناسه تنظیم نشده است"
-
-#: content_api/v1/user/tools/add.php:183
-msgid "Operation Complete"
-msgstr "عملیات کامل شد"
+msgstr "تلفن همراه تکراری"
 
 #: content_api/v1/user/tools/add.php:187
 msgid "user successfully added"
-msgstr ""
+msgstr "کاربر با موفقیت اضافه شد ."
 
 #: content_api/v1/user/tools/add.php:191
 msgid "user successfully updated"
-msgstr ""
+msgstr "کاربر با موفقیت بروزرسانی شد"
 
 #: content_api/v1/user/tools/user_check_args.php:19
 msgid "You can set the displayname less than 50 character"
@@ -188,10 +233,6 @@ msgstr "موقعیت باید کمتر از ۱۰۰ کاراکتر باشد"
 msgid "You can set the personnel_code less than 9 character "
 msgstr "کد شخصی باید کمتر از ۹ کاراکتر باشد"
 
-#: content_api/v1/user/tools/user_check_args.php:93
-msgid "Invalid parameter status"
-msgstr "پارامتر وضعیت نامعتبر است"
-
 #: content_api/v1/user/tools/user_check_args.php:106
 msgid "You must set the national code less than 50 character"
 msgstr "کد ملی باید کمتر از ۵۰ کاراکتر باشد"
@@ -210,7 +251,7 @@ msgstr "رشته جنسیت اشتباه است"
 
 #: content_api/v1/user/tools/user_check_args.php:138
 msgid "Invalid type of teacher"
-msgstr ""
+msgstr "نوع معلم نامعتبر است"
 
 #: content_api/v1/user/tools/user_check_args.php:146
 msgid "Invalid marital field"
@@ -242,15 +283,15 @@ msgstr "طول رشته شغل باید کمتر از ۵۰ کاراکتر باش
 
 #: content_api/v1/user/tools/user_check_args.php:202
 msgid "You must set the passportcode less than 50 character"
-msgstr ""
+msgstr "کد پاسپورت باید کمتر از 50 کاراکتر باشد"
 
 #: content_api/v1/user/tools/user_check_args.php:210
 msgid "You must set the passportexpire less than 50 character"
-msgstr ""
+msgstr " تاریخ انقضاء باید کمتر از 50 کاراکتر باشد"
 
 #: content_api/v1/user/tools/user_check_args.php:218
 msgid "You must set the paymentaccountnumber less than 50 character"
-msgstr ""
+msgstr " شماره حساب باید کمتر از 50 کاراکتر باشد "
 
 #: content_api/v1/user/tools/user_check_args.php:226
 msgid "You must set the shaba less than 50 character"
@@ -258,17 +299,17 @@ msgstr "طول رشته شماره شبا باید کمتر از ۵۰ کاراک
 
 #: content_api/v1/user/tools/user_check_args.php:234
 msgid "You must set the cardnumber less than 50 character"
-msgstr ""
+msgstr " شماره کارت باید کمتر از  50 کاراکتر باشد "
 
 #: content_cp/home/controller.php:19
 msgid "first of all, you must login to system!"
 msgstr "شما ابتدا باید وارد سیستم شوید!"
 
-#: content_cp/home/controller.php:50
+#: content_cp/home/controller.php:52
 msgid "Can not access to cp"
 msgstr "نمی‌توانید به کنترل پنل دسترسی داشته باشید"
 
-#: content_cp/home/controller.php:80
+#: content_cp/home/controller.php:82
 msgid "Not found!"
 msgstr "یافت نشد"
 
@@ -364,11 +405,11 @@ msgstr "نقشه‌ی سایت"
 
 #: content_cp/transactions/add/model.php:51
 msgid "You must login to add new transaction"
-msgstr ""
+msgstr "برای اضافه کردن تراکنش جدید باید وارد شوید "
 
 #: content_cp/transactions/add/model.php:61
 msgid "Please set the transaction title"
-msgstr ""
+msgstr "لطفا یک عنوان برای تراکنش وارد کنید ."
 
 #: content_cp/transactions/add/model.php:68
 msgid "Please select one of the unit items"
@@ -405,7 +446,7 @@ msgstr "موبایل وجود ندارد"
 
 #: content_cp/transactions/add/model.php:130
 msgid "One of the plus or minus field must be set"
-msgstr ""
+msgstr "یکی از زمینه های بیشتر یا کمتر باید تنظیم شود ."
 
 #: content_cp/transactions/add/model.php:162
 msgid "Transaction inserted"
@@ -1475,7 +1516,7 @@ msgstr "نوع"
 
 #: includes/languages/trans_addons.php:37
 msgid "Caller"
-msgstr ""
+msgstr "دعوت کننده "
 
 #: includes/languages/trans_addons.php:38
 msgid "Priority"
@@ -1620,7 +1661,7 @@ msgstr "نشان"
 #: includes/languages/trans_addons.php:82
 msgid ""
 "Documentation and examples for badges, our small count and labeling component."
-msgstr ""
+msgstr "مستندات و نمونه های برای نشان ها ، شمار کوچک ما و اجزاء برچسب زده شده ."
 
 #: includes/languages/trans_addons.php:83
 msgid "Examples"
@@ -1631,26 +1672,32 @@ msgid ""
 "Badges scale to match the size of the immediate parent element by using "
 "relative font sizing and <code class='code1'>em</code> units."
 msgstr ""
+"مقیاس مدال ها برای مطابقت با اندازه اصلی عنصر با استفاده از اندازه فونت نسبی و "
+"واحد <code class='code1'>em</code> صورت می گیرد"
 
 #: includes/languages/trans_addons.php:85
 msgid "Contextual variations"
-msgstr ""
+msgstr "متغیرهای متنی"
 
 #: includes/languages/trans_addons.php:86
 msgid ""
 "Add any of the below mentioned modifier classes to change the appearance of a "
 "badge."
 msgstr ""
+"هر یک از کلاس های اصلاح کننده زیر را اضافه کنید تا ظاهر یک نشان را تغییر دهید."
 
 #: includes/languages/trans_addons.php:87
 msgid "Rounded badge"
-msgstr ""
+msgstr "علامت گرد"
 
 #: includes/languages/trans_addons.php:88
 msgid ""
 "Use the <code class='code1'>.rounded</code> modifier class to make badges more "
 "rounded (with a larger border-radius and additional horizontal padding)."
 msgstr ""
+"استفاده از این کلاس :  <code class='code1'>.rounded</code> اشیاء را به منظور "
+"ایجاد مدال گرد می کنید ( با شعاع گردی بالاتر {border-radius} و فاصله داخلی "
+"افقی بیشتر )"
 
 #: includes/languages/trans_addons.php:89
 msgid "Links"
@@ -1662,6 +1709,9 @@ msgid ""
 "class='code1'>&lt;a&gt;</code> element quickly provide actionable badges with "
 "hover and focus states."
 msgstr ""
+"استفاده از : <code class='code1'>.badge</code> کلاس با اسم : <code "
+"class='code1'>&lt;a&gt;</code>  به سرعت حالت های hover و focus را فراهم می "
+"کنند "
 
 #: includes/languages/trans_addons.php:93
 msgid "box"
@@ -1672,26 +1722,32 @@ msgid ""
 "Softal's box provide a flexible and extensible content container fot title and "
 "contents."
 msgstr ""
+"box ها در سیفتال یک بخش قابل انعطاف و توسعه پذیر را برای عنوان و محتویات ارائه "
+"می دهد."
 
 #: includes/languages/trans_addons.php:95
 msgid ""
 "You can use elements of this page in all part of site and mix them with "
 "another elements."
 msgstr ""
+"می توانید از عناصر این صفحه در تمام قسمت های سایت استفاده کنید و آنها را با "
+"عناصر دیگر ترکیب کنید "
 
 #: includes/languages/trans_addons.php:98
 msgid "Breadcrumb"
-msgstr ""
+msgstr "خرده نان"
 
 #: includes/languages/trans_addons.php:99
 msgid ""
 "Indicate the current page's location within a navigational hierarchy that "
 "automatically adds separators via CSS."
 msgstr ""
+"محل مکان فعلی را در سلسله مراتب ناوبری نشان می دهد که به طور خودکار جدا کننده "
+"هایی از طریق css اضافه می کند"
 
 #: includes/languages/trans_addons.php:100
 msgid "Separators are automatically added in CSS through ::before and content."
-msgstr ""
+msgstr "جداساز ها به صورت خودکار اضافه شده اند از طریق css :before و content"
 
 #: includes/languages/trans_addons.php:101
 msgid "Sizes"
@@ -1699,7 +1755,7 @@ msgstr "سایز‌ها"
 
 #: includes/languages/trans_addons.php:102
 msgid "A breadcrumb can vary in size"
-msgstr ""
+msgstr "breadcrumb می توانند در اندازه متفاوت باشند "
 
 #: includes/languages/trans_addons.php:105
 msgid "Button"
@@ -1710,6 +1766,8 @@ msgid ""
 "Use Siftal's custom button styles for actions in forms, dialogs, and more with "
 "support for multiple sizes, states, and more."
 msgstr ""
+"استایل های سفارشی سیفتال برای action ها در form , dialogها و ... با پشتیبانی "
+"از سایز ها و حالت های مختلف و...  استفاده کنید "
 
 #: includes/languages/trans_addons.php:107
 msgid "Simple Examples"
@@ -1720,6 +1778,8 @@ msgid ""
 "Siftal includes several predefined button styles, each serving its own "
 "semantic purpose, with a few extras thrown in for more control."
 msgstr ""
+"سیفتال عبارت است از : دکمه های با استایل های از پیش تعریف شده ، هر سرویس برای "
+"انجام کار خواصی تعیین شده به همراه جزئیات اضافه تر."
 
 #: includes/languages/trans_addons.php:109
 msgid "Default Btn"
@@ -1734,10 +1794,12 @@ msgid ""
 "Easily extend form controls by adding text, buttons, or button groups on "
 "either side of textual inputs."
 msgstr ""
+"به راحتی کنترلر های فرم را با اضافه کردن متن ، دکمه ها یا گروه های دکمه ای در "
+"هر دو طرف از ورودی های متنی گسترش دهید "
 
 #: includes/languages/trans_addons.php:114
 msgid "Simple Examples with input element"
-msgstr ""
+msgstr "مثال ساده با عنصر های وروردی"
 
 #: includes/languages/trans_addons.php:115
 msgid "Normal"
@@ -1749,15 +1811,15 @@ msgstr "نمایش عکس کاربران"
 
 #: includes/languages/trans_addons.php:119
 msgid "ClockPicker"
-msgstr ""
+msgstr "انتخابگر زمان"
 
 #: includes/languages/trans_addons.php:120
 msgid "Easily add time picker to your project"
-msgstr ""
+msgstr "به راحتی انتخاب زمان را به پروژه خود اضافه کنید."
 
 #: includes/languages/trans_addons.php:121
 msgid "Read more info and example about clockpicker"
-msgstr ""
+msgstr "در مورد clockpicker بیشتر بخوانید و مثال های بیشتری ببینید ."
 
 #: includes/languages/trans_addons.php:122
 msgid "Simple"
@@ -1765,11 +1827,12 @@ msgstr "ساده"
 
 #: includes/languages/trans_addons.php:123
 msgid "Simple with addon"
-msgstr ""
+msgstr "ساده به همراه افزون ها "
 
 #: includes/languages/trans_addons.php:124
 msgid "Place at right, align the arrow to top, without auto close"
 msgstr ""
+"در سمت راست صفحه قرار دهید ، فلش را بسمت بالا بچرخانید ، بدون بستن خودکار."
 
 #: includes/languages/trans_addons.php:125
 msgid "Ok"
@@ -1777,43 +1840,43 @@ msgstr "بسیار خب"
 
 #: includes/languages/trans_addons.php:126
 msgid "Place at right, align the arrow to bottom"
-msgstr ""
+msgstr "در سمت راست صفحه قرار دهید ، فلش را به سمت پایین بچرخانید"
 
 #: includes/languages/trans_addons.php:127
 msgid "Place at left, align the arrow to top"
-msgstr ""
+msgstr "در سمت چپ صفحه قرار دهید ، فلش را به سمت بالا بچرخانید"
 
 #: includes/languages/trans_addons.php:128
 msgid "Place at top, alighn the arrow to right"
-msgstr ""
+msgstr "در بالای صفحه قرار دهید ، فلش را بسمت راست بچرخانید."
 
 #: includes/languages/trans_addons.php:129
 msgid "Place at top, alighn the arrow to left"
-msgstr ""
+msgstr "در بالای صفحه قرار دهید ، فلش را بسمت چپ بچرخانید."
 
 #: includes/languages/trans_addons.php:130
 msgid "Place at bottom, alighn the arrow to right"
-msgstr ""
+msgstr "در سمت پایین صفحه قرار دهید ، فلش را به سمت راست بچرخانید"
 
 #: includes/languages/trans_addons.php:131
 msgid "Place at bottom, alighn the arrow to left"
-msgstr ""
+msgstr "در سمت پایین صفحه قرار دهید ، فلش را به سمت چپ بچرخانید"
 
 #: includes/languages/trans_addons.php:132
 msgid "Set options in javascript, instead of data-*"
-msgstr ""
+msgstr "تنظیم گزینه ها در جاوااسکریپت،به جای داده ها -*"
 
 #: includes/languages/trans_addons.php:133
 msgid "Callbacks"
-msgstr ""
+msgstr "فراخوان"
 
 #: includes/languages/trans_addons.php:136
 msgid "Crop Images"
-msgstr ""
+msgstr "بریدن تصویر"
 
 #: includes/languages/trans_addons.php:137
 msgid "A simple and full feature crop for avatar or something else!"
-msgstr ""
+msgstr "ویژگی یک محصول ساده و کامل برای نماد یا چیز های دیگر ..."
 
 #: includes/languages/trans_addons.php:138
 msgid "Example"
@@ -1821,11 +1884,11 @@ msgstr "مثال"
 
 #: includes/languages/trans_addons.php:139
 msgid "Crop image in modal"
-msgstr ""
+msgstr "بریدن عکس در مدل"
 
 #: includes/languages/trans_addons.php:140
 msgid "Crop your avatar"
-msgstr ""
+msgstr "بریدن نماد شما"
 
 #: includes/languages/trans_addons.php:141
 msgid "Cancel"
@@ -1833,15 +1896,15 @@ msgstr "انصراف"
 
 #: includes/languages/trans_addons.php:142
 msgid "Crop"
-msgstr ""
+msgstr "بریدن"
 
 #: includes/languages/trans_addons.php:145
 msgid "Date Picker"
-msgstr ""
+msgstr "انتخاب تاریخ"
 
 #: includes/languages/trans_addons.php:146
 msgid "A simple date picker for fast use"
-msgstr ""
+msgstr "یک تجمیع کننده تاریخ ساده برای استفاده سریع"
 
 #: includes/languages/trans_addons.php:151
 msgid "Focus"
@@ -1861,11 +1924,11 @@ msgstr "غیرفعال"
 
 #: includes/languages/trans_addons.php:155
 msgid "All type of input conditions"
-msgstr ""
+msgstr "انواع حالت های ورودی ."
 
 #: includes/languages/trans_addons.php:156
 msgid "Extra Examples with input class and multiple part"
-msgstr ""
+msgstr "نمونه های بیشتر به همراه کلاس های اضافه و چند بخشی ."
 
 #: includes/languages/trans_addons.php:157
 msgid "Extra features"
@@ -1877,7 +1940,7 @@ msgstr "سایزبندی‌ها"
 
 #: includes/languages/trans_addons.php:159
 msgid "Button addons"
-msgstr ""
+msgstr "افزودن دکمه "
 
 #: includes/languages/trans_addons.php:160
 msgid "Search..."
@@ -1893,19 +1956,19 @@ msgstr "دینگ دینگ!"
 
 #: includes/languages/trans_addons.php:163
 msgid "Simple file input"
-msgstr ""
+msgstr "فایل ساده ورودی"
 
 #: includes/languages/trans_addons.php:164
 msgid "Simple file input only accept images"
-msgstr ""
+msgstr "فایل ساده ورودی فقط عکس ها را قبول می کند"
 
 #: includes/languages/trans_addons.php:165
 msgid "Simple avatar selector with simple preview"
-msgstr ""
+msgstr "انتخابگر ساده اواتار به همراه نمایش ساده"
 
 #: includes/languages/trans_addons.php:166
 msgid "Simple file input with min 100kb and max 200kb size!"
-msgstr ""
+msgstr "فایل ساده ورودی با حجم حداقال 100 کیلوبایت و حداکثر 200 کیلوبایت"
 
 #: includes/languages/trans_addons.php:169
 msgid "Messages"
@@ -1916,30 +1979,36 @@ msgid ""
 "Provide contextual feedback messages for typical user actions with the handful "
 "of available and flexible alert messages."
 msgstr ""
+"فراهم کننده متنی بازخورد متن برای اقدامات معمولی کاربر به همراه تعداد انگشت "
+"شماری از دسترسی و پیغام های هشدار انعطاف پذیر ."
 
 #: includes/languages/trans_addons.php:171
 msgid "Examples with light color"
-msgstr ""
+msgstr "نمونه به همراه رنگ های روشن"
 
 #: includes/languages/trans_addons.php:172
 msgid "Link color"
-msgstr ""
+msgstr "رنگ لینک."
 
 #: includes/languages/trans_addons.php:173
 msgid ""
 "Use the <code class='code1'>.link</code> utility class to quickly provide "
 "matching colored links within any alert."
 msgstr ""
+"با استفاده از کلاس : <code class='code1'>.link</code> به سرعت لینک های رنگی را "
+"در هر هشدار استفاده کنید "
 
 #: includes/languages/trans_addons.php:174
 msgid "Additional content"
-msgstr ""
+msgstr "محتوای اضافی"
 
 #: includes/languages/trans_addons.php:175
 msgid ""
 "Alerts can also contain additional HTML elements like headings, paragraphs and "
 "dividers."
 msgstr ""
+"همچنین هشدار ها می توانند شامل عناصر html اضافی مانند headings, paragraphs و "
+"dividers باشند."
 
 #: includes/languages/trans_addons.php:176
 msgid "Compact"
@@ -1947,11 +2016,11 @@ msgstr "فشرده"
 
 #: includes/languages/trans_addons.php:177
 msgid "A message can only take up the width of its content."
-msgstr ""
+msgstr "یک پیام تنها می تواند به اندازه عرض محتوای آن باشد."
 
 #: includes/languages/trans_addons.php:178
 msgid "A message with a list"
-msgstr ""
+msgstr "یک پیام به همراه یک لیست ."
 
 #: includes/languages/trans_addons.php:183
 msgid "Pagination"
@@ -1962,10 +2031,12 @@ msgid ""
 "Documentation and examples for showing pagination to indicate a series of "
 "related content exists across multiple pages."
 msgstr ""
+"مستندات و نمونه هایی برای نشان دادن صفحه بندی برای نمایش یک سری از محتوای "
+"مرتبط که در چند صفحه وجود دارد."
 
 #: includes/languages/trans_addons.php:185
 msgid "Overview"
-msgstr ""
+msgstr "بررسی اجمالی"
 
 #: includes/languages/trans_addons.php:186
 msgid ""
@@ -1975,6 +2046,12 @@ msgid ""
 "available links. Use a wrapping <nav> element to identify it as a navigation "
 "section to screen readers and other assistive technologies."
 msgstr ""
+"ما از یک بلوک بزرگ از لینک های متصل برای صفحه بندی ما استفاده می کنیم، که باعث "
+"می شود لینک ها به راحتی قابل دسترسی است و به راحتی مقیاس پذیر باشند - در حالی "
+"که اماده یک کلیک هستند.صفحه بندی با عناصر html | list ساخته شده اند ، بنابر "
+"این خوانندگان می توانند تعداد لینک های موجود دار اعلام کنند .از  یک عنصر<nav> "
+"استفاده کنید تا آنرا به عنوان بخش ناوبری برای نمایش به خوانندگان و سایر تکنیک "
+"ها شناسایی کنید ."
 
 #: includes/languages/trans_addons.php:187
 msgid "Colored"
@@ -1982,25 +2059,27 @@ msgstr "رنگی"
 
 #: includes/languages/trans_addons.php:188
 msgid "A pagination can use in many colors"
-msgstr ""
+msgstr "یک صفحه بندی می تواند از تعداد زیادی رنگ استفاده کند ."
 
 #: includes/languages/trans_addons.php:189
 msgid "A pagination can vary in size"
-msgstr ""
+msgstr "یک صفحه بندی می تواند در اندازه های متفاوتی باشد ."
 
 #: includes/languages/trans_addons.php:192
 msgid "Progress"
-msgstr ""
+msgstr "پیشروی ."
 
 #: includes/languages/trans_addons.php:193
 msgid "Documentation and examples for using Siftal progress bars."
-msgstr ""
+msgstr "مستندات و نمونه هایی برای استفاده از نوار پیشرفت در سیفتال"
 
 #: includes/languages/trans_addons.php:194
 msgid ""
 "Siftal use html progress and meter and have some styles on them, each serving "
 "its own semantic purpose"
 msgstr ""
+"سیفتال از نوار پیشرفت html و متر و برخی استایل های همراه استفاده می کند ، هر "
+"سرویس برای منظور خواصی استفاده می شد ."
 
 #: includes/languages/trans_addons.php:195
 msgid "Meter"
@@ -2008,7 +2087,7 @@ msgstr "متر"
 
 #: includes/languages/trans_addons.php:196
 msgid "Use the meter element to measure data within a given range"
-msgstr ""
+msgstr "از واحد متر برای اندازه گیری عنصرها در محدوده داده استفاده کنید "
 
 #: includes/languages/trans_addons.php:199
 msgid "CSS Reset"
@@ -2020,6 +2099,8 @@ msgid ""
 "kickstart Siftal to provide an elegant, consistent, and simple baseline to "
 "build upon."
 msgstr ""
+"بازنشانی، مجموعه ای از css های خاص را در یک فایل واحد تغییر می دهد ، kickstart "
+"سیفتال برای ارائه ای زیبا ، استوار و پایه ای ساده بر ساختن."
 
 #: includes/languages/trans_addons.php:203
 msgid "Tables"
@@ -2027,7 +2108,7 @@ msgstr "جداول"
 
 #: includes/languages/trans_addons.php:204
 msgid "Documentation and examples for tables with Siftal."
-msgstr ""
+msgstr "مستندات و نمومنه های برای جداول با سیفتال"
 
 #: includes/languages/trans_addons.php:205
 msgid ""
@@ -2035,6 +2116,9 @@ msgid ""
 "class='code1'>&lt;table&gt;</code>, then extend with custom styles or our "
 "various included modifier classes."
 msgstr ""
+"فقط کلاس پایه را اضافه کنید : <code class='code1'>.tbl</code> به هرگونه <code "
+"class='code1'>&lt;table&gt;</code> ، سپس گسترش دهید با استایل های سفارشی یا "
+"کلاس های سازنده ما ."
 
 #: includes/languages/trans_addons.php:206
 msgid "Simple table"
@@ -2042,17 +2126,19 @@ msgstr "جدول ساده"
 
 #: includes/languages/trans_addons.php:207
 msgid "Table head options"
-msgstr ""
+msgstr "تنظیمات عنوان جدول"
 
 #: includes/languages/trans_addons.php:208
 msgid "No Zebra!"
-msgstr ""
+msgstr "بدون راه راه"
 
 #: includes/languages/trans_addons.php:209
 msgid ""
 "Use <code class='code1'>.dead</code> to add zebra-striping to any table row "
 "within the <code class='code1'>&lt;tbody&gt;</code>."
 msgstr ""
+"استفاده از : <code class='code1'>.dead</code> برای اضافه کردن حالت راه راه به "
+"هر جدولی به همراه :‌ <code class='code1'>&lt;tbody&gt;</code>."
 
 #: includes/languages/trans_addons.php:210
 msgid "Custom cell"
@@ -2061,6 +2147,7 @@ msgstr "سلول سفارشی"
 #: includes/languages/trans_addons.php:211
 msgid "A cell or row may let a user know whether a value is good or bad."
 msgstr ""
+"یک سلوس یا ردیف ممکن است به کاربر اجازه دهد بداند چه محتوانی خوب یا بد است ."
 
 #: includes/languages/trans_addons.php:212
 msgid ""
@@ -2069,14 +2156,18 @@ msgid ""
 "warning</code> and <code class='code1'>.disabled</code> to create custom "
 "design on cell or rows"
 msgstr ""
+"می توانید از : code1'>.positive</code>و <code class='code1'>.negative</code>و "
+"<code class='code1'>.active</code>و <code class='code1'>.warning</code> and "
+"<code class='code1'>.disabled</code> برای ساخت طراحی های دیگر در سلول یا ردیف "
+"استفاده کنید "
 
 #: includes/languages/trans_addons.php:213
 msgid "Bordered table"
-msgstr ""
+msgstr "جدول با حاشیه"
 
 #: includes/languages/trans_addons.php:214
 msgid "Padded"
-msgstr ""
+msgstr "Padded دوبرابر"
 
 #: includes/languages/trans_addons.php:215
 msgid "Small"
@@ -2097,10 +2188,13 @@ msgstr "تکست اریا"
 #: includes/languages/trans_addons.php:221
 msgid "A textarea can be used to allow for extended user input."
 msgstr ""
+"برای اجازه دادن به ورودی بیشتر از سمت کاربر می توان از یک textarea استفاده "
+"کرد ."
 
 #: includes/languages/trans_addons.php:222
 msgid "To specify an approximate text area size use the rows attribute."
 msgstr ""
+"برای مشخص کردن اندازه تغریبی متن در textarea از ویژگی ردیف (row) اضافه کنید"
 
 #: includes/languages/trans_addons.php:225
 msgid "vcard"
@@ -2111,13 +2205,15 @@ msgid ""
 "Softal's cards provide a flexible and extensible content container with "
 "multiple variants and options."
 msgstr ""
+"card های سیفتال یک بخش قابل انعطاف و توسعه پذیر را با انواع گزینه های مختلف "
+"ارائه می دهد."
 
 #: includes/languages/trans_addons.php:227
 msgid ""
 "A card is a flexible and extensible content container. It includes options for "
 "headers and footers, a wide variety of content, contextual background colors, "
 "and powerful display options."
-msgstr ""
+msgstr "کارت یک مخزن با محتوای قابل انعطاف و توسعه پذیر است."
 
 #: includes/languages/trans_addons.php:228
 msgid ""
@@ -2125,6 +2221,9 @@ msgid ""
 "to deliver a ton of control and customization. Built with flexbox, they offer "
 "easy alignment and mix well with other  components."
 msgstr ""
+"card هابا امکان نشانه گذاری و استایل های کوچک ساخته شده اند اما هنوز امکان "
+"کنترل و سفارشی سازی راه دارد .  ساخته شده با flexbox ،اغلب هماهنگی و ترکیب "
+"خوبی با اجزای دیگر دارند ."
 
 #: includes/languages/trans_addons.php:229
 msgid "Accept"
@@ -2376,7 +2475,7 @@ msgstr "مبلغ پایانی"
 
 #: includes/languages/trans_addons.php:312
 msgid "Budget before"
-msgstr ""
+msgstr "قبل از بودجه"
 
 #: includes/languages/trans_addons.php:313
 msgid "Budget"
@@ -2476,7 +2575,7 @@ msgstr "شما نباید اینجا باشید!"
 
 #: includes/languages/trans_addons.php:352
 msgid "Why you want to delete your account!?"
-msgstr ""
+msgstr "چرا می خواهید حساب خود را حذف کنید ؟"
 
 #: includes/languages/trans_addons.php:355
 msgid "We detected two accout for you"
@@ -2588,7 +2687,7 @@ msgstr "رضا محیطی"
 
 #: includes/languages/trans_addons.php:407
 msgid "Another Project with Dash"
-msgstr ""
+msgstr "پروژه دیگری با دش ."
 
 #: includes/languages/trans_addons.php:408
 msgid "Dash is an artichokes for PHP programming!!"
@@ -3761,35 +3860,35 @@ msgstr "تجارک"
 
 #: lib/db/transactions/set.php:70
 msgid "Transaction user_id can not be null"
-msgstr ""
+msgstr "user_id  تراکنش نمی تواند خالی باشد"
 
 #: lib/db/transactions/set.php:82
 msgid "Transaction caller can not be null"
-msgstr ""
+msgstr "دعوت کننده تراکنش نمی تواند خالی باشد "
 
 #: lib/db/transactions/set.php:93
 msgid "Transaction title can not be null"
-msgstr ""
+msgstr "عنوان تراکنش نمی تواند خالی باشد"
 
 #: lib/db/transactions/set.php:104
 msgid "Transaction type can not be null"
-msgstr ""
+msgstr "نوع تراکنش نمی تواند خالی باشد"
 
 #: lib/db/transactions/set.php:115
 msgid "Transaction status can not be null"
-msgstr ""
+msgstr "وضعیت تراکنش نمی تواند خالی باشد "
 
 #: lib/db/transactions/set.php:126
 msgid "Invalid transaction verify field"
-msgstr ""
+msgstr "مقدار تائید تراکنش نامعتبر است"
 
 #: lib/db/transactions/set.php:137
 msgid "Transaction unit can not be null"
-msgstr ""
+msgstr "واحد در تراکنش نمی تواند خالی باشد"
 
 #: lib/db/transactions/set.php:154
 msgid "Transaction unit_id can not be null"
-msgstr ""
+msgstr "unit_id تراکنش نمی تواند خالی باشد"
 
 #: lib/mvc/controllers/url.php:52
 msgid "delete"
