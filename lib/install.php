@@ -10,6 +10,7 @@
 </head>
 <body>
  <h1>Dash Installation</h1>
+ <progress></progress>
  <p>Welcome to Dash installation process.</p>
  <p>First of all set database connection detail on <b>config.php</b> then we do others!</p>
 <?php
