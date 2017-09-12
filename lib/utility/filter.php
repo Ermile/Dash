@@ -226,9 +226,9 @@ class filter
 		[
 			'logitem_id'     => $log_item_id,
 			'user_id'        => $_user_id,
-			'log_data'       => $code,
-			'log_status'     => 'enable',
-			'log_createdate' => date('Y-m-d H:i:s')
+			'data'       => $code,
+			'status'     => 'enable',
+			'datecreated' => date('Y-m-d H:i:s')
 		];
 		$result = \lib\db\logs::insert($arg);
 		if($result)

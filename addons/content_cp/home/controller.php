@@ -28,29 +28,30 @@ class controller extends \mvc\controller
 				$this->redirector(null, false)->set_domain()->set_url('enter')->redirect();
 			}
 		}
+
 		// if content is not set then
 		if($_content === null)
 		{
 			$_content = \lib\router::get_sub_domain();
 		}
+
 		// Check permission and if user can do this operation
 		// allow to do it, else show related message in notify center
-		if(intval($this->login('id')) === 1 || ( intval($this->login('id')) === 1001 && $this->login('displayname') === 'Javad Evazzadeh' ))
+		if(Tld === 'dev')
 		{
-			//
+			// on tld dev open the cp to upgrade for test
 		}
 		else
 		{
-			if(Tld === 'dev')
+			if(\lib\permission::access('cp'))
 			{
-
+				// the user have permission of cp
 			}
 			else
 			{
 				\lib\error::access(T_("Can not access to cp"));
 			}
 		}
-		// $this->access($_content, $_module, $_perm, 'block');
 	}
 
 
@@ -67,6 +68,7 @@ class controller extends \mvc\controller
 		}
 	}
 
+
 	function _route()
 	{
 		// do for exception url
@@ -79,7 +81,6 @@ class controller extends \mvc\controller
 		{
 			\lib\error::page(T_("Not found!"));
 		}
-
 
 		// Restrict unwanted child
 		// if($mychild && !($mychild=='add' || $mychild=='edit' || $mychild=='delete' || $mychild=='list' || $mychild=='options'))
@@ -107,6 +108,7 @@ class controller extends \mvc\controller
 		{
 			$this->model_name = '\\addons\\content_cp\\'.$mymodule.'\model';
 		}
+
 
 		switch ($cpModule)
 		{

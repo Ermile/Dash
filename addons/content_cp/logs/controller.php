@@ -15,11 +15,11 @@ class controller extends \mvc\controller
 		'data',
 		'status',
 		'createdate',
-		'date_modified',
+		'datemodified',
 		'sort',
 		'order',
 		'search',
-		'log_data',
+		'data',
 	];
 
 	public function _route()

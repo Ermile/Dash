@@ -14,7 +14,7 @@ class controller extends \mvc\controller
 		'discount',
 		'status',
 		'createdate',
-		'date_modified',
+		'datemodified',
 		'desc',
 		'meta',
 		'sort',

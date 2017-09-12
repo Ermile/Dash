@@ -48,7 +48,7 @@ class posts
 		// get id
 		$query = "
 				UPDATE  posts
-				SET posts.post_status = 'deleted'
+				SET posts.status = 'deleted'
 				WHERE posts.id = $_id
 				";
 
@@ -117,17 +117,17 @@ class posts
 		"
 			SELECT * FROM posts
 			WHERE id = $_id
-			AND post_type = 'attachment'
-			AND posts.post_status IN ('draft', 'publish')
+			AND type = 'attachment'
+			AND posts.status IN ('draft', 'publish')
 			LIMIT 1
 		";
 		$result = \lib\db::get($query, null, true);
 
 		if($result)
 		{
-			if(isset($result['post_meta']) && substr($result['post_meta'], 0,1) === '{')
+			if(isset($result['meta']) && substr($result['meta'], 0,1) === '{')
 			{
-				$result['post_meta'] = json_decode($result['post_meta'], true);
+				$result['meta'] = json_decode($result['meta'], true);
 			}
 			return $result;
 		}

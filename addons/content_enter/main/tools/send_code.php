@@ -73,7 +73,7 @@ trait send_code
 			{
 				if(self::get_enter_session('verification_code_id'))
 				{
-					if(\lib\db\logs::update(['log_desc' => $rate[0]], self::get_enter_session('verification_code_id')))
+					if(\lib\db\logs::update(['desc' => $rate[0]], self::get_enter_session('verification_code_id')))
 					{
 						// update session on nex way
 						self::set_enter_session('verification_code_way', $rate[0]);
@@ -97,7 +97,7 @@ trait send_code
 				if(self::get_enter_session('verification_code_id'))
 				{
 					// update log on next way
-					if(\lib\db\logs::update(['log_desc' => $rate[$next_key]], self::get_enter_session('verification_code_id')))
+					if(\lib\db\logs::update(['desc' => $rate[$next_key]], self::get_enter_session('verification_code_id')))
 					{
 						// update session on nex way
 						self::set_enter_session('verification_code_way', $rate[$next_key]);

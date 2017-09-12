@@ -84,7 +84,7 @@ trait search
 		$end_limit   = $_options['end_limit'];
 
 
-		if(isset($_options['post_language']))
+		if(isset($_options['language']))
 		{
 			$_options['check_language'] = false;
 		}
@@ -92,7 +92,7 @@ trait search
 		if($_options['check_language'] === true)
 		{
 			$language = \lib\define::get_language();
-			$where[] = " (posts.post_language IS NULL OR posts.post_language = '$language') ";
+			$where[] = " (posts.language IS NULL OR posts.language = '$language') ";
 		}
 
 		// ------------------ remove system index
@@ -128,10 +128,10 @@ trait search
 
 			$search =
 			"(
-				posts.post_title 	LIKE '%$_string%' OR
-				posts.post_content 	LIKE '%$_string%' OR
-				posts.post_url 		LIKE '%$_string%' OR
-				posts.post_meta 	LIKE '%$_string%'
+				posts.title 	LIKE '%$_string%' OR
+				posts.content 	LIKE '%$_string%' OR
+				posts.url 		LIKE '%$_string%' OR
+				posts.meta 		LIKE '%$_string%'
 			)";
 			if($where)
 			{
@@ -157,22 +157,22 @@ trait search
 		$query =
 		"
 			SELECT
-				`id` 				AS `id`,
-				`post_language` 	AS `post_language`,
-				`post_title` 		AS `post_title`,
-				`post_slug` 		AS `post_slug`,
-				`post_url` 			AS `post_url`,
-				`post_content` 		AS `post_content`,
-				`post_meta` 		AS `post_meta`,
-				`post_type` 		AS `post_type`,
-				`post_comment` 		AS `post_comment`,
-				`post_count` 		AS `post_count`,
-				`post_order` 		AS `post_order`,
-				`post_status` 		AS `post_status`,
-				`post_parent` 		AS `post_parent`,
-				`user_id` 			AS `user_id`,
-				`post_publishdate` 	AS `post_publishdate`,
-				`date_modified` 	AS `date_modified`
+				`id` 			AS `id`,
+				`language` 		AS `language`,
+				`title` 		AS `title`,
+				`slug` 			AS `slug`,
+				`url` 			AS `url`,
+				`content` 		AS `content`,
+				`meta` 			AS `meta`,
+				`type` 			AS `type`,
+				`comment` 		AS `comment`,
+				`count` 		AS `count`,
+				`order` 		AS `order`,
+				`status` 		AS `status`,
+				`parent` 		AS `parent`,
+				`user_id` 		AS `user_id`,
+				`publishdate` 	AS `publishdate`,
+				`datemodified` AS `datemodified`
 			FROM
 				posts
 			WHERE

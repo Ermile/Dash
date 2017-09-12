@@ -25,7 +25,7 @@ trait verification_code
 		$log_meta =
 		[
 			'data'     => $code,
-			'log_desc' => $_way,
+			'desc' => $_way,
 			'time'     => $time,
 			'meta'     =>
 			[
@@ -80,32 +80,32 @@ trait verification_code
 				[
 					'caller'     => 'user:verification:code',
 					'user_id'    => self::user_data('id'),
-					'log_status' => 'enable',
+					'status' => 'enable',
 					'limit'      => 1,
 				];
 				$log_code = \lib\db\logs::get($where);
 
 				if($log_code)
 				{
-					if(isset($log_code['log_createdate']) && time() - strtotime($log_code['log_createdate']) < self::$life_time_code)
+					if(isset($log_code['datecreated']) && time() - strtotime($log_code['datecreated']) < self::$life_time_code)
 					{
 						// the last code is okay
 						// need less to create new code
 						$last_code_ok = true;
 						// save data in session
-						if(isset($log_code['log_data']))
+						if(isset($log_code['data']))
 						{
-							self::set_enter_session('verification_code', $log_code['log_data']);
+							self::set_enter_session('verification_code', $log_code['data']);
 						}
 						// save log time
-						if(isset($log_code['log_createdate']))
+						if(isset($log_code['datecreated']))
 						{
-							self::set_enter_session('verification_code_time', $log_code['log_createdate']);
+							self::set_enter_session('verification_code_time', $log_code['datecreated']);
 						}
 						// save log way
-						if(isset($log_code['log_desc']))
+						if(isset($log_code['desc']))
 						{
-							self::set_enter_session('verification_code_way', $log_code['log_desc']);
+							self::set_enter_session('verification_code_way', $log_code['desc']);
 							if($prev_way = self::get_last_way())
 							{
 								self::set_enter_session('verification_code_way', $prev_way);
@@ -124,7 +124,7 @@ trait verification_code
 						// we expire the log
 						if(isset($log_code['id']))
 						{
-							\lib\db\logs::update(['log_status' => 'expire'], $log_code['id']);
+							\lib\db\logs::update(['status' => 'expire'], $log_code['id']);
 						}
 					}
 				}
@@ -183,18 +183,18 @@ trait verification_code
 				if($log_id)
 				{
 					$get_log_detail = \lib\db\logs::get(['id' => $log_id, 'limit' => 1]);
-					if(!$get_log_detail || !isset($get_log_detail['log_status']))
+					if(!$get_log_detail || !isset($get_log_detail['status']))
 					{
 						\lib\db\logs::set('enter:verify:sendsmsm:log:not:found', self::user_data('id'), $log_meta);
 						debug::error(T_("System error, try again"));
 						return false;
 					}
 
-					switch ($get_log_detail['log_status'])
+					switch ($get_log_detail['status'])
 					{
 						case 'deliver':
 							// the user must be login
-							\lib\db\logs::update(['log_status' => 'expire'], $log_id);
+							\lib\db\logs::update(['status' => 'expire'], $log_id);
 							$code_is_okay = true;
 							// set login session
 							// $redirect_url = self::enter_set_login();
@@ -255,7 +255,7 @@ trait verification_code
 			{
 				// the user enter the code and the code is ok
 				// must expire this code
-				\lib\db\logs::update(['log_status' => 'expire'], self::get_enter_session('verification_code_id'));
+				\lib\db\logs::update(['status' => 'expire'], self::get_enter_session('verification_code_id'));
 				self::set_enter_session('verification_code', null);
 				self::set_enter_session('verification_code_time', null);
 				self::set_enter_session('verification_code_way', null);

@@ -55,32 +55,39 @@ class config
 		$where = [];
 		foreach ($_where as $field => $value)
 		{
+			$my_field = "$table_name`$field`";
+
+			if(preg_match("/\./", $field))
+			{
+				$my_field = "$field";
+			}
+
 			if(is_array($value))
 			{
 				if(isset($value[0]) && isset($value[1]) && is_string($value[0]) && is_string($value[1]))
 				{
-					$where[] = " $table_name`$field` $value[0] $value[1] ";
+					$where[] = " $my_field $value[0] $value[1] ";
 				}
 			}
 			elseif(is_string($value) && preg_match("/\%/", $value))
 			{
-				$where[] = " $table_name`$field` LIKE '$value' ";
+				$where[] = " $my_field LIKE '$value' ";
 			}
 			elseif($value === null || is_null($value))
 			{
-				$where[] = " $table_name`$field` IS NULL ";
+				$where[] = " $my_field IS NULL ";
 			}
 			elseif(is_string($value) && substr($value, 0,7) === '(SELECT')
 			{
-				$where[] = " $table_name`$field` = $value ";
+				$where[] = " $my_field = $value ";
 			}
 			elseif(is_string($value))
 			{
-				$where[] = " $table_name`$field` = '$value' ";
+				$where[] = " $my_field = '$value' ";
 			}
 			elseif(is_numeric($value))
 			{
-				$where[] = " $table_name`$field` = $value ";
+				$where[] = " $my_field = $value ";
 			}
 		}
 

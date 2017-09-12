@@ -45,22 +45,11 @@ class comments
 		// get id
 		$query = "
 				UPDATE comments
-				SET comments.comment_status = 'deleted'
+				SET comments.status = 'deleted'
 				WHERE comments.id = $_id
 				";
 
 		return \lib\db::query($query);
-	}
-
-
-	/**
-	 * get string query and return mysql result
-	 * @param string $_query string query
-	 * @return mysql result
-	 */
-	public static function select($_query, $_type = 'query')
-	{
-		return \lib\db::$_type($_query);
 	}
 
 
@@ -76,16 +65,16 @@ class comments
 	{
 		$values =
 		[
-			"post_id"            => null,
-			"comment_author"     => null,
-			"comment_email"      => null,
-			"comment_url"        => null,
-			// "comment_content" => null,
-			"comment_meta"       => null,
-			"comment_status"     => null,
-			"comment_parent"     => null,
-			"user_id"            => null,
-			"visitor_id"         => null,
+			"post_id"    => null,
+			"author"     => null,
+			"email"      => null,
+			"url"        => null,
+			// "content" => null,
+			"meta"       => null,
+			"status"     => null,
+			"parent"     => null,
+			"user_id"    => null,
+			"visitor_id" => null,
 		];
 
 		if(!$_args)
@@ -108,7 +97,7 @@ class comments
 				$values[$newKey] = $value;
 			}
 			// check for table prefix
-			$newKey = 'comment_'. $key;
+			$newKey = ''. $key;
 			if(array_key_exists($newKey, $values))
 			{
 				$values[$newKey] = $value;
@@ -124,22 +113,22 @@ class comments
 
 		// set not null fields
 		// set comment content
-		$values['comment_content'] = "'". htmlspecialchars($_content). "'";
+		$values['content'] = "'". htmlspecialchars($_content). "'";
 		// set comment status if not set
-		if(!isset($values['comment_status']))
+		if(!isset($values['status']))
 		{
-			$values['comment_status'] = "'unapproved'";
+			$values['status'] = "'unapproved'";
 		}
 		// set time of comment
-		if(isset($values['comment_meta']) && is_array($values['comment_meta']))
+		if(isset($values['meta']) && is_array($values['meta']))
 		{
-			$values['comment_meta']['time'] = date('Y-m-d H:i:s');
+			$values['meta']['time'] = date('Y-m-d H:i:s');
 		}
 		else
 		{
-			$values['comment_meta'] = ['time' => date('Y-m-d H:i:s')];
+			$values['meta'] = ['time' => date('Y-m-d H:i:s')];
 		}
-		$values['comment_meta'] = "'".json_encode($values['comment_meta'], JSON_UNESCAPED_UNICODE)."'";
+		$values['meta'] = "'".json_encode($values['meta'], JSON_UNESCAPED_UNICODE)."'";
 		// generate query text
 		$list_field  = array_keys($values);
 		$list_field  = implode($list_field, ', ');
@@ -165,7 +154,7 @@ class comments
 	 *
 	 * @return     <type>   The post comment.
 	 */
-	public static function get_post_comment($_post_id, $_limit = 6, $_user_id = false)
+	public static function get_comment($_post_id, $_limit = 6, $_user_id = false)
 	{
 		if(!is_numeric($_limit))
 		{
@@ -186,8 +175,8 @@ class comments
 				comments
 			WHERE
 				comments.post_id        = $_post_id AND
-				comments.comment_status = 'approved' AND
-				comments.comment_type   = 'comment'
+				comments.status = 'approved' AND
+				comments.type   = 'comment'
 			ORDER BY RAND()
 			LIMIT $_limit
 		)
@@ -204,7 +193,7 @@ class comments
 			WHERE
 				comments.post_id      = $_post_id AND
 				comments.user_id      = $_user_id AND
-				comments.comment_type = 'comment'
+				comments.type = 'comment'
 			ORDER BY comments.id DESC
 			LIMIT 1
 			)
@@ -232,7 +221,7 @@ class comments
 			WHERE
 				user_id = $_user_id AND
 				post_id = $_post_id AND
-				comment_type = 'rate'
+				type = 'rate'
 			LIMIT 1;
 		";
 		$rate = \lib\db::get($query, 'id', true);
@@ -269,9 +258,9 @@ class comments
 
 		$args =
 		[
-			'comment_content' => $_rate,
-			'comment_type'    => 'rate',
-			'comment_status'  => 'approved',
+			'content' => $_rate,
+			'type'    => 'rate',
+			'status'  => 'approved',
 			'user_id'         => $_user_id,
 			'post_id'         => $_post_id
 		];
@@ -305,16 +294,16 @@ class comments
 				$arg =
 				[
 					'post_id'      => $_post_id,
-					'option_cat'   => "poll_$_post_id",
-					'option_key'   => 'comment',
-					'option_value' => 'rate',
-					'option_meta'  => $first_meta
+					'cat'   => "poll_$_post_id",
+					'key'   => 'comment',
+					'value' => 'rate',
+					'meta'  => $first_meta
 				];
 				return \lib\db\options::insert($arg);
 			}
 			else
 			{
-				$option_id = $total_rate['id'];
+				$id = $total_rate['id'];
 				$meta      = json_decode($total_rate['meta'], true);
 
 				if(!is_array($meta))
@@ -340,7 +329,7 @@ class comments
 						'avg'   => round($_rate / 1, 1)
 					];
 				}
-				return \lib\db\options::update(['option_meta' => json_encode($meta, JSON_UNESCAPED_UNICODE)], $option_id);
+				return \lib\db\options::update(['meta' => json_encode($meta, JSON_UNESCAPED_UNICODE)], $id);
 			}
 		}
 	}
@@ -359,15 +348,15 @@ class comments
 		"
 			SELECT
 				id,
-				option_meta AS 'meta'
+				meta AS 'meta'
 			FROM
 				options
 			WHERE
 				user_id IS NULL AND
 				post_id      = $_post_id AND
-				option_cat   = 'poll_$_post_id' AND
-				option_key   = 'comment' AND
-				option_value = 'rate'
+				cat   = 'poll_$_post_id' AND
+				key   = 'comment' AND
+				value = 'rate'
 			LIMIT 1;
 		";
 		$result = \lib\db::get($query, null, true);
@@ -390,7 +379,7 @@ class comments
 		}
 
 		$pagenation_query =
-		"SELECT	id	FROM comments WHERE	comments.comment_type = 'comment' AND comments.comment_status = 'unapproved'
+		"SELECT	id	FROM comments WHERE	comments.type = 'comment' AND comments.status = 'unapproved'
 		 -- comments::admin_get() for pagenation ";
 		list($limit_start, $_limit) = \lib\db::pagnation($pagenation_query, $_limit);
 		$limit = " LIMIT $limit_start, $_limit ";
@@ -399,8 +388,8 @@ class comments
 		"
 			SELECT
 				comments.*,
-				posts.post_title AS 'title',
-				posts.post_url  AS 'url',
+				posts.title AS 'title',
+				posts.url  AS 'url',
 				users.status AS 'status',
 				users.email AS 'email'
 			FROM
@@ -408,8 +397,8 @@ class comments
 			INNER JOIN posts ON posts.id = comments.post_id
 			INNER JOIN users ON users.id = comments.user_id
 			WHERE
-				comments.comment_type = 'comment' AND
-				comments.comment_status = 'unapproved'
+				comments.type = 'comment' AND
+				comments.status = 'unapproved'
 			ORDER BY id ASC
 			$limit
 			-- comments::admin_get()

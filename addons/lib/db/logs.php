@@ -25,16 +25,16 @@ class logs
 	"
 			logs.id								AS 	`id`,
 			logs.logitem_id 					AS 	`logitem_id`,
-			logitems.logitem_type				AS 	`type`,
-			logitems.logitem_caller				AS 	`caller`,
-			logitems.logitem_title				AS 	`title`,
-			logitems.logitem_priority 			AS 	`priority`,
+			logitems.type				AS 	`type`,
+			logitems.caller				AS 	`caller`,
+			logitems.title				AS 	`title`,
+			logitems.priority 			AS 	`priority`,
 			logs.user_id						AS 	`user_id`,
-			logs.log_data						AS 	`data`,
-			logs.log_meta						AS 	`meta`,
-			logs.log_status						AS 	`status`,
-			logs.log_createdate					AS 	`createdate`,
-			logs.date_modified					AS 	`date_modified`
+			logs.data						AS 	`data`,
+			logs.meta						AS 	`meta`,
+			logs.status						AS 	`status`,
+			logs.datecreated					AS 	`createdate`,
+			logs.datemodified					AS 	`datemodified`
 		FROM
 			logs
 		LEFT JOIN logitems ON logitems.id = logs.logitem_id
@@ -48,40 +48,23 @@ class logs
 	public static function insert($_args)
 	{
 
-		$set = [];
-		foreach ($_args as $key => $value)
+		$set = \lib\db\config::make_set($_args);
+		if($set)
 		{
-			if($value === null || is_null($value) || $value === '' || $value == '')
-			{
-				$set[] = " `$key` = NULL ";
-			}
-			elseif(is_numeric($value))
-			{
-				$set[] = " `$key` = $value ";
-			}
-			elseif(is_string($value))
-			{
-				$set[] = " `$key` = '$value' ";
-			}
-			elseif(is_array($value) || is_object($value))
-			{
-				$set[] = " `$key` = '". json_encode($value, JSON_UNESCAPED_UNICODE). "' ";
-			}
-		}
+			$query  ="INSERT IGNORE INTO logs SET $set ";
 
-		$set    = join($set, ',');
-		$query  ="INSERT IGNORE INTO	logs SET $set ";
-		$resutl = \lib\db::query($query, self::get_db_log_name());
-		// get the link
-		if(self::get_db_log_name() === true)
-		{
-			$resutl = \lib\db::insert_id();
+			$resutl = \lib\db::query($query, self::get_db_log_name());
+			// get the link
+			if(self::get_db_log_name() === true)
+			{
+				$resutl = \lib\db::insert_id();
+			}
+			elseif(isset(\lib\db::$link_open[self::get_db_log_name()]))
+			{
+				$resutl = \lib\db::insert_id(\lib\db::$link_open[self::get_db_log_name()]);
+			}
+			return $resutl;
 		}
-		elseif(isset(\lib\db::$link_open[self::get_db_log_name()]))
-		{
-			$resutl = \lib\db::insert_id(\lib\db::$link_open[self::get_db_log_name()]);
-		}
-		return $resutl;
 	}
 
 
@@ -94,18 +77,13 @@ class logs
 	 */
 	public static function update($_args, $_id)
 	{
-
-		// ready fields and values to update syntax query [update table set field = 'value' , field = 'value' , .....]
-		$query = [];
-		foreach ($_args as $field => $value)
+		$set  = \lib\db\config::make_set($_args);
+		if($set)
 		{
-			$query[] = "$field = '$value'";
+			// make update query
+			$query = " UPDATE logs SET $set WHERE logs.id = $_id ";
+			return \lib\db::query($query, self::get_db_log_name());
 		}
-		$query = join($query, ",");
-
-		// make update query
-		$query = " UPDATE logs SET $query WHERE logs.id = $_id ";
-		return \lib\db::query($query, self::get_db_log_name());
 	}
 
 
@@ -182,15 +160,15 @@ class logs
 		[
 			'logitem_id'     => $log_item_id,
 			'user_id'        => $_user_id,
-			'log_data'       => $_options['data'],
-			'log_status'     => $_options['status'],
-			'log_meta'       => $_options['meta'],
-			'log_createdate' => $_options['time'],
+			'data'       => $_options['data'],
+			'status'     => $_options['status'],
+			'meta'       => $_options['meta'],
+			'datecreated' => $_options['time'],
 		];
 
 		if(isset($_options['desc']))
 		{
-			$insert_log['log_desc'] = $_options['desc'];
+			$insert_log['desc'] = $_options['desc'];
 		}
 
 		return self::insert($insert_log);
@@ -227,41 +205,22 @@ class logs
 		{
 			$limit = null;
 		}
-		$where = [];
+
 		// get logitemid by caller in one query
 		if(isset($_args['caller']) && $_args['caller'] && is_string($_args['caller']))
 		{
-			$where[] = " logs.logitem_id = (SELECT logitems.id FROM logitems WHERE logitems.logitem_caller = '$_args[caller]' LIMIT 1) ";
+			$_args['logs.logitem_id'] = "(SELECT logitems.id FROM logitems WHERE logitems.caller = '$_args[caller]' LIMIT 1)";
 		}
 		unset($_args['caller']);
 
-		foreach ($_args as $key => $value)
-		{
-			if(preg_match("/\%/", $value))
-			{
-				$where[] = " logs.$key LIKE '$value'";
-			}
-			elseif($value === null)
-			{
-				$where[] = " logs.$key IS NULL";
-			}
-			elseif(is_numeric($value))
-			{
-				$where[] = " logs.$key = $value ";
-			}
-			elseif(is_string($value))
-			{
-				$where[] = " logs.$key = '$value'";
-			}
-		}
-		$where = "WHERE ". join($where, " AND ");
+		$where = \lib\db\config::make_where($_args);
 
-		$query = " SELECT * FROM logs $where $limit ";
+		$query = " SELECT * FROM logs WHERE $where $limit ";
 
 		$result = \lib\db::get($query, null, $only_one_recort, self::get_db_log_name());
-		if(isset($result['log_meta']) && substr($result['log_meta'], 0, 1) == '{')
+		if(isset($result['meta']) && substr($result['meta'], 0, 1) == '{')
 		{
-			$result['log_meta'] = json_decode($result['log_meta'], true);
+			$result['meta'] = json_decode($result['meta'], true);
 		}
 		else
 		{
@@ -352,8 +311,8 @@ class logs
 			{
 				if($domain[0] === 'sarshomar')
 				{
-					$log_have_log_desc = true;
-					$public_fields = " logs.log_desc AS `desc`, ". $public_fields;
+					$log_have_desc = true;
+					$public_fields = " logs.desc AS `desc`, ". $public_fields;
 				}
 			}
 
@@ -367,12 +326,12 @@ class logs
 		{
 			if(preg_match("/\%/", $_options['caller']))
 			{
-				$where[] = " logitems.logitem_caller LIKE '$_options[caller]' ";
+				$where[] = " logitems.caller LIKE '$_options[caller]' ";
 
 			}
 			else
 			{
-				$where[] = " logitems.logitem_caller = '$_options[caller]' ";
+				$where[] = " logitems.caller = '$_options[caller]' ";
 			}
 		}
 
@@ -385,11 +344,11 @@ class logs
 		{
 			if(mb_strlen($_options['date']) === 8)
 			{
-				$where[] = " DATE(logs.log_createdate) = DATE('$_options[date]') ";
+				$where[] = " DATE(logs.datecreated) = DATE('$_options[date]') ";
 			}
 			else
 			{
-				$where[] = " TIME(logs.log_createdate) = TIME('$_options[date]') ";
+				$where[] = " TIME(logs.datecreated) = TIME('$_options[date]') ";
 			}
 		}
 
@@ -403,26 +362,26 @@ class logs
 				case 'title':
 				case 'meta':
 				case 'priority':
-					$temp_sort = 'logitems.logitem_'.  $_options['sort'];
+					$temp_sort = 'logitems.'.  $_options['sort'];
 					break;
 
 				case 'count':
-					$temp_sort = 'logitems.logitem_'.  $_options['sort'];
+					$temp_sort = 'logitems.'.  $_options['sort'];
 					break;
 
 				case 'desc':
-					if(isset($log_have_log_desc) && $log_have_log_desc)
+					if(isset($log_have_desc) && $log_have_desc)
 					{
-						$temp_sort = 'logs.log_desc';
+						$temp_sort = 'logs.desc';
 					}
 					else
 					{
-						$temp_sort = 'logitems.logitem_desc';
+						$temp_sort = 'logitems.desc';
 					}
 					break;
 
 				case 'date':
-					$temp_sort = 'logs.log_createdate';
+					$temp_sort = 'logs.datecreated';
 					break;
 
 				default:
@@ -504,10 +463,10 @@ class logs
 		{
 			$search =
 			"(
-				logitems.logitem_type 		LIKE '%$_string%' OR
-				logitems.logitem_caller 	LIKE '%$_string%' OR
-				logitems.logitem_title 		LIKE '%$_string%' OR
-				logs.log_data 				LIKE '%$_string%'
+				logitems.type 		LIKE '%$_string%' OR
+				logitems.caller 	LIKE '%$_string%' OR
+				logitems.title 		LIKE '%$_string%' OR
+				logs.data 				LIKE '%$_string%'
 			)";
 			if($where)
 			{
@@ -583,7 +542,7 @@ class logs
 		$query = "SELECT logitems.*, logs.* FROM logs
 		INNER JOIN logitems ON logitems.id = logs.logitem_id
 		$where
-		ORDER BY logs.log_createdate DESC LIMIT 0,1";
+		ORDER BY logs.datecreated DESC LIMIT 0,1";
 		return \lib\db::get($query, null, true, self::get_db_log_name());
 	}
 }

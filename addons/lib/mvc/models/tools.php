@@ -15,19 +15,19 @@ trait tools
 		// search in url field if exist return row data
 		$qry = $this->sql()->table('posts')
 				->field(
-					'#post_language as `lang`',
-					'#post_title as `title`',
-					'#post_content as `desc`',
-					'#post_url as `link`',
-					'#post_publishdate as `date`'
+					'#language as `lang`',
+					'#title as `title`',
+					'#content as `desc`',
+					'#url as `link`',
+					'#publishdate as `date`'
 					)
-				->where('post_type', 'post')
-				->and('post_status', 'publish')
+				->where('type', 'post')
+				->and('status', 'publish')
 				->limit(0, 10);
 
 		$qry = $qry->groupOpen('g_language');
-		$qry = $qry->and('post_language', \lib\define::get_language());
-		$qry = $qry->or('post_language', 'IS', 'NULL');
+		$qry = $qry->and('language', \lib\define::get_language());
+		$qry = $qry->or('language', 'IS', 'NULL');
 		$qry = $qry->groupClose('g_language');
 		$qry = $qry->select();
 

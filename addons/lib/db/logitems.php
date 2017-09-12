@@ -30,17 +30,18 @@ class logitems
 
 	public static $fields =
 	"
-			logitems.logitem_type				AS 	`type`,
-			logitems.logitem_caller				AS 	`caller`,
-			logitems.logitem_title				AS 	`title`,
-			logitems.logitem_desc				AS 	`desc`,
-			logitems.logitem_meta				AS 	`meta`,
-			IFNULL(logitems.count, 0) 			AS 	`count`,
-			logitems.logitem_priority 			AS 	`priority`,
-			logitems.date_modified 				AS 	`date_modified`
+			logitems.type            	AS 	`type`,
+			logitems.caller          	AS 	`caller`,
+			logitems.title           	AS 	`title`,
+			logitems.desc            	AS 	`desc`,
+			logitems.meta            	AS 	`meta`,
+			IFNULL(logitems.count, 0)	AS 	`count`,
+			logitems.priority        	AS 	`priority`,
+			logitems.datemodified    	AS 	`datemodified`
 		FROM
 			logitems
 	";
+
 
 	/**
 	 * insert new recrod in logitems table
@@ -49,34 +50,12 @@ class logitems
 	 */
 	public static function insert($_args)
 	{
-
-		$set = [];
-		foreach ($_args as $key => $value)
+		$set = \lib\db\config::make_set($_args);
+		if($set)
 		{
-			if($value === null)
-			{
-				$set[] = " `$key` = NULL ";
-			}
-			elseif(is_numeric($value))
-			{
-				$set[] = " `$key` = $value ";
-			}
-			else
-			{
-				$set[] = " `$key` = '$value' ";
-			}
+			$query = " INSERT INTO 	logitems SET $set ";
+			return \lib\db::query($query, self::get_db_log_name());
 		}
-		$set = join($set, ',');
-		$query =
-		"
-			INSERT INTO
-				logitems
-			SET
-				$set
-		";
-
-		return \lib\db::query($query, self::get_db_log_name());
-
 	}
 
 
@@ -89,36 +68,14 @@ class logitems
 	 */
 	public static function update($_args, $_id)
 	{
-
-		// ready fields and values to update syntax query [update table set field = 'value' , field = 'value' , .....]
-		$query = [];
-		foreach ($_args as $field => $value)
+		$set = \lib\db\config::make_set($_args);
+		if($set)
 		{
-			$query[] = "$field = '$value'";
+			$query = " UPDATE logitems SET $set	WHERE logitems.id = $_id ";
+			return \lib\db::query($query, self::get_db_log_name());
 		}
-		$query = join($query, ",");
-
-		// make update query
-		$query = "
-				UPDATE logitems
-				SET $query
-				WHERE logitems.id = $_id;
-				";
-
-		return \lib\db::query($query, self::get_db_log_name());
 	}
 
-
-	/**
-	 * get string query and return mysql result
-	 * @param string $_query string query
-	 * @return mysql result
-	 */
-	public static function select($_query , $_type = 'query')
-	{
-		return false;
-		// return \lib\db::$_type($_query);
-	}
 
 
 	/**
@@ -167,7 +124,7 @@ class logitems
 			$get_field = null;
 		}
 
-		$query = " SELECT $field FROM logitems 	WHERE logitems.logitem_caller = '$_caller' LIMIT 1 ";
+		$query = " SELECT $field FROM logitems 	WHERE logitems.caller = '$_caller' LIMIT 1 ";
 		$result = \lib\db::get($query, $get_field, true, self::get_db_log_name());
 		if(!$result || empty($result))
 		{
@@ -188,14 +145,14 @@ class logitems
 	{
 		$insert_log_items =
 		[
-			'logitem_caller'   => $_caller,
-			'logitem_title'    => $_caller,
+			'caller'   => $_caller,
+			'title'    => $_caller,
 		];
 
 		$result = self::insert($insert_log_items);
 		if($result)
 		{
-			return (int) \lib\db::get("SELECT id AS `id` FROM logitems WHERE logitems.logitem_caller = '$_caller' LIMIT 1 ", 'id', true, self::get_db_log_name());
+			return (int) \lib\db::get("SELECT id AS `id` FROM logitems WHERE logitems.caller = '$_caller' LIMIT 1 ", 'id', true, self::get_db_log_name());
 		}
 		return false;
 	}
@@ -280,10 +237,10 @@ class logitems
 				case 'desc':
 				case 'meta':
 				case 'priority':
-					$temp_sort = 'logitem_'.  $_options['sort'];
+					$temp_sort = ''.  $_options['sort'];
 					break;
 				case 'count':
-				case 'date_modified':
+				case 'datemodified':
 					$temp_sort = $_options['sort'];
 					break;
 				default:
@@ -360,9 +317,9 @@ class logitems
 		{
 			$search =
 			"(
-				logitems.logitem_type 		LIKE '%$_string%' OR
-				logitems.logitem_caller 	LIKE '%$_string%' OR
-				logitems.logitem_title 		LIKE '%$_string%'
+				logitems.type 		LIKE '%$_string%' OR
+				logitems.caller 	LIKE '%$_string%' OR
+				logitems.title 		LIKE '%$_string%'
 			)";
 			if($where)
 			{

@@ -28,7 +28,7 @@ class model
 		$where = '';
 		if($search)
 		{
-			$where .= "(post_title LIKE '%$search%' OR post_content LIKE '%$search%')";
+			$where .= "(title LIKE '%$search%' OR content LIKE '%$search%')";
 		}
 
 		$_type = ['image', 'audio', 'video'];
@@ -57,25 +57,25 @@ class model
 				if(count($type) == 1)
 				{
 					$_type = join("\"' ,'\"", $_type);
-					$where .= "json_extract(post_meta, '$.type') NOT IN ('\"$_type\"')";
+					$where .= "json_extract(meta, '$.type') NOT IN ('\"$_type\"')";
 				}
 				else
 				{
 					$_type = join("\"' ,'\"", array_diff($_type, $type));
 					$type = count($type) > 1 ? "\"" . join("\"' ,'\"", $type) . "\"" : $type[0];
-					$where .= "(json_extract(post_meta, '$.type') IN ('$type')";
-					$where .= " OR json_extract(post_meta, '$.type') NOT IN ('\"$_type\"'))";
+					$where .= "(json_extract(meta, '$.type') IN ('$type')";
+					$where .= " OR json_extract(meta, '$.type') NOT IN ('\"$_type\"'))";
 
 				}
 			}
 			else
 			{
 				$type = count($type) > 1 ? "\"" . join("\"' ,'\"", $type) . "\"" : $type[0];
-				$where .= "json_extract(post_meta, '$.type') in ('$type')";
+				$where .= "json_extract(meta, '$.type') in ('$type')";
 			}
 		}
 		$where .= empty($where) ? '' : " AND ";
-		$where .= "post_type = 'attachment'";
+		$where .= "type = 'attachment'";
 
 		$length = 5;
 		$start = 0;

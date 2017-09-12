@@ -7,7 +7,6 @@ class controller extends \addons\content_enter\main\controller
 	{
 		// if user login just can view this page
 		self::if_login_route();
-
 		// check request method
 		if(self::get_request_method() === 'get')
 		{

@@ -70,8 +70,8 @@ class session
 			FROM options
 			WHERE
 
-				`option_cat` = 'session' AND
-				`option_key` = '$op_key'
+				`cat` = 'session' AND
+				`key` = '$op_key'
 		";
 		// if we have meta then add it to query
 		if($_meta)
@@ -84,14 +84,14 @@ class session
 			{
 				$_like = '=';
 			}
-			$qry .= "AND `option_meta` $_like '$_meta'";
+			$qry .= "AND `meta` $_like '$_meta'";
 		}
 		// run query and get result
 		$session_exist = \lib\db::get($qry, null, true);
 		$session_id    = null;
 
 		// if record is not exist save session for first time
-		if(!isset($session_exist['option_value']))
+		if(!isset($session_exist['value']))
 		{
 			$session_id = self::save($_userid, $_meta);
 		}
@@ -99,9 +99,9 @@ class session
 		else
 		{
 			// get variables from datarow
-			$session_id     = $session_exist['option_value'];
-			$option_id      = $session_exist['id'];
-			$option_user_id = $session_exist['user_id'];
+			$session_id     = $session_exist['value'];
+			$id      = $session_exist['id'];
+			$user_id = $session_exist['user_id'];
 			// if session id is not true return false!
 			if(!$session_id)
 			{
@@ -113,9 +113,9 @@ class session
 			// if user_id is not set for this user
 			// and this is first time we want to add to database
 			// call save to save existing session record
-			if($_userid && !$option_user_id)
+			if($_userid && !$user_id)
 			{
-				$session_id = self::save($_userid, $_meta, $option_id);
+				$session_id = self::save($_userid, $_meta, $id);
 			}
 		}
 		// if successfully changed session return session id
@@ -191,15 +191,15 @@ class session
 			// connect to database
 			\lib\db::connect(true);
 			$qry =
-			"SELECT `options`.option_value
+			"SELECT `options`.value
 				FROM users
 				INNER JOIN `options` ON `options`.user_id = `users`.id
-				WHERE `options`.option_cat = 'session' AND
+				WHERE `options`.cat = 'session' AND
 					permission = $perm_id;";
 			// run query and give result
 			$result = @mysqli_query(\lib\db::$link, $qry);
 			// fetch all records
-			$result = \lib\db::fetch_all($result, 'option_value');
+			$result = \lib\db::fetch_all($result, 'value');
 			if($result)
 			{
 				$deleteResult = self::delete($result);
@@ -209,7 +209,7 @@ class session
 					// if file is deleted
 					if($value === true)
 					{
-						$qry = "DELETE FROM options WHERE option_cat = 'session' AND option_value = '$key';";
+						$qry = "DELETE FROM options WHERE cat = 'session' AND value = '$key';";
 						@mysqli_query(\lib\db::$link, $qry);
 					}
 				}

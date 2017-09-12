@@ -96,28 +96,28 @@ class model extends \mvc\model
 		// add posts
 		foreach ($this->model()->sitemap('posts', 'post') as $row)
 		{
-			$myUrl = $row['post_url'];
-			if($row['post_language'] && $row['post_language'] !== 'en')
+			$myUrl = $row['url'];
+			if($row['language'] && $row['language'] !== 'en')
 			{
-				$myUrl = $row['post_language'].'/'. $myUrl;
+				$myUrl = $row['language'].'/'. $myUrl;
 			}
 
-			$sitemap->addItem($myUrl, '0.8', 'daily', $row['post_publishdate']);
+			$sitemap->addItem($myUrl, '0.8', 'daily', $row['publishdate']);
 			$counter['posts'] += 1;
 		}
 
 		// // add poll
 		// foreach ($this->model()->sitemap('posts', 'poll') as $row)
 		// {
-		// 	$myUrl = $row['post_url'];
-		// 	if($row['post_language'] && $row['post_language'] !== 'en')
+		// 	$myUrl = $row['url'];
+		// 	if($row['language'] && $row['language'] !== 'en')
 		// 	{
-		// 		$myUrl = $row['post_language'].'/'. $myUrl;
+		// 		$myUrl = $row['language'].'/'. $myUrl;
 		// 	}
 
-		// 	if(isset($row['post_privacy']) && $row['post_privacy'] === 'public')
+		// 	if(isset($row['privacy']) && $row['privacy'] === 'public')
 		// 	{
-		// 		$sitemap->addItem($myUrl, '0.8', 'daily', $row['post_publishdate']);
+		// 		$sitemap->addItem($myUrl, '0.8', 'daily', $row['publishdate']);
 		// 		$counter['polls'] += 1;
 		// 	}
 		// }
@@ -125,52 +125,52 @@ class model extends \mvc\model
 		// add pages
 		foreach ($this->model()->sitemap('posts', 'page') as $row)
 		{
-			$myUrl = $row['post_url'];
-			if($row['post_language'] && $row['post_language'] !== 'en')
+			$myUrl = $row['url'];
+			if($row['language'] && $row['language'] !== 'en')
 			{
-				$myUrl = $row['post_language'].'/'. $myUrl;
+				$myUrl = $row['language'].'/'. $myUrl;
 			}
 
-			$sitemap->addItem($myUrl, '0.6', 'weekly', $row['post_publishdate']);
+			$sitemap->addItem($myUrl, '0.6', 'weekly', $row['publishdate']);
 			$counter['pages'] += 1;
 		}
 
 		// add helps
 		foreach ($this->model()->sitemap('posts', 'helps') as $row)
 		{
-			$myUrl = $row['post_url'];
-			if($row['post_language'] && $row['post_language'] !== 'en')
+			$myUrl = $row['url'];
+			if($row['language'] && $row['language'] !== 'en')
 			{
-				$myUrl = $row['post_language'].'/'. $myUrl;
+				$myUrl = $row['language'].'/'. $myUrl;
 			}
 
-			$sitemap->addItem($myUrl, '0.3', 'monthly', $row['post_publishdate']);
+			$sitemap->addItem($myUrl, '0.3', 'monthly', $row['publishdate']);
 			$counter['helps'] += 1;
 		}
 
 		// // add attachments
 		// foreach ($this->model()->sitemap('posts', 'attachment') as $row)
 		// {
-		// 	$myUrl = $row['post_url'];
-		// 	if($row['post_language'] && $row['post_language'] !== 'en')
+		// 	$myUrl = $row['url'];
+		// 	if($row['language'] && $row['language'] !== 'en')
 		// 	{
-		// 		$myUrl = $row['post_language'].'/'. $myUrl;
+		// 		$myUrl = $row['language'].'/'. $myUrl;
 		// 	}
 
-		// 	$sitemap->addItem($myUrl, '0.2', 'weekly', $row['post_publishdate']);
+		// 	$sitemap->addItem($myUrl, '0.2', 'weekly', $row['publishdate']);
 		// 	$counter['attachments'] += 1;
 		// }
 
 		// add other type of post
 		foreach ($this->model()->sitemap('posts', false) as $row)
 		{
-			$myUrl = $row['post_url'];
-			if($row['post_language'] && $row['post_language'] !== 'en')
+			$myUrl = $row['url'];
+			if($row['language'] && $row['language'] !== 'en')
 			{
-				$myUrl = $row['post_language'].'/'. $myUrl;
+				$myUrl = $row['language'].'/'. $myUrl;
 			}
 
-			$sitemap->addItem($myUrl, '0.5', 'weekly', $row['post_publishdate']);
+			$sitemap->addItem($myUrl, '0.5', 'weekly', $row['publishdate']);
 			$counter['otherTypes'] += 1;
 		}
 
@@ -184,7 +184,7 @@ class model extends \mvc\model
 		// 	}
 
 
-		// 	$sitemap->addItem($myUrl, '0.4', 'weekly', $row['date_modified']);
+		// 	$sitemap->addItem($myUrl, '0.4', 'weekly', $row['datemodified']);
 		// 	$counter['terms'] += 1;
 		// }
 
@@ -207,8 +207,8 @@ class model extends \mvc\model
 	{
 		$prefix = substr($_table, 0, -1);
 		$status = $_table === 'posts'? 'publish': 'enable';
-		$date   = $_table === 'posts'? 'post_publishdate': 'date_modified';
-		$lang   = $_table === 'posts'? 'post_language': 'term_language';
+		$date   = $_table === 'posts'? 'publishdate': 'datemodified';
+		$lang   = $_table === 'posts'? 'language': 'term_language';
 		$qry    = $this->sql()->table($_table)->where($prefix.'_status', $status);
 		if($_type)
 		{
@@ -226,7 +226,7 @@ class model extends \mvc\model
 
 		if($_table === 'posts')
 		{
-			// $qry = $qry->field($prefix.'_url', $date, $lang, 'post_privacy')->order('id','DESC');
+			// $qry = $qry->field($prefix.'_url', $date, $lang, 'privacy')->order('id','DESC');
 			$qry = $qry->field($prefix.'_url', $date, $lang)->order('id','DESC');
 		}
 		else

@@ -74,9 +74,9 @@ trait user_check_args
 				{
 					$file_id = null;
 				}
-				elseif(isset($logo_record['post_meta']['url']))
+				elseif(isset($logo_record['meta']['url']))
 				{
-					$file_url = $logo_record['post_meta']['url'];
+					$file_url = $logo_record['meta']['url'];
 				}
 			}
 			else

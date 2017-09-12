@@ -16,8 +16,8 @@ trait check
 		[
 			'user_id'    => $_user_id,
 			'post_id'    => null,
-			'option_cat' => 'user_detail_'. $_user_id,
-			'option_key' => 'user_uploaded_size',
+			'cat' => 'user_detail_'. $_user_id,
+			'key' => 'user_uploaded_size',
 			'limit'      => 1,
 		];
 		$result =  \lib\db\options::get($where);
@@ -40,8 +40,8 @@ trait check
 		[
 			'user_id'    => $_user_id,
 			'post_id'    => null,
-			'option_cat' => 'user_vip_size_'. $_user_id,
-			'option_key' => 'user_uploaded_size',
+			'cat' => 'user_vip_size_'. $_user_id,
+			'key' => 'user_uploaded_size',
 			'limit'      => 1,
 		];
 		$result =  \lib\db\options::get($where);
@@ -96,9 +96,9 @@ trait check
 		[
 			'user_id'      => $_user_id,
 			'post_id'      => null,
-			'option_cat'   => 'user_detail_'. $_user_id,
-			'option_key'   => 'user_uploaded_size',
-			'option_value' => 'user_uploaded_size',
+			'cat'   => 'user_detail_'. $_user_id,
+			'key'   => 'user_uploaded_size',
+			'value' => 'user_uploaded_size',
 		];
 		\lib\db\options::plus($where, (int) $_size);
 	}

@@ -14,12 +14,12 @@ class facebook
 	{
 		// get token value from database if exist
 		$qry = new \lib\dbconnection();
-		$qry = $qry->query('Select `option_key`, `option_value` from options where `option_cat` = "facebook"');
+		$qry = $qry->query('Select `key`, `value` from options where `cat` = "facebook"');
 		if($qry->num() < 5)
 			return 'token';
 
 		foreach ($qry->allassoc() as $key => $value)
-			self::$token[$value['option_key']] = $value['option_value'];
+			self::$token[$value['key']] = $value['value'];
 
 		// if facebook status is disable return false
 		if(!isset(self::$token['status']) || self::$token['status'] !== 'enable')

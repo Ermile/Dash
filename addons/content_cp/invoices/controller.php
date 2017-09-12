@@ -22,7 +22,7 @@ class controller extends \mvc\controller
 		'final_total',
 		'count_detail',
 		'createdate',
-		'date_modified',
+		'datemodified',
 		'desc',
 		'sort',
 		'order',

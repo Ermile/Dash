@@ -43,70 +43,70 @@ trait posts
 
 
 		// check passed value for exist and use it ----------------------------- Language
-		$post_language = array_column($args, 'language');
-		if( $post_language && count($post_language) === 1)
+		$language = array_column($args, 'language');
+		if( $language && count($language) === 1)
 		{
-			$qry = $qry->and('post_language', $post_language[0]);
+			$qry = $qry->and('language', $language[0]);
 		}
 		// if dont pass through function use default value
 		else
 		{
 			$qry = $qry->groupOpen('g_language');
-			$qry = $qry->and('post_language', \lib\define::get_language());
-			$qry = $qry->or('post_language', 'IS', 'NULL');
+			$qry = $qry->and('language', \lib\define::get_language());
+			$qry = $qry->or('language', 'IS', 'NULL');
 			$qry = $qry->groupClose('g_language');
 		}
 
 
 		// check passed value for exist and use it ----------------------------- orderby
-		$post_orderby = array_column($args, 'orderby');
-		if( $post_orderby && count($post_orderby) === 1)
-			$post_orderby = "order".ucfirst($post_orderby[0]);
+		$orderby = array_column($args, 'orderby');
+		if( $orderby && count($orderby) === 1)
+			$orderby = "order".ucfirst($orderby[0]);
 		// if dont pass through function use default value
 		else
-			$post_orderby = "orderId";
+			$orderby = "orderId";
 
 
 		// check passed value for exist and use it ----------------------------- order
-		$post_order = array_column($args, 'order');
-		if( $post_order && count($post_order) === 1)
+		$order = array_column($args, 'order');
+		if( $order && count($order) === 1)
 		{
-			$post_order = $post_order[0];
-			if(!is_array($post_order))
-				$qry = $qry->$post_orderby($post_order);
+			$order = $order[0];
+			if(!is_array($order))
+				$qry = $qry->$orderby($order);
 		}
 		// if dont pass through function use default value
 		else
-			$qry = $qry->$post_orderby('desc');
+			$qry = $qry->$orderby('desc');
 
 
 		// check passed value for exist and use it ----------------------------- status
-		$post_status = array_column($args, 'status');
-		if( $post_status && count($post_status) === 1)
+		$status = array_column($args, 'status');
+		if( $status && count($status) === 1)
 		{
-			$post_status = $post_status[0];
+			$status = $status[0];
 			// if pass in array splite it and create specefic query
-			if(is_array($post_status))
+			if(is_array($status))
 			{
-				foreach ($post_status as $value)
+				foreach ($status as $value)
 				{
-					if ($value === reset($post_status))
+					if ($value === reset($status))
 					{
 						$qry = $qry->groupOpen('g_status');
-						$qry = $qry->andPost_status($value);
+						$qry = $qry->andstatus($value);
 					}
 					else
-						$qry = $qry->orPost_status($value);
+						$qry = $qry->orstatus($value);
 				}
 				$qry = $qry->groupClose('g_status');
 			}
 			// if not array use the passed value
 			else
-				$qry = $qry->andPost_status($post_status);
+				$qry = $qry->andstatus($status);
 		}
 		// if dont pass through function use default value
 		else
-			$qry = $qry->andPost_status('publish');
+			$qry = $qry->andstatus('publish');
 
 
 

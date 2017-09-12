@@ -90,8 +90,8 @@ class option
 			WHERE user_id IS NULL AND
 				post_id IS NULL AND
 				(
-					option_cat like 'option%' OR
-					option_cat like 'permissions'
+					options.cat like 'option%' OR
+					options.cat like 'permissions'
 				)";
 
 		// run query and give result
@@ -112,28 +112,28 @@ class option
 		foreach ($result as $key => $row)
 		{
 			// save permissions to query result
-			if($row['option_cat'] == 'permissions')
+			if($row['cat'] == 'permissions')
 			{
 				// if status is enable
-				if($row['option_status'] == 'enable')
+				if($row['status'] == 'enable')
 				{
-					$qry_result['permissions']['meta'][$row['option_key']]         = json_decode($row['option_meta'], true);
-					$qry_result['permissions']['meta'][$row['option_key']]['id']   = $row['option_key'];
-					$qry_result['permissions']['meta'][$row['option_key']]['name'] = $row['option_value'];
+					$qry_result['permissions']['meta'][$row['key']]         = json_decode($row['meta'], true);
+					$qry_result['permissions']['meta'][$row['key']]['id']   = $row['key'];
+					$qry_result['permissions']['meta'][$row['key']]['name'] = $row['value'];
 
 
 					// save current user permission as option permission value
-					if(isset($_SESSION['user']['permission']) && $row['option_key'] == $_SESSION['user']['permission'])
+					if(isset($_SESSION['user']['permission']) && $row['key'] == $_SESSION['user']['permission'])
 					{
-						$qry_result['permissions']['value'] = $row['option_key'];
+						$qry_result['permissions']['value'] = $row['key'];
 					}
 				}
 			}
 			else
 			{
-				$myValue  = $row['option_value'];
-				$myMeta   = $row['option_meta'];
-				$myStatus = $row['option_status'];
+				$myValue  = $row['value'];
+				$myMeta   = $row['meta'];
+				$myStatus = $row['status'];
 				if($myStatus === 'enable' || $myStatus === 'on' || $myStatus === 'active')
 				{
 					$myStatus = true;
@@ -154,7 +154,7 @@ class option
 				}
 
 				// save result
-				$qry_result[$row['option_key']] =
+				$qry_result[$row['key']] =
 				[
 					'value'  => $myValue,
 					'meta'   => $myMeta,
@@ -311,7 +311,7 @@ class option
 	{
 		$datarow =
 		[
-			'option_status' => 'enable',
+			'status' => 'enable',
 		];
 
 		// add option user if set
@@ -341,7 +341,7 @@ class option
 		// add option cat if set
 		if(isset($_args['cat']))
 		{
-			$datarow['option_cat'] = $_args['cat'];
+			$datarow['cat'] = $_args['cat'];
 		}
 		else
 		{
@@ -359,7 +359,7 @@ class option
 			}
 
 			$_args['key']          = str_replace('_USER_', $replace, $_args['key']);
-			$datarow['option_key'] = $_args['key'];
+			$datarow['key'] = $_args['key'];
 		}
 		else
 		{
@@ -369,20 +369,20 @@ class option
 		// add option value if set
 		if(isset($_args['value']))
 		{
-			$datarow['option_value'] = $_args['value'];
+			$datarow['value'] = $_args['value'];
 		}
 		else
 		{
-			$datarow['option_value'] = null;
+			$datarow['value'] = null;
 		}
 
 		// add option meta if set
 		if(isset($_args['meta']))
 		{
-			$datarow['option_meta'] = $_args['meta'];
-			if(is_array($datarow['option_meta']))
+			$datarow['meta'] = $_args['meta'];
+			if(is_array($datarow['meta']))
 			{
-				$datarow['option_meta'] = json_encode($datarow['option_meta'], JSON_UNESCAPED_UNICODE);
+				$datarow['meta'] = json_encode($datarow['meta'], JSON_UNESCAPED_UNICODE);
 			}
 		}
 
@@ -401,13 +401,13 @@ class option
 					$_args['status'] = 'enable';
 					break;
 			}
-			$datarow['option_status'] = $_args['status'];
+			$datarow['status'] = $_args['status'];
 		}
 
 		// add date modified manually
 		if(isset($_args['modify']) && $_args['modify'] === 'now')
 		{
-			$datarow['date_modified'] = 'now()';
+			$datarow['datemodified'] = 'now()';
 		}
 
 		// create query string
@@ -418,11 +418,11 @@ class option
 			{
 				case 'user_id':
 				case 'post_id':
-				case 'date_modified':
+				case 'datemodified':
 					$datarow[$key] = $value;
 					break;
 
-				case 'option_meta':
+				case 'meta':
 					if($value === '++')
 					{
 						$datarow[$key] = "coalesce($key, 0)". '+1';
@@ -461,9 +461,9 @@ class option
 				$qry = "UPDATE options
 					SET $qry_data
 					WHERE
-						`option_cat`   =". $datarow['option_cat']." AND
-						`option_key`   =". $datarow['option_key']." AND
-						`option_value` =". $datarow['option_value'];
+						`cat`   =". $datarow['cat']." AND
+						`key`   =". $datarow['key']." AND
+						`value` =". $datarow['value'];
 			}
 
 

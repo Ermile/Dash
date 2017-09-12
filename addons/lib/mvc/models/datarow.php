@@ -25,13 +25,13 @@ trait datarow
 			if($_metatable)
 			{
 				$metas  = $this->sql()->table('options')->where('post_id', $_id)
-					->field('option_key', 'option_value', 'option_meta')->select()->allassoc();
+					->field('key', 'value', 'meta')->select()->allassoc();
 				foreach ($metas as $key => $value)
 				{
-					$myval = $value['option_meta'];
+					$myval = $value['meta'];
 					if(substr($myval, 0,1) === '{')
 						$myval = json_decode($myval, true);
-					$mykey = strtok($value['option_key'], '_');
+					$mykey = strtok($value['key'], '_');
 					$tmp_result['meta'][$mykey] = $myval;
 				}
 			}

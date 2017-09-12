@@ -9,7 +9,6 @@ class controller extends \addons\content_enter\main\controller
 	 */
 	function _route()
 	{
-
 		// if the user login redirect to base
 		if(\lib\permission::access('enter:another:session'))
 		{

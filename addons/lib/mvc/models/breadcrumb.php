@@ -20,17 +20,17 @@ trait breadcrumb
 				$breadcrumb[] = strtolower("$value");
 		}
 
-		$qry         = $this->sql()->table('posts')->where('post_url', 'IN' , "('".join("' , '", $breadcrumb)."')");
+		$qry         = $this->sql()->table('posts')->where('url', 'IN' , "('".join("' , '", $breadcrumb)."')");
 		$qry         = $qry->select();
-		$post_titles = $qry->allassoc('post_title');
-		$post_urls   = $qry->allassoc('post_url');
+		$titles = $qry->allassoc('title');
+		$post_urls   = $qry->allassoc('url');
 
-		if(count($breadcrumb) != $post_titles)
+		if(count($breadcrumb) != $titles)
 		{
-			$terms_qry   = $this->sql()->table('terms')->where('term_url', 'IN' , "('".join("' , '", $breadcrumb)."')");
+			$terms_qry   = $this->sql()->table('terms')->where('url', 'IN' , "('".join("' , '", $breadcrumb)."')");
 			$terms_qry   = $terms_qry->select();
-			$term_titles = $terms_qry->allassoc('term_title');
-			$term_urls   = $terms_qry->allassoc('term_url');
+			$term_titles = $terms_qry->allassoc('title');
+			$term_urls   = $terms_qry->allassoc('url');
 		}
 
 		$br = [];
@@ -38,9 +38,9 @@ trait breadcrumb
 		{
 			$post_key = array_search($value, $post_urls);
 			$term_key = array_search($value, $term_urls);
-			if($post_key !== false && isset($post_titles[$post_key]))
+			if($post_key !== false && isset($titles[$post_key]))
 			{
-				$br[] = $post_titles[$post_key];
+				$br[] = $titles[$post_key];
 			}
 			elseif($term_key !== false && isset($term_titles[$term_key]))
 			{
@@ -60,14 +60,14 @@ trait breadcrumb
 		$br = [];
 		foreach ($breadcrumb as $key => $value)
 		{
-			if ($value != $qry[$key]['post_url'])
+			if ($value != $qry[$key]['url'])
 			{
 				$br[] = $_addr[$key];
 				array_unshift($qry, '');
 			}
 			else
 			{
-				$br[] = $qry[$key]['post_title'];
+				$br[] = $qry[$key]['title'];
 			}
 		}
 		return $br;
@@ -109,10 +109,10 @@ trait breadcrumb
 
 		// get id of current page
 		$qry = $this->sql()->table('posts')
-			->where('post_type', 'book')
-			->and('post_url', $myUrl)
-			->and('post_status', 'publish')
-			->field('id', '#post_parent as parent')
+			->where('type', 'book')
+			->and('url', $myUrl)
+			->and('status', 'publish')
+			->field('id', '#parent as parent')
 			->select();
 		if($qry->num() != 1)
 			return;
@@ -121,10 +121,10 @@ trait breadcrumb
 
 		// get list of category or jeld
 		$qry = $this->sql()->table('posts')
-			->where('post_type', 'book')
-			->and('post_status', 'publish')
-			->and('post_parent', $datarow[$parent_search])
-			->field('id', '#post_title as title', '#post_parent as parent', '#post_url as url')
+			->where('type', 'book')
+			->and('status', 'publish')
+			->and('parent', $datarow[$parent_search])
+			->field('id', '#title as title', '#parent as parent', '#post_url as url')
 			->select();
 		if($qry->num() < 1)
 			return;
@@ -135,9 +135,9 @@ trait breadcrumb
 
 		// check has page on category or only in
 		$qry2 = $this->sql()->table('posts')
-			->where('post_type', 'book')
-			->and('post_status', 'publish')
-			->and('post_parent', 'IN', '('. $catsid. ')')
+			->where('type', 'book')
+			->and('status', 'publish')
+			->and('parent', 'IN', '('. $catsid. ')')
 			->field('id');
 
 		$qry2            = $qry2->select();

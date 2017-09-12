@@ -17,6 +17,7 @@ class controller extends \lib\controller
 	 */
 	public function __construct()
 	{
+
 		parent::__construct();
 
 		if(MyAccount && SubDomain == null)
@@ -42,25 +43,27 @@ class controller extends \lib\controller
 			}
 			else
 			{
+				$myrep = \lib\router::get_repository_name();
+
 				switch ($this->module())
 				{
 					case 'signin':
 					case 'login':
 					case 'signup':
 					case 'register':
-						$this->redirector()->set_domain($domain)->set_url('enter'.$param)->redirect();
+						$url = $this->url('base'). '/enter'. $param;
+						$this->redirector($url)->redirect();
 						break;
 
 					case 'signout':
 					case 'logout':
-						// if(Domain !== MainService)
-							// $this->redirector()->set_domain(MainService.'.'.Tld)->set_url('logout')->redirect();
-						$this->redirector()->set_domain()->set_url('enter/logout'.$param)->redirect();
-						break;
+						if($myrep !== 'content_enter')
+						{
+							$url = $this->url('base'). '/enter/logout'. $param;
+							$this->redirector($url)->redirect();
+						}
 
-					// case 'favicon.ico':
-					// 	$this->redirector()->set_domain()->set_url('static/images/favicon.png')->redirect();
-					// 	break;
+						break;
 				}
 
 				switch (\lib\router::get_url())
@@ -73,12 +76,14 @@ class controller extends \lib\controller
 					case 'account/login':
 					case 'account/signup':
 					case 'account/register':
-						$this->redirector()->set_domain($domain)->set_url('enter'.$param)->redirect();
+						$url = $this->url('base'). '/enter'. $param;
+						$this->redirector($url)->redirect();
 						break;
 
 					case 'account/logout':
 					case 'account/signout':
-						$this->redirector()->set_domain()->set_url('enter/logout'.$param)->redirect();
+						$url = $this->url('base'). '/enter/logout'. $param;
+						$this->redirector($url)->redirect();
 						break;
 				}
 			}

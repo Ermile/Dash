@@ -133,10 +133,10 @@ class token
 			[
 				'user_id'      => $user_id,
 				'parent_id'    => $_args['parent'],
-				'option_cat'   => 'token',
-				'option_key'   => $key,
-				'option_value' => $token,
-				'option_meta'  => json_encode($meta, JSON_UNESCAPED_UNICODE),
+				'cat'   => 'token',
+				'key'   => $key,
+				'value' => $token,
+				'meta'  => json_encode($meta, JSON_UNESCAPED_UNICODE),
 			];
 
 			db\options::insert($args);
@@ -155,10 +155,10 @@ class token
 	{
 		$where =
 		[
-			'option_value'  => $_temp_token,
-			'option_status' => 'enable',
-			'option_key'    => 'tmp_login',
-			'option_cat'    => 'token',
+			'value'  => $_temp_token,
+			'status' => 'enable',
+			'key'    => 'tmp_login',
+			'cat'    => 'token',
 			'limit'         => 1
 		];
 		$result = db\options::get($where);
@@ -175,7 +175,7 @@ class token
 				];
 
 				unset($where['limit']);
-				db\options::update_on_error(['option_status' => 'disable'], $where);
+				db\options::update_on_error(['status' => 'disable'], $where);
 				return self::create_token($arg);
 			}
 			else
@@ -204,9 +204,9 @@ class token
 
 		$where =
 		[
-			'option_value'  => $_authorization,
-			'option_cat'    => 'token',
-			'option_status' => 'enable',
+			'value'  => $_authorization,
+			'cat'    => 'token',
+			'status' => 'enable',
 			'limit'         => 1
 		];
 
@@ -332,16 +332,16 @@ class token
 			if($guest_token_user_id && $guest_token_id)
 			{
 				$where = ['id' => $guest_token_id];
-				$arg   = ['option_status' => 'disable'];
+				$arg   = ['status' => 'disable'];
 				db\options::update_on_error($arg, $where);
 			}
 
-			$where = ['option_value' => $_token, 'option_status' => 'enable'];
+			$where = ['value' => $_token, 'status' => 'enable'];
 			$arg =
 			[
 				'user_id'      => $_user_id,
-				'option_key'   => 'tmp_login',
-				'option_meta'  => 'verified'
+				'key'   => 'tmp_login',
+				'meta'  => 'verified'
 			];
 			db\options::update_on_error($arg, $where);
 			return self::$PARENT;
@@ -370,9 +370,9 @@ class token
 		{
 			$arg =
 			[
-				'option_cat'    => 'token',
-				'option_status' => 'enable',
-				'option_value'  => $_authorization,
+				'cat'    => 'token',
+				'status' => 'enable',
+				'value'  => $_authorization,
 				'limit'         => 1
 			];
 			$tmp = db\options::get($arg);
@@ -441,7 +441,7 @@ class token
 				$arg =
 				[
 					'id'            => self::$API_KEY['parent_id'],
-					'option_status' => 'enable',
+					'status' => 'enable',
 					'limit'         => 1
 				];
 				self::$PARENT = db\options::get($arg);
@@ -464,9 +464,9 @@ class token
 		$where =
 		[
 			'user_id'       => $_user_id,
-			'option_cat'    => 'token',
-			'option_key'    => 'api_key',
-			'option_status' => 'enable',
+			'cat'    => 'token',
+			'key'    => 'api_key',
+			'status' => 'enable',
 			'limit'         => 1
 		];
 		$api_key = db\options::get($where);
@@ -495,9 +495,9 @@ class token
 		$arg =
 		[
 			'user_id'      => $_user_id,
-			'option_cat'   => 'token',
-			'option_key'   => 'api_key',
-			'option_value' => $api_key
+			'cat'   => 'token',
+			'key'   => 'api_key',
+			'value' => $api_key
 		];
 		$set = db\options::insert($arg);
 		if($set)
@@ -517,10 +517,10 @@ class token
 		$where =
 		[
 			'user_id'    => $_user_id,
-			'option_cat' => 'token',
-			'option_key' => 'api_key'
+			'cat' => 'token',
+			'key' => 'api_key'
 		];
-		$set = ['option_status' => 'disable'];
+		$set = ['status' => 'disable'];
 		db\options::update_on_error($set, $where);
 	}
 
@@ -534,11 +534,11 @@ class token
 	{
 		$where =
 		[
-			'option_cat'   => 'token',
-			'option_key'   => 'user_token',
-			'option_value' => $_token,
+			'cat'   => 'token',
+			'key'   => 'user_token',
+			'value' => $_token,
 		];
-		$set = ['option_status' => 'disable'];
+		$set = ['status' => 'disable'];
 		return db\options::update_on_error($set, $where);
 	}
 }

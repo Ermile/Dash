@@ -13,21 +13,21 @@ trait posts
 		$tmp_result       = $this->model()->get_posts();
 		$tmp_fields       =
 		[
-			'id'               =>'id',
-			'post_language'    =>'language',
-			'post_title'       =>'title',
-			'post_slug'        =>'slug',
-			'post_content'     =>'content',
-			'post_meta'        =>'meta',
-			'post_type'        =>'type',
-			'post_url'         =>'url',
-			'post_comment'     =>'comment',
-			'post_count'       =>'count',
-			'post_status'      =>'status',
-			'post_parent'      =>'parent',
-			'user_id'          =>'user',
-			'post_publishdate' =>'publishdate',
-			'date_modified'    =>'modified'
+			'id'            =>'id',
+			'language'      =>'language',
+			'title'         =>'title',
+			'slug'          =>'slug',
+			'content'       =>'content',
+			'meta'          =>'meta',
+			'type'          =>'type',
+			'url'           =>'url',
+			'comment'       =>'comment',
+			'count'         =>'count',
+			'status'        =>'status',
+			'parent'        =>'parent',
+			'user_id'       =>'user',
+			'publishdate'   =>'publishdate',
+			'datemodified' =>'modified'
 		];
 
 		foreach ($tmp_fields as $key => $value)

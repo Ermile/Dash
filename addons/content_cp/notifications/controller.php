@@ -22,13 +22,13 @@ class controller extends \mvc\controller
 		'readdate',
 		'gateway',
 		'auto',
-		'date_modified',
+		'datemodified',
 		'desc',
 		'meta',
 		'sort',
 		'order',
 		'search',
-		'log_data',
+		'data',
 	];
 
 	public function _route()

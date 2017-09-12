@@ -256,6 +256,7 @@ trait login
 	 */
 	public static function set_logout($_user_id, $_auto_redirect = true)
 	{
+
 		if($_user_id && is_numeric($_user_id))
 		{
 			if(isset($_SESSION['main_account']) && isset($_SESSION['main_mobile']) && isset($_SESSION['user']['mobile']))

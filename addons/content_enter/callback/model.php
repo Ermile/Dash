@@ -58,8 +58,8 @@ class model extends \addons\content_enter\main\model
 		[
 			'caller'     => 'enter:get:sms:from:user',
 			'user_id'    => $user_id,
-			'log_data'   => $message,
-			'log_status' => 'enable',
+			'data'   => $message,
+			'status' => 'enable',
 		];
 
 		$find_log = logs::get($find_log);
@@ -78,7 +78,7 @@ class model extends \addons\content_enter\main\model
 			{
 				if(isset($value['id']))
 				{
-					logs::update(['log_status' => 'expire'], $value);
+					logs::update(['status' => 'expire'], $value);
 				}
 			}
 			debug::error(T_("More than one log found"));
@@ -91,7 +91,7 @@ class model extends \addons\content_enter\main\model
 			$find_log = $find_log[0];
 			if(isset($find_log['id']))
 			{
-				logs::update(['log_status' => 'deliver'], $find_log['id']);
+				logs::update(['status' => 'deliver'], $find_log['id']);
 				debug::true(T_("OK"));
 				return true;
 			}

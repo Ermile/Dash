@@ -298,9 +298,9 @@ class log extends tg
 		$qry = "SELECT `user_id`
 			FROM options
 			WHERE
-				`option_cat` = 'telegram' AND
-				`option_key` = 'id' AND
-				`option_value` = '$_telegram_id'
+				`cat` = 'telegram' AND
+				`key` = 'id' AND
+				`value` = '$_telegram_id'
 		";
 		$my_user_id = \lib\db::get($qry, 'user_id', true);
 		if(is_numeric($my_user_id))

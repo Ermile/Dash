@@ -31,7 +31,7 @@ class controller extends \mvc\controller
 		'meta',
 		'desc',
 		'createdate',
-		'date_modified',
+		'datemodified',
 		'mobile',
 		'displayname',
 		'unit',

@@ -57,14 +57,14 @@ trait link
 
 		// if(\lib\permission::access('admin:admin:view', null, $this->user_id))
 		// {
-		// 	$ready_upload['post_status'] = 'publish';
+		// 	$ready_upload['status'] = 'publish';
 		// }
 		// else
 		// {
-		// 	$ready_upload['post_status'] = 'draft';
+		// 	$ready_upload['status'] = 'draft';
 		// }
 
-		$ready_upload['post_status'] = 'publish';
+		$ready_upload['status'] = 'publish';
 
 		$ready_upload['user_size_remaining'] = self::remaining($this->user_id);
 

@@ -29,12 +29,12 @@ class socialNetwork
 		{
 			// get token value from database if exist
 			$qry = new \lib\dbconnection();
-			$qry = $qry->query('Select `option_key`, `option_value` from options where `option_cat` = "twitter"');
+			$qry = $qry->query('Select `key`, `value` from options where `cat` = "twitter"');
 			if($qry->num() < 5)
 				return 'token';
 
 			foreach ($qry->allassoc() as $key => $value)
-				$_token[$value['option_key']] = $value['option_value'];
+				$_token[$value['key']] = $value['value'];
 
 			// if twitter status is disable return false
 			if(!isset($_token['status']))

@@ -11,7 +11,7 @@ trait sql
 	 */
 	public static function attachment_count()
 	{
-		$query = "SELECT COUNT(posts.id) AS 'count' FROM posts WHERE post_type = 'attachment' ";
+		$query = "SELECT COUNT(posts.id) AS 'count' FROM posts WHERE posts.type = 'attachment' ";
 		$count = \lib\db::get($query,'count', true);
 		return $count;
 	}
@@ -24,7 +24,7 @@ trait sql
 	public static function duplicate($_md5)
 	{
 
-		$qry_count = "SELECT * FROM posts WHERE post_slug = '$_md5' LIMIT 1";
+		$qry_count = "SELECT * FROM posts WHERE posts.slug = '$_md5' LIMIT 1";
 		$qry_count = \lib\db::get($qry_count, null, true);
 		if($qry_count || !empty($qry_count))
 		{
@@ -32,9 +32,9 @@ trait sql
 			$url  = null;
 			$id   = null;
 
-			if(isset($qry_count['post_meta']) && substr($qry_count['post_meta'], 0, 1) == '{')
+			if(isset($qry_count['meta']) && substr($qry_count['meta'], 0, 1) == '{')
 			{
-				$meta = json_decode($qry_count['post_meta'], true);
+				$meta = json_decode($qry_count['meta'], true);
 			}
 			if(isset($meta['url']))
 			{

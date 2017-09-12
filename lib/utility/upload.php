@@ -333,7 +333,7 @@ class upload
 			// the parent id of post record
 			'parent'              => null,
 			// the post status
-			'post_status'         => 'draft',
+			'status'         => 'draft',
 			// save file in temp directory
 			// whitout save in database
 			'save_as_tmp'         => false,
@@ -541,18 +541,18 @@ class upload
 		// 6. add uploaded file record to db
 		$insert_attachment =
 		[
-			'post_title'       => self::$fileName ? self::$fileName : rand(1,999),
-			'post_slug'        => self::$fileMd5,
-			'post_meta'        => $file_meta,
-			'post_type'        => 'attachment',
-			'post_url'         => $page_url,
-			'user_id'          => $_options['user_id'],
-			'post_status'      => $_options['post_status'],
-			'post_parent'	   => $_options['parent'],
-			'post_publishdate' => date('Y-m-d H:i:s')
+			'title'       => self::$fileName ? self::$fileName : rand(1,999),
+			'slug'        => self::$fileMd5,
+			'meta'        => $file_meta,
+			'type'        => 'attachment',
+			'url'         => $page_url,
+			'user_id'     => $_options['user_id'],
+			'status'      => $_options['status'],
+			'parent'      => $_options['parent'],
+			'publishdate' => date('Y-m-d H:i:s')
 		];
 
-		$post_new_id = \lib\db\posts::insert($insert_attachment);
+		$new_id = \lib\db\posts::insert($insert_attachment);
 
 		$url = \lib\temp::get('upload');
 

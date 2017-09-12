@@ -44,47 +44,15 @@ class options
 	public static function update_on_error($_args, $_where)
 	{
 		// ready fields and values to update syntax query [update table set field = 'value' , field = 'value' , .....]
-		if(!is_array($_args) || !is_array($_where))
+		$set_fields = \lib\db\config::make_set($_args);
+		$where      = \lib\db\config::make_where($_where);
+		if(!$_args || !$_where)
 		{
 			return false;
 		}
 
-		$fields = [];
-		$where  = [];
-		foreach ($_args as $field => $value)
-		{
-			$fields[] = "$field = '$value'";
-		}
-
-		foreach ($_where as $field => $value)
-		{
-			if(preg_match("/\%/", $value))
-			{
-				$where[] = " $field LIKE '$value' ";
-			}
-			elseif($value === null)
-			{
-				$where[] = " $field IS NULL ";
-			}
-			else
-			{
-				$where[] = " $field = '$value' ";
-			}
-		}
-
-		$set_fields = join($fields, ",");
-		$where      = join($where, " AND ");
-
 		// make update fields
-		$query = "
-				UPDATE
-					options
-				SET
-					$set_fields
-				WHERE
-					$where
-				";
-
+		$query = "UPDATE options SET $set_fields	WHERE $where ";
 		return \lib\db::query($query);
 	}
 
@@ -117,28 +85,14 @@ class options
 		}
 		elseif(is_array($_where_or_id))
 		{
-			$tmp = [];
-			foreach ($_where_or_id as $key => $value)
-			{
-				if(preg_match("/\%/", $value))
-				{
-					$tmp[] = " $key LIKE '$value' ";
-				}
-				else
-				{
-					$tmp[] = " $key = '$value' ";
-				}
-			}
-			$where = join($tmp, " AND ");
+			$where = \lib\db\config::make_where($_where_or_id);
 		}
 		else
 		{
 			return false;
 		}
 
-		$query = " UPDATE options
-			SET options.option_status = 'disable'
-			WHERE $where -- answers::delete()";
+		$query = " UPDATE options  SET options.status = 'disable' WHERE $where ";
 		return \lib\db::query($query);
 	}
 
@@ -158,26 +112,14 @@ class options
 		}
 		elseif(is_array($_where_or_id))
 		{
-			$tmp = [];
-			foreach ($_where_or_id as $key => $value)
-			{
-				if(preg_match("/\%/", $value))
-				{
-					$tmp[] = " $key LIKE '$value' ";
-				}
-				else
-				{
-					$tmp[] = " $key = '$value' ";
-				}
-			}
-			$where = join($tmp, " AND ");
+			$where = \lib\db\config::make_where($_where_or_id);
 		}
 		else
 		{
 			return false;
 		}
 
-		$query = " DELETE FROM	options	WHERE $where -- answers::hard_delete() ";
+		$query = " DELETE FROM	options	WHERE $where ";
 		return \lib\db::query($query);
 	}
 
@@ -201,7 +143,7 @@ class options
 
 
 	/**
-	 * update the option record  option_value++
+	 * update the option record  value++
 	 *
 	 * @param      <type>  $_where  The where
 	 * @param      string  $_field  The field
@@ -236,10 +178,10 @@ class options
 		}
 
 
-		$update_meta_query = "IF(options.option_meta IS NULL OR options.option_meta = '', $_plus, options.option_meta + $_plus)";
+		$update_meta_query = "IF(options.meta IS NULL OR options.meta = '', $_plus, options.meta + $_plus)";
 		if($_type === 'minus')
 		{
-			$update_meta_query = "IF(options.option_meta IS NULL OR options.option_meta = '' OR options.option_meta = 0, $_plus, options.option_meta - $_plus)";
+			$update_meta_query = "IF(options.meta IS NULL OR options.meta = '' OR options.meta = 0, $_plus, options.meta - $_plus)";
 		}
 
 		$args = join($args, " , ");
@@ -249,12 +191,12 @@ class options
 			INSERT INTO options
 			SET
 				$args,
-				options.option_meta   = $_plus,
-				options.option_status = 'enable'
+				options.meta   = $_plus,
+				options.status = 'enable'
 			ON DUPLICATE KEY UPDATE
 				$args,
-				options.option_meta   = $update_meta_query,
-				options.option_status = 'enable'
+				options.meta   = $update_meta_query,
+				options.status = 'enable'
 
 		";
 		$result = \lib\db::query($query);

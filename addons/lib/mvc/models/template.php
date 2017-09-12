@@ -47,9 +47,9 @@ trait template
 		$default_options =
 		[
 			'check_language' => true,
-			'post_type'      => null,
+			'type'      => null,
 			'check_status'   => true,
-			'post_status'    => [],
+			'status'    => [],
 		];
 
 		if(!is_array($_options))
@@ -59,18 +59,18 @@ trait template
 
 		$_options = array_merge($default_options, $_options);
 
-		$post_type = null;
+		$type = null;
 
-		if(isset($_options['post_type']))
+		if(isset($_options['type']))
 		{
-			if(is_string($_options['post_type']))
+			if(is_string($_options['type']))
 			{
-				$post_type = " posts.post_type = '$_options[post_type]' AND ";
+				$type = " posts.type = '$_options[type]' AND ";
 			}
-			elseif(is_array($_options['post_type']))
+			elseif(is_array($_options['type']))
 			{
-				$temp_post_type = implode("','", $_options['post_type']);
-				$post_type      = " posts.post_type IN ('$temp_post_type') AND ";
+				$temp_type = implode("','", $_options['type']);
+				$type      = " posts.type IN ('$temp_type') AND ";
 			}
 		}
 
@@ -104,8 +104,8 @@ trait template
 				$check_language =
 				"
 					(
-						posts.post_language IS NULL OR
-						posts.post_language = '$language'
+						posts.language IS NULL OR
+						posts.language = '$language'
 					) AND
 				";
 			}
@@ -118,8 +118,8 @@ trait template
 					posts
 				WHERE
 				$check_language
-				$post_type
-				posts.post_url = '$url'
+				$type
+				posts.url = '$url'
 				LIMIT 1
 			";
 
@@ -137,7 +137,7 @@ trait template
 				}
 				else
 				{
-					if(isset($datarow['post_status']) && $datarow['post_status'] == 'publish')
+					if(isset($datarow['status']) && $datarow['status'] == 'publish')
 					{
 						// no problem to load this poll
 					}
@@ -145,7 +145,7 @@ trait template
 					{
 						if($_options['check_status'])
 						{
-							if(isset($datarow['post_status']) && in_array($datarow['post_status'], $_options['post_status']))
+							if(isset($datarow['status']) && in_array($datarow['status'], $_options['status']))
 							{
 								// no problem to load this poll
 							}
@@ -172,34 +172,34 @@ trait template
 
 		if(isset($datarow['id']))
 		{
-			$post_id = $datarow['id'];
+			$id = $datarow['id'];
 		}
 		else
 		{
 			$datarow = false;
-			$post_id  = 0;
+			$id  = 0;
 		}
 
-		if($datarow && $post_id)
+		if($datarow && $id)
 		{
 
 
-			if($_forcheck && isset($datarow['post_type']) && isset($datarow['post_slug']))
+			if($_forcheck && isset($datarow['type']) && isset($datarow['slug']))
 			{
 				// get cat from url until last slash
-				$cat = substr($datarow['post_url'], 0, strrpos($datarow['post_url'], '/'));
+				$cat = substr($datarow['url'], 0, strrpos($datarow['url'], '/'));
 				// if type of post exist in cat, remove it
-				if($datarow['post_type'] === substr($cat, 0, strlen($datarow['post_type'])))
+				if($datarow['type'] === substr($cat, 0, strlen($datarow['type'])))
 				{
-					$cat = substr($cat, strlen($datarow['post_type'])+1);
+					$cat = substr($cat, strlen($datarow['type'])+1);
 				}
 
 				$return =
 				[
 					'table' => 'posts',
-					'type' => $datarow['post_type'],
+					'type' => $datarow['type'],
 					'cat'  => $cat,
-					'slug' => $datarow['post_slug'],
+					'slug' => $datarow['slug'],
 				];
 				return $return;
 			}
@@ -219,7 +219,7 @@ trait template
 				}
 
 				// get meta of this post
-				// $meta = \lib\db\posts::get_post_meta($post_id);
+				// $meta = \lib\db\posts::get_meta($id);
 				// $datarow['postmeta'] = $meta;
 				return $datarow;
 			}

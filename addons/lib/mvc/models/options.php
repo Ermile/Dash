@@ -15,12 +15,12 @@ trait options
 		$qry_options = $this->sql()->table('options')
 					->where('user_id', 'IS', 'NULL')
 					->and('post_id', 'IS', "NULL")
-					->and('option_cat', 'like', "'option%'")
+					->and('cat', 'like', "'option%'")
 
 					// ->groupOpen('g_status')
-					// ->and('option_status', '=', "'enable'")
-					// ->or('option_status', 'IS', "NULL")
-					// ->or('option_status', "")
+					// ->and('status', '=', "'enable'")
+					// ->or('status', 'IS', "NULL")
+					// ->or('status', "")
 					// ->groupClose('g_status')
 					->select()
 					->allassoc();
@@ -46,22 +46,22 @@ trait options
 		$qryPerm = $this->sql()->table('options')
 			->where('user_id', 'IS', 'NULL')
 			->and('post_id', 'IS', "NULL")
-			->and('option_cat', 'permissions')
-			->and('option_status',"enable");
+			->and('cat', 'permissions')
+			->and('status',"enable");
 
 		if($_status)
 		{
 			$qryPerm
 			->groupOpen('g_status')
-			->and('option_status', '=', "'enable'")
-			->or('option_status', 'IS', "NULL")
-			->or('option_status', "")
+			->and('status', '=', "'enable'")
+			->or('status', 'IS', "NULL")
+			->or('status', "")
 			->groupClose('g_status');
 		}
 		$qryPerm  = $qryPerm->select()->allassoc();
 		foreach ($qryPerm as $row)
 		{
-			$permList[$row['option_key']] = $row['option_value'];
+			$permList[$row['key']] = $row['value'];
 		}
 
 		return $permList;

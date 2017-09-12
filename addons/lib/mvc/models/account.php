@@ -39,9 +39,9 @@ trait account
 		$mycode	= md5('^_^'.$_id.'_*Ermile*_'.date('Y-m-d H:i:s').'^_^');
 		$qry		= $this->sql()->table('options')
 									->set('user_id',      $_id)
-									->set('option_cat',   'cookie_token')
-									->set('option_key',   ClientIP)
-									->set('option_value', $mycode);
+									->set('cat',   'cookie_token')
+									->set('key',   ClientIP)
+									->set('value', $mycode);
 		$sql		= $qry->insert();
 
 		$_SESSION['ssid'] = $mycode;
@@ -92,11 +92,11 @@ trait account
 			}
 			$where =
 			[
-				'option_cat'    => 'permissions',
-				'option_key'    => $_permID,
+				'cat'    => 'permissions',
+				'key'    => $_permID,
 				'post_id'       => null,
 				'user_id'       => null,
-				'option_status' => 'enable',
+				'status' => 'enable',
 				'limit' 		=> 1,
 			];
 			$result = \lib\db\options::get($where);
@@ -121,9 +121,9 @@ trait account
 			}
 
 			// $qry = $this->sql()->table('options')
-			// 	->where('option_cat',  'permissions')
-			// 	->and('option_key',    $_permID)
-			// 	// ->and('option_status', 'enable')
+			// 	->where('cat',  'permissions')
+			// 	->and('key',    $_permID)
+			// 	// ->and('status', 'enable')
 			// 	->and('post_id',       '#NULL')
 			// 	->and('user_id',       '#NULL')
 			// 	->select();
@@ -131,7 +131,7 @@ trait account
 			// if($qry->num() == 1)
 			// {
 			// 	$qry    = $qry->assoc();
-			// 	$myMeta = $qry['option_meta'];
+			// 	$myMeta = $qry['meta'];
 
 			// 	if(substr($myMeta, 0,1) == '{')
 			// 	{
@@ -177,10 +177,10 @@ trait account
 
 		// login user to system and set status to expire
 		$qry	= $this->sql()->table ('options')
-							->set     ('option_status', 'disable')
-							->where   ('option_cat',    'cookie_token')
-							->and     ('option_key',    ClientIP)
-							->and     ('option_value',  $_ssid);
+							->set     ('status', 'disable')
+							->where   ('cat',    'cookie_token')
+							->and     ('key',    ClientIP)
+							->and     ('value',  $_ssid);
 		$sql	= $qry->update();
 
 
@@ -279,10 +279,10 @@ trait account
 		// whereId("<", 10)
 		// whereTime('<', 2015)->andTime('>', 2014)
 		$tmp_result    = $this->sql()->table('options')
-									->where ('option_cat',    'cookie_token')
-									->and   ('option_key',    ClientIP)
-									->and   ('option_value',  $myssid)
-									->and   ('option_status', 'enable')
+									->where ('cat',    'cookie_token')
+									->and   ('key',    ClientIP)
+									->and   ('value',  $myssid)
+									->and   ('status', 'enable')
 									->select()
 									->assoc();
 
@@ -291,14 +291,14 @@ trait account
 			return 'attack';
 
 		// if user passed ssid is correct then update record and set login sessions
-		if($tmp_result['option_status'] === 'enable')
+		if($tmp_result['status'] === 'enable')
 		{
 			$qry	= $this->sql()->table('options')
-						->set   ('option_status', 'expire')
-						->where ('option_cat',    'cookie_token')
-						->and   ('option_key',    ClientIP)
-						->and   ('option_value',  $myssid)
-						->and   ('option_status', 'enable');
+						->set   ('status', 'expire')
+						->where ('cat',    'cookie_token')
+						->and   ('key',    ClientIP)
+						->and   ('value',  $myssid)
+						->and   ('status', 'enable');
 			$sql	= $qry->update();
 
 			$this->commit();
