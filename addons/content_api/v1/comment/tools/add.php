@@ -74,6 +74,30 @@ trait add
 			\lib\db\comments::insert($args);
 			\lib\db::insert_id();
 		}
+		elseif($_args['method'] === 'patch')
+		{
+			$id = utility::request('id');
+			$id = utility\shortURL::decode($id);
+			if(!$id)
+			{
+				if($_args['save_log']) logs::set('addons:api:comment:id:not:found', $this->user_id, $log_meta);
+				if($_args['debug']) debug::true(T_("Id not found"));
+				return false;
+			}
+
+			if(!utility::isset_request('post_id'))unset($args['post_id']);
+			if(!utility::isset_request('author')) unset($args['author']);
+			if(!utility::isset_request('email'))  unset($args['email']);
+			if(!utility::isset_request('url'))    unset($args['url']);
+			if(!utility::isset_request('content'))unset($args['content']);
+			if(!utility::isset_request('meta'))   unset($args['meta']);
+			if(!utility::isset_request('status')) unset($args['status']);
+			if(!utility::isset_request('parent')) unset($args['parent']);
+			if(!utility::isset_request('user_id'))unset($args['user_id']);
+			if(!utility::isset_request('type'))   unset($args['type']);
+
+			\lib\db\comments::update($args, $id);
+		}
 
 		if(debug::$status)
 		{
@@ -83,6 +107,10 @@ trait add
 			{
 				if($_args['save_log']) logs::set('user:send:request', $this->user_id, $log_meta);
 				if($_args['debug']) debug::true(T_("Thank You For contacting us"));
+			}
+			elseif($_args['method'] === 'patch')
+			{
+				if($_args['debug']) debug::true(T_("Comment data updated"));
 			}
 		}
 		else

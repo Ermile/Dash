@@ -33,6 +33,16 @@ class comments
 
 
 	/**
+	 * get the comment
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public static function get()
+	{
+		return \lib\db\config::public_get('comments', ...func_get_args());
+	}
+
+	/**
 	 * update field from comments table
 	 * get fields and value to update
 	 * @param array $_args fields data

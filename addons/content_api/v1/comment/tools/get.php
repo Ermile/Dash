@@ -83,6 +83,21 @@ trait get
 	 */
 	public function get_comment($_args = [])
 	{
+		$default_args =
+
+		[
+			'pagenation' => true,
+			'admin'      => false,
+			'get_meta'   => false,
+		];
+
+		if(!is_array($_args))
+		{
+			$_args = [];
+		}
+
+		$_args = array_merge($default_args, $_args);
+
 		debug::title(T_("Operation Faild"));
 
 		$log_meta =
@@ -113,7 +128,7 @@ trait get
 
 		$get_comment = \lib\db\comments::get(['id' => $id, 'limit' => 1]);
 
-		$result = $this->ready_comment($get_comment);
+		$result = $this->ready_comment($get_comment, $_args);
 
 		return $result;
 	}
@@ -159,6 +174,10 @@ trait get
 				case 'meta':
 					if($_options['get_meta'])
 					{
+						if(is_string($value) && substr($value, 0,1) === '{')
+						{
+							$value = json_decode($value, true);
+						}
 						$result['meta'] = $value;
 					}
 					else

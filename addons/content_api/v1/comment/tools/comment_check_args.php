@@ -49,7 +49,7 @@ trait comment_check_args
 			return false;
 		}
 
-		if(!$content)
+		if(!$content && $_args['method'] === 'post')
 		{
 			if($_args['save_log']) logs::set('addons:api:comment:content:max:length', $this->user_id, $log_meta);
 			if($_args['debug']) debug::error(T_("Content can not be null"), 'content', 'arguments');
