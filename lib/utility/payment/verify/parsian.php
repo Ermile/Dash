@@ -49,7 +49,7 @@ trait parsian
         $TspToken       = isset($_REQUEST['TspToken'])        ? (string) $_REQUEST['TspToken']       : null;
         $HashCardNumber = isset($_REQUEST['HashCardNumber'])  ? (string) $_REQUEST['HashCardNumber'] : null;
         $Amount         = isset($_REQUEST['Amount'])          ? (string) $_REQUEST['Amount']         : null;
-
+        $Amount         = str_replace(',', '', $Amount);
         if(!$Token)
         {
             logs::set('pay:parsian:Token:verify:not:found', self::$user_id, $log_meta);
