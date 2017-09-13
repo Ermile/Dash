@@ -143,7 +143,7 @@ class baby
 	{
 		if(!$_forbiddenChars || !is_array($_forbiddenChars))
 		{
-			$_forbiddenChars = ['"', "`" , "'", ';', ',', '%', '*', '\\'];
+			$_forbiddenChars = ['"', "`" , "'", ';', '%', '*', '\\'];
 		}
 		foreach ($_forbiddenChars as $name)
 		{
