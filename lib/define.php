@@ -85,9 +85,35 @@ class define
 		 * access to session with this code: $_SESSION["test"]
 		 */
 		if(is_string(Domain))
+		{
 			session_name(Domain);
+		}
+
+		$cookie_domain = null;
+		if(isset($_SERVER['HTTP_HOST']))
+		{
+			$urlHostSegments = explode('.', $_SERVER['HTTP_HOST']);
+			// if have subdomain
+		    if(count($urlHostSegments) > 2)
+		    {
+				$cookie_domain = $urlHostSegments[0];
+		    }
+		}
+
+		if($cookie_domain)
+		{
+			$cookie_domain = $cookie_domain. '.'. Service;
+			session_set_cookie_params(0, '/', $cookie_domain, false, true);
+		}
+		else
+		{
+			$cookie_domain = Service;
+			session_set_cookie_params(0, '/');
+		}
+
+		// session_set_cookie_params(0, '/', $cookie_domain, false, true);
+
 		// set session cookie params
-		session_set_cookie_params(0, '/', '.'.Service, false, true);
 		// if user enable saving sessions in db
 		// temporary disable because not work properly
 		if(false)
