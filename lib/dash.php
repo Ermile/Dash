@@ -6,7 +6,7 @@ namespace lib;
 class dash
 {
 	// @var dash core current version
-	const version = '10.3.9';
+	const version = '10.4.0';
 
 	// @var dash core current commit number
 	// now get it automatically from git commands

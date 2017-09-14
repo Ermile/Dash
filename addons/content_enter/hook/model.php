@@ -185,11 +185,11 @@ class model extends \mvc\model
 				$fullName = null;
 			}
 
-			$insert_user                     = [];
+			$insert_user                = [];
 			$insert_user['mobile']      = $mobile;
 			$insert_user['displayname'] = $fullName;
-			$insert_user['chatid']     = $telegram_id;
-			$insert_user['datecreated']  = date("Y-m-d H:i:s");
+			$insert_user['chatid']      = $telegram_id;
+			$insert_user['datecreated'] = date("Y-m-d H:i:s");
 			\lib\db\users::insert($insert_user);
 			$this->user_id = \lib\db::insert_id();
 			\lib\db\logs::set('enter:hook:signup:new', $exist_mobile['id'], $log_meta);

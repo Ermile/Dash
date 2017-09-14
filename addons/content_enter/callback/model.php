@@ -131,9 +131,9 @@ class model extends \addons\content_enter\main\model
 		$signup =
 		[
 			'mobile'      => $mobile,
-			'password'        => null,
+			'password'    => null,
 			'displayname' => null,
-			'datecreated'  => date("Y-m-d H:i:s"),
+			'datecreated' => date("Y-m-d H:i:s"),
 		];
 
 		\lib\db\users::insert($signup);

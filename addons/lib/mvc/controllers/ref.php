@@ -75,6 +75,7 @@ trait ref
 				}
 				else
 				{
+					unset($_SESSION['ref']);
 					\lib\db\logs::set('user:ref:referer:not:exist', null, $log_meta);
 				}
 			}

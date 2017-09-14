@@ -114,10 +114,6 @@ class model extends \addons\content_enter\main\model
 
 					self::set_enter_session('logined_by_email', google::user_info('email'));
 
-					// $user_id = self::signup($args);
-					// // save user data in socials table
-					// \lib\db\socials::google_save($user_id, google::user_info());
-
 					// go to mobile get to enter mobile
 					self::next_step('mobile/request');
 					// get go to url

@@ -109,7 +109,7 @@ trait user_data
 		[
 			'mobile'      => null,
 			'displayname' => null,
-			'password'        => null,
+			'password'    => null,
 			'email'       => null,
 			'status'      => 'awaiting'
 		];
@@ -121,16 +121,18 @@ trait user_data
 
 		self::set_enter_session('first_signup', true);
 
+		// save ref in users table
+		if(isset($_SESSION['ref']) && !isset($_args['ref']))
+		{
+			$_args['ref'] = intval($_SESSION['ref']);
+			unset($_SESSION['ref']);
+		}
+
 		$mobile = self::get_enter_session('mobile');
 		if($mobile)
 		{
-			$update_user = [];
-			if(isset($_args['googlemail']))
-			{
-				$update_user['googlemail'] = $_args['googlemail'];
-			}
 			// set mobile to use in other function
-			self::$mobile         = $mobile;
+			self::$mobile    = $mobile;
 			$_args['mobile'] = $mobile;
 			$_args['email']  = self::$email;
 
@@ -138,10 +140,6 @@ trait user_data
 
 			if($user_id)
 			{
-				if(!empty($update_user))
-				{
-					\lib\db\users::update($update_user, $user_id);
-				}
 				self::load_user_data();
 			}
 			return $user_id;
@@ -167,6 +165,13 @@ trait user_data
 		}
 
 		self::set_enter_session('first_signup', true);
+
+		// save ref in users table
+		if(isset($_SESSION['ref']) && !isset($_args['ref']))
+		{
+			$_args['ref'] = intval($_SESSION['ref']);
+			unset($_SESSION['ref']);
+		}
 
 		$user_id = \lib\db\users::insert($_args);
 
