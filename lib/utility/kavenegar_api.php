@@ -84,8 +84,8 @@ class kavenegar_api
 			curl_setopt($handle, CURLOPT_POST, true);
 			curl_setopt($handle, CURLOPT_POSTFIELDS, $fields_string);
 			// add timer to ajax request
-			curl_setopt($handle, CURLOPT_CONNECTTIMEOUT, 10);
-			curl_setopt($handle, CURLOPT_TIMEOUT, 20  );
+			curl_setopt($handle, CURLOPT_CONNECTTIMEOUT, 3);
+			curl_setopt($handle, CURLOPT_TIMEOUT, 2 );
 
 			$response = curl_exec($handle);
 			$mycode   = curl_getinfo($handle, CURLINFO_HTTP_CODE);
