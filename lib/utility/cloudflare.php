@@ -1,25 +1,35 @@
 <?php
 namespace lib\utility;
-
+/**
+ * Class for cloudflare.
+ * api to cloudflare
+ * https://api.cloudflare.com/
+ */
 class cloudflare
 {
 
-
+	/**
+	 * Creates a dns record.
+	 *
+	 * @param      array   $_args  The arguments
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
 	public static function create_dns_record($_args)
 	{
 		$default_args =
 		[
 			// A, AAAA, CNAME, TXT, SRV, LOC, MX, NS, SPF
-			'type' => null,
+			'type'    => null,
 			// dns name
 			// example.com
-			'name' => null,
+			'name'    => null,
 			// dns record content
 			// 127.0.0.1
 			'content' => null,
 			// time to live for dns record
 			// value of 1 is automatic
-			'ttl' => 1,
+			'ttl'     => 1,
 			//Whether the record is receiving the performance and security benefits of Cloudflare
 			'proxied' => true,
 		];
@@ -39,7 +49,16 @@ class cloudflare
 		return cloudflare_curl::_curl($run);
 	}
 
-	public static function list_dns_record($_args)
+
+	/**
+	 * get list of dns record
+	 * https://api.cloudflare.com/
+	 *
+	 * @param      array   $_args  The arguments
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public static function list_dns_record($_args = [])
 	{
 		$default_args =
 		[
@@ -85,11 +104,7 @@ class cloudflare
 
 		$result = cloudflare_curl::_curl($run);
 		return $result;
-		// // var_dump(json_decode($result), true);
-		// // var_dump($result);exit();
 	}
-
-
 }
 
 
@@ -102,13 +117,23 @@ class cloudflare
 
 
 
-
+/**
+ * Class for cloudflare curl.
+ */
 class cloudflare_curl
 {
 	private static $api_url = 'https://api.cloudflare.com/client/v4/';
 	private static $header  = [];
 	private static $method  = 'GET';
 
+
+	/**
+	 * config api to connect to cloudflare
+	 *
+	 * @param      <type>   $_args  The arguments
+	 *
+	 * @return     boolean  ( description_of_the_return_value )
+	 */
 	private static function config($_args)
 	{
 		$status                  = \lib\option::config('cloudflare', 'status');
@@ -118,18 +143,26 @@ class cloudflare_curl
 		if(!$ZoneID) 			 return false;
 
 		$X_Auth_Key              = \lib\option::config('cloudflare', 'X-Auth-Key');
-		if(!$X_Auth_Key) 		 return false;
+		if(!$X_Auth_Key)		 return false;
 
 		$X_Auth_Email            = \lib\option::config('cloudflare', 'X-Auth-Email');
-		if(!$X_Auth_Email) 		 return false;
+		if(!$X_Auth_Email)		 return false;
 
-		self::$header =
-		[
-			"Content-Type: application/json",
-			"X-Auth-Key: $X_Auth_Key",
-			"X-Auth-Email: $X_Auth_Email",
+		$X_Auth_User_Service_Key = \lib\option::config('cloudflare', 'X-Auth-User-Service-Key');
 
-		];
+		if(!$X_Auth_Email && !$X_Auth_User_Service_Key && !$X_Auth_Key)
+		{
+			return false;
+		}
+
+		self::$header[] = "Content-Type: application/json";
+		self::$header[] = "X-Auth-Key: $X_Auth_Key";
+		self::$header[] = "X-Auth-Email: $X_Auth_Email";
+
+		if($X_Auth_User_Service_Key)
+		{
+			self::$header[] = "X-Auth-User-Service-Key: $X_Auth_User_Service_Key ";
+		}
 
 		if(isset($_args['method']))
 		{
@@ -149,18 +182,16 @@ class cloudflare_curl
 			}
 			self::$api_url = $api_url;
 		}
-
-		if(false)
-		{
-			$X_Auth_User_Service_Key = \lib\option::config('cloudflare', 'X-Auth-User-Service-Key');
-			if(!$X_Auth_User_Service_Key) return false;
-			self::$request['X-Auth-User-Service-Key'] = $X_Auth_User_Service_Key;
-		}
-
 	}
 
 
-
+	/**
+	 * run curl to connect to cloudflare
+	 *
+	 * @param      <type>  $_args  The arguments
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
 	public static function _curl($_args)
 	{
 		self::config($_args);
@@ -226,6 +257,5 @@ class cloudflare_curl
 		}
 		return $response;
 	}
-
 }
 ?>
