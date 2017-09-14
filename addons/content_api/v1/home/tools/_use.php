@@ -19,5 +19,7 @@ trait _use
 	use \addons\content_api\v1\comment\tools\add;
 	use \addons\content_api\v1\comment\tools\get;
 
+	use \addons\content_api\v1\ref\tools\get;
+
 }
 ?>

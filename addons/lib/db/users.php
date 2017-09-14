@@ -24,6 +24,22 @@ class users
 
 
 	/**
+	 * Gets the reference count.
+	 *
+	 * @param      <type>  $_args  The arguments
+	 */
+	public static function get_ref_count($_args)
+	{
+		$where = \lib\db\config::make_where($_args);
+		if($where)
+		{
+			$query = "SELECT COUNT(*) AS `count` FROM users WHERE $where ";
+			return \lib\db::get($query, 'count', true);
+		}
+	}
+
+
+	/**
 	 * Gets the by identifier.
 	 *
 	 * @param      <type>  $_user_id  The user identifier
