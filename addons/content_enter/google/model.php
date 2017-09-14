@@ -136,7 +136,14 @@ class model extends \addons\content_enter\main\model
 					// go to url
 					if($go_to_url)
 					{
-						self::go_to($go_to_url);
+						// in this time we need time to check next step
+						// so we set for ever dont whill set mobile and go to next step
+						// to login quick by google mail
+						self::set_enter_session('dont_will_set_mobile', true);
+						self::mobile_request_next_step();
+						return;
+
+						// self::go_to($go_to_url);
 					}
 					else
 					{

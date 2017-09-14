@@ -401,6 +401,7 @@ trait verification_code
 			 * MOBILI/REQUEST
 			 ***********************************************************
 			 */
+			//////////////////////////////////////////////////////////////////////////////////////////////////////////////	MUST CHECK //////////////////////////////////
 			if(self::get_enter_session('verify_from') === 'mobile_request')
 			{
 				// must loaded mobile data
@@ -509,6 +510,7 @@ trait verification_code
 					return false;
 				}
 			}
+			//////////////////////////////////////////////////////////////////////////////////////////////////////////////	MUST CHECK //////////////////////////////////
 
 
 			/**
@@ -631,7 +633,8 @@ trait verification_code
 				{
 					// sign up user
 					self::set_enter_session('first_signup', true);
-					$user_id = \lib\db\users::signup(self::get_enter_session('must_signup'));
+
+					$user_id = self::signup_email(self::get_enter_session('must_signup'));
 					if($user_id)
 					{
 						self::$user_id = $user_id;

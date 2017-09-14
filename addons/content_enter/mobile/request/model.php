@@ -19,8 +19,10 @@ class model extends \addons\content_enter\main\model
 	 */
 	public function post_mobile($_args)
 	{
-		if(utility::post('will') === 'no')
-		{
+		// IN THIS TIME EVERYONE CLICK ON NO BUTTON
+		// THE MOBILE AND EMAIN MUST BE CHECK !!!
+		// if(utility::post('will') === 'no')
+		// {
 			// the user dont whill to enter mobile :/
 			// never ask this question at this user
 			self::set_enter_session('dont_will_set_mobile', true);
@@ -28,7 +30,7 @@ class model extends \addons\content_enter\main\model
 			self::mobile_request_next_step();
 
 			return;
-		}
+		// }
 
 		if(!utility::post('mobile'))
 		{
