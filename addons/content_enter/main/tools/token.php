@@ -131,12 +131,12 @@ class token
 
 			$args  =
 			[
-				'user_id'      => $user_id,
-				'parent_id'    => $_args['parent'],
-				'cat'   => 'token',
-				'key'   => $key,
-				'value' => $token,
-				'meta'  => json_encode($meta, JSON_UNESCAPED_UNICODE),
+				'user_id'   => $user_id,
+				'parent_id' => $_args['parent'],
+				'cat'       => 'token',
+				'key'       => $key,
+				'value'     => $token,
+				'meta'      => json_encode($meta, JSON_UNESCAPED_UNICODE),
 			];
 
 			db\options::insert($args);

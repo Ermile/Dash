@@ -12,13 +12,14 @@ trait check
 	 */
 	private static function uploaded($_user_id)
 	{
+		return 0;
+
 		$where =
 		[
-			'user_id'    => $_user_id,
-			'post_id'    => null,
-			'cat' => 'user_detail_'. $_user_id,
-			'key' => 'user_uploaded_size',
-			'limit'      => 1,
+			'user_id' => $_user_id,
+			'post_id' => null,
+			'cat'     => 'user_uploaded_size_'. $_user_id,
+			'limit'   => 1,
 		];
 		$result =  \lib\db\options::get($where);
 		if(isset($result['value']))
@@ -38,11 +39,10 @@ trait check
 	{
 		$where =
 		[
-			'user_id'    => $_user_id,
-			'post_id'    => null,
-			'cat' => 'user_vip_size_'. $_user_id,
-			'key' => 'user_uploaded_size',
-			'limit'      => 1,
+			'user_id' => $_user_id,
+			'post_id' => null,
+			'cat'     => 'user_uploaded_size_vip_'. $_user_id,
+			'limit'   => 1,
 		];
 		$result =  \lib\db\options::get($where);
 		if(isset($result['value']))
@@ -58,8 +58,16 @@ trait check
 	 */
 	public static function remaining($_user_id)
 	{
+
 		$MB = 1 * 1000000; // 1 MB
 		$default_user_size = $MB / 2; // 0.5 MB
+
+		/**
+		 * NEVER MIND THE UPLOADED SIZE
+		 * JOIN ;)
+		 */
+		return $default_user_size;
+
 
 		\lib\permission::$user_id = $_user_id;
 
@@ -76,8 +84,8 @@ trait check
 			$default_user_size = 10 * $MB; // 10 MB
 		}
 
-		$uploaded          = self::uploaded($_user_id);
-		$vip_size          = self::vip_size($_user_id);
+		$uploaded = self::uploaded($_user_id);
+		$vip_size = self::vip_size($_user_id);
 		if(is_int($vip_size))
 		{
 			$default_user_size = $vip_size;
@@ -92,13 +100,17 @@ trait check
 	 */
 	public static function user_size_plus($_user_id, $_size)
 	{
+		/**
+		 * NEVER MIND THE UPLOADED SIZE
+		 * JOIN ;)
+		 */
+		return;
+
 		$where =
 		[
-			'user_id'      => $_user_id,
-			'post_id'      => null,
-			'cat'   => 'user_detail_'. $_user_id,
-			'key'   => 'user_uploaded_size',
-			'value' => 'user_uploaded_size',
+			'user_id' => $_user_id,
+			'post_id' => null,
+			'cat'     => 'user_uploaded_size_'. $_user_id,
 		];
 		\lib\db\options::plus($where, (int) $_size);
 	}

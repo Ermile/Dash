@@ -148,54 +148,31 @@ class options
 	 * @param      <type>  $_where  The where
 	 * @param      string  $_field  The field
 	 */
-	private static function plus_meta($_where, $_plus = 1, $_type = 'plus')
+	private static function plus_value($_where, $_plus_minue = 1, $_type = 'plus')
 	{
-		if(!is_array($_where))
+		$where = \lib\db\config::make_where($_where);
+		$set = \lib\db\config::make_set($_where);
+		if(!$where || !$set)
 		{
 			return false;
 		}
 
-		$args = [];
-		foreach ($_where as $key => $value)
-		{
-			if($value === null)
-			{
-				$args[] = " options.$key = NULL ";
-			}
-			elseif(is_string($value))
-			{
-				$args[] = " options.$key  = '$value' ";
-			}
-			elseif(is_numeric($value))
-			{
-				$args[] = " options.$key  = $value ";
-			}
-		}
-
-		if(empty($args))
-		{
-			return false;
-		}
-
-
-		$update_meta_query = "IF(options.meta IS NULL OR options.meta = '', $_plus, options.meta + $_plus)";
+		$update_value_query = "IF(options.value IS NULL OR options.value = '', $_plus_minue, options.value + $_plus_minue)";
 		if($_type === 'minus')
 		{
-			$update_meta_query = "IF(options.meta IS NULL OR options.meta = '' OR options.meta = 0, $_plus, options.meta - $_plus)";
+			$update_value_query = "IF(options.value IS NULL OR options.value = '' OR options.value = 0, $_plus_minue, options.value - $_plus_minue)";
 		}
-
-		$args = join($args, " , ");
 
 		$query =
 		"
 			INSERT INTO options
 			SET
-				$args,
-				options.meta   = $_plus,
+				$set,
+				options.value   = $_plus_minue,
 				options.status = 'enable'
 			ON DUPLICATE KEY UPDATE
-				$args,
-				options.meta   = $update_meta_query,
+				$set,
+				options.value   = $update_value_query,
 				options.status = 'enable'
 
 		";
@@ -214,7 +191,7 @@ class options
 	 */
 	public static function plus($_where, $_plus = 1)
 	{
-		return self::plus_meta($_where, $_plus, 'plus');
+		return self::plus_value($_where, $_plus, 'plus');
 	}
 
 
@@ -229,7 +206,7 @@ class options
 	 */
 	public static function minus($_where, $_minus = 1)
 	{
-		return self::plus_meta($_where, $_minus, 'minus');
+		return self::plus_value($_where, $_minus, 'minus');
 	}
 }
 ?>

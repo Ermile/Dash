@@ -9,7 +9,7 @@ CREATE TABLE `invoice_details` (
 `status` enum('enable','disable','expire') NOT NULL DEFAULT 'enable',
 `createdate` datetime DEFAULT CURRENT_TIMESTAMP,
 `date_modified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-`desc` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
+`desc` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
 `meta` mediumtext CHARACTER SET utf8mb4
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

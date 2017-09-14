@@ -1,6 +1,9 @@
 <?php
 namespace lib\mvc\controllers;
-
+use \lib\db\logs;
+use \lib\utility\notification;
+use \lib\utility;
+use \lib\debug;
 trait ref
 {
 	/**
@@ -9,34 +12,72 @@ trait ref
 	 */
 	public function save_ref()
 	{
-		if(\lib\utility::get("ref") && !$this->login())
+		// it the user is not login and use from ref in url
+		// plus click ref of the referer user
+		if(utility::get("ref") && !$this->login())
 		{
-			$save_log = true;
+			$url_ref = utility::get('ref');
+			$url_ref = utility\shortURL::decode($url_ref);
+
+			if(!$url_ref)
+			{
+				// invalid ref
+				// fake ref
+				return;
+			}
+			// plus the referer counter click
+			$plus_counter_click = false;
+
+			$log_meta =
+			[
+				'data' => $url_ref,
+				'meta' =>
+				[
+					'url'     => \lib\router::get_url(),
+					'ref'     => \lib\utility::get(),
+					'session' => $_SESSION,
+				],
+			];
+
 			if(isset($_SESSION['ref']))
 			{
-				$ref_id   = \lib\utility\shortURL::decode(\lib\utility::get("ref"));
-				if($_SESSION['ref'] == \lib\utility::get("ref"))
+				if(intval($_SESSION['ref']) === intval($url_ref))
 				{
-					$save_log = false;
+					// user pres the F5 :|
+					// neeed less to plus the click counter
+					$plus_counter_click = false;
 				}
 				else
 				{
-					\lib\db\logs::set('user:ref:different', null, ['data' => $ref_id, 'meta' => ['ref' => \lib\utility::get(), 'session' => $_SESSION]]);
-					$save_log        = true;
+					// user change the ref
+					\lib\db\logs::set('user:ref:changed', null, $log_meta);
+					$plus_counter_click = true;
 				}
 			}
 			else
 			{
-				$save_log = true;
+				$plus_counter_click = true;
 			}
-			$_SESSION['ref'] = \lib\utility::get("ref");
 
-			if($save_log)
+			$_SESSION['ref'] = $url_ref;
+
+			if($plus_counter_click)
 			{
-				$ref_id   = \lib\utility\shortURL::decode(\lib\utility::get("ref"));
-				\lib\db\logs::set('user:ref:set', null, ['data' => $ref_id, 'meta' => ['ref' => \lib\utility::get()]]);
+				$check_user_exist = \lib\db\users::get(['id' => $url_ref, 'limit' => 1]);
+				if(isset($check_user_exist['id']))
+				{
+					$where =
+					[
+						'user_id' => $check_user_exist['id'],
+						'cat'     => 'user_ref_'. (string) $check_user_exist['id'],
+					];
+					\lib\db\options::plus($where);
+				}
+				else
+				{
+					\lib\db\logs::set('user:ref:referer:not:exist', null, $log_meta);
+				}
 			}
-
 		}
 	}
 }

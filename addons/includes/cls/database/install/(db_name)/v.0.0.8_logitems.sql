@@ -1,11 +1,11 @@
 
 CREATE TABLE `logitems` (
 `id` smallint(5) UNSIGNED NOT NULL,
-`type` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
-`caller` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-`title` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-`desc` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
-`meta` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
+`type` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+`caller` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+`title` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+`desc` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+`meta` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
 `count` int(10) UNSIGNED NOT NULL DEFAULT '0',
 `priority` enum('critical','high','medium','low') NOT NULL DEFAULT 'medium',
 `datemodified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,

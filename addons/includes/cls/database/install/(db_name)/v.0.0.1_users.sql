@@ -1,10 +1,10 @@
 CREATE TABLE `users` (
 `id` int(10) UNSIGNED NOT NULL,
 `mobile` varchar(15) DEFAULT NULL,
-`email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+`email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
 `password` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
-`displayname` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
-`meta` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
+`displayname` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+`meta` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
 `status` enum('active','awaiting','deactive','removed','filter','unreachable') DEFAULT 'awaiting',
 `parent` int(10) UNSIGNED DEFAULT NULL,
 `permission` varchar(1000) DEFAULT NULL,

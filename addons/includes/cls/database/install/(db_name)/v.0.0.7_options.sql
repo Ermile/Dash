@@ -3,10 +3,10 @@ CREATE TABLE `options` (
 `user_id` int(10) UNSIGNED DEFAULT NULL,
 `post_id` bigint(20) UNSIGNED DEFAULT NULL,
 `parent_id` bigint(20) UNSIGNED DEFAULT NULL,
-`cat` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-`key` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-`value` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
-`meta` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
+`cat` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+`key` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+`value` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+`meta` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
 `status` enum('enable','disable','expire') NOT NULL DEFAULT 'enable',
 `datemodified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
 `datecreated` timestamp NULL DEFAULT CURRENT_TIMESTAMP
@@ -14,7 +14,7 @@ CREATE TABLE `options` (
 
 ALTER TABLE `options`
 ADD PRIMARY KEY (`id`),
-ADD UNIQUE KEY `cat+key+value` (`cat`,`key`,`value`) USING BTREE,
+ADD UNIQUE KEY `unique_cat` (`cat`) USING BTREE,
 ADD KEY `options_users_id` (`user_id`),
 ADD KEY `options_posts_id` (`post_id`),
 ADD KEY `options_parent_id` (`parent_id`);
