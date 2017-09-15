@@ -1,3 +1,54 @@
+<?php
+$result  = null;
+$install = true;
+$log     = null;
+
+if(isset($_POST['username']) && isset($_POST['password']))
+{
+	$install = false;
+
+	if($_POST['username'])
+	{
+		\lib\db::$db_user = $_POST['username'];
+		\lib\db::$db_pass = $_POST['password'];
+	}
+
+
+	// ignore error when installing...
+	\lib\db::$debug_error = false;
+
+	$result = \lib\db::install();
+
+	if($result)
+	{
+		// insert the admin mobile and set her permission as admin
+		if(isset($_POST['mobile']))
+		{
+			$mobile = \lib\utility\filter::mobile($_POST['mobile']);
+			if($mobile)
+			{
+				$add_user =
+				[
+					'mobile'     => $mobile,
+					'permission' => 'admin',
+				];
+				\lib\db\users::insert($add_user);
+			}
+		}
+
+		if(DEBUG)
+		{
+			$log = $result;
+		}
+	}
+	else
+	{
+		$result = null;
+	}
+}
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,52 +64,38 @@
  <progress></progress>
  <p>Welcome to Dash installation process.</p>
  <p>First of all set database connection detail on <b>config.php</b> then we do others!</p>
-<?php
-	if(isset($_POST['username']) && isset($_POST['password']))
-	{
-		if($_POST['username'])
-		{
-			\lib\db::$db_user = $_POST['username'];
-			\lib\db::$db_pass = $_POST['password'];
-		}
-		// ignore error when installing...
-		\lib\db::$debug_error = false;
 
-		$result = \lib\db::install();
-		if($result)
-		{
-?>
+
+ <?php if($result) { ?>
+
  <div class="btn">
   <span class="top">Install Successfully:)</span>
   <a href="/">Lets GO!</a>
  </div>
+<!--
  <pre class="result">
-<?php
-	// $sqlFiles = \lib\utility\dbTables::create();
-	if(DEBUG)
-	{
-		print_r($result);
-		// echo $sqlFiles;
-	}
-?>
- </pre>
-<?php
-		}
-	}
-	else
-	{
-?>
+	 <?php  // print_r($log); ?>
+ </pre> -->
+ <?php } ?>
+
+
+<?php if($install) { ?>
   <form method="post">
    <input type="text" name="username" placeholder='Username of db admin'>
    <input type="password" name="password" placeholder='Password' autocomplete="new-password">
+   <br>
+   <p>Admin mobile</p>
+   <input type="number" name="mobile" placeholder='mobile for admin' style=" background: #eee">
+
    <input type="submit" value="Install">
+
   </form>
  </div>
-<?php
-	}
-	exit();
-?>
+<?php } ?>
 
- <div id="no"><img src="/static/images/logo.png" alt="Logo" id='logo'></div>
+<div id="no"><img src="/static/images/logo.png" alt="Logo" id='logo'></div>
 </body>
 </html>
+
+
+<?php exit(); ?>
