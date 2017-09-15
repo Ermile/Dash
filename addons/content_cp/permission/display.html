@@ -5,19 +5,36 @@
 <div class="tbox">
 	<h2>{%trans "Change permission of user"%}</h2>
 </div>
+<div class="f">
+	<div class="c pA5">
+		<div class="cbox">
+		<form method="post">
 
-<div class="cbox">
-<form method="post">
+		{%for key, value in permission_list%}
+		<div class="switch1">
+			<input type="checkbox" name="perm_{{key}}" id="perm_{{key}}" {%if key in user_permission%}checked{%endif%} {%if value.cat%}data-response="perm_cat_{{value.cat}}"{%endif%}>
+			<label for="perm_{{key}}"></label>
+			<label for="perm_{{key}}">{%if value.title%}{{value.title}}{%else%}{{value.caller}}{%endif%}</label>
+		</div>
+		{%endfor%}
+		<input type="submit" class="btn primary" name="" value='{%trans "Save change"%}'>
+		</form>
+		</div>
 
-{%for key, value in permission_list%}
-<div class="switch1">
-	<input type="checkbox" name="perm_{{key}}" id="perm_{{key}}" {%if key in user_permission%}checked{%endif%}>
-	<label for="perm_{{key}}"></label>
-	<label for="perm_{{key}}">{%if value.title%}{{value.title}}{%else%}{{value.caller}}{%endif%}</label>
+	</div>
+	<div class="c pA5">
+	<div class="cbox">
+	<h4>{%trans "Permission cat"%}</h4>
+		{%for key, value in perm_cat%}
+			<div class="switch1">
+				<input type="checkbox" name="perm_cat_{{value}}" id="perm_{{value}}">
+				<label for="perm_{{value}}"></label>
+				<label for="perm_{{value}}">{{value}}</label>
+			</div>
+		{%endfor%}
+	</div>
+	</div>
 </div>
-{%endfor%}
-<input type="submit" class="btn primary" name="" value='{%trans "Save change"%}'>
-</form>
-</div>
+
 
 {%endblock%}
