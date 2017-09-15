@@ -135,7 +135,6 @@ trait add
 		if($_args['method'] === 'post')
 		{
 			\lib\db\users::insert($args);
-			return \lib\db::insert_id();
 		}
 		elseif($_args['method'] === 'patch')
 		{
@@ -185,6 +184,7 @@ trait add
 			if($_args['method'] === 'post')
 			{
 				if($_args['debug']) debug::true(T_("user successfully added"));
+				return \lib\db::insert_id();
 			}
 			elseif($_args['method'] === 'patch')
 			{

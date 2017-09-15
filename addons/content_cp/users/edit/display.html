@@ -1,0 +1,137 @@
+{%extends display.cpMain%}
+
+{%block content%}
+<div class="tbox">
+ <h2>
+ 	{%trans "Edit user detail"%}
+ </h2>
+
+</div>
+
+<div class="f justify-center">
+  <div class="c6">
+    <div class="cbox">
+      <form method="post" enctype="multipart/form-data">
+        <label for="name">{%trans "Name"%}</label>
+        <div class="input">
+          <input type="text" name="name" id="name" placeholder='{%trans "Name"%} *' value="{{user_detail.name}}"  autofocus maxlength='40' title='{%trans "Enter a valid name from 3 to 40 character"%}'>
+        </div>
+
+        <label for="lastName">{%trans "Last name"%}</label>
+        <div class="input">
+          <input type="text" name="lastName" id="lastName" placeholder='{%trans "Last name"%}' value="{{user_detail.lastname}}" maxlength='50'>
+        </div>
+
+      <!--   <div class="input preview pTB10">
+          <input type="file" name="avatar" id="avatar" accept="image/gif, image/jpeg, image/png" data-preview>
+          <label for="avatar" title='{%trans "allowed extentions jpg, png (gif for bussiness plans). Max 500Kb"%}'>
+            {%if edit_mode and user_detail.file%}
+              <img src="{{user_detail.file}}" alt="{{user_detail.name}}" id="avatarPreview">
+            {%endif%}
+          </label>
+        </div> -->
+
+        <label for="mobile">{%trans "Mobile"%}</label>
+        <div class="input">
+          <input type="text" name="mobile" id="mobile" placeholder='{%trans "Mobile"%} *' value="{{user_detail.mobile}}" maxlength='30'  class="ltr">
+        </div>
+
+        <label for="nationalcode">{%trans "National code"%}</label>
+        <div class="input">
+          <input type="number" name="nationalcode" id="nationalcode" placeholder='{%trans "National code"%}' value="{{user_detail.nationalcode}}" maxlength='50' class="ltr">
+        </div>
+
+        <label for="father">{%trans "Father name"%}</label>
+        <div class="input">
+          <input type="text" name="father" id="father" placeholder='{%trans "Father name"%}' value="{{user_detail.father}}" maxlength='50'>
+        </div>
+
+        <label for="birthday">{%trans "Birthday"%}</label>
+        <div class="input">
+          <input class="" type="text" name="birthday" id="birthday" placeholder='{%trans "Birthday"%}' value="{{user_detail.birthday}}" maxlength='50'>
+        </div>
+
+        <label>{%trans "Gender"%}</label>
+        <div class="check1">
+          <input type="radio" id="r-male" name="gender" value="male" {%if user_detail.gender == 'male' or  current_team.gender == 'male' or not user_detail.gender%}checked{%endif%} >
+          <label for="r-male">{%trans "Male"%}</label>
+        </div>
+        <div class="check1">
+          <input type="radio" id="r-female" name="gender" value="female" {%if user_detail.gender == 'female' or current_team.gender == 'female'%}checked{%endif%}>
+          <label for="r-female">{%trans "Female"%}</label>
+        </div>
+
+        <label>{%trans "Marital"%}</label>
+        <div class="check1">
+          <input type="radio" id="r-single" name="marital" value="single" {%if user_detail.marital == 'single' or  not user_detail.marital%}checked{%endif%} >
+          <label for="r-single">{%trans "Single"%}</label>
+        </div>
+        <div class="check1">
+          <input type="radio" id="r-married" name="marital" value="married" {%if user_detail.marital == 'married' %}checked{%endif%}>
+          <label for="r-married">{%trans "Married"%}</label>
+        </div>
+
+        <label for="child">{%trans "Child count"%}</label>
+        <div class="input">
+          <input type="text" name="child" id="child" placeholder='{%trans "Child count"%}' value="{{user_detail.childcount}}" maxlength='50'>
+        </div>
+
+        <label for="brithcity">{%trans "Birth city"%}</label>
+        <div class="input">
+          <input type="text" name="brithcity" id="brithcity" placeholder='{%trans "Birth city"%}' value="{{user_detail.brithplace}}" maxlength='50'>
+        </div>
+
+        {%if site.currentlang == 'fa'%}
+        <label for="shfrom">{%trans "Sh from"%}</label>
+        <div class="input">
+          <input type="text" name="shfrom" id="shfrom" placeholder='{%trans "Sh from"%}' value="{{user_detail.shfrom}}" maxlength='50'>
+        </div>
+
+        <label for="shcode">{%trans "Sh code"%}</label>
+        <div class="input">
+          <input type="text" name="shcode" id="shcode" placeholder='{%trans "Sh code"%}' value="{{user_detail.shcode}}" maxlength='50'>
+        </div>
+
+        <label for="education">{%trans "Last education"%}</label>
+        <div class="input">
+          <input type="text" name="education" id="education" placeholder='{%trans "Last education"%}' value="{{user_detail.education}}" maxlength='50'>
+        </div>
+
+        <label for="job">{%trans "Job"%}</label>
+        <div class="input">
+          <input type="text" name="job" id="job" placeholder='{%trans "Job"%}' value="{{user_detail.job}}" maxlength='50'>
+        </div>
+
+        <label for="passportcode">{%trans "Pasport code"%}</label>
+        <div class="input">
+          <input type="text" name="passportcode" id="passportcode" placeholder='{%trans "Pasport code"%}' value="{{user_detail.passportcode}}" maxlength='50'>
+        </div>
+
+        <label for="passportexpire">{%trans "Pasport expire"%}</label>
+        <div class="input">
+          <input type="text" name="passportexpire" id="passportexpire" placeholder='{%trans "Pasport expire"%}' value="{{user_detail.passportexpire}}" maxlength='50'>
+        </div>
+
+        <label for="paymentaccountnumber">{%trans "Bank account number"%}</label>
+        <div class="input">
+          <input type="text" name="paymentaccountnumber" id="paymentaccountnumber" placeholder='{%trans "Bank account number"%}' value="{{user_detail.paymentaccountnumber}}" maxlength='50'>
+        </div>
+
+        <label for="shaba">{%trans "Last education degree"%}</label>
+        <div class="input">
+          <input type="text" name="shaba" id="shaba" placeholder='{%trans "Last education degree"%}' value="{{user_detail.shaba}}" maxlength='50'>
+        </div>
+        {%endif%}
+
+
+        {%if edit_mode%}
+          <input type="submit" value='{%trans "Edit"%}' class="mA3 btn primary">
+        {%else%}
+          <input type="submit" value='{%trans "Add"%}' class="mA3 btn primary">
+        {%endif%}
+      </form>
+    </div>
+  </div>
+</div>
+
+{%endblock%}
