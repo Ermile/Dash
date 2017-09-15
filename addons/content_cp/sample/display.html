@@ -12,7 +12,7 @@
 
 <div class="f cbox">
   <div class="c12">{{block('breadcrumb')}}</div>
-  <div class="c4">
+  <div class="c4 s12">
     {{block('buttons')}}
     {{block('messages')}}
     {{block('input')}}
@@ -21,15 +21,16 @@
 
   </div>
 
-  <div class="c4">
+  <div class="c4 s12">
     {{block('icons')}}
     {{block('date')}}
     {{block('clock')}}
     {{block('txt')}}
+    {{block('checkbox')}}
 
   </div>
 
-  <div class="c4">
+  <div class="c4 s12">
     {{block('vcard')}}
 
   </div>
@@ -131,7 +132,7 @@
   <h3><a href='sample/pagination'>Pagination</a></h3>
     <nav class="pagination info">
       <a href='/cp/sample/pagination' class="prev disabled">Previous</a>
-      <a href='/cp/sample/pagination'>...</a>
+      <a>...</a>
       <a href='/cp/sample/pagination'>6</a>
       <a class='active'>7</a>
       <a href='/cp/sample/pagination'>8</a>
@@ -288,6 +289,22 @@
 {%endblock%}
 
 
+{%block checkbox%}
+<div class="pA10">
+  <h3><a href='sample/checkbox'>Checkbox</a></h3>
+   <div class="check1">
+    <input type="checkbox" id="sChk1">
+    <label for="sChk1">{%trans "Check1 Sample1"%}</label>
+   </div>
 
+  <h4><a href='sample/checkbox#switch'>Switch</a></h4>
+   <div class="switch1">
+    <input type="checkbox" name="switch12" id="switch12">
+    <label for="switch12" data-on='{%trans "YES"%}' data-off='{%trans "NO!"%}'></label>
+    <label for="switch12">{%trans "Are you like Siftal?" %}</label>
+   </div>
+
+</div>
+{%endblock%}
 
 
