@@ -76,6 +76,16 @@ private function transtext()
 	//-------------------------------------------addons\content_cp\sample\display.html
 	echo T_("Approve");                                                               // Line 122
 	echo T_("Decline");                                                               // Line 139
+	echo T_("Check1 Sample1");                                                        // Line 20
+	echo T_("YES");                                                                   // Line 87
+	echo T_("NO!");                                                                   // Line 87
+	echo T_("Are you like Siftal?");                                                  // Line 88
+	echo T_("Blue");                                                                  // Line 42
+	echo T_("Default");                                                               // Line 42
+	echo T_("Red");                                                                   // Line 46
+	echo T_("Yellow");                                                                // Line 50
+	echo T_("Green");                                                                 // Line 54
+	echo T_("Black");                                                                 // Line 58
 
 	//------------------------------------addons\content_cp\sample\template\badge.html
 	echo T_("Badges");                                                                // Line 7
@@ -104,7 +114,7 @@ private function transtext()
 	//-----------------------------------addons\content_cp\sample\template\button.html
 	echo T_("Button");                                                                // Line 7
 	echo T_("Use Siftal's custom button styles for actions in forms, dialogs, and more with support for multiple sizes, states, and more.");// Line 8
-	echo T_("Simple Examples");                                                       // Line 12
+	echo T_("Simple Examples");                                                       // Line 13
 	echo T_("Siftal includes several predefined button styles, each serving its own semantic purpose, with a few extras thrown in for more control.");// Line 13
 	echo T_("Default Btn");                                                           // Line 76
 
@@ -113,7 +123,14 @@ private function transtext()
 	echo T_("Easily extend form controls by adding text, buttons, or button groups on either side of textual inputs.");// Line 8
 	echo T_("Simple Examples with input element");                                    // Line 13
 	echo T_("Normal");                                                                // Line 196
-	echo T_("Show users avatars");                                                    // Line 21
+	echo T_("Check1 Sample2");                                                        // Line 25
+	echo T_("Check1 Sample3");                                                        // Line 30
+	echo T_("Switch");                                                                // Line 37
+	echo T_("With custom text");                                                      // Line 61
+	echo T_("HI");                                                                    // Line 68
+	echo T_("BYE");                                                                   // Line 68
+	echo T_("With more detail");                                                      // Line 78
+	echo T_("Subscribe to our newsletter");                                           // Line 82
 
 	//------------------------------------addons\content_cp\sample\template\clock.html
 	echo T_("ClockPicker");                                                           // Line 7
@@ -137,9 +154,14 @@ private function transtext()
 	echo T_("A simple and full feature crop for avatar or something else!");          // Line 8
 	echo T_("Example");                                                               // Line 13
 	echo T_("Crop image in modal");                                                   // Line 101
-	echo T_("Crop your avatar");                                                      // Line 136
+	echo T_("Crop your avatar");                                                      // Line 170
 	echo T_("Cancel");                                                                // Line 90 Seperate
-	echo T_("Crop");                                                                  // Line 143
+	echo T_("Crop");                                                                  // Line 177
+
+	//---------------------------------addons\content_cp\sample\template\datalist.html
+	echo T_("Datalist");                                                              // Line 7
+	echo T_("Datalist element of HTML5 forms is pretty cool!");                       // Line 8
+	echo T_("Full width");                                                            // Line 20
 
 	//-------------------------------------addons\content_cp\sample\template\date.html
 	echo T_("Date Picker");                                                           // Line 7
@@ -199,9 +221,30 @@ private function transtext()
 	echo T_("Meter");                                                                 // Line 39
 	echo T_("Use the meter element to measure data within a given range");            // Line 40
 
+	//------------------------------------addons\content_cp\sample\template\radio.html
+	echo T_("Radio");                                                                 // Line 7
+	echo T_("Easily use our simple radio");                                           // Line 8
+	echo T_("Radio type 1");                                                          // Line 13
+	echo T_("Default behaviour");                                                     // Line 16
+	echo T_("Radio1");                                                                // Line 23
+	echo T_("Male");                                                                  // Line 26
+	echo T_("Female");                                                                // Line 30
+	echo T_("None");                                                                  // Line 34
+	echo T_("Colored Radio1");                                                        // Line 39
+
 	//------------------------------------addons\content_cp\sample\template\reset.html
 	echo T_("CSS Reset");                                                             // Line 7
 	echo T_("Reset, a collection of element-specific CSS changes in a single file, kickstart Siftal to provide an elegant, consistent, and simple baseline to build upon.");// Line 8
+
+	//-----------------------------------addons\content_cp\sample\template\select.html
+	echo T_("Select");                                                                // Line 81
+	echo T_("Easily change default select style to simple and clean Siftal design");  // Line 8
+	echo T_("Sarshomar");                                                             // Line 27
+	echo T_("Tejarak");                                                               // Line 28
+	echo T_("Azvir");                                                                 // Line 29
+	echo T_("Talambar");                                                              // Line 30
+	echo T_("Jibres");                                                                // Line 31
+	echo T_("Multiple");                                                              // Line 25
 
 	//------------------------------------addons\content_cp\sample\template\table.html
 	echo T_("Tables");                                                                // Line 7
@@ -739,7 +782,6 @@ private function transtext()
 	echo T_("yazd");                                                                  // Line 432 Seperate
 
 	//------------------------------------------------addons\includes\macro\forms.html
-	echo T_("Select");                                                                // Line 81
 
 	//-------------------------------------------addons\includes\mvc\display-dash.html
 	echo T_("Edit your profile");                                                     // Line 27
