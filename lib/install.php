@@ -32,7 +32,13 @@ if(isset($_POST['username']) && isset($_POST['password']))
 					'mobile'     => $mobile,
 					'permission' => 'admin',
 				];
-				\lib\db\users::insert($add_user);
+
+				$check_exist = \lib\db\users::get(array_merge($add_user, ['limit' => 1]));
+
+				if(!$check_exist)
+				{
+					\lib\db\users::insert($add_user);
+				}
 			}
 		}
 

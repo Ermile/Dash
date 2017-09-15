@@ -132,10 +132,10 @@ trait user_check_args
 		}
 
 		$type  = utility::request('type');
-		if($type && !in_array($type, ['teacher','student','manager','deputy','janitor','organizer','sponsor']))
+		if($type && mb_strlen($type) > 50)
 		{
 			if($_args['save_log']) logs::set('addon:api:teacher:type:max:length', $this->user_id, $log_meta);
-			if($_args['debug']) debug::error(T_("Invalid type of teacher"), 'type', 'arguments');
+			if($_args['debug']) debug::error(T_("You must set the type less than 50 character"), 'type', 'arguments');
 			return false;
 		}
 
