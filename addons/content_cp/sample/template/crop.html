@@ -122,7 +122,7 @@
 
 
 
-  <div class="example cropper">
+  <div class="example cropper" data-img='.modal img'>
     <p>complete example of crop in modal and show preview after that</p>
     <div class="f">
       <div class="input preview pTB10">
@@ -131,7 +131,7 @@
       </div>
     </div>
 
-    <div class=modal fs14' id='cropperModal2'>
+    <div class='modal fs14' id='cropperModal2'>
      <div class='modal-dialog'>
       <h3 class='modal-title'>{%trans "Crop your avatar"%}</h3>
       <div class='modal-body'>
@@ -152,6 +152,39 @@
 
   </div>
 
+
+
+  <div class="example cropper" data-img='.modal img'>
+    <p>complete example of crop in modal and show preview after that with default image</p>
+    <div class="f">
+      <div class="input preview pTB10">
+        <input type="file" accept="image/gif, image/jpeg, image/png" id="anyfile2" data-crop='cropperModal3'>
+        <label for="anyfile2" title="Simple Title">
+          {{block('sampleImg')}}
+        </label>
+      </div>
+    </div>
+
+    <div class='modal fs14' id='cropperModal3'>
+     <div class='modal-dialog'>
+      <h3 class='modal-title'>{%trans "Crop your avatar"%}</h3>
+      <div class='modal-body'>
+       {{block('sampleImg')}}
+      </div>
+      <div class="modal-footer f">
+        <div class="c">
+         <div class="btn sf-trash secondary" data-cancel>{%trans "Cancel"%}</div>
+         <div class="btn sf-check primary" data-ok>{%trans "Crop"%}</div>
+        </div>
+        <div class="os">
+          <div class="btn sf-undo" data-func='rotate_-90'></div>
+          <div class="btn sf-repeat" data-func='rotate_90'></div>
+        </div>
+      </div>
+     </div>
+    </div>
+
+  </div>
 
 
 
