@@ -22,7 +22,28 @@ class permission
 			{
 				require_once('../permission.php');
 			}
+			// cp perm list
+			self::$perm_list[1]  = ['caller' => 'upload_1000_mb', 'title' => T_("upload_1000_mb"), 'cat' => 'cp'];
+			self::$perm_list[2]  = ['caller' => 'upload_100_mb', 'title' => T_("upload_100_mb"), 'cat' => 'cp'];
+			self::$perm_list[3]  = ['caller' => 'upload_10_mb', 'title' => T_("upload_10_mb"), 'cat' => 'cp'];
+			self::$perm_list[4]  = ['caller' => 'admin:admin:view', 'title' => T_("admin:admin:view"), 'cat' => 'cp'];
+			self::$perm_list[5]  = ['caller' => 'cp', 'title' => T_("cp"), 'cat' => 'cp'];
+			self::$perm_list[6]  = ['caller' => 'cp:transaction:invoicedetails', 'title' => T_("cp:transaction:invoicedetails"), 'cat' => 'cp'];
+			self::$perm_list[7]  = ['caller' => 'cp:transaction:invoices', 'title' => T_("cp:transaction:invoices"), 'cat' => 'cp'];
+			self::$perm_list[8]  = ['caller' => 'cp:transaction:logs', 'title' => T_("cp:transaction:logs"), 'cat' => 'cp'];
+			self::$perm_list[9]  = ['caller' => 'cp:transaction:notifications', 'title' => T_("cp:transaction:notifications"), 'cat' => 'cp'];
+			self::$perm_list[10] = ['caller' => 'cp:permission:add', 'title' => T_("cp:permission:add"), 'cat' => 'cp'];
+			self::$perm_list[11] = ['caller' => 'cp:transaction:add', 'title' => T_("cp:transaction:add"), 'cat' => 'cp'];
+			self::$perm_list[12] = ['caller' => 'cp:transaction', 'title' => T_("cp:transaction"), 'cat' => 'cp'];
+			self::$perm_list[13] = ['caller' => 'cp:user:add', 'title' => T_("cp:user:add"), 'cat' => 'cp'];
+			self::$perm_list[14] = ['caller' => 'cp:user', 'title' => T_("cp:user"), 'cat' => 'cp'];
+			self::$perm_list[15] = ['caller' => 'cp:user:detail', 'title' => T_("cp:user:detail"), 'cat' => 'cp'];
+			self::$perm_list[16] = ['caller' => 'cp:user:edit', 'title' => T_("cp:user:edit"), 'cat' => 'cp'];
+			self::$perm_list[17] = ['caller' => 'enter:another:session', 'title' => T_("enter:another:session"), 'cat' => 'cp'];
+			// self::$perm_list[200] = ['caller' => '....', 'title' => T_("..."), 'cat' => 'cp'];
 		}
+
+
 
 		if(!self::$user_id && isset($_SESSION['user']['id']) && is_numeric($_SESSION['user']['id']))
 		{

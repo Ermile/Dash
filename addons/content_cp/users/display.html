@@ -30,6 +30,7 @@
 		<th>{%trans "Edit"%}</th>
 		<th>{%trans "Logs"%}</th>
 		<th>{%trans "Transactions"%}</th>
+		<th>{%trans "Permission"%}</th>
 
 	</thead>
 	<tbody>
@@ -54,6 +55,7 @@
 			<td><a href='{{url.base}}/cp/users/edit/{{user_code}}'><span class="sf-edit-write"></span></a></td>
 			<td><a href='{{url.base}}/cp/logs/sort=id/order=desc/user_id={{user_code}}'><span class="sf-archive"></span></a></td>
 			<td><a href='{{url.base}}/cp/transactions/sort=id/order=desc/user_id={{user_code}}'><span class="sf-credit-card"></span></a></td>
+			<td><a href='{{url.base}}/cp/permission/{{user_code}}'><span class="sf-flag-o"></span></a></td>
 		</tr>
 		{%endfor%}
 
