@@ -15,14 +15,81 @@
   <div class="example">
    <h4>{%trans "Normal"%}</h4>
 
-
    <div class="check1">
     <input type="checkbox" id="sChk1">
-    <label for="sChk1">{%trans "Show users avatars"%}</label>
+    <label for="sChk1">{%trans "Check1 Sample1"%}</label>
    </div>
 
+   <div class="check1">
+    <input type="checkbox" id="sChk2">
+    <label for="sChk2">{%trans "Check1 Sample2"%}</label>
+   </div>
+
+   <div class="check1">
+    <input type="checkbox" id="sChk3">
+    <label for="sChk3">{%trans "Check1 Sample3"%}</label>
+   </div>
 
   </div>
+</div>
+
+<div class="cbox">
+  <h3>{%trans "Switch"%}</h3>
+
+  <div class="example">
+    <h4>{%trans "Normal"%}</h4>
+    <div class="switch1">
+     <input type="checkbox" name="switch1" id="switch1">
+     <label for="switch1">aaa</label>
+    </div>
+    <div class="switch1">
+     <input type="checkbox" name="switch2" id="switch2" checked>
+     <label for="switch2"></label>
+    </div>
+
+    <div class="switch1">
+     <input type="checkbox" name="switch3" id="switch3">
+     <label for="switch3"></label>
+    </div>
+    <div class="switch1">
+     <input type="checkbox" name="switch4" id="switch4" checked>
+     <label for="switch4"></label>
+    </div>
+  </div>
+
+  <div class="example">
+    <h4>{%trans "With custom text"%}</h4>
+    <div class="switch1">
+     <input type="checkbox" name="switch5" id="switch5">
+     <label for="switch5" data-on='{%trans "HI"%}' data-off='{%trans "BYE"%}'></label>
+    </div>
+    <div class="switch1">
+     <input type="checkbox" name="switch6" id="switch6" checked>
+     <label for="switch6" data-on='{%trans "HI"%}' data-off='{%trans "BYE"%}'></label>
+    </div>
+
+    <div class="switch1">
+     <input type="checkbox" name="switch7" id="switch7">
+     <label for="switch7" data-on='' data-off=''></label>
+    </div>
+  </div>
+
+  <div class="example">
+    <h4>{%trans "With more detail"%}</h4>
+      <div class="switch1">
+       <input type="checkbox" name="switch11" id="switch11">
+       <label for="switch11"></label>
+       <label for="switch11">{%trans "Subscribe to our newsletter" %}</label>
+      </div>
+
+      <div class="switch1">
+       <input type="checkbox" name="switch12" id="switch12">
+       <label for="switch12" data-on='{%trans "YES"%}' data-off='{%trans "NO!"%}'></label>
+       <label for="switch12">{%trans "Are you like Siftal?" %}</label>
+      </div>
+
+  </div>
+
 </div>
 
 
