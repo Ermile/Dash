@@ -13,7 +13,7 @@
  <main id='main'>
 {%block headerBox%}  <header id='header' class='f'>{{block ('header')}}  </header>{%endblock%}
 {%block contentBox%}  <div id='content' class='scr' data-xhr='content'>{{block ('content')}}  </div>{%endblock%}
-{%block footerBox%}  <footer id='footer' class='flex'>{{block ('footer')}}  </footer>{%endblock%}
+{%block footerBox%}  <footer id='footer' class='f'>{{block ('footer')}}  </footer>{%endblock%}
  </main>
 {%endblock%}
 
@@ -69,8 +69,8 @@
 
 {%block footer%}
 
-   <div class="c8" tabindex='-1' data-step='4' data-intro='{%trans "View your current location and navigate to parent of it"%}' data-position='top'><nav data-xhr="breadcrumb" class="breadcrumb">{{breadcrumb() | raw}}</nav></div>
-   <div id='copyright'>
+   <div class="c8 s0" tabindex='-1' data-step='4' data-intro='{%trans "View your current location and navigate to parent of it"%}' data-position='top'><nav data-xhr="breadcrumb" class="breadcrumb">{{breadcrumb() | raw}}</nav></div>
+   <div class="cauto os s12" id='copyright'>
 {%block copyright%}{%endblock%}
    </div>
 {%endblock%}
