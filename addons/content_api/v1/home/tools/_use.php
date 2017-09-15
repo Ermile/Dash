@@ -21,5 +21,11 @@ trait _use
 
 	use \addons\content_api\v1\ref\tools\get;
 
+
+	use \addons\content_api\v1\invoice\tools\add;
+	use \addons\content_api\v1\invoice\tools\get;
+
+	use \addons\content_api\v1\notification\tools\add;
+
 }
 ?>
