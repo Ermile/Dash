@@ -16,6 +16,7 @@
     {{block('buttons')}}
     {{block('messages')}}
     {{block('input')}}
+    {{block('datalist')}}
     {{block('progress')}}
     {{block('badge')}}
 
@@ -27,6 +28,7 @@
     {{block('clock')}}
     {{block('txt')}}
     {{block('checkbox')}}
+    {{block('radio')}}
 
   </div>
 
@@ -308,3 +310,43 @@
 {%endblock%}
 
 
+{%block datalist%}
+<div class="pA10">
+  <h3><a href='sample/datalist'>Datalist</a></h3>
+    <div class="input">
+      <input type="text" list="states" placeholder="Find Iran State">
+    </div>
+
+    <datalist id="states">
+      <option value="Qom">
+      <option value="Tehran">
+    </datalist>
+</div>
+{%endblock%}
+
+
+{%block radio%}
+<div class="pA10">
+  <h3><a href='sample/radio'>Radio</a></h3>
+   <div class="radio1">
+    <input type="radio" name="colors" id="sRdc1">
+    <label for="sRdc1">{%trans "Blue"%} ({%trans "Default"%})</label>
+   </div>
+   <div class="radio1 red">
+    <input type="radio" name="colors" id="sRdc2" checked>
+    <label for="sRdc2">{%trans "Red"%}</label>
+   </div>
+   <div class="radio1 yellow">
+    <input type="radio" name="colors" id="sRdc3">
+    <label for="sRdc3">{%trans "Yellow"%}</label>
+   </div>
+   <div class="radio1 green">
+    <input type="radio" name="colors" id="sRdc4">
+    <label for="sRdc4">{%trans "Green"%}</label>
+   </div>
+   <div class="radio1 black">
+    <input type="radio" name="colors" id="sRdc5">
+    <label for="sRdc5">{%trans "Black"%}</label>
+   </div>
+</div>
+{%endblock%}
