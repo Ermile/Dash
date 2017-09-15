@@ -1,0 +1,41 @@
+{%extends display.cpMain%}
+
+
+{%block content%}
+
+<div class="tbox">
+  <h2>{%trans "Datalist"%}</h2>
+  <p>{%trans "Datalist element of HTML5 forms is pretty cool!"%}</p>
+</div>
+
+
+<div class="cbox">
+  <h3>{%trans "Simple Examples"%}</h3>
+
+  <div class="example">
+   <h4>{%trans "Normal"%}</h4>
+
+    <input type="text" list="states" placeholder="Find U.S. State" class="input">
+
+   <h4>{%trans "Full width"%}</h4>
+    <div class="input">
+      <input type="text" list="states" placeholder="Find U.S. State 2">
+    </div>
+
+    <datalist id="states">
+      <option value="Alabama">
+      <option value="Alaska">
+      <!-- All the other states -->
+    </datalist>
+
+  </div>
+</div>
+
+
+</div>
+
+
+
+
+{%endblock%}
+
