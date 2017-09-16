@@ -36,6 +36,12 @@ class shortURL
 		{
 			$_alphabet = self::ALPHABET;
 		}
+
+		if(!is_numeric($_num))
+		{
+			return false;
+		}
+
 		$lenght = mb_strlen($_alphabet);
 
 		$str = '';

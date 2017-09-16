@@ -1,0 +1,34 @@
+{%extends display.suMain%}
+
+
+{%block content%}
+<div class="tbox">
+  {%trans "Test shortURL function"%}
+</div>
+
+<div class="cbox">
+  <form method="get" data-action>
+    <div class="input ltr">
+      <label class="addon">{%trans "String or Number"%}</label>
+      <input type="text" name="val" value="{{utilityGET.val}}" >
+
+      <button type="submit" class=" btn primary" >{%trans "Run"%}</button>
+
+    </div>
+  </form>
+</div>
+{%if val_encode or val_decode%}
+<div class="cbox">
+  <div class="f">
+    <div class="c">
+      <p class="fs20">{%trans "Encode"%}</p>
+      <h2 class="fs100">{{val_encode}}</h2>
+    </div>
+    <div class="c">
+      <p class="fs20">{%trans "Decode"%}</p>
+      <h2 class="fs100">{{val_decode}}</h2>
+    </div>
+  </div>
+</div>
+{%endif%}
+{%endblock%}
