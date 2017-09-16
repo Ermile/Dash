@@ -1,0 +1,20 @@
+{%extends display.suMain%}
+
+
+{%block content%}
+  <p class="alert alert-info">{%trans "You can use our tools"%}. {%trans "If you dont know about this page, leave it!"%}</p>
+
+ <div class="dbox">
+
+  <h2 class="title">{%trans "Special tools"%}</h2>
+  <div class="btns">
+   <a target='_blank' href="{{url.baseFull}}/tools/sitemap">{%trans "Sitemap"%}</a>
+   <a target='_blank' href="{{url.baseFull}}/tools/info">{%trans "Server information"%}</a>
+   <a target='_blank' href="{{url.baseFull}}/tools/log">{%trans "Log"%}</a>
+   <a target='_blank' href="{{url.baseFull}}/tools/translation">{%trans "Translation tools"%}</a>
+   <a target='_blank' href="{{url.baseFull}}/tools/update" class="warn">{%trans "Update"%}</a>
+
+  </div>
+ </div>
+{%endblock%}
+

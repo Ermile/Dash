@@ -223,7 +223,7 @@ class router
 		$mysub_valid         = null;
 
 		// list of addons exist in dash,
-		$dash_addons         = [ 'cp', 'enter', 'api'];
+		$dash_addons         = [ 'cp', 'enter', 'api', 'su'];
 
 		// set repository name
 		$myrep    = 'content_'.$mysub;

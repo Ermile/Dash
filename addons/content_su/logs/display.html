@@ -1,0 +1,62 @@
+{%extends display.suMain%}
+
+
+{%block content%}
+ <form method="get" class="df f" data-action>
+	<div class="c10">
+		<label for="search">{%trans "Search"%}</label>
+		<input type="text" name="search" class="c1" id="search" value='{{get_search}}' >
+	</div>
+
+	<div class="c1">
+		<label>‌</label>
+		<input type="submit"  class="c1 b1"  value='{%trans "Search"%}'>
+	</div>
+</form>
+<br>
+
+<div class="dt big">
+	<div class="f th">
+		<div class="c1"><a href="{{url.base}}/su/logs/{{order_url.id}}">{%trans "ID"%}</a></div>
+		<div class="c"><a href="{{url.base}}/su/logs/{{order_url.logitem_id}}">{%trans "Log item id"%}</a></div>
+		<div class="c"><a href="{{url.base}}/su/logs/{{order_url.type}}">{%trans "Type"%}</a></div>
+		<div class="c"><a href="{{url.base}}/su/logs/{{order_url.caller}}">{%trans "Caller"%}</a></div>
+		<div class="c"><a href="{{url.base}}/su/logs/{{order_url.title}}">{%trans "Title"%}</a></div>
+		<div class="c"><a href="{{url.base}}/su/logs/{{order_url.priority}}">{%trans "Priority"%}</a></div>
+		<div class="c"><a href="{{url.base}}/su/logs/{{order_url.user_id}}">{%trans "User_id"%}</a></div>
+		<div class="c"><a href="{{url.base}}/su/logs/{{order_url.data}}">{%trans "Data"%}</a></div>
+		<div class="c"><a href="{{url.base}}/su/logs/{{order_url.status}}">{%trans "Status"%}</a></div>
+		<div class="c"><a href="{{url.base}}/su/logs/{{order_url.createdate}}">{%trans "createdate"%}</a></div>
+		<!-- <div class="c0">{%trans "Meta"%}</div> -->
+
+	</div>
+	{%for key, value in logs_list%}
+	<div class="f">
+		<div class="c1"><a href="{{url.base}}/su/logs/id={{value.id}}">{{value.id}}</a></div>
+		<div class="c">{{value.logitem_id}}</div>
+		<div class="c">{{value.type}}</div>
+		<div class="c"><a href="{{url.base}}/su/logs/caller={{value.caller}}">{{value.caller}}</a></div>
+		<div class="c">{{value.title}}</div>
+		<div class="c">{{value.priority}}</div>
+		<div class="c">{{value.user_id}}</div>
+		<div class="c">{{value.data}}</div>
+		<div class="c">{{value.status}}</div>
+		<div class="c">{{value.createdate}}</div>
+		<!-- <div class="modal-body log-modal c" >
+            <code class="json ltr">
+            {% if value.meta is iterable %}
+                {{value.meta|json_encode(constant('JSON_UNESCAPED_UNICODE'))}}
+            {%else%}
+                {{value.meta}}
+            {%endif%}
+            </code>
+        </div> -->
+	</div>
+	{%endfor%}
+</div>
+<div class="pagination-container">
+	{%include display.pagination%}
+</div>
+
+
+{%endblock%}

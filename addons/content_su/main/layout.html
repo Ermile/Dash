@@ -1,0 +1,27 @@
+{%extends display.dash%}
+
+
+
+{%block sidenav%}
+    <li><a href="{{url.base}}/su"><i class='sf-gauge'></i> <span>{% trans "Dashboard" %}</span></a></li>
+    <li><a href="{{url.base}}/su/tools"><i class='sf-gavel'></i> <span>{% trans "Tools" %}</span></a></li>
+    <li><a href="{{url.base}}/su/transactions"><i class='sf-credit-card'></i> <span>{% trans "Transactions" %}</span></a></li>
+    <li><a href="{{url.base}}/su/logs"><i class='sf-archive'></i> <span>{% trans "Logs" %}</span></a></li>
+    <li><a href="{{url.base}}/su/users"><i class='sf-users'></i> <span>{% trans "Users" %}</span></a></li>
+    <li><a href="{{url.base}}/su/notifications"><i class='sf-list'></i> <span>{% trans "Notifications" %}</span></a></li>
+
+{%if url.tld == 'dev' %}
+    <li><a href="{{url.base}}/su/sample"><i class='sf-grid'></i> <span>{% trans "Sample Design" %}</span></a></li>
+{%endif%}
+
+{%endblock%}
+
+
+
+{%block copyright%}
+{%set versionHint%}
+{%if dash.lastUpdate%}data-hint='{%trans "Last update on"%} {{dash.lastUpdate | tdate}}'{%else%}data-hint='{%trans "wait for next version!"%}'{%endif%}
+{%endset%}
+    <span>{%trans "Powered by"%} <a href='https://ermile.com/dash' target="_blank" title='{%trans "Some right reserved"%}' tabindex='-1'>{%trans "Ermile"%}</a></span> | <abbr class="hint--left" {{versionHint}}>{%trans "Version"%} {{dash.version | fitNumber}}</abbr>
+{%endblock%}
+

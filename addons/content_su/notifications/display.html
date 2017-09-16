@@ -1,0 +1,71 @@
+{%extends display.suMain%}
+
+
+{%block content%}
+ <form method="get" class="df f" data-action>
+	<div class="c10">
+		<label for="search">{%trans "Search"%}</label>
+		<input type="text" name="search" class="c1" id="search" value='{{get_search}}' >
+	</div>
+
+	<div class="c1">
+		<label>‌</label>
+		<input type="submit"  class="c1 b1"  value='{%trans "Search"%}'>
+	</div>
+</form>
+<br>
+
+
+
+<div class="dt big">
+	<div class="f th">
+		<div class="c"><a href="{{url.base}}/su/notifications/{{order_url.id}}">{%trans "id"%}</a></div>
+		<div class="c"><a href="{{url.base}}/su/notifications/{{order_url.user_id}}">{%trans "user_id"%}</a></div>
+		<div class="c"><a href="{{url.base}}/su/notifications/{{order_url.user_idsender}}">{%trans "user_idsender"%}</a></div>
+		<div class="c"><a href="{{url.base}}/su/notifications/{{order_url.title}}">{%trans "title"%}</a></div>
+		<div class="c"><a href="{{url.base}}/su/notifications/{{order_url.content}}">{%trans "content"%}</a></div>
+		<div class="c"><a href="{{url.base}}/su/notifications/{{order_url.url}}">{%trans "url"%}</a></div>
+		<div class="c"><a href="{{url.base}}/su/notifications/{{order_url.read}}">{%trans "read"%}</a></div>
+		<div class="c"><a href="{{url.base}}/su/notifications/{{order_url.star}}">{%trans "star"%}</a></div>
+		<div class="c"><a href="{{url.base}}/su/notifications/{{order_url.status}}">{%trans "status"%}</a></div>
+		<div class="c"><a href="{{url.base}}/su/notifications/{{order_url.category}}">{%trans "category"%}</a></div>
+		<div class="c"><a href="{{url.base}}/su/notifications/{{order_url.createdate}}">{%trans "createdate"%}</a></div>
+		<div class="c"><a href="{{url.base}}/su/notifications/{{order_url.senddate}}">{%trans "senddate"%}</a></div>
+		<div class="c"><a href="{{url.base}}/su/notifications/{{order_url.deliverdate}}">{%trans "deliverdate"%}</a></div>
+		<div class="c"><a href="{{url.base}}/su/notifications/{{order_url.expiredate}}">{%trans "expiredate"%}</a></div>
+		<div class="c"><a href="{{url.base}}/su/notifications/{{order_url.readdate}}">{%trans "readdate"%}</a></div>
+		<div class="c"><a href="{{url.base}}/su/notifications/{{order_url.gateway}}">{%trans "gateway"%}</a></div>
+		<div class="c"><a href="{{url.base}}/su/notifications/{{order_url.auto}}">{%trans "auto"%}</a></div>
+		<div class="c"><a href="{{url.base}}/su/notifications/{{order_url.datemodified}}">{%trans "datemodified"%}</a></div>
+		<div class="c"><a href="{{url.base}}/su/notifications/{{order_url.desc}}">{%trans "desc"%}</a></div>
+	</div>
+	{%for key, value in notifications_list%}
+	<div class="f">
+		<div class="c">{{value.id}}</div>
+		<div class="c">{{value.user_id}}</div>
+		<div class="c">{{value.user_idsender}}</div>
+		<div class="c">{{value.title}}</div>
+		<div class="c">{{value.content}}</div>
+		<div class="c">{{value.url}}</div>
+		<div class="c">{{value.read}}</div>
+		<div class="c">{{value.star}}</div>
+		<div class="c">{{value.status}}</div>
+		<div class="c">{{value.category}}</div>
+		<div class="c">{{value.createdate}}</div>
+		<div class="c">{{value.senddate}}</div>
+		<div class="c">{{value.deliverdate}}</div>
+		<div class="c">{{value.expiredate}}</div>
+		<div class="c">{{value.readdate}}</div>
+		<div class="c">{{value.gateway}}</div>
+		<div class="c">{{value.auto}}</div>
+		<div class="c">{{value.datemodified}}</div>
+		<div class="c">{{value.desc}}</div>
+	</div>
+	{%endfor%}
+</div>
+<div class="pagination-container">
+	{%include display.pagination%}
+</div>
+
+
+{%endblock%}

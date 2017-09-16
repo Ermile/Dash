@@ -1,0 +1,28 @@
+{%extends display.suMain%}
+
+
+{%block content%}
+<div class="tbox">
+	<h2>{%trans "User detail"%}</h2>
+</div>
+<div class="f">
+
+<div class="cbox c6">
+<table class="tbl">
+	<thead>
+	<th>{%trans "Key"%}</th>
+	<th>{%trans "Value"%}</th>
+	</thead>
+	<tbody>
+		{%for key, value in user_record%}
+			<tr>
+				<td>{%set myKey = key |capitalize%}{%trans key%}</td>
+				<td>{{value|fitNumber}}</td>
+			</tr>
+		{%endfor%}
+	</tbody>
+</table>
+</div>
+</div>
+
+{%endblock%}

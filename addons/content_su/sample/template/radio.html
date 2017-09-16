@@ -1,0 +1,71 @@
+{%extends display.suMain%}
+
+
+{%block content%}
+
+<div class="tbox">
+  <h2>{%trans "Radio"%}</h2>
+  <p>{%trans "Easily use our simple radio"%}</p>
+</div>
+
+
+<div class="cbox">
+  <h3>{%trans "Radio type 1"%}</h3>
+
+  <div class="example">
+   <h4>{%trans "Default behaviour"%}</h4>
+   <input type="radio" name="gender0" value="male" checked> Male<br>
+   <input type="radio" name="gender0" value="female"> Female<br>
+   <input type="radio" name="gender0" value="other"> Other
+  </div>
+
+  <div class="example">
+   <h4>{%trans "Radio1"%}</h4>
+   <div class="radio1">
+    <input type="radio" name="gender" value="male" id="sRd1">
+    <label for="sRd1">{%trans "Male"%}</label>
+   </div>
+   <div class="radio1">
+    <input type="radio" name="gender" value="female" id="sRd2">
+    <label for="sRd2">{%trans "Female"%}</label>
+   </div>
+   <div class="radio1">
+    <input type="radio" name="gender" value="none" id="sRd3">
+    <label for="sRd3">{%trans "None"%}</label>
+   </div>
+  </div>
+
+  <div class="example">
+   <h4>{%trans "Colored Radio1"%}</h4>
+   <div class="radio1">
+    <input type="radio" name="colors" id="sRdc1">
+    <label for="sRdc1">{%trans "Blue"%} ({%trans "Default"%})</label>
+   </div>
+   <div class="radio1 red">
+    <input type="radio" name="colors" id="sRdc2" checked>
+    <label for="sRdc2">{%trans "Red"%}</label>
+   </div>
+   <div class="radio1 yellow">
+    <input type="radio" name="colors" id="sRdc3">
+    <label for="sRdc3">{%trans "Yellow"%}</label>
+   </div>
+   <div class="radio1 green">
+    <input type="radio" name="colors" id="sRdc4">
+    <label for="sRdc4">{%trans "Green"%}</label>
+   </div>
+   <div class="radio1 black">
+    <input type="radio" name="colors" id="sRdc5">
+    <label for="sRdc5">{%trans "Black"%}</label>
+   </div>
+  </div>
+
+</div>
+
+
+</div>
+
+
+
+
+{%endblock%}
+
