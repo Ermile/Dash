@@ -3,6 +3,53 @@
 
 {%block content%}
 
+
+<div class="f">
+ <div class="c4 s12 pA10">
+  <div class="cbox">
+   <div class="f">
+   	<h5 class="c6 fc-mute">{%trans "Client"%}</h5>
+   	<h4 class="c6 fc-danger fs30 txtr counter">{{80 | number_format}}</h4>
+   </div>
+   <div class="f">
+   <div class="progress" data-percent='45'>
+    <div class="bar"></div>
+   </div>
+   </div>
+  </div>
+ </div>
+ <div class="c4 s12 pA10">
+  <div class="cbox">
+   <div class="f">
+   	<h5 class="c6 fc-mute">{%trans "User"%}</h5>
+   	<h4 class="c6 fc-warn fs30 txtr counter">{{1530 | number_format}}</h4>
+   </div>
+   <div class="f">
+   <div class="progress" data-percent='85'>
+    <div class="bar"></div>
+   </div>
+   </div>
+  </div>
+ </div>
+ <div class="c4 s12 pA10">
+  <div class="cbox">
+   <div class="f">
+   	<h5 class="c6 fc-mute">{%trans "Invoice"%}</h5>
+   	<h4 class="c6 fc-info fs30 txtr counter">{{26 | number_format}}</h4>
+   </div>
+   <div class="f">
+   <div class="progress" data-percent='15'>
+    <div class="bar"></div>
+   </div>
+   </div>
+  </div>
+ </div>
+</div>
+
+<div class="cbox">
+Chart
+</div>
+
 <span>Dashboard!</span>
 Fill it...
 
