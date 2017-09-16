@@ -42,15 +42,12 @@ class define
 			{
 				define('DEBUG', true);
 			}
-			elseif(Tld === 'dev')
-			{
-				define('DEBUG', true);
-			}
 			else
 			{
 				define('DEBUG', false);
 			}
 		}
+
 		if (DEBUG)
 		{
 			ini_set('display_errors'        , 'On');

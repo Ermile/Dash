@@ -16,7 +16,7 @@ trait connect
 	public static $db_host      = 'localhost';
 	public static $db_charset   = 'utf8mb4'; //'utf8';
 	public static $db_lang      = 'fa_IR';
-	public static $debug_error  = true;
+	public static $debug_error  = false;
 
 
 	/**
