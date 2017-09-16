@@ -1,7 +1,7 @@
 <?php
 namespace addons\content_su\tools\log;
 
-class controller extends \addons\content_su\home\controller
+class controller extends \addons\content_su\main\controller
 {
 	public function _route()
 	{
@@ -14,7 +14,6 @@ class controller extends \addons\content_su\home\controller
 
 	public function showLog()
 	{
-		parent::_permission('su', 'tools', 'view');
 		$exist      = true;
 		$output     = '<html>';
 		$name       = \lib\utility::get('name');

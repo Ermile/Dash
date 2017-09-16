@@ -3,7 +3,7 @@ namespace addons\content_su\permission;
 
 use \lib\utility;
 use \lib\debug;
-class model extends \mvc\model
+class model extends \addons\content_su\main\model
 {
 	public function permission_list($_args, $_fields = [])
 	{

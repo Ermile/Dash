@@ -1,14 +1,12 @@
 <?php
 namespace addons\content_su\sample;
 
-class controller extends \addons\content_su\home\controller
+class controller extends \addons\content_su\main\controller
 {
 
 	function _route()
 	{
-		// $this->get()->all();
-		// check permission to access to su
-		parent::_permission('su');
+		parent::_route();
 
 		$addr = \lib\router::get_url(1);
 

@@ -1,15 +1,15 @@
 <?php
 namespace addons\content_su\transactions\add;
 
-class controller extends \mvc\controller
+class controller extends \addons\content_su\transactions\controller
 {
 	public function _route()
 	{
-		\lib\permission::access('su:transaction:add', 'block');
+		parent::_route();
 
 		$this->get(false, "add")->ALL();
 
-		$this->get("load", "add")->ALL("/transactions\/add\/transactions\=(\d+)/");
+		$this->get(false, "add")->ALL("/transactions\/add\/transactions\=(\d+)/");
 
 		$this->post('add')->ALL();
 		$this->post('add')->ALL("/transactions\/add\/transactions\=(\d+)/");

@@ -1,7 +1,7 @@
 <?php
 namespace addons\content_su\transactions;
 
-class controller extends \mvc\controller
+class controller extends \addons\content_su\main\controller
 {
 	public $fields =
 	[
@@ -43,7 +43,7 @@ class controller extends \mvc\controller
 	public function _route()
 	{
 
-		\lib\permission::access('su:transaction', 'block');
+		parent::_route();
 
 		$property                 = [];
 

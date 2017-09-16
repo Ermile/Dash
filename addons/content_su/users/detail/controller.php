@@ -5,7 +5,7 @@ class controller extends \addons\content_su\main\controller
 {
 	public function _route()
 	{
-		\lib\permission::access('su:user:detail', 'block');
+		parent::_route();
 
 		$this->get(false, "detail")->ALL();
 

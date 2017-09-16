@@ -1,13 +1,14 @@
 <?php
 namespace addons\content_su\transactions\add;
 
-class view extends \addons\content_su\main\view
+class view extends \addons\content_su\transactions\view
 {
 	public function view_add($_args)
 	{
-		if(isset($_args->api_callback))
+		$data = $this->model()->loadMyTransaction($_args);
+
+		if(isset($data))
 		{
-			$data = $_args->api_callback;
 			if(isset($data['user_id']))
 			{
 				$this->data->get_mobile = \lib\db\users::get_mobile($data['user_id']);

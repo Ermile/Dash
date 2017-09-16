@@ -1,9 +1,9 @@
 <?php
 namespace addons\content_su\invoices;
-
 use \lib\utility;
 use \lib\debug;
-class model extends \mvc\model
+
+class model extends \addons\content_su\main\model
 {
 	public function invoices_list($_args, $_fields = [])
 	{
@@ -25,7 +25,7 @@ class model extends \mvc\model
 		}
 
 		$result = \lib\db\invoices::search($search, $meta);
-		// var_dump($result);exit();
+
 		return $result;
 	}
 }

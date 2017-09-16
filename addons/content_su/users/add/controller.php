@@ -1,11 +1,11 @@
 <?php
 namespace addons\content_su\users\add;
 
-class controller extends \mvc\controller
+class controller extends \addons\content_su\main\controller
 {
 	public function _route()
 	{
-		\lib\permission::access('su:user:add', 'block');
+		parent::_route();
 
 		$this->get(false, "add")->ALL();
 

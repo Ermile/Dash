@@ -3,7 +3,7 @@ namespace addons\content_su\users\detail;
 use \lib\utility;
 use \lib\debug;
 
-class model extends \mvc\model
+class model extends \addons\content_su\main\model
 {
 	public function get_load($_args)
 	{

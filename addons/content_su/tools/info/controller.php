@@ -1,18 +1,15 @@
 <?php
 namespace addons\content_su\tools\info;
 
-class controller extends \addons\content_su\home\controller
+class controller extends \addons\content_su\main\controller
 {
 	public function _route()
 	{
 		parent::_route();
-
 		$this->showInfo();
 		$this->get()->ALL();
-
-
-
 	}
+
 
 	function showInfo()
 	{

@@ -1,7 +1,7 @@
 <?php
 namespace addons\content_su\users;
 
-class controller extends \mvc\controller
+class controller extends \addons\content_su\main\controller
 {
 	public $fields =
 	[
@@ -23,9 +23,7 @@ class controller extends \mvc\controller
 
 	public function _route()
 	{
-
-		\lib\permission::access('su:user', 'block');
-
+		parent::_route();
 
 		$property                     = [];
 		foreach ($this->fields as $key => $value)

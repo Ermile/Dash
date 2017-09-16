@@ -1,34 +1,24 @@
 <?php
 namespace addons\content_su\tools;
 
-class controller extends \addons\content_su\home\controller
+class controller extends \addons\content_su\main\controller
 {
 	function _route()
 	{
-		// check permission to access to su
-		// if(Tld !== 'dev')
-		{
-			parent::_permission('su');
-		}
+		parent::_route();
 
-		// // Restrict unwanted module
-		// if(!$this->suModlueList())
-		// 	\lib\error::page(T_("Not found!"));
 		$exist    = false;
-		$mymodule = $this->suModule('table');
-		$suModule = $this->suModule('raw');
 
-		switch ($this->child())
+		$url_child = \lib\router::get_url(1);
+
+		switch ($url_child)
 		{
-			// case 'dbtables':
-			// 	parent::_permission('su', 'tools', 'admin');
-
-			// 	$exist    = true;
-			// 	echo \lib\utility\dbTables::create();
-			// 	break;
+			case 'dbtables':
+				// 	$exist    = true;
+				// 	echo \lib\utility\dbTables::create();
+				// 	break;
 
 			case 'db':
-				parent::_permission('su', 'tools', 'admin');
 
 				\lib\db::$link_open    = [];
 				\lib\db::$link_default = null;
@@ -80,25 +70,23 @@ class controller extends \addons\content_su\home\controller
 				break;
 
 
-
 			case 'twitter':
 				$a = \lib\utility\socialNetwork::twitter('hello! test #api');
 				// var_dump($a);
+				// exit();
 				break;
 
-
-			// case 'mergefiles':
-			// 	$exist = true;
-			// 	echo \lib\utility\tools::mergefiles('merged-project.php');
-			// 	if(\lib\utility::get('type') === 'all')
-			// 	{
-			// 		echo \lib\utility\tools::mergefiles('merged-lib.php', core.lib);
-			// 		echo \lib\utility\tools::mergefiles('merged-su.php', addons.'content_su/');
-			// 		echo \lib\utility\tools::mergefiles('merged-account.php', addons.'content_account/');
-			// 		echo \lib\utility\tools::mergefiles('merged-includes.php', addons.'includes/');
-			// 	}
-			// 	break;
-
+			case 'mergefiles':
+				// 	$exist = true;
+				// 	echo \lib\utility\tools::mergefiles('merged-project.php');
+				// 	if(\lib\utility::get('type') === 'all')
+				// 	{
+				// 		echo \lib\utility\tools::mergefiles('merged-lib.php', core.lib);
+				// 		echo \lib\utility\tools::mergefiles('merged-su.php', addons.'content_su/');
+				// 		echo \lib\utility\tools::mergefiles('merged-account.php', addons.'content_account/');
+				// 		echo \lib\utility\tools::mergefiles('merged-includes.php', addons.'includes/');
+				// 	}
+				// 	break;
 
 			case null:
 				$mypath = $this->url('path','_');
@@ -111,21 +99,14 @@ class controller extends \addons\content_su\home\controller
 
 			default:
 				// $this->display_name	= 'content_su/templates/static_tools.html';
-
 				return;
 				break;
 		}
-		// $this->display_name	= 'content_su/tools/raw.html';
 
-		// $this->get()->ALL();
 		if($exist)
 		{
 			$this->model()->_processor(object(array("force_json" => false, "force_stop" => true)));
 		}
-
-		return;
-
-
 	}
 }
 ?>

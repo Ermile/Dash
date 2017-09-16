@@ -1,7 +1,7 @@
 <?php
 namespace addons\content_su\tools\translation;
 
-class controller extends \addons\content_su\home\controller
+class controller extends \addons\content_su\main\controller
 {
 	public function _route()
 	{
@@ -13,7 +13,6 @@ class controller extends \addons\content_su\home\controller
 
 	function getUpdates()
 	{
-		parent::_permission('su', 'tools', 'admin');
 
 		$exist    = true;
 		$mypath   = \lib\utility::get('path');

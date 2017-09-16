@@ -8,7 +8,7 @@ class permission
 	public static $perm_list       = [];
 	public static $user_id         = null;
 	public static $caller          = null;
-	public static $permission = null;
+	public static $permission      = null;
 	public static $force_load_user = false;
 
 	/**
@@ -18,9 +18,9 @@ class permission
 	{
 		if(empty(self::$perm_list))
 		{
-			if(file_exists('../permission.php'))
+			if(file_exists(root.'/permission.php'))
 			{
-				require_once('../permission.php');
+				require_once(root.'/permission.php');
 			}
 			// cp perm list
 			self::$perm_list[1]  = ['caller' => 'upload_1000_mb', 'title' => T_("upload_1000_mb"), 'cat' => 'cp'];
@@ -140,7 +140,7 @@ class permission
 	 *
 	 * @param      <type>  $_caller  The caller
 	 */
-	private static function check($_caller)
+	private static function check($_caller, $_admin_su = 'admin')
 	{
 		// the user not found!
 		if(!self::$user_id)
@@ -150,7 +150,12 @@ class permission
 		// no permissin need in this project
 		if(empty(self::$perm_list))
 		{
-			return true;
+			// if need su permission must be check it
+			// never return true if need su and the user is not su!
+			if($_admin_su === 'admin')
+			{
+				return true;
+			}
 		}
 
 		self::caller($_caller);
@@ -170,8 +175,24 @@ class permission
 			}
 			// and verify users !
 		}
+
+		// if need check su
+		if($_admin_su === 'su')
+		{
+			// only supervisor can load this mudole
+			if(self::$permission === 'supervisor')
+			{
+				return true;
+			}
+			else
+			{
+				// never return true if need su and the user is not su!
+				return false;
+			}
+		}
+
 		// admin use -f!
-		if(self::$permission === 'admin')
+		if(self::$permission === 'admin' || self::$permission === 'supervisor')
 		{
 			return true;
 		}
@@ -213,7 +234,36 @@ class permission
 	 */
 	public static function list($_group = null)
 	{
+		self::_construct();
 		return self::$perm_list;
+	}
+
+
+	/**
+	 * ACCESS TO SU CONTENT
+	 * DANGER
+	 * JUST THE DEVELOPERS CAN SEE THIS CONTENT
+	 * NOT OTHER PEOPLE
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public static function access_su($_user_id = null)
+	{
+		// set the user id if user id send to this function and self::user_id not set
+		if($_user_id && is_numeric($_user_id) && !self::$user_id)
+		{
+			self::$user_id = $_user_id;
+		}
+
+		self::$force_load_user = true;
+
+		// load permission list and check session if self::$user_id not set
+		self::_construct();
+
+		// check permission
+		$permission_check = self::check('su', 'su');
+
+		return $permission_check;
 	}
 }
 ?>

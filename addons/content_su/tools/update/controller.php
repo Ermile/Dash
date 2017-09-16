@@ -1,20 +1,18 @@
 <?php
 namespace addons\content_su\tools\update;
 
-class controller extends \addons\content_su\home\controller
+class controller extends \addons\content_su\main\controller
 {
 	public function _route()
 	{
 		parent::_route();
-
 		$this->updateGitRepo();
 		$this->get()->ALL();
 	}
 
+
 	function updateGitRepo()
 	{
-		parent::_permission('su', 'tools', 'admin');
-
 		// declare variables
 		$exist    = true;
 		$rep      = null;

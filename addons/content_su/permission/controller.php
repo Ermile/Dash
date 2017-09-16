@@ -5,7 +5,7 @@ class controller extends \addons\content_su\main\controller
 {
 	public function _route()
 	{
-		\lib\permission::access('su:permission:add', 'block');
+		parent::_route();
 
 		if(\lib\router::get_url() === 'permission')
 		{

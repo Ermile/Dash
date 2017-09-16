@@ -1,11 +1,11 @@
 <?php
 namespace addons\content_su\users\edit;
 
-class controller extends \mvc\controller
+class controller extends \addons\content_su\main\controller
 {
 	public function _route()
 	{
-		\lib\permission::access('su:user:edit', 'block');
+		parent::_route();
 
 		$this->get(false, "edit")->ALL("/^users\/edit\/([a-zA-Z0-9]+)$/");
 
