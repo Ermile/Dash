@@ -1,0 +1,70 @@
+{%extends display.suMain%}
+
+
+{%block content%}
+<div class="tbox">
+  {%trans "Send every notification from every way to user" %}
+</div>
+
+<div class="cbox">
+  <form method="get" data-action>
+    <div class="input ltr">
+      <label class="addon">{%trans "Mobile or user_id"%}</label>
+      <input type="text" name="user" value="{{utilityGET.user}}" >
+      <button type="submit" class=" btn primary" >{%trans "Find Connection way"%}</button>
+    </div>
+  </form>
+</div>
+<form method="post">
+
+<div class="cbox">
+
+<div class="normal f">
+<div class="c">
+  <div class="vcard mA10">
+    {%if user_info.info.fileurl%}
+      <img src="{{url.root}}/{{user_info.info.fileurl}}">
+    {%else%}
+      <img src="http://code.ermile.dev/siftal/images/avatar/1.png">
+    {%endif%}
+    <div class="content">
+      <div class="header">{{user_info.info.displayname}}</div>
+      <div class="meta"><span>{{user_info.info.name}} {{user_info.info.lastname}}</span></div>
+    </div>
+  </div>
+
+</div>
+  <div class="c">
+
+    <div class="switch1">
+     <input type="checkbox" name="notification" id="notification">
+     <label for="notification"></label>
+     <label for="notification">{%trans "Inner system notification"%}</label>
+    </div>
+    {%for key,value in user_info.way%}
+    <div class="switch1">
+     <input type="checkbox" name="{{key}}" id="{{key}}" >
+     <label for="{{key}}"></label>
+     <label for="{{key}}">{%set myKey = key |capitalize%}{%trans myKey%}  <b class=""> {{value|fitNumber}}</b></label>
+    </div>
+    {%endfor%}
+
+  </div>
+</div>
+
+</div>
+
+
+<div class="cbox">
+  <textarea class="txt" name="msg" rows="6" placeholder='{%trans "What do you want to send to this user?"%}'></textarea>
+  <div class="f">
+    <div class="c"></div>
+    <div class="cauto">
+      <button type="submit" class=" xl w300 btn success mTB10" >{%trans "Send"%}</button>
+    </div>
+  </div>
+</div>
+</form>
+
+
+{%endblock%}
