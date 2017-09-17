@@ -15,6 +15,7 @@ trait code_list
 		$list[2] = "payment:zarinpal";
 		$list[3] = "manually";
 		$list[4] = "repair";
+		$list[5] = "invoice";
 		if($option_list = \lib\option::config('transactions_code'))
 		{
 			if(is_array($option_list))

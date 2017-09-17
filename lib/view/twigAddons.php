@@ -792,5 +792,34 @@ trait twigAddons
 			return \lib\permission::access($caller, $action);
 		});
 	}
+
+
+	/**
+	 * return tha attachment record of post
+	 *
+	 * @return     \     ( description_of_the_return_value )
+	 */
+	public function twig_function_perm_su()
+	{
+		return new \Twig_SimpleFunction('perm_su', function()
+		{
+
+			$user_id = null;
+
+			if(isset($this->data->login['id']))
+			{
+				$user_id = $this->data->login['id'];
+			}
+
+			$args = func_get_args();
+
+			if(isset($args[0]))
+			{
+				$user_id = $args[0];
+			}
+
+			return \lib\permission::access_su($user_id);
+		});
+	}
 }
 ?>

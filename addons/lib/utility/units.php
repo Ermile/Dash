@@ -161,5 +161,25 @@ class units
 		}
 		return null;
 	}
+
+
+	/**
+	 * check is valid unis or no
+	 *
+	 * @param      <type>  $_unit_title  The unit title
+	 */
+	public static function check($_unit_title)
+	{
+		$list = self::unit_list();
+		if(is_array($list))
+		{
+			$title = array_column($list, 'title');
+			if(in_array($_unit_title, $title))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 }
 ?>

@@ -27,5 +27,10 @@ trait _use
 
 	use \addons\content_api\v1\notification\tools\add;
 
+
+	use \addons\content_api\v1\transaction\tools\add;
+	use \addons\content_api\v1\transaction\tools\get;
+
+
 }
 ?>

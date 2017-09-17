@@ -134,21 +134,29 @@ trait invoice_check_args
 			)
 			{
 				$count_detail++;
-				$total_price += floatval($value['price']);
 
-				$temp =
-				[
-					'title' => $value['title'],
-					'price' => $value['price'],
-					'count' => $value['count'],
-				];
+				$total = (floatval($value['price']) * intval($value['count']));
+
+				$discount = null;
 
 				if(isset($value['discount']))
 				{
-					$total_discount += floatval($value['discount']);
 
-					$temp['discount'] = $value['discount'];
+					$discount = floatval($value['discount']);
+					$total_discount += $discount;
+					$total -= $discount;
 				}
+
+				$total_price += $total;
+
+				$temp =
+				[
+					'title'    => $value['title'],
+					'price'    => $value['price'],
+					'count'    => $value['count'],
+					'total'    => $total,
+					'discount' => $discount,
+				];
 
 				$temp_detail[] = $temp;
 			}
@@ -160,7 +168,6 @@ trait invoice_check_args
 			if($_args['debug']) debug::error(T_("No valid details was sended"), 'details', 'arguments');
 			return false;
 		}
-
 
 		$args['title']          = $title;
 		$args['user_id']        = $buyer_id;

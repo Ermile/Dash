@@ -72,6 +72,10 @@ trait add
 		$invoice_detail = $args['details'];
 		unset($args['details']);
 
+		// return result
+		// sum invoice
+		$return = [];
+
 		// insert new invoice team
 		if($_args['method'] === 'post')
 		{
@@ -82,6 +86,12 @@ trait add
 		        $invoice->add_child($value);
 	        }
 	        $invoice_id = $invoice->save();
+
+	        if(isset($args['total']))
+	        {
+	        	$return['total'] = $args['total'];
+	        }
+
 	        // send notification
 	        $notifi_text = T_("You have new invoice in azvir.com");
 	        $this->send_notification(['text' => $notifi_text, 'cat' => 'invoice', 'to' => $args['user_id'], 'send_to_admin' => true]);
@@ -118,6 +128,8 @@ trait add
 				if($_args['debug']) debug::true(T_("invoice successfully updated"));
 			}
 		}
+
+		return $return;
 	}
 }
 ?>

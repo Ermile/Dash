@@ -124,6 +124,7 @@ class view
 		$this->add_twig_function('attachment');
 		$this->add_twig_function('post_search');
 		$this->add_twig_function('perm');
+		$this->add_twig_function('perm_su');
 
 		require_once core.'Twig/lib/Twig/Autoloader.php';
 		\Twig_Autoloader::register();
