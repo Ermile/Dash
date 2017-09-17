@@ -15,25 +15,25 @@ trait go_to
 	public static function go_to($_url = null)
 	{
 
+		$host = Protocol."://" . \lib\router::get_domain();
+		$host .= \lib\define::get_current_language_string();
+
 		switch ($_url)
 		{
 			// redirect to base
 			case 'base':
-				$host = Protocol."://" . \lib\router::get_root_domain();
-				$host .= \lib\define::get_current_language_string();
 				$host .= '/enter';
 				self::go_redirect($host);
 				break;
 
 			case 'main':
-				$host = Protocol."://" . \lib\router::get_root_domain();
-				$host .= \lib\define::get_current_language_string();
 				self::go_redirect($host);
 				break;
 
 			case 'okay':
 				if($url = self::get_enter_session('redirect_url'))
 				{
+					// $url = $host. '/'. $url;
 					self::go_redirect($url, false, true);
 				}
 				break;

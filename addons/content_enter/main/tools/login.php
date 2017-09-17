@@ -14,7 +14,7 @@ trait login
 	 */
 	public static function find_redirect_url($_url = null)
 	{
-		$host = Protocol."://" . \lib\router::get_root_domain();
+		$host = Protocol."://" . \lib\router::get_domain();
 		if($_url)
 		{
 			return $_url;
@@ -281,7 +281,7 @@ trait login
 		{
 			if(isset($_SESSION['user']['mobile']) && $_SESSION['user']['mobile'] !== $_SESSION['main_mobile'])
 			{
-				$host = Protocol."://" . \lib\router::get_root_domain();
+				$host = Protocol."://" . \lib\router::get_domain();
 				$host .= \lib\define::get_current_language_string();
 				$host .= '/enter?mobile='. (string) $_SESSION['main_mobile'];
 				$redirect = new \lib\redirector($host);

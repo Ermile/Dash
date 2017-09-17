@@ -20,7 +20,7 @@ class controller extends \lib\controller
 
 		parent::__construct();
 
-		if(MyAccount && SubDomain == null)
+		if(MyAccount)
 		{
 			if(AccountService === Domain)
 			{

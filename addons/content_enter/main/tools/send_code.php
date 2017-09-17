@@ -13,7 +13,7 @@ trait send_code
 	{
 		$way = self::send_way();
 
-		$host = Protocol."://" . \lib\router::get_root_domain();
+		$host = Protocol."://" . \lib\router::get_domain();
 		$host .= \lib\define::get_current_language_string();
 
 		if($way)
