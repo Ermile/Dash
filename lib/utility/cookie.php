@@ -31,10 +31,12 @@ class cookie
 	public static function read($name)
 	{
 		if(isset($_COOKIE[$name]))
+		{
 			return $_COOKIE[$name];
-
+		}
 		return null;
 	}
+
 
 	/**
 	 * Creates or modify a cookie
@@ -47,33 +49,24 @@ class cookie
 	 * @param bool $secure		If true, the cookie should only be transmitted over a secure HTTPS connection from the client. Uses default value if omitted or null
 	 * @param bool $httponly	If true, the cookie will be made accessible only through the HTTP protocol. Uses default value if omitted or null
 	 */
-	public static function write ( $name,
-										    $value    = null,
-											 $duration = null,
-											 $domain   = null,
-											 $path     = null,
-											 $secure   = null,
-											 $httponly = null
-											)
+	public static function write($name, $value = null, $duration = null, $domain = null, $path = null, $secure = null, $httponly = null)
 	{
-		if(!isset($value))
-			return self::delete($name);
-		if(!isset($duration))
-			$duration = self::DURATION;
-		if(!isset($path))
-			$path = self::PATH;
-		if(!isset($domain))
-			$domain = self::DOMAIN;
-		if(!isset($secure))
-			$secure = self::SECURE;
-		if(!isset($httponly))
-			$httponly = self::HTTPONLY;
+		if(!isset($value))		return self::delete($name);
+		if(!isset($duration))	$duration = self::DURATION;
+		if(!isset($path))		$path     = self::PATH;
+		if(!isset($domain))		$domain   = self::DOMAIN;
+		if(!isset($secure))		$secure   = self::SECURE;
+		if(!isset($httponly))	$httponly = self::HTTPONLY;
 
 		// Expiration date from the life time in seconds
 		if($duration==0)
+		{
 			$expire = 0;
+		}
 		else
+		{
 			$expire = time()+((int) $duration);
+		}
 
 		// The value must be a string
 		$value = (string) $value;
@@ -82,6 +75,7 @@ class cookie
 		setcookie($name, $value, $expire, $path, $domain, $secure, $httponly);
 		$_COOKIE[$name] = $value;
 	}
+
 
 	/**
 	 * Deletes a cookie
@@ -95,5 +89,4 @@ class cookie
 	}
 
 }
-
 ?>

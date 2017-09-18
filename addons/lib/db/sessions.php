@@ -116,7 +116,7 @@ class sessions
 	 */
 	public static function get_cookie()
 	{
-		return \lib\utility::cookie('remember_me');
+		return \lib\utility::cookie('remember_me_'. \lib\router::get_sub_domain());
 	}
 
 
@@ -159,8 +159,7 @@ class sessions
 	 */
 	private static function terminate_cookie()
 	{
-		unset($_COOKIE['remember_me']);
-		setcookie("remember_me", null, -1, '/');
+		\lib\utility\cookie::delete("remember_me_". \lib\router::get_sub_domain());
 	}
 
 
@@ -171,19 +170,11 @@ class sessions
 	 */
 	private static function set_cookie($_code)
 	{
-		if(defined('service_name'))
-		{
-			$service_name = '.'. service_name;
-		}
-		else
-		{
-			$service_name = '.' . \lib\router::get_domain(count(\lib\router::get_domain(-1))-2);
-			$tld = \lib\router::get_domain(-1);
-			$service_name .= '.' . end($tld);
-		}
-
-		setcookie("remember_me", $_code, time() + (60*60*24*365), '/', $service_name);
+		$sub_domain    = \lib\router::get_sub_domain();
+		$cookie_domain = $sub_domain. '.'. Service;
+		setcookie("remember_me_". \lib\router::get_sub_domain(), $_code, time() + (60*60*24*365), '/', $cookie_domain);
 	}
+
 
 	/**
 	 * inset new session in database

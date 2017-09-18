@@ -76,16 +76,6 @@ class define
 		// block baby to not allow to harm yourself :/
 		\lib\baby::block();
 
-		/**
-		 * A session is a way to store information (in variables) to be used across multiple pages.
-		 * Unlike a cookie, the information is not stored on the users computer.
-		 * access to session with this code: $_SESSION["test"]
-		 */
-		if(is_string(Domain))
-		{
-			session_name(Domain);
-		}
-
 		$cookie_domain = null;
 		if(isset($_SERVER['HTTP_HOST']))
 		{
@@ -99,14 +89,32 @@ class define
 
 		if($cookie_domain)
 		{
+			session_name($cookie_domain);
 			$cookie_domain = $cookie_domain. '.'. Service;
 			session_set_cookie_params(0, '/', $cookie_domain, false, true);
 		}
 		else
 		{
+			session_name(Domain);
 			$cookie_domain = Service;
 			session_set_cookie_params(0, '/');
 		}
+
+		/**
+		 * A session is a way to store information (in variables) to be used across multiple pages.
+		 * Unlike a cookie, the information is not stored on the users computer.
+		 * access to session with this code: $_SESSION["test"]
+		 */
+
+		// if(is_string(Domain))
+		// {
+		// 	session_name(Domain);
+		// }
+
+		// if(is_string($cookie_domain))
+		// {
+		// 	session_name($cookie_domain);
+		// }
 
 		// session_set_cookie_params(0, '/', $cookie_domain, false, true);
 
