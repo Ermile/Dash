@@ -8,7 +8,6 @@ class model extends \addons\content_enter\main\model
 {
 	public function login_another_session()
 	{
-		// var_dump(\lib\permission::access('enter:another:session'));exit();
 		if(\lib\permission::access('enter:another:session'))
 		{
 			$user_id = null;

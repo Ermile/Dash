@@ -33,7 +33,6 @@ trait go_to
 			case 'okay':
 				if($url = self::get_enter_session('redirect_url'))
 				{
-					// $url = $host. '/'. $url;
 					self::go_redirect($url, false, true);
 				}
 				break;
