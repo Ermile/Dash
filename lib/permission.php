@@ -18,9 +18,9 @@ class permission
 	{
 		if(empty(self::$perm_list))
 		{
-			if(file_exists(root.'/permission.php'))
+			if(file_exists(root.'/includes/permission/permission.php'))
 			{
-				require_once(root.'/permission.php');
+				require_once(root.'/includes/permission/permission.php');
 			}
 			// cp perm list
 			self::$perm_list[1]  = ['caller' => 'upload_1000_mb', 'title' => T_("upload_1000_mb"), 'cat' => 'cp'];
@@ -42,7 +42,6 @@ class permission
 			self::$perm_list[17] = ['caller' => 'enter:another:session', 'title' => T_("enter:another:session"), 'cat' => 'cp'];
 			// self::$perm_list[200] = ['caller' => '....', 'title' => T_("..."), 'cat' => 'cp'];
 		}
-
 
 
 		if(!self::$user_id && isset($_SESSION['user']['id']) && is_numeric($_SESSION['user']['id']))

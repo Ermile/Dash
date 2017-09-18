@@ -30,14 +30,14 @@ class option
 				require_once('../../dash/lib/default_option.php');
 			}
 
-			if(file_exists(root.'/option.php'))
+			if(file_exists(root.'/includes/option/option.php'))
 			{
-				require_once(root.'/option.php');
+				require_once(root.'/includes/option/option.php');
 			}
 
-			if(file_exists(root.'/option.me.php'))
+			if(file_exists(root.'/includes/option/option.me.php'))
 			{
-				require_once(root.'/option.me.php');
+				require_once(root.'/includes/option/option.me.php');
 			}
 		}
 	}
