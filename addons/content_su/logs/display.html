@@ -2,61 +2,69 @@
 
 
 {%block content%}
- <form method="get" class="df f" data-action>
-	<div class="c10">
-		<label for="search">{%trans "Search"%}</label>
-		<input type="text" name="search" class="c1" id="search" value='{{get_search}}' >
-	</div>
+<div class="tbox">
+	{%trans "Logs List"%}
+</div>
 
-	<div class="c1">
-		<label>‌</label>
-		<input type="submit"  class="c1 b1"  value='{%trans "Search"%}'>
+ <form method="get" class="" data-action>
+	<div class="input">
+		<label for="search" class="addon">{%trans "Search"%}</label>
+		<input type="text" name="search" class="" id="search" value='{{get_search}}' >
+		<button class="btn primary addon" >{%trans "Search"%}</button>
 	</div>
 </form>
-<br>
 
-<div class="dt big">
-	<div class="f th">
-		<div class="c1"><a href="{{url.base}}/su/logs/{{order_url.id}}">{%trans "ID"%}</a></div>
-		<div class="c"><a href="{{url.base}}/su/logs/{{order_url.logitem_id}}">{%trans "Log item id"%}</a></div>
-		<div class="c"><a href="{{url.base}}/su/logs/{{order_url.type}}">{%trans "Type"%}</a></div>
-		<div class="c"><a href="{{url.base}}/su/logs/{{order_url.caller}}">{%trans "Caller"%}</a></div>
-		<div class="c"><a href="{{url.base}}/su/logs/{{order_url.title}}">{%trans "Title"%}</a></div>
-		<div class="c"><a href="{{url.base}}/su/logs/{{order_url.priority}}">{%trans "Priority"%}</a></div>
-		<div class="c"><a href="{{url.base}}/su/logs/{{order_url.user_id}}">{%trans "User_id"%}</a></div>
-		<div class="c"><a href="{{url.base}}/su/logs/{{order_url.data}}">{%trans "Data"%}</a></div>
-		<div class="c"><a href="{{url.base}}/su/logs/{{order_url.status}}">{%trans "Status"%}</a></div>
-		<div class="c"><a href="{{url.base}}/su/logs/{{order_url.createdate}}">{%trans "createdate"%}</a></div>
+<table class="tbl mT15">
+	<thead>
+		<th class="c1"><a href="{{url.base}}/su/logs/{{order_url.id}}">{%trans "ID"%}</a></th>
+		<th class="c"><a href="{{url.base}}/su/logs/{{order_url.logitem_id}}">{%trans "Log item id"%}</a></th>
+		<th class="c"><a href="{{url.base}}/su/logs/{{order_url.type}}">{%trans "Type"%}</a></th>
+		<th class="c"><a href="{{url.base}}/su/logs/{{order_url.caller}}">{%trans "Caller"%}</a></th>
+		<th class="c"><a href="{{url.base}}/su/logs/{{order_url.title}}">{%trans "Title"%}</a></th>
+		<th class="c"><a href="{{url.base}}/su/logs/{{order_url.priority}}">{%trans "Priority"%}</a></th>
+		<th class="c"><a href="{{url.base}}/su/logs/{{order_url.user_id}}">{%trans "User_id"%}</a></th>
+		<th class="c"><a href="{{url.base}}/su/logs/{{order_url.data}}">{%trans "Data"%}</a></th>
+		<th class="c"><a href="{{url.base}}/su/logs/{{order_url.desc}}">{%trans "Desc"%}</a></th>
+		<th class="c"><a href="{{url.base}}/su/logs/{{order_url.status}}">{%trans "Status"%}</a></th>
+		<th class="c"><a href="{{url.base}}/su/logs/{{order_url.createdate}}">{%trans "createdate"%}</a></th>
 		<!-- <div class="c0">{%trans "Meta"%}</div> -->
+	</thead>
+	<tbody>
+		{%for key, value in logs_list%}
+		<tr>
+			<td><a href="{{url.base}}/su/logs/detail/{{value.id}}">{{value.id|fitNumber}}</a></td>
+			<td>{{value.logitem_id|fitNumber}}</td>
+			<td>{{value.type}}</td>
+			<td><a href="{{url.base}}/su/logs/caller={{value.caller}}">{{value.caller}}</a></td>
+			<td>{{value.title}}</td>
+			<td>{{value.priority}}</td>
+			<td>{{value.user_id|fitNumber}}</td>
+			<td>{{value.data}}</td>
+			<td>{{value.desc}}</td>
+			<td>{%set myStatus = value.status |capitalize%}{%trans myStatus%}</td>
+			{%if site.currentlang == 'fa'%}
+				<td>{{value.createdate|jdate("Y-m-d H:i:s")}}</td>
+			{%else%}
+				<td>{{value.createdate}}</td>
+			{%endif%}
+			<!-- <td class="modal-body log-modal c" >
+	            <code class="json ltr">
+	            {% if value.meta is iterable %}
+	                {{value.meta|json_encode(constant('JSON_UNESCAPED_UNICODE'))}}
+	            {%else%}
+	                {{value.meta}}
+	            {%endif%}
+	            </code>
+	        </td> -->
+		</tr>
+		{%endfor%}
 
-	</div>
-	{%for key, value in logs_list%}
-	<div class="f">
-		<div class="c1"><a href="{{url.base}}/su/logs/id={{value.id}}">{{value.id}}</a></div>
-		<div class="c">{{value.logitem_id}}</div>
-		<div class="c">{{value.type}}</div>
-		<div class="c"><a href="{{url.base}}/su/logs/caller={{value.caller}}">{{value.caller}}</a></div>
-		<div class="c">{{value.title}}</div>
-		<div class="c">{{value.priority}}</div>
-		<div class="c">{{value.user_id}}</div>
-		<div class="c">{{value.data}}</div>
-		<div class="c">{{value.status}}</div>
-		<div class="c">{{value.createdate}}</div>
-		<!-- <div class="modal-body log-modal c" >
-            <code class="json ltr">
-            {% if value.meta is iterable %}
-                {{value.meta|json_encode(constant('JSON_UNESCAPED_UNICODE'))}}
-            {%else%}
-                {{value.meta}}
-            {%endif%}
-            </code>
-        </div> -->
-	</div>
-	{%endfor%}
-</div>
-<div class="pagination-container">
-	{%include display.pagination%}
-</div>
+	</tbody>
+
+</table>
+
+
+{%include display.pagination%}
 
 
 {%endblock%}

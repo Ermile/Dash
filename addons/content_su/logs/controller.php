@@ -17,6 +17,7 @@ class controller extends \addons\content_su\main\controller
 		'createdate',
 		'datemodified',
 		'sort',
+		'desc',
 		'order',
 		'search',
 		'data',
