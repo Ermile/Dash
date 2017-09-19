@@ -31,6 +31,9 @@ trait _use
 	use \addons\content_api\v1\transaction\tools\add;
 	use \addons\content_api\v1\transaction\tools\get;
 
+	use \addons\content_api\v1\term\tools\add;
+	use \addons\content_api\v1\term\tools\get;
+
 
 }
 ?>

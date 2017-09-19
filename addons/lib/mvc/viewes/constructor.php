@@ -43,8 +43,9 @@ trait constructor
 		}
 
 		// return all parameters and clean it
-		$this->url->param            = \lib\utility::get(null, true);
-		$this->url->all              = $this->url->full.$this->url->param;
+		$this->url->param       = \lib\utility::get(null, true);
+		$this->data->utilityGET = \lib\utility::get(null, 'raw');
+		$this->url->all         = $this->url->full.$this->url->param;
 
 		$this->data->site['title']       = T_("Ermile Dash");
 		$this->data->site['desc']        = T_("Another Project with Ermile dash");

@@ -177,6 +177,8 @@ trait add
 			}
 		}
 
+		$return = [];
+
 		if(debug::$status)
 		{
 			if($_args['debug']) debug::title(T_("Operation Complete"));
@@ -184,13 +186,16 @@ trait add
 			if($_args['method'] === 'post')
 			{
 				if($_args['debug']) debug::true(T_("user successfully added"));
-				return \lib\db::insert_id();
+				$return['user_id'] = utility\shortURL::encode(\lib\db::insert_id());
 			}
 			elseif($_args['method'] === 'patch')
 			{
 				if($_args['debug']) debug::true(T_("user successfully updated"));
+				$return['user_id'] = utility::request('id');
 			}
 		}
+
+		return $return;
 	}
 }
 ?>
