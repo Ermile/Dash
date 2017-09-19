@@ -11,90 +11,87 @@
 
 {%block content%}
 
- <form method="get" class="df f" data-action>
-	<div class="c10">
-		<label for="search">{%trans "Search"%}</label>
-		<input type="text" name="search" class="c1" id="search" value='{{get_search}}' >
-	</div>
-
-	<div class="c1">
-		<label>‌</label>
-		<input type="submit"  class="c1 b1"  value='{%trans "Search"%}'>
+ <form method="get" class="" data-action>
+	<div class="input">
+		<label for="search" class="addon">{%trans "Search"%}</label>
+		<input type="text" name="search" class="" id="search" value='{{utilityGET.search}}' >
+		<button class="btn primary addon" >{%trans "Search"%}</button>
 	</div>
 </form>
-<br>
 
+<table class="tbl">
+	<thead>
+		<th><a href="{{url.base}}/su/transactions/{{order_url.mobile}}">{%trans "Mobile"%}</a></th>
+		<th><a href="{{url.base}}/su/transactions/{{order_url.displayname}}">{%trans "Displayname"%}</a></th>
+		<th><a href="{{url.base}}/su/transactions/{{order_url.code}}">{%trans "Code"%}</a></th>
+		<th><a href="{{url.base}}/su/transactions/{{order_url.title}}">{%trans "Title"%}</a></th>
+		<th><a href="{{url.base}}/su/transactions/{{order_url.type}}">{%trans "Type"%}</a></th>
+		<th><a href="{{url.base}}/su/transactions/{{order_url.date}}">{%trans "Date"%}</a></th>
+		<th><a href="{{url.base}}/su/transactions/{{order_url.amount_request}}">{%trans "Amount request"%}</a></th>
+		<th><a href="{{url.base}}/su/transactions/{{order_url.amount_end}}">{%trans "Amount end"%}</a></th>
+		<th><a href="{{url.base}}/su/transactions/{{order_url.plus}}">{%trans "Plus"%}</a></th>
+		<th><a href="{{url.base}}/su/transactions/{{order_url.minus}}">{%trans "Minus"%}</a></th>
+		<th><a href="{{url.base}}/su/transactions/{{order_url.unit_id}}">{%trans "Unit"%}</a></th>
+		<th><a href="{{url.base}}/su/transactions/{{order_url.budget_before}}">{%trans "Budget before"%}</a></th>
+		<th><a href="{{url.base}}/su/transactions/{{order_url.budget}}">{%trans "Budget"%}</a></th>
+		<th><a href="{{url.base}}/su/transactions/{{order_url.status}}">{%trans "Status"%}</a></th>
+		<th><a href="{{url.base}}/su/transactions/{{order_url.condition}}">{%trans "Condition"%}</a></th>
+		<th><a href="{{url.base}}/su/transactions/{{order_url.verify}}">{%trans "Verify"%}</a></th>
+		<th><a href="{{url.base}}/su/transactions/{{order_url.payment}}">{%trans "Payment"%}</a></th>
+		<th><a href="{{url.base}}/su/transactions/{{order_url.parent_id}}">{%trans "Parent"%}</a></th>
+		<th>{%trans "More"%}</th>
+		<th>{%trans "Repait"%}</th>
+		<th>{%trans "Add new"%}</th>
 
-<div class="dt big">
-	<div class="f th">
-		<div class="c"><a href="{{url.base}}/su/transactions/{{order_url.mobile}}">{%trans "Mobile"%}</a></div>
-		<div class="c"><a href="{{url.base}}/su/transactions/{{order_url.displayname}}">{%trans "Displayname"%}</a></div>
-		<div class="c"><a href="{{url.base}}/su/transactions/{{order_url.code}}">{%trans "Code"%}</a></div>
-		<div class="c"><a href="{{url.base}}/su/transactions/{{order_url.title}}">{%trans "Title"%}</a></div>
-		<div class="c"><a href="{{url.base}}/su/transactions/{{order_url.type}}">{%trans "Type"%}</a></div>
-		<div class="c"><a href="{{url.base}}/su/transactions/{{order_url.date}}">{%trans "Date"%}</a></div>
-		<div class="c"><a href="{{url.base}}/su/transactions/{{order_url.amount_request}}">{%trans "Amount request"%}</a></div>
-		<div class="c"><a href="{{url.base}}/su/transactions/{{order_url.amount_end}}">{%trans "Amount end"%}</a></div>
-		<div class="c"><a href="{{url.base}}/su/transactions/{{order_url.plus}}">{%trans "Plus"%}</a></div>
-		<div class="c"><a href="{{url.base}}/su/transactions/{{order_url.minus}}">{%trans "Minus"%}</a></div>
-		<div class="c"><a href="{{url.base}}/su/transactions/{{order_url.unit_id}}">{%trans "Unit"%}</a></div>
-		<div class="c"><a href="{{url.base}}/su/transactions/{{order_url.budget_before}}">{%trans "Budget before"%}</a></div>
-		<div class="c"><a href="{{url.base}}/su/transactions/{{order_url.budget}}">{%trans "Budget"%}</a></div>
-		<div class="c"><a href="{{url.base}}/su/transactions/{{order_url.status}}">{%trans "Status"%}</a></div>
-		<div class="c"><a href="{{url.base}}/su/transactions/{{order_url.condition}}">{%trans "Condition"%}</a></div>
-		<div class="c"><a href="{{url.base}}/su/transactions/{{order_url.verify}}">{%trans "Verify"%}</a></div>
-		<div class="c"><a href="{{url.base}}/su/transactions/{{order_url.payment}}">{%trans "Payment"%}</a></div>
-		<div class="c"><a href="{{url.base}}/su/transactions/{{order_url.parent_id}}">{%trans "Parent"%}</a></div>
-		<div class="c">{%trans "More"%}</div>
-		<div class="c">{%trans "Repait"%}</div>
-		<div class="c">{%trans "Add new"%}</div>
-		<!-- <div class="c">{%trans "Revers"%}</div> -->
-	</div>
+	</thead>
+	<tbody>
+
 	{%for key, value in transactions_list%}
-	<div class="f">
-		<div class="c" >{{value.mobile|fitNumber}}</div>
-		<div class="c" >{{value.displayname}}</div>
-		<div class="c" >{{value.code|fitNumber}}</div>
-		<div class="c" >{{value.title}}</div>
-		<div class="c" >{%set my_type = value.type %}{%trans my_type%}</div>
+	<tr>
+		<td >{{value.mobile|fitNumber}}</td>
+		<td >{{value.displayname}}</td>
+		<td >{{value.code|fitNumber}}</td>
+		<td >{{value.title}}</td>
+		<td >{%set my_type = value.type %}{%trans my_type%}</td>
 		{%if site.currentlang == 'fa'%}
-			<div class="c" ><a href='{{url.base}}/su/transactions/date={{value.date | date("Y-m-d H:i:s")}}'>{{value.date | jdate("Y-m-d H:i:s")}}</a></div>
+			<td ><a href='{{url.base}}/su/transactions/date={{value.date | date("Y-m-d H:i:s")}}'>{{value.date | jdate("Y-m-d H:i:s")}}</a></td>
 		{%else%}
-			<div class="c" ><a href='{{url.base}}/su/transactions/date={{value.date | date("Y-m-d H:i:s")}}'>{{value.date | fitNumber}}</a></div>
+			<td ><a href='{{url.base}}/su/transactions/date={{value.date | date("Y-m-d H:i:s")}}'>{{value.date | fitNumber}}</a></td>
 		{%endif%}
-		<div class="c" >{{value.amount_request | number_format | fitNumber}}</div>
-		<div class="c" >{{value.amount_end | number_format | fitNumber}}</div>
-		<div class="c" >{{value.plus | number_format | fitNumber}}</div>
-		<div class="c" >{{value.minus | number_format | fitNumber}}</div>
-		<div class="c" >{%set my_unit = value.unit %}{%trans my_unit%}</div>
-		<div class="c" >{{value.budget_before | number_format | fitNumber}}</div>
-		<div class="c" >{{value.budget | number_format | fitNumber}}</div>
-		<div class="c" >{%set my_status = value.status %}{%trans my_status%}</div>
-		<div class="c" >{%set my_condition = value.condition %}{%trans my_condition%}</div>
-		<div class="c" >{{value.verify|fitNumber}}</div>
-		<div class="c" >{%set my_payment = value.payment %}{%trans my_payment%}</div>
-		<div class="c" >{{value.parent_id|fitNumber}}</div>
+		<td >{{value.amount_request | number_format | fitNumber}}</td>
+		<td >{{value.amount_end | number_format | fitNumber}}</td>
+		<td >{{value.plus | number_format | fitNumber}}</td>
+		<td >{{value.minus | number_format | fitNumber}}</td>
+		<td >{%set my_unit = value.unit %}{%trans my_unit%}</td>
+		<td >{{value.budget_before | number_format | fitNumber}}</td>
+		<td >{{value.budget | number_format | fitNumber}}</td>
+		<td >{%set my_status = value.status %}{%trans my_status%}</td>
+		<td >{%set my_condition = value.condition %}{%trans my_condition%}</td>
+		<td >{{value.verify|fitNumber}}</td>
+		<td >{%set my_payment = value.payment %}{%trans my_payment%}</td>
+		<td >{{value.parent_id|fitNumber}}</td>
 
-		<div class="c">
-			<a href="{{url.base}}/su/logs/order=desc/sort=id/data={{value.id}}"><i class='sf-align-justify-1 b2'></i> <span> </span></a>
-		</div>
+		<td>
+			<a href="{{url.base}}/su/logs/order=desc/sort=id/data={{value.id}}"><i class='sf-align-justify-1'></i> <span> </span></a>
+		</td>
 
-		<div class="c">
-			<a href="{{url.base}}/su/transactions/add/transactions={{value.id}}"><i class='sf-bug b1'></i> <span> </span></a>
-		</div>
+		<td>
+			<a href="{{url.base}}/su/transactions/add/transactions={{value.id}}"><i class='sf-bug'></i> <span> </span></a>
+		</td>
 
-		<div class="c">
-			<a href="{{url.base}}/su/transactions/add?mobile={{value.mobile}}"><i class='sf-plus bp'></i> <span> </span></a>
-		</div>
-		<!-- <div class="c">
+		<td>
+			<a href="{{url.base}}/su/transactions/add?mobile={{value.mobile}}"><i class='sf-plus'></i> <span> </span></a>
+		</td>
+		<!-- <td>
 			<a href="{{url.base}}/su/transactions/add?mobile={{value.mobile}}"><i class='sf-history bn'></i> <span> </span></a>
-		</div> -->
-	</div>
+		</td> -->
+	</tr>
 	{%endfor%}
-</div>
-<div class="pagination-container">
+	</tbody>
+</table>
+
 	{%include display.pagination%}
-</div>
+
 
 
 {%endblock%}
