@@ -251,6 +251,7 @@ trait term_check_args
 				}
 				else
 				{
+					$insert_term['user_id'] = $this->user_id;
 					$term_id = \lib\db\terms::insert($insert_term);
 				}
 

@@ -73,6 +73,13 @@ trait get
 				}
 			}
 		}
+
+
+		if(utility::request('get_term'))
+		{
+			$this->get_user_term($temp);
+		}
+
 		return $temp;
 	}
 
@@ -118,9 +125,88 @@ trait get
 
 		$result = $this->ready_user($get_user);
 
+		if(utility::request('get_term'))
+		{
+			$this->get_user_term($result);
+		}
+
 		return $result;
 	}
 
+
+	public function get_user_term(&$_data)
+	{
+		$multi = false;
+		if(array_key_exists(0, $_data))
+		{
+			$multi = true;
+		}
+
+		$user_ids = [];
+
+		if(!$multi)
+		{
+			if(isset($_data['id']))
+			{
+				$user_ids = [$_data['id']];
+			}
+		}
+		else
+		{
+			$user_ids = array_column($_data, 'id');
+		}
+
+		$user_ids_decode = array_map(function($_a){return \lib\utility\shortURL::decode($_a);}, $user_ids);
+
+		$get_term_multi =
+		[
+			'related_id' => ["IN", "(". implode(',', $user_ids_decode).")"],
+			'related'    => 'users',
+			'status'     => 'enable',
+		];
+
+		$cat_tag = [];
+
+		$get_term_multi = \lib\db\termusages::get($get_term_multi);
+
+		if(is_array($get_term_multi))
+		{
+			foreach ($get_term_multi as $key => $value)
+			{
+				if(isset($value['related_id']) && isset($value['type']) && isset($value['title']))
+				{
+					$related_encode = \lib\utility\shortURL::encode($value['related_id']);
+					$cat_tag[$related_encode][$value['type']][] = $value['title'];
+				}
+			}
+		}
+
+
+		if(!empty($cat_tag))
+		{
+			if($multi)
+			{
+				foreach ($_data as $key => $value)
+				{
+					if(isset($value['id']))
+					{
+						if(array_key_exists($value['id'], $cat_tag))
+						{
+							$_data[$key]['term'] = $cat_tag[$value['id']];
+						}
+					}
+				}
+			}
+			else
+			{
+				if(isset($_data['id']) && isset($cat_tag[$_data['id']]))
+				{
+					$_data['term'] = $cat_tag[$_data['id']];
+				}
+			}
+		}
+
+	}
 
 
 	/**

@@ -17,7 +17,6 @@ trait get
 	public function get_list_term($_args = [])
 	{
 		$default_args =
-
 		[
 			'pagenation' => true,
 			'admin'  	 => false,
@@ -43,6 +42,7 @@ trait get
 		{
 			return false;
 		}
+
 		$where           = [];
 		$search          = utility::request('search');
 
@@ -149,8 +149,20 @@ trait get
 			switch ($key)
 			{
 				case 'id':
+				case 'user_id':
+				case 'parent':
 					$result[$key] = utility\shortURL::encode($value);
 					break;
+
+				case 'meta':
+				case 'date_modified':
+				case 'usercount':
+				case 'createdate':
+				case 'count':
+				case 'caller':
+					continue;
+					break;
+
 				default:
 					$result[$key] = $value;
 					break;

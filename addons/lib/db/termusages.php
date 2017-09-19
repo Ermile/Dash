@@ -26,9 +26,26 @@ class termusages
 	 *
 	 * @return     <type>  ( description_of_the_return_value )
 	 */
-	public static function get()
+	public static function get($_args, $_option = [])
 	{
-		return \lib\db\config::public_get('termusages', ...func_get_args());
+		$default_option =
+		[
+			'public_show_field' =>
+			"
+				terms.*,
+				termusages.*,
+				terms.type AS `term_type`
+			",
+			'master_join'       => "INNER JOIN terms ON terms.id = termusages.term_id ",
+			'table_name'        => 'termusages',
+		];
+		if(!is_array($_option))
+		{
+			$_option = [];
+		}
+		$_option = array_merge($default_option, $_option);
+
+		return \lib\db\config::public_get('termusages', $_args, $_option);
 	}
 
 
