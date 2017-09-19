@@ -2,61 +2,58 @@
 
 
 {%block content%}
- <form method="get" class="df f" data-action>
-	<div class="c10">
-		<label for="search">{%trans "Search"%}</label>
-		<input type="text" name="search" class="c1" id="search" value='{{get_search}}' >
-	</div>
 
-	<div class="c1">
-		<label>‌</label>
-		<input type="submit"  class="c1 b1"  value='{%trans "Search"%}'>
+ <form method="get" class="" data-action>
+	<div class="input">
+		<label for="search" class="addon">{%trans "Search"%}</label>
+		<input type="text" name="search" class="" id="search" value='{{utilityGET.search}}' >
+		<button class="btn primary addon" >{%trans "Search"%}</button>
 	</div>
 </form>
-<br>
 
+<table class="tbl">
+	<thead>
+		<th><a href="{{url.base}}/su/invoices/{{order_url.id}}">{%trans "ID"%}</a></th>
+		<th><a href="{{url.base}}/su/invoices/{{order_url.date}}">{%trans "Date"%}</a></th>
+		<th><a href="{{url.base}}/su/invoices/{{order_url.user_id}}">{%trans "User id"%}</a></th>
+		<th><a href="{{url.base}}/su/invoices/{{order_url.temp}}">{%trans "Is Temp?"%}</a></th>
+		<th><a href="{{url.base}}/su/invoices/{{order_url.title}}">{%trans "Title"%}</a></th>
+		<th><a href="{{url.base}}/su/invoices/{{order_url.total}}">{%trans "Total"%}</a></th>
+		<th><a href="{{url.base}}/su/invoices/{{order_url.total_discount}}">{%trans "Total Discount"%}</a></th>
+		<th><a href="{{url.base}}/su/invoices/{{order_url.status}}">{%trans "Status"%}</a></th>
+		<th><a href="{{url.base}}/su/invoices/{{order_url.count_detail}}">{%trans "Count Detail"%}</a></th>
+		<th><a href="{{url.base}}/su/invoices/{{order_url.desc}}">{%trans "desc"%}</a></th>
+		<th>{%trans "Detail"%}</th>
+	</thead>
+	<tbody>
+		{%for key, value in invoices_list%}
+		<tr>
+			<td>{{value.id|number_format|fitNumber}}</td>
+			{%if site.currentlang == 'fa'%}
+				<td>{{value.date|jdate("Y-m-d H:i:s")}}</td>
+			{%else%}
+				<td>{{value.date}}</td>
+			{%endif%}
+			<td>{{value.user_id|fitNumber}}</td>
+			{%if value.temp%}
+				<td><i>{%trans "Yes"%}</i></td>
+			{%else%}
+				<td><i>{%trans "No"%}</i></td>
+			{%endif%}
+			<td>{{value.title}}</td>
+			<td>{{value.total|number_format|fitNumber}}</td>
+			<td>{{value.total_discount|number_format|fitNumber}}</td>
+			<td>{%set my_status = value.status%}{%trans my_status%}</td>
+			<td>{{value.count_detail|number_format|fitNumber}}</td>
+			<td>{{value.desc}}</td>
+			<td><a href="{{url.base}}/su/invoicedetails/invoice_id={{value.id}}"><i class="sf-list"></i></a></td>
+		</tr>
+		{%endfor%}
 
-<div class="dt big">
-	<div class="f th">
-		<div class="c"><a href="{{url.base}}/su/invoices/{{order_url.id}}">{%trans "ID"%}</a></div>
-		<div class="c"><a href="{{url.base}}/su/invoices/{{order_url.date}}">{%trans "Date"%}</a></div>
-		<div class="c"><a href="{{url.base}}/su/invoices/{{order_url.user_id}}">{%trans "User id"%}</a></div>
-		<div class="c"><a href="{{url.base}}/su/invoices/{{order_url.temp}}">{%trans "Is Temp?"%}</a></div>
-		<div class="c"><a href="{{url.base}}/su/invoices/{{order_url.title}}">{%trans "Title"%}</a></div>
-		<div class="c"><a href="{{url.base}}/su/invoices/{{order_url.total}}">{%trans "Total"%}</a></div>
-		<div class="c"><a href="{{url.base}}/su/invoices/{{order_url.total_discount}}">{%trans "Total Discount"%}</a></div>
-		<div class="c"><a href="{{url.base}}/su/invoices/{{order_url.status}}">{%trans "Status"%}</a></div>
-		<div class="c"><a href="{{url.base}}/su/invoices/{{order_url.count_detail}}">{%trans "Count Detail"%}</a></div>
-		<div class="c"><a href="{{url.base}}/su/invoices/{{order_url.desc}}">{%trans "desc"%}</a></div>
-		<div class="c">{%trans "Detail"%}</div>
-	</div>
-	{%for key, value in invoices_list%}
-	<div class="f">
-		<div class="c">{{value.id|number_format|fitNumber}}</div>
-		{%if site.currentlang == 'fa'%}
-			<div class="c">{{value.date|jdate("Y-m-d H:i:s")}}</div>
-		{%else%}
-			<div class="c">{{value.date}}</div>
-		{%endif%}
-		<div class="c">{{value.user_id|fitNumber}}</div>
-		{%if value.temp%}
-			<div class="c"><i>{%trans "Yes"%}</i></div>
-		{%else%}
-			<div class="c"><i>{%trans "No"%}</i></div>
-		{%endif%}
-		<div class="c">{{value.title}}</div>
-		<div class="c">{{value.total|number_format|fitNumber}}</div>
-		<div class="c">{{value.total_discount|number_format|fitNumber}}</div>
-		<div class="c">{%set my_status = value.status%}{%trans my_status%}</div>
-		<div class="c">{{value.count_detail|number_format|fitNumber}}</div>
-		<div class="c">{{value.desc}}</div>
-		<div class="c"><a href="{{url.base}}/su/invoicedetails/invoice_id={{value.id}}"><i class="sf-list"></i></a></div>
-	</div>
-	{%endfor%}
-</div>
-<div class="pagination-container">
-	{%include display.pagination%}
-</div>
+	</tbody>
 
+</table>
+
+{%include display.pagination%}
 
 {%endblock%}
