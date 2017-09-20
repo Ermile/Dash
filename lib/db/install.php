@@ -198,7 +198,7 @@ trait install
 				{
 					if($qry_list)
 					{
-						if(!self::query($qry_list, $_db_name, ['multi_query' => true]))
+						if(!self::query($qry_list, $_db_name, ['multi_query' => true, 'resume_on_error' => true]))
 						{
 							$has_error = true;
 						}
@@ -215,7 +215,7 @@ trait install
 						$qry = trim($qry);
 						if($qry)
 						{
-							self::query($qry, $_db_name);
+							self::query($qry, $_db_name, ['resume_on_error' => true]);
 							if(\lib\db::error())
 							{
 								$has_error = true;
