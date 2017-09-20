@@ -100,8 +100,8 @@ class tejarak
 			curl_setopt($handle, CURLOPT_POSTFIELDS, json_encode($this->data, JSON_UNESCAPED_UNICODE));
 		}
 
-		curl_setopt($handle, CURLOPT_CONNECTTIMEOUT, 10);
-		curl_setopt($handle, CURLOPT_TIMEOUT, 3);
+		curl_setopt($handle, CURLOPT_CONNECTTIMEOUT, 2);
+		curl_setopt($handle, CURLOPT_TIMEOUT, 2);
 
 		$response = curl_exec($handle);
 		curl_close ($handle);
