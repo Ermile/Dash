@@ -352,7 +352,7 @@ class router
 			}
 			if($newUrl)
 			{
-				$newUrl .= router::get_root_domain(). '/'. self::$real_url_string;
+				$newUrl .= router::get_domain(). '/'. self::$real_url_string;
 			}
 			// if($mainSite)
 			// {
