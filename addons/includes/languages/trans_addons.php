@@ -2,43 +2,43 @@
 private function transtext()
 {
 
-	//--------------------------------------------addons\addons\attachments\panel.html
+	//------------------------------------------addons\-addons-\attachments\panel.html
 	echo T_("Write your tag and press enter to add new keyword to content");          // Line 1
 	echo T_("attachments");                                                           // Line 2
 	echo T_("Search");                                                                // Line 112 Seperate
 
 	//-----------------------------------addons\content_cp\invoicedetails\display.html
-	echo T_("id");                                                                    // Line 22
-	echo T_("invoice_id");                                                            // Line 23
+	echo T_("id");                                                                    // Line 16
+	echo T_("invoice_id");                                                            // Line 17
 	echo T_("title");                                                                 // Line 230 Seperate
-	echo T_("price");                                                                 // Line 25
-	echo T_("count");                                                                 // Line 26
-	echo T_("total");                                                                 // Line 27
-	echo T_("discount");                                                              // Line 28
-	echo T_("desc");                                                                  // Line 40
+	echo T_("price");                                                                 // Line 19
+	echo T_("count");                                                                 // Line 20
+	echo T_("total");                                                                 // Line 21
+	echo T_("discount");                                                              // Line 22
+	echo T_("desc");                                                                  // Line 34
 
 	//-----------------------------------------addons\content_cp\invoices\display.html
 	echo T_("ID");                                                                    // Line 21
 	echo T_("Date");                                                                  // Line 201 Seperate
-	echo T_("User id");                                                               // Line 23
-	echo T_("Is Temp?");                                                              // Line 24
+	echo T_("User id");                                                               // Line 18
+	echo T_("Is Temp?");                                                              // Line 19
 	echo T_("Title");                                                                 // Line 200 Seperate
-	echo T_("Total");                                                                 // Line 26
-	echo T_("Total Discount");                                                        // Line 27
+	echo T_("Total");                                                                 // Line 21
+	echo T_("Total Discount");                                                        // Line 22
 	echo T_("Status");                                                                // Line 25
-	echo T_("Count Detail");                                                          // Line 29
-	echo T_("Detail");                                                                // Line 31
-	echo T_("Yes");                                                                   // Line 43
-	echo T_("No");                                                                    // Line 45
+	echo T_("Count Detail");                                                          // Line 24
+	echo T_("Detail");                                                                // Line 26
+	echo T_("Yes");                                                                   // Line 39
+	echo T_("No");                                                                    // Line 41
 
 	//---------------------------------------------addons\content_cp\logs\display.html
-	echo T_("Log item id");                                                           // Line 21
-	echo T_("Type");                                                                  // Line 34
-	echo T_("Caller");                                                                // Line 23
-	echo T_("Priority");                                                              // Line 25
-	echo T_("User_id");                                                               // Line 26
-	echo T_("Data");                                                                  // Line 27
-	echo T_("createdate");                                                            // Line 32
+	echo T_("Log item id");                                                           // Line 20
+	echo T_("Type");                                                                  // Line 28
+	echo T_("Caller");                                                                // Line 22
+	echo T_("Priority");                                                              // Line 24
+	echo T_("User_id");                                                               // Line 25
+	echo T_("Data");                                                                  // Line 26
+	echo T_("createdate");                                                            // Line 26
 	echo T_("Meta");                                                                  // Line 30
 
 	//----------------------------------------------addons\content_cp\main\layout.html
@@ -48,599 +48,43 @@ private function transtext()
 	echo T_("Logs");                                                                  // Line 31
 	echo T_("Users");                                                                 // Line 100 Seperate
 	echo T_("Notifications");                                                         // Line 11
-	echo T_("Sample Design");                                                         // Line 15
-	echo T_("Last update on");                                                        // Line 24
-	echo T_("wait for next version!");                                                // Line 24
-	echo T_("Powered by");                                                            // Line 26
-	echo T_("Some right reserved");                                                   // Line 26
+	echo T_("Sample Design");                                                         // Line 16
+	echo T_("Last update on");                                                        // Line 25
+	echo T_("wait for next version!");                                                // Line 25
+	echo T_("Powered by");                                                            // Line 27
+	echo T_("Some right reserved");                                                   // Line 27
 	echo T_("Ermile");                                                                // Line 177 Seperate
 	echo T_("Version");                                                               // Line 108 Seperate
 
 	//------------------------------------addons\content_cp\notifications\display.html
-	echo T_("user_id");                                                               // Line 23
-	echo T_("user_idsender");                                                         // Line 24
-	echo T_("content");                                                               // Line 26
-	echo T_("url");                                                                   // Line 27
-	echo T_("read");                                                                  // Line 28
-	echo T_("star");                                                                  // Line 29
-	echo T_("status");                                                                // Line 30
+	echo T_("user_id");                                                               // Line 17
+	echo T_("user_idsender");                                                         // Line 18
+	echo T_("content");                                                               // Line 20
+	echo T_("url");                                                                   // Line 21
+	echo T_("read");                                                                  // Line 22
+	echo T_("star");                                                                  // Line 23
+	echo T_("status");                                                                // Line 24
 	echo T_("category");                                                              // Line 139 Seperate
-	echo T_("senddate");                                                              // Line 33
-	echo T_("deliverdate");                                                           // Line 34
-	echo T_("expiredate");                                                            // Line 35
-	echo T_("readdate");                                                              // Line 36
-	echo T_("gateway");                                                               // Line 37
-	echo T_("auto");                                                                  // Line 38
-	echo T_("datemodified");                                                          // Line 39
+	echo T_("senddate");                                                              // Line 27
+	echo T_("deliverdate");                                                           // Line 28
+	echo T_("expiredate");                                                            // Line 29
+	echo T_("readdate");                                                              // Line 30
+	echo T_("gateway");                                                               // Line 31
+	echo T_("auto");                                                                  // Line 32
+	echo T_("datemodified");                                                          // Line 33
 
 	//---------------------------------------addons\content_cp\permission\display.html
 	echo T_("Change permission of user");                                             // Line 6
 	echo T_("Permission cat");                                                        // Line 10
 	echo T_("Save change");                                                           // Line 32
 
-	//-------------------------------------------addons\content_cp\sample\display.html
-	echo T_("Unbelievable Styles!");                                                  // Line 8
-	echo T_("Definitions aren't limited to just buttons on a page. Siftal's components allow several distinct types of definitions: elements, collections, views, modules and behaviors which cover the gamut of interface design.");// Line 9
-	echo T_("For improved cross-browser rendering, we use <a href='sample/reset'>special reset</a> to correct inconsistencies across browsers and devices while providing slightly more opinionated resets to common HTML elements.");// Line 10
-	echo T_("Button");                                                                // Line 7
-	echo T_("Primary");                                                               // Line 128
-	echo T_("Warn");                                                                  // Line 131
-	echo T_("Info");                                                                  // Line 7
-	echo T_("Check buttons collection");                                              // Line 57
-	echo T_("Messages");                                                              // Line 7
-	echo T_("This site uses cookies");                                                // Line 65
-	echo T_("Hello dear!");                                                           // Line 70
-	echo T_("Looking for help?");                                                     // Line 73
-	echo T_("Use our help center");                                                   // Line 75
-	echo T_("Check our FAQ");                                                         // Line 76
-	echo T_("Icons");                                                                 // Line 85
-	echo T_("Badge");                                                                 // Line 110
-	echo T_("Add New");                                                               // Line 111
-	echo T_("125");                                                                   // Line 113
-	echo T_("64");                                                                    // Line 114
-	echo T_("7");                                                                     // Line 27
-	echo T_("Control Panel");                                                         // Line 151 Seperate
-	echo T_("Sample");                                                                // Line 65
-	echo T_("Pagination");                                                            // Line 7
-	echo T_("Previous");                                                              // Line 89
-	echo T_("6");                                                                     // Line 138
-	echo T_("8");                                                                     // Line 140
-	echo T_("Next");                                                                  // Line 99
-	echo T_("Progress");                                                              // Line 12
-	echo T_("Table");                                                                 // Line 163
-	echo T_("First Name");                                                            // Line 272
-	echo T_("Last Name");                                                             // Line 273
-	echo T_("Username");                                                              // Line 27
-	echo T_("Javad");                                                                 // Line 288
-	echo T_("Evazzadeh");                                                             // Line 289
-	echo T_("Reza");                                                                  // Line 298
-	echo T_("Mohiti");                                                                // Line 299
-	echo T_("Hasan");                                                                 // Line 308
-	echo T_("Salehi");                                                                // Line 309
-	echo T_("Footer");                                                                // Line 281
-	echo T_("Input");                                                                 // Line 7
-	echo T_("@");                                                                     // Line 186
-	echo T_("$");                                                                     // Line 61
-	echo T_(".");                                                                     // Line 192
-	echo T_("+");                                                                     // Line 195
-	echo T_("-");                                                                     // Line 197
-	echo T_("Textarea");                                                              // Line 7
-	echo T_("Vcard");                                                                 // Line 214
-	echo T_("Joined in 2018");                                                        // Line 378
-	echo T_("Ermile is our company in Qom!");                                         // Line 379
-	echo T_("Ermile requested permission to transfer <b>Tejarak</b> team to you");    // Line 135
-	echo T_("Approve");                                                               // Line 122
-	echo T_("Decline");                                                               // Line 139
-	echo T_("Javad Evazzadeh");                                                       // Line 10 Seperate
-	echo T_("3 days ago");                                                            // Line 190
-	echo T_("Check more!");                                                           // Line 285
-	echo T_("Javad Evazzdeh");                                                        // Line 388
-	echo T_("CEO and Founder");                                                       // Line 389
-	echo T_("Remove");                                                                // Line 259
-	echo T_("Clockpicker");                                                           // Line 269
-	echo T_("Datepicker");                                                            // Line 279
-	echo T_("Checkbox");                                                              // Line 296
-	echo T_("Check1 Sample1");                                                        // Line 20
-	echo T_("Switch");                                                                // Line 37
-	echo T_("YES");                                                                   // Line 87
-	echo T_("NO!");                                                                   // Line 87
-	echo T_("Are you like Siftal?");                                                  // Line 88
-	echo T_("Datalist");                                                              // Line 7
-	echo T_("Radio");                                                                 // Line 7
-	echo T_("Blue");                                                                  // Line 42
-	echo T_("Default");                                                               // Line 42
-	echo T_("Red");                                                                   // Line 46
-	echo T_("Yellow");                                                                // Line 50
-	echo T_("Green");                                                                 // Line 54
-	echo T_("Black");                                                                 // Line 58
-
-	//------------------------------------addons\content_cp\sample\template\badge.html
-	echo T_("Badges");                                                                // Line 7
-	echo T_("Documentation and examples for badges, our small count and labeling component.");// Line 8
-	echo T_("Examples");                                                              // Line 12
-	echo T_("Badges scale to match the size of the immediate parent element by using relative font sizing and <code class='code1'>em</code> units.");// Line 13
-	echo T_("Example heading");                                                       // Line 21
-	echo T_("New");                                                                   // Line 21
-	echo T_("Badges can be used as part of links or buttons to provide a counter.");  // Line 24
-	echo T_("Notification");                                                          // Line 28
-	echo T_("5");                                                                     // Line 28
-	echo T_("Contextual variations");                                                 // Line 34
-	echo T_("Add any of the below mentioned modifier classes to change the appearance of a badge.");// Line 35
-	echo T_("Secondary");                                                             // Line 78
-	echo T_("Success");                                                               // Line 129
-	echo T_("Danger");                                                                // Line 130
-	echo T_("Warning");                                                               // Line 98
-	echo T_("Light");                                                                 // Line 79
-	echo T_("Dark");                                                                  // Line 80
-	echo T_("Rounded badge");                                                         // Line 62
-	echo T_("Use the <code class='code1'>.rounded</code> modifier class to make badges more rounded (with a larger border-radius and additional horizontal padding).");// Line 63
-	echo T_("Links");                                                                 // Line 90
-	echo T_("Using the <code class='code1'>.badge</code> classes with the <code class='code1'>&lt;a&gt;</code> element quickly provide actionable badges with hover and focus states.");// Line 91
-
-	//--------------------------------------addons\content_cp\sample\template\box.html
-	echo T_("box");                                                                   // Line 7
-	echo T_("Siftal's box provide a flexible and extensible content container for title and contents.");// Line 8
-	echo T_("You can use elements of this page in all part of site and mix them with another elements.");// Line 14
-	echo T_("Salam");                                                                 // Line 18
-
-	//-------------------------------addons\content_cp\sample\template\breadcrumb.html
-	echo T_("Breadcrumb");                                                            // Line 7
-	echo T_("Indicate the current page's location within a navigational hierarchy that automatically adds separators via CSS.");// Line 8
-	echo T_("Separators are automatically added in CSS through ::before and content.");// Line 13
-	echo T_("Sizes");                                                                 // Line 187
-	echo T_("A breadcrumb can vary in size");                                         // Line 29
-	echo T_(" Home");                                                                 // Line 63
-
-	//-----------------------------------addons\content_cp\sample\template\button.html
-	echo T_("Use Siftal's custom button styles for actions in forms, dialogs, and more with support for multiple sizes, states, and more.");// Line 8
-	echo T_("Simple Examples");                                                       // Line 13
-	echo T_("Siftal includes several predefined button styles, each serving its own semantic purpose, with a few extras thrown in for more control.");// Line 13
-	echo T_("Default Btn");                                                           // Line 76
-	echo T_("a simple link");                                                         // Line 81
-	echo T_("Button tags");                                                           // Line 33
-	echo T_("The <code class='code1'>.btn</code> classes are designed to be used with the <code class='code1'>&lt;button&gt;</code> element. However, you can also use these classes on <code class='code1'>&lt;a&gt;</code> or <code class='code1'>&lt;input&gt;</code> elements (though some browsers may apply a slightly different rendering).");// Line 34
-	echo T_("When using button classes on <code class='code1'>&lt;a&gt;</code> elements that are used to trigger in-page functionality (like collapsing content), rather than linking to new pages or sections within the current page, these links should be given a <code class='code1'>role='button'</code> to appropriately convey their purpose to assistive technologies such as screen readers.");// Line 36
-	echo T_("Link");                                                                  // Line 212
-	echo T_("Link!");                                                                 // Line 45
-	echo T_("Outline buttons");                                                       // Line 51
-	echo T_("In need of a button, but not the hefty background colors they bring? Replace the default modifier classes with the <code class='code1'>.outline</code> ones to remove all background images and colors on any button.");// Line 52
-	echo T_("Inverted");                                                              // Line 72
-	echo T_("A button can be formatted to appear on dark backgrounds");               // Line 73
-	echo T_("Fancy larger or smaller buttons? Add .btn-lg or .btn-sm for additional sizes.");// Line 100
-	echo T_("Extra small xs");                                                        // Line 103
-	echo T_("Small sm");                                                              // Line 104
-	echo T_("Normal");                                                                // Line 196
-	echo T_("Large lg");                                                              // Line 106
-	echo T_("Extra Large xl");                                                        // Line 107
-	echo T_("Primary Block");                                                         // Line 110
-	echo T_("Secondary block");                                                       // Line 111
-	echo T_("Active state");                                                          // Line 117
-	echo T_("Buttons will appear pressed (with a darker background) when active. There’s no need to add a class to <code class='code1'>&lt;button&gt;</code>s as they use a pseudo-class. However, you can still force the same active appearance with .active should you need to replicate the state programmatically.");// Line 118
-	echo T_("Disabled state");                                                        // Line 138
-	echo T_("Make buttons look inactive by adding the disabled boolean attribute to any <code class='code1'>&lt;button&gt;</code> element.");// Line 139
-	echo T_("Disabled buttons using the <code class='code1'>&lt;a&gt;</code> element behave a bit different because <code class='code1'>&lt;a&gt;</code>s don’t support the <code class='code1'>disabled</code> attribute, so you must add the <code class='code1'>.disabled</code> class to make it visually appear disabled.");// Line 141
-	echo T_("disabled");                                                              // Line 145
-	echo T_(".disabled");                                                             // Line 146
-	echo T_(".disabled Link");                                                        // Line 147
-	echo T_("Link functionality caveat");                                             // Line 151
-	echo T_("The <code class='code1'>.disabled</code> class uses <code class='code1'>pointer-events: none</code> to try to disable the link functionality of <code class='code1'>&lt;a&gt;</code>s, but that CSS property is not yet standardized. In addition, even in browsers that do support <code class='code1'>pointer-events: none</code>, keyboard navigation remains unaffected, meaning that sighted keyboard users and users of assistive technologies will still be able to activate these links. So to be safe, add a <code class='code1'>tabindex='-1'</code> attribute on these links (to prevent them from receiving keyboard focus) and use custom JavaScript to disable their functionality.");// Line 153
-
-	//---------------------------------addons\content_cp\sample\template\checkbox.html
-	echo T_("Easily extend form controls by adding text, buttons, or button groups on either side of textual inputs.");// Line 8
-	echo T_("Simple Examples with input element");                                    // Line 13
-	echo T_("Check1 Sample2");                                                        // Line 25
-	echo T_("Check1 Sample3");                                                        // Line 30
-	echo T_("With custom text");                                                      // Line 61
-	echo T_("HI");                                                                    // Line 68
-	echo T_("BYE");                                                                   // Line 68
-	echo T_("With more detail");                                                      // Line 78
-	echo T_("Subscribe to our newsletter");                                           // Line 82
-
-	//------------------------------------addons\content_cp\sample\template\clock.html
-	echo T_("ClockPicker");                                                           // Line 7
-	echo T_("Easily add time picker to your project");                                // Line 8
-	echo T_("Read more info and example about clockpicker");                          // Line 16
-	echo T_("Simple");                                                                // Line 18
-	echo T_("Simple with addon");                                                     // Line 23
-	echo T_("Place at right, align the arrow to top, without auto close");            // Line 30
-	echo T_("Ok");                                                                    // Line 31
-	echo T_("Place at right, align the arrow to bottom");                             // Line 45
-	echo T_("Place at left, align the arrow to top");                                 // Line 40
-	echo T_("Place at top, alighn the arrow to right");                               // Line 50
-	echo T_("Place at top, alighn the arrow to left");                                // Line 55
-	echo T_("Place at bottom, alighn the arrow to right");                            // Line 60
-	echo T_("Place at bottom, alighn the arrow to left");                             // Line 65
-	echo T_("Set options in javascript, instead of data-*");                          // Line 72
-	echo T_("Callbacks");                                                             // Line 78
-
-	//-------------------------------------addons\content_cp\sample\template\crop.html
-	echo T_("Crop Images");                                                           // Line 7
-	echo T_("A simple and full feature crop for avatar or something else!");          // Line 8
-	echo T_("Example");                                                               // Line 13
-	echo T_("Check more on cropprer documentation!");                                 // Line 14
-	echo T_("Only run cropper without anything!");                                    // Line 17
-	echo T_("Only run cropper with aspect ratio and min width and height on cropbox");// Line 24
-	echo T_("Complete example with full function");                                   // Line 31
-	echo T_("run cropper with aspect ratio and min width and height in modal");       // Line 98
-	echo T_("Crop image in modal");                                                   // Line 101
-	echo T_("Crop your avatar");                                                      // Line 170
-	echo T_("Please choose and crop your image");                                     // Line 112
-	echo T_("complete example of crop in modal and show preview after that");         // Line 126
-	echo T_("Cancel");                                                                // Line 90 Seperate
-	echo T_("Crop");                                                                  // Line 177
-	echo T_("complete example of crop in modal and show preview after that with default image");// Line 158
-
-	//---------------------------------addons\content_cp\sample\template\datalist.html
-	echo T_("Datalist element of HTML5 forms is pretty cool!");                       // Line 8
-	echo T_("Find Iran State");                                                       // Line 18
-	echo T_("Full width");                                                            // Line 20
-	echo T_("Find Iran State 2");                                                     // Line 42
-	echo T_("Qom");                                                                   // Line 63 Seperate
-	echo T_("Tehran");                                                                // Line 27
-	echo T_("Awesomplete");                                                           // Line 35
-	echo T_("No JS");                                                                 // Line 37
-	echo T_("With datalist");                                                         // Line 40
-
-	//-------------------------------------addons\content_cp\sample\template\date.html
-	echo T_("Date Picker");                                                           // Line 7
-	echo T_("A simple date picker for fast use");                                     // Line 8
-	echo T_("Without any option");                                                    // Line 17
-	echo T_("With custom format");                                                    // Line 22
-	echo T_("with default value");                                                    // Line 26
-	echo T_("Connect to another field");                                              // Line 31
-	echo T_("Inline Mode");                                                           // Line 37
-	echo T_("English Number");                                                        // Line 43
-	echo T_("Special View mode");                                                     // Line 48
-	echo T_("Min is today");                                                          // Line 55
-	echo T_("Max is today");                                                          // Line 57
-
-	//-------------------------------------addons\content_cp\sample\template\grid.html
-	echo T_("Page Grids");                                                            // Line 31
-	echo T_("one row will divide to the number of parts, if you just set class='c'"); // Line 123
-	echo T_("on large screens if you just set class='x', it will take the x class ratio");// Line 134
-	echo T_("three equal parts");                                                     // Line 142
-	echo T_("sum of parts is 12, every part will take ratio of it's class number");   // Line 151
-	echo T_("it will take just 6 part of 12");                                        // Line 162
-	echo T_("float right boxes, by .os class");                                       // Line 170
-	echo T_("Responsive on medium devices, like tablet's by .m classes");             // Line 178
-	echo T_("Responsive on mobile devices by .s classes");                            // Line 186
-
-	//-------------------------------------addons\content_cp\sample\template\icon.html
-	echo T_("siftal");                                                                // Line 13
-	echo T_("This was created with ");                                                // Line 14
-	echo T_("Fontastic");                                                             // Line 14
-	echo T_("CSS mapping");                                                           // Line 16
-	echo T_("Character mapping");                                                     // Line 2027
-
-	//------------------------------------addons\content_cp\sample\template\input.html
-	echo T_("Focus");                                                                 // Line 51
-	echo T_("Active");                                                                // Line 56
-	echo T_("Readonly");                                                              // Line 61
-	echo T_("Disabled");                                                              // Line 66
-	echo T_("All type of input conditions");                                          // Line 74
-	echo T_("Extra Examples with input class and multiple part");                     // Line 43
-	echo T_("Simple input with label");                                               // Line 90
-	echo T_("Name");                                                                  // Line 17
-	echo T_("Family");                                                                // Line 96
-	echo T_("Email");                                                                 // Line 62
-	echo T_("Extra features");                                                        // Line 109
-	echo T_("Sizing");                                                                // Line 150
-	echo T_("Button addons");                                                         // Line 177
-	echo T_("Search...");                                                             // Line 181
-	echo T_("Go!");                                                                   // Line 188
-	echo T_("Ding Ding!");                                                            // Line 198
-	echo T_("Simple file input");                                                     // Line 216
-	echo T_("Simple file input only accept images");                                  // Line 223
-	echo T_("Simple avatar selector with simple preview");                            // Line 230
-	echo T_("Simple file input with min 100kb and max 200kb size!");                  // Line 249
-
-	//--------------------------------------addons\content_cp\sample\template\msg.html
-	echo T_("Provide contextual feedback messages for typical user actions with the handful of available and flexible alert messages.");// Line 8
-	echo T_("This is a primary message or alert. check it out!");                     // Line 16
-	echo T_("This is a secondary message or alert. check it out!");                   // Line 17
-	echo T_("This is a success message or alert. check it out!");                     // Line 18
-	echo T_("This is a danger message or alert. check it out!");                      // Line 19
-	echo T_("This is a warning message or alert. check it out!");                     // Line 20
-	echo T_("This is a info message or alert. check it out!");                        // Line 21
-	echo T_("This is a light message or alert. check it out!");                       // Line 22
-	echo T_("This is a dark message or alert. check it out!");                        // Line 23
-	echo T_("Examples with light color");                                             // Line 26
-	echo T_("This is a primary2 message or alert. check it out!");                    // Line 28
-	echo T_("This is a secondary2 message or alert. check it out!");                  // Line 29
-	echo T_("This is a success2 message or alert. check it out!");                    // Line 30
-	echo T_("This is a danger2 message or alert. check it out!");                     // Line 31
-	echo T_("This is a warning2 message or alert. check it out!");                    // Line 32
-	echo T_("This is a info2 message or alert. check it out!");                       // Line 33
-	echo T_("This is a light2 message or alert. check it out!");                      // Line 34
-	echo T_("This is a dark2 message or alert. check it out!");                       // Line 35
-	echo T_("Link color");                                                            // Line 41
-	echo T_("Use the <code class='code1'>.link</code> utility class to quickly provide matching colored links within any alert.");// Line 42
-	echo T_("This is a primary alert with");                                          // Line 45
-	echo T_("an example link");                                                       // Line 52
-	echo T_("Give it a click if you like.");                                          // Line 52
-	echo T_("This is a secondary alert with");                                        // Line 46
-	echo T_("This is a success alert with");                                          // Line 47
-	echo T_("This is a danger alert with");                                           // Line 48
-	echo T_("This is a warning alert with");                                          // Line 49
-	echo T_("This is a info alert with");                                             // Line 50
-	echo T_("This is a light alert with");                                            // Line 51
-	echo T_("This is a dark alert with");                                             // Line 52
-	echo T_("Additional content");                                                    // Line 58
-	echo T_("Alerts can also contain additional HTML elements like headings, paragraphs and dividers.");// Line 59
-	echo T_("Well done!");                                                            // Line 62
-	echo T_("Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.");// Line 63
-	echo T_("Whenever you need to, be sure to use margin utilities to keep things nice and tidy.");// Line 65
-	echo T_("Compact");                                                               // Line 188
-	echo T_("A message can only take up the width of its content.");                  // Line 72
-	echo T_("Aww yeah, you successfully read this important alert message. Sign up now!");// Line 74
-	echo T_("Another type of usage");                                                 // Line 79
-	echo T_("List Message");                                                          // Line 81
-	echo T_("A message with a list");                                                 // Line 82
-	echo T_("Was this what you wanted?");                                             // Line 85
-	echo T_("It's good to see you again.");                                           // Line 87
-	echo T_("Did you know it's been a while?");                                       // Line 88
-	echo T_("Have you heard about our car?");                                         // Line 97
-	echo T_("Get the best news of the year!");                                        // Line 98
-	echo T_("Just one second");                                                       // Line 107
-	echo T_("We're fetching that content for you. What content!?");                   // Line 108
-
-	//--------------------------------------addons\content_cp\sample\template\old.html
-	echo T_("Sample Page of admin");                                                  // Line 27
-	echo T_("Template Form");                                                         // Line 36
-	echo T_("List");                                                                  // Line 52
-	echo T_("Headings");                                                              // Line 57
-	echo T_("message (.msg)");                                                        // Line 198
-	echo T_("message warning (.msg .warning)");                                       // Line 199
-	echo T_("message info (.msg .info)");                                             // Line 200
-	echo T_("message success (.msg .success)");                                       // Line 201
-	echo T_("message error (.msg .error)");                                           // Line 202
-	echo T_("message danger (.msg .danger)");                                         // Line 203
-	echo T_("message compact (.msg .compact)");                                       // Line 204
-	echo T_("message small (.msg .small)");                                           // Line 205
-	echo T_("message big (.msg .big)");                                               // Line 206
-	echo T_("message massive (.msg .massive)");                                       // Line 207
-	echo T_("Privacy mode");                                                          // Line 334
-	echo T_("Private");                                                               // Line 339
-	echo T_("Public");                                                                // Line 343
-	echo T_("Short Name");                                                            // Line 256
-	echo T_("phoneNumber");                                                           // Line 263
-	echo T_("Alias");                                                                 // Line 270
-	echo T_("Default setting for new members of team");                               // Line 300
-	echo T_("Show users avatars");                                                    // Line 305
-	echo T_("Allow plus");                                                            // Line 310
-	echo T_("Allow minus");                                                           // Line 314
-	echo T_("Remote user");                                                           // Line 319
-	echo T_("24 hour");                                                               // Line 323
-	echo T_("allowPlus");                                                             // Line 330
-	echo T_("Advance");                                                               // Line 357
-	echo T_("First");                                                                 // Line 379
-	echo T_("Second");                                                                // Line 380
-	echo T_("Third");                                                                 // Line 381
-	echo T_("This is heading 1");                                                     // Line 386
-	echo T_("This is heading 2");                                                     // Line 387
-	echo T_("This is heading 3");                                                     // Line 388
-	echo T_("This is heading 4");                                                     // Line 389
-	echo T_("This is heading 5");                                                     // Line 390
-	echo T_("This is heading 6");                                                     // Line 391
-
-	//-------------------------------addons\content_cp\sample\template\pagination.html
-	echo T_("Documentation and examples for showing pagination to indicate a series of related content exists across multiple pages.");// Line 8
-	echo T_("Overview");                                                              // Line 12
-	echo T_("We use a large block of connected links for our pagination, making links hard to miss and easily scalable—all while providing large hit areas. Pagination is built with list HTML elements so screen readers can announce the number of available links. Use a wrapping <nav> element to identify it as a navigation section to screen readers and other assistive technologies.");// Line 13
-	echo T_("Colored");                                                               // Line 31
-	echo T_("A pagination can use in many colors");                                   // Line 24
-	echo T_("A pagination can vary in size");                                         // Line 56
-
-	//---------------------------------addons\content_cp\sample\template\progress.html
-	echo T_("Documentation and examples for using Siftal progress bars.");            // Line 8
-	echo T_("Siftal use html progress and meter and have some styles on them, each serving its own semantic purpose");// Line 13
-	echo T_("Meter");                                                                 // Line 39
-	echo T_("Use the meter element to measure data within a given range");            // Line 40
-
-	//------------------------------------addons\content_cp\sample\template\radio.html
-	echo T_("Easily use our simple radio");                                           // Line 8
-	echo T_("Radio type 1");                                                          // Line 13
-	echo T_("Default behaviour");                                                     // Line 16
-	echo T_("Male");                                                                  // Line 57
-	echo T_("Female");                                                                // Line 61
-	echo T_("Other");                                                                 // Line 19
-	echo T_("Radio1");                                                                // Line 23
-	echo T_("None");                                                                  // Line 34
-	echo T_("Colored Radio1");                                                        // Line 39
-
-	//------------------------------------addons\content_cp\sample\template\reset.html
-	echo T_("CSS Reset");                                                             // Line 7
-	echo T_("Reset, a collection of element-specific CSS changes in a single file, kickstart Siftal to provide an elegant, consistent, and simple baseline to build upon.");// Line 8
-	echo T_("should have sans-serif font family (opinionated)");                      // Line 13
-	echo T_("should have no margin (opinionated)");                                   // Line 19
-	echo T_("(there should be no red background visible on this page)");              // Line 21
-	echo T_("should render as block");                                                // Line 25
-	echo T_("should render as inline-block and baseline-aligned");                    // Line 46
-	echo T_("should not display");                                                    // Line 55
-	echo T_("dummy anchor");                                                          // Line 72
-	echo T_("should not have a focus outline when both focused and hovered (opinionated)");// Line 70
-	echo T_("should have a dotted bottom border");                                    // Line 76
-	echo T_("should have bold font-weight");                                          // Line 82
-	echo T_("should have italic font-style");                                         // Line 89
-	echo T_("should not change size within an <code>article</code>");                 // Line 95
-	echo T_("Heading (control)");                                                     // Line 104
-	echo T_("Heading (in article)");                                                  // Line 99
-	echo T_("should not change size within a <code>section</code>");                  // Line 102
-	echo T_("Heading (in section)");                                                  // Line 106
-	echo T_("h1: Hi Siftal");                                                         // Line 110
-	echo T_("h2: Hi Siftal");                                                         // Line 111
-	echo T_("h3: Hi Siftal");                                                         // Line 112
-	echo T_("h4: Hi Siftal");                                                         // Line 113
-	echo T_("h5: Hi Siftal");                                                         // Line 114
-	echo T_("h6: Hi Siftal");                                                         // Line 115
-	echo T_("should have a yellow background");                                       // Line 118
-	echo T_("should render equally small in all browsers");                           // Line 124
-	echo T_("should not affect a line's visual line-height");                         // Line 130
-	echo T_("should not have a border when wrapped in an anchor");                    // Line 138
-	echo T_("should not overflow");                                                   // Line 147
-	echo T_("should have margins");                                                   // Line 155
-	echo T_("should have a <code>content-box</code> box model");                      // Line 356
-	echo T_("should trigger a scrollbar when too wide for its container");            // Line 169
-	echo T_(" Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et me.");// Line 171
-	echo T_("should render <code>em</code>-unit preformatted text at the same absolute size as normal text");// Line 175
-	echo T_("should inherit <code>color</code> from ancestor");                       // Line 185
-	echo T_("should inherit <code>font</code> from ancestor");                        // Line 197
-	echo T_("should not have margins");                                               // Line 209
-	echo T_("should have visible overflow");                                          // Line 236
-	echo T_("should not inherit <code>text-transform</code>");                        // Line 253
-	echo T_("should have <code>pointer</code> cursor style");                         // Line 260
-	echo T_("should be styleable");                                                   // Line 352
-	echo T_("should have <code>default</code> cursor style");                         // Line 287
-	echo T_("should not have extra inner padding in Firefox");                        // Line 297
-	echo T_("should not inherit <code>line-height</code>");                           // Line 315
-	echo T_("should have a <code>border-box</code> box model");                       // Line 321
-	echo T_("should not have padding");                                               // Line 382
-	echo T_("should display a default cursor for the decrement button's click target in Chrome");// Line 346
-	echo T_("should not have a cancel button in Safari or Chrome");                   // Line 362
-	echo T_("should have consistent border, padding, and margin");                    // Line 368
-	echo T_("should inherit color");                                                  // Line 376
-	echo T_("should not have a scrollbar unless overflowing");                        // Line 390
-	echo T_("should not have spaces between cells");                                  // Line 396
-
-	//-----------------------------------addons\content_cp\sample\template\select.html
-	echo T_("Select");                                                                // Line 81
-	echo T_("Easily change default select style to simple and clean Siftal design");  // Line 8
-	echo T_("Sarshomar");                                                             // Line 27
-	echo T_("Tejarak");                                                               // Line 28
-	echo T_("Azvir");                                                                 // Line 29
-	echo T_("Talambar");                                                              // Line 30
-	echo T_("Jibres");                                                                // Line 31
-	echo T_("Multiple");                                                              // Line 25
-
-	//---------------------------------addons\content_cp\sample\template\sortable.html
-	echo T_("Sortable");                                                              // Line 7
-	echo T_("Allow to easily add sortable to projects");                              // Line 8
-
-	//------------------------------------addons\content_cp\sample\template\table.html
-	echo T_("A table's colors can be changed");                                       // Line 32
-	echo T_("Similar to colored tables, use one of modifier classes to make rows appear colored.");// Line 79
-	echo T_("Add <code class='code1'>.bordered</code> for borders on all sides of the table and cells.");// Line 172
-	echo T_("A table may sometimes need to be more compact to make more rows visible at a time");// Line 189
-	echo T_("A table may sometimes need to be more padded for legibility");           // Line 203
-	echo T_("A table may sometimes need to be small");                                // Line 210
-	echo T_("A table may sometimes need to be large");                                // Line 217
-	echo T_("Add <code class='code1'>data-sort=desc|asc</code> to table header for add icon of sorting");// Line 228
-	echo T_("@evazzadeh");                                                            // Line 290
-	echo T_("@biqarar");                                                              // Line 300
-	echo T_("@baravak");                                                              // Line 310
-	echo T_("Git Repository");                                                        // Line 7
-	echo T_("node_modules");                                                          // Line 320
-	echo T_("Initial commit");                                                        // Line 341
-	echo T_("10 hours ago");                                                          // Line 342
-	echo T_("test");                                                                  // Line 325
-	echo T_("build");                                                                 // Line 330
-	echo T_("package.json");                                                          // Line 335
-	echo T_("Gruntfile.js");                                                          // Line 340
-
-	//--------------------------------------addons\content_cp\sample\template\txt.html
-	echo T_("A textarea can be used to allow for extended user input.");              // Line 8
-	echo T_("To specify an approximate text area size use the rows attribute.");      // Line 14
-
-	//------------------------------------addons\content_cp\sample\template\vcard.html
-	echo T_("vcard");                                                                 // Line 7
-	echo T_("Siftal's cards provide a flexible and extensible content container with multiple variants and options.");// Line 8
-	echo T_("A card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.");// Line 13
-	echo T_("Cards are built with as little markup and styles as possible, but still manage to deliver a ton of control and customization. Built with flexbox, they offer easy alignment and mix well with other  components.");// Line 14
-	echo T_("123 Friends");                                                           // Line 381
-	echo T_("10h");                                                                   // Line 75
-	echo T_("5 Comments");                                                            // Line 80
-	echo T_("1k likes");                                                              // Line 81
-	echo T_("Cards are designed to be flexible to your content. content blocks can include any custom elements related to your content.");// Line 92
-	echo T_("Accept");                                                                // Line 138
-	echo T_("A card can contain a header.");                                          // Line 146
-	echo T_("Friend");                                                                // Line 173
-	echo T_("Javad is a CEO and founder of Ermile and start developing Siftal from 2017 and hope to write documentaion for it!");// Line 157
-	echo T_("Reza Mohiti");                                                           // Line 13 Seperate
-	echo T_("Reza is a back-end developer of Ermile.");                               // Line 166
-	echo T_("Hasan Salehi");                                                          // Line 11 Seperate
-	echo T_("Hasan is a full-stack developer of Ermile and always trying to be in classrooms!");// Line 178
-	echo T_("A card can contain content metadata.");                                  // Line 264
-	echo T_("Reza Motiti");                                                           // Line 275
-	echo T_("6 days ago");                                                            // Line 197
-	echo T_("Haram");                                                                 // Line 197
-	echo T_("10 days ago");                                                           // Line 204
-	echo T_("School");                                                                // Line 204
-	echo T_("A card can be formatted so that the entire contents link to another page. Also a card can contain contain links as images, headers, or inside content.");// Line 213
-	echo T_("Center Card");                                                           // Line 240
-	echo T_("A card can center itself inside its container.");                        // Line 241
-	echo T_("A card can specify a color.");                                           // Line 251
-	echo T_("A card can be used in many sizes");                                      // Line 292
-	echo T_("Mini");                                                                  // Line 293
-	echo T_("Tiny");                                                                  // Line 308
-	echo T_("Small");                                                                 // Line 209
-	echo T_("Large");                                                                 // Line 216
-	echo T_("Big");                                                                   // Line 342
-	echo T_("Huge");                                                                  // Line 345
-	echo T_("Massive");                                                               // Line 348
-	echo T_("Live Card");                                                             // Line 353
-	echo T_("A card can be used in live with on and off status");                     // Line 354
-	echo T_("Add new");                                                               // Line 6
-
-	//--------------------------------------------addons\content_cp\tools\display.html
-	echo T_("You can use our tools");                                                 // Line 5
-	echo T_("If you dont know about this page, leave it!");                           // Line 5
-	echo T_("Special tools");                                                         // Line 9
-	echo T_("Sitemap");                                                               // Line 11
-	echo T_("Server information");                                                    // Line 12
-	echo T_("Log");                                                                   // Line 13
-	echo T_("Translation tools");                                                     // Line 14
-	echo T_("Update");                                                                // Line 152 Seperate
-
-	//---------------------------------------addons\content_cp\tools\info\display.html
-	echo T_("Show server info");                                                      // Line 9
-	echo T_("Show PHP info");                                                         // Line 10
-
-	//----------------------------------------addons\content_cp\tools\log\display.html
-	echo T_("Server Logs");                                                           // Line 7
-	echo T_("Access logs");                                                           // Line 9
-	echo T_("Error logs");                                                            // Line 10
-	echo T_("Database Logs");                                                         // Line 15
-	echo T_("Logs - check");                                                          // Line 18
-	echo T_("Logs - warn");                                                           // Line 19
-	echo T_("Logs - critical");                                                       // Line 20
-	echo T_("Error Logs");                                                            // Line 21
-	echo T_("Telegram Errors");                                                       // Line 26
-	echo T_("telegram Logs");                                                         // Line 29
-	echo T_("telegram - Error Logs");                                                 // Line 30
-
-	//------------------------------------addons\content_cp\tools\sitemap\display.html
-	echo T_("Create sitemap automatically by click on this page");                    // Line 6
-	echo T_("Base Sitemap");                                                          // Line 8
-	echo T_("Sitemap Detail");                                                        // Line 9
-	echo T_("Create it Again");                                                       // Line 10
-	echo T_("Create Sitemap Result");                                                 // Line 18
-
-	//--------------------------------addons\content_cp\tools\translation\display.html
-	echo T_("Translate");                                                             // Line 7
-	echo T_("Extract twig trans func in current project");                            // Line 9
-	echo T_("Extract twig trans func in dash addons");                                // Line 11
-	echo T_("Extract twig trans func in dash addons and update on dash addons");      // Line 12
-
-	//-------------------------------------addons\content_cp\tools\update\display.html
-	echo T_("Ermile Repository");                                                     // Line 9
-	echo T_("Dash Repository");                                                       // Line 11
-	echo T_("Current Project Repository");                                            // Line 12
-	echo T_("All: Dash + current project Repository");                                // Line 13
-	echo T_("Database");                                                              // Line 20
-	echo T_("Upgrade");                                                               // Line 35
-	echo T_("Backup");                                                                // Line 37
-	echo T_("Backup by dump");                                                        // Line 29
-	echo T_("Submit");                                                                // Line 141
-	echo T_("Project Database");                                                      // Line 37
-	echo T_("Automatically read database and create sql files");                      // Line 36
-
 	//---------------------------------addons\content_cp\transactions\add\display.html
 	echo T_("Saved record");                                                          // Line 6
 	echo T_("Code");                                                                  // Line 48
-	echo T_("Plus");                                                                  // Line 38
-	echo T_("Minus");                                                                 // Line 39
-	echo T_("Condition");                                                             // Line 44
-	echo T_("Verify");                                                                // Line 45
+	echo T_("Plus");                                                                  // Line 32
+	echo T_("Minus");                                                                 // Line 33
+	echo T_("Condition");                                                             // Line 38
+	echo T_("Verify");                                                                // Line 39
 	echo T_("Description");                                                           // Line 199 Seperate
 	echo T_("Repair to");                                                             // Line 38
 	echo T_("type");                                                                  // Line 47
@@ -649,22 +93,24 @@ private function transtext()
 	echo T_("Gift");                                                                  // Line 51
 	echo T_("Transfer");                                                              // Line 52
 	echo T_("Prize");                                                                 // Line 53
-	echo T_("Unit");                                                                  // Line 40
+	echo T_("Unit");                                                                  // Line 34
 	echo T_("Toman");                                                                 // Line 60
+	echo T_("$");                                                                     // Line 61
 	echo T_("Mobile");                                                                // Line 4
 	echo T_("Add");                                                                   // Line 149 Seperate
 
 	//-------------------------------------addons\content_cp\transactions\display.html
 	echo T_("Add New Transaction");                                                   // Line 7
-	echo T_("Displayname");                                                           // Line 31
-	echo T_("Amount request");                                                        // Line 36
-	echo T_("Amount end");                                                            // Line 37
-	echo T_("Budget before");                                                         // Line 41
-	echo T_("Budget");                                                                // Line 42
-	echo T_("Payment");                                                               // Line 46
+	echo T_("Displayname");                                                           // Line 25
+	echo T_("Amount request");                                                        // Line 30
+	echo T_("Amount end");                                                            // Line 31
+	echo T_("Budget before");                                                         // Line 35
+	echo T_("Budget");                                                                // Line 36
+	echo T_("Payment");                                                               // Line 40
 	echo T_("Parent");                                                                // Line 26
 	echo T_("More");                                                                  // Line 29
-	echo T_("Repait");                                                                // Line 49
+	echo T_("Repait");                                                                // Line 43
+	echo T_("Add new");                                                               // Line 6
 	echo T_("Revers");                                                                // Line 51
 
 	//----------------------------------------addons\content_cp\users\add\display.html
@@ -678,12 +124,15 @@ private function transtext()
 
 	//--------------------------------------------addons\content_cp\users\display.html
 	echo T_("Users list");                                                            // Line 6
+	echo T_("Email");                                                                 // Line 62
+	echo T_("Username");                                                              // Line 27
 	echo T_("Avatar");                                                                // Line 28
 	echo T_("Edit");                                                                  // Line 150 Seperate
 	echo T_("Permission");                                                            // Line 33
 
 	//---------------------------------------addons\content_cp\users\edit\display.html
 	echo T_("Edit user detail");                                                      // Line 6
+	echo T_("Name");                                                                  // Line 17
 	echo T_("Enter a valid name from 3 to 40 character");                             // Line 17
 	echo T_("Last name");                                                             // Line 22
 	echo T_("allowed extentions jpg, png (gif for bussiness plans). Max 500Kb");      // Line 27
@@ -691,6 +140,8 @@ private function transtext()
 	echo T_("Father name");                                                           // Line 46
 	echo T_("Birthday");                                                              // Line 51
 	echo T_("Gender");                                                                // Line 54
+	echo T_("Male");                                                                  // Line 57
+	echo T_("Female");                                                                // Line 61
 	echo T_("Marital");                                                               // Line 64
 	echo T_("Single");                                                                // Line 67
 	echo T_("Married");                                                               // Line 71
@@ -782,73 +233,533 @@ private function transtext()
 
 	//-----------------------------------------addons\content_su\invoices\display.html
 
+	//--------------------------------------addons\content_su\logs\detail\display.html
+	echo T_("Logs Detail");                                                           // Line 6
+
 	//---------------------------------------------addons\content_su\logs\display.html
+	echo T_("Logs List");                                                             // Line 6
+	echo T_("Desc");                                                                  // Line 27
 
 	//----------------------------------------------addons\content_su\main\layout.html
 	echo T_("ShortURL");                                                              // Line 12
+	echo T_("Send Nofity");                                                           // Line 13
 
 	//------------------------------------addons\content_su\notifications\display.html
 
 	//---------------------------------------addons\content_su\permission\display.html
 
 	//-------------------------------------------addons\content_su\sample\display.html
+	echo T_("Unbelievable Styles!");                                                  // Line 8
+	echo T_("Definitions aren't limited to just buttons on a page. Siftal's components allow several distinct types of definitions: elements, collections, views, modules and behaviors which cover the gamut of interface design.");// Line 9
+	echo T_("For improved cross-browser rendering, we use <a href='sample/reset'>special reset</a> to correct inconsistencies across browsers and devices while providing slightly more opinionated resets to common HTML elements.");// Line 10
+	echo T_("Button");                                                                // Line 41
+	echo T_("Primary");                                                               // Line 128
+	echo T_("Warn");                                                                  // Line 131
+	echo T_("Info");                                                                  // Line 7
+	echo T_("Check buttons collection");                                              // Line 57
+	echo T_("Messages");                                                              // Line 47
+	echo T_("This site uses cookies");                                                // Line 65
+	echo T_("Hello dear!");                                                           // Line 70
+	echo T_("Looking for help?");                                                     // Line 73
+	echo T_("Use our help center");                                                   // Line 75
+	echo T_("Check our FAQ");                                                         // Line 76
+	echo T_("Icons");                                                                 // Line 85
+	echo T_("Badge");                                                                 // Line 110
+	echo T_("Add New");                                                               // Line 111
+	echo T_("125");                                                                   // Line 113
+	echo T_("64");                                                                    // Line 114
+	echo T_("7");                                                                     // Line 27
+	echo T_("Control Panel");                                                         // Line 151 Seperate
+	echo T_("Sample");                                                                // Line 65
+	echo T_("Pagination");                                                            // Line 7
+	echo T_("Previous");                                                              // Line 89
+	echo T_("6");                                                                     // Line 138
+	echo T_("8");                                                                     // Line 140
+	echo T_("Next");                                                                  // Line 99
+	echo T_("Progress");                                                              // Line 12
+	echo T_("Table");                                                                 // Line 163
+	echo T_("First Name");                                                            // Line 272
+	echo T_("Last Name");                                                             // Line 273
+	echo T_("Javad");                                                                 // Line 288
+	echo T_("Evazzadeh");                                                             // Line 289
+	echo T_("Reza");                                                                  // Line 298
+	echo T_("Mohiti");                                                                // Line 299
+	echo T_("Hasan");                                                                 // Line 308
+	echo T_("Salehi");                                                                // Line 309
+	echo T_("Footer");                                                                // Line 281
+	echo T_("Input");                                                                 // Line 7
+	echo T_("@");                                                                     // Line 186
+	echo T_(".");                                                                     // Line 192
+	echo T_("+");                                                                     // Line 195
+	echo T_("-");                                                                     // Line 197
+	echo T_("Textarea");                                                              // Line 7
+	echo T_("Vcard");                                                                 // Line 214
+	echo T_("Joined in 2018");                                                        // Line 378
+	echo T_("Ermile is our company in Qom!");                                         // Line 379
+	echo T_("Ermile requested permission to transfer <b>Tejarak</b> team to you");    // Line 135
+	echo T_("Approve");                                                               // Line 122
+	echo T_("Decline");                                                               // Line 139
+	echo T_("Javad Evazzadeh");                                                       // Line 10 Seperate
+	echo T_("3 days ago");                                                            // Line 190
+	echo T_("Check more!");                                                           // Line 285
+	echo T_("Javad Evazzdeh");                                                        // Line 388
+	echo T_("CEO and Founder");                                                       // Line 389
+	echo T_("Remove");                                                                // Line 259
+	echo T_("Clockpicker");                                                           // Line 269
+	echo T_("Datepicker");                                                            // Line 279
+	echo T_("Checkbox");                                                              // Line 296
+	echo T_("Check1 Sample1");                                                        // Line 20
+	echo T_("Switch");                                                                // Line 37
+	echo T_("YES");                                                                   // Line 87
+	echo T_("NO!");                                                                   // Line 87
+	echo T_("Are you like Siftal?");                                                  // Line 88
+	echo T_("Datalist");                                                              // Line 7
+	echo T_("Radio");                                                                 // Line 7
+	echo T_("Blue");                                                                  // Line 42
+	echo T_("Default");                                                               // Line 42
+	echo T_("Red");                                                                   // Line 46
+	echo T_("Yellow");                                                                // Line 50
+	echo T_("Green");                                                                 // Line 54
+	echo T_("Black");                                                                 // Line 58
 
 	//------------------------------------addons\content_su\sample\template\badge.html
+	echo T_("Badges");                                                                // Line 7
+	echo T_("Documentation and examples for badges, our small count and labeling component.");// Line 8
+	echo T_("Examples");                                                              // Line 12
+	echo T_("Badges scale to match the size of the immediate parent element by using relative font sizing and <code class='code1'>em</code> units.");// Line 13
+	echo T_("Example heading");                                                       // Line 21
+	echo T_("New");                                                                   // Line 21
+	echo T_("Badges can be used as part of links or buttons to provide a counter.");  // Line 24
+	echo T_("Notification");                                                          // Line 28
+	echo T_("5");                                                                     // Line 28
+	echo T_("Contextual variations");                                                 // Line 34
+	echo T_("Add any of the below mentioned modifier classes to change the appearance of a badge.");// Line 35
+	echo T_("Secondary");                                                             // Line 78
+	echo T_("Success");                                                               // Line 129
+	echo T_("Danger");                                                                // Line 130
+	echo T_("Warning");                                                               // Line 98
+	echo T_("Light");                                                                 // Line 79
+	echo T_("Dark");                                                                  // Line 80
+	echo T_("Rounded badge");                                                         // Line 62
+	echo T_("Use the <code class='code1'>.rounded</code> modifier class to make badges more rounded (with a larger border-radius and additional horizontal padding).");// Line 63
+	echo T_("Links");                                                                 // Line 90
+	echo T_("Using the <code class='code1'>.badge</code> classes with the <code class='code1'>&lt;a&gt;</code> element quickly provide actionable badges with hover and focus states.");// Line 91
 
 	//--------------------------------------addons\content_su\sample\template\box.html
+	echo T_("box");                                                                   // Line 7
+	echo T_("Siftal's box provide a flexible and extensible content container for title and contents.");// Line 8
+	echo T_("You can use elements of this page in all part of site and mix them with another elements.");// Line 14
+	echo T_("Salam");                                                                 // Line 18
 
 	//-------------------------------addons\content_su\sample\template\breadcrumb.html
+	echo T_("Breadcrumb");                                                            // Line 7
+	echo T_("Indicate the current page's location within a navigational hierarchy that automatically adds separators via CSS.");// Line 8
+	echo T_("Separators are automatically added in CSS through ::before and content.");// Line 13
+	echo T_("Sizes");                                                                 // Line 291
+	echo T_("A breadcrumb can vary in size");                                         // Line 29
+	echo T_(" Home");                                                                 // Line 63
 
 	//-----------------------------------addons\content_su\sample\template\button.html
+	echo T_("Use Siftal's custom button styles for actions in forms, dialogs, and more with support for multiple sizes, states, and more.");// Line 8
+	echo T_("Simple Examples");                                                       // Line 13
+	echo T_("Siftal includes several predefined button styles, each serving its own semantic purpose, with a few extras thrown in for more control.");// Line 13
+	echo T_("Default Btn");                                                           // Line 76
+	echo T_("a simple link");                                                         // Line 81
+	echo T_("Button tags");                                                           // Line 33
+	echo T_("The <code class='code1'>.btn</code> classes are designed to be used with the <code class='code1'>&lt;button&gt;</code> element. However, you can also use these classes on <code class='code1'>&lt;a&gt;</code> or <code class='code1'>&lt;input&gt;</code> elements (though some browsers may apply a slightly different rendering).");// Line 34
+	echo T_("When using button classes on <code class='code1'>&lt;a&gt;</code> elements that are used to trigger in-page functionality (like collapsing content), rather than linking to new pages or sections within the current page, these links should be given a <code class='code1'>role='button'</code> to appropriately convey their purpose to assistive technologies such as screen readers.");// Line 36
+	echo T_("Link");                                                                  // Line 212
+	echo T_("Link!");                                                                 // Line 45
+	echo T_("Outline buttons");                                                       // Line 51
+	echo T_("In need of a button, but not the hefty background colors they bring? Replace the default modifier classes with the <code class='code1'>.outline</code> ones to remove all background images and colors on any button.");// Line 52
+	echo T_("Inverted");                                                              // Line 72
+	echo T_("A button can be formatted to appear on dark backgrounds");               // Line 73
+	echo T_("Fancy larger or smaller buttons? Add .btn-lg or .btn-sm for additional sizes.");// Line 100
+	echo T_("Extra small xs");                                                        // Line 103
+	echo T_("Small sm");                                                              // Line 104
+	echo T_("Normal");                                                                // Line 336
+	echo T_("Large lg");                                                              // Line 106
+	echo T_("Extra Large xl");                                                        // Line 107
+	echo T_("Primary Block");                                                         // Line 110
+	echo T_("Secondary block");                                                       // Line 111
+	echo T_("Active state");                                                          // Line 117
+	echo T_("Buttons will appear pressed (with a darker background) when active. There’s no need to add a class to <code class='code1'>&lt;button&gt;</code>s as they use a pseudo-class. However, you can still force the same active appearance with .active should you need to replicate the state programmatically.");// Line 118
+	echo T_("Disabled state");                                                        // Line 138
+	echo T_("Make buttons look inactive by adding the disabled boolean attribute to any <code class='code1'>&lt;button&gt;</code> element.");// Line 139
+	echo T_("Disabled buttons using the <code class='code1'>&lt;a&gt;</code> element behave a bit different because <code class='code1'>&lt;a&gt;</code>s don’t support the <code class='code1'>disabled</code> attribute, so you must add the <code class='code1'>.disabled</code> class to make it visually appear disabled.");// Line 141
+	echo T_("disabled");                                                              // Line 145
+	echo T_(".disabled");                                                             // Line 146
+	echo T_(".disabled Link");                                                        // Line 147
+	echo T_("Link functionality caveat");                                             // Line 151
+	echo T_("The <code class='code1'>.disabled</code> class uses <code class='code1'>pointer-events: none</code> to try to disable the link functionality of <code class='code1'>&lt;a&gt;</code>s, but that CSS property is not yet standardized. In addition, even in browsers that do support <code class='code1'>pointer-events: none</code>, keyboard navigation remains unaffected, meaning that sighted keyboard users and users of assistive technologies will still be able to activate these links. So to be safe, add a <code class='code1'>tabindex='-1'</code> attribute on these links (to prevent them from receiving keyboard focus) and use custom JavaScript to disable their functionality.");// Line 153
 
 	//---------------------------------addons\content_su\sample\template\checkbox.html
+	echo T_("Easily extend form controls by adding text, buttons, or button groups on either side of textual inputs.");// Line 8
+	echo T_("Simple Examples with input element");                                    // Line 13
+	echo T_("Check1 Sample2");                                                        // Line 25
+	echo T_("Check1 Sample3");                                                        // Line 30
+	echo T_("With custom text");                                                      // Line 61
+	echo T_("HI");                                                                    // Line 68
+	echo T_("BYE");                                                                   // Line 68
+	echo T_("With more detail");                                                      // Line 78
+	echo T_("Subscribe to our newsletter");                                           // Line 82
 
 	//------------------------------------addons\content_su\sample\template\clock.html
+	echo T_("ClockPicker");                                                           // Line 7
+	echo T_("Easily add time picker to your project");                                // Line 8
+	echo T_("Read more info and example about clockpicker");                          // Line 16
+	echo T_("Simple");                                                                // Line 18
+	echo T_("Simple with addon");                                                     // Line 23
+	echo T_("Place at right, align the arrow to top, without auto close");            // Line 30
+	echo T_("Ok");                                                                    // Line 31
+	echo T_("Place at right, align the arrow to bottom");                             // Line 45
+	echo T_("Place at left, align the arrow to top");                                 // Line 40
+	echo T_("Place at top, alighn the arrow to right");                               // Line 50
+	echo T_("Place at top, alighn the arrow to left");                                // Line 55
+	echo T_("Place at bottom, alighn the arrow to right");                            // Line 60
+	echo T_("Place at bottom, alighn the arrow to left");                             // Line 65
+	echo T_("Set options in javascript, instead of data-*");                          // Line 72
+	echo T_("Callbacks");                                                             // Line 78
 
 	//-------------------------------------addons\content_su\sample\template\crop.html
+	echo T_("Crop Images");                                                           // Line 7
+	echo T_("A simple and full feature crop for avatar or something else!");          // Line 8
+	echo T_("Example");                                                               // Line 13
+	echo T_("Check more on cropprer documentation!");                                 // Line 14
+	echo T_("Only run cropper without anything!");                                    // Line 17
+	echo T_("Only run cropper with aspect ratio and min width and height on cropbox");// Line 24
+	echo T_("Complete example with full function");                                   // Line 31
+	echo T_("run cropper with aspect ratio and min width and height in modal");       // Line 98
+	echo T_("Crop image in modal");                                                   // Line 101
+	echo T_("Crop your avatar");                                                      // Line 170
+	echo T_("Please choose and crop your image");                                     // Line 112
+	echo T_("complete example of crop in modal and show preview after that");         // Line 126
+	echo T_("Cancel");                                                                // Line 90 Seperate
+	echo T_("Crop");                                                                  // Line 177
+	echo T_("complete example of crop in modal and show preview after that with default image");// Line 158
 
 	//---------------------------------addons\content_su\sample\template\datalist.html
+	echo T_("Datalist element of HTML5 forms is pretty cool!");                       // Line 8
+	echo T_("Find Iran State");                                                       // Line 18
+	echo T_("Full width");                                                            // Line 20
+	echo T_("Find Iran State 2");                                                     // Line 42
+	echo T_("Qom");                                                                   // Line 63 Seperate
+	echo T_("Tehran");                                                                // Line 27
+	echo T_("Awesomplete");                                                           // Line 35
+	echo T_("No JS");                                                                 // Line 37
+	echo T_("With datalist");                                                         // Line 40
 
 	//-------------------------------------addons\content_su\sample\template\date.html
+	echo T_("Date Picker");                                                           // Line 7
+	echo T_("A simple date picker for fast use");                                     // Line 8
+	echo T_("Without any option");                                                    // Line 17
+	echo T_("With custom format");                                                    // Line 22
+	echo T_("with default value");                                                    // Line 26
+	echo T_("Connect to another field");                                              // Line 31
+	echo T_("Inline Mode");                                                           // Line 37
+	echo T_("English Number");                                                        // Line 43
+	echo T_("Special View mode");                                                     // Line 48
+	echo T_("Min is today");                                                          // Line 55
+	echo T_("Max is today");                                                          // Line 57
+
+	//---------------------------------addons\content_su\sample\template\deadline.html
+	echo T_("Deadline");                                                              // Line 7
+	echo T_("Siftal's deadline provide a simple box to show title and remain date."); // Line 8
+	echo T_("Sample Deadline");                                                       // Line 18
+	echo T_("days left");                                                             // Line 67
+	echo T_("Sample Deadline2");                                                      // Line 29
+	echo T_("Orange");                                                                // Line 38
+	echo T_("Sample Deadline3");                                                      // Line 64
+
+	//-------------------------------------addons\content_su\sample\template\grid.html
+	echo T_("Page Grids");                                                            // Line 31
+	echo T_("one row will divide to the number of parts, if you just set class='c'"); // Line 123
+	echo T_("on large screens if you just set class='x', it will take the x class ratio");// Line 134
+	echo T_("three equal parts");                                                     // Line 142
+	echo T_("sum of parts is 12, every part will take ratio of it's class number");   // Line 151
+	echo T_("it will take just 6 part of 12");                                        // Line 162
+	echo T_("float right boxes, by .os class");                                       // Line 170
+	echo T_("Responsive on medium devices, like tablet's by .m classes");             // Line 178
+	echo T_("Responsive on mobile devices by .s classes");                            // Line 186
 
 	//-------------------------------------addons\content_su\sample\template\icon.html
+	echo T_("siftal");                                                                // Line 13
+	echo T_("This was created with ");                                                // Line 14
+	echo T_("Fontastic");                                                             // Line 14
+	echo T_("CSS mapping");                                                           // Line 16
+	echo T_("Character mapping");                                                     // Line 2027
 
 	//------------------------------------addons\content_su\sample\template\input.html
+	echo T_("Focus");                                                                 // Line 51
+	echo T_("Active");                                                                // Line 56
+	echo T_("Readonly");                                                              // Line 61
+	echo T_("Disabled");                                                              // Line 66
+	echo T_("All type of input conditions");                                          // Line 74
+	echo T_("Extra Examples with input class and multiple part");                     // Line 43
+	echo T_("Simple input with label");                                               // Line 90
+	echo T_("Family");                                                                // Line 96
+	echo T_("Extra features");                                                        // Line 109
+	echo T_("Sizing");                                                                // Line 150
+	echo T_("Button addons");                                                         // Line 177
+	echo T_("Search...");                                                             // Line 181
+	echo T_("Go!");                                                                   // Line 188
+	echo T_("Ding Ding!");                                                            // Line 198
+	echo T_("Simple file input");                                                     // Line 216
+	echo T_("Simple file input only accept images");                                  // Line 223
+	echo T_("Simple avatar selector with simple preview");                            // Line 230
+	echo T_("Simple file input with min 100kb and max 200kb size!");                  // Line 249
 
 	//--------------------------------------addons\content_su\sample\template\msg.html
+	echo T_("Provide contextual feedback messages for typical user actions with the handful of available and flexible alert messages.");// Line 8
+	echo T_("This is a primary message or alert. check it out!");                     // Line 16
+	echo T_("This is a secondary message or alert. check it out!");                   // Line 17
+	echo T_("This is a success message or alert. check it out!");                     // Line 18
+	echo T_("This is a danger message or alert. check it out!");                      // Line 19
+	echo T_("This is a warning message or alert. check it out!");                     // Line 20
+	echo T_("This is a info message or alert. check it out!");                        // Line 21
+	echo T_("This is a light message or alert. check it out!");                       // Line 22
+	echo T_("This is a dark message or alert. check it out!");                        // Line 23
+	echo T_("Examples with light color");                                             // Line 26
+	echo T_("This is a primary2 message or alert. check it out!");                    // Line 28
+	echo T_("This is a secondary2 message or alert. check it out!");                  // Line 29
+	echo T_("This is a success2 message or alert. check it out!");                    // Line 30
+	echo T_("This is a danger2 message or alert. check it out!");                     // Line 31
+	echo T_("This is a warning2 message or alert. check it out!");                    // Line 32
+	echo T_("This is a info2 message or alert. check it out!");                       // Line 33
+	echo T_("This is a light2 message or alert. check it out!");                      // Line 34
+	echo T_("This is a dark2 message or alert. check it out!");                       // Line 35
+	echo T_("Link color");                                                            // Line 41
+	echo T_("Use the <code class='code1'>.link</code> utility class to quickly provide matching colored links within any alert.");// Line 42
+	echo T_("This is a primary alert with");                                          // Line 45
+	echo T_("an example link");                                                       // Line 52
+	echo T_("Give it a click if you like.");                                          // Line 52
+	echo T_("This is a secondary alert with");                                        // Line 46
+	echo T_("This is a success alert with");                                          // Line 47
+	echo T_("This is a danger alert with");                                           // Line 48
+	echo T_("This is a warning alert with");                                          // Line 49
+	echo T_("This is a info alert with");                                             // Line 50
+	echo T_("This is a light alert with");                                            // Line 51
+	echo T_("This is a dark alert with");                                             // Line 52
+	echo T_("Additional content");                                                    // Line 58
+	echo T_("Alerts can also contain additional HTML elements like headings, paragraphs and dividers.");// Line 59
+	echo T_("Well done!");                                                            // Line 62
+	echo T_("Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.");// Line 63
+	echo T_("Whenever you need to, be sure to use margin utilities to keep things nice and tidy.");// Line 65
+	echo T_("Compact");                                                               // Line 71
+	echo T_("A message can only take up the width of its content.");                  // Line 72
+	echo T_("Aww yeah, you successfully read this important alert message. Sign up now!");// Line 74
+	echo T_("Another type of usage");                                                 // Line 79
+	echo T_("List Message");                                                          // Line 81
+	echo T_("A message with a list");                                                 // Line 82
+	echo T_("Was this what you wanted?");                                             // Line 85
+	echo T_("It's good to see you again.");                                           // Line 87
+	echo T_("Did you know it's been a while?");                                       // Line 88
+	echo T_("Have you heard about our car?");                                         // Line 97
+	echo T_("Get the best news of the year!");                                        // Line 98
+	echo T_("Just one second");                                                       // Line 107
+	echo T_("We're fetching that content for you. What content!?");                   // Line 108
 
 	//--------------------------------------addons\content_su\sample\template\old.html
+	echo T_("Sample Page of admin");                                                  // Line 27
+	echo T_("Template Form");                                                         // Line 36
+	echo T_("List");                                                                  // Line 52
+	echo T_("Headings");                                                              // Line 57
+	echo T_("message (.msg)");                                                        // Line 198
+	echo T_("message warning (.msg .warning)");                                       // Line 199
+	echo T_("message info (.msg .info)");                                             // Line 200
+	echo T_("message success (.msg .success)");                                       // Line 201
+	echo T_("message error (.msg .error)");                                           // Line 202
+	echo T_("message danger (.msg .danger)");                                         // Line 203
+	echo T_("message compact (.msg .compact)");                                       // Line 204
+	echo T_("message small (.msg .small)");                                           // Line 205
+	echo T_("message big (.msg .big)");                                               // Line 206
+	echo T_("message massive (.msg .massive)");                                       // Line 207
+	echo T_("Privacy mode");                                                          // Line 334
+	echo T_("Private");                                                               // Line 339
+	echo T_("Public");                                                                // Line 343
+	echo T_("Short Name");                                                            // Line 256
+	echo T_("phoneNumber");                                                           // Line 263
+	echo T_("Alias");                                                                 // Line 270
+	echo T_("Default setting for new members of team");                               // Line 300
+	echo T_("Show users avatars");                                                    // Line 305
+	echo T_("Allow plus");                                                            // Line 310
+	echo T_("Allow minus");                                                           // Line 314
+	echo T_("Remote user");                                                           // Line 319
+	echo T_("24 hour");                                                               // Line 323
+	echo T_("allowPlus");                                                             // Line 330
+	echo T_("Advance");                                                               // Line 357
+	echo T_("First");                                                                 // Line 379
+	echo T_("Second");                                                                // Line 380
+	echo T_("Third");                                                                 // Line 381
+	echo T_("This is heading 1");                                                     // Line 386
+	echo T_("This is heading 2");                                                     // Line 387
+	echo T_("This is heading 3");                                                     // Line 388
+	echo T_("This is heading 4");                                                     // Line 389
+	echo T_("This is heading 5");                                                     // Line 390
+	echo T_("This is heading 6");                                                     // Line 391
 
 	//-------------------------------addons\content_su\sample\template\pagination.html
+	echo T_("Documentation and examples for showing pagination to indicate a series of related content exists across multiple pages.");// Line 8
+	echo T_("Overview");                                                              // Line 12
+	echo T_("We use a large block of connected links for our pagination, making links hard to miss and easily scalable—all while providing large hit areas. Pagination is built with list HTML elements so screen readers can announce the number of available links. Use a wrapping <nav> element to identify it as a navigation section to screen readers and other assistive technologies.");// Line 13
+	echo T_("Colored");                                                               // Line 250
+	echo T_("A pagination can use in many colors");                                   // Line 24
+	echo T_("A pagination can vary in size");                                         // Line 56
 
 	//---------------------------------addons\content_su\sample\template\progress.html
+	echo T_("Documentation and examples for using Siftal progress bars.");            // Line 8
+	echo T_("Siftal use html progress and meter and have some styles on them, each serving its own semantic purpose");// Line 13
+	echo T_("Meter");                                                                 // Line 39
+	echo T_("Use the meter element to measure data within a given range");            // Line 40
 
 	//------------------------------------addons\content_su\sample\template\radio.html
+	echo T_("Easily use our simple radio");                                           // Line 8
+	echo T_("Radio type 1");                                                          // Line 13
+	echo T_("Default behaviour");                                                     // Line 16
+	echo T_("Other");                                                                 // Line 19
+	echo T_("Radio1");                                                                // Line 23
+	echo T_("None");                                                                  // Line 34
+	echo T_("Colored Radio1");                                                        // Line 39
 
 	//------------------------------------addons\content_su\sample\template\reset.html
+	echo T_("CSS Reset");                                                             // Line 7
+	echo T_("Reset, a collection of element-specific CSS changes in a single file, kickstart Siftal to provide an elegant, consistent, and simple baseline to build upon.");// Line 8
+	echo T_("should have sans-serif font family (opinionated)");                      // Line 13
+	echo T_("should have no margin (opinionated)");                                   // Line 19
+	echo T_("(there should be no red background visible on this page)");              // Line 21
+	echo T_("should render as block");                                                // Line 25
+	echo T_("should render as inline-block and baseline-aligned");                    // Line 46
+	echo T_("should not display");                                                    // Line 55
+	echo T_("dummy anchor");                                                          // Line 72
+	echo T_("should not have a focus outline when both focused and hovered (opinionated)");// Line 70
+	echo T_("should have a dotted bottom border");                                    // Line 76
+	echo T_("should have bold font-weight");                                          // Line 82
+	echo T_("should have italic font-style");                                         // Line 89
+	echo T_("should not change size within an <code>article</code>");                 // Line 95
+	echo T_("Heading (control)");                                                     // Line 104
+	echo T_("Heading (in article)");                                                  // Line 99
+	echo T_("should not change size within a <code>section</code>");                  // Line 102
+	echo T_("Heading (in section)");                                                  // Line 106
+	echo T_("h1: Hi Siftal");                                                         // Line 110
+	echo T_("h2: Hi Siftal");                                                         // Line 111
+	echo T_("h3: Hi Siftal");                                                         // Line 112
+	echo T_("h4: Hi Siftal");                                                         // Line 113
+	echo T_("h5: Hi Siftal");                                                         // Line 114
+	echo T_("h6: Hi Siftal");                                                         // Line 115
+	echo T_("should have a yellow background");                                       // Line 118
+	echo T_("should render equally small in all browsers");                           // Line 124
+	echo T_("should not affect a line's visual line-height");                         // Line 130
+	echo T_("should not have a border when wrapped in an anchor");                    // Line 138
+	echo T_("should not overflow");                                                   // Line 147
+	echo T_("should have margins");                                                   // Line 155
+	echo T_("should have a <code>content-box</code> box model");                      // Line 356
+	echo T_("should trigger a scrollbar when too wide for its container");            // Line 169
+	echo T_(" Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et me.");// Line 171
+	echo T_("should render <code>em</code>-unit preformatted text at the same absolute size as normal text");// Line 175
+	echo T_("should inherit <code>color</code> from ancestor");                       // Line 185
+	echo T_("should inherit <code>font</code> from ancestor");                        // Line 197
+	echo T_("should not have margins");                                               // Line 209
+	echo T_("should have visible overflow");                                          // Line 236
+	echo T_("should not inherit <code>text-transform</code>");                        // Line 253
+	echo T_("should have <code>pointer</code> cursor style");                         // Line 260
+	echo T_("should be styleable");                                                   // Line 352
+	echo T_("should have <code>default</code> cursor style");                         // Line 287
+	echo T_("should not have extra inner padding in Firefox");                        // Line 297
+	echo T_("should not inherit <code>line-height</code>");                           // Line 315
+	echo T_("should have a <code>border-box</code> box model");                       // Line 321
+	echo T_("should not have padding");                                               // Line 382
+	echo T_("should display a default cursor for the decrement button's click target in Chrome");// Line 346
+	echo T_("should not have a cancel button in Safari or Chrome");                   // Line 362
+	echo T_("should have consistent border, padding, and margin");                    // Line 368
+	echo T_("should inherit color");                                                  // Line 376
+	echo T_("should not have a scrollbar unless overflowing");                        // Line 390
+	echo T_("should not have spaces between cells");                                  // Line 396
 
 	//-----------------------------------addons\content_su\sample\template\select.html
+	echo T_("Select");                                                                // Line 81
+	echo T_("Easily change default select style to simple and clean Siftal design");  // Line 8
+	echo T_("Sarshomar");                                                             // Line 27
+	echo T_("Tejarak");                                                               // Line 28
+	echo T_("Azvir");                                                                 // Line 29
+	echo T_("Talambar");                                                              // Line 30
+	echo T_("Jibres");                                                                // Line 31
+	echo T_("Multiple");                                                              // Line 25
 
 	//---------------------------------addons\content_su\sample\template\sortable.html
+	echo T_("Sortable");                                                              // Line 7
+	echo T_("Allow to easily add sortable to projects");                              // Line 8
 
 	//------------------------------------addons\content_su\sample\template\table.html
-	echo T_("Tables");                                                                // Line 7
-	echo T_("Documentation and examples for tables with Siftal.");                    // Line 8
-	echo T_("Just add the base class <code class='code1'>.tbl</code> to any <code class='code1'>&lt;table&gt;</code>, then extend with custom styles or our various included modifier classes.");// Line 13
-	echo T_("Simple table");                                                          // Line 15
-	echo T_("Table head options");                                                    // Line 78
-	echo T_("No Zebra!");                                                             // Line 101
-	echo T_("Use <code class='code1'>.dead</code> to add zebra-striping to any table row within the <code class='code1'>&lt;tbody&gt;</code>.");// Line 102
-	echo T_("Custom cell");                                                           // Line 145
-	echo T_("A cell or row may let a user know whether a value is good or bad.");     // Line 146
-	echo T_("you can add <code class='code1'>.positive</code>, <code class='code1'>.negative</code>, <code class='code1'>.active</code>, <code class='code1'>.warning</code> and <code class='code1'>.disabled</code> to create custom design on cell or rows");// Line 147
-	echo T_("Bordered table");                                                        // Line 171
-	echo T_("Padded");                                                                // Line 202
-	echo T_("Sortable heading");                                                      // Line 227
+	echo T_("A table's colors can be changed");                                       // Line 32
+	echo T_("Similar to colored tables, use one of modifier classes to make rows appear colored.");// Line 79
+	echo T_("Add <code class='code1'>.bordered</code> for borders on all sides of the table and cells.");// Line 172
+	echo T_("A table may sometimes need to be more compact to make more rows visible at a time");// Line 189
+	echo T_("A table may sometimes need to be more padded for legibility");           // Line 203
+	echo T_("A table may sometimes need to be small");                                // Line 210
+	echo T_("A table may sometimes need to be large");                                // Line 217
+	echo T_("Add <code class='code1'>data-sort=desc|asc</code> to table header for add icon of sorting");// Line 228
+	echo T_("@evazzadeh");                                                            // Line 290
+	echo T_("@biqarar");                                                              // Line 300
+	echo T_("@baravak");                                                              // Line 310
+	echo T_("Git Repository");                                                        // Line 7
+	echo T_("node_modules");                                                          // Line 320
+	echo T_("Initial commit");                                                        // Line 341
+	echo T_("10 hours ago");                                                          // Line 342
+	echo T_("test");                                                                  // Line 325
+	echo T_("build");                                                                 // Line 330
+	echo T_("package.json");                                                          // Line 335
+	echo T_("Gruntfile.js");                                                          // Line 340
 
 	//--------------------------------------addons\content_su\sample\template\txt.html
+	echo T_("A textarea can be used to allow for extended user input.");              // Line 8
+	echo T_("To specify an approximate text area size use the rows attribute.");      // Line 14
 
 	//------------------------------------addons\content_su\sample\template\vcard.html
+	echo T_("vcard");                                                                 // Line 7
+	echo T_("Siftal's cards provide a flexible and extensible content container with multiple variants and options.");// Line 8
+	echo T_("A card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.");// Line 13
+	echo T_("Cards are built with as little markup and styles as possible, but still manage to deliver a ton of control and customization. Built with flexbox, they offer easy alignment and mix well with other  components.");// Line 14
+	echo T_("123 Friends");                                                           // Line 381
+	echo T_("10h");                                                                   // Line 75
+	echo T_("5 Comments");                                                            // Line 80
+	echo T_("1k likes");                                                              // Line 81
+	echo T_("Cards are designed to be flexible to your content. content blocks can include any custom elements related to your content.");// Line 92
+	echo T_("Accept");                                                                // Line 138
+	echo T_("A card can contain a header.");                                          // Line 146
+	echo T_("Friend");                                                                // Line 173
+	echo T_("Javad is a CEO and founder of Ermile and start developing Siftal from 2017 and hope to write documentaion for it!");// Line 157
+	echo T_("Reza Mohiti");                                                           // Line 13 Seperate
+	echo T_("Reza is a back-end developer of Ermile.");                               // Line 166
+	echo T_("Hasan Salehi");                                                          // Line 11 Seperate
+	echo T_("Hasan is a full-stack developer of Ermile and always trying to be in classrooms!");// Line 178
+	echo T_("A card can contain content metadata.");                                  // Line 264
+	echo T_("Reza Motiti");                                                           // Line 275
+	echo T_("6 days ago");                                                            // Line 197
+	echo T_("Haram");                                                                 // Line 197
+	echo T_("10 days ago");                                                           // Line 204
+	echo T_("School");                                                                // Line 204
+	echo T_("A card can be formatted so that the entire contents link to another page. Also a card can contain contain links as images, headers, or inside content.");// Line 213
+	echo T_("Center Card");                                                           // Line 240
+	echo T_("A card can center itself inside its container.");                        // Line 241
+	echo T_("A card can specify a color.");                                           // Line 251
+	echo T_("A card can be used in many sizes");                                      // Line 292
+	echo T_("Mini");                                                                  // Line 293
+	echo T_("Tiny");                                                                  // Line 308
+	echo T_("Small");                                                                 // Line 322
+	echo T_("Large");                                                                 // Line 339
+	echo T_("Big");                                                                   // Line 342
+	echo T_("Huge");                                                                  // Line 345
+	echo T_("Massive");                                                               // Line 348
+	echo T_("Live Card");                                                             // Line 353
+	echo T_("A card can be used in live with on and off status");                     // Line 354
+
+	//---------------------------------------addons\content_su\sendnotify\display.html
+	echo T_("Send every notification from every way to user");                        // Line 6
+	echo T_("Mobile or user_id");                                                     // Line 12
+	echo T_("Find Connection way");                                                   // Line 14
+	echo T_("Inner system notification");                                             // Line 42
+	echo T_("What do you want to send to this user?");                                // Line 59
+	echo T_("Send");                                                                  // Line 63
 
 	//-----------------------------------------addons\content_su\shorturl\display.html
 	echo T_("Test shortURL function");                                                // Line 6
@@ -858,16 +769,57 @@ private function transtext()
 	echo T_("Decode");                                                                // Line 28
 
 	//--------------------------------------------addons\content_su\tools\display.html
+	echo T_("You can use our tools");                                                 // Line 5
+	echo T_("If you dont know about this page, leave it!");                           // Line 5
+	echo T_("Special tools");                                                         // Line 9
+	echo T_("Sitemap");                                                               // Line 11
+	echo T_("Server information");                                                    // Line 12
+	echo T_("Log");                                                                   // Line 13
+	echo T_("Translation tools");                                                     // Line 14
+	echo T_("Update");                                                                // Line 152 Seperate
 
 	//---------------------------------------addons\content_su\tools\info\display.html
+	echo T_("Show server info");                                                      // Line 9
+	echo T_("Show PHP info");                                                         // Line 10
 
 	//----------------------------------------addons\content_su\tools\log\display.html
+	echo T_("Server Logs");                                                           // Line 7
+	echo T_("Access logs");                                                           // Line 9
+	echo T_("Error logs");                                                            // Line 10
+	echo T_("Database Logs");                                                         // Line 15
+	echo T_("Logs - check");                                                          // Line 18
+	echo T_("Logs - warn");                                                           // Line 19
+	echo T_("Logs - critical");                                                       // Line 20
+	echo T_("Error Logs");                                                            // Line 21
+	echo T_("Telegram Errors");                                                       // Line 26
+	echo T_("telegram Logs");                                                         // Line 29
+	echo T_("telegram - Error Logs");                                                 // Line 30
 
 	//------------------------------------addons\content_su\tools\sitemap\display.html
+	echo T_("Create sitemap automatically by click on this page");                    // Line 6
+	echo T_("Base Sitemap");                                                          // Line 8
+	echo T_("Sitemap Detail");                                                        // Line 9
+	echo T_("Create it Again");                                                       // Line 10
+	echo T_("Create Sitemap Result");                                                 // Line 18
 
 	//--------------------------------addons\content_su\tools\translation\display.html
+	echo T_("Translate");                                                             // Line 7
+	echo T_("Extract twig trans func in current project");                            // Line 9
+	echo T_("Extract twig trans func in dash addons");                                // Line 11
+	echo T_("Extract twig trans func in dash addons and update on dash addons");      // Line 12
 
 	//-------------------------------------addons\content_su\tools\update\display.html
+	echo T_("Ermile Repository");                                                     // Line 9
+	echo T_("Dash Repository");                                                       // Line 11
+	echo T_("Current Project Repository");                                            // Line 12
+	echo T_("All: Dash + current project Repository");                                // Line 13
+	echo T_("Database");                                                              // Line 20
+	echo T_("Upgrade");                                                               // Line 35
+	echo T_("Backup");                                                                // Line 37
+	echo T_("Backup by dump");                                                        // Line 29
+	echo T_("Submit");                                                                // Line 141
+	echo T_("Project Database");                                                      // Line 37
+	echo T_("Automatically read database and create sql files");                      // Line 36
 
 	//---------------------------------addons\content_su\transactions\add\display.html
 
