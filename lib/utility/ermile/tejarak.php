@@ -8,6 +8,7 @@ class tejarak
 	private $url     = null;
 	private $data    = [];
 	private $header  = [];
+	private $result  = [];
 
 	/**
 	 * ready to connect to tejarak api
@@ -120,13 +121,22 @@ class tejarak
 	 */
 	public function __call($_url, $_args)
 	{
+		if(substr($_url, 0, 4) === 'get_')
+		{
+			$key = substr($_url, 4);
+			if(isset($this->result['result'][$key]))
+			{
+				return $this->result['result'][$key];
+			}
+			return false;
+		}
+
 		$this->url = $_url;
 		if(!isset($_args[0]))
 		{
 			return false;
 		}
 
-		var_dump($_args[0]);
 		$method = mb_strtolower($_args[0]);
 		if(!in_array($method, ['post', 'put', 'patch', 'get', 'delete']))
 		{
@@ -144,8 +154,8 @@ class tejarak
 		{
 			$this->url .= '?'. http_build_query($this->data);
 		}
-		$result = $this->response();
-		return $this->handle($result);
+		$this->result = $this->response();
+		return $this->handle($this->result);
 	}
 
 
