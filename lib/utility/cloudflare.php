@@ -8,6 +8,11 @@ namespace lib\utility;
 class cloudflare
 {
 
+	private static $api_url = 'https://api.cloudflare.com/client/v4/';
+	private static $header  = [];
+	private static $method  = 'GET';
+
+
 	/**
 	 * Creates a dns record.
 	 *
@@ -46,7 +51,7 @@ class cloudflare
 		$run['url']    = "zones/:zone_identifier/dns_records";
 		$run['data']   = $_args;
 
-		return cloudflare_curl::_curl($run);
+		return self::_curl($run);
 	}
 
 
@@ -102,29 +107,10 @@ class cloudflare
 		// $run['url']    = "zones/:zone_identifier/dns_records?". $string_query;
 		$run['url']    = "zones/:zone_identifier/dns_records";
 
-		$result = cloudflare_curl::_curl($run);
+		$result = self::_curl($run);
 		return $result;
 	}
-}
 
-
-
-
-
-
-
-
-
-
-
-/**
- * Class for cloudflare curl.
- */
-class cloudflare_curl
-{
-	private static $api_url = 'https://api.cloudflare.com/client/v4/';
-	private static $header  = [];
-	private static $method  = 'GET';
 
 
 	/**
