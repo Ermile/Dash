@@ -111,10 +111,18 @@ class model extends \mvc\model
 			return debug::error('Authorization not found', 'authorization', 'access');
 		}
 
+		// static token list
+		$static_token = \lib\option::config('enter', 'static_token');
+
 		if($authorization === \lib\option::config('enter','telegram_hook'))
 		{
 			$this->telegram_api_mode = true;
 			$this->telegram_token();
+		}
+		elseif(is_array($static_token) && in_array($authorization, $static_token))
+		{
+			// load user by mobile
+			$this->static_token();
 		}
 		else
 		{
@@ -177,6 +185,43 @@ class model extends \mvc\model
 		}
 
 		$this->authorization = $authorization;
+	}
+
+
+	/**
+	 * the api telegram token
+	 *
+	 * @return     boolean  ( description_of_the_return_value )
+	 */
+	public function static_token()
+	{
+		$mobile = utility::header("mobile");
+
+		$mobile = utility\filter::mobile($mobile);
+		if(!$mobile)
+		{
+			debug::error(T_("Mobile not set"), 'mobile', 'header');
+			return false;
+		}
+
+		$user_data = \lib\db\users::get_by_mobile($mobile);
+		if(isset($user_data['id']))
+		{
+			$this->user_id = (int) $user_data['id'];
+		}
+		else
+		{
+			$signup        = ['mobile' => $mobile];
+			$this->user_id = \lib\db\users::signup_quick($signup);
+		}
+
+		if(!$this->user_id)
+		{
+			\lib\db\logs::set('addons:api:static_token:user:not:found:register:faild');
+			debug::error(T_("User not found and can not register the user"), 'static_token', 'header');
+			return false;
+		}
+
 	}
 
 
