@@ -142,7 +142,11 @@ class controller
 		elseif(\lib\temp::get('api') || !$this->display)
 		{
 			$mycallback = isset($this->api_callback)? $this->api_callback: null;
-			debug::msg('callback', $mycallback);
+			// this line must be remove!
+			// check javascript to have no bug
+			// ----------------
+			// debug::msg('callback', $mycallback);
+			// ----------------
 			if($mycallback !== false && $mycallback !== null)
 			{
 				debug::result($mycallback);

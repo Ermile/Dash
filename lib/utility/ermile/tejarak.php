@@ -41,8 +41,8 @@ class tejarak
 
 		$this->version = 'v'. $_version;
 
-		array_push($this->header, 'Accept: application/json');
-		array_push($this->header, 'Content-type: application/json');
+		array_push($this->header, "Accept: application/json");
+		array_push($this->header, "Content-type: application/json");
 		array_push($this->header, "Authorization: $_token");
 		array_push($this->header, "mobile: $_mobile");
 
@@ -65,6 +65,8 @@ class tejarak
 
 		$this->api_url = sprintf($this->api_url, $this->version, $this->url);
 
+		// var_dump($this->api_url, $this->method, json_encode($this->data, JSON_UNESCAPED_UNICODE), $this->data);
+
 		$handle   = curl_init();
 
 		curl_setopt($handle, CURLOPT_URL, $this->api_url);
@@ -86,10 +88,6 @@ class tejarak
 		elseif($this->method === 'post')
 		{
 			curl_setopt($handle, CURLOPT_POST, true);
-		}
-		elseif($this->method === 'get')
-		{
-			// no thing!
 		}
 		else
 		{
@@ -124,6 +122,15 @@ class tejarak
 		if(substr($_url, 0, 4) === 'get_')
 		{
 			$key = substr($_url, 4);
+
+			if($key === 'result')
+			{
+				if(isset($this->result['result']))
+				{
+					return $this->result['result'];
+				}
+			}
+
 			if(isset($this->result['result'][$key]))
 			{
 				return $this->result['result'][$key];
