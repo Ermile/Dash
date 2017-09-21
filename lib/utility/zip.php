@@ -43,7 +43,7 @@ class zip
 		}
 		\lib\utility\file::download($_addr, $_name, 'archive/zip');
 		// exit to download it
-		exit();
+		\lib\code::force_exit();
 	}
 
 }

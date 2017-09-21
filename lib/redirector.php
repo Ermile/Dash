@@ -43,7 +43,7 @@ class redirector
 			header('Content-Type: application/json');
 			debug::msg('redirect', $newLocation);
 			echo json_encode(debug::compile());
-			exit();
+			\lib\code::force_exit();
 		}
 
 		if($this->php)
@@ -69,7 +69,7 @@ class redirector
 			echo ' </div>';
 			echo '</body></html>';
 		}
-		exit();
+		\lib\code::force_exit();
 	}
 
 	public function __call($_name, $_args)

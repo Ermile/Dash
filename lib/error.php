@@ -128,7 +128,7 @@ class error
 			header("HTTP/1.1 $STATUS ".$HTTP_ERROR);
 			require_once(lib."error_page.php");
 		}
-		exit();
+		\lib\code::force_exit();
 	}
 
 	// error handler function

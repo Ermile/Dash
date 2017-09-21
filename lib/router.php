@@ -374,7 +374,7 @@ class router
 				// redirect to best protocol because we want it!
 				$redirector = new \lib\redirector($newUrl);
 				$redirector->redirect();
-				exit();
+				\lib\code::force_exit();
 			}
 		}
 	}

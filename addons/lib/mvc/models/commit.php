@@ -12,7 +12,6 @@ trait commit
 	protected function post_commit($_qry)
 	{
 		$qry = $_qry->insert();
-		// var_dump($_qry);exit();
 		// ======================================================
 		// you can manage next event with one of these variables,
 		// commit for successfull and rollback for failed
@@ -38,7 +37,6 @@ trait commit
 	protected function put_commit($_qry)
 	{
 		$_qry = $_qry->update();
-		// var_dump($_qry); exit();
 		// ======================================================
 		// you can manage next event with one of these variables,
 		// commit for successfull and rollback for failed
@@ -64,7 +62,6 @@ trait commit
 	protected function delete_commit($_qry)
 	{
 		$_qry = $_qry->delete();
-		// var_dump($_qry);exit();
 		// ======================================================
 		// you can manage next event with one of these variables,
 		// commit for successfull and rollback for failed

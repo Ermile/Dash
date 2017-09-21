@@ -115,7 +115,7 @@ trait connect
 					else
 					{
 						var_dump(debug_backtrace());
-						exit();
+						\lib\code::force_exit();
 						\lib\error::unsupport(T_("We can't connect to correct database!"). " ". T_("Please contact administrator!"));
 					}
 					break;

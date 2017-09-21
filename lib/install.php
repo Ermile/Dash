@@ -104,4 +104,4 @@ if(isset($_POST['username']) && isset($_POST['password']))
 </html>
 
 
-<?php exit(); ?>
+<?php \lib\code::force_exit(); ?>

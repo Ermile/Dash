@@ -57,9 +57,6 @@ trait template
 				$rss->addItem($row['link'], $row['title'], $row['desc'], $row['date']);
 
 			$rss->create();
-
-			// \lib\utility\RSS::create();
-			// exit();
 			return;
 		}
 		else

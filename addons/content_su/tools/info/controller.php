@@ -49,7 +49,7 @@ class controller extends \addons\content_su\main\controller
 				break;
 		}
 
-		exit();
+		\lib\code::force_exit();
 	}
 }
 ?>

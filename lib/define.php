@@ -148,7 +148,7 @@ class define
 			elseif(!isset($_COOKIE["preview"]))
 			{
 				header('Location: http://'.AccountService.MainTld.'/static/page/coming/', true, 302);
-				exit();
+				\lib\code::force_exit();
 			}
 		}
 		// change header and remove php from it

@@ -148,7 +148,6 @@ trait cp
 			debug::warn(T_("some fields must be change for update!"));
 			return false;
 		}
-		// var_dump($qry);exit();
 		return $qry;
 	}
 

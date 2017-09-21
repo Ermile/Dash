@@ -177,7 +177,7 @@ class permission
 				$msg = $msg. "<br/> ". T_("Because of your permission");
 
 				\lib\debug::error(T_($msg));
-				// exit();
+
 			}
 			elseif($_block)
 			{

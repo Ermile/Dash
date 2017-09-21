@@ -85,8 +85,13 @@ class controller
 		{
 			$this->corridor();
 		}
-		if(!$this->method) $this->method = 'get';
+		if(!$this->method)
+		{
+			$this->method = 'get';
+		}
+
 		$processor_arg = false;
+
 		if(isset($this->model_api_processor))
 		{
 			$name = $this->model_api_processor->method;
@@ -95,9 +100,11 @@ class controller
 			$this->api_callback = $api_callback;
 
 		}
+
 		if(isset($this->caller))
 		{
-			foreach ($this->caller as $key => $value) {
+			foreach ($this->caller as $key => $value)
+			{
 				$args = $value[2];
 				if($value[0])
 				{
@@ -168,15 +175,19 @@ class controller
 	 */
 	public function _processor($options = false)
 	{
-		if(is_array($options)){
+		if(is_array($options))
+		{
 			$options = (object) $options;
 		}
+
 		$force_json   = gettype($options) == 'object' && isset($options->force_json)   && $options->force_json   ? true : false;
 		$force_stop   = gettype($options) == 'object' && isset($options->force_stop)   && $options->force_stop   ? true : false;
 		$not_redirect = gettype($options) == 'object' && isset($options->not_redirect) && $options->not_redirect ? true : false;
 
 		if($not_redirect)
+		{
 			$this->controller()->redirector = false;
+		}
 
 
 		if(\dash::is_json_accept() || $force_json || \lib\temp::get('api'))
@@ -193,12 +204,17 @@ class controller
 		{
 			$this->redirector();
 		}
+
 		if(isset($this->controller()->redirector) && $this->controller()->redirector && !\dash::is_json_accept())
 		{
 			$_SESSION['debug'][md5( strtok($this->redirector()->redirect(true), '?') )] = debug::compile();
 			$this->redirector()->redirect();
 		}
-		if($force_stop) exit();
+
+		if($force_stop)
+		{
+			\lib\code::force_exit();
+		}
 	}
 
 

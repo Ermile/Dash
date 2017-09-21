@@ -478,7 +478,7 @@ class file
 		}
 
 		readfile($_filePath);
-		exit();
+		\lib\code::force_exit();
 	}
 
 

@@ -12,8 +12,7 @@ class controller extends \addons\content_enter\main\controller
 			self::go_redirect('verify/telegram');
 			return;
 		}
-		// var_dump($_SERVER['REQUEST_URI']);
-		// var_dump($_SESSION);exit();
+
 		// if this step is locked go to error page and return
 		if(self::lock('verify/telegram'))
 		{

@@ -318,7 +318,7 @@ class sessions
 				}
 			}
 		}
-		// var_dump($result);exit();
+
 		return $result;
 	}
 

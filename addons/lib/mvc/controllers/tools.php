@@ -9,7 +9,6 @@ trait tools
 	 */
 	public function option()
 	{
-		// var_dump(debug_backtrace());exit();
 		return \lib\option::config(...func_get_args());
 	}
 

@@ -25,7 +25,6 @@ class model extends \mvc\model
 		}
 
 		$result = \lib\db\invoices::search($search, $meta);
-		// var_dump($result);exit();
 		return $result;
 	}
 }

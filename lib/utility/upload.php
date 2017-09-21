@@ -184,7 +184,7 @@ class upload
 		if($_folder && !is_dir($_folder))
 		{
 			header("HTTP/1.1 412 Precondition Failed");
-			exit();
+			\lib\code::force_exit();
 		}
 
 		if(move_uploaded_file(self::_FILES(self::$fieldName)['tmp_name'], $_url))

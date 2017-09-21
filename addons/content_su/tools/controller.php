@@ -66,14 +66,12 @@ class controller extends \addons\content_su\main\controller
 				echo '<pre>';
 				print_r($result);
 				echo '</pre>';
-				exit();
+				\lib\code::force_exit();
 				break;
 
 
 			case 'twitter':
 				$a = \lib\utility\socialNetwork::twitter('hello! test #api');
-				// var_dump($a);
-				// exit();
 				break;
 
 			case 'mergefiles':

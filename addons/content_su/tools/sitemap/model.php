@@ -233,7 +233,6 @@ class model extends \mvc\model
 		{
 			// $qry = $qry->field($prefix.'_url', $date, $lang)->order('id','DESC');
 		}
-// var_dump($qry->selectString());exit();
 		return $qry->select()->allassoc();
 	}
 
