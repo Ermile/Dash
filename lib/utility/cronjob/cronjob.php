@@ -30,7 +30,7 @@ class cronjob
 		{
 
 			$file_name = $file->getPath() . DIRECTORY_SEPARATOR . $file->getFilename();
-			// var_dump($file_name);
+
 			if($file_name === (__DIR__ . DIRECTORY_SEPARATOR . 'cronjob.php'))
 			{
 				// the file fined is this file!
@@ -41,7 +41,6 @@ class cronjob
 				$this->paths[] = $file_name;
 			}
 		}
-		var_dump($this->paths);
 
 	}
 

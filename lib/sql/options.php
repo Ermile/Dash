@@ -92,7 +92,6 @@ class options
 			return;
 			// foreign written by javad @hasan: check for conflict with haram
 			// check for count of running this function with uncomment below line
-			// var_dump("test"); // this line run n times
 
 			if(is_string($_all))
 				$field = $_all;

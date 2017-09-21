@@ -109,7 +109,6 @@ trait check
 		if(function_exists('finfo'))
 		{
 			$finfo = new finfo(FILEINFO_MIME_TYPE);
-			// var_dump($finfo);
 			// if (false === $ext = array_search( $finfo->file(self::_FILES(self::$fieldName)['tmp_name']), self::$extentions ), true ))
 			// {
 			// \lib\debug::error(T_('Invalid file format.'), null, 'upload');

@@ -70,7 +70,7 @@ class kavenegar_api
 			rtrim($fields_string, '&');
 		}
 		// for debug you can uncomment below line to see the send parameters
-		// var_dump($_data);
+
 
 		//======================================================================================//
 		if(function_exists('curl_init'))
@@ -93,7 +93,7 @@ class kavenegar_api
 			curl_close ($handle);
 			//=====================================================================================//
 			// for debug you can uncomment below line to see the result get from server
-			// var_dump($response);
+
 			if(!$response)
 			{
 				$this->status = -1;

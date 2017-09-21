@@ -309,7 +309,6 @@ class controller
 				{
 					$MyClassName = str_replace("\\".$_className, '', $MyClassName);
 					$MyClassName = substr($MyClassName, 0, strrpos( $MyClassName, '\\')) . "\home\\" . $_className;
-					// var_dump($MyClassName);
 				}
 				// have more than one back slash for example content\home
 				else

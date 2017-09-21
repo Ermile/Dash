@@ -65,12 +65,12 @@ class facebook
 		if (isset($accessToken)) {
 		  // Logged in!
 		  $_SESSION['facebook_access_token'] = (string) $accessToken;
-		  var_dump($accessToken);
+
 
 		  // Now you can redirect to another page and use the
 		  // access token from $_SESSION['facebook_access_token']
 		}
-		  var_dump($accessToken);
+
 
 
 	}
@@ -103,11 +103,7 @@ class facebook
 	public static function send($_message)
 	{
 		self::connect();
-		// var_dump(self::$fb);
-		// self::login();
 		self::post();
-		// var_dump('send');
-
 	}
 
 }

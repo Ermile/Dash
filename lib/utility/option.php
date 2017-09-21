@@ -68,7 +68,7 @@ class option
 		{
 			$result = null;
 		}
-		// var_dump($result);
+
 		return $result;
 	}
 
@@ -454,7 +454,6 @@ class option
 			if(isset($_args['id']) && is_numeric($_args['id']))
 			{
 				$qry = "UPDATE options SET $qry_data WHERE `id` = ". $_args['id'];
-				// var_dump($qry);
 			}
 			else
 			{

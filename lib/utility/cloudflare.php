@@ -182,8 +182,6 @@ class cloudflare
 	{
 		self::config($_args);
 
-		// var_dump(self::$method, $_args, self::$api_url, self::$header);
-
 		$handle   = curl_init();
 		curl_setopt($handle, CURLOPT_URL, self::$api_url);
 		curl_setopt($handle, CURLOPT_HTTPHEADER, self::$header);

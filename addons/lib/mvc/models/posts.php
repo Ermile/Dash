@@ -173,7 +173,6 @@ trait posts
 			// 						->fieldUser_firstname("firstname")
 		}
 
-		// var_dump($qry->selectString());
 		$qry = $qry->select('DISTINCT');
 		// echo $qry->string();
 		$result = $qry->allassoc();

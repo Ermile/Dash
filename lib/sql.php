@@ -329,7 +329,7 @@ class sql{
 	 */
 	public function condition($maker)
 	{
-		// var_dump($maker->conditions);
+
 		$string = "";
 		foreach ($maker->conditions as $key => $value)
 		{
@@ -439,7 +439,6 @@ class sql{
 	{
 		$table = $maker->table;
 		$fields = is_array($maker->fields) ? $maker->fields : array($maker->fields);
-		// var_dump($fields);
 
 		if(!isset($fields[0]) || $fields[0] == "*")
 		{
@@ -535,8 +534,6 @@ class sql{
 				}
 
 				// switch by type of field and encode data if needed
-				// var_dump($cTable->$field->type);
-
 				if(isset($cTable->$field->type))
 				{
 					$atPos = strpos($cTable->$field->type, '@');

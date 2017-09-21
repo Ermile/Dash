@@ -41,7 +41,7 @@ class getTable
 					}
 				}
 			}
-			// var_dump($ret);
+
 			return $ret;
 		}
 		return null;
@@ -81,7 +81,6 @@ class getTable
 		$mytable  = self::loadTableFields($_table, $_db);
 		if($mytable)
 		{
-			// var_dump($mytable->post_status);
 
 			$ret = array();
 			foreach ($mytable as $key => $value)

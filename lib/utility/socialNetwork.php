@@ -74,8 +74,6 @@ class socialNetwork
 		{
 			$reply['callback'] = $e->getMessage();
 			$reply['status']  = 'fail';
-			// var_dump('Caught exception: ',  $e->getMessage(), "\n");
-			// return $e->getMessage();
 		}
 		finally
 		{

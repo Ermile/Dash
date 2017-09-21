@@ -9,7 +9,6 @@ class model extends \mvc\model
 
 	public function post_sitemap()
 	{
-		var_dump(22);
 		return 57;
 	}
 

@@ -90,7 +90,7 @@ class maker
 	{
 		$array = array();
 		$array['attr'] = $this->attr;
-		// var_dump($array['attr']);
+
 		$array['label'] = !empty($this->label) ? T_($this->label) : $this->label;
 		$array['child'] = array();
 		$array['validate'] = $this->validate;

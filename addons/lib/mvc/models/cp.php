@@ -31,8 +31,6 @@ trait cp
 		// check if datatable exist then get this data
 		$incomplete_fields = [];
 		$fields            = \lib\sql\getTable::get($qry_module);
-		// var_dump(utility::post());
-		// var_dump($qry_module);
 
 		foreach ($fields as $key => $value)
 		{
@@ -211,7 +209,7 @@ trait cp
 			$tmp_id     = $_id?    $_id:    $this->childparam('delete');
 			$tmp_id     = $tmp_id? $tmp_id: \lib\utility::post('id');
 			$_qry       = $this->sql()->$tmp_table()->whereId($tmp_id);
-			// var_dump($_qry);
+
 		}
 		if(!$_qry->select()->num())
 		{

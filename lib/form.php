@@ -70,7 +70,7 @@ class form
 						$form->make($value->closure->form, $key);
 					}
 				}
-				// var_dump($form);
+
 				$form->add('submit', 'submit')->value(T_('submit'))->class('button primary row-clear');
 				$args = func_get_args();
 				if(isset($args[2]))

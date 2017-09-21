@@ -8,7 +8,7 @@ class mail
 
 	public function __constract()
 	{
-		// var_dump(1);
+
 	}
 
 	public static function send($_args = [])

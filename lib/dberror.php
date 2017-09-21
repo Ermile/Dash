@@ -16,7 +16,6 @@ class dberror {
 			$return['errno']	= $errno;
 			$return['error']	= $error;
 			return $return;
-			// var_dump($error, 10);
 		}
 
 	}

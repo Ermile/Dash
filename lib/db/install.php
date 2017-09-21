@@ -130,7 +130,7 @@ trait install
 		{
 			$path = $path. "*.sql";
 		}
-		// var_dump(glob($path));
+
 		// for each item with this situation create
 		foreach(glob($path) as $key => $filename)
 		{

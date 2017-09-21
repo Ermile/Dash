@@ -11,8 +11,6 @@ class account extends \lib\form
 		}
 		else
 		{
-			// if(DEBUG)
-			// 	var_dump('Please pass correct function name as parameter');
 			return;
 		}
 	}

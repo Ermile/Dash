@@ -58,7 +58,7 @@ class twigTrans
 					$count += 1;
 					// find all matches with my creteria
 					preg_match_all('/{% ?trans\s\"(.*?)\" ?%}/s', $line, $matches);
-					// var_dump($matches);
+
 					$translation[$trans_key] = 'New File';
 					foreach ($matches[1] as $key => $value)
 					{
@@ -70,7 +70,7 @@ class twigTrans
 						}
 					}
 					preg_match_all("/\{\s*%\s*trans\s*%\s*}(.+?)\{\s*%\s*endtrans\s*%\s*}/", $line, $matches2);
-					// var_dump($matches2);
+
 					foreach ($matches2[1] as $key => $value)
 					{
 						$value = $value;

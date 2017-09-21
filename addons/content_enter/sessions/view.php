@@ -42,13 +42,6 @@ class view extends \addons\content_enter\main\view
 		}
 
 		$this->data->sessions_list = $mySessionData;
-		// var_dump($this->data->sessions_list);
-		// $myAgent = $this->data->sessions_list[0]['agent_agent'];
-		// $myBrowser = \lib\utility\browserDetection::browser_detection('full_assoc', '', $myAgent);
-
-
-
-
 
 		$this->data->page['title']   = T_('Active sessions');
 		$this->data->page['desc']    = $this->data->page['title'];

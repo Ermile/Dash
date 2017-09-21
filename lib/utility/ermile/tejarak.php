@@ -65,8 +65,6 @@ class tejarak
 
 		$this->api_url = sprintf($this->api_url, $this->version, $this->url);
 
-		// var_dump($this->api_url, $this->method, json_encode($this->data, JSON_UNESCAPED_UNICODE), $this->data);
-
 		$handle   = curl_init();
 
 		curl_setopt($handle, CURLOPT_URL, $this->api_url);

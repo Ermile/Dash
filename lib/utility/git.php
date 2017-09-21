@@ -109,7 +109,6 @@ class git
 			echo "<hr />";
 		}
 		// $result = self::create_zip($res, $packagesfolder.'/'.$folder.'.zip', true);
-		// var_dump($result);
 		// copy the files to the package folder and keep the entire folder structure
 		// (eg: if a file is in ... sub_folder/sub_sub_folder/file.php ... it will be copied to packagefolder/sub_sub_folder/sub_sub_folder/file.php )
 
