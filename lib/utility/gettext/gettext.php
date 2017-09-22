@@ -210,7 +210,7 @@ class gettext_reader {
    * @return int string number (offset in originals table)
    */
   function find_string($string, $start = -1, $end = -1) {
-    if (($start == -1) or ($end == -1)) {
+    if (($start == -1) || ($end == -1)) {
       // find_string is called with only one parameter, set start end end
       $start = 0;
       $end = $this->total;
