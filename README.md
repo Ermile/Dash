@@ -5,8 +5,8 @@ Visit [Dash on Github]
 
 Also you can see [Dash Official Website]
 
-<p align="center">
- [![SensioLabsInsight](https://insight.sensiolabs.com/projects/279088a7-db67-4c8e-915d-d822572a3c6b/mini.png)](https://insight.sensiolabs.com/projects/279088a7-db67-4c8e-915d-d822572a3c6b)
+<p style="text-align:center">
+ <a href="https://insight.sensiolabs.com/projects/279088a7-db67-4c8e-915d-d822572a3c6b"><img src="https://insight.sensiolabs.com/projects/279088a7-db67-4c8e-915d-d822572a3c6b/mini.png" alt="SensioLabsInsight"></a>
  <a href="https://travis-ci.org/ermile/dash"><img src="https://travis-ci.org/ermile/dash.svg" alt="Build Status"></a>
  <a href="https://packagist.org/packages/ermile/dash"><img src="https://poser.pugx.org/ermile/dash/d/total.svg" alt="Total Downloads"></a>
  <a href="https://packagist.org/packages/ermile/dash"><img src="https://poser.pugx.org/ermile/dash/v/stable.svg" alt="Latest Stable Version"></a>
