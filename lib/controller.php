@@ -9,7 +9,6 @@ class controller
 	use controller\login;
 	use controller\sessions;
 	use controller\template;
-	use controller\tools;
 	use controller\url;
 	use controller\pagnation;
 	use controller\ref;
