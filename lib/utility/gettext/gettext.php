@@ -122,7 +122,7 @@ class gettext_reader {
       return false;
     }
 
-    // FIXME: Do we care about revision? We should.
+    // hey fix me... Do we care about revision? We should.
     $revision = $this->readint();
 
     $this->total = $this->readint();

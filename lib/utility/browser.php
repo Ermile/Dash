@@ -116,7 +116,7 @@ class browser
 				{
 					$s_browser = 'rv';
 				}
-				$browser_number = $this->browser_version( $browser_user_agent, $s_browser );
+				$browser_number = self::browser_version( $browser_user_agent, $s_browser );
 				break;
 			}
 		}
