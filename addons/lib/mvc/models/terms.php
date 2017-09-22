@@ -179,7 +179,7 @@ trait terms
 			$pagenationNext 	= \lib\router::get_storage("pagenation") +1;
 			$pagenationPrev 	= \lib\router::get_storage("pagenation") -1;
 			if($pagenationCurrent !== null
-				AND ($pagenationCurrent < 1 || $pagenationCurrent > $pagenationPages)){
+				&& ($pagenationCurrent < 1 || $pagenationCurrent > $pagenationPages)){
 					\lib\error::page(T_("Does not exist!"));
 					return;
 			}
