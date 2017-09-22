@@ -148,6 +148,4 @@ if(file_exists(root .'define.php'))
 {
 	require_once(root .'define.php');
 }
-
 ?>
-

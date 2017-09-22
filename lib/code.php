@@ -27,7 +27,7 @@ class code
 	 */
 	public static function exit($_string = null)
 	{
-		exit($_string);
+		exit();
 	}
 
 
@@ -92,4 +92,3 @@ class code
 	}
 }
 ?>
-

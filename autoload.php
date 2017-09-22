@@ -129,12 +129,7 @@ class autoload
 		return autoload::{$name}(...$_args);
 	}
 }
-
 spl_autoload_register("\autoload::load");
-
-
 // RUN DASH!
 new \lib\dash;
-
 ?>
-

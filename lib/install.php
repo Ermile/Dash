@@ -102,6 +102,4 @@ if(isset($_POST['username']) && isset($_POST['password']))
 <div id="no"><img src="/static/images/logo.png" alt="Logo" id='logo'></div>
 </body>
 </html>
-
-
 <?php \lib\code::exit(); ?>
