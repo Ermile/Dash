@@ -151,7 +151,7 @@ trait add
 		$meta                       = [];
 		$meta['user_id']            = $this->user_id;
 		$meta['displayname']   = isset($get_user_data['displayname']) ? $get_user_data['displayname'] : null;
-		$meta['fileurl']      = isset($get_user_data['fileurl']) ? $get_user_data['fileurl'] : null;;
+		$meta['fileurl']      = isset($get_user_data['fileurl']) ? $get_user_data['fileurl'] : null;
 		$meta['parent_id']          = isset($get_parent_data['id']) ? $get_parent_data['id'] : null;
 		$meta['parent_mobile']      = isset($get_parent_data['mobile']) ? $get_parent_data['mobile'] : null;
 		$meta['parent_displayname'] = isset($get_parent_data['displayname']) ? $get_parent_data['displayname'] : null;
