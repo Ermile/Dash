@@ -122,7 +122,7 @@ abstract class Twig_Test_IntegrationTestCase extends PHPUnit_Framework_TestCase
     protected function doIntegrationTest($file, $message, $condition, $templates, $exception, $outputs)
     {
         if ($condition) {
-            eval('$ret = '.$condition.';');
+            \lib\code::eval('$ret = '.$condition.';');
             if (!$ret) {
                 $this->markTestSkipped($condition);
             }
@@ -134,7 +134,7 @@ abstract class Twig_Test_IntegrationTestCase extends PHPUnit_Framework_TestCase
             $config = array_merge(array(
                 'cache' => false,
                 'strict_variables' => true,
-            ), $match[2] ? eval($match[2].';') : array());
+            ), $match[2] ? \lib\code::eval($match[2].';') : array());
             $twig = new Twig_Environment($loader, $config);
             $twig->addGlobal('global', 'global');
             foreach ($this->getExtensions() as $extension) {
@@ -182,7 +182,7 @@ abstract class Twig_Test_IntegrationTestCase extends PHPUnit_Framework_TestCase
             }
 
             try {
-                $output = trim($template->render(eval($match[1].';')), "\n ");
+                $output = trim($template->render(\lib\code::eval($match[1].';')), "\n ");
             } catch (Exception $e) {
                 if (false !== $exception) {
                     $this->assertSame(trim($exception), trim(sprintf('%s: %s', get_class($e), $e->getMessage())));

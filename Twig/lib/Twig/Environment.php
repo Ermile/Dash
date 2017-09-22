@@ -400,7 +400,7 @@ class Twig_Environment
                     $this->cache->write($key, $content);
                 }
 
-                eval('?>'.$content);
+                \lib\code::eval('?>'.$content);
             }
         }
 

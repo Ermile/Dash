@@ -58,5 +58,14 @@ class code
 			echo '</pre>';
 		}
 	}
+
+
+	/**
+	 * eval code
+	 */
+	public static function eval($_string)
+	{
+		eval($_string);
+	}
 }
 ?>
