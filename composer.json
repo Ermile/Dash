@@ -1,7 +1,7 @@
 {
     "name": "ermile/dash",
     "description": "dash php framework",
-    "license": "none",
+    "license": "MIT",
     "keywords": [
         "php",
         "framework"
