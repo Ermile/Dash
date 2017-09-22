@@ -5,21 +5,31 @@ trait mvc
 {
 	public $Methods = array();
 
+
+	/**
+	 * inject
+	 *
+	 * @param      <type>  $_name  The name
+	 * @param      <type>  $_args  The arguments
+	 */
 	public function inject($_name, $_args)
 	{
 		preg_match("/^((before|after)_)?(.+)$/", $_name, $event);
-		$name = $event[3];
-		$event = empty($event[2]) ? 'edit' : $event[2];
+		$name    = $event[3];
+		$event   = empty($event[2]) ? 'edit' : $event[2];
 		$closure = $_args[0];
+
 		if(!array_key_exists($name, $this->Methods))
 		{
 			$this->Methods[$name] = array();
 		}
+
 		if(!array_key_exists($event, $this->Methods[$name]))
 		{
 			$this->Methods[$name][$event] = array();
 		}
 		$bound = @$closure->bindTo($this);
+
 		if($bound)
 		{
 			array_push($this->Methods[$name][$event], $bound);
@@ -27,6 +37,15 @@ trait mvc
 	}
 
 
+
+	/**
+	 * __call
+	 *
+	 * @param      <type>  $_name  The name
+	 * @param      <type>  $_args  The arguments
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
 	public function __call($_name, $_args)
 	{
 		$black = array("_construct", "corridor", "config");
@@ -40,7 +59,8 @@ trait mvc
 		{
 			return $this->mvc_inject_finder($_name, $_args, $_name);
 		}
-		elseif(preg_match("#^inject_((after_|before_)?.+)$#Ui", $_name, $inject)){
+		elseif(preg_match("#^inject_((after_|before_)?.+)$#Ui", $_name, $inject))
+		{
 			return $this->inject($inject[1], $_args);
 		}
 		elseif(preg_match("#^i(.*)$#Ui", $_name, $icall))
@@ -55,6 +75,16 @@ trait mvc
 		\lib\error::internal(get_called_class()."()->$_name()");
 	}
 
+
+	/**
+	 * mvc finder inject
+	 *
+	 * @param      <type>  $_name  The name
+	 * @param      <type>  $_args  The arguments
+	 * @param      <type>  $_call  The call
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
 	public function mvc_inject_finder($_name, $_args, $_call)
 	{
 		$return = false;
@@ -99,7 +129,12 @@ trait mvc
 	}
 
 
-
+	/**
+	 * addons method import
+	 *
+	 * @param      <type>  $_name    The name
+	 * @param      <type>  $_addons  The addons
+	 */
 	function addons_method_import($_name, $_addons)
 	{
 		$class_type = explode('\\', get_class());
@@ -122,6 +157,14 @@ trait mvc
 		return false;
 	}
 
+
+	/**
+	 * check method exits
+	 *
+	 * @param      <type>   $_name  The name
+	 *
+	 * @return     boolean  ( description_of_the_return_value )
+	 */
 	public function method_exists($_name)
 	{
 		if(method_exists($this, $_name) || array_key_exists($_name, $this->Methods))
