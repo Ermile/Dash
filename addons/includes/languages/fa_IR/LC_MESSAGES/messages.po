@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Dash - Persian\n"
-"POT-Creation-Date: 2017-09-20 14:35+0430\n"
-"PO-Revision-Date: 2017-09-20 14:37+0430\n"
+"POT-Creation-Date: 2017-09-22 17:04+0330\n"
+"PO-Revision-Date: 2017-09-22 17:07+0330\n"
 "Last-Translator: Javad Evazzadeh <J.Evazzadeh@gmail.com>\n"
 "Language-Team: Ermile <J.Evazzadeh@gmail.com>\n"
 "Language: fa_IR\n"
@@ -522,22 +522,22 @@ msgid "Not found!"
 msgstr "یافت نشد"
 
 #: addons/content_cp/manifest.php:9 addons/content_su/manifest.php:9
-#: addons/includes/languages/trans_addons.php:45
+#: addons/includes/languages/trans_addons.php:43
 msgid "Dashboard"
 msgstr "داشبورد"
 
 #: addons/content_cp/manifest.php:13 addons/content_su/manifest.php:13
-#: addons/includes/languages/trans_addons.php:933
+#: addons/includes/languages/trans_addons.php:963
 msgid "Use posts to share your news in specefic category"
 msgstr "از نوشته‌ها برای انتشار اخبار در موضوعات دلخواه استفاده کنید"
 
 #: addons/content_cp/manifest.php:21 addons/content_su/manifest.php:21
-#: addons/includes/languages/trans_addons.php:930
+#: addons/includes/languages/trans_addons.php:960
 msgid "Assign keywords to your posts using tags"
 msgstr "از عبارات کلیدی برای تعریف کلیدواژه‌ها و ارتباط آن به نوشته‌های استفاده کنید"
 
 #: addons/content_cp/manifest.php:26 addons/content_su/manifest.php:26
-#: addons/includes/languages/trans_addons.php:931
+#: addons/includes/languages/trans_addons.php:961
 msgid "Use categories to define sections of your site and group related posts"
 msgstr "از دسته‌ها برای تعریف بخش‌های سایت و دسته بندی نوشته‌ها استفاده کنید"
 
@@ -546,12 +546,12 @@ msgid "Categories"
 msgstr "دسته‌ها"
 
 #: addons/content_cp/manifest.php:33 addons/content_su/manifest.php:33
-#: addons/includes/languages/trans_addons.php:934
+#: addons/includes/languages/trans_addons.php:964
 msgid "Use pages to share your static content"
 msgstr "از برگه‌ها برای انتشار مطالب ثابت استفاده کنید"
 
 #: addons/content_cp/manifest.php:41 addons/content_su/manifest.php:41
-#: addons/includes/languages/trans_addons.php:977
+#: addons/includes/languages/trans_addons.php:1007
 msgid "Use book to define important parts to use in posts"
 msgstr "کتاب‌های خود را در این بخش وارد کنید"
 
@@ -568,27 +568,27 @@ msgid "Help center is ready to use"
 msgstr "مرکز راهنمایی برای استفاده آماده است"
 
 #: addons/content_cp/manifest.php:61 addons/content_su/manifest.php:61
-#: addons/includes/languages/trans_addons.php:976
+#: addons/includes/languages/trans_addons.php:1006
 msgid "Use categories to define sections of your site and group related books"
 msgstr "با استفاده از دسته‌بندی بخش‌های مختلف کتاب را گروه بندی کنید"
 
 #: addons/content_cp/manifest.php:62 addons/content_su/manifest.php:62
-#: addons/includes/languages/trans_addons.php:973
+#: addons/includes/languages/trans_addons.php:1003
 msgid "Book Categories"
 msgstr "دسته‌بندی کتاب"
 
 #: addons/content_cp/manifest.php:69 addons/content_su/manifest.php:69
-#: addons/includes/languages/trans_addons.php:986
+#: addons/includes/languages/trans_addons.php:1015
 msgid "Publish new post in social networks"
 msgstr "انتشار پست جدید در شبکه‌های اجتماعی"
 
 #: addons/content_cp/manifest.php:76 addons/content_su/manifest.php:76
-#: addons/includes/languages/trans_addons.php:935
+#: addons/includes/languages/trans_addons.php:965
 msgid "Upload your media"
 msgstr "برای بارگزاری فایل‌های شما"
 
 #: addons/content_cp/manifest.php:81 addons/content_su/manifest.php:81
-#: addons/includes/languages/trans_addons.php:932
+#: addons/includes/languages/trans_addons.php:962
 msgid "Use categories to define sections of your site and group related files"
 msgstr "از دسته‌بندی برای تعریف بخش‌های مختلف برای گروه‌بندی‌کردن فایل‌ها استفاده کنید"
 
@@ -661,7 +661,7 @@ msgid "Alert!"
 msgstr "هشدار!"
 
 #: addons/content_enter/alert/view.php:24
-#: addons/includes/languages/trans_addons.php:225
+#: addons/includes/languages/trans_addons.php:223
 msgid "Go back"
 msgstr "برگرد"
 
@@ -975,7 +975,7 @@ msgid "Your new password is your old password"
 msgstr "کلمه‌عبور جدید شما همان قدیمی‌است"
 
 #: addons/content_enter/pass/recovery/model.php:53
-#: addons/includes/languages/trans_addons.php:1196
+#: addons/includes/languages/trans_addons.php:1223
 msgid "Enter"
 msgstr "ورود"
 
@@ -983,9 +983,8 @@ msgstr "ورود"
 msgid "Invalid Password"
 msgstr "گذرواژه نامعتبر"
 
-#: addons/content_enter/pass/view.php:30 addons/includes/cls/form/account.php:24
-#: addons/includes/cls/form/account.php:33 addons/includes/cls/form/symbol.php:23
-#: addons/includes/languages/trans_addons.php:962
+#: addons/content_enter/pass/view.php:30
+#: addons/includes/languages/trans_addons.php:992
 msgid "Password"
 msgstr "کلمه عبور"
 
@@ -1006,7 +1005,7 @@ msgstr ""
 "اعتبارسنجی، این گذرواژه قابل استفاده خواهد بود."
 
 #: addons/content_enter/pass/view.php:42
-#: addons/includes/languages/trans_addons.php:1194
+#: addons/includes/languages/trans_addons.php:1221
 msgid "Set Password"
 msgstr "تنظیم گذرواژه"
 
@@ -1039,16 +1038,16 @@ msgid "Session terminated"
 msgstr "این روش ورود مسدود شد"
 
 #: addons/content_enter/sessions/view.php:31
-#: addons/includes/languages/trans_addons.php:1098
+#: addons/includes/languages/trans_addons.php:1127
 msgid "Windows"
 msgstr "ویندوز"
 
 #: addons/content_enter/sessions/view.php:35
-#: addons/includes/languages/trans_addons.php:1099
+#: addons/includes/languages/trans_addons.php:1128
 msgid "Linux"
 msgstr "لینوکس"
 
-#: addons/content_enter/sessions/view.php:53
+#: addons/content_enter/sessions/view.php:46
 msgid "Active sessions"
 msgstr "ورودهای فعال"
 
@@ -1174,7 +1173,7 @@ msgid "This is request of change password."
 msgstr "این درخواست برای تغییر گذرواژه است."
 
 #: addons/content_enter/verify/view.php:87
-#: addons/includes/languages/trans_addons.php:87
+#: addons/includes/languages/trans_addons.php:85
 msgid "Verify"
 msgstr "اعتبارسنجی"
 
@@ -1218,1164 +1217,681 @@ msgstr "بیشتر بخوانید"
 msgid "Do you wanna something here!?"
 msgstr "چیز میخواهید اینجا؟"
 
-#: addons/content_su/tools/sitemap/model.php:193
+#: addons/content_su/tools/sitemap/model.php:192
 msgid "Create sitemap Successfully!"
 msgstr "بازسازی نقشه سایت با موفقیت انجام شد!"
 
 #: addons/content_su/tools/sitemap/view.php:11
-#: addons/includes/languages/trans_addons.php:775
+#: addons/includes/languages/trans_addons.php:806
 msgid "Sitemap"
 msgstr "نقشه‌ی سایت"
-
-#: addons/includes/cls/form/account.php:22
-#: addons/includes/languages/trans_addons.php:1076
-msgid "Enter your registered mobile"
-msgstr "موبایل ثبت شده را وارد کنید"
-
-#: addons/includes/cls/form/account.php:24
-#: addons/includes/languages/trans_addons.php:1077
-msgid "Enter your password"
-msgstr "کلمه عبور خود را وارد کنید"
-
-#: addons/includes/cls/form/account.php:25
-msgid "Remember me"
-msgstr "من را به خاطر بسپار"
-
-#: addons/includes/cls/form/account.php:26
-#: addons/includes/languages/trans_addons.php:965
-msgid "Login"
-msgstr "ورود به سیستم"
-
-#: addons/includes/cls/form/account.php:34
-#: addons/includes/languages/trans_addons.php:966
-msgid "Create an account"
-msgstr "اکانت بسازید"
-
-#: addons/includes/cls/form/account.php:48
-#: addons/includes/languages/trans_addons.php:83
-msgid "Code"
-msgstr "کد"
-
-#: addons/includes/cls/form/account.php:49
-msgid "input 4 number"
-msgstr "کد حاوی 4 عدد را وارد کنید"
-
-#: addons/includes/cls/form/account.php:50
-#: addons/includes/languages/trans_addons.php:1091
-msgid "Check your mobile and enter the code"
-msgstr "پس از بررسی موبایل خود کد را وارد کنید"
-
-#: addons/includes/cls/form/account.php:51
-#: addons/includes/languages/trans_addons.php:1086
-msgid "Verification"
-msgstr "اعتبارسنجی"
-
-#: addons/includes/cls/form/account.php:58
-#: addons/includes/languages/trans_addons.php:1081
-msgid "Recovery"
-msgstr "بازیابی کلمه عبور"
-
-#: addons/includes/cls/form/account.php:65
-#: addons/includes/languages/trans_addons.php:1093
-msgid "Current Password"
-msgstr "گذرواژه فعلی"
-
-#: addons/includes/cls/form/account.php:67
-#: addons/includes/languages/trans_addons.php:1094
-msgid "New Password"
-msgstr "گذرواژه جدید"
-
-#: addons/includes/cls/form/account.php:68
-#: addons/includes/languages/trans_addons.php:1095
-msgid "Change it"
-msgstr "تغییر بده"
-
-#: addons/includes/cls/form/account.php:68
-msgid "Change my password"
-msgstr "کلمه عبور"
-
-#: addons/includes/cls/form/options.php:27 addons/includes/cls/form/options.php:33
-#: addons/includes/cls/form/options.php:46
-#: addons/includes/languages/trans_addons.php:1009
-msgid "Site"
-msgstr "سایت"
-
-#: addons/includes/cls/form/options.php:27
-#: addons/includes/languages/trans_addons.php:13
-msgid "title"
-msgstr "عنوان"
-
-#: addons/includes/cls/form/options.php:29
-msgid "Site title"
-msgstr "عنوان سایت"
-
-#: addons/includes/cls/form/options.php:30
-#: addons/includes/languages/trans_addons.php:1010
-msgid "For multilanguage sites enter title in English and translate it"
-msgstr ""
-"برای سایت‌های چندزبانه، این بخش را به انگلیسی وارد نموده و توسط برنامه مترجم آن را "
-"به سایر زبان‌ها ترجمه کنید"
-
-#: addons/includes/cls/form/options.php:33
-#: addons/includes/languages/trans_addons.php:88
-msgid "Description"
-msgstr "توضیح"
-
-#: addons/includes/cls/form/options.php:35
-msgid "Site Description"
-msgstr "درباره سایت"
-
-#: addons/includes/cls/form/options.php:36
-msgid "Explain site and porpose of it in a few words"
-msgstr "سایت و هدف آن را در چند کلمه مختصر توضیح دهید"
-
-#: addons/includes/cls/form/options.php:39 addons/includes/cls/form/options.php:41
-#: addons/includes/languages/trans_addons.php:127
-msgid "Email"
-msgstr "رایانامه"
-
-#: addons/includes/cls/form/options.php:46
-msgid "Tab Color"
-msgstr "رنگ تب"
-
-#: addons/includes/cls/form/options.php:48
-msgid "Site Tab Color in Mobile"
-msgstr "رنگ تب سایت در موبایل"
-
-#: addons/includes/cls/form/options.php:69
-#: addons/includes/languages/trans_addons.php:1012
-msgid "Enable coming soon"
-msgstr "نمایش صفحه بزودی"
-
-#: addons/includes/cls/form/options.php:74
-#: addons/includes/languages/trans_addons.php:1013
-msgid "debug mode status"
-msgstr "وضعیت نمایش خطا"
-
-#: addons/includes/cls/form/options.php:79
-#: addons/includes/languages/trans_addons.php:1014
-msgid "Save as cookie"
-msgstr "ذخیره به عنوان کوکی"
-
-#: addons/includes/cls/form/options.php:84
-#: addons/includes/languages/trans_addons.php:1015
-msgid "Log visitors"
-msgstr "ذخیره عملکرد بازدیدکنندگان"
-
-#: addons/includes/cls/form/options.php:89
-#: addons/includes/languages/trans_addons.php:1016
-msgid "Use main account"
-msgstr "استفاده از اکانت یکپارچه"
-
-#: addons/includes/cls/form/options.php:95
-#: addons/includes/languages/trans_addons.php:1017
-msgid "Main account"
-msgstr "اکانت یکپارچه"
-
-#: addons/includes/cls/form/options.php:100 addons/includes/cls/form/options.php:101
-#: addons/includes/languages/trans_addons.php:1018
-msgid "Default Language"
-msgstr "زبان پیش‌فرض"
-
-#: addons/includes/cls/form/options.php:105
-msgid "URL Settings"
-msgstr "تنظیمات آدرس"
-
-#: addons/includes/cls/form/options.php:110
-#: addons/includes/languages/trans_addons.php:1020
-msgid "Use fake subdomain"
-msgstr "شبیه‌سازی ساب‌دامین"
-
-#: addons/includes/cls/form/options.php:115
-msgid "Support https"
-msgstr "پشتیبانی از https"
-
-#: addons/includes/cls/form/options.php:120
-msgid "allow short URL"
-msgstr "استفاده از آدرس کوتاه"
-
-#: addons/includes/cls/form/options.php:126
-msgid "force using short URL"
-msgstr "نمایش آدرس کوتاه برای این نوشته"
-
-#: addons/includes/cls/form/options.php:130
-#: addons/includes/languages/trans_addons.php:1019
-msgid "Feature status"
-msgstr "وضعیت ویژگی‌ها"
-
-#: addons/includes/cls/form/options.php:135
-#: addons/includes/languages/trans_addons.php:1021
-msgid "Use SMS service"
-msgstr "استفاده از سرویس پیامک"
-
-#: addons/includes/cls/form/options.php:140
-#: addons/includes/languages/trans_addons.php:1022
-msgid "Use social networks"
-msgstr "استفاده از شبکه‌های اجتماعی"
-
-#: addons/includes/cls/form/options.php:145
-#: addons/includes/languages/trans_addons.php:1023
-msgid "Use account"
-msgstr "استفاده از اکانت یکپارچه"
-
-#: addons/includes/cls/form/options.php:149
-msgid "Multi domain"
-msgstr "چند دامنه"
-
-#: addons/includes/cls/form/options.php:154
-msgid "Use multi domain"
-msgstr "استفاده از چند دامنه"
-
-#: addons/includes/cls/form/options.php:160 addons/includes/cls/form/options.php:161
-msgid "Default Tld"
-msgstr "Tld پیش فرض"
-
-#: addons/includes/cls/form/options.php:168
-msgid "domain name is different?"
-msgstr "نام دامنه متفاوت است؟"
-
-#: addons/includes/cls/form/options.php:175
-msgid "Main domain name"
-msgstr "نام دامنه اصلی"
-
-#: addons/includes/cls/form/options.php:185 addons/includes/cls/form/options.php:191
-msgid "Redirect to main doamin"
-msgstr "انتقال به دامنه اصلی"
-
-#: addons/includes/cls/form/options.php:207 addons/includes/cls/form/options.php:270
-#: addons/includes/cls/form/options.php:277 addons/includes/cls/form/options.php:284
-#: addons/includes/cls/form/options.php:291
-msgid "Twitter"
-msgstr "توییتر"
-
-#: addons/includes/cls/form/options.php:214 addons/includes/cls/form/options.php:311
-#: addons/includes/cls/form/options.php:318 addons/includes/cls/form/options.php:325
-#: addons/includes/cls/form/options.php:332 addons/includes/cls/form/options.php:339
-#: addons/includes/cls/form/options.php:346 addons/includes/cls/form/options.php:353
-msgid "Facebook"
-msgstr "فیس‌بوک"
-
-#: addons/includes/cls/form/options.php:221
-#: addons/includes/languages/trans_addons.php:1029
-msgid "Google Plus"
-msgstr "گوگل پلاس"
-
-#: addons/includes/cls/form/options.php:228
-#: addons/includes/languages/trans_addons.php:1026
-msgid "Github"
-msgstr "گیت‌هاب"
-
-#: addons/includes/cls/form/options.php:235
-#: addons/includes/languages/trans_addons.php:1027
-msgid "Linkedin"
-msgstr "لینکدین"
-
-#: addons/includes/cls/form/options.php:242 addons/includes/cls/form/options.php:373
-#: addons/includes/cls/form/options.php:380 addons/includes/cls/form/options.php:387
-#: addons/includes/cls/form/options.php:394 addons/includes/cls/form/options.php:407
-#: addons/includes/cls/form/options.php:414
-msgid "Telegram"
-msgstr "تلگرام"
-
-#: addons/includes/cls/form/options.php:249
-#: addons/includes/languages/trans_addons.php:1028
-msgid "Aparat"
-msgstr "آپارات"
-
-#: addons/includes/cls/form/options.php:265
-#: addons/includes/languages/trans_addons.php:1062
-msgid "Status of twitter sharing"
-msgstr "وضعیت بازنشر در توییتر"
-
-#: addons/includes/cls/form/options.php:270
-msgid "ConsumerKey"
-msgstr "ConsumerKey"
-
-#: addons/includes/cls/form/options.php:277
-#: addons/includes/languages/trans_addons.php:1034
-msgid "ConsumerSecret"
-msgstr "ConsumerSecret"
-
-#: addons/includes/cls/form/options.php:284
-#: addons/includes/languages/trans_addons.php:1035
-msgid "AccessToken"
-msgstr "AccessToken"
-
-#: addons/includes/cls/form/options.php:291
-#: addons/includes/languages/trans_addons.php:1036
-msgid "AccessTokenSecret"
-msgstr "AccessTokenSecret"
-
-#: addons/includes/cls/form/options.php:306
-#: addons/includes/languages/trans_addons.php:1063
-msgid "Status of facebook sharing"
-msgstr "وضعیت بازنشر در فیس‌بوک"
-
-#: addons/includes/cls/form/options.php:311
-#: addons/includes/languages/trans_addons.php:1037
-msgid "app_id"
-msgstr "app_id"
-
-#: addons/includes/cls/form/options.php:318
-#: addons/includes/languages/trans_addons.php:1038
-msgid "app_secret"
-msgstr "app_secret"
-
-#: addons/includes/cls/form/options.php:325
-#: addons/includes/languages/trans_addons.php:1039
-msgid "redirect_url"
-msgstr "redirect_url"
-
-#: addons/includes/cls/form/options.php:332
-#: addons/includes/languages/trans_addons.php:1040
-msgid "required_scope"
-msgstr "required_scope"
-
-#: addons/includes/cls/form/options.php:339
-#: addons/includes/languages/trans_addons.php:1041
-msgid "page_id"
-msgstr "page_id"
-
-#: addons/includes/cls/form/options.php:346
-#: addons/includes/languages/trans_addons.php:1042
-msgid "access_token"
-msgstr "access_token"
-
-#: addons/includes/cls/form/options.php:353
-#: addons/includes/languages/trans_addons.php:1043
-msgid "client_token"
-msgstr "client_token"
-
-#: addons/includes/cls/form/options.php:368
-#: addons/includes/languages/trans_addons.php:1064
-msgid "Status of telegram sharing"
-msgstr "وضعیت بازنشر در تلگرام"
-
-#: addons/includes/cls/form/options.php:373 addons/includes/cls/form/options.php:414
-#: addons/includes/languages/trans_addons.php:122
-msgid "Key"
-msgstr "کلید"
-
-#: addons/includes/cls/form/options.php:380
-msgid "bot name"
-msgstr "نام بات"
-
-#: addons/includes/cls/form/options.php:387
-msgid "hook folder"
-msgstr "پوشه هوک"
-
-#: addons/includes/cls/form/options.php:394
-msgid "hook url"
-msgstr "آدرس هوک"
-
-#: addons/includes/cls/form/options.php:402
-msgid "Debug mode"
-msgstr "وضعیت خطایابی"
-
-#: addons/includes/cls/form/options.php:407
-msgid "channel"
-msgstr "کانال"
-
-#: addons/includes/cls/form/options.php:414
-msgid "botan"
-msgstr "بوتان"
-
-#: addons/includes/cls/form/options.php:429
-#: addons/includes/languages/trans_addons.php:1053
-msgid "Simulate SMS (Debugging)"
-msgstr "شبیه‌سازی پیامک (خطایابی)"
-
-#: addons/includes/cls/form/options.php:432
-#: addons/includes/languages/trans_addons.php:1061
-msgid "SMS api detail"
-msgstr "جزئیات رابط برنامه‌نویسی پیامک"
-
-#: addons/includes/cls/form/options.php:436 addons/includes/cls/form/options.php:437
-#: addons/includes/languages/trans_addons.php:1032
-msgid "SMS service"
-msgstr "سرویس پیامک"
-
-#: addons/includes/cls/form/options.php:441 addons/includes/cls/form/options.php:447
-#: addons/includes/cls/form/options.php:452
-msgid "SMS"
-msgstr "پیامک"
-
-#: addons/includes/cls/form/options.php:441
-#: addons/includes/languages/trans_addons.php:1025
-msgid "apikey"
-msgstr "کلید ای‌پی‌آی"
-
-#: addons/includes/cls/form/options.php:447 addons/includes/cls/form/options.php:452
-#: addons/includes/languages/trans_addons.php:1024
-msgid "line number"
-msgstr "شماره خط"
-
-#: addons/includes/cls/form/options.php:458
-#: addons/includes/languages/trans_addons.php:1048
-msgid "Regional restriction"
-msgstr "محدودیت منطقه‌ای"
-
-#: addons/includes/cls/form/options.php:461
-#: addons/includes/languages/trans_addons.php:1060
-msgid "Message detail"
-msgstr "جزئیات پیامک"
-
-#: addons/includes/cls/form/options.php:465
-#: addons/includes/languages/trans_addons.php:1049
-msgid "Message header"
-msgstr "سرصفحه پیام"
-
-#: addons/includes/cls/form/options.php:470
-#: addons/includes/languages/trans_addons.php:1050
-msgid "Message footer"
-msgstr "پاصفحه پیام"
-
-#: addons/includes/cls/form/options.php:476
-#: addons/includes/languages/trans_addons.php:1051
-msgid "Force one message"
-msgstr "اجبار به یک پیامک"
-
-#: addons/includes/cls/form/options.php:479
-#: addons/includes/languages/trans_addons.php:1059
-msgid "Send message in custom situation"
-msgstr "ارسال پیامک در شرایط سفارشی"
-
-#: addons/includes/cls/form/options.php:484 addons/includes/cls/form/options.php:489
-#: addons/includes/cls/form/options.php:494 addons/includes/cls/form/options.php:499
-#: addons/includes/cls/form/options.php:504
-#: addons/includes/languages/trans_addons.php:1044
-msgid "Send message for"
-msgstr "ارسال پیام برای"
-
-#: addons/includes/cls/form/options.php:484
-#: addons/includes/languages/trans_addons.php:887
-msgid "signup"
-msgstr "ثبت نام"
-
-#: addons/includes/cls/form/options.php:489 addons/includes/cls/form/options.php:504
-#: addons/includes/languages/trans_addons.php:1045
-msgid "verification"
-msgstr "اعتبارسنجی"
-
-#: addons/includes/cls/form/options.php:494
-#: addons/includes/languages/trans_addons.php:1046
-msgid "recovery"
-msgstr "بازیابی"
-
-#: addons/includes/cls/form/options.php:499
-#: addons/includes/languages/trans_addons.php:1047
-msgid "changepass"
-msgstr "تغییر کلمه‌عبور"
-
-#: addons/includes/cls/form/options.php:516
-#: addons/includes/languages/trans_addons.php:1066
-msgid "After login redirect to"
-msgstr "بعد از لاگین انتقال به"
-
-#: addons/includes/cls/form/options.php:520
-#: addons/includes/languages/trans_addons.php:1074
-msgid "Increase account security"
-msgstr "افزایش امنیت بخش اکانت"
-
-#: addons/includes/cls/form/options.php:525
-#: addons/includes/languages/trans_addons.php:1069
-msgid "Access with pass phrase"
-msgstr "دسترسی با عبارت گذرگاه"
-
-#: addons/includes/cls/form/options.php:530
-#: addons/includes/languages/trans_addons.php:1070
-msgid "Pass phrase key"
-msgstr "کلید عبارت گذرگاه"
-
-#: addons/includes/cls/form/options.php:537
-#: addons/includes/languages/trans_addons.php:1071
-msgid "Pass phrase value"
-msgstr "مقدار عبارت گذرگاه"
-
-#: addons/includes/cls/form/options.php:542
-#: addons/includes/languages/trans_addons.php:1073
-msgid "Status of account service"
-msgstr "وضعیت سرویس اکانت"
-
-#: addons/includes/cls/form/options.php:547
-#: addons/includes/languages/trans_addons.php:1065
-msgid "Allow registration"
-msgstr "اجازه ثبت‌نام کاربر جدید"
-
-#: addons/includes/cls/form/options.php:552 addons/includes/cls/form/options.php:553
-#: addons/includes/languages/trans_addons.php:1067
-msgid "Default permission"
-msgstr "سطح‌دسترسی پیش فرض"
-
-#: addons/includes/cls/form/options.php:559
-#: addons/includes/languages/trans_addons.php:1072
-msgid "Allow recovery account"
-msgstr "اجازه بازیابی اکانت"
-
-#: addons/includes/cls/form/symbol.php:16
-msgid "Tel"
-msgstr "تلفن"
-
-#: addons/includes/cls/form/symbol.php:19
-#: addons/includes/languages/trans_addons.php:99
-msgid "Mobile"
-msgstr "موبایل"
-
-#: addons/includes/cls/form/symbol.php:24
-#: addons/includes/languages/trans_addons.php:963
-msgid "between 5-40 character"
-msgstr "بین ۵ تا ۴۰ کاراکتر."
-
-#: addons/includes/languages/trans_addons.php:6
-msgid "Write your tag and press enter to add new keyword to content"
-msgstr "کلیدواژه‌ی مورد نظر خود را نوشته و با فشردن انتر آن را به مطلب اضافه کنید"
-
-#: addons/includes/languages/trans_addons.php:7
-msgid "attachments"
-msgstr "ضمیمه‌ها"
 
 #: addons/includes/languages/trans_addons.php:8
 msgid "Search"
 msgstr "جستجو"
 
-#: addons/includes/languages/trans_addons.php:11
+#: addons/includes/languages/trans_addons.php:9
 msgid "id"
 msgstr "کد"
 
-#: addons/includes/languages/trans_addons.php:12
+#: addons/includes/languages/trans_addons.php:10
 msgid "invoice_id"
 msgstr "کد فاکتور"
 
-#: addons/includes/languages/trans_addons.php:14
+#: addons/includes/languages/trans_addons.php:11
+msgid "title"
+msgstr "عنوان"
+
+#: addons/includes/languages/trans_addons.php:12
 msgid "price"
 msgstr "قیمت"
 
-#: addons/includes/languages/trans_addons.php:15
+#: addons/includes/languages/trans_addons.php:13
 msgid "count"
 msgstr "تعداد"
 
-#: addons/includes/languages/trans_addons.php:16
+#: addons/includes/languages/trans_addons.php:14
 msgid "total"
 msgstr "مجموع"
 
-#: addons/includes/languages/trans_addons.php:17
+#: addons/includes/languages/trans_addons.php:15
 msgid "discount"
 msgstr "تخفیف"
 
-#: addons/includes/languages/trans_addons.php:18
+#: addons/includes/languages/trans_addons.php:16
 msgid "desc"
 msgstr "توضیح"
 
-#: addons/includes/languages/trans_addons.php:21
+#: addons/includes/languages/trans_addons.php:19
 msgid "ID"
 msgstr "شناسه"
 
-#: addons/includes/languages/trans_addons.php:22
+#: addons/includes/languages/trans_addons.php:20
 msgid "Date"
 msgstr "تاریخ"
 
-#: addons/includes/languages/trans_addons.php:23
+#: addons/includes/languages/trans_addons.php:21
 msgid "User id"
 msgstr "کد کاربر"
 
-#: addons/includes/languages/trans_addons.php:24
+#: addons/includes/languages/trans_addons.php:22
 msgid "Is Temp?"
 msgstr "موقتی است؟"
 
-#: addons/includes/languages/trans_addons.php:25
+#: addons/includes/languages/trans_addons.php:23
 msgid "Title"
 msgstr "عنوان"
 
-#: addons/includes/languages/trans_addons.php:26
+#: addons/includes/languages/trans_addons.php:24
 msgid "Total"
 msgstr "مجموع"
 
-#: addons/includes/languages/trans_addons.php:27
+#: addons/includes/languages/trans_addons.php:25
 msgid "Total Discount"
 msgstr "جمع تخفیف"
 
-#: addons/includes/languages/trans_addons.php:28
+#: addons/includes/languages/trans_addons.php:26
 msgid "Status"
 msgstr "وضعیت"
 
-#: addons/includes/languages/trans_addons.php:29
+#: addons/includes/languages/trans_addons.php:27
 msgid "Count Detail"
 msgstr "تعداد جزئیات"
 
-#: addons/includes/languages/trans_addons.php:30
+#: addons/includes/languages/trans_addons.php:28
 msgid "Detail"
 msgstr "جزئیات"
 
-#: addons/includes/languages/trans_addons.php:31
+#: addons/includes/languages/trans_addons.php:29
 msgid "Yes"
 msgstr "بلی"
 
-#: addons/includes/languages/trans_addons.php:32
+#: addons/includes/languages/trans_addons.php:30
 msgid "No"
 msgstr "خیر"
 
-#: addons/includes/languages/trans_addons.php:35
+#: addons/includes/languages/trans_addons.php:33
 msgid "Log item id"
 msgstr "کد آیتم لاگ"
 
-#: addons/includes/languages/trans_addons.php:36
+#: addons/includes/languages/trans_addons.php:34
 msgid "Type"
 msgstr "نوع"
 
-#: addons/includes/languages/trans_addons.php:37
+#: addons/includes/languages/trans_addons.php:35
 msgid "Caller"
 msgstr "صداکننده"
 
-#: addons/includes/languages/trans_addons.php:38
+#: addons/includes/languages/trans_addons.php:36
 msgid "Priority"
 msgstr "اولویت"
 
-#: addons/includes/languages/trans_addons.php:39
+#: addons/includes/languages/trans_addons.php:37
 msgid "User_id"
 msgstr "کد کاربر"
 
-#: addons/includes/languages/trans_addons.php:40
+#: addons/includes/languages/trans_addons.php:38
 msgid "Data"
 msgstr "داده"
 
-#: addons/includes/languages/trans_addons.php:41
+#: addons/includes/languages/trans_addons.php:39
 msgid "createdate"
 msgstr "تاریخ ایجاد"
 
-#: addons/includes/languages/trans_addons.php:42
+#: addons/includes/languages/trans_addons.php:40
 msgid "Meta"
 msgstr "متا"
 
-#: addons/includes/languages/trans_addons.php:46
+#: addons/includes/languages/trans_addons.php:44
 msgid "Tools"
 msgstr "ابزارها"
 
-#: addons/includes/languages/trans_addons.php:47
+#: addons/includes/languages/trans_addons.php:45
 msgid "Transactions"
 msgstr "تراکنش‌ها"
 
-#: addons/includes/languages/trans_addons.php:48
+#: addons/includes/languages/trans_addons.php:46
 msgid "Logs"
 msgstr "لاگ"
 
-#: addons/includes/languages/trans_addons.php:49
+#: addons/includes/languages/trans_addons.php:47
 msgid "Users"
 msgstr "کاربران"
 
-#: addons/includes/languages/trans_addons.php:50
+#: addons/includes/languages/trans_addons.php:48
 msgid "Notifications"
 msgstr "اطلاع‌رسانی‌ها"
 
-#: addons/includes/languages/trans_addons.php:51
+#: addons/includes/languages/trans_addons.php:49
 msgid "Sample Design"
 msgstr "نمونه دیزاین"
 
-#: addons/includes/languages/trans_addons.php:52
+#: addons/includes/languages/trans_addons.php:50
 msgid "Last update on"
 msgstr "آخرین بروزرسانی در"
 
-#: addons/includes/languages/trans_addons.php:53
+#: addons/includes/languages/trans_addons.php:51
 msgid "wait for next version!"
 msgstr "منتظر نسخه بعدی باشید!"
 
-#: addons/includes/languages/trans_addons.php:54
+#: addons/includes/languages/trans_addons.php:52
 msgid "Powered by"
 msgstr "قدرت گرفته از"
 
-#: addons/includes/languages/trans_addons.php:55
+#: addons/includes/languages/trans_addons.php:53
 msgid "Some right reserved"
 msgstr "برخی از حقوق محفوظ است!"
 
-#: addons/includes/languages/trans_addons.php:56
+#: addons/includes/languages/trans_addons.php:54
 msgid "Ermile"
 msgstr "ارمایل"
 
-#: addons/includes/languages/trans_addons.php:57
+#: addons/includes/languages/trans_addons.php:55
 msgid "Version"
 msgstr "نسخه"
 
-#: addons/includes/languages/trans_addons.php:60
+#: addons/includes/languages/trans_addons.php:58
 msgid "user_id"
 msgstr "کد کاربر"
 
-#: addons/includes/languages/trans_addons.php:61
+#: addons/includes/languages/trans_addons.php:59
 msgid "user_idsender"
 msgstr "شناسه کاربر ارسال کننده"
 
-#: addons/includes/languages/trans_addons.php:62
+#: addons/includes/languages/trans_addons.php:60
 msgid "content"
 msgstr "محتوا"
 
-#: addons/includes/languages/trans_addons.php:63
+#: addons/includes/languages/trans_addons.php:61
 msgid "url"
 msgstr "نشانی اینترنتی"
 
-#: addons/includes/languages/trans_addons.php:64
+#: addons/includes/languages/trans_addons.php:62
 msgid "read"
 msgstr "خوانده شده"
 
-#: addons/includes/languages/trans_addons.php:65
+#: addons/includes/languages/trans_addons.php:63
 msgid "star"
 msgstr "ستاره"
 
-#: addons/includes/languages/trans_addons.php:66
+#: addons/includes/languages/trans_addons.php:64
 msgid "status"
 msgstr "وضعیت"
 
-#: addons/includes/languages/trans_addons.php:67
+#: addons/includes/languages/trans_addons.php:65
 msgid "category"
 msgstr "دسته"
 
-#: addons/includes/languages/trans_addons.php:68
+#: addons/includes/languages/trans_addons.php:66
 msgid "senddate"
 msgstr "تاریخ ارسال"
 
-#: addons/includes/languages/trans_addons.php:69
+#: addons/includes/languages/trans_addons.php:67
 msgid "deliverdate"
 msgstr "تاریخ دلیور"
 
-#: addons/includes/languages/trans_addons.php:70
+#: addons/includes/languages/trans_addons.php:68
 msgid "expiredate"
 msgstr "تاریخ انقضا"
 
-#: addons/includes/languages/trans_addons.php:71
+#: addons/includes/languages/trans_addons.php:69
 msgid "readdate"
 msgstr "تاریخ مشاهده"
 
-#: addons/includes/languages/trans_addons.php:72
+#: addons/includes/languages/trans_addons.php:70
 msgid "gateway"
 msgstr "ورودی"
 
-#: addons/includes/languages/trans_addons.php:73
+#: addons/includes/languages/trans_addons.php:71
 msgid "auto"
 msgstr "خودکار"
 
-#: addons/includes/languages/trans_addons.php:74
+#: addons/includes/languages/trans_addons.php:72
 msgid "datemodified"
 msgstr "تاریخ ویرایش"
 
-#: addons/includes/languages/trans_addons.php:77
+#: addons/includes/languages/trans_addons.php:75
 msgid "Change permission of user"
 msgstr "تغییر سطح‌دسترسی کاربر"
 
-#: addons/includes/languages/trans_addons.php:78
+#: addons/includes/languages/trans_addons.php:76
 msgid "Permission cat"
 msgstr "سطح‌دسترسی فراخوانی"
 
-#: addons/includes/languages/trans_addons.php:79
+#: addons/includes/languages/trans_addons.php:77
 msgid "Save change"
 msgstr "ذخیره‌کردن تغییرات"
 
-#: addons/includes/languages/trans_addons.php:82
+#: addons/includes/languages/trans_addons.php:80
 msgid "Saved record"
 msgstr "رکورد ذخیره شد"
 
-#: addons/includes/languages/trans_addons.php:84
+#: addons/includes/languages/trans_addons.php:81
+msgid "Code"
+msgstr "کد"
+
+#: addons/includes/languages/trans_addons.php:82
 msgid "Plus"
 msgstr "افزودن"
 
-#: addons/includes/languages/trans_addons.php:85
+#: addons/includes/languages/trans_addons.php:83
 msgid "Minus"
 msgstr "هدر رفت"
 
-#: addons/includes/languages/trans_addons.php:86
+#: addons/includes/languages/trans_addons.php:84
 msgid "Condition"
 msgstr "قانون"
 
-#: addons/includes/languages/trans_addons.php:89
+#: addons/includes/languages/trans_addons.php:86
+msgid "Description"
+msgstr "توضیح"
+
+#: addons/includes/languages/trans_addons.php:87
 msgid "Repair to"
 msgstr "تعمیر به"
 
-#: addons/includes/languages/trans_addons.php:90
+#: addons/includes/languages/trans_addons.php:88
 msgid "type"
 msgstr "نوع"
 
-#: addons/includes/languages/trans_addons.php:91
+#: addons/includes/languages/trans_addons.php:89
 msgid "Please select one item"
 msgstr "لطفا یک گزینه را انتخاب کنید"
 
-#: addons/includes/languages/trans_addons.php:92
+#: addons/includes/languages/trans_addons.php:90
 msgid "Money"
 msgstr "پول"
 
-#: addons/includes/languages/trans_addons.php:93
+#: addons/includes/languages/trans_addons.php:91
 msgid "Gift"
 msgstr "هدیه"
 
-#: addons/includes/languages/trans_addons.php:94
+#: addons/includes/languages/trans_addons.php:92
 msgid "Transfer"
 msgstr "انتقال"
 
-#: addons/includes/languages/trans_addons.php:95
+#: addons/includes/languages/trans_addons.php:93
 msgid "Prize"
 msgstr "جایزه"
 
-#: addons/includes/languages/trans_addons.php:96
+#: addons/includes/languages/trans_addons.php:94
 msgid "Unit"
 msgstr "واحد"
 
-#: addons/includes/languages/trans_addons.php:97
+#: addons/includes/languages/trans_addons.php:95
 msgid "Toman"
 msgstr "تومان"
 
-#: addons/includes/languages/trans_addons.php:98
+#: addons/includes/languages/trans_addons.php:96
 msgid "$"
 msgstr "$"
 
-#: addons/includes/languages/trans_addons.php:100
+#: addons/includes/languages/trans_addons.php:97
+msgid "Mobile"
+msgstr "موبایل"
+
+#: addons/includes/languages/trans_addons.php:98
 msgid "Add"
 msgstr "افزودن"
 
-#: addons/includes/languages/trans_addons.php:103
+#: addons/includes/languages/trans_addons.php:101
 msgid "Add New Transaction"
 msgstr "افزودن تراکنش جدید"
 
-#: addons/includes/languages/trans_addons.php:104
+#: addons/includes/languages/trans_addons.php:102
 msgid "Displayname"
 msgstr "نام برای نمایش عمومی"
 
-#: addons/includes/languages/trans_addons.php:105
+#: addons/includes/languages/trans_addons.php:103
 msgid "Amount request"
 msgstr "مبلغ درخواستی"
 
-#: addons/includes/languages/trans_addons.php:106
+#: addons/includes/languages/trans_addons.php:104
 msgid "Amount end"
 msgstr "مبلغ پایانی"
 
-#: addons/includes/languages/trans_addons.php:107
+#: addons/includes/languages/trans_addons.php:105
 msgid "Budget before"
 msgstr "بودجه قبل"
 
-#: addons/includes/languages/trans_addons.php:108
+#: addons/includes/languages/trans_addons.php:106
 msgid "Budget"
 msgstr "بودجه"
 
-#: addons/includes/languages/trans_addons.php:109
+#: addons/includes/languages/trans_addons.php:107
 msgid "Payment"
 msgstr "درگاه"
 
-#: addons/includes/languages/trans_addons.php:110
+#: addons/includes/languages/trans_addons.php:108
 msgid "Parent"
 msgstr "والد"
 
-#: addons/includes/languages/trans_addons.php:111
+#: addons/includes/languages/trans_addons.php:109
 msgid "More"
 msgstr "بیشتر"
 
-#: addons/includes/languages/trans_addons.php:112
+#: addons/includes/languages/trans_addons.php:110
 msgid "Repait"
 msgstr "تعمیر"
 
-#: addons/includes/languages/trans_addons.php:113
+#: addons/includes/languages/trans_addons.php:111
 msgid "Add new"
 msgstr "افزودن جدید"
 
-#: addons/includes/languages/trans_addons.php:114
+#: addons/includes/languages/trans_addons.php:112
 msgid "Revers"
 msgstr "بازگشت"
 
-#: addons/includes/languages/trans_addons.php:117
+#: addons/includes/languages/trans_addons.php:115
 msgid "Add new user"
 msgstr "اضافه‌کردن یوزر جدید"
 
-#: addons/includes/languages/trans_addons.php:118
+#: addons/includes/languages/trans_addons.php:116
 msgid "Display name"
 msgstr "نام برای نمایش"
 
-#: addons/includes/languages/trans_addons.php:121
+#: addons/includes/languages/trans_addons.php:119
 msgid "User detail"
 msgstr "جزئیات‌کاربران"
 
-#: addons/includes/languages/trans_addons.php:123
+#: addons/includes/languages/trans_addons.php:120
+msgid "Key"
+msgstr "کلید"
+
+#: addons/includes/languages/trans_addons.php:121
 msgid "Value"
 msgstr "مقدار"
 
-#: addons/includes/languages/trans_addons.php:126
+#: addons/includes/languages/trans_addons.php:124
 msgid "Users list"
 msgstr "لیست‌کاربران"
 
-#: addons/includes/languages/trans_addons.php:128
+#: addons/includes/languages/trans_addons.php:125
+msgid "Email"
+msgstr "رایانامه"
+
+#: addons/includes/languages/trans_addons.php:126
 msgid "Username"
 msgstr "نام‌کاربری"
 
-#: addons/includes/languages/trans_addons.php:129
+#: addons/includes/languages/trans_addons.php:127
 msgid "Avatar"
 msgstr "آواتار"
 
-#: addons/includes/languages/trans_addons.php:130
+#: addons/includes/languages/trans_addons.php:128
 msgid "Edit"
 msgstr "ویرایش"
 
-#: addons/includes/languages/trans_addons.php:131
+#: addons/includes/languages/trans_addons.php:129
 msgid "Permission"
 msgstr "سطح‌دسترسی"
 
-#: addons/includes/languages/trans_addons.php:134
+#: addons/includes/languages/trans_addons.php:132
 msgid "Edit user detail"
 msgstr "ویرایش‌کردن جزئیات‌‌کاربر"
 
-#: addons/includes/languages/trans_addons.php:135
+#: addons/includes/languages/trans_addons.php:133
 msgid "Name"
 msgstr "نام"
 
-#: addons/includes/languages/trans_addons.php:136
+#: addons/includes/languages/trans_addons.php:134
 msgid "Enter a valid name from 3 to 40 character"
 msgstr "نام معتبری بین ۳ تا ۳۰ کاراکتر وارد کنید"
 
-#: addons/includes/languages/trans_addons.php:137
+#: addons/includes/languages/trans_addons.php:135
 msgid "Last name"
 msgstr "نام‌خانوادگی"
 
-#: addons/includes/languages/trans_addons.php:138
+#: addons/includes/languages/trans_addons.php:136
 msgid "allowed extentions jpg, png (gif for bussiness plans). Max 500Kb"
 msgstr ""
 "پسوندهای مجاز jpg و png هستند‌(‌gif برای پلن‌های تجاری). حداکثر حجم مجاز ۵۰۰ کیلوبایت"
 
-#: addons/includes/languages/trans_addons.php:139
+#: addons/includes/languages/trans_addons.php:137
 msgid "National code"
 msgstr "کد ملی"
 
-#: addons/includes/languages/trans_addons.php:140
+#: addons/includes/languages/trans_addons.php:138
 msgid "Father name"
 msgstr "نام پدر"
 
-#: addons/includes/languages/trans_addons.php:141
+#: addons/includes/languages/trans_addons.php:139
 msgid "Birthday"
 msgstr "تاریخ تولد"
 
-#: addons/includes/languages/trans_addons.php:142
+#: addons/includes/languages/trans_addons.php:140
 msgid "Gender"
 msgstr "جنسیت"
 
-#: addons/includes/languages/trans_addons.php:143
+#: addons/includes/languages/trans_addons.php:141
 msgid "Male"
 msgstr "مرد"
 
-#: addons/includes/languages/trans_addons.php:144
+#: addons/includes/languages/trans_addons.php:142
 msgid "Female"
 msgstr "زن"
 
-#: addons/includes/languages/trans_addons.php:145
+#: addons/includes/languages/trans_addons.php:143
 msgid "Marital"
 msgstr "وضعیت تاهل"
 
-#: addons/includes/languages/trans_addons.php:146
+#: addons/includes/languages/trans_addons.php:144
 msgid "Single"
 msgstr "مجرد"
 
-#: addons/includes/languages/trans_addons.php:147
+#: addons/includes/languages/trans_addons.php:145
 msgid "Married"
 msgstr "متاهل"
 
-#: addons/includes/languages/trans_addons.php:148
+#: addons/includes/languages/trans_addons.php:146
 msgid "Child count"
 msgstr "تعداد فرزندان"
 
-#: addons/includes/languages/trans_addons.php:149
+#: addons/includes/languages/trans_addons.php:147
 msgid "Birth city"
 msgstr "شهر محل تولد"
 
-#: addons/includes/languages/trans_addons.php:150
+#: addons/includes/languages/trans_addons.php:148
 msgid "Sh from"
 msgstr "محل صدور شناسنامه"
 
-#: addons/includes/languages/trans_addons.php:151
+#: addons/includes/languages/trans_addons.php:149
 msgid "Sh code"
 msgstr "شماره شناسنامه"
 
-#: addons/includes/languages/trans_addons.php:152
+#: addons/includes/languages/trans_addons.php:150
 msgid "Last education"
 msgstr "آخرین مدرک تحصیلی"
 
-#: addons/includes/languages/trans_addons.php:153
+#: addons/includes/languages/trans_addons.php:151
 msgid "Job"
 msgstr "شغل"
 
-#: addons/includes/languages/trans_addons.php:154
+#: addons/includes/languages/trans_addons.php:152
 msgid "Pasport code"
 msgstr "شماره گذرنامه"
 
-#: addons/includes/languages/trans_addons.php:155
+#: addons/includes/languages/trans_addons.php:153
 msgid "Pasport expire"
 msgstr "تاریخ اتمام اعتبار گذرنامه"
 
-#: addons/includes/languages/trans_addons.php:156
+#: addons/includes/languages/trans_addons.php:154
 msgid "Bank account number"
 msgstr "شماره حساب بانکی"
 
-#: addons/includes/languages/trans_addons.php:157
+#: addons/includes/languages/trans_addons.php:155
 msgid "Last education degree"
 msgstr "معدل آخرین مدرک تحصیلی"
 
-#: addons/includes/languages/trans_addons.php:160
+#: addons/includes/languages/trans_addons.php:158
 msgid "What are you doing!"
 msgstr "چیکار میکنی!"
 
-#: addons/includes/languages/trans_addons.php:161
+#: addons/includes/languages/trans_addons.php:159
 msgid "If you are bot, be easy and call your mom"
 msgstr "اگر شما بات هستید، آرام باشید و با مامان جونتون تماس بگیرید"
 
-#: addons/includes/languages/trans_addons.php:162
+#: addons/includes/languages/trans_addons.php:160
 msgid "If you are human being, what are you doing here! be personable..."
 msgstr "اگر انسان هستید، اینجا چیکار میکنید! با شخصیت باشید..."
 
-#: addons/includes/languages/trans_addons.php:165
+#: addons/includes/languages/trans_addons.php:163
 msgid "You are blocked becauese of some reason!"
 msgstr "شما به دلایلی بلاک شده‌اید!"
 
-#: addons/includes/languages/trans_addons.php:166
+#: addons/includes/languages/trans_addons.php:164
 msgid "If have problem"
 msgstr "در صورت بروز مشکل"
 
-#: addons/includes/languages/trans_addons.php:167
+#: addons/includes/languages/trans_addons.php:165
 msgid "Contact us"
 msgstr "با ما تماس بگیرید"
 
-#: addons/includes/languages/trans_addons.php:170
+#: addons/includes/languages/trans_addons.php:168
 msgid "We are so sorry for losing you!"
 msgstr "ما برای از دست دادن شما خیلی متاسفیم!"
 
-#: addons/includes/languages/trans_addons.php:171
+#: addons/includes/languages/trans_addons.php:169
 msgid "if you want you can come back to"
 msgstr "در صورتی که بخواهید می‌توانید برگردید"
 
-#: addons/includes/languages/trans_addons.php:172
+#: addons/includes/languages/trans_addons.php:170
 msgid "join us"
 msgstr "به ما ملحق شوید"
 
-#: addons/includes/languages/trans_addons.php:173
+#: addons/includes/languages/trans_addons.php:171
 msgid "Bye Bye :("
 msgstr "خداحافط :("
 
-#: addons/includes/languages/trans_addons.php:176
+#: addons/includes/languages/trans_addons.php:174
 msgid "Hi"
 msgstr "سلام"
 
-#: addons/includes/languages/trans_addons.php:177
+#: addons/includes/languages/trans_addons.php:175
 msgid "You must not be here!"
 msgstr "شما نباید اینجا باشید!"
 
-#: addons/includes/languages/trans_addons.php:180
+#: addons/includes/languages/trans_addons.php:178
 msgid "Why you want to delete your account!?"
 msgstr "چرا می‌خواهید حساب‌کاربری خود را حذف کنید!؟"
 
-#: addons/includes/languages/trans_addons.php:183
+#: addons/includes/languages/trans_addons.php:181
 msgid "We detected two accout for you"
 msgstr "ما متوجه وجود دو حساب کاربری برای شما شدیم"
 
-#: addons/includes/languages/trans_addons.php:184
+#: addons/includes/languages/trans_addons.php:182
 msgid "Please remove one of them and"
 msgstr "لطفا یکی را حذف کنید و"
 
-#: addons/includes/languages/trans_addons.php:185
+#: addons/includes/languages/trans_addons.php:183
 msgid "if you want to delete this account"
 msgstr "اگر می‌خواهید این حساب‌کاربری را حذف کنید"
 
-#: addons/includes/languages/trans_addons.php:186
+#: addons/includes/languages/trans_addons.php:184
 msgid "click here"
 msgstr "اینجا کلیک کنید"
 
-#: addons/includes/languages/trans_addons.php:189
+#: addons/includes/languages/trans_addons.php:187
 msgid "Remove my email address"
 msgstr "بازیابی ایمیل"
 
-#: addons/includes/languages/trans_addons.php:192
+#: addons/includes/languages/trans_addons.php:190
 msgid "We found your Google Mail that is different from your current google mail"
 msgstr "رایانامه گوگل وارد شده با رایانامه فعلی شما مطابقت ندارد"
 
-#: addons/includes/languages/trans_addons.php:193
+#: addons/includes/languages/trans_addons.php:191
 msgid "Would you like to change your old google mail?"
 msgstr "آیا مایلید رایانامه گوگل قدیمی‌خود را تغییر دهید؟"
 
-#: addons/includes/languages/trans_addons.php:194
+#: addons/includes/languages/trans_addons.php:192
 msgid "Change to"
 msgstr "تغییر به"
 
-#: addons/includes/languages/trans_addons.php:195
+#: addons/includes/languages/trans_addons.php:193
 msgid "Update google mail"
 msgstr "به‌روزرسانی رایانامه گوگل"
 
-#: addons/includes/languages/trans_addons.php:196
+#: addons/includes/languages/trans_addons.php:194
 msgid "Don't change"
 msgstr "تغییر نده"
 
-#: addons/includes/languages/trans_addons.php:201
+#: addons/includes/languages/trans_addons.php:199
 msgid "If you wanna more secure enter your mobile"
 msgstr "اگر می‌خواهید امنیت بیشتری داشته باشید، شماره‌ تلفن همراه خود را وارد کنید"
 
-#: addons/includes/languages/trans_addons.php:202
+#: addons/includes/languages/trans_addons.php:200
 msgid "I dont want use mobile"
 msgstr "نمی‌خواهم از تلفن همراه استفاده کنم"
 
-#: addons/includes/languages/trans_addons.php:205
+#: addons/includes/languages/trans_addons.php:203
 msgid "You are logined ;)"
 msgstr "شما وارد سیستم هستید;)"
 
-#: addons/includes/languages/trans_addons.php:206
+#: addons/includes/languages/trans_addons.php:204
 msgid "Be patient or"
 msgstr "صبور باشید یا"
 
-#: addons/includes/languages/trans_addons.php:207
+#: addons/includes/languages/trans_addons.php:205
 msgid "click here!"
 msgstr "اینجا کلیک کنید!"
 
-#: addons/includes/languages/trans_addons.php:210
+#: addons/includes/languages/trans_addons.php:208
 msgid "Can't access your account?"
 msgstr "نمی‌توانید به حساب خود وارد شوید؟"
 
-#: addons/includes/languages/trans_addons.php:213
+#: addons/includes/languages/trans_addons.php:211
 msgid "Remembered your password?"
 msgstr "کلمه عبور خود را به خاطر آوردید!؟"
 
-#: addons/includes/languages/trans_addons.php:216
+#: addons/includes/languages/trans_addons.php:214
 msgid "Terminate"
 msgstr "مسدودسازی"
 
-#: addons/includes/languages/trans_addons.php:219
+#: addons/includes/languages/trans_addons.php:217
 msgid "Remove username"
 msgstr "حذف نام کاربری"
 
-#: addons/includes/languages/trans_addons.php:222
+#: addons/includes/languages/trans_addons.php:220
 msgid "We can not find eny way to send verification code to you!"
 msgstr "ما راهی برای ارسال کد به شما نیافتیم!"
 
-#: addons/includes/languages/trans_addons.php:228
+#: addons/includes/languages/trans_addons.php:226
 msgid "Client"
 msgstr "کاربر"
 
-#: addons/includes/languages/trans_addons.php:229
+#: addons/includes/languages/trans_addons.php:227
 msgid "User"
 msgstr "کاربر"
 
-#: addons/includes/languages/trans_addons.php:230
+#: addons/includes/languages/trans_addons.php:228
 msgid "Invoice"
 msgstr "فاکتور"
 
-#: addons/includes/languages/trans_addons.php:237
+#: addons/includes/languages/trans_addons.php:235
 msgid "Logs Detail"
 msgstr "جزئیات لاگ"
 
-#: addons/includes/languages/trans_addons.php:240
+#: addons/includes/languages/trans_addons.php:238
 msgid "Logs List"
 msgstr "لیست لاگ‌ها"
 
-#: addons/includes/languages/trans_addons.php:241
+#: addons/includes/languages/trans_addons.php:239
 msgid "Desc"
 msgstr "توضیح"
 
-#: addons/includes/languages/trans_addons.php:244
+#: addons/includes/languages/trans_addons.php:242
 msgid "ShortURL"
 msgstr "آدرس کوتاه"
 
-#: addons/includes/languages/trans_addons.php:245
+#: addons/includes/languages/trans_addons.php:243
 msgid "Send Nofity"
 msgstr "ارسال پیام"
 
-#: addons/includes/languages/trans_addons.php:252
+#: addons/includes/languages/trans_addons.php:250
 msgid "Unbelievable Styles!"
 msgstr "استایلی باورنکردنی!"
 
-#: addons/includes/languages/trans_addons.php:253
+#: addons/includes/languages/trans_addons.php:251
 msgid ""
 "Definitions aren't limited to just buttons on a page. Siftal's components allow "
 "several distinct types of definitions: elements, collections, views, modules and "
@@ -2385,7 +1901,7 @@ msgstr ""
 "از تعاریف مختلفی از جمله عناصر، مجموعه‌ها، نمایش‌ها، ماژول‌ها و رفتارها در محدوده "
 "طراحی رابط قرار گیرند."
 
-#: addons/includes/languages/trans_addons.php:254
+#: addons/includes/languages/trans_addons.php:252
 msgid ""
 "For improved cross-browser rendering, we use <a href='sample/reset'>special reset</"
 "a> to correct inconsistencies across browsers and devices while providing slightly "
@@ -2395,61 +1911,69 @@ msgstr ""
 "a> برای اصلاح ناسازگاری بین مرورگرها و دستگاه‌ها استفاده می‌کنیم و در عین حال تنظیم "
 "مجدد تنظیمات نسبت به عناصر HTML معمول را بیشتر میکند."
 
-#: addons/includes/languages/trans_addons.php:255
+#: addons/includes/languages/trans_addons.php:253
 msgid "Button"
 msgstr "دکمه"
 
-#: addons/includes/languages/trans_addons.php:256
+#: addons/includes/languages/trans_addons.php:254
 msgid "Primary"
 msgstr "اصلی"
 
-#: addons/includes/languages/trans_addons.php:257
+#: addons/includes/languages/trans_addons.php:255
 msgid "Warn"
 msgstr "هشدار دادن"
 
-#: addons/includes/languages/trans_addons.php:258
+#: addons/includes/languages/trans_addons.php:256
 msgid "Info"
 msgstr "درباره"
 
-#: addons/includes/languages/trans_addons.php:259
+#: addons/includes/languages/trans_addons.php:257
 msgid "Check buttons collection"
 msgstr "مجموعه دکمه‌ها را بررسی کنید"
 
-#: addons/includes/languages/trans_addons.php:260
+#: addons/includes/languages/trans_addons.php:258
 msgid "Messages"
 msgstr "پیام‌ها"
 
-#: addons/includes/languages/trans_addons.php:261
+#: addons/includes/languages/trans_addons.php:259
 msgid "This site uses cookies"
 msgstr "این سایت از کوکی استفاده می‌کند"
 
-#: addons/includes/languages/trans_addons.php:262
+#: addons/includes/languages/trans_addons.php:260
 msgid "Hello dear!"
 msgstr "سلام عزیز!"
 
-#: addons/includes/languages/trans_addons.php:263
+#: addons/includes/languages/trans_addons.php:261
 msgid "Looking for help?"
 msgstr "به دنبال کمک هستید‌؟ "
 
-#: addons/includes/languages/trans_addons.php:264
+#: addons/includes/languages/trans_addons.php:262
 msgid "Use our help center"
 msgstr "از مرکز راهنمایی ما استفاده کنید"
 
-#: addons/includes/languages/trans_addons.php:265
+#: addons/includes/languages/trans_addons.php:263
 msgid "Check our FAQ"
 msgstr "سوالات متدوال را بررسی کنید"
 
-#: addons/includes/languages/trans_addons.php:266
+#: addons/includes/languages/trans_addons.php:264
 msgid "Icons"
 msgstr "آیکن‌ها"
 
-#: addons/includes/languages/trans_addons.php:267
+#: addons/includes/languages/trans_addons.php:265
 msgid "Badge"
 msgstr "نشان"
 
-#: addons/includes/languages/trans_addons.php:268
+#: addons/includes/languages/trans_addons.php:266
+msgid "Posts"
+msgstr "نوشته‌ها"
+
+#: addons/includes/languages/trans_addons.php:267
 msgid "Add New"
 msgstr "اضافه‌کردن جدید"
+
+#: addons/includes/languages/trans_addons.php:268
+msgid "Notification"
+msgstr "آگاهسازی"
 
 #: addons/includes/languages/trans_addons.php:269
 msgid "125"
@@ -2464,227 +1988,239 @@ msgid "7"
 msgstr "7"
 
 #: addons/includes/languages/trans_addons.php:272
+msgid " Home"
+msgstr "خانه"
+
+#: addons/includes/languages/trans_addons.php:273
 msgid "Control Panel"
 msgstr "کنترل پنل"
 
-#: addons/includes/languages/trans_addons.php:273
+#: addons/includes/languages/trans_addons.php:274
 msgid "Sample"
 msgstr "نمونه"
 
-#: addons/includes/languages/trans_addons.php:274
+#: addons/includes/languages/trans_addons.php:275
+msgid "Breadcrumb"
+msgstr "نوار‌ناوبری"
+
+#: addons/includes/languages/trans_addons.php:276
 msgid "Pagination"
 msgstr "صفحه‌بندی"
 
-#: addons/includes/languages/trans_addons.php:275
+#: addons/includes/languages/trans_addons.php:277
 msgid "Previous"
 msgstr "قبلی"
 
-#: addons/includes/languages/trans_addons.php:276
+#: addons/includes/languages/trans_addons.php:278
 msgid "6"
 msgstr "6"
 
-#: addons/includes/languages/trans_addons.php:277
+#: addons/includes/languages/trans_addons.php:279
 msgid "8"
 msgstr "8"
 
-#: addons/includes/languages/trans_addons.php:278
+#: addons/includes/languages/trans_addons.php:280
 msgid "Next"
 msgstr "بعدی"
 
-#: addons/includes/languages/trans_addons.php:279
+#: addons/includes/languages/trans_addons.php:281
 msgid "Progress"
 msgstr "پیشروی‌‌. "
 
-#: addons/includes/languages/trans_addons.php:280
+#: addons/includes/languages/trans_addons.php:282
 msgid "Table"
 msgstr "جدول"
 
-#: addons/includes/languages/trans_addons.php:281
+#: addons/includes/languages/trans_addons.php:283
 msgid "First Name"
 msgstr "نام"
 
-#: addons/includes/languages/trans_addons.php:282
+#: addons/includes/languages/trans_addons.php:284
 msgid "Last Name"
 msgstr "نام خانوادگی"
 
-#: addons/includes/languages/trans_addons.php:283
+#: addons/includes/languages/trans_addons.php:285
 msgid "Javad"
 msgstr "جواد"
 
-#: addons/includes/languages/trans_addons.php:284
+#: addons/includes/languages/trans_addons.php:286
 msgid "Evazzadeh"
 msgstr "عوض زاده"
 
-#: addons/includes/languages/trans_addons.php:285
+#: addons/includes/languages/trans_addons.php:287
 msgid "Reza"
 msgstr "رضا"
 
-#: addons/includes/languages/trans_addons.php:286
+#: addons/includes/languages/trans_addons.php:288
 msgid "Mohiti"
 msgstr "محیطی"
 
-#: addons/includes/languages/trans_addons.php:287
+#: addons/includes/languages/trans_addons.php:289
 msgid "Hasan"
 msgstr "حسن"
 
-#: addons/includes/languages/trans_addons.php:288
+#: addons/includes/languages/trans_addons.php:290
 msgid "Salehi"
 msgstr "صالحی"
 
-#: addons/includes/languages/trans_addons.php:289
+#: addons/includes/languages/trans_addons.php:291
 msgid "Footer"
 msgstr "پابرگ"
 
-#: addons/includes/languages/trans_addons.php:290
+#: addons/includes/languages/trans_addons.php:292
 msgid "Input"
 msgstr "اینپوت"
 
-#: addons/includes/languages/trans_addons.php:291
+#: addons/includes/languages/trans_addons.php:293
 msgid "@"
 msgstr "@"
 
-#: addons/includes/languages/trans_addons.php:292
+#: addons/includes/languages/trans_addons.php:294
 msgid "."
 msgstr "."
 
-#: addons/includes/languages/trans_addons.php:293
+#: addons/includes/languages/trans_addons.php:295
 msgid "+"
 msgstr "+"
 
-#: addons/includes/languages/trans_addons.php:294
+#: addons/includes/languages/trans_addons.php:296
 msgid "-"
 msgstr "-"
 
-#: addons/includes/languages/trans_addons.php:295
+#: addons/includes/languages/trans_addons.php:297
 msgid "Textarea"
 msgstr "تکست اریا"
 
-#: addons/includes/languages/trans_addons.php:296
+#: addons/includes/languages/trans_addons.php:298
 msgid "Vcard"
 msgstr "کارت ویزیت"
 
-#: addons/includes/languages/trans_addons.php:297
+#: addons/includes/languages/trans_addons.php:299
 msgid "Joined in 2018"
 msgstr "عضویت در 2018"
 
-#: addons/includes/languages/trans_addons.php:298
+#: addons/includes/languages/trans_addons.php:300
 msgid "Ermile is our company in Qom!"
 msgstr "ارمایل شرکت ما است در قم."
 
-#: addons/includes/languages/trans_addons.php:299
+#: addons/includes/languages/trans_addons.php:301
+msgid "123 Friends"
+msgstr "123دوست"
+
+#: addons/includes/languages/trans_addons.php:302
 msgid "Ermile requested permission to transfer <b>Tejarak</b> team to you"
 msgstr "ارمایل در خواست اجازه انتقال تیم به <b>تجارک</b> را داد"
 
-#: addons/includes/languages/trans_addons.php:300
+#: addons/includes/languages/trans_addons.php:303
 msgid "Approve"
 msgstr "تایید"
 
-#: addons/includes/languages/trans_addons.php:301
+#: addons/includes/languages/trans_addons.php:304
 msgid "Decline"
 msgstr "رد‌کردن"
 
-#: addons/includes/languages/trans_addons.php:302
+#: addons/includes/languages/trans_addons.php:305
 msgid "Javad Evazzadeh"
 msgstr "جواد عوض زاده"
 
-#: addons/includes/languages/trans_addons.php:303
+#: addons/includes/languages/trans_addons.php:306
 msgid "3 days ago"
 msgstr "۳ روز پیش"
 
-#: addons/includes/languages/trans_addons.php:304
+#: addons/includes/languages/trans_addons.php:307
 msgid "Check more!"
 msgstr "بیشتر بررسی کنید!"
 
-#: addons/includes/languages/trans_addons.php:305
+#: addons/includes/languages/trans_addons.php:308
 msgid "Javad Evazzdeh"
 msgstr "جواد عوض‌زاده"
 
-#: addons/includes/languages/trans_addons.php:306
+#: addons/includes/languages/trans_addons.php:309
 msgid "CEO and Founder"
 msgstr "مدیر عامل و موسس"
 
-#: addons/includes/languages/trans_addons.php:307
+#: addons/includes/languages/trans_addons.php:310
 msgid "Remove"
 msgstr "حذف"
 
-#: addons/includes/languages/trans_addons.php:308
+#: addons/includes/languages/trans_addons.php:311
 msgid "Clockpicker"
 msgstr "انتخابگر زمان"
 
-#: addons/includes/languages/trans_addons.php:309
+#: addons/includes/languages/trans_addons.php:312
 msgid "Datepicker"
 msgstr "دریافت کننده تاریخ"
 
-#: addons/includes/languages/trans_addons.php:310
+#: addons/includes/languages/trans_addons.php:313
 msgid "Checkbox"
 msgstr "چک‌باکس"
 
-#: addons/includes/languages/trans_addons.php:311
+#: addons/includes/languages/trans_addons.php:314
 msgid "Check1 Sample1"
 msgstr "چک باکس۱ نمونه 1"
 
-#: addons/includes/languages/trans_addons.php:312
+#: addons/includes/languages/trans_addons.php:315
 msgid "Switch"
 msgstr "سوئیچ"
 
-#: addons/includes/languages/trans_addons.php:313
+#: addons/includes/languages/trans_addons.php:316
 msgid "YES"
 msgstr "بله"
 
-#: addons/includes/languages/trans_addons.php:314
+#: addons/includes/languages/trans_addons.php:317
 msgid "NO!"
 msgstr "نه!"
 
-#: addons/includes/languages/trans_addons.php:315
+#: addons/includes/languages/trans_addons.php:318
 msgid "Are you like Siftal?"
 msgstr "آیا سیفتال را می‌پسندید؟"
 
-#: addons/includes/languages/trans_addons.php:316
+#: addons/includes/languages/trans_addons.php:319
 msgid "Datalist"
 msgstr "لیست‌اطلاعات"
 
-#: addons/includes/languages/trans_addons.php:317
+#: addons/includes/languages/trans_addons.php:320
 msgid "Radio"
 msgstr "رادیو"
 
-#: addons/includes/languages/trans_addons.php:318
+#: addons/includes/languages/trans_addons.php:321
 msgid "Blue"
 msgstr "آبی"
 
-#: addons/includes/languages/trans_addons.php:319
+#: addons/includes/languages/trans_addons.php:322
 msgid "Default"
 msgstr "پیش‌فرض"
 
-#: addons/includes/languages/trans_addons.php:320
+#: addons/includes/languages/trans_addons.php:323
 msgid "Red"
 msgstr "قرمز"
 
-#: addons/includes/languages/trans_addons.php:321
+#: addons/includes/languages/trans_addons.php:324
 msgid "Yellow"
 msgstr "زرد"
 
-#: addons/includes/languages/trans_addons.php:322
+#: addons/includes/languages/trans_addons.php:325
 msgid "Green"
 msgstr "سبز"
 
-#: addons/includes/languages/trans_addons.php:323
+#: addons/includes/languages/trans_addons.php:326
 msgid "Black"
 msgstr "مشکی"
 
-#: addons/includes/languages/trans_addons.php:326
+#: addons/includes/languages/trans_addons.php:329
 msgid "Badges"
 msgstr "نشان"
 
-#: addons/includes/languages/trans_addons.php:327
+#: addons/includes/languages/trans_addons.php:330
 msgid ""
 "Documentation and examples for badges, our small count and labeling component."
 msgstr "مستندات و نمونه‌های برای نشان‌ها‌، شمار کوچک ما و اجزاء برچسب زده‌شده‌‌. "
 
-#: addons/includes/languages/trans_addons.php:328
+#: addons/includes/languages/trans_addons.php:331
 msgid "Examples"
 msgstr "مثال‌ها"
 
-#: addons/includes/languages/trans_addons.php:329
+#: addons/includes/languages/trans_addons.php:332
 msgid ""
 "Badges scale to match the size of the immediate parent element by using relative "
 "font sizing and <code class='code1'>em</code> units."
@@ -2692,67 +2228,63 @@ msgstr ""
 "مقیاس مدال‌ها برای مطابقت با اندازه اصلی عنصر با استفاده از اندازه فونت نسبی و واحد "
 "<code class='code1'>em</code> صورت می‌گیرد."
 
-#: addons/includes/languages/trans_addons.php:330
+#: addons/includes/languages/trans_addons.php:333
 msgid "Example heading"
 msgstr "عنوان نمونه"
 
-#: addons/includes/languages/trans_addons.php:331
+#: addons/includes/languages/trans_addons.php:334
 msgid "New"
 msgstr "جدید"
 
-#: addons/includes/languages/trans_addons.php:332
+#: addons/includes/languages/trans_addons.php:335
 msgid "Badges can be used as part of links or buttons to provide a counter."
 msgstr ""
 "مدال‌ها را می‌توان بعنوان بخشی از پیوندها یا دکمه‌ها برای ارائه شمارنده استفاده کرد."
 
-#: addons/includes/languages/trans_addons.php:333
-msgid "Notification"
-msgstr "آگاهسازی"
-
-#: addons/includes/languages/trans_addons.php:334
+#: addons/includes/languages/trans_addons.php:336
 msgid "5"
 msgstr "5"
 
-#: addons/includes/languages/trans_addons.php:335
+#: addons/includes/languages/trans_addons.php:337
 msgid "Contextual variations"
 msgstr "متغیرهای متنی"
 
-#: addons/includes/languages/trans_addons.php:336
+#: addons/includes/languages/trans_addons.php:338
 msgid ""
 "Add any of the below mentioned modifier classes to change the appearance of a "
 "badge."
 msgstr ""
 "هر یک از کلاس‌های اصلاح کننده زیر را اضافه کنید تا ظاهر یک نشان را تغییر دهید."
 
-#: addons/includes/languages/trans_addons.php:337
+#: addons/includes/languages/trans_addons.php:339
 msgid "Secondary"
 msgstr "دوم"
 
-#: addons/includes/languages/trans_addons.php:338
+#: addons/includes/languages/trans_addons.php:340
 msgid "Success"
 msgstr "موفقیت‌آمیز"
 
-#: addons/includes/languages/trans_addons.php:339
+#: addons/includes/languages/trans_addons.php:341
 msgid "Danger"
 msgstr "خطرناک"
 
-#: addons/includes/languages/trans_addons.php:340
+#: addons/includes/languages/trans_addons.php:342
 msgid "Warning"
 msgstr "اخطار"
 
-#: addons/includes/languages/trans_addons.php:341
+#: addons/includes/languages/trans_addons.php:343
 msgid "Light"
 msgstr "روشن"
 
-#: addons/includes/languages/trans_addons.php:342
+#: addons/includes/languages/trans_addons.php:344
 msgid "Dark"
 msgstr "تیره"
 
-#: addons/includes/languages/trans_addons.php:343
+#: addons/includes/languages/trans_addons.php:345
 msgid "Rounded badge"
 msgstr "علامت گرد"
 
-#: addons/includes/languages/trans_addons.php:344
+#: addons/includes/languages/trans_addons.php:346
 msgid ""
 "Use the <code class='code1'>.rounded</code> modifier class to make badges more "
 "rounded (with a larger border-radius and additional horizontal padding)."
@@ -2760,11 +2292,11 @@ msgstr ""
 "استفاده از‌این کلاس : <code class='code1'>.rounded</code> اشیاء را به منظور‌ ایجاد "
 "مدال گرد می‌کند ‌(‌با شعاع گردی بالاتر (border-radius) و فاصله داخلی افقی بیشتر‌)."
 
-#: addons/includes/languages/trans_addons.php:345
+#: addons/includes/languages/trans_addons.php:347
 msgid "Links"
 msgstr "لینک‌ها"
 
-#: addons/includes/languages/trans_addons.php:346
+#: addons/includes/languages/trans_addons.php:348
 msgid ""
 "Using the <code class='code1'>.badge</code> classes with the <code "
 "class='code1'>&lt;a&gt;</code> element quickly provide actionable badges with "
@@ -2773,18 +2305,18 @@ msgstr ""
 "استفاده از : <code class='code1'>.badge</code> کلاس با اسم : <code "
 "class='code1'>&lt;a&gt;</code> به سرعت حالت‌های شناور و متمرکز را تنظیم می‌کند."
 
-#: addons/includes/languages/trans_addons.php:349
+#: addons/includes/languages/trans_addons.php:351
 msgid "box"
 msgstr "باکس"
 
-#: addons/includes/languages/trans_addons.php:350
+#: addons/includes/languages/trans_addons.php:352
 msgid ""
 "Siftal's box provide a flexible and extensible content container for title and "
 "contents."
 msgstr ""
 "جعبه‌ها (box) در سیفتال انعطاف و گسترش بذیری برای عنوان و محتوا را ارائه می‌دهند."
 
-#: addons/includes/languages/trans_addons.php:351
+#: addons/includes/languages/trans_addons.php:353
 msgid ""
 "You can use elements of this page in all part of site and mix them with another "
 "elements."
@@ -2792,15 +2324,11 @@ msgstr ""
 "می‌توانید از عناصر‌این صفحه در تمام قسمت‌های سایت استفاده کنید و آنها را با عناصر "
 "دیگر‌ترکیب کنید."
 
-#: addons/includes/languages/trans_addons.php:352
+#: addons/includes/languages/trans_addons.php:354
 msgid "Salam"
 msgstr "سلام"
 
-#: addons/includes/languages/trans_addons.php:355
-msgid "Breadcrumb"
-msgstr "نوار‌ناوبری"
-
-#: addons/includes/languages/trans_addons.php:356
+#: addons/includes/languages/trans_addons.php:357
 msgid ""
 "Indicate the current page's location within a navigational hierarchy that "
 "automatically adds separators via CSS."
@@ -2808,21 +2336,17 @@ msgstr ""
 "محل مکان فعلی را در سلسله مراتب ناوبری نشان می‌دهد که به طور خودکار جدا کننده‌هایی "
 "از طریق سی‌اس‌اس اضافه میکند."
 
-#: addons/includes/languages/trans_addons.php:357
+#: addons/includes/languages/trans_addons.php:358
 msgid "Separators are automatically added in CSS through ::before and content."
 msgstr "جداساز‌ها به صورت خودکار اضافه‌شده اند از طریق ‌سی‌اس‌اس‌ ::before و محتوا"
 
-#: addons/includes/languages/trans_addons.php:358
+#: addons/includes/languages/trans_addons.php:359
 msgid "Sizes"
 msgstr "سایز‌ها"
 
-#: addons/includes/languages/trans_addons.php:359
+#: addons/includes/languages/trans_addons.php:360
 msgid "A breadcrumb can vary in size"
 msgstr "نوارهای‌ناوبری می‌توانند در اندازه متفاوت باشند"
-
-#: addons/includes/languages/trans_addons.php:360
-msgid " Home"
-msgstr "خانه"
 
 #: addons/includes/languages/trans_addons.php:363
 msgid ""
@@ -3378,54 +2902,90 @@ msgid "Extra Examples with input class and multiple part"
 msgstr "نمونه‌های بیشتر به همراه کلاس‌های اضافه و چند بخشی‌‌. "
 
 #: addons/includes/languages/trans_addons.php:499
+msgid "Add conditions class to input el"
+msgstr "افزودن کلاس شرایط به المان اینپوت"
+
+#: addons/includes/languages/trans_addons.php:500
 msgid "Simple input with label"
 msgstr "اینپوت ساده با لیبل"
 
-#: addons/includes/languages/trans_addons.php:500
+#: addons/includes/languages/trans_addons.php:501
 msgid "Family"
 msgstr "خانواده "
 
-#: addons/includes/languages/trans_addons.php:501
+#: addons/includes/languages/trans_addons.php:502
 msgid "Extra features"
 msgstr "مزایای اضافی"
 
-#: addons/includes/languages/trans_addons.php:502
+#: addons/includes/languages/trans_addons.php:503
 msgid "Sizing"
 msgstr "سایزبندی‌ها"
 
-#: addons/includes/languages/trans_addons.php:503
+#: addons/includes/languages/trans_addons.php:504
 msgid "Button addons"
 msgstr "افزودن دکمه "
 
-#: addons/includes/languages/trans_addons.php:504
+#: addons/includes/languages/trans_addons.php:505
 msgid "Search..."
 msgstr "جستجو..."
 
-#: addons/includes/languages/trans_addons.php:505
+#: addons/includes/languages/trans_addons.php:506
 msgid "Go!"
 msgstr "برو!"
 
-#: addons/includes/languages/trans_addons.php:506
+#: addons/includes/languages/trans_addons.php:507
 msgid "Ding Ding!"
 msgstr "دینگ دینگ!"
 
-#: addons/includes/languages/trans_addons.php:507
+#: addons/includes/languages/trans_addons.php:508
 msgid "Simple file input"
 msgstr "فایل ساده ورودی"
 
-#: addons/includes/languages/trans_addons.php:508
+#: addons/includes/languages/trans_addons.php:509
 msgid "Simple file input only accept images"
 msgstr "فایل ساده ورودی فقط عکس‌ها را قبول می‌کند"
 
-#: addons/includes/languages/trans_addons.php:509
+#: addons/includes/languages/trans_addons.php:510
 msgid "Simple avatar selector with simple preview"
 msgstr "انتخابگر ساده اواتار به همراه نمایش ساده"
 
-#: addons/includes/languages/trans_addons.php:510
+#: addons/includes/languages/trans_addons.php:511
 msgid "Simple file input with min 100kb and max 200kb size!"
 msgstr "فایل ساده ورودی با حجم حداقال 100 کیلوبایت و حداکثر 200 کیلوبایت"
 
-#: addons/includes/languages/trans_addons.php:513
+#: addons/includes/languages/trans_addons.php:514
+msgid "Life"
+msgstr "زندگی"
+
+#: addons/includes/languages/trans_addons.php:515
+msgid "Add life to page, after end life hard refresh page"
+msgstr "افزودن طول عمر به صفحه. پس از اتمام عمر، صفحه رفرش خواهد شد"
+
+#: addons/includes/languages/trans_addons.php:516
+msgid "Control from body[data-life=123]"
+msgstr "کنترل از طریق المان بادی body[data-life=123]"
+
+#: addons/includes/languages/trans_addons.php:519
+msgid "Line"
+msgstr "خط"
+
+#: addons/includes/languages/trans_addons.php:520
+msgid "Add fix simple line to bottom of page"
+msgstr "افزودن خط ساده به انتهای صفحه"
+
+#: addons/includes/languages/trans_addons.php:521
+msgid "How are you?"
+msgstr "حال شما چطوره؟"
+
+#: addons/includes/languages/trans_addons.php:522
+msgid "Ermile is intelligent"
+msgstr "ارمایل باهوش است ;)"
+
+#: addons/includes/languages/trans_addons.php:523
+msgid "goodbye"
+msgstr "خداحافظ"
+
+#: addons/includes/languages/trans_addons.php:526
 msgid ""
 "Provide contextual feedback messages for typical user actions with the handful of "
 "available and flexible alert messages."
@@ -3433,79 +2993,79 @@ msgstr ""
 "فراهم کننده متنی بازخورد متن برای اقدامات معمولی کاربر به همراه تعداد انگشت شماری "
 "از دسترسی و پیغام‌های هشدار انعطاف پذیر‌‌. "
 
-#: addons/includes/languages/trans_addons.php:514
+#: addons/includes/languages/trans_addons.php:527
 msgid "This is a primary message or alert. check it out!"
 msgstr "این یک پیام یا هشدار اصلی است. آنرا بررسی کنید!"
 
-#: addons/includes/languages/trans_addons.php:515
+#: addons/includes/languages/trans_addons.php:528
 msgid "This is a secondary message or alert. check it out!"
 msgstr "این پیام یا هشدار دوم است.آنرا چک‌کنید"
 
-#: addons/includes/languages/trans_addons.php:516
+#: addons/includes/languages/trans_addons.php:529
 msgid "This is a success message or alert. check it out!"
 msgstr "این پیام یا هشدار موفقیت است.آنرا چک‌کنید"
 
-#: addons/includes/languages/trans_addons.php:517
+#: addons/includes/languages/trans_addons.php:530
 msgid "This is a danger message or alert. check it out!"
 msgstr "این یک پیام یا هشدار خطرناک است. آنرا بررسی کنید!"
 
-#: addons/includes/languages/trans_addons.php:518
+#: addons/includes/languages/trans_addons.php:531
 msgid "This is a warning message or alert. check it out!"
 msgstr "این پیام یا هشدار‌، اخطار است. انرا چک‌کنید!"
 
-#: addons/includes/languages/trans_addons.php:519
+#: addons/includes/languages/trans_addons.php:532
 msgid "This is a info message or alert. check it out!"
 msgstr "این یک پیام یا هشدار اطلاع‌رسانی است. آنرا بررسی کنید!"
 
-#: addons/includes/languages/trans_addons.php:520
+#: addons/includes/languages/trans_addons.php:533
 msgid "This is a light message or alert. check it out!"
 msgstr "این یک پیام یا هشدارروشن است. آنرا بررسی کنید!"
 
-#: addons/includes/languages/trans_addons.php:521
+#: addons/includes/languages/trans_addons.php:534
 msgid "This is a dark message or alert. check it out!"
 msgstr "این یک پیام یا هشدار تاریک است. آنرا بررسی کنید!"
 
-#: addons/includes/languages/trans_addons.php:522
+#: addons/includes/languages/trans_addons.php:535
 msgid "Examples with light color"
 msgstr "نمونه به همراه رنگ‌های روشن"
 
-#: addons/includes/languages/trans_addons.php:523
+#: addons/includes/languages/trans_addons.php:536
 msgid "This is a primary2 message or alert. check it out!"
 msgstr "این یک پیام یا هشدار اصلی۲ است. آنرا بررسی کنید!"
 
-#: addons/includes/languages/trans_addons.php:524
+#: addons/includes/languages/trans_addons.php:537
 msgid "This is a secondary2 message or alert. check it out!"
 msgstr "این پیام یا هشدار دوم2 است.آنرا چک‌کنید"
 
-#: addons/includes/languages/trans_addons.php:525
+#: addons/includes/languages/trans_addons.php:538
 msgid "This is a success2 message or alert. check it out!"
 msgstr "این پیام یا هشدار موفقیت 2 است.آنرا چک‌کنید"
 
-#: addons/includes/languages/trans_addons.php:526
+#: addons/includes/languages/trans_addons.php:539
 msgid "This is a danger2 message or alert. check it out!"
 msgstr "این یک پیام یا هشدار خطرناک۲ است. آنرا بررسی کنید!"
 
-#: addons/includes/languages/trans_addons.php:527
+#: addons/includes/languages/trans_addons.php:540
 msgid "This is a warning2 message or alert. check it out!"
 msgstr "این پیام یا هشدار‌، اخطار۲ است. انرا چک‌کنید!"
 
-#: addons/includes/languages/trans_addons.php:528
+#: addons/includes/languages/trans_addons.php:541
 msgid "This is a info2 message or alert. check it out!"
 msgstr "این یک پیام یا هشدار اطلاع‌رسانی۲ است. آنرا بررسی کنید!"
 
-#: addons/includes/languages/trans_addons.php:529
+#: addons/includes/languages/trans_addons.php:542
 msgid "This is a light2 message or alert. check it out!"
 msgstr "این یک پیام یا هشدار روشن است. آنرا بررسی کنید!"
 
-#: addons/includes/languages/trans_addons.php:530
+#: addons/includes/languages/trans_addons.php:543
 msgid "This is a dark2 message or alert. check it out!"
 msgstr "این یک پیام یا هشدار تاریک۲ است. آنرا بررسی کنید!"
 
-#: addons/includes/languages/trans_addons.php:531
+#: addons/includes/languages/trans_addons.php:544
 msgid "Link color"
 msgstr "رنگ لینک."
 
-#: addons/includes/languages/trans_addons.php:532
+#: addons/includes/languages/trans_addons.php:545
 msgid ""
 "Use the <code class='code1'>.link</code> utility class to quickly provide matching "
 "colored links within any alert."
@@ -3513,51 +3073,51 @@ msgstr ""
 "با استفاده از کلاس : <code class='code1'>.link</code> به سرعت لینک‌های رنگی را در "
 "هر هشدار استفاده کنید "
 
-#: addons/includes/languages/trans_addons.php:533
+#: addons/includes/languages/trans_addons.php:546
 msgid "This is a primary alert with"
 msgstr "این یک هشدار اصلی همراه"
 
-#: addons/includes/languages/trans_addons.php:534
+#: addons/includes/languages/trans_addons.php:547
 msgid "an example link"
 msgstr "یک نمونه لینک"
 
-#: addons/includes/languages/trans_addons.php:535
+#: addons/includes/languages/trans_addons.php:548
 msgid "Give it a click if you like."
 msgstr "اگر دوست داشتید کلیک کنید."
 
-#: addons/includes/languages/trans_addons.php:536
+#: addons/includes/languages/trans_addons.php:549
 msgid "This is a secondary alert with"
 msgstr "این هشدار دوم همراه"
 
-#: addons/includes/languages/trans_addons.php:537
+#: addons/includes/languages/trans_addons.php:550
 msgid "This is a success alert with"
 msgstr "این یک پیام موفقیت به همراه"
 
-#: addons/includes/languages/trans_addons.php:538
+#: addons/includes/languages/trans_addons.php:551
 msgid "This is a danger alert with"
 msgstr "این یک پیام خطرناک همراه"
 
-#: addons/includes/languages/trans_addons.php:539
+#: addons/includes/languages/trans_addons.php:552
 msgid "This is a warning alert with"
 msgstr "این یک پیام اخطار به همراه"
 
-#: addons/includes/languages/trans_addons.php:540
+#: addons/includes/languages/trans_addons.php:553
 msgid "This is a info alert with"
 msgstr "این هشدار اطلاع‌رسانی همراه"
 
-#: addons/includes/languages/trans_addons.php:541
+#: addons/includes/languages/trans_addons.php:554
 msgid "This is a light alert with"
 msgstr "این یک هشدار روشن همراه"
 
-#: addons/includes/languages/trans_addons.php:542
+#: addons/includes/languages/trans_addons.php:555
 msgid "This is a dark alert with"
 msgstr "این هشدار تاریک به همراه"
 
-#: addons/includes/languages/trans_addons.php:543
+#: addons/includes/languages/trans_addons.php:556
 msgid "Additional content"
 msgstr "محتوای اضافی"
 
-#: addons/includes/languages/trans_addons.php:544
+#: addons/includes/languages/trans_addons.php:557
 msgid ""
 "Alerts can also contain additional HTML elements like headings, paragraphs and "
 "dividers."
@@ -3565,11 +3125,11 @@ msgstr ""
 "همچنین هشدار‌ها می‌توانند شامل عناصر اچ‌تی‌ام‌ال اضافی مانند پاراگراف‌ها، عنوان‌ها و "
 "جداکننده‌ها باشند."
 
-#: addons/includes/languages/trans_addons.php:545
+#: addons/includes/languages/trans_addons.php:558
 msgid "Well done!"
 msgstr "آفرین!"
 
-#: addons/includes/languages/trans_addons.php:546
+#: addons/includes/languages/trans_addons.php:559
 msgid ""
 "Aww yeah, you successfully read this important alert message. This example text is "
 "going to run a bit longer so that you can see how spacing within an alert works "
@@ -3578,214 +3138,286 @@ msgstr ""
 "اوه بله شما موفق به خواندن‌این پیام مهم شدید.این یک متن مثال است تا بتوانید ببینید "
 "فاصله در یک هشدار با‌این محتوا چگونه کار می‌کند."
 
-#: addons/includes/languages/trans_addons.php:547
+#: addons/includes/languages/trans_addons.php:560
 msgid ""
 "Whenever you need to, be sure to use margin utilities to keep things nice and tidy."
 msgstr ""
 "هر زمان که نیاز دارید مطمئن از ابزار‌های حاشیه‌ای (margin) استفاده کنیدتا چیزها را "
 "زیباتر و منظم‌تر نگه‌دارید"
 
-#: addons/includes/languages/trans_addons.php:548
+#: addons/includes/languages/trans_addons.php:561
 msgid "Compact"
 msgstr "فشرده"
 
-#: addons/includes/languages/trans_addons.php:549
+#: addons/includes/languages/trans_addons.php:562
 msgid "A message can only take up the width of its content."
 msgstr "یک پیام تنها می‌تواند به اندازه عرض محتوای آن باشد."
 
-#: addons/includes/languages/trans_addons.php:550
+#: addons/includes/languages/trans_addons.php:563
 msgid "Aww yeah, you successfully read this important alert message. Sign up now!"
 msgstr "اوه بله شما موفق به خواندن‌این پیام مهم شدید‌‌. همین الان ثبت‌نام کنید!"
 
-#: addons/includes/languages/trans_addons.php:551
+#: addons/includes/languages/trans_addons.php:564
 msgid "Another type of usage"
 msgstr "استفاده به نوعی دیگر"
 
-#: addons/includes/languages/trans_addons.php:552
+#: addons/includes/languages/trans_addons.php:565
 msgid "List Message"
 msgstr "لیست پیام‌ها"
 
-#: addons/includes/languages/trans_addons.php:553
+#: addons/includes/languages/trans_addons.php:566
 msgid "A message with a list"
 msgstr "یک پیام به همراه یک لیست‌‌. "
 
-#: addons/includes/languages/trans_addons.php:554
+#: addons/includes/languages/trans_addons.php:567
 msgid "Was this what you wanted?"
 msgstr "این چیزی بود که شما می‌خواستید‌؟ "
 
-#: addons/includes/languages/trans_addons.php:555
+#: addons/includes/languages/trans_addons.php:568
 msgid "It's good to see you again."
 msgstr "از دیدار دوباره شما خرسندیم."
 
-#: addons/includes/languages/trans_addons.php:556
+#: addons/includes/languages/trans_addons.php:569
 msgid "Did you know it's been a while?"
 msgstr "‌آیا‌ می‌دانستید که مدتی طول می‌کشد‌؟ "
 
-#: addons/includes/languages/trans_addons.php:557
+#: addons/includes/languages/trans_addons.php:570
 msgid "Have you heard about our car?"
 msgstr "‌آیا‌ شما در مورد ماشین ما شنیده‌اید؟"
 
-#: addons/includes/languages/trans_addons.php:558
+#: addons/includes/languages/trans_addons.php:571
 msgid "Get the best news of the year!"
 msgstr "بهترین اخبار سال را بدست ‌آورید‌"
 
-#: addons/includes/languages/trans_addons.php:559
+#: addons/includes/languages/trans_addons.php:572
 msgid "Just one second"
 msgstr "فقط یکبار"
 
-#: addons/includes/languages/trans_addons.php:560
+#: addons/includes/languages/trans_addons.php:573
 msgid "We're fetching that content for you. What content!?"
 msgstr "ما‌این محتوا را برای شما بارگیری می‌کنیم. چه محتوایی را‌؟"
 
-#: addons/includes/languages/trans_addons.php:563
+#: addons/includes/languages/trans_addons.php:576
+msgid "Notif"
+msgstr "اطلاع‌رسانی"
+
+#: addons/includes/languages/trans_addons.php:577
+msgid "Show simple and powerful notificaion via js and html attr"
+msgstr "نمایش اطلاع‌رسانی ساده و قوی از طریق جاوااسکریپ و خصیصه‌های اچ‌تی‌ام‌ال"
+
+#: addons/includes/languages/trans_addons.php:578
+msgid "Complete Example with autorun"
+msgstr "مثال کامل با اجرای خودکار"
+
+#: addons/includes/languages/trans_addons.php:579
+msgid "Hello World!"
+msgstr "سلام دنیا!"
+
+#: addons/includes/languages/trans_addons.php:580
+msgid "On page route run this"
+msgstr "درهنگام روت شدن صفحه این را اجرا کن"
+
+#: addons/includes/languages/trans_addons.php:581
+msgid "Simple Notification"
+msgstr "اطلاع‌رسانی ساده"
+
+#: addons/includes/languages/trans_addons.php:582
+msgid "With title"
+msgstr "با عنوان"
+
+#: addons/includes/languages/trans_addons.php:583
+msgid "Sticky Notif"
+msgstr "اطلاع‌رسانی چسبیده"
+
+#: addons/includes/languages/trans_addons.php:584
+msgid "Colored"
+msgstr "رنگی"
+
+#: addons/includes/languages/trans_addons.php:585
+msgid "Error"
+msgstr "خطا"
+
+#: addons/includes/languages/trans_addons.php:586
+msgid "Notif in special target"
+msgstr "اطلاع‌رسانی در ناحیه خاص"
+
+#: addons/includes/languages/trans_addons.php:587
+msgid "Sticky"
+msgstr "چسبیده"
+
+#: addons/includes/languages/trans_addons.php:588
+msgid "Notif in all position"
+msgstr "ناتیفای در تمام موقعیت‌ها"
+
+#: addons/includes/languages/trans_addons.php:589
+msgid "Top"
+msgstr "بالا"
+
+#: addons/includes/languages/trans_addons.php:590
+msgid "Left"
+msgstr "چپ"
+
+#: addons/includes/languages/trans_addons.php:591
+msgid "Center"
+msgstr "مرکز"
+
+#: addons/includes/languages/trans_addons.php:592
+msgid "Right"
+msgstr "راست"
+
+#: addons/includes/languages/trans_addons.php:593
+msgid "Bottom"
+msgstr "پایین"
+
+#: addons/includes/languages/trans_addons.php:596
 msgid "Sample Page of admin"
 msgstr "صفحه نمونه مدیر"
 
-#: addons/includes/languages/trans_addons.php:564
+#: addons/includes/languages/trans_addons.php:597
 msgid "Template Form"
 msgstr "فرم قالب"
 
-#: addons/includes/languages/trans_addons.php:565
+#: addons/includes/languages/trans_addons.php:598
 msgid "List"
 msgstr "لیست"
 
-#: addons/includes/languages/trans_addons.php:566
+#: addons/includes/languages/trans_addons.php:599
 msgid "Headings"
 msgstr "عنوان"
 
-#: addons/includes/languages/trans_addons.php:567
+#: addons/includes/languages/trans_addons.php:600
 msgid "message (.msg)"
 msgstr "پیام(.msg)"
 
-#: addons/includes/languages/trans_addons.php:568
+#: addons/includes/languages/trans_addons.php:601
 msgid "message warning (.msg .warning)"
 msgstr "پیام‌خطا(.msg .warning)"
 
-#: addons/includes/languages/trans_addons.php:569
+#: addons/includes/languages/trans_addons.php:602
 msgid "message info (.msg .info)"
 msgstr "پیام‌اطلاع‌رسانی(.msg .info)"
 
-#: addons/includes/languages/trans_addons.php:570
+#: addons/includes/languages/trans_addons.php:603
 msgid "message success (.msg .success)"
 msgstr "پیام موفقیت‌آمیز(.msg .success)"
 
-#: addons/includes/languages/trans_addons.php:571
+#: addons/includes/languages/trans_addons.php:604
 msgid "message error (.msg .error)"
 msgstr "پیام ارور(.msg .error)"
 
-#: addons/includes/languages/trans_addons.php:572
+#: addons/includes/languages/trans_addons.php:605
 msgid "message danger (.msg .danger)"
 msgstr "پیام خطرناک(.msg .danger)"
 
-#: addons/includes/languages/trans_addons.php:573
+#: addons/includes/languages/trans_addons.php:606
 msgid "message compact (.msg .compact)"
 msgstr "پیام فشرده(.msg .compact)"
 
-#: addons/includes/languages/trans_addons.php:574
+#: addons/includes/languages/trans_addons.php:607
 msgid "message small (.msg .small)"
 msgstr "پیام‌کوچک(.msg .small)"
 
-#: addons/includes/languages/trans_addons.php:575
+#: addons/includes/languages/trans_addons.php:608
 msgid "message big (.msg .big)"
 msgstr "پیام بزرگ(.msg .big)"
 
-#: addons/includes/languages/trans_addons.php:576
+#: addons/includes/languages/trans_addons.php:609
 msgid "message massive (.msg .massive)"
 msgstr "پیام‌عظیم(.msg .massive)"
 
-#: addons/includes/languages/trans_addons.php:577
+#: addons/includes/languages/trans_addons.php:610
 msgid "Privacy mode"
 msgstr "وضعیت حریم‌خصوصی"
 
-#: addons/includes/languages/trans_addons.php:578
+#: addons/includes/languages/trans_addons.php:611
 msgid "Private"
 msgstr "خصوصی"
 
-#: addons/includes/languages/trans_addons.php:579
+#: addons/includes/languages/trans_addons.php:612
 msgid "Public"
 msgstr "عمومی"
 
-#: addons/includes/languages/trans_addons.php:580
+#: addons/includes/languages/trans_addons.php:613
 msgid "Short Name"
 msgstr "نام کوتاه"
 
-#: addons/includes/languages/trans_addons.php:581
+#: addons/includes/languages/trans_addons.php:614
 msgid "phoneNumber"
 msgstr "شماره موبایل"
 
-#: addons/includes/languages/trans_addons.php:582
+#: addons/includes/languages/trans_addons.php:615
 msgid "Alias"
 msgstr "نام مستعار"
 
-#: addons/includes/languages/trans_addons.php:583
+#: addons/includes/languages/trans_addons.php:616
 msgid "Default setting for new members of team"
 msgstr "تنظیمات پیش‌فرض برای اعضای جدید تیم"
 
-#: addons/includes/languages/trans_addons.php:584
+#: addons/includes/languages/trans_addons.php:617
 msgid "Show users avatars"
 msgstr "نمایش عکس کاربران"
 
-#: addons/includes/languages/trans_addons.php:585
+#: addons/includes/languages/trans_addons.php:618
 msgid "Allow plus"
 msgstr "اجازه‌ی ثبت ریموت"
 
-#: addons/includes/languages/trans_addons.php:586
+#: addons/includes/languages/trans_addons.php:619
 msgid "Allow minus"
 msgstr "اجازه‌ی ثبت هدررفت"
 
-#: addons/includes/languages/trans_addons.php:587
+#: addons/includes/languages/trans_addons.php:620
 msgid "Remote user"
 msgstr "کاربران ریموت"
 
-#: addons/includes/languages/trans_addons.php:588
+#: addons/includes/languages/trans_addons.php:621
 msgid "24 hour"
 msgstr "۲۴ ساعته"
 
-#: addons/includes/languages/trans_addons.php:589
+#: addons/includes/languages/trans_addons.php:622
 msgid "allowPlus"
 msgstr "اجازه دهید مثبت باشد"
 
-#: addons/includes/languages/trans_addons.php:590
+#: addons/includes/languages/trans_addons.php:623
 msgid "Advance"
 msgstr "پیشرفته"
 
-#: addons/includes/languages/trans_addons.php:591
+#: addons/includes/languages/trans_addons.php:624
 msgid "First"
 msgstr "اولین"
 
-#: addons/includes/languages/trans_addons.php:592
+#: addons/includes/languages/trans_addons.php:625
 msgid "Second"
 msgstr "دوم"
 
-#: addons/includes/languages/trans_addons.php:593
+#: addons/includes/languages/trans_addons.php:626
 msgid "Third"
 msgstr "سوم"
 
-#: addons/includes/languages/trans_addons.php:594
+#: addons/includes/languages/trans_addons.php:627
 msgid "This is heading 1"
 msgstr "این عنوان ۱ است"
 
-#: addons/includes/languages/trans_addons.php:595
+#: addons/includes/languages/trans_addons.php:628
 msgid "This is heading 2"
 msgstr "این عنوان 2 است"
 
-#: addons/includes/languages/trans_addons.php:596
+#: addons/includes/languages/trans_addons.php:629
 msgid "This is heading 3"
 msgstr "این عنوان 3 است"
 
-#: addons/includes/languages/trans_addons.php:597
+#: addons/includes/languages/trans_addons.php:630
 msgid "This is heading 4"
 msgstr "این عنوان ۴ است"
 
-#: addons/includes/languages/trans_addons.php:598
+#: addons/includes/languages/trans_addons.php:631
 msgid "This is heading 5"
 msgstr "این عنوان ۵ است"
 
-#: addons/includes/languages/trans_addons.php:599
+#: addons/includes/languages/trans_addons.php:632
 msgid "This is heading 6"
 msgstr "این عنوان ۶ است"
 
-#: addons/includes/languages/trans_addons.php:602
+#: addons/includes/languages/trans_addons.php:635
 msgid ""
 "Documentation and examples for showing pagination to indicate a series of related "
 "content exists across multiple pages."
@@ -3793,11 +3425,11 @@ msgstr ""
 "مستندات و نمونه‌هایی برای نشان دادن صفحه بندی برای نمایش یک سری از محتوای مرتبط که "
 "در چند صفحه وجود دارد."
 
-#: addons/includes/languages/trans_addons.php:603
+#: addons/includes/languages/trans_addons.php:636
 msgid "Overview"
 msgstr "بررسی اجمالی"
 
-#: addons/includes/languages/trans_addons.php:604
+#: addons/includes/languages/trans_addons.php:637
 msgid ""
 "We use a large block of connected links for our pagination, making links hard to "
 "miss and easily scalable—all while providing large hit areas. Pagination is built "
@@ -3811,23 +3443,19 @@ msgstr ""
 "میتوانند تعداد لینک‌های موجود دار اعلام کنند‌‌. از یک عنصر<nav> استفاده کنید تا آنرا "
 "به عنوان بخش ناوبری برای نمایش به خوانندگان و سایر تکنیک‌ها شناسایی کنید‌‌. "
 
-#: addons/includes/languages/trans_addons.php:605
-msgid "Colored"
-msgstr "رنگی"
-
-#: addons/includes/languages/trans_addons.php:606
+#: addons/includes/languages/trans_addons.php:638
 msgid "A pagination can use in many colors"
 msgstr "یک صفحه بندی می‌تواند از تعداد زیادی رنگ استفاده‌کند‌‌."
 
-#: addons/includes/languages/trans_addons.php:607
+#: addons/includes/languages/trans_addons.php:639
 msgid "A pagination can vary in size"
 msgstr "یک صفحه بندی می‌تواند در اندازه‌های متفاوتی باشد‌‌"
 
-#: addons/includes/languages/trans_addons.php:610
+#: addons/includes/languages/trans_addons.php:642
 msgid "Documentation and examples for using Siftal progress bars."
 msgstr "مستندات و نمونه‌هایی برای استفاده از نوار پیشرفت در سیفتال"
 
-#: addons/includes/languages/trans_addons.php:611
+#: addons/includes/languages/trans_addons.php:643
 msgid ""
 "Siftal use html progress and meter and have some styles on them, each serving its "
 "own semantic purpose"
@@ -3835,47 +3463,47 @@ msgstr ""
 "سیفتال از نوار پیشرفت اچ‌تی‌ام‌ال و متر و برخی استایل‌های همراه استفاده می‌کند‌، هر "
 "سرویس برای منظور خواصی استفاده میشد‌‌"
 
-#: addons/includes/languages/trans_addons.php:612
+#: addons/includes/languages/trans_addons.php:644
 msgid "Meter"
 msgstr "متر"
 
-#: addons/includes/languages/trans_addons.php:613
+#: addons/includes/languages/trans_addons.php:645
 msgid "Use the meter element to measure data within a given range"
 msgstr "از واحد متر برای اندازه گیری عنصرها در محدوده داده استفاده کنید "
 
-#: addons/includes/languages/trans_addons.php:616
+#: addons/includes/languages/trans_addons.php:648
 msgid "Easily use our simple radio"
 msgstr "به راحتی از رادیو باکس‌های ما استفاده کنید."
 
-#: addons/includes/languages/trans_addons.php:617
+#: addons/includes/languages/trans_addons.php:649
 msgid "Radio type 1"
 msgstr "رادیو باکس نوع ۱"
 
-#: addons/includes/languages/trans_addons.php:618
+#: addons/includes/languages/trans_addons.php:650
 msgid "Default behaviour"
 msgstr "وضعیت پیشفرض"
 
-#: addons/includes/languages/trans_addons.php:619
+#: addons/includes/languages/trans_addons.php:651
 msgid "Other"
 msgstr "سایر"
 
-#: addons/includes/languages/trans_addons.php:620
+#: addons/includes/languages/trans_addons.php:652
 msgid "Radio1"
 msgstr "رادیو۱"
 
-#: addons/includes/languages/trans_addons.php:621
+#: addons/includes/languages/trans_addons.php:653
 msgid "None"
 msgstr "هیچ"
 
-#: addons/includes/languages/trans_addons.php:622
+#: addons/includes/languages/trans_addons.php:654
 msgid "Colored Radio1"
 msgstr "رادیو باکس‌های رنگی"
 
-#: addons/includes/languages/trans_addons.php:625
+#: addons/includes/languages/trans_addons.php:657
 msgid "CSS Reset"
 msgstr "سی‌اس‌اس ریست"
 
-#: addons/includes/languages/trans_addons.php:626
+#: addons/includes/languages/trans_addons.php:658
 msgid ""
 "Reset, a collection of element-specific CSS changes in a single file, kickstart "
 "Siftal to provide an elegant, consistent, and simple baseline to build upon."
@@ -3883,127 +3511,127 @@ msgstr ""
 "بازنشانی، مجموعه‌ای از ‌سی‌اس‌اس‌‌های خاص را در یک فایل واحد تغییر می‌دهد‌، kickstart "
 "سیفتال برای ارائه‌ای زیبا‌، استوار و پایه‌ای ساده بر ساختن."
 
-#: addons/includes/languages/trans_addons.php:627
+#: addons/includes/languages/trans_addons.php:659
 msgid "should have sans-serif font family (opinionated)"
 msgstr "باید دارای فونت sans-serif باشد (احتیاط)"
 
-#: addons/includes/languages/trans_addons.php:628
+#: addons/includes/languages/trans_addons.php:660
 msgid "should have no margin (opinionated)"
 msgstr "باید بدون فاصله از اطراف باشد(احتباط)"
 
-#: addons/includes/languages/trans_addons.php:629
+#: addons/includes/languages/trans_addons.php:661
 msgid "(there should be no red background visible on this page)"
 msgstr "(پس زمینه قرمز قابل مشاهده در‌این صفحه نباید وجود داشته باشد)"
 
-#: addons/includes/languages/trans_addons.php:630
+#: addons/includes/languages/trans_addons.php:662
 msgid "should render as block"
 msgstr "باید به صورت بلوک ارائه شود"
 
-#: addons/includes/languages/trans_addons.php:631
+#: addons/includes/languages/trans_addons.php:663
 msgid "should render as inline-block and baseline-aligned"
 msgstr "باید به صورت درون_خطی و خط_پایه رندر شود"
 
-#: addons/includes/languages/trans_addons.php:632
+#: addons/includes/languages/trans_addons.php:664
 msgid "should not display"
 msgstr "نباید نمایش داده شود"
 
-#: addons/includes/languages/trans_addons.php:633
+#: addons/includes/languages/trans_addons.php:665
 msgid "dummy anchor"
 msgstr "لنگر جلعی"
 
-#: addons/includes/languages/trans_addons.php:634
+#: addons/includes/languages/trans_addons.php:666
 msgid "should not have a focus outline when both focused and hovered (opinionated)"
 msgstr "باید زمانی که هر دو متمرکز و شناور باشد، تمرکز نداشته باشند (احتیاط)"
 
-#: addons/includes/languages/trans_addons.php:635
+#: addons/includes/languages/trans_addons.php:667
 msgid "should have a dotted bottom border"
 msgstr "باید حاوی یک حاشیه نقطه‌ای باشد"
 
-#: addons/includes/languages/trans_addons.php:636
+#: addons/includes/languages/trans_addons.php:668
 msgid "should have bold font-weight"
 msgstr "باید دارای font-weight کلفت باشد"
 
-#: addons/includes/languages/trans_addons.php:637
+#: addons/includes/languages/trans_addons.php:669
 msgid "should have italic font-style"
 msgstr "باید دارای font-style مورب باشد"
 
-#: addons/includes/languages/trans_addons.php:638
+#: addons/includes/languages/trans_addons.php:670
 msgid "should not change size within an <code>article</code>"
 msgstr "نباید اندازه را در <code> article </ code> تغییر دهید"
 
-#: addons/includes/languages/trans_addons.php:639
+#: addons/includes/languages/trans_addons.php:671
 msgid "Heading (control)"
 msgstr "عنوان(کنترل)"
 
-#: addons/includes/languages/trans_addons.php:640
+#: addons/includes/languages/trans_addons.php:672
 msgid "Heading (in article)"
 msgstr "عنوان (درمقاله)"
 
-#: addons/includes/languages/trans_addons.php:641
+#: addons/includes/languages/trans_addons.php:673
 msgid "should not change size within a <code>section</code>"
 msgstr "نباید اندازه را در<code>section</code> تغییر دهید"
 
-#: addons/includes/languages/trans_addons.php:642
+#: addons/includes/languages/trans_addons.php:674
 msgid "Heading (in section)"
 msgstr "عنوان(دربخش)"
 
-#: addons/includes/languages/trans_addons.php:643
+#: addons/includes/languages/trans_addons.php:675
 msgid "h1: Hi Siftal"
 msgstr "هدر۱: سلام سیفتال"
 
-#: addons/includes/languages/trans_addons.php:644
+#: addons/includes/languages/trans_addons.php:676
 msgid "h2: Hi Siftal"
 msgstr "هدر۲: سلام سیفتال"
 
-#: addons/includes/languages/trans_addons.php:645
+#: addons/includes/languages/trans_addons.php:677
 msgid "h3: Hi Siftal"
 msgstr "هدر۳: سلام سیفتال"
 
-#: addons/includes/languages/trans_addons.php:646
+#: addons/includes/languages/trans_addons.php:678
 msgid "h4: Hi Siftal"
 msgstr "هدر۴: سلام سیفتال"
 
-#: addons/includes/languages/trans_addons.php:647
+#: addons/includes/languages/trans_addons.php:679
 msgid "h5: Hi Siftal"
 msgstr "هدر۵: سلام سیفتال"
 
-#: addons/includes/languages/trans_addons.php:648
+#: addons/includes/languages/trans_addons.php:680
 msgid "h6: Hi Siftal"
 msgstr "هدر۶: سلام سیفتال"
 
-#: addons/includes/languages/trans_addons.php:649
+#: addons/includes/languages/trans_addons.php:681
 msgid "should have a yellow background"
 msgstr "باید یک پس‌زمینه زرد باشد"
 
-#: addons/includes/languages/trans_addons.php:650
+#: addons/includes/languages/trans_addons.php:682
 msgid "should render equally small in all browsers"
 msgstr "باید در همه مرورگر‌ها به همان اندازه کوچک باشد"
 
-#: addons/includes/languages/trans_addons.php:651
+#: addons/includes/languages/trans_addons.php:683
 msgid "should not affect a line's visual line-height"
 msgstr "نباید یک خط‌، line-height را تحت تاثیر قرار دهد"
 
-#: addons/includes/languages/trans_addons.php:652
+#: addons/includes/languages/trans_addons.php:684
 msgid "should not have a border when wrapped in an anchor"
 msgstr "نباید حاوی یک حاشیه باشد زمانیکه در بلوک دیگری قرار گرفته "
 
-#: addons/includes/languages/trans_addons.php:653
+#: addons/includes/languages/trans_addons.php:685
 msgid "should not overflow"
 msgstr "نباید سرریز‌کند"
 
-#: addons/includes/languages/trans_addons.php:654
+#: addons/includes/languages/trans_addons.php:686
 msgid "should have margins"
 msgstr "باید دارای فاصله از اطراف باشد"
 
-#: addons/includes/languages/trans_addons.php:655
+#: addons/includes/languages/trans_addons.php:687
 msgid "should have a <code>content-box</code> box model"
 msgstr "باید یک مدل باکس <code>content-box</code> داشته باشید"
 
-#: addons/includes/languages/trans_addons.php:656
+#: addons/includes/languages/trans_addons.php:688
 msgid "should trigger a scrollbar when too wide for its container"
 msgstr "باید اسکرول را هنگامیکه محتوا برای ابعاد زیاد است حرکت دهد‌‌"
 
-#: addons/includes/languages/trans_addons.php:657
+#: addons/includes/languages/trans_addons.php:689
 msgid ""
 " Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula "
 "eget dolor. Aenean massa. Cum sociis natoque penatibus et me."
@@ -4011,137 +3639,137 @@ msgstr ""
 "لورم‌ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان "
 "گرافیک است. چاپگرها و متون بلکه روزنامه و مجله"
 
-#: addons/includes/languages/trans_addons.php:658
+#: addons/includes/languages/trans_addons.php:690
 msgid ""
 "should render <code>em</code>-unit preformatted text at the same absolute size as "
 "normal text"
 msgstr ""
 "باید متن <code> em </ code> با همان اندازه مطلق به عنوان متن معمولی قالب بندی شود"
 
-#: addons/includes/languages/trans_addons.php:659
+#: addons/includes/languages/trans_addons.php:691
 msgid "should inherit <code>color</code> from ancestor"
 msgstr "باید <code>color</code> را از بقیه اجزاء به ارث ببرد"
 
-#: addons/includes/languages/trans_addons.php:660
+#: addons/includes/languages/trans_addons.php:692
 msgid "should inherit <code>font</code> from ancestor"
 msgstr "باید <code>font</code> را از بقیه اجزاء به ارث ببرد"
 
-#: addons/includes/languages/trans_addons.php:661
+#: addons/includes/languages/trans_addons.php:693
 msgid "should not have margins"
 msgstr "نباید فاصله از کناره‌ها(margin) داشته باشد"
 
-#: addons/includes/languages/trans_addons.php:662
+#: addons/includes/languages/trans_addons.php:694
 msgid "should have visible overflow"
 msgstr "باید سرریز(overflow) قابل مشاهده باشد"
 
-#: addons/includes/languages/trans_addons.php:663
+#: addons/includes/languages/trans_addons.php:695
 msgid "should not inherit <code>text-transform</code>"
 msgstr " <code>text-transform</code> نباید ارث ببرد"
 
-#: addons/includes/languages/trans_addons.php:664
+#: addons/includes/languages/trans_addons.php:696
 msgid "should have <code>pointer</code> cursor style"
 msgstr "باید استایل مکان‌نما <code>pointer</code> داشته باشد"
 
-#: addons/includes/languages/trans_addons.php:665
+#: addons/includes/languages/trans_addons.php:697
 msgid "should be styleable"
 msgstr "باید دارای استایل باشد"
 
-#: addons/includes/languages/trans_addons.php:666
+#: addons/includes/languages/trans_addons.php:698
 msgid "should have <code>default</code> cursor style"
 msgstr "باید استایل مکان‌نما <code>default</code> داشته باشد"
 
-#: addons/includes/languages/trans_addons.php:667
+#: addons/includes/languages/trans_addons.php:699
 msgid "should not have extra inner padding in Firefox"
 msgstr "نباید فضای اضافه خالی در فایرفاکس داشته باشد"
 
-#: addons/includes/languages/trans_addons.php:668
+#: addons/includes/languages/trans_addons.php:700
 msgid "should not inherit <code>line-height</code>"
 msgstr "<code>line-height</code> نباید ارث ببرد"
 
-#: addons/includes/languages/trans_addons.php:669
+#: addons/includes/languages/trans_addons.php:701
 msgid "should have a <code>border-box</code> box model"
 msgstr "باید یک مدل باکس <code>border-box</code> داشته باشید"
 
-#: addons/includes/languages/trans_addons.php:670
+#: addons/includes/languages/trans_addons.php:702
 msgid "should not have padding"
 msgstr "نباید فاصله درونی(padding) داشته باشد"
 
-#: addons/includes/languages/trans_addons.php:671
+#: addons/includes/languages/trans_addons.php:703
 msgid ""
 "should display a default cursor for the decrement button's click target in Chrome"
 msgstr "باید یک مکان‌نمای پیشفرض برای کاهش دکمه‌های "
 
-#: addons/includes/languages/trans_addons.php:672
+#: addons/includes/languages/trans_addons.php:704
 msgid "should not have a cancel button in Safari or Chrome"
 msgstr "نباید در گوگل کروم و یا سافاری دکمه لغو داشته باشد"
 
-#: addons/includes/languages/trans_addons.php:673
+#: addons/includes/languages/trans_addons.php:705
 msgid "should have consistent border, padding, and margin"
 msgstr "باید حاوی حاشیه فاصله از درون / بیرون هماهنگ باشد/"
 
-#: addons/includes/languages/trans_addons.php:674
+#: addons/includes/languages/trans_addons.php:706
 msgid "should inherit color"
 msgstr "باید رنگ را به ارث رساند"
 
-#: addons/includes/languages/trans_addons.php:675
+#: addons/includes/languages/trans_addons.php:707
 msgid "should not have a scrollbar unless overflowing"
 msgstr "نباید دارای اسکرول بار باشد مگر‌اینکه محتوا بیش از حد باشد"
 
-#: addons/includes/languages/trans_addons.php:676
+#: addons/includes/languages/trans_addons.php:708
 msgid "should not have spaces between cells"
 msgstr "بین سلول‌ها نباید حاوی فاصله باشد"
 
-#: addons/includes/languages/trans_addons.php:679
+#: addons/includes/languages/trans_addons.php:711
 msgid "Select"
 msgstr "انتخاب"
 
-#: addons/includes/languages/trans_addons.php:680
+#: addons/includes/languages/trans_addons.php:712
 msgid "Easily change default select style to simple and clean Siftal design"
 msgstr "به راحتی استایل‌های پیشفرض را با استایل‌های ساده سیفتال تعویض کنید"
 
-#: addons/includes/languages/trans_addons.php:681
+#: addons/includes/languages/trans_addons.php:713
 msgid "Sarshomar"
 msgstr "سرشمار"
 
-#: addons/includes/languages/trans_addons.php:682
+#: addons/includes/languages/trans_addons.php:714
 msgid "Tejarak"
 msgstr "تجارک"
 
-#: addons/includes/languages/trans_addons.php:683
+#: addons/includes/languages/trans_addons.php:715
 msgid "Azvir"
 msgstr "ازویر"
 
-#: addons/includes/languages/trans_addons.php:684
+#: addons/includes/languages/trans_addons.php:716
 msgid "Talambar"
 msgstr "تلمبار"
 
-#: addons/includes/languages/trans_addons.php:685
+#: addons/includes/languages/trans_addons.php:717
 msgid "Jibres"
 msgstr "جیبرس"
 
-#: addons/includes/languages/trans_addons.php:686
+#: addons/includes/languages/trans_addons.php:718
 msgid "Multiple"
 msgstr "چندگانه"
 
-#: addons/includes/languages/trans_addons.php:689
+#: addons/includes/languages/trans_addons.php:721
 msgid "Sortable"
 msgstr "قابل‌ مرتب‌شدن"
 
-#: addons/includes/languages/trans_addons.php:690
+#: addons/includes/languages/trans_addons.php:722
 msgid "Allow to easily add sortable to projects"
 msgstr "اجازه دهید به‌راحتی قابلیت مرتب‌کردن به پروژه‌هایتان اضافه‌شود"
 
-#: addons/includes/languages/trans_addons.php:693
+#: addons/includes/languages/trans_addons.php:725
 msgid "A table's colors can be changed"
 msgstr "رنگ جداول می‌تواند تغییر‌کند"
 
-#: addons/includes/languages/trans_addons.php:694
+#: addons/includes/languages/trans_addons.php:726
 msgid ""
 "Similar to colored tables, use one of modifier classes to make rows appear colored."
 msgstr ""
 "مانند جداول رنگی‌، از یکی از کلاس‌های تعیین کننده استفاده کنید تا سطر‌ها رنگی باشد."
 
-#: addons/includes/languages/trans_addons.php:695
+#: addons/includes/languages/trans_addons.php:727
 msgid ""
 "Add <code class='code1'>.bordered</code> for borders on all sides of the table and "
 "cells."
@@ -4149,24 +3777,24 @@ msgstr ""
 "کلاس : <code class='code1'>.bordered</code> را برای اضافه‌کردن حاشیه به تمام جداول "
 "و سلول‌ها اضافه کنید."
 
-#: addons/includes/languages/trans_addons.php:696
+#: addons/includes/languages/trans_addons.php:728
 msgid ""
 "A table may sometimes need to be more compact to make more rows visible at a time"
 msgstr "گاهی اوقات ممکن است یک جدول برای جمع‌کردن ردیف‌های بیشتر در یک زمان باشد"
 
-#: addons/includes/languages/trans_addons.php:697
+#: addons/includes/languages/trans_addons.php:729
 msgid "A table may sometimes need to be more padded for legibility"
 msgstr "گاهی ممکن است یک جدول برای خوانایی بیشتر باشد"
 
-#: addons/includes/languages/trans_addons.php:698
+#: addons/includes/languages/trans_addons.php:730
 msgid "A table may sometimes need to be small"
 msgstr "گاهی ممکن است یک جدول کوچک باشد"
 
-#: addons/includes/languages/trans_addons.php:699
+#: addons/includes/languages/trans_addons.php:731
 msgid "A table may sometimes need to be large"
 msgstr "گاهی ممکن است یک جدول بزرگ باشد"
 
-#: addons/includes/languages/trans_addons.php:700
+#: addons/includes/languages/trans_addons.php:732
 msgid ""
 "Add <code class='code1'>data-sort=desc|asc</code> to table header for add icon of "
 "sorting"
@@ -4174,64 +3802,64 @@ msgstr ""
 "کد : <code class='code1'>data-sort=desc|asc</code> را برای اضافه‌کردن‌ایکن مرتب سازی "
 "به عنوان جدول اضافه کنید."
 
-#: addons/includes/languages/trans_addons.php:701
+#: addons/includes/languages/trans_addons.php:733
 msgid "@evazzadeh"
 msgstr "@evazzadeh"
 
-#: addons/includes/languages/trans_addons.php:702
+#: addons/includes/languages/trans_addons.php:734
 msgid "@biqarar"
 msgstr "@biqarar"
 
-#: addons/includes/languages/trans_addons.php:703
+#: addons/includes/languages/trans_addons.php:735
 msgid "@baravak"
 msgstr "@baravak"
 
-#: addons/includes/languages/trans_addons.php:704
+#: addons/includes/languages/trans_addons.php:736
 msgid "Git Repository"
 msgstr "مخزن گیت"
 
-#: addons/includes/languages/trans_addons.php:705
+#: addons/includes/languages/trans_addons.php:737
 msgid "node_modules"
 msgstr "node_modules"
 
-#: addons/includes/languages/trans_addons.php:706
+#: addons/includes/languages/trans_addons.php:738
 msgid "Initial commit"
 msgstr "تعهد اولیه"
 
-#: addons/includes/languages/trans_addons.php:707
+#: addons/includes/languages/trans_addons.php:739
 msgid "10 hours ago"
 msgstr "10 ساعت پیش"
 
-#: addons/includes/languages/trans_addons.php:708
+#: addons/includes/languages/trans_addons.php:740
 msgid "test"
 msgstr "آزمایش"
 
-#: addons/includes/languages/trans_addons.php:709
+#: addons/includes/languages/trans_addons.php:741
 msgid "build"
 msgstr "ساختن"
 
-#: addons/includes/languages/trans_addons.php:710
+#: addons/includes/languages/trans_addons.php:742
 msgid "package.json"
 msgstr "package.json"
 
-#: addons/includes/languages/trans_addons.php:711
+#: addons/includes/languages/trans_addons.php:743
 msgid "Gruntfile.js"
 msgstr "Gruntfile.js"
 
-#: addons/includes/languages/trans_addons.php:714
+#: addons/includes/languages/trans_addons.php:746
 msgid "A textarea can be used to allow for extended user input."
 msgstr ""
 "برای اجازه دادن به ورودی بیشتر از سمت کاربر می‌توان از یک ‌مکان‌متن‌ استفاده کرد‌‌."
 
-#: addons/includes/languages/trans_addons.php:715
+#: addons/includes/languages/trans_addons.php:747
 msgid "To specify an approximate text area size use the rows attribute."
 msgstr "برای مشخص‌کردن اندازه تغریبی متن در ‌مکان‌متن‌ از ویژگی ردیف (row) اضافه کنید"
 
-#: addons/includes/languages/trans_addons.php:718
+#: addons/includes/languages/trans_addons.php:750
 msgid "vcard"
 msgstr "کارت"
 
-#: addons/includes/languages/trans_addons.php:719
+#: addons/includes/languages/trans_addons.php:751
 msgid ""
 "Siftal's cards provide a flexible and extensible content container with multiple "
 "variants and options."
@@ -4239,14 +3867,14 @@ msgstr ""
 "کارت‌های سیفتال انعطاف و گسترش پذیری محتوا به همراه گزینه‌ها و تنظیمات را ارائه "
 "می‌دهند."
 
-#: addons/includes/languages/trans_addons.php:720
+#: addons/includes/languages/trans_addons.php:752
 msgid ""
 "A card is a flexible and extensible content container. It includes options for "
 "headers and footers, a wide variety of content, contextual background colors, and "
 "powerful display options."
 msgstr "کارت یک مخزن با محتوای قابل انعطاف و توسعه پذیر است."
 
-#: addons/includes/languages/trans_addons.php:721
+#: addons/includes/languages/trans_addons.php:753
 msgid ""
 "Cards are built with as little markup and styles as possible, but still manage to "
 "deliver a ton of control and customization. Built with flexbox, they offer easy "
@@ -4256,23 +3884,19 @@ msgstr ""
 "سفارشی سازی راه دارد‌‌.  ساخته‌شده با flexbox‌، اغلب هماهنگی و‌ترکیب خوبی با اجزای دیگر "
 "دارند‌‌. "
 
-#: addons/includes/languages/trans_addons.php:722
-msgid "123 Friends"
-msgstr "123دوست"
-
-#: addons/includes/languages/trans_addons.php:723
+#: addons/includes/languages/trans_addons.php:754
 msgid "10h"
 msgstr "10 ساعت"
 
-#: addons/includes/languages/trans_addons.php:724
+#: addons/includes/languages/trans_addons.php:755
 msgid "5 Comments"
 msgstr "5 نظر"
 
-#: addons/includes/languages/trans_addons.php:725
+#: addons/includes/languages/trans_addons.php:756
 msgid "1k likes"
 msgstr "۱هزار لایک"
 
-#: addons/includes/languages/trans_addons.php:726
+#: addons/includes/languages/trans_addons.php:757
 msgid ""
 "Cards are designed to be flexible to your content. content blocks can include any "
 "custom elements related to your content."
@@ -4280,19 +3904,19 @@ msgstr ""
 "کارت‌ها طراحی‌شده اند تا محتوای شما انعطاف پذیر باشند. بلوک‌های محتوا می‌تواند شامل هر "
 "عنصر سفارشی مربوط به محتوای شما باشند."
 
-#: addons/includes/languages/trans_addons.php:727
+#: addons/includes/languages/trans_addons.php:758
 msgid "Accept"
 msgstr "تایید"
 
-#: addons/includes/languages/trans_addons.php:728
+#: addons/includes/languages/trans_addons.php:759
 msgid "A card can contain a header."
 msgstr "کارت می‌تواند دارای یک عنوان باشد."
 
-#: addons/includes/languages/trans_addons.php:729
+#: addons/includes/languages/trans_addons.php:760
 msgid "Friend"
 msgstr "دوست"
 
-#: addons/includes/languages/trans_addons.php:730
+#: addons/includes/languages/trans_addons.php:761
 msgid ""
 "Javad is a CEO and founder of Ermile and start developing Siftal from 2017 and "
 "hope to write documentaion for it!"
@@ -4300,50 +3924,50 @@ msgstr ""
 "جواد مدیرعامل و بنیان گذار ارمایل است و از سال 2017 شروع به توسعه سیفتال کرده و "
 "امیدواریم برای آن مستندسازی کنیم!"
 
-#: addons/includes/languages/trans_addons.php:731
+#: addons/includes/languages/trans_addons.php:762
 msgid "Reza Mohiti"
 msgstr "رضا محیطی"
 
-#: addons/includes/languages/trans_addons.php:732
+#: addons/includes/languages/trans_addons.php:763
 msgid "Reza is a back-end developer of Ermile."
 msgstr "رضا توسعه دهنده بک-اند در ارمایل است."
 
-#: addons/includes/languages/trans_addons.php:733
+#: addons/includes/languages/trans_addons.php:764
 msgid "Hasan Salehi"
 msgstr "حسن صالحی"
 
-#: addons/includes/languages/trans_addons.php:734
+#: addons/includes/languages/trans_addons.php:765
 msgid ""
 "Hasan is a full-stack developer of Ermile and always trying to be in classrooms!"
 msgstr ""
 "حسن صالحی یک توسعه دهنده کامل در ارمایل است که همیشه سعی می‌کند در کلاس درس آموزش "
 "دهد!"
 
-#: addons/includes/languages/trans_addons.php:735
+#: addons/includes/languages/trans_addons.php:766
 msgid "A card can contain content metadata."
 msgstr "یک کارت می‌تواند شامل متادیتا(metadata)باشد."
 
-#: addons/includes/languages/trans_addons.php:736
+#: addons/includes/languages/trans_addons.php:767
 msgid "Reza Motiti"
 msgstr "رضا محیطی"
 
-#: addons/includes/languages/trans_addons.php:737
+#: addons/includes/languages/trans_addons.php:768
 msgid "6 days ago"
 msgstr "6 روز پیش"
 
-#: addons/includes/languages/trans_addons.php:738
+#: addons/includes/languages/trans_addons.php:769
 msgid "Haram"
 msgstr "حرم"
 
-#: addons/includes/languages/trans_addons.php:739
+#: addons/includes/languages/trans_addons.php:770
 msgid "10 days ago"
 msgstr "10 روز پیش"
 
-#: addons/includes/languages/trans_addons.php:740
+#: addons/includes/languages/trans_addons.php:771
 msgid "School"
 msgstr "مدرسه"
 
-#: addons/includes/languages/trans_addons.php:741
+#: addons/includes/languages/trans_addons.php:772
 msgid ""
 "A card can be formatted so that the entire contents link to another page. Also a "
 "card can contain contain links as images, headers, or inside content."
@@ -4351,1503 +3975,1695 @@ msgstr ""
 "کارت را می‌توان تغییر داد تا تمام محتوا به صفحه دیگری منتقل شود.همچنین یک کارت "
 "می‌تواندشامل لینک‌ها به عنوان عکس،عنوان،ویا محتوای درونی باشد."
 
-#: addons/includes/languages/trans_addons.php:742
+#: addons/includes/languages/trans_addons.php:773
 msgid "Center Card"
 msgstr "کارت مرکزی"
 
-#: addons/includes/languages/trans_addons.php:743
+#: addons/includes/languages/trans_addons.php:774
 msgid "A card can center itself inside its container."
 msgstr "یک کارت می‌تواند در مرکزخود دارای محتوا باشد."
 
-#: addons/includes/languages/trans_addons.php:744
+#: addons/includes/languages/trans_addons.php:775
 msgid "A card can specify a color."
 msgstr "یک کارت می‌توانید یک رنگ معلوم داشته باشد."
 
-#: addons/includes/languages/trans_addons.php:745
+#: addons/includes/languages/trans_addons.php:776
 msgid "A card can be used in many sizes"
 msgstr "یک کارت می‌تواند در اندازه‌های مختلفی استفاده شود"
 
-#: addons/includes/languages/trans_addons.php:746
+#: addons/includes/languages/trans_addons.php:777
 msgid "Mini"
 msgstr "کوچک"
 
-#: addons/includes/languages/trans_addons.php:747
+#: addons/includes/languages/trans_addons.php:778
 msgid "Tiny"
 msgstr "کوچک"
 
-#: addons/includes/languages/trans_addons.php:748
+#: addons/includes/languages/trans_addons.php:779
 msgid "Small"
 msgstr "کوچک"
 
-#: addons/includes/languages/trans_addons.php:749
+#: addons/includes/languages/trans_addons.php:780
 msgid "Large"
 msgstr "بزرگ"
 
-#: addons/includes/languages/trans_addons.php:750
+#: addons/includes/languages/trans_addons.php:781
 msgid "Big"
 msgstr "بزرگ"
 
-#: addons/includes/languages/trans_addons.php:751
+#: addons/includes/languages/trans_addons.php:782
 msgid "Huge"
 msgstr "عظیم"
 
-#: addons/includes/languages/trans_addons.php:752
+#: addons/includes/languages/trans_addons.php:783
 msgid "Massive"
 msgstr "حجیم"
 
-#: addons/includes/languages/trans_addons.php:753
+#: addons/includes/languages/trans_addons.php:784
 msgid "Live Card"
 msgstr "کارت زنده"
 
-#: addons/includes/languages/trans_addons.php:754
+#: addons/includes/languages/trans_addons.php:785
 msgid "A card can be used in live with on and off status"
 msgstr "یک کارت می‌تواند درحالت فعال/غیرفعال استفاده شود"
 
-#: addons/includes/languages/trans_addons.php:757
+#: addons/includes/languages/trans_addons.php:788
 msgid "Send every notification from every way to user"
 msgstr "ارسال هر پیامی از هر روشی به کاربر"
 
-#: addons/includes/languages/trans_addons.php:758
+#: addons/includes/languages/trans_addons.php:789
 msgid "Mobile or user_id"
 msgstr "موبایل یا کد کاربر"
 
-#: addons/includes/languages/trans_addons.php:759
+#: addons/includes/languages/trans_addons.php:790
 msgid "Find Connection way"
 msgstr "یافتن روش ارتباط"
 
-#: addons/includes/languages/trans_addons.php:760
+#: addons/includes/languages/trans_addons.php:791
 msgid "Inner system notification"
 msgstr "پیام داخل سیستمی"
 
-#: addons/includes/languages/trans_addons.php:761
+#: addons/includes/languages/trans_addons.php:792
 msgid "What do you want to send to this user?"
 msgstr "مایل به ارسال چه چیزی به این کاربر هستید؟"
 
-#: addons/includes/languages/trans_addons.php:762
+#: addons/includes/languages/trans_addons.php:793
 msgid "Send"
 msgstr "ارسال"
 
-#: addons/includes/languages/trans_addons.php:765
+#: addons/includes/languages/trans_addons.php:796
 msgid "Test shortURL function"
 msgstr "آزمایش تابع کوتاه‌کننده‌لینک"
 
-#: addons/includes/languages/trans_addons.php:766
+#: addons/includes/languages/trans_addons.php:797
 msgid "String or Number"
 msgstr "رشته یا شماره"
 
-#: addons/includes/languages/trans_addons.php:767
+#: addons/includes/languages/trans_addons.php:798
 msgid "Run"
 msgstr "اجرا"
 
-#: addons/includes/languages/trans_addons.php:768
+#: addons/includes/languages/trans_addons.php:799
 msgid "Encode"
 msgstr "رمزگذاری"
 
-#: addons/includes/languages/trans_addons.php:769
+#: addons/includes/languages/trans_addons.php:800
 msgid "Decode"
 msgstr "رمزگشایی"
 
-#: addons/includes/languages/trans_addons.php:772
+#: addons/includes/languages/trans_addons.php:803
 msgid "You can use our tools"
 msgstr "شما می‌توانید از ابزارهای ما استفاده کنید."
 
-#: addons/includes/languages/trans_addons.php:773
+#: addons/includes/languages/trans_addons.php:804
 msgid "If you dont know about this page, leave it!"
 msgstr "اگر چیزی در مورد این صفحه نمی‌دانید، آن را ترک کنید!"
 
-#: addons/includes/languages/trans_addons.php:774
+#: addons/includes/languages/trans_addons.php:805
 msgid "Special tools"
 msgstr "ابزارهای خاص"
 
-#: addons/includes/languages/trans_addons.php:776
+#: addons/includes/languages/trans_addons.php:807
 msgid "Server information"
 msgstr "اطلاعات سرور"
 
-#: addons/includes/languages/trans_addons.php:777
+#: addons/includes/languages/trans_addons.php:808
 msgid "Log"
 msgstr "لاگ"
 
-#: addons/includes/languages/trans_addons.php:778
+#: addons/includes/languages/trans_addons.php:809
 msgid "Translation tools"
 msgstr "ابزارهای ترجمه"
 
-#: addons/includes/languages/trans_addons.php:779
+#: addons/includes/languages/trans_addons.php:810
 msgid "Update"
 msgstr "بروزرسانی"
 
-#: addons/includes/languages/trans_addons.php:782
+#: addons/includes/languages/trans_addons.php:813
 msgid "Show server info"
 msgstr "نمایش اطلاعات سرور"
 
-#: addons/includes/languages/trans_addons.php:783
+#: addons/includes/languages/trans_addons.php:814
 msgid "Show PHP info"
 msgstr "نمایش اطلاعات پی‌اچ‌پی"
 
-#: addons/includes/languages/trans_addons.php:786
+#: addons/includes/languages/trans_addons.php:817
 msgid "Server Logs"
 msgstr "لاگ سرور"
 
-#: addons/includes/languages/trans_addons.php:787
+#: addons/includes/languages/trans_addons.php:818
 msgid "Access logs"
 msgstr "لاگ دسترسی"
 
-#: addons/includes/languages/trans_addons.php:788
+#: addons/includes/languages/trans_addons.php:819
 msgid "Error logs"
 msgstr "لاگ خطاها"
 
-#: addons/includes/languages/trans_addons.php:789
+#: addons/includes/languages/trans_addons.php:820
 msgid "Database Logs"
 msgstr "لاگ دیتابیس"
 
-#: addons/includes/languages/trans_addons.php:790
+#: addons/includes/languages/trans_addons.php:821
 msgid "Logs - check"
 msgstr "لاگ - چک"
 
-#: addons/includes/languages/trans_addons.php:791
+#: addons/includes/languages/trans_addons.php:822
 msgid "Logs - warn"
 msgstr "لاگ - اخطار"
 
-#: addons/includes/languages/trans_addons.php:792
+#: addons/includes/languages/trans_addons.php:823
 msgid "Logs - critical"
 msgstr "لاگ - بحرانی"
 
-#: addons/includes/languages/trans_addons.php:793
+#: addons/includes/languages/trans_addons.php:824
 msgid "Error Logs"
 msgstr "لاگ خطاها"
 
-#: addons/includes/languages/trans_addons.php:794
+#: addons/includes/languages/trans_addons.php:825
 msgid "Telegram Errors"
 msgstr "خطاهای تلگرام"
 
-#: addons/includes/languages/trans_addons.php:795
+#: addons/includes/languages/trans_addons.php:826
 msgid "telegram Logs"
 msgstr "لاگ‌های تلگرام"
 
-#: addons/includes/languages/trans_addons.php:796
+#: addons/includes/languages/trans_addons.php:827
 msgid "telegram - Error Logs"
 msgstr "تلگرام - لاگ خطاها"
 
-#: addons/includes/languages/trans_addons.php:799
+#: addons/includes/languages/trans_addons.php:830
 msgid "Create sitemap automatically by click on this page"
 msgstr "با کلیک در این صفحه نقشه‌ی سایت را بطور خودکار ایجاد کنید"
 
-#: addons/includes/languages/trans_addons.php:800
+#: addons/includes/languages/trans_addons.php:831
 msgid "Base Sitemap"
 msgstr "سایت‌مپ اصلی"
 
-#: addons/includes/languages/trans_addons.php:801
+#: addons/includes/languages/trans_addons.php:832
 msgid "Sitemap Detail"
 msgstr "جزئیات سایت‌مپ"
 
-#: addons/includes/languages/trans_addons.php:802
+#: addons/includes/languages/trans_addons.php:833
 msgid "Create it Again"
 msgstr "دوباره بسازش"
 
-#: addons/includes/languages/trans_addons.php:803
+#: addons/includes/languages/trans_addons.php:834
 msgid "Create Sitemap Result"
 msgstr "ایجاد نتیجه نقشه سایت"
 
-#: addons/includes/languages/trans_addons.php:806
+#: addons/includes/languages/trans_addons.php:837
 msgid "Translate"
 msgstr "ترجمه"
 
-#: addons/includes/languages/trans_addons.php:807
+#: addons/includes/languages/trans_addons.php:838
 msgid "Extract twig trans func in current project"
 msgstr "بیرون کشیدن متن‌های قابل ترجمه توئیگ از پروژه جاری"
 
-#: addons/includes/languages/trans_addons.php:808
+#: addons/includes/languages/trans_addons.php:839
 msgid "Extract twig trans func in dash addons"
 msgstr "استخراج توابع ترجمه توییگ در دش"
 
-#: addons/includes/languages/trans_addons.php:809
+#: addons/includes/languages/trans_addons.php:840
 msgid "Extract twig trans func in dash addons and update on dash addons"
 msgstr "استخراج توابع ترجمه توییگ در دش به‌همراه بروزرسانی آن در هسته"
 
-#: addons/includes/languages/trans_addons.php:812
+#: addons/includes/languages/trans_addons.php:843
 msgid "Ermile Repository"
 msgstr "مخزن ارمایل"
 
-#: addons/includes/languages/trans_addons.php:813
+#: addons/includes/languages/trans_addons.php:844
 msgid "Dash Repository"
 msgstr "مخزن دش"
 
-#: addons/includes/languages/trans_addons.php:814
+#: addons/includes/languages/trans_addons.php:845
 msgid "Current Project Repository"
 msgstr "مخزن پروژه‌ی کنونی"
 
-#: addons/includes/languages/trans_addons.php:815
+#: addons/includes/languages/trans_addons.php:846
 msgid "All: Dash + current project Repository"
 msgstr "همه‌ی مخازن: دش + پروژه جاری"
 
-#: addons/includes/languages/trans_addons.php:816
+#: addons/includes/languages/trans_addons.php:847
 msgid "Database"
 msgstr "پایگاه‌داده"
 
-#: addons/includes/languages/trans_addons.php:817
+#: addons/includes/languages/trans_addons.php:848
 msgid "Upgrade"
 msgstr "ارتقا"
 
-#: addons/includes/languages/trans_addons.php:818
+#: addons/includes/languages/trans_addons.php:849
 msgid "Backup"
 msgstr "پشتیبان‌گیری"
 
-#: addons/includes/languages/trans_addons.php:819
+#: addons/includes/languages/trans_addons.php:850
 msgid "Backup by dump"
 msgstr "پشتیبان با دامپ"
 
-#: addons/includes/languages/trans_addons.php:820
+#: addons/includes/languages/trans_addons.php:851
 msgid "Submit"
 msgstr "تایید"
 
-#: addons/includes/languages/trans_addons.php:821
+#: addons/includes/languages/trans_addons.php:852
 msgid "Project Database"
 msgstr "دیتابیس پروژه"
 
-#: addons/includes/languages/trans_addons.php:822
+#: addons/includes/languages/trans_addons.php:853
 msgid "Automatically read database and create sql files"
 msgstr "خواندن دیتابیس و ساخت خودکار فایل‌های اس کیو ال آن"
 
-#: addons/includes/languages/trans_addons.php:837
+#: addons/includes/languages/trans_addons.php:868
 msgid "Dash"
 msgstr "دش"
 
-#: addons/includes/languages/trans_addons.php:838
+#: addons/includes/languages/trans_addons.php:869
 msgid "dash"
 msgstr "دش"
 
-#: addons/includes/languages/trans_addons.php:839
+#: addons/includes/languages/trans_addons.php:870
 msgid "Powered by Dash"
 msgstr "قدرت گرفته از دش"
 
-#: addons/includes/languages/trans_addons.php:840
+#: addons/includes/languages/trans_addons.php:871
 msgid "Ahmad Karimi"
 msgstr "احمد کریمی"
 
-#: addons/includes/languages/trans_addons.php:841
+#: addons/includes/languages/trans_addons.php:872
 msgid "Another Project with Dash"
 msgstr "پروژه دیگری با دش‌‌. "
 
-#: addons/includes/languages/trans_addons.php:842
+#: addons/includes/languages/trans_addons.php:873
 msgid "Dash is an artichokes for PHP programming!!"
 msgstr "دش  یک کنگر برای برنامه نویسی با پی‌اچ‌پی!"
 
-#: addons/includes/languages/trans_addons.php:843
+#: addons/includes/languages/trans_addons.php:874
 msgid "Dash is powerfull."
 msgstr "دش قدرتمند است!"
 
-#: addons/includes/languages/trans_addons.php:844 addons/lib/mvc/models/commit.php:22
+#: addons/includes/languages/trans_addons.php:875
 msgid "Insert Successfully"
 msgstr "افزودن با موفقیت انجام شد"
 
-#: addons/includes/languages/trans_addons.php:845
+#: addons/includes/languages/trans_addons.php:876
 msgid "Insert Failed!"
 msgstr "افزودن ناموفق بود!"
 
-#: addons/includes/languages/trans_addons.php:846 addons/lib/mvc/models/commit.php:49
+#: addons/includes/languages/trans_addons.php:877
 msgid "Update Successfully"
 msgstr "بروزرسانی با موفقیت انجام شد"
 
-#: addons/includes/languages/trans_addons.php:847
+#: addons/includes/languages/trans_addons.php:878
 msgid "Update Failed!"
 msgstr "بروزرسانی ناموفق بود!"
 
-#: addons/includes/languages/trans_addons.php:848 addons/lib/mvc/models/commit.php:75
+#: addons/includes/languages/trans_addons.php:879
 msgid "Delete Successfully"
 msgstr "حذف با موفقیت انجام شد"
 
-#: addons/includes/languages/trans_addons.php:849 addons/lib/mvc/models/commit.php:81
+#: addons/includes/languages/trans_addons.php:880
 msgid "Delete Failed!"
 msgstr "حذف ناموفق بود!"
 
-#: addons/includes/languages/trans_addons.php:850 addons/lib/mvc/models/commit.php:28
+#: addons/includes/languages/trans_addons.php:881
 msgid "Transaction error"
 msgstr "خطای در تراکنش"
 
-#: addons/includes/languages/trans_addons.php:851 addons/lib/mvc/models/commit.php:55
+#: addons/includes/languages/trans_addons.php:882
 msgid "Transaction Error"
 msgstr "خطا در تراکنش"
 
-#: addons/includes/languages/trans_addons.php:852 lib/utility.php:356
+#: addons/includes/languages/trans_addons.php:883 lib/utility.php:356
 msgid "year"
 msgstr "سال"
 
-#: addons/includes/languages/trans_addons.php:853 lib/utility.php:357
+#: addons/includes/languages/trans_addons.php:884 lib/utility.php:357
 msgid "month"
 msgstr "ماه"
 
-#: addons/includes/languages/trans_addons.php:854 lib/utility.php:358
+#: addons/includes/languages/trans_addons.php:885 lib/utility.php:358
 msgid "week"
 msgstr "هفته"
 
-#: addons/includes/languages/trans_addons.php:855 lib/utility.php:359
+#: addons/includes/languages/trans_addons.php:886 lib/utility.php:359
 msgid "day"
 msgstr "روز"
 
-#: addons/includes/languages/trans_addons.php:856 lib/utility.php:360
+#: addons/includes/languages/trans_addons.php:887 lib/utility.php:360
 #: lib/utility/human.php:45
 msgid "hour"
 msgstr "ساعت"
 
-#: addons/includes/languages/trans_addons.php:857 lib/utility.php:361
+#: addons/includes/languages/trans_addons.php:888 lib/utility.php:361
 #: lib/utility/human.php:53
 msgid "minute"
 msgstr "دقیقه"
 
-#: addons/includes/languages/trans_addons.php:858 lib/utility.php:362
+#: addons/includes/languages/trans_addons.php:889 lib/utility.php:362
 msgid "second"
 msgstr "ثانیه"
 
-#: addons/includes/languages/trans_addons.php:859 lib/utility.php:380
+#: addons/includes/languages/trans_addons.php:890 lib/utility.php:380
 msgid "ago"
 msgstr "قبل"
 
-#: addons/includes/languages/trans_addons.php:860
+#: addons/includes/languages/trans_addons.php:891
 msgid ","
 msgstr " و "
 
-#: addons/includes/languages/trans_addons.php:861
+#: addons/includes/languages/trans_addons.php:892
 msgid " ,"
 msgstr " و "
 
-#: addons/includes/languages/trans_addons.php:862
+#: addons/includes/languages/trans_addons.php:893
 msgid ", "
 msgstr " و "
 
-#: addons/includes/languages/trans_addons.php:863 lib/utility.php:380
+#: addons/includes/languages/trans_addons.php:894 lib/utility.php:380
 msgid "s "
 msgstr " "
 
-#: addons/includes/languages/trans_addons.php:864 lib/utility.php:365
+#: addons/includes/languages/trans_addons.php:895 lib/utility.php:365
 msgid "A few seconds ago"
 msgstr "چندثانیه پیش"
 
-#: addons/includes/languages/trans_addons.php:865 lib/utility/upload.php:113
+#: addons/includes/languages/trans_addons.php:896 lib/utility/upload.php:113
 msgid "item"
 msgstr "آیتم"
 
-#: addons/includes/languages/trans_addons.php:866
+#: addons/includes/languages/trans_addons.php:897
 msgid "empty"
 msgstr "خالی"
 
-#: addons/includes/languages/trans_addons.php:867 lib/utility/upload.php:118
+#: addons/includes/languages/trans_addons.php:898 lib/utility/upload.php:118
 msgid "NaN"
 msgstr "-"
 
-#: addons/includes/languages/trans_addons.php:868 lib/utility/upload.php:92
+#: addons/includes/languages/trans_addons.php:899 lib/utility/upload.php:92
 msgid "Byte"
 msgstr "بایت"
 
-#: addons/includes/languages/trans_addons.php:869 lib/utility/upload.php:92
+#: addons/includes/languages/trans_addons.php:900 lib/utility/upload.php:92
 msgid "KB"
 msgstr "کیلوبایت"
 
-#: addons/includes/languages/trans_addons.php:870 lib/utility/upload.php:92
+#: addons/includes/languages/trans_addons.php:901 lib/utility/upload.php:92
 msgid "MB"
 msgstr "مگابایت"
 
-#: addons/includes/languages/trans_addons.php:871 lib/utility/upload.php:92
+#: addons/includes/languages/trans_addons.php:902 lib/utility/upload.php:92
 msgid "GB"
 msgstr "گیگابایت"
 
-#: addons/includes/languages/trans_addons.php:872 lib/utility/upload.php:92
+#: addons/includes/languages/trans_addons.php:903 lib/utility/upload.php:92
 msgid "TB"
 msgstr "ترابایت"
 
-#: addons/includes/languages/trans_addons.php:873 lib/utility/upload.php:92
+#: addons/includes/languages/trans_addons.php:904 lib/utility/upload.php:92
 msgid "PB"
 msgstr "پترابایت"
 
-#: addons/includes/languages/trans_addons.php:874 addons/lib/mvc/models/cp.php:219
+#: addons/includes/languages/trans_addons.php:905
 msgid "id does not exist!"
 msgstr "این کد در سیستم وجود ندارد!"
 
-#: addons/includes/languages/trans_addons.php:875 addons/lib/mvc/models/cp.php:142
+#: addons/includes/languages/trans_addons.php:906
 msgid "all require fields must fill"
 msgstr "تمام رکوردهای الزامی‌باید پر شوند"
 
-#: addons/includes/languages/trans_addons.php:876 addons/lib/mvc/models/cp.php:148
+#: addons/includes/languages/trans_addons.php:907
 msgid "some fields must be change for update!"
 msgstr "برای بروزرسانی باید حداقل یک فیلد را تغییر دهید!"
 
-#: addons/includes/languages/trans_addons.php:877
+#: addons/includes/languages/trans_addons.php:908
 msgid "ermile"
 msgstr "ارمایل"
 
-#: addons/includes/languages/trans_addons.php:878
+#: addons/includes/languages/trans_addons.php:909
 msgid "Made in IRAN"
 msgstr "ساخت ایران"
 
-#: addons/includes/languages/trans_addons.php:879
+#: addons/includes/languages/trans_addons.php:910
 msgid "Iran"
 msgstr "ایران"
 
-#: addons/includes/languages/trans_addons.php:880
+#: addons/includes/languages/trans_addons.php:911
 msgid "iran"
 msgstr "ایران"
 
-#: addons/includes/languages/trans_addons.php:881
+#: addons/includes/languages/trans_addons.php:912
 msgid "qom"
 msgstr "قم"
 
-#: addons/includes/languages/trans_addons.php:882 lib/form.php:74
-#: lib/view/optimize.php:29 lib/view/optimize.php:33
+#: addons/includes/languages/trans_addons.php:913
 msgid "submit"
 msgstr "تایید"
 
-#: addons/includes/languages/trans_addons.php:883 lib/view/optimize.php:37
+#: addons/includes/languages/trans_addons.php:914
 msgid "save"
 msgstr "ذخیره"
 
-#: addons/includes/languages/trans_addons.php:884
-#: addons/lib/mvc/controllers/url.php:46 lib/controller.php:697
+#: addons/includes/languages/trans_addons.php:915 lib/controller.php:810
+#: lib/controller/url.php:46
 msgid "add new"
 msgstr "افزودن"
 
-#: addons/includes/languages/trans_addons.php:885
+#: addons/includes/languages/trans_addons.php:916
 msgid "signin"
 msgstr "ورود"
 
-#: addons/includes/languages/trans_addons.php:886
+#: addons/includes/languages/trans_addons.php:917
 msgid "sign in"
 msgstr "ورود"
 
-#: addons/includes/languages/trans_addons.php:888
+#: addons/includes/languages/trans_addons.php:918
+msgid "signup"
+msgstr "ثبت نام"
+
+#: addons/includes/languages/trans_addons.php:919
 msgid "sign up"
 msgstr "ثبت نام"
 
-#: addons/includes/languages/trans_addons.php:889
+#: addons/includes/languages/trans_addons.php:920
 msgid "register"
 msgstr "ثبت نام"
 
-#: addons/includes/languages/trans_addons.php:890
+#: addons/includes/languages/trans_addons.php:921
 msgid "home"
 msgstr "خانه"
 
-#: addons/includes/languages/trans_addons.php:891 lib/view/twigAddons.php:350
+#: addons/includes/languages/trans_addons.php:922 lib/view/twigAddons.php:350
 msgid "Home"
 msgstr "صفحه نخست"
 
-#: addons/includes/languages/trans_addons.php:892
+#: addons/includes/languages/trans_addons.php:923
 msgid "homepage"
 msgstr "صفحه نخست"
 
-#: addons/includes/languages/trans_addons.php:893 lib/view/twigAddons.php:335
+#: addons/includes/languages/trans_addons.php:924 lib/view/twigAddons.php:335
 msgid "Homepage"
 msgstr "صفحه نخست"
 
-#: addons/includes/languages/trans_addons.php:894
+#: addons/includes/languages/trans_addons.php:925
 msgid "admin"
 msgstr "ادمین"
 
-#: addons/includes/languages/trans_addons.php:895 lib/permission.php:30
+#: addons/includes/languages/trans_addons.php:926 lib/permission.php:30
 msgid "cp"
 msgstr "کنترل‌پنل"
 
-#: addons/includes/languages/trans_addons.php:896
+#: addons/includes/languages/trans_addons.php:927
 msgid "Cp"
 msgstr "کنترل‌پنل"
 
-#: addons/includes/languages/trans_addons.php:897
+#: addons/includes/languages/trans_addons.php:928
 msgid "account"
 msgstr "اکانت"
 
-#: addons/includes/languages/trans_addons.php:898
+#: addons/includes/languages/trans_addons.php:929
 msgid "SiteContent"
 msgstr "محتوای سایت"
 
-#: addons/includes/languages/trans_addons.php:899
+#: addons/includes/languages/trans_addons.php:930
 msgid "Options"
 msgstr "تنظیمات"
 
-#: addons/includes/languages/trans_addons.php:900
+#: addons/includes/languages/trans_addons.php:931
 msgid "Back to"
 msgstr "برگشت به"
 
-#: addons/includes/languages/trans_addons.php:901
+#: addons/includes/languages/trans_addons.php:932
 msgid "Actions"
 msgstr "عملیات"
 
-#: addons/includes/languages/trans_addons.php:902
+#: addons/includes/languages/trans_addons.php:933
 msgid "Add New Record"
 msgstr "افزودن رکورد جدید"
 
-#: addons/includes/languages/trans_addons.php:903
+#: addons/includes/languages/trans_addons.php:934
 msgid "delete record"
 msgstr "حذف رکورد"
 
-#: addons/includes/languages/trans_addons.php:904
+#: addons/includes/languages/trans_addons.php:935
 msgid "seriously, are you sure? There's no coming back."
 msgstr "مطمئنید؟ بعد از حذف امکان  بازگشت وجود ندارد."
 
-#: addons/includes/languages/trans_addons.php:905
+#: addons/includes/languages/trans_addons.php:936
 msgid "or"
 msgstr "یا"
 
-#: addons/includes/languages/trans_addons.php:906
+#: addons/includes/languages/trans_addons.php:937
 msgid "Delete"
 msgstr "حذف"
 
-#: addons/includes/languages/trans_addons.php:907
-msgid "Posts"
-msgstr "نوشته‌ها"
-
-#: addons/includes/languages/trans_addons.php:908
+#: addons/includes/languages/trans_addons.php:938
 msgid "Pages"
 msgstr "صفحات"
 
-#: addons/includes/languages/trans_addons.php:909
+#: addons/includes/languages/trans_addons.php:939
 msgid "Terms"
 msgstr "عبارات"
 
-#: addons/includes/languages/trans_addons.php:910
+#: addons/includes/languages/trans_addons.php:940
 msgid "Attachments"
 msgstr "ضمیمه‌ها"
 
-#: addons/includes/languages/trans_addons.php:911
+#: addons/includes/languages/trans_addons.php:941
 msgid "Comments"
 msgstr "دیدگاه‌ها"
 
-#: addons/includes/languages/trans_addons.php:912
+#: addons/includes/languages/trans_addons.php:942
 msgid "Visitors"
 msgstr "بازدیدکنندگان"
 
-#: addons/includes/languages/trans_addons.php:913
+#: addons/includes/languages/trans_addons.php:943
 msgid "My Profile"
 msgstr "پروفایل من"
 
-#: addons/includes/languages/trans_addons.php:914
+#: addons/includes/languages/trans_addons.php:944
 #: addons/lib/telegram/commands/menu_profile.php:42
 #: addons/lib/telegram/commands/menu_profile.php:86
 msgid "Profile"
 msgstr "پروفایل"
 
-#: addons/includes/languages/trans_addons.php:915
+#: addons/includes/languages/trans_addons.php:945
 msgid "Lock Screen"
 msgstr "قفل‌کردن"
 
-#: addons/includes/languages/trans_addons.php:916
+#: addons/includes/languages/trans_addons.php:946
 msgid "Logout"
 msgstr "خروج از سیستم"
 
-#: addons/includes/languages/trans_addons.php:917
+#: addons/includes/languages/trans_addons.php:947
 msgid "Powered by Dash."
 msgstr "قدرت گرفته از دش."
 
-#: addons/includes/languages/trans_addons.php:918
+#: addons/includes/languages/trans_addons.php:948
 msgid "Powered by Ermile."
 msgstr "قدرت گرفته از ارمایل."
 
-#: addons/includes/languages/trans_addons.php:919
+#: addons/includes/languages/trans_addons.php:949
 msgid "All right reserved."
 msgstr "تمام حقوق محفوظ است."
 
-#: addons/includes/languages/trans_addons.php:920
+#: addons/includes/languages/trans_addons.php:950
 msgid "Comming Soon"
 msgstr "بزودی"
 
-#: addons/includes/languages/trans_addons.php:921
+#: addons/includes/languages/trans_addons.php:951
 msgid "Fantastic"
 msgstr "خارق العاده"
 
-#: addons/includes/languages/trans_addons.php:922
+#: addons/includes/languages/trans_addons.php:952
 msgid "Copy"
 msgstr "کپی"
 
-#: addons/includes/languages/trans_addons.php:923
+#: addons/includes/languages/trans_addons.php:953
 msgid "Cut"
 msgstr "کات"
 
-#: addons/includes/languages/trans_addons.php:924
+#: addons/includes/languages/trans_addons.php:954
 msgid "Successfully"
 msgstr "با موفقیت انجام شد"
 
-#: addons/includes/languages/trans_addons.php:925
+#: addons/includes/languages/trans_addons.php:955
 msgid "Login Successfully"
 msgstr "با موفقیت وارد سیستم شدید"
 
-#: addons/includes/languages/trans_addons.php:926
+#: addons/includes/languages/trans_addons.php:956
 msgid "Login failed!"
 msgstr "ورود به سیستم ناموفق بود!"
 
-#: addons/includes/languages/trans_addons.php:927
+#: addons/includes/languages/trans_addons.php:957
 msgid "Mobile or password is incorrect"
 msgstr "موبایل یا کلمه عبور اشتباه است"
 
-#: addons/includes/languages/trans_addons.php:928
+#: addons/includes/languages/trans_addons.php:958
 msgid "Please forward this message to administrator"
 msgstr "لطفا این پیغام را برای مدیر سیستم ارسال کنید"
 
-#: addons/includes/languages/trans_addons.php:929
+#: addons/includes/languages/trans_addons.php:959
 msgid "Please enter title"
 msgstr "لطفا عنوان را وارد کنید"
 
-#: addons/includes/languages/trans_addons.php:936
+#: addons/includes/languages/trans_addons.php:966
 msgid "page"
 msgstr "صفحه"
 
-#: addons/includes/languages/trans_addons.php:937
+#: addons/includes/languages/trans_addons.php:967
 msgid "If you want to change password enter it, else leave it blank"
 msgstr ""
 "در صورت تمایل به تغییر گذرواژه آن را وارد کنید،‌ در غیر این ‌صورت این فیلد را خالی "
 "بگذارید"
 
-#: addons/includes/languages/trans_addons.php:938
+#: addons/includes/languages/trans_addons.php:968
 msgid "Enter password within 5 to 40 character"
 msgstr "گذرواژه‌ای بین ۵ تا ۴۰ کاراکتر وارد کنید"
 
-#: addons/includes/languages/trans_addons.php:939
+#: addons/includes/languages/trans_addons.php:969
 msgid "post"
 msgstr "نوشته"
 
-#: addons/includes/languages/trans_addons.php:940
+#: addons/includes/languages/trans_addons.php:970
 msgid "tag"
 msgstr "کلیدواژه"
 
-#: addons/includes/languages/trans_addons.php:941
+#: addons/includes/languages/trans_addons.php:971
 msgid "filecategory"
 msgstr "دسته‌بندی فایل‌ها"
 
-#: addons/includes/languages/trans_addons.php:942
+#: addons/includes/languages/trans_addons.php:972
 msgid "File category"
 msgstr "دسته‌بندی فایل‌ها"
 
-#: addons/includes/languages/trans_addons.php:943
+#: addons/includes/languages/trans_addons.php:973
 msgid "File Category"
 msgstr "دسته‌بندی فایل‌ها"
 
-#: addons/includes/languages/trans_addons.php:944
+#: addons/includes/languages/trans_addons.php:974
 msgid "Filecategories"
 msgstr "دسته‌بندی فایل‌ها"
 
-#: addons/includes/languages/trans_addons.php:945
+#: addons/includes/languages/trans_addons.php:975
 msgid "attachment"
 msgstr "ضمیمه"
 
-#: addons/includes/languages/trans_addons.php:946
+#: addons/includes/languages/trans_addons.php:976
 msgid "option"
 msgstr "تنظیمات"
 
-#: addons/includes/languages/trans_addons.php:947
+#: addons/includes/languages/trans_addons.php:977
 msgid "search"
 msgstr "جستجو"
 
-#: addons/includes/languages/trans_addons.php:948
+#: addons/includes/languages/trans_addons.php:978
 msgid "upload"
 msgstr "بارگذاری"
 
-#: addons/includes/languages/trans_addons.php:949
+#: addons/includes/languages/trans_addons.php:979
 msgid "View"
 msgstr "نمایش"
 
-#: addons/includes/languages/trans_addons.php:950
+#: addons/includes/languages/trans_addons.php:980
 msgid "visitor"
 msgstr "بازدیدکننده"
 
-#: addons/includes/languages/trans_addons.php:951
+#: addons/includes/languages/trans_addons.php:981
 msgid "Editor"
 msgstr "ویراستار"
 
-#: addons/includes/languages/trans_addons.php:952
+#: addons/includes/languages/trans_addons.php:982
 msgid "editor"
 msgstr "ویراستار"
 
-#: addons/includes/languages/trans_addons.php:953
+#: addons/includes/languages/trans_addons.php:983
 msgid "Admin"
 msgstr "مدیریت"
 
-#: addons/includes/languages/trans_addons.php:954
+#: addons/includes/languages/trans_addons.php:984
 msgid "Administrator"
 msgstr "مدیر"
 
-#: addons/includes/languages/trans_addons.php:955
+#: addons/includes/languages/trans_addons.php:985
 msgid "Writer"
 msgstr "نویسنده"
 
-#: addons/includes/languages/trans_addons.php:956
+#: addons/includes/languages/trans_addons.php:986
 msgid "utility"
 msgstr "ابزار"
 
-#: addons/includes/languages/trans_addons.php:957
+#: addons/includes/languages/trans_addons.php:987
 msgid "Utility"
 msgstr "ابزارها"
 
-#: addons/includes/languages/trans_addons.php:958
+#: addons/includes/languages/trans_addons.php:988
 msgid "tools"
 msgstr "ابزارها"
 
-#: addons/includes/languages/trans_addons.php:959
+#: addons/includes/languages/trans_addons.php:989
 msgid "tool"
 msgstr "ابزار"
 
-#: addons/includes/languages/trans_addons.php:960
+#: addons/includes/languages/trans_addons.php:990
 msgid "Chart must be contain at least 2 column!"
 msgstr "نمودار باید حداقل شامل دو ستون داده‌ای باشد!"
 
-#: addons/includes/languages/trans_addons.php:961
+#: addons/includes/languages/trans_addons.php:991
 msgid "Data not exist!"
 msgstr "داده‌ای برای نمایش وجود ندارد!"
 
-#: addons/includes/languages/trans_addons.php:964
+#: addons/includes/languages/trans_addons.php:993
+msgid "between 5-40 character"
+msgstr "بین ۵ تا ۴۰ کاراکتر."
+
+#: addons/includes/languages/trans_addons.php:994
 msgid "between 5-40 character. be tricky!"
 msgstr "بین ۵ تا ۴۰ کاراکتر. در انتخاب کلمه عبور دقت به خرج دهید"
 
-#: addons/includes/languages/trans_addons.php:967
+#: addons/includes/languages/trans_addons.php:995
+msgid "Login"
+msgstr "ورود به سیستم"
+
+#: addons/includes/languages/trans_addons.php:996
+msgid "Create an account"
+msgstr "اکانت بسازید"
+
+#: addons/includes/languages/trans_addons.php:997
 msgid "Change password"
 msgstr "کلمه عبور"
 
-#: addons/includes/languages/trans_addons.php:968
+#: addons/includes/languages/trans_addons.php:998
 msgid "SMS Delivery"
 msgstr "رسید دریافت پیامک"
 
-#: addons/includes/languages/trans_addons.php:969
+#: addons/includes/languages/trans_addons.php:999
 msgid "SMS Callback"
 msgstr "پیامک‌های دریافتی"
 
-#: addons/includes/languages/trans_addons.php:970
-#: addons/lib/mvc/controllers/url.php:49 lib/controller.php:700
+#: addons/includes/languages/trans_addons.php:1000 lib/controller.php:813
+#: lib/controller/url.php:49
 msgid "edit"
 msgstr "ویرایش"
 
-#: addons/includes/languages/trans_addons.php:971
+#: addons/includes/languages/trans_addons.php:1001
 msgid "book"
 msgstr "کتاب"
 
-#: addons/includes/languages/trans_addons.php:972
+#: addons/includes/languages/trans_addons.php:1002
 msgid "books"
 msgstr "کتاب‌ها"
 
-#: addons/includes/languages/trans_addons.php:974
+#: addons/includes/languages/trans_addons.php:1004
 msgid "Bookcategories"
 msgstr "دسته‌بندی کتاب"
 
-#: addons/includes/languages/trans_addons.php:975
+#: addons/includes/languages/trans_addons.php:1005
 msgid "bookcategory"
 msgstr "دسته‌بندی کتاب"
 
-#: addons/includes/languages/trans_addons.php:978
+#: addons/includes/languages/trans_addons.php:1008
 msgid "Duplicate - File exist"
 msgstr "تکراری - فایل وجود دارد"
 
-#: addons/includes/languages/trans_addons.php:979 lib/utility/upload.php:485
+#: addons/includes/languages/trans_addons.php:1009 lib/utility/upload.php:485
 msgid "Fail on tranfering file"
 msgstr "خطا در انتقال فایل"
 
-#: addons/includes/languages/trans_addons.php:980 lib/dbconnection.php:194
-#: lib/dbconnection.php:206
-msgid "Error"
-msgstr "خطا"
-
-#: addons/includes/languages/trans_addons.php:981 lib/utility/upload/check.php:20
+#: addons/includes/languages/trans_addons.php:1010 lib/utility/upload/check.php:20
 msgid "Invalid parameters"
 msgstr "پارامتر اشتباه"
 
-#: addons/includes/languages/trans_addons.php:982 lib/utility/upload/check.php:32
+#: addons/includes/languages/trans_addons.php:1011 lib/utility/upload/check.php:32
 msgid "No file sent"
 msgstr "فایلی ارسال نشده"
 
-#: addons/includes/languages/trans_addons.php:983 lib/utility/file.php:535
+#: addons/includes/languages/trans_addons.php:1012 lib/utility/file.php:535
 #: lib/utility/upload/check.php:38 lib/utility/upload/check.php:73
 msgid "Exceeded filesize limit"
 msgstr "ظرفیت فایل بیش از حد مجاز"
 
-#: addons/includes/languages/trans_addons.php:984 lib/utility/upload/check.php:43
+#: addons/includes/languages/trans_addons.php:1013 lib/utility/upload/check.php:43
 msgid "Unknown errors"
 msgstr "خطای نامشخص"
 
-#: addons/includes/languages/trans_addons.php:985 lib/utility/upload/check.php:101
+#: addons/includes/languages/trans_addons.php:1014 lib/utility/upload/check.php:101
 msgid "We don't support this type of file"
 msgstr "ما این نوع فایل را پشتیبانی نمیکنیم"
 
-#: addons/includes/languages/trans_addons.php:987
+#: addons/includes/languages/trans_addons.php:1016
 msgid "Socialnetwork"
 msgstr "شبکه‌های اجتماعی"
 
-#: addons/includes/languages/trans_addons.php:988
+#: addons/includes/languages/trans_addons.php:1017
 msgid "socialnetwork"
 msgstr "شبکه‌اجتماعی"
 
-#: addons/includes/languages/trans_addons.php:989
+#: addons/includes/languages/trans_addons.php:1018
 msgid "Page Views"
 msgstr "بازدید صفحات"
 
-#: addons/includes/languages/trans_addons.php:990
+#: addons/includes/languages/trans_addons.php:1019
 msgid "Size"
 msgstr "اندازه"
 
-#: addons/includes/languages/trans_addons.php:991
+#: addons/includes/languages/trans_addons.php:1020
 msgid "Ext"
 msgstr "پسوند"
 
-#: addons/includes/languages/trans_addons.php:992
+#: addons/includes/languages/trans_addons.php:1021
 msgid "pages"
 msgstr "صفحه‌ها"
 
-#: addons/includes/languages/trans_addons.php:993
+#: addons/includes/languages/trans_addons.php:1022
 msgid "tags"
 msgstr "کلیدواژه‌ها"
 
-#: addons/includes/languages/trans_addons.php:994
+#: addons/includes/languages/trans_addons.php:1023
 msgid "categories"
 msgstr "دسته‌بندی‌ها"
 
-#: addons/includes/languages/trans_addons.php:995
+#: addons/includes/languages/trans_addons.php:1024
 msgid "filecategories"
 msgstr "دسته‌بندی فایل‌ها"
 
-#: addons/includes/languages/trans_addons.php:996
+#: addons/includes/languages/trans_addons.php:1025
 msgid "bookcategories"
 msgstr "دسته‌بندی کتاب‌ها"
 
-#: addons/includes/languages/trans_addons.php:997
+#: addons/includes/languages/trans_addons.php:1026
 msgid "permissions"
 msgstr "سطوح‌دسترسی"
 
-#: addons/includes/languages/trans_addons.php:998
+#: addons/includes/languages/trans_addons.php:1027
 msgid "Permissions"
 msgstr "سطوح‌دسترسی"
 
-#: addons/includes/languages/trans_addons.php:999
+#: addons/includes/languages/trans_addons.php:1028
 msgid "logout"
 msgstr "خروج از سیستم"
 
-#: addons/includes/languages/trans_addons.php:1000
+#: addons/includes/languages/trans_addons.php:1029
 msgid "lock"
 msgstr "قفل سیستم"
 
-#: addons/includes/languages/trans_addons.php:1001
+#: addons/includes/languages/trans_addons.php:1030
 msgid "profile"
 msgstr "پروفایل"
 
-#: addons/includes/languages/trans_addons.php:1002
+#: addons/includes/languages/trans_addons.php:1031
 msgid "You can't view this part of system"
 msgstr "شما نمی‌توانید این بخش از سیستم را مشاهده کنید"
 
-#: addons/includes/languages/trans_addons.php:1003 lib/utility/permission--.php:162
+#: addons/includes/languages/trans_addons.php:1032 lib/utility/permission--.php:162
 msgid "You can't add new"
 msgstr "شما نمی‌توانید اضافه کنید"
 
-#: addons/includes/languages/trans_addons.php:1004
+#: addons/includes/languages/trans_addons.php:1033
 msgid "you can't edit"
 msgstr "شما نمی‌توانید ویرایش کنید"
 
-#: addons/includes/languages/trans_addons.php:1005 lib/utility/permission--.php:170
+#: addons/includes/languages/trans_addons.php:1034 lib/utility/permission--.php:170
 msgid "You can't delete"
 msgstr "شما نمی‌توانید حذف کنید"
 
-#: addons/includes/languages/trans_addons.php:1006
+#: addons/includes/languages/trans_addons.php:1035
 msgid "You can't access to this part of system"
 msgstr "شما نمی‌توانید به این بخش از سیستم دسترسی داشته باشید"
 
-#: addons/includes/languages/trans_addons.php:1007 lib/utility/permission--.php:177
+#: addons/includes/languages/trans_addons.php:1036 lib/utility/permission--.php:177
 msgid "Because of your permission"
 msgstr "به‌دلیل سطح‌دسترسی‌ شما"
 
-#: addons/includes/languages/trans_addons.php:1008 lib/utility/permission--.php:184
+#: addons/includes/languages/trans_addons.php:1037 lib/utility/permission--.php:184
 msgid "You can't access to this page!"
 msgstr "شما نمی‌توانید به این صفحه دسترسی داشته باشید!"
 
-#: addons/includes/languages/trans_addons.php:1011
+#: addons/includes/languages/trans_addons.php:1038
+msgid "Site"
+msgstr "سایت"
+
+#: addons/includes/languages/trans_addons.php:1039
+msgid "For multilanguage sites enter title in English and translate it"
+msgstr ""
+"برای سایت‌های چندزبانه، این بخش را به انگلیسی وارد نموده و توسط برنامه مترجم آن را "
+"به سایر زبان‌ها ترجمه کنید"
+
+#: addons/includes/languages/trans_addons.php:1040
 msgid "main URL"
 msgstr "آدرس اصلی"
 
-#: addons/includes/languages/trans_addons.php:1030
+#: addons/includes/languages/trans_addons.php:1041
+msgid "Enable coming soon"
+msgstr "نمایش صفحه بزودی"
+
+#: addons/includes/languages/trans_addons.php:1042
+msgid "debug mode status"
+msgstr "وضعیت نمایش خطا"
+
+#: addons/includes/languages/trans_addons.php:1043
+msgid "Save as cookie"
+msgstr "ذخیره به عنوان کوکی"
+
+#: addons/includes/languages/trans_addons.php:1044
+msgid "Log visitors"
+msgstr "ذخیره عملکرد بازدیدکنندگان"
+
+#: addons/includes/languages/trans_addons.php:1045
+msgid "Use main account"
+msgstr "استفاده از اکانت یکپارچه"
+
+#: addons/includes/languages/trans_addons.php:1046
+msgid "Main account"
+msgstr "اکانت یکپارچه"
+
+#: addons/includes/languages/trans_addons.php:1047
+msgid "Default Language"
+msgstr "زبان پیش‌فرض"
+
+#: addons/includes/languages/trans_addons.php:1048
+msgid "Feature status"
+msgstr "وضعیت ویژگی‌ها"
+
+#: addons/includes/languages/trans_addons.php:1049
+msgid "Use fake subdomain"
+msgstr "شبیه‌سازی ساب‌دامین"
+
+#: addons/includes/languages/trans_addons.php:1050
+msgid "Use SMS service"
+msgstr "استفاده از سرویس پیامک"
+
+#: addons/includes/languages/trans_addons.php:1051
+msgid "Use social networks"
+msgstr "استفاده از شبکه‌های اجتماعی"
+
+#: addons/includes/languages/trans_addons.php:1052
+msgid "Use account"
+msgstr "استفاده از اکانت یکپارچه"
+
+#: addons/includes/languages/trans_addons.php:1053
+msgid "line number"
+msgstr "شماره خط"
+
+#: addons/includes/languages/trans_addons.php:1054
+msgid "apikey"
+msgstr "کلید ای‌پی‌آی"
+
+#: addons/includes/languages/trans_addons.php:1055
+msgid "Github"
+msgstr "گیت‌هاب"
+
+#: addons/includes/languages/trans_addons.php:1056
+msgid "Linkedin"
+msgstr "لینکدین"
+
+#: addons/includes/languages/trans_addons.php:1057
+msgid "Aparat"
+msgstr "آپارات"
+
+#: addons/includes/languages/trans_addons.php:1058
+msgid "Google Plus"
+msgstr "گوگل پلاس"
+
+#: addons/includes/languages/trans_addons.php:1059
 msgid "Status of sms service"
 msgstr "وضعیت سرویس پیامک"
 
-#: addons/includes/languages/trans_addons.php:1031
+#: addons/includes/languages/trans_addons.php:1060
 msgid "Kavenegar"
 msgstr "کاوه‌نگار"
 
-#: addons/includes/languages/trans_addons.php:1033
+#: addons/includes/languages/trans_addons.php:1061
+msgid "SMS service"
+msgstr "سرویس پیامک"
+
+#: addons/includes/languages/trans_addons.php:1062
 msgid "service"
 msgstr "سرویس"
 
-#: addons/includes/languages/trans_addons.php:1052 lib/utility/sms.php:33
+#: addons/includes/languages/trans_addons.php:1063
+msgid "ConsumerSecret"
+msgstr "ConsumerSecret"
+
+#: addons/includes/languages/trans_addons.php:1064
+msgid "AccessToken"
+msgstr "AccessToken"
+
+#: addons/includes/languages/trans_addons.php:1065
+msgid "AccessTokenSecret"
+msgstr "AccessTokenSecret"
+
+#: addons/includes/languages/trans_addons.php:1066
+msgid "app_id"
+msgstr "app_id"
+
+#: addons/includes/languages/trans_addons.php:1067
+msgid "app_secret"
+msgstr "app_secret"
+
+#: addons/includes/languages/trans_addons.php:1068
+msgid "redirect_url"
+msgstr "redirect_url"
+
+#: addons/includes/languages/trans_addons.php:1069
+msgid "required_scope"
+msgstr "required_scope"
+
+#: addons/includes/languages/trans_addons.php:1070
+msgid "page_id"
+msgstr "page_id"
+
+#: addons/includes/languages/trans_addons.php:1071
+msgid "access_token"
+msgstr "access_token"
+
+#: addons/includes/languages/trans_addons.php:1072
+msgid "client_token"
+msgstr "client_token"
+
+#: addons/includes/languages/trans_addons.php:1073
+msgid "Send message for"
+msgstr "ارسال پیام برای"
+
+#: addons/includes/languages/trans_addons.php:1074
+msgid "verification"
+msgstr "اعتبارسنجی"
+
+#: addons/includes/languages/trans_addons.php:1075
+msgid "recovery"
+msgstr "بازیابی"
+
+#: addons/includes/languages/trans_addons.php:1076
+msgid "changepass"
+msgstr "تغییر کلمه‌عبور"
+
+#: addons/includes/languages/trans_addons.php:1077
+msgid "Regional restriction"
+msgstr "محدودیت منطقه‌ای"
+
+#: addons/includes/languages/trans_addons.php:1078
+msgid "Message header"
+msgstr "سرصفحه پیام"
+
+#: addons/includes/languages/trans_addons.php:1079
+msgid "Message footer"
+msgstr "پاصفحه پیام"
+
+#: addons/includes/languages/trans_addons.php:1080
+msgid "Force one message"
+msgstr "اجبار به یک پیامک"
+
+#: addons/includes/languages/trans_addons.php:1081 lib/utility/sms.php:33
 msgid "We can't give service to this number"
 msgstr "متاسفانه توانایی ارائه خدمات به این شماره را نداریم"
 
-#: addons/includes/languages/trans_addons.php:1054 lib/utility/sms.php:219
+#: addons/includes/languages/trans_addons.php:1082
+msgid "Simulate SMS (Debugging)"
+msgstr "شبیه‌سازی پیامک (خطایابی)"
+
+#: addons/includes/languages/trans_addons.php:1083 lib/utility/sms.php:219
 msgid "Please set apikey and linenumber"
 msgstr "لطفا کلید رابط برنامه و شماره خط را تنظیم کنید"
 
-#: addons/includes/languages/trans_addons.php:1055
+#: addons/includes/languages/trans_addons.php:1084
 msgid "send"
 msgstr "ارسال"
 
-#: addons/includes/languages/trans_addons.php:1056 lib/utility/sms.php:212
+#: addons/includes/languages/trans_addons.php:1085 lib/utility/sms.php:212
 msgid " to "
 msgstr " به "
 
-#: addons/includes/languages/trans_addons.php:1057
+#: addons/includes/languages/trans_addons.php:1086
 msgid "until"
 msgstr "تا"
 
-#: addons/includes/languages/trans_addons.php:1058
+#: addons/includes/languages/trans_addons.php:1087
 msgid "Recovery account"
 msgstr "بازیابی اکانت"
 
-#: addons/includes/languages/trans_addons.php:1068
+#: addons/includes/languages/trans_addons.php:1088
+msgid "Send message in custom situation"
+msgstr "ارسال پیامک در شرایط سفارشی"
+
+#: addons/includes/languages/trans_addons.php:1089
+msgid "Message detail"
+msgstr "جزئیات پیامک"
+
+#: addons/includes/languages/trans_addons.php:1090
+msgid "SMS api detail"
+msgstr "جزئیات رابط برنامه‌نویسی پیامک"
+
+#: addons/includes/languages/trans_addons.php:1091
+msgid "Status of twitter sharing"
+msgstr "وضعیت بازنشر در توییتر"
+
+#: addons/includes/languages/trans_addons.php:1092
+msgid "Status of facebook sharing"
+msgstr "وضعیت بازنشر در فیس‌بوک"
+
+#: addons/includes/languages/trans_addons.php:1093
+msgid "Status of telegram sharing"
+msgstr "وضعیت بازنشر در تلگرام"
+
+#: addons/includes/languages/trans_addons.php:1094
+msgid "Allow registration"
+msgstr "اجازه ثبت‌نام کاربر جدید"
+
+#: addons/includes/languages/trans_addons.php:1095
+msgid "After login redirect to"
+msgstr "بعد از لاگین انتقال به"
+
+#: addons/includes/languages/trans_addons.php:1096
+msgid "Default permission"
+msgstr "سطح‌دسترسی پیش فرض"
+
+#: addons/includes/languages/trans_addons.php:1097
 msgid "Account Status"
 msgstr "وضعیت اکانت"
 
-#: addons/includes/languages/trans_addons.php:1075
+#: addons/includes/languages/trans_addons.php:1098
+msgid "Access with pass phrase"
+msgstr "دسترسی با عبارت گذرگاه"
+
+#: addons/includes/languages/trans_addons.php:1099
+msgid "Pass phrase key"
+msgstr "کلید عبارت گذرگاه"
+
+#: addons/includes/languages/trans_addons.php:1100
+msgid "Pass phrase value"
+msgstr "مقدار عبارت گذرگاه"
+
+#: addons/includes/languages/trans_addons.php:1101
+msgid "Allow recovery account"
+msgstr "اجازه بازیابی اکانت"
+
+#: addons/includes/languages/trans_addons.php:1102
+msgid "Status of account service"
+msgstr "وضعیت سرویس اکانت"
+
+#: addons/includes/languages/trans_addons.php:1103
+msgid "Increase account security"
+msgstr "افزایش امنیت بخش اکانت"
+
+#: addons/includes/languages/trans_addons.php:1104
 msgid "Signup Settings"
 msgstr "تنظیمات ثبت‌نام"
 
-#: addons/includes/languages/trans_addons.php:1078
+#: addons/includes/languages/trans_addons.php:1105
+msgid "Enter your registered mobile"
+msgstr "موبایل ثبت شده را وارد کنید"
+
+#: addons/includes/languages/trans_addons.php:1106
+msgid "Enter your password"
+msgstr "کلمه عبور خود را وارد کنید"
+
+#: addons/includes/languages/trans_addons.php:1107
 msgid "Mobile number exist!"
 msgstr "شماره موبایل وجود دارد!"
 
-#: addons/includes/languages/trans_addons.php:1079
+#: addons/includes/languages/trans_addons.php:1108
 msgid "Register successfully"
 msgstr "ثبت‌نام با موفقیت به انجام رسید"
 
-#: addons/includes/languages/trans_addons.php:1080
+#: addons/includes/languages/trans_addons.php:1109
 msgid "Register failed!"
 msgstr "ثبت‌نام ناموفق بود!"
 
-#: addons/includes/languages/trans_addons.php:1082
+#: addons/includes/languages/trans_addons.php:1110
+msgid "Recovery"
+msgstr "بازیابی کلمه عبور"
+
+#: addons/includes/languages/trans_addons.php:1111
 msgid "your recovery code is"
 msgstr "کد بازیابی کلمه عبور شما"
 
-#: addons/includes/languages/trans_addons.php:1083
+#: addons/includes/languages/trans_addons.php:1112
 msgid "recovery failed!"
 msgstr "بازیابی ناموفق بود!"
 
-#: addons/includes/languages/trans_addons.php:1084
+#: addons/includes/languages/trans_addons.php:1113
 msgid "Mobile number is incorrect"
 msgstr "این شماره موبایل اشتباه است."
 
-#: addons/includes/languages/trans_addons.php:1085
+#: addons/includes/languages/trans_addons.php:1114
 msgid "Verificate"
 msgstr "اعتبارسنجی"
 
-#: addons/includes/languages/trans_addons.php:1087
+#: addons/includes/languages/trans_addons.php:1115
+msgid "Verification"
+msgstr "اعتبارسنجی"
+
+#: addons/includes/languages/trans_addons.php:1116
 msgid "verify successfully."
 msgstr "اعتبارسنجی موفقیت آمیز بود."
 
-#: addons/includes/languages/trans_addons.php:1088
+#: addons/includes/languages/trans_addons.php:1117
 msgid "please Input your new password"
 msgstr "لطفا کلمه عبور جدید را وارد کنید"
 
-#: addons/includes/languages/trans_addons.php:1089
+#: addons/includes/languages/trans_addons.php:1118
 msgid "verify failed!"
 msgstr "اعتبارسنجی ناموفق بود!"
 
-#: addons/includes/languages/trans_addons.php:1090
+#: addons/includes/languages/trans_addons.php:1119
 msgid "this data is incorrect"
 msgstr "این اطلاعات اشتباه است"
 
-#: addons/includes/languages/trans_addons.php:1092
+#: addons/includes/languages/trans_addons.php:1120
+msgid "Check your mobile and enter the code"
+msgstr "پس از بررسی موبایل خود کد را وارد کنید"
+
+#: addons/includes/languages/trans_addons.php:1121
 msgid "Change Password"
 msgstr "تغییر گذرواژه"
 
-#: addons/includes/languages/trans_addons.php:1096
+#: addons/includes/languages/trans_addons.php:1122
+msgid "Current Password"
+msgstr "گذرواژه فعلی"
+
+#: addons/includes/languages/trans_addons.php:1123
+msgid "New Password"
+msgstr "گذرواژه جدید"
+
+#: addons/includes/languages/trans_addons.php:1124
+msgid "Change it"
+msgstr "تغییر بده"
+
+#: addons/includes/languages/trans_addons.php:1125
 msgid "change password successfully"
 msgstr "تغییر کلمه عبور با موفقیت به انجام رسید"
 
-#: addons/includes/languages/trans_addons.php:1097
+#: addons/includes/languages/trans_addons.php:1126
 msgid "change password failed!"
 msgstr "تغییر کلمه عبور ناموفق بود!"
 
-#: addons/includes/languages/trans_addons.php:1100
+#: addons/includes/languages/trans_addons.php:1129
 msgid "Mac"
 msgstr "مک"
 
-#: addons/includes/languages/trans_addons.php:1101
+#: addons/includes/languages/trans_addons.php:1130
 msgid "Chrome"
 msgstr "کروم"
 
-#: addons/includes/languages/trans_addons.php:1102
+#: addons/includes/languages/trans_addons.php:1131
 msgid "Gecko"
 msgstr "گکو"
 
-#: addons/includes/languages/trans_addons.php:1103
+#: addons/includes/languages/trans_addons.php:1132
 msgid "First you must enter name of permission"
 msgstr "در ابتدا نام سطح‌دسترسی جدید را وارد کنید"
 
-#: addons/includes/languages/trans_addons.php:1104
+#: addons/includes/languages/trans_addons.php:1133
 msgid "This permission name exist!"
 msgstr "این نام برای سطح‌دسترسی از قبل وجود دارد!"
 
-#: addons/includes/languages/trans_addons.php:1105
+#: addons/includes/languages/trans_addons.php:1134
 msgid "You can edit this permission"
 msgstr "شما توانایی ویرایش این سطح دسترسی را دارید"
 
-#: addons/includes/languages/trans_addons.php:1106
+#: addons/includes/languages/trans_addons.php:1135
 msgid "Define or edit user permissions to allow or block access to special pages"
 msgstr "تعریف یا ویرایش سطوح‌دسترسی برای اجازه یا ممنوع‌کردن دسترسی به صفحات خاص"
 
-#: addons/includes/languages/trans_addons.php:1107
+#: addons/includes/languages/trans_addons.php:1136
 msgid "You are editing permission"
 msgstr "شما در حال ویرایش سطح‌دسترسی"
 
-#: addons/includes/languages/trans_addons.php:1108
+#: addons/includes/languages/trans_addons.php:1137
 msgid "We send a verification code for you"
 msgstr "ما کد اعتبارسنجی را برای شما ارسال خواهیم کرد"
 
-#: addons/includes/languages/trans_addons.php:1109
+#: addons/includes/languages/trans_addons.php:1138
 msgid "We send a verification code to this number"
 msgstr "کد اعتبارسنجی به این شماره ارسال خواهد شد"
 
-#: addons/includes/languages/trans_addons.php:1110 lib/utility/sms.php:133
+#: addons/includes/languages/trans_addons.php:1139 lib/utility/sms.php:133
 msgid "You account is verified successfully"
 msgstr "اعتبارسنجی اکانت شما با موفقیت به انجام رسید"
 
-#: addons/includes/languages/trans_addons.php:1111 lib/utility/sms.php:125
+#: addons/includes/languages/trans_addons.php:1140 lib/utility/sms.php:125
 msgid "Your verification code is"
 msgstr "کد اعتبارسنجی شما"
 
-#: addons/includes/languages/trans_addons.php:1112 lib/utility/sms.php:137
+#: addons/includes/languages/trans_addons.php:1141 lib/utility/sms.php:137
 msgid "Your password is changed successfully"
 msgstr "گذرواژه شما با موفقیت تغییر یافت"
 
-#: addons/includes/languages/trans_addons.php:1113
+#: addons/includes/languages/trans_addons.php:1142
 msgid "Now we only support IRAN!"
 msgstr "در حال حاضر ما فقط به شماره‌های ایران سرویس می‌دهیم!"
 
-#: addons/includes/languages/trans_addons.php:1114
+#: addons/includes/languages/trans_addons.php:1143
 msgid "Thanks for using our service"
 msgstr "متشکریم که از سرویس ما استفاده می‌کنید"
 
-#: addons/includes/languages/trans_addons.php:1115
+#: addons/includes/languages/trans_addons.php:1144
 #: addons/lib/telegram/commands/step_register.php:45
 msgid "Dear user"
 msgstr "کاربر گرامی"
 
-#: addons/includes/languages/trans_addons.php:1116
+#: addons/includes/languages/trans_addons.php:1145
 #: addons/lib/telegram/commands/step_register.php:46
 msgid "For using this service we need to register your phone number."
 msgstr "برای استفاده از این سرویس ما نیاز به ثبت شماره موبایل شما داریم."
 
-#: addons/includes/languages/trans_addons.php:1117
+#: addons/includes/languages/trans_addons.php:1146
 #: addons/lib/telegram/commands/step_register.php:47
 msgid "Please send your number with below keyboard to complete registeration."
 msgstr "لطفا شماره خود را از طریق منوی زیر برای تکمیل ثبت‌نام ارسال نمایید."
 
-#: addons/includes/languages/trans_addons.php:1118
+#: addons/includes/languages/trans_addons.php:1147
 #: addons/lib/telegram/commands/step_register.php:114
 msgid "Dear friend"
 msgstr "دوست عزیز"
 
-#: addons/includes/languages/trans_addons.php:1119
+#: addons/includes/languages/trans_addons.php:1148
 #: addons/lib/telegram/commands/step_register.php:115
 msgid "We need your phone number to verifying your account."
 msgstr "ما برای اعتبارسنجی اکانت، نیاز به شماره موبایل شما داریم."
 
-#: addons/includes/languages/trans_addons.php:1120
+#: addons/includes/languages/trans_addons.php:1149
 #: addons/lib/telegram/commands/step_register.php:116
 msgid "If you dont want share your number, we cant presenting our services to you!"
 msgstr "اگر شما مایل به ارائه شماره خود نباشید، ما امکان سرویس‌دهی به شما را نداریم!"
 
-#: addons/includes/languages/trans_addons.php:1121
+#: addons/includes/languages/trans_addons.php:1150
 #: addons/lib/telegram/commands/step_register.php:122
 msgid "Registering user is successful."
 msgstr "ثبت‌نام کاربر با موفقیت به انجام رسید."
 
-#: addons/includes/languages/trans_addons.php:1122
+#: addons/includes/languages/trans_addons.php:1151
 #: addons/lib/telegram/commands/step_register.php:134
 msgid "Cancel registration and return to main menu"
 msgstr "انصراف از ثبت‌نام و بازگشت به منوی اصلی"
 
-#: addons/includes/languages/trans_addons.php:1123
+#: addons/includes/languages/trans_addons.php:1152
 msgid "Please only use below keyboard"
 msgstr "لطفا تنها از منوی زیر استفاده کنید"
 
-#: addons/includes/languages/trans_addons.php:1124
+#: addons/includes/languages/trans_addons.php:1153
 #: addons/lib/telegram/commands/step_register.php:143
 msgid "We need your contact!"
 msgstr "ما به مخاطب شما نیاز داریم!"
 
-#: addons/includes/languages/trans_addons.php:1125
+#: addons/includes/languages/trans_addons.php:1154
 msgid "Register User 📱"
 msgstr "ثبت کاربر  📱"
 
-#: addons/includes/languages/trans_addons.php:1126
+#: addons/includes/languages/trans_addons.php:1155
 msgid "Register User"
 msgstr "ثبت کاربر"
 
-#: addons/includes/languages/trans_addons.php:1127
+#: addons/includes/languages/trans_addons.php:1156
 #: addons/lib/telegram/commands/menu_profile.php:32
 #: addons/lib/telegram/commands/menu_profile.php:76
 #: addons/lib/telegram/commands/step_register.php:172
 msgid "Return"
 msgstr "بازگشت"
 
-#: addons/includes/languages/trans_addons.php:1128
+#: addons/includes/languages/trans_addons.php:1157
 #: addons/lib/telegram/commands/menu_profile.php:72
 msgid "Register Mobile Number 📱"
 msgstr "ثبت شماره موبایل 📱"
 
-#: addons/includes/languages/trans_addons.php:1129
+#: addons/includes/languages/trans_addons.php:1158
 #: addons/lib/telegram/commands/menu_profile.php:28
 msgid "Register Mobile Number"
 msgstr "ثبت شماره موبایل"
 
-#: addons/includes/languages/trans_addons.php:1130
+#: addons/includes/languages/trans_addons.php:1159
 #: addons/lib/telegram/commands/menu_profile.php:24
 msgid "Register Address"
 msgstr "ثبت آدرس"
 
-#: addons/includes/languages/trans_addons.php:1131
+#: addons/includes/languages/trans_addons.php:1160
 #: addons/lib/telegram/commands/menu_profile.php:43
 #: addons/lib/telegram/commands/menu_profile.php:87
 msgid "By completing your profile, help us to present better service."
 msgstr "با تکمیل پروفایل خود، به ما در ارائه سرویس بهتر کمک کنید."
 
-#: addons/includes/languages/trans_addons.php:1132
+#: addons/includes/languages/trans_addons.php:1161
 #: addons/lib/telegram/commands/menu_profile.php:44
 #: addons/lib/telegram/commands/menu_profile.php:88
 msgid "We will thank you for this."
 msgstr "ما از این اقدام شما تشکر می‌کنیم."
 
-#: addons/includes/languages/trans_addons.php:1133
+#: addons/includes/languages/trans_addons.php:1162
 msgid "Your phone number registered successfully;)"
 msgstr "شماره موبایل شما با موفقیت ثبت شد;)"
 
-#: addons/includes/languages/trans_addons.php:1134 addons/lib/telegram/log.php:418
+#: addons/includes/languages/trans_addons.php:1163 addons/lib/telegram/log.php:418
 msgid "We dont need another users contact:?)"
 msgstr "ما به مخاطب سایر کاربران نیاز نداریم:؟)"
 
-#: addons/includes/languages/trans_addons.php:1135 addons/lib/telegram/log.php:426
+#: addons/includes/languages/trans_addons.php:1164 addons/lib/telegram/log.php:426
 msgid "We need mobile number!"
 msgstr "ما به شماره موبایل نیاز داریم!"
 
-#: addons/includes/languages/trans_addons.php:1136
+#: addons/includes/languages/trans_addons.php:1165
 msgid " "
 msgstr " "
 
-#: addons/includes/languages/trans_addons.php:1137
+#: addons/includes/languages/trans_addons.php:1166
 msgid "east azerbaijan"
 msgstr "آذربایجان شرقی"
 
-#: addons/includes/languages/trans_addons.php:1138
+#: addons/includes/languages/trans_addons.php:1167
 msgid "west azerbaijan"
 msgstr "آذربایجان غربی"
 
-#: addons/includes/languages/trans_addons.php:1139
+#: addons/includes/languages/trans_addons.php:1168
 msgid "ardabil"
 msgstr "اردبیل"
 
-#: addons/includes/languages/trans_addons.php:1140
+#: addons/includes/languages/trans_addons.php:1169
 msgid "esfahan"
 msgstr "اصفهان"
 
-#: addons/includes/languages/trans_addons.php:1141
+#: addons/includes/languages/trans_addons.php:1170
 msgid "alborz"
 msgstr "البرز"
 
-#: addons/includes/languages/trans_addons.php:1142
+#: addons/includes/languages/trans_addons.php:1171
 msgid "eilam"
 msgstr "ایلام"
 
-#: addons/includes/languages/trans_addons.php:1143
+#: addons/includes/languages/trans_addons.php:1172
 msgid "bushehr"
 msgstr "بوشهر"
 
-#: addons/includes/languages/trans_addons.php:1144
+#: addons/includes/languages/trans_addons.php:1173
 msgid "tehran"
 msgstr "تهران"
 
-#: addons/includes/languages/trans_addons.php:1145
+#: addons/includes/languages/trans_addons.php:1174
 msgid "chaharmahal and bakhtiari"
 msgstr "چهارمحال و بختیاری"
 
-#: addons/includes/languages/trans_addons.php:1146
+#: addons/includes/languages/trans_addons.php:1175
 msgid "south khorasan"
 msgstr "خراسان جنوبی"
 
-#: addons/includes/languages/trans_addons.php:1147
+#: addons/includes/languages/trans_addons.php:1176
 msgid "razavi khorasan"
 msgstr "خراسان رضوی"
 
-#: addons/includes/languages/trans_addons.php:1148
+#: addons/includes/languages/trans_addons.php:1177
 msgid "north khorasan"
 msgstr "خراسان شمالی"
 
-#: addons/includes/languages/trans_addons.php:1149
+#: addons/includes/languages/trans_addons.php:1178
 msgid "khuzestan"
 msgstr "خوزستان"
 
-#: addons/includes/languages/trans_addons.php:1150
+#: addons/includes/languages/trans_addons.php:1179
 msgid "zanjan"
 msgstr "زنجان"
 
-#: addons/includes/languages/trans_addons.php:1151
+#: addons/includes/languages/trans_addons.php:1180
 msgid "semnan"
 msgstr "سمنان"
 
-#: addons/includes/languages/trans_addons.php:1152
+#: addons/includes/languages/trans_addons.php:1181
 msgid "sistan and baluchestan"
 msgstr "سیستان و بلوچستان"
 
-#: addons/includes/languages/trans_addons.php:1153
+#: addons/includes/languages/trans_addons.php:1182
 msgid "fars"
 msgstr "فارس"
 
-#: addons/includes/languages/trans_addons.php:1154
+#: addons/includes/languages/trans_addons.php:1183
 msgid "qazvin"
 msgstr "قزوین"
 
-#: addons/includes/languages/trans_addons.php:1155
+#: addons/includes/languages/trans_addons.php:1184
 msgid "kordestan"
 msgstr "کردستان"
 
-#: addons/includes/languages/trans_addons.php:1156
+#: addons/includes/languages/trans_addons.php:1185
 msgid "kerman"
 msgstr "کرمان"
 
-#: addons/includes/languages/trans_addons.php:1157
+#: addons/includes/languages/trans_addons.php:1186
 msgid "kermanshah"
 msgstr "کرمانشاه"
 
-#: addons/includes/languages/trans_addons.php:1158
+#: addons/includes/languages/trans_addons.php:1187
 msgid "kohgiluyeh and boyerahmad"
 msgstr "کهکیلویه و بویراحمد"
 
-#: addons/includes/languages/trans_addons.php:1159
+#: addons/includes/languages/trans_addons.php:1188
 msgid "golestan"
 msgstr "گلستان"
 
-#: addons/includes/languages/trans_addons.php:1160
+#: addons/includes/languages/trans_addons.php:1189
 msgid "gilan"
 msgstr "گیلان"
 
-#: addons/includes/languages/trans_addons.php:1161
+#: addons/includes/languages/trans_addons.php:1190
 msgid "lorestan"
 msgstr "لرستان"
 
-#: addons/includes/languages/trans_addons.php:1162
+#: addons/includes/languages/trans_addons.php:1191
 msgid "mazandaran"
 msgstr "مازندران"
 
-#: addons/includes/languages/trans_addons.php:1163
+#: addons/includes/languages/trans_addons.php:1192
 msgid "markazi"
 msgstr "مرکزی"
 
-#: addons/includes/languages/trans_addons.php:1164
+#: addons/includes/languages/trans_addons.php:1193
 msgid "hormozgan"
 msgstr "هرمزگان"
 
-#: addons/includes/languages/trans_addons.php:1165
+#: addons/includes/languages/trans_addons.php:1194
 msgid "hamedan"
 msgstr "همدان"
 
-#: addons/includes/languages/trans_addons.php:1166
+#: addons/includes/languages/trans_addons.php:1195
 msgid "yazd"
 msgstr "یزد"
 
-#: addons/includes/languages/trans_addons.php:1171
+#: addons/includes/languages/trans_addons.php:1198
 msgid "Edit your profile"
 msgstr "پروفایل خود را ویرایش کنید"
 
-#: addons/includes/languages/trans_addons.php:1172
+#: addons/includes/languages/trans_addons.php:1199
 msgid "Avatar of you"
 msgstr "آواتار شما"
 
-#: addons/includes/languages/trans_addons.php:1173
+#: addons/includes/languages/trans_addons.php:1200
 msgid "Hello"
 msgstr "سلام"
 
-#: addons/includes/languages/trans_addons.php:1174
+#: addons/includes/languages/trans_addons.php:1201
 msgid "View your current location and navigate to parent of it"
 msgstr "مکان فعلی خود را دیده و به مکان‌های والد آن منتقل شوید"
 
-#: addons/includes/languages/trans_addons.php:1177
+#: addons/includes/languages/trans_addons.php:1204
 msgid "Please enter valid mobile number"
 msgstr "لطفا شماره موبایل معتبری وارد کنید"
 
-#: addons/includes/languages/trans_addons.php:1178
+#: addons/includes/languages/trans_addons.php:1205
 msgid "Enter correct iranian mobile from 10 to 14 character"
 msgstr "شماره موبایل صحیح ایران باید بین ۱۰ تا ۱۴ رقم باشد"
 
-#: addons/includes/languages/trans_addons.php:1179
+#: addons/includes/languages/trans_addons.php:1206
 msgid "7 to 15 characters is allowed for mobile"
 msgstr "بین ۷ تا ۱۵ رقم برای موبایل مجاز است"
 
-#: addons/includes/languages/trans_addons.php:1180
+#: addons/includes/languages/trans_addons.php:1207
 msgid "Enter a valid password from 6 to 40 character"
 msgstr "گذرواژه‌ای معتبر بین ۶ تا ۴۰ کاراکتر انتخاب کنید"
 
-#: addons/includes/languages/trans_addons.php:1181
+#: addons/includes/languages/trans_addons.php:1208
 msgid "Password?"
 msgstr "کلمه عبور؟"
 
-#: addons/includes/languages/trans_addons.php:1182
+#: addons/includes/languages/trans_addons.php:1209
 msgid "Verify Code"
 msgstr "کد اعتبارسنجی"
 
-#: addons/includes/languages/trans_addons.php:1183
+#: addons/includes/languages/trans_addons.php:1210
 msgid "Enter a valid code!"
 msgstr "کد معتبر وارد کنید!"
 
-#: addons/includes/languages/trans_addons.php:1184
+#: addons/includes/languages/trans_addons.php:1211
 msgid "Send this code to our number!"
 msgstr "این کد را به شماره‌ی ما پیامک کنید"
 
-#: addons/includes/languages/trans_addons.php:1185
+#: addons/includes/languages/trans_addons.php:1212
 msgid "send to this number"
 msgstr "به این شماره پیامک کنید"
 
-#: addons/includes/languages/trans_addons.php:1186
+#: addons/includes/languages/trans_addons.php:1213
 msgid "Send code to this number!"
 msgstr "کد را به این شماره ارسال کنید!"
 
-#: addons/includes/languages/trans_addons.php:1187
+#: addons/includes/languages/trans_addons.php:1214
 msgid "email"
 msgstr "رایانامه"
 
-#: addons/includes/languages/trans_addons.php:1188
+#: addons/includes/languages/trans_addons.php:1215
 msgid "Enter a valid eamil!"
 msgstr "رایانامه‌ی معتبر را وارد کنید!"
 
-#: addons/includes/languages/trans_addons.php:1189
+#: addons/includes/languages/trans_addons.php:1216
 msgid "username"
 msgstr "نام‌کاربری"
 
-#: addons/includes/languages/trans_addons.php:1190
+#: addons/includes/languages/trans_addons.php:1217
 msgid "Enter a valid username from 4 to 50 character"
 msgstr "نام‌کاربری معتبری بین ۴ تا ۵۰ کاراکتر وارد کنید"
 
-#: addons/includes/languages/trans_addons.php:1191
+#: addons/includes/languages/trans_addons.php:1218
 msgid "Go"
 msgstr "برو"
 
-#: addons/includes/languages/trans_addons.php:1192
+#: addons/includes/languages/trans_addons.php:1219
 msgid "Go and check it"
 msgstr "برو و چک کن"
 
-#: addons/includes/languages/trans_addons.php:1193
+#: addons/includes/languages/trans_addons.php:1220
 msgid "Signup"
 msgstr "ثبت‌نام"
 
-#: addons/includes/languages/trans_addons.php:1195
+#: addons/includes/languages/trans_addons.php:1222
 msgid "Recovery password"
 msgstr "بازیابی گذرواژه"
 
-#: addons/includes/languages/trans_addons.php:1197
+#: addons/includes/languages/trans_addons.php:1224
 msgid "Enter with another methods"
 msgstr "ورود با سایر روش‌ها"
 
-#: addons/includes/languages/trans_addons.php:1198
+#: addons/includes/languages/trans_addons.php:1225
 msgid "Log in with mobile"
 msgstr "ورود با موبایل"
 
-#: addons/includes/languages/trans_addons.php:1199
+#: addons/includes/languages/trans_addons.php:1226
 msgid "Enter with mobile"
 msgstr "ورود با موبایل"
 
-#: addons/includes/languages/trans_addons.php:1200
+#: addons/includes/languages/trans_addons.php:1227
 msgid "Enter with Google"
 msgstr "ورود با گوگل"
 
-#: addons/includes/languages/trans_addons.php:1201
+#: addons/includes/languages/trans_addons.php:1228
 msgid "Enter with email"
 msgstr "ورود با رایانامه"
 
-#: addons/includes/languages/trans_addons.php:1202
+#: addons/includes/languages/trans_addons.php:1229
 msgid "Enter with username"
 msgstr "ورود با نام‌کاربری"
 
-#: addons/includes/languages/trans_addons.php:1203
+#: addons/includes/languages/trans_addons.php:1230
 msgid "Resend code"
 msgstr "ارسال دوباره‌ی کد"
 
-#: addons/includes/languages/trans_addons.php:1204
+#: addons/includes/languages/trans_addons.php:1231
 msgid "After end timer you can request code again"
 msgstr "پس از به‌اتمام رسیدن زمان، شما امکان درخواست مجدد کد را خواهید داشت"
 
-#: addons/includes/languages/trans_addons.php:1205
+#: addons/includes/languages/trans_addons.php:1232
 msgid "Another way?"
 msgstr "روش دیگر؟"
 
-#: addons/includes/languages/trans_addons.php:1206
+#: addons/includes/languages/trans_addons.php:1233
 msgid "Restart with new mobile"
 msgstr "شروع دوباره با موبایل جدید"
 
-#: addons/includes/languages/trans_addons.php:1207
+#: addons/includes/languages/trans_addons.php:1234
 msgid "New email"
 msgstr "رایانامه‌ی جدید"
 
-#: addons/includes/languages/trans_addons.php:1208
+#: addons/includes/languages/trans_addons.php:1235
 msgid "New username"
 msgstr "نام کاربری جدید"
 
-#: addons/includes/languages/trans_addons.php:1209
+#: addons/includes/languages/trans_addons.php:1236
 msgid "Enter a valid username!"
 msgstr "نام کاربری معتبر وارد کنید!"
 
-#: addons/includes/languages/trans_addons.php:1212
+#: addons/includes/languages/trans_addons.php:1239
 msgid "tejarak"
 msgstr "تجارک"
-
-#: addons/lib/db/transactions/set.php:70
-msgid "Transaction user_id can not be null"
-msgstr "شناسه‌_کاربری تراکنش نمی‌تواند خالی باشد"
-
-#: addons/lib/db/transactions/set.php:82
-msgid "Transaction caller can not be null"
-msgstr "دعوت کننده‌تراکنش نمی‌تواند خالی باشد "
-
-#: addons/lib/db/transactions/set.php:93
-msgid "Transaction title can not be null"
-msgstr "عنوان‌تراکنش نمی‌تواند خالی باشد"
-
-#: addons/lib/db/transactions/set.php:104
-msgid "Transaction type can not be null"
-msgstr "نوع‌تراکنش نمی‌تواند خالی باشد"
-
-#: addons/lib/db/transactions/set.php:115
-msgid "Transaction status can not be null"
-msgstr "وضعیت‌تراکنش نمی‌تواند خالی باشد "
-
-#: addons/lib/db/transactions/set.php:126
-msgid "Invalid transaction verify field"
-msgstr "مقدار تائید‌تراکنش نامعتبر است"
-
-#: addons/lib/db/transactions/set.php:137
-msgid "Transaction unit can not be null"
-msgstr "واحد در‌تراکنش نمی‌تواند خالی باشد"
-
-#: addons/lib/db/transactions/set.php:154
-msgid "Transaction unit_id can not be null"
-msgstr "شناسه_واحد تراکنش نمی‌تواند خالی باشد"
-
-#: addons/lib/mvc/controllers/url.php:52 lib/controller.php:703
-msgid "delete"
-msgstr "حذف"
-
-#: addons/lib/mvc/models/account.php:187
-msgid "logout successfully"
-msgstr "خروج از سیستم با موفقیت انجام شد"
-
-#: addons/lib/mvc/models/account.php:218
-msgid "you want hijack us!!?"
-msgstr "شما قصد نفوذ دارید!!؟"
-
-#: addons/lib/mvc/models/datarow.php:43
-msgid "id is found 2 or more times. it's imposible!"
-msgstr "کد بیش از یکبار یافت شد. این ممکن نیست!"
-
-#: addons/lib/mvc/models/datarow.php:47
-msgid "Url incorrect: id not found"
-msgstr "آدرس نادرست: کد یافت نشد"
-
-#: addons/lib/mvc/models/terms.php:183
-msgid "Does not exist!"
-msgstr "وجود ندارد!"
-
-#: addons/lib/mvc/viewes/constructor.php:50
-msgid "Ermile Dash"
-msgstr "ارمایل دش"
-
-#: addons/lib/mvc/viewes/constructor.php:51
-msgid "Another Project with Ermile dash"
-msgstr "یک پروژه دیگر با دش"
-
-#: addons/lib/mvc/viewes/constructor.php:52
-msgid "Ermile is intelligent ;)"
-msgstr "ارمایل باهوش است ;)"
 
 #: addons/lib/social/google.php:123
 msgid "Invalid access token"
@@ -5861,46 +5677,74 @@ msgstr "بازگشت"
 msgid "Please only use below keyboard."
 msgstr "لطفا تنها از منوی زیر استفاده کنید"
 
-#: addons/lib/utility/telegram.php:213
-msgid "Please install curl on your system"
-msgstr "لطفا سی‌یوآرال را بر روی سیستم نصب کنید"
+#: lib/controller.php:816 lib/controller/url.php:52
+msgid "delete"
+msgstr "حذف"
 
-#: lib/db/backup.php:156
+#: lib/db/mysql/tools/backup.php:157
 msgid "Back up database complete"
 msgstr "پشتیبان‌گیری از پایگاه داده کامل شد"
 
-#: lib/db/backup.php:159
+#: lib/db/mysql/tools/backup.php:160
 msgid "Error in backup database"
 msgstr "اشکال در پایگاه داده پشتیبان گیری"
 
-#: lib/db/connect.php:70 lib/dbconnection.php:49
+#: lib/db/mysql/tools/connect.php:70
 msgid "we can't find database service!"
 msgstr "ما نمی‌توانیم سرویس دیتابیس را بیابیم!"
 
-#: lib/db/connect.php:70 lib/db/connect.php:82 lib/db/connect.php:119
-#: lib/dbconnection.php:64
+#: lib/db/mysql/tools/connect.php:70 lib/db/mysql/tools/connect.php:82
+#: lib/db/mysql/tools/connect.php:117
 msgid "Please contact administrator!"
 msgstr "لطفا با مدیر سیستم تماس بگیرید!"
 
-#: lib/db/connect.php:82 lib/dbconnection.php:63
+#: lib/db/mysql/tools/connect.php:82
 msgid "We can't connect to database service!"
 msgstr "ما نمی‌توانیم به سرویس دیتابیس متصل شویم!"
 
-#: lib/db/connect.php:119
+#: lib/db/mysql/tools/connect.php:117
 msgid "We can't connect to correct database!"
 msgstr "ما نمی‌توانیم به دیتابیس صحیح متصل شویم!"
 
-#: lib/db/install.php:229
+#: lib/db/mysql/tools/install.php:229
 msgid "executed"
 msgstr "اجرا شد"
 
-#: lib/db/install.php:234
+#: lib/db/mysql/tools/install.php:234
 msgid "Old version"
 msgstr "نسخه قدیمی"
 
-#: lib/dbconnection.php:50
-msgid "please contact administrator!"
-msgstr "لطفا با مدیریت تماس بگیرید!"
+#: lib/db/transactions/set.php:70
+msgid "Transaction user_id can not be null"
+msgstr "شناسه‌_کاربری تراکنش نمی‌تواند خالی باشد"
+
+#: lib/db/transactions/set.php:82
+msgid "Transaction caller can not be null"
+msgstr "دعوت کننده‌تراکنش نمی‌تواند خالی باشد "
+
+#: lib/db/transactions/set.php:93
+msgid "Transaction title can not be null"
+msgstr "عنوان‌تراکنش نمی‌تواند خالی باشد"
+
+#: lib/db/transactions/set.php:104
+msgid "Transaction type can not be null"
+msgstr "نوع‌تراکنش نمی‌تواند خالی باشد"
+
+#: lib/db/transactions/set.php:115
+msgid "Transaction status can not be null"
+msgstr "وضعیت‌تراکنش نمی‌تواند خالی باشد "
+
+#: lib/db/transactions/set.php:126
+msgid "Invalid transaction verify field"
+msgstr "مقدار تائید‌تراکنش نامعتبر است"
+
+#: lib/db/transactions/set.php:137
+msgid "Transaction unit can not be null"
+msgstr "واحد در‌تراکنش نمی‌تواند خالی باشد"
+
+#: lib/db/transactions/set.php:154
+msgid "Transaction unit_id can not be null"
+msgstr "شناسه_واحد تراکنش نمی‌تواند خالی باشد"
 
 #: lib/permission.php:26
 msgid "upload_1000_mb"
@@ -5978,11 +5822,11 @@ msgstr "دسترسی ممنوع"
 msgid ":status password, try another"
 msgstr "گذرواژه :status، عبارت دیگری را امتحان کنید"
 
-#: lib/utility/cloudflare.php:252
+#: lib/utility/cloudflare.php:236
 msgid "The api Cloudflare opration success"
 msgstr "عملیات کلادفلر از طریق ای‌پی‌آی با موفقیت به انجام رسید"
 
-#: lib/utility/cloudflare.php:256
+#: lib/utility/cloudflare.php:240
 msgid "The api Cloudflare opration faild"
 msgstr "عملیات کلادفلر از طریق ای‌پی‌آی با موفقیت ناموفق بود"
 
@@ -6160,6 +6004,10 @@ msgstr "سرویس پیامک قابل دسترس نیست"
 msgid "Your recovery code is"
 msgstr "کد بازیابی کلمه عبور شما"
 
+#: lib/utility/telegram.php:213
+msgid "Please install curl on your system"
+msgstr "لطفا سی‌یوآرال را بر روی سیستم نصب کنید"
+
 #: lib/utility/upload.php:254
 msgid "file successful uploaded"
 msgstr "فایل با موفقیت آپلود شد"
@@ -6202,17 +6050,140 @@ msgstr "نام فایل غیرمجاز"
 msgid "Exceeded file extension limit"
 msgstr "نوع فایل غیرمجاز"
 
-#: lib/validator.php:93 lib/validator/maker.php:49
-msgid "error in field"
-msgstr "خطا در فیلد"
+#: lib/view/constructor.php:50
+msgid "Ermile Dash"
+msgstr "ارمایل دش"
 
-#: lib/view/optimize.php:41
-msgid "sing in"
-msgstr "ورود"
+#: lib/view/constructor.php:51
+msgid "Another Project with Ermile dash"
+msgstr "یک پروژه دیگر با دش"
 
-#: lib/view/optimize.php:45
-msgid "create an account"
-msgstr "اکانت بسازید"
+#: lib/view/constructor.php:52
+msgid "Ermile is intelligent ;)"
+msgstr "ارمایل باهوش است ;)"
+
+#~ msgid "Remember me"
+#~ msgstr "من را به خاطر بسپار"
+
+#~ msgid "input 4 number"
+#~ msgstr "کد حاوی 4 عدد را وارد کنید"
+
+#~ msgid "Change my password"
+#~ msgstr "کلمه عبور"
+
+#~ msgid "Site title"
+#~ msgstr "عنوان سایت"
+
+#~ msgid "Site Description"
+#~ msgstr "درباره سایت"
+
+#~ msgid "Explain site and porpose of it in a few words"
+#~ msgstr "سایت و هدف آن را در چند کلمه مختصر توضیح دهید"
+
+#~ msgid "Tab Color"
+#~ msgstr "رنگ تب"
+
+#~ msgid "Site Tab Color in Mobile"
+#~ msgstr "رنگ تب سایت در موبایل"
+
+#~ msgid "URL Settings"
+#~ msgstr "تنظیمات آدرس"
+
+#~ msgid "Support https"
+#~ msgstr "پشتیبانی از https"
+
+#~ msgid "allow short URL"
+#~ msgstr "استفاده از آدرس کوتاه"
+
+#~ msgid "force using short URL"
+#~ msgstr "نمایش آدرس کوتاه برای این نوشته"
+
+#~ msgid "Multi domain"
+#~ msgstr "چند دامنه"
+
+#~ msgid "Use multi domain"
+#~ msgstr "استفاده از چند دامنه"
+
+#~ msgid "Default Tld"
+#~ msgstr "Tld پیش فرض"
+
+#~ msgid "domain name is different?"
+#~ msgstr "نام دامنه متفاوت است؟"
+
+#~ msgid "Main domain name"
+#~ msgstr "نام دامنه اصلی"
+
+#~ msgid "Redirect to main doamin"
+#~ msgstr "انتقال به دامنه اصلی"
+
+#~ msgid "Twitter"
+#~ msgstr "توییتر"
+
+#~ msgid "Facebook"
+#~ msgstr "فیس‌بوک"
+
+#~ msgid "Telegram"
+#~ msgstr "تلگرام"
+
+#~ msgid "ConsumerKey"
+#~ msgstr "ConsumerKey"
+
+#~ msgid "bot name"
+#~ msgstr "نام بات"
+
+#~ msgid "hook folder"
+#~ msgstr "پوشه هوک"
+
+#~ msgid "hook url"
+#~ msgstr "آدرس هوک"
+
+#~ msgid "Debug mode"
+#~ msgstr "وضعیت خطایابی"
+
+#~ msgid "channel"
+#~ msgstr "کانال"
+
+#~ msgid "botan"
+#~ msgstr "بوتان"
+
+#~ msgid "SMS"
+#~ msgstr "پیامک"
+
+#~ msgid "Tel"
+#~ msgstr "تلفن"
+
+#~ msgid "Write your tag and press enter to add new keyword to content"
+#~ msgstr "کلیدواژه‌ی مورد نظر خود را نوشته و با فشردن انتر آن را به مطلب اضافه کنید"
+
+#~ msgid "attachments"
+#~ msgstr "ضمیمه‌ها"
+
+#~ msgid "logout successfully"
+#~ msgstr "خروج از سیستم با موفقیت انجام شد"
+
+#~ msgid "you want hijack us!!?"
+#~ msgstr "شما قصد نفوذ دارید!!؟"
+
+#~ msgid "id is found 2 or more times. it's imposible!"
+#~ msgstr "کد بیش از یکبار یافت شد. این ممکن نیست!"
+
+#~ msgid "Url incorrect: id not found"
+#~ msgstr "آدرس نادرست: کد یافت نشد"
+
+#~ msgid "Does not exist!"
+#~ msgstr "وجود ندارد!"
+
+#~ msgid "please contact administrator!"
+#~ msgstr "لطفا با مدیریت تماس بگیرید!"
+
+#~ msgid "error in field"
+#~ msgstr "خطا در فیلد"
+
+#~ msgid "sing in"
+#~ msgstr "ورود"
+
+#~ msgid "create an account"
+#~ msgstr "اکانت بسازید"
 
 #~ msgid "Tables"
 #~ msgstr "جداول"

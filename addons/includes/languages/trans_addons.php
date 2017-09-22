@@ -4,12 +4,8 @@ class twigTransTerms
  private function transtext()
  {
 
-	//------------------------------------------addons\-addons-\attachments\panel.html
-	echo T_("Write your tag and press enter to add new keyword to content");          // Line 1
-	echo T_("attachments");                                                           // Line 2
-	echo T_("Search");                                                                // Line 112 Seperate
-
 	//-----------------------------------addons\content_cp\invoicedetails\display.html
+	echo T_("Search");                                                                // Line 112 Seperate
 	echo T_("id");                                                                    // Line 16
 	echo T_("invoice_id");                                                            // Line 17
 	echo T_("title");                                                                 // Line 230 Seperate
@@ -267,12 +263,16 @@ class twigTransTerms
 	echo T_("Check our FAQ");                                                         // Line 76
 	echo T_("Icons");                                                                 // Line 85
 	echo T_("Badge");                                                                 // Line 110
+	echo T_("Posts");                                                                 // Line 94 Seperate
 	echo T_("Add New");                                                               // Line 111
+	echo T_("Notification");                                                          // Line 28
 	echo T_("125");                                                                   // Line 113
 	echo T_("64");                                                                    // Line 114
 	echo T_("7");                                                                     // Line 27
+	echo T_(" Home");                                                                 // Line 63
 	echo T_("Control Panel");                                                         // Line 151 Seperate
 	echo T_("Sample");                                                                // Line 65
+	echo T_("Breadcrumb");                                                            // Line 7
 	echo T_("Pagination");                                                            // Line 7
 	echo T_("Previous");                                                              // Line 89
 	echo T_("6");                                                                     // Line 138
@@ -298,6 +298,7 @@ class twigTransTerms
 	echo T_("Vcard");                                                                 // Line 214
 	echo T_("Joined in 2018");                                                        // Line 378
 	echo T_("Ermile is our company in Qom!");                                         // Line 379
+	echo T_("123 Friends");                                                           // Line 381
 	echo T_("Ermile requested permission to transfer <b>Tejarak</b> team to you");    // Line 135
 	echo T_("Approve");                                                               // Line 122
 	echo T_("Decline");                                                               // Line 139
@@ -332,7 +333,6 @@ class twigTransTerms
 	echo T_("Example heading");                                                       // Line 21
 	echo T_("New");                                                                   // Line 21
 	echo T_("Badges can be used as part of links or buttons to provide a counter.");  // Line 24
-	echo T_("Notification");                                                          // Line 28
 	echo T_("5");                                                                     // Line 28
 	echo T_("Contextual variations");                                                 // Line 34
 	echo T_("Add any of the below mentioned modifier classes to change the appearance of a badge.");// Line 35
@@ -354,12 +354,10 @@ class twigTransTerms
 	echo T_("Salam");                                                                 // Line 18
 
 	//-------------------------------addons\content_su\sample\template\breadcrumb.html
-	echo T_("Breadcrumb");                                                            // Line 7
 	echo T_("Indicate the current page's location within a navigational hierarchy that automatically adds separators via CSS.");// Line 8
 	echo T_("Separators are automatically added in CSS through ::before and content.");// Line 13
 	echo T_("Sizes");                                                                 // Line 291
 	echo T_("A breadcrumb can vary in size");                                         // Line 29
-	echo T_(" Home");                                                                 // Line 63
 
 	//-----------------------------------addons\content_su\sample\template\button.html
 	echo T_("Use Siftal's custom button styles for actions in forms, dialogs, and more with support for multiple sizes, states, and more.");// Line 8
@@ -710,7 +708,7 @@ class twigTransTerms
 	echo T_("should not have spaces between cells");                                  // Line 396
 
 	//-----------------------------------addons\content_su\sample\template\select.html
-	echo T_("Select");                                                                // Line 81
+	echo T_("Select");                                                                // Line 7
 	echo T_("Easily change default select style to simple and clean Siftal design");  // Line 8
 	echo T_("Sarshomar");                                                             // Line 27
 	echo T_("Tejarak");                                                               // Line 28
@@ -753,7 +751,6 @@ class twigTransTerms
 	echo T_("Siftal's cards provide a flexible and extensible content container with multiple variants and options.");// Line 8
 	echo T_("A card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.");// Line 13
 	echo T_("Cards are built with as little markup and styles as possible, but still manage to deliver a ton of control and customization. Built with flexbox, they offer easy alignment and mix well with other  components.");// Line 14
-	echo T_("123 Friends");                                                           // Line 381
 	echo T_("10h");                                                                   // Line 75
 	echo T_("5 Comments");                                                            // Line 80
 	echo T_("1k likes");                                                              // Line 81
@@ -938,7 +935,6 @@ class twigTransTerms
 	echo T_("seriously, are you sure? There's no coming back.");                      // Line 89 Seperate
 	echo T_("or");                                                                    // Line 91 Seperate
 	echo T_("Delete");                                                                // Line 92 Seperate
-	echo T_("Posts");                                                                 // Line 94 Seperate
 	echo T_("Pages");                                                                 // Line 95 Seperate
 	echo T_("Terms");                                                                 // Line 96 Seperate
 	echo T_("Attachments");                                                           // Line 97 Seperate
@@ -1197,8 +1193,6 @@ class twigTransTerms
 	echo T_("hormozgan");                                                             // Line 430 Seperate
 	echo T_("hamedan");                                                               // Line 431 Seperate
 	echo T_("yazd");                                                                  // Line 432 Seperate
-
-	//------------------------------------------------addons\includes\macro\forms.html
 
 	//-------------------------------------------addons\includes\mvc\display-dash.html
 	echo T_("Edit your profile");                                                     // Line 27
