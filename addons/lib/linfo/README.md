@@ -117,7 +117,7 @@ $parser = $linfo->getParser();
 Set ``$settings['show_errors'] = true;`` in ``config.inc.php`` to yield useful error messages.
 
 
-## TODO:
+## doing...
  - Support for other Unix operating systems (Hurd, IRIX, AIX, HP UX, etc)
  - Support for strange operating systems: Haiku/BeOS
  - More superfluous features/extensions

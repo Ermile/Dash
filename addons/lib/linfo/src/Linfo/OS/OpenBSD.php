@@ -2,20 +2,20 @@
 
 /*
  * This file is part of Linfo (c) 2010, 2012 Joseph Gillotti.
- * 
+ *
  * Linfo is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * Linfo is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with Linfo. If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
 */
 
 namespace Linfo\OS;
@@ -27,7 +27,7 @@ use Linfo\Common;
 
 /*
  * OpenBSD info class.
- * todo: as much functionality as the freebsd version
+ * doing... as much functionality as the freebsd version
  */
 
 class OpenBSD extends BSDcommon
@@ -159,7 +159,7 @@ class OpenBSD extends BSDcommon
             foreach ($sm as $swap) {
                 $return['swapTotal'] += $swap[2] * 1024;
                 $return['swapFree'] += (($swap[2] - $swap[3]) * 1024);
-                $ft = is_file($swap[1]) ? @filetype($swap[1]) : 'Unknown'; // TODO: I'd rather it be Partition or File
+                $ft = is_file($swap[1]) ? @filetype($swap[1]) : 'Unknown'; // doing... I'd rather it be Partition or File
                 $return['swapInfo'][] = array(
                     'device' => $swap[1],
                     'size' => $swap[2] * 1024,

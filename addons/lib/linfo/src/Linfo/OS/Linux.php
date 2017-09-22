@@ -916,7 +916,7 @@ class Linux extends Unixcommon
                     $type = 'Bond';
                 }
 
-                // TODO find some way of finding out what provides the virt-specific kvm vnet devices
+                // doing... find some way of finding out what provides the virt-specific kvm vnet devices
             }
 
             $speed = Common::getIntFromFile($path.'/speed');

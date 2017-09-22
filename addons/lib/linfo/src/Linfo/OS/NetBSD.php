@@ -2,20 +2,20 @@
 
 /*
  * This file is part of Linfo (c) 2010 Joseph Gillotti.
- * 
+ *
  * Linfo is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * Linfo is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with Linfo. If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
 */
 
 namespace Linfo\OS;
@@ -27,7 +27,7 @@ use Linfo\Common;
 
 /*
  * NetBSD info class. Differs slightly from FreeBSD's
- * TODO: netbsd's /proc contains really useful info
+ * doing... netbsd's /proc contains really useful info
  * possibly get some stuff from it if it exists
  */
 
@@ -194,7 +194,7 @@ class NetBSD extends BSDcommon
                     'bytes' => $net[3],
                 ),
                 'state' => $state,
-                'type' => 'Unknown', // TODO
+                'type' => 'Unknown', // doing...
             );
         }
 
@@ -372,7 +372,7 @@ class NetBSD extends BSDcommon
             foreach ($sm as $swap) {
                 $return['swapTotal'] += $swap[2] * 1024;
                 $return['swapFree'] += (($swap[2] - $swap[3]) * 1024);
-                $ft = is_file($swap[1]) ? @filetype($swap[1]) : 'Unknown'; // TODO: I'd rather it be Partition or File
+                $ft = is_file($swap[1]) ? @filetype($swap[1]) : 'Unknown'; // doing... I'd rather it be Partition or File
                 $return['swapInfo'][] = array(
                     'device' => $swap[1],
                     'size' => $swap[2] * 1024,
@@ -419,7 +419,7 @@ class NetBSD extends BSDcommon
 
             // Stuff entry
             $devices[] = array(
-                'vendor' => false, // Maybe todo? 
+                'vendor' => false, // Maybe doing...?
                 'device' => $device[3],
                 'type' => $type,
             );

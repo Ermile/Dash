@@ -293,7 +293,7 @@ class Windows extends OS
             $t = new Timer('Temperature');
         }
 
-        return array(); // TODO
+        return array(); // doing...
     }
 
     /**
@@ -583,7 +583,7 @@ class Windows extends OS
             $t = new Timer('Batteries');
         }
 
-        return array(); // TODO
+        return array(); // doing...
     }
 
     /**
@@ -668,7 +668,7 @@ class Windows extends OS
      */
     public function getServices()
     {
-        return array(); // TODO
+        return array(); // doing...
     }
 
     /**

@@ -164,7 +164,7 @@ class LinuxTest extends PHPUnit_Framework_TestCase
    */
   public static function getCPU()
   {
-      // TODO: flesh this out
+      // doing... flesh this out
     self::assertInternalType('array', self::$parser->getCPU());
   }
 
