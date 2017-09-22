@@ -156,7 +156,7 @@ trait info
 		{
 			$query = "SELECT * FROM $core_name.db_version ";
 
-			$db_version = \lib\db\mysql\tools::get($query);
+			$db_version = \lib\db::get($query);
 			if(empty($db_version) || !$db_version || !is_array($db_version))
 			{
 				return false;
@@ -247,7 +247,7 @@ trait info
 			";
 		}
 
-		\lib\db\mysql\tools::query($query);
+		\lib\db::query($query);
 	}
 
 

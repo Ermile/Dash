@@ -28,9 +28,9 @@ class view
 		$this->controller            = $object->controller;
 
 		$this->data                  = new view\data();
-		$this->data->url             = object();
-		$this->data->include         = object();
-		$this->data->global          = object();
+		$this->data->url             = (object) [];
+		$this->data->include         = (object) [];
+		$this->data->global          = (object) [];
 		$this->url                   = $this->data->url;
 		$this->global                = $this->data->global;
 		$this->include               = $this->data->include;

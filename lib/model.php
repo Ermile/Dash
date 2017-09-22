@@ -18,7 +18,7 @@ class model
 	public function __construct($object = false)
 	{
 		if(!$object) return;
-		$this->querys = object();
+		$this->querys = (object) [];
 		$this->controller = $object->controller;
 		if(method_exists($this, '_construct'))
 		{

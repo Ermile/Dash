@@ -16,7 +16,7 @@ class route
 
 	public function check_route()
 	{
-		$this->match = object();
+		$this->match = (object) [];
 		$args = func_get_args();
 		if(count($args) == 0) return;
 		$route = $args[0];

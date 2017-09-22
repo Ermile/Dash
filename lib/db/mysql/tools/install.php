@@ -4,7 +4,7 @@ namespace lib\db\mysql\tools;
 trait install
 {
 	public static $path_project = database. 'install/';
-	public static $path_addons  = addons. 'includes/cls/database/install/';
+	public static $path_addons  = addons. 'includes/database/install/';
 
 
 	/**
@@ -216,7 +216,7 @@ trait install
 						if($qry)
 						{
 							self::query($qry, $_db_name, ['resume_on_error' => true]);
-							if(\lib\db\mysql\tools::error())
+							if(\lib\db::error())
 							{
 								$has_error = true;
 							}

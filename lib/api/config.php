@@ -95,7 +95,7 @@ class config
 			{
 				$model_api_name = "api_".$this->model_api_name;
 
-				$this->api->controller->model_api_processor = $object = object(array("method" => $model_api_name, "args" => $args_object));
+				$this->api->controller->model_api_processor = $object = (object) array("method" => $model_api_name, "args" => $args_object);
 			}
 			if($this->view_api_name && !\lib\temp::get('api'))
 			{
@@ -104,7 +104,7 @@ class config
 				{
 					$args_object->api_callback = $api_callback;
 				}
-				$this->api->controller->view_api_processor = $object = object(array("method" => $view_api_name, "args" => $args_object));
+				$this->api->controller->view_api_processor = $object = (object) array("method" => $view_api_name, "args" => $args_object);
 			}
 		}
 	}

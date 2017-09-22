@@ -9,35 +9,46 @@ define('core_name'	,'dash');
 
 // Define main service
 if(!defined('MainService'))
+{
 	define('MainService', 'ermile');
-
+}
 
 // Define Dash variables ****************************************************
 if(!defined("core"))
+{
 	define("core", preg_replace("[\\\\]", "/", __DIR__).'/' );
+}
 
 // Dash library
 if(!defined("lib"))
+{
 	define("lib", "lib/");
+}
 
 // set include path for lib
-
 // Dash plugin
 if(!defined("addons"))
+{
 	define("addons", core."addons/");
+}
 
 // Dash helper
 if(!defined("helper"))
+{
 	define("helper", core."helper/");
-
+}
 
 // Define Project variables ***************************************************
 if(!defined("root"))
+{
 	define("root", dirname(dirname($_SERVER['SCRIPT_FILENAME'])).'/' );
+}
 
 // Project include folder
 if(!defined("dir_includes"))
+{
 	define("dir_includes", root.'includes/');
+}
 
 set_include_path(get_include_path() . PATH_SEPARATOR . dir_includes);
 set_include_path(get_include_path() . PATH_SEPARATOR . core.'addons/');
@@ -45,33 +56,49 @@ set_include_path(get_include_path() . PATH_SEPARATOR . core);
 
 // Project library
 if(!defined("ilib"))
+{
 	define("ilib", "ilib/");
+}
 
 // Project helper
 if(!defined("ihelper"))
+{
 	define("ihelper", dir_includes."helper/");
+}
 
 // Project default repository
 if(!defined("repository"))
+{
 	define("repository", root.'content/');
+}
 
 // Project cls
 if(!defined("cls"))
+{
 	define("cls", dir_includes."cls/");
+}
 
 // Project database
 if(!defined("database"))
-	define("database", dir_includes."cls/database/");
+{
+	define("database", dir_includes."database/");
+}
 
 // Project MVC
 if(!defined("mvc"))
+{
 	define("mvc", dir_includes."mvc/");
+}
 
 // Set default timezone to Asia/Tehran, Please set timezone in your php.ini
 if(!defined("timezone"))
+{
 	date_default_timezone_set('Asia/Tehran');
+}
 else
+{
 	date_default_timezone_set(constant('timezone'));
+}
 
 
 // if has subdomain and have private database for subdomain, set db
@@ -122,10 +149,5 @@ if(file_exists(root .'define.php'))
 	require_once(root .'define.php');
 }
 
-// Define Project Methods *****************************************************
-// define object method
-function object($val = array())
-{
-	return (object) $val;
-}
 ?>
+

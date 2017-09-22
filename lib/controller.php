@@ -246,7 +246,7 @@ class controller
 			{
 				debug::result($mycallback);
 			}
-			$processor_arg = object(array('force_json'=>true));
+			$processor_arg = (object) array('force_json'=>true);
 		}
 
 		if($this->model)
@@ -324,7 +324,7 @@ class controller
 				$class_name = $this->findParentClass(__FUNCTION__);
 			}
 
-			$object = object();
+			$object = (object) [];
 			$object->controller = $this;
 			$this->model = new $class_name($object);
 
@@ -355,7 +355,7 @@ class controller
 				$class_name = $this->findParentClass(__FUNCTION__);
 			}
 
-			$object = object();
+			$object = (object) [];
 			$object->controller = $this;
 			$this->view = new $class_name($object);
 

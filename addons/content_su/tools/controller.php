@@ -101,7 +101,7 @@ class controller extends \addons\content_su\main\controller
 
 		if($exist)
 		{
-			$this->model()->_processor(object(array("force_json" => false, "force_stop" => true)));
+			$this->model()->_processor((object) array("force_json" => false, "force_stop" => true));
 		}
 	}
 }
