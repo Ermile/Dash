@@ -8,13 +8,13 @@ class db
 	 * this library doing useful db actions
 	 * v4.4
 	 */
-	use db\connect;
-	use db\backup;
-	use db\install;
-	use db\get;
-	use db\info;
-	use db\pagination;
-	use db\log;
+	use db\mysql\tools\connect;
+	use db\mysql\tools\backup;
+	use db\mysql\tools\install;
+	use db\mysql\tools\get;
+	use db\mysql\tools\info;
+	use db\mysql\tools\pagination;
+	use db\mysql\tools\log;
 
 
 	/**

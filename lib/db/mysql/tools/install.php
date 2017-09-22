@@ -1,5 +1,5 @@
 <?php
-namespace lib\db;
+namespace lib\db\mysql\tools;
 
 trait install
 {
@@ -216,7 +216,7 @@ trait install
 						if($qry)
 						{
 							self::query($qry, $_db_name, ['resume_on_error' => true]);
-							if(\lib\db::error())
+							if(\lib\db\mysql\tools::error())
 							{
 								$has_error = true;
 							}
