@@ -115,7 +115,7 @@ class error
 	public static function make($STRING, $obj, $STATUS)
 	{
 		$HTTP_ERROR = self::string($STATUS);
-		if(\dash::is_json_accept() || \lib\temp::get('api'))
+		if(\lib\dash::is_json_accept() || \lib\temp::get('api'))
 		{
 			header('Content-Type: application/json');
 			header("HTTP/1.1 $STATUS ".$HTTP_ERROR);

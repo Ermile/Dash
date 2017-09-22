@@ -81,6 +81,7 @@ class autoload
 		return $file_addr;
 	}
 
+
 	/**
 	 * [check_file description]
 	 * @param  [type] $prefix    [description]
@@ -102,6 +103,7 @@ class autoload
 		}
 		return false;
 	}
+
 
 	/**
 	 * [file_splice description]
@@ -131,13 +133,8 @@ class autoload
 spl_autoload_register("\autoload::load");
 
 
-/**
- * define new dash class
- */
-class dash extends \lib\dash
-{
+// RUN DASH!
+new \lib\dash;
 
-}
-// create a new instance from dash
-new dash;
 ?>
+
