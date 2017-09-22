@@ -108,8 +108,8 @@
 {%block badge%}
 <div class="pA10">
   <h3><a href='sample/badge'>{%trans "Badge" %}</a></h3>
-  <h4 class="fs14">Posts <span class="badge primary">{%trans "Add New" %}</span></h4>
-  <button class="mA5 btn">Notification <span class="badge">7</span></button>
+  <h4 class="fs14">{%trans "Posts"%} <span class="badge primary">{%trans "Add New" %}</span></h4>
+  <button class="mA5 btn">{%trans "Notification"%} <span class="badge">7</span></button>
   <span class="badge rounded">{%trans "125" %}</span>
   <span class="badge rounded success">{%trans "64" %}</span>
   <span class="badge rounded warn">{%trans "7" %}</span>
@@ -120,10 +120,10 @@
 {%block breadcrumb%}
 <div class="pA15">
   <nav class="breadcrumb">
-    <a href="{{url.base}}/su/sample/breadcrumb" tabindex="-1"><span class="fa fa-home"></span> Home</a>
+    <a href="{{url.base}}/su/sample/breadcrumb" tabindex="-1"><span class="fa fa-home"></span> {%trans " Home"%}</a>
     <a href="{{url.base}}/su/sample/breadcrumb" tabindex="-1">{%trans "Control Panel" %}</a>
     <a href="{{url.base}}/su/sample/breadcrumb" tabindex="-1">{%trans "Sample" %}</a>
-    <a href="{{url.base}}/su/sample/breadcrumb">Breadcrumb</a>
+    <a href="{{url.base}}/su/sample/breadcrumb">{%trans "Breadcrumb"%}</a>
   </nav>
 </div>
 {%endblock%}
@@ -219,7 +219,7 @@
           <div class="meta"><span>{%trans "Joined in 2018" %}</span></div>
           <div class="desc">{%trans "Ermile is our company in Qom!" %}</div>
         </div>
-        <div class="footer"><i class="sf-users"></i> 123 Friends</div>
+        <div class="footer"><i class="sf-users"></i> {%trans "123 Friends"%}</div>
       </div>
     <div class="vcard shadow mA10">
       <div class="content f">
@@ -240,7 +240,7 @@
     <div class="vcard shadow mA10">
       <div class="content">
         <a class="header">{%trans "Javad Evazzadeh" %}</a>
-        <div class="meta"><span>{%trans "3 days ago" %}</span> <a href="#">Ermile</a></div>
+        <div class="meta"><span>{%trans "3 days ago" %}</span> <a href="#">{%trans "Ermile"%}</a></div>
         <img src="http://code.ermile.dev/siftal/images/tools/paragraph.png" class="mT15 op50">
       </div>
       <div class="footer pAn"><button class="btn block primary">{%trans "Check more!" %}</button></div>
