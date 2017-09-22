@@ -33,7 +33,8 @@ trait backup
 		//cycle through
 		foreach($_tables as $table)
 		{
-			$result     = mysqli_query(self::$link, 'SELECT * FROM '.$table);
+			$query      = "SELECT * FROM `$table`";
+			$result     = mysqli_query(self::$link, $query);
 			$num_fields = mysqli_num_fields($result);
 			$return     .= "DROP TABLE `$table`; ";
 			$row2       = mysqli_fetch_row(mysqli_query(self::$link, "SHOW CREATE TABLE `$table` "));
@@ -43,7 +44,7 @@ trait backup
 			{
 				while($row = mysqli_fetch_row($result))
 				{
-					$return.= 'INSERT INTO `'.$table.'` VALUES(';
+					$return.= "INSERT INTO `$table` VALUES(";
 					for($j=0; $j < $num_fields; $j++)
 					{
 						$row[$j] = addslashes($row[$j]);

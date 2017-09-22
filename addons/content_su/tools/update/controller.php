@@ -56,7 +56,7 @@ class controller extends \addons\content_su\main\controller
 				// return;
 				break;
 		}
-		\lib\code::force_exit();
+		\lib\code::exit();
 	}
 }
 ?>

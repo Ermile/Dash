@@ -194,7 +194,7 @@ class controller extends \addons\content_su\main\controller
 
 		$output .= "</body></html>";
 		echo $output;
-		\lib\code::force_exit();
+		\lib\code::exit();
 
 	}
 

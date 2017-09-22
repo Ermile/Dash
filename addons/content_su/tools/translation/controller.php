@@ -20,7 +20,7 @@ class controller extends \addons\content_su\main\controller
 		if($mypath)
 		{
 			echo \lib\utility\twigTrans::extract($mypath, $myupdate);
-			\lib\code::force_exit();
+			\lib\code::exit();
 		}
 	}
 }

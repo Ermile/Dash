@@ -23,18 +23,18 @@ class logs
 
 	public static $fields =
 	"
-			logs.id								AS 	`id`,
-			logs.logitem_id 					AS 	`logitem_id`,
-			logitems.type				AS 	`type`,
-			logitems.caller				AS 	`caller`,
-			logitems.title				AS 	`title`,
-			logitems.priority 			AS 	`priority`,
-			logs.user_id						AS 	`user_id`,
-			logs.data						AS 	`data`,
-			logs.meta						AS 	`meta`,
-			logs.status						AS 	`status`,
-			logs.datecreated					AS 	`createdate`,
-			logs.datemodified					AS 	`datemodified`
+			logs.id          	AS 	`id`,
+			logs.logitem_id  	AS 	`logitem_id`,
+			logitems.type    	AS 	`type`,
+			logitems.caller  	AS 	`caller`,
+			logitems.title   	AS 	`title`,
+			logitems.priority	AS 	`priority`,
+			logs.user_id     	AS 	`user_id`,
+			logs.data        	AS 	`data`,
+			logs.meta        	AS 	`meta`,
+			logs.status      	AS 	`status`,
+			logs.datecreated 	AS 	`createdate`,
+			logs.datemodified	AS 	`datemodified`
 		FROM
 			logs
 		LEFT JOIN logitems ON logitems.id = logs.logitem_id
@@ -198,7 +198,7 @@ class logs
 				$only_one_recort = true;
 			}
 
-			$limit = "LIMIT ". $_args['limit'];
+			$limit = "LIMIT $_args[limit]" ;
 			unset($_args['limit']);
 		}
 		else
@@ -533,7 +533,8 @@ class logs
 		}
 		if(!empty($where))
 		{
-			$where = "WHERE " . join(" AND " , $where);
+			$where = join(" AND " , $where);
+			$where = "WHERE $where";
 		}
 		else
 		{

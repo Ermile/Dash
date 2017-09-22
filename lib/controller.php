@@ -210,7 +210,7 @@ class controller
 
 		if($force_stop)
 		{
-			\lib\code::force_exit();
+			\lib\code::exit();
 		}
 	}
 

@@ -128,7 +128,7 @@ class error
 			header("HTTP/1.1 $STATUS ".$HTTP_ERROR);
 			require_once(lib."error_page.php");
 		}
-		\lib\code::force_exit();
+		\lib\code::exit();
 	}
 
 	// error handler function
@@ -148,7 +148,7 @@ class error
 				echo "  Fatal error on line $errline in file $errfile";
 				echo ", PHP " . PHP_VERSION . " (" . PHP_OS . ")<br />\n";
 				echo "Aborting...<br />\n";
-				\lib\code::force_exit();
+				\lib\code::exit();
 				break;
 
 			case E_USER_WARNING:

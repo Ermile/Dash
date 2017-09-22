@@ -57,7 +57,7 @@ class locations
 				$only_one_recort = true;
 			}
 
-			$limit = "LIMIT ". $_args['limit'];
+			$limit = "LIMIT  $_args[limit] ";
 			unset($_args['limit']);
 		}
 		else
@@ -85,7 +85,8 @@ class locations
 				$where[] = " locations.$key = '$value'";
 			}
 		}
-		$where = "WHERE ". join($where, " AND ");
+		$where = join($where, " AND ");
+		$where = "WHERE  $where ";
 
 		$query = " SELECT * FROM locations $where $limit ";
 

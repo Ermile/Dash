@@ -64,7 +64,7 @@ class controller extends \addons\content_su\main\controller
 				}
 
 				\lib\code::print($result, true);
-				\lib\code::force_exit();
+				\lib\code::exit();
 				break;
 
 
