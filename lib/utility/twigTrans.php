@@ -95,7 +95,9 @@ class twigTrans
 
 
 		// create translation file
-		$translation_output  = '<?php'."\n".'private function transtext()'."\n{\n";
+		$translation_output  = '<?php'."\n";
+		$translation_output  .= 'class twigTransTerms'."\n{\n";
+		$translation_output  .= ' private function transtext()'."\n {\n";
 		foreach ($translation as $key => $value)
 		{
 			if($value=='New File')
@@ -111,6 +113,7 @@ class twigTrans
 				echo("<li style='list-style-type:square;'>".$key.'</li>');
 			}
 		}
+		$translation_output .= "\n }";
 		$translation_output .= "\n}\n?>";
 		file_put_contents(root. "/includes/languages/trans_".$export_file_name.".php", $translation_output);
 		if($_path ==='addons')
