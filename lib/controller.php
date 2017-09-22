@@ -6,6 +6,15 @@ use \lib\api;
 class controller
 {
 	use mvc;
+	use controller\login;
+	use controller\sessions;
+	use controller\template;
+	use controller\tools;
+	use controller\url;
+	use controller\pagnation;
+	use controller\ref;
+
+
 	static $language = false;
 	public $custom_language = false;
 	public $api, $model, $view, $method;
@@ -31,7 +40,92 @@ class controller
 		 * after ending code this function is called
 		 */
 		register_shutdown_function([$this, 'sp_shutdown']);
+		if(MyAccount)
+		{
+			if(AccountService === Domain)
+			{
+				$domain = null;
+			}
+			else
+			{
+				$domain = AccountService.MainTld;
+			}
+			$param = $this->url('param');
+			if($param)
+			{
+				$param = '?'.$param;
+			}
+
+			// if custom account exist, handle it, else use default login redirect process
+			if(method_exists($this, 'handle_account_url'))
+			{
+				$this->handle_account_url($this->module(), $param, $domain);
+			}
+			else
+			{
+				$myrep = \lib\router::get_repository_name();
+
+				switch ($this->module())
+				{
+					case 'signin':
+					case 'login':
+					case 'signup':
+					case 'register':
+						$url = $this->url('base'). '/enter'. $param;
+						$this->redirector($url)->redirect();
+						break;
+
+					case 'signout':
+					case 'logout':
+						if($myrep !== 'content_enter')
+						{
+							$url = $this->url('base'). '/enter/logout'. $param;
+							$this->redirector($url)->redirect();
+						}
+
+						break;
+				}
+
+				switch (\lib\router::get_url())
+				{
+					case 'account/recovery':
+					case 'account/changepass':
+					case 'account/verification':
+					case 'account/verificationsms':
+					case 'account/signin':
+					case 'account/login':
+					case 'account/signup':
+					case 'account/register':
+						$url = $this->url('base'). '/enter'. $param;
+						$this->redirector($url)->redirect();
+						break;
+
+					case 'account/logout':
+					case 'account/signout':
+						$url = $this->url('base'). '/enter/logout'. $param;
+						$this->redirector($url)->redirect();
+						break;
+				}
+			}
+
+		}
+		$myrep = router::get_repository_name();
+
+		// running template base module for homepage
+		if($myrep === 'content' && method_exists($this, 's_template_finder') && get_class($this) == 'content\home\controller')
+		{
+			$this->s_template_finder();
+		}
+
+		// pagnation config
+		$this->pagnation_config();
+		// save referer of users
+		$this->save_ref();
+		// check if isset remember me and login by this
+		$this->check_remeber_login();
 	}
+
+
 
 	/**
 	 * this function is calling at the end of all codes

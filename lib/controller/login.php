@@ -1,5 +1,5 @@
 <?php
-namespace lib\mvc\controllers;
+namespace lib\controller;
 
 trait login
 {

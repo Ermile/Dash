@@ -1,5 +1,5 @@
 <?php
-namespace lib\mvc\models;
+namespace lib\model;
 
 trait breadcrumb
 {

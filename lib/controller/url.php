@@ -1,5 +1,5 @@
 <?php
-namespace lib\mvc\controllers;
+namespace lib\controller;
 use \lib\router;
 
 trait url

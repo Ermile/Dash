@@ -5,6 +5,11 @@ class model
 {
 	use mvc;
 
+	use model\breadcrumb;
+	use model\template;
+	use controller\login;
+	use controller\tools;
+
 	/**
 	 * construct
 	 *

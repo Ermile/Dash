@@ -1,5 +1,5 @@
 <?php
-namespace lib\mvc\controllers;
+namespace lib\controller;
 use \lib\db\logs;
 use \lib\utility\notification;
 use \lib\utility;

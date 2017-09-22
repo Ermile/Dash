@@ -1,5 +1,5 @@
 <?php
-namespace lib\mvc\viewes;
+namespace lib\view;
 
 trait constructor
 {
@@ -127,11 +127,16 @@ trait constructor
 		}
 
 		if(isset($this->url->MainStatic) && $this->url->MainStatic)
+		{
 			$this->url->myStatic = $this->url->MainStatic;
+		}
 		elseif(isset($this->url->MainStatic))
+		{
 			$this->url->myStatic = $this->url->static;
+		}
 
-		if(method_exists($this, 'options')){
+		if(method_exists($this, 'options'))
+		{
 			$this->options();
 		}
 
@@ -143,10 +148,13 @@ trait constructor
 				foreach ($mygetlist as $name => $value)
 				{
 					if($name === 'ssid')
+					{
 						$_SESSION['ssid'] = $value;
-
+					}
 					elseif( !($name === 'dev' || $name === 'lang') )
+					{
 						\lib\utility\cookie::write($name, $value);
+					}
 				}
 
 				// remove get parameter from url
