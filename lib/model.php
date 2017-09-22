@@ -55,7 +55,8 @@ class model
 		return $this->validate;
 	}
 
-	public function sql($name = null){
+	public function sql($name = null)
+	{
 		if(!$this->sql){
 			$this->sql = new sql\maker;
 			if($this->transaction) $this->sql->transaction();

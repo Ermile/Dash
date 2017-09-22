@@ -67,5 +67,17 @@ class code
 	{
 		eval($_string);
 	}
+
+
+
+	/**
+	 * sleep code
+	 *
+	 * @param      <type>  $_seconds  The seconds
+	 */
+	public static function sleep($_seconds)
+	{
+		sleep($_seconds);
+	}
 }
 ?>

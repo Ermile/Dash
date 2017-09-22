@@ -1,7 +1,7 @@
 
 1. config virtualHosts on webService
 # Ubuntu
-## Apache : 
+## Apache :
 - run : `sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/example.conf`
 - run : `sudo vim /etc/apache2/sites-available/example.conf` & change `DocumentRoot & ServerName & Directory` and save change
 ```
@@ -102,7 +102,7 @@ location ~* \.(css|gif|ico|jpeg|jpg|js|png)$ { expires max; log_not_found off;}
 or add this to `composer.json` :
 ```
 {
-	"require": 
+	"require":
 	{
             "geeksesi/dash": "dev-master"
         }
@@ -139,8 +139,8 @@ if ( file_exists( '../dash/autoload.php') )
 }
 else
 {   // A config file doesn't exist
-	exit("<p>We can't find <b>Saloos</b>! Please contact administrator!</p>");
+	// echo("<p>We can't find <b>Saloos</b>! Please contact administrator!</p>");
 }
 ```
-- in `content` folder must be create project directory like this : 
+- in `content` folder must be create project directory like this :
 ` test.com/contact ` `=>` ` content/contact/controller.php `

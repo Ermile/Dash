@@ -132,7 +132,6 @@ class Ncurses implements Output
             if ($getch > 0 && $getch == 113) {
                 $this->__destruct();
                 echo "\nEnding at your request.\n";
-                // exit(0);
             }
 
             // Stop temporariy

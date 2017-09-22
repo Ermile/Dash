@@ -6,7 +6,7 @@ namespace lib;
 class dash
 {
 	// @var dash core current version
-	const version = '10.6.9';
+	// const version = '10.6.9';
 
 	// @var dash core current commit number
 	// now get it automatically from git commands
@@ -91,7 +91,7 @@ class dash
 		{
 			$commitCount = exec('git rev-list --all --count');
 		}
-		return self::version;
+		return \lib\version::get();
 	}
 
 

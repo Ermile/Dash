@@ -6,7 +6,7 @@ class view
 	use mvc;
 
 	use view\twigAddons;
-	use view\optimize;
+	// use view\optimize;
 	/**
 	 * twig options
 	 * @var array

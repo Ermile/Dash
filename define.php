@@ -113,7 +113,7 @@ elseif(defined('CMS') && !constant('CMS'))
 else
 {
 	// A config file doesn't exist
-	exit("<p>There doesn't seem to be a <code>config.php</code> file. I need this before we can get started.</p>");
+	// echo("<p>There doesn't seem to be a <code>config.php</code> file. I need this before we can get started.</p>");
 }
 
 // if personal define exist, require it

@@ -148,7 +148,7 @@ class error
 				echo "  Fatal error on line $errline in file $errfile";
 				echo ", PHP " . PHP_VERSION . " (" . PHP_OS . ")<br />\n";
 				echo "Aborting...<br />\n";
-				exit(1);
+				\lib\code::force_exit();
 				break;
 
 			case E_USER_WARNING:
