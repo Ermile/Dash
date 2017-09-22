@@ -63,8 +63,10 @@
 
 {%if include.siftal and siftalCSS != 'off' %}
 {%if dev.siftal %}
- <link rel="stylesheet"       href="http://siftal.dev/css/siftal.css"/>{%else%}
- <link rel="stylesheet"       href="{{url.static}}{{'siftal/css/siftal.css' | filemtime(true)}}"/>{%endif%}
+ <link rel="stylesheet"       href="http://siftal.dev/css/siftal.css"/>
+{%else%}
+ <link rel="stylesheet"       href="{{url.static}}{{'siftal/css/siftal.css' | filemtime(true)}}"/>
+{%endif%}
 {%endif%}
 {%if include.css %}
  <link rel="stylesheet"       href="{{url.static}}css/style.css"/>{{include.newline}}{%endif%}

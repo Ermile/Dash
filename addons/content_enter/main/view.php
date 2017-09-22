@@ -11,7 +11,7 @@ class view extends \mvc\view
 	{
 		$this->include->css    = true;
 		$this->include->js     = false;
-		$this->data->bodyclass = 'unselectable';
+		$this->data->bodyclass = 'unselectable enter';
 		$this->data->bodyclass .= ' bg'. rand(1, 15);
 		// get mobile number to show in mobile input
 		$session_mobile = self::get_enter_session('mobile');
