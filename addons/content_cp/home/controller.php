@@ -145,28 +145,28 @@ class controller extends \mvc\controller
 	// if url is outside of our list, return false else if valid module return true
 	public function cpModlueList($_module = null)
 	{
-		// return true;
-		$mylist	= array_keys(self::$manifest['modules']->get_modules());
-		if($_module == 'all')
-		{
-			return $mylist;
-		}
-		elseif($_module == 'permissions')
-		{
-			$mylist	= array_keys(self::$manifest['modules']->modules_search('permissions'));
+		return true;
+		// $mylist	= [];
+		// if($_module == 'all')
+		// {
+		// 	return $mylist;
+		// }
+		// elseif($_module == 'permissions')
+		// {
+		// 	$mylist	= array_keys(self::$manifest['modules']->modules_search('permissions'));
 
-			return $mylist;
-		}
+		// 	return $mylist;
+		// }
 
-		$_module 	= $_module? $_module: $this->module();
-		if(in_array($_module, $mylist))
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
+		// $_module 	= $_module? $_module: $this->module();
+		// if(in_array($_module, $mylist))
+		// {
+		// 	return true;
+		// }
+		// else
+		// {
+		// 	return false;
+		// }
 	}
 
 	public function cpModule($_resultType = null, $_module = null)

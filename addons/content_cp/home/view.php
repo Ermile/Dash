@@ -29,9 +29,7 @@ class view extends \mvc\view
 											 'en_US' => 'English',
 											 'ar_SU' => 'Arabic - العربية'];
 
-		$this->data->modules 		  = $this->controller::$manifest['modules']->get_modules();
-		// $this->global->js             = [$this->url->myStatic.'js/highcharts/highcharts.js'];
-		// $this->data->page['desc']  = 'salam';
+
 		$mymodule = $this->module();
 
 		$this->data->page['title']    = T_(ucfirst(\lib\router::get_url(' ')));
