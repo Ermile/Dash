@@ -3,8 +3,8 @@ namespace addons\content_api\v1\file;
 
 class model extends \addons\content_api\v1\home\model
 {
-	use tools\get;
-	use tools\link;
+	use \addons\content_api\v1\file\tools\get;
+	use \addons\content_api\v1\file\tools\link;
 
 	use \addons\content_api\v1\poll\tools\get;
 	use \addons\content_api\v1\home\tools\ready;
