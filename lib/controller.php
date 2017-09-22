@@ -2,6 +2,7 @@
 namespace lib;
 use \lib\router\route;
 use \lib\api;
+
 class controller
 {
 	use mvc;
@@ -29,7 +30,6 @@ class controller
 		 * register shutdown function
 		 * after ending code this function is called
 		 */
-		// register_shutdown_function('\lib\controller::sp_shutdown');
 		register_shutdown_function([$this, 'sp_shutdown']);
 	}
 
@@ -110,10 +110,12 @@ class controller
 				}
 			}
 		}
+
 		if(\dash::is_json_accept())
 		{
 			$this->display = false;
 		}
+
 		if(!\lib\temp::get('api') && $this->method == 'get' && $this->display)
 		{
 			$this->view();
@@ -146,17 +148,14 @@ class controller
 		elseif(\lib\temp::get('api') || !$this->display)
 		{
 			$mycallback = isset($this->api_callback)? $this->api_callback: null;
-			// this line must be remove!
-			// check javascript to have no bug
-			// ----------------
-			// debug::msg('callback', $mycallback);
-			// ----------------
+
 			if($mycallback !== false && $mycallback !== null)
 			{
 				debug::result($mycallback);
 			}
 			$processor_arg = object(array('force_json'=>true));
 		}
+
 		if($this->model)
 		{
 			$this->model()->_processor($processor_arg);
@@ -192,7 +191,6 @@ class controller
 			header('Content-Type: application/json');
 			if(isset($this->controller()->redirector) && $this->controller()->redirector)
 			{
-				$_SESSION['debug'][md5( strtok($this->redirector()->redirect(true), '?') )] = debug::compile();
 				debug::msg("redirect", $this->redirector()->redirect(true));
 			}
 			echo debug::compile(true);
@@ -204,7 +202,6 @@ class controller
 
 		if(isset($this->controller()->redirector) && $this->controller()->redirector && !\dash::is_json_accept())
 		{
-			$_SESSION['debug'][md5( strtok($this->redirector()->redirect(true), '?') )] = debug::compile();
 			$this->redirector()->redirect();
 		}
 
@@ -408,13 +405,19 @@ class controller
 		elseif(method_exists('\lib\router', $_name))
 		{
 			return call_user_func_array('\lib\router::'.$_name, $_args);
-		}elseif(preg_match("#^inject_((after_|before_)?.+)$#Ui", $_name, $inject)){
+		}
+		elseif(preg_match("#^inject_((after_|before_)?.+)$#Ui", $_name, $inject))
+		{
 			return $this->inject($inject[1], $_args);
-		}elseif(preg_match("#^i(.*)$#Ui", $_name, $icall)){
+		}
+		elseif(preg_match("#^i(.*)$#Ui", $_name, $icall))
+		{
 			return $this->mvc_inject_finder($_name, $_args, $icall[1]);
 		}
+
 		\lib\error::page(get_called_class()."->$_name()");
 	}
+
 
 	/**
 	 * [controller description]

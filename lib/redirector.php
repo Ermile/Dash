@@ -5,6 +5,7 @@ class redirector
 {
 	public $php;
 	public $url;
+
 	public function __construct($_url = null, $_php = true)
 	{
 		$this->cache = new router\cache;
@@ -17,11 +18,27 @@ class redirector
 		$this->cache->set_cache['url_string'] = $_url ? $_url : $this->get_real_url();
 		$this->cache->set_cache['url_array']  = explode("/", $_url ? $_url : $this->get_real_url());
 	}
+
+
+	/**
+	 * html redirect
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
 	public function html()
 	{
 		$this->php = false;
 		return $this;
 	}
+
+
+	/**
+	 * redirect
+	 *
+	 * @param      boolean  $_return  The return
+	 *
+	 * @return     string   ( description_of_the_return_value )
+	 */
 	public function redirect($_return = false)
 	{
 		if(isset($this->url) && $this->url)
@@ -36,7 +53,9 @@ class redirector
 		}
 
 		if($_return)
+		{
 			return $newLocation;
+		}
 
 		if(\lib\dash::is_json_accept() || \lib\temp::get('api') || \lib\dash::is_ajax())
 		{
@@ -76,9 +95,13 @@ class redirector
 	{
 		$ret = call_user_func_array(array($this->cache, $_name), $_args);
 		if($ret === null)
+		{
 			return $this;
+		}
 		else
+		{
 			return $ret;
+		}
 	}
 }
 ?>

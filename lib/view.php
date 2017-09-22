@@ -43,16 +43,8 @@ class view
 
 		$myurl = router::get_protocol().'://'.router::get_domain().$_SERVER['REQUEST_URI'];
 		if( isset($_SERVER['HTTP_REFERER']) && isset($_SESSION['debug'][md5($_SERVER['HTTP_REFERER'])]) )
-			$myurl = $_SERVER['HTTP_REFERER'];
-
-
-		if(isset($_SESSION['debug'][md5($myurl)]))
 		{
-			$this->data->debug = $_SESSION['debug'][md5($myurl)];
-			// if(isset($_SESSION['debug'][md5($myurl)]['show']))
-				unset($_SESSION['debug'][md5($myurl)]);
-			// else
-				// $_SESSION['debug'][md5($myurl)]['show'] = true;
+			$myurl = $_SERVER['HTTP_REFERER'];
 		}
 
 		array_push($this->twig_include_path, root);
@@ -131,12 +123,15 @@ class view
 		$loader		  = new \Twig_Loader_Filesystem($this->twig_include_path);
 		$array_option = array();
 		if($this->controller()->debug())
+		{
 			$array_option['debug'] = true;
+		}
 
 		// twig var_dump filter for dumping value
 		$filter_dump       = new \Twig_SimpleFilter('dump', 'var_dump');
 		// Delete a key of an array
-		$filter_unset_type = new \Twig_SimpleFilter('unset_type', function ($array= null) {
+		$filter_unset_type = new \Twig_SimpleFilter('unset_type', function ($array= null)
+		{
 			unset($array['attr']['type']);
 			return $array;
 		});
@@ -147,12 +142,16 @@ class view
 		$twig->addGlobal("session", $_SESSION);
 
 
-		if($this->controller()->debug()){
+		if($this->controller()->debug())
+		{
 			$twig->addExtension(new \Twig_Extension_Debug());
 
-		}else{
+		}
+		else
+		{
 			$this->add_twig_function('dump');
 		}
+
 		$twig->addExtension(new \Twig_Extensions_Extension_I18n());
 
 		$this->twig_Extentions($twig);
