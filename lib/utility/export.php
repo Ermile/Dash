@@ -51,7 +51,7 @@ class export
         fclose($df);
         echo ob_get_clean();
 
-        die();
+        \lib\code::die();
     }
 }
 ?>

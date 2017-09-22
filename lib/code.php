@@ -5,18 +5,29 @@ namespace lib;
  */
 class code
 {
-	public static function exit()
-	{
-
-		self::force_exit();
-	}
-
 	/**
 	 * exit the code
 	 */
-	public static function force_exit()
+	public static function end()
 	{
-		exit();
+		self::exit();
+	}
+
+	/**
+	 * die code
+	 */
+	public static function die($_string = null)
+	{
+		self::exit($_string);
+	}
+
+
+	/**
+	 * exit code
+	 */
+	public static function exit($_string = null)
+	{
+		exit($_string);
 	}
 
 
@@ -81,3 +92,4 @@ class code
 	}
 }
 ?>
+

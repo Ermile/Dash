@@ -22,7 +22,8 @@ class excerpt
 		{
 			$wordlen = mb_strlen($word);
 			$loc = stripos($_fulltext, $word);
-			while($loc !== FALSE) {
+			while($loc !== false)
+			{
 				$locations[] = $loc;
 				$loc = stripos($_fulltext, $word, $loc + $wordlen);
 			}

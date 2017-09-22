@@ -25,46 +25,9 @@ class model
 
 	public function _processor($options = false)
 	{
-		if($this->transaction && debug::$status)
-		{
-			if(isset($this->sql))
-				$this->sql->commit();
-			if(count($this->commit))
-				call_user_func_array($this->commit[0], array_slice($this->commit, 1));
-		}
-		elseif($this->transaction && !debug::$status)
-		{
-			if(isset($this->sql))
-				$this->sql->rollback();
-			if(count($this->rollback))
-				call_user_func_array($this->rollback[0], array_slice($this->rollback, 1));
-		}
 		$this->controller->_processor($options);
 	}
 
-	public final function commit(){
-		$this->commit = func_get_args();
-	}
-
-	public final function rollback(){
-		$this->rollback = func_get_args();
-	}
-
-	public function validate(){
-		if(!isset($this->validate)) $this->validate = new \lib\validator\pack;
-		return $this->validate;
-	}
-
-	public function sql($name = null)
-	{
-		if(!$this->sql){
-			$this->sql = new sql\maker;
-			if($this->transaction) $this->sql->transaction();
-		}
-		$name = $name ? $name : count((array)$this->querys);
-		$query = $this->querys->$name = $this->sql;
-		return $query;
-	}
 
 	public function __get($name){
 		if(property_exists($this->controller, $name)){

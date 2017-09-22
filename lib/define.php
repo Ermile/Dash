@@ -11,7 +11,7 @@ class define
 		// check php version to upper than 7.0
 		if(version_compare(phpversion(), '7.0', '<'))
 		{
-			die("<p>For using Dash you must update php version to 7.0 or higher!</p>");
+			\lib\code::die("<p>For using Dash you must update php version to 7.0 or higher!</p>");
 		}
 
 		/**

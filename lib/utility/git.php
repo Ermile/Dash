@@ -135,7 +135,7 @@ class git
 		exec('rm -rf '.$folder.'/');
 		echo "<h1>package folder removed</h1>";
 		echo "<hr />";
-		die("done");
+		\lib\code::die("done");
 	}
 
 

@@ -195,7 +195,7 @@ class router
 
 		if(count(explode('.', SubDomain)) > 1)
 		{
-			die("<p>Dash only support one subdomain!</p>" );
+			\lib\code::die("<p>Dash only support one subdomain!</p>" );
 		}
 		elseif(SubDomain === 'www')
 		{

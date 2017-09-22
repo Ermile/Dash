@@ -25,9 +25,6 @@ class controller
 	 */
 	public function __construct()
 	{
-		$manifest = new controller\manifest();
-		self::$manifest = $manifest->get();
-		$this->addons();
 		/**
 		 * register shutdown function
 		 * after ending code this function is called
@@ -240,7 +237,7 @@ class controller
 			$object = object();
 			$object->controller = $this;
 			$this->model = new $class_name($object);
-			$this->model->addons($this);
+
 			if(method_exists($this->model, 'config') || array_key_exists('config', $this->model->Methods)){
 				$this->model->iconfig();
 			}
@@ -271,7 +268,7 @@ class controller
 			$object = object();
 			$object->controller = $this;
 			$this->view = new $class_name($object);
-			$this->view->addons($this);
+
 			if(method_exists($this->view, 'config') || array_key_exists('config', $this->view->Methods)){
 				$this->view->iconfig();
 			}

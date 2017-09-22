@@ -3,13 +3,13 @@
 1. make directory `contact` in `content` directory
 2. put `controller & view & display` in `contact` directory *tip : because we don't need `model.php` so don't set that
     - `display.html`'s content :  [Link](https://geeksesi.xyz/upload/view1.text )
-    * tip : `display`'s style put in `public_html/static/css` 
-3. to Answer Form Request we create 
-    * view config function to echo Confirmation alert 
+    * tip : `display`'s style put in `public_html/static/css`
+3. to Answer Form Request we create
+    * view config function to echo Confirmation alert
     * controller config function to save Data to `db.text` in : `public_html/db.text`
 
-## view : 
-- view class must be extends `\lib\mvc\view` and namespace must be set : `namespace content\contact` like this code : 
+## view :
+- view class must be extends `\lib\mvc\view` and namespace must be set : `namespace content\contact` like this code :
 ```
 <?php
 namespace content\contact;
@@ -23,11 +23,11 @@ class view extends \lib\mvc\view
          $this->data->alert = "OK , Your Message is Send :) ";
       }
    }
-   
+
 }
 ```
 ## controller :
-- controller class must be extends `\lib\mvc\controller` and namespace must be Set : `namespace content\contact` like this code : 
+- controller class must be extends `\lib\mvc\controller` and namespace must be Set : `namespace content\contact` like this code :
 ```
 <?php
 namespace content\contact;
@@ -42,13 +42,13 @@ class controller extends \lib\mvc\controller
          $json = json_encode($_POST);
          $db = fopen("db.text", "a+");
          $break = "\n";
-        
+
          fwrite($db, $json);
          fwrite($db, $break);
          fclose($db);
       }
    }
- 
+
 }
 ```
 ---
@@ -56,7 +56,7 @@ class controller extends \lib\mvc\controller
 
 
 4. to show db.text content in table in `example.dev/contact/read` url i make `read` directory in `conten/contact` directory and put new `controller & view & display` in `read` directory like this :
-## controller : 
+## controller :
 ```
 <?php
 namespace content\contact\read;
@@ -80,7 +80,7 @@ class controller extends \lib\mvc\controller
 }
 ```
 
-## view : 
+## view :
 ```
 <?php
 namespace content\contact\read;
@@ -89,7 +89,7 @@ class view extends \lib\mvc\view
 {
     public function view_table()
     {
-        $file = fopen(root."/public_html/db.text", "r") or die("Unable to open file!");
+        $file = fopen(root."/public_html/db.text", "r") || echo("Unable to open file!");
         $file_size = filesize(root."/public_html/db.text") ;
         $read = fread($file, $file_size );
         fclose($file);

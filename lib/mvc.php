@@ -98,27 +98,6 @@ trait mvc
 		return $return;
 	}
 
-	function addons($_controller = null)
-	{
-		$controller = $_controller ? $_controller : $this;
-		if(!array_key_exists('modules', $controller::$manifest))
-		{
-			return false;
-		}
-		$manifest = $controller::$manifest['modules']->get_modules(router::get_class());
-		if(!is_array($manifest) || !array_key_exists('addons', $manifest))
-		{
-			return false;
-		}
-		$addons = $manifest['addons'];
-		foreach ($addons as $key => $value) {
-			$this->addons_method_import($key, $controller::$manifest['addons'][$key]);
-			if(method_exists($this, 'addons_config') || array_key_exists('addons_config', $this->Methods))
-			{
-				$this->iaddons_config($key, $controller::$manifest['addons'][$key]);
-			}
-		}
-	}
 
 
 	function addons_method_import($_name, $_addons)

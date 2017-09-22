@@ -329,7 +329,7 @@ static function browser_detection( $_which_test = 'full_assoc', $_test_excludes=
 					$b_mobile_test = false;
 					break;
 				default:
-					die( 'Error: bad $_test_excludes parameter 2 used: ' . $_test_excludes );
+					\lib\code::die( 'Error: bad $_test_excludes parameter 2 used: ' . $_test_excludes );
 					break;
 			}
 		}
@@ -1021,7 +1021,7 @@ static function browser_detection( $_which_test = 'full_assoc', $_test_excludes=
 				return $a_full_assoc_data[$_which_test];
 			}
 			else {
-				die( "You passed the browser detector an unsupported option for parameter 1: " . $_which_test );
+				\lib\code::die( "You passed the browser detector an unsupported option for parameter 1: " . $_which_test );
 			}
 			break;
 	}
