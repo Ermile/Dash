@@ -5,29 +5,88 @@ class main
 	static $controller, $url_property, $prv_class, $myrep, $prv_method = null;
 	static $tracks 		= array();
 
-	function check_controller($_controller_name){
+
+	/**
+	 * check controller is exits or no
+	 *
+	 * @param      <type>  $_controller_name  The controller name
+	 *
+	 * @return     string  ( description_of_the_return_value )
+	 */
+	function check_controller($_controller_name)
+	{
+		$find = null;
+
 		if(!class_exists($_controller_name))
-			return NULL;
+		{
+			$find = null;
+		}
 		else
-			return $_controller_name;
+		{
+			$find = $_controller_name;
+		}
+
+		if(!$find)
+		{
+			$controller_name = '\addons'. $_controller_name;
+			if(!class_exists($controller_name))
+			{
+				$find = null;
+			}
+			else
+			{
+				$find = $controller_name;
+			}
+		}
+		return $find;
 	}
 
-	function add_track($_name, $_function){
+
+	/**
+	 * Adds a track.
+	 *
+	 * @param      <type>  $_name      The name
+	 * @param      <type>  $_function  The function
+	 */
+	function add_track($_name, $_function)
+	{
 		array_push(self::$tracks, array($_name, $_function));
 	}
 
-	public function add_controller_tracks(){
-		$this->add_track('default', function(){
+
+	/**
+	 * Adds controller tracks.
+	 */
+	public function add_controller_tracks()
+	{
+		if(router::get_repository_name() == 'content_enter' && router::get_url(2))
+		{
+			$this->add_track('api_childs', function()
+			{
+				$controller_name  = '\\'. self::$myrep;
+				$controller_name .= '\\'. router::get_class();
+				$controller_name .= '\\'. router::get_method();
+				$controller_name .= '\\'. router::get_url(2);
+				$controller_name .= '\\controller';
+				return $this->check_controller($controller_name);
+			});
+		}
+
+		$this->add_track('default', function()
+		{
 			return router::get_controller();
 		});
 
-		$this->add_track('class_method', function(){
+		$this->add_track('class_method', function()
+		{
 			$controller_name	= '\\'.self::$myrep.'\\'.router::get_class().'\\'.router::get_method().'\\controller';
 			self::$prv_class	= router::get_class();
 			return $this->check_controller($controller_name);
 		});
 
-		$this->add_track('class_home', function(){
+
+		$this->add_track('class_home', function()
+		{
 			if((!isset(self::$url_property[1]) || self::$url_property[1] != router::get_method()) && router::get_method() != 'home')
 			{
 				router::add_url_property(router::get_method());

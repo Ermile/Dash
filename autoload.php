@@ -121,30 +121,14 @@ class autoload
 		return array($prefix, $sub_path, $exec_file .".php");
 	}
 
-	static function __callStatic($_name, $_args){
+	static function __callStatic($_name, $_args)
+	{
 		$name = preg_replace("/^i/", "", $_name);
-		if(method_exists("iautoload", $name))
-		{
-			return iautoload::{$name}(...$_args);
-		}
-		else
-			return autoload::{$name}(...$_args);
+		return autoload::{$name}(...$_args);
 	}
 }
 
-if(stream_resolve_include_path('iautoload.php'))
-{
-	require_once ("iautoload.php");
-}
-// register autoload
-if(class_exists('iautoload'))
-{
-	spl_autoload_register("\iautoload::load");
-}
-else
-{
-	spl_autoload_register("\autoload::load");
-}
+spl_autoload_register("\autoload::load");
 
 
 /**
