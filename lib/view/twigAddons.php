@@ -220,7 +220,7 @@ trait twigAddons
 	{
 		return new \Twig_SimpleFunction('result', function()
 		{
-			var_dump($this->model());
+			\lib\code::dump($this->model());
 		});
 	}
 

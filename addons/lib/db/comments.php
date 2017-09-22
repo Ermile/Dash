@@ -156,7 +156,7 @@ class comments
 		$list_values = implode($values, ', ');
 		// create query string
 		$qry       = "INSERT INTO comments ( $list_field ) VALUES ( $list_values )";
-		var_dump($qry);
+
 		// run query and insert into db
 		$result    = \lib\db::query($qry);
 		// get insert id

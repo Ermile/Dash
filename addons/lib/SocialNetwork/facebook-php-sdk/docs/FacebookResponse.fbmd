@@ -27,7 +27,7 @@ try {
   exit;
 }
 
-var_dump($response);
+// var_dump($response);
 // class Facebook\FacebookResponse . . .
 ~~~~
 </card>

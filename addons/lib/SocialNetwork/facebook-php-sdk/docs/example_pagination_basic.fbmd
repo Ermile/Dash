@@ -35,14 +35,14 @@ try {
 $feedEdge = $response->getGraphEdge();
 
 foreach ($feedEdge as $status) {
-  var_dump($status->asArray());
+  // var_dump($status->asArray());
 }
 
 // Page 2 (next 5 results)
 $nextFeed = $fb->next($feedEdge);
 
 foreach ($nextFeed as $status) {
-  var_dump($status->asArray());
+  // var_dump($status->asArray());
 }
 ~~~~
 </card>

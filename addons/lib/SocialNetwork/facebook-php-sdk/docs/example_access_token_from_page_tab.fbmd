@@ -37,15 +37,15 @@ if (! isset($accessToken)) {
 
 // Logged in
 echo '<h3>Page ID</h3>';
-var_dump($helper->getPageId());
+// var_dump($helper->getPageId());
 
 echo '<h3>User is admin of page</h3>';
-var_dump($helper->isAdmin());
+// var_dump($helper->isAdmin());
 
 echo '<h3>Signed Request</h3>';
-var_dump($helper->getSignedRequest());
+// var_dump($helper->getSignedRequest());
 
 echo '<h3>Access Token</h3>';
-var_dump($accessToken->getValue());
+// var_dump($accessToken->getValue());
 ~~~~
 </card>

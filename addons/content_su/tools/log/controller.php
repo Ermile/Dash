@@ -50,7 +50,7 @@ class controller extends \addons\content_su\main\controller
 				}
 				else
 				{
-					var_dump($_SERVER['SERVER_SOFTWARE']);
+					// var_dump($_SERVER['SERVER_SOFTWARE']);
 				}
 			}
 		}

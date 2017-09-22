@@ -95,7 +95,7 @@ $payload = [
   ];
 $rawSignedRequest = $signedRequest->make($payload);
 
-var_dump($rawSignedRequest);
+// var_dump($rawSignedRequest);
 // string(129) "c9RNpwW4vGYTGc7_E-_XQu5aoEQrWrx_KDOdz3x9Ec0=.eyJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImlzc3VlZF9hdCI6MTQxODE4MjI1NSwiZm9vIjoiYmFyIn0="
 ~~~~
 </card>

@@ -63,9 +63,7 @@ class controller extends \addons\content_su\main\controller
 					$result = \lib\db::backup_dump();
 				}
 
-				echo '<pre>';
-				print_r($result);
-				echo '</pre>';
+				\lib\code::print($result, true);
 				\lib\code::force_exit();
 				break;
 

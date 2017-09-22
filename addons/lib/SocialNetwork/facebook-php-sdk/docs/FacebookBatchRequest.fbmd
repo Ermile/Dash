@@ -96,7 +96,7 @@ $requests = [
 ];
 $batchRequest = new Facebook\FacebookBatchRequest($fb->getApp(), $requests, '{access-token}');
 
-var_dump($batchRequest[0]);
+// var_dump($batchRequest[0]);
 /*
 array(2) {
   'name' => string(3) "foo"

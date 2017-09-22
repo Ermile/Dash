@@ -92,10 +92,10 @@ class git
 				unset($res[$k]);
 		}
 		//recount array
-		var_dump($res);
+		\lib\code::dump($res);
 		array_values($res);
 		echo "<h1>Files found in git log result:</h1>";
-		print_r($res);
+		\lib\code::print($res);
 		echo "<hr />";
 		//specify the folder where your packages are stored
 		$packagesfolder = core."packages";
@@ -165,7 +165,7 @@ class git
 			$zip = new \ZipArchive();
 			if($zip->open($destination, $overwrite ? \ZIPARCHIVE::OVERWRITE : \ZIPARCHIVE::CREATE) !== true)
 			{
-				var_dump($destination);
+				\lib\code::dump($destination);
 				return false;
 			}
 			//add the files

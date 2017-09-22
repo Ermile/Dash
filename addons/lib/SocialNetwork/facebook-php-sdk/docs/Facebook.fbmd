@@ -422,13 +422,13 @@ if (count($photosEdge) > 0) {
   $pageCount = 0;
   do {
     foreach ($photosEdge as $photo) {
-      var_dump($photo->asArray());
+      // var_dump($photo->asArray());
 
       // Deep pagination is supported on child GraphEdge's
       $likes = $photo['likes'];
       do {
         echo '<p>Likes:</p>' . "\n\n";
-        var_dump($likes->asArray());
+        // var_dump($likes->asArray());
       } while ($likes = $fb->next($likes));
     }
     $pageCount++;

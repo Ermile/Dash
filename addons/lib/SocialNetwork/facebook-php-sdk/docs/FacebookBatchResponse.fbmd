@@ -40,7 +40,7 @@ foreach ($batchResponse as $key => $response) {
   }
 }
 
-var_dump($batchResponse);
+// var_dump($batchResponse);
 // class Facebook\FacebookBatchResponse . . .
 ~~~~
 </card>
@@ -78,7 +78,7 @@ foreach ($batchResponse as $key => $response) {
   }
 }
 
-var_dump($batchResponse['foo']);
+// var_dump($batchResponse['foo']);
 // class Facebook\FacebookResponse . . .
 ~~~~
 </card>

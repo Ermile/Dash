@@ -16,7 +16,7 @@ $signedRequest = $jsHelper->getSignedRequest();
 
 if ($signedRequest) {
   $payload = $signedRequest->getPayload();
-  var_dump($payload);
+//   var_dump($payload);
 }
 ~~~
 

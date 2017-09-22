@@ -116,9 +116,7 @@ class languageDetection
 			$a_user_languages[0] = array( '','','','' ); //return array with empty values.
 		}
 		if ( $b_debugger_1 === true ){
-			echo '<pre>';
-			print_r($a_user_languages);
-			echo '</pre>';
+			\lib\code::print($a_user_languages, true);
 		}
 		// return parameters
 		if ( $feature == 'data' ) {

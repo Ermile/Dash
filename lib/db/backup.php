@@ -72,7 +72,7 @@ trait backup
 		if($_period === true)
 		{
 			$clean_result = self::clean(false);
-			print_r($clean_result);
+			\lib\code::print($clean_result);
 			echo "<hr />";
 			$_period = null;
 		}

@@ -57,12 +57,12 @@ do {
   echo '<h1>Page #' . $pageCount . ':</h1>' . "\n\n";
 
   foreach ($pagesEdge as $page) {
-    var_dump($page->asArray());
+    // var_dump($page->asArray());
 
     $likes = $page['likes'];
     do {
       echo '<p>Likes:</p>' . "\n\n";
-      var_dump($likes->asArray());
+      // var_dump($likes->asArray());
     } while ($likes = $fb->next($likes));
   }
   $pageCount++;

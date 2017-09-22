@@ -28,7 +28,7 @@ composer require linfo/linfo
 $linfo = new \Linfo\Linfo;
 $parser = $linfo->getParser();
 
-var_dump($parser->getCPU()); // and a whole lot more
+// var_dump($parser->getCPU()); // and a whole lot more
 ```
 
 
@@ -64,11 +64,11 @@ var_dump($parser->getCPU()); // and a whole lot more
    - uTorrent torrents status
    - Soldat server status
    - CUPS printer status
-   - IPMI 
+   - IPMI
    - libvirt VMs
    - more
 
-## System requirements: 
+## System requirements:
  - PHP 5.3
  - pcre extension
 
@@ -114,7 +114,7 @@ var_dump($parser->getCPU()); // and a whole lot more
 
 ## Troubleshooting:
 
-Set ``$settings['show_errors'] = true;`` in ``config.inc.php`` to yield useful error messages. 
+Set ``$settings['show_errors'] = true;`` in ``config.inc.php`` to yield useful error messages.
 
 
 ## TODO:

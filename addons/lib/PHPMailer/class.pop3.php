@@ -371,7 +371,6 @@ class POP3
             echo '<pre>';
             foreach ($this->errors as $error) {
                 echo $error;
-                // print_r($error);
             }
             echo '</pre>';
         }

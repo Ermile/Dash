@@ -55,7 +55,7 @@ foreach ($responses as $key => $response) {
     $e = $response->getThrownException();
     echo '<p>Error! Facebook SDK Said: ' . $e->getMessage() . "\n\n";
     echo '<p>Graph Said: ' . "\n\n";
-    var_dump($e->getResponse());
+//     var_dump($e->getResponse());
   } else {
     echo "<p>(" . $key . ") HTTP status code: " . $response->getHttpStatusCode() . "<br />\n";
     echo "Response: " . $response->getBody() . "</p>\n\n";
