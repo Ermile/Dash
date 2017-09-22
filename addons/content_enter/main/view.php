@@ -9,7 +9,7 @@ class view extends \mvc\view
 	 */
 	public function config()
 	{
-		$this->include->css    = true;
+		$this->include->css    = false;
 		$this->include->js     = false;
 		$this->data->bodyclass = 'unselectable enter';
 		$this->data->bodyclass .= ' bg'. rand(1, 15);
