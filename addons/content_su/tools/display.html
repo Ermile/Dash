@@ -11,7 +11,9 @@
    <a target='_blank' href="{{url.baseFull}}/tools/sitemap">{%trans "Sitemap"%}</a>
    <a target='_blank' href="{{url.baseFull}}/tools/info">{%trans "Server information"%}</a>
    <a target='_blank' href="{{url.baseFull}}/tools/log">{%trans "Log"%}</a>
+{%if url.tld == 'dev'%}
    <a target='_blank' href="{{url.baseFull}}/tools/translation">{%trans "Translation tools"%}</a>
+{%endif%}
    <a target='_blank' href="{{url.baseFull}}/tools/update" class="warn">{%trans "Update"%}</a>
 
   </div>
