@@ -1,0 +1,32 @@
+{%extends display.suMain%}
+
+
+{%block content%}
+
+<div class="tbox">
+  <h2>{%trans "Barcode"%}</h2>
+  <p>{%trans "A special handle to give barcode or rfid code"%}</p>
+</div>
+
+
+<div class="cbox">
+  <h3>{%trans "Example"%}</h3>
+  <p>{%trans "This type of input filled only with readers, because of type speed!"%}</p>
+
+  <div class="example">
+
+   <label>{%trans "Barcode"%}</label>
+   <div class="input">
+   	<input type="text" placeholder='{%trans "Code"%}' class="barcode" data-default>
+   </div>
+
+   <label>{%trans "Simple input"%}</label>
+   <div class="input">
+   	<input type="text" placeholder='{%trans "input"%}'>
+   </div>
+
+  </div>
+</div>
+
+{%endblock%}
+
