@@ -27,7 +27,7 @@ class code
 	 */
 	public static function exit($_string = null)
 	{
-		exit();
+		exit($_string);
 	}
 
 
