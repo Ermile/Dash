@@ -515,44 +515,9 @@ class users
 	 *
 	 * @return     <type>  The count.
 	 */
-	public static function get_count($_type = null)
+	public static function get_count()
 	{
-		$query = null;
-		$field = 'count';
-		$only_one_record = true;
-		switch ($_type)
-		{
-			case 'active':
-			case 'awaiting':
-			case 'deactive':
-			case 'removed':
-			case 'filter':
-				$query = "SELECT COUNT(*) AS 'count' FROM users WHERE users.status = '$_type' ";
-				break;
-
-			case 'valid':
-			case 'invalid':
-				$query = "SELECT COUNT(*) AS 'count' FROM users WHERE users.user_validstatus = '$_type' ";
-				break;
-
-			case 'all':
-				$query = "SELECT COUNT(*) AS 'count' FROM users";
-				break;
-
-
-			default:
-				$query = "SELECT
-							users.user_validstatus AS 'valid',
-							users.status AS 'status',
-							COUNT(*) AS 'count'
-						FROM users
-						GROUP BY valid,status";
-				$field = null;
-				$only_one_record = false;
-				break;
-		}
-		$result = \lib\db::get($query, $field, $only_one_record);
-		return $result;
+		return \lib\db\config::public_get_count('users', ...func_get_args());
 	}
 
 
