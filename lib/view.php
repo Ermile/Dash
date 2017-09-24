@@ -125,7 +125,7 @@ class view
 		$this->add_twig_function('perm');
 		$this->add_twig_function('perm_su');
 
-		require_once core.'addons/Twig/lib/Twig/Autoloader.php';
+		require_once core.'addons/lib/Twig/lib/Twig/Autoloader.php';
 		\Twig_Autoloader::register();
 		$loader		  = new \Twig_Loader_Filesystem($this->twig_include_path);
 		$array_option = array();
