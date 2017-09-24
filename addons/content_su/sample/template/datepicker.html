@@ -21,12 +21,12 @@
 
     <h4>{%trans "Without any option and without default value" %}</h4>
     <input class="input w300 datepicker" data-initialValue='false'>
-   </div>
 
-    <h4>{%trans "Without any option and formattter on export" %}</h4>
-    <input class="input w300 datepicker" data-formatter>
-   </div>
-
+    <h4>{%trans "Without any option to use in php, get timestamp on backend" %}</h4>
+    <input class="input w300 datepicker" data-format='YYYY/MM/DD' data-alt='#normalAlt'>
+    <input class="input w300" id="normalAlt">
+  </div>
+  <div class="example">
    <div class="pA10">
     <h4>{%trans "With custom format" %}</h4>
     <input class="input w100 datepicker" data-format='YY/MM/DD'>
@@ -38,8 +38,8 @@
 
    <div class="pA10">
     <h4>{%trans "Connect to another field" %}</h4>
-     <input class="input w200 datepicker" data-format='YY/MM/DD' data-alt='#normalAlt' data-altFormat='LLLL'>
-     <input class="input w300" id="normalAlt" disabled>
+     <input class="input w200 datepicker" data-format='YY/MM/DD' data-alt='#normalAlt2' data-altFormat='LLLL'>
+     <input class="input w300" id="normalAlt2" disabled>
    </div>
 
    <div class="pA10">
