@@ -4,6 +4,7 @@ use \lib\db\logs;
 use \lib\utility\notification;
 use \lib\utility;
 use \lib\debug;
+
 trait ref
 {
 	/**
@@ -69,7 +70,7 @@ trait ref
 					$where =
 					[
 						'user_id' => $check_user_exist['id'],
-						'cat'     => 'user_ref_'. (string) $check_user_exist['id'],
+						'key'     => 'user_ref_'. (string) $check_user_exist['id'],
 					];
 					\lib\db\options::plus($where);
 				}
