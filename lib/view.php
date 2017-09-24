@@ -38,9 +38,9 @@ class view
 		// default data property
 		$this->data->macro['forms']   = 'includes/macro/forms.html';
 		// default display value
-		$this->data->display['mvc']   = "includes/mvc/display-mvc.html";
-		$this->data->display['dash']  = "includes/mvc/display-dash.html";
-		$this->data->display['enter'] = "includes/mvc/display-enter.html";
+		$this->data->display['mvc']   = "includes/html/display-mvc.html";
+		$this->data->display['dash']  = "includes/html/display-dash.html";
+		$this->data->display['enter'] = "includes/html/display-enter.html";
 
 
 		$myurl = router::get_protocol().'://'.router::get_domain().$_SERVER['REQUEST_URI'];
@@ -77,8 +77,8 @@ class view
 		$this->data->loadMode = 'normal';
 		if(\lib\dash::is_Ajax())
 		{
-			$this->data->display['dash']    = "includes/mvc/display-dash-xhr.html";
-			$this->data->display['enter']   = "includes/mvc/display-enter-xhr.html";
+			$this->data->display['dash']    = "includes/html/display-dash-xhr.html";
+			$this->data->display['enter']   = "includes/html/display-enter-xhr.html";
 
 			$this->data->display['main']    = "content/main/layout-xhr.html";
 			$this->data->display['home']    = "content/home/display-xhr.html";
