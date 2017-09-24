@@ -91,7 +91,7 @@ if(isset($_POST['username']) && isset($_POST['password']))
    <input type="password" name="password" placeholder='Password' autocomplete="new-password">
    <br>
    <p>Admin mobile</p>
-   <input type="number" name="mobile" placeholder='mobile for admin' style=" background: #eee">
+   <input type="number" name="mobile" placeholder='mobile for admin' style=" background: #eee" value="<?php echo isset($_GET['mobile']) ? $_GET['mobile'] : null; ?>">
 
    <input type="submit" value="Install">
 

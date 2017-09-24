@@ -317,7 +317,9 @@ class router
 		// create new url for protocol checker
 		$newUrl      = "";
 		$currentPath = $_SERVER['REQUEST_URI'];
-		$mainSite    = \lib\option::config('redirect_url');
+		// $mainSite    = \lib\option::config('redirect_url');
+		$mainSite    = Protocol. '://'. \lib\router::get_domain();
+
 		// if redirect to main site is enable and all thing is okay
 		// then redirect to the target url
 		if(
@@ -363,6 +365,7 @@ class router
 			{
 				$newUrl = 'http://';
 			}
+
 			if($newUrl)
 			{
 				$newUrl .= router::get_domain(). '/'. self::$real_url_string;
