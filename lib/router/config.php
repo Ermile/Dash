@@ -6,7 +6,6 @@ trait config
 	static public $protocol           = "http";
 	static public $base               = null;
 	static public $prefix_base        = null;
-	static public $sub_is_fake        = null;
 	static public $sub_real            = null;
 
 	// original routers

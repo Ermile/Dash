@@ -188,9 +188,27 @@ class router
 		// add service to base
 		router::$base .= Service .(router::$prefix_base ? '/'. router::$prefix_base : '');
 		// add repository to base
-		if(router::$repository_finded)
+		if(self::$repository_finded)
 		{
-			router::$base .= '/'. router::$repository_finded;
+			router::$base .= '/'. self::$repository_finded;
+		}
+		else if(SubDomain)
+		{
+			// if we are in subdomain without finded repository
+			// check if we have content_subDomain route in this folder
+			$myrep = 'content_subdomain';
+			if(is_dir(root.$myrep))
+			{
+				// set repository to this folder
+				$myparam = array($myrep);
+
+				// call function and pass param value to it
+				router::set_repository(...$myparam);
+			}
+			else
+			{
+				// we are in undefined subdomain! why!?
+			}
 		}
 
 		if(count(explode('.', SubDomain)) > 1)
@@ -210,23 +228,21 @@ class router
 	 */
 	public static function check_repository()
 	{
-		$mysub = router::get_url(0);
+		$myContent = router::get_url(0);
 		// if sub is not exist return it
-		if(!$mysub)
+		if(!$myContent)
 		{
 			return false;
 		}
 
 		// automatically set repository if folder of it exist
-		router::$sub_is_fake = true;
 		$myloc               = null;
-		$mysub_valid         = null;
 
 		// list of addons exist in dash,
 		$dash_addons         = [ 'cp', 'enter', 'api', 'su'];
 
 		// set repository name
-		$myrep    = 'content_'.$mysub;
+		$myrep    = 'content_'.$myContent;
 
 		// check content_aaa folder is exist in project or dash addons folder
 		if(is_dir(root.$myrep))
@@ -234,7 +250,7 @@ class router
 			$myloc = false;
 		}
 		// if exist on addons folder
-		elseif(in_array($mysub, $dash_addons) && is_dir(addons.$myrep))
+		elseif(in_array($myContent, $dash_addons) && is_dir(addons.$myrep))
 		{
 			$myloc = addons;
 		}
@@ -245,14 +261,11 @@ class router
 		}
 
 		// if url is fake, show it like subdomain and remove from url
-		if(router::$sub_is_fake)
-		{
-			// set finded repository
-			self::$repository_finded = $mysub;
+		// set finded repository
+		self::$repository_finded = $myContent;
 
-			router::remove_url($mysub);
-			// router::set_sub_domain($mysub);
-		}
+		router::remove_url($myContent);
+
 		// set repository to this folder
 		$myparam = array($myrep);
 		if($myloc)
