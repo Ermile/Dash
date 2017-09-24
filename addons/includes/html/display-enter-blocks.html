@@ -149,7 +149,11 @@
 {%block eMethods%}
   <div class="f" id='eMethods'>
   <p>{%trans "Enter with another methods"%}</p>
-{{block ('ebgoogle')}}
+
+{%if google_login%}
+  {{block ('ebgoogle')}}
+{%endif%}
+
 {{block ('ebmobile')}}
 {{block ('ebemail2')}}
 {{block ('ebusername')}}

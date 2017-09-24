@@ -40,6 +40,13 @@ class view extends \mvc\view
 		// in all page the mobiel input is readonly
 		$this->data->mobile_readonly = true;
 
+		$this->data->google_login = \lib\option::social('google', 'status');
+
+		if(\lib\router::get_sub_domain())
+		{
+			$this->data->google_login = false;
+		}
+
 	}
 }
 ?>
