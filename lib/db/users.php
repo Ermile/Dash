@@ -23,6 +23,51 @@ class users
 	}
 
 
+
+	/**
+	 * Gets in database.
+	 * get user data in database
+	 *
+	 * @param      <type>  $_database_name  The database name
+	 * @param      <type>  $_args           The arguments
+	 */
+	public static function get_in_database($_database_name, $_where)
+	{
+		if(!$_database_name || !is_string($_database_name))
+		{
+			return false;
+		}
+
+		$only_one_value = false;
+		$limit          = null;
+
+		if(isset($_where['limit']))
+		{
+			if($_where['limit'] === 1)
+			{
+				$only_one_value = true;
+			}
+
+			$limit = " LIMIT $_where[limit] ";
+		}
+
+		unset($_where['limit']);
+
+		$where = \lib\db\config::make_where($_where);
+
+		if(!$where)
+		{
+			return false;
+		}
+
+		$query = "SELECT * FROM `$_database_name`.`users` WHERE $where $limit ";
+
+		$result = \lib\db::get($query, null, $only_one_value);
+
+		return $result;
+	}
+
+
 	/**
 	 * Gets the reference count.
 	 *
