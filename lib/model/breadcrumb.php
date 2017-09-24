@@ -9,6 +9,7 @@ trait breadcrumb
 	 */
 	public function breadcrumb()
 	{
+
 		$_addr      = $this->url('breadcrumb');
 		$breadcrumb = [];
 
@@ -24,27 +25,27 @@ trait breadcrumb
 			}
 		}
 
-		$qry = \lib\db\posts::get(['url', ["IN",  "('".join("' , '", $breadcrumb)."')"]]);
+		// $qry = \lib\db\posts::get(['url', ["IN",  "('".join("' , '", $breadcrumb)."')"]]);
 		$titles    = [];
 		$post_urls = [];
 
-		if(is_array($qry))
-		{
-			$titles    = array_column($qry, 'title');
-			$post_urls = array_column($qry, 'url');
-		}
+		// if(is_array($qry))
+		// {
+		// 	$titles    = array_column($qry, 'title');
+		// 	$post_urls = array_column($qry, 'url');
+		// }
 
 
 		if(count($breadcrumb) != $titles)
 		{
-			$terms_qry = \lib\db\terms::get(['url', ["IN", "('".join("' , '", $breadcrumb)."')"]]);
+			// $terms_qry = \lib\db\terms::get(['url', ["IN", "('".join("' , '", $breadcrumb)."')"]]);
 			$term_titles = [];
 			$term_urls   = [];
-			if(is_array($terms_qry))
-			{
-				$term_titles = array_column($terms_qry, 'title');
-				$term_urls   = array_column($terms_qry, 'url');
-			}
+			// if(is_array($terms_qry))
+			// {
+			// 	$term_titles = array_column($terms_qry, 'title');
+			// 	$term_urls   = array_column($terms_qry, 'url');
+			// }
 		}
 
 		$br = [];
