@@ -18,10 +18,11 @@ class router
 		$clean_url = urldecode($clean_url);
 
 
-		preg_match("/^([^?]*)(\?.*)?$/", $clean_url, $url);
-
-		self::$real_url_string = self::$url_string = $url[1];
-		self::$real_url_array  = self::$url_array = preg_split("[\/]", preg_replace("/^\/|\/$/", '', $url[1]), -1 , PREG_SPLIT_NO_EMPTY);
+		if(preg_match("/^([^?]*)(\?.*)?$/", $clean_url, $url))
+		{
+			self::$real_url_string = self::$url_string = $url[1];
+			self::$real_url_array  = self::$url_array = preg_split("[\/]", preg_replace("/^\/|\/$/", '', $url[1]), -1 , PREG_SPLIT_NO_EMPTY);
+		}
 
 		// if find 2slash together block!
 		if(strpos($_SERVER['REQUEST_URI'], '//') !== false)
