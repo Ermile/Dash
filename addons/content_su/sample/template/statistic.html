@@ -1,0 +1,192 @@
+{%extends display.suMain%}
+
+
+{%block content%}
+
+<div class="tbox">
+  <h2>{%trans "Statistic"%}</h2>
+  <p>{%trans "A statistic emphasizes the current value of an attribute."%} {%trans "A statistic can display a value with a label above or below it."%}</p>
+</div>
+
+
+<div class="cbox">
+  <h3>{%trans "Example"%}</h3>
+
+  <div class="example">
+    <div class="statistic">
+      <div class="value">7,450</div>
+      <div class="label">{%trans "Downloads"%}</div>
+    </div>
+  </div>
+
+  <div class="example">
+    <div class="statistic">
+      <div class="label">{%trans "Views"%}</div>
+      <div class="value">9,064</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="cbox">
+  <h3>{%trans "A group of statistics"%}</h3>
+  <div class="example">
+    <div class="statistics">
+      <div class="statistic">
+        <div class="value">22</div>
+        <div class="label">{%trans "Faves"%}</div>
+      </div>
+      <div class="statistic">
+        <div class="value">31,200</div>
+        <div class="label">{%trans "Views"%}</div>
+      </div>
+      <div class="statistic">
+        <div class="value">22</div>
+        <div class="label">{%trans "Members"%}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cbox">
+  <h3>{%trans "A statistic can contain a numeric, icon, image, or text value"%}</h3>
+  <div class="example">
+    <div class="statistics">
+      <div class="statistic">
+        <div class="value">22</div>
+        <div class="label">{%trans "Saves"%}</div>
+      </div>
+      <div class="statistic">
+        <div class="text value">{%trans "Three"%}<br>{%trans "Thousand"%}</div>
+        <div class="label">{%trans "Signups"%}</div>
+      </div>
+      <div class="statistic">
+        <div class="value"><i class="sf-plane"></i>5</div>
+        <div class="label">{%trans "Flights"%}</div>
+      </div>
+      <div class="statistic">
+        <div class="value"><img src="/images/avatar/small/joe.jpg" class="circular inline image"> 42</div>
+        <div class="label">{%trans "Team Members"%}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="cbox">
+  <div class="example">
+    <div class="statistic">
+      <div class="value">2,204</div>
+      <div class="label">{%trans "Views"%}</div>
+    </div>
+  </div>
+
+  <div class="example">
+    <div class="horizontal statistic">
+      <div class="value">2,204</div>
+      <div class="label">{%trans "Views"%}</div>
+    </div>
+  </div>
+
+  <div class="example">
+    <div class="horizontal statistics">
+      <div class="statistic">
+        <div class="value">2,204</div>
+        <div class="label">{%trans "Views"%}</div>
+      </div>
+      <div class="statistic">
+        <div class="value">3,322</div>
+        <div class="label">{%trans "Downloads"%}</div>
+      </div>
+      <div class="statistic">
+        <div class="value">22</div>
+        <div class="label">{%trans "Tasks"%}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cbox">
+  <div class="example">
+    <div class="statistics">
+      <div class="red statistic">
+        <div class="value">27</div>
+        <div class="label">{%trans "Red"%}</div>
+      </div>
+      <div class="orange statistic">
+        <div class="value">8</div>
+        <div class="label">{%trans "Orange"%}</div>
+      </div>
+      <div class="yellow statistic">
+        <div class="value">28</div>
+        <div class="label">{%trans "Yellow"%}</div>
+      </div>
+      <div class="olive statistic">
+        <div class="value">7</div>
+        <div class="label">{%trans "Olive"%}</div>
+      </div>
+      <div class="green statistic">
+        <div class="value">14</div>
+        <div class="label">{%trans "Green"%}</div>
+      </div>
+      <div class="teal statistic">
+        <div class="value">82</div>
+        <div class="label">{%trans "Teal"%}</div>
+      </div>
+      <div class="blue statistic">
+        <div class="value">1</div>
+        <div class="label">{%trans "Blue"%}</div>
+      </div>
+      <div class="violet statistic">
+        <div class="value">22</div>
+        <div class="label">{%trans "Violet"%}</div>
+      </div>
+      <div class="purple statistic">
+        <div class="value">23</div>
+        <div class="label">{%trans "Purple"%}</div>
+      </div>
+      <div class="pink statistic">
+        <div class="value">15</div>
+        <div class="label">{%trans "Pink"%}</div>
+      </div>
+      <div class="brown statistic">
+        <div class="value">36</div>
+        <div class="label">{%trans "Brown"%}</div>
+      </div>
+      <div class="grey statistic">
+        <div class="value">49</div>
+        <div class="label">{%trans "Grey"%}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="cbox">
+  <div class="example">
+    <div class="statistic sm">
+     {{block("st1")}}
+    </div>
+    <div class="statistic md">
+     {{block("st1")}}
+    </div>
+    <div class="statistic">
+     {{block("st1")}}
+    </div>
+    <div class="statistic lg">
+     {{block("st1")}}
+    </div>
+    <div class="statistic xl">
+     {{block("st1")}}
+    </div>
+  </div>
+</div>
+
+{%endblock%}
+
+
+{%block st1%}
+        <div class="value">{{ "2,360" | fitNumber}}</div>
+        <div class="label">{%trans "Views"%}</div>
+{%endblock%}
