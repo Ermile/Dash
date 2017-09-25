@@ -37,7 +37,10 @@ if(isset($_POST['username']) && isset($_POST['password']))
 
 				if(!$check_exist)
 				{
-					\lib\db\users::insert($add_user);
+					$old_debug_status   = \lib\debug::$status;
+					\lib\debug::$status = 1;
+					$insert             = \lib\db\users::insert($add_user);
+					\lib\debug::$status = $old_debug_status;
 				}
 			}
 		}
