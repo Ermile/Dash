@@ -4,12 +4,12 @@
 {%block content%}
 
 
-<div class="f">
- <div class="c4 s12 pA10">
-  <div class="cbox">
+<div class="f mT15">
+ <div class="c4 s12">
+  <div class="dcard">
    <div class="f">
-   	<h5 class="c6 fc-mute">{%trans "Client"%}</h5>
-   	<h4 class="c6 fc-danger fs30 txtra counter">{{80 | number_format}}</h4>
+   	<h5 class="c fc-mute">{%trans "Client"%}</h5>
+   	<h4 class="cauto fc-danger fs30 txtra counter">{{80 | number_format}}</h4>
    </div>
    <div class="f">
    <div class="progress" data-percent='45'>
@@ -18,11 +18,11 @@
    </div>
   </div>
  </div>
- <div class="c4 s12 pA10">
-  <div class="cbox">
+ <div class="c4 s12">
+  <div class="dcard">
    <div class="f">
-   	<h5 class="c6 fc-mute">{%trans "User"%}</h5>
-   	<h4 class="c6 fc-warn fs30 txtra counter">{{1530 | number_format}}</h4>
+   	<h5 class="c fc-mute">{%trans "User"%}</h5>
+   	<h4 class="cauto fc-warn fs30 txtra counter">{{1530 | number_format}}</h4>
    </div>
    <div class="f">
    <div class="progress" data-percent='85'>
@@ -31,11 +31,11 @@
    </div>
   </div>
  </div>
- <div class="c4 s12 pA10">
-  <div class="cbox">
+ <div class="c4 s12">
+  <div class="dcard">
    <div class="f">
-   	<h5 class="c6 fc-mute">{%trans "Invoice"%}</h5>
-   	<h4 class="c6 fc-info fs30 txtra counter">{{26 | number_format}}</h4>
+   	<h5 class="c fc-mute">{%trans "Invoice"%}</h5>
+   	<h4 class="cauto fc-info fs30 txtra counter">{{26 | number_format}}</h4>
    </div>
    <div class="f">
    <div class="progress" data-percent='15'>
@@ -45,6 +45,45 @@
   </div>
  </div>
 </div>
+
+<div class="f">
+ <div class="c3 s12">
+  <div class="dcard">
+   <div class="statistic gray">
+    <div class="value"><i class="sf-plane"></i><span class="counter">{{520 | number_format}}</span></div>
+    <div class="label">{%trans "Flights"%}</div>
+   </div>
+  </div>
+ </div>
+ <div class="c3 s12">
+  <div class="dcard">
+   <div class="statistic teal">
+    <div class="value"><i class="sf-chart-bar"></i><span class="counter">{{800 | number_format}}</span></div>
+    <div class="label">{%trans "Views"%}</div>
+   </div>
+  </div>
+ </div>
+ <div class="c3 s12">
+  <div class="dcard">
+   <div class="statistic orange">
+    <div class="value"><i class="sf-star"></i><span class="counter">{{60 | number_format}}</span></div>
+    <div class="label">{%trans "Favs"%}</div>
+   </div>
+  </div>
+ </div>
+ <div class="c3 s12">
+  <div class="dcard">
+   <div class="statistic blue">
+    <div class="value"><i class="sf-cloud-download"></i><span class="counter">{{370 | number_format}}</span></div>
+    <div class="label">{%trans "Downloads"%}</div>
+   </div>
+  </div>
+ </div>
+ </div>
+</div>
+
+
+
 
 <div class="cbox">
 
