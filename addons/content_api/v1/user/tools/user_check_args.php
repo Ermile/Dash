@@ -3,7 +3,93 @@ namespace addons\content_api\v1\user\tools;
 use \lib\utility;
 use \lib\debug;
 use \lib\db\logs;
+/**
+ *
+ * id,
+ * mobile,
+ * email,
+ * password,
+ * displayname,
+ * meta,
+ * status,
+ * parent,
+ * permission,
+ * type,
+ * datecreated,
+ * datemodified,
+ * username,
+ * group,
+ * fileid,
+ * chatid,
+ * pin,
+ * ref,
+ * creator,
+ * twostep,
+ * googlemail,
+ * facebookmail,
+ * twittermail,
+ * dontwillsetmobile,
+ * fileurl,
+ * notification,
+ * setup,
+ * name,
+ * lastname,
+ * father,
+ * birthday,
+ * shcode,
+ * nationalcode,
+ * shfrom,
+ * nationality,
+ * brithplace,
+ * region,
+ * passportcode,
+ * marital,
+ * gender,
+ * childcount,
+ * education,
+ * insurancetype,
+ * insurancecode,
+ * dependantscount,
+ * postion,
+ * unit_id,
+ * language,
+ * job,
+ * cardnumber,
+ * shaba,
+ * personnelcode,
+ * passportexpire,
+ * paymentaccountnumber,
 
+ *
+ *
+ *
+ * SET THIS VARIABLE IN THIS FUNCTION
+ * marital
+ * gender
+ * status
+ * type
+ * fileid
+ * fileurl
+ * childcount
+ * brithplace
+ * shfrom
+ * shcode
+ * education
+ * job
+ * passportcode
+ * passportexpire
+ * paymentaccountnumber
+ * cardnumber
+ * shaba
+ * nationalcode
+ * father
+ * birthday
+ * postion
+ * personnelcode
+ * name
+ * lastname
+ * displayname
+ */
 trait user_check_args
 {
 	public function user_check_args($_args, &$args, $_log_meta, $_type = 'insert')
