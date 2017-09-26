@@ -35,12 +35,15 @@
   <h3>{%trans "Awesomplete"%}</h3>
   <div class="example">
    <h4>{%trans "No JS"%}</h4>
-    <input class="awesomplete input" data-list="Ada, Java, JavaScript, Brainfuck, LOLCODE, Node.js, Ruby on Rails" />
+   <input class="awesomplete input" data-list="Ada, Java, JavaScript, Brainfuck, LOLCODE, Node.js, Ruby on Rails" />
+
+   <h4>{%trans "No JS and min char 1 and autoselect first item"%}</h4>
+   <input class="awesomplete input" data-list="Ada, Java, JavaScript, Brainfuck, LOLCODE, Node.js, Ruby on Rails" data-minchars="1" data-autofirst/>
 
    <h4>{%trans "With datalist"%}</h4>
-    <div class="input">
-      <input type="text" list="states" placeholder='{%trans "Find Iran State 2" %}' class="awesomplete">
-    </div>
+   <div class="input">
+    <input type="text" list="states" placeholder='{%trans "Find Iran State 2" %}' class="awesomplete">
+   </div>
   </div>
 </div>
 
