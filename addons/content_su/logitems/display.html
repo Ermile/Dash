@@ -1,0 +1,57 @@
+{%extends display.suMain%}
+
+
+{%block content%}
+<div class="tbox">
+	<h2>{%trans "Logitems List"%}</h2>
+</div>
+<div class="cbox">
+
+
+ <form method="get" class="" data-action>
+	<div class="input">
+		<label for="search" class="addon">{%trans "Search"%}</label>
+		<input type="text" name="search" class="" id="search" value='{{utilityGET.search}}' >
+		<button class="btn primary addon" >{%trans "Search"%}</button>
+	</div>
+</form>
+
+<table class="tbl mT15">
+	<thead>
+		<th><a href="{{url.base}}/su/logitems/{{order_url.id}}">{%trans "ID"%}</a></th>
+		<th><a href="{{url.base}}/su/logitems/{{order_url.type}}">{%trans "Type"%}</a></th>
+		<th><a href="{{url.base}}/su/logitems/{{order_url.caller}}">{%trans "Caller"%}</a></th>
+		<th><a href="{{url.base}}/su/logitems/{{order_url.title}}">{%trans "Title"%}</a></th>
+		<th><a href="{{url.base}}/su/logitems/{{order_url.priority}}">{%trans "Priority"%}</a></th>
+		<th><a href="{{url.base}}/su/logitems/{{order_url.datecreated}}">{%trans "datecreated"%}</a></th>
+		<th>{%trans "Edit"%}</th>
+
+	</thead>
+	<tbody>
+		{%for key, value in logitems_list%}
+		<tr>
+			<td><a href="{{url.base}}/su/logitems/detail/{{value.id}}">{{value.id|fitNumber}}</a></td>
+			<td>{{value.type}}</td>
+			<td><a href="{{url.base}}/su/logitems/caller={{value.caller}}">{{value.caller}}</a></td>
+			<td>{{value.title}}</td>
+			<td>{%set myPriority = value.priority |capitalize %}{%trans myPriority%}</td>
+
+			{%if site.currentlang == 'fa'%}
+				<td>{{value.datecreated|jdate("Y-m-d H:i:s")}}</td>
+			{%else%}
+				<td>{{value.datecreated}}</td>
+			{%endif%}
+			<td><a href="{{url.base}}/su/logitems/edit/{{value.id}}"><i class="sf-edit"></i></a></td>
+		</tr>
+		{%endfor%}
+
+	</tbody>
+
+</table>
+{%include display.pagination%}
+</div>
+
+
+
+
+{%endblock%}

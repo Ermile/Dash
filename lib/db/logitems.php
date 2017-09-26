@@ -8,6 +8,7 @@ class logitems
 	 * this library work with logitems table
 	 * v1.0
 	 */
+	public static $fields = " * FROM logitems ";
 
 	/**
 	 * Gets the database name.
@@ -28,19 +29,16 @@ class logitems
 		}
 	}
 
-	public static $fields =
-	"
-			logitems.type            	AS 	`type`,
-			logitems.caller          	AS 	`caller`,
-			logitems.title           	AS 	`title`,
-			logitems.desc            	AS 	`desc`,
-			logitems.meta            	AS 	`meta`,
-			IFNULL(logitems.count, 0)	AS 	`count`,
-			logitems.priority        	AS 	`priority`,
-			logitems.datemodified    	AS 	`datemodified`
-		FROM
-			logitems
-	";
+
+	/**
+	 * get record
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public static function get()
+	{
+		return \lib\db\config::public_get('logitems', ...func_get_args());
+	}
 
 
 	/**
