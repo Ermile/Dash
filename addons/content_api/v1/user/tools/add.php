@@ -27,6 +27,8 @@ trait add
 			'method'   => 'post',
 			'debug'    => true,
 			'save_log' => true,
+			// save somting in meta
+			'meta'     => null,
 		];
 
 		if(!is_array($_args))
@@ -134,6 +136,11 @@ trait add
 		// insert new user team
 		if($_args['method'] === 'post')
 		{
+			if($_args['meta'] && is_array($_args['meta']))
+			{
+				$args['meta'] = json_encode($_args['meta'], JSON_UNESCAPED_UNICODE);
+			}
+
 			\lib\db\users::insert($args);
 		}
 		elseif($_args['method'] === 'patch')
@@ -147,6 +154,29 @@ trait add
 				if($_args['debug']) debug::error(T_("Id not set"), 'id', 'arguments');
 				return false;
 			}
+
+			if($_args['meta'] && is_array($_args['meta']))
+			{
+				$current_meta = \lib\db\users::get(['id' => $id, 'limit' => 1]);
+				if(isset($current_meta['meta']))
+				{
+					if(is_string($current_meta['meta']) && substr($current_meta['meta'], 0, 1) === '{')
+					{
+						$current_meta['meta'] = json_decode($current_meta['meta'], true);
+					}
+
+					if(is_array($current_meta['meta']))
+					{
+						$args['meta'] = json_encode(array_merge($current_meta['meta'], $_args['meta']), JSON_UNESCAPED_UNICODE);
+					}
+				}
+				else
+				{
+					$args['meta'] = json_encode($_args['meta'], JSON_UNESCAPED_UNICODE);
+				}
+			}
+
+
 
 			if(!utility::isset_request('passportexpire'))      unset($args['passportexpire']);
 			if(!utility::isset_request('postion'))             unset($args['postion']);
@@ -170,6 +200,25 @@ trait add
 			if(!utility::isset_request('passportcode'))        unset($args['pasportcode']);
 			if(!utility::isset_request('paymentaccountnumber'))unset($args['cardnumber']);
 			if(!utility::isset_request('shaba'))               unset($args['shaba']);
+			if(!utility::isset_request('fileid'))              unset($args['fileid']);
+			if(!utility::isset_request('fileurl'))             unset($args['fileurl']);
+			if(!utility::isset_request('email'))               unset($args['email']);
+			if(!utility::isset_request('parent'))              unset($args['parent']);
+			if(!utility::isset_request('permission'))          unset($args['permission']);
+			if(!utility::isset_request('username'))            unset($args['username']);
+			if(!utility::isset_request('group'))               unset($args['group']);
+			if(!utility::isset_request('pin'))                 unset($args['pin']);
+			if(!utility::isset_request('ref'))                 unset($args['ref']);
+			if(!utility::isset_request('notification'))        unset($args['notification']);
+			if(!utility::isset_request('nationality'))         unset($args['nationality']);
+			if(!utility::isset_request('region'))              unset($args['region']);
+			if(!utility::isset_request('insurancetype'))       unset($args['insurancetype']);
+			if(!utility::isset_request('insurancecode'))       unset($args['insurancecode']);
+			if(!utility::isset_request('dependantscount'))     unset($args['dependantscount']);
+			if(!utility::isset_request('unit_id'))             unset($args['unit_id']);
+			if(!utility::isset_request('language'))            unset($args['language']);
+			if(!utility::isset_request('twostep'))             unset($args['twostep']);
+			if(!utility::isset_request('setup'))               unset($args['setup']);
 
 			if(!empty($args))
 			{

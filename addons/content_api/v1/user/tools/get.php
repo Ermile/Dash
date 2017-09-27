@@ -241,6 +241,15 @@ trait get
 				case 'id':
 					$result[$key] = utility\shortURL::encode($value);
 					break;
+
+				case 'meta':
+					if(is_string($value) && substr($value, 0, 1) === '{')
+					{
+						$value = json_decode($value, true);
+					}
+					$result[$key] = $value;
+					break;
+
 				default:
 					$result[$key] = $value;
 					break;

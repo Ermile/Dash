@@ -5,71 +5,27 @@ use \lib\debug;
 use \lib\db\logs;
 /**
  *
- * id,
- * mobile,
- * email,
- * password,
- * displayname,
- * meta,
- * status,
- * parent,
- * permission,
- * type,
- * datecreated,
- * datemodified,
- * username,
- * group,
- * fileid,
- * chatid,
- * pin,
- * ref,
- * creator,
- * twostep,
- * googlemail,
- * facebookmail,
- * twittermail,
- * dontwillsetmobile,
- * fileurl,
- * notification,
- * setup,
- * name,
- * lastname,
- * father,
- * birthday,
- * shcode,
- * nationalcode,
- * shfrom,
- * nationality,
- * brithplace,
- * region,
- * passportcode,
- * marital,
- * gender,
- * childcount,
- * education,
- * insurancetype,
- * insurancecode,
- * dependantscount,
- * postion,
- * unit_id,
- * language,
- * job,
- * cardnumber,
- * shaba,
- * personnelcode,
- * passportexpire,
- * paymentaccountnumber,
-
- *
- *
- *
- * SET THIS VARIABLE IN THIS FUNCTION
  * marital
  * gender
  * status
  * type
  * fileid
  * fileurl
+ * email
+ * parent
+ * permission
+ * username
+ * group
+ * pin
+ * ref
+ * notification
+ * nationality
+ * region
+ * insurancetype
+ * insurancecode
+ * dependantscount
+ * unit_id
+ * language
  * childcount
  * brithplace
  * shfrom
@@ -89,6 +45,8 @@ use \lib\db\logs;
  * name
  * lastname
  * displayname
+ * twostep
+ * setup
  */
 trait user_check_args
 {
@@ -127,7 +85,7 @@ trait user_check_args
 		}
 
 		// get postion
-		$postion     = utility::request('postion');
+		$postion = utility::request('postion');
 		if($postion && mb_strlen($postion) > 100)
 		{
 			if($_args['save_log']) logs::set('addon:api:teacher:postion:max:length', $this->user_id, $log_meta);
@@ -201,7 +159,7 @@ trait user_check_args
 			return false;
 		}
 
-		$birthday      = utility::request('birthday');
+		$birthday = utility::request('birthday');
 		if($birthday && mb_strlen($birthday) > 50)
 		{
 			if($_args['save_log']) logs::set('addon:api:teacher:birthday:max:length', $this->user_id, $log_meta);
@@ -209,7 +167,7 @@ trait user_check_args
 			return false;
 		}
 
-		$gender        = utility::request('gender');
+		$gender = utility::request('gender');
 		if($gender && !in_array($gender, ['male', 'female']))
 		{
 			if($_args['save_log']) logs::set('addon:api:teacher:gender:invalid', $this->user_id, $log_meta);
@@ -217,7 +175,7 @@ trait user_check_args
 			return false;
 		}
 
-		$type  = utility::request('type');
+		$type = utility::request('type');
 		if($type && mb_strlen($type) > 50)
 		{
 			if($_args['save_log']) logs::set('addon:api:teacher:type:max:length', $this->user_id, $log_meta);
@@ -225,7 +183,7 @@ trait user_check_args
 			return false;
 		}
 
-		$marital                = utility::request('marital');
+		$marital = utility::request('marital');
 		if($marital && !in_array($marital, ['single', 'married']))
 		{
 			if($_args['save_log']) logs::set('addon:api:user:marital:invalid', $this->user_id, $log_meta);
@@ -233,7 +191,7 @@ trait user_check_args
 			return false;
 		}
 
-		$child                  = utility::request('child');
+		$child = utility::request('child');
 		if($child && mb_strlen($child) > 50)
 		{
 			if($_args['save_log']) logs::set('addon:api:user:child:max:lenght', $this->user_id, $log_meta);
@@ -241,7 +199,7 @@ trait user_check_args
 			return false;
 		}
 
-		$brithcity              = utility::request('brithcity');
+		$brithcity = utility::request('brithcity');
 		if($brithcity && mb_strlen($brithcity) > 50)
 		{
 			if($_args['save_log']) logs::set('addon:api:user:brithcity:max:lenght', $this->user_id, $log_meta);
@@ -249,7 +207,7 @@ trait user_check_args
 			return false;
 		}
 
-		$shfrom                 = utility::request('shfrom');
+		$shfrom = utility::request('shfrom');
 		if($shfrom && mb_strlen($shfrom) > 50)
 		{
 			if($_args['save_log']) logs::set('addon:api:user:shfrom:max:lenght', $this->user_id, $log_meta);
@@ -257,7 +215,7 @@ trait user_check_args
 			return false;
 		}
 
-		$shcode                 = utility::request('shcode');
+		$shcode = utility::request('shcode');
 		if($shcode && mb_strlen($shcode) > 50)
 		{
 			if($_args['save_log']) logs::set('addon:api:user:shcode:max:lenght', $this->user_id, $log_meta);
@@ -265,7 +223,7 @@ trait user_check_args
 			return false;
 		}
 
-		$education              = utility::request('education');
+		$education = utility::request('education');
 		if($education && mb_strlen($education) > 50)
 		{
 			if($_args['save_log']) logs::set('addon:api:user:education:max:lenght', $this->user_id, $log_meta);
@@ -273,7 +231,7 @@ trait user_check_args
 			return false;
 		}
 
-		$job       = utility::request('job');
+		$job = utility::request('job');
 		if($job && mb_strlen($job) > 50)
 		{
 			if($_args['save_log']) logs::set('addon:api:user:job:max:lenght', $this->user_id, $log_meta);
@@ -281,7 +239,7 @@ trait user_check_args
 			return false;
 		}
 
-		$passportcode          = utility::request('passportcode');
+		$passportcode = utility::request('passportcode');
 		if($passportcode && mb_strlen($passportcode) > 50)
 		{
 			if($_args['save_log']) logs::set('addon:api:user:passportcode:max:lenght', $this->user_id, $log_meta);
@@ -289,7 +247,7 @@ trait user_check_args
 			return false;
 		}
 
-		$passportexpire        = utility::request('passportexpire');
+		$passportexpire = utility::request('passportexpire');
 		if($passportexpire && mb_strlen($passportexpire) > 50)
 		{
 			if($_args['save_log']) logs::set('addon:api:user:passportexpire:max:lenght', $this->user_id, $log_meta);
@@ -305,7 +263,7 @@ trait user_check_args
 			return false;
 		}
 
-		$shaba                  = utility::request('shaba');
+		$shaba = utility::request('shaba');
 		if($shaba && mb_strlen($shaba) > 50)
 		{
 			if($_args['save_log']) logs::set('addon:api:user:shaba:max:lenght', $this->user_id, $log_meta);
@@ -321,12 +279,165 @@ trait user_check_args
 			return false;
 		}
 
+		// we never get password password
+		// the password only get in enter
+
+		$email = utility::request('email');
+		if($email && mb_strlen($email) > 50)
+		{
+			if($_args['save_log']) logs::set('addon:api:user:email:max:lenght', $this->user_id, $log_meta);
+			if($_args['debug']) debug::error(T_("Email is incorrect"), 'email', 'arguments');
+			return false;
+		}
+
+		$parent = utility::request('parent');
+		$parent = utility\shortURL::decode($parent);
+		if(!$parent && utility::request('parent'))
+		{
+			if($_args['save_log']) logs::set('addon:api:user:parent:max:lenght', $this->user_id, $log_meta);
+			if($_args['debug']) debug::error(T_("Parent is incorrect"), 'parent', 'arguments');
+			return false;
+		}
+
+		$permission = utility::request('permission');
+		if($permission && mb_strlen($permission) > 900)
+		{
+			if($_args['save_log']) logs::set('addon:api:user:permission:max:lenght', $this->user_id, $log_meta);
+			if($_args['debug']) debug::error(T_("Permission is incorrect"), 'permission', 'arguments');
+			return false;
+		}
+
+		$username = utility::request('username');
+		if($username && mb_strlen($username) > 50)
+		{
+			if($_args['save_log']) logs::set('addon:api:user:username:max:lenght', $this->user_id, $log_meta);
+			if($_args['debug']) debug::error(T_("Username is incorrect"), 'username', 'arguments');
+			return false;
+		}
+
+		$group = utility::request('group');
+		if($group && mb_strlen($group) > 50)
+		{
+			if($_args['save_log']) logs::set('addon:api:user:group:max:lenght', $this->user_id, $log_meta);
+			if($_args['debug']) debug::error(T_("Group is incorrect"), 'group', 'arguments');
+			return false;
+		}
+
+		$pin = utility::request('pin');
+		if(($pin && mb_strlen($pin) > 4) || ($pin && !is_numeric($pin)))
+		{
+			if($_args['save_log']) logs::set('addon:api:user:pin:max:lenght', $this->user_id, $log_meta);
+			if($_args['debug']) debug::error(T_("Pin is incorrect"), 'pin', 'arguments');
+			return false;
+		}
+
+		$ref = utility::request('ref');
+		$ref = utility\shortURL::decode($ref);
+		if(!$ref && utility::request('ref'))
+		{
+			if($_args['save_log']) logs::set('addon:api:user:ref:max:lenght', $this->user_id, $log_meta);
+			if($_args['debug']) debug::error(T_("Ref is incorrect"), 'ref', 'arguments');
+			return false;
+		}
+
+		if(utility::isset_request('twostep'))
+		{
+			$twostep = utility::request('twostep');
+			$twostep = $twostep ? 1 : 0;
+		}
+
+		$notification = utility::request('notification');
+		if($notification && mb_strlen($notification) > 50)
+		{
+			if($_args['save_log']) logs::set('addon:api:user:notification:max:lenght', $this->user_id, $log_meta);
+			if($_args['debug']) debug::error(T_("Notification is incorrect"), 'notification', 'arguments');
+			return false;
+		}
+
+		if(utility::isset_request('setup'))
+		{
+			$setup = utility::request('setup');
+			$setup = $setup ? 1 : 0;
+		}
+
+		$nationality = utility::request('nationality');
+		if($nationality && mb_strlen($nationality) > 50)
+		{
+			if($_args['save_log']) logs::set('addon:api:user:nationality:max:lenght', $this->user_id, $log_meta);
+			if($_args['debug']) debug::error(T_("Nationality is incorrect"), 'nationality', 'arguments');
+			return false;
+		}
+
+		$region = utility::request('region');
+		if($region && mb_strlen($region) > 50)
+		{
+			if($_args['save_log']) logs::set('addon:api:user:region:max:lenght', $this->user_id, $log_meta);
+			if($_args['debug']) debug::error(T_("Region is incorrect"), 'region', 'arguments');
+			return false;
+		}
+
+		$insurancetype = utility::request('insurancetype');
+		if($insurancetype && mb_strlen($insurancetype) > 50)
+		{
+			if($_args['save_log']) logs::set('addon:api:user:insurancetype:max:lenght', $this->user_id, $log_meta);
+			if($_args['debug']) debug::error(T_("Insurancetype is incorrect"), 'insurancetype', 'arguments');
+			return false;
+		}
+
+		$insurancecode = utility::request('insurancecode');
+		if($insurancecode && mb_strlen($insurancecode) > 50)
+		{
+			if($_args['save_log']) logs::set('addon:api:user:insurancecode:max:lenght', $this->user_id, $log_meta);
+			if($_args['debug']) debug::error(T_("Insurancecode is incorrect"), 'insurancecode', 'arguments');
+			return false;
+		}
+
+		$dependantscount = utility::request('dependantscount');
+		if($dependantscount && mb_strlen($dependantscount) > 50)
+		{
+			if($_args['save_log']) logs::set('addon:api:user:dependantscount:max:lenght', $this->user_id, $log_meta);
+			if($_args['debug']) debug::error(T_("Dependantscount is incorrect"), 'dependantscount', 'arguments');
+			return false;
+		}
+
+		$unit_id = utility::request('unit_id');
+		if($unit_id && !is_numeric($unit_id))
+		{
+			if($_args['save_log']) logs::set('addon:api:user:unit_id:max:lenght', $this->user_id, $log_meta);
+			if($_args['debug']) debug::error(T_("Unit id is incorrect"), 'unit_id', 'arguments');
+			return false;
+		}
+
+		$language = utility::request('language');
+		if($language && !\lib\utility\location\language::check($language))
+		{
+			if($_args['save_log']) logs::set('addon:api:user:language:max:lenght', $this->user_id, $log_meta);
+			if($_args['debug']) debug::error(T_("Language is incorrect"), 'language', 'arguments');
+			return false;
+		}
+
+
 		$args['marital']              = $marital;
 		$args['gender']               = $gender;
 		$args['status']               = $status;
 		$args['type']                 = $type;
 		$args['fileid']               = $file_id;
 		$args['fileurl']              = $file_url;
+		$args['email']                = trim($email);
+		$args['parent']               = trim($parent);
+		$args['permission']           = trim($permission);
+		$args['username']             = trim($username);
+		$args['group']                = trim($group);
+		$args['pin']                  = trim($pin);
+		$args['ref']                  = trim($ref);
+		$args['notification']         = trim($notification);
+		$args['nationality']          = trim($nationality);
+		$args['region']               = trim($region);
+		$args['insurancetype']        = trim($insurancetype);
+		$args['insurancecode']        = trim($insurancecode);
+		$args['dependantscount']      = trim($dependantscount);
+		$args['unit_id']              = trim($unit_id);
+		$args['language']             = trim($language);
 		$args['childcount']           = trim($child);
 		$args['brithplace']           = trim($brithcity);
 		$args['shfrom']               = trim($shfrom);
@@ -355,6 +466,15 @@ trait user_check_args
 			$args['displayname']    = trim($firstname. ' '. $lastname);
 		}
 
+		if(isset($twostep))
+		{
+			$args['twostep'] = $twostep;
+		}
+
+		if(isset($setup))
+		{
+			$args['setup'] = $setup;
+		}
 	}
 
 
