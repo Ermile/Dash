@@ -41,8 +41,8 @@
 {%endmacro%}
 
 
-<nav class="pagination mA10" data-xhr='pagination'>
 {% if pagnation.total_pages > 1%}
+<nav class="pagination mA10" data-xhr='pagination'>
 	{% if pagnation.count_link >= pagnation.total_pages%}
 		{{_self.make(1, pagnation.total_pages, pagnation)}}
 
@@ -56,6 +56,6 @@
 		{{_self.make(pagnation.current - (pagnation.count_link/2) | round(0, 'floor'), pagnation.current + (pagnation.count_link/2) | round(0, 'floor'), pagnation)}}
 	{% endif %}
 
-{% endif %}
 </nav>
+{% endif %}
 {% endspaceless %}
