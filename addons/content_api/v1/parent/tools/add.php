@@ -205,16 +205,26 @@ trait add
 			// we dont send notification
 			$check_exits_parent =
 			[
-				'user_id' => $user_id,
+				'user_id'    => $user_id,
+				'title'      => $title,
+				'othertitle' => $other_title,
+				'limit'      => 1,
 			];
 
 			$check_exits_parent = \lib\db\userparents::get($check_exits_parent);
-			if(!is_array($check_exits_parent))
+			if(isset($check_exits_parent['id']) && isset($check_exits_parent['parent']))
 			{
-				$check_exits_parent = [];
+				if(intval($check_exits_parent['parent']) === intval($parent_id))
+				{
+					// no thing!
+				}
+				else
+				{
+					$update = ['parent'     => $parent_id];
+					\lib\db\userparents::update($update, $check_exits_parent['id']);
+				}
 			}
-
-			if(empty($check_exits_parent))
+			else
 			{
 				$insert =
 				[
@@ -226,60 +236,7 @@ trait add
 				];
 				\lib\db\userparents::insert($insert);
 			}
-			else
-			{
-				foreach ($check_exits_parent as $key => $value)
-				{
-					// just title is different
-					if(isset($value['id']) && isset($value['parent']))
-					{
-						if(intval($value['parent']) === intval($parent_id))
-						{
-							$update =
-							[
-								'title'      => $title,
-								'othertitle' => $other_title,
-								'parent'     => $parent_id,
-							];
-							\lib\db\userparents::update($update, $value['id']);
-							continue;
-						}
-					}
 
-					if(isset($value['id']) && isset($value['title']))
-					{
-						if($title === $value['title'])
-						{
-							if(array_key_exists('othertitle', $value))
-							{
-								if($value['othertitle'] == $other_title)
-								{
-									$update =
-									[
-										'user_id'    => $user_id,
-										'parent'     => $parent_id,
-										'title'      => $title,
-										'othertitle' => $other_title,
-										'parent'     => $parent_id,
-									];
-									\lib\db\userparents::update($update, $value['id']);
-									continue;
-								}
-							}
-						}
-					}
-
-					$insert =
-					[
-						'user_id'    => $user_id,
-						'title'      => $title,
-						'othertitle' => $other_title,
-						'creator'    => $this->user_id,
-						'parent'     => $parent_id,
-					];
-					\lib\db\userparents::insert($insert);
-				}
-			}
 		}
 	}
 
