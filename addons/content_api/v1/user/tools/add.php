@@ -181,8 +181,7 @@ trait add
 				}
 			}
 
-
-
+			if(!utility::isset_request('mobile'))              unset($args['mobile']);
 			if(!utility::isset_request('passportexpire'))      unset($args['passportexpire']);
 			if(!utility::isset_request('postion'))             unset($args['postion']);
 			if(!utility::isset_request('personnelcode'))       unset($args['personnelcode']);
@@ -202,11 +201,12 @@ trait add
 			if(!utility::isset_request('shcode'))              unset($args['shcode']);
 			if(!utility::isset_request('education'))           unset($args['education']);
 			if(!utility::isset_request('job'))                 unset($args['job']);
+			if(!utility::isset_request('passportcode'))        unset($args['passportcode']);
 			if(!utility::isset_request('passportcode'))        unset($args['pasportcode']);
 			if(!utility::isset_request('paymentaccountnumber'))unset($args['cardnumber']);
+			if(!utility::isset_request('paymentaccountnumber'))unset($args['paymentaccountnumber']);
 			if(!utility::isset_request('shaba'))               unset($args['shaba']);
-			if(!utility::isset_request('fileid'))              unset($args['fileid']);
-			if(!utility::isset_request('fileurl'))             unset($args['fileurl']);
+			if(!utility::isset_request('file'))                unset($args['fileid'], $args['fileurl']);
 			if(!utility::isset_request('email'))               unset($args['email']);
 			if(!utility::isset_request('parent'))              unset($args['parent']);
 			if(!utility::isset_request('permission'))          unset($args['permission']);

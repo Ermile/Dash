@@ -239,9 +239,18 @@ trait get
 			switch ($key)
 			{
 				case 'id':
+				case 'fileid':
+				case 'parent':
 					$result[$key] = utility\shortURL::encode($value);
 					break;
 
+				case 'fileurl':
+					if($value)
+					{
+						$value = $this->host('file'). '/'. $value;
+					}
+					$result[$key] = $value;
+					break;
 				case 'meta':
 					if(is_string($value) && substr($value, 0, 1) === '{')
 					{
