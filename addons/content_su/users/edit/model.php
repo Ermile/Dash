@@ -35,7 +35,7 @@ class model extends \addons\content_su\main\model
 			'gender'               => utility::post('gender'),
 			'marital'              => utility::post('marital'),
 			'child'                => utility::post('child'),
-			'brithcity'            => utility::post('brithcity'),
+			'birthcity'            => utility::post('birthcity'),
 			'shfrom'               => utility::post('shfrom'),
 			'shcode'               => utility::post('shcode'),
 			'education'            => utility::post('education'),

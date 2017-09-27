@@ -34,7 +34,7 @@ CREATE TABLE `users` (
   `nationalcode` varchar(100) DEFAULT NULL,
   `shfrom` varchar(100) DEFAULT NULL,
   `nationality` varchar(100) DEFAULT NULL,
-  `brithplace` varchar(100) DEFAULT NULL,
+  `birthplace` varchar(100) DEFAULT NULL,
   `region` varchar(100) DEFAULT NULL,
   `passportcode` varchar(100) DEFAULT NULL,
   `marital` enum('single','married') DEFAULT NULL,

@@ -27,7 +27,7 @@ use \lib\db\logs;
  * unit_id
  * language
  * childcount
- * brithplace
+ * birthplace
  * shfrom
  * shcode
  * education
@@ -199,11 +199,11 @@ trait user_check_args
 			return false;
 		}
 
-		$brithcity = utility::request('brithcity');
-		if($brithcity && mb_strlen($brithcity) > 50)
+		$birthplace = utility::request('birthplace');
+		if($birthplace && mb_strlen($birthplace) > 50)
 		{
-			if($_args['save_log']) logs::set('addon:api:user:brithcity:max:lenght', $this->user_id, $log_meta);
-			if($_args['debug']) debug::error(T_("You must set the brithcity less than 50 character"), 'brithcity', 'arguments');
+			if($_args['save_log']) logs::set('addon:api:user:birthplace:max:lenght', $this->user_id, $log_meta);
+			if($_args['debug']) debug::error(T_("You must set the birthplace less than 50 character"), 'birthplace', 'arguments');
 			return false;
 		}
 
@@ -439,7 +439,7 @@ trait user_check_args
 		$args['unit_id']              = trim($unit_id);
 		$args['language']             = trim($language);
 		$args['childcount']           = trim($child);
-		$args['brithplace']           = trim($brithcity);
+		$args['birthplace']           = trim($birthplace);
 		$args['shfrom']               = trim($shfrom);
 		$args['shcode']               = trim($shcode);
 		$args['education']            = trim($education);

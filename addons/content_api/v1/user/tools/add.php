@@ -197,8 +197,8 @@ trait add
 			if(!utility::isset_request('type'))                unset($args['type']);
 			if(!utility::isset_request('marital'))             unset($args['marital']);
 			if(!utility::isset_request('child'))               unset($args['childcount']);
-			if(!utility::isset_request('brithcity'))           unset($args['brithplace']);
-			if(!utility::isset_request('shfrom'))              unset($args['from']);
+			if(!utility::isset_request('birthplace'))          unset($args['birthplace']);
+			if(!utility::isset_request('shfrom'))              unset($args['shfrom']);
 			if(!utility::isset_request('shcode'))              unset($args['shcode']);
 			if(!utility::isset_request('education'))           unset($args['education']);
 			if(!utility::isset_request('job'))                 unset($args['job']);
