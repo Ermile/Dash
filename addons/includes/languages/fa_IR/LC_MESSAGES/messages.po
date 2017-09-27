@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Dash - Persian\n"
-"POT-Creation-Date: 2017-09-27 14:37+0330\n"
-"PO-Revision-Date: 2017-09-27 14:38+0330\n"
+"POT-Creation-Date: 2017-09-27 14:46+0330\n"
+"PO-Revision-Date: 2017-09-27 15:16+0330\n"
 "Last-Translator: Reza <rm.biqarar@gmail.com>\n"
 "Language-Team: Ermile <J.Evazzadeh@gmail.com>\n"
 "Language: fa_IR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.11\n"
+"X-Generator: Poedit 2.0.4\n"
 "X-Poedit-Basepath: ../../../../..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -39,7 +39,7 @@ msgstr "کد یافت نشد"
 #: addons/content_api/v1/invoice/tools/add.php:120
 #: addons/content_api/v1/term/tools/add.php:78
 #: addons/content_api/v1/transaction/tools/add.php:97
-#: addons/content_api/v1/user/tools/add.php:233
+#: addons/content_api/v1/user/tools/add.php:238
 msgid "Operation Complete"
 msgstr "عملیات کامل شد"
 
@@ -91,10 +91,12 @@ msgid "You must set the type less than 50 character"
 msgstr "نوع باید کمتر از 50 کاراکتر باشد."
 
 #: addons/content_api/v1/comment/tools/get.php:115
-#: addons/content_api/v1/parent/tools/add.php:44
+#: addons/content_api/v1/parent/tools/add.php:51
+#: addons/content_api/v1/parent/tools/add.php:60
 #: addons/content_api/v1/parent/tools/delete.php:37
 #: addons/content_api/v1/parent/tools/delete.php:115
 #: addons/content_api/v1/parent/tools/get.php:37
+#: addons/content_api/v1/parent/tools/get.php:46
 #: addons/content_api/v1/user/tools/add.php:59
 #: addons/content_api/v1/user/tools/get.php:110
 #: addons/content_enter/home/model.php:43 addons/content_su/sendnotify/model.php:31
@@ -227,46 +229,46 @@ msgstr "جزئیات باید به شکل آرایه اضافه شود"
 msgid "No valid details was sended"
 msgstr "جزئیات معتبری ارسال نشد."
 
-#: addons/content_api/v1/parent/tools/add.php:54
+#: addons/content_api/v1/parent/tools/add.php:70
 msgid "Please set the parent mobile"
 msgstr "لطفا شماره موبایل والد را وارد کنید"
 
-#: addons/content_api/v1/parent/tools/add.php:63
+#: addons/content_api/v1/parent/tools/add.php:79
 #: addons/content_api/v1/user/tools/add.php:75
 msgid "Invalid mobile number"
 msgstr "شماره‌ی تلفن همراه نامعتبر است"
 
-#: addons/content_api/v1/parent/tools/add.php:70
+#: addons/content_api/v1/parent/tools/add.php:87
 msgid "Please select one title"
 msgstr "لطفا یک عنوان انتخاب کنید"
 
-#: addons/content_api/v1/parent/tools/add.php:91
+#: addons/content_api/v1/parent/tools/add.php:108
 msgid "You can not set parent yourself"
 msgstr "شما نمی‌توانید والد خودتان باشید"
 
-#: addons/content_api/v1/parent/tools/add.php:124
+#: addons/content_api/v1/parent/tools/add.php:141
 msgid "Invalid title"
 msgstr "عنوان اشتباه است"
 
-#: addons/content_api/v1/parent/tools/add.php:131
+#: addons/content_api/v1/parent/tools/add.php:149
 msgid "Plase set the other title field"
 msgstr "لطفا عنوان دلخواه خود را وارد کنید"
 
-#: addons/content_api/v1/parent/tools/add.php:138
+#: addons/content_api/v1/parent/tools/add.php:156
 msgid "You must set other title less than 50 character"
 msgstr "عنوان دلخواه نمی‌تواند بیشتر از ۵۰ کاراکتر باشد"
 
-#: addons/content_api/v1/parent/tools/add.php:145
+#: addons/content_api/v1/parent/tools/add.php:165
 msgid "Your request was sended to user, wait for answer user"
 msgstr ""
 "درخواست شما به کاربر ارسال شده است. منتظر بمانید تا جواب کاربر به درخواست شما مشخص "
 "شود"
 
-#: addons/content_api/v1/parent/tools/add.php:172
+#: addons/content_api/v1/parent/tools/add.php:192
 msgid "Are you :title of this user?"
 msgstr "آیا شما  :title این کاربر هستید؟"
 
-#: addons/content_api/v1/parent/tools/add.php:179
+#: addons/content_api/v1/parent/tools/add.php:199
 msgid "Your request was sended"
 msgstr "درخواست شما ارسال شد"
 
@@ -294,7 +296,7 @@ msgstr "اطلاعات جهت حذف اشتباه است"
 msgid "Parent removed"
 msgstr "والد حذف شد"
 
-#: addons/content_api/v1/parent/tools/get.php:62
+#: addons/content_api/v1/parent/tools/get.php:70
 msgid "Waiting to user accept this request"
 msgstr "در انتظار تایید درخواست توسط کاربر"
 
@@ -417,11 +419,11 @@ msgstr "واحد نامعتبر‌است"
 msgid "Duplicate mobile"
 msgstr "تلفن همراه تکراری"
 
-#: addons/content_api/v1/user/tools/add.php:237
+#: addons/content_api/v1/user/tools/add.php:242
 msgid "user successfully added"
 msgstr "کاربر با موفقیت اضافه شد‌‌. "
 
-#: addons/content_api/v1/user/tools/add.php:242
+#: addons/content_api/v1/user/tools/add.php:247
 msgid "user successfully updated"
 msgstr "کاربر با موفقیت بروزرسانی شد"
 
@@ -470,8 +472,8 @@ msgid "You must set the child less than 50 character"
 msgstr "طول رشته تعداد فرزندان باید کمتر از ۵۰ کاراکتر باشد"
 
 #: addons/content_api/v1/user/tools/user_check_args.php:206
-msgid "You must set the brithcity less than 50 character"
-msgstr "طول رشته شهر محل تولد باید کمتر از ۵۰ کاراکتر باشد"
+msgid "You must set the birthplace less than 50 character"
+msgstr "محل تولد باید کمتر از 50 کاراکتر باشد"
 
 #: addons/content_api/v1/user/tools/user_check_args.php:214
 msgid "You must set the shfrom less than 50 character"
@@ -511,63 +513,63 @@ msgstr " شماره کارت باید کمتر از 50 کاراکتر باشد "
 
 #: addons/content_api/v1/user/tools/user_check_args.php:289
 msgid "Email is incorrect"
-msgstr ""
+msgstr "ایمیل نادرست است"
 
 #: addons/content_api/v1/user/tools/user_check_args.php:298
 msgid "Parent is incorrect"
-msgstr ""
+msgstr "والدین نادرست است"
 
 #: addons/content_api/v1/user/tools/user_check_args.php:306
 msgid "Permission is incorrect"
-msgstr ""
+msgstr "مجوز نادرست است"
 
 #: addons/content_api/v1/user/tools/user_check_args.php:314
 msgid "Username is incorrect"
-msgstr ""
+msgstr "نام کاربری نادرست است"
 
 #: addons/content_api/v1/user/tools/user_check_args.php:322
 msgid "Group is incorrect"
-msgstr ""
+msgstr "گروه نادرست است"
 
 #: addons/content_api/v1/user/tools/user_check_args.php:330
 msgid "Pin is incorrect"
-msgstr ""
+msgstr "پین نادرست است"
 
 #: addons/content_api/v1/user/tools/user_check_args.php:339
 msgid "Ref is incorrect"
-msgstr ""
+msgstr "مرجع نادرست است"
 
 #: addons/content_api/v1/user/tools/user_check_args.php:353
 msgid "Notification is incorrect"
-msgstr ""
+msgstr "اطلاع‌رسانی نادرست است"
 
 #: addons/content_api/v1/user/tools/user_check_args.php:367
 msgid "Nationality is incorrect"
-msgstr ""
+msgstr "ملیت نادرست است"
 
 #: addons/content_api/v1/user/tools/user_check_args.php:375
 msgid "Region is incorrect"
-msgstr ""
+msgstr "منطقه نادرست است"
 
 #: addons/content_api/v1/user/tools/user_check_args.php:383
 msgid "Insurancetype is incorrect"
-msgstr ""
+msgstr "نوع بیمه نادرست است"
 
 #: addons/content_api/v1/user/tools/user_check_args.php:391
 msgid "Insurancecode is incorrect"
-msgstr ""
+msgstr "کد بیمه نادرست است"
 
 #: addons/content_api/v1/user/tools/user_check_args.php:399
 msgid "Dependantscount is incorrect"
-msgstr ""
+msgstr "تعداد وابستگی نادرست است"
 
 #: addons/content_api/v1/user/tools/user_check_args.php:407
 msgid "Unit id is incorrect"
-msgstr ""
+msgstr "کد واحد مالی نادرست است"
 
 #: addons/content_api/v1/user/tools/user_check_args.php:415
 msgid "Language is incorrect"
-msgstr ""
+msgstr "زبان نادرست است"
 
 #: addons/content_cp/home/controller.php:19
 msgid "first of all, you must login to system!"
@@ -2368,7 +2370,7 @@ msgstr "بار کد"
 
 #: addons/includes/languages/trans_addons.php:371
 msgid "A special handle to give barcode or rfid code"
-msgstr ""
+msgstr "یک ابزار ویژه برای اختصاص بارکد یا rfid"
 
 #: addons/includes/languages/trans_addons.php:372
 msgid "Example"
@@ -2376,7 +2378,7 @@ msgstr "مثال"
 
 #: addons/includes/languages/trans_addons.php:373
 msgid "This type of input filled only with readers, because of type speed!"
-msgstr ""
+msgstr "این نوع اینپوت، برای افزایش سرعت تایپ فقط توسط readerها پر می‌شود!"
 
 #: addons/includes/languages/trans_addons.php:374
 msgid "Simple input"
@@ -2679,7 +2681,7 @@ msgstr "ساعت"
 
 #: addons/includes/languages/trans_addons.php:437
 msgid "A simple real time clock using online and offline method for update."
-msgstr ""
+msgstr "یک ساعت ساده که از روش‌های آنلاین و آفلاین برای به‌روزرسانی استفاده می‌کند."
 
 #: addons/includes/languages/trans_addons.php:440
 msgid "ClockPicker"
@@ -2840,7 +2842,7 @@ msgstr "بدون جاوا‌اسکریپت"
 
 #: addons/includes/languages/trans_addons.php:483
 msgid "No JS and min char 1 and autoselect first item"
-msgstr ""
+msgstr "بدون جاوااسکریپت و حداقل کاراکتر ۱ و انتخاب خودکار اولین آیتم"
 
 #: addons/includes/languages/trans_addons.php:484
 msgid "With datalist"
@@ -2864,11 +2866,11 @@ msgstr "بدون هیچ تنظیماتی"
 
 #: addons/includes/languages/trans_addons.php:491
 msgid "Without any option and without default value"
-msgstr ""
+msgstr "بدون هیچ گزینه‌ای و بدون مقدار پیش‌فرض"
 
 #: addons/includes/languages/trans_addons.php:492
 msgid "Without any option to use in php, get timestamp on backend"
-msgstr ""
+msgstr "بدون هیچ گزینه‌ای برای استفاده در پی‌اچ‌پی، دریافت timestamp توسط بک‌اند"
 
 #: addons/includes/languages/trans_addons.php:493
 msgid "With custom format"
@@ -3878,15 +3880,15 @@ msgstr "آمار"
 
 #: addons/includes/languages/trans_addons.php:763
 msgid "A statistic emphasizes the current value of an attribute."
-msgstr ""
+msgstr "آماری که روی مقدار فعلی یک attribute تاکید می‌کند."
 
 #: addons/includes/languages/trans_addons.php:764
 msgid "A statistic can display a value with a label above or below it."
-msgstr ""
+msgstr "آماری که می‌تواند یک مقدار را با یک لیبل در بالا یا پایین آن نمایش دهد."
 
 #: addons/includes/languages/trans_addons.php:765
 msgid "A group of statistics"
-msgstr ""
+msgstr "گروهی از آمارها"
 
 #: addons/includes/languages/trans_addons.php:766
 msgid "Faves"
@@ -3894,15 +3896,15 @@ msgstr "علاقمندی‌ها"
 
 #: addons/includes/languages/trans_addons.php:767
 msgid "Members"
-msgstr ""
+msgstr "اعضا"
 
 #: addons/includes/languages/trans_addons.php:768
 msgid "A statistic can contain a numeric, icon, image, or text value"
-msgstr ""
+msgstr "آماری که می‌تواند شامل یک مقدار عددی، آیکن، عکس یا مقدار متنی شود"
 
 #: addons/includes/languages/trans_addons.php:769
 msgid "Saves"
-msgstr ""
+msgstr "ذخیره‌ها"
 
 #: addons/includes/languages/trans_addons.php:770
 msgid "Three"
@@ -3926,19 +3928,19 @@ msgstr "وظایف"
 
 #: addons/includes/languages/trans_addons.php:775
 msgid "Olive"
-msgstr ""
+msgstr "زیتونی"
 
 #: addons/includes/languages/trans_addons.php:776
 msgid "Teal"
-msgstr ""
+msgstr "سبزآبی"
 
 #: addons/includes/languages/trans_addons.php:777
 msgid "Violet"
-msgstr ""
+msgstr "بنفش"
 
 #: addons/includes/languages/trans_addons.php:778
 msgid "Purple"
-msgstr ""
+msgstr "ارغوانی"
 
 #: addons/includes/languages/trans_addons.php:779
 msgid "Pink"
@@ -3946,7 +3948,7 @@ msgstr "صورتی"
 
 #: addons/includes/languages/trans_addons.php:780
 msgid "Brown"
-msgstr ""
+msgstr "قهوه‌ای"
 
 #: addons/includes/languages/trans_addons.php:781
 msgid "Grey"
@@ -3958,7 +3960,7 @@ msgstr "مرحله"
 
 #: addons/includes/languages/trans_addons.php:785
 msgid "A step shows the completion status of an activity in a series of activities"
-msgstr ""
+msgstr "یک گام وضعیت کامل شدن یک فعالیت را در یک سری از فعالیت‌ها نشان می‌دهد"
 
 #: addons/includes/languages/trans_addons.php:788
 msgid "A table's colors can be changed"
@@ -6302,6 +6304,9 @@ msgstr "یک پروژه دیگر با دش"
 #: lib/view/constructor.php:52
 msgid "Ermile is intelligent ;)"
 msgstr "ارمایل باهوش است ;)"
+
+#~ msgid "You must set the brithcity less than 50 character"
+#~ msgstr "طول رشته شهر محل تولد باید کمتر از ۵۰ کاراکتر باشد"
 
 #~ msgid "Categories"
 #~ msgstr "دسته‌ها"
