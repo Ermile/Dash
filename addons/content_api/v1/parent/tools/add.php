@@ -19,7 +19,14 @@ trait add
 	{
 		$default_args =
 		[
-			'method' => 'post'
+			'method'      => 'post',
+			// first send notify to parent and if the parent accept the request
+			// save parent user
+			// if this variable is false
+			// save the user parent first and not notification was sended
+			'send_notify' => true,
+			'save_log'    => true,
+			'debug'       => true,
 		];
 
 		if(!is_array($_args))
@@ -40,8 +47,17 @@ trait add
 
 		if(!$this->user_id)
 		{
-			logs::set('api:parent:user_id:notfound', null, $log_meta);
-			debug::error(T_("User not found"), 'user', 'permission');
+			if($_args['save_log']) logs::set('api:parent:user_id:notfound', null, $log_meta);
+			if($_args['debug']) debug::error(T_("User not found"), 'user', 'permission');
+			return false;
+		}
+
+		$user_id = utility::request('id');
+		$user_id = utility\shortURL::decode($user_id);
+		if(!$user_id)
+		{
+			if($_args['save_log']) logs::set('api:parent:user_id:not:set', null, $log_meta);
+			if($_args['debug']) debug::error(T_("User not found"), 'user', 'arguments');
 			return false;
 		}
 
@@ -50,8 +66,8 @@ trait add
 		$mobile = utility::request('mobile');
 		if(!$mobile)
 		{
-			logs::set('api:parent:mobile:not:set', $this->user_id, $log_meta);
-			debug::error(T_("Please set the parent mobile"), 'mobile');
+			if($_args['save_log']) logs::set('api:parent:mobile:not:set', $this->user_id, $log_meta);
+			if($_args['debug']) debug::error(T_("Please set the parent mobile"), 'mobile');
 			return false;
 		}
 
@@ -59,15 +75,16 @@ trait add
 
 		if(!$mobile)
 		{
-			logs::set('api:parent:mobile:invalid', $this->user_id, $log_meta);
-			debug::error(T_("Invalid mobile number"), 'mobile');
+			if($_args['save_log']) logs::set('api:parent:mobile:invalid', $this->user_id, $log_meta);
+			if($_args['debug']) debug::error(T_("Invalid mobile number"), 'mobile');
 			return false;
 		}
 
-		if(!utility::request('title'))
+		$title = utility::request('title');
+		if(!$title)
 		{
-			logs::set('api:parent:title:not:set', $this->user_id, $log_meta);
-			debug::error(T_("Please select one title"));
+			if($_args['save_log']) logs::set('api:parent:title:not:set', $this->user_id, $log_meta);
+			if($_args['debug']) debug::error(T_("Please select one title"));
 			return false;
 		}
 
@@ -85,10 +102,10 @@ trait add
 
 		$this->parent_id = $parent_id;
 
-		if(intval($parent_id) === intval($this->user_id))
+		if(intval($parent_id) === intval($user_id))
 		{
-			logs::set('api:parent:parent:yourself', $this->user_id, $log_meta);
-			debug::error(T_("You can not set parent yourself"));
+			if($_args['save_log']) logs::set('api:parent:parent:yourself', $this->user_id, $log_meta);
+			if($_args['debug']) debug::error(T_("You can not set parent yourself"));
 			return false;
 		}
 
@@ -118,67 +135,152 @@ trait add
 			'custom',
 		];
 
-		if(!in_array(utility::request('title'), $titles))
+		if(!in_array($title, $titles))
 		{
-			logs::set('api:parent:title:inavalid', $this->user_id, $log_meta);
-			debug::error(T_("Invalid title"));
+			if($_args['save_log']) logs::set('api:parent:title:inavalid', $this->user_id, $log_meta);
+			if($_args['debug']) debug::error(T_("Invalid title"));
 			return false;
 		}
 
-		if(utility::request('title') === 'custom' && !utility::request('othertitle'))
+		$other_title = utility::request('othertitle');
+		if($title === 'custom' && !$other_title)
 		{
-			logs::set('api:parent:title:othertitle:not:set', $this->user_id, $log_meta);
-			debug::error(T_("Plase set the other title field"));
+			if($_args['save_log']) logs::set('api:parent:title:othertitle:not:set', $this->user_id, $log_meta);
+			if($_args['debug']) debug::error(T_("Plase set the other title field"));
 			return false;
 		}
 
-		if(utility::request('othertitle') && mb_strlen(utility::request('othertitle')) > 50)
+		if($other_title && mb_strlen($other_title) > 50)
 		{
-			logs::set('api:parent:title:othertitle:max:lenght', $this->user_id, $log_meta);
-			debug::error(T_("You must set other title less than 50 character"));
+			if($_args['save_log']) logs::set('api:parent:title:othertitle:max:lenght', $this->user_id, $log_meta);
+			if($_args['debug']) debug::error(T_("You must set other title less than 50 character"));
 			return false;
 		}
 
-		if($this->check_duplicate_request())
+		if($_args['send_notify'])
 		{
-			logs::set('api:parent:title:othertitle:max:lenght', $this->user_id, $log_meta);
-			debug::error(T_("Your request was sended to user, wait for answer user"));
-			return ;
+			if($this->check_duplicate_request())
+			{
+				if($_args['save_log']) logs::set('api:parent:title:othertitle:max:lenght', $this->user_id, $log_meta);
+				if($_args['debug']) debug::error(T_("Your request was sended to user, wait for answer user"));
+				return ;
+			}
+
+			$get_user_data = \lib\db\users::get_by_id($user_id);
+
+			$meta                       = [];
+			$meta['user_id']            = $user_id;
+			$meta['displayname']        = isset($get_user_data['displayname']) 	? $get_user_data['displayname'] 	: null;
+			$meta['fileurl']            = isset($get_user_data['fileurl']) 	   	? $get_user_data['fileurl']	 		: null;
+			$meta['parent_id']          = isset($get_parent_data['id']) 	   	? $get_parent_data['id'] 			: null;
+			$meta['parent_mobile']      = isset($get_parent_data['mobile'])   	? $get_parent_data['mobile'] 		: null;
+			$meta['parent_displayname'] = isset($get_parent_data['displayname']) ? $get_parent_data['displayname']  : null;
+			$meta['parent_fileurl']     = isset($get_parent_data['fileurl']) 	? $get_parent_data['fileurl'] 		: null;
+			$meta['title']              = $title;
+			$meta['othertitle']         = $other_title;
+
+			$send_notify =
+			[
+				'from'            => $user_id,
+				'to'              => $parent_id,
+				'cat'             => 'set_parent',
+				'related_foreign' => 'users',
+				'status'		  => 'enable',
+				'related_id'      => $user_id,
+				'meta'            => json_encode(\lib\utility\safe::safe($meta), JSON_UNESCAPED_UNICODE),
+				'needanswer'      => 1,
+				'content'         => T_("Are you :title of this user?", ['title' => T_($title)]),
+			];
+
+			$set_notify = \lib\db\notifications::set($send_notify);
+
+			if(debug::$status)
+			{
+				if($_args['debug']) debug::true(T_("Your request was sended"));
+			}
+			return true;
 		}
-
-		$get_user_data = \lib\db\users::get_by_id($this->user_id);
-
-		$meta                       = [];
-		$meta['user_id']            = $this->user_id;
-		$meta['displayname']   = isset($get_user_data['displayname']) ? $get_user_data['displayname'] : null;
-		$meta['fileurl']      = isset($get_user_data['fileurl']) ? $get_user_data['fileurl'] : null;
-		$meta['parent_id']          = isset($get_parent_data['id']) ? $get_parent_data['id'] : null;
-		$meta['parent_mobile']      = isset($get_parent_data['mobile']) ? $get_parent_data['mobile'] : null;
-		$meta['parent_displayname'] = isset($get_parent_data['displayname']) ? $get_parent_data['displayname'] : null;
-		$meta['parent_fileurl']    = isset($get_parent_data['fileurl']) ? $get_parent_data['fileurl'] : null;
-		$meta['title']              = utility::request('title');
-		$meta['othertitle']         = utility::request('othertitle');
-
-		$send_notify =
-		[
-			'from'            => $this->user_id,
-			'to'              => $parent_id,
-			'cat'             => 'set_parent',
-			'related_foreign' => 'users',
-			'status'		  => 'enable',
-			'related_id'      => $this->user_id,
-			'meta'            => json_encode(\lib\utility\safe::safe($meta), JSON_UNESCAPED_UNICODE),
-			'needanswer'      => 1,
-			'content'         => T_("Are you :title of this user?", ['title' => T_(utility::request('title'))]),
-		];
-
-		$a = \lib\db\notifications::set($send_notify);
-
-		if(debug::$status)
+		else
 		{
-			debug::true(T_("Your request was sended"));
-		}
+			// we dont send notification
+			$check_exits_parent =
+			[
+				'user_id' => $user_id,
+			];
 
+			$check_exits_parent = \lib\db\userparents::get($check_exits_parent);
+			if(!is_array($check_exits_parent))
+			{
+				$check_exits_parent = [];
+			}
+
+			if(empty($check_exits_parent))
+			{
+				$insert =
+				[
+					'user_id'    => $user_id,
+					'title'      => $title,
+					'othertitle' => $other_title,
+					'creator'    => $this->user_id,
+					'parent'     => $parent_id,
+				];
+				\lib\db\userparents::insert($insert);
+			}
+			else
+			{
+				foreach ($check_exits_parent as $key => $value)
+				{
+					// just title is different
+					if(isset($value['id']) && isset($value['parent']))
+					{
+						if(intval($value['parent']) === intval($parent_id))
+						{
+							$update =
+							[
+								'title'      => $title,
+								'othertitle' => $other_title,
+								'parent'     => $parent_id,
+							];
+							\lib\db\userparents::update($update, $value['id']);
+							continue;
+						}
+					}
+
+					if(isset($value['id']) && isset($value['title']))
+					{
+						if($title === $value['title'])
+						{
+							if(array_key_exists('othertitle', $value))
+							{
+								if($value['othertitle'] == $other_title)
+								{
+									$update =
+									[
+										'user_id'    => $user_id,
+										'parent'     => $parent_id,
+										'title'      => $title,
+										'othertitle' => $other_title,
+										'parent'     => $parent_id,
+									];
+									\lib\db\userparents::update($update, $value['id']);
+									continue;
+								}
+							}
+						}
+					}
+
+					$insert =
+					[
+						'user_id'    => $user_id,
+						'title'      => $title,
+						'othertitle' => $other_title,
+						'creator'    => $this->user_id,
+						'parent'     => $parent_id,
+					];
+					\lib\db\userparents::insert($insert);
+				}
+			}
+		}
 	}
 
 

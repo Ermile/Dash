@@ -158,6 +158,7 @@ trait add
 			if($_args['meta'] && is_array($_args['meta']))
 			{
 				$current_meta = \lib\db\users::get(['id' => $id, 'limit' => 1]);
+
 				if(isset($current_meta['meta']))
 				{
 					if(is_string($current_meta['meta']) && substr($current_meta['meta'], 0, 1) === '{')
@@ -168,6 +169,10 @@ trait add
 					if(is_array($current_meta['meta']))
 					{
 						$args['meta'] = json_encode(array_merge($current_meta['meta'], $_args['meta']), JSON_UNESCAPED_UNICODE);
+					}
+					else
+					{
+						$args['meta'] = json_encode($_args['meta'], JSON_UNESCAPED_UNICODE);
 					}
 				}
 				else

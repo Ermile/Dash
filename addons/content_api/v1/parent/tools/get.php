@@ -38,14 +38,22 @@ trait get
 			return false;
 		}
 
+		$user_id = utility::request('id');
+		$user_id = utility\shortURL::decode($user_id);
+		if(!$user_id)
+		{
+			logs::set('api:parent:user_id:is:incurrect', null, $log_meta);
+			debug::error(T_("User not found"), 'user', 'permission');
+			return false;
+		}
 
 		$result = [];
 		$get_notify =
 		[
-			'user_idsender'   => $this->user_id,
+			'user_idsender'   => $user_id,
 			'category'        => 9,
 			'status'          => 'enable',
-			'related_id'      => $this->user_id,
+			'related_id'      => $user_id,
 			'related_foreign' => 'users',
 			'needanswer'      => 1,
 			'answer'          => null,
@@ -80,7 +88,7 @@ trait get
 			}
 		}
 
-		$parent_resutl = \lib\db\userparents::load_parent(['user_id' => $this->user_id, 'status' => 'enable']);
+		$parent_resutl = \lib\db\userparents::load_parent(['user_id' => $user_id, 'status' => 'enable']);
 		if(is_array($parent_resutl))
 		{
 			foreach ($parent_resutl as $key => $value)
