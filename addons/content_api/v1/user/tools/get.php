@@ -244,6 +244,19 @@ trait get
 					$result[$key] = utility\shortURL::encode($value);
 					break;
 
+				case 'birthday':
+					$result['birthday']           = $value;
+					$result['birthday_gregorian'] = $value;
+					if($value)
+					{
+						if(strtotime($value) !== false)
+						{
+							$time = strtotime($value);
+							$toGregorian = \lib\utility\jdate::toGregorian(date("Y", $time), date("m", $time), date("d", $time));
+							$result['birthday_gregorian'] = implode('-', $toGregorian);
+						}
+					}
+					break;
 				case 'fileurl':
 					if($value)
 					{

@@ -167,6 +167,19 @@ trait user_check_args
 			return false;
 		}
 
+		if($birthday)
+		{
+			$birthday = \lib\utility\human::number($birthday, 'en');
+			if(strtotime($birthday) === false)
+			{
+				$birthday = utility::request('birthday');
+			}
+			else
+			{
+				$birthday = date("Y/m/d", strtotime($birthday));
+			}
+		}
+
 		$gender = utility::request('gender');
 		if($gender && !in_array($gender, ['male', 'female']))
 		{
