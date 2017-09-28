@@ -27,10 +27,6 @@ class db
 	{
 		$default_options =
 		[
-			// set mysql error in debug error
-			'debug_error'         => self::$debug_error,
-			// return false when debug status is 0
-			'resume_on_error'     => false,
 			// run mysqli_multi_query
 			'multi_query'         => false,
 			// default auto create database
@@ -46,12 +42,6 @@ class db
 
 		// on default system connect to default db
 		$different_db = false;
-
-		// check debug status
-		if(!\lib\debug::$status && !$_options['resume_on_error'])
-		{
-			return false;
-		}
 
 		// check connect to default db or no
 		if($_db_name === true)
@@ -108,7 +98,7 @@ class db
 		$qry_exec_time = microtime(true) - $qry_exec_time;
 
 		// if debug mod is true save all string query
-		if(DEBUG || $_options['debug_error'])
+		if(DEBUG)
 		{
 			self::log($_qry, $qry_exec_time);
 		}
@@ -136,14 +126,6 @@ class db
 			// save mysql error
 			$temp_error = "#". date("Y-m-d H:i:s") . "\n$_qry\n/* ERROR\tMYSQL ERROR\n". mysqli_error(self::$link)." */";
 			self::log($temp_error, $qry_exec_time, 'error.sql');
-			// set debug status as 0
-			\lib\debug::$status = 0;
-			// if DEBUG show the error
-			if(DEBUG || $_options['debug_error'])
-			{
-				\lib\debug::error(mysqli_error(self::$link),false, 'sql');
-			}
-
 			return false;
 		}
 
