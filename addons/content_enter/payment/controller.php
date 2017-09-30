@@ -22,21 +22,10 @@ class controller extends \addons\content_enter\main\controller
 		switch ($url_type)
 		{
 			case 'verify':
-				switch ($payment)
+				if(method_exists("\\lib\\utility\\payment\\verify", $payment))
 				{
-					case 'zarinpal':
-						\lib\utility\payment\verify::zarinpal($args);
-						return;
-						break;
-
-					case 'parsian':
-						\lib\utility\payment\verify::parsian($args);
-						return;
-						break;
-
-					default:
-						\lib\error::page(T_("Invalid payment"));
-						break;
+					\lib\utility\payment\verify::$payment($args);
+					return;
 				}
 				break;
 

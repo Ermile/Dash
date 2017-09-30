@@ -1,0 +1,24 @@
+{%extends display.enter%}
+
+
+
+{%block contentBody%}
+<div class="text">
+ <p>{{autoredirect.title}}</p>
+</div>
+
+	<form method="{{autoredirect.method}}" data-action action="{{autoredirect.url}}" id='autoredirectform'>
+	{%for key, value in autoredirect.args%}
+		<input type="hidden" name="{{key}}" value="{{value}}">
+	{%endfor%}
+	<input type="submit" class="btn" value='{{autoredirect.button}}'>
+	</form>
+
+<script>
+	document.getElementById('autoredirectform').submit();
+</script>
+
+{%endblock%}
+
+
+{%block contentFooter%}{%endblock%}

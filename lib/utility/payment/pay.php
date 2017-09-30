@@ -3,7 +3,6 @@ namespace lib\utility\payment;
 use \lib\debug;
 use \lib\option;
 use \lib\utility;
-use \lib\db\logs;
 
 class pay
 {
@@ -19,6 +18,29 @@ class pay
 
     public static $log_data = null;
 
+    use pay\zarinpal;
+    use pay\parsian;
+    use pay\irkish;
+
+    /**
+    * start pay
+    */
+    public static function start($_user_id, $_bank, $_amount, $_option = [])
+    {
+        $_bank = mb_strtolower($_bank);
+
+        if(method_exists("\\lib\\utility\\payment\\pay", $_bank))
+        {
+            return \lib\utility\payment\pay::$_bank($_user_id, $_amount, $_option);
+        }
+        else
+        {
+            debug::error(T_("This payment is not supported in this system"));
+            return false;
+        }
+    }
+
+
     /**
      * Gets the callbck url.
      * for example for parsian payment redirect
@@ -32,12 +54,17 @@ class pay
         $lang = \lib\define::get_current_language_string();
         $callback_url =  $host;
         $callback_url .= $lang;
-        $callback_url .= '/'. self::$default_callback_url;
-        $callback_url .= '/'. $_payment;
+
+        if($_payment === 'redirect_page')
+        {
+            $callback_url .= '/enter/autoredirect';
+        }
+        else
+        {
+            $callback_url .= '/'. self::$default_callback_url;
+            $callback_url .= '/'. $_payment;
+        }
         return $callback_url;
     }
-
-    use pay\zarinpal;
-    use pay\parsian;
 }
 ?>
