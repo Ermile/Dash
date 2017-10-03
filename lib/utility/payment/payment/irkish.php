@@ -94,18 +94,29 @@ class irkish
 
         try
         {
+
             $soap_meta =
             [
                 'soap_version' => 'SOAP_1_1',
                 // 'cache_wsdl'   => WSDL_CACHE_NONE ,
                 // 'encoding'     => 'UTF-8',
             ];
+            // $client = new \SoapClient('https://ikc.shaparak.ir/TVerify/Verify.svc', $soap_meta);
 
             $client = new \SoapClient('https://ikc.shaparak.ir/XVerify/Verify.xml', $soap_meta);
 
             $result = $client->__soapCall("KicccPaymentsVerification", array($_args));
 
-            $result = ($result->KicccPaymentsVerificationResult);
+            self::$payment_response =  (array) $result;
+            var_dump($result);exit();
+            if(isset($result->KicccPaymentsVerificationResult))
+            {
+                $result = $result->KicccPaymentsVerificationResult;
+            }
+            else
+            {
+                $result = false;
+            }
 
             if(floatval($result) === floatval($_args['amount']))
             {
