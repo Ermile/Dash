@@ -37,6 +37,13 @@ trait options
 				return $host . $lang;
 				break;
 
+			case 'static_logo':
+				return $host . '/static/images/logo.png';
+				break;
+
+			case 'siftal_image':
+				return $host . '/static/siftal/images/tools/image.png';
+				break;
 			default:
 				return $host;
 				break;

@@ -110,7 +110,7 @@ class irkish
             $result = $client->__soapCall("KicccPaymentsVerification", array($_args));
 
             self::$payment_response =  (array) $result;
-            var_dump($result);exit();
+
             if(isset($result->KicccPaymentsVerificationResult))
             {
                 $result = $result->KicccPaymentsVerificationResult;
