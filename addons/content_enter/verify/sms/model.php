@@ -49,10 +49,7 @@ class model extends \addons\content_enter\main\model
 			]
 		];
 
-		$request           = [];
-		$request['mobile'] = $my_mobile;
-		$request['msg']    = T_("Your verification code is :code \n:service", ['code' => $code, 'service' => \lib\router::get_root_domain()]);
-		$request['args']   = $code;
+		$msg = T_("Your verification code is :code ", ['code' => $code]);
 
 		if(self::$dev_mode)
 		{
@@ -60,7 +57,7 @@ class model extends \addons\content_enter\main\model
 		}
 		else
 		{
-			$kavenegar_send_result = \lib\utility\sms::send($request);
+			$kavenegar_send_result = \lib\utility\sms::send($my_mobile, $msg);
 		}
 
 		if($kavenegar_send_result === 411 && substr($my_mobile, 0, 2) === '98')
@@ -69,7 +66,7 @@ class model extends \addons\content_enter\main\model
 			db\logs::set('kavenegar:service:411:sms', self::user_data('id'), $log_meta);
 			return false;
 		}
-		elseif($kavenegar_send_result === 22)
+		elseif($kavenegar_send_result === false)
 		{
 			db\logs::set('kavenegar:service:done:sms', self::user_data('id'), $log_meta);
 			// the kavenegar service is down!!!

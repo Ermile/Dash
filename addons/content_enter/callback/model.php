@@ -152,12 +152,12 @@ class model extends \addons\content_enter\main\model
 
 		logs::set('enter:callback:signup:by:sms', $user_id, $log_meta);
 
-		$request           = [];
-		$request['mobile'] = $mobile;
-		$request['msg']    = T_("Your are registered to :service", ['service' => \lib\router::get_root_domain()]);
-		$request['args']   = '';
-		$kavenegar_send_result = \lib\utility\sms::send($request);
+		$msg    = T_("Your register was complete");
+
+		$kavenegar_send_result = \lib\utility\sms::send($mobile, $msg);
+
 		$log_meta['meta']['register_sms_result'] = $kavenegar_send_result;
+
 		logs::set('enter:callback:sms:registe:reasult', $user_id, $log_meta);
 
 		debug::true(T_("User signup by sms"));

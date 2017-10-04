@@ -50,14 +50,6 @@ class model extends \addons\content_enter\main\model
 			return false;
 		}
 
-		$request =
-		[
-			'mobile'   => $my_mobile,
-			'template' => $template,
-			'token'    => $code,
-		 	'type'     => 'call',
-		];
-
 		// ready to save log
 		$log_meta =
 		[
@@ -75,7 +67,7 @@ class model extends \addons\content_enter\main\model
 		}
 		else
 		{
-			$kavenegar_send_result = \lib\utility\sms::send($request, 'verify');
+			$kavenegar_send_result = \lib\utility\call::send($my_mobile, $template, $code);
 		}
 
 		if($kavenegar_send_result === 411 && substr($my_mobile, 0, 2) === '98')
@@ -84,9 +76,9 @@ class model extends \addons\content_enter\main\model
 			db\logs::set('kavenegar:service:411:call', self::user_data('id'), $log_meta);
 			return false;
 		}
-		elseif($kavenegar_send_result === 22)
+		elseif($kavenegar_send_result === false)
 		{
-			db\logs::set('kavenegar:service:done:call', self::user_data('id'), $log_meta);
+			db\logs::set('kavenegar:service:down:call', self::user_data('id'), $log_meta);
 			// the kavenegar service is down!!!
 		}
 		elseif($kavenegar_send_result)

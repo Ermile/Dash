@@ -79,9 +79,9 @@ trait irkish
 
         $irkish                    = [];
         $irkish['merchantId']      = option::config('irkish', 'merchantId');
-        $irkish['token']           = $token;
+        // $irkish['token']           = $token;
         $irkish['amount']          = $amount;
-        // $irkish['referenceNumber'] = (string) $transaction_id;
+        $irkish['referenceNumber'] = (string) $transaction_id;
         $irkish['sha1Key']         = \lib\option::config('irkish', 'sha1');
 
         if(isset($_SESSION['amount']['irkish'][$token]['amount']))

@@ -94,6 +94,8 @@ class irkish
 
         try
         {
+            $amount = $_args['amount'];
+            unset($_args['amount']);
 
             $soap_meta =
             [
@@ -118,7 +120,7 @@ class irkish
                 $result = false;
             }
 
-            if(floatval($result) === floatval($_args['amount']))
+            if(floatval($result) === floatval($amount))
             {
                 return true;
             }

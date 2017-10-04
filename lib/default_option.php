@@ -174,17 +174,13 @@ self::$social['aparat']['key']                = null;
 /**
 * sms kavenegar config
 */
+self::$sms['kavenegar']['status']             = false;
 self::$sms['kavenegar']['apikey']             = null;
 self::$sms['kavenegar']['debug']              = null;
-self::$sms['kavenegar']['line1']              = null;
-self::$sms['kavenegar']['line2']              = null;
-self::$sms['kavenegar']['iran']               = null;
+self::$sms['kavenegar']['line']               = null;
+self::$sms['kavenegar']['iran']               = true;
 self::$sms['kavenegar']['header']             = null;
 self::$sms['kavenegar']['footer']             = null;
 self::$sms['kavenegar']['one']                = false;
-self::$sms['kavenegar']['signup']             = false;
-self::$sms['kavenegar']['verification']       = false;
-self::$sms['kavenegar']['recovery']           = false;
-self::$sms['kavenegar']['changepass']         = false;
 
 ?>

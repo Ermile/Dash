@@ -45,17 +45,41 @@ class kavenegar_api
 	public $msg        = null;
 	const apipath      = "http://api.kavenegar.com/v1/%s/%s/%s.json";
 
-	public function __construct($_apikey= null, $_linenumber= null)
+	/**
+	 * set api key and line number
+	 *
+	 * @param      <type>  $_apikey      The apikey
+	 * @param      <type>  $_linenumber  The linenumber
+	 */
+	public function __construct($_apikey = null, $_linenumber = null)
 	{
-		$this->apikey     = (is_null($_apikey))? $this->apikey:     $_apikey;
+		$this->apikey     = (is_null($_apikey))? $this->apikey: $_apikey;
 		$this->linenumber = (is_null($_linenumber))? $this->linenumber: $_linenumber;
 	}
 
+
+	/**
+	 * Gets the path.
+	 *
+	 * @param      <type>  $_method  The method
+	 * @param      string  $_base    The base
+	 *
+	 * @return     <type>  The path.
+	 */
 	private function get_path($_method, $_base = 'sms')
 	{
 		return sprintf(self::apipath, $this->apikey, $_base,$_method);
 	}
 
+
+	/**
+	 * curl to kavenagar
+	 *
+	 * @param      <type>   $_url   The url
+	 * @param      <type>   $_data  The data
+	 *
+	 * @return     integer  ( description_of_the_return_value )
+	 */
 	private function execute($_url, $_data)
 	{
 		$headers = array (
@@ -66,7 +90,10 @@ class kavenegar_api
 		$fields_string = null;
 		if(!is_null($_data))
 		{
-			foreach($_data as $key=>$value) { $fields_string.=$key.'='.$value.'&'; }
+			foreach($_data as $key => $value)
+			{
+				$fields_string.= $key.'='.$value.'&';
+			}
 			rtrim($fields_string, '&');
 		}
 		// for debug you can uncomment below line to see the send parameters
@@ -98,112 +125,156 @@ class kavenegar_api
 			{
 				$this->status = -1;
 				$this->msg    = null;
-				return 22;
+				return false;
 			}
 
-			$json_data		= json_decode($response,true);
-			$this->status	= $json_data["return"]["status"];
-			$this->msg		= $json_data["return"]["message"];
+			$json_data		= json_decode($response, true);
 
-			return $json_data["entries"];
+			if(isset($json_data["return"]["status"]))
+			{
+				$this->status = $json_data["return"]["status"];
+			}
+
+			if(isset($json_data["return"]["message"]))
+			{
+				$this->msg = $json_data["return"]["message"];
+			}
+
+			if(isset($json_data["entries"]))
+			{
+				return $json_data["entries"];
+			}
+			else
+			{
+				return false;
+			}
 		}
 		else
 		{
-			\lib\debug::true(T_("Error on Sms system"));
+			return null;
 		}
 	}
 
-	public function send()
+
+	/**
+	 * send sms
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public function send($_mobile, $_msg, $_type = 1, $_data = 0, $_LocalMessageid = null)
 	{
-
-		$args = func_get_args();
-		$options = ['type' => 1, 'date' => 0, 'LocalMessageid' => null];
-		if(is_array($args[0]))
-		{
-			$options = array_merge($options, $args[0]);
-		}
-		else
-		{
-			$options['mobile'] 	= $args[0];
-			$options['msg'] 	= $args[1];
-			if(isset($args[2]))
-			{
-				$options['type'] = $args[2];
-			}
-			if(isset($args[3]))
-			{
-				$options['date'] = $args[3];
-			}
-			if(isset($args[4]))
-			{
-				$options['LocalMessageid'] = $args[4];
-			}
-		}
-
-		$receptor 	= is_array($options['mobile'])? join(",", $options['mobile']): $options['mobile'];
 		$path 		= $this->get_path(__FUNCTION__);
-		$params 	= array(
-								"receptor"       => $options['mobile'],
-								"sender"         => $this->linenumber,
-								"message"        => $options['msg'],
-								"type"           => $options['type'],
-								"date"           => $options['date'],
-								"LocalMessageid" => $options['LocalMessageid']
-							);
-		$json 		= $this->execute($path, $params);
+
+		$params 	=
+		[
+			"receptor"       => $_mobile,
+			"sender"         => $this->linenumber,
+			"message"        => $_msg,
+			"type"           => $_type,
+			"date"           => $_data,
+			"LocalMessageid" => $_LocalMessageid,
+		];
+
+		$json = $this->execute($path, $params);
 
 		if(!is_array($json))
+		{
 			return $this->status;
+		}
 
-		if(is_array($receptor))
-			return $json;
-		else
+		if(isset($json[0]))
+		{
 			return $json[0];
+		}
+		else
+		{
+			return false;
+		}
 	}
 
-		public function sendarray($_sender, $_receptor, $_message, $_type= 1, $_date= 0)
-		{
+
+	/**
+	 * send array
+	 *
+	 * @param      <type>   $_sender    The sender
+	 * @param      <type>   $_receptor  The receptor
+	 * @param      <type>   $_message   The message
+	 * @param      integer  $_type      The type
+	 * @param      integer  $_date      The date
+	 *
+	 * @return     <type>   ( description_of_the_return_value )
+	 */
+	public function sendarray($_sender, $_receptor, $_message, $_type= 1, $_date= 0)
+	{
 		$sender  = array();
 		$message = array();
 		$type    = array();
 
 		if(is_array($_sender))
+		{
 			$sender = $_sender;
+		}
 		else
-			for ($i = 0; $i < count($_receptor); $i++){
+		{
+			for ($i = 0; $i < count($_receptor); $i++)
+			{
 				array_push($sender, $_sender);
 			}
-
-		if(is_array($_message))
-			$message = $_message;
-		else
-			for ($i = 0; $i < count($_receptor); $i++){
-				array_push($message, $_message);
-			}
-
-		if(is_array($_type))
-			$type 	= $_type;
-		else
-			for ($i = 0; $i < count($_receptor); $i++){
-				array_push($type, $_type);
-			}
-
-		$path 		= $this->get_path(__FUNCTION__);
-		$params 	= array(
-								"receptor" => json_encode($_receptor),
-								"sender"   => json_encode($sender),
-								"message"  => json_encode($message),
-								"type"     => json_encode($type),
-								"date"     => $_date
-							);
-		$json 		= $this->execute($path, $params);
-
-		if(!is_array($json))
-			return $this->status;
-
-		return $json;
 		}
 
+		if(is_array($_message))
+		{
+			$message = $_message;
+		}
+		else
+		{
+			for ($i = 0; $i < count($_receptor); $i++)
+			{
+				array_push($message, $_message);
+			}
+		}
+
+		if(is_array($_type))
+		{
+			$type 	= $_type;
+		}
+		else
+		{
+			for ($i = 0; $i < count($_receptor); $i++)
+			{
+				array_push($type, $_type);
+			}
+		}
+
+		$path 		= $this->get_path(__FUNCTION__);
+		$params 	=
+		[
+			"receptor" => json_encode($_receptor),
+			"sender"   => json_encode($sender),
+			"message"  => json_encode($message),
+			"type"     => json_encode($type),
+			"date"     => $_date,
+		];
+
+		$json = $this->execute($path, $params);
+
+		if(!is_array($json))
+		{
+			return $this->status;
+		}
+
+		return $json;
+	}
+
+
+
+	/**
+	 * select id
+	 *
+	 * @param      <type>  $_id    The identifier
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
 	public function select($_id)
 	{
 		$id     = is_array($_id)? join(",", $_id) : $_id;
@@ -212,29 +283,56 @@ class kavenegar_api
 		$json   = $this->execute($path, $params);
 
 		if(!is_array($json))
+		{
 			return $this->status;
+		}
 
 		if(is_array($receptor))
+		{
 			return $json;
+		}
 		else
+		{
 			return $json[0];
+		}
 	}
 
+
+	/**
+	 * select outbox
+	 *
+	 * @param      <type>  $_startdate  The startdate
+	 * @param      <type>  $_enddate    The enddate
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
 	public function selectoutbox($_startdate, $_enddate= null)
 	{
 		$path 	= $this->get_path(__FUNCTION__);
-		$params	= array(
-						 "startdate"	=> $_startdate,
-						 "enddate"		=> $_enddate
-						);
+		$params	=
+		[
+			"startdate" => $_startdate,
+			"enddate"   => $_enddate
+		];
+
 		$json 	= $this->execute($path, $params);
 
 		if(!is_array($json))
+		{
 			return $this->status;
+		}
 
 		return $json;
 	}
 
+
+	/**
+	 * { function_description }
+	 *
+	 * @param      integer  $_pagesize  The pagesize
+	 *
+	 * @return     <type>   ( description_of_the_return_value )
+	 */
 	public function latestoutbox($_pagesize = 10)
 	{
 		$path   = $this->get_path(__FUNCTION__);
@@ -242,11 +340,21 @@ class kavenegar_api
 		$json   = $this->execute($path, $params);
 
 		if(!is_array($json))
+		{
 			return $this->status;
+		}
 
 		return $json;
 	}
 
+
+	/**
+	 * status of message id
+	 *
+	 * @param      <type>  $_id    The identifier
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
 	public function status($_id)
 	{
 		$id     = is_array($_id)? join(",", $_id) : $_id;
@@ -255,14 +363,28 @@ class kavenegar_api
 		$json   = $this->execute($path, $params);
 
 		if(!is_array($json))
+		{
 			return $this->status;
+		}
 
 		if(is_array($_id))
+		{
 			return $json;
+		}
 		else
+		{
 			return $json[0];
+		}
 	}
 
+
+	/**
+	 * cancel message id
+	 *
+	 * @param      <type>  $_id    The identifier
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
 	public function cancel($_id)
 	{
 		$id     = is_array($_id)? join(",", $_id) : $_id;
@@ -271,37 +393,64 @@ class kavenegar_api
 		$json   = $this->execute($path, $params);
 
 		if(!is_array($json))
+		{
 			return $this->status;
+		}
 
 		if(is_array($_id))
+		{
 			return $json;
+		}
 		else
+		{
 			return $json[0];
+		}
 	}
 
+
+	/**
+	 * get unread
+	 *
+	 * @param      <type>   $_linenumber  The linenumber
+	 * @param      integer  $_isread      The isread
+	 *
+	 * @return     <type>   ( description_of_the_return_value )
+	 */
 	public function unreads($_linenumber= null, $_isread= 0)
 	{
 		$_linenumber = is_null($_linenumber)? $this->linenumber: $_linenumber;
 		$path        = $this->get_path(__FUNCTION__);
-		$params      = array(
-								 "isread"		=> $_isread,
-								 "linenumber"	=> $_linenumber
-								);
+		$params      =
+		[
+			"isread"     => $_isread,
+			"linenumber" => $_linenumber
+		];
+
 		$json        = $this->execute($path, $params);
 
 		if(!is_array($json))
+		{
 			return $this->status;
+		}
 
 		return $json;
 	}
 
+
+	/**
+	 * get account info
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
 	public function account_info()
 	{
 		$path = $this->get_path('info','account');
 		$json = $this->execute($path, null);
 
 		if(!is_array($json))
+		{
 			return $this->status;
+		}
 
 		return $json;
 	}
@@ -317,49 +466,26 @@ class kavenegar_api
 	 * @param      <type>  $_template  The template
 	 * @param      string  $_type      The type
 	 */
-	public function verify()
+	public function verify($_mobile, $_token, $_token2 = null, $_token3 = null, $_template = null, $_type = 'sms')
 	{
-		$args = func_get_args();
-		$options = ['type' => 'sms', 'token2' => null, 'token3'=> null];
-		if(is_array($args[0]))
-		{
-			$options = array_merge($options, $args[0]);
-		}
-		else
-		{
-			$options['mobile'] 	= $args[0];
-			$options['token'] 	= $args[1];
-			if(isset($args[2]))
-			{
-				$options['token2'] = $args[2];
-			}
-			if(isset($args[3]))
-			{
-				$options['token3'] = $args[3];
-			}
-			if(isset($args[4]))
-			{
-				$options['template'] = $args[4];
-			}
-			if(isset($args[5]))
-			{
-				$options['type'] = $args[5];
-			}
-		}
 
 		$path = $this->get_path('lookup','verify');
 		$parameters =
 		[
-			'receptor' => $options['mobile'],
-			'token'    => $options['token'],
-			'token2'   => $options['token2'],
-			'token3'   => $options['token3'],
-			'template' => $options['template'],
-			'type'     => $options['type'],
+			'receptor' => $_mobile,
+			'token'    => $_token,
+			'token2'   => $_token2,
+			'token3'   => $_token3,
+			'template' => $_template,
+			'type'     => $_type,
 		];
+
 		$json = $this->execute($path, $parameters);
+
 		if(!is_array($json))
+		{
 			return $this->status;
+		}
 
 		return $json;
 	}
