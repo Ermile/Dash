@@ -12,8 +12,31 @@
 
  <main id='main'>
 {%block headerBox%}  <header id='header' class='f'>{{block ('header')}}  </header>{%endblock%}
-{%block contentBox%}  <div id='content' class='scr' data-xhr='content'>{{block ('content')}}  </div>{%endblock%}
+{%block contentBox%}
+  <div id='content' class='scr' data-xhr='content'>
+{%block content%}
+
+{%block pageHeader%}
+<div class="tbox">
+  <h2>{{page.title}}</h2>
+  <p>{{page.desc}}</p>
+</div>
+{%endblock%}
+
+{%block pageContent%}
+  <div class="full flex justify-center align-center wrap">
+{%block pageCenter%}{%endblock%}
+  </div>
+{%endblock%}
+
+
+{%endblock%}
+  </div>
+{%endblock%}
+{%if false%}
 {%block footerBox%}  <footer id='footer' class='f'>{{block ('footer')}}  </footer>{%endblock%}
+{%endif%}
+
  </main>
 {%endblock%}
 
@@ -34,7 +57,6 @@
    <figcaption>{%trans "Hello"%} <b>{{login.displayname}}</b></figcaption>
 {%endblock%}
   </figure>
-{%block sideTitle%}  <h2><a href="{{url.base}}" data-direct>{{site.title}}</a></h2>{%endblock%}
   <div class="menu scr">
    <ul class="sidenav" data-xhr='sidenav'>
 {%block sidenav%}
@@ -58,8 +80,9 @@
    </div>
    <div class='hm right flex cauto os'>
 {%block headerRight%}
-{%block headerLock%}    <a><i class="sf-unlock-alt"></i></a>
-{%endblock%}
+{%if false%}
+{%block headerLock%}    <a><i class="sf-unlock-alt"></i></a>{%endblock%}
+{%endif%}
     <a href="{{url.base}}/logout" title='{%trans "Logout"%}' data-direct><i class="sf-out"></i></a>
 {%endblock%}
    </div>

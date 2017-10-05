@@ -2,7 +2,25 @@
 <nav data-xhr="breadcrumb">{{breadcrumb() | raw}}</nav>
 {%endif%}
 
-<div id='content' class='scr' data-xhr='content'>{{block ('content')}}</div>
+  <div id='content' class='scr' data-xhr='content'>
+{%block content%}
+
+{%block pageHeader%}
+<div class="tbox">
+  <h2>{{page.title}}</h2>
+  <p>{{page.desc}}</p>
+</div>
+{%endblock%}
+
+{%block pageContent%}
+  <div class="full flex justify-center align-center wrap">
+{%block pageCenter%}{%endblock%}
+  </div>
+{%endblock%}
+
+
+{%endblock%}
+  </div>
 
 
 <ul class="sidenav" data-xhr='sidenav'>{%block sidenav%}{%endblock%}</ul>

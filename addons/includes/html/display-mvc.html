@@ -69,8 +69,7 @@
 {%endif%}
 {%endif%}
 {%if include.css %}
- <link rel="stylesheet"       href="{{url.static}}css/style.css"/>{{include.newline}}{%endif%}
-
+ <link rel="stylesheet"       href="{{url.static}}{{'css/style.css' | filemtime(true)}}"/>{{include.newline}}{%endif%}
 {%block head_css         %}{%endblock%}
 {%block head_js          %}{%endblock%}
 {%endblock%}
