@@ -6,7 +6,7 @@ namespace lib;
 class version
 {
 	// @var dash core current version
-	const version = '10.9.4';
+	const version = '10.9.5';
 
 
 	/**
