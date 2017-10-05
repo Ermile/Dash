@@ -24,7 +24,7 @@ trait add
 			// save parent user
 			// if this variable is false
 			// save the user parent first and not notification was sended
-			'send_notify' => true,
+			'send_notify' => false,
 			'save_log'    => true,
 			'debug'       => true,
 		];

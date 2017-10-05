@@ -399,7 +399,7 @@ class notifications
 				WHERE users.id IN ($_user_ids)
 			";
 			$user_details       = \lib\db::get($query);
-			$user_details       = \lib\utility\filter::meta_decode($user_details, "/user\_notification/");
+			$user_details       = \lib\utility\filter::meta_decode($user_details, "/notification/");
 			$user_details_id    = array_column($user_details, 'id');
 			$user_details       = array_combine($user_details_id, $user_details);
 			$this->user_details = $user_details;
