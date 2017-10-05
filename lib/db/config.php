@@ -116,7 +116,7 @@ class config
 			{
 				$where[] = " $my_field LIKE '$value' ";
 			}
-			elseif($value === null || is_null($value))
+			elseif($value === null || is_null($value) || $value === '')
 			{
 				$where[] = " $my_field IS NULL ";
 			}
