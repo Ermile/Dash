@@ -18,11 +18,10 @@ class shortURL
 	 *
 	 * Source: https://github.com/delight-im/ShortURL (Apache License 2.0)
 	 */
+	public static $ALPHABET        = '23456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ';
+	public static $ALPHABET_NUMBER = '2513964078';
+	public static $ALPHABET_ALL    = 'Q4W3cvE5xRiTyu67qw1JKoplaGHLPkjhOYUrtfNMdsASDFIgZXezVB890C2bnm';
 
-	// const ALPHABET = '23456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ';
-	const ALPHABET        = SHORTURL_ALPHABET;
-	const ALPHABET_NUMBER = SHORTURL_ALPHABET_NUMBER;
-	const ALPHABET_ALL    = SHORTURL_ALPHABET_ALL;
 
 	/**
 	 * encode input text
@@ -34,7 +33,7 @@ class shortURL
 	{
 		if($_alphabet == null)
 		{
-			$_alphabet = self::ALPHABET;
+			$_alphabet = self::$ALPHABET;
 		}
 
 		if(!is_numeric($_num))
@@ -64,7 +63,7 @@ class shortURL
 	{
 		if($_alphabet == null)
 		{
-			$_alphabet = self::ALPHABET;
+			$_alphabet = self::$ALPHABET;
 		}
 
 		if(!self::is($_str, $_alphabet))
@@ -95,7 +94,7 @@ class shortURL
 	{
 		if($_alphabet == null)
 		{
-			$_alphabet = self::ALPHABET;
+			$_alphabet = self::$ALPHABET;
 		}
 		return preg_match("/^[". $_alphabet. "]+$/", $_string);
 	}
@@ -113,7 +112,7 @@ class shortURL
 	{
 		if($_alphabet == null)
 		{
-			$_alphabet = self::ALPHABET_NUMBER;
+			$_alphabet = self::$ALPHABET_NUMBER;
 		}
 		return self::encode($_num, $_alphabet);
 	}
@@ -131,7 +130,7 @@ class shortURL
 	{
 		if($_alphabet == null)
 		{
-			$_alphabet = self::ALPHABET_NUMBER;
+			$_alphabet = self::$ALPHABET_NUMBER;
 		}
 		return self::decode($_num, $_alphabet);
 	}
@@ -150,7 +149,7 @@ class shortURL
 	{
 		if($_alphabet == null)
 		{
-			$_alphabet = self::ALPHABET_ALL;
+			$_alphabet = self::$ALPHABET_ALL;
 		}
 		return self::encode($_num, $_alphabet);
 	}
@@ -168,7 +167,7 @@ class shortURL
 	{
 		if($_alphabet == null)
 		{
-			$_alphabet = self::ALPHABET_ALL;
+			$_alphabet = self::$ALPHABET_ALL;
 		}
 		return self::decode($_string, $_alphabet);
 	}

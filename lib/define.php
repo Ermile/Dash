@@ -14,23 +14,6 @@ class define
 			\lib\code::die("<p>For using Dash you must update php version to 7.0 or higher!</p>");
 		}
 
-		/**
-		 * define short url alphabet
-		 */
-		if(!defined('SHORTURL_ALPHABET'))
-		{
-			define('SHORTURL_ALPHABET', '23456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ');
-		}
-
-		if(!defined('SHORTURL_ALPHABET_NUMBER'))
-		{
-			define('SHORTURL_ALPHABET_NUMBER', '2513964078');
-		}
-
-		if(!defined('SHORTURL_ALPHABET_ALL'))
-		{
-			define('SHORTURL_ALPHABET_ALL', 'Q4W3cvE5xRiTyu67qw1JKoplaGHLPkjhOYUrtfNMdsASDFIgZXezVB890C2bnm');
-		}
 
 		/**
 		 * If DEBUG is TRUE you can see the full error description, If set to FALSE show userfriendly messages
