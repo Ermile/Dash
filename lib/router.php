@@ -133,7 +133,7 @@ class router
 
 		// like  127.0.0.1
 		if(!defined('ClientIP'))
-			define('ClientIP', router::get_clientIP() );
+			define('ClientIP', \lib\server::ip(true) );
 
 		// like ermile.com
 		if(!defined('Service'))
