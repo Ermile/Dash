@@ -46,7 +46,7 @@ trait options
 				break;
 
 			case 'siftal_user':
-				return $host . 'static/siftal/images/useful/user1.png';
+				return $host . '/static/siftal/images/useful/user1.png';
 				break;
 
 			default:
