@@ -44,6 +44,11 @@ trait options
 			case 'siftal_image':
 				return $host . '/static/siftal/images/tools/image.png';
 				break;
+
+			case 'siftal_user':
+				return $host . 'static/siftal/images/useful/user1.png';
+				break;
+
 			default:
 				return $host;
 				break;
