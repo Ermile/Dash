@@ -7,15 +7,29 @@ class lib
 {
 	public $prefix;
 	public $static = false;
-	public function __construct($_args = null, $_static = false){
+	public function __construct($_args = null, $_static = false)
+	{
 		$this->static = $_static;
 		$this->prefix = $_args ? "\\". trim($_args[0], "\\"). "\\" : "\\";
 	}
-	public function __call($name, $args){
+
+	/**
+	 * { function_description }
+	 *
+	 * @param      <type>  $name   The name
+	 * @param      <type>  $args   The arguments
+	 *
+	 * @return     string  ( description_of_the_return_value )
+	 */
+	public function __call($name, $args)
+	{
 		$path = array("ilib", "lib");
-		foreach ($path as $key => $value) {
+
+		foreach ($path as $key => $value)
+		{
 			$class_name = "{$value}{$this->prefix}{$name}";
-			if(class_exists($class_name)){
+			if(class_exists($class_name))
+			{
 				if($this->static === true)
 				{
 					return $class_name;
@@ -23,6 +37,7 @@ class lib
 				return new $class_name(...$args);
 			}
 		}
+
 		\lib\error::core("lib\\{$name}");
 	}
 }
