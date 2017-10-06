@@ -16,9 +16,9 @@ class server
 			return $_SERVER;
 		}
 
-		if(array_key_exists($_name, self::$_SERVER))
+		if(array_key_exists($_name, $_SERVER))
 		{
-			return self::$_SERVER[$_name];
+			return $_SERVER[$_name];
 		}
 
 		return null;
