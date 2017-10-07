@@ -14,19 +14,19 @@ trait check
 	{
 		return 0;
 
-		$where =
-		[
-			'user_id' => $_user_id,
-			'post_id' => null,
-			'cat'     => 'user_uploaded_size_'. $_user_id,
-			'limit'   => 1,
-		];
-		$result =  \lib\db\options::get($where);
-		if(isset($result['value']))
-		{
-			return (int) $result['value'];
-		}
-		return 0;
+		// $where =
+		// [
+		// 	'user_id' => $_user_id,
+		// 	'post_id' => null,
+		// 	'cat'     => 'user_uploaded_size_'. $_user_id,
+		// 	'limit'   => 1,
+		// ];
+		// $result =  \lib\db\options::get($where);
+		// if(isset($result['value']))
+		// {
+		// 	return (int) $result['value'];
+		// }
+		// return 0;
 	}
 
 
@@ -69,29 +69,29 @@ trait check
 		return $default_user_size;
 
 
-		\lib\permission::$user_id = $_user_id;
+		// \lib\permission::$user_id = $_user_id;
 
-		if(\lib\permission::access('upload_1000_mb'))
-		{
-			$default_user_size = 1000 * $MB; // 1 TB
-		}
-		elseif(\lib\permission::access('upload_100_mb'))
-		{
-			$default_user_size = 100 * $MB; // 100 MB
-		}
-		elseif(\lib\permission::access('upload_10_mb'))
-		{
-			$default_user_size = 10 * $MB; // 10 MB
-		}
+		// if(\lib\permission::access('upload_1000_mb'))
+		// {
+		// 	$default_user_size = 1000 * $MB; // 1 TB
+		// }
+		// elseif(\lib\permission::access('upload_100_mb'))
+		// {
+		// 	$default_user_size = 100 * $MB; // 100 MB
+		// }
+		// elseif(\lib\permission::access('upload_10_mb'))
+		// {
+		// 	$default_user_size = 10 * $MB; // 10 MB
+		// }
 
-		$uploaded = self::uploaded($_user_id);
-		$vip_size = self::vip_size($_user_id);
-		if(is_int($vip_size))
-		{
-			$default_user_size = $vip_size;
-		}
-		return $default_user_size;
-		// return $default_user_size - $uploaded;
+		// $uploaded = self::uploaded($_user_id);
+		// $vip_size = self::vip_size($_user_id);
+		// if(is_int($vip_size))
+		// {
+		// 	$default_user_size = $vip_size;
+		// }
+		// return $default_user_size;
+		// // return $default_user_size - $uploaded;
 	}
 
 
@@ -106,13 +106,13 @@ trait check
 		 */
 		return;
 
-		$where =
-		[
-			'user_id' => $_user_id,
-			'post_id' => null,
-			'cat'     => 'user_uploaded_size_'. $_user_id,
-		];
-		\lib\db\options::plus($where, (int) $_size);
+		// $where =
+		// [
+		// 	'user_id' => $_user_id,
+		// 	'post_id' => null,
+		// 	'cat'     => 'user_uploaded_size_'. $_user_id,
+		// ];
+		// \lib\db\options::plus($where, (int) $_size);
 	}
 
 }

@@ -333,7 +333,7 @@ class upload
 			// the parent id of post record
 			'parent'              => null,
 			// the post status
-			'status'         => 'draft',
+			'status'              => 'draft',
 			// save file in temp directory
 			// whitout save in database
 			'save_as_tmp'         => false,
@@ -415,7 +415,7 @@ class upload
 
 		if(self::$fileSize > $_options['user_size_remaining'])
 		{
-			return \lib\debug::error(T_("The size of file is larger than the upload space you have, your space is :space", ['space' => $_options['user_size_remaining']]), 'file', 'size');
+			return \lib\debug::error(T_("The size of file is larger than the upload space you have"), 'file', 'size');
 		}
 
 		// save file as tmp in tmp_path
