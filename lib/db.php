@@ -143,27 +143,27 @@ class db
 	/**
 	 * transaction
 	 */
-	public static function transaction($_db_name = true, $_resume_on_error = true)
+	public static function transaction($_db_name = true)
 	{
-		return self::query("START TRANSACTION", $_db_name, ['resume_on_error' => $_resume_on_error]);
+		return self::query("START TRANSACTION", $_db_name);
 	}
 
 
 	/**
 	 * commit
 	 */
-	public static function commit($_db_name = true, $_resume_on_error = true)
+	public static function commit($_db_name = true)
 	{
-		return self::query("COMMIT", $_db_name, ['resume_on_error' => $_resume_on_error]);
+		return self::query("COMMIT", $_db_name);
 	}
 
 
 	/**
 	 * rollback
 	 */
-	public static function rollback($_db_name = true, $_resume_on_error = true)
+	public static function rollback($_db_name = true)
 	{
-		return self::query("ROLLBACK", $_db_name, ['resume_on_error' => $_resume_on_error]);
+		return self::query("ROLLBACK", $_db_name);
 	}
 }
 ?>
