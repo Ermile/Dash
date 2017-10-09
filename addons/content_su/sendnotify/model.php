@@ -85,16 +85,8 @@ class model extends \addons\content_su\main\model
 
 		if($mobile)
 		{
-			$send_sms           = [];
-			$send_sms['mobile'] = $mobile;
-			$send_sms['msg']    = $msg;
-			$send_sms['args']   = '';
-
-			if(Tld !== 'dev')
-			{
-				\lib\utility\sms::send($send_sms);
-				debug::true("SMS was sended");
-			}
+			\lib\utility\sms::send_array($mobile, $msg);
+			debug::true("SMS was sended");
 		}
 
 		if($telegram)
