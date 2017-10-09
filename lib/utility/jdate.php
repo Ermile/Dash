@@ -731,5 +731,50 @@ class jdate
 
     }
 
+    /**
+     * get month precent
+     *
+     *
+     * @param      <type>  $_type  The type
+     */
+    public static function month_precent($_type = null)
+    {
+        $d = self::date("d", false, false);
+        $m = self::date("m", false, false);
+
+        if(intval($m) < 7)
+        {
+            $count_day = 31;
+        }
+        elseif (intval($m) === 12)
+        {
+            $count_day = 29;
+        }
+        else
+        {
+            $count_day = 30;
+        }
+
+        $d = intval($d);
+
+        $left   = round(($d * 100) / $count_day);
+        $remain = round((($count_day - $d) * 100) / $count_day);
+
+        $return = null;
+        switch ($_type)
+        {
+            case 'left':
+                $return = $left;
+                break;
+            case 'remain':
+                $return = $remain;
+                break;
+            default:
+                $return = ['left' => $left, 'remain' => $remain, 'count' => $count_day];
+                break;
+        }
+        return $return;
+    }
+
 }
 ?>
