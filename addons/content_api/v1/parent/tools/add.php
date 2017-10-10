@@ -214,15 +214,8 @@ trait add
 			$check_exits_parent = \lib\db\userparents::get($check_exits_parent);
 			if(isset($check_exits_parent['id']) && isset($check_exits_parent['parent']))
 			{
-				if(intval($check_exits_parent['parent']) === intval($parent_id))
-				{
-					// no thing!
-				}
-				else
-				{
-					$update = ['parent'     => $parent_id];
-					\lib\db\userparents::update($update, $check_exits_parent['id']);
-				}
+				$update = ['parent' => $parent_id, 'status' => 'enable'];
+				\lib\db\userparents::update($update, $check_exits_parent['id']);
 			}
 			else
 			{
