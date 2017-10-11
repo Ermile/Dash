@@ -6,9 +6,6 @@ class model extends \addons\content_api\v1\home\model
 	use \addons\content_api\v1\file\tools\get;
 	use \addons\content_api\v1\file\tools\link;
 
-	use \addons\content_api\v1\poll\tools\get;
-	use \addons\content_api\v1\home\tools\ready;
-
 	/**
 	 * Links an upload.
 	 *

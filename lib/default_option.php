@@ -38,6 +38,11 @@ self::$config['domain_name']                  = null;
 self::$config['main_site']                    = null;
 self::$config['account_status']               = false;
 
+self::$config['ftp']['host']                  = null;
+self::$config['ftp']['port']                  = null;
+self::$config['ftp']['user']                  = null;
+self::$config['ftp']['pass']                  = null;
+
 /**
  * list of units
  */
