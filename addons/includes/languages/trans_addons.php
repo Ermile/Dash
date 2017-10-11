@@ -491,25 +491,26 @@ class twigTransTerms
 	echo T_("Hasan");                                                                 // Line 171
 	echo T_("Salehi");                                                                // Line 171
 	echo T_("Add <code class='code1'>.bordered</code> for borders on all sides of the table and cells.");// Line 172
-	echo T_("A table may sometimes need to be more compact to make more rows visible at a time");// Line 189
-	echo T_("A table may sometimes need to be more padded for legibility");           // Line 203
-	echo T_("A table may sometimes need to be small");                                // Line 210
-	echo T_("A table may sometimes need to be large");                                // Line 217
-	echo T_("Add <code class='code1'>data-sort=desc|asc</code> to table header for add icon of sorting");// Line 228
+	echo T_("Only add <code class='code1'>.responsive</code> to table.");             // Line 188
+	echo T_("A table may sometimes need to be more compact to make more rows visible at a time");// Line 200
+	echo T_("A table may sometimes need to be more padded for legibility");           // Line 214
+	echo T_("A table may sometimes need to be small");                                // Line 221
+	echo T_("A table may sometimes need to be large");                                // Line 228
+	echo T_("Add <code class='code1'>data-sort=desc|asc</code> to table header for add icon of sorting");// Line 239
 	echo T_("First Name");                                                            // Line 166
 	echo T_("Last Name");                                                             // Line 166
 	echo T_("Footer");                                                                // Line 174
-	echo T_("@evazzadeh");                                                            // Line 290
-	echo T_("@biqarar");                                                              // Line 300
-	echo T_("@baravak");                                                              // Line 310
+	echo T_("@evazzadeh");                                                            // Line 301
+	echo T_("@biqarar");                                                              // Line 311
+	echo T_("@baravak");                                                              // Line 321
 	echo T_("Git Repository");                                                        // Line 7
-	echo T_("node_modules");                                                          // Line 320
-	echo T_("Initial commit");                                                        // Line 341
-	echo T_("10 hours ago");                                                          // Line 342
-	echo T_("test");                                                                  // Line 325
-	echo T_("build");                                                                 // Line 330
-	echo T_("package.json");                                                          // Line 335
-	echo T_("Gruntfile.js");                                                          // Line 340
+	echo T_("node_modules");                                                          // Line 331
+	echo T_("Initial commit");                                                        // Line 352
+	echo T_("10 hours ago");                                                          // Line 353
+	echo T_("test");                                                                  // Line 336
+	echo T_("build");                                                                 // Line 341
+	echo T_("package.json");                                                          // Line 346
+	echo T_("Gruntfile.js");                                                          // Line 351
 
 	//--------------------------------------addons/content_su/sample/template/txt.html
 	echo T_("Textarea");                                                              // Line 205
@@ -609,15 +610,16 @@ class twigTransTerms
 	echo T_("Simple input with label");                                               // Line 104
 	echo T_("Family");                                                                // Line 110
 	echo T_("Extra features");                                                        // Line 123
-	echo T_("Sizing");                                                                // Line 164
-	echo T_("Button addons");                                                         // Line 191
-	echo T_("Search...");                                                             // Line 195
-	echo T_("Go!");                                                                   // Line 202
-	echo T_("Ding Ding!");                                                            // Line 212
-	echo T_("Simple file input");                                                     // Line 230
-	echo T_("Simple file input only accept images");                                  // Line 237
-	echo T_("Simple avatar selector with simple preview");                            // Line 244
-	echo T_("Simple file input with min 100kb and max 200kb size!");                  // Line 263
+	echo T_("Fix addons");                                                            // Line 165
+	echo T_("Sizing");                                                                // Line 187
+	echo T_("Button addons");                                                         // Line 214
+	echo T_("Search...");                                                             // Line 218
+	echo T_("Go!");                                                                   // Line 225
+	echo T_("Ding Ding!");                                                            // Line 235
+	echo T_("Simple file input");                                                     // Line 253
+	echo T_("Simple file input only accept images");                                  // Line 260
+	echo T_("Simple avatar selector with simple preview");                            // Line 267
+	echo T_("Simple file input with min 100kb and max 200kb size!");                  // Line 286
 
 	//---------------------------------addons/content_su/sample/template/checkbox.html
 	echo T_("Check1 Sample1");                                                        // Line 299
@@ -931,11 +933,11 @@ class twigTransTerms
 	echo T_("tejarak");                                                               // Line 17
 
 	//------------------------------------------addons/includes/html/display-dash.html
-	echo T_("Edit your profile");                                                     // Line 27
-	echo T_("Avatar of you");                                                         // Line 31
-	echo T_("Hello");                                                                 // Line 34
+	echo T_("Edit your profile");                                                     // Line 50
+	echo T_("Avatar of you");                                                         // Line 54
+	echo T_("Hello");                                                                 // Line 57
 	echo T_("Logout");                                                                // Line 104 Seperate
-	echo T_("View your current location and navigate to parent of it");               // Line 72
+	echo T_("View your current location and navigate to parent of it");               // Line 95
 
 	//-------------------------------------------addons/includes/html/display-mvc.html
 
