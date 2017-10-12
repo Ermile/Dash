@@ -23,7 +23,7 @@ class ftp
 			$ftp_host = \lib\option::config('ftp', 'host');
 			$ftp_port = \lib\option::config('ftp', 'port');
 
-			$link = ftp_connect($ftp_host, $ftp_port);
+			$link = @ftp_connect($ftp_host, $ftp_port);
 			if($link)
 			{
 				self::$link = $link;
