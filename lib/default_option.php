@@ -20,7 +20,6 @@ self::$config['use_main_account']             = false;
 self::$config['debug']                        = false;
 self::$config['coming']                       = false;
 self::$config['short_url']                    = null;
-self::$config['save_as_cookie']               = false;
 self::$config['log_visitors']                 = false;
 self::$config['passphrase']                   = null;
 self::$config['passkey']                      = null;

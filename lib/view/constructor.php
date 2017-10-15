@@ -140,6 +140,23 @@ trait constructor
 			$this->options();
 		}
 
+
+		// check main  ********************************************* CHECK FOR ONLY IN FIRST PAGE IN RIGHT PLACE
+		// in all page like ajax request must be run
+		if(AccountService === MainService && false)
+		{
+			$this->model()->checkMainAccount();
+			$this->controller()->checkSession();
+		}
+	}
+
+
+	/**
+	 * [save_as_cookie description]
+	 * @return [type] [description]
+	 */
+	function save_as_cookie()
+	{
 		if(\lib\option::config('save_as_cookie'))
 		{
 			$mygetlist = \lib\utility::get(null, 'raw');
@@ -160,14 +177,6 @@ trait constructor
 				// remove get parameter from url
 				header('Location: '. $this->url('full'));
 			}
-		}
-
-		// check main  ********************************************* CHECK FOR ONLY IN FIRST PAGE IN RIGHT PLACE
-		// in all page like ajax request must be run
-		if(AccountService === MainService && false)
-		{
-			$this->model()->checkMainAccount();
-			$this->controller()->checkSession();
 		}
 	}
 }
