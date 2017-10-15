@@ -32,7 +32,7 @@ class autoload
 		$split_name = preg_split("[\\\]", $name);
 		if(count($split_name) > 1)
 		{
-			$file_addr = self::iget_file_name($split_name);
+			$file_addr = self::get_file_name($split_name);
 			if($file_addr !== false)
 			{
 				self::$require[$name] = 1;
@@ -63,11 +63,11 @@ class autoload
 	 */
 	static function get_file_name($split_name)
 	{
-		list($prefix, $sub_path, $exec_file) = self::ifile_splice($split_name);
+		list($prefix, $sub_path, $exec_file) = self::file_splice($split_name);
 		$prefix_file = null;
 		if (preg_grep("/^$prefix$/", self::$core_prefix))
 		{
-			$file_addr = self::icheck_file($prefix, $sub_path, $exec_file);
+			$file_addr = self::check_file($prefix, $sub_path, $exec_file);
 			return $file_addr;
 		}
 
@@ -121,12 +121,6 @@ class autoload
 		$sub_path = (count($split_name) > 0) ? join($split_name, "/") .'/' : '';
 
 		return array($prefix, $sub_path, $exec_file .".php");
-	}
-
-	static function __callStatic($_name, $_args)
-	{
-		$name = preg_replace("/^i/", "", $_name);
-		return autoload::{$name}(...$_args);
 	}
 }
 spl_autoload_register("\autoload::load");
