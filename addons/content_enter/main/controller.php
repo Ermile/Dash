@@ -22,7 +22,7 @@ class controller extends \mvc\controller
 	/**
 	* if the user is login redirect to base
 	*/
-	public function if_login_notready()
+	public function if_login_not_route()
 	{
 		if($this->login())
 		{
@@ -34,7 +34,7 @@ class controller extends \mvc\controller
 	/**
 	* if login route
 	*/
-	public function if_loginready()
+	public function if_login_route()
 	{
 		if(!$this->login())
 		{
