@@ -161,7 +161,7 @@ class main
 
 		if(method_exists($controller, '_route'))
 		{
-			$controller->i_route();
+			$controller->_route();
 		}
 
 		if(router::get_controller() !== $controller_name)
@@ -170,14 +170,6 @@ class main
 			return;
 		}
 
-		if(method_exists($controller, 'config') || array_key_exists('config', $controller->Methods))
-		{
-			$controller->iconfig();
-		}
-		if(method_exists($controller, 'options'))
-		{
-			$controller->ioptions();
-		}
 
 		if(count(router::get_url_property(-1)) > 0 && $controller->route_check_true === false)
 		{

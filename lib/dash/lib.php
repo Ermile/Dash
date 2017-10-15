@@ -23,19 +23,14 @@ class lib
 	 */
 	public function __call($name, $args)
 	{
-		$path = array("ilib", "lib");
-
-		foreach ($path as $key => $value)
+		$class_name = "lib{$this->prefix}{$name}";
+		if(class_exists($class_name))
 		{
-			$class_name = "{$value}{$this->prefix}{$name}";
-			if(class_exists($class_name))
+			if($this->static === true)
 			{
-				if($this->static === true)
-				{
-					return $class_name;
-				}
-				return new $class_name(...$args);
+				return $class_name;
 			}
+			return new $class_name(...$args);
 		}
 
 		\lib\error::core("lib\\{$name}");
