@@ -121,11 +121,6 @@ trait constructor
 			$this->data->pagnation = $this->controller->pagnation_get();
 		}
 
-		if(method_exists($this, '_construct'))
-		{
-			$this->_construct();
-		}
-
 		if(isset($this->url->MainStatic) && $this->url->MainStatic)
 		{
 			$this->url->myStatic = $this->url->MainStatic;
@@ -135,18 +130,22 @@ trait constructor
 			$this->url->myStatic = $this->url->static;
 		}
 
-		if(method_exists($this, 'options'))
+
+		// we offer 3 type of function to be used in order to have some change on module
+		// you can call this all time needed, but Recomended to call on project mvc view
+		if(method_exists($this, 'project'))
 		{
-			$this->options();
+			$this->project();
 		}
-
-
-		// check main  ********************************************* CHECK FOR ONLY IN FIRST PAGE IN RIGHT PLACE
-		// in all page like ajax request must be run
-		if(AccountService === MainService && false)
+		// like project but recomend to call on repository
+		if(method_exists($this, 'repository'))
 		{
-			$this->model()->checkMainAccount();
-			$this->controller()->checkSession();
+			$this->repository();
+		}
+		// like project but recomend to call on special module
+		if(method_exists($this, 'config'))
+		{
+			$this->config();
 		}
 	}
 
