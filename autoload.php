@@ -13,8 +13,8 @@ require_once ("define.php");
 */
 class autoload
 {
-	static $require     = array();
-	static $core_prefix = array('lib', 'ilib', 'cls', 'database', 'mvc', 'addons');
+	static $require     = [];
+	static $core_prefix = ['lib', 'mvc', 'addons'];
 	static $autoload    = false;
 
 	/**
@@ -120,7 +120,7 @@ class autoload
 
 		$sub_path = (count($split_name) > 0) ? join($split_name, "/") .'/' : '';
 
-		return array($prefix, $sub_path, $exec_file .".php");
+		return [$prefix, $sub_path, $exec_file .".php"];
 	}
 }
 spl_autoload_register("\autoload::load");
