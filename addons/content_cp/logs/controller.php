@@ -22,7 +22,7 @@ class controller extends \mvc\controller
 		'data',
 	];
 
-	public function _route()
+	public function ready()
 	{
 
 		\lib\permission::access('cp:transaction:logs', 'block');

@@ -7,7 +7,7 @@ class controller extends \addons\content_enter\main\controller
 	 * check route of account
 	 * @return [type] [description]
 	 */
-	function _route()
+	function ready()
 	{
 
 		// if this step is locked go to error page and return

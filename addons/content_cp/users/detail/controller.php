@@ -3,7 +3,7 @@ namespace addons\content_cp\users\detail;
 
 class controller extends \addons\content_cp\main\controller
 {
-	public function _route()
+	public function ready()
 	{
 		\lib\permission::access('cp:user:detail', 'block');
 

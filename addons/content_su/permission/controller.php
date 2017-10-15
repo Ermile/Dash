@@ -3,9 +3,9 @@ namespace addons\content_su\permission;
 
 class controller extends \addons\content_su\main\controller
 {
-	public function _route()
+	public function ready()
 	{
-		parent::_route();
+		parent::ready();
 
 		if(\lib\router::get_url() === 'permission')
 		{

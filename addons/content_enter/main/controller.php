@@ -8,7 +8,7 @@ class controller extends \mvc\controller
 	 * check route of account
 	 * @return [type] [description]
 	 */
-	function _route()
+	function ready()
 	{
 		$url = \lib\router::get_url();
 		// /main can not route
@@ -22,7 +22,7 @@ class controller extends \mvc\controller
 	/**
 	* if the user is login redirect to base
 	*/
-	public function if_login_not_route()
+	public function if_login_notready()
 	{
 		if($this->login())
 		{
@@ -34,7 +34,7 @@ class controller extends \mvc\controller
 	/**
 	* if login route
 	*/
-	public function if_login_route()
+	public function if_loginready()
 	{
 		if(!$this->login())
 		{

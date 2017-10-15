@@ -4,7 +4,7 @@ namespace addons\content_enter\pass;
 
 class controller extends \addons\content_enter\main\controller
 {
-	public function _route()
+	public function ready()
 	{
 		// if this step is locked go to error page and return
 		if(self::lock('pass'))

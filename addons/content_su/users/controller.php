@@ -21,9 +21,9 @@ class controller extends \addons\content_su\main\controller
 		'order',
 	];
 
-	public function _route()
+	public function ready()
 	{
-		parent::_route();
+		parent::ready();
 
 		$property                     = [];
 		foreach ($this->fields as $key => $value)

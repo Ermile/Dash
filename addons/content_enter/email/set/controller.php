@@ -7,12 +7,12 @@ class controller extends \addons\content_enter\main\controller
 	 * check route of account
 	 * @return [type] [description]
 	 */
-	function _route()
+	function ready()
 	{
 		// if the user is login redirect to base
 		parent::if_login_route();
 
-		// parent::_route();
+		// parent::ready();
 		// if the user have email can not set email again
 		// he must change her email
 		if($this->login('email'))

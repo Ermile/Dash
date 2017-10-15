@@ -9,7 +9,7 @@ class controller extends  \mvc\controller
 		parent::__construct();
 	}
 
-	public function _route()
+	public function ready()
 	{
 
 		$url = \lib\router::get_url();

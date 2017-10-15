@@ -4,7 +4,7 @@ namespace addons\content_enter\hook;
 class controller extends  \mvc\controller
 {
 
-	public function _route()
+	public function ready()
 	{
 		$this->post('user')->ALL();
 

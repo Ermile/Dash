@@ -31,9 +31,9 @@ class controller extends \addons\content_su\main\controller
 		'data',
 	];
 
-	public function _route()
+	public function ready()
 	{
-		parent::_route();
+		parent::ready();
 
 		$property                 = [];
 		foreach ($this->fields as $key => $value)

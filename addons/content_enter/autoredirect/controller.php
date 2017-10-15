@@ -10,7 +10,7 @@ class controller extends \addons\content_enter\main\controller
 	/**
 	* route
 	*/
-	public function _route()
+	public function ready()
 	{
 		$autoredirect = [];
 

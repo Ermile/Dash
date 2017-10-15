@@ -5,7 +5,7 @@ use \lib\utility;
 
 class controller extends \addons\content_enter\main\controller
 {
-	public function _route()
+	public function ready()
 	{
 		$url             = \lib\router::get_url();
 

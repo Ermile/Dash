@@ -159,10 +159,24 @@ class main
 		$controller = new $controller_name;
 		self::$controller = $controller;
 
-		if(method_exists($controller, '_route'))
+
+		// some special function that call on each module
+		// if needed for project
+		if(method_exists($controller, 'project'))
 		{
-			$controller->_route();
+			$controller->project();
 		}
+		// call on repository, for example check permission of content and etc.
+		if(method_exists($controller, 'repository'))
+		{
+			$controller->repository();
+		}
+		// for special module, call ready func
+		if(method_exists($controller, 'ready'))
+		{
+			$controller->ready();
+		}
+
 
 		if(router::get_controller() !== $controller_name)
 		{
@@ -175,7 +189,7 @@ class main
 		{
 			error::page('Unavailable');
 		}
-		$controller->i_corridor();
+		$controller->_corridor();
 	}
 }
 ?>

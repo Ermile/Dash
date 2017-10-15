@@ -3,7 +3,7 @@ namespace addons\content_cp\users\add;
 
 class controller extends \mvc\controller
 {
-	public function _route()
+	public function ready()
 	{
 		\lib\permission::access('cp:user:add', 'block');
 

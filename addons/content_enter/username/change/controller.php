@@ -7,7 +7,7 @@ class controller extends \addons\content_enter\main\controller
 	 * check route of account
 	 * @return [type] [description]
 	 */
-	function _route()
+	function ready()
 	{
 		// if the user is login redirect to base
 		parent::if_login_route();
@@ -20,7 +20,7 @@ class controller extends \addons\content_enter\main\controller
 			return;
 		}
 
-		// parent::_route();
+		// parent::ready();
 		$this->get()->ALL('username/change');
 		$this->post('username')->ALL('username/change');
 

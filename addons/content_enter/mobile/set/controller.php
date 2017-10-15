@@ -7,7 +7,7 @@ class controller extends \addons\content_enter\main\controller
 	 * check route of account
 	 * @return [type] [description]
 	 */
-	function _route()
+	function ready()
 	{
 		// if this step is locked go to error page and return
 		if(self::lock('pass/set'))
@@ -19,7 +19,7 @@ class controller extends \addons\content_enter\main\controller
 		// if step mobile is done
 		if(self::done_step('mobile') && !self::user_data('password'))
 		{
-			// parent::_route();
+			// parent::ready();
 			$this->get('pass')->ALL('pass/set');
 			$this->post('pass')->ALL('pass/set');
 		}

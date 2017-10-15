@@ -3,9 +3,9 @@ namespace addons\content_su\transactions\add;
 
 class controller extends \addons\content_su\transactions\controller
 {
-	public function _route()
+	public function ready()
 	{
-		parent::_route();
+		parent::ready();
 
 		$this->get(false, "add")->ALL();
 

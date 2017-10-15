@@ -4,9 +4,9 @@ namespace addons\content_su\sample;
 class controller extends \addons\content_su\main\controller
 {
 
-	function _route()
+	function ready()
 	{
-		parent::_route();
+		parent::ready();
 
 		$addr = \lib\router::get_url(1);
 

@@ -3,7 +3,7 @@ namespace addons\content_cp\users\edit;
 
 class controller extends \mvc\controller
 {
-	public function _route()
+	public function ready()
 	{
 		\lib\permission::access('cp:user:edit', 'block');
 

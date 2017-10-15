@@ -3,7 +3,7 @@ namespace addons\content_enter\logout;
 
 class controller extends \addons\content_enter\main\controller
 {
-	public function _route()
+	public function ready()
 	{
 		// if user login just can view this page
 		self::if_login_route();

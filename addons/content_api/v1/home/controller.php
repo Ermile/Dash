@@ -25,7 +25,7 @@ class controller extends  \mvc\controller
 	/**
 	 * route
 	 */
-	public function _route()
+	public function ready()
 	{
 		$url = \lib\router::get_url();
 

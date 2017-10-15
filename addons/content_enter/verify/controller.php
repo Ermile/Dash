@@ -4,7 +4,7 @@ namespace addons\content_enter\verify;
 
 class controller extends \addons\content_enter\main\controller
 {
-	public function _route()
+	public function ready()
 	{
 		// if the user is login redirect to base
 		parent::if_login_not_route();

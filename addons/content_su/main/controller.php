@@ -6,7 +6,7 @@ class controller extends \mvc\controller
 	/**
 	 * check permission
 	 */
-	public function _route()
+	public function ready()
 	{
 		// do for exception url
 		self::install_first_time();

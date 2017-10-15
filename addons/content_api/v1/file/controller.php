@@ -4,7 +4,7 @@ namespace addons\content_api\v1\file;
 class controller extends  \addons\content_api\v1\home\controller
 {
 
-	public function _route()
+	public function ready()
 	{
 		/**
 		 * link to upload

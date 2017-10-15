@@ -3,9 +3,9 @@ namespace addons\content_su\tools;
 
 class controller extends \addons\content_su\main\controller
 {
-	function _route()
+	function ready()
 	{
-		parent::_route();
+		parent::ready();
 
 		$exist    = false;
 

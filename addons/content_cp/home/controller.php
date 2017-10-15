@@ -69,7 +69,7 @@ class controller extends \mvc\controller
 	}
 
 
-	function _route()
+	function ready()
 	{
 		// do for exception url
 		self::_exception();

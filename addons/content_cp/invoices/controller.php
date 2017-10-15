@@ -29,7 +29,7 @@ class controller extends \mvc\controller
 		'search',
 	];
 
-	public function _route()
+	public function ready()
 	{
 
 		\lib\permission::access('cp:transaction:invoices', 'block');

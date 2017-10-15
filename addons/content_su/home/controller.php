@@ -2,9 +2,9 @@
 namespace addons\content_su\home;
 class controller extends \addons\content_su\main\controller
 {
-	public function _route()
+	public function ready()
 	{
-		parent::_route();
+		parent::ready();
 	}
 }
 ?>

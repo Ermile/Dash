@@ -4,7 +4,7 @@ namespace addons\content_enter\verify\telegram;
 
 class controller extends \addons\content_enter\main\controller
 {
-	public function _route()
+	public function ready()
 	{
 		// bug fix two redirect to this page
 		if(isset($_SERVER['HTTP_ACCEPT']) && $_SERVER['HTTP_ACCEPT'] === '*/*')
