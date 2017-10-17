@@ -69,6 +69,7 @@ class userparents
 	{
 		$result = self::get($_args);
 
+
 		if(empty($result))
 		{
 			return false;
@@ -94,8 +95,9 @@ class userparents
 			{
 				$temp = [];
 				$temp['id']          = $value['id'];
-				$temp['fileurl']    = isset($parent_details[$value['parent']]['fileurl'])? $parent_details[$value['parent']]['fileurl'] : null;
+				$temp['fileurl']     = isset($parent_details[$value['parent']]['fileurl'])? $parent_details[$value['parent']]['fileurl'] : null;
 				$temp['mobile']      = isset($parent_details[$value['parent']]['mobile'])? $parent_details[$value['parent']]['mobile'] : null;
+				$temp['telegram']    = isset($parent_details[$value['parent']]['chatid'])? true : false;
 				$temp['displayname'] = isset($parent_details[$value['parent']]['displayname'])? $parent_details[$value['parent']]['displayname'] : null;
 				$temp['title']       = isset($value['title']) ? $value['title'] : null;
 				$temp['othertitle']  = isset($value['othertitle'])? $value['othertitle'] : null;

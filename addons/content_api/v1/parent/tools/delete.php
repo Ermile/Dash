@@ -125,12 +125,34 @@ trait delete
 			return false;
 		}
 
-		$get =
-		[
-			'id'      => $userparents_id,
-			'user_id' => $this->user_id,
-			'limit'   => 1,
-		];
+		$related_id = utility::request('related_id');
+		$related_id = \lib\utility\shortURL::decode($related_id);
+		if(!$userparents_id && utility::request('related_id'))
+		{
+			logs::set('api:parent:delete:related_id:invalid', $this->user_id, $log_meta);
+			debug::error(T_("Invalid remove data"));
+			return false;
+		}
+
+		if($related_id)
+		{
+			$get =
+			[
+				'id'         => $userparents_id,
+				'related_id' => $related_id,
+				'limit'      => 1,
+			];
+		}
+		else
+		{
+			$get =
+			[
+				'id'         => $userparents_id,
+				'user_id'    => $this->user_id,
+				'related_id' => null,
+				'limit'      => 1,
+			];
+		}
 
 		$check = \lib\db\userparents::get($get);
 		if(!isset($check['id']))

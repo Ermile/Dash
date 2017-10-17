@@ -100,6 +100,16 @@ trait add
 			$parent_id = $get_parent_data['id'];
 		}
 
+		$related_id = utility::request('related_id');
+		$related_id = utility\shortURL::decode($related_id);
+		if(!$related_id && utility::request('related_id'))
+		{
+			logs::set('api:parent:related_id:is:incurrect:add', null, $log_meta);
+			debug::error(T_("Related id is incurrect"), 'related_id', 'permission');
+			return false;
+		}
+
+
 		$this->parent_id = $parent_id;
 
 		if(intval($parent_id) === intval($user_id))
@@ -208,6 +218,7 @@ trait add
 				'user_id'    => $user_id,
 				'title'      => $title,
 				'othertitle' => $other_title,
+				'related_id' => $related_id,
 				'limit'      => 1,
 			];
 
@@ -224,6 +235,7 @@ trait add
 					'user_id'    => $user_id,
 					'title'      => $title,
 					'othertitle' => $other_title,
+					'related_id' => $related_id,
 					'creator'    => $this->user_id,
 					'parent'     => $parent_id,
 				];

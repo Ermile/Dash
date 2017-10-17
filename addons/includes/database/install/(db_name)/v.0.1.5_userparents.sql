@@ -2,6 +2,7 @@ CREATE TABLE `userparents` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `user_id` int(10) UNSIGNED NOT NULL,
   `parent` int(10) UNSIGNED NOT NULL,
+  `related_id` BIGINT(20) UNSIGNED NULL DEFAULT NULL,
   `creator` int(10) UNSIGNED DEFAULT NULL,
   `level` smallint(5) DEFAULT NULL,
   `status` enum('enable','disable','expire','deleted') DEFAULT 'enable',

@@ -47,6 +47,16 @@ trait get
 			return false;
 		}
 
+
+		$related_id = utility::request('related_id');
+		$related_id = utility\shortURL::decode($related_id);
+		if(!$related_id && utility::request('related_id'))
+		{
+			logs::set('api:parent:related_id:is:incurrect', null, $log_meta);
+			debug::error(T_("Related id is incurrect"), 'related_id', 'permission');
+			return false;
+		}
+
 		$result = [];
 		$get_notify =
 		[
@@ -88,7 +98,14 @@ trait get
 			}
 		}
 
-		$parent_resutl = \lib\db\userparents::load_parent(['user_id' => $user_id, 'status' => 'enable']);
+		if($related_id)
+		{
+			$parent_resutl = \lib\db\userparents::load_parent(['user_id' => $user_id, 'status' => 'enable', 'related_id' => $related_id]);
+		}
+		else
+		{
+			$parent_resutl = \lib\db\userparents::load_parent(['user_id' => $user_id, 'status' => 'enable']);
+		}
 		if(is_array($parent_resutl))
 		{
 			foreach ($parent_resutl as $key => $value)
