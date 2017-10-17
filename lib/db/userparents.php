@@ -95,6 +95,7 @@ class userparents
 			{
 				$temp = [];
 				$temp['id']          = $value['id'];
+				$temp['user_id']     = $value['user_id'];
 				$temp['fileurl']     = isset($parent_details[$value['parent']]['fileurl'])? $parent_details[$value['parent']]['fileurl'] : null;
 				$temp['mobile']      = isset($parent_details[$value['parent']]['mobile'])? $parent_details[$value['parent']]['mobile'] : null;
 				$temp['telegram']    = isset($parent_details[$value['parent']]['chatid'])? true : false;
