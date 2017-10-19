@@ -51,7 +51,7 @@
 {%if login.fileurl%}
      <img src="{{url.root}}/{{login.fileurl}}" alt='{%trans "Avatar of you"%}'>
 {%else%}
-     <img src="{{codeUrl}}dash/images/logo.jpg" alt='{%trans "Avatar of you"%}'>
+     <img src="{{url.static}}images/logo.png" alt='{%trans "Avatar of you"%}'>
 {%endif%}
    </a>
    <figcaption>{%trans "Hello"%} <b>{{login.displayname}}</b></figcaption>
