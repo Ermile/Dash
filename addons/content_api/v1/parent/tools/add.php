@@ -100,6 +100,8 @@ trait add
 			$parent_id = $get_parent_data['id'];
 		}
 
+		\lib\temp::set('add_parent_detail', $get_parent_data);
+
 		$related_id = utility::request('related_id');
 		$related_id = utility\shortURL::decode($related_id);
 		if(!$related_id && utility::request('related_id'))

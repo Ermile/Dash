@@ -12,27 +12,52 @@ class sms
 	 *
 	 * @return     string  ( description_of_the_return_value )
 	 */
-	private static function make_message($_message)
+	private static function make_message($_message, $_options = [])
 	{
+		$default_option =
+		[
+			'header'         => true,
+			'footer'         => true,
+		];
+
+		if(!is_array($_options))
+		{
+			$_options = [];
+		}
+
+		$_options = array_merge($default_option, $_options);
+
 		$_message = trim($_message);
 
 		// create complete message
 		$sms_header = trim(\lib\option::sms('kavenegar', 'header'));
 		$sms_footer = trim(\lib\option::sms('kavenegar', 'footer'));
 
-		$message  = $sms_header;
-		$message .= "\n";
+		$message = '';
+
+		if($_options['header'])
+		{
+			$message    .= $sms_header;
+			$message    .= "\n";
+		}
+
 		$message .= $_message;
-		$message .= "\n\n";
-		$message .= $sms_footer;
+
+		if($_options['footer'])
+		{
+			$message    .= "\n\n";
+			$message    .= $sms_footer;
+		}
 
 		if(\lib\option::sms('kavenegar', 'one') && mb_strlen($message) > self::is_rtl($message, true))
 		{
-			// create complete message
-			$message = $sms_header. "\n". $_message;
+			if($_options['header'])
+			{
+				$message = $sms_header. "\n". $_message;
+			}
+
 			if(\lib\option::sms('kavenegar', 'one') && mb_strlen($message) > self::is_rtl($message, true))
 			{
-				// create complete message
 				$message = $_message;
 			}
 		}
@@ -74,6 +99,8 @@ class sms
 			'type'           => 1,
 			'date'           => 0,
 			'LocalMessageid' => null,
+			'header'         => true,
+			'footer'         => true,
 		];
 
 		if(!is_array($_options))
@@ -95,7 +122,7 @@ class sms
 			return false;
 		}
 
-		$message = self::make_message($_message);
+		$message = self::make_message($_message, $_options);
 
 		// send sms
 		$api    = new \lib\utility\kavenegar_api($api_key, $_options['line']);
@@ -155,9 +182,11 @@ class sms
 
 		$default_option =
 		[
-			'line'           => \lib\option::sms('kavenegar', 'line'),
-			'type'           => 1,
-			'date'           => 0,
+			'line'   => \lib\option::sms('kavenegar', 'line'),
+			'type'   => 1,
+			'date'   => 0,
+			'header' => true,
+			'footer' => true,
 		];
 
 		if(!is_array($_options))
@@ -191,7 +220,7 @@ class sms
 		}
 
 		$result  = [];
-		$message = self::make_message($_message);
+		$message = self::make_message($_message, $_options);
 		$api     = new \lib\utility\kavenegar_api($api_key, $_options['line']);
 		$chunk   = array_chunk($accepted_mobile, 200);
 
