@@ -5,6 +5,14 @@
    </div>
 {%endblock%}
 
+{%block eAllInput%}
+   <div class='flex fix' id=''>
+    <!-- <label for='usernameormobile' title='{%trans "Username or Mobile or email"%}'></label> -->
+    <input id='usernameormobile' name="usernameormobile" type='text' maxlength="50" placeholder='{%trans "Username or Mobile or Email"%}' data-invalid='{%trans "Please enter valid mobile or username or email number"%}' value="{{get_usernamemobile}}" data-pl-user='{%trans "Username or Mobile or Email"%}' autocomplete="off" pattern=".{5,50}"  title='{%trans "Username or Mobile or email"%}' required {%if mobile_readonly%} readonly {%endif%} {%if not mobile_readonly%}autofocus{%endif%}>
+   </div>
+{%endblock%}
+
+
 
 
 {%block eramz%}
@@ -57,6 +65,13 @@
 {%endblock%}
 
 
+{%block edisplayname%}
+   <div class='flex fix' id='displayname'>
+    <label for='displayname' title='{%trans "Full name"%}'>@</label>
+    <input id='displayname' name="displayname" type='displayname' placeholder='{%trans "Full name"%}' autocomplete="off" autocapitalize="off" maxlength="50" title='' value="{{get_displayname}}" required="">
+   </div>
+{%endblock%}
+
 {%block email%}
    <div class='flex fix' id='email'>
     <label for='email' title='{%trans "Email"%}'>@</label>
@@ -101,6 +116,20 @@
 {%endblock%}
 
 
+{%block eloginlink%}
+  <a href="{{url.baseFull}}" class="link">{%trans "Login"%}</a>
+{%endblock%}
+
+
+{%block everifyback%}
+  <a href="{{url.baseFull}}/verify" class="link c">{%trans "Go back"%}</a>
+{%endblock%}
+
+
+
+{%block esignuplink%}
+  <a href="{{url.baseFull}}/signup" class="link">{%trans "Signup"%}</a>
+{%endblock%}
 
 {%block esignup%}
    <div class='flex' id='esignup'>
@@ -147,16 +176,12 @@
 
 
 {%block eMethods%}
+{%if google_login%}
   <div class="f" id='eMethods'>
   <p>{%trans "Enter with another methods"%}</p>
-
-{%if google_login%}
   {{block ('ebgoogle')}}
 {%endif%}
 
-{{block ('ebmobile')}}
-{{block ('ebemail2')}}
-{{block ('ebusername')}}
   </div>
 {%endblock%}
 

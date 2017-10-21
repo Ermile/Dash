@@ -25,6 +25,11 @@ trait check_input
 			return true;
 		}
 
+		if(intval(utility::post('mobile')) === intval(self::user_data('mobile')))
+		{
+			return true;
+		}
+
 		return false;
 	}
 
@@ -78,18 +83,18 @@ trait check_input
 	 */
 	public static function check_input($_url = null)
 	{
-
 		$return = false;
 		switch ($_url)
 		{
 			// in step mobile (first step)
 			case 'mobile':
 				// just when only posted 1 item and this item is mobile can continue
-				if(count(utility::post()) === 2 && utility::post('mobile') && !utility::post('password'))
+				if(count(utility::post()) === 2 && utility::post('usernameormobile') && !utility::post('password'))
 				{
 					$return = true;
 				}
 				break;
+
 
 			default:
 				$return = true;

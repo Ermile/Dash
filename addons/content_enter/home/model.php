@@ -12,9 +12,9 @@ class model extends \addons\content_enter\main\model
 		{
 			$user_id = null;
 
-			if(utility::post('mobile') !== $this->login('mobile') && !utility::get('userid'))
+			if(utility::post('usernameormobile') !== $this->login('mobile') && !utility::get('userid'))
 			{
-				$user_data = \lib\db\users::get_by_mobile(\lib\utility\filter::mobile(utility::post('mobile')));
+				$user_data = \lib\db\users::get_by_mobile(\lib\utility\filter::mobile(utility::post('usernameormobile')));
 
 				if(isset($user_data['id']))
 				{
@@ -81,7 +81,7 @@ class model extends \addons\content_enter\main\model
 	{
 
 		// get saved mobile in session to find count of change mobile
-		$old_mobile = self::get_enter_session('mobile');
+		$old_usernameormobile = self::get_enter_session('usernameormobile');
 
 		// clean existing session
 		self::clean_session();
@@ -101,79 +101,55 @@ class model extends \addons\content_enter\main\model
 			return;
 		}
 
-		// check syntax of mobile is true
-		if($mobile = utility\filter::mobile(utility::post('mobile')))
-		{
-			self::$mobile = $mobile;
-		}
-		else
-		{
-			// plus count invalid mobile
-			self::plus_try_session('invalid_mobile');
-			// make error
-			debug::error(T_("Invalid Mobile"), 'mobile', 'arguments');
-			return false;
-		}
+		$usernameormobile       = utility::post('usernameormobile');
+		self::$usernameormobile = $usernameormobile;
 
 		// if old mobile is different by new mobile
 		// save in session this user change the mobile
-		if($old_mobile && self::$mobile != $old_mobile)
+		if($old_usernameormobile && self::$mobile != $old_usernameormobile)
 		{
 			self::plus_try_session('diffrent_mobile');
 		}
 
 		// set posted mobile in SESSION
-		self::set_enter_session('mobile', self::$mobile);
+		self::set_enter_session('usernameormobile', self::$usernameormobile);
 
 		// load user data by mobile
-		$user_data = self::user_data();
+		$user_data = self::load_user_data('usernameormobile');
 
 		// set this step is done
-		self::set_step_session('mobile', true);
+		self::set_step_session('usernameormobile', true);
 
 		// the user not found must be signup
 		if(!$user_data)
 		{
-			// signup new user
-			self::signup();
-
-			// lock all step and set just this page to load
-			self::next_step('pass/signup');
-
-			// got to pass/signupt to get password from user
-			self::go_to('pass/signup');
+			debug::error(T_("Username not found"));
+			return false;
 		}
-		else
+
+		// if this user is blocked or filtered go to block page
+		if(in_array(self::user_data('status'), self::$block_status))
 		{
-			// if this user is blocked or filtered go to block page
-			if(in_array(self::user_data('status'), self::$block_status))
-			{
-				// block page
-				self::next_step('block');
-				// go to block page
-				self::go_to('block');
-				return;
-			}
-
-			// the password field is empty
-			if(!self::user_data('password'))
-			{
-				// lock all step and set just this page to load
-				self::next_step('pass/set');
-
-				// go to pass/set to get password from user
-				self::go_to('pass/set');
-			}
-			else
-			{
-				// lock all step and set just this page to load
-				self::next_step('pass');
-				// open lock pass/recovery
-				self::open_lock('pass/recovery');
-				// go to pass to check password
-				self::go_to('pass');
-			}
+			// block page
+			self::next_step('block');
+			// go to block page
+			self::go_to('block');
+			return;
 		}
+
+		// the password field is empty
+		if(!self::user_data('password'))
+		{
+			debug::error(T_("You have not password in your accoun. we can not login you, please contact administrator"));
+			return false;
+		}
+
+		// lock all step and set just this page to load
+		self::next_step('pass');
+		// open lock pass/recovery
+		self::open_lock('pass/recovery');
+		// go to pass to check password
+		self::go_to('pass');
 	}
 }
 ?>

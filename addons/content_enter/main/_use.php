@@ -50,6 +50,13 @@ trait _use
 	public static $mobile            = null;
 
 	/**
+	 * get mobile or user name or email
+	 * in first page to login
+	 *
+	 * @var        <type>
+	 */
+	public static $usernameormobile = null;
+	/**
 	 * username
 	 *
 	 * @var        <type>

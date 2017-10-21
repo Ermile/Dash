@@ -73,6 +73,7 @@ trait go_to
 		}
 		else
 		{
+			// debug::msg("redirect", $redirect->redirect(true));
 			$redirect->redirect();
 		}
 

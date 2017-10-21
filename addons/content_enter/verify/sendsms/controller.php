@@ -13,12 +13,12 @@ class controller extends \addons\content_enter\main\controller
 		// 	return;
 		// }
 
-		// // if this step is locked go to error page and return
-		// if(self::lock('verify/sendsms'))
-		// {
-		// 	self::error_page('verify/sendsms');
-		// 	return;
-		// }
+		// if this step is locked go to error page and return
+		if(self::lock('verify/sendsms'))
+		{
+			self::error_page('verify/sendsms');
+			return;
+		}
 
 		if(self::get_request_method() === 'get')
 		{

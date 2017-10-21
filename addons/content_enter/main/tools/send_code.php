@@ -7,29 +7,73 @@ trait send_code
 {
 
 	/**
+	 * return list of way we can send code to the user
+	 *
+	 * @param      <type>  $_mobile_or_email  The usernameormobile
+	 *
+	 * @return     array   ( description_of_the_return_value )
+	 */
+	public static function list_send_code_way($_mobile_or_email)
+	{
+		$i_can     = false;
+		$is_mobile = false;
+		$is_email  = false;
+
+		if(\lib\utility\filter::mobile($_mobile_or_email))
+		{
+			$i_can     = true;
+			$is_mobile = true;
+		}
+		// elseif(preg_match("/^(.*)\@(.*)\.(.*)$/", $_mobile_or_email))
+		// {
+		// 	$i_can    = true;
+		// 	$is_email = true;
+		// }
+
+		if(!$i_can)
+		{
+			self::next_step('verify/what');
+			self::go_to('verify/what');
+		}
+
+		$way = [];
+
+
+		if($is_email)
+		{
+			// load email way
+			array_push($way, 'email');
+		}
+
+		if($is_mobile)
+		{
+			if(self::user_data('chatid') && \lib\option::social('telegram', 'status'))
+			{
+				array_push($way, 'telegram');
+			}
+
+			if(self::user_data('mobile') && \lib\utility\filter::mobile(self::user_data('mobile')))
+			{
+				array_push($way, 'sms');
+				array_push($way, 'call');
+				array_push($way, 'sendsms');
+			}
+		}
+		return $way;
+	}
+
+
+	/**
 	 * Sends a code way.
 	 */
 	public static function send_code_way()
 	{
-		$way = self::send_way();
-
 		$host = Protocol."://" . \lib\router::get_domain();
 		$host .= \lib\define::get_current_language_string();
 
-		if($way)
-		{
-			// open next step to route it
-			$host .= '/enter/verify/'. $way;
-			self::next_step('verify/'. $way);
-			self::open_lock('verify/resend');
-			self::set_enter_session('send_code_at_time', time());
-		}
-		else
-		{
-			$host .= '/enter/verify/what';
-			// open next step to route it
-			self::next_step('verify/what');
-		}
+		$host .= '/enter/verify/';
+		self::open_lock('verify');
+
 
 		self::go_redirect($host);
 	}

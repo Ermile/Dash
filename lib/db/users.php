@@ -457,53 +457,57 @@ class users
 	 *
 	 * @param      <type>  $_user_id  The user identifier
 	 */
-	public static function set_login_session($_datarow = null, $_fields = null, $_user_id = null)
+	public static function set_login_session($_user_id)
 	{
 		// if user id set load user data by get from database
-		if($_user_id)
+		if(!$_user_id || !is_numeric($_user_id))
 		{
-			// load all user field
-			$user_data = self::get_user_data($_user_id);
+			return false;
+		}
 
-			// check the reault is true
-			if(is_array($user_data))
-			{
-				$_datarow = $user_data;
-			}
-			else
-			{
-				return false;
-			}
+		// load all user field
+		$user_data = self::get_by_id($_user_id);
+
+		// check the reault is true
+		if(!is_array($user_data))
+		{
+			return false;
 		}
 
 		// set main cat of session
 		$_SESSION['user']       = [];
+		$_SESSION['contact']    = [];
 		$_SESSION['permission'] = [];
 
-		if(is_array($_datarow))
+		foreach ($user_data as $key => $value)
 		{
-			// and set the session
-			foreach ($_datarow as $key => $value)
+			if($key === 'meta')
 			{
-				if(substr($key, 0, 5) === 'user_')
-				{
-					// remove 'user_' from first of index of session
-					$key = substr($key, 5);
-					if($key == 'meta' && is_string($value))
-					{
-						$_SESSION['user'][$key] = json_decode($value, true);
-					}
-					else
-					{
-						$_SESSION['user'][$key] = $value;
-					}
-				}
-				else
-				{
-					$_SESSION['user'][$key] = $value;
-				}
+				$_SESSION['user'][$key] = json_decode($value, true);
+			}
+			else
+			{
+				$_SESSION['user'][$key] = $value;
 			}
 		}
+
+		// $contact_detail = \lib\db\contacts::get(['user_id' => $_user_id]);
+
+		// if(is_array($contact_detail))
+		// {
+		// 	foreach ($contact_detail as $key => $value)
+		// 	{
+		// 		if(isset($value['key']) && isset($value['value']))
+		// 		{
+		// 			$_SESSION['contacts'][$value['key']] = $value['value'];
+		// 		}
+
+		// 		if(isset($value['desc']) && $value['desc'])
+		// 		{
+		// 			$_SESSION['contacts'][$value['key'].'_desc'] = $value['desc'];
+		// 		}
+		// 	}
+		// }
 	}
 
 
@@ -701,6 +705,40 @@ class users
 			}
 			break;
 		}
+	}
+
+
+	/**
+	 * search in users to find the $_find in mobile or username or email
+	 * if not exist
+	 * search in contact to find it
+	 * if finded retrun detail of this user
+	 *
+	 * @param      <type>  $_find  The find
+	 */
+	public static function find_user_to_login($_find)
+	{
+		if(!$_find)
+		{
+			return false;
+		}
+
+		$query_mobile = null;
+		if($temp_mobile = \lib\utility\filter::mobile($_find))
+		{
+			$query_mobile = " OR users.mobile = '$temp_mobile' ";
+		}
+
+		$query = "SELECT * FROM users WHERE users.email = '$_find' OR users.username = '$_find' $query_mobile LIMIT 1";
+
+		$is_in_users = \lib\db::get($query, null, true);
+		if($is_in_users)
+		{
+			return $is_in_users;
+		}
+
+		// must be load contact info to find user and if not found:
+		return false;
 	}
 }
 ?>

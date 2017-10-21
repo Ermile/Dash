@@ -63,14 +63,25 @@ class controller
 			else
 			{
 				$myrep = \lib\router::get_repository_name();
-
 				switch ($this->module())
 				{
 					case 'signin':
 					case 'login':
-					case 'signup':
-					case 'register':
 						$url = $this->url('base'). '/enter'. $param;
+						$this->redirector($url)->redirect();
+						break;
+
+					case 'signup':
+						if($myrep !== 'content_enter')
+						{
+							$url = $this->url('base'). '/enter/signup'. $param;
+							$this->redirector($url)->redirect();
+						}
+						break;
+
+					case 'register':
+
+						$url = $this->url('base'). '/enter/signup'. $param;
 						$this->redirector($url)->redirect();
 						break;
 
@@ -93,9 +104,13 @@ class controller
 					case 'account/verificationsms':
 					case 'account/signin':
 					case 'account/login':
+						$url = $this->url('base'). '/enter'. $param;
+						$this->redirector($url)->redirect();
+						break;
+
 					case 'account/signup':
 					case 'account/register':
-						$url = $this->url('base'). '/enter'. $param;
+						$url = $this->url('base'). '/enter/signup'. $param;
 						$this->redirector($url)->redirect();
 						break;
 

@@ -26,6 +26,14 @@ trait user_data
 
 		switch ($_type)
 		{
+			// load contacts to find username or mobile or
+			case 'usernameormobile':
+				if(self::$usernameormobile)
+				{
+					$data = \lib\db\users::find_user_to_login(self::$usernameormobile);
+				}
+				break;
+
 			// get user data by mobile
 			case 'mobile':
 				if(self::$mobile)
@@ -67,6 +75,7 @@ trait user_data
 		{
 			$_SESSION['enter']['user_data'] = $data;
 		}
+		return $data;
 	}
 
 
@@ -79,7 +88,7 @@ trait user_data
 	{
 		if(!isset($_SESSION['enter']['user_data']))
 		{
-			self::load_user_data();
+			self::load_user_data('mobile');
 		}
 
 		if($_key)
@@ -140,7 +149,7 @@ trait user_data
 
 			if($user_id)
 			{
-				self::load_user_data();
+				self::load_user_data('mobile');
 			}
 			return $user_id;
 		}

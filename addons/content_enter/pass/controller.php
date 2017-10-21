@@ -13,14 +13,8 @@ class controller extends \addons\content_enter\main\controller
 			return;
 		}
 
-		if((self::done_step('mobile') || self::done_step('username')) && self::user_data('password'))
-		{
-			$this->post('check')->ALL('pass');
-		}
-		else
-		{
-			self::error_page('pass');
-		}
+		$this->post('check')->ALL('pass');
+
 	}
 }
 ?>

@@ -4,6 +4,17 @@ namespace addons\content_enter\verify;
 
 class view extends \addons\content_enter\main\view
 {
+
+	public function view_verify_way()
+	{
+
+
+		$mobile_or_email = $this->data->get_usernamemobile;
+
+		$this->data->send_way_cod = self::list_send_code_way($mobile_or_email);
+	}
+
+
 	/**
 	 * config
 	 */
