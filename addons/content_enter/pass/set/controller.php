@@ -9,7 +9,7 @@ class controller extends \addons\content_enter\main\controller
 	 */
 	function ready()
 	{
-			// if this step is locked go to error page and return
+		// if this step is locked go to error page and return
 		if(self::lock('pass/set'))
 		{
 			self::error_page('pass/set');
@@ -17,7 +17,7 @@ class controller extends \addons\content_enter\main\controller
 		}
 
 		// if step mobile is done
-		if(self::done_step('mobile') && !self::user_data('password'))
+		if(!self::user_data('password'))
 		{
 			// parent::ready();
 			$this->get('pass')->ALL('pass/set');

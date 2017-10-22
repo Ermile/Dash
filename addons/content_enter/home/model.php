@@ -140,8 +140,12 @@ class model extends \addons\content_enter\main\model
 		// the password field is empty
 		if(!self::user_data('password'))
 		{
-			debug::error(T_("You have not password in your accoun. we can not login you, please contact administrator"));
-			return false;
+			// lock all step and set just this page to load
+			self::open_lock('pass/set');
+			// open lock pass/recovery
+			self::open_lock('pass/recovery');
+			// go to pass to check password
+			self::go_to('pass/set');
 		}
 
 		// lock all step and set just this page to load

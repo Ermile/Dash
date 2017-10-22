@@ -151,11 +151,11 @@ trait verification_code
 			]
 		];
 
-		if(!self::check_input_current_mobile())
-		{
-			debug::error(T_("Dont!"));
-			return false;
-		}
+		// if(!self::check_input_current_mobile())
+		// {
+		// 	debug::error(T_("Dont!"));
+		// 	return false;
+		// }
 
 		if(!utility::post('code'))
 		{

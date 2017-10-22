@@ -13,22 +13,26 @@ trait send_code
 	 *
 	 * @return     array   ( description_of_the_return_value )
 	 */
-	public static function list_send_code_way($_mobile_or_email)
+	public static function list_send_code_way()
 	{
 		$i_can     = false;
 		$is_mobile = false;
 		$is_email  = false;
 
-		if(\lib\utility\filter::mobile($_mobile_or_email))
+		$mobile    = self::user_data('mobile');
+		$email     = self::user_data('email');
+
+		if(\lib\utility\filter::mobile($mobile))
 		{
 			$i_can     = true;
 			$is_mobile = true;
 		}
-		// elseif(preg_match("/^(.*)\@(.*)\.(.*)$/", $_mobile_or_email))
-		// {
-		// 	$i_can    = true;
-		// 	$is_email = true;
-		// }
+
+		if(preg_match("/^(.*)\@(.*)\.(.*)$/", $email))
+		{
+			$i_can    = true;
+			$is_email = true;
+		}
 
 		if(!$i_can)
 		{
@@ -42,7 +46,7 @@ trait send_code
 		if($is_email)
 		{
 			// load email way
-			array_push($way, 'email');
+			// array_push($way, 'email');
 		}
 
 		if($is_mobile)

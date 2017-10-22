@@ -72,8 +72,8 @@ class model extends \addons\content_enter\pass\model
 		// set step pass is done
 		self::set_step_session('pass', true);
 
-		// send code way
-		self::send_code_way();
+		self::open_lock('verify');
+		self::go_to('verify');
 	}
 }
 ?>
