@@ -51,10 +51,15 @@ class model extends \addons\content_enter\main\model
 		$signup =
 		[
 			'displayname' => $displayname,
-			'password'    => $ramz,
+			'password'    => \lib\utility::hasher($ramz),
 			'username'    => $username,
 			'status'      => 'awaiting'
 		];
+
+		if(!debug::$status)
+		{
+			return false;
+		}
 
 		$user_id = \lib\db\users::signup_quick($signup);
 

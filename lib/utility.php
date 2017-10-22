@@ -271,7 +271,7 @@ class utility
 	 * @param  [type] $_hashedPassword [description]
 	 * @return [type]                  [description]
 	 */
-	public static function hasher($_plainPassword, $_hashedPassword = null, $_onlyCheck = false)
+	public static function hasher($_plainPassword, $_hashedPassword = null, $_not_check_crazy = false)
 	{
 		$raw_password   = $_plainPassword;
 		// custom text to add in start and end of password
@@ -287,29 +287,20 @@ class utility
 		}
 		else
 		{
-			$check = true;
-			if(!$_onlyCheck)
+			if(!$_not_check_crazy)
 			{
-				$check = \lib\db\passwords::check($raw_password);
+				if(\lib\utility\passwords::is_crazy($raw_password))
+				{
+					\lib\debug::error(T_("Creazy password!, Try another"));
+					return false;
+				}
 			}
 
-			if($check === true)
-			{
-				// create option for creating hash cost
-				$myoptions   = array('cost' => 7 );
-				$myresult    = password_hash($_plainPassword, PASSWORD_BCRYPT, $myoptions);
-			}
-			elseif(is_string($check))
-			{
-				\lib\debug::error(T_(":status password, try another", ['status' => $check]));
-			}
-			else
-			{
-				return false;
-			}
+			// create option for creating hash cost
+			$myoptions = ['cost' => 7 ];
+			$myresult  = password_hash($_plainPassword, PASSWORD_BCRYPT, $myoptions);
 		}
 
-		\lib\db\passwords::cash($raw_password, $myresult);
 		return $myresult;
 	}
 

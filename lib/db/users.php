@@ -403,6 +403,11 @@ class users
 				$password = null;
 			}
 
+			if(!\lib\debug::$status)
+			{
+				return false;
+			}
+
 			if(!$_args['mobile'])
 			{
 				return false;
