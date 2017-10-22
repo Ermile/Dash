@@ -143,62 +143,38 @@ trait info
 	 */
 	public static function db_version($_db_name = true, $_addons_version = false)
 	{
+		$version = null;
 
-		self::connect($_db_name, false);
+		$file_name = $_db_name;
 
-		$db_name = self::$db_name;
-
-		// $core_name = core_name.'_tools';
-		// need to fix it
-		$core_name = 'saloos_tools';
-
-		if(empty(self::$all_db_addons_version) || empty(self::$all_db_version))
+		if($_db_name === true)
 		{
-			$query = "SELECT * FROM $core_name.db_version ";
-
-			$db_version = \lib\db::get($query);
-			if(empty($db_version) || !$db_version || !is_array($db_version))
-			{
-				return false;
-			}
-			else
-			{
-				foreach ($db_version as $key => $value)
-				{
-					if(isset($value['addons_version']))
-					{
-						self::$all_db_addons_version[$value['db_name']] = $value['addons_version'];
-					}
-					if(isset($value['version']))
-					{
-						self::$all_db_version[$value['db_name']] = $value['version'];
-					}
-				}
-			}
+			$file_name = db_name;
 		}
 
-		if($_addons_version === true)
+		if($_addons_version)
 		{
-			if(isset(self::$all_db_addons_version[$db_name]))
-			{
-				return self::$all_db_addons_version[$db_name];
-			}
-			else
-			{
-				return false;
-			}
+			$file_name .= '_addons';
+		}
+
+		$file_url = database. 'version/';
+		if(!\lib\utility\file::exists($file_url))
+		{
+			\lib\utility\file::makeDir($file_url);
+		}
+
+		$file_url .= $file_name;
+
+		if(\lib\utility\file::exists($file_url))
+		{
+			$version = \lib\utility\file::read($file_url);
 		}
 		else
 		{
-			if(isset(self::$all_db_version[$db_name]))
-			{
-				return self::$all_db_version[$db_name];
-			}
-			else
-			{
-				return false;
-			}
+			\lib\utility\file::write($file_url, null);
 		}
+
+		return $version;
 	}
 
 
@@ -210,44 +186,29 @@ trait info
 	 */
 	public static function set_db_version($_version, $_db_name = true, $_addons_version = false)
 	{
-		self::connect($_db_name, false);
+		$file_name = $_db_name;
 
-		$db_name = self::$db_name;
-
-		// $core_name = core_name.'_tools';
-		// need to fi it!
-		$core_name = 'saloos_tools';
-
-		if($_addons_version === true)
+		if($_db_name === true)
 		{
-			$query =
-			"
-				INSERT INTO
-					$core_name.db_version
-				SET
-					db_version.db_name        = '$db_name',
-					db_version.addons_version = '$_version',
-					db_version.version        = db_version.version
-				ON DUPLICATE KEY UPDATE
-					db_version.addons_version = '$_version'
-			";
-		}
-		else
-		{
-			$query =
-			"
-				INSERT INTO
-					$core_name.db_version
-				SET
-					db_version.db_name        = '$db_name',
-					db_version.version        = '$_version',
-					db_version.addons_version = db_version.addons_version
-				ON DUPLICATE KEY UPDATE
-					db_version.version = '$_version'
-			";
+			$file_name = db_name;
 		}
 
-		\lib\db::query($query);
+		if($_addons_version)
+		{
+			$file_name .= '_addons';
+		}
+
+		$file_url = database. 'version/';
+
+		if(!\lib\utility\file::exists($file_url))
+		{
+			\lib\utility\file::makeDir($file_url);
+		}
+
+		$file_url .= $file_name;
+
+		\lib\utility\file::write($file_url, $_version);
+
 	}
 
 
@@ -262,7 +223,7 @@ trait info
 	 */
 	public static function check_version($_condition, $_version, $_db = true)
 	{
-		$version = '0.0.0';
+		$version = null;
 
 		if($_db === true)
 		{

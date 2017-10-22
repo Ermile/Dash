@@ -1,1 +1,0 @@
-ALTER TABLE `words` ADD `slug` varchar(50) NULL DEFAULT NULL AFTER `word`;

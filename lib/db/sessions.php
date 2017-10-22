@@ -66,6 +66,11 @@ class sessions
 	 */
 	private static function get($_args)
 	{
+		if(\lib\temp::get('db_remember_me_query'))
+		{
+			return \lib\temp::get('db_remember_me_query_result');
+		}
+
 		$where = \lib\db\config::make_where($_args);
 		if(!trim($where))
 		{
@@ -73,6 +78,8 @@ class sessions
 		}
 
 		$get   = \lib\db::get("SELECT * FROM sessions WHERE $where LIMIT 1", null, true);
+		\lib\temp::set('db_remember_me_query', true);
+		\lib\temp::set('db_remember_me_query_result', $get);
 		return $get;
 	}
 
@@ -188,7 +195,7 @@ class sessions
 		$args =
 		[
 			'ip'       => ClientIP,
-			'agent_id' => \lib\utility\visitor::get('agent'),
+			'agent_id' => \lib\agent::get(true),
 			'user_id'  => $_user_id,
 			'status'   => 'active'
 		];
@@ -267,7 +274,7 @@ class sessions
 			$agent_id    = array_unique($agent_id);
 			$agent_id    = implode(',', $agent_id);
 			$agent_query = "SELECT * FROM agents WHERE id IN ($agent_id)";
-			$agents      = \lib\db::get($agent_query, null, false, '[tools]');
+			$agents      = \lib\db::get($agent_query);
 			if($agents && is_array($agents))
 			{
 				$agent_id = array_column($agents, 'id');
@@ -279,39 +286,39 @@ class sessions
 						if(array_key_exists($value['agent_id'], $agents))
 						{
 							// get agent group
-							if(isset($agents[$value['agent_id']]['agent_group']))
+							if(isset($agents[$value['agent_id']]['group']))
 							{
-								$result[$key]['agent_group'] = $agents[$value['agent_id']]['agent_group'];
+								$result[$key]['agent_group'] = $agents[$value['agent_id']]['group'];
 							}
 
 							// get agent agent
-							if(isset($agents[$value['agent_id']]['agent_agent']))
+							if(isset($agents[$value['agent_id']]['agent']))
 							{
-								$result[$key]['agent_agent'] = $agents[$value['agent_id']]['agent_agent'];
+								$result[$key]['agent_agent'] = $agents[$value['agent_id']]['agent'];
 							}
 
 							// get agent name
-							if(isset($agents[$value['agent_id']]['agent_name']))
+							if(isset($agents[$value['agent_id']]['name']))
 							{
-								$result[$key]['agent_name'] = $agents[$value['agent_id']]['agent_name'];
+								$result[$key]['agent_name'] = $agents[$value['agent_id']]['name'];
 							}
 
 							// get agent version
-							if(isset($agents[$value['agent_id']]['agent_version']))
+							if(isset($agents[$value['agent_id']]['version']))
 							{
-								$result[$key]['agent_version'] = $agents[$value['agent_id']]['agent_version'];
+								$result[$key]['agent_version'] = $agents[$value['agent_id']]['version'];
 							}
 
 							// get agent os
-							if(isset($agents[$value['agent_id']]['agent_os']))
+							if(isset($agents[$value['agent_id']]['os']))
 							{
-								$result[$key]['agent_os'] = $agents[$value['agent_id']]['agent_os'];
+								$result[$key]['agent_os'] = $agents[$value['agent_id']]['os'];
 							}
 
 							// get agent osnum
-							if(isset($agents[$value['agent_id']]['agent_osnum']))
+							if(isset($agents[$value['agent_id']]['osnum']))
 							{
-								$result[$key]['agent_osnum'] = $agents[$value['agent_id']]['agent_osnum'];
+								$result[$key]['agent_osnum'] = $agents[$value['agent_id']]['osnum'];
 							}
 						}
 					}

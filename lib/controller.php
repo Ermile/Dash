@@ -151,10 +151,10 @@ class controller
 		// session_write_close();
 		// $visitor = new \lib\utility\visitors();
 		// if logvisitor on set visitors
-		if(\lib\option::config('log_visitors'))
-		{
-			\lib\utility\visitor::save();
-		}
+		// if(\lib\option::config('log_visitors'))
+		// {
+		// 	\lib\utility\visitor::save();
+		// }
 	}
 
 

@@ -320,7 +320,7 @@ class option
 			$op_user = $_args['user'];
 			if($op_user === true)
 			{
-				$op_user = \lib\utility\visitor::user_id(false);
+				$op_user = 'NULL'; // \lib\utility\visitor::user_id(false);
 				if(!$op_user)
 				{
 					$op_user = 'NULL';

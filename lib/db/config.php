@@ -112,10 +112,6 @@ class config
 					$where[] = " $my_field $value[0] $value[1] ";
 				}
 			}
-			elseif(is_string($value) && preg_match("/\%/", $value))
-			{
-				$where[] = " $my_field LIKE '$value' ";
-			}
 			elseif($value === null || is_null($value) || $value === '')
 			{
 				$where[] = " $my_field IS NULL ";
