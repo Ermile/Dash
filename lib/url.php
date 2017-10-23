@@ -13,7 +13,7 @@ class url
 	 * initialize url and detect them
 	 * @return [type] [description]
 	 */
-	public function initialize()
+	public static function initialize()
 	{
 		self::$url = [];
 	}
@@ -24,7 +24,7 @@ class url
 	 * @param  [type] $_key [description]
 	 * @return [type]       [description]
 	 */
-	public function get($_key = null)
+	public static function get($_key = null)
 	{
 		if(array_key_exists($_key, self::$url))
 		{
@@ -44,7 +44,7 @@ class url
 	 * @param [type] $_key   [description]
 	 * @param [type] $_value [description]
 	 */
-	public function set($_key, $_value)
+	public static function set($_key, $_value)
 	{
 
 	}

@@ -6,7 +6,7 @@ class init
 	 * start init dash core and run first needle used in core
 	 * @return [type] [description]
 	 */
-	public function run()
+	public static function run()
 	{
 		// check min requirement to run dash core!
 		self::minimum_requirement();
@@ -21,7 +21,7 @@ class init
 	 * and if is less than min, show error message
 	 * @return [type] [description]
 	 */
-	function minimum_requirement()
+	static function minimum_requirement()
 	{
 		// check php version to upper than 7.0
 		if(version_compare(phpversion(), '7.0', '<'))
