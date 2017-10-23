@@ -22,6 +22,8 @@ class dash
 	 */
 	public function __construct()
 	{
+		\lib\init::run();
+
 		self::lib()->router();
 		self::lib()->define();
 		self::lib()->main();

@@ -8,13 +8,6 @@ class define
 
 	public function __construct()
 	{
-		// check php version to upper than 7.0
-		if(version_compare(phpversion(), '7.0', '<'))
-		{
-			\lib\code::die("<p>For using Dash you must update php version to 7.0 or higher!</p>");
-		}
-
-
 		/**
 		 * If DEBUG is TRUE you can see the full error description, If set to FALSE show userfriendly messages
 		 * change it from project config.php
