@@ -100,13 +100,13 @@ class google
           function. We store the resultant access token
           bundle in the session, and redirect to ourself.
           */
-          if(\lib\utility::get('code'))
+          if(isset($_GET['code']))
           {
                if(!self::config())
                {
                     return false;
                }
-               self::$client->authenticate(\lib\utility::get('code'));
+               self::$client->authenticate($_GET['code']);
 
                $access = self::$client->getAccessToken();
 
