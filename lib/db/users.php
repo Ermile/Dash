@@ -134,54 +134,7 @@ class users
 	 */
 	public static function get_by_email($_email, $_field = false)
 	{
-		switch ($_field)
-		{
-			case 'all':
-				$query =
-				"
-					SELECT * FROM users
-					WHERE
-					(
-						users.email         = '$_email' OR
-						users.googlemail   = '$_email' OR
-						users.facebookmail = '$_email' OR
-						users.twittermail  = '$_email'
-					) AND
-					users.status != 'removed'
-					ORDER BY users.id DESC
-					LIMIT 1
-				";
-				break;
-
-			case 'googlemail':
-			case 'facebookmail':
-			case 'twittermail':
-				$query =
-				"
-					SELECT *
-					FROM users
-					WHERE users.$_field = '$_email'
-					AND users.status != 'removed'
-					ORDER BY users.id DESC
-					LIMIT 1
-				";
-				break;
-
-			case false:
-			case 'email':
-			default:
-				$query =
-				"
-					SELECT *
-					FROM users
-					WHERE users.email = '$_email'
-					AND users.status != 'removed'
-					ORDER BY users.id DESC
-					LIMIT 1
-				";
-				break;
-		}
-
+		$query = "SELECT * FROM users WHERE users.email = '$_email' AND users.status != 'removed' ORDER BY users.id DESC LIMIT 1 ";
 		return \lib\db::get($query, null, true);
 	}
 
