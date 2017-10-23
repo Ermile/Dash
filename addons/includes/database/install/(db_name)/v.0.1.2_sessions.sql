@@ -6,9 +6,9 @@ CREATE TABLE `sessions` (
   `agent_id` int(10) UNSIGNED DEFAULT NULL,
   `ip` int(10) UNSIGNED DEFAULT NULL,
   `count` int(10) UNSIGNED DEFAULT '1',
-  `createdate` datetime DEFAULT CURRENT_TIMESTAMP,
-  `last_seen` datetime DEFAULT NULL,
-  `date_modified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+  `datecreated` timestamp DEFAULT CURRENT_TIMESTAMP,
+  `datemodified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `last_seen` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 

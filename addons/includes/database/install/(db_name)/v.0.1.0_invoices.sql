@@ -15,8 +15,8 @@ CREATE TABLE `invoices` (
   `vat_pay` int(10) DEFAULT NULL,
   `final_total` bigint(20) DEFAULT NULL,
   `count_detail` smallint(5) UNSIGNED DEFAULT NULL,
-  `createdate` datetime DEFAULT CURRENT_TIMESTAMP,
-  `date_modified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `datecreated` timestamp DEFAULT CURRENT_TIMESTAMP,
+  `datemodified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `desc` text CHARACTER SET utf8mb4,
   `meta` mediumtext CHARACTER SET utf8mb4
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

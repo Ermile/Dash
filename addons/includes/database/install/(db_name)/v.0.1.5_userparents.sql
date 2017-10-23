@@ -8,8 +8,8 @@ CREATE TABLE `userparents` (
   `status` enum('enable','disable','expire','deleted') DEFAULT 'enable',
   `title` enum('father','mother','sister','brother','grandfather','grandmother','aunt','husband of the aunt','uncle','boy','girl','spouse','stepmother','stepfather','neighbor','teacher','friend','boss','supervisor','child','grandson','custom') DEFAULT NULL,
   `othertitle` varchar(255) DEFAULT NULL,
-  `createdate` datetime DEFAULT CURRENT_TIMESTAMP,
-  `date_modified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `datecreated` timestamp DEFAULT CURRENT_TIMESTAMP,
+  `datemodified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `desc` text CHARACTER SET utf8mb4,
   `meta` mediumtext CHARACTER SET utf8mb4
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

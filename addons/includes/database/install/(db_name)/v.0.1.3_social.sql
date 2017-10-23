@@ -16,8 +16,8 @@ CREATE TABLE `socials` (
   `link` varchar(1000) DEFAULT NULL,
   `desc` text,
   `meta` mediumtext,
-  `createdate` datetime DEFAULT CURRENT_TIMESTAMP,
-  `date_modified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+  `datecreated` timestamp DEFAULT CURRENT_TIMESTAMP,
+  `datemodified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 

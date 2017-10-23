@@ -7,8 +7,8 @@ CREATE TABLE `invoice_details` (
   `total` int(10) DEFAULT NULL,
   `discount` smallint(5) DEFAULT NULL,
   `status` enum('enable','disable','expire') NOT NULL DEFAULT 'enable',
-  `createdate` datetime DEFAULT CURRENT_TIMESTAMP,
-  `date_modified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `datecreated` timestamp DEFAULT CURRENT_TIMESTAMP,
+  `datemodified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `desc` text CHARACTER SET utf8mb4,
   `meta` mediumtext CHARACTER SET utf8mb4
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

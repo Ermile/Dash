@@ -4,8 +4,8 @@ CREATE TABLE `termusages` (
   `related` enum('posts','products','attachments','files','comments','users') DEFAULT NULL,
   `order` smallint(5) UNSIGNED DEFAULT NULL,
   `status` enum('enable','disable','expired','awaiting','filtered','blocked','spam','violence','pornography','other','deleted') NOT NULL DEFAULT 'enable',
-  `createdate` datetime DEFAULT CURRENT_TIMESTAMP,
-  `date_modified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `datecreated` timestamp DEFAULT CURRENT_TIMESTAMP,
+  `datemodified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `type` enum('cat','tag','term','code','other','barcode1','barcode2','barcode3','qrcode1','qrcode2','qrcode3','rfid1','rfid2','rfid3','fingerprint1','fingerprint2','fingerprint3','fingerprint4','fingerprint5','fingerprint6','fingerprint7','fingerprint8','fingerprint9','fingerprint10') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

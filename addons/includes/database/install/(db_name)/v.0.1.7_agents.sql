@@ -8,6 +8,8 @@ CREATE TABLE `agents` (
 `osnum` varchar(50) DEFAULT NULL,
 `robot` bit(1) DEFAULT NULL,
 `meta` text,
+`datecreated` timestamp DEFAULT CURRENT_TIMESTAMP,
+`datemodified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
 PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

@@ -23,8 +23,8 @@ CREATE TABLE `transactions` (
   `payment_response` text CHARACTER SET utf8mb4,
   `meta` mediumtext CHARACTER SET utf8mb4,
   `desc` text CHARACTER SET utf8mb4,
-  `createdate` datetime DEFAULT CURRENT_TIMESTAMP,
-  `date_modified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `datecreated` timestamp DEFAULT CURRENT_TIMESTAMP,
+  `datemodified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `invoice_id` int(10) UNSIGNED DEFAULT NULL,
   `date` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

@@ -13,8 +13,8 @@ CREATE TABLE `terms` (
   `status` enum('enable','disable','expired','awaiting','filtered','blocked','spam','violence','pornography','other') NOT NULL DEFAULT 'awaiting',
   `count` int(10) UNSIGNED DEFAULT NULL,
   `usercount` int(10) UNSIGNED DEFAULT NULL,
-  `date_modified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `createdate` datetime DEFAULT CURRENT_TIMESTAMP
+  `datecreated` timestamp DEFAULT CURRENT_TIMESTAMP,
+  `datemodified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 ALTER TABLE `terms`
