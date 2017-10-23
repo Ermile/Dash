@@ -238,7 +238,21 @@
 {%endblock%}
 
 
-
+{%block jsRequestSendVerify%}
+<script type="text/javascript">
+ $(document).ajaxify({
+    ajax:
+    {
+      data:
+      {
+        verify: true
+      },
+      abort: true,
+      method: 'post'
+    }
+  });
+</script>
+{%endblock%}
 
 
 

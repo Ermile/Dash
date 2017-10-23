@@ -119,7 +119,7 @@ class model extends \addons\content_enter\main\model
 	public function post_verify()
 	{
 		// runcall
-		if(mb_strtolower(utility::post('runcall')) === 'true')
+		if(mb_strtolower(utility::post('verify')) === 'true')
 		{
 			if(!self::get_enter_session('run_call_to_user'))
 			{

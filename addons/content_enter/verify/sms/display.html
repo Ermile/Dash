@@ -16,24 +16,7 @@
 {{block('ereset')}}
 {{block('everifyback')}}
    </footer>
+
+{{block('jsRequestSendVerify')}}
 {%endblock%}
-
-{%block foot_js%}
-{{parent()}}
-<script type="text/javascript">
- $(document).ajaxify({
-    ajax:
-    {
-      data:
-      {
-        sendsmscode: true
-      },
-      abort: true,
-      method: 'post'
-    }
-  });
-</script>
-{%endblock%}
-
-
 
