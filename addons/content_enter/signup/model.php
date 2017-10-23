@@ -27,6 +27,12 @@ class model extends \addons\content_enter\main\model
 			return false;
 		}
 
+		if(!preg_match("/[A-Za-z0-9\_]/", $username))
+		{
+			debug::error(T_("Username must in [A-Za-z0-9]"));
+			return false;
+		}
+
 		$ramz = utility::post('ramzNew');
 		if(!$ramz || mb_strlen($ramz) < 5 || mb_strlen($ramz) > 50)
 		{

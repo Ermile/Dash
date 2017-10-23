@@ -87,14 +87,6 @@ trait lock
 	 */
 	public static function next_step($_module)
 	{
-		if(isset($_SESSION['next_step']) && is_array($_SESSION['next_step']))
-		{
-			array_push($_SESSION['next_step'], $_module);
-		}
-		else
-		{
-			$_SESSION['next_step'] = [$_module];
-		}
 		// unset all other lock
 		unset($_SESSION['lock']);
 		// set jusn this lock

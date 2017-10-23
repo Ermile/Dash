@@ -51,15 +51,6 @@ trait go_to
 	 */
 	public static function go_redirect($_url, $_return = false, $_direct = false)
 	{
-		if(isset($_SESSION['go_to']) && is_array($_SESSION['go_to']))
-		{
-			array_push($_SESSION['go_to'], $_url);
-		}
-		else
-		{
-			$_SESSION['go_to'] = [$_url];
-		}
-
 		if($_direct)
 		{
 			debug::msg('direct', true);
