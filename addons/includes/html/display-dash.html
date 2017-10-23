@@ -48,8 +48,8 @@
   <figure>
 {%block avatar%}
    <a href="{{url.baseFull}}/profile" title='{%trans "Edit your profile"%}' class="avatar">
-{%if login.fileurl%}
-     <img src="{{url.root}}/{{login.fileurl}}" alt='{%trans "Avatar of you"%}'>
+{%if login.avatar%}
+     <img src="{{url.root}}/{{login.avatar}}" alt='{%trans "Avatar of you"%}'>
 {%else%}
      <img src="{{url.static}}images/logo.png" alt='{%trans "Avatar of you"%}'>
 {%endif%}
