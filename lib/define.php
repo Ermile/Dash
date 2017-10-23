@@ -63,19 +63,25 @@ class define
 		    }
 		}
 
-		if($cookie_domain)
-		{
-			session_name($cookie_domain);
-			$cookie_domain = $cookie_domain. '.'. Service;
-			session_set_cookie_params(0, '/', $cookie_domain, false, true);
-		}
-		else
+		// if($cookie_domain)
+		// {
+		// 	session_name($cookie_domain);
+		// 	$cookie_domain = $cookie_domain. '.'. Service;
+		// 	session_set_cookie_params(0, '/', $cookie_domain, false, true);
+		// }
+		// else
+		// {
+		// 	session_name(Domain);
+		// 	$cookie_domain = Service;
+		// 	session_set_cookie_params(0, '/');
+		// }
+
+		if(is_string(Domain))
 		{
 			session_name(Domain);
-			$cookie_domain = Service;
-			session_set_cookie_params(0, '/');
 		}
-
+		// set session cookie params
+		session_set_cookie_params(0, '/', '.'.Service, false, true);
 		/**
 		 * A session is a way to store information (in variables) to be used across multiple pages.
 		 * Unlike a cookie, the information is not stored on the users computer.
