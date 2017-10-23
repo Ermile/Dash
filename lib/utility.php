@@ -291,7 +291,7 @@ class utility
 			{
 				if(\lib\utility\passwords::is_crazy($raw_password))
 				{
-					\lib\debug::error(T_("Creazy password!, Try another"));
+					\lib\debug::error(T_("This password is very simple and guessable, please use stronger password!"));
 					return false;
 				}
 			}

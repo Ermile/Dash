@@ -5,6 +5,7 @@
    </div>
 {%endblock%}
 
+
 {%block eAllInput%}
    <div class='flex fix' id=''>
     <!-- <label for='usernameormobile' title='{%trans "Username or Mobile or email"%}'></label> -->
@@ -67,8 +68,8 @@
 
 {%block edisplayname%}
    <div class='flex fix' id='displayname'>
-    <label for='displayname' title='{%trans "Full name"%}'>@</label>
-    <input id='displayname' name="displayname" type='displayname' placeholder='{%trans "Full name"%}' autocomplete="off" autocapitalize="off" maxlength="50" title='' value="{{get_displayname}}" required="">
+    <label for='displayname' title='{%trans "Full name"%}'>?</label>
+    <input id='displayname' name="displayname" type='displayname' placeholder='{%trans "Full name"%}' autocomplete="off" autocapitalize="off" maxlength="50" title='' value="{{get_displayname}}" required>
    </div>
 {%endblock%}
 
@@ -117,7 +118,10 @@
 
 
 {%block eloginlink%}
-  <a href="{{url.baseFull}}" class="link">{%trans "Login"%}</a>
+   <a href="{{url.base}}/enter" id='ebusername' class="c {%if module == 'username'%}active{%endif%}">
+     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 258.75 258.75" style="enable-background:new 0 0 258.75 258.75;" xml:space="preserve" width="20px" height="20px"><circle cx="129.375" cy="60" r="60" fill="#FFFFFF"/><path d="M129.375,150c-60.061,0-108.75,48.689-108.75,108.75h217.5C238.125,198.689,189.436,150,129.375,150z" fill="#FFFFFF"/></svg>
+     <span>{%trans "Login"%}</span>
+   </a>
 {%endblock%}
 
 
@@ -128,8 +132,12 @@
 
 
 {%block esignuplink%}
-  <a href="{{url.baseFull}}/signup" class="link">{%trans "Signup"%}</a>
+   <a href="{{url.base}}/enter/signup" id='ebusername' class="c {%if module == 'username'%}active{%endif%}">
+     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 258.75 258.75" style="enable-background:new 0 0 258.75 258.75;" xml:space="preserve" width="20px" height="20px"><circle cx="129.375" cy="60" r="60" fill="#FFFFFF"/><path d="M129.375,150c-60.061,0-108.75,48.689-108.75,108.75h217.5C238.125,198.689,189.436,150,129.375,150z" fill="#FFFFFF"/></svg>
+     <span>{%trans "Create Account"%}</span>
+   </a>
 {%endblock%}
+
 
 {%block esignup%}
    <div class='flex' id='esignup'>
@@ -137,11 +145,13 @@
    </div>
 {%endblock%}
 
+
 {%block eset%}
    <div class='flex' id='eset'>
     <button type="submit">{%trans "Set Password"%}</button>
    </div>
 {%endblock%}
+
 
 {%block erecovery%}
    <div class='flex' id='erecovery'>
@@ -180,6 +190,12 @@
   <div class="f" id='eMethods'>
   <p>{%trans "Enter with another methods"%}</p>
   {{block ('ebgoogle')}}
+{%endif%}
+
+{%if module == "signup"%}
+{{block('eloginlink')}}
+{%else%}
+{{block('esignuplink')}}
 {%endif%}
 
   </div>

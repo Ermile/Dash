@@ -27,7 +27,7 @@ class model extends \addons\content_enter\main\model
 			return false;
 		}
 
-		$ramz = utility::post('ramz');
+		$ramz = utility::post('ramzNew');
 		if(!$ramz || mb_strlen($ramz) < 5 || mb_strlen($ramz) > 50)
 		{
 			debug::error(T_("Pleaes set a valid password"));
@@ -44,7 +44,7 @@ class model extends \addons\content_enter\main\model
 		$check_username = \lib\db\users::get_by_username($username);
 		if($check_username)
 		{
-			debug::error(T_("This username is already occuied"));
+			debug::error(T_("This username is already taken."));
 			return false;
 		}
 
