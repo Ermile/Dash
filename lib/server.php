@@ -11,6 +11,11 @@ class server
 	 */
 	public static function get($_name = null)
 	{
+		if(!is_array($_SERVER))
+		{
+			return null;
+		}
+
 		if($_name === null)
 		{
 			return $_SERVER;
