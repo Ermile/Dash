@@ -417,6 +417,7 @@ class users
 	 */
 	public static function set_login_session($_user_id)
 	{
+
 		// if user id set load user data by get from database
 		if(!$_user_id || !is_numeric($_user_id))
 		{
@@ -431,6 +432,11 @@ class users
 		{
 			return false;
 		}
+
+		/**
+		 * set user id to get every where
+		 */
+		\lib\user::init($_user_id);
 
 		// set main cat of session
 		$_SESSION['user']       = [];
