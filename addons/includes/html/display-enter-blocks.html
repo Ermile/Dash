@@ -23,6 +23,14 @@
    </div>
 {%endblock%}
 
+{%block eramzNewSignup%}
+   <div class='flex fix' id='eramzNew'>
+    <label for='ramzNew' title='{%trans "New Password"%}'>**</label>
+    <input id='ramzNew' name="ramzNew" type='password' placeholder='{%trans "New Password"%}' autocomplete="new-password" autocapitalize="off" minlength="6" maxlength="40" pattern=".{6,40}" title='{%trans "Enter a valid password from 6 to 40 character"%}' required>
+   </div>
+{%endblock%}
+
+
 
 
 {%block eramzNew%}
@@ -65,6 +73,12 @@
    </div>
 {%endblock%}
 
+{%block eFullname%}
+   <div class='flex fix' id='displayname'>
+    <label for='displayname' title='{%trans "Full name"%}'>?</label>
+    <input id='displayname' name="displayname" type='displayname' placeholder='{%trans "Full name"%}' autocomplete="off" autocapitalize="off" maxlength="50" title='' value="{{get_displayname}}" autofocus required>
+   </div>
+{%endblock%}
 
 {%block edisplayname%}
    <div class='flex fix' id='displayname'>
