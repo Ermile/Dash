@@ -158,6 +158,9 @@ class model extends \mvc\model
 					}
 
 					$this->user_id = $user_id;
+					// init user
+					\lib\user::init($user_id);
+
 					break;
 
 				case 'api_key':
@@ -214,6 +217,8 @@ class model extends \mvc\model
 			$signup        = ['mobile' => $mobile];
 			$this->user_id = \lib\db\users::signup_quick($signup);
 		}
+		// init user
+		\lib\user::init($this->user_id);
 
 		if(!$this->user_id)
 		{
@@ -253,6 +258,9 @@ class model extends \mvc\model
 			return false;
 		}
 		$this->user_id = (int) $user_data['id'];
+		// init user
+		\lib\user::init($this->user_id);
+
 	}
 
 
