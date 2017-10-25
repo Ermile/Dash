@@ -19,7 +19,7 @@ class user
 	public static function init($_user_id)
 	{
 		self::$USER_ID = $_user_id;
-		$_SESSION['INIT_USER'] = $_user_id;
+		$_SESSION['auth']['id'] = $_user_id;
 	}
 
 
@@ -29,7 +29,7 @@ class user
 	public static function destroy()
 	{
 		self::$USER_ID = null;
-		unset($_SESSION['INIT_USER']);
+		unset($_SESSION['auth']);
 	}
 
 	/**
@@ -41,9 +41,9 @@ class user
 	{
 		if(!isset(self::$USER_ID))
 		{
-			if(isset($_SESSION['INIT_USER']))
+			if(isset($_SESSION['auth']['id']))
 			{
-				self::$USER_ID = $_SESSION['INIT_USER'];
+				self::$USER_ID = $_SESSION['auth']['id'];
 			}
 		}
 
