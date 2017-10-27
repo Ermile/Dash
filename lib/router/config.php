@@ -302,13 +302,27 @@ trait config
 		// if arg has a any value return domain name without tld
 		elseif($_arg && count($mydomain)-2 >= 0)
 		{
-			return $mydomain[count($mydomain)-2];
+			 if(\lib\option::config('main_subdomain'))
+			 {
+				return \lib\option::config('main_subdomain') . '.' .$mydomain[count($mydomain)-2];
+			 }
+			 else
+			 {
+				return $mydomain[count($mydomain)-2];
+			 }
 		}
 
 		// if user don't pass a parameter and count of current domain allow set domain name
 		if(count($mydomain) > 1)
 		{
-			$myvalue = $mydomain[count($mydomain)-2].'.';
+			if(\lib\option::config('main_subdomain'))
+			 {
+				$myvalue = \lib\option::config('main_subdomain') . '.' .$mydomain[count($mydomain)-2] . '.';
+			 }
+			 else
+			 {
+				$myvalue = $mydomain[count($mydomain)-2].'.';
+			}
 		}
 
 		// add com for sample.com to myvalue name
@@ -325,12 +339,19 @@ trait config
 		$prefix_base = self::get_class_static('prefix_base');
 		if(count($domain) === 3)
 		{
-			$sub = $domain[0];
-			// remove subdomain
-			array_shift($domain);
-			// add subdomain as part of url
-			array_push($domain, $sub);
-			$result = $domain[0].'.'. $domain[1].'/'. ($prefix_base ? $prefix_base .'/' : ''). $domain[2];
+			if(\lib\option::config('main_subdomain') == $domain[0])
+			{
+				$result = self::get_domain() . ($prefix_base ? '/'. $prefix_base : '');
+			}
+			else
+			{
+				$sub = $domain[0];
+				// remove subdomain
+				array_shift($domain);
+				// add subdomain as part of url
+				array_push($domain, $sub);
+				$result = $domain[0].'.'. $domain[1].'/'. ($prefix_base ? $prefix_base .'/' : ''). $domain[2];
+			}
 		}
 		else
 		{
@@ -342,6 +363,7 @@ trait config
 
 	public static function get_domain($search = null)
 	{
+		// print_r(self::get_class_static('domain'));
 		return self::get_property($search, self::get_class_static('domain'), false, '.');
 	}
 

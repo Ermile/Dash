@@ -181,8 +181,7 @@ class router
 
 		// 	}
 		// }
-
-		if(SubDomain)
+		if(SubDomain && SubDomain != \lib\option::config('main_subdomain'))
 		{
 			router::$base .= SubDomain. '.';
 		}
