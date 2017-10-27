@@ -66,6 +66,10 @@ trait twigAddons
 			{
 				return $string.'?'.filemtime($string);
 			}
+			elseif(file_exists(root . 'public_html/'.$string))
+			{
+				return $string.'?'.filemtime(root . 'public_html/'.$string);
+			}
 		});
 	}
 
