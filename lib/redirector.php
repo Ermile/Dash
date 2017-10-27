@@ -48,6 +48,10 @@ class redirector
 		else
 		{
 			$newLocation = $this->get_protocol() . '://';
+			if(SubDomain)
+			{
+				$newLocation .= SubDomain .'.';
+			}
 			$newLocation .= $this->get_real_domain() . '/';
 			$newLocation .= $this->get_url();
 		}

@@ -302,29 +302,13 @@ trait config
 		// if arg has a any value return domain name without tld
 		elseif($_arg && count($mydomain)-2 >= 0)
 		{
-			 if(\lib\option::config('main_subdomain'))
-			 {
-				return \lib\option::config('main_subdomain') . '.' .$mydomain[count($mydomain)-2];
-			 }
-			 else
-			 {
-				return $mydomain[count($mydomain)-2];
-			 }
+			return $mydomain[count($mydomain)-2];
 		}
-
 		// if user don't pass a parameter and count of current domain allow set domain name
 		if(count($mydomain) > 1)
 		{
-			if(\lib\option::config('main_subdomain'))
-			 {
-				$myvalue = \lib\option::config('main_subdomain') . '.' .$mydomain[count($mydomain)-2] . '.';
-			 }
-			 else
-			 {
-				$myvalue = $mydomain[count($mydomain)-2].'.';
-			}
+			$myvalue = $mydomain[count($mydomain)-2].'.';
 		}
-
 		// add com for sample.com to myvalue name
 		$myvalue .= $mydomain[count($mydomain)-1];
 
