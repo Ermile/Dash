@@ -389,11 +389,7 @@ class notifications
 					users.id,
 					users.mobile,
 					users.email,
-					users.chatid,
-					users.notification,
-					users.facebookmail,
-					users.twittermail,
-					users.googlemail
+					users.chatid
 				FROM
 					users
 				WHERE users.id IN ($_user_ids)
