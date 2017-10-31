@@ -15,10 +15,6 @@ class controller extends \mvc\controller
 			return;
 		}
 
-		if(!SubDomain)
-		{
-			\lib\error::page(T_("SubDomain not found"));
-		}
 	}
 }
 ?>
