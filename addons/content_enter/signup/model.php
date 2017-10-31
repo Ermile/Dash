@@ -20,6 +20,20 @@ class model extends \addons\content_enter\main\model
 			return false;
 		}
 
+		$mobile = utility::post('mobile');
+		if(!$mobile)
+		{
+			debug::error(T_("Pleaes set mobile number"));
+			return false;
+		}
+
+		$mobile = \lib\utility\filter::mobile($mobile);
+		if(!$mobile)
+		{
+			debug::error(T_("Pleaes set a valid mobile number"));
+			return false;
+		}
+
 		$username = utility::post('username');
 		if(!$username || mb_strlen($username) < 5 || mb_strlen($username) > 50)
 		{
@@ -54,8 +68,16 @@ class model extends \addons\content_enter\main\model
 			return false;
 		}
 
+		$check_mobile = \lib\db\users::get_by_mobile($mobile);
+		if($check_mobile)
+		{
+			debug::error(T_("This mobile is already signuped. You can login by this mobile"));
+			return false;
+		}
+
 		$signup =
 		[
+			'mobile'      => $mobile,
 			'displayname' => $displayname,
 			'password'    => \lib\utility::hasher($ramz),
 			'username'    => $username,
