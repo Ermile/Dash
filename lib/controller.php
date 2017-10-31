@@ -342,10 +342,6 @@ class controller
 			$object = (object) [];
 			$object->controller = $this;
 			$this->model = new $class_name($object);
-
-			if(method_exists($this->model, 'config') || array_key_exists('config', $this->model->Methods)){
-				$this->model->iconfig();
-			}
 		}
 		return $this->model;
 	}
@@ -374,9 +370,6 @@ class controller
 			$object->controller = $this;
 			$this->view = new $class_name($object);
 
-			if(method_exists($this->view, 'config') || array_key_exists('config', $this->view->Methods)){
-				$this->view->iconfig();
-			}
 		}
 		return $this->view;
 	}
