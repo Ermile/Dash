@@ -1,7 +1,0 @@
-<li><a href="{{url.baseFull}}/{{team}}"><i class="sf-cog"></i>{%trans "Show member"%}</a></li>
-<li><a href="{{url.baseFull}}/{{team}}/edit"><i class="sf-cog"></i>{%trans "Team Settings"%}</a></li>
-<li><a href="{{url.baseFull}}/{{team}}/plan"><i class="sf-bolt"></i>{%trans "Change Plan"%}</a></li>
-<li><a href="{{url.baseFull}}/{{team}}/report"><i class="sf-bolt"></i>{%trans "Report"%}</a></li>
-{%if current_team.short_name%}
-  <li><a href="{{url.base}}/{{current_team.short_name}}" data-direct><i class="sf-bolt"></i>{%trans "Attendance"%}</a></li>
-{%endif%}

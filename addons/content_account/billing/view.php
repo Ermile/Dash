@@ -47,7 +47,7 @@ class view extends \content_account\main\view
 		}
 
 		$history = $_args->api_callback;
-		// var_dump($history);exit();
+
 		$this->data->history = $history;
 
 	}

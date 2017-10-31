@@ -14,9 +14,6 @@ class view extends \mvc\view
 		$this->include->css    = true;
 		$this->include->chart  = true;
 
-		$this->data->display['adminTeam'] = 'content_account\main\layoutTeam.html';
-
-
 	}
 }
 ?>

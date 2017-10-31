@@ -81,19 +81,6 @@ class model extends \content_account\main\model
 			}
 		}
 
-		// // if the name exist update user display name
-		// if(utility::post('name') != $this->login('name'))
-		// {
-		// 	$update_user['name'] = utility::post('name');
-		// 	$user_session['name'] = $update_user['name'];
-		// }
-
-		// // if the family exist update user display family
-		// if(utility::post('family') != $this->login('family'))
-		// {
-		// 	$update_user['lastname'] = utility::post('family');
-		// 	$user_session['family'] = $update_user['lastname'];
-		// }
 
 		// if the postion exist update user display postion
 		if(utility::post('displayname') != $this->login('displayname'))
@@ -101,27 +88,6 @@ class model extends \content_account\main\model
 			$update_user['displayname'] = utility::post('displayname');
 			$user_session['displayname'] = $update_user['displayname'];
 		}
-
-		// $new_unit = utility::post('user-unit');
-
-		// if($new_unit === '')
-		// {
-		// 	\lib\db\logs::set('user:unit:set:empty', $this->login('id'), $log_meta);
-		// 	debug::error(T_("Please select one units"), 'user-unit', 'arguments');
-		// 	return false;
-		// }
-
-		// if(in_array($new_unit, ['toman','dollar']))
-		// {
-		// 	$update_user['unit_id']  = \lib\utility\units::get_id($new_unit);
-		// 	$user_session['unit_id'] = $update_user['unit_id'];
-		// }
-		// else
-		// {
-		// 	\lib\db\logs::set('user:unit:set:invalid:unit', $this->login('id'), $log_meta);
-		// 	debug::error(T_("Please select a valid units"), 'user-unit', 'arguments');
-		// 	return false;
-		// }
 
 
 		// update user record
