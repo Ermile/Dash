@@ -1,0 +1,130 @@
+{%extends display.admin%}
+
+{%block pageContent%}
+
+  <div class="f">
+
+    <div class="c s12 pA10">
+      <div class="cbox">
+        <h2>{%trans "Charge your account"%}</h2>
+        <p>{%trans "Choose a gateway and enter an amount to charge your account"%}</p>
+
+        <form method="post" autocomplete="off">
+          <div class="radioGateway">
+           <input type="radio" name="bank" value="parsian" id="parsian" checked>
+           <label for='parsian'><img alt="parsian" src="{{url.static}}images/gateway/Parsian.svg"></label>
+          </div>
+
+          <div class="radioGateway">
+           <input type="radio" name="bank" value="ZarinPal" id="ZarinPal">
+           <label for='ZarinPal'><img alt="ZarinPal" src="{{url.static}}images/gateway/ZarinPal.svg"></label>
+          </div>
+
+           <div class="radioGateway">
+           <input type="radio" name="bank" value="irKish" id="irKish">
+           <label for='irKish'><img alt="irKish" src="{{url.static}}images/gateway/Day.svg"></label>
+          </div>
+
+         <div class="input pA5">
+          <label class="addon" for="amount-number">{%trans user_unit%}</label>
+          <input id="amount-number" type="number" name="amount" value="{{amount}}" placeholder='{%trans "Amount"%}' required min=0>
+          <button class="addon btn primary">{%trans "Checkout"%}</button>
+         </div>
+        </form>
+      </div>
+
+      <div>
+       <div class="cbox">
+        <h2>{%trans "Promo code"%}</h2>
+        <p>{%trans "If you have a promo code, please enter it below to receive your credit."%}</p>
+
+        <form method="post" autocomplete="off">
+         <input type="hidden" name="type" value="promo">
+         <div class="input pA5">
+          <input id="promo-number" type="text" name="promo" placeholder='{%trans "Promo Code"%}' required spellcheck="false">
+          <button class="addon btn primary">{%trans "Apply Code"%}</button>
+         </div>
+        </form>
+
+       </div>
+      </div>
+    </div>
+
+    <div class="c4 s12 pA10">
+      <div class="cbox">
+       <div class="statistic blue">
+        <div class="value">
+          <i class="sf-credit-card"></i>
+          <span>{{user_cash.total|number_format| fitNumber}}</span>
+        </div>
+        <div class="label">{%trans "Your credit"%} <small>{%trans user_unit%}</small></div>
+       </div>
+      </div>
+      <a class="cbox" href="{{url.baseFull}}/billing/detail" title='{%trans "Click to check detail"%}'>
+       <div class="statistic brown">
+        <div class="value">
+          <i class="sf-bag"></i>
+          <span class="counter">{{usage|number_format}}</span>
+        </div>
+        <div class="label">{%trans "Usage"%} <small>{%trans user_unit%}</small></div>
+       </div>
+      </a>
+    </div>
+
+  </div>
+
+
+
+<div class="cbox">
+    <h3 id="billing-history" class="pA10">{%trans "Billing History"%}</h3>
+    <table class="tbl">
+      <thead class="primary">
+        <tr>
+          <th class="s0">{%trans "Title" %}</th>
+          <th>{%trans "Date" %}</th>
+          <th>{%trans "Value" %}</th>
+          <th>{%trans "Budget After" %}</th>
+          <th>{%trans "Invoice" %}</th>
+        </tr>
+      </thead>
+      <tbody>
+
+{% for key, value in history %}
+{%set my_unit = value.unit%}
+{%set my_title = value.title%}
+
+         <tr>
+          <td class="s0">{%trans my_title%}</td>
+
+{%if site.currentlang == 'fa' %}
+  <td title='{{value.date|tdate("Y-m-d H:i:s")}}'>{{value.date|sdate}}</td>
+{%else%}
+  <td title='{{value.date|date("Y-m-d H:i:s")}}'>{{value.date|sdate}}</td>
+{%endif%}
+
+
+          <td>
+{%if value.plus%}
++ {{value.plus|number_format|fitNumber}}
+{%else%}
+- {{value.minus|number_format|fitNumber}}
+{%endif%}{%trans my_unit%}
+          </td>
+          <td>{{value.budget|number_format|fitNumber}} {%trans my_unit%}</td>
+          <td>
+{%if value.invoice_id%}
+            <a href="{{url.baseFull}}/billing/invoice/{{value.invoice_id}}"><i class="sf-file-text"></i></a>
+{%else%}
+            <i>-</i>
+{%endif%}
+          </td>
+         </tr>
+{%endfor%}
+
+      </tbody>
+    </table>
+    {%include display.pagination%}
+</div>
+
+{%endblock%}
+

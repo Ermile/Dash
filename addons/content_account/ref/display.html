@@ -1,0 +1,149 @@
+{%extends display.admin%}
+
+{%set pageTitle%}{%trans "Referral Program"%}{%endset%}
+
+{%set pageDesc%}
+{%trans "Nobody can tell the Jibres story better than our customers."%}
+{%endset%}
+
+{%block pageContent%}
+  <div class="tbox">
+    <h2>{%trans "Referral Program"%}</h2>
+    <p>{%trans "Nobody can tell the Jibres story better than you;)"%}</p>
+  </div>
+
+  <div class="cbox">
+    <h2>{%trans "How it works?"%}</h2>
+    <ul>
+      <li>
+       <h4>{%trans "Tell your friends about the Jibres story."%}</h4>
+       <p>{%trans "Refer your friends through Social Media or Email."%} {%trans "Share the referral rewards program with friends on Facebook, Twitter, or Email."%} {%trans "When they click on your post, we’ll know it was you who referred them."%} {%trans "If someone forget to use your link, we allow to set your ref code as promo code in billing page!"%}</p>
+      </li>
+      <li>
+       <h4>{%trans "Your friend enter to Jibres and receives credit."%}</h4>
+       <p>{%trans "Your friend enter and receives $5 account credit."%} {%trans "Anyone you refer to Jibres that enter using your unique referral link or your promo code will receive $5 in credit."%}</p>
+      </li>
+      <li>
+       <h4>{%trans "You all get rewarded."%}</h4>
+       <p>{%trans "Jibres rewards are charge in your account after 7 work days of confirmation."%} {%trans "Amount of charge is depended on your friend total pay and after automatic calculation, system set your gift."%} {%trans "We calculate your percentage until 6 month of your friend registration. Because of that it was your chance to convinced your friend to charge more!"%}</p>
+      </li>
+    </ul>
+  </div>
+
+  <div class="cbox">
+    <h3>{%trans "Share your link"%}</h3>
+    <p>{%trans "Copy your personal referral link and share it with your friends and followers."%}</p>
+
+    <div class="input pTB10 w400">
+      <label class="addon" for="youRefLink">{%trans "Link"%}</label>
+      <input type="text" id="youRefLink" readonly value="jibres.com?ref={{login.id | shortURL('encode')}}" class="ltr">
+      <button class="addon btn primary" data-copy='#youRefLink'>Copy <span class="sf-link"></span></button>
+    </div>
+    <div class="input pTB10 w400">
+      <label class="addon" for="youRefPromo">{%trans "Promo code"%}</label>
+      <input type="text" id="youRefPromo" readonly value="ref={{login.id | shortURL('encode')}}" class="ltr">
+      <button class="addon btn primary" data-copy='#youRefPromo'>Copy <span class="sf-link"></span></button>
+    </div>
+  </div>
+
+{%if login.id%}
+ <div class="cbox">
+  <h3 class="bh">{%trans "Referral stats"%}</h3>
+  <table class="tbl">
+    <tbody>
+    <tr>
+      <th>{%trans "CLICKS"%}</th>
+      <td>{%trans "Number of times your link has been opened."%}</td>
+      <td>{{ click | number_format | fitNumber}}</td>
+    </tr>
+    <tr>
+      <th>{%trans "REFERRALS"%}</th>
+      <td>{%trans "People who enter to Jibres using your link."%}</td>
+      <td>{{ signup | number_format | fitNumber}}</td>
+    </tr>
+    <tr>
+      <th>{%trans "Promo Code"%}</th>
+      <td>{%trans "People who connected to you with promo code."%}</td>
+      <td>{{ signup | number_format | fitNumber}}</td>
+    </tr>
+
+    <tr>
+      <th>{%trans "Total you refed"%}</th>
+      <td>{%trans "Sum of people referred from you."%}</td>
+      <td>{{ profile | fitNumber}}</td>
+    </tr>
+
+    <tr class="hide">
+      <th>{%trans "Active users"%}</th>
+      <td>{%trans "People who work with their account."%}</td>
+      <td>{{ profile | fitNumber}}</td>
+    </tr>
+   </tbody>
+  </table>
+
+  <h4>{%trans "You earned"%}</h4>
+  <table class="tbl">
+    <thead>
+     <tr>
+      <th>{%trans "Title"%}</th>
+      <th>{%trans "Description"%}</th>
+      <th>{%trans "Percentage"%}</th>
+      <th>{%trans "Count"%}</th>
+     </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <th>{%trans "Level 1"%}</th>
+      <td>{%trans "People who pay more than 25$."%}</td>
+      <td>{{30 | fitNumber}} %</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th>{%trans "Level 2"%}</th>
+      <td>{%trans "People who pay more than 50$."%}</td>
+      <td>{{45 | fitNumber}} %</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th>{%trans "Level 3"%}</th>
+      <td>{%trans "People who pay more than 500$."%}</td>
+      <td>{{34.5 | fitNumber}} %</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th>{%trans "Level 4"%}</th>
+      <td>{%trans "People who pay more than 5000$."%}</td>
+      <td>{{33.45 | fitNumber}} %</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th>{%trans "You earned"%}</th>
+      <td>{%trans "Sum of your credit earned from refs."%}</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th>{%trans "Confirm earned"%}</th>
+      <td>{%trans "Sum of confirmed credit earned from refs."%}</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+
+
+    </tbody>
+  </table>
+ </div>
+
+{%else%}
+  <div class="tbox">
+    <h3>{%trans "Enter to get a unique referral link."%}</h3>
+    <p>
+      <a href='{{url.base}}/logo' class="btn">{%trans "Use our logo to help spread the word."%}</a>
+    </p>
+    <p>
+      <a href="{{url.base}}/enter" class="btn primary" data-direct>{%trans "Enter to Jibres"%}</a>
+    </p>
+  </div>
+{%endif%}
+
+{%endblock%}

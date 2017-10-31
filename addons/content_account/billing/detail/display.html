@@ -1,0 +1,38 @@
+{%extends display.admin%}
+
+{%block pageContent%}
+
+<div class="cbox">
+  <table class="tbl">
+    <thead class="primary">
+      <th>{%trans "Name"%}</th>
+      <th>{%trans ""%}</th>
+      <th>{%trans "plan"%}</th>
+      <th>{%trans "Start plan"%}</th>
+      <th>{%trans "Active member"%}</th>
+      <th>{%trans "Usage"%}</th>
+    </thead>
+    <tbody>
+    {% for key, value in detail %}
+     <tr>
+        <td>
+          <a href="{{url.base}}/{{value.shortname}}" target="_blank">{{value.name}}</a>
+        </td>
+        <td>
+        <img src="{{value.logourl}}" height="15" width="15"></td>
+        <td>{%set my_plan = value.plan | capitalize %}{%trans my_plan%}</td>
+        {%if site.currentlang == 'fa'%}
+          <td>{{value.startplan|jdate("Y-m-d H:i:s")}}</td>
+        {%else%}
+          <td>{{value.startplan|date("Y-m-d H:i:s")}}</td>
+        {%endif%}
+        <td>{{value.active_member | number_format | fitNumber}}</td>
+        <td>{{value.usage | number_format | fitNumber}}</td>
+     </tr>
+    {%endfor%}
+    </tbody>
+  </table>
+</div>
+
+{%endblock%}
+

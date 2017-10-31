@@ -1,0 +1,120 @@
+{%extends display.admin%}
+
+
+{%block pageContent%}
+  <div class='middle' id="editprofile">
+   <div class='dbox center'>
+    <h2 class='title'>{%trans "Your profile information"%}</h2>
+
+    <form method="post" class="df">
+
+{{block ("iavatar")}}
+{{block ("inickname")}}
+
+
+{{block ("imobile")}}
+{{block ("iemail")}}
+
+{{block ("isubmit")}}
+
+    </form>
+   </div>
+  </div>
+{%endblock%}
+
+
+
+
+{%block iname%}
+<input type="text" name="name" value="{{login.name}}" placeholder='{%trans "First Name *"%}' id="name" autofocus maxlength='30' minlength="3" pattern=".{3,30}" title='{%trans "Enter a valid name from 3 to 30 character"%}'>
+{%endblock%}
+
+
+{%block ifamily%}
+<input type="text" name="family" value="{{login.family}}" placeholder='{%trans "Last Name"%}' id="family" maxlength='50' minlength="3" pattern=".{3,50}" title='{%trans "Enter a valid family from 3 to 50 character"%}'>
+{%endblock%}
+
+
+{%block inickname%}
+<input type="text" name="displayname" value="{{login.displayname}}" placeholder='{%trans "Display name"%}' id="displayname" maxlength='50' minlength="3" pattern=".{3,50}" title='{%trans "Enter a valid team position from 3 to 50 character"%}'>
+{%endblock%}
+
+
+{%block iavatar%}
+<div class="f">
+  <div class="c s12 g1 df-file">
+   <div>
+    <input type="file" name="avatar" id="avatar" accept="image/gif, image/jpeg, image/png" data-preview>
+    <label for="avatar" title='{%trans "allowed extentions jpg, png (gif for bussiness plans). Max 500Kb"%}'>
+     {%if login.avatar%}<img src="{{url.root}}/{{login.avatar}}" alt="{{member.displayname}}" id="avatarPreview">{%endif%}
+    </label>
+   </div>
+  </div>
+</div>
+{%endblock%}
+
+
+
+{%block imobile%}
+<div class="f g1">
+ <div class="cauto s0 lbl"><label for="mobile">{%trans "mobile"%}</label></div>
+ <div class="c s12">
+  <input type="text" name="mobile" placeholder='{%trans "Your mobile"%}' id="mobile" readonly value="{{login.mobile}}">
+ </div>
+</div>
+{%endblock%}
+
+
+{%block iemail%}
+<div class="f g1">
+ <div class="cauto s0 lbl"><label for="email">{%trans "email"%}</label></div>
+ <div class="c s12">
+  <input type="text" name="email" placeholder='{%trans "Your email"%}' id="email" readonly value="{{login.email}}">
+ </div>
+</div>
+{%endblock%}
+
+
+{%block iunit%}
+<div class="f g1">
+ <div class="cauto s0 lbl"><label for="email">{%trans "Money unit"%}</label></div>
+ <div class="c s12">
+ {{block('iunitRadio')}}
+ </div>
+</div>
+{%endblock%}
+
+
+{%block iunitSelect%}
+  <select name="user-unit">
+   <option value="" readonly>{%trans "Please select one unit for default"%}</option>
+   <option value="toman" {% if user_unit == 'toman' or user_unit == 'تومان' %} selected="selected" {%endif%}>{%trans "Toman"%}</option>
+   <option value="dollar" {% if user_unit == 'dollar' or user_unit == '$' %} selected="selected" {%endif%}>{%trans "$"%}</option>
+  </select>
+{%endblock%}
+
+
+{%block iunitRadio%}
+ <div class="f radio1t">
+  <div class="c">
+   <input type="radio" id="r-toman" name="user-unit" value="toman" {%if user_unit=='toman' or user_unit=='تومان'%}checked{%endif%}>
+   <label for="r-toman">{%trans "Toman"%}</label>
+  </div>
+
+  <div class="c">
+   <input type="radio" id="r-dollar" name="user-unit" value="dollar" {%if user_unit=='dollar' or user_unit=='$'%}checked{%endif%}>
+   <label for="r-dollar">{%trans "Dollar"%}</label>
+  </div>
+ </div>
+{%endblock%}
+
+
+{%block isubmit%}
+<div class="f g1">
+ <div class="c12 os s12">
+  <input class="b1" type="submit" value='{%trans "Update profile"%}'>
+ </div>
+</div>
+{%endblock%}
+
+

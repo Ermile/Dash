@@ -1,0 +1,43 @@
+{%extends display.admin%}
+
+
+
+{%block pageContent%}
+
+<div class="cbox">
+  <div class="msg">{%trans "Factor of team"%} <b>{{invoice.invoice.title}}</b> |
+    {%trans "Date"%}
+  {%if site.currentlang == 'fa'%}
+     {{invoice.invoice.date|jdate("Y-m-d H:i:s")}}
+  {%else%}
+    {{invoice.invoice.date}}
+  {%endif%}
+  | {%trans "Total"%} {{invoice.invoice.total|number_format|fitNumber}}</div>
+
+  <table class="tbl">
+    <thead class="primary">
+      <th>{%trans "Title" %}</th>
+      <th>{%trans "Price" %}</th>
+      <th>{%trans "Count" %}</th>
+      <th>{%trans "Total" %}</th>
+    </thead>
+    <tbody>
+
+    {% for key, value in invoice.invoice_detail %}
+     <tr>
+      <td>{{value.title}}</td>
+      <td>{{value.price|number_format|fitNumber}}</td>
+      <td>{{value.count|number_format|fitNumber}}</td>
+      <td>{{value.total|number_format|fitNumber}}</td>
+     </tr>
+    {%endfor%}
+
+    </tbody>
+
+  </table>
+
+</div>
+
+
+{%endblock%}
+

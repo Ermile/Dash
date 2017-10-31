@@ -239,7 +239,7 @@ class router
 		$myloc               = null;
 
 		// list of addons exist in dash,
-		$dash_addons         = [ 'cp', 'enter', 'api', 'su'];
+		$dash_addons         = [ 'cp', 'enter', 'api', 'su', 'account'];
 
 		// set repository name
 		$myrep    = 'content_'.$myContent;
