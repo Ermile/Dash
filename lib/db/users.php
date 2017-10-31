@@ -266,13 +266,24 @@ class users
 	{
 		$default_args =
 		[
-			'mobile'      => null,
-			'password'    => null,
-			'email'       => null,
-			'permission'  => null,
-			'displayname' => null,
-			'ref'         => null,
-			'type'        => null,
+			'mobile'       => null,
+			'password'     => null,
+			'email'        => null,
+			'permission'   => null,
+			'displayname'  => null,
+			'ref'          => null,
+			'type'         => null,
+			'title'        => null,
+			'avatar'       => null,
+			'status'       => null,
+			'gender'       => null,
+			'parent'       => null,
+			'username'     => null,
+			'pin'          => null,
+			'twostep'      => null,
+			'notification' => null,
+			'unit_id'      => null,
+			'language'     => null,
 		];
 
 		if(!is_array($_args))
@@ -282,130 +293,68 @@ class users
 
 		$_args = array_merge($default_args, $_args);
 
-		if($_args['type'] === 'inspection')
+		$ref = null;
+		// get the ref and set in users_parent
+		if(isset($_SESSION['ref']))
 		{
-			$_args['displayname'] = "Guest Session";
-			if(!$_args['mobile'])
-			{
-				$_args['mobile'] = \lib\utility\filter::temp_mobile();
-			}
-			$_args['password'] = null;
-		}
-
-		// first if perm is true get default permission from db
-		if($_args['permission'] === true)
-		{
-			// if use true fill it with default value
-			$_args['permission']     = \lib\option::config('default_permission');
-			// default value not set in database
-			if($_args['permission'] == '')
-			{
-				$_args['permission'] = null;
-			}
-		}
-		else
-		{
-			$_args['permission'] = null;
-		}
-
-		$query = " SELECT id FROM users WHERE mobile = '$_args[mobile]' LIMIT 1 ";
-
-		$result = \lib\db::get($query, 'id', true);
-
-		if($result)
-		{
-			// signup called and the mobile exist
-			return false;
-		}
-		else
-		{
-			$ref = null;
-			// get the ref and set in users_parent
-			if(isset($_SESSION['ref']))
-			{
-				$ref = self::check_ref($_SESSION['ref']);
-				if(!$ref)
-				{
-					$_args['invalid_ref_session'] = $_SESSION['ref'];
-				}
-			}
-			elseif($_args['ref'])
-			{
-				$ref = self::check_ref($_args['ref']);
-				if(!$ref)
-				{
-					$_args['invalid_ref_args'] = $_args['ref'];
-				}
-			}
-			// elseif(\lib\utility::cookie('ref'))
-			// {
-			// 	$ref = self::check_ref(\lib\utility::cookie('ref'));
-			// }
-
+			$ref = self::check_ref($_SESSION['ref']);
 			if($ref)
 			{
-				unset($_SESSION['ref']);
-			}
-
-			if($_args['password'])
-			{
-				$password = \lib\utility::hasher($_args['password']);
+				$_args['ref'] = $_SESSION['ref'];
 			}
 			else
 			{
-				$password = null;
+				$_args['ref'] = null;
 			}
-
-			if(!\lib\debug::$status)
-			{
-				return false;
-			}
-
-			if(!$_args['mobile'])
-			{
-				return false;
-			}
-
-			$_args['displayname'] = \lib\utility\safe::safe($_args['displayname']);
-
-			if(mb_strlen($_args['displayname']) > 99)
-			{
-				$_args['displayname'] = null;
-			}
-
-			// check email exist
-			if($_args['email'])
-			{
-				if(self::get_by_email($_args['email']))
-				{
-					// the user by this email exist
-					return false;
-				}
-			}
-			// signup up users
-			$args =
-			[
-				'mobile'      => $_args['mobile'],
-				'password'        => $password,
-				'displayname' => $_args['displayname'],
-				'permission'  => $_args['permission'],
-				'email'       => $_args['email'],
-				'parent'      => $ref,
-				'datecreated'  => date('Y-m-d H:i:s')
-			];
-
-			$insert_new    = self::insert($args);
-			$insert_id     = \lib\db::insert_id();
-			self::$user_id = $insert_id;
-
-			if(method_exists('\lib\utility\users', 'signup'))
-			{
-				$_args['insert_id'] = $insert_id;
-				$_args['ref']       = $ref;
-				\lib\utility\users::signup($_args);
-			}
-			return $insert_id;
 		}
+		elseif($_args['ref'])
+		{
+			$ref = self::check_ref($_args['ref']);
+			if(!$ref)
+			{
+				$_args['ref'] = null;
+			}
+		}
+
+		if($ref)
+		{
+			unset($_SESSION['ref']);
+		}
+
+		if($_args['password'])
+		{
+			$password = \lib\utility::hasher($_args['password']);
+		}
+		else
+		{
+			$password = null;
+		}
+
+		if(!\lib\debug::$status)
+		{
+			return false;
+		}
+
+		if(mb_strlen($_args['displayname']) > 99)
+		{
+			$_args['displayname'] = null;
+		}
+
+		// signup up users
+		$_args['datecreated'] = date("Y-m-d H:i:s");
+
+		$insert_new    = self::insert($args);
+		$insert_id     = \lib\db::insert_id();
+		self::$user_id = $insert_id;
+
+		if(method_exists('\lib\utility\users', 'signup'))
+		{
+			$_args['insert_id'] = $insert_id;
+			$_args['ref']       = $ref;
+			\lib\utility\users::signup($_args);
+		}
+		return $insert_id;
+
 	}
 
 
