@@ -272,18 +272,18 @@ class users
 			'permission'   => null,
 			'displayname'  => null,
 			'ref'          => null,
-			'type'         => null,
-			'title'        => null,
-			'avatar'       => null,
-			'status'       => null,
-			'gender'       => null,
-			'parent'       => null,
-			'username'     => null,
-			'pin'          => null,
-			'twostep'      => null,
-			'notification' => null,
-			'unit_id'      => null,
-			'language'     => null,
+			// 'type'         => null,
+			// 'title'        => null,
+			// 'avatar'       => null,
+			// 'status'       => null,
+			// 'gender'       => null,
+			// 'parent'       => null,
+			// 'username'     => null,
+			// 'pin'          => null,
+			// 'twostep'      => null,
+			// 'notification' => null,
+			// 'unit_id'      => null,
+			// 'language'     => null,
 		];
 
 		if(!is_array($_args))
@@ -343,7 +343,7 @@ class users
 		// signup up users
 		$_args['datecreated'] = date("Y-m-d H:i:s");
 
-		$insert_new    = self::insert($args);
+		$insert_new    = self::insert($_args);
 		$insert_id     = \lib\db::insert_id();
 		self::$user_id = $insert_id;
 

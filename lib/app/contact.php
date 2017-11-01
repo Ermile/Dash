@@ -9,19 +9,16 @@ use \lib\debug;
 class contact
 {
 
-	use contact\add;
-	use contact\edit;
-	use contact\datalist;
-	use contact\get;
-
 
 	/**
 	 * check args
 	 *
 	 * @return     array|boolean  ( description_of_the_return_value )
 	 */
-	private static function check($_option = [])
+	public static function add($_args, $_option = [])
 	{
+		\lib\app::variable($_args);
+
 		$log_meta =
 		[
 			'data' => null,
@@ -44,62 +41,53 @@ class contact
 
 		$_option = array_merge($default_option, $_option);
 
-		$contact_field =
+		$user_id = \lib\app::request('user_id');
+		$user_id = \lib\utility\shortURL::decode($user_id);
+		if(!$user_id)
+		{
+			\lib\app::log("api:contact:user:id:not:set", \lib\user::id(), $log_meta);
+			debug::error(T_("User id not set"), 'user_id');
+			return false;
+		}
+
+		$all_request = \lib\app::request();
+
+		$insert_contact = [];
+
+		$in_user_db =
 		[
-			'title',
+			'mobile',
 			'displayname',
-			'firstname',
-			'lastname',
-			'postion',
-			'personnel_code',
+			'title',
 			'avatar',
 			'status',
-			'nationalcode',
-			'father',
-			'birthday',
 			'gender',
 			'type',
-			'marital',
-			'child',
-			'birthplace',
-			'shfrom',
-			'shcode',
-			'education',
-			'job',
-			'passportcode',
-			'passportexpire',
-			'paymentaccountnumber',
-			'shaba',
-			'cardnumber',
 			'email',
 			'parent',
 			'permission',
 			'username',
-			'group',
 			'pin',
 			'ref',
 			'twostep',
-			'notification',
-			'setup',
-			'nationality',
-			'region',
-			'insurancetype',
-			'insurancecode',
-			'dependantscount',
+			'unit_id',
 			'language',
 		];
 
-		$all_request = \lib\app::request();
-
-		$args = [];
-
 		foreach ($all_request as $key => $value)
 		{
-			if(in_array($key, $contact_field))
+			if(!in_array($key, $in_user_db))
 			{
 				$value = trim($value);
 				if(isset($value))
 				{
+					if(mb_strlen($key) >= 100)
+					{
+						\lib\app::log("api:contact:$key:the:key:max:length", \lib\user::id(), $log_meta);
+						debug::error(T_("Key of contact is too large"), $key);
+						return false;
+					}
+
 					if(mb_strlen($value) >= 100)
 					{
 						\lib\app::log("api:contact:$key:max:length", \lib\user::id(), $log_meta);
@@ -107,12 +95,23 @@ class contact
 						return false;
 					}
 
-					$args[$key] = $value;
+					$contact[] =
+					[
+						'user_id' => $user_id,
+						'key'     => $key,
+						'value'   => $value,
+					];
 				}
 			}
 		}
 
-		return $args;
+		if(!empty($insert_contact))
+		{
+			\lib\db\contacts::insert_multi($insert_contact);
+		}
+
+		return true;
+
 	}
 
 

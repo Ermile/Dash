@@ -26,11 +26,24 @@ trait add
 			]
 		];
 
+		$default_option =
+		[
+			'save_log' => true,
+			'debug'    => true,
+		];
+
+		if(!is_array($_option))
+		{
+			$_option = [];
+		}
+
+		$_option = array_merge($default_option, $_option);
+
 
 		if(!\lib\user::id())
 		{
-			\lib\app::log('api:user:user_id:notfound', null, $log_meta);
-			debug::error(T_("User not found"), 'user');
+			if($_option['save_log']) \lib\app::log('api:user:user_id:notfound', null, $log_meta);
+			if($_option['debug']) debug::error(T_("User not found"), 'user');
 			return false;
 		}
 
@@ -50,16 +63,19 @@ trait add
 
 		if(!$user_id)
 		{
-			\lib\app::log('api:user:no:way:to:insert:user', \lib\user::id(), $log_meta);
-			debug::error(T_("No way to insert user"), 'db', 'system');
+			if($_option['save_log']) \lib\app::log('api:user:no:way:to:insert:user', \lib\user::id(), $log_meta);
+			if($_option['debug']) debug::error(T_("No way to insert user"), 'db', 'system');
 			return false;
 		}
 
-		$return['user_id'] = \lib\utility\shortURL::encode($user_id);
+		$return['user_id'] = $_args['user_id'] = \lib\utility\shortURL::encode($user_id);
+
+		// \lib\app\contact::add($_args);
+
 
 		if(debug::$status)
 		{
-			debug::true(T_("User successfuly added"));
+			if($_option['debug']) debug::true(T_("User successfuly added"));
 		}
 
 		return $return;

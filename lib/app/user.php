@@ -20,7 +20,7 @@ class user
 	 *
 	 * @return     array|boolean  ( description_of_the_return_value )
 	 */
-	private static function check($_option = [])
+	public static function check($_option = [])
 	{
 		$log_meta =
 		[
@@ -44,8 +44,17 @@ class user
 
 		$_option = array_merge($default_option, $_option);
 
+		// get mobile
+		$mobile = \lib\app::request("mobile");
+		$mobile = trim($mobile);
+		if($mobile && !($mobile = \lib\utility\filter::mobile($mobile)))
+		{
+			if($_option['save_log']) \lib\app::log('addon:api:user:mobile:invalid', \lib\user::id(), $log_meta);
+			if($_option['debug']) debug::error(T_("Mobile is incorrect"), 'mobile');
+			return false;
+		}
 
-		// get firstname
+		// get displayname
 		$displayname = \lib\app::request("displayname");
 		$displayname = trim($displayname);
 		if($displayname && mb_strlen($displayname) > 50)
@@ -55,7 +64,7 @@ class user
 			return false;
 		}
 
-		// get firstname
+		// get title
 		$title = \lib\app::request("title");
 		$title = trim($title);
 		if($title && mb_strlen($title) > 50)
@@ -158,19 +167,11 @@ class user
 			return false;
 		}
 
+		$twostep = null;
 		if(utility::isset_request('twostep'))
 		{
 			$twostep = \lib\app::request('twostep');
 			$twostep = $twostep ? 1 : 0;
-		}
-
-		$notification = \lib\app::request('notification');
-		$notification = trim($notification);
-		if($notification && mb_strlen($notification) > 50)
-		{
-			if($_option['save_log']) \lib\app::log('addon:api:user:notification:max:lenght', \lib\user::id(), $log_meta);
-			if($_option['debug']) debug::error(T_("Notification is incorrect"), 'notification');
-			return false;
 		}
 
 		$unit_id = \lib\app::request('unit_id');
@@ -190,6 +191,7 @@ class user
 		}
 
 
+		$args['mobile']       = $mobile;
 		$args['displayname']  = $displayname;
 		$args['title']        = $title;
 		$args['avatar']       = $avatar;
@@ -203,7 +205,6 @@ class user
 		$args['pin']          = $pin;
 		$args['ref']          = $ref;
 		$args['twostep']      = $twostep;
-		$args['notification'] = $notification;
 		$args['unit_id']      = $unit_id;
 		$args['language']     = $language;
 
