@@ -81,5 +81,16 @@ class app
 		return $url;
 	}
 
+
+	/**
+	 * return the url of static logo file
+	 */
+	public static function static_image_url()
+	{
+		$url = Protocol . '://' . Domain. '.'. Tld. '/';
+		$url .= 'static/siftal/images/default/image.png';
+		return $url;
+	}
+
 }
 ?>
