@@ -70,5 +70,16 @@ class app
 		\lib\db\logs::set(...func_get_args());
 	}
 
+
+	/**
+	 * return the url of static logo file
+	 */
+	public static function static_logo_url()
+	{
+		$url = Protocol . '://' . Domain. '.'. Tld. '/';
+		$url .= 'static/siftal/images/default/logo.png';
+		return $url;
+	}
+
 }
 ?>

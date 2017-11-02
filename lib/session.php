@@ -15,15 +15,26 @@ class session
 	 * @param      <type>  $_value  The value
 	 * @param      <type>  $_cat    The cat
 	 */
-	public static function set($_key, $_value, $_cat = null)
+	public static function set($_key, $_value, $_cat = null, $_time = null)
 	{
 		if($_cat)
 		{
 			$_SESSION['session_storage'][$_cat][$_key] = $_value;
+
+			if($_time && is_numeric($_time))
+			{
+				$_SESSION['session_storage_time'][$_cat][$_key]       = time();
+				$_SESSION['session_storage_time_limit'][$_cat][$_key] = $_time;
+			}
 		}
 		else
 		{
 			$_SESSION['session_storage'][$_key] = $_value;
+			if($_time && is_numeric($_time))
+			{
+				$_SESSION['session_storage_time'][$_key]       = time();
+				$_SESSION['session_storage_time_limit'][$_key] = $_time;
+			}
 		}
 	}
 
@@ -44,6 +55,14 @@ class session
 			{
 				if(isset($_SESSION['session_storage'][$_cat][$_key]))
 				{
+					if(isset($_SESSION['session_storage_time'][$_cat][$_key]) && isset($_SESSION['session_storage_time_limit'][$_cat][$_key]))
+					{
+						if(time() - intval($_SESSION['session_storage_time'][$_cat][$_key]) > intval($_SESSION['session_storage_time_limit'][$_cat][$_key]))
+						{
+							return null;
+						}
+					}
+
 					return $_SESSION['session_storage'][$_cat][$_key];
 				}
 				else
@@ -55,6 +74,14 @@ class session
 			{
 				if(isset($_SESSION['session_storage'][$_key]))
 				{
+					if(isset($_SESSION['session_storage_time'][$_key]) && isset($_SESSION['session_storage_time_limit'][$_key]))
+					{
+						if(time() - intval($_SESSION['session_storage_time'][$_key]) > intval($_SESSION['session_storage_time_limit'][$_key]))
+						{
+							return null;
+						}
+					}
+
 					return $_SESSION['session_storage'][$_key];
 				}
 				else
