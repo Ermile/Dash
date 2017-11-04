@@ -167,27 +167,15 @@ trait login
 
 		$_SESSION['user']    = [];
 		$_SESSION['contact'] = [];
-
-		// if(isset($_SESSION['main_account']) && isset($_SESSION['main_mobile']))
-		// {
-		// 	if(isset($_SESSION['user']['mobile']) && $_SESSION['user']['mobile'] !== $_SESSION['main_mobile'])
-		// 	{
-		// 		$host = Protocol."://" . \lib\router::get_domain();
-		// 		$host .= \lib\define::get_current_language_string();
-		// 		$host .= '/enter?mobile='. (string) $_SESSION['main_mobile'];
-		// 		$redirect = new \lib\redirector($host);
-		// 		$redirect->redirect();
-		// 		return;
-		// 	}
-		// }
+		$_SESSION            = [];
 
 		// unset and destroy session then regenerate it
-		// session_unset();
-		// if(session_status() === PHP_SESSION_ACTIVE)
-		// {
-		// 	session_destroy();
-		// 	// session_regenerate_id(true);
-		// }
+		session_unset();
+		if(session_status() === PHP_SESSION_ACTIVE)
+		{
+			session_destroy();
+
+		}
 
 		if($_auto_redirect)
 		{
