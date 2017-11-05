@@ -15,9 +15,25 @@ class contact
 	 *
 	 * @return     array|boolean  ( description_of_the_return_value )
 	 */
-	public static function add($_args, $_option = [])
+	public static function merge($_args, $_option = [])
 	{
 		\lib\app::variable($_args);
+
+		$default_option =
+		[
+			'user_id'        => null,
+			'other_field'    => null,
+			'other_field_id' => null,
+			'save_log'       => true,
+			'debug'          => true,
+		];
+
+		if(!is_array($_option))
+		{
+			$_option = [];
+		}
+
+		$_option = array_merge($default_option, $_option);
 
 		$log_meta =
 		[
@@ -28,22 +44,9 @@ class contact
 			]
 		];
 
-		$default_option =
-		[
-			'save_log' => true,
-			'debug'    => true,
-		];
-
-		if(!is_array($_option))
-		{
-			$_option = [];
-		}
-
 		$_option = array_merge($default_option, $_option);
 
-		$user_id = \lib\app::request('user_id');
-		$user_id = \lib\utility\shortURL::decode($user_id);
-		if(!$user_id)
+		if(!$_option['user_id'])
 		{
 			\lib\app::log("api:contact:user:id:not:set", \lib\user::id(), $log_meta);
 			debug::error(T_("User id not set"), 'user_id');
@@ -52,52 +55,95 @@ class contact
 
 		$all_request = \lib\app::request();
 
-		$insert_contact = [];
+		if($_option['other_field'] && $_option['other_field_id'])
+		{
+			$get_old_contact_data =
+			[
+				$_option['other_field'] => $_option['other_field_id'],
+				'user_id'               => $_option['user_id'],
 
-		$in_user_db =
-		[
-			'mobile',
-			'displayname',
-			'title',
-			'avatar',
-			'status',
-			'gender',
-			'type',
-			'email',
-			'parent',
-			'permission',
-			'username',
-			'pin',
-			'ref',
-			'twostep',
-			'unit_id',
-			'language',
-		];
+			];
+		}
+		else
+		{
+			$get_old_contact_data =
+			[
+				'user_id'               => $_option['user_id'],
+			];
+		}
+
+		$get_old_contact_data = \lib\db\contacts::get($get_old_contact_data);
+
+		$exist_key   = [];
+		$exist_value = [];
+
+		if(is_array($get_old_contact_data))
+		{
+			$exist_key   = array_column($get_old_contact_data, 'key', 'id');
+			$exist_value = array_column($get_old_contact_data, 'value', 'key');
+		}
+
+		$must_insert = [];
+		$must_update = [];
+		$must_delete = [];
 
 		foreach ($all_request as $key => $value)
 		{
-			if(!in_array($key, $in_user_db))
+			$value = trim($value);
+			if(!isset($value))
 			{
-				$value = trim($value);
-				if(isset($value))
+				continue;
+			}
+
+			if(mb_strlen($key) >= 100)
+			{
+				\lib\app::log("api:contact:$key:the:key:max:length", \lib\user::id(), $log_meta);
+				debug::error(T_("Key of contact is too large"), $key);
+				return false;
+			}
+
+			if(mb_strlen($value) >= 100)
+			{
+				\lib\app::log("api:contact:$key:max:length", \lib\user::id(), $log_meta);
+				debug::error(T_("Store name of contact can not be null"), $key);
+				return false;
+			}
+
+			if(in_array($key, $exist_key))
+			{
+				// contact by this key was exist
+				// if need update it
+				if(isset($exist_value[$key]) && $exist_value[$key] == $value)
 				{
-					if(mb_strlen($key) >= 100)
-					{
-						\lib\app::log("api:contact:$key:the:key:max:length", \lib\user::id(), $log_meta);
-						debug::error(T_("Key of contact is too large"), $key);
-						return false;
-					}
-
-					if(mb_strlen($value) >= 100)
-					{
-						\lib\app::log("api:contact:$key:max:length", \lib\user::id(), $log_meta);
-						debug::error(T_("Store name of contact can not be null"), $key);
-						return false;
-					}
-
-					$contact[] =
+					// need less to update it
+				}
+				else
+				{
+					$must_update[] =
 					[
-						'user_id' => $user_id,
+						'args' => ['value' => $value],
+						'id'   => array_search($key, $exist_key),
+					];
+				}
+			}
+			else
+			{
+				// add new record of contact
+				if($_option['other_field'] && $_option['other_field_id'])
+				{
+					$must_insert[] =
+					[
+						$_option['other_field'] => $_option['other_field_id'],
+						'user_id'               => $_option['user_id'],
+						'key'                   => $key,
+						'value'                 => $value,
+					];
+				}
+				else
+				{
+					$must_insert[] =
+					[
+						'user_id' => $_option['user_id'],
 						'key'     => $key,
 						'value'   => $value,
 					];
@@ -105,9 +151,17 @@ class contact
 			}
 		}
 
-		if(!empty($insert_contact))
+		if(!empty($must_update))
 		{
-			\lib\db\contacts::insert_multi($insert_contact);
+			foreach ($must_update as $key => $value)
+			{
+				\lib\db\contacts::update($value['args'], $value['id']);
+			}
+		}
+
+		if(!empty($must_insert))
+		{
+			\lib\db\contacts::insert_multi($must_insert);
 		}
 
 		return true;
