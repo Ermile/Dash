@@ -66,7 +66,7 @@ class languageDetection
 
 	// choice of redirection header or just getting language data
 	// to call this you only need to use the $feature parameter
-	function get_languages( $feature, $spare='' )
+	public function get_languages( $feature, $spare='' )
 	{
 		// initialize variables
 		$a_languages = load_language_data();
@@ -147,7 +147,7 @@ class languageDetection
 		}
 	}
 
-	function load_language_data()
+	public function load_language_data()
 	{
 		/**
 		pack abbreviation/language array

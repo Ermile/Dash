@@ -13,7 +13,7 @@ class model extends \mvc\model
 	}
 
 
-	function generate_sitemap()
+	public function generate_sitemap()
 	{
 		// create sitemap for each language
 		$result   = '';

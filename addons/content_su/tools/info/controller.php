@@ -11,7 +11,7 @@ class controller extends \addons\content_su\main\controller
 	}
 
 
-	function showInfo()
+	public function showInfo()
 	{
 		$name = \lib\router::get_url(2);
 

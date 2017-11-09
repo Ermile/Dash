@@ -7,7 +7,7 @@ trait template
 	 * [s_template_finder description]
 	 * @return [type] [description]
 	 */
-	function s_template_finder()
+	public function s_template_finder()
 	{
 		// if lang exist in module or subdomain remove it and continue
 		$currentLang = \lib\define::get_language();

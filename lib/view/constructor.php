@@ -154,7 +154,7 @@ trait constructor
 	 * [save_as_cookie description]
 	 * @return [type] [description]
 	 */
-	function save_as_cookie()
+	public function save_as_cookie()
 	{
 		if(\lib\option::config('save_as_cookie'))
 		{

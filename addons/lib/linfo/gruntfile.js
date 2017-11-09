@@ -40,9 +40,9 @@ module.exports = function(grunt) {
 			dev: {
 				options: {sourceMap: true},
 				files: {'layout/scripts.min.js': ['layout/scripts.js']}
-			}			
-		},	
-		
+			}
+		},
+
 		sass: {
 			dist: {
 				options: {

@@ -13,7 +13,7 @@ class main
 	 *
 	 * @return     string  ( description_of_the_return_value )
 	 */
-	function check_controller($_controller_name)
+	public function check_controller($_controller_name)
 	{
 		$find = null;
 
@@ -48,7 +48,7 @@ class main
 	 * @param      <type>  $_name      The name
 	 * @param      <type>  $_function  The function
 	 */
-	function add_track($_name, $_function)
+	public function add_track($_name, $_function)
 	{
 		array_push(self::$tracks, array($_name, $_function));
 	}

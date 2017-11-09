@@ -135,7 +135,7 @@ trait mvc
 	 * @param      <type>  $_name    The name
 	 * @param      <type>  $_addons  The addons
 	 */
-	function addons_method_import($_name, $_addons)
+	public function addons_method_import($_name, $_addons)
 	{
 		$class_type = explode('\\', get_class());
 		$class_type = end($class_type);

@@ -11,7 +11,7 @@ class controller extends \addons\content_su\main\controller
 	}
 
 
-	function updateGitRepo()
+	public function updateGitRepo()
 	{
 		// declare variables
 		$exist    = true;

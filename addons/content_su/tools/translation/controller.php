@@ -11,7 +11,7 @@ class controller extends \addons\content_su\main\controller
 		$this->get()->ALL();
 	}
 
-	function getUpdates()
+	public function getUpdates()
 	{
 
 		$exist    = true;

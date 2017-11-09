@@ -48,7 +48,7 @@ class controller extends \mvc\controller
 	 * @param      <type>   $_perm     The permission
 	 * @param      boolean  $_login    The login
 	 */
-	function _permission($_content = null, $_module = null, $_perm = null, $_login = true)
+	public function _permission($_content = null, $_module = null, $_perm = null, $_login = true)
 	{
 		// if user is not login then redirect
 		if($_login && !$this->login())
@@ -83,7 +83,7 @@ class controller extends \mvc\controller
 	 * find best display for this page!
 	 * @return [type] [description]
 	 */
-	function suFindDisplay()
+	public function suFindDisplay()
 	{
 		$mymodule = $this->suModule('table');
 		$suModule = $this->suModule('raw');

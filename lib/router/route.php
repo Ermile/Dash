@@ -64,7 +64,7 @@ class route
 	}
 
 
-	function max($max)
+	public function max($max)
 	{
 		$url = \lib\router::get_url(-1);
 		if(count($url) > 0 && \lib\router::get_class() == $url[0]){
@@ -79,7 +79,7 @@ class route
 	}
 
 
-	function min($min)
+	public function min($min)
 	{
 		if(count(\lib\router::$url_array) < $min){
 			$this->status = false;
@@ -87,7 +87,7 @@ class route
 	}
 
 
-	function fn($function)
+	public function fn($function)
 	{
 		if(is_object($function)){
 			$status = call_user_func($function);
@@ -99,35 +99,35 @@ class route
 		$this->status = (!$status)? false : $this->status;
 	}
 
-	function real_url($url_Parameters){
+	public function real_url($url_Parameters){
 		$this->parametersCaller('real_url', $url_Parameters, \lib\router::$real_url_array, '/');
 	}
 
-	function property($url_Parameters){
+	public function property($url_Parameters){
 		$this->parametersCaller('property', $url_Parameters, \lib\router::$url_index_property);
 	}
 
-	function url($url_Parameters){
+	public function url($url_Parameters){
 		$this->parametersCaller('url', $url_Parameters, \lib\router::$url_array);
 	}
 
-	function sub_domain($sub_domain_Parameters){
+	public function sub_domain($sub_domain_Parameters){
 		$this->parametersCaller('sub_domain', $sub_domain_Parameters, \lib\router::$sub_domain, '.');
 	}
 
-	function domain($domain_Parameters){
+	public function domain($domain_Parameters){
 		$this->parametersCaller('domain', $domain_Parameters, \lib\router::$domain, '.');
 	}
 
-	function get($get){
+	public function get($get){
 		$this->parametersCaller('get', $get, $_GET, '&');
 	}
 
-	function post($post){
+	public function post($post){
 		$this->parametersCaller('post', $post, $_POST, '&');
 	}
 
-	function parametersCaller($name, $parameters, $array, $join = "/")
+	public function parametersCaller($name, $parameters, $array, $join = "/")
 	{
 		if(!is_array($parameters)){
 			$match = $this->check_parameters($parameters, join($array, $join));
@@ -163,7 +163,7 @@ class route
 		}
 	}
 
-	function check_parameters($reg, $value)
+	public function check_parameters($reg, $value)
 	{
 		if(preg_match("/^(\/.*\/|#.*#|[.*])[gui]{0,3}$/i", $reg)){
 			if(!preg_match($reg, $value, $array)){

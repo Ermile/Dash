@@ -8,7 +8,7 @@ trait sessions
 	 * @param  boolean $reload [description]
 	 * @return [type]          [description]
 	 */
-	function regenerateSession($reload = false)
+	public function regenerateSession($reload = false)
 	{
 		return;
 		// // This token is used by forms to prevent cross site forgery attempts
