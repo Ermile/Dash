@@ -258,7 +258,10 @@ class sitemap
 		$indexwriter->setIndent(true);
 		$indexwriter->startElement('sitemapindex');
 		$indexwriter->writeAttribute('xmlns', self::SCHEMA);
-		for ($index = 0; $index < $this->getCurrentSitemap(); $index++)
+
+		$current_sitemap = $this->getCurrentSitemap();
+
+		for ($index = 0; $index < $current_sitemap; $index++)
 		{
 			$indexwriter->startElement('sitemap');
 			$indexwriter->writeElement('loc', $loc . $this->getFilename() . ($index ? self::SEPERATOR . $index : '') . self::EXT);
