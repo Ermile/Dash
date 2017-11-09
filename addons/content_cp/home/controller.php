@@ -6,12 +6,12 @@ class controller extends \mvc\controller
 	 * check login and permission
 	 * @return [type] [description]
 	 */
-	function __construct()
+	public function __construct()
 	{
 		parent::__construct();
 	}
 
-	function _permission($_content = null, $_module = null, $_perm = null,$_login = true)
+	public function _permission($_content = null, $_module = null, $_perm = null,$_login = true)
 	{
 		// if user is not login then redirect
 		if($_login && !$this->login())
@@ -93,7 +93,7 @@ class controller extends \mvc\controller
 	 * find best display for this page!
 	 * @return [type] [description]
 	 */
-	function cpFindDisplay()
+	public function cpFindDisplay()
 	{
 		$mymodule = $this->cpModule('table');
 		$cpModule = $this->cpModule('raw');
@@ -254,7 +254,7 @@ class controller extends \mvc\controller
 	 * define perm modules for permission level
 	 * @return [array] return the permissions in this content
 	 */
-	static function permModules()
+	public static function permModules()
 	{
 		$mylist	= self::$manifest['modules']->modules_search('permissions');
 		return $mylist;

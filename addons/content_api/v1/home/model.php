@@ -71,7 +71,7 @@ class model extends \mvc\model
 	 *
 	 * @return     <type>  ( description_of_the_return_value )
 	 */
-	function _call($_name, $_args, $parm)
+	public function _call($_name, $_args, $parm)
 	{
 		$this->url = \lib\router::get_url();
 
