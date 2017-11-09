@@ -3,7 +3,7 @@ namespace addons\content_su\tools;
 
 class controller extends \addons\content_su\main\controller
 {
-	function ready()
+	public function ready()
 	{
 		parent::ready();
 

@@ -8,7 +8,7 @@ class controller extends \mvc\controller
 	 * check route of account
 	 * @return [type] [description]
 	 */
-	function ready()
+	public function ready()
 	{
 		$url = \lib\router::get_url();
 		// /main can not route

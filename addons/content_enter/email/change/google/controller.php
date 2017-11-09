@@ -7,7 +7,7 @@ class controller extends \addons\content_enter\main\controller
 	 * check route of account
 	 * @return [type] [description]
 	 */
-	function ready()
+	public function ready()
 	{
 		$url = \lib\router::get_url();
 		// if(self::lock('email/change/google'))

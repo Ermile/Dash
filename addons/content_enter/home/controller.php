@@ -7,7 +7,7 @@ class controller extends \addons\content_enter\main\controller
 	 * check route of account
 	 * @return [type] [description]
 	 */
-	function ready()
+	public function ready()
 	{
 		// if the user login redirect to base
 		if(\lib\permission::access('enter:another:session'))
