@@ -11,7 +11,7 @@ class age
 	 */
     public static function get_age($_brithday)
     {
-        if($_brithday == null)
+        if($_brithday === null)
         {
             return null;
         }

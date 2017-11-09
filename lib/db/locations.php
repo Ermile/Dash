@@ -240,7 +240,7 @@ class locations
 
 		$where = join($where, " AND ");
 		$search = null;
-		if($_string != null)
+		if($_string !== null)
 		{
 			$search = "(locations.search LIKE '%$_string%')";
 			if($where)

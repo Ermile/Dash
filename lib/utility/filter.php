@@ -140,7 +140,7 @@ class filter
 			$json_fields = preg_grep($_options[0], $keys);
 			$to_array = true;
 			$options = $_options[1];
-			if(array_key_exists('return_object', $options) && $options['return_object'] == true)
+			if(array_key_exists('return_object', $options) && $options['return_object'] === true)
 			{
 				$to_array = false;
 			}

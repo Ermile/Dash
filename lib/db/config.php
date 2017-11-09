@@ -611,7 +611,7 @@ class config
 
 		$where = join($where, " AND ");
 		$search = null;
-		if($_string != null && $search_field)
+		if($_string !== null && $search_field)
 		{
 			$_string = trim($_string);
 

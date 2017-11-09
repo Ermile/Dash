@@ -311,7 +311,7 @@ class logitems
 
 		$where = join($where, " AND ");
 		$search = null;
-		if($_string != null)
+		if($_string !== null)
 		{
 			$search =
 			"(

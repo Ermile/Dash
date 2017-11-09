@@ -466,7 +466,7 @@ class controller
 	{
 		$route = new route(false);
 		$return_route = call_user_func_array(array($route, 'check_route'), func_get_args());
-		if($route->status == true)
+		if($route->status === true)
 		{
 			$this->route_check_true = true;
 		}

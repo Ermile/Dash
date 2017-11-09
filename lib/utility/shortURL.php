@@ -31,7 +31,7 @@ class shortURL
 	 */
 	public static function encode($_num = null, $_alphabet = null)
 	{
-		if($_alphabet == null)
+		if($_alphabet === null)
 		{
 			$_alphabet = self::$ALPHABET;
 		}
@@ -61,7 +61,7 @@ class shortURL
 	 */
 	public static function decode($_str = null, $_alphabet = null)
 	{
-		if($_alphabet == null)
+		if($_alphabet === null)
 		{
 			$_alphabet = self::$ALPHABET;
 		}
@@ -92,7 +92,7 @@ class shortURL
 	 */
 	public static function is($_string, $_alphabet = null)
 	{
-		if($_alphabet == null)
+		if($_alphabet === null)
 		{
 			$_alphabet = self::$ALPHABET;
 		}
@@ -110,7 +110,7 @@ class shortURL
 	 */
 	public static function encode_number($_num, $_alphabet = null)
 	{
-		if($_alphabet == null)
+		if($_alphabet === null)
 		{
 			$_alphabet = self::$ALPHABET_NUMBER;
 		}
@@ -128,7 +128,7 @@ class shortURL
 	 */
 	public static function decode_number($_num, $_alphabet = null)
 	{
-		if($_alphabet == null)
+		if($_alphabet === null)
 		{
 			$_alphabet = self::$ALPHABET_NUMBER;
 		}
@@ -147,7 +147,7 @@ class shortURL
 	 */
 	public static function encode_all($_num, $_alphabet = null)
 	{
-		if($_alphabet == null)
+		if($_alphabet === null)
 		{
 			$_alphabet = self::$ALPHABET_ALL;
 		}
@@ -165,7 +165,7 @@ class shortURL
 	 */
 	public static function decode_all($_string, $_alphabet = null)
 	{
-		if($_alphabet == null)
+		if($_alphabet === null)
 		{
 			$_alphabet = self::$ALPHABET_ALL;
 		}

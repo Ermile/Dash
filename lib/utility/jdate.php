@@ -102,7 +102,7 @@ class jdate
         if(!$stamp)
             return 0;
 
-        $timezone = ($timezone != null) ? $timezone : ((self::$timezone != null) ? self::$timezone : date_default_timezone_get());
+        $timezone = ($timezone !== null) ? $timezone : ((self::$timezone != null) ? self::$timezone : date_default_timezone_get());
         $obj      = new \DateTime('@' . $stamp, new \DateTimeZone($timezone));
         $obj->setTimezone(new \DateTimeZone($timezone));
 
@@ -358,8 +358,8 @@ class jdate
         //Create a new object and set the timezone if available
         $date = $year.'-'.sprintf('%02d', $month).'-'.sprintf('%02d', $day).' '.$hour.':'.$minute.':'.$second;
 
-        if ( self::$timezone != null || $timezone != null ) {
-            $obj = new \DateTime($date, new \DateTimeZone(($timezone != null) ? $timezone : self::$timezone));
+        if ( self::$timezone !== null || $timezone !== null ) {
+            $obj = new \DateTime($date, new \DateTimeZone(($timezone !== null) ? $timezone : self::$timezone));
         }
         else {
             $obj = new \DateTime($date);
