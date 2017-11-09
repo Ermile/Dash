@@ -32,24 +32,24 @@ class model extends \addons\content_enter\main\model
 			return;
 		// }
 
-		if(!utility::post('mobile'))
-		{
-			debug::error(T_("Please enter mobile or skip this step"));
-			return false;
-		}
+		// if(!utility::post('mobile'))
+		// {
+		// 	debug::error(T_("Please enter mobile or skip this step"));
+		// 	return false;
+		// }
 
-		$mobile = utility\filter::mobile(utility::post('mobile'));
+		// $mobile = utility\filter::mobile(utility::post('mobile'));
 
-		if(!$mobile)
-		{
-			debug::error(T_("Please enter a valid mobile number"));
-			return false;
-		}
+		// if(!$mobile)
+		// {
+		// 	debug::error(T_("Please enter a valid mobile number"));
+		// 	return false;
+		// }
 
-		self::set_enter_session('verify_from', 'mobile_request');
-		self::set_enter_session('temp_mobile', $mobile);
-		self::send_code_way();
-		return;
+		// self::set_enter_session('verify_from', 'mobile_request');
+		// self::set_enter_session('temp_mobile', $mobile);
+		// self::send_code_way();
+		// return;
 	}
 }
 ?>

@@ -147,7 +147,6 @@ trait zarinpal
                 logs::set('pay:zarinpal:Authority:not:set', $_user_id, $log_meta);
                 debug::error(T_("Zarinpal payment Authority not found"));
                 return false;
-                return false;
             }
         }
         else
