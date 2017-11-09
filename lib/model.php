@@ -13,13 +13,16 @@ class model
 	/**
 	 * construct
 	 *
-	 * @param      boolean  $object  The object
+	 * @param      boolean  $_startObject  The object
 	 */
-	public function __construct($object = false)
+	public function __construct($_startObject = false)
 	{
-		if(!$object) return;
+		if(!$_startObject)
+		{
+			return;
+		}
 		$this->querys = (object) [];
-		$this->controller = $object->controller;
+		$this->controller = $_startObject->controller;
 		if(method_exists($this, '_construct'))
 		{
 			$this->_construct();

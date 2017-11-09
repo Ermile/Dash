@@ -13,19 +13,22 @@ class view
 	 * twig options
 	 * @var array
 	 */
-	public $twig = array();
+	public $twig = [];
 	/**
 	 * constructor
-	 * @param boolean $object controller
+	 * @param boolean $_startObject controller
 	 */
 
-	public $twig_include_path = array();
+	public $twig_include_path = [];
 
-	public function __construct($object = false)
+	public function __construct($_startObject = false)
 	{
-		if(!$object) return;
+		if(!$_startObject)
+		{
+			return;
+		}
 
-		$this->controller            = $object->controller;
+		$this->controller            = $_startObject->controller;
 
 		$this->data                  = new view\data();
 		$this->data->url             = (object) [];
