@@ -13,16 +13,16 @@ require_once ("define.php");
 */
 class autoload
 {
-	static $require     = [];
-	static $core_prefix = ['lib', 'mvc', 'addons'];
-	static $autoload    = false;
+	public static $require     = [];
+	public static $core_prefix = ['lib', 'mvc', 'addons'];
+	public static $autoload    = false;
 
 	/**
 	 * [load description]
 	 * @param  [type] $name [description]
 	 * @return [type]       [description]
 	 */
-	static function load($name)
+	public static function load($name)
 	{
 		if(isset(self::$require[$name]))
 		{
@@ -61,7 +61,7 @@ class autoload
 	 * @param  [type] $split_name [description]
 	 * @return [type]             [description]
 	 */
-	static function get_file_name($split_name)
+	public static function get_file_name($split_name)
 	{
 		list($prefix, $sub_path, $exec_file) = self::file_splice($split_name);
 		$prefix_file = null;
@@ -89,7 +89,7 @@ class autoload
 	 * @param  [type] $exec_file [description]
 	 * @return [type]            [description]
 	 */
-	static function check_file($prefix, $sub_path, $exec_file)
+	public static function check_file($prefix, $sub_path, $exec_file)
 	{
 		if(!defined($prefix))
 		{
@@ -110,7 +110,7 @@ class autoload
 	 * @param  [type] $split_name [description]
 	 * @return [type]             [description]
 	 */
-	static function file_splice($split_name)
+	public static function file_splice($split_name)
 	{
 		$prefix = $split_name[0];
 		array_shift($split_name);

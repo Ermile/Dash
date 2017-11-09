@@ -14,7 +14,7 @@ class controller
 	use \lib\controller\ref;
 
 
-	static $language = false;
+	public static $language = false;
 	public $custom_language = false;
 	public $api, $model, $view, $method;
 	public $model_name, $view_name, $display_name;

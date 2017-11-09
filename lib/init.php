@@ -21,7 +21,7 @@ class init
 	 * and if is less than min, show error message
 	 * @return [type] [description]
 	 */
-	static function minimum_requirement()
+	public static function minimum_requirement()
 	{
 		// check php version to upper than 7.0
 		if(version_compare(phpversion(), '7.0', '<'))

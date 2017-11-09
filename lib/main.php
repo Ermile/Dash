@@ -2,8 +2,8 @@
 namespace lib;
 class main
 {
-	static $controller, $url_property, $prv_class, $myrep, $prv_method = null;
-	static $tracks 		= array();
+	public static $controller, $url_property, $prv_class, $myrep, $prv_method = null;
+	public static $tracks = [];
 
 
 	/**

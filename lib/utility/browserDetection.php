@@ -244,7 +244,7 @@ by resetting that data with the true UA value.
 // main script, uses two other functions, get_os_data() and get_item_version() as needed
 // Optional $_test_excludes is either null or one of the above values
 
-static function browser_detection( $_which_test = 'full_assoc', $_test_excludes='', $_external_ua_string='' )
+public static function browser_detection( $_which_test = 'full_assoc', $_test_excludes='', $_external_ua_string='' )
 {
 	/**
 	uncomment the global variable declaration if you want the variables to be available on
@@ -1027,7 +1027,7 @@ static function browser_detection( $_which_test = 'full_assoc', $_test_excludes=
 	}
 }
 
-static function get_item_math_number( $_pv_browser_number )
+public static function get_item_math_number( $_pv_browser_number )
 {
 	$browser_math_number = '';
 	if ( $_pv_browser_number
@@ -1039,7 +1039,7 @@ static function get_item_math_number( $_pv_browser_number )
 }
 
 // gets which os from the browser string
-static function get_os_data ( $_pv_browser_string, $_pv_browser_name, $_pv_version_number  )
+public static function get_os_data ( $_pv_browser_string, $_pv_browser_name, $_pv_version_number  )
 {
 	// initialize variables
 	$os_working_type = '';
@@ -1196,7 +1196,7 @@ function get_item_version( $browser_user_agent, $search_string, $substring_lengt
 $pv_extra_search='' allows us to set an additional search/exit loop parameter, but we
 only want this running when needed
 **/
-static function get_item_version( $pv_browser_user_agent, $pv_search_string, $pv_b_break_last='', $pv_extra_search='' )
+public static function get_item_version( $pv_browser_user_agent, $pv_search_string, $pv_b_break_last='', $pv_extra_search='' )
 {
 	// 12 is the longest that will be required, handles release dates: 20020323; 0.8.0+
 	$substring_length = 15;
@@ -1252,7 +1252,7 @@ static function get_item_version( $pv_browser_user_agent, $pv_search_string, $pv
 	return $string_working_number;
 }
 
-static function get_set_count( $pv_type, $pv_value='' )
+public static function get_set_count( $pv_type, $pv_value='' )
 {
 	static $slice_increment;
 	$return_value = '';
@@ -1277,7 +1277,7 @@ Special ID notes:
 Novarra-Vision is a Content Transformation Server (CTS)
 Some interesting notes on detection of actual mobile devices
 **/
-static function check_is_mobile( $pv_browser_user_agent )
+public static function check_is_mobile( $pv_browser_user_agent )
 {
 	$mobile_working_test = '';
 	/**
@@ -1320,7 +1320,7 @@ static function check_is_mobile( $pv_browser_user_agent )
 thanks to this page: http://www.zytrax.com/tech/web/mobile_ids.html
 for data used here
 **/
-static function get_mobile_data( $pv_browser_user_agent )
+public static function get_mobile_data( $pv_browser_user_agent )
 {
 	$mobile_browser = '';
 	$mobile_browser_number = '';
@@ -1450,7 +1450,7 @@ static function get_mobile_data( $pv_browser_user_agent )
 	return $a_mobile_data;
 }
 
-static function get_html_level( $_pv_render_engine, $_pv_render_engine_nu )
+public static function get_html_level( $_pv_render_engine, $_pv_render_engine_nu )
 {
 	$html_return = 1;
 	$engine_nu = $_pv_render_engine_nu;
@@ -1501,7 +1501,7 @@ static function get_html_level( $_pv_render_engine, $_pv_render_engine_nu )
 }
 
 // track total script execution time
-static function script_time()
+public static function script_time()
 {
 	static $script_time;
 	$elapsed_time = '';

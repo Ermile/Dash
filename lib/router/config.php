@@ -3,47 +3,47 @@ namespace lib\router;
 trait config
 {
 	//protocol
-	static public $protocol           = "http";
-	static public $base               = null;
-	static public $prefix_base        = null;
-	static public $sub_real            = null;
+	public static $protocol           = "http";
+	public static $base               = null;
+	public static $prefix_base        = null;
+	public static $sub_real            = null;
 
 	// original routers
-	static public $class, $method;
+	public static $class, $method;
 
 	// real urls
-	static public $real_url_string    = array();
-	static public $real_url_array     = array();
+	public static $real_url_string    = array();
+	public static $real_url_array     = array();
 
 	// dynamic url
-	static public $url_string         = array();
-	static public $url_array          = array();
+	public static $url_string         = array();
+	public static $url_array          = array();
 
 	// url property exp: add          =20/name=hasan => add = 20; name = hasan
-	static public $url_index_property = array();
+	public static $url_index_property = array();
 
 	// url array exp: track/add/name  =hasan => 0 = track; 1 = name; 2 = 'name=hasan'
-	static public $url_array_property = array();
+	public static $url_array_property = array();
 
 	// domain array
-	static public $domain             = array();
-	static public $sub_domain         = array();
+	public static $domain             = array();
+	public static $sub_domain         = array();
 
 	// repository
-	static $repository                = null;
+	public static $repository                = null;
 
 	// repository
 	public static $repository_name    = 'content';
 	public static $repository_finded  = null;
 
 	// api status, if you want to disable it, change this value
-	static $auto_api                  = true;
+	public static $auto_api                  = true;
 
 	// api status, if you want to disable it, change this value
-	static $auto_repository           = true;
+	public static $auto_repository           = true;
 
 	// controller runing
-	static $controller;
+	public static $controller;
 
 	// cache array all static property
 	public static $cache_array = array();

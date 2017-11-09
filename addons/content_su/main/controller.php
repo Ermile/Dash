@@ -169,7 +169,7 @@ class controller extends \mvc\controller
 	 * define perm modules for permission level
 	 * @return [array] return the permissions in this content
 	 */
-	static function permModules()
+	public static function permModules()
 	{
 		$mylist	= self::$manifest['modules']->modules_search('permissions');
 		return $mylist;

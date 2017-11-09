@@ -537,7 +537,7 @@ class tg
 	 * @param  [type] $_args [description]
 	 * @return [type]        [description]
 	 */
-	static function __callStatic($_name, $_args)
+	public static function __callStatic($_name, $_args)
 	{
 		if(isset($_args[0]))
 		{
