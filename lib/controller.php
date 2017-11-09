@@ -5,13 +5,13 @@ use \lib\api;
 
 class controller
 {
-	use mvc;
-	use controller\login;
-	use controller\sessions;
-	use controller\template;
-	use controller\url;
-	use controller\pagnation;
-	use controller\ref;
+	use \lib\mvc;
+	use \lib\controller\login;
+	use \lib\controller\sessions;
+	use \lib\controller\template;
+	use \lib\controller\url;
+	use \lib\controller\pagnation;
+	use \lib\controller\ref;
 
 
 	static $language = false;

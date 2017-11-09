@@ -5,7 +5,7 @@ namespace lib\db;
 class posts
 {
 
-	use posts\search;
+	use \lib\db\posts\search;
 
 	/**
 	 * this library work with posts

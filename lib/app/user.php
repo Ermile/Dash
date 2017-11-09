@@ -9,10 +9,10 @@ use \lib\debug;
 class user
 {
 
-	use user\add;
-	use user\edit;
-	use user\datalist;
-	use user\get;
+	use \lib\app\user\add;
+	use \lib\app\user\edit;
+	use \lib\app\user\datalist;
+	use \lib\app\user\get;
 
 
 	/**

@@ -115,7 +115,7 @@ class dash
 				$commitDate = $commitDate->format('Y-m-d');
 			}
 		}
-		catch (Exception $e)
+		catch (\Exception $e)
 		{
 			$commitDate = date();
 		}

@@ -5,7 +5,7 @@ namespace lib;
  */
 class router
 {
-	use router\config;
+	use \lib\router\config;
 
 	public function __construct($_clean_url = null)
 	{

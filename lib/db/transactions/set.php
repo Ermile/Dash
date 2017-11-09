@@ -5,7 +5,7 @@ use \lib\utility;
 
 trait set
 {
-	use code_list;
+	use \lib\db\transactions\code_list;
 
 	/**
 	 * set a record of transactions

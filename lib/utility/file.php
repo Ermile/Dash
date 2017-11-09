@@ -312,7 +312,7 @@ class file
 				{
 					if(!$_path)
 					{
-						$path = DATA_DIR . Config::DIR_DATA_TMP . upload::_FILES($_name)['name'][ $i ];
+						$path = DATA_DIR . \Config::DIR_DATA_TMP . upload::_FILES($_name)['name'][ $i ];
 					}
 					else
 					{
@@ -337,7 +337,7 @@ class file
 			{
 				if(!$_path)
 				{
-					$path = DATA_DIR . Config::DIR_DATA_TMP . upload::_FILES($_name)['name'];
+					$path = DATA_DIR . \Config::DIR_DATA_TMP . upload::_FILES($_name)['name'];
 				}
 				else
 				{

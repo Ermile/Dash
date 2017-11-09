@@ -3,7 +3,7 @@ namespace lib\router;
 
 class cache
 {
-	use config;
+	use lib\router\config;
 	public static $cache = true;
 	public $_self;
 

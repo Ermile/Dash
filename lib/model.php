@@ -3,11 +3,11 @@ namespace lib;
 
 class model
 {
-	use mvc;
+	use \lib\mvc;
 
-	use model\breadcrumb;
-	use model\template;
-	use controller\login;
+	use \lib\model\breadcrumb;
+	use \lib\model\template;
+	use \lib\controller\login;
 
 
 	/**

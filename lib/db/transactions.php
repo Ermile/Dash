@@ -8,8 +8,8 @@ use \lib\db;
 class transactions
 {
 
-	use transactions\set;
-	use transactions\budget;
+	use \lib\db\transactions\set;
+	use \lib\db\transactions\budget;
 
 
 	/**
