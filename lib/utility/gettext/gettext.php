@@ -275,7 +275,8 @@ class gettext_reader {
    * @access private
    * @return string sanitized plural form expression
    */
-  function sanitize_plural_expression($expr) {
+  function sanitize_plural_expression($expr)
+  {
     // Get rid of disallowed characters.
     $expr = preg_replace('@[^a-zA-Z0-9_:;\(\)\?\|\&=!<>+*/\%-]@', '', $expr);
 
@@ -283,20 +284,26 @@ class gettext_reader {
     $expr .= ';';
     $res = '';
     $p = 0;
-    for ($i = 0; $i < strlen($expr); $i++) {
+    $expr_len = strlen($expr);
+    for ($i = 0; $i < $expr_len; $i++)
+    {
       $ch = $expr[$i];
-      switch ($ch) {
+      switch ($ch)
+      {
       case '?':
         $res .= ' ? (';
         $p++;
         break;
+
       case ':':
         $res .= ') : (';
         break;
+
       case ';':
         $res .= str_repeat( ')', $p) . ';';
         $p = 0;
         break;
+
       default:
         $res .= $ch;
       }

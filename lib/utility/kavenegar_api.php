@@ -206,9 +206,10 @@ class kavenegar_api
 	 */
 	public function sendarray($_sender, $_receptor, $_message, $_type= 1, $_date= 0)
 	{
-		$sender  = array();
-		$message = array();
-		$type    = array();
+		$sender         = [];
+		$message        = [];
+		$type           = [];
+		$receptor_count = count($_receptor);
 
 		if(is_array($_sender))
 		{
@@ -216,7 +217,7 @@ class kavenegar_api
 		}
 		else
 		{
-			for ($i = 0; $i < count($_receptor); $i++)
+			for ($i = 0; $i < $receptor_count; $i++)
 			{
 				array_push($sender, $_sender);
 			}
@@ -228,7 +229,7 @@ class kavenegar_api
 		}
 		else
 		{
-			for ($i = 0; $i < count($_receptor); $i++)
+			for ($i = 0; $i < $receptor_count; $i++)
 			{
 				array_push($message, $_message);
 			}
@@ -240,7 +241,7 @@ class kavenegar_api
 		}
 		else
 		{
-			for ($i = 0; $i < count($_receptor); $i++)
+			for ($i = 0; $i < $receptor_count; $i++)
 			{
 				array_push($type, $_type);
 			}

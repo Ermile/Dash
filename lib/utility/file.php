@@ -306,8 +306,9 @@ class file
 			if( is_array( upload::_FILES($_name)['name'] ) )
 			{
 				$paths = array();
+				$files_count = count(upload::_FILES($_name)['name']);
 
-				for( $i = 0; $i < count( upload::_FILES($_name)['name'] ); $i++ )
+				for( $i = 0; $i < $files_count; $i++ )
 				{
 					if(!$_path)
 					{
