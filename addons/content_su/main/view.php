@@ -19,27 +19,19 @@ class view extends \mvc\view
 		// $this->include->uploader      = true;
 		$this->global->js             = [];
 
-		$this->data->display['su_posts']  = "content_su/posts/layout.html";
+		$this->data->display['su_posts'] = "content_su/posts/layout.html";
 		$this->data->display['suSample'] = "content_su/sample/layout.html";
 
-
-		$this->data->dash['version']    = \lib\dash::getLastVersion();
-		$this->data->dash['lastUpdate'] = \lib\dash::getLastUpdate();
-		$this->data->dash['langlist']   = ['fa_IR' => 'Persian - فارسی',
+		$this->data->dash['langlist']    = ['fa_IR' => 'Persian - فارسی',
 											 'en_US' => 'English',
 											 'ar_SU' => 'Arabic - العربية'];
-
-		// $this->global->js             = [$this->url->myStatic.'js/highcharts/highcharts.js'];
-		// $this->data->page['desc']  = 'salam';
 		$mymodule = $this->module();
+		$this->data->dir['right']        = $this->global->direction == 'rtl'? 'left':  'right';
+		$this->data->dir['left']         = $this->global->direction == 'rtl'? 'right': 'left';
+		$this->data->page['title']       = T_(ucfirst(\lib\router::get_url(' ')));
 
-		$this->data->page['title']    = T_(ucfirst(\lib\router::get_url(' ')));
-
-
-		// $this->data->suModule         = $this->suModule();
-
-		$this->data->dir['right']     = $this->global->direction == 'rtl'? 'left':  'right';
-		$this->data->dir['left']      = $this->global->direction == 'rtl'? 'right': 'left';
+		$this->data->dash['version']     = \lib\dash::getLastVersion();
+		$this->data->dash['lastUpdate']  = \lib\dash::getLastUpdate();
 	}
 
 

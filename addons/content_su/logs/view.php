@@ -6,10 +6,9 @@ class view extends \addons\content_su\main\view
 	public function view_list($_args)
 	{
 
-		$field = $this->controller()->fields;
+		$field                 = $this->controller()->fields;
 
-		$list = $this->model()->logs_list($_args, $field);
-
+		$list                  = $this->model()->logs_list($_args, $field);
 		$this->data->logs_list = $list;
 
 		$this->order_url($_args, $field);

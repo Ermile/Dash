@@ -2,20 +2,19 @@
 namespace addons\content_su\permission;
 
 use \lib\utility;
-use \lib\debug;
+
 class model extends \addons\content_su\main\model
 {
 	public function permission_list($_args, $_fields = [])
 	{
-		$meta   = [];
+		$meta          = [];
 		$meta['admin'] = true;
+		$search        = null;
 
-		$search = null;
 		if(utility::get('search'))
 		{
 			$search = utility::get('search');
 		}
-
 		foreach ($_fields as $key => $value)
 		{
 			if(isset($_args->get($value)[0]))
@@ -23,9 +22,6 @@ class model extends \addons\content_su\main\model
 				$meta[$value] = $_args->get($value)[0];
 			}
 		}
-
-		// $result = \lib\db\permission::search($search, $meta);
-		// return $result;
 	}
 
 
@@ -57,7 +53,7 @@ class model extends \addons\content_su\main\model
 		{
 			$perm_field = implode(',', $perm_list);
 			\lib\db\users::update(['permission' => $perm_field], $id);
-			debug::true(T_("Permission added to this user"));
+			\lib\debug::true(T_("Permission added to this user"));
 		}
 
 	}

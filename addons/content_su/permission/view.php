@@ -9,9 +9,9 @@ class view extends \addons\content_su\main\view
 
 		if(is_array($list_perm))
 		{
-			$cat = array_column($list_perm, 'cat');
-			$cat = array_unique($cat);
-			$cat = array_filter($cat);
+			$cat                  = array_column($list_perm, 'cat');
+			$cat                  = array_unique($cat);
+			$cat                  = array_filter($cat);
 			$this->data->perm_cat = $cat;
 		}
 

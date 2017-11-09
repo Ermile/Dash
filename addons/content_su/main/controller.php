@@ -141,53 +141,6 @@ class controller extends \mvc\controller
 		$result = ['raw' => $_module, 'table' => $_module, 'prefix' => $myprefix, 'type' => null, 'cat' => null ];
 		switch ($_module)
 		{
-			case 'posts':
-				$result['type']   = 'post';
-				$result['cat']    = 'cat';
-
-			case 'pages':
-				$result['type']   = $result['type']? $result['type']: 'page';
-				$result['cat']    = $result['cat']?  $result['cat']:  'cat';
-
-			case 'helps':
-				$result['type']   = $result['type']? $result['type']: 'help';
-				$result['cat']    = $result['cat']?  $result['cat']:  'cat_help';
-
-			case 'attachments':
-				$result['type']   = $result['type']? $result['type']: 'attachment';
-				$result['cat']    = $result['cat']?  $result['cat']:  'cat_file';
-
-			case 'polls':
-				$result['type']   = $result['type']? $result['type']: 'poll';
-				$result['cat']    = $result['cat']?  $result['cat']:  'cat_poll';
-
-			case 'books':
-				$result['type']   = $result['type']? $result['type']: 'book';
-				$result['cat']    = $result['cat']?  $result['cat']:  'cat_book';
-
-			case 'socialnetwork':
-				$result['type']   = $result['type']? $result['type']: 'socialnetwork';
-
-				$result['table']  = 'posts';
-				$result['prefix'] = 'post';
-				break;
-
-			case 'categories':
-				$result['type']   = 'cat';
-			case 'filecategories':
-				$result['type']   = $result['type']? $result['type']: 'cat_file';
-			case 'helpcategories':
-				$result['type']   = $result['type']? $result['type']: 'cat_help';
-			case 'pollcategories':
-				$result['type']   = $result['type']? $result['type']: 'cat_poll';
-			case 'bookcategories':
-				$result['type']   = $result['type']? $result['type']: 'cat_book';
-			case 'tags':
-				$result['type']   = $result['type']? $result['type']: 'tag';
-
-				$result['table']  = 'terms';
-				$result['prefix'] = 'term';
-				break;
 
 			case 'profile':
 				$result['type']   = 'profile';

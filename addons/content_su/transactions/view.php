@@ -5,26 +5,20 @@ class view extends \addons\content_su\main\view
 {
 	public function view_list($_args)
 	{
-
 		$field = $this->controller()->fields;
-
-		$list = $this->model()->transactions_list($_args, $field);
+		$list  = $this->model()->transactions_list($_args, $field);
 
 		$this->data->transactions_list = $list;
 
 		$this->order_url($_args, $field);
-
 		if(isset($this->controller->pagnation))
 		{
 			$this->data->pagnation = $this->controller->pagnation_get();
 		}
-
-
 		if(\lib\utility::get('search'))
 		{
 			$this->data->get_search = \lib\utility::get('search');
 		}
-
 		if(isset($_args->get("search")[0]))
 		{
 			$this->data->get_search = $_args->get("search")[0];
@@ -43,7 +37,6 @@ class view extends \addons\content_su\main\view
 		$order_url = [];
 		foreach ($_fields as $key => $value)
 		{
-
 			if(isset($_args->get("sort")[0]))
 			{
 				if($_args->get("sort")[0] == $value)
@@ -59,7 +52,6 @@ class view extends \addons\content_su\main\view
 				}
 				else
 				{
-
 					$order_url[$value] = "sort=$value/order=asc";
 				}
 			}
@@ -68,7 +60,6 @@ class view extends \addons\content_su\main\view
 				$order_url[$value] = "sort=$value/order=asc";
 			}
 		}
-
 		$this->data->order_url = $order_url;
 	}
 }

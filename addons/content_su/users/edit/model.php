@@ -7,8 +7,8 @@ class model extends \addons\content_su\main\model
 {
 	public function getUserDetail($_args)
 	{
-		$id = isset($_args->match->url[0][1]) ? $_args->match->url[0][1] : null;
-		$request                = [];
+		$id            = isset($_args->match->url[0][1]) ? $_args->match->url[0][1] : null;
+		$request       = [];
 		$request['id'] = $id;
 
 		utility::set_request_array($request);
@@ -45,20 +45,16 @@ class model extends \addons\content_su\main\model
 			'paymentaccountnumber' => utility::post('paymentaccountnumber'),
 			'shaba'                => utility::post('shaba'),
 		];
-
 		// $file_code = $this->upload_avatar();
 		// // we have an error in upload avatar
 		// if($file_code === false)
 		// {
 		// 	return false;
 		// }
-
 		// if($file_code)
 		// {
 		// 	$post['file'] = $file_code;
 		// }
-
-
 		return $post;
 	}
 
@@ -88,7 +84,5 @@ class model extends \addons\content_su\main\model
 			$this->redirector($this->url('full'));
 		}
 	}
-
-
 }
 ?>

@@ -37,8 +37,9 @@ class model extends \addons\content_su\main\model
 	 */
 	public function loadMyTransaction($_args)
 	{
-		$id = isset($_args->match->url[0][1]) ? $_args->match->url[0][1] : null;
+		$id     = isset($_args->match->url[0][1]) ? $_args->match->url[0][1] : null;
 		$result = [];
+
 		if($id)
 		{
 			$result = \lib\db\transactions::get(['id' => $id, 'limit' => 1]);
@@ -53,6 +54,8 @@ class model extends \addons\content_su\main\model
 	public function post_add($_args)
 	{
 		$id = isset($_args->match->url[0][1]) ? $_args->match->url[0][1] : null;
+
+
 		if(!is_numeric($id))
 		{
 			$id = null;
@@ -67,6 +70,7 @@ class model extends \addons\content_su\main\model
 				'session' => $_SESSION
 			],
 		];
+
 
 		$title  = utility::post('title');
 		$unit   = utility::post('unit');
@@ -84,7 +88,6 @@ class model extends \addons\content_su\main\model
 
 		$user_id = $this->login('id');
 
-
 		if(!$title)
 		{
 			\lib\db\logs::set('su:transactions:add:title:not:set', $user_id, $log_meta);
@@ -99,6 +102,7 @@ class model extends \addons\content_su\main\model
 			return false;
 		}
 
+
 		if(!$mobile)
 		{
 			\lib\db\logs::set('su:transactions:add:mobile:not:set', $user_id, $log_meta);
@@ -112,6 +116,7 @@ class model extends \addons\content_su\main\model
 			debug::error(T_("Please select one of the type items"));
 			return false;
 		}
+
 
 		if(!in_array($type, ['money', 'gift', 'prize', 'transfer']))
 		{
@@ -134,6 +139,7 @@ class model extends \addons\content_su\main\model
 			return false;
 		}
 
+
 		if($minus && !is_numeric($minus))
 		{
 			\lib\db\logs::set('su:transactions:add:minus:isnot:numeric', $user_id, $log_meta);
@@ -153,7 +159,6 @@ class model extends \addons\content_su\main\model
 			return false;
 		}
 
-
 		if($plus && $minus)
 		{
 			\lib\db\logs::set('su:transactions:add:plus:and:minus:set', $user_id, $log_meta);
@@ -172,17 +177,17 @@ class model extends \addons\content_su\main\model
 
 		$insert =
 		[
-			'caller'         => 'manually',
-			'title'          => $title,
-			'user_id'        => $user_id,
-			'plus'           => $plus,
-			'minus'          => $minus,
-			'payment'        => null,
-			'type'           => $type,
-			'unit'           => $unit,
-			'date'           => date("Y-m-d H:i:s"),
-			'parent_id'		 => $id,
-			'verify'		 => 1,
+			'caller'    => 'manually',
+			'title'     => $title,
+			'user_id'   => $user_id,
+			'plus'      => $plus,
+			'minus'     => $minus,
+			'payment'   => null,
+			'type'      => $type,
+			'unit'      => $unit,
+			'date'      => date("Y-m-d H:i:s"),
+			'parent_id' => $id,
+			'verify'    => 1,
 		];
 
 		\lib\db\transactions::set($insert);
