@@ -102,7 +102,7 @@ class jdate
         if(!$stamp)
             return 0;
 
-        $timezone = ($timezone !== null) ? $timezone : ((self::$timezone != null) ? self::$timezone : date_default_timezone_get());
+        $timezone = ($timezone !== null) ? $timezone : ((self::$timezone !== null) ? self::$timezone : date_default_timezone_get());
         $obj      = new \DateTime('@' . $stamp, new \DateTimeZone($timezone));
         $obj->setTimezone(new \DateTimeZone($timezone));
 
