@@ -83,7 +83,8 @@ trait edit
 			{
 				if(!$update)
 				{
-					$args['slug'] = $this->slug_fix($args);
+					// need to check slug_fix func
+					// $args['slug'] = self::slug_fix($args);
 					$update = \lib\db\users::update($args, $check_is_admin['id']);
 				}
 				// user change slug
