@@ -68,9 +68,11 @@ trait add
 			return false;
 		}
 
-		$return['user_id'] = $_args['user_id'] = \lib\utility\shortURL::encode($user_id);
+		$return['user_id'] = \lib\utility\shortURL::encode($user_id);
 
-		// \lib\app\contact::add($_args);
+		$_option['user_id'] = $user_id;
+
+		\lib\app\contact::merge($_args, $_option);
 
 
 		if(debug::$status)
