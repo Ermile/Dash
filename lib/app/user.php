@@ -13,6 +13,7 @@ class user
 	use \lib\app\user\edit;
 	use \lib\app\user\datalist;
 	use \lib\app\user\get;
+	use \lib\app\user\user_id;
 
 
 	/**

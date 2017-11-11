@@ -45,6 +45,17 @@ class contacts
 
 
 	/**
+	 * update record by where condition
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public static function update_where()
+	{
+		return \lib\db\config::public_update_where('contacts', ...func_get_args());
+	}
+
+
+	/**
 	 * get the contacts by id
 	 *
 	 * @param      <type>  $_contact_id  The contact identifier

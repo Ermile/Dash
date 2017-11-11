@@ -11,9 +11,29 @@ trait edit
 	 *
 	 * @return     boolean  ( description_of_the_return_value )
 	 */
-	public static function edit($_args)
+	public static function edit($_args, $_option = [])
 	{
 		\lib\app::variable($_args);
+
+		$default_option =
+		[
+			'its_me'         => false,
+			'other_field'    => null,
+			'other_field_id' => null,
+		];
+
+		if(!is_array($_option))
+		{
+			$_option = [];
+		}
+
+		$_option = array_merge($default_option, $_option);
+
+		$its_me = false;
+		if($_option['its_me'])
+		{
+			$its_me = true;
+		}
 
 		$log_meta =
 		[
@@ -23,78 +43,50 @@ trait edit
 				'input' => \lib\app::request(),
 			]
 		];
-
-		if(!\lib\user::id())
-		{
-			\lib\app::log('api:user:method:put:id:not:set', \lib\user::id(), $log_meta);
-			debug::error(T_("Id not set"), 'id', 'permission');
-			return false;
-		}
-
-		$check_is_admin = \lib\db\users::get(['id' => \lib\user::id(), 'creator' => \lib\user::id(), 'limit' => 1]);
-		if(!$check_is_admin || !isset($check_is_admin['id']))
-		{
-			\lib\app::log('api:user:edit:permission:denide', \lib\user::id(), $log_meta);
-			debug::error(T_("Can not access to edit user"), 'user');
-			return false;
-		}
-
-
-		$args = self::check();
+		// check args
+		$args = self::check($_option);
 
 		if($args === false || !\lib\debug::$status)
 		{
 			return false;
 		}
 
-		if(!\lib\app::isset_request('name'))             unset($args['name']);
-		if(!\lib\app::isset_request('slug'))      		 unset($args['slug']);
-		if(!\lib\app::isset_request('website'))          unset($args['website']);
-		if(!\lib\app::isset_request('desc'))             unset($args['desc']);
-		if(!\lib\app::isset_request('language'))         unset($args['lang']);
-		if(!\lib\app::isset_request('parent'))           unset($args['parent']);
-		if(!\lib\app::isset_request('country'))          unset($args['country']);
-		if(!\lib\app::isset_request('province'))         unset($args['province']);
-		if(!\lib\app::isset_request('city'))             unset($args['city']);
-		if(!\lib\app::isset_request('tel'))              unset($args['phone']);
-		if(!\lib\app::isset_request('zipcode'))          unset($args['zipcode']);
-		if(!\lib\app::isset_request('desc'))             unset($args['desc']);
-		if(!\lib\app::isset_request('status'))           unset($args['status']);
+		$id = \lib\app::request('id');
+		$id = \lib\utility\shortURL::decode($id);
 
-		if(array_key_exists('name', $args) && !$args['name'])
+		if(!$id)
 		{
-			\lib\app::log('api:user:name:not:set:edit', \lib\user::id(), $log_meta);
-			debug::error(T_("User name of user can not be null"), 'name', 'arguments');
+			\lib\app::log('api:staff:edit:permission:denide', \lib\user::id(), $log_meta);
+			\lib\debug::error(T_("Can not access to edit staff"), 'staff');
 			return false;
 		}
 
-		if(array_key_exists('slug', $args) && !$args['slug'])
-		{
-			\lib\app::log('api:user:slug:not:set:edit', \lib\user::id(), $log_meta);
-			debug::error(T_("slug of user can not be null"), 'slug', 'arguments');
-			return false;
-		}
+		$user_id = self::find_user_id($args, $_option, true, $id);
 
-		if(!empty($args))
+		if(intval($user_id) !== intval($id))
 		{
-			$update = \lib\db\users::update($args, $check_is_admin['id']);
+			\lib\temp::set('app_user_id_changed', true);
+			\lib\temp::set('app_new_user_id_changed', $user_id);
+			\lib\temp::set('app_old_user_id_changed', $id);
 
-			if(isset($args['slug']))
+			$update_contact_user_id            = [];
+			$update_contact_user_id['user_id'] = $id;
+
+			if($_option['other_field'] && $_option['other_field_id'])
 			{
-				if(!$update)
-				{
-					// need to check slug_fix func
-					// $args['slug'] = self::slug_fix($args);
-					$update = \lib\db\users::update($args, $check_is_admin['id']);
-				}
-				// user change slug
-				if($check_is_admin['slug'] != $args['slug'])
-				{
-					\lib\app::log('api:user:change:slug', \lib\user::id(), $log_meta);
-				}
+				$update_contact_user_id[$_option['other_field']] = $_option['other_field_id'];
 			}
-			// clean chach
-			\lib\user::clean();
+
+			\lib\db\contacts::update_where(['user_id' => $user_id], $update_contact_user_id);
+		}
+
+		$_option['user_id']        = $user_id;
+
+		\lib\app\contact::merge($_args, $_option);
+
+		if(\lib\debug::$status)
+		{
+			\lib\debug::true(T_("Profile successfully updated"));
 		}
 	}
 }

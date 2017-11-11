@@ -28,8 +28,10 @@ trait add
 
 		$default_option =
 		[
-			'save_log' => true,
-			'debug'    => true,
+			'save_log'       => true,
+			'debug'          => true,
+			'other_field'    => null,
+			'other_field_id' => null,
 		];
 
 		if(!is_array($_option))
@@ -59,7 +61,7 @@ trait add
 
 		$args['status'] = 'awaiting';
 
-		$user_id        = \lib\db\users::signup($args);
+		$user_id        = self::find_user_id($args, $_option, false, null);
 
 		if(!$user_id)
 		{
@@ -73,7 +75,6 @@ trait add
 		$_option['user_id'] = $user_id;
 
 		\lib\app\contact::merge($_args, $_option);
-
 
 		if(debug::$status)
 		{

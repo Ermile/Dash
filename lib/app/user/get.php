@@ -15,11 +15,14 @@ trait get
 	 */
 	public static function get($_args, $_options = [])
 	{
+
 		\lib\app::variable($_args);
 
 		$default_options =
 		[
-			'debug' => true,
+			'debug'          => true,
+			'other_field'    => null,
+			'other_field_id' => null,
 		];
 
 		if(!is_array($_options))
@@ -28,11 +31,6 @@ trait get
 		}
 
 		$_options = array_merge($default_options, $_options);
-
-		if($_options['debug'])
-		{
-			debug::title(T_("Operation Faild"));
-		}
 
 		$log_meta =
 		[
@@ -45,85 +43,39 @@ trait get
 
 		if(!\lib\user::id())
 		{
-			// return false;
+			return false;
 		}
 
 		$id = \lib\app::request("id");
 		$id = \lib\utility\shortURL::decode($id);
-
-		$shortname = \lib\app::request('shortname');
-
-		if(!$id && !$shortname)
+		if(!$id)
 		{
 			if($_options['debug'])
 			{
-				\lib\app::log('api:user:id:shortname:not:set', \lib\user::id(), $log_meta);
-				debug::error(T_("User id or shortname not set"), 'id', 'arguments');
+				\lib\app::log('api:staff:id:shortname:not:set', \lib\user::id(), $log_meta);
+				\lib\debug::error(T_("Store id or shortname not set"), 'id', 'arguments');
 			}
 			return false;
 		}
 
-		if($id && $shortname)
+		$get_contact            = [];
+		$get_contact['user_id'] = $id;
+
+		if($_options['other_field'] && $_options['other_field_id'])
 		{
-			\lib\app::log('api:user:id:shortname:together:set', \lib\user::id(), $log_meta);
-			if($_options['debug'])
-			{
-				debug::error(T_("Can not set user id and shortname together"), 'id', 'arguments');
-			}
-			return false;
+			$get_contact[$_options['other_field']] = $_options['other_field_id'];
 		}
 
-		if($id)
+		$get_contact_detail = \lib\db\contacts::get($get_contact);
+
+		if(is_array($get_contact_detail))
 		{
-			$result = \lib\db\users::access_user_id($id, \lib\user::id(), ['action' => 'view']);
+			$result = array_column($get_contact_detail, 'value', 'key');
 		}
 		else
 		{
-			$result = \lib\db\users::access_user($shortname, \lib\user::id(), ['action' => 'view']);
+			$result = [];
 		}
-
-		if(!$result)
-		{
-			if($id)
-			{
-				$result = \lib\db\users::get(['id' => $id, 'limit' => 1]);
-			}
-			elseif($shortname)
-			{
-				$result = \lib\db\users::get(['shortname' => $shortname, 'limit' => 1]);
-			}
-
-			if($result)
-			{
-				if(\lib\permission::access('load:all:user', null, \lib\user::id()))
-				{
-					$result = $result;
-				}
-				else
-				{
-					\lib\temp::set('user_access_denied', true);
-					\lib\temp::set('user_exist', true);
-					$result = false;
-				}
-			}
-		}
-
-		if(!$result)
-		{
-			\lib\app::log('api:user:access:denide', \lib\user::id(), $log_meta);
-			if($_options['debug'])
-			{
-				debug::error(T_("Can not access to load this user details"), 'user', 'permission');
-			}
-			return false;
-		}
-
-		if($_options['debug'])
-		{
-			debug::title(T_("Operation complete"));
-		}
-
-		$result = self::ready($result);
 
 		return $result;
 	}

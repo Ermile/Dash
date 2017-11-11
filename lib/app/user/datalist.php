@@ -18,8 +18,7 @@ trait datalist
 		}
 
 		$meta            = [];
-		$meta['creator'] = \lib\user::id();
-		$result          = \lib\db\users::search(\lib\user::id(), $meta);
+		$result          = \lib\db\users::search(null, $meta);
 		$temp            = [];
 		foreach ($result as $key => $value)
 		{
