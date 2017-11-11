@@ -3,14 +3,20 @@ namespace lib\router;
 
 class cache
 {
-	use lib\router\config;
+	use \lib\router\config;
+
 	public static $cache = true;
 	public $_self;
+
 
 	public function __construct()
 	{
 		$this->cache_config();
-		if(method_exists($this, '_construct')) call_user_func_array(array($this, '_construct'), func_get_args());
+
+		if(method_exists($this, '_construct'))
+		{
+			call_user_func_array(array($this, '_construct'), func_get_args());
+		}
 	}
 
 
