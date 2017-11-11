@@ -105,7 +105,7 @@ class contact
 			if(mb_strlen($value) >= 100)
 			{
 				\lib\app::log("api:contact:$key:max:length", \lib\user::id(), $log_meta);
-				debug::error(T_("Store name of contact can not be null"), $key);
+				debug::error(T_("Contact value is too large."), $key);
 				return false;
 			}
 

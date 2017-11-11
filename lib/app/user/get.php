@@ -13,9 +13,9 @@ trait get
 	 *
 	 * @return     <type>  The user.
 	 */
-	public static function get($_args)
+	public static function get($_args, $_options = [])
 	{
-		\lib\app::valiable($_args);
+		\lib\app::variable($_args);
 
 		$default_options =
 		[
