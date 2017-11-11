@@ -59,7 +59,7 @@ class main
 	 */
 	public function add_controller_tracks()
 	{
-		if(router::get_repository_name() == 'content_enter' && router::get_url(2))
+		if(router::get_url(2))
 		{
 			$this->add_track('api_childs', function()
 			{

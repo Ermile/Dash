@@ -53,6 +53,10 @@ class config
 	}
 
 
+	/**
+	 * allow route on all conditions!
+	 * @param [type] $route [description]
+	 */
 	public function ALL($route = null)
 	{
 		if($route === null)
@@ -69,13 +73,21 @@ class config
 				$this_url .= '/'. \lib\router::get_method();
 			}
 
+			if(\lib\router::get_url(2))
+			{
+				$this_url .= '/'. \lib\router::get_url(2);
+			}
+
+
 			$route = array($this_url);
-		}else{
+		}
+		else
+		{
 			$route = func_get_args();
 		}
+
 		$this->REST(...$route)->SERVER();
 		return $this;
-
 	}
 
 
