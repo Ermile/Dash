@@ -17,7 +17,6 @@ trait edit
 
 		$default_option =
 		[
-			'its_me'         => false,
 			'other_field'    => null,
 			'other_field_id' => null,
 		];
@@ -29,12 +28,6 @@ trait edit
 
 		$_option = array_merge($default_option, $_option);
 
-		$its_me = false;
-		if($_option['its_me'])
-		{
-			$its_me = true;
-		}
-
 		$log_meta =
 		[
 			'data' => null,
@@ -43,6 +36,7 @@ trait edit
 				'input' => \lib\app::request(),
 			]
 		];
+
 		// check args
 		$args = self::check($_option);
 

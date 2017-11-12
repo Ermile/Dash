@@ -72,6 +72,68 @@ class app
 
 
 	/**
+	 * Logs a meta.
+	 */
+	public static function log_meta($_level = null, $_array = [])
+	{
+		$log_meta = null;
+
+		switch ($_level)
+		{
+			// EASY LOG
+			case 1:
+				$log_meta =
+				[
+					'data' => null,
+					'meta' =>
+					[
+						'input' => \lib\app::request(),
+						'args'  => $_array,
+					],
+				];
+				break;
+
+			// MEDIOM LOG
+			case 2:
+				$log_meta =
+				[
+					'data' => null,
+					'meta' =>
+					[
+						'input'   => \lib\app::request(),
+						'session' => $_SESSION,
+						'args'    => $_array,
+					],
+				];
+				break;
+
+			// HARD LOG
+			case 3:
+				$log_meta =
+				[
+					'data' => null,
+					'meta' =>
+					[
+						'request' => $_REQUEST,
+						'server'  => $_SERVER,
+						'session' => $_SESSION,
+						'input'   => \lib\app::request(),
+						'args'    => $_array,
+					],
+				];
+				break;
+
+			// not log detail
+			default:
+				$log_meta = null;
+
+				break;
+		}
+		return $log_meta;
+	}
+
+
+	/**
 	 * return the url of static logo file
 	 */
 	public static function static_logo_url()
