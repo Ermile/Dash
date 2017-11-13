@@ -359,12 +359,25 @@ class config
 	 */
 	public static function public_insert($_table, $_args)
 	{
-		$set = \lib\db\config::make_set($_args);
-		if($set)
+		$set = [];
+		foreach ($_args as $key => $value)
 		{
-			$query = " INSERT INTO $_table SET $set ";
-			return \lib\db::query($query);
+			if($value)
+			{
+				$set[] = "$_table.$key = '$value' ";
+			}
 		}
+
+		if(empty($set))
+		{
+			return null;
+		}
+
+		$set = implode(',', $set);
+
+		$query = "INSERT INTO $_table SET $set";
+
+		return \lib\db::query($query);
 	}
 
 
