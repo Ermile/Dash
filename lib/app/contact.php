@@ -113,7 +113,7 @@ class contact
 			{
 				// contact by this key was exist
 				// if need update it
-				if(isset($exist_value[$key]) && $exist_value[$key] == $value)
+				if(array_key_exists($key, $exist_value) && $exist_value[$key] == $value)
 				{
 					// need less to update it
 				}
