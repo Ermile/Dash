@@ -38,9 +38,32 @@ class contacts
 	 * @param string || int $_id record id
 	 * @return mysql result
 	 */
-	public static function update()
+	public static function update($_args, $_id)
 	{
-		return \lib\db\config::public_update('contacts', ...func_get_args());
+		if(is_array($_args) && is_numeric($_id))
+		{
+			$set = [];
+			foreach ($_args as $key => $value)
+			{
+				if(isset($value) && $value != '')
+				{
+					$set[] = "contacts.$key = '$value' ";
+				}
+				else
+				{
+					$set[] = "contacts.$key = NULL ";
+				}
+			}
+
+			if(!empty($set))
+			{
+				$set = implode(',', $set);
+				$query = "UPDATE contacts SET $set WHERE contacts.id = $_id LIMIT 1";
+				return \lib\db::query($query);
+			}
+		}
+
+		return null;
 	}
 
 

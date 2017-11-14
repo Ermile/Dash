@@ -85,10 +85,14 @@ class contact
 
 		$must_insert = [];
 		$must_update = [];
-		$must_delete = [];
 
 		foreach ($all_request as $key => $value)
 		{
+			if($key === 'id')
+			{
+				continue;
+			}
+
 			$value = trim($value);
 			if(!isset($value))
 			{
@@ -151,8 +155,11 @@ class contact
 			}
 		}
 
+		$change_any_thing = false;
+
 		if(!empty($must_update))
 		{
+			$change_any_thing = true;
 			foreach ($must_update as $key => $value)
 			{
 				\lib\db\contacts::update($value['args'], $value['id']);
@@ -161,8 +168,11 @@ class contact
 
 		if(!empty($must_insert))
 		{
+			$change_any_thing = true;
 			\lib\db\contacts::insert_multi($must_insert);
 		}
+
+		\lib\temp::set('contact_change_any_thing', $change_any_thing);
 
 		return true;
 
