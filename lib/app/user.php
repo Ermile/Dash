@@ -239,11 +239,22 @@ class user
 					}
 					break;
 
-
 				default:
 					$result[$key] = $value;
 					break;
 			}
+		}
+
+		$result['fullname'] = '';
+
+		if(isset($result['firstname']))
+		{
+			$result['fullname'] .= $result['firstname'];
+		}
+
+		if(isset($result['lastname']))
+		{
+			$result['fullname'] .= ' '. $result['lastname'];
 		}
 
 		return $result;

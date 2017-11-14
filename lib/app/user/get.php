@@ -71,6 +71,17 @@ trait get
 		if(is_array($get_contact_detail))
 		{
 			$result = array_column($get_contact_detail, 'value', 'key');
+			$result['fullname'] = '';
+
+			if(isset($result['firstname']))
+			{
+				$result['fullname'] .= $result['firstname'];
+			}
+
+			if(isset($result['lastname']))
+			{
+				$result['fullname'] .= ' '. $result['lastname'];
+			}
 		}
 		else
 		{
