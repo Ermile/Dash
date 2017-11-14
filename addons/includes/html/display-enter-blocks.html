@@ -15,7 +15,7 @@
 
 
 {%block eAllInput%}
-   <div class='flex fix' id=''>
+   <div class='flex fix'>
     <!-- <label for='usernameormobile' title='{%trans "Username or Mobile or email"%}'></label> -->
     <input id='usernameormobile' name="usernameormobile" type='text' maxlength="50" placeholder='{%trans "Username or Mobile or Email"%}' data-invalid='{%trans "Please enter valid mobile or username or email number"%}' value="{{get_usernamemobile}}" data-pl-user='{%trans "Username or Mobile or Email"%}' autocomplete="off" pattern=".{5,50}"  title='{%trans "Username or Mobile or email"%}' required {%if mobile_readonly%} readonly {%endif%} {%if not mobile_readonly%}autofocus{%endif%}>
    </div>
@@ -27,14 +27,14 @@
 {%block eramz%}
    <div class='flex fix' id='eramz'>
     <label for='ramz' title='{%trans "Password"%}'>*</label>
-    <input id='ramz' name="ramz" type='password' placeholder='{%trans "Password"%}' autocomplete="new-password" autocapitalize="off" minlength="6" maxlength="40" pattern=".{6,40}" title='{%trans "Enter a valid password from 6 to 40 character"%}' autofocus required>
+    <input id='ramz' name="ramz" type='password' placeholder='{%trans "Password"%}' autocomplete="new-password" minlength="6" maxlength="40" pattern=".{6,40}" title='{%trans "Enter a valid password from 6 to 40 character"%}' autofocus required>
    </div>
 {%endblock%}
 
 {%block eramzNewSignup%}
    <div class='flex fix' id='eramzNew'>
     <label for='ramzNew' title='{%trans "New Password"%}'>**</label>
-    <input id='ramzNew' name="ramzNew" type='password' placeholder='{%trans "New Password"%}' autocomplete="new-password" autocapitalize="off" minlength="6" maxlength="40" pattern=".{6,40}" title='{%trans "Enter a valid password from 6 to 40 character"%}' required>
+    <input id='ramzNew' name="ramzNew" type='password' placeholder='{%trans "New Password"%}' autocomplete="new-password" minlength="6" maxlength="40" pattern=".{6,40}" title='{%trans "Enter a valid password from 6 to 40 character"%}' required>
    </div>
 {%endblock%}
 
@@ -44,7 +44,7 @@
 {%block eramzNew%}
    <div class='flex fix' id='eramzNew'>
     <label for='ramzNew' title='{%trans "New Password"%}'>**</label>
-    <input id='ramzNew' name="ramzNew" type='password' placeholder='{%trans "New Password"%}' autocomplete="new-password" autocapitalize="off" minlength="6" maxlength="40" pattern=".{6,40}" title='{%trans "Enter a valid password from 6 to 40 character"%}' autofocus required>
+    <input id='ramzNew' name="ramzNew" type='password' placeholder='{%trans "New Password"%}' autocomplete="new-password" minlength="6" maxlength="40" pattern=".{6,40}" title='{%trans "Enter a valid password from 6 to 40 character"%}' autofocus required>
    </div>
 {%endblock%}
 
@@ -82,23 +82,23 @@
 {%endblock%}
 
 {%block eFullname%}
-   <div class='flex fix' id='displayname'>
+   <div class='flex fix' id='displaynameBox'>
     <label for='displayname' title='{%trans "Full name"%}'>?</label>
-    <input id='displayname' name="displayname" type='displayname' placeholder='{%trans "Full name"%}' autocomplete="off" autocapitalize="off" maxlength="50" title='' value="{{get_displayname}}" autofocus required>
+    <input id='displayname' name="displayname" type='text' placeholder='{%trans "Full name"%}' autocomplete="off" maxlength="50" title='' value="{{get_displayname}}" required>
    </div>
 {%endblock%}
 
 {%block edisplayname%}
-   <div class='flex fix' id='displayname'>
+   <div class='flex fix' id='displaynameBox'>
     <label for='displayname' title='{%trans "Full name"%}'>?</label>
-    <input id='displayname' name="displayname" type='displayname' placeholder='{%trans "Full name"%}' autocomplete="off" autocapitalize="off" maxlength="50" title='' value="{{get_displayname}}" required>
+    <input id='displayname' name="displayname" type='text' placeholder='{%trans "Full name"%}' autocomplete="off" maxlength="50" title='' value="{{get_displayname}}" required>
    </div>
 {%endblock%}
 
 {%block email%}
    <div class='flex fix' id='email'>
     <label for='email' title='{%trans "Email"%}'>@</label>
-    <input id='email' name="email" type='email' placeholder='{%trans "email"%}' autocomplete="off" autocapitalize="off" minlength="6" maxlength="100" title='{%trans "Enter a valid eamil!"%}' value="{{get_email}}" required>
+    <input id='email' name="email" type='email' placeholder='{%trans "email"%}' autocomplete="off" minlength="6" maxlength="100" title='{%trans "Enter a valid eamil!"%}' value="{{get_email}}" required>
    </div>
 {%endblock%}
 
@@ -106,7 +106,7 @@
 {%block eusername%}
    <div class='flex fix' id='eusername'>
     <label for='usercode' title='{%trans "username"%}'><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 258.75 258.75" style="enable-background:new 0 0 258.75 258.75;" xml:space="preserve" width="30px" height="30px"><circle cx="129.375" cy="60" r="60" fill="#FFFFFF"/><path d="M129.375,150c-60.061,0-108.75,48.689-108.75,108.75h217.5C238.125,198.689,189.436,150,129.375,150z" fill="#FFFFFF"/></svg></label>
-    <input id='usercode' name="username" type='username' placeholder='{%trans "username"%}' autocomplete="off" autocapitalize="off" value="{{get_username}}" pattern=".{4,50}" title='{%trans "Enter a valid username from 4 to 50 character"%}' required>
+    <input id='usercode' name="username" type='text' placeholder='{%trans "username"%}' autocomplete="off" value="{{get_username}}" pattern=".{4,50}" title='{%trans "Enter a valid username from 4 to 50 character"%}' required>
    </div>
 {%endblock%}
 
@@ -208,8 +208,8 @@
 
 
 {%block eMethods%}
-{%if google_login%}
   <div class="f" id='eMethods'>
+{%if google_login%}
   <p>{%trans "Enter with another methods"%}</p>
   {{block ('ebgoogle')}}
 {%endif%}
@@ -347,7 +347,7 @@
 {%block emailNew%}
    <div class='flex fix' id='emailNew'>
     <label for='emailNew' title='{%trans "New email"%}'>@@</label>
-    <input id='emailNew' name="emailNew" type='email' placeholder='{%trans "New email"%}' autocomplete="off" autocapitalize="off" minlength="6" maxlength="100" title='{%trans "Enter a valid eamil!"%}' required>
+    <input id='emailNew' name="emailNew" type='email' placeholder='{%trans "New email"%}' autocomplete="off" minlength="6" maxlength="100" title='{%trans "Enter a valid eamil!"%}' required>
    </div>
 {%endblock%}
 
@@ -355,6 +355,6 @@
 {%block usernameNew%}
    <div class='flex fix' id='usernameNew'>
     <label for='usernameNew' title='{%trans "New username"%}'>@</label>
-    <input id='usernameNew' name="usernameNew" type='username' placeholder='{%trans "New username"%}' autocomplete="off" autocapitalize="off" minlength="6" maxlength="100" title='{%trans "Enter a valid username!"%}' required>
+    <input id='usernameNew' name="usernameNew" type='username' placeholder='{%trans "New username"%}' autocomplete="off" minlength="6" maxlength="100" title='{%trans "Enter a valid username!"%}' required>
    </div>
 {%endblock%}
