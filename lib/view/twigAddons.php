@@ -246,6 +246,7 @@ trait twigAddons
 			$urlRoot     = $this->data->url->root;
 			$urlContent  = $this->data->url->content;
 			$urlPath     = $this->data->url->path;
+			$urlParam    = $this->data->url->param;
 			$currentlang = \lib\define::get_language();
 
 			if(!$all)
@@ -275,6 +276,10 @@ trait twigAddons
 					{
 						$href           .= '/'.$urlPath;
 						$urlPathCurrent .= $urlPath;
+					}
+					if($urlParam)
+					{
+						$href .= $urlParam;
 					}
 					$lang_string .= "<a href='". $href . "'$activeClass hreflang='$key' data-direct>";
 					$lang_string .= $value;
