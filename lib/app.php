@@ -154,5 +154,13 @@ class app
 		return $url;
 	}
 
+
+	public static function static_avatar_url()
+	{
+		$url = Protocol . '://' . Domain. '.'. Tld. '/';
+		$url .= 'static/siftal/images/default/avatar.png';
+		return $url;
+	}
+
 }
 ?>
