@@ -20,7 +20,11 @@ class model extends \addons\content_enter\main\model
 
 		$my_mobile = null;
 
-		if(self::get_enter_session('mobile'))
+		if(self::user_data('mobile'))
+		{
+			$my_mobile = self::user_data('mobile');
+		}
+		elseif(self::get_enter_session('mobile'))
 		{
 			$my_mobile = self::get_enter_session('mobile');
 		}

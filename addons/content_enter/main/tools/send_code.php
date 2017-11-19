@@ -34,11 +34,6 @@ trait send_code
 			$is_email = true;
 		}
 
-		if(!$i_can)
-		{
-			self::next_step('verify/what');
-			self::go_to('verify/what');
-		}
 
 		$way = [];
 
@@ -53,16 +48,38 @@ trait send_code
 		{
 			if(self::user_data('chatid') && \lib\option::social('telegram', 'status'))
 			{
-				array_push($way, 'telegram');
+				if(\lib\option::config('enter', 'verify_telegram'))
+				{
+					array_push($way, 'telegram');
+				}
 			}
 
 			if(self::user_data('mobile') && \lib\utility\filter::mobile(self::user_data('mobile')))
 			{
-				array_push($way, 'sms');
-				array_push($way, 'call');
-				array_push($way, 'sendsms');
+				if(\lib\option::config('enter', 'verify_sms'))
+				{
+					array_push($way, 'sms');
+				}
+
+				if(\lib\option::config('enter', 'verify_call'))
+				{
+					array_push($way, 'call');
+				}
+
+				if(\lib\option::config('enter', 'verify_sendsms'))
+				{
+					array_push($way, 'sendsms');
+				}
+
 			}
 		}
+
+		if(!$i_can || empty($way))
+		{
+			self::next_step('verify/what');
+			self::go_to('verify/what');
+		}
+
 		return $way;
 	}
 

@@ -91,6 +91,11 @@ self::$config['enter']['call']                          = false;
 self::$config['enter']['call_template']['fa']           = null;
 self::$config['enter']['call_template']['en']           = null;
 
+
+self::$config['enter']['verify_telegram'] = false;
+self::$config['enter']['verify_sms']      = false;
+self::$config['enter']['verify_call']     = false;
+self::$config['enter']['verify_sendsms']  = false;
 /**
 * the social network
 */
