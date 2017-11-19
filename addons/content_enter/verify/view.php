@@ -42,7 +42,7 @@ class view extends \addons\content_enter\main\view
 		// the verify msg
 		$myDesc  = T_('Please verify yourself.'). ' ';
 
-		switch (self::get_enter_session('verification_code_way'))
+		switch (\lib\router::get_url(1))
 		{
 			case 'telegram':
 				$myDesc .= T_("We've sent the code via Telegram. Please enter the code below.");
@@ -58,6 +58,10 @@ class view extends \addons\content_enter\main\view
 
 			case 'sendsms':
 				$myDesc .= T_("We can't send code to you with our existing methods! For the last chance of verify yourself you can send code to our number.");
+				break;
+
+			case null:
+				$myDesc .= null;
 				break;
 
 			default:
