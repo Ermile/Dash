@@ -107,6 +107,12 @@ class logitems
 	 */
 	public static function caller($_caller, $_options = [])
 	{
+		$cache = \lib\db\cache::get_cache('logs', func_get_args());
+		if($cache)
+		{
+			return $cache;
+		}
+
 		$default_args =
 		[
 			'all_field' => false,
@@ -128,6 +134,7 @@ class logitems
 		{
 			return self::auto_insert($_caller);
 		}
+		\lib\db\cache::set_cache('logs', func_get_args(), $result);
 		return $result;
 	}
 

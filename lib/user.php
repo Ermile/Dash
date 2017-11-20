@@ -16,10 +16,18 @@ class user
 	 *
 	 * @param      <type>  $_user_id  The user identifier
 	 */
-	public static function init($_user_id)
+	public static function init($_user_id, $_detail = [])
 	{
 		self::$USER_ID = $_user_id;
 		$_SESSION['auth']['id'] = $_user_id;
+
+		if(is_array($_detail))
+		{
+			foreach ($_detail as $key => $value)
+			{
+				$_SESSION['auth'][$key] = $value;
+			}
+		}
 	}
 
 
@@ -53,6 +61,34 @@ class user
 		}
 
 		return self::$USER_ID;
+	}
+
+
+	/**
+	 * get detail of user
+	 *
+	 * @param      <type>  $_key   The key
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public static function detail($_key = null)
+	{
+		if($_key)
+		{
+			if(isset($_SESSION['auth'][$_key]))
+			{
+				return $_SESSION['auth'][$_key];
+			}
+			return null;
+		}
+		else
+		{
+			if(isset($_SESSION['auth']))
+			{
+				return $_SESSION['auth'];
+			}
+			return null;
+		}
 	}
 }
 ?>

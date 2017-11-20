@@ -385,7 +385,7 @@ class users
 		/**
 		 * set user id to get every where
 		 */
-		\lib\user::init($_user_id);
+		\lib\user::init($_user_id, $user_data);
 
 		// set main cat of session
 		$_SESSION['user']       = [];
