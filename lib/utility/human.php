@@ -126,6 +126,20 @@ class human
 
 
 	/**
+	 * change numbers to rtl and fitNumber
+	 * @param  [type] $_txt  [description]
+	 * @param  [type] $_lang [description]
+	 * @return [type]        [description]
+	 */
+	public static function fitNumber($_number)
+	{
+		$new_text = (number_format($_number));
+		$new_text = self::number($new_text);
+		return $new_text;
+	}
+
+
+	/**
 	 * Check if there RTL characters (Arabic, Persian, Hebrew)
 	 * @param  [type]  $_string [description]
 	 * @return boolean          [description]
