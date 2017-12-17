@@ -13,49 +13,55 @@ class url
 	private static $split_host = [];
 	private static $path_split = [];
 	private static $host_is_ip = false;
+
+
 	/**
 	 * initialize url and detect them
 	 * @return [type] [description]
 	 */
 	public static function initialize()
 	{
-		self::$url        = [];
+		self::$url = [];
 
-		$host = self::server('HTTP_HOST');
+		$host      = self::server('HTTP_HOST');
 
-		// ipv4
-		if(preg_match("/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/", $host))
+		if(filter_var($host, FILTER_VALIDATE_IP))
 		{
 			self::$host_is_ip = true;
 		}
 
 		self::$split_host = explode('.', $host);
 
-		self::$uri = self::server('REQUEST_URI');
+		self::$uri        = self::server('REQUEST_URI');
 
-		self::$uri = preg_replace("/^\//", '', self::$uri);
+		if(substr(self::$uri, 0, 1) === '/')
+		{
+			self::$uri = substr(self::$uri, 1);
+		}
 
-		self::_query();
+		self::$url['query'] = self::_query();
 
-		$path_raw   = str_replace('?'. self::$url['query'], '', self::$uri);
+		$path_raw           = str_replace('?'. self::$url['query'], '', self::$uri);
 
-		self::$path_split = explode('/', $path_raw);
+		self::$path_split   = explode('/', $path_raw);
 
-		self::_protocol();
-		self::_port();
-		self::_tld();
-		self::_subdomain();
-		self::_root();
-		self::_domain();
-		self::_host();
-		self::_base();
-		self::_path();
-		self::_lang();
-		self::_dir();
-		self::_content();
-		self::_property();
-		self::_full();
+		self::$url['protocol']  = self::_protocol();
+		self::$url['port']      = self::_port();
+		self::$url['tld']       = self::_tld();
+		self::$url['subdomain'] = self::_subdomain();
+		self::$url['root']      = self::_root();
+		self::$url['domain']    = self::_domain();
+		self::$url['host']      = self::_host();
+		self::$url['base']      = self::_base();
+		self::$url['path']      = self::_path();
+		self::$url['lang']      = self::_lang();
+		self::$url['dir']       = self::_dir();
+		self::$url['content']   = self::_content();
+		self::$url['property']  = self::_property();
+		self::$url['full']      = self::_full();
+
 	}
+
 
 	/**
 	 * get and ser the protocol
@@ -75,8 +81,9 @@ class url
 			$protocol = self::server('HTTP_X_FORWARDED_PROTO');
 		}
 
-		self::$url['protocol']  = $protocol;
+		return $protocol;
 	}
+
 
 	/**
 	 * set the intval of port
@@ -84,17 +91,18 @@ class url
 	private static function _port()
 	{
 		$port = intval(self::server('SERVER_PORT'));
-		self::$url['port'] = $port;
+		return $port;
 	}
 
 
 	private static function _tld()
 	{
-		self::$url['tld'] = null;
+		$tld = null;
 		if(!self::$host_is_ip)
 		{
-			self::$url['tld'] = end(self::$split_host);
+			$tld = end(self::$split_host);
 		}
+		return $tld;
 	}
 
 
@@ -105,7 +113,7 @@ class url
 		{
 			$subdomain = (isset(self::$split_host[0])) ? self::$split_host[0] : null;
 		}
-		self::$url['subdomain'] = $subdomain;
+		return $subdomain;
 	}
 
 
@@ -123,13 +131,13 @@ class url
 			array_shift($temp);
 		}
 
-		self::$url['root'] = implode('.', $temp);
+		return implode('.', $temp);
 	}
 
 
 	private static function _domain()
 	{
-		self::$url['domain'] = self::$url['root']. '.'. self::$url['tld'];
+		return self::$url['root']. '.'. self::$url['tld'];
 	}
 
 
@@ -149,81 +157,91 @@ class url
 			$host .= ':'. self::$url['port'];
 		}
 
-		self::$url['host'] = $host;
+		return $host;
 	}
 
 
 	private static function _base()
 	{
-		self::$url['base'] = self::$url['protocol'] . '://'. self::$url['host'];
+		return self::$url['protocol'] . '://'. self::$url['host'];
 	}
 
 
 	private static function _full()
 	{
+		$full = null;
 		if(self::$uri)
 		{
-			self::$url['full'] = self::$url['base']. '/'. self::$uri;
+			$full = self::$url['base']. '/'. self::$uri;
 		}
 		else
 		{
-			self::$url['full'] = self::$url['base'];
+			$full = self::$url['base'];
 		}
+		return $full;
 	}
 
 
 	private static function _query()
 	{
-		$query  = self::server('QUERY_STRING');
-		self::$url['query'] = null;
-		if($query)
+		$query = null;
+		if(self::server('QUERY_STRING'))
 		{
-			self::$url['query'] = $query;
+			$query = self::server('QUERY_STRING');
 		}
+		return $query;
 	}
+
 
 	private static function _path()
 	{
-		self::$url['path'] = self::$uri;
+		return self::$uri;
 	}
+
 
 	private static function _lang()
 	{
-		self::$url['lang'] = null;
+		$lang = null;
+
 		if(array_key_exists(0, self::$path_split) && in_array(self::$path_split[0], ['fa', 'en', 'ar']))
 		{
-			self::$url['lang'] = self::$path_split[0];
+			$lang = self::$path_split[0];
 			unset(self::$path_split[0]);
 			self::$path_split = array_values(self::$path_split);
 		}
+		return $lang;
 	}
 
 
 	private static function _content()
 	{
-		self::$url['content'] = null;
+		$content = null;
 		if(array_key_exists(0, self::$path_split))
 		{
-			self::$url['content'] = self::$path_split[0];
+			$content = self::$path_split[0];
 		}
+		return $content;
 	}
+
 
 	private static function _dir()
 	{
-		self::$url['dir']     = [];
+		$dir = [];
 
 		foreach (self::$path_split as $key => $value)
 		{
 			if($value != '')
 			{
-				self::$url['dir'][] = $value;
+				$dir[] = $value;
 			}
 		}
+		return $dir;
 	}
+
 
 	private static function _property()
 	{
-		self::$url['property']     = [];
+		$property = [];
 
 		foreach (self::$path_split as $key => $value)
 		{
@@ -232,10 +250,11 @@ class url
 				$tmp_split = explode('=', $value);
 				if(count($tmp_split) === 2)
 				{
-					self::$url['property'][$tmp_split[0]] = $tmp_split[1];
+					$property[$tmp_split[0]] = $tmp_split[1];
 				}
 			}
 		}
+		return $property;
 	}
 
 
@@ -263,33 +282,16 @@ class url
 	 * @param  [type] $_key [description]
 	 * @return [type]       [description]
 	 */
-	public static function get($_key = null)
+	public static function get($_key = null, $_real = false)
 	{
-		if($_key === null)
+		$my_url = self::$url;
+
+		if($_real)
 		{
-			return self::$url;
-		}
-		else
-		{
-			if(array_key_exists($_key, self::$url))
+			if(!empty(self::$real_url))
 			{
-				return self::$url[$_key];
+				$my_url = self::$real_url;
 			}
-			else
-			{
-				return null;
-			}
-		}
-	}
-
-
-	public static function get_real($_key = null)
-	{
-		$my_url = self::$real_url;
-
-		if(empty($my_url))
-		{
-			$my_url = self::$url;
 		}
 
 		if($_key === null)
@@ -309,6 +311,7 @@ class url
 		}
 	}
 
+
 	/**
 	 * set key and value into array
 	 * @param [type] $_key   [description]
@@ -324,6 +327,7 @@ class url
 
 		self::$url[$_key] = $_value;
 	}
+
 
 	/**
 	 * call every url function if exist
