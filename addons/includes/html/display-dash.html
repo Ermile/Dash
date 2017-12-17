@@ -19,7 +19,7 @@
 {%block pageHeader%}
 <div class="tbox">
   <h2>{{page.title}}{%if page.badge.text%} <a{%if page.badge.link%} href="{{page.badge.link}}"{%endif%} class="badge primary">{{page.badge.text}}</a>{%endif%}</h2>
-  <p>{{page.desc}}</p>
+  <p>{{page.desc | raw}}</p>
 </div>
 {%endblock%}
 
