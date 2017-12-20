@@ -96,6 +96,11 @@ self::$config['enter']['verify_telegram'] = false;
 self::$config['enter']['verify_sms']      = false;
 self::$config['enter']['verify_call']     = false;
 self::$config['enter']['verify_sendsms']  = false;
+
+
+self::$config['favicon']['complete']      = true;
+self::$config['favicon']['version']       = 1;
+
 /**
 * the social network
 */
