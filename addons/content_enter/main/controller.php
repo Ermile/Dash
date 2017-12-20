@@ -8,13 +8,21 @@ class controller extends \mvc\controller
 	 * check route of account
 	 * @return [type] [description]
 	 */
-	public function ready()
+	public function repository()
 	{
 		$url = \lib\router::get_url();
 		// /main can not route
 		if($url === 'main')
 		{
 			\lib\error::page(T_("Unavalible"));
+		}
+
+		// redirect subdomain to main domain on enter
+		if(\lib\url::subdomain())
+		{
+			// ---------------------------------------------- temporary, fix this
+			$mainEnter = \lib\url::protocol().'://'. \lib\url::domain().'/enter';
+			$this->redirector($mainEnter)->redirect();
 		}
 	}
 
