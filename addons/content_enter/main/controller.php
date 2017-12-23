@@ -17,13 +17,13 @@ class controller extends \mvc\controller
 			\lib\error::page(T_("Unavalible"));
 		}
 
-		// redirect subdomain to main domain on enter
-		if(\lib\url::subdomain())
-		{
-			// ---------------------------------------------- temporary, fix this
-			$mainEnter = \lib\url::protocol().'://'. \lib\url::domain().'/enter';
-			$this->redirector($mainEnter)->redirect();
-		}
+		// // redirect subdomain to main domain on enter
+		// if(\lib\url::subdomain())
+		// {
+		// 	// ---------------------------------------------- temporary, fix this
+		// 	$mainEnter = \lib\url::protocol().'://'. \lib\url::domain().'/enter';
+		// 	$this->redirector($mainEnter)->redirect();
+		// }
 	}
 
 

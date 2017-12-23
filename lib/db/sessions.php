@@ -123,7 +123,7 @@ class sessions
 	 */
 	public static function get_cookie()
 	{
-		return \lib\utility::cookie('remember_me_'. \lib\router::get_sub_domain());
+		return \lib\utility::cookie('remember_me_');
 	}
 
 
@@ -166,7 +166,7 @@ class sessions
 	 */
 	private static function terminate_cookie()
 	{
-		\lib\utility\cookie::delete("remember_me_". \lib\router::get_sub_domain());
+		\lib\utility\cookie::delete("remember_me_");
 	}
 
 
@@ -177,9 +177,8 @@ class sessions
 	 */
 	private static function set_cookie($_code)
 	{
-		$sub_domain    = \lib\router::get_sub_domain();
-		$cookie_domain = $sub_domain. '.'. Service;
-		setcookie("remember_me_". \lib\router::get_sub_domain(), $_code, time() + (60*60*24*365), '/', $cookie_domain);
+		$cookie_domain = '.'. Service;
+		setcookie("remember_me_", $_code, time() + (60*60*24*365), '/', $cookie_domain);
 	}
 
 
