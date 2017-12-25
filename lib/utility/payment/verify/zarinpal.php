@@ -121,9 +121,7 @@ trait zarinpal
                     'payment_response' => $payment_response,
                 ];
 
-                \lib\db\transactions::calc_budget($transaction_id, $zarinpal['Amount'], 0);
-
-                \lib\db\transactions::update($update, $transaction_id);
+                \lib\db\transactions::calc_budget($transaction_id, $zarinpal['Amount'], 0, $update);
 
                 logs::set('pay:zarinpal:ok:request', self::$user_id, $log_meta);
                 return self::turn_back($transaction_id);

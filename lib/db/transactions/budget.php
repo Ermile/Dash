@@ -6,7 +6,7 @@ use \lib\utility;
 trait budget
 {
 
-	public static function calc_budget($_transaction_id, $_plus, $_minus)
+	public static function calc_budget($_transaction_id, $_plus, $_minus, $_meta = [])
 	{
 		if(!$_transaction_id || !is_numeric($_transaction_id))
 		{
@@ -33,7 +33,8 @@ trait budget
 
 		$budget                  = $budget_before + (floatval($_plus) - floatval($_minus));
 
-		$update                  = [];
+		$update                  = $_meta;
+		$update['dateverify']    = time();
 		$update['budget_before'] = $budget_before;
 		$update['budget']        = $budget;
 
@@ -73,7 +74,7 @@ trait budget
 				transactions.id IN
 				(
 					SELECT
-						MAX(transactions.id)
+						MAX(transactions.dateverify)
 					FROM
 						transactions
 					WHERE
@@ -110,7 +111,7 @@ trait budget
 					transactions.type    = '$_options[type]' AND
 					transactions.verify  = 1
 					$unit
-				ORDER BY id DESC
+				ORDER BY transactions.dateverify DESC
 				LIMIT 1
 			";
 		}
@@ -127,7 +128,7 @@ trait budget
 					transactions.type    = 'gift' AND
 					transactions.verify  = 1
 					$unit
-				ORDER BY id DESC
+				ORDER BY transactions.dateverify DESC
 				LIMIT 1
 			)
 			UNION ALL
@@ -139,7 +140,7 @@ trait budget
 					transactions.type    = 'promo' AND
 					transactions.verify  = 1
 					$unit
-				ORDER BY id DESC
+				ORDER BY transactions.dateverify DESC
 				LIMIT 1
 			)
 			UNION ALL
@@ -151,7 +152,7 @@ trait budget
 					transactions.type    = 'prize' AND
 					transactions.verify  = 1
 					$unit
-				ORDER BY id DESC
+				ORDER BY transactions.dateverify DESC
 				LIMIT 1
 			)
 			UNION ALL
@@ -163,7 +164,7 @@ trait budget
 					transactions.type    = 'transfer' AND
 					transactions.verify  = 1
 					$unit
-				ORDER BY id DESC
+				ORDER BY transactions.dateverify DESC
 				LIMIT 1
 			)
 			UNION ALL
@@ -175,7 +176,7 @@ trait budget
 					transactions.type    = 'money' AND
 					transactions.verify  = 1
 					$unit
-				ORDER BY id DESC
+				ORDER BY transactions.dateverify DESC
 				LIMIT 1
 			)
 			";

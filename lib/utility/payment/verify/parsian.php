@@ -126,9 +126,7 @@ trait parsian
                     'payment_response' => $payment_response,
                 ];
 
-                \lib\db\transactions::calc_budget($transaction_id, $Amount_SESSION / 10, 0);
-
-                \lib\db\transactions::update($update, $transaction_id);
+                \lib\db\transactions::calc_budget($transaction_id, $Amount_SESSION / 10, 0, $update);
 
                 logs::set('pay:parsian:ok:request', self::$user_id, $log_meta);
                 return self::turn_back($transaction_id);

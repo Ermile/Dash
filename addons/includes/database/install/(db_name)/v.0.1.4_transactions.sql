@@ -23,6 +23,7 @@ CREATE TABLE `transactions` (
   `payment_response` text CHARACTER SET utf8mb4,
   `meta` mediumtext CHARACTER SET utf8mb4,
   `desc` text CHARACTER SET utf8mb4,
+  `dateverify` int(10) UNSIGNED NULL DEFAULT NULL,
   `datecreated` timestamp DEFAULT CURRENT_TIMESTAMP,
   `datemodified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `invoice_id` int(10) UNSIGNED DEFAULT NULL,
