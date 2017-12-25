@@ -27,6 +27,30 @@ class pay
     */
     public static function start($_user_id, $_bank, $_amount, $_option = [])
     {
+        if(!$_user_id || !is_numeric($_user_id))
+        {
+            if($_user_id === 'unverify')
+            {
+                // pay as undefined user in some project
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
+        if(is_numeric($_amount) && $_amount > 0 && $_amount == round($_amount, 0))
+        {
+            // no problem to continue!
+        }
+        else
+        {
+            \lib\db\logs::set('pay:irkish:amount:invalid', $_user_id);
+            debug::error(T_("Invalid amount"));
+            return false;
+        }
+
         $_bank = mb_strtolower($_bank);
 
         if(method_exists("\\lib\\utility\\payment\\pay", $_bank))

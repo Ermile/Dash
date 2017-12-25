@@ -5,6 +5,42 @@ use \lib\utility;
 
 trait budget
 {
+
+	public static function calc_budget($_transaction_id, $_plus, $_minus)
+	{
+		if(!$_transaction_id || !is_numeric($_transaction_id))
+		{
+			return false;
+		}
+
+		$transaction_detail = self::get(['id' => $_transaction_id, 'limit' => 1]);
+
+		if(!isset($transaction_detail['id']))
+		{
+			return false;
+		}
+		if(isset($transaction_detail['user_id']) && $transaction_detail['user_id'] && isset($transaction_detail['type']) && isset($transaction_detail['unit']))
+		{
+			// no problem to continue;
+		}
+		else
+		{
+			return false;
+		}
+
+		$budget_before           = self::budget($transaction_detail['user_id'], ['type' => $transaction_detail['type'], 'unit' => $transaction_detail['unit']]);
+		$budget_before           = floatval($budget_before);
+
+		$budget                  = $budget_before + (floatval($_plus) - floatval($_minus));
+
+		$update                  = [];
+		$update['budget_before'] = $budget_before;
+		$update['budget']        = $budget;
+
+		\lib\db\transactions::update($update, $_transaction_id);
+
+	}
+
 	/**
 	 * get the budget of users
 	 *

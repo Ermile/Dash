@@ -139,7 +139,10 @@ trait irkish
                     'payment_response' => $payment_response,
                 ];
 
+                \lib\db\transactions::calc_budget($transaction_id, $amount_SESSION / 10, 0);
+
                 \lib\db\transactions::update($update, $transaction_id);
+
                 logs::set('pay:irkish:ok:request', self::$user_id, $log_meta);
                 return self::turn_back($transaction_id);
             }

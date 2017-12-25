@@ -30,21 +30,6 @@ trait parsian
             ]
         ];
 
-        if(!$_user_id || !is_numeric($_user_id))
-        {
-            return false;
-        }
-
-        if(is_numeric($_amount) && $_amount > 0 && $_amount == round($_amount, 0))
-        {
-            // no problem to continue!
-        }
-        else
-        {
-            logs::set('pay:parsian:amount:invalid', $_user_id, $log_meta);
-            debug::error(T_("Invalid amount"));
-            return false;
-        }
 
         if(!option::config('parsian', 'status'))
         {

@@ -172,18 +172,22 @@ trait set
 		$insert['minus']         = $minus;
 		$insert['plus']          = $plus;
 
-		$budget_before           = self::budget($_args['user_id'], ['type' => $_args['type'], 'unit' => $unit_id]);
-		$budget_before           = floatval($budget_before);
+		if(intval($insert['verify']) === 1)
+		{
+			$budget_before           = self::budget($_args['user_id'], ['type' => $_args['type'], 'unit' => $unit_id]);
+			$budget_before           = floatval($budget_before);
 
-		$budget                  = $budget_before + (floatval($plus) - floatval($minus));
+			$budget                  = $budget_before + (floatval($plus) - floatval($minus));
 
-		$insert['budget_before'] = $budget_before;
-		$insert['budget']        = $budget;
+			$insert['budget_before'] = $budget_before;
+			$insert['budget']        = $budget;
+		}
 
 		$insert_id = self::insert($insert);
 
 		\lib\db\logs::set('transactions:insert', $_args['user_id'], $log_meta);
 		return $insert_id;
 	}
+
 }
 ?>
