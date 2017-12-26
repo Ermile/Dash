@@ -16,16 +16,17 @@ trait set
 	{
 		$default_args =
 		[
-			'debug'   => true,
-			'user_id' => null,
-			'caller'  => null,
-			'title'   => null,
-			'status'  => 'enable',
-			'verify'  => 0,
-			'unit'    => null,
-			'minus'   => null,
-			'plus'    => null,
-			'type'    => null,
+			'debug'       => true,
+			'user_id'     => null,
+			'caller'      => null,
+			'title'       => null,
+			'status'      => 'enable',
+			'verify'      => 0,
+			'unit'        => null,
+			'minus'       => null,
+			'plus'        => null,
+			'type'        => null,
+			'other_field' => [],
 
 		];
 
@@ -35,6 +36,15 @@ trait set
 		}
 
 		$_args = array_merge($default_args, $_args);
+
+		$other_field = [];
+
+		if(is_array($_args['other_field']))
+		{
+			$other_field = $_args['other_field'];
+		}
+
+		unset($_args['other_field']);
 
 		$debug = true;
 
@@ -57,7 +67,7 @@ trait set
 		$caller = $_args['caller'];
 		unset($_args['caller']);
 
-		$insert = array_merge([], $_args);
+		$insert = array_merge($other_field, $_args);
 
 
 		// check and make error on user_id

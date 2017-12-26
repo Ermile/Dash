@@ -87,6 +87,11 @@ trait zarinpal
             'amount_request' => $_amount,
         ];
 
+        if(isset($_options['other_field']) && is_array($_options['other_field']))
+        {
+            $transaction_start['other_field'] = $_options['other_field'];
+        }
+
         //START TRANSACTION BY CONDITION REQUEST
         $transaction_id = \lib\utility\payment\transactions::start($transaction_start);
 
