@@ -72,7 +72,12 @@ trait set
 
 		// check and make error on user_id
 		$insert['user_id'] = $_args['user_id'];
-		if(!$insert['user_id'])
+
+		if($insert['user_id'] === 'unverify')
+		{
+			$insert['user_id'] = null;
+		}
+		elseif(!$insert['user_id'] || !is_numeric($insert['user_id']))
 		{
 			if($debug)
 			{
