@@ -1,6 +1,13 @@
 {%extends display.enter%}
 
 {%block contentForm%}
+{%if login.id%}
+<div class="alert alert-success f fs06" title='{%trans "You"%}'>
+	<span class="c">{{login.displayname}}</span>
+	<span class="cauto">{{login.mobile}}</span>
+  </div>
+{%endif%}
+
 {{block('eAllInput')}}
 {{block('epass')}}
 {{block('ego')}}
