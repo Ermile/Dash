@@ -23,6 +23,17 @@ class users
 	}
 
 
+	public static function hard_delete($_id)
+	{
+		if(!$_id || !is_numeric($_id))
+		{
+			return false;
+		}
+
+		$query = "DELETE FROM users WHERE users.id = $_id LIMIT 1";
+		return \lib\db::query($query);
+	}
+
 
 	/**
 	 * Gets in database.
