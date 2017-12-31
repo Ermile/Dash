@@ -142,6 +142,9 @@ trait irkish
                 \lib\db\transactions::calc_budget($transaction_id, $amount_SESSION / 10, 0, $update);
 
                 logs::set('pay:irkish:ok:request', self::$user_id, $log_meta);
+
+                \lib\session::set('payment_verify_ok', $amount_SESSION / 10);
+
                 return self::turn_back($transaction_id);
             }
             else
