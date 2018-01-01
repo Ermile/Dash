@@ -25,6 +25,11 @@ trait login
 		{
 			$host = utility::get('referer');
 		}
+		elseif(isset($_SESSION['enter_referer']) && $_SESSION['enter_referer'])
+		{
+			$host = $_SESSION['enter_referer'];
+			unset($_SESSION['enter_referer']);
+		}
 		elseif(self::get_enter_session('first_signup'))
 		{
 			$host .= \lib\define::get_current_language_string();

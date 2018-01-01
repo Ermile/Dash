@@ -27,6 +27,11 @@ class controller extends \addons\content_enter\main\controller
 		// save all param-* | param_* in $_GET | $_POST
 		$this->save_param();
 
+		if(\lib\utility::get('referer') && \lib\utility::get('referer') != '')
+		{
+			$_SESSION['enter_referer'] = \lib\utility::get('referer');
+		}
+
 		if(self::get_request_method() === 'get')
 		{
 			$this->get(false, 'enter')->ALL();
