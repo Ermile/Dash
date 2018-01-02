@@ -3,7 +3,9 @@
 {%block contentForm%}
 {{block('emobilesignup')}}
 {{block('eFullname')}}
-{{block('eusername')}}
+
+{%if el.username%} {{block('eusername')}} {%endif%}
+
 {{block('epass')}}
 {{block('eramzNewSignup')}}
 {{block('esignup')}}

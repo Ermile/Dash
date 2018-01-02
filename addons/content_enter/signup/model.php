@@ -35,13 +35,16 @@ class model extends \addons\content_enter\main\model
 		}
 
 		$username = utility::post('username');
-		if(!$username || mb_strlen($username) < 5 || mb_strlen($username) > 50)
+		if(\lib\option::config('enter', 'singup_username'))
 		{
-			debug::error(T_("Pleaes set a valid username"));
-			return false;
+			if(!$username || mb_strlen($username) < 5 || mb_strlen($username) > 50 )
+			{
+				debug::error(T_("Pleaes set a valid username"));
+				return false;
+			}
 		}
 
-		if(!preg_match("/[A-Za-z0-9\_]/", $username))
+		if(\lib\option::config('enter', 'singup_username') && !preg_match("/[A-Za-z0-9\_]/", $username))
 		{
 			debug::error(T_("Username must in [A-Za-z0-9]"));
 			return false;
@@ -61,11 +64,14 @@ class model extends \addons\content_enter\main\model
 			return false;
 		}
 
-		$check_username = \lib\db\users::get_by_username($username);
-		if($check_username)
+		if(\lib\option::config('enter', 'singup_username'))
 		{
-			debug::error(T_("This username is already taken."));
-			return false;
+			$check_username = \lib\db\users::get_by_username($username);
+			if($check_username)
+			{
+				debug::error(T_("This username is already taken."));
+				return false;
+			}
 		}
 
 		$check_mobile = \lib\db\users::get_by_mobile($mobile);

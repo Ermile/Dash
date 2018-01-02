@@ -82,6 +82,9 @@ self::$config['enter']['send_rate']                     = [];
 self::$config['enter']['sms_rate']                      = [];
 // after signup user redirect to different page
 self::$config['enter']['signup_redirect']               = null;
+// after signup user redirect to different page
+self::$config['enter']['singup_username']               = true;
+
 // after login redirect to what?
 // default self::$config['redirect_url']
 self::$config['enter']['redirect']                      = null;
