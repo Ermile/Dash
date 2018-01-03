@@ -1,7 +1,9 @@
 <?php
 namespace addons\content_cp\invoicedetails;
 
-class controller extends \mvc\controller
+
+class controller extends \addons\content_cp\main\controller
+
 {
 	public $fields =
 	[

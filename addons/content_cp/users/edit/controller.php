@@ -1,7 +1,7 @@
 <?php
 namespace addons\content_cp\users\edit;
 
-class controller extends \mvc\controller
+class controller extends \addons\content_cp\main\controller
 {
 	public function ready()
 	{
