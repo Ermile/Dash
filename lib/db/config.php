@@ -473,6 +473,11 @@ class config
 			$master_join = $_options['master_join'];
 		}
 
+		if($_options['order'] && !in_array(mb_strtolower($_options['order']), ['asc', 'desc']))
+		{
+			$_options['order'] = 'DESC';
+		}
+
 		// ------------------ get count
 		$only_one_value = false;
 		$get_count      = false;
