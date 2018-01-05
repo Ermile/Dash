@@ -10,6 +10,7 @@ class transactions
 
 	use \lib\db\transactions\set;
 	use \lib\db\transactions\budget;
+	use \lib\db\transactions\total_paid;
 
 
 	/**
