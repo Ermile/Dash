@@ -35,15 +35,15 @@ class sms
 
 		$message = '';
 
-		if($_options['header'])
+		if($sms_header && $_options['header'])
 		{
 			$message    .= $sms_header;
-			$message    .= "\n";
+			$message    .= "\n\n";
 		}
 
 		$message .= $_message;
 
-		if($_options['footer'])
+		if($sms_footer && $_options['footer'])
 		{
 			$message    .= "\n\n";
 			$message    .= $sms_footer;
@@ -51,9 +51,9 @@ class sms
 
 		if(\lib\option::sms('kavenegar', 'one') && mb_strlen($message) > self::is_rtl($message, true))
 		{
-			if($_options['header'])
+			if($sms_header && $_options['header'])
 			{
-				$message = $sms_header. "\n". $_message;
+				$message = $sms_header. "\n\n". $_message;
 			}
 
 			if(\lib\option::sms('kavenegar', 'one') && mb_strlen($message) > self::is_rtl($message, true))
@@ -61,6 +61,8 @@ class sms
 				$message = $_message;
 			}
 		}
+		var_dump($message);
+		exit();
 		return $message;
 	}
 

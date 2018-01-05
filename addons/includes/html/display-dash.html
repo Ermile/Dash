@@ -47,6 +47,7 @@
 
   <figure>
 {%block avatar%}
+{%if login%}
    <a href="{{url.base}}/account/profile" title='{%trans "Edit your profile"%}' class="avatar">
 {%if login.avatar%}
      <img src="{{url.root}}/{{login.avatar}}" alt='{%trans "Avatar of you"%}'>
@@ -54,6 +55,9 @@
      <img src="{{url.static}}siftal/images/default/avatar.png" alt='{%trans "Default Avatar"%}'>
 {%endif%}
    </a>
+{%else%}
+
+{%endif%}
    <figcaption>{%trans "Hello"%} <b>{{login.displayname}}</b></figcaption>
 {%endblock%}
   </figure>
