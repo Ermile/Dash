@@ -17,5 +17,22 @@ trait total_paid
 		";
 		return \lib\db::get($query, 'total', true);
 	}
+
+
+	public static function total_paid_date($_date)
+	{
+		$query =
+		"
+			SELECT
+				SUM(transactions.plus) AS `total`
+			FROM
+				transactions
+			WHERE
+				transactions.verify = 1 AND
+				transactions.date = '$_date'
+
+		";
+		return \lib\db::get($query, 'total', true);
+	}
 }
 ?>

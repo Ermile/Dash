@@ -10,5 +10,12 @@ class transaction
 		$total_paid = \lib\db\transactions::total_paid($_unit);
 		return intval($total_paid);
 	}
+
+
+	public static function total_paid_date($_date)
+	{
+		$total_paid = \lib\db\transactions::total_paid_date($_date);
+		return intval($total_paid);
+	}
 }
 ?>
