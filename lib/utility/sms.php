@@ -61,8 +61,6 @@ class sms
 				$message = $_message;
 			}
 		}
-		var_dump($message);
-		exit();
 		return $message;
 	}
 
