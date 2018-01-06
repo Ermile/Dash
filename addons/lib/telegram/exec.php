@@ -107,7 +107,7 @@ class exec extends tg
 				// curl_setopt( $ch, CURLOPT_POSTFIELDS, http_build_query($_data));
 			}
 		}
-		if(Tld === 'dev')
+		if(Tld === 'local')
 		{
 			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 		}

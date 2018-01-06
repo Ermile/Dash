@@ -10,7 +10,7 @@
 <body>
  <h1><?php echo $HTTP_ERROR?></h1>
  <b class='slash'><?php echo $STRING; ?></b>
-<?php if(defined("DEBUG") && defined("Tld") && DEBUG && Tld === 'dev') {?>
+<?php if(defined("DEBUG") && defined("Tld") && DEBUG && Tld === 'local') {?>
  <ol>
 <?php
 $obj = array_reverse($obj);

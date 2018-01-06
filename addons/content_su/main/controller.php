@@ -58,7 +58,7 @@ class controller extends \mvc\controller
 		}
 		// Check permission and if user can do this operation
 		// allow to do it, else show related message in notify center
-		if(Tld === 'dev' && false)
+		if(Tld === 'local' && false)
 		{
 			// on tld dev open the su to upgrade for test
 		}

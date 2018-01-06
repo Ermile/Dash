@@ -28,7 +28,7 @@ class router
 		if(strpos($_SERVER['REQUEST_URI'], '//') !== false)
 		{
 			// route url like this
-			// http://dash.dev/enter?referer=http://dash.dev/cp
+			// http://dash.local/enter?referer=http://dash.local/cp
 			if(strpos($_SERVER['REQUEST_URI'], '?') === false || strpos($_SERVER['REQUEST_URI'], '?') > strpos($_SERVER['REQUEST_URI'], '//'))
 			{
 				\lib\error::page('What are you doing!');
@@ -107,7 +107,7 @@ class router
 		// Define Project Constants *******************************************************************
 		// declate some constant variable for better use in all part of app
 
-		// like .dev or .com
+		// like .local or .com
 		if(!defined('MainTld'))
 		{
 			// if enabling multi domain and set default tld define main tld
@@ -119,7 +119,7 @@ class router
 			// else detect it
 			else
 			{
-				define('MainTld', (Tld === 'dev'? '.dev': '.com'));
+				define('MainTld', (Tld === 'local'? '.local': '.com'));
 			}
 		}
 
@@ -326,7 +326,7 @@ class router
 			\lib\option::config('multi_domain') &&
 			\lib\option::config('redirect_to_main') &&
 			$mainSite &&
-			Tld !== 'dev' &&
+			Tld !== 'local' &&
 			parse_url($mainSite, PHP_URL_HOST) != \lib\router::get_root_domain()
 		)
 		{

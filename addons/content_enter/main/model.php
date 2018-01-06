@@ -37,7 +37,7 @@ class model extends \mvc\model
 		}
 
 		// in dev mode
-		if(Tld === 'dev')
+		if(Tld === 'local')
 		{
 			self::$dev_mode = true;
 		}

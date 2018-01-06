@@ -119,7 +119,7 @@ class define
 		if(\lib\option::config('coming') || defined('CommingSoon'))
 		{
 			// if user set dev in get, show the site
-			if(isset($_GET['dev']))
+			if(isset($_GET['local']))
 			{
 				setcookie('preview','yes',time() + 30*24*60*60,'/','.'.Service);
 			}
@@ -304,7 +304,7 @@ class define
 		// then use only one domain for this site then redirect to main tld
 
 		// $tld_lang = \lib\utility\location\tld::get();
-		// if(defined('MainService') && Tld !== 'dev')
+		// if(defined('MainService') && Tld !== 'local')
 		// {
 		// 	/**
 		// 	 need fix

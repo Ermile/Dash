@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{global.lang|replace({'_': '-'}) }}" dir="{{global.direction}}"{%if url.tld == 'dev'%} data-develop{%endif%}>
+<html lang="{{global.lang|replace({'_': '-'}) }}" dir="{{global.direction}}"{%if url.tld == 'local'%} data-develop{%endif%}>
 <head>
 {%block head_def%}
 {%set pageTitle%}{%spaceless%}{%if pageTitle%}{{pageTitle}}{%else%}{{global.title}}{%endif%}{%endspaceless%}{%endset%}

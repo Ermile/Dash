@@ -24,7 +24,7 @@ module.exports = function(grunt) {
             temp: '_tmp',
             source: '',    //'src'
             dest: '',      //'dist/<%= build.buildId %>'
-            dest_dev: '',  //'dev',
+            dest_dev: '',  //'local',
             banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
                     '<%= grunt.template.today("yyyy-mm-dd") %>\r\n' +
                     '<%= pkg.homepage ? " * " + pkg.homepage + "\\r\\n" : "" %>' +
@@ -88,6 +88,6 @@ module.exports = function(grunt) {
 	// Register Tasks
 	grunt.registerTask('default', [ 'sass:dist','uglify:dist' ]); // Default Production Build
 
-	grunt.registerTask('dev', [ 'sass:dev','uglify:dev' ]);
+	grunt.registerTask('local', [ 'sass:dev','uglify:dev' ]);
 
 };

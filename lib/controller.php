@@ -846,7 +846,7 @@ class controller
 				break;
 
 			case 'MainService':
-				$_arg      = is_array($_arg)  ? $_arg     : array('com', 'dev');
+				$_arg      = is_array($_arg)  ? $_arg     : array('com', 'local');
 
 				if (in_array($mytld, $_arg))
 					return $myprefix. constant('MainService').'.'.$mytld;

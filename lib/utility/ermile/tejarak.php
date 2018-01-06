@@ -19,7 +19,7 @@ class tejarak
 	 */
 	public function __construct($_mobile, $_token = null, $_version = null, $_header = [])
 	{
-		if(Tld === 'dev')
+		if(Tld === 'local')
 		{
 			$this->api_url = "http://tejarak.dev/api/%s/%s";
 		}
@@ -74,7 +74,7 @@ class tejarak
 		curl_setopt($handle, CURLOPT_HTTPHEADER, $this->header);
 		curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
 
-		if(Tld !== 'dev')
+		if(Tld !== 'local')
 		{
 			curl_setopt($handle, CURLOPT_SSL_VERIFYPEER, 1);
 		}

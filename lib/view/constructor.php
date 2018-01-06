@@ -95,7 +95,7 @@ trait constructor
 		$this->data->template['footer']    = 'content/template/footer.html';
 
 
-		$this->data->dev = \lib\option::config('dev');
+		$this->data->dev = \lib\option::config('local');
 
 		// if allow to use social then get social network account list
 		if(\lib\option::social('status'))
@@ -167,7 +167,7 @@ trait constructor
 					{
 						$_SESSION['ssid'] = $value;
 					}
-					elseif( !($name === 'dev' || $name === 'lang') )
+					elseif( !($name === 'local' || $name === 'lang') )
 					{
 						\lib\utility\cookie::write($name, $value);
 					}

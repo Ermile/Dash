@@ -50,7 +50,7 @@ trait lock
 		{
 			// in dev and when we in debug mode
 			// we have not any page to lock!
-			if(Tld === 'dev' && self::$debug_mode)
+			if(Tld === 'local' && self::$debug_mode)
 			{
 				return false;
 			}
