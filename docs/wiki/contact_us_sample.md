@@ -1,5 +1,5 @@
 # Create Contact Form
-##### create contact form in url : `example.dev/contact` save & show server request in `example.dev/contact/read`
+##### create contact form in url : `example.local/contact` save & show server request in `example.local/contact/read`
 1. make directory `contact` in `content` directory
 2. put `controller & view & display` in `contact` directory *tip : because we don't need `model.php` so don't set that
     - `display.html`'s content :  [Link](https://geeksesi.xyz/upload/view1.text )
@@ -55,7 +55,7 @@ class controller extends \lib\mvc\controller
 ---
 
 
-4. to show db.text content in table in `example.dev/contact/read` url i make `read` directory in `conten/contact` directory and put new `controller & view & display` in `read` directory like this :
+4. to show db.text content in table in `example.local/contact/read` url i make `read` directory in `conten/contact` directory and put new `controller & view & display` in `read` directory like this :
 ## controller :
 ```
 <?php
@@ -115,5 +115,5 @@ class view extends \lib\mvc\view
  [Link](https://geeksesi.xyz/upload/view2.text )
 
 ---
-5. in `example.dev/contact/read`'s controller check if `db.text` is `!empty` load `view_table`'s function in `view` else echo `sorry but file is empty`
-6. in `example.dev/contact/read`'s view `db.text`'s content convert to array and display in table in `display.html` by `Twig` and this variable : `name | email | message`
+5. in `example.local/contact/read`'s controller check if `db.text` is `!empty` load `view_table`'s function in `view` else echo `sorry but file is empty`
+6. in `example.local/contact/read`'s view `db.text`'s content convert to array and display in table in `display.html` by `Twig` and this variable : `name | email | message`

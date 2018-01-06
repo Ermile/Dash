@@ -44,7 +44,7 @@ class facebook
 		# login.php
 		$helper = self::$fb->getRedirectLoginHelper();
 		$permissions = ['email', 'user_likes']; // optional
-		$loginUrl = $helper->getLoginUrl('http://archiver.dev/login-callback.php', $permissions);
+		$loginUrl = $helper->getLoginUrl('http://archiver.local/login-callback.php', $permissions);
 
 		echo '<a href="' . $loginUrl . '">Log in with Facebook!</a>';
 
@@ -79,7 +79,7 @@ class facebook
 	public static function post()
 	{
 		$linkData = [
-		  'link' => 'http://archiver.dev',
+		  'link' => 'http://archiver.local',
 		  'message' => 'Test',
 		  ];
 

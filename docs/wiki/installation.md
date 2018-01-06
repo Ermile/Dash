@@ -7,7 +7,7 @@
 ```
 <VirtualHost 127.0.0.2>
  DocumentRoot /var/www/example/public_html/
- ServerName example.dev
+ ServerName example.local
  <Directory /var/www/example/public_html/>
   AllowOverride All
   Order allow,deny
@@ -20,9 +20,9 @@
 - restart apache service : `sudo service apache2 restart`
 - run `sudo vim /etc/hosts` and add code to end of file :
 ```
- 12.0.0.2       example.dev
+ 12.0.0.2       example.local
 ```
-- now type in browser : example.dev run virtual hosts
+- now type in browser : example.local run virtual hosts
 + more information in : [apache virtualHosts](https://www.digitalocean.com/community/tutorials/how-to-set-up-apache-virtual-hosts-on-ubuntu-14-04-lts "Title")
 ### Tip
 - in Apache must enable `.htaccess` mode by : `sudo a2enmod rewrite headers`
@@ -36,7 +36,7 @@
     listen [::]:80 ;
     root directory/public_html;
     index index.html index.htm index.nginx-debian.html;
-    server_name example.dev ;
+    server_name example.local ;
     include sites-available/php.conf;
  }
 
@@ -67,7 +67,7 @@ location ~* \.(css|gif|ico|jpeg|jpg|js|png)$ { expires max; log_not_found off;}
 
 ```
 - restart nginx service : `sudo service nginx restart`
-- now type in browser : example.dev run virtual hosts
+- now type in browser : example.local run virtual hosts
 + more information in : [nginx virtualHosts](https://www.digitalocean.com/community/tutorials/how-to-set-up-nginx-virtual-hosts-server-blocks-on-ubuntu-12-04-lts--3 "Title")
 ---
 # Windows
@@ -76,7 +76,7 @@ location ~* \.(css|gif|ico|jpeg|jpg|js|png)$ { expires max; log_not_found off;}
 ```
 <VirtualHost 127.0.0.2>
  DocumentRoot c:/xampp/htdocs/example/public_html/
- ServerName example.dev
+ ServerName example.local
  <Directory c:/xampp/htdocs/example/public_html/>
   AllowOverride All
   Order allow,deny
@@ -88,7 +88,7 @@ location ~* \.(css|gif|ico|jpeg|jpg|js|png)$ { expires max; log_not_found off;}
 - restart apache service
 - edite `hosts` file in `c:/windows/System32/driver/etc`, add this code to end of file :
  ```
- 12.0.0.2       example.dev
+ 12.0.0.2       example.local
  ```
  - for more information : [apache virtualHosts in windows](https://delanomaloney.com/2013/07/10/how-to-set-up-virtual-hosts-using-xampp/)
 ---

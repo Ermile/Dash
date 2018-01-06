@@ -74,7 +74,7 @@
 
 {%if include.siftal and siftalCSS != 'off' %}
 {%if dev.siftal %}
- <link rel="stylesheet"       href="http://siftal.dev/dist/css/siftal.css"/>
+ <link rel="stylesheet"       href="http://siftal.local/dist/css/siftal.css"/>
 {%else%}
  <link rel="stylesheet"       href="{{url.static}}{{'siftal/css/siftal.css' | filemtime(true)}}"/>
 {%endif%}
@@ -123,9 +123,9 @@
 
 {%if include.siftal and siftalJS != 'off' %}
 {%if dev.siftal %}
- <script src="http://siftal.dev/dist/js/siftal.min.js"></script>
+ <script src="http://siftal.local/dist/js/siftal.min.js"></script>
 {%if include.chart %}
- <script src="http://siftal.dev/dist/js/amcharts.min.js"></script>
+ <script src="http://siftal.local/dist/js/amcharts.min.js"></script>
 {%endif%}
 {%else%}
 

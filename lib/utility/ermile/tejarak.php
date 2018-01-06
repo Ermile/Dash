@@ -21,7 +21,7 @@ class tejarak
 	{
 		if(Tld === 'local')
 		{
-			$this->api_url = "http://tejarak.dev/api/%s/%s";
+			$this->api_url = "http://tejarak.local/api/%s/%s";
 		}
 
 		if(!\lib\option::config('tejarak', 'status'))
