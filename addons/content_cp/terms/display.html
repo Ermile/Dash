@@ -27,7 +27,7 @@
 
 
 {%block iTable%}
-{%if need%}
+{%if dataTable%}
 <div class="f justify-center">
 <div class="cbox ">
 
@@ -41,7 +41,7 @@
         </tr>
       </thead>
       <tbody>
-        {%for key, value in need%}
+        {%for key, value in dataTable%}
           <tr>
             <td><a href="{{url.baseFull}}/service/options?edit={{value.id}}">{{value.title}}</a></td>
             <td>{{value.slug}}</td>
