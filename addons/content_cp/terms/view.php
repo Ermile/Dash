@@ -26,6 +26,10 @@ class view extends \addons\content_cp\main\view
 			$args['order'] = 'DESC';
 		}
 
+		if(\lib\utility::get('type'))
+		{
+			$args['type'] = \lib\utility::get('type');
+		}
 
 		$search_string            = \lib\utility::get('q');
 
@@ -48,16 +52,13 @@ class view extends \addons\content_cp\main\view
 			\lib\utility\export::csv(['name' => 'export_service', 'data' => $this->data->dataTable]);
 		}
 
-		$this->data->sort_link = self::make_sort_link(\lib\app\term::$sort_field, $this->url('baseFull'). '/terms');
-
 		if(isset($this->controller->pagnation))
 		{
 			$this->data->pagnation = $this->controller->pagnation_get();
 		}
 
-
-
 	}
+
 
 	public function view_edit()
 	{

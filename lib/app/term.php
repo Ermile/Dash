@@ -61,6 +61,22 @@ class term
 			return false;
 		}
 
+		$type = \lib\app::request('type');
+		switch ($type)
+		{
+			case 'tag':
+			case 'cat':
+			case 'code':
+			case 'other':
+			case 'term':
+				// nothing
+				break;
+
+			default:
+				\lib\debug::error(T_("Please set the term type"), 'type');
+				return false;
+				break;
+		}
 
 		$status = \lib\app::request('status');
 
@@ -75,6 +91,7 @@ class term
 		$args['desc']   = $desc;
 		$args['status'] = $status;
 		$args['slug']   = $slug;
+		$args['type']   = $type;
 
 		return $args;
 	}

@@ -12,6 +12,7 @@ class model extends \addons\content_cp\main\model
 		$post['title']  = \lib\utility::post('title');
 		$post['desc']   = \lib\utility::post('desc');
 		$post['slug']   = \lib\utility::post('slug');
+		$post['type']   = \lib\utility::get('type');
 		$post['status'] = \lib\utility::post('status') ? 'enable' : 'disable' ;
 
 		if(\lib\utility::get('edit'))
