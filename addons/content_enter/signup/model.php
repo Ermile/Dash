@@ -14,6 +14,23 @@ class model extends \addons\content_enter\main\model
 	 */
 	public function post_signup($_args)
 	{
+
+		$count = \lib\session::get('count_signup_check');
+		if($count)
+		{
+			\lib\session::set('count_signup_check', $count + 1, null, 60 * 30);
+		}
+		else
+		{
+			\lib\session::set('count_signup_check', 1, null, 60 * 30);
+		}
+
+		if($count >= 3)
+		{
+			\lib\debug::warn(T_("How are you?"). ":)");
+			return false;
+		}
+
 		if(utility::post('password'))
 		{
 			debug::error(T_("Dont!"));

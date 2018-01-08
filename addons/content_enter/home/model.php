@@ -79,7 +79,21 @@ class model extends \addons\content_enter\main\model
 	 */
 	public function post_enter($_args)
 	{
+		$count = \lib\session::get('enter_session_check');
+		if($count)
+		{
+			\lib\session::set('enter_session_check', $count + 1, null, 60 * 10);
+		}
+		else
+		{
+			\lib\session::set('enter_session_check', 1, null, 60 * 10);
+		}
 
+		if($count >= 3)
+		{
+			\lib\debug::warn(T_("How are you?"). ":)");
+			return false;
+		}
 		// get saved mobile in session to find count of change mobile
 		$old_usernameormobile = self::get_enter_session('usernameormobile');
 
