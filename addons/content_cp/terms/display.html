@@ -8,14 +8,11 @@
       <div class="f justify-center">
         <div class="cbox ">
           <form method="post">
-            {{block ('iThumb') }}
             {{block ('iTitle') }}
+            {{block ('iSlug') }}
             {{block ('iDescription') }}
             {{block ('iStatus') }}
-            {%if edit_mode%}
-            {{block ('iedit')}}
-            {%else%}
-            {{block ('iadd')}}
+            {%if edit_mode%}{{block ('iedit')}}{%else%}{{block ('iadd')}}
             {%endif%}
           </form>
         </div>
@@ -61,17 +58,6 @@
 {%endblock%}
 
 
-{%block iThumb%}
-<div class="input preview">
- <input type="file" accept="image/gif, image/jpeg, image/png" name="thumb" id="fthumb" data-preview data-max="500">
- <label for="fthumb" title='{%trans "allowed extentions jpg, png (gif for bussiness plans). Max 500Kb"%}'>
-{%if product_detail.fileurl%}
-  <img src="{{product_detail.fileurl}}" alt="{{product_detail.title}}" id="logoPreview">
-{%endif%}
- </label>
-</div>
-{%endblock%}
-
 
 
 
@@ -84,49 +70,35 @@
 {%endblock%}
 
 
-
 {%block iTitle%}
-<label for='ftitle'>{%trans "Title"%}</label>
+<label for='fslug'>{%trans "Title"%}</label>
 <div class="input">
- <input type="text" name="title" placeholder='{%trans "Title"%}' value="{{product_detail.title}}" autofocus  maxlength='50' minlength="1" pattern=".{1,50}" title='{%trans "Enter a valid title"%}' id='ftitle'>
+ <input type="text" name="title" placeholder='{%trans "Title"%}' value="{{datarow.title}}" autofocus maxlength='100' minlength="1" pattern=".{1,100}" title='{%trans "Enter a valid title"%}' id='ftitle'>
 </div>
 {%endblock%}
 
+
+{%block iSlug%}
+<label for='fslug'>{%trans "Slug"%}</label>
+<div class="input">
+ <input type="text" name="slug" placeholder='{%trans "Slug"%}' value="{{datarow.slug}}" maxlength='50' minlength="1" pattern=".{1,50}" title='{%trans "Enter a valid slug"%}' id='fslug'>
+</div>
+{%endblock%}
 
 
 {%block iDescription%}
 <label for='fdesc'>{%trans "Description"%}</label>
-<textarea class="txt" name="desc" rows="3" placeholder='{%trans "Description"%}' id='fdesc'>{{product_detail.desc}}</textarea>
-
-{%endblock%}
-
-
-{%block iCount%}
-<label for='fcount'>{%trans "Count"%}</label>
-<div class="input">
- <input type="number" name="count" placeholder='{%trans "Count"%}' value="{{product_detail.request}}" maxlength='50' minlength="1" pattern=".{1,50}" title='{%trans "Enter a valid count"%}' id='fcount'>
-</div>
+<textarea class="txt" name="desc" rows="7" placeholder='{%trans "Description"%}' id='fdesc'>{{datarow.desc}}</textarea>
 {%endblock%}
 
 
 {%block iStatus%}
 <div class="switch1">
-    <input type="checkbox" name="status" id="switch12" {%if product_detail.status == 'enable' or not product_detail %} checked {%endif%}>
+    <input type="checkbox" name="status" id="switch12" {%if datarow.status == 'enable' or not datarow %} checked {%endif%}>
     <label for="switch12" data-on='{%trans "Active"%}' data-off='{%trans "Deactive"%}'></label>
     <label for="switch12">{%trans "Status"%}</label>
    </div>
 {%endblock%}
 
 
-
-
-
-
-
-{%block iAmount%}
-<label for='famount'>{%trans "Amount"%}</label>
-<div class="input">
- <input type="number" name="amount" placeholder='{%trans "Amount"%}' value="{{product_detail.amount}}"  maxlength='50' minlength="1" pattern=".{1,50}" title='{%trans "Enter a valid amount"%}' id='famount'>
-</div>
-{%endblock%}
 
