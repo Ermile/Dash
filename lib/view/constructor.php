@@ -65,6 +65,7 @@ trait constructor
 		$this->data->module          = $this->module();
 		$this->data->child           = $this->child();
 		$this->data->login           = $this->login('all');
+		$this->data->user            = \lib\user::detail();
 		// $this->data->perm            = $this->access(null, 'all');
 		// $this->data->permContent     = $this->access('all');
 
