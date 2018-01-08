@@ -10,6 +10,9 @@
           <form method="post">
             {{block ('iTitle') }}
             {{block ('iSlug') }}
+{%if utilityGET.type == 'cat'%}
+            {{block ('iParent') }}
+{%endif%}
             {{block ('iDescription') }}
             {{block ('iStatus') }}
             {%if edit_mode%}{{block ('iedit')}}{%else%}{{block ('iadd')}}
@@ -80,6 +83,17 @@
 <div class="input">
  <input type="text" name="slug" placeholder='{%trans "Slug"%}' value="{{datarow.slug}}" maxlength='50' minlength="1" pattern=".{1,50}" title='{%trans "Enter a valid slug"%}' id='fslug'>
 </div>
+{%endblock%}
+
+
+{%block iParent%}
+<label for="city">{%trans "Parent Category"%}</label>
+<select name="city" class="input select">
+  <option value="">{%trans "Please select one itme"%}</option>
+  {%for key, item in terms_list%}
+    <option value="{{item.id}}">{{item.value}}</option>
+  {%endfor%}
+</select>
 {%endblock%}
 
 
