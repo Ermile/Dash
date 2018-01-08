@@ -3,8 +3,9 @@
 
 {%block pageContent%}
 
-<div class="f">
-  <div class="c5 mRa5">
+<div class="f justify-center">
+{%if utilityGET.type%}
+  <div class="c4 s12 mRa5">
       <div class="f justify-center">
         <div class="cbox ">
           <form method="post">
@@ -22,7 +23,9 @@
       </div>
   </div>
 
-  <div class="c">
+{%else%}
+{%endif%}
+  <div class="c s12">
     {{block ('iTable') }}
   </div>
 </div>
@@ -90,8 +93,8 @@
 <label for="city">{%trans "Parent Category"%}</label>
 <select name="city" class="input select">
   <option value="">{%trans "Please select one itme"%}</option>
-  {%for key, item in terms_list%}
-    <option value="{{item.id}}">{{item.value}}</option>
+  {%for key, item in dataTable%}
+    <option value="{{item.id}}">{{item.title}}</option>
   {%endfor%}
 </select>
 {%endblock%}
