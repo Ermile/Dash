@@ -130,7 +130,9 @@ trait parsian
 
                 logs::set('pay:parsian:ok:request', self::$user_id, $log_meta);
 
-                \lib\session::set('payment_verify_ok', $Amount_SESSION / 10);
+                \lib\session::set('payment_verify_amount', $Amount_SESSION / 10);
+
+                \lib\session::set('payment_verify_status', 'ok');
 
                 return self::turn_back($transaction_id);
             }
@@ -142,6 +144,7 @@ trait parsian
                     'condition'        => 'verify_error',
                     'payment_response' => $payment_response,
                 ];
+                \lib\session::set('payment_verify_status', 'verify_error');
                 \lib\db\transactions::update($update, $transaction_id);
                 logs::set('pay:parsian:verify_error:request', self::$user_id, $log_meta);
                 return self::turn_back($transaction_id);
@@ -155,6 +158,7 @@ trait parsian
                 'condition'        => 'error',
                 'payment_response' => json_encode((array) $_args, JSON_UNESCAPED_UNICODE),
             ];
+            \lib\session::set('payment_verify_status', 'error');
             \lib\db\transactions::update($update, $transaction_id);
             logs::set('pay:parsian:error:request', self::$user_id, $log_meta);
             return self::turn_back($transaction_id);

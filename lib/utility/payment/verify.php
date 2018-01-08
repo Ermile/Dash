@@ -58,6 +58,57 @@ class verify
         (new \lib\redirector($turn_back))->redirect();
 	}
 
+	public static function clear_session()
+	{
+        \lib\session::set('payment_request_start', null);
+        \lib\session::set('payment_verify_amount', null);
+        \lib\session::set('payment_verify_status', null);
+        \lib\session::set('payment_request_start', null);
+
+	}
+
+	public static function get_amount()
+	{
+  		$amount = \lib\session::get('payment_verify_amount');
+  		if($_get_amount)
+  		{
+  			if($amount)
+  			{
+  				return $amount;
+  			}
+  			else
+  			{
+  				return null;
+  			}
+  		}
+	}
+
+
+	public static function get_status($_get_amount = false)
+	{
+        $status = \lib\session::get('payment_verify_status');
+
+        if($status)
+        {
+	        if($status === 'ok')
+	        {
+	        	return true;
+	        }
+	        elseif(in_array($status, ['error', 'verify_error']))
+	        {
+	        	return false;
+	        }
+        }
+
+ 		$start = \lib\session::get('payment_request_start');
+
+ 		if($start)
+ 		{
+ 			return false;
+ 		}
+	}
+
+
 	use verify\zarinpal;
 	use verify\parsian;
 	use verify\irkish;

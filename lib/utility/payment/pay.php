@@ -55,6 +55,12 @@ class pay
 
         if(method_exists("\\lib\\utility\\payment\\pay", $_bank))
         {
+
+            \lib\session::set('payment_request_start', true);
+            \lib\session::set('payment_verify_amount', null);
+            \lib\session::set('payment_verify_status', null);
+            \lib\session::set('payment_request_start', null);
+
             return \lib\utility\payment\pay::$_bank($_user_id, $_amount, $_option);
         }
         else

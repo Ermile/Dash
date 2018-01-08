@@ -125,7 +125,8 @@ trait zarinpal
 
                 logs::set('pay:zarinpal:ok:request', self::$user_id, $log_meta);
 
-                \lib\session::set('payment_verify_ok', $zarinpal['Amount']);
+                \lib\session::set('payment_verify_amount', $zarinpal['Amount']);
+                \lib\session::set('payment_verify_status', 'ok');
 
                 return self::turn_back($transaction_id);
             }
@@ -137,6 +138,7 @@ trait zarinpal
                     'condition'        => 'verify_error',
                     'payment_response' => $payment_response,
                 ];
+                \lib\session::set('payment_verify_status', 'verify_error');
                 \lib\db\transactions::update($update, $transaction_id);
                 logs::set('pay:zarinpal:verify_error:request', self::$user_id, $log_meta);
                 return self::turn_back($transaction_id);

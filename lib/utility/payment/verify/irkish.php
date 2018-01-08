@@ -143,7 +143,8 @@ trait irkish
 
                 logs::set('pay:irkish:ok:request', self::$user_id, $log_meta);
 
-                \lib\session::set('payment_verify_ok', $amount_SESSION / 10);
+                \lib\session::set('payment_verify_status', 'ok');
+                \lib\session::set('payment_verify_amount', $amount_SESSION / 10);
 
                 return self::turn_back($transaction_id);
             }
@@ -155,6 +156,9 @@ trait irkish
                     'condition'        => 'verify_error',
                     'payment_response' => $payment_response,
                 ];
+
+                \lib\session::set('payment_verify_status', 'verify_error');
+
                 \lib\db\transactions::update($update, $transaction_id);
                 logs::set('pay:irkish:verify_error:request', self::$user_id, $log_meta);
                 return self::turn_back($transaction_id);
@@ -168,6 +172,9 @@ trait irkish
                 'condition'        => 'error',
                 'payment_response' => json_encode((array) $_args, JSON_UNESCAPED_UNICODE),
             ];
+
+            \lib\session::set('payment_verify_status', 'error');
+
             \lib\db\transactions::update($update, $transaction_id);
             logs::set('pay:irkish:error:request', self::$user_id, $log_meta);
             return self::turn_back($transaction_id);
