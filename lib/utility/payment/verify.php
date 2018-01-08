@@ -58,33 +58,29 @@ class verify
         (new \lib\redirector($turn_back))->redirect();
 	}
 
+
 	public static function clear_session()
 	{
         \lib\session::set('payment_request_start', null);
         \lib\session::set('payment_verify_amount', null);
         \lib\session::set('payment_verify_status', null);
-        \lib\session::set('payment_request_start', null);
-
 	}
+
 
 	public static function get_amount()
 	{
   		$amount = \lib\session::get('payment_verify_amount');
-  		if($_get_amount)
-  		{
-  			if($amount)
-  			{
-  				return $amount;
-  			}
-  			else
-  			{
-  				return null;
-  			}
-  		}
+
+		if($amount)
+		{
+			return $amount;
+		}
+
+		return null;
 	}
 
 
-	public static function get_status($_get_amount = false)
+	public static function get_status()
 	{
         $status = \lib\session::get('payment_verify_status');
 
