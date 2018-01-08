@@ -1,0 +1,132 @@
+{%extends display.khadijeCpMain%}
+
+
+{%block pageContent%}
+
+<div class="f">
+  <div class="c5 mRa5">
+      <div class="f justify-center">
+        <div class="cbox ">
+          <form method="post">
+            {{block ('iThumb') }}
+            {{block ('iTitle') }}
+            {{block ('iDescription') }}
+            {{block ('iStatus') }}
+            {%if edit_mode%}
+            {{block ('iedit')}}
+            {%else%}
+            {{block ('iadd')}}
+            {%endif%}
+          </form>
+        </div>
+      </div>
+  </div>
+
+  <div class="c">
+
+{%if need%}
+<div class="f justify-center">
+<div class="cbox ">
+
+    <table class="tbl">
+      <thead>
+        <tr class="primary">
+          <th>{%trans "Picture"%}</th>
+          <th>{%trans "Title"%}</th>
+          <th>{%trans "Desctiption"%}</th>
+          <th>{%trans "Status"%}</th>
+          <th>{%trans "Edit"%}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {%for key, value in need%}
+          <tr>
+            <td><img height="50" width="50" src="{%if value.fileurl%}{{value.fileurl}}{%else%}{{url.static}}/siftal/images/default/image.png{%endif%}"></td>
+            <td>{{value.title}}</td>
+            <td>{{value.desc}}</td>
+            <td>{%set vStatus = value.status%}{%trans vStatus%}</td>
+            <td class="collapsing"><a href="{{url.baseFull}}/service/options?edit={{value.id}}" ><button class="btn primary xs">{%trans "Edit"%}</button></a></td>
+          </tr>
+        {%endfor%}
+      </tbody>
+    </table>
+  </div>
+</div>
+{%endif%}
+
+  </div>
+</div>
+
+
+{%endblock%}
+
+
+{%block iThumb%}
+<div class="input preview">
+ <input type="file" accept="image/gif, image/jpeg, image/png" name="thumb" id="fthumb" data-preview data-max="500">
+ <label for="fthumb" title='{%trans "allowed extentions jpg, png (gif for bussiness plans). Max 500Kb"%}'>
+{%if product_detail.fileurl%}
+  <img src="{{product_detail.fileurl}}" alt="{{product_detail.title}}" id="logoPreview">
+{%endif%}
+ </label>
+</div>
+{%endblock%}
+
+
+
+
+{%block iadd%}
+<button class="btn primary block mT25">{%trans "Add"%}</button>
+{%endblock%}
+
+{%block iedit%}
+<button class="btn primary block mT25">{%trans "Edit"%}</button>
+{%endblock%}
+
+
+
+{%block iTitle%}
+<label for='ftitle'>{%trans "Title"%}</label>
+<div class="input">
+ <input type="text" name="title" placeholder='{%trans "Title"%}' value="{{product_detail.title}}" autofocus  maxlength='50' minlength="1" pattern=".{1,50}" title='{%trans "Enter a valid title"%}' id='ftitle'>
+</div>
+{%endblock%}
+
+
+
+{%block iDescription%}
+<label for='fdesc'>{%trans "Description"%}</label>
+<textarea class="txt" name="desc" rows="3" placeholder='{%trans "Description"%}' id='fdesc'>{{product_detail.desc}}</textarea>
+
+{%endblock%}
+
+
+{%block iCount%}
+<label for='fcount'>{%trans "Count"%}</label>
+<div class="input">
+ <input type="number" name="count" placeholder='{%trans "Count"%}' value="{{product_detail.request}}" maxlength='50' minlength="1" pattern=".{1,50}" title='{%trans "Enter a valid count"%}' id='fcount'>
+</div>
+{%endblock%}
+
+
+{%block iStatus%}
+<div class="switch1">
+    <input type="checkbox" name="status" id="switch12" {%if product_detail.status == 'enable' or not product_detail %} checked {%endif%}>
+    <label for="switch12" data-on='{%trans "Active"%}' data-off='{%trans "Deactive"%}'></label>
+    <label for="switch12">{%trans "Status"%}</label>
+   </div>
+{%endblock%}
+
+
+
+
+
+
+
+{%block iAmount%}
+<label for='famount'>{%trans "Amount"%}</label>
+<div class="input">
+ <input type="number" name="amount" placeholder='{%trans "Amount"%}' value="{{product_detail.amount}}"  maxlength='50' minlength="1" pattern=".{1,50}" title='{%trans "Enter a valid amount"%}' id='famount'>
+</div>
+{%endblock%}
+
