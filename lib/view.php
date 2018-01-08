@@ -103,6 +103,7 @@ class view
 		$tmpname      = ($this->controller()->display_name)? $this->controller()->display_name : $repository.$module.'display.html';
 
 
+		$this->datarow = \lib\app\posts::$datarow;
 		// ************************************************************************************ Twig
 		// twig method
 		$this->add_twig_filter('fcache');

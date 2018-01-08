@@ -112,10 +112,15 @@ trait template
 		}
 
 		$myurl = null;
+		$route_check_true = false;
 
 		if(!empty(db_name))
 		{
-			$myurl = $this->model()->s_template_finder();
+			$post_detail = \lib\app\posts::find_post();
+			if($post_detail)
+			{
+				$route_check_true = true;
+			}
 		}
 
 		// set post type, get before underscope
@@ -135,7 +140,6 @@ trait template
 			}
 		}
 
-		$route_check_true = false;
 		$file_ext         = '.html';
 		$display_prefix   = 'content\template\\';
 		// if url does not exist show 404 error
