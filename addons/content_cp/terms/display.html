@@ -1,4 +1,4 @@
-{%extends display.khadijeCpMain%}
+{%extends display.cpMain%}
 
 
 {%block pageContent%}
@@ -20,7 +20,13 @@
   </div>
 
   <div class="c">
+    {{block ('iTable') }}
+  </div>
+</div>
+{%endblock%}
 
+
+{%block iTable%}
 {%if need%}
 <div class="f justify-center">
 <div class="cbox ">
@@ -28,21 +34,19 @@
     <table class="tbl">
       <thead>
         <tr class="primary">
-          <th>{%trans "Picture"%}</th>
           <th>{%trans "Title"%}</th>
+          <th>{%trans "Slug"%}</th>
           <th>{%trans "Desctiption"%}</th>
           <th>{%trans "Status"%}</th>
-          <th>{%trans "Edit"%}</th>
         </tr>
       </thead>
       <tbody>
         {%for key, value in need%}
           <tr>
-            <td><img height="50" width="50" src="{%if value.fileurl%}{{value.fileurl}}{%else%}{{url.static}}/siftal/images/default/image.png{%endif%}"></td>
-            <td>{{value.title}}</td>
+            <td><a href="{{url.baseFull}}/service/options?edit={{value.id}}">{{value.title}}</a></td>
+            <td>{{value.slug}}</td>
             <td>{{value.desc}}</td>
-            <td>{%set vStatus = value.status%}{%trans vStatus%}</td>
-            <td class="collapsing"><a href="{{url.baseFull}}/service/options?edit={{value.id}}" ><button class="btn primary xs">{%trans "Edit"%}</button></a></td>
+            <td class="collapsing">{%set vStatus = value.status%}{%trans vStatus%}</td>
           </tr>
         {%endfor%}
       </tbody>
@@ -50,14 +54,7 @@
   </div>
 </div>
 {%endif%}
-
-  </div>
-</div>
-
-
 {%endblock%}
-
-
 
 
 
@@ -71,15 +68,15 @@
 
 
 {%block iTitle%}
-<label for='fslug'>{%trans "Title"%}</label>
+<label for='fslug'>{%trans "Title"%} <small class="fc-red">* {%trans "Require"%}</small></label>
 <div class="input">
- <input type="text" name="title" placeholder='{%trans "Title"%}' value="{{datarow.title}}" autofocus maxlength='100' minlength="1" pattern=".{1,100}" title='{%trans "Enter a valid title"%}' id='ftitle'>
+ <input type="text" name="title" placeholder='{%trans "Title"%} *' value="{{datarow.title}}" autofocus maxlength='100' minlength="1" pattern=".{1,100}" title='{%trans "Enter a valid title"%}' id='ftitle' required>
 </div>
 {%endblock%}
 
 
 {%block iSlug%}
-<label for='fslug'>{%trans "Slug"%}</label>
+<label for='fslug'>{%trans "Slug"%} <small>{%trans "Used for url"%}</small></label>
 <div class="input">
  <input type="text" name="slug" placeholder='{%trans "Slug"%}' value="{{datarow.slug}}" maxlength='50' minlength="1" pattern=".{1,50}" title='{%trans "Enter a valid slug"%}' id='fslug'>
 </div>
