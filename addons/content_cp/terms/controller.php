@@ -1,13 +1,13 @@
 <?php
-namespace content_cp\terms;
+namespace addons\content_cp\terms;
 
 
-class controller extends \content_cp\main2\controller
+class controller extends \addons\content_cp\main\controller
 {
 	function ready()
 	{
 
-		$this->post('service')->ALL();
+		$this->post('terms')->ALL();
 		if(\lib\utility::get('edit'))
 		{
 			$this->get(false, 'edit')->ALL();
