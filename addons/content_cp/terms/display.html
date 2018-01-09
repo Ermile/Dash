@@ -49,7 +49,7 @@
       <tbody>
         {%for key, value in dataTable%}
           <tr>
-            <td><a href="{{url.baseFull}}/service/options?edit={{value.id}}">{{value.title}}</a></td>
+            <td><a href="{{url.baseFull}}/terms?type={{value.type}}&edit={{value.id}}">{{value.title}}</a></td>
             <td>{{value.slug}}</td>
             <td>{{value.desc}}</td>
             <td class="collapsing">{%set vStatus = value.status%}{%trans vStatus%}</td>
