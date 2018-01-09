@@ -41,7 +41,7 @@ class codes
 		$check_exist_code =
 		[
 			'type'  => 'code',
-			'slug'  => "(SELECT '$_args[code]')",
+			'slug'  => "$_args[code]",
 			'limit' => 1,
 		];
 
@@ -57,7 +57,7 @@ class codes
 			$insert_term =
 			[
 				'type'    => 'code',
-				'slug'    => "(SELECT '$_args[code]')",
+				'slug'    => "$_args[code]",
 				'title'   => $_args['type'],
 				'user_id' => $_args['creator'],
 				'status'  => 'enable',

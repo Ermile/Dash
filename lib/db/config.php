@@ -116,10 +116,6 @@ class config
 			{
 				$where[] = " $my_field IS NULL ";
 			}
-			elseif(is_string($value) && substr($value, 0,7) === '(SELECT')
-			{
-				$where[] = " $my_field = $value ";
-			}
 			elseif(is_string($value))
 			{
 				$where[] = " $my_field = '$value' ";
@@ -168,17 +164,17 @@ class config
 			{
 				$set[] = " `$key` = NULL ";
 			}
-			elseif(is_numeric($value))
-			{
-				$set[] = " `$key` = $value ";
-			}
-			elseif(is_string($value) && substr($value, 0,7) === '(SELECT')
-			{
-				$set[] = " `$key` = $value ";
-			}
 			elseif(is_string($value) && (!$value || $value == '' ))
 			{
 				$set[] = " `$key` = NULL";
+			}
+			elseif(is_string($value))
+			{
+				$set[] = " `$key` = '$value' ";
+			}
+			elseif(is_numeric($value))
+			{
+				$set[] = " `$key` = $value ";
 			}
 			elseif(is_bool($value))
 			{
