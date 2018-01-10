@@ -96,7 +96,7 @@ trait constructor
 		$this->data->template['footer']    = 'content/template/footer.html';
 
 
-		$this->data->dev = \lib\option::config('local');
+		$this->data->dev = \lib\option::config('dev');
 
 		// if allow to use social then get social network account list
 		if(\lib\option::social('status'))
