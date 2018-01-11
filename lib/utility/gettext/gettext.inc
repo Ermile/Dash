@@ -430,12 +430,28 @@ function T_($msgid, $_replace = null)
 		$result = $msgid;
 	}
 
-	// if user pass arguments into translation function replace it
-	if(is_array($_replace) && $_replace)
+	// do replacement only on strings with replace condition, not for all
+	if($_replace !== false && strpos($result, ':') !== false)
 	{
-		foreach ($_replace as $key => $value)
+		$replaceArray = null;
+		// if we have trans
+		if(isset($_SESSION['trans']) && is_array($_SESSION['trans']))
 		{
-			$result = str_replace(':'.$key, T_($value), $result);
+			$replaceArray = $_SESSION['trans'];
+		}
+		// if we have replace in parameter
+		if($_replace && is_array($_replace))
+		{
+			$replaceArray = array_merge($replaceArray, $_replace);
+		}
+		// if we collect array to replace, do replace process
+		if(is_array($replaceArray))
+		{
+			foreach ($replaceArray as $key => $value)
+			{
+				$result = str_replace(':'.$key, T_($value, false), $result);
+				// if we are in index 0, use ucfirst for english langs
+			}
 		}
 	}
 
