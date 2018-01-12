@@ -442,7 +442,14 @@ function T_($msgid, $_replace = null)
 		// if we have replace in parameter
 		if($_replace && is_array($_replace))
 		{
-			$replaceArray = array_merge($replaceArray, $_replace);
+			if(is_array($replaceArray))
+			{
+				$replaceArray = array_merge($replaceArray, $_replace);
+			}
+			else
+			{
+				$replaceArray = $_replace;
+			}
 		}
 		// if we collect array to replace, do replace process
 		if(is_array($replaceArray))
