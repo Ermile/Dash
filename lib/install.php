@@ -30,7 +30,7 @@ if(isset($_POST['username']) && isset($_POST['password']))
 				$add_user =
 				[
 					'mobile'     => $mobile,
-					'permission' => 'admin',
+					'permission' => 'supervisor',
 				];
 
 				$check_exist = \lib\db\users::get(array_merge($add_user, ['limit' => 1]));
