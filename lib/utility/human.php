@@ -133,7 +133,12 @@ class human
 	 */
 	public static function fitNumber($_number)
 	{
-		$new_text = (number_format($_number));
+		$new_text = $_number;
+		if(is_numeric($new_text))
+		{
+			$new_text = (number_format($new_text));
+
+		}
 		$new_text = self::number($new_text);
 		return $new_text;
 	}
