@@ -74,8 +74,15 @@ trait send_code
 			}
 		}
 
+		if(Tld === 'local' && empty($way))
+		{
+			array_push($way, 'sms');
+		}
+
+
 		if(!$i_can || empty($way))
 		{
+			self::open_lock('verify/what');
 			self::next_step('verify/what');
 			self::go_to('verify/what');
 		}
