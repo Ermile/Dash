@@ -29,6 +29,7 @@ trait add
 		$default_option =
 		[
 			'save_log'       => true,
+			'contact'        => true,
 			'debug'          => true,
 			'other_field'    => null,
 			'other_field_id' => null,
@@ -74,7 +75,10 @@ trait add
 
 		$_option['user_id'] = $user_id;
 
-		\lib\app\contact::merge($_args, $_option);
+		if($_option['contact'])
+		{
+			\lib\app\contact::merge($_args, $_option);
+		}
 
 		if(debug::$status)
 		{
