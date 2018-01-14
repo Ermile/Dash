@@ -128,11 +128,12 @@ class date
 
 	public static function db($_date, $_seperator = '-')
 	{
-		if(!$_date)
+		$myDate = trim($_date);
+		if(!$myDate)
 		{
 			return null;
 		}
-		$myDate    = \lib\utility\convert::to_en_number($_date);
+		$myDate    = \lib\utility\convert::to_en_number($myDate);
 		$myDate    = str_replace('/', '-', $myDate);
 		$myDateLen = strlen($myDate);
 
