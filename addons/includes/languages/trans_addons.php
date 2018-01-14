@@ -129,23 +129,13 @@ class twigTransTerms
 	echo T_("Yes");                                                                   // Line 39
 	echo T_("No");                                                                    // Line 41
 
-	//---------------------------------------------addons\content_cp\logs\display.html
-	echo T_("Log item id");                                                           // Line 20
-	echo T_("Type");                                                                  // Line 28
-	echo T_("Caller");                                                                // Line 22
-	echo T_("Priority");                                                              // Line 24
-	echo T_("User_id");                                                               // Line 25
-	echo T_("Data");                                                                  // Line 26
-	echo T_("createdate");                                                            // Line 26
-	echo T_("Meta");                                                                  // Line 30
-
 	//----------------------------------------------addons\content_cp\main\layout.html
-	echo T_("Tools");                                                                 // Line 162 Seperate
-	echo T_("Transactions");                                                          // Line 32
-	echo T_("Logs");                                                                  // Line 31
-	echo T_("Users");                                                                 // Line 100 Seperate
-	echo T_("Notifications");                                                         // Line 12
-	echo T_("Sample Design");                                                         // Line 17
+	echo T_("Options");                                                               // Line 84 Seperate
+	echo T_("News");                                                                  // Line 9
+	echo T_("All news");                                                              // Line 11
+	echo T_("Add new news");                                                          // Line 12
+	echo T_("Categries");                                                             // Line 13
+	echo T_("Tags");                                                                  // Line 14
 	echo T_("Last update on");                                                        // Line 26
 	echo T_("wait for next version!");                                                // Line 26
 	echo T_("Powered by");                                                            // Line 28
@@ -153,31 +143,29 @@ class twigTransTerms
 	echo T_("Ermile");                                                                // Line 177 Seperate
 	echo T_("Version");                                                               // Line 108 Seperate
 
-	//------------------------------------addons\content_cp\notifications\display.html
-	echo T_("user_id");                                                               // Line 17
-	echo T_("user_idsender");                                                         // Line 18
-	echo T_("content");                                                               // Line 20
-	echo T_("url");                                                                   // Line 21
-	echo T_("read");                                                                  // Line 22
-	echo T_("star");                                                                  // Line 23
-	echo T_("status");                                                                // Line 24
-	echo T_("category");                                                              // Line 139 Seperate
-	echo T_("senddate");                                                              // Line 27
-	echo T_("deliverdate");                                                           // Line 28
-	echo T_("expiredate");                                                            // Line 29
-	echo T_("readdate");                                                              // Line 30
-	echo T_("gateway");                                                               // Line 31
-	echo T_("auto");                                                                  // Line 32
-	echo T_("datemodified");                                                          // Line 33
-
 	//---------------------------------------addons\content_cp\permission\display.html
 	echo T_("Change permission of user");                                             // Line 6
 	echo T_("Permission cat");                                                        // Line 10
 	echo T_("Save change");                                                           // Line 32
 
+	//--------------------------------------------addons\content_cp\terms\display.html
+	echo T_("Slug");                                                                  // Line 87
+	echo T_("Desctiption");                                                           // Line 45
+	echo T_("Add");                                                                   // Line 149 Seperate
+	echo T_("Edit");                                                                  // Line 150 Seperate
+	echo T_("Require");                                                               // Line 77
+	echo T_("Enter a valid title");                                                   // Line 79
+	echo T_("Used for url");                                                          // Line 85
+	echo T_("Enter a valid slug");                                                    // Line 87
+	echo T_("Parent Category");                                                       // Line 93
+	echo T_("Please select one itme");                                                // Line 95
+	echo T_("Active");                                                                // Line 56
+	echo T_("Deactive");                                                              // Line 112
+
 	//---------------------------------addons\content_cp\transactions\add\display.html
 	echo T_("Saved record");                                                          // Line 6
 	echo T_("Code");                                                                  // Line 73
+	echo T_("Type");                                                                  // Line 28
 	echo T_("Plus");                                                                  // Line 32
 	echo T_("Minus");                                                                 // Line 33
 	echo T_("Condition");                                                             // Line 38
@@ -191,7 +179,6 @@ class twigTransTerms
 	echo T_("Prize");                                                                 // Line 53
 	echo T_("Unit");                                                                  // Line 34
 	echo T_("Mobile");                                                                // Line 168 Seperate
-	echo T_("Add");                                                                   // Line 149 Seperate
 
 	//-------------------------------------addons\content_cp\transactions\display.html
 	echo T_("Add New Transaction");                                                   // Line 7
@@ -219,7 +206,8 @@ class twigTransTerms
 	echo T_("Email");                                                                 // Line 100
 	echo T_("Username");                                                              // Line 27
 	echo T_("Avatar");                                                                // Line 28
-	echo T_("Edit");                                                                  // Line 150 Seperate
+	echo T_("Logs");                                                                  // Line 31
+	echo T_("Transactions");                                                          // Line 32
 	echo T_("Permission");                                                            // Line 33
 
 	//---------------------------------------addons\content_cp\users\edit\display.html
@@ -287,6 +275,9 @@ class twigTransTerms
 
 	//----------------------------------------addons\content_enter\google\display.html
 
+	//------------------------------------------addons\content_enter\home\display.html
+	echo T_("You");                                                                   // Line 5
+
 	//--------------------------------addons\content_enter\mobile\request\display.html
 	echo T_("If you wanna more secure enter your mobile");                            // Line 6
 	echo T_("I dont want use mobile");                                                // Line 11
@@ -336,6 +327,8 @@ class twigTransTerms
 
 	//-----------------------------------------addons\content_su\logitems\display.html
 	echo T_("Logitems List");                                                         // Line 6
+	echo T_("Caller");                                                                // Line 22
+	echo T_("Priority");                                                              // Line 24
 	echo T_("datecreated");                                                           // Line 26
 
 	//------------------------------------addons\content_su\logitems\edit\display.html
@@ -353,14 +346,38 @@ class twigTransTerms
 
 	//---------------------------------------------addons\content_su\logs\display.html
 	echo T_("Logs List");                                                             // Line 6
+	echo T_("Log item id");                                                           // Line 20
+	echo T_("User_id");                                                               // Line 25
+	echo T_("Data");                                                                  // Line 26
 	echo T_("Desc");                                                                  // Line 27
+	echo T_("createdate");                                                            // Line 26
+	echo T_("Meta");                                                                  // Line 30
 
 	//----------------------------------------------addons\content_su\main\layout.html
+	echo T_("Tools");                                                                 // Line 162 Seperate
 	echo T_("Log items");                                                             // Line 9
+	echo T_("Users");                                                                 // Line 100 Seperate
+	echo T_("Notifications");                                                         // Line 12
 	echo T_("ShortURL");                                                              // Line 13
 	echo T_("Send Nofity");                                                           // Line 14
+	echo T_("Sample Design");                                                         // Line 17
 
 	//------------------------------------addons\content_su\notifications\display.html
+	echo T_("user_id");                                                               // Line 17
+	echo T_("user_idsender");                                                         // Line 18
+	echo T_("content");                                                               // Line 20
+	echo T_("url");                                                                   // Line 21
+	echo T_("read");                                                                  // Line 22
+	echo T_("star");                                                                  // Line 23
+	echo T_("status");                                                                // Line 24
+	echo T_("category");                                                              // Line 139 Seperate
+	echo T_("senddate");                                                              // Line 27
+	echo T_("deliverdate");                                                           // Line 28
+	echo T_("expiredate");                                                            // Line 29
+	echo T_("readdate");                                                              // Line 30
+	echo T_("gateway");                                                               // Line 31
+	echo T_("auto");                                                                  // Line 32
+	echo T_("datemodified");                                                          // Line 33
 
 	//---------------------------------------addons\content_su\permission\display.html
 
@@ -372,20 +389,20 @@ class twigTransTerms
 	echo T_("Primary");                                                               // Line 128
 	echo T_("Warn");                                                                  // Line 131
 	echo T_("Info");                                                                  // Line 7
-	echo T_("Check buttons collection");                                              // Line 57
+	echo T_("Check buttons collection");                                              // Line 59
 	echo T_("Messages");                                                              // Line 47
-	echo T_("This site uses cookies");                                                // Line 65
-	echo T_("Hello dear!");                                                           // Line 70
-	echo T_("Looking for help?");                                                     // Line 73
-	echo T_("Use our help center");                                                   // Line 75
-	echo T_("Check our FAQ");                                                         // Line 76
-	echo T_("Icons");                                                                 // Line 85
-	echo T_("Badge");                                                                 // Line 110
+	echo T_("This site uses cookies");                                                // Line 67
+	echo T_("Hello dear!");                                                           // Line 72
+	echo T_("Looking for help?");                                                     // Line 75
+	echo T_("Use our help center");                                                   // Line 77
+	echo T_("Check our FAQ");                                                         // Line 78
+	echo T_("Icons");                                                                 // Line 87
+	echo T_("Badge");                                                                 // Line 112
 	echo T_("Posts");                                                                 // Line 94 Seperate
-	echo T_("Add New");                                                               // Line 111
+	echo T_("Add New");                                                               // Line 113
 	echo T_("Notification");                                                          // Line 28
-	echo T_("125");                                                                   // Line 113
-	echo T_("64");                                                                    // Line 114
+	echo T_("125");                                                                   // Line 115
+	echo T_("64");                                                                    // Line 116
 	echo T_("7");                                                                     // Line 27
 	echo T_(" Home");                                                                 // Line 63
 	echo T_("Control Panel");                                                         // Line 151 Seperate
@@ -393,11 +410,11 @@ class twigTransTerms
 	echo T_("Breadcrumb");                                                            // Line 7
 	echo T_("Pagination");                                                            // Line 7
 	echo T_("Previous");                                                              // Line 89
-	echo T_("6");                                                                     // Line 138
-	echo T_("8");                                                                     // Line 140
+	echo T_("6");                                                                     // Line 140
+	echo T_("8");                                                                     // Line 142
 	echo T_("Next");                                                                  // Line 137
 	echo T_("Progress");                                                              // Line 12
-	echo T_("Table");                                                                 // Line 163
+	echo T_("Table");                                                                 // Line 165
 	echo T_("First Name");                                                            // Line 283
 	echo T_("Javad");                                                                 // Line 299
 	echo T_("Evazzadeh");                                                             // Line 300
@@ -407,12 +424,12 @@ class twigTransTerms
 	echo T_("Salehi");                                                                // Line 320
 	echo T_("Footer");                                                                // Line 292
 	echo T_("Input");                                                                 // Line 7
-	echo T_("@");                                                                     // Line 186
-	echo T_(".");                                                                     // Line 192
-	echo T_("+");                                                                     // Line 195
-	echo T_("-");                                                                     // Line 197
+	echo T_("@");                                                                     // Line 188
+	echo T_(".");                                                                     // Line 194
+	echo T_("+");                                                                     // Line 197
+	echo T_("-");                                                                     // Line 199
 	echo T_("Textarea");                                                              // Line 7
-	echo T_("Vcard");                                                                 // Line 214
+	echo T_("Vcard");                                                                 // Line 216
 	echo T_("Joined in 2018");                                                        // Line 378
 	echo T_("Ermile is our company in Qom!");                                         // Line 379
 	echo T_("123 Friends");                                                           // Line 381
@@ -424,10 +441,10 @@ class twigTransTerms
 	echo T_("Check more!");                                                           // Line 285
 	echo T_("Javad Evazzdeh");                                                        // Line 388
 	echo T_("CEO and Founder");                                                       // Line 389
-	echo T_("Remove");                                                                // Line 259
-	echo T_("Clockpicker");                                                           // Line 269
-	echo T_("Datepicker");                                                            // Line 279
-	echo T_("Checkbox");                                                              // Line 296
+	echo T_("Remove");                                                                // Line 261
+	echo T_("Clockpicker");                                                           // Line 271
+	echo T_("Datepicker");                                                            // Line 281
+	echo T_("Checkbox");                                                              // Line 298
 	echo T_("Check1 Sample1");                                                        // Line 20
 	echo T_("Switch");                                                                // Line 37
 	echo T_("YES");                                                                   // Line 87
@@ -626,7 +643,6 @@ class twigTransTerms
 
 	//------------------------------------addons\content_su\sample\template\input.html
 	echo T_("Focus");                                                                 // Line 51
-	echo T_("Active");                                                                // Line 56
 	echo T_("Readonly");                                                              // Line 61
 	echo T_("Disabled");                                                              // Line 66
 	echo T_("All type of input conditions");                                          // Line 74
@@ -1032,12 +1048,12 @@ class twigTransTerms
 	//---------------------------------------addons\content_su\users\edit\display.html
 
 	//------------------------------------------addons\includes\html\display-dash.html
-	echo T_("Edit your profile");                                                     // Line 50
-	echo T_("Avatar of you");                                                         // Line 52
-	echo T_("Default Avatar");                                                        // Line 54
-	echo T_("Hello");                                                                 // Line 57
+	echo T_("Edit your profile");                                                     // Line 51
+	echo T_("Avatar of you");                                                         // Line 53
+	echo T_("Default Avatar");                                                        // Line 55
+	echo T_("Hello");                                                                 // Line 61
 	echo T_("Logout");                                                                // Line 104 Seperate
-	echo T_("View your current location and navigate to parent of it");               // Line 95
+	echo T_("View your current location and navigate to parent of it");               // Line 99
 
 	//----------------------------------addons\includes\html\display-enter-blocks.html
 	echo T_("Please enter valid mobile number");                                      // Line 12
@@ -1149,7 +1165,6 @@ class twigTransTerms
 	echo T_("Cp");                                                                    // Line 81 Seperate
 	echo T_("account");                                                               // Line 82 Seperate
 	echo T_("SiteContent");                                                           // Line 83 Seperate
-	echo T_("Options");                                                               // Line 84 Seperate
 	echo T_("Back to");                                                               // Line 85 Seperate
 	echo T_("Actions");                                                               // Line 86 Seperate
 	echo T_("Add New Record");                                                        // Line 87 Seperate
