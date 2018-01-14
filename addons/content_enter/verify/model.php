@@ -30,6 +30,11 @@ class model extends \addons\content_enter\main\model
 			self::send_way();
 		}
 
+		if(Tld === 'local')
+		{
+			debug::true(T_("Verify code in local is :code", ['code' => '<b>11111</b>']));
+		}
+
 		$select_way = 'verify/'. $send_code;
 		self::open_lock($select_way);
 		self::go_to($select_way);
