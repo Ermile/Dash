@@ -88,8 +88,8 @@ class model extends \addons\content_enter\main\model
 		{
 			\lib\session::set('enter_session_check', 1, null, 60 * 10);
 		}
-
-		if($count >= 3)
+		$anotherPerm = \lib\permission::access('enter:another:session');
+		if($count >= 3 && !$anotherPerm)
 		{
 			\lib\debug::warn(T_("How are you?"). ":)");
 			return false;
