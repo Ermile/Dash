@@ -106,5 +106,64 @@ class date
 		return $result;
 
 	}
+
+	public static function force()
+	{
+
+	}
+
+
+	public static function forceEn()
+	{
+
+	}
+
+
+	public static function forceFa($_date)
+	{
+
+	}
+
+
+
+	public static function db($_date, $_seperator = '-')
+	{
+		if(!$_date)
+		{
+			return null;
+		}
+		$myDate    = \lib\utility\convert::to_en_number($_date);
+		$myDate    = str_replace('/', '-', $myDate);
+		$myDateLen = strlen($myDate);
+
+		if($myDateLen === 10)
+		{
+			// do nothing
+		}
+		elseif($myDateLen === 8 && strpos($myDateLen, '-') === false)
+		{
+			// try to fix more on date as yyyy-mm-dd soon
+			$convertedDate = strtotime($myDate);
+			if ($convertedDate === FALSE)
+			{
+				return false;
+			}
+			$myDate = date('Y-m-d', $convertedDate);
+		}
+		else
+		{
+			return false;
+		}
+
+		if($_seperator !== '-')
+		{
+
+			$convertedDate = \DateTime::createFromFormat("Y-m-d", $myDate);
+			$myDate = $convertedDate->format('Y'. $_seperator. 'm'. $_seperator. 'd');
+		}
+
+		// retult always have 10 chars with format yyyy-mm-dd
+		return $myDate;
+	}
 }
 ?>
