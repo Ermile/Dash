@@ -6,7 +6,7 @@ class date
 	private static $lang = null;
 
 
-	private static function format($_type, $_format = 'short')
+	private static function formatFinder($_type, $_format = 'short')
 	{
 		$format     = "Y-m-d H:i:s";
 
@@ -73,11 +73,11 @@ class date
 
 		if($lang === 'fa')
 		{
-			$result = \lib\utility\jdate::date(self::format('date', $_format),$_timestamp, false);
+			$result = \lib\utility\jdate::date(self::formatFinder('date', $_format),$_timestamp, false);
 		}
 		else
 		{
-			$result = date(self::format('date', $_format), $_timestamp);
+			$result = date(self::formatFinder('date', $_format), $_timestamp);
 		}
 
 		return $result;
@@ -96,11 +96,11 @@ class date
 
 		if($lang === 'fa')
 		{
-			$result = \lib\utility\jdate::date(self::format('time', $_format),$_timestamp, false);
+			$result = \lib\utility\jdate::date(self::formatFinder('time', $_format),$_timestamp, false);
 		}
 		else
 		{
-			$result = date(self::format('time', $_format), $_timestamp);
+			$result = date(self::formatFinder('time', $_format), $_timestamp);
 		}
 
 		return $result;
@@ -166,5 +166,29 @@ class date
 		// retult always have 10 chars with format yyyy-mm-dd
 		return $myDate;
 	}
+
+
+	public static function format($_date, $_format = 'Y-m-d', $_formatInput = 'Y-m-d')
+	{
+		$myDate = self::db($_date);
+
+		$convertedDate = strtotime($myDate);
+		if ($convertedDate === FALSE)
+		{
+			$convertedDate = \DateTime::createFromFormat($_formatInput, $myDate);
+			if($convertedDate)
+			{
+				$convertedDate = $convertedDate->format($_format);
+			}
+		}
+		else
+		{
+			$convertedDate = date($_format, strtotime($convertedDate));
+		}
+
+		return $convertedDate;
+	}
+
+
 }
 ?>
