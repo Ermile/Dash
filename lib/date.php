@@ -141,7 +141,7 @@ class date
 		{
 			// do nothing
 		}
-		elseif($myDateLen === 8 && strpos($myDateLen, '-') === false)
+		elseif($myDateLen === 8 && is_numeric($myDateLen) && strpos($myDateLen, '-') === false)
 		{
 			// try to fix more on date as yyyy-mm-dd soon
 			$convertedDate = strtotime($myDate);
