@@ -30,8 +30,8 @@ class sms
 		$_message = trim($_message);
 
 		// create complete message
-		$sms_header = trim(\lib\option::sms('kavenegar', 'header'));
-		$sms_footer = trim(\lib\option::sms('kavenegar', 'footer'));
+		$sms_header = T_(trim(\lib\option::sms('kavenegar', 'header')));
+		$sms_footer = T_(trim(\lib\option::sms('kavenegar', 'footer')));
 
 		$message = '';
 
