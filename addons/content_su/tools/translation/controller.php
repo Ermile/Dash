@@ -5,7 +5,14 @@ class controller extends \addons\content_su\main\controller
 {
 	public function ready()
 	{
-		parent::ready();
+		if(Tld === 'local')
+		{
+			// dont chcek permission on local
+		}
+		else
+		{
+			parent::ready();
+		}
 
 		$this->getUpdates();
 		$this->get()->ALL();
