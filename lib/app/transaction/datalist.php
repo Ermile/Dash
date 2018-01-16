@@ -7,6 +7,9 @@ trait datalist
 	public static $sort_field =
 	[
 		'id',
+		'dateverify',
+		'status',
+		'condition',
 	];
 
 

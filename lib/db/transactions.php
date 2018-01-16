@@ -81,7 +81,7 @@ class transactions
 					users.mobile      AS `mobile`,
 					users.displayname AS `displayname`
 				",
-			'master_join'         => " INNER JOIN users ON users.id = transactions.user_id ",
+			'master_join'         => " LEFT JOIN users ON users.id = transactions.user_id ",
 		];
 
 		$_options = array_merge($default_option, $_options);
