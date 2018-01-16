@@ -61,7 +61,7 @@ class verify
 
 	public static function clear_session()
 	{
-        \lib\session::set('payment_request_start', null);
+        \lib\session::set('payment_request_start', false);
         \lib\session::set('payment_verify_amount', null);
         \lib\session::set('payment_verify_status', null);
 	}
