@@ -146,6 +146,8 @@ trait irkish
                 \lib\session::set('payment_verify_status', 'ok');
                 \lib\session::set('payment_verify_amount', $amount_SESSION / 10);
 
+                unset($_SESSION['amount']['irkish'][$token]);
+
                 return self::turn_back($transaction_id);
             }
             else

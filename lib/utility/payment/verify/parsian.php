@@ -134,6 +134,8 @@ trait parsian
 
                 \lib\session::set('payment_verify_status', 'ok');
 
+                unset($_SESSION['amount']['parsian'][$Token]);
+
                 return self::turn_back($transaction_id);
             }
             else

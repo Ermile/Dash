@@ -128,6 +128,8 @@ trait zarinpal
                 \lib\session::set('payment_verify_amount', $zarinpal['Amount']);
                 \lib\session::set('payment_verify_status', 'ok');
 
+                unset($_SESSION['amount']['zarinpal'][$zarinpal['Authority']]);
+
                 return self::turn_back($transaction_id);
             }
             else
