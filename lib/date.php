@@ -183,7 +183,7 @@ class date
 		}
 		else
 		{
-			$convertedDate = date($_format, strtotime($convertedDate));
+			$convertedDate = date($_format, $convertedDate);
 		}
 
 		return $convertedDate;
