@@ -256,7 +256,8 @@ trait twigAddons
 
 			if($html)
 			{
-				$lang_string = '';
+				$lang_string    = '';
+				$urlPathCurrent = '';
 				foreach ($langList as $key => $value)
 				{
 					$langPrefix     = \lib\define::get_current_language_string($key);
