@@ -27,14 +27,14 @@
 {%block eramz%}
    <div class='flex fix' id='eramz'>
     <label for='ramz' title='{%trans "Password"%}'>*</label>
-    <input id='ramz' name="ramz" type='password' placeholder='{%trans "Password"%}' autocomplete="new-password" minlength="6" maxlength="40" pattern=".{6,40}" title='{%trans "Enter a valid password from 6 to 40 character"%}' autofocus required>
+    <input id='ramz' name="ramz" type='password' placeholder='{%trans "Password"%}' autocomplete="off" minlength="6" maxlength="40" pattern=".{6,40}" title='{%trans "Enter a valid password from 6 to 40 character"%}' autofocus required>
    </div>
 {%endblock%}
 
 {%block eramzNewSignup%}
    <div class='flex fix' id='eramzNew'>
     <label for='ramzNew' title='{%trans "New Password"%}'>**</label>
-    <input id='ramzNew' name="ramzNew" type='password' placeholder='{%trans "New Password"%}' autocomplete="new-password" minlength="6" maxlength="40" pattern=".{6,40}" title='{%trans "Enter a valid password from 6 to 40 character"%}' required>
+    <input id='ramzNew' name="ramzNew" type='password' placeholder='{%trans "New Password"%}' autocomplete="off" minlength="6" maxlength="40" pattern=".{6,40}" title='{%trans "Enter a valid password from 6 to 40 character"%}' required>
    </div>
 {%endblock%}
 
@@ -44,7 +44,7 @@
 {%block eramzNew%}
    <div class='flex fix' id='eramzNew'>
     <label for='ramzNew' title='{%trans "New Password"%}'>**</label>
-    <input id='ramzNew' name="ramzNew" type='password' placeholder='{%trans "New Password"%}' autocomplete="new-password" minlength="6" maxlength="40" pattern=".{6,40}" title='{%trans "Enter a valid password from 6 to 40 character"%}' autofocus required>
+    <input id='ramzNew' name="ramzNew" type='password' placeholder='{%trans "New Password"%}' autocomplete="off" minlength="6" maxlength="40" pattern=".{6,40}" title='{%trans "Enter a valid password from 6 to 40 character"%}' autofocus required>
    </div>
 {%endblock%}
 
@@ -53,7 +53,7 @@
 {%block epass%}
    <div class='flex fix{%if url.tld != "local" or true%} hide{%endif%}' id='epasscode'>
     <label for='passcode'>Pwd</label>
-    <input id='passcode' name="password" type='password' placeholder='{%trans "Password?"%}' autocomplete="new-password" minlength="6" maxlength="40">
+    <input id='passcode' name="password" type='password' placeholder='{%trans "Password?"%}' autocomplete="off" minlength="6" maxlength="40">
    </div>
 {%endblock%}
 
@@ -62,7 +62,7 @@
 {%block ecode%}
    <div class='flex fix' id='ecode'>
     <label for='code'>Code</label>
-    <input id='code' name="code" type='number' placeholder='{%trans "Verify Code"%}' autocomplete="new-password" inputmode="numeric" min="10000" max="99999" pattern=".{5,5}" title='{%trans "Enter a valid code!"%}' autofocus required>
+    <input id='code' name="code" type='number' placeholder='{%trans "Verify Code"%}' autocomplete="off" inputmode="numeric" min="10000" max="99999" pattern=".{5,5}" title='{%trans "Enter a valid code!"%}' autofocus required>
    </div>
 {%endblock%}
 
