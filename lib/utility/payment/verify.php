@@ -109,6 +109,7 @@ class verify
 	use verify\parsian;
 	use verify\irkish;
 	use verify\payir;
+	use verify\asanpardakht;
 
 
 }

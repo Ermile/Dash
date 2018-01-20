@@ -22,6 +22,7 @@ class pay
     use pay\parsian;
     use pay\irkish;
     use pay\payir;
+    use pay\asanpardakht;
 
     /**
     * start pay
