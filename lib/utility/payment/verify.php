@@ -108,6 +108,7 @@ class verify
 	use verify\zarinpal;
 	use verify\parsian;
 	use verify\irkish;
+	use verify\payir;
 
 
 }

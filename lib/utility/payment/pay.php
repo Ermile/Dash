@@ -21,6 +21,7 @@ class pay
     use pay\zarinpal;
     use pay\parsian;
     use pay\irkish;
+    use pay\payir;
 
     /**
     * start pay
