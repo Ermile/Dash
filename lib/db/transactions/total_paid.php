@@ -29,7 +29,7 @@ trait total_paid
 				transactions
 			WHERE
 				transactions.verify = 1 AND
-				transactions.date = '$_date'
+				DATE(transactions.date) = DATE('$_date')
 
 		";
 		return \lib\db::get($query, 'total', true);
