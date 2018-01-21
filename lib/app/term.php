@@ -113,6 +113,13 @@ class term
 			}
 		}
 
+		$excerpt = \lib\app::request('excerpt');
+		if($excerpt && mb_strlen($excerpt) > 500)
+		{
+			\lib\debug::error(T_("Please set the term excerpt less than 500 character"), 'excerpt');
+			return false;
+		}
+
 		$args             = [];
 		$args['title']    = $title;
 		$args['desc']     = $desc;
@@ -120,6 +127,7 @@ class term
 		$args['slug']     = $slug;
 		$args['type']     = $type;
 		$args['language'] = $language;
+		$args['excerpt'] = $excerpt;
 
 		return $args;
 	}

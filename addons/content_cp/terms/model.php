@@ -11,6 +11,7 @@ class model extends \addons\content_cp\main\model
 		$post             = [];
 		$post['title']    = \lib\utility::post('title');
 		$post['desc']     = \lib\utility::post('desc');
+		$post['excerpt']  = \lib\utility::post('excerpt');
 		$post['language'] = \lib\define::get_language();
 		$post['slug']     = \lib\utility::post('slug');
 		$post['type']     = \lib\utility::get('type');

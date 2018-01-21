@@ -11,6 +11,7 @@
           <form method="post">
             {{block ('iTitle') }}
             {{block ('iSlug') }}
+            {{block ('iexcerpt') }}
 {%if utilityGET.type == 'cat'%}
             {{block ('iParent') }}
 {%endif%}
@@ -42,8 +43,10 @@
         <tr class="primary">
           <th>{%trans "Title"%}</th>
           <th>{%trans "Slug"%}</th>
+          <th>{%trans "Excerpt"%}</th>
           <th>{%trans "Desctiption"%}</th>
           <th>{%trans "Status"%}</th>
+
         </tr>
       </thead>
       <tbody>
@@ -51,6 +54,7 @@
           <tr>
             <td><a href="{{url.baseFull}}/terms?type={{value.type}}&edit={{value.id}}">{{value.title}}</a></td>
             <td>{{value.slug}}</td>
+            <td>{{value.excerpt}}</td>
             <td>{{value.desc}}</td>
             <td class="collapsing">{%set vStatus = value.status%}{%trans vStatus%}</td>
           </tr>
@@ -116,3 +120,7 @@
 
 
 
+{%block iexcerpt%}
+<label for='excerpt'>{%trans "Excerpt"%}</label>
+<textarea class="txt" name="excerpt" rows="7" placeholder='{%trans "Description"%}' id='excerpt'>{{datarow.excerpt}}</textarea>
+{%endblock%}
