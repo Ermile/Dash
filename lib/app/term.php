@@ -12,6 +12,22 @@ class term
 		'slug',
 	];
 
+	public static function get($_id)
+	{
+		$id = \lib\utility\shortURL::decode($_id);
+		if(!$id)
+		{
+			return false;
+		}
+
+		$result = \lib\db\terms::get(['id' => $id, 'limit' => 1]);
+		$temp = [];
+		if(is_array($result))
+		{
+			$temp = self::ready($result);
+		}
+		return $temp;
+	}
 	/**
 	 * check args
 	 *
@@ -120,11 +136,51 @@ class term
 			return false;
 		}
 
+		$parent = \lib\app::request('parent');
+		if($parent && !\lib\utility\shortURL::is($parent))
+		{
+			\lib\debug::error(T_("Invalid parent"), 'parent');
+			return false;
+		}
+
+		$url = $slug;
+
+		if($type === 'cat')
+		{
+			if($parent)
+			{
+				$parent = \lib\utility\shortURL::decode($parent);
+
+				$get_parent = \lib\db\terms::get(['id' => $parent, 'limit' => 1]);
+
+				if(!isset($get_parent['id']) || !array_key_exists('type', $get_parent) || !array_key_exists('url', $get_parent))
+				{
+					\lib\debug::error(T_("Parent not found"), 'parent');
+					return false;
+				}
+
+				if(intval($get_parent['id']) === intval($_id))
+				{
+					\lib\debug::error(T_("Can not set the parent as yourself"), 'parent');
+					return false;
+				}
+				if($get_parent['type'] != $type)
+				{
+					\lib\debug::error(T_("The parent is not a :type", ['type' => $type]), 'parent');
+					return false;
+				}
+				$url = $get_parent['url'] . '/'. $slug;
+				$url = ltrim($url, '/');
+			}
+		}
+
 		$args             = [];
 		$args['title']    = $title;
+		$args['parent']   = $parent;
 		$args['desc']     = $desc;
 		$args['status']   = $status;
 		$args['slug']     = $slug;
+		$args['url']      = $url;
 		$args['type']     = $type;
 		$args['language'] = $language;
 		$args['excerpt'] = $excerpt;

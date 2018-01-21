@@ -94,11 +94,12 @@
 
 
 {%block iParent%}
-<label for="city">{%trans "Parent Category"%}</label>
-<select name="city" class="input select">
+
+<label for="parent">{%trans "Parent Category"%}</label>
+<select name="parent" class="input select">
   <option value="">{%trans "Please select one itme"%}</option>
   {%for key, item in dataTable%}
-    <option value="{{item.id}}">{{item.title}}</option>
+    <option value="{{item.id}}" {%if datarow.parent == item.id %} selected {%endif%}>{{item.title}}</option>
   {%endfor%}
 </select>
 {%endblock%}

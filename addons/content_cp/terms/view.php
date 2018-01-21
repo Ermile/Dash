@@ -67,9 +67,7 @@ class view extends \addons\content_cp\main\view
 			$this->data->edit_mode = true;
 
 			$id = \lib\utility::get('edit');
-			$id = \lib\utility\shortURL::decode($id);
-
-			$x = $this->data->datarow = \lib\db\terms::get(['id' => $id, 'limit' => 1]);
+			$x = $this->data->datarow = \lib\app\term::get($id);
 
 
 			if(!$this->data->datarow)
