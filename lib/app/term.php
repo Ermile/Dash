@@ -12,6 +12,21 @@ class term
 		'slug',
 	];
 
+	public static function cat_list()
+	{
+		$result = \lib\db\terms::get(['type' => 'cat']);
+		$temp   = [];
+
+		if(is_array($result))
+		{
+			foreach ($result as $key => $value)
+			{
+				$temp[] = self::ready($value);
+			}
+		}
+		return $result;
+	}
+
 	public static function get($_id)
 	{
 		$id = \lib\utility\shortURL::decode($_id);

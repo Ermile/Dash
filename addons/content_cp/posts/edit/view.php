@@ -16,6 +16,7 @@ class view extends \addons\content_cp\main\view
 		}
 
 		$this->data->dataRaw = $detail;
+		$this->data->cat_list = \lib\app\term::cat_list();
 	}
 }
 ?>
