@@ -1,0 +1,69 @@
+
+{%block iTitle %}
+<label for="title">{%trans "Title"%} <small class="fc-red">* {%trans "Require"%}</small></label>
+<div class="input">
+  <input type="text" name="title" id="title" placeholder='{%trans "Title"%} *' value="{{dataRaw.title}}" autofocus required maxlength='100' minlength="1" pattern=".{1,100}" title='{%trans "Enter a valid title"%}'>
+</div>
+{% endblock %}
+
+
+{%block iContent%}
+<label for="content">{%trans "Content"%}</label>
+<textarea class="txt mB10" id='content' name="content" placeholder='{%trans "Content of post"%}' maxlength='50000' rows="15">{{dataRaw.content}}</textarea>
+{%endblock%}
+
+
+{%block iPublishdate %}
+<label for="publishdate">{%trans "Publish date"%}</label>
+<div class="input">
+  <input class="datepicker" type="text" name="publishdate" id="publishdate" placeholder='{{"now" | tdate("Y/m/d") | fitNumber}}' value="{{dataRaw.publishdate | fitNumber}}" maxlength='15' data-format="YYYY/MM/DD" data-initialValue='false' data-view="year">
+</div>
+{% endblock %}
+
+
+
+
+{%block iadd%}
+<button class="btn primary block mT20">{%trans "Add"%}</button>
+{%endblock%}
+
+{%block isave%}
+<button class="btn primary block mT20">{%trans "Save"%}</button>
+{%endblock%}
+
+
+
+{%block iStatus%}
+
+<div class="mT15">
+ <label >{%trans "Status of post"%}</label>
+
+ <div class="radio1 green">
+  <input type="radio" id="r-publish" name="status" value="publish" {%if dataRaw.status == 'publish' or not dataRaw.status %} checked{%endif%}>
+  <label for="r-publish">{%trans "Publish"%}</label>
+ </div>
+
+ <div class="radio1 black">
+  <input type="radio" id="r-draft" name="status" value="draft" {%if dataRaw.status == 'draft'%} checked{%endif%} >
+  <label for="r-draft">{%trans "Draft"%}</label>
+ </div>
+
+ <div class="radio1 blue">
+  <input type="radio" id="r-schedule" name="status" value="schedule" {%if dataRaw.status == 'schedule'%} checked{%endif%} >
+  <label for="r-schedule">{%trans "Schedule"%}</label>
+ </div>
+
+ <div class="radio1 yellow">
+  <input type="radio" id="r-expire" name="status" value="expire" {%if dataRaw.status == 'expire'  %} checked{%endif%}>
+  <label for="r-expire">{%trans "Expire"%}</label>
+ </div>
+
+ <div class="radio1 red mB25">
+  <input type="radio" id="r-deleted" name="status" value="deleted" {%if dataRaw.status == 'deleted'  %} checked{%endif%}>
+  <label for="r-deleted">{%trans "Deleted"%}</label>
+ </div>
+
+</div>
+{%endblock%}
+
+

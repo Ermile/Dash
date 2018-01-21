@@ -1,0 +1,21 @@
+{%extends display.cpMain%}
+{%use "/content_cp/posts/layout.html"%}
+
+{%block content %}
+<div class="tbox">
+
+</div>
+<div class="cbox">
+	<form method="post">
+		{{block('iTitle')}}
+		{{block('iContent')}}
+
+		{{block('iStatus')}}
+		{{block('iadd')}}
+	</form>
+</div>
+{% endblock %}
+
+
+
+
