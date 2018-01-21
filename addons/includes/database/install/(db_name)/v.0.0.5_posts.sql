@@ -1,9 +1,9 @@
 CREATE TABLE `posts` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `language` char(2) DEFAULT NULL,
-  `title` varchar(100) CHARACTER SET utf8mb4 NOT NULL,
-  `slug` varchar(100) CHARACTER SET utf8mb4 NOT NULL,
-  `url` varchar(255) NOT NULL,
+  `title` varchar(200) CHARACTER SET utf8mb4 NOT NULL,
+  `slug` varchar(200) CHARACTER SET utf8mb4 NOT NULL,
+  `url` varchar(2000) NOT NULL,
   `content` mediumtext CHARACTER SET utf8mb4,
   `meta` mediumtext CHARACTER SET utf8mb4,
   `type` varchar(100) CHARACTER SET utf8mb4 NOT NULL DEFAULT 'post',

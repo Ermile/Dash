@@ -17,20 +17,8 @@ class term
 	 *
 	 * @return     array|boolean  ( description_of_the_return_value )
 	 */
-	public static function check($_option = [])
+	public static function check($_id = null)
 	{
-		$default_option =
-		[
-			'save_log' => true,
-			'debug'    => true,
-		];
-
-		if(!is_array($_option))
-		{
-			$_option = [];
-		}
-
-		$_option = array_merge($default_option, $_option);
 
 		$title = \lib\app::request('title');
 		if(!$title)
@@ -51,6 +39,24 @@ class term
 		if($slug && mb_strlen($slug) > 150)
 		{
 			\lib\debug::error(T_("Please set the term slug less than 150 character"), 'slug');
+			return false;
+		}
+
+		if(!$slug)
+		{
+			$slug = \lib\utility\filter::slug($title, null, 'persian');
+		}
+
+		$language = \lib\app::request('language');
+		if($language && mb_strlen($language) !== 2)
+		{
+			\lib\debug::error(T_("Invalid parameter language"), 'language');
+			return false;
+		}
+
+		if($language && !\lib\utility\location\languages::check($language))
+		{
+			\lib\debug::error(T_("Invalid parameter language"), 'language');
 			return false;
 		}
 
@@ -86,12 +92,30 @@ class term
 			return false;
 		}
 
-		$args           = [];
-		$args['title']  = $title;
-		$args['desc']   = $desc;
-		$args['status'] = $status;
-		$args['slug']   = $slug;
-		$args['type']   = $type;
+		// check duplicate
+		// type+lang+slug
+		$check_duplicate = \lib\db\terms::get(['type' => $type, 'slug' => $slug, 'language' => $language, 'limit' => 1]);
+
+		if(isset($check_duplicate['id']))
+		{
+			if(intval($check_duplicate['id']) === intval($_id))
+			{
+				// no problem to edit it
+			}
+			else
+			{
+				\lib\debug::error(T_("Duplicate term"), ['type', 'slug', 'language', 'title']);
+				return false;
+			}
+		}
+
+		$args             = [];
+		$args['title']    = $title;
+		$args['desc']     = $desc;
+		$args['status']   = $status;
+		$args['slug']     = $slug;
+		$args['type']     = $type;
+		$args['language'] = $language;
 
 		return $args;
 	}
@@ -164,7 +188,7 @@ class term
 		}
 
 		// check args
-		$args = self::check($_option);
+		$args = self::check();
 
 		if($args === false || !\lib\debug::$status)
 		{
@@ -203,8 +227,8 @@ class term
 			$_args = [];
 		}
 
-		$option             = [];
-		$option             = array_merge($default_args, $_args);
+		$option = [];
+		$option = array_merge($default_args, $_args);
 
 		if($option['order'])
 		{
@@ -260,21 +284,20 @@ class term
 
 		$_option = array_merge($default_option, $_option);
 
-
-		// check args
-		$args = self::check($_option);
-
-		if($args === false || !\lib\debug::$status)
-		{
-			return false;
-		}
-
 		$id = \lib\app::request('id');
 		$id = \lib\utility\shortURL::decode($id);
 
 		if(!$id)
 		{
 			\lib\debug::error(T_("Can not access to edit term"), 'term');
+			return false;
+		}
+
+		// check args
+		$args = self::check($id);
+
+		if($args === false || !\lib\debug::$status)
+		{
 			return false;
 		}
 
