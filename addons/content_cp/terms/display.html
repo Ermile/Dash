@@ -11,8 +11,7 @@
           <form method="post">
             {{block ('iTitle') }}
             {{block ('iSlug') }}
-            {{block ('iexcerpt') }}
-{%if utilityGET.type == 'cat'%}
+{%if utilityGET.type == 'category'%}
             {{block ('iParent') }}
 {%endif%}
             {{block ('iDescription') }}
@@ -45,7 +44,9 @@
           <th>{%trans "Title"%}</th>
           <th>{%trans "Slug"%}</th>
           <th>{%trans "Status"%}</th>
-
+          {%if not utilityGET.type%}
+            <th>{%trans "Type"%}</th>
+          {%endif%}
         </tr>
       </thead>
       <tbody>
@@ -53,12 +54,15 @@
           <tr>
             <td><a href="{{url.baseFull}}/terms?type={{value.type}}&edit={{value.id}}">{{value.title}}</a></td>
             <td><a href="{{url.base}}/{{value.url}}" target="_blank">{{value.slug}}</a></td>
-
+            {%if not utilityGET.type%}
+              <td><a href="{{url.baseFull}}/terms?type={{value.type}}">{{value.type}}</a></td>
+            {%endif%}
             <td class="collapsing">{%set vStatus = value.status%}{%trans vStatus%}</td>
           </tr>
         {%endfor%}
       </tbody>
     </table>
+    {%include display.pagination%}
   </div>
 </div>
 {%endif%}

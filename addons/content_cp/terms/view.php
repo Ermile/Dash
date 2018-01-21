@@ -17,8 +17,8 @@ class view extends \addons\content_cp\main\view
 
 		$args =
 		[
-			'order'          => \lib\utility::get('order'),
-			'sort'           => \lib\utility::get('sort'),
+			'order' => \lib\utility::get('order'),
+			'sort'  => \lib\utility::get('sort'),
 		];
 
 		if(!$args['order'])
@@ -28,7 +28,14 @@ class view extends \addons\content_cp\main\view
 
 		if(\lib\utility::get('type'))
 		{
-			$args['type'] = \lib\utility::get('type');
+			if(\lib\utility::get('type') === 'category')
+			{
+				$args['type'] = 'cat';
+			}
+			else
+			{
+				$args['type'] = \lib\utility::get('type');
+			}
 		}
 
 		$search_string            = \lib\utility::get('q');

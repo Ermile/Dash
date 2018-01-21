@@ -98,6 +98,10 @@ class term
 				// nothing
 				break;
 
+			case 'category':
+				$type = 'cat';
+				break;
+
 			default:
 				\lib\debug::error(T_("Please set the term type"), 'type');
 				return false;
@@ -183,7 +187,7 @@ class term
 		$args['url']      = $url;
 		$args['type']     = $type;
 		$args['language'] = $language;
-		$args['excerpt'] = $excerpt;
+		$args['excerpt']  = $excerpt;
 
 		return $args;
 	}
@@ -211,6 +215,17 @@ class term
 					else
 					{
 						$result[$key] = null;
+					}
+					break;
+
+				case 'type':
+					if($value === 'cat')
+					{
+						$result[$key] = 'category';
+					}
+					else
+					{
+						$result[$key] = $value;
 					}
 					break;
 
