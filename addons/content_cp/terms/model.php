@@ -31,7 +31,15 @@ class model extends \addons\content_cp\main\model
 			if(\lib\utility::get('edit'))
 			{
 				\lib\debug::true(T_("Term successfully edited"));
-				$this->redirector($this->url('baseFull'). '/terms');
+
+				$url = $this->url('baseFull'). '/terms';
+
+				if(\lib\utility::get('type'))
+				{
+					$url .= '?type='. \lib\utility::get('type');
+				}
+
+				$this->redirector($url);
 			}
 			else
 			{
