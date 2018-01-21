@@ -43,8 +43,6 @@
         <tr class="primary">
           <th>{%trans "Title"%}</th>
           <th>{%trans "Slug"%}</th>
-          <th>{%trans "Excerpt"%}</th>
-          <th>{%trans "Desctiption"%}</th>
           <th>{%trans "Status"%}</th>
 
         </tr>
@@ -53,9 +51,8 @@
         {%for key, value in dataTable%}
           <tr>
             <td><a href="{{url.baseFull}}/terms?type={{value.type}}&edit={{value.id}}">{{value.title}}</a></td>
-            <td>{{value.slug}}</td>
-            <td>{{value.excerpt}}</td>
-            <td>{{value.desc}}</td>
+            <td><a href="{{url.base}}/{{value.url}}" target="_blank">{{value.slug}}</a></td>
+
             <td class="collapsing">{%set vStatus = value.status%}{%trans vStatus%}</td>
           </tr>
         {%endfor%}

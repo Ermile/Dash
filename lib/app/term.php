@@ -214,6 +214,24 @@ class term
 					}
 					break;
 
+				case 'url':
+					if(isset($_data['type']))
+					{
+						if($_data['type'] === 'cat')
+						{
+							$result[$key] = 'category/'. $value;
+						}
+						else
+						{
+							$result[$key] = $_data['type'] . '/'. $value;
+						}
+					}
+					else
+					{
+						$result[$key] = $value;
+					}
+					break;
+
 				default:
 					$result[$key] = $value;
 					break;
