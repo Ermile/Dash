@@ -29,7 +29,7 @@ class posts
 			return false;
 		}
 
-		if($language && !\lib\utilit\location\language::check($language))
+		if($language && !\lib\utility\location\languages::check($language))
 		{
 			\lib\debug::error(T_("Invalid parameter language"), 'language');
 			return false;

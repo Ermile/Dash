@@ -8,11 +8,12 @@ class model extends \mvc\model
 	{
 		$post =
 		[
-			'title'       => \lib\utility::post('title'),
-			'content'     => \lib\utility::post('content'),
+			'title'          => \lib\utility::post('title'),
+			'content'        => \lib\utility::post('content'),
 			// 'publishdate' => \lib\utility::post('publishdate'),
-			'status'      => \lib\utility::post('status'),
-			'type'        => 'post',
+			'status'         => \lib\utility::post('status'),
+			'language'       => \lib\utility::post('language'),
+			'type'           => 'post',
 		];
 
 		$post_detail = \lib\app\posts::add($post);

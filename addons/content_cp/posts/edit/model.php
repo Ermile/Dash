@@ -12,6 +12,7 @@ class model extends \mvc\model
 			'content'     => \lib\utility::post('content'),
 			// 'publishdate' => \lib\utility::post('publishdate'),
 			'status'      => \lib\utility::post('status'),
+			'language'    => \lib\utility::post('language'),
 			'type'        => 'post',
 		];
 
