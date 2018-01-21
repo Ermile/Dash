@@ -46,6 +46,10 @@ class term
 		{
 			$slug = \lib\utility\filter::slug($title, null, 'persian');
 		}
+		else
+		{
+			$slug = \lib\utility\filter::slug($slug, null, 'persian');
+		}
 
 		$language = \lib\app::request('language');
 		if($language && mb_strlen($language) !== 2)
