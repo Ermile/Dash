@@ -129,6 +129,76 @@ class posts
 
 	}
 
+
+	public static function set_post_term($_post_id, $_type)
+	{
+		$category = \lib\app::request($_type);
+
+		if(!is_array($category))
+		{
+			return null;
+		}
+
+		$category_id = array_map(function($_a){return \lib\utility\shortURL::decode($_a);}, $category);
+		$category_id = array_filter($category_id);
+		$category_id = array_unique($category_id);
+
+		$check_all_is_cat = \lib\db\terms::check_multi_id($category_id, $_type);
+		if(count($check_all_is_cat) !== count($category_id))
+		{
+			\lib\debug::warn(T_("Some category is wrong"), 'cat');
+			return false;
+		}
+
+		$get_old_post_cat = \lib\db\termusages::usage($_post_id, $_type);
+
+		$must_insert = [];
+		$must_remove = [];
+
+		if(empty($get_old_post_cat))
+		{
+			$must_insert = $category_id;
+		}
+		else
+		{
+			$old_category_id = array_column($get_old_post_cat, 'term_id');
+			$old_category_id = array_map(function($_a){return intval($_a);}, $old_category_id);
+			$must_insert = array_diff($category_id, $old_category_id);
+			$must_remove = array_diff($old_category_id, $category_id);
+		}
+
+		// var_dump($old_category_id, $category_id, $must_insert, $must_remove);exit();
+
+		if(!empty($must_insert))
+		{
+			$insert_multi = [];
+			foreach ($must_insert as $key => $value)
+			{
+				$insert_multi[] =
+				[
+					'term_id'    => $value,
+					'related_id' => $_post_id,
+					'related'    => 'posts',
+					'type'       => $_type,
+				];
+			}
+			if(!empty($insert_multi))
+			{
+				\lib\db\termusages::insert_multi($insert_multi);
+			}
+		}
+
+		if(!empty($must_remove))
+		{
+			$must_remove = array_filter($must_remove);
+			$must_remove = array_unique($must_remove);
+
+			$must_remove = implode(',', $must_remove);
+			\lib\db\termusages::hard_delete(['related_id' => $_post_id, 'related' => 'posts', 'term_id' => ["IN", "($must_remove)"]]);
+		}
+
+	}
+
 	public static function find_post()
 	{
 		$url = self::get_url();
@@ -222,6 +292,7 @@ class posts
 				case 'id':
 				case 'user_id':
 				case 'parent':
+				case 'term_id':
 					if(isset($value))
 					{
 						$result[$key] = \lib\utility\shortURL::encode($value);

@@ -530,6 +530,58 @@ trait twigAddons
 	 * [twig_function_posts description]
 	 * @return [type] [description]
 	 */
+	public function twig_function_category()
+	{
+		return new \Twig_SimpleFunction('category', function()
+		{
+			$category = [];
+			$args = func_get_args();
+			if(isset($args[0]))
+			{
+				$args = $args[0];
+			}
+
+
+			// get post id
+			if(!isset($args['post_id']))
+			{
+				if(isset($this->data->post['id']))
+				{
+					$args['post_id'] = $this->data->post['id'];
+				}
+			}
+			// get category
+			if(isset($args['post_id']))
+			{
+				$category = \lib\app\posts::get_category($args['post_id']);
+			}
+
+			if(isset($args['id']) && $args['id'] && is_array($category))
+			{
+				$category = array_column($category, 'term_id');
+			}
+
+			// check html mod
+			if(isset($args['html']))
+			{
+				$html = '';
+				foreach ($category as $key => $value)
+				{
+					$html .= "<a href=\"$value\">$value</a>";
+				}
+				echo $html;
+			}
+			else
+			{
+				return $category;
+			}
+		});
+	}
+
+	/**
+	 * [twig_function_posts description]
+	 * @return [type] [description]
+	 */
 	public function twig_function_comments()
 	{
 		return new \Twig_SimpleFunction('comments', function()

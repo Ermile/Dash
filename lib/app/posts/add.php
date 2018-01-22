@@ -45,6 +45,7 @@ trait add
 			return false;
 		}
 
+
 		$return         = [];
 
 		$post_id = \lib\db\posts::insert($args);
@@ -55,6 +56,8 @@ trait add
 			if($_option['debug']) \lib\debug::error(T_("No way to insert post"), 'db', 'system');
 			return false;
 		}
+
+		$set_category = self::set_post_term($post_id, 'cat');
 
 		$return['post_id'] = \lib\utility\shortURL::encode($post_id);
 

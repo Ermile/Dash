@@ -93,5 +93,29 @@ class terms
 		return self::get($args);
 
 	}
+
+
+	public static function check_multi_id($_ids, $_type)
+	{
+		if(!is_array($_ids) || !$_type)
+		{
+			return false;
+		}
+
+		$_ids = implode(',', $_ids);
+
+		$query =
+		"
+			SELECT *
+			FROM terms
+			WHERE
+				terms.id IN ($_ids) AND
+				terms.type = '$_type'
+		";
+		$result = \lib\db::get($query);
+
+		return $result;
+
+	}
 }
 ?>

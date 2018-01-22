@@ -16,6 +16,17 @@ class model extends \mvc\model
 			'type'        => 'post',
 		];
 
+		$all_post = \lib\utility::post();
+		$post['cat'] = [];
+
+		foreach ($all_post as $key => $value)
+		{
+			if(substr($key, 0, 4) === 'cat_')
+			{
+				$post['cat'][] = substr($key, 4);
+			}
+		}
+
 		$post_detail = \lib\app\posts::edit($post);
 
 		if(\lib\debug::$status)

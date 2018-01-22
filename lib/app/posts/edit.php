@@ -47,7 +47,11 @@ trait edit
 			return false;
 		}
 
+		$set_category = self::set_post_term($id, 'cat');
+
+
 		\lib\db\posts::update($args, $id);
+
 
 		if(\lib\debug::$status)
 		{

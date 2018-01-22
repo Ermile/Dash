@@ -21,6 +21,27 @@ class termusages
 	}
 
 
+	public static function usage($_related_id, $_type)
+	{
+		$query =
+		"
+			SELECT
+				terms.id AS `term_id`,
+				terms.*,
+				termusages.status AS `termusage_status`,
+				termusages.type AS `termusage_type`
+			FROM
+				termusages
+			INNER JOIN terms ON terms.id = termusages.term_id
+			WHERE
+			termusages.related_id = $_related_id AND
+			terms.type            = '$_type'
+		";
+		$result = \lib\db::get($query);
+		return $result;
+	}
+
+
 	/**
 	 * get termusage
 	 *
@@ -61,7 +82,7 @@ class termusages
 		$where = \lib\db\config::make_where($_where);
 		if($where)
 		{
-			$query = "DELETE FROM termusages WHERE $where LIMIT 1";
+			$query = "DELETE FROM termusages WHERE $where ";
 			return \lib\db::query($query);
 		}
 	}

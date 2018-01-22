@@ -122,6 +122,7 @@ class view
 		$this->add_twig_function('langList');
 		$this->add_twig_function('posts');
 		$this->add_twig_function('tags');
+		$this->add_twig_function('category');
 		$this->add_twig_function('comments');
 		$this->add_twig_function('similar_post');
 		$this->add_twig_function('attachment');

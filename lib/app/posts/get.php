@@ -5,6 +5,27 @@ use \lib\debug;
 trait get
 {
 
+	public static function get_category($_post_id)
+	{
+		$post_id = \lib\utility\shortURL::decode($_post_id);
+		if(!$post_id)
+		{
+			return false;
+		}
+
+		$result = \lib\db\termusages::usage($post_id, 'cat');
+
+		$temp = [];
+		if(is_array($result))
+		{
+			foreach ($result as $key => $value)
+			{
+				$temp[] = self::ready($value);
+			}
+		}
+
+		return $temp;
+	}
 
 	/**
 	 * Gets the user.

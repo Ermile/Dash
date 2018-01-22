@@ -24,7 +24,7 @@ class term
 				$temp[] = self::ready($value);
 			}
 		}
-		return $result;
+		return $temp;
 	}
 
 	public static function get($_id)
