@@ -10,25 +10,29 @@
         <p>{%trans "Choose a gateway and enter an amount to charge your account"%}</p>
 
         <form method="post" autocomplete="off">
-          <div class="radioGateway">
+          <div class="radioGateway" title='{%trans "Parsian"%}'>
            <input type="radio" name="bank" value="parsian" id="parsian" checked>
-           <label for='parsian'><img alt="parsian" src="{{url.static}}images/gateway/Parsian.svg"></label>
+           <label for='parsian' class="spay-64-parsian"></label>
           </div>
 
           <div class="radioGateway">
            <input type="radio" name="bank" value="ZarinPal" id="ZarinPal">
-           <label for='ZarinPal'><img alt="ZarinPal" src="{{url.static}}images/gateway/ZarinPal.svg"></label>
+           <label for='ZarinPal' class="spay-64-zarinpal"></label>
           </div>
 
            <div class="radioGateway">
            <input type="radio" name="bank" value="irKish" id="irKish">
-           <label for='irKish'><img alt="irKish" src="{{url.static}}images/gateway/Day.svg"></label>
+           <label for='irKish' class="spay-64-irkish"></label>
           </div>
-
 
           <div class="radioGateway">
            <input type="radio" name="bank" value="payir" id="payir">
-           <label for='payir'><img alt="payir" src="{{url.static}}images/gateway/Day.svg"></label>
+           <label for='payir' class="spay-64-payir"></label>
+          </div>
+
+          <div class="radioGateway">
+           <input type="radio" name="bank" value="asanpardakht" id="asanpardakht">
+           <label for='asanpardakht' class="spay-64-asanpardakht"></label>
           </div>
 
          <div class="input pA5">
