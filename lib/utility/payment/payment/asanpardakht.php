@@ -74,12 +74,11 @@ class asanpardakht
 
             $result_param =
             [
-                'merchantConfigurationID' => \lib\option::config('asanpardakht', 'MerchantID'),
+                'merchantConfigurationID' => \lib\option::config('asanpardakht', 'MerchantConfigID'),
                 'encryptedRequest'        => $encryptedRequest,
             ];
 
             $result = $client->RequestOperation($result_param);
-
             \lib\db\mysql\tools\log::log($result, null, 'log.sql', 'json');
 
             if(isset($result->RequestOperationResult))
@@ -95,7 +94,7 @@ class asanpardakht
                 else
                 {
                     \lib\db\logs::set('payment:asanpardakht:error1', self::$user_id, $log_meta);
-                    debug::error(T_("Error in payment"));
+                    debug::error(T_("Error in payment code :result", ['result' => (string) $result]));
                     return false;
                 }
 
@@ -103,7 +102,7 @@ class asanpardakht
             else
             {
                 \lib\db\logs::set('payment:asanpardakht:error2', self::$user_id, $log_meta);
-                debug::error(T_("Error in payment"));
+                debug::error(T_("Error in payment (have not result)"));
                 return false;
             }
         }
