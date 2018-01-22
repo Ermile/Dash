@@ -7,6 +7,14 @@
 {% endblock %}
 
 
+{%block iSlug %}
+<label for="slug">{%trans "Slug"%} <small class="fc-red">* {%trans "Require"%}</small></label>
+<div class="input">
+  <input type="text" name="slug" id="slug" placeholder='{%trans "Slug"%} *' value="{{dataRaw.slug}}"  maxlength='100' minlength="1" pattern=".{1,100}" title='{%trans "Enter a valid slug"%}'>
+</div>
+{% endblock %}
+
+
 {%block iContent%}
 <label for="content">{%trans "Content"%}</label>
 <textarea class="txt mB10" id='content' name="content" placeholder='{%trans "Content of post"%}' maxlength='50000' rows="15">{{dataRaw.content}}</textarea>

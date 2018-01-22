@@ -9,6 +9,7 @@ class model extends \mvc\model
 		$post =
 		[
 			'title'          => \lib\utility::post('title'),
+			'slug'           => \lib\utility::post('slug'),
 			'content'        => \lib\utility::post('content'),
 			// 'publishdate' => \lib\utility::post('publishdate'),
 			'status'         => \lib\utility::post('status'),
@@ -31,13 +32,16 @@ class model extends \mvc\model
 
 		$post_detail = \lib\app\posts::add($post);
 
-		if(isset($post_detail['post_id']))
+		if(\lib\debug::$status && isset($post_detail['post_id']))
 		{
 			$this->redirector($this->url('baseFull'). '/posts/edit?id='. $post_detail['post_id']);
 			return;
 		}
 
-		$this->redirector($this->url('full'));
+		if(\lib\debug::$status)
+		{
+			$this->redirector($this->url('full'));
+		}
 	}
 }
 ?>

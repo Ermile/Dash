@@ -19,7 +19,7 @@ class posts
 		return $myUrl;
 	}
 
-	public static function check()
+	public static function check($_id = null, $_option = [])
 	{
 
 		$language = \lib\app::request('language');
@@ -56,9 +56,24 @@ class posts
 			return false;
 		}
 
+
 		if($title && !$slug)
 		{
 			$slug = \lib\utility\filter::slug($title, null, 'persian');
+		}
+
+		$check_duplicate_slug = \lib\db\posts::get(['slug' => $slug, 'language' => $language, 'limit' => 1]);
+		if(isset($check_duplicate_slug['id']))
+		{
+			if(intval($check_duplicate_slug['id']) === intval($_id))
+			{
+				// no problem to edit it
+			}
+			else
+			{
+				\lib\debug::error(T_("Duplicate slug"), 'slug');
+				return false;
+			}
 		}
 
 		$url = \lib\app::request('url');

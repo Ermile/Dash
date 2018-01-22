@@ -9,6 +9,7 @@ class model extends \mvc\model
 		[
 			'id'             => \lib\utility::get('id'),
 			'title'          => \lib\utility::post('title'),
+			'slug'           => \lib\utility::post('slug'),
 			'content'        => \lib\utility::post('content'),
 			// 'publishdate' => \lib\utility::post('publishdate'),
 			'status'         => \lib\utility::post('status'),

@@ -28,15 +28,6 @@ trait edit
 
 		$_option = array_merge($default_option, $_option);
 
-
-		// check args
-		$args = self::check($_option);
-
-		if($args === false || !\lib\debug::$status)
-		{
-			return false;
-		}
-
 		$id = \lib\app::request('id');
 		$id = \lib\utility\shortURL::decode($id);
 
@@ -44,6 +35,14 @@ trait edit
 		{
 			\lib\app::log('api:posta:edit:permission:denide', \lib\user::id(), \lib\app::log_meta());
 			\lib\debug::error(T_("Can not access to edit posta"), 'posta');
+			return false;
+		}
+
+		// check args
+		$args = self::check($id, $_option);
+
+		if($args === false || !\lib\debug::$status)
+		{
 			return false;
 		}
 
