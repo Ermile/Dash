@@ -14,7 +14,7 @@ class posts
 
 	public static function get_url()
 	{
-		$myUrl = \lib\router::get_url('_');
+		$myUrl = \lib\router::get_url();
 		$myUrl = \lib\router::urlfilterer($myUrl);
 		return $myUrl;
 	}
@@ -214,12 +214,7 @@ class posts
 	{
 		$url = self::get_url();
 
-		if(substr($url, 0, 7) == 'static/' || substr($url, 0, 6) == 'files/')
-		{
-			return false;
-		}
-
-		if(substr($url, 0, 7) == 'static_' || substr($url, 0, 6) == 'files_')
+		if(substr($url, 0, 7) == 'static/' || substr($url, 0, 6) == 'files/' || substr($url, 0, 7) == 'static_' || substr($url, 0, 6) == 'files_')
 		{
 			return false;
 		}
@@ -231,6 +226,7 @@ class posts
 
 		$language = \lib\define::get_language();
 		$preview  = \lib\utility::get('preview');
+
 		$qry =
 		"
 			SELECT
