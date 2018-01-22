@@ -64,6 +64,8 @@ class transactions
 			$_options = [];
 		}
 
+		$en_number = \lib\utility\convert::to_en_number($_string);
+
 		$default_option =
 		[
 			'search_field' =>
@@ -71,6 +73,8 @@ class transactions
 				(
 					users.mobile LIKE '%__string__%' OR
 					users.email LIKE '%__string__%' OR
+					transactions.plus LIKE '%$en_number%' OR
+					transactions.minus LIKE '%$en_number%' OR
 					transactions.title LIKE '%__string__%'
 				)
 

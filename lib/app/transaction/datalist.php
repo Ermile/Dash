@@ -10,6 +10,9 @@ trait datalist
 		'dateverify',
 		'status',
 		'condition',
+		'payment',
+		'plus',
+		'minus',
 	];
 
 
