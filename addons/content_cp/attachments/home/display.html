@@ -1,0 +1,95 @@
+{%extends display.cpMain%}
+
+
+
+{%block pageContent%}
+
+{%if dataTable%}
+ {%if dataFilter%}
+
+  {{block('htmlSearchBox')}}
+  {{block('htmlTable')}}
+  {{block('htmlFilter')}}
+
+ {%else%}
+
+  {{block('htmlSearchBox')}}
+  {{block('htmlTable')}}
+
+ {%endif%}
+{%else%}
+ {%if dataFilter%}
+
+  {{block('htmlSearchBox')}}
+  {{block('htmlFilterNoResult')}}
+
+ {%else%}
+
+  {{block('htmlStartAddNew')}}
+
+ {%endif%}
+{%endif%}
+
+{%endblock%}
+
+
+
+
+{%block htmlSearchBox%}
+<div class="cbox fs12">
+  <form method="get" action='{{url.baseFull}}/posts' data-action>
+    <div class="input">
+      <input type="search" name="q" placeholder='{%trans "Search in :postss"%}' id="q" value="{{utilityGET.q}}" autofocus  data-pass='submit' autocomplete='off'>
+      <button class="addon btn ">{%trans "Search" %}</button>
+    </div>
+  </form>
+</div>
+{%endblock%}
+
+
+{%block htmlTable%}
+ <div class="cbox fs12">
+  <table class="tbl bordered1">
+    <thead class="primary">
+      <tr>
+        <th data-sort="{{sort_link.title.order}}"><a href='{{sort_link.title.link}}'>{%trans "Title"%}</a></th>
+        <th class="collapsing" data-sort="{{sort_link.type.order}}"><a href='{{sort_link.type.link}}'>{%trans "Type"%}</a></th>
+        <th data-sort="{{sort_link.status.order}}"><a href='{{sort_link.status.link}}'>{%trans "Status"%}</a></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {%for key, value in dataTable%}
+      <tr {%if value.status=='deleted'%} class='negative'{%endif%}>
+        <td><a href="{{url.baseFull}}/posts/edit?id={{value.id}}&type=attachment">{{value.title}}</a></td>
+        <td class="txtC"><a href="{{url.baseFull}}/posts?type={{value.type}}">{{value.type}}</a></td>
+        <td class="collapsing">{%set myStatus = value.status | capitalize %}<a href="{{url.baseFull}}/posts?status={{value.status}}">{%trans myStatus%}</a></td>
+      </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+  {%include display.pagination%}
+ </div>
+{%endblock%}
+
+
+{%block htmlFilter%}
+<p class="f fs14 alert alert-info">
+  <span class="c">{{dataFilter | raw}}</span>
+  <a class="cauto" href="{{url.baseFull}}/posts">{%trans "Clear filters"%}</a>
+</p>
+{%endblock%}
+
+
+{%block htmlFilterNoResult%}
+<p class="f fs14 alert alert-error">
+  <span class="c">{%trans "Result not found!"%} {%trans "Search with new keywords."%}</span>
+  <a class="cauto" href="{{url.baseFull}}/posts">{%trans "Clear filters"%}</a>
+</p>
+{%endblock%}
+
+
+{%block htmlStartAddNew%}
+<p class="fs14 alert alert-success pTB20">{%trans "Hi!"%} <a href="{{url.baseFull}}/posts/add">{%trans "Try to start with add new :posts!"%}</a></p>
+{%endblock%}
+
