@@ -202,15 +202,21 @@ class posts
 	public static function find_post()
 	{
 		$url = self::get_url();
-		$url = str_replace("'", '', $url);
-		$url = str_replace('"', '', $url);
-		$url = str_replace('`', '', $url);
-		$url = str_replace('%', '', $url);
 
 		if(substr($url, 0, 7) == 'static/' || substr($url, 0, 6) == 'files/')
 		{
 			return false;
 		}
+
+		if(substr($url, 0, 7) == 'static_' || substr($url, 0, 6) == 'files_')
+		{
+			return false;
+		}
+
+		$url = str_replace("'", '', $url);
+		$url = str_replace('"', '', $url);
+		$url = str_replace('`', '', $url);
+		$url = str_replace('%', '', $url);
 
 		$language = \lib\define::get_language();
 		$preview  = \lib\utility::get('preview');
