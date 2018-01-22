@@ -197,6 +197,17 @@ class posts
 			\lib\db\termusages::hard_delete(['related_id' => $_post_id, 'related' => 'posts', 'term_id' => ["IN", "($must_remove)"]]);
 		}
 
+
+		$new_url = null;
+
+		if($check_all_is_cat)
+		{
+			$new_url = isset($check_all_is_cat[0]['url']) ? $check_all_is_cat[0]['url'] : null;
+		}
+
+		return $new_url;
+
+
 	}
 
 	public static function find_post()

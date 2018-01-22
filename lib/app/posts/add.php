@@ -57,7 +57,19 @@ trait add
 			return false;
 		}
 
-		$set_category = self::set_post_term($post_id, 'cat');
+		$post_url = self::set_post_term($post_id, 'cat');
+
+		if($post_url !== false)
+		{
+			if($post_url)
+			{
+				\lib\db\posts::update(['url' => $args['slug']], $post_id);
+			}
+			else
+			{
+				\lib\db\posts::update(['url' => $post_url. '/'. $args['slug']], $post_id);
+			}
+		}
 
 		$return['post_id'] = \lib\utility\shortURL::encode($post_id);
 

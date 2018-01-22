@@ -47,8 +47,19 @@ trait edit
 			return false;
 		}
 
-		$set_category = self::set_post_term($id, 'cat');
+		$post_url = self::set_post_term($id, 'cat');
 
+		if($post_url !== false)
+		{
+			if($post_url)
+			{
+				$args['url'] = $post_url. '/'. $args['slug'];
+			}
+			else
+			{
+				$args['url'] = $args['slug'];
+			}
+		}
 
 		\lib\db\posts::update($args, $id);
 
