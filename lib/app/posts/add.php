@@ -57,17 +57,21 @@ trait add
 			return false;
 		}
 
-		$post_url = self::set_post_term($post_id, 'cat');
-
-		if($post_url !== false)
+		if($args['type'] === 'post')
 		{
-			if($post_url)
+			$post_url = self::set_post_term($post_id, 'cat');
+
+			if($post_url !== false)
 			{
-				\lib\db\posts::update(['url' => $args['slug']], $post_id);
-			}
-			else
-			{
-				\lib\db\posts::update(['url' => $post_url. '/'. $args['slug']], $post_id);
+
+				if($post_url)
+				{
+					\lib\db\posts::update(['url' => $args['slug']], $post_id);
+				}
+				else
+				{
+					\lib\db\posts::update(['url' => $post_url. '/'. $args['slug']], $post_id);
+				}
 			}
 		}
 

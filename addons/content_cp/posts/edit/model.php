@@ -7,13 +7,14 @@ class model extends \mvc\model
 	{
 		$post =
 		[
-			'id'          => \lib\utility::get('id'),
-			'title'       => \lib\utility::post('title'),
-			'content'     => \lib\utility::post('content'),
+			'id'             => \lib\utility::get('id'),
+			'title'          => \lib\utility::post('title'),
+			'content'        => \lib\utility::post('content'),
 			// 'publishdate' => \lib\utility::post('publishdate'),
-			'status'      => \lib\utility::post('status'),
-			'language'    => \lib\utility::post('language'),
-			'type'        => 'post',
+			'status'         => \lib\utility::post('status'),
+			'language'       => \lib\utility::post('language'),
+			'type'           => \lib\utility::get('type'),
+			'language'       => \lib\define::get_language(),
 		];
 
 		$all_post = \lib\utility::post();

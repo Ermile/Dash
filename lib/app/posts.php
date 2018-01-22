@@ -83,6 +83,11 @@ class posts
 			return false;
 		}
 
+		if(!$type)
+		{
+			$type = 'post';
+		}
+
 
 		$comment = \lib\app::request('comment');
 		if($comment && !in_array($comment, ['open', 'close']))
@@ -134,10 +139,11 @@ class posts
 	{
 		$category = \lib\app::request($_type);
 
-		if(!is_array($category))
+		if(!is_array($category) || empty($category) || !$category)
 		{
 			return null;
 		}
+
 
 		$category_id = array_map(function($_a){return \lib\utility\shortURL::decode($_a);}, $category);
 		$category_id = array_filter($category_id);

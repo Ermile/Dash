@@ -10,8 +10,12 @@
 	<form method="post">
 		{{block('iTitle')}}
 		{{block('iContent')}}
-		{{block('iCat')}}
-		{{block('iTag')}}
+
+		{%if not utilityGET.type or utilityGET.type == 'post' %}
+			{{block('iCat')}}
+			{{block('iTag')}}
+		{%endif%}
+
 		{{block('iStatus')}}
 		{{block('isave')}}
 	</form>

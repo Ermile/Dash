@@ -13,8 +13,10 @@ class model extends \mvc\model
 			// 'publishdate' => \lib\utility::post('publishdate'),
 			'status'         => \lib\utility::post('status'),
 			'language'       => \lib\utility::post('language'),
-			'type'           => 'post',
+			'type'           => \lib\utility::get('type'),
+			'language'       => \lib\define::get_language(),
 		];
+
 
 		$all_post = \lib\utility::post();
 		$post['cat'] = [];

@@ -97,7 +97,7 @@ class terms
 
 	public static function check_multi_id($_ids, $_type)
 	{
-		if(!is_array($_ids) || !$_type)
+		if(!is_array($_ids) || !$_type || !$_ids)
 		{
 			return false;
 		}

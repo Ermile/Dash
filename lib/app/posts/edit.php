@@ -47,17 +47,20 @@ trait edit
 			return false;
 		}
 
-		$post_url = self::set_post_term($id, 'cat');
-
-		if($post_url !== false)
+		if($args['type'] === 'post')
 		{
-			if($post_url)
+			$post_url = self::set_post_term($id, 'cat');
+
+			if($post_url !== false)
 			{
-				$args['url'] = $post_url. '/'. $args['slug'];
-			}
-			else
-			{
-				$args['url'] = $args['slug'];
+				if($post_url)
+				{
+					$args['url'] = $post_url. '/'. $args['slug'];
+				}
+				else
+				{
+					$args['url'] = $args['slug'];
+				}
 			}
 		}
 
