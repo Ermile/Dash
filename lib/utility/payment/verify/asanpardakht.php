@@ -111,7 +111,7 @@ trait asanpardakht
             \lib\utility\payment\payment\asanpardakht::$user_id = self::$user_id;
             \lib\utility\payment\payment\asanpardakht::$log_data = self::$log_data;
 
-            $is_ok = \lib\utility\payment\payment\asanpardakht::verify($_args);
+            $is_ok = \lib\utility\payment\payment\asanpardakht::verify($RetArr);
 
             $payment_response = \lib\utility\payment\payment\asanpardakht::$payment_response;
 

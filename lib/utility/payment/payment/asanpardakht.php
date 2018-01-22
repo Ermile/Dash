@@ -123,11 +123,7 @@ class asanpardakht
     public static function verify($_args = [])
     {
         self::set_key_iv();
-
-        $ReturningParams    = isset($_args['ReturningParams']) ? $_args['ReturningParams'] : null;
-        $ReturningParams    = self::decrypt($ReturningParams);
-
-        $RetArr             = explode(",", $ReturningParams);
+        $RetArr             = $_args;
         $Amount             = isset($RetArr[0]) ? $RetArr[0] : null;
         $SaleOrderId        = isset($RetArr[1]) ? $RetArr[1] : null;
         $RefId              = isset($RetArr[2]) ? $RetArr[2] : null;
@@ -158,12 +154,12 @@ class asanpardakht
 
             $params_result =
             [
-                'merchantConfigurationID' => \lib\option::config('asanpardakht', 'MerchantID'),
+                'merchantConfigurationID' => \lib\option::config('asanpardakht', 'MerchantConfigID'),
                 'encryptedCredentials'    => $encryptedCredintials,
                 'payGateTranID'           => $PayGateTranID,
             ];
 
-            $result = $client->RequestVerification($params);
+            $result = $client->RequestVerification($params_result);
 
             if(isset($result->RequestVerificationResult))
             {
