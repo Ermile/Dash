@@ -61,7 +61,9 @@
     <tbody>
       {%for key, value in dataTable%}
       <tr {%if value.status=='deleted'%} class='negative'{%endif%}>
-        <td><a href="{{url.baseFull}}/posts/edit?id={{value.id}}&type=attachment">{{value.title}}</a></td>
+        <td><a href="{{url.baseFull}}/posts/edit?id={{value.id}}&type=attachment">{{value.title}}
+          <a href="{{url.base}}/{{value.url}}" target="_blank"><div class="sf-link"></div></a>
+        </a></td>
         <td class="txtC"><a href="{{url.baseFull}}/posts?type={{value.type}}">{{value.type}}</a></td>
         <td class="collapsing">{%set myStatus = value.status | capitalize %}<a href="{{url.baseFull}}/posts?status={{value.status}}">{%trans myStatus%}</a></td>
       </tr>

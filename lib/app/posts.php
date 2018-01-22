@@ -240,6 +240,11 @@ class posts
 			return false;
 		}
 
+		if(file_exists(root. "/content/template/static/$url.html"))
+		{
+			return false;
+		}
+
 		$url = str_replace("'", '', $url);
 		$url = str_replace('"', '', $url);
 		$url = str_replace('`', '', $url);
