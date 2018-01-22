@@ -47,7 +47,9 @@ trait asanpardakht
         $asanpardakht = [];
 
         $ReturningParams    = isset($_REQUEST['ReturningParams']) ? (string) $_REQUEST['ReturningParams'] : null;
-        $ReturningParams    = self::decrypt($ReturningParams);
+
+        \lib\utility\payment\payment\asanpardakht::set_key_iv();
+        $ReturningParams    = \lib\utility\payment\payment\asanpardakht::decrypt($ReturningParams);
 
         $RetArr             = explode(",", $ReturningParams);
         $Amount             = isset($RetArr[0]) ? $RetArr[0] : null;
@@ -59,7 +61,6 @@ trait asanpardakht
         $RRN                = isset($RetArr[6]) ? $RetArr[6] : null;
         $LastFourDigitOfPAN = isset($RetArr[7]) ? $RetArr[7] : null;
 
-
         if(isset($_SESSION['amount']['asanpardakht'][$RefId]['transaction_id']))
         {
             $transaction_id  = $_SESSION['amount']['asanpardakht'][$RefId]['transaction_id'];
@@ -70,8 +71,6 @@ trait asanpardakht
             debug::error(T_("Your session is lost! We can not find your transaction"));
             return self::turn_back();
         }
-
-
 
         $log_meta['data'] = self::$log_data = $transaction_id;
 

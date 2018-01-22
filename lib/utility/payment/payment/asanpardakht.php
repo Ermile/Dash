@@ -16,11 +16,11 @@ class asanpardakht
     public static $log_data         = null;
     public static $payment_response = [];
 
-    private static $KEY             = null;
-    private static $IV              = null;
+    public static $KEY             = null;
+    public static $IV              = null;
 
 
-    private static function set_key_iv()
+    public static function set_key_iv()
     {
         self::$KEY = \lib\option::config('asanpardakht', 'EncryptionKey');
         self::$IV  = \lib\option::config('asanpardakht', 'EncryptionVector');
@@ -191,7 +191,7 @@ class asanpardakht
 
 
 
-    private static function encrypt($string = "")
+    public static function encrypt($string = "")
     {
         $KEY = self::$KEY;
         $IV = self::$IV;
@@ -209,7 +209,7 @@ class asanpardakht
     }
 
 
-    private static function EncryptWS($string = "")
+    public static function EncryptWS($string = "")
     {
         $KEY = self::$KEY;
         $IV = self::$IV;
@@ -251,7 +251,7 @@ class asanpardakht
         }
     }
 
-    private static function addpadding($string, $blocksize = 32)
+    public static function addpadding($string, $blocksize = 32)
     {
         $len = strlen($string);
         $pad = $blocksize - ($len % $blocksize);
@@ -260,7 +260,7 @@ class asanpardakht
     }
 
 
-    private static function strippadding($string)
+    public static function strippadding($string)
     {
         $slast  = ord(substr($string, -1));
         $slastc = chr($slast);
@@ -278,7 +278,7 @@ class asanpardakht
     }
 
 
-    private static function decrypt($string = "")
+    public static function decrypt($string = "")
     {
         $KEY = self::$KEY;
         $IV = self::$IV;
@@ -297,7 +297,7 @@ class asanpardakht
     }
 
 
-    private static function DecryptWS($string = "")
+    public static function DecryptWS($string = "")
     {
         $KEY = self::$KEY;
         $IV = self::$IV;
