@@ -40,12 +40,12 @@
 
     <table class="tbl">
       <thead>
-        <tr class="primary">
+        <tr class="">
           <th>{%trans "Title"%}</th>
           <th>{%trans "Slug"%}</th>
-          <th>{%trans "Status"%}</th>
+          <th>{%trans "Type"%}</th>
           {%if not utilityGET.type%}
-            <th>{%trans "Type"%}</th>
+            <th>{%trans "Status"%}</th>
           {%endif%}
         </tr>
       </thead>
@@ -53,7 +53,7 @@
         {%for key, value in dataTable%}
           <tr>
             <td><a href="{{url.baseFull}}/terms?type={{value.type}}&edit={{value.id}}">{{value.title}}</a></td>
-            <td><a href="{{url.base}}/{{value.url}}" target="_blank">{{value.slug}}</a></td>
+            <td><a href="{{url.base}}/{{value.url}}" target="_blank"><span class="sf-share"></span> {{value.slug}}</a></td>
             {%if not utilityGET.type%}
               <td><a href="{{url.baseFull}}/terms?type={{value.type}}">{{value.type}}</a></td>
             {%endif%}

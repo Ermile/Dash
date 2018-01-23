@@ -9,24 +9,25 @@ class twigTransTerms
 	echo T_("plan");                                                                  // Line 10
 	echo T_("Start plan");                                                            // Line 11
 	echo T_("Active member");                                                         // Line 12
-	echo T_("Usage");                                                                 // Line 69
+	echo T_("Usage");                                                                 // Line 79
 
 	//-------------------------------------addons\content_account\billing\display.html
 	echo T_("Charge your account");                                                   // Line 9
 	echo T_("Choose a gateway and enter an amount to charge your account");           // Line 10
-	echo T_("Amount");                                                                // Line 30
-	echo T_("Checkout");                                                              // Line 31
+	echo T_("Parsian");                                                               // Line 13
+	echo T_("Amount");                                                                // Line 40
+	echo T_("Checkout");                                                              // Line 41
 	echo T_("Promo code");                                                            // Line 43
-	echo T_("If you have a promo code, please enter it below to receive your credit.");// Line 39
+	echo T_("If you have a promo code, please enter it below to receive your credit.");// Line 49
 	echo T_("Promo Code");                                                            // Line 65
-	echo T_("Apply Code");                                                            // Line 45
-	echo T_("Your credit");                                                           // Line 60
-	echo T_("Click to check detail");                                                 // Line 63
-	echo T_("Billing History");                                                       // Line 79
+	echo T_("Apply Code");                                                            // Line 55
+	echo T_("Your credit");                                                           // Line 70
+	echo T_("Click to check detail");                                                 // Line 73
+	echo T_("Billing History");                                                       // Line 89
 	echo T_("Title");                                                                 // Line 200 Seperate
 	echo T_("Date");                                                                  // Line 201 Seperate
 	echo T_("Value");                                                                 // Line 116 Seperate
-	echo T_("Budget After");                                                          // Line 86
+	echo T_("Budget After");                                                          // Line 96
 	echo T_("Invoice");                                                               // Line 37
 
 	//-----------------------------addons\content_account\billing\invoice\display.html
@@ -107,8 +108,18 @@ class twigTransTerms
 	echo T_("Use our logo to help spread the word.");                                 // Line 141
 	echo T_("Enter to Jibres");                                                       // Line 144
 
-	//-----------------------------------addons\content_cp\invoicedetails\display.html
+	//---------------------------------addons\content_cp\attachments\home\display.html
+	echo T_("Search in :postss");                                                     // Line 42
 	echo T_("Search");                                                                // Line 112 Seperate
+	echo T_("Type");                                                                  // Line 28
+	echo T_("Status");                                                                // Line 25
+	echo T_("Clear filters");                                                         // Line 87
+	echo T_("Result not found!");                                                     // Line 86
+	echo T_("Search with new keywords.");                                             // Line 86
+	echo T_("Hi!");                                                                   // Line 93
+	echo T_("Try to start with add new :posts!");                                     // Line 93
+
+	//-----------------------------------addons\content_cp\invoicedetails\display.html
 	echo T_("id");                                                                    // Line 16
 	echo T_("invoice_id");                                                            // Line 17
 	echo T_("title");                                                                 // Line 230 Seperate
@@ -123,7 +134,6 @@ class twigTransTerms
 	echo T_("User id");                                                               // Line 18
 	echo T_("Is Temp?");                                                              // Line 19
 	echo T_("Total Discount");                                                        // Line 22
-	echo T_("Status");                                                                // Line 25
 	echo T_("Count Detail");                                                          // Line 24
 	echo T_("Detail");                                                                // Line 26
 	echo T_("Yes");                                                                   // Line 39
@@ -148,24 +158,41 @@ class twigTransTerms
 	echo T_("Permission cat");                                                        // Line 10
 	echo T_("Save change");                                                           // Line 32
 
-	//--------------------------------------------addons\content_cp\terms\display.html
-	echo T_("Slug");                                                                  // Line 87
-	echo T_("Desctiption");                                                           // Line 45
+	//---------------------------------------addons\content_cp\posts\home\display.html
+
+	//---------------------------------------------addons\content_cp\posts\layout.html
+	echo T_("Require");                                                               // Line 83
+	echo T_("Enter a valid title");                                                   // Line 85
+	echo T_("Slug");                                                                  // Line 93
+	echo T_("Enter a valid slug");                                                    // Line 93
+	echo T_("Content");                                                               // Line 19
+	echo T_("Content of post");                                                       // Line 20
+	echo T_("Publish date");                                                          // Line 25
 	echo T_("Add");                                                                   // Line 149 Seperate
+	echo T_("Save");                                                                  // Line 46
+	echo T_("Status of post");                                                        // Line 47
+	echo T_("Publish");                                                               // Line 51
+	echo T_("Draft");                                                                 // Line 56
+	echo T_("Schedule");                                                              // Line 61
+	echo T_("Expire");                                                                // Line 66
+	echo T_("Deleted");                                                               // Line 71
+	echo T_("Comment");                                                               // Line 82
+	echo T_("Language");                                                              // Line 88
+	echo T_("Whithout language");                                                     // Line 90
+	echo T_("Tag");                                                                   // Line 120
+
+	//--------------------------------------------addons\content_cp\terms\display.html
 	echo T_("Edit");                                                                  // Line 150 Seperate
-	echo T_("Require");                                                               // Line 77
-	echo T_("Enter a valid title");                                                   // Line 79
-	echo T_("Used for url");                                                          // Line 85
-	echo T_("Enter a valid slug");                                                    // Line 87
-	echo T_("Parent Category");                                                       // Line 93
-	echo T_("Please select one itme");                                                // Line 95
+	echo T_("Used for url");                                                          // Line 91
+	echo T_("Parent Category");                                                       // Line 100
+	echo T_("Please select one itme");                                                // Line 102
 	echo T_("Active");                                                                // Line 56
-	echo T_("Deactive");                                                              // Line 112
+	echo T_("Deactive");                                                              // Line 122
+	echo T_("Excerpt");                                                               // Line 130
 
 	//---------------------------------addons\content_cp\transactions\add\display.html
 	echo T_("Saved record");                                                          // Line 6
 	echo T_("Code");                                                                  // Line 73
-	echo T_("Type");                                                                  // Line 28
 	echo T_("Plus");                                                                  // Line 32
 	echo T_("Minus");                                                                 // Line 33
 	echo T_("Condition");                                                             // Line 38
@@ -233,6 +260,9 @@ class twigTransTerms
 	echo T_("Pasport expire");                                                        // Line 112
 	echo T_("Bank account number");                                                   // Line 117
 	echo T_("Last education degree");                                                 // Line 122
+
+	//----------------------------------addons\content_enter\autoredirect\display.html
+	echo T_("Go");                                                                    // Line 129
 
 	//-------------------------------------------addons\content_enter\ban\display.html
 	echo T_("What are you doing!");                                                   // Line 7
@@ -339,7 +369,6 @@ class twigTransTerms
 	echo T_("High");                                                                  // Line 34
 	echo T_("Medium");                                                                // Line 35
 	echo T_("Low");                                                                   // Line 36
-	echo T_("Save");                                                                  // Line 46
 
 	//--------------------------------------addons\content_su\logs\detail\display.html
 	echo T_("Logs Detail");                                                           // Line 6
@@ -1064,7 +1093,7 @@ class twigTransTerms
 	echo T_("Please enter valid mobile or username or email number");                 // Line 20
 	echo T_("Password");                                                              // Line 169 Seperate
 	echo T_("Enter a valid password from 6 to 40 character");                         // Line 47
-	echo T_("New Password");                                                          // Line 339 Seperate
+	echo T_("New Password");                                                          // Line 341 Seperate
 	echo T_("Password?");                                                             // Line 56
 	echo T_("Verify Code");                                                           // Line 65
 	echo T_("Enter a valid code!");                                                   // Line 65
@@ -1075,7 +1104,6 @@ class twigTransTerms
 	echo T_("Enter a valid eamil!");                                                  // Line 350
 	echo T_("username");                                                              // Line 109
 	echo T_("Enter a valid username from 4 to 50 character");                         // Line 109
-	echo T_("Go");                                                                    // Line 129
 	echo T_("Go and check it");                                                       // Line 122
 	echo T_("Login");                                                                 // Line 172 Seperate
 	echo T_("Create Account");                                                        // Line 159
@@ -1096,9 +1124,6 @@ class twigTransTerms
 	echo T_("New email");                                                             // Line 350
 	echo T_("New username");                                                          // Line 358
 	echo T_("Enter a valid username!");                                               // Line 358
-
-	//-----------------------------------------addons\includes\html\display-enter.html
-	echo T_("tejarak");                                                               // Line 17
 
 	//-------------------------------------------addons\includes\html\display-mvc.html
 
@@ -1147,7 +1172,7 @@ class twigTransTerms
 	echo T_("Made in IRAN");                                                          // Line 60 Seperate
 	echo T_("Iran");                                                                  // Line 61 Seperate
 	echo T_("iran");                                                                  // Line 62 Seperate
-	echo T_("qom");                                                                   // Line 421 Seperate
+	echo T_("qom");                                                                   // Line 423 Seperate
 	echo T_("submit");                                                                // Line 65 Seperate
 	echo T_("save");                                                                  // Line 66 Seperate
 	echo T_("add new");                                                               // Line 67 Seperate
@@ -1178,7 +1203,7 @@ class twigTransTerms
 	echo T_("Comments");                                                              // Line 98 Seperate
 	echo T_("Visitors");                                                              // Line 99 Seperate
 	echo T_("My Profile");                                                            // Line 101 Seperate
-	echo T_("Profile");                                                               // Line 384 Seperate
+	echo T_("Profile");                                                               // Line 386 Seperate
 	echo T_("Lock Screen");                                                           // Line 103 Seperate
 	echo T_("Powered by Dash.");                                                      // Line 105 Seperate
 	echo T_("Powered by Ermile.");                                                    // Line 106 Seperate
@@ -1191,7 +1216,7 @@ class twigTransTerms
 	echo T_("Login Successfully");                                                    // Line 119 Seperate
 	echo T_("Login failed!");                                                         // Line 120 Seperate
 	echo T_("Mobile or password is incorrect");                                       // Line 125 Seperate
-	echo T_("Please forward this message to administrator");                          // Line 319 Seperate
+	echo T_("Please forward this message to administrator");                          // Line 321 Seperate
 	echo T_("Please enter title");                                                    // Line 127 Seperate
 	echo T_("Assign keywords to your posts using tags");                              // Line 128 Seperate
 	echo T_("Use categories to define sections of your site and group related posts");// Line 129 Seperate
@@ -1270,163 +1295,165 @@ class twigTransTerms
 	echo T_("Because of your permission");                                            // Line 224 Seperate
 	echo T_("You can't access to this page!");                                        // Line 225 Seperate
 	echo T_("Site");                                                                  // Line 229 Seperate
-	echo T_("For multilanguage sites enter title in English and translate it");       // Line 231 Seperate
-	echo T_("main URL");                                                              // Line 235 Seperate
-	echo T_("Enable coming soon");                                                    // Line 236 Seperate
-	echo T_("debug mode status");                                                     // Line 237 Seperate
-	echo T_("Save as cookie");                                                        // Line 238 Seperate
-	echo T_("Log visitors");                                                          // Line 239 Seperate
-	echo T_("Use main account");                                                      // Line 240 Seperate
-	echo T_("Main account");                                                          // Line 241 Seperate
-	echo T_("Default Language");                                                      // Line 242 Seperate
-	echo T_("Feature status");                                                        // Line 243 Seperate
-	echo T_("Use fake subdomain");                                                    // Line 244 Seperate
-	echo T_("Use SMS service");                                                       // Line 245 Seperate
-	echo T_("Use social networks");                                                   // Line 246 Seperate
-	echo T_("Use account");                                                           // Line 247 Seperate
-	echo T_("line number");                                                           // Line 251 Seperate
-	echo T_("apikey");                                                                // Line 252 Seperate
-	echo T_("Github");                                                                // Line 253 Seperate
-	echo T_("Linkedin");                                                              // Line 254 Seperate
-	echo T_("Aparat");                                                                // Line 255 Seperate
-	echo T_("Google Plus");                                                           // Line 256 Seperate
-	echo T_("Status of sms service");                                                 // Line 257 Seperate
-	echo T_("Kavenegar");                                                             // Line 258 Seperate
-	echo T_("SMS service");                                                           // Line 259 Seperate
-	echo T_("service");                                                               // Line 260 Seperate
-	echo T_("ConsumerSecret");                                                        // Line 261 Seperate
-	echo T_("AccessToken");                                                           // Line 262 Seperate
-	echo T_("AccessTokenSecret");                                                     // Line 263 Seperate
-	echo T_("app_id");                                                                // Line 264 Seperate
-	echo T_("app_secret");                                                            // Line 265 Seperate
-	echo T_("redirect_url");                                                          // Line 266 Seperate
-	echo T_("required_scope");                                                        // Line 267 Seperate
-	echo T_("page_id");                                                               // Line 268 Seperate
-	echo T_("access_token");                                                          // Line 269 Seperate
-	echo T_("client_token");                                                          // Line 270 Seperate
-	echo T_("Send message for");                                                      // Line 271 Seperate
-	echo T_("verification");                                                          // Line 272 Seperate
-	echo T_("recovery");                                                              // Line 273 Seperate
-	echo T_("changepass");                                                            // Line 274 Seperate
-	echo T_("Regional restriction");                                                  // Line 275 Seperate
-	echo T_("Message header");                                                        // Line 276 Seperate
-	echo T_("Message footer");                                                        // Line 277 Seperate
-	echo T_("Force one message");                                                     // Line 278 Seperate
-	echo T_("We can't give service to this number");                                  // Line 279 Seperate
-	echo T_("Simulate SMS (Debugging)");                                              // Line 280 Seperate
-	echo T_("Please set apikey and linenumber");                                      // Line 281 Seperate
-	echo T_("send");                                                                  // Line 282 Seperate
-	echo T_(" to ");                                                                  // Line 283 Seperate
-	echo T_("until");                                                                 // Line 284 Seperate
-	echo T_("Recovery account");                                                      // Line 285 Seperate
-	echo T_("Send message in custom situation");                                      // Line 286 Seperate
-	echo T_("Message detail");                                                        // Line 287 Seperate
-	echo T_("SMS api detail");                                                        // Line 288 Seperate
-	echo T_("Status of twitter sharing");                                             // Line 289 Seperate
-	echo T_("Status of facebook sharing");                                            // Line 290 Seperate
-	echo T_("Status of telegram sharing");                                            // Line 291 Seperate
-	echo T_("Allow registration");                                                    // Line 295 Seperate
-	echo T_("After login redirect to");                                               // Line 296 Seperate
-	echo T_("Default permission");                                                    // Line 297 Seperate
-	echo T_("Account Status");                                                        // Line 298 Seperate
-	echo T_("Access with pass phrase");                                               // Line 299 Seperate
-	echo T_("Pass phrase key");                                                       // Line 300 Seperate
-	echo T_("Pass phrase value");                                                     // Line 301 Seperate
-	echo T_("Allow recovery account");                                                // Line 302 Seperate
-	echo T_("Status of account service");                                             // Line 303 Seperate
-	echo T_("Increase account security");                                             // Line 304 Seperate
-	echo T_("Signup Settings");                                                       // Line 305 Seperate
-	echo T_("Enter your registered mobile");                                          // Line 312 Seperate
-	echo T_("Enter your password");                                                   // Line 313 Seperate
-	echo T_("Mobile number exist!");                                                  // Line 316 Seperate
-	echo T_("Register successfully");                                                 // Line 317 Seperate
-	echo T_("Register failed!");                                                      // Line 318 Seperate
-	echo T_("Recovery");                                                              // Line 322 Seperate
-	echo T_("your recovery code is");                                                 // Line 323 Seperate
-	echo T_("recovery failed!");                                                      // Line 324 Seperate
-	echo T_("Mobile number is incorrect");                                            // Line 325 Seperate
-	echo T_("Verificate");                                                            // Line 328 Seperate
-	echo T_("Verification");                                                          // Line 329 Seperate
-	echo T_("verify successfully.");                                                  // Line 330 Seperate
-	echo T_("please Input your new password");                                        // Line 331 Seperate
-	echo T_("verify failed!");                                                        // Line 332 Seperate
-	echo T_("this data is incorrect");                                                // Line 333 Seperate
-	echo T_("Check your mobile and enter the code");                                  // Line 334 Seperate
-	echo T_("Change Password");                                                       // Line 337 Seperate
-	echo T_("Current Password");                                                      // Line 338 Seperate
-	echo T_("Change it");                                                             // Line 340 Seperate
-	echo T_("change password successfully");                                          // Line 341 Seperate
-	echo T_("change password failed!");                                               // Line 342 Seperate
-	echo T_("Windows");                                                               // Line 345 Seperate
-	echo T_("Linux");                                                                 // Line 346 Seperate
-	echo T_("Mac");                                                                   // Line 347 Seperate
-	echo T_("Chrome");                                                                // Line 348 Seperate
-	echo T_("Gecko");                                                                 // Line 349 Seperate
-	echo T_("First you must enter name of permission");                               // Line 353 Seperate
-	echo T_("This permission name exist!");                                           // Line 354 Seperate
-	echo T_("You can edit this permission");                                          // Line 355 Seperate
-	echo T_("Define or edit user permissions to allow or block access to special pages");// Line 356 Seperate
-	echo T_("You are editing permission");                                            // Line 357 Seperate
-	echo T_("We send a verification code for you");                                   // Line 361 Seperate
-	echo T_("We send a verification code to this number");                            // Line 362 Seperate
-	echo T_("You account is verified successfully");                                  // Line 363 Seperate
-	echo T_("Your verification code is");                                             // Line 364 Seperate
-	echo T_("Your password is changed successfully");                                 // Line 365 Seperate
-	echo T_("Now we only support IRAN!");                                             // Line 366 Seperate
-	echo T_("Thanks for using our service");                                          // Line 368 Seperate
-	echo T_("Dear user");                                                             // Line 373 Seperate
-	echo T_("For using this service we need to register your phone number.");         // Line 374 Seperate
-	echo T_("Please send your number with below keyboard to complete registeration.");// Line 375 Seperate
-	echo T_("Dear friend");                                                           // Line 376 Seperate
-	echo T_("We need your phone number to verifying your account.");                  // Line 377 Seperate
-	echo T_("If you dont want share your number, we cant presenting our services to you!");// Line 378 Seperate
-	echo T_("Registering user is successful.");                                       // Line 379 Seperate
-	echo T_("Cancel registration and return to main menu");                           // Line 380 Seperate
-	echo T_("Please only use below keyboard");                                        // Line 381 Seperate
-	echo T_("We need your contact!");                                                 // Line 382 Seperate
-	echo T_("Register User 📱");                                                       // Line 385 Seperate
-	echo T_("Register User");                                                         // Line 386 Seperate
-	echo T_("Return");                                                                // Line 387 Seperate
-	echo T_("Register Mobile Number 📱");                                              // Line 388 Seperate
-	echo T_("Register Mobile Number");                                                // Line 389 Seperate
-	echo T_("Register Address");                                                      // Line 390 Seperate
-	echo T_("By completing your profile, help us to present better service.");        // Line 391 Seperate
-	echo T_("We will thank you for this.");                                           // Line 392 Seperate
-	echo T_("Your phone number registered successfully;)");                           // Line 394 Seperate
-	echo T_("We dont need another users contact:?)");                                 // Line 395 Seperate
-	echo T_("We need mobile number!");                                                // Line 396 Seperate
-	echo T_(" ");                                                                     // Line 398 Seperate
-	echo T_("east azerbaijan");                                                       // Line 402 Seperate
-	echo T_("west azerbaijan");                                                       // Line 403 Seperate
-	echo T_("ardabil");                                                               // Line 404 Seperate
-	echo T_("esfahan");                                                               // Line 405 Seperate
-	echo T_("alborz");                                                                // Line 406 Seperate
-	echo T_("eilam");                                                                 // Line 407 Seperate
-	echo T_("bushehr");                                                               // Line 408 Seperate
-	echo T_("tehran");                                                                // Line 409 Seperate
-	echo T_("Asia/Tehran");                                                           // Line 410 Seperate
-	echo T_("chaharmahal and bakhtiari");                                             // Line 411 Seperate
-	echo T_("south khorasan");                                                        // Line 412 Seperate
-	echo T_("razavi khorasan");                                                       // Line 413 Seperate
-	echo T_("north khorasan");                                                        // Line 414 Seperate
-	echo T_("khuzestan");                                                             // Line 415 Seperate
-	echo T_("zanjan");                                                                // Line 416 Seperate
-	echo T_("semnan");                                                                // Line 417 Seperate
-	echo T_("sistan and baluchestan");                                                // Line 418 Seperate
-	echo T_("fars");                                                                  // Line 419 Seperate
-	echo T_("qazvin");                                                                // Line 420 Seperate
-	echo T_("kordestan");                                                             // Line 422 Seperate
-	echo T_("kerman");                                                                // Line 423 Seperate
-	echo T_("kermanshah");                                                            // Line 424 Seperate
-	echo T_("kohgiluyeh and boyerahmad");                                             // Line 425 Seperate
-	echo T_("golestan");                                                              // Line 426 Seperate
-	echo T_("gilan");                                                                 // Line 427 Seperate
-	echo T_("lorestan");                                                              // Line 428 Seperate
-	echo T_("mazandaran");                                                            // Line 429 Seperate
-	echo T_("markazi");                                                               // Line 430 Seperate
-	echo T_("hormozgan");                                                             // Line 431 Seperate
-	echo T_("hamedan");                                                               // Line 432 Seperate
-	echo T_("yazd");                                                                  // Line 433 Seperate
+	echo T_("enable");                                                                // Line 231 Seperate
+	echo T_("disable");                                                               // Line 232 Seperate
+	echo T_("For multilanguage sites enter title in English and translate it");       // Line 233 Seperate
+	echo T_("main URL");                                                              // Line 237 Seperate
+	echo T_("Enable coming soon");                                                    // Line 238 Seperate
+	echo T_("debug mode status");                                                     // Line 239 Seperate
+	echo T_("Save as cookie");                                                        // Line 240 Seperate
+	echo T_("Log visitors");                                                          // Line 241 Seperate
+	echo T_("Use main account");                                                      // Line 242 Seperate
+	echo T_("Main account");                                                          // Line 243 Seperate
+	echo T_("Default Language");                                                      // Line 244 Seperate
+	echo T_("Feature status");                                                        // Line 245 Seperate
+	echo T_("Use fake subdomain");                                                    // Line 246 Seperate
+	echo T_("Use SMS service");                                                       // Line 247 Seperate
+	echo T_("Use social networks");                                                   // Line 248 Seperate
+	echo T_("Use account");                                                           // Line 249 Seperate
+	echo T_("line number");                                                           // Line 253 Seperate
+	echo T_("apikey");                                                                // Line 254 Seperate
+	echo T_("Github");                                                                // Line 255 Seperate
+	echo T_("Linkedin");                                                              // Line 256 Seperate
+	echo T_("Aparat");                                                                // Line 257 Seperate
+	echo T_("Google Plus");                                                           // Line 258 Seperate
+	echo T_("Status of sms service");                                                 // Line 259 Seperate
+	echo T_("Kavenegar");                                                             // Line 260 Seperate
+	echo T_("SMS service");                                                           // Line 261 Seperate
+	echo T_("service");                                                               // Line 262 Seperate
+	echo T_("ConsumerSecret");                                                        // Line 263 Seperate
+	echo T_("AccessToken");                                                           // Line 264 Seperate
+	echo T_("AccessTokenSecret");                                                     // Line 265 Seperate
+	echo T_("app_id");                                                                // Line 266 Seperate
+	echo T_("app_secret");                                                            // Line 267 Seperate
+	echo T_("redirect_url");                                                          // Line 268 Seperate
+	echo T_("required_scope");                                                        // Line 269 Seperate
+	echo T_("page_id");                                                               // Line 270 Seperate
+	echo T_("access_token");                                                          // Line 271 Seperate
+	echo T_("client_token");                                                          // Line 272 Seperate
+	echo T_("Send message for");                                                      // Line 273 Seperate
+	echo T_("verification");                                                          // Line 274 Seperate
+	echo T_("recovery");                                                              // Line 275 Seperate
+	echo T_("changepass");                                                            // Line 276 Seperate
+	echo T_("Regional restriction");                                                  // Line 277 Seperate
+	echo T_("Message header");                                                        // Line 278 Seperate
+	echo T_("Message footer");                                                        // Line 279 Seperate
+	echo T_("Force one message");                                                     // Line 280 Seperate
+	echo T_("We can't give service to this number");                                  // Line 281 Seperate
+	echo T_("Simulate SMS (Debugging)");                                              // Line 282 Seperate
+	echo T_("Please set apikey and linenumber");                                      // Line 283 Seperate
+	echo T_("send");                                                                  // Line 284 Seperate
+	echo T_(" to ");                                                                  // Line 285 Seperate
+	echo T_("until");                                                                 // Line 286 Seperate
+	echo T_("Recovery account");                                                      // Line 287 Seperate
+	echo T_("Send message in custom situation");                                      // Line 288 Seperate
+	echo T_("Message detail");                                                        // Line 289 Seperate
+	echo T_("SMS api detail");                                                        // Line 290 Seperate
+	echo T_("Status of twitter sharing");                                             // Line 291 Seperate
+	echo T_("Status of facebook sharing");                                            // Line 292 Seperate
+	echo T_("Status of telegram sharing");                                            // Line 293 Seperate
+	echo T_("Allow registration");                                                    // Line 297 Seperate
+	echo T_("After login redirect to");                                               // Line 298 Seperate
+	echo T_("Default permission");                                                    // Line 299 Seperate
+	echo T_("Account Status");                                                        // Line 300 Seperate
+	echo T_("Access with pass phrase");                                               // Line 301 Seperate
+	echo T_("Pass phrase key");                                                       // Line 302 Seperate
+	echo T_("Pass phrase value");                                                     // Line 303 Seperate
+	echo T_("Allow recovery account");                                                // Line 304 Seperate
+	echo T_("Status of account service");                                             // Line 305 Seperate
+	echo T_("Increase account security");                                             // Line 306 Seperate
+	echo T_("Signup Settings");                                                       // Line 307 Seperate
+	echo T_("Enter your registered mobile");                                          // Line 314 Seperate
+	echo T_("Enter your password");                                                   // Line 315 Seperate
+	echo T_("Mobile number exist!");                                                  // Line 318 Seperate
+	echo T_("Register successfully");                                                 // Line 319 Seperate
+	echo T_("Register failed!");                                                      // Line 320 Seperate
+	echo T_("Recovery");                                                              // Line 324 Seperate
+	echo T_("your recovery code is");                                                 // Line 325 Seperate
+	echo T_("recovery failed!");                                                      // Line 326 Seperate
+	echo T_("Mobile number is incorrect");                                            // Line 327 Seperate
+	echo T_("Verificate");                                                            // Line 330 Seperate
+	echo T_("Verification");                                                          // Line 331 Seperate
+	echo T_("verify successfully.");                                                  // Line 332 Seperate
+	echo T_("please Input your new password");                                        // Line 333 Seperate
+	echo T_("verify failed!");                                                        // Line 334 Seperate
+	echo T_("this data is incorrect");                                                // Line 335 Seperate
+	echo T_("Check your mobile and enter the code");                                  // Line 336 Seperate
+	echo T_("Change Password");                                                       // Line 339 Seperate
+	echo T_("Current Password");                                                      // Line 340 Seperate
+	echo T_("Change it");                                                             // Line 342 Seperate
+	echo T_("change password successfully");                                          // Line 343 Seperate
+	echo T_("change password failed!");                                               // Line 344 Seperate
+	echo T_("Windows");                                                               // Line 347 Seperate
+	echo T_("Linux");                                                                 // Line 348 Seperate
+	echo T_("Mac");                                                                   // Line 349 Seperate
+	echo T_("Chrome");                                                                // Line 350 Seperate
+	echo T_("Gecko");                                                                 // Line 351 Seperate
+	echo T_("First you must enter name of permission");                               // Line 355 Seperate
+	echo T_("This permission name exist!");                                           // Line 356 Seperate
+	echo T_("You can edit this permission");                                          // Line 357 Seperate
+	echo T_("Define or edit user permissions to allow or block access to special pages");// Line 358 Seperate
+	echo T_("You are editing permission");                                            // Line 359 Seperate
+	echo T_("We send a verification code for you");                                   // Line 363 Seperate
+	echo T_("We send a verification code to this number");                            // Line 364 Seperate
+	echo T_("You account is verified successfully");                                  // Line 365 Seperate
+	echo T_("Your verification code is");                                             // Line 366 Seperate
+	echo T_("Your password is changed successfully");                                 // Line 367 Seperate
+	echo T_("Now we only support IRAN!");                                             // Line 368 Seperate
+	echo T_("Thanks for using our service");                                          // Line 370 Seperate
+	echo T_("Dear user");                                                             // Line 375 Seperate
+	echo T_("For using this service we need to register your phone number.");         // Line 376 Seperate
+	echo T_("Please send your number with below keyboard to complete registeration.");// Line 377 Seperate
+	echo T_("Dear friend");                                                           // Line 378 Seperate
+	echo T_("We need your phone number to verifying your account.");                  // Line 379 Seperate
+	echo T_("If you dont want share your number, we cant presenting our services to you!");// Line 380 Seperate
+	echo T_("Registering user is successful.");                                       // Line 381 Seperate
+	echo T_("Cancel registration and return to main menu");                           // Line 382 Seperate
+	echo T_("Please only use below keyboard");                                        // Line 383 Seperate
+	echo T_("We need your contact!");                                                 // Line 384 Seperate
+	echo T_("Register User 📱");                                                       // Line 387 Seperate
+	echo T_("Register User");                                                         // Line 388 Seperate
+	echo T_("Return");                                                                // Line 389 Seperate
+	echo T_("Register Mobile Number 📱");                                              // Line 390 Seperate
+	echo T_("Register Mobile Number");                                                // Line 391 Seperate
+	echo T_("Register Address");                                                      // Line 392 Seperate
+	echo T_("By completing your profile, help us to present better service.");        // Line 393 Seperate
+	echo T_("We will thank you for this.");                                           // Line 394 Seperate
+	echo T_("Your phone number registered successfully;)");                           // Line 396 Seperate
+	echo T_("We dont need another users contact:?)");                                 // Line 397 Seperate
+	echo T_("We need mobile number!");                                                // Line 398 Seperate
+	echo T_(" ");                                                                     // Line 400 Seperate
+	echo T_("east azerbaijan");                                                       // Line 404 Seperate
+	echo T_("west azerbaijan");                                                       // Line 405 Seperate
+	echo T_("ardabil");                                                               // Line 406 Seperate
+	echo T_("esfahan");                                                               // Line 407 Seperate
+	echo T_("alborz");                                                                // Line 408 Seperate
+	echo T_("eilam");                                                                 // Line 409 Seperate
+	echo T_("bushehr");                                                               // Line 410 Seperate
+	echo T_("tehran");                                                                // Line 411 Seperate
+	echo T_("Asia/Tehran");                                                           // Line 412 Seperate
+	echo T_("chaharmahal and bakhtiari");                                             // Line 413 Seperate
+	echo T_("south khorasan");                                                        // Line 414 Seperate
+	echo T_("razavi khorasan");                                                       // Line 415 Seperate
+	echo T_("north khorasan");                                                        // Line 416 Seperate
+	echo T_("khuzestan");                                                             // Line 417 Seperate
+	echo T_("zanjan");                                                                // Line 418 Seperate
+	echo T_("semnan");                                                                // Line 419 Seperate
+	echo T_("sistan and baluchestan");                                                // Line 420 Seperate
+	echo T_("fars");                                                                  // Line 421 Seperate
+	echo T_("qazvin");                                                                // Line 422 Seperate
+	echo T_("kordestan");                                                             // Line 424 Seperate
+	echo T_("kerman");                                                                // Line 425 Seperate
+	echo T_("kermanshah");                                                            // Line 426 Seperate
+	echo T_("kohgiluyeh and boyerahmad");                                             // Line 427 Seperate
+	echo T_("golestan");                                                              // Line 428 Seperate
+	echo T_("gilan");                                                                 // Line 429 Seperate
+	echo T_("lorestan");                                                              // Line 430 Seperate
+	echo T_("mazandaran");                                                            // Line 431 Seperate
+	echo T_("markazi");                                                               // Line 432 Seperate
+	echo T_("hormozgan");                                                             // Line 433 Seperate
+	echo T_("hamedan");                                                               // Line 434 Seperate
+	echo T_("yazd");                                                                  // Line 435 Seperate
 
  }
 }

@@ -7,7 +7,24 @@ class view extends \addons\content_cp\main\view
 	public function config()
 	{
 		$this->data->page['title'] = T_("Terms");
-		$this->data->page['desc']  = T_("check terms and add some new terms");
+		$this->data->page['desc']  = T_("Check terms and filter by type or view and edit some terms");
+
+		$myType = \lib\utility::get('type');
+		switch ($myType)
+		{
+			case 'cat':
+			case 'category':
+				$this->data->page['title'] = T_('Categories');
+				$this->data->page['desc']  = T_("Check categories and add or edit some new category");
+				break;
+
+			case 'tag':
+				$this->data->page['title'] = T_('Tags');
+				$this->data->page['desc']  = T_("Check tags and add or edit some new tag");
+				break;
+		}
+
+
 
 		// $this->data->page['badge']['link'] = $this->url('baseFull'). '/service';
 		// $this->data->page['badge']['text'] = T_('Back to service request list');
@@ -26,15 +43,15 @@ class view extends \addons\content_cp\main\view
 			$args['order'] = 'DESC';
 		}
 
-		if(\lib\utility::get('type'))
+		if($myType)
 		{
-			if(\lib\utility::get('type') === 'category')
+			if($myType === 'category')
 			{
 				$args['type'] = 'cat';
 			}
 			else
 			{
-				$args['type'] = \lib\utility::get('type');
+				$args['type'] = $myType;
 			}
 		}
 
