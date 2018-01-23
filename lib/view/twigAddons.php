@@ -506,15 +506,19 @@ trait twigAddons
 			// get tags
 			if(isset($args['post_id']))
 			{
-				$tags = \lib\db\tags::usage($args['post_id']);
+				$tags = \lib\db\termusages::usage($args['post_id'], 'tag');
 			}
 
 			// check html mod
 			if(isset($args['html']))
 			{
 				$html = '';
-				foreach ($tags as $key => $value) {
-					$html .= "<a href=\"$value\">$value</a>";
+				foreach ($tags as $key => $value)
+				{
+					if(array_key_exists('url', $value) && isset($value['title']))
+					{
+						$html .= "<a class='msg' href='$value[url]'>$value[title]</a>";
+					}
 				}
 				echo $html;
 			}

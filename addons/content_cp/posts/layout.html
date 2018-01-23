@@ -114,6 +114,7 @@
 
 
 {%block iTag%}
+{{tags({"post_id" : utilityGET.id | shortURL("decode"), "html" : true})}}
 <div class="input">
   <label for="tag">{%trans "Tag"%}</label>
   <input type="text" name="tag" value="" id="tag" placeholder='{%trans "Tag"%}' >

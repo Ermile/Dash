@@ -9,10 +9,12 @@ class model extends \mvc\model
 		$post =
 		[
 			'title'          => \lib\utility::post('title'),
+			'tag'            => \lib\utility::post('tag'),
 			'slug'           => \lib\utility::post('slug'),
 			'content'        => \lib\utility::post('content'),
-			// 'publishdate' => \lib\utility::post('publishdate'),
+			'publishdate'    => \lib\utility::post('publishdate'),
 			'status'         => \lib\utility::post('status'),
+			'comment'        => \lib\utility::post('comment'),
 			'language'       => \lib\utility::post('language'),
 			'type'           => \lib\utility::get('type'),
 			'language'       => \lib\define::get_language(),

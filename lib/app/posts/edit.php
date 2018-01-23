@@ -48,6 +48,8 @@ trait edit
 
 		if($args['type'] === 'post')
 		{
+			self::set_post_term($id, 'tag');
+
 			$post_url = self::set_post_term($id, 'cat');
 
 			if($post_url !== false)

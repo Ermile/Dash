@@ -29,9 +29,9 @@ class terms
 	 *
 	 * @return     <type>  ( description_of_the_return_value )
 	 */
-	public static function insert_multi()
+	public static function multi_insert()
 	{
-		return \lib\db\config::public_insert_multi('terms', ...func_get_args());
+		return \lib\db\config::public_multi_insert('terms', ...func_get_args());
 	}
 
 
@@ -116,6 +116,29 @@ class terms
 
 		return $result;
 
+	}
+
+
+	public static function get_mulit_term_title($_titles, $_type)
+	{
+		if(!is_array($_titles) || !$_type || !$_titles)
+		{
+			return false;
+		}
+
+		$_titles = implode("','", $_titles);
+
+		$query =
+		"
+			SELECT *
+			FROM terms
+			WHERE
+				terms.title IN ('$_titles') AND
+				terms.type = '$_type'
+		";
+		$result = \lib\db::get($query);
+
+		return $result;
 	}
 }
 ?>

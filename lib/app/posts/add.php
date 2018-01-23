@@ -59,6 +59,8 @@ trait add
 
 		if($args['type'] === 'post')
 		{
+			self::set_post_term($post_id, 'tag');
+
 			$post_url = self::set_post_term($post_id, 'cat');
 
 			if($post_url !== false)

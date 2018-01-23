@@ -89,7 +89,6 @@ class posts
 		}
 
 		$content = \lib\app::request('content');
-		$meta = \lib\app::request('meta');
 
 		$type = \lib\app::request('type');
 		if($type && mb_strlen($type) > 100)
@@ -105,11 +104,8 @@ class posts
 
 
 		$comment = \lib\app::request('comment');
-		if($comment && !in_array($comment, ['open', 'close']))
-		{
-			\lib\debug::error(T_("Invalid parameter comment"), 'title');
-			return false;
-		}
+		$comment = $comment ? 'open' : 'close';
+
 
 		$count = \lib\app::request('count');
 		$order = \lib\app::request('order');
@@ -130,13 +126,18 @@ class posts
 			return false;
 		}
 
+		if($language === 'fa' && $publishdate)
+		{
+			$publishdate = \lib\utility\jdate::to_gregorian($publishdate);
+		}
+
 		$args                = [];
 		$args['language']    = $language;
 		$args['title']       = $title;
 		$args['slug']        = $slug;
 		$args['url']         = $url;
 		$args['content']     = $content;
-		$args['meta']        = $meta;
+
 		$args['type']        = $type;
 		$args['comment']     = $comment;
 		$args['count']       = $count;
@@ -154,22 +155,83 @@ class posts
 	{
 		$category = \lib\app::request($_type);
 
-		if(!is_array($category) || empty($category) || !$category)
+		$check_all_is_cat = null;
+
+		if($_type === 'tag')
 		{
-			return null;
+			$tag = $category;
+			$tag = explode(',', $tag);
+			$tag = array_map(function($_a){return trim($_a);}, $tag);
+			$tag = array_filter($tag);
+			$tag = array_unique($tag);
+
+			$check_exist_tag = \lib\db\terms::get_mulit_term_title($tag, 'tag');
+
+			$all_tags_id = [];
+
+			$must_insert_tag = $tag;
+
+			if(is_array($check_exist_tag))
+			{
+				foreach ($check_exist_tag as $key => $value)
+				{
+					if(isset($value['id']))
+					{
+						array_push($all_tags_id, intval($value['id']));
+					}
+
+					if(isset($value['title']) && in_array($value['title'], $tag))
+					{
+						unset($tag[array_search($value['title'], $tag)]);
+					}
+				}
+			}
+
+			if(!empty($must_insert_tag))
+			{
+				$multi_insert_tag = [];
+				foreach ($must_insert_tag as $key => $value)
+				{
+					$slug = \lib\utility\filter::slug($value, null, 'persian');
+
+					$multi_insert_tag[] =
+					[
+						'type'     => 'tag',
+						'title'    => $value,
+						'slug'     => $slug,
+						'url'      => $slug,
+						'user_id'  => \lib\user::id(),
+						'language' => \lib\define::get_language(),
+					];
+				}
+
+				$first_id    = \lib\db\terms::multi_insert($multi_insert_tag);
+				$all_tags_id = array_merge($all_tags_id, \lib\db\config::multi_insert_id($multi_insert_tag, $first_id));
+			}
+
+			$category_id = $all_tags_id;
+		}
+		else
+		{
+
+			if(!is_array($category) || empty($category) || !$category)
+			{
+				return null;
+			}
+
+			$category_id = array_map(function($_a){return \lib\utility\shortURL::decode($_a);}, $category);
+			$category_id = array_filter($category_id);
+			$category_id = array_unique($category_id);
+
+			$check_all_is_cat = \lib\db\terms::check_multi_id($category_id, $_type);
+			if(count($check_all_is_cat) !== count($category_id))
+			{
+				\lib\debug::warn(T_("Some :type is wrong", ['type' => T_($_type)]), 'cat');
+				return false;
+			}
+
 		}
 
-
-		$category_id = array_map(function($_a){return \lib\utility\shortURL::decode($_a);}, $category);
-		$category_id = array_filter($category_id);
-		$category_id = array_unique($category_id);
-
-		$check_all_is_cat = \lib\db\terms::check_multi_id($category_id, $_type);
-		if(count($check_all_is_cat) !== count($category_id))
-		{
-			\lib\debug::warn(T_("Some category is wrong"), 'cat');
-			return false;
-		}
 
 		$get_old_post_cat = \lib\db\termusages::usage($_post_id, $_type);
 
@@ -182,7 +244,7 @@ class posts
 		}
 		else
 		{
-			$old_category_id = array_column($get_old_post_cat, 'term_id');
+			$old_category_id = array_column($get_old_post_cat, 'id');
 			$old_category_id = array_map(function($_a){return intval($_a);}, $old_category_id);
 			$must_insert = array_diff($category_id, $old_category_id);
 			$must_remove = array_diff($old_category_id, $category_id);
