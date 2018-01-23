@@ -75,6 +75,15 @@
 {%endblock%}
 
 
+{%block iComment%}
+<div class="switch1">
+ <input type="checkbox" name="comment" id="comment" checked="">
+ <label for="comment">{%trans "Comment"%}</label>
+ <label for="comment">{%trans "Comment"%}</label>
+</div>
+{%endblock%}
+
+
 {%block iLanguage%}
 <label for="language">{%trans "Language"%}</label>
 <select name="language" class="select">
@@ -99,5 +108,14 @@
   <label for="cat_{{value.id}}">{{value.title}}</label>
 </div>
 {%endfor%}
+</div>
+{%endblock%}
+
+
+
+{%block iTag%}
+<div class="input">
+  <label for="tag">{%trans "Tag"%}</label>
+  <input type="text" name="tag" value="" id="tag" placeholder='{%trans "Tag"%}' >
 </div>
 {%endblock%}
