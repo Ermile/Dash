@@ -100,13 +100,26 @@
 
 {%block iTag%}
 {{tags({"post_id" : utilityGET.id | shortURL("decode"), "html" : true})}}
-<div class="input">
-  <label for="tag">{%trans "Tag"%}</label>
-  <input type="text" name="tag" value="" id="tag" placeholder='{%trans "Tag"%}' >
+<div class="tagDetector" data-bind-input2='#tagValues'>
+  <div class="input">
+    <input type="text" class="input" name="tagValues" value="" id="tagValues" placeholder='{%trans "Tag"%}'>
+  </div>
+
+  <div class="tagBox msg">
+  </div>
+
+  <div class="input">
+    <input type="text" class="tagInput">
+    <button class="addon tagAdd">add</button>
+  </div>
+
 </div>
 {%endblock%}
 
 
+{%block foot_js%}
+<script type="text/javascript" src='{{url.static}}js/tagDetector-2.0.js'></script>
+{%endblock%}
 
 
 {%block iThumb%}
