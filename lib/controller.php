@@ -20,6 +20,8 @@ class controller
 	public $model_name, $view_name, $display_name;
 	public $debug = true;
 	public static $manifest;
+	public $datarow = null;
+
 
 	/**
 	 * if display true && method get corridor run view display
@@ -126,9 +128,9 @@ class controller
 		$myrep = router::get_repository_name();
 
 		// running template base module for homepage
-		if($myrep === 'content' && method_exists($this, 's_template_finder') && get_class($this) == 'content\home\controller')
+		if($myrep === 'content' && method_exists($this, 'd_template_finder') && get_class($this) == 'content\home\controller')
 		{
-			$this->s_template_finder();
+			$this->d_template_finder();
 		}
 
 		// pagnation config
