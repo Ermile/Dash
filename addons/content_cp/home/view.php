@@ -1,7 +1,7 @@
 <?php
 namespace addons\content_cp\home;
 
-class view extends \mvc\view
+class view extends \addons\content_cp\main\view
 {
 	public function config()
 	{

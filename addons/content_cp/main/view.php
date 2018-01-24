@@ -5,7 +5,9 @@ class view extends \mvc\view
 {
 	public function repository()
 	{
-		$this->data->bodyclass  = 'fixed unselectable siftal';
+		$this->data->bodyclass = 'fixed unselectable siftal';
+
+		$this->include->editor = true;
 
 		// set shortkey for all badges is this content
 		$this->data->page['badge']['shortkey'] = 120;
