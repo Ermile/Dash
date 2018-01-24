@@ -96,7 +96,7 @@
           <td><a href="{{modulePath}}?type={{value.type}}&edit={{value.id}}">{{value.title}}</a></td>
           <td><a href="{{url.base}}/{{value.url}}" target="_blank"><span class="sf-share"></span> {{value.slug}}</a></td>
           {%if not utilityGET.type%}
-            <td><a href="{{modulePath}}?type={{value.type}}">{{value.type}}</a></td>
+            <td><a href="{{modulePath}}?type={{value.type}}">{%set vType = value.type%}{%trans vType%}</a></td>
           {%endif%}
           <td class="collapsing">{%set vStatus = value.status%}{%trans vStatus%}</td>
         </tr>
