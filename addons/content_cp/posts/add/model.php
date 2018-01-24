@@ -2,37 +2,19 @@
 namespace addons\content_cp\posts\add;
 
 
-class model extends \mvc\model
+class model extends \addons\content_cp\posts\main\model
 {
 	public function post_add_posts()
 	{
-		$post =
-		[
-			'title'          => \lib\utility::post('title'),
-			'tag'            => \lib\utility::post('tag'),
-			'slug'           => \lib\utility::post('slug'),
-			'content'        => \lib\utility::post('content'),
-			'publishdate'    => \lib\utility::post('publishdate'),
-			'status'         => \lib\utility::post('status'),
-			'comment'        => \lib\utility::post('comment'),
-			'language'       => \lib\utility::post('language'),
-			'type'           => \lib\utility::get('type'),
-			'language'       => \lib\define::get_language(),
-		];
 
+		$posts = self::getPost();
 
-		$all_post = \lib\utility::post();
-		$post['cat'] = [];
-
-		foreach ($all_post as $key => $value)
+		if(!$posts || !\lib\debug::$status)
 		{
-			if(substr($key, 0, 4) === 'cat_')
-			{
-				$post['cat'][] = substr($key, 4);
-			}
+			return false;
 		}
 
-		$post_detail = \lib\app\posts::add($post);
+		$post_detail = \lib\app\posts::add($posts);
 
 		if(\lib\debug::$status && isset($post_detail['post_id']))
 		{

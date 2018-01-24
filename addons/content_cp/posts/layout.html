@@ -120,3 +120,17 @@
   <input type="text" name="tag" value="" id="tag" placeholder='{%trans "Tag"%}' >
 </div>
 {%endblock%}
+
+
+
+
+{%block iThumb%}
+<div class="input preview">
+ <input type="file" accept="image/gif, image/jpeg, image/png" name="thumb" id="fthumb" data-preview data-max="500">
+ <label for="fthumb" title='{%trans "allowed extentions jpg, png (gif for bussiness plans). Max 500Kb"%}'>
+{%if dataRaw.meta.thumb%}
+  <img src="{{dataRaw.meta.thumb}}" alt="{{dataRaw.title}}" id="logoPreview">
+{%endif%}
+ </label>
+</div>
+{%endblock%}

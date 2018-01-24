@@ -38,6 +38,32 @@ trait edit
 			return false;
 		}
 
+		$load_posts = \lib\db\posts::get(['id' => $id, 'limit' => 1]);
+
+		if(!isset($load_posts['id']))
+		{
+			\lib\debug::error(T_("Invalid posts id"));
+			return false;
+		}
+
+		if(array_key_exists('meta', $load_posts))
+		{
+			if(is_string($load_posts['meta']) && substr($load_posts['meta'], 0, 1) === '{')
+			{
+				$load_posts['meta'] = json_decode($load_posts['meta'], true);
+			}
+			elseif(is_array($load_posts['meta']))
+			{
+				// nothing
+			}
+			else
+			{
+				$load_posts['meta'] = [];
+			}
+
+			$_option['meta'] = $load_posts['meta'];
+		}
+
 		// check args
 		$args = self::check($id, $_option);
 

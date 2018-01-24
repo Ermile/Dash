@@ -12,6 +12,7 @@
 		{{block('iContent')}}
 
 		{%if not utilityGET.type or utilityGET.type == 'post' %}
+			{{block('iThumb')}}
 			{{block('iCat')}}
 			{{block('iTag')}}
 			{{block('iComment')}}

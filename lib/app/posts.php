@@ -22,6 +22,18 @@ class posts
 	public static function check($_id = null, $_option = [])
 	{
 
+		$default_option =
+		[
+			'meta' => [],
+		];
+
+		if(!is_array($_option))
+		{
+			$_option = [];
+		}
+
+		$_option = array_merge($default_option, $_option);
+
 		$language = \lib\app::request('language');
 		if($language && mb_strlen($language) !== 2)
 		{
@@ -131,13 +143,23 @@ class posts
 			$publishdate = \lib\utility\jdate::to_gregorian($publishdate);
 		}
 
+		$meta = $_option['meta'];
+		if(\lib\app::isset_request('thumb') && \lib\app::request('thumb'))
+		{
+			$meta['thumb'] = \lib\app::request('thumb');
+		}
+
+
+		$meta = json_encode($meta, JSON_UNESCAPED_UNICODE);
+
+
 		$args                = [];
 		$args['language']    = $language;
 		$args['title']       = $title;
 		$args['slug']        = $slug;
 		$args['url']         = $url;
 		$args['content']     = $content;
-
+		$args['meta']        = $meta;
 		$args['type']        = $type;
 		$args['comment']     = $comment;
 		$args['count']       = $count;
@@ -401,6 +423,17 @@ class posts
 					else
 					{
 						$result[$key] = null;
+					}
+					break;
+
+				case 'meta':
+					if(is_array($value))
+					{
+						$result['meta'] = $value;
+					}
+					elseif(is_string($value) && substr($value, 0, 1) === '{')
+					{
+						$result['meta'] = json_decode($value, true);
 					}
 					break;
 

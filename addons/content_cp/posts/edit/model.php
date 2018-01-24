@@ -1,37 +1,19 @@
 <?php
 namespace addons\content_cp\posts\edit;
 
-class model extends \mvc\model
+class model extends \addons\content_cp\posts\main\model
 {
 	public function post_edit_post()
 	{
-		$post =
-		[
-			'id'             => \lib\utility::get('id'),
-			'title'          => \lib\utility::post('title'),
-			'slug'           => \lib\utility::post('slug'),
-			'tag'            => \lib\utility::post('tag'),
-			'content'        => \lib\utility::post('content'),
-			'publishdate'    => \lib\utility::post('publishdate'),
-			'comment'        => \lib\utility::post('comment'),
-			'status'         => \lib\utility::post('status'),
-			'language'       => \lib\utility::post('language'),
-			'type'           => \lib\utility::get('type'),
-			'language'       => \lib\define::get_language(),
-		];
 
-		$all_post = \lib\utility::post();
-		$post['cat'] = [];
+		$posts = self::getPost();
 
-		foreach ($all_post as $key => $value)
+		if(!$posts || !\lib\debug::$status)
 		{
-			if(substr($key, 0, 4) === 'cat_')
-			{
-				$post['cat'][] = substr($key, 4);
-			}
+			return false;
 		}
 
-		$post_detail = \lib\app\posts::edit($post);
+		$post_detail = \lib\app\posts::edit($posts);
 
 		if(\lib\debug::$status)
 		{
