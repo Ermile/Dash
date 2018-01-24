@@ -116,7 +116,7 @@ class posts
 
 
 		$comment = \lib\app::request('comment');
-		$comment = $comment ? 'open' : 'close';
+		$comment = $comment ? 'open' : 'closed';
 
 
 		$count = \lib\app::request('count');
