@@ -5,9 +5,11 @@ class view extends \mvc\view
 {
 	public function config()
 	{
-		$this->data->bodyclass = 'fixed unselectable siftal';
+		$this->data->bodyclass  = 'fixed unselectable siftal';
 	}
-		public static function make_sort_link($_field, $_url)
+
+
+	public static function make_sort_link($_field, $_url)
 	{
 		$get = \lib\utility::get(null, 'raw');
 		if(!is_array($get))

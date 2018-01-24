@@ -5,67 +5,106 @@
 
 <div class="f justify-center">
 {%if utilityGET.type%}
-  <div class="c4 s12 mRa5">
-      <div class="f justify-center">
-        <div class="cbox ">
-          <form method="post">
-            {{block ('iTitle') }}
-            {{block ('iSlug') }}
-{%if utilityGET.type == 'category'%}
-            {{block ('iParent') }}
-{%endif%}
-            {{block ('iDescription') }}
-            {{block ('iStatus') }}
-            {%if edit_mode%}{{block ('iedit')}}{%else%}{{block ('iadd')}}
-            {%endif%}
-          </form>
-        </div>
-      </div>
+  <div class="c4 s12 pRa20">
+    {{block ('iAddEditBox') }}
   </div>
-
-
-{%else%}
 {%endif%}
   <div class="c s12">
-    {{block ('iTable') }}
+      {{block ('iDataBox') }}
   </div>
 </div>
 {%endblock%}
 
 
-{%block iTable%}
-{%if dataTable%}
-<div class="f justify-center">
-<div class="cbox ">
-
-    <table class="tbl">
-      <thead>
-        <tr class="">
-          <th>{%trans "Title"%}</th>
-          <th>{%trans "Slug"%}</th>
-          <th>{%trans "Type"%}</th>
-          {%if not utilityGET.type%}
-            <th>{%trans "Status"%}</th>
-          {%endif%}
-        </tr>
-      </thead>
-      <tbody>
-        {%for key, value in dataTable%}
-          <tr>
-            <td><a href="{{url.baseFull}}/terms?type={{value.type}}&edit={{value.id}}">{{value.title}}</a></td>
-            <td><a href="{{url.base}}/{{value.url}}" target="_blank"><span class="sf-share"></span> {{value.slug}}</a></td>
-            {%if not utilityGET.type%}
-              <td><a href="{{url.baseFull}}/terms?type={{value.type}}">{{value.type}}</a></td>
-            {%endif%}
-            <td class="collapsing">{%set vStatus = value.status%}{%trans vStatus%}</td>
-          </tr>
-        {%endfor%}
-      </tbody>
-    </table>
-    {%include display.pagination%}
-  </div>
-</div>
+{%block iAddEditBox%}
+<form method="post" class="cbox">
+  {{block ('iTitle') }}
+  {{block ('iSlug') }}
+{%if utilityGET.type == 'category'%}
+  {{block ('iParent') }}
 {%endif%}
+  {{block ('iDescription') }}
+  {{block ('iStatus') }}
+  {%if edit_mode%}{{block ('iedit')}}{%else%}{{block ('iadd')}}
+  {%endif%}
+</form>
+{%endblock%}
+
+
+{%block iDataBox%}
+
+{%if dataTable%}
+ {%if dataFilter%}
+
+  {{block('htmlSearchBox')}}
+  {{block('htmlTable')}}
+  {{block('htmlFilter')}}
+
+ {%else%}
+
+  {{block('htmlSearchBox')}}
+  {{block('htmlTable')}}
+
+ {%endif%}
+{%else%}
+ {%if dataFilter%}
+
+  {{block('htmlSearchBox')}}
+  {{block('htmlFilterNoResult')}}
+
+ {%else%}
+
+  {{block('htmlStartAddNew')}}
+
+ {%endif%}
+{%endif%}
+
+
+
+{%endblock%}
+
+
+
+{%block htmlSearchBox1%}
+<div class="cbox fs12">
+  <form method="get" data-action>
+    <div class="input">
+      <input type="search" name="q" placeholder='{%trans "Search"%}' id="q" value="{{utilityGET.q}}" autofocus  autocomplete='off'>
+      <button class="addon btn ">{%trans "Search" %}</button>
+    </div>
+  </form>
+</div>
+{%endblock%}
+
+
+{%block htmlTable%}
+<div class="cbox">
+  <table class="tbl">
+    <thead>
+      <tr class="">
+        <th>{%trans "Title"%}</th>
+        <th>{%trans "Slug"%}</th>
+        <th>{%trans "Type"%}</th>
+        {%if not utilityGET.type%}
+          <th>{%trans "Status"%}</th>
+        {%endif%}
+      </tr>
+    </thead>
+    <tbody>
+      {%for key, value in dataTable%}
+        <tr>
+          <td><a href="{{modulePath}}?type={{value.type}}&edit={{value.id}}">{{value.title}}</a></td>
+          <td><a href="{{url.base}}/{{value.url}}" target="_blank"><span class="sf-share"></span> {{value.slug}}</a></td>
+          {%if not utilityGET.type%}
+            <td><a href="{{modulePath}}?type={{value.type}}">{{value.type}}</a></td>
+          {%endif%}
+          <td class="collapsing">{%set vStatus = value.status%}{%trans vStatus%}</td>
+        </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+  {%include display.pagination%}
+</div>
 {%endblock%}
 
 
@@ -129,4 +168,27 @@
 {%block iexcerpt%}
 <label for='excerpt'>{%trans "Excerpt"%}</label>
 <textarea class="txt" name="excerpt" rows="7" placeholder='{%trans "Description"%}' id='excerpt'>{{datarow.excerpt}}</textarea>
+{%endblock%}
+
+
+
+
+{%block htmlFilter%}
+<p class="f fs14 msg info2">
+  <span class="c">{{dataFilter | raw}}</span>
+  <a class="cauto" href="{{modulePath}}">{%trans "Clear filters"%}</a>
+</p>
+{%endblock%}
+
+
+{%block htmlFilterNoResult%}
+<p class="f fs14 msg warn2">
+  <span class="c">{%trans "Result not found!"%} {%trans "Search with new keywords."%}</span>
+  <a class="cauto" href="{{modulePath}}">{%trans "Clear filters"%}</a>
+</p>
+{%endblock%}
+
+
+{%block htmlStartAddNew%}
+<p class="fs14 msg success2">{%trans "Hi!"%} {%trans "Try to start with add new records!"%}</p>
 {%endblock%}

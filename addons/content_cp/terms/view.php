@@ -6,30 +6,35 @@ class view extends \addons\content_cp\main\view
 {
 	public function config()
 	{
+		$this->data->bodyclass  = 'unselectable siftal';
+		$this->data->modulePath = $this->url('baseFull'). '/terms';
+
 		$this->data->page['title'] = T_("Terms");
 		$this->data->page['desc']  = T_("Check terms and filter by type or view and edit some terms");
 
-		$myType = \lib\utility::get('type');
-		switch ($myType)
-		{
-			case 'cat':
-			case 'category':
-				$this->data->page['title'] = T_('Categories');
-				$this->data->page['desc']  = T_("Check categories and add or edit some new category");
-				break;
+		$this->data->page['badge']['link'] = $this->url('baseFull');
+		$this->data->page['badge']['text'] = T_('Back to dashboard');
 
-			case 'tag':
-				$this->data->page['title'] = T_('Tags');
-				$this->data->page['desc']  = T_("Check tags and add or edit some new tag");
-				break;
+		$myType = \lib\utility::get('type');
+		if($myType)
+		{
+			switch ($myType)
+			{
+				case 'cat':
+				case 'category':
+					$this->data->page['title'] = T_('Categories');
+					$this->data->page['desc']  = T_("Check categories and add or edit some new category");
+					break;
+
+				case 'tag':
+					$this->data->page['title'] = T_('Tags');
+					$this->data->page['desc']  = T_("Check tags and add or edit some new tag");
+					break;
+			}
 		}
 
 
 
-		// $this->data->page['badge']['link'] = $this->url('baseFull'). '/service';
-		// $this->data->page['badge']['text'] = T_('Back to service request list');
-
-		$this->data->bodyclass       = 'unselectable siftal';
 
 
 		$args =
