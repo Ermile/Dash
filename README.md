@@ -75,7 +75,7 @@ Author
 
 License
 -------
-Licence! What does it mean?
+Licensed under the MIT License:)
 
 
 
