@@ -37,9 +37,9 @@
 
 {%block htmlSearchBox%}
 <div class="cbox fs12">
-  <form method="get" action='{{url.baseFull}}/posts' data-action>
+  <form method="get" action='{{url.baseFull}}{{moduleType}}' data-action>
     <div class="input">
-      <input type="search" name="q" placeholder='{%trans "Search in :postss"%}' id="q" value="{{utilityGET.q}}" autofocus  data-pass='submit' autocomplete='off'>
+      <input type="search" name="q" placeholder='{%trans "Search"%}' id="q" value="{{utilityGET.q}}" autofocus autocomplete='off'>
       <button class="addon btn ">{%trans "Search" %}</button>
     </div>
   </form>
@@ -90,6 +90,6 @@
 
 
 {%block htmlStartAddNew%}
-<p class="fs14 alert alert-success pTB20">{%trans "Hi!"%} <a href="{{url.baseFull}}/posts/add">{%trans "Try to start with add new :posts!"%}</a></p>
+<p class="fs14 alert alert-success pTB20">{%trans "Hi!"%} <a href="{{url.baseFull}}/posts/add{{moduleType}}">{%trans "Try to start with add new record!"%}</a></p>
 {%endblock%}
 

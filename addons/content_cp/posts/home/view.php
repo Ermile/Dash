@@ -2,19 +2,38 @@
 namespace addons\content_cp\posts\home;
 
 
-class view extends \addons\content_cp\main\view
+class view extends \addons\content_cp\posts\main\view
 {
 	public function config()
 	{
 		parent::config();
 
-		$this->data->page['title'] = T_("Posts list");
-		$this->data->page['desc']  = T_('Check list of posts and search or filter in them to find your posts.'). ' '. T_('Also add or edit specefic posts.');
-		// add back level to summary link
-		$this->data->modulePath = $this->url('baseFull'). '/posts';
+		$myType = \lib\utility::get('type');
 
-		$this->data->page['badge']['link'] = $this->data->modulePath. '/add';
-		$this->data->page['badge']['text'] = T_('Add new posts');
+		$this->data->page['title'] = T_("Posts");
+		$this->data->page['desc']  = T_('Check list of posts and search or filter in them to find your posts.'). ' '. T_('Also add or edit specefic post.');
+
+		$this->data->page['badge']['link'] = $this->data->modulePath. '/add'. $this->data->moduleType;
+		$this->data->page['badge']['text'] = T_('Add new :val', ['val' => $myType]);
+
+
+		if($myType)
+		{
+			switch ($myType)
+			{
+				case 'page':
+					$this->data->page['title'] = T_('Pages');
+					$this->data->page['desc']  = T_('Check list of pages and to find your pages.'). ' '. T_('Also add or edit specefic static page.');
+					break;
+			}
+
+		}
+
+		// add back level to summary link
+		$product_list_link        =  '<a href="'. $this->url('baseFull') .'" data-shortkey="121">'. T_('Back to dashboard'). '</a>';
+		$this->data->page['desc'] .= ' | '. $product_list_link;
+
+
 
 		$search_string            = \lib\utility::get('q');
 		if($search_string)

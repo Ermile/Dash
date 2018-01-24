@@ -6,7 +6,6 @@ class view extends \addons\content_cp\main\view
 {
 	public function config()
 	{
-		$this->data->bodyclass  = 'unselectable siftal';
 		$this->data->modulePath = $this->url('baseFull'). '/terms';
 
 		$this->data->page['title'] = T_("Terms");

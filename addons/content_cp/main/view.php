@@ -3,9 +3,12 @@ namespace addons\content_cp\main;
 
 class view extends \mvc\view
 {
-	public function config()
+	public function repository()
 	{
 		$this->data->bodyclass  = 'fixed unselectable siftal';
+
+		// set shortkey for all badges is this content
+		$this->data->page['badge']['shortkey'] = 120;
 	}
 
 

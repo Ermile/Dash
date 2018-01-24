@@ -1,30 +1,37 @@
 {%extends display.cpMain%}
 {%use "/content_cp/posts/layout.html"%}
 
-{%block content %}
-<div class="tbox">
 
-</div>
-<div class="cbox">
-	<form method="post">
-		{{block('iTitle')}}
-		{{block('iSlug')}}
-		{{block('iContent')}}
+{%block pageContent%}
+<form class="f justify-center" method="post">
+ <div class="c9 s12 pRa10">
+  <div class="cbox">
+   {{block('iTitle')}}
+   {{block('iContent')}}
+  </div>
+  <div class="cbox">
+   {{block('iTag')}}
+  </div>
+ </div>
+ <div class="c3 s12">
+  <div class="cbox">
+   {{block('iSlug')}}
+   {{block('iPublishdate-')}}
+   {{block('iStatus')}}
+   {{block('iadd')}}
+  </div>
 
-		{%if not utilityGET.type or utilityGET.type == 'post' %}
-			{{block('iThumb')}}
-			{{block('iCat')}}
-			{{block('iTag')}}
-			{{block('iComment')}}
-			{{block('iPublishdate')}}
-		{%endif%}
+{%if not utilityGET.type or utilityGET.type == 'post' %}
+  <div class="cbox">
+   {{block('iCat')}}
+  </div>
+{%endif%}
 
-		{{block('iStatus')}}
-		{{block('iadd')}}
-	</form>
-</div>
+  <div class="cbox">
+   {{block('iThumb')}}
+  </div>
+
+ </div>
+</form>
 {% endblock %}
-
-
-
 

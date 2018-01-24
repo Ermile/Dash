@@ -1,30 +1,27 @@
 
 {%block iTitle %}
-<label for="title">{%trans "Title"%} <small class="fc-red">* {%trans "Require"%}</small></label>
-<div class="input">
-  <input type="text" name="title" id="title" placeholder='{%trans "Title"%} *' value="{{dataRaw.title}}" autofocus required maxlength='100' minlength="1" pattern=".{1,100}" title='{%trans "Enter a valid title"%}'>
+<div class="input mB10">
+  <input type="text" name="title" id="title" placeholder='{%trans "Enter a good and short title"%} *' value="{{dataRaw.title}}" autofocus required maxlength='100' minlength="1" pattern=".{1,100}" title='{%trans "Enter a valid title"%}'>
 </div>
 {% endblock %}
 
 
 {%block iSlug %}
-<label for="slug">{%trans "Slug"%} <small class="fc-red">* {%trans "Require"%}</small></label>
-<div class="input">
-  <input type="text" name="slug" id="slug" placeholder='{%trans "Slug"%} *' value="{{dataRaw.slug}}"  maxlength='100' minlength="1" pattern=".{1,100}" title='{%trans "Enter a valid slug"%}'>
+<div class="input ltr">
+  <input type="text" name="slug" id="slug" placeholder='{%trans "Slug used for url"%} *' value="{{dataRaw.slug}}"  maxlength='100' minlength="1" pattern=".{1,100}" title='{%trans "Enter a valid slug"%}'>
 </div>
 {% endblock %}
 
 
 {%block iContent%}
-<label for="content">{%trans "Content"%}</label>
-<textarea class="txt mB10" id='content' name="content" placeholder='{%trans "Content of post"%}' maxlength='50000' rows="15">{{dataRaw.content}}</textarea>
+<textarea class="txt mB10" id='content' name="content" placeholder='{%trans "Write post "%}' maxlength='100000' rows="20">{{dataRaw.content}}</textarea>
 {%endblock%}
 
 
 {%block iPublishdate %}
-<label for="publishdate">{%trans "Publish date"%}</label>
+<label for="publishdate"></label>
 <div class="input">
-  <input class="datepicker" type="text" name="publishdate" id="publishdate" placeholder='{{"now" | tdate("Y/m/d") | fitNumber}}' value="{{dataRaw.publishdate | fitNumber}}" maxlength='15' data-format="YYYY/MM/DD" data-initialValue='false' data-view="year">
+  <input class="datepicker" type="text" name="publishdate" id="publishdate" placeholder='{%trans "Publish date"%}' value="{{dataRaw.publishdate | fitNumber}}" maxlength='15' data-format="YYYY/MM/DD" data-initialValue='false' data-view="year">
 </div>
 {% endblock %}
 
@@ -32,7 +29,7 @@
 
 
 {%block iadd%}
-<button class="btn primary block mT20">{%trans "Add"%}</button>
+<button class="btn primary block mT20">{%trans "Save"%}</button>
 {%endblock%}
 
 {%block isave%}
@@ -54,16 +51,6 @@
  <div class="radio1 black">
   <input type="radio" id="r-draft" name="status" value="draft" {%if dataRaw.status == 'draft'%} checked{%endif%} >
   <label for="r-draft">{%trans "Draft"%}</label>
- </div>
-
- <div class="radio1 blue">
-  <input type="radio" id="r-schedule" name="status" value="schedule" {%if dataRaw.status == 'schedule'%} checked{%endif%} >
-  <label for="r-schedule">{%trans "Schedule"%}</label>
- </div>
-
- <div class="radio1 yellow">
-  <input type="radio" id="r-expire" name="status" value="expire" {%if dataRaw.status == 'expire'  %} checked{%endif%}>
-  <label for="r-expire">{%trans "Expire"%}</label>
  </div>
 
  <div class="radio1 red mB25">
@@ -99,7 +86,6 @@
 
 
 {%block iCat%}
-<div class="msg">
 {%set postCat = category({"post_id" : dataRaw.id, "id" : true})%}
 
 {%for key, value in cat_list%}
@@ -108,7 +94,6 @@
   <label for="cat_{{value.id}}">{{value.title}}</label>
 </div>
 {%endfor%}
-</div>
 {%endblock%}
 
 
