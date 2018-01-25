@@ -127,11 +127,29 @@ class controller
 		}
 		$myrep = router::get_repository_name();
 
-		// running template base module for homepage
-		if($myrep === 'content' && method_exists($this, 'd_template_finder') && get_class($this) == 'content\home\controller')
-		{
-			$this->d_template_finder();
-		}
+		// // running template base module for homepage
+		// if($myrep === 'content' && method_exists($this, 'd_template_finder') && get_class($this) == 'content\home\controller')
+		// {
+		// 	$home_url = \lib\router::get_url();
+
+		// 	if(file_exists(root. 'content/home/controller.php'))
+		// 	{
+		// 		if(!$home_url)
+		// 		{
+		// 			// no url and home controller is exist
+		// 			// route it
+		// 		}
+		// 		else
+		// 		{
+		// 			// route some url in home
+		// 			$this->d_template_finder();
+		// 		}
+		// 	}
+		// 	else
+		// 	{
+		// 		$this->d_template_finder();
+		// 	}
+		// }
 
 		// pagnation config
 		$this->pagnation_config();

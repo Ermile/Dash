@@ -187,7 +187,25 @@ class main
 
 		if(count(router::get_url_property(-1)) > 0 && $controller->route_check_true === false)
 		{
-			error::page('Unavailable');
+			if(\lib\router::get_repository_name() === 'content')
+			{
+				\lib\app\template::$module = $controller->module();
+
+				if(\lib\app\template::find())
+				{
+					$controller->display_name     = \lib\app\template::$display_name;
+					$controller->route_check_true = \lib\app\template::$route_check_true;
+				}
+				else
+				{
+					error::page('Unavailable');
+				}
+			}
+			else
+			{
+				error::page('Unavailable');
+			}
+
 		}
 		$controller->_corridor();
 	}

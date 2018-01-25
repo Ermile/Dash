@@ -15,8 +15,14 @@ trait template
 
 		if($this->fake_static_page())
 		{
-			return true;
+			$file_ext               = '.html';
+			$display_prefix         = 'content\template\\';
+			$this->display_name     = $display_prefix. $this->display_name;
+			$this->route_check_true = true;
+			$this->get()->ALL();
+			return;
 		}
+
 
 		$data  = null;
 		$slug  = null;
@@ -55,12 +61,12 @@ trait template
 				$type = $data['type'];
 			}
 		}
-		elseif($this->find_404())
-		{
-			// no way to load page
-			return;
-			// :(
-		}
+		// elseif($this->find_404())
+		// {
+		// 	// no way to load page
+		// 	return;
+		// 	// :(
+		// }
 
 		$this->set_display_name($data, $type, $slug, $table);
 
