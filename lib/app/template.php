@@ -151,6 +151,11 @@ class template
 			$route_check_true = true;
 		}
 
+		if(isset($data['meta']) && is_string($data['meta']) && substr($data['meta'], 0,1) === '{')
+		{
+			$data['meta'] = json_decode($data['meta'], true);
+		}
+
 		if($route_check_true)
 		{
 			self::$datarow = $data;

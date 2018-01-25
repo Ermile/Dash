@@ -104,7 +104,7 @@ class view
 
 		if(\lib\router::get_repository_name() === 'content')
 		{
-			$this->data->datarow = $this->controller()->datarow;
+			$this->data->datarow = \lib\app\template::$datarow;
 		}
 
 		// ************************************************************************************ Twig

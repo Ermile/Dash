@@ -219,6 +219,7 @@ class posts
 					$multi_insert_tag[] =
 					[
 						'type'     => 'tag',
+						'status'   => 'enable',
 						'title'    => $value,
 						'slug'     => $slug,
 						'url'      => $slug,
