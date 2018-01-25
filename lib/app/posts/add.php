@@ -13,6 +13,9 @@ trait add
 	 */
 	public static function add($_args, $_option = [])
 	{
+		$content = isset($_args['content']) ? $_args['content'] : null;
+		$content = addslashes($content);
+
 		\lib\app::variable($_args);
 
 		$default_option =
@@ -45,6 +48,10 @@ trait add
 			return false;
 		}
 
+		if(array_key_exists('content', $args))
+		{
+			$args['content'] = $content;
+		}
 
 		$return         = [];
 

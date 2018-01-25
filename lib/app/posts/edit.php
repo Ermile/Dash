@@ -13,6 +13,9 @@ trait edit
 	 */
 	public static function edit($_args, $_option = [])
 	{
+		$content = isset($_args['content']) ? $_args['content'] : null;
+		$content = addslashes($content);
+
 		\lib\app::variable($_args);
 
 		$default_option =
@@ -70,6 +73,11 @@ trait edit
 		if($args === false || !\lib\debug::$status)
 		{
 			return false;
+		}
+
+		if(array_key_exists('content', $args))
+		{
+			$args['content'] = $content;
 		}
 
 		if($args['type'] === 'post')

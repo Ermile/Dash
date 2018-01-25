@@ -12,7 +12,7 @@ class model extends \mvc\model
 			'title'          => \lib\utility::post('title'),
 			'tag'            => \lib\utility::post('tag'),
 			'slug'           => \lib\utility::post('slug'),
-			'content'        => \lib\utility::post('content'),
+			'content'        => isset($_POST['content']) ? $_POST['content'] : null,
 			'publishdate'    => \lib\utility::post('publishdate'),
 			'status'         => \lib\utility::post('status'),
 			'comment'        => \lib\utility::post('comment'),
@@ -21,8 +21,8 @@ class model extends \mvc\model
 			'language'       => \lib\define::get_language(),
 		];
 
-
 		$all_post = \lib\utility::post();
+
 		$post['cat'] = [];
 
 		foreach ($all_post as $key => $value)
