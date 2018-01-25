@@ -75,11 +75,11 @@
 {%block header%}
    <div id='sidenavHandler' class="c0 sauto mauto"><i class="sf-ellipsis-v"></i></div>
 
-   {%block headerTitle%}<h1 class='cauto'><a href="{{url.base}}" data-direct target='_blank' class='flex'><img src="{{url.static}}images/logo.png" alt='{{site.title}}'><span>{{site.title}}</span></a></h1>{%endblock%}
+   {%block headerTitle%}<h1 class='cauto' title='{{site.desc}}'><a href="{{url.base}}" data-direct target='_blank' class='flex'><img src="{{url.static}}images/logo.png" alt='{{site.title}}'><span>{{site.title}}</span></a></h1>{%endblock%}
 
    <div class='hm flex cauto'>
 {%block headerMenu%}
-    <div class="vm"><i class="sf-globe"></i>{{langList({'html':true, 'all':true})}}</div>
+    <div class="vm" title='{%trans "Work in your language"%}' data-tippy-placement='left'><i class="sf-globe"></i>{{langList({'html':true, 'all':true})}}</div>
 {%endblock%}
    </div>
    <div class='hm right flex cauto os'>
