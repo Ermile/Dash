@@ -345,11 +345,8 @@ class posts
 			FROM
 				posts
 			WHERE
-			(
-				posts.language IS NULL OR
-				posts.language = '$language'
-			) AND
-			posts.url = '$url'
+				posts.language = '$language' AND
+				posts.url      = '$url'
 			LIMIT 1
 		";
 
