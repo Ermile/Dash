@@ -1,7 +1,7 @@
 <?php
 namespace addons\content_cp\posts\edit;
 
-class view extends \addons\content_cp\main\view
+class view extends \addons\content_cp\posts\main\view
 {
 	public function config()
 	{

@@ -99,13 +99,11 @@
 
 
 {%block iTag%}
-{{tags({"post_id" : utilityGET.id | shortURL("decode"), "html" : true})}}
-<div class="tagDetector" data-bind-input2='#tagValues'>
-  <div class="input">
-    <input type="text" class="input" name="tagValues" value="" id="tagValues" placeholder='{%trans "Tag"%}'>
-  </div>
 
-  <div class="tagBox msg">
+{%set postTag = tags({"post_id" : utilityGET.id | shortURL("decode")}) %}
+<div class="tagDetector" data-val='["ss","ccc"]'>
+  <div class="input">
+    <input type="text" class="input tagVals" name="tag" value="" id="tagValues" placeholder='{%trans "Tag"%}'>
   </div>
 
   <div class="input">
@@ -113,6 +111,9 @@
     <button class="addon tagAdd">add</button>
   </div>
 
+  <div class="tagBox">
+
+  </div>
 </div>
 {%endblock%}
 
