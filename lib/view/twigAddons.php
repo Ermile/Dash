@@ -506,19 +506,52 @@ trait twigAddons
 			// get tags
 			if(isset($args['post_id']))
 			{
-				$tags = \lib\db\termusages::usage($args['post_id'], 'tag');
+				$cache_key = 'post_tag_'. $args['post_id'];
+				if(\lib\temp::get($cache_key))
+				{
+					$tags = \lib\temp::get($cache_key);
+
+				}
+				else
+				{
+					$tags = \lib\db\termusages::usage($args['post_id'], 'tag');
+					\lib\temp::set($cache_key, $tags);
+				}
+			}
+
+			if(isset($args['title']) && $args['title'])
+			{
+				if(is_array($tags))
+				{
+					$tags = array_column($tags, 'title');
+				}
+			}
+
+			if(isset($args['json']) && $args['json'])
+			{
+				if(is_array($tags))
+				{
+					$tags = json_encode($tags, JSON_UNESCAPED_UNICODE);
+				}
 			}
 
 			// check html mod
 			if(isset($args['html']))
 			{
 				$html = '';
-				foreach ($tags as $key => $value)
+				if(is_array($tags))
 				{
-					if(array_key_exists('url', $value) && isset($value['title']))
+					foreach ($tags as $key => $value)
 					{
-						$html .= "<a class='msg' href='$value[url]'>$value[title]</a>";
+						if(array_key_exists('slug', $value) && isset($value['title']))
+						{
+							$html .= "<span title='$value[slug]'>$value[title]</span>";
+						}
 					}
+				}
+				elseif(is_string($tags))
+				{
+					$html = $tags;
 				}
 				echo $html;
 			}

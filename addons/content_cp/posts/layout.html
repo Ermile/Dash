@@ -100,9 +100,11 @@
 
 {%block iTag%}
 
-{%set postTag = tags({"post_id" : utilityGET.id | shortURL("decode")}) %}
-<div class="tagDetector" data-val='["ss","ccc"]'>
-  <div class="input hide2">
+{%set postTag = tags({"post_id" : utilityGET.id | shortURL("decode"), "title" : true, "json" : true}) %}
+
+
+<div class="tagDetector" data-val='{{postTag}}'>
+  <div class="input hide">
     <input type="text" class="input tagVals" name="tag" value="" id="tagValues" placeholder='{%trans "Tag"%}'>
   </div>
 
@@ -112,7 +114,7 @@
   </div>
 
   <div class="tagBox">
-
+    {{tags({"post_id" : utilityGET.id | shortURL("decode"), "html" : true})}}
   </div>
 </div>
 {%endblock%}
