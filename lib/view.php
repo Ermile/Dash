@@ -102,8 +102,10 @@ class view
 		// $tmpname      = ($this->controller()->display_name)? $this->controller()->display_name : $repository.'/'.$module.'display.html';
 		$tmpname      = ($this->controller()->display_name)? $this->controller()->display_name : $repository.$module.'display.html';
 
-
-		$this->data->datarow = $this->controller()->datarow;
+		if(\lib\router::get_repository_name() === 'content')
+		{
+			$this->data->datarow = $this->controller()->datarow;
+		}
 
 		// ************************************************************************************ Twig
 		// twig method

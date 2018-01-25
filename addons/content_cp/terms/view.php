@@ -95,8 +95,7 @@ class view extends \addons\content_cp\main\view
 			$this->data->edit_mode = true;
 
 			$id = \lib\utility::get('edit');
-			$x = $this->data->datarow = \lib\app\term::get($id);
-
+			$this->data->datarow = \lib\app\term::get($id);
 
 			if(!$this->data->datarow)
 			{
