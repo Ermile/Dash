@@ -541,11 +541,13 @@ trait twigAddons
 				$html = '';
 				if(is_array($tags))
 				{
+					$baset_url = $this->url('base');
+
 					foreach ($tags as $key => $value)
 					{
-						if(array_key_exists('slug', $value) && isset($value['title']))
+						if(array_key_exists('url', $value) && isset($value['title']))
 						{
-							$html .= "<span title='$value[slug]'>$value[title]</span>";
+							$html .= "<a href='$baset_url/tag/$value[url]'>$value[title]</a>";
 						}
 					}
 				}
@@ -601,10 +603,14 @@ trait twigAddons
 			// check html mod
 			if(isset($args['html']))
 			{
+				$baset_url = $this->url('base');
 				$html = '';
 				foreach ($category as $key => $value)
 				{
-					$html .= "<a href=\"$value\">$value</a>";
+					if(array_key_exists('url', $value) && isset($value['title']))
+					{
+						$html .= "<a href='$baset_url/category/$value[url]'>$value[title]</a>";
+					}
 				}
 				echo $html;
 			}

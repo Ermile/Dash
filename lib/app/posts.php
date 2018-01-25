@@ -391,6 +391,11 @@ class posts
 			$id  = 0;
 		}
 
+		if(is_array($datarow))
+		{
+			$datarow = self::ready($datarow);
+		}
+
 		self::$datarow = $datarow;
 
 		return $datarow;
