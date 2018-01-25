@@ -498,9 +498,9 @@ trait twigAddons
 			// get post id
 			if(!isset($args['post_id']))
 			{
-				if(isset($this->data->post['id']))
+				if(isset($this->data->datarow['id']))
 				{
-					$args['post_id'] = $this->data->post['id'];
+					$args['post_id'] = $this->data->datarow['id'];
 				}
 			}
 			// get tags
@@ -582,9 +582,9 @@ trait twigAddons
 			// get post id
 			if(!isset($args['post_id']))
 			{
-				if(isset($this->data->post['id']))
+				if(isset($this->data->datarow['id']))
 				{
-					$args['post_id'] = $this->data->post['id'];
+					$args['post_id'] = $this->data->datarow['id'];
 				}
 			}
 			// get category
@@ -633,9 +633,9 @@ trait twigAddons
 			// get post id
 			if(!isset($args['post_id']))
 			{
-				if(isset($this->data->post['id']))
+				if(isset($this->data->datarow['id']))
 				{
-					$args['post_id'] = $this->data->post['id'];
+					$args['post_id'] = $this->data->datarow['id'];
 				}
 			}
 			// count of show comments
@@ -694,9 +694,9 @@ trait twigAddons
 			// get post id
 			if(!isset($args['post_id']))
 			{
-				if(isset($this->data->post['id']))
+				if(isset($this->data->datarow['id']))
 				{
-					$args['post_id'] = $this->data->post['id'];
+					$args['post_id'] = $this->data->datarow['id'];
 				}
 			}
 
