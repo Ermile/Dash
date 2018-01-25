@@ -105,6 +105,7 @@ class view
 		if(\lib\router::get_repository_name() === 'content')
 		{
 			$this->data->datarow = \lib\app\template::$datarow;
+			self::set_cms_titles();
 		}
 
 		// ************************************************************************************ Twig
@@ -275,6 +276,34 @@ class view
 		}
 
 		$this->global->short_title = substr($this->global->title, 0, strrpos(substr($this->global->title, 0, 120), ' ')) . '...';
+	}
+
+
+	private function set_cms_titles()
+	{
+		if(!$this->data->datarow)
+		{
+			return false;
+		}
+
+		// set title
+		if(isset($this->data->datarow['title']))
+		{
+			$this->data->page['title'] = $this->data->datarow['title'];
+		}
+
+		// set desc
+		if(isset($this->data->datarow['excerpt']) && $this->data->datarow['excerpt'])
+		{
+			$this->data->page['desc'] = $this->data->datarow['excerpt'];
+		}
+		elseif(isset($this->data->datarow['content']) && $this->data->datarow['content'])
+		{
+			$this->data->page['desc'] = \lib\utility\excerpt::extractRelevant($this->data->datarow['content']);
+		}
+
+		// set new title
+		$this->set_title();
 	}
 }
 ?>
