@@ -2,26 +2,37 @@
 {%use "/content_cp/posts/layout.html"%}
 
 
-{%block content%}
-<div class="tbox">
+{%block pageContent%}
+<form class="f justify-center" method="post">
+ <div class="c9 s12 pRa10">
+  <div class="cbox">
+   {{block('iTitle')}}
+   {{block('iContent')}}
+  </div>
+  <div class="cbox">
+   {{block('iTag')}}
+  </div>
+ </div>
+ <div class="c3 s12">
+  <div class="cbox">
+   {{block('iSlug')}}
+   {{block('iUrl')}}
+   {{block('iPublishdate-')}}
+   {{block('iStatus')}}
+   {{block('iadd')}}
+  </div>
 
-</div>
-<div class="cbox">
-	<form method="post">
-		{{block('iTitle')}}
-		{{block('iSlug')}}
-		{{block('iContent')}}
+{%if not utilityGET.type or utilityGET.type == 'post' %}
+  <div class="cbox">
+   {{block('iCat')}}
+  </div>
+{%endif%}
 
-		{%if not utilityGET.type or utilityGET.type == 'post' %}
-			{{block('iThumb')}}
-			{{block('iCat')}}
-			{{block('iTag')}}
-			{{block('iComment')}}
-			{{block('iPublishdate')}}
-		{%endif%}
+  <div class="cbox">
+   {{block('iThumb')}}
+  </div>
 
-		{{block('iStatus')}}
-		{{block('isave')}}
-	</form>
-</div>
-{%endblock%}
+ </div>
+</form>
+{% endblock %}
+

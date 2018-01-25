@@ -72,7 +72,7 @@ trait add
 				}
 				else
 				{
-					\lib\db\posts::update(['url' => $post_url. '/'. $args['slug']], $post_id);
+					\lib\db\posts::update(['url' => ltrim($post_url. '/'. $args['slug'], '/')], $post_id);
 				}
 			}
 		}

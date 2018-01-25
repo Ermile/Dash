@@ -82,7 +82,7 @@ trait edit
 			{
 				if($post_url)
 				{
-					$args['url'] = $post_url. '/'. $args['slug'];
+					$args['url'] = ltrim($post_url. '/'. $args['slug'], '/');
 				}
 				else
 				{
