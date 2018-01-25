@@ -102,12 +102,12 @@
 
 {%set postTag = tags({"post_id" : utilityGET.id | shortURL("decode")}) %}
 <div class="tagDetector" data-val='["ss","ccc"]'>
-  <div class="input">
+  <div class="input hide2">
     <input type="text" class="input tagVals" name="tag" value="" id="tagValues" placeholder='{%trans "Tag"%}'>
   </div>
 
   <div class="input">
-    <input type="text" class="tagInput">
+    <input type="text" class="tagInput" placeholder='{%trans "Tag keywords..."%}'>
     <button class="addon tagAdd">add</button>
   </div>
 
@@ -115,11 +115,6 @@
 
   </div>
 </div>
-{%endblock%}
-
-
-{%block foot_js%}
-<script type="text/javascript" src='{{url.static}}js/tagDetector-2.0.js'></script>
 {%endblock%}
 
 
