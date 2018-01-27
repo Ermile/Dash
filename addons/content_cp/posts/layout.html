@@ -1,7 +1,7 @@
 
 {%block iTitle %}
 <div class="input mB10">
-  <input type="text" name="title" id="title" placeholder='{%trans "Enter a good and short title"%} *' value="{{dataRaw.title}}" autofocus required maxlength='100' minlength="1" pattern=".{1,100}" title='{%trans "Enter a valid title"%}'>
+  <input type="text" name="title" id="title" placeholder='{%trans "Enter title here"%} *' value="{{dataRaw.title}}" autofocus required maxlength='100' minlength="1" pattern=".{1,100}" title='{%trans "Enter a good and short title"%} *'>
 </div>
 {% endblock %}
 
@@ -13,7 +13,7 @@
 
 {%block iSlug %}
 <div class="input ltr">
-  <input type="text" name="slug" id="slug" placeholder='{%trans "Slug used for url"%} *' value="{{dataRaw.slug}}"  maxlength='100' minlength="1" pattern=".{1,100}" title='{%trans "Enter a valid slug"%}'>
+  <input type="text" name="slug" id="slug" placeholder='{%trans "Slug"%}' value="{{dataRaw.slug}}"  maxlength='100' minlength="1" pattern=".{1,100}" title='{%trans "Slug used to create url"%}'>
 </div>
 {% endblock %}
 
@@ -46,7 +46,7 @@
 {%block iStatus%}
 
 <div class="mT15">
- <label >{%trans "Status of post"%}</label>
+ <label >{%trans "Status"%}</label>
 
  <div class="radio1 green">
   <input type="radio" id="r-publish" name="status" value="publish" {%if dataRaw.status == 'publish' or not dataRaw.status %} checked{%endif%}>
@@ -92,43 +92,39 @@
 
 {%block iCat%}
 {%set postCat = category({"post_id" : dataRaw.id, "id" : true})%}
-
+<div title='{%trans "Choose category of post"%}'>
 {%for key, value in cat_list%}
 <div class="check1">
   <input type="checkbox" name="cat_{{value.id}}" value="{{value.title}}" id="cat_{{value.id}}" {%if value.id in postCat %} checked {%endif%}>
   <label for="cat_{{value.id}}">{{value.title}}</label>
 </div>
 {%endfor%}
+</div>
 {%endblock%}
 
 
 
 {%block iTag%}
 
-{%set postTag = tags({"post_id" : utilityGET.id | shortURL("decode"), "title" : true, "json" : true}) %}
-
-
-<div class="tagDetector" data-val='{{postTag}}'>
-  <div class="input hide">
-    <input type="text" class="input tagVals" name="tag" value="" id="tagValues" placeholder='{%trans "Tag"%}'>
+{%set postTag = tags({"post_id" : utilityGET.id | shortURL("decode"), "title" : true, "format" : 'csv'}) %}
+<div class="tagDetector">
+  <div class="input mB10 hide2">
+    <input type="text" class="input tagVals" name="tag" value="{{postTag}}" id="tagValues" placeholder='{%trans "Tag"%}'>
   </div>
 
   <div class="input">
     <input type="text" class="tagInput" placeholder='{%trans "Tag keywords..."%}'>
-    <button class="addon tagAdd">add</button>
+    <button class="addon tagAdd">{%trans "Add tag"%}</button>
   </div>
-
-  <div class="tagBox">
-    {{tags({"post_id" : utilityGET.id | shortURL("decode"), "html" : true})}}
-  </div>
+  <div class="tagBox"></div>
 </div>
 {%endblock%}
 
 
 {%block iThumb%}
 <div class="input preview">
- <input type="file" accept="image/gif, image/jpeg, image/png" name="thumb" id="fthumb" data-preview data-max="500">
- <label for="fthumb" title='{%trans "allowed extentions jpg, png (gif for bussiness plans). Max 500Kb"%}'>
+ <input type="file" accept="image/gif, image/jpeg, image/png" name="thumb" id="fthumb" data-preview data-max="1000">
+ <label for="fthumb" title='{%trans "allowed extentions jpg, png. Max 1000Kb"%}'>
 {%if dataRaw.meta.thumb%}
   <img src="{{dataRaw.meta.thumb}}" alt="{{dataRaw.title}}" id="logoPreview">
 {%endif%}

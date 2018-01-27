@@ -527,37 +527,57 @@ trait twigAddons
 				}
 			}
 
-			if(isset($args['json']) && $args['json'])
-			{
-				if(is_array($tags))
-				{
-					$tags = json_encode($tags, JSON_UNESCAPED_UNICODE);
-				}
-			}
 
-			// check html mod
-			if(isset($args['html']))
+			if(isset($args['format']) && $args['format'])
 			{
-				$html = '';
-				if(is_array($tags))
-				{
-					$baset_url = $this->url('base');
+				$outputFormat = $args['format'];
 
-					foreach ($tags as $key => $value)
-					{
-						if(array_key_exists('url', $value) && isset($value['title']))
+				switch ($outputFormat)
+				{
+					case 'json':
+						if(is_array($tags))
 						{
-							$html .= "<a href='$baset_url/tag/$value[url]'>$value[title]</a>";
+							$tags = json_encode($tags, JSON_UNESCAPED_UNICODE);
 						}
-					}
+						break;
+
+					case 'csv':
+						if(is_array($tags))
+						{
+							$tags = implode(',', $tags);
+						}
+						break;
+
+					case 'html':
+						$html = '';
+						if(is_array($tags))
+						{
+							$baset_url = $this->url('base');
+
+							foreach ($tags as $key => $value)
+							{
+								if(array_key_exists('url', $value) && isset($value['title']))
+								{
+									$html .= "<a href='$baset_url/tag/$value[url]'>$value[title]</a>";
+								}
+							}
+						}
+						elseif(is_string($tags))
+						{
+							$html = $tags;
+						}
+						echo $html;
+						// return and dont continue
+						return;
+						break;
+
+					default:
+						break;
 				}
-				elseif(is_string($tags))
-				{
-					$html = $tags;
-				}
-				echo $html;
+
 			}
-			else
+
+			if($tags)
 			{
 				return $tags;
 			}
