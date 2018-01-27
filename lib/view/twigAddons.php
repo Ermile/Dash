@@ -620,24 +620,47 @@ trait twigAddons
 				$category = array_column($category, 'term_id');
 			}
 
-			// check html mod
-			if(isset($args['html']))
+			if(isset($args['format']) && $args['format'])
 			{
-				$baset_url = $this->url('base');
-				$html = '';
-				foreach ($category as $key => $value)
+				$outputFormat = $args['format'];
+
+				switch ($outputFormat)
 				{
-					if(array_key_exists('url', $value) && isset($value['title']))
-					{
-						$html .= "<a href='$baset_url/category/$value[url]'>$value[title]</a>";
-					}
+					case 'json':
+						if(is_array($category))
+						{
+							$category = json_encode($category, JSON_UNESCAPED_UNICODE);
+						}
+						break;
+
+					case 'csv':
+						if(is_array($category))
+						{
+							$category = implode(',', $category);
+						}
+						break;
+
+					case 'html':
+						$html      = '';
+						$baset_url = $this->url('base');
+						foreach ($category as $key => $value)
+						{
+							if(array_key_exists('url', $value) && isset($value['title']))
+							{
+								$html .= "<a href='$baset_url/category/$value[url]'>$value[title]</a>";
+							}
+						}
+						echo $html;
+						// return and dont continue
+						return;
+						break;
+
+					default:
+						break;
 				}
-				echo $html;
 			}
-			else
-			{
-				return $category;
-			}
+
+			return $category;
 		});
 	}
 
