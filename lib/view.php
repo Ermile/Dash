@@ -243,21 +243,6 @@ class view
 				}
 			}
 
-			// set user-friendly title for books
-			if($this->module() === 'book')
-			{
-				$breadcrumb = $this->model()->breadcrumb();
-				$page_title = $breadcrumb[0] . ' ';
-				array_shift($breadcrumb);
-
-				foreach ($breadcrumb as $value)
-				{
-					$page_title .= $value . ' - ';
-				}
-				$page_title = substr($page_title, 0, -3);
-				$this->data->parentList = $this->model()->sp_books_nav();
-			}
-
 			// translate all title at last step
 			$page_title = T_($page_title);
 			$this->data->page['title'] = $page_title;
@@ -300,6 +285,10 @@ class view
 		elseif(isset($this->data->datarow['content']) && $this->data->datarow['content'])
 		{
 			$this->data->page['desc'] = \lib\utility\excerpt::extractRelevant($this->data->datarow['content']);
+		}
+		elseif(isset($this->data->datarow['desc']) && $this->data->datarow['desc'])
+		{
+			$this->data->page['desc'] = \lib\utility\excerpt::extractRelevant($this->data->datarow['desc']);
 		}
 
 		// set new title
