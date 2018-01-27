@@ -113,11 +113,13 @@ class twigTransTerms
 	echo T_("Search");                                                                // Line 112 Seperate
 	echo T_("Type");                                                                  // Line 28
 	echo T_("Status");                                                                // Line 25
-	echo T_("Clear filters");                                                         // Line 87
-	echo T_("Result not found!");                                                     // Line 86
-	echo T_("Search with new keywords.");                                             // Line 86
-	echo T_("Hi!");                                                                   // Line 93
+	echo T_("Clear filters");                                                         // Line 187
+	echo T_("Result not found!");                                                     // Line 186
+	echo T_("Search with new keywords.");                                             // Line 186
+	echo T_("Hi!");                                                                   // Line 193
 	echo T_("Try to start with add new :posts!");                                     // Line 93
+
+	//------------------------------------addons\content_cp\contacts\home\display.html
 
 	//-----------------------------------addons\content_cp\invoicedetails\display.html
 	echo T_("id");                                                                    // Line 16
@@ -140,12 +142,12 @@ class twigTransTerms
 	echo T_("No");                                                                    // Line 41
 
 	//----------------------------------------------addons\content_cp\main\layout.html
+	echo T_("CMS");                                                                   // Line 8
+	echo T_("News");                                                                  // Line 10
+	echo T_("Categries");                                                             // Line 11
+	echo T_("Tags");                                                                  // Line 12
+	echo T_("Pages");                                                                 // Line 95 Seperate
 	echo T_("Options");                                                               // Line 84 Seperate
-	echo T_("News");                                                                  // Line 9
-	echo T_("All news");                                                              // Line 11
-	echo T_("Add new news");                                                          // Line 12
-	echo T_("Categries");                                                             // Line 13
-	echo T_("Tags");                                                                  // Line 14
 	echo T_("Last update on");                                                        // Line 26
 	echo T_("wait for next version!");                                                // Line 26
 	echo T_("Powered by");                                                            // Line 28
@@ -159,36 +161,41 @@ class twigTransTerms
 	echo T_("Save change");                                                           // Line 32
 
 	//---------------------------------------addons\content_cp\posts\home\display.html
+	echo T_("Try to start with add new record!");                                     // Line 93
 
 	//---------------------------------------------addons\content_cp\posts\layout.html
-	echo T_("Require");                                                               // Line 83
-	echo T_("Enter a valid title");                                                   // Line 85
-	echo T_("Slug");                                                                  // Line 93
-	echo T_("Enter a valid slug");                                                    // Line 93
-	echo T_("Content");                                                               // Line 19
-	echo T_("Content of post");                                                       // Line 20
-	echo T_("Publish date");                                                          // Line 25
-	echo T_("Add");                                                                   // Line 149 Seperate
+	echo T_("Enter title here");                                                      // Line 4
+	echo T_("Enter a good and short title");                                          // Line 4
+	echo T_("Slug");                                                                  // Line 132
+	echo T_("Slug used to create url");                                               // Line 16
+	echo T_("Write post ");                                                           // Line 22
+	echo T_("Publish date");                                                          // Line 29
 	echo T_("Save");                                                                  // Line 46
-	echo T_("Status of post");                                                        // Line 47
-	echo T_("Publish");                                                               // Line 51
-	echo T_("Draft");                                                                 // Line 56
-	echo T_("Schedule");                                                              // Line 61
-	echo T_("Expire");                                                                // Line 66
-	echo T_("Deleted");                                                               // Line 71
-	echo T_("Comment");                                                               // Line 82
-	echo T_("Language");                                                              // Line 88
-	echo T_("Whithout language");                                                     // Line 90
-	echo T_("Tag");                                                                   // Line 120
+	echo T_("Publish");                                                               // Line 53
+	echo T_("Draft");                                                                 // Line 58
+	echo T_("Deleted");                                                               // Line 63
+	echo T_("Comment");                                                               // Line 74
+	echo T_("Language");                                                              // Line 80
+	echo T_("Whithout language");                                                     // Line 82
+	echo T_("Choose category of post");                                               // Line 95
+	echo T_("Tag");                                                                   // Line 112
+	echo T_("Tag keywords...");                                                       // Line 116
+	echo T_("Add tag");                                                               // Line 117
+	echo T_("allowed extentions jpg, png. Max 1000Kb");                               // Line 127
 
 	//--------------------------------------------addons\content_cp\terms\display.html
+	echo T_("Add");                                                                   // Line 149 Seperate
 	echo T_("Edit");                                                                  // Line 150 Seperate
-	echo T_("Used for url");                                                          // Line 91
-	echo T_("Parent Category");                                                       // Line 100
-	echo T_("Please select one itme");                                                // Line 102
+	echo T_("Require");                                                               // Line 122
+	echo T_("Enter a valid title");                                                   // Line 124
+	echo T_("Used for url");                                                          // Line 130
+	echo T_("Enter a valid slug");                                                    // Line 132
+	echo T_("Parent Category");                                                       // Line 139
+	echo T_("Please select one itme");                                                // Line 141
 	echo T_("Active");                                                                // Line 56
-	echo T_("Deactive");                                                              // Line 122
-	echo T_("Excerpt");                                                               // Line 130
+	echo T_("Deactive");                                                              // Line 161
+	echo T_("Excerpt");                                                               // Line 169
+	echo T_("Try to start with add new records!");                                    // Line 193
 
 	//---------------------------------addons\content_cp\transactions\add\display.html
 	echo T_("Saved record");                                                          // Line 6
@@ -1081,6 +1088,7 @@ class twigTransTerms
 	echo T_("Avatar of you");                                                         // Line 53
 	echo T_("Default Avatar");                                                        // Line 55
 	echo T_("Hello");                                                                 // Line 61
+	echo T_("Work in your language");                                                 // Line 82
 	echo T_("Logout");                                                                // Line 104 Seperate
 	echo T_("View your current location and navigate to parent of it");               // Line 99
 
@@ -1197,7 +1205,6 @@ class twigTransTerms
 	echo T_("seriously, are you sure? There's no coming back.");                      // Line 89 Seperate
 	echo T_("or");                                                                    // Line 91 Seperate
 	echo T_("Delete");                                                                // Line 92 Seperate
-	echo T_("Pages");                                                                 // Line 95 Seperate
 	echo T_("Terms");                                                                 // Line 96 Seperate
 	echo T_("Attachments");                                                           // Line 97 Seperate
 	echo T_("Comments");                                                              // Line 98 Seperate
