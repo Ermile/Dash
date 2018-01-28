@@ -14,7 +14,7 @@ class term
 
 	public static function cat_list()
 	{
-		$result = \lib\db\terms::get(['type' => 'cat']);
+		$result = \lib\db\terms::get(['type' => 'cat', 'status' => 'enable']);
 		$temp   = [];
 
 		if(is_array($result))

@@ -23,6 +23,11 @@ class termusages
 
 	public static function usage($_related_id, $_type)
 	{
+		if(!$_related_id || !$_type)
+		{
+			return false;
+		}
+
 		$query =
 		"
 			SELECT
