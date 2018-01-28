@@ -147,5 +147,12 @@ class posts
 	{
 		return \lib\db\config::public_get('posts', ...func_get_args());
 	}
+
+
+	public static function get_last_posts($_options = [])
+	{
+		$query = "SELECT * FROM posts ORDER BY id DESC LIMIT $_options[limit]";
+		return \lib\db::get($query);
+	}
 }
 ?>

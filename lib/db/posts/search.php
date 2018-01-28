@@ -157,22 +157,7 @@ trait search
 		$query =
 		"
 			SELECT
-				`id` 			AS `id`,
-				`language` 		AS `language`,
-				`title` 		AS `title`,
-				`slug` 			AS `slug`,
-				`url` 			AS `url`,
-				`content` 		AS `content`,
-				`meta` 			AS `meta`,
-				`type` 			AS `type`,
-				`comment` 		AS `comment`,
-				`count` 		AS `count`,
-				`order` 		AS `order`,
-				`status` 		AS `status`,
-				`parent` 		AS `parent`,
-				`user_id` 		AS `user_id`,
-				`publishdate` 	AS `publishdate`,
-				`datemodified` AS `datemodified`
+				*
 			FROM
 				posts
 			WHERE

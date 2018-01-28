@@ -72,5 +72,32 @@ trait get
 
 		return $temp;
 	}
+
+
+	public static function get_post_list($_options = [])
+	{
+		$default_options =
+		[
+			'limit' => 10,
+		];
+
+		if(!is_array($_options))
+		{
+			$_options = [];
+		}
+
+		$_options = array_merge($default_options, $_options);
+
+		$get_last_posts = \lib\db\posts::get_last_posts($_options);
+		$temp = [];
+		if(is_array($get_last_posts))
+		{
+			foreach ($get_last_posts as $key => $value)
+			{
+				$temp[] = self::ready($value);
+			}
+		}
+		return $temp;
+	}
 }
 ?>

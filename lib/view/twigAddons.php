@@ -425,7 +425,7 @@ trait twigAddons
 	{
 		return new \Twig_SimpleFunction('posts', function()
 		{
-			$posts  = $this->model()->posts(...func_get_args());
+			$posts  = \lib\app\posts::get_post_list(...func_get_args());
 			$html   = array_column(func_get_args(), 'html');
 			$desc   = array_column(func_get_args(), 'desc');
 			if($html && count($html) === 1)
