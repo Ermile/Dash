@@ -189,6 +189,10 @@ class posts
 
 			$check_exist_tag = \lib\db\terms::get_mulit_term_title($tag, 'tag');
 
+			$check_exist_tag = array_column($check_exist_tag, 'title', 'id');
+			$check_exist_tag = array_filter($check_exist_tag);
+			$check_exist_tag = array_unique($check_exist_tag);
+
 			$all_tags_id = [];
 
 			$must_insert_tag = $tag;
@@ -197,17 +201,19 @@ class posts
 			{
 				foreach ($check_exist_tag as $key => $value)
 				{
-					if(isset($value['id']))
+
+					if(isset($value) && in_array($value, $tag))
 					{
-						array_push($all_tags_id, intval($value['id']));
+						unset($tag[array_search($value, $tag)]);
+						unset($must_insert_tag[array_search($value, $must_insert_tag)]);
 					}
 
-					if(isset($value['title']) && in_array($value['title'], $tag))
-					{
-						unset($tag[array_search($value['title'], $tag)]);
-					}
+					array_push($all_tags_id, intval($key));
 				}
 			}
+
+			$must_insert_tag = array_filter($must_insert_tag);
+			$must_insert_tag = array_unique($must_insert_tag);
 
 			if(!empty($must_insert_tag))
 			{
@@ -252,9 +258,7 @@ class posts
 				\lib\debug::warn(T_("Some :type is wrong", ['type' => T_($_type)]), 'cat');
 				return false;
 			}
-
 		}
-
 
 		$get_old_post_cat = \lib\db\termusages::usage($_post_id, $_type);
 
@@ -272,8 +276,6 @@ class posts
 			$must_insert = array_diff($category_id, $old_category_id);
 			$must_remove = array_diff($old_category_id, $category_id);
 		}
-
-		// var_dump($old_category_id, $category_id, $must_insert, $must_remove);exit();
 
 		if(!empty($must_insert))
 		{
