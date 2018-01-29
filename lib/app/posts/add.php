@@ -58,6 +58,11 @@ trait add
 			$args['excerpt'] = \lib\utility\excerpt::extractRelevant($content);
 		}
 
+		if(mb_strlen($args['excerpt']) > 300)
+		{
+			$args['excerpt'] = substr($args['excerpt'], 0, 300);
+		}
+
 		$return         = [];
 
 		$post_id = \lib\db\posts::insert($args);

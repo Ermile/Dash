@@ -85,6 +85,10 @@ trait edit
 			$args['excerpt'] = \lib\utility\excerpt::extractRelevant($content);
 		}
 
+		if(mb_strlen($args['excerpt']) > 300)
+		{
+			$args['excerpt'] = substr($args['excerpt'], 0, 300);
+		}
 
 		if($args['type'] === 'post')
 		{
