@@ -72,9 +72,11 @@ class template
 
 			$type  = 'cat';
 			$table = 'terms';
-			if(isset($data['slug']))
+			$url   = null;
+
+			if(isset($data['url']))
 			{
-				$slug = $data['slug'];
+				$url = $data['url'];
 			}
 
 			if(isset($data['type']))
@@ -82,7 +84,13 @@ class template
 				$type = $data['type'];
 			}
 
-			$new_url = \lib\url::base(). '/'. $type. '/'. $slug;
+			if($type === 'cat')
+			{
+				$type = 'category';
+			}
+
+			$new_url = \lib\url::base(). '/'. $type. '/'. $url;
+
 			(new \lib\redirector($new_url))->redirect();
 			return;
 
