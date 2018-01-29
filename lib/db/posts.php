@@ -151,13 +151,27 @@ class posts
 
 	public static function get_last_posts($_options = [])
 	{
-		$query = "SELECT * FROM posts ORDER BY id DESC LIMIT $_options[limit]";
+		$date_now = date("Y-m-d H:i:s");
+		$query =
+		"
+			SELECT
+				*
+			FROM
+				posts
+			WHERE
+				posts.status      = 'publish' AND
+				posts.type        = 'post' AND
+				posts.publishdate <= '$date_now'
+			ORDER BY posts.publishdate DESC
+			LIMIT $_options[limit]
+		";
 		return \lib\db::get($query);
 	}
 
 
 	public static function get_posts_term($_options = [], $_type = null)
 	{
+		$date_now = date("Y-m-d H:i:s");
 		$default_options =
 		[
 			'limit' => 10,
@@ -224,8 +238,11 @@ class posts
 						terms.type = '$_type' AND
 						$my_query
 						termusages.related_id = posts.id
-				)
-			ORDER BY id DESC
+				) AND
+				posts.status      = 'publish' AND
+				posts.type        = 'post' AND
+				posts.publishdate <= '$date_now'
+			ORDER BY posts.publishdate DESC
 			LIMIT $_options[limit]
 		";
 		$result = \lib\db::get($query);

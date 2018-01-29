@@ -48,6 +48,7 @@ class posts
 		}
 
 		$title = \lib\app::request('title');
+		$title = trim($title);
 		if(!$title)
 		{
 			\lib\debug::error(T_("Title of posts can not be null"), 'title');
@@ -63,6 +64,7 @@ class posts
 
 
 		$excerpt = \lib\app::request('excerpt');
+		$excerpt = trim($excerpt);
 		if($excerpt && mb_strlen($excerpt) > 300)
 		{
 			\lib\debug::error(T_("Please set the excerpt less than 300 character"), 'excerpt');
@@ -70,6 +72,7 @@ class posts
 		}
 
 		$subtitle = \lib\app::request('subtitle');
+		$subtitle = trim($subtitle);
 		if($subtitle && mb_strlen($subtitle) > 300)
 		{
 			\lib\debug::error(T_("Please set the subtitle less than 300 character"), 'subtitle');
@@ -78,6 +81,7 @@ class posts
 
 
 		$slug = \lib\app::request('slug');
+		$slug = trim($slug);
 		if($slug && mb_strlen($slug) > 100)
 		{
 			\lib\debug::error(T_("Please set the slug less than 100 character"), 'slug');

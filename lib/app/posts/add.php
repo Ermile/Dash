@@ -53,6 +53,11 @@ trait add
 			$args['content'] = $content;
 		}
 
+		if(!$args['excerpt'])
+		{
+			$args['excerpt'] = \lib\utility\excerpt::extractRelevant($content);
+		}
+
 		$return         = [];
 
 		$post_id = \lib\db\posts::insert($args);

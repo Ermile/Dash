@@ -80,6 +80,12 @@ trait edit
 			$args['content'] = $content;
 		}
 
+		if(!$args['excerpt'])
+		{
+			$args['excerpt'] = \lib\utility\excerpt::extractRelevant($content);
+		}
+
+
 		if($args['type'] === 'post')
 		{
 			self::set_post_term($id, 'tag');
