@@ -216,16 +216,16 @@ class posts
 
 			$check_exist_tag = \lib\db\terms::get_mulit_term_title($tag, 'tag');
 
-			$check_exist_tag = array_column($check_exist_tag, 'title', 'id');
-			$check_exist_tag = array_filter($check_exist_tag);
-			$check_exist_tag = array_unique($check_exist_tag);
-
 			$all_tags_id = [];
 
 			$must_insert_tag = $tag;
 
 			if(is_array($check_exist_tag))
 			{
+				$check_exist_tag = array_column($check_exist_tag, 'title', 'id');
+				$check_exist_tag = array_filter($check_exist_tag);
+				$check_exist_tag = array_unique($check_exist_tag);
+
 				foreach ($check_exist_tag as $key => $value)
 				{
 
