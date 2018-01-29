@@ -56,10 +56,25 @@ class view extends \addons\content_cp\posts\main\view
 		{
 			$args['type'] = \lib\utility::get('type');
 		}
+		else
+		{
+			$args['type'] = 'post';
+		}
 
 		if(\lib\utility::get('unittype'))
 		{
 			$args['unittype'] = \lib\utility::get('unittype');
+		}
+
+		if(!$args['order'])
+		{
+			$args['order'] = 'DESC';
+		}
+
+
+		if(!$args['sort'])
+		{
+			$args['sort'] = 'id';
 		}
 
 
