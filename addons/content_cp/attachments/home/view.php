@@ -6,7 +6,6 @@ class view extends \addons\content_cp\main\view
 {
 	public function config()
 	{
-		parent::config();
 
 		$this->data->page['title'] = T_("Attachemnts list");
 		$this->data->page['desc']  = T_('Check list of attachments and search or filter in them to find your attachments.'). ' '. T_('Also add or edit specefic attachments.');

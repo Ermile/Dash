@@ -13,6 +13,7 @@ class model extends \mvc\model
 			if(isset($uploaded_file['url']))
 			{
 				// save uploaded file
+				\lib\app\posts::add_gallery(\lib\utility::get('id'), $uploaded_file['url']);
 			}
 
 			if(!\lib\debug::$status)

@@ -12,6 +12,59 @@ class posts
 	public static $datarow = null;
 
 
+	public static function add_gallery($_post_id, $_file_url)
+	{
+		$post_id = \lib\utility\shortURL::decode($_post_id);
+		if(!$post_id)
+		{
+			\lib\debug::error(T_("Invalid post id"));
+			return false;
+		}
+
+		$load_post_meta = \lib\db\posts::get(['id' => $post_id, 'limit' => 1]);
+
+		if(!array_key_exists('meta', $load_post_meta))
+		{
+			\lib\debug::error(T_("Invalid post id"));
+			return false;
+		}
+
+		$meta = $load_post_meta['meta'];
+
+		if(is_string($meta) && (substr($meta, 0, 1) === '{' || substr($meta, 0, 1) === '['))
+		{
+			$meta = json_decode($meta, true);
+		}
+		elseif(is_array($meta))
+		{
+			// no thing
+		}
+		else
+		{
+			$meta = [];
+		}
+
+		if(isset($meta['gallery']) && is_array($meta['gallery']))
+		{
+			if(in_array($_file_url, $meta['gallery']))
+			{
+				\lib\debug::error(T_("Duplicate file in this gallery"));
+				return false;
+			}
+			array_push($meta['gallery'], $_file_url);
+		}
+		else
+		{
+			$meta['gallery'] = [$_file_url];
+		}
+
+		$meta = json_encode($meta, JSON_UNESCAPED_UNICODE);
+
+		\lib\db\posts::update(['meta' => $meta], $post_id);
+		return true;
+
+	}
+
 	public static function get_url()
 	{
 		$myUrl = \lib\router::get_url();
