@@ -79,6 +79,9 @@ trait get
 		$default_options =
 		[
 			'limit' => 10,
+			'cat'   => null,
+			'tag'   => null,
+			'term'  => null,
 		];
 
 		if(!is_array($_options))
@@ -88,7 +91,24 @@ trait get
 
 		$_options = array_merge($default_options, $_options);
 
-		$get_last_posts = \lib\db\posts::get_last_posts($_options);
+		if($_options['cat'])
+		{
+			$get_last_posts = \lib\db\posts::get_posts_term($_options, 'cat');
+		}
+		elseif($_options['tag'])
+		{
+			$get_last_posts = \lib\db\posts::get_posts_term($_options, 'tag');
+		}
+		elseif($_options['term'])
+		{
+			$_options['term'] = \lib\utility\shortURL::decode($_options['term']);
+			$get_last_posts   = \lib\db\posts::get_posts_term($_options, 'term');
+		}
+		else
+		{
+			$get_last_posts = \lib\db\posts::get_last_posts($_options);
+		}
+
 		$temp = [];
 		if(is_array($get_last_posts))
 		{

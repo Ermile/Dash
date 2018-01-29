@@ -120,7 +120,7 @@
 
 {%block iTag%}
 
-{%set postTag = tags({"post_id" : utilityGET.id | shortURL("decode"), "title" : true, "format" : 'csv'}) %}
+{%set postTag = tags({"post_id" : utilityGET.id , "title" : true, "format" : 'csv'}) %}
 <div class="tagDetector">
   <div class="input mB10 hide">
     <input type="text" class="input tagVals" name="tag" value="{{postTag}}" id="tagValues" placeholder='{%trans "Tag"%}'>
@@ -130,7 +130,7 @@
     <input type="text" class="tagInput" placeholder='{%trans "Tag keywords..."%}'>
     <button class="addon tagAdd">{%trans "Add tag"%}</button>
   </div>
-  <div class="tagBox">{{tags({"post_id" : utilityGET.id | shortURL("decode"), "format" : "html2"}) }}</div>
+  <div class="tagBox">{{tags({"post_id" : utilityGET.id , "format" : "html2"}) }}</div>
 </div>
 {%endblock%}
 

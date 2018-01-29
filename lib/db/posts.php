@@ -154,5 +154,82 @@ class posts
 		$query = "SELECT * FROM posts ORDER BY id DESC LIMIT $_options[limit]";
 		return \lib\db::get($query);
 	}
+
+
+	public static function get_posts_term($_options = [], $_type = null)
+	{
+		$default_options =
+		[
+			'limit' => 10,
+			'cat'   => null,
+			'tag'   => null,
+			'term'  => null,
+		];
+
+		if(!is_array($_options))
+		{
+			$_options = [];
+		}
+
+		$_options = array_merge($default_options, $_options);
+
+		$my_query = null;
+
+		switch ($_type)
+		{
+			case 'cat':
+				if(!$_options['cat'])
+				{
+					return false;
+				}
+				$my_query = " terms.slug = '$_options[cat]' AND ";
+				break;
+
+			case 'tag':
+				if(!$_options['tag'])
+				{
+					return false;
+				}
+				$my_query = " terms.slug = '$_options[tag]' AND ";
+				break;
+
+			case 'term':
+				if(!$_options['term'])
+				{
+					return false;
+				}
+				$my_query = " terms.id = '$_options[term]' AND ";
+				break;
+
+			default:
+				return false;
+				break;
+		}
+
+		$query =
+		"
+			SELECT
+				posts.*
+			FROM
+				posts
+			WHERE
+				posts.id IN
+				(
+					SELECT
+						termusages.related_id
+					FROM
+						termusages
+					INNER JOIN terms ON terms.id = termusages.term_id
+					WHERE
+						terms.type = '$_type' AND
+						$my_query
+						termusages.related_id = posts.id
+				)
+			ORDER BY id DESC
+			LIMIT $_options[limit]
+		";
+		$result = \lib\db::get($query);
+		return $result;
+	}
 }
 ?>
