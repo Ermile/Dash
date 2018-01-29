@@ -67,6 +67,26 @@ class template
 				$type = $data['type'];
 			}
 		}
+		elseif ($data = self::find_term())
+		{
+
+			$type  = 'cat';
+			$table = 'terms';
+			if(isset($data['slug']))
+			{
+				$slug = $data['slug'];
+			}
+
+			if(isset($data['type']))
+			{
+				$type = $data['type'];
+			}
+
+			$new_url = \lib\url::base(). '/'. $type. '/'. $slug;
+			(new \lib\redirector($new_url))->redirect();
+			return;
+
+		}
 		elseif(self::find_404())
 		{
 			// no way to load page
@@ -286,11 +306,17 @@ class template
 	}
 
 
-	public static function find_cat()
+	private static function get_my_url()
 	{
 		$myUrl = \lib\router::get_url();
-
 		$myUrl = \lib\router::urlfilterer($myUrl);
+		return $myUrl;
+	}
+
+
+	public static function find_cat()
+	{
+		$myUrl = self::get_my_url();
 
 		if(substr($myUrl, 0, 9) === 'category/')
 		{
@@ -306,9 +332,7 @@ class template
 
 	public static function find_tag()
 	{
-		$myUrl = \lib\router::get_url();
-
-		$myUrl = \lib\router::urlfilterer($myUrl);
+		$myUrl = self::get_my_url();
 
 		if(substr($myUrl, 0, 4) === 'tag/')
 		{
@@ -317,6 +341,20 @@ class template
 			{
 				return $cat_data;
 			}
+		}
+		return false;
+	}
+
+
+	public static function find_term()
+	{
+		$myUrl = self::get_my_url();
+
+		$term_data = \lib\db\terms::get(['url' => $myUrl, 'limit' => 1]);
+
+		if($term_data)
+		{
+			return $term_data;
 		}
 		return false;
 	}
