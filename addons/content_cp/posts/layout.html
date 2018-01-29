@@ -1,22 +1,21 @@
 
 {%block iTitle %}
 <div class="input mB10">
-  <input type="text" name="title" id="title" placeholder='{%trans "Enter title here"%} *' value="{{dataRaw.title}}" autofocus required maxlength='100' minlength="1" pattern=".{1,100}" title='{%trans "Enter a good and short title"%} *'>
+  <input type="text" name="title" id="title" placeholder='{%trans "Enter title here"%} *' value="{{dataRaw.title}}" autofocus required maxlength='200' minlength="1" pattern=".{1,200}" title='{%trans "Enter a good and short title"%} *'>
 </div>
 {% endblock %}
 
 
 {%block iSubtitle %}
 <div class="input mB10">
-  <input type="text" name="subtitle" id="subtitle" placeholder='{%trans "Enter subtitle here"%} *' value="{{dataRaw.subtitle}}"  maxlength='100' minlength="1" pattern=".{1,100}" title='{%trans "Enter a good and short subtitle"%}'>
+  <input type="text" name="subtitle" id="subtitle" placeholder='{%trans "Enter subtitle here"%}' value="{{dataRaw.subtitle}}" maxlength='300' minlength="1" pattern=".{1,300}" title='{%trans "Subtitle can used based on theme support"%}'>
 </div>
 {% endblock %}
 
 
 {%block iExcerpt %}
-<div class="input mB10">
-  <input type="text" name="excerpt" id="excerpt" placeholder='{%trans "Enter excerpt here"%} *' value="{{dataRaw.excerpt}}"  maxlength='100' minlength="1" pattern=".{1,100}" title='{%trans "Enter a good and short excerpt"%}'>
-</div>
+<textarea class="txt mB10" name="excerpt" id="excerpt" placeholder='{%trans "Enter excerpt here"%} *' value="{{dataRaw.excerpt}}" maxlength='300' minlength="1" pattern=".{1,300}" title='{%trans "Excerpt used for social media and search engines"%}' rows='3'>
+</textarea>
 {% endblock %}
 
 
@@ -27,13 +26,13 @@
 
 {%block iSlug %}
 <div class="input ltr">
-  <input type="text" name="slug" id="slug" placeholder='{%trans "Slug"%}' value="{{dataRaw.slug}}"  maxlength='100' minlength="1" pattern=".{1,100}" title='{%trans "Slug used to create url"%}'>
+  <input type="text" name="slug" id="slug" placeholder='{%trans "Slug"%}' value="{{dataRaw.slug}}" maxlength='100' minlength="1" pattern=".{1,100}" title='{%trans "Slug used to create url"%}'>
 </div>
 {% endblock %}
 
 
 {%block iContent%}
-<textarea class="txt mB10" data-editor id='descInput' name="content" placeholder='{%trans "Write post "%}' maxlength='100000' rows="20">{{dataRaw.content}}</textarea>
+<textarea class="txt mB10" data-editor id='descInput' name="content" placeholder='{%trans "Write post "%}' maxlength='100000' rows="15">{{dataRaw.content}}</textarea>
 {%endblock%}
 
 
@@ -121,7 +120,7 @@
 {%block iTag%}
 
 {%set postTag = tags({"post_id" : utilityGET.id , "title" : true, "format" : 'csv'}) %}
-<div class="tagDetector">
+<div class="tagDetector" title='{%trans "Add tag manually to link articles togethers"%}'>
   <div class="input mB10 hide">
     <input type="text" class="input tagVals" name="tag" value="{{postTag}}" id="tagValues" placeholder='{%trans "Tag"%}'>
   </div>
