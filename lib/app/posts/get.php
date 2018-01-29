@@ -5,7 +5,7 @@ use \lib\debug;
 trait get
 {
 
-	public static function get_category($_post_id)
+	public static function get_category_tag($_post_id, $_type)
 	{
 		$post_id = \lib\utility\shortURL::decode($_post_id);
 		if(!$post_id)
@@ -13,7 +13,7 @@ trait get
 			return false;
 		}
 
-		$result = \lib\db\termusages::usage($post_id, 'cat');
+		$result = \lib\db\termusages::usage($post_id, $_type);
 
 		$temp = [];
 		if(is_array($result))

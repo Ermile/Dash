@@ -514,7 +514,7 @@ trait twigAddons
 				}
 				else
 				{
-					$tags = \lib\db\termusages::usage($args['post_id'], 'tag');
+					$tags = \lib\app\posts::get_category_tag($args['post_id'], 'tag');
 					\lib\temp::set($cache_key, $tags);
 				}
 			}
@@ -620,7 +620,7 @@ trait twigAddons
 			// get category
 			if(isset($args['post_id']))
 			{
-				$category = \lib\app\posts::get_category($args['post_id']);
+				$category = \lib\app\posts::get_category_tag($args['post_id'], 'cat');
 			}
 
 			if(isset($args['id']) && $args['id'] && is_array($category))
