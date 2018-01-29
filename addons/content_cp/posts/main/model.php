@@ -4,8 +4,40 @@ namespace addons\content_cp\posts\main;
 
 class model extends \mvc\model
 {
+	public static function upload_gallery()
+	{
+		if(\lib\utility::files('gallery'))
+		{
+			$uploaded_file = \lib\app\file::upload(['debug' => false, 'upload_name' => 'gallery']);
+
+			if(isset($uploaded_file['url']))
+			{
+				// save uploaded file
+			}
+
+			if(!\lib\debug::$status)
+			{
+				\lib\debug::error(T_("Can not upload file"));
+			}
+			else
+			{
+				\lib\debug::true(T_("File successfully uploaded"));
+			}
+
+			return true;
+		}
+		return false;
+
+	}
+
+
 	public static function getPost()
 	{
+		if(self::upload_gallery())
+		{
+			return false;
+		}
+
 		$post =
 		[
 			'id'          => \lib\utility::get('id'),

@@ -78,10 +78,11 @@ trait get
 	{
 		$default_options =
 		[
-			'limit' => 10,
-			'cat'   => null,
-			'tag'   => null,
-			'term'  => null,
+			'limit'      => 10,
+			'cat'        => null,
+			'tag'        => null,
+			'term'       => null,
+			'pagenation' => false,
 		];
 
 		if(!is_array($_options))
