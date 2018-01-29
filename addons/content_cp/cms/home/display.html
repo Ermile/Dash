@@ -1,0 +1,59 @@
+{%extends display.cpMain%}
+
+
+{%block pageContent%}
+<div class="f">
+
+ <div class="c4 s12">{{block ("iPost")}}</div>
+ <div class="c4 s12">{{block ("iPage")}}</div>
+ <div class="c4 s12">{{block ("iTermCat")}}</div>
+ <div class="c4 s12">{{block ("iTermTag")}}</div>
+
+</div>
+{%endblock%}
+
+
+
+
+
+{%block iPost%}
+<a class="dcard x1" href='{{url.baseFull}}/posts?type=post'>
+ <div class="statistic">
+  <div class="value"><i class="sf-book"></i></div>
+  <div class="label">{%trans "Posts"%}</div>
+ </div>
+</a>
+{%endblock%}
+
+
+
+{%block iPage%}
+<a class="dcard x1" href='{{url.baseFull}}/posts?type=page'>
+ <div class="statistic">
+  <div class="value"><i class="sf-book"></i></div>
+  <div class="label">{%trans "Page"%}</div>
+ </div>
+</a>
+{%endblock%}
+
+
+
+{%block iTermCat%}
+<a class="dcard x1" href='{{url.baseFull}}/terms?type=cat'>
+ <div class="statistic">
+  <div class="value"><i class="sf-book"></i></div>
+  <div class="label">{%trans "Category"%}</div>
+ </div>
+</a>
+{%endblock%}
+
+
+
+{%block iTermTag%}
+<a class="dcard x1" href='{{url.baseFull}}/terms?type=tag'>
+ <div class="statistic">
+  <div class="value"><i class="sf-book"></i></div>
+  <div class="label">{%trans "Tags"%}</div>
+ </div>
+</a>
+{%endblock%}
