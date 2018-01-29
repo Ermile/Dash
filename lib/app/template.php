@@ -350,7 +350,14 @@ class template
 	{
 		$myUrl = self::get_my_url();
 
-		$term_data = \lib\db\terms::get(['url' => $myUrl, 'limit' => 1]);
+		$term_data = \lib\db\terms::get(['url' => $myUrl, 'type' => 'cat', 'limit' => 1]);
+
+		if($term_data)
+		{
+			return $term_data;
+		}
+
+		$term_data = \lib\db\terms::get(['url' => $myUrl, 'type' => 'tag', 'limit' => 1]);
 
 		if($term_data)
 		{
