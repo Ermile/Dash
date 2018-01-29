@@ -129,9 +129,7 @@ trait search
 			$search =
 			"(
 				posts.title 	LIKE '%$_string%' OR
-				posts.content 	LIKE '%$_string%' OR
-				posts.url 		LIKE '%$_string%' OR
-				posts.meta 		LIKE '%$_string%'
+				posts.content 	LIKE '%$_string%'
 			)";
 			if($where)
 			{
