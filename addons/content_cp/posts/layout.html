@@ -14,8 +14,7 @@
 
 
 {%block iExcerpt %}
-<textarea class="txt mB10" name="excerpt" id="excerpt" placeholder='{%trans "Enter excerpt here"%} *' value="{{dataRaw.excerpt}}" maxlength='300' minlength="1" pattern=".{1,300}" title='{%trans "Excerpt used for social media and search engines"%}' rows='3'>
-</textarea>
+<textarea class="txt mB10" name="excerpt" id="excerpt" placeholder='{%trans "Enter excerpt here"%} *' maxlength='300' minlength="1" pattern=".{1,300}" title='{%trans "Excerpt used for social media and search engines"%}' rows='3'>{{dataRaw.excerpt}}</textarea>
 {% endblock %}
 
 
@@ -147,3 +146,20 @@
  </label>
 </div>
 {%endblock%}
+
+
+
+
+{%block iGalleryShow%}
+
+{%if dataRaw.meta.gallery%}
+
+    {% for key, value in dataRaw.meta.gallery%}
+      <img src="{{value}}" alt="{{dataRaw.title}}" height="150" width="150">
+    {%endfor%}
+
+{%endif%}
+
+{%endblock%}
+
+
