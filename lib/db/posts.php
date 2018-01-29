@@ -152,6 +152,28 @@ class posts
 	public static function get_last_posts($_options = [])
 	{
 		$date_now = date("Y-m-d H:i:s");
+
+		$limit = "LIMIT $_options[limit]";
+
+		if($_options['pagenation'])
+		{
+			$pagenation_query =
+			"
+				SELECT
+					COUNT(*) AS `count`
+				FROM
+					posts
+				WHERE
+					posts.status      = 'publish' AND
+					posts.type        = 'post' AND
+					posts.publishdate <= '$date_now'
+			";
+
+			$pagenation_query = \lib\db::get($pagenation_query, 'count', true);
+			list($limit_start, $limit) = \lib\db::pagnation((int) $pagenation_query, $_options['limit']);
+			$limit = " LIMIT $limit_start, $limit ";
+		}
+
 		$query =
 		"
 			SELECT
@@ -163,7 +185,7 @@ class posts
 				posts.type        = 'post' AND
 				posts.publishdate <= '$date_now'
 			ORDER BY posts.publishdate DESC
-			LIMIT $_options[limit]
+			$limit
 		";
 		return \lib\db::get($query);
 	}
