@@ -160,12 +160,13 @@ class posts
 
 		if($language === 'fa' && $publishdate)
 		{
-			$publishdate = \lib\utility\jdate::to_gregorian($publishdate);
+			$publishdate  = \lib\utility\jdate::to_gregorian($publishdate);
+			$publishdate .= " ". date("H:i:s");
 		}
 
 		if(\lib\app::isset_request('publishdate') && !$publishdate)
 		{
-			$publishdate = date("Y-m-d");
+			$publishdate = date("Y-m-d H:i:s");
 		}
 
 		$meta = $_option['meta'];
