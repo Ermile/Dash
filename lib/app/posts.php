@@ -12,7 +12,7 @@ class posts
 	public static $datarow = null;
 
 
-	public static function add_gallery($_post_id, $_file_url)
+	public static function post_gallery($_post_id, $_file_index, $_type = 'add')
 	{
 		$post_id = \lib\utility\shortURL::decode($_post_id);
 		if(!$post_id)
@@ -44,18 +44,34 @@ class posts
 			$meta = [];
 		}
 
-		if(isset($meta['gallery']) && is_array($meta['gallery']))
+		if($_type === 'add')
 		{
-			if(in_array($_file_url, $meta['gallery']))
+			if(isset($meta['gallery']) && is_array($meta['gallery']))
 			{
-				\lib\debug::error(T_("Duplicate file in this gallery"));
-				return false;
+				if(in_array($_file_index, $meta['gallery']))
+				{
+					\lib\debug::error(T_("Duplicate file in this gallery"));
+					return false;
+				}
+				array_push($meta['gallery'], $_file_index);
 			}
-			array_push($meta['gallery'], $_file_url);
+			else
+			{
+				$meta['gallery'] = [$_file_index];
+			}
 		}
 		else
 		{
-			$meta['gallery'] = [$_file_url];
+			if(isset($meta['gallery']) && is_array($meta['gallery']))
+			{
+				if(!array_key_exists($_file_index, $meta['gallery']))
+				{
+					\lib\debug::error(T_("Invalid gallery id"));
+					return false;
+				}
+				unset($meta['gallery'][$_file_index]);
+			}
+
 		}
 
 		$meta = json_encode($meta, JSON_UNESCAPED_UNICODE);
@@ -64,6 +80,8 @@ class posts
 		return true;
 
 	}
+
+
 
 	public static function get_url()
 	{

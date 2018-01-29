@@ -153,10 +153,18 @@
 {%block iGalleryShow%}
 
 {%if dataRaw.meta.gallery%}
+  <div class="normal f">
 
     {% for key, value in dataRaw.meta.gallery%}
-      <img src="{{value}}" alt="{{dataRaw.title}}" height="150" width="150">
+      <div class="vcard mA10">
+        <img src="{{value}}">
+        <div class="content"></div>
+        <div class="footer">
+          <button class="btn block secondary" data-ajaxify data-data='{"type" : "remove_gallery", "id": "{{key}}"}' data-method='post'>{%trans "Remove"%}</button>
+        </div>
+      </div>
     {%endfor%}
+  </div>
 
 {%endif%}
 

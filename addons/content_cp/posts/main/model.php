@@ -13,7 +13,7 @@ class model extends \mvc\model
 			if(isset($uploaded_file['url']))
 			{
 				// save uploaded file
-				\lib\app\posts::add_gallery(\lib\utility::get('id'), $uploaded_file['url']);
+				\lib\app\posts::post_gallery(\lib\utility::get('id'), $uploaded_file['url'], 'add');
 			}
 
 			if(!\lib\debug::$status)
@@ -31,11 +31,29 @@ class model extends \mvc\model
 
 	}
 
+	public static function remove_gallery()
+	{
+		$id = \lib\utility::post('id');
+		if(!is_numeric($id))
+		{
+			return false;
+		}
+		\lib\app\posts::post_gallery(\lib\utility::get('id'), $id, 'remove');
+		\lib\debug::msg('direct', true);
+		(new \lib\redirector(\lib\url::full()))->redirect();
+
+	}
 
 	public static function getPost()
 	{
 		if(self::upload_gallery())
 		{
+			return false;
+		}
+
+		if(\lib\utility::post('type') === 'remove_gallery')
+		{
+			self::remove_gallery();
 			return false;
 		}
 
