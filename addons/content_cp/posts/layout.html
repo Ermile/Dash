@@ -153,6 +153,7 @@
 {%block iGalleryShow%}
 
 {%if dataRaw.meta.gallery%}
+<div class=" cbox">
   <div class="normal f">
 
     {% for key, value in dataRaw.meta.gallery%}
@@ -165,7 +166,7 @@
       </div>
     {%endfor%}
   </div>
-
+</div>
 {%endif%}
 
 {%endblock%}
