@@ -61,6 +61,22 @@ class posts
 		}
 
 
+
+		$excerpt = \lib\app::request('excerpt');
+		if($excerpt && mb_strlen($excerpt) > 300)
+		{
+			\lib\debug::error(T_("Please set the excerpt less than 300 character"), 'excerpt');
+			return false;
+		}
+
+		$subtitle = \lib\app::request('subtitle');
+		if($subtitle && mb_strlen($subtitle) > 300)
+		{
+			\lib\debug::error(T_("Please set the subtitle less than 300 character"), 'subtitle');
+			return false;
+		}
+
+
 		$slug = \lib\app::request('slug');
 		if($slug && mb_strlen($slug) > 100)
 		{
@@ -143,6 +159,11 @@ class posts
 			$publishdate = \lib\utility\jdate::to_gregorian($publishdate);
 		}
 
+		if(\lib\app::isset_request('publishdate') && !$publishdate)
+		{
+			$publishdate = date("Y-m-d");
+		}
+
 		$meta = $_option['meta'];
 		if(\lib\app::isset_request('thumb') && \lib\app::request('thumb'))
 		{
@@ -165,7 +186,9 @@ class posts
 		$args['count']       = $count;
 		$args['order']       = $order;
 		$args['status']      = $status;
-		// $args['parent']      = $parent;
+		$args['excerpt']     = $excerpt;
+		$args['subtitle']    = $subtitle;
+		// $args['parent']   = $parent;
 		$args['publishdate'] = $publishdate;
 
 		return $args;

@@ -8,17 +8,19 @@ class model extends \mvc\model
 	{
 		$post =
 		[
-			'id'             => \lib\utility::get('id'),
-			'title'          => \lib\utility::post('title'),
-			'tag'            => \lib\utility::post('tag'),
-			'slug'           => \lib\utility::post('slug'),
-			'content'        => isset($_POST['content']) ? $_POST['content'] : null,
-			'publishdate'    => \lib\utility::post('publishdate'),
-			'status'         => \lib\utility::post('status'),
-			'comment'        => \lib\utility::post('comment'),
-			'language'       => \lib\utility::post('language'),
-			'type'           => \lib\utility::get('type'),
-			'language'       => \lib\define::get_language(),
+			'id'          => \lib\utility::get('id'),
+			'subtitle'    => \lib\utility::post('subtitle'),
+			'excerpt'     => \lib\utility::post('excerpt'),
+			'title'       => \lib\utility::post('title'),
+			'tag'         => \lib\utility::post('tag'),
+			'slug'        => \lib\utility::post('slug'),
+			'content'     => isset($_POST['content']) ? $_POST['content'] : null,
+			'publishdate' => \lib\utility::post('publishdate'),
+			'status'      => \lib\utility::post('status'),
+			'comment'     => \lib\utility::post('comment'),
+			'language'    => \lib\utility::post('language'),
+			'type'        => \lib\utility::get('type'),
+			'language'    => \lib\define::get_language(),
 		];
 
 		$all_post = \lib\utility::post();

@@ -6,6 +6,20 @@
 {% endblock %}
 
 
+{%block iSubtitle %}
+<div class="input mB10">
+  <input type="text" name="subtitle" id="subtitle" placeholder='{%trans "Enter subtitle here"%} *' value="{{dataRaw.subtitle}}"  maxlength='100' minlength="1" pattern=".{1,100}" title='{%trans "Enter a good and short subtitle"%}'>
+</div>
+{% endblock %}
+
+
+{%block iExcerpt %}
+<div class="input mB10">
+  <input type="text" name="excerpt" id="excerpt" placeholder='{%trans "Enter excerpt here"%} *' value="{{dataRaw.excerpt}}"  maxlength='100' minlength="1" pattern=".{1,100}" title='{%trans "Enter a good and short excerpt"%}'>
+</div>
+{% endblock %}
+
+
 {%block iUrl %}
 <a href="{{url.base}}/{{dataRaw.url}}" class="msg block ltr" target="_blank"><small>{{url.raw}}/</small>{{dataRaw.url}}</a>
 {% endblock %}
@@ -108,7 +122,7 @@
 
 {%set postTag = tags({"post_id" : utilityGET.id | shortURL("decode"), "title" : true, "format" : 'csv'}) %}
 <div class="tagDetector">
-  <div class="input mB10 hide2">
+  <div class="input mB10 hide">
     <input type="text" class="input tagVals" name="tag" value="{{postTag}}" id="tagValues" placeholder='{%trans "Tag"%}'>
   </div>
 
@@ -116,7 +130,7 @@
     <input type="text" class="tagInput" placeholder='{%trans "Tag keywords..."%}'>
     <button class="addon tagAdd">{%trans "Add tag"%}</button>
   </div>
-  <div class="tagBox"></div>
+  <div class="tagBox">{{tags({"post_id" : utilityGET.id | shortURL("decode"), "format" : "html2"}) }}</div>
 </div>
 {%endblock%}
 

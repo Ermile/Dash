@@ -549,6 +549,7 @@ trait twigAddons
 						break;
 
 					case 'html':
+					case 'html2':
 						$html = '';
 						if(is_array($tags))
 						{
@@ -556,9 +557,16 @@ trait twigAddons
 
 							foreach ($tags as $key => $value)
 							{
-								if(array_key_exists('url', $value) && isset($value['title']))
+								if(array_key_exists('url', $value) && array_key_exists('slug', $value) && isset($value['title']))
 								{
-									$html .= "<a href='$baset_url/tag/$value[url]'>$value[title]</a>";
+									if($outputFormat === 'html2')
+									{
+										$html .= "<span title='$value[slug]'>$value[title]</span>";
+									}
+									else
+									{
+										$html .= "<a href='$baset_url/tag/$value[url]'>$value[title]</a>";
+									}
 								}
 							}
 						}
