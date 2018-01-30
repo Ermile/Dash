@@ -82,30 +82,27 @@ class model extends \addons\content_enter\main\model
 		$count = \lib\session::get('enter_session_check');
 		if($count)
 		{
-			\lib\session::set('enter_session_check', $count + 1, null, 60 * 10);
+			\lib\session::set('enter_session_check', $count + 1, null, 60 * 3);
 		}
 		else
 		{
-			\lib\session::set('enter_session_check', 1, null, 60 * 10);
+			\lib\session::set('enter_session_check', 1, null, 60 * 3);
 		}
+
 		$anotherPerm = \lib\permission::access('enter:another:session');
 		if($count >= 3 && !$anotherPerm)
 		{
-			\lib\debug::warn(T_("How are you?"). ":)");
+			\lib\debug::error(T_("How are you?"). ":)");
 			return false;
 		}
+
 		// get saved mobile in session to find count of change mobile
 		$old_usernameormobile = self::get_enter_session('usernameormobile');
 
 		// clean existing session
 		self::clean_session();
 
-		// check inup is ok
-		if(!self::check_input('mobile'))
-		{
-			debug::error(T_("Dont!"));
-			return false;
-		}
+		$password = \lib\utility::post('password');
 
 		/**
 		 * check login by another session
@@ -162,12 +159,31 @@ class model extends \addons\content_enter\main\model
 			self::go_to('pass/set');
 		}
 
-		// lock all step and set just this page to load
-		self::next_step('pass');
-		// open lock pass/recovery
-		self::open_lock('pass/recovery');
-		// go to pass to check password
-		self::go_to('pass');
+		if($password)
+		{
+			if(\lib\utility::hasher($password, self::user_data('password')))
+			{
+				// login
+				// the browser was saved the password
+				self::enter_set_login(null, true);
+				return ;
+			}
+			else
+			{
+				\lib\debug::warn(T_("Opts!, Maybe your browser saved your password incorrectly."). ' '. T_("Please remove your saved password and try again"));
+				return false;
+			}
+		}
+		else
+		{
+			// lock all step and set just this page to load
+			self::next_step('pass');
+			// open lock pass/recovery
+			self::open_lock('pass/recovery');
+			// go to pass to check password
+			self::go_to('pass');
+		}
+
 	}
 }
 ?>
