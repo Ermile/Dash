@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Dash - Persian\n"
-"POT-Creation-Date: 2018-01-30 14:54+0330\n"
-"PO-Revision-Date: 2018-01-30 14:54+0330\n"
+"POT-Creation-Date: 2018-01-30 15:14+0330\n"
+"PO-Revision-Date: 2018-01-30 15:15+0330\n"
 "Last-Translator: Javad <J.Evazzadeh@gmail.com>\n"
 "Language-Team: Ermile <J.Evazzadeh@gmail.com>\n"
 "Language: fa_IR\n"
@@ -1014,27 +1014,22 @@ msgstr "با استفاده از گوگل وارد :name شوید"
 msgid "Mobile not found"
 msgstr "موبایل یافت نشد"
 
-#: addons/content_enter/home/model.php:94 addons/content_enter/signup/model.php:30
+#: addons/content_enter/home/model.php:95 addons/content_enter/signup/model.php:30
 #: addons/includes/languages/trans_addons.php:719
 msgid "How are you?"
 msgstr "حال شما چطوره؟"
 
-#: addons/content_enter/home/model.php:106
-#: addons/content_enter/mobile/change/model.php:20
-#: addons/content_enter/mobile/set/model.php:30
-#: addons/content_enter/pass/change/model.php:20
-#: addons/content_enter/pass/recovery/model.php:30
-#: addons/content_enter/pass/set/model.php:30
-#: addons/content_enter/pass/signup/model.php:30
-#: addons/content_enter/signup/model.php:36
-#: addons/content_enter/username/model.php:12
-#: addons/content_enter/verify/model.php:23
-msgid "Dont!"
-msgstr "نکن عزیزم!"
-
-#: addons/content_enter/home/model.php:140 addons/content_enter/username/model.php:40
+#: addons/content_enter/home/model.php:137 addons/content_enter/username/model.php:40
 msgid "Username not found"
 msgstr "نام کاربری یافت نشد"
+
+#: addons/content_enter/home/model.php:173
+msgid "Opts!, Maybe your browser saved your password incorrectly."
+msgstr "اوه! امیدواریم مرورگر شما پسوردتون رو اشتباه ذخیره کرده باشه."
+
+#: addons/content_enter/home/model.php:173
+msgid "Please remove your saved password and try again"
+msgstr "لطفا پسورد ذخیره‌شده را پاک کرده و مجددا تلاش کنید"
 
 #: addons/content_enter/home/view.php:26
 msgid "Enter to :name with mobile"
@@ -1155,6 +1150,18 @@ msgstr "حساب کاربری تکراری"
 #: addons/content_enter/main/tools/verification_code.php:592
 msgid "Invalid code, try again"
 msgstr "کد اشتباه، دوباره تلاش کنید"
+
+#: addons/content_enter/mobile/change/model.php:20
+#: addons/content_enter/mobile/set/model.php:30
+#: addons/content_enter/pass/change/model.php:20
+#: addons/content_enter/pass/recovery/model.php:30
+#: addons/content_enter/pass/set/model.php:30
+#: addons/content_enter/pass/signup/model.php:30
+#: addons/content_enter/signup/model.php:36
+#: addons/content_enter/username/model.php:12
+#: addons/content_enter/verify/model.php:23
+msgid "Dont!"
+msgstr "نکن عزیزم!"
 
 #: addons/content_enter/mobile/change/model.php:27
 #: addons/content_enter/pass/change/model.php:27
