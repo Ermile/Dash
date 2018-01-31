@@ -50,7 +50,7 @@ trait login
 		}
 
 		/**
-		 * if the user user 'en' language of site
+		 * if the user use 'en' language of site
 		 * and her country is "IR"
 		 * and no referer to this page
 		 * and no cookie set from this site
@@ -63,21 +63,30 @@ trait login
 		 * and then redirect to tj.com/en
 		 * so no change to user interface ;)
 		 */
-		if(\lib\define::get_language() != 'fa')
+		if(!$_SESSION && !\lib\url::lang())
 		{
-			if(isset($_SERVER['HTTP_CF_IPCOUNTRY']) && mb_strtoupper($_SERVER['HTTP_CF_IPCOUNTRY']) === 'IR')
-			{
-				$refrer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : null;
+			$default_site_language = \lib\define::get_language('default');
+			$country_is_ir         = (isset($_SERVER['HTTP_CF_IPCOUNTRY']) && mb_strtoupper($_SERVER['HTTP_CF_IPCOUNTRY']) === 'IR') ? true : false;
+			$redirect_lang         = null;
 
-				if(!$refrer && !$_SESSION)
-				{
-					$root    = $this->url('root');
-					$full    = $this->url('full');
-					$new_url = str_replace($root, $root. '/fa', $full);
-					$this->redirector($new_url)->redirect();
-				}
+			if($default_site_language === 'fa' && !$country_is_ir)
+			{
+				$redirect_lang = 'en';
+			}
+			elseif($default_site_language === 'en' && $country_is_ir)
+			{
+				$redirect_lang = 'fa';
+			}
+
+			if($redirect_lang)
+			{
+				$root    = $this->url('root');
+				$full    = $this->url('full');
+				$new_url = str_replace($root, $root. '/'. $redirect_lang, $full);
+				$this->redirector($new_url)->redirect();
 			}
 		}
+
 		$_SESSION['user_country_ir_redirect_fa'] = true;
 	}
 
