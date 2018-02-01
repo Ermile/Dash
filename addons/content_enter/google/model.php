@@ -105,7 +105,7 @@ class model extends \addons\content_enter\main\model
 						$args['displayname'] = trim(google::user_info('familyName'). ' '. google::user_info('givenName'));
 					}
 
-					$args['googlemail'] = google::user_info('email');
+					$args['email'] = google::user_info('email');
 					$args['datecreated']  = date("Y-m-d H:i:s");
 
 					self::set_enter_session('mobile_request_from', 'google_email_not_exist');
