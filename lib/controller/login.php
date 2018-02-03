@@ -72,13 +72,17 @@ trait login
 			return;
 		}
 
+		if(\lib\agent::isBot())
+		{
+			return ;
+		}
+
 		$key = 'language';
 
 		$cookie = \lib\utility\cookie::read($key);
 
-		if(!$cookie && !\lib\url::lang())
+		if(!$_SESSION && !$cookie && !\lib\url::lang())
 		{
-
 			$default_site_language = \lib\define::get_language('default');
 			$country_is_ir         = (isset($_SERVER['HTTP_CF_IPCOUNTRY']) && mb_strtoupper($_SERVER['HTTP_CF_IPCOUNTRY']) === 'IR') ? true : false;
 			$redirect_lang         = null;
@@ -93,8 +97,11 @@ trait login
 			{
 				$redirect_lang = 'fa';
 			}
+			$cookie_lang = $redirect_lang ? $redirect_lang : $default_site_language;
+			$domain = '.'. Domain. '.'. Tld;
 
-			\lib\utility\cookie::write($key, $redirect_lang ? $redirect_lang : $default_site_language);
+			\lib\utility\cookie::write($key, $cookie_lang, (60*60*24*30), $domain);
+			$_SESSION[$key] = $cookie_lang;
 
 			if($redirect_lang && array_key_exists($redirect_lang, $access_lang))
 			{
@@ -103,10 +110,7 @@ trait login
 				$new_url = str_replace($root, $root. '/'. $redirect_lang, $full);
 				$this->redirector($new_url)->redirect();
 			}
-
 		}
-
 	}
-
 }
 ?>
