@@ -142,6 +142,14 @@ class controller extends \addons\content_su\main\controller
 				$lang     = 'json';
 				break;
 
+			case 'cronjob':
+				$clearName = 'cronjob_' .date("Ymd_His");
+				$clearExt  = '.log';
+				$clearURL = database.'log/cronjob/'. $clearName. $clearExt;
+				$filepath = database.'log/cronjob.log';
+				$lang     = 'json';
+				break;
+
 			default:
 				$output .= T_('Do you wanna something here!?');
 				break;
