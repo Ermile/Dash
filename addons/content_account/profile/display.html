@@ -2,11 +2,10 @@
 
 
 {%block pageContent%}
-  <div class='middle' id="editprofile">
-   <div class='dbox center'>
-    <h2 class='title'>{%trans "Your profile information"%}</h2>
+  <div class='f justify-center'>
+   <div class='c6 s12'>
 
-    <form method="post" class="df">
+    <form method="post" class="cbox">
 
 {{block ("iavatar")}}
 {{block ("inickname")}}
@@ -26,51 +25,54 @@
 
 
 {%block iname%}
-<input type="text" name="name" value="{{login.name}}" placeholder='{%trans "First Name *"%}' id="name" autofocus maxlength='30' minlength="3" pattern=".{3,30}" title='{%trans "Enter a valid name from 3 to 30 character"%}'>
+<div class="input">
+ <input type="text" name="name" value="{{login.name}}" placeholder='{%trans "First Name *"%}' id="name" autofocus maxlength='30' minlength="3" pattern=".{3,30}" title='{%trans "Enter a valid name from 3 to 30 character"%}'>
+</div>
 {%endblock%}
 
 
 {%block ifamily%}
-<input type="text" name="family" value="{{login.family}}" placeholder='{%trans "Last Name"%}' id="family" maxlength='50' minlength="3" pattern=".{3,50}" title='{%trans "Enter a valid family from 3 to 50 character"%}'>
+<div class="input">
+ <input type="text" name="family" value="{{login.family}}" placeholder='{%trans "Last Name"%}' id="family" maxlength='50' minlength="3" pattern=".{3,50}" title='{%trans "Enter a valid family from 3 to 50 character"%}'>
+</div>
 {%endblock%}
 
 
 {%block inickname%}
-<input type="text" name="displayname" value="{{login.displayname}}" placeholder='{%trans "Display name"%}' id="displayname" maxlength='50' minlength="3" pattern=".{3,50}" title='{%trans "Enter a valid team position from 3 to 50 character"%}'>
+<label for="displayname">{%trans "Display name"%}</label>
+<div class="input">
+ <input type="text" name="displayname" value="{{login.displayname}}" placeholder='{%trans "Display name"%}' id="displayname" maxlength='50' minlength="3" pattern=".{3,50}" title='{%trans "Enter a valid team position from 3 to 50 character"%}'>
+</div>
 {%endblock%}
 
 
 {%block iavatar%}
-<div class="f">
-  <div class="c s12 g1 df-file">
-   <div>
-    <input type="file" name="avatar" id="avatar" accept="image/gif, image/jpeg, image/png" data-preview>
-    <label for="avatar" title='{%trans "allowed extentions jpg, png (gif for bussiness plans). Max 500Kb"%}'>
-     {%if login.avatar%}<img src="{{url.root}}/{{login.avatar}}" alt="{{member.displayname}}" id="avatarPreview">{%endif%}
-    </label>
-   </div>
-  </div>
+<div class="input preview">
+ <input type="file" accept="image/gif, image/jpeg, image/png" name="avatar" id="avatar" data-preview data-max="1000">
+ <label for="avatar" title='{%trans "allowed extentions jpg, png. Max 1000Kb"%}'>
+{%if login.avatar%}
+  <img src="{{url.root}}/{{login.avatar}}" alt="{{member.displayname}}" id="logoPreview">
+{%endif%}
+ </label>
 </div>
+
+
 {%endblock%}
 
 
 
 {%block imobile%}
-<div class="f g1">
- <div class="cauto s0 lbl"><label for="mobile">{%trans "mobile"%}</label></div>
- <div class="c s12">
+<label for="mobile">{%trans "mobile"%}</label>
+<div class="input">
   <input type="text" name="mobile" placeholder='{%trans "Your mobile"%}' id="mobile" readonly value="{{login.mobile}}">
- </div>
 </div>
 {%endblock%}
 
 
 {%block iemail%}
-<div class="f g1">
- <div class="cauto s0 lbl"><label for="email">{%trans "email"%}</label></div>
- <div class="c s12">
+<label for="email">{%trans "email"%}</label>
+<div class="input">
   <input type="text" name="email" placeholder='{%trans "Your email"%}' id="email" readonly value="{{login.email}}">
- </div>
 </div>
 {%endblock%}
 
@@ -110,11 +112,7 @@
 
 
 {%block isubmit%}
-<div class="f g1">
- <div class="c12 os s12">
-  <input class="b1" type="submit" value='{%trans "Update profile"%}'>
- </div>
-</div>
+<button class="btn block primary mT25">{%trans "Update profile"%}</button>
 {%endblock%}
 
 
