@@ -48,26 +48,42 @@ trait login
 		{
 			\addons\content_enter\main\tools\login::login_by_remember();
 		}
+	}
 
-		/**
-		 * if the user use 'en' language of site
-		 * and her country is "IR"
-		 * and no referer to this page
-		 * and no cookie set from this site
-		 * redirect to 'fa' page
-		 * WARNING:
-		 * this function work when the default lanuage of site is 'en'
-		 * if the default language if 'fa'
-		 * and the user work by 'en' site
-		 * this function redirect to tj.com/fa/en
-		 * and then redirect to tj.com/en
-		 * so no change to user interface ;)
-		 */
-		if(!$_SESSION && !\lib\url::lang())
+
+	/**
+	* if the user use 'en' language of site
+	* and her country is "IR"
+	* and no referer to this page
+	* and no cookie set from this site
+	* redirect to 'fa' page
+	* WARNING:
+	* this function work when the default lanuage of site is 'en'
+	* if the default language if 'fa'
+	* and the user work by 'en' site
+	* this function redirect to tj.com/fa/en
+	* and then redirect to tj.com/en
+	* so no change to user interface ;)
+	*/
+	public function user_country_redirect()
+	{
+		if(Tld === 'local')
 		{
+			return;
+		}
+
+		$key = 'language';
+
+		$cookie = \lib\utility\cookie::read($key);
+
+		if(!$cookie && !\lib\url::lang())
+		{
+
 			$default_site_language = \lib\define::get_language('default');
 			$country_is_ir         = (isset($_SERVER['HTTP_CF_IPCOUNTRY']) && mb_strtoupper($_SERVER['HTTP_CF_IPCOUNTRY']) === 'IR') ? true : false;
 			$redirect_lang         = null;
+
+			$access_lang = \lib\option::language('list');
 
 			if($default_site_language === 'fa' && !$country_is_ir)
 			{
@@ -78,16 +94,18 @@ trait login
 				$redirect_lang = 'fa';
 			}
 
-			if($redirect_lang)
+			\lib\utility\cookie::write($key, $redirect_lang ? $redirect_lang : $default_site_language);
+
+			if($redirect_lang && array_key_exists($redirect_lang, $access_lang))
 			{
 				$root    = $this->url('root');
 				$full    = $this->url('full');
 				$new_url = str_replace($root, $root. '/'. $redirect_lang, $full);
 				$this->redirector($new_url)->redirect();
 			}
+
 		}
 
-		$_SESSION['user_country_ir_redirect_fa'] = true;
 	}
 
 }

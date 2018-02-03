@@ -157,6 +157,8 @@ class controller
 		$this->save_ref();
 		// check if isset remember me and login by this
 		$this->check_remeber_login();
+		// redirect
+		$this->user_country_redirect();
 	}
 
 
