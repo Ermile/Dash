@@ -1,10 +1,21 @@
 {%extends display.admin%}
 
-{%block sidenav%}
-{{parent()}}
-{%endblock%}
 
 {%block pageContent%}
 
+<a class="dcard x2" href='{{url.baseFull}}/profile'>
+ <div class="statistic">
+  <div class="value"><i class="sf-user"></i></div>
+  <div class="label">{%trans "Profile"%}</div>
+ </div>
+</a>
+
+
+<a class="dcard x2" href='{{url.baseFull}}/billing'>
+ <div class="statistic">
+  <div class="value"><i class="sf-card"></i></div>
+  <div class="label">{%trans "Billing"%}</div>
+ </div>
+</a>
 {%endblock%}
 

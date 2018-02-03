@@ -2,6 +2,8 @@
 
 {%block pageContent%}
 
+
+{%if detail%}
 <div class="cbox">
   <table class="tbl">
     <thead class="primary">
@@ -33,6 +35,9 @@
     </tbody>
   </table>
 </div>
+{%else%}
+<p class="msg info2 txtC fs14">{%trans "You are not have billing detail yet!"%}</p>
+{%endif%}
 
 {%endblock%}
 

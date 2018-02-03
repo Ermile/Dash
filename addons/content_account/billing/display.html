@@ -84,7 +84,7 @@
   </div>
 
 
-
+{%if history%}
 <div class="cbox">
     <h3 id="billing-history" class="pA10">{%trans "Billing History"%}</h3>
     <table class="tbl">
@@ -135,6 +135,9 @@
     </table>
     {%include display.pagination%}
 </div>
+{%else%}
+<p class="msg info2 txtC fs14">{%trans "You are not have payment history yet!"%}</p>
+{%endif%}
 
 {%endblock%}
 

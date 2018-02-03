@@ -9,7 +9,7 @@ class view extends \content_account\main\view
 	public function config()
 	{
 		$this->data->page['title'] = T_("Dashboard");
-		$this->data->page['desc'] = T_("View account summary");
+		$this->data->page['desc']  = T_("Account of your user to change profile details or change billing information");
 	}
 
 
