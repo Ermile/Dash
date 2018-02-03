@@ -1,0 +1,14 @@
+{%extends display.suMain%}
+
+
+{%block content%}
+<div class="tbox">
+  {%trans "Show $_SERVER"%}
+</div>
+
+<div class="cbox ltr">
+  <pre>
+  {{my_server | dump}}
+  </pre>
+</div>
+{%endblock%}
