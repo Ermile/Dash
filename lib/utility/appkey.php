@@ -14,7 +14,7 @@ class appkey
 	 *
 	 * @return     <type>  ( description_of_the_return_value )
 	 */
-	private static function get($_authorization)
+	public static function get($_authorization)
 	{
 		if(!self::$APP_KEY)
 		{
