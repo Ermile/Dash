@@ -16,7 +16,7 @@ class baby
 		// if we dont have request url it was very mysterious, say Hi to hitler
 		if(!isset($_SERVER['REQUEST_URI']))
 		{
-			\lib\error::bad('Hi Father!');
+			\lib\error::notacceptable('Hi Father!');
 		}
 
 		// check request uri
@@ -71,11 +71,11 @@ class baby
 		$msg = 'Hi Baby'. str_repeat('!', self::$level);
 		if(\lib\dash::is_json_accept() || \lib\temp::get('api') || \lib\dash::is_ajax())
 		{
-			\lib\error::bad($msg. ' Are you healthy?');
+			\lib\error::notacceptable($msg. ' Are you healthy?');
 		}
 		else
 		{
-			\lib\error::bad($msg);
+			\lib\error::notacceptable($msg);
 		}
 		self::$level = null;
 	}

@@ -10,6 +10,7 @@ const UNAUTHORIZED             = 401;
 const FORBIDDEN                = 403;
 const NOT_FOUND                = 404;
 const METHOD_NOT_ALLOWED       = 405;
+const NOT_ACCEPTABLE           = 406;
 const REQUEST_TIME_OUT         = 408;
 const GONE                     = 410;
 const LENGTH_REQUIRED          = 411;
@@ -39,6 +40,7 @@ class error
 		$error[403] = 'FORBIDDEN';
 		$error[404] = 'NOT FOUND';
 		$error[405] = 'METHOD NOT ALLOWED';
+		$error[406] = 'NOT ACCEPTABLE';
 		$error[408] = 'REQUEST TIME OUT';
 		$error[410] = 'GONE';
 		$error[411] = 'LENGTH REQUIRED';
@@ -98,6 +100,11 @@ class error
 		self::make($str, $class, BAD_REQUEST);
 	}
 
+	public static function notacceptable($str=null)
+	{
+		$class = debug_backtrace(true);
+		self::make($str, $class, NOT_ACCEPTABLE);
+	}
 
 	public static function internal($str=null)
 	{
