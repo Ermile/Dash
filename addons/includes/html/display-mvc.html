@@ -48,14 +48,15 @@
  <meta name     ="viewport"                content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0 maximum-scale=1.5, minimal-ui"/>
 {%block favicon%}
 {% if options.favicon.complete %}
- <meta name     ="msapplication-config"    content="{{url.static}}images/favicons/browserconfig.xml?v={{options.favicon.version}}">
+{%set faviconVer%}{%if options.favicon.version%}?v={{options.favicon.version}}{%endif%}{%endset%}
+ <meta name     ="msapplication-config"    content="{{url.static}}images/favicons/browserconfig.xml{{faviconVer}}">
  <meta name     ="theme-color"             content="#ffffff">
- <link rel      ="apple-touch-icon"        href="{{url.static}}images/favicons/apple-touch-icon.png?v={{options.favicon.version}}" sizes="180x180">
- <link rel      ="icon"                    href="{{url.static}}images/favicons/favicon-32x32.png?v={{options.favicon.version}}" sizes="32x32" type="image/png">
- <link rel      ="icon"                    href="{{url.static}}images/favicons/favicon-16x16.png?v={{options.favicon.version}}" sizes="16x16" type="image/png">
- <link rel      ="manifest"                href="{{url.static}}images/favicons/manifest.json?v={{options.favicon.version}}">
- <link rel      ="mask-icon"               href="{{url.static}}images/favicons/safari-pinned-tab.svg?v={{options.favicon.version}}">
- <link rel      ="shortcut icon"           href="{{url.static}}images/favicons/favicon.ico?v={{options.favicon.version}}">
+ <link rel      ="apple-touch-icon"        href="{{url.static}}images/favicons/apple-touch-icon.png{{faviconVer}}" sizes="180x180">
+ <link rel      ="icon"                    href="{{url.static}}images/favicons/favicon-32x32.png{{faviconVer}}" sizes="32x32" type="image/png">
+ <link rel      ="icon"                    href="{{url.static}}images/favicons/favicon-16x16.png{{faviconVer}}" sizes="16x16" type="image/png">
+ <link rel      ="manifest"                href="{{url.static}}images/favicons/manifest.json{{faviconVer}}">
+ <link rel      ="mask-icon"               href="{{url.static}}images/favicons/safari-pinned-tab.svg{{faviconVer}}">
+ <link rel      ="shortcut icon"           href="{{url.static}}images/favicons/favicon.ico{{faviconVer}}">
 {%else%}
  <link rel="shortcut icon"    href="{{url.static}}images/favicon.png"/>
  <link rel="apple-touch-icon" href="{{url.static}}images/favicon.png">
