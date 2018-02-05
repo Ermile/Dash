@@ -702,7 +702,7 @@ class jdate
 
         $date_is_jalali = false;
 
-        if($year && intval($year) > 1300 && intval($year) < 1600)
+        if($year && intval($year) > 1200 && intval($year) < 1600)
         {
             $date_is_jalali = true;
         }
