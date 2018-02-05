@@ -16,55 +16,48 @@
   <div class="example">
    <div class="pA10">
     <h4>{%trans "Without any option" %}</h4>
-    <input class="input w300 datepicker">
+    <input class="input datepicker">
+
+    <h4>{%trans "with default value" %}</h4>
+    <input class="input datepicker" value='1990/07/06'>
    </div>
 
-    <h4>{%trans "Without any option and without default value" %}</h4>
-    <input class="input w300 datepicker" data-initialValue='false'>
-
+   <div class="pA10">
     <h4>{%trans "Without any option to use in php, get timestamp on backend" %}</h4>
-    <input class="input w300 datepicker" data-format='YYYY/MM/DD' data-alt='#normalAlt'>
-    <input class="input w300" id="normalAlt">
+    <input class="input datepicker" data-alt='#normalAlt'>
+    <input class="input" id="normalAlt">
+   </div>
   </div>
   <div class="example">
    <div class="pA10">
     <h4>{%trans "With custom format" %}</h4>
-    <input class="input w100 datepicker" data-format='YY/MM/DD'>
-    <input class="input w200 datepicker" data-format='YYYY/MM/DD'>
-    <input class="input w300 datepicker" data-format='LLLL'>
-    <h4>{%trans "with default value" %}</h4>
-    <input class="input w300 datepicker" value='1990/07/06' data-format='YYYY/MM/DD'>
+    <input class="input datepicker" data-format='YY/MM/DD'>
+    <input class="input datepicker" data-format='YYYY-MM-DD'>
+    <input class="input datepicker" data-format='LLLL'>
    </div>
 
    <div class="pA10">
     <h4>{%trans "Connect to another field" %}</h4>
-     <input class="input w200 datepicker" data-format='YY/MM/DD' data-alt='#normalAlt2' data-altFormat='LLLL'>
-     <input class="input w300" id="normalAlt2" disabled>
+     <input class="input datepicker" data-format='YY/MM/DD' data-alt='#normalAlt2' data-altFormat='LLLL'>
+     <input class="input" id="normalAlt2" disabled>
    </div>
 
    <div class="pA10">
     <h4>{%trans "Inline Mode" %}</h4>
-    <input class="input w300 pB10" id='datepickerInline' disabled >
+    <input class="input pB10" id='datepickerInline' disabled >
     <div class="datepicker" data-inline data-alt='#datepickerInline' data-altFormat='LLLL'></div>
    </div>
 
    <div class="pA10">
     <h4>{%trans "English Number" %}</h4>
-    <input class="input w200 datepicker" data-format='YY/MM/DD' data-en>
+    <input class="input datepicker" data-format='YY/MM/DD' data-en>
    </div>
 
    <div class="pA10">
     <h4>{%trans "Special View mode" %}</h4>
-    <input class="input w200 datepicker" data-format='YY/MM/DD' data-view='year'>
-    <input class="input w200 datepicker" data-format='YY/MM/DD' data-view='month'>
-    <input class="input w200 datepicker" data-format='YY/MM/DD' data-view='day'>
-   </div>
-
-   <div class="pA10 hide">
-    <h4>{%trans "Min is today" %}</h4>
-    <input class="input w300 datepicker" data-min='now'>
-    <h4>{%trans "Max is today" %}</h4>
-    <input class="input w300 datepicker" data-max='now'>
+    <input class="input datepicker" data-view='year'>
+    <input class="input datepicker" data-view='month'>
+    <input class="input datepicker">
    </div>
 
    <div class="pA100"><hr/></div>
