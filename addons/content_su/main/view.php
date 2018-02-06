@@ -6,7 +6,7 @@ class view extends \mvc\view
 	public function config()
 	{
 		// $this->data->list             = $this->suModlueList('all');
-		$this->data->bodyclass        = 'fixed unselectable siftal';
+		$this->data->bodyclass        = 'siftal';
 		$this->include->css           = false;
 		$this->include->js            = false;
 		// $this->include->fontawesome   = true;

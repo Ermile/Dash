@@ -5,7 +5,7 @@ class view extends \lib\mvc\view
 {
 	public function config()
 	{
-		$this->data->bodyclass        = 'fixed unselectable siftal';
+		$this->data->bodyclass        = 'siftal';
 
 
 		$this->data->page['title']   = T_('Sitemap');

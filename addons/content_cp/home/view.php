@@ -6,7 +6,7 @@ class view extends \addons\content_cp\main\view
 	public function config()
 	{
 		// $this->data->list             = $this->cpModlueList('all');
-		$this->data->bodyclass        = 'fixed unselectable siftal';
+		$this->data->bodyclass        = 'siftal';
 		$this->include->css           = false;
 		$this->include->js            = false;
 		// $this->include->fontawesome   = true;
