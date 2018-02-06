@@ -33,9 +33,8 @@
 {%endblock%}
   </div>
 {%endblock%}
-{%if false%}
+
 {%block footerBox%}  <footer id='footer' class='f'>{{block ('footer')}}  </footer>{%endblock%}
-{%endif%}
 
  </main>
 {%endblock%}
@@ -94,7 +93,7 @@
 
 
 
-{%block footer%}
+{%block footerDel%}
 
    <div class="c8 s0" tabindex='-1' data-step='4' data-intro='{%trans "View your current location and navigate to parent of it"%}' data-position='top'><nav data-xhr="breadcrumb" class="breadcrumb">{{breadcrumb() | raw}}</nav></div>
    <div class="cauto os s12" id='copyright'>
