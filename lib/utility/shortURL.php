@@ -75,6 +75,9 @@ class shortURL
 
 		$num    = 0;
 		$len    = mb_strlen($_str);
+
+		$_str   = str_split($_str);
+
 		for ($i = 0; $i < $len; $i++)
 		{
 			$num = $num * $lenght + strpos($_alphabet, $_str[$i]);
