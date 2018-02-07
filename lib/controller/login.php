@@ -77,6 +77,13 @@ trait login
 			return ;
 		}
 
+		$referer = (isset($_SERVER['HTTP_REFERER']) && $_SERVER['HTTP_REFERER']) ? true : false;
+
+		if($referer)
+		{
+			return;
+		}
+
 		$key = 'language';
 
 		$cookie = \lib\utility\cookie::read($key);
