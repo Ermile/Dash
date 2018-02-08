@@ -172,7 +172,7 @@ class config
 			{
 				$set[] = " `$key` = NULL ";
 			}
-			elseif(is_string($value) && (!$value || $value == '' ))
+			elseif(is_string($value) && (!isset($value) || $value == '' ))
 			{
 				$set[] = " `$key` = NULL";
 			}
