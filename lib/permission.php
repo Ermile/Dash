@@ -44,9 +44,16 @@ class permission
 		}
 
 
-		if(!self::$user_id && isset($_SESSION['user']['id']) && is_numeric($_SESSION['user']['id']))
+		if(!self::$user_id)
 		{
-			self::$user_id = $_SESSION['user']['id'];
+		 	if(isset($_SESSION['user']['id']) && is_numeric($_SESSION['user']['id']))
+		 	{
+				self::$user_id = $_SESSION['user']['id'];
+		 	}
+		 	else
+			{
+				self::$user_id = \lib\user::id();
+			}
 		}
 
 		// set permission as static value if exist, but dont need
