@@ -447,6 +447,7 @@ class config
 			"get_last"            => false,
 			// default order by DESC you can change to DESC
 			"order"               => "DESC",
+			"order_raw"           => null,
 			// custom sort by field
 			"sort"                => null,
 			"search_field"        => null,
@@ -558,6 +559,11 @@ class config
 			}
 		}
 
+		if($_options['order_raw'])
+		{
+			$order = " ORDER BY ".  $_options['order_raw'];
+		}
+
 		$start_limit = $_options['start_limit'];
 		$end_limit   = $_options['end_limit'];
 
@@ -584,6 +590,7 @@ class config
 		unset($_options['sort']);
 		unset($_options['public_show_field']);
 		unset($_options['master_join']);
+		unset($_options['order_raw']);
 
 		foreach ($_options as $key => $value)
 		{
