@@ -431,7 +431,7 @@ function T_($msgid, $_replace = null)
 	}
 
 	// do replacement only on strings with replace condition, not for all
-	if($_replace !== false && strpos($result, ':') !== false)
+	if($_replace !== false && !is_array($result) && strpos($result, ':') !== false)
 	{
 		$replaceArray = null;
 		// if we have trans
