@@ -3,7 +3,7 @@
 /*
  * This file is part of Twig.
  *
- * (c) Fabien Potencier
+ * (c) 2015 Fabien Potencier
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -11,8 +11,6 @@
 
 /**
  * @author Fabien Potencier <fabien@symfony.com>
- *
- * @final
  */
 class Twig_Profiler_Dumper_Text
 {
@@ -68,5 +66,3 @@ class Twig_Profiler_Dumper_Text
         return $str;
     }
 }
-
-class_alias('Twig_Profiler_Dumper_Text', 'Twig\Profiler\Dumper\TextDumper', false);

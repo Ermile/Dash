@@ -3,8 +3,8 @@
 /*
  * This file is part of Twig.
  *
- * (c) Fabien Potencier
- * (c) Armin Ronacher
+ * (c) 2009 Fabien Potencier
+ * (c) 2009 Armin Ronacher
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -43,20 +43,10 @@ class Twig_Node_Expression_Name extends Twig_Node_Expression
                 ->raw(']')
             ;
         } else {
-            if (PHP_VERSION_ID >= 70000) {
-                // use PHP 7 null coalescing operator
-                $compiler
-                    ->raw('($context[')
-                    ->string($name)
-                    ->raw('] ?? ')
-                ;
-
-                if ($this->getAttribute('ignore_strict_check') || !$compiler->getEnvironment()->isStrictVariables()) {
-                    $compiler->raw('null)');
-                } else {
-                    $compiler->raw('$this->getContext($context, ')->string($name)->raw('))');
-                }
-            } elseif (PHP_VERSION_ID >= 50400) {
+            // remove the non-PHP 5.4 version when PHP 5.3 support is dropped
+            // as the non-optimized version is just a workaround for slow ternary operator
+            // when the context has a lot of variables
+            if (PHP_VERSION_ID >= 50400) {
                 // PHP 5.4 ternary operator performance was optimized
                 $compiler
                     ->raw('(isset($context[')
@@ -98,5 +88,3 @@ class Twig_Node_Expression_Name extends Twig_Node_Expression
         return !$this->isSpecial() && !$this->getAttribute('is_defined_test');
     }
 }
-
-class_alias('Twig_Node_Expression_Name', 'Twig\Node\Expression\NameExpression', false);
