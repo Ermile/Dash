@@ -36,6 +36,7 @@ class model extends \addons\content_su\main\model
 			'auto_backup' => \lib\utility::post('auto_backup') === 'on' ? true : false,
 			'every'       => \lib\utility::post('every'),
 			'time'        => \lib\utility::post('time'),
+			'life_time'   => \lib\utility::post('life_time'),
 		];
 
 		$array = json_encode($array, JSON_UNESCAPED_UNICODE);

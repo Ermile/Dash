@@ -57,6 +57,7 @@ class backup
 				}
 				else
 				{
+					$this->clean($value);
 					$this->run_backup($value);
 				}
 			}
@@ -87,37 +88,11 @@ class backup
 			return;
 		}
 
-		$left_time = 1;
-
-		switch ($schedule['every']) 
+		$left_time = $this->get_left_time($schedule['every'], $schedule['time']);
+		
+		if($left_time === false)
 		{
-			case 'year':
-				$left_time *= 60 * 60 * 24 * 365;
-				break;
-
-			case 'month':
-				$left_time *= 60 * 60 * 24 * 30;
-				break;
-
-			case 'week':
-				$left_time *= 60 * 60 * 24 * 7;
-				break;
-
-			case 'day':
-				$left_time *= 60 * 60 * 24;
-				break;
-
-			case 'hour':
-				$left_time *= 60 * 60 * intval($schedule['time']);
-				if($left_time === 0)
-				{
-					$left_time = 60 * 60 * 1;
-				}
-				break;
-
-			default:
-				return;
-				break;
+			return;
 		}
 
 		$url         = preg_replace("/schedule$/", 'files/', $_schedule_path);
@@ -196,17 +171,136 @@ class backup
 			$result     = exec($cmd, $output, $return_var);
 			if($return_var ===  0 )
 			{
-				$log_file        = preg_replace("/schedule$/", 'log', $_schedule_path);
 				$log_txt = '';
 				$log_txt .= $date;
 				$log_txt .= ' - complete at: ';
 				$log_txt .= date("Y-m-d_H-i-s");
-				$log_txt .= ' - file_name: '. $dest_file;
-				$log_txt .= "\n";
-				file_put_contents( $log_file, $log_txt, FILE_APPEND );
+				$log_txt .= ' - file_name: '. $dest_file;	
+				$this->save_log($_schedule_path, $log_txt);
 			}
 		}
+	}
 
+
+	public function clean($_schedule_path)
+	{
+		$schedule = file_get_contents($_schedule_path);
+		$schedule = json_decode($schedule, true);
+		if(!$schedule || !is_array($schedule))
+		{
+			return;
+		}
+
+		if(!array_key_exists('life_time', $schedule))
+		{
+			return;
+		}
+
+		$left_time = $this->get_left_time($schedule['life_time']);
+		if($left_time === false)
+		{
+			return;
+		}
+
+		$url         = preg_replace("/schedule$/", 'files/', $_schedule_path);
+		$files       = glob($url . "*.*");
+		$must_remove = [];
+
+		foreach ($files as $key => $value) 
+		{
+			if(time() - filemtime($value) > $left_time)
+			{
+				array_push($must_remove, $value);
+			}
+		}
+		if($must_remove)
+		{
+			$cmd = "rm ". implode(' ', $must_remove);
+			$result     = exec($cmd, $output, $return_var);
+			if($return_var ===  0 )
+			{
+				$log_txt = '---------------'. "\n";
+				$log_txt .= 'Autoremove at: ';
+				$log_txt .= date("Y-m-d_H-i-s");
+				$log_txt .= ' - files: '. "\n" . implode("\n", $must_remove);
+				$log_txt .= "\n";
+				$this->save_log($_schedule_path, $log_txt);
+			}
+		}
+	}
+
+
+	public function get_left_time($_time, $_time2 = null)
+	{
+		$left_time = 1;
+
+		switch ($_time) 
+		{
+			case 'year2':
+				$left_time *= 60 * 60 * 24 * 365 * 2;
+				break;
+
+			case 'year':
+				$left_time *= 60 * 60 * 24 * 365;
+				break;
+
+			case 'month6':
+				$left_time *= 60 * 60 * 24 * 30 * 6;
+				break;
+
+			case 'month3':
+				$left_time *= 60 * 60 * 24 * 30 * 3;
+				break;
+
+			case 'month2':
+				$left_time *= 60 * 60 * 24 * 30 * 2;
+				break;
+
+			case 'month':
+				$left_time *= 60 * 60 * 24 * 30;
+				break;
+
+			case 'week':
+				$left_time *= 60 * 60 * 24 * 7;
+				break;
+
+			case 'week2':
+				$left_time *= 60 * 60 * 24 * 7 * 2;
+				break;
+
+			case 'day':
+				$left_time *= 60 * 60 * 24;
+				break;
+
+			case 'day3':
+				$left_time *= 60 * 60 * 24 * 3;
+				break;
+
+			case 'day5':
+				$left_time *= 60 * 60 * 24 * 5;
+				break;
+
+			case 'hour':
+				$left_time *= 60 * 60 * intval($_time2);
+				if($left_time === 0)
+				{
+					$left_time = 60 * 60 * 1;
+				}
+				break;
+
+			default:
+				return false;
+				break;
+		}
+		return $left_time;
+	}
+
+
+	public function save_log($_schedule_path, $_text)
+	{
+		$_text    = "--------------- \n $_text \n";
+		$log_file = preg_replace("/schedule$/", 'log', $_schedule_path);
+		file_put_contents( $log_file, $_text, FILE_APPEND );
 	}
 }
 ?>

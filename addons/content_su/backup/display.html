@@ -65,8 +65,22 @@
     		<option value="22" {%if config_backup.time == '22' %} selected {%endif%} >{{"22" | fitNumber}}</option>
     		<option value="23" {%if config_backup.time == '23' %} selected {%endif%} >{{"23" | fitNumber}}</option> 		
     	</select>
-  
 
+      <label for="life_time">{%trans "Life time of old backup"%}</label>
+      <select name="life_time" id="life_time" class="select">
+        <option value="year2" {%if config_backup.life_time == 'year2' %} selected {%endif%}>{%trans "2 years"%}</option>
+        <option value="year" {%if config_backup.life_time == 'year' %} selected {%endif%}>{%trans "one year"%}</option>
+        <option value="month6" {%if config_backup.life_time == 'month6' %} selected {%endif%}>{%trans "6 months"%}</option>
+        <option value="month3" {%if config_backup.life_time == 'month3' %} selected {%endif%}>{%trans "3 months"%}</option>
+        <option value="month2" {%if config_backup.life_time == 'month2' %} selected {%endif%}>{%trans "2 months"%}</option>
+        <option value="month" {%if config_backup.life_time == 'month' %} selected {%endif%}>{%trans "one month"%}</option>
+        <option value="week" {%if config_backup.life_time == 'week' %} selected {%endif%}>{%trans "one week"%}</option>
+        <option value="week2" {%if config_backup.life_time == 'week2' %} selected {%endif%}>{%trans "2 weeks"%}</option>
+        <option value="day" {%if config_backup.life_time == 'day' %} selected {%endif%}>{%trans "one day"%}</option>
+        <option value="day3" {%if config_backup.life_time == 'day3' %} selected {%endif%}>{%trans "3 days"%}</option>
+        <option value="day5" {%if config_backup.life_time == 'day5' %} selected {%endif%}>{%trans "5 days"%}</option>
+      </select>
+  
     </div>
 
   	<button class="btn primary ">{%trans "Backup now"%}</button>
