@@ -4,6 +4,8 @@ CREATE TABLE `posts` (
   `title` varchar(200) CHARACTER SET utf8mb4 NOT NULL,
   `slug` varchar(200) CHARACTER SET utf8mb4 NOT NULL,
   `url` varchar(2000) NOT NULL,
+   `excerpt` varchar(500)  NULL,
+   `subtitle` varchar(500)  NULL,
   `content` mediumtext CHARACTER SET utf8mb4,
   `meta` mediumtext CHARACTER SET utf8mb4,
   `type` varchar(100) CHARACTER SET utf8mb4 NOT NULL DEFAULT 'post',

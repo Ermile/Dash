@@ -1,0 +1,205 @@
+<?php
+class backup
+{
+	/**
+	 * file paths finded
+	 *
+	 * @var        array
+	 */
+	public $paths = [];
+
+	/**
+	 * Searches for the first match.
+	 * sarch in all project and finde 'backup.php'
+	 */
+	public function find()
+	{
+		$this_dir = __DIR__;
+		chdir($this_dir);
+		chdir("../../../..");
+
+		$path = realpath(''). DIRECTORY_SEPARATOR;
+		
+		$directory   = new \RecursiveDirectoryIterator($path);
+		$flattened   = new \RecursiveIteratorIterator($directory);
+		
+		$url = [];
+		$url[] = 'includes';
+		$url[] = 'database';
+		$url[] = 'backup';
+		$url[] = 'schedule';
+		$url = implode('\\'. DIRECTORY_SEPARATOR, $url);
+
+		$files       = new \RegexIterator($flattened, "/$url$/");
+
+		foreach($files as $file)
+		{
+			$file_name = $file->getPath() . DIRECTORY_SEPARATOR . $file->getFilename();
+			$this->paths[] = $file_name;	
+		}
+
+	}
+
+	/**
+	 * exec all finded backup.php
+	 */
+	public function run()
+	{
+		if(date('m') !== '00')
+		{
+			return ;
+		}
+
+		$this->find();
+
+		if(!empty($this->paths))
+		{
+			foreach ($this->paths as $key => $value)
+			{
+				if(!$value || !is_string($value) || !file_exists($value))
+				{
+					continue;
+				}
+				else
+				{
+					$this->run_backup($value);
+				}
+			}
+		}
+	}
+
+	public function run_backup($_schedule_path)
+	{
+		$schedule = file_get_contents($_schedule_path);
+		$schedule = json_decode($schedule, true);
+		if(!$schedule || !is_array($schedule))
+		{
+			return;
+		}
+
+		if(!array_key_exists('auto_backup', $schedule) || !array_key_exists('every', $schedule) || !array_key_exists('time', $schedule))
+		{
+			return;
+		}
+
+		if(!$schedule['auto_backup'] || !$schedule['every'] || !$schedule['time'])
+		{
+			return;
+		}
+
+		if(date("H") !== $schedule['time'])
+		{
+			return;
+		}
+
+		$left_time = 1;
+
+		switch ($schedule['every']) 
+		{
+			case 'year':
+				$left_time *= 60 * 60 * 24 * 365;
+				break;
+
+			case 'month':
+				$left_time *= 60 * 60 * 24 * 30;
+				break;
+
+			case 'week':
+				$left_time *= 60 * 60 * 24 * 7;
+				break;
+
+			case 'day':
+				$left_time *= 60 * 60 * 24;
+				break;
+
+			case 'hour':
+				$left_time *= 60 * 60;
+				break;
+
+			default:
+				return;
+				break;
+		}
+
+		$url         = preg_replace("/schedule$/", 'files/', $_schedule_path);
+		$files       = glob($url . "*.*");
+		$file_m_time = array_map(function($_a){return filemtime($_a);}, $files);
+		
+		arsort($file_m_time);
+
+		$file_m_time = array_values($file_m_time);
+
+		if(isset($file_m_time[0]))
+		{
+			$old_time = $file_m_time[0];
+		}
+		else
+		{
+			return;
+		}
+
+		if(time() - $old_time >= $left_time)
+		{
+			$this->backup_dump_exec($_schedule_path);
+		}
+		else
+		{
+			return;
+		}
+	}
+
+
+	public function backup_dump_exec($_schedule_path)
+	{
+		$root_url = preg_replace("/includes(.*)$/", '', $_schedule_path);
+		
+
+		if(file_exists($root_url. 'config.me.php'))
+		{
+			require_once($root_url. 'config.me.php');
+		}
+		elseif(file_exists($root_url. 'config.php'))
+		{
+			require_once($root_url. 'config.php');
+		}
+
+		if(defined('db_name') && defined('db_user') && defined('db_pass'))
+		{
+			$db_host    = 'localhost';
+			$db_charset = 'utf8mb4';
+			$date       = date('Y-m-d_H-i-s');
+			$dest_file  = db_name.'_'. $date. '.sql.bz2';
+			$url        = preg_replace("/schedule$/", 'files/', $_schedule_path);
+			$dest_dir   = $url;
+			// create folder if not exist
+			if(!is_dir($dest_dir))
+			{
+				mkdir($dest_dir, 0755, true);
+			}
+
+			$cmd  = "mysqldump --single-transaction --add-drop-table";
+			$cmd  .= " --skip-lock-tables ";
+			$cmd .= " --host='$db_host' --set-charset='$db_charset'";
+			$cmd .= " --user='".db_user."'";
+			$cmd .= " --password='".db_pass."' '". db_name."'";
+			$cmd .= " | bzip2 -c > $dest_dir$dest_file";
+			
+			// to import this file
+			// bunzip2 < filename.sql.bz2 | mysql -u root -p db_name
+			$result     = exec($cmd, $output, $return_var);
+			if($return_var ===  0 )
+			{
+				$log_file        = preg_replace("/schedule$/", 'log', $_schedule_path);
+				$log_txt = '';
+				$log_txt .= $date;
+				$log_txt .= ' - complete at: ';
+				$log_txt .= date("Y-m-d_H-i-s");
+				$log_txt .= ' - file_name: '. $dest_file;
+				$log_txt .= "\n";
+				file_put_contents( $log_file, $log_txt, FILE_APPEND );
+			}
+		}
+
+	}
+}
+?>
