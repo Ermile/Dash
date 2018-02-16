@@ -45,7 +45,7 @@ class backup
 	 */
 	public function run()
 	{
-		if(date('m') !== '00')
+		if(date('m') !== '00' && date('m') !== '30')
 		{
 			return ;
 		}
@@ -87,7 +87,7 @@ class backup
 			return;
 		}
 
-		if(date("H") !== $schedule['time'])
+		if($schedule['every'] != 'hour' && date("H") !== $schedule['time'])
 		{
 			return;
 		}
@@ -132,19 +132,19 @@ class backup
 		if(isset($file_m_time[0]))
 		{
 			$old_time = $file_m_time[0];
+
+			if(time() - $old_time >= $left_time)
+			{
+				$this->backup_dump_exec($_schedule_path);
+			}
+			else
+			{
+				return;
+			}
 		}
 		else
-		{
-			return;
-		}
-
-		if(time() - $old_time >= $left_time)
 		{
 			$this->backup_dump_exec($_schedule_path);
-		}
-		else
-		{
-			return;
 		}
 	}
 

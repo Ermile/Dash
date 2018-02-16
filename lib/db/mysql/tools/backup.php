@@ -111,11 +111,12 @@ trait backup
 	 * @param  [type] $_period the name of subfolder or type of backup
 	 * @return [type]          status of running commad
 	 */
-	public static function backup_dump($_period = null, $_options = [])
+	public static function backup_dump($_options = [])
 	{
 		$default_options =
 		[
-			'lock_tables'   => false,
+			'lock_tables' => false,
+			'download'    => true,
 		];
 
 		if(!is_array($_options))
@@ -125,24 +126,27 @@ trait backup
 
 		$_options = array_merge($default_options, $_options);
 
-		$_period    = $_period? $_period.'/':null;
-		$db_host    = self::$db_host;
-		$db_charset = self::$db_charset;
-		$dest_file  = self::$db_name.'.'. date('d-m-Y_H-i-s'). '.sql.bz2';
-		$dest_dir   = database."backup/$_period";
+		
+		$db_host    = \lib\db::$db_host;
+		$db_charset = \lib\db::$db_charset;
+		$dest_file  = \lib\db::$db_name.'_'. date('Y-m-d_H-i-s'). '.sql.bz2';
+		$dest_dir   = database."backup/files/";
 		// create folder if not exist
 		if(!is_dir($dest_dir))
+		{
 			mkdir($dest_dir, 0755, true);
+		}
 
 		$cmd  = "mysqldump --single-transaction --add-drop-table";
+
 		if(!$_options['lock_tables'])
 		{
 			$cmd  .= " --skip-lock-tables ";
 		}
 
 		$cmd .= " --host='$db_host' --set-charset='$db_charset'";
-		$cmd .= " --user='".self::$db_user."'";
-		$cmd .= " --password='".self::$db_pass."' '". self::$db_name."'";
+		$cmd .= " --user='".\lib\db::$db_user."'";
+		$cmd .= " --password='".\lib\db::$db_pass."' '". \lib\db::$db_name."'";
 		$cmd .= " | bzip2 -c > $dest_dir$dest_file";
 		// to import this file
 		// bunzip2 < filename.sql.bz2 | mysql -u root -p db_name
@@ -152,12 +156,13 @@ trait backup
 
 		if($return_var === 0)
 		{
-			\lib\utility\file::download($dest_dir. $dest_file);
-
-			return T_("Back up database complete"). ' '. $dest_file;
+			if($_options['download'])
+			{
+				\lib\utility\file::download($dest_dir. $dest_file);
+			}
+			return true;
 		}
-
-		return T_("Error in backup database");
+		return false;
 	}
 
 
