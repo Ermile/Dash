@@ -45,11 +45,6 @@ class backup
 	 */
 	public function run()
 	{
-		if(date('m') !== '00' && date('m') !== '30')
-		{
-			return ;
-		}
-
 		$this->find();
 
 		if(!empty($this->paths))
@@ -113,7 +108,11 @@ class backup
 				break;
 
 			case 'hour':
-				$left_time *= 60 * 60;
+				$left_time *= 60 * 60 * intval($schedule['time']);
+				if($left_time === 0)
+				{
+					$left_time = 60 * 60 * 1;
+				}
 				break;
 
 			default:
