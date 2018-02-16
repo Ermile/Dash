@@ -152,6 +152,14 @@ class backup
 	{
 		$root_url = preg_replace("/includes(.*)$/", '', $_schedule_path);
 		
+		if(preg_match("/\/(\w+)\/$/", $root_url, $c))
+		{
+			$project_name = $c[1];
+		}
+		else
+		{
+			return;
+		}
 
 		if(file_exists($root_url. 'config.me.php'))
 		{
@@ -161,13 +169,13 @@ class backup
 		{
 			require_once($root_url. 'config.php');
 		}
-
-		if(defined('db_name') && defined('db_user') && defined('db_pass'))
+	
+		if(defined('db_user') && defined('db_pass'))
 		{
 			$db_host    = 'localhost';
 			$db_charset = 'utf8mb4';
 			$date       = date('Y-m-d_H-i-s');
-			$dest_file  = db_name.'_'. $date. '.sql.bz2';
+			$dest_file  = $project_name.'_'. $date. '.sql.bz2';
 			$url        = preg_replace("/schedule$/", 'files/', $_schedule_path);
 			$dest_dir   = $url;
 			// create folder if not exist
@@ -180,11 +188,11 @@ class backup
 			$cmd  .= " --skip-lock-tables ";
 			$cmd .= " --host='$db_host' --set-charset='$db_charset'";
 			$cmd .= " --user='".db_user."'";
-			$cmd .= " --password='".db_pass."' '". db_name."'";
+			$cmd .= " --password='".db_pass."' '". $project_name."'";
 			$cmd .= " | bzip2 -c > $dest_dir$dest_file";
 			
 			// to import this file
-			// bunzip2 < filename.sql.bz2 | mysql -u root -p db_name
+			// bunzip2 < filename.sql.bz2 | mysql -u root -p $project_name
 			$result     = exec($cmd, $output, $return_var);
 			if($return_var ===  0 )
 			{
