@@ -13,6 +13,16 @@ class model extends \addons\content_su\main\model
 		{
 			$this->backup_schedule();
 		}
+		elseif(\lib\utility::post('type') === 'remove' && \lib\utility::post('file'))
+		{
+			$file_name = \lib\utility::post('file');
+			if(\lib\utility\file::delete(database. 'backup/files/'. $file_name))
+			{
+				\lib\debug::true(T_("File successfully deleted"));
+				$this->redirector($this->url('full'));
+				return;
+			}
+		}
 		else
 		{
 			\lib\debug::true(T_("Dont!"));
