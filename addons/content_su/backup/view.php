@@ -7,6 +7,13 @@ class view extends \addons\content_su\main\view
 	public function config()
 	{
 		parent::config();
+
+
+		if(\lib\utility::get('show') === 'log')
+		{
+			$this->data->auto_backup_log = @\lib\utility\file::read(database. 'backup/log');
+		}
+
 		$config_backup = @\lib\utility\file::read(database. 'backup/schedule');
 		if($config_backup && is_string($config_backup))
 		{

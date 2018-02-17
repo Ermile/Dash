@@ -1,10 +1,18 @@
 {%extends display.suMain%}
 
-
 {%block content%}
 <div class="tbox">
   <h2>{%trans "Backup database"%}</h2>
 </div>
+
+{%if auto_backup_log%}
+<div class="cbox">
+    <p><a href="{{url.baseFull}}/backup" class="badge primary">{%trans "Back"%}</a></p>
+    <pre>
+      {{auto_backup_log}}
+    </pre>
+</div>
+{%else%}
 
 <div class="f">
 
@@ -15,8 +23,7 @@
         <li>Trafic received: <span>{{(((mysql_info.Bytes_received) / 1024 ) / 1024) | number_format }}</span> <small>MB</small></li>
         <li>Trafic send: <span>{{(((mysql_info.Bytes_sent) / 1024 ) / 1024) | number_format }}</span> <small>MB</small></li>
       </div>
-      <br>
-      <br>
+       <p><a href="{{url.baseFull}}/backup?show=log">{%trans "Show Auto backup log file"%}</a></p>
       <form method="post">  
         <input type="hidden" name="backup" value="now">
           <h6>{%trans "You can create backup now"%}</h6>
@@ -53,6 +60,9 @@
 <div class="cbox">
   {{block("iShowFiles")}}
 </div>
+
+{%endif%}
+
 
 {%endblock%}
 
