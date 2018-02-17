@@ -26,6 +26,7 @@ class model extends \addons\content_su\main\model
 		{
 			\lib\debug::true(T_("Backup complete"));
 		}
+		$this->redirector($this->url('full'));
 	}
 
 	public function backup_schedule()

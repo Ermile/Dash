@@ -26,6 +26,16 @@ trait info
 	}
 
 
+	public static function global_status($_link = null)
+	{	
+		if($_link === null)
+		{
+			$_link = self::$link;
+		}
+		return self::get("SHOW GLOBAL STATUS;", ['Variable_name', 'Value'], true);
+	}
+
+
 	/**
 	 * get rows matched
 	 *
