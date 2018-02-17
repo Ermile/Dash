@@ -32,7 +32,7 @@ class model extends \addons\content_su\main\model
 
 	public function backup_now()
 	{
-		if(\lib\db::backup_dump())
+		if(\lib\db::backup_dump(['download' => false]))
 		{
 			\lib\debug::true(T_("Backup complete"));
 		}
