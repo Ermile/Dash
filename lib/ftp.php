@@ -16,18 +16,27 @@ class ftp
 	/**
 	 * connect fo fpt server
 	 */
-	public static function connect()
+	public static function connect($_host = null, $_user = null, $_passowrd = null, $_port = null)
 	{
 		if(!self::$link)
 		{
-			$ftp_host = \lib\option::config('ftp', 'host');
-			$ftp_port = \lib\option::config('ftp', 'port');
+			$ftp_host = $_host;
+			if(!$ftp_host)
+			{
+				$ftp_host = \lib\option::config('ftp', 'host');
+			}
+
+			$ftp_port = $_port;
+			if(!$ftp_port)
+			{
+				$ftp_port = \lib\option::config('ftp', 'port');
+			}
 
 			$link = @ftp_connect($ftp_host, $ftp_port);
 			if($link)
 			{
 				self::$link = $link;
-				self::login();
+				self::login($_user, $_passowrd);
 			}
 		}
 	}
@@ -36,10 +45,20 @@ class ftp
 	/**
 	 * login in connected ftp server
 	 */
-	public static function login()
+	public static function login($_user = null, $_passowrd = null)
 	{
-		$user  = \lib\option::config('ftp', 'user');
-		$pass  = \lib\option::config('ftp', 'pass');
+		$user = $_user;
+		if(!$user)
+		{
+			$user  = \lib\option::config('ftp', 'user');
+		}
+
+		$pass = $_passowrd;
+		if(!$_passowrd)
+		{
+			$pass  = \lib\option::config('ftp', 'pass');
+		}
+
 		$login = @ftp_login(self::$link, $user, $pass);
 
 		if($login)
