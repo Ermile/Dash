@@ -59,6 +59,7 @@ class url
 		self::$url['content']   = self::_content();
 		self::$url['property']  = self::_property();
 		self::$url['full']      = self::_full();
+		self::$url['full2']     = self::_full2();
 
 	}
 
@@ -178,6 +179,21 @@ class url
 		{
 			$full = self::$url['base'];
 		}
+		return $full;
+	}
+
+	private static function _full2()
+	{
+		$full = null;
+		if(self::$uri)
+		{
+			$full = self::$url['base']. '/'. self::$uri;
+		}
+		else
+		{
+			$full = self::$url['base'];
+		}
+		$full = str_replace('?'.self::_query(), '', $full);
 		return $full;
 	}
 

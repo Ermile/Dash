@@ -108,6 +108,8 @@ class view
 			self::set_cms_titles();
 		}
 
+		$this->data->pagination = \lib\utility\pagination::page_number();
+
 		// ************************************************************************************ Twig
 		// twig method
 		$this->add_twig_filter('fcache');

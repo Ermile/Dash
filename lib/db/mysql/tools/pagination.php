@@ -13,6 +13,8 @@ trait pagination
 	 */
 	public static function pagnation($_query, $_length, $_force = true)
 	{
+		// return \lib\utility\pagination::init($_query, $_length);
+
 		if($_force)
 		{
 			if(is_int($_query))

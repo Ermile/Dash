@@ -1,4 +1,16 @@
 {% spaceless %}
+
+{%if FALSEpagination%}
+	<nav class="pagination mA10" data-xhr='pagination'>
+	{%for key, value in pagination%}
+		<a {%if value.link%} href="{{value.link}}" {%endif%} title="{{value.title}}" class="{{value.class}}">{{value.text}}</a>
+	{%endfor%}
+	</nav>
+{%endif%}
+
+
+
+
 {%macro page(page_link, p)%}
 	{% if page_link == p.current%}
 		<a class='active'>{{page_link | fitNumber}}</a>
