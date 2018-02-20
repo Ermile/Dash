@@ -135,7 +135,7 @@ class pagination
 				$link   = true;
 				$page   = $_page_number;
 				$text   = $_page_number;
-				$title  = T_("Page :page", ['page' => \lib\utility\human::fitNumber($_page_number)]);
+				$title  = T_("Page"). ' '. \lib\utility\human::fitNumber($_page_number);
 				$class  = null;
 				break;
 		}
@@ -162,89 +162,123 @@ class pagination
 		$end_page   = intval(self::detail('total_page'));
 		$total_page = $end_page;
 		$count_link = 7;
+		
+		$result     = [];
 
-		$result   = [];
-
-		$have_spliter_1  = false;
-		$have_spliter_2  = false;
-		$have_first_page = false;
-		$have_end_page   = true;
-		$ceil_2          = ceil($count_link / 2);
-
-		if($current - $ceil_2 - 1 >= 1)
+		if($total_page <= 1)
 		{
-			$have_spliter_1 = true;
+			// no pagination needed
 		}
-
-		if($total_page - ($current + $ceil_2)  >= 1)
+		elseif($total_page === 2)
 		{
-			$have_spliter_2 = true;
-		}
-
-		if($current !== 1)
-		{
-			$result[] = self::make('prev', $current -1);
-		}
-
-		if($have_spliter_1)
-		{
-			$result[] = self::make('first', 1);
-			$result[] = self::make('spliter');
-		}
-
-		$count_link_fill = 0;
-		$sb = [];
-		$sa = [];
-		$i = 0;
-		while ($count_link_fill < $count_link) 
-		{
-			$i++;
-			// try to minus current page
-			if($current - $i + 1 > 0)	
+			if($current === 1)
 			{
-				// can minus
-				if($current - $i +1 !== $current)
-				{	
-					array_push($sb, $current - $i + 1);
+				$result[] = self::make('current', $current);
+				$result[] = self::make(null, 2);
+			}
+			elseif ($current === 2)
+			{
+				$result[] = self::make(null, 1);
+				$result[] = self::make('current', $current);
+			}
+		}
+		else
+		{
+			$have_spliter_1  = false;
+			$have_spliter_2  = false;
+			$have_first_page = false;
+			$have_end_page   = true;
+			$ceil_2          = ceil($count_link / 2);
+
+			if($current - $ceil_2  >= 1)
+			{
+				$have_spliter_1 = true;
+			}
+
+			if($total_page - ($current + $ceil_2)  >= 1 || $total_page == ($current + $ceil_2))
+			{
+				
+				$have_spliter_2 = true;
+			}
+
+			if($current !== 1)
+			{
+				$result[] = self::make('prev', $current -1);
+			}
+
+			if($have_spliter_1)
+			{
+				$result[] = self::make('first', 1);
+				$result[] = self::make('spliter');
+			}
+
+			$count_link_fill = 0;
+			$sb              = [];
+			$sa              = [];
+			$i               = 0;
+
+			while ($count_link_fill < $count_link) 
+			{
+				$i++;
+				
+				if($i > $count_link)
+				{
+					break;
 				}
-				$count_link_fill++;
-			}
 
-			if($current + $i < $total_page)
+				// try to minus current page
+				if($current - $i + 1 > 0)	
+				{
+					// can minus
+					if($current - $i +1 !== $current)
+					{	
+						array_push($sb, $current - $i + 1);
+					}
+					$count_link_fill++;
+				}
+
+				if($count_link_fill < $count_link)
+				{	
+					if($current + $i <= $total_page)
+					{
+						array_push($sa, $current + $i );
+						$count_link_fill++;
+					}
+
+				}
+			}
+			// exit();
+
+			$sb = array_reverse($sb);
+			
+			// var_dump($sb, $sa);exit();
+			foreach ($sb as $key => $value) 
 			{
-				array_push($sa, $current + $i );
-				$count_link_fill++;
+				$result[] = self::make(null, $value);
 			}
-		}
 
-		$sb = array_reverse($sb);
-		array_shift($sa);
-		// var_dump($sb, $sa);exit();
-		foreach ($sb as $key => $value) 
-		{
-			$result[] = self::make(null, $value);
-		}
+			$result[] = self::make('current', $current);
 
-		$result[] = self::make('current', $current);
+			foreach ($sa as $key => $value) 
+			{
+				$result[] = self::make(null, $value);
+			}
 
-		foreach ($sa as $key => $value) 
-		{
-			$result[] = self::make(null, $value);
-		}
+			if($have_spliter_2)
+			{
+				$result[] = self::make('spliter');
+				$result[] = self::make('end', $total_page);
+			}
 
-		if($have_spliter_2)
-		{
-			$result[] = self::make('spliter');
-			$result[] = self::make('end', $total_page);
-		}
+			if($current !== $total_page)
+			{
+				$result[] = self::make('next', $current + 1);
+			}
 
-		if($current !== $total_page)
-		{
-			$result[] = self::make('next', $current + 1);
 		}
 
 		$this_link = \lib\url::full2();
-		$get = \lib\utility::get(null, 'raw');
+		$get       = \lib\utility::get(null, 'raw');
 		unset($get['page']);
 
 		foreach ($result as $key => $value)
