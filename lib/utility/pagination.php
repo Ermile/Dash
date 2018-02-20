@@ -73,6 +73,8 @@ class pagination
 		return [$start_limit, $end_limit];
 	}
 
+
+
 	private static function make($_type = null, $_page_number = null)
 	{
 
@@ -106,7 +108,6 @@ class pagination
 				$title  = T_("End page");
 				$class  = 'end';
 				break;
-
 
 			case 'current':
 				$page   = $_page_number;
@@ -162,7 +163,7 @@ class pagination
 		$end_page   = intval(self::detail('total_page'));
 		$total_page = $end_page;
 		$count_link = 7;
-		
+
 		$result     = [];
 
 		if($total_page <= 1)
@@ -184,90 +185,97 @@ class pagination
 		}
 		else
 		{
-			$have_spliter_1  = false;
-			$have_spliter_2  = false;
-			$have_first_page = false;
-			$have_end_page   = true;
+
 			$ceil_2          = ceil($count_link / 2);
-
-			if($current - $ceil_2  >= 1)
-			{
-				$have_spliter_1 = true;
-			}
-
-			if($total_page - ($current + $ceil_2)  >= 1 || $total_page == ($current + $ceil_2))
-			{
-				
-				$have_spliter_2 = true;
-			}
-
-			if($current !== 1)
-			{
-				$result[] = self::make('prev', $current -1);
-			}
-
-			if($have_spliter_1)
-			{
-				$result[] = self::make('first', 1);
-				$result[] = self::make('spliter');
-			}
-
 			$count_link_fill = 0;
 			$sb              = [];
 			$sa              = [];
 			$i               = 0;
+			$pages           = [];
 
-			while ($count_link_fill < $count_link) 
+			while ($count_link_fill < $count_link)
 			{
 				$i++;
-				
+
 				if($i > $count_link)
 				{
 					break;
 				}
 
-				// try to minus current page
-				if($current - $i + 1 > 0)	
+				if($current - $i + 1 > 0)
 				{
-					// can minus
 					if($current - $i +1 !== $current)
-					{	
+					{
+						array_push($pages, $current - $i + 1);
 						array_push($sb, $current - $i + 1);
 					}
 					$count_link_fill++;
 				}
 
 				if($count_link_fill < $count_link)
-				{	
+				{
 					if($current + $i <= $total_page)
 					{
+						array_push($pages, $current + $i);
 						array_push($sa, $current + $i );
 						$count_link_fill++;
 					}
 
 				}
 			}
-			// exit();
+			asort($pages);
 
 			$sb = array_reverse($sb);
-			
-			// var_dump($sb, $sa);exit();
-			foreach ($sb as $key => $value) 
+
+			if($current !== 1)
+			{
+				$result[] = self::make('prev', $current -1);
+			}
+
+			if(current($pages) - 1 == 1)
+			{
+				if(in_array(1, $pages) || $current === 1)
+				{
+					// needless to make first page
+				}
+				else
+				{
+					$result[] = self::make(null, 1);
+				}
+			}
+			elseif(current($pages) - 1 >= 2)
+			{
+				$result[] = self::make('first', 1);
+				$result[] = self::make('spliter');
+			}
+
+			foreach ($sb as $key => $value)
 			{
 				$result[] = self::make(null, $value);
 			}
 
 			$result[] = self::make('current', $current);
 
-			foreach ($sa as $key => $value) 
+			foreach ($sa as $key => $value)
 			{
 				$result[] = self::make(null, $value);
 			}
 
-			if($have_spliter_2)
+			if(end($pages) + 1 <= $total_page)
 			{
-				$result[] = self::make('spliter');
-				$result[] = self::make('end', $total_page);
+				if(in_array($total_page, $pages) || $current === $total_page)
+				{
+					// needless to make end page
+				}
+				else
+				{
+					if(end($pages) + 1 < $total_page)
+					{
+						$result[] = self::make('spliter');
+					}
+
+					$result[] = self::make('end', $total_page);
+				}
 			}
 
 			if($current !== $total_page)
@@ -285,14 +293,13 @@ class pagination
 		{
 			if(isset($value['link']))
 			{
-				$temp_get = $get;
-				$temp_get['page'] = $value['page'];
-				$temp_link = $this_link . '?'. http_build_query($temp_get);
+				$temp_get             = $get;
+				$temp_get['page']     = $value['page'];
+				$temp_link            = $this_link . '?'. http_build_query($temp_get);
 				$result[$key]['link'] = $temp_link;
 			}
 		}
 
-		// var_dump($result);exit();
 		return $result;
 	}
 }
