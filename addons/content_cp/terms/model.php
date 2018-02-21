@@ -46,7 +46,7 @@ class model extends \addons\content_cp\main\model
 			else
 			{
 				\lib\debug::true(T_("Term successfully added"));
-				$this->redirector($this->url('full'));
+				$this->redirector(\lib\url::full());
 			}
 		}
 	}
