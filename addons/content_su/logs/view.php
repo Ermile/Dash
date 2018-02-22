@@ -3,6 +3,14 @@ namespace addons\content_su\logs;
 
 class view extends \addons\content_su\main\view
 {
+	public function config()
+	{
+		parent::config();
+		$this->data->page['title'] = T_("Logs list");
+		$this->data->page['desc'] = T_("All event in this system");
+	}
+
+
 	public function view_list($_args)
 	{
 
