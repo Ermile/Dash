@@ -1,0 +1,100 @@
+{%extends display.cpMain%}
+
+
+
+{%block pageContent%}
+
+{%if dataTable%}
+ {%if dataFilter%}
+
+  {{block('htmlSearchBox')}}
+  {{block('htmlTable')}}
+  {{block('htmlFilter')}}
+
+ {%else%}
+
+  {{block('htmlSearchBox')}}
+  {{block('htmlTable')}}
+
+ {%endif%}
+{%else%}
+ {%if dataFilter%}
+
+  {{block('htmlSearchBox')}}
+  {{block('htmlFilterNoResult')}}
+
+ {%else%}
+  {{block('htmlFilterNoResult')}}
+
+ {%endif%}
+{%endif%}
+
+{%endblock%}
+
+
+
+
+{%block htmlSearchBox%}
+<div class="cbox fs12">
+  <form method="get" action='{{modulePath}}{{moduleType}}' data-action>
+    <div class="input">
+      <input type="search" name="q" placeholder='{%trans "Search"%}' id="q" value="{{utilityGET.q}}" autofocus autocomplete='off'>
+      <button class="addon btn ">{%trans "Search" %}</button>
+    </div>
+  </form>
+</div>
+{%endblock%}
+
+
+{%block htmlTable%}
+ <div class="cbox fs12">
+  <table class="tbl bordered1">
+    <thead class="primary">
+      <tr>
+
+        <th data-sort="{{sort_link.author.order}}"><a href="{{sort_link.author.link}}">{%trans "Author"%}</a>
+        <th data-sort="{{sort_link.email.order}}"><a href="{{sort_link.email.link}}">{%trans "Email"%}</a>
+        <th data-sort="{{sort_link.content.order}}"><a href="{{sort_link.content.link}}">{%trans "Content"%}</a>
+        <th data-sort="{{sort_link.status.order}}"><a href="{{sort_link.status.link}}">{%trans "Status"%}</a>
+        <th data-sort="{{sort_link.datecreated.order}}"><a href="{{sort_link.datecreated.link}}">{%trans "Date"%}</a>
+      </tr>
+    </thead>
+
+    <tbody>
+      {%for key, value in dataTable%}
+      <tr>
+        <td>{{value.author}}</td>
+        <td>{{value.email}}</td>
+        <td><a href="{{url.baseFull}}/comments/edit?id={{value.id}}">{{value.content}}</a></td>
+        <td>{%set myStatus = value.status | capitalize%}{%trans myStatus%}</td>
+
+        <td title="{{value.datecreated}}">{{value.datecreated | tdate}}</td>
+      </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+  {%include display.pagination%}
+ </div>
+{%endblock%}
+
+
+{%block htmlFilter%}
+<p class="f fs14 alert alert-info">
+  <span class="c">{{dataFilter | raw}}</span>
+  <a class="cauto" href="{{url.baseFull}}/comments">{%trans "Clear filters"%}</a>
+</p>
+{%endblock%}
+
+
+{%block htmlFilterNoResult%}
+<p class="f fs14 alert alert-error">
+  <span class="c">{%trans "Result not found!"%} {%trans "Search with new keywords."%}</span>
+  <a class="cauto" href="{{url.baseFull}}/comments">{%trans "Clear filters"%}</a>
+</p>
+{%endblock%}
+
+
+{%block htmlStartAddNew%}
+<p class="fs14 alert alert-success pTB20">{%trans "Hi!"%} <a href="{{url.baseFull}}/comments/add{{moduleType}}">{%trans "Try to start with add new record!"%}</a></p>
+{%endblock%}
+

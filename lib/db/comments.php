@@ -26,9 +26,21 @@ class comments
 	 *
 	 * @return     <type>  ( description_of_the_return_value )
 	 */
-	public static function search()
+	public static function search($_string = null, $_options = [])
 	{
-		return \lib\db\config::public_search('comments', ...func_get_args());
+		$default_options =
+		[
+			"search_field"        => " (comments.content LIKE '%__string__%') ",
+		];
+
+		if(!is_array($_options))
+		{
+			$_options = [];
+		}
+
+		$_options = array_merge($default_options, $_options);
+
+		return \lib\db\config::public_search('comments', $_string, $_options);
 	}
 
 

@@ -9,6 +9,48 @@ class comment
 		'id',
 	];
 
+	public static function get($_id)
+	{
+		$id = \lib\utility\shortURL::decode($_id);
+		if(!$id)
+		{
+			return false;
+		}
+		$get = \lib\db\comments::get(['id' => $id, 'limit' => 1]);
+		if(is_array($get))
+		{
+			return self::ready($get);
+		}
+		return false;
+	}
+
+	public static function edit($_args, $_id)
+	{
+		\lib\app::variable($_args);
+		// check args
+		$id = \lib\utility\shortURL::decode($_id);
+		if(!$id)
+		{
+			\lib\debug::error(T_("Can not access to edit comment"));
+			return false;
+		}
+
+		$args = self::check($id);
+
+		if($args === false || !\lib\debug::$status)
+		{
+			return false;
+		}
+
+
+		\lib\db\comments::update($args, $id);
+
+		if(\lib\debug::$status)
+		{
+			\lib\debug::true(T_("Comment successfully updated"));
+		}
+	}
+
 	/**
 	 * Gets the course.
 	 *
@@ -68,11 +110,16 @@ class comment
 
 		$_option = array_merge($default_option, $_option);
 
+		$status = \lib\app::request('status');
+		if($status && !in_array($status, ['approved', 'unapproved', 'spam', 'deleted']))
+		{
+			\lib\debug::error(T_("Invalid status"), 'status');
+			return false;
+		}
 
-		$args                = [];
-
+		$args           = [];
+		$args['status'] = $status;
 		return $args;
-
 	}
 
 

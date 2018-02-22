@@ -8,6 +8,7 @@
  <div class="c4 s12">{{block ("iPage")}}</div>
  <div class="c4 s12">{{block ("iTermCat")}}</div>
  <div class="c4 s12">{{block ("iTermTag")}}</div>
+ <div class="c4 s12">{{block ("iComment")}}</div>
 
 </div>
 {%endblock%}
@@ -15,11 +16,21 @@
 
 
 
+{%block iComment%}
+<a class="dcard x1" href='{{url.baseFull}}/comments'>
+ <div class="statistic">
+  <div class="value"><i class="sf-coffee"></i></div>
+  <div class="label">{%trans "Comments"%}</div>
+ </div>
+</a>
+{%endblock%}
+
+
 
 {%block iPost%}
 <a class="dcard x1" href='{{url.baseFull}}/posts?type=post'>
  <div class="statistic">
-  <div class="value"><i class="sf-book"></i></div>
+  <div class="value"><i class="sf-file-text-o"></i></div>
   <div class="label">{%trans "Posts"%}</div>
  </div>
 </a>
@@ -30,7 +41,7 @@
 {%block iPage%}
 <a class="dcard x1" href='{{url.baseFull}}/posts?type=page'>
  <div class="statistic">
-  <div class="value"><i class="sf-book"></i></div>
+  <div class="value"><i class="sf-monitor"></i></div>
   <div class="label">{%trans "Page"%}</div>
  </div>
 </a>
@@ -41,7 +52,7 @@
 {%block iTermCat%}
 <a class="dcard x1" href='{{url.baseFull}}/terms?type=cat'>
  <div class="statistic">
-  <div class="value"><i class="sf-book"></i></div>
+  <div class="value"><i class="sf-bookmark"></i></div>
   <div class="label">{%trans "Category"%}</div>
  </div>
 </a>
@@ -52,7 +63,7 @@
 {%block iTermTag%}
 <a class="dcard x1" href='{{url.baseFull}}/terms?type=tag'>
  <div class="statistic">
-  <div class="value"><i class="sf-book"></i></div>
+  <div class="value"><i class="sf-tag-1"></i></div>
   <div class="label">{%trans "Tags"%}</div>
  </div>
 </a>

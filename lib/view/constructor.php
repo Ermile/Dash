@@ -60,9 +60,9 @@ trait constructor
 		$this->data->page['title']   = null;
 		$this->data->page['desc']    = null;
 		$this->data->page['special'] = null;
-
 		$this->data->bodyclass       = null;
 		$this->data->module          = $this->module();
+		$this->data->modulePath      = $this->url('baseFull'). '/'. $this->module();
 		$this->data->child           = $this->child();
 		$this->data->login           = $this->login('all');
 		$this->data->user            = \lib\user::detail();

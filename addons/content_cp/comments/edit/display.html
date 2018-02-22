@@ -1,0 +1,19 @@
+{%extends display.cpMain%}
+
+
+{%block pageContent%}
+<div class="cbox">
+  <div class="msg {%if dataRaw.status == 'approved'%} success {%elseif dataRaw.status == 'spam' %} danger {%endif%}">{%set myStatus = dataRaw.status | capitalize%}{%trans myStatus%}</div>
+  {%if dataRaw.author%}<div class="msg">{%trans "Author"%}: {{dataRaw.author}}</div>{%endif%}
+  {%if dataRaw.email%}<div class="msg">{%trans "Email"%}: {{dataRaw.email}}</div>{%endif%}
+  <p>{{dataRaw.content}}</p>
+
+  <div class="msg">{{dataRaw.datecreated | tdate("Y/m/d H:i:s")}}</div>
+  <div class="f">
+    <a href="{{url.full}}" data-ajaxify data-data='{"status" : "approved"}' data-method='post' class="c3 mRa5 btn success">{%trans "Approve"%}</a>
+    <a href="{{url.full}}" data-ajaxify data-data='{"status" : "spam"}' data-method='post' class="c1 btn danger">{%trans "Spam"%}</a>
+  </div>
+
+</div>
+{% endblock %}
+
