@@ -4,6 +4,7 @@ namespace lib\utility;
 class pagination
 {
 	public static $detail = [];
+
 	/**
 	 * save every thing in temp to get every where
 	 *
@@ -43,36 +44,46 @@ class pagination
 	 */
 	public static function init($_total_rows, $_limit = 10)
 	{
-		$page        = \lib\utility::get('page');
-		$page        = $page && ctype_digit($page) ? $page : 1;
-		$page        = intval($page) > 0 ? intval($page) : 1;
-		$_total_rows = intval($_total_rows);
-		$_limit      = intval($_limit);
-		$_limit      = $_limit ? $_limit : 10;
+		$page           = \lib\utility::get('page');
+		$url_get_length = \lib\utility::get('length');
+
+		$page           = $page && ctype_digit($page) ? $page : 1;
+		$page           = intval($page) > 0 ? intval($page) : 1;
+		$_total_rows    = intval($_total_rows);
+
+		if($url_get_length && ctype_digit($url_get_length) && intval($url_get_length) <= 1000)
+		{
+			$limit = intval($url_get_length);
+		}
+		else
+		{
+			$limit = intval($_limit);
+		}
+
+		$limit = $limit ? $limit : 10;
 
 		if($page > 0)
 		{
-			$start_limit = $_limit * ($page - 1);
+			$start_limit = $limit * ($page - 1);
 		}
 		else
 		{
 			$start_limit = 0;
 		}
 
-		$end_limit = $_limit;
+		$end_limit = $limit;
 
-		$total_page = ceil($_total_rows / $_limit);
+		$total_page = ceil($_total_rows / $limit);
 
 		// save some detail
 		self::detail('start_limit', $start_limit);
 		self::detail('end_limit', $end_limit);
 		self::detail('page', $page);
 		self::detail('total_page', $total_page);
-		self::detail('limit', $_limit);
+		self::detail('limit', $limit);
 		self::detail('total_rows', $_total_rows);
 		return [$start_limit, $end_limit];
 	}
-
 
 
 	private static function make($_type = null, $_page_number = null)
@@ -95,6 +106,7 @@ class pagination
 				break;
 
 			case 'spliter':
+				$link   = false;
 				$page   = null;
 				$text   = '...';
 				$title  = null;
@@ -110,6 +122,7 @@ class pagination
 				break;
 
 			case 'current':
+				$link   = false;
 				$page   = $_page_number;
 				$text   = $_page_number;
 				$title  = T_("Current page");
@@ -145,7 +158,7 @@ class pagination
 		[
 			'page'   => $page,
 			'link'	 => $link,
-			'text'   => \lib\utility\human::fitNumber($text),
+			'text'   => $text ? \lib\utility\human::fitNumber($text) : null,
 			'title'  => $title,
 			'class'  => $class,
 		];
@@ -160,11 +173,18 @@ class pagination
 		$total_rows = intval(self::detail('total_rows'));
 		$limit      = $limit ? $limit : 1;
 		$first      = ($current - 1) >= 1  ? ($current - 1) : 1;
-		$end_page   = intval(self::detail('total_page'));
-		$total_page = $end_page;
-		$count_link = 7;
+		$total_page = intval(self::detail('total_page'));
 
-		$result     = [];
+		if(\lib\option::config('pagination_count_link') && ctype_digit(\lib\option::config('pagination_count_link')))
+		{
+			$count_link = intval(\lib\option::config('pagination_count_link'));
+		}
+		else
+		{
+			$count_link = 7;
+		}
+
+		$result = [];
 
 		if($total_page <= 1)
 		{
@@ -185,8 +205,6 @@ class pagination
 		}
 		else
 		{
-
-			$ceil_2          = ceil($count_link / 2);
 			$count_link_fill = 0;
 			$sb              = [];
 			$sa              = [];
@@ -220,9 +238,9 @@ class pagination
 						array_push($sa, $current + $i );
 						$count_link_fill++;
 					}
-
 				}
 			}
+
 			asort($pages);
 
 			$sb = array_reverse($sb);
@@ -282,7 +300,6 @@ class pagination
 			{
 				$result[] = self::make('next', $current + 1);
 			}
-
 		}
 
 		$this_link = \lib\url::full2();
@@ -291,7 +308,7 @@ class pagination
 
 		foreach ($result as $key => $value)
 		{
-			if(isset($value['link']))
+			if(isset($value['link']) && $value['link'])
 			{
 				$temp_get             = $get;
 				$temp_get['page']     = $value['page'];
