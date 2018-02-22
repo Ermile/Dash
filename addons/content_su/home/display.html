@@ -15,10 +15,21 @@
  <div class="c4 s12">{{block ("iNotifications")}}</div>
  <div class="c4 s12">{{block ("iShortURL")}}</div>
  <div class="c4 s12">{{block ("iSendNotify")}}</div>
+ <div class="c4 s12">{{block ("iRawDatabase")}}</div>
  {%if url.tld == 'local'%}
   <div class="c4 s12">{{block ("iSample")}}</div>
  {%endif%}
 </div>
+{%endblock%}
+
+
+{%block iRawDatabase%}
+<a class="dcard x1" href='{{url.baseFull}}/dbtables'>
+ <div class="statistic">
+  <div class="value"><i class="sf-table"></i></div>
+  <div class="label">{%trans "Raw table"%}</div>
+ </div>
+</a>
 {%endblock%}
 
 

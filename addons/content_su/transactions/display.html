@@ -1,97 +1,152 @@
 {%extends display.suMain%}
 
 
-{%block sidenav%}
-{{parent()}}
-<li>
-	<a href="{{url.base}}/su/transactions/add" title='{%trans "Add New Transaction"%}'><i class="sf-plus"></i><span>{%trans "Add New Transaction"%}</span></a>
-</li>
+{%block pageContent%}
+
+{%if dataTable%}
+ {%if dataFilter%}
+
+  {{block('htmlSearchBox')}}
+  {{block('htmlTable')}}
+  {{block('htmlFilter')}}
+
+ {%else%}
+
+  {{block('htmlSearchBox')}}
+  {{block('htmlTable')}}
+
+ {%endif%}
+{%else%}
+ {%if dataFilter%}
+
+  {{block('htmlSearchBox')}}
+  {{block('htmlFilterNoResult')}}
+
+ {%else%}
+
+  {{block('htmlStartAddNew')}}
+
+ {%endif%}
+{%endif%}
+
 {%endblock%}
 
 
-{%block content%}
-
- <form method="get" class="" data-action>
-	<div class="input">
-		<label for="search" class="addon">{%trans "Search"%}</label>
-		<input type="text" name="search" class="" id="search" value='{{utilityGET.search}}' >
-		<button class="btn primary addon" >{%trans "Search"%}</button>
-	</div>
-</form>
-
-<table class="tbl">
-	<thead>
-		<th><a href="{{url.base}}/su/transactions/{{order_url.mobile}}">{%trans "Mobile"%}</a></th>
-		<th><a href="{{url.base}}/su/transactions/{{order_url.displayname}}">{%trans "Displayname"%}</a></th>
-		<th><a href="{{url.base}}/su/transactions/{{order_url.code}}">{%trans "Code"%}</a></th>
-		<th><a href="{{url.base}}/su/transactions/{{order_url.title}}">{%trans "Title"%}</a></th>
-		<th><a href="{{url.base}}/su/transactions/{{order_url.type}}">{%trans "Type"%}</a></th>
-		<th><a href="{{url.base}}/su/transactions/{{order_url.date}}">{%trans "Date"%}</a></th>
-		<th><a href="{{url.base}}/su/transactions/{{order_url.amount_request}}">{%trans "Amount request"%}</a></th>
-		<th><a href="{{url.base}}/su/transactions/{{order_url.amount_end}}">{%trans "Amount end"%}</a></th>
-		<th><a href="{{url.base}}/su/transactions/{{order_url.plus}}">{%trans "Plus"%}</a></th>
-		<th><a href="{{url.base}}/su/transactions/{{order_url.minus}}">{%trans "Minus"%}</a></th>
-		<th><a href="{{url.base}}/su/transactions/{{order_url.unit_id}}">{%trans "Unit"%}</a></th>
-		<th><a href="{{url.base}}/su/transactions/{{order_url.budget_before}}">{%trans "Budget before"%}</a></th>
-		<th><a href="{{url.base}}/su/transactions/{{order_url.budget}}">{%trans "Budget"%}</a></th>
-		<th><a href="{{url.base}}/su/transactions/{{order_url.status}}">{%trans "Status"%}</a></th>
-		<th><a href="{{url.base}}/su/transactions/{{order_url.condition}}">{%trans "Condition"%}</a></th>
-		<th><a href="{{url.base}}/su/transactions/{{order_url.verify}}">{%trans "Verify"%}</a></th>
-		<th><a href="{{url.base}}/su/transactions/{{order_url.payment}}">{%trans "Payment"%}</a></th>
-		<th><a href="{{url.base}}/su/transactions/{{order_url.parent_id}}">{%trans "Parent"%}</a></th>
-		<th>{%trans "More"%}</th>
-		<th>{%trans "Repait"%}</th>
-		<th>{%trans "Add new"%}</th>
-
-	</thead>
-	<tbody>
-
-	{%for key, value in transactions_list%}
-	<tr>
-		<td >{{value.mobile|fitNumber}}</td>
-		<td >{{value.displayname}}</td>
-		<td >{{value.code|fitNumber}}</td>
-		<td >{{value.title}}</td>
-		<td >{%set my_type = value.type %}{%trans my_type%}</td>
-		{%if site.currentlang == 'fa'%}
-			<td ><a href='{{url.base}}/su/transactions/date={{value.date | date("Y-m-d H:i:s")}}'>{{value.date | jdate("Y-m-d H:i:s")}}</a></td>
-		{%else%}
-			<td ><a href='{{url.base}}/su/transactions/date={{value.date | date("Y-m-d H:i:s")}}'>{{value.date | fitNumber}}</a></td>
-		{%endif%}
-		<td >{{value.amount_request | number_format | fitNumber}}</td>
-		<td >{{value.amount_end | number_format | fitNumber}}</td>
-		<td >{{value.plus | number_format | fitNumber}}</td>
-		<td >{{value.minus | number_format | fitNumber}}</td>
-		<td >{%set my_unit = value.unit %}{%trans my_unit%}</td>
-		<td >{{value.budget_before | number_format | fitNumber}}</td>
-		<td >{{value.budget | number_format | fitNumber}}</td>
-		<td >{%set my_status = value.status %}{%trans my_status%}</td>
-		<td >{%set my_condition = value.condition %}{%trans my_condition%}</td>
-		<td >{{value.verify|fitNumber}}</td>
-		<td >{%set my_payment = value.payment %}{%trans my_payment%}</td>
-		<td >{{value.parent_id|fitNumber}}</td>
-
-		<td>
-			<a href="{{url.base}}/su/logs/order=desc/sort=id/data={{value.id}}"><i class='sf-align-justify-1'></i> <span> </span></a>
-		</td>
-
-		<td>
-			<a href="{{url.base}}/su/transactions/add/transactions={{value.id}}"><i class='sf-bug'></i> <span> </span></a>
-		</td>
-
-		<td>
-			<a href="{{url.base}}/su/transactions/add?mobile={{value.mobile}}"><i class='sf-plus'></i> <span> </span></a>
-		</td>
-		<!-- <td>
-			<a href="{{url.base}}/su/transactions/add?mobile={{value.mobile}}"><i class='sf-history bn'></i> <span> </span></a>
-		</td> -->
-	</tr>
-	{%endfor%}
-	</tbody>
-</table>
-
-	{%include display.pagination%}
 
 
+{%block htmlSearchBox%}
+<div class="cbox fs12">
+  <form method="get" action='{{url.baseFull}}/transactions' data-action>
+    <div class="input">
+      <input type="search" name="q" placeholder='{%trans "Search in :transactionss"%}' id="q" value="{{utilityGET.q}}" autofocus  data-pass='submit' autocomplete='off'>
+      <button class="addon btn ">{%trans "Search" %}</button>
+    </div>
+  </form>
+</div>
+{%endblock%}
 
+
+{%block htmlTable%}
+ <div class="cbox fs12">
+  <table class="tbl bordered1">
+    <thead class="primary">
+      <tr>
+      	<th data-sort={{sort_link.user_id.order}}><a href="{{sort_link.user_id.link}}">{%trans "User"%}</a></th>
+      	<th data-sort={{sort_link.user_id.order}}><a href="{{sort_link.user_id.link}}">{%trans "Name"%}</a></th>
+      	<th data-sort={{sort_link.title.order}}><a href="{{sort_link.title.link}}">{%trans "Title"%}</a></th>
+      	<th data-sort={{sort_link.type.order}}><a href="{{sort_link.type.link}}">{%trans "Type"%}</a></th>
+      	<th data-sort={{sort_link.plus.order}}><a href="{{sort_link.plus.link}}">{%trans "Plus"%}</a></th>
+      	<th data-sort={{sort_link.minus.order}}><a href="{{sort_link.minus.link}}">{%trans "Minus"%}</a></th>
+      	<th data-sort={{sort_link.budget_before.order}}><a href="{{sort_link.budget_before.link}}">{%trans "Budget before"%}</a></th>
+      	<th data-sort={{sort_link.budget.order}}><a href="{{sort_link.budget.link}}">{%trans "Budget"%}</a></th>
+      	<th data-sort={{sort_link.status.order}}><a href="{{sort_link.status.link}}">{%trans "Status"%}</a></th>
+      	<th data-sort={{sort_link.condition.order}}><a href="{{sort_link.condition.link}}">{%trans "Condition"%}</a></th>
+      	<th data-sort={{sort_link.verify.order}}><a href="{{sort_link.verify.link}}">{%trans "Verify"%}</a></th>
+      	<th data-sort={{sort_link.payment.order}}><a href="{{sort_link.payment.link}}">{%trans "Payment"%}</a></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {%for key, value in dataTable%}
+      <tr>
+		<td title="user_id: {{value.user_id}}">{{value.mobile | fitNumber}}</td>
+		<td>{{value.displayname }}</td>
+		<td title="{{value.code}}">{{value.title}}</td>
+		<td>{%set my_type = value.type | capitalize%}<a href="{{url.baseFull}}/transactions?type={{value.type}}">{%trans my_type%}</a></td>
+		<td>{{value.plus | number_format | fitNumber}}</td>
+		<td>{{value.minus | number_format | fitNumber}}</td>
+		<td>{{value.budget_before | number_format | fitNumber}}</td>
+		<td>{{value.budget | number_format | fitNumber}}</td>
+		<td>{%set my_status = value.status | capitalize%}<a href="{{url.baseFull}}/transactions?status={{value.status}}">{%trans my_status%}</a></td>
+		<td>{%set my_condition = value.condition | capitalize%}<a href="{{url.baseFull}}/transactions?condition={{value.condition}}">{%trans my_condition%}</a></td>
+		<td>{%if value.verify%}<i class="sf-check-1 fc-green"></i>{%else%}<i class="sf-times fc-red"></i>{%endif%}</td>
+		<td>{%set my_payment = value.payment | capitalize%}<a href="{{url.baseFull}}/transactions?payment={{value.payment}}">{%trans my_payment%}</a></td>
+      </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+  {%include display.pagination%}
+ </div>
+{%endblock%}
+
+
+{%block htmlFilter%}
+<p class="f fs14 alert alert-info">
+  <span class="c">{{dataFilter | raw}}</span>
+  <a class="cauto" href="{{url.baseFull}}/transactions">{%trans "Clear filters"%}</a>
+</p>
+{%endblock%}
+
+
+{%block htmlFilterNoResult%}
+<p class="f fs14 alert alert-error">
+  <span class="c">{%trans "Result not found!"%} {%trans "Search with new keywords."%}</span>
+  <a class="cauto" href="{{url.baseFull}}/transactions">{%trans "Clear filters"%}</a>
+</p>
+{%endblock%}
+
+
+{%block htmlStartAddNew%}
+<p class="fs14 alert alert-success pTB20">{%trans "Hi!"%} <a href="{{url.baseFull}}/transactions/add">{%trans "Try to start with add new :transactions!"%}</a></p>
+{%endblock%}
+
+
+{%block hidden_all_field%}
+		'id'               => string '1' (length=1)
+		'user_id'          => null
+		'code'             => string 'payment:zarinpal' (length=16)
+		'title'            => string 'پرداخت با زرین‌پال' (length=35)
+		'caller'           => null
+		'type'             => string 'money' (length=5)
+		'unit_id'          => string '1' (length=1)
+		'amount_request'   => string '50000' (length=5)
+		'amount_end'       => string '50000' (length=5)
+		'plus'             => string '50000' (length=5)
+		'minus'            => null
+		'budget_before'    => null
+		'budget'           => null
+		'status'           => string 'enable' (length=6)
+		'condition'        => string 'cancel' (length=6)
+		'verify'           => string '0' (length=1)
+		'parent_id'        => null
+		'related_user_id'  => null
+		'related_foreign'  => null
+		'related_id'       => null
+		'payment'          => string 'zarinpal' (length=8)
+		'payment_response' => string '{"get":{"Authority":"000000000000000000000000000062516238","Status":"NOK"},"post":[],"request":{"Authority":"000000000000000000000000000062516238","Status":"NOK"}}' (length=163)
+		'meta'             => null
+		'desc'             => null
+		'dateverify'       => null
+		'datecreated'      => string '2018-01-03 11:25:34' (length=19)
+		'datemodified'     => string '2018-01-09 09:07:17' (length=19)
+		'invoice_id'       => null
+		'date'             => string '2018-01-03 11:25:34' (length=19)
+		'niyat'            => null
+		'hazinekard'       => null
+		'fullname'         => null
+		'donate'           => string 'cash' (length=4)
+		'doners'           => string '0' (length=1)
+		'mobile'           => null
+		'displayname'      => null
+		'unit'             => string 'toman' (length=5)
 {%endblock%}

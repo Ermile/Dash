@@ -3,64 +3,62 @@ namespace addons\content_su\transactions;
 
 class view extends \addons\content_su\main\view
 {
-	public function view_list($_args)
+	public function config()
 	{
-		$field = $this->controller()->fields;
-		$list  = $this->model()->transactions_list($_args, $field);
+		parent::config();
+		$this->data->modulePath = $this->url('baseFull');
 
-		$this->data->transactions_list = $list;
-
-		$this->order_url($_args, $field);
-		if(isset($this->controller->pagnation))
-		{
-			$this->data->pagnation = $this->controller->pagnation_get();
-		}
-		if(\lib\utility::get('search'))
-		{
-			$this->data->get_search = \lib\utility::get('search');
-		}
-		if(isset($_args->get("search")[0]))
-		{
-			$this->data->get_search = $_args->get("search")[0];
-		}
-	}
+		$this->data->page['title'] = T_("Transactions list");
+		$this->data->page['desc']  = T_('Check list of Transactions and search or filter in them to find your transactions.'). ' '. T_('Also add or edit specefic transactions.');
+		// add back level to summary link
+		$product_list_link        =  '<a href="'. $this->data->modulePath .'/summary" data-shortkey="121">'. T_('Transactions dashboard'). '</a>';
+		$this->data->page['desc'] .= ' | '. $product_list_link;
 
 
-	/**
-	 * MAKE ORDER URL
-	 *
-	 * @param      <type>  $_args    The arguments
-	 * @param      <type>  $_fields  The fields
-	 */
-	public function order_url($_args, $_fields)
-	{
-		$order_url = [];
-		foreach ($_fields as $key => $value)
+		$this->data->page['badge']['link'] = $this->data->modulePath. '/add';
+		$this->data->page['badge']['text'] = T_('Add new transactions');
+
+		$search_string            = \lib\utility::get('q');
+		if($search_string)
 		{
-			if(isset($_args->get("sort")[0]))
-			{
-				if($_args->get("sort")[0] == $value)
-				{
-					if(mb_strtolower($_args->get("order")[0]) == mb_strtolower('ASC'))
-					{
-						$order_url[$value] = "sort=$value/order=desc";
-					}
-					else
-					{
-						$order_url[$value] = "sort=$value/order=asc";
-					}
-				}
-				else
-				{
-					$order_url[$value] = "sort=$value/order=asc";
-				}
-			}
-			else
-			{
-				$order_url[$value] = "sort=$value/order=asc";
-			}
+			$this->data->page['title'] .= ' | '. T_('Search for :search', ['search' => $search_string]);
 		}
-		$this->data->order_url = $order_url;
+
+		$args =
+		[
+			'sort'  => \lib\utility::get('sort'),
+			'order' => \lib\utility::get('order'),
+		];
+
+		if(\lib\utility::get('status'))
+		{
+			$args['transactions.status'] = \lib\utility::get('status');
+		}
+
+		if(\lib\utility::get('condition'))
+		{
+			$args['condition'] = \lib\utility::get('condition');
+		}
+
+		if(\lib\utility::get('payment'))
+		{
+			$args['payment'] = \lib\utility::get('payment');
+		}
+
+		if(\lib\utility::get('type'))
+		{
+			$args['transactions.type'] = \lib\utility::get('type');
+		}
+
+		$this->data->sort_link  = self::make_sort_link(\lib\app\transaction::$sort_field, $this->data->modulePath);
+		$this->data->dataTable = \lib\app\transaction::list(\lib\utility::get('q'), $args);
+
+		$check_empty_datatable = $args;
+		unset($check_empty_datatable['sort']);
+		unset($check_empty_datatable['order']);
+
+		// set dataFilter
+		$this->data->dataFilter = $this->createFilterMsg($search_string, $check_empty_datatable);
 	}
 }
 ?>
