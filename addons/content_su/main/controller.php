@@ -48,14 +48,15 @@ class controller extends \mvc\controller
 	 * @param      <type>   $_perm     The permission
 	 * @param      boolean  $_login    The login
 	 */
-	public function _permission($_content = null, $_module = null, $_perm = null, $_login = true)
+	public function _permission()
 	{
 		// if user is not login then redirect
-		if($_login && !$this->login())
+		if(!$this->login())
 		{
 			$this->redirector($this->url('root'). '/enter')->redirect();
 			return ;
 		}
+
 		// Check permission and if user can do this operation
 		// allow to do it, else show related message in notify center
 		if(Tld === 'local' && false)
@@ -164,15 +165,5 @@ class controller extends \mvc\controller
 		}
 	}
 
-
-	/**
-	 * define perm modules for permission level
-	 * @return [array] return the permissions in this content
-	 */
-	public static function permModules()
-	{
-		$mylist	= self::$manifest['modules']->modules_search('permissions');
-		return $mylist;
-	}
 }
 ?>

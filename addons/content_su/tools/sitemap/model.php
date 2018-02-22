@@ -19,9 +19,11 @@ class model extends \mvc\model
 		$result   = '';
 
 		$site_url = \lib\router::get_storage('url_site');
+
 		$result   .= "<pre>";
 		$result   .= $site_url.'<br/>';
 		$sitemap  = new \lib\utility\sitemap($site_url , root.'public_html/', 'sitemap' );
+
 		$counter  =
 		[
 			'pages'       => 0,
@@ -31,7 +33,8 @@ class model extends \mvc\model
 			'attachments' => 0,
 			'otherTypes'  => 0,
 			'terms'       => 0,
-			// 'cats'        => 0,
+			'cats'        => 0,
+			'tags'        => 0,
 			// 'otherTerms'  => 0,
 		];
 
@@ -54,9 +57,6 @@ class model extends \mvc\model
 		$sitemap->addItem('contact', '0.6', 'weekly');
 		$sitemap->addItem('logo', '0.8', 'monthly');
 		$sitemap->addItem('for/school', '0.8', 'monthly');
-
-
-
 
 		// PERSIAN
 		// add all language static page automatically
@@ -105,22 +105,6 @@ class model extends \mvc\model
 			$counter['posts'] += 1;
 		}
 
-		// // add poll
-		// foreach ($this->model()->sitemap('posts', 'poll') as $row)
-		// {
-		// 	$myUrl = $row['url'];
-		// 	if($row['language'] && $row['language'] !== 'en')
-		// 	{
-		// 		$myUrl = $row['language'].'/'. $myUrl;
-		// 	}
-
-		// 	if(isset($row['privacy']) && $row['privacy'] === 'public')
-		// 	{
-		// 		$sitemap->addItem($myUrl, '0.8', 'daily', $row['publishdate']);
-		// 		$counter['polls'] += 1;
-		// 	}
-		// }
-
 		// add pages
 		foreach ($this->model()->sitemap('posts', 'page') as $row)
 		{
@@ -147,18 +131,18 @@ class model extends \mvc\model
 			$counter['helps'] += 1;
 		}
 
-		// // add attachments
-		// foreach ($this->model()->sitemap('posts', 'attachment') as $row)
-		// {
-		// 	$myUrl = $row['url'];
-		// 	if($row['language'] && $row['language'] !== 'en')
-		// 	{
-		// 		$myUrl = $row['language'].'/'. $myUrl;
-		// 	}
+		// add attachments
+		foreach ($this->model()->sitemap('posts', 'attachment') as $row)
+		{
+			$myUrl = $row['url'];
+			if($row['language'] && $row['language'] !== 'en')
+			{
+				$myUrl = $row['language'].'/'. $myUrl;
+			}
 
-		// 	$sitemap->addItem($myUrl, '0.2', 'weekly', $row['publishdate']);
-		// 	$counter['attachments'] += 1;
-		// }
+			$sitemap->addItem($myUrl, '0.2', 'weekly', $row['publishdate']);
+			$counter['attachments'] += 1;
+		}
 
 		// add other type of post
 		foreach ($this->model()->sitemap('posts', false) as $row)
@@ -174,18 +158,18 @@ class model extends \mvc\model
 		}
 
 		// add cats and tags
-		// foreach ($this->model()->sitemap('terms') as $row)
-		// {
-		// 	$myUrl = $row['term_url'];
-		// 	if($row['term_language'])
-		// 	{
-		// 		$myUrl = $row['term_language'].'/'. $myUrl;
-		// 	}
+		foreach ($this->model()->sitemap('terms') as $row)
+		{
+			$myUrl = $row['url'];
+			if($row['language'])
+			{
+				$myUrl = $row['language'].'/'. $myUrl;
+			}
 
 
-		// 	$sitemap->addItem($myUrl, '0.4', 'weekly', $row['datemodified']);
-		// 	$counter['terms'] += 1;
-		// }
+			$sitemap->addItem($myUrl, '0.4', 'weekly', $row['datemodified']);
+			$counter['terms'] += 1;
+		}
 
 		$sitemap->createSitemapIndex();
 		$result .= "</pre>";
@@ -207,32 +191,21 @@ class model extends \mvc\model
 		$prefix = substr($_table, 0, -1);
 		$status = $_table === 'posts'? 'publish': 'enable';
 		$date   = $_table === 'posts'? 'publishdate': 'datemodified';
-		$lang   = $_table === 'posts'? 'language': 'term_language';
-		$qry    = $this->sql()->table($_table)->where($prefix.'_status', $status);
+		$lang   = $_table === 'posts'? 'language': 'language';
+
+		$qry    = "SELECT * FROM $_table WHERE status = '$status' ";
 		if($_type)
 		{
-			$qry = $qry->and($prefix.'_type', $_type);
+			$qry .= "AND type = '$_type' ";
 		}
 		elseif($_type === false && $_table === 'posts')
 		{
-			$qry = $qry->and($prefix.'_type', '<>', "'post'");
-			// $qry = $qry->and($prefix.'_type', '<>', "'poll'");
-			// $qry = $qry->and($prefix.'_type', '<>', "'survey'");
-			$qry = $qry->and($prefix.'_type', '<>', "'page'");
-			$qry = $qry->and($prefix.'_type', '<>', "'help'");
-			$qry = $qry->and($prefix.'_type', '<>', "'attachment'");
+			$qry .= "AND type NOT IN ('post', 'page', 'help', 'attachment') ";
 		}
 
-		if($_table === 'posts')
-		{
-			// $qry = $qry->field($prefix.'_url', $date, $lang, 'privacy')->order('id','DESC');
-			$qry = $qry->field($prefix.'_url', $date, $lang)->order('id','DESC');
-		}
-		else
-		{
-			// $qry = $qry->field($prefix.'_url', $date, $lang)->order('id','DESC');
-		}
-		return $qry->select()->allassoc();
+		$qry .= " ORDER BY id DESC ";
+
+		return \lib\db::get($qry);
 	}
 
 

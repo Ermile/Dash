@@ -1,7 +1,7 @@
 <?php
 namespace addons\content_su\tools\sitemap;
 
-class view extends \lib\mvc\view
+class view extends \lib\view
 {
 	public function config()
 	{

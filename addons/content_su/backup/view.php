@@ -25,12 +25,12 @@ class view extends \addons\content_su\main\view
 		$this->data->mysql_info = \lib\db::global_status();
 
 		$old_backup = @glob(database .'backup/files/*');
-		
+
 		$old_backup_files = [];
 
 		if($old_backup && is_array($old_backup))
 		{
-			foreach ($old_backup as $key => $value) 
+			foreach ($old_backup as $key => $value)
 			{
 				$old_backup_files [] =
 				[
@@ -44,7 +44,7 @@ class view extends \addons\content_su\main\view
 			$old_backup_files = array_reverse($old_backup_files);
 			$this->data->old_backup = $old_backup_files;
 		}
-		
+
 	}
 }
 ?>

@@ -42,7 +42,7 @@ class model extends \addons\content_su\main\model
 	public function backup_schedule()
 	{
 
-		$array = 
+		$array =
 		[
 			'auto_backup' => \lib\utility::post('auto_backup') === 'on' ? true : false,
 			'every'       => \lib\utility::post('every'),
@@ -51,7 +51,7 @@ class model extends \addons\content_su\main\model
 		];
 
 		$array = json_encode($array, JSON_UNESCAPED_UNICODE);
-		
+
 		$url    = database . 'backup';
 
 		if(!\lib\utility\file::exists($url))

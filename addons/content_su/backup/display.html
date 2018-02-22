@@ -5,11 +5,15 @@
   <h2>{%trans "Backup database"%}</h2>
 </div>
 
-{%if auto_backup_log%}
+{%if auto_backup_log or utilityGET.show == 'log' %}
 <div class="cbox">
     <p><a href="{{url.baseFull}}/backup" class="badge primary">{%trans "Back"%}</a></p>
+    {%if auto_backup_log%}
     <pre>
       {{auto_backup_log}}
+    {%else%}
+      <i>{%trans "File is empty"%}...</i>
+    {%endif%}
     </pre>
 </div>
 {%else%}
@@ -24,7 +28,7 @@
         <li>Trafic send: <span>{{(((mysql_info.Bytes_sent) / 1024 ) / 1024) | number_format }}</span> <small>MB</small></li>
       </div>
        <p><a href="{{url.baseFull}}/backup?show=log">{%trans "Show Auto backup log file"%}</a></p>
-      <form method="post">  
+      <form method="post">
         <input type="hidden" name="backup" value="now">
           <h6>{%trans "You can create backup now"%}</h6>
           <button class="btn success block">{%trans "Backup now"%}</button>
@@ -36,7 +40,7 @@
     <div class="cbox">
       <form method="post">
       <input type="hidden" name="backup" value="schedule">
-      
+
       <div class="switch1">
        <input type="checkbox" name="auto_backup" id="auto_backup" {%if config_backup.auto_backup%} checked {%endif%}>
        <label for="auto_backup"></label>
@@ -51,7 +55,7 @@
         {{block('iLifeTime')}}
       </div>
       <button class="btn primary block mT5 ">{%trans "Save"%}</button>
-    </form>    
+    </form>
     </div>
   </div>
 
@@ -87,7 +91,7 @@
       <span class="sf-database fs15  pRa25 vlbottom" ></span>
     </div>
     <div class="c">
-      {{value.name}} | 
+      {{value.name}} |
       <div class="badge secondary">{{value.ago | fitNumber}}</div>
       <div class="badge primary">{%trans "Sise"%} {{value.size | fitNumber}} MB</div>
       <div class="badge danger"><a href="{{url.full}}" data-ajaxify data-data='{"type" : "remove", "file" : "{{value.name}}"}' data-method='post'>{%trans "Remove"%}</a></div>
@@ -152,7 +156,7 @@
   <option value="20" {%if config_backup.time == '20' %} selected {%endif%} >{{"20" | fitNumber}}</option>
   <option value="21" {%if config_backup.time == '21' %} selected {%endif%} >{{"21" | fitNumber}}</option>
   <option value="22" {%if config_backup.time == '22' %} selected {%endif%} >{{"22" | fitNumber}}</option>
-  <option value="23" {%if config_backup.time == '23' %} selected {%endif%} >{{"23" | fitNumber}}</option>     
+  <option value="23" {%if config_backup.time == '23' %} selected {%endif%} >{{"23" | fitNumber}}</option>
 </select>
 {%endblock%}
 
