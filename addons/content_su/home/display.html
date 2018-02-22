@@ -6,6 +6,7 @@
   {%trans "System master controll"%}
 </div>
 <div class="f">
+ <div class="c12 s12">{{block ("iCp")}}</div>
  <div class="c4 s12">{{block ("iTools")}}</div>
  <div class="c4 s12">{{block ("iTransaction")}}</div>
  <div class="c4 s12">{{block ("iLogItems")}}</div>
@@ -20,6 +21,16 @@
 </div>
 {%endblock%}
 
+
+
+{%block iCp%}
+<a class="dcard x1" href='{{url.base}}/cp'>
+ <div class="statistic">
+  <div class="value"><i class="sf-cog"></i></div>
+  <div class="label">{%trans "Control Panel"%}</div>
+ </div>
+</a>
+{%endblock%}
 
 {%block iTools%}
 <a class="dcard x1" href='{{url.baseFull}}/tools'>
