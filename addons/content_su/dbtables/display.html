@@ -1,0 +1,114 @@
+{%extends display.suMain%}
+
+
+
+{%block pageContent%}
+
+{%if all_tables%}
+<div class="f">
+
+  {%for key, value in all_tables%}
+  <div class="c2">
+    <a class="dcard x1 " href='{{url.baseFull}}/dbtables?table={{key}}'>
+     <div class="statistic">
+      <div class="value"><i class="sf-table"></i></div>
+      <div class="label">{{value}}</div>
+     </div>
+    </a>
+  </div>
+  {%endfor%}
+</div>
+{%elseif dataTable%}
+
+ {%if dataFilter%}
+
+  {{block('htmlSearchBox2')}}
+  {{block('htmlTable')}}
+  {{block('htmlFilter')}}
+
+ {%else%}
+
+  {{block('htmlSearchBox2')}}
+  {{block('htmlTable')}}
+
+ {%endif%}
+{%else%}
+ {%if dataFilter%}
+
+  {{block('htmlSearchBox2')}}
+  {{block('htmlFilterNoResult')}}
+
+ {%else%}
+
+  {{block('htmlStartAddNew')}}
+
+ {%endif%}
+{%endif%}
+
+{%endblock%}
+
+
+
+
+{%block htmlSearchBox%}
+<div class="cbox fs12">
+  <form method="get" action='{{url.baseFull}}/dbtables' data-action>
+    <div class="input">
+      <input type="search" name="q" placeholder='{%trans "Search in :dbtabless"%}' id="q" value="{{utilityGET.q}}" autofocus  data-pass='submit' autocomplete='off'>
+      <button class="addon btn ">{%trans "Search" %}</button>
+    </div>
+  </form>
+</div>
+{%endblock%}
+
+
+{%block htmlTable%}
+ <div class="cbox fs12">
+  <table class="tbl bordered1">
+    <thead class="primary">
+      <tr>
+        {%for key, value in all_field%}
+        <th data-sort="{{sort_link[value]['order']}}"><a href='{{sort_link[value]["link"]}}'>{%set myField = value | capitalize%}{%trans value%}</a></th>
+        {%endfor%}
+      </tr>
+    </thead>
+
+    <tbody>
+      {%for key, value in dataTable%}
+      <tr>
+        {%for fkey, fvalue in all_field%}
+        {%if value[fvalue] is iterable%}
+          <td>ARRAY!</td>
+        {%else%}
+          <td>{{value[fvalue]}}</td>
+        {%endif%}
+        {%endfor%}
+      </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+  {%include display.pagination%}
+ </div>
+{%endblock%}
+
+
+{%block htmlFilter%}
+<p class="f fs14 alert alert-info">
+  <span class="c">{{dataFilter | raw}}</span>
+  <a class="cauto" href="{{url.baseFull}}/dbtables">{%trans "Clear filters"%}</a>
+</p>
+{%endblock%}
+
+
+{%block htmlFilterNoResult%}
+<p class="f fs14 alert alert-error">
+  <span class="c">{%trans "Result not found!"%} {%trans "Search with new keywords."%}</span>
+  <a class="cauto" href="{{url.baseFull}}/dbtables">{%trans "Clear filters"%}</a>
+</p>
+{%endblock%}
+
+
+{%block htmlStartAddNew%}
+<p class="fs14 alert alert-success pTB20">{%trans "Hi!"%} <a href="{{url.baseFull}}/dbtables/add">{%trans "Try to start with add new :dbtables!"%}</a></p>
+{%endblock%}
+
