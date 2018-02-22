@@ -10,7 +10,6 @@ class controller
 	use \lib\controller\sessions;
 	use \lib\controller\template;
 	use \lib\controller\url;
-	use \lib\controller\pagnation;
 	use \lib\controller\ref;
 
 
@@ -151,8 +150,6 @@ class controller
 		// 	}
 		// }
 
-		// pagnation config
-		$this->pagnation_config();
 		// save referer of users
 		$this->save_ref();
 		// check if isset remember me and login by this
