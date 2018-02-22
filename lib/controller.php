@@ -40,6 +40,7 @@ class controller
 		 * after ending code this function is called
 		 */
 		register_shutdown_function([$this, 'sp_shutdown']);
+
 		if(MyAccount)
 		{
 			if(AccountService === Domain)
@@ -122,33 +123,7 @@ class controller
 						break;
 				}
 			}
-
 		}
-		$myrep = router::get_repository_name();
-
-		// // running template base module for homepage
-		// if($myrep === 'content' && method_exists($this, 'd_template_finder') && get_class($this) == 'content\home\controller')
-		// {
-		// 	$home_url = \lib\router::get_url();
-
-		// 	if(file_exists(root. 'content/home/controller.php'))
-		// 	{
-		// 		if(!$home_url)
-		// 		{
-		// 			// no url and home controller is exist
-		// 			// route it
-		// 		}
-		// 		else
-		// 		{
-		// 			// route some url in home
-		// 			$this->d_template_finder();
-		// 		}
-		// 	}
-		// 	else
-		// 	{
-		// 		$this->d_template_finder();
-		// 	}
-		// }
 
 		// save referer of users
 		$this->save_ref();
