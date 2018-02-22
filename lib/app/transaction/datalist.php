@@ -7,6 +7,12 @@ trait datalist
 	public static $sort_field =
 	[
 		'id',
+		'verify',
+		'user_id',
+		'type',
+		'budget',
+		'budget_before',
+		'title',
 		'dateverify',
 		'status',
 		'condition',

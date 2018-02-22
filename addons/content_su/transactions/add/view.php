@@ -3,6 +3,21 @@ namespace addons\content_su\transactions\add;
 
 class view extends \addons\content_su\transactions\view
 {
+	public function config()
+	{
+		parent::config();
+		$this->data->modulePath = $this->url('baseFull');
+
+		$this->data->page['title'] = T_("Add new transactions");
+		$this->data->page['desc'] = T_("Add new transactions for every one");
+
+
+		$this->data->page['badge']['link'] = $this->data->modulePath. '/transactions';
+		$this->data->page['badge']['text'] = T_('Back to transactions list');
+
+	}
+
+
 	public function view_add($_args)
 	{
 		$data = $this->model()->loadMyTransaction($_args);

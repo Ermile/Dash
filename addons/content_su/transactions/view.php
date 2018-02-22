@@ -6,7 +6,7 @@ class view extends \addons\content_su\main\view
 	public function config()
 	{
 		parent::config();
-		$this->data->modulePath = $this->url('baseFull');
+		$this->data->modulePath = $this->url('baseFull') . '/transactions';
 
 		$this->data->page['title'] = T_("Transactions list");
 		$this->data->page['desc']  = T_('Check list of Transactions and search or filter in them to find your transactions.'). ' '. T_('Also add or edit specefic transactions.');
@@ -14,7 +14,7 @@ class view extends \addons\content_su\main\view
 
 
 
-		$this->data->page['badge']['link'] = $this->data->modulePath. '/transactions/add';
+		$this->data->page['badge']['link'] = $this->data->modulePath. '/add';
 		$this->data->page['badge']['text'] = T_('Add new transactions');
 
 		$search_string            = \lib\utility::get('q');
