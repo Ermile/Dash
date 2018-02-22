@@ -47,9 +47,15 @@ trait datalist
 		{
 			if(!in_array($option['order'], ['asc', 'desc']))
 			{
-				unset($option['order']);
+				$option['order'] = 'desc';
 			}
 		}
+		else
+		{
+			$option['order'] = 'desc';
+		}
+
+
 
 		if($option['sort'])
 		{

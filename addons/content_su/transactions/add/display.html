@@ -2,91 +2,57 @@
 
 
 {%block pageContent%}
+<div class="f justify-center">
 
-<div class="cbox">
+	<div class="cbox justify-center c6">
 
-{%if transaction_record %}
-<h2>{%trans "Saved record"%}</h2>
+	 <form method="post"  >
+		<div class="input">
+			<label for="title" >{%trans "Title"%}</label>
+			<input type="text" name="title"  id="title" placeholder='{%trans "Title"%} *' required >
+		</div>
 
-<div class="df">
-	<div class="f">
-		<div class="c">{%trans "Code"%}</div>
-		<div class="c">{%trans "Title"%}</div>
-		<div class="c">{%trans "Type"%}</div>
-		<div class="c">{%trans "Date"%}</div>
-		<div class="c">{%trans "Plus"%}</div>
-		<div class="c">{%trans "Minus"%}</div>
-		<div class="c">{%trans "Condition"%}</div>
-		<div class="c">{%trans "Verify"%}</div>
-		<div class="c">{%trans "Description"%}</div>
+		<div class="input">
+			<label for="type" >{%trans "type"%}</label>
+			<select name="type"  id="type" class="select">
+				<option value="">{%trans "Please select one item"%}</option>
+				<option value="money">{%trans "Money"%}</option>
+				<option value="gift">{%trans "Gift"%}</option>
+				<option value="transfer">{%trans "Transfer"%}</option>
+				<option value="prize">{%trans "Prize"%}</option>
+			</select>
+		</div>
+		<div class="input">
+			<label for="unit" >{%trans "Unit"%}</label>
+			<select name="unit"  id="unit" class="select">
+				<option value="">{%trans "Please select one item"%}</option>
+				<option value="toman" selected="">{%trans "Toman"%}</option>
+				<option value="dollar">{%trans "$"%}</option>
+			</select>
+		</div>
+
+		<div class="input">
+			<label for="mobile" >{%trans "Mobile"%}</label>
+			<input type="text" name="mobile"  id="mobile" placeholder='{%trans "Mobile"%} *' required value="{{get_mobile}}">
+		</div>
+
+		<div class="input">
+			<label for="minus" >{%trans "Minus"%}</label>
+			<input type="text" name="minus"  id="minus" placeholder='{%trans "Minus"%}'>
+		</div>
+
+		<div class="input">
+			<label for="plus" >{%trans "Plus"%}</label>
+			<input type="text" name="plus"  id="plus" placeholder='{%trans "Plus"%}'>
+		</div>
+
+		<div class="input">
+			<label for="desc" >{%trans "Description"%}</label>
+			<input type="text" name="desc"  id="desc" placeholder='{%trans "Description"%}'>
+		</div>
+		<button type="submit"  class="btn primary mT15 block">{%trans "Add"%}</button>
+	</form>
+
 	</div>
-	<div class="f">
-		<div class="c">{{transaction_record.code}}</div>
-		<div class="c">{{transaction_record.title}}</div>
-		<div class="c">{%set my_type = transaction_record.type %}{%trans my_type %}</div>
-		{%if site.currentlang == 'fa'%}
-			<div class="c">{{transaction_record.date|jdate("Y-m-d H:i:s")}}</div>
-		{%else%}
-			<div class="c">{{transaction_record.date}}</div>
-		{%endif%}
-		<div class="c">{{transaction_record.plus | number_format  | fitNumber}}</div>
-		<div class="c">{{transaction_record.minus | number_format  | fitNumber}}</div>
-		<div class="c">{%set my_condition = transaction_record.condition %}{%trans my_condition %}</div>
-		<div class="c">{{transaction_record.verify | fitNumber}}</div>
-		<div class="c">{{transaction_record.desc}}</div>
-	</div>
-</div>
-
-<hr>
-<h2>{%trans "Repair to"%}</h2>
-{%endif%}
- <form method="post"  >
-	<div class="input">
-		<label for="title" >{%trans "Title"%}</label>
-		<input type="text" name="title"  id="title" placeholder='{%trans "Title"%} *' required >
-	</div>
-
-	<div class="input">
-		<label for="type" >{%trans "type"%}</label>
-		<select name="type"  id="type" class="select">
-			<option value="">{%trans "Please select one item"%}</option>
-			<option value="money">{%trans "Money"%}</option>
-			<option value="gift">{%trans "Gift"%}</option>
-			<option value="transfer">{%trans "Transfer"%}</option>
-			<option value="prize">{%trans "Prize"%}</option>
-		</select>
-	</div>
-	<div class="input">
-		<label for="unit" >{%trans "Unit"%}</label>
-		<select name="unit"  id="unit" class="select">
-			<option value="">{%trans "Please select one item"%}</option>
-			<option value="toman" selected="">{%trans "Toman"%}</option>
-			<option value="dollar">{%trans "$"%}</option>
-		</select>
-	</div>
-
-	<div class="input">
-		<label for="mobile" >{%trans "Mobile"%}</label>
-		<input type="text" name="mobile"  id="mobile" placeholder='{%trans "Mobile"%} *' required value="{{get_mobile}}">
-	</div>
-
-	<div class="input">
-		<label for="minus" >{%trans "Minus"%}</label>
-		<input type="text" name="minus"  id="minus" placeholder='{%trans "Minus"%}'>
-	</div>
-
-	<div class="input">
-		<label for="plus" >{%trans "Plus"%}</label>
-		<input type="text" name="plus"  id="plus" placeholder='{%trans "Plus"%}'>
-	</div>
-
-	<div class="input">
-		<label for="desc" >{%trans "Description"%}</label>
-		<input type="text" name="desc"  id="desc" placeholder='{%trans "Description"%}'>
-	</div>
-	<bottom type="submit"  class="btn primary mT15 block"  value=''>{%trans "Add"%}</bottom>
-</form>
-<br>
-
 </div>
 {%endblock%}

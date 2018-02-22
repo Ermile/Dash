@@ -195,6 +195,7 @@ class model extends \addons\content_su\main\model
 		if(debug::$status)
 		{
 			debug::true(T_("Transaction inserted"));
+			$this->redirector($this->url('baseFull'). '/transactions');
 		}
 	}
 }

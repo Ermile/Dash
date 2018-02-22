@@ -62,7 +62,7 @@
       	<th data-sort={{sort_link.status.order}}><a href="{{sort_link.status.link}}">{%trans "Status"%}</a></th>
       	<th data-sort={{sort_link.condition.order}}><a href="{{sort_link.condition.link}}">{%trans "Condition"%}</a></th>
       	<th data-sort={{sort_link.verify.order}}><a href="{{sort_link.verify.link}}">{%trans "Verify"%}</a></th>
-      	<th data-sort={{sort_link.payment.order}}><a href="{{sort_link.payment.link}}">{%trans "Payment"%}</a></th>
+      	<th data-sort={{sort_link.date.order}}><a href="{{sort_link.date.link}}">{%trans "Date"%}</a></th>
       </tr>
     </thead>
 
@@ -80,7 +80,7 @@
 		<td>{%set my_status = value.status | capitalize%}<a href="{{url.baseFull}}/transactions?status={{value.status}}">{%trans my_status%}</a></td>
 		<td>{%set my_condition = value.condition | capitalize%}<a href="{{url.baseFull}}/transactions?condition={{value.condition}}">{%trans my_condition%}</a></td>
 		<td>{%if value.verify%}<i class="sf-check-1 fc-green"></i>{%else%}<i class="sf-times fc-red"></i>{%endif%}</td>
-		<td>{%set my_payment = value.payment | capitalize%}<a href="{{url.baseFull}}/transactions?payment={{value.payment}}">{%trans my_payment%}</a></td>
+		<td title="{{value.date}}">{{value.date | tdate}}</td>
       </tr>
       {%endfor%}
     </tbody>
