@@ -2,87 +2,114 @@
 
 
 {%block content%}
-
-
-<div class="f mT15">
- <div class="c4 s12">
-  <div class="dcard">
-   <div class="f">
-   	<h5 class="c fc-mute">{%trans "Client"%}</h5>
-   	<h4 class="cauto fc-danger fs30 txtra counter">{{80 | number_format}}</h4>
-   </div>
-   <div class="f">
-   <div class="progress" data-percent='45'>
-    <div class="bar"></div>
-   </div>
-   </div>
-  </div>
- </div>
- <div class="c4 s12">
-  <div class="dcard">
-   <div class="f">
-   	<h5 class="c fc-mute">{%trans "User"%}</h5>
-   	<h4 class="cauto fc-warn fs30 txtra counter">{{1530 | number_format}}</h4>
-   </div>
-   <div class="f">
-   <div class="progress" data-percent='85'>
-    <div class="bar"></div>
-   </div>
-   </div>
-  </div>
- </div>
- <div class="c4 s12">
-  <div class="dcard">
-   <div class="f">
-   	<h5 class="c fc-mute">{%trans "Invoice"%}</h5>
-   	<h4 class="cauto fc-info fs30 txtra counter">{{26 | number_format}}</h4>
-   </div>
-   <div class="f">
-   <div class="progress" data-percent='15'>
-    <div class="bar"></div>
-   </div>
-   </div>
-  </div>
- </div>
+<div class="tbox">
+  {%trans "System master controll"%}
 </div>
-
 <div class="f">
- <div class="c3 s12">
-  <div class="dcard">
-   <div class="statistic gray">
-    <div class="value"><i class="sf-plane"></i><span class="counter">{{520 | number_format}}</span></div>
-    <div class="label">{%trans "Flights"%}</div>
-   </div>
-  </div>
- </div>
- <div class="c3 s12">
-  <div class="dcard">
-   <div class="statistic teal">
-    <div class="value"><i class="sf-chart-bar"></i><span class="counter">{{800 | number_format}}</span></div>
-    <div class="label">{%trans "Views"%}</div>
-   </div>
-  </div>
- </div>
- <div class="c3 s12">
-  <div class="dcard">
-   <div class="statistic orange">
-    <div class="value"><i class="sf-star"></i><span class="counter">{{60 | number_format}}</span></div>
-    <div class="label">{%trans "Favs"%}</div>
-   </div>
-  </div>
- </div>
- <div class="c3 s12">
-  <div class="dcard">
-   <div class="statistic blue">
-    <div class="value"><i class="sf-cloud-download"></i><span class="counter">{{370 | number_format}}</span></div>
-    <div class="label">{%trans "Downloads"%}</div>
-   </div>
-  </div>
- </div>
+ <div class="c4 s12">{{block ("iTools")}}</div>
+ <div class="c4 s12">{{block ("iTransaction")}}</div>
+ <div class="c4 s12">{{block ("iLogItems")}}</div>
+ <div class="c4 s12">{{block ("iLogs")}}</div>
+ <div class="c4 s12">{{block ("iUsers")}}</div>
+ <div class="c4 s12">{{block ("iNotifications")}}</div>
+ <div class="c4 s12">{{block ("iShortURL")}}</div>
+ <div class="c4 s12">{{block ("iSendNotify")}}</div>
+ {%if url.tld == 'local'%}
+  <div class="c4 s12">{{block ("iSample")}}</div>
+ {%endif%}
 </div>
-
-
-
-
-
 {%endblock%}
+
+
+{%block iTools%}
+<a class="dcard x1" href='{{url.baseFull}}/tools'>
+ <div class="statistic">
+  <div class="value"><i class="sf-cogs"></i></div>
+  <div class="label">{%trans "Tools"%}</div>
+ </div>
+</a>
+{%endblock%}
+
+
+{%block iTransaction%}
+<a class="dcard x1" href='{{url.baseFull}}/transactions'>
+ <div class="statistic">
+  <div class="value"><i class="sf-card"></i></div>
+  <div class="label">{%trans "Transactions"%}</div>
+ </div>
+</a>
+{%endblock%}
+
+
+
+{%block iLogItems%}
+<a class="dcard x1" href='{{url.baseFull}}/logitems'>
+ <div class="statistic">
+  <div class="value"><i class="sf-list"></i></div>
+  <div class="label">{%trans "Log items"%}</div>
+ </div>
+</a>
+{%endblock%}
+
+{%block iLogs%}
+<a class="dcard x1" href='{{url.baseFull}}/logs'>
+ <div class="statistic">
+  <div class="value"><i class="sf-align-justify-1"></i></div>
+  <div class="label">{%trans "Logs"%}</div>
+ </div>
+</a>
+{%endblock%}
+
+
+
+{%block iUsers%}
+<a class="dcard x1" href='{{url.baseFull}}/users'>
+ <div class="statistic">
+  <div class="value"><i class="sf-users"></i></div>
+  <div class="label">{%trans "Users"%}</div>
+ </div>
+</a>
+{%endblock%}
+
+
+{%block iNotifications%}
+<a class="dcard x1" href='{{url.baseFull}}/notifications'>
+ <div class="statistic">
+  <div class="value"><i class="sf-bell"></i></div>
+  <div class="label">{%trans "Notifications"%}</div>
+ </div>
+</a>
+{%endblock%}
+
+
+
+{%block iShortURL%}
+<a class="dcard x1" href='{{url.baseFull}}/shorturl'>
+ <div class="statistic">
+  <div class="value"><i class="sf-link"></i></div>
+  <div class="label">{%trans "Notifications"%}</div>
+ </div>
+</a>
+{%endblock%}
+
+
+
+{%block iSendNotify%}
+<a class="dcard x1" href='{{url.baseFull}}/sendnotify'>
+ <div class="statistic">
+  <div class="value"><i class="sf-bullhorn"></i></div>
+  <div class="label">{%trans "Send notify"%}</div>
+ </div>
+</a>
+{%endblock%}
+
+
+{%block iSample%}
+<a class="dcard x1" href='{{url.baseFull}}/sample'>
+ <div class="statistic">
+  <div class="value"><i class="sf-male-rounded-1"></i></div>
+  <div class="label">{%trans "Sample"%}</div>
+ </div>
+</a>
+{%endblock%}
+
