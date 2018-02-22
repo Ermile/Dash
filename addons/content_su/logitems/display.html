@@ -1,13 +1,9 @@
 {%extends display.suMain%}
 
 
-{%block content%}
-<div class="tbox">
-	<h2>{%trans "Logitems List"%}</h2>
-</div>
+{%block pageContent%}
+
 <div class="cbox">
-
-
  <form method="get" class="" data-action>
 	<div class="input">
 		<label for="search" class="addon">{%trans "Search"%}</label>
@@ -18,40 +14,31 @@
 
 <table class="tbl mT15">
 	<thead>
-		<th><a href="{{url.base}}/su/logitems/{{order_url.id}}">{%trans "ID"%}</a></th>
-		<th><a href="{{url.base}}/su/logitems/{{order_url.type}}">{%trans "Type"%}</a></th>
-		<th><a href="{{url.base}}/su/logitems/{{order_url.caller}}">{%trans "Caller"%}</a></th>
-		<th><a href="{{url.base}}/su/logitems/{{order_url.title}}">{%trans "Title"%}</a></th>
-		<th><a href="{{url.base}}/su/logitems/{{order_url.priority}}">{%trans "Priority"%}</a></th>
-		<th><a href="{{url.base}}/su/logitems/{{order_url.datecreated}}">{%trans "datecreated"%}</a></th>
-		<th>{%trans "Edit"%}</th>
-
+		<tr>
+			<th>{%trans "ID"%}</th>
+			<th>{%trans "Type"%}</th>
+			<th>{%trans "Caller"%}</th>
+			<th>{%trans "Title"%}</th>
+			<th>{%trans "Priority"%}</th>
+			<th>{%trans "datecreated"%}</th>
+			<th>{%trans "Edit"%}</th>
+		</tr>
 	</thead>
+
 	<tbody>
 		{%for key, value in logitems_list%}
 		<tr>
-			<td><a href="{{url.base}}/su/logitems/detail/{{value.id}}">{{value.id|fitNumber}}</a></td>
+			<td>{{value.id|fitNumber}}</td>
 			<td>{{value.type}}</td>
-			<td><a href="{{url.base}}/su/logitems/caller={{value.caller}}">{{value.caller}}</a></td>
+			<td><a href="{{url.base}}/su/logs/caller={{value.caller}}"  title='{%trans "Click to show all logs by this logitems"%}'>{{value.caller}}</a></td>
 			<td>{{value.title}}</td>
 			<td>{%set myPriority = value.priority |capitalize %}{%trans myPriority%}</td>
-
-			{%if site.currentlang == 'fa'%}
-				<td>{{value.datecreated|jdate("Y-m-d H:i:s")}}</td>
-			{%else%}
-				<td>{{value.datecreated}}</td>
-			{%endif%}
+			<td>{{value.datecreated | tdate}}</td>
 			<td><a href="{{url.base}}/su/logitems/edit/{{value.id}}"><i class="sf-edit"></i></a></td>
 		</tr>
 		{%endfor%}
-
 	</tbody>
-
 </table>
 {%include display.pagination%}
 </div>
-
-
-
-
 {%endblock%}
