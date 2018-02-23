@@ -85,7 +85,7 @@ class view extends \mvc\view
 
 
 
-	public static function make_sort_link($_field, $_url)
+	public static function su_make_sort_link($_field, $_url)
 	{
 		$get = \lib\utility::get(null, 'raw');
 		if(!is_array($get))
@@ -145,7 +145,7 @@ class view extends \mvc\view
 	}
 
 
-	public function createFilterMsg($_searchText, $_filterArray)
+	public function su_createFilterMsg($_searchText, $_filterArray)
 	{
 		$result = null;
 

@@ -37,7 +37,7 @@ class view extends \addons\content_su\main\view
 
 			$this->data->all_field = \lib\app\dbtables::get_field();
 
-			$this->data->sort_link = self::make_sort_link(\lib\app\dbtables::sort_field(), $this->url('baseFull'). '/dbtables');
+			$this->data->sort_link = self::su_make_sort_link(\lib\app\dbtables::sort_field(), $this->url('baseFull'). '/dbtables');
 			$this->data->dataTable = \lib\app\dbtables::list(\lib\utility::get('q'), $args);
 
 			$check_empty_datatable = $args;
@@ -45,7 +45,7 @@ class view extends \addons\content_su\main\view
 			unset($check_empty_datatable['order']);
 
 			// set dataFilter
-			$this->data->dataFilter = $this->createFilterMsg($search_string, $check_empty_datatable);
+			$this->data->dataFilter = $this->su_createFilterMsg($search_string, $check_empty_datatable);
 		}
 		else
 		{

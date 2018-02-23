@@ -49,7 +49,7 @@ class view extends \addons\content_su\main\view
 			$args['transactions.type'] = \lib\utility::get('type');
 		}
 
-		$this->data->sort_link  = self::make_sort_link(\lib\app\transaction::$sort_field, $this->data->modulePath);
+		$this->data->sort_link  = self::su_make_sort_link(\lib\app\transaction::$sort_field, $this->data->modulePath);
 		$this->data->dataTable = \lib\app\transaction::list(\lib\utility::get('q'), $args);
 
 		$check_empty_datatable = $args;
@@ -57,7 +57,7 @@ class view extends \addons\content_su\main\view
 		unset($check_empty_datatable['order']);
 
 		// set dataFilter
-		$this->data->dataFilter = $this->createFilterMsg($search_string, $check_empty_datatable);
+		$this->data->dataFilter = $this->su_createFilterMsg($search_string, $check_empty_datatable);
 	}
 }
 ?>
