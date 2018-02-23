@@ -6,7 +6,12 @@
   {%trans "System master controll"%}
 </div>
 <div class="f">
- <div class="c12 s12">{{block ("iCp")}}</div>
+  <div class="c12">
+    <div class="f ">
+      <div class="c8 s12">{{block ("iCp")}}</div>
+      <div class="c4 s12">{{block ("iCms")}}</div>
+    </div>
+  </div>
  <div class="c4 s12">{{block ("iTools")}}</div>
  <div class="c4 s12">{{block ("iTransaction")}}</div>
  <div class="c4 s12">{{block ("iLogItems")}}</div>
@@ -32,6 +37,16 @@
 </a>
 {%endblock%}
 
+
+
+{%block iCms%}
+<a class="dcard x1" href='{{url.base}}/cp/cms'>
+ <div class="statistic">
+  <div class="value"><i class="sf-diamond"></i></div>
+  <div class="label">{%trans "CMS"%}</div>
+ </div>
+</a>
+{%endblock%}
 
 
 {%block iCp%}
