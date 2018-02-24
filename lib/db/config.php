@@ -559,7 +559,7 @@ class config
 			}
 		}
 
-		if($_options['order_raw'])
+		if(isset($_options['order_raw']) && $_options['order_raw'])
 		{
 			$order = " ORDER BY ".  $_options['order_raw'];
 		}

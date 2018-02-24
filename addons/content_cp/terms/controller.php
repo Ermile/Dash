@@ -4,7 +4,7 @@ namespace addons\content_cp\terms;
 
 class controller extends \addons\content_cp\main\controller
 {
-	function ready()
+	public function ready()
 	{
 
 		$this->post('terms')->ALL();

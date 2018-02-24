@@ -8,7 +8,7 @@ trait template
 	 * first search in posts and if not exist search in terms table
 	 * @return [array] datarow of result if exist else return false
 	 */
-	function s_template_finder()
+	public function s_template_finder()
 	{
 		//first of all search in url field if exist return row data
 		$tmp_result = $this->get_posts();
