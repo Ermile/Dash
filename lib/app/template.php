@@ -358,6 +358,11 @@ class template
 	{
 		$myUrl = self::get_my_url();
 
+		if(self::ignore_url($myUrl))
+		{
+			return false;
+		}
+
 		$term_data = \lib\db\terms::get(['url' => $myUrl, 'type' => 'cat', 'limit' => 1]);
 
 		if($term_data)
@@ -403,6 +408,24 @@ class template
 			\lib\error::page(T_("Does not exist!"));
 			return false;
 		}
+	}
+
+	/**
+	* some url is ignored
+	*/
+	public static function ignore_url($_url)
+	{
+		if(substr($_url, 0, 7) === 'static/')
+		{
+			return true;
+		}
+
+		if(substr($_url, 0, 6) === 'files/')
+		{
+			return true;
+		}
+
+		return false;
 	}
 
 }
