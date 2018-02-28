@@ -131,13 +131,15 @@ class human
 	 * @param  [type] $_lang [description]
 	 * @return [type]        [description]
 	 */
-	public static function fitNumber($_number)
+	public static function fitNumber($_number, $_autoFormat = true)
 	{
 		$new_text = $_number;
 		if(is_numeric($new_text))
 		{
-			$new_text = (number_format($new_text));
-
+			if($_autoFormat)
+			{
+				$new_text = (number_format($new_text));
+			}
 		}
 		$new_text = self::number($new_text);
 		return $new_text;

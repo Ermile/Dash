@@ -150,9 +150,9 @@ trait twigAddons
 	 */
 	public function twig_filter_fitNumber()
 	{
-		return new \Twig_SimpleFilter('fitNumber', function ($_number)
+		return new \Twig_SimpleFilter('fitNumber', function ($_number, $_autoFormat = true)
 		{
-			return \lib\utility\human::number($_number, $this->data->site['currentlang']);
+			return \lib\utility\human::fitNumber($_number, $_autoFormat);
 		});
 	}
 
