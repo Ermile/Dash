@@ -599,6 +599,115 @@ class controller
 	}
 
 
+	public function new_url($_type, $_arg = null)
+	{
+		$new_url = null;
+		switch ($_type)
+		{
+			case 'base':
+				$new_url = \lib\url::base();
+				break;
+
+			case 'content':
+				$new_url = \lib\url::content();
+				break;
+
+			case 'baseContent':
+				$new_url = \lib\url::content();
+				break;
+
+			case 'baseFull':
+				$new_url = \lib\url::content();
+				break;
+
+			case 'prefix':
+				$new_url = \lib\url::content();
+				break;
+
+			case 'sub':
+				$new_url = \lib\url::subdomain();
+				break;
+
+			case 'path':
+				$new_url = \lib\url::path();
+				break;
+
+			case 'breadcrumb':
+
+				break;
+
+			case 'param':
+				$new_url = \lib\url::property();
+				break;
+
+			case 'tld':
+				$new_url = \lib\url::tld();
+				break;
+
+			case 'domain':
+				$new_url = \lib\url::domain();
+				break;
+
+			case 'raw':
+
+				break;
+
+			case 'root':
+				$new_url = \lib\url::root();
+				break;
+
+			case 'MainProtocol':
+
+				break;
+
+			case 'MainSite':
+
+				break;
+
+			case 'baseRaw':
+				$new_url = \lib\url::domain();
+				break;
+
+			case 'full':
+				$new_url = \lib\url::full();
+				break;
+
+			case 'module':
+
+				break;
+
+			case 'tags':
+
+				break;
+
+			case 'cats':
+
+				break;
+
+			case 'pages':
+
+				break;
+
+			case 'child':
+
+				break;
+
+			case 'LoginService':
+
+				break;
+
+			case 'account':
+
+				break;
+
+			case 'MainService':
+
+				break;
+		}
+		return $new_url;
+	}
+
+
 	/**
 	 * clearly return url property for use
 	 * @param  [type] $_type type of url you need
