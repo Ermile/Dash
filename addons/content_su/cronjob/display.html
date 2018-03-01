@@ -1,0 +1,32 @@
+{%extends display.suMain%}
+
+{%block pageContent%}
+
+
+<div class="f">
+
+  <div class="c mLa5">
+    <div class="cbox">
+      <form method="post">
+
+        <div class="switch1">
+         <input type="checkbox" name="active" id="active" {%if cronjob%} checked {%endif%}>
+         <label for="active"></label>
+         <label for="active">{%trans "Run cronjob for this service"%}</label>
+        </div>
+        <button class="btn primary block mT5 ">{%trans "Save"%}</button>
+    </form>
+    </div>
+  </div>
+
+</div>
+
+{%endblock%}
+
+
+
+
+
+
+
+

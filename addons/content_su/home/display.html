@@ -13,6 +13,7 @@
     </div>
   </div>
  <div class="c4 s12">{{block ("iTools")}}</div>
+ <div class="c4 s12">{{block ("iCronjob")}}</div>
  <div class="c4 s12">{{block ("iTransaction")}}</div>
  <div class="c4 s12">{{block ("iLogItems")}}</div>
  <div class="c4 s12">{{block ("iLogs")}}</div>
@@ -37,6 +38,15 @@
 </a>
 {%endblock%}
 
+
+{%block iCronjob%}
+<a class="dcard x1" href='{{url.baseFull}}/cronjob'>
+ <div class="statistic">
+  <div class="value"><i class="sf-terminal"></i></div>
+  <div class="label">{%trans "Cronjob"%}</div>
+ </div>
+</a>
+{%endblock%}
 
 
 {%block iCms%}
