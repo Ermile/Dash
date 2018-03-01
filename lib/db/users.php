@@ -398,40 +398,6 @@ class users
 		 */
 		\lib\user::init($_user_id, $user_data);
 
-		// set main cat of session
-		$_SESSION['user']       = [];
-		$_SESSION['contact']    = [];
-		$_SESSION['permission'] = [];
-
-		foreach ($user_data as $key => $value)
-		{
-			if($key === 'meta')
-			{
-				$_SESSION['user'][$key] = json_decode($value, true);
-			}
-			else
-			{
-				$_SESSION['user'][$key] = $value;
-			}
-		}
-
-		// $contact_detail = \lib\db\contacts::get(['user_id' => $_user_id]);
-
-		// if(is_array($contact_detail))
-		// {
-		// 	foreach ($contact_detail as $key => $value)
-		// 	{
-		// 		if(isset($value['key']) && isset($value['value']))
-		// 		{
-		// 			$_SESSION['contacts'][$value['key']] = $value['value'];
-		// 		}
-
-		// 		if(isset($value['desc']) && $value['desc'])
-		// 		{
-		// 			$_SESSION['contacts'][$value['key'].'_desc'] = $value['desc'];
-		// 		}
-		// 	}
-		// }
 	}
 
 

@@ -1,9 +1,6 @@
 <?php
 namespace lib\controller;
-use \lib\db\logs;
-use \lib\utility\notification;
-use \lib\utility;
-use \lib\debug;
+
 
 trait ref
 {
@@ -15,10 +12,10 @@ trait ref
 	{
 		// it the user is not login and use from ref in url
 		// plus click ref of the referer user
-		if(utility::get("ref") && !$this->login())
+		if(\lib\utility::get("ref") && !$this->login())
 		{
-			$url_ref = utility::get('ref');
-			$url_ref = utility\shortURL::decode($url_ref);
+			$url_ref = \lib\utility::get('ref');
+			$url_ref = \lib\utility\shortURL::decode($url_ref);
 
 			if(!$url_ref)
 			{

@@ -16,15 +16,15 @@ trait login
 		{
 			if($_name === "all")
 			{
-				return isset($_SESSION['user'])? $_SESSION['user']: null;
+				return \lib\user::detail();
 			}
 			else
 			{
-				return isset($_SESSION['user'][$_name])? $_SESSION['user'][$_name]: null;
+				return \lib\user::detail($_name);
 			}
 		}
 
-		if(isset($_SESSION['user']['id']))
+		if(\lib\user::id())
 		{
 			return true;
 		}
