@@ -11,9 +11,10 @@ trait SESSION
 	*/
 	public static function clean_session()
 	{
-		$_SESSION['enter'] = [];
-		$_SESSION['step']  = [];
-		$_SESSION['lock']  = [];
+		unset($_SESSION['enter']);
+		unset($_SESSION['step']);
+		unset($_SESSION['lock']);
+		unset($_SESSION['alert']);
 	}
 
 

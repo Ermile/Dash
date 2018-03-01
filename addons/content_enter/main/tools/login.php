@@ -127,6 +127,8 @@ trait login
 
 		if($_auto_redirect)
 		{
+			// clean session
+			self::clean_session();
 			// go to new address
 			self::go_redirect($url, false, true);
 		}
@@ -179,7 +181,6 @@ trait login
 		if(session_status() === PHP_SESSION_ACTIVE)
 		{
 			session_destroy();
-
 		}
 
 		if($_auto_redirect)
