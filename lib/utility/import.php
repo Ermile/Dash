@@ -14,7 +14,7 @@ class import
         }
 
         $header = [];
-        $rows   = [];
+        $data   = [];
 
         if(($handle = fopen($_file, "r")) !== false)
         {
@@ -26,7 +26,7 @@ class import
                 }
                 else
                 {
-                    $rows[] = $one_rows;
+                    $data[] = $one_rows;
                 }
             }
             fclose($handle);
@@ -34,13 +34,14 @@ class import
 
         $result = [];
 
-        foreach ($rows as $key => $value)
+        foreach ($data as $key => $value)
         {
-            $result[]  = array_combine($header, $value);
+            if(count($value) === count($header))
+            {
+                $result[]  = array_combine($header, $value);
+            }
         }
-
         return $result;
     }
-
 }
 ?>
