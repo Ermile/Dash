@@ -68,7 +68,7 @@ class file
 
 		// $ready_upload['user_size_remaining'] = self::remaining(\lib\user::id());
 
-		upload::$extentions = ['png', 'jpeg', 'jpg'];
+		// upload::$extentions = ['png', 'jpeg', 'jpg'];
 
 		$upload      = upload::upload($ready_upload);
 

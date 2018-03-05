@@ -68,7 +68,7 @@ trait link
 
 		$ready_upload['user_size_remaining'] = self::remaining($this->user_id);
 
-		upload::$extentions = ['png', 'jpeg', 'jpg'];
+		// upload::$extentions = ['png', 'jpeg', 'jpg'];
 
 		$upload      = upload::upload($ready_upload);
 
