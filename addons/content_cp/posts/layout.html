@@ -156,11 +156,29 @@
 <div class=" cbox">
   <div class="normal f">
 
-    {% for key, value in dataRaw.meta.gallery%}
+    {% for key, myUrl in dataRaw.meta.gallery%}
       <div class="vcard mA10">
-        <img src="{{value}}">
+
+        {%if myUrl ends with '.jpg' or myUrl ends with '.png' or myUrl ends with '.gif'%}
+        <img src="{{myUrl}}">
         <div class="content"></div>
-        <div class="footer">
+        {%elseif myUrl ends with '.mp4' %}
+        <video>
+          <source src="{{myUrl}}" type="video/mp4">
+        </video>
+        <div class="content"><a href="{{myUrl}}" title='{%trans "Click to download"%}'>{%trans "Video"%}</a></div>
+        <div class="content"></div>
+        {%elseif myUrl ends with '.mp3' %}
+        <audio controls>
+          <source src="{{myUrl}}" type="audio/mpeg">
+        </audio>
+        <div class="content"><a href="{{myUrl}}" title='{%trans "Click to download"%}'>{%trans "MP3"%}</a></div>
+        {%elseif myUrl ends with '.pdf' %}
+          <div class="content title"><a href="{{myUrl}}" title='{%trans "Click to download"%}'>{%trans "PDF"%}</a></div>
+        {%else%}
+        <div class="content title"><a href="{{myUrl}}" title='{%trans "Click to download"%}'>{%trans "Without preview"%}</a></div>
+        {%endif%}
+        <div class="footer f">
           <button class="btn block secondary" data-ajaxify data-data='{"type" : "remove_gallery", "id": "{{key}}"}' data-method='post'>{%trans "Remove"%}</button>
         </div>
       </div>
