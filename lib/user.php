@@ -31,6 +31,13 @@ class user
 	}
 
 
+	public static function refresh()
+	{
+		$detail = \lib\db\users::get_by_id(self::id());
+		self::init(self::id(), $detail);
+	}
+
+
 	public static function update_session($_user_id)
 	{
 		$detail = \lib\db\users::get_by_id($_user_id);
