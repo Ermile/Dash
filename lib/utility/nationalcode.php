@@ -3,6 +3,30 @@ namespace lib\utility;
 
 class nationalcode
 {
+	public static function fit_syntax($_national_code)
+	{
+		if(mb_strlen($_national_code) === 10)
+		{
+			$split   = str_split($_national_code);
+			$result  = $split[0];
+			$result .= $split[1];
+			$result .= $split[2];
+			$result .= '-';
+			$result .= $split[3];
+			$result .= $split[4];
+			$result .= $split[5];
+			$result .= $split[6];
+			$result .= $split[7];
+			$result .= $split[8];
+			$result .= '-';
+			$result .= $split[9];
+			return $result;
+		}
+		else
+		{
+			return $_national_code;
+		}
+	}
 
 	public static function check($_national_code)
 	{
