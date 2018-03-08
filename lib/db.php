@@ -66,6 +66,13 @@ class db
 		{
 			return null;
 		}
+
+		// to fix: mysql server has gone away!
+		if(!@mysqli_ping(self::$link))
+		{
+			return false;
+		}
+
 		// get time before execute query
 		$qry_exec_time = microtime(true);
 		/**
