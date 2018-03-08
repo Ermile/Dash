@@ -163,7 +163,7 @@ trait user_data
 	{
 		if(self::get_enter_session('dont_will_set_mobile'))
 		{
-			$_args['dontwillsetmobile'] = date("Y-m-d H:i:s");
+			// $_args['dontwillsetmobile'] = date("Y-m-d H:i:s");
 		}
 		else
 		{
