@@ -599,111 +599,216 @@ class controller
 	}
 
 
-	public function new_url($_type, $_arg = null)
+	public function url($_type = false, $_arg = null)
 	{
+		$base = null;
+        $base .= \lib\url::protocol(). '://';
+        $base .= \lib\url::host();
+        if($lang = \lib\url::lang())
+    	{
+    		$base .= '/'. $lang;
+    	}
+
 		$new_url = null;
 		switch ($_type)
 		{
-			case 'base':
-				$new_url = \lib\url::base();
+			case 'tld':
+				$new_url = \lib\url::tld();
 				break;
 
 			case 'content':
 				$new_url = \lib\url::content();
 				break;
 
+			case 'full':
+				$new_url = \lib\url::full();
+				break;
+
+			case 'base':
+				$new_url = $base;
+				break;
+
 			case 'baseContent':
-				$new_url = \lib\url::content();
+				$base = null;
+		        $base .= \lib\url::protocol(). '://';
+		        $base .= \lib\url::host();
+				$new_url = $base;
+				if($content = \lib\url::content())
+				{
+					$new_url .= '/'. $content;
+				}
 				break;
 
 			case 'baseFull':
-				$new_url = \lib\url::content();
+			case 'baseRaw':
+				$new_url = $base;
+				if($content = \lib\url::content())
+				{
+					$new_url .= '/'. $content;
+				}
 				break;
 
 			case 'prefix':
-				$new_url = \lib\url::content();
+				$prefix = null;
+				if($lang = \lib\url::lang())
+				{
+					$prefix .= $lang;
+				}
+				if($content = \lib\url::content())
+				{
+					$prefix .= '/'. $content;
+				}
+				$new_url = $prefix;
 				break;
 
 			case 'sub':
 				$new_url = \lib\url::subdomain();
 				break;
 
+
 			case 'path':
-				$new_url = \lib\url::path();
+				$path = \lib\url::dir();
+				if(isset($path[0]) && $path[0] === \lib\url::content())
+				{
+					unset($path[0]);
+				}
+				if(is_array($path) && $path)
+				{
+					$path = implode('/', $path);
+				}
+				else
+				{
+					$path = null;
+				}
+
+				if($lang = \lib\url::lang())
+				{
+					$path = $lang . '/'. $path;
+				}
+
+				$new_url = $path;
 				break;
 
 			case 'breadcrumb':
+				$breadcrumb = \lib\url::dir();
+				if(isset($breadcrumb[0]) && $breadcrumb[0] === \lib\url::content())
+				{
+					unset($breadcrumb[0]);
+				}
 
+				if(is_array($breadcrumb) && $breadcrumb)
+				{
+					$temp = [];
+					foreach ($breadcrumb as $key => $value)
+					{
+						if(strpos($value, '=') !== false)
+						{
+							$split = explode('=', $value);
+							array_push($temp, $split[0]);
+						}
+						else
+						{
+							array_push($temp, $value);
+						}
+					}
+				}
+				else
+				{
+					$breadcrumb = [];
+				}
+
+				$new_url = $breadcrumb;
 				break;
 
 			case 'param':
-				$new_url = \lib\url::property();
-				break;
-
-			case 'tld':
-				$new_url = \lib\url::tld();
+				$new_url = \lib\url::query();
 				break;
 
 			case 'domain':
-				$new_url = \lib\url::domain();
-				break;
-
-			case 'raw':
-
-				break;
-
-			case 'root':
 				$new_url = \lib\url::root();
 				break;
 
-			case 'MainProtocol':
-
-				break;
-
-			case 'MainSite':
-
-				break;
-
-			case 'baseRaw':
+			case 'raw':
 				$new_url = \lib\url::domain();
 				break;
 
-			case 'full':
-				$new_url = \lib\url::full();
+			case 'root':
+				$new_url = \lib\url::base();
+				break;
+
+			case 'MainProtocol':
+				$new_url = \lib\url::protocol();
+				break;
+
+			case 'MainSite':
+				$new_url = \lib\url::domain();
 				break;
 
 			case 'module':
+			case 'child':
+				$module = \lib\url::dir();
+				if(isset($module[0]) && $module[0] === \lib\url::content())
+				{
+					unset($module[0]);
+				}
 
+				$module = array_values($module);
+
+				if(is_array($module) && isset($module[0]))
+				{
+					$module = $module[0];
+				}
+				else
+				{
+					$module = null;
+				}
+				if($_type === 'module')
+				{
+					$new_url = $module;
+				}
+				else
+				{
+					if(isset($module[0]) && $module[0] === $module)
+					{
+						unset($module[0]);
+					}
+
+					$module = array_values($module);
+
+					if(is_array($module) && isset($module[0]))
+					{
+						$child = $module[0];
+					}
+					else
+					{
+						$child = null;
+					}
+
+					$new_url = $child;
+				}
 				break;
 
 			case 'tags':
-
 				break;
 
 			case 'cats':
-
 				break;
 
 			case 'pages':
-
-				break;
-
-			case 'child':
-
 				break;
 
 			case 'LoginService':
-
-				break;
-
 			case 'account':
-
+				$new_url = null;
+				$new_url .= \lib\url::protocol(). '://';
+				$new_url .= \lib\url::domain(). '/account';
 				break;
 
 			case 'MainService':
-
+				$new_url = \lib\url::protocol(). '://ermile.'. \lib\url::tld();
 				break;
 		}
+
 		return $new_url;
 	}
 
@@ -714,8 +819,9 @@ class controller
 	 * @param  [type] $_arg  an argument for pass into some condition
 	 * @return [type]        the url value
 	 */
-	public function url($_type = null, $_arg = null)
+	public function old_url($_type = null, $_arg = null)
 	{
+
 		$tmp_result = null;
 		$myprefix   = Protocol."://";
 
