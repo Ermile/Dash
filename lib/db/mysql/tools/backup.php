@@ -117,6 +117,7 @@ trait backup
 		[
 			'lock_tables' => false,
 			'download'    => true,
+			'db_name'     => null,
 		];
 
 		if(!is_array($_options))
@@ -126,10 +127,18 @@ trait backup
 
 		$_options = array_merge($default_options, $_options);
 
-		
+		if(!$_options['db_name'])
+		{
+			$db_name = \lib\db::$db_name;
+		}
+		else
+		{
+			$db_name = $_options['db_name'];
+		}
+
 		$db_host    = \lib\db::$db_host;
 		$db_charset = \lib\db::$db_charset;
-		$dest_file  = \lib\db::$db_name.'_'. date('Y-m-d_H-i-s'). '.sql.bz2';
+		$dest_file  = $db_name.'_'. date('Y-m-d_H-i-s'). '.sql.bz2';
 		$dest_dir   = database."backup/files/";
 		// create folder if not exist
 		if(!is_dir($dest_dir))
@@ -146,7 +155,7 @@ trait backup
 
 		$cmd .= " --host='$db_host' --set-charset='$db_charset'";
 		$cmd .= " --user='".\lib\db::$db_user."'";
-		$cmd .= " --password='".\lib\db::$db_pass."' '". \lib\db::$db_name."'";
+		$cmd .= " --password='".\lib\db::$db_pass."' '". $db_name."'";
 		$cmd .= " | bzip2 -c > $dest_dir$dest_file";
 		// to import this file
 		// bunzip2 < filename.sql.bz2 | mysql -u root -p db_name

@@ -19,10 +19,10 @@ class backup
 		chdir("../../../..");
 
 		$path = realpath(''). DIRECTORY_SEPARATOR;
-		
+
 		$directory   = new \RecursiveDirectoryIterator($path);
 		$flattened   = new \RecursiveIteratorIterator($directory);
-		
+
 		$url = [];
 		$url[] = 'includes';
 		$url[] = 'database';
@@ -35,10 +35,10 @@ class backup
 		foreach($files as $file)
 		{
 			$file_name = $file->getPath() . DIRECTORY_SEPARATOR . $file->getFilename();
-			$this->paths[] = $file_name;	
+			$this->paths[] = $file_name;
 		}
-
 	}
+
 
 	/**
 	 * exec all finded backup.php
@@ -64,11 +64,23 @@ class backup
 		}
 	}
 
-	public function run_backup($_schedule_path)
+
+	public function schedule_file($_schedule_path)
 	{
 		$schedule = file_get_contents($_schedule_path);
 		$schedule = json_decode($schedule, true);
-		if(!$schedule || !is_array($schedule))
+		if($schedule && is_array($schedule))
+		{
+			return $schedule;
+		}
+		return false;
+	}
+
+
+	public function run_backup($_schedule_path)
+	{
+		$schedule = $this->schedule_file($_schedule_path);
+		if(!$schedule)
 		{
 			return;
 		}
@@ -89,7 +101,7 @@ class backup
 		}
 
 		$left_time = $this->get_left_time($schedule['every'], $schedule['time']);
-		
+
 		if($left_time === false)
 		{
 			return;
@@ -98,7 +110,7 @@ class backup
 		$url         = preg_replace("/schedule$/", 'files/', $_schedule_path);
 		$files       = glob($url . "*.*");
 		$file_m_time = array_map(function($_a){return filemtime($_a);}, $files);
-		
+
 		arsort($file_m_time);
 
 		$file_m_time = array_values($file_m_time);
@@ -126,14 +138,20 @@ class backup
 	public function backup_dump_exec($_schedule_path)
 	{
 		$root_url = preg_replace("/includes(.*)$/", '', $_schedule_path);
-		
-		if(preg_match("/\/(\w+)\/$/", $root_url, $c))
+
+		$schedule = $this->schedule_file($_schedule_path);
+		if(!$schedule)
 		{
-			$project_name = $c[1];
+			return;
+		}
+
+		if(isset($schedule['db_name']))
+		{
+			$project_name = $schedule['db_name'];
 		}
 		else
 		{
-			return;
+			return false;
 		}
 
 		if(file_exists($root_url. 'config.me.php'))
@@ -144,7 +162,7 @@ class backup
 		{
 			require_once($root_url. 'config.php');
 		}
-	
+
 		if(defined('db_user') && defined('db_pass'))
 		{
 			$db_host    = 'localhost';
@@ -160,22 +178,22 @@ class backup
 			}
 
 			$cmd  = "mysqldump --single-transaction --add-drop-table";
-			$cmd  .= " --skip-lock-tables ";
+			$cmd .= " --skip-lock-tables ";
 			$cmd .= " --host='$db_host' --set-charset='$db_charset'";
 			$cmd .= " --user='".db_user."'";
 			$cmd .= " --password='".db_pass."' '". $project_name."'";
 			$cmd .= " | bzip2 -c > $dest_dir$dest_file";
-			
+
 			// to import this file
 			// bunzip2 < filename.sql.bz2 | mysql -u root -p $project_name
 			$result     = exec($cmd, $output, $return_var);
 			if($return_var ===  0 )
 			{
-				$log_txt = '';
+				$log_txt  = '';
 				$log_txt .= $date;
 				$log_txt .= ' - complete at: ';
 				$log_txt .= date("Y-m-d_H-i-s");
-				$log_txt .= ' - file_name: '. $dest_file;	
+				$log_txt .= ' - file_name: '. $dest_file;
 				$this->save_log($_schedule_path, $log_txt);
 			}
 		}
@@ -184,9 +202,8 @@ class backup
 
 	public function clean($_schedule_path)
 	{
-		$schedule = file_get_contents($_schedule_path);
-		$schedule = json_decode($schedule, true);
-		if(!$schedule || !is_array($schedule))
+		$schedule = $this->schedule_file($_schedule_path);
+		if(!$schedule)
 		{
 			return;
 		}
@@ -206,7 +223,7 @@ class backup
 		$files       = glob($url . "*.*");
 		$must_remove = [];
 
-		foreach ($files as $key => $value) 
+		foreach ($files as $key => $value)
 		{
 			if(time() - filemtime($value) > $left_time)
 			{
@@ -234,7 +251,7 @@ class backup
 	{
 		$left_time = 1;
 
-		switch ($_time) 
+		switch ($_time)
 		{
 			case 'year2':
 				$left_time *= 60 * 60 * 24 * 365 * 2;

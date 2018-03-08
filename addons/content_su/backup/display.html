@@ -33,6 +33,10 @@
           <h6>{%trans "You can create backup now"%}</h6>
           <button class="btn success block">{%trans "Backup now"%}</button>
       </form>
+      {%if database_log%}
+        <br>
+        {%trans "You have another database for logs"%} <a href="{{url.full}}" data-ajaxify data-data='{"backup" : "now_log"}' data-method='post'><small>{%trans "Click for create backup from log database"%}</small></a>
+      {%endif%}
     </div>
   </div>
 

@@ -45,6 +45,11 @@ class view extends \addons\content_su\main\view
 			$this->data->old_backup = $old_backup_files;
 		}
 
+
+		if(defined('db_log_name'))
+		{
+			$this->data->database_log = true;
+		}
 	}
 }
 ?>
