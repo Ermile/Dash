@@ -19,6 +19,30 @@ trait connect
 	public static $debug_error  = false;
 
 
+	public static function close($_link = null)
+	{
+		if($_link)
+		{
+			$link = [$_link];
+		}
+		else
+		{
+			$link = self::$link_open;
+		}
+
+		if(is_array($link))
+		{
+			foreach ($link as $key => $value)
+			{
+				if($value)
+				{
+					@mysqli_close($value);
+				}
+			}
+		}
+	}
+
+
 	/**
 	 * connect to related database
 	 * if not exist create it

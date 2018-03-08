@@ -143,12 +143,8 @@ class controller
 	{
 		// close writing sessions and start saving it
 		// session_write_close();
-		// $visitor = new \lib\utility\visitors();
-		// if logvisitor on set visitors
-		// if(\lib\option::config('log_visitors'))
-		// {
-		// 	\lib\utility\visitor::save();
-		// }
+		// close the mysql connection
+		\lib\db::close();
 	}
 
 
