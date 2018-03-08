@@ -101,7 +101,7 @@ class pagination
 				$link   = true;
 				$page   = $_page_number;
 				$text   = $_page_number;
-				$title  = T_("First page");
+				// $title  = T_("First page");
 				$class  = 'first';
 				break;
 
@@ -109,7 +109,7 @@ class pagination
 				$link   = false;
 				$page   = null;
 				$text   = '...';
-				$title  = null;
+				// $title  = null;
 				$class  = 'spliter';
 				break;
 
@@ -117,7 +117,7 @@ class pagination
 				$link   = true;
 				$page   = $_page_number;
 				$text   = $_page_number;
-				$title  = T_("End page");
+				// $title  = T_("End page");
 				$class  = 'end';
 				break;
 
@@ -125,7 +125,7 @@ class pagination
 				$link   = false;
 				$page   = $_page_number;
 				$text   = $_page_number;
-				$title  = T_("Current page");
+				// $title  = T_("Current page");
 				$class  = 'active';
 				break;
 
@@ -133,7 +133,7 @@ class pagination
 				$link   = true;
 				$page   = $_page_number;
 				$text   = '';
-				$title  = T_("Next page");
+				// $title  = T_("Next page");
 				$class  = 'next';
 				break;
 
@@ -141,7 +141,7 @@ class pagination
 				$link   = true;
 				$page   = $_page_number;
 				$text   = '';
-				$title  = T_("Prev page");
+				// $title  = T_("Prev page");
 				$class  = 'prev';
 				break;
 
@@ -149,7 +149,7 @@ class pagination
 				$link   = true;
 				$page   = $_page_number;
 				$text   = $_page_number;
-				$title  = T_("Page"). ' '. \lib\utility\human::fitNumber($_page_number);
+				// $title  = T_("Page"). ' '. \lib\utility\human::fitNumber($_page_number);
 				$class  = null;
 				break;
 		}
