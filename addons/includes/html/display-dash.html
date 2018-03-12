@@ -43,7 +43,6 @@
 
 
 {%block aside%}
-
   <figure>
 {%block avatar%}
 {%if login%}
@@ -73,7 +72,7 @@
 
 
 {%block header%}
-   <div id='sidenavHandler' class="c0 sauto mauto"><i class="sf-ellipsis-v"></i></div>
+   <div id='sidenavHandler' class="c0 sauto mauto" title='{%trans "Show side menu"%}'><i class="sf-ellipsis-v"></i></div>
 
    {%block headerTitle%}<h1 class='cauto' title='{%trans "View website"%}'><a href="{{url.base}}" data-direct target='_blank' class='flex'><img src="{{url.static}}images/logo.png" alt='{{site.title}}'><span>{{site.title}}</span></a></h1>{%endblock%}
 
