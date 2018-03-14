@@ -12,6 +12,7 @@ class option
 	 * @var        array
 	 */
 	public static $config   = [];
+	public static $url      = [];
 	public static $enter    = [];
 	public static $social   = [];
 	public static $sms      = [];
@@ -25,9 +26,9 @@ class option
 		if(empty(self::$config))
 		{
 			// load default option
-			if(file_exists('../../dash/lib/default_option.php'))
+			if(file_exists('../../dash/lib/option_defaults.php'))
 			{
-				require_once('../../dash/lib/default_option.php');
+				require_once('../../dash/lib/option_defaults.php');
 			}
 
 			if(file_exists(root.'/includes/option/option.php'))

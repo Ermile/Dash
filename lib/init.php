@@ -34,21 +34,56 @@ class init
 
 	private static function appropriate_url()
 	{
-		$target_url = '';
-		// check https
-
-		// check www
-		if(\lib\url::subdomain() === 'www')
+		if(\lib\option::url('fix') !== true)
 		{
-			$target_url = '';
+			return null;
+		}
+		// decalare target url
+		$target_url = '';
+
+		// fix protocol
+		if(\lib\option::url('protocol'))
+		{
+			$target_url = \lib\option::url('protocol').'://';
+		}
+		else
+		{
+			$target_url = \lib\url::protocol().'://';
 		}
 
-		// check main domain
+		// fix root domain
+		if(\lib\option::url('root'))
+		{
+			$target_url .= \lib\option::url('root');
+		}
+		elseif(\lib\url::root())
+		{
+			$target_url .= \lib\url::root();
+		}
 
-		// check main tld
+		// fix tld
+		if(\lib\option::url('tld'))
+		{
+			$target_url .= '.'.\lib\option::url('tld');
+		}
+		elseif(\lib\url::tld())
+		{
+			$target_url .= '.'.\lib\url::tld();
+		}
+
+		// fix port
+		if(\lib\option::url('port') && \lib\option::url('port') !== 80)
+		{
+			$target_url .= ':'.\lib\option::url('port');
+		}
+		elseif(\lib\url::port() && \lib\url::port() !== 80)
+		{
+			$target_url .= ':'.\lib\url::port();
+		}
+
 
 		// if we have new target url, try to change it
-		if($target_url)
+		if($target_url !== \lib\url::site())
 		{
 			header('Location: '. $target_url, true, 301);
 		}

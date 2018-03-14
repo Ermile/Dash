@@ -1,22 +1,39 @@
 <?php
 /**
-@ In the name Of Allah
-* The base configurations of the SARSHOMAR.
+* The base configurations of the Dash.
 */
+
+
+
+// self::$url['fix']       = true;
+// self::$url['protocol']  = 'https';
+// self::$url['root']      = 'ermile';
+// self::$url['tld']       = 'com';
+// self::$url['port']      = 80;
+
+
+
+
+
+// below values must be check
+
+
 self::$language                               =
 [
 'default'                                     => 'en',
 'list'                                        => ['fa','en',],
 ];
 
+self::$config['https']                        = false;
 
 self::$config['redirect_url']                 = null;
 self::$config['main_account']                 = null;
 self::$config['multi_domain']                 = false;
 self::$config['redirect_to_main']             = false;
-self::$config['https']                        = false;
 self::$config['default_tld']                  = null;
 self::$config['use_main_account']             = false;
+
+
 self::$config['debug']                        = false;
 self::$config['coming']                       = false;
 self::$config['short_url']                    = null;
