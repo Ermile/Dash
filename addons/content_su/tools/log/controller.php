@@ -174,9 +174,9 @@ class controller extends \addons\content_su\main\controller
 		$fileData = @file_get_contents($filepath, FILE_USE_INCLUDE_PATH, null, $page, $lenght);
 		if($fileData)
 		{
-			$myURL    = Protocol."://". \lib\router::get_root_domain().'/static';
-			$myCommon = Protocol."://ermile.".\lib\url::tld().'/static/js/common.js';
-			$myCode   = Protocol."://code.ermile.".\lib\url::tld().'/';
+			$myURL    = \lib\url::protocol()."://". \lib\router::get_root_domain().'/static';
+			$myCommon = \lib\url::protocol()."://ermile.".\lib\url::tld().'/static/js/common.js';
+			$myCode   = \lib\url::protocol()."://code.ermile.".\lib\url::tld().'/';
 
 			$output .= "<head>";
 			$output .= ' <title>Log | '. $name. '</title>';

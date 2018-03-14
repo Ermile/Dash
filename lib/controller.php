@@ -612,7 +612,7 @@ class controller
 	{
 
 		$tmp_result = null;
-		$myprefix   = Protocol."://";
+		$myprefix   = \lib\url::protocol()."://";
 
 		$mytld      = router::get_root_domain('tld');
 

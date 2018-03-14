@@ -136,7 +136,7 @@ class router
 			define('Module', router::get_url(0));
 
 		// like https://ermile.com
-		router::set_storage('url_site', Protocol.'://' . Domain.'.'.\lib\url::tld().'/');
+		router::set_storage('url_site', \lib\url::protocol().'://' . Domain.'.'.\lib\url::tld().'/');
 
 		// set MyAccount for use in all part of services
 		if(!defined('AccountService'))
@@ -161,7 +161,7 @@ class router
 			define('MyAccount', 'account');
 		}
 
-		router::$base = Protocol.'://';
+		router::$base = \lib\url::protocol().'://';
 		// if(defined('subDevelop'))
 		// {
 		// 	if(self::$sub_real === constant('subDevelop'))
@@ -286,10 +286,6 @@ class router
 			$this->set_protocol('http');
 		}
 
-		if(!defined('Protocol'))
-		{
-			define('Protocol', $this->get_Protocol());
-		}
 		// check current protocol
 		self::check_protocol();
 
@@ -310,7 +306,7 @@ class router
 		$newUrl      = "";
 		$currentPath = $_SERVER['REQUEST_URI'];
 		// $mainSite    = \lib\option::config('redirect_url');
-		$mainSite    = Protocol. '://'. \lib\router::get_domain();
+		$mainSite    = \lib\url::protocol(). '://'. \lib\router::get_domain();
 
 		// if redirect to main site is enable and all thing is okay
 		// then redirect to the target url
@@ -347,13 +343,13 @@ class router
 
 			if(\lib\option::config('https'))
 			{
-				if(Protocol === 'http')
+				if(\lib\url::protocol() === 'http')
 				{
 					$newUrl = 'https://';
 				}
 			}
 			// else force usign http protocol
-			elseif(Protocol === 'https')
+			elseif(\lib\url::protocol() === 'https')
 			{
 				$newUrl = 'http://';
 			}

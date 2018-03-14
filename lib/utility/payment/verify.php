@@ -38,7 +38,7 @@ class verify
 		}
 		else
 		{
-			$host      = Protocol."://" . \lib\router::get_root_domain();
+			$host      = \lib\url::protocol()."://" . \lib\router::get_root_domain();
 			$lang      = \lib\define::get_current_language_string();
 			$turn_back =  $host;
 			$turn_back .= $lang;
@@ -51,7 +51,7 @@ class verify
 
 		if(!$turn_back)
 		{
-			$turn_back = Protocol."://" . \lib\router::get_root_domain();
+			$turn_back = \lib\url::protocol()."://" . \lib\router::get_root_domain();
 		}
 
 		// redirect to turn back url

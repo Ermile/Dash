@@ -26,7 +26,7 @@ trait constructor
 		$this->url->raw              = Service;                  // domain name except subdomain like 'ermile.com'
 		$this->url->root             = $this->url('root');
 		$this->url->static           = $this->url->root. '/'.'static/';
-		$this->url->protocol         = Protocol;
+		$this->url->protocol         = \lib\url::protocol();
 		$this->url->account          = $this->url('account');
 		$this->url->MainStatic       = $this->url('MainService'). '/'.'static/';
 		$this->url->MainSite         = $this->url('MainSite');

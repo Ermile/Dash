@@ -39,7 +39,7 @@ class google
           }
           else
           {
-               // self::$redirect_url  = Protocol. '://';
+               // self::$redirect_url  = \lib\url::protocol(). '://';
                // self::$redirect_url .= \lib\router::get_domain(1). '.'.  \lib\url::tld();
                // self::$redirect_url .= \lib\define::get_current_language_string();
                // self::$redirect_url .= '/google';

@@ -14,7 +14,7 @@ trait login
 	 */
 	public static function find_redirect_url($_url = null)
 	{
-		$host = Protocol."://" . \lib\router::get_domain();
+		$host = \lib\url::protocol()."://" . \lib\router::get_domain();
 		if($_url)
 		{
 			return $_url;

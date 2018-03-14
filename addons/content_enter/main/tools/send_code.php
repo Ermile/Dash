@@ -96,7 +96,7 @@ trait send_code
 	 */
 	public static function send_code_way()
 	{
-		$host = Protocol."://" . \lib\router::get_domain();
+		$host = \lib\url::protocol()."://" . \lib\router::get_domain();
 		$host .= \lib\define::get_current_language_string();
 
 		$host .= '/enter/verify/';

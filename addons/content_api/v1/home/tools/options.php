@@ -14,7 +14,7 @@ trait options
 	public static function host($_type = null)
 	{
 
-		$host = Protocol."://" . \lib\router::get_root_domain();
+		$host = \lib\url::protocol()."://" . \lib\router::get_root_domain();
 
 		if(defined('simulation_com') && simulation_com)
 		{

@@ -481,7 +481,7 @@ trait config
 		{
 			$_url = isset($_SERVER['HTTP_REFERER'])? $_SERVER['HTTP_REFERER']: null;
 			// if dont set shema for url set it, usually it occur on local
-			$_url = substr($_url, 0, 4) === 'http'? $_url: Protocol.'://'.$_url;
+			$_url = substr($_url, 0, 4) === 'http'? $_url: \lib\url::protocol().'://'.$_url;
 		}
 
 
