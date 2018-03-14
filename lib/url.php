@@ -9,26 +9,28 @@ namespace lib;
  *
  * example : http://ermile.jibres.com/en/a/thirdparty/general/edit/test=yes?id=5&page=8
  *
- * 'protocol'  => 'http'
- * 'subdomain' => 'ermile'
- * 'root'      => 'jibres'
- * 'tld'       => 'com'
- * 'port'      => 80
- * 'domain'    => 'jibres.com'							[root+tld]
- * 'host'      => 'saeed.jibres.com'					[subdomain+domain+port]
- * 'base'      => 'http://ermile.jibres.com'			[protocol+host]
- * 'lang'      => 'en'
- * 'content'   => 'a'
- * 'module'    => 'thirdparty'
- * 'child'     => 'general'
- * 'subchild'  => 'edit'
- * 'query'     => 'id=5&page=8'
- * 'prefix'    => '/en/a'								[lang+content]
- * 'dir'       => [ 0 => 'thirdparty', 1 => 'general', 2 => 'edit', 3=> 'test=yes']
- * 'path'      => 'en/a/thirdparty/general/edit/test=yes?id=5&page=8'
- * 'this'      => 'http://ermile.jibres.com/en/a/thirdparty/general/edit/test=yes?id=5&page=8'
- * 'current'   => 'http://ermile.jibres.com/en/a/thirdparty/general/edit/test=yes'
- * 'here'      => 'http://ermile.jibres.com/en/a'
+ * 'protocol'   => 'http'
+ * 'subdomain'  => 'ermile'
+ * 'root'       => 'jibres'
+ * 'tld'        => 'com'
+ * 'port'       => 80
+ * 'domain'     => 'jibres.com'							[root+tld+port]
+ * 'host'       => 'saeed.jibres.com'					[subdomain+domain]
+ * 'base'       => 'http://ermile.jibres.com'			[protocol+host]
+ * 'site'       => 'http://jibres.com'					[protocol+domain]
+ * 'lang'       => 'en'
+ * 'content'    => 'a'
+ * 'module'     => 'thirdparty'
+ * 'child'      => 'general'
+ * 'subchild'   => 'edit'
+ * 'query'      => 'id=5&page=8'
+ * 'prefix'     => '/en/a'								[lang+content]
+ * 'dir'        => [ 0 => 'thirdparty', 1 => 'general', 2 => 'edit', 3=> 'test=yes']
+ * 'path'       => 'en/a/thirdparty/general/edit/test=yes?id=5&page=8'
+ * 'pwd'        => 'http://ermile.jibres.com/en/a/thirdparty/general/edit/test=yes?id=5&page=8'
+ * 'current'    => 'http://ermile.jibres.com/en/a/thirdparty/general/edit/test=yes'
+ * 'this' 		=> 'http://ermile.jibres.com/en/a/thirdparty'
+ * 'here'       => 'http://ermile.jibres.com/en/a'
  */
 class url
 {
