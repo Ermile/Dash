@@ -12,7 +12,7 @@ class view extends \addons\content_su\main\view
 		$this->data->dashLoc = null;;
 
 		// go to root url
-		if(is_dir(root. '/dash'))
+		if(is_dir(root. 'dash'))
 		{
 			$this->data->dashLoc = T_('Inside project'). ' <span class="sf-chain-broken fc-green"></span>';
 		}

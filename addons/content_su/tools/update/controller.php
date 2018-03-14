@@ -14,35 +14,33 @@ class controller extends \addons\content_su\main\controller
 	public function updateGitRepo()
 	{
 		// declare variables
-		$exist    = true;
-		$rep      = null;
-		$location = null;
-		$name     = \lib\utility::get('git');
+		$exist        = true;
+		$rep          = null;
+		$location     = null;
+		$name         = \lib\utility::get('git');
 		if(!$name)
 		{
 			return;
 		}
 
+
+
 		// switch by name of repository
 		switch ($name)
 		{
 			case 'dash':
-				// $rep      .= "https://github.com/Ermile/dash.git";
-				$location = '../../dash';
-				echo \lib\utility\git::pull($location);
+				self::updateDash();
 				break;
 
 
 			case 'all':
 				// pull dash
-				$location = '../../dash';
-				echo "<h1>Dash</h1>";
-				echo \lib\utility\git::pull($location);
+				self::updateDash();
 
 				// pull current project
 				$name = \lib\url::root();
 				$location = '../../'. $name;
-				echo "<h1>Current Project $name</h1>";
+				echo "<h1>$name <small>Current Project</small></h1>";
 				echo \lib\utility\git::pull($location);
 				break;
 
@@ -58,5 +56,25 @@ class controller extends \addons\content_su\main\controller
 		}
 		\lib\code::exit();
 	}
+
+
+
+	public function updateDash()
+	{
+		$dashLocation = null;
+		// check dash location
+		if(is_dir(root. 'dash'))
+		{
+			$dashLocation = '../dash';
+		}
+		elseif(is_dir(root. '../dash'))
+		{
+			$dashLocation = '../../dash';
+		}
+
+		echo "<h1>Dash</h1>";
+		echo \lib\utility\git::pull($dashLocation);
+	}
+
 }
 ?>
