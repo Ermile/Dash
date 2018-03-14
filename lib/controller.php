@@ -67,21 +67,21 @@ class controller
 			{
 				case 'signin':
 				case 'login':
-					$url = $this->url('base'). '/enter'. $param;
+					$url = \lib\url::base(). '/enter'. $param;
 					$this->redirector($url)->redirect();
 					break;
 
 				case 'signup':
 					if($myrep !== 'content_enter')
 					{
-						$url = $this->url('base'). '/enter/signup'. $param;
+						$url = \lib\url::base(). '/enter/signup'. $param;
 						$this->redirector($url)->redirect();
 					}
 					break;
 
 				case 'register':
 
-					$url = $this->url('base'). '/enter/signup'. $param;
+					$url = \lib\url::base(). '/enter/signup'. $param;
 					$this->redirector($url)->redirect();
 					break;
 
@@ -89,7 +89,7 @@ class controller
 				case 'logout':
 					if($myrep !== 'content_enter')
 					{
-						$url = $this->url('base'). '/enter/logout'. $param;
+						$url = \lib\url::base(). '/enter/logout'. $param;
 						$this->redirector($url)->redirect();
 					}
 
@@ -104,19 +104,19 @@ class controller
 				case 'account/verificationsms':
 				case 'account/signin':
 				case 'account/login':
-					$url = $this->url('base'). '/enter'. $param;
+					$url = \lib\url::base(). '/enter'. $param;
 					$this->redirector($url)->redirect();
 					break;
 
 				case 'account/signup':
 				case 'account/register':
-					$url = $this->url('base'). '/enter/signup'. $param;
+					$url = \lib\url::base(). '/enter/signup'. $param;
 					$this->redirector($url)->redirect();
 					break;
 
 				case 'account/logout':
 				case 'account/signout':
-					$url = $this->url('base'). '/enter/logout'. $param;
+					$url = \lib\url::base(). '/enter/logout'. $param;
 					$this->redirector($url)->redirect();
 					break;
 			}

@@ -9,7 +9,7 @@ class controller extends \mvc\controller
 
 		if(!$this->login())
 		{
-			$this->redirector($this->url('base'). '/enter?referer='. \lib\url::pwd())->redirect();
+			$this->redirector(\lib\url::base(). '/enter?referer='. \lib\url::pwd())->redirect();
 			return;
 		}
 

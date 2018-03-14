@@ -34,7 +34,7 @@ class controller extends \mvc\controller
 	{
 		if($this->login())
 		{
-			self::go_to($this->url('base'));
+			self::go_to(\lib\url::base());
 		}
 	}
 
@@ -46,7 +46,7 @@ class controller extends \mvc\controller
 	{
 		if(!$this->login())
 		{
-			self::go_to($this->url('base'));
+			self::go_to(\lib\url::base());
 		}
 	}
 

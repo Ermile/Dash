@@ -562,7 +562,7 @@ trait twigAddons
 						$html = '';
 						if(is_array($tags))
 						{
-							$baset_url = $this->url('base');
+							$baset_url = \lib\url::base();
 
 							foreach ($tags as $key => $value)
 							{
@@ -659,7 +659,7 @@ trait twigAddons
 
 					case 'html':
 						$html      = '';
-						$baset_url = $this->url('base');
+						$baset_url = \lib\url::base();
 						foreach ($category as $key => $value)
 						{
 							if(array_key_exists('url', $value) && isset($value['title']))

@@ -14,7 +14,7 @@ class view extends \addons\content_enter\main\view
 		$this->data->page['desc']    = T_('Live and learn');
 
 
-		$this->data->redirect_url = $this->url('base');
+		$this->data->redirect_url = \lib\url::base();
 		if(self::get_enter_session('redirect_url'))
 		{
 			$this->data->redirect_url = self::get_enter_session('redirect_url');

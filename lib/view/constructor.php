@@ -11,39 +11,42 @@ trait constructor
 	{
 		array_push($this->twig_include_path, addons);
 
+		$this->url = \lib\url::get();
+
 		// define default value for url
-		$this->url->pwd             = \lib\url::pwd();       // full url except get parameter with http[s]
-		$this->url->domain           = $this->url('domain');     // domain name like 'ermile'
-		$this->url->base             = $this->url('base');
-		$this->url->baseRaw          = rtrim($this->url('baseRaw'), '/') . '/';
-		$this->url->prefix           = $this->url('prefix');
-		$this->url->content          = $this->url('content');
-		$this->url->baseContent      = $this->url('baseContent');
-		$this->url->baseFull         = $this->url('baseFull');
-		$this->url->tld              = $this->url('tld');        // domain ltd like 'com'
-		$this->url->raw              = \lib\url::domain();                  // domain name except subdomain like 'ermile.com'
-		$this->url->root             = $this->url('root');
-		$this->url->static           = $this->url->root. '/'.'static/';
-		$this->url->protocol         = \lib\url::protocol();
-		$this->url->account          = $this->url('account');
-		$this->url->MainStatic       = $this->url('MainService'). '/'.'static/';
-		$this->url->MainSite         = $this->url('MainSite');
-		$this->url->MainProtocol     = $this->url('MainProtocol');
-		$this->url->SubDomain        = \lib\url::subdomain()? \lib\url::subdomain().'.': null;
-		$this->url->repository       = \lib\router::get_repository_name();
-		if($this->url->repository === 'content')
+
+
+
+		// $this->url->base             = \lib\url::base();
+		// $this->url->baseRaw          = rtrim($this->url('baseRaw'), '/') . '/';
+		// $this->url->prefix           = $this->url('prefix');
+		// $this->url->content          = $this->url('content');
+		// $this->url->baseContent      = $this->url('baseContent');
+		// $this->url->baseFull         = $this->url('baseFull');
+		// $this->url->tld              = $this->url('tld');        // domain ltd like 'com'
+		// $this->url->raw              = \lib\url::domain();                  // domain name except subdomain like 'ermile.com'
+		// $this->url->root             = $this->url('root');
+		// $this->url->protocol         = \lib\url::protocol();
+		// $this->url->account          = $this->url('account');
+		// $this->url->MainStatic       = $this->url('MainService'). '/'.'static/';
+		// $this->url->MainSite         = $this->url('MainSite');
+		// $this->url->MainProtocol     = $this->url('MainProtocol');
+		// $this->url->SubDomain        = \lib\url::subdomain()? \lib\url::subdomain().'.': null;
+		// $this->url->repository       = \lib\router::get_repository_name();
+		$this->url['static']           = \lib\url::base(). '/static/';
+		if(\lib\url::content())
 		{
-			$this->url->repository = 'site';
+			$this->url['repository'] = str_replace('content_', '', \lib\url::content());
 		}
 		else
 		{
-			$this->url->repository = str_replace('content_', '', $this->url->repository);
+			$this->url['repository'] = 'site';
 		}
 
 		// return all parameters and clean it
-		$this->url->param       = \lib\utility::get(null, true);
+		$this->url['param']       = \lib\utility::get(null, true);
 		$this->data->utilityGET = \lib\utility::get(null, 'raw');
-		$this->url->all         = $this->url->pwd.$this->url->param;
+		// $this->url->all         = $this->url->full.$this->url->param;
 
 		$this->data->site['title']       = T_("Ermile Dash");
 		$this->data->site['desc']        = T_("Another Project with Ermile dash");
@@ -60,7 +63,7 @@ trait constructor
 		$this->data->page['special'] = null;
 		$this->data->bodyclass       = null;
 		$this->data->module          = $this->module();
-		$this->data->modulePath      = $this->url('baseFull'). '/'. $this->module();
+		$this->data->modulePath      = \lib\url::this();
 		$this->data->child           = $this->child();
 		$this->data->login           = $this->login('all');
 		$this->data->user            = \lib\user::detail();
@@ -77,7 +80,7 @@ trait constructor
 
 		$this->global->lang          = $this->data->site['currentlang'];
 		$this->global->direction     = \lib\language::get_language('direction');
-		$this->global->id            = $this->url('path','_');
+		$this->global->id            = implode('_', \lib\url::dir());
 
 		// add special pages to display array to use without name
 		$this->data->display['main']       = "content/main/layout.html";
@@ -104,7 +107,7 @@ trait constructor
 			// create data of share url
 			$this->data->share['title']       = $this->data->site['title'];
 			$this->data->share['desc']        = $this->data->site['desc'];
-			$this->data->share['image']       = $this->url->static. 'images/logo.png';
+			$this->data->share['image']       = $this->url['static']. 'images/logo.png';
 			$this->data->share['twitterCard'] = 'summary';
 		}
 

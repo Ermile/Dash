@@ -16,7 +16,7 @@ class controller extends \addons\content_enter\main\controller
 		// he must set email
 		if(!$this->login('username'))
 		{
-			$this->redirector($this->url('base'). '/enter/username/set')->redirect();
+			$this->redirector(\lib\url::base(). '/enter/username/set')->redirect();
 			return;
 		}
 
