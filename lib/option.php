@@ -175,7 +175,7 @@ class option
 			}
 			else
 			{
-				return self::config('default_language');
+				return null;
 			}
 		}
 		else

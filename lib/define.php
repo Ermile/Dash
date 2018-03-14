@@ -215,7 +215,7 @@ class define
 		// if default language is not set, then set it only one time
 		if(!self::$language_default)
 		{
-			self::$language_default = \lib\option::config('default_language');
+			self::$language_default = \lib\language::default();
 			if(!self::$language_default)
 			{
 				self::$language_default = 'en';
@@ -248,7 +248,7 @@ class define
 		// if default language is not set, then set it only one time
 		if(!self::$language_default)
 		{
-			self::$language_default = \lib\option::config('default_language');
+			self::$language_default = \lib\language::default();
 			if(!self::$language_default)
 			{
 				self::$language_default = 'en';

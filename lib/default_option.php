@@ -9,7 +9,7 @@ self::$language                               =
 'list'                                        => ['fa','en',],
 ];
 
-self::$config['default_language']             = null;
+
 self::$config['redirect_url']                 = null;
 self::$config['main_account']                 = null;
 self::$config['multi_domain']                 = false;
