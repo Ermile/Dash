@@ -35,14 +35,18 @@ namespace lib;
 class url
 {
 	// declare variables
-	private static $url        = [];
-	private static $real_url   = [];
-	private static $uri        = [];
-	private static $split_host = [];
-	private static $path_split = [];
-	private static $host_is_ip = false;
-	// use in old controller url syntax TO DO: remove it
-	private static $base       = null;
+	private static $url             = [];
+	// the server request_uri
+	private static $uri             = [];
+	// split host in $_SERVER by '.'
+	private static $split_host      = [];
+	// split request_uri in $_SERVER by '/'
+	private static $path_split      = [];
+	private static $temp_path_split = [];
+	// check url is ip [example: 127.0.0.2]
+	private static $host_is_ip      = false;
+	// save base to use in some function
+	private static $base            = null;
 
 
 	/**
@@ -53,7 +57,7 @@ class url
 	{
 		self::$url = [];
 
-		$host      = self::server('HTTP_HOST');
+		$host = self::server('HTTP_HOST');
 
 		if(filter_var($host, FILTER_VALIDATE_IP))
 		{
@@ -69,11 +73,12 @@ class url
 			self::$uri = substr(self::$uri, 1);
 		}
 
-		self::$url['query'] = self::_query();
+		self::$url['query']     = self::_query();
 
-		$path_raw           = str_replace('?'. self::$url['query'], '', self::$uri);
+		$path_raw               = str_replace('?'. self::$url['query'], '', self::$uri);
 
-		self::$path_split   = explode('/', $path_raw);
+		self::$path_split       = explode('/', $path_raw);
+		self::$temp_path_split  = self::$path_split;
 
 		self::$url['protocol']  = self::_protocol();
 		self::$url['port']      = self::_port();
@@ -85,136 +90,46 @@ class url
 		self::$url['base']      = self::_base();
 		self::$url['path']      = self::_path();
 		self::$url['lang']      = self::_lang();
-		self::$url['dir']       = self::_dir();
 		self::$url['content']   = self::_content();
-		self::$url['property']  = self::_property();
-		self::$url['full']      = self::_full();
-		self::$url['full2']     = self::_full2();
+		self::$url['dir']       = self::_dir();
+		self::$url['module']    = self::_module();
+		self::$url['child']     = self::_child();
+		self::$url['subchild']  = self::_subchild();
+		self::$url['pwd']       = self::_pwd();
+		self::$url['current']   = self::_current();
+		self::$url['prefix']    = self::_prefix();
 
-		// example : http://saeed.jibres.local/a/thirdparty/edit?id=5&page=8
-		// 'query'     =>  'id=5&page=8'
-		// 'protocol'  =>  'http'
-		// 'port'      => int 80
-		// 'tld'       =>  'local'
-		// 'subdomain' =>  'saeed'
-		// 'root'      =>  'jibres'
-		// 'domain'    =>  'jibres.local'
-		// 'host'      =>  'saeed.jibres.local'
-		// 'base'      =>  'http://saeed.jibres.local'
-		// 'path'      =>  'a/thirdparty/edit?id=5&page=8'
-		// 'lang'      => null
-		// 'dir'       =>
-		// [
-			// 0           =>  'a'
-			// 1           =>  'thirdparty'
-			// 2           =>  'edit'
-		// ]
-		// 'content'   =>  'a'
-		// 'property'  => []
-		// 'full'      =>  'http://saeed.jibres.local/a/thirdparty/edit?id=5&page=8'
-		// 'full2'     =>  'http://saeed.jibres.local/a/thirdparty/edit'
-
-		//--------------------------------------------------------------- CONTROLLER INDEX OF URL
-		// --- controller url syntax
-		$base = null;
-        $base .= \lib\url::protocol(). '://';
-        $base .= \lib\url::host();
-        if($lang = \lib\url::lang())
-    	{
-    		$base .= '/'. $lang;
-    	}
-    	self::$base = $base;
-
-		self::$url['base']         = self::_OLD_base(); // --------- duplicate index of array
-		self::$url['baseContent']  = self::_baseContent();
-		self::$url['baseFull']     = self::_baseFull();
-		self::$url['baseRaw']      = self::_baseRaw();
-		self::$url['prefix']       = self::_prefix();
-		self::$url['sub']          = self::_subdomain(); // use new syntax; ! changed the name
-		self::$url['path']         = self::_OLD_path(); // --------- duplicate index of array
-		self::$url['breadcrumb']   = self::_breadcrumb();
-		self::$url['param']        = self::_query(); // use new syntax; ! changed the name
-		self::$url['domain']       = self::_root(); // use new syntax; ! changed the name | // --------- duplicate index of array
-		self::$url['raw']          = self::_domain(); // use new syntax; ! changed the name
-		self::$url['root']         = self::_base(); // use new syntax; ! changed the name
-		self::$url['MainProtocol'] = self::_protocol(); // use new syntax; ! changed the name // --------- duplicate index of array
-		self::$url['MainSite']     = self::_domain(); // use new syntax; ! changed the name
-		self::$url['module']       = self::_module();
-		self::$url['child']        = self::_child();
-		self::$url['tags']         = self::_tags(); // is null !!!
-		self::$url['cats']         = self::_cats(); // is null !!!
-		self::$url['pages']        = self::_pages(); // is null !!!
-		self::$url['LoginService'] = self::_LoginService();
-		self::$url['account']      = self::_account();
-		self::$url['MainService']  = self::_MainService();
-
-		// example : http://saeed.jibres.local/a/thirdparty/edit?id=5&page=8
-		// 'query'        => 'id=5&page=8'
-		// 'protocol'     => 'http'
-		// 'port'         => 80
-		// 'tld'          => 'local'
-		// 'subdomain'    => 'saeed'
-		// 'root'         => 'http://saeed.jibres.local'
-		// 'domain'       => 'jibres'
-		// 'host'         => 'saeed.jibres.local'
-		// 'base'         => 'http://saeed.jibres.local'
-		// 'path'         => 'thirdparty/edit'
-		// 'lang'         => null
-		// 'dir'          =>
-		// [
-		// 	0 => 'a'
-		// 	1 => 'thirdparty'
-		// 	2 => 'edit'
-		// ]
-		// 'content'      => 'a'
-		// 'property'     =>  []
-
-
-		// 'full'         => 'http://saeed.jibres.local/a/thirdparty/edit?id=5&page=8'
-		// 'full2'        => 'http://saeed.jibres.local/a/thirdparty/edit'
-		// 'baseContent'  => 'http://saeed.jibres.local/a'
-		// 'baseFull'     => 'http://saeed.jibres.local/a'
-		// 'baseRaw'      => 'http://saeed.jibres.local/a'
-		// 'prefix'       => '/a'
-		// 'sub'          => 'saeed'
-		// 'breadcrumb'   =>
-		// [
-		// 	1 => 'thirdparty'
-		// 	2 => 'edit'
-		// ]
-		// 'param'        => 'id=5&page=8'
-		// 'raw'          => 'jibres.local'
-		// 'MainProtocol' => 'http'
-		// 'MainSite'     => 'http://saeed.jibres.local.local'
-		// 'module'       => 'thirdparty'
-		// 'child'        => null
-		// 'tags'         => null
-		// 'cats'         => null
-		// 'pages'        => null
-		// 'LoginService' => 'http://jibres/account'
-		// 'account'      => 'http://jibres/account'
-		// 'MainService'  => 'http://ermile.local'
-	}
-
-	private static function _OLD_base()
-	{
-		return self::$base;
-	}
-
-	private static function _baseContent()
-	{
-		$base = null;
-        $base .= \lib\url::protocol(). '://';
-        $base .= \lib\url::host();
-		$new_url = $base;
-		if($content = \lib\url::content())
+		$base                   = null;
+		$base                  .= \lib\url::protocol(). '://';
+		$base                  .= \lib\url::host();
+		if($lang = \lib\url::lang())
 		{
-			$new_url .= '/'. $content;
+			$base              .= '/'. $lang;
 		}
-		return $new_url;
+		self::$base             = $base;
+
+		self::$url['here']      = self::_here();
+		self::$url['site']      = self::_site();
+		self::$url['this']      = self::_this();
 	}
 
-	private static function _baseFull()
+
+	private static function _site()
+	{
+		$site = null;
+		$site .= \lib\url::protocol(). '://';
+		$site .= \lib\url::domain();
+		return $site;
+	}
+
+
+	private static function _this()
+	{
+		return \lib\url::here(). '/'. \lib\url::module();
+	}
+
+
+	private static function _here()
 	{
 		$new_url = self::$base;
 		if($content = \lib\url::content())
@@ -224,15 +139,6 @@ class url
 		return $new_url;
 	}
 
-	private static function _baseRaw()
-	{
-		$new_url = self::$base;
-		if($content = \lib\url::content())
-		{
-			$new_url .= '/'. $content;
-		}
-		return $new_url;
-	}
 
 	private static function _prefix()
 	{
@@ -246,168 +152,61 @@ class url
 			$prefix .= '/'. $content;
 		}
 		$new_url = $prefix;
-		return $new_url;
-	}
 
-
-	private static function _OLD_path()
-	{
-		$path = \lib\url::dir();
-		if(isset($path[0]) && $path[0] === \lib\url::content())
+		if(substr($new_url, 0, 1) !== '/')
 		{
-			unset($path[0]);
-		}
-		if(is_array($path) && $path)
-		{
-			$path = implode('/', $path);
-		}
-		else
-		{
-			$path = null;
+			$new_url = '/'. $new_url;
 		}
 
-		if($lang = \lib\url::lang())
-		{
-			$path = $lang . '/'. $path;
-		}
-
-		$new_url = $path;
-		return $new_url;
-	}
-
-	private static function _breadcrumb()
-	{
-		$breadcrumb = \lib\url::dir();
-		if(isset($breadcrumb[0]) && $breadcrumb[0] === \lib\url::content())
-		{
-			unset($breadcrumb[0]);
-		}
-
-		if(is_array($breadcrumb) && $breadcrumb)
-		{
-			$temp = [];
-			foreach ($breadcrumb as $key => $value)
-			{
-				if(strpos($value, '=') !== false)
-				{
-					$split = explode('=', $value);
-					array_push($temp, $split[0]);
-				}
-				else
-				{
-					array_push($temp, $value);
-				}
-			}
-		}
-		else
-		{
-			$breadcrumb = [];
-		}
-
-		$new_url = $breadcrumb;
 		return $new_url;
 	}
 
 
 	private static function _module()
 	{
-		$module = \lib\url::dir();
-		if(isset($module[0]) && $module[0] === \lib\url::content())
+		$module = null;
+		if(isset(self::$temp_path_split[0]))
 		{
-			unset($module[0]);
+			$module = self::$temp_path_split[0];
+			unset(self::$temp_path_split[0]);
+			if(is_array(self::$temp_path_split))
+			{
+				self::$temp_path_split = array_values(self::$temp_path_split);
+			}
 		}
-
-		$module = array_values($module);
-
-		if(is_array($module) && isset($module[0]))
-		{
-			$module = $module[0];
-		}
-		else
-		{
-			$module = null;
-		}
-
 		return $module;
 	}
 
+
 	private static function _child()
 	{
-		$module = \lib\url::dir();
-		if(isset($module[0]) && $module[0] === \lib\url::content())
+		$child = null;
+		if(isset(self::$temp_path_split[0]))
 		{
-			unset($module[0]);
+			$child = self::$temp_path_split[0];
+			unset(self::$temp_path_split[0]);
+			if(is_array(self::$temp_path_split))
+			{
+				self::$temp_path_split = array_values(self::$temp_path_split);
+			}
 		}
-
-		$module = array_values($module);
-
-		if(is_array($module) && isset($module[0]))
-		{
-			$module = $module[0];
-		}
-		else
-		{
-			$module = null;
-		}
-
-		if(isset($module[0]) && $module[0] === $module)
-		{
-			unset($module[0]);
-		}
-
-		if(is_array($module))
-		{
-			$module = array_values($module);
-		}
-
-		if(is_array($module) && isset($module[0]))
-		{
-			$child = $module[0];
-		}
-		else
-		{
-			$child = null;
-		}
-
 		return $child;
-
 	}
 
-	private static function _tags()
+
+	private static function _subchild()
 	{
-
-	}
-
-	private static function _cats()
-	{
-
-	}
-
-	private static function _pages()
-	{
-
-	}
-
-	private static function _LoginService()
-	{
-		$new_url = null;
-		$new_url .= \lib\url::protocol(). '://';
-		$new_url .= \lib\url::domain(). '/account';
-		return $new_url;
-	}
-
-	private static function _account()
-	{
-		$new_url = null;
-		$new_url .= \lib\url::protocol(). '://';
-		$new_url .= \lib\url::domain(). '/account';
-		return $new_url;
-	}
-
-	private static function _MainService()
-	{
-		$new_url = \lib\url::protocol(). '://ermile.'. \lib\url::tld();
-		return $new_url;
+		$subchild = null;
+		if(isset(self::$temp_path_split[0]))
+		{
+			$subchild = self::$temp_path_split[0];
+			unset(self::$temp_path_split[0]);
+			if(is_array(self::$temp_path_split))
+			{
+				self::$temp_path_split = array_values(self::$temp_path_split);
+			}
+		}
+		return $subchild;
 	}
 
 
@@ -485,13 +284,17 @@ class url
 
 	private static function _domain()
 	{
-		return self::$url['root']. '.'. self::$url['tld'];
+		$domain = self::$url['root']. '.'. self::$url['tld'];
+		if(self::$url['port'] !== 80)
+		{
+			$domain .= ':'. self::$url['port'];
+		}
+		return $domain;
 	}
 
 
 	private static function _host()
 	{
-
 		$host = null;
 		if(self::$url['subdomain'])
 		{
@@ -499,11 +302,6 @@ class url
 		}
 
 		$host .= self::$url['domain'];
-
-		if(self::$url['port'] !== 80)
-		{
-			$host .= ':'. self::$url['port'];
-		}
 
 		return $host;
 	}
@@ -515,7 +313,7 @@ class url
 	}
 
 
-	private static function _full()
+	private static function _pwd()
 	{
 		$full = null;
 		if(self::$uri)
@@ -529,7 +327,8 @@ class url
 		return $full;
 	}
 
-	private static function _full2()
+
+	private static function _current()
 	{
 		$full = null;
 		if(self::$uri)
@@ -570,7 +369,12 @@ class url
 		{
 			$lang = self::$path_split[0];
 			unset(self::$path_split[0]);
+			unset(self::$temp_path_split[0]);
 			self::$path_split = array_values(self::$path_split);
+			if(is_array(self::$temp_path_split))
+			{
+				self::$temp_path_split = array_values(self::$temp_path_split);
+			}
 		}
 		return $lang;
 	}
@@ -584,6 +388,11 @@ class url
 			if(\lib\content::is_content(self::$path_split[0]))
 			{
 				$content = self::$path_split[0];
+				unset(self::$temp_path_split[0]);
+				if(is_array(self::$temp_path_split))
+				{
+					self::$temp_path_split = array_values(self::$temp_path_split);
+				}
 			}
 		}
 		return $content;
@@ -594,7 +403,7 @@ class url
 	{
 		$dir = [];
 
-		foreach (self::$path_split as $key => $value)
+		foreach (self::$temp_path_split as $key => $value)
 		{
 			if($value != '')
 			{
@@ -602,25 +411,6 @@ class url
 			}
 		}
 		return $dir;
-	}
-
-
-	private static function _property()
-	{
-		$property = [];
-
-		foreach (self::$path_split as $key => $value)
-		{
-			if(strpos($value, '=') !== false)
-			{
-				$tmp_split = explode('=', $value);
-				if(count($tmp_split) === 2)
-				{
-					$property[$tmp_split[0]] = $tmp_split[1];
-				}
-			}
-		}
-		return $property;
 	}
 
 
@@ -675,23 +465,6 @@ class url
 				return null;
 			}
 		}
-	}
-
-
-	/**
-	 * set key and value into array
-	 * @param [type] $_key   [description]
-	 * @param [type] $_value [description]
-	 */
-	public static function set($_key, $_value)
-	{
-		// create duplicate of self::$url as real_url
-		if(empty(self::$real_url))
-		{
-			self::$real_url = self::$url;
-		}
-
-		self::$url[$_key] = $_value;
 	}
 
 
