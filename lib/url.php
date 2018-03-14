@@ -13,7 +13,7 @@ namespace lib;
  * 'subdomain' => 'ermile'
  * 'root'      => 'jibres'
  * 'tld'       => 'com'
- * 'port'      => null
+ * 'port'      => 80
  * 'domain'    => 'jibres.com'							[root+tld]
  * 'host'      => 'saeed.jibres.com'					[subdomain+domain+port]
  * 'base'      => 'http://ermile.jibres.com'			[protocol+host]
