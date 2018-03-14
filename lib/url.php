@@ -2,7 +2,33 @@
 namespace lib;
 /**
  * this lib handle url of our PHP framework, Dash
- * v 0.1
+ * v 1.0
+ *
+ * This lib detect all part of url and return each one seperate or combine some of them
+ * Below example is the sample of this url lib
+ *
+ * example : http://ermile.jibres.com/en/a/thirdparty/general/edit/test=yes?id=5&page=8
+ *
+ * 'protocol'  => 'http'
+ * 'subdomain' => 'ermile'
+ * 'root'      => 'jibres'
+ * 'tld'       => 'com'
+ * 'port'      => null
+ * 'domain'    => 'jibres.com'							[root+tld]
+ * 'host'      => 'saeed.jibres.com'					[subdomain+domain+port]
+ * 'base'      => 'http://ermile.jibres.com'			[protocol+host]
+ * 'lang'      => 'en'
+ * 'content'   => 'a'
+ * 'module'    => 'thirdparty'
+ * 'child'     => 'general'
+ * 'subchild'  => 'edit'
+ * 'query'     => 'id=5&page=8'
+ * 'prefix'    => '/en/a'								[lang+content]
+ * 'dir'       => [ 0 => 'thirdparty', 1 => 'general', 2 => 'edit', 3=> 'test=yes']
+ * 'path'      => 'en/a/thirdparty/general/edit/test=yes?id=5&page=8'
+ * 'this'      => 'http://ermile.jibres.com/en/a/thirdparty/general/edit/test=yes?id=5&page=8'
+ * 'current'   => 'http://ermile.jibres.com/en/a/thirdparty/general/edit/test=yes'
+ * 'here'      => 'http://ermile.jibres.com/en/a'
  */
 class url
 {
