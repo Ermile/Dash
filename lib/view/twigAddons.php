@@ -252,10 +252,10 @@ trait twigAddons
 			$onlyLink    = array_column(func_get_args(), 'onlyLink');
 			$class       = array_column(func_get_args(), 'class');
 			$langList    = $this->data->site['langlist'];
-			$urlRoot     = $this->data->url->root;
-			$urlContent  = $this->data->url->content;
-			$urlPath     = $this->data->url->path;
-			$urlParam    = $this->data->url->param;
+			$urlRoot     = \lib\url::root();
+			$urlContent  = \lib\url::content();
+			$urlPath     = \lib\url::path();
+			$urlParam    = \lib\url::query();
 			$currentlang = \lib\define::get_language();
 
 			if(!$all)
@@ -348,7 +348,7 @@ trait twigAddons
 			$result     = '';
 			if($_homepage || count($myurl))
 			{
-				$baseURL    = $this->data->url->base;
+				$baseURL    = \lib\url::base();
 				if(\lib\router::get_repository_name() === 'content')
 				{
 					$result = '<a href="'. $baseURL. '" tabindex="-1" '. $direct.'><span class="fa fa-home"></span> '.T_('Homepage').'</a>';
@@ -375,7 +375,7 @@ trait twigAddons
 			foreach ($myurl as $key => $part)
 			{
 				$currentUrl  .= $_path[$key].'/';
-				$baseURLFull = $this->data->url->baseFull;
+				$baseURLFull = \lib\url::here();
 				$anchorUrl   = trim($baseURLFull.'/'.$currentUrl, '/');
 				$location    = $part;
 				// set title of each locations
