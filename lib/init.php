@@ -13,6 +13,7 @@ class init
 		// detect url and start work with them as first lib used by another one
 		\lib\url::initialize();
 
+		self::appropriate_url();
 	}
 
 
@@ -21,12 +22,35 @@ class init
 	 * and if is less than min, show error message
 	 * @return [type] [description]
 	 */
-	public static function minimum_requirement()
+	private static function minimum_requirement()
 	{
 		// check php version to upper than 7.0
 		if(version_compare(phpversion(), '7.0', '<'))
 		{
 			\lib\code::die("<p>For using Dash you must update php version to 7.0 or higher!</p>");
+		}
+	}
+
+
+	private static function appropriate_url()
+	{
+		$target_url = '';
+		// check https
+
+		// check www
+		if(\lib\url::subdomain() === 'www')
+		{
+			$target_url = '';
+		}
+
+		// check main domain
+
+		// check main tld
+
+		// if we have new target url, try to change it
+		if($target_url)
+		{
+			header('Location: '. $target_url, true, 301);
 		}
 	}
 }

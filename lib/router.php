@@ -198,15 +198,6 @@ class router
 				// we are in undefined subdomain! why!?
 			}
 		}
-
-		if(count(explode('.', \lib\url::subdomain())) > 1)
-		{
-			\lib\code::die("<p>Dash only support one subdomain!</p>" );
-		}
-		elseif(\lib\url::subdomain() === 'www')
-		{
-			header('Location: '.router::get_storage('url_site'), true, 301);
-		}
 	}
 
 
