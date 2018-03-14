@@ -14,7 +14,7 @@ class view extends \addons\content_cp\main\view
 		// $this->data->page['badge']['text'] = T_('Add new :val', ['val' => $myType]);
 
 		// add back level to summary link
-		$product_list_link        =  '<a href="'. $this->url('baseFull') .'" data-shortkey="121">'. T_('Back to dashboard'). '</a>';
+		$product_list_link        =  '<a href="'. \lib\url::here() .'" data-shortkey="121">'. T_('Back to dashboard'). '</a>';
 		$this->data->page['desc'] .= ' | '. $product_list_link;
 
 		$search_string            = \lib\utility::get('q');

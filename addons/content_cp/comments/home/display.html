@@ -65,7 +65,7 @@
       <tr>
         <td>{{value.author}}</td>
         <td>{{value.email}}</td>
-        <td><a href="{{url.baseFull}}/comments/edit?id={{value.id}}">{{value.content}}</a></td>
+        <td><a href="{{url.here}}/comments/edit?id={{value.id}}">{{value.content}}</a></td>
         <td>{%set myStatus = value.status | capitalize%}{%trans myStatus%}</td>
 
         <td title="{{value.datecreated}}">{{value.datecreated | tdate}}</td>
@@ -81,7 +81,7 @@
 {%block htmlFilter%}
 <p class="f fs14 alert alert-info">
   <span class="c">{{dataFilter | raw}}</span>
-  <a class="cauto" href="{{url.baseFull}}/comments">{%trans "Clear filters"%}</a>
+  <a class="cauto" href="{{url.here}}/comments">{%trans "Clear filters"%}</a>
 </p>
 {%endblock%}
 
@@ -89,12 +89,12 @@
 {%block htmlFilterNoResult%}
 <p class="f fs14 alert alert-error">
   <span class="c">{%trans "Result not found!"%} {%trans "Search with new keywords."%}</span>
-  <a class="cauto" href="{{url.baseFull}}/comments">{%trans "Clear filters"%}</a>
+  <a class="cauto" href="{{url.here}}/comments">{%trans "Clear filters"%}</a>
 </p>
 {%endblock%}
 
 
 {%block htmlStartAddNew%}
-<p class="fs14 alert alert-success pTB20">{%trans "Hi!"%} <a href="{{url.baseFull}}/comments/add{{moduleType}}">{%trans "Try to start with add new record!"%}</a></p>
+<p class="fs14 alert alert-success pTB20">{%trans "Hi!"%} <a href="{{url.here}}/comments/add{{moduleType}}">{%trans "Try to start with add new record!"%}</a></p>
 {%endblock%}
 

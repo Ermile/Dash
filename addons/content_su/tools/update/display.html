@@ -6,11 +6,11 @@
  <div class="dbox">
    <h2>{%trans "Git Repository"%}</h2>
    <div class="btns">
-    <a target='_blank' href="{{url.baseFull}}/tools/update?git=ermile">{%trans "Update"%} {%trans "Ermile Repository"%}</a>
+    <a target='_blank' href="{{url.here}}/tools/update?git=ermile">{%trans "Update"%} {%trans "Ermile Repository"%}</a>
     <br/><br/><br/>
-    <a target='_blank' href="{{url.baseFull}}/tools/update?git=dash" class="warn">{%trans "Update"%} {%trans "Dash Repository"%}</a>
-    <a target='_blank' href="{{url.baseFull}}/tools/update?git={{site.title | lower}}">{%trans "Update"%} {%trans "Current Project Repository"%}</a>
-    <a target='_blank' href="{{url.baseFull}}/tools/update?git=all" class="info">{%trans "Update"%} {%trans "All: Dash + current project Repository"%}</a>
+    <a target='_blank' href="{{url.here}}/tools/update?git=dash" class="warn">{%trans "Update"%} {%trans "Dash Repository"%}</a>
+    <a target='_blank' href="{{url.here}}/tools/update?git={{site.title | lower}}">{%trans "Update"%} {%trans "Current Project Repository"%}</a>
+    <a target='_blank' href="{{url.here}}/tools/update?git=all" class="info">{%trans "Update"%} {%trans "All: Dash + current project Repository"%}</a>
    </div>
  </div>
 {%endif%}
@@ -20,7 +20,7 @@
   <h2>{%trans "Database"%}</h2>
   <div class="btns">
 
-   <form method="post" action="{{url.baseFull}}/tools/db" data-action>
+   <form method="post" action="{{url.here}}/tools/db" data-action>
      <input type="text" name="username" placeholder="db username">
      <input type="password" name="password" placeholder="db password" autocomplete="new-password">
      <select name="type">
@@ -32,9 +32,9 @@
    </form>
    <br/>
 
-   <!-- <a target='_blank' href="{{url.baseFull}}/tools/db?upgrade=true">{%trans "Upgrade"%} {%trans "Project Database"%}</a> -->
-   <!-- <a target='_blank' href="{{url.baseFull}}/tools/dbtables">{%trans "Automatically read database and create sql files"%}</a> -->
-   <!-- <a target='_blank' href="{{url.baseFull}}/tools/db?backup=true">{%trans "Backup"%} {%trans "Project Database"%}</a> -->
+   <!-- <a target='_blank' href="{{url.here}}/tools/db?upgrade=true">{%trans "Upgrade"%} {%trans "Project Database"%}</a> -->
+   <!-- <a target='_blank' href="{{url.here}}/tools/dbtables">{%trans "Automatically read database and create sql files"%}</a> -->
+   <!-- <a target='_blank' href="{{url.here}}/tools/db?backup=true">{%trans "Backup"%} {%trans "Project Database"%}</a> -->
   </div>
  </div>
 

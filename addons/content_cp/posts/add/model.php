@@ -18,7 +18,7 @@ class model extends \addons\content_cp\posts\main\model
 
 		if(\lib\debug::$status && isset($post_detail['post_id']))
 		{
-			$this->redirector($this->url('baseFull'). '/posts/edit?id='. $post_detail['post_id']);
+			$this->redirector(\lib\url::here(). '/posts/edit?id='. $post_detail['post_id']);
 			return;
 		}
 

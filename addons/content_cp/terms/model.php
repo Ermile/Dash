@@ -34,7 +34,7 @@ class model extends \addons\content_cp\main\model
 			{
 				\lib\debug::true(T_("Term successfully edited"));
 
-				$url = $this->url('baseFull'). '/terms';
+				$url = \lib\url::here(). '/terms';
 
 				if(\lib\utility::get('type'))
 				{

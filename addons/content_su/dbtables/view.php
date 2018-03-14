@@ -6,7 +6,7 @@ class view extends \addons\content_su\main\view
 	public function config()
 	{
 		parent::config();
-		$this->data->modulePath = $this->url('baseFull');
+		$this->data->modulePath = \lib\url::here();
 
 		$this->data->page['title'] = T_("Database raw table data");
 
@@ -37,7 +37,7 @@ class view extends \addons\content_su\main\view
 
 			$this->data->all_field = \lib\app\dbtables::get_field();
 
-			$this->data->sort_link = self::su_make_sort_link(\lib\app\dbtables::sort_field(), $this->url('baseFull'). '/dbtables');
+			$this->data->sort_link = self::su_make_sort_link(\lib\app\dbtables::sort_field(), \lib\url::here(). '/dbtables');
 			$this->data->dataTable = \lib\app\dbtables::list(\lib\utility::get('q'), $args);
 
 			$check_empty_datatable = $args;

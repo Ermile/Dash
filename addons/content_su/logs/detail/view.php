@@ -7,7 +7,7 @@ class view extends \addons\content_su\main\view
 	{
 		parent::config();
 
-		$this->data->page['badge']['link'] = $this->url('baseFull'). '/logs';
+		$this->data->page['badge']['link'] = \lib\url::here(). '/logs';
 		$this->data->page['badge']['text'] = T_('Back to Logs list');
 	}
 

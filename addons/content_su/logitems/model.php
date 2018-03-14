@@ -50,7 +50,7 @@ class model extends \addons\content_su\main\model
 			if($result)
 			{
 				debug::true(T_("Update successfull"));
-				$this->redirector($this->url('baseFull'). '/logitems');
+				$this->redirector(\lib\url::here(). '/logitems');
 			}
 			else
 			{

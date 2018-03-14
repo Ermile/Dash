@@ -6,12 +6,12 @@ class view extends \addons\content_cp\main\view
 {
 	public function config()
 	{
-		$this->data->modulePath = $this->url('baseFull'). '/terms';
+		$this->data->modulePath = \lib\url::here(). '/terms';
 
 		$this->data->page['title'] = T_("Terms");
 		$this->data->page['desc']  = T_("Check terms and filter by type or view and edit some terms");
 
-		$this->data->page['badge']['link'] = $this->url('baseFull');
+		$this->data->page['badge']['link'] = \lib\url::here();
 		$this->data->page['badge']['text'] = T_('Back to dashboard');
 
 		$myType = \lib\utility::get('type');

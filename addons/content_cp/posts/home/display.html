@@ -61,8 +61,8 @@
       {%for key, value in dataTable%}
       <tr {%if value.status=='deleted'%} class='negative'{%endif%}>
         <td><a href="{{url.base}}/{{value.url}}" target="_blank"><span class="sf-share"></span></a>
-        <a href="{{url.baseFull}}/posts/edit?id={{value.id}}">{{value.title}}</a></td>
-        <td class="collapsing">{%set myStatus = value.status | capitalize %}<a href="{{url.baseFull}}/posts?status={{value.status}}">{%trans myStatus%}</a></td>
+        <a href="{{url.here}}/posts/edit?id={{value.id}}">{{value.title}}</a></td>
+        <td class="collapsing">{%set myStatus = value.status | capitalize %}<a href="{{url.here}}/posts?status={{value.status}}">{%trans myStatus%}</a></td>
       </tr>
       {%endfor%}
     </tbody>
@@ -75,7 +75,7 @@
 {%block htmlFilter%}
 <p class="f fs14 alert alert-info">
   <span class="c">{{dataFilter | raw}}</span>
-  <a class="cauto" href="{{url.baseFull}}/posts">{%trans "Clear filters"%}</a>
+  <a class="cauto" href="{{url.here}}/posts">{%trans "Clear filters"%}</a>
 </p>
 {%endblock%}
 
@@ -83,12 +83,12 @@
 {%block htmlFilterNoResult%}
 <p class="f fs14 alert alert-error">
   <span class="c">{%trans "Result not found!"%} {%trans "Search with new keywords."%}</span>
-  <a class="cauto" href="{{url.baseFull}}/posts">{%trans "Clear filters"%}</a>
+  <a class="cauto" href="{{url.here}}/posts">{%trans "Clear filters"%}</a>
 </p>
 {%endblock%}
 
 
 {%block htmlStartAddNew%}
-<p class="fs14 alert alert-success pTB20">{%trans "Hi!"%} <a href="{{url.baseFull}}/posts/add{{moduleType}}">{%trans "Try to start with add new record!"%}</a></p>
+<p class="fs14 alert alert-success pTB20">{%trans "Hi!"%} <a href="{{url.here}}/posts/add{{moduleType}}">{%trans "Try to start with add new record!"%}</a></p>
 {%endblock%}
 

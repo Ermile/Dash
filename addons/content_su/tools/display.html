@@ -8,14 +8,14 @@
 
   <h2 class="title">{%trans "Special tools"%}</h2>
   <div class="btns">
-   <a  href="{{url.baseFull}}/backup">{%trans "Backup"%}</a>
-   <a target='_blank' href="{{url.baseFull}}/tools/sitemap">{%trans "Sitemap"%}</a>
-   <a target='_blank' href="{{url.baseFull}}/tools/info">{%trans "Server information"%}</a>
-   <a target='_blank' href="{{url.baseFull}}/tools/log">{%trans "Log"%}</a>
+   <a  href="{{url.here}}/backup">{%trans "Backup"%}</a>
+   <a target='_blank' href="{{url.here}}/tools/sitemap">{%trans "Sitemap"%}</a>
+   <a target='_blank' href="{{url.here}}/tools/info">{%trans "Server information"%}</a>
+   <a target='_blank' href="{{url.here}}/tools/log">{%trans "Log"%}</a>
 {%if url.tld == 'local'%}
-   <a target='_blank' href="{{url.baseFull}}/tools/translation">{%trans "Translation tools"%}</a>
+   <a target='_blank' href="{{url.here}}/tools/translation">{%trans "Translation tools"%}</a>
 {%endif%}
-   <a target='_blank' href="{{url.baseFull}}/tools/update" class="warn">{%trans "Update"%}</a>
+   <a target='_blank' href="{{url.here}}/tools/update" class="warn">{%trans "Update"%}</a>
 
   </div>
  </div>

@@ -9,7 +9,7 @@
 
   {%for key, value in all_tables%}
   <div class="c2">
-    <a class="dcard x1 " href='{{url.baseFull}}/dbtables?table={{key}}'>
+    <a class="dcard x1 " href='{{url.here}}/dbtables?table={{key}}'>
      <div class="statistic">
       <div class="value"><i class="sf-table"></i></div>
       <div class="label">{{value}}</div>
@@ -52,7 +52,7 @@
 
 {%block htmlSearchBox%}
 <div class="cbox fs12">
-  <form method="get" action='{{url.baseFull}}/dbtables' data-action>
+  <form method="get" action='{{url.here}}/dbtables' data-action>
     <div class="input">
       <input type="search" name="q" placeholder='{%trans "Search in :dbtabless"%}' id="q" value="{{utilityGET.q}}" autofocus  data-pass='submit' autocomplete='off'>
       <button class="addon btn ">{%trans "Search" %}</button>
@@ -95,7 +95,7 @@
 {%block htmlFilter%}
 <p class="f fs14 alert alert-info">
   <span class="c">{{dataFilter | raw}}</span>
-  <a class="cauto" href="{{url.baseFull}}/dbtables">{%trans "Clear filters"%}</a>
+  <a class="cauto" href="{{url.here}}/dbtables">{%trans "Clear filters"%}</a>
 </p>
 {%endblock%}
 
@@ -103,12 +103,12 @@
 {%block htmlFilterNoResult%}
 <p class="f fs14 alert alert-error">
   <span class="c">{%trans "Result not found!"%} {%trans "Search with new keywords."%}</span>
-  <a class="cauto" href="{{url.baseFull}}/dbtables">{%trans "Clear filters"%}</a>
+  <a class="cauto" href="{{url.here}}/dbtables">{%trans "Clear filters"%}</a>
 </p>
 {%endblock%}
 
 
 {%block htmlStartAddNew%}
-<p class="fs14 alert alert-success pTB20">{%trans "Hi!"%} <a href="{{url.baseFull}}/dbtables/add">{%trans "Try to start with add new :dbtables!"%}</a></p>
+<p class="fs14 alert alert-success pTB20">{%trans "Hi!"%} <a href="{{url.here}}/dbtables/add">{%trans "Try to start with add new :dbtables!"%}</a></p>
 {%endblock%}
 

@@ -7,7 +7,7 @@
 
 {%if auto_backup_log or utilityGET.show == 'log' %}
 <div class="cbox">
-    <p><a href="{{url.baseFull}}/backup" class="badge primary">{%trans "Back"%}</a></p>
+    <p><a href="{{url.here}}/backup" class="badge primary">{%trans "Back"%}</a></p>
     {%if auto_backup_log%}
     <pre>
       {{auto_backup_log}}
@@ -27,7 +27,7 @@
         <li>Trafic received: <span>{{(((mysql_info.Bytes_received) / 1024 ) / 1024) | number_format }}</span> <small>MB</small></li>
         <li>Trafic send: <span>{{(((mysql_info.Bytes_sent) / 1024 ) / 1024) | number_format }}</span> <small>MB</small></li>
       </div>
-       <p><a href="{{url.baseFull}}/backup?show=log">{%trans "Show Auto backup log file"%}</a></p>
+       <p><a href="{{url.here}}/backup?show=log">{%trans "Show Auto backup log file"%}</a></p>
       <form method="post">
         <input type="hidden" name="backup" value="now">
           <h6>{%trans "You can create backup now"%}</h6>
@@ -99,7 +99,7 @@
       <div class="badge secondary">{{value.ago | fitNumber}}</div>
       <div class="badge primary">{%trans "Sise"%} {{value.size | fitNumber}} MB</div>
       <div class="badge danger"><a href="{{url.pwd}}" data-ajaxify data-data='{"type" : "remove", "file" : "{{value.name}}"}' data-method='post'>{%trans "Remove"%}</a></div>
-      <div class="badge success"><a href="{{url.baseFull}}/backup?download={{value.name}}" >{%trans "Download"%}</a></div>
+      <div class="badge success"><a href="{{url.here}}/backup?download={{value.name}}" >{%trans "Download"%}</a></div>
     </div>
   </div>
 {%endfor%}

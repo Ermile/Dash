@@ -80,7 +80,7 @@ class model extends \content_account\main\model
 		{
 			\lib\debug::true(T_("Profile data was updated"));
 			\lib\debug::msg('direct', true);
-			$this->redirector($this->url('baseFull'));
+			$this->redirector(\lib\url::here());
 		}
 	}
 

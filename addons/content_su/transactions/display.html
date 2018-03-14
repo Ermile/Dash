@@ -36,7 +36,7 @@
 
 {%block htmlSearchBox%}
 <div class="cbox fs12">
-  <form method="get" action='{{url.baseFull}}/transactions' data-action>
+  <form method="get" action='{{url.here}}/transactions' data-action>
     <div class="input">
       <input type="search" name="q" placeholder='{%trans "Search in :transactionss"%}' id="q" value="{{utilityGET.q}}" autofocus  data-pass='submit' autocomplete='off'>
       <button class="addon btn ">{%trans "Search" %}</button>
@@ -72,13 +72,13 @@
 		<td title="user_id: {{value.user_id}}">{{value.mobile | fitNumber}}</td>
 		<td>{{value.displayname }}</td>
 		<td title="{{value.code}}">{{value.title}}</td>
-		<td>{%set my_type = value.type | capitalize%}<a href="{{url.baseFull}}/transactions?type={{value.type}}">{%trans my_type%}</a></td>
+		<td>{%set my_type = value.type | capitalize%}<a href="{{url.here}}/transactions?type={{value.type}}">{%trans my_type%}</a></td>
 		<td>{{value.plus | number_format | fitNumber}}</td>
 		<td>{{value.minus | number_format | fitNumber}}</td>
 		<td>{{value.budget_before | number_format | fitNumber}}</td>
 		<td>{{value.budget | number_format | fitNumber}}</td>
-		<td>{%set my_status = value.status | capitalize%}<a href="{{url.baseFull}}/transactions?status={{value.status}}">{%trans my_status%}</a></td>
-		<td>{%set my_condition = value.condition | capitalize%}<a href="{{url.baseFull}}/transactions?condition={{value.condition}}">{%trans my_condition%}</a></td>
+		<td>{%set my_status = value.status | capitalize%}<a href="{{url.here}}/transactions?status={{value.status}}">{%trans my_status%}</a></td>
+		<td>{%set my_condition = value.condition | capitalize%}<a href="{{url.here}}/transactions?condition={{value.condition}}">{%trans my_condition%}</a></td>
 		<td>{%if value.verify%}<i class="sf-check-1 fc-green"></i>{%else%}<i class="sf-times fc-red"></i>{%endif%}</td>
 		<td title="{{value.date}}">{{value.date | tdate}}</td>
       </tr>
@@ -93,7 +93,7 @@
 {%block htmlFilter%}
 <p class="f fs14 alert alert-info">
   <span class="c">{{dataFilter | raw}}</span>
-  <a class="cauto" href="{{url.baseFull}}/transactions">{%trans "Clear filters"%}</a>
+  <a class="cauto" href="{{url.here}}/transactions">{%trans "Clear filters"%}</a>
 </p>
 {%endblock%}
 
@@ -101,13 +101,13 @@
 {%block htmlFilterNoResult%}
 <p class="f fs14 alert alert-error">
   <span class="c">{%trans "Result not found!"%} {%trans "Search with new keywords."%}</span>
-  <a class="cauto" href="{{url.baseFull}}/transactions">{%trans "Clear filters"%}</a>
+  <a class="cauto" href="{{url.here}}/transactions">{%trans "Clear filters"%}</a>
 </p>
 {%endblock%}
 
 
 {%block htmlStartAddNew%}
-<p class="fs14 alert alert-success pTB20">{%trans "Hi!"%} <a href="{{url.baseFull}}/transactions/add">{%trans "Try to start with add new :transactions!"%}</a></p>
+<p class="fs14 alert alert-success pTB20">{%trans "Hi!"%} <a href="{{url.here}}/transactions/add">{%trans "Try to start with add new :transactions!"%}</a></p>
 {%endblock%}
 
 

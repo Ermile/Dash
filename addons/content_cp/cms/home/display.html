@@ -17,7 +17,7 @@
 
 
 {%block iComment%}
-<a class="dcard x1" href='{{url.baseFull}}/comments'>
+<a class="dcard x1" href='{{url.here}}/comments'>
  <div class="statistic">
   <div class="value"><i class="sf-coffee"></i></div>
   <div class="label">{%trans "Comments"%}</div>
@@ -28,7 +28,7 @@
 
 
 {%block iPost%}
-<a class="dcard x1" href='{{url.baseFull}}/posts?type=post'>
+<a class="dcard x1" href='{{url.here}}/posts?type=post'>
  <div class="statistic">
   <div class="value"><i class="sf-file-text-o"></i></div>
   <div class="label">{%trans "Posts"%}</div>
@@ -39,7 +39,7 @@
 
 
 {%block iPage%}
-<a class="dcard x1" href='{{url.baseFull}}/posts?type=page'>
+<a class="dcard x1" href='{{url.here}}/posts?type=page'>
  <div class="statistic">
   <div class="value"><i class="sf-monitor"></i></div>
   <div class="label">{%trans "Page"%}</div>
@@ -50,7 +50,7 @@
 
 
 {%block iTermCat%}
-<a class="dcard x1" href='{{url.baseFull}}/terms?type=cat'>
+<a class="dcard x1" href='{{url.here}}/terms?type=cat'>
  <div class="statistic">
   <div class="value"><i class="sf-bookmark"></i></div>
   <div class="label">{%trans "Category"%}</div>
@@ -61,7 +61,7 @@
 
 
 {%block iTermTag%}
-<a class="dcard x1" href='{{url.baseFull}}/terms?type=tag'>
+<a class="dcard x1" href='{{url.here}}/terms?type=tag'>
  <div class="statistic">
   <div class="value"><i class="sf-tag-1"></i></div>
   <div class="label">{%trans "Tags"%}</div>

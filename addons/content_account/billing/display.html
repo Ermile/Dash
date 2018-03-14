@@ -70,7 +70,7 @@
         <div class="label">{%trans "Your credit"%} <small>{%trans user_unit%}</small></div>
        </div>
       </div>
-      <a class="cbox" href="{{url.baseFull}}/billing/detail" title='{%trans "Click to check detail"%}'>
+      <a class="cbox" href="{{url.here}}/billing/detail" title='{%trans "Click to check detail"%}'>
        <div class="statistic brown">
         <div class="value">
           <i class="sf-bag"></i>
@@ -123,7 +123,7 @@
           <td>{{value.budget|number_format|fitNumber}} {%trans my_unit%}</td>
           <td>
 {%if value.invoice_id%}
-            <a href="{{url.baseFull}}/billing/invoice/{{value.invoice_id}}"><i class="sf-file-text"></i></a>
+            <a href="{{url.here}}/billing/invoice/{{value.invoice_id}}"><i class="sf-file-text"></i></a>
 {%else%}
             <i>-</i>
 {%endif%}
