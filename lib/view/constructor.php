@@ -23,7 +23,7 @@ trait constructor
 		$this->url->baseContent      = $this->url('baseContent');
 		$this->url->baseFull         = $this->url('baseFull');
 		$this->url->tld              = $this->url('tld');        // domain ltd like 'com'
-		$this->url->raw              = Service;                  // domain name except subdomain like 'ermile.com'
+		$this->url->raw              = \lib\url::domain();                  // domain name except subdomain like 'ermile.com'
 		$this->url->root             = $this->url('root');
 		$this->url->static           = $this->url->root. '/'.'static/';
 		$this->url->protocol         = \lib\url::protocol();

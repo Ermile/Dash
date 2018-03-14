@@ -32,11 +32,9 @@ foreach ($obj as $key => $value):?>
  <div id="smile">:(</div>
 <?php } ?>
  <br/><br/><br/>
- <?php if(defined("Service")) {?>
- <a href="http://<?php echo defined("Service") ? Service: ''; ?>">Return to Homepage</a>
- <?php } else { ?>
- <a href="http://<?php echo $_SERVER['HTTP_HOST'] ?>">Return to Homepage</a>
- <?php } ?>
+
+ <a href="<?php echo \lib\url::site(); ?>">Return to Homepage</a>
+
  <div id="no"><?php echo $STATUS?></div>
 </body>
 </html>

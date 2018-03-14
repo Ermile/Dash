@@ -119,9 +119,6 @@ class router
 			}
 		}
 
-		// like ermile.com
-		if(!defined('Service'))
-			define('Service', \lib\url::domain());
 
 		// like test
 		if(!defined('Module'))
@@ -164,7 +161,7 @@ class router
 			router::$base .= \lib\url::subdomain(). '.';
 		}
 		// add service to base
-		router::$base .= Service .(router::$prefix_base ? '/'. router::$prefix_base : '');
+		router::$base .= \lib\url::domain() .(router::$prefix_base ? '/'. router::$prefix_base : '');
 		// add repository to base
 		if(self::$repository_finded)
 		{

@@ -66,13 +66,13 @@ class define
 		// if($cookie_domain)
 		// {
 		// 	session_name($cookie_domain);
-		// 	$cookie_domain = $cookie_domain. '.'. Service;
+		// 	$cookie_domain = $cookie_domain. '.'. \lib\url::domain();
 		// 	session_set_cookie_params(0, '/', $cookie_domain, false, true);
 		// }
 		// else
 		// {
 		// 	session_name(\lib\url::root());
-		// 	$cookie_domain = Service;
+		// 	$cookie_domain = \lib\url::domain();
 		// 	session_set_cookie_params(0, '/');
 		// }
 
@@ -81,7 +81,7 @@ class define
 			session_name(\lib\url::root());
 		}
 		// set session cookie params
-		session_set_cookie_params(0, '/', '.'.Service, false, true);
+		session_set_cookie_params(0, '/', '.'.\lib\url::domain(), false, true);
 		/**
 		 * A session is a way to store information (in variables) to be used across multiple pages.
 		 * Unlike a cookie, the information is not stored on the users computer.
@@ -121,7 +121,7 @@ class define
 			// if user set dev in get, show the site
 			if(isset($_GET['local']))
 			{
-				setcookie('preview','yes',time() + 30*24*60*60,'/','.'.Service);
+				setcookie('preview','yes',time() + 30*24*60*60,'/','.'.\lib\url::domain());
 			}
 			elseif(router::get_url(0) === 'saloos_tg')
 			{

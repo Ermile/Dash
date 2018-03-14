@@ -177,7 +177,7 @@ class sessions
 	 */
 	private static function set_cookie($_code)
 	{
-		$cookie_domain = '.'. Service;
+		$cookie_domain = '.'. \lib\url::domain();
 		setcookie("remember_me_", $_code, time() + (60*60*24*365), '/', $cookie_domain);
 	}
 
