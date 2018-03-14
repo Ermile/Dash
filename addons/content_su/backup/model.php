@@ -31,7 +31,7 @@ class model extends \addons\content_su\main\model
 			if(\lib\utility\file::delete(database. 'backup/files/'. $file_name))
 			{
 				\lib\debug::true(T_("File successfully deleted"));
-				$this->redirector($this->url('full'));
+				$this->redirector(\lib\url::pwd());
 				return;
 			}
 		}
@@ -48,7 +48,7 @@ class model extends \addons\content_su\main\model
 		{
 			\lib\debug::true(T_("Backup complete"));
 		}
-		$this->redirector($this->url('full'));
+		$this->redirector(\lib\url::pwd());
 	}
 
 	public function backup_schedule()

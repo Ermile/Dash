@@ -18,7 +18,7 @@ class model extends \content_account\main\model
 			if($check)
 			{
 				\lib\debug::true(T_("Creat new api key successfully complete"));
-				$this->redirector($this->url('full'));
+				$this->redirector(\lib\url::pwd());
 			}
 			else
 			{

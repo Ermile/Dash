@@ -58,7 +58,7 @@ class model extends \mvc\model
 			}
 		}
 
-		$meta = ['turn_back' => $this->url('full')];
+		$meta = ['turn_back' => \lib\url::pwd()];
 
 		\lib\utility\payment\pay::start($this->login('id'), utility::post('bank'), utility::post('amount'), $meta);
 	}

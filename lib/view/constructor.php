@@ -12,7 +12,7 @@ trait constructor
 		array_push($this->twig_include_path, addons);
 
 		// define default value for url
-		$this->url->full             = $this->url('full');       // full url except get parameter with http[s]
+		$this->url->full             = \lib\url::pwd();       // full url except get parameter with http[s]
 		$this->url->path             = $this->url('path');       // full path except parameter and domain name
 		$this->url->breadcrumb       = $this->url('breadcrumb'); // full path in array for using in breadcrumb
 		$this->url->domain           = $this->url('domain');     // domain name like 'ermile'
@@ -175,7 +175,7 @@ trait constructor
 				}
 
 				// remove get parameter from url
-				header('Location: '. $this->url('full'));
+				header('Location: '. \lib\url::pwd());
 			}
 		}
 	}

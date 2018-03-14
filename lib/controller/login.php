@@ -113,7 +113,7 @@ trait login
 			if($redirect_lang && array_key_exists($redirect_lang, $access_lang))
 			{
 				$root    = $this->url('root');
-				$full    = $this->url('full');
+				$full    = \lib\url::pwd();
 				$new_url = str_replace($root, $root. '/'. $redirect_lang, $full);
 				$this->redirector($new_url)->redirect();
 			}

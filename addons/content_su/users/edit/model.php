@@ -81,7 +81,7 @@ class model extends \addons\content_su\main\model
 
 		if(debug::$status)
 		{
-			$this->redirector($this->url('full'));
+			$this->redirector(\lib\url::pwd());
 		}
 	}
 }
