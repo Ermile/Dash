@@ -15,10 +15,6 @@ trait constructor
 
 		$this->data->url = $this->url;
 
-
-		// $this->url->baseFull         = \lib\url::here();
-		// $this->url->tld              = $this->url('tld');        // domain ltd like 'com'
-		// $this->url->raw              = \lib\url::domain();                  // domain name except subdomain like 'ermile.com'
 		// $this->url->root             = $this->url('root');
 		// $this->url->protocol         = \lib\url::protocol();
 		// $this->url->account          = $this->url('account');
