@@ -327,7 +327,10 @@ class url
 			unset($module[0]);
 		}
 
-		$module = array_values($module);
+		if(is_array($module))
+		{
+			$module = array_values($module);
+		}
 
 		if(is_array($module) && isset($module[0]))
 		{
