@@ -35,7 +35,7 @@
       </form>
       {%if database_log%}
         <br>
-        {%trans "You have another database for logs"%} <a href="{{url.full}}" data-ajaxify data-data='{"backup" : "now_log"}' data-method='post'><small>{%trans "Click for create backup from log database"%}</small></a>
+        {%trans "You have another database for logs"%} <a href="{{url.pwd}}" data-ajaxify data-data='{"backup" : "now_log"}' data-method='post'><small>{%trans "Click for create backup from log database"%}</small></a>
       {%endif%}
     </div>
   </div>
@@ -98,7 +98,7 @@
       {{value.name}} |
       <div class="badge secondary">{{value.ago | fitNumber}}</div>
       <div class="badge primary">{%trans "Sise"%} {{value.size | fitNumber}} MB</div>
-      <div class="badge danger"><a href="{{url.full}}" data-ajaxify data-data='{"type" : "remove", "file" : "{{value.name}}"}' data-method='post'>{%trans "Remove"%}</a></div>
+      <div class="badge danger"><a href="{{url.pwd}}" data-ajaxify data-data='{"type" : "remove", "file" : "{{value.name}}"}' data-method='post'>{%trans "Remove"%}</a></div>
       <div class="badge success"><a href="{{url.baseFull}}/backup?download={{value.name}}" >{%trans "Download"%}</a></div>
     </div>
   </div>
