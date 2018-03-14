@@ -1,42 +1,107 @@
 {%extends display.suMain%}
 
-{%block content%}
+{%block pageContent%}
 
 {%if true or perm.tools.view%}
- <div class="dbox">
-   <h2>{%trans "Git Repository"%}</h2>
-   <div class="btns">
-    <a target='_blank' href="{{url.here}}/tools/update?git=ermile">{%trans "Update"%} {%trans "Ermile Repository"%}</a>
-    <br/><br/><br/>
-    <a target='_blank' href="{{url.here}}/tools/update?git=dash" class="warn">{%trans "Update"%} {%trans "Dash Repository"%}</a>
-    <a target='_blank' href="{{url.here}}/tools/update?git={{site.title | lower}}">{%trans "Update"%} {%trans "Current Project Repository"%}</a>
-    <a target='_blank' href="{{url.here}}/tools/update?git=all" class="info">{%trans "Update"%} {%trans "All: Dash + current project Repository"%}</a>
-   </div>
- </div>
+<p class="msg danger fs16 txtC">{%trans "If you dont know about this page, leave it!"%}</p>
+
+<div class="f mB25">
+  <div class="c3 s12 pRa25">
+    {{block('iCurrent')}}
+  </div>
+  <div class="c4 s12">
+    {{block('iCurrentVersion')}}
+    {{block('iLastUpdate')}}
+  </div>
+</div>
+
+<div class="f mB25">
+  <div class="c8 s12 pRa25">
+    {{block('iRepo')}}
+  </div>
+  <div class="c4 s12">
+    {{block('iUpdateDb')}}
+  </div>
+</div>
+
+
+
+
+
 {%endif%}
 
-
- <div class="dbox">
-  <h2>{%trans "Database"%}</h2>
-  <div class="btns">
-
-   <form method="post" action="{{url.here}}/tools/db" data-action>
-     <input type="text" name="username" placeholder="db username">
-     <input type="password" name="password" placeholder="db password" autocomplete="new-password">
-     <select name="type">
-       <option value="upgrade" selected="selected">{%trans "Upgrade"%}</option>
-       <option value="backup" >{%trans "Backup"%}</option>
-       <option value="backup_dump" >{%trans "Backup by dump"%}</option>
-     </select>
-     <input type="submit" value='{%trans "Submit"%}'>
-   </form>
-   <br/>
-
-   <!-- <a target='_blank' href="{{url.here}}/tools/db?upgrade=true">{%trans "Upgrade"%} {%trans "Project Database"%}</a> -->
-   <!-- <a target='_blank' href="{{url.here}}/tools/dbtables">{%trans "Automatically read database and create sql files"%}</a> -->
-   <!-- <a target='_blank' href="{{url.here}}/tools/db?backup=true">{%trans "Backup"%} {%trans "Project Database"%}</a> -->
-  </div>
- </div>
-
-
 {%endblock%}
+
+
+{%block iCurrent%}
+<div class="vcard shadow txtC fs14 mB10">
+  <img src="{{url.base}}/static/siftal/images/logo/dash.svg" alt="dash logo" class="pA10-f">
+  <div class="content">
+    <a class="header">{%trans "Dash"%}</a>
+  </div>
+</div>
+{%endblock%}
+
+
+{%block iLastUpdate%}
+<div class="dcard x2 mB25">
+  <div class="statistic orange">
+    <div class="value"><i class="sf-history"></i><span>{{dash.lastUpdate | sdate}}</span></div>
+    <div class="label">{%trans "Last update"%}</div>
+  </div>
+</div>
+{%endblock%}
+
+
+{%block iCurrentVersion%}
+<div class="dcard x2 mB25">
+  <div class="statistic brown">
+    <div class="value"><b>{{dash.version | fitNumber(false)}}</b></div>
+    <div class="label">{%trans "Current Version"%}</div>
+  </div>
+</div>
+{%endblock%}
+
+
+{%block iUpdateDb%}
+ <form method="post" action="{{url.here}}/tools/db" data-action class="cbox">
+  <h2>{%trans "Upgrade Database"%}</h2>
+  <div class="msg danger2 txtC">{%trans "Submit this form carefully"%}</div>
+  <div class="input mB10">
+   <span class="addon">{%trans "Username"%}</span>
+   <input type="text" name="username" placeholder="db username">
+  </div>
+  <div class="input mB10">
+   <span class="addon">{%trans "Password"%}</span>
+   <input type="password" name="password" placeholder="db password" autocomplete="new-password" class="input">
+  </div>
+  <div class="input mB10 f">
+   <span class="addon cauto">{%trans "Type"%}</span>
+  <select name="type" class="c input">
+   <option value="upgrade" selected="selected">{%trans "Upgrade"%}</option>
+   <option value="backup" >{%trans "Backup"%}</option>
+   <option value="backup_dump" >{%trans "Backup by dump"%}</option>
+  </select>
+  </div>
+  <button class="btn block danger">{%trans "Submit"%}</button>
+ </form>
+{%endblock%}
+
+
+{%block iRepo%}
+ <div class="cbox">
+   <h2>{%trans "Update Git Repositories"%}</h2>
+   <p class="msg warn2 txtC">{%trans "Before update create a full backup from database and files"%}</p>
+   <div class="f">
+    <div class="c6 pRa10">
+      <a target='_blank' class="btn block mB10 c6 secondary" href="{{url.here}}/tools/update?git={{site.title | lower}}">{%trans "Update"%} {%trans "Current Project Repository"%}</a>
+    </div>
+    <div class="c6">
+      <a target='_blank' class="btn block mB10 c6 secondary" href="{{url.here}}/tools/update?git=dash">{%trans "Update"%} {%trans "Dash Repository"%}</a>
+    </div>
+   </div>
+    <a target='_blank' class="btn block mB10 warn" href="{{url.here}}/tools/update?git=all">{%trans "Update"%} {%trans "All: Dash + current project Repository"%}</a>
+ </div>
+{%endblock%}
+
+
