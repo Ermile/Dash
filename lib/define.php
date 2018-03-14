@@ -304,7 +304,7 @@ class define
 		// then use only one domain for this site then redirect to main tld
 
 		// $tld_lang = \lib\utility\location\tld::get();
-		// if(defined('MainService') && Tld !== 'local')
+		// if(defined('MainService') && \lib\url::isLocal() === false)
 		// {
 		// 	/**
 		// 	 need fix

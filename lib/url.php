@@ -664,6 +664,17 @@ class url
 	}
 
 
+	public static function isLocal()
+	{
+		if(self::get('tld') === 'local')
+		{
+			return true;
+		}
+
+		return false;
+	}
+
+
 	/**
 	 * call every url function if exist
 	 *

@@ -20,7 +20,7 @@ trait _use
 
 	/**
 	 * in debug mode disable check route and lock moduls
-	 * jusn in Tld === dev works
+	 * just in tld === local works
 	 * @var        boolean
 	 */
 	public static $debug_mode        = false;

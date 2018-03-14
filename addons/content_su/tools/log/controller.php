@@ -175,8 +175,8 @@ class controller extends \addons\content_su\main\controller
 		if($fileData)
 		{
 			$myURL    = Protocol."://". \lib\router::get_root_domain().'/static';
-			$myCommon = Protocol."://ermile.".Tld.'/static/js/common.js';
-			$myCode   = Protocol."://code.ermile.".Tld.'/';
+			$myCommon = Protocol."://ermile.".\lib\url::tld().'/static/js/common.js';
+			$myCode   = Protocol."://code.ermile.".\lib\url::tld().'/';
 
 			$output .= "<head>";
 			$output .= ' <title>Log | '. $name. '</title>';

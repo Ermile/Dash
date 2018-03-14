@@ -74,7 +74,7 @@ trait send_code
 			}
 		}
 
-		if(Tld === 'local' && empty($way))
+		if(\lib\url::isLocal() && empty($way))
 		{
 			array_push($way, 'sms');
 		}

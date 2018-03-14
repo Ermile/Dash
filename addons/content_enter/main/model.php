@@ -37,7 +37,7 @@ class model extends \mvc\model
 		}
 
 		// in dev mode
-		if(Tld === 'local')
+		if(\lib\url::isLocal())
 		{
 			self::$dev_mode = true;
 		}

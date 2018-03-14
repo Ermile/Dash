@@ -90,10 +90,6 @@ class router
 			}
 		}
 
-		// like dev or com or ir or ...
-		if(!defined('Tld'))
-			define('Tld', router::get_root_domain('tld'));
-
 		$this->check_router();
 		/**
 		 * after router
@@ -119,7 +115,7 @@ class router
 			// else detect it
 			else
 			{
-				define('MainTld', (Tld === 'local'? '.local': '.com'));
+				define('MainTld', (\lib\url::isLocal()? '.local': '.com'));
 			}
 		}
 
@@ -133,14 +129,14 @@ class router
 
 		// like ermile.com
 		if(!defined('Service'))
-			define('Service', Domain.'.'.Tld);
+			define('Service', Domain.'.'.\lib\url::tld());
 
 		// like test
 		if(!defined('Module'))
 			define('Module', router::get_url(0));
 
 		// like https://ermile.com
-		router::set_storage('url_site', Protocol.'://' . Domain.'.'.Tld.'/');
+		router::set_storage('url_site', Protocol.'://' . Domain.'.'.\lib\url::tld().'/');
 
 		// set MyAccount for use in all part of services
 		if(!defined('AccountService'))
@@ -322,12 +318,12 @@ class router
 			\lib\option::config('multi_domain') &&
 			\lib\option::config('redirect_to_main') &&
 			$mainSite &&
-			Tld !== 'local' &&
+			\lib\url::isLocal() === false &&
 			parse_url($mainSite, PHP_URL_HOST) != \lib\router::get_root_domain()
 		)
 		{
 			// as soon as posible we create language detector library
-			switch (Tld)
+			switch (\lib\url::tld())
 			{
 				case 'ir':
 					$newUrl = $mainSite. "/fa";

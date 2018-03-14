@@ -5,7 +5,7 @@ class controller extends \addons\content_su\main\controller
 {
 	public function ready()
 	{
-		if(Tld === 'local')
+		if(\lib\url::isLocal())
 		{
 			// dont chcek permission on local
 		}

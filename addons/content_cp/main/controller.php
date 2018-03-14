@@ -15,7 +15,7 @@ class controller extends \mvc\controller
 
 		// Check permission and if user can do this operation
 		// allow to do it, else show related message in notify center
-		if(Tld === 'local')
+		if(\lib\url::isLocal())
 		{
 			// on tld dev open the cp to upgrade for test
 		}

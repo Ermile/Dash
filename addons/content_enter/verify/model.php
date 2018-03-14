@@ -30,7 +30,7 @@ class model extends \addons\content_enter\main\model
 			self::send_way();
 		}
 
-		if(Tld === 'local')
+		if(\lib\url::isLocal())
 		{
 			debug::true(T_("Verify code in local is :code", ['code' => '<b>11111</b>']));
 		}

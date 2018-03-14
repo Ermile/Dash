@@ -80,7 +80,7 @@ class telegram
 			"content-type: application/json",
 		];
 
-		if(Tld === 'local')
+		if(\lib\url::isLocal())
 		{
 			$temp_content = [];
 			foreach ($_args['content'] as $key => $value)
@@ -140,7 +140,7 @@ class telegram
 			return false;
 		}
 
-		if(Tld === 'local')
+		if(\lib\url::isLocal())
 		{
 			if(!in_array($_args['chat_id'], [33263188, '33263188', 46898544, '46898544']))
 			{

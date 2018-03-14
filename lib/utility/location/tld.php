@@ -57,8 +57,12 @@ class tld
 	 * @param      <type>  $_key      The key
 	 * @param      string  $_request  The request
 	 */
-	public static function get($_key = Tld, $_request = 'lang')
+	public static function get($_key = null, $_request = 'lang')
 	{
+		if(!$_key)
+		{
+			$_key = \lib\url::isLocal();
+		}
 		$result = null;
 		if(isset(self::$data[$_key]))
 		{
