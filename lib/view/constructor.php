@@ -12,17 +12,7 @@ trait constructor
 		array_push($this->twig_include_path, addons);
 
 		$this->url = \lib\url::get();
-
-		$this->data->url = $this->url;
-
-		// $this->url->root             = \lib\url::base();
-		// $this->url->protocol         = \lib\url::protocol();
-		// $this->url->account          = $this->url('account');
-		// $this->url->MainStatic       = $this->url('MainService'). '/'.'static/';
-		// $this->url->MainSite         = $this->url('MainSite');
-		// $this->url->MainProtocol     = $this->url('MainProtocol');
-		// $this->url->SubDomain        = \lib\url::subdomain()? \lib\url::subdomain().'.': null;
-		// $this->url->repository       = \lib\router::get_repository_name();
+		$this->url['SubDomain']        = \lib\url::subdomain()? \lib\url::subdomain().'.': null;
 		$this->url['static']           = \lib\url::base(). '/static/';
 		if(\lib\url::content())
 		{
@@ -86,6 +76,7 @@ trait constructor
 		$this->data->template['sidebar']   = 'content/template/sidebar.html';
 		$this->data->template['footer']    = 'content/template/footer.html';
 
+		$this->data->url = $this->url;
 
 		$this->data->dev = \lib\option::config('dev');
 
