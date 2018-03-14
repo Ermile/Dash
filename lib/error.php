@@ -122,7 +122,7 @@ class error
 	public static function make($STRING, $obj, $STATUS)
 	{
 		$HTTP_ERROR = self::string($STATUS);
-		if(\lib\engine::is_json_accept() || \lib\temp::get('api'))
+		if(\lib\request::json_accept() || \lib\temp::get('api'))
 		{
 			header('Content-Type: application/json');
 			header("HTTP/1.1 $STATUS ".$HTTP_ERROR);
