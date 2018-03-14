@@ -50,9 +50,9 @@ trait constructor
 		$this->data->site['title']       = T_("Ermile Dash");
 		$this->data->site['desc']        = T_("Another Project with Ermile dash");
 		$this->data->site['slogan']      = T_("Ermile is intelligent ;)");
-		$this->data->site['langlist']    = \lib\option::language('list');
-		$this->data->site['currentlang'] = \lib\define::get_language();
-		$this->data->site['defaultLang'] = \lib\define::get_language('default');
+		$this->data->site['langlist']    = \lib\language::list();
+		$this->data->site['currentlang'] = \lib\language::get_language();
+		$this->data->site['defaultLang'] = \lib\language::get_language('default');
 
 		// save all options to use in display
 		$this->data->options = \lib\option::config();
@@ -78,7 +78,7 @@ trait constructor
 		$this->global->login         = $this->login();
 
 		$this->global->lang          = $this->data->site['currentlang'];
-		$this->global->direction     = \lib\define::get_language('direction');
+		$this->global->direction     = \lib\language::get_language('direction');
 		$this->global->id            = $this->url('path','_');
 
 		// add special pages to display array to use without name

@@ -4,6 +4,8 @@ namespace lib;
 
 class language
 {
+	public static $language;
+	public static $language_default;
 
 	public static $data =
 	[
@@ -14,7 +16,6 @@ class language
 
 	public static function default()
 	{
-
 		return \lib\option::language('default');
 	}
 
@@ -24,22 +25,8 @@ class language
 	 */
 	public static function list($_request = null, $_index = null)
 	{
-
-		if($_request === null)
-		{
-			return self::$data;
-		}
-		else
-		{
-			if($_index === null)
-			{
-				return array_column(self::$data, $_request);
-			}
-			else
-			{
-				return array_column(self::$data, $_index, $_request);
-			}
-		}
+		$list = \lib\option::language('list');
+		return $list;
 	}
 
 
@@ -141,6 +128,165 @@ class language
 
 		}
 		return $myList;
+	}
+
+
+
+	/**
+	 * get detail of language
+	 * @param  string $_request [description]
+	 * @return [type]           [description]
+	 */
+	public static function get_language($_request = 'name')
+	{
+		$result = null;
+		if($_request === 'all')
+		{
+			$result = self::$language;
+		}
+		elseif($_request === 'default')
+		{
+			$result = self::$language_default;
+		}
+		elseif(isset(self::$language[$_request]))
+		{
+			$result = self::$language[$_request];
+		}
+		return $result;
+	}
+
+
+	/**
+	 * [check_language description]
+	 * @param  [type] $_language [description]
+	 * @return [type]            [description]
+	 */
+	public static function get_current_language_string($_language = null, $_boolean = false)
+	{
+		$result = null;
+		if(!$_language)
+		{
+			$_language = self::$language;
+			$_language = $_language['name'];
+		}
+		$default_lang = substr(self::$language_default, 0, 2);
+		if($default_lang !== $_language)
+		{
+			$result = '/'. $_language;
+		}
+
+		if($_boolean)
+		{
+			if($result !== null)
+			{
+				$result = true;
+			}
+			else
+			{
+				$result = false;
+			}
+		}
+		return $result;
+	}
+
+
+	/**
+	 * set language of service
+	 * @param [type] $_language [description]
+	 */
+	public static function set_language($_language, $_force = false)
+	{
+
+		// if language is set and force is not set then return null
+		if(self::$language && !$_force)
+		{
+			return null;
+		}
+		// if default language is not set, then set it only one time
+		if(!self::$language_default)
+		{
+			self::$language_default = \lib\language::default();
+			if(!self::$language_default)
+			{
+				self::$language_default = 'en';
+			}
+		}
+		// get all detail of this language
+		self::$language = \lib\utility\location\languages::get($_language, 'all');
+		if(!self::$language)
+		{
+			self::$language = \lib\utility\location\languages::get(self::$language_default, 'all');
+		}
+
+		// use php gettext function
+		require_once(lib.'utility/gettext/gettext.inc');
+		// if we have iso then trans
+		if(isset(self::$language['iso']))
+		{
+			// gettext setup
+			T_setlocale(LC_MESSAGES, (self::$language['iso']));
+			// Set the text domain as 'messages'
+			T_bindtextdomain('messages', root.'includes/languages');
+			T_bind_textdomain_codeset('messages', 'UTF-8');
+			T_textdomain('messages');
+		}
+	}
+
+
+	public static function detect_language()
+	{
+		// if default language is not set, then set it only one time
+		if(!self::$language_default)
+		{
+			self::$language_default = \lib\language::default();
+			if(!self::$language_default)
+			{
+				self::$language_default = 'en';
+			}
+		}
+
+		// Step1
+		// if language exist in url like ermile.com/fa/ then simulate remove it from url
+		$my_first_url = router::get_url(0);
+		if(\lib\utility\location\languages::check($my_first_url))
+		{
+			if(substr(self::$language_default, 0, 2) === $my_first_url)
+			{
+				$redirectURL = router::get_url();
+				if(substr($redirectURL, 0, 2) === $my_first_url)
+				{
+					$redirectURL = substr($redirectURL, 2);
+				}
+				if(!$redirectURL)
+				{
+					$redirectURL = '/';
+				}
+
+				if(router::get_url(0) === 'api' || router::get_url(1) === 'api')
+				{
+					router::remove_url($my_first_url);
+					// not redirect in api mode
+				}
+				else
+				{
+					$myredirect = new \lib\redirector($redirectURL);
+					$myredirect->redirect();
+				}
+			}
+			else
+			{
+				// set language
+				define::set_language($my_first_url);
+				// add this language to base url
+				router::$prefix_base .= router::get_url(0);
+				// remove language from url and continue
+				router::remove_url($my_first_url);
+				if(\lib\utility\location\languages::check(\lib\router::get_url(0)))
+				{
+					\lib\error::page("More than one language found");
+				}
+			}
+		}
 	}
 }
 ?>

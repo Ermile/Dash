@@ -152,19 +152,7 @@ class option
 		{
 			if(isset(self::$language['list']))
 			{
-				if(is_array(self::$language['list']))
-				{
-					$temp = [];
-					foreach (self::$language['list'] as $key => $value)
-					{
-						$temp[$value] = \lib\utility\location\languages::get($value, 'localname');
-					}
-					return $temp;
-				}
-				else
-				{
-					return \lib\utility\location\languages::get(self::$language['list'], 'localname');
-				}
+				return self::$language['list'];
 			}
 		}
 		elseif($_get === 'default')

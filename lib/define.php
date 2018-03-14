@@ -137,8 +137,8 @@ class define
 		header("X-Made-In: Ermile!");
 		header("X-Powered-By: Dash!");
 
-		self::detect_language();
-		self::set_language(self::$language);
+		\lib\language::detect_language();
+		\lib\language::set_language(\lib\language::$language);
 	}
 
 
