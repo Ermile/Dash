@@ -3,9 +3,8 @@
 {%block pageContent%}
 
 {%if true or perm.tools.view%}
-<p class="msg danger fs16 txtC">{%trans "If you dont know about this page, leave it!"%}</p>
 
-<div class="f mB25">
+<div class="f mB100">
   <div class="c3 s12 pRa25">
     {{block('iCurrent')}}
   </div>
@@ -13,8 +12,12 @@
     {{block('iCurrentVersion')}}
     {{block('iLastUpdate')}}
   </div>
+  <div class="c">
+    {{block('iLocation')}}
+  </div>
 </div>
 
+<p class="msg danger fs16 txtC">{%trans "If you dont know about this page, leave it!"%}</p>
 <div class="f mB25">
   <div class="c8 s12 pRa25">
     {{block('iRepo')}}
@@ -44,9 +47,9 @@
 
 
 {%block iLastUpdate%}
-<div class="dcard x2 mB25">
-  <div class="statistic orange">
-    <div class="value"><i class="sf-history"></i><span>{{dash.lastUpdate | sdate}}</span></div>
+<div class="dcard x2 mB10">
+  <div class="statistic grey">
+    <div class="value"><span>{{dash.lastUpdate | sdate}}</span></div>
     <div class="label">{%trans "Last update"%}</div>
   </div>
 </div>
@@ -54,10 +57,20 @@
 
 
 {%block iCurrentVersion%}
-<div class="dcard x2 mB25">
-  <div class="statistic brown">
+<div class="dcard x2 mB10">
+  <div class="statistic teal">
     <div class="value"><b>{{dash.version | fitNumber(false)}}</b></div>
     <div class="label">{%trans "Current Version"%}</div>
+  </div>
+</div>
+{%endblock%}
+
+
+{%block iLocation%}
+<div class="dcard x2 mB10">
+  <div class="statistic">
+    <div class="value">{{dashLoc | raw}}</div>
+    <div class="label">{%trans "Dash Engine Location"%}</div>
   </div>
 </div>
 {%endblock%}
@@ -83,7 +96,7 @@
    <option value="backup_dump" >{%trans "Backup by dump"%}</option>
   </select>
   </div>
-  <button class="btn block danger">{%trans "Submit"%}</button>
+  <button class="btn block danger outline">{%trans "Submit"%}</button>
  </form>
 {%endblock%}
 
@@ -94,13 +107,13 @@
    <p class="msg warn2 txtC">{%trans "Before update create a full backup from database and files"%}</p>
    <div class="f">
     <div class="c6 pRa10">
-      <a target='_blank' class="btn block mB10 c6 secondary" href="{{url.here}}/tools/update?git={{site.title | lower}}">{%trans "Update"%} {%trans "Current Project Repository"%}</a>
+      <a target='_blank' class="btn block mB10 c6 secondary" href="{{url.here}}/tools/update?git={{url.root}}">{%trans "Update"%} {%trans "Current Project Repository"%}</a>
     </div>
     <div class="c6">
       <a target='_blank' class="btn block mB10 c6 secondary" href="{{url.here}}/tools/update?git=dash">{%trans "Update"%} {%trans "Dash Repository"%}</a>
     </div>
    </div>
-    <a target='_blank' class="btn block mB10 warn" href="{{url.here}}/tools/update?git=all">{%trans "Update"%} {%trans "All: Dash + current project Repository"%}</a>
+    <a target='_blank' class="btn block mB10 xl" href="{{url.here}}/tools/update?git=all">{%trans "Update"%} {%trans "Dash + Current Poject Repository"%}</a>
  </div>
 {%endblock%}
 
