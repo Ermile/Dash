@@ -322,7 +322,7 @@ trait template
 		$currentLang = \lib\define::get_language();
 		$defaultLang = substr(\lib\define::get_language('default'), 0, 2);
 
-		if($currentLang === SubDomain && $currentLang !== $defaultLang)
+		if($currentLang === \lib\url::subdomain() && $currentLang !== $defaultLang)
 		{
 			\lib\router::set_sub_domain(null);
 		}

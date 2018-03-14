@@ -123,10 +123,6 @@ class router
 		if(!defined('Domain'))
 			define('Domain', router::get_root_domain('domain'));
 
-		// like account
-		if(!defined('SubDomain'))
-			define('SubDomain', router::get_sub_domain());
-
 		// like ermile.com
 		if(!defined('Service'))
 			define('Service', Domain.'.'.\lib\url::tld());
@@ -168,14 +164,14 @@ class router
 		// 	{
 		// 		router::$base .= constant('subDevelop'). '.';
 		// 	}
-		// 	elseif(SubDomain === constant('subDevelop'))
+		// 	elseif(\lib\url::subdomain() === constant('subDevelop'))
 		// 	{
 
 		// 	}
 		// }
-		if(SubDomain)
+		if(\lib\url::subdomain())
 		{
-			router::$base .= SubDomain. '.';
+			router::$base .= \lib\url::subdomain(). '.';
 		}
 		// add service to base
 		router::$base .= Service .(router::$prefix_base ? '/'. router::$prefix_base : '');
@@ -184,7 +180,7 @@ class router
 		{
 			router::$base .= '/'. self::$repository_finded;
 		}
-		else if(SubDomain)
+		else if(\lib\url::subdomain())
 		{
 			// if we are in subdomain without finded repository
 			// check if we have content_subDomain route in this folder
@@ -203,11 +199,11 @@ class router
 			}
 		}
 
-		if(count(explode('.', SubDomain)) > 1)
+		if(count(explode('.', \lib\url::subdomain())) > 1)
 		{
 			\lib\code::die("<p>Dash only support one subdomain!</p>" );
 		}
-		elseif(SubDomain === 'www')
+		elseif(\lib\url::subdomain() === 'www')
 		{
 			header('Location: '.router::get_storage('url_site'), true, 301);
 		}

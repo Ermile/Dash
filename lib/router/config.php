@@ -361,7 +361,7 @@ trait config
 	}
 
 	/**
-	 * this funstion give and set SubDomain
+	 * this funstion give and set subdomain
 	 * @param [type] $_subdomain subdomain in array or string
 	 */
 	public static function set_sub_domain($_subdomain)

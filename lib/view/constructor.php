@@ -31,7 +31,7 @@ trait constructor
 		$this->url->MainStatic       = $this->url('MainService'). '/'.'static/';
 		$this->url->MainSite         = $this->url('MainSite');
 		$this->url->MainProtocol     = $this->url('MainProtocol');
-		$this->url->SubDomain        = SubDomain? SubDomain.'.': null;
+		$this->url->SubDomain        = \lib\url::subdomain()? \lib\url::subdomain().'.': null;
 		$this->url->repository       = \lib\router::get_repository_name();
 		if($this->url->repository === 'content')
 		{

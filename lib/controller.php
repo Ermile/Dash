@@ -648,9 +648,10 @@ class controller
 				}
 
 				// add subdomain to base
-				if(SubDomain)
+
+				if(\lib\url::subdomain())
 				{
-					$myprefix .= SubDomain. '.';
+					$myprefix .= \lib\url::subdomain(). '.';
 				}
 
 				if($_type == 'baseContent')
@@ -749,9 +750,9 @@ class controller
 
 			// like raw plus http[s]:// domain name except subdomain like 'http://ermile.com/'
 			case 'root':
-				if(SubDomain)
+				if(\lib\url::subdomain())
 				{
-					$myprefix .= SubDomain. '.';
+					$myprefix .= \lib\url::subdomain(). '.';
 				}
 				$myurl = $myprefix;
 				if(defined("subDevelop") && router::get_sub_domain() === constant("subDevelop"))
