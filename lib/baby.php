@@ -69,7 +69,7 @@ class baby
 	private static function pacifier()
 	{
 		$msg = 'Hi Baby'. str_repeat('!', self::$level);
-		if(\lib\dash::is_json_accept() || \lib\temp::get('api') || \lib\dash::is_ajax())
+		if(\lib\engine::is_json_accept() || \lib\temp::get('api') || \lib\engine::is_ajax())
 		{
 			\lib\error::notacceptable($msg. ' Are you healthy?');
 		}

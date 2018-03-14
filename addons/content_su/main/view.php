@@ -30,8 +30,8 @@ class view extends \mvc\view
 		$this->data->dir['left']         = $this->global->direction == 'rtl'? 'right': 'left';
 		$this->data->page['title']       = T_(ucfirst(\lib\router::get_url(' ')));
 
-		$this->data->dash['version']     = \lib\dash::getLastVersion();
-		$this->data->dash['lastUpdate']  = \lib\dash::getLastUpdate();
+		$this->data->dash['version']     = \lib\engine::getLastVersion();
+		$this->data->dash['lastUpdate']  = \lib\engine::getLastUpdate();
 	}
 
 

@@ -1,7 +1,7 @@
 <?php
-namespace lib\dash;
+namespace lib\engine;
 /**
- * autoload dash core lib
+ * autoload engine core lib
  */
 class lib
 {

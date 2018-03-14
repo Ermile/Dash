@@ -1,5 +1,5 @@
 <?php
-namespace lib\dash;
+namespace lib\engine;
 
 class is
 {

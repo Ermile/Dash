@@ -3,14 +3,14 @@ namespace lib;
 /**
  * dash main configure
  */
-class dash
+class engine
 {
-	// @var dash core current version
-	// const version = '10.6.9';
+	// @var dash engine current version
+	// const version = '12.4.6';
 
-	// @var dash core current commit number
+	// @var dash engine current commit number
 	// now get it automatically from git commands
-	// const iversion = 726;
+	// const iversion = 701;
 
 	// @var current version last update date
 	// now get it automatically from git last commit date
@@ -43,16 +43,16 @@ class dash
 	{
 		if(preg_match("/^is_(.*)$/", $name, $aName))
 		{
-			$class = '\lib\dash\is';
+			$class = '\lib\engine\is';
 			return call_user_func_array(array($class, $aName[1]), $args);
 		}
 		elseif($name == 'lib_static')
 		{
-			$class = '\\lib\\dash\lib';
+			$class = '\\lib\\engine\lib';
 			return new $class($args, true);
 		}
 
-		$class = '\\lib\\dash\\'.$name;
+		$class = '\\lib\\engine\\'.$name;
 		return new $class($args);
 	}
 

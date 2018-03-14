@@ -61,7 +61,7 @@ class redirector
 			return $newLocation;
 		}
 
-		if(\lib\dash::is_json_accept() || \lib\temp::get('api') || \lib\dash::is_ajax())
+		if(\lib\engine::is_json_accept() || \lib\temp::get('api') || \lib\engine::is_ajax())
 		{
 			header('Content-Type: application/json');
 			debug::msg('redirect', $newLocation);

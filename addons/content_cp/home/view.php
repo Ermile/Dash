@@ -23,8 +23,8 @@ class view extends \addons\content_cp\main\view
 		$this->data->display['cpSample'] = "content_cp/sample/layout.html";
 
 
-		$this->data->dash['version']    = \lib\dash::getLastVersion();
-		$this->data->dash['lastUpdate'] = \lib\dash::getLastUpdate();
+		$this->data->dash['version']    = \lib\engine::getLastVersion();
+		$this->data->dash['lastUpdate'] = \lib\engine::getLastUpdate();
 		$this->data->dash['langlist']   = ['fa_IR' => 'Persian - فارسی',
 											 'en_US' => 'English',
 											 'ar_SU' => 'Arabic - العربية'];

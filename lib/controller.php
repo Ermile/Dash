@@ -206,7 +206,7 @@ class controller
 			}
 		}
 
-		if(\lib\dash::is_json_accept())
+		if(\lib\engine::is_json_accept())
 		{
 			$this->display = false;
 		}
@@ -281,7 +281,7 @@ class controller
 		}
 
 
-		if(\lib\dash::is_json_accept() || $force_json || \lib\temp::get('api'))
+		if(\lib\engine::is_json_accept() || $force_json || \lib\temp::get('api'))
 		{
 			header('Content-Type: application/json');
 			if(isset($this->controller()->redirector) && $this->controller()->redirector)
@@ -295,7 +295,7 @@ class controller
 			$this->redirector();
 		}
 
-		if(isset($this->controller()->redirector) && $this->controller()->redirector && !\lib\dash::is_json_accept())
+		if(isset($this->controller()->redirector) && $this->controller()->redirector && !\lib\engine::is_json_accept())
 		{
 			$this->redirector()->redirect();
 		}
