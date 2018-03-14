@@ -134,7 +134,7 @@ class router
 		// like https://ermile.com
 		router::set_storage('url_site', \lib\url::protocol().'://' . Domain.'.'.\lib\url::tld().'/');
 
-		// set MyAccount for use in all part of services
+		// set account for use in all part of services
 		if(!defined('AccountService'))
 		{
 			// if user want main account and set main account name
@@ -150,12 +150,6 @@ class router
 			}
 		}
 
-		// check for account with specefic name
-		if(!defined('MyAccount'))
-		{
-			// set MyAccount for use in all part of services
-			define('MyAccount', 'account');
-		}
 
 		router::$base = \lib\url::protocol().'://';
 		// if(defined('subDevelop'))

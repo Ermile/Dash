@@ -41,87 +41,84 @@ class controller
 		 */
 		register_shutdown_function([$this, 'sp_shutdown']);
 
-		if(MyAccount)
+		if(AccountService === Domain)
 		{
-			if(AccountService === Domain)
-			{
-				$domain = null;
-			}
-			else
-			{
-				$domain = AccountService.MainTld;
-			}
-			$param = $this->url('param');
-			if($param)
-			{
-				$param = '?'.$param;
-			}
+			$domain = null;
+		}
+		else
+		{
+			$domain = AccountService.MainTld;
+		}
+		$param = $this->url('param');
+		if($param)
+		{
+			$param = '?'.$param;
+		}
 
-			// if custom account exist, handle it, else use default login redirect process
-			if(method_exists($this, 'handle_account_url'))
+		// if custom account exist, handle it, else use default login redirect process
+		if(method_exists($this, 'handle_account_url'))
+		{
+			$this->handle_account_url($this->module(), $param, $domain);
+		}
+		else
+		{
+			$myrep = \lib\router::get_repository_name();
+			switch ($this->module())
 			{
-				$this->handle_account_url($this->module(), $param, $domain);
-			}
-			else
-			{
-				$myrep = \lib\router::get_repository_name();
-				switch ($this->module())
-				{
-					case 'signin':
-					case 'login':
-						$url = $this->url('base'). '/enter'. $param;
-						$this->redirector($url)->redirect();
-						break;
+				case 'signin':
+				case 'login':
+					$url = $this->url('base'). '/enter'. $param;
+					$this->redirector($url)->redirect();
+					break;
 
-					case 'signup':
-						if($myrep !== 'content_enter')
-						{
-							$url = $this->url('base'). '/enter/signup'. $param;
-							$this->redirector($url)->redirect();
-						}
-						break;
-
-					case 'register':
-
+				case 'signup':
+					if($myrep !== 'content_enter')
+					{
 						$url = $this->url('base'). '/enter/signup'. $param;
 						$this->redirector($url)->redirect();
-						break;
+					}
+					break;
 
-					case 'signout':
-					case 'logout':
-						if($myrep !== 'content_enter')
-						{
-							$url = $this->url('base'). '/enter/logout'. $param;
-							$this->redirector($url)->redirect();
-						}
+				case 'register':
 
-						break;
-				}
+					$url = $this->url('base'). '/enter/signup'. $param;
+					$this->redirector($url)->redirect();
+					break;
 
-				switch (\lib\router::get_url())
-				{
-					case 'account/recovery':
-					case 'account/changepass':
-					case 'account/verification':
-					case 'account/verificationsms':
-					case 'account/signin':
-					case 'account/login':
-						$url = $this->url('base'). '/enter'. $param;
-						$this->redirector($url)->redirect();
-						break;
-
-					case 'account/signup':
-					case 'account/register':
-						$url = $this->url('base'). '/enter/signup'. $param;
-						$this->redirector($url)->redirect();
-						break;
-
-					case 'account/logout':
-					case 'account/signout':
+				case 'signout':
+				case 'logout':
+					if($myrep !== 'content_enter')
+					{
 						$url = $this->url('base'). '/enter/logout'. $param;
 						$this->redirector($url)->redirect();
-						break;
-				}
+					}
+
+					break;
+			}
+
+			switch (\lib\router::get_url())
+			{
+				case 'account/recovery':
+				case 'account/changepass':
+				case 'account/verification':
+				case 'account/verificationsms':
+				case 'account/signin':
+				case 'account/login':
+					$url = $this->url('base'). '/enter'. $param;
+					$this->redirector($url)->redirect();
+					break;
+
+				case 'account/signup':
+				case 'account/register':
+					$url = $this->url('base'). '/enter/signup'. $param;
+					$this->redirector($url)->redirect();
+					break;
+
+				case 'account/logout':
+				case 'account/signout':
+					$url = $this->url('base'). '/enter/logout'. $param;
+					$this->redirector($url)->redirect();
+					break;
 			}
 		}
 
@@ -841,7 +838,7 @@ class controller
 			// login service and main service with full address
 			case 'LoginService':
 			case 'account':
-				return $myprefix. AccountService. MainTld. '/'. MyAccount;
+				return $myprefix. AccountService. MainTld. '/'. 'account';
 				break;
 
 			case 'MainService':
