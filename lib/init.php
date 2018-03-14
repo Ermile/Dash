@@ -10,6 +10,8 @@ class init
 	{
 		// check min requirement to run dash core!
 		self::minimum_requirement();
+		// detect all content in this project
+		\lib\content::initialize();
 		// detect url and start work with them as first lib used by another one
 		\lib\url::initialize();
 
