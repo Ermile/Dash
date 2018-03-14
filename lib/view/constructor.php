@@ -15,7 +15,7 @@ trait constructor
 
 		$this->data->url = $this->url;
 
-		// $this->url->root             = $this->url('root');
+		// $this->url->root             = \lib\url::base();
 		// $this->url->protocol         = \lib\url::protocol();
 		// $this->url->account          = $this->url('account');
 		// $this->url->MainStatic       = $this->url('MainService'). '/'.'static/';

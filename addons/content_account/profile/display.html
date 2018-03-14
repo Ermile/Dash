@@ -51,7 +51,7 @@
  <input type="file" accept="image/gif, image/jpeg, image/png" name="avatar" id="avatar" data-preview data-max="1000">
  <label for="avatar" title='{%trans "allowed extentions jpg, png. Max 1000Kb"%}'>
 {%if login.avatar%}
-  <img src="{{url.root}}/{{login.avatar}}" alt="{{member.displayname}}" id="logoPreview">
+  <img src="{{url.base}}/{{login.avatar}}" alt="{{member.displayname}}" id="logoPreview">
 {%endif%}
  </label>
 </div>

@@ -8,11 +8,11 @@
  <base href="{{url.base}}"/>
  <title>{{pageTitle}}</title>
  <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/><![endif]-->
-{%if url.root != 'deadbrowser'%}
+{%if url.base != 'deadbrowser'%}
  <!--[if lte IE 9]><script>document.location = 'https://deadbrowser.com/{{site.currentlang}}';</script><![endif]-->
 {%endif%}
  <meta name     ="description"             content="{{pageDesc}}"/>
- <meta name     ="site:root"               content="{{url.root}}"/>
+ <meta name     ="site:root"               content="{{url.base}}"/>
 {%block head_twitter%}
  <meta name     ="twitter:card"            content="{{share.twitterCard}}"/>
 {%if social.twitter%}
@@ -63,12 +63,12 @@
 {%endif%}
 {%endblock%}
 {%if false%}
- <link rel="alternate"        href="{{url.root}}/feed" title="{{site.title}} RSS feed" type="application/rss+xml"/>
+ <link rel="alternate"        href="{{url.base}}/feed" title="{{site.title}} RSS feed" type="application/rss+xml"/>
 {%endif%}
  <link rel="author"           href="{{url.static}}humans.txt"/>
 {%for key, lang in site.langlist if site.langlist|length > 1 and not url.SubDomain and site.currentlang != key|slice(0, 2)%}
 {%set myLangUrl%}
-{{url.root}}{%if site.defaultLang != key|slice(0, 2) %}/{{key|slice(0, 2)}}{%endif%}{%if url.content%}/{{url.content}}{%endif%}{%if url.path%}/{{url.path}}{%endif%}
+{{url.base}}{%if site.defaultLang != key|slice(0, 2) %}/{{key|slice(0, 2)}}{%endif%}{%if url.content%}/{{url.content}}{%endif%}{%if url.path%}/{{url.path}}{%endif%}
 {%endset%}
  <link rel="alternate"        href="{{myLangUrl}}" hreflang="{{key|slice(0, 2)}}"/>
 {%endfor%}
