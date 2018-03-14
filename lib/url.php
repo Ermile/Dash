@@ -63,6 +63,28 @@ class url
 		self::$url['full']      = self::_full();
 		self::$url['full2']     = self::_full2();
 
+		// example : http://saeed.jibres.local/a/thirdparty/edit?id=5&page=8
+		// 'query'     =>  'id=5&page=8'
+		// 'protocol'  =>  'http'
+		// 'port'      => int 80
+		// 'tld'       =>  'local'
+		// 'subdomain' =>  'saeed'
+		// 'root'      =>  'jibres'
+		// 'domain'    =>  'jibres.local'
+		// 'host'      =>  'saeed.jibres.local'
+		// 'base'      =>  'http://saeed.jibres.local'
+		// 'path'      =>  'a/thirdparty/edit?id=5&page=8'
+		// 'lang'      => null
+		// 'dir'       =>
+		// [
+			// 0           =>  'a'
+			// 1           =>  'thirdparty'
+			// 2           =>  'edit'
+		// ]
+		// 'content'   =>  'a'
+		// 'property'  => []
+		// 'full'      =>  'http://saeed.jibres.local/a/thirdparty/edit?id=5&page=8'
+		// 'full2'     =>  'http://saeed.jibres.local/a/thirdparty/edit'
 
 		//--------------------------------------------------------------- CONTROLLER INDEX OF URL
 		// --- controller url syntax
