@@ -13,7 +13,6 @@ trait constructor
 
 		// define default value for url
 		$this->url->pwd             = \lib\url::pwd();       // full url except get parameter with http[s]
-		$this->url->path             = $this->url('path');       // full path except parameter and domain name
 		$this->url->breadcrumb       = $this->url('breadcrumb'); // full path in array for using in breadcrumb
 		$this->url->domain           = $this->url('domain');     // domain name like 'ermile'
 		$this->url->base             = $this->url('base');

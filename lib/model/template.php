@@ -30,7 +30,9 @@ trait template
 	 */
 	public function get_posts()
 	{
-		$url = $this->url('path');
+		$url = \lib\url::dir();
+		$url = implode('/', $url);
+
 		$url = str_replace("'", '', $url);
 		$url = str_replace('"', '', $url);
 		$url = str_replace('`', '', $url);
