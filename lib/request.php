@@ -35,5 +35,19 @@ class request
 		}
 	}
 
+
+	/**
+	 * @return check request is ajax or not
+	 */
+	public static function ajax()
+	{
+		if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && mb_strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
+		{
+			return true;
+		}
+
+		return false;
+	}
+
 }
 ?>

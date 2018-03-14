@@ -78,7 +78,7 @@ class view
 	{
 		$render               = false;
 		$this->data->loadMode = 'normal';
-		if(\lib\engine::is_Ajax())
+		if(\lib\request::ajax())
 		{
 			$this->data->display['dash']    = "includes/html/display-dash-xhr.html";
 			$this->data->display['enter']   = "includes/html/display-enter-xhr.html";
@@ -175,7 +175,7 @@ class view
 
 		$this->twig_Extentions($twig);
 		$template		= $twig->loadTemplate($tmpname);
-		if(\lib\engine::is_Ajax())
+		if(\lib\request::ajax())
 		{
 			$this->data->global->debug = \lib\debug::compile();
 			// check apache request header and use if exist

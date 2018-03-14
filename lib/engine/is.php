@@ -4,15 +4,7 @@ namespace lib\engine;
 class is
 {
 
-	/**
-	 * check is ajax
-	 *
-	 * @return     <type>  ( description_of_the_return_value )
-	 */
-	public static function ajax()
-	{
-		return isset($_SERVER['HTTP_X_REQUESTED_WITH'])  && mb_strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
-	}
+
 
 
 	/**
