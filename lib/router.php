@@ -131,10 +131,6 @@ class router
 		if(!defined('SubDomain'))
 			define('SubDomain', router::get_sub_domain());
 
-		// like  127.0.0.1
-		if(!defined('ClientIP'))
-			define('ClientIP', \lib\server::ip(true) );
-
 		// like ermile.com
 		if(!defined('Service'))
 			define('Service', Domain.'.'.Tld);

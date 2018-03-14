@@ -193,7 +193,7 @@ class sessions
 	{
 		$args =
 		[
-			'ip'       => ClientIP,
+			'ip'       => \lib\server::ip(true),
 			'agent_id' => \lib\agent::get(true),
 			'user_id'  => $_user_id,
 			'status'   => 'active'

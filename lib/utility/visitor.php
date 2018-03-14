@@ -71,7 +71,7 @@ class visitor
 	public static function create_query($_array = false)
 	{
 		// declare variables
-		self::$visitor['`visitor_ip`']       = ClientIP;
+		self::$visitor['`visitor_ip`']       = \lib\server::ip(true);
 		self::$visitor['`service_id`']       = self::checkDetailExist('service', self::url(true));
 		self::$visitor['`url_id`']           = self::checkDetailExist('url',     self::url());
 		self::$visitor['`agent_id`']         = self::checkDetailExist('agent',   self::agent());

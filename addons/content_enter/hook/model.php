@@ -297,7 +297,7 @@ class model extends \mvc\model
 		// $log['user_id']        = $this->user_id;
 		// $log['apikeyuserid']   = $this->parent_api_key_user_id;
 		// $log['apikey']         = $this->parent_api_key;
-		// $log['clientip']       = ClientIP;
+		// $log['clientip']       = \lib\server::ip(true);
 		// $log['visit_id']       = null;
 
 		// $log                   = \lib\utility\safe::safe($log);
