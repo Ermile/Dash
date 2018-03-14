@@ -336,7 +336,7 @@ trait twigAddons
 			if(!$_path)
 			{
 				$myurl = $this->model()->breadcrumb();
-				$_path = $this->url('breadcrumb');
+				$_path = \lib\url::dir();
 			}
 			$direct = null;
 			if($_direct === true)

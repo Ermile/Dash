@@ -10,7 +10,7 @@ trait breadcrumb
 	public function breadcrumb()
 	{
 
-		$_addr      = $this->url('breadcrumb');
+		$_addr      = \lib\url::dir();
 		$breadcrumb = [];
 
 		foreach ($_addr as $key => $value)
