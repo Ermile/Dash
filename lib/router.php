@@ -119,11 +119,6 @@ class router
 			}
 		}
 
-
-		// like test
-		if(!defined('Module'))
-			define('Module', router::get_url(0));
-
 		// like https://ermile.com
 		router::set_storage('url_site', \lib\url::site().'/');
 
