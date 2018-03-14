@@ -5,7 +5,7 @@
 {%set pageTitle%}{%spaceless%}{%if pageTitle%}{{pageTitle}}{%else%}{{global.title}}{%endif%}{%endspaceless%}{%endset%}
 {%set pageDesc%}{%spaceless%}{%if pageDesc%}{{pageDesc}}{%else%}{{page.desc}}{%endif%}{%endspaceless%}{%endset%}
  <meta charset="UTF-8"/>
- <base href="{{url.baseRaw}}"/>
+ <base href="{{url.base}}"/>
  <title>{{pageTitle}}</title>
  <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/><![endif]-->
 {%if url.root != 'deadbrowser'%}

@@ -13,15 +13,11 @@ trait constructor
 
 		$this->url = \lib\url::get();
 
-		// define default value for url
+		$this->data->url = $this->url;
 
-
-
-		// $this->url->base             = \lib\url::base();
-		// $this->url->baseRaw          = rtrim($this->url('baseRaw'), '/') . '/';
 		// $this->url->prefix           = $this->url('prefix');
 		// $this->url->content          = $this->url('content');
-		// $this->url->baseContent      = $this->url('baseContent');
+
 		// $this->url->baseFull         = $this->url('baseFull');
 		// $this->url->tld              = $this->url('tld');        // domain ltd like 'com'
 		// $this->url->raw              = \lib\url::domain();                  // domain name except subdomain like 'ermile.com'
