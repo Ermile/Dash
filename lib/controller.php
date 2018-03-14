@@ -41,7 +41,7 @@ class controller
 		 */
 		register_shutdown_function([$this, 'sp_shutdown']);
 
-		if(AccountService === Domain)
+		if(AccountService === \lib\url::root())
 		{
 			$domain = null;
 		}

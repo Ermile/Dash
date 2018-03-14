@@ -119,20 +119,16 @@ class router
 			}
 		}
 
-		// like ermile
-		if(!defined('Domain'))
-			define('Domain', router::get_root_domain('domain'));
-
 		// like ermile.com
 		if(!defined('Service'))
-			define('Service', Domain.'.'.\lib\url::tld());
+			define('Service', \lib\url::domain());
 
 		// like test
 		if(!defined('Module'))
 			define('Module', router::get_url(0));
 
 		// like https://ermile.com
-		router::set_storage('url_site', \lib\url::protocol().'://' . Domain.'.'.\lib\url::tld().'/');
+		router::set_storage('url_site', \lib\url::site().'/');
 
 		// set account for use in all part of services
 		if(!defined('AccountService'))
@@ -146,7 +142,7 @@ class router
 			}
 			else
 			{
-				define('AccountService', Domain);
+				define('AccountService', \lib\url::root());
 			}
 		}
 

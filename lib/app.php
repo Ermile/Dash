@@ -138,7 +138,7 @@ class app
 	 */
 	public static function static_logo_url()
 	{
-		$url = \lib\url::protocol() . '://' . Domain. '.'. \lib\url::tld(). '/';
+		$url = \lib\url::site(). '/';
 		$url .= 'static/siftal/images/default/logo.png';
 		return $url;
 	}
@@ -149,7 +149,7 @@ class app
 	 */
 	public static function static_image_url()
 	{
-		$url = \lib\url::protocol() . '://' . Domain. '.'. \lib\url::tld(). '/';
+		$url = \lib\url::site(). '/';
 		$url .= 'static/siftal/images/default/image.png';
 		return $url;
 	}
@@ -157,7 +157,7 @@ class app
 
 	public static function static_avatar_url()
 	{
-		$url = \lib\url::protocol() . '://' . Domain. '.'. \lib\url::tld(). '/';
+		$url = \lib\url::site(). '/';
 		$url .= 'static/siftal/images/default/avatar.png';
 		return $url;
 	}

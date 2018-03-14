@@ -52,7 +52,7 @@ class simple
 	 */
 	public static function test()
 	{
-		$result['text'] = 'Test *'.ucfirst(core_name).'* bot on '. Domain;
+		$result['text'] = 'Test *'.ucfirst(core_name).'* bot on '. \lib\url::root();
 		return $result;
 	}
 

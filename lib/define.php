@@ -71,14 +71,14 @@ class define
 		// }
 		// else
 		// {
-		// 	session_name(Domain);
+		// 	session_name(\lib\url::root());
 		// 	$cookie_domain = Service;
 		// 	session_set_cookie_params(0, '/');
 		// }
 
-		if(is_string(Domain))
+		if(is_string(\lib\url::root()))
 		{
-			session_name(Domain);
+			session_name(\lib\url::root());
 		}
 		// set session cookie params
 		session_set_cookie_params(0, '/', '.'.Service, false, true);
@@ -88,9 +88,9 @@ class define
 		 * access to session with this code: $_SESSION["test"]
 		 */
 
-		// if(is_string(Domain))
+		// if(is_string(\lib\url::root()))
 		// {
-		// 	session_name(Domain);
+		// 	session_name(\lib\url::root());
 		// }
 
 		// if(is_string($cookie_domain))

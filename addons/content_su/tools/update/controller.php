@@ -40,7 +40,7 @@ class controller extends \addons\content_su\main\controller
 				echo \lib\utility\git::pull($location);
 
 				// pull current project
-				$name = Domain;
+				$name = \lib\url::root();
 				$location = '../../'. $name;
 				echo "<h1>Current Project $name</h1>";
 				echo \lib\utility\git::pull($location);

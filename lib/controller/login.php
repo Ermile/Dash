@@ -105,7 +105,7 @@ trait login
 				$redirect_lang = 'fa';
 			}
 			$cookie_lang = $redirect_lang ? $redirect_lang : $default_site_language;
-			$domain = '.'. Domain. '.'. \lib\url::tld();
+			$domain = '.'. \lib\url::domain();
 
 			\lib\utility\cookie::write($key, $cookie_lang, (60*60*24*30), $domain);
 			$_SESSION[$key] = $cookie_lang;
