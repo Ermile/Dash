@@ -46,7 +46,7 @@ class view
 		$this->data->display['enter'] = "includes/html/display-enter.html";
 
 
-		$myurl = router::get_protocol().'://'.router::get_domain().$_SERVER['REQUEST_URI'];
+		$myurl = \lib\url::site().$_SERVER['REQUEST_URI'];
 		if( isset($_SERVER['HTTP_REFERER']) && isset($_SESSION['debug'][md5($_SERVER['HTTP_REFERER'])]) )
 		{
 			$myurl = $_SERVER['HTTP_REFERER'];
