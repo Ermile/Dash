@@ -8,7 +8,7 @@ class view extends \addons\content_su\main\view
 	{
 		parent::config();
 
-		switch (\lib\router::get_url(1))
+		switch (\lib\url::dir(1))
 		{
 			case 'life':
 				$this->data->bodyel = 'data-life=1';

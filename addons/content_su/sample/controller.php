@@ -8,7 +8,7 @@ class controller extends \addons\content_su\main\controller
 	{
 		parent::ready();
 
-		$addr = \lib\router::get_url(1);
+		$addr = \lib\url::dir(1);
 
 		if(!$addr)
 		{

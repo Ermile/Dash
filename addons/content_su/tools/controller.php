@@ -9,7 +9,7 @@ class controller extends \addons\content_su\main\controller
 
 		$exist    = false;
 
-		$url_child = \lib\router::get_url(1);
+		$url_child = \lib\url::dir(1);
 
 		switch ($url_child)
 		{

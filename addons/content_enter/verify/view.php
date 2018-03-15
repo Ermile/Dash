@@ -42,7 +42,7 @@ class view extends \addons\content_enter\main\view
 		// the verify msg
 		$myDesc  = T_('Please verify yourself.'). ' ';
 
-		switch (\lib\router::get_url(1))
+		switch (\lib\url::dir(1))
 		{
 			case 'telegram':
 				$myDesc .= T_("We've sent the code via Telegram. Please enter the code below.");
@@ -101,7 +101,7 @@ class view extends \addons\content_enter\main\view
 		$this->data->verify_msg = $myDesc;
 		$myTitle                = T_('Verify');
 		// set title of pages
-		switch (\lib\router::get_url(1))
+		switch (\lib\url::dir(1))
 		{
 			case 'call':
 				$myTitle = T_('Verify by Call');
