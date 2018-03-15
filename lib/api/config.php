@@ -73,9 +73,9 @@ class config
 				$this_url .= '/'. \lib\router::get_method();
 			}
 
-			if(\lib\router::get_url(2))
+			if(\lib\url::dir(2))
 			{
-				$this_url .= '/'. \lib\router::get_url(2);
+				$this_url .= '/'. \lib\url::dir(2);
 			}
 
 

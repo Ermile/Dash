@@ -10,7 +10,7 @@ class controller extends \addons\content_enter\main\controller
 		$url             = \lib\url::directory();
 
 		$url_type        = \lib\url::dir(1);
-		$payment         = \lib\router::get_url(2);
+		$payment         = \lib\url::dir(2);
 
 		$args            = [];
 		$args['get']     = utility::get(null, 'raw');

@@ -13,7 +13,7 @@ class controller extends \addons\content_su\main\controller
 
 	public function showInfo()
 	{
-		$name = \lib\router::get_url(2);
+		$name = \lib\url::dir(2);
 
 		if(!$name)
 		{
