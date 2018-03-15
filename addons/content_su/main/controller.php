@@ -134,7 +134,9 @@ class controller extends \mvc\controller
 	public function suModule($_resultType = null, $_module = null)
 	{
 		if($_module === null)
-			$_module = $this->module();
+		{
+			$_module = \lib\url::dir(0);
+		}
 
 		$myprefix = substr($_module, 0, -1);
 
