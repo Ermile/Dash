@@ -184,7 +184,7 @@ class user
 		}
 
 		$language = \lib\app::request('language');
-		if($language && !\lib\utility\location\language::check($language))
+		if($language && !\lib\language::check($language))
 		{
 			if($_option['save_log']) \lib\app::log('addon:api:user:language:max:lenght', \lib\user::id(), $log_meta);
 			if($_option['debug']) debug::error(T_("Language is incorrect"), 'language');

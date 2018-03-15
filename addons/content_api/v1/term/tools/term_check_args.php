@@ -13,7 +13,7 @@ trait term_check_args
 		// term detail
 		$language = utility::request('language');
 		$language = trim($language);
-		if($language && !utility\location\language::check($language))
+		if($language && !\lib\language::check($language))
 		{
 			if($_args['save_log']) logs::set('addons:api:term:language:invalid', $this->user_id, $log_meta);
 			if($_args['debug']) debug::error(T_("Invalid parameter language"), 'language', 'arguments');

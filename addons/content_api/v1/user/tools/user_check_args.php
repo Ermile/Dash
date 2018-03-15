@@ -422,7 +422,7 @@ trait user_check_args
 		}
 
 		$language = utility::request('language');
-		if($language && !\lib\utility\location\language::check($language))
+		if($language && !\lib\language::check($language))
 		{
 			if($_args['save_log']) logs::set('addon:api:user:language:max:lenght', $this->user_id, $log_meta);
 			if($_args['debug']) debug::error(T_("Language is incorrect"), 'language', 'arguments');

@@ -58,14 +58,9 @@ class language
 	 * @param  string $_column [description]
 	 * @return [type]          [description]
 	 */
-	public static function check($_lang, $_column = 'name')
+	public static function check($_lang)
 	{
-		$lang_list = array_column(self::$data, $_column);
-		if(in_array($_lang, $lang_list))
-		{
-			return true;
-		}
-		return false;
+		return in_array($_lang, self::list());
 	}
 
 
