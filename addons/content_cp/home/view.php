@@ -29,11 +29,7 @@ class view extends \addons\content_cp\main\view
 											 'en_US' => 'English',
 											 'ar_SU' => 'Arabic - العربية'];
 
-
-		$this->data->page['title']    = T_(ucfirst(\lib\router::get_url(' ')));
-
-
-		// $this->data->cpModule         = $this->cpModule();
+		$this->data->page['title']       = T_(ucfirst( str_replace('/', ' ', \lib\url::directory()) ));
 
 		$this->data->dir['right']     = $this->global->direction == 'rtl'? 'left':  'right';
 		$this->data->dir['left']      = $this->global->direction == 'rtl'? 'right': 'left';
