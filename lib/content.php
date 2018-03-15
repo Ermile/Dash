@@ -36,5 +36,17 @@ class content
 	{
 		return self::check(...func_get_args());
 	}
+
+
+	public static function name()
+	{
+		$url_content = \lib\url::content();
+		$content = 'content';
+		if($url_content)
+		{
+			$content = $content. '_'. $url_content;
+		}
+		return $content;
+	}
 }
 ?>

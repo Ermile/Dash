@@ -55,7 +55,7 @@ class controller
 		}
 		else
 		{
-			$myrep = \lib\router::get_repository_name();
+			$myrep = \lib\content::name();
 			switch ($this->module())
 			{
 				case 'signin':

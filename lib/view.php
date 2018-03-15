@@ -102,7 +102,7 @@ class view
 		// $tmpname      = ($this->controller()->display_name)? $this->controller()->display_name : $repository.'/'.$module.'display.html';
 		$tmpname      = ($this->controller()->display_name)? $this->controller()->display_name : $repository.$module.'display.html';
 
-		if(\lib\router::get_repository_name() === 'content')
+		if(\lib\content::name() === 'content')
 		{
 			$this->data->datarow = \lib\app\template::$datarow;
 			self::set_cms_titles();

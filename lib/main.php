@@ -126,7 +126,7 @@ class main
 
 	public function controller_finder(){
 		self::$url_property = router::get_url_property(-1);
-		self::$myrep        = router::get_repository_name();
+		self::$myrep        = \lib\content::name();
 
 		$this->add_controller_tracks();
 
@@ -187,7 +187,7 @@ class main
 
 		if(count(router::get_url_property(-1)) > 0 && $controller->route_check_true === false)
 		{
-			if(\lib\router::get_repository_name() === 'content')
+			if(\lib\content::name() === 'content')
 			{
 				\lib\app\template::$module = $controller->module();
 
