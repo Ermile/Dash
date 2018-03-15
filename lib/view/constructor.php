@@ -12,7 +12,7 @@ trait constructor
 		array_push($this->twig_include_path, addons);
 
 		// set url values
-		$this->url               = \lib\url::get();
+		$this->url               = \lib\url::all();
 		$this->url['static']     = \lib\url::site(). '/static/';
 		$this->url['repository'] = 'site';
 		if(\lib\url::content())

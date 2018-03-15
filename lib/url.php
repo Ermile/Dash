@@ -2,7 +2,7 @@
 namespace lib;
 /**
  * this lib handle url of our PHP framework, Dash
- * v 2.1
+ * v 2.2
  *
  * This lib detect all part of url and return each one seperate or combine some of them
  * Below example is the sample of this url lib
@@ -440,6 +440,20 @@ class url
 	}
 
 
+	/**
+	 * return all values detected from url
+	 * @return [type] [description]
+	 */
+	public static function all()
+	{
+		return self::$url;
+	}
+
+
+	/**
+	 * check if we are in local return true
+	 * @return boolean [description]
+	 */
 	public static function isLocal()
 	{
 		if(self::get('tld') === 'local')
@@ -450,6 +464,12 @@ class url
 		return false;
 	}
 
+
+	/**
+	 * return specefic dir or array of all
+	 * @param  [type] $_index [description]
+	 * @return [type]         [description]
+	 */
 	public static function dir($_index = null)
 	{
 		$my_dir = self::get('dir');
@@ -482,11 +502,27 @@ class url
 	 * @param      <type>  $_func  The function
 	 * @param      <type>  $_args  The arguments
 	 */
-	public static function __callStatic($_func, $_args)
+	public static function __callStatic($_func, $_args = null)
 	{
 		if(array_key_exists($_func, self::$url))
 		{
-			return self::$url[$_func];
+			$result = self::$url[$_func];
+			if($_args)
+			{
+				if(isset($result[$_args]))
+				{
+					return $result[$_args];
+				}
+				else
+				{
+					return null;
+				}
+			}
+			else
+			{
+				return $result;
+			}
+
 		}
 		// if cant find this url as function
 		return null;
