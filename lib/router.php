@@ -53,10 +53,7 @@ class router
 		// detect language before check repository --f
 		\lib\language::detect_language();
 		// if dash want to load repository automatically call func
-		if(self::$auto_repository)
-		{
-			self::check_repository();
-		}
+		self::check_repository();
 
 		if(self::$auto_api)
 		{

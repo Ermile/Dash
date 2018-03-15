@@ -6,33 +6,36 @@ namespace lib;
  */
 class content
 {
+	private static $name = 'content';
+	private static $addr = root.'content';
+
 	/**
 	 * check specefic name for content is exist or not
 	 * @param  [type] $_content_name [description]
 	 * @return [type]                [description]
 	 */
-	public static function check($_content_name)
+	public static function load($_content_name)
 	{
 		// list of addons exist in dash,
-		$dash_addons = ['cp', 'enter', 'api', 'su', 'account'];
-
-		// set repository name
-		$myrep = 'content_'. $_content_name;
-
-		$is_content = null;
+		$dash_addons = ['enter', 'su', 'cp', 'account', 'api'];
+		$myrep       = 'content_'.$_content_name;
 
 		// check content_aaa folder is exist in project or dash addons folder
 		if(is_dir(root.$myrep))
 		{
-			$is_content = true;
+			return self::set($myrep);
 		}
 		// if exist on addons folder
 		elseif(in_array($_content_name, $dash_addons) && is_dir(addons.$myrep))
 		{
-			$is_content = true;
+			return self::set($myrep, addons);
+		}
+		elseif($dynamic_sub_domain = self::dynamic_subdomain())
+		{
+			self::set($dynamic_sub_domain);
 		}
 
-		return $is_content;
+		return null;
 	}
 
 
@@ -50,20 +53,37 @@ class content
 		}
 		elseif($dynamic_sub_domain = self::dynamic_subdomain())
 		{
-			$content .= '_'. $dynamic_sub_domain;
+			$content = $dynamic_sub_domain;
 		}
 		return $content;
 	}
 
-	public static function addr($_name)
+
+	public static function set($_name, $_addr = null)
 	{
-		$addr = '';
-		if($_name)
+		// set name
+		self::$name = $_name;
+		// set addr of repository
+		if($_addr)
 		{
-			$addr = root.$_name;
+			self::$addr = $_addr. $_name;
 		}
-		var_dump($addr);
-		return $addr;
+		else
+		{
+			self::$addr = root. $_name;
+		}
+
+		return self::$addr;
+	}
+
+	public static function get()
+	{
+		return self::$name;
+	}
+
+	public static function get_addr()
+	{
+		return self::$addr;
 	}
 
 	/**
@@ -78,7 +98,7 @@ class content
 			// check if we have content_subDomain route in this folder
 			if(is_dir(root. 'content_subdomain'))
 			{
-				return 'subdomain';
+				return 'content_subdomain';
 			}
 			return false;
 		}
