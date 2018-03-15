@@ -264,7 +264,7 @@ class language
 
 		// Step1
 		// if language exist in url like ermile.com/fa/ then simulate remove it from url
-		$my_first_url = \lib\url::dir(0);
+		$my_first_url = \lib\url::lang();
 		if(\lib\language::check($my_first_url))
 		{
 			if(substr(self::$language_default, 0, 2) === $my_first_url)
