@@ -43,7 +43,6 @@ class view extends \addons\content_cp\main\view
 	public function view_child()
 	{
 		$mytable                = $this->cpModule('table');
-		$mychild                = $this->child();
 	}
 }
 ?>

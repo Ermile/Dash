@@ -38,7 +38,6 @@ class view extends \mvc\view
 	public function view_child()
 	{
 		$mytable                = $this->suModule('table');
-		$mychild                = $this->child();
 	}
 
 

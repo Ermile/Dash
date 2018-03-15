@@ -44,7 +44,7 @@ trait constructor
 		$this->data->bodyclass       = null;
 		$this->data->module          = \lib\url::module();
 		$this->data->modulePath      = \lib\url::this();
-		$this->data->child           = $this->child();
+		$this->data->child           = \lib\url::child();
 		$this->data->login           = $this->login('all');
 		$this->data->user            = \lib\user::detail();
 		// $this->data->perm            = $this->access(null, 'all');

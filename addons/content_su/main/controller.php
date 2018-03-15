@@ -88,7 +88,6 @@ class controller extends \mvc\controller
 	{
 		$mymodule = $this->suModule('table');
 		$suModule = $this->suModule('raw');
-		$mychild  = $this->child();
 		$mypath   = $this->url('path','_');
 
 		if( is_file(addons.'content_su/'.$suModule.'/model.php') && !$this->model_name)

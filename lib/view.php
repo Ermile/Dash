@@ -240,7 +240,7 @@ class view
 					$moduleName = $myModule;
 				}
 
-				$childName = $this->child(true);
+				$childName = \lib\url::child();
 				if($childName)
 				{
 					$page_title = T_($childName).' '.T_($moduleName);
