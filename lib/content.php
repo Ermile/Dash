@@ -55,6 +55,16 @@ class content
 		return $content;
 	}
 
+	public static function addr($_name)
+	{
+		$addr = '';
+		if($_name)
+		{
+			$addr = root.$_name;
+		}
+		var_dump($addr);
+		return $addr;
+	}
 
 	/**
 	 * check for dynamic subdomain content exist or not

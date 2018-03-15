@@ -68,24 +68,24 @@ class router
 			});
 		}
 
-		if(class_exists('\cls\route'))
-		{
-			$router = new \cls\route;
-			$router->main = $this;
-			if(method_exists($router, "_before")){
-				$router->_before();
-			}
-		}
+		// if(class_exists('\cls\route'))
+		// {
+		// 	$router = new \cls\route;
+		// 	$router->main = $this;
+		// 	if(method_exists($router, "_before")){
+		// 		$router->_before();
+		// 	}
+		// }
 
 		$this->check_router();
-		/**
-		 * after router
-		 */
-		if(class_exists('\cls\route')){
-			if(method_exists($router, "_after")){
-				$router->_after();
-			}
-		}
+		// /**
+		//  * after router
+		//  */
+		// if(class_exists('\cls\route')){
+		// 	if(method_exists($router, "_after")){
+		// 		$router->_after();
+		// 	}
+		// }
 
 		// Define Project Constants *******************************************************************
 		// declate some constant variable for better use in all part of app
