@@ -229,10 +229,10 @@ class language
 			}
 		}
 		// get all detail of this language
-		self::$language = \lib\utility\location\languages::get($_language, 'all');
+		self::$language = \lib\language::get($_language, 'all');
 		if(!self::$language)
 		{
-			self::$language = \lib\utility\location\languages::get(self::$language_default, 'all');
+			self::$language = \lib\language::get(self::$language_default, 'all');
 		}
 
 		// use php gettext function
@@ -265,7 +265,7 @@ class language
 		// Step1
 		// if language exist in url like ermile.com/fa/ then simulate remove it from url
 		$my_first_url = router::get_url(0);
-		if(\lib\utility\location\languages::check($my_first_url))
+		if(\lib\language::check($my_first_url))
 		{
 			if(substr(self::$language_default, 0, 2) === $my_first_url)
 			{
@@ -298,7 +298,7 @@ class language
 				router::$prefix_base .= router::get_url(0);
 				// remove language from url and continue
 				router::remove_url($my_first_url);
-				if(\lib\utility\location\languages::check(\lib\url::dir(0)))
+				if(\lib\language::check(\lib\url::dir(0)))
 				{
 					\lib\error::page("More than one language found");
 				}

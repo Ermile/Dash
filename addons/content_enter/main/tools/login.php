@@ -47,7 +47,7 @@ trait login
 		{
 
 			$language = \lib\db\users::get_language(self::user_data('id'));
-			if($language && \lib\utility\location\languages::check($language))
+			if($language && \lib\language::check($language))
 			{
 				$host .= \lib\language::get_current_language_string($language);
 			}

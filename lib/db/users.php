@@ -537,7 +537,7 @@ class users
 		switch ($_field)
 		{
 			case 'language':
-				if(\lib\utility\location\languages::check($_value))
+				if(\lib\language::check($_value))
 				{
 					$update['language'] = $_value;
 				}

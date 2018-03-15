@@ -89,7 +89,7 @@ class term
 			return false;
 		}
 
-		if($language && !\lib\utility\location\languages::check($language))
+		if($language && !\lib\language::check($language))
 		{
 			\lib\debug::error(T_("Invalid parameter language"), 'language');
 			return false;
