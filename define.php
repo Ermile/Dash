@@ -133,10 +133,6 @@ elseif(file_exists(root .'config.php'))
 {
 	require_once(root .'config.php');
 }
-elseif(defined('CMS') && !constant('CMS'))
-{
-	include_once(root .'config.php');
-}
 else
 {
 	// A config file doesn't exist

@@ -48,19 +48,6 @@ class router
 		}
 
 		/**
-		 * user want control panel or CMS
-		 */
-		if(defined('CMS') && constant('CMS'))
-		{
-			$myCP = constant('CMS') === true? 'cp': constant('CMS');
-			router::set_storage('CMS', $myCP );
-		}
-		else
-		{
-			router::set_storage('CMS', 'cp');
-		}
-
-		/**
 		 * before router
 		 */
 		// detect language before check repository --f
@@ -102,9 +89,6 @@ class router
 
 		// Define Project Constants *******************************************************************
 		// declate some constant variable for better use in all part of app
-
-		// like https://ermile.com
-		router::set_storage('url_site', \lib\url::site().'/');
 
 
 		router::$base = \lib\url::protocol().'://';

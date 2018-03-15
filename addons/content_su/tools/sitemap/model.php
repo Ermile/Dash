@@ -18,7 +18,7 @@ class model extends \mvc\model
 		// create sitemap for each language
 		$result   = '';
 
-		$site_url = \lib\router::get_storage('url_site');
+		$site_url = \lib\url::site().'/';
 
 		$result   .= "<pre>";
 		$result   .= $site_url.'<br/>';
