@@ -42,7 +42,7 @@ trait constructor
 		$this->data->page['desc']    = null;
 		$this->data->page['special'] = null;
 		$this->data->bodyclass       = null;
-		$this->data->module          = $this->module();
+		$this->data->module          = \lib\url::module();
 		$this->data->modulePath      = \lib\url::this();
 		$this->data->child           = $this->child();
 		$this->data->login           = $this->login('all');

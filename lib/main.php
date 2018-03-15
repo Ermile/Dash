@@ -189,7 +189,7 @@ class main
 		{
 			if(\lib\content::name() === 'content')
 			{
-				\lib\app\template::$module = $controller->module();
+				\lib\app\template::$module = \lib\url::module();
 
 				if(\lib\app\template::find())
 				{

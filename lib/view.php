@@ -226,17 +226,18 @@ class view
 			// for child page set the
 			if($this->data->child && \lib\url::subdomain() === 'cp')
 			{
-				if(substr($this->module(), -3) === 'ies')
+				$myModule = \lib\url::module();
+				if(substr($myModule, -3) === 'ies')
 				{
-					$moduleName = substr($this->module(), 0, -3).'y';
+					$moduleName = substr($myModule, 0, -3).'y';
 				}
-				elseif(substr($this->module(), -1) === 's')
+				elseif(substr($myModule, -1) === 's')
 				{
-					$moduleName = substr($this->module(), 0, -1);
+					$moduleName = substr($myModule, 0, -1);
 				}
 				else
 				{
-					$moduleName = $this->module();
+					$moduleName = $myModule;
 				}
 
 				$childName = $this->child(true);
