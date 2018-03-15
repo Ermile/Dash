@@ -23,9 +23,31 @@ class language
 	/**
 	 * get lost of languages
 	 */
-	public static function list($_request = null, $_index = null)
+	public static function list($_for_html = false)
 	{
 		$list = \lib\option::language('list');
+		if($_for_html)
+		{
+			$temp = [];
+			if(is_array($list))
+			{
+				foreach ($list as $key => $value)
+				{
+					if(array_key_exists($value, self::$data))
+					{
+						if(isset(self::$data[$value]['localname']))
+						{
+							$temp[$value] = self::$data[$value]['localname'];
+						}
+					}
+				}
+			}
+			$list = $temp;
+		}
+		else
+		{
+			// no thing
+		}
 		return $list;
 	}
 

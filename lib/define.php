@@ -3,8 +3,7 @@ namespace lib;
 class define
 {
 	// declare variables to set only one time each one of this variables
-	private static $language;
-	private static $language_default;
+
 
 	public function __construct()
 	{

@@ -31,7 +31,7 @@ trait constructor
 		$this->data->site['title']       = T_("Ermile Dash");
 		$this->data->site['desc']        = T_("Another Project with Ermile dash");
 		$this->data->site['slogan']      = T_("Ermile is intelligent ;)");
-		$this->data->site['langlist']    = \lib\language::list();
+		$this->data->site['langlist']    = \lib\language::list(true);
 		$this->data->site['currentlang'] = \lib\language::get_language();
 		$this->data->site['defaultLang'] = \lib\language::get_language('default');
 
