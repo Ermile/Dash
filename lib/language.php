@@ -269,7 +269,7 @@ class language
 		{
 			if(substr(self::$language_default, 0, 2) === $my_first_url)
 			{
-				$redirectURL = router::get_url();
+				$redirectURL = \lib\url::directory();
 				if(substr($redirectURL, 0, 2) === $my_first_url)
 				{
 					$redirectURL = substr($redirectURL, 2);
