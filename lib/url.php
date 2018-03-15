@@ -2,7 +2,7 @@
 namespace lib;
 /**
  * this lib handle url of our PHP framework, Dash
- * v 2.0
+ * v 2.1
  *
  * This lib detect all part of url and return each one seperate or combine some of them
  * Below example is the sample of this url lib
@@ -74,7 +74,6 @@ class url
 			self::$uri = substr(self::$uri, 1);
 		}
 
-		self::$url['query']     = self::_query();
 		self::$path_split       = explode('/', self::remove_query(self::$uri));
 		self::$temp_path_split  = self::$path_split;
 
@@ -94,19 +93,10 @@ class url
 		self::$url['module']    = self::_module();
 		self::$url['child']     = self::_child();
 		self::$url['subchild']  = self::_subchild();
+		self::$url['query']     = self::_query();
 		self::$url['pwd']       = self::_pwd();
 		self::$url['current']   = self::_current();
 		self::$url['prefix']    = self::_prefix();
-
-		$base                   = null;
-		$base                  .= \lib\url::protocol(). '://';
-		$base                  .= \lib\url::host();
-		if($lang = \lib\url::lang())
-		{
-			$base              .= '/'. $lang;
-		}
-		self::$base             = $base;
-
 		self::$url['here']      = self::_here();
 		self::$url['site']      = self::_site();
 		self::$url['this']      = self::_this();
@@ -130,7 +120,11 @@ class url
 
 	private static function _here()
 	{
-		$new_url = self::$base;
+		$new_url = self::$url['base'];
+		if(self::lang())
+		{
+			$new_url .= '/'. self::lang();
+		}
 		if($content = \lib\url::content())
 		{
 			$new_url .= '/'. $content;
