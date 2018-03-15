@@ -224,7 +224,7 @@ class view
 				$page_title = ucwords(str_replace('-', ' ', $page_title));
 			}
 			// for child page set the
-			if($this->data->child && \lib\url::subdomain() === 'cp')
+			if($this->url['child'] && \lib\url::subdomain() === 'cp')
 			{
 				$myModule = \lib\url::module();
 				if(substr($myModule, -3) === 'ies')

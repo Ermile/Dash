@@ -11,22 +11,18 @@ trait constructor
 	{
 		array_push($this->twig_include_path, addons);
 
-		$this->url = \lib\url::get();
-		$this->url['SubDomain']        = \lib\url::subdomain()? \lib\url::subdomain().'.': null;
-		$this->url['static']           = \lib\url::base(). '/static/';
+		// set url values
+		$this->url               = \lib\url::get();
+		$this->url['static']     = \lib\url::site(). '/static/';
+		$this->url['repository'] = 'site';
 		if(\lib\url::content())
 		{
-			$this->url['repository'] = str_replace('content_', '', \lib\url::content());
-		}
-		else
-		{
-			$this->url['repository'] = 'site';
+			$this->url['repository'] = \lib\url::content();
 		}
 
 		// return all parameters and clean it
-		$this->url['param']       = \lib\utility::get(null, true);
 		$this->data->utilityGET = \lib\utility::get(null, 'raw');
-		// $this->url->all         = $this->url->full.$this->url->param;
+
 
 		$this->data->site['title']       = T_("Ermile Dash");
 		$this->data->site['desc']        = T_("Another Project with Ermile dash");
@@ -42,9 +38,9 @@ trait constructor
 		$this->data->page['desc']    = null;
 		$this->data->page['special'] = null;
 		$this->data->bodyclass       = null;
-		$this->data->module          = \lib\url::module();
+
 		$this->data->modulePath      = \lib\url::this();
-		$this->data->child           = \lib\url::child();
+
 		$this->data->login           = $this->login('all');
 		$this->data->user            = \lib\user::detail();
 		// $this->data->perm            = $this->access(null, 'all');
