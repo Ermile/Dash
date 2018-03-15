@@ -28,7 +28,7 @@ class view extends \mvc\view
 
 		$this->data->dir['right']        = $this->global->direction == 'rtl'? 'left':  'right';
 		$this->data->dir['left']         = $this->global->direction == 'rtl'? 'right': 'left';
-		$this->data->page['title']       = T_(ucfirst(\lib\router::get_url(' ')));
+		$this->data->page['title']       = T_(ucfirst( str_replace('/', ' ', \lib\url::directory()) ));
 
 		$this->data->dash['version']     = \lib\engine::getLastVersion();
 		$this->data->dash['lastUpdate']  = \lib\engine::getLastUpdate();

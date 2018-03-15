@@ -97,7 +97,7 @@ trait breadcrumb
 	 */
 	public function sp_books_nav()
 	{
-		// $myUrl         = \lib\router::get_url(-1);
+		// $myUrl         = \lib\url::dir();
 		// $result        = ['cats' => null, 'pages' => null];
 		// $parent_search = null;
 
