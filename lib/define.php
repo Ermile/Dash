@@ -122,7 +122,7 @@ class define
 			{
 				setcookie('preview','yes',time() + 30*24*60*60,'/','.'.\lib\url::domain());
 			}
-			elseif(router::get_url(0) === 'saloos_tg')
+			elseif(\lib\url::dir(0) === 'saloos_tg')
 			{
 				// allow telegram to commiunate on coming soon
 			}

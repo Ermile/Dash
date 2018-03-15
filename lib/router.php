@@ -131,7 +131,7 @@ class router
 	 */
 	public static function check_repository()
 	{
-		$myContent = router::get_url(0);
+		$myContent = \lib\url::dir(0);
 		// if sub is not exist return it
 		if(!$myContent)
 		{

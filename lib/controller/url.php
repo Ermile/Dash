@@ -13,11 +13,11 @@ trait url
 	public function module($_type = null, $_fix = true)
 	{
 		if($_type == 'prefix')
-			$mymodule	= substr(router::get_url(0), 0, -1);
+			$mymodule	= substr(\lib\url::dir(0), 0, -1);
 		elseif($_type == 'array')
 			$mymodule	= router::get_url(-1);
 		else
-			$mymodule	= router::get_url(0);
+			$mymodule	= \lib\url::dir(0);
 
 		if($_fix)
 			$mymodule	= $mymodule? $mymodule: 'home';

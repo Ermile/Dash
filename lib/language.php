@@ -264,7 +264,7 @@ class language
 
 		// Step1
 		// if language exist in url like ermile.com/fa/ then simulate remove it from url
-		$my_first_url = router::get_url(0);
+		$my_first_url = \lib\url::dir(0);
 		if(\lib\language::check($my_first_url))
 		{
 			if(substr(self::$language_default, 0, 2) === $my_first_url)
@@ -279,7 +279,7 @@ class language
 					$redirectURL = '/';
 				}
 
-				if(router::get_url(0) === 'api' || router::get_url(1) === 'api')
+				if(\lib\url::dir(0) === 'api' || router::get_url(1) === 'api')
 				{
 					router::remove_url($my_first_url);
 					// not redirect in api mode
@@ -295,7 +295,7 @@ class language
 				// set language
 				language::set_language($my_first_url);
 				// add this language to base url
-				router::$prefix_base .= router::get_url(0);
+				router::$prefix_base .= \lib\url::dir(0);
 				// remove language from url and continue
 				router::remove_url($my_first_url);
 				if(\lib\language::check(\lib\url::dir(0)))
