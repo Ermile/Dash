@@ -48,18 +48,6 @@ trait config
 	// cache array all static property
 	public static $cache_array = array();
 
-	public static $storage = array();
-
-	public static function set_storage($name, $value)
-	{
-		self::$storage[$name] = $value;
-	}
-
-	public static function get_storage($name)
-	{
-		return isset(self::$storage[$name]) ? self::$storage[$name] : null;
-	}
-
 	public static function cache_config()
 	{
 		$class = new \ReflectionClass('\lib\router');
