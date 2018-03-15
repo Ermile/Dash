@@ -486,6 +486,31 @@ class url
 		return false;
 	}
 
+	public static function dir($_index = null)
+	{
+		$my_dir = self::get('dir');
+		if(is_numeric($_index))
+		{
+			if(is_array($my_dir))
+			{
+				if(isset($my_dir[$_index]))
+				{
+					return $my_dir[$_index];
+				}
+				else
+				{
+					return null;
+				}
+			}
+		}
+		else
+		{
+			return $my_dir;
+		}
+
+		return null;
+	}
+
 
 	/**
 	 * call every url function if exist
