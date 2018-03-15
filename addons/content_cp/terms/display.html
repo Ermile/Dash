@@ -93,10 +93,10 @@
     <tbody>
       {%for key, value in dataTable%}
         <tr>
-          <td><a href="{{modulePath}}?type={{value.type}}&edit={{value.id}}">{{value.title}}</a></td>
+          <td><a href="{{url.this}}?type={{value.type}}&edit={{value.id}}">{{value.title}}</a></td>
           <td><a href="{{url.base}}/{{value.url}}" target="_blank"><span class="sf-share"></span> {{value.slug}}</a></td>
           {%if not utilityGET.type%}
-            <td><a href="{{modulePath}}?type={{value.type}}">{%set vType = value.type%}{%trans vType%}</a></td>
+            <td><a href="{{url.this}}?type={{value.type}}">{%set vType = value.type%}{%trans vType%}</a></td>
           {%endif%}
           <td class="collapsing">{%set vStatus = value.status%}{%trans vStatus%}</td>
         </tr>
@@ -176,7 +176,7 @@
 {%block htmlFilter%}
 <p class="f fs14 msg info2">
   <span class="c">{{dataFilter | raw}}</span>
-  <a class="cauto" href="{{modulePath}}">{%trans "Clear filters"%}</a>
+  <a class="cauto" href="{{url.this}}">{%trans "Clear filters"%}</a>
 </p>
 {%endblock%}
 
@@ -184,7 +184,7 @@
 {%block htmlFilterNoResult%}
 <p class="f fs14 msg warn2">
   <span class="c">{%trans "Result not found!"%} {%trans "Search with new keywords."%}</span>
-  <a class="cauto" href="{{modulePath}}">{%trans "Clear filters"%}</a>
+  <a class="cauto" href="{{url.this}}">{%trans "Clear filters"%}</a>
 </p>
 {%endblock%}
 
