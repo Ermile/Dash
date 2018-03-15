@@ -348,7 +348,7 @@ class url
 		$content = null;
 		if(array_key_exists(0, self::$path_split))
 		{
-			if(\lib\content::is_content(self::$path_split[0]))
+			if(\lib\content::check(self::$path_split[0]))
 			{
 				$content = self::$path_split[0];
 				unset(self::$temp_path_split[0]);

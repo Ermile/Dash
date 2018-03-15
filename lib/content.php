@@ -6,7 +6,11 @@ namespace lib;
  */
 class content
 {
-
+	/**
+	 * check specefic name for content is exist or not
+	 * @param  [type] $_content_name [description]
+	 * @return [type]                [description]
+	 */
 	public static function check($_content_name)
 	{
 		// list of addons exist in dash,
@@ -32,21 +36,43 @@ class content
 	}
 
 
-	public static function is_content()
-	{
-		return self::check(...func_get_args());
-	}
-
-
+	/**
+	 * detect name of content folder
+	 * @return [type] [description]
+	 */
 	public static function name()
 	{
 		$url_content = \lib\url::content();
 		$content = 'content';
 		if($url_content)
 		{
-			$content = $content. '_'. $url_content;
+			$content .= '_'. $url_content;
+		}
+		elseif($dynamic_sub_domain = self::dynamic_subdomain())
+		{
+			$content .= '_'. $dynamic_sub_domain;
 		}
 		return $content;
+	}
+
+
+	/**
+	 * check for dynamic subdomain content exist or not
+	 * @return [type] [description]
+	 */
+	private static function dynamic_subdomain()
+	{
+		if(\lib\url::subdomain())
+		{
+			// if we are in subdomain without finded repository
+			// check if we have content_subDomain route in this folder
+			if(is_dir(root. 'content_subdomain'))
+			{
+				return 'subdomain';
+			}
+			return false;
+		}
+		return null;
 	}
 }
 ?>
