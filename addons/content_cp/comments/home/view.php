@@ -10,7 +10,7 @@ class view extends \addons\content_cp\main\view
 		$this->data->page['title'] = T_("Comments");
 		$this->data->page['desc']  = T_('Check list of comments and search or filter in them to find your comments.'). ' '. T_('Also add or edit specefic comments.');
 
-		// $this->data->page['badge']['link'] = $this->data->modulePath. '';
+		// $this->data->page['badge']['link'] = \lib\url::this(). '';
 		// $this->data->page['badge']['text'] = T_('Add new :val', ['val' => $myType]);
 
 		// add back level to summary link
@@ -58,7 +58,7 @@ class view extends \addons\content_cp\main\view
 			$args['sort'] = 'id';
 		}
 
-		$this->data->sort_link  = self::make_sort_link(\lib\app\comment::$sort_field, $this->data->modulePath);
+		$this->data->sort_link  = self::make_sort_link(\lib\app\comment::$sort_field, \lib\url::this());
 		$this->data->dataTable = \lib\app\comment::list(\lib\utility::get('q'), $args);
 
 		if(isset($this->controller->pagnation))

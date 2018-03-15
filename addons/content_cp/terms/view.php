@@ -6,7 +6,6 @@ class view extends \addons\content_cp\main\view
 {
 	public function config()
 	{
-		$this->data->modulePath = \lib\url::here(). '/terms';
 
 		$this->data->page['title'] = T_("Terms");
 		$this->data->page['desc']  = T_("Check terms and filter by type or view and edit some terms");

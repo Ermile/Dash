@@ -23,7 +23,7 @@ class view extends \addons\content_cp\posts\main\view
 		$this->data->page['title'] = T_("Edit post");
 		$this->data->page['desc']  = T_("You can change everything, change url and add gallery or some other change");
 
-		$this->data->page['badge']['link'] = $this->data->modulePath. $this->data->moduleType;
+		$this->data->page['badge']['link'] = \lib\url::this(). $this->data->moduleType;
 		$this->data->page['badge']['text'] = T_('Back to list of posts');
 
 		$myType = \lib\utility::get('type');

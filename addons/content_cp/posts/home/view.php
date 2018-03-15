@@ -13,7 +13,7 @@ class view extends \addons\content_cp\posts\main\view
 		$this->data->page['title'] = T_("Posts");
 		$this->data->page['desc']  = T_('Check list of posts and search or filter in them to find your posts.'). ' '. T_('Also add or edit specefic post.');
 
-		$this->data->page['badge']['link'] = $this->data->modulePath. '/add'. $this->data->moduleType;
+		$this->data->page['badge']['link'] = \lib\url::this(). '/add'. $this->data->moduleType;
 		$this->data->page['badge']['text'] = T_('Add new :val', ['val' => $myType]);
 
 
@@ -78,7 +78,7 @@ class view extends \addons\content_cp\posts\main\view
 		}
 
 
-		$this->data->sort_link  = self::make_sort_link(\lib\app\posts::$sort_field, $this->data->modulePath);
+		$this->data->sort_link  = self::make_sort_link(\lib\app\posts::$sort_field, \lib\url::this());
 		$this->data->dataTable = \lib\app\posts::list(\lib\utility::get('q'), $args);
 
 		if(isset($this->controller->pagnation))

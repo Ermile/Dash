@@ -12,7 +12,7 @@ class view extends \addons\content_cp\posts\main\view
 		$this->data->page['title'] = T_("Add new post");
 		$this->data->page['desc']  = T_("Posts can contain keyword and category with title and descriptions.");
 
-		$this->data->page['badge']['link'] = $this->data->modulePath. $this->data->moduleType;
+		$this->data->page['badge']['link'] = \lib\url::this(). $this->data->moduleType;
 		$this->data->page['badge']['text'] = T_('Back to list of posts');
 
 		$myType = \lib\utility::get('type');

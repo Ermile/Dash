@@ -6,7 +6,6 @@ class view extends \addons\content_su\main\view
 	public function config()
 	{
 		parent::config();
-		$this->data->modulePath = \lib\url::here();
 
 		$this->data->page['title'] = T_("Database raw table data");
 
@@ -15,7 +14,7 @@ class view extends \addons\content_su\main\view
 		$this->data->page['desc'] .= ' | '. $product_list_link;
 
 
-		$this->data->page['badge']['link'] = $this->data->modulePath. '/dbtables';
+		$this->data->page['badge']['link'] = \lib\url::this(). '/dbtables';
 		$this->data->page['badge']['text'] = T_('Select table');
 
 		$search_string            = \lib\utility::get('q');

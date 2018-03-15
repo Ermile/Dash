@@ -6,7 +6,6 @@ class view extends \addons\content_su\main\view
 	public function config()
 	{
 		parent::config();
-		$this->data->modulePath = \lib\url::here() . '/transactions';
 
 		$this->data->page['title'] = T_("Transactions list");
 		$this->data->page['desc']  = T_('Check list of Transactions and search or filter in them to find your transactions.'). ' '. T_('Also add or edit specefic transactions.');
@@ -14,7 +13,7 @@ class view extends \addons\content_su\main\view
 
 
 
-		$this->data->page['badge']['link'] = $this->data->modulePath. '/add';
+		$this->data->page['badge']['link'] = \lib\url::this(). '/add';
 		$this->data->page['badge']['text'] = T_('Add new transactions');
 
 		$search_string            = \lib\utility::get('q');
@@ -49,7 +48,7 @@ class view extends \addons\content_su\main\view
 			$args['transactions.type'] = \lib\utility::get('type');
 		}
 
-		$this->data->sort_link  = self::su_make_sort_link(\lib\app\transaction::$sort_field, $this->data->modulePath);
+		$this->data->sort_link  = self::su_make_sort_link(\lib\app\transaction::$sort_field, \lib\url::this());
 		$this->data->dataTable = \lib\app\transaction::list(\lib\utility::get('q'), $args);
 
 		$check_empty_datatable = $args;
