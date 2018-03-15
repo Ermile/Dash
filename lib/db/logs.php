@@ -314,7 +314,7 @@ class logs
 			$limit         = null;
 			$public_fields = self::$fields;
 
-			$domain = \lib\router::get_root_domain();
+			$domain = \lib\url::root();
 			$domain = explode('.', $domain);
 			if(count($domain) === 2 && isset($domain[0]))
 			{

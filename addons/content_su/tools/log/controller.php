@@ -174,7 +174,7 @@ class controller extends \addons\content_su\main\controller
 		$fileData = @file_get_contents($filepath, FILE_USE_INCLUDE_PATH, null, $page, $lenght);
 		if($fileData)
 		{
-			$myURL    = \lib\url::protocol()."://". \lib\router::get_root_domain().'/static';
+			$myURL    = \lib\url::site().'/static';
 			$myCommon = \lib\url::protocol()."://ermile.".\lib\url::tld().'/static/js/common.js';
 			$myCode   = \lib\url::protocol()."://code.ermile.".\lib\url::tld().'/';
 

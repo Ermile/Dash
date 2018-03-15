@@ -105,7 +105,7 @@ class file
 
 		if(isset($file_detail['url']))
 		{
-			$url = \lib\url::protocol()."://" . \lib\router::get_root_domain() . '/'. $file_detail['url'];
+			$url = \lib\url::site(). '/'. $file_detail['url'];
 		}
 
 		return ['code' => $file_id_code, 'url' => $url];
