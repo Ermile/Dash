@@ -59,14 +59,14 @@ class main
 	 */
 	public function add_controller_tracks()
 	{
-		if(router::get_url(2))
+		if(\lib\url::dir(2))
 		{
 			$this->add_track('api_childs', function()
 			{
 				$controller_name  = '\\'. self::$myrep;
 				$controller_name .= '\\'. router::get_class();
 				$controller_name .= '\\'. router::get_method();
-				$controller_name .= '\\'. router::get_url(2);
+				$controller_name .= '\\'. \lib\url::dir(2);
 				$controller_name .= '\\controller';
 				return $this->check_controller($controller_name);
 			});
