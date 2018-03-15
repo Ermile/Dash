@@ -302,7 +302,7 @@ class pagination
 			}
 		}
 
-		$this_link = \lib\url::full2();
+		$this_link = \lib\url::current();
 		$get       = \lib\utility::get(null, 'raw');
 		unset($get['page']);
 
