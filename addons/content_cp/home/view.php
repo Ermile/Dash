@@ -30,8 +30,6 @@ class view extends \addons\content_cp\main\view
 											 'ar_SU' => 'Arabic - العربية'];
 
 
-		$mymodule = $this->module();
-
 		$this->data->page['title']    = T_(ucfirst(\lib\router::get_url(' ')));
 
 
