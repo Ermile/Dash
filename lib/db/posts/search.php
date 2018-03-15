@@ -91,7 +91,7 @@ trait search
 
 		if($_options['check_language'] === true)
 		{
-			$language = \lib\define::get_language();
+			$language = \lib\language::get_language();
 			$where[] = " (posts.language IS NULL OR posts.language = '$language') ";
 		}
 

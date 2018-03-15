@@ -39,7 +39,7 @@ class verify
 		else
 		{
 			$host      = \lib\url::site();
-			$lang      = \lib\define::get_current_language_string();
+			$lang      = \lib\language::get_current_language_string();
 			$turn_back =  $host;
 			$turn_back .= $lang;
 

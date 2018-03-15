@@ -71,7 +71,7 @@ class model extends \mvc\model
 			'comment'     => \lib\utility::post('comment'),
 			'language'    => \lib\utility::post('language'),
 			'type'        => \lib\utility::get('type'),
-			'language'    => \lib\define::get_language(),
+			'language'    => \lib\language::get_language(),
 		];
 
 		$all_post = \lib\utility::post();

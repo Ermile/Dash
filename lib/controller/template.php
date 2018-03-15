@@ -124,7 +124,7 @@ trait template
 		{
 
 			$this->display_name    = $display_prefix. $this->display_name;
-			$current_lang          = \lib\define::get_language('name');
+			$current_lang          = \lib\language::get_language('name');
 			$current_lang_template = substr($this->display_name, 0, -(strlen($file_ext)));
 			$current_lang_template .= '-'.$current_lang . $file_ext;
 
@@ -319,8 +319,8 @@ trait template
 	public function s_template_finder()
 	{
 		// if lang exist in module or subdomain remove it and continue
-		$currentLang = \lib\define::get_language();
-		$defaultLang = substr(\lib\define::get_language('default'), 0, 2);
+		$currentLang = \lib\language::get_language();
+		$defaultLang = substr(\lib\language::get_language('default'), 0, 2);
 
 		if($currentLang === \lib\url::subdomain() && $currentLang !== $defaultLang)
 		{
@@ -540,7 +540,7 @@ trait template
 		{
 
 			$this->display_name    = $display_prefix. $this->display_name;
-			$current_lang          = \lib\define::get_language('name');
+			$current_lang          = \lib\language::get_language('name');
 			$current_lang_template = substr($this->display_name, 0, -(strlen($file_ext)));
 			$current_lang_template .= '-'.$current_lang . $file_ext;
 

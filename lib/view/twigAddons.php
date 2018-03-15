@@ -256,7 +256,7 @@ trait twigAddons
 			$urlContent  = \lib\url::content();
 			$urlPath     = \lib\url::path();
 			$urlParam    = \lib\url::query();
-			$currentlang = \lib\define::get_language();
+			$currentlang = \lib\language::get_language();
 
 			if(!$all)
 			{
@@ -269,7 +269,7 @@ trait twigAddons
 				$urlPathCurrent = '';
 				foreach ($langList as $key => $value)
 				{
-					$langPrefix     = \lib\define::get_current_language_string($key);
+					$langPrefix     = \lib\language::get_current_language_string($key);
 					$href           = $urlRoot. $langPrefix;
 					$activeClass    = '';
 					$urlPathCurrent = '';

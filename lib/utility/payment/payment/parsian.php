@@ -308,7 +308,7 @@ class parsian
 
         if(isset($T_msg[$_status]))
         {
-            if(\lib\define::get_language() === 'fa')
+            if(\lib\language::get_language() === 'fa')
             {
                 if(isset($T_msg[$_status]['fa']))
                 {

@@ -43,7 +43,7 @@ trait template
 			return false;
 		}
 
-		$language = \lib\define::get_language();
+		$language = \lib\language::get_language();
 		$preview  = \lib\utility::get('preview');
 		$qry =
 		"

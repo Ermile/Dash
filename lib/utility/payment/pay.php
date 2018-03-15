@@ -83,7 +83,7 @@ class pay
     private static function get_callbck_url($_payment)
     {
         $host = \lib\url::site();
-        $lang = \lib\define::get_current_language_string();
+        $lang = \lib\language::get_current_language_string();
         $callback_url =  $host;
         $callback_url .= $lang;
 

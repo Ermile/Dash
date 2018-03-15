@@ -409,11 +409,11 @@ class utility
         // get target language
     	if($_type === 'default')
     	{
-    		$_type = \lib\define::get_language('default');
+    		$_type = \lib\language::get_language('default');
     	}
     	elseif($_type === 'current')
     	{
-    		$_type = \lib\define::get_language();
+    		$_type = \lib\language::get_language();
     	}
 
         // if need persian use it else use default date function

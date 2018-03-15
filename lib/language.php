@@ -276,7 +276,7 @@ class language
 			else
 			{
 				// set language
-				define::set_language($my_first_url);
+				language::set_language($my_first_url);
 				// add this language to base url
 				router::$prefix_base .= router::get_url(0);
 				// remove language from url and continue
@@ -286,7 +286,30 @@ class language
 					\lib\error::page("More than one language found");
 				}
 			}
+
 		}
+
+		// Step2 re
+		// if we are not in dev and tld lang is exist
+		// then use only one domain for this site then redirect to main tld
+
+		// $tld_lang = \lib\utility\location\tld::get();
+		// if(defined('MainService') && \lib\url::isLocal() === false)
+		// {
+		// 	/**
+		// 	 need fix
+		// 	 */
+		// 	// for example redirect ermile.ir to ermile.com/fa
+		// 	$myredirect = new \lib\redirector();
+		// 	$myredirect->set_domain()->set_url($tld_lang)->redirect();
+		// 	return false;
+		// }
+
+		// if language is not set
+		// if(!self::$language)
+		// {
+		// 	language::set_language(substr(self::$language_default, 0, 2));
+		// }
 	}
 }
 ?>

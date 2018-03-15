@@ -43,7 +43,7 @@ class model extends \addons\content_enter\main\model
 			return false;
 		}
 
-		$language     = \lib\define::get_language();
+		$language     = \lib\language::get_language();
 		// find template to call by it
 		if(\lib\option::config('enter', "call_template_$language"))
 		{

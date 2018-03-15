@@ -329,7 +329,7 @@ class posts
 						'slug'     => $slug,
 						'url'      => $slug,
 						'user_id'  => \lib\user::id(),
-						'language' => \lib\define::get_language(),
+						'language' => \lib\language::get_language(),
 					];
 				}
 
@@ -436,7 +436,7 @@ class posts
 		$url = str_replace('`', '', $url);
 		$url = str_replace('%', '', $url);
 
-		$language = \lib\define::get_language();
+		$language = \lib\language::get_language();
 		$preview  = \lib\utility::get('preview');
 
 		$qry =

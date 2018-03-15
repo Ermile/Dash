@@ -21,7 +21,7 @@ trait options
 			$host = simulation_com;
 		}
 
-		$lang = \lib\define::get_current_language_string();
+		$lang = \lib\language::get_current_language_string();
 
 		switch ($_type)
 		{

@@ -53,7 +53,7 @@ class date
 	{
 		if(!self::$lang)
 		{
-			self::$lang = \lib\define::get_language();
+			self::$lang = \lib\language::get_language();
 		}
 
 		return self::$lang;
