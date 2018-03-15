@@ -1,8 +1,6 @@
 <?php
 namespace lib\db;
-use \lib\debug;
-use \lib\utility;
-use \lib\db;
+
 
 /** transactions managing **/
 class transactions
@@ -22,8 +20,8 @@ class transactions
 	 */
 	private static function insert()
 	{
-		db\config::public_insert('transactions', ...func_get_args());
-		return db::insert_id();
+		\lib\db\config::public_insert('transactions', ...func_get_args());
+		return \lib\db::insert_id();
 	}
 
 
@@ -35,7 +33,7 @@ class transactions
 	 */
 	public static function update()
 	{
-		return db\config::public_update('transactions', ...func_get_args());
+		return \lib\db\config::public_update('transactions', ...func_get_args());
 	}
 
 
@@ -46,7 +44,7 @@ class transactions
 	 */
 	public static function get()
 	{
-		$result = db\config::public_get('transactions', ...func_get_args());
+		$result = \lib\db\config::public_get('transactions', ...func_get_args());
 		$result = self::ready($result);
 		return $result;
 	}
@@ -90,7 +88,7 @@ class transactions
 
 		$_options = array_merge($default_option, $_options);
 
-		$result = db\config::public_search('transactions', $_string, $_options);
+		$result = \lib\db\config::public_search('transactions', $_string, $_options);
 		$result = self::ready($result, true);
 		return $result;
 	}

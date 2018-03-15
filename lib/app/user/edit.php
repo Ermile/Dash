@@ -1,6 +1,6 @@
 <?php
 namespace lib\app\user;
-use \lib\debug;
+
 
 trait edit
 {

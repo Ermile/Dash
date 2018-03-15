@@ -1,9 +1,6 @@
 <?php
 namespace lib\utility\payment\verify;
-use \lib\debug;
-use \lib\option;
-use \lib\utility;
-use \lib\db\logs;
+
 
 trait irkish
 {
@@ -27,16 +24,16 @@ trait irkish
             ]
         ];
 
-        if(!option::config('irkish', 'status'))
+        if(!\lib\option::config('irkish', 'status'))
         {
-            logs::set('pay:irkish:status:false', self::$user_id, $log_meta);
+            \lib\db\logs::set('pay:irkish:status:false', self::$user_id, $log_meta);
             debug::error(T_("The irkish payment on this service is locked"));
             return self::turn_back();
         }
 
-        if(!option::config('irkish', 'merchantId'))
+        if(!\lib\option::config('irkish', 'merchantId'))
         {
-            logs::set('pay:irkish:merchantId:not:set', self::$user_id, $log_meta);
+            \lib\db\logs::set('pay:irkish:merchantId:not:set', self::$user_id, $log_meta);
             debug::error(T_("The irkish payment merchantId not set"));
             return self::turn_back();
         }
@@ -52,14 +49,14 @@ trait irkish
 
         if(!$token)
         {
-            logs::set('pay:irkish:token:verify:not:found', self::$user_id, $log_meta);
+            \lib\db\logs::set('pay:irkish:token:verify:not:found', self::$user_id, $log_meta);
             debug::error(T_("The irkish payment token not set"));
             return self::turn_back();
         }
 
         if(!$resultCode)
         {
-            logs::set('pay:irkish:resultCode:verify:not:found', self::$user_id, $log_meta);
+            \lib\db\logs::set('pay:irkish:resultCode:verify:not:found', self::$user_id, $log_meta);
             debug::error(T_("The irkish payment resultCode not set"));
             return self::turn_back();
         }
@@ -70,7 +67,7 @@ trait irkish
         }
         else
         {
-            logs::set('pay:irkish:SESSION:transaction_id:not:found', self::$user_id, $log_meta);
+            \lib\db\logs::set('pay:irkish:SESSION:transaction_id:not:found', self::$user_id, $log_meta);
             debug::error(T_("Your session is lost! We can not find your transaction"));
             return self::turn_back();
         }
@@ -78,7 +75,7 @@ trait irkish
         $log_meta['data'] = self::$log_data = $transaction_id;
 
         $irkish                    = [];
-        $irkish['merchantId']      = option::config('irkish', 'merchantId');
+        $irkish['merchantId']      = \lib\option::config('irkish', 'merchantId');
         $irkish['token']           = $token;
         $irkish['amount']          = $amount;
         $irkish['referenceNumber'] = (string) $referenceId;
@@ -90,14 +87,14 @@ trait irkish
         }
         else
         {
-            logs::set('pay:irkish:SESSION:amount:not:found', self::$user_id, $log_meta);
+            \lib\db\logs::set('pay:irkish:SESSION:amount:not:found', self::$user_id, $log_meta);
             debug::error(T_("Your session is lost! We can not find amount"));
             return self::turn_back();
         }
 
         if($amount_SESSION != $amount)
         {
-            logs::set('pay:irkish:amount_SESSION:amount:is:not:equals', self::$user_id, $log_meta);
+            \lib\db\logs::set('pay:irkish:amount_SESSION:amount:is:not:equals', self::$user_id, $log_meta);
             debug::error(T_("Your session is lost! We can not find amount"));
             return self::turn_back();
         }
@@ -111,7 +108,7 @@ trait irkish
 
         \lib\db\transactions::update($update, $transaction_id);
 
-        logs::set('pay:irkish:pending:request', self::$user_id, $log_meta);
+        \lib\db\logs::set('pay:irkish:pending:request', self::$user_id, $log_meta);
 
         // $msg = \lib\utility\payment\payment\irkish::msg($resultCode);
 
@@ -141,7 +138,7 @@ trait irkish
 
                 \lib\db\transactions::calc_budget($transaction_id, $amount_SESSION / 10, 0, $update);
 
-                logs::set('pay:irkish:ok:request', self::$user_id, $log_meta);
+                \lib\db\logs::set('pay:irkish:ok:request', self::$user_id, $log_meta);
 
                 \lib\session::set('payment_verify_status', 'ok');
                 \lib\session::set('payment_verify_amount', $amount_SESSION / 10);
@@ -162,7 +159,7 @@ trait irkish
                 \lib\session::set('payment_verify_status', 'verify_error');
 
                 \lib\db\transactions::update($update, $transaction_id);
-                logs::set('pay:irkish:verify_error:request', self::$user_id, $log_meta);
+                \lib\db\logs::set('pay:irkish:verify_error:request', self::$user_id, $log_meta);
                 return self::turn_back($transaction_id);
             }
         }
@@ -178,7 +175,7 @@ trait irkish
             \lib\session::set('payment_verify_status', 'error');
 
             \lib\db\transactions::update($update, $transaction_id);
-            logs::set('pay:irkish:error:request', self::$user_id, $log_meta);
+            \lib\db\logs::set('pay:irkish:error:request', self::$user_id, $log_meta);
             return self::turn_back($transaction_id);
         }
     }

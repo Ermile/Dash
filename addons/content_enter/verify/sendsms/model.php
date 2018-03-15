@@ -1,9 +1,5 @@
 <?php
 namespace addons\content_enter\verify\sendsms;
-use \lib\utility;
-use \lib\debug;
-use \lib\db;
-use \lib\sendsms\tg as bot;
 
 
 class model extends \addons\content_enter\main\model

@@ -1,8 +1,6 @@
 <?php
 namespace addons\content_api\v1\term\tools;
-use \lib\utility;
-use \lib\debug;
-use \lib\db\logs;
+
 
 trait get
 {
@@ -34,7 +32,7 @@ trait get
 			'data' => null,
 			'meta' =>
 			[
-				'input' => utility::request(),
+				'input' => \lib\utility::request(),
 			]
 		];
 
@@ -44,11 +42,11 @@ trait get
 		}
 
 		$where           = [];
-		$search          = utility::request('search');
+		$search          = \lib\utility::request('search');
 
 		$get_args = $this->term_make_where($_args, $where, $log_meta);
 
-		if(!debug::$status || $get_args === false)
+		if(!\lib\debug::$status || $get_args === false)
 		{
 			return false;
 		}
@@ -81,32 +79,32 @@ trait get
 	 */
 	public function get_term($_args = [])
 	{
-		debug::title(T_("Operation Faild"));
+		\lib\debug::title(T_("Operation Faild"));
 
 		$log_meta =
 		[
 			'data' => null,
 			'meta' =>
 			[
-				'input' => utility::request(),
+				'input' => \lib\utility::request(),
 			]
 		];
 
 		if(!$this->user_id)
 		{
-			logs::set('api:term:term_id:notfound', $this->user_id, $log_meta);
-			debug::error(T_("term not found"), 'term', 'permission');
+			\lib\db\logs::set('api:term:term_id:notfound', $this->user_id, $log_meta);
+			\lib\debug::error(T_("term not found"), 'term', 'permission');
 			return false;
 		}
 
 
-		$id = utility::request('id');
-		$id = utility\shortURL::decode($id);
+		$id = \lib\utility::request('id');
+		$id = \lib\utility\shortURL::decode($id);
 
 		if(!$id)
 		{
-			logs::set('api:term:id:not:set', $this->user_id, $log_meta);
-			debug::error(T_("Id not set"), 'id', 'arguments');
+			\lib\db\logs::set('api:term:id:not:set', $this->user_id, $log_meta);
+			\lib\debug::error(T_("Id not set"), 'id', 'arguments');
 			return false;
 		}
 
@@ -151,7 +149,7 @@ trait get
 				case 'id':
 				case 'user_id':
 				case 'parent':
-					$result[$key] = utility\shortURL::encode($value);
+					$result[$key] = \lib\utility\shortURL::encode($value);
 					break;
 
 				case 'meta':

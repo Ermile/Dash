@@ -1,9 +1,5 @@
 <?php
 namespace addons\content_enter\verify\call;
-use \lib\utility;
-use \lib\debug;
-use \lib\db;
-use \lib\call\tg as bot;
 
 
 class model extends \addons\content_enter\main\model
@@ -77,12 +73,12 @@ class model extends \addons\content_enter\main\model
 		if($kavenegar_send_result === 411 && substr($my_mobile, 0, 2) === '98')
 		{
 			// invalid user mobil
-			db\logs::set('kavenegar:service:411:call', self::user_data('id'), $log_meta);
+			\lib\db\logs::set('kavenegar:service:411:call', self::user_data('id'), $log_meta);
 			return false;
 		}
 		elseif($kavenegar_send_result === false)
 		{
-			db\logs::set('kavenegar:service:down:call', self::user_data('id'), $log_meta);
+			\lib\db\logs::set('kavenegar:service:down:call', self::user_data('id'), $log_meta);
 			// the kavenegar service is down!!!
 		}
 		elseif($kavenegar_send_result)
@@ -102,13 +98,13 @@ class model extends \addons\content_enter\main\model
 				}
 			}
 
-			db\logs::set('enter:send:call:result', self::user_data('id'), $log_meta);
+			\lib\db\logs::set('enter:send:call:result', self::user_data('id'), $log_meta);
 
 			return true;
 		}
 		else
 		{
-			db\logs::set('enter:send:cannot:send:call', self::user_data('id'), $log_meta);
+			\lib\db\logs::set('enter:send:cannot:send:call', self::user_data('id'), $log_meta);
 		}
 
 		// why?!
@@ -123,11 +119,11 @@ class model extends \addons\content_enter\main\model
 	public function post_verify()
 	{
 		// runcall
-		if(mb_strtolower(utility::post('verify')) === 'true')
+		if(mb_strtolower(\lib\utility::post('verify')) === 'true')
 		{
 			if(!self::get_enter_session('run_call_to_user'))
 			{
-				debug::result("Call sended");
+				\lib\debug::result("Call sended");
 				self::set_enter_session('run_call_to_user', true);
 				$this->send_call_code();
 			}

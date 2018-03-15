@@ -1,8 +1,7 @@
 <?php
 namespace addons\content_su\invoicedetails;
 
-use \lib\utility;
-use \lib\debug;
+
 class model extends \addons\content_su\main\model
 {
 	public function invoicedetails_list($_args, $_fields = [])
@@ -11,9 +10,9 @@ class model extends \addons\content_su\main\model
 		$meta['admin'] = true;
 
 		$search = null;
-		if(utility::get('search'))
+		if(\lib\utility::get('search'))
 		{
-			$search = utility::get('search');
+			$search = \lib\utility::get('search');
 		}
 
 		foreach ($_fields as $key => $value)

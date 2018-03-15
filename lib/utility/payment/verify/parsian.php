@@ -1,9 +1,6 @@
 <?php
 namespace lib\utility\payment\verify;
-use \lib\debug;
-use \lib\option;
-use \lib\utility;
-use \lib\db\logs;
+
 
 trait parsian
 {
@@ -27,17 +24,17 @@ trait parsian
             ]
         ];
 
-        if(!option::config('parsian', 'status'))
+        if(!\lib\option::config('parsian', 'status'))
         {
-            logs::set('pay:parsian:status:false', self::$user_id, $log_meta);
-            debug::error(T_("The parsian payment on this service is locked"));
+            \lib\db\logs::set('pay:parsian:status:false', self::$user_id, $log_meta);
+            \lib\debug::error(T_("The parsian payment on this service is locked"));
             return self::turn_back();
         }
 
-        if(!option::config('parsian', 'LoginAccount'))
+        if(!\lib\option::config('parsian', 'LoginAccount'))
         {
-            logs::set('pay:parsian:LoginAccount:not:set', self::$user_id, $log_meta);
-            debug::error(T_("The parsian payment LoginAccount not set"));
+            \lib\db\logs::set('pay:parsian:LoginAccount:not:set', self::$user_id, $log_meta);
+            \lib\debug::error(T_("The parsian payment LoginAccount not set"));
             return self::turn_back();
         }
 
@@ -52,8 +49,8 @@ trait parsian
         $Amount         = str_replace(',', '', $Amount);
         if(!$Token)
         {
-            logs::set('pay:parsian:Token:verify:not:found', self::$user_id, $log_meta);
-            debug::error(T_("The parsian payment Token not set"));
+            \lib\db\logs::set('pay:parsian:Token:verify:not:found', self::$user_id, $log_meta);
+            \lib\debug::error(T_("The parsian payment Token not set"));
             return self::turn_back();
         }
 
@@ -63,8 +60,8 @@ trait parsian
         }
         else
         {
-            logs::set('pay:parsian:SESSION:transaction_id:not:found', self::$user_id, $log_meta);
-            debug::error(T_("Your session is lost! We can not find your transaction"));
+            \lib\db\logs::set('pay:parsian:SESSION:transaction_id:not:found', self::$user_id, $log_meta);
+            \lib\debug::error(T_("Your session is lost! We can not find your transaction"));
             return self::turn_back();
         }
 
@@ -78,10 +75,10 @@ trait parsian
         ];
 
         \lib\db\transactions::update($update, $transaction_id);
-        logs::set('pay:parsian:pending:request', self::$user_id, $log_meta);
+        \lib\db\logs::set('pay:parsian:pending:request', self::$user_id, $log_meta);
 
         $parsian                 = [];
-        $parsian['LoginAccount'] = option::config('parsian', 'LoginAccount');
+        $parsian['LoginAccount'] = \lib\option::config('parsian', 'LoginAccount');
         $parsian['Token']        = $Token;
 
         if(isset($_SESSION['amount']['parsian'][$Token]['amount']))
@@ -90,15 +87,15 @@ trait parsian
         }
         else
         {
-            logs::set('pay:parsian:SESSION:amount:not:found', self::$user_id, $log_meta);
-            debug::error(T_("Your session is lost! We can not find amount"));
+            \lib\db\logs::set('pay:parsian:SESSION:amount:not:found', self::$user_id, $log_meta);
+            \lib\debug::error(T_("Your session is lost! We can not find amount"));
             return self::turn_back();
         }
 
         if($Amount_SESSION != $Amount)
         {
-            logs::set('pay:parsian:Amount_SESSION:amount:is:not:equals', self::$user_id, $log_meta);
-            debug::error(T_("Your session is lost! We can not find amount"));
+            \lib\db\logs::set('pay:parsian:Amount_SESSION:amount:is:not:equals', self::$user_id, $log_meta);
+            \lib\debug::error(T_("Your session is lost! We can not find amount"));
             return self::turn_back();
         }
 
@@ -128,7 +125,7 @@ trait parsian
 
                 \lib\db\transactions::calc_budget($transaction_id, $Amount_SESSION / 10, 0, $update);
 
-                logs::set('pay:parsian:ok:request', self::$user_id, $log_meta);
+                \lib\db\logs::set('pay:parsian:ok:request', self::$user_id, $log_meta);
 
                 \lib\session::set('payment_verify_amount', $Amount_SESSION / 10);
 
@@ -148,7 +145,7 @@ trait parsian
                 ];
                 \lib\session::set('payment_verify_status', 'verify_error');
                 \lib\db\transactions::update($update, $transaction_id);
-                logs::set('pay:parsian:verify_error:request', self::$user_id, $log_meta);
+                \lib\db\logs::set('pay:parsian:verify_error:request', self::$user_id, $log_meta);
                 return self::turn_back($transaction_id);
             }
         }
@@ -162,7 +159,7 @@ trait parsian
             ];
             \lib\session::set('payment_verify_status', 'error');
             \lib\db\transactions::update($update, $transaction_id);
-            logs::set('pay:parsian:error:request', self::$user_id, $log_meta);
+            \lib\db\logs::set('pay:parsian:error:request', self::$user_id, $log_meta);
             return self::turn_back($transaction_id);
         }
     }

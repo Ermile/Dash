@@ -1,6 +1,6 @@
 <?php
 namespace lib\utility\payment\payment;
-use \lib\debug;
+
 
 class zarinpal
 {
@@ -28,7 +28,7 @@ class zarinpal
         if(!class_exists("soapclient"))
         {
             \lib\db\logs::set('payment:zarinpal:soapclient:not:install', self::$user_id);
-            debug::error(T_("Can not connect to zarinpal gateway. Install it!"));
+            \lib\debug::error(T_("Can not connect to zarinpal gateway. Install it!"));
             return false;
         }
 
@@ -53,14 +53,14 @@ class zarinpal
             else
             {
                 \lib\db\logs::set('payment:zarinpal:error', self::$user_id, $log_meta);
-                debug::error($msg);
+                \lib\debug::error($msg);
                 return false;
             }
         }
         catch (SoapFault $e)
         {
             \lib\db\logs::set('payment:zarinpal:error:load:web:services', self::$user_id, $log_meta);
-            debug::error(T_("Error in load web services"));
+            \lib\debug::error(T_("Error in load web services"));
             return false;
         }
     }
@@ -103,14 +103,14 @@ class zarinpal
             else
             {
                 \lib\db\logs::set('payment:zarinpal:verify:error', self::$user_id, $log_meta);
-                debug::error($msg);
+                \lib\debug::error($msg);
                 return false;
             }
         }
         catch (SoapFault $e)
         {
             \lib\db\logs::set('payment:zarinpal:verify:error:load:web:services', self::$user_id, $log_meta);
-            return debug::error(T_("Error in load web services"));
+            return \lib\debug::error(T_("Error in load web services"));
         }
     }
 

@@ -1,9 +1,5 @@
 <?php
 namespace addons\content_enter\verify\telegram;
-use \lib\utility;
-use \lib\debug;
-use \lib\db;
-use \lib\telegram\tg as bot;
 
 
 class model extends \addons\content_enter\main\model
@@ -59,11 +55,11 @@ class model extends \addons\content_enter\main\model
 	public function post_verify()
 	{
 		// runcall
-		if(mb_strtolower(utility::post('verify')) === 'true')
+		if(mb_strtolower(\lib\utility::post('verify')) === 'true')
 		{
 			if(!self::get_enter_session('run_telegram_to_user'))
 			{
-				debug::result("Telegram sended");
+				\lib\debug::result("Telegram sended");
 				self::set_enter_session('run_telegram_to_user', true);
 				$this->send_telegram_code();
 			}

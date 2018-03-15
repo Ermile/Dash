@@ -1,7 +1,6 @@
 <?php
 namespace addons\content_enter\payment;
-use \lib\debug;
-use \lib\utility;
+
 
 class controller extends \addons\content_enter\main\controller
 {
@@ -13,9 +12,9 @@ class controller extends \addons\content_enter\main\controller
 		$payment         = \lib\url::dir(2);
 
 		$args            = [];
-		$args['get']     = utility::get(null, 'raw');
-		$args['post']    = utility::post();
-		$args['request'] = utility\safe::safe($_REQUEST);
+		$args['get']     = \lib\utility::get(null, 'raw');
+		$args['post']    = \lib\utility::post();
+		$args['request'] = \lib\utility\safe::safe($_REQUEST);
 
 		$this->display = false;
 

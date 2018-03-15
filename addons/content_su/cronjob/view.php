@@ -1,6 +1,6 @@
 <?php
 namespace addons\content_su\cronjob;
-use \lib\utility;
+
 
 class view extends \addons\content_su\main\view
 {

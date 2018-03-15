@@ -1,8 +1,6 @@
 <?php
 namespace addons\content_api\v1\ref\tools;
-use \lib\utility;
-use \lib\debug;
-use \lib\db\logs;
+
 
 trait get
 {
@@ -23,7 +21,7 @@ trait get
 		$_args = array_merge($default_args, $_args);
 
 		// set default title of debug
-		if($_args['debug']) debug::title(T_("Operation Faild"));
+		if($_args['debug']) \lib\debug::title(T_("Operation Faild"));
 
 		// set the log meta
 		$log_meta =
@@ -32,15 +30,15 @@ trait get
 			'meta' =>
 			[
 				'user_id' => $this->user_id,
-				'input'   => utility::request(),
+				'input'   => \lib\utility::request(),
 			]
 		];
 
 		// check ref id is exist
 		if(!$this->user_id)
 		{
-			if($_args['save_log']) logs::set('addon:api:ref:user_id:notfound', $this->user_id, $log_meta);
-			if($_args['debug']) debug::error(T_("ref not found"), 'ref', 'permission');
+			if($_args['save_log']) \lib\db\logs::set('addon:api:ref:user_id:notfound', $this->user_id, $log_meta);
+			if($_args['debug']) \lib\debug::error(T_("ref not found"), 'ref', 'permission');
 			return false;
 		}
 

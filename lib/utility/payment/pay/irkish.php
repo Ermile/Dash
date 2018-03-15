@@ -1,9 +1,6 @@
 <?php
 namespace lib\utility\payment\pay;
-use \lib\debug;
-use \lib\option;
-use \lib\utility;
-use \lib\db\logs;
+
 
 trait irkish
 {
@@ -30,31 +27,31 @@ trait irkish
             ]
         ];
 
-        if(!option::config('irkish', 'status'))
+        if(!\lib\option::config('irkish', 'status'))
         {
-            logs::set('pay:irkish:status:false', $_user_id, $log_meta);
-            debug::error(T_("The irkish payment on this service is locked"));
+            \lib\db\logs::set('pay:irkish:status:false', $_user_id, $log_meta);
+            \lib\debug::error(T_("The irkish payment on this service is locked"));
             return false;
         }
 
-        if(!option::config('irkish', 'merchantId'))
+        if(!\lib\option::config('irkish', 'merchantId'))
         {
-            logs::set('pay:irkish:merchantId:not:set', $_user_id, $log_meta);
-            debug::error(T_("The irkish payment merchantId not set"));
+            \lib\db\logs::set('pay:irkish:merchantId:not:set', $_user_id, $log_meta);
+            \lib\debug::error(T_("The irkish payment merchantId not set"));
             return false;
         }
 
         $irkish = [];
 
-        $irkish['paymentId']   = option::config('irkish', 'paymentId');
-        $irkish['Sha1']        = option::config('irkish', 'Sha1');
-        $irkish['merchantId']  = option::config('irkish', 'merchantId');
-        $irkish['description'] = option::config('irkish', 'description');
+        $irkish['paymentId']   = \lib\option::config('irkish', 'paymentId');
+        $irkish['Sha1']        = \lib\option::config('irkish', 'Sha1');
+        $irkish['merchantId']  = \lib\option::config('irkish', 'merchantId');
+        $irkish['description'] = \lib\option::config('irkish', 'description');
 
 
-        if(option::config('irkish', 'revertURL'))
+        if(\lib\option::config('irkish', 'revertURL'))
         {
-            $irkish['revertURL'] = option::config('irkish', 'revertURL');
+            $irkish['revertURL'] = \lib\option::config('irkish', 'revertURL');
         }
         else
         {
@@ -89,7 +86,7 @@ trait irkish
 
         $log_meta['data'] = self::$log_data = $transaction_id;
 
-        if(!debug::$status || !$transaction_id)
+        if(!\lib\debug::$status || !$transaction_id)
         {
             return false;
         }
@@ -123,7 +120,7 @@ trait irkish
             // redirect to enter/redirect
             \lib\session::set('redirect_page_url', 'https://ikc.shaparak.ir/TPayment/Payment/index');
             \lib\session::set('redirect_page_method', 'post');
-            \lib\session::set('redirect_page_args', ['token' => $token, 'merchantId' => option::config('irkish', 'merchantId')]);
+            \lib\session::set('redirect_page_args', ['token' => $token, 'merchantId' => \lib\option::config('irkish', 'merchantId')]);
             \lib\session::set('redirect_page_title', T_("Redirect to iran kish payment"));
             \lib\session::set('redirect_page_button', T_("Redirect"));
             \lib\debug::msg('direct', true);

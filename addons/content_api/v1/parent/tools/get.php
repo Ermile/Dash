@@ -1,8 +1,6 @@
 <?php
 namespace addons\content_api\v1\parent\tools;
-use \lib\utility;
-use \lib\debug;
-use \lib\db\logs;
+
 
 trait get
 {
@@ -27,33 +25,33 @@ trait get
 			'data' => null,
 			'meta' =>
 			[
-				'input' => utility::request(),
+				'input' => \lib\utility::request(),
 			]
 		];
 
 		if(!$this->user_id)
 		{
-			logs::set('api:parent:user_id:notfound', null, $log_meta);
-			debug::error(T_("User not found"), 'user', 'permission');
+			\lib\db\logs::set('api:parent:user_id:notfound', null, $log_meta);
+			\lib\debug::error(T_("User not found"), 'user', 'permission');
 			return false;
 		}
 
-		$user_id = utility::request('id');
-		$user_id = utility\shortURL::decode($user_id);
+		$user_id = \lib\utility::request('id');
+		$user_id = \lib\utility\shortURL::decode($user_id);
 		if(!$user_id)
 		{
-			logs::set('api:parent:user_id:is:incurrect', null, $log_meta);
-			debug::error(T_("User not found"), 'user', 'permission');
+			\lib\db\logs::set('api:parent:user_id:is:incurrect', null, $log_meta);
+			\lib\debug::error(T_("User not found"), 'user', 'permission');
 			return false;
 		}
 
 
-		$related_id = utility::request('related_id');
-		$related_id = utility\shortURL::decode($related_id);
-		if(!$related_id && utility::request('related_id'))
+		$related_id = \lib\utility::request('related_id');
+		$related_id = \lib\utility\shortURL::decode($related_id);
+		if(!$related_id && \lib\utility::request('related_id'))
 		{
-			logs::set('api:parent:related_id:is:incurrect', null, $log_meta);
-			debug::error(T_("Related id is incurrect"), 'related_id', 'permission');
+			\lib\db\logs::set('api:parent:related_id:is:incurrect', null, $log_meta);
+			\lib\debug::error(T_("Related id is incurrect"), 'related_id', 'permission');
 			return false;
 		}
 

@@ -1,8 +1,6 @@
 <?php
 namespace addons\content_api\v1\parent\tools;
-use \lib\utility;
-use \lib\debug;
-use \lib\db\logs;
+
 
 trait add
 {
@@ -41,33 +39,33 @@ trait add
 			'data' => null,
 			'meta' =>
 			[
-				'input' => utility::request(),
+				'input' => \lib\utility::request(),
 			]
 		];
 
 		if(!$this->user_id)
 		{
-			if($_args['save_log']) logs::set('api:parent:user_id:notfound', null, $log_meta);
-			if($_args['debug']) debug::error(T_("User not found"), 'user', 'permission');
+			if($_args['save_log']) \lib\db\logs::set('api:parent:user_id:notfound', null, $log_meta);
+			if($_args['debug']) \lib\debug::error(T_("User not found"), 'user', 'permission');
 			return false;
 		}
 
-		$user_id = utility::request('id');
-		$user_id = utility\shortURL::decode($user_id);
+		$user_id = \lib\utility::request('id');
+		$user_id = \lib\utility\shortURL::decode($user_id);
 		if(!$user_id)
 		{
-			if($_args['save_log']) logs::set('api:parent:user_id:not:set', null, $log_meta);
-			if($_args['debug']) debug::error(T_("User not found"), 'user', 'arguments');
+			if($_args['save_log']) \lib\db\logs::set('api:parent:user_id:not:set', null, $log_meta);
+			if($_args['debug']) \lib\debug::error(T_("User not found"), 'user', 'arguments');
 			return false;
 		}
 
 		$parent_id = null;
 
-		$mobile = utility::request('mobile');
+		$mobile = \lib\utility::request('mobile');
 		if(!$mobile)
 		{
-			if($_args['save_log']) logs::set('api:parent:mobile:not:set', $this->user_id, $log_meta);
-			if($_args['debug']) debug::error(T_("Please set the parent mobile"), 'mobile');
+			if($_args['save_log']) \lib\db\logs::set('api:parent:mobile:not:set', $this->user_id, $log_meta);
+			if($_args['debug']) \lib\debug::error(T_("Please set the parent mobile"), 'mobile');
 			return false;
 		}
 
@@ -75,16 +73,16 @@ trait add
 
 		if(!$mobile)
 		{
-			if($_args['save_log']) logs::set('api:parent:mobile:invalid', $this->user_id, $log_meta);
-			if($_args['debug']) debug::error(T_("Invalid mobile number"), 'mobile');
+			if($_args['save_log']) \lib\db\logs::set('api:parent:mobile:invalid', $this->user_id, $log_meta);
+			if($_args['debug']) \lib\debug::error(T_("Invalid mobile number"), 'mobile');
 			return false;
 		}
 
-		$title = utility::request('title');
+		$title = \lib\utility::request('title');
 		if(!$title)
 		{
-			if($_args['save_log']) logs::set('api:parent:title:not:set', $this->user_id, $log_meta);
-			if($_args['debug']) debug::error(T_("Please select one title"));
+			if($_args['save_log']) \lib\db\logs::set('api:parent:title:not:set', $this->user_id, $log_meta);
+			if($_args['debug']) \lib\debug::error(T_("Please select one title"));
 			return false;
 		}
 
@@ -102,12 +100,12 @@ trait add
 
 		\lib\temp::set('add_parent_detail', $get_parent_data);
 
-		$related_id = utility::request('related_id');
-		$related_id = utility\shortURL::decode($related_id);
-		if(!$related_id && utility::request('related_id'))
+		$related_id = \lib\utility::request('related_id');
+		$related_id = \lib\utility\shortURL::decode($related_id);
+		if(!$related_id && \lib\utility::request('related_id'))
 		{
-			logs::set('api:parent:related_id:is:incurrect:add', null, $log_meta);
-			debug::error(T_("Related id is incurrect"), 'related_id', 'permission');
+			\lib\db\logs::set('api:parent:related_id:is:incurrect:add', null, $log_meta);
+			\lib\debug::error(T_("Related id is incurrect"), 'related_id', 'permission');
 			return false;
 		}
 
@@ -116,8 +114,8 @@ trait add
 
 		if(intval($parent_id) === intval($user_id))
 		{
-			if($_args['save_log']) logs::set('api:parent:parent:yourself', $this->user_id, $log_meta);
-			if($_args['debug']) debug::error(T_("You can not set parent yourself"));
+			if($_args['save_log']) \lib\db\logs::set('api:parent:parent:yourself', $this->user_id, $log_meta);
+			if($_args['debug']) \lib\debug::error(T_("You can not set parent yourself"));
 			return false;
 		}
 
@@ -149,23 +147,23 @@ trait add
 
 		if(!in_array($title, $titles))
 		{
-			if($_args['save_log']) logs::set('api:parent:title:inavalid', $this->user_id, $log_meta);
-			if($_args['debug']) debug::error(T_("Invalid title"));
+			if($_args['save_log']) \lib\db\logs::set('api:parent:title:inavalid', $this->user_id, $log_meta);
+			if($_args['debug']) \lib\debug::error(T_("Invalid title"));
 			return false;
 		}
 
-		$other_title = utility::request('othertitle');
+		$other_title = \lib\utility::request('othertitle');
 		if($title === 'custom' && !$other_title)
 		{
-			if($_args['save_log']) logs::set('api:parent:title:othertitle:not:set', $this->user_id, $log_meta);
-			if($_args['debug']) debug::error(T_("Plase set the other title field"));
+			if($_args['save_log']) \lib\db\logs::set('api:parent:title:othertitle:not:set', $this->user_id, $log_meta);
+			if($_args['debug']) \lib\debug::error(T_("Plase set the other title field"));
 			return false;
 		}
 
 		if($other_title && mb_strlen($other_title) > 50)
 		{
-			if($_args['save_log']) logs::set('api:parent:title:othertitle:max:lenght', $this->user_id, $log_meta);
-			if($_args['debug']) debug::error(T_("You must set other title less than 50 character"));
+			if($_args['save_log']) \lib\db\logs::set('api:parent:title:othertitle:max:lenght', $this->user_id, $log_meta);
+			if($_args['debug']) \lib\debug::error(T_("You must set other title less than 50 character"));
 			return false;
 		}
 
@@ -173,8 +171,8 @@ trait add
 		{
 			if($this->check_duplicate_request())
 			{
-				if($_args['save_log']) logs::set('api:parent:title:othertitle:max:lenght', $this->user_id, $log_meta);
-				if($_args['debug']) debug::error(T_("Your request was sended to user, wait for answer user"));
+				if($_args['save_log']) \lib\db\logs::set('api:parent:title:othertitle:max:lenght', $this->user_id, $log_meta);
+				if($_args['debug']) \lib\debug::error(T_("Your request was sended to user, wait for answer user"));
 				return ;
 			}
 
@@ -206,9 +204,9 @@ trait add
 
 			$set_notify = \lib\db\notifications::set($send_notify);
 
-			if(debug::$status)
+			if(\lib\debug::$status)
 			{
-				if($_args['debug']) debug::true(T_("Your request was sended"));
+				if($_args['debug']) \lib\debug::true(T_("Your request was sended"));
 			}
 			return true;
 		}

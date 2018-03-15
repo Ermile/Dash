@@ -1,8 +1,6 @@
 <?php
 namespace addons\content_api\v1\file\tools;
-use \lib\utility;
-use \lib\debug;
-use \lib\utility\upload;
+
 
 trait link
 {
@@ -10,11 +8,11 @@ trait link
 
 	public function upload_file($_options = [])
 	{
-		debug::title(T_("Can not upload file"));
+		\lib\debug::title(T_("Can not upload file"));
 
 		$default_options =
 		[
-			'upload_name' => utility::request('upload_name'),
+			'upload_name' => \lib\utility::request('upload_name'),
 			'url'         => null,
 			'debug'       => true,
 		];
@@ -26,9 +24,9 @@ trait link
 
 		$_options = array_merge($default_options, $_options);
 
-		if(utility::request('url') && !$_options['url'])
+		if(\lib\utility::request('url') && !$_options['url'])
 		{
-			$_options['url'] = utility::request('url');
+			$_options['url'] = \lib\utility::request('url');
 		}
 
 		$file_path = false;
@@ -37,9 +35,9 @@ trait link
 		{
 			$file_path = true;
 		}
-		elseif(!utility::files($_options['upload_name']))
+		elseif(!\lib\utility::files($_options['upload_name']))
 		{
-			return debug::error(T_("Unable to upload, because of selected upload name"), 'upload_name', 'arguments');
+			return \lib\debug::error(T_("Unable to upload, because of selected upload name"), 'upload_name', 'arguments');
 		}
 
 		$ready_upload            = [];
@@ -70,9 +68,9 @@ trait link
 
 		// upload::$extentions = ['png', 'jpeg', 'jpg'];
 
-		$upload      = upload::upload($ready_upload);
+		$upload      = \lib\utility\upload::upload($ready_upload);
 
-		if(!debug::$status)
+		if(!\lib\debug::$status)
 		{
 			return false;
 		}
@@ -91,7 +89,7 @@ trait link
 		}
 		else
 		{
-			return debug::error(T_("Can not upload file. undefined error"));
+			return \lib\debug::error(T_("Can not upload file. undefined error"));
 		}
 
 		$file_id_code = null;
@@ -108,7 +106,7 @@ trait link
 			$url = \lib\url::site(). '/'. $file_detail['url'];
 		}
 
-		debug::title(T_("File upload completed"));
+		\lib\debug::title(T_("File upload completed"));
 		return ['code' => $file_id_code, 'url' => $url];
 	}
 }

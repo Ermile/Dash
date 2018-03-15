@@ -1,7 +1,6 @@
 <?php
 namespace addons\content_enter\username;
-use \lib\utility;
-use \lib\debug;
+
 
 class model extends \addons\content_enter\main\model
 {
@@ -9,15 +8,15 @@ class model extends \addons\content_enter\main\model
 	{
 		if(!self::check_password_is_null())
 		{
-			debug::error(T_("Dont!"));
+			\lib\debug::error(T_("Dont!"));
 			return false;
 		}
 		// get user name
-		$username = utility::post('username');
+		$username = \lib\utility::post('username');
 		// check user name is fill
 		if(!$username)
 		{
-			debug::error(T_("Please fill the username field"), 'username');
+			\lib\debug::error(T_("Please fill the username field"), 'username');
 			return false;
 		}
 
@@ -37,7 +36,7 @@ class model extends \addons\content_enter\main\model
 		{
 			self::plus_try_session('invalid_username');
 
-			debug::error(T_("Username not found"));
+			\lib\debug::error(T_("Username not found"));
 			return false;
 		}
 		elseif(!self::user_data('password'))

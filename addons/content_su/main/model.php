@@ -1,7 +1,6 @@
 <?php
 namespace addons\content_su\main;
-use \lib\utility;
-use \lib\debug;
+
 
 class model extends \mvc\model
 {

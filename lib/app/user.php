@@ -1,11 +1,7 @@
 <?php
 namespace lib\app;
-use \lib\utility;
-use \lib\debug;
 
-/**
- * Class for user.
- */
+
 class user
 {
 
@@ -51,7 +47,7 @@ class user
 		if($mobile && !($mobile = \lib\utility\filter::mobile($mobile)))
 		{
 			if($_option['save_log']) \lib\app::log('addon:api:user:mobile:invalid', \lib\user::id(), $log_meta);
-			if($_option['debug']) debug::error(T_("Mobile is incorrect"), 'mobile');
+			if($_option['debug']) \lib\debug::error(T_("Mobile is incorrect"), 'mobile');
 			return false;
 		}
 
@@ -61,7 +57,7 @@ class user
 		if($displayname && mb_strlen($displayname) > 50)
 		{
 			if($_option['save_log']) \lib\app::log('addon:api:user:displayname:max:length', \lib\user::id(), $log_meta);
-			if($_option['debug']) debug::error(T_("You can set the displayname less than 50 character"), 'displayname');
+			if($_option['debug']) \lib\debug::error(T_("You can set the displayname less than 50 character"), 'displayname');
 			return false;
 		}
 
@@ -71,7 +67,7 @@ class user
 		if($title && mb_strlen($title) > 50)
 		{
 			if($_option['save_log']) \lib\app::log('addon:api:user:title:max:length', \lib\user::id(), $log_meta);
-			if($_option['debug']) debug::error(T_("You can set the title less than 50 character"), 'title');
+			if($_option['debug']) \lib\debug::error(T_("You can set the title less than 50 character"), 'title');
 			return false;
 		}
 
@@ -81,7 +77,7 @@ class user
 		if($avatar && !is_string($avatar))
 		{
 			if($_option['save_log']) \lib\app::log('addon:api:user:avatar:not:string', \lib\user::id(), $log_meta);
-			if($_option['debug']) debug::error(T_("Invalid parameter avatar"), 'avatar');
+			if($_option['debug']) \lib\debug::error(T_("Invalid parameter avatar"), 'avatar');
 			return false;
 		}
 
@@ -90,7 +86,7 @@ class user
 		if($status && !in_array($status, ['active','awaiting','deactive','removed','filter','unreachable']))
 		{
 			if($_option['save_log']) \lib\app::log('addon:api:user:status:invalid', \lib\user::id(), $log_meta);
-			if($_option['debug']) debug::error(T_("Invalid parameter status"), 'status');
+			if($_option['debug']) \lib\debug::error(T_("Invalid parameter status"), 'status');
 			return false;
 		}
 
@@ -99,7 +95,7 @@ class user
 		if($gender && !in_array($gender, ['male', 'female']))
 		{
 			if($_option['save_log']) \lib\app::log('addon:api:user:gender:invalid', \lib\user::id(), $log_meta);
-			if($_option['debug']) debug::error(T_("Invalid gender field"), 'gender');
+			if($_option['debug']) \lib\debug::error(T_("Invalid gender field"), 'gender');
 			return false;
 		}
 
@@ -108,7 +104,7 @@ class user
 		if($type && mb_strlen($type) > 50)
 		{
 			if($_option['save_log']) \lib\app::log('addon:api:user:type:max:length', \lib\user::id(), $log_meta);
-			if($_option['debug']) debug::error(T_("You must set the type less than 50 character"), 'type');
+			if($_option['debug']) \lib\debug::error(T_("You must set the type less than 50 character"), 'type');
 			return false;
 		}
 
@@ -120,16 +116,16 @@ class user
 		if($email && mb_strlen($email) > 50)
 		{
 			if($_option['save_log']) \lib\app::log('addon:api:user:email:max:lenght', \lib\user::id(), $log_meta);
-			if($_option['debug']) debug::error(T_("Email is incorrect"), 'email');
+			if($_option['debug']) \lib\debug::error(T_("Email is incorrect"), 'email');
 			return false;
 		}
 
 		$parent = \lib\app::request('parent');
-		$parent = utility\shortURL::decode($parent);
+		$parent = \lib\utility\shortURL::decode($parent);
 		if(!$parent && \lib\app::request('parent'))
 		{
 			if($_option['save_log']) \lib\app::log('addon:api:user:parent:max:lenght', \lib\user::id(), $log_meta);
-			if($_option['debug']) debug::error(T_("Parent is incorrect"), 'parent');
+			if($_option['debug']) \lib\debug::error(T_("Parent is incorrect"), 'parent');
 			return false;
 		}
 
@@ -138,7 +134,7 @@ class user
 		if($permission && mb_strlen($permission) >= 1000)
 		{
 			if($_option['save_log']) \lib\app::log('addon:api:user:permission:max:lenght', \lib\user::id(), $log_meta);
-			if($_option['debug']) debug::error(T_("Permission is incorrect"), 'permission');
+			if($_option['debug']) \lib\debug::error(T_("Permission is incorrect"), 'permission');
 			return false;
 		}
 
@@ -147,7 +143,7 @@ class user
 		if($username && mb_strlen($username) > 50)
 		{
 			if($_option['save_log']) \lib\app::log('addon:api:user:username:max:lenght', \lib\user::id(), $log_meta);
-			if($_option['debug']) debug::error(T_("Username is incorrect"), 'username');
+			if($_option['debug']) \lib\debug::error(T_("Username is incorrect"), 'username');
 			return false;
 		}
 
@@ -155,21 +151,21 @@ class user
 		if(($pin && mb_strlen($pin) > 4) || ($pin && !is_numeric($pin)))
 		{
 			if($_option['save_log']) \lib\app::log('addon:api:user:pin:max:lenght', \lib\user::id(), $log_meta);
-			if($_option['debug']) debug::error(T_("Pin is incorrect"), 'pin');
+			if($_option['debug']) \lib\debug::error(T_("Pin is incorrect"), 'pin');
 			return false;
 		}
 
 		$ref = \lib\app::request('ref');
-		$ref = utility\shortURL::decode($ref);
+		$ref = \lib\utility\shortURL::decode($ref);
 		if(!$ref && \lib\app::request('ref'))
 		{
 			if($_option['save_log']) \lib\app::log('addon:api:user:ref:max:lenght', \lib\user::id(), $log_meta);
-			if($_option['debug']) debug::error(T_("Ref is incorrect"), 'ref');
+			if($_option['debug']) \lib\debug::error(T_("Ref is incorrect"), 'ref');
 			return false;
 		}
 
 		$twostep = null;
-		if(utility::isset_request('twostep'))
+		if(\lib\utility::isset_request('twostep'))
 		{
 			$twostep = \lib\app::request('twostep');
 			$twostep = $twostep ? 1 : 0;
@@ -179,7 +175,7 @@ class user
 		if($unit_id && !is_numeric($unit_id))
 		{
 			if($_option['save_log']) \lib\app::log('addon:api:user:unit_id:max:lenght', \lib\user::id(), $log_meta);
-			if($_option['debug']) debug::error(T_("Unit id is incorrect"), 'unit_id');
+			if($_option['debug']) \lib\debug::error(T_("Unit id is incorrect"), 'unit_id');
 			return false;
 		}
 
@@ -187,7 +183,7 @@ class user
 		if($language && !\lib\language::check($language))
 		{
 			if($_option['save_log']) \lib\app::log('addon:api:user:language:max:lenght', \lib\user::id(), $log_meta);
-			if($_option['debug']) debug::error(T_("Language is incorrect"), 'language');
+			if($_option['debug']) \lib\debug::error(T_("Language is incorrect"), 'language');
 			return false;
 		}
 

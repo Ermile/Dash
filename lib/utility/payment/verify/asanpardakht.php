@@ -1,9 +1,6 @@
 <?php
 namespace lib\utility\payment\verify;
-use \lib\debug;
-use \lib\option;
-use \lib\utility;
-use \lib\db\logs;
+
 
 trait asanpardakht
 {
@@ -27,22 +24,22 @@ trait asanpardakht
         ];
 
 
-        if(!option::config('asanpardakht', 'status'))
+        if(!\lib\option::config('asanpardakht', 'status'))
         {
-            logs::set('pay:asanpardakht:status:false', $_user_id, $log_meta);
-            debug::error(T_("The asanpardakht payment on this service is locked"));
+            \lib\db\logs::set('pay:asanpardakht:status:false', $_user_id, $log_meta);
+            \lib\debug::error(T_("The asanpardakht payment on this service is locked"));
             return false;
         }
 
-        if(!option::config('asanpardakht', 'MerchantID'))
+        if(!\lib\option::config('asanpardakht', 'MerchantID'))
         {
-            logs::set('pay:asanpardakht:MerchantID:false', $_user_id, $log_meta);
-            debug::error(T_("The asanpardakht payment on this service is locked"));
+            \lib\db\logs::set('pay:asanpardakht:MerchantID:false', $_user_id, $log_meta);
+            \lib\debug::error(T_("The asanpardakht payment on this service is locked"));
             return false;
         }
 
-        $username = option::config('asanpardakht', 'Username');
-        $password = option::config('asanpardakht', 'Password');
+        $username = \lib\option::config('asanpardakht', 'Username');
+        $password = \lib\option::config('asanpardakht', 'Password');
 
         $asanpardakht = [];
 
@@ -67,8 +64,8 @@ trait asanpardakht
         }
         else
         {
-            logs::set('pay:asanpardakht:SESSION:transaction_id:not:found', self::$user_id, $log_meta);
-            debug::error(T_("Your session is lost! We can not find your transaction"));
+            \lib\db\logs::set('pay:asanpardakht:SESSION:transaction_id:not:found', self::$user_id, $log_meta);
+            \lib\debug::error(T_("Your session is lost! We can not find your transaction"));
             return self::turn_back();
         }
 
@@ -82,7 +79,7 @@ trait asanpardakht
         ];
 
         \lib\db\transactions::update($update, $transaction_id);
-        logs::set('pay:asanpardakht:pending:request', self::$user_id, $log_meta);
+        \lib\db\logs::set('pay:asanpardakht:pending:request', self::$user_id, $log_meta);
 
         $asanpardakht                 = [];
 
@@ -93,15 +90,15 @@ trait asanpardakht
         }
         else
         {
-            logs::set('pay:asanpardakht:SESSION:amount:not:found', self::$user_id, $log_meta);
-            debug::error(T_("Your session is lost! We can not find amount"));
+            \lib\db\logs::set('pay:asanpardakht:SESSION:amount:not:found', self::$user_id, $log_meta);
+            \lib\debug::error(T_("Your session is lost! We can not find amount"));
             return self::turn_back();
         }
 
         if($Amount_SESSION != $Amount)
         {
-            logs::set('pay:asanpardakht:Amount_SESSION:amount:is:not:equals', self::$user_id, $log_meta);
-            debug::error(T_("Your session is lost! We can not find amount"));
+            \lib\db\logs::set('pay:asanpardakht:Amount_SESSION:amount:is:not:equals', self::$user_id, $log_meta);
+            \lib\debug::error(T_("Your session is lost! We can not find amount"));
             return self::turn_back();
         }
 
@@ -131,7 +128,7 @@ trait asanpardakht
 
                 \lib\db\transactions::calc_budget($transaction_id, $Amount_SESSION / 10, 0, $update);
 
-                logs::set('pay:asanpardakht:ok:request', self::$user_id, $log_meta);
+                \lib\db\logs::set('pay:asanpardakht:ok:request', self::$user_id, $log_meta);
 
                 \lib\session::set('payment_verify_amount', $Amount_SESSION / 10);
 
@@ -151,7 +148,7 @@ trait asanpardakht
                 ];
                 \lib\session::set('payment_verify_status', 'verify_error');
                 \lib\db\transactions::update($update, $transaction_id);
-                logs::set('pay:asanpardakht:verify_error:request', self::$user_id, $log_meta);
+                \lib\db\logs::set('pay:asanpardakht:verify_error:request', self::$user_id, $log_meta);
                 return self::turn_back($transaction_id);
             }
         }
@@ -165,7 +162,7 @@ trait asanpardakht
             ];
             \lib\session::set('payment_verify_status', 'error');
             \lib\db\transactions::update($update, $transaction_id);
-            logs::set('pay:asanpardakht:error:request', self::$user_id, $log_meta);
+            \lib\db\logs::set('pay:asanpardakht:error:request', self::$user_id, $log_meta);
             return self::turn_back($transaction_id);
         }
     }

@@ -1,7 +1,6 @@
 <?php
 namespace addons\content_enter\main\tools;
-use \lib\utility;
-use \lib\debug;
+
 
 trait user_data
 {

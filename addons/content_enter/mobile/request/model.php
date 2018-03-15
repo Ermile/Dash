@@ -1,8 +1,6 @@
 <?php
 namespace addons\content_enter\mobile\request;
-use \lib\utility;
-use \lib\debug;
-use \lib\db;
+
 
 class model extends \addons\content_enter\main\model
 {
@@ -21,7 +19,7 @@ class model extends \addons\content_enter\main\model
 	{
 		// IN THIS TIME EVERYONE CLICK ON NO BUTTON
 		// THE MOBILE AND EMAIN MUST BE CHECK !!!
-		// if(utility::post('will') === 'no')
+		// if(\lib\utility::post('will') === 'no')
 		// {
 			// the user dont whill to enter mobile :/
 			// never ask this question at this user
@@ -32,17 +30,17 @@ class model extends \addons\content_enter\main\model
 			return;
 		// }
 
-		// if(!utility::post('mobile'))
+		// if(!\lib\utility::post('mobile'))
 		// {
-		// 	debug::error(T_("Please enter mobile or skip this step"));
+		// 	\lib\debug::error(T_("Please enter mobile or skip this step"));
 		// 	return false;
 		// }
 
-		// $mobile = utility\filter::mobile(utility::post('mobile'));
+		// $mobile = \lib\utility\filter::mobile(\lib\utility::post('mobile'));
 
 		// if(!$mobile)
 		// {
-		// 	debug::error(T_("Please enter a valid mobile number"));
+		// 	\lib\debug::error(T_("Please enter a valid mobile number"));
 		// 	return false;
 		// }
 

@@ -1,6 +1,6 @@
 <?php
 namespace lib\utility;
-use \lib\db;
+
 
 class notifications
 {

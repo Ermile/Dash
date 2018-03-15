@@ -1,8 +1,6 @@
 <?php
 namespace addons\content_enter\main\tools;
-use \lib\utility;
-use \lib\debug;
-use \lib\db;
+
 /**
  * FUNCTION LIST:
  *
@@ -66,7 +64,7 @@ class token
 	 */
 	private static function create_token($_args = [])
 	{
-		if(!debug::$status)
+		if(!\lib\debug::$status)
 		{
 			return null;
 		}
@@ -88,7 +86,7 @@ class token
 
 		if($_args['type'] == 'guest')
 		{
-			$user_id = db\users::signup(['type' => 'inspection', 'port' => 'api_guest']);
+			$user_id = \lib\db\users::signup(['type' => 'inspection', 'port' => 'api_guest']);
 			$key     = 'guest';
 		}
 		elseif($_args['type'] == 'tmp_login')
@@ -104,9 +102,9 @@ class token
 
 		$date  = date("Y-m-d H:i:s");
 		$token = "~ERMILE~_!_". $user_id . $key. time(). rand(1,1000). $date;
-		$token = utility::hasher($token, null, true);
+		$token = \lib\utility::hasher($token, null, true);
 
-		$token = utility\safe::safe($token);
+		$token = \lib\utility\safe::safe($token);
 
 		if($_args['save_to_db'])
 		{
@@ -139,7 +137,7 @@ class token
 				'meta'      => json_encode($meta, JSON_UNESCAPED_UNICODE),
 			];
 
-			db\options::insert($args);
+			\lib\db\options::insert($args);
 		}
 
 		return $token;
@@ -161,7 +159,7 @@ class token
 			'cat'    => 'token',
 			'limit'         => 1
 		];
-		$result = db\options::get($where);
+		$result = \lib\db\options::get($where);
 
 		if(isset($result['meta']) && $result['meta'] == 'verified')
 		{
@@ -175,17 +173,17 @@ class token
 				];
 
 				unset($where['limit']);
-				db\options::update_on_error(['status' => 'disable'], $where);
+				\lib\db\options::update_on_error(['status' => 'disable'], $where);
 				return self::create_token($arg);
 			}
 			else
 			{
-				debug::error(T_("Invalid user or parent"), 'user', 'system');
+				\lib\debug::error(T_("Invalid user or parent"), 'user', 'system');
 			}
 		}
 		else
 		{
-			debug::error(T_("Token not verified"),'temp_token', 'argument');
+			\lib\debug::error(T_("Token not verified"),'temp_token', 'argument');
 		}
 		return null;
 	}
@@ -210,11 +208,11 @@ class token
 			'limit'         => 1
 		];
 
-		$get = db\options::get($where);
+		$get = \lib\db\options::get($where);
 
 		if(!$get || empty($get) || !array_key_exists('parent_id', $get))
 		{
-			debug::error(T_("authorization faild (parent not found)"), 'authorization', 'access');
+			\lib\debug::error(T_("authorization faild (parent not found)"), 'authorization', 'access');
 			return false;
 		}
 
@@ -226,7 +224,7 @@ class token
 			case 'guest':
 				if(is_null($parent_id))
 				{
-					debug::error(T_("authorization faild (this authorization is not a valid token)"), 'authorization', 'access');
+					\lib\debug::error(T_("authorization faild (this authorization is not a valid token)"), 'authorization', 'access');
 					return false;
 				}
 				break;
@@ -241,7 +239,7 @@ class token
 				if(!$temp_time ||  \DateTime::createFromFormat('Y-m-d H:i:s', $temp_time) === false)
 				{
 
-					debug::error(T_("Invalid token"), 'authorization', 'system');
+					\lib\debug::error(T_("Invalid token"), 'authorization', 'system');
 					return false;
 				}
 
@@ -251,7 +249,7 @@ class token
 
 				if($diff_seconds > $max_life_time)
 				{
-					return debug::error(T_("The api key is expired"), 'authorization', 'access');
+					return \lib\debug::error(T_("The api key is expired"), 'authorization', 'access');
 				}
 
 				break;
@@ -259,13 +257,13 @@ class token
 			case 'api_key':
 				if(!is_null($parent_id))
 				{
-					debug::error(T_("authorization faild (this authorization is not a api key)"), 'authorization', 'access');
+					\lib\debug::error(T_("authorization faild (this authorization is not a api key)"), 'authorization', 'access');
 					return false;
 				}
 				break;
 
 			default:
-				debug::error(T_("Invalid type"), 'authorization', 'system');
+				\lib\debug::error(T_("Invalid type"), 'authorization', 'system');
 				return false;
 				break;
 		}
@@ -289,7 +287,7 @@ class token
 	{
 		self::check($_token, 'token');
 
-		if(!debug::$status)
+		if(!\lib\debug::$status)
 		{
 			return;
 		}
@@ -304,7 +302,7 @@ class token
 
 			if(!$token_time ||  \DateTime::createFromFormat('Y-m-d H:i:s', $token_time) === false)
 			{
-				debug::error(T_("Invalid token"), 'authorization', 'system');
+				\lib\debug::error(T_("Invalid token"), 'authorization', 'system');
 				return false;
 			}
 
@@ -314,7 +312,7 @@ class token
 
 			if($diff_seconds > $max_life_time)
 			{
-				debug::error(T_("Invalid token"), 'authorization', 'time');
+				\lib\debug::error(T_("Invalid token"), 'authorization', 'time');
 				return false;
 			}
 
@@ -323,7 +321,7 @@ class token
 
 			if($guest_token_user_id && $guest_token_user_id != $_user_id)
 			{
-				debug::error(T_("Invalid token"), 'authorization', 'user');
+				\lib\debug::error(T_("Invalid token"), 'authorization', 'user');
 				return false;
 			}
 
@@ -333,7 +331,7 @@ class token
 			{
 				$where = ['id' => $guest_token_id];
 				$arg   = ['status' => 'disable'];
-				db\options::update_on_error($arg, $where);
+				\lib\db\options::update_on_error($arg, $where);
 			}
 
 			$where = ['value' => $_token, 'status' => 'enable'];
@@ -343,14 +341,14 @@ class token
 				'key'   => 'tmp_login',
 				'meta'  => 'verified'
 			];
-			db\options::update_on_error($arg, $where);
+			\lib\db\options::update_on_error($arg, $where);
 			return self::$PARENT;
 			// return true;
 
 		}
 		else
 		{
-			debug::error(T_("Invalid token (tmp login)"), 'authorization', 'access');
+			\lib\debug::error(T_("Invalid token (tmp login)"), 'authorization', 'access');
 			return false;
 		}
 
@@ -375,7 +373,7 @@ class token
 				'value'  => $_authorization,
 				'limit'         => 1
 			];
-			$tmp = db\options::get($arg);
+			$tmp = \lib\db\options::get($arg);
 			self::$API_KEY = $tmp;
 		}
 
@@ -444,7 +442,7 @@ class token
 					'status' => 'enable',
 					'limit'         => 1
 				];
-				self::$PARENT = db\options::get($arg);
+				self::$PARENT = \lib\db\options::get($arg);
 			}
 
 			if(isset(self::$API_KEY[$field]))
@@ -469,7 +467,7 @@ class token
 			'status' => 'enable',
 			'limit'         => 1
 		];
-		$api_key = db\options::get($where);
+		$api_key = \lib\db\options::get($where);
 
 		if($api_key && isset($api_key['value']))
 		{
@@ -490,8 +488,8 @@ class token
 		self::destroy_api_key($_user_id);
 
 		$api_key = "!~ERMILE~!". $_user_id. ':_$_:'. time(). "*Ermile*". rand(2, 200);
-		$api_key = utility::hasher($api_key, null, true);
-		$api_key = utility\safe::safe($api_key);
+		$api_key = \lib\utility::hasher($api_key, null, true);
+		$api_key = \lib\utility\safe::safe($api_key);
 		$arg =
 		[
 			'user_id'      => $_user_id,
@@ -499,7 +497,7 @@ class token
 			'key'   => 'api_key',
 			'value' => $api_key
 		];
-		$set = db\options::insert($arg);
+		$set = \lib\db\options::insert($arg);
 		if($set)
 		{
 			return $api_key;
@@ -521,7 +519,7 @@ class token
 			'key' => 'api_key'
 		];
 		$set = ['status' => 'disable'];
-		db\options::update_on_error($set, $where);
+		\lib\db\options::update_on_error($set, $where);
 	}
 
 
@@ -539,7 +537,7 @@ class token
 			'value' => $_token,
 		];
 		$set = ['status' => 'disable'];
-		return db\options::update_on_error($set, $where);
+		return \lib\db\options::update_on_error($set, $where);
 	}
 }
 ?>

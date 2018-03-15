@@ -1,9 +1,6 @@
 <?php
 namespace lib\utility\payment\pay;
-use \lib\debug;
-use \lib\option;
-use \lib\utility;
-use \lib\db\logs;
+
 
 trait payir
 {
@@ -30,26 +27,26 @@ trait payir
             ]
         ];
 
-        if(!option::config('payir', 'status'))
+        if(!\lib\option::config('payir', 'status'))
         {
-            logs::set('pay:payir:status:false', $_user_id, $log_meta);
-            debug::error(T_("The payir payment on this service is locked"));
+            \lib\db\logs::set('pay:payir:status:false', $_user_id, $log_meta);
+            \lib\debug::error(T_("The payir payment on this service is locked"));
             return false;
         }
 
-        if(!option::config('payir', 'api'))
+        if(!\lib\option::config('payir', 'api'))
         {
-            logs::set('pay:payir:api:not:set', $_user_id, $log_meta);
-            debug::error(T_("The payir payment api not set"));
+            \lib\db\logs::set('pay:payir:api:not:set', $_user_id, $log_meta);
+            \lib\debug::error(T_("The payir payment api not set"));
             return false;
         }
 
         $payir = [];
 
-        $payir['api']          = option::config('payir', 'api');
-        if(option::config('payir', 'redirect'))
+        $payir['api']          = \lib\option::config('payir', 'api');
+        if(\lib\option::config('payir', 'redirect'))
         {
-            $payir['redirect'] = option::config('payir', 'redirect');
+            $payir['redirect'] = \lib\option::config('payir', 'redirect');
         }
         else
         {
@@ -84,7 +81,7 @@ trait payir
 
         $log_meta['data'] = self::$log_data = $transaction_id;
 
-        if(!debug::$status || !$transaction_id)
+        if(!\lib\debug::$status || !$transaction_id)
         {
             return false;
         }

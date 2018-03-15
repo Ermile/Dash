@@ -1,8 +1,6 @@
 <?php
 namespace content_account\billing;
-use \lib\utility;
-use \lib\debug;
-use \lib\utility\payment;
+
 
 class model extends \mvc\model
 {
@@ -40,34 +38,34 @@ class model extends \mvc\model
 	{
 		if(!$this->login())
 		{
-			debug::error(T_("You must login to pay amount"));
+			\lib\debug::error(T_("You must login to pay amount"));
 			return false;
 		}
 
-		if(utility::post('type') === 'promo')
+		if(\lib\utility::post('type') === 'promo')
 		{
-			if(utility::post('promo'))
+			if(\lib\utility::post('promo'))
 			{
 				$this->check_promo();
 				return;
 			}
 			else
 			{
-				debug::error(T_("Invalid promo code"), 'promo', 'arguments');
+				\lib\debug::error(T_("Invalid promo code"), 'promo', 'arguments');
 				return false;
 			}
 		}
 
 		$meta = ['turn_back' => \lib\url::pwd()];
 
-		\lib\utility\payment\pay::start($this->login('id'), utility::post('bank'), utility::post('amount'), $meta);
+		\lib\utility\payment\pay::start($this->login('id'), \lib\utility::post('bank'), \lib\utility::post('amount'), $meta);
 	}
 
 
 
 	public function check_promo()
 	{
-		$promo     = utility::post('promo');
+		$promo     = \lib\utility::post('promo');
 		$amount    = 0;
 		$shcode = null;
 		$ref  = null;
@@ -79,7 +77,7 @@ class model extends \mvc\model
         	[
 				'user'    => $this->login('id'),
 				'ref'     => $ref,
-				'post'    => utility::post(),
+				'post'    => \lib\utility::post(),
 				'session' => $_SESSION,
         	],
         ];
@@ -87,7 +85,7 @@ class model extends \mvc\model
 		if(!preg_match("/^ref\_([A-Za-z0-9]+)$/", $promo, $split))
 		{
 			\lib\db\logs::set('ref:reqular:invalid', $this->login('id'), $log_meta);
-			debug::error(T_("Invalid promo code"), 'promo', 'arguments');
+			\lib\debug::error(T_("Invalid promo code"), 'promo', 'arguments');
 			return false;
 		}
 		if(isset($split[1]))
@@ -97,7 +95,7 @@ class model extends \mvc\model
 			if(!$ref)
 			{
 				\lib\db\logs::set('ref:shortURL:invalid', $this->login('id'), $log_meta);
-				debug::error(T_("Invalid promo code"), 'promo', 'arguments');
+				\lib\debug::error(T_("Invalid promo code"), 'promo', 'arguments');
 				return false;
 			}
 		}
@@ -105,14 +103,14 @@ class model extends \mvc\model
 		if(intval($this->login('id')) === intval($ref))
 		{
 			\lib\db\logs::set('ref:yourself', $this->login('id'), $log_meta);
-			debug::error(T_("You try to referral yourself!"), 'promo', 'arguments');
+			\lib\debug::error(T_("You try to referral yourself!"), 'promo', 'arguments');
 			return false;
 		}
 
 		if($this->login('ref'))
 		{
 			\lib\db\logs::set('ref:full', $this->login('id'), $log_meta);
-			debug::error(T_("You have ref. can not set another ref"), 'promo', 'arguments');
+			\lib\debug::error(T_("You have ref. can not set another ref"), 'promo', 'arguments');
 			return false;
 		}
 
@@ -121,7 +119,7 @@ class model extends \mvc\model
 		if(!isset($check_ref['id']))
 		{
 			\lib\db\logs::set('ref:user:not:found', $this->login('id'), $log_meta);
-			debug::error(T_("Ref not found"), 'promo', 'arguments');
+			\lib\debug::error(T_("Ref not found"), 'promo', 'arguments');
 			return false;
 		}
 
@@ -164,11 +162,11 @@ class model extends \mvc\model
         \lib\db\notifications::set($notify_ref);
 
 
-        if(debug::$status)
+        if(\lib\debug::$status)
         {
         	\lib\db\logs::set('user:use:ref', $this->login('id'), $log_meta);
         	\lib\db\logs::set('user:was:ref', $ref, $log_meta);
-        	debug::true(T_("Your ref was set and your account was charge"));
+        	\lib\debug::true(T_("Your ref was set and your account was charge"));
         }
 	}
 

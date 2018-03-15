@@ -1,9 +1,6 @@
 <?php
 namespace addons\content_enter\main\tools;
-use \lib\utility\visitor;
-use \lib\utility;
-use \lib\debug;
-use \lib\db;
+
 
 trait login
 {
@@ -21,9 +18,9 @@ trait login
 		}
 		// get url language
 		// if have referer redirect to referer
-		if(utility::get('referer'))
+		if(\lib\utility::get('referer'))
 		{
-			$host = utility::get('referer');
+			$host = \lib\utility::get('referer');
 		}
 		elseif(isset($_SESSION['enter_referer']) && $_SESSION['enter_referer'])
 		{

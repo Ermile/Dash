@@ -1,7 +1,6 @@
 <?php
 namespace addons\content_su\permission;
 
-use \lib\utility;
 
 class model extends \addons\content_su\main\model
 {
@@ -11,9 +10,9 @@ class model extends \addons\content_su\main\model
 		$meta['admin'] = true;
 		$search        = null;
 
-		if(utility::get('search'))
+		if(\lib\utility::get('search'))
 		{
-			$search = utility::get('search');
+			$search = \lib\utility::get('search');
 		}
 		foreach ($_fields as $key => $value)
 		{
@@ -39,7 +38,7 @@ class model extends \addons\content_su\main\model
 			return false;
 		}
 
-		$post = utility::post();
+		$post = \lib\utility::post();
 		$perm_list = [];
 		foreach ($post as $key => $value)
 		{

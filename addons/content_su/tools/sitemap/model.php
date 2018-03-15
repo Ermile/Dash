@@ -1,9 +1,7 @@
 <?php
 namespace addons\content_su\tools\sitemap;
-use \lib\utility;
-/**
- * this lib need some change to be customized depending on project
- */
+
+
 class model extends \mvc\model
 {
 

@@ -1,7 +1,6 @@
 <?php
 namespace addons\content_enter\hook;
-use \lib\utility;
-use \lib\debug;
+
 
 class model extends \mvc\model
 {
@@ -17,18 +16,18 @@ class model extends \mvc\model
 	{
 		if($this->check_api_key())
 		{
-			$telegram_id = utility::request("telegramid");
+			$telegram_id = \lib\utility::request("telegramid");
 
 
 			if(!$telegram_id)
 			{
-				debug::error(T_("Telegram id not found"), 'telegram_id', 'post');
+				\lib\debug::error(T_("Telegram id not found"), 'telegram_id', 'post');
 				return false;
 			}
 
 			if(!is_numeric($telegram_id))
 			{
-				debug::error(T_("Invalid telegram id"), 'telegram_id', 'post');
+				\lib\debug::error(T_("Invalid telegram id"), 'telegram_id', 'post');
 				return false;
 			}
 
@@ -44,7 +43,7 @@ class model extends \mvc\model
 			[
 				'meta' =>
 					[
-						'request'        => utility::request(),
+						'request'        => \lib\utility::request(),
 						'record_chat_id' => $exist_chart_id,
 					],
 			];
@@ -56,13 +55,13 @@ class model extends \mvc\model
 			}
 		}
 
-		if(debug::$status)
+		if(\lib\debug::$status)
 		{
-			debug::title(T_("Operation complete"));
+			\lib\debug::title(T_("Operation complete"));
 		}
 		else
 		{
-			debug::title(T_("Operation faild"));
+			\lib\debug::title(T_("Operation faild"));
 		}
 	}
 
@@ -76,13 +75,13 @@ class model extends \mvc\model
 			$this->config_user_data();
 		}
 
-		if(debug::$status)
+		if(\lib\debug::$status)
 		{
-			debug::title(T_("Operation complete"));
+			\lib\debug::title(T_("Operation complete"));
 		}
 		else
 		{
-			debug::title(T_("Operation faild"));
+			\lib\debug::title(T_("Operation faild"));
 		}
 	}
 
@@ -92,16 +91,16 @@ class model extends \mvc\model
 	 */
 	public function check_api_key()
 	{
-		$authorization = utility::header("authorization");
+		$authorization = \lib\utility::header("authorization");
 
 		if(!$authorization)
 		{
-			$authorization = utility::header("Authorization");
+			$authorization = \lib\utility::header("Authorization");
 		}
 
 		if(!$authorization)
 		{
-			debug::error(T_('Authorization not found'), 'authorization', 'access');
+			\lib\debug::error(T_('Authorization not found'), 'authorization', 'access');
 			return false;
 		}
 
@@ -112,7 +111,7 @@ class model extends \mvc\model
 		}
 		else
 		{
-			debug::error(T_('Invalid Authorization'), 'authorization', 'access');
+			\lib\debug::error(T_('Invalid Authorization'), 'authorization', 'access');
 			return false;
 		}
 
@@ -126,30 +125,30 @@ class model extends \mvc\model
 	 */
 	public function config_user_data()
 	{
-		$telegram_id = utility::request("tg_id");
-		$first_name  = utility::request('tg_first_name');
-		$last_name   = utility::request('tg_last_name');
-		$username    = utility::request('tg_username');
-		$started     = utility::request('tg_start');
-		$ref         = utility::request('tg_ref');
-		$mobile      = utility::request('tg_mobile');
-		$mobile      = utility\filter::mobile($mobile);
+		$telegram_id = \lib\utility::request("tg_id");
+		$first_name  = \lib\utility::request('tg_first_name');
+		$last_name   = \lib\utility::request('tg_last_name');
+		$username    = \lib\utility::request('tg_username');
+		$started     = \lib\utility::request('tg_start');
+		$ref         = \lib\utility::request('tg_ref');
+		$mobile      = \lib\utility::request('tg_mobile');
+		$mobile      = \lib\utility\filter::mobile($mobile);
 
 		if(!$mobile)
 		{
-			debug::error(T_("Mobile is not set"), 'tg_mobile', 'post');
+			\lib\debug::error(T_("Mobile is not set"), 'tg_mobile', 'post');
 			return false;
 		}
 
 		if(!$telegram_id)
 		{
-			debug::error(T_("Telegram id not found"), 'telegram_id', 'post');
+			\lib\debug::error(T_("Telegram id not found"), 'telegram_id', 'post');
 			return false;
 		}
 
 		if(!is_numeric($telegram_id))
 		{
-			debug::error(T_("Invalid telegram id"), 'telegram_id', 'post');
+			\lib\debug::error(T_("Invalid telegram id"), 'telegram_id', 'post');
 			return false;
 		}
 
@@ -168,7 +167,7 @@ class model extends \mvc\model
 		[
 			'meta' =>
 				[
-					'request'        => utility::request(),
+					'request'        => \lib\utility::request(),
 					'record_mobile'  => $exist_mobile,
 					'record_chat_id' => $exist_chart_id,
 				],
@@ -214,7 +213,7 @@ class model extends \mvc\model
 			}
 			else
 			{
-				debug::error(T_("System error 1"));
+				\lib\debug::error(T_("System error 1"));
 				return false;
 			}
 		}
@@ -238,7 +237,7 @@ class model extends \mvc\model
 			}
 			else
 			{
-				debug::error(T_("System error 2"));
+				\lib\debug::error(T_("System error 2"));
 				return false;
 			}
 		}
@@ -255,7 +254,7 @@ class model extends \mvc\model
 			}
 			else
 			{
-				debug::error(T_("System error 3"));
+				\lib\debug::error(T_("System error 3"));
 				return false;
 			}
 		}
@@ -288,7 +287,7 @@ class model extends \mvc\model
 		// }
 
 		// $log['request']        = json_encode(\lib\utility::request(), JSON_UNESCAPED_UNICODE);
-		// $log['debug']          = json_encode(\lib\debug::compile(), JSON_UNESCAPED_UNICODE);
+		// $log['\lib\debug']          = json_encode(\lib\debug::compile(), JSON_UNESCAPED_UNICODE);
 		// $log['response']       = json_encode(\lib\debug::get_result(), JSON_UNESCAPED_UNICODE);
 		// $log['requestheader']  = json_encode(\lib\utility::header(), JSON_UNESCAPED_UNICODE);
 		// $log['responseheader'] = json_encode(apache_response_headers(), JSON_UNESCAPED_UNICODE);

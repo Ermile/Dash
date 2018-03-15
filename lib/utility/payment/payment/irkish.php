@@ -1,6 +1,6 @@
 <?php
 namespace lib\utility\payment\payment;
-use \lib\debug;
+
 
 class irkish
 {
@@ -39,7 +39,7 @@ class irkish
             {
                 \lib\db\logs::set('payment:irkish:soapclient:not:install', self::$user_id, $log_meta);
             }
-            debug::error(T_("Can not connect to irkish gateway. Install it!"));
+            \lib\debug::error(T_("Can not connect to irkish gateway. Install it!"));
             return false;
         }
 
@@ -63,14 +63,14 @@ class irkish
             else
             {
                 \lib\db\logs::set('payment:irkish:error', self::$user_id, $log_meta);
-                debug::error(T_("Error in connecting to bank service"));
+                \lib\debug::error(T_("Error in connecting to bank service"));
                 return false;
             }
         }
         catch (SoapFault $e)
         {
             \lib\db\logs::set('payment:irkish:error:load:web:services', self::$user_id, $log_meta);
-            debug::error(T_("Error in load web services"));
+            \lib\debug::error(T_("Error in load web services"));
             return false;
         }
     }
@@ -132,7 +132,7 @@ class irkish
         catch(Exception $e)
         {
             \lib\db\logs::set('payment:irkish:error:load:web:services:verify', self::$user_id, $log_meta);
-            debug::error(T_("Error in load web services"));
+            \lib\debug::error(T_("Error in load web services"));
             return false;
         }
     }

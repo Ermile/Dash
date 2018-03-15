@@ -1,8 +1,7 @@
 <?php
 namespace addons\content_su\logitems;
 
-use \lib\utility;
-use \lib\debug;
+
 class model extends \addons\content_su\main\model
 {
 	public function logitems_list($_args, $_fields = [])
@@ -11,9 +10,9 @@ class model extends \addons\content_su\main\model
 		$meta['admin'] = true;
 
 		$search = null;
-		if(utility::get('search'))
+		if(\lib\utility::get('search'))
 		{
-			$search = utility::get('search');
+			$search = \lib\utility::get('search');
 		}
 
 		foreach ($_fields as $key => $value)
@@ -40,21 +39,21 @@ class model extends \addons\content_su\main\model
 		{
 			$update =
 			[
-				'title'    => utility::post('title'),
-				'type'     => utility::post('type'),
-				'priority' => utility::post('priority'),
-				'desc'     => utility::post('desc'),
+				'title'    => \lib\utility::post('title'),
+				'type'     => \lib\utility::post('type'),
+				'priority' => \lib\utility::post('priority'),
+				'desc'     => \lib\utility::post('desc'),
 			];
 
 			$result = \lib\db\logitems::update($update, $id);
 			if($result)
 			{
-				debug::true(T_("Update successfull"));
+				\lib\debug::true(T_("Update successfull"));
 				$this->redirector(\lib\url::here(). '/logitems');
 			}
 			else
 			{
-				debug::error(T_("Update faild"));
+				\lib\debug::error(T_("Update faild"));
 			}
 
 		}

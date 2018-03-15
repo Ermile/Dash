@@ -1,7 +1,6 @@
 <?php
 namespace addons\content_su\sendnotify;
-use \lib\utility;
-use \lib\debug;
+
 
 class model extends \addons\content_su\main\model
 {
@@ -28,7 +27,7 @@ class model extends \addons\content_su\main\model
 
 		if(empty($data))
 		{
-			debug::error(T_("User not found"));
+			\lib\debug::error(T_("User not found"));
 			return false;
 		}
 
@@ -59,40 +58,40 @@ class model extends \addons\content_su\main\model
 
 	public function post_nofity($_args)
 	{
-		$msg = utility::post('msg');
+		$msg = \lib\utility::post('msg');
 		if(!$msg)
 		{
-			debug::error(T_("No message was sended"));
+			\lib\debug::error(T_("No message was sended"));
 			return false;
 		}
 
-		$user         = utility::get('user');
+		$user         = \lib\utility::get('user');
 		$detail       = $this->connection_way($user);
-		$email        = (utility::post('email') && isset($detail['way']['email'])) 					? $detail['way']['email'] 			: null;
-		$googlemail   = (utility::post('googlemail') && isset($detail['way']['googlemail'])) 		? $detail['way']['googlemail'] 		: null;
-		$telegram     = (utility::post('telegram') && isset($detail['way']['telegram'])) 			? $detail['way']['telegram'] 		: null;
-		$facebookmail = (utility::post('facebookmail') && isset($detail['way']['facebookmail'])) 	? $detail['way']['facebookmail'] 	: null;
-		$twittermail  = (utility::post('twittermail') && isset($detail['way']['twittermail'])) 		? $detail['way']['twittermail'] 	: null;
-		$notification = (utility::post('notification')) ? true : false;
-		$mobile       = (utility::post('mobile') && isset($detail['way']['mobile'])) 				? $detail['way']['mobile'] 			: null;
+		$email        = (\lib\utility::post('email') && isset($detail['way']['email'])) 					? $detail['way']['email'] 			: null;
+		$googlemail   = (\lib\utility::post('googlemail') && isset($detail['way']['googlemail'])) 		? $detail['way']['googlemail'] 		: null;
+		$telegram     = (\lib\utility::post('telegram') && isset($detail['way']['telegram'])) 			? $detail['way']['telegram'] 		: null;
+		$facebookmail = (\lib\utility::post('facebookmail') && isset($detail['way']['facebookmail'])) 	? $detail['way']['facebookmail'] 	: null;
+		$twittermail  = (\lib\utility::post('twittermail') && isset($detail['way']['twittermail'])) 		? $detail['way']['twittermail'] 	: null;
+		$notification = (\lib\utility::post('notification')) ? true : false;
+		$mobile       = (\lib\utility::post('mobile') && isset($detail['way']['mobile'])) 				? $detail['way']['mobile'] 			: null;
 		$user_id      = $detail['user_id'];
 
 		if($notification && $user_id)
 		{
 	        $this->send_notification(['text' => $msg, 'cat' => 'supervisor', 'to' => $user_id]);
-	        debug::true(T_("Inner notification was sended"));
+	        \lib\debug::true(T_("Inner notification was sended"));
 		}
 
 		if($mobile)
 		{
 			\lib\utility\sms::send_array($mobile, $msg);
-			debug::true("SMS was sended");
+			\lib\debug::true("SMS was sended");
 		}
 
 		if($telegram)
 		{
 			\lib\utility\telegram::sendMessage($telegram, $msg);
-			debug::true("Telegram was sended");
+			\lib\debug::true("Telegram was sended");
 		}
 	}
 }

@@ -1,7 +1,6 @@
 <?php
 namespace addons\content_enter\main\tools;
-use \lib\utility;
-use \lib\debug;
+
 
 trait check_input
 {
@@ -12,20 +11,20 @@ trait check_input
 	{
 		if($_mobile === null)
 		{
-			$_mobile = utility::post('mobile');
+			$_mobile = \lib\utility::post('mobile');
 		}
 
-		if(intval(utility::post('mobile')) === intval(self::get_enter_session('mobile')))
+		if(intval(\lib\utility::post('mobile')) === intval(self::get_enter_session('mobile')))
 		{
 			return true;
 		}
 
-		if(intval(utility::post('mobile')) === intval(self::get_enter_session('temp_mobile')))
+		if(intval(\lib\utility::post('mobile')) === intval(self::get_enter_session('temp_mobile')))
 		{
 			return true;
 		}
 
-		if(intval(utility::post('mobile')) === intval(self::user_data('mobile')))
+		if(intval(\lib\utility::post('mobile')) === intval(self::user_data('mobile')))
 		{
 			return true;
 		}
@@ -41,7 +40,7 @@ trait check_input
 	 */
 	public static function check_password_is_null()
 	{
-		if(utility::post('password'))
+		if(\lib\utility::post('password'))
 		{
 			return false;
 		}
@@ -89,7 +88,7 @@ trait check_input
 			// in step mobile (first step)
 			case 'mobile':
 				// just when only posted 1 item and this item is mobile can continue
-				if(count(utility::post()) === 2 && utility::post('usernameormobile') && !utility::post('password'))
+				if(count(\lib\utility::post()) === 2 && \lib\utility::post('usernameormobile') && !\lib\utility::post('password'))
 				{
 					$return = true;
 				}

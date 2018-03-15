@@ -1,8 +1,6 @@
 <?php
 namespace addons\content_api\v1\user\tools;
-use \lib\utility;
-use \lib\debug;
-use \lib\db\logs;
+
 
 trait add
 {
@@ -39,7 +37,7 @@ trait add
 		$_args = array_merge($default_args, $_args);
 
 		// set default title of debug
-		if($_args['debug']) debug::title(T_("Operation Faild"));
+		if($_args['debug']) \lib\debug::title(T_("Operation Faild"));
 
 		// set the log meta
 		$log_meta =
@@ -48,15 +46,15 @@ trait add
 			'meta' =>
 			[
 				'user_id' => $this->user_id,
-				'input'   => utility::request(),
+				'input'   => \lib\utility::request(),
 			]
 		];
 
 		// check user id is exist
 		if(!$this->user_id)
 		{
-			if($_args['save_log']) logs::set('addon:api:user:user_id:notfound', $this->user_id, $log_meta);
-			if($_args['debug']) debug::error(T_("User not found"), 'user', 'permission');
+			if($_args['save_log']) \lib\db\logs::set('addon:api:user:user_id:notfound', $this->user_id, $log_meta);
+			if($_args['debug']) \lib\debug::error(T_("User not found"), 'user', 'permission');
 			return false;
 		}
 
@@ -66,13 +64,13 @@ trait add
 
 
 		// get mobile of user
-		$mobile           = utility::request("mobile");
+		$mobile           = \lib\utility::request("mobile");
 		$mobile_syntax    = \lib\utility\filter::mobile($mobile);
 
 		if($mobile && !$mobile_syntax)
 		{
-			if($_args['save_log']) logs::set('addon:api:user:mobile:not:set', $this->user_id, $log_meta);
-			if($_args['debug']) debug::error(T_("Invalid mobile number"), 'mobile', 'arguments');
+			if($_args['save_log']) \lib\db\logs::set('addon:api:user:mobile:not:set', $this->user_id, $log_meta);
+			if($_args['debug']) \lib\debug::error(T_("Invalid mobile number"), 'mobile', 'arguments');
 			return false;
 		}
 		elseif($mobile && $mobile_syntax && ctype_digit($mobile))
@@ -99,22 +97,22 @@ trait add
 			{
 				if($_args['method'] === 'post')
 				{
-					if($_args['save_log']) logs::set('addon:api:user:mobile:duplicate', $this->user_id, $log_meta);
-					if($_args['debug']) debug::error(T_("Duplicate mobile"), 'mobile', 'arguments');
+					if($_args['save_log']) \lib\db\logs::set('addon:api:user:mobile:duplicate', $this->user_id, $log_meta);
+					if($_args['debug']) \lib\debug::error(T_("Duplicate mobile"), 'mobile', 'arguments');
 					return false;
 				}
 				else
 				{
-					$id = utility::request('id');
-					$id = utility\shortURL::decode($id);
+					$id = \lib\utility::request('id');
+					$id = \lib\utility\shortURL::decode($id);
 					if(intval($id) === intval($check_duplicate['id']))
 					{
 						// no problem this is current user
 					}
 					else
 					{
-						if($_args['save_log']) logs::set('addon:api:user:mobile:duplicate:update', $this->user_id, $log_meta);
-						if($_args['debug']) debug::error(T_("Duplicate mobile"), 'mobile', 'arguments');
+						if($_args['save_log']) \lib\db\logs::set('addon:api:user:mobile:duplicate:update', $this->user_id, $log_meta);
+						if($_args['debug']) \lib\debug::error(T_("Duplicate mobile"), 'mobile', 'arguments');
 						return false;
 					}
 				}
@@ -128,7 +126,7 @@ trait add
 		 */
 		$return_function = $this->user_check_args($_args, $args, $log_meta);
 
-		if(!debug::$status || $return_function === false)
+		if(!\lib\debug::$status || $return_function === false)
 		{
 			return false;
 		}
@@ -146,12 +144,12 @@ trait add
 		elseif($_args['method'] === 'patch')
 		{
 
-			$id = utility::request('id');
-			$id = utility\shortURL::decode($id);
+			$id = \lib\utility::request('id');
+			$id = \lib\utility\shortURL::decode($id);
 			if(!$id)
 			{
-				if($_args['save_log']) logs::set('addon:api:user:pathc:id:not:set', $this->user_id, $log_meta);
-				if($_args['debug']) debug::error(T_("Id not set"), 'id', 'arguments');
+				if($_args['save_log']) \lib\db\logs::set('addon:api:user:pathc:id:not:set', $this->user_id, $log_meta);
+				if($_args['debug']) \lib\debug::error(T_("Id not set"), 'id', 'arguments');
 				return false;
 			}
 
@@ -181,49 +179,49 @@ trait add
 				}
 			}
 
-			if(!utility::isset_request('mobile'))              unset($args['mobile']);
-			if(!utility::isset_request('passportexpire'))      unset($args['passportexpire']);
-			if(!utility::isset_request('postion'))             unset($args['postion']);
-			if(!utility::isset_request('personnelcode'))       unset($args['personnelcode']);
-			if(!utility::isset_request('firstname'))           unset($args['name']);
-			if(!utility::isset_request('lastname'))            unset($args['lastname']);
-			if(!utility::isset_request('status'))              unset($args['status']);
-			if(!utility::isset_request('displayname'))         unset($args['displayname']);
-			if(!utility::isset_request('nationalcode'))        unset($args['nationalcode']);
-			if(!utility::isset_request('father'))              unset($args['father']);
-			if(!utility::isset_request('birthday'))            unset($args['birthday']);
-			if(!utility::isset_request('gender'))              unset($args['gender']);
-			if(!utility::isset_request('type'))                unset($args['type']);
-			if(!utility::isset_request('marital'))             unset($args['marital']);
-			if(!utility::isset_request('child'))               unset($args['childcount']);
-			if(!utility::isset_request('birthplace'))          unset($args['birthplace']);
-			if(!utility::isset_request('shfrom'))              unset($args['shfrom']);
-			if(!utility::isset_request('shcode'))              unset($args['shcode']);
-			if(!utility::isset_request('education'))           unset($args['education']);
-			if(!utility::isset_request('job'))                 unset($args['job']);
-			if(!utility::isset_request('passportcode'))        unset($args['passportcode']);
-			if(!utility::isset_request('passportcode'))        unset($args['pasportcode']);
-			if(!utility::isset_request('paymentaccountnumber'))unset($args['cardnumber']);
-			if(!utility::isset_request('paymentaccountnumber'))unset($args['paymentaccountnumber']);
-			if(!utility::isset_request('shaba'))               unset($args['shaba']);
-			if(!utility::isset_request('file'))                unset($args['fileid'], $args['fileurl']);
-			if(!utility::isset_request('email'))               unset($args['email']);
-			if(!utility::isset_request('parent'))              unset($args['parent']);
-			if(!utility::isset_request('permission'))          unset($args['permission']);
-			if(!utility::isset_request('username'))            unset($args['username']);
-			if(!utility::isset_request('group'))               unset($args['group']);
-			if(!utility::isset_request('pin'))                 unset($args['pin']);
-			if(!utility::isset_request('ref'))                 unset($args['ref']);
-			if(!utility::isset_request('notification'))        unset($args['notification']);
-			if(!utility::isset_request('nationality'))         unset($args['nationality']);
-			if(!utility::isset_request('region'))              unset($args['region']);
-			if(!utility::isset_request('insurancetype'))       unset($args['insurancetype']);
-			if(!utility::isset_request('insurancecode'))       unset($args['insurancecode']);
-			if(!utility::isset_request('dependantscount'))     unset($args['dependantscount']);
-			if(!utility::isset_request('unit_id'))             unset($args['unit_id']);
-			if(!utility::isset_request('language'))            unset($args['language']);
-			if(!utility::isset_request('twostep'))             unset($args['twostep']);
-			if(!utility::isset_request('setup'))               unset($args['setup']);
+			if(!\lib\utility::isset_request('mobile'))              unset($args['mobile']);
+			if(!\lib\utility::isset_request('passportexpire'))      unset($args['passportexpire']);
+			if(!\lib\utility::isset_request('postion'))             unset($args['postion']);
+			if(!\lib\utility::isset_request('personnelcode'))       unset($args['personnelcode']);
+			if(!\lib\utility::isset_request('firstname'))           unset($args['name']);
+			if(!\lib\utility::isset_request('lastname'))            unset($args['lastname']);
+			if(!\lib\utility::isset_request('status'))              unset($args['status']);
+			if(!\lib\utility::isset_request('displayname'))         unset($args['displayname']);
+			if(!\lib\utility::isset_request('nationalcode'))        unset($args['nationalcode']);
+			if(!\lib\utility::isset_request('father'))              unset($args['father']);
+			if(!\lib\utility::isset_request('birthday'))            unset($args['birthday']);
+			if(!\lib\utility::isset_request('gender'))              unset($args['gender']);
+			if(!\lib\utility::isset_request('type'))                unset($args['type']);
+			if(!\lib\utility::isset_request('marital'))             unset($args['marital']);
+			if(!\lib\utility::isset_request('child'))               unset($args['childcount']);
+			if(!\lib\utility::isset_request('birthplace'))          unset($args['birthplace']);
+			if(!\lib\utility::isset_request('shfrom'))              unset($args['shfrom']);
+			if(!\lib\utility::isset_request('shcode'))              unset($args['shcode']);
+			if(!\lib\utility::isset_request('education'))           unset($args['education']);
+			if(!\lib\utility::isset_request('job'))                 unset($args['job']);
+			if(!\lib\utility::isset_request('passportcode'))        unset($args['passportcode']);
+			if(!\lib\utility::isset_request('passportcode'))        unset($args['pasportcode']);
+			if(!\lib\utility::isset_request('paymentaccountnumber'))unset($args['cardnumber']);
+			if(!\lib\utility::isset_request('paymentaccountnumber'))unset($args['paymentaccountnumber']);
+			if(!\lib\utility::isset_request('shaba'))               unset($args['shaba']);
+			if(!\lib\utility::isset_request('file'))                unset($args['fileid'], $args['fileurl']);
+			if(!\lib\utility::isset_request('email'))               unset($args['email']);
+			if(!\lib\utility::isset_request('parent'))              unset($args['parent']);
+			if(!\lib\utility::isset_request('permission'))          unset($args['permission']);
+			if(!\lib\utility::isset_request('username'))            unset($args['username']);
+			if(!\lib\utility::isset_request('group'))               unset($args['group']);
+			if(!\lib\utility::isset_request('pin'))                 unset($args['pin']);
+			if(!\lib\utility::isset_request('ref'))                 unset($args['ref']);
+			if(!\lib\utility::isset_request('notification'))        unset($args['notification']);
+			if(!\lib\utility::isset_request('nationality'))         unset($args['nationality']);
+			if(!\lib\utility::isset_request('region'))              unset($args['region']);
+			if(!\lib\utility::isset_request('insurancetype'))       unset($args['insurancetype']);
+			if(!\lib\utility::isset_request('insurancecode'))       unset($args['insurancecode']);
+			if(!\lib\utility::isset_request('dependantscount'))     unset($args['dependantscount']);
+			if(!\lib\utility::isset_request('unit_id'))             unset($args['unit_id']);
+			if(!\lib\utility::isset_request('language'))            unset($args['language']);
+			if(!\lib\utility::isset_request('twostep'))             unset($args['twostep']);
+			if(!\lib\utility::isset_request('setup'))               unset($args['setup']);
 
 			if(!empty($args))
 			{
@@ -233,19 +231,19 @@ trait add
 
 		$return = [];
 
-		if(debug::$status)
+		if(\lib\debug::$status)
 		{
-			if($_args['debug']) debug::title(T_("Operation Complete"));
+			if($_args['debug']) \lib\debug::title(T_("Operation Complete"));
 
 			if($_args['method'] === 'post')
 			{
-				if($_args['debug']) debug::true(T_("user successfully added"));
-				$return['user_id'] = utility\shortURL::encode(\lib\db::insert_id());
+				if($_args['debug']) \lib\debug::true(T_("user successfully added"));
+				$return['user_id'] = \lib\utility\shortURL::encode(\lib\db::insert_id());
 			}
 			elseif($_args['method'] === 'patch')
 			{
-				if($_args['debug']) debug::true(T_("user successfully updated"));
-				$return['user_id'] = utility::request('id');
+				if($_args['debug']) \lib\debug::true(T_("user successfully updated"));
+				$return['user_id'] = \lib\utility::request('id');
 			}
 		}
 

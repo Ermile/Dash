@@ -1,9 +1,6 @@
 <?php
 namespace lib\utility\payment\pay;
-use \lib\debug;
-use \lib\option;
-use \lib\utility;
-use \lib\db\logs;
+
 
 trait parsian
 {
@@ -31,26 +28,26 @@ trait parsian
         ];
 
 
-        if(!option::config('parsian', 'status'))
+        if(!\lib\option::config('parsian', 'status'))
         {
-            logs::set('pay:parsian:status:false', $_user_id, $log_meta);
-            debug::error(T_("The parsian payment on this service is locked"));
+            \lib\db\logs::set('pay:parsian:status:false', $_user_id, $log_meta);
+            \lib\debug::error(T_("The parsian payment on this service is locked"));
             return false;
         }
 
-        if(!option::config('parsian', 'LoginAccount'))
+        if(!\lib\option::config('parsian', 'LoginAccount'))
         {
-            logs::set('pay:parsian:LoginAccount:not:set', $_user_id, $log_meta);
-            debug::error(T_("The parsian payment LoginAccount not set"));
+            \lib\db\logs::set('pay:parsian:LoginAccount:not:set', $_user_id, $log_meta);
+            \lib\debug::error(T_("The parsian payment LoginAccount not set"));
             return false;
         }
 
         $parsian = [];
-        $parsian['LoginAccount'] = option::config('parsian', 'LoginAccount');
+        $parsian['LoginAccount'] = \lib\option::config('parsian', 'LoginAccount');
 
-        if(option::config('parsian', 'CallBackUrl'))
+        if(\lib\option::config('parsian', 'CallBackUrl'))
         {
-            $parsian['CallBackUrl'] = option::config('parsian', 'CallBackUrl');
+            $parsian['CallBackUrl'] = \lib\option::config('parsian', 'CallBackUrl');
         }
         else
         {
@@ -85,7 +82,7 @@ trait parsian
 
         $log_meta['data'] = self::$log_data = $transaction_id;
 
-        if(!debug::$status || !$transaction_id)
+        if(!\lib\debug::$status || !$transaction_id)
         {
             return false;
         }
@@ -120,8 +117,8 @@ trait parsian
             }
             else
             {
-                logs::set('pay:parsian:Token:not:set', $_user_id, $log_meta);
-                debug::error(T_("The parsian payment Token not set"));
+                \lib\db\logs::set('pay:parsian:Token:not:set', $_user_id, $log_meta);
+                \lib\debug::error(T_("The parsian payment Token not set"));
                 return false;
             }
         }

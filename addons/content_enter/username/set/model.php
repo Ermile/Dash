@@ -1,8 +1,6 @@
 <?php
 namespace addons\content_enter\username\set;
-use \lib\utility;
-use \lib\debug;
-use \lib\db;
+
 
 class model extends \addons\content_enter\main\model
 {
@@ -14,19 +12,19 @@ class model extends \addons\content_enter\main\model
 	 */
 	public function post_username($_args)
 	{
-		$username = utility::post('username');
+		$username = \lib\utility::post('username');
 		$username = trim($username);
 		if($username)
 		{
 			if(mb_strlen($username) < 5)
 			{
-				debug::error(T_("You must set large than 5 character in username"));
+				\lib\debug::error(T_("You must set large than 5 character in username"));
 				return false;
 			}
 
 			if(mb_strlen($username) > 50)
 			{
-				debug::error(T_("You must set less than 50 character in username"));
+				\lib\debug::error(T_("You must set less than 50 character in username"));
 				return false;
 			}
 
@@ -35,7 +33,7 @@ class model extends \addons\content_enter\main\model
 
 			if(!empty($check_exist_name))
 			{
-				debug::error(T_("This username alreay taked!"));
+				\lib\debug::error(T_("This username alreay taked!"));
 				return false;
 			}
 
@@ -50,7 +48,7 @@ class model extends \addons\content_enter\main\model
 		}
 		else
 		{
-			debug::error(T_("Please enter the username"));
+			\lib\debug::error(T_("Please enter the username"));
 			return false;
 		}
 	}

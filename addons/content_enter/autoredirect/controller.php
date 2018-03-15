@@ -1,7 +1,6 @@
 <?php
 namespace addons\content_enter\autoredirect;
-use \lib\debug;
-use \lib\utility;
+
 
 class controller extends \addons\content_enter\main\controller
 {

@@ -1,8 +1,5 @@
 <?php
 namespace addons\content_enter\verify\sms;
-use \lib\utility;
-use \lib\debug;
-use \lib\db;
 
 
 class model extends \addons\content_enter\main\model
@@ -65,12 +62,12 @@ class model extends \addons\content_enter\main\model
 		if($kavenegar_send_result === 411 && substr($my_mobile, 0, 2) === '98')
 		{
 			// invalid user mobil
-			db\logs::set('kavenegar:service:411:sms', self::user_data('id'), $log_meta);
+			\lib\db\logs::set('kavenegar:service:411:sms', self::user_data('id'), $log_meta);
 			return false;
 		}
 		elseif($kavenegar_send_result === false)
 		{
-			db\logs::set('kavenegar:service:done:sms', self::user_data('id'), $log_meta);
+			\lib\db\logs::set('kavenegar:service:done:sms', self::user_data('id'), $log_meta);
 			// the kavenegar service is down!!!
 		}
 		elseif($kavenegar_send_result)
@@ -90,13 +87,13 @@ class model extends \addons\content_enter\main\model
 				}
 			}
 
-			db\logs::set('enter:send:sems:result', self::user_data('id'), $log_meta);
+			\lib\db\logs::set('enter:send:sems:result', self::user_data('id'), $log_meta);
 
 			return true;
 		}
 		else
 		{
-			db\logs::set('enter:send:cannot:send:sms', self::user_data('id'), $log_meta);
+			\lib\db\logs::set('enter:send:cannot:send:sms', self::user_data('id'), $log_meta);
 		}
 
 		return false;
@@ -109,11 +106,11 @@ class model extends \addons\content_enter\main\model
 	public function post_verify()
 	{
 		// runcall
-		if(mb_strtolower(utility::post('verify')) === 'true')
+		if(mb_strtolower(\lib\utility::post('verify')) === 'true')
 		{
 			if(!self::get_enter_session('run_send_sms_code'))
 			{
-				debug::result("Sms sended");
+				\lib\debug::result("Sms sended");
 				self::set_enter_session('run_send_sms_code', true);
 				$this->send_sms_code();
 			}

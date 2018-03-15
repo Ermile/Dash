@@ -1,8 +1,6 @@
 <?php
 namespace addons\content_enter\home;
-use \lib\utility;
-use \lib\debug;
-use \lib\db;
+
 
 class model extends \addons\content_enter\main\model
 {
@@ -12,9 +10,9 @@ class model extends \addons\content_enter\main\model
 		{
 			$user_id = null;
 
-			if(utility::post('usernameormobile') !== $this->login('mobile') && !utility::get('userid'))
+			if(\lib\utility::post('usernameormobile') !== $this->login('mobile') && !\lib\utility::get('userid'))
 			{
-				$user_data = \lib\db\users::get_by_mobile(\lib\utility\filter::mobile(utility::post('usernameormobile')));
+				$user_data = \lib\db\users::get_by_mobile(\lib\utility\filter::mobile(\lib\utility::post('usernameormobile')));
 
 				if(isset($user_data['id']))
 				{
@@ -22,14 +20,14 @@ class model extends \addons\content_enter\main\model
 				}
 				else
 				{
-					debug::error(T_("Mobile not found"));
+					\lib\debug::error(T_("Mobile not found"));
 					return false;
 				}
 			}
 
-			if(!$user_id && utility::get('userid'))
+			if(!$user_id && \lib\utility::get('userid'))
 			{
-				$user_id = utility::get('userid');
+				$user_id = \lib\utility::get('userid');
 			}
 
 			if($user_id)
@@ -40,7 +38,7 @@ class model extends \addons\content_enter\main\model
 
 				if(!\lib\db\users::get_by_id($user_id))
 				{
-					debug::error(T_("User not found"));
+					\lib\debug::error(T_("User not found"));
 					return false;
 				}
 
@@ -112,7 +110,7 @@ class model extends \addons\content_enter\main\model
 			return;
 		}
 
-		$usernameormobile       = utility::post('usernameormobile');
+		$usernameormobile       = \lib\utility::post('usernameormobile');
 		self::$usernameormobile = $usernameormobile;
 
 		// if old mobile is different by new mobile
@@ -134,7 +132,7 @@ class model extends \addons\content_enter\main\model
 		// the user not found must be signup
 		if(!$user_data)
 		{
-			debug::error(T_("Username not found"));
+			\lib\debug::error(T_("Username not found"));
 			return false;
 		}
 

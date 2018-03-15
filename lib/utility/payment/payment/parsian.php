@@ -1,6 +1,6 @@
 <?php
 namespace lib\utility\payment\payment;
-use \lib\debug;
+
 
 class parsian
 {
@@ -39,7 +39,7 @@ class parsian
             {
                 \lib\db\logs::set('payment:parsian:soapclient:not:install', self::$user_id, $log_meta);
             }
-            debug::error(T_("Can not connect to parsian gateway. Install it!"));
+            \lib\debug::error(T_("Can not connect to parsian gateway. Install it!"));
             return false;
         }
 
@@ -71,14 +71,14 @@ class parsian
             else
             {
                 \lib\db\logs::set('payment:parsian:error', self::$user_id, $log_meta);
-                debug::error($msg);
+                \lib\debug::error($msg);
                 return false;
             }
         }
         catch (SoapFault $e)
         {
             \lib\db\logs::set('payment:parsian:error:load:web:services', self::$user_id, $log_meta);
-            debug::error(T_("Error in load web services"));
+            \lib\debug::error(T_("Error in load web services"));
             return false;
         }
     }
@@ -135,14 +135,14 @@ class parsian
             else
             {
                 \lib\db\logs::set('payment:parsian:error:verify', self::$user_id, $log_meta);
-                debug::error(self::msg($Status));
+                \lib\debug::error(self::msg($Status));
                 return false;
             }
         }
         catch(Exception $e)
         {
             \lib\db\logs::set('payment:parsian:error:load:web:services:verify', self::$user_id, $log_meta);
-            debug::error(T_("Error in load web services"));
+            \lib\debug::error(T_("Error in load web services"));
             return false;
         }
     }
@@ -188,14 +188,14 @@ class parsian
             else
             {
                 \lib\db\logs::set('payment:parsian:error:verify', self::$user_id, $log_meta);
-                debug::error(self::msg($Status));
+                \lib\debug::error(self::msg($Status));
                 return false;
             }
         }
         catch(Exception $e)
         {
             \lib\db\logs::set('payment:parsian:error:load:web:services:verify', self::$user_id, $log_meta);
-            debug::error(T_("Error in load web services"));
+            \lib\debug::error(T_("Error in load web services"));
             return false;
         }
     }

@@ -1,9 +1,6 @@
 <?php
 namespace lib\utility\payment;
-use \lib\debug;
-use \lib\option;
-use \lib\utility;
-use \lib\db\logs;
+
 
 class verify
 {

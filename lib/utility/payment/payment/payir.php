@@ -1,6 +1,6 @@
 <?php
 namespace lib\utility\payment\payment;
-use \lib\debug;
+
 
 class payir
 {

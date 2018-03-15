@@ -1,26 +1,24 @@
 <?php
 namespace addons\content_enter\verify;
-use \lib\debug;
-use \lib\utility;
 
 
 class model extends \addons\content_enter\main\model
 {
 	public function post_verify_way()
 	{
-		$mobile_email = utility::post('usernameormobile');
-		$send_code    = mb_strtolower(utility::post('sendCod'));
+		$mobile_email = \lib\utility::post('usernameormobile');
+		$send_code    = mb_strtolower(\lib\utility::post('sendCod'));
 
 		$exist_mobile_email = $this->view()->data->get_usernamemobile;
 		if($mobile_email !== $exist_mobile_email)
 		{
-			debug::error(T_("What are you doing?"));
+			\lib\debug::error(T_("What are you doing?"));
 			return false;
 		}
 
 		if(!in_array($send_code, self::list_send_code_way($mobile_email)))
 		{
-			debug::error(T_("Dont!"));
+			\lib\debug::error(T_("Dont!"));
 			return false;
 		}
 
@@ -32,7 +30,7 @@ class model extends \addons\content_enter\main\model
 
 		if(\lib\url::isLocal())
 		{
-			debug::true(T_("Verify code in local is :code", ['code' => '<b>11111</b>']));
+			\lib\debug::true(T_("Verify code in local is :code", ['code' => '<b>11111</b>']));
 		}
 
 		$select_way = 'verify/'. $send_code;

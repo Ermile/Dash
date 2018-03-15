@@ -1,8 +1,6 @@
 <?php
 namespace addons\content_api\v1\user\tools;
-use \lib\utility;
-use \lib\debug;
-use \lib\db\logs;
+
 
 trait get
 {
@@ -40,7 +38,7 @@ trait get
 			'data' => null,
 			'meta' =>
 			[
-				'input' => utility::request(),
+				'input' => \lib\utility::request(),
 			]
 		];
 
@@ -49,11 +47,11 @@ trait get
 			return false;
 		}
 		$where           = [];
-		$search          = utility::request('search');
+		$search          = \lib\utility::request('search');
 
 		$get_args = $this->user_make_where($_args, $where, $log_meta);
 
-		if(!debug::$status || $get_args === false)
+		if(!\lib\debug::$status || $get_args === false)
 		{
 			return false;
 		}
@@ -75,7 +73,7 @@ trait get
 		}
 
 
-		if(utility::request('get_term'))
+		if(\lib\utility::request('get_term'))
 		{
 			$this->get_user_term($temp);
 		}
@@ -93,31 +91,31 @@ trait get
 	 */
 	public function get_user($_args = [])
 	{
-		debug::title(T_("Operation Faild"));
+		\lib\debug::title(T_("Operation Faild"));
 
 		$log_meta =
 		[
 			'data' => null,
 			'meta' =>
 			[
-				'input' => utility::request(),
+				'input' => \lib\utility::request(),
 			]
 		];
 
 		if(!$this->user_id)
 		{
-			logs::set('api:user:user_id:notfound', $this->user_id, $log_meta);
-			debug::error(T_("User not found"), 'user', 'permission');
+			\lib\db\logs::set('api:user:user_id:notfound', $this->user_id, $log_meta);
+			\lib\debug::error(T_("User not found"), 'user', 'permission');
 			return false;
 		}
 
 
-		$id = utility::request('id');
-		$id = utility\shortURL::decode($id);
+		$id = \lib\utility::request('id');
+		$id = \lib\utility\shortURL::decode($id);
 		if(!$id)
 		{
-			logs::set('api:user:id:not:set', $this->user_id, $log_meta);
-			debug::error(T_("Id not set"), 'id', 'arguments');
+			\lib\db\logs::set('api:user:id:not:set', $this->user_id, $log_meta);
+			\lib\debug::error(T_("Id not set"), 'id', 'arguments');
 			return false;
 		}
 
@@ -125,7 +123,7 @@ trait get
 
 		$result = $this->ready_user($get_user);
 
-		if(utility::request('get_term'))
+		if(\lib\utility::request('get_term'))
 		{
 			$this->get_user_term($result);
 		}
@@ -241,7 +239,7 @@ trait get
 				case 'id':
 				case 'fileid':
 				case 'parent':
-					$result[$key] = utility\shortURL::encode($value);
+					$result[$key] = \lib\utility\shortURL::encode($value);
 					break;
 
 				case 'birthday':

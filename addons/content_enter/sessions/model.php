@@ -1,8 +1,6 @@
 <?php
 namespace addons\content_enter\sessions;
-use \lib\utility;
-use \lib\debug;
-use \lib\db;
+
 
 class model extends \addons\content_enter\main\model
 {
@@ -34,12 +32,12 @@ class model extends \addons\content_enter\main\model
 			return false;
 		}
 
-		if(utility::post('type') === 'terminate' && utility::post('id') && is_numeric(utility::post('id')))
+		if(\lib\utility::post('type') === 'terminate' && \lib\utility::post('id') && is_numeric(\lib\utility::post('id')))
 		{
-			if(\lib\db\sessions::is_my_session(utility::post('id'), $this->login('id')))
+			if(\lib\db\sessions::is_my_session(\lib\utility::post('id'), $this->login('id')))
 			{
-				\lib\db\sessions::terminate_id(utility::post('id'));
-				debug::true(T_("Session terminated"));
+				\lib\db\sessions::terminate_id(\lib\utility::post('id'));
+				\lib\debug::true(T_("Session terminated"));
 				return true;
 			}
 		}

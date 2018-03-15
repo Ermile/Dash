@@ -1,8 +1,6 @@
 <?php
 namespace addons\content_enter\email\change;
-use \lib\utility;
-use \lib\debug;
-use \lib\db;
+
 
 class model extends \addons\content_enter\main\model
 {
@@ -31,27 +29,27 @@ class model extends \addons\content_enter\main\model
 	 */
 	public function post_change($_args)
 	{
-		if(utility::post('type') === 'remove')
+		if(\lib\utility::post('type') === 'remove')
 		{
 			$this->remove_email();
 			return;
 		}
 
-		if(!utility::post('emailNew'))
+		if(!\lib\utility::post('emailNew'))
 		{
-			debug::error(T_("Plese fill the new email"));
+			\lib\debug::error(T_("Plese fill the new email"));
 			return false;
 		}
 
-		if($this->login('email') == utility::post('emailNew'))
+		if($this->login('email') == \lib\utility::post('emailNew'))
 		{
-			debug::error(T_("Please select a different email"));
+			\lib\debug::error(T_("Please select a different email"));
 			return false;
 		}
 
-		if(utility::post('emailNew'))
+		if(\lib\utility::post('emailNew'))
 		{
-			self::set_enter_session('temp_email', utility::post('emailNew'));
+			self::set_enter_session('temp_email', \lib\utility::post('emailNew'));
 		}
 
 		// set session verify_from set

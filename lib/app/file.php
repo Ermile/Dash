@@ -1,8 +1,6 @@
 <?php
 namespace lib\app;
-use \lib\utility;
-use \lib\debug;
-use \lib\utility\upload;
+
 
 class file
 {
@@ -36,7 +34,7 @@ class file
 		{
 			$file_path = true;
 		}
-		elseif(!utility::files($_options['upload_name']))
+		elseif(!\lib\utility::files($_options['upload_name']))
 		{
 			\lib\debug::error(T_("Unable to upload, because of selected upload name"), 'upload_name', 'arguments');
 			return false;
@@ -70,9 +68,9 @@ class file
 
 		// upload::$extentions = ['png', 'jpeg', 'jpg'];
 
-		$upload      = upload::upload($ready_upload);
+		$upload      = \lib\utility\upload::upload($ready_upload);
 
-		if(!debug::$status)
+		if(!\lib\debug::$status)
 		{
 			return false;
 		}
@@ -91,14 +89,14 @@ class file
 		}
 		else
 		{
-			return debug::error(T_("Can not upload file. undefined error"));
+			return \lib\debug::error(T_("Can not upload file. undefined error"));
 		}
 
 		$file_id_code = null;
 
 		if($file_id)
 		{
-			$file_id_code = utility\shortURL::encode($file_id);
+			$file_id_code = \lib\utility\shortURL::encode($file_id);
 		}
 
 		$url = null;

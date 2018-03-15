@@ -1,7 +1,6 @@
 <?php
 namespace addons\content_enter\main\tools;
-use \lib\utility;
-use \lib\debug;
+
 
 trait go_to
 {
@@ -53,7 +52,7 @@ trait go_to
 	{
 		if($_direct)
 		{
-			debug::msg('direct', true);
+			\lib\debug::msg('direct', true);
 		}
 
 		$redirect = new \lib\redirector($_url);
@@ -64,7 +63,7 @@ trait go_to
 		}
 		else
 		{
-			// debug::msg("redirect", $redirect->redirect(true));
+			// \lib\debug::msg("redirect", $redirect->redirect(true));
 			$redirect->redirect();
 		}
 

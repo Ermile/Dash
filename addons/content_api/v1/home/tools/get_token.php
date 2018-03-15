@@ -1,8 +1,6 @@
 <?php
 namespace addons\content_api\v1\home\tools;
-use \lib\utility;
-use \lib\debug;
-use \addons\content_enter\main\tools\token;
+
 
 trait get_token
 {
@@ -15,19 +13,19 @@ trait get_token
 	{
 
 		$guest_token = null;
-		if(utility::request("guest"))
+		if(\lib\utility::request("guest"))
 		{
-			$guest_token = utility::request("guest");
+			$guest_token = \lib\utility::request("guest");
 		}
 
 		$token = null;
 		if($_guest)
 		{
-			$token = token::create_guest($this->authorization);
+			$token = \addons\content_enter\main\tools\token::create_guest($this->authorization);
 		}
 		else
 		{
-			$token = token::create_tmp_login($this->authorization, $guest_token);
+			$token = \addons\content_enter\main\tools\token::create_tmp_login($this->authorization, $guest_token);
 		}
 		return ['token' => $token];
 	}
@@ -40,16 +38,16 @@ trait get_token
 	 */
 	public function check_verify()
 	{
-		$temp_token = utility::request("temp_token");
+		$temp_token = \lib\utility::request("temp_token");
 		if(!$temp_token)
 		{
-			if(debug::$status)
+			if(\lib\debug::$status)
 			{
-				debug::error(T_("Invalid parameter temp_token"), 'temp_token', 'arguments');
+				\lib\debug::error(T_("Invalid parameter temp_token"), 'temp_token', 'arguments');
 			}
 			return false;
 		}
-		return token::check_verify($temp_token);
+		return \addons\content_enter\main\tools\token::check_verify($temp_token);
 	}
 
 }

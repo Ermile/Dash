@@ -1,9 +1,6 @@
 <?php
 namespace addons\content_api\v1\home;
-use \lib\utility\permission;
-use \lib\utility;
-use \lib\debug;
-use \addons\content_enter\main\tools\token;
+
 
 class model extends \mvc\model
 {
@@ -79,7 +76,7 @@ class model extends \mvc\model
 
 		$this->api_key();
 
-		if(!debug::$status)
+		if(!\lib\debug::$status)
 		{
 			$this->_processor(['force_stop' => true]);
 		}
@@ -94,21 +91,21 @@ class model extends \mvc\model
 	public function api_key()
 	{
 
-		$api_token = utility::header("api_token") ? utility::header("api_token") : utility::header("Api_token");
+		$api_token = \lib\utility::header("api_token") ? \lib\utility::header("api_token") : \lib\utility::header("Api_token");
 
-		$authorization = utility::header("authorization");
+		$authorization = \lib\utility::header("authorization");
 		if($api_token)
 		{
 			$authorization = $api_token;
 		}
 		elseif(!$authorization)
 		{
-			$authorization = utility::header("Authorization");
+			$authorization = \lib\utility::header("Authorization");
 		}
 
 		if(!$authorization)
 		{
-			return debug::error('Authorization not found', 'authorization', 'access');
+			return \lib\debug::error('Authorization not found', 'authorization', 'access');
 		}
 
 		// static token list
@@ -126,9 +123,9 @@ class model extends \mvc\model
 		}
 		else
 		{
-			$token = token::get_type($authorization);
+			$token = \addons\content_enter\main\tools\token::get_type($authorization);
 
-			if(!debug::$status)
+			if(!\lib\debug::$status)
 			{
 				return false;
 			}
@@ -140,20 +137,20 @@ class model extends \mvc\model
 				case 'guest':
 					if($this->url == 'v1/token/login' || $this->url == 'v1/token/guest')
 					{
-						debug::error(T_("Access denide (Invalid url)"), 'authorization', 'access');
+						\lib\debug::error(T_("Access denide (Invalid url)"), 'authorization', 'access');
 						return false;
 					}
 
-					if(!token::check($authorization, $token))
+					if(!\addons\content_enter\main\tools\token::check($authorization, $token))
 					{
 						return false;
 					}
 
-					$user_id = token::get_user_id($authorization);
+					$user_id = \addons\content_enter\main\tools\token::get_user_id($authorization);
 
 					if(!$user_id)
 					{
-						debug::error(T_("Invalid authorization key (User not found)"), 'authorization', 'access');
+						\lib\debug::error(T_("Invalid authorization key (User not found)"), 'authorization', 'access');
 						return false;
 					}
 
@@ -166,24 +163,24 @@ class model extends \mvc\model
 				case 'api_key':
 					if($this->url != 'v1/token/temp' && $this->url != 'v1/token/guest' && $this->url != 'v1/token/login')
 					{
-						debug::error(T_("Access denide to load this url by api key"), 'authorization', 'access');
+						\lib\debug::error(T_("Access denide to load this url by api key"), 'authorization', 'access');
 						return false;
 					}
 					break;
 
 				default :
-					debug::error(T_("Invalid token"), 'authorization', 'access');
+					\lib\debug::error(T_("Invalid token"), 'authorization', 'access');
 					return false;
 			}
 
-			if(isset(token::$PARENT['value']))
+			if(isset(\addons\content_enter\main\tools\token::$PARENT['value']))
 			{
-				$this->parent_api_key = token::$PARENT['value'];
+				$this->parent_api_key = \addons\content_enter\main\tools\token::$PARENT['value'];
 			}
 
-			if(isset(token::$PARENT['user_id']))
+			if(isset(\addons\content_enter\main\tools\token::$PARENT['user_id']))
 			{
-				$this->parent_api_key_user_id = token::$PARENT['user_id'];
+				$this->parent_api_key_user_id = \addons\content_enter\main\tools\token::$PARENT['user_id'];
 			}
 		}
 
@@ -198,12 +195,12 @@ class model extends \mvc\model
 	 */
 	public function static_token()
 	{
-		$mobile = utility::header("mobile");
+		$mobile = \lib\utility::header("mobile");
 
-		$mobile = utility\filter::mobile($mobile);
+		$mobile = \lib\utility\filter::mobile($mobile);
 		if(!$mobile)
 		{
-			debug::error(T_("Mobile not set"), 'mobile', 'header');
+			\lib\debug::error(T_("Mobile not set"), 'mobile', 'header');
 			return false;
 		}
 
@@ -223,7 +220,7 @@ class model extends \mvc\model
 		if(!$this->user_id)
 		{
 			\lib\db\logs::set('addons:api:static_token:user:not:found:register:faild');
-			debug::error(T_("User not found and can not register the user"), 'static_token', 'header');
+			\lib\debug::error(T_("User not found and can not register the user"), 'static_token', 'header');
 			return false;
 		}
 
@@ -237,11 +234,11 @@ class model extends \mvc\model
 	 */
 	public function telegram_token()
 	{
-		$telegramid = utility::header("telegramid");
+		$telegramid = \lib\utility::header("telegramid");
 
 		if(!$telegramid)
 		{
-			debug::error(T_("telegramid is not set"), 'telegramid', 'header');
+			\lib\debug::error(T_("telegramid is not set"), 'telegramid', 'header');
 			return false;
 		}
 
@@ -254,7 +251,7 @@ class model extends \mvc\model
 		$user_data = \lib\db\config::public_get('users', $where);
 		if(!$user_data || !isset($user_data['id']))
 		{
-			debug::error(T_("User not found, please register from /enter/hook"), 'telegramid', 'header');
+			\lib\debug::error(T_("User not found, please register from /enter/hook"), 'telegramid', 'header');
 			return false;
 		}
 		$this->user_id = (int) $user_data['id'];

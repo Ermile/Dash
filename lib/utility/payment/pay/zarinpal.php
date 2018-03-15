@@ -1,9 +1,6 @@
 <?php
 namespace lib\utility\payment\pay;
-use \lib\debug;
-use \lib\option;
-use \lib\utility;
-use \lib\db\logs;
+
 
 trait zarinpal
 {
@@ -30,31 +27,31 @@ trait zarinpal
             ]
         ];
 
-        if(!option::config('zarinpal', 'status'))
+        if(!\lib\option::config('zarinpal', 'status'))
         {
-            logs::set('pay:zarinpal:status:false', $_user_id, $log_meta);
-            debug::error(T_("The zarinpal payment on this service is locked"));
+            \lib\db\logs::set('pay:zarinpal:status:false', $_user_id, $log_meta);
+            \lib\debug::error(T_("The zarinpal payment on this service is locked"));
             return false;
         }
 
-        if(!option::config('zarinpal', 'MerchantID'))
+        if(!\lib\option::config('zarinpal', 'MerchantID'))
         {
-            logs::set('pay:zarinpal:MerchantID:not:set', $_user_id, $log_meta);
-            debug::error(T_("The zarinpal payment MerchantID not set"));
+            \lib\db\logs::set('pay:zarinpal:MerchantID:not:set', $_user_id, $log_meta);
+            \lib\debug::error(T_("The zarinpal payment MerchantID not set"));
             return false;
         }
 
         $zarinpal = [];
-        $zarinpal['MerchantID'] = option::config('zarinpal', 'MerchantID');
+        $zarinpal['MerchantID'] = \lib\option::config('zarinpal', 'MerchantID');
 
-        if(option::config('zarinpal', 'Description'))
+        if(\lib\option::config('zarinpal', 'Description'))
         {
-            $zarinpal['Description'] = option::config('zarinpal', 'Description');
+            $zarinpal['Description'] = \lib\option::config('zarinpal', 'Description');
         }
 
-        if(option::config('zarinpal', 'CallbackURL'))
+        if(\lib\option::config('zarinpal', 'CallbackURL'))
         {
-            $zarinpal['CallbackURL'] = option::config('zarinpal', 'CallbackURL');
+            $zarinpal['CallbackURL'] = \lib\option::config('zarinpal', 'CallbackURL');
         }
         else
         {
@@ -97,7 +94,7 @@ trait zarinpal
 
         $log_meta['data'] = self::$log_data = $transaction_id;
 
-        if(!debug::$status || !$transaction_id)
+        if(!\lib\debug::$status || !$transaction_id)
         {
             return false;
         }
@@ -133,8 +130,8 @@ trait zarinpal
             }
             else
             {
-                logs::set('pay:zarinpal:Authority:not:set', $_user_id, $log_meta);
-                debug::error(T_("Zarinpal payment Authority not found"));
+                \lib\db\logs::set('pay:zarinpal:Authority:not:set', $_user_id, $log_meta);
+                \lib\debug::error(T_("Zarinpal payment Authority not found"));
                 return false;
             }
         }

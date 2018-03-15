@@ -1,7 +1,6 @@
 <?php
 namespace lib\app\user;
-use \lib\utility;
-use \lib\debug;
+
 
 trait add
 {
@@ -46,7 +45,7 @@ trait add
 		if(!\lib\user::id())
 		{
 			if($_option['save_log']) \lib\app::log('api:user:user_id:notfound', null, $log_meta);
-			if($_option['debug']) debug::error(T_("User not found"), 'user');
+			if($_option['debug']) \lib\debug::error(T_("User not found"), 'user');
 			return false;
 		}
 
@@ -67,7 +66,7 @@ trait add
 		if(!$user_id)
 		{
 			if($_option['save_log']) \lib\app::log('api:user:no:way:to:insert:user', \lib\user::id(), $log_meta);
-			if($_option['debug']) debug::error(T_("No way to insert user"), 'db', 'system');
+			if($_option['debug']) \lib\debug::error(T_("No way to insert user"), 'db', 'system');
 			return false;
 		}
 
@@ -80,9 +79,9 @@ trait add
 			\lib\app\contact::merge($_args, $_option);
 		}
 
-		if(debug::$status)
+		if(\lib\debug::$status)
 		{
-			if($_option['debug']) debug::true(T_("User successfuly added"));
+			if($_option['debug']) \lib\debug::true(T_("User successfuly added"));
 		}
 
 		return $return;

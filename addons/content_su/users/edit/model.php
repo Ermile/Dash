@@ -1,7 +1,6 @@
 <?php
 namespace addons\content_su\users\edit;
-use \lib\utility;
-use \lib\debug;
+
 
 class model extends \addons\content_su\main\model
 {
@@ -11,7 +10,7 @@ class model extends \addons\content_su\main\model
 		$request       = [];
 		$request['id'] = $id;
 
-		utility::set_request_array($request);
+		\lib\utility::set_request_array($request);
 		$this->user_id = $this->login('id');
 		return $this->get_user();
 	}
@@ -26,24 +25,24 @@ class model extends \addons\content_su\main\model
 	{
 		$post =
 		[
-			'firstname'            => utility::post('name'),
-			'lastname'             => utility::post('lastName'),
-			'mobile'               => utility::post('mobile'),
-			'nationalcode'         => utility::post('nationalcode'),
-			'father'               => utility::post('father'),
-			'birthday'             => utility::post('birthday'),
-			'gender'               => utility::post('gender'),
-			'marital'              => utility::post('marital'),
-			'child'                => utility::post('child'),
-			'birthcity'            => utility::post('birthcity'),
-			'shfrom'               => utility::post('shfrom'),
-			'shcode'               => utility::post('shcode'),
-			'education'            => utility::post('education'),
-			'job'                  => utility::post('job'),
-			'passportcode'         => utility::post('passportcode'),
-			'passportexpire'       => utility::post('passportexpire'),
-			'paymentaccountnumber' => utility::post('paymentaccountnumber'),
-			'shaba'                => utility::post('shaba'),
+			'firstname'            => \lib\utility::post('name'),
+			'lastname'             => \lib\utility::post('lastName'),
+			'mobile'               => \lib\utility::post('mobile'),
+			'nationalcode'         => \lib\utility::post('nationalcode'),
+			'father'               => \lib\utility::post('father'),
+			'birthday'             => \lib\utility::post('birthday'),
+			'gender'               => \lib\utility::post('gender'),
+			'marital'              => \lib\utility::post('marital'),
+			'child'                => \lib\utility::post('child'),
+			'birthcity'            => \lib\utility::post('birthcity'),
+			'shfrom'               => \lib\utility::post('shfrom'),
+			'shcode'               => \lib\utility::post('shcode'),
+			'education'            => \lib\utility::post('education'),
+			'job'                  => \lib\utility::post('job'),
+			'passportcode'         => \lib\utility::post('passportcode'),
+			'passportexpire'       => \lib\utility::post('passportexpire'),
+			'paymentaccountnumber' => \lib\utility::post('paymentaccountnumber'),
+			'shaba'                => \lib\utility::post('shaba'),
 		];
 		// $file_code = $this->upload_avatar();
 		// // we have an error in upload avatar
@@ -75,11 +74,11 @@ class model extends \addons\content_su\main\model
 		$this->user_id = $this->login('id');
 		$request['id'] = $id;
 
-		utility::set_request_array($request);
+		\lib\utility::set_request_array($request);
 		// API ADD MEMBER FUNCTION
 		$this->add_user(['method' => 'patch']);
 
-		if(debug::$status)
+		if(\lib\debug::$status)
 		{
 			$this->redirector(\lib\url::pwd());
 		}

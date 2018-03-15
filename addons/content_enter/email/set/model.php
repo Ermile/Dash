@@ -1,8 +1,6 @@
 <?php
 namespace addons\content_enter\email\set;
-use \lib\utility;
-use \lib\debug;
-use \lib\db;
+
 
 class model extends \addons\content_enter\main\model
 {
@@ -14,16 +12,16 @@ class model extends \addons\content_enter\main\model
 	 */
 	public function post_email($_args)
 	{
-		if(utility::post('email'))
+		if(\lib\utility::post('email'))
 		{
-			self::set_enter_session('temp_email', utility::post('email'));
+			self::set_enter_session('temp_email', \lib\utility::post('email'));
 		}
 		else
 		{
 			// plus count invalid emailword
 			self::plus_try_session('no_email_send_set');
 
-			debug::error(T_("No email was send"));
+			\lib\debug::error(T_("No email was send"));
 			return false;
 		}
 

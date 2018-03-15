@@ -1,7 +1,6 @@
 <?php
 namespace lib\app\user;
-use \lib\utility;
-use \lib\debug;
+
 
 trait user_id
 {

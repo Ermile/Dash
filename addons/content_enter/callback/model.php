@@ -1,8 +1,6 @@
 <?php
 namespace addons\content_enter\callback;
-use \lib\utility;
-use \lib\debug;
-use \lib\db\logs;
+
 
 class model extends \addons\content_enter\main\model
 {
@@ -14,24 +12,24 @@ class model extends \addons\content_enter\main\model
 			'data' => null,
 			'meta' =>
 			[
-				'get'  => utility::get(),
-				'post' => utility::post(),
+				'get'  => \lib\utility::get(),
+				'post' => \lib\utility::post(),
 			],
 		];
 
-		logs::set('enter:callback:sms:resieve', null, $log_meta);
+		\lib\db\logs::set('enter:callback:sms:resieve', null, $log_meta);
 
-		$message = utility::post('message');
+		$message = \lib\utility::post('message');
 		$message = trim($message);
 		if(!$message || mb_strlen($message) < 1)
 		{
-			logs::set('enter:callback:message:empty', null, $log_meta);
-			debug::error(T_("Message is empty"));
+			\lib\db\logs::set('enter:callback:message:empty', null, $log_meta);
+			\lib\debug::error(T_("Message is empty"));
 			return false;
 		}
 
 
-		$mobile = utility::post('from');
+		$mobile = \lib\utility::post('from');
 
 		if($mobile)
 		{
@@ -40,8 +38,8 @@ class model extends \addons\content_enter\main\model
 
 		if(!$mobile)
 		{
-			logs::set('enter:callback:from:not:set', null, $log_meta);
-			debug::error(T_("Mobile not set"));
+			\lib\db\logs::set('enter:callback:from:not:set', null, $log_meta);
+			\lib\debug::error(T_("Mobile not set"));
 			return false;
 		}
 
@@ -62,26 +60,26 @@ class model extends \addons\content_enter\main\model
 			'status' => 'enable',
 		];
 
-		$find_log = logs::get($find_log);
+		$find_log = \lib\db\logs::get($find_log);
 
 		if(!$find_log || !is_array($find_log) || count($find_log) === 0)
 		{
-			logs::set('enter:callback:sms:resieve:log:not:found', $user_id, $log_meta);
-			debug::error(T_("Log not found"));
+			\lib\db\logs::set('enter:callback:sms:resieve:log:not:found', $user_id, $log_meta);
+			\lib\debug::error(T_("Log not found"));
 			return false;
 		}
 
 		if(count($find_log) > 1)
 		{
-			logs::set('enter:callback:sms:more:than:one:log:found', $user_id, $log_meta);
+			\lib\db\logs::set('enter:callback:sms:more:than:one:log:found', $user_id, $log_meta);
 			foreach ($find_log as $key => $value)
 			{
 				if(isset($value['id']))
 				{
-					logs::update(['status' => 'expire'], $value);
+					\lib\db\logs::update(['status' => 'expire'], $value);
 				}
 			}
-			debug::error(T_("More than one log found"));
+			\lib\debug::error(T_("More than one log found"));
 			return false;
 		}
 
@@ -91,8 +89,8 @@ class model extends \addons\content_enter\main\model
 			$find_log = $find_log[0];
 			if(isset($find_log['id']))
 			{
-				logs::update(['status' => 'deliver'], $find_log['id']);
-				debug::true(T_("OK"));
+				\lib\db\logs::update(['status' => 'deliver'], $find_log['id']);
+				\lib\debug::true(T_("OK"));
 				return true;
 			}
 		}
@@ -115,7 +113,7 @@ class model extends \addons\content_enter\main\model
 	 */
 	public function first_signup_sms()
 	{
-		$mobile = utility::post('from');
+		$mobile = \lib\utility::post('from');
 
 		if($mobile)
 		{
@@ -124,7 +122,7 @@ class model extends \addons\content_enter\main\model
 
 		if(!$mobile)
 		{
-			debug::error(T_("Mobile not set"));
+			\lib\debug::error(T_("Mobile not set"));
 			return false;
 		}
 
@@ -145,12 +143,12 @@ class model extends \addons\content_enter\main\model
 			'data' => null,
 			'meta' =>
 			[
-				'get'  => utility::get(),
-				'post' => utility::post(),
+				'get'  => \lib\utility::get(),
+				'post' => \lib\utility::post(),
 			],
 		];
 
-		logs::set('enter:callback:signup:by:sms', $user_id, $log_meta);
+		\lib\db\logs::set('enter:callback:signup:by:sms', $user_id, $log_meta);
 
 		$msg    = T_("Your register was complete");
 
@@ -158,9 +156,9 @@ class model extends \addons\content_enter\main\model
 
 		$log_meta['meta']['register_sms_result'] = $kavenegar_send_result;
 
-		logs::set('enter:callback:sms:registe:reasult', $user_id, $log_meta);
+		\lib\db\logs::set('enter:callback:sms:registe:reasult', $user_id, $log_meta);
 
-		debug::true(T_("User signup by sms"));
+		\lib\debug::true(T_("User signup by sms"));
 
 
 	}

@@ -1,7 +1,6 @@
 <?php
 namespace addons\content_enter\main\tools;
-use \lib\utility;
-use \lib\debug;
+
 
 trait verification_code
 {
@@ -147,25 +146,25 @@ trait verification_code
 			'meta' =>
 			[
 				'session' => $_SESSION,
-				'post'    => utility::post(),
+				'post'    => \lib\utility::post(),
 			]
 		];
 
 		// if(!self::check_input_current_mobile())
 		// {
-		// 	debug::error(T_("Dont!"));
+		// 	\lib\debug::error(T_("Dont!"));
 		// 	return false;
 		// }
 
-		if(!utility::post('code'))
+		if(!\lib\utility::post('code'))
 		{
-			debug::error(T_("Please fill the verification code"), 'code');
+			\lib\debug::error(T_("Please fill the verification code"), 'code');
 			return false;
 		}
 
-		if(!is_numeric(utility::post('code')))
+		if(!is_numeric(\lib\utility::post('code')))
 		{
-			debug::error(T_("What happend? the code is number. you try to send string!?"), 'code');
+			\lib\debug::error(T_("What happend? the code is number. you try to send string!?"), 'code');
 			return false;
 		}
 
@@ -175,7 +174,7 @@ trait verification_code
 		// and this code is deffirent by verification code
 		if($_module === 'sendsms')
 		{
-			$code = utility::post('code');
+			$code = \lib\utility::post('code');
 			if($code == self::get_enter_session('sendsms_code'))
 			{
 				$log_id = self::get_enter_session('sendsms_code_log_id');
@@ -186,7 +185,7 @@ trait verification_code
 					if(!$get_log_detail || !isset($get_log_detail['status']))
 					{
 						\lib\db\logs::set('enter:verify:sendsmsm:log:not:found', self::user_data('id'), $log_meta);
-						debug::error(T_("System error, try again"));
+						\lib\debug::error(T_("System error, try again"));
 						return false;
 					}
 
@@ -210,7 +209,7 @@ trait verification_code
 						case 'enable':
 							// user not send sms or not deliver to us
 							\lib\db\logs::set('enter:verify:sendsmsm:sms:not:deliver:to:us', self::user_data('id'), $log_meta);
-							debug::error(T_("Your sms not deliver to us!"));
+							\lib\debug::error(T_("Your sms not deliver to us!"));
 							return false;
 							break;
 
@@ -218,7 +217,7 @@ trait verification_code
 							// the user user from this way and can not use this way again
 							// this is a bug!
 							\lib\db\logs::set('enter:verify:sendsmsm:sms:expire:log:bug', self::user_data('id'), $log_meta);
-							debug::error(T_("What are you doing?"));
+							\lib\debug::error(T_("What are you doing?"));
 							return false;
 						default:
 							// bug!
@@ -229,20 +228,20 @@ trait verification_code
 				else
 				{
 					\lib\db\logs::set('enter:verify:sendsmsm:log:id:not:found', self::user_data('id'), $log_meta);
-					debug::error(T_("What are you doing?"));
+					\lib\debug::error(T_("What are you doing?"));
 					return false;
 				}
 			}
 			else
 			{
 				\lib\db\logs::set('enter:verify:sendsmsm:user:inspected:change:html', self::user_data('id'), $log_meta);
-				debug::error(T_("What are you doing?"));
+				\lib\debug::error(T_("What are you doing?"));
 				return false;
 			}
 		}
 		else
 		{
-			if(intval(utility::post('code')) === intval(self::get_enter_session('verification_code')))
+			if(intval(\lib\utility::post('code')) === intval(self::get_enter_session('verification_code')))
 			{
 				$code_is_okay = true;
 			}
@@ -589,7 +588,7 @@ trait verification_code
 			// plus count invalid code
 			self::plus_try_session('invalid_code');
 
-			debug::error(T_("Invalid code, try again"), 'code');
+			\lib\debug::error(T_("Invalid code, try again"), 'code');
 			return false;
 		}
 	}

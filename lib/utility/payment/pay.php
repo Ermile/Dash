@@ -1,8 +1,6 @@
 <?php
 namespace lib\utility\payment;
-use \lib\debug;
-use \lib\option;
-use \lib\utility;
+
 
 class pay
 {
@@ -49,7 +47,7 @@ class pay
         else
         {
             \lib\db\logs::set('pay:irkish:amount:invalid', $_user_id);
-            debug::error(T_("Invalid amount"));
+            \lib\debug::error(T_("Invalid amount"));
             return false;
         }
 
@@ -67,7 +65,7 @@ class pay
         }
         else
         {
-            debug::error(T_("This payment is not supported in this system"));
+            \lib\debug::error(T_("This payment is not supported in this system"));
             return false;
         }
     }

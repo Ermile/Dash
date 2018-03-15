@@ -1,8 +1,6 @@
 <?php
 namespace addons\content_enter\signup;
-use \lib\utility;
-use \lib\debug;
-use \lib\db;
+
 
 class model extends \addons\content_enter\main\model
 {
@@ -31,53 +29,53 @@ class model extends \addons\content_enter\main\model
 			return false;
 		}
 
-		if(utility::post('password'))
+		if(\lib\utility::post('password'))
 		{
-			debug::error(T_("Dont!"));
+			\lib\debug::error(T_("Dont!"));
 			return false;
 		}
 
-		$mobile = utility::post('mobile');
+		$mobile = \lib\utility::post('mobile');
 		if(!$mobile)
 		{
-			debug::error(T_("Pleaes set mobile number"));
+			\lib\debug::error(T_("Pleaes set mobile number"));
 			return false;
 		}
 
 		$mobile = \lib\utility\filter::mobile($mobile);
 		if(!$mobile)
 		{
-			debug::error(T_("Pleaes set a valid mobile number"));
+			\lib\debug::error(T_("Pleaes set a valid mobile number"));
 			return false;
 		}
 
-		$username = utility::post('username');
+		$username = \lib\utility::post('username');
 		if(\lib\option::config('enter', 'singup_username'))
 		{
 			if(!$username || mb_strlen($username) < 5 || mb_strlen($username) > 50 )
 			{
-				debug::error(T_("Pleaes set a valid username"));
+				\lib\debug::error(T_("Pleaes set a valid username"));
 				return false;
 			}
 		}
 
 		if(\lib\option::config('enter', 'singup_username') && !preg_match("/[A-Za-z0-9\_]/", $username))
 		{
-			debug::error(T_("Username must in [A-Za-z0-9]"));
+			\lib\debug::error(T_("Username must in [A-Za-z0-9]"));
 			return false;
 		}
 
-		$ramz = utility::post('ramzNew');
+		$ramz = \lib\utility::post('ramzNew');
 		if(!$ramz || mb_strlen($ramz) < 5 || mb_strlen($ramz) > 50)
 		{
-			debug::error(T_("Pleaes set a valid password"));
+			\lib\debug::error(T_("Pleaes set a valid password"));
 			return false;
 		}
 
-		$displayname = utility::post('displayname');
+		$displayname = \lib\utility::post('displayname');
 		if(!$displayname || mb_strlen($displayname) > 50)
 		{
-			debug::error(T_("Invalid full name"));
+			\lib\debug::error(T_("Invalid full name"));
 			return false;
 		}
 
@@ -86,7 +84,7 @@ class model extends \addons\content_enter\main\model
 			$check_username = \lib\db\users::get_by_username($username);
 			if($check_username)
 			{
-				debug::error(T_("This username is already taken."));
+				\lib\debug::error(T_("This username is already taken."));
 				return false;
 			}
 		}
@@ -94,7 +92,7 @@ class model extends \addons\content_enter\main\model
 		$check_mobile = \lib\db\users::get_by_mobile($mobile);
 		if($check_mobile)
 		{
-			debug::error(T_("This mobile is already signuped. You can login by this mobile"));
+			\lib\debug::error(T_("This mobile is already signuped. You can login by this mobile"));
 			return false;
 		}
 
@@ -107,7 +105,7 @@ class model extends \addons\content_enter\main\model
 			'status'      => 'awaiting'
 		];
 
-		if(!debug::$status)
+		if(!\lib\debug::$status)
 		{
 			return false;
 		}
@@ -116,7 +114,7 @@ class model extends \addons\content_enter\main\model
 
 		if(!$user_id)
 		{
-			debug::error(T_("We can not signup you"));
+			\lib\debug::error(T_("We can not signup you"));
 			return false;
 		}
 

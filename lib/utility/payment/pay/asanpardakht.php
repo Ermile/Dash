@@ -1,9 +1,6 @@
 <?php
 namespace lib\utility\payment\pay;
-use \lib\debug;
-use \lib\option;
-use \lib\utility;
-use \lib\db\logs;
+
 
 trait asanpardakht
 {
@@ -31,28 +28,28 @@ trait asanpardakht
         ];
 
 
-        if(!option::config('asanpardakht', 'status'))
+        if(!\lib\option::config('asanpardakht', 'status'))
         {
-            logs::set('pay:asanpardakht:status:false', $_user_id, $log_meta);
-            debug::error(T_("The asanpardakht payment on this service is locked"));
+            \lib\db\logs::set('pay:asanpardakht:status:false', $_user_id, $log_meta);
+            \lib\debug::error(T_("The asanpardakht payment on this service is locked"));
             return false;
         }
 
-        if(!option::config('asanpardakht', 'MerchantID'))
+        if(!\lib\option::config('asanpardakht', 'MerchantID'))
         {
-            logs::set('pay:asanpardakht:MerchantID:false', $_user_id, $log_meta);
-            debug::error(T_("The asanpardakht payment on this service is locked"));
+            \lib\db\logs::set('pay:asanpardakht:MerchantID:false', $_user_id, $log_meta);
+            \lib\debug::error(T_("The asanpardakht payment on this service is locked"));
             return false;
         }
 
-        $username = option::config('asanpardakht', 'Username');
-        $password = option::config('asanpardakht', 'Password');
+        $username = \lib\option::config('asanpardakht', 'Username');
+        $password = \lib\option::config('asanpardakht', 'Password');
 
         $asanpardakht = [];
 
-        if(option::config('asanpardakht', 'CallBackUrl'))
+        if(\lib\option::config('asanpardakht', 'CallBackUrl'))
         {
-            $asanpardakht['CallBackUrl'] = option::config('asanpardakht', 'CallBackUrl');
+            $asanpardakht['CallBackUrl'] = \lib\option::config('asanpardakht', 'CallBackUrl');
         }
         else
         {
@@ -87,7 +84,7 @@ trait asanpardakht
 
         $log_meta['data'] = self::$log_data = $transaction_id;
 
-        if(!debug::$status || !$transaction_id)
+        if(!\lib\debug::$status || !$transaction_id)
         {
             return false;
         }

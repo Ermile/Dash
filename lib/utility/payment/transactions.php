@@ -1,6 +1,6 @@
 <?php
 namespace lib\utility\payment;
-use \lib\debug;
+
 
 class transactions
 {

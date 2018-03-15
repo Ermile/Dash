@@ -1,24 +1,22 @@
 <?php
 namespace addons\content_enter\pass;
-use \lib\utility;
-use \lib\debug;
-use \lib\db;
+
 
 class model extends \addons\content_enter\main\model
 {
 	public function post_check()
 	{
-		if(!utility::post('ramz'))
+		if(!\lib\utility::post('ramz'))
 		{
 			// plus count empty password
 			self::plus_try_session('empty_password');
 
-			debug::error(T_("Please enter your password"));
+			\lib\debug::error(T_("Please enter your password"));
 			return false;
 		}
 
 		// get ramz
-		$ramz = utility::post('ramz');
+		$ramz = \lib\utility::post('ramz');
 
 		if(self::user_data('password'))
 		{
@@ -49,7 +47,7 @@ class model extends \addons\content_enter\main\model
 				// wrong password sleep code
 				self::sleep_code();
 
-				debug::error(T_("Invalid password, try again"));
+				\lib\debug::error(T_("Invalid password, try again"));
 				return false;
 			}
 		}
@@ -74,7 +72,7 @@ class model extends \addons\content_enter\main\model
 		{
 			if($_debug)
 			{
-				debug::error(T_("You must set 6 character and large in password"));
+				\lib\debug::error(T_("You must set 6 character and large in password"));
 			}
 			return false;
 		}
@@ -84,7 +82,7 @@ class model extends \addons\content_enter\main\model
 		{
 			if($_debug)
 			{
-				debug::error(T_("You must set less than 99 character in password"));
+				\lib\debug::error(T_("You must set less than 99 character in password"));
 			}
 			return false;
 		}

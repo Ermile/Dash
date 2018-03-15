@@ -1,8 +1,6 @@
 <?php
 namespace addons\content_api\v1\transaction\tools;
-use \lib\utility;
-use \lib\debug;
-use \lib\db\logs;
+
 
 trait add
 {
@@ -37,7 +35,7 @@ trait add
 		$_args = array_merge($default_args, $_args);
 
 		// set default title of debug
-		if($_args['debug']) debug::title(T_("Operation Faild"));
+		if($_args['debug']) \lib\debug::title(T_("Operation Faild"));
 
 		// set the log meta
 		$log_meta =
@@ -46,15 +44,15 @@ trait add
 			'meta' =>
 			[
 				'user_id' => $this->user_id,
-				'input'   => utility::request(),
+				'input'   => \lib\utility::request(),
 			]
 		];
 
 		// check transaction id is exist
 		if(!$this->user_id)
 		{
-			if($_args['save_log']) logs::set('addon:api:transaction:user_id:notfound', $this->user_id, $log_meta);
-			if($_args['debug']) debug::error(T_("transaction not found"), 'transaction', 'permission');
+			if($_args['save_log']) \lib\db\logs::set('addon:api:transaction:user_id:notfound', $this->user_id, $log_meta);
+			if($_args['debug']) \lib\debug::error(T_("transaction not found"), 'transaction', 'permission');
 			return false;
 		}
 
@@ -64,7 +62,7 @@ trait add
 		 */
 		$return_function = $this->transaction_check_args($_args, $args, $log_meta);
 
-		if(!debug::$status || $return_function === false)
+		if(!\lib\debug::$status || $return_function === false)
 		{
 			return false;
 		}
@@ -77,12 +75,12 @@ trait add
 		elseif($_args['method'] === 'patch')
 		{
 
-			// $id = utility::request('id');
-			// $id = utility\shortURL::decode($id);
+			// $id = \lib\utility::request('id');
+			// $id = \lib\utility\shortURL::decode($id);
 			// if(!$id)
 			// {
-			// 	if($_args['save_log']) logs::set('addon:api:transaction:pathc:id:not:set', $this->user_id, $log_meta);
-			// 	if($_args['debug']) debug::error(T_("Id not set"), 'id', 'arguments');
+			// 	if($_args['save_log']) \lib\db\logs::set('addon:api:transaction:pathc:id:not:set', $this->user_id, $log_meta);
+			// 	if($_args['debug']) \lib\debug::error(T_("Id not set"), 'id', 'arguments');
 			// 	return false;
 			// }
 
@@ -92,17 +90,17 @@ trait add
 			// }
 		}
 
-		if(debug::$status)
+		if(\lib\debug::$status)
 		{
-			if($_args['debug']) debug::title(T_("Operation Complete"));
+			if($_args['debug']) \lib\debug::title(T_("Operation Complete"));
 
 			if($_args['method'] === 'post')
 			{
-				if($_args['debug']) debug::true(T_("transaction successfully added"));
+				if($_args['debug']) \lib\debug::true(T_("transaction successfully added"));
 			}
 			elseif($_args['method'] === 'patch')
 			{
-				if($_args['debug']) debug::true(T_("transaction successfully updated"));
+				if($_args['debug']) \lib\debug::true(T_("transaction successfully updated"));
 			}
 		}
 	}

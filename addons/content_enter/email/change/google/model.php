@@ -1,8 +1,6 @@
 <?php
 namespace addons\content_enter\email\change\google;
-use \lib\utility;
-use \lib\debug;
-use \lib\db;
+
 
 class model extends \addons\content_enter\main\model
 {
@@ -14,7 +12,7 @@ class model extends \addons\content_enter\main\model
 	 */
 	public function post_change_google($_args)
 	{
-		if(utility::post('update') === 'no')
+		if(\lib\utility::post('update') === 'no')
 		{
 			self::set_alert(T_("Please log in with your previous email or ignore your mobile registration."));
 			self::next_step('alert');
