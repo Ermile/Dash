@@ -43,7 +43,7 @@ class google
                // self::$redirect_url .= \lib\url::host();
                // self::$redirect_url .= \lib\language::get_current_language_string();
                // self::$redirect_url .= '/google';
-               self::$redirect_url = \lib\router::$base. '/google';
+               self::$redirect_url = \lib\url::here(). '/google';
           }
 
           /************************************************

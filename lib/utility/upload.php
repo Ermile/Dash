@@ -234,7 +234,7 @@ class upload
 			$master_name = $master_name. '_'. $file_name;
 			$new_name    = $move_to. $master_name;
 
-			$link = \lib\router::$base.DIRECTORY_SEPARATOR.$_options['tmp_path']. $master_name;
+			$link = \lib\url::site().DIRECTORY_SEPARATOR.$_options['tmp_path']. $master_name;
 
 			if($move_to && !is_dir($move_to))
 			{

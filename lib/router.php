@@ -91,20 +91,7 @@ class router
 		// declate some constant variable for better use in all part of app
 
 
-		router::$base = \lib\url::protocol().'://';
-
 		if(\lib\url::subdomain())
-		{
-			router::$base .= \lib\url::subdomain(). '.';
-		}
-		// add service to base
-		router::$base .= \lib\url::domain() .(router::$prefix_base ? '/'. router::$prefix_base : '');
-		// add repository to base
-		if(self::$repository_finded)
-		{
-			router::$base .= '/'. self::$repository_finded;
-		}
-		else if(\lib\url::subdomain())
 		{
 			// if we are in subdomain without finded repository
 			// check if we have content_subDomain route in this folder
@@ -113,13 +100,8 @@ class router
 			{
 				// set repository to this folder
 				$myparam = array($myrep);
-
 				// call function and pass param value to it
 				router::set_repository(...$myparam);
-			}
-			else
-			{
-				// we are in undefined subdomain! why!?
 			}
 		}
 	}
