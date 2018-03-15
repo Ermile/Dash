@@ -11,11 +11,13 @@ class controller extends  \content_account\main\controller
 		$this->post("billing")->ALL();
 
 		$url = \lib\url::directory();
-		if(preg_match("/^billing\/invoice\/\d+$/", $url))
-		{
-			\lib\router::set_controller('\\content_account\\billing\\invoice');
-			return;
-		}
+
+		// handle invoice manually without regular and set_controller!
+		// if(preg_match("/^billing\/invoice\/\d+$/", $url))
+		// {
+		// 	\lib\route-----r::set_controller('\\content_account\\billing\\invoice');
+		// 	return;
+		// }
 	}
 }
 ?>

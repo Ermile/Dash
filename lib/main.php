@@ -54,18 +54,45 @@ class main
 	}
 
 
+	private static function getModule()
+	{
+		// get module
+		$myModule = \lib\url::module();
+		if($myModule === null)
+		{
+			$myModule = 'home';
+		}
+		return $myModule;
+	}
+
+
+	private static function getChild()
+	{
+		// get child
+		$myChild = \lib\url::child();
+		if($myChild === null)
+		{
+			$myChild = 'home';
+		}
+		return $myChild;
+	}
+
+
 	/**
 	 * Adds controller tracks.
 	 */
 	public function add_controller_tracks()
 	{
+
+
+
 		if(\lib\url::dir(2))
 		{
 			$this->add_track('api_childs', function()
 			{
 				$controller_name  = '\\'. self::$myrep;
-				$controller_name .= '\\'. router::get_class();
-				$controller_name .= '\\'. router::get_method();
+				$controller_name .= '\\'. self::getModule();
+				$controller_name .= '\\'. self::getChild();
 				$controller_name .= '\\'. \lib\url::dir(2);
 				$controller_name .= '\\controller';
 				return $this->check_controller($controller_name);
@@ -79,46 +106,46 @@ class main
 
 		$this->add_track('class_method', function()
 		{
-			$controller_name	= '\\'.self::$myrep.'\\'.router::get_class().'\\'.router::get_method().'\\controller';
-			self::$prv_class	= router::get_class();
+			$controller_name	= '\\'.self::$myrep.'\\'.self::getModule().'\\'.self::getChild().'\\controller';
+			self::$prv_class	= self::getModule();
 			return $this->check_controller($controller_name);
 		});
 
 
 		$this->add_track('class_home', function()
 		{
-			if((!isset(self::$url_property[1]) || self::$url_property[1] != router::get_method()) && router::get_method() != 'home')
+			if((!isset(self::$url_property[1]) || self::$url_property[1] != self::getChild()) && self::getChild() != 'home')
 			{
-				router::add_url_property(router::get_method());
+				router::add_url_property(self::getChild());
 			}
-			self::$prv_method = router::get_method();
+			self::$prv_method = self::getChild();
 			router::set_method('home');
-			$controller_name = '\\'.self::$myrep.'\\'.router::get_class().'\\'.router::get_method().'\\controller';
+			$controller_name = '\\'.self::$myrep.'\\'.self::getModule().'\\'.self::getChild().'\\controller';
 
 			return $this->check_controller($controller_name);
 		});
 
 		$this->add_track('class', function(){
 			router::set_class(self::$prv_class);
-			$controller_name = '\\'.self::$myrep.'\\'.router::get_class().'\\controller';
+			$controller_name = '\\'.self::$myrep.'\\'.self::getModule().'\\controller';
 
 			return $this->check_controller($controller_name);
 		});
 
 		$this->add_track('home_home', function(){
-			if((!isset(self::$url_property[0]) || self::$url_property[0] != router::get_class()) && router::get_class() != 'home')
+			if((!isset(self::$url_property[0]) || self::$url_property[0] != self::getModule()) && self::getModule() != 'home')
 			{
-				router::add_url_property(router::get_class());
+				router::add_url_property(self::getModule());
 			}
 			router::set_class('home');
-			$controller_name = '\\'.self::$myrep.'\\'.router::get_class().'\\'.router::get_method().'\\controller';
+			$controller_name = '\\'.self::$myrep.'\\'.self::getModule().'\\'.self::getChild().'\\controller';
 
 			return $this->check_controller($controller_name);
 		});
 
 		$this->add_track('home', function(){
 			router::set_class('home');
-			$controller_name = '\\'.self::$myrep.'\\'.router::get_class().'\\controller';
+			$controller_name = '\\'.self::$myrep.'\\'.self::getModule().'\\controller';
 
 			return $this->check_controller($controller_name);
 		});

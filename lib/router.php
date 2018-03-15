@@ -98,7 +98,7 @@ class router
 				// set repository to this folder
 				$myparam = array($myrep);
 				// call function and pass param value to it
-				router::set_repository(...$myparam);
+				// route---r::set_repository(...$myparam);
 			}
 		}
 	}
@@ -156,7 +156,7 @@ class router
 		}
 
 		// call function and pass param value to it
-		router::set_repository(...$myparam);
+		// route---r::set_repository(...$myparam);
 	}
 
 
