@@ -37,7 +37,7 @@ class request
 
 		switch ($this->method) {
 			case 'post':
-				$this->request = utility::post();
+				$this->request = \lib\request::post();
 				break;
 
 			case 'array':
