@@ -5,7 +5,7 @@ class model extends \addons\content_su\main\model
 {
 	public function post_cronjob()
 	{
-		if(\lib\utility::post('active'))
+		if(\lib\request::post('active'))
 		{
 			\lib\utility\cronjob\options::active();
 			\lib\debug::true(T_("Your cronjob is actived"));

@@ -29,27 +29,27 @@ class model extends \addons\content_enter\main\model
 	 */
 	public function post_change($_args)
 	{
-		if(\lib\utility::post('type') === 'remove')
+		if(\lib\request::post('type') === 'remove')
 		{
 			$this->remove_email();
 			return;
 		}
 
-		if(!\lib\utility::post('emailNew'))
+		if(!\lib\request::post('emailNew'))
 		{
 			\lib\debug::error(T_("Plese fill the new email"));
 			return false;
 		}
 
-		if($this->login('email') == \lib\utility::post('emailNew'))
+		if($this->login('email') == \lib\request::post('emailNew'))
 		{
 			\lib\debug::error(T_("Please select a different email"));
 			return false;
 		}
 
-		if(\lib\utility::post('emailNew'))
+		if(\lib\request::post('emailNew'))
 		{
-			self::set_enter_session('temp_email', \lib\utility::post('emailNew'));
+			self::set_enter_session('temp_email', \lib\request::post('emailNew'));
 		}
 
 		// set session verify_from set

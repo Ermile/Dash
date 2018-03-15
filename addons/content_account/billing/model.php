@@ -42,9 +42,9 @@ class model extends \mvc\model
 			return false;
 		}
 
-		if(\lib\utility::post('type') === 'promo')
+		if(\lib\request::post('type') === 'promo')
 		{
-			if(\lib\utility::post('promo'))
+			if(\lib\request::post('promo'))
 			{
 				$this->check_promo();
 				return;
@@ -58,14 +58,14 @@ class model extends \mvc\model
 
 		$meta = ['turn_back' => \lib\url::pwd()];
 
-		\lib\utility\payment\pay::start($this->login('id'), \lib\utility::post('bank'), \lib\utility::post('amount'), $meta);
+		\lib\utility\payment\pay::start($this->login('id'), \lib\request::post('bank'), \lib\request::post('amount'), $meta);
 	}
 
 
 
 	public function check_promo()
 	{
-		$promo     = \lib\utility::post('promo');
+		$promo     = \lib\request::post('promo');
 		$amount    = 0;
 		$shcode = null;
 		$ref  = null;
@@ -77,7 +77,7 @@ class model extends \mvc\model
         	[
 				'user'    => $this->login('id'),
 				'ref'     => $ref,
-				'post'    => \lib\utility::post(),
+				'post'    => \lib\request::post(),
 				'session' => $_SESSION,
         	],
         ];

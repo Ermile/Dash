@@ -32,11 +32,11 @@ class model extends \addons\content_enter\main\model
 			return false;
 		}
 
-		if(\lib\utility::post('type') === 'terminate' && \lib\utility::post('id') && is_numeric(\lib\utility::post('id')))
+		if(\lib\request::post('type') === 'terminate' && \lib\request::post('id') && is_numeric(\lib\request::post('id')))
 		{
-			if(\lib\db\sessions::is_my_session(\lib\utility::post('id'), $this->login('id')))
+			if(\lib\db\sessions::is_my_session(\lib\request::post('id'), $this->login('id')))
 			{
-				\lib\db\sessions::terminate_id(\lib\utility::post('id'));
+				\lib\db\sessions::terminate_id(\lib\request::post('id'));
 				\lib\debug::true(T_("Session terminated"));
 				return true;
 			}

@@ -22,10 +22,10 @@ class controller extends \addons\content_su\main\controller
 
 				\lib\db::$link_open    = [];
 				\lib\db::$link_default = null;
-				if(\lib\utility::post('username'))
+				if(\lib\request::post('username'))
 				{
-					\lib\db::$db_user = \lib\utility::post("username");
-					\lib\db::$db_pass = \lib\utility::post("password");
+					\lib\db::$db_user = \lib\request::post("username");
+					\lib\db::$db_pass = \lib\request::post("password");
 				}
 				elseif(defined('admin_db_user') && defined('admin_db_pass'))
 				{
@@ -47,17 +47,17 @@ class controller extends \addons\content_su\main\controller
 				$result = null;
 				$exist  = true;
 
-				if(\lib\utility::post('type') == 'upgrade')
+				if(\lib\request::post('type') == 'upgrade')
 				{
 					// do upgrade
 					$result = \lib\db::install(true, true);
 				}
-				elseif(\lib\utility::post('type') == 'backup')
+				elseif(\lib\request::post('type') == 'backup')
 				{
 					// do backup
 					$result = \lib\db::backup(true);
 				}
-				elseif(\lib\utility::post('type') == 'backup_dump')
+				elseif(\lib\request::post('type') == 'backup_dump')
 				{
 					// do backup
 					$result = \lib\db::backup_dump();

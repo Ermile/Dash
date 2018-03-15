@@ -10,9 +10,9 @@ class model extends \addons\content_enter\main\model
 		{
 			$user_id = null;
 
-			if(\lib\utility::post('usernameormobile') !== $this->login('mobile') && !\lib\utility::get('userid'))
+			if(\lib\request::post('usernameormobile') !== $this->login('mobile') && !\lib\utility::get('userid'))
 			{
-				$user_data = \lib\db\users::get_by_mobile(\lib\utility\filter::mobile(\lib\utility::post('usernameormobile')));
+				$user_data = \lib\db\users::get_by_mobile(\lib\utility\filter::mobile(\lib\request::post('usernameormobile')));
 
 				if(isset($user_data['id']))
 				{
@@ -100,7 +100,7 @@ class model extends \addons\content_enter\main\model
 		// clean existing session
 		self::clean_session();
 
-		$password = \lib\utility::post('password');
+		$password = \lib\request::post('password');
 
 		/**
 		 * check login by another session
@@ -110,7 +110,7 @@ class model extends \addons\content_enter\main\model
 			return;
 		}
 
-		$usernameormobile       = \lib\utility::post('usernameormobile');
+		$usernameormobile       = \lib\request::post('usernameormobile');
 		self::$usernameormobile = $usernameormobile;
 
 		// if old mobile is different by new mobile

@@ -33,7 +33,7 @@ class model extends \mvc\model
 
 	public static function remove_gallery()
 	{
-		$id = \lib\utility::post('id');
+		$id = \lib\request::post('id');
 		if(!is_numeric($id))
 		{
 			return false;
@@ -51,7 +51,7 @@ class model extends \mvc\model
 			return false;
 		}
 
-		if(\lib\utility::post('type') === 'remove_gallery')
+		if(\lib\request::post('type') === 'remove_gallery')
 		{
 			self::remove_gallery();
 			return false;
@@ -60,21 +60,21 @@ class model extends \mvc\model
 		$post =
 		[
 			'id'          => \lib\utility::get('id'),
-			'subtitle'    => \lib\utility::post('subtitle'),
-			'excerpt'     => \lib\utility::post('excerpt'),
-			'title'       => \lib\utility::post('title'),
-			'tag'         => \lib\utility::post('tag'),
-			'slug'        => \lib\utility::post('slug'),
+			'subtitle'    => \lib\request::post('subtitle'),
+			'excerpt'     => \lib\request::post('excerpt'),
+			'title'       => \lib\request::post('title'),
+			'tag'         => \lib\request::post('tag'),
+			'slug'        => \lib\request::post('slug'),
 			'content'     => isset($_POST['content']) ? $_POST['content'] : null,
-			'publishdate' => \lib\utility::post('publishdate'),
-			'status'      => \lib\utility::post('status'),
-			'comment'     => \lib\utility::post('comment'),
-			'language'    => \lib\utility::post('language'),
+			'publishdate' => \lib\request::post('publishdate'),
+			'status'      => \lib\request::post('status'),
+			'comment'     => \lib\request::post('comment'),
+			'language'    => \lib\request::post('language'),
 			'type'        => \lib\utility::get('type'),
 			'language'    => \lib\language::get_language(),
 		];
 
-		$all_post = \lib\utility::post();
+		$all_post = \lib\request::post();
 
 		$post['cat'] = [];
 

@@ -12,7 +12,7 @@ class model extends \addons\content_enter\main\model
 	 */
 	public function post_username($_args)
 	{
-		$username = \lib\utility::post('username');
+		$username = \lib\request::post('username');
 		$username = trim($username);
 		if($username)
 		{

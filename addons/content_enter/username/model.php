@@ -12,7 +12,7 @@ class model extends \addons\content_enter\main\model
 			return false;
 		}
 		// get user name
-		$username = \lib\utility::post('username');
+		$username = \lib\request::post('username');
 		// check user name is fill
 		if(!$username)
 		{

@@ -29,9 +29,9 @@ class model extends \addons\content_enter\pass\model
 			return false;
 		}
 
-		if(\lib\utility::post('ramzNew'))
+		if(\lib\request::post('ramzNew'))
 		{
-			$temp_ramz = \lib\utility::post('ramzNew');
+			$temp_ramz = \lib\request::post('ramzNew');
 
 			// check new password = old password
 			// needless to change password

@@ -38,7 +38,7 @@ class model extends \addons\content_su\main\model
 			return false;
 		}
 
-		$post = \lib\utility::post();
+		$post = \lib\request::post();
 		$perm_list = [];
 		foreach ($post as $key => $value)
 		{

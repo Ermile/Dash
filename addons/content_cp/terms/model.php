@@ -9,14 +9,14 @@ class model extends \addons\content_cp\main\model
 	{
 
 		$post             = [];
-		$post['title']    = \lib\utility::post('title');
-		$post['desc']     = \lib\utility::post('desc');
-		$post['excerpt']  = \lib\utility::post('excerpt');
-		$post['parent']   = \lib\utility::post('parent');
+		$post['title']    = \lib\request::post('title');
+		$post['desc']     = \lib\request::post('desc');
+		$post['excerpt']  = \lib\request::post('excerpt');
+		$post['parent']   = \lib\request::post('parent');
 		$post['language'] = \lib\language::get_language();
-		$post['slug']     = \lib\utility::post('slug');
+		$post['slug']     = \lib\request::post('slug');
 		$post['type']     = \lib\utility::get('type');
-		$post['status']   = \lib\utility::post('status') ? 'enable' : 'disable' ;
+		$post['status']   = \lib\request::post('status') ? 'enable' : 'disable' ;
 
 		if(\lib\utility::get('edit'))
 		{

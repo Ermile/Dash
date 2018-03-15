@@ -13,7 +13,7 @@ class model extends \addons\content_enter\main\model
 	public function post_username($_args)
 	{
 		// remove username
-		if(\lib\utility::post('type') === 'remove')
+		if(\lib\request::post('type') === 'remove')
 		{
 			// set session verify_from username remove
 			self::set_enter_session('verify_from', 'username_remove');
@@ -24,26 +24,26 @@ class model extends \addons\content_enter\main\model
 			return;
 		}
 
-		if(!\lib\utility::post('usernameNew'))
+		if(!\lib\request::post('usernameNew'))
 		{
 			\lib\debug::error(T_("Plese fill the new username"));
 			return false;
 		}
 
-		if(mb_strlen(\lib\utility::post('usernameNew')) < 5)
+		if(mb_strlen(\lib\request::post('usernameNew')) < 5)
 		{
 			\lib\debug::error(T_("You must set large than 5 character in new username"));
 			return false;
 		}
 
-		if(mb_strlen(\lib\utility::post('usernameNew')) > 50)
+		if(mb_strlen(\lib\request::post('usernameNew')) > 50)
 		{
 			\lib\debug::error(T_("You must set less than 50 character in new username"));
 			return false;
 		}
 
 
-		if($this->login('username') == \lib\utility::post('usernameNew'))
+		if($this->login('username') == \lib\request::post('usernameNew'))
 		{
 			\lib\debug::error(T_("Please select a different username"));
 			return false;
@@ -51,7 +51,7 @@ class model extends \addons\content_enter\main\model
 
 
 		// check username exist
-		$check_exist_name = \lib\db\users::get_by_username(\lib\utility::post('usernameNew'));
+		$check_exist_name = \lib\db\users::get_by_username(\lib\request::post('usernameNew'));
 
 		if(!empty($check_exist_name))
 		{
@@ -60,9 +60,9 @@ class model extends \addons\content_enter\main\model
 		}
 
 
-		if(\lib\utility::post('usernameNew'))
+		if(\lib\request::post('usernameNew'))
 		{
-			self::set_enter_session('temp_username', \lib\utility::post('usernameNew'));
+			self::set_enter_session('temp_username', \lib\request::post('usernameNew'));
 		}
 
 		// set session verify_from set

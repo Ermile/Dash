@@ -39,10 +39,10 @@ class model extends \addons\content_su\main\model
 		{
 			$update =
 			[
-				'title'    => \lib\utility::post('title'),
-				'type'     => \lib\utility::post('type'),
-				'priority' => \lib\utility::post('priority'),
-				'desc'     => \lib\utility::post('desc'),
+				'title'    => \lib\request::post('title'),
+				'type'     => \lib\request::post('type'),
+				'priority' => \lib\request::post('priority'),
+				'desc'     => \lib\request::post('desc'),
 			];
 
 			$result = \lib\db\logitems::update($update, $id);

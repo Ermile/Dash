@@ -58,7 +58,7 @@ class model extends \addons\content_su\main\model
 
 	public function post_nofity($_args)
 	{
-		$msg = \lib\utility::post('msg');
+		$msg = \lib\request::post('msg');
 		if(!$msg)
 		{
 			\lib\debug::error(T_("No message was sended"));
@@ -67,13 +67,13 @@ class model extends \addons\content_su\main\model
 
 		$user         = \lib\utility::get('user');
 		$detail       = $this->connection_way($user);
-		$email        = (\lib\utility::post('email') && isset($detail['way']['email'])) 					? $detail['way']['email'] 			: null;
-		$googlemail   = (\lib\utility::post('googlemail') && isset($detail['way']['googlemail'])) 		? $detail['way']['googlemail'] 		: null;
-		$telegram     = (\lib\utility::post('telegram') && isset($detail['way']['telegram'])) 			? $detail['way']['telegram'] 		: null;
-		$facebookmail = (\lib\utility::post('facebookmail') && isset($detail['way']['facebookmail'])) 	? $detail['way']['facebookmail'] 	: null;
-		$twittermail  = (\lib\utility::post('twittermail') && isset($detail['way']['twittermail'])) 		? $detail['way']['twittermail'] 	: null;
-		$notification = (\lib\utility::post('notification')) ? true : false;
-		$mobile       = (\lib\utility::post('mobile') && isset($detail['way']['mobile'])) 				? $detail['way']['mobile'] 			: null;
+		$email        = (\lib\request::post('email') && isset($detail['way']['email'])) 					? $detail['way']['email'] 			: null;
+		$googlemail   = (\lib\request::post('googlemail') && isset($detail['way']['googlemail'])) 		? $detail['way']['googlemail'] 		: null;
+		$telegram     = (\lib\request::post('telegram') && isset($detail['way']['telegram'])) 			? $detail['way']['telegram'] 		: null;
+		$facebookmail = (\lib\request::post('facebookmail') && isset($detail['way']['facebookmail'])) 	? $detail['way']['facebookmail'] 	: null;
+		$twittermail  = (\lib\request::post('twittermail') && isset($detail['way']['twittermail'])) 		? $detail['way']['twittermail'] 	: null;
+		$notification = (\lib\request::post('notification')) ? true : false;
+		$mobile       = (\lib\request::post('mobile') && isset($detail['way']['mobile'])) 				? $detail['way']['mobile'] 			: null;
 		$user_id      = $detail['user_id'];
 
 		if($notification && $user_id)

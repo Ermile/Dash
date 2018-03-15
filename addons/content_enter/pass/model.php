@@ -6,7 +6,7 @@ class model extends \addons\content_enter\main\model
 {
 	public function post_check()
 	{
-		if(!\lib\utility::post('ramz'))
+		if(!\lib\request::post('ramz'))
 		{
 			// plus count empty password
 			self::plus_try_session('empty_password');
@@ -16,7 +16,7 @@ class model extends \addons\content_enter\main\model
 		}
 
 		// get ramz
-		$ramz = \lib\utility::post('ramz');
+		$ramz = \lib\request::post('ramz');
 
 		if(self::user_data('password'))
 		{

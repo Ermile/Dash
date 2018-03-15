@@ -13,13 +13,13 @@ class model extends \addons\content_enter\main\model
 			'meta' =>
 			[
 				'get'  => \lib\utility::get(),
-				'post' => \lib\utility::post(),
+				'post' => \lib\request::post(),
 			],
 		];
 
 		\lib\db\logs::set('enter:callback:sms:resieve', null, $log_meta);
 
-		$message = \lib\utility::post('message');
+		$message = \lib\request::post('message');
 		$message = trim($message);
 		if(!$message || mb_strlen($message) < 1)
 		{
@@ -29,7 +29,7 @@ class model extends \addons\content_enter\main\model
 		}
 
 
-		$mobile = \lib\utility::post('from');
+		$mobile = \lib\request::post('from');
 
 		if($mobile)
 		{
@@ -113,7 +113,7 @@ class model extends \addons\content_enter\main\model
 	 */
 	public function first_signup_sms()
 	{
-		$mobile = \lib\utility::post('from');
+		$mobile = \lib\request::post('from');
 
 		if($mobile)
 		{
@@ -144,7 +144,7 @@ class model extends \addons\content_enter\main\model
 			'meta' =>
 			[
 				'get'  => \lib\utility::get(),
-				'post' => \lib\utility::post(),
+				'post' => \lib\request::post(),
 			],
 		];
 

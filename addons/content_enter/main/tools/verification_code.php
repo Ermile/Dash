@@ -146,7 +146,7 @@ trait verification_code
 			'meta' =>
 			[
 				'session' => $_SESSION,
-				'post'    => \lib\utility::post(),
+				'post'    => \lib\request::post(),
 			]
 		];
 
@@ -156,13 +156,13 @@ trait verification_code
 		// 	return false;
 		// }
 
-		if(!\lib\utility::post('code'))
+		if(!\lib\request::post('code'))
 		{
 			\lib\debug::error(T_("Please fill the verification code"), 'code');
 			return false;
 		}
 
-		if(!is_numeric(\lib\utility::post('code')))
+		if(!is_numeric(\lib\request::post('code')))
 		{
 			\lib\debug::error(T_("What happend? the code is number. you try to send string!?"), 'code');
 			return false;
@@ -174,7 +174,7 @@ trait verification_code
 		// and this code is deffirent by verification code
 		if($_module === 'sendsms')
 		{
-			$code = \lib\utility::post('code');
+			$code = \lib\request::post('code');
 			if($code == self::get_enter_session('sendsms_code'))
 			{
 				$log_id = self::get_enter_session('sendsms_code_log_id');
@@ -241,7 +241,7 @@ trait verification_code
 		}
 		else
 		{
-			if(intval(\lib\utility::post('code')) === intval(self::get_enter_session('verification_code')))
+			if(intval(\lib\request::post('code')) === intval(self::get_enter_session('verification_code')))
 			{
 				$code_is_okay = true;
 			}

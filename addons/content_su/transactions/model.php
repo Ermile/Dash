@@ -65,19 +65,19 @@ class model extends \addons\content_su\main\model
 			'data' => $id,
 			'meta' =>
 			[
-				'input'   => \lib\utility::post(),
+				'input'   => \lib\request::post(),
 				'session' => $_SESSION
 			],
 		];
 
 
-		$title  = \lib\utility::post('title');
-		$unit   = \lib\utility::post('unit');
-		$mobile = \lib\utility::post('mobile');
-		$minus  = \lib\utility::post('minus');
-		$plus   = \lib\utility::post('plus');
-		$desc   = \lib\utility::post('desc');
-		$type   = \lib\utility::post('type');
+		$title  = \lib\request::post('title');
+		$unit   = \lib\request::post('unit');
+		$mobile = \lib\request::post('mobile');
+		$minus  = \lib\request::post('minus');
+		$plus   = \lib\request::post('plus');
+		$desc   = \lib\request::post('desc');
+		$type   = \lib\request::post('type');
 
 		if(!$this->login())
 		{

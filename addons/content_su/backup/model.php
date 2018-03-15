@@ -5,11 +5,11 @@ class model extends \addons\content_su\main\model
 {
 	public function post_backup()
 	{
-		if(\lib\utility::post('backup') === 'now')
+		if(\lib\request::post('backup') === 'now')
 		{
 			$this->backup_now();
 		}
-		elseif(\lib\utility::post('backup') === 'now_log')
+		elseif(\lib\request::post('backup') === 'now_log')
 		{
 			if(defined('db_log_name'))
 			{
@@ -21,13 +21,13 @@ class model extends \addons\content_su\main\model
 				return false;
 			}
 		}
-		elseif(\lib\utility::post('backup') === 'schedule')
+		elseif(\lib\request::post('backup') === 'schedule')
 		{
 			$this->backup_schedule();
 		}
-		elseif(\lib\utility::post('type') === 'remove' && \lib\utility::post('file'))
+		elseif(\lib\request::post('type') === 'remove' && \lib\request::post('file'))
 		{
-			$file_name = \lib\utility::post('file');
+			$file_name = \lib\request::post('file');
 			if(\lib\utility\file::delete(database. 'backup/files/'. $file_name))
 			{
 				\lib\debug::true(T_("File successfully deleted"));
@@ -56,10 +56,10 @@ class model extends \addons\content_su\main\model
 
 		$array =
 		[
-			'auto_backup' => \lib\utility::post('auto_backup') === 'on' ? true : false,
-			'every'       => \lib\utility::post('every'),
-			'time'        => \lib\utility::post('time'),
-			'life_time'   => \lib\utility::post('life_time'),
+			'auto_backup' => \lib\request::post('auto_backup') === 'on' ? true : false,
+			'every'       => \lib\request::post('every'),
+			'time'        => \lib\request::post('time'),
+			'life_time'   => \lib\request::post('life_time'),
 			'db_name'     => db_name,
 		];
 

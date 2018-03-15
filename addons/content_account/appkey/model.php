@@ -12,7 +12,7 @@ class model extends \content_account\main\model
 			return;
 		}
 
-		if(\lib\utility::post('add') === 'appkey')
+		if(\lib\request::post('add') === 'appkey')
 		{
 			$check = \lib\utility\appkey::create_app_key(\lib\user::id());
 			if($check)

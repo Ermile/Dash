@@ -19,7 +19,7 @@ class model extends \addons\content_enter\main\model
 	{
 		// IN THIS TIME EVERYONE CLICK ON NO BUTTON
 		// THE MOBILE AND EMAIN MUST BE CHECK !!!
-		// if(\lib\utility::post('will') === 'no')
+		// if(\lib\request::post('will') === 'no')
 		// {
 			// the user dont whill to enter mobile :/
 			// never ask this question at this user
@@ -30,13 +30,13 @@ class model extends \addons\content_enter\main\model
 			return;
 		// }
 
-		// if(!\lib\utility::post('mobile'))
+		// if(!\lib\request::post('mobile'))
 		// {
 		// 	\lib\debug::error(T_("Please enter mobile or skip this step"));
 		// 	return false;
 		// }
 
-		// $mobile = \lib\utility\filter::mobile(\lib\utility::post('mobile'));
+		// $mobile = \lib\utility\filter::mobile(\lib\request::post('mobile'));
 
 		// if(!$mobile)
 		// {

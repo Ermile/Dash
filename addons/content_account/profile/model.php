@@ -18,21 +18,21 @@ class model extends \content_account\main\model
 		}
 
 		// check name lenght
-		if(mb_strlen(\lib\utility::post('name')) > 50)
+		if(mb_strlen(\lib\request::post('name')) > 50)
 		{
 			\lib\debug::error(T_("Please enter your name less than 50 character"), 'name', 'arguments');
 			return false;
 		}
 
 		// check name lenght
-		if(mb_strlen(\lib\utility::post('displayname')) > 50)
+		if(mb_strlen(\lib\request::post('displayname')) > 50)
 		{
 			\lib\debug::error(T_("Please enter your displayname less than 50 character"), 'displayname', 'arguments');
 			return false;
 		}
 
 		// check name lenght
-		if(mb_strlen(\lib\utility::post('family')) > 50)
+		if(mb_strlen(\lib\request::post('family')) > 50)
 		{
 			\lib\debug::error(T_("Please enter your family less than 50 character"), 'family', 'arguments');
 			return false;
@@ -63,9 +63,9 @@ class model extends \content_account\main\model
 
 
 		// if the postion exist update user display postion
-		if(\lib\utility::post('displayname') !== $this->login('displayname'))
+		if(\lib\request::post('displayname') !== $this->login('displayname'))
 		{
-			$update_user['displayname'] = \lib\utility::post('displayname');
+			$update_user['displayname'] = \lib\request::post('displayname');
 		}
 
 

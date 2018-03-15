@@ -13,7 +13,7 @@ class controller extends \addons\content_enter\main\controller
 
 		$args            = [];
 		$args['get']     = \lib\utility::get(null, 'raw');
-		$args['post']    = \lib\utility::post();
+		$args['post']    = \lib\request::post();
 		$args['request'] = \lib\utility\safe::safe($_REQUEST);
 
 		$this->display = false;

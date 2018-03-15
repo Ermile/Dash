@@ -29,13 +29,13 @@ class model extends \addons\content_enter\main\model
 			return false;
 		}
 
-		if(\lib\utility::post('password'))
+		if(\lib\request::post('password'))
 		{
 			\lib\debug::error(T_("Dont!"));
 			return false;
 		}
 
-		$mobile = \lib\utility::post('mobile');
+		$mobile = \lib\request::post('mobile');
 		if(!$mobile)
 		{
 			\lib\debug::error(T_("Pleaes set mobile number"));
@@ -49,7 +49,7 @@ class model extends \addons\content_enter\main\model
 			return false;
 		}
 
-		$username = \lib\utility::post('username');
+		$username = \lib\request::post('username');
 		if(\lib\option::config('enter', 'singup_username'))
 		{
 			if(!$username || mb_strlen($username) < 5 || mb_strlen($username) > 50 )
@@ -65,14 +65,14 @@ class model extends \addons\content_enter\main\model
 			return false;
 		}
 
-		$ramz = \lib\utility::post('ramzNew');
+		$ramz = \lib\request::post('ramzNew');
 		if(!$ramz || mb_strlen($ramz) < 5 || mb_strlen($ramz) > 50)
 		{
 			\lib\debug::error(T_("Pleaes set a valid password"));
 			return false;
 		}
 
-		$displayname = \lib\utility::post('displayname');
+		$displayname = \lib\request::post('displayname');
 		if(!$displayname || mb_strlen($displayname) > 50)
 		{
 			\lib\debug::error(T_("Invalid full name"));

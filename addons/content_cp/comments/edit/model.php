@@ -5,7 +5,7 @@ class model extends \addons\content_cp\main\model
 {
 	public function post_change_status()
 	{
-		$status = \lib\utility::post('status');
+		$status = \lib\request::post('status');
 
 		if(!$status)
 		{

@@ -6,8 +6,8 @@ class model extends \addons\content_enter\main\model
 {
 	public function post_verify_way()
 	{
-		$mobile_email = \lib\utility::post('usernameormobile');
-		$send_code    = mb_strtolower(\lib\utility::post('sendCod'));
+		$mobile_email = \lib\request::post('usernameormobile');
+		$send_code    = mb_strtolower(\lib\request::post('sendCod'));
 
 		$exist_mobile_email = $this->view()->data->get_usernamemobile;
 		if($mobile_email !== $exist_mobile_email)

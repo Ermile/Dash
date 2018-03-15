@@ -3,6 +3,77 @@ namespace lib;
 
 class request
 {
+	public static $POST;
+
+
+	/**
+	 * filter post and safe it
+	 * @param  [type] $_name [description]
+	 * @param  [type] $_type [description]
+	 * @param  [type] $_arg  [description]
+	 * @return [type]        [description]
+	 */
+	public static function post($_name = null, $_type = null, $_arg = null)
+	{
+		if(!self::$POST)
+		{
+			self::$POST = utility\safe::safe($_POST, 'sqlinjection');
+		}
+		$myvalue = null;
+		if(!$_name)
+		{
+			return self::$POST;
+		}
+		elseif(is_array($_name))
+		{
+			$_name = current($_name);
+			foreach (self::$POST as $key => $value)
+			{
+				if (strpos($key, $_name) === 0)
+				{
+					$myvalue[$key] = $value;
+				}
+			}
+			return $myvalue;
+		}
+		elseif(isset(self::$POST[$_name]))
+		{
+			if(is_array(self::$POST[$_name]))
+				$myvalue = self::$POST[$_name];
+			else
+				$myvalue = self::$POST[$_name];
+
+
+			// if set filter use filter class to clear input value
+			if($_type === 'filter')
+			{
+				if(method_exists('\lib\utility\filter', $_name))
+					$myvalue = \lib\utility\filter::$_name($myvalue, $_arg);
+			}
+			// for password user hasher parameter for hash post value
+			elseif($_type === 'hash')
+			{
+				if($_arg)
+				{
+					$myvalue = self::hasher($myvalue);
+				}
+				elseif(mb_strlen($myvalue) > 4 && mb_strlen(mb_strlen($myvalue) < 50))
+				{
+					$myvalue = self::hasher($myvalue);
+				}
+				else
+				{
+					$myvalue = null;
+				}
+			}
+
+			return $myvalue;
+		}
+
+		return null;
+	}
+
+
 
 	/**
 	 * check request method
