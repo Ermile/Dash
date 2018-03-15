@@ -96,8 +96,7 @@ class view
 		$module       = preg_replace("/^[^\/]*\/?content/", "content", get_class($this->controller));
 		$module       = preg_replace("/^content\\\\|(model|view|controller)$/", "", $module);
 		$module       = preg_replace("/[\\\]/", "/", $module);
-		$a_repository = preg_split("/[\/]/", router::get_repository(), -1, PREG_SPLIT_NO_EMPTY);
-		$repository   = end($a_repository);
+		$repository   = \lib\content::get();
 		$repository   = $repository ==='content'? $repository.'/': null;
 		// $tmpname      = ($this->controller()->display_name)? $this->controller()->display_name : $repository.'/'.$module.'display.html';
 		$tmpname      = ($this->controller()->display_name)? $this->controller()->display_name : $repository.$module.'display.html';

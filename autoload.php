@@ -71,7 +71,7 @@ class autoload
 			return $file_addr;
 		}
 
-		$prefix_file = \lib\router::get_repository();
+		$prefix_file = \lib\content::get_addr();
 		$prefix_file = preg_replace("#\/[^\/]+\/?$#", '', $prefix_file);
 		$file_addr   = $prefix_file. '/'. $prefix.'/'. $sub_path. $exec_file;
 		if(!file_exists($file_addr))

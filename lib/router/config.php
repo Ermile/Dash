@@ -436,9 +436,6 @@ trait config
 
 	public static function set_repository_name($name)
 	{
-		// if(!defined($name)){
-		// 	define($name, '/'.self::get_repository().'/');
-		// }
 		self::$repository_name = $name;
 	}
 
