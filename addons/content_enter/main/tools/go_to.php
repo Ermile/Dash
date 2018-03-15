@@ -15,7 +15,7 @@ trait go_to
 	public static function go_to($_url = null)
 	{
 
-		$host = \lib\url::protocol()."://" . \lib\router::get_domain();
+		$host = \lib\url::base();
 		$host .= \lib\define::get_current_language_string();
 
 		switch ($_url)
