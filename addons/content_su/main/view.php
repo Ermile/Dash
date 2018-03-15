@@ -25,7 +25,7 @@ class view extends \mvc\view
 		$this->data->dash['langlist']    = ['fa_IR' => 'Persian - فارسی',
 											 'en_US' => 'English',
 											 'ar_SU' => 'Arabic - العربية'];
-		$mymodule = $this->module();
+
 		$this->data->dir['right']        = $this->global->direction == 'rtl'? 'left':  'right';
 		$this->data->dir['left']         = $this->global->direction == 'rtl'? 'right': 'left';
 		$this->data->page['title']       = T_(ucfirst(\lib\router::get_url(' ')));

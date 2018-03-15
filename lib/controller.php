@@ -8,7 +8,6 @@ class controller
 	use \lib\mvc;
 	use \lib\controller\login;
 	use \lib\controller\sessions;
-	use \lib\controller\template;
 	use \lib\controller\url;
 	use \lib\controller\ref;
 
@@ -48,71 +47,63 @@ class controller
 			$param = '?'.$param;
 		}
 
-		// if custom account exist, handle it, else use default login redirect process
-		if(method_exists($this, 'handle_account_url'))
+		$myrep = \lib\content::name();
+		switch (\lib\url::module())
 		{
-			$this->handle_account_url($this->module(), $param, $domain);
-		}
-		else
-		{
-			$myrep = \lib\content::name();
-			switch ($this->module())
-			{
-				case 'signin':
-				case 'login':
-					$url = \lib\url::base(). '/enter'. $param;
-					$this->redirector($url)->redirect();
-					break;
+			case 'signin':
+			case 'login':
+				$url = \lib\url::base(). '/enter'. $param;
+				$this->redirector($url)->redirect();
+				break;
 
-				case 'signup':
-					if($myrep !== 'content_enter')
-					{
-						$url = \lib\url::base(). '/enter/signup'. $param;
-						$this->redirector($url)->redirect();
-					}
-					break;
-
-				case 'register':
-
+			case 'signup':
+				if($myrep !== 'content_enter')
+				{
 					$url = \lib\url::base(). '/enter/signup'. $param;
 					$this->redirector($url)->redirect();
-					break;
+				}
+				break;
 
-				case 'signout':
-				case 'logout':
-					if($myrep !== 'content_enter')
-					{
-						$url = \lib\url::base(). '/enter/logout'. $param;
-						$this->redirector($url)->redirect();
-					}
+			case 'register':
 
-					break;
-			}
+				$url = \lib\url::base(). '/enter/signup'. $param;
+				$this->redirector($url)->redirect();
+				break;
 
-			switch (\lib\url::directory())
-			{
-				case 'account/recovery':
-				case 'account/changepass':
-				case 'account/verification':
-				case 'account/verificationsms':
-				case 'account/signin':
-				case 'account/login':
-					$url = \lib\url::base(). '/enter'. $param;
-					$this->redirector($url)->redirect();
-					break;
-
-				case 'account/signup':
-				case 'account/register':
-					$url = \lib\url::base(). '/enter/signup'. $param;
-					$this->redirector($url)->redirect();
-					break;
-
-				case 'account/logout':
-				case 'account/signout':
+			case 'signout':
+			case 'logout':
+				if($myrep !== 'content_enter')
+				{
 					$url = \lib\url::base(). '/enter/logout'. $param;
 					$this->redirector($url)->redirect();
-					break;
-			}
+				}
+
+				break;
+		}
+
+		switch (\lib\url::directory())
+		{
+			case 'account/recovery':
+			case 'account/changepass':
+			case 'account/verification':
+			case 'account/verificationsms':
+			case 'account/signin':
+			case 'account/login':
+				$url = \lib\url::base(). '/enter'. $param;
+				$this->redirector($url)->redirect();
+				break;
+
+			case 'account/signup':
+			case 'account/register':
+				$url = \lib\url::base(). '/enter/signup'. $param;
+				$this->redirector($url)->redirect();
+				break;
+
+			case 'account/logout':
+			case 'account/signout':
+				$url = \lib\url::base(). '/enter/logout'. $param;
+				$this->redirector($url)->redirect();
+				break;
 		}
 
 		// save referer of users
