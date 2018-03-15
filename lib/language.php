@@ -279,7 +279,7 @@ class language
 					$redirectURL = '/';
 				}
 
-				if(\lib\url::dir(0) === 'api' || router::get_url(1) === 'api')
+				if(\lib\url::dir(0) === 'api' || \lib\url::dir(1) === 'api')
 				{
 					router::remove_url($my_first_url);
 					// not redirect in api mode

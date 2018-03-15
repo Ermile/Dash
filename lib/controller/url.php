@@ -33,7 +33,7 @@ trait url
 	 */
 	public function child($_title = null)
 	{
-		$mychild = router::get_url(1);
+		$mychild = \lib\url::dir(1);
 		if(strrpos($mychild,'=') !== false)
 		{
 			$mychild = substr($mychild,0,strrpos($mychild,'='));
