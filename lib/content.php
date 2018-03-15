@@ -6,8 +6,8 @@ namespace lib;
  */
 class content
 {
-	private static $name = 'content';
-	private static $addr = root.'content';
+	private static $name = null;
+	private static $addr = null;
 
 	/**
 	 * check specefic name for content is exist or not
@@ -32,7 +32,13 @@ class content
 		}
 		elseif($dynamic_sub_domain = self::dynamic_subdomain())
 		{
+			// only init set
 			self::set($dynamic_sub_domain);
+		}
+		else
+		{
+			// only init set
+			self::set('content');
 		}
 
 		return null;
@@ -72,6 +78,7 @@ class content
 		{
 			self::$addr = root. $_name;
 		}
+		self::$addr = rtrim(self::$addr,'/').'/';
 
 		return self::$addr;
 	}
