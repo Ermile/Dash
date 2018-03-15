@@ -45,7 +45,7 @@ class view extends \mvc\view
 
 		$this->data->google_login = \lib\option::social('google', 'status');
 
-		if(\lib\router::get_sub_domain())
+		if(\lib\url::subdomain())
 		{
 			$this->data->google_login = false;
 		}
