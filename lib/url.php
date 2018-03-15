@@ -2,7 +2,7 @@
 namespace lib;
 /**
  * this lib handle url of our PHP framework, Dash
- * v 1.0
+ * v 2.0
  *
  * This lib detect all part of url and return each one seperate or combine some of them
  * Below example is the sample of this url lib
@@ -163,49 +163,19 @@ class url
 
 	private static function _module()
 	{
-		$module = null;
-		if(isset(self::$temp_path_split[0]))
-		{
-			$module = self::$temp_path_split[0];
-			unset(self::$temp_path_split[0]);
-			if(is_array(self::$temp_path_split))
-			{
-				self::$temp_path_split = array_values(self::$temp_path_split);
-			}
-		}
-		return $module;
+		return self::dir(0);
 	}
 
 
 	private static function _child()
 	{
-		$child = null;
-		if(isset(self::$temp_path_split[0]))
-		{
-			$child = self::$temp_path_split[0];
-			unset(self::$temp_path_split[0]);
-			if(is_array(self::$temp_path_split))
-			{
-				self::$temp_path_split = array_values(self::$temp_path_split);
-			}
-		}
-		return $child;
+		return self::dir(1);
 	}
 
 
 	private static function _subchild()
 	{
-		$subchild = null;
-		if(isset(self::$temp_path_split[0]))
-		{
-			$subchild = self::$temp_path_split[0];
-			unset(self::$temp_path_split[0]);
-			if(is_array(self::$temp_path_split))
-			{
-				self::$temp_path_split = array_values(self::$temp_path_split);
-			}
-		}
-		return $subchild;
+		return self::dir(2);
 	}
 
 
