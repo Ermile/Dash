@@ -21,7 +21,7 @@ trait constructor
 		}
 
 		// return all parameters and clean it
-		$this->data->utilityGET = \lib\utility::get(null, 'raw');
+		$this->data->utilityGET = \lib\request::get(null, 'raw');
 
 
 		$this->data->site['title']       = T_("Ermile Dash");
@@ -135,7 +135,7 @@ trait constructor
 	{
 		if(\lib\option::config('save_as_cookie'))
 		{
-			$mygetlist = \lib\utility::get(null, 'raw');
+			$mygetlist = \lib\request::get(null, 'raw');
 			if($mygetlist)
 			{
 				foreach ($mygetlist as $name => $value)

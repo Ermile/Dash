@@ -13,7 +13,7 @@ class view extends \addons\content_cp\main\view
 		$this->data->page['badge']['link'] = \lib\url::here();
 		$this->data->page['badge']['text'] = T_('Back to dashboard');
 
-		$myType = \lib\utility::get('type');
+		$myType = \lib\request::get('type');
 		if($myType)
 		{
 			switch ($myType)
@@ -37,8 +37,8 @@ class view extends \addons\content_cp\main\view
 
 		$args =
 		[
-			'order' => \lib\utility::get('order'),
-			'sort'  => \lib\utility::get('sort'),
+			'order' => \lib\request::get('order'),
+			'sort'  => \lib\request::get('sort'),
 		];
 
 		if(!$args['order'])
@@ -58,7 +58,7 @@ class view extends \addons\content_cp\main\view
 			}
 		}
 
-		$search_string            = \lib\utility::get('q');
+		$search_string            = \lib\request::get('q');
 
 		if($search_string)
 		{
@@ -66,7 +66,7 @@ class view extends \addons\content_cp\main\view
 		}
 
 		$export = false;
-		if(\lib\utility::get('export') === 'true')
+		if(\lib\request::get('export') === 'true')
 		{
 			$export = true;
 			$args['pagenation'] = false;
@@ -89,11 +89,11 @@ class view extends \addons\content_cp\main\view
 
 	public function view_edit()
 	{
-		if(\lib\utility::get('edit'))
+		if(\lib\request::get('edit'))
 		{
 			$this->data->edit_mode = true;
 
-			$id = \lib\utility::get('edit');
+			$id = \lib\request::get('edit');
 			$this->data->datarow = \lib\app\term::get($id);
 
 			if(!$this->data->datarow)

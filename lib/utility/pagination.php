@@ -44,8 +44,8 @@ class pagination
 	 */
 	public static function init($_total_rows, $_limit = 10)
 	{
-		$page           = \lib\utility::get('page');
-		$url_get_length = \lib\utility::get('length');
+		$page           = \lib\request::get('page');
+		$url_get_length = \lib\request::get('length');
 
 		$page           = $page && ctype_digit($page) ? $page : 1;
 		$page           = intval($page) > 0 ? intval($page) : 1;
@@ -303,7 +303,7 @@ class pagination
 		}
 
 		$this_link = \lib\url::current();
-		$get       = \lib\utility::get(null, 'raw');
+		$get       = \lib\request::get(null, 'raw');
 		unset($get['page']);
 
 		foreach ($result as $key => $value)

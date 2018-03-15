@@ -36,7 +36,7 @@ class view extends \addons\content_enter\main\view
 
 		}
 
-		$mobile = \lib\utility::get('mobile');
+		$mobile = \lib\request::get('mobile');
 		if($mobile)
 		{
 			if($this->data->main_account)

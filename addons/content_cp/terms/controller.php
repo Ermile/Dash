@@ -8,7 +8,7 @@ class controller extends \addons\content_cp\main\controller
 	{
 
 		$this->post('terms')->ALL();
-		if(\lib\utility::get('edit'))
+		if(\lib\request::get('edit'))
 		{
 			$this->get(false, 'edit')->ALL();
 		}

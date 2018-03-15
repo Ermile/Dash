@@ -20,7 +20,7 @@ class model extends \addons\content_enter\main\model
 {
 	public function get_google()
 	{
-		if(\lib\utility::get('code'))
+		if(\lib\request::get('code'))
 		{
 			// check access from google
 			$check = \lib\social\google::check();

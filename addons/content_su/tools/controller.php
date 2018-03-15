@@ -75,7 +75,7 @@ class controller extends \addons\content_su\main\controller
 			case 'mergefiles':
 				// 	$exist = true;
 				// 	echo \lib\utility\tools::mergefiles('merged-project.php');
-				// 	if(\lib\utility::get('type') === 'all')
+				// 	if(\lib\request::get('type') === 'all')
 				// 	{
 				// 		echo \lib\utility\tools::mergefiles('merged-lib.php', core.lib);
 				// 		echo \lib\utility\tools::mergefiles('merged-su.php', addons.'content_su/');

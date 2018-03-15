@@ -10,7 +10,7 @@ class view extends \lib\view
 
 		$this->data->page['title']   = T_('Sitemap');
 
-		if(\lib\utility::get('run') === 'yes')
+		if(\lib\request::get('run') === 'yes')
 		{
 			$this->data->sitemapData = $this->model()->generate_sitemap();
 		}

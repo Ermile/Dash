@@ -13,7 +13,7 @@ class model extends \mvc\model
 			if(isset($uploaded_file['url']))
 			{
 				// save uploaded file
-				\lib\app\posts::post_gallery(\lib\utility::get('id'), $uploaded_file['url'], 'add');
+				\lib\app\posts::post_gallery(\lib\request::get('id'), $uploaded_file['url'], 'add');
 			}
 
 			if(!\lib\debug::$status)
@@ -38,7 +38,7 @@ class model extends \mvc\model
 		{
 			return false;
 		}
-		\lib\app\posts::post_gallery(\lib\utility::get('id'), $id, 'remove');
+		\lib\app\posts::post_gallery(\lib\request::get('id'), $id, 'remove');
 		\lib\debug::msg('direct', true);
 		(new \lib\redirector(\lib\url::full()))->redirect();
 
@@ -59,7 +59,7 @@ class model extends \mvc\model
 
 		$post =
 		[
-			'id'          => \lib\utility::get('id'),
+			'id'          => \lib\request::get('id'),
 			'subtitle'    => \lib\request::post('subtitle'),
 			'excerpt'     => \lib\request::post('excerpt'),
 			'title'       => \lib\request::post('title'),
@@ -70,7 +70,7 @@ class model extends \mvc\model
 			'status'      => \lib\request::post('status'),
 			'comment'     => \lib\request::post('comment'),
 			'language'    => \lib\request::post('language'),
-			'type'        => \lib\utility::get('type'),
+			'type'        => \lib\request::get('type'),
 			'language'    => \lib\language::get_language(),
 		];
 

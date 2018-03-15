@@ -8,7 +8,7 @@ class view extends \addons\content_su\main\view
 	{
 		parent::config();
 
-		$val = \lib\utility::get('val');
+		$val = \lib\request::get('val');
 
 		if($val)
 		{

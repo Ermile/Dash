@@ -24,7 +24,7 @@ class controller extends \mvc\controller
 	protected function install_first_time()
 	{
 		// run if get is set and no database exist
-		if($this->suModule('raw') == 'install' && \lib\utility::get('time') == 'first_time')
+		if($this->suModule('raw') == 'install' && \lib\request::get('time') == 'first_time')
 		{
 			if(!\lib\db::count_table())
 			{

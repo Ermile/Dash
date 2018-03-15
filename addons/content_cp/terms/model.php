@@ -15,12 +15,12 @@ class model extends \addons\content_cp\main\model
 		$post['parent']   = \lib\request::post('parent');
 		$post['language'] = \lib\language::get_language();
 		$post['slug']     = \lib\request::post('slug');
-		$post['type']     = \lib\utility::get('type');
+		$post['type']     = \lib\request::get('type');
 		$post['status']   = \lib\request::post('status') ? 'enable' : 'disable' ;
 
-		if(\lib\utility::get('edit'))
+		if(\lib\request::get('edit'))
 		{
-			$post['id'] = \lib\utility::get('edit');
+			$post['id'] = \lib\request::get('edit');
 			\lib\app\term::edit($post);
 		}
 		else
@@ -30,15 +30,15 @@ class model extends \addons\content_cp\main\model
 
 		if(\lib\debug::$status)
 		{
-			if(\lib\utility::get('edit'))
+			if(\lib\request::get('edit'))
 			{
 				\lib\debug::true(T_("Term successfully edited"));
 
 				$url = \lib\url::here(). '/terms';
 
-				if(\lib\utility::get('type'))
+				if(\lib\request::get('type'))
 				{
-					$url .= '?type='. \lib\utility::get('type');
+					$url .= '?type='. \lib\request::get('type');
 				}
 
 				$this->redirector($url);

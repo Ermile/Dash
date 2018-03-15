@@ -9,7 +9,7 @@ class view extends \addons\content_su\main\view
 		parent::config();
 
 
-		if(\lib\utility::get('show') === 'log')
+		if(\lib\request::get('show') === 'log')
 		{
 			$this->data->auto_backup_log = @\lib\utility\file::read(database. 'backup/log');
 		}

@@ -22,8 +22,8 @@ class controller extends \addons\content_su\main\controller
 	{
 
 		$exist    = true;
-		$mypath   = \lib\utility::get('path');
-		$myupdate = \lib\utility::get('update');
+		$mypath   = \lib\request::get('path');
+		$myupdate = \lib\request::get('update');
 		if($mypath)
 		{
 			echo \lib\utility\twigTrans::extract($mypath, $myupdate);

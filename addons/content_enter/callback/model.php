@@ -12,7 +12,7 @@ class model extends \addons\content_enter\main\model
 			'data' => null,
 			'meta' =>
 			[
-				'get'  => \lib\utility::get(),
+				'get'  => \lib\request::get(),
 				'post' => \lib\request::post(),
 			],
 		];
@@ -143,7 +143,7 @@ class model extends \addons\content_enter\main\model
 			'data' => null,
 			'meta' =>
 			[
-				'get'  => \lib\utility::get(),
+				'get'  => \lib\request::get(),
 				'post' => \lib\request::post(),
 			],
 		];

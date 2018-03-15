@@ -27,9 +27,9 @@ class controller extends \addons\content_enter\main\controller
 		// save all param-* | param_* in $_GET | $_POST
 		$this->save_param();
 
-		if(\lib\utility::get('referer') && \lib\utility::get('referer') != '')
+		if(\lib\request::get('referer') && \lib\request::get('referer') != '')
 		{
-			$_SESSION['enter_referer'] = \lib\utility::get('referer');
+			$_SESSION['enter_referer'] = \lib\request::get('referer');
 		}
 
 		if(self::get_request_method() === 'get')
@@ -55,7 +55,7 @@ class controller extends \addons\content_enter\main\controller
 	public function save_param()
 	{
 		$post = \lib\request::post();
-		$get = \lib\utility::get(null, 'raw');
+		$get = \lib\request::get(null, 'raw');
 
 		$param = [];
 

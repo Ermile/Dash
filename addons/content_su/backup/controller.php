@@ -6,7 +6,7 @@ class controller extends \addons\content_su\main\controller
 	{
 		parent::ready();
 		$this->post('backup')->ALL();
-		$download = \lib\utility::get('download');
+		$download = \lib\request::get('download');
 		if($download)
 		{
 			\lib\utility\file::download(database. 'backup/files/'. $download);

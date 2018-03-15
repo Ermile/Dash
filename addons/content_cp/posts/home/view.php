@@ -8,7 +8,7 @@ class view extends \addons\content_cp\posts\main\view
 	{
 		parent::config();
 
-		$myType = \lib\utility::get('type');
+		$myType = \lib\request::get('type');
 
 		$this->data->page['title'] = T_("Posts");
 		$this->data->page['desc']  = T_('Check list of posts and search or filter in them to find your posts.'). ' '. T_('Also add or edit specefic post.');
@@ -35,7 +35,7 @@ class view extends \addons\content_cp\posts\main\view
 
 
 
-		$search_string            = \lib\utility::get('q');
+		$search_string            = \lib\request::get('q');
 		if($search_string)
 		{
 			$this->data->page['title'] .= ' | '. T_('Search for :search', ['search' => $search_string]);
@@ -43,27 +43,27 @@ class view extends \addons\content_cp\posts\main\view
 
 		$args =
 		[
-			'sort'  => \lib\utility::get('sort'),
-			'order' => \lib\utility::get('order'),
+			'sort'  => \lib\request::get('sort'),
+			'order' => \lib\request::get('order'),
 		];
 
-		if(\lib\utility::get('status'))
+		if(\lib\request::get('status'))
 		{
-			$args['status'] = \lib\utility::get('status');
+			$args['status'] = \lib\request::get('status');
 		}
 
-		if(\lib\utility::get('type'))
+		if(\lib\request::get('type'))
 		{
-			$args['type'] = \lib\utility::get('type');
+			$args['type'] = \lib\request::get('type');
 		}
 		else
 		{
 			$args['type'] = 'post';
 		}
 
-		if(\lib\utility::get('unittype'))
+		if(\lib\request::get('unittype'))
 		{
-			$args['unittype'] = \lib\utility::get('unittype');
+			$args['unittype'] = \lib\request::get('unittype');
 		}
 
 		if(!$args['order'])
@@ -79,7 +79,7 @@ class view extends \addons\content_cp\posts\main\view
 
 
 		$this->data->sort_link  = self::make_sort_link(\lib\app\posts::$sort_field, \lib\url::this());
-		$this->data->dataTable = \lib\app\posts::list(\lib\utility::get('q'), $args);
+		$this->data->dataTable = \lib\app\posts::list(\lib\request::get('q'), $args);
 
 		if(isset($this->controller->pagnation))
 		{

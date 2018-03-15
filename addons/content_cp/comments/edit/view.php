@@ -7,7 +7,7 @@ class view extends \addons\content_cp\main\view
 	{
 
 
-		$id = \lib\utility::get('id');
+		$id = \lib\request::get('id');
 
 		$detail = \lib\app\comment::get($id);
 		if(!$detail)

@@ -12,9 +12,9 @@ trait ref
 	{
 		// it the user is not login and use from ref in url
 		// plus click ref of the referer user
-		if(\lib\utility::get("ref") && !$this->login())
+		if(\lib\request::get("ref") && !$this->login())
 		{
-			$url_ref = \lib\utility::get('ref');
+			$url_ref = \lib\request::get('ref');
 			$url_ref = \lib\utility\shortURL::decode($url_ref);
 
 			if(!$url_ref)
@@ -32,7 +32,7 @@ trait ref
 				'meta' =>
 				[
 					'url'     => \lib\url::directory(),
-					'ref'     => \lib\utility::get(),
+					'ref'     => \lib\request::get(),
 					'session' => $_SESSION,
 				],
 			];

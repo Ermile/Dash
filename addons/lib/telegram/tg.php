@@ -83,9 +83,9 @@ class tg
 			return 'telegram is off!';
 		self::$hook = json_decode(file_get_contents('php://input'), true);
 		// if debug mode is enable give text from get parameter
-		if(!isset(self::$hook['message']['text']) && \lib\option::social('telegram', 'debug') && \lib\utility::get('text'))
+		if(!isset(self::$hook['message']['text']) && \lib\option::social('telegram', 'debug') && \lib\request::get('text'))
 		{
-			self::$hook['message']['text'] = \lib\utility::get('text');
+			self::$hook['message']['text'] = \lib\request::get('text');
 		}
 		// save log if allow
 		log::save(self::$hook, true);
@@ -220,7 +220,7 @@ class tg
 		// if array key exist but is null
 		if(array_key_exists('chat_id', $_prop) && is_null($_prop['chat_id']))
 		{
-			$_prop['chat_id'] = \lib\utility::get('id');
+			$_prop['chat_id'] = \lib\request::get('id');
 		}
 
 

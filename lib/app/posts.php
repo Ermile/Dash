@@ -437,7 +437,7 @@ class posts
 		$url = str_replace('%', '', $url);
 
 		$language = \lib\language::get_language();
-		$preview  = \lib\utility::get('preview');
+		$preview  = \lib\request::get('preview');
 
 		$qry =
 		"

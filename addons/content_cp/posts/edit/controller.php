@@ -9,7 +9,7 @@ class controller extends \addons\content_cp\main\controller
 
 		\lib\permission::access('cp:posts:invoices', 'block');
 
-		$id = \lib\utility::get('id');
+		$id = \lib\request::get('id');
 
 		if(!$id || !\lib\utility\shortURL::is($id))
 		{

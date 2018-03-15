@@ -16,7 +16,7 @@ class view extends \addons\content_su\main\view
 		$this->data->page['badge']['link'] = \lib\url::this(). '/add';
 		$this->data->page['badge']['text'] = T_('Add new transactions');
 
-		$search_string            = \lib\utility::get('q');
+		$search_string            = \lib\request::get('q');
 		if($search_string)
 		{
 			$this->data->page['title'] .= ' | '. T_('Search for :search', ['search' => $search_string]);
@@ -24,32 +24,32 @@ class view extends \addons\content_su\main\view
 
 		$args =
 		[
-			'sort'  => \lib\utility::get('sort'),
-			'order' => \lib\utility::get('order'),
+			'sort'  => \lib\request::get('sort'),
+			'order' => \lib\request::get('order'),
 		];
 
-		if(\lib\utility::get('status'))
+		if(\lib\request::get('status'))
 		{
-			$args['transactions.status'] = \lib\utility::get('status');
+			$args['transactions.status'] = \lib\request::get('status');
 		}
 
-		if(\lib\utility::get('condition'))
+		if(\lib\request::get('condition'))
 		{
-			$args['condition'] = \lib\utility::get('condition');
+			$args['condition'] = \lib\request::get('condition');
 		}
 
-		if(\lib\utility::get('payment'))
+		if(\lib\request::get('payment'))
 		{
-			$args['payment'] = \lib\utility::get('payment');
+			$args['payment'] = \lib\request::get('payment');
 		}
 
-		if(\lib\utility::get('type'))
+		if(\lib\request::get('type'))
 		{
-			$args['transactions.type'] = \lib\utility::get('type');
+			$args['transactions.type'] = \lib\request::get('type');
 		}
 
 		$this->data->sort_link  = self::su_make_sort_link(\lib\app\transaction::$sort_field, \lib\url::this());
-		$this->data->dataTable = \lib\app\transaction::list(\lib\utility::get('q'), $args);
+		$this->data->dataTable = \lib\app\transaction::list(\lib\request::get('q'), $args);
 
 		$check_empty_datatable = $args;
 		unset($check_empty_datatable['sort']);

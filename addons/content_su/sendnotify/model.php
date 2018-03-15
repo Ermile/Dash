@@ -65,7 +65,7 @@ class model extends \addons\content_su\main\model
 			return false;
 		}
 
-		$user         = \lib\utility::get('user');
+		$user         = \lib\request::get('user');
 		$detail       = $this->connection_way($user);
 		$email        = (\lib\request::post('email') && isset($detail['way']['email'])) 					? $detail['way']['email'] 			: null;
 		$googlemail   = (\lib\request::post('googlemail') && isset($detail['way']['googlemail'])) 		? $detail['way']['googlemail'] 		: null;

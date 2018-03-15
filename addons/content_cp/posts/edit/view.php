@@ -7,7 +7,7 @@ class view extends \addons\content_cp\posts\main\view
 	{
 		parent::config();
 
-		$id = \lib\utility::get('id');
+		$id = \lib\request::get('id');
 
 		$detail = \lib\app\posts::get($id);
 		if(!$detail)
@@ -26,7 +26,7 @@ class view extends \addons\content_cp\posts\main\view
 		$this->data->page['badge']['link'] = \lib\url::this(). $this->data->moduleType;
 		$this->data->page['badge']['text'] = T_('Back to list of posts');
 
-		$myType = \lib\utility::get('type');
+		$myType = \lib\request::get('type');
 		if($myType)
 		{
 			switch ($myType)

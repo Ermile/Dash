@@ -7,7 +7,7 @@ class controller extends \addons\content_cp\main\controller
 	public function ready()
 	{
 
-		$id = \lib\utility::get('id');
+		$id = \lib\request::get('id');
 
 		if(!$id || !\lib\utility\shortURL::is($id))
 		{

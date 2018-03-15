@@ -13,7 +13,7 @@ class model extends \addons\content_cp\main\model
 			return false;
 		}
 
-		$post_detail = \lib\app\comment::edit(['status' => $status], \lib\utility::get('id'));
+		$post_detail = \lib\app\comment::edit(['status' => $status], \lib\request::get('id'));
 
 		if(\lib\debug::$status)
 		{

@@ -4,6 +4,7 @@ namespace lib;
 class request
 {
 	public static $POST;
+	public static $GET;
 
 
 	/**
@@ -73,6 +74,50 @@ class request
 		return null;
 	}
 
+
+	/**
+	 * filter get and safe it
+	 * @param  [type] $_name [description]
+	 * @param  [type] $_arg  [description]
+	 * @return [type]        [description]
+	 */
+	public static function get($_name = null, $_arg = null)
+	{
+		if(!self::$GET)
+		{
+			self::$GET = utility\safe::safe($_GET, 'sqlinjection');
+		}
+		$myget = array();
+		foreach (self::$GET as $key => &$value)
+		{
+			$pos = strpos($key, '=');
+			if($pos)
+			{
+				$key_t = substr($key, 0, $pos);
+				$value = substr($key, $pos+1);
+				$myget[$key_t] = $value;
+			}
+			else
+			{
+				$myget[$key] = $value;
+			}
+		}
+		self::$GET = $myget;
+		unset($myget);
+
+		if($_name)
+			return isset(self::$GET[$_name])? self::$GET[$_name] : null;
+
+		elseif(!empty(self::$GET))
+		{
+			if($_arg === 'raw')
+				return self::$GET;
+			else
+				return ($_arg? '?': null).http_build_query(self::$GET);
+		}
+
+		return null;
+	}
 
 
 	/**

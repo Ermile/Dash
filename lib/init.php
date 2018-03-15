@@ -96,7 +96,7 @@ class init
 		}
 
 		// if we have new target url, and dont on force show mode, try to change it
-		if($target_url !== \lib\url::site() && !\lib\utility::get('force'))
+		if($target_url !== \lib\url::site() && !\lib\request::get('force'))
 		{
 			$myBrowser = \lib\utility\browserDetection::browser_detection('browser_name');
 			if($myBrowser === 'samsungbrowser')

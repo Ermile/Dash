@@ -18,9 +18,9 @@ trait login
 		}
 		// get url language
 		// if have referer redirect to referer
-		if(\lib\utility::get('referer'))
+		if(\lib\request::get('referer'))
 		{
-			$host = \lib\utility::get('referer');
+			$host = \lib\request::get('referer');
 		}
 		elseif(isset($_SESSION['enter_referer']) && $_SESSION['enter_referer'])
 		{

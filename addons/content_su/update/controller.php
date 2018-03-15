@@ -17,7 +17,7 @@ class controller extends \addons\content_su\main\controller
 		$exist        = true;
 		$rep          = null;
 		$location     = null;
-		$name         = \lib\utility::get('git');
+		$name         = \lib\request::get('git');
 		if(!$name)
 		{
 			return;

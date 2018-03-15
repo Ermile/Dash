@@ -16,17 +16,17 @@ class controller extends \addons\content_su\main\controller
 	{
 		$exist      = true;
 		$output     = '<html>';
-		$name       = \lib\utility::get('name');
-		$isClear    = \lib\utility::get('clear');
-		$isZip      = \lib\utility::get('zip');
+		$name       = \lib\request::get('name');
+		$isClear    = \lib\request::get('clear');
+		$isZip      = \lib\request::get('zip');
 		$clearName  = '';
 		$clearURL   = '';
-		$page       = \lib\utility::get('p') * 100000;
+		$page       = \lib\request::get('p') * 100000;
 		if($page< 0)
 		{
 			$page = 0;
 		}
-		$lenght      = \lib\utility::get('lenght');
+		$lenght      = \lib\request::get('lenght');
 		if($lenght< 100000)
 		{
 			$lenght = 100100;

@@ -6,12 +6,12 @@ class view extends \addons\content_cp\main\view
 {
 	public function config()
 	{
-		$this->data->moduleTypeTxt = \lib\utility::get('type');
+		$this->data->moduleTypeTxt = \lib\request::get('type');
 		$this->data->moduleType    = '';
 
-		if(\lib\utility::get('type'))
+		if(\lib\request::get('type'))
 		{
-			$this->data->moduleType = '?type='. \lib\utility::get('type');
+			$this->data->moduleType = '?type='. \lib\request::get('type');
 		}
 	}
 }

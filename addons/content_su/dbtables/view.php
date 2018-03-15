@@ -17,27 +17,27 @@ class view extends \addons\content_su\main\view
 		$this->data->page['badge']['link'] = \lib\url::this(). '/dbtables';
 		$this->data->page['badge']['text'] = T_('Select table');
 
-		$search_string            = \lib\utility::get('q');
+		$search_string            = \lib\request::get('q');
 		if($search_string)
 		{
 			$this->data->page['title'] .= ' | '. T_('Search for :search', ['search' => $search_string]);
 		}
 
-		$table = \lib\utility::get('table');
+		$table = \lib\request::get('table');
 		if($table)
 		{
 			\lib\app\dbtables::$table = $table;
 
 			$args =
 			[
-				'sort'  => \lib\utility::get('sort'),
-				'order' => \lib\utility::get('order'),
+				'sort'  => \lib\request::get('sort'),
+				'order' => \lib\request::get('order'),
 			];
 
 			$this->data->all_field = \lib\app\dbtables::get_field();
 
 			$this->data->sort_link = self::su_make_sort_link(\lib\app\dbtables::sort_field(), \lib\url::here(). '/dbtables');
-			$this->data->dataTable = \lib\app\dbtables::list(\lib\utility::get('q'), $args);
+			$this->data->dataTable = \lib\app\dbtables::list(\lib\request::get('q'), $args);
 
 			$check_empty_datatable = $args;
 			unset($check_empty_datatable['sort']);
