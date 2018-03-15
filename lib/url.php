@@ -26,6 +26,7 @@ namespace lib;
  * 'query'      => 'id=5&page=8'
  * 'prefix'     => '/en/a'								[lang+content]
  * 'dir'        => [ 0 => 'thirdparty', 1 => 'general', 2 => 'edit', 3=> 'test=yes']
+ * 'directory'  => 'thirdparty/general/edit/test=yes'
  * 'path'       => 'en/a/thirdparty/general/edit/test=yes?id=5&page=8'
  * 'pwd'        => 'http://ermile.jibres.com/en/a/thirdparty/general/edit/test=yes?id=5&page=8'
  * 'current'    => 'http://ermile.jibres.com/en/a/thirdparty/general/edit/test=yes'
@@ -74,10 +75,7 @@ class url
 		}
 
 		self::$url['query']     = self::_query();
-
-		$path_raw               = str_replace('?'. self::$url['query'], '', self::$uri);
-
-		self::$path_split       = explode('/', $path_raw);
+		self::$path_split       = explode('/', self::remove_query(self::$uri));
 		self::$temp_path_split  = self::$path_split;
 
 		self::$url['protocol']  = self::_protocol();
@@ -92,6 +90,7 @@ class url
 		self::$url['lang']      = self::_lang();
 		self::$url['content']   = self::_content();
 		self::$url['dir']       = self::_dir();
+		self::$url['directory'] = self::_directory();
 		self::$url['module']    = self::_module();
 		self::$url['child']     = self::_child();
 		self::$url['subchild']  = self::_subchild();
@@ -413,6 +412,15 @@ class url
 		return $dir;
 	}
 
+	private static function _directory()
+	{
+		return implode(self::$temp_path_split, '/');
+	}
+
+	private static function remove_query($_uri)
+	{
+		return strtok($_uri, '?');
+	}
 
 	private static function server($_key = null)
 	{
