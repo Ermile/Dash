@@ -9,8 +9,7 @@ class controller extends \addons\content_enter\main\controller
 	 */
 	public function ready()
 	{
-		$url = \lib\url::directory();
-		if($url === 'email/change/google')
+		if(\lib\url::directory() === 'email/change/google')
 		{
 			\lib\router::set_controller("\\addons\content_enter\\email\\change\\google\\controller");
 			return;

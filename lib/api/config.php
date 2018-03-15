@@ -63,14 +63,14 @@ class config
 		{
 			$this_url =  '';
 
-			if(\lib\router::get_class() != 'home')
+			if(\lib\url::module() !== null)
 			{
-				$this_url =  \lib\router::get_class();
+				$this_url =  \lib\url::module();
 			}
 
-			if(\lib\router::get_method() != 'home')
+			if(\lib\url::child() !== null)
 			{
-				$this_url .= '/'. \lib\router::get_method();
+				$this_url .= '/'. \lib\url::child();
 			}
 
 			if(\lib\url::dir(2))
