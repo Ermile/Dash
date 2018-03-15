@@ -249,7 +249,7 @@ trait template
 	{
 		$myUrl = \lib\url::directory();
 
-		$myUrl = \lib\router::urlfilterer($myUrl);
+		$myUrl = \lib\url::urlfilterer($myUrl);
 
 		if(substr($myUrl, 0, 9) === 'category/')
 		{
@@ -267,7 +267,7 @@ trait template
 	{
 		$myUrl = \lib\url::directory();
 
-		$myUrl = \lib\router::urlfilterer($myUrl);
+		$myUrl = \lib\url::urlfilterer($myUrl);
 
 		if(substr($myUrl, 0, 4) === 'tag/')
 		{

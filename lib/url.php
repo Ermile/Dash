@@ -528,5 +528,18 @@ class url
 		return null;
 	}
 
+
+
+	public static function urlfilterer($_input, $_strip = true)
+	{
+		$_input = urldecode($_input);
+		$_input = str_ireplace(array("\0", '%00', "\x0a", '%0a', "\x1a", '%1a'), '', $_input);
+		if($_strip)
+		{
+			$_input = strip_tags($_input);
+		}
+		$_input = htmlentities($_input, ENT_QUOTES, 'UTF-8'); // or whatever encoding you use...
+		return trim($_input);
+	}
 }
 ?>
