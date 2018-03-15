@@ -9,7 +9,7 @@ class controller extends \addons\content_enter\main\controller
 	 */
 	public function ready()
 	{
-		$url = \lib\router::get_url();
+		$url = \lib\url::directory();
 		// if(self::lock('email/change/google'))
 		// {
 		// 	self::error_page('email/change/google');

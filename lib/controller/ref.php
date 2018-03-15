@@ -31,7 +31,7 @@ trait ref
 				'data' => $url_ref,
 				'meta' =>
 				[
-					'url'     => \lib\router::get_url(),
+					'url'     => \lib\url::directory(),
 					'ref'     => \lib\utility::get(),
 					'session' => $_SESSION,
 				],

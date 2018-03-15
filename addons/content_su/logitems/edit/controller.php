@@ -8,7 +8,7 @@ class controller extends \addons\content_su\main\controller
 	{
 		parent::ready();
 
-		$url = \lib\router::get_url();
+		$url = \lib\url::directory();
 
 		$this->get(false, "edit")->ALL("/^logitems\/edit\/(\d+)$/");
 		$this->post("edit")->ALL("/^logitems\/edit\/(\d+)$/");

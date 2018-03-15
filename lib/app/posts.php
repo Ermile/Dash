@@ -85,7 +85,7 @@ class posts
 
 	public static function get_url()
 	{
-		$myUrl = \lib\router::get_url();
+		$myUrl = \lib\url::directory();
 		$myUrl = \lib\router::urlfilterer($myUrl);
 		return $myUrl;
 	}

@@ -316,7 +316,7 @@ class template
 
 	private static function get_my_url()
 	{
-		$myUrl = \lib\router::get_url();
+		$myUrl = \lib\url::directory();
 		$myUrl = \lib\router::urlfilterer($myUrl);
 		return $myUrl;
 	}

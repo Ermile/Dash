@@ -10,7 +10,7 @@ class controller extends \mvc\controller
 	 */
 	public function repository()
 	{
-		$url = \lib\router::get_url();
+		$url = \lib\url::directory();
 		// /main can not route
 		if($url === 'main')
 		{

@@ -8,7 +8,7 @@ class controller extends  \mvc\controller
 	 */
 	public function __construct()
 	{
-		$url = \lib\router::get_url();
+		$url = \lib\url::directory();
 		if($url == 'v1')
 		{
 			\lib\temp::set('api', false);
@@ -27,7 +27,7 @@ class controller extends  \mvc\controller
 	 */
 	public function ready()
 	{
-		$url = \lib\router::get_url();
+		$url = \lib\url::directory();
 
 		if($url == 'v1')
 		{

@@ -247,7 +247,7 @@ trait template
 
 	public function find_cat()
 	{
-		$myUrl = \lib\router::get_url();
+		$myUrl = \lib\url::directory();
 
 		$myUrl = \lib\router::urlfilterer($myUrl);
 
@@ -265,7 +265,7 @@ trait template
 
 	public function find_tag()
 	{
-		$myUrl = \lib\router::get_url();
+		$myUrl = \lib\url::directory();
 
 		$myUrl = \lib\router::urlfilterer($myUrl);
 

@@ -73,7 +73,7 @@ class model extends \mvc\model
 	 */
 	public function _call($_name, $_args, $parm)
 	{
-		$this->url = \lib\router::get_url();
+		$this->url = \lib\url::directory();
 
 		\lib\temp::set('api', true);
 

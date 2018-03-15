@@ -7,7 +7,7 @@ class controller extends \addons\content_enter\main\controller
 {
 	public function ready()
 	{
-		$url             = \lib\router::get_url();
+		$url             = \lib\url::directory();
 
 		$url_type        = \lib\router::get_url(1);
 		$payment         = \lib\router::get_url(2);

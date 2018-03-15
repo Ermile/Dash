@@ -89,7 +89,7 @@ class controller
 					break;
 			}
 
-			switch (\lib\router::get_url())
+			switch (\lib\url::directory())
 			{
 				case 'account/recovery':
 				case 'account/changepass':

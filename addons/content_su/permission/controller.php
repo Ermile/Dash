@@ -7,7 +7,7 @@ class controller extends \addons\content_su\main\controller
 	{
 		parent::ready();
 
-		if(\lib\router::get_url() === 'permission')
+		if(\lib\url::directory() === 'permission')
 		{
 			\lib\error::page();
 		}
