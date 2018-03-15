@@ -41,15 +41,8 @@ class controller
 		 */
 		register_shutdown_function([$this, 'sp_shutdown']);
 
-		if(AccountService === \lib\url::root())
-		{
-			$domain = null;
-		}
-		else
-		{
-			$domain = AccountService.MainTld;
-		}
-		$param = $this->url('param');
+		$domain = null;
+		$param  = $this->url('param');
 		if($param)
 		{
 			$param = '?'.$param;

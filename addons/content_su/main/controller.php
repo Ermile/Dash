@@ -120,8 +120,7 @@ class controller extends \mvc\controller
 			// 	break;
 
 			case 'logout':
-				$mydomain = AccountService? AccountService.MainTld: null;
-				$this->redirector(null, false)->set_domain($mydomain)->set_url('logout')->redirect();
+				$this->redirector(null, false)->set_url('logout')->redirect();
 				break;
 		}
 

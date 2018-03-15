@@ -81,11 +81,32 @@ class init
 			$target_url .= ':'.\lib\url::port();
 		}
 
-
-		// if we have new target url, try to change it
-		if($target_url !== \lib\url::site())
+		// help new language detect in target site by set /fa
+		if(\lib\option::url('tld') !== \lib\url::tld())
 		{
-			header('Location: '. $target_url, true, 301);
+			switch (\lib\url::tld())
+			{
+				case 'ir':
+					$target_url .= $target_url. "/fa";
+					break;
+
+				default:
+					break;
+			}
+		}
+
+		// if we have new target url, and dont on force show mode, try to change it
+		if($target_url !== \lib\url::site() && !\lib\utility::get('force'))
+		{
+			$myBrowser = \lib\utility\browserDetection::browser_detection('browser_name');
+			if($myBrowser === 'samsungbrowser')
+			{
+				// samsung is stupid!
+			}
+			else
+			{
+				header('Location: '. $target_url, true, 301);
+			}
 		}
 	}
 }

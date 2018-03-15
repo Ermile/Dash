@@ -129,7 +129,7 @@ class define
 			}
 			elseif(!isset($_COOKIE["preview"]))
 			{
-				header('Location: http://'.AccountService.MainTld.'/static/page/coming/', true, 302);
+				header('Location: '.\lib\url::site().'/static/page/coming/', true, 302);
 				\lib\code::exit();
 			}
 		}

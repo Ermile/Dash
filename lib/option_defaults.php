@@ -24,14 +24,8 @@ self::$language                               =
 'list'                                        => ['fa','en',],
 ];
 
-self::$config['https']                        = false;
 
-self::$config['redirect_url']                 = null;
-self::$config['main_account']                 = null;
-self::$config['multi_domain']                 = false;
-self::$config['redirect_to_main']             = false;
-self::$config['default_tld']                  = null;
-self::$config['use_main_account']             = false;
+
 
 
 self::$config['debug']                        = false;
@@ -45,14 +39,8 @@ self::$config['default']                      = null;
 self::$config['redirect']                     = null;
 self::$config['register']                     = false;
 self::$config['recovery']                     = false;
-self::$config['fake_sub']                     = null;
-self::$config['force_short_url']              = null;
 self::$config['sms']                          = false;
 self::$config['account']                      = false;
-self::$config['domain_same']                  = false;
-self::$config['domain_name']                  = null;
-self::$config['main_site']                    = null;
-self::$config['account_status']               = false;
 
 self::$config['ftp']['host']                  = null;
 self::$config['ftp']['port']                  = null;
@@ -103,7 +91,6 @@ self::$config['enter']['signup_redirect']               = null;
 self::$config['enter']['singup_username']               = true;
 
 // after login redirect to what?
-// default self::$config['redirect_url']
 self::$config['enter']['redirect']                      = null;
 // check if call mode is enable to call to user
 self::$config['enter']['call']                          = false;

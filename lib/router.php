@@ -103,54 +103,12 @@ class router
 		// Define Project Constants *******************************************************************
 		// declate some constant variable for better use in all part of app
 
-		// like .local or .com
-		if(!defined('MainTld'))
-		{
-			// if enabling multi domain and set default tld define main tld
-			if(\lib\option::config('multi_domain') &&
-				$defaultTld = \lib\option::config('default_tld'))
-			{
-				define('MainTld', '.'. $defaultTld);
-			}
-			// else detect it
-			else
-			{
-				define('MainTld', (\lib\url::isLocal()? '.local': '.com'));
-			}
-		}
-
 		// like https://ermile.com
 		router::set_storage('url_site', \lib\url::site().'/');
 
-		// set account for use in all part of services
-		if(!defined('AccountService'))
-		{
-			// if user want main account and set main account name
-			if( \lib\option::config('use_main_account') &&
-				\lib\option::config('main_account') === constant('MainService')
-			)
-			{
-				define('AccountService', constant('MainService'));
-			}
-			else
-			{
-				define('AccountService', \lib\url::root());
-			}
-		}
-
 
 		router::$base = \lib\url::protocol().'://';
-		// if(defined('subDevelop'))
-		// {
-		// 	if(self::$sub_real === constant('subDevelop'))
-		// 	{
-		// 		router::$base .= constant('subDevelop'). '.';
-		// 	}
-		// 	elseif(\lib\url::subdomain() === constant('subDevelop'))
-		// 	{
 
-		// 	}
-		// }
 		if(\lib\url::subdomain())
 		{
 			router::$base .= \lib\url::subdomain(). '.';
@@ -255,101 +213,10 @@ class router
 			$this->set_protocol('http');
 		}
 
-		// check current protocol
-		self::check_protocol();
-
 
 		$this->check_property_router();
 		$this->check_method_router();
 		$this->check_class_router();
-	}
-
-
-	/**
-	 * check current protocol and if needed redirect to another!
-	 * @return [type] [description]
-	 */
-	private static function check_protocol()
-	{
-		// create new url for protocol checker
-		$newUrl      = "";
-		$currentPath = $_SERVER['REQUEST_URI'];
-		// $mainSite    = \lib\option::config('redirect_url');
-		$mainSite    = \lib\url::protocol(). '://'. \lib\router::get_domain();
-
-		// if redirect to main site is enable and all thing is okay
-		// then redirect to the target url
-		if(
-			\lib\option::config('multi_domain') &&
-			\lib\option::config('redirect_to_main') &&
-			$mainSite &&
-			\lib\url::isLocal() === false &&
-			parse_url($mainSite, PHP_URL_HOST) != \lib\router::get_root_domain()
-		)
-		{
-			// as soon as posible we create language detector library
-			switch (\lib\url::tld())
-			{
-				case 'ir':
-					$newUrl = $mainSite. "/fa";
-					break;
-
-				default:
-					break;
-			}
-			if($newUrl && router::get_url())
-			{
-				$newUrl .= '/'. router::get_url();
-			}
-		}
-		elseif($currentPath !== '/' && rtrim($currentPath, '/') !== $currentPath)
-		{
-			$newUrl = $mainSite. rtrim($currentPath, '/');
-		}
-		else
-		{
-			// if want to force using https then redirect to https of current url
-
-			if(\lib\option::config('https'))
-			{
-				if(\lib\url::protocol() === 'http')
-				{
-					$newUrl = 'https://';
-				}
-			}
-			// else force usign http protocol
-			elseif(\lib\url::protocol() === 'https')
-			{
-				$newUrl = 'http://';
-			}
-
-			if($newUrl)
-			{
-				$newUrl .= router::get_domain(). '/'. self::$real_url_string;
-			}
-			// if($mainSite)
-			// {
-			// 	// test new method for redirect, using option redirect url
-			// 	$newUrl = $mainSite. '/'. self::$real_url_string;
-			// }
-		}
-		// if newUrl is exist and we must to redirect
-		// then complete url and redirect to this address
-		if($newUrl && !\lib\utility::get('force') && $currentPath !== $newUrl)
-		{
-			$myBrowser = \lib\utility\browserDetection::browser_detection('browser_name');
-			if($myBrowser === 'samsungbrowser')
-			{
-				// samsung is stupid!
-			}
-			else
-			{
-				// redirect to best protocol because we want it!
-				$redirector = new \lib\redirector($newUrl);
-				$redirector->redirect();
-				\lib\code::exit();
-			}
-		}
 	}
 
 
