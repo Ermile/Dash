@@ -101,7 +101,7 @@ class language
 	public static function languages($_dir = false)
 	{
 		// detect languages exist in current project
-		$langList = glob(dir_includes.'languages/*', GLOB_ONLYDIR);
+		$langList = glob(root.'/includes/languages/*', GLOB_ONLYDIR);
 		$myList   = ['en' => 'English'];
 		foreach ($langList as $myLang)
 		{
@@ -302,7 +302,7 @@ class language
 		// then use only one domain for this site then redirect to main tld
 
 		// $tld_lang = \lib\utility\location\tld::get();
-		// if(defined('MainService') && \lib\url::isLocal() === false)
+		// if(\lib\url::isLocal() === false)
 		// {
 		// 	/**
 		// 	 need fix

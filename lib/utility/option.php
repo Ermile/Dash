@@ -256,7 +256,7 @@ class option
 	public static function languages($_dir = false)
 	{
 		// detect languages exist in current project
-		$langList = glob(dir_includes.'languages/*', GLOB_ONLYDIR);
+		$langList = glob(root.'/includes/languages/*', GLOB_ONLYDIR);
 		$myList   = ['en' => 'English'];
 		foreach ($langList as $myLang)
 		{

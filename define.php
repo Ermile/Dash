@@ -7,11 +7,6 @@
 // Core name
 define('core_name'	,'dash');
 
-// Define main service
-if(!defined('MainService'))
-{
-	define('MainService', 'ermile');
-}
 
 // Define Dash variables ****************************************************
 if(!defined("core"))
@@ -32,62 +27,22 @@ if(!defined("addons"))
 	define("addons", core."addons/");
 }
 
-// Dash helper
-if(!defined("helper"))
-{
-	define("helper", core."helper/");
-}
-
 // Define Project variables ***************************************************
 if(!defined("root"))
 {
 	define("root", dirname(dirname($_SERVER['SCRIPT_FILENAME'])).'/' );
 }
 
-// Project include folder
-if(!defined("dir_includes"))
-{
-	define("dir_includes", root.'includes/');
-}
-
-set_include_path(get_include_path() . PATH_SEPARATOR . dir_includes);
+set_include_path(get_include_path() . PATH_SEPARATOR . root.'includes/');
 set_include_path(get_include_path() . PATH_SEPARATOR . core.'addons/');
 set_include_path(get_include_path() . PATH_SEPARATOR . core);
 
-// Project library
-if(!defined("ilib"))
-{
-	define("ilib", "ilib/");
-}
 
-// Project helper
-if(!defined("ihelper"))
-{
-	define("ihelper", dir_includes."helper/");
-}
-
-// Project default repository
-if(!defined("repository"))
-{
-	define("repository", root.'content/');
-}
-
-// Project cls
-if(!defined("cls"))
-{
-	define("cls", dir_includes."cls/");
-}
 
 // Project database
 if(!defined("database"))
 {
-	define("database", dir_includes."database/");
-}
-
-// Project MVC
-if(!defined("mvc"))
-{
-	define("mvc", dir_includes."mvc/");
+	define("database", root.'includes/'."database/");
 }
 
 // Set default timezone to Asia/Tehran, Please set timezone in your php.ini

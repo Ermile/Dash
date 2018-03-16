@@ -9,7 +9,7 @@ class router
 
 	public function __construct($_clean_url = null)
 	{
-		self::$repository = repository;
+		self::$repository = root.'content/';
 		$path = preg_replace("/^\.\//","/",'/');
 		$clean_url = $_clean_url !== null ? $_clean_url : $_SERVER['REQUEST_URI'];
 
