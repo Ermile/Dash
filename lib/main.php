@@ -161,7 +161,6 @@ class main
 			$my_controller->ready();
 		}
 
-var_dump($my_controller);
 		// recheck, maybe change in above function in project
 		if(self::controller_get() !== $_controller)
 		{
