@@ -1,5 +1,5 @@
 <?php
-namespace lib;
+namespace lib\engine;
 class init
 {
 	/**

@@ -20,7 +20,7 @@ class engine
 	 */
 	public function __construct()
 	{
-		\lib\init::run();
+		\lib\engine\init::run();
 
 		self::lib()->router();
 
