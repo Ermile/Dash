@@ -168,27 +168,6 @@ class main
 			return;
 		}
 
-		if(count(router::get_url_property(-1)) > 0 && $my_controller->route_check_true === false)
-		{
-			if(\lib\content::name() === 'content')
-			{
-				\lib\app\template::$module = \lib\url::module();
-
-				if(\lib\app\template::find())
-				{
-					$my_controller->display_name     = \lib\app\template::$display_name;
-					$my_controller->route_check_true = \lib\app\template::$route_check_true;
-				}
-				else
-				{
-					error::page('Unavailable');
-				}
-			}
-			else
-			{
-				error::page('Unavailable');
-			}
-		}
 		$my_controller->_corridor();
 	}
 }
