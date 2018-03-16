@@ -40,7 +40,7 @@ class controller
 		register_shutdown_function([$this, 'sp_shutdown']);
 
 		$domain = null;
-		$mypath = \lib\url::query();
+		$param = \lib\url::query();
 		if($param)
 		{
 			$param = '?'.$param;
