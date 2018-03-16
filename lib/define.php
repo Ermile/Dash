@@ -49,7 +49,7 @@ class define
 		}
 
 		// block baby to not allow to harm yourself :/
-		\lib\baby::block();
+		\lib\engine\baby::block();
 
 		$cookie_domain = null;
 		if(isset($_SERVER['HTTP_HOST']))

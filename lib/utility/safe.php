@@ -15,7 +15,7 @@ class safe
 		}
 
 		// check baby to not allow to harm yourself
-		// \lib\baby::check($_string);
+		// \lib\engine\baby::check($_string);
 		// if uncomment above code we have problem on some codes
 
 		if(

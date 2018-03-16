@@ -1,5 +1,5 @@
 <?php
-namespace lib;
+namespace lib\engine;
 /**
  * some check for baby to not allow to harm yourself
  * v1.1
