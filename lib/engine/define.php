@@ -1,5 +1,5 @@
 <?php
-namespace lib;
+namespace lib\engine;
 class define
 {
 	// declare variables to set only one time each one of this variables

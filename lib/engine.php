@@ -24,7 +24,7 @@ class engine
 
 		self::lib()->router();
 
-		\lib\define::abc();
+		\lib\engine\define::abc();
 		\lib\engine\main::start();
 	}
 
