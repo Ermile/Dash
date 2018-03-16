@@ -485,10 +485,6 @@ class controller
 			array_unshift($_args, $_name);
 			return call_user_func_array(array($this, 'check_api'), $_args);
 		}
-		elseif(method_exists('\lib\router', $_name))
-		{
-			return call_user_func_array('\lib\router::'.$_name, $_args);
-		}
 		elseif(preg_match("#^inject_((after_|before_)?.+)$#Ui", $_name, $inject))
 		{
 			return $this->inject($inject[1], $_args);

@@ -264,47 +264,38 @@ class language
 
 		// Step1
 		// if language exist in url like ermile.com/fa/ then simulate remove it from url
-		$my_first_url = \lib\url::lang();
-		if(\lib\language::check($my_first_url))
-		{
-			if(substr(self::$language_default, 0, 2) === $my_first_url)
-			{
-				$redirectURL = \lib\url::directory();
-				if(substr($redirectURL, 0, 2) === $my_first_url)
-				{
-					$redirectURL = substr($redirectURL, 2);
-				}
-				if(!$redirectURL)
-				{
-					$redirectURL = '/';
-				}
+// 		$my_first_url = \lib\url::lang();
+// 		if(\lib\language::check($my_first_url))
+// 		{
+// 			if(substr(self::$language_default, 0, 2) === $my_first_url)
+// 			{
+// 				$redirectURL = \lib\url::directory();
+// 				if(substr($redirectURL, 0, 2) === $my_first_url)
+// 				{
+// 					$redirectURL = substr($redirectURL, 2);
+// 				}
+// 				if(!$redirectURL)
+// 				{
+// 					$redirectURL = '/';
+// 				}
+// 				$myredirect = new \lib\redirector($redirectURL);
+// 				$myredirect->redirect();
+// 			}
+// 			else
+// 			{
+// 				// set language
+// 				language::set_language($my_first_url);
+// 				// add this language to base url
+// 				route---r::$prefix_base .= \lib\url::dir(0);
+// 				// remove language from url and continue
+// 				route---r::remove_url($my_first_url);
+// 				if(\lib\language::check(\lib\url::dir(0)))
+// 				{
+// 					\lib\error::page("More than one language found");
+// 				}
+// 			}
 
-				if(\lib\url::dir(0) === 'api' || \lib\url::dir(1) === 'api')
-				{
-					router::remove_url($my_first_url);
-					// not redirect in api mode
-				}
-				else
-				{
-					$myredirect = new \lib\redirector($redirectURL);
-					$myredirect->redirect();
-				}
-			}
-			else
-			{
-				// set language
-				language::set_language($my_first_url);
-				// add this language to base url
-				router::$prefix_base .= \lib\url::dir(0);
-				// remove language from url and continue
-				router::remove_url($my_first_url);
-				if(\lib\language::check(\lib\url::dir(0)))
-				{
-					\lib\error::page("More than one language found");
-				}
-			}
-
-		}
+// 		}
 
 		// Step2 re
 		// if we are not in dev and tld lang is exist
