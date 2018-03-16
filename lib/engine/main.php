@@ -25,7 +25,7 @@ class main
 	 */
 	private static function find_ctrl()
 	{
-		$myRepo   = '\\'. \lib\content::get();
+		$myRepo   = '\\'. \lib\engine\content::get();
 		$myModule = '\\'. \lib\url::module();
 		$myChild  = '\\'. \lib\url::child();
 		$myCtrl   = null;

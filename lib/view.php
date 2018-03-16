@@ -96,12 +96,12 @@ class view
 		$module       = preg_replace("/^[^\/]*\/?content/", "content", get_class($this->controller));
 		$module       = preg_replace("/^content\\\\|(model|view|controller)$/", "", $module);
 		$module       = preg_replace("/[\\\]/", "/", $module);
-		$repository   = \lib\content::get();
+		$repository   = \lib\engine\content::get();
 		$repository   = $repository ==='content'? $repository.'/': null;
 		// $tmpname      = ($this->controller()->display_name)? $this->controller()->display_name : $repository.'/'.$module.'display.html';
 		$tmpname      = ($this->controller()->display_name)? $this->controller()->display_name : $repository.$module.'display.html';
 
-		if(\lib\content::name() === 'content')
+		if(\lib\engine\content::name() === 'content')
 		{
 			$this->data->datarow = \lib\app\template::$datarow;
 			self::set_cms_titles();

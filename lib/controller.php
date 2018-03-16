@@ -46,7 +46,7 @@ class controller
 			$param = '?'.$param;
 		}
 
-		$myrep = \lib\content::name();
+		$myrep = \lib\engine\content::name();
 		switch (\lib\url::module())
 		{
 			case 'signin':
