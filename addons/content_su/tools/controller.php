@@ -85,7 +85,7 @@ class controller extends \addons\content_su\main\controller
 				// 	break;
 
 			case null:
-				$mypath = $this->url('path','_');
+				$mypath = str_replace('/', '_', \lib\url::path());
 				if( is_file(addons.'content_su/templates/static_'.$mypath.'.html') )
 				{
 					$this->display_name	= 'content_su/templates/static_'.$mypath.'.html';

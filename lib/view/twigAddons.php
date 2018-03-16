@@ -912,7 +912,7 @@ trait twigAddons
 			{
 				if(isset($attachment['meta']['url']))
 				{
-					return $this->url('static'). '/'. $attachment['meta']['url'];
+					return  \lib\url::site().'/'. $attachment['meta']['url'];
 				}
 			}
 			return $attachment;
