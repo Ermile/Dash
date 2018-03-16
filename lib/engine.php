@@ -12,7 +12,7 @@ class engine
 
 		self::lib()->router();
 
-		\lib\engine\define::abc();
+		\lib\engine\prepare::abc();
 		\lib\engine\main::start();
 	}
 

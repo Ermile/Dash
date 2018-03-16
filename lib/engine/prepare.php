@@ -1,6 +1,6 @@
 <?php
 namespace lib\engine;
-class define
+class prepare
 {
 	// declare variables to set only one time each one of this variables
 
