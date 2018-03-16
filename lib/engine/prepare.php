@@ -138,6 +138,22 @@ class prepare
 
 		\lib\language::detect_language();
 		\lib\language::set_language(\lib\language::$language);
+
+
+
+
+		// need check
+		// if find 2slash together block!
+		if(strpos($_SERVER['REQUEST_URI'], '//') !== false)
+		{
+			// route url like this
+			// http://dash.local/enter?referer=http://dash.local/cp
+			if(strpos($_SERVER['REQUEST_URI'], '?') === false || strpos($_SERVER['REQUEST_URI'], '?') > strpos($_SERVER['REQUEST_URI'], '//'))
+			{
+				\lib\error::page('What are you doing!');
+			}
+		}
+
 	}
 }
 ?>

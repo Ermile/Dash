@@ -9,9 +9,6 @@ class engine
 	public function __construct()
 	{
 		\lib\engine\init::run();
-
-		self::lib()->router();
-
 		\lib\engine\prepare::abc();
 		\lib\engine\main::start();
 	}
