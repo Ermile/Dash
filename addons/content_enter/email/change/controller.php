@@ -11,7 +11,8 @@ class controller extends \addons\content_enter\main\controller
 	{
 		if(\lib\url::directory() === 'email/change/google')
 		{
-			\lib\router::set_controller("\\addons\content_enter\\email\\change\\google\\controller");
+			// @check
+			\lib\engine\main::controller_set("\\addons\content_enter\\email\\change\\google\\controller");
 			return;
 		}
 

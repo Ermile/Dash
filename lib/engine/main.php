@@ -2,7 +2,7 @@
 namespace lib\engine;
 class main
 {
-	private static $ctrl_name  = null;
+	private static $ctrl_name = null;
 	public static $controller = null;
 
 
