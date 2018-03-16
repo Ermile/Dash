@@ -1,5 +1,5 @@
 <?php
-namespace lib;
+namespace lib\engine;
 /**
  * this lib handle content of our PHP framework, Dash
  * v 0.1
