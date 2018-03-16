@@ -349,13 +349,13 @@ trait twigAddons
 			if($_homepage || count($myurl))
 			{
 				$baseURL    = \lib\url::base();
-				if(\lib\engine\content::name() === 'content')
+				if(\lib\url::content() === null)
 				{
 					$result = '<a href="'. $baseURL. '" tabindex="-1" '. $direct.'><span class="fa fa-home"></span> '.T_('Homepage').'</a>';
 				}
 				else
 				{
-					$myContent     = substr(\lib\engine\content::name(), 8);
+					$myContent     = \lib\url::content();
 					$myContentName = $myContent;
 					// if contetent name is exist use it as alternative
 					if(isset($this->data->breadcrumb[$myContent]))

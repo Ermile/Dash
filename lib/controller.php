@@ -46,7 +46,7 @@ class controller
 			$param = '?'.$param;
 		}
 
-		$myrep = \lib\engine\content::name();
+		$myrep = \lib\url::content();
 		switch (\lib\url::module())
 		{
 			case 'signin':
@@ -56,7 +56,7 @@ class controller
 				break;
 
 			case 'signup':
-				if($myrep !== 'content_enter')
+				if($myrep !== 'enter')
 				{
 					$url = \lib\url::base(). '/enter/signup'. $param;
 					$this->redirector($url)->redirect();
@@ -71,7 +71,7 @@ class controller
 
 			case 'signout':
 			case 'logout':
-				if($myrep !== 'content_enter')
+				if($myrep !== 'enter')
 				{
 					$url = \lib\url::base(). '/enter/logout'. $param;
 					$this->redirector($url)->redirect();
