@@ -5,7 +5,7 @@ class define
 	// declare variables to set only one time each one of this variables
 
 
-	public function __construct()
+	public function abc()
 	{
 		/**
 		 * If DEBUG is TRUE you can see the full error description, If set to FALSE show userfriendly messages

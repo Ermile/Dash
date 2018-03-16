@@ -15,8 +15,6 @@ class engine
 	// @var current version last update date
 	// now get it automatically from git last commit date
 
-	public static $protocol_type = 'http';
-
 	/**
 	 * constractor
 	 */
@@ -25,7 +23,8 @@ class engine
 		\lib\init::run();
 
 		self::lib()->router();
-		self::lib()->define();
+
+		\lib\define::abc();
 		self::lib()->main();
 	}
 

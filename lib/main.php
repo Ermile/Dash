@@ -2,8 +2,12 @@
 namespace lib;
 class main
 {
-	public static $controller, $url_property, $prv_class, $myrep, $prv_method = null;
-	public static $tracks = [];
+	public static $controller   = null;
+	public static $url_property = null;
+	public static $prv_class    = null;
+	public static $myrep        = null;
+	public static $prv_method   = null;
+	public static $tracks       = [];
 
 
 	/**
