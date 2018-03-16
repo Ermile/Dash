@@ -5,19 +5,7 @@ namespace lib;
  */
 class engine
 {
-	// @var dash engine current version
-	// const version = '12.4.6';
 
-	// @var dash engine current commit number
-	// now get it automatically from git commands
-	// const iversion = 701;
-
-	// @var current version last update date
-	// now get it automatically from git last commit date
-
-	/**
-	 * constractor
-	 */
 	public function __construct()
 	{
 		\lib\engine\init::run();
@@ -88,11 +76,11 @@ class engine
 	 */
 	public static function getLastVersion()
 	{
-		if(self::command_exists('git'))
-		{
-			$commitCount = exec('git rev-list --all --count');
-		}
-		return \lib\version::get();
+		// if(self::command_exists('git'))
+		// {
+		// 	$commitCount = exec('git rev-list --all --count');
+		// }
+		return \lib\engine\version::get();
 	}
 
 
