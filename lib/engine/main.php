@@ -1,5 +1,5 @@
 <?php
-namespace lib;
+namespace lib\engine;
 class main
 {
 	private static $ctrl_name  = null;
