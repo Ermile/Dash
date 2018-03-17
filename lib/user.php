@@ -38,10 +38,23 @@ class user
 	}
 
 
-	public static function update_session($_user_id)
+	public static function login($_key = null)
 	{
-		$detail = \lib\db\users::get_by_id($_user_id);
-		self::init($_user_id, $detail);
+		if($_key === null)
+		{
+			if(self::id())
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		else
+		{
+			return self::detail($_key);
+		}
 	}
 
 
