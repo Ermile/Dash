@@ -28,7 +28,7 @@ class controller extends \mvc\controller
 		{
 			if(!\lib\db::count_table())
 			{
-				require_once(lib."install.php");
+				require_once(lib."engine/install.php");
 				// this code exit the code
 				\lib\engine\main::$controller->_processor(['force_stop' => true, 'force_json' => false]);
 			}
