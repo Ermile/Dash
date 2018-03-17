@@ -30,7 +30,7 @@ class view
 
 		$this->controller            = $_startObject->controller;
 
-		$this->data                  = new view\data();
+		$this->data                  = (object) [];
 		$this->data->url             = (object) [];
 		$this->data->include         = (object) [];
 		$this->data->global          = (object) [];
@@ -178,7 +178,7 @@ class view
 				$req = apache_request_headers();
 			}
 
-			$xhr_render                 = $template->render($this->data->_toArray());
+			$xhr_render                 = $template->render((array) $this->data);
 			// $this->data->display['mvc'] = $this->data->display['xhr'];
 			$md5                        = md5(json_encode($this->data->global).$xhr_render);
 			if(isset($req['Cached-MD5']) && $req['Cached-MD5'] == $md5)
@@ -195,7 +195,7 @@ class view
 		}
 		else
 		{
-			$template->display($this->data->_toArray());
+			$template->display((array) $this->data);
 		}
 	}
 
