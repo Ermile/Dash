@@ -328,7 +328,7 @@ class url
 	{
 		$lang = null;
 
-		if(array_key_exists(0, self::$path_split) && in_array(self::$path_split[0], ['fa', 'en', 'ar']))
+		if(array_key_exists(0, self::$path_split) && array_key_exists(self::$path_split[0], \lib\language::list()))
 		{
 			$lang = self::$path_split[0];
 			unset(self::$path_split[0]);
