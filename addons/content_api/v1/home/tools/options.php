@@ -21,8 +21,6 @@ trait options
 			$host = simulation_com;
 		}
 
-		$lang = \lib\language::get_current_language_string();
-
 		switch ($_type)
 		{
 			case 'file':
@@ -34,7 +32,7 @@ trait options
 				break;
 
 			case 'with_language':
-				return $host . $lang;
+				return $host;
 				break;
 
 			case 'static_logo':

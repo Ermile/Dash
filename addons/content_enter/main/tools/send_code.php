@@ -96,8 +96,6 @@ trait send_code
 	public static function send_code_way()
 	{
 		$host = \lib\url::base();
-		$host .= \lib\language::get_current_language_string();
-
 		$host .= '/enter/verify/';
 		self::open_lock('verify');
 

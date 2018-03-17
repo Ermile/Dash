@@ -136,40 +136,6 @@ class language
 
 
 	/**
-	 * [check_language description]
-	 * @param  [type] $_language [description]
-	 * @return [type]            [description]
-	 */
-	public static function get_current_language_string($_language = null, $_boolean = false)
-	{
-		$result = null;
-		if(!$_language)
-		{
-			$_language = self::$language;
-			$_language = $_language['name'];
-		}
-		$default_lang = substr(self::$language_default, 0, 2);
-		if($default_lang !== $_language)
-		{
-			$result = '/'. $_language;
-		}
-
-		if($_boolean)
-		{
-			if($result !== null)
-			{
-				$result = true;
-			}
-			else
-			{
-				$result = false;
-			}
-		}
-		return $result;
-	}
-
-
-	/**
 	 * set language of service
 	 * @param [type] $_language [description]
 	 */

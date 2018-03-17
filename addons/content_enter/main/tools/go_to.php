@@ -15,7 +15,6 @@ trait go_to
 	{
 
 		$host = \lib\url::base();
-		$host .= \lib\language::get_current_language_string();
 
 		switch ($_url)
 		{

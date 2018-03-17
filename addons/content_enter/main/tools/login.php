@@ -29,7 +29,6 @@ trait login
 		}
 		elseif(self::get_enter_session('first_signup'))
 		{
-			$host .= \lib\language::get_current_language_string();
 			// if first signup
 			if(\lib\option::config('enter', 'singup_redirect'))
 			{
@@ -44,13 +43,14 @@ trait login
 		{
 
 			$language = \lib\db\users::get_language(self::user_data('id'));
+			// @check
 			if($language && \lib\language::check($language))
 			{
-				$host .= \lib\language::get_current_language_string($language);
+
 			}
 			else
 			{
-				$host .= \lib\language::get_current_language_string();
+
 			}
 
 			$host .='/'. \lib\option::config('redirect');
