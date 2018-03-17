@@ -10,12 +10,12 @@ class notif
 	 *
 	 * @var        array
 	 */
-	private static $error    = array();
-	private static $warn     = array();
-	private static $true     = array();
-	private static $msg      = array();
-	private static $property = array();
-	private static $form     = array();
+	private static $error    = [];
+	private static $warn     = [];
+	private static $true     = [];
+	private static $msg      = [];
+	private static $property = [];
+	private static $form     = [];
 	private static $check    = true;
 	private static $result   = null;
 	private static $title;
@@ -98,7 +98,7 @@ class notif
 	{
 		if($_reset)
 		{
-			self::$msg = array();
+			self::$msg = [];
 		}
 
 		if(is_array($_name))
@@ -182,10 +182,10 @@ class notif
 	 */
 	public static function compile($_json = false)
 	{
-		$notif           = array();
+		$notif           = [];
 		$notif['status'] = self::$status;
 		$notif['title']  = self::$title;
-		$messages        = array();
+		$messages        = [];
 		if(count(self::$error) > 0) $messages['error'] = self::$error;
 		if(count(self::$warn) > 0)  $messages['warn']  = self::$warn;
 		if(count(self::$msg) > 0)   $notif['msg']      = self::$msg;
