@@ -194,7 +194,7 @@ class model extends \addons\content_su\main\model
 		if(\lib\debug::$status)
 		{
 			\lib\debug::true(T_("Transaction inserted"));
-			$this->redirector(\lib\url::here(). '/transactions');
+			\lib\redirect::to(\lib\url::here(). '/transactions');
 		}
 	}
 }

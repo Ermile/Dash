@@ -124,7 +124,7 @@ trait irkish
             \lib\session::set('redirect_page_title', T_("Redirect to iran kish payment"));
             \lib\session::set('redirect_page_button', T_("Redirect"));
             \lib\debug::msg('direct', true);
-            (new \lib\redirector(self::get_callbck_url('redirect_page')))->redirect();
+            \lib\redirect::to(self::get_callbck_url('redirect_page'));
             return true;
         }
         else

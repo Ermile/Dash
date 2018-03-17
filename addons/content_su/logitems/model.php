@@ -49,7 +49,7 @@ class model extends \addons\content_su\main\model
 			if($result)
 			{
 				\lib\debug::true(T_("Update successfull"));
-				$this->redirector(\lib\url::here(). '/logitems');
+				\lib\redirect::to(\lib\url::here(). '/logitems');
 			}
 			else
 			{

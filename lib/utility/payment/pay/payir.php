@@ -113,7 +113,7 @@ trait payir
             $payment_response = json_encode((array) $temp, JSON_UNESCAPED_UNICODE);
             \lib\db\transactions::update(['condition' => 'redirect', 'payment_response' => $payment_response], $transaction_id);
             $redirect_url = "https://pay.ir/payment/gateway/". $transId;
-            (new \lib\redirector($redirect_url))->redirect();
+            \lib\redirect::to($redirect_url);
             return true;
         }
         else

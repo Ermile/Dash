@@ -53,7 +53,7 @@ class controller extends \mvc\controller
 		// if user is not login then redirect
 		if(!$this->login())
 		{
-			$this->redirector(\lib\url::base(). '/enter')->redirect();
+			\lib\redirect::to(\lib\url::base(). '/enter');
 			return ;
 		}
 
@@ -119,7 +119,7 @@ class controller extends \mvc\controller
 			// 	break;
 
 			case 'logout':
-				$this->redirector(null, false)->set_url('logout')->redirect();
+				\lib\redirect::to(null, false)->set_url('logout');
 				break;
 		}
 

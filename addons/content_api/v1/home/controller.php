@@ -28,7 +28,7 @@ class controller extends  \mvc\controller
 
 		if($url == 'v1')
 		{
-			$this->redirector('v1/doc')->redirect();
+			\lib\redirect::to('v1/doc');
 			return;
 		}
 	}

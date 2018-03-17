@@ -124,7 +124,7 @@ trait zarinpal
                 \lib\db\transactions::update(['condition' => 'redirect', 'payment_response' => $payment_response], $transaction_id);
 
                 // redirect to bank
-                (new \lib\redirector($redirect))->redirect();
+                \lib\redirect::to($redirect);
 
                 return true;
             }

@@ -18,7 +18,7 @@ class controller extends \mvc\controller
 		// {
 		// 	// ---------------------------------------------- temporary, fix this
 		// 	$mainEnter = \lib\url::protocol().'://'. \lib\url::domain().'/enter';
-		// 	$this->redirector($mainEnter)->redirect();
+		// 	\lib\redirect::to($mainEnter);
 		// }
 	}
 

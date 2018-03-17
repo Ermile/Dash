@@ -158,7 +158,7 @@ class controller extends \addons\content_su\main\controller
 		if($isClear)
 		{
 			\lib\utility\file::rename($filepath, $clearURL);
-			$this->redirector('?name='. $name)->redirect();
+			\lib\redirect::to('?name='. $name);
 		}
 		if($isZip)
 		{

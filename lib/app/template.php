@@ -91,7 +91,7 @@ class template
 
 			$new_url = \lib\url::base(). '/'. $type. '/'. $url;
 
-			(new \lib\redirector($new_url))->redirect();
+			\lib\redirect::to($new_url);
 			return;
 
 		}
@@ -241,7 +241,7 @@ class template
 			// create url of social network
 			$social_url = $social_list[$social_name] . \lib\option::social($social_name, 'name');
 			// redirect to new address
-			(new \lib\redirector($social_url, false))->redirect();
+			\lib\redirect::to($social_url);
 			return true;
 		}
 

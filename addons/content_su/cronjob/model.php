@@ -16,7 +16,7 @@ class model extends \addons\content_su\main\model
 			\lib\debug::warn(T_("Your cronjob is deactived"));
 		}
 
-		$this->redirector(\lib\url::pwd());
+		\lib\redirect::pwd();
 	}
 }
 ?>

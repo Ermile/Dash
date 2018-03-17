@@ -115,7 +115,7 @@ trait login
 				$root    = \lib\url::base();
 				$full    = \lib\url::pwd();
 				$new_url = str_replace($root, $root. '/'. $redirect_lang, $full);
-				$this->redirector($new_url)->redirect();
+				\lib\redirect::to($new_url);
 			}
 		}
 	}

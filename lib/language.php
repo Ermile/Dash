@@ -278,8 +278,7 @@ class language
 // 				{
 // 					$redirectURL = '/';
 // 				}
-// 				$myredirect = new \lib\redirector($redirectURL);
-// 				$myredirect->redirect();
+//
 // 			}
 // 			else
 // 			{
@@ -309,7 +308,7 @@ class language
 		// 	 */
 		// 	// for example redirect ermile.ir to ermile.com/fa
 		// 	$myredirect = new \lib\redirector();
-		// 	$myredirect->set_domain()->set_url($tld_lang)->redirect();
+		// 	$myredirect->set_domain()->set_url($tld_lang);
 		// 	return false;
 		// }
 

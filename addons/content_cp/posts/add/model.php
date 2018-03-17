@@ -18,13 +18,13 @@ class model extends \addons\content_cp\posts\main\model
 
 		if(\lib\debug::$status && isset($post_detail['post_id']))
 		{
-			$this->redirector(\lib\url::here(). '/posts/edit?id='. $post_detail['post_id']);
+			\lib\redirect::to(\lib\url::here(). '/posts/edit?id='. $post_detail['post_id']);
 			return;
 		}
 
 		if(\lib\debug::$status)
 		{
-			$this->redirector(\lib\url::pwd());
+			\lib\redirect::pwd();
 		}
 	}
 }

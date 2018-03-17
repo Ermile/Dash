@@ -55,18 +55,7 @@ trait go_to
 			\lib\debug::msg('direct', true);
 		}
 
-		$redirect = new \lib\redirector($_url);
-
-		if($_return)
-		{
-			return $redirect->redirect(true);
-		}
-		else
-		{
-			// \lib\debug::msg("redirect", $redirect->redirect(true));
-			$redirect->redirect();
-		}
-
+		\lib\redirect::to($_url);
 	}
 }
 ?>

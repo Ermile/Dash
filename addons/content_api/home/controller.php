@@ -15,7 +15,7 @@ class controller extends  \mvc\controller
 		$url = \lib\url::directory();
 		if($url == '')
 		{
-			$this->redirector('api/v1')->redirect();
+			\lib\redirect::to('api/v1');
 			return;
 		}
 	}

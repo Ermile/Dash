@@ -52,7 +52,7 @@ class verify
 		}
 
 		// redirect to turn back url
-        (new \lib\redirector($turn_back))->redirect();
+        \lib\redirect::to($turn_back);
 	}
 
 

@@ -51,21 +51,21 @@ class controller
 			case 'signin':
 			case 'login':
 				$url = \lib\url::base(). '/enter'. $param;
-				$this->redirector($url)->redirect();
+				\lib\redirect::to($url);
 				break;
 
 			case 'signup':
 				if($myrep !== 'enter')
 				{
 					$url = \lib\url::base(). '/enter/signup'. $param;
-					$this->redirector($url)->redirect();
+					\lib\redirect::to($url);
 				}
 				break;
 
 			case 'register':
 
 				$url = \lib\url::base(). '/enter/signup'. $param;
-				$this->redirector($url)->redirect();
+				\lib\redirect::to($url);
 				break;
 
 			case 'signout':
@@ -73,7 +73,7 @@ class controller
 				if($myrep !== 'enter')
 				{
 					$url = \lib\url::base(). '/enter/logout'. $param;
-					$this->redirector($url)->redirect();
+					\lib\redirect::to($url);
 				}
 
 				break;
@@ -88,19 +88,19 @@ class controller
 			case 'account/signin':
 			case 'account/login':
 				$url = \lib\url::base(). '/enter'. $param;
-				$this->redirector($url)->redirect();
+				\lib\redirect::to($url);
 				break;
 
 			case 'account/signup':
 			case 'account/register':
 				$url = \lib\url::base(). '/enter/signup'. $param;
-				$this->redirector($url)->redirect();
+				\lib\redirect::to($url);
 				break;
 
 			case 'account/logout':
 			case 'account/signout':
 				$url = \lib\url::base(). '/enter/logout'. $param;
-				$this->redirector($url)->redirect();
+				\lib\redirect::to($url);
 				break;
 		}
 
@@ -268,18 +268,18 @@ class controller
 			header('Content-Type: application/json');
 			if(isset($this->controller()->redirector) && $this->controller()->redirector)
 			{
-				debug::msg("redirect", $this->redirector()->redirect(true));
+				debug::msg("redirect", \lib\redirect::to()->redirect(true));
 			}
 			echo debug::compile(true);
 		}
 		elseif(!\lib\temp::get('api') && mb_strtolower($_SERVER['REQUEST_METHOD']) == "post")
 		{
-			$this->redirector();
+			\lib\redirect::to();
 		}
 
 		if(isset($this->controller()->redirector) && $this->controller()->redirector && !\lib\request::json_accept())
 		{
-			$this->redirector()->redirect();
+			\lib\redirect::to();
 		}
 
 		if($force_stop)
@@ -508,17 +508,6 @@ class controller
 	public function debug()
 	{
 		return $this->debug;
-	}
-
-
-	/**
-	 * [redirector description]
-	 * @return [type] [description]
-	 */
-	public function redirector()
-	{
-		if(!isset($this->redirector))	$this->redirector = new \lib\redirector(...func_get_args());
-		return $this->redirector;
 	}
 
 

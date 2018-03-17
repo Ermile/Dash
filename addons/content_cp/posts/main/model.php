@@ -40,7 +40,7 @@ class model extends \mvc\model
 		}
 		\lib\app\posts::post_gallery(\lib\request::get('id'), $id, 'remove');
 		\lib\debug::msg('direct', true);
-		(new \lib\redirector(\lib\url::full()))->redirect();
+		\lib\redirect::to(\lib\url::full());
 
 	}
 

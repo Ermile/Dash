@@ -12,7 +12,7 @@ class controller extends \addons\content_enter\main\controller
 		// he must set email
 		if($this->login('username'))
 		{
-			$this->redirector(\lib\url::base(). '/enter/username/change')->redirect();
+			\lib\redirect::to(\lib\url::base(). '/enter/username/change');
 			return;
 		}
 		// parent::ready();

@@ -112,7 +112,7 @@ trait parsian
 
                 $payment_response = json_encode((array) $payment_response, JSON_UNESCAPED_UNICODE);
                 \lib\db\transactions::update(['condition' => 'redirect', 'payment_response' => $payment_response], $transaction_id);
-                (new \lib\redirector($redirect))->redirect();
+                \lib\redirect::to($redirect);
                 return true;
             }
             else

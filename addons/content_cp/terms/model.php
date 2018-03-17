@@ -41,12 +41,12 @@ class model extends \addons\content_cp\main\model
 					$url .= '?type='. \lib\request::get('type');
 				}
 
-				$this->redirector($url);
+				\lib\redirect::to($url);
 			}
 			else
 			{
 				\lib\debug::true(T_("Term successfully added"));
-				$this->redirector(\lib\url::full());
+				\lib\redirect::to(\lib\url::full());
 			}
 		}
 	}

@@ -13,7 +13,7 @@ class view extends \addons\content_enter\main\view
 		// auto redirect if url is clean
 		if($this->data->auth_url && !\lib\request::get() && !\lib\request::post() && $this->data->google_login)
 		{
-			$this->redirector($this->data->auth_url)->redirect();
+			\lib\redirect::to($this->data->auth_url);
 		}
 
 
