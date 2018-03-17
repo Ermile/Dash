@@ -181,7 +181,7 @@ class Google_Utils_URITemplate
       );
     }
   }
- 
+
   public function combine(
       $key,
       $parameters,
@@ -200,17 +200,17 @@ class Google_Utils_URITemplate
     if (strpos($key, ":") !== false) {
       list($key, $length) = explode(":", $key);
     }
-    
+
     // Check for explode parameter.
     if ($key[strlen($key) - 1] == "*") {
       $explode = true;
       $key = substr($key, 0, -1);
       $skip_final_combine = true;
     }
-    
+
     // Define the list separator.
     $list_sep = $explode ? $sep : ",";
-    
+
     if (isset($parameters[$key])) {
       $data_type = $this->getDataType($parameters[$key]);
       switch ($data_type) {
@@ -218,7 +218,7 @@ class Google_Utils_URITemplate
           $value = $this->getValue($parameters[$key], $length);
           break;
         case self::TYPE_LIST:
-          $values = array();
+          $values = [];
           foreach ($parameters[$key] as $pkey => $pvalue) {
             $pvalue = $this->getValue($pvalue, $length);
             if ($combine && $explode) {
@@ -233,7 +233,7 @@ class Google_Utils_URITemplate
           }
           break;
         case self::TYPE_MAP:
-          $values = array();
+          $values = [];
           foreach ($parameters[$key] as $pkey => $pvalue) {
             $pvalue = $this->getValue($pvalue, $length);
             if ($explode) {
@@ -267,11 +267,11 @@ class Google_Utils_URITemplate
     if (!$combine || $skip_final_combine) {
       return $value;
     }
-        
+
     // Else we combine the key name: foo=bar, if value is not the empty string.
     return $key . ($value != '' || $combine_on_empty ? $combine . $value : '');
   }
-  
+
   /**
    * Return the type of a passed in value
    */
@@ -286,7 +286,7 @@ class Google_Utils_URITemplate
     }
     return self::TYPE_SCALAR;
   }
-  
+
   /**
    * Utility function that merges multiple combine calls
    * for multi-key templates.
@@ -300,7 +300,7 @@ class Google_Utils_URITemplate
       $tag_empty,
       $combine_on_empty
   ) {
-    $ret = array();
+    $ret = [];
     foreach ($vars as $var) {
       $response = $this->combine(
           $var,
@@ -318,7 +318,7 @@ class Google_Utils_URITemplate
     }
     return implode($sep, $ret);
   }
-  
+
   /**
    * Utility function to encode and trim values
    */

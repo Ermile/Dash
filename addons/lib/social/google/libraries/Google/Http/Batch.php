@@ -28,12 +28,12 @@ class Google_Http_Batch
   private $boundary;
 
   /** @var array service requests to be executed. */
-  private $requests = array();
+  private $requests = [];
 
   /** @var Google_Client */
   private $client;
 
-  private $expected_classes = array();
+  private $expected_classes = [];
 
   private $root_url;
 
@@ -44,7 +44,7 @@ class Google_Http_Batch
     $this->client = $client;
     $this->root_url = rtrim($rootUrl ? $rootUrl : $this->client->getBasePath(), '/');
     $this->batch_path = $batchPath ? $batchPath : 'batch';
-    $this->expected_classes = array();
+    $this->expected_classes = [];
     $boundary = (false == $boundary) ? mt_rand() : $boundary;
     $this->boundary = str_replace('"', '', $boundary);
   }
@@ -99,7 +99,7 @@ class Google_Http_Batch
     if ($body) {
       $body = str_replace("--$boundary--", "--$boundary", $body);
       $parts = explode("--$boundary", $body);
-      $responses = array();
+      $responses = [];
 
       foreach ($parts as $part) {
         $part = trim($part);

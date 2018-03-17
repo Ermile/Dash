@@ -53,7 +53,7 @@ class Google_Service_Books extends Google_Service
   public $volumes_mybooks;
   public $volumes_recommended;
   public $volumes_useruploaded;
-  
+
 
   /**
    * Constructs the internal representation of the Books service.
@@ -192,7 +192,7 @@ class Google_Service_Books extends Google_Service
             ),'updateBook' => array(
               'path' => 'cloudloading/updateBook',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),
           )
         )
@@ -511,7 +511,7 @@ class Google_Service_Books extends Google_Service
             'getUserSettings' => array(
               'path' => 'myconfig/getUserSettings',
               'httpMethod' => 'GET',
-              'parameters' => array(),
+              'parameters' => [],
             ),'releaseDownloadAccess' => array(
               'path' => 'myconfig/releaseDownloadAccess',
               'httpMethod' => 'POST',
@@ -610,7 +610,7 @@ class Google_Service_Books extends Google_Service
             ),'updateUserSettings' => array(
               'path' => 'myconfig/updateUserSettings',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),
           )
         )
@@ -1407,7 +1407,7 @@ class Google_Service_Books_Bookshelves_Resource extends Google_Service_Resource
    * @opt_param string source String to identify the originator of this request.
    * @return Google_Service_Books_Bookshelf
    */
-  public function get($userId, $shelf, $optParams = array())
+  public function get($userId, $shelf, $optParams = [])
   {
     $params = array('userId' => $userId, 'shelf' => $shelf);
     $params = array_merge($params, $optParams);
@@ -1424,7 +1424,7 @@ class Google_Service_Books_Bookshelves_Resource extends Google_Service_Resource
    * @opt_param string source String to identify the originator of this request.
    * @return Google_Service_Books_Bookshelves
    */
-  public function listBookshelves($userId, $optParams = array())
+  public function listBookshelves($userId, $optParams = [])
   {
     $params = array('userId' => $userId);
     $params = array_merge($params, $optParams);
@@ -1459,7 +1459,7 @@ class Google_Service_Books_BookshelvesVolumes_Resource extends Google_Service_Re
    * 0)
    * @return Google_Service_Books_Volumes
    */
-  public function listBookshelvesVolumes($userId, $shelf, $optParams = array())
+  public function listBookshelvesVolumes($userId, $shelf, $optParams = [])
   {
     $params = array('userId' => $userId, 'shelf' => $shelf);
     $params = array_merge($params, $optParams);
@@ -1492,9 +1492,9 @@ class Google_Service_Books_Cloudloading_Resource extends Google_Service_Resource
    * drive_document_id is set.
    * @return Google_Service_Books_BooksCloudloadingResource
    */
-  public function addBook($optParams = array())
+  public function addBook($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('addBook', array($params), "Google_Service_Books_BooksCloudloadingResource");
   }
@@ -1505,7 +1505,7 @@ class Google_Service_Books_Cloudloading_Resource extends Google_Service_Resource
    * @param string $volumeId The id of the book to be removed.
    * @param array $optParams Optional parameters.
    */
-  public function deleteBook($volumeId, $optParams = array())
+  public function deleteBook($volumeId, $optParams = [])
   {
     $params = array('volumeId' => $volumeId);
     $params = array_merge($params, $optParams);
@@ -1519,7 +1519,7 @@ class Google_Service_Books_Cloudloading_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Books_BooksCloudloadingResource
    */
-  public function updateBook(Google_Service_Books_BooksCloudloadingResource $postBody, $optParams = array())
+  public function updateBook(Google_Service_Books_BooksCloudloadingResource $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1546,7 +1546,7 @@ class Google_Service_Books_Dictionary_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Books_Metadata
    */
-  public function listOfflineMetadata($cpksver, $optParams = array())
+  public function listOfflineMetadata($cpksver, $optParams = [])
   {
     $params = array('cpksver' => $cpksver);
     $params = array_merge($params, $optParams);
@@ -1577,7 +1577,7 @@ class Google_Service_Books_Layers_Resource extends Google_Service_Resource
    * volume.
    * @return Google_Service_Books_Layersummary
    */
-  public function get($volumeId, $summaryId, $optParams = array())
+  public function get($volumeId, $summaryId, $optParams = [])
   {
     $params = array('volumeId' => $volumeId, 'summaryId' => $summaryId);
     $params = array_merge($params, $optParams);
@@ -1598,7 +1598,7 @@ class Google_Service_Books_Layers_Resource extends Google_Service_Resource
    * @opt_param string source String to identify the originator of this request.
    * @return Google_Service_Books_Layersummaries
    */
-  public function listLayers($volumeId, $optParams = array())
+  public function listLayers($volumeId, $optParams = [])
   {
     $params = array('volumeId' => $volumeId);
     $params = array_merge($params, $optParams);
@@ -1639,7 +1639,7 @@ class Google_Service_Books_LayersAnnotationData_Resource extends Google_Service_
    * provided height must also be provided.
    * @return Google_Service_Books_Annotationdata
    */
-  public function get($volumeId, $layerId, $annotationDataId, $contentVersion, $optParams = array())
+  public function get($volumeId, $layerId, $annotationDataId, $contentVersion, $optParams = [])
   {
     $params = array('volumeId' => $volumeId, 'layerId' => $layerId, 'annotationDataId' => $annotationDataId, 'contentVersion' => $contentVersion);
     $params = array_merge($params, $optParams);
@@ -1674,7 +1674,7 @@ class Google_Service_Books_LayersAnnotationData_Resource extends Google_Service_
    * since this timestamp (inclusive).
    * @return Google_Service_Books_Annotationsdata
    */
-  public function listLayersAnnotationData($volumeId, $layerId, $contentVersion, $optParams = array())
+  public function listLayersAnnotationData($volumeId, $layerId, $contentVersion, $optParams = [])
   {
     $params = array('volumeId' => $volumeId, 'layerId' => $layerId, 'contentVersion' => $contentVersion);
     $params = array_merge($params, $optParams);
@@ -1705,7 +1705,7 @@ class Google_Service_Books_LayersVolumeAnnotations_Resource extends Google_Servi
    * @opt_param string source String to identify the originator of this request.
    * @return Google_Service_Books_Volumeannotation
    */
-  public function get($volumeId, $layerId, $annotationId, $optParams = array())
+  public function get($volumeId, $layerId, $annotationId, $optParams = [])
   {
     $params = array('volumeId' => $volumeId, 'layerId' => $layerId, 'annotationId' => $annotationId);
     $params = array_merge($params, $optParams);
@@ -1742,7 +1742,7 @@ class Google_Service_Books_LayersVolumeAnnotations_Resource extends Google_Servi
    * from.
    * @return Google_Service_Books_Volumeannotations
    */
-  public function listLayersVolumeAnnotations($volumeId, $layerId, $contentVersion, $optParams = array())
+  public function listLayersVolumeAnnotations($volumeId, $layerId, $contentVersion, $optParams = [])
   {
     $params = array('volumeId' => $volumeId, 'layerId' => $layerId, 'contentVersion' => $contentVersion);
     $params = array_merge($params, $optParams);
@@ -1767,9 +1767,9 @@ class Google_Service_Books_Myconfig_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Books_Usersettings
    */
-  public function getUserSettings($optParams = array())
+  public function getUserSettings($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('getUserSettings', array($params), "Google_Service_Books_Usersettings");
   }
@@ -1788,7 +1788,7 @@ class Google_Service_Books_Myconfig_Resource extends Google_Service_Resource
    * @opt_param string source String to identify the originator of this request.
    * @return Google_Service_Books_DownloadAccesses
    */
-  public function releaseDownloadAccess($volumeIds, $cpksver, $optParams = array())
+  public function releaseDownloadAccess($volumeIds, $cpksver, $optParams = [])
   {
     $params = array('volumeIds' => $volumeIds, 'cpksver' => $cpksver);
     $params = array_merge($params, $optParams);
@@ -1812,7 +1812,7 @@ class Google_Service_Books_Myconfig_Resource extends Google_Service_Resource
    * localization, i.e. en_US.
    * @return Google_Service_Books_RequestAccess
    */
-  public function requestAccess($source, $volumeId, $nonce, $cpksver, $optParams = array())
+  public function requestAccess($source, $volumeId, $nonce, $cpksver, $optParams = [])
   {
     $params = array('source' => $source, 'volumeId' => $volumeId, 'nonce' => $nonce, 'cpksver' => $cpksver);
     $params = array_merge($params, $optParams);
@@ -1839,7 +1839,7 @@ class Google_Service_Books_Myconfig_Resource extends Google_Service_Resource
    * for.
    * @return Google_Service_Books_Volumes
    */
-  public function syncVolumeLicenses($source, $nonce, $cpksver, $optParams = array())
+  public function syncVolumeLicenses($source, $nonce, $cpksver, $optParams = [])
   {
     $params = array('source' => $source, 'nonce' => $nonce, 'cpksver' => $cpksver);
     $params = array_merge($params, $optParams);
@@ -1855,7 +1855,7 @@ class Google_Service_Books_Myconfig_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Books_Usersettings
    */
-  public function updateUserSettings(Google_Service_Books_Usersettings $postBody, $optParams = array())
+  public function updateUserSettings(Google_Service_Books_Usersettings $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1894,7 +1894,7 @@ class Google_Service_Books_MylibraryAnnotations_Resource extends Google_Service_
    *
    * @opt_param string source String to identify the originator of this request.
    */
-  public function delete($annotationId, $optParams = array())
+  public function delete($annotationId, $optParams = [])
   {
     $params = array('annotationId' => $annotationId);
     $params = array_merge($params, $optParams);
@@ -1913,7 +1913,7 @@ class Google_Service_Books_MylibraryAnnotations_Resource extends Google_Service_
    * @opt_param string source String to identify the originator of this request.
    * @return Google_Service_Books_Annotation
    */
-  public function insert(Google_Service_Books_Annotation $postBody, $optParams = array())
+  public function insert(Google_Service_Books_Annotation $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1943,9 +1943,9 @@ class Google_Service_Books_MylibraryAnnotations_Resource extends Google_Service_
    * @opt_param string layerId The layer ID to limit annotation by.
    * @return Google_Service_Books_Annotations
    */
-  public function listMylibraryAnnotations($optParams = array())
+  public function listMylibraryAnnotations($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_Books_Annotations");
   }
@@ -1958,7 +1958,7 @@ class Google_Service_Books_MylibraryAnnotations_Resource extends Google_Service_
    * @param array $optParams Optional parameters.
    * @return Google_Service_Books_AnnotationsSummary
    */
-  public function summary($layerIds, $volumeId, $optParams = array())
+  public function summary($layerIds, $volumeId, $optParams = [])
   {
     $params = array('layerIds' => $layerIds, 'volumeId' => $volumeId);
     $params = array_merge($params, $optParams);
@@ -1975,7 +1975,7 @@ class Google_Service_Books_MylibraryAnnotations_Resource extends Google_Service_
    * @opt_param string source String to identify the originator of this request.
    * @return Google_Service_Books_Annotation
    */
-  public function update($annotationId, Google_Service_Books_Annotation $postBody, $optParams = array())
+  public function update($annotationId, Google_Service_Books_Annotation $postBody, $optParams = [])
   {
     $params = array('annotationId' => $annotationId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2004,7 +2004,7 @@ class Google_Service_Books_MylibraryBookshelves_Resource extends Google_Service_
    * library.
    * @opt_param string source String to identify the originator of this request.
    */
-  public function addVolume($shelf, $volumeId, $optParams = array())
+  public function addVolume($shelf, $volumeId, $optParams = [])
   {
     $params = array('shelf' => $shelf, 'volumeId' => $volumeId);
     $params = array_merge($params, $optParams);
@@ -2019,7 +2019,7 @@ class Google_Service_Books_MylibraryBookshelves_Resource extends Google_Service_
    *
    * @opt_param string source String to identify the originator of this request.
    */
-  public function clearVolumes($shelf, $optParams = array())
+  public function clearVolumes($shelf, $optParams = [])
   {
     $params = array('shelf' => $shelf);
     $params = array_merge($params, $optParams);
@@ -2036,7 +2036,7 @@ class Google_Service_Books_MylibraryBookshelves_Resource extends Google_Service_
    * @opt_param string source String to identify the originator of this request.
    * @return Google_Service_Books_Bookshelf
    */
-  public function get($shelf, $optParams = array())
+  public function get($shelf, $optParams = [])
   {
     $params = array('shelf' => $shelf);
     $params = array_merge($params, $optParams);
@@ -2052,9 +2052,9 @@ class Google_Service_Books_MylibraryBookshelves_Resource extends Google_Service_
    * @opt_param string source String to identify the originator of this request.
    * @return Google_Service_Books_Bookshelves
    */
-  public function listMylibraryBookshelves($optParams = array())
+  public function listMylibraryBookshelves($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_Books_Bookshelves");
   }
@@ -2071,7 +2071,7 @@ class Google_Service_Books_MylibraryBookshelves_Resource extends Google_Service_
    *
    * @opt_param string source String to identify the originator of this request.
    */
-  public function moveVolume($shelf, $volumeId, $volumePosition, $optParams = array())
+  public function moveVolume($shelf, $volumeId, $volumePosition, $optParams = [])
   {
     $params = array('shelf' => $shelf, 'volumeId' => $volumeId, 'volumePosition' => $volumePosition);
     $params = array_merge($params, $optParams);
@@ -2089,7 +2089,7 @@ class Google_Service_Books_MylibraryBookshelves_Resource extends Google_Service_
    * library.
    * @opt_param string source String to identify the originator of this request.
    */
-  public function removeVolume($shelf, $volumeId, $optParams = array())
+  public function removeVolume($shelf, $volumeId, $optParams = [])
   {
     $params = array('shelf' => $shelf, 'volumeId' => $volumeId);
     $params = array_merge($params, $optParams);
@@ -2127,7 +2127,7 @@ class Google_Service_Books_MylibraryBookshelvesVolumes_Resource extends Google_S
    * 0)
    * @return Google_Service_Books_Volumes
    */
-  public function listMylibraryBookshelvesVolumes($shelf, $optParams = array())
+  public function listMylibraryBookshelvesVolumes($shelf, $optParams = [])
   {
     $params = array('shelf' => $shelf);
     $params = array_merge($params, $optParams);
@@ -2158,7 +2158,7 @@ class Google_Service_Books_MylibraryReadingpositions_Resource extends Google_Ser
    * reading position is requested.
    * @return Google_Service_Books_ReadingPosition
    */
-  public function get($volumeId, $optParams = array())
+  public function get($volumeId, $optParams = [])
   {
     $params = array('volumeId' => $volumeId);
     $params = array_merge($params, $optParams);
@@ -2183,7 +2183,7 @@ class Google_Service_Books_MylibraryReadingpositions_Resource extends Google_Ser
    * reading position applies.
    * @opt_param string action Action that caused this reading position to be set.
    */
-  public function setPosition($volumeId, $timestamp, $position, $optParams = array())
+  public function setPosition($volumeId, $timestamp, $position, $optParams = [])
   {
     $params = array('volumeId' => $volumeId, 'timestamp' => $timestamp, 'position' => $position);
     $params = array_merge($params, $optParams);
@@ -2211,9 +2211,9 @@ class Google_Service_Books_Onboarding_Resource extends Google_Service_Resource
    * Default is en-US if unset.
    * @return Google_Service_Books_Category
    */
-  public function listCategories($optParams = array())
+  public function listCategories($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('listCategories', array($params), "Google_Service_Books_Category");
   }
@@ -2236,9 +2236,9 @@ class Google_Service_Books_Onboarding_Resource extends Google_Service_Resource
    * in the response.
    * @return Google_Service_Books_Volume2
    */
-  public function listCategoryVolumes($optParams = array())
+  public function listCategoryVolumes($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('listCategoryVolumes', array($params), "Google_Service_Books_Volume2");
   }
@@ -2269,9 +2269,9 @@ class Google_Service_Books_Promooffer_Resource extends Google_Service_Resource
    * @opt_param string serial device serial
    * @opt_param string manufacturer device manufacturer
    */
-  public function accept($optParams = array())
+  public function accept($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('accept', array($params));
   }
@@ -2289,9 +2289,9 @@ class Google_Service_Books_Promooffer_Resource extends Google_Service_Resource
    * @opt_param string serial device serial
    * @opt_param string manufacturer device manufacturer
    */
-  public function dismiss($optParams = array())
+  public function dismiss($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('dismiss', array($params));
   }
@@ -2309,9 +2309,9 @@ class Google_Service_Books_Promooffer_Resource extends Google_Service_Resource
    * @opt_param string manufacturer device manufacturer
    * @return Google_Service_Books_Offers
    */
-  public function get($optParams = array())
+  public function get($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('get', array($params), "Google_Service_Books_Offers");
   }
@@ -2342,7 +2342,7 @@ class Google_Service_Books_Volumes_Resource extends Google_Service_Resource
    * @opt_param string partner Brand results for partner ID.
    * @return Google_Service_Books_Volume
    */
-  public function get($volumeId, $optParams = array())
+  public function get($volumeId, $optParams = [])
   {
     $params = array('volumeId' => $volumeId);
     $params = array_merge($params, $optParams);
@@ -2373,7 +2373,7 @@ class Google_Service_Books_Volumes_Resource extends Google_Service_Resource
    * @opt_param string partner Restrict and brand results for partner ID.
    * @return Google_Service_Books_Volumes
    */
-  public function listVolumes($q, $optParams = array())
+  public function listVolumes($q, $optParams = [])
   {
     $params = array('q' => $q);
     $params = array_merge($params, $optParams);
@@ -2407,7 +2407,7 @@ class Google_Service_Books_VolumesAssociated_Resource extends Google_Service_Res
    * @opt_param string association Association type.
    * @return Google_Service_Books_Volumes
    */
-  public function listVolumesAssociated($volumeId, $optParams = array())
+  public function listVolumesAssociated($volumeId, $optParams = [])
   {
     $params = array('volumeId' => $volumeId);
     $params = array_merge($params, $optParams);
@@ -2442,9 +2442,9 @@ class Google_Service_Books_VolumesMybooks_Resource extends Google_Service_Resour
    * acquireMethod.
    * @return Google_Service_Books_Volumes
    */
-  public function listVolumesMybooks($optParams = array())
+  public function listVolumesMybooks($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_Books_Volumes");
   }
@@ -2474,9 +2474,9 @@ class Google_Service_Books_VolumesRecommended_Resource extends Google_Service_Re
    * filtered out.
    * @return Google_Service_Books_Volumes
    */
-  public function listVolumesRecommended($optParams = array())
+  public function listVolumesRecommended($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_Books_Volumes");
   }
@@ -2493,7 +2493,7 @@ class Google_Service_Books_VolumesRecommended_Resource extends Google_Service_Re
    * @opt_param string source String to identify the originator of this request.
    * @return Google_Service_Books_BooksVolumesRecommendedRateResponse
    */
-  public function rate($rating, $volumeId, $optParams = array())
+  public function rate($rating, $volumeId, $optParams = [])
   {
     $params = array('rating' => $rating, 'volumeId' => $volumeId);
     $params = array_merge($params, $optParams);
@@ -2529,9 +2529,9 @@ class Google_Service_Books_VolumesUseruploaded_Resource extends Google_Service_R
    * volumes to be returned.
    * @return Google_Service_Books_Volumes
    */
-  public function listVolumesUseruploaded($optParams = array())
+  public function listVolumesUseruploaded($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_Books_Volumes");
   }

@@ -49,7 +49,7 @@ class Google_Service_Resourceviews extends Google_Service
 
   public $zoneOperations;
   public $zoneViews;
-  
+
 
   /**
    * Constructs the internal representation of the Resourceviews service.
@@ -358,7 +358,7 @@ class Google_Service_Resourceviews_ZoneOperations_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_Resourceviews_Operation
    */
-  public function get($project, $zone, $operation, $optParams = array())
+  public function get($project, $zone, $operation, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'operation' => $operation);
     $params = array_merge($params, $optParams);
@@ -381,7 +381,7 @@ class Google_Service_Resourceviews_ZoneOperations_Resource extends Google_Servic
    * returned. Maximum value is 500 and default value is 500.
    * @return Google_Service_Resourceviews_OperationList
    */
-  public function listZoneOperations($project, $zone, $optParams = array())
+  public function listZoneOperations($project, $zone, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone);
     $params = array_merge($params, $optParams);
@@ -410,7 +410,7 @@ class Google_Service_Resourceviews_ZoneViews_Resource extends Google_Service_Res
    * @param array $optParams Optional parameters.
    * @return Google_Service_Resourceviews_Operation
    */
-  public function addResources($project, $zone, $resourceView, Google_Service_Resourceviews_ZoneViewsAddResourcesRequest $postBody, $optParams = array())
+  public function addResources($project, $zone, $resourceView, Google_Service_Resourceviews_ZoneViewsAddResourcesRequest $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'resourceView' => $resourceView, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -426,7 +426,7 @@ class Google_Service_Resourceviews_ZoneViews_Resource extends Google_Service_Res
    * @param array $optParams Optional parameters.
    * @return Google_Service_Resourceviews_Operation
    */
-  public function delete($project, $zone, $resourceView, $optParams = array())
+  public function delete($project, $zone, $resourceView, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'resourceView' => $resourceView);
     $params = array_merge($params, $optParams);
@@ -442,7 +442,7 @@ class Google_Service_Resourceviews_ZoneViews_Resource extends Google_Service_Res
    * @param array $optParams Optional parameters.
    * @return Google_Service_Resourceviews_ResourceView
    */
-  public function get($project, $zone, $resourceView, $optParams = array())
+  public function get($project, $zone, $resourceView, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'resourceView' => $resourceView);
     $params = array_merge($params, $optParams);
@@ -462,7 +462,7 @@ class Google_Service_Resourceviews_ZoneViews_Resource extends Google_Service_Res
    * the service information of the resource.
    * @return Google_Service_Resourceviews_ZoneViewsGetServiceResponse
    */
-  public function getService($project, $zone, $resourceView, $optParams = array())
+  public function getService($project, $zone, $resourceView, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'resourceView' => $resourceView);
     $params = array_merge($params, $optParams);
@@ -478,7 +478,7 @@ class Google_Service_Resourceviews_ZoneViews_Resource extends Google_Service_Res
    * @param array $optParams Optional parameters.
    * @return Google_Service_Resourceviews_Operation
    */
-  public function insert($project, $zone, Google_Service_Resourceviews_ResourceView $postBody, $optParams = array())
+  public function insert($project, $zone, Google_Service_Resourceviews_ResourceView $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -499,7 +499,7 @@ class Google_Service_Resourceviews_ZoneViews_Resource extends Google_Service_Res
    * values are 0 to 5000, inclusive. (Default: 5000)
    * @return Google_Service_Resourceviews_ZoneViewsList
    */
-  public function listZoneViews($project, $zone, $optParams = array())
+  public function listZoneViews($project, $zone, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone);
     $params = array_merge($params, $optParams);
@@ -529,7 +529,7 @@ class Google_Service_Resourceviews_ZoneViews_Resource extends Google_Service_Res
    * returned.
    * @return Google_Service_Resourceviews_ZoneViewsListResourcesResponse
    */
-  public function listResources($project, $zone, $resourceView, $optParams = array())
+  public function listResources($project, $zone, $resourceView, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'resourceView' => $resourceView);
     $params = array_merge($params, $optParams);
@@ -546,7 +546,7 @@ class Google_Service_Resourceviews_ZoneViews_Resource extends Google_Service_Res
    * @param array $optParams Optional parameters.
    * @return Google_Service_Resourceviews_Operation
    */
-  public function removeResources($project, $zone, $resourceView, Google_Service_Resourceviews_ZoneViewsRemoveResourcesRequest $postBody, $optParams = array())
+  public function removeResources($project, $zone, $resourceView, Google_Service_Resourceviews_ZoneViewsRemoveResourcesRequest $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'resourceView' => $resourceView, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -564,7 +564,7 @@ class Google_Service_Resourceviews_ZoneViews_Resource extends Google_Service_Res
    * @param array $optParams Optional parameters.
    * @return Google_Service_Resourceviews_Operation
    */
-  public function setService($project, $zone, $resourceView, Google_Service_Resourceviews_ZoneViewsSetServiceRequest $postBody, $optParams = array())
+  public function setService($project, $zone, $resourceView, Google_Service_Resourceviews_ZoneViewsSetServiceRequest $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'resourceView' => $resourceView, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);

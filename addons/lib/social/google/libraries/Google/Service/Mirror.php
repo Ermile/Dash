@@ -44,7 +44,7 @@ class Google_Service_Mirror extends Google_Service
   public $subscriptions;
   public $timeline;
   public $timeline_attachments;
-  
+
 
   /**
    * Constructs the internal representation of the Mirror service.
@@ -118,11 +118,11 @@ class Google_Service_Mirror extends Google_Service
             ),'insert' => array(
               'path' => 'contacts',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),'list' => array(
               'path' => 'contacts',
               'httpMethod' => 'GET',
-              'parameters' => array(),
+              'parameters' => [],
             ),'patch' => array(
               'path' => 'contacts/{id}',
               'httpMethod' => 'PATCH',
@@ -166,7 +166,7 @@ class Google_Service_Mirror extends Google_Service
             ),'list' => array(
               'path' => 'locations',
               'httpMethod' => 'GET',
-              'parameters' => array(),
+              'parameters' => [],
             ),
           )
         )
@@ -210,11 +210,11 @@ class Google_Service_Mirror extends Google_Service
             ),'insert' => array(
               'path' => 'subscriptions',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),'list' => array(
               'path' => 'subscriptions',
               'httpMethod' => 'GET',
-              'parameters' => array(),
+              'parameters' => [],
             ),'update' => array(
               'path' => 'subscriptions/{id}',
               'httpMethod' => 'PUT',
@@ -258,7 +258,7 @@ class Google_Service_Mirror extends Google_Service
             ),'insert' => array(
               'path' => 'timeline',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),'list' => array(
               'path' => 'timeline',
               'httpMethod' => 'GET',
@@ -403,7 +403,7 @@ class Google_Service_Mirror_Accounts_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Mirror_Account
    */
-  public function insert($userToken, $accountType, $accountName, Google_Service_Mirror_Account $postBody, $optParams = array())
+  public function insert($userToken, $accountType, $accountName, Google_Service_Mirror_Account $postBody, $optParams = [])
   {
     $params = array('userToken' => $userToken, 'accountType' => $accountType, 'accountName' => $accountName, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -428,7 +428,7 @@ class Google_Service_Mirror_Contacts_Resource extends Google_Service_Resource
    * @param string $id The ID of the contact.
    * @param array $optParams Optional parameters.
    */
-  public function delete($id, $optParams = array())
+  public function delete($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -442,7 +442,7 @@ class Google_Service_Mirror_Contacts_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Mirror_Contact
    */
-  public function get($id, $optParams = array())
+  public function get($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -456,7 +456,7 @@ class Google_Service_Mirror_Contacts_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Mirror_Contact
    */
-  public function insert(Google_Service_Mirror_Contact $postBody, $optParams = array())
+  public function insert(Google_Service_Mirror_Contact $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -470,9 +470,9 @@ class Google_Service_Mirror_Contacts_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Mirror_ContactsListResponse
    */
-  public function listContacts($optParams = array())
+  public function listContacts($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_Mirror_ContactsListResponse");
   }
@@ -486,7 +486,7 @@ class Google_Service_Mirror_Contacts_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Mirror_Contact
    */
-  public function patch($id, Google_Service_Mirror_Contact $postBody, $optParams = array())
+  public function patch($id, Google_Service_Mirror_Contact $postBody, $optParams = [])
   {
     $params = array('id' => $id, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -501,7 +501,7 @@ class Google_Service_Mirror_Contacts_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Mirror_Contact
    */
-  public function update($id, Google_Service_Mirror_Contact $postBody, $optParams = array())
+  public function update($id, Google_Service_Mirror_Contact $postBody, $optParams = [])
   {
     $params = array('id' => $id, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -528,7 +528,7 @@ class Google_Service_Mirror_Locations_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Mirror_Location
    */
-  public function get($id, $optParams = array())
+  public function get($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -541,9 +541,9 @@ class Google_Service_Mirror_Locations_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Mirror_LocationsListResponse
    */
-  public function listLocations($optParams = array())
+  public function listLocations($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_Mirror_LocationsListResponse");
   }
@@ -571,7 +571,7 @@ class Google_Service_Mirror_Settings_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Mirror_Setting
    */
-  public function get($id, $optParams = array())
+  public function get($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -596,7 +596,7 @@ class Google_Service_Mirror_Subscriptions_Resource extends Google_Service_Resour
    * @param string $id The ID of the subscription.
    * @param array $optParams Optional parameters.
    */
-  public function delete($id, $optParams = array())
+  public function delete($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -610,7 +610,7 @@ class Google_Service_Mirror_Subscriptions_Resource extends Google_Service_Resour
    * @param array $optParams Optional parameters.
    * @return Google_Service_Mirror_Subscription
    */
-  public function insert(Google_Service_Mirror_Subscription $postBody, $optParams = array())
+  public function insert(Google_Service_Mirror_Subscription $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -624,9 +624,9 @@ class Google_Service_Mirror_Subscriptions_Resource extends Google_Service_Resour
    * @param array $optParams Optional parameters.
    * @return Google_Service_Mirror_SubscriptionsListResponse
    */
-  public function listSubscriptions($optParams = array())
+  public function listSubscriptions($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_Mirror_SubscriptionsListResponse");
   }
@@ -639,7 +639,7 @@ class Google_Service_Mirror_Subscriptions_Resource extends Google_Service_Resour
    * @param array $optParams Optional parameters.
    * @return Google_Service_Mirror_Subscription
    */
-  public function update($id, Google_Service_Mirror_Subscription $postBody, $optParams = array())
+  public function update($id, Google_Service_Mirror_Subscription $postBody, $optParams = [])
   {
     $params = array('id' => $id, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -664,7 +664,7 @@ class Google_Service_Mirror_Timeline_Resource extends Google_Service_Resource
    * @param string $id The ID of the timeline item.
    * @param array $optParams Optional parameters.
    */
-  public function delete($id, $optParams = array())
+  public function delete($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -678,7 +678,7 @@ class Google_Service_Mirror_Timeline_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Mirror_TimelineItem
    */
-  public function get($id, $optParams = array())
+  public function get($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -692,7 +692,7 @@ class Google_Service_Mirror_Timeline_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Mirror_TimelineItem
    */
-  public function insert(Google_Service_Mirror_TimelineItem $postBody, $optParams = array())
+  public function insert(Google_Service_Mirror_TimelineItem $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -719,9 +719,9 @@ class Google_Service_Mirror_Timeline_Resource extends Google_Service_Resource
    * will be returned.
    * @return Google_Service_Mirror_TimelineListResponse
    */
-  public function listTimeline($optParams = array())
+  public function listTimeline($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_Mirror_TimelineListResponse");
   }
@@ -735,7 +735,7 @@ class Google_Service_Mirror_Timeline_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Mirror_TimelineItem
    */
-  public function patch($id, Google_Service_Mirror_TimelineItem $postBody, $optParams = array())
+  public function patch($id, Google_Service_Mirror_TimelineItem $postBody, $optParams = [])
   {
     $params = array('id' => $id, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -750,7 +750,7 @@ class Google_Service_Mirror_Timeline_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Mirror_TimelineItem
    */
-  public function update($id, Google_Service_Mirror_TimelineItem $postBody, $optParams = array())
+  public function update($id, Google_Service_Mirror_TimelineItem $postBody, $optParams = [])
   {
     $params = array('id' => $id, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -776,7 +776,7 @@ class Google_Service_Mirror_TimelineAttachments_Resource extends Google_Service_
    * @param string $attachmentId The ID of the attachment.
    * @param array $optParams Optional parameters.
    */
-  public function delete($itemId, $attachmentId, $optParams = array())
+  public function delete($itemId, $attachmentId, $optParams = [])
   {
     $params = array('itemId' => $itemId, 'attachmentId' => $attachmentId);
     $params = array_merge($params, $optParams);
@@ -792,7 +792,7 @@ class Google_Service_Mirror_TimelineAttachments_Resource extends Google_Service_
    * @param array $optParams Optional parameters.
    * @return Google_Service_Mirror_Attachment
    */
-  public function get($itemId, $attachmentId, $optParams = array())
+  public function get($itemId, $attachmentId, $optParams = [])
   {
     $params = array('itemId' => $itemId, 'attachmentId' => $attachmentId);
     $params = array_merge($params, $optParams);
@@ -806,7 +806,7 @@ class Google_Service_Mirror_TimelineAttachments_Resource extends Google_Service_
    * @param array $optParams Optional parameters.
    * @return Google_Service_Mirror_Attachment
    */
-  public function insert($itemId, $optParams = array())
+  public function insert($itemId, $optParams = [])
   {
     $params = array('itemId' => $itemId);
     $params = array_merge($params, $optParams);
@@ -822,7 +822,7 @@ class Google_Service_Mirror_TimelineAttachments_Resource extends Google_Service_
    * @param array $optParams Optional parameters.
    * @return Google_Service_Mirror_AttachmentsListResponse
    */
-  public function listTimelineAttachments($itemId, $optParams = array())
+  public function listTimelineAttachments($itemId, $optParams = [])
   {
     $params = array('itemId' => $itemId);
     $params = array_merge($params, $optParams);

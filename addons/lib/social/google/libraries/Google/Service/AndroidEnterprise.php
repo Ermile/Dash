@@ -46,7 +46,7 @@ class Google_Service_AndroidEnterprise extends Google_Service
   public $permissions;
   public $products;
   public $users;
-  
+
 
   /**
    * Constructs the internal representation of the AndroidEnterprise service.
@@ -952,7 +952,7 @@ class Google_Service_AndroidEnterprise_Collections_Resource extends Google_Servi
    * @param string $collectionId The ID of the collection.
    * @param array $optParams Optional parameters.
    */
-  public function delete($enterpriseId, $collectionId, $optParams = array())
+  public function delete($enterpriseId, $collectionId, $optParams = [])
   {
     $params = array('enterpriseId' => $enterpriseId, 'collectionId' => $collectionId);
     $params = array_merge($params, $optParams);
@@ -967,7 +967,7 @@ class Google_Service_AndroidEnterprise_Collections_Resource extends Google_Servi
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidEnterprise_Collection
    */
-  public function get($enterpriseId, $collectionId, $optParams = array())
+  public function get($enterpriseId, $collectionId, $optParams = [])
   {
     $params = array('enterpriseId' => $enterpriseId, 'collectionId' => $collectionId);
     $params = array_merge($params, $optParams);
@@ -982,7 +982,7 @@ class Google_Service_AndroidEnterprise_Collections_Resource extends Google_Servi
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidEnterprise_Collection
    */
-  public function insert($enterpriseId, Google_Service_AndroidEnterprise_Collection $postBody, $optParams = array())
+  public function insert($enterpriseId, Google_Service_AndroidEnterprise_Collection $postBody, $optParams = [])
   {
     $params = array('enterpriseId' => $enterpriseId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -997,7 +997,7 @@ class Google_Service_AndroidEnterprise_Collections_Resource extends Google_Servi
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidEnterprise_CollectionsListResponse
    */
-  public function listCollections($enterpriseId, $optParams = array())
+  public function listCollections($enterpriseId, $optParams = [])
   {
     $params = array('enterpriseId' => $enterpriseId);
     $params = array_merge($params, $optParams);
@@ -1014,7 +1014,7 @@ class Google_Service_AndroidEnterprise_Collections_Resource extends Google_Servi
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidEnterprise_Collection
    */
-  public function patch($enterpriseId, $collectionId, Google_Service_AndroidEnterprise_Collection $postBody, $optParams = array())
+  public function patch($enterpriseId, $collectionId, Google_Service_AndroidEnterprise_Collection $postBody, $optParams = [])
   {
     $params = array('enterpriseId' => $enterpriseId, 'collectionId' => $collectionId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1030,7 +1030,7 @@ class Google_Service_AndroidEnterprise_Collections_Resource extends Google_Servi
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidEnterprise_Collection
    */
-  public function update($enterpriseId, $collectionId, Google_Service_AndroidEnterprise_Collection $postBody, $optParams = array())
+  public function update($enterpriseId, $collectionId, Google_Service_AndroidEnterprise_Collection $postBody, $optParams = [])
   {
     $params = array('enterpriseId' => $enterpriseId, 'collectionId' => $collectionId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1059,7 +1059,7 @@ class Google_Service_AndroidEnterprise_Collectionviewers_Resource extends Google
    * @param string $userId The ID of the user.
    * @param array $optParams Optional parameters.
    */
-  public function delete($enterpriseId, $collectionId, $userId, $optParams = array())
+  public function delete($enterpriseId, $collectionId, $userId, $optParams = [])
   {
     $params = array('enterpriseId' => $enterpriseId, 'collectionId' => $collectionId, 'userId' => $userId);
     $params = array_merge($params, $optParams);
@@ -1077,7 +1077,7 @@ class Google_Service_AndroidEnterprise_Collectionviewers_Resource extends Google
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidEnterprise_User
    */
-  public function get($enterpriseId, $collectionId, $userId, $optParams = array())
+  public function get($enterpriseId, $collectionId, $userId, $optParams = [])
   {
     $params = array('enterpriseId' => $enterpriseId, 'collectionId' => $collectionId, 'userId' => $userId);
     $params = array_merge($params, $optParams);
@@ -1095,7 +1095,7 @@ class Google_Service_AndroidEnterprise_Collectionviewers_Resource extends Google
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidEnterprise_CollectionViewersListResponse
    */
-  public function listCollectionviewers($enterpriseId, $collectionId, $optParams = array())
+  public function listCollectionviewers($enterpriseId, $collectionId, $optParams = [])
   {
     $params = array('enterpriseId' => $enterpriseId, 'collectionId' => $collectionId);
     $params = array_merge($params, $optParams);
@@ -1115,7 +1115,7 @@ class Google_Service_AndroidEnterprise_Collectionviewers_Resource extends Google
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidEnterprise_User
    */
-  public function patch($enterpriseId, $collectionId, $userId, Google_Service_AndroidEnterprise_User $postBody, $optParams = array())
+  public function patch($enterpriseId, $collectionId, $userId, Google_Service_AndroidEnterprise_User $postBody, $optParams = [])
   {
     $params = array('enterpriseId' => $enterpriseId, 'collectionId' => $collectionId, 'userId' => $userId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1134,7 +1134,7 @@ class Google_Service_AndroidEnterprise_Collectionviewers_Resource extends Google
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidEnterprise_User
    */
-  public function update($enterpriseId, $collectionId, $userId, Google_Service_AndroidEnterprise_User $postBody, $optParams = array())
+  public function update($enterpriseId, $collectionId, $userId, Google_Service_AndroidEnterprise_User $postBody, $optParams = [])
   {
     $params = array('enterpriseId' => $enterpriseId, 'collectionId' => $collectionId, 'userId' => $userId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1162,7 +1162,7 @@ class Google_Service_AndroidEnterprise_Devices_Resource extends Google_Service_R
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidEnterprise_Device
    */
-  public function get($enterpriseId, $userId, $deviceId, $optParams = array())
+  public function get($enterpriseId, $userId, $deviceId, $optParams = [])
   {
     $params = array('enterpriseId' => $enterpriseId, 'userId' => $userId, 'deviceId' => $deviceId);
     $params = array_merge($params, $optParams);
@@ -1182,7 +1182,7 @@ class Google_Service_AndroidEnterprise_Devices_Resource extends Google_Service_R
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidEnterprise_DeviceState
    */
-  public function getState($enterpriseId, $userId, $deviceId, $optParams = array())
+  public function getState($enterpriseId, $userId, $deviceId, $optParams = [])
   {
     $params = array('enterpriseId' => $enterpriseId, 'userId' => $userId, 'deviceId' => $deviceId);
     $params = array_merge($params, $optParams);
@@ -1197,7 +1197,7 @@ class Google_Service_AndroidEnterprise_Devices_Resource extends Google_Service_R
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidEnterprise_DevicesListResponse
    */
-  public function listDevices($enterpriseId, $userId, $optParams = array())
+  public function listDevices($enterpriseId, $userId, $optParams = [])
   {
     $params = array('enterpriseId' => $enterpriseId, 'userId' => $userId);
     $params = array_merge($params, $optParams);
@@ -1218,7 +1218,7 @@ class Google_Service_AndroidEnterprise_Devices_Resource extends Google_Service_R
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidEnterprise_DeviceState
    */
-  public function setState($enterpriseId, $userId, $deviceId, Google_Service_AndroidEnterprise_DeviceState $postBody, $optParams = array())
+  public function setState($enterpriseId, $userId, $deviceId, Google_Service_AndroidEnterprise_DeviceState $postBody, $optParams = [])
   {
     $params = array('enterpriseId' => $enterpriseId, 'userId' => $userId, 'deviceId' => $deviceId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1246,7 +1246,7 @@ class Google_Service_AndroidEnterprise_Enterprises_Resource extends Google_Servi
    * @param string $enterpriseId The ID of the enterprise.
    * @param array $optParams Optional parameters.
    */
-  public function delete($enterpriseId, $optParams = array())
+  public function delete($enterpriseId, $optParams = [])
   {
     $params = array('enterpriseId' => $enterpriseId);
     $params = array_merge($params, $optParams);
@@ -1262,7 +1262,7 @@ class Google_Service_AndroidEnterprise_Enterprises_Resource extends Google_Servi
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidEnterprise_Enterprise
    */
-  public function enroll($token, Google_Service_AndroidEnterprise_Enterprise $postBody, $optParams = array())
+  public function enroll($token, Google_Service_AndroidEnterprise_Enterprise $postBody, $optParams = [])
   {
     $params = array('token' => $token, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1276,7 +1276,7 @@ class Google_Service_AndroidEnterprise_Enterprises_Resource extends Google_Servi
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidEnterprise_Enterprise
    */
-  public function get($enterpriseId, $optParams = array())
+  public function get($enterpriseId, $optParams = [])
   {
     $params = array('enterpriseId' => $enterpriseId);
     $params = array_merge($params, $optParams);
@@ -1293,7 +1293,7 @@ class Google_Service_AndroidEnterprise_Enterprises_Resource extends Google_Servi
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidEnterprise_Enterprise
    */
-  public function insert($token, Google_Service_AndroidEnterprise_Enterprise $postBody, $optParams = array())
+  public function insert($token, Google_Service_AndroidEnterprise_Enterprise $postBody, $optParams = [])
   {
     $params = array('token' => $token, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1308,7 +1308,7 @@ class Google_Service_AndroidEnterprise_Enterprises_Resource extends Google_Servi
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidEnterprise_EnterprisesListResponse
    */
-  public function listEnterprises($domain, $optParams = array())
+  public function listEnterprises($domain, $optParams = [])
   {
     $params = array('domain' => $domain);
     $params = array_merge($params, $optParams);
@@ -1324,7 +1324,7 @@ class Google_Service_AndroidEnterprise_Enterprises_Resource extends Google_Servi
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidEnterprise_EnterpriseAccount
    */
-  public function setAccount($enterpriseId, Google_Service_AndroidEnterprise_EnterpriseAccount $postBody, $optParams = array())
+  public function setAccount($enterpriseId, Google_Service_AndroidEnterprise_EnterpriseAccount $postBody, $optParams = [])
   {
     $params = array('enterpriseId' => $enterpriseId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1337,7 +1337,7 @@ class Google_Service_AndroidEnterprise_Enterprises_Resource extends Google_Servi
    * @param string $enterpriseId The ID of the enterprise.
    * @param array $optParams Optional parameters.
    */
-  public function unenroll($enterpriseId, $optParams = array())
+  public function unenroll($enterpriseId, $optParams = [])
   {
     $params = array('enterpriseId' => $enterpriseId);
     $params = array_merge($params, $optParams);
@@ -1366,7 +1366,7 @@ class Google_Service_AndroidEnterprise_Entitlements_Resource extends Google_Serv
    * "app:com.google.android.gm".
    * @param array $optParams Optional parameters.
    */
-  public function delete($enterpriseId, $userId, $entitlementId, $optParams = array())
+  public function delete($enterpriseId, $userId, $entitlementId, $optParams = [])
   {
     $params = array('enterpriseId' => $enterpriseId, 'userId' => $userId, 'entitlementId' => $entitlementId);
     $params = array_merge($params, $optParams);
@@ -1383,7 +1383,7 @@ class Google_Service_AndroidEnterprise_Entitlements_Resource extends Google_Serv
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidEnterprise_Entitlement
    */
-  public function get($enterpriseId, $userId, $entitlementId, $optParams = array())
+  public function get($enterpriseId, $userId, $entitlementId, $optParams = [])
   {
     $params = array('enterpriseId' => $enterpriseId, 'userId' => $userId, 'entitlementId' => $entitlementId);
     $params = array_merge($params, $optParams);
@@ -1399,7 +1399,7 @@ class Google_Service_AndroidEnterprise_Entitlements_Resource extends Google_Serv
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidEnterprise_EntitlementsListResponse
    */
-  public function listEntitlements($enterpriseId, $userId, $optParams = array())
+  public function listEntitlements($enterpriseId, $userId, $optParams = [])
   {
     $params = array('enterpriseId' => $enterpriseId, 'userId' => $userId);
     $params = array_merge($params, $optParams);
@@ -1423,7 +1423,7 @@ class Google_Service_AndroidEnterprise_Entitlements_Resource extends Google_Serv
    * entitlement was successfully assigned to the user.
    * @return Google_Service_AndroidEnterprise_Entitlement
    */
-  public function patch($enterpriseId, $userId, $entitlementId, Google_Service_AndroidEnterprise_Entitlement $postBody, $optParams = array())
+  public function patch($enterpriseId, $userId, $entitlementId, Google_Service_AndroidEnterprise_Entitlement $postBody, $optParams = [])
   {
     $params = array('enterpriseId' => $enterpriseId, 'userId' => $userId, 'entitlementId' => $entitlementId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1446,7 +1446,7 @@ class Google_Service_AndroidEnterprise_Entitlements_Resource extends Google_Serv
    * entitlement was successfully assigned to the user.
    * @return Google_Service_AndroidEnterprise_Entitlement
    */
-  public function update($enterpriseId, $userId, $entitlementId, Google_Service_AndroidEnterprise_Entitlement $postBody, $optParams = array())
+  public function update($enterpriseId, $userId, $entitlementId, Google_Service_AndroidEnterprise_Entitlement $postBody, $optParams = [])
   {
     $params = array('enterpriseId' => $enterpriseId, 'userId' => $userId, 'entitlementId' => $entitlementId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1475,7 +1475,7 @@ class Google_Service_AndroidEnterprise_Grouplicenses_Resource extends Google_Ser
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidEnterprise_GroupLicense
    */
-  public function get($enterpriseId, $groupLicenseId, $optParams = array())
+  public function get($enterpriseId, $groupLicenseId, $optParams = [])
   {
     $params = array('enterpriseId' => $enterpriseId, 'groupLicenseId' => $groupLicenseId);
     $params = array_merge($params, $optParams);
@@ -1490,7 +1490,7 @@ class Google_Service_AndroidEnterprise_Grouplicenses_Resource extends Google_Ser
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidEnterprise_GroupLicensesListResponse
    */
-  public function listGrouplicenses($enterpriseId, $optParams = array())
+  public function listGrouplicenses($enterpriseId, $optParams = [])
   {
     $params = array('enterpriseId' => $enterpriseId);
     $params = array_merge($params, $optParams);
@@ -1519,7 +1519,7 @@ class Google_Service_AndroidEnterprise_Grouplicenseusers_Resource extends Google
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidEnterprise_GroupLicenseUsersListResponse
    */
-  public function listGrouplicenseusers($enterpriseId, $groupLicenseId, $optParams = array())
+  public function listGrouplicenseusers($enterpriseId, $groupLicenseId, $optParams = [])
   {
     $params = array('enterpriseId' => $enterpriseId, 'groupLicenseId' => $groupLicenseId);
     $params = array_merge($params, $optParams);
@@ -1550,7 +1550,7 @@ class Google_Service_AndroidEnterprise_Installs_Resource extends Google_Service_
    * e.g. "app:com.google.android.gm".
    * @param array $optParams Optional parameters.
    */
-  public function delete($enterpriseId, $userId, $deviceId, $installId, $optParams = array())
+  public function delete($enterpriseId, $userId, $deviceId, $installId, $optParams = [])
   {
     $params = array('enterpriseId' => $enterpriseId, 'userId' => $userId, 'deviceId' => $deviceId, 'installId' => $installId);
     $params = array_merge($params, $optParams);
@@ -1568,7 +1568,7 @@ class Google_Service_AndroidEnterprise_Installs_Resource extends Google_Service_
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidEnterprise_Install
    */
-  public function get($enterpriseId, $userId, $deviceId, $installId, $optParams = array())
+  public function get($enterpriseId, $userId, $deviceId, $installId, $optParams = [])
   {
     $params = array('enterpriseId' => $enterpriseId, 'userId' => $userId, 'deviceId' => $deviceId, 'installId' => $installId);
     $params = array_merge($params, $optParams);
@@ -1585,7 +1585,7 @@ class Google_Service_AndroidEnterprise_Installs_Resource extends Google_Service_
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidEnterprise_InstallsListResponse
    */
-  public function listInstalls($enterpriseId, $userId, $deviceId, $optParams = array())
+  public function listInstalls($enterpriseId, $userId, $deviceId, $optParams = [])
   {
     $params = array('enterpriseId' => $enterpriseId, 'userId' => $userId, 'deviceId' => $deviceId);
     $params = array_merge($params, $optParams);
@@ -1606,7 +1606,7 @@ class Google_Service_AndroidEnterprise_Installs_Resource extends Google_Service_
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidEnterprise_Install
    */
-  public function patch($enterpriseId, $userId, $deviceId, $installId, Google_Service_AndroidEnterprise_Install $postBody, $optParams = array())
+  public function patch($enterpriseId, $userId, $deviceId, $installId, Google_Service_AndroidEnterprise_Install $postBody, $optParams = [])
   {
     $params = array('enterpriseId' => $enterpriseId, 'userId' => $userId, 'deviceId' => $deviceId, 'installId' => $installId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1627,7 +1627,7 @@ class Google_Service_AndroidEnterprise_Installs_Resource extends Google_Service_
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidEnterprise_Install
    */
-  public function update($enterpriseId, $userId, $deviceId, $installId, Google_Service_AndroidEnterprise_Install $postBody, $optParams = array())
+  public function update($enterpriseId, $userId, $deviceId, $installId, Google_Service_AndroidEnterprise_Install $postBody, $optParams = [])
   {
     $params = array('enterpriseId' => $enterpriseId, 'userId' => $userId, 'deviceId' => $deviceId, 'installId' => $installId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1657,7 +1657,7 @@ class Google_Service_AndroidEnterprise_Permissions_Resource extends Google_Servi
    * (e.g. "en-US", "de")
    * @return Google_Service_AndroidEnterprise_Permission
    */
-  public function get($permissionId, $optParams = array())
+  public function get($permissionId, $optParams = [])
   {
     $params = array('permissionId' => $permissionId);
     $params = array_merge($params, $optParams);
@@ -1685,7 +1685,7 @@ class Google_Service_AndroidEnterprise_Products_Resource extends Google_Service_
    * @param Google_ProductsApproveRequest $postBody
    * @param array $optParams Optional parameters.
    */
-  public function approve($enterpriseId, $productId, Google_Service_AndroidEnterprise_ProductsApproveRequest $postBody, $optParams = array())
+  public function approve($enterpriseId, $productId, Google_Service_AndroidEnterprise_ProductsApproveRequest $postBody, $optParams = [])
   {
     $params = array('enterpriseId' => $enterpriseId, 'productId' => $productId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1706,7 +1706,7 @@ class Google_Service_AndroidEnterprise_Products_Resource extends Google_Service_
    * permission names and descriptions in the returned iframe.
    * @return Google_Service_AndroidEnterprise_ProductsGenerateApprovalUrlResponse
    */
-  public function generateApprovalUrl($enterpriseId, $productId, $optParams = array())
+  public function generateApprovalUrl($enterpriseId, $productId, $optParams = [])
   {
     $params = array('enterpriseId' => $enterpriseId, 'productId' => $productId);
     $params = array_merge($params, $optParams);
@@ -1726,7 +1726,7 @@ class Google_Service_AndroidEnterprise_Products_Resource extends Google_Service_
    * (e.g. "en-US", "de").
    * @return Google_Service_AndroidEnterprise_Product
    */
-  public function get($enterpriseId, $productId, $optParams = array())
+  public function get($enterpriseId, $productId, $optParams = [])
   {
     $params = array('enterpriseId' => $enterpriseId, 'productId' => $productId);
     $params = array_merge($params, $optParams);
@@ -1746,7 +1746,7 @@ class Google_Service_AndroidEnterprise_Products_Resource extends Google_Service_
    * (e.g. "en-US", "de").
    * @return Google_Service_AndroidEnterprise_AppRestrictionsSchema
    */
-  public function getAppRestrictionsSchema($enterpriseId, $productId, $optParams = array())
+  public function getAppRestrictionsSchema($enterpriseId, $productId, $optParams = [])
   {
     $params = array('enterpriseId' => $enterpriseId, 'productId' => $productId);
     $params = array_merge($params, $optParams);
@@ -1762,7 +1762,7 @@ class Google_Service_AndroidEnterprise_Products_Resource extends Google_Service_
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidEnterprise_ProductPermissions
    */
-  public function getPermissions($enterpriseId, $productId, $optParams = array())
+  public function getPermissions($enterpriseId, $productId, $optParams = [])
   {
     $params = array('enterpriseId' => $enterpriseId, 'productId' => $productId);
     $params = array_merge($params, $optParams);
@@ -1779,7 +1779,7 @@ class Google_Service_AndroidEnterprise_Products_Resource extends Google_Service_
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidEnterprise_ProductPermissions
    */
-  public function updatePermissions($enterpriseId, $productId, Google_Service_AndroidEnterprise_ProductPermissions $postBody, $optParams = array())
+  public function updatePermissions($enterpriseId, $productId, Google_Service_AndroidEnterprise_ProductPermissions $postBody, $optParams = [])
   {
     $params = array('enterpriseId' => $enterpriseId, 'productId' => $productId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1808,7 +1808,7 @@ class Google_Service_AndroidEnterprise_Users_Resource extends Google_Service_Res
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidEnterprise_UserToken
    */
-  public function generateToken($enterpriseId, $userId, $optParams = array())
+  public function generateToken($enterpriseId, $userId, $optParams = [])
   {
     $params = array('enterpriseId' => $enterpriseId, 'userId' => $userId);
     $params = array_merge($params, $optParams);
@@ -1823,7 +1823,7 @@ class Google_Service_AndroidEnterprise_Users_Resource extends Google_Service_Res
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidEnterprise_User
    */
-  public function get($enterpriseId, $userId, $optParams = array())
+  public function get($enterpriseId, $userId, $optParams = [])
   {
     $params = array('enterpriseId' => $enterpriseId, 'userId' => $userId);
     $params = array_merge($params, $optParams);
@@ -1838,7 +1838,7 @@ class Google_Service_AndroidEnterprise_Users_Resource extends Google_Service_Res
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidEnterprise_UsersListResponse
    */
-  public function listUsers($enterpriseId, $email, $optParams = array())
+  public function listUsers($enterpriseId, $email, $optParams = [])
   {
     $params = array('enterpriseId' => $enterpriseId, 'email' => $email);
     $params = array_merge($params, $optParams);
@@ -1853,7 +1853,7 @@ class Google_Service_AndroidEnterprise_Users_Resource extends Google_Service_Res
    * @param string $userId The ID of the user.
    * @param array $optParams Optional parameters.
    */
-  public function revokeToken($enterpriseId, $userId, $optParams = array())
+  public function revokeToken($enterpriseId, $userId, $optParams = [])
   {
     $params = array('enterpriseId' => $enterpriseId, 'userId' => $userId);
     $params = array_merge($params, $optParams);

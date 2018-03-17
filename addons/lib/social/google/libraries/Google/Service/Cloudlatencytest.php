@@ -35,7 +35,7 @@ class Google_Service_Cloudlatencytest extends Google_Service
       "https://www.googleapis.com/auth/monitoring.readonly";
 
   public $statscollection;
-  
+
 
   /**
    * Constructs the internal representation of the Cloudlatencytest service.
@@ -59,11 +59,11 @@ class Google_Service_Cloudlatencytest extends Google_Service
             'updateaggregatedstats' => array(
               'path' => 'updateaggregatedstats',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),'updatestats' => array(
               'path' => 'updatestats',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),
           )
         )
@@ -90,7 +90,7 @@ class Google_Service_Cloudlatencytest_Statscollection_Resource extends Google_Se
    * @param array $optParams Optional parameters.
    * @return Google_Service_Cloudlatencytest_AggregatedStatsReply
    */
-  public function updateaggregatedstats(Google_Service_Cloudlatencytest_AggregatedStats $postBody, $optParams = array())
+  public function updateaggregatedstats(Google_Service_Cloudlatencytest_AggregatedStats $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -104,7 +104,7 @@ class Google_Service_Cloudlatencytest_Statscollection_Resource extends Google_Se
    * @param array $optParams Optional parameters.
    * @return Google_Service_Cloudlatencytest_StatsReply
    */
-  public function updatestats(Google_Service_Cloudlatencytest_Stats $postBody, $optParams = array())
+  public function updatestats(Google_Service_Cloudlatencytest_Stats $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);

@@ -5,7 +5,7 @@ class data
 {
 	public function _toArray()
 	{
-		$toArray = array();
+		$toArray = [];
 		if(method_exists($this, 'toArray')) $this->toArray();
 		if(isset($this->form))
 		{

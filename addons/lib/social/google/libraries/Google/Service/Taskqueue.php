@@ -39,7 +39,7 @@ class Google_Service_Taskqueue extends Google_Service
 
   public $taskqueues;
   public $tasks;
-  
+
 
   /**
    * Constructs the internal representation of the Taskqueue service.
@@ -271,7 +271,7 @@ class Google_Service_Taskqueue_Taskqueues_Resource extends Google_Service_Resour
    * @opt_param bool getStats Whether to get stats. Optional.
    * @return Google_Service_Taskqueue_TaskQueue
    */
-  public function get($project, $taskqueue, $optParams = array())
+  public function get($project, $taskqueue, $optParams = [])
   {
     $params = array('project' => $project, 'taskqueue' => $taskqueue);
     $params = array_merge($params, $optParams);
@@ -298,7 +298,7 @@ class Google_Service_Taskqueue_Tasks_Resource extends Google_Service_Resource
    * @param string $task The id of the task to delete.
    * @param array $optParams Optional parameters.
    */
-  public function delete($project, $taskqueue, $task, $optParams = array())
+  public function delete($project, $taskqueue, $task, $optParams = [])
   {
     $params = array('project' => $project, 'taskqueue' => $taskqueue, 'task' => $task);
     $params = array_merge($params, $optParams);
@@ -314,7 +314,7 @@ class Google_Service_Taskqueue_Tasks_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Taskqueue_Task
    */
-  public function get($project, $taskqueue, $task, $optParams = array())
+  public function get($project, $taskqueue, $task, $optParams = [])
   {
     $params = array('project' => $project, 'taskqueue' => $taskqueue, 'task' => $task);
     $params = array_merge($params, $optParams);
@@ -330,7 +330,7 @@ class Google_Service_Taskqueue_Tasks_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Taskqueue_Task
    */
-  public function insert($project, $taskqueue, Google_Service_Taskqueue_Task $postBody, $optParams = array())
+  public function insert($project, $taskqueue, Google_Service_Taskqueue_Task $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'taskqueue' => $taskqueue, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -354,7 +354,7 @@ class Google_Service_Taskqueue_Tasks_Resource extends Google_Service_Resource
    * available tag
    * @return Google_Service_Taskqueue_Tasks
    */
-  public function lease($project, $taskqueue, $numTasks, $leaseSecs, $optParams = array())
+  public function lease($project, $taskqueue, $numTasks, $leaseSecs, $optParams = [])
   {
     $params = array('project' => $project, 'taskqueue' => $taskqueue, 'numTasks' => $numTasks, 'leaseSecs' => $leaseSecs);
     $params = array_merge($params, $optParams);
@@ -369,7 +369,7 @@ class Google_Service_Taskqueue_Tasks_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Taskqueue_Tasks2
    */
-  public function listTasks($project, $taskqueue, $optParams = array())
+  public function listTasks($project, $taskqueue, $optParams = [])
   {
     $params = array('project' => $project, 'taskqueue' => $taskqueue);
     $params = array_merge($params, $optParams);
@@ -388,7 +388,7 @@ class Google_Service_Taskqueue_Tasks_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Taskqueue_Task
    */
-  public function patch($project, $taskqueue, $task, $newLeaseSeconds, Google_Service_Taskqueue_Task $postBody, $optParams = array())
+  public function patch($project, $taskqueue, $task, $newLeaseSeconds, Google_Service_Taskqueue_Task $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'taskqueue' => $taskqueue, 'task' => $task, 'newLeaseSeconds' => $newLeaseSeconds, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -406,7 +406,7 @@ class Google_Service_Taskqueue_Tasks_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Taskqueue_Task
    */
-  public function update($project, $taskqueue, $task, $newLeaseSeconds, Google_Service_Taskqueue_Task $postBody, $optParams = array())
+  public function update($project, $taskqueue, $task, $newLeaseSeconds, Google_Service_Taskqueue_Task $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'taskqueue' => $taskqueue, 'task' => $task, 'newLeaseSeconds' => $newLeaseSeconds, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);

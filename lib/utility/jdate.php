@@ -51,7 +51,7 @@ class jdate
     private static $jalali   = true; //Use Jalali Date, If set to false, falls back to gregorian
     private static $convert  = true; //Convert numbers to Farsi characters in utf-8
     private static $timezone = null; //Timezone String e.g Asia/Tehran, Defaults to Server Timezone Settings
-    private static $temp = array();
+    private static $temp = [];
 
     /**
      * jDateTime::Constructor
@@ -112,12 +112,12 @@ class jdate
         else {
 
             //Find what to replace
-            $chars  = (preg_match_all('/([a-zA-Z]{1})/', $format, $chars)) ? $chars[0] : array();
+            $chars  = (preg_match_all('/([a-zA-Z]{1})/', $format, $chars)) ? $chars[0] : [];
 
             //Intact Keys
             $intact = array('B','h','H','g','G','i','s','I','U','u','Z','O','P');
             $intact = self::filterArray($chars, $intact);
-            $intactValues = array();
+            $intactValues = [];
 
             foreach ($intact as $k => $v) {
                 $intactValues[$k] = $obj->format($v);
@@ -131,7 +131,7 @@ class jdate
 
             $keys   = array('d','D','j','l','N','S','w','z','W','F','m','M','n','t','L','o','Y','y','a','A','c','r','e','T');
             $keys   = self::filterArray($chars, $keys, array('z'));
-            $values = array();
+            $values = [];
 
             foreach ($keys as $k => $key) {
 
@@ -427,7 +427,7 @@ class jdate
     /**
      * Filters out an array
      */
-    private static function filterArray($needle, $heystack, $always = array())
+    private static function filterArray($needle, $heystack, $always = [])
     {
         return array_intersect(array_merge($needle, $always), $heystack);
     }

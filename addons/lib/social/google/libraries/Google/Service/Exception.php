@@ -24,12 +24,12 @@ class Google_Service_Exception extends Google_Exception implements Google_Task_R
   /**
    * Optional list of errors returned in a JSON body of an HTTP error response.
    */
-  protected $errors = array();
+  protected $errors = [];
 
   /**
    * @var array $retryMap Map of errors with retry counts.
    */
-  private $retryMap = array();
+  private $retryMap = [];
 
   /**
    * Override default constructor to add the ability to set $errors and a retry
@@ -46,7 +46,7 @@ class Google_Service_Exception extends Google_Exception implements Google_Task_R
       $message,
       $code = 0,
       Exception $previous = null,
-      $errors = array(),
+      $errors = [],
       array $retryMap = null
   ) {
     if (version_compare(PHP_VERSION, '5.3.0') >= 0) {

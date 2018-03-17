@@ -41,7 +41,7 @@ class Google_Service_Autoscaler extends Google_Service
   public $autoscalers;
   public $zoneOperations;
   public $zones;
-  
+
 
   /**
    * Constructs the internal representation of the Autoscaler service.
@@ -321,7 +321,7 @@ class Google_Service_Autoscaler_Autoscalers_Resource extends Google_Service_Reso
    * @param array $optParams Optional parameters.
    * @return Google_Service_Autoscaler_Operation
    */
-  public function delete($project, $zone, $autoscaler, $optParams = array())
+  public function delete($project, $zone, $autoscaler, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'autoscaler' => $autoscaler);
     $params = array_merge($params, $optParams);
@@ -337,7 +337,7 @@ class Google_Service_Autoscaler_Autoscalers_Resource extends Google_Service_Reso
    * @param array $optParams Optional parameters.
    * @return Google_Service_Autoscaler_Autoscaler
    */
-  public function get($project, $zone, $autoscaler, $optParams = array())
+  public function get($project, $zone, $autoscaler, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'autoscaler' => $autoscaler);
     $params = array_merge($params, $optParams);
@@ -353,7 +353,7 @@ class Google_Service_Autoscaler_Autoscalers_Resource extends Google_Service_Reso
    * @param array $optParams Optional parameters.
    * @return Google_Service_Autoscaler_Operation
    */
-  public function insert($project, $zone, Google_Service_Autoscaler_Autoscaler $postBody, $optParams = array())
+  public function insert($project, $zone, Google_Service_Autoscaler_Autoscaler $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -372,7 +372,7 @@ class Google_Service_Autoscaler_Autoscalers_Resource extends Google_Service_Reso
    * @opt_param string maxResults
    * @return Google_Service_Autoscaler_AutoscalerListResponse
    */
-  public function listAutoscalers($project, $zone, $optParams = array())
+  public function listAutoscalers($project, $zone, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone);
     $params = array_merge($params, $optParams);
@@ -390,7 +390,7 @@ class Google_Service_Autoscaler_Autoscalers_Resource extends Google_Service_Reso
    * @param array $optParams Optional parameters.
    * @return Google_Service_Autoscaler_Operation
    */
-  public function patch($project, $zone, $autoscaler, Google_Service_Autoscaler_Autoscaler $postBody, $optParams = array())
+  public function patch($project, $zone, $autoscaler, Google_Service_Autoscaler_Autoscaler $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'autoscaler' => $autoscaler, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -407,7 +407,7 @@ class Google_Service_Autoscaler_Autoscalers_Resource extends Google_Service_Reso
    * @param array $optParams Optional parameters.
    * @return Google_Service_Autoscaler_Operation
    */
-  public function update($project, $zone, $autoscaler, Google_Service_Autoscaler_Autoscaler $postBody, $optParams = array())
+  public function update($project, $zone, $autoscaler, Google_Service_Autoscaler_Autoscaler $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'autoscaler' => $autoscaler, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -435,7 +435,7 @@ class Google_Service_Autoscaler_ZoneOperations_Resource extends Google_Service_R
    * @param string $operation
    * @param array $optParams Optional parameters.
    */
-  public function delete($project, $zone, $operation, $optParams = array())
+  public function delete($project, $zone, $operation, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'operation' => $operation);
     $params = array_merge($params, $optParams);
@@ -452,7 +452,7 @@ class Google_Service_Autoscaler_ZoneOperations_Resource extends Google_Service_R
    * @param array $optParams Optional parameters.
    * @return Google_Service_Autoscaler_Operation
    */
-  public function get($project, $zone, $operation, $optParams = array())
+  public function get($project, $zone, $operation, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'operation' => $operation);
     $params = array_merge($params, $optParams);
@@ -472,7 +472,7 @@ class Google_Service_Autoscaler_ZoneOperations_Resource extends Google_Service_R
    * @opt_param string maxResults
    * @return Google_Service_Autoscaler_OperationList
    */
-  public function listZoneOperations($project, $zone, $optParams = array())
+  public function listZoneOperations($project, $zone, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone);
     $params = array_merge($params, $optParams);
@@ -502,7 +502,7 @@ class Google_Service_Autoscaler_Zones_Resource extends Google_Service_Resource
    * @opt_param string maxResults
    * @return Google_Service_Autoscaler_ZoneList
    */
-  public function listZones($project, $optParams = array())
+  public function listZones($project, $optParams = [])
   {
     $params = array('project' => $project);
     $params = array_merge($params, $optParams);

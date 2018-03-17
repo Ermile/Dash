@@ -78,7 +78,7 @@ class git
 	public static function createPackage($_dash = true)
 	{
 		echo "<pre>";
-		$res = array();
+		$res = [];
 		//get details from last commit
 		if($_dash)
 		{
@@ -140,11 +140,11 @@ class git
 
 
 	/* creates a compressed zip file */
-	protected static function create_zip($files = array(), $destination = '', $overwrite = false) {
+	protected static function create_zip($files = [], $destination = '', $overwrite = false) {
 		//if the zip file already exists and overwrite is false, return false
 		if(file_exists($destination) && !$overwrite) { return false; }
 		//vars
-		$valid_files = array();
+		$valid_files = [];
 		//if files were passed in...
 		if(is_array($files))
 		{

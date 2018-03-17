@@ -43,7 +43,7 @@ class Google_Service_Replicapool extends Google_Service
 
   public $instanceGroupManagers;
   public $zoneOperations;
-  
+
 
   /**
    * Constructs the internal representation of the Replicapool service.
@@ -365,7 +365,7 @@ class Google_Service_Replicapool_InstanceGroupManagers_Resource extends Google_S
    * @param array $optParams Optional parameters.
    * @return Google_Service_Replicapool_Operation
    */
-  public function abandonInstances($project, $zone, $instanceGroupManager, Google_Service_Replicapool_InstanceGroupManagersAbandonInstancesRequest $postBody, $optParams = array())
+  public function abandonInstances($project, $zone, $instanceGroupManager, Google_Service_Replicapool_InstanceGroupManagersAbandonInstancesRequest $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'instanceGroupManager' => $instanceGroupManager, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -386,7 +386,7 @@ class Google_Service_Replicapool_InstanceGroupManagers_Resource extends Google_S
    * @param array $optParams Optional parameters.
    * @return Google_Service_Replicapool_Operation
    */
-  public function delete($project, $zone, $instanceGroupManager, $optParams = array())
+  public function delete($project, $zone, $instanceGroupManager, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'instanceGroupManager' => $instanceGroupManager);
     $params = array_merge($params, $optParams);
@@ -407,7 +407,7 @@ class Google_Service_Replicapool_InstanceGroupManagers_Resource extends Google_S
    * @param array $optParams Optional parameters.
    * @return Google_Service_Replicapool_Operation
    */
-  public function deleteInstances($project, $zone, $instanceGroupManager, Google_Service_Replicapool_InstanceGroupManagersDeleteInstancesRequest $postBody, $optParams = array())
+  public function deleteInstances($project, $zone, $instanceGroupManager, Google_Service_Replicapool_InstanceGroupManagersDeleteInstancesRequest $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'instanceGroupManager' => $instanceGroupManager, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -425,7 +425,7 @@ class Google_Service_Replicapool_InstanceGroupManagers_Resource extends Google_S
    * @param array $optParams Optional parameters.
    * @return Google_Service_Replicapool_InstanceGroupManager
    */
-  public function get($project, $zone, $instanceGroupManager, $optParams = array())
+  public function get($project, $zone, $instanceGroupManager, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'instanceGroupManager' => $instanceGroupManager);
     $params = array_merge($params, $optParams);
@@ -444,7 +444,7 @@ class Google_Service_Replicapool_InstanceGroupManagers_Resource extends Google_S
    * @param array $optParams Optional parameters.
    * @return Google_Service_Replicapool_Operation
    */
-  public function insert($project, $zone, $size, Google_Service_Replicapool_InstanceGroupManager $postBody, $optParams = array())
+  public function insert($project, $zone, $size, Google_Service_Replicapool_InstanceGroupManager $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'size' => $size, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -468,7 +468,7 @@ class Google_Service_Replicapool_InstanceGroupManagers_Resource extends Google_S
    * returned. Maximum value is 500 and default value is 500.
    * @return Google_Service_Replicapool_InstanceGroupManagerList
    */
-  public function listInstanceGroupManagers($project, $zone, $optParams = array())
+  public function listInstanceGroupManagers($project, $zone, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone);
     $params = array_merge($params, $optParams);
@@ -488,7 +488,7 @@ class Google_Service_Replicapool_InstanceGroupManagers_Resource extends Google_S
    * @param array $optParams Optional parameters.
    * @return Google_Service_Replicapool_Operation
    */
-  public function recreateInstances($project, $zone, $instanceGroupManager, Google_Service_Replicapool_InstanceGroupManagersRecreateInstancesRequest $postBody, $optParams = array())
+  public function recreateInstances($project, $zone, $instanceGroupManager, Google_Service_Replicapool_InstanceGroupManagersRecreateInstancesRequest $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'instanceGroupManager' => $instanceGroupManager, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -510,7 +510,7 @@ class Google_Service_Replicapool_InstanceGroupManagers_Resource extends Google_S
    * @param array $optParams Optional parameters.
    * @return Google_Service_Replicapool_Operation
    */
-  public function resize($project, $zone, $instanceGroupManager, $size, $optParams = array())
+  public function resize($project, $zone, $instanceGroupManager, $size, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'instanceGroupManager' => $instanceGroupManager, 'size' => $size);
     $params = array_merge($params, $optParams);
@@ -530,7 +530,7 @@ class Google_Service_Replicapool_InstanceGroupManagers_Resource extends Google_S
    * @param array $optParams Optional parameters.
    * @return Google_Service_Replicapool_Operation
    */
-  public function setInstanceTemplate($project, $zone, $instanceGroupManager, Google_Service_Replicapool_InstanceGroupManagersSetInstanceTemplateRequest $postBody, $optParams = array())
+  public function setInstanceTemplate($project, $zone, $instanceGroupManager, Google_Service_Replicapool_InstanceGroupManagersSetInstanceTemplateRequest $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'instanceGroupManager' => $instanceGroupManager, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -550,7 +550,7 @@ class Google_Service_Replicapool_InstanceGroupManagers_Resource extends Google_S
    * @param array $optParams Optional parameters.
    * @return Google_Service_Replicapool_Operation
    */
-  public function setTargetPools($project, $zone, $instanceGroupManager, Google_Service_Replicapool_InstanceGroupManagersSetTargetPoolsRequest $postBody, $optParams = array())
+  public function setTargetPools($project, $zone, $instanceGroupManager, Google_Service_Replicapool_InstanceGroupManagersSetTargetPoolsRequest $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'instanceGroupManager' => $instanceGroupManager, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -579,7 +579,7 @@ class Google_Service_Replicapool_ZoneOperations_Resource extends Google_Service_
    * @param array $optParams Optional parameters.
    * @return Google_Service_Replicapool_Operation
    */
-  public function get($project, $zone, $operation, $optParams = array())
+  public function get($project, $zone, $operation, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'operation' => $operation);
     $params = array_merge($params, $optParams);
@@ -602,7 +602,7 @@ class Google_Service_Replicapool_ZoneOperations_Resource extends Google_Service_
    * returned. Maximum value is 500 and default value is 500.
    * @return Google_Service_Replicapool_OperationList
    */
-  public function listZoneOperations($project, $zone, $optParams = array())
+  public function listZoneOperations($project, $zone, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone);
     $params = array_merge($params, $optParams);

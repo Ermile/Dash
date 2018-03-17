@@ -27,7 +27,7 @@ class Twig_Extension_Debug extends Twig_Extension
         ;
 
         return array(
-            new Twig_SimpleFunction('dump', 'twig_var_dump', array('is_safe' => $isDumpOutputHtmlSafe ? array('html') : array(), 'needs_context' => true, 'needs_environment' => true)),
+            new Twig_SimpleFunction('dump', 'twig_var_dump', array('is_safe' => $isDumpOutputHtmlSafe ? array('html') : [], 'needs_context' => true, 'needs_environment' => true)),
         );
     }
 
@@ -47,7 +47,7 @@ function twig_var_dump(Twig_Environment $env, $context)
 
     $count = func_num_args();
     if (2 === $count) {
-        $vars = array();
+        $vars = [];
         foreach ($context as $key => $value) {
             if (!$value instanceof Twig_Template) {
                 $vars[$key] = $value;

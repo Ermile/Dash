@@ -41,7 +41,7 @@ class Google_Service_Datastore extends Google_Service
       "https://www.googleapis.com/auth/userinfo.email";
 
   public $datasets;
-  
+
 
   /**
    * Constructs the internal representation of the Datastore service.
@@ -150,7 +150,7 @@ class Google_Service_Datastore_Datasets_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Datastore_AllocateIdsResponse
    */
-  public function allocateIds($datasetId, Google_Service_Datastore_AllocateIdsRequest $postBody, $optParams = array())
+  public function allocateIds($datasetId, Google_Service_Datastore_AllocateIdsRequest $postBody, $optParams = [])
   {
     $params = array('datasetId' => $datasetId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -165,7 +165,7 @@ class Google_Service_Datastore_Datasets_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Datastore_BeginTransactionResponse
    */
-  public function beginTransaction($datasetId, Google_Service_Datastore_BeginTransactionRequest $postBody, $optParams = array())
+  public function beginTransaction($datasetId, Google_Service_Datastore_BeginTransactionRequest $postBody, $optParams = [])
   {
     $params = array('datasetId' => $datasetId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -181,7 +181,7 @@ class Google_Service_Datastore_Datasets_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Datastore_CommitResponse
    */
-  public function commit($datasetId, Google_Service_Datastore_CommitRequest $postBody, $optParams = array())
+  public function commit($datasetId, Google_Service_Datastore_CommitRequest $postBody, $optParams = [])
   {
     $params = array('datasetId' => $datasetId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -196,7 +196,7 @@ class Google_Service_Datastore_Datasets_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Datastore_LookupResponse
    */
-  public function lookup($datasetId, Google_Service_Datastore_LookupRequest $postBody, $optParams = array())
+  public function lookup($datasetId, Google_Service_Datastore_LookupRequest $postBody, $optParams = [])
   {
     $params = array('datasetId' => $datasetId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -211,7 +211,7 @@ class Google_Service_Datastore_Datasets_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Datastore_RollbackResponse
    */
-  public function rollback($datasetId, Google_Service_Datastore_RollbackRequest $postBody, $optParams = array())
+  public function rollback($datasetId, Google_Service_Datastore_RollbackRequest $postBody, $optParams = [])
   {
     $params = array('datasetId' => $datasetId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -226,7 +226,7 @@ class Google_Service_Datastore_Datasets_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Datastore_RunQueryResponse
    */
-  public function runQuery($datasetId, Google_Service_Datastore_RunQueryRequest $postBody, $optParams = array())
+  public function runQuery($datasetId, Google_Service_Datastore_RunQueryRequest $postBody, $optParams = [])
   {
     $params = array('datasetId' => $datasetId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);

@@ -49,7 +49,7 @@ class Twig_Lexer implements Twig_LexerInterface
     const REGEX_DQ_STRING_PART = '/[^#"\\\\]*(?:(?:\\\\.|#(?!\{))[^#"\\\\]*)*/As';
     const PUNCTUATION = '()[]{}?:.,|';
 
-    public function __construct(Twig_Environment $env, array $options = array())
+    public function __construct(Twig_Environment $env, array $options = [])
     {
         $this->env = $env;
 
@@ -100,10 +100,10 @@ class Twig_Lexer implements Twig_LexerInterface
         $this->cursor = 0;
         $this->lineno = 1;
         $this->end = strlen($this->code);
-        $this->tokens = array();
+        $this->tokens = [];
         $this->state = self::STATE_DATA;
-        $this->states = array();
-        $this->brackets = array();
+        $this->states = [];
+        $this->brackets = [];
         $this->position = -1;
 
         // find all token starts in one go
@@ -386,7 +386,7 @@ class Twig_Lexer implements Twig_LexerInterface
         $operators = array_combine($operators, array_map('strlen', $operators));
         arsort($operators);
 
-        $regex = array();
+        $regex = [];
         foreach ($operators as $operator => $length) {
             // an operator that ends with a character must be followed by
             // a whitespace or a parenthesis

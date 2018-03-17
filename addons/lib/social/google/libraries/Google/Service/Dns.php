@@ -45,7 +45,7 @@ class Google_Service_Dns extends Google_Service
   public $managedZones;
   public $projects;
   public $resourceRecordSets;
-  
+
 
   /**
    * Constructs the internal representation of the Dns service.
@@ -290,7 +290,7 @@ class Google_Service_Dns_Changes_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Dns_Change
    */
-  public function create($project, $managedZone, Google_Service_Dns_Change $postBody, $optParams = array())
+  public function create($project, $managedZone, Google_Service_Dns_Change $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'managedZone' => $managedZone, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -308,7 +308,7 @@ class Google_Service_Dns_Changes_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Dns_Change
    */
-  public function get($project, $managedZone, $changeId, $optParams = array())
+  public function get($project, $managedZone, $changeId, $optParams = [])
   {
     $params = array('project' => $project, 'managedZone' => $managedZone, 'changeId' => $changeId);
     $params = array_merge($params, $optParams);
@@ -334,7 +334,7 @@ class Google_Service_Dns_Changes_Resource extends Google_Service_Resource
    * 'descending'.
    * @return Google_Service_Dns_ChangesListResponse
    */
-  public function listChanges($project, $managedZone, $optParams = array())
+  public function listChanges($project, $managedZone, $optParams = [])
   {
     $params = array('project' => $project, 'managedZone' => $managedZone);
     $params = array_merge($params, $optParams);
@@ -361,7 +361,7 @@ class Google_Service_Dns_ManagedZones_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Dns_ManagedZone
    */
-  public function create($project, Google_Service_Dns_ManagedZone $postBody, $optParams = array())
+  public function create($project, Google_Service_Dns_ManagedZone $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -376,7 +376,7 @@ class Google_Service_Dns_ManagedZones_Resource extends Google_Service_Resource
    * request. Can be the managed zone name or id.
    * @param array $optParams Optional parameters.
    */
-  public function delete($project, $managedZone, $optParams = array())
+  public function delete($project, $managedZone, $optParams = [])
   {
     $params = array('project' => $project, 'managedZone' => $managedZone);
     $params = array_merge($params, $optParams);
@@ -392,7 +392,7 @@ class Google_Service_Dns_ManagedZones_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Dns_ManagedZone
    */
-  public function get($project, $managedZone, $optParams = array())
+  public function get($project, $managedZone, $optParams = [])
   {
     $params = array('project' => $project, 'managedZone' => $managedZone);
     $params = array_merge($params, $optParams);
@@ -413,7 +413,7 @@ class Google_Service_Dns_ManagedZones_Resource extends Google_Service_Resource
    * If unspecified, the server will decide how many results to return.
    * @return Google_Service_Dns_ManagedZonesListResponse
    */
-  public function listManagedZones($project, $optParams = array())
+  public function listManagedZones($project, $optParams = [])
   {
     $params = array('project' => $project);
     $params = array_merge($params, $optParams);
@@ -439,7 +439,7 @@ class Google_Service_Dns_Projects_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Dns_Project
    */
-  public function get($project, $optParams = array())
+  public function get($project, $optParams = [])
   {
     $params = array('project' => $project);
     $params = array_merge($params, $optParams);
@@ -478,7 +478,7 @@ class Google_Service_Dns_ResourceRecordSets_Resource extends Google_Service_Reso
    * type. If present, the "name" parameter must also be present.
    * @return Google_Service_Dns_ResourceRecordSetsListResponse
    */
-  public function listResourceRecordSets($project, $managedZone, $optParams = array())
+  public function listResourceRecordSets($project, $managedZone, $optParams = [])
   {
     $params = array('project' => $project, 'managedZone' => $managedZone);
     $params = array_merge($params, $optParams);

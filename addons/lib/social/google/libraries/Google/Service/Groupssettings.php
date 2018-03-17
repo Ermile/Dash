@@ -35,7 +35,7 @@ class Google_Service_Groupssettings extends Google_Service
       "https://www.googleapis.com/auth/apps.groups.settings";
 
   public $groups;
-  
+
 
   /**
    * Constructs the internal representation of the Groupssettings service.
@@ -112,7 +112,7 @@ class Google_Service_Groupssettings_Groups_Resource extends Google_Service_Resou
    * @param array $optParams Optional parameters.
    * @return Google_Service_Groupssettings_Groups
    */
-  public function get($groupUniqueId, $optParams = array())
+  public function get($groupUniqueId, $optParams = [])
   {
     $params = array('groupUniqueId' => $groupUniqueId);
     $params = array_merge($params, $optParams);
@@ -128,7 +128,7 @@ class Google_Service_Groupssettings_Groups_Resource extends Google_Service_Resou
    * @param array $optParams Optional parameters.
    * @return Google_Service_Groupssettings_Groups
    */
-  public function patch($groupUniqueId, Google_Service_Groupssettings_Groups $postBody, $optParams = array())
+  public function patch($groupUniqueId, Google_Service_Groupssettings_Groups $postBody, $optParams = [])
   {
     $params = array('groupUniqueId' => $groupUniqueId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -143,7 +143,7 @@ class Google_Service_Groupssettings_Groups_Resource extends Google_Service_Resou
    * @param array $optParams Optional parameters.
    * @return Google_Service_Groupssettings_Groups
    */
-  public function update($groupUniqueId, Google_Service_Groupssettings_Groups $postBody, $optParams = array())
+  public function update($groupUniqueId, Google_Service_Groupssettings_Groups $postBody, $optParams = [])
   {
     $params = array('groupUniqueId' => $groupUniqueId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);

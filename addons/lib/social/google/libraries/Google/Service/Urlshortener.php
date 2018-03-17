@@ -35,7 +35,7 @@ class Google_Service_Urlshortener extends Google_Service
       "https://www.googleapis.com/auth/urlshortener";
 
   public $url;
-  
+
 
   /**
    * Constructs the internal representation of the Urlshortener service.
@@ -73,7 +73,7 @@ class Google_Service_Urlshortener extends Google_Service
             ),'insert' => array(
               'path' => 'url',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),'list' => array(
               'path' => 'url/history',
               'httpMethod' => 'GET',
@@ -115,7 +115,7 @@ class Google_Service_Urlshortener_Url_Resource extends Google_Service_Resource
    * @opt_param string projection Additional information to return.
    * @return Google_Service_Urlshortener_Url
    */
-  public function get($shortUrl, $optParams = array())
+  public function get($shortUrl, $optParams = [])
   {
     $params = array('shortUrl' => $shortUrl);
     $params = array_merge($params, $optParams);
@@ -129,7 +129,7 @@ class Google_Service_Urlshortener_Url_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Urlshortener_Url
    */
-  public function insert(Google_Service_Urlshortener_Url $postBody, $optParams = array())
+  public function insert(Google_Service_Urlshortener_Url $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -146,9 +146,9 @@ class Google_Service_Urlshortener_Url_Resource extends Google_Service_Resource
    * @opt_param string projection Additional information to return.
    * @return Google_Service_Urlshortener_UrlHistory
    */
-  public function listUrl($optParams = array())
+  public function listUrl($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_Urlshortener_UrlHistory");
   }

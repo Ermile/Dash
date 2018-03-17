@@ -33,7 +33,7 @@ class Google_Service_Webfonts extends Google_Service
 
 
   public $webfonts;
-  
+
 
   /**
    * Constructs the internal representation of the Webfonts service.
@@ -91,9 +91,9 @@ class Google_Service_Webfonts_Webfonts_Resource extends Google_Service_Resource
    * @opt_param string sort Enables sorting of the list
    * @return Google_Service_Webfonts_WebfontList
    */
-  public function listWebfonts($optParams = array())
+  public function listWebfonts($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_Webfonts_WebfontList");
   }

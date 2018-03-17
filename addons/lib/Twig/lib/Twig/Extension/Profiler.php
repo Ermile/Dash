@@ -11,7 +11,7 @@
 
 class Twig_Extension_Profiler extends Twig_Extension
 {
-    private $actives = array();
+    private $actives = [];
 
     public function __construct(Twig_Profiler_Profile $profile)
     {

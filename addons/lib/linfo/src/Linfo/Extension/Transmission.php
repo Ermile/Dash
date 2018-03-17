@@ -4,9 +4,9 @@
 
 This implements a transmission-remote parsing extension which displays status of running torrents
 
-Installation: 
+Installation:
  - The following lines must be added to your config.inc.php:
-   $settings['extensions']['transmission'] = true; 
+   $settings['extensions']['transmission'] = true;
    $settings['transmission_auth'] = array(
     //'user' => 'jim', # Both of these must exist if you wish to use auth
     //'pass' => 'pwnz!'
@@ -14,7 +14,7 @@ Installation:
    $settings['transmission_host'] = array(
     // 'server' => 'localhost',	# uncomment to set a specific host
     // 'port' => 9091		# uncomment to set a specific port
-   ); 
+   );
 
 
    // If you want download/upload/ratio/duration stats, make sure the web server user can
@@ -26,17 +26,17 @@ Installation:
 
 /**
  * This file is part of Linfo (c) 2010 Joseph Gillotti.
- * 
+ *
  * Linfo is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * Linfo is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with Linfo. If not, see <http://www.gnu.org/licenses/>.
  */
@@ -61,7 +61,7 @@ class Transmission implements Extension
     // Store these tucked away here
     private $_CallExt,
         $_res,
-        $_torrents = array(),
+        $_torrents = [],
         $_stats = false,
         $_auth,
         $_host;
@@ -79,8 +79,8 @@ class Transmission implements Extension
         $this->_CallExt->setSearchPaths(array('/usr/bin', '/usr/local/bin'));
 
         // Transmission specific settings
-        $this->_auth = array_key_exists('transmission_auth', $settings) ? (array) $settings['transmission_auth'] : array();
-        $this->_host = array_key_exists('transmission_host', $settings) ? (array) $settings['transmission_host'] : array();
+        $this->_auth = array_key_exists('transmission_auth', $settings) ? (array) $settings['transmission_auth'] : [];
+        $this->_host = array_key_exists('transmission_host', $settings) ? (array) $settings['transmission_host'] : [];
 
         // Path to home dir folder
         $this->_folder = array_key_exists('transmission_folder', $settings) && is_dir($settings['transmission_folder']) && is_readable($settings['transmission_folder']) ? $settings['transmission_folder'] : false;
@@ -94,7 +94,7 @@ class Transmission implements Extension
         // Time this
         $t = new Timer('Transmission extension');
 
-        // Deal with stats, if possible 
+        // Deal with stats, if possible
         if ($this->_folder && ($stats_contents = Common::getContents($this->_folder.'stats.json', false)) && $stats_contents != false) {
             $stats_vals = @json_decode($stats_contents, true);
             if (is_array($stats_vals)) {
@@ -153,9 +153,9 @@ class Transmission implements Extension
         if (preg_match_all('/^\s+(\d+)\*?\s+(\d+)\%\s+(\d+\.\d+ \w+|None)\s+((?:\d+ )?\w+)\s+(\d+\.\d+)\s+(\d+\.\d+)\s+(\d+\.\d+|None)\s+(Up & Down|Seeding|Idle|Stopped)\s+(.+)$/m', $result, $matches, PREG_SET_ORDER) > 0) {
 
             // Use this to sort them
-            $sort_done = array();
-            $sort_ratio = array();
-            $sort_name = array();
+            $sort_done = [];
+            $sort_ratio = [];
+            $sort_name = [];
 
             // Save the matches
             for ($i = 0, $num = count($matches); $i < $num; ++$i) {
@@ -166,7 +166,7 @@ class Transmission implements Extension
                     'done' => $matches[$i][2],
                     'have' => $matches[$i][3],
                     'eta' => $matches[$i][4],
-                    'up' => $matches[$i][5] * 1024, // always in KIB 
+                    'up' => $matches[$i][5] * 1024, // always in KIB
                     'down' => $matches[$i][6] * 1024, // ^
                     'ratio' => $matches[$i][7],
                     'state' => $matches[$i][8],
@@ -194,7 +194,7 @@ class Transmission implements Extension
 
     /**
      * Return result.
-     * 
+     *
      * @return false on failure|array of the torrents
      */
     public function result()
@@ -206,7 +206,7 @@ class Transmission implements Extension
         // it did; continue
 
         // Store rows here
-        $rows = array();
+        $rows = [];
 
         // Start showing connections
         $rows[] = array(
@@ -235,7 +235,7 @@ class Transmission implements Extension
         } else {
 
             // Store a total amount of certain torrents here:
-            $status_tally = array();
+            $status_tally = [];
 
             // As well as uploaded/downloaded
             $status_tally['Downloaded'] = 0;
@@ -315,7 +315,7 @@ class Transmission implements Extension
             if (count($status_tally) > 0) {
 
                 // Store list of k: v'ish values here
-                $tally_contents = array();
+                $tally_contents = [];
 
                 // Populate that
                 foreach ($status_tally as $state => $tally) {

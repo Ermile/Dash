@@ -216,7 +216,7 @@ class Twig_ExpressionParser
     {
         $stream = $this->parser->getStream();
 
-        $nodes = array();
+        $nodes = [];
         // a string cannot be followed by another string in a single expression
         $nextCanBeString = true;
         while (true) {
@@ -504,7 +504,7 @@ class Twig_ExpressionParser
      */
     public function parseArguments($namedArguments = false, $definition = false)
     {
-        $args = array();
+        $args = [];
         $stream = $this->parser->getStream();
 
         $stream->expect(Twig_Token::PUNCTUATION_TYPE, '(', 'A list of arguments must begin with an opening parenthesis');
@@ -560,7 +560,7 @@ class Twig_ExpressionParser
     public function parseAssignmentExpression()
     {
         $stream = $this->parser->getStream();
-        $targets = array();
+        $targets = [];
         while (true) {
             $token = $stream->expect(Twig_Token::NAME_TYPE, null, 'Only variables can be assigned to');
             $value = $token->getValue();
@@ -579,7 +579,7 @@ class Twig_ExpressionParser
 
     public function parseMultitargetExpression()
     {
-        $targets = array();
+        $targets = [];
         while (true) {
             $targets[] = $this->parseExpression();
             if (!$this->parser->getStream()->nextIf(Twig_Token::PUNCTUATION_TYPE, ',')) {

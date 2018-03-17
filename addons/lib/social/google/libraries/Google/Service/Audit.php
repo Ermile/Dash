@@ -34,7 +34,7 @@ class Google_Service_Audit extends Google_Service
 
 
   public $activities;
-  
+
 
   /**
    * Constructs the internal representation of the Audit service.
@@ -150,7 +150,7 @@ class Google_Service_Audit_Activities_Resource extends Google_Service_Resource
    * @opt_param string continuationToken Next page URL.
    * @return Google_Service_Audit_Activities
    */
-  public function listActivities($customerId, $applicationId, $optParams = array())
+  public function listActivities($customerId, $applicationId, $optParams = [])
   {
     $params = array('customerId' => $customerId, 'applicationId' => $applicationId);
     $params = array_merge($params, $optParams);

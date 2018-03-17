@@ -42,17 +42,17 @@ Known to work with this verson of uTorrent:
 
 /**
  * This file is part of Linfo (c) 2014 Joseph Gillotti.
- * 
+ *
  * Linfo is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * Linfo is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.	See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with Linfo.	If not, see <http://www.gnu.org/licenses/>.
  */
@@ -74,8 +74,8 @@ use Linfo\Output\Html;
 class Utorrent implements Extension
 {
     private
-        $torrents = array(),
-        $connectionSettings = array(),
+        $torrents = [],
+        $connectionSettings = [],
         $stats = array('uploaded' => 0, 'downloaded' => 0),
         $cookiefile = false,
         $res = false;
@@ -123,7 +123,7 @@ class Utorrent implements Extension
     {
         $settings = $linfo->getSettings();
         $this->connectionSettings = $settings['utorrent_connection'];
-        $this->regexFilters = isset($settings['utorrent_filter']) && is_array($settings['utorrent_filter']) ? $settings['utorrent_filter'] : array();
+        $this->regexFilters = isset($settings['utorrent_filter']) && is_array($settings['utorrent_filter']) ? $settings['utorrent_filter'] : [];
         $this->hideName = isset($settings['utorrent_hide_name']) ? !empty($settings['utorrent_hide_name'])  : false;
     }
 
@@ -147,11 +147,11 @@ class Utorrent implements Extension
 
         $token_url = sprintf(self::TOKEN_URL, $this->connectionSettings['host'], $this->connectionSettings['port']);
 
-        // Start up our curl session to be used for both requests. It is going to store the cookies utorrent 
+        // Start up our curl session to be used for both requests. It is going to store the cookies utorrent
         // uses
         $curl = curl_init();
 
-        // For curl to actually process cokies we need to give it a filename. This should be filed as a 
+        // For curl to actually process cokies we need to give it a filename. This should be filed as a
         // bug to curl, especially since something like /dev/null works
         $this->cookiefile = tempnam('/tmp', 'linfo_utorrent');
 
@@ -174,7 +174,7 @@ class Utorrent implements Extension
             return;
         }
 
-        // Get list of torrents? Do our best to forge this (ajax) request 
+        // Get list of torrents? Do our best to forge this (ajax) request
         curl_setopt_array($curl, array(
             CURLOPT_HTTPHEADER => array(
              'X-Requested-With: XMLHttpRequest',
@@ -206,11 +206,11 @@ class Utorrent implements Extension
             return;
         }
 
-        $torrent_names = array();
-        $torrent_states = array();
+        $torrent_names = [];
+        $torrent_states = [];
 
         foreach ($response['torrents'] as $torrent_src) {
-            $torrent = array();
+            $torrent = [];
             foreach (self::$torrent_keys as $key => $index) {
                 $torrent[$key] = $torrent_src[$index];
             }

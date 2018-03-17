@@ -69,7 +69,7 @@ class Google_Service_Oauth2 extends Google_Service
             'get' => array(
               'path' => 'oauth2/v2/userinfo',
               'httpMethod' => 'GET',
-              'parameters' => array(),
+              'parameters' => [],
             ),
           )
         )
@@ -83,7 +83,7 @@ class Google_Service_Oauth2 extends Google_Service
             'get' => array(
               'path' => 'userinfo/v2/me',
               'httpMethod' => 'GET',
-              'parameters' => array(),
+              'parameters' => [],
             ),
           )
         )
@@ -97,7 +97,7 @@ class Google_Service_Oauth2 extends Google_Service
             'getCertForOpenIdConnect' => array(
               'path' => 'oauth2/v2/certs',
               'httpMethod' => 'GET',
-              'parameters' => array(),
+              'parameters' => [],
             ),'tokeninfo' => array(
               'path' => 'oauth2/v2/tokeninfo',
               'httpMethod' => 'POST',
@@ -126,9 +126,9 @@ class Google_Service_Oauth2 extends Google_Service
    * @param array $optParams Optional parameters.
    * @return Google_Service_Oauth2_Jwk
    */
-  public function getCertForOpenIdConnect($optParams = array())
+  public function getCertForOpenIdConnect($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->base_methods->call('getCertForOpenIdConnect', array($params), "Google_Service_Oauth2_Jwk");
   }
@@ -142,9 +142,9 @@ class Google_Service_Oauth2 extends Google_Service
    * @opt_param string token_handle
    * @return Google_Service_Oauth2_Tokeninfo
    */
-  public function tokeninfo($optParams = array())
+  public function tokeninfo($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->base_methods->call('tokeninfo', array($params), "Google_Service_Oauth2_Tokeninfo");
   }
@@ -168,9 +168,9 @@ class Google_Service_Oauth2_Userinfo_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Oauth2_Userinfoplus
    */
-  public function get($optParams = array())
+  public function get($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('get', array($params), "Google_Service_Oauth2_Userinfoplus");
   }
@@ -205,9 +205,9 @@ class Google_Service_Oauth2_UserinfoV2Me_Resource extends Google_Service_Resourc
    * @param array $optParams Optional parameters.
    * @return Google_Service_Oauth2_Userinfoplus
    */
-  public function get($optParams = array())
+  public function get($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('get', array($params), "Google_Service_Oauth2_Userinfoplus");
   }

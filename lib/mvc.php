@@ -3,7 +3,7 @@ namespace lib;
 
 trait mvc
 {
-	public $Methods = array();
+	public $Methods = [];
 
 
 	/**
@@ -21,12 +21,12 @@ trait mvc
 
 		if(!array_key_exists($name, $this->Methods))
 		{
-			$this->Methods[$name] = array();
+			$this->Methods[$name] = [];
 		}
 
 		if(!array_key_exists($event, $this->Methods[$name]))
 		{
-			$this->Methods[$name][$event] = array();
+			$this->Methods[$name][$event] = [];
 		}
 		$bound = @$closure->bindTo($this);
 

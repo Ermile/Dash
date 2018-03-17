@@ -14,7 +14,7 @@ class Twig_Extensions_Grammar_Optional extends Twig_Extensions_Grammar
 
     public function __construct()
     {
-        $this->grammar = array();
+        $this->grammar = [];
         foreach (func_get_args() as $grammar) {
             $this->addGrammar($grammar);
         }
@@ -22,7 +22,7 @@ class Twig_Extensions_Grammar_Optional extends Twig_Extensions_Grammar
 
     public function __toString()
     {
-        $repr = array();
+        $repr = [];
         foreach ($this->grammar as $grammar) {
             $repr[] = (string) $grammar;
         }
@@ -40,19 +40,19 @@ class Twig_Extensions_Grammar_Optional extends Twig_Extensions_Grammar
         // test if we have the optional element before consuming it
         if ($this->grammar[0] instanceof Twig_Extensions_Grammar_Constant) {
             if (!$this->parser->getStream()->test($this->grammar[0]->getType(), $this->grammar[0]->getName())) {
-                return array();
+                return [];
             }
         } elseif ($this->grammar[0] instanceof Twig_Extensions_Grammar_Name) {
             if (!$this->parser->getStream()->test(Twig_Token::NAME_TYPE)) {
-                return array();
+                return [];
             }
         } elseif ($this->parser->getStream()->test(Twig_Token::BLOCK_END_TYPE)) {
             // if this is not a Constant or a Name, it must be the last element of the tag
 
-            return array();
+            return [];
         }
 
-        $elements = array();
+        $elements = [];
         foreach ($this->grammar as $grammar) {
             $grammar->setParser($this->parser);
 

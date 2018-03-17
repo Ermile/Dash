@@ -45,7 +45,7 @@ class Google_Service_GamesManagement extends Google_Service
   public $rooms;
   public $scores;
   public $turnBasedMatches;
-  
+
 
   /**
    * Constructs the internal representation of the GamesManagement service.
@@ -79,11 +79,11 @@ class Google_Service_GamesManagement extends Google_Service
             ),'resetAll' => array(
               'path' => 'achievements/reset',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),'resetAllForAllPlayers' => array(
               'path' => 'achievements/resetAllForAllPlayers',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),'resetForAllPlayers' => array(
               'path' => 'achievements/{achievementId}/resetForAllPlayers',
               'httpMethod' => 'POST',
@@ -97,7 +97,7 @@ class Google_Service_GamesManagement extends Google_Service
             ),'resetMultipleForAllPlayers' => array(
               'path' => 'achievements/resetMultipleForAllPlayers',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),
           )
         )
@@ -149,11 +149,11 @@ class Google_Service_GamesManagement extends Google_Service
             ),'resetAll' => array(
               'path' => 'events/reset',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),'resetAllForAllPlayers' => array(
               'path' => 'events/resetAllForAllPlayers',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),'resetForAllPlayers' => array(
               'path' => 'events/{eventId}/resetForAllPlayers',
               'httpMethod' => 'POST',
@@ -167,7 +167,7 @@ class Google_Service_GamesManagement extends Google_Service
             ),'resetMultipleForAllPlayers' => array(
               'path' => 'events/resetMultipleForAllPlayers',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),
           )
         )
@@ -231,11 +231,11 @@ class Google_Service_GamesManagement extends Google_Service
             ),'resetAll' => array(
               'path' => 'quests/reset',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),'resetAllForAllPlayers' => array(
               'path' => 'quests/resetAllForAllPlayers',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),'resetForAllPlayers' => array(
               'path' => 'quests/{questId}/resetForAllPlayers',
               'httpMethod' => 'POST',
@@ -249,7 +249,7 @@ class Google_Service_GamesManagement extends Google_Service
             ),'resetMultipleForAllPlayers' => array(
               'path' => 'quests/resetMultipleForAllPlayers',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),
           )
         )
@@ -263,11 +263,11 @@ class Google_Service_GamesManagement extends Google_Service
             'reset' => array(
               'path' => 'rooms/reset',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),'resetForAllPlayers' => array(
               'path' => 'rooms/resetForAllPlayers',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),
           )
         )
@@ -291,11 +291,11 @@ class Google_Service_GamesManagement extends Google_Service
             ),'resetAll' => array(
               'path' => 'scores/reset',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),'resetAllForAllPlayers' => array(
               'path' => 'scores/resetAllForAllPlayers',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),'resetForAllPlayers' => array(
               'path' => 'leaderboards/{leaderboardId}/scores/resetForAllPlayers',
               'httpMethod' => 'POST',
@@ -309,7 +309,7 @@ class Google_Service_GamesManagement extends Google_Service
             ),'resetMultipleForAllPlayers' => array(
               'path' => 'scores/resetMultipleForAllPlayers',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),
           )
         )
@@ -323,11 +323,11 @@ class Google_Service_GamesManagement extends Google_Service
             'reset' => array(
               'path' => 'turnbasedmatches/reset',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),'resetForAllPlayers' => array(
               'path' => 'turnbasedmatches/resetForAllPlayers',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),
           )
         )
@@ -356,7 +356,7 @@ class Google_Service_GamesManagement_Achievements_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_GamesManagement_AchievementResetResponse
    */
-  public function reset($achievementId, $optParams = array())
+  public function reset($achievementId, $optParams = [])
   {
     $params = array('achievementId' => $achievementId);
     $params = array_merge($params, $optParams);
@@ -371,9 +371,9 @@ class Google_Service_GamesManagement_Achievements_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_GamesManagement_AchievementResetAllResponse
    */
-  public function resetAll($optParams = array())
+  public function resetAll($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('resetAll', array($params), "Google_Service_GamesManagement_AchievementResetAllResponse");
   }
@@ -385,9 +385,9 @@ class Google_Service_GamesManagement_Achievements_Resource extends Google_Servic
    *
    * @param array $optParams Optional parameters.
    */
-  public function resetAllForAllPlayers($optParams = array())
+  public function resetAllForAllPlayers($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('resetAllForAllPlayers', array($params));
   }
@@ -400,7 +400,7 @@ class Google_Service_GamesManagement_Achievements_Resource extends Google_Servic
    * @param string $achievementId The ID of the achievement used by this method.
    * @param array $optParams Optional parameters.
    */
-  public function resetForAllPlayers($achievementId, $optParams = array())
+  public function resetForAllPlayers($achievementId, $optParams = [])
   {
     $params = array('achievementId' => $achievementId);
     $params = array_merge($params, $optParams);
@@ -415,7 +415,7 @@ class Google_Service_GamesManagement_Achievements_Resource extends Google_Servic
    * @param Google_AchievementResetMultipleForAllRequest $postBody
    * @param array $optParams Optional parameters.
    */
-  public function resetMultipleForAllPlayers(Google_Service_GamesManagement_AchievementResetMultipleForAllRequest $postBody, $optParams = array())
+  public function resetMultipleForAllPlayers(Google_Service_GamesManagement_AchievementResetMultipleForAllRequest $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -449,7 +449,7 @@ class Google_Service_GamesManagement_Applications_Resource extends Google_Servic
    * resources returned may be less than the specified maxResults.
    * @return Google_Service_GamesManagement_HiddenPlayerList
    */
-  public function listHidden($applicationId, $optParams = array())
+  public function listHidden($applicationId, $optParams = [])
   {
     $params = array('applicationId' => $applicationId);
     $params = array_merge($params, $optParams);
@@ -477,7 +477,7 @@ class Google_Service_GamesManagement_Events_Resource extends Google_Service_Reso
    * @param string $eventId The ID of the event.
    * @param array $optParams Optional parameters.
    */
-  public function reset($eventId, $optParams = array())
+  public function reset($eventId, $optParams = [])
   {
     $params = array('eventId' => $eventId);
     $params = array_merge($params, $optParams);
@@ -492,9 +492,9 @@ class Google_Service_GamesManagement_Events_Resource extends Google_Service_Reso
    *
    * @param array $optParams Optional parameters.
    */
-  public function resetAll($optParams = array())
+  public function resetAll($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('resetAll', array($params));
   }
@@ -506,9 +506,9 @@ class Google_Service_GamesManagement_Events_Resource extends Google_Service_Reso
    *
    * @param array $optParams Optional parameters.
    */
-  public function resetAllForAllPlayers($optParams = array())
+  public function resetAllForAllPlayers($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('resetAllForAllPlayers', array($params));
   }
@@ -522,7 +522,7 @@ class Google_Service_GamesManagement_Events_Resource extends Google_Service_Reso
    * @param string $eventId The ID of the event.
    * @param array $optParams Optional parameters.
    */
-  public function resetForAllPlayers($eventId, $optParams = array())
+  public function resetForAllPlayers($eventId, $optParams = [])
   {
     $params = array('eventId' => $eventId);
     $params = array_merge($params, $optParams);
@@ -538,7 +538,7 @@ class Google_Service_GamesManagement_Events_Resource extends Google_Service_Reso
    * @param Google_EventsResetMultipleForAllRequest $postBody
    * @param array $optParams Optional parameters.
    */
-  public function resetMultipleForAllPlayers(Google_Service_GamesManagement_EventsResetMultipleForAllRequest $postBody, $optParams = array())
+  public function resetMultipleForAllPlayers(Google_Service_GamesManagement_EventsResetMultipleForAllRequest $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -568,7 +568,7 @@ class Google_Service_GamesManagement_Players_Resource extends Google_Service_Res
    * the authenticated player's ID.
    * @param array $optParams Optional parameters.
    */
-  public function hide($applicationId, $playerId, $optParams = array())
+  public function hide($applicationId, $playerId, $optParams = [])
   {
     $params = array('applicationId' => $applicationId, 'playerId' => $playerId);
     $params = array_merge($params, $optParams);
@@ -586,7 +586,7 @@ class Google_Service_GamesManagement_Players_Resource extends Google_Service_Res
    * the authenticated player's ID.
    * @param array $optParams Optional parameters.
    */
-  public function unhide($applicationId, $playerId, $optParams = array())
+  public function unhide($applicationId, $playerId, $optParams = [])
   {
     $params = array('applicationId' => $applicationId, 'playerId' => $playerId);
     $params = array_merge($params, $optParams);
@@ -613,7 +613,7 @@ class Google_Service_GamesManagement_Quests_Resource extends Google_Service_Reso
    * @param string $questId The ID of the quest.
    * @param array $optParams Optional parameters.
    */
-  public function reset($questId, $optParams = array())
+  public function reset($questId, $optParams = [])
   {
     $params = array('questId' => $questId);
     $params = array_merge($params, $optParams);
@@ -627,9 +627,9 @@ class Google_Service_GamesManagement_Quests_Resource extends Google_Service_Reso
    *
    * @param array $optParams Optional parameters.
    */
-  public function resetAll($optParams = array())
+  public function resetAll($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('resetAll', array($params));
   }
@@ -640,9 +640,9 @@ class Google_Service_GamesManagement_Quests_Resource extends Google_Service_Reso
    *
    * @param array $optParams Optional parameters.
    */
-  public function resetAllForAllPlayers($optParams = array())
+  public function resetAllForAllPlayers($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('resetAllForAllPlayers', array($params));
   }
@@ -655,7 +655,7 @@ class Google_Service_GamesManagement_Quests_Resource extends Google_Service_Reso
    * @param string $questId The ID of the quest.
    * @param array $optParams Optional parameters.
    */
-  public function resetForAllPlayers($questId, $optParams = array())
+  public function resetForAllPlayers($questId, $optParams = [])
   {
     $params = array('questId' => $questId);
     $params = array_merge($params, $optParams);
@@ -670,7 +670,7 @@ class Google_Service_GamesManagement_Quests_Resource extends Google_Service_Reso
    * @param Google_QuestsResetMultipleForAllRequest $postBody
    * @param array $optParams Optional parameters.
    */
-  public function resetMultipleForAllPlayers(Google_Service_GamesManagement_QuestsResetMultipleForAllRequest $postBody, $optParams = array())
+  public function resetMultipleForAllPlayers(Google_Service_GamesManagement_QuestsResetMultipleForAllRequest $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -696,9 +696,9 @@ class Google_Service_GamesManagement_Rooms_Resource extends Google_Service_Resou
    *
    * @param array $optParams Optional parameters.
    */
-  public function reset($optParams = array())
+  public function reset($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('reset', array($params));
   }
@@ -710,9 +710,9 @@ class Google_Service_GamesManagement_Rooms_Resource extends Google_Service_Resou
    *
    * @param array $optParams Optional parameters.
    */
-  public function resetForAllPlayers($optParams = array())
+  public function resetForAllPlayers($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('resetForAllPlayers', array($params));
   }
@@ -738,7 +738,7 @@ class Google_Service_GamesManagement_Scores_Resource extends Google_Service_Reso
    * @param array $optParams Optional parameters.
    * @return Google_Service_GamesManagement_PlayerScoreResetResponse
    */
-  public function reset($leaderboardId, $optParams = array())
+  public function reset($leaderboardId, $optParams = [])
   {
     $params = array('leaderboardId' => $leaderboardId);
     $params = array_merge($params, $optParams);
@@ -753,9 +753,9 @@ class Google_Service_GamesManagement_Scores_Resource extends Google_Service_Reso
    * @param array $optParams Optional parameters.
    * @return Google_Service_GamesManagement_PlayerScoreResetAllResponse
    */
-  public function resetAll($optParams = array())
+  public function resetAll($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('resetAll', array($params), "Google_Service_GamesManagement_PlayerScoreResetAllResponse");
   }
@@ -767,9 +767,9 @@ class Google_Service_GamesManagement_Scores_Resource extends Google_Service_Reso
    *
    * @param array $optParams Optional parameters.
    */
-  public function resetAllForAllPlayers($optParams = array())
+  public function resetAllForAllPlayers($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('resetAllForAllPlayers', array($params));
   }
@@ -782,7 +782,7 @@ class Google_Service_GamesManagement_Scores_Resource extends Google_Service_Reso
    * @param string $leaderboardId The ID of the leaderboard.
    * @param array $optParams Optional parameters.
    */
-  public function resetForAllPlayers($leaderboardId, $optParams = array())
+  public function resetForAllPlayers($leaderboardId, $optParams = [])
   {
     $params = array('leaderboardId' => $leaderboardId);
     $params = array_merge($params, $optParams);
@@ -797,7 +797,7 @@ class Google_Service_GamesManagement_Scores_Resource extends Google_Service_Reso
    * @param Google_ScoresResetMultipleForAllRequest $postBody
    * @param array $optParams Optional parameters.
    */
-  public function resetMultipleForAllPlayers(Google_Service_GamesManagement_ScoresResetMultipleForAllRequest $postBody, $optParams = array())
+  public function resetMultipleForAllPlayers(Google_Service_GamesManagement_ScoresResetMultipleForAllRequest $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -822,9 +822,9 @@ class Google_Service_GamesManagement_TurnBasedMatches_Resource extends Google_Se
    *
    * @param array $optParams Optional parameters.
    */
-  public function reset($optParams = array())
+  public function reset($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('reset', array($params));
   }
@@ -837,9 +837,9 @@ class Google_Service_GamesManagement_TurnBasedMatches_Resource extends Google_Se
    *
    * @param array $optParams Optional parameters.
    */
-  public function resetForAllPlayers($optParams = array())
+  public function resetForAllPlayers($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('resetForAllPlayers', array($params));
   }

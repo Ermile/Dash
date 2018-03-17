@@ -54,7 +54,7 @@ class Google_Service_Bigquery extends Google_Service
   public $projects;
   public $tabledata;
   public $tables;
-  
+
 
   /**
    * Constructs the internal representation of the Bigquery service.
@@ -539,7 +539,7 @@ class Google_Service_Bigquery_Datasets_Resource extends Google_Service_Resource
    * If False and the dataset contains tables, the request will fail. Default is
    * False
    */
-  public function delete($projectId, $datasetId, $optParams = array())
+  public function delete($projectId, $datasetId, $optParams = [])
   {
     $params = array('projectId' => $projectId, 'datasetId' => $datasetId);
     $params = array_merge($params, $optParams);
@@ -554,7 +554,7 @@ class Google_Service_Bigquery_Datasets_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Bigquery_Dataset
    */
-  public function get($projectId, $datasetId, $optParams = array())
+  public function get($projectId, $datasetId, $optParams = [])
   {
     $params = array('projectId' => $projectId, 'datasetId' => $datasetId);
     $params = array_merge($params, $optParams);
@@ -569,7 +569,7 @@ class Google_Service_Bigquery_Datasets_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Bigquery_Dataset
    */
-  public function insert($projectId, Google_Service_Bigquery_Dataset $postBody, $optParams = array())
+  public function insert($projectId, Google_Service_Bigquery_Dataset $postBody, $optParams = [])
   {
     $params = array('projectId' => $projectId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -589,7 +589,7 @@ class Google_Service_Bigquery_Datasets_Resource extends Google_Service_Resource
    * @opt_param string maxResults The maximum number of results to return
    * @return Google_Service_Bigquery_DatasetList
    */
-  public function listDatasets($projectId, $optParams = array())
+  public function listDatasets($projectId, $optParams = [])
   {
     $params = array('projectId' => $projectId);
     $params = array_merge($params, $optParams);
@@ -608,7 +608,7 @@ class Google_Service_Bigquery_Datasets_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Bigquery_Dataset
    */
-  public function patch($projectId, $datasetId, Google_Service_Bigquery_Dataset $postBody, $optParams = array())
+  public function patch($projectId, $datasetId, Google_Service_Bigquery_Dataset $postBody, $optParams = [])
   {
     $params = array('projectId' => $projectId, 'datasetId' => $datasetId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -626,7 +626,7 @@ class Google_Service_Bigquery_Datasets_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Bigquery_Dataset
    */
-  public function update($projectId, $datasetId, Google_Service_Bigquery_Dataset $postBody, $optParams = array())
+  public function update($projectId, $datasetId, Google_Service_Bigquery_Dataset $postBody, $optParams = [])
   {
     $params = array('projectId' => $projectId, 'datasetId' => $datasetId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -655,7 +655,7 @@ class Google_Service_Bigquery_Jobs_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Bigquery_JobCancelResponse
    */
-  public function cancel($projectId, $jobId, $optParams = array())
+  public function cancel($projectId, $jobId, $optParams = [])
   {
     $params = array('projectId' => $projectId, 'jobId' => $jobId);
     $params = array_merge($params, $optParams);
@@ -672,7 +672,7 @@ class Google_Service_Bigquery_Jobs_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Bigquery_Job
    */
-  public function get($projectId, $jobId, $optParams = array())
+  public function get($projectId, $jobId, $optParams = [])
   {
     $params = array('projectId' => $projectId, 'jobId' => $jobId);
     $params = array_merge($params, $optParams);
@@ -696,7 +696,7 @@ class Google_Service_Bigquery_Jobs_Resource extends Google_Service_Resource
    * @opt_param string startIndex Zero-based index of the starting row
    * @return Google_Service_Bigquery_GetQueryResultsResponse
    */
-  public function getQueryResults($projectId, $jobId, $optParams = array())
+  public function getQueryResults($projectId, $jobId, $optParams = [])
   {
     $params = array('projectId' => $projectId, 'jobId' => $jobId);
     $params = array_merge($params, $optParams);
@@ -713,7 +713,7 @@ class Google_Service_Bigquery_Jobs_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Bigquery_Job
    */
-  public function insert($projectId, Google_Service_Bigquery_Job $postBody, $optParams = array())
+  public function insert($projectId, Google_Service_Bigquery_Job $postBody, $optParams = [])
   {
     $params = array('projectId' => $projectId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -740,7 +740,7 @@ class Google_Service_Bigquery_Jobs_Resource extends Google_Service_Resource
    * request the next page of results
    * @return Google_Service_Bigquery_JobList
    */
-  public function listJobs($projectId, $optParams = array())
+  public function listJobs($projectId, $optParams = [])
   {
     $params = array('projectId' => $projectId);
     $params = array_merge($params, $optParams);
@@ -756,7 +756,7 @@ class Google_Service_Bigquery_Jobs_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Bigquery_QueryResponse
    */
-  public function query($projectId, Google_Service_Bigquery_QueryRequest $postBody, $optParams = array())
+  public function query($projectId, Google_Service_Bigquery_QueryRequest $postBody, $optParams = [])
   {
     $params = array('projectId' => $projectId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -786,9 +786,9 @@ class Google_Service_Bigquery_Projects_Resource extends Google_Service_Resource
    * @opt_param string maxResults Maximum number of results to return
    * @return Google_Service_Bigquery_ProjectList
    */
-  public function listProjects($optParams = array())
+  public function listProjects($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_Bigquery_ProjectList");
   }
@@ -816,7 +816,7 @@ class Google_Service_Bigquery_Tabledata_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Bigquery_TableDataInsertAllResponse
    */
-  public function insertAll($projectId, $datasetId, $tableId, Google_Service_Bigquery_TableDataInsertAllRequest $postBody, $optParams = array())
+  public function insertAll($projectId, $datasetId, $tableId, Google_Service_Bigquery_TableDataInsertAllRequest $postBody, $optParams = [])
   {
     $params = array('projectId' => $projectId, 'datasetId' => $datasetId, 'tableId' => $tableId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -838,7 +838,7 @@ class Google_Service_Bigquery_Tabledata_Resource extends Google_Service_Resource
    * @opt_param string startIndex Zero-based index of the starting row to read
    * @return Google_Service_Bigquery_TableDataList
    */
-  public function listTabledata($projectId, $datasetId, $tableId, $optParams = array())
+  public function listTabledata($projectId, $datasetId, $tableId, $optParams = [])
   {
     $params = array('projectId' => $projectId, 'datasetId' => $datasetId, 'tableId' => $tableId);
     $params = array_merge($params, $optParams);
@@ -866,7 +866,7 @@ class Google_Service_Bigquery_Tables_Resource extends Google_Service_Resource
    * @param string $tableId Table ID of the table to delete
    * @param array $optParams Optional parameters.
    */
-  public function delete($projectId, $datasetId, $tableId, $optParams = array())
+  public function delete($projectId, $datasetId, $tableId, $optParams = [])
   {
     $params = array('projectId' => $projectId, 'datasetId' => $datasetId, 'tableId' => $tableId);
     $params = array_merge($params, $optParams);
@@ -884,7 +884,7 @@ class Google_Service_Bigquery_Tables_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Bigquery_Table
    */
-  public function get($projectId, $datasetId, $tableId, $optParams = array())
+  public function get($projectId, $datasetId, $tableId, $optParams = [])
   {
     $params = array('projectId' => $projectId, 'datasetId' => $datasetId, 'tableId' => $tableId);
     $params = array_merge($params, $optParams);
@@ -900,7 +900,7 @@ class Google_Service_Bigquery_Tables_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Bigquery_Table
    */
-  public function insert($projectId, $datasetId, Google_Service_Bigquery_Table $postBody, $optParams = array())
+  public function insert($projectId, $datasetId, Google_Service_Bigquery_Table $postBody, $optParams = [])
   {
     $params = array('projectId' => $projectId, 'datasetId' => $datasetId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -920,7 +920,7 @@ class Google_Service_Bigquery_Tables_Resource extends Google_Service_Resource
    * @opt_param string maxResults Maximum number of results to return
    * @return Google_Service_Bigquery_TableList
    */
-  public function listTables($projectId, $datasetId, $optParams = array())
+  public function listTables($projectId, $datasetId, $optParams = [])
   {
     $params = array('projectId' => $projectId, 'datasetId' => $datasetId);
     $params = array_merge($params, $optParams);
@@ -940,7 +940,7 @@ class Google_Service_Bigquery_Tables_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Bigquery_Table
    */
-  public function patch($projectId, $datasetId, $tableId, Google_Service_Bigquery_Table $postBody, $optParams = array())
+  public function patch($projectId, $datasetId, $tableId, Google_Service_Bigquery_Table $postBody, $optParams = [])
   {
     $params = array('projectId' => $projectId, 'datasetId' => $datasetId, 'tableId' => $tableId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -959,7 +959,7 @@ class Google_Service_Bigquery_Tables_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Bigquery_Table
    */
-  public function update($projectId, $datasetId, $tableId, Google_Service_Bigquery_Table $postBody, $optParams = array())
+  public function update($projectId, $datasetId, $tableId, Google_Service_Bigquery_Table $postBody, $optParams = [])
   {
     $params = array('projectId' => $projectId, 'datasetId' => $datasetId, 'tableId' => $tableId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);

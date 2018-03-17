@@ -87,7 +87,7 @@ class request
 		{
 			self::$GET = utility\safe::safe($_GET, 'sqlinjection');
 		}
-		$myget = array();
+		$myget = [];
 		foreach (self::$GET as $key => &$value)
 		{
 			$pos = strpos($key, '=');

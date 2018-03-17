@@ -70,7 +70,7 @@ class Google_Logger_Psr extends Google_Logger_Abstract
   /**
    * {@inheritdoc}
    */
-  public function log($level, $message, array $context = array())
+  public function log($level, $message, array $context = [])
   {
     if (!$this->shouldHandle($level)) {
       return false;
@@ -87,7 +87,7 @@ class Google_Logger_Psr extends Google_Logger_Abstract
   /**
    * {@inheritdoc}
    */
-  protected function write($message, array $context = array())
+  protected function write($message, array $context = [])
   {
   }
 }

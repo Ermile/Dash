@@ -34,7 +34,7 @@ class Google_Service_QPXExpress extends Google_Service
 
 
   public $trips;
-  
+
 
   /**
    * Constructs the internal representation of the QPXExpress service.
@@ -58,7 +58,7 @@ class Google_Service_QPXExpress extends Google_Service
             'search' => array(
               'path' => 'search',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),
           )
         )
@@ -85,7 +85,7 @@ class Google_Service_QPXExpress_Trips_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_QPXExpress_TripsSearchResponse
    */
-  public function search(Google_Service_QPXExpress_TripsSearchRequest $postBody, $optParams = array())
+  public function search(Google_Service_QPXExpress_TripsSearchRequest $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);

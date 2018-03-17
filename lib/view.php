@@ -139,7 +139,7 @@ class view
 		require_once core.'addons/lib/Twig/lib/Twig/Autoloader.php';
 		\Twig_Autoloader::register();
 		$loader		  = new \Twig_Loader_Filesystem($this->twig_include_path);
-		$array_option = array();
+		$array_option = [];
 		if($this->controller()->debug())
 		{
 			$array_option['debug'] = true;

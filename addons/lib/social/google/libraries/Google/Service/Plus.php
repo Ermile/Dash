@@ -47,7 +47,7 @@ class Google_Service_Plus extends Google_Service
   public $comments;
   public $moments;
   public $people;
-  
+
 
   /**
    * Constructs the internal representation of the Plus service.
@@ -357,7 +357,7 @@ class Google_Service_Plus_Activities_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Plus_Activity
    */
-  public function get($activityId, $optParams = array())
+  public function get($activityId, $optParams = [])
   {
     $params = array('activityId' => $activityId);
     $params = array_merge($params, $optParams);
@@ -381,7 +381,7 @@ class Google_Service_Plus_Activities_Resource extends Google_Service_Resource
    * returned might be less than the specified maxResults.
    * @return Google_Service_Plus_ActivityFeed
    */
-  public function listActivities($userId, $collection, $optParams = array())
+  public function listActivities($userId, $collection, $optParams = [])
   {
     $params = array('userId' => $userId, 'collection' => $collection);
     $params = array_merge($params, $optParams);
@@ -406,7 +406,7 @@ class Google_Service_Plus_Activities_Resource extends Google_Service_Resource
    * search language codes for available values.
    * @return Google_Service_Plus_ActivityFeed
    */
-  public function search($query, $optParams = array())
+  public function search($query, $optParams = [])
   {
     $params = array('query' => $query);
     $params = array_merge($params, $optParams);
@@ -432,7 +432,7 @@ class Google_Service_Plus_Comments_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Plus_Comment
    */
-  public function get($commentId, $optParams = array())
+  public function get($commentId, $optParams = [])
   {
     $params = array('commentId' => $commentId);
     $params = array_merge($params, $optParams);
@@ -454,7 +454,7 @@ class Google_Service_Plus_Comments_Resource extends Google_Service_Resource
    * returned might be less than the specified maxResults.
    * @return Google_Service_Plus_CommentFeed
    */
-  public function listComments($activityId, $optParams = array())
+  public function listComments($activityId, $optParams = [])
   {
     $params = array('activityId' => $activityId);
     $params = array_merge($params, $optParams);
@@ -487,7 +487,7 @@ class Google_Service_Plus_Moments_Resource extends Google_Service_Resource
    * debugging.
    * @return Google_Service_Plus_Moment
    */
-  public function insert($userId, $collection, Google_Service_Plus_Moment $postBody, $optParams = array())
+  public function insert($userId, $collection, Google_Service_Plus_Moment $postBody, $optParams = [])
   {
     $params = array('userId' => $userId, 'collection' => $collection, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -513,7 +513,7 @@ class Google_Service_Plus_Moments_Resource extends Google_Service_Resource
    * @opt_param string type Only moments of this type will be returned.
    * @return Google_Service_Plus_MomentsFeed
    */
-  public function listMoments($userId, $collection, $optParams = array())
+  public function listMoments($userId, $collection, $optParams = [])
   {
     $params = array('userId' => $userId, 'collection' => $collection);
     $params = array_merge($params, $optParams);
@@ -526,7 +526,7 @@ class Google_Service_Plus_Moments_Resource extends Google_Service_Resource
    * @param string $id The ID of the moment to delete.
    * @param array $optParams Optional parameters.
    */
-  public function remove($id, $optParams = array())
+  public function remove($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -555,7 +555,7 @@ class Google_Service_Plus_People_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Plus_Person
    */
-  public function get($userId, $optParams = array())
+  public function get($userId, $optParams = [])
   {
     $params = array('userId' => $userId);
     $params = array_merge($params, $optParams);
@@ -579,7 +579,7 @@ class Google_Service_Plus_People_Resource extends Google_Service_Resource
    * returned might be less than the specified maxResults.
    * @return Google_Service_Plus_PeopleFeed
    */
-  public function listPeople($userId, $collection, $optParams = array())
+  public function listPeople($userId, $collection, $optParams = [])
   {
     $params = array('userId' => $userId, 'collection' => $collection);
     $params = array_merge($params, $optParams);
@@ -603,7 +603,7 @@ class Google_Service_Plus_People_Resource extends Google_Service_Resource
    * returned might be less than the specified maxResults.
    * @return Google_Service_Plus_PeopleFeed
    */
-  public function listByActivity($activityId, $collection, $optParams = array())
+  public function listByActivity($activityId, $collection, $optParams = [])
   {
     $params = array('activityId' => $activityId, 'collection' => $collection);
     $params = array_merge($params, $optParams);
@@ -628,7 +628,7 @@ class Google_Service_Plus_People_Resource extends Google_Service_Resource
    * search language codes for available values.
    * @return Google_Service_Plus_PeopleFeed
    */
-  public function search($query, $optParams = array())
+  public function search($query, $optParams = [])
   {
     $params = array('query' => $query);
     $params = array_merge($params, $optParams);

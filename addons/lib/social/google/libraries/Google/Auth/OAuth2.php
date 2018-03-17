@@ -44,7 +44,7 @@ class Google_Auth_OAuth2 extends Google_Auth_Abstract
   /**
    * @var array The token bundle.
    */
-  private $token = array();
+  private $token = [];
 
   /**
    * @var Google_Client the base client
@@ -104,7 +104,7 @@ class Google_Auth_OAuth2 extends Google_Auth_Abstract
     $request = new Google_Http_Request(
         self::OAUTH2_TOKEN_URI,
         'POST',
-        array(),
+        [],
         $arguments
     );
     $request->disableGzip();
@@ -337,7 +337,7 @@ class Google_Auth_OAuth2 extends Google_Auth_Abstract
     $http = new Google_Http_Request(
         self::OAUTH2_TOKEN_URI,
         'POST',
-        array(),
+        [],
         $params
     );
     $http->disableGzip();
@@ -388,7 +388,7 @@ class Google_Auth_OAuth2 extends Google_Auth_Abstract
     $request = new Google_Http_Request(
         self::OAUTH2_REVOKE_URI,
         'POST',
-        array(),
+        [],
         "token=$token"
     );
     $request->disableGzip();

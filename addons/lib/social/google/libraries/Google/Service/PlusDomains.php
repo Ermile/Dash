@@ -67,7 +67,7 @@ class Google_Service_PlusDomains extends Google_Service
   public $comments;
   public $media;
   public $people;
-  
+
 
   /**
    * Constructs the internal representation of the PlusDomains service.
@@ -472,7 +472,7 @@ class Google_Service_PlusDomains_Activities_Resource extends Google_Service_Reso
    * @param array $optParams Optional parameters.
    * @return Google_Service_PlusDomains_Activity
    */
-  public function get($activityId, $optParams = array())
+  public function get($activityId, $optParams = [])
   {
     $params = array('activityId' => $activityId);
     $params = array_merge($params, $optParams);
@@ -492,7 +492,7 @@ class Google_Service_PlusDomains_Activities_Resource extends Google_Service_Reso
    * including video, photos, and articles based on the content of the page.
    * @return Google_Service_PlusDomains_Activity
    */
-  public function insert($userId, Google_Service_PlusDomains_Activity $postBody, $optParams = array())
+  public function insert($userId, Google_Service_PlusDomains_Activity $postBody, $optParams = [])
   {
     $params = array('userId' => $userId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -516,7 +516,7 @@ class Google_Service_PlusDomains_Activities_Resource extends Google_Service_Reso
    * returned might be less than the specified maxResults.
    * @return Google_Service_PlusDomains_ActivityFeed
    */
-  public function listActivities($userId, $collection, $optParams = array())
+  public function listActivities($userId, $collection, $optParams = [])
   {
     $params = array('userId' => $userId, 'collection' => $collection);
     $params = array_merge($params, $optParams);
@@ -551,7 +551,7 @@ class Google_Service_PlusDomains_Audiences_Resource extends Google_Service_Resou
    * returned might be less than the specified maxResults.
    * @return Google_Service_PlusDomains_AudiencesFeed
    */
-  public function listAudiences($userId, $optParams = array())
+  public function listAudiences($userId, $optParams = [])
   {
     $params = array('userId' => $userId);
     $params = array_merge($params, $optParams);
@@ -583,7 +583,7 @@ class Google_Service_PlusDomains_Circles_Resource extends Google_Service_Resourc
    * can be repeated.
    * @return Google_Service_PlusDomains_Circle
    */
-  public function addPeople($circleId, $optParams = array())
+  public function addPeople($circleId, $optParams = [])
   {
     $params = array('circleId' => $circleId);
     $params = array_merge($params, $optParams);
@@ -597,7 +597,7 @@ class Google_Service_PlusDomains_Circles_Resource extends Google_Service_Resourc
    * @param array $optParams Optional parameters.
    * @return Google_Service_PlusDomains_Circle
    */
-  public function get($circleId, $optParams = array())
+  public function get($circleId, $optParams = [])
   {
     $params = array('circleId' => $circleId);
     $params = array_merge($params, $optParams);
@@ -613,7 +613,7 @@ class Google_Service_PlusDomains_Circles_Resource extends Google_Service_Resourc
    * @param array $optParams Optional parameters.
    * @return Google_Service_PlusDomains_Circle
    */
-  public function insert($userId, Google_Service_PlusDomains_Circle $postBody, $optParams = array())
+  public function insert($userId, Google_Service_PlusDomains_Circle $postBody, $optParams = [])
   {
     $params = array('userId' => $userId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -635,7 +635,7 @@ class Google_Service_PlusDomains_Circles_Resource extends Google_Service_Resourc
    * returned might be less than the specified maxResults.
    * @return Google_Service_PlusDomains_CircleFeed
    */
-  public function listCircles($userId, $optParams = array())
+  public function listCircles($userId, $optParams = [])
   {
     $params = array('userId' => $userId);
     $params = array_merge($params, $optParams);
@@ -651,7 +651,7 @@ class Google_Service_PlusDomains_Circles_Resource extends Google_Service_Resourc
    * @param array $optParams Optional parameters.
    * @return Google_Service_PlusDomains_Circle
    */
-  public function patch($circleId, Google_Service_PlusDomains_Circle $postBody, $optParams = array())
+  public function patch($circleId, Google_Service_PlusDomains_Circle $postBody, $optParams = [])
   {
     $params = array('circleId' => $circleId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -664,7 +664,7 @@ class Google_Service_PlusDomains_Circles_Resource extends Google_Service_Resourc
    * @param string $circleId The ID of the circle to delete.
    * @param array $optParams Optional parameters.
    */
-  public function remove($circleId, $optParams = array())
+  public function remove($circleId, $optParams = [])
   {
     $params = array('circleId' => $circleId);
     $params = array_merge($params, $optParams);
@@ -682,7 +682,7 @@ class Google_Service_PlusDomains_Circles_Resource extends Google_Service_Resourc
    * @opt_param string email Email of the people to add to the circle. Optional,
    * can be repeated.
    */
-  public function removePeople($circleId, $optParams = array())
+  public function removePeople($circleId, $optParams = [])
   {
     $params = array('circleId' => $circleId);
     $params = array_merge($params, $optParams);
@@ -697,7 +697,7 @@ class Google_Service_PlusDomains_Circles_Resource extends Google_Service_Resourc
    * @param array $optParams Optional parameters.
    * @return Google_Service_PlusDomains_Circle
    */
-  public function update($circleId, Google_Service_PlusDomains_Circle $postBody, $optParams = array())
+  public function update($circleId, Google_Service_PlusDomains_Circle $postBody, $optParams = [])
   {
     $params = array('circleId' => $circleId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -723,7 +723,7 @@ class Google_Service_PlusDomains_Comments_Resource extends Google_Service_Resour
    * @param array $optParams Optional parameters.
    * @return Google_Service_PlusDomains_Comment
    */
-  public function get($commentId, $optParams = array())
+  public function get($commentId, $optParams = [])
   {
     $params = array('commentId' => $commentId);
     $params = array_merge($params, $optParams);
@@ -738,7 +738,7 @@ class Google_Service_PlusDomains_Comments_Resource extends Google_Service_Resour
    * @param array $optParams Optional parameters.
    * @return Google_Service_PlusDomains_Comment
    */
-  public function insert($activityId, Google_Service_PlusDomains_Comment $postBody, $optParams = array())
+  public function insert($activityId, Google_Service_PlusDomains_Comment $postBody, $optParams = [])
   {
     $params = array('activityId' => $activityId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -760,7 +760,7 @@ class Google_Service_PlusDomains_Comments_Resource extends Google_Service_Resour
    * returned might be less than the specified maxResults.
    * @return Google_Service_PlusDomains_CommentFeed
    */
-  public function listComments($activityId, $optParams = array())
+  public function listComments($activityId, $optParams = [])
   {
     $params = array('activityId' => $activityId);
     $params = array_merge($params, $optParams);
@@ -791,7 +791,7 @@ class Google_Service_PlusDomains_Media_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_PlusDomains_Media
    */
-  public function insert($userId, $collection, Google_Service_PlusDomains_Media $postBody, $optParams = array())
+  public function insert($userId, $collection, Google_Service_PlusDomains_Media $postBody, $optParams = [])
   {
     $params = array('userId' => $userId, 'collection' => $collection, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -818,7 +818,7 @@ class Google_Service_PlusDomains_People_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_PlusDomains_Person
    */
-  public function get($userId, $optParams = array())
+  public function get($userId, $optParams = [])
   {
     $params = array('userId' => $userId);
     $params = array_merge($params, $optParams);
@@ -842,7 +842,7 @@ class Google_Service_PlusDomains_People_Resource extends Google_Service_Resource
    * returned might be less than the specified maxResults.
    * @return Google_Service_PlusDomains_PeopleFeed
    */
-  public function listPeople($userId, $collection, $optParams = array())
+  public function listPeople($userId, $collection, $optParams = [])
   {
     $params = array('userId' => $userId, 'collection' => $collection);
     $params = array_merge($params, $optParams);
@@ -866,7 +866,7 @@ class Google_Service_PlusDomains_People_Resource extends Google_Service_Resource
    * returned might be less than the specified maxResults.
    * @return Google_Service_PlusDomains_PeopleFeed
    */
-  public function listByActivity($activityId, $collection, $optParams = array())
+  public function listByActivity($activityId, $collection, $optParams = [])
   {
     $params = array('activityId' => $activityId, 'collection' => $collection);
     $params = array_merge($params, $optParams);
@@ -887,7 +887,7 @@ class Google_Service_PlusDomains_People_Resource extends Google_Service_Resource
    * returned might be less than the specified maxResults.
    * @return Google_Service_PlusDomains_PeopleFeed
    */
-  public function listByCircle($circleId, $optParams = array())
+  public function listByCircle($circleId, $optParams = [])
   {
     $params = array('circleId' => $circleId);
     $params = array_merge($params, $optParams);

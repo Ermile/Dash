@@ -30,7 +30,7 @@ class Google_IO_Curl extends Google_IO_Abstract
   // cURL hex representation of version 7.30.0
   const NO_QUIRK_VERSION = 0x071E00;
 
-  private $options = array();
+  private $options = [];
 
   public function __construct(Google_Client $client)
   {
@@ -60,7 +60,7 @@ class Google_IO_Curl extends Google_IO_Abstract
 
     $requestHeaders = $request->getRequestHeaders();
     if ($requestHeaders && is_array($requestHeaders)) {
-      $curlHeaders = array();
+      $curlHeaders = [];
       foreach ($requestHeaders as $k => $v) {
         $curlHeaders[] = "$k: $v";
       }
@@ -81,12 +81,12 @@ class Google_IO_Curl extends Google_IO_Abstract
     if ($request->canGzip()) {
       curl_setopt($curl, CURLOPT_ENCODING, 'gzip,deflate');
     }
-    
+
     $options = $this->client->getClassConfig('Google_IO_Curl', 'options');
     if (is_array($options)) {
       $this->setOptions($options);
     }
-    
+
     foreach ($this->options as $key => $var) {
       curl_setopt($curl, $key, $var);
     }

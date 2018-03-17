@@ -35,7 +35,7 @@ class Google_Service_Licensing extends Google_Service
       "https://www.googleapis.com/auth/apps.licensing";
 
   public $licenseAssignments;
-  
+
 
   /**
    * Constructs the internal representation of the Licensing service.
@@ -229,7 +229,7 @@ class Google_Service_Licensing_LicenseAssignments_Resource extends Google_Servic
    * @param string $userId email id or unique Id of the user
    * @param array $optParams Optional parameters.
    */
-  public function delete($productId, $skuId, $userId, $optParams = array())
+  public function delete($productId, $skuId, $userId, $optParams = [])
   {
     $params = array('productId' => $productId, 'skuId' => $skuId, 'userId' => $userId);
     $params = array_merge($params, $optParams);
@@ -246,7 +246,7 @@ class Google_Service_Licensing_LicenseAssignments_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_Licensing_LicenseAssignment
    */
-  public function get($productId, $skuId, $userId, $optParams = array())
+  public function get($productId, $skuId, $userId, $optParams = [])
   {
     $params = array('productId' => $productId, 'skuId' => $skuId, 'userId' => $userId);
     $params = array_merge($params, $optParams);
@@ -262,7 +262,7 @@ class Google_Service_Licensing_LicenseAssignments_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_Licensing_LicenseAssignment
    */
-  public function insert($productId, $skuId, Google_Service_Licensing_LicenseAssignmentInsert $postBody, $optParams = array())
+  public function insert($productId, $skuId, Google_Service_Licensing_LicenseAssignmentInsert $postBody, $optParams = [])
   {
     $params = array('productId' => $productId, 'skuId' => $skuId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -284,7 +284,7 @@ class Google_Service_Licensing_LicenseAssignments_Resource extends Google_Servic
    * time. Must be positive. Optional. Default value is 100.
    * @return Google_Service_Licensing_LicenseAssignmentList
    */
-  public function listForProduct($productId, $customerId, $optParams = array())
+  public function listForProduct($productId, $customerId, $optParams = [])
   {
     $params = array('productId' => $productId, 'customerId' => $customerId);
     $params = array_merge($params, $optParams);
@@ -307,7 +307,7 @@ class Google_Service_Licensing_LicenseAssignments_Resource extends Google_Servic
    * time. Must be positive. Optional. Default value is 100.
    * @return Google_Service_Licensing_LicenseAssignmentList
    */
-  public function listForProductAndSku($productId, $skuId, $customerId, $optParams = array())
+  public function listForProductAndSku($productId, $skuId, $customerId, $optParams = [])
   {
     $params = array('productId' => $productId, 'skuId' => $skuId, 'customerId' => $customerId);
     $params = array_merge($params, $optParams);
@@ -325,7 +325,7 @@ class Google_Service_Licensing_LicenseAssignments_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_Licensing_LicenseAssignment
    */
-  public function patch($productId, $skuId, $userId, Google_Service_Licensing_LicenseAssignment $postBody, $optParams = array())
+  public function patch($productId, $skuId, $userId, Google_Service_Licensing_LicenseAssignment $postBody, $optParams = [])
   {
     $params = array('productId' => $productId, 'skuId' => $skuId, 'userId' => $userId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -342,7 +342,7 @@ class Google_Service_Licensing_LicenseAssignments_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_Licensing_LicenseAssignment
    */
-  public function update($productId, $skuId, $userId, Google_Service_Licensing_LicenseAssignment $postBody, $optParams = array())
+  public function update($productId, $skuId, $userId, Google_Service_Licensing_LicenseAssignment $postBody, $optParams = [])
   {
     $params = array('productId' => $productId, 'skuId' => $skuId, 'userId' => $userId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);

@@ -55,7 +55,7 @@ class Google_Service_Classroom extends Google_Service
   public $courses_teachers;
   public $invitations;
   public $userProfiles;
-  
+
 
   /**
    * Constructs the internal representation of the Classroom service.
@@ -79,7 +79,7 @@ class Google_Service_Classroom extends Google_Service
             'create' => array(
               'path' => 'v1/courses',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),'delete' => array(
               'path' => 'v1/courses/{id}',
               'httpMethod' => 'DELETE',
@@ -361,7 +361,7 @@ class Google_Service_Classroom extends Google_Service
             ),'create' => array(
               'path' => 'v1/invitations',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),'delete' => array(
               'path' => 'v1/invitations/{id}',
               'httpMethod' => 'DELETE',
@@ -454,7 +454,7 @@ class Google_Service_Classroom_Courses_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Classroom_Course
    */
-  public function create(Google_Service_Classroom_Course $postBody, $optParams = array())
+  public function create(Google_Service_Classroom_Course $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -472,7 +472,7 @@ class Google_Service_Classroom_Courses_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Classroom_Empty
    */
-  public function delete($id, $optParams = array())
+  public function delete($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -490,7 +490,7 @@ class Google_Service_Classroom_Courses_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Classroom_Course
    */
-  public function get($id, $optParams = array())
+  public function get($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -526,9 +526,9 @@ class Google_Service_Classroom_Courses_Resource extends Google_Service_Resource
    * return fewer than the specified number of results.
    * @return Google_Service_Classroom_ListCoursesResponse
    */
-  public function listCourses($optParams = array())
+  public function listCourses($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_Classroom_ListCoursesResponse");
   }
@@ -552,7 +552,7 @@ class Google_Service_Classroom_Courses_Resource extends Google_Service_Resource
    * When set in a query parameter, this should be specified as `updateMask=,,...`
    * @return Google_Service_Classroom_Course
    */
-  public function patch($id, Google_Service_Classroom_Course $postBody, $optParams = array())
+  public function patch($id, Google_Service_Classroom_Course $postBody, $optParams = [])
   {
     $params = array('id' => $id, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -571,7 +571,7 @@ class Google_Service_Classroom_Courses_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Classroom_Course
    */
-  public function update($id, Google_Service_Classroom_Course $postBody, $optParams = array())
+  public function update($id, Google_Service_Classroom_Course $postBody, $optParams = [])
   {
     $params = array('id' => $id, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -603,7 +603,7 @@ class Google_Service_Classroom_CoursesAliases_Resource extends Google_Service_Re
    * @param array $optParams Optional parameters.
    * @return Google_Service_Classroom_CourseAlias
    */
-  public function create($courseId, Google_Service_Classroom_CourseAlias $postBody, $optParams = array())
+  public function create($courseId, Google_Service_Classroom_CourseAlias $postBody, $optParams = [])
   {
     $params = array('courseId' => $courseId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -623,7 +623,7 @@ class Google_Service_Classroom_CoursesAliases_Resource extends Google_Service_Re
    * @param array $optParams Optional parameters.
    * @return Google_Service_Classroom_Empty
    */
-  public function delete($courseId, $alias, $optParams = array())
+  public function delete($courseId, $alias, $optParams = [])
   {
     $params = array('courseId' => $courseId, 'alias' => $alias);
     $params = array_merge($params, $optParams);
@@ -651,7 +651,7 @@ class Google_Service_Classroom_CoursesAliases_Resource extends Google_Service_Re
    * return fewer than the specified number of results.
    * @return Google_Service_Classroom_ListCourseAliasesResponse
    */
-  public function listCoursesAliases($courseId, $optParams = array())
+  public function listCoursesAliases($courseId, $optParams = [])
   {
     $params = array('courseId' => $courseId);
     $params = array_merge($params, $optParams);
@@ -687,7 +687,7 @@ class Google_Service_Classroom_CoursesStudents_Resource extends Google_Service_R
    * user has administrative permissions to create students for any user.
    * @return Google_Service_Classroom_Student
    */
-  public function create($courseId, Google_Service_Classroom_Student $postBody, $optParams = array())
+  public function create($courseId, Google_Service_Classroom_Student $postBody, $optParams = [])
   {
     $params = array('courseId' => $courseId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -709,7 +709,7 @@ class Google_Service_Classroom_CoursesStudents_Resource extends Google_Service_R
    * @param array $optParams Optional parameters.
    * @return Google_Service_Classroom_Empty
    */
-  public function delete($courseId, $userId, $optParams = array())
+  public function delete($courseId, $userId, $optParams = [])
   {
     $params = array('courseId' => $courseId, 'userId' => $userId);
     $params = array_merge($params, $optParams);
@@ -731,7 +731,7 @@ class Google_Service_Classroom_CoursesStudents_Resource extends Google_Service_R
    * @param array $optParams Optional parameters.
    * @return Google_Service_Classroom_Student
    */
-  public function get($courseId, $userId, $optParams = array())
+  public function get($courseId, $userId, $optParams = [])
   {
     $params = array('courseId' => $courseId, 'userId' => $userId);
     $params = array_merge($params, $optParams);
@@ -757,7 +757,7 @@ class Google_Service_Classroom_CoursesStudents_Resource extends Google_Service_R
    * maximum. The server may return fewer than the specified number of results.
    * @return Google_Service_Classroom_ListStudentsResponse
    */
-  public function listCoursesStudents($courseId, $optParams = array())
+  public function listCoursesStudents($courseId, $optParams = [])
   {
     $params = array('courseId' => $courseId);
     $params = array_merge($params, $optParams);
@@ -788,7 +788,7 @@ class Google_Service_Classroom_CoursesTeachers_Resource extends Google_Service_R
    * @param array $optParams Optional parameters.
    * @return Google_Service_Classroom_Teacher
    */
-  public function create($courseId, Google_Service_Classroom_Teacher $postBody, $optParams = array())
+  public function create($courseId, Google_Service_Classroom_Teacher $postBody, $optParams = [])
   {
     $params = array('courseId' => $courseId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -811,7 +811,7 @@ class Google_Service_Classroom_CoursesTeachers_Resource extends Google_Service_R
    * @param array $optParams Optional parameters.
    * @return Google_Service_Classroom_Empty
    */
-  public function delete($courseId, $userId, $optParams = array())
+  public function delete($courseId, $userId, $optParams = [])
   {
     $params = array('courseId' => $courseId, 'userId' => $userId);
     $params = array_merge($params, $optParams);
@@ -833,7 +833,7 @@ class Google_Service_Classroom_CoursesTeachers_Resource extends Google_Service_R
    * @param array $optParams Optional parameters.
    * @return Google_Service_Classroom_Teacher
    */
-  public function get($courseId, $userId, $optParams = array())
+  public function get($courseId, $userId, $optParams = [])
   {
     $params = array('courseId' => $courseId, 'userId' => $userId);
     $params = array_merge($params, $optParams);
@@ -859,7 +859,7 @@ class Google_Service_Classroom_CoursesTeachers_Resource extends Google_Service_R
    * maximum. The server may return fewer than the specified number of results.
    * @return Google_Service_Classroom_ListTeachersResponse
    */
-  public function listCoursesTeachers($courseId, $optParams = array())
+  public function listCoursesTeachers($courseId, $optParams = [])
   {
     $params = array('courseId' => $courseId);
     $params = array_merge($params, $optParams);
@@ -890,7 +890,7 @@ class Google_Service_Classroom_Invitations_Resource extends Google_Service_Resou
    * @param array $optParams Optional parameters.
    * @return Google_Service_Classroom_Empty
    */
-  public function accept($id, $optParams = array())
+  public function accept($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -909,7 +909,7 @@ class Google_Service_Classroom_Invitations_Resource extends Google_Service_Resou
    * @param array $optParams Optional parameters.
    * @return Google_Service_Classroom_Invitation
    */
-  public function create(Google_Service_Classroom_Invitation $postBody, $optParams = array())
+  public function create(Google_Service_Classroom_Invitation $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -926,7 +926,7 @@ class Google_Service_Classroom_Invitations_Resource extends Google_Service_Resou
    * @param array $optParams Optional parameters.
    * @return Google_Service_Classroom_Empty
    */
-  public function delete($id, $optParams = array())
+  public function delete($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -943,7 +943,7 @@ class Google_Service_Classroom_Invitations_Resource extends Google_Service_Resou
    * @param array $optParams Optional parameters.
    * @return Google_Service_Classroom_Invitation
    */
-  public function get($id, $optParams = array())
+  public function get($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -974,9 +974,9 @@ class Google_Service_Classroom_Invitations_Resource extends Google_Service_Resou
    * maximum. The server may return fewer than the specified number of results.
    * @return Google_Service_Classroom_ListInvitationsResponse
    */
-  public function listInvitations($optParams = array())
+  public function listInvitations($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_Classroom_ListInvitationsResponse");
   }
@@ -1005,7 +1005,7 @@ class Google_Service_Classroom_UserProfiles_Resource extends Google_Service_Reso
    * @param array $optParams Optional parameters.
    * @return Google_Service_Classroom_UserProfile
    */
-  public function get($userId, $optParams = array())
+  public function get($userId, $optParams = [])
   {
     $params = array('userId' => $userId);
     $params = array_merge($params, $optParams);

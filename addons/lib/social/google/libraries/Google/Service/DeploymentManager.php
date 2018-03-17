@@ -46,7 +46,7 @@ class Google_Service_DeploymentManager extends Google_Service
   public $operations;
   public $resources;
   public $types;
-  
+
 
   /**
    * Constructs the internal representation of the DeploymentManager service.
@@ -404,7 +404,7 @@ class Google_Service_DeploymentManager_Deployments_Resource extends Google_Servi
    * @param array $optParams Optional parameters.
    * @return Google_Service_DeploymentManager_Operation
    */
-  public function delete($project, $deployment, $optParams = array())
+  public function delete($project, $deployment, $optParams = [])
   {
     $params = array('project' => $project, 'deployment' => $deployment);
     $params = array_merge($params, $optParams);
@@ -419,7 +419,7 @@ class Google_Service_DeploymentManager_Deployments_Resource extends Google_Servi
    * @param array $optParams Optional parameters.
    * @return Google_Service_DeploymentManager_Deployment
    */
-  public function get($project, $deployment, $optParams = array())
+  public function get($project, $deployment, $optParams = [])
   {
     $params = array('project' => $project, 'deployment' => $deployment);
     $params = array_merge($params, $optParams);
@@ -435,7 +435,7 @@ class Google_Service_DeploymentManager_Deployments_Resource extends Google_Servi
    * @param array $optParams Optional parameters.
    * @return Google_Service_DeploymentManager_Operation
    */
-  public function insert($project, Google_Service_DeploymentManager_Deployment $postBody, $optParams = array())
+  public function insert($project, Google_Service_DeploymentManager_Deployment $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -454,7 +454,7 @@ class Google_Service_DeploymentManager_Deployments_Resource extends Google_Servi
    * @opt_param string maxResults Maximum count of results to be returned.
    * @return Google_Service_DeploymentManager_DeploymentsListResponse
    */
-  public function listDeployments($project, $optParams = array())
+  public function listDeployments($project, $optParams = [])
   {
     $params = array('project' => $project);
     $params = array_merge($params, $optParams);
@@ -476,7 +476,7 @@ class Google_Service_DeploymentManager_Deployments_Resource extends Google_Servi
    * resources.
    * @return Google_Service_DeploymentManager_Operation
    */
-  public function patch($project, $deployment, Google_Service_DeploymentManager_Deployment $postBody, $optParams = array())
+  public function patch($project, $deployment, Google_Service_DeploymentManager_Deployment $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'deployment' => $deployment, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -498,7 +498,7 @@ class Google_Service_DeploymentManager_Deployments_Resource extends Google_Servi
    * resources.
    * @return Google_Service_DeploymentManager_Operation
    */
-  public function update($project, $deployment, Google_Service_DeploymentManager_Deployment $postBody, $optParams = array())
+  public function update($project, $deployment, Google_Service_DeploymentManager_Deployment $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'deployment' => $deployment, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -526,7 +526,7 @@ class Google_Service_DeploymentManager_Manifests_Resource extends Google_Service
    * @param array $optParams Optional parameters.
    * @return Google_Service_DeploymentManager_Manifest
    */
-  public function get($project, $deployment, $manifest, $optParams = array())
+  public function get($project, $deployment, $manifest, $optParams = [])
   {
     $params = array('project' => $project, 'deployment' => $deployment, 'manifest' => $manifest);
     $params = array_merge($params, $optParams);
@@ -546,7 +546,7 @@ class Google_Service_DeploymentManager_Manifests_Resource extends Google_Service
    * @opt_param string maxResults Maximum count of results to be returned.
    * @return Google_Service_DeploymentManager_ManifestsListResponse
    */
-  public function listManifests($project, $deployment, $optParams = array())
+  public function listManifests($project, $deployment, $optParams = [])
   {
     $params = array('project' => $project, 'deployment' => $deployment);
     $params = array_merge($params, $optParams);
@@ -573,7 +573,7 @@ class Google_Service_DeploymentManager_Operations_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_DeploymentManager_Operation
    */
-  public function get($project, $operation, $optParams = array())
+  public function get($project, $operation, $optParams = [])
   {
     $params = array('project' => $project, 'operation' => $operation);
     $params = array_merge($params, $optParams);
@@ -592,7 +592,7 @@ class Google_Service_DeploymentManager_Operations_Resource extends Google_Servic
    * @opt_param string maxResults Maximum count of results to be returned.
    * @return Google_Service_DeploymentManager_OperationsListResponse
    */
-  public function listOperations($project, $optParams = array())
+  public function listOperations($project, $optParams = [])
   {
     $params = array('project' => $project);
     $params = array_merge($params, $optParams);
@@ -620,7 +620,7 @@ class Google_Service_DeploymentManager_Resources_Resource extends Google_Service
    * @param array $optParams Optional parameters.
    * @return Google_Service_DeploymentManager_DeploymentmanagerResource
    */
-  public function get($project, $deployment, $resource, $optParams = array())
+  public function get($project, $deployment, $resource, $optParams = [])
   {
     $params = array('project' => $project, 'deployment' => $deployment, 'resource' => $resource);
     $params = array_merge($params, $optParams);
@@ -640,7 +640,7 @@ class Google_Service_DeploymentManager_Resources_Resource extends Google_Service
    * @opt_param string maxResults Maximum count of results to be returned.
    * @return Google_Service_DeploymentManager_ResourcesListResponse
    */
-  public function listResources($project, $deployment, $optParams = array())
+  public function listResources($project, $deployment, $optParams = [])
   {
     $params = array('project' => $project, 'deployment' => $deployment);
     $params = array_merge($params, $optParams);
@@ -671,7 +671,7 @@ class Google_Service_DeploymentManager_Types_Resource extends Google_Service_Res
    * @opt_param string maxResults Maximum count of results to be returned.
    * @return Google_Service_DeploymentManager_TypesListResponse
    */
-  public function listTypes($project, $optParams = array())
+  public function listTypes($project, $optParams = [])
   {
     $params = array('project' => $project);
     $params = array_merge($params, $optParams);

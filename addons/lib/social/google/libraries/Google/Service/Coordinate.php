@@ -43,7 +43,7 @@ class Google_Service_Coordinate extends Google_Service
   public $schedule;
   public $team;
   public $worker;
-  
+
 
   /**
    * Constructs the internal representation of the Coordinate service.
@@ -483,7 +483,7 @@ class Google_Service_Coordinate_CustomFieldDef_Resource extends Google_Service_R
    * @param array $optParams Optional parameters.
    * @return Google_Service_Coordinate_CustomFieldDefListResponse
    */
-  public function listCustomFieldDef($teamId, $optParams = array())
+  public function listCustomFieldDef($teamId, $optParams = [])
   {
     $params = array('teamId' => $teamId);
     $params = array_merge($params, $optParams);
@@ -510,7 +510,7 @@ class Google_Service_Coordinate_Jobs_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Coordinate_Job
    */
-  public function get($teamId, $jobId, $optParams = array())
+  public function get($teamId, $jobId, $optParams = [])
   {
     $params = array('teamId' => $teamId, 'jobId' => $jobId);
     $params = array_merge($params, $optParams);
@@ -542,7 +542,7 @@ class Google_Service_Coordinate_Jobs_Resource extends Google_Service_Resource
    * enum field will result in an error 500.
    * @return Google_Service_Coordinate_Job
    */
-  public function insert($teamId, $address, $lat, $lng, $title, Google_Service_Coordinate_Job $postBody, $optParams = array())
+  public function insert($teamId, $address, $lat, $lng, $title, Google_Service_Coordinate_Job $postBody, $optParams = [])
   {
     $params = array('teamId' => $teamId, 'address' => $address, 'lat' => $lat, 'lng' => $lng, 'title' => $title, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -561,7 +561,7 @@ class Google_Service_Coordinate_Jobs_Resource extends Google_Service_Resource
    * @opt_param string pageToken Continuation token
    * @return Google_Service_Coordinate_JobListResponse
    */
-  public function listJobs($teamId, $optParams = array())
+  public function listJobs($teamId, $optParams = [])
   {
     $params = array('teamId' => $teamId);
     $params = array_merge($params, $optParams);
@@ -595,7 +595,7 @@ class Google_Service_Coordinate_Jobs_Resource extends Google_Service_Resource
    * enum field will result in an error 500.
    * @return Google_Service_Coordinate_Job
    */
-  public function patch($teamId, $jobId, Google_Service_Coordinate_Job $postBody, $optParams = array())
+  public function patch($teamId, $jobId, Google_Service_Coordinate_Job $postBody, $optParams = [])
   {
     $params = array('teamId' => $teamId, 'jobId' => $jobId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -629,7 +629,7 @@ class Google_Service_Coordinate_Jobs_Resource extends Google_Service_Resource
    * enum field will result in an error 500.
    * @return Google_Service_Coordinate_Job
    */
-  public function update($teamId, $jobId, Google_Service_Coordinate_Job $postBody, $optParams = array())
+  public function update($teamId, $jobId, Google_Service_Coordinate_Job $postBody, $optParams = [])
   {
     $params = array('teamId' => $teamId, 'jobId' => $jobId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -661,7 +661,7 @@ class Google_Service_Coordinate_Location_Resource extends Google_Service_Resourc
    * @opt_param string maxResults Maximum number of results to return in one page.
    * @return Google_Service_Coordinate_LocationListResponse
    */
-  public function listLocation($teamId, $workerEmail, $startTimestampMs, $optParams = array())
+  public function listLocation($teamId, $workerEmail, $startTimestampMs, $optParams = [])
   {
     $params = array('teamId' => $teamId, 'workerEmail' => $workerEmail, 'startTimestampMs' => $startTimestampMs);
     $params = array_merge($params, $optParams);
@@ -688,7 +688,7 @@ class Google_Service_Coordinate_Schedule_Resource extends Google_Service_Resourc
    * @param array $optParams Optional parameters.
    * @return Google_Service_Coordinate_Schedule
    */
-  public function get($teamId, $jobId, $optParams = array())
+  public function get($teamId, $jobId, $optParams = [])
   {
     $params = array('teamId' => $teamId, 'jobId' => $jobId);
     $params = array_merge($params, $optParams);
@@ -711,7 +711,7 @@ class Google_Service_Coordinate_Schedule_Resource extends Google_Service_Resourc
    * @opt_param string endTime Scheduled end time in milliseconds since epoch.
    * @return Google_Service_Coordinate_Schedule
    */
-  public function patch($teamId, $jobId, Google_Service_Coordinate_Schedule $postBody, $optParams = array())
+  public function patch($teamId, $jobId, Google_Service_Coordinate_Schedule $postBody, $optParams = [])
   {
     $params = array('teamId' => $teamId, 'jobId' => $jobId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -733,7 +733,7 @@ class Google_Service_Coordinate_Schedule_Resource extends Google_Service_Resourc
    * @opt_param string endTime Scheduled end time in milliseconds since epoch.
    * @return Google_Service_Coordinate_Schedule
    */
-  public function update($teamId, $jobId, Google_Service_Coordinate_Schedule $postBody, $optParams = array())
+  public function update($teamId, $jobId, Google_Service_Coordinate_Schedule $postBody, $optParams = [])
   {
     $params = array('teamId' => $teamId, 'jobId' => $jobId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -765,9 +765,9 @@ class Google_Service_Coordinate_Team_Resource extends Google_Service_Resource
    * the Dispatcher role.
    * @return Google_Service_Coordinate_TeamListResponse
    */
-  public function listTeam($optParams = array())
+  public function listTeam($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_Coordinate_TeamListResponse");
   }
@@ -791,7 +791,7 @@ class Google_Service_Coordinate_Worker_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Coordinate_WorkerListResponse
    */
-  public function listWorker($teamId, $optParams = array())
+  public function listWorker($teamId, $optParams = [])
   {
     $params = array('teamId' => $teamId);
     $params = array_merge($params, $optParams);

@@ -40,7 +40,7 @@ class Google_Service_Dataflow extends Google_Service
   public $projects_jobs;
   public $projects_jobs_messages;
   public $projects_jobs_workItems;
-  
+
 
   /**
    * Constructs the internal representation of the Dataflow service.
@@ -296,7 +296,7 @@ class Google_Service_Dataflow_ProjectsJobs_Resource extends Google_Service_Resou
    * @opt_param string view
    * @return Google_Service_Dataflow_Job
    */
-  public function create($projectId, Google_Service_Dataflow_Job $postBody, $optParams = array())
+  public function create($projectId, Google_Service_Dataflow_Job $postBody, $optParams = [])
   {
     $params = array('projectId' => $projectId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -313,7 +313,7 @@ class Google_Service_Dataflow_ProjectsJobs_Resource extends Google_Service_Resou
    * @opt_param string view
    * @return Google_Service_Dataflow_Job
    */
-  public function get($projectId, $jobId, $optParams = array())
+  public function get($projectId, $jobId, $optParams = [])
   {
     $params = array('projectId' => $projectId, 'jobId' => $jobId);
     $params = array_merge($params, $optParams);
@@ -330,7 +330,7 @@ class Google_Service_Dataflow_ProjectsJobs_Resource extends Google_Service_Resou
    * @opt_param string startTime
    * @return Google_Service_Dataflow_JobMetrics
    */
-  public function getMetrics($projectId, $jobId, $optParams = array())
+  public function getMetrics($projectId, $jobId, $optParams = [])
   {
     $params = array('projectId' => $projectId, 'jobId' => $jobId);
     $params = array_merge($params, $optParams);
@@ -348,7 +348,7 @@ class Google_Service_Dataflow_ProjectsJobs_Resource extends Google_Service_Resou
    * @opt_param int pageSize
    * @return Google_Service_Dataflow_ListJobsResponse
    */
-  public function listProjectsJobs($projectId, $optParams = array())
+  public function listProjectsJobs($projectId, $optParams = [])
   {
     $params = array('projectId' => $projectId);
     $params = array_merge($params, $optParams);
@@ -365,7 +365,7 @@ class Google_Service_Dataflow_ProjectsJobs_Resource extends Google_Service_Resou
    * @param array $optParams Optional parameters.
    * @return Google_Service_Dataflow_Job
    */
-  public function patch($projectId, $jobId, Google_Service_Dataflow_Job $postBody, $optParams = array())
+  public function patch($projectId, $jobId, Google_Service_Dataflow_Job $postBody, $optParams = [])
   {
     $params = array('projectId' => $projectId, 'jobId' => $jobId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -381,7 +381,7 @@ class Google_Service_Dataflow_ProjectsJobs_Resource extends Google_Service_Resou
    * @param array $optParams Optional parameters.
    * @return Google_Service_Dataflow_Job
    */
-  public function update($projectId, $jobId, Google_Service_Dataflow_Job $postBody, $optParams = array())
+  public function update($projectId, $jobId, Google_Service_Dataflow_Job $postBody, $optParams = [])
   {
     $params = array('projectId' => $projectId, 'jobId' => $jobId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -414,7 +414,7 @@ class Google_Service_Dataflow_ProjectsJobsMessages_Resource extends Google_Servi
    * @opt_param string minimumImportance
    * @return Google_Service_Dataflow_ListJobMessagesResponse
    */
-  public function listProjectsJobsMessages($projectId, $jobId, $optParams = array())
+  public function listProjectsJobsMessages($projectId, $jobId, $optParams = [])
   {
     $params = array('projectId' => $projectId, 'jobId' => $jobId);
     $params = array_merge($params, $optParams);
@@ -441,7 +441,7 @@ class Google_Service_Dataflow_ProjectsJobsWorkItems_Resource extends Google_Serv
    * @param array $optParams Optional parameters.
    * @return Google_Service_Dataflow_LeaseWorkItemResponse
    */
-  public function lease($projectId, $jobId, Google_Service_Dataflow_LeaseWorkItemRequest $postBody, $optParams = array())
+  public function lease($projectId, $jobId, Google_Service_Dataflow_LeaseWorkItemRequest $postBody, $optParams = [])
   {
     $params = array('projectId' => $projectId, 'jobId' => $jobId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -458,7 +458,7 @@ class Google_Service_Dataflow_ProjectsJobsWorkItems_Resource extends Google_Serv
    * @param array $optParams Optional parameters.
    * @return Google_Service_Dataflow_ReportWorkItemStatusResponse
    */
-  public function reportStatus($projectId, $jobId, Google_Service_Dataflow_ReportWorkItemStatusRequest $postBody, $optParams = array())
+  public function reportStatus($projectId, $jobId, Google_Service_Dataflow_ReportWorkItemStatusRequest $postBody, $optParams = [])
   {
     $params = array('projectId' => $projectId, 'jobId' => $jobId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);

@@ -72,7 +72,7 @@ class Google_Service_Analytics extends Google_Service
   public $management_webpropertyUserLinks;
   public $metadata_columns;
   public $provisioning;
-  
+
 
   /**
    * Constructs the internal representation of the Analytics service.
@@ -1953,7 +1953,7 @@ class Google_Service_Analytics extends Google_Service
             'createAccountTicket' => array(
               'path' => 'provisioning/createAccountTicket',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),
           )
         )
@@ -2016,7 +2016,7 @@ class Google_Service_Analytics_DataGa_Resource extends Google_Service_Resource
    * is JSON.
    * @return Google_Service_Analytics_GaData
    */
-  public function get($ids, $startDate, $endDate, $metrics, $optParams = array())
+  public function get($ids, $startDate, $endDate, $metrics, $optParams = [])
   {
     $params = array('ids' => $ids, 'start-date' => $startDate, 'end-date' => $endDate, 'metrics' => $metrics);
     $params = array_merge($params, $optParams);
@@ -2063,7 +2063,7 @@ class Google_Service_Analytics_DataMcf_Resource extends Google_Service_Resource
    * filters to be applied to the Analytics data.
    * @return Google_Service_Analytics_McfData
    */
-  public function get($ids, $startDate, $endDate, $metrics, $optParams = array())
+  public function get($ids, $startDate, $endDate, $metrics, $optParams = [])
   {
     $params = array('ids' => $ids, 'start-date' => $startDate, 'end-date' => $endDate, 'metrics' => $metrics);
     $params = array_merge($params, $optParams);
@@ -2100,7 +2100,7 @@ class Google_Service_Analytics_DataRealtime_Resource extends Google_Service_Reso
    * filters to be applied to real time data.
    * @return Google_Service_Analytics_RealtimeData
    */
-  public function get($ids, $metrics, $optParams = array())
+  public function get($ids, $metrics, $optParams = [])
   {
     $params = array('ids' => $ids, 'metrics' => $metrics);
     $params = array_merge($params, $optParams);
@@ -2144,9 +2144,9 @@ class Google_Service_Analytics_ManagementAccountSummaries_Resource extends Googl
    * parameter as a pagination mechanism along with the max-results parameter.
    * @return Google_Service_Analytics_AccountSummaries
    */
-  public function listManagementAccountSummaries($optParams = array())
+  public function listManagementAccountSummaries($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_Analytics_AccountSummaries");
   }
@@ -2169,7 +2169,7 @@ class Google_Service_Analytics_ManagementAccountUserLinks_Resource extends Googl
    * @param string $linkId Link ID to delete the user link for.
    * @param array $optParams Optional parameters.
    */
-  public function delete($accountId, $linkId, $optParams = array())
+  public function delete($accountId, $linkId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'linkId' => $linkId);
     $params = array_merge($params, $optParams);
@@ -2184,7 +2184,7 @@ class Google_Service_Analytics_ManagementAccountUserLinks_Resource extends Googl
    * @param array $optParams Optional parameters.
    * @return Google_Service_Analytics_EntityUserLink
    */
-  public function insert($accountId, Google_Service_Analytics_EntityUserLink $postBody, $optParams = array())
+  public function insert($accountId, Google_Service_Analytics_EntityUserLink $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2205,7 +2205,7 @@ class Google_Service_Analytics_ManagementAccountUserLinks_Resource extends Googl
    * results parameter.
    * @return Google_Service_Analytics_EntityUserLinks
    */
-  public function listManagementAccountUserLinks($accountId, $optParams = array())
+  public function listManagementAccountUserLinks($accountId, $optParams = [])
   {
     $params = array('accountId' => $accountId);
     $params = array_merge($params, $optParams);
@@ -2222,7 +2222,7 @@ class Google_Service_Analytics_ManagementAccountUserLinks_Resource extends Googl
    * @param array $optParams Optional parameters.
    * @return Google_Service_Analytics_EntityUserLink
    */
-  public function update($accountId, $linkId, Google_Service_Analytics_EntityUserLink $postBody, $optParams = array())
+  public function update($accountId, $linkId, Google_Service_Analytics_EntityUserLink $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'linkId' => $linkId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2253,9 +2253,9 @@ class Google_Service_Analytics_ManagementAccounts_Resource extends Google_Servic
    * parameter.
    * @return Google_Service_Analytics_Accounts
    */
-  public function listManagementAccounts($optParams = array())
+  public function listManagementAccounts($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_Analytics_Accounts");
   }
@@ -2287,7 +2287,7 @@ class Google_Service_Analytics_ManagementCustomDataSources_Resource extends Goog
    * results parameter.
    * @return Google_Service_Analytics_CustomDataSources
    */
-  public function listManagementCustomDataSources($accountId, $webPropertyId, $optParams = array())
+  public function listManagementCustomDataSources($accountId, $webPropertyId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId);
     $params = array_merge($params, $optParams);
@@ -2315,7 +2315,7 @@ class Google_Service_Analytics_ManagementCustomDimensions_Resource extends Googl
    * @param array $optParams Optional parameters.
    * @return Google_Service_Analytics_CustomDimension
    */
-  public function get($accountId, $webPropertyId, $customDimensionId, $optParams = array())
+  public function get($accountId, $webPropertyId, $customDimensionId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'customDimensionId' => $customDimensionId);
     $params = array_merge($params, $optParams);
@@ -2332,7 +2332,7 @@ class Google_Service_Analytics_ManagementCustomDimensions_Resource extends Googl
    * @param array $optParams Optional parameters.
    * @return Google_Service_Analytics_CustomDimension
    */
-  public function insert($accountId, $webPropertyId, Google_Service_Analytics_CustomDimension $postBody, $optParams = array())
+  public function insert($accountId, $webPropertyId, Google_Service_Analytics_CustomDimension $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2354,7 +2354,7 @@ class Google_Service_Analytics_ManagementCustomDimensions_Resource extends Googl
    * parameter as a pagination mechanism along with the max-results parameter.
    * @return Google_Service_Analytics_CustomDimensions
    */
-  public function listManagementCustomDimensions($accountId, $webPropertyId, $optParams = array())
+  public function listManagementCustomDimensions($accountId, $webPropertyId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId);
     $params = array_merge($params, $optParams);
@@ -2378,7 +2378,7 @@ class Google_Service_Analytics_ManagementCustomDimensions_Resource extends Googl
    * / data set.
    * @return Google_Service_Analytics_CustomDimension
    */
-  public function patch($accountId, $webPropertyId, $customDimensionId, Google_Service_Analytics_CustomDimension $postBody, $optParams = array())
+  public function patch($accountId, $webPropertyId, $customDimensionId, Google_Service_Analytics_CustomDimension $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'customDimensionId' => $customDimensionId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2401,7 +2401,7 @@ class Google_Service_Analytics_ManagementCustomDimensions_Resource extends Googl
    * / data set.
    * @return Google_Service_Analytics_CustomDimension
    */
-  public function update($accountId, $webPropertyId, $customDimensionId, Google_Service_Analytics_CustomDimension $postBody, $optParams = array())
+  public function update($accountId, $webPropertyId, $customDimensionId, Google_Service_Analytics_CustomDimension $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'customDimensionId' => $customDimensionId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2429,7 +2429,7 @@ class Google_Service_Analytics_ManagementCustomMetrics_Resource extends Google_S
    * @param array $optParams Optional parameters.
    * @return Google_Service_Analytics_CustomMetric
    */
-  public function get($accountId, $webPropertyId, $customMetricId, $optParams = array())
+  public function get($accountId, $webPropertyId, $customMetricId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'customMetricId' => $customMetricId);
     $params = array_merge($params, $optParams);
@@ -2446,7 +2446,7 @@ class Google_Service_Analytics_ManagementCustomMetrics_Resource extends Google_S
    * @param array $optParams Optional parameters.
    * @return Google_Service_Analytics_CustomMetric
    */
-  public function insert($accountId, $webPropertyId, Google_Service_Analytics_CustomMetric $postBody, $optParams = array())
+  public function insert($accountId, $webPropertyId, Google_Service_Analytics_CustomMetric $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2468,7 +2468,7 @@ class Google_Service_Analytics_ManagementCustomMetrics_Resource extends Google_S
    * parameter as a pagination mechanism along with the max-results parameter.
    * @return Google_Service_Analytics_CustomMetrics
    */
-  public function listManagementCustomMetrics($accountId, $webPropertyId, $optParams = array())
+  public function listManagementCustomMetrics($accountId, $webPropertyId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId);
     $params = array_merge($params, $optParams);
@@ -2491,7 +2491,7 @@ class Google_Service_Analytics_ManagementCustomMetrics_Resource extends Google_S
    * data set.
    * @return Google_Service_Analytics_CustomMetric
    */
-  public function patch($accountId, $webPropertyId, $customMetricId, Google_Service_Analytics_CustomMetric $postBody, $optParams = array())
+  public function patch($accountId, $webPropertyId, $customMetricId, Google_Service_Analytics_CustomMetric $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'customMetricId' => $customMetricId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2513,7 +2513,7 @@ class Google_Service_Analytics_ManagementCustomMetrics_Resource extends Google_S
    * data set.
    * @return Google_Service_Analytics_CustomMetric
    */
-  public function update($accountId, $webPropertyId, $customMetricId, Google_Service_Analytics_CustomMetric $postBody, $optParams = array())
+  public function update($accountId, $webPropertyId, $customMetricId, Google_Service_Analytics_CustomMetric $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'customMetricId' => $customMetricId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2540,7 +2540,7 @@ class Google_Service_Analytics_ManagementExperiments_Resource extends Google_Ser
    * @param string $experimentId ID of the experiment to delete
    * @param array $optParams Optional parameters.
    */
-  public function delete($accountId, $webPropertyId, $profileId, $experimentId, $optParams = array())
+  public function delete($accountId, $webPropertyId, $profileId, $experimentId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId, 'experimentId' => $experimentId);
     $params = array_merge($params, $optParams);
@@ -2557,7 +2557,7 @@ class Google_Service_Analytics_ManagementExperiments_Resource extends Google_Ser
    * @param array $optParams Optional parameters.
    * @return Google_Service_Analytics_Experiment
    */
-  public function get($accountId, $webPropertyId, $profileId, $experimentId, $optParams = array())
+  public function get($accountId, $webPropertyId, $profileId, $experimentId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId, 'experimentId' => $experimentId);
     $params = array_merge($params, $optParams);
@@ -2574,7 +2574,7 @@ class Google_Service_Analytics_ManagementExperiments_Resource extends Google_Ser
    * @param array $optParams Optional parameters.
    * @return Google_Service_Analytics_Experiment
    */
-  public function insert($accountId, $webPropertyId, $profileId, Google_Service_Analytics_Experiment $postBody, $optParams = array())
+  public function insert($accountId, $webPropertyId, $profileId, Google_Service_Analytics_Experiment $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2597,7 +2597,7 @@ class Google_Service_Analytics_ManagementExperiments_Resource extends Google_Ser
    * parameter.
    * @return Google_Service_Analytics_Experiments
    */
-  public function listManagementExperiments($accountId, $webPropertyId, $profileId, $optParams = array())
+  public function listManagementExperiments($accountId, $webPropertyId, $profileId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId);
     $params = array_merge($params, $optParams);
@@ -2616,7 +2616,7 @@ class Google_Service_Analytics_ManagementExperiments_Resource extends Google_Ser
    * @param array $optParams Optional parameters.
    * @return Google_Service_Analytics_Experiment
    */
-  public function patch($accountId, $webPropertyId, $profileId, $experimentId, Google_Service_Analytics_Experiment $postBody, $optParams = array())
+  public function patch($accountId, $webPropertyId, $profileId, $experimentId, Google_Service_Analytics_Experiment $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId, 'experimentId' => $experimentId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2634,7 +2634,7 @@ class Google_Service_Analytics_ManagementExperiments_Resource extends Google_Ser
    * @param array $optParams Optional parameters.
    * @return Google_Service_Analytics_Experiment
    */
-  public function update($accountId, $webPropertyId, $profileId, $experimentId, Google_Service_Analytics_Experiment $postBody, $optParams = array())
+  public function update($accountId, $webPropertyId, $profileId, $experimentId, Google_Service_Analytics_Experiment $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId, 'experimentId' => $experimentId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2660,7 +2660,7 @@ class Google_Service_Analytics_ManagementFilters_Resource extends Google_Service
    * @param array $optParams Optional parameters.
    * @return Google_Service_Analytics_Filter
    */
-  public function delete($accountId, $filterId, $optParams = array())
+  public function delete($accountId, $filterId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'filterId' => $filterId);
     $params = array_merge($params, $optParams);
@@ -2675,7 +2675,7 @@ class Google_Service_Analytics_ManagementFilters_Resource extends Google_Service
    * @param array $optParams Optional parameters.
    * @return Google_Service_Analytics_Filter
    */
-  public function get($accountId, $filterId, $optParams = array())
+  public function get($accountId, $filterId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'filterId' => $filterId);
     $params = array_merge($params, $optParams);
@@ -2690,7 +2690,7 @@ class Google_Service_Analytics_ManagementFilters_Resource extends Google_Service
    * @param array $optParams Optional parameters.
    * @return Google_Service_Analytics_Filter
    */
-  public function insert($accountId, Google_Service_Analytics_Filter $postBody, $optParams = array())
+  public function insert($accountId, Google_Service_Analytics_Filter $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2709,7 +2709,7 @@ class Google_Service_Analytics_ManagementFilters_Resource extends Google_Service
    * parameter as a pagination mechanism along with the max-results parameter.
    * @return Google_Service_Analytics_Filters
    */
-  public function listManagementFilters($accountId, $optParams = array())
+  public function listManagementFilters($accountId, $optParams = [])
   {
     $params = array('accountId' => $accountId);
     $params = array_merge($params, $optParams);
@@ -2726,7 +2726,7 @@ class Google_Service_Analytics_ManagementFilters_Resource extends Google_Service
    * @param array $optParams Optional parameters.
    * @return Google_Service_Analytics_Filter
    */
-  public function patch($accountId, $filterId, Google_Service_Analytics_Filter $postBody, $optParams = array())
+  public function patch($accountId, $filterId, Google_Service_Analytics_Filter $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'filterId' => $filterId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2742,7 +2742,7 @@ class Google_Service_Analytics_ManagementFilters_Resource extends Google_Service
    * @param array $optParams Optional parameters.
    * @return Google_Service_Analytics_Filter
    */
-  public function update($accountId, $filterId, Google_Service_Analytics_Filter $postBody, $optParams = array())
+  public function update($accountId, $filterId, Google_Service_Analytics_Filter $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'filterId' => $filterId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2770,7 +2770,7 @@ class Google_Service_Analytics_ManagementGoals_Resource extends Google_Service_R
    * @param array $optParams Optional parameters.
    * @return Google_Service_Analytics_Goal
    */
-  public function get($accountId, $webPropertyId, $profileId, $goalId, $optParams = array())
+  public function get($accountId, $webPropertyId, $profileId, $goalId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId, 'goalId' => $goalId);
     $params = array_merge($params, $optParams);
@@ -2787,7 +2787,7 @@ class Google_Service_Analytics_ManagementGoals_Resource extends Google_Service_R
    * @param array $optParams Optional parameters.
    * @return Google_Service_Analytics_Goal
    */
-  public function insert($accountId, $webPropertyId, $profileId, Google_Service_Analytics_Goal $postBody, $optParams = array())
+  public function insert($accountId, $webPropertyId, $profileId, Google_Service_Analytics_Goal $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2814,7 +2814,7 @@ class Google_Service_Analytics_ManagementGoals_Resource extends Google_Service_R
    * parameter as a pagination mechanism along with the max-results parameter.
    * @return Google_Service_Analytics_Goals
    */
-  public function listManagementGoals($accountId, $webPropertyId, $profileId, $optParams = array())
+  public function listManagementGoals($accountId, $webPropertyId, $profileId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId);
     $params = array_merge($params, $optParams);
@@ -2833,7 +2833,7 @@ class Google_Service_Analytics_ManagementGoals_Resource extends Google_Service_R
    * @param array $optParams Optional parameters.
    * @return Google_Service_Analytics_Goal
    */
-  public function patch($accountId, $webPropertyId, $profileId, $goalId, Google_Service_Analytics_Goal $postBody, $optParams = array())
+  public function patch($accountId, $webPropertyId, $profileId, $goalId, Google_Service_Analytics_Goal $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId, 'goalId' => $goalId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2851,7 +2851,7 @@ class Google_Service_Analytics_ManagementGoals_Resource extends Google_Service_R
    * @param array $optParams Optional parameters.
    * @return Google_Service_Analytics_Goal
    */
-  public function update($accountId, $webPropertyId, $profileId, $goalId, Google_Service_Analytics_Goal $postBody, $optParams = array())
+  public function update($accountId, $webPropertyId, $profileId, $goalId, Google_Service_Analytics_Goal $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId, 'goalId' => $goalId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2879,7 +2879,7 @@ class Google_Service_Analytics_ManagementProfileFilterLinks_Resource extends Goo
    * @param string $linkId ID of the profile filter link to delete.
    * @param array $optParams Optional parameters.
    */
-  public function delete($accountId, $webPropertyId, $profileId, $linkId, $optParams = array())
+  public function delete($accountId, $webPropertyId, $profileId, $linkId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId, 'linkId' => $linkId);
     $params = array_merge($params, $optParams);
@@ -2897,7 +2897,7 @@ class Google_Service_Analytics_ManagementProfileFilterLinks_Resource extends Goo
    * @param array $optParams Optional parameters.
    * @return Google_Service_Analytics_ProfileFilterLink
    */
-  public function get($accountId, $webPropertyId, $profileId, $linkId, $optParams = array())
+  public function get($accountId, $webPropertyId, $profileId, $linkId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId, 'linkId' => $linkId);
     $params = array_merge($params, $optParams);
@@ -2915,7 +2915,7 @@ class Google_Service_Analytics_ManagementProfileFilterLinks_Resource extends Goo
    * @param array $optParams Optional parameters.
    * @return Google_Service_Analytics_ProfileFilterLink
    */
-  public function insert($accountId, $webPropertyId, $profileId, Google_Service_Analytics_ProfileFilterLink $postBody, $optParams = array())
+  public function insert($accountId, $webPropertyId, $profileId, Google_Service_Analytics_ProfileFilterLink $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2941,7 +2941,7 @@ class Google_Service_Analytics_ManagementProfileFilterLinks_Resource extends Goo
    * parameter as a pagination mechanism along with the max-results parameter.
    * @return Google_Service_Analytics_ProfileFilterLinks
    */
-  public function listManagementProfileFilterLinks($accountId, $webPropertyId, $profileId, $optParams = array())
+  public function listManagementProfileFilterLinks($accountId, $webPropertyId, $profileId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId);
     $params = array_merge($params, $optParams);
@@ -2961,7 +2961,7 @@ class Google_Service_Analytics_ManagementProfileFilterLinks_Resource extends Goo
    * @param array $optParams Optional parameters.
    * @return Google_Service_Analytics_ProfileFilterLink
    */
-  public function patch($accountId, $webPropertyId, $profileId, $linkId, Google_Service_Analytics_ProfileFilterLink $postBody, $optParams = array())
+  public function patch($accountId, $webPropertyId, $profileId, $linkId, Google_Service_Analytics_ProfileFilterLink $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId, 'linkId' => $linkId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2980,7 +2980,7 @@ class Google_Service_Analytics_ManagementProfileFilterLinks_Resource extends Goo
    * @param array $optParams Optional parameters.
    * @return Google_Service_Analytics_ProfileFilterLink
    */
-  public function update($accountId, $webPropertyId, $profileId, $linkId, Google_Service_Analytics_ProfileFilterLink $postBody, $optParams = array())
+  public function update($accountId, $webPropertyId, $profileId, $linkId, Google_Service_Analytics_ProfileFilterLink $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId, 'linkId' => $linkId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -3007,7 +3007,7 @@ class Google_Service_Analytics_ManagementProfileUserLinks_Resource extends Googl
    * @param string $linkId Link ID to delete the user link for.
    * @param array $optParams Optional parameters.
    */
-  public function delete($accountId, $webPropertyId, $profileId, $linkId, $optParams = array())
+  public function delete($accountId, $webPropertyId, $profileId, $linkId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId, 'linkId' => $linkId);
     $params = array_merge($params, $optParams);
@@ -3024,7 +3024,7 @@ class Google_Service_Analytics_ManagementProfileUserLinks_Resource extends Googl
    * @param array $optParams Optional parameters.
    * @return Google_Service_Analytics_EntityUserLink
    */
-  public function insert($accountId, $webPropertyId, $profileId, Google_Service_Analytics_EntityUserLink $postBody, $optParams = array())
+  public function insert($accountId, $webPropertyId, $profileId, Google_Service_Analytics_EntityUserLink $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -3052,7 +3052,7 @@ class Google_Service_Analytics_ManagementProfileUserLinks_Resource extends Googl
    * results parameter.
    * @return Google_Service_Analytics_EntityUserLinks
    */
-  public function listManagementProfileUserLinks($accountId, $webPropertyId, $profileId, $optParams = array())
+  public function listManagementProfileUserLinks($accountId, $webPropertyId, $profileId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId);
     $params = array_merge($params, $optParams);
@@ -3071,7 +3071,7 @@ class Google_Service_Analytics_ManagementProfileUserLinks_Resource extends Googl
    * @param array $optParams Optional parameters.
    * @return Google_Service_Analytics_EntityUserLink
    */
-  public function update($accountId, $webPropertyId, $profileId, $linkId, Google_Service_Analytics_EntityUserLink $postBody, $optParams = array())
+  public function update($accountId, $webPropertyId, $profileId, $linkId, Google_Service_Analytics_EntityUserLink $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId, 'linkId' => $linkId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -3098,7 +3098,7 @@ class Google_Service_Analytics_ManagementProfiles_Resource extends Google_Servic
    * @param string $profileId ID of the view (profile) to be deleted.
    * @param array $optParams Optional parameters.
    */
-  public function delete($accountId, $webPropertyId, $profileId, $optParams = array())
+  public function delete($accountId, $webPropertyId, $profileId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId);
     $params = array_merge($params, $optParams);
@@ -3114,7 +3114,7 @@ class Google_Service_Analytics_ManagementProfiles_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_Analytics_Profile
    */
-  public function get($accountId, $webPropertyId, $profileId, $optParams = array())
+  public function get($accountId, $webPropertyId, $profileId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId);
     $params = array_merge($params, $optParams);
@@ -3131,7 +3131,7 @@ class Google_Service_Analytics_ManagementProfiles_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_Analytics_Profile
    */
-  public function insert($accountId, $webPropertyId, Google_Service_Analytics_Profile $postBody, $optParams = array())
+  public function insert($accountId, $webPropertyId, Google_Service_Analytics_Profile $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -3156,7 +3156,7 @@ class Google_Service_Analytics_ManagementProfiles_Resource extends Google_Servic
    * parameter as a pagination mechanism along with the max-results parameter.
    * @return Google_Service_Analytics_Profiles
    */
-  public function listManagementProfiles($accountId, $webPropertyId, $optParams = array())
+  public function listManagementProfiles($accountId, $webPropertyId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId);
     $params = array_merge($params, $optParams);
@@ -3175,7 +3175,7 @@ class Google_Service_Analytics_ManagementProfiles_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_Analytics_Profile
    */
-  public function patch($accountId, $webPropertyId, $profileId, Google_Service_Analytics_Profile $postBody, $optParams = array())
+  public function patch($accountId, $webPropertyId, $profileId, Google_Service_Analytics_Profile $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -3193,7 +3193,7 @@ class Google_Service_Analytics_ManagementProfiles_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_Analytics_Profile
    */
-  public function update($accountId, $webPropertyId, $profileId, Google_Service_Analytics_Profile $postBody, $optParams = array())
+  public function update($accountId, $webPropertyId, $profileId, Google_Service_Analytics_Profile $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -3224,9 +3224,9 @@ class Google_Service_Analytics_ManagementSegments_Resource extends Google_Servic
    * parameter.
    * @return Google_Service_Analytics_Segments
    */
-  public function listManagementSegments($optParams = array())
+  public function listManagementSegments($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_Analytics_Segments");
   }
@@ -3253,7 +3253,7 @@ class Google_Service_Analytics_ManagementUnsampledReports_Resource extends Googl
    * @param array $optParams Optional parameters.
    * @return Google_Service_Analytics_UnsampledReport
    */
-  public function get($accountId, $webPropertyId, $profileId, $unsampledReportId, $optParams = array())
+  public function get($accountId, $webPropertyId, $profileId, $unsampledReportId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId, 'unsampledReportId' => $unsampledReportId);
     $params = array_merge($params, $optParams);
@@ -3272,7 +3272,7 @@ class Google_Service_Analytics_ManagementUnsampledReports_Resource extends Googl
    * @param array $optParams Optional parameters.
    * @return Google_Service_Analytics_UnsampledReport
    */
-  public function insert($accountId, $webPropertyId, $profileId, Google_Service_Analytics_UnsampledReport $postBody, $optParams = array())
+  public function insert($accountId, $webPropertyId, $profileId, Google_Service_Analytics_UnsampledReport $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -3298,7 +3298,7 @@ class Google_Service_Analytics_ManagementUnsampledReports_Resource extends Googl
    * results parameter.
    * @return Google_Service_Analytics_UnsampledReports
    */
-  public function listManagementUnsampledReports($accountId, $webPropertyId, $profileId, $optParams = array())
+  public function listManagementUnsampledReports($accountId, $webPropertyId, $profileId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId);
     $params = array_merge($params, $optParams);
@@ -3326,7 +3326,7 @@ class Google_Service_Analytics_ManagementUploads_Resource extends Google_Service
    * @param Google_AnalyticsDataimportDeleteUploadDataRequest $postBody
    * @param array $optParams Optional parameters.
    */
-  public function deleteUploadData($accountId, $webPropertyId, $customDataSourceId, Google_Service_Analytics_AnalyticsDataimportDeleteUploadDataRequest $postBody, $optParams = array())
+  public function deleteUploadData($accountId, $webPropertyId, $customDataSourceId, Google_Service_Analytics_AnalyticsDataimportDeleteUploadDataRequest $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'customDataSourceId' => $customDataSourceId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -3344,7 +3344,7 @@ class Google_Service_Analytics_ManagementUploads_Resource extends Google_Service
    * @param array $optParams Optional parameters.
    * @return Google_Service_Analytics_Upload
    */
-  public function get($accountId, $webPropertyId, $customDataSourceId, $uploadId, $optParams = array())
+  public function get($accountId, $webPropertyId, $customDataSourceId, $uploadId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'customDataSourceId' => $customDataSourceId, 'uploadId' => $uploadId);
     $params = array_merge($params, $optParams);
@@ -3367,7 +3367,7 @@ class Google_Service_Analytics_ManagementUploads_Resource extends Google_Service
    * parameter.
    * @return Google_Service_Analytics_Uploads
    */
-  public function listManagementUploads($accountId, $webPropertyId, $customDataSourceId, $optParams = array())
+  public function listManagementUploads($accountId, $webPropertyId, $customDataSourceId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'customDataSourceId' => $customDataSourceId);
     $params = array_merge($params, $optParams);
@@ -3385,7 +3385,7 @@ class Google_Service_Analytics_ManagementUploads_Resource extends Google_Service
    * @param array $optParams Optional parameters.
    * @return Google_Service_Analytics_Upload
    */
-  public function uploadData($accountId, $webPropertyId, $customDataSourceId, $optParams = array())
+  public function uploadData($accountId, $webPropertyId, $customDataSourceId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'customDataSourceId' => $customDataSourceId);
     $params = array_merge($params, $optParams);
@@ -3412,7 +3412,7 @@ class Google_Service_Analytics_ManagementWebPropertyAdWordsLinks_Resource extend
    * @param string $webPropertyAdWordsLinkId Web property AdWords link ID.
    * @param array $optParams Optional parameters.
    */
-  public function delete($accountId, $webPropertyId, $webPropertyAdWordsLinkId, $optParams = array())
+  public function delete($accountId, $webPropertyId, $webPropertyAdWordsLinkId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'webPropertyAdWordsLinkId' => $webPropertyAdWordsLinkId);
     $params = array_merge($params, $optParams);
@@ -3431,7 +3431,7 @@ class Google_Service_Analytics_ManagementWebPropertyAdWordsLinks_Resource extend
    * @param array $optParams Optional parameters.
    * @return Google_Service_Analytics_EntityAdWordsLink
    */
-  public function get($accountId, $webPropertyId, $webPropertyAdWordsLinkId, $optParams = array())
+  public function get($accountId, $webPropertyId, $webPropertyAdWordsLinkId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'webPropertyAdWordsLinkId' => $webPropertyAdWordsLinkId);
     $params = array_merge($params, $optParams);
@@ -3448,7 +3448,7 @@ class Google_Service_Analytics_ManagementWebPropertyAdWordsLinks_Resource extend
    * @param array $optParams Optional parameters.
    * @return Google_Service_Analytics_EntityAdWordsLink
    */
-  public function insert($accountId, $webPropertyId, Google_Service_Analytics_EntityAdWordsLink $postBody, $optParams = array())
+  public function insert($accountId, $webPropertyId, Google_Service_Analytics_EntityAdWordsLink $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -3472,7 +3472,7 @@ class Google_Service_Analytics_ManagementWebPropertyAdWordsLinks_Resource extend
    * results parameter.
    * @return Google_Service_Analytics_EntityAdWordsLinks
    */
-  public function listManagementWebPropertyAdWordsLinks($accountId, $webPropertyId, $optParams = array())
+  public function listManagementWebPropertyAdWordsLinks($accountId, $webPropertyId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId);
     $params = array_merge($params, $optParams);
@@ -3492,7 +3492,7 @@ class Google_Service_Analytics_ManagementWebPropertyAdWordsLinks_Resource extend
    * @param array $optParams Optional parameters.
    * @return Google_Service_Analytics_EntityAdWordsLink
    */
-  public function patch($accountId, $webPropertyId, $webPropertyAdWordsLinkId, Google_Service_Analytics_EntityAdWordsLink $postBody, $optParams = array())
+  public function patch($accountId, $webPropertyId, $webPropertyAdWordsLinkId, Google_Service_Analytics_EntityAdWordsLink $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'webPropertyAdWordsLinkId' => $webPropertyAdWordsLinkId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -3512,7 +3512,7 @@ class Google_Service_Analytics_ManagementWebPropertyAdWordsLinks_Resource extend
    * @param array $optParams Optional parameters.
    * @return Google_Service_Analytics_EntityAdWordsLink
    */
-  public function update($accountId, $webPropertyId, $webPropertyAdWordsLinkId, Google_Service_Analytics_EntityAdWordsLink $postBody, $optParams = array())
+  public function update($accountId, $webPropertyId, $webPropertyAdWordsLinkId, Google_Service_Analytics_EntityAdWordsLink $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'webPropertyAdWordsLinkId' => $webPropertyAdWordsLinkId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -3538,7 +3538,7 @@ class Google_Service_Analytics_ManagementWebproperties_Resource extends Google_S
    * @param array $optParams Optional parameters.
    * @return Google_Service_Analytics_Webproperty
    */
-  public function get($accountId, $webPropertyId, $optParams = array())
+  public function get($accountId, $webPropertyId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId);
     $params = array_merge($params, $optParams);
@@ -3555,7 +3555,7 @@ class Google_Service_Analytics_ManagementWebproperties_Resource extends Google_S
    * @param array $optParams Optional parameters.
    * @return Google_Service_Analytics_Webproperty
    */
-  public function insert($accountId, Google_Service_Analytics_Webproperty $postBody, $optParams = array())
+  public function insert($accountId, Google_Service_Analytics_Webproperty $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -3577,7 +3577,7 @@ class Google_Service_Analytics_ManagementWebproperties_Resource extends Google_S
    * parameter as a pagination mechanism along with the max-results parameter.
    * @return Google_Service_Analytics_Webproperties
    */
-  public function listManagementWebproperties($accountId, $optParams = array())
+  public function listManagementWebproperties($accountId, $optParams = [])
   {
     $params = array('accountId' => $accountId);
     $params = array_merge($params, $optParams);
@@ -3594,7 +3594,7 @@ class Google_Service_Analytics_ManagementWebproperties_Resource extends Google_S
    * @param array $optParams Optional parameters.
    * @return Google_Service_Analytics_Webproperty
    */
-  public function patch($accountId, $webPropertyId, Google_Service_Analytics_Webproperty $postBody, $optParams = array())
+  public function patch($accountId, $webPropertyId, Google_Service_Analytics_Webproperty $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -3610,7 +3610,7 @@ class Google_Service_Analytics_ManagementWebproperties_Resource extends Google_S
    * @param array $optParams Optional parameters.
    * @return Google_Service_Analytics_Webproperty
    */
-  public function update($accountId, $webPropertyId, Google_Service_Analytics_Webproperty $postBody, $optParams = array())
+  public function update($accountId, $webPropertyId, Google_Service_Analytics_Webproperty $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -3636,7 +3636,7 @@ class Google_Service_Analytics_ManagementWebpropertyUserLinks_Resource extends G
    * @param string $linkId Link ID to delete the user link for.
    * @param array $optParams Optional parameters.
    */
-  public function delete($accountId, $webPropertyId, $linkId, $optParams = array())
+  public function delete($accountId, $webPropertyId, $linkId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'linkId' => $linkId);
     $params = array_merge($params, $optParams);
@@ -3652,7 +3652,7 @@ class Google_Service_Analytics_ManagementWebpropertyUserLinks_Resource extends G
    * @param array $optParams Optional parameters.
    * @return Google_Service_Analytics_EntityUserLink
    */
-  public function insert($accountId, $webPropertyId, Google_Service_Analytics_EntityUserLink $postBody, $optParams = array())
+  public function insert($accountId, $webPropertyId, Google_Service_Analytics_EntityUserLink $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -3676,7 +3676,7 @@ class Google_Service_Analytics_ManagementWebpropertyUserLinks_Resource extends G
    * results parameter.
    * @return Google_Service_Analytics_EntityUserLinks
    */
-  public function listManagementWebpropertyUserLinks($accountId, $webPropertyId, $optParams = array())
+  public function listManagementWebpropertyUserLinks($accountId, $webPropertyId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId);
     $params = array_merge($params, $optParams);
@@ -3695,7 +3695,7 @@ class Google_Service_Analytics_ManagementWebpropertyUserLinks_Resource extends G
    * @param array $optParams Optional parameters.
    * @return Google_Service_Analytics_EntityUserLink
    */
-  public function update($accountId, $webPropertyId, $linkId, Google_Service_Analytics_EntityUserLink $postBody, $optParams = array())
+  public function update($accountId, $webPropertyId, $linkId, Google_Service_Analytics_EntityUserLink $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'linkId' => $linkId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -3734,7 +3734,7 @@ class Google_Service_Analytics_MetadataColumns_Resource extends Google_Service_R
    * @param array $optParams Optional parameters.
    * @return Google_Service_Analytics_Columns
    */
-  public function listMetadataColumns($reportType, $optParams = array())
+  public function listMetadataColumns($reportType, $optParams = [])
   {
     $params = array('reportType' => $reportType);
     $params = array_merge($params, $optParams);
@@ -3760,7 +3760,7 @@ class Google_Service_Analytics_Provisioning_Resource extends Google_Service_Reso
    * @param array $optParams Optional parameters.
    * @return Google_Service_Analytics_AccountTicket
    */
-  public function createAccountTicket(Google_Service_Analytics_AccountTicket $postBody, $optParams = array())
+  public function createAccountTicket(Google_Service_Analytics_AccountTicket $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);

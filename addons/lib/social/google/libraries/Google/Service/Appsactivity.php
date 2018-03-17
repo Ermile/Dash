@@ -47,7 +47,7 @@ class Google_Service_Appsactivity extends Google_Service
       "https://www.googleapis.com/auth/drive.readonly";
 
   public $activities;
-  
+
 
   /**
    * Constructs the internal representation of the Appsactivity service.
@@ -145,9 +145,9 @@ class Google_Service_Appsactivity_Activities_Resource extends Google_Service_Res
    * Possible values of source are: - drive.google.com
    * @return Google_Service_Appsactivity_ListActivitiesResponse
    */
-  public function listActivities($optParams = array())
+  public function listActivities($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_Appsactivity_ListActivitiesResponse");
   }

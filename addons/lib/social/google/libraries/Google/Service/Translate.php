@@ -35,7 +35,7 @@ class Google_Service_Translate extends Google_Service
   public $detections;
   public $languages;
   public $translations;
-  
+
 
   /**
    * Constructs the internal representation of the Translate service.
@@ -151,7 +151,7 @@ class Google_Service_Translate_Detections_Resource extends Google_Service_Resour
    * @param array $optParams Optional parameters.
    * @return Google_Service_Translate_DetectionsListResponse
    */
-  public function listDetections($q, $optParams = array())
+  public function listDetections($q, $optParams = [])
   {
     $params = array('q' => $q);
     $params = array_merge($params, $optParams);
@@ -180,9 +180,9 @@ class Google_Service_Translate_Languages_Resource extends Google_Service_Resourc
    * results should be returned
    * @return Google_Service_Translate_LanguagesListResponse
    */
-  public function listLanguages($optParams = array())
+  public function listLanguages($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_Translate_LanguagesListResponse");
   }
@@ -213,7 +213,7 @@ class Google_Service_Translate_Translations_Resource extends Google_Service_Reso
    * @opt_param string cid The customization id for translate
    * @return Google_Service_Translate_TranslationsListResponse
    */
-  public function listTranslations($q, $target, $optParams = array())
+  public function listTranslations($q, $target, $optParams = [])
   {
     $params = array('q' => $q, 'target' => $target);
     $params = array_merge($params, $optParams);

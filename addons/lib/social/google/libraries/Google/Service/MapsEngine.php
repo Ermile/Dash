@@ -61,7 +61,7 @@ class Google_Service_MapsEngine extends Google_Service
   public $tables_files;
   public $tables_parents;
   public $tables_permissions;
-  
+
 
   /**
    * Constructs the internal representation of the MapsEngine service.
@@ -459,7 +459,7 @@ class Google_Service_MapsEngine extends Google_Service
             'create' => array(
               'path' => 'maps',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),'delete' => array(
               'path' => 'maps/{id}',
               'httpMethod' => 'DELETE',
@@ -655,7 +655,7 @@ class Google_Service_MapsEngine extends Google_Service
             'list' => array(
               'path' => 'projects',
               'httpMethod' => 'GET',
-              'parameters' => array(),
+              'parameters' => [],
             ),
           )
         )
@@ -732,7 +732,7 @@ class Google_Service_MapsEngine extends Google_Service
             ),'create' => array(
               'path' => 'rasterCollections',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),'delete' => array(
               'path' => 'rasterCollections/{id}',
               'httpMethod' => 'DELETE',
@@ -1093,7 +1093,7 @@ class Google_Service_MapsEngine extends Google_Service
             ),'upload' => array(
               'path' => 'rasters/upload',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),
           )
         )
@@ -1200,7 +1200,7 @@ class Google_Service_MapsEngine extends Google_Service
             'create' => array(
               'path' => 'tables',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),'delete' => array(
               'path' => 'tables/{id}',
               'httpMethod' => 'DELETE',
@@ -1305,7 +1305,7 @@ class Google_Service_MapsEngine extends Google_Service
             ),'upload' => array(
               'path' => 'tables/upload',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),
           )
         )
@@ -1534,7 +1534,7 @@ class Google_Service_MapsEngine_Assets_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_MapsEngine_Asset
    */
-  public function get($id, $optParams = array())
+  public function get($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -1583,9 +1583,9 @@ class Google_Service_MapsEngine_Assets_Resource extends Google_Service_Resource
    * 'map', 'layer', 'rasterCollection' and 'table'.
    * @return Google_Service_MapsEngine_AssetsListResponse
    */
-  public function listAssets($optParams = array())
+  public function listAssets($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_MapsEngine_AssetsListResponse");
   }
@@ -1615,7 +1615,7 @@ class Google_Service_MapsEngine_AssetsParents_Resource extends Google_Service_Re
    * single response page. The maximum supported value is 50.
    * @return Google_Service_MapsEngine_ParentsListResponse
    */
-  public function listAssetsParents($id, $optParams = array())
+  public function listAssetsParents($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -1641,7 +1641,7 @@ class Google_Service_MapsEngine_AssetsPermissions_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_MapsEngine_PermissionsListResponse
    */
-  public function listAssetsPermissions($id, $optParams = array())
+  public function listAssetsPermissions($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -1667,7 +1667,7 @@ class Google_Service_MapsEngine_Layers_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_MapsEngine_ProcessResponse
    */
-  public function cancelProcessing($id, $optParams = array())
+  public function cancelProcessing($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -1683,7 +1683,7 @@ class Google_Service_MapsEngine_Layers_Resource extends Google_Service_Resource
    * @opt_param bool process Whether to queue the created layer for processing.
    * @return Google_Service_MapsEngine_Layer
    */
-  public function create(Google_Service_MapsEngine_Layer $postBody, $optParams = array())
+  public function create(Google_Service_MapsEngine_Layer $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1699,7 +1699,7 @@ class Google_Service_MapsEngine_Layers_Resource extends Google_Service_Resource
    * prior to deleting.
    * @param array $optParams Optional parameters.
    */
-  public function delete($id, $optParams = array())
+  public function delete($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -1718,7 +1718,7 @@ class Google_Service_MapsEngine_Layers_Resource extends Google_Service_Resource
    * layers.getPublished endpoint instead.
    * @return Google_Service_MapsEngine_Layer
    */
-  public function get($id, $optParams = array())
+  public function get($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -1732,7 +1732,7 @@ class Google_Service_MapsEngine_Layers_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_MapsEngine_PublishedLayer
    */
-  public function getPublished($id, $optParams = array())
+  public function getPublished($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -1779,9 +1779,9 @@ class Google_Service_MapsEngine_Layers_Resource extends Google_Service_Resource
    * only contain assets where the current user has the specified level of access.
    * @return Google_Service_MapsEngine_LayersListResponse
    */
-  public function listLayers($optParams = array())
+  public function listLayers($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_MapsEngine_LayersListResponse");
   }
@@ -1803,9 +1803,9 @@ class Google_Service_MapsEngine_Layers_Resource extends Google_Service_Resource
    * DashboardPlace:cid URL parameter when signed in to mapsengine.google.com.
    * @return Google_Service_MapsEngine_PublishedLayersListResponse
    */
-  public function listPublished($optParams = array())
+  public function listPublished($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('listPublished', array($params), "Google_Service_MapsEngine_PublishedLayersListResponse");
   }
@@ -1817,7 +1817,7 @@ class Google_Service_MapsEngine_Layers_Resource extends Google_Service_Resource
    * @param Google_Layer $postBody
    * @param array $optParams Optional parameters.
    */
-  public function patch($id, Google_Service_MapsEngine_Layer $postBody, $optParams = array())
+  public function patch($id, Google_Service_MapsEngine_Layer $postBody, $optParams = [])
   {
     $params = array('id' => $id, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1831,7 +1831,7 @@ class Google_Service_MapsEngine_Layers_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_MapsEngine_ProcessResponse
    */
-  public function process($id, $optParams = array())
+  public function process($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -1849,7 +1849,7 @@ class Google_Service_MapsEngine_Layers_Resource extends Google_Service_Resource
    * out-of-date layer before publishing.
    * @return Google_Service_MapsEngine_PublishResponse
    */
-  public function publish($id, $optParams = array())
+  public function publish($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -1863,7 +1863,7 @@ class Google_Service_MapsEngine_Layers_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_MapsEngine_PublishResponse
    */
-  public function unpublish($id, $optParams = array())
+  public function unpublish($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -1895,7 +1895,7 @@ class Google_Service_MapsEngine_LayersParents_Resource extends Google_Service_Re
    * single response page. The maximum supported value is 50.
    * @return Google_Service_MapsEngine_ParentsListResponse
    */
-  public function listLayersParents($id, $optParams = array())
+  public function listLayersParents($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -1922,7 +1922,7 @@ class Google_Service_MapsEngine_LayersPermissions_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_MapsEngine_PermissionsBatchDeleteResponse
    */
-  public function batchDelete($id, Google_Service_MapsEngine_PermissionsBatchDeleteRequest $postBody, $optParams = array())
+  public function batchDelete($id, Google_Service_MapsEngine_PermissionsBatchDeleteRequest $postBody, $optParams = [])
   {
     $params = array('id' => $id, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1940,7 +1940,7 @@ class Google_Service_MapsEngine_LayersPermissions_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_MapsEngine_PermissionsBatchUpdateResponse
    */
-  public function batchUpdate($id, Google_Service_MapsEngine_PermissionsBatchUpdateRequest $postBody, $optParams = array())
+  public function batchUpdate($id, Google_Service_MapsEngine_PermissionsBatchUpdateRequest $postBody, $optParams = [])
   {
     $params = array('id' => $id, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1955,7 +1955,7 @@ class Google_Service_MapsEngine_LayersPermissions_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_MapsEngine_PermissionsListResponse
    */
-  public function listLayersPermissions($id, $optParams = array())
+  public function listLayersPermissions($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -1981,7 +1981,7 @@ class Google_Service_MapsEngine_Maps_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_MapsEngine_Map
    */
-  public function create(Google_Service_MapsEngine_Map $postBody, $optParams = array())
+  public function create(Google_Service_MapsEngine_Map $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1996,7 +1996,7 @@ class Google_Service_MapsEngine_Maps_Resource extends Google_Service_Resource
    * Unpublish the map prior to deleting.
    * @param array $optParams Optional parameters.
    */
-  public function delete($id, $optParams = array())
+  public function delete($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -2015,7 +2015,7 @@ class Google_Service_MapsEngine_Maps_Resource extends Google_Service_Resource
    * maps.getPublished endpoint instead.
    * @return Google_Service_MapsEngine_Map
    */
-  public function get($id, $optParams = array())
+  public function get($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -2029,7 +2029,7 @@ class Google_Service_MapsEngine_Maps_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_MapsEngine_PublishedMap
    */
-  public function getPublished($id, $optParams = array())
+  public function getPublished($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -2076,9 +2076,9 @@ class Google_Service_MapsEngine_Maps_Resource extends Google_Service_Resource
    * only contain assets where the current user has the specified level of access.
    * @return Google_Service_MapsEngine_MapsListResponse
    */
-  public function listMaps($optParams = array())
+  public function listMaps($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_MapsEngine_MapsListResponse");
   }
@@ -2099,9 +2099,9 @@ class Google_Service_MapsEngine_Maps_Resource extends Google_Service_Resource
    * DashboardPlace:cid URL parameter when signed in to mapsengine.google.com.
    * @return Google_Service_MapsEngine_PublishedMapsListResponse
    */
-  public function listPublished($optParams = array())
+  public function listPublished($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('listPublished', array($params), "Google_Service_MapsEngine_PublishedMapsListResponse");
   }
@@ -2113,7 +2113,7 @@ class Google_Service_MapsEngine_Maps_Resource extends Google_Service_Resource
    * @param Google_Map $postBody
    * @param array $optParams Optional parameters.
    */
-  public function patch($id, Google_Service_MapsEngine_Map $postBody, $optParams = array())
+  public function patch($id, Google_Service_MapsEngine_Map $postBody, $optParams = [])
   {
     $params = array('id' => $id, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2131,7 +2131,7 @@ class Google_Service_MapsEngine_Maps_Resource extends Google_Service_Resource
    * of complete before publishing.
    * @return Google_Service_MapsEngine_PublishResponse
    */
-  public function publish($id, $optParams = array())
+  public function publish($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -2145,7 +2145,7 @@ class Google_Service_MapsEngine_Maps_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_MapsEngine_PublishResponse
    */
-  public function unpublish($id, $optParams = array())
+  public function unpublish($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -2173,7 +2173,7 @@ class Google_Service_MapsEngine_MapsPermissions_Resource extends Google_Service_
    * @param array $optParams Optional parameters.
    * @return Google_Service_MapsEngine_PermissionsBatchDeleteResponse
    */
-  public function batchDelete($id, Google_Service_MapsEngine_PermissionsBatchDeleteRequest $postBody, $optParams = array())
+  public function batchDelete($id, Google_Service_MapsEngine_PermissionsBatchDeleteRequest $postBody, $optParams = [])
   {
     $params = array('id' => $id, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2191,7 +2191,7 @@ class Google_Service_MapsEngine_MapsPermissions_Resource extends Google_Service_
    * @param array $optParams Optional parameters.
    * @return Google_Service_MapsEngine_PermissionsBatchUpdateResponse
    */
-  public function batchUpdate($id, Google_Service_MapsEngine_PermissionsBatchUpdateRequest $postBody, $optParams = array())
+  public function batchUpdate($id, Google_Service_MapsEngine_PermissionsBatchUpdateRequest $postBody, $optParams = [])
   {
     $params = array('id' => $id, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2206,7 +2206,7 @@ class Google_Service_MapsEngine_MapsPermissions_Resource extends Google_Service_
    * @param array $optParams Optional parameters.
    * @return Google_Service_MapsEngine_PermissionsListResponse
    */
-  public function listMapsPermissions($id, $optParams = array())
+  public function listMapsPermissions($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -2231,9 +2231,9 @@ class Google_Service_MapsEngine_Projects_Resource extends Google_Service_Resourc
    * @param array $optParams Optional parameters.
    * @return Google_Service_MapsEngine_ProjectsListResponse
    */
-  public function listProjects($optParams = array())
+  public function listProjects($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_MapsEngine_ProjectsListResponse");
   }
@@ -2258,7 +2258,7 @@ class Google_Service_MapsEngine_ProjectsIcons_Resource extends Google_Service_Re
    * @param array $optParams Optional parameters.
    * @return Google_Service_MapsEngine_Icon
    */
-  public function create($projectId, Google_Service_MapsEngine_Icon $postBody, $optParams = array())
+  public function create($projectId, Google_Service_MapsEngine_Icon $postBody, $optParams = [])
   {
     $params = array('projectId' => $projectId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2273,7 +2273,7 @@ class Google_Service_MapsEngine_ProjectsIcons_Resource extends Google_Service_Re
    * @param array $optParams Optional parameters.
    * @return Google_Service_MapsEngine_Icon
    */
-  public function get($projectId, $id, $optParams = array())
+  public function get($projectId, $id, $optParams = [])
   {
     $params = array('projectId' => $projectId, 'id' => $id);
     $params = array_merge($params, $optParams);
@@ -2293,7 +2293,7 @@ class Google_Service_MapsEngine_ProjectsIcons_Resource extends Google_Service_Re
    * single response page. The maximum supported value is 50.
    * @return Google_Service_MapsEngine_IconsListResponse
    */
-  public function listProjectsIcons($projectId, $optParams = array())
+  public function listProjectsIcons($projectId, $optParams = [])
   {
     $params = array('projectId' => $projectId);
     $params = array_merge($params, $optParams);
@@ -2320,7 +2320,7 @@ class Google_Service_MapsEngine_RasterCollections_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_MapsEngine_ProcessResponse
    */
-  public function cancelProcessing($id, $optParams = array())
+  public function cancelProcessing($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -2334,7 +2334,7 @@ class Google_Service_MapsEngine_RasterCollections_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_MapsEngine_RasterCollection
    */
-  public function create(Google_Service_MapsEngine_RasterCollection $postBody, $optParams = array())
+  public function create(Google_Service_MapsEngine_RasterCollection $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2350,7 +2350,7 @@ class Google_Service_MapsEngine_RasterCollections_Resource extends Google_Servic
    * all layers prior to deleting.
    * @param array $optParams Optional parameters.
    */
-  public function delete($id, $optParams = array())
+  public function delete($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -2364,7 +2364,7 @@ class Google_Service_MapsEngine_RasterCollections_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_MapsEngine_RasterCollection
    */
-  public function get($id, $optParams = array())
+  public function get($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -2412,9 +2412,9 @@ class Google_Service_MapsEngine_RasterCollections_Resource extends Google_Servic
    * only contain assets where the current user has the specified level of access.
    * @return Google_Service_MapsEngine_RasterCollectionsListResponse
    */
-  public function listRasterCollections($optParams = array())
+  public function listRasterCollections($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_MapsEngine_RasterCollectionsListResponse");
   }
@@ -2426,7 +2426,7 @@ class Google_Service_MapsEngine_RasterCollections_Resource extends Google_Servic
    * @param Google_RasterCollection $postBody
    * @param array $optParams Optional parameters.
    */
-  public function patch($id, Google_Service_MapsEngine_RasterCollection $postBody, $optParams = array())
+  public function patch($id, Google_Service_MapsEngine_RasterCollection $postBody, $optParams = [])
   {
     $params = array('id' => $id, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2440,7 +2440,7 @@ class Google_Service_MapsEngine_RasterCollections_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_MapsEngine_ProcessResponse
    */
-  public function process($id, $optParams = array())
+  public function process($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -2474,7 +2474,7 @@ class Google_Service_MapsEngine_RasterCollectionsParents_Resource extends Google
    * single response page. The maximum supported value is 50.
    * @return Google_Service_MapsEngine_ParentsListResponse
    */
-  public function listRasterCollectionsParents($id, $optParams = array())
+  public function listRasterCollectionsParents($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -2501,7 +2501,7 @@ class Google_Service_MapsEngine_RasterCollectionsPermissions_Resource extends Go
    * @param array $optParams Optional parameters.
    * @return Google_Service_MapsEngine_PermissionsBatchDeleteResponse
    */
-  public function batchDelete($id, Google_Service_MapsEngine_PermissionsBatchDeleteRequest $postBody, $optParams = array())
+  public function batchDelete($id, Google_Service_MapsEngine_PermissionsBatchDeleteRequest $postBody, $optParams = [])
   {
     $params = array('id' => $id, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2519,7 +2519,7 @@ class Google_Service_MapsEngine_RasterCollectionsPermissions_Resource extends Go
    * @param array $optParams Optional parameters.
    * @return Google_Service_MapsEngine_PermissionsBatchUpdateResponse
    */
-  public function batchUpdate($id, Google_Service_MapsEngine_PermissionsBatchUpdateRequest $postBody, $optParams = array())
+  public function batchUpdate($id, Google_Service_MapsEngine_PermissionsBatchUpdateRequest $postBody, $optParams = [])
   {
     $params = array('id' => $id, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2534,7 +2534,7 @@ class Google_Service_MapsEngine_RasterCollectionsPermissions_Resource extends Go
    * @param array $optParams Optional parameters.
    * @return Google_Service_MapsEngine_PermissionsListResponse
    */
-  public function listRasterCollectionsPermissions($id, $optParams = array())
+  public function listRasterCollectionsPermissions($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -2564,7 +2564,7 @@ class Google_Service_MapsEngine_RasterCollectionsRasters_Resource extends Google
    * @param array $optParams Optional parameters.
    * @return Google_Service_MapsEngine_RasterCollectionsRastersBatchDeleteResponse
    */
-  public function batchDelete($id, Google_Service_MapsEngine_RasterCollectionsRasterBatchDeleteRequest $postBody, $optParams = array())
+  public function batchDelete($id, Google_Service_MapsEngine_RasterCollectionsRasterBatchDeleteRequest $postBody, $optParams = [])
   {
     $params = array('id' => $id, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2584,7 +2584,7 @@ class Google_Service_MapsEngine_RasterCollectionsRasters_Resource extends Google
    * @param array $optParams Optional parameters.
    * @return Google_Service_MapsEngine_RasterCollectionsRastersBatchInsertResponse
    */
-  public function batchInsert($id, Google_Service_MapsEngine_RasterCollectionsRastersBatchInsertRequest $postBody, $optParams = array())
+  public function batchInsert($id, Google_Service_MapsEngine_RasterCollectionsRastersBatchInsertRequest $postBody, $optParams = [])
   {
     $params = array('id' => $id, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2629,7 +2629,7 @@ class Google_Service_MapsEngine_RasterCollectionsRasters_Resource extends Google
    * only contain assets where the current user has the specified level of access.
    * @return Google_Service_MapsEngine_RasterCollectionsRastersListResponse
    */
-  public function listRasterCollectionsRasters($id, $optParams = array())
+  public function listRasterCollectionsRasters($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -2656,7 +2656,7 @@ class Google_Service_MapsEngine_Rasters_Resource extends Google_Service_Resource
    * mosaic, the request will fail. Remove it from all parents prior to deleting.
    * @param array $optParams Optional parameters.
    */
-  public function delete($id, $optParams = array())
+  public function delete($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -2670,7 +2670,7 @@ class Google_Service_MapsEngine_Rasters_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_MapsEngine_Raster
    */
-  public function get($id, $optParams = array())
+  public function get($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -2717,7 +2717,7 @@ class Google_Service_MapsEngine_Rasters_Resource extends Google_Service_Resource
    * only contain assets where the current user has the specified level of access.
    * @return Google_Service_MapsEngine_RastersListResponse
    */
-  public function listRasters($projectId, $optParams = array())
+  public function listRasters($projectId, $optParams = [])
   {
     $params = array('projectId' => $projectId);
     $params = array_merge($params, $optParams);
@@ -2731,7 +2731,7 @@ class Google_Service_MapsEngine_Rasters_Resource extends Google_Service_Resource
    * @param Google_Raster $postBody
    * @param array $optParams Optional parameters.
    */
-  public function patch($id, Google_Service_MapsEngine_Raster $postBody, $optParams = array())
+  public function patch($id, Google_Service_MapsEngine_Raster $postBody, $optParams = [])
   {
     $params = array('id' => $id, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2745,7 +2745,7 @@ class Google_Service_MapsEngine_Rasters_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_MapsEngine_ProcessResponse
    */
-  public function process($id, $optParams = array())
+  public function process($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -2759,7 +2759,7 @@ class Google_Service_MapsEngine_Rasters_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_MapsEngine_Raster
    */
-  public function upload(Google_Service_MapsEngine_Raster $postBody, $optParams = array())
+  public function upload(Google_Service_MapsEngine_Raster $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2785,7 +2785,7 @@ class Google_Service_MapsEngine_RastersFiles_Resource extends Google_Service_Res
    * @param string $filename The file name of this uploaded file.
    * @param array $optParams Optional parameters.
    */
-  public function insert($id, $filename, $optParams = array())
+  public function insert($id, $filename, $optParams = [])
   {
     $params = array('id' => $id, 'filename' => $filename);
     $params = array_merge($params, $optParams);
@@ -2816,7 +2816,7 @@ class Google_Service_MapsEngine_RastersParents_Resource extends Google_Service_R
    * single response page. The maximum supported value is 50.
    * @return Google_Service_MapsEngine_ParentsListResponse
    */
-  public function listRastersParents($id, $optParams = array())
+  public function listRastersParents($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -2843,7 +2843,7 @@ class Google_Service_MapsEngine_RastersPermissions_Resource extends Google_Servi
    * @param array $optParams Optional parameters.
    * @return Google_Service_MapsEngine_PermissionsBatchDeleteResponse
    */
-  public function batchDelete($id, Google_Service_MapsEngine_PermissionsBatchDeleteRequest $postBody, $optParams = array())
+  public function batchDelete($id, Google_Service_MapsEngine_PermissionsBatchDeleteRequest $postBody, $optParams = [])
   {
     $params = array('id' => $id, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2861,7 +2861,7 @@ class Google_Service_MapsEngine_RastersPermissions_Resource extends Google_Servi
    * @param array $optParams Optional parameters.
    * @return Google_Service_MapsEngine_PermissionsBatchUpdateResponse
    */
-  public function batchUpdate($id, Google_Service_MapsEngine_PermissionsBatchUpdateRequest $postBody, $optParams = array())
+  public function batchUpdate($id, Google_Service_MapsEngine_PermissionsBatchUpdateRequest $postBody, $optParams = [])
   {
     $params = array('id' => $id, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2876,7 +2876,7 @@ class Google_Service_MapsEngine_RastersPermissions_Resource extends Google_Servi
    * @param array $optParams Optional parameters.
    * @return Google_Service_MapsEngine_PermissionsListResponse
    */
-  public function listRastersPermissions($id, $optParams = array())
+  public function listRastersPermissions($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -2902,7 +2902,7 @@ class Google_Service_MapsEngine_Tables_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_MapsEngine_Table
    */
-  public function create(Google_Service_MapsEngine_Table $postBody, $optParams = array())
+  public function create(Google_Service_MapsEngine_Table $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2917,7 +2917,7 @@ class Google_Service_MapsEngine_Tables_Resource extends Google_Service_Resource
    * request will fail. Remove it from all layers prior to deleting.
    * @param array $optParams Optional parameters.
    */
-  public function delete($id, $optParams = array())
+  public function delete($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -2933,7 +2933,7 @@ class Google_Service_MapsEngine_Tables_Resource extends Google_Service_Resource
    * @opt_param string version
    * @return Google_Service_MapsEngine_Table
    */
-  public function get($id, $optParams = array())
+  public function get($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -2980,9 +2980,9 @@ class Google_Service_MapsEngine_Tables_Resource extends Google_Service_Resource
    * only contain assets where the current user has the specified level of access.
    * @return Google_Service_MapsEngine_TablesListResponse
    */
-  public function listTables($optParams = array())
+  public function listTables($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_MapsEngine_TablesListResponse");
   }
@@ -2994,7 +2994,7 @@ class Google_Service_MapsEngine_Tables_Resource extends Google_Service_Resource
    * @param Google_Table $postBody
    * @param array $optParams Optional parameters.
    */
-  public function patch($id, Google_Service_MapsEngine_Table $postBody, $optParams = array())
+  public function patch($id, Google_Service_MapsEngine_Table $postBody, $optParams = [])
   {
     $params = array('id' => $id, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -3008,7 +3008,7 @@ class Google_Service_MapsEngine_Tables_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_MapsEngine_ProcessResponse
    */
-  public function process($id, $optParams = array())
+  public function process($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -3026,7 +3026,7 @@ class Google_Service_MapsEngine_Tables_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_MapsEngine_Table
    */
-  public function upload(Google_Service_MapsEngine_Table $postBody, $optParams = array())
+  public function upload(Google_Service_MapsEngine_Table $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -3053,7 +3053,7 @@ class Google_Service_MapsEngine_TablesFeatures_Resource extends Google_Service_R
    * @param Google_FeaturesBatchDeleteRequest $postBody
    * @param array $optParams Optional parameters.
    */
-  public function batchDelete($id, Google_Service_MapsEngine_FeaturesBatchDeleteRequest $postBody, $optParams = array())
+  public function batchDelete($id, Google_Service_MapsEngine_FeaturesBatchDeleteRequest $postBody, $optParams = [])
   {
     $params = array('id' => $id, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -3077,7 +3077,7 @@ class Google_Service_MapsEngine_TablesFeatures_Resource extends Google_Service_R
    * @param Google_FeaturesBatchInsertRequest $postBody
    * @param array $optParams Optional parameters.
    */
-  public function batchInsert($id, Google_Service_MapsEngine_FeaturesBatchInsertRequest $postBody, $optParams = array())
+  public function batchInsert($id, Google_Service_MapsEngine_FeaturesBatchInsertRequest $postBody, $optParams = [])
   {
     $params = array('id' => $id, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -3108,7 +3108,7 @@ class Google_Service_MapsEngine_TablesFeatures_Resource extends Google_Service_R
    * @param Google_FeaturesBatchPatchRequest $postBody
    * @param array $optParams Optional parameters.
    */
-  public function batchPatch($id, Google_Service_MapsEngine_FeaturesBatchPatchRequest $postBody, $optParams = array())
+  public function batchPatch($id, Google_Service_MapsEngine_FeaturesBatchPatchRequest $postBody, $optParams = [])
   {
     $params = array('id' => $id, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -3129,7 +3129,7 @@ class Google_Service_MapsEngine_TablesFeatures_Resource extends Google_Service_R
    * returned.
    * @return Google_Service_MapsEngine_Feature
    */
-  public function get($tableId, $id, $optParams = array())
+  public function get($tableId, $id, $optParams = [])
   {
     $params = array('tableId' => $tableId, 'id' => $id);
     $params = array_merge($params, $optParams);
@@ -3164,7 +3164,7 @@ class Google_Service_MapsEngine_TablesFeatures_Resource extends Google_Service_R
    * returned.
    * @return Google_Service_MapsEngine_FeaturesListResponse
    */
-  public function listTablesFeatures($id, $optParams = array())
+  public function listTablesFeatures($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -3192,7 +3192,7 @@ class Google_Service_MapsEngine_TablesFiles_Resource extends Google_Service_Reso
    * @param string $filename The file name of this uploaded file.
    * @param array $optParams Optional parameters.
    */
-  public function insert($id, $filename, $optParams = array())
+  public function insert($id, $filename, $optParams = [])
   {
     $params = array('id' => $id, 'filename' => $filename);
     $params = array_merge($params, $optParams);
@@ -3223,7 +3223,7 @@ class Google_Service_MapsEngine_TablesParents_Resource extends Google_Service_Re
    * single response page. The maximum supported value is 50.
    * @return Google_Service_MapsEngine_ParentsListResponse
    */
-  public function listTablesParents($id, $optParams = array())
+  public function listTablesParents($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -3250,7 +3250,7 @@ class Google_Service_MapsEngine_TablesPermissions_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_MapsEngine_PermissionsBatchDeleteResponse
    */
-  public function batchDelete($id, Google_Service_MapsEngine_PermissionsBatchDeleteRequest $postBody, $optParams = array())
+  public function batchDelete($id, Google_Service_MapsEngine_PermissionsBatchDeleteRequest $postBody, $optParams = [])
   {
     $params = array('id' => $id, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -3268,7 +3268,7 @@ class Google_Service_MapsEngine_TablesPermissions_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_MapsEngine_PermissionsBatchUpdateResponse
    */
-  public function batchUpdate($id, Google_Service_MapsEngine_PermissionsBatchUpdateRequest $postBody, $optParams = array())
+  public function batchUpdate($id, Google_Service_MapsEngine_PermissionsBatchUpdateRequest $postBody, $optParams = [])
   {
     $params = array('id' => $id, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -3283,7 +3283,7 @@ class Google_Service_MapsEngine_TablesPermissions_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_MapsEngine_PermissionsListResponse
    */
-  public function listTablesPermissions($id, $optParams = array())
+  public function listTablesPermissions($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);

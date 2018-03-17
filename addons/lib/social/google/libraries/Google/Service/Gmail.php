@@ -56,7 +56,7 @@ class Google_Service_Gmail extends Google_Service
   public $users_messages;
   public $users_messages_attachments;
   public $users_threads;
-  
+
 
   /**
    * Constructs the internal representation of the Gmail service.
@@ -691,7 +691,7 @@ class Google_Service_Gmail_Users_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Gmail_Profile
    */
-  public function getProfile($userId, $optParams = array())
+  public function getProfile($userId, $optParams = [])
   {
     $params = array('userId' => $userId);
     $params = array_merge($params, $optParams);
@@ -705,7 +705,7 @@ class Google_Service_Gmail_Users_Resource extends Google_Service_Resource
    * used to indicate the authenticated user.
    * @param array $optParams Optional parameters.
    */
-  public function stop($userId, $optParams = array())
+  public function stop($userId, $optParams = [])
   {
     $params = array('userId' => $userId);
     $params = array_merge($params, $optParams);
@@ -722,7 +722,7 @@ class Google_Service_Gmail_Users_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Gmail_WatchResponse
    */
-  public function watch($userId, Google_Service_Gmail_WatchRequest $postBody, $optParams = array())
+  public function watch($userId, Google_Service_Gmail_WatchRequest $postBody, $optParams = [])
   {
     $params = array('userId' => $userId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -750,7 +750,7 @@ class Google_Service_Gmail_UsersDrafts_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Gmail_Draft
    */
-  public function create($userId, Google_Service_Gmail_Draft $postBody, $optParams = array())
+  public function create($userId, Google_Service_Gmail_Draft $postBody, $optParams = [])
   {
     $params = array('userId' => $userId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -766,7 +766,7 @@ class Google_Service_Gmail_UsersDrafts_Resource extends Google_Service_Resource
    * @param string $id The ID of the draft to delete.
    * @param array $optParams Optional parameters.
    */
-  public function delete($userId, $id, $optParams = array())
+  public function delete($userId, $id, $optParams = [])
   {
     $params = array('userId' => $userId, 'id' => $id);
     $params = array_merge($params, $optParams);
@@ -784,7 +784,7 @@ class Google_Service_Gmail_UsersDrafts_Resource extends Google_Service_Resource
    * @opt_param string format The format to return the draft in.
    * @return Google_Service_Gmail_Draft
    */
-  public function get($userId, $id, $optParams = array())
+  public function get($userId, $id, $optParams = [])
   {
     $params = array('userId' => $userId, 'id' => $id);
     $params = array_merge($params, $optParams);
@@ -803,7 +803,7 @@ class Google_Service_Gmail_UsersDrafts_Resource extends Google_Service_Resource
    * @opt_param string maxResults Maximum number of drafts to return.
    * @return Google_Service_Gmail_ListDraftsResponse
    */
-  public function listUsersDrafts($userId, $optParams = array())
+  public function listUsersDrafts($userId, $optParams = [])
   {
     $params = array('userId' => $userId);
     $params = array_merge($params, $optParams);
@@ -820,7 +820,7 @@ class Google_Service_Gmail_UsersDrafts_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Gmail_Message
    */
-  public function send($userId, Google_Service_Gmail_Draft $postBody, $optParams = array())
+  public function send($userId, Google_Service_Gmail_Draft $postBody, $optParams = [])
   {
     $params = array('userId' => $userId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -837,7 +837,7 @@ class Google_Service_Gmail_UsersDrafts_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Gmail_Draft
    */
-  public function update($userId, $id, Google_Service_Gmail_Draft $postBody, $optParams = array())
+  public function update($userId, $id, Google_Service_Gmail_Draft $postBody, $optParams = [])
   {
     $params = array('userId' => $userId, 'id' => $id, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -881,7 +881,7 @@ class Google_Service_Gmail_UsersHistory_Resource extends Google_Service_Resource
    * request.
    * @return Google_Service_Gmail_ListHistoryResponse
    */
-  public function listUsersHistory($userId, $optParams = array())
+  public function listUsersHistory($userId, $optParams = [])
   {
     $params = array('userId' => $userId);
     $params = array_merge($params, $optParams);
@@ -908,7 +908,7 @@ class Google_Service_Gmail_UsersLabels_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Gmail_Label
    */
-  public function create($userId, Google_Service_Gmail_Label $postBody, $optParams = array())
+  public function create($userId, Google_Service_Gmail_Label $postBody, $optParams = [])
   {
     $params = array('userId' => $userId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -924,7 +924,7 @@ class Google_Service_Gmail_UsersLabels_Resource extends Google_Service_Resource
    * @param string $id The ID of the label to delete.
    * @param array $optParams Optional parameters.
    */
-  public function delete($userId, $id, $optParams = array())
+  public function delete($userId, $id, $optParams = [])
   {
     $params = array('userId' => $userId, 'id' => $id);
     $params = array_merge($params, $optParams);
@@ -940,7 +940,7 @@ class Google_Service_Gmail_UsersLabels_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Gmail_Label
    */
-  public function get($userId, $id, $optParams = array())
+  public function get($userId, $id, $optParams = [])
   {
     $params = array('userId' => $userId, 'id' => $id);
     $params = array_merge($params, $optParams);
@@ -955,7 +955,7 @@ class Google_Service_Gmail_UsersLabels_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Gmail_ListLabelsResponse
    */
-  public function listUsersLabels($userId, $optParams = array())
+  public function listUsersLabels($userId, $optParams = [])
   {
     $params = array('userId' => $userId);
     $params = array_merge($params, $optParams);
@@ -973,7 +973,7 @@ class Google_Service_Gmail_UsersLabels_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Gmail_Label
    */
-  public function patch($userId, $id, Google_Service_Gmail_Label $postBody, $optParams = array())
+  public function patch($userId, $id, Google_Service_Gmail_Label $postBody, $optParams = [])
   {
     $params = array('userId' => $userId, 'id' => $id, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -990,7 +990,7 @@ class Google_Service_Gmail_UsersLabels_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Gmail_Label
    */
-  public function update($userId, $id, Google_Service_Gmail_Label $postBody, $optParams = array())
+  public function update($userId, $id, Google_Service_Gmail_Label $postBody, $optParams = [])
   {
     $params = array('userId' => $userId, 'id' => $id, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1017,7 +1017,7 @@ class Google_Service_Gmail_UsersMessages_Resource extends Google_Service_Resourc
    * @param string $id The ID of the message to delete.
    * @param array $optParams Optional parameters.
    */
-  public function delete($userId, $id, $optParams = array())
+  public function delete($userId, $id, $optParams = [])
   {
     $params = array('userId' => $userId, 'id' => $id);
     $params = array_merge($params, $optParams);
@@ -1037,7 +1037,7 @@ class Google_Service_Gmail_UsersMessages_Resource extends Google_Service_Resourc
    * @opt_param string format The format to return the message in.
    * @return Google_Service_Gmail_Message
    */
-  public function get($userId, $id, $optParams = array())
+  public function get($userId, $id, $optParams = [])
   {
     $params = array('userId' => $userId, 'id' => $id);
     $params = array_merge($params, $optParams);
@@ -1065,7 +1065,7 @@ class Google_Service_Gmail_UsersMessages_Resource extends Google_Service_Resourc
    * never mark this email as SPAM in the mailbox.
    * @return Google_Service_Gmail_Message
    */
-  public function import($userId, Google_Service_Gmail_Message $postBody, $optParams = array())
+  public function import($userId, Google_Service_Gmail_Message $postBody, $optParams = [])
   {
     $params = array('userId' => $userId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1089,7 +1089,7 @@ class Google_Service_Gmail_UsersMessages_Resource extends Google_Service_Resourc
    * message.
    * @return Google_Service_Gmail_Message
    */
-  public function insert($userId, Google_Service_Gmail_Message $postBody, $optParams = array())
+  public function insert($userId, Google_Service_Gmail_Message $postBody, $optParams = [])
   {
     $params = array('userId' => $userId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1115,7 +1115,7 @@ class Google_Service_Gmail_UsersMessages_Resource extends Google_Service_Resourc
    * the specified label IDs.
    * @return Google_Service_Gmail_ListMessagesResponse
    */
-  public function listUsersMessages($userId, $optParams = array())
+  public function listUsersMessages($userId, $optParams = [])
   {
     $params = array('userId' => $userId);
     $params = array_merge($params, $optParams);
@@ -1132,7 +1132,7 @@ class Google_Service_Gmail_UsersMessages_Resource extends Google_Service_Resourc
    * @param array $optParams Optional parameters.
    * @return Google_Service_Gmail_Message
    */
-  public function modify($userId, $id, Google_Service_Gmail_ModifyMessageRequest $postBody, $optParams = array())
+  public function modify($userId, $id, Google_Service_Gmail_ModifyMessageRequest $postBody, $optParams = [])
   {
     $params = array('userId' => $userId, 'id' => $id, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1149,7 +1149,7 @@ class Google_Service_Gmail_UsersMessages_Resource extends Google_Service_Resourc
    * @param array $optParams Optional parameters.
    * @return Google_Service_Gmail_Message
    */
-  public function send($userId, Google_Service_Gmail_Message $postBody, $optParams = array())
+  public function send($userId, Google_Service_Gmail_Message $postBody, $optParams = [])
   {
     $params = array('userId' => $userId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1165,7 +1165,7 @@ class Google_Service_Gmail_UsersMessages_Resource extends Google_Service_Resourc
    * @param array $optParams Optional parameters.
    * @return Google_Service_Gmail_Message
    */
-  public function trash($userId, $id, $optParams = array())
+  public function trash($userId, $id, $optParams = [])
   {
     $params = array('userId' => $userId, 'id' => $id);
     $params = array_merge($params, $optParams);
@@ -1181,7 +1181,7 @@ class Google_Service_Gmail_UsersMessages_Resource extends Google_Service_Resourc
    * @param array $optParams Optional parameters.
    * @return Google_Service_Gmail_Message
    */
-  public function untrash($userId, $id, $optParams = array())
+  public function untrash($userId, $id, $optParams = [])
   {
     $params = array('userId' => $userId, 'id' => $id);
     $params = array_merge($params, $optParams);
@@ -1210,7 +1210,7 @@ class Google_Service_Gmail_UsersMessagesAttachments_Resource extends Google_Serv
    * @param array $optParams Optional parameters.
    * @return Google_Service_Gmail_MessagePartBody
    */
-  public function get($userId, $messageId, $id, $optParams = array())
+  public function get($userId, $messageId, $id, $optParams = [])
   {
     $params = array('userId' => $userId, 'messageId' => $messageId, 'id' => $id);
     $params = array_merge($params, $optParams);
@@ -1237,7 +1237,7 @@ class Google_Service_Gmail_UsersThreads_Resource extends Google_Service_Resource
    * @param string $id ID of the Thread to delete.
    * @param array $optParams Optional parameters.
    */
-  public function delete($userId, $id, $optParams = array())
+  public function delete($userId, $id, $optParams = [])
   {
     $params = array('userId' => $userId, 'id' => $id);
     $params = array_merge($params, $optParams);
@@ -1257,7 +1257,7 @@ class Google_Service_Gmail_UsersThreads_Resource extends Google_Service_Resource
    * @opt_param string format The format to return the messages in.
    * @return Google_Service_Gmail_Thread
    */
-  public function get($userId, $id, $optParams = array())
+  public function get($userId, $id, $optParams = [])
   {
     $params = array('userId' => $userId, 'id' => $id);
     $params = array_merge($params, $optParams);
@@ -1283,7 +1283,7 @@ class Google_Service_Gmail_UsersThreads_Resource extends Google_Service_Resource
    * the specified label IDs.
    * @return Google_Service_Gmail_ListThreadsResponse
    */
-  public function listUsersThreads($userId, $optParams = array())
+  public function listUsersThreads($userId, $optParams = [])
   {
     $params = array('userId' => $userId);
     $params = array_merge($params, $optParams);
@@ -1301,7 +1301,7 @@ class Google_Service_Gmail_UsersThreads_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Gmail_Thread
    */
-  public function modify($userId, $id, Google_Service_Gmail_ModifyThreadRequest $postBody, $optParams = array())
+  public function modify($userId, $id, Google_Service_Gmail_ModifyThreadRequest $postBody, $optParams = [])
   {
     $params = array('userId' => $userId, 'id' => $id, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1317,7 +1317,7 @@ class Google_Service_Gmail_UsersThreads_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Gmail_Thread
    */
-  public function trash($userId, $id, $optParams = array())
+  public function trash($userId, $id, $optParams = [])
   {
     $params = array('userId' => $userId, 'id' => $id);
     $params = array_merge($params, $optParams);
@@ -1333,7 +1333,7 @@ class Google_Service_Gmail_UsersThreads_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Gmail_Thread
    */
-  public function untrash($userId, $id, $optParams = array())
+  public function untrash($userId, $id, $optParams = [])
   {
     $params = array('userId' => $userId, 'id' => $id);
     $params = array_merge($params, $optParams);

@@ -51,7 +51,7 @@ class Google_Service_YouTubeAnalytics extends Google_Service
   public $groupItems;
   public $groups;
   public $reports;
-  
+
 
   /**
    * Constructs the internal representation of the YouTubeAnalytics service.
@@ -300,7 +300,7 @@ class Google_Service_YouTubeAnalytics_BatchReportDefinitions_Resource extends Go
    * @param array $optParams Optional parameters.
    * @return Google_Service_YouTubeAnalytics_BatchReportDefinitionList
    */
-  public function listBatchReportDefinitions($onBehalfOfContentOwner, $optParams = array())
+  public function listBatchReportDefinitions($onBehalfOfContentOwner, $optParams = [])
   {
     $params = array('onBehalfOfContentOwner' => $onBehalfOfContentOwner);
     $params = array_merge($params, $optParams);
@@ -330,7 +330,7 @@ class Google_Service_YouTubeAnalytics_BatchReports_Resource extends Google_Servi
    * @param array $optParams Optional parameters.
    * @return Google_Service_YouTubeAnalytics_BatchReportList
    */
-  public function listBatchReports($batchReportDefinitionId, $onBehalfOfContentOwner, $optParams = array())
+  public function listBatchReports($batchReportDefinitionId, $onBehalfOfContentOwner, $optParams = [])
   {
     $params = array('batchReportDefinitionId' => $batchReportDefinitionId, 'onBehalfOfContentOwner' => $onBehalfOfContentOwner);
     $params = array_merge($params, $optParams);
@@ -369,7 +369,7 @@ class Google_Service_YouTubeAnalytics_GroupItems_Resource extends Google_Service
    * the user authenticates with must be linked to the specified YouTube content
    * owner.
    */
-  public function delete($id, $optParams = array())
+  public function delete($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -396,7 +396,7 @@ class Google_Service_YouTubeAnalytics_GroupItems_Resource extends Google_Service
    * owner.
    * @return Google_Service_YouTubeAnalytics_GroupItem
    */
-  public function insert(Google_Service_YouTubeAnalytics_GroupItem $postBody, $optParams = array())
+  public function insert(Google_Service_YouTubeAnalytics_GroupItem $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -425,7 +425,7 @@ class Google_Service_YouTubeAnalytics_GroupItems_Resource extends Google_Service
    * owner.
    * @return Google_Service_YouTubeAnalytics_GroupItemListResponse
    */
-  public function listGroupItems($groupId, $optParams = array())
+  public function listGroupItems($groupId, $optParams = [])
   {
     $params = array('groupId' => $groupId);
     $params = array_merge($params, $optParams);
@@ -464,7 +464,7 @@ class Google_Service_YouTubeAnalytics_Groups_Resource extends Google_Service_Res
    * the user authenticates with must be linked to the specified YouTube content
    * owner.
    */
-  public function delete($id, $optParams = array())
+  public function delete($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -491,7 +491,7 @@ class Google_Service_YouTubeAnalytics_Groups_Resource extends Google_Service_Res
    * owner.
    * @return Google_Service_YouTubeAnalytics_Group
    */
-  public function insert(Google_Service_YouTubeAnalytics_Group $postBody, $optParams = array())
+  public function insert(Google_Service_YouTubeAnalytics_Group $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -524,9 +524,9 @@ class Google_Service_YouTubeAnalytics_Groups_Resource extends Google_Service_Res
    * to only return groups owned by the authenticated user.
    * @return Google_Service_YouTubeAnalytics_GroupListResponse
    */
-  public function listGroups($optParams = array())
+  public function listGroups($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_YouTubeAnalytics_GroupListResponse");
   }
@@ -552,7 +552,7 @@ class Google_Service_YouTubeAnalytics_Groups_Resource extends Google_Service_Res
    * owner.
    * @return Google_Service_YouTubeAnalytics_Group
    */
-  public function update(Google_Service_YouTubeAnalytics_Group $postBody, $optParams = array())
+  public function update(Google_Service_YouTubeAnalytics_Group $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -617,7 +617,7 @@ class Google_Service_YouTubeAnalytics_Reports_Resource extends Google_Service_Re
    * the given video in Italy.
    * @return Google_Service_YouTubeAnalytics_ResultTable
    */
-  public function query($ids, $startDate, $endDate, $metrics, $optParams = array())
+  public function query($ids, $startDate, $endDate, $metrics, $optParams = [])
   {
     $params = array('ids' => $ids, 'start-date' => $startDate, 'end-date' => $endDate, 'metrics' => $metrics);
     $params = array_merge($params, $optParams);

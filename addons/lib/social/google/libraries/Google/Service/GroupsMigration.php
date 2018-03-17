@@ -35,7 +35,7 @@ class Google_Service_GroupsMigration extends Google_Service
       "https://www.googleapis.com/auth/apps.groups.migration";
 
   public $archive;
-  
+
 
   /**
    * Constructs the internal representation of the GroupsMigration service.
@@ -92,7 +92,7 @@ class Google_Service_GroupsMigration_Archive_Resource extends Google_Service_Res
    * @param array $optParams Optional parameters.
    * @return Google_Service_GroupsMigration_Groups
    */
-  public function insert($groupId, $optParams = array())
+  public function insert($groupId, $optParams = [])
   {
     $params = array('groupId' => $groupId);
     $params = array_merge($params, $optParams);

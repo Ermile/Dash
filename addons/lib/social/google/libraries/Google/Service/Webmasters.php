@@ -42,7 +42,7 @@ class Google_Service_Webmasters extends Google_Service
   public $sites;
   public $urlcrawlerrorscounts;
   public $urlcrawlerrorssamples;
-  
+
 
   /**
    * Constructs the internal representation of the Webmasters service.
@@ -185,7 +185,7 @@ class Google_Service_Webmasters extends Google_Service
             ),'list' => array(
               'path' => 'sites',
               'httpMethod' => 'GET',
-              'parameters' => array(),
+              'parameters' => [],
             ),
           )
         )
@@ -335,7 +335,7 @@ class Google_Service_Webmasters_Searchanalytics_Resource extends Google_Service_
    * @param array $optParams Optional parameters.
    * @return Google_Service_Webmasters_SearchAnalyticsQueryResponse
    */
-  public function query($siteUrl, Google_Service_Webmasters_SearchAnalyticsQueryRequest $postBody, $optParams = array())
+  public function query($siteUrl, Google_Service_Webmasters_SearchAnalyticsQueryRequest $postBody, $optParams = [])
   {
     $params = array('siteUrl' => $siteUrl, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -363,7 +363,7 @@ class Google_Service_Webmasters_Sitemaps_Resource extends Google_Service_Resourc
    * http://www.example.com/sitemap.xml
    * @param array $optParams Optional parameters.
    */
-  public function delete($siteUrl, $feedpath, $optParams = array())
+  public function delete($siteUrl, $feedpath, $optParams = [])
   {
     $params = array('siteUrl' => $siteUrl, 'feedpath' => $feedpath);
     $params = array_merge($params, $optParams);
@@ -380,7 +380,7 @@ class Google_Service_Webmasters_Sitemaps_Resource extends Google_Service_Resourc
    * @param array $optParams Optional parameters.
    * @return Google_Service_Webmasters_WmxSitemap
    */
-  public function get($siteUrl, $feedpath, $optParams = array())
+  public function get($siteUrl, $feedpath, $optParams = [])
   {
     $params = array('siteUrl' => $siteUrl, 'feedpath' => $feedpath);
     $params = array_merge($params, $optParams);
@@ -400,7 +400,7 @@ class Google_Service_Webmasters_Sitemaps_Resource extends Google_Service_Resourc
    * http://www.example.com/sitemapindex.xml
    * @return Google_Service_Webmasters_SitemapsListResponse
    */
-  public function listSitemaps($siteUrl, $optParams = array())
+  public function listSitemaps($siteUrl, $optParams = [])
   {
     $params = array('siteUrl' => $siteUrl);
     $params = array_merge($params, $optParams);
@@ -416,7 +416,7 @@ class Google_Service_Webmasters_Sitemaps_Resource extends Google_Service_Resourc
    * http://www.example.com/sitemap.xml
    * @param array $optParams Optional parameters.
    */
-  public function submit($siteUrl, $feedpath, $optParams = array())
+  public function submit($siteUrl, $feedpath, $optParams = [])
   {
     $params = array('siteUrl' => $siteUrl, 'feedpath' => $feedpath);
     $params = array_merge($params, $optParams);
@@ -441,7 +441,7 @@ class Google_Service_Webmasters_Sites_Resource extends Google_Service_Resource
    * @param string $siteUrl The URL of the site to add.
    * @param array $optParams Optional parameters.
    */
-  public function add($siteUrl, $optParams = array())
+  public function add($siteUrl, $optParams = [])
   {
     $params = array('siteUrl' => $siteUrl);
     $params = array_merge($params, $optParams);
@@ -456,7 +456,7 @@ class Google_Service_Webmasters_Sites_Resource extends Google_Service_Resource
    * Examples: http://www.example.com/ or android-app://com.example/
    * @param array $optParams Optional parameters.
    */
-  public function delete($siteUrl, $optParams = array())
+  public function delete($siteUrl, $optParams = [])
   {
     $params = array('siteUrl' => $siteUrl);
     $params = array_merge($params, $optParams);
@@ -471,7 +471,7 @@ class Google_Service_Webmasters_Sites_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Webmasters_WmxSite
    */
-  public function get($siteUrl, $optParams = array())
+  public function get($siteUrl, $optParams = [])
   {
     $params = array('siteUrl' => $siteUrl);
     $params = array_merge($params, $optParams);
@@ -484,9 +484,9 @@ class Google_Service_Webmasters_Sites_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Webmasters_SitesListResponse
    */
-  public function listSites($optParams = array())
+  public function listSites($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_Webmasters_SitesListResponse");
   }
@@ -520,7 +520,7 @@ class Google_Service_Webmasters_Urlcrawlerrorscounts_Resource extends Google_Ser
    * counts.
    * @return Google_Service_Webmasters_UrlCrawlErrorsCountsQueryResponse
    */
-  public function query($siteUrl, $optParams = array())
+  public function query($siteUrl, $optParams = [])
   {
     $params = array('siteUrl' => $siteUrl);
     $params = array_merge($params, $optParams);
@@ -556,7 +556,7 @@ class Google_Service_Webmasters_Urlcrawlerrorssamples_Resource extends Google_Se
    * @param array $optParams Optional parameters.
    * @return Google_Service_Webmasters_UrlCrawlErrorsSample
    */
-  public function get($siteUrl, $url, $category, $platform, $optParams = array())
+  public function get($siteUrl, $url, $category, $platform, $optParams = [])
   {
     $params = array('siteUrl' => $siteUrl, 'url' => $url, 'category' => $category, 'platform' => $platform);
     $params = array_merge($params, $optParams);
@@ -576,7 +576,7 @@ class Google_Service_Webmasters_Urlcrawlerrorssamples_Resource extends Google_Se
    * @param array $optParams Optional parameters.
    * @return Google_Service_Webmasters_UrlCrawlErrorsSamplesListResponse
    */
-  public function listUrlcrawlerrorssamples($siteUrl, $category, $platform, $optParams = array())
+  public function listUrlcrawlerrorssamples($siteUrl, $category, $platform, $optParams = [])
   {
     $params = array('siteUrl' => $siteUrl, 'category' => $category, 'platform' => $platform);
     $params = array_merge($params, $optParams);
@@ -599,7 +599,7 @@ class Google_Service_Webmasters_Urlcrawlerrorssamples_Resource extends Google_Se
    * For example: web
    * @param array $optParams Optional parameters.
    */
-  public function markAsFixed($siteUrl, $url, $category, $platform, $optParams = array())
+  public function markAsFixed($siteUrl, $url, $category, $platform, $optParams = [])
   {
     $params = array('siteUrl' => $siteUrl, 'url' => $url, 'category' => $category, 'platform' => $platform);
     $params = array_merge($params, $optParams);

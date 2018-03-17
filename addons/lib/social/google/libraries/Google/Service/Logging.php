@@ -41,7 +41,7 @@ class Google_Service_Logging extends Google_Service
   public $projects_logs;
   public $projects_logs_entries;
   public $projects_logs_sinks;
-  
+
 
   /**
    * Constructs the internal representation of the Logging service.
@@ -454,7 +454,7 @@ class Google_Service_Logging_ProjectsLogServices_Resource extends Google_Service
    * in one operation.
    * @return Google_Service_Logging_ListLogServicesResponse
    */
-  public function listProjectsLogServices($projectsId, $optParams = array())
+  public function listProjectsLogServices($projectsId, $optParams = [])
   {
     $params = array('projectsId' => $projectsId);
     $params = array_merge($params, $optParams);
@@ -508,7 +508,7 @@ class Google_Service_Logging_ProjectsLogServicesIndexes_Resource extends Google_
    * `myModule`. + `""` retrieves all indexes.
    * @return Google_Service_Logging_ListLogServiceIndexesResponse
    */
-  public function listProjectsLogServicesIndexes($projectsId, $logServicesId, $optParams = array())
+  public function listProjectsLogServicesIndexes($projectsId, $logServicesId, $optParams = [])
   {
     $params = array('projectsId' => $projectsId, 'logServicesId' => $logServicesId);
     $params = array_merge($params, $optParams);
@@ -537,7 +537,7 @@ class Google_Service_Logging_ProjectsLogServicesSinks_Resource extends Google_Se
    * @param array $optParams Optional parameters.
    * @return Google_Service_Logging_LogSink
    */
-  public function create($projectsId, $logServicesId, Google_Service_Logging_LogSink $postBody, $optParams = array())
+  public function create($projectsId, $logServicesId, Google_Service_Logging_LogSink $postBody, $optParams = [])
   {
     $params = array('projectsId' => $projectsId, 'logServicesId' => $logServicesId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -554,7 +554,7 @@ class Google_Service_Logging_ProjectsLogServicesSinks_Resource extends Google_Se
    * @param array $optParams Optional parameters.
    * @return Google_Service_Logging_Empty
    */
-  public function delete($projectsId, $logServicesId, $sinksId, $optParams = array())
+  public function delete($projectsId, $logServicesId, $sinksId, $optParams = [])
   {
     $params = array('projectsId' => $projectsId, 'logServicesId' => $logServicesId, 'sinksId' => $sinksId);
     $params = array_merge($params, $optParams);
@@ -571,7 +571,7 @@ class Google_Service_Logging_ProjectsLogServicesSinks_Resource extends Google_Se
    * @param array $optParams Optional parameters.
    * @return Google_Service_Logging_LogSink
    */
-  public function get($projectsId, $logServicesId, $sinksId, $optParams = array())
+  public function get($projectsId, $logServicesId, $sinksId, $optParams = [])
   {
     $params = array('projectsId' => $projectsId, 'logServicesId' => $logServicesId, 'sinksId' => $sinksId);
     $params = array_merge($params, $optParams);
@@ -589,7 +589,7 @@ class Google_Service_Logging_ProjectsLogServicesSinks_Resource extends Google_Se
    * @param array $optParams Optional parameters.
    * @return Google_Service_Logging_ListLogServiceSinksResponse
    */
-  public function listProjectsLogServicesSinks($projectsId, $logServicesId, $optParams = array())
+  public function listProjectsLogServicesSinks($projectsId, $logServicesId, $optParams = [])
   {
     $params = array('projectsId' => $projectsId, 'logServicesId' => $logServicesId);
     $params = array_merge($params, $optParams);
@@ -607,7 +607,7 @@ class Google_Service_Logging_ProjectsLogServicesSinks_Resource extends Google_Se
    * @param array $optParams Optional parameters.
    * @return Google_Service_Logging_LogSink
    */
-  public function update($projectsId, $logServicesId, $sinksId, Google_Service_Logging_LogSink $postBody, $optParams = array())
+  public function update($projectsId, $logServicesId, $sinksId, Google_Service_Logging_LogSink $postBody, $optParams = [])
   {
     $params = array('projectsId' => $projectsId, 'logServicesId' => $logServicesId, 'sinksId' => $sinksId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -634,7 +634,7 @@ class Google_Service_Logging_ProjectsLogs_Resource extends Google_Service_Resour
    * @param array $optParams Optional parameters.
    * @return Google_Service_Logging_Empty
    */
-  public function delete($projectsId, $logsId, $optParams = array())
+  public function delete($projectsId, $logsId, $optParams = [])
   {
     $params = array('projectsId' => $projectsId, 'logsId' => $logsId);
     $params = array_merge($params, $optParams);
@@ -669,7 +669,7 @@ class Google_Service_Logging_ProjectsLogs_Resource extends Google_Service_Resour
    * @opt_param int pageSize The maximum number of results to return.
    * @return Google_Service_Logging_ListLogsResponse
    */
-  public function listProjectsLogs($projectsId, $optParams = array())
+  public function listProjectsLogs($projectsId, $optParams = [])
   {
     $params = array('projectsId' => $projectsId);
     $params = array_merge($params, $optParams);
@@ -704,7 +704,7 @@ class Google_Service_Logging_ProjectsLogsEntries_Resource extends Google_Service
    * @param array $optParams Optional parameters.
    * @return Google_Service_Logging_WriteLogEntriesResponse
    */
-  public function write($projectsId, $logsId, Google_Service_Logging_WriteLogEntriesRequest $postBody, $optParams = array())
+  public function write($projectsId, $logsId, Google_Service_Logging_WriteLogEntriesRequest $postBody, $optParams = [])
   {
     $params = array('projectsId' => $projectsId, 'logsId' => $logsId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -732,7 +732,7 @@ class Google_Service_Logging_ProjectsLogsSinks_Resource extends Google_Service_R
    * @param array $optParams Optional parameters.
    * @return Google_Service_Logging_LogSink
    */
-  public function create($projectsId, $logsId, Google_Service_Logging_LogSink $postBody, $optParams = array())
+  public function create($projectsId, $logsId, Google_Service_Logging_LogSink $postBody, $optParams = [])
   {
     $params = array('projectsId' => $projectsId, 'logsId' => $logsId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -748,7 +748,7 @@ class Google_Service_Logging_ProjectsLogsSinks_Resource extends Google_Service_R
    * @param array $optParams Optional parameters.
    * @return Google_Service_Logging_Empty
    */
-  public function delete($projectsId, $logsId, $sinksId, $optParams = array())
+  public function delete($projectsId, $logsId, $sinksId, $optParams = [])
   {
     $params = array('projectsId' => $projectsId, 'logsId' => $logsId, 'sinksId' => $sinksId);
     $params = array_merge($params, $optParams);
@@ -765,7 +765,7 @@ class Google_Service_Logging_ProjectsLogsSinks_Resource extends Google_Service_R
    * @param array $optParams Optional parameters.
    * @return Google_Service_Logging_LogSink
    */
-  public function get($projectsId, $logsId, $sinksId, $optParams = array())
+  public function get($projectsId, $logsId, $sinksId, $optParams = [])
   {
     $params = array('projectsId' => $projectsId, 'logsId' => $logsId, 'sinksId' => $sinksId);
     $params = array_merge($params, $optParams);
@@ -781,7 +781,7 @@ class Google_Service_Logging_ProjectsLogsSinks_Resource extends Google_Service_R
    * @param array $optParams Optional parameters.
    * @return Google_Service_Logging_ListLogSinksResponse
    */
-  public function listProjectsLogsSinks($projectsId, $logsId, $optParams = array())
+  public function listProjectsLogsSinks($projectsId, $logsId, $optParams = [])
   {
     $params = array('projectsId' => $projectsId, 'logsId' => $logsId);
     $params = array_merge($params, $optParams);
@@ -798,7 +798,7 @@ class Google_Service_Logging_ProjectsLogsSinks_Resource extends Google_Service_R
    * @param array $optParams Optional parameters.
    * @return Google_Service_Logging_LogSink
    */
-  public function update($projectsId, $logsId, $sinksId, Google_Service_Logging_LogSink $postBody, $optParams = array())
+  public function update($projectsId, $logsId, $sinksId, Google_Service_Logging_LogSink $postBody, $optParams = [])
   {
     $params = array('projectsId' => $projectsId, 'logsId' => $logsId, 'sinksId' => $sinksId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);

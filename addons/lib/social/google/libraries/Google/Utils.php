@@ -108,10 +108,10 @@ class Google_Utils
   public static function normalize($arr)
   {
     if (!is_array($arr)) {
-      return array();
+      return [];
     }
 
-    $normalized = array();
+    $normalized = [];
     foreach ($arr as $key => $val) {
       $normalized[strtolower($key)] = $val;
     }

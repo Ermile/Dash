@@ -2,17 +2,17 @@
 
 /**
  * This file is part of Linfo (c) 2014 Joseph Gillotti.
- * 
+ *
  * Linfo is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * Linfo is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.	See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with Linfo.	If not, see <http://www.gnu.org/licenses/>.
  */
@@ -20,8 +20,8 @@ namespace Linfo;
 
 class Common
 {
-    protected static $settings = array(),
-        $lang = array();
+    protected static $settings = [],
+        $lang = [];
 
     // Used for unit tests
     public static $path_prefix = false;
@@ -34,8 +34,8 @@ class Common
 
     public static function unconfig()
     {
-        self::$settings = array();
-        self::$lang = array();
+        self::$settings = [];
+        self::$lang = [];
     }
 
     // Certain files, specifcally the pci/usb ids files, vary in location from
@@ -109,7 +109,7 @@ class Common
         $seconds = floor($uptime % 60);
 
         // Send out formatted string
-        $return = array();
+        $return = [];
 
         if ($years > 0) {
             $return[] = $years.' '.($years > 1 ? self::$lang['years'] : substr(self::$lang['years'], 0, strlen(self::$lang['years']) - 1));
@@ -147,7 +147,7 @@ class Common
     // Like above, but in lines instead of a big string
     public static function getLines($file)
     {
-        return !is_file($file) || !is_readable($file) || !($lines = @file($file, FILE_SKIP_EMPTY_LINES)) ? array() : $lines;
+        return !is_file($file) || !is_readable($file) || !($lines = @file($file, FILE_SKIP_EMPTY_LINES)) ? [] : $lines;
     }
 
     // Make a string safe for being in an xml tag name
@@ -168,8 +168,8 @@ class Common
 
         require $file;
 
-        // Double dollar sign means treat variable contents 
-        // as the name of a variable. 
+        // Double dollar sign means treat variable contents
+        // as the name of a variable.
         if (isset($$variable)) {
             return $$variable;
         }

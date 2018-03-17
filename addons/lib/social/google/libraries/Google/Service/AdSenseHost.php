@@ -44,7 +44,7 @@ class Google_Service_AdSenseHost extends Google_Service
   public $customchannels;
   public $reports;
   public $urlchannels;
-  
+
 
   /**
    * Constructs the internal representation of the AdSenseHost service.
@@ -649,7 +649,7 @@ class Google_Service_AdSenseHost_Accounts_Resource extends Google_Service_Resour
    * @param array $optParams Optional parameters.
    * @return Google_Service_AdSenseHost_Account
    */
-  public function get($accountId, $optParams = array())
+  public function get($accountId, $optParams = [])
   {
     $params = array('accountId' => $accountId);
     $params = array_merge($params, $optParams);
@@ -664,7 +664,7 @@ class Google_Service_AdSenseHost_Accounts_Resource extends Google_Service_Resour
    * @param array $optParams Optional parameters.
    * @return Google_Service_AdSenseHost_Accounts
    */
-  public function listAccounts($filterAdClientId, $optParams = array())
+  public function listAccounts($filterAdClientId, $optParams = [])
   {
     $params = array('filterAdClientId' => $filterAdClientId);
     $params = array_merge($params, $optParams);
@@ -692,7 +692,7 @@ class Google_Service_AdSenseHost_AccountsAdclients_Resource extends Google_Servi
    * @param array $optParams Optional parameters.
    * @return Google_Service_AdSenseHost_AdClient
    */
-  public function get($accountId, $adClientId, $optParams = array())
+  public function get($accountId, $adClientId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'adClientId' => $adClientId);
     $params = array_merge($params, $optParams);
@@ -713,7 +713,7 @@ class Google_Service_AdSenseHost_AccountsAdclients_Resource extends Google_Servi
    * the response, used for paging.
    * @return Google_Service_AdSenseHost_AdClients
    */
-  public function listAccountsAdclients($accountId, $optParams = array())
+  public function listAccountsAdclients($accountId, $optParams = [])
   {
     $params = array('accountId' => $accountId);
     $params = array_merge($params, $optParams);
@@ -741,7 +741,7 @@ class Google_Service_AdSenseHost_AccountsAdunits_Resource extends Google_Service
    * @param array $optParams Optional parameters.
    * @return Google_Service_AdSenseHost_AdUnit
    */
-  public function delete($accountId, $adClientId, $adUnitId, $optParams = array())
+  public function delete($accountId, $adClientId, $adUnitId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'adClientId' => $adClientId, 'adUnitId' => $adUnitId);
     $params = array_merge($params, $optParams);
@@ -757,7 +757,7 @@ class Google_Service_AdSenseHost_AccountsAdunits_Resource extends Google_Service
    * @param array $optParams Optional parameters.
    * @return Google_Service_AdSenseHost_AdUnit
    */
-  public function get($accountId, $adClientId, $adUnitId, $optParams = array())
+  public function get($accountId, $adClientId, $adUnitId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'adClientId' => $adClientId, 'adUnitId' => $adUnitId);
     $params = array_merge($params, $optParams);
@@ -777,7 +777,7 @@ class Google_Service_AdSenseHost_AccountsAdunits_Resource extends Google_Service
    * code.
    * @return Google_Service_AdSenseHost_AdCode
    */
-  public function getAdCode($accountId, $adClientId, $adUnitId, $optParams = array())
+  public function getAdCode($accountId, $adClientId, $adUnitId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'adClientId' => $adClientId, 'adUnitId' => $adUnitId);
     $params = array_merge($params, $optParams);
@@ -794,7 +794,7 @@ class Google_Service_AdSenseHost_AccountsAdunits_Resource extends Google_Service
    * @param array $optParams Optional parameters.
    * @return Google_Service_AdSenseHost_AdUnit
    */
-  public function insert($accountId, $adClientId, Google_Service_AdSenseHost_AdUnit $postBody, $optParams = array())
+  public function insert($accountId, $adClientId, Google_Service_AdSenseHost_AdUnit $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'adClientId' => $adClientId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -818,7 +818,7 @@ class Google_Service_AdSenseHost_AccountsAdunits_Resource extends Google_Service
    * response, used for paging.
    * @return Google_Service_AdSenseHost_AdUnits
    */
-  public function listAccountsAdunits($accountId, $adClientId, $optParams = array())
+  public function listAccountsAdunits($accountId, $adClientId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'adClientId' => $adClientId);
     $params = array_merge($params, $optParams);
@@ -836,7 +836,7 @@ class Google_Service_AdSenseHost_AccountsAdunits_Resource extends Google_Service
    * @param array $optParams Optional parameters.
    * @return Google_Service_AdSenseHost_AdUnit
    */
-  public function patch($accountId, $adClientId, $adUnitId, Google_Service_AdSenseHost_AdUnit $postBody, $optParams = array())
+  public function patch($accountId, $adClientId, $adUnitId, Google_Service_AdSenseHost_AdUnit $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'adClientId' => $adClientId, 'adUnitId' => $adUnitId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -853,7 +853,7 @@ class Google_Service_AdSenseHost_AccountsAdunits_Resource extends Google_Service
    * @param array $optParams Optional parameters.
    * @return Google_Service_AdSenseHost_AdUnit
    */
-  public function update($accountId, $adClientId, Google_Service_AdSenseHost_AdUnit $postBody, $optParams = array())
+  public function update($accountId, $adClientId, Google_Service_AdSenseHost_AdUnit $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'adClientId' => $adClientId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -896,7 +896,7 @@ class Google_Service_AdSenseHost_AccountsReports_Resource extends Google_Service
    * @opt_param string dimension Dimensions to base the report on.
    * @return Google_Service_AdSenseHost_Report
    */
-  public function generate($accountId, $startDate, $endDate, $optParams = array())
+  public function generate($accountId, $startDate, $endDate, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'startDate' => $startDate, 'endDate' => $endDate);
     $params = array_merge($params, $optParams);
@@ -923,7 +923,7 @@ class Google_Service_AdSenseHost_Adclients_Resource extends Google_Service_Resou
    * @param array $optParams Optional parameters.
    * @return Google_Service_AdSenseHost_AdClient
    */
-  public function get($adClientId, $optParams = array())
+  public function get($adClientId, $optParams = [])
   {
     $params = array('adClientId' => $adClientId);
     $params = array_merge($params, $optParams);
@@ -942,9 +942,9 @@ class Google_Service_AdSenseHost_Adclients_Resource extends Google_Service_Resou
    * the response, used for paging.
    * @return Google_Service_AdSenseHost_AdClients
    */
-  public function listAdclients($optParams = array())
+  public function listAdclients($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_AdSenseHost_AdClients");
   }
@@ -973,7 +973,7 @@ class Google_Service_AdSenseHost_Associationsessions_Resource extends Google_Ser
    * @opt_param string userLocale The preferred locale of the user.
    * @return Google_Service_AdSenseHost_AssociationSession
    */
-  public function start($productCode, $websiteUrl, $optParams = array())
+  public function start($productCode, $websiteUrl, $optParams = [])
   {
     $params = array('productCode' => $productCode, 'websiteUrl' => $websiteUrl);
     $params = array_merge($params, $optParams);
@@ -988,7 +988,7 @@ class Google_Service_AdSenseHost_Associationsessions_Resource extends Google_Ser
    * @param array $optParams Optional parameters.
    * @return Google_Service_AdSenseHost_AssociationSession
    */
-  public function verify($token, $optParams = array())
+  public function verify($token, $optParams = [])
   {
     $params = array('token' => $token);
     $params = array_merge($params, $optParams);
@@ -1016,7 +1016,7 @@ class Google_Service_AdSenseHost_Customchannels_Resource extends Google_Service_
    * @param array $optParams Optional parameters.
    * @return Google_Service_AdSenseHost_CustomChannel
    */
-  public function delete($adClientId, $customChannelId, $optParams = array())
+  public function delete($adClientId, $customChannelId, $optParams = [])
   {
     $params = array('adClientId' => $adClientId, 'customChannelId' => $customChannelId);
     $params = array_merge($params, $optParams);
@@ -1032,7 +1032,7 @@ class Google_Service_AdSenseHost_Customchannels_Resource extends Google_Service_
    * @param array $optParams Optional parameters.
    * @return Google_Service_AdSenseHost_CustomChannel
    */
-  public function get($adClientId, $customChannelId, $optParams = array())
+  public function get($adClientId, $customChannelId, $optParams = [])
   {
     $params = array('adClientId' => $adClientId, 'customChannelId' => $customChannelId);
     $params = array_merge($params, $optParams);
@@ -1048,7 +1048,7 @@ class Google_Service_AdSenseHost_Customchannels_Resource extends Google_Service_
    * @param array $optParams Optional parameters.
    * @return Google_Service_AdSenseHost_CustomChannel
    */
-  public function insert($adClientId, Google_Service_AdSenseHost_CustomChannel $postBody, $optParams = array())
+  public function insert($adClientId, Google_Service_AdSenseHost_CustomChannel $postBody, $optParams = [])
   {
     $params = array('adClientId' => $adClientId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1069,7 +1069,7 @@ class Google_Service_AdSenseHost_Customchannels_Resource extends Google_Service_
    * in the response, used for paging.
    * @return Google_Service_AdSenseHost_CustomChannels
    */
-  public function listCustomchannels($adClientId, $optParams = array())
+  public function listCustomchannels($adClientId, $optParams = [])
   {
     $params = array('adClientId' => $adClientId);
     $params = array_merge($params, $optParams);
@@ -1087,7 +1087,7 @@ class Google_Service_AdSenseHost_Customchannels_Resource extends Google_Service_
    * @param array $optParams Optional parameters.
    * @return Google_Service_AdSenseHost_CustomChannel
    */
-  public function patch($adClientId, $customChannelId, Google_Service_AdSenseHost_CustomChannel $postBody, $optParams = array())
+  public function patch($adClientId, $customChannelId, Google_Service_AdSenseHost_CustomChannel $postBody, $optParams = [])
   {
     $params = array('adClientId' => $adClientId, 'customChannelId' => $customChannelId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1103,7 +1103,7 @@ class Google_Service_AdSenseHost_Customchannels_Resource extends Google_Service_
    * @param array $optParams Optional parameters.
    * @return Google_Service_AdSenseHost_CustomChannel
    */
-  public function update($adClientId, Google_Service_AdSenseHost_CustomChannel $postBody, $optParams = array())
+  public function update($adClientId, Google_Service_AdSenseHost_CustomChannel $postBody, $optParams = [])
   {
     $params = array('adClientId' => $adClientId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1146,7 +1146,7 @@ class Google_Service_AdSenseHost_Reports_Resource extends Google_Service_Resourc
    * @opt_param string dimension Dimensions to base the report on.
    * @return Google_Service_AdSenseHost_Report
    */
-  public function generate($startDate, $endDate, $optParams = array())
+  public function generate($startDate, $endDate, $optParams = [])
   {
     $params = array('startDate' => $startDate, 'endDate' => $endDate);
     $params = array_merge($params, $optParams);
@@ -1173,7 +1173,7 @@ class Google_Service_AdSenseHost_Urlchannels_Resource extends Google_Service_Res
    * @param array $optParams Optional parameters.
    * @return Google_Service_AdSenseHost_UrlChannel
    */
-  public function delete($adClientId, $urlChannelId, $optParams = array())
+  public function delete($adClientId, $urlChannelId, $optParams = [])
   {
     $params = array('adClientId' => $adClientId, 'urlChannelId' => $urlChannelId);
     $params = array_merge($params, $optParams);
@@ -1189,7 +1189,7 @@ class Google_Service_AdSenseHost_Urlchannels_Resource extends Google_Service_Res
    * @param array $optParams Optional parameters.
    * @return Google_Service_AdSenseHost_UrlChannel
    */
-  public function insert($adClientId, Google_Service_AdSenseHost_UrlChannel $postBody, $optParams = array())
+  public function insert($adClientId, Google_Service_AdSenseHost_UrlChannel $postBody, $optParams = [])
   {
     $params = array('adClientId' => $adClientId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1210,7 +1210,7 @@ class Google_Service_AdSenseHost_Urlchannels_Resource extends Google_Service_Res
    * the response, used for paging.
    * @return Google_Service_AdSenseHost_UrlChannels
    */
-  public function listUrlchannels($adClientId, $optParams = array())
+  public function listUrlchannels($adClientId, $optParams = [])
   {
     $params = array('adClientId' => $adClientId);
     $params = array_merge($params, $optParams);

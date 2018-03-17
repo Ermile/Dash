@@ -45,7 +45,7 @@ class Google_Service_Calendar extends Google_Service
   public $events;
   public $freebusy;
   public $settings;
-  
+
 
   /**
    * Constructs the internal representation of the Calendar service.
@@ -356,7 +356,7 @@ class Google_Service_Calendar extends Google_Service
             ),'insert' => array(
               'path' => 'calendars',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),'patch' => array(
               'path' => 'calendars/{calendarId}',
               'httpMethod' => 'PATCH',
@@ -390,7 +390,7 @@ class Google_Service_Calendar extends Google_Service
             'stop' => array(
               'path' => 'channels/stop',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),
           )
         )
@@ -404,7 +404,7 @@ class Google_Service_Calendar extends Google_Service
             'get' => array(
               'path' => 'colors',
               'httpMethod' => 'GET',
-              'parameters' => array(),
+              'parameters' => [],
             ),
           )
         )
@@ -826,7 +826,7 @@ class Google_Service_Calendar extends Google_Service
             'query' => array(
               'path' => 'freeBusy',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),
           )
         )
@@ -907,7 +907,7 @@ class Google_Service_Calendar_Acl_Resource extends Google_Service_Resource
    * @param string $ruleId ACL rule identifier.
    * @param array $optParams Optional parameters.
    */
-  public function delete($calendarId, $ruleId, $optParams = array())
+  public function delete($calendarId, $ruleId, $optParams = [])
   {
     $params = array('calendarId' => $calendarId, 'ruleId' => $ruleId);
     $params = array_merge($params, $optParams);
@@ -922,7 +922,7 @@ class Google_Service_Calendar_Acl_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Calendar_AclRule
    */
-  public function get($calendarId, $ruleId, $optParams = array())
+  public function get($calendarId, $ruleId, $optParams = [])
   {
     $params = array('calendarId' => $calendarId, 'ruleId' => $ruleId);
     $params = array_merge($params, $optParams);
@@ -937,7 +937,7 @@ class Google_Service_Calendar_Acl_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Calendar_AclRule
    */
-  public function insert($calendarId, Google_Service_Calendar_AclRule $postBody, $optParams = array())
+  public function insert($calendarId, Google_Service_Calendar_AclRule $postBody, $optParams = [])
   {
     $params = array('calendarId' => $calendarId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -969,7 +969,7 @@ class Google_Service_Calendar_Acl_Resource extends Google_Service_Resource
    * always be included if syncToken is provided. Optional. The default is False.
    * @return Google_Service_Calendar_Acl
    */
-  public function listAcl($calendarId, $optParams = array())
+  public function listAcl($calendarId, $optParams = [])
   {
     $params = array('calendarId' => $calendarId);
     $params = array_merge($params, $optParams);
@@ -986,7 +986,7 @@ class Google_Service_Calendar_Acl_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Calendar_AclRule
    */
-  public function patch($calendarId, $ruleId, Google_Service_Calendar_AclRule $postBody, $optParams = array())
+  public function patch($calendarId, $ruleId, Google_Service_Calendar_AclRule $postBody, $optParams = [])
   {
     $params = array('calendarId' => $calendarId, 'ruleId' => $ruleId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1002,7 +1002,7 @@ class Google_Service_Calendar_Acl_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Calendar_AclRule
    */
-  public function update($calendarId, $ruleId, Google_Service_Calendar_AclRule $postBody, $optParams = array())
+  public function update($calendarId, $ruleId, Google_Service_Calendar_AclRule $postBody, $optParams = [])
   {
     $params = array('calendarId' => $calendarId, 'ruleId' => $ruleId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1035,7 +1035,7 @@ class Google_Service_Calendar_Acl_Resource extends Google_Service_Resource
    * always be included if syncToken is provided. Optional. The default is False.
    * @return Google_Service_Calendar_Channel
    */
-  public function watch($calendarId, Google_Service_Calendar_Channel $postBody, $optParams = array())
+  public function watch($calendarId, Google_Service_Calendar_Channel $postBody, $optParams = [])
   {
     $params = array('calendarId' => $calendarId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1060,7 +1060,7 @@ class Google_Service_Calendar_CalendarList_Resource extends Google_Service_Resou
    * @param string $calendarId Calendar identifier.
    * @param array $optParams Optional parameters.
    */
-  public function delete($calendarId, $optParams = array())
+  public function delete($calendarId, $optParams = [])
   {
     $params = array('calendarId' => $calendarId);
     $params = array_merge($params, $optParams);
@@ -1074,7 +1074,7 @@ class Google_Service_Calendar_CalendarList_Resource extends Google_Service_Resou
    * @param array $optParams Optional parameters.
    * @return Google_Service_Calendar_CalendarListEntry
    */
-  public function get($calendarId, $optParams = array())
+  public function get($calendarId, $optParams = [])
   {
     $params = array('calendarId' => $calendarId);
     $params = array_merge($params, $optParams);
@@ -1093,7 +1093,7 @@ class Google_Service_Calendar_CalendarList_Resource extends Google_Service_Resou
    * automatically. Optional. The default is False.
    * @return Google_Service_Calendar_CalendarListEntry
    */
-  public function insert(Google_Service_Calendar_CalendarListEntry $postBody, $optParams = array())
+  public function insert(Google_Service_Calendar_CalendarListEntry $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1130,9 +1130,9 @@ class Google_Service_Calendar_CalendarList_Resource extends Google_Service_Resou
    * default is False.
    * @return Google_Service_Calendar_CalendarList
    */
-  public function listCalendarList($optParams = array())
+  public function listCalendarList($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_Calendar_CalendarList");
   }
@@ -1151,7 +1151,7 @@ class Google_Service_Calendar_CalendarList_Resource extends Google_Service_Resou
    * automatically. Optional. The default is False.
    * @return Google_Service_Calendar_CalendarListEntry
    */
-  public function patch($calendarId, Google_Service_Calendar_CalendarListEntry $postBody, $optParams = array())
+  public function patch($calendarId, Google_Service_Calendar_CalendarListEntry $postBody, $optParams = [])
   {
     $params = array('calendarId' => $calendarId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1171,7 +1171,7 @@ class Google_Service_Calendar_CalendarList_Resource extends Google_Service_Resou
    * automatically. Optional. The default is False.
    * @return Google_Service_Calendar_CalendarListEntry
    */
-  public function update($calendarId, Google_Service_Calendar_CalendarListEntry $postBody, $optParams = array())
+  public function update($calendarId, Google_Service_Calendar_CalendarListEntry $postBody, $optParams = [])
   {
     $params = array('calendarId' => $calendarId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1209,7 +1209,7 @@ class Google_Service_Calendar_CalendarList_Resource extends Google_Service_Resou
    * default is False.
    * @return Google_Service_Calendar_Channel
    */
-  public function watch(Google_Service_Calendar_Channel $postBody, $optParams = array())
+  public function watch(Google_Service_Calendar_Channel $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1235,7 +1235,7 @@ class Google_Service_Calendar_Calendars_Resource extends Google_Service_Resource
    * @param string $calendarId Calendar identifier.
    * @param array $optParams Optional parameters.
    */
-  public function clear($calendarId, $optParams = array())
+  public function clear($calendarId, $optParams = [])
   {
     $params = array('calendarId' => $calendarId);
     $params = array_merge($params, $optParams);
@@ -1249,7 +1249,7 @@ class Google_Service_Calendar_Calendars_Resource extends Google_Service_Resource
    * @param string $calendarId Calendar identifier.
    * @param array $optParams Optional parameters.
    */
-  public function delete($calendarId, $optParams = array())
+  public function delete($calendarId, $optParams = [])
   {
     $params = array('calendarId' => $calendarId);
     $params = array_merge($params, $optParams);
@@ -1263,7 +1263,7 @@ class Google_Service_Calendar_Calendars_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Calendar_Calendar
    */
-  public function get($calendarId, $optParams = array())
+  public function get($calendarId, $optParams = [])
   {
     $params = array('calendarId' => $calendarId);
     $params = array_merge($params, $optParams);
@@ -1277,7 +1277,7 @@ class Google_Service_Calendar_Calendars_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Calendar_Calendar
    */
-  public function insert(Google_Service_Calendar_Calendar $postBody, $optParams = array())
+  public function insert(Google_Service_Calendar_Calendar $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1293,7 +1293,7 @@ class Google_Service_Calendar_Calendars_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Calendar_Calendar
    */
-  public function patch($calendarId, Google_Service_Calendar_Calendar $postBody, $optParams = array())
+  public function patch($calendarId, Google_Service_Calendar_Calendar $postBody, $optParams = [])
   {
     $params = array('calendarId' => $calendarId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1308,7 +1308,7 @@ class Google_Service_Calendar_Calendars_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Calendar_Calendar
    */
-  public function update($calendarId, Google_Service_Calendar_Calendar $postBody, $optParams = array())
+  public function update($calendarId, Google_Service_Calendar_Calendar $postBody, $optParams = [])
   {
     $params = array('calendarId' => $calendarId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1333,7 +1333,7 @@ class Google_Service_Calendar_Channels_Resource extends Google_Service_Resource
    * @param Google_Channel $postBody
    * @param array $optParams Optional parameters.
    */
-  public function stop(Google_Service_Calendar_Channel $postBody, $optParams = array())
+  public function stop(Google_Service_Calendar_Channel $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1358,9 +1358,9 @@ class Google_Service_Calendar_Colors_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Calendar_Colors
    */
-  public function get($optParams = array())
+  public function get($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('get', array($params), "Google_Service_Calendar_Colors");
   }
@@ -1387,7 +1387,7 @@ class Google_Service_Calendar_Events_Resource extends Google_Service_Resource
    * @opt_param bool sendNotifications Whether to send notifications about the
    * deletion of the event. Optional. The default is False.
    */
-  public function delete($calendarId, $eventId, $optParams = array())
+  public function delete($calendarId, $eventId, $optParams = [])
   {
     $params = array('calendarId' => $calendarId, 'eventId' => $eventId);
     $params = array_merge($params, $optParams);
@@ -1414,7 +1414,7 @@ class Google_Service_Calendar_Events_Resource extends Google_Service_Resource
    * participant is returned. Optional.
    * @return Google_Service_Calendar_Event
    */
-  public function get($calendarId, $eventId, $optParams = array())
+  public function get($calendarId, $eventId, $optParams = [])
   {
     $params = array('calendarId' => $calendarId, 'eventId' => $eventId);
     $params = array_merge($params, $optParams);
@@ -1433,7 +1433,7 @@ class Google_Service_Calendar_Events_Resource extends Google_Service_Resource
    * supports event attachments. Optional. The default is False.
    * @return Google_Service_Calendar_Event
    */
-  public function import($calendarId, Google_Service_Calendar_Event $postBody, $optParams = array())
+  public function import($calendarId, Google_Service_Calendar_Event $postBody, $optParams = [])
   {
     $params = array('calendarId' => $calendarId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1456,7 +1456,7 @@ class Google_Service_Calendar_Events_Resource extends Google_Service_Resource
    * participant is returned. Optional.
    * @return Google_Service_Calendar_Event
    */
-  public function insert($calendarId, Google_Service_Calendar_Event $postBody, $optParams = array())
+  public function insert($calendarId, Google_Service_Calendar_Event $postBody, $optParams = [])
   {
     $params = array('calendarId' => $calendarId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1498,7 +1498,7 @@ class Google_Service_Calendar_Events_Resource extends Google_Service_Resource
    * participant is returned. Optional.
    * @return Google_Service_Calendar_Events
    */
-  public function instances($calendarId, $eventId, $optParams = array())
+  public function instances($calendarId, $eventId, $optParams = [])
   {
     $params = array('calendarId' => $calendarId, 'eventId' => $eventId);
     $params = array_merge($params, $optParams);
@@ -1577,7 +1577,7 @@ class Google_Service_Calendar_Events_Resource extends Google_Service_Resource
    * participant is returned. Optional.
    * @return Google_Service_Calendar_Events
    */
-  public function listEvents($calendarId, $optParams = array())
+  public function listEvents($calendarId, $optParams = [])
   {
     $params = array('calendarId' => $calendarId);
     $params = array_merge($params, $optParams);
@@ -1599,7 +1599,7 @@ class Google_Service_Calendar_Events_Resource extends Google_Service_Resource
    * change of the event's organizer. Optional. The default is False.
    * @return Google_Service_Calendar_Event
    */
-  public function move($calendarId, $eventId, $destination, $optParams = array())
+  public function move($calendarId, $eventId, $destination, $optParams = [])
   {
     $params = array('calendarId' => $calendarId, 'eventId' => $eventId, 'destination' => $destination);
     $params = array_merge($params, $optParams);
@@ -1630,7 +1630,7 @@ class Google_Service_Calendar_Events_Resource extends Google_Service_Resource
    * participant is returned. Optional.
    * @return Google_Service_Calendar_Event
    */
-  public function patch($calendarId, $eventId, Google_Service_Calendar_Event $postBody, $optParams = array())
+  public function patch($calendarId, $eventId, Google_Service_Calendar_Event $postBody, $optParams = [])
   {
     $params = array('calendarId' => $calendarId, 'eventId' => $eventId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1648,7 +1648,7 @@ class Google_Service_Calendar_Events_Resource extends Google_Service_Resource
    * creation of the event. Optional. The default is False.
    * @return Google_Service_Calendar_Event
    */
-  public function quickAdd($calendarId, $text, $optParams = array())
+  public function quickAdd($calendarId, $text, $optParams = [])
   {
     $params = array('calendarId' => $calendarId, 'text' => $text);
     $params = array_merge($params, $optParams);
@@ -1679,7 +1679,7 @@ class Google_Service_Calendar_Events_Resource extends Google_Service_Resource
    * participant is returned. Optional.
    * @return Google_Service_Calendar_Event
    */
-  public function update($calendarId, $eventId, Google_Service_Calendar_Event $postBody, $optParams = array())
+  public function update($calendarId, $eventId, Google_Service_Calendar_Event $postBody, $optParams = [])
   {
     $params = array('calendarId' => $calendarId, 'eventId' => $eventId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1759,7 +1759,7 @@ class Google_Service_Calendar_Events_Resource extends Google_Service_Resource
    * participant is returned. Optional.
    * @return Google_Service_Calendar_Channel
    */
-  public function watch($calendarId, Google_Service_Calendar_Channel $postBody, $optParams = array())
+  public function watch($calendarId, Google_Service_Calendar_Channel $postBody, $optParams = [])
   {
     $params = array('calendarId' => $calendarId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1785,7 +1785,7 @@ class Google_Service_Calendar_Freebusy_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Calendar_FreeBusyResponse
    */
-  public function query(Google_Service_Calendar_FreeBusyRequest $postBody, $optParams = array())
+  public function query(Google_Service_Calendar_FreeBusyRequest $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1811,7 +1811,7 @@ class Google_Service_Calendar_Settings_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Calendar_Setting
    */
-  public function get($setting, $optParams = array())
+  public function get($setting, $optParams = [])
   {
     $params = array('setting' => $setting);
     $params = array_merge($params, $optParams);
@@ -1837,9 +1837,9 @@ class Google_Service_Calendar_Settings_Resource extends Google_Service_Resource
    * synchronization. Optional. The default is to return all entries.
    * @return Google_Service_Calendar_Settings
    */
-  public function listSettings($optParams = array())
+  public function listSettings($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_Calendar_Settings");
   }
@@ -1864,7 +1864,7 @@ class Google_Service_Calendar_Settings_Resource extends Google_Service_Resource
    * synchronization. Optional. The default is to return all entries.
    * @return Google_Service_Calendar_Channel
    */
-  public function watch(Google_Service_Calendar_Channel $postBody, $optParams = array())
+  public function watch(Google_Service_Calendar_Channel $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);

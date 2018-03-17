@@ -37,7 +37,7 @@ class Google_Logger_Null extends Google_Logger_Abstract
   /**
    * {@inheritdoc}
    */
-  protected function write($message, array $context = array())
+  protected function write($message, array $context = [])
   {
   }
 }

@@ -105,7 +105,7 @@ class Google_Service_Directory extends Google_Service
   public $users_aliases;
   public $users_photos;
   public $verificationCodes;
-  
+
 
   /**
    * Constructs the internal representation of the Directory service.
@@ -179,7 +179,7 @@ class Google_Service_Directory extends Google_Service
             'stop' => array(
               'path' => '/admin/directory_v1/channels/stop',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),
           )
         )
@@ -314,7 +314,7 @@ class Google_Service_Directory extends Google_Service
             ),'insert' => array(
               'path' => 'groups',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),'list' => array(
               'path' => 'groups',
               'httpMethod' => 'GET',
@@ -979,7 +979,7 @@ class Google_Service_Directory extends Google_Service
             ),'insert' => array(
               'path' => 'users',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),'list' => array(
               'path' => 'users',
               'httpMethod' => 'GET',
@@ -1306,7 +1306,7 @@ class Google_Service_Directory_Asps_Resource extends Google_Service_Resource
    * @param int $codeId The unique ID of the ASP to be deleted.
    * @param array $optParams Optional parameters.
    */
-  public function delete($userKey, $codeId, $optParams = array())
+  public function delete($userKey, $codeId, $optParams = [])
   {
     $params = array('userKey' => $userKey, 'codeId' => $codeId);
     $params = array_merge($params, $optParams);
@@ -1322,7 +1322,7 @@ class Google_Service_Directory_Asps_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Directory_Asp
    */
-  public function get($userKey, $codeId, $optParams = array())
+  public function get($userKey, $codeId, $optParams = [])
   {
     $params = array('userKey' => $userKey, 'codeId' => $codeId);
     $params = array_merge($params, $optParams);
@@ -1337,7 +1337,7 @@ class Google_Service_Directory_Asps_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Directory_Asps
    */
-  public function listAsps($userKey, $optParams = array())
+  public function listAsps($userKey, $optParams = [])
   {
     $params = array('userKey' => $userKey);
     $params = array_merge($params, $optParams);
@@ -1362,7 +1362,7 @@ class Google_Service_Directory_Channels_Resource extends Google_Service_Resource
    * @param Google_Channel $postBody
    * @param array $optParams Optional parameters.
    */
-  public function stop(Google_Service_Directory_Channel $postBody, $optParams = array())
+  public function stop(Google_Service_Directory_Channel $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1392,7 +1392,7 @@ class Google_Service_Directory_Chromeosdevices_Resource extends Google_Service_R
    * selected fields.
    * @return Google_Service_Directory_ChromeOsDevice
    */
-  public function get($customerId, $deviceId, $optParams = array())
+  public function get($customerId, $deviceId, $optParams = [])
   {
     $params = array('customerId' => $customerId, 'deviceId' => $deviceId);
     $params = array_merge($params, $optParams);
@@ -1417,7 +1417,7 @@ class Google_Service_Directory_Chromeosdevices_Resource extends Google_Service_R
    * http://support.google.com/chromeos/a/bin/answer.py?hl=en=1698333
    * @return Google_Service_Directory_ChromeOsDevices
    */
-  public function listChromeosdevices($customerId, $optParams = array())
+  public function listChromeosdevices($customerId, $optParams = [])
   {
     $params = array('customerId' => $customerId);
     $params = array_merge($params, $optParams);
@@ -1437,7 +1437,7 @@ class Google_Service_Directory_Chromeosdevices_Resource extends Google_Service_R
    * selected fields.
    * @return Google_Service_Directory_ChromeOsDevice
    */
-  public function patch($customerId, $deviceId, Google_Service_Directory_ChromeOsDevice $postBody, $optParams = array())
+  public function patch($customerId, $deviceId, Google_Service_Directory_ChromeOsDevice $postBody, $optParams = [])
   {
     $params = array('customerId' => $customerId, 'deviceId' => $deviceId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1456,7 +1456,7 @@ class Google_Service_Directory_Chromeosdevices_Resource extends Google_Service_R
    * selected fields.
    * @return Google_Service_Directory_ChromeOsDevice
    */
-  public function update($customerId, $deviceId, Google_Service_Directory_ChromeOsDevice $postBody, $optParams = array())
+  public function update($customerId, $deviceId, Google_Service_Directory_ChromeOsDevice $postBody, $optParams = [])
   {
     $params = array('customerId' => $customerId, 'deviceId' => $deviceId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1481,7 +1481,7 @@ class Google_Service_Directory_Groups_Resource extends Google_Service_Resource
    * @param string $groupKey Email or immutable Id of the group
    * @param array $optParams Optional parameters.
    */
-  public function delete($groupKey, $optParams = array())
+  public function delete($groupKey, $optParams = [])
   {
     $params = array('groupKey' => $groupKey);
     $params = array_merge($params, $optParams);
@@ -1495,7 +1495,7 @@ class Google_Service_Directory_Groups_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Directory_Group
    */
-  public function get($groupKey, $optParams = array())
+  public function get($groupKey, $optParams = [])
   {
     $params = array('groupKey' => $groupKey);
     $params = array_merge($params, $optParams);
@@ -1509,7 +1509,7 @@ class Google_Service_Directory_Groups_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Directory_Group
    */
-  public function insert(Google_Service_Directory_Group $postBody, $optParams = array())
+  public function insert(Google_Service_Directory_Group $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1534,9 +1534,9 @@ class Google_Service_Directory_Groups_Resource extends Google_Service_Resource
    * match with id of user object
    * @return Google_Service_Directory_Groups
    */
-  public function listGroups($optParams = array())
+  public function listGroups($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_Directory_Groups");
   }
@@ -1550,7 +1550,7 @@ class Google_Service_Directory_Groups_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Directory_Group
    */
-  public function patch($groupKey, Google_Service_Directory_Group $postBody, $optParams = array())
+  public function patch($groupKey, Google_Service_Directory_Group $postBody, $optParams = [])
   {
     $params = array('groupKey' => $groupKey, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1566,7 +1566,7 @@ class Google_Service_Directory_Groups_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Directory_Group
    */
-  public function update($groupKey, Google_Service_Directory_Group $postBody, $optParams = array())
+  public function update($groupKey, Google_Service_Directory_Group $postBody, $optParams = [])
   {
     $params = array('groupKey' => $groupKey, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1592,7 +1592,7 @@ class Google_Service_Directory_GroupsAliases_Resource extends Google_Service_Res
    * @param string $alias The alias to be removed
    * @param array $optParams Optional parameters.
    */
-  public function delete($groupKey, $alias, $optParams = array())
+  public function delete($groupKey, $alias, $optParams = [])
   {
     $params = array('groupKey' => $groupKey, 'alias' => $alias);
     $params = array_merge($params, $optParams);
@@ -1607,7 +1607,7 @@ class Google_Service_Directory_GroupsAliases_Resource extends Google_Service_Res
    * @param array $optParams Optional parameters.
    * @return Google_Service_Directory_Alias
    */
-  public function insert($groupKey, Google_Service_Directory_Alias $postBody, $optParams = array())
+  public function insert($groupKey, Google_Service_Directory_Alias $postBody, $optParams = [])
   {
     $params = array('groupKey' => $groupKey, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1621,7 +1621,7 @@ class Google_Service_Directory_GroupsAliases_Resource extends Google_Service_Res
    * @param array $optParams Optional parameters.
    * @return Google_Service_Directory_Aliases
    */
-  public function listGroupsAliases($groupKey, $optParams = array())
+  public function listGroupsAliases($groupKey, $optParams = [])
   {
     $params = array('groupKey' => $groupKey);
     $params = array_merge($params, $optParams);
@@ -1647,7 +1647,7 @@ class Google_Service_Directory_Members_Resource extends Google_Service_Resource
    * @param string $memberKey Email or immutable Id of the member
    * @param array $optParams Optional parameters.
    */
-  public function delete($groupKey, $memberKey, $optParams = array())
+  public function delete($groupKey, $memberKey, $optParams = [])
   {
     $params = array('groupKey' => $groupKey, 'memberKey' => $memberKey);
     $params = array_merge($params, $optParams);
@@ -1662,7 +1662,7 @@ class Google_Service_Directory_Members_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Directory_Member
    */
-  public function get($groupKey, $memberKey, $optParams = array())
+  public function get($groupKey, $memberKey, $optParams = [])
   {
     $params = array('groupKey' => $groupKey, 'memberKey' => $memberKey);
     $params = array_merge($params, $optParams);
@@ -1677,7 +1677,7 @@ class Google_Service_Directory_Members_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Directory_Member
    */
-  public function insert($groupKey, Google_Service_Directory_Member $postBody, $optParams = array())
+  public function insert($groupKey, Google_Service_Directory_Member $postBody, $optParams = [])
   {
     $params = array('groupKey' => $groupKey, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1696,7 +1696,7 @@ class Google_Service_Directory_Members_Resource extends Google_Service_Resource
    * @opt_param int maxResults Maximum number of results to return. Default is 200
    * @return Google_Service_Directory_Members
    */
-  public function listMembers($groupKey, $optParams = array())
+  public function listMembers($groupKey, $optParams = [])
   {
     $params = array('groupKey' => $groupKey);
     $params = array_merge($params, $optParams);
@@ -1715,7 +1715,7 @@ class Google_Service_Directory_Members_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Directory_Member
    */
-  public function patch($groupKey, $memberKey, Google_Service_Directory_Member $postBody, $optParams = array())
+  public function patch($groupKey, $memberKey, Google_Service_Directory_Member $postBody, $optParams = [])
   {
     $params = array('groupKey' => $groupKey, 'memberKey' => $memberKey, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1733,7 +1733,7 @@ class Google_Service_Directory_Members_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Directory_Member
    */
-  public function update($groupKey, $memberKey, Google_Service_Directory_Member $postBody, $optParams = array())
+  public function update($groupKey, $memberKey, Google_Service_Directory_Member $postBody, $optParams = [])
   {
     $params = array('groupKey' => $groupKey, 'memberKey' => $memberKey, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1760,7 +1760,7 @@ class Google_Service_Directory_Mobiledevices_Resource extends Google_Service_Res
    * @param Google_MobileDeviceAction $postBody
    * @param array $optParams Optional parameters.
    */
-  public function action($customerId, $resourceId, Google_Service_Directory_MobileDeviceAction $postBody, $optParams = array())
+  public function action($customerId, $resourceId, Google_Service_Directory_MobileDeviceAction $postBody, $optParams = [])
   {
     $params = array('customerId' => $customerId, 'resourceId' => $resourceId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1774,7 +1774,7 @@ class Google_Service_Directory_Mobiledevices_Resource extends Google_Service_Res
    * @param string $resourceId Immutable id of Mobile Device
    * @param array $optParams Optional parameters.
    */
-  public function delete($customerId, $resourceId, $optParams = array())
+  public function delete($customerId, $resourceId, $optParams = [])
   {
     $params = array('customerId' => $customerId, 'resourceId' => $resourceId);
     $params = array_merge($params, $optParams);
@@ -1792,7 +1792,7 @@ class Google_Service_Directory_Mobiledevices_Resource extends Google_Service_Res
    * selected fields.
    * @return Google_Service_Directory_MobileDevice
    */
-  public function get($customerId, $resourceId, $optParams = array())
+  public function get($customerId, $resourceId, $optParams = [])
   {
     $params = array('customerId' => $customerId, 'resourceId' => $resourceId);
     $params = array_merge($params, $optParams);
@@ -1817,7 +1817,7 @@ class Google_Service_Directory_Mobiledevices_Resource extends Google_Service_Res
    * http://support.google.com/a/bin/answer.py?hl=en=1408863#search
    * @return Google_Service_Directory_MobileDevices
    */
-  public function listMobiledevices($customerId, $optParams = array())
+  public function listMobiledevices($customerId, $optParams = [])
   {
     $params = array('customerId' => $customerId);
     $params = array_merge($params, $optParams);
@@ -1844,7 +1844,7 @@ class Google_Service_Directory_Notifications_Resource extends Google_Service_Res
    * @param string $notificationId The unique ID of the notification.
    * @param array $optParams Optional parameters.
    */
-  public function delete($customer, $notificationId, $optParams = array())
+  public function delete($customer, $notificationId, $optParams = [])
   {
     $params = array('customer' => $customer, 'notificationId' => $notificationId);
     $params = array_merge($params, $optParams);
@@ -1860,7 +1860,7 @@ class Google_Service_Directory_Notifications_Resource extends Google_Service_Res
    * @param array $optParams Optional parameters.
    * @return Google_Service_Directory_Notification
    */
-  public function get($customer, $notificationId, $optParams = array())
+  public function get($customer, $notificationId, $optParams = [])
   {
     $params = array('customer' => $customer, 'notificationId' => $notificationId);
     $params = array_merge($params, $optParams);
@@ -1881,7 +1881,7 @@ class Google_Service_Directory_Notifications_Resource extends Google_Service_Res
    * are returned in. The default is English (en).
    * @return Google_Service_Directory_Notifications
    */
-  public function listNotifications($customer, $optParams = array())
+  public function listNotifications($customer, $optParams = [])
   {
     $params = array('customer' => $customer);
     $params = array_merge($params, $optParams);
@@ -1898,7 +1898,7 @@ class Google_Service_Directory_Notifications_Resource extends Google_Service_Res
    * @param array $optParams Optional parameters.
    * @return Google_Service_Directory_Notification
    */
-  public function patch($customer, $notificationId, Google_Service_Directory_Notification $postBody, $optParams = array())
+  public function patch($customer, $notificationId, Google_Service_Directory_Notification $postBody, $optParams = [])
   {
     $params = array('customer' => $customer, 'notificationId' => $notificationId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1914,7 +1914,7 @@ class Google_Service_Directory_Notifications_Resource extends Google_Service_Res
    * @param array $optParams Optional parameters.
    * @return Google_Service_Directory_Notification
    */
-  public function update($customer, $notificationId, Google_Service_Directory_Notification $postBody, $optParams = array())
+  public function update($customer, $notificationId, Google_Service_Directory_Notification $postBody, $optParams = [])
   {
     $params = array('customer' => $customer, 'notificationId' => $notificationId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1940,7 +1940,7 @@ class Google_Service_Directory_Orgunits_Resource extends Google_Service_Resource
    * @param string $orgUnitPath Full path of the organization unit or its Id
    * @param array $optParams Optional parameters.
    */
-  public function delete($customerId, $orgUnitPath, $optParams = array())
+  public function delete($customerId, $orgUnitPath, $optParams = [])
   {
     $params = array('customerId' => $customerId, 'orgUnitPath' => $orgUnitPath);
     $params = array_merge($params, $optParams);
@@ -1955,7 +1955,7 @@ class Google_Service_Directory_Orgunits_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Directory_OrgUnit
    */
-  public function get($customerId, $orgUnitPath, $optParams = array())
+  public function get($customerId, $orgUnitPath, $optParams = [])
   {
     $params = array('customerId' => $customerId, 'orgUnitPath' => $orgUnitPath);
     $params = array_merge($params, $optParams);
@@ -1970,7 +1970,7 @@ class Google_Service_Directory_Orgunits_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Directory_OrgUnit
    */
-  public function insert($customerId, Google_Service_Directory_OrgUnit $postBody, $optParams = array())
+  public function insert($customerId, Google_Service_Directory_OrgUnit $postBody, $optParams = [])
   {
     $params = array('customerId' => $customerId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1989,7 +1989,7 @@ class Google_Service_Directory_Orgunits_Resource extends Google_Service_Resource
    * Id
    * @return Google_Service_Directory_OrgUnits
    */
-  public function listOrgunits($customerId, $optParams = array())
+  public function listOrgunits($customerId, $optParams = [])
   {
     $params = array('customerId' => $customerId);
     $params = array_merge($params, $optParams);
@@ -2006,7 +2006,7 @@ class Google_Service_Directory_Orgunits_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Directory_OrgUnit
    */
-  public function patch($customerId, $orgUnitPath, Google_Service_Directory_OrgUnit $postBody, $optParams = array())
+  public function patch($customerId, $orgUnitPath, Google_Service_Directory_OrgUnit $postBody, $optParams = [])
   {
     $params = array('customerId' => $customerId, 'orgUnitPath' => $orgUnitPath, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2022,7 +2022,7 @@ class Google_Service_Directory_Orgunits_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Directory_OrgUnit
    */
-  public function update($customerId, $orgUnitPath, Google_Service_Directory_OrgUnit $postBody, $optParams = array())
+  public function update($customerId, $orgUnitPath, Google_Service_Directory_OrgUnit $postBody, $optParams = [])
   {
     $params = array('customerId' => $customerId, 'orgUnitPath' => $orgUnitPath, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2048,7 +2048,7 @@ class Google_Service_Directory_Schemas_Resource extends Google_Service_Resource
    * @param string $schemaKey Name or immutable Id of the schema
    * @param array $optParams Optional parameters.
    */
-  public function delete($customerId, $schemaKey, $optParams = array())
+  public function delete($customerId, $schemaKey, $optParams = [])
   {
     $params = array('customerId' => $customerId, 'schemaKey' => $schemaKey);
     $params = array_merge($params, $optParams);
@@ -2063,7 +2063,7 @@ class Google_Service_Directory_Schemas_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Directory_Schema
    */
-  public function get($customerId, $schemaKey, $optParams = array())
+  public function get($customerId, $schemaKey, $optParams = [])
   {
     $params = array('customerId' => $customerId, 'schemaKey' => $schemaKey);
     $params = array_merge($params, $optParams);
@@ -2078,7 +2078,7 @@ class Google_Service_Directory_Schemas_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Directory_Schema
    */
-  public function insert($customerId, Google_Service_Directory_Schema $postBody, $optParams = array())
+  public function insert($customerId, Google_Service_Directory_Schema $postBody, $optParams = [])
   {
     $params = array('customerId' => $customerId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2092,7 +2092,7 @@ class Google_Service_Directory_Schemas_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Directory_Schemas
    */
-  public function listSchemas($customerId, $optParams = array())
+  public function listSchemas($customerId, $optParams = [])
   {
     $params = array('customerId' => $customerId);
     $params = array_merge($params, $optParams);
@@ -2108,7 +2108,7 @@ class Google_Service_Directory_Schemas_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Directory_Schema
    */
-  public function patch($customerId, $schemaKey, Google_Service_Directory_Schema $postBody, $optParams = array())
+  public function patch($customerId, $schemaKey, Google_Service_Directory_Schema $postBody, $optParams = [])
   {
     $params = array('customerId' => $customerId, 'schemaKey' => $schemaKey, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2124,7 +2124,7 @@ class Google_Service_Directory_Schemas_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Directory_Schema
    */
-  public function update($customerId, $schemaKey, Google_Service_Directory_Schema $postBody, $optParams = array())
+  public function update($customerId, $schemaKey, Google_Service_Directory_Schema $postBody, $optParams = [])
   {
     $params = array('customerId' => $customerId, 'schemaKey' => $schemaKey, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2152,7 +2152,7 @@ class Google_Service_Directory_Tokens_Resource extends Google_Service_Resource
    * to.
    * @param array $optParams Optional parameters.
    */
-  public function delete($userKey, $clientId, $optParams = array())
+  public function delete($userKey, $clientId, $optParams = [])
   {
     $params = array('userKey' => $userKey, 'clientId' => $clientId);
     $params = array_merge($params, $optParams);
@@ -2169,7 +2169,7 @@ class Google_Service_Directory_Tokens_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Directory_Token
    */
-  public function get($userKey, $clientId, $optParams = array())
+  public function get($userKey, $clientId, $optParams = [])
   {
     $params = array('userKey' => $userKey, 'clientId' => $clientId);
     $params = array_merge($params, $optParams);
@@ -2185,7 +2185,7 @@ class Google_Service_Directory_Tokens_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Directory_Tokens
    */
-  public function listTokens($userKey, $optParams = array())
+  public function listTokens($userKey, $optParams = [])
   {
     $params = array('userKey' => $userKey);
     $params = array_merge($params, $optParams);
@@ -2210,7 +2210,7 @@ class Google_Service_Directory_Users_Resource extends Google_Service_Resource
    * @param string $userKey Email or immutable Id of the user
    * @param array $optParams Optional parameters.
    */
-  public function delete($userKey, $optParams = array())
+  public function delete($userKey, $optParams = [])
   {
     $params = array('userKey' => $userKey);
     $params = array_merge($params, $optParams);
@@ -2231,7 +2231,7 @@ class Google_Service_Directory_Users_Resource extends Google_Service_Resource
    * @opt_param string projection What subset of fields to fetch for this user.
    * @return Google_Service_Directory_User
    */
-  public function get($userKey, $optParams = array())
+  public function get($userKey, $optParams = [])
   {
     $params = array('userKey' => $userKey);
     $params = array_merge($params, $optParams);
@@ -2245,7 +2245,7 @@ class Google_Service_Directory_Users_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Directory_User
    */
-  public function insert(Google_Service_Directory_User $postBody, $optParams = array())
+  public function insert(Google_Service_Directory_User $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2285,9 +2285,9 @@ class Google_Service_Directory_Users_Resource extends Google_Service_Resource
    * subscribing)
    * @return Google_Service_Directory_Users
    */
-  public function listUsers($optParams = array())
+  public function listUsers($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_Directory_Users");
   }
@@ -2299,7 +2299,7 @@ class Google_Service_Directory_Users_Resource extends Google_Service_Resource
    * @param Google_UserMakeAdmin $postBody
    * @param array $optParams Optional parameters.
    */
-  public function makeAdmin($userKey, Google_Service_Directory_UserMakeAdmin $postBody, $optParams = array())
+  public function makeAdmin($userKey, Google_Service_Directory_UserMakeAdmin $postBody, $optParams = [])
   {
     $params = array('userKey' => $userKey, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2315,7 +2315,7 @@ class Google_Service_Directory_Users_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Directory_User
    */
-  public function patch($userKey, Google_Service_Directory_User $postBody, $optParams = array())
+  public function patch($userKey, Google_Service_Directory_User $postBody, $optParams = [])
   {
     $params = array('userKey' => $userKey, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2329,7 +2329,7 @@ class Google_Service_Directory_Users_Resource extends Google_Service_Resource
    * @param Google_UserUndelete $postBody
    * @param array $optParams Optional parameters.
    */
-  public function undelete($userKey, Google_Service_Directory_UserUndelete $postBody, $optParams = array())
+  public function undelete($userKey, Google_Service_Directory_UserUndelete $postBody, $optParams = [])
   {
     $params = array('userKey' => $userKey, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2345,7 +2345,7 @@ class Google_Service_Directory_Users_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Directory_User
    */
-  public function update($userKey, Google_Service_Directory_User $postBody, $optParams = array())
+  public function update($userKey, Google_Service_Directory_User $postBody, $optParams = [])
   {
     $params = array('userKey' => $userKey, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2385,7 +2385,7 @@ class Google_Service_Directory_Users_Resource extends Google_Service_Resource
    * subscribing)
    * @return Google_Service_Directory_Channel
    */
-  public function watch(Google_Service_Directory_Channel $postBody, $optParams = array())
+  public function watch(Google_Service_Directory_Channel $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2411,7 +2411,7 @@ class Google_Service_Directory_UsersAliases_Resource extends Google_Service_Reso
    * @param string $alias The alias to be removed
    * @param array $optParams Optional parameters.
    */
-  public function delete($userKey, $alias, $optParams = array())
+  public function delete($userKey, $alias, $optParams = [])
   {
     $params = array('userKey' => $userKey, 'alias' => $alias);
     $params = array_merge($params, $optParams);
@@ -2426,7 +2426,7 @@ class Google_Service_Directory_UsersAliases_Resource extends Google_Service_Reso
    * @param array $optParams Optional parameters.
    * @return Google_Service_Directory_Alias
    */
-  public function insert($userKey, Google_Service_Directory_Alias $postBody, $optParams = array())
+  public function insert($userKey, Google_Service_Directory_Alias $postBody, $optParams = [])
   {
     $params = array('userKey' => $userKey, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2443,7 +2443,7 @@ class Google_Service_Directory_UsersAliases_Resource extends Google_Service_Reso
    * subscribing)
    * @return Google_Service_Directory_Aliases
    */
-  public function listUsersAliases($userKey, $optParams = array())
+  public function listUsersAliases($userKey, $optParams = [])
   {
     $params = array('userKey' => $userKey);
     $params = array_merge($params, $optParams);
@@ -2461,7 +2461,7 @@ class Google_Service_Directory_UsersAliases_Resource extends Google_Service_Reso
    * subscribing)
    * @return Google_Service_Directory_Channel
    */
-  public function watch($userKey, Google_Service_Directory_Channel $postBody, $optParams = array())
+  public function watch($userKey, Google_Service_Directory_Channel $postBody, $optParams = [])
   {
     $params = array('userKey' => $userKey, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2485,7 +2485,7 @@ class Google_Service_Directory_UsersPhotos_Resource extends Google_Service_Resou
    * @param string $userKey Email or immutable Id of the user
    * @param array $optParams Optional parameters.
    */
-  public function delete($userKey, $optParams = array())
+  public function delete($userKey, $optParams = [])
   {
     $params = array('userKey' => $userKey);
     $params = array_merge($params, $optParams);
@@ -2499,7 +2499,7 @@ class Google_Service_Directory_UsersPhotos_Resource extends Google_Service_Resou
    * @param array $optParams Optional parameters.
    * @return Google_Service_Directory_UserPhoto
    */
-  public function get($userKey, $optParams = array())
+  public function get($userKey, $optParams = [])
   {
     $params = array('userKey' => $userKey);
     $params = array_merge($params, $optParams);
@@ -2515,7 +2515,7 @@ class Google_Service_Directory_UsersPhotos_Resource extends Google_Service_Resou
    * @param array $optParams Optional parameters.
    * @return Google_Service_Directory_UserPhoto
    */
-  public function patch($userKey, Google_Service_Directory_UserPhoto $postBody, $optParams = array())
+  public function patch($userKey, Google_Service_Directory_UserPhoto $postBody, $optParams = [])
   {
     $params = array('userKey' => $userKey, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2530,7 +2530,7 @@ class Google_Service_Directory_UsersPhotos_Resource extends Google_Service_Resou
    * @param array $optParams Optional parameters.
    * @return Google_Service_Directory_UserPhoto
    */
-  public function update($userKey, Google_Service_Directory_UserPhoto $postBody, $optParams = array())
+  public function update($userKey, Google_Service_Directory_UserPhoto $postBody, $optParams = [])
   {
     $params = array('userKey' => $userKey, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2556,7 +2556,7 @@ class Google_Service_Directory_VerificationCodes_Resource extends Google_Service
    * @param string $userKey Email or immutable Id of the user
    * @param array $optParams Optional parameters.
    */
-  public function generate($userKey, $optParams = array())
+  public function generate($userKey, $optParams = [])
   {
     $params = array('userKey' => $userKey);
     $params = array_merge($params, $optParams);
@@ -2570,7 +2570,7 @@ class Google_Service_Directory_VerificationCodes_Resource extends Google_Service
    * @param string $userKey Email or immutable Id of the user
    * @param array $optParams Optional parameters.
    */
-  public function invalidate($userKey, $optParams = array())
+  public function invalidate($userKey, $optParams = [])
   {
     $params = array('userKey' => $userKey);
     $params = array_merge($params, $optParams);
@@ -2586,7 +2586,7 @@ class Google_Service_Directory_VerificationCodes_Resource extends Google_Service
    * @param array $optParams Optional parameters.
    * @return Google_Service_Directory_VerificationCodes
    */
-  public function listVerificationCodes($userKey, $optParams = array())
+  public function listVerificationCodes($userKey, $optParams = [])
   {
     $params = array('userKey' => $userKey);
     $params = array_merge($params, $optParams);

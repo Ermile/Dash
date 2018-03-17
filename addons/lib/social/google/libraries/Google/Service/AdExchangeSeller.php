@@ -48,7 +48,7 @@ class Google_Service_AdExchangeSeller extends Google_Service
   public $accounts_reports;
   public $accounts_reports_saved;
   public $accounts_urlchannels;
-  
+
 
   /**
    * Constructs the internal representation of the AdExchangeSeller service.
@@ -449,7 +449,7 @@ class Google_Service_AdExchangeSeller_Accounts_Resource extends Google_Service_R
    * @param array $optParams Optional parameters.
    * @return Google_Service_AdExchangeSeller_Account
    */
-  public function get($accountId, $optParams = array())
+  public function get($accountId, $optParams = [])
   {
     $params = array('accountId' => $accountId);
     $params = array_merge($params, $optParams);
@@ -469,9 +469,9 @@ class Google_Service_AdExchangeSeller_Accounts_Resource extends Google_Service_R
    * response, used for paging.
    * @return Google_Service_AdExchangeSeller_Accounts
    */
-  public function listAccounts($optParams = array())
+  public function listAccounts($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_AdExchangeSeller_Accounts");
   }
@@ -502,7 +502,7 @@ class Google_Service_AdExchangeSeller_AccountsAdclients_Resource extends Google_
    * the response, used for paging.
    * @return Google_Service_AdExchangeSeller_AdClients
    */
-  public function listAccountsAdclients($accountId, $optParams = array())
+  public function listAccountsAdclients($accountId, $optParams = [])
   {
     $params = array('accountId' => $accountId);
     $params = array_merge($params, $optParams);
@@ -531,7 +531,7 @@ class Google_Service_AdExchangeSeller_AccountsAlerts_Resource extends Google_Ser
    * (English) will be used if the supplied locale is invalid or unsupported.
    * @return Google_Service_AdExchangeSeller_Alerts
    */
-  public function listAccountsAlerts($accountId, $optParams = array())
+  public function listAccountsAlerts($accountId, $optParams = [])
   {
     $params = array('accountId' => $accountId);
     $params = array_merge($params, $optParams);
@@ -559,7 +559,7 @@ class Google_Service_AdExchangeSeller_AccountsCustomchannels_Resource extends Go
    * @param array $optParams Optional parameters.
    * @return Google_Service_AdExchangeSeller_CustomChannel
    */
-  public function get($accountId, $adClientId, $customChannelId, $optParams = array())
+  public function get($accountId, $adClientId, $customChannelId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'adClientId' => $adClientId, 'customChannelId' => $customChannelId);
     $params = array_merge($params, $optParams);
@@ -581,7 +581,7 @@ class Google_Service_AdExchangeSeller_AccountsCustomchannels_Resource extends Go
    * in the response, used for paging.
    * @return Google_Service_AdExchangeSeller_CustomChannels
    */
-  public function listAccountsCustomchannels($accountId, $adClientId, $optParams = array())
+  public function listAccountsCustomchannels($accountId, $adClientId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'adClientId' => $adClientId);
     $params = array_merge($params, $optParams);
@@ -619,7 +619,7 @@ class Google_Service_AdExchangeSeller_AccountsMetadataDimensions_Resource extend
    * @param array $optParams Optional parameters.
    * @return Google_Service_AdExchangeSeller_Metadata
    */
-  public function listAccountsMetadataDimensions($accountId, $optParams = array())
+  public function listAccountsMetadataDimensions($accountId, $optParams = [])
   {
     $params = array('accountId' => $accountId);
     $params = array_merge($params, $optParams);
@@ -645,7 +645,7 @@ class Google_Service_AdExchangeSeller_AccountsMetadataMetrics_Resource extends G
    * @param array $optParams Optional parameters.
    * @return Google_Service_AdExchangeSeller_Metadata
    */
-  public function listAccountsMetadataMetrics($accountId, $optParams = array())
+  public function listAccountsMetadataMetrics($accountId, $optParams = [])
   {
     $params = array('accountId' => $accountId);
     $params = array_merge($params, $optParams);
@@ -672,7 +672,7 @@ class Google_Service_AdExchangeSeller_AccountsPreferreddeals_Resource extends Go
    * @param array $optParams Optional parameters.
    * @return Google_Service_AdExchangeSeller_PreferredDeal
    */
-  public function get($accountId, $dealId, $optParams = array())
+  public function get($accountId, $dealId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'dealId' => $dealId);
     $params = array_merge($params, $optParams);
@@ -687,7 +687,7 @@ class Google_Service_AdExchangeSeller_AccountsPreferreddeals_Resource extends Go
    * @param array $optParams Optional parameters.
    * @return Google_Service_AdExchangeSeller_PreferredDeals
    */
-  public function listAccountsPreferreddeals($accountId, $optParams = array())
+  public function listAccountsPreferreddeals($accountId, $optParams = [])
   {
     $params = array('accountId' => $accountId);
     $params = array_merge($params, $optParams);
@@ -730,7 +730,7 @@ class Google_Service_AdExchangeSeller_AccountsReports_Resource extends Google_Se
    * @opt_param string dimension Dimensions to base the report on.
    * @return Google_Service_AdExchangeSeller_Report
    */
-  public function generate($accountId, $startDate, $endDate, $optParams = array())
+  public function generate($accountId, $startDate, $endDate, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'startDate' => $startDate, 'endDate' => $endDate);
     $params = array_merge($params, $optParams);
@@ -764,7 +764,7 @@ class Google_Service_AdExchangeSeller_AccountsReportsSaved_Resource extends Goog
    * return.
    * @return Google_Service_AdExchangeSeller_Report
    */
-  public function generate($accountId, $savedReportId, $optParams = array())
+  public function generate($accountId, $savedReportId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'savedReportId' => $savedReportId);
     $params = array_merge($params, $optParams);
@@ -785,7 +785,7 @@ class Google_Service_AdExchangeSeller_AccountsReportsSaved_Resource extends Goog
    * the response, used for paging.
    * @return Google_Service_AdExchangeSeller_SavedReports
    */
-  public function listAccountsReportsSaved($accountId, $optParams = array())
+  public function listAccountsReportsSaved($accountId, $optParams = [])
   {
     $params = array('accountId' => $accountId);
     $params = array_merge($params, $optParams);
@@ -818,7 +818,7 @@ class Google_Service_AdExchangeSeller_AccountsUrlchannels_Resource extends Googl
    * the response, used for paging.
    * @return Google_Service_AdExchangeSeller_UrlChannels
    */
-  public function listAccountsUrlchannels($accountId, $adClientId, $optParams = array())
+  public function listAccountsUrlchannels($accountId, $adClientId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'adClientId' => $adClientId);
     $params = array_merge($params, $optParams);

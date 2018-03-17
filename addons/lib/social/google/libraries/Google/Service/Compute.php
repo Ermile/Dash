@@ -78,7 +78,7 @@ class Google_Service_Compute extends Google_Service
   public $vpnTunnels;
   public $zoneOperations;
   public $zones;
-  
+
 
   /**
    * Constructs the internal representation of the Compute service.
@@ -3098,7 +3098,7 @@ class Google_Service_Compute_Addresses_Resource extends Google_Service_Resource
    * @opt_param string maxResults Maximum count of results to be returned.
    * @return Google_Service_Compute_AddressAggregatedList
    */
-  public function aggregatedList($project, $optParams = array())
+  public function aggregatedList($project, $optParams = [])
   {
     $params = array('project' => $project);
     $params = array_merge($params, $optParams);
@@ -3114,7 +3114,7 @@ class Google_Service_Compute_Addresses_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function delete($project, $region, $address, $optParams = array())
+  public function delete($project, $region, $address, $optParams = [])
   {
     $params = array('project' => $project, 'region' => $region, 'address' => $address);
     $params = array_merge($params, $optParams);
@@ -3130,7 +3130,7 @@ class Google_Service_Compute_Addresses_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Address
    */
-  public function get($project, $region, $address, $optParams = array())
+  public function get($project, $region, $address, $optParams = [])
   {
     $params = array('project' => $project, 'region' => $region, 'address' => $address);
     $params = array_merge($params, $optParams);
@@ -3147,7 +3147,7 @@ class Google_Service_Compute_Addresses_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function insert($project, $region, Google_Service_Compute_Address $postBody, $optParams = array())
+  public function insert($project, $region, Google_Service_Compute_Address $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'region' => $region, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -3168,7 +3168,7 @@ class Google_Service_Compute_Addresses_Resource extends Google_Service_Resource
    * @opt_param string maxResults Maximum count of results to be returned.
    * @return Google_Service_Compute_AddressList
    */
-  public function listAddresses($project, $region, $optParams = array())
+  public function listAddresses($project, $region, $optParams = [])
   {
     $params = array('project' => $project, 'region' => $region);
     $params = array_merge($params, $optParams);
@@ -3195,7 +3195,7 @@ class Google_Service_Compute_BackendServices_Resource extends Google_Service_Res
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function delete($project, $backendService, $optParams = array())
+  public function delete($project, $backendService, $optParams = [])
   {
     $params = array('project' => $project, 'backendService' => $backendService);
     $params = array_merge($params, $optParams);
@@ -3210,7 +3210,7 @@ class Google_Service_Compute_BackendServices_Resource extends Google_Service_Res
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_BackendService
    */
-  public function get($project, $backendService, $optParams = array())
+  public function get($project, $backendService, $optParams = [])
   {
     $params = array('project' => $project, 'backendService' => $backendService);
     $params = array_merge($params, $optParams);
@@ -3228,7 +3228,7 @@ class Google_Service_Compute_BackendServices_Resource extends Google_Service_Res
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_BackendServiceGroupHealth
    */
-  public function getHealth($project, $backendService, Google_Service_Compute_ResourceGroupReference $postBody, $optParams = array())
+  public function getHealth($project, $backendService, Google_Service_Compute_ResourceGroupReference $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'backendService' => $backendService, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -3244,7 +3244,7 @@ class Google_Service_Compute_BackendServices_Resource extends Google_Service_Res
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function insert($project, Google_Service_Compute_BackendService $postBody, $optParams = array())
+  public function insert($project, Google_Service_Compute_BackendService $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -3264,7 +3264,7 @@ class Google_Service_Compute_BackendServices_Resource extends Google_Service_Res
    * @opt_param string maxResults Maximum count of results to be returned.
    * @return Google_Service_Compute_BackendServiceList
    */
-  public function listBackendServices($project, $optParams = array())
+  public function listBackendServices($project, $optParams = [])
   {
     $params = array('project' => $project);
     $params = array_merge($params, $optParams);
@@ -3281,7 +3281,7 @@ class Google_Service_Compute_BackendServices_Resource extends Google_Service_Res
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function patch($project, $backendService, Google_Service_Compute_BackendService $postBody, $optParams = array())
+  public function patch($project, $backendService, Google_Service_Compute_BackendService $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'backendService' => $backendService, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -3298,7 +3298,7 @@ class Google_Service_Compute_BackendServices_Resource extends Google_Service_Res
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function update($project, $backendService, Google_Service_Compute_BackendService $postBody, $optParams = array())
+  public function update($project, $backendService, Google_Service_Compute_BackendService $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'backendService' => $backendService, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -3330,7 +3330,7 @@ class Google_Service_Compute_DiskTypes_Resource extends Google_Service_Resource
    * @opt_param string maxResults Maximum count of results to be returned.
    * @return Google_Service_Compute_DiskTypeAggregatedList
    */
-  public function aggregatedList($project, $optParams = array())
+  public function aggregatedList($project, $optParams = [])
   {
     $params = array('project' => $project);
     $params = array_merge($params, $optParams);
@@ -3346,7 +3346,7 @@ class Google_Service_Compute_DiskTypes_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_DiskType
    */
-  public function get($project, $zone, $diskType, $optParams = array())
+  public function get($project, $zone, $diskType, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'diskType' => $diskType);
     $params = array_merge($params, $optParams);
@@ -3367,7 +3367,7 @@ class Google_Service_Compute_DiskTypes_Resource extends Google_Service_Resource
    * @opt_param string maxResults Maximum count of results to be returned.
    * @return Google_Service_Compute_DiskTypeList
    */
-  public function listDiskTypes($project, $zone, $optParams = array())
+  public function listDiskTypes($project, $zone, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone);
     $params = array_merge($params, $optParams);
@@ -3398,7 +3398,7 @@ class Google_Service_Compute_Disks_Resource extends Google_Service_Resource
    * @opt_param string maxResults Maximum count of results to be returned.
    * @return Google_Service_Compute_DiskAggregatedList
    */
-  public function aggregatedList($project, $optParams = array())
+  public function aggregatedList($project, $optParams = [])
   {
     $params = array('project' => $project);
     $params = array_merge($params, $optParams);
@@ -3415,7 +3415,7 @@ class Google_Service_Compute_Disks_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function createSnapshot($project, $zone, $disk, Google_Service_Compute_Snapshot $postBody, $optParams = array())
+  public function createSnapshot($project, $zone, $disk, Google_Service_Compute_Snapshot $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'disk' => $disk, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -3431,7 +3431,7 @@ class Google_Service_Compute_Disks_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function delete($project, $zone, $disk, $optParams = array())
+  public function delete($project, $zone, $disk, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'disk' => $disk);
     $params = array_merge($params, $optParams);
@@ -3447,7 +3447,7 @@ class Google_Service_Compute_Disks_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Disk
    */
-  public function get($project, $zone, $disk, $optParams = array())
+  public function get($project, $zone, $disk, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'disk' => $disk);
     $params = array_merge($params, $optParams);
@@ -3466,7 +3466,7 @@ class Google_Service_Compute_Disks_Resource extends Google_Service_Resource
    * @opt_param string sourceImage Optional. Source image to restore onto a disk.
    * @return Google_Service_Compute_Operation
    */
-  public function insert($project, $zone, Google_Service_Compute_Disk $postBody, $optParams = array())
+  public function insert($project, $zone, Google_Service_Compute_Disk $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -3487,7 +3487,7 @@ class Google_Service_Compute_Disks_Resource extends Google_Service_Resource
    * @opt_param string maxResults Maximum count of results to be returned.
    * @return Google_Service_Compute_DiskList
    */
-  public function listDisks($project, $zone, $optParams = array())
+  public function listDisks($project, $zone, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone);
     $params = array_merge($params, $optParams);
@@ -3514,7 +3514,7 @@ class Google_Service_Compute_Firewalls_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function delete($project, $firewall, $optParams = array())
+  public function delete($project, $firewall, $optParams = [])
   {
     $params = array('project' => $project, 'firewall' => $firewall);
     $params = array_merge($params, $optParams);
@@ -3529,7 +3529,7 @@ class Google_Service_Compute_Firewalls_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Firewall
    */
-  public function get($project, $firewall, $optParams = array())
+  public function get($project, $firewall, $optParams = [])
   {
     $params = array('project' => $project, 'firewall' => $firewall);
     $params = array_merge($params, $optParams);
@@ -3545,7 +3545,7 @@ class Google_Service_Compute_Firewalls_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function insert($project, Google_Service_Compute_Firewall $postBody, $optParams = array())
+  public function insert($project, Google_Service_Compute_Firewall $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -3565,7 +3565,7 @@ class Google_Service_Compute_Firewalls_Resource extends Google_Service_Resource
    * @opt_param string maxResults Maximum count of results to be returned.
    * @return Google_Service_Compute_FirewallList
    */
-  public function listFirewalls($project, $optParams = array())
+  public function listFirewalls($project, $optParams = [])
   {
     $params = array('project' => $project);
     $params = array_merge($params, $optParams);
@@ -3582,7 +3582,7 @@ class Google_Service_Compute_Firewalls_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function patch($project, $firewall, Google_Service_Compute_Firewall $postBody, $optParams = array())
+  public function patch($project, $firewall, Google_Service_Compute_Firewall $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'firewall' => $firewall, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -3599,7 +3599,7 @@ class Google_Service_Compute_Firewalls_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function update($project, $firewall, Google_Service_Compute_Firewall $postBody, $optParams = array())
+  public function update($project, $firewall, Google_Service_Compute_Firewall $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'firewall' => $firewall, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -3631,7 +3631,7 @@ class Google_Service_Compute_ForwardingRules_Resource extends Google_Service_Res
    * @opt_param string maxResults Maximum count of results to be returned.
    * @return Google_Service_Compute_ForwardingRuleAggregatedList
    */
-  public function aggregatedList($project, $optParams = array())
+  public function aggregatedList($project, $optParams = [])
   {
     $params = array('project' => $project);
     $params = array_merge($params, $optParams);
@@ -3647,7 +3647,7 @@ class Google_Service_Compute_ForwardingRules_Resource extends Google_Service_Res
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function delete($project, $region, $forwardingRule, $optParams = array())
+  public function delete($project, $region, $forwardingRule, $optParams = [])
   {
     $params = array('project' => $project, 'region' => $region, 'forwardingRule' => $forwardingRule);
     $params = array_merge($params, $optParams);
@@ -3663,7 +3663,7 @@ class Google_Service_Compute_ForwardingRules_Resource extends Google_Service_Res
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_ForwardingRule
    */
-  public function get($project, $region, $forwardingRule, $optParams = array())
+  public function get($project, $region, $forwardingRule, $optParams = [])
   {
     $params = array('project' => $project, 'region' => $region, 'forwardingRule' => $forwardingRule);
     $params = array_merge($params, $optParams);
@@ -3680,7 +3680,7 @@ class Google_Service_Compute_ForwardingRules_Resource extends Google_Service_Res
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function insert($project, $region, Google_Service_Compute_ForwardingRule $postBody, $optParams = array())
+  public function insert($project, $region, Google_Service_Compute_ForwardingRule $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'region' => $region, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -3701,7 +3701,7 @@ class Google_Service_Compute_ForwardingRules_Resource extends Google_Service_Res
    * @opt_param string maxResults Maximum count of results to be returned.
    * @return Google_Service_Compute_ForwardingRuleList
    */
-  public function listForwardingRules($project, $region, $optParams = array())
+  public function listForwardingRules($project, $region, $optParams = [])
   {
     $params = array('project' => $project, 'region' => $region);
     $params = array_merge($params, $optParams);
@@ -3719,7 +3719,7 @@ class Google_Service_Compute_ForwardingRules_Resource extends Google_Service_Res
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function setTarget($project, $region, $forwardingRule, Google_Service_Compute_TargetReference $postBody, $optParams = array())
+  public function setTarget($project, $region, $forwardingRule, Google_Service_Compute_TargetReference $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'region' => $region, 'forwardingRule' => $forwardingRule, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -3746,7 +3746,7 @@ class Google_Service_Compute_GlobalAddresses_Resource extends Google_Service_Res
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function delete($project, $address, $optParams = array())
+  public function delete($project, $address, $optParams = [])
   {
     $params = array('project' => $project, 'address' => $address);
     $params = array_merge($params, $optParams);
@@ -3761,7 +3761,7 @@ class Google_Service_Compute_GlobalAddresses_Resource extends Google_Service_Res
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Address
    */
-  public function get($project, $address, $optParams = array())
+  public function get($project, $address, $optParams = [])
   {
     $params = array('project' => $project, 'address' => $address);
     $params = array_merge($params, $optParams);
@@ -3777,7 +3777,7 @@ class Google_Service_Compute_GlobalAddresses_Resource extends Google_Service_Res
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function insert($project, Google_Service_Compute_Address $postBody, $optParams = array())
+  public function insert($project, Google_Service_Compute_Address $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -3797,7 +3797,7 @@ class Google_Service_Compute_GlobalAddresses_Resource extends Google_Service_Res
    * @opt_param string maxResults Maximum count of results to be returned.
    * @return Google_Service_Compute_AddressList
    */
-  public function listGlobalAddresses($project, $optParams = array())
+  public function listGlobalAddresses($project, $optParams = [])
   {
     $params = array('project' => $project);
     $params = array_merge($params, $optParams);
@@ -3824,7 +3824,7 @@ class Google_Service_Compute_GlobalForwardingRules_Resource extends Google_Servi
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function delete($project, $forwardingRule, $optParams = array())
+  public function delete($project, $forwardingRule, $optParams = [])
   {
     $params = array('project' => $project, 'forwardingRule' => $forwardingRule);
     $params = array_merge($params, $optParams);
@@ -3839,7 +3839,7 @@ class Google_Service_Compute_GlobalForwardingRules_Resource extends Google_Servi
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_ForwardingRule
    */
-  public function get($project, $forwardingRule, $optParams = array())
+  public function get($project, $forwardingRule, $optParams = [])
   {
     $params = array('project' => $project, 'forwardingRule' => $forwardingRule);
     $params = array_merge($params, $optParams);
@@ -3855,7 +3855,7 @@ class Google_Service_Compute_GlobalForwardingRules_Resource extends Google_Servi
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function insert($project, Google_Service_Compute_ForwardingRule $postBody, $optParams = array())
+  public function insert($project, Google_Service_Compute_ForwardingRule $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -3875,7 +3875,7 @@ class Google_Service_Compute_GlobalForwardingRules_Resource extends Google_Servi
    * @opt_param string maxResults Maximum count of results to be returned.
    * @return Google_Service_Compute_ForwardingRuleList
    */
-  public function listGlobalForwardingRules($project, $optParams = array())
+  public function listGlobalForwardingRules($project, $optParams = [])
   {
     $params = array('project' => $project);
     $params = array_merge($params, $optParams);
@@ -3892,7 +3892,7 @@ class Google_Service_Compute_GlobalForwardingRules_Resource extends Google_Servi
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function setTarget($project, $forwardingRule, Google_Service_Compute_TargetReference $postBody, $optParams = array())
+  public function setTarget($project, $forwardingRule, Google_Service_Compute_TargetReference $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'forwardingRule' => $forwardingRule, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -3924,7 +3924,7 @@ class Google_Service_Compute_GlobalOperations_Resource extends Google_Service_Re
    * @opt_param string maxResults Maximum count of results to be returned.
    * @return Google_Service_Compute_OperationAggregatedList
    */
-  public function aggregatedList($project, $optParams = array())
+  public function aggregatedList($project, $optParams = [])
   {
     $params = array('project' => $project);
     $params = array_merge($params, $optParams);
@@ -3938,7 +3938,7 @@ class Google_Service_Compute_GlobalOperations_Resource extends Google_Service_Re
    * @param string $operation Name of the operation resource to delete.
    * @param array $optParams Optional parameters.
    */
-  public function delete($project, $operation, $optParams = array())
+  public function delete($project, $operation, $optParams = [])
   {
     $params = array('project' => $project, 'operation' => $operation);
     $params = array_merge($params, $optParams);
@@ -3953,7 +3953,7 @@ class Google_Service_Compute_GlobalOperations_Resource extends Google_Service_Re
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function get($project, $operation, $optParams = array())
+  public function get($project, $operation, $optParams = [])
   {
     $params = array('project' => $project, 'operation' => $operation);
     $params = array_merge($params, $optParams);
@@ -3973,7 +3973,7 @@ class Google_Service_Compute_GlobalOperations_Resource extends Google_Service_Re
    * @opt_param string maxResults Maximum count of results to be returned.
    * @return Google_Service_Compute_OperationList
    */
-  public function listGlobalOperations($project, $optParams = array())
+  public function listGlobalOperations($project, $optParams = [])
   {
     $params = array('project' => $project);
     $params = array_merge($params, $optParams);
@@ -4001,7 +4001,7 @@ class Google_Service_Compute_HttpHealthChecks_Resource extends Google_Service_Re
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function delete($project, $httpHealthCheck, $optParams = array())
+  public function delete($project, $httpHealthCheck, $optParams = [])
   {
     $params = array('project' => $project, 'httpHealthCheck' => $httpHealthCheck);
     $params = array_merge($params, $optParams);
@@ -4017,7 +4017,7 @@ class Google_Service_Compute_HttpHealthChecks_Resource extends Google_Service_Re
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_HttpHealthCheck
    */
-  public function get($project, $httpHealthCheck, $optParams = array())
+  public function get($project, $httpHealthCheck, $optParams = [])
   {
     $params = array('project' => $project, 'httpHealthCheck' => $httpHealthCheck);
     $params = array_merge($params, $optParams);
@@ -4033,7 +4033,7 @@ class Google_Service_Compute_HttpHealthChecks_Resource extends Google_Service_Re
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function insert($project, Google_Service_Compute_HttpHealthCheck $postBody, $optParams = array())
+  public function insert($project, Google_Service_Compute_HttpHealthCheck $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -4053,7 +4053,7 @@ class Google_Service_Compute_HttpHealthChecks_Resource extends Google_Service_Re
    * @opt_param string maxResults Maximum count of results to be returned.
    * @return Google_Service_Compute_HttpHealthCheckList
    */
-  public function listHttpHealthChecks($project, $optParams = array())
+  public function listHttpHealthChecks($project, $optParams = [])
   {
     $params = array('project' => $project);
     $params = array_merge($params, $optParams);
@@ -4072,7 +4072,7 @@ class Google_Service_Compute_HttpHealthChecks_Resource extends Google_Service_Re
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function patch($project, $httpHealthCheck, Google_Service_Compute_HttpHealthCheck $postBody, $optParams = array())
+  public function patch($project, $httpHealthCheck, Google_Service_Compute_HttpHealthCheck $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'httpHealthCheck' => $httpHealthCheck, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -4090,7 +4090,7 @@ class Google_Service_Compute_HttpHealthChecks_Resource extends Google_Service_Re
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function update($project, $httpHealthCheck, Google_Service_Compute_HttpHealthCheck $postBody, $optParams = array())
+  public function update($project, $httpHealthCheck, Google_Service_Compute_HttpHealthCheck $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'httpHealthCheck' => $httpHealthCheck, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -4117,7 +4117,7 @@ class Google_Service_Compute_Images_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function delete($project, $image, $optParams = array())
+  public function delete($project, $image, $optParams = [])
   {
     $params = array('project' => $project, 'image' => $image);
     $params = array_merge($params, $optParams);
@@ -4136,7 +4136,7 @@ class Google_Service_Compute_Images_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function deprecate($project, $image, Google_Service_Compute_DeprecationStatus $postBody, $optParams = array())
+  public function deprecate($project, $image, Google_Service_Compute_DeprecationStatus $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'image' => $image, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -4151,7 +4151,7 @@ class Google_Service_Compute_Images_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Image
    */
-  public function get($project, $image, $optParams = array())
+  public function get($project, $image, $optParams = [])
   {
     $params = array('project' => $project, 'image' => $image);
     $params = array_merge($params, $optParams);
@@ -4167,7 +4167,7 @@ class Google_Service_Compute_Images_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function insert($project, Google_Service_Compute_Image $postBody, $optParams = array())
+  public function insert($project, Google_Service_Compute_Image $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -4187,7 +4187,7 @@ class Google_Service_Compute_Images_Resource extends Google_Service_Resource
    * @opt_param string maxResults Maximum count of results to be returned.
    * @return Google_Service_Compute_ImageList
    */
-  public function listImages($project, $optParams = array())
+  public function listImages($project, $optParams = [])
   {
     $params = array('project' => $project);
     $params = array_merge($params, $optParams);
@@ -4214,7 +4214,7 @@ class Google_Service_Compute_InstanceTemplates_Resource extends Google_Service_R
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function delete($project, $instanceTemplate, $optParams = array())
+  public function delete($project, $instanceTemplate, $optParams = [])
   {
     $params = array('project' => $project, 'instanceTemplate' => $instanceTemplate);
     $params = array_merge($params, $optParams);
@@ -4229,7 +4229,7 @@ class Google_Service_Compute_InstanceTemplates_Resource extends Google_Service_R
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_InstanceTemplate
    */
-  public function get($project, $instanceTemplate, $optParams = array())
+  public function get($project, $instanceTemplate, $optParams = [])
   {
     $params = array('project' => $project, 'instanceTemplate' => $instanceTemplate);
     $params = array_merge($params, $optParams);
@@ -4245,7 +4245,7 @@ class Google_Service_Compute_InstanceTemplates_Resource extends Google_Service_R
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function insert($project, Google_Service_Compute_InstanceTemplate $postBody, $optParams = array())
+  public function insert($project, Google_Service_Compute_InstanceTemplate $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -4265,7 +4265,7 @@ class Google_Service_Compute_InstanceTemplates_Resource extends Google_Service_R
    * @opt_param string maxResults Maximum count of results to be returned.
    * @return Google_Service_Compute_InstanceTemplateList
    */
-  public function listInstanceTemplates($project, $optParams = array())
+  public function listInstanceTemplates($project, $optParams = [])
   {
     $params = array('project' => $project);
     $params = array_merge($params, $optParams);
@@ -4297,7 +4297,7 @@ class Google_Service_Compute_Instances_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function addAccessConfig($project, $zone, $instance, $networkInterface, Google_Service_Compute_AccessConfig $postBody, $optParams = array())
+  public function addAccessConfig($project, $zone, $instance, $networkInterface, Google_Service_Compute_AccessConfig $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'instance' => $instance, 'networkInterface' => $networkInterface, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -4316,7 +4316,7 @@ class Google_Service_Compute_Instances_Resource extends Google_Service_Resource
    * @opt_param string maxResults Maximum count of results to be returned.
    * @return Google_Service_Compute_InstanceAggregatedList
    */
-  public function aggregatedList($project, $optParams = array())
+  public function aggregatedList($project, $optParams = [])
   {
     $params = array('project' => $project);
     $params = array_merge($params, $optParams);
@@ -4333,7 +4333,7 @@ class Google_Service_Compute_Instances_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function attachDisk($project, $zone, $instance, Google_Service_Compute_AttachedDisk $postBody, $optParams = array())
+  public function attachDisk($project, $zone, $instance, Google_Service_Compute_AttachedDisk $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'instance' => $instance, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -4350,7 +4350,7 @@ class Google_Service_Compute_Instances_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function delete($project, $zone, $instance, $optParams = array())
+  public function delete($project, $zone, $instance, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'instance' => $instance);
     $params = array_merge($params, $optParams);
@@ -4369,7 +4369,7 @@ class Google_Service_Compute_Instances_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function deleteAccessConfig($project, $zone, $instance, $accessConfig, $networkInterface, $optParams = array())
+  public function deleteAccessConfig($project, $zone, $instance, $accessConfig, $networkInterface, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'instance' => $instance, 'accessConfig' => $accessConfig, 'networkInterface' => $networkInterface);
     $params = array_merge($params, $optParams);
@@ -4386,7 +4386,7 @@ class Google_Service_Compute_Instances_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function detachDisk($project, $zone, $instance, $deviceName, $optParams = array())
+  public function detachDisk($project, $zone, $instance, $deviceName, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'instance' => $instance, 'deviceName' => $deviceName);
     $params = array_merge($params, $optParams);
@@ -4402,7 +4402,7 @@ class Google_Service_Compute_Instances_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Instance
    */
-  public function get($project, $zone, $instance, $optParams = array())
+  public function get($project, $zone, $instance, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'instance' => $instance);
     $params = array_merge($params, $optParams);
@@ -4421,7 +4421,7 @@ class Google_Service_Compute_Instances_Resource extends Google_Service_Resource
    * @opt_param int port Which COM port to retrieve data from.
    * @return Google_Service_Compute_SerialPortOutput
    */
-  public function getSerialPortOutput($project, $zone, $instance, $optParams = array())
+  public function getSerialPortOutput($project, $zone, $instance, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'instance' => $instance);
     $params = array_merge($params, $optParams);
@@ -4438,7 +4438,7 @@ class Google_Service_Compute_Instances_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function insert($project, $zone, Google_Service_Compute_Instance $postBody, $optParams = array())
+  public function insert($project, $zone, Google_Service_Compute_Instance $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -4459,7 +4459,7 @@ class Google_Service_Compute_Instances_Resource extends Google_Service_Resource
    * @opt_param string maxResults Maximum count of results to be returned.
    * @return Google_Service_Compute_InstanceList
    */
-  public function listInstances($project, $zone, $optParams = array())
+  public function listInstances($project, $zone, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone);
     $params = array_merge($params, $optParams);
@@ -4475,7 +4475,7 @@ class Google_Service_Compute_Instances_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function reset($project, $zone, $instance, $optParams = array())
+  public function reset($project, $zone, $instance, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'instance' => $instance);
     $params = array_merge($params, $optParams);
@@ -4495,7 +4495,7 @@ class Google_Service_Compute_Instances_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function setDiskAutoDelete($project, $zone, $instance, $autoDelete, $deviceName, $optParams = array())
+  public function setDiskAutoDelete($project, $zone, $instance, $autoDelete, $deviceName, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'instance' => $instance, 'autoDelete' => $autoDelete, 'deviceName' => $deviceName);
     $params = array_merge($params, $optParams);
@@ -4513,7 +4513,7 @@ class Google_Service_Compute_Instances_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function setMetadata($project, $zone, $instance, Google_Service_Compute_Metadata $postBody, $optParams = array())
+  public function setMetadata($project, $zone, $instance, Google_Service_Compute_Metadata $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'instance' => $instance, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -4530,7 +4530,7 @@ class Google_Service_Compute_Instances_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function setScheduling($project, $zone, $instance, Google_Service_Compute_Scheduling $postBody, $optParams = array())
+  public function setScheduling($project, $zone, $instance, Google_Service_Compute_Scheduling $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'instance' => $instance, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -4548,7 +4548,7 @@ class Google_Service_Compute_Instances_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function setTags($project, $zone, $instance, Google_Service_Compute_Tags $postBody, $optParams = array())
+  public function setTags($project, $zone, $instance, Google_Service_Compute_Tags $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'instance' => $instance, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -4566,7 +4566,7 @@ class Google_Service_Compute_Instances_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function start($project, $zone, $instance, $optParams = array())
+  public function start($project, $zone, $instance, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'instance' => $instance);
     $params = array_merge($params, $optParams);
@@ -4587,7 +4587,7 @@ class Google_Service_Compute_Instances_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function stop($project, $zone, $instance, $optParams = array())
+  public function stop($project, $zone, $instance, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'instance' => $instance);
     $params = array_merge($params, $optParams);
@@ -4614,7 +4614,7 @@ class Google_Service_Compute_Licenses_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_License
    */
-  public function get($project, $license, $optParams = array())
+  public function get($project, $license, $optParams = [])
   {
     $params = array('project' => $project, 'license' => $license);
     $params = array_merge($params, $optParams);
@@ -4646,7 +4646,7 @@ class Google_Service_Compute_MachineTypes_Resource extends Google_Service_Resour
    * @opt_param string maxResults Maximum count of results to be returned.
    * @return Google_Service_Compute_MachineTypeAggregatedList
    */
-  public function aggregatedList($project, $optParams = array())
+  public function aggregatedList($project, $optParams = [])
   {
     $params = array('project' => $project);
     $params = array_merge($params, $optParams);
@@ -4662,7 +4662,7 @@ class Google_Service_Compute_MachineTypes_Resource extends Google_Service_Resour
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_MachineType
    */
-  public function get($project, $zone, $machineType, $optParams = array())
+  public function get($project, $zone, $machineType, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'machineType' => $machineType);
     $params = array_merge($params, $optParams);
@@ -4683,7 +4683,7 @@ class Google_Service_Compute_MachineTypes_Resource extends Google_Service_Resour
    * @opt_param string maxResults Maximum count of results to be returned.
    * @return Google_Service_Compute_MachineTypeList
    */
-  public function listMachineTypes($project, $zone, $optParams = array())
+  public function listMachineTypes($project, $zone, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone);
     $params = array_merge($params, $optParams);
@@ -4710,7 +4710,7 @@ class Google_Service_Compute_Networks_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function delete($project, $network, $optParams = array())
+  public function delete($project, $network, $optParams = [])
   {
     $params = array('project' => $project, 'network' => $network);
     $params = array_merge($params, $optParams);
@@ -4725,7 +4725,7 @@ class Google_Service_Compute_Networks_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Network
    */
-  public function get($project, $network, $optParams = array())
+  public function get($project, $network, $optParams = [])
   {
     $params = array('project' => $project, 'network' => $network);
     $params = array_merge($params, $optParams);
@@ -4741,7 +4741,7 @@ class Google_Service_Compute_Networks_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function insert($project, Google_Service_Compute_Network $postBody, $optParams = array())
+  public function insert($project, Google_Service_Compute_Network $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -4761,7 +4761,7 @@ class Google_Service_Compute_Networks_Resource extends Google_Service_Resource
    * @opt_param string maxResults Maximum count of results to be returned.
    * @return Google_Service_Compute_NetworkList
    */
-  public function listNetworks($project, $optParams = array())
+  public function listNetworks($project, $optParams = [])
   {
     $params = array('project' => $project);
     $params = array_merge($params, $optParams);
@@ -4787,7 +4787,7 @@ class Google_Service_Compute_Projects_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Project
    */
-  public function get($project, $optParams = array())
+  public function get($project, $optParams = [])
   {
     $params = array('project' => $project);
     $params = array_merge($params, $optParams);
@@ -4802,7 +4802,7 @@ class Google_Service_Compute_Projects_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function moveDisk($project, Google_Service_Compute_DiskMoveRequest $postBody, $optParams = array())
+  public function moveDisk($project, Google_Service_Compute_DiskMoveRequest $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -4818,7 +4818,7 @@ class Google_Service_Compute_Projects_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function moveInstance($project, Google_Service_Compute_InstanceMoveRequest $postBody, $optParams = array())
+  public function moveInstance($project, Google_Service_Compute_InstanceMoveRequest $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -4834,7 +4834,7 @@ class Google_Service_Compute_Projects_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function setCommonInstanceMetadata($project, Google_Service_Compute_Metadata $postBody, $optParams = array())
+  public function setCommonInstanceMetadata($project, Google_Service_Compute_Metadata $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -4851,7 +4851,7 @@ class Google_Service_Compute_Projects_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function setUsageExportBucket($project, Google_Service_Compute_UsageExportLocation $postBody, $optParams = array())
+  public function setUsageExportBucket($project, Google_Service_Compute_UsageExportLocation $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -4879,7 +4879,7 @@ class Google_Service_Compute_RegionOperations_Resource extends Google_Service_Re
    * @param string $operation Name of the operation resource to delete.
    * @param array $optParams Optional parameters.
    */
-  public function delete($project, $region, $operation, $optParams = array())
+  public function delete($project, $region, $operation, $optParams = [])
   {
     $params = array('project' => $project, 'region' => $region, 'operation' => $operation);
     $params = array_merge($params, $optParams);
@@ -4896,7 +4896,7 @@ class Google_Service_Compute_RegionOperations_Resource extends Google_Service_Re
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function get($project, $region, $operation, $optParams = array())
+  public function get($project, $region, $operation, $optParams = [])
   {
     $params = array('project' => $project, 'region' => $region, 'operation' => $operation);
     $params = array_merge($params, $optParams);
@@ -4917,7 +4917,7 @@ class Google_Service_Compute_RegionOperations_Resource extends Google_Service_Re
    * @opt_param string maxResults Maximum count of results to be returned.
    * @return Google_Service_Compute_OperationList
    */
-  public function listRegionOperations($project, $region, $optParams = array())
+  public function listRegionOperations($project, $region, $optParams = [])
   {
     $params = array('project' => $project, 'region' => $region);
     $params = array_merge($params, $optParams);
@@ -4944,7 +4944,7 @@ class Google_Service_Compute_Regions_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Region
    */
-  public function get($project, $region, $optParams = array())
+  public function get($project, $region, $optParams = [])
   {
     $params = array('project' => $project, 'region' => $region);
     $params = array_merge($params, $optParams);
@@ -4964,7 +4964,7 @@ class Google_Service_Compute_Regions_Resource extends Google_Service_Resource
    * @opt_param string maxResults Maximum count of results to be returned.
    * @return Google_Service_Compute_RegionList
    */
-  public function listRegions($project, $optParams = array())
+  public function listRegions($project, $optParams = [])
   {
     $params = array('project' => $project);
     $params = array_merge($params, $optParams);
@@ -4991,7 +4991,7 @@ class Google_Service_Compute_Routes_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function delete($project, $route, $optParams = array())
+  public function delete($project, $route, $optParams = [])
   {
     $params = array('project' => $project, 'route' => $route);
     $params = array_merge($params, $optParams);
@@ -5006,7 +5006,7 @@ class Google_Service_Compute_Routes_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Route
    */
-  public function get($project, $route, $optParams = array())
+  public function get($project, $route, $optParams = [])
   {
     $params = array('project' => $project, 'route' => $route);
     $params = array_merge($params, $optParams);
@@ -5022,7 +5022,7 @@ class Google_Service_Compute_Routes_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function insert($project, Google_Service_Compute_Route $postBody, $optParams = array())
+  public function insert($project, Google_Service_Compute_Route $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -5042,7 +5042,7 @@ class Google_Service_Compute_Routes_Resource extends Google_Service_Resource
    * @opt_param string maxResults Maximum count of results to be returned.
    * @return Google_Service_Compute_RouteList
    */
-  public function listRoutes($project, $optParams = array())
+  public function listRoutes($project, $optParams = [])
   {
     $params = array('project' => $project);
     $params = array_merge($params, $optParams);
@@ -5070,7 +5070,7 @@ class Google_Service_Compute_Snapshots_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function delete($project, $snapshot, $optParams = array())
+  public function delete($project, $snapshot, $optParams = [])
   {
     $params = array('project' => $project, 'snapshot' => $snapshot);
     $params = array_merge($params, $optParams);
@@ -5086,7 +5086,7 @@ class Google_Service_Compute_Snapshots_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Snapshot
    */
-  public function get($project, $snapshot, $optParams = array())
+  public function get($project, $snapshot, $optParams = [])
   {
     $params = array('project' => $project, 'snapshot' => $snapshot);
     $params = array_merge($params, $optParams);
@@ -5106,7 +5106,7 @@ class Google_Service_Compute_Snapshots_Resource extends Google_Service_Resource
    * @opt_param string maxResults Maximum count of results to be returned.
    * @return Google_Service_Compute_SnapshotList
    */
-  public function listSnapshots($project, $optParams = array())
+  public function listSnapshots($project, $optParams = [])
   {
     $params = array('project' => $project);
     $params = array_merge($params, $optParams);
@@ -5134,7 +5134,7 @@ class Google_Service_Compute_TargetHttpProxies_Resource extends Google_Service_R
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function delete($project, $targetHttpProxy, $optParams = array())
+  public function delete($project, $targetHttpProxy, $optParams = [])
   {
     $params = array('project' => $project, 'targetHttpProxy' => $targetHttpProxy);
     $params = array_merge($params, $optParams);
@@ -5150,7 +5150,7 @@ class Google_Service_Compute_TargetHttpProxies_Resource extends Google_Service_R
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_TargetHttpProxy
    */
-  public function get($project, $targetHttpProxy, $optParams = array())
+  public function get($project, $targetHttpProxy, $optParams = [])
   {
     $params = array('project' => $project, 'targetHttpProxy' => $targetHttpProxy);
     $params = array_merge($params, $optParams);
@@ -5166,7 +5166,7 @@ class Google_Service_Compute_TargetHttpProxies_Resource extends Google_Service_R
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function insert($project, Google_Service_Compute_TargetHttpProxy $postBody, $optParams = array())
+  public function insert($project, Google_Service_Compute_TargetHttpProxy $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -5186,7 +5186,7 @@ class Google_Service_Compute_TargetHttpProxies_Resource extends Google_Service_R
    * @opt_param string maxResults Maximum count of results to be returned.
    * @return Google_Service_Compute_TargetHttpProxyList
    */
-  public function listTargetHttpProxies($project, $optParams = array())
+  public function listTargetHttpProxies($project, $optParams = [])
   {
     $params = array('project' => $project);
     $params = array_merge($params, $optParams);
@@ -5203,7 +5203,7 @@ class Google_Service_Compute_TargetHttpProxies_Resource extends Google_Service_R
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function setUrlMap($project, $targetHttpProxy, Google_Service_Compute_UrlMapReference $postBody, $optParams = array())
+  public function setUrlMap($project, $targetHttpProxy, Google_Service_Compute_UrlMapReference $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'targetHttpProxy' => $targetHttpProxy, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -5235,7 +5235,7 @@ class Google_Service_Compute_TargetInstances_Resource extends Google_Service_Res
    * @opt_param string maxResults Maximum count of results to be returned.
    * @return Google_Service_Compute_TargetInstanceAggregatedList
    */
-  public function aggregatedList($project, $optParams = array())
+  public function aggregatedList($project, $optParams = [])
   {
     $params = array('project' => $project);
     $params = array_merge($params, $optParams);
@@ -5251,7 +5251,7 @@ class Google_Service_Compute_TargetInstances_Resource extends Google_Service_Res
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function delete($project, $zone, $targetInstance, $optParams = array())
+  public function delete($project, $zone, $targetInstance, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'targetInstance' => $targetInstance);
     $params = array_merge($params, $optParams);
@@ -5267,7 +5267,7 @@ class Google_Service_Compute_TargetInstances_Resource extends Google_Service_Res
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_TargetInstance
    */
-  public function get($project, $zone, $targetInstance, $optParams = array())
+  public function get($project, $zone, $targetInstance, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'targetInstance' => $targetInstance);
     $params = array_merge($params, $optParams);
@@ -5284,7 +5284,7 @@ class Google_Service_Compute_TargetInstances_Resource extends Google_Service_Res
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function insert($project, $zone, Google_Service_Compute_TargetInstance $postBody, $optParams = array())
+  public function insert($project, $zone, Google_Service_Compute_TargetInstance $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -5305,7 +5305,7 @@ class Google_Service_Compute_TargetInstances_Resource extends Google_Service_Res
    * @opt_param string maxResults Maximum count of results to be returned.
    * @return Google_Service_Compute_TargetInstanceList
    */
-  public function listTargetInstances($project, $zone, $optParams = array())
+  public function listTargetInstances($project, $zone, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone);
     $params = array_merge($params, $optParams);
@@ -5335,7 +5335,7 @@ class Google_Service_Compute_TargetPools_Resource extends Google_Service_Resourc
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function addHealthCheck($project, $region, $targetPool, Google_Service_Compute_TargetPoolsAddHealthCheckRequest $postBody, $optParams = array())
+  public function addHealthCheck($project, $region, $targetPool, Google_Service_Compute_TargetPoolsAddHealthCheckRequest $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'region' => $region, 'targetPool' => $targetPool, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -5353,7 +5353,7 @@ class Google_Service_Compute_TargetPools_Resource extends Google_Service_Resourc
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function addInstance($project, $region, $targetPool, Google_Service_Compute_TargetPoolsAddInstanceRequest $postBody, $optParams = array())
+  public function addInstance($project, $region, $targetPool, Google_Service_Compute_TargetPoolsAddInstanceRequest $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'region' => $region, 'targetPool' => $targetPool, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -5373,7 +5373,7 @@ class Google_Service_Compute_TargetPools_Resource extends Google_Service_Resourc
    * @opt_param string maxResults Maximum count of results to be returned.
    * @return Google_Service_Compute_TargetPoolAggregatedList
    */
-  public function aggregatedList($project, $optParams = array())
+  public function aggregatedList($project, $optParams = [])
   {
     $params = array('project' => $project);
     $params = array_merge($params, $optParams);
@@ -5389,7 +5389,7 @@ class Google_Service_Compute_TargetPools_Resource extends Google_Service_Resourc
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function delete($project, $region, $targetPool, $optParams = array())
+  public function delete($project, $region, $targetPool, $optParams = [])
   {
     $params = array('project' => $project, 'region' => $region, 'targetPool' => $targetPool);
     $params = array_merge($params, $optParams);
@@ -5405,7 +5405,7 @@ class Google_Service_Compute_TargetPools_Resource extends Google_Service_Resourc
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_TargetPool
    */
-  public function get($project, $region, $targetPool, $optParams = array())
+  public function get($project, $region, $targetPool, $optParams = [])
   {
     $params = array('project' => $project, 'region' => $region, 'targetPool' => $targetPool);
     $params = array_merge($params, $optParams);
@@ -5424,7 +5424,7 @@ class Google_Service_Compute_TargetPools_Resource extends Google_Service_Resourc
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_TargetPoolInstanceHealth
    */
-  public function getHealth($project, $region, $targetPool, Google_Service_Compute_InstanceReference $postBody, $optParams = array())
+  public function getHealth($project, $region, $targetPool, Google_Service_Compute_InstanceReference $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'region' => $region, 'targetPool' => $targetPool, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -5441,7 +5441,7 @@ class Google_Service_Compute_TargetPools_Resource extends Google_Service_Resourc
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function insert($project, $region, Google_Service_Compute_TargetPool $postBody, $optParams = array())
+  public function insert($project, $region, Google_Service_Compute_TargetPool $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'region' => $region, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -5462,7 +5462,7 @@ class Google_Service_Compute_TargetPools_Resource extends Google_Service_Resourc
    * @opt_param string maxResults Maximum count of results to be returned.
    * @return Google_Service_Compute_TargetPoolList
    */
-  public function listTargetPools($project, $region, $optParams = array())
+  public function listTargetPools($project, $region, $optParams = [])
   {
     $params = array('project' => $project, 'region' => $region);
     $params = array_merge($params, $optParams);
@@ -5480,7 +5480,7 @@ class Google_Service_Compute_TargetPools_Resource extends Google_Service_Resourc
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function removeHealthCheck($project, $region, $targetPool, Google_Service_Compute_TargetPoolsRemoveHealthCheckRequest $postBody, $optParams = array())
+  public function removeHealthCheck($project, $region, $targetPool, Google_Service_Compute_TargetPoolsRemoveHealthCheckRequest $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'region' => $region, 'targetPool' => $targetPool, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -5498,7 +5498,7 @@ class Google_Service_Compute_TargetPools_Resource extends Google_Service_Resourc
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function removeInstance($project, $region, $targetPool, Google_Service_Compute_TargetPoolsRemoveInstanceRequest $postBody, $optParams = array())
+  public function removeInstance($project, $region, $targetPool, Google_Service_Compute_TargetPoolsRemoveInstanceRequest $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'region' => $region, 'targetPool' => $targetPool, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -5519,7 +5519,7 @@ class Google_Service_Compute_TargetPools_Resource extends Google_Service_Resourc
    * target pool.
    * @return Google_Service_Compute_Operation
    */
-  public function setBackup($project, $region, $targetPool, Google_Service_Compute_TargetReference $postBody, $optParams = array())
+  public function setBackup($project, $region, $targetPool, Google_Service_Compute_TargetReference $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'region' => $region, 'targetPool' => $targetPool, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -5551,7 +5551,7 @@ class Google_Service_Compute_TargetVpnGateways_Resource extends Google_Service_R
    * @opt_param string maxResults Maximum count of results to be returned.
    * @return Google_Service_Compute_TargetVpnGatewayAggregatedList
    */
-  public function aggregatedList($project, $optParams = array())
+  public function aggregatedList($project, $optParams = [])
   {
     $params = array('project' => $project);
     $params = array_merge($params, $optParams);
@@ -5568,7 +5568,7 @@ class Google_Service_Compute_TargetVpnGateways_Resource extends Google_Service_R
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function delete($project, $region, $targetVpnGateway, $optParams = array())
+  public function delete($project, $region, $targetVpnGateway, $optParams = [])
   {
     $params = array('project' => $project, 'region' => $region, 'targetVpnGateway' => $targetVpnGateway);
     $params = array_merge($params, $optParams);
@@ -5585,7 +5585,7 @@ class Google_Service_Compute_TargetVpnGateways_Resource extends Google_Service_R
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_TargetVpnGateway
    */
-  public function get($project, $region, $targetVpnGateway, $optParams = array())
+  public function get($project, $region, $targetVpnGateway, $optParams = [])
   {
     $params = array('project' => $project, 'region' => $region, 'targetVpnGateway' => $targetVpnGateway);
     $params = array_merge($params, $optParams);
@@ -5602,7 +5602,7 @@ class Google_Service_Compute_TargetVpnGateways_Resource extends Google_Service_R
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function insert($project, $region, Google_Service_Compute_TargetVpnGateway $postBody, $optParams = array())
+  public function insert($project, $region, Google_Service_Compute_TargetVpnGateway $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'region' => $region, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -5623,7 +5623,7 @@ class Google_Service_Compute_TargetVpnGateways_Resource extends Google_Service_R
    * @opt_param string maxResults Maximum count of results to be returned.
    * @return Google_Service_Compute_TargetVpnGatewayList
    */
-  public function listTargetVpnGateways($project, $region, $optParams = array())
+  public function listTargetVpnGateways($project, $region, $optParams = [])
   {
     $params = array('project' => $project, 'region' => $region);
     $params = array_merge($params, $optParams);
@@ -5650,7 +5650,7 @@ class Google_Service_Compute_UrlMaps_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function delete($project, $urlMap, $optParams = array())
+  public function delete($project, $urlMap, $optParams = [])
   {
     $params = array('project' => $project, 'urlMap' => $urlMap);
     $params = array_merge($params, $optParams);
@@ -5665,7 +5665,7 @@ class Google_Service_Compute_UrlMaps_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_UrlMap
    */
-  public function get($project, $urlMap, $optParams = array())
+  public function get($project, $urlMap, $optParams = [])
   {
     $params = array('project' => $project, 'urlMap' => $urlMap);
     $params = array_merge($params, $optParams);
@@ -5681,7 +5681,7 @@ class Google_Service_Compute_UrlMaps_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function insert($project, Google_Service_Compute_UrlMap $postBody, $optParams = array())
+  public function insert($project, Google_Service_Compute_UrlMap $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -5701,7 +5701,7 @@ class Google_Service_Compute_UrlMaps_Resource extends Google_Service_Resource
    * @opt_param string maxResults Maximum count of results to be returned.
    * @return Google_Service_Compute_UrlMapList
    */
-  public function listUrlMaps($project, $optParams = array())
+  public function listUrlMaps($project, $optParams = [])
   {
     $params = array('project' => $project);
     $params = array_merge($params, $optParams);
@@ -5718,7 +5718,7 @@ class Google_Service_Compute_UrlMaps_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function patch($project, $urlMap, Google_Service_Compute_UrlMap $postBody, $optParams = array())
+  public function patch($project, $urlMap, Google_Service_Compute_UrlMap $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'urlMap' => $urlMap, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -5734,7 +5734,7 @@ class Google_Service_Compute_UrlMaps_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function update($project, $urlMap, Google_Service_Compute_UrlMap $postBody, $optParams = array())
+  public function update($project, $urlMap, Google_Service_Compute_UrlMap $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'urlMap' => $urlMap, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -5752,7 +5752,7 @@ class Google_Service_Compute_UrlMaps_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_UrlMapsValidateResponse
    */
-  public function validate($project, $urlMap, Google_Service_Compute_UrlMapsValidateRequest $postBody, $optParams = array())
+  public function validate($project, $urlMap, Google_Service_Compute_UrlMapsValidateRequest $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'urlMap' => $urlMap, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -5784,7 +5784,7 @@ class Google_Service_Compute_VpnTunnels_Resource extends Google_Service_Resource
    * @opt_param string maxResults Maximum count of results to be returned.
    * @return Google_Service_Compute_VpnTunnelAggregatedList
    */
-  public function aggregatedList($project, $optParams = array())
+  public function aggregatedList($project, $optParams = [])
   {
     $params = array('project' => $project);
     $params = array_merge($params, $optParams);
@@ -5800,7 +5800,7 @@ class Google_Service_Compute_VpnTunnels_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function delete($project, $region, $vpnTunnel, $optParams = array())
+  public function delete($project, $region, $vpnTunnel, $optParams = [])
   {
     $params = array('project' => $project, 'region' => $region, 'vpnTunnel' => $vpnTunnel);
     $params = array_merge($params, $optParams);
@@ -5816,7 +5816,7 @@ class Google_Service_Compute_VpnTunnels_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_VpnTunnel
    */
-  public function get($project, $region, $vpnTunnel, $optParams = array())
+  public function get($project, $region, $vpnTunnel, $optParams = [])
   {
     $params = array('project' => $project, 'region' => $region, 'vpnTunnel' => $vpnTunnel);
     $params = array_merge($params, $optParams);
@@ -5833,7 +5833,7 @@ class Google_Service_Compute_VpnTunnels_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function insert($project, $region, Google_Service_Compute_VpnTunnel $postBody, $optParams = array())
+  public function insert($project, $region, Google_Service_Compute_VpnTunnel $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'region' => $region, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -5854,7 +5854,7 @@ class Google_Service_Compute_VpnTunnels_Resource extends Google_Service_Resource
    * @opt_param string maxResults Maximum count of results to be returned.
    * @return Google_Service_Compute_VpnTunnelList
    */
-  public function listVpnTunnels($project, $region, $optParams = array())
+  public function listVpnTunnels($project, $region, $optParams = [])
   {
     $params = array('project' => $project, 'region' => $region);
     $params = array_merge($params, $optParams);
@@ -5882,7 +5882,7 @@ class Google_Service_Compute_ZoneOperations_Resource extends Google_Service_Reso
    * @param string $operation Name of the operation resource to delete.
    * @param array $optParams Optional parameters.
    */
-  public function delete($project, $zone, $operation, $optParams = array())
+  public function delete($project, $zone, $operation, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'operation' => $operation);
     $params = array_merge($params, $optParams);
@@ -5899,7 +5899,7 @@ class Google_Service_Compute_ZoneOperations_Resource extends Google_Service_Reso
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Operation
    */
-  public function get($project, $zone, $operation, $optParams = array())
+  public function get($project, $zone, $operation, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'operation' => $operation);
     $params = array_merge($params, $optParams);
@@ -5920,7 +5920,7 @@ class Google_Service_Compute_ZoneOperations_Resource extends Google_Service_Reso
    * @opt_param string maxResults Maximum count of results to be returned.
    * @return Google_Service_Compute_OperationList
    */
-  public function listZoneOperations($project, $zone, $optParams = array())
+  public function listZoneOperations($project, $zone, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone);
     $params = array_merge($params, $optParams);
@@ -5947,7 +5947,7 @@ class Google_Service_Compute_Zones_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Compute_Zone
    */
-  public function get($project, $zone, $optParams = array())
+  public function get($project, $zone, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone);
     $params = array_merge($params, $optParams);
@@ -5967,7 +5967,7 @@ class Google_Service_Compute_Zones_Resource extends Google_Service_Resource
    * @opt_param string maxResults Maximum count of results to be returned.
    * @return Google_Service_Compute_ZoneList
    */
-  public function listZones($project, $optParams = array())
+  public function listZones($project, $optParams = [])
   {
     $params = array('project' => $project);
     $params = array_merge($params, $optParams);

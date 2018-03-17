@@ -13,7 +13,7 @@ class tree
 	 */
 	public static function build(array $_elements, $_tablePrefix, $_parentId = null)
 	{
-		$branch = array();
+		$branch = [];
 
 		foreach ($_elements as $element)
 		{
@@ -39,7 +39,7 @@ class tree
 	 */
 	public static function show(array $_elements, $_tablePrefix, $_parentId = null)
 	{
-		$branch = array();
+		$branch = [];
 
 		foreach ($_elements as $element)
 		{

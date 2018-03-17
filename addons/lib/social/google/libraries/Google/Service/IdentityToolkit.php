@@ -33,7 +33,7 @@ class Google_Service_IdentityToolkit extends Google_Service
 
 
   public $relyingparty;
-  
+
 
   /**
    * Constructs the internal representation of the IdentityToolkit service.
@@ -57,51 +57,51 @@ class Google_Service_IdentityToolkit extends Google_Service
             'createAuthUri' => array(
               'path' => 'createAuthUri',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),'deleteAccount' => array(
               'path' => 'deleteAccount',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),'downloadAccount' => array(
               'path' => 'downloadAccount',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),'getAccountInfo' => array(
               'path' => 'getAccountInfo',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),'getOobConfirmationCode' => array(
               'path' => 'getOobConfirmationCode',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),'getPublicKeys' => array(
               'path' => 'publicKeys',
               'httpMethod' => 'GET',
-              'parameters' => array(),
+              'parameters' => [],
             ),'getRecaptchaParam' => array(
               'path' => 'getRecaptchaParam',
               'httpMethod' => 'GET',
-              'parameters' => array(),
+              'parameters' => [],
             ),'resetPassword' => array(
               'path' => 'resetPassword',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),'setAccountInfo' => array(
               'path' => 'setAccountInfo',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),'uploadAccount' => array(
               'path' => 'uploadAccount',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),'verifyAssertion' => array(
               'path' => 'verifyAssertion',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),'verifyPassword' => array(
               'path' => 'verifyPassword',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),
           )
         )
@@ -129,7 +129,7 @@ class Google_Service_IdentityToolkit_Relyingparty_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_IdentityToolkit_CreateAuthUriResponse
    */
-  public function createAuthUri(Google_Service_IdentityToolkit_IdentitytoolkitRelyingpartyCreateAuthUriRequest $postBody, $optParams = array())
+  public function createAuthUri(Google_Service_IdentityToolkit_IdentitytoolkitRelyingpartyCreateAuthUriRequest $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -143,7 +143,7 @@ class Google_Service_IdentityToolkit_Relyingparty_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_IdentityToolkit_DeleteAccountResponse
    */
-  public function deleteAccount(Google_Service_IdentityToolkit_IdentitytoolkitRelyingpartyDeleteAccountRequest $postBody, $optParams = array())
+  public function deleteAccount(Google_Service_IdentityToolkit_IdentitytoolkitRelyingpartyDeleteAccountRequest $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -157,7 +157,7 @@ class Google_Service_IdentityToolkit_Relyingparty_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_IdentityToolkit_DownloadAccountResponse
    */
-  public function downloadAccount(Google_Service_IdentityToolkit_IdentitytoolkitRelyingpartyDownloadAccountRequest $postBody, $optParams = array())
+  public function downloadAccount(Google_Service_IdentityToolkit_IdentitytoolkitRelyingpartyDownloadAccountRequest $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -171,7 +171,7 @@ class Google_Service_IdentityToolkit_Relyingparty_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_IdentityToolkit_GetAccountInfoResponse
    */
-  public function getAccountInfo(Google_Service_IdentityToolkit_IdentitytoolkitRelyingpartyGetAccountInfoRequest $postBody, $optParams = array())
+  public function getAccountInfo(Google_Service_IdentityToolkit_IdentitytoolkitRelyingpartyGetAccountInfoRequest $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -186,7 +186,7 @@ class Google_Service_IdentityToolkit_Relyingparty_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_IdentityToolkit_GetOobConfirmationCodeResponse
    */
-  public function getOobConfirmationCode(Google_Service_IdentityToolkit_Relyingparty $postBody, $optParams = array())
+  public function getOobConfirmationCode(Google_Service_IdentityToolkit_Relyingparty $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -199,9 +199,9 @@ class Google_Service_IdentityToolkit_Relyingparty_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_IdentityToolkit_IdentitytoolkitRelyingpartyGetPublicKeysResponse
    */
-  public function getPublicKeys($optParams = array())
+  public function getPublicKeys($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('getPublicKeys', array($params), "Google_Service_IdentityToolkit_IdentitytoolkitRelyingpartyGetPublicKeysResponse");
   }
@@ -212,9 +212,9 @@ class Google_Service_IdentityToolkit_Relyingparty_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_IdentityToolkit_GetRecaptchaParamResponse
    */
-  public function getRecaptchaParam($optParams = array())
+  public function getRecaptchaParam($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('getRecaptchaParam', array($params), "Google_Service_IdentityToolkit_GetRecaptchaParamResponse");
   }
@@ -226,7 +226,7 @@ class Google_Service_IdentityToolkit_Relyingparty_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_IdentityToolkit_ResetPasswordResponse
    */
-  public function resetPassword(Google_Service_IdentityToolkit_IdentitytoolkitRelyingpartyResetPasswordRequest $postBody, $optParams = array())
+  public function resetPassword(Google_Service_IdentityToolkit_IdentitytoolkitRelyingpartyResetPasswordRequest $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -240,7 +240,7 @@ class Google_Service_IdentityToolkit_Relyingparty_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_IdentityToolkit_SetAccountInfoResponse
    */
-  public function setAccountInfo(Google_Service_IdentityToolkit_IdentitytoolkitRelyingpartySetAccountInfoRequest $postBody, $optParams = array())
+  public function setAccountInfo(Google_Service_IdentityToolkit_IdentitytoolkitRelyingpartySetAccountInfoRequest $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -254,7 +254,7 @@ class Google_Service_IdentityToolkit_Relyingparty_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_IdentityToolkit_UploadAccountResponse
    */
-  public function uploadAccount(Google_Service_IdentityToolkit_IdentitytoolkitRelyingpartyUploadAccountRequest $postBody, $optParams = array())
+  public function uploadAccount(Google_Service_IdentityToolkit_IdentitytoolkitRelyingpartyUploadAccountRequest $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -268,7 +268,7 @@ class Google_Service_IdentityToolkit_Relyingparty_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_IdentityToolkit_VerifyAssertionResponse
    */
-  public function verifyAssertion(Google_Service_IdentityToolkit_IdentitytoolkitRelyingpartyVerifyAssertionRequest $postBody, $optParams = array())
+  public function verifyAssertion(Google_Service_IdentityToolkit_IdentitytoolkitRelyingpartyVerifyAssertionRequest $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -282,7 +282,7 @@ class Google_Service_IdentityToolkit_Relyingparty_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_IdentityToolkit_VerifyPasswordResponse
    */
-  public function verifyPassword(Google_Service_IdentityToolkit_IdentitytoolkitRelyingpartyVerifyPasswordRequest $postBody, $optParams = array())
+  public function verifyPassword(Google_Service_IdentityToolkit_IdentitytoolkitRelyingpartyVerifyPasswordRequest $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);

@@ -52,7 +52,7 @@ class Google_Service_Manager extends Google_Service
 
   public $deployments;
   public $templates;
-  
+
 
   /**
    * Constructs the internal representation of the Manager service.
@@ -246,7 +246,7 @@ class Google_Service_Manager_Deployments_Resource extends Google_Service_Resourc
    * @param string $deploymentName
    * @param array $optParams Optional parameters.
    */
-  public function delete($projectId, $region, $deploymentName, $optParams = array())
+  public function delete($projectId, $region, $deploymentName, $optParams = [])
   {
     $params = array('projectId' => $projectId, 'region' => $region, 'deploymentName' => $deploymentName);
     $params = array_merge($params, $optParams);
@@ -262,7 +262,7 @@ class Google_Service_Manager_Deployments_Resource extends Google_Service_Resourc
    * @param array $optParams Optional parameters.
    * @return Google_Service_Manager_Deployment
    */
-  public function get($projectId, $region, $deploymentName, $optParams = array())
+  public function get($projectId, $region, $deploymentName, $optParams = [])
   {
     $params = array('projectId' => $projectId, 'region' => $region, 'deploymentName' => $deploymentName);
     $params = array_merge($params, $optParams);
@@ -278,7 +278,7 @@ class Google_Service_Manager_Deployments_Resource extends Google_Service_Resourc
    * @param array $optParams Optional parameters.
    * @return Google_Service_Manager_Deployment
    */
-  public function insert($projectId, $region, Google_Service_Manager_Deployment $postBody, $optParams = array())
+  public function insert($projectId, $region, Google_Service_Manager_Deployment $postBody, $optParams = [])
   {
     $params = array('projectId' => $projectId, 'region' => $region, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -299,7 +299,7 @@ class Google_Service_Manager_Deployments_Resource extends Google_Service_Resourc
    * values are 0 to 100, inclusive. (Default: 50)
    * @return Google_Service_Manager_DeploymentsListResponse
    */
-  public function listDeployments($projectId, $region, $optParams = array())
+  public function listDeployments($projectId, $region, $optParams = [])
   {
     $params = array('projectId' => $projectId, 'region' => $region);
     $params = array_merge($params, $optParams);
@@ -325,7 +325,7 @@ class Google_Service_Manager_Templates_Resource extends Google_Service_Resource
    * @param string $templateName
    * @param array $optParams Optional parameters.
    */
-  public function delete($projectId, $templateName, $optParams = array())
+  public function delete($projectId, $templateName, $optParams = [])
   {
     $params = array('projectId' => $projectId, 'templateName' => $templateName);
     $params = array_merge($params, $optParams);
@@ -340,7 +340,7 @@ class Google_Service_Manager_Templates_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Manager_Template
    */
-  public function get($projectId, $templateName, $optParams = array())
+  public function get($projectId, $templateName, $optParams = [])
   {
     $params = array('projectId' => $projectId, 'templateName' => $templateName);
     $params = array_merge($params, $optParams);
@@ -355,7 +355,7 @@ class Google_Service_Manager_Templates_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Manager_Template
    */
-  public function insert($projectId, Google_Service_Manager_Template $postBody, $optParams = array())
+  public function insert($projectId, Google_Service_Manager_Template $postBody, $optParams = [])
   {
     $params = array('projectId' => $projectId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -375,7 +375,7 @@ class Google_Service_Manager_Templates_Resource extends Google_Service_Resource
    * values are 0 to 100, inclusive. (Default: 50)
    * @return Google_Service_Manager_TemplatesListResponse
    */
-  public function listTemplates($projectId, $optParams = array())
+  public function listTemplates($projectId, $optParams = [])
   {
     $params = array('projectId' => $projectId);
     $params = array_merge($params, $optParams);

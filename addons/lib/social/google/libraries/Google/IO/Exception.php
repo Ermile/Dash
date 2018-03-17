@@ -24,7 +24,7 @@ class Google_IO_Exception extends Google_Exception implements Google_Task_Retrya
   /**
    * @var array $retryMap Map of errors with retry counts.
    */
-  private $retryMap = array();
+  private $retryMap = [];
 
   /**
    * Creates a new IO exception with an optional retry map.

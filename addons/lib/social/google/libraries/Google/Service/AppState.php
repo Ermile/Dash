@@ -35,7 +35,7 @@ class Google_Service_AppState extends Google_Service
       "https://www.googleapis.com/auth/appstate";
 
   public $states;
-  
+
 
   /**
    * Constructs the internal representation of the AppState service.
@@ -144,7 +144,7 @@ class Google_Service_AppState_States_Resource extends Google_Service_Resource
    * Version strings are returned by the server.
    * @return Google_Service_AppState_WriteResult
    */
-  public function clear($stateKey, $optParams = array())
+  public function clear($stateKey, $optParams = [])
   {
     $params = array('stateKey' => $stateKey);
     $params = array_merge($params, $optParams);
@@ -161,7 +161,7 @@ class Google_Service_AppState_States_Resource extends Google_Service_Resource
    * @param int $stateKey The key for the data to be retrieved.
    * @param array $optParams Optional parameters.
    */
-  public function delete($stateKey, $optParams = array())
+  public function delete($stateKey, $optParams = [])
   {
     $params = array('stateKey' => $stateKey);
     $params = array_merge($params, $optParams);
@@ -176,7 +176,7 @@ class Google_Service_AppState_States_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_AppState_GetResponse
    */
-  public function get($stateKey, $optParams = array())
+  public function get($stateKey, $optParams = [])
   {
     $params = array('stateKey' => $stateKey);
     $params = array_merge($params, $optParams);
@@ -192,9 +192,9 @@ class Google_Service_AppState_States_Resource extends Google_Service_Resource
    * the version number
    * @return Google_Service_AppState_ListResponse
    */
-  public function listStates($optParams = array())
+  public function listStates($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_AppState_ListResponse");
   }
@@ -215,7 +215,7 @@ class Google_Service_AppState_States_Resource extends Google_Service_Resource
    * of this parameter.
    * @return Google_Service_AppState_WriteResult
    */
-  public function update($stateKey, Google_Service_AppState_UpdateRequest $postBody, $optParams = array())
+  public function update($stateKey, Google_Service_AppState_UpdateRequest $postBody, $optParams = [])
   {
     $params = array('stateKey' => $stateKey, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);

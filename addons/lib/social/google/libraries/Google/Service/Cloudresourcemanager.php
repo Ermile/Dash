@@ -39,7 +39,7 @@ class Google_Service_Cloudresourcemanager extends Google_Service
       "https://www.googleapis.com/auth/cloud-platform";
 
   public $projects;
-  
+
 
   /**
    * Constructs the internal representation of the Cloudresourcemanager service.
@@ -63,7 +63,7 @@ class Google_Service_Cloudresourcemanager extends Google_Service
             'create' => array(
               'path' => 'v1beta1/projects',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),'delete' => array(
               'path' => 'v1beta1/projects/{projectId}',
               'httpMethod' => 'DELETE',
@@ -150,7 +150,7 @@ class Google_Service_Cloudresourcemanager_Projects_Resource extends Google_Servi
    * @param array $optParams Optional parameters.
    * @return Google_Service_Cloudresourcemanager_Project
    */
-  public function create(Google_Service_Cloudresourcemanager_Project $postBody, $optParams = array())
+  public function create(Google_Service_Cloudresourcemanager_Project $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -188,7 +188,7 @@ class Google_Service_Cloudresourcemanager_Projects_Resource extends Google_Servi
    * @param array $optParams Optional parameters.
    * @return Google_Service_Cloudresourcemanager_Empty
    */
-  public function delete($projectId, $optParams = array())
+  public function delete($projectId, $optParams = [])
   {
     $params = array('projectId' => $projectId);
     $params = array_merge($params, $optParams);
@@ -205,7 +205,7 @@ class Google_Service_Cloudresourcemanager_Projects_Resource extends Google_Servi
    * @param array $optParams Optional parameters.
    * @return Google_Service_Cloudresourcemanager_Project
    */
-  public function get($projectId, $optParams = array())
+  public function get($projectId, $optParams = [])
   {
     $params = array('projectId' => $projectId);
     $params = array_merge($params, $optParams);
@@ -237,9 +237,9 @@ class Google_Service_Cloudresourcemanager_Projects_Resource extends Google_Servi
    * supported; the server ignores this field. Optional.
    * @return Google_Service_Cloudresourcemanager_ListProjectsResponse
    */
-  public function listProjects($optParams = array())
+  public function listProjects($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_Cloudresourcemanager_ListProjectsResponse");
   }
@@ -260,7 +260,7 @@ class Google_Service_Cloudresourcemanager_Projects_Resource extends Google_Servi
    * @param array $optParams Optional parameters.
    * @return Google_Service_Cloudresourcemanager_Empty
    */
-  public function undelete($projectId, $optParams = array())
+  public function undelete($projectId, $optParams = [])
   {
     $params = array('projectId' => $projectId);
     $params = array_merge($params, $optParams);
@@ -278,7 +278,7 @@ class Google_Service_Cloudresourcemanager_Projects_Resource extends Google_Servi
    * @param array $optParams Optional parameters.
    * @return Google_Service_Cloudresourcemanager_Project
    */
-  public function update($projectId, Google_Service_Cloudresourcemanager_Project $postBody, $optParams = array())
+  public function update($projectId, Google_Service_Cloudresourcemanager_Project $postBody, $optParams = [])
   {
     $params = array('projectId' => $projectId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);

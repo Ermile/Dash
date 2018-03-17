@@ -45,7 +45,7 @@ class Google_Service_SQLAdmin extends Google_Service
   public $sslCerts;
   public $tiers;
   public $users;
-  
+
 
   /**
    * Constructs the internal representation of the SQLAdmin service.
@@ -242,7 +242,7 @@ class Google_Service_SQLAdmin extends Google_Service
             'list' => array(
               'path' => 'flags',
               'httpMethod' => 'GET',
-              'parameters' => array(),
+              'parameters' => [],
             ),
           )
         )
@@ -744,7 +744,7 @@ class Google_Service_SQLAdmin_BackupRuns_Resource extends Google_Service_Resourc
    * @param array $optParams Optional parameters.
    * @return Google_Service_SQLAdmin_BackupRun
    */
-  public function get($project, $instance, $id, $optParams = array())
+  public function get($project, $instance, $id, $optParams = [])
   {
     $params = array('project' => $project, 'instance' => $instance, 'id' => $id);
     $params = array_merge($params, $optParams);
@@ -766,7 +766,7 @@ class Google_Service_SQLAdmin_BackupRuns_Resource extends Google_Service_Resourc
    * part of the larger set of results to view.
    * @return Google_Service_SQLAdmin_BackupRunsListResponse
    */
-  public function listBackupRuns($project, $instance, $optParams = array())
+  public function listBackupRuns($project, $instance, $optParams = [])
   {
     $params = array('project' => $project, 'instance' => $instance);
     $params = array_merge($params, $optParams);
@@ -796,7 +796,7 @@ class Google_Service_SQLAdmin_Databases_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_SQLAdmin_Operation
    */
-  public function delete($project, $instance, $database, $optParams = array())
+  public function delete($project, $instance, $database, $optParams = [])
   {
     $params = array('project' => $project, 'instance' => $instance, 'database' => $database);
     $params = array_merge($params, $optParams);
@@ -814,7 +814,7 @@ class Google_Service_SQLAdmin_Databases_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_SQLAdmin_Database
    */
-  public function get($project, $instance, $database, $optParams = array())
+  public function get($project, $instance, $database, $optParams = [])
   {
     $params = array('project' => $project, 'instance' => $instance, 'database' => $database);
     $params = array_merge($params, $optParams);
@@ -832,7 +832,7 @@ class Google_Service_SQLAdmin_Databases_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_SQLAdmin_Operation
    */
-  public function insert($project, $instance, Google_Service_SQLAdmin_Database $postBody, $optParams = array())
+  public function insert($project, $instance, Google_Service_SQLAdmin_Database $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'instance' => $instance, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -850,7 +850,7 @@ class Google_Service_SQLAdmin_Databases_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_SQLAdmin_DatabasesListResponse
    */
-  public function listDatabases($project, $instance, $optParams = array())
+  public function listDatabases($project, $instance, $optParams = [])
   {
     $params = array('project' => $project, 'instance' => $instance);
     $params = array_merge($params, $optParams);
@@ -869,7 +869,7 @@ class Google_Service_SQLAdmin_Databases_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_SQLAdmin_Operation
    */
-  public function patch($project, $instance, $database, Google_Service_SQLAdmin_Database $postBody, $optParams = array())
+  public function patch($project, $instance, $database, Google_Service_SQLAdmin_Database $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'instance' => $instance, 'database' => $database, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -888,7 +888,7 @@ class Google_Service_SQLAdmin_Databases_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_SQLAdmin_Operation
    */
-  public function update($project, $instance, $database, Google_Service_SQLAdmin_Database $postBody, $optParams = array())
+  public function update($project, $instance, $database, Google_Service_SQLAdmin_Database $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'instance' => $instance, 'database' => $database, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -914,9 +914,9 @@ class Google_Service_SQLAdmin_Flags_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_SQLAdmin_FlagsListResponse
    */
-  public function listFlags($optParams = array())
+  public function listFlags($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_SQLAdmin_FlagsListResponse");
   }
@@ -945,7 +945,7 @@ class Google_Service_SQLAdmin_Instances_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_SQLAdmin_Operation
    */
-  public function cloneInstances($project, $instance, Google_Service_SQLAdmin_InstancesCloneRequest $postBody, $optParams = array())
+  public function cloneInstances($project, $instance, Google_Service_SQLAdmin_InstancesCloneRequest $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'instance' => $instance, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -962,7 +962,7 @@ class Google_Service_SQLAdmin_Instances_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_SQLAdmin_Operation
    */
-  public function delete($project, $instance, $optParams = array())
+  public function delete($project, $instance, $optParams = [])
   {
     $params = array('project' => $project, 'instance' => $instance);
     $params = array_merge($params, $optParams);
@@ -981,7 +981,7 @@ class Google_Service_SQLAdmin_Instances_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_SQLAdmin_Operation
    */
-  public function export($project, $instance, Google_Service_SQLAdmin_InstancesExportRequest $postBody, $optParams = array())
+  public function export($project, $instance, Google_Service_SQLAdmin_InstancesExportRequest $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'instance' => $instance, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -998,7 +998,7 @@ class Google_Service_SQLAdmin_Instances_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_SQLAdmin_DatabaseInstance
    */
-  public function get($project, $instance, $optParams = array())
+  public function get($project, $instance, $optParams = [])
   {
     $params = array('project' => $project, 'instance' => $instance);
     $params = array_merge($params, $optParams);
@@ -1016,7 +1016,7 @@ class Google_Service_SQLAdmin_Instances_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_SQLAdmin_Operation
    */
-  public function import($project, $instance, Google_Service_SQLAdmin_InstancesImportRequest $postBody, $optParams = array())
+  public function import($project, $instance, Google_Service_SQLAdmin_InstancesImportRequest $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'instance' => $instance, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1032,7 +1032,7 @@ class Google_Service_SQLAdmin_Instances_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_SQLAdmin_Operation
    */
-  public function insert($project, Google_Service_SQLAdmin_DatabaseInstance $postBody, $optParams = array())
+  public function insert($project, Google_Service_SQLAdmin_DatabaseInstance $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1053,7 +1053,7 @@ class Google_Service_SQLAdmin_Instances_Resource extends Google_Service_Resource
    * response.
    * @return Google_Service_SQLAdmin_InstancesListResponse
    */
-  public function listInstances($project, $optParams = array())
+  public function listInstances($project, $optParams = [])
   {
     $params = array('project' => $project);
     $params = array_merge($params, $optParams);
@@ -1073,7 +1073,7 @@ class Google_Service_SQLAdmin_Instances_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_SQLAdmin_Operation
    */
-  public function patch($project, $instance, Google_Service_SQLAdmin_DatabaseInstance $postBody, $optParams = array())
+  public function patch($project, $instance, Google_Service_SQLAdmin_DatabaseInstance $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'instance' => $instance, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1089,7 +1089,7 @@ class Google_Service_SQLAdmin_Instances_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_SQLAdmin_Operation
    */
-  public function promoteReplica($project, $instance, $optParams = array())
+  public function promoteReplica($project, $instance, $optParams = [])
   {
     $params = array('project' => $project, 'instance' => $instance);
     $params = array_merge($params, $optParams);
@@ -1108,7 +1108,7 @@ class Google_Service_SQLAdmin_Instances_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_SQLAdmin_Operation
    */
-  public function resetSslConfig($project, $instance, $optParams = array())
+  public function resetSslConfig($project, $instance, $optParams = [])
   {
     $params = array('project' => $project, 'instance' => $instance);
     $params = array_merge($params, $optParams);
@@ -1125,7 +1125,7 @@ class Google_Service_SQLAdmin_Instances_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_SQLAdmin_Operation
    */
-  public function restart($project, $instance, $optParams = array())
+  public function restart($project, $instance, $optParams = [])
   {
     $params = array('project' => $project, 'instance' => $instance);
     $params = array_merge($params, $optParams);
@@ -1142,7 +1142,7 @@ class Google_Service_SQLAdmin_Instances_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_SQLAdmin_Operation
    */
-  public function restoreBackup($project, $instance, Google_Service_SQLAdmin_InstancesRestoreBackupRequest $postBody, $optParams = array())
+  public function restoreBackup($project, $instance, Google_Service_SQLAdmin_InstancesRestoreBackupRequest $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'instance' => $instance, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1157,7 +1157,7 @@ class Google_Service_SQLAdmin_Instances_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_SQLAdmin_Operation
    */
-  public function startReplica($project, $instance, $optParams = array())
+  public function startReplica($project, $instance, $optParams = [])
   {
     $params = array('project' => $project, 'instance' => $instance);
     $params = array_merge($params, $optParams);
@@ -1172,7 +1172,7 @@ class Google_Service_SQLAdmin_Instances_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_SQLAdmin_Operation
    */
-  public function stopReplica($project, $instance, $optParams = array())
+  public function stopReplica($project, $instance, $optParams = [])
   {
     $params = array('project' => $project, 'instance' => $instance);
     $params = array_merge($params, $optParams);
@@ -1191,7 +1191,7 @@ class Google_Service_SQLAdmin_Instances_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_SQLAdmin_Operation
    */
-  public function update($project, $instance, Google_Service_SQLAdmin_DatabaseInstance $postBody, $optParams = array())
+  public function update($project, $instance, Google_Service_SQLAdmin_DatabaseInstance $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'instance' => $instance, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1219,7 +1219,7 @@ class Google_Service_SQLAdmin_Operations_Resource extends Google_Service_Resourc
    * @param array $optParams Optional parameters.
    * @return Google_Service_SQLAdmin_Operation
    */
-  public function get($project, $operation, $optParams = array())
+  public function get($project, $operation, $optParams = [])
   {
     $params = array('project' => $project, 'operation' => $operation);
     $params = array_merge($params, $optParams);
@@ -1241,7 +1241,7 @@ class Google_Service_SQLAdmin_Operations_Resource extends Google_Service_Resourc
    * part of the larger set of results to view.
    * @return Google_Service_SQLAdmin_OperationsListResponse
    */
-  public function listOperations($project, $instance, $optParams = array())
+  public function listOperations($project, $instance, $optParams = [])
   {
     $params = array('project' => $project, 'instance' => $instance);
     $params = array_merge($params, $optParams);
@@ -1272,7 +1272,7 @@ class Google_Service_SQLAdmin_SslCerts_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_SQLAdmin_Operation
    */
-  public function delete($project, $instance, $sha1Fingerprint, $optParams = array())
+  public function delete($project, $instance, $sha1Fingerprint, $optParams = [])
   {
     $params = array('project' => $project, 'instance' => $instance, 'sha1Fingerprint' => $sha1Fingerprint);
     $params = array_merge($params, $optParams);
@@ -1291,7 +1291,7 @@ class Google_Service_SQLAdmin_SslCerts_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_SQLAdmin_SslCert
    */
-  public function get($project, $instance, $sha1Fingerprint, $optParams = array())
+  public function get($project, $instance, $sha1Fingerprint, $optParams = [])
   {
     $params = array('project' => $project, 'instance' => $instance, 'sha1Fingerprint' => $sha1Fingerprint);
     $params = array_merge($params, $optParams);
@@ -1311,7 +1311,7 @@ class Google_Service_SQLAdmin_SslCerts_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_SQLAdmin_SslCertsInsertResponse
    */
-  public function insert($project, $instance, Google_Service_SQLAdmin_SslCertsInsertRequest $postBody, $optParams = array())
+  public function insert($project, $instance, Google_Service_SQLAdmin_SslCertsInsertRequest $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'instance' => $instance, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1329,7 +1329,7 @@ class Google_Service_SQLAdmin_SslCerts_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_SQLAdmin_SslCertsListResponse
    */
-  public function listSslCerts($project, $instance, $optParams = array())
+  public function listSslCerts($project, $instance, $optParams = [])
   {
     $params = array('project' => $project, 'instance' => $instance);
     $params = array_merge($params, $optParams);
@@ -1356,7 +1356,7 @@ class Google_Service_SQLAdmin_Tiers_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_SQLAdmin_TiersListResponse
    */
-  public function listTiers($project, $optParams = array())
+  public function listTiers($project, $optParams = [])
   {
     $params = array('project' => $project);
     $params = array_merge($params, $optParams);
@@ -1386,7 +1386,7 @@ class Google_Service_SQLAdmin_Users_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_SQLAdmin_Operation
    */
-  public function delete($project, $instance, $host, $name, $optParams = array())
+  public function delete($project, $instance, $host, $name, $optParams = [])
   {
     $params = array('project' => $project, 'instance' => $instance, 'host' => $host, 'name' => $name);
     $params = array_merge($params, $optParams);
@@ -1403,7 +1403,7 @@ class Google_Service_SQLAdmin_Users_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_SQLAdmin_Operation
    */
-  public function insert($project, $instance, Google_Service_SQLAdmin_User $postBody, $optParams = array())
+  public function insert($project, $instance, Google_Service_SQLAdmin_User $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'instance' => $instance, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1419,7 +1419,7 @@ class Google_Service_SQLAdmin_Users_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_SQLAdmin_UsersListResponse
    */
-  public function listUsers($project, $instance, $optParams = array())
+  public function listUsers($project, $instance, $optParams = [])
   {
     $params = array('project' => $project, 'instance' => $instance);
     $params = array_merge($params, $optParams);
@@ -1438,7 +1438,7 @@ class Google_Service_SQLAdmin_Users_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_SQLAdmin_Operation
    */
-  public function update($project, $instance, $host, $name, Google_Service_SQLAdmin_User $postBody, $optParams = array())
+  public function update($project, $instance, $host, $name, Google_Service_SQLAdmin_User $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'instance' => $instance, 'host' => $host, 'name' => $name, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);

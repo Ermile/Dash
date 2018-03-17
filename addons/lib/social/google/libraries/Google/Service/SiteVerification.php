@@ -38,7 +38,7 @@ class Google_Service_SiteVerification extends Google_Service
       "https://www.googleapis.com/auth/siteverification.verify_only";
 
   public $webResource;
-  
+
 
   /**
    * Constructs the internal representation of the SiteVerification service.
@@ -82,7 +82,7 @@ class Google_Service_SiteVerification extends Google_Service
             ),'getToken' => array(
               'path' => 'token',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),'insert' => array(
               'path' => 'webResource',
               'httpMethod' => 'POST',
@@ -96,7 +96,7 @@ class Google_Service_SiteVerification extends Google_Service
             ),'list' => array(
               'path' => 'webResource',
               'httpMethod' => 'GET',
-              'parameters' => array(),
+              'parameters' => [],
             ),'patch' => array(
               'path' => 'webResource/{id}',
               'httpMethod' => 'PATCH',
@@ -142,7 +142,7 @@ class Google_Service_SiteVerification_WebResource_Resource extends Google_Servic
    * @param string $id The id of a verified site or domain.
    * @param array $optParams Optional parameters.
    */
-  public function delete($id, $optParams = array())
+  public function delete($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -156,7 +156,7 @@ class Google_Service_SiteVerification_WebResource_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_SiteVerification_SiteVerificationWebResourceResource
    */
-  public function get($id, $optParams = array())
+  public function get($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -171,7 +171,7 @@ class Google_Service_SiteVerification_WebResource_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_SiteVerification_SiteVerificationWebResourceGettokenResponse
    */
-  public function getToken(Google_Service_SiteVerification_SiteVerificationWebResourceGettokenRequest $postBody, $optParams = array())
+  public function getToken(Google_Service_SiteVerification_SiteVerificationWebResourceGettokenRequest $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -187,7 +187,7 @@ class Google_Service_SiteVerification_WebResource_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_SiteVerification_SiteVerificationWebResourceResource
    */
-  public function insert($verificationMethod, Google_Service_SiteVerification_SiteVerificationWebResourceResource $postBody, $optParams = array())
+  public function insert($verificationMethod, Google_Service_SiteVerification_SiteVerificationWebResourceResource $postBody, $optParams = [])
   {
     $params = array('verificationMethod' => $verificationMethod, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -201,9 +201,9 @@ class Google_Service_SiteVerification_WebResource_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_SiteVerification_SiteVerificationWebResourceListResponse
    */
-  public function listWebResource($optParams = array())
+  public function listWebResource($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_SiteVerification_SiteVerificationWebResourceListResponse");
   }
@@ -217,7 +217,7 @@ class Google_Service_SiteVerification_WebResource_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_SiteVerification_SiteVerificationWebResourceResource
    */
-  public function patch($id, Google_Service_SiteVerification_SiteVerificationWebResourceResource $postBody, $optParams = array())
+  public function patch($id, Google_Service_SiteVerification_SiteVerificationWebResourceResource $postBody, $optParams = [])
   {
     $params = array('id' => $id, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -232,7 +232,7 @@ class Google_Service_SiteVerification_WebResource_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_SiteVerification_SiteVerificationWebResourceResource
    */
-  public function update($id, Google_Service_SiteVerification_SiteVerificationWebResourceResource $postBody, $optParams = array())
+  public function update($id, Google_Service_SiteVerification_SiteVerificationWebResourceResource $postBody, $optParams = [])
   {
     $params = array('id' => $id, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);

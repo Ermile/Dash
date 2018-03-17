@@ -44,7 +44,7 @@ class Google_Service_ShoppingContent extends Google_Service
   public $inventory;
   public $products;
   public $productstatuses;
-  
+
 
   /**
    * Constructs the internal representation of the ShoppingContent service.
@@ -68,11 +68,11 @@ class Google_Service_ShoppingContent extends Google_Service
             'authinfo' => array(
               'path' => 'accounts/authinfo',
               'httpMethod' => 'GET',
-              'parameters' => array(),
+              'parameters' => [],
             ),'custombatch' => array(
               'path' => 'accounts/batch',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),'delete' => array(
               'path' => '{merchantId}/accounts/{accountId}',
               'httpMethod' => 'DELETE',
@@ -264,7 +264,7 @@ class Google_Service_ShoppingContent extends Google_Service
             'custombatch' => array(
               'path' => 'accountstatuses/batch',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),'get' => array(
               'path' => '{merchantId}/accountstatuses/{accountId}',
               'httpMethod' => 'GET',
@@ -401,7 +401,7 @@ class Google_Service_ShoppingContent extends Google_Service
             'custombatch' => array(
               'path' => 'datafeeds/batch',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),'delete' => array(
               'path' => '{merchantId}/datafeeds/{datafeedId}',
               'httpMethod' => 'DELETE',
@@ -503,7 +503,7 @@ class Google_Service_ShoppingContent extends Google_Service
             'custombatch' => array(
               'path' => 'datafeedstatuses/batch',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),'get' => array(
               'path' => '{merchantId}/datafeedstatuses/{datafeedId}',
               'httpMethod' => 'GET',
@@ -550,7 +550,7 @@ class Google_Service_ShoppingContent extends Google_Service
             'custombatch' => array(
               'path' => 'inventory/batch',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),'set' => array(
               'path' => '{merchantId}/inventory/{storeCode}/products/{productId}',
               'httpMethod' => 'POST',
@@ -669,7 +669,7 @@ class Google_Service_ShoppingContent extends Google_Service
             'custombatch' => array(
               'path' => 'productstatuses/batch',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),'get' => array(
               'path' => '{merchantId}/productstatuses/{productId}',
               'httpMethod' => 'GET',
@@ -728,9 +728,9 @@ class Google_Service_ShoppingContent_Accounts_Resource extends Google_Service_Re
    * @param array $optParams Optional parameters.
    * @return Google_Service_ShoppingContent_AccountsAuthInfoResponse
    */
-  public function authinfo($optParams = array())
+  public function authinfo($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('authinfo', array($params), "Google_Service_ShoppingContent_AccountsAuthInfoResponse");
   }
@@ -743,7 +743,7 @@ class Google_Service_ShoppingContent_Accounts_Resource extends Google_Service_Re
    * @param array $optParams Optional parameters.
    * @return Google_Service_ShoppingContent_AccountsCustomBatchResponse
    */
-  public function custombatch(Google_Service_ShoppingContent_AccountsCustomBatchRequest $postBody, $optParams = array())
+  public function custombatch(Google_Service_ShoppingContent_AccountsCustomBatchRequest $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -757,7 +757,7 @@ class Google_Service_ShoppingContent_Accounts_Resource extends Google_Service_Re
    * @param string $accountId The ID of the account.
    * @param array $optParams Optional parameters.
    */
-  public function delete($merchantId, $accountId, $optParams = array())
+  public function delete($merchantId, $accountId, $optParams = [])
   {
     $params = array('merchantId' => $merchantId, 'accountId' => $accountId);
     $params = array_merge($params, $optParams);
@@ -772,7 +772,7 @@ class Google_Service_ShoppingContent_Accounts_Resource extends Google_Service_Re
    * @param array $optParams Optional parameters.
    * @return Google_Service_ShoppingContent_Account
    */
-  public function get($merchantId, $accountId, $optParams = array())
+  public function get($merchantId, $accountId, $optParams = [])
   {
     $params = array('merchantId' => $merchantId, 'accountId' => $accountId);
     $params = array_merge($params, $optParams);
@@ -787,7 +787,7 @@ class Google_Service_ShoppingContent_Accounts_Resource extends Google_Service_Re
    * @param array $optParams Optional parameters.
    * @return Google_Service_ShoppingContent_Account
    */
-  public function insert($merchantId, Google_Service_ShoppingContent_Account $postBody, $optParams = array())
+  public function insert($merchantId, Google_Service_ShoppingContent_Account $postBody, $optParams = [])
   {
     $params = array('merchantId' => $merchantId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -806,7 +806,7 @@ class Google_Service_ShoppingContent_Accounts_Resource extends Google_Service_Re
    * response, used for paging.
    * @return Google_Service_ShoppingContent_AccountsListResponse
    */
-  public function listAccounts($merchantId, $optParams = array())
+  public function listAccounts($merchantId, $optParams = [])
   {
     $params = array('merchantId' => $merchantId);
     $params = array_merge($params, $optParams);
@@ -823,7 +823,7 @@ class Google_Service_ShoppingContent_Accounts_Resource extends Google_Service_Re
    * @param array $optParams Optional parameters.
    * @return Google_Service_ShoppingContent_Account
    */
-  public function patch($merchantId, $accountId, Google_Service_ShoppingContent_Account $postBody, $optParams = array())
+  public function patch($merchantId, $accountId, Google_Service_ShoppingContent_Account $postBody, $optParams = [])
   {
     $params = array('merchantId' => $merchantId, 'accountId' => $accountId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -839,7 +839,7 @@ class Google_Service_ShoppingContent_Accounts_Resource extends Google_Service_Re
    * @param array $optParams Optional parameters.
    * @return Google_Service_ShoppingContent_Account
    */
-  public function update($merchantId, $accountId, Google_Service_ShoppingContent_Account $postBody, $optParams = array())
+  public function update($merchantId, $accountId, Google_Service_ShoppingContent_Account $postBody, $optParams = [])
   {
     $params = array('merchantId' => $merchantId, 'accountId' => $accountId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -868,7 +868,7 @@ class Google_Service_ShoppingContent_Accountshipping_Resource extends Google_Ser
    * @opt_param bool dryRun Flag to run the request in dry-run mode.
    * @return Google_Service_ShoppingContent_AccountshippingCustomBatchResponse
    */
-  public function custombatch(Google_Service_ShoppingContent_AccountshippingCustomBatchRequest $postBody, $optParams = array())
+  public function custombatch(Google_Service_ShoppingContent_AccountshippingCustomBatchRequest $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -884,7 +884,7 @@ class Google_Service_ShoppingContent_Accountshipping_Resource extends Google_Ser
    * @param array $optParams Optional parameters.
    * @return Google_Service_ShoppingContent_AccountShipping
    */
-  public function get($merchantId, $accountId, $optParams = array())
+  public function get($merchantId, $accountId, $optParams = [])
   {
     $params = array('merchantId' => $merchantId, 'accountId' => $accountId);
     $params = array_merge($params, $optParams);
@@ -903,7 +903,7 @@ class Google_Service_ShoppingContent_Accountshipping_Resource extends Google_Ser
    * return in the response, used for paging.
    * @return Google_Service_ShoppingContent_AccountshippingListResponse
    */
-  public function listAccountshipping($merchantId, $optParams = array())
+  public function listAccountshipping($merchantId, $optParams = [])
   {
     $params = array('merchantId' => $merchantId);
     $params = array_merge($params, $optParams);
@@ -923,7 +923,7 @@ class Google_Service_ShoppingContent_Accountshipping_Resource extends Google_Ser
    * @opt_param bool dryRun Flag to run the request in dry-run mode.
    * @return Google_Service_ShoppingContent_AccountShipping
    */
-  public function patch($merchantId, $accountId, Google_Service_ShoppingContent_AccountShipping $postBody, $optParams = array())
+  public function patch($merchantId, $accountId, Google_Service_ShoppingContent_AccountShipping $postBody, $optParams = [])
   {
     $params = array('merchantId' => $merchantId, 'accountId' => $accountId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -942,7 +942,7 @@ class Google_Service_ShoppingContent_Accountshipping_Resource extends Google_Ser
    * @opt_param bool dryRun Flag to run the request in dry-run mode.
    * @return Google_Service_ShoppingContent_AccountShipping
    */
-  public function update($merchantId, $accountId, Google_Service_ShoppingContent_AccountShipping $postBody, $optParams = array())
+  public function update($merchantId, $accountId, Google_Service_ShoppingContent_AccountShipping $postBody, $optParams = [])
   {
     $params = array('merchantId' => $merchantId, 'accountId' => $accountId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -968,7 +968,7 @@ class Google_Service_ShoppingContent_Accountstatuses_Resource extends Google_Ser
    * @param array $optParams Optional parameters.
    * @return Google_Service_ShoppingContent_AccountstatusesCustomBatchResponse
    */
-  public function custombatch(Google_Service_ShoppingContent_AccountstatusesCustomBatchRequest $postBody, $optParams = array())
+  public function custombatch(Google_Service_ShoppingContent_AccountstatusesCustomBatchRequest $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -983,7 +983,7 @@ class Google_Service_ShoppingContent_Accountstatuses_Resource extends Google_Ser
    * @param array $optParams Optional parameters.
    * @return Google_Service_ShoppingContent_AccountStatus
    */
-  public function get($merchantId, $accountId, $optParams = array())
+  public function get($merchantId, $accountId, $optParams = [])
   {
     $params = array('merchantId' => $merchantId, 'accountId' => $accountId);
     $params = array_merge($params, $optParams);
@@ -1002,7 +1002,7 @@ class Google_Service_ShoppingContent_Accountstatuses_Resource extends Google_Ser
    * in the response, used for paging.
    * @return Google_Service_ShoppingContent_AccountstatusesListResponse
    */
-  public function listAccountstatuses($merchantId, $optParams = array())
+  public function listAccountstatuses($merchantId, $optParams = [])
   {
     $params = array('merchantId' => $merchantId);
     $params = array_merge($params, $optParams);
@@ -1031,7 +1031,7 @@ class Google_Service_ShoppingContent_Accounttax_Resource extends Google_Service_
    * @opt_param bool dryRun Flag to run the request in dry-run mode.
    * @return Google_Service_ShoppingContent_AccounttaxCustomBatchResponse
    */
-  public function custombatch(Google_Service_ShoppingContent_AccounttaxCustomBatchRequest $postBody, $optParams = array())
+  public function custombatch(Google_Service_ShoppingContent_AccounttaxCustomBatchRequest $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1047,7 +1047,7 @@ class Google_Service_ShoppingContent_Accounttax_Resource extends Google_Service_
    * @param array $optParams Optional parameters.
    * @return Google_Service_ShoppingContent_AccountTax
    */
-  public function get($merchantId, $accountId, $optParams = array())
+  public function get($merchantId, $accountId, $optParams = [])
   {
     $params = array('merchantId' => $merchantId, 'accountId' => $accountId);
     $params = array_merge($params, $optParams);
@@ -1066,7 +1066,7 @@ class Google_Service_ShoppingContent_Accounttax_Resource extends Google_Service_
    * the response, used for paging.
    * @return Google_Service_ShoppingContent_AccounttaxListResponse
    */
-  public function listAccounttax($merchantId, $optParams = array())
+  public function listAccounttax($merchantId, $optParams = [])
   {
     $params = array('merchantId' => $merchantId);
     $params = array_merge($params, $optParams);
@@ -1086,7 +1086,7 @@ class Google_Service_ShoppingContent_Accounttax_Resource extends Google_Service_
    * @opt_param bool dryRun Flag to run the request in dry-run mode.
    * @return Google_Service_ShoppingContent_AccountTax
    */
-  public function patch($merchantId, $accountId, Google_Service_ShoppingContent_AccountTax $postBody, $optParams = array())
+  public function patch($merchantId, $accountId, Google_Service_ShoppingContent_AccountTax $postBody, $optParams = [])
   {
     $params = array('merchantId' => $merchantId, 'accountId' => $accountId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1105,7 +1105,7 @@ class Google_Service_ShoppingContent_Accounttax_Resource extends Google_Service_
    * @opt_param bool dryRun Flag to run the request in dry-run mode.
    * @return Google_Service_ShoppingContent_AccountTax
    */
-  public function update($merchantId, $accountId, Google_Service_ShoppingContent_AccountTax $postBody, $optParams = array())
+  public function update($merchantId, $accountId, Google_Service_ShoppingContent_AccountTax $postBody, $optParams = [])
   {
     $params = array('merchantId' => $merchantId, 'accountId' => $accountId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1131,7 +1131,7 @@ class Google_Service_ShoppingContent_Datafeeds_Resource extends Google_Service_R
    * @param array $optParams Optional parameters.
    * @return Google_Service_ShoppingContent_DatafeedsCustomBatchResponse
    */
-  public function custombatch(Google_Service_ShoppingContent_DatafeedsCustomBatchRequest $postBody, $optParams = array())
+  public function custombatch(Google_Service_ShoppingContent_DatafeedsCustomBatchRequest $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1145,7 +1145,7 @@ class Google_Service_ShoppingContent_Datafeeds_Resource extends Google_Service_R
    * @param string $datafeedId
    * @param array $optParams Optional parameters.
    */
-  public function delete($merchantId, $datafeedId, $optParams = array())
+  public function delete($merchantId, $datafeedId, $optParams = [])
   {
     $params = array('merchantId' => $merchantId, 'datafeedId' => $datafeedId);
     $params = array_merge($params, $optParams);
@@ -1160,7 +1160,7 @@ class Google_Service_ShoppingContent_Datafeeds_Resource extends Google_Service_R
    * @param array $optParams Optional parameters.
    * @return Google_Service_ShoppingContent_Datafeed
    */
-  public function get($merchantId, $datafeedId, $optParams = array())
+  public function get($merchantId, $datafeedId, $optParams = [])
   {
     $params = array('merchantId' => $merchantId, 'datafeedId' => $datafeedId);
     $params = array_merge($params, $optParams);
@@ -1175,7 +1175,7 @@ class Google_Service_ShoppingContent_Datafeeds_Resource extends Google_Service_R
    * @param array $optParams Optional parameters.
    * @return Google_Service_ShoppingContent_Datafeed
    */
-  public function insert($merchantId, Google_Service_ShoppingContent_Datafeed $postBody, $optParams = array())
+  public function insert($merchantId, Google_Service_ShoppingContent_Datafeed $postBody, $optParams = [])
   {
     $params = array('merchantId' => $merchantId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1194,7 +1194,7 @@ class Google_Service_ShoppingContent_Datafeeds_Resource extends Google_Service_R
    * response, used for paging.
    * @return Google_Service_ShoppingContent_DatafeedsListResponse
    */
-  public function listDatafeeds($merchantId, $optParams = array())
+  public function listDatafeeds($merchantId, $optParams = [])
   {
     $params = array('merchantId' => $merchantId);
     $params = array_merge($params, $optParams);
@@ -1211,7 +1211,7 @@ class Google_Service_ShoppingContent_Datafeeds_Resource extends Google_Service_R
    * @param array $optParams Optional parameters.
    * @return Google_Service_ShoppingContent_Datafeed
    */
-  public function patch($merchantId, $datafeedId, Google_Service_ShoppingContent_Datafeed $postBody, $optParams = array())
+  public function patch($merchantId, $datafeedId, Google_Service_ShoppingContent_Datafeed $postBody, $optParams = [])
   {
     $params = array('merchantId' => $merchantId, 'datafeedId' => $datafeedId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1227,7 +1227,7 @@ class Google_Service_ShoppingContent_Datafeeds_Resource extends Google_Service_R
    * @param array $optParams Optional parameters.
    * @return Google_Service_ShoppingContent_Datafeed
    */
-  public function update($merchantId, $datafeedId, Google_Service_ShoppingContent_Datafeed $postBody, $optParams = array())
+  public function update($merchantId, $datafeedId, Google_Service_ShoppingContent_Datafeed $postBody, $optParams = [])
   {
     $params = array('merchantId' => $merchantId, 'datafeedId' => $datafeedId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1253,7 +1253,7 @@ class Google_Service_ShoppingContent_Datafeedstatuses_Resource extends Google_Se
    * @param array $optParams Optional parameters.
    * @return Google_Service_ShoppingContent_DatafeedstatusesCustomBatchResponse
    */
-  public function custombatch(Google_Service_ShoppingContent_DatafeedstatusesCustomBatchRequest $postBody, $optParams = array())
+  public function custombatch(Google_Service_ShoppingContent_DatafeedstatusesCustomBatchRequest $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1269,7 +1269,7 @@ class Google_Service_ShoppingContent_Datafeedstatuses_Resource extends Google_Se
    * @param array $optParams Optional parameters.
    * @return Google_Service_ShoppingContent_DatafeedStatus
    */
-  public function get($merchantId, $datafeedId, $optParams = array())
+  public function get($merchantId, $datafeedId, $optParams = [])
   {
     $params = array('merchantId' => $merchantId, 'datafeedId' => $datafeedId);
     $params = array_merge($params, $optParams);
@@ -1288,7 +1288,7 @@ class Google_Service_ShoppingContent_Datafeedstatuses_Resource extends Google_Se
    * response, used for paging.
    * @return Google_Service_ShoppingContent_DatafeedstatusesListResponse
    */
-  public function listDatafeedstatuses($merchantId, $optParams = array())
+  public function listDatafeedstatuses($merchantId, $optParams = [])
   {
     $params = array('merchantId' => $merchantId);
     $params = array_merge($params, $optParams);
@@ -1315,7 +1315,7 @@ class Google_Service_ShoppingContent_Inventory_Resource extends Google_Service_R
    * @param array $optParams Optional parameters.
    * @return Google_Service_ShoppingContent_InventoryCustomBatchResponse
    */
-  public function custombatch(Google_Service_ShoppingContent_InventoryCustomBatchRequest $postBody, $optParams = array())
+  public function custombatch(Google_Service_ShoppingContent_InventoryCustomBatchRequest $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1336,7 +1336,7 @@ class Google_Service_ShoppingContent_Inventory_Resource extends Google_Service_R
    * @param array $optParams Optional parameters.
    * @return Google_Service_ShoppingContent_InventorySetResponse
    */
-  public function set($merchantId, $storeCode, $productId, Google_Service_ShoppingContent_InventorySetRequest $postBody, $optParams = array())
+  public function set($merchantId, $storeCode, $productId, Google_Service_ShoppingContent_InventorySetRequest $postBody, $optParams = [])
   {
     $params = array('merchantId' => $merchantId, 'storeCode' => $storeCode, 'productId' => $productId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1365,7 +1365,7 @@ class Google_Service_ShoppingContent_Products_Resource extends Google_Service_Re
    * @opt_param bool dryRun Flag to run the request in dry-run mode.
    * @return Google_Service_ShoppingContent_ProductsCustomBatchResponse
    */
-  public function custombatch(Google_Service_ShoppingContent_ProductsCustomBatchRequest $postBody, $optParams = array())
+  public function custombatch(Google_Service_ShoppingContent_ProductsCustomBatchRequest $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1381,7 +1381,7 @@ class Google_Service_ShoppingContent_Products_Resource extends Google_Service_Re
    *
    * @opt_param bool dryRun Flag to run the request in dry-run mode.
    */
-  public function delete($merchantId, $productId, $optParams = array())
+  public function delete($merchantId, $productId, $optParams = [])
   {
     $params = array('merchantId' => $merchantId, 'productId' => $productId);
     $params = array_merge($params, $optParams);
@@ -1396,7 +1396,7 @@ class Google_Service_ShoppingContent_Products_Resource extends Google_Service_Re
    * @param array $optParams Optional parameters.
    * @return Google_Service_ShoppingContent_Product
    */
-  public function get($merchantId, $productId, $optParams = array())
+  public function get($merchantId, $productId, $optParams = [])
   {
     $params = array('merchantId' => $merchantId, 'productId' => $productId);
     $params = array_merge($params, $optParams);
@@ -1413,7 +1413,7 @@ class Google_Service_ShoppingContent_Products_Resource extends Google_Service_Re
    * @opt_param bool dryRun Flag to run the request in dry-run mode.
    * @return Google_Service_ShoppingContent_Product
    */
-  public function insert($merchantId, Google_Service_ShoppingContent_Product $postBody, $optParams = array())
+  public function insert($merchantId, Google_Service_ShoppingContent_Product $postBody, $optParams = [])
   {
     $params = array('merchantId' => $merchantId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1431,7 +1431,7 @@ class Google_Service_ShoppingContent_Products_Resource extends Google_Service_Re
    * response, used for paging.
    * @return Google_Service_ShoppingContent_ProductsListResponse
    */
-  public function listProducts($merchantId, $optParams = array())
+  public function listProducts($merchantId, $optParams = [])
   {
     $params = array('merchantId' => $merchantId);
     $params = array_merge($params, $optParams);
@@ -1458,7 +1458,7 @@ class Google_Service_ShoppingContent_Productstatuses_Resource extends Google_Ser
    * @param array $optParams Optional parameters.
    * @return Google_Service_ShoppingContent_ProductstatusesCustomBatchResponse
    */
-  public function custombatch(Google_Service_ShoppingContent_ProductstatusesCustomBatchRequest $postBody, $optParams = array())
+  public function custombatch(Google_Service_ShoppingContent_ProductstatusesCustomBatchRequest $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1474,7 +1474,7 @@ class Google_Service_ShoppingContent_Productstatuses_Resource extends Google_Ser
    * @param array $optParams Optional parameters.
    * @return Google_Service_ShoppingContent_ProductStatus
    */
-  public function get($merchantId, $productId, $optParams = array())
+  public function get($merchantId, $productId, $optParams = [])
   {
     $params = array('merchantId' => $merchantId, 'productId' => $productId);
     $params = array_merge($params, $optParams);
@@ -1493,7 +1493,7 @@ class Google_Service_ShoppingContent_Productstatuses_Resource extends Google_Ser
    * in the response, used for paging.
    * @return Google_Service_ShoppingContent_ProductstatusesListResponse
    */
-  public function listProductstatuses($merchantId, $optParams = array())
+  public function listProductstatuses($merchantId, $optParams = [])
   {
     $params = array('merchantId' => $merchantId);
     $params = array_merge($params, $optParams);

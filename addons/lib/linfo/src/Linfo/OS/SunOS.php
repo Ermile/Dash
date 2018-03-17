@@ -2,20 +2,20 @@
 
 /*
  * This file is part of Linfo (c) 2010 Joseph Gillotti.
- * 
+ *
  * Linfo is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * Linfo is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with Linfo. If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
 */
 
 namespace Linfo\OS;
@@ -31,7 +31,7 @@ class SunOS extends OS
     // Encapsulate these
     protected $settings,
         $exec,
-        $kstat = array();
+        $kstat = [];
 
     // Start us off
     public function __construct($settings)
@@ -74,9 +74,9 @@ class SunOS extends OS
     }
 
     // Get kstat values. *extremely* similar in practice to the sysctl nature of the bsd's
-    // - 
+    // -
     // Use kstat to get something, and cache result.
-    // Also allow getting multiple keys at once, in which case sysctl 
+    // Also allow getting multiple keys at once, in which case sysctl
     // will only be called once instead of multiple times (assuming it doesn't break)
     protected function loadkstat($keys)
     {
@@ -86,7 +86,7 @@ class SunOS extends OS
             $t = new Timer('Solaris Kstat Parsing');
         }
 
-        $results = array();
+        $results = [];
 
         foreach ($keys as $k => $v) {
             if (array_key_exists($v, $this->kstat)) {
@@ -169,16 +169,16 @@ class SunOS extends OS
         } catch (Exception $e) {
             Errors::add('Linfo Core', 'Error running `mount` command');
 
-            return array();
+            return [];
         }
 
         // Parse it
         if (!preg_match_all('/^(\S+) - (\S+) (\w+).+/m', $res, $mount_matches, PREG_SET_ORDER)) {
-            return array();
+            return [];
         }
 
         // Store them here
-        $mounts = array();
+        $mounts = [];
 
         // Deal with each entry
         foreach ($mount_matches as $mount) {
@@ -224,7 +224,7 @@ class SunOS extends OS
             'type' => 'Physical',
             'total' => $this->kstat['unix:0:system_pages:pagestotal'] * $this->kstat['unix:0:seg_cache:slab_size'],
             'free' => $this->kstat['unix:0:system_pages:pagesfree'] * $this->kstat['unix:0:seg_cache:slab_size'],
-            'swapInfo' => array(),
+            'swapInfo' => [],
         );
     }
 
@@ -313,14 +313,14 @@ class SunOS extends OS
 
     public function getCPU()
     {
-        $cpus = array();
+        $cpus = [];
 
         foreach (explode("\n", $this->kstat['cpu_info:0:']) as $line) {
             if (!preg_match('/^cpu_info(\d+):(\S+)\s+(.+)/', trim($line), $m)) {
                 continue;
             }
             if (!isset($cpus[$m[1]])) {
-                $cpus[$m[1]] = array();
+                $cpus[$m[1]] = [];
             }
 
             $cur_cpu = &$cpus[$m[1]];
@@ -346,7 +346,7 @@ class SunOS extends OS
 
     public function getNet()
     {
-        $nets = array();
+        $nets = [];
 
         // ifconfig for nics/statuses
         try {
@@ -354,7 +354,7 @@ class SunOS extends OS
         } catch (Exception $e) {
             Errors::add('Solaris Core', 'Failed running ifconfig -a.');
 
-            return array();
+            return [];
         }
 
         foreach (explode("\n", $ifconfig) as $line) {
@@ -448,7 +448,7 @@ class SunOS extends OS
         } catch (Exception $e) {
             Errors::add('Solaris Core', 'Failed running dladm show-link.');
 
-            return array();
+            return [];
         }
 
         return $nets;

@@ -71,7 +71,7 @@ class Google_Service_Drive extends Google_Service
   public $realtime;
   public $replies;
   public $revisions;
-  
+
 
   /**
    * Constructs the internal representation of the Drive service.
@@ -237,7 +237,7 @@ class Google_Service_Drive extends Google_Service
             'stop' => array(
               'path' => 'channels/stop',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),
           )
         )
@@ -485,7 +485,7 @@ class Google_Service_Drive extends Google_Service
             ),'emptyTrash' => array(
               'path' => 'files/trash',
               'httpMethod' => 'DELETE',
-              'parameters' => array(),
+              'parameters' => [],
             ),'generateIds' => array(
               'path' => 'files/generateIds',
               'httpMethod' => 'GET',
@@ -1347,9 +1347,9 @@ class Google_Service_Drive_About_Resource extends Google_Service_Resource
    * calculating number of remaining change IDs
    * @return Google_Service_Drive_About
    */
-  public function get($optParams = array())
+  public function get($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('get', array($params), "Google_Service_Drive_About");
   }
@@ -1373,7 +1373,7 @@ class Google_Service_Drive_Apps_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Drive_App
    */
-  public function get($appId, $optParams = array())
+  public function get($appId, $optParams = [])
   {
     $params = array('appId' => $appId);
     $params = array_merge($params, $optParams);
@@ -1400,9 +1400,9 @@ class Google_Service_Drive_Apps_Resource extends Google_Service_Resource
    * resulting app lists.
    * @return Google_Service_Drive_AppList
    */
-  public function listApps($optParams = array())
+  public function listApps($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_Drive_AppList");
   }
@@ -1426,7 +1426,7 @@ class Google_Service_Drive_Changes_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Drive_Change
    */
-  public function get($changeId, $optParams = array())
+  public function get($changeId, $optParams = [])
   {
     $params = array('changeId' => $changeId);
     $params = array_merge($params, $optParams);
@@ -1450,9 +1450,9 @@ class Google_Service_Drive_Changes_Resource extends Google_Service_Resource
    * @opt_param string startChangeId Change ID to start listing changes from.
    * @return Google_Service_Drive_ChangeList
    */
-  public function listChanges($optParams = array())
+  public function listChanges($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_Drive_ChangeList");
   }
@@ -1475,7 +1475,7 @@ class Google_Service_Drive_Changes_Resource extends Google_Service_Resource
    * @opt_param string startChangeId Change ID to start listing changes from.
    * @return Google_Service_Drive_Channel
    */
-  public function watch(Google_Service_Drive_Channel $postBody, $optParams = array())
+  public function watch(Google_Service_Drive_Channel $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1500,7 +1500,7 @@ class Google_Service_Drive_Channels_Resource extends Google_Service_Resource
    * @param Google_Channel $postBody
    * @param array $optParams Optional parameters.
    */
-  public function stop(Google_Service_Drive_Channel $postBody, $optParams = array())
+  public function stop(Google_Service_Drive_Channel $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1526,7 +1526,7 @@ class Google_Service_Drive_Children_Resource extends Google_Service_Resource
    * @param string $childId The ID of the child.
    * @param array $optParams Optional parameters.
    */
-  public function delete($folderId, $childId, $optParams = array())
+  public function delete($folderId, $childId, $optParams = [])
   {
     $params = array('folderId' => $folderId, 'childId' => $childId);
     $params = array_merge($params, $optParams);
@@ -1541,7 +1541,7 @@ class Google_Service_Drive_Children_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Drive_ChildReference
    */
-  public function get($folderId, $childId, $optParams = array())
+  public function get($folderId, $childId, $optParams = [])
   {
     $params = array('folderId' => $folderId, 'childId' => $childId);
     $params = array_merge($params, $optParams);
@@ -1556,7 +1556,7 @@ class Google_Service_Drive_Children_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Drive_ChildReference
    */
-  public function insert($folderId, Google_Service_Drive_ChildReference $postBody, $optParams = array())
+  public function insert($folderId, Google_Service_Drive_ChildReference $postBody, $optParams = [])
   {
     $params = array('folderId' => $folderId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1581,7 +1581,7 @@ class Google_Service_Drive_Children_Resource extends Google_Service_Resource
    * @opt_param int maxResults Maximum number of children to return.
    * @return Google_Service_Drive_ChildList
    */
-  public function listChildren($folderId, $optParams = array())
+  public function listChildren($folderId, $optParams = [])
   {
     $params = array('folderId' => $folderId);
     $params = array_merge($params, $optParams);
@@ -1607,7 +1607,7 @@ class Google_Service_Drive_Comments_Resource extends Google_Service_Resource
    * @param string $commentId The ID of the comment.
    * @param array $optParams Optional parameters.
    */
-  public function delete($fileId, $commentId, $optParams = array())
+  public function delete($fileId, $commentId, $optParams = [])
   {
     $params = array('fileId' => $fileId, 'commentId' => $commentId);
     $params = array_merge($params, $optParams);
@@ -1625,7 +1625,7 @@ class Google_Service_Drive_Comments_Resource extends Google_Service_Resource
    * deleted comment, and will include any deleted replies.
    * @return Google_Service_Drive_Comment
    */
-  public function get($fileId, $commentId, $optParams = array())
+  public function get($fileId, $commentId, $optParams = [])
   {
     $params = array('fileId' => $fileId, 'commentId' => $commentId);
     $params = array_merge($params, $optParams);
@@ -1640,7 +1640,7 @@ class Google_Service_Drive_Comments_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Drive_Comment
    */
-  public function insert($fileId, Google_Service_Drive_Comment $postBody, $optParams = array())
+  public function insert($fileId, Google_Service_Drive_Comment $postBody, $optParams = [])
   {
     $params = array('fileId' => $fileId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1664,7 +1664,7 @@ class Google_Service_Drive_Comments_Resource extends Google_Service_Resource
    * response, used for paging.
    * @return Google_Service_Drive_CommentList
    */
-  public function listComments($fileId, $optParams = array())
+  public function listComments($fileId, $optParams = [])
   {
     $params = array('fileId' => $fileId);
     $params = array_merge($params, $optParams);
@@ -1681,7 +1681,7 @@ class Google_Service_Drive_Comments_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Drive_Comment
    */
-  public function patch($fileId, $commentId, Google_Service_Drive_Comment $postBody, $optParams = array())
+  public function patch($fileId, $commentId, Google_Service_Drive_Comment $postBody, $optParams = [])
   {
     $params = array('fileId' => $fileId, 'commentId' => $commentId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1697,7 +1697,7 @@ class Google_Service_Drive_Comments_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Drive_Comment
    */
-  public function update($fileId, $commentId, Google_Service_Drive_Comment $postBody, $optParams = array())
+  public function update($fileId, $commentId, Google_Service_Drive_Comment $postBody, $optParams = [])
   {
     $params = array('fileId' => $fileId, 'commentId' => $commentId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1738,7 +1738,7 @@ class Google_Service_Drive_Files_Resource extends Google_Service_Resource
    * @opt_param string timedTextLanguage The language of the timed text.
    * @return Google_Service_Drive_DriveFile
    */
-  public function copy($fileId, Google_Service_Drive_DriveFile $postBody, $optParams = array())
+  public function copy($fileId, Google_Service_Drive_DriveFile $postBody, $optParams = [])
   {
     $params = array('fileId' => $fileId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1752,7 +1752,7 @@ class Google_Service_Drive_Files_Resource extends Google_Service_Resource
    * @param string $fileId The ID of the file to delete.
    * @param array $optParams Optional parameters.
    */
-  public function delete($fileId, $optParams = array())
+  public function delete($fileId, $optParams = [])
   {
     $params = array('fileId' => $fileId);
     $params = array_merge($params, $optParams);
@@ -1764,9 +1764,9 @@ class Google_Service_Drive_Files_Resource extends Google_Service_Resource
    *
    * @param array $optParams Optional parameters.
    */
-  public function emptyTrash($optParams = array())
+  public function emptyTrash($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('emptyTrash', array($params));
   }
@@ -1782,9 +1782,9 @@ class Google_Service_Drive_Files_Resource extends Google_Service_Resource
    * files. Supported values are 'drive' and 'appDataFolder'.
    * @return Google_Service_Drive_GeneratedIds
    */
-  public function generateIds($optParams = array())
+  public function generateIds($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('generateIds', array($params), "Google_Service_Drive_GeneratedIds");
   }
@@ -1805,7 +1805,7 @@ class Google_Service_Drive_Files_Resource extends Google_Service_Resource
    * function.
    * @return Google_Service_Drive_DriveFile
    */
-  public function get($fileId, $optParams = array())
+  public function get($fileId, $optParams = [])
   {
     $params = array('fileId' => $fileId);
     $params = array_merge($params, $optParams);
@@ -1834,7 +1834,7 @@ class Google_Service_Drive_Files_Resource extends Google_Service_Resource
    * @opt_param string timedTextLanguage The language of the timed text.
    * @return Google_Service_Drive_DriveFile
    */
-  public function insert(Google_Service_Drive_DriveFile $postBody, $optParams = array())
+  public function insert(Google_Service_Drive_DriveFile $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1864,9 +1864,9 @@ class Google_Service_Drive_Files_Resource extends Google_Service_Resource
    * query applies.
    * @return Google_Service_Drive_FileList
    */
-  public function listFiles($optParams = array())
+  public function listFiles($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_Drive_FileList");
   }
@@ -1907,7 +1907,7 @@ class Google_Service_Drive_Files_Resource extends Google_Service_Resource
    * @opt_param string timedTextTrackName The timed text track name.
    * @return Google_Service_Drive_DriveFile
    */
-  public function patch($fileId, Google_Service_Drive_DriveFile $postBody, $optParams = array())
+  public function patch($fileId, Google_Service_Drive_DriveFile $postBody, $optParams = [])
   {
     $params = array('fileId' => $fileId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1921,7 +1921,7 @@ class Google_Service_Drive_Files_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Drive_DriveFile
    */
-  public function touch($fileId, $optParams = array())
+  public function touch($fileId, $optParams = [])
   {
     $params = array('fileId' => $fileId);
     $params = array_merge($params, $optParams);
@@ -1936,7 +1936,7 @@ class Google_Service_Drive_Files_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Drive_DriveFile
    */
-  public function trash($fileId, $optParams = array())
+  public function trash($fileId, $optParams = [])
   {
     $params = array('fileId' => $fileId);
     $params = array_merge($params, $optParams);
@@ -1950,7 +1950,7 @@ class Google_Service_Drive_Files_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Drive_DriveFile
    */
-  public function untrash($fileId, $optParams = array())
+  public function untrash($fileId, $optParams = [])
   {
     $params = array('fileId' => $fileId);
     $params = array_merge($params, $optParams);
@@ -1992,7 +1992,7 @@ class Google_Service_Drive_Files_Resource extends Google_Service_Resource
    * @opt_param string timedTextTrackName The timed text track name.
    * @return Google_Service_Drive_DriveFile
    */
-  public function update($fileId, Google_Service_Drive_DriveFile $postBody, $optParams = array())
+  public function update($fileId, Google_Service_Drive_DriveFile $postBody, $optParams = [])
   {
     $params = array('fileId' => $fileId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2016,7 +2016,7 @@ class Google_Service_Drive_Files_Resource extends Google_Service_Resource
    * function.
    * @return Google_Service_Drive_Channel
    */
-  public function watch($fileId, Google_Service_Drive_Channel $postBody, $optParams = array())
+  public function watch($fileId, Google_Service_Drive_Channel $postBody, $optParams = [])
   {
     $params = array('fileId' => $fileId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2042,7 +2042,7 @@ class Google_Service_Drive_Parents_Resource extends Google_Service_Resource
    * @param string $parentId The ID of the parent.
    * @param array $optParams Optional parameters.
    */
-  public function delete($fileId, $parentId, $optParams = array())
+  public function delete($fileId, $parentId, $optParams = [])
   {
     $params = array('fileId' => $fileId, 'parentId' => $parentId);
     $params = array_merge($params, $optParams);
@@ -2057,7 +2057,7 @@ class Google_Service_Drive_Parents_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Drive_ParentReference
    */
-  public function get($fileId, $parentId, $optParams = array())
+  public function get($fileId, $parentId, $optParams = [])
   {
     $params = array('fileId' => $fileId, 'parentId' => $parentId);
     $params = array_merge($params, $optParams);
@@ -2072,7 +2072,7 @@ class Google_Service_Drive_Parents_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Drive_ParentReference
    */
-  public function insert($fileId, Google_Service_Drive_ParentReference $postBody, $optParams = array())
+  public function insert($fileId, Google_Service_Drive_ParentReference $postBody, $optParams = [])
   {
     $params = array('fileId' => $fileId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2086,7 +2086,7 @@ class Google_Service_Drive_Parents_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Drive_ParentList
    */
-  public function listParents($fileId, $optParams = array())
+  public function listParents($fileId, $optParams = [])
   {
     $params = array('fileId' => $fileId);
     $params = array_merge($params, $optParams);
@@ -2112,7 +2112,7 @@ class Google_Service_Drive_Permissions_Resource extends Google_Service_Resource
    * @param string $permissionId The ID for the permission.
    * @param array $optParams Optional parameters.
    */
-  public function delete($fileId, $permissionId, $optParams = array())
+  public function delete($fileId, $permissionId, $optParams = [])
   {
     $params = array('fileId' => $fileId, 'permissionId' => $permissionId);
     $params = array_merge($params, $optParams);
@@ -2127,7 +2127,7 @@ class Google_Service_Drive_Permissions_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Drive_Permission
    */
-  public function get($fileId, $permissionId, $optParams = array())
+  public function get($fileId, $permissionId, $optParams = [])
   {
     $params = array('fileId' => $fileId, 'permissionId' => $permissionId);
     $params = array_merge($params, $optParams);
@@ -2141,7 +2141,7 @@ class Google_Service_Drive_Permissions_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Drive_PermissionId
    */
-  public function getIdForEmail($email, $optParams = array())
+  public function getIdForEmail($email, $optParams = [])
   {
     $params = array('email' => $email);
     $params = array_merge($params, $optParams);
@@ -2162,7 +2162,7 @@ class Google_Service_Drive_Permissions_Resource extends Google_Service_Resource
    * sent if the role is owner.
    * @return Google_Service_Drive_Permission
    */
-  public function insert($fileId, Google_Service_Drive_Permission $postBody, $optParams = array())
+  public function insert($fileId, Google_Service_Drive_Permission $postBody, $optParams = [])
   {
     $params = array('fileId' => $fileId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2176,7 +2176,7 @@ class Google_Service_Drive_Permissions_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Drive_PermissionList
    */
-  public function listPermissions($fileId, $optParams = array())
+  public function listPermissions($fileId, $optParams = [])
   {
     $params = array('fileId' => $fileId);
     $params = array_merge($params, $optParams);
@@ -2197,7 +2197,7 @@ class Google_Service_Drive_Permissions_Resource extends Google_Service_Resource
    * is not 'owner'.
    * @return Google_Service_Drive_Permission
    */
-  public function patch($fileId, $permissionId, Google_Service_Drive_Permission $postBody, $optParams = array())
+  public function patch($fileId, $permissionId, Google_Service_Drive_Permission $postBody, $optParams = [])
   {
     $params = array('fileId' => $fileId, 'permissionId' => $permissionId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2217,7 +2217,7 @@ class Google_Service_Drive_Permissions_Resource extends Google_Service_Resource
    * is not 'owner'.
    * @return Google_Service_Drive_Permission
    */
-  public function update($fileId, $permissionId, Google_Service_Drive_Permission $postBody, $optParams = array())
+  public function update($fileId, $permissionId, Google_Service_Drive_Permission $postBody, $optParams = [])
   {
     $params = array('fileId' => $fileId, 'permissionId' => $permissionId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2245,7 +2245,7 @@ class Google_Service_Drive_Properties_Resource extends Google_Service_Resource
    *
    * @opt_param string visibility The visibility of the property.
    */
-  public function delete($fileId, $propertyKey, $optParams = array())
+  public function delete($fileId, $propertyKey, $optParams = [])
   {
     $params = array('fileId' => $fileId, 'propertyKey' => $propertyKey);
     $params = array_merge($params, $optParams);
@@ -2262,7 +2262,7 @@ class Google_Service_Drive_Properties_Resource extends Google_Service_Resource
    * @opt_param string visibility The visibility of the property.
    * @return Google_Service_Drive_Property
    */
-  public function get($fileId, $propertyKey, $optParams = array())
+  public function get($fileId, $propertyKey, $optParams = [])
   {
     $params = array('fileId' => $fileId, 'propertyKey' => $propertyKey);
     $params = array_merge($params, $optParams);
@@ -2277,7 +2277,7 @@ class Google_Service_Drive_Properties_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Drive_Property
    */
-  public function insert($fileId, Google_Service_Drive_Property $postBody, $optParams = array())
+  public function insert($fileId, Google_Service_Drive_Property $postBody, $optParams = [])
   {
     $params = array('fileId' => $fileId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2291,7 +2291,7 @@ class Google_Service_Drive_Properties_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Drive_PropertyList
    */
-  public function listProperties($fileId, $optParams = array())
+  public function listProperties($fileId, $optParams = [])
   {
     $params = array('fileId' => $fileId);
     $params = array_merge($params, $optParams);
@@ -2309,7 +2309,7 @@ class Google_Service_Drive_Properties_Resource extends Google_Service_Resource
    * @opt_param string visibility The visibility of the property.
    * @return Google_Service_Drive_Property
    */
-  public function patch($fileId, $propertyKey, Google_Service_Drive_Property $postBody, $optParams = array())
+  public function patch($fileId, $propertyKey, Google_Service_Drive_Property $postBody, $optParams = [])
   {
     $params = array('fileId' => $fileId, 'propertyKey' => $propertyKey, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2327,7 +2327,7 @@ class Google_Service_Drive_Properties_Resource extends Google_Service_Resource
    * @opt_param string visibility The visibility of the property.
    * @return Google_Service_Drive_Property
    */
-  public function update($fileId, $propertyKey, Google_Service_Drive_Property $postBody, $optParams = array())
+  public function update($fileId, $propertyKey, Google_Service_Drive_Property $postBody, $optParams = [])
   {
     $params = array('fileId' => $fileId, 'propertyKey' => $propertyKey, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2359,7 +2359,7 @@ class Google_Service_Drive_Realtime_Resource extends Google_Service_Resource
    * incremented with each change. If this parameter is excluded, the most recent
    * data model will be returned.
    */
-  public function get($fileId, $optParams = array())
+  public function get($fileId, $optParams = [])
   {
     $params = array('fileId' => $fileId);
     $params = array_merge($params, $optParams);
@@ -2380,7 +2380,7 @@ class Google_Service_Drive_Realtime_Resource extends Google_Service_Resource
    * after the provided revision. If not set, the uploaded model replaces the
    * current model on the server.
    */
-  public function update($fileId, $optParams = array())
+  public function update($fileId, $optParams = [])
   {
     $params = array('fileId' => $fileId);
     $params = array_merge($params, $optParams);
@@ -2407,7 +2407,7 @@ class Google_Service_Drive_Replies_Resource extends Google_Service_Resource
    * @param string $replyId The ID of the reply.
    * @param array $optParams Optional parameters.
    */
-  public function delete($fileId, $commentId, $replyId, $optParams = array())
+  public function delete($fileId, $commentId, $replyId, $optParams = [])
   {
     $params = array('fileId' => $fileId, 'commentId' => $commentId, 'replyId' => $replyId);
     $params = array_merge($params, $optParams);
@@ -2426,7 +2426,7 @@ class Google_Service_Drive_Replies_Resource extends Google_Service_Resource
    * deleted reply.
    * @return Google_Service_Drive_CommentReply
    */
-  public function get($fileId, $commentId, $replyId, $optParams = array())
+  public function get($fileId, $commentId, $replyId, $optParams = [])
   {
     $params = array('fileId' => $fileId, 'commentId' => $commentId, 'replyId' => $replyId);
     $params = array_merge($params, $optParams);
@@ -2442,7 +2442,7 @@ class Google_Service_Drive_Replies_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Drive_CommentReply
    */
-  public function insert($fileId, $commentId, Google_Service_Drive_CommentReply $postBody, $optParams = array())
+  public function insert($fileId, $commentId, Google_Service_Drive_CommentReply $postBody, $optParams = [])
   {
     $params = array('fileId' => $fileId, 'commentId' => $commentId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2465,7 +2465,7 @@ class Google_Service_Drive_Replies_Resource extends Google_Service_Resource
    * response, used for paging.
    * @return Google_Service_Drive_CommentReplyList
    */
-  public function listReplies($fileId, $commentId, $optParams = array())
+  public function listReplies($fileId, $commentId, $optParams = [])
   {
     $params = array('fileId' => $fileId, 'commentId' => $commentId);
     $params = array_merge($params, $optParams);
@@ -2483,7 +2483,7 @@ class Google_Service_Drive_Replies_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Drive_CommentReply
    */
-  public function patch($fileId, $commentId, $replyId, Google_Service_Drive_CommentReply $postBody, $optParams = array())
+  public function patch($fileId, $commentId, $replyId, Google_Service_Drive_CommentReply $postBody, $optParams = [])
   {
     $params = array('fileId' => $fileId, 'commentId' => $commentId, 'replyId' => $replyId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2500,7 +2500,7 @@ class Google_Service_Drive_Replies_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Drive_CommentReply
    */
-  public function update($fileId, $commentId, $replyId, Google_Service_Drive_CommentReply $postBody, $optParams = array())
+  public function update($fileId, $commentId, $replyId, Google_Service_Drive_CommentReply $postBody, $optParams = [])
   {
     $params = array('fileId' => $fileId, 'commentId' => $commentId, 'replyId' => $replyId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2526,7 +2526,7 @@ class Google_Service_Drive_Revisions_Resource extends Google_Service_Resource
    * @param string $revisionId The ID of the revision.
    * @param array $optParams Optional parameters.
    */
-  public function delete($fileId, $revisionId, $optParams = array())
+  public function delete($fileId, $revisionId, $optParams = [])
   {
     $params = array('fileId' => $fileId, 'revisionId' => $revisionId);
     $params = array_merge($params, $optParams);
@@ -2541,7 +2541,7 @@ class Google_Service_Drive_Revisions_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Drive_Revision
    */
-  public function get($fileId, $revisionId, $optParams = array())
+  public function get($fileId, $revisionId, $optParams = [])
   {
     $params = array('fileId' => $fileId, 'revisionId' => $revisionId);
     $params = array_merge($params, $optParams);
@@ -2555,7 +2555,7 @@ class Google_Service_Drive_Revisions_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Drive_RevisionList
    */
-  public function listRevisions($fileId, $optParams = array())
+  public function listRevisions($fileId, $optParams = [])
   {
     $params = array('fileId' => $fileId);
     $params = array_merge($params, $optParams);
@@ -2571,7 +2571,7 @@ class Google_Service_Drive_Revisions_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Drive_Revision
    */
-  public function patch($fileId, $revisionId, Google_Service_Drive_Revision $postBody, $optParams = array())
+  public function patch($fileId, $revisionId, Google_Service_Drive_Revision $postBody, $optParams = [])
   {
     $params = array('fileId' => $fileId, 'revisionId' => $revisionId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2587,7 +2587,7 @@ class Google_Service_Drive_Revisions_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Drive_Revision
    */
-  public function update($fileId, $revisionId, Google_Service_Drive_Revision $postBody, $optParams = array())
+  public function update($fileId, $revisionId, Google_Service_Drive_Revision $postBody, $optParams = [])
   {
     $params = array('fileId' => $fileId, 'revisionId' => $revisionId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);

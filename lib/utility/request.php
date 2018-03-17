@@ -6,7 +6,7 @@ class request
 {
 	public $request = [];
 	public $method = 'get';
-	public function __construct($_options = array())
+	public function __construct($_options = [])
 	{
 		if(!isset($_options['method']))
 		{

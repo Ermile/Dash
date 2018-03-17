@@ -33,7 +33,7 @@ class Google_Service_Customsearch extends Google_Service
 
 
   public $cse;
-  
+
 
   /**
    * Constructs the internal representation of the Customsearch service.
@@ -267,7 +267,7 @@ class Google_Service_Customsearch_Cse_Resource extends Google_Service_Resource
    * results from the site named in the as_sitesearch parameter
    * @return Google_Service_Customsearch_Search
    */
-  public function listCse($q, $optParams = array())
+  public function listCse($q, $optParams = [])
   {
     $params = array('q' => $q);
     $params = array_merge($params, $optParams);

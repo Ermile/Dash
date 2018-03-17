@@ -14,8 +14,8 @@
  */
 class Twig_NodeVisitor_SafeAnalysis extends Twig_BaseNodeVisitor
 {
-    protected $data = array();
-    protected $safeVars = array();
+    protected $data = [];
+    protected $safeVars = [];
 
     public function setSafeVars($safeVars)
     {
@@ -91,7 +91,7 @@ class Twig_NodeVisitor_SafeAnalysis extends Twig_BaseNodeVisitor
                 }
                 $this->setSafe($node, $safe);
             } else {
-                $this->setSafe($node, array());
+                $this->setSafe($node, []);
             }
         } elseif ($node instanceof Twig_Node_Expression_Function) {
             // function expression is safe when the function is safe
@@ -101,13 +101,13 @@ class Twig_NodeVisitor_SafeAnalysis extends Twig_BaseNodeVisitor
             if (false !== $function) {
                 $this->setSafe($node, $function->getSafe($args));
             } else {
-                $this->setSafe($node, array());
+                $this->setSafe($node, []);
             }
         } elseif ($node instanceof Twig_Node_Expression_MethodCall) {
             if ($node->getAttribute('safe')) {
                 $this->setSafe($node, array('all'));
             } else {
-                $this->setSafe($node, array());
+                $this->setSafe($node, []);
             }
         } elseif ($node instanceof Twig_Node_Expression_GetAttr && $node->getNode('node') instanceof Twig_Node_Expression_Name) {
             $name = $node->getNode('node')->getAttribute('name');
@@ -115,10 +115,10 @@ class Twig_NodeVisitor_SafeAnalysis extends Twig_BaseNodeVisitor
             if ('_self' == $name || in_array($name, $this->safeVars)) {
                 $this->setSafe($node, array('all'));
             } else {
-                $this->setSafe($node, array());
+                $this->setSafe($node, []);
             }
         } else {
-            $this->setSafe($node, array());
+            $this->setSafe($node, []);
         }
 
         return $node;
@@ -127,7 +127,7 @@ class Twig_NodeVisitor_SafeAnalysis extends Twig_BaseNodeVisitor
     protected function intersectSafe(array $a = null, array $b = null)
     {
         if (null === $a || null === $b) {
-            return array();
+            return [];
         }
 
         if (in_array('all', $a)) {

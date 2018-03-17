@@ -42,7 +42,7 @@ class Google_Service_AdExchangeBuyer extends Google_Service
   public $directDeals;
   public $performanceReport;
   public $pretargetingConfig;
-  
+
 
   /**
    * Constructs the internal representation of the AdExchangeBuyer service.
@@ -76,7 +76,7 @@ class Google_Service_AdExchangeBuyer extends Google_Service
             ),'list' => array(
               'path' => 'accounts',
               'httpMethod' => 'GET',
-              'parameters' => array(),
+              'parameters' => [],
             ),'patch' => array(
               'path' => 'accounts/{id}',
               'httpMethod' => 'PATCH',
@@ -120,7 +120,7 @@ class Google_Service_AdExchangeBuyer extends Google_Service
             ),'list' => array(
               'path' => 'billinginfo',
               'httpMethod' => 'GET',
-              'parameters' => array(),
+              'parameters' => [],
             ),
           )
         )
@@ -204,7 +204,7 @@ class Google_Service_AdExchangeBuyer extends Google_Service
             ),'insert' => array(
               'path' => 'creatives',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),'list' => array(
               'path' => 'creatives',
               'httpMethod' => 'GET',
@@ -255,7 +255,7 @@ class Google_Service_AdExchangeBuyer extends Google_Service
             ),'list' => array(
               'path' => 'directdeals',
               'httpMethod' => 'GET',
-              'parameters' => array(),
+              'parameters' => [],
             ),
           )
         )
@@ -410,7 +410,7 @@ class Google_Service_AdExchangeBuyer_Accounts_Resource extends Google_Service_Re
    * @param array $optParams Optional parameters.
    * @return Google_Service_AdExchangeBuyer_Account
    */
-  public function get($id, $optParams = array())
+  public function get($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -423,9 +423,9 @@ class Google_Service_AdExchangeBuyer_Accounts_Resource extends Google_Service_Re
    * @param array $optParams Optional parameters.
    * @return Google_Service_AdExchangeBuyer_AccountsList
    */
-  public function listAccounts($optParams = array())
+  public function listAccounts($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_AdExchangeBuyer_AccountsList");
   }
@@ -439,7 +439,7 @@ class Google_Service_AdExchangeBuyer_Accounts_Resource extends Google_Service_Re
    * @param array $optParams Optional parameters.
    * @return Google_Service_AdExchangeBuyer_Account
    */
-  public function patch($id, Google_Service_AdExchangeBuyer_Account $postBody, $optParams = array())
+  public function patch($id, Google_Service_AdExchangeBuyer_Account $postBody, $optParams = [])
   {
     $params = array('id' => $id, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -454,7 +454,7 @@ class Google_Service_AdExchangeBuyer_Accounts_Resource extends Google_Service_Re
    * @param array $optParams Optional parameters.
    * @return Google_Service_AdExchangeBuyer_Account
    */
-  public function update($id, Google_Service_AdExchangeBuyer_Account $postBody, $optParams = array())
+  public function update($id, Google_Service_AdExchangeBuyer_Account $postBody, $optParams = [])
   {
     $params = array('id' => $id, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -481,7 +481,7 @@ class Google_Service_AdExchangeBuyer_BillingInfo_Resource extends Google_Service
    * @param array $optParams Optional parameters.
    * @return Google_Service_AdExchangeBuyer_BillingInfo
    */
-  public function get($accountId, $optParams = array())
+  public function get($accountId, $optParams = [])
   {
     $params = array('accountId' => $accountId);
     $params = array_merge($params, $optParams);
@@ -495,9 +495,9 @@ class Google_Service_AdExchangeBuyer_BillingInfo_Resource extends Google_Service
    * @param array $optParams Optional parameters.
    * @return Google_Service_AdExchangeBuyer_BillingInfoList
    */
-  public function listBillingInfo($optParams = array())
+  public function listBillingInfo($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_AdExchangeBuyer_BillingInfoList");
   }
@@ -523,7 +523,7 @@ class Google_Service_AdExchangeBuyer_Budget_Resource extends Google_Service_Reso
    * @param array $optParams Optional parameters.
    * @return Google_Service_AdExchangeBuyer_Budget
    */
-  public function get($accountId, $billingId, $optParams = array())
+  public function get($accountId, $billingId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'billingId' => $billingId);
     $params = array_merge($params, $optParams);
@@ -543,7 +543,7 @@ class Google_Service_AdExchangeBuyer_Budget_Resource extends Google_Service_Reso
    * @param array $optParams Optional parameters.
    * @return Google_Service_AdExchangeBuyer_Budget
    */
-  public function patch($accountId, $billingId, Google_Service_AdExchangeBuyer_Budget $postBody, $optParams = array())
+  public function patch($accountId, $billingId, Google_Service_AdExchangeBuyer_Budget $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'billingId' => $billingId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -563,7 +563,7 @@ class Google_Service_AdExchangeBuyer_Budget_Resource extends Google_Service_Reso
    * @param array $optParams Optional parameters.
    * @return Google_Service_AdExchangeBuyer_Budget
    */
-  public function update($accountId, $billingId, Google_Service_AdExchangeBuyer_Budget $postBody, $optParams = array())
+  public function update($accountId, $billingId, Google_Service_AdExchangeBuyer_Budget $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'billingId' => $billingId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -591,7 +591,7 @@ class Google_Service_AdExchangeBuyer_Creatives_Resource extends Google_Service_R
    * @param array $optParams Optional parameters.
    * @return Google_Service_AdExchangeBuyer_Creative
    */
-  public function get($accountId, $buyerCreativeId, $optParams = array())
+  public function get($accountId, $buyerCreativeId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'buyerCreativeId' => $buyerCreativeId);
     $params = array_merge($params, $optParams);
@@ -605,7 +605,7 @@ class Google_Service_AdExchangeBuyer_Creatives_Resource extends Google_Service_R
    * @param array $optParams Optional parameters.
    * @return Google_Service_AdExchangeBuyer_Creative
    */
-  public function insert(Google_Service_AdExchangeBuyer_Creative $postBody, $optParams = array())
+  public function insert(Google_Service_AdExchangeBuyer_Creative $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -631,9 +631,9 @@ class Google_Service_AdExchangeBuyer_Creatives_Resource extends Google_Service_R
    * ids are returned.
    * @return Google_Service_AdExchangeBuyer_CreativesList
    */
-  public function listCreatives($optParams = array())
+  public function listCreatives($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_AdExchangeBuyer_CreativesList");
   }
@@ -657,7 +657,7 @@ class Google_Service_AdExchangeBuyer_DirectDeals_Resource extends Google_Service
    * @param array $optParams Optional parameters.
    * @return Google_Service_AdExchangeBuyer_DirectDeal
    */
-  public function get($id, $optParams = array())
+  public function get($id, $optParams = [])
   {
     $params = array('id' => $id);
     $params = array_merge($params, $optParams);
@@ -671,9 +671,9 @@ class Google_Service_AdExchangeBuyer_DirectDeals_Resource extends Google_Service
    * @param array $optParams Optional parameters.
    * @return Google_Service_AdExchangeBuyer_DirectDealsList
    */
-  public function listDirectDeals($optParams = array())
+  public function listDirectDeals($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_AdExchangeBuyer_DirectDealsList");
   }
@@ -708,7 +708,7 @@ class Google_Service_AdExchangeBuyer_PerformanceReport_Resource extends Google_S
    * page. If not set, the default is 100. Optional.
    * @return Google_Service_AdExchangeBuyer_PerformanceReportList
    */
-  public function listPerformanceReport($accountId, $endDateTime, $startDateTime, $optParams = array())
+  public function listPerformanceReport($accountId, $endDateTime, $startDateTime, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'endDateTime' => $endDateTime, 'startDateTime' => $startDateTime);
     $params = array_merge($params, $optParams);
@@ -735,7 +735,7 @@ class Google_Service_AdExchangeBuyer_PretargetingConfig_Resource extends Google_
    * @param string $configId The specific id of the configuration to delete.
    * @param array $optParams Optional parameters.
    */
-  public function delete($accountId, $configId, $optParams = array())
+  public function delete($accountId, $configId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'configId' => $configId);
     $params = array_merge($params, $optParams);
@@ -750,7 +750,7 @@ class Google_Service_AdExchangeBuyer_PretargetingConfig_Resource extends Google_
    * @param array $optParams Optional parameters.
    * @return Google_Service_AdExchangeBuyer_PretargetingConfig
    */
-  public function get($accountId, $configId, $optParams = array())
+  public function get($accountId, $configId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'configId' => $configId);
     $params = array_merge($params, $optParams);
@@ -766,7 +766,7 @@ class Google_Service_AdExchangeBuyer_PretargetingConfig_Resource extends Google_
    * @param array $optParams Optional parameters.
    * @return Google_Service_AdExchangeBuyer_PretargetingConfig
    */
-  public function insert($accountId, Google_Service_AdExchangeBuyer_PretargetingConfig $postBody, $optParams = array())
+  public function insert($accountId, Google_Service_AdExchangeBuyer_PretargetingConfig $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -781,7 +781,7 @@ class Google_Service_AdExchangeBuyer_PretargetingConfig_Resource extends Google_
    * @param array $optParams Optional parameters.
    * @return Google_Service_AdExchangeBuyer_PretargetingConfigList
    */
-  public function listPretargetingConfig($accountId, $optParams = array())
+  public function listPretargetingConfig($accountId, $optParams = [])
   {
     $params = array('accountId' => $accountId);
     $params = array_merge($params, $optParams);
@@ -799,7 +799,7 @@ class Google_Service_AdExchangeBuyer_PretargetingConfig_Resource extends Google_
    * @param array $optParams Optional parameters.
    * @return Google_Service_AdExchangeBuyer_PretargetingConfig
    */
-  public function patch($accountId, $configId, Google_Service_AdExchangeBuyer_PretargetingConfig $postBody, $optParams = array())
+  public function patch($accountId, $configId, Google_Service_AdExchangeBuyer_PretargetingConfig $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'configId' => $configId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -816,7 +816,7 @@ class Google_Service_AdExchangeBuyer_PretargetingConfig_Resource extends Google_
    * @param array $optParams Optional parameters.
    * @return Google_Service_AdExchangeBuyer_PretargetingConfig
    */
-  public function update($accountId, $configId, Google_Service_AdExchangeBuyer_PretargetingConfig $postBody, $optParams = array())
+  public function update($accountId, $configId, Google_Service_AdExchangeBuyer_PretargetingConfig $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'configId' => $configId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);

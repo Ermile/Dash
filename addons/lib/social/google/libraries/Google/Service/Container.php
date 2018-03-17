@@ -37,7 +37,7 @@ class Google_Service_Container extends Google_Service
 
   public $projects_zones_clusters;
   public $projects_zones_operations;
-  
+
 
   /**
    * Constructs the internal representation of the Container service.
@@ -255,7 +255,7 @@ class Google_Service_Container_ProjectsZonesClusters_Resource extends Google_Ser
    * @param array $optParams Optional parameters.
    * @return Google_Service_Container_Operation
    */
-  public function create($projectId, $zone, Google_Service_Container_CreateClusterRequest $postBody, $optParams = array())
+  public function create($projectId, $zone, Google_Service_Container_CreateClusterRequest $postBody, $optParams = [])
   {
     $params = array('projectId' => $projectId, 'zone' => $zone, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -276,7 +276,7 @@ class Google_Service_Container_ProjectsZonesClusters_Resource extends Google_Ser
    * @param array $optParams Optional parameters.
    * @return Google_Service_Container_Operation
    */
-  public function delete($projectId, $zone, $clusterId, $optParams = array())
+  public function delete($projectId, $zone, $clusterId, $optParams = [])
   {
     $params = array('projectId' => $projectId, 'zone' => $zone, 'clusterId' => $clusterId);
     $params = array_merge($params, $optParams);
@@ -295,7 +295,7 @@ class Google_Service_Container_ProjectsZonesClusters_Resource extends Google_Ser
    * @param array $optParams Optional parameters.
    * @return Google_Service_Container_Cluster
    */
-  public function get($projectId, $zone, $clusterId, $optParams = array())
+  public function get($projectId, $zone, $clusterId, $optParams = [])
   {
     $params = array('projectId' => $projectId, 'zone' => $zone, 'clusterId' => $clusterId);
     $params = array_merge($params, $optParams);
@@ -315,7 +315,7 @@ class Google_Service_Container_ProjectsZonesClusters_Resource extends Google_Ser
    * @param array $optParams Optional parameters.
    * @return Google_Service_Container_ListClustersResponse
    */
-  public function listProjectsZonesClusters($projectId, $zone, $optParams = array())
+  public function listProjectsZonesClusters($projectId, $zone, $optParams = [])
   {
     $params = array('projectId' => $projectId, 'zone' => $zone);
     $params = array_merge($params, $optParams);
@@ -335,7 +335,7 @@ class Google_Service_Container_ProjectsZonesClusters_Resource extends Google_Ser
    * @param array $optParams Optional parameters.
    * @return Google_Service_Container_Operation
    */
-  public function update($projectId, $zone, $clusterId, Google_Service_Container_UpdateClusterRequest $postBody, $optParams = array())
+  public function update($projectId, $zone, $clusterId, Google_Service_Container_UpdateClusterRequest $postBody, $optParams = [])
   {
     $params = array('projectId' => $projectId, 'zone' => $zone, 'clusterId' => $clusterId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -365,7 +365,7 @@ class Google_Service_Container_ProjectsZonesOperations_Resource extends Google_S
    * @param array $optParams Optional parameters.
    * @return Google_Service_Container_Operation
    */
-  public function get($projectId, $zone, $operationId, $optParams = array())
+  public function get($projectId, $zone, $operationId, $optParams = [])
   {
     $params = array('projectId' => $projectId, 'zone' => $zone, 'operationId' => $operationId);
     $params = array_merge($params, $optParams);
@@ -385,7 +385,7 @@ class Google_Service_Container_ProjectsZonesOperations_Resource extends Google_S
    * @param array $optParams Optional parameters.
    * @return Google_Service_Container_ListOperationsResponse
    */
-  public function listProjectsZonesOperations($projectId, $zone, $optParams = array())
+  public function listProjectsZonesOperations($projectId, $zone, $optParams = [])
   {
     $params = array('projectId' => $projectId, 'zone' => $zone);
     $params = array_merge($params, $optParams);

@@ -44,7 +44,7 @@ class Google_Service_Computeaccounts extends Google_Service
   public $groups;
   public $linux;
   public $users;
-  
+
 
   /**
    * Constructs the internal representation of the Computeaccounts service.
@@ -422,7 +422,7 @@ class Google_Service_Computeaccounts_GlobalAccountsOperations_Resource extends G
    * @param string $operation Name of the operation resource to delete.
    * @param array $optParams Optional parameters.
    */
-  public function delete($project, $operation, $optParams = array())
+  public function delete($project, $operation, $optParams = [])
   {
     $params = array('project' => $project, 'operation' => $operation);
     $params = array_merge($params, $optParams);
@@ -437,7 +437,7 @@ class Google_Service_Computeaccounts_GlobalAccountsOperations_Resource extends G
    * @param array $optParams Optional parameters.
    * @return Google_Service_Computeaccounts_Operation
    */
-  public function get($project, $operation, $optParams = array())
+  public function get($project, $operation, $optParams = [])
   {
     $params = array('project' => $project, 'operation' => $operation);
     $params = array_merge($params, $optParams);
@@ -459,7 +459,7 @@ class Google_Service_Computeaccounts_GlobalAccountsOperations_Resource extends G
    * returned. Maximum value is 500 and default value is 500.
    * @return Google_Service_Computeaccounts_OperationList
    */
-  public function listGlobalAccountsOperations($project, $optParams = array())
+  public function listGlobalAccountsOperations($project, $optParams = [])
   {
     $params = array('project' => $project);
     $params = array_merge($params, $optParams);
@@ -487,7 +487,7 @@ class Google_Service_Computeaccounts_Groups_Resource extends Google_Service_Reso
    * @param array $optParams Optional parameters.
    * @return Google_Service_Computeaccounts_Operation
    */
-  public function addMember($project, $groupName, Google_Service_Computeaccounts_GroupsAddMemberRequest $postBody, $optParams = array())
+  public function addMember($project, $groupName, Google_Service_Computeaccounts_GroupsAddMemberRequest $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'groupName' => $groupName, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -502,7 +502,7 @@ class Google_Service_Computeaccounts_Groups_Resource extends Google_Service_Reso
    * @param array $optParams Optional parameters.
    * @return Google_Service_Computeaccounts_Operation
    */
-  public function delete($project, $groupName, $optParams = array())
+  public function delete($project, $groupName, $optParams = [])
   {
     $params = array('project' => $project, 'groupName' => $groupName);
     $params = array_merge($params, $optParams);
@@ -517,7 +517,7 @@ class Google_Service_Computeaccounts_Groups_Resource extends Google_Service_Reso
    * @param array $optParams Optional parameters.
    * @return Google_Service_Computeaccounts_Group
    */
-  public function get($project, $groupName, $optParams = array())
+  public function get($project, $groupName, $optParams = [])
   {
     $params = array('project' => $project, 'groupName' => $groupName);
     $params = array_merge($params, $optParams);
@@ -533,7 +533,7 @@ class Google_Service_Computeaccounts_Groups_Resource extends Google_Service_Reso
    * @param array $optParams Optional parameters.
    * @return Google_Service_Computeaccounts_Operation
    */
-  public function insert($project, Google_Service_Computeaccounts_Group $postBody, $optParams = array())
+  public function insert($project, Google_Service_Computeaccounts_Group $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -555,7 +555,7 @@ class Google_Service_Computeaccounts_Groups_Resource extends Google_Service_Reso
    * returned. Maximum value is 500 and default value is 500.
    * @return Google_Service_Computeaccounts_GroupList
    */
-  public function listGroups($project, $optParams = array())
+  public function listGroups($project, $optParams = [])
   {
     $params = array('project' => $project);
     $params = array_merge($params, $optParams);
@@ -571,7 +571,7 @@ class Google_Service_Computeaccounts_Groups_Resource extends Google_Service_Reso
    * @param array $optParams Optional parameters.
    * @return Google_Service_Computeaccounts_Operation
    */
-  public function removeMember($project, $groupName, Google_Service_Computeaccounts_GroupsRemoveMemberRequest $postBody, $optParams = array())
+  public function removeMember($project, $groupName, Google_Service_Computeaccounts_GroupsRemoveMemberRequest $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'groupName' => $groupName, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -602,7 +602,7 @@ class Google_Service_Computeaccounts_Linux_Resource extends Google_Service_Resou
    * @param array $optParams Optional parameters.
    * @return Google_Service_Computeaccounts_LinuxGetAuthorizedKeysViewResponse
    */
-  public function getAuthorizedKeysView($project, $zone, $user, $instance, $optParams = array())
+  public function getAuthorizedKeysView($project, $zone, $user, $instance, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'user' => $user, 'instance' => $instance);
     $params = array_merge($params, $optParams);
@@ -629,7 +629,7 @@ class Google_Service_Computeaccounts_Linux_Resource extends Google_Service_Resou
    * immediate refresh of the views.
    * @return Google_Service_Computeaccounts_LinuxGetLinuxAccountViewsResponse
    */
-  public function getLinuxAccountViews($project, $zone, $instance, $optParams = array())
+  public function getLinuxAccountViews($project, $zone, $instance, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'instance' => $instance);
     $params = array_merge($params, $optParams);
@@ -658,7 +658,7 @@ class Google_Service_Computeaccounts_Users_Resource extends Google_Service_Resou
    * @param array $optParams Optional parameters.
    * @return Google_Service_Computeaccounts_Operation
    */
-  public function addPublicKey($project, $user, Google_Service_Computeaccounts_PublicKey $postBody, $optParams = array())
+  public function addPublicKey($project, $user, Google_Service_Computeaccounts_PublicKey $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'user' => $user, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -673,7 +673,7 @@ class Google_Service_Computeaccounts_Users_Resource extends Google_Service_Resou
    * @param array $optParams Optional parameters.
    * @return Google_Service_Computeaccounts_Operation
    */
-  public function delete($project, $user, $optParams = array())
+  public function delete($project, $user, $optParams = [])
   {
     $params = array('project' => $project, 'user' => $user);
     $params = array_merge($params, $optParams);
@@ -688,7 +688,7 @@ class Google_Service_Computeaccounts_Users_Resource extends Google_Service_Resou
    * @param array $optParams Optional parameters.
    * @return Google_Service_Computeaccounts_User
    */
-  public function get($project, $user, $optParams = array())
+  public function get($project, $user, $optParams = [])
   {
     $params = array('project' => $project, 'user' => $user);
     $params = array_merge($params, $optParams);
@@ -704,7 +704,7 @@ class Google_Service_Computeaccounts_Users_Resource extends Google_Service_Resou
    * @param array $optParams Optional parameters.
    * @return Google_Service_Computeaccounts_Operation
    */
-  public function insert($project, Google_Service_Computeaccounts_User $postBody, $optParams = array())
+  public function insert($project, Google_Service_Computeaccounts_User $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -726,7 +726,7 @@ class Google_Service_Computeaccounts_Users_Resource extends Google_Service_Resou
    * returned. Maximum value is 500 and default value is 500.
    * @return Google_Service_Computeaccounts_UserList
    */
-  public function listUsers($project, $optParams = array())
+  public function listUsers($project, $optParams = [])
   {
     $params = array('project' => $project);
     $params = array_merge($params, $optParams);
@@ -744,7 +744,7 @@ class Google_Service_Computeaccounts_Users_Resource extends Google_Service_Resou
    * @param array $optParams Optional parameters.
    * @return Google_Service_Computeaccounts_Operation
    */
-  public function removePublicKey($project, $user, $fingerprint, $optParams = array())
+  public function removePublicKey($project, $user, $fingerprint, $optParams = [])
   {
     $params = array('project' => $project, 'user' => $user, 'fingerprint' => $fingerprint);
     $params = array_merge($params, $optParams);

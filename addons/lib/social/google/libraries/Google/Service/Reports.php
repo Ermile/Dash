@@ -42,7 +42,7 @@ class Google_Service_Reports extends Google_Service
   public $channels;
   public $customerUsageReports;
   public $userUsageReport;
-  
+
 
   /**
    * Constructs the internal representation of the Reports service.
@@ -170,7 +170,7 @@ class Google_Service_Reports extends Google_Service
             'stop' => array(
               'path' => '/admin/reports_v1/channels/stop',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),
           )
         )
@@ -294,7 +294,7 @@ class Google_Service_Reports_Activities_Resource extends Google_Service_Resource
    * be fetched.
    * @return Google_Service_Reports_Activities
    */
-  public function listActivities($userKey, $applicationName, $optParams = array())
+  public function listActivities($userKey, $applicationName, $optParams = [])
   {
     $params = array('userKey' => $userKey, 'applicationName' => $applicationName);
     $params = array_merge($params, $optParams);
@@ -328,7 +328,7 @@ class Google_Service_Reports_Activities_Resource extends Google_Service_Resource
    * be fetched.
    * @return Google_Service_Reports_Channel
    */
-  public function watch($userKey, $applicationName, Google_Service_Reports_Channel $postBody, $optParams = array())
+  public function watch($userKey, $applicationName, Google_Service_Reports_Channel $postBody, $optParams = [])
   {
     $params = array('userKey' => $userKey, 'applicationName' => $applicationName, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -353,7 +353,7 @@ class Google_Service_Reports_Channels_Resource extends Google_Service_Resource
    * @param Google_Channel $postBody
    * @param array $optParams Optional parameters.
    */
-  public function stop(Google_Service_Reports_Channel $postBody, $optParams = array())
+  public function stop(Google_Service_Reports_Channel $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -387,7 +387,7 @@ class Google_Service_Reports_CustomerUsageReports_Resource extends Google_Servic
    * pairs to fetch in csv as app_name1:param_name1, app_name2:param_name2.
    * @return Google_Service_Reports_UsageReports
    */
-  public function get($date, $optParams = array())
+  public function get($date, $optParams = [])
   {
     $params = array('date' => $date);
     $params = array_merge($params, $optParams);
@@ -427,7 +427,7 @@ class Google_Service_Reports_UserUsageReport_Resource extends Google_Service_Res
    * be fetched.
    * @return Google_Service_Reports_UsageReports
    */
-  public function get($userKey, $date, $optParams = array())
+  public function get($userKey, $date, $optParams = [])
   {
     $params = array('userKey' => $userKey, 'date' => $date);
     $params = array_merge($params, $optParams);

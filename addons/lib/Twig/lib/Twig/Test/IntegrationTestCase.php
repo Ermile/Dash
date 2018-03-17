@@ -29,7 +29,7 @@ abstract class Twig_Test_IntegrationTestCase extends TestCase
      */
     protected function getExtensions()
     {
-        return array();
+        return [];
     }
 
     /**
@@ -37,7 +37,7 @@ abstract class Twig_Test_IntegrationTestCase extends TestCase
      */
     protected function getTwigFilters()
     {
-        return array();
+        return [];
     }
 
     /**
@@ -45,7 +45,7 @@ abstract class Twig_Test_IntegrationTestCase extends TestCase
      */
     protected function getTwigFunctions()
     {
-        return array();
+        return [];
     }
 
     /**
@@ -53,7 +53,7 @@ abstract class Twig_Test_IntegrationTestCase extends TestCase
      */
     protected function getTwigTests()
     {
-        return array();
+        return [];
     }
 
     /**
@@ -76,7 +76,7 @@ abstract class Twig_Test_IntegrationTestCase extends TestCase
     public function getTests($name, $legacyTests = false)
     {
         $fixturesDir = realpath($this->getFixturesDir());
-        $tests = array();
+        $tests = [];
 
         foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator($fixturesDir), RecursiveIteratorIterator::LEAVES_ONLY) as $file) {
             if (!preg_match('/\.test$/', $file)) {
@@ -110,7 +110,7 @@ abstract class Twig_Test_IntegrationTestCase extends TestCase
 
         if ($legacyTests && empty($tests)) {
             // add a dummy test to avoid a PHPUnit message
-            return array(array('not', '-', '', array(), '', array()));
+            return array(array('not', '-', '', [], '', []));
         }
 
         return $tests;
@@ -140,7 +140,7 @@ abstract class Twig_Test_IntegrationTestCase extends TestCase
             $config = array_merge(array(
                 'cache' => false,
                 'strict_variables' => true,
-            ), $match[2] ? eval($match[2].';') : array());
+            ), $match[2] ? eval($match[2].';') : []);
             $twig = new Twig_Environment($loader, $config);
             $twig->addGlobal('global', 'global');
             foreach ($this->getExtensions() as $extension) {
@@ -224,7 +224,7 @@ abstract class Twig_Test_IntegrationTestCase extends TestCase
 
     protected static function parseTemplates($test)
     {
-        $templates = array();
+        $templates = [];
         preg_match_all('/--TEMPLATE(?:\((.*?)\))?--(.*?)(?=\-\-TEMPLATE|$)/s', $test, $matches, PREG_SET_ORDER);
         foreach ($matches as $match) {
             $templates[($match[1] ? $match[1] : 'index.twig')] = $match[2];

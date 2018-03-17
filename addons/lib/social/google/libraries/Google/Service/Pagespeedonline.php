@@ -34,7 +34,7 @@ class Google_Service_Pagespeedonline extends Google_Service
 
 
   public $pagespeedapi;
-  
+
 
   /**
    * Constructs the internal representation of the Pagespeedonline service.
@@ -123,7 +123,7 @@ class Google_Service_Pagespeedonline_Pagespeedapi_Resource extends Google_Servic
    * resources should be filtered out before PageSpeed analysis.
    * @return Google_Service_Pagespeedonline_Result
    */
-  public function runpagespeed($url, $optParams = array())
+  public function runpagespeed($url, $optParams = [])
   {
     $params = array('url' => $url);
     $params = array_merge($params, $optParams);

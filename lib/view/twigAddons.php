@@ -9,7 +9,7 @@ trait twigAddons
 	 */
 	public function add_twig_filter($method)
 	{
-		if(!isset($this->twig['filter'])) $this->twig['filter'] = array();
+		if(!isset($this->twig['filter'])) $this->twig['filter'] = [];
 		array_push($this->twig['filter'], $method);
 	}
 
@@ -20,7 +20,7 @@ trait twigAddons
 	 */
 	public function add_twig_function($method)
 	{
-		if(!isset($this->twig['function'])) $this->twig['function'] = array();
+		if(!isset($this->twig['function'])) $this->twig['function'] = [];
 		array_push($this->twig['function'], $method);
 	}
 
@@ -50,7 +50,7 @@ trait twigAddons
 	 */
 	public function twig_macro($name)
 	{
-		if(!isset($this->data->twig_macro)) $this->data->twig_macro = array();
+		if(!isset($this->data->twig_macro)) $this->data->twig_macro = [];
 		if(array_search($name, $this->data->twig_macro) === false) array_push($this->data->twig_macro, $name);
 	}
 

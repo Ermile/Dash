@@ -22,7 +22,7 @@ class Twig_SimpleTest
     protected $callable;
     protected $options;
 
-    public function __construct($name, $callable, array $options = array())
+    public function __construct($name, $callable, array $options = [])
     {
         $this->name = $name;
         $this->callable = $callable;

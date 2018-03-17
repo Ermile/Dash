@@ -9,7 +9,7 @@ class excerpt
 	// unless you decide to make the words unique before passing in
 	private static function _extractLocations($_words, $_fulltext)
 	{
-		$locations = array();
+		$locations = [];
 		if(!is_array($_words))
 		{
 			if(mb_strlen($_words)>7)

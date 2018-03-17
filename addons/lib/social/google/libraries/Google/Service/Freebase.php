@@ -210,9 +210,9 @@ class Google_Service_Freebase extends Google_Service
    * @opt_param int limit Maximum number of candidates to return.
    * @return Google_Service_Freebase_ReconcileGet
    */
-  public function reconcile($optParams = array())
+  public function reconcile($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->base_methods->call('reconcile', array($params), "Google_Service_Freebase_ReconcileGet");
   }
@@ -250,9 +250,9 @@ class Google_Service_Freebase extends Google_Service
    * @opt_param string mql_output The MQL query to run againist the results to
    * extract more data.
    */
-  public function search($optParams = array())
+  public function search($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->base_methods->call('search', array($params));
   }

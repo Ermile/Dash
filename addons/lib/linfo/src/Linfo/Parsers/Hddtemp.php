@@ -2,20 +2,20 @@
 
 /*
  * This file is part of Linfo (c) 2010 Joseph Gillotti.
- * 
+ *
  * Linfo is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * Linfo is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with Linfo. If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
 */
 
 namespace Linfo\Parsers;
@@ -86,7 +86,7 @@ class Hddtemp
         $drives = explode('||', trim($data, '|'));
 
         // Return our stuff here
-        $return = array();
+        $return = [];
 
         // Go through each
         foreach ($drives as $drive) {
@@ -94,7 +94,7 @@ class Hddtemp
             // Extract stuff from it
             list($path, $name, $temp, $unit) = explode('|', trim($drive));
 
-            // Ignore /dev/sg? 
+            // Ignore /dev/sg?
             if (!empty($this->settings['hide']['sg']) && substr($path, 0, 7) == '/dev/sg') {
                 continue;
             }
@@ -127,16 +127,16 @@ class Hddtemp
     {
         $file = '/var/log/syslog';
         if (!is_file($file) || !is_readable($file)) {
-            return array();
+            return [];
         }
-        $devices = array();
+        $devices = [];
         foreach (Common::getLines($file) as $line) {
             if (preg_match('/\w+\s*\d+ \d{2}:\d{2}:\d{2} \w+ hddtemp\[\d+\]: (.+): (.+): (\d+) ([CF])/i', trim($line), $match) == 1) {
                 // Replace current record of dev with updated temp
                 $devices[$match[1]] = array($match[2], $match[3], $match[4]);
             }
         }
-        $return = array();
+        $return = [];
         foreach ($devices as $dev => $stat) {
             $return[] = array(
                 'path' => $dev,

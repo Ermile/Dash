@@ -43,7 +43,7 @@ class Google_Service_Replicapoolupdater extends Google_Service
 
   public $rollingUpdates;
   public $zoneOperations;
-  
+
 
   /**
    * Constructs the internal representation of the Replicapoolupdater service.
@@ -302,7 +302,7 @@ class Google_Service_Replicapoolupdater_RollingUpdates_Resource extends Google_S
    * @param array $optParams Optional parameters.
    * @return Google_Service_Replicapoolupdater_Operation
    */
-  public function cancel($project, $zone, $rollingUpdate, $optParams = array())
+  public function cancel($project, $zone, $rollingUpdate, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'rollingUpdate' => $rollingUpdate);
     $params = array_merge($params, $optParams);
@@ -319,7 +319,7 @@ class Google_Service_Replicapoolupdater_RollingUpdates_Resource extends Google_S
    * @param array $optParams Optional parameters.
    * @return Google_Service_Replicapoolupdater_RollingUpdate
    */
-  public function get($project, $zone, $rollingUpdate, $optParams = array())
+  public function get($project, $zone, $rollingUpdate, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'rollingUpdate' => $rollingUpdate);
     $params = array_merge($params, $optParams);
@@ -336,7 +336,7 @@ class Google_Service_Replicapoolupdater_RollingUpdates_Resource extends Google_S
    * @param array $optParams Optional parameters.
    * @return Google_Service_Replicapoolupdater_Operation
    */
-  public function insert($project, $zone, Google_Service_Replicapoolupdater_RollingUpdate $postBody, $optParams = array())
+  public function insert($project, $zone, Google_Service_Replicapoolupdater_RollingUpdate $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -363,7 +363,7 @@ class Google_Service_Replicapoolupdater_RollingUpdates_Resource extends Google_S
    * of a specific instance group.
    * @return Google_Service_Replicapoolupdater_RollingUpdateList
    */
-  public function listRollingUpdates($project, $zone, $optParams = array())
+  public function listRollingUpdates($project, $zone, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone);
     $params = array_merge($params, $optParams);
@@ -388,7 +388,7 @@ class Google_Service_Replicapoolupdater_RollingUpdates_Resource extends Google_S
    * truncated by maxResults. Used to continue a previous list request.
    * @return Google_Service_Replicapoolupdater_InstanceUpdateList
    */
-  public function listInstanceUpdates($project, $zone, $rollingUpdate, $optParams = array())
+  public function listInstanceUpdates($project, $zone, $rollingUpdate, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'rollingUpdate' => $rollingUpdate);
     $params = array_merge($params, $optParams);
@@ -407,7 +407,7 @@ class Google_Service_Replicapoolupdater_RollingUpdates_Resource extends Google_S
    * @param array $optParams Optional parameters.
    * @return Google_Service_Replicapoolupdater_Operation
    */
-  public function pause($project, $zone, $rollingUpdate, $optParams = array())
+  public function pause($project, $zone, $rollingUpdate, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'rollingUpdate' => $rollingUpdate);
     $params = array_merge($params, $optParams);
@@ -425,7 +425,7 @@ class Google_Service_Replicapoolupdater_RollingUpdates_Resource extends Google_S
    * @param array $optParams Optional parameters.
    * @return Google_Service_Replicapoolupdater_Operation
    */
-  public function resume($project, $zone, $rollingUpdate, $optParams = array())
+  public function resume($project, $zone, $rollingUpdate, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'rollingUpdate' => $rollingUpdate);
     $params = array_merge($params, $optParams);
@@ -444,7 +444,7 @@ class Google_Service_Replicapoolupdater_RollingUpdates_Resource extends Google_S
    * @param array $optParams Optional parameters.
    * @return Google_Service_Replicapoolupdater_Operation
    */
-  public function rollback($project, $zone, $rollingUpdate, $optParams = array())
+  public function rollback($project, $zone, $rollingUpdate, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'rollingUpdate' => $rollingUpdate);
     $params = array_merge($params, $optParams);
@@ -473,7 +473,7 @@ class Google_Service_Replicapoolupdater_ZoneOperations_Resource extends Google_S
    * @param array $optParams Optional parameters.
    * @return Google_Service_Replicapoolupdater_Operation
    */
-  public function get($project, $zone, $operation, $optParams = array())
+  public function get($project, $zone, $operation, $optParams = [])
   {
     $params = array('project' => $project, 'zone' => $zone, 'operation' => $operation);
     $params = array_merge($params, $optParams);

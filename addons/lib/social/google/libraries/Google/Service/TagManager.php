@@ -61,7 +61,7 @@ class Google_Service_TagManager extends Google_Service
   public $accounts_containers_variables;
   public $accounts_containers_versions;
   public $accounts_permissions;
-  
+
 
   /**
    * Constructs the internal representation of the TagManager service.
@@ -95,7 +95,7 @@ class Google_Service_TagManager extends Google_Service
             ),'list' => array(
               'path' => 'accounts',
               'httpMethod' => 'GET',
-              'parameters' => array(),
+              'parameters' => [],
             ),'update' => array(
               'path' => 'accounts/{accountId}',
               'httpMethod' => 'PUT',
@@ -982,7 +982,7 @@ class Google_Service_TagManager_Accounts_Resource extends Google_Service_Resourc
    * @param array $optParams Optional parameters.
    * @return Google_Service_TagManager_Account
    */
-  public function get($accountId, $optParams = array())
+  public function get($accountId, $optParams = [])
   {
     $params = array('accountId' => $accountId);
     $params = array_merge($params, $optParams);
@@ -995,9 +995,9 @@ class Google_Service_TagManager_Accounts_Resource extends Google_Service_Resourc
    * @param array $optParams Optional parameters.
    * @return Google_Service_TagManager_ListAccountsResponse
    */
-  public function listAccounts($optParams = array())
+  public function listAccounts($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_TagManager_ListAccountsResponse");
   }
@@ -1013,7 +1013,7 @@ class Google_Service_TagManager_Accounts_Resource extends Google_Service_Resourc
    * fingerprint of the account in storage.
    * @return Google_Service_TagManager_Account
    */
-  public function update($accountId, Google_Service_TagManager_Account $postBody, $optParams = array())
+  public function update($accountId, Google_Service_TagManager_Account $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1040,7 +1040,7 @@ class Google_Service_TagManager_AccountsContainers_Resource extends Google_Servi
    * @param array $optParams Optional parameters.
    * @return Google_Service_TagManager_Container
    */
-  public function create($accountId, Google_Service_TagManager_Container $postBody, $optParams = array())
+  public function create($accountId, Google_Service_TagManager_Container $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1054,7 +1054,7 @@ class Google_Service_TagManager_AccountsContainers_Resource extends Google_Servi
    * @param string $containerId The GTM Container ID.
    * @param array $optParams Optional parameters.
    */
-  public function delete($accountId, $containerId, $optParams = array())
+  public function delete($accountId, $containerId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'containerId' => $containerId);
     $params = array_merge($params, $optParams);
@@ -1069,7 +1069,7 @@ class Google_Service_TagManager_AccountsContainers_Resource extends Google_Servi
    * @param array $optParams Optional parameters.
    * @return Google_Service_TagManager_Container
    */
-  public function get($accountId, $containerId, $optParams = array())
+  public function get($accountId, $containerId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'containerId' => $containerId);
     $params = array_merge($params, $optParams);
@@ -1084,7 +1084,7 @@ class Google_Service_TagManager_AccountsContainers_Resource extends Google_Servi
    * @param array $optParams Optional parameters.
    * @return Google_Service_TagManager_ListContainersResponse
    */
-  public function listAccountsContainers($accountId, $optParams = array())
+  public function listAccountsContainers($accountId, $optParams = [])
   {
     $params = array('accountId' => $accountId);
     $params = array_merge($params, $optParams);
@@ -1103,7 +1103,7 @@ class Google_Service_TagManager_AccountsContainers_Resource extends Google_Servi
    * fingerprint of the container in storage.
    * @return Google_Service_TagManager_Container
    */
-  public function update($accountId, $containerId, Google_Service_TagManager_Container $postBody, $optParams = array())
+  public function update($accountId, $containerId, Google_Service_TagManager_Container $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'containerId' => $containerId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1131,7 +1131,7 @@ class Google_Service_TagManager_AccountsContainersMacros_Resource extends Google
    * @param array $optParams Optional parameters.
    * @return Google_Service_TagManager_Macro
    */
-  public function create($accountId, $containerId, Google_Service_TagManager_Macro $postBody, $optParams = array())
+  public function create($accountId, $containerId, Google_Service_TagManager_Macro $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'containerId' => $containerId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1146,7 +1146,7 @@ class Google_Service_TagManager_AccountsContainersMacros_Resource extends Google
    * @param string $macroId The GTM Macro ID.
    * @param array $optParams Optional parameters.
    */
-  public function delete($accountId, $containerId, $macroId, $optParams = array())
+  public function delete($accountId, $containerId, $macroId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'containerId' => $containerId, 'macroId' => $macroId);
     $params = array_merge($params, $optParams);
@@ -1162,7 +1162,7 @@ class Google_Service_TagManager_AccountsContainersMacros_Resource extends Google
    * @param array $optParams Optional parameters.
    * @return Google_Service_TagManager_Macro
    */
-  public function get($accountId, $containerId, $macroId, $optParams = array())
+  public function get($accountId, $containerId, $macroId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'containerId' => $containerId, 'macroId' => $macroId);
     $params = array_merge($params, $optParams);
@@ -1177,7 +1177,7 @@ class Google_Service_TagManager_AccountsContainersMacros_Resource extends Google
    * @param array $optParams Optional parameters.
    * @return Google_Service_TagManager_ListMacrosResponse
    */
-  public function listAccountsContainersMacros($accountId, $containerId, $optParams = array())
+  public function listAccountsContainersMacros($accountId, $containerId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'containerId' => $containerId);
     $params = array_merge($params, $optParams);
@@ -1197,7 +1197,7 @@ class Google_Service_TagManager_AccountsContainersMacros_Resource extends Google
    * fingerprint of the macro in storage.
    * @return Google_Service_TagManager_Macro
    */
-  public function update($accountId, $containerId, $macroId, Google_Service_TagManager_Macro $postBody, $optParams = array())
+  public function update($accountId, $containerId, $macroId, Google_Service_TagManager_Macro $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'containerId' => $containerId, 'macroId' => $macroId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1224,7 +1224,7 @@ class Google_Service_TagManager_AccountsContainersRules_Resource extends Google_
    * @param array $optParams Optional parameters.
    * @return Google_Service_TagManager_Rule
    */
-  public function create($accountId, $containerId, Google_Service_TagManager_Rule $postBody, $optParams = array())
+  public function create($accountId, $containerId, Google_Service_TagManager_Rule $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'containerId' => $containerId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1239,7 +1239,7 @@ class Google_Service_TagManager_AccountsContainersRules_Resource extends Google_
    * @param string $ruleId The GTM Rule ID.
    * @param array $optParams Optional parameters.
    */
-  public function delete($accountId, $containerId, $ruleId, $optParams = array())
+  public function delete($accountId, $containerId, $ruleId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'containerId' => $containerId, 'ruleId' => $ruleId);
     $params = array_merge($params, $optParams);
@@ -1255,7 +1255,7 @@ class Google_Service_TagManager_AccountsContainersRules_Resource extends Google_
    * @param array $optParams Optional parameters.
    * @return Google_Service_TagManager_Rule
    */
-  public function get($accountId, $containerId, $ruleId, $optParams = array())
+  public function get($accountId, $containerId, $ruleId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'containerId' => $containerId, 'ruleId' => $ruleId);
     $params = array_merge($params, $optParams);
@@ -1270,7 +1270,7 @@ class Google_Service_TagManager_AccountsContainersRules_Resource extends Google_
    * @param array $optParams Optional parameters.
    * @return Google_Service_TagManager_ListRulesResponse
    */
-  public function listAccountsContainersRules($accountId, $containerId, $optParams = array())
+  public function listAccountsContainersRules($accountId, $containerId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'containerId' => $containerId);
     $params = array_merge($params, $optParams);
@@ -1290,7 +1290,7 @@ class Google_Service_TagManager_AccountsContainersRules_Resource extends Google_
    * fingerprint of the rule in storage.
    * @return Google_Service_TagManager_Rule
    */
-  public function update($accountId, $containerId, $ruleId, Google_Service_TagManager_Rule $postBody, $optParams = array())
+  public function update($accountId, $containerId, $ruleId, Google_Service_TagManager_Rule $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'containerId' => $containerId, 'ruleId' => $ruleId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1317,7 +1317,7 @@ class Google_Service_TagManager_AccountsContainersTags_Resource extends Google_S
    * @param array $optParams Optional parameters.
    * @return Google_Service_TagManager_Tag
    */
-  public function create($accountId, $containerId, Google_Service_TagManager_Tag $postBody, $optParams = array())
+  public function create($accountId, $containerId, Google_Service_TagManager_Tag $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'containerId' => $containerId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1332,7 +1332,7 @@ class Google_Service_TagManager_AccountsContainersTags_Resource extends Google_S
    * @param string $tagId The GTM Tag ID.
    * @param array $optParams Optional parameters.
    */
-  public function delete($accountId, $containerId, $tagId, $optParams = array())
+  public function delete($accountId, $containerId, $tagId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'containerId' => $containerId, 'tagId' => $tagId);
     $params = array_merge($params, $optParams);
@@ -1348,7 +1348,7 @@ class Google_Service_TagManager_AccountsContainersTags_Resource extends Google_S
    * @param array $optParams Optional parameters.
    * @return Google_Service_TagManager_Tag
    */
-  public function get($accountId, $containerId, $tagId, $optParams = array())
+  public function get($accountId, $containerId, $tagId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'containerId' => $containerId, 'tagId' => $tagId);
     $params = array_merge($params, $optParams);
@@ -1363,7 +1363,7 @@ class Google_Service_TagManager_AccountsContainersTags_Resource extends Google_S
    * @param array $optParams Optional parameters.
    * @return Google_Service_TagManager_ListTagsResponse
    */
-  public function listAccountsContainersTags($accountId, $containerId, $optParams = array())
+  public function listAccountsContainersTags($accountId, $containerId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'containerId' => $containerId);
     $params = array_merge($params, $optParams);
@@ -1383,7 +1383,7 @@ class Google_Service_TagManager_AccountsContainersTags_Resource extends Google_S
    * fingerprint of the tag in storage.
    * @return Google_Service_TagManager_Tag
    */
-  public function update($accountId, $containerId, $tagId, Google_Service_TagManager_Tag $postBody, $optParams = array())
+  public function update($accountId, $containerId, $tagId, Google_Service_TagManager_Tag $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'containerId' => $containerId, 'tagId' => $tagId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1410,7 +1410,7 @@ class Google_Service_TagManager_AccountsContainersTriggers_Resource extends Goog
    * @param array $optParams Optional parameters.
    * @return Google_Service_TagManager_Trigger
    */
-  public function create($accountId, $containerId, Google_Service_TagManager_Trigger $postBody, $optParams = array())
+  public function create($accountId, $containerId, Google_Service_TagManager_Trigger $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'containerId' => $containerId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1425,7 +1425,7 @@ class Google_Service_TagManager_AccountsContainersTriggers_Resource extends Goog
    * @param string $triggerId The GTM Trigger ID.
    * @param array $optParams Optional parameters.
    */
-  public function delete($accountId, $containerId, $triggerId, $optParams = array())
+  public function delete($accountId, $containerId, $triggerId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'containerId' => $containerId, 'triggerId' => $triggerId);
     $params = array_merge($params, $optParams);
@@ -1441,7 +1441,7 @@ class Google_Service_TagManager_AccountsContainersTriggers_Resource extends Goog
    * @param array $optParams Optional parameters.
    * @return Google_Service_TagManager_Trigger
    */
-  public function get($accountId, $containerId, $triggerId, $optParams = array())
+  public function get($accountId, $containerId, $triggerId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'containerId' => $containerId, 'triggerId' => $triggerId);
     $params = array_merge($params, $optParams);
@@ -1457,7 +1457,7 @@ class Google_Service_TagManager_AccountsContainersTriggers_Resource extends Goog
    * @param array $optParams Optional parameters.
    * @return Google_Service_TagManager_ListTriggersResponse
    */
-  public function listAccountsContainersTriggers($accountId, $containerId, $optParams = array())
+  public function listAccountsContainersTriggers($accountId, $containerId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'containerId' => $containerId);
     $params = array_merge($params, $optParams);
@@ -1477,7 +1477,7 @@ class Google_Service_TagManager_AccountsContainersTriggers_Resource extends Goog
    * fingerprint of the trigger in storage.
    * @return Google_Service_TagManager_Trigger
    */
-  public function update($accountId, $containerId, $triggerId, Google_Service_TagManager_Trigger $postBody, $optParams = array())
+  public function update($accountId, $containerId, $triggerId, Google_Service_TagManager_Trigger $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'containerId' => $containerId, 'triggerId' => $triggerId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1504,7 +1504,7 @@ class Google_Service_TagManager_AccountsContainersVariables_Resource extends Goo
    * @param array $optParams Optional parameters.
    * @return Google_Service_TagManager_Variable
    */
-  public function create($accountId, $containerId, Google_Service_TagManager_Variable $postBody, $optParams = array())
+  public function create($accountId, $containerId, Google_Service_TagManager_Variable $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'containerId' => $containerId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1519,7 +1519,7 @@ class Google_Service_TagManager_AccountsContainersVariables_Resource extends Goo
    * @param string $variableId The GTM Variable ID.
    * @param array $optParams Optional parameters.
    */
-  public function delete($accountId, $containerId, $variableId, $optParams = array())
+  public function delete($accountId, $containerId, $variableId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'containerId' => $containerId, 'variableId' => $variableId);
     $params = array_merge($params, $optParams);
@@ -1535,7 +1535,7 @@ class Google_Service_TagManager_AccountsContainersVariables_Resource extends Goo
    * @param array $optParams Optional parameters.
    * @return Google_Service_TagManager_Variable
    */
-  public function get($accountId, $containerId, $variableId, $optParams = array())
+  public function get($accountId, $containerId, $variableId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'containerId' => $containerId, 'variableId' => $variableId);
     $params = array_merge($params, $optParams);
@@ -1551,7 +1551,7 @@ class Google_Service_TagManager_AccountsContainersVariables_Resource extends Goo
    * @param array $optParams Optional parameters.
    * @return Google_Service_TagManager_ListVariablesResponse
    */
-  public function listAccountsContainersVariables($accountId, $containerId, $optParams = array())
+  public function listAccountsContainersVariables($accountId, $containerId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'containerId' => $containerId);
     $params = array_merge($params, $optParams);
@@ -1571,7 +1571,7 @@ class Google_Service_TagManager_AccountsContainersVariables_Resource extends Goo
    * fingerprint of the variable in storage.
    * @return Google_Service_TagManager_Variable
    */
-  public function update($accountId, $containerId, $variableId, Google_Service_TagManager_Variable $postBody, $optParams = array())
+  public function update($accountId, $containerId, $variableId, Google_Service_TagManager_Variable $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'containerId' => $containerId, 'variableId' => $variableId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1598,7 +1598,7 @@ class Google_Service_TagManager_AccountsContainersVersions_Resource extends Goog
    * @param array $optParams Optional parameters.
    * @return Google_Service_TagManager_CreateContainerVersionResponse
    */
-  public function create($accountId, $containerId, Google_Service_TagManager_CreateContainerVersionRequestVersionOptions $postBody, $optParams = array())
+  public function create($accountId, $containerId, Google_Service_TagManager_CreateContainerVersionRequestVersionOptions $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'containerId' => $containerId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1613,7 +1613,7 @@ class Google_Service_TagManager_AccountsContainersVersions_Resource extends Goog
    * @param string $containerVersionId The GTM Container Version ID.
    * @param array $optParams Optional parameters.
    */
-  public function delete($accountId, $containerId, $containerVersionId, $optParams = array())
+  public function delete($accountId, $containerId, $containerVersionId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'containerId' => $containerId, 'containerVersionId' => $containerVersionId);
     $params = array_merge($params, $optParams);
@@ -1630,7 +1630,7 @@ class Google_Service_TagManager_AccountsContainersVersions_Resource extends Goog
    * @param array $optParams Optional parameters.
    * @return Google_Service_TagManager_ContainerVersion
    */
-  public function get($accountId, $containerId, $containerVersionId, $optParams = array())
+  public function get($accountId, $containerId, $containerVersionId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'containerId' => $containerId, 'containerVersionId' => $containerVersionId);
     $params = array_merge($params, $optParams);
@@ -1648,7 +1648,7 @@ class Google_Service_TagManager_AccountsContainersVersions_Resource extends Goog
    * @opt_param bool headers Retrieve headers only when true.
    * @return Google_Service_TagManager_ListContainerVersionsResponse
    */
-  public function listAccountsContainersVersions($accountId, $containerId, $optParams = array())
+  public function listAccountsContainersVersions($accountId, $containerId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'containerId' => $containerId);
     $params = array_merge($params, $optParams);
@@ -1667,7 +1667,7 @@ class Google_Service_TagManager_AccountsContainersVersions_Resource extends Goog
    * fingerprint of the container version in storage.
    * @return Google_Service_TagManager_PublishContainerVersionResponse
    */
-  public function publish($accountId, $containerId, $containerVersionId, $optParams = array())
+  public function publish($accountId, $containerId, $containerVersionId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'containerId' => $containerId, 'containerVersionId' => $containerVersionId);
     $params = array_merge($params, $optParams);
@@ -1686,7 +1686,7 @@ class Google_Service_TagManager_AccountsContainersVersions_Resource extends Goog
    * @param array $optParams Optional parameters.
    * @return Google_Service_TagManager_ContainerVersion
    */
-  public function restore($accountId, $containerId, $containerVersionId, $optParams = array())
+  public function restore($accountId, $containerId, $containerVersionId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'containerId' => $containerId, 'containerVersionId' => $containerVersionId);
     $params = array_merge($params, $optParams);
@@ -1702,7 +1702,7 @@ class Google_Service_TagManager_AccountsContainersVersions_Resource extends Goog
    * @param array $optParams Optional parameters.
    * @return Google_Service_TagManager_ContainerVersion
    */
-  public function undelete($accountId, $containerId, $containerVersionId, $optParams = array())
+  public function undelete($accountId, $containerId, $containerVersionId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'containerId' => $containerId, 'containerVersionId' => $containerVersionId);
     $params = array_merge($params, $optParams);
@@ -1722,7 +1722,7 @@ class Google_Service_TagManager_AccountsContainersVersions_Resource extends Goog
    * fingerprint of the container version in storage.
    * @return Google_Service_TagManager_ContainerVersion
    */
-  public function update($accountId, $containerId, $containerVersionId, Google_Service_TagManager_ContainerVersion $postBody, $optParams = array())
+  public function update($accountId, $containerId, $containerVersionId, Google_Service_TagManager_ContainerVersion $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'containerId' => $containerId, 'containerVersionId' => $containerVersionId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1748,7 +1748,7 @@ class Google_Service_TagManager_AccountsPermissions_Resource extends Google_Serv
    * @param array $optParams Optional parameters.
    * @return Google_Service_TagManager_UserAccess
    */
-  public function create($accountId, Google_Service_TagManager_UserAccess $postBody, $optParams = array())
+  public function create($accountId, Google_Service_TagManager_UserAccess $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1763,7 +1763,7 @@ class Google_Service_TagManager_AccountsPermissions_Resource extends Google_Serv
    * @param string $permissionId The GTM User ID.
    * @param array $optParams Optional parameters.
    */
-  public function delete($accountId, $permissionId, $optParams = array())
+  public function delete($accountId, $permissionId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'permissionId' => $permissionId);
     $params = array_merge($params, $optParams);
@@ -1778,7 +1778,7 @@ class Google_Service_TagManager_AccountsPermissions_Resource extends Google_Serv
    * @param array $optParams Optional parameters.
    * @return Google_Service_TagManager_UserAccess
    */
-  public function get($accountId, $permissionId, $optParams = array())
+  public function get($accountId, $permissionId, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'permissionId' => $permissionId);
     $params = array_merge($params, $optParams);
@@ -1795,7 +1795,7 @@ class Google_Service_TagManager_AccountsPermissions_Resource extends Google_Serv
    * @param array $optParams Optional parameters.
    * @return Google_Service_TagManager_ListAccountUsersResponse
    */
-  public function listAccountsPermissions($accountId, $optParams = array())
+  public function listAccountsPermissions($accountId, $optParams = [])
   {
     $params = array('accountId' => $accountId);
     $params = array_merge($params, $optParams);
@@ -1811,7 +1811,7 @@ class Google_Service_TagManager_AccountsPermissions_Resource extends Google_Serv
    * @param array $optParams Optional parameters.
    * @return Google_Service_TagManager_UserAccess
    */
-  public function update($accountId, $permissionId, Google_Service_TagManager_UserAccess $postBody, $optParams = array())
+  public function update($accountId, $permissionId, Google_Service_TagManager_UserAccess $postBody, $optParams = [])
   {
     $params = array('accountId' => $accountId, 'permissionId' => $permissionId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);

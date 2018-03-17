@@ -45,7 +45,7 @@ class Google_Service_Blogger extends Google_Service
   public $postUserInfos;
   public $posts;
   public $users;
-  
+
 
   /**
    * Constructs the internal representation of the Blogger service.
@@ -954,7 +954,7 @@ class Google_Service_Blogger_BlogUserInfos_Resource extends Google_Service_Resou
    * blog.
    * @return Google_Service_Blogger_BlogUserInfo
    */
-  public function get($userId, $blogId, $optParams = array())
+  public function get($userId, $blogId, $optParams = [])
   {
     $params = array('userId' => $userId, 'blogId' => $blogId);
     $params = array_merge($params, $optParams);
@@ -985,7 +985,7 @@ class Google_Service_Blogger_Blogs_Resource extends Google_Service_Resource
    * some fields require elevated access.
    * @return Google_Service_Blogger_Blog
    */
-  public function get($blogId, $optParams = array())
+  public function get($blogId, $optParams = [])
   {
     $params = array('blogId' => $blogId);
     $params = array_merge($params, $optParams);
@@ -1002,7 +1002,7 @@ class Google_Service_Blogger_Blogs_Resource extends Google_Service_Resource
    * some fields require elevated access.
    * @return Google_Service_Blogger_Blog
    */
-  public function getByUrl($url, $optParams = array())
+  public function getByUrl($url, $optParams = [])
   {
     $params = array('url' => $url);
     $params = array_merge($params, $optParams);
@@ -1027,7 +1027,7 @@ class Google_Service_Blogger_Blogs_Resource extends Google_Service_Resource
    * some fields require elevated access.
    * @return Google_Service_Blogger_BlogList
    */
-  public function listByUser($userId, $optParams = array())
+  public function listByUser($userId, $optParams = [])
   {
     $params = array('userId' => $userId);
     $params = array_merge($params, $optParams);
@@ -1055,7 +1055,7 @@ class Google_Service_Blogger_Comments_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Blogger_Comment
    */
-  public function approve($blogId, $postId, $commentId, $optParams = array())
+  public function approve($blogId, $postId, $commentId, $optParams = [])
   {
     $params = array('blogId' => $blogId, 'postId' => $postId, 'commentId' => $commentId);
     $params = array_merge($params, $optParams);
@@ -1070,7 +1070,7 @@ class Google_Service_Blogger_Comments_Resource extends Google_Service_Resource
    * @param string $commentId The ID of the comment to delete.
    * @param array $optParams Optional parameters.
    */
-  public function delete($blogId, $postId, $commentId, $optParams = array())
+  public function delete($blogId, $postId, $commentId, $optParams = [])
   {
     $params = array('blogId' => $blogId, 'postId' => $postId, 'commentId' => $commentId);
     $params = array_merge($params, $optParams);
@@ -1091,7 +1091,7 @@ class Google_Service_Blogger_Comments_Resource extends Google_Service_Resource
    * comments that are pending moderation.
    * @return Google_Service_Blogger_Comment
    */
-  public function get($blogId, $postId, $commentId, $optParams = array())
+  public function get($blogId, $postId, $commentId, $optParams = [])
   {
     $params = array('blogId' => $blogId, 'postId' => $postId, 'commentId' => $commentId);
     $params = array_merge($params, $optParams);
@@ -1119,7 +1119,7 @@ class Google_Service_Blogger_Comments_Resource extends Google_Service_Resource
    * Note that some fields require elevated access.
    * @return Google_Service_Blogger_CommentList
    */
-  public function listComments($blogId, $postId, $optParams = array())
+  public function listComments($blogId, $postId, $optParams = [])
   {
     $params = array('blogId' => $blogId, 'postId' => $postId);
     $params = array_merge($params, $optParams);
@@ -1145,7 +1145,7 @@ class Google_Service_Blogger_Comments_Resource extends Google_Service_Resource
    * included.
    * @return Google_Service_Blogger_CommentList
    */
-  public function listByBlog($blogId, $optParams = array())
+  public function listByBlog($blogId, $optParams = [])
   {
     $params = array('blogId' => $blogId);
     $params = array_merge($params, $optParams);
@@ -1161,7 +1161,7 @@ class Google_Service_Blogger_Comments_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Blogger_Comment
    */
-  public function markAsSpam($blogId, $postId, $commentId, $optParams = array())
+  public function markAsSpam($blogId, $postId, $commentId, $optParams = [])
   {
     $params = array('blogId' => $blogId, 'postId' => $postId, 'commentId' => $commentId);
     $params = array_merge($params, $optParams);
@@ -1177,7 +1177,7 @@ class Google_Service_Blogger_Comments_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Blogger_Comment
    */
-  public function removeContent($blogId, $postId, $commentId, $optParams = array())
+  public function removeContent($blogId, $postId, $commentId, $optParams = [])
   {
     $params = array('blogId' => $blogId, 'postId' => $postId, 'commentId' => $commentId);
     $params = array_merge($params, $optParams);
@@ -1205,7 +1205,7 @@ class Google_Service_Blogger_PageViews_Resource extends Google_Service_Resource
    * @opt_param string range
    * @return Google_Service_Blogger_Pageviews
    */
-  public function get($blogId, $optParams = array())
+  public function get($blogId, $optParams = [])
   {
     $params = array('blogId' => $blogId);
     $params = array_merge($params, $optParams);
@@ -1231,7 +1231,7 @@ class Google_Service_Blogger_Pages_Resource extends Google_Service_Resource
    * @param string $pageId The ID of the Page.
    * @param array $optParams Optional parameters.
    */
-  public function delete($blogId, $pageId, $optParams = array())
+  public function delete($blogId, $pageId, $optParams = [])
   {
     $params = array('blogId' => $blogId, 'pageId' => $pageId);
     $params = array_merge($params, $optParams);
@@ -1248,7 +1248,7 @@ class Google_Service_Blogger_Pages_Resource extends Google_Service_Resource
    * @opt_param string view
    * @return Google_Service_Blogger_Page
    */
-  public function get($blogId, $pageId, $optParams = array())
+  public function get($blogId, $pageId, $optParams = [])
   {
     $params = array('blogId' => $blogId, 'pageId' => $pageId);
     $params = array_merge($params, $optParams);
@@ -1266,7 +1266,7 @@ class Google_Service_Blogger_Pages_Resource extends Google_Service_Resource
    * false).
    * @return Google_Service_Blogger_Page
    */
-  public function insert($blogId, Google_Service_Blogger_Page $postBody, $optParams = array())
+  public function insert($blogId, Google_Service_Blogger_Page $postBody, $optParams = [])
   {
     $params = array('blogId' => $blogId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1288,7 +1288,7 @@ class Google_Service_Blogger_Pages_Resource extends Google_Service_Resource
    * Note that some fields require elevated access.
    * @return Google_Service_Blogger_PageList
    */
-  public function listPages($blogId, $optParams = array())
+  public function listPages($blogId, $optParams = [])
   {
     $params = array('blogId' => $blogId);
     $params = array_merge($params, $optParams);
@@ -1309,7 +1309,7 @@ class Google_Service_Blogger_Pages_Resource extends Google_Service_Resource
    * page is updated (default: false).
    * @return Google_Service_Blogger_Page
    */
-  public function patch($blogId, $pageId, Google_Service_Blogger_Page $postBody, $optParams = array())
+  public function patch($blogId, $pageId, Google_Service_Blogger_Page $postBody, $optParams = [])
   {
     $params = array('blogId' => $blogId, 'pageId' => $pageId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1324,7 +1324,7 @@ class Google_Service_Blogger_Pages_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Blogger_Page
    */
-  public function publish($blogId, $pageId, $optParams = array())
+  public function publish($blogId, $pageId, $optParams = [])
   {
     $params = array('blogId' => $blogId, 'pageId' => $pageId);
     $params = array_merge($params, $optParams);
@@ -1339,7 +1339,7 @@ class Google_Service_Blogger_Pages_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Blogger_Page
    */
-  public function revert($blogId, $pageId, $optParams = array())
+  public function revert($blogId, $pageId, $optParams = [])
   {
     $params = array('blogId' => $blogId, 'pageId' => $pageId);
     $params = array_merge($params, $optParams);
@@ -1360,7 +1360,7 @@ class Google_Service_Blogger_Pages_Resource extends Google_Service_Resource
    * page is updated (default: false).
    * @return Google_Service_Blogger_Page
    */
-  public function update($blogId, $pageId, Google_Service_Blogger_Page $postBody, $optParams = array())
+  public function update($blogId, $pageId, Google_Service_Blogger_Page $postBody, $optParams = [])
   {
     $params = array('blogId' => $blogId, 'pageId' => $pageId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1395,7 +1395,7 @@ class Google_Service_Blogger_PostUserInfos_Resource extends Google_Service_Resou
    * post.
    * @return Google_Service_Blogger_PostUserInfo
    */
-  public function get($userId, $blogId, $postId, $optParams = array())
+  public function get($userId, $blogId, $postId, $optParams = [])
   {
     $params = array('userId' => $userId, 'blogId' => $blogId, 'postId' => $postId);
     $params = array_merge($params, $optParams);
@@ -1429,7 +1429,7 @@ class Google_Service_Blogger_PostUserInfos_Resource extends Google_Service_Resou
    * Note that some fields require elevated access.
    * @return Google_Service_Blogger_PostUserInfosList
    */
-  public function listPostUserInfos($userId, $blogId, $optParams = array())
+  public function listPostUserInfos($userId, $blogId, $optParams = [])
   {
     $params = array('userId' => $userId, 'blogId' => $blogId);
     $params = array_merge($params, $optParams);
@@ -1455,7 +1455,7 @@ class Google_Service_Blogger_Posts_Resource extends Google_Service_Resource
    * @param string $postId The ID of the Post.
    * @param array $optParams Optional parameters.
    */
-  public function delete($blogId, $postId, $optParams = array())
+  public function delete($blogId, $postId, $optParams = [])
   {
     $params = array('blogId' => $blogId, 'postId' => $postId);
     $params = array_merge($params, $optParams);
@@ -1480,7 +1480,7 @@ class Google_Service_Blogger_Posts_Resource extends Google_Service_Resource
    * Note that some fields require elevated access.
    * @return Google_Service_Blogger_Post
    */
-  public function get($blogId, $postId, $optParams = array())
+  public function get($blogId, $postId, $optParams = [])
   {
     $params = array('blogId' => $blogId, 'postId' => $postId);
     $params = array_merge($params, $optParams);
@@ -1500,7 +1500,7 @@ class Google_Service_Blogger_Posts_Resource extends Google_Service_Resource
    * Note that some fields require elevated access.
    * @return Google_Service_Blogger_Post
    */
-  public function getByPath($blogId, $path, $optParams = array())
+  public function getByPath($blogId, $path, $optParams = [])
   {
     $params = array('blogId' => $blogId, 'path' => $path);
     $params = array_merge($params, $optParams);
@@ -1522,7 +1522,7 @@ class Google_Service_Blogger_Posts_Resource extends Google_Service_Resource
    * with the result (default: true).
    * @return Google_Service_Blogger_Post
    */
-  public function insert($blogId, Google_Service_Blogger_Post $postBody, $optParams = array())
+  public function insert($blogId, Google_Service_Blogger_Post $postBody, $optParams = [])
   {
     $params = array('blogId' => $blogId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1553,7 +1553,7 @@ class Google_Service_Blogger_Posts_Resource extends Google_Service_Resource
    * Note that some fields require escalated access.
    * @return Google_Service_Blogger_PostList
    */
-  public function listPosts($blogId, $optParams = array())
+  public function listPosts($blogId, $optParams = [])
   {
     $params = array('blogId' => $blogId);
     $params = array_merge($params, $optParams);
@@ -1580,7 +1580,7 @@ class Google_Service_Blogger_Posts_Resource extends Google_Service_Resource
    * included in the returned result (default: false).
    * @return Google_Service_Blogger_Post
    */
-  public function patch($blogId, $postId, Google_Service_Blogger_Post $postBody, $optParams = array())
+  public function patch($blogId, $postId, Google_Service_Blogger_Post $postBody, $optParams = [])
   {
     $params = array('blogId' => $blogId, 'postId' => $postId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1602,7 +1602,7 @@ class Google_Service_Blogger_Posts_Resource extends Google_Service_Resource
    * published.
    * @return Google_Service_Blogger_Post
    */
-  public function publish($blogId, $postId, $optParams = array())
+  public function publish($blogId, $postId, $optParams = [])
   {
     $params = array('blogId' => $blogId, 'postId' => $postId);
     $params = array_merge($params, $optParams);
@@ -1617,7 +1617,7 @@ class Google_Service_Blogger_Posts_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Blogger_Post
    */
-  public function revert($blogId, $postId, $optParams = array())
+  public function revert($blogId, $postId, $optParams = [])
   {
     $params = array('blogId' => $blogId, 'postId' => $postId);
     $params = array_merge($params, $optParams);
@@ -1637,7 +1637,7 @@ class Google_Service_Blogger_Posts_Resource extends Google_Service_Resource
    * required, to help minimize traffic.
    * @return Google_Service_Blogger_PostList
    */
-  public function search($blogId, $q, $optParams = array())
+  public function search($blogId, $q, $optParams = [])
   {
     $params = array('blogId' => $blogId, 'q' => $q);
     $params = array_merge($params, $optParams);
@@ -1664,7 +1664,7 @@ class Google_Service_Blogger_Posts_Resource extends Google_Service_Resource
    * included in the returned result (default: false).
    * @return Google_Service_Blogger_Post
    */
-  public function update($blogId, $postId, Google_Service_Blogger_Post $postBody, $optParams = array())
+  public function update($blogId, $postId, Google_Service_Blogger_Post $postBody, $optParams = [])
   {
     $params = array('blogId' => $blogId, 'postId' => $postId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1690,7 +1690,7 @@ class Google_Service_Blogger_Users_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Blogger_User
    */
-  public function get($userId, $optParams = array())
+  public function get($userId, $optParams = [])
   {
     $params = array('userId' => $userId);
     $params = array_merge($params, $optParams);

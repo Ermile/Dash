@@ -59,10 +59,10 @@ class Google_Client
 
   /** @var array $scopes */
   // Scopes requested by the client
-  protected $requestedScopes = array();
+  protected $requestedScopes = [];
 
   // definitions of services that are discovered.
-  protected $services = array();
+  protected $services = [];
 
   // Used to track authenticated state, can't discover services after doing authenticate()
   private $authenticated = false;
@@ -127,7 +127,7 @@ class Google_Client
     $this->authenticated = true;
     return $this->getAuth()->authenticate($code, $crossClient);
   }
-  
+
   /**
    * Loads a service account key and parameters from a JSON
    * file from the Google Developer Console. Uses that and the
@@ -515,7 +515,7 @@ class Google_Client
    */
   public function setScopes($scopes)
   {
-    $this->requestedScopes = array();
+    $this->requestedScopes = [];
     $this->addScope($scopes);
   }
 

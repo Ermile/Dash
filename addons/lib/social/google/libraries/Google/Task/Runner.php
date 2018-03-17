@@ -86,7 +86,7 @@ class Google_Task_Runner
       Google_Client $client,
       $name,
       $action,
-      array $arguments = array()
+      array $arguments = []
   ) {
     $config = (array) $client->getClassConfig('Google_Task_Runner');
 

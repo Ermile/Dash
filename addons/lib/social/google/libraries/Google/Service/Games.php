@@ -55,7 +55,7 @@ class Google_Service_Games extends Google_Service
   public $scores;
   public $snapshots;
   public $turnBasedMatches;
-  
+
 
   /**
    * Constructs the internal representation of the Games service.
@@ -186,7 +186,7 @@ class Google_Service_Games extends Google_Service
             ),'updateMultiple' => array(
               'path' => 'achievements/updateMultiple',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),
           )
         )
@@ -218,7 +218,7 @@ class Google_Service_Games extends Google_Service
             ),'played' => array(
               'path' => 'applications/played',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),
           )
         )
@@ -326,7 +326,7 @@ class Google_Service_Games extends Google_Service
             'getMetagameConfig' => array(
               'path' => 'metagameConfig',
               'httpMethod' => 'GET',
-              'parameters' => array(),
+              'parameters' => [],
             ),'listCategoriesByPlayer' => array(
               'path' => 'players/{playerId}/categories/{collection}',
               'httpMethod' => 'GET',
@@ -413,11 +413,11 @@ class Google_Service_Games extends Google_Service
             'remove' => array(
               'path' => 'pushtokens/remove',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),'update' => array(
               'path' => 'pushtokens',
               'httpMethod' => 'PUT',
-              'parameters' => array(),
+              'parameters' => [],
             ),
           )
         )
@@ -1077,9 +1077,9 @@ class Google_Service_Games_AchievementDefinitions_Resource extends Google_Servic
    * by this method.
    * @return Google_Service_Games_AchievementDefinitionsListResponse
    */
-  public function listAchievementDefinitions($optParams = array())
+  public function listAchievementDefinitions($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_Games_AchievementDefinitionsListResponse");
   }
@@ -1109,7 +1109,7 @@ class Google_Service_Games_Achievements_Resource extends Google_Service_Resource
    * request is handled correctly across retries.
    * @return Google_Service_Games_AchievementIncrementResponse
    */
-  public function increment($achievementId, $stepsToIncrement, $optParams = array())
+  public function increment($achievementId, $stepsToIncrement, $optParams = [])
   {
     $params = array('achievementId' => $achievementId, 'stepsToIncrement' => $stepsToIncrement);
     $params = array_merge($params, $optParams);
@@ -1135,7 +1135,7 @@ class Google_Service_Games_Achievements_Resource extends Google_Service_Resource
    * by this method.
    * @return Google_Service_Games_PlayerAchievementListResponse
    */
-  public function listAchievements($playerId, $optParams = array())
+  public function listAchievements($playerId, $optParams = [])
   {
     $params = array('playerId' => $playerId);
     $params = array_merge($params, $optParams);
@@ -1150,7 +1150,7 @@ class Google_Service_Games_Achievements_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Games_AchievementRevealResponse
    */
-  public function reveal($achievementId, $optParams = array())
+  public function reveal($achievementId, $optParams = [])
   {
     $params = array('achievementId' => $achievementId);
     $params = array_merge($params, $optParams);
@@ -1168,7 +1168,7 @@ class Google_Service_Games_Achievements_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Games_AchievementSetStepsAtLeastResponse
    */
-  public function setStepsAtLeast($achievementId, $steps, $optParams = array())
+  public function setStepsAtLeast($achievementId, $steps, $optParams = [])
   {
     $params = array('achievementId' => $achievementId, 'steps' => $steps);
     $params = array_merge($params, $optParams);
@@ -1183,7 +1183,7 @@ class Google_Service_Games_Achievements_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Games_AchievementUnlockResponse
    */
-  public function unlock($achievementId, $optParams = array())
+  public function unlock($achievementId, $optParams = [])
   {
     $params = array('achievementId' => $achievementId);
     $params = array_merge($params, $optParams);
@@ -1198,7 +1198,7 @@ class Google_Service_Games_Achievements_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Games_AchievementUpdateMultipleResponse
    */
-  public function updateMultiple(Google_Service_Games_AchievementUpdateMultipleRequest $postBody, $optParams = array())
+  public function updateMultiple(Google_Service_Games_AchievementUpdateMultipleRequest $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1232,7 +1232,7 @@ class Google_Service_Games_Applications_Resource extends Google_Service_Resource
    * by this method.
    * @return Google_Service_Games_Application
    */
-  public function get($applicationId, $optParams = array())
+  public function get($applicationId, $optParams = [])
   {
     $params = array('applicationId' => $applicationId);
     $params = array_merge($params, $optParams);
@@ -1245,9 +1245,9 @@ class Google_Service_Games_Applications_Resource extends Google_Service_Resource
    *
    * @param array $optParams Optional parameters.
    */
-  public function played($optParams = array())
+  public function played($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('played', array($params));
   }
@@ -1278,9 +1278,9 @@ class Google_Service_Games_Events_Resource extends Google_Service_Resource
    * by this method.
    * @return Google_Service_Games_PlayerEventListResponse
    */
-  public function listByPlayer($optParams = array())
+  public function listByPlayer($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('listByPlayer', array($params), "Google_Service_Games_PlayerEventListResponse");
   }
@@ -1299,9 +1299,9 @@ class Google_Service_Games_Events_Resource extends Google_Service_Resource
    * by this method.
    * @return Google_Service_Games_EventDefinitionListResponse
    */
-  public function listDefinitions($optParams = array())
+  public function listDefinitions($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('listDefinitions', array($params), "Google_Service_Games_EventDefinitionListResponse");
   }
@@ -1317,7 +1317,7 @@ class Google_Service_Games_Events_Resource extends Google_Service_Resource
    * by this method.
    * @return Google_Service_Games_EventUpdateResponse
    */
-  public function record(Google_Service_Games_EventRecordRequest $postBody, $optParams = array())
+  public function record(Google_Service_Games_EventRecordRequest $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1347,7 +1347,7 @@ class Google_Service_Games_Leaderboards_Resource extends Google_Service_Resource
    * by this method.
    * @return Google_Service_Games_Leaderboard
    */
-  public function get($leaderboardId, $optParams = array())
+  public function get($leaderboardId, $optParams = [])
   {
     $params = array('leaderboardId' => $leaderboardId);
     $params = array_merge($params, $optParams);
@@ -1368,9 +1368,9 @@ class Google_Service_Games_Leaderboards_Resource extends Google_Service_Resource
    * by this method.
    * @return Google_Service_Games_LeaderboardListResponse
    */
-  public function listLeaderboards($optParams = array())
+  public function listLeaderboards($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_Games_LeaderboardListResponse");
   }
@@ -1394,9 +1394,9 @@ class Google_Service_Games_Metagame_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Games_MetagameConfig
    */
-  public function getMetagameConfig($optParams = array())
+  public function getMetagameConfig($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('getMetagameConfig', array($params), "Google_Service_Games_MetagameConfig");
   }
@@ -1419,7 +1419,7 @@ class Google_Service_Games_Metagame_Resource extends Google_Service_Resource
    * by this method.
    * @return Google_Service_Games_CategoryListResponse
    */
-  public function listCategoriesByPlayer($playerId, $collection, $optParams = array())
+  public function listCategoriesByPlayer($playerId, $collection, $optParams = [])
   {
     $params = array('playerId' => $playerId, 'collection' => $collection);
     $params = array_merge($params, $optParams);
@@ -1450,7 +1450,7 @@ class Google_Service_Games_Players_Resource extends Google_Service_Resource
    * by this method.
    * @return Google_Service_Games_Player
    */
-  public function get($playerId, $optParams = array())
+  public function get($playerId, $optParams = [])
   {
     $params = array('playerId' => $playerId);
     $params = array_merge($params, $optParams);
@@ -1472,7 +1472,7 @@ class Google_Service_Games_Players_Resource extends Google_Service_Resource
    * by this method.
    * @return Google_Service_Games_PlayerListResponse
    */
-  public function listPlayers($collection, $optParams = array())
+  public function listPlayers($collection, $optParams = [])
   {
     $params = array('collection' => $collection);
     $params = array_merge($params, $optParams);
@@ -1498,7 +1498,7 @@ class Google_Service_Games_Pushtokens_Resource extends Google_Service_Resource
    * @param Google_PushTokenId $postBody
    * @param array $optParams Optional parameters.
    */
-  public function remove(Google_Service_Games_PushTokenId $postBody, $optParams = array())
+  public function remove(Google_Service_Games_PushTokenId $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1512,7 +1512,7 @@ class Google_Service_Games_Pushtokens_Resource extends Google_Service_Resource
    * @param Google_PushToken $postBody
    * @param array $optParams Optional parameters.
    */
-  public function update(Google_Service_Games_PushToken $postBody, $optParams = array())
+  public function update(Google_Service_Games_PushToken $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1543,7 +1543,7 @@ class Google_Service_Games_QuestMilestones_Resource extends Google_Service_Resou
    * randomly.
    * @param array $optParams Optional parameters.
    */
-  public function claim($questId, $milestoneId, $requestId, $optParams = array())
+  public function claim($questId, $milestoneId, $requestId, $optParams = [])
   {
     $params = array('questId' => $questId, 'milestoneId' => $milestoneId, 'requestId' => $requestId);
     $params = array_merge($params, $optParams);
@@ -1573,7 +1573,7 @@ class Google_Service_Games_Quests_Resource extends Google_Service_Resource
    * by this method.
    * @return Google_Service_Games_Quest
    */
-  public function accept($questId, $optParams = array())
+  public function accept($questId, $optParams = [])
   {
     $params = array('questId' => $questId);
     $params = array_merge($params, $optParams);
@@ -1597,7 +1597,7 @@ class Google_Service_Games_Quests_Resource extends Google_Service_Resource
    * by this method.
    * @return Google_Service_Games_QuestListResponse
    */
-  public function listQuests($playerId, $optParams = array())
+  public function listQuests($playerId, $optParams = [])
   {
     $params = array('playerId' => $playerId);
     $params = array_merge($params, $optParams);
@@ -1627,7 +1627,7 @@ class Google_Service_Games_Revisions_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Games_RevisionCheckResponse
    */
-  public function check($clientRevision, $optParams = array())
+  public function check($clientRevision, $optParams = [])
   {
     $params = array('clientRevision' => $clientRevision);
     $params = array_merge($params, $optParams);
@@ -1657,7 +1657,7 @@ class Google_Service_Games_Rooms_Resource extends Google_Service_Resource
    * by this method.
    * @return Google_Service_Games_Room
    */
-  public function create(Google_Service_Games_RoomCreateRequest $postBody, $optParams = array())
+  public function create(Google_Service_Games_RoomCreateRequest $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1675,7 +1675,7 @@ class Google_Service_Games_Rooms_Resource extends Google_Service_Resource
    * by this method.
    * @return Google_Service_Games_Room
    */
-  public function decline($roomId, $optParams = array())
+  public function decline($roomId, $optParams = [])
   {
     $params = array('roomId' => $roomId);
     $params = array_merge($params, $optParams);
@@ -1689,7 +1689,7 @@ class Google_Service_Games_Rooms_Resource extends Google_Service_Resource
    * @param string $roomId The ID of the room.
    * @param array $optParams Optional parameters.
    */
-  public function dismiss($roomId, $optParams = array())
+  public function dismiss($roomId, $optParams = [])
   {
     $params = array('roomId' => $roomId);
     $params = array_merge($params, $optParams);
@@ -1706,7 +1706,7 @@ class Google_Service_Games_Rooms_Resource extends Google_Service_Resource
    * by this method.
    * @return Google_Service_Games_Room
    */
-  public function get($roomId, $optParams = array())
+  public function get($roomId, $optParams = [])
   {
     $params = array('roomId' => $roomId);
     $params = array_merge($params, $optParams);
@@ -1725,7 +1725,7 @@ class Google_Service_Games_Rooms_Resource extends Google_Service_Resource
    * by this method.
    * @return Google_Service_Games_Room
    */
-  public function join($roomId, Google_Service_Games_RoomJoinRequest $postBody, $optParams = array())
+  public function join($roomId, Google_Service_Games_RoomJoinRequest $postBody, $optParams = [])
   {
     $params = array('roomId' => $roomId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1744,7 +1744,7 @@ class Google_Service_Games_Rooms_Resource extends Google_Service_Resource
    * by this method.
    * @return Google_Service_Games_Room
    */
-  public function leave($roomId, Google_Service_Games_RoomLeaveRequest $postBody, $optParams = array())
+  public function leave($roomId, Google_Service_Games_RoomLeaveRequest $postBody, $optParams = [])
   {
     $params = array('roomId' => $roomId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1764,9 +1764,9 @@ class Google_Service_Games_Rooms_Resource extends Google_Service_Resource
    * by this method.
    * @return Google_Service_Games_RoomList
    */
-  public function listRooms($optParams = array())
+  public function listRooms($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_Games_RoomList");
   }
@@ -1784,7 +1784,7 @@ class Google_Service_Games_Rooms_Resource extends Google_Service_Resource
    * by this method.
    * @return Google_Service_Games_RoomStatus
    */
-  public function reportStatus($roomId, Google_Service_Games_RoomP2PStatuses $postBody, $optParams = array())
+  public function reportStatus($roomId, Google_Service_Games_RoomP2PStatuses $postBody, $optParams = [])
   {
     $params = array('roomId' => $roomId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1828,7 +1828,7 @@ class Google_Service_Games_Scores_Resource extends Google_Service_Resource
    * @opt_param string pageToken The token returned by the previous request.
    * @return Google_Service_Games_PlayerLeaderboardScoreListResponse
    */
-  public function get($playerId, $leaderboardId, $timeSpan, $optParams = array())
+  public function get($playerId, $leaderboardId, $timeSpan, $optParams = [])
   {
     $params = array('playerId' => $playerId, 'leaderboardId' => $leaderboardId, 'timeSpan' => $timeSpan);
     $params = array_merge($params, $optParams);
@@ -1852,7 +1852,7 @@ class Google_Service_Games_Scores_Resource extends Google_Service_Resource
    * @opt_param string pageToken The token returned by the previous request.
    * @return Google_Service_Games_LeaderboardScores
    */
-  public function listScores($leaderboardId, $collection, $timeSpan, $optParams = array())
+  public function listScores($leaderboardId, $collection, $timeSpan, $optParams = [])
   {
     $params = array('leaderboardId' => $leaderboardId, 'collection' => $collection, 'timeSpan' => $timeSpan);
     $params = array_merge($params, $optParams);
@@ -1883,7 +1883,7 @@ class Google_Service_Games_Scores_Resource extends Google_Service_Resource
    * @opt_param string pageToken The token returned by the previous request.
    * @return Google_Service_Games_LeaderboardScores
    */
-  public function listWindow($leaderboardId, $collection, $timeSpan, $optParams = array())
+  public function listWindow($leaderboardId, $collection, $timeSpan, $optParams = [])
   {
     $params = array('leaderboardId' => $leaderboardId, 'collection' => $collection, 'timeSpan' => $timeSpan);
     $params = array_merge($params, $optParams);
@@ -1909,7 +1909,7 @@ class Google_Service_Games_Scores_Resource extends Google_Service_Resource
    * defined by section 2.3 of RFC 3986.
    * @return Google_Service_Games_PlayerScoreResponse
    */
-  public function submit($leaderboardId, $score, $optParams = array())
+  public function submit($leaderboardId, $score, $optParams = [])
   {
     $params = array('leaderboardId' => $leaderboardId, 'score' => $score);
     $params = array_merge($params, $optParams);
@@ -1926,7 +1926,7 @@ class Google_Service_Games_Scores_Resource extends Google_Service_Resource
    * by this method.
    * @return Google_Service_Games_PlayerScoreListResponse
    */
-  public function submitMultiple(Google_Service_Games_PlayerScoreSubmissionList $postBody, $optParams = array())
+  public function submitMultiple(Google_Service_Games_PlayerScoreSubmissionList $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1955,7 +1955,7 @@ class Google_Service_Games_Snapshots_Resource extends Google_Service_Resource
    * by this method.
    * @return Google_Service_Games_Snapshot
    */
-  public function get($snapshotId, $optParams = array())
+  public function get($snapshotId, $optParams = [])
   {
     $params = array('snapshotId' => $snapshotId);
     $params = array_merge($params, $optParams);
@@ -1978,7 +1978,7 @@ class Google_Service_Games_Snapshots_Resource extends Google_Service_Resource
    * by this method.
    * @return Google_Service_Games_SnapshotListResponse
    */
-  public function listSnapshots($playerId, $optParams = array())
+  public function listSnapshots($playerId, $optParams = [])
   {
     $params = array('playerId' => $playerId);
     $params = array_merge($params, $optParams);
@@ -2003,7 +2003,7 @@ class Google_Service_Games_TurnBasedMatches_Resource extends Google_Service_Reso
    * @param string $matchId The ID of the match.
    * @param array $optParams Optional parameters.
    */
-  public function cancel($matchId, $optParams = array())
+  public function cancel($matchId, $optParams = [])
   {
     $params = array('matchId' => $matchId);
     $params = array_merge($params, $optParams);
@@ -2020,7 +2020,7 @@ class Google_Service_Games_TurnBasedMatches_Resource extends Google_Service_Reso
    * by this method.
    * @return Google_Service_Games_TurnBasedMatch
    */
-  public function create(Google_Service_Games_TurnBasedMatchCreateRequest $postBody, $optParams = array())
+  public function create(Google_Service_Games_TurnBasedMatchCreateRequest $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2037,7 +2037,7 @@ class Google_Service_Games_TurnBasedMatches_Resource extends Google_Service_Reso
    * by this method.
    * @return Google_Service_Games_TurnBasedMatch
    */
-  public function decline($matchId, $optParams = array())
+  public function decline($matchId, $optParams = [])
   {
     $params = array('matchId' => $matchId);
     $params = array_merge($params, $optParams);
@@ -2052,7 +2052,7 @@ class Google_Service_Games_TurnBasedMatches_Resource extends Google_Service_Reso
    * @param string $matchId The ID of the match.
    * @param array $optParams Optional parameters.
    */
-  public function dismiss($matchId, $optParams = array())
+  public function dismiss($matchId, $optParams = [])
   {
     $params = array('matchId' => $matchId);
     $params = array_merge($params, $optParams);
@@ -2072,7 +2072,7 @@ class Google_Service_Games_TurnBasedMatches_Resource extends Google_Service_Reso
    * by this method.
    * @return Google_Service_Games_TurnBasedMatch
    */
-  public function finish($matchId, Google_Service_Games_TurnBasedMatchResults $postBody, $optParams = array())
+  public function finish($matchId, Google_Service_Games_TurnBasedMatchResults $postBody, $optParams = [])
   {
     $params = array('matchId' => $matchId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2090,7 +2090,7 @@ class Google_Service_Games_TurnBasedMatches_Resource extends Google_Service_Reso
    * @opt_param bool includeMatchData Get match data along with metadata.
    * @return Google_Service_Games_TurnBasedMatch
    */
-  public function get($matchId, $optParams = array())
+  public function get($matchId, $optParams = [])
   {
     $params = array('matchId' => $matchId);
     $params = array_merge($params, $optParams);
@@ -2107,7 +2107,7 @@ class Google_Service_Games_TurnBasedMatches_Resource extends Google_Service_Reso
    * by this method.
    * @return Google_Service_Games_TurnBasedMatch
    */
-  public function join($matchId, $optParams = array())
+  public function join($matchId, $optParams = [])
   {
     $params = array('matchId' => $matchId);
     $params = array_merge($params, $optParams);
@@ -2125,7 +2125,7 @@ class Google_Service_Games_TurnBasedMatches_Resource extends Google_Service_Reso
    * by this method.
    * @return Google_Service_Games_TurnBasedMatch
    */
-  public function leave($matchId, $optParams = array())
+  public function leave($matchId, $optParams = [])
   {
     $params = array('matchId' => $matchId);
     $params = array_merge($params, $optParams);
@@ -2148,7 +2148,7 @@ class Google_Service_Games_TurnBasedMatches_Resource extends Google_Service_Reso
    * is set on the match with remaining slots for automatched players.
    * @return Google_Service_Games_TurnBasedMatch
    */
-  public function leaveTurn($matchId, $matchVersion, $optParams = array())
+  public function leaveTurn($matchId, $matchVersion, $optParams = [])
   {
     $params = array('matchId' => $matchId, 'matchVersion' => $matchVersion);
     $params = array_merge($params, $optParams);
@@ -2177,9 +2177,9 @@ class Google_Service_Games_TurnBasedMatches_Resource extends Google_Service_Reso
    * the data for these matches will be retrievable on request.
    * @return Google_Service_Games_TurnBasedMatchList
    */
-  public function listTurnBasedMatches($optParams = array())
+  public function listTurnBasedMatches($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_Games_TurnBasedMatchList");
   }
@@ -2200,7 +2200,7 @@ class Google_Service_Games_TurnBasedMatches_Resource extends Google_Service_Reso
    * by this method.
    * @return Google_Service_Games_TurnBasedMatchRematch
    */
-  public function rematch($matchId, $optParams = array())
+  public function rematch($matchId, $optParams = [])
   {
     $params = array('matchId' => $matchId);
     $params = array_merge($params, $optParams);
@@ -2231,9 +2231,9 @@ class Google_Service_Games_TurnBasedMatches_Resource extends Google_Service_Reso
    * the data for these matches will be retrievable on request.
    * @return Google_Service_Games_TurnBasedMatchSync
    */
-  public function sync($optParams = array())
+  public function sync($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('sync', array($params), "Google_Service_Games_TurnBasedMatchSync");
   }
@@ -2249,7 +2249,7 @@ class Google_Service_Games_TurnBasedMatches_Resource extends Google_Service_Reso
    * by this method.
    * @return Google_Service_Games_TurnBasedMatch
    */
-  public function takeTurn($matchId, Google_Service_Games_TurnBasedMatchTurn $postBody, $optParams = array())
+  public function takeTurn($matchId, Google_Service_Games_TurnBasedMatchTurn $postBody, $optParams = [])
   {
     $params = array('matchId' => $matchId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);

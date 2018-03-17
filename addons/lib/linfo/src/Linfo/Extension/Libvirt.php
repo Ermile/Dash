@@ -2,7 +2,7 @@
 
 /*
 
-This shows a cursory list of running VMs managed by libvirt and their stats. 
+This shows a cursory list of running VMs managed by libvirt and their stats.
 Requires libvirt php extension (http://libvirt.org/php/):
   sudo apt-get install php5-libvirt-php
 
@@ -19,17 +19,17 @@ $settings['libvirt_connection'] = array(
 
 /**
  * This file is part of Linfo (c) 2013 Joseph Gillotti.
- * 
+ *
  * Linfo is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * Linfo is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with Linfo. If not, see <http://www.gnu.org/licenses/>.
  */
@@ -50,9 +50,9 @@ use Linfo\Meta\Timer;
 class Libvirt implements Extension
 {
     private
-        $VMs = array(),
+        $VMs = [],
         $connection = false,
-        $connectionSettings = array(),
+        $connectionSettings = [],
         $res = false;
 
     public function __construct(Linfo $linfo)
@@ -117,7 +117,7 @@ class Libvirt implements Extension
                 $info['autostart'] = 'N/A';
             }
 
-            $info['nets'] = array();
+            $info['nets'] = [];
 
             $nets = @libvirt_domain_get_interface_devices($domain);
 
@@ -128,7 +128,7 @@ class Libvirt implements Extension
                 $info['nets'][] = $net;
             }
 
-            $info['storage'] = array();
+            $info['storage'] = [];
 
             foreach ((array) @libvirt_domain_get_disk_devices($domain) as $blockName) {
                 if (!is_string($blockName)) {
@@ -180,7 +180,7 @@ class Libvirt implements Extension
         $allram = 0;
 
         foreach ($this->VMs as $name => $info) {
-            $disks = array();
+            $disks = [];
 
             foreach ($info['storage'] as $disk) {
                 $disks[] = $disk['device']

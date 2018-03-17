@@ -19,7 +19,7 @@ class Twig_Extensions_Node_Trans extends Twig_Node
 {
     public function __construct(Twig_NodeInterface $body, Twig_NodeInterface $plural = null, Twig_Node_Expression $count = null, Twig_NodeInterface $notes = null, $lineno, $tag = null)
     {
-        parent::__construct(array('count' => $count, 'body' => $body, 'plural' => $plural, 'notes' => $notes), array(), $lineno, $tag);
+        parent::__construct(array('count' => $count, 'body' => $body, 'plural' => $plural, 'notes' => $notes), [], $lineno, $tag);
     }
 
     /**
@@ -114,10 +114,10 @@ class Twig_Extensions_Node_Trans extends Twig_Node
     protected function compileString(Twig_NodeInterface $body)
     {
         if ($body instanceof Twig_Node_Expression_Name || $body instanceof Twig_Node_Expression_Constant || $body instanceof Twig_Node_Expression_TempName) {
-            return array($body, array());
+            return array($body, []);
         }
 
-        $vars = array();
+        $vars = [];
         if (count($body)) {
             $msg = '';
 

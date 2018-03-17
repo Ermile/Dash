@@ -212,7 +212,7 @@ abstract class Google_IO_Abstract
   protected function checkMustRevalidateCachedRequest($cached, $request)
   {
     if (Google_Http_CacheParser::mustRevalidate($cached)) {
-      $addHeaders = array();
+      $addHeaders = [];
       if ($cached->getResponseHeader('etag')) {
         // [13.3.4] If an entity tag has been provided by the origin server,
         // we must use that entity tag in any cache-conditional request.
@@ -304,7 +304,7 @@ abstract class Google_IO_Abstract
 
   private function parseStringHeaders($rawHeaders)
   {
-    $headers = array();
+    $headers = [];
     $responseHeaderLines = explode("\r\n", $rawHeaders);
     foreach ($responseHeaderLines as $headerLine) {
       if ($headerLine && strpos($headerLine, ':') !== false) {
@@ -323,7 +323,7 @@ abstract class Google_IO_Abstract
   private function parseArrayHeaders($rawHeaders)
   {
     $header_count = count($rawHeaders);
-    $headers = array();
+    $headers = [];
 
     for ($i = 0; $i < $header_count; $i++) {
       $header = $rawHeaders[$i];

@@ -2,31 +2,31 @@
 
 /*
 
-This impliments a current samba usage status 
+This impliments a current samba usage status
 
-Installation: 
+Installation:
  - The following lines must be added to your config.inc.php:
-   $settings['extensions']['smb'] = true; 
+   $settings['extensions']['smb'] = true;
 
 
 */
 
 /*
  * This file is part of Linfo (c) 2010 Joseph Gillotti.
- * 
+ *
  * Linfo is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * Linfo is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with Linfo. If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
 */
 
 namespace Linfo\Extension;
@@ -77,9 +77,9 @@ class Smb implements Extension
         $lines = explode("\n", $result);
 
         // Store temp stuff here
-        $connections = array();
-        $services = array();
-        $files = array();
+        $connections = [];
+        $services = [];
+        $files = [];
         $current_location = false;
 
         // Parse
@@ -170,7 +170,7 @@ class Smb implements Extension
         else {
 
             // Store rows here
-            $rows = array();
+            $rows = [];
 
             // Start showing connections
             $rows[] = array(
@@ -247,7 +247,7 @@ class Smb implements Extension
                 );
             }
 
-            // Files time	
+            // Files time
             $rows[] = array(
                 'type' => 'header',
                 'columns' => array(

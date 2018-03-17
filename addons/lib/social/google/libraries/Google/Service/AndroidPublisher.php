@@ -47,7 +47,7 @@ class Google_Service_AndroidPublisher extends Google_Service
   public $inappproducts;
   public $purchases_products;
   public $purchases_subscriptions;
-  
+
 
   /**
    * Constructs the internal representation of the AndroidPublisher service.
@@ -947,7 +947,7 @@ class Google_Service_AndroidPublisher extends Google_Service
             'batch' => array(
               'path' => 'inappproducts/batch',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),'delete' => array(
               'path' => '{packageName}/inappproducts/{sku}',
               'httpMethod' => 'DELETE',
@@ -1220,7 +1220,7 @@ class Google_Service_AndroidPublisher_Edits_Resource extends Google_Service_Reso
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidPublisher_AppEdit
    */
-  public function commit($packageName, $editId, $optParams = array())
+  public function commit($packageName, $editId, $optParams = [])
   {
     $params = array('packageName' => $packageName, 'editId' => $editId);
     $params = array_merge($params, $optParams);
@@ -1237,7 +1237,7 @@ class Google_Service_AndroidPublisher_Edits_Resource extends Google_Service_Reso
    * @param string $editId Unique identifier for this edit.
    * @param array $optParams Optional parameters.
    */
-  public function delete($packageName, $editId, $optParams = array())
+  public function delete($packageName, $editId, $optParams = [])
   {
     $params = array('packageName' => $packageName, 'editId' => $editId);
     $params = array_merge($params, $optParams);
@@ -1254,7 +1254,7 @@ class Google_Service_AndroidPublisher_Edits_Resource extends Google_Service_Reso
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidPublisher_AppEdit
    */
-  public function get($packageName, $editId, $optParams = array())
+  public function get($packageName, $editId, $optParams = [])
   {
     $params = array('packageName' => $packageName, 'editId' => $editId);
     $params = array_merge($params, $optParams);
@@ -1271,7 +1271,7 @@ class Google_Service_AndroidPublisher_Edits_Resource extends Google_Service_Reso
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidPublisher_AppEdit
    */
-  public function insert($packageName, Google_Service_AndroidPublisher_AppEdit $postBody, $optParams = array())
+  public function insert($packageName, Google_Service_AndroidPublisher_AppEdit $postBody, $optParams = [])
   {
     $params = array('packageName' => $packageName, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1288,7 +1288,7 @@ class Google_Service_AndroidPublisher_Edits_Resource extends Google_Service_Reso
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidPublisher_AppEdit
    */
-  public function validate($packageName, $editId, $optParams = array())
+  public function validate($packageName, $editId, $optParams = [])
   {
     $params = array('packageName' => $packageName, 'editId' => $editId);
     $params = array_merge($params, $optParams);
@@ -1321,7 +1321,7 @@ class Google_Service_AndroidPublisher_EditsApklistings_Resource extends Google_S
    * German, pass "de-AT".
    * @param array $optParams Optional parameters.
    */
-  public function delete($packageName, $editId, $apkVersionCode, $language, $optParams = array())
+  public function delete($packageName, $editId, $apkVersionCode, $language, $optParams = [])
   {
     $params = array('packageName' => $packageName, 'editId' => $editId, 'apkVersionCode' => $apkVersionCode, 'language' => $language);
     $params = array_merge($params, $optParams);
@@ -1339,7 +1339,7 @@ class Google_Service_AndroidPublisher_EditsApklistings_Resource extends Google_S
    * should be read or modified.
    * @param array $optParams Optional parameters.
    */
-  public function deleteall($packageName, $editId, $apkVersionCode, $optParams = array())
+  public function deleteall($packageName, $editId, $apkVersionCode, $optParams = [])
   {
     $params = array('packageName' => $packageName, 'editId' => $editId, 'apkVersionCode' => $apkVersionCode);
     $params = array_merge($params, $optParams);
@@ -1361,7 +1361,7 @@ class Google_Service_AndroidPublisher_EditsApklistings_Resource extends Google_S
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidPublisher_ApkListing
    */
-  public function get($packageName, $editId, $apkVersionCode, $language, $optParams = array())
+  public function get($packageName, $editId, $apkVersionCode, $language, $optParams = [])
   {
     $params = array('packageName' => $packageName, 'editId' => $editId, 'apkVersionCode' => $apkVersionCode, 'language' => $language);
     $params = array_merge($params, $optParams);
@@ -1380,7 +1380,7 @@ class Google_Service_AndroidPublisher_EditsApklistings_Resource extends Google_S
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidPublisher_ApkListingsListResponse
    */
-  public function listEditsApklistings($packageName, $editId, $apkVersionCode, $optParams = array())
+  public function listEditsApklistings($packageName, $editId, $apkVersionCode, $optParams = [])
   {
     $params = array('packageName' => $packageName, 'editId' => $editId, 'apkVersionCode' => $apkVersionCode);
     $params = array_merge($params, $optParams);
@@ -1403,7 +1403,7 @@ class Google_Service_AndroidPublisher_EditsApklistings_Resource extends Google_S
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidPublisher_ApkListing
    */
-  public function patch($packageName, $editId, $apkVersionCode, $language, Google_Service_AndroidPublisher_ApkListing $postBody, $optParams = array())
+  public function patch($packageName, $editId, $apkVersionCode, $language, Google_Service_AndroidPublisher_ApkListing $postBody, $optParams = [])
   {
     $params = array('packageName' => $packageName, 'editId' => $editId, 'apkVersionCode' => $apkVersionCode, 'language' => $language, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1426,7 +1426,7 @@ class Google_Service_AndroidPublisher_EditsApklistings_Resource extends Google_S
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidPublisher_ApkListing
    */
-  public function update($packageName, $editId, $apkVersionCode, $language, Google_Service_AndroidPublisher_ApkListing $postBody, $optParams = array())
+  public function update($packageName, $editId, $apkVersionCode, $language, Google_Service_AndroidPublisher_ApkListing $postBody, $optParams = [])
   {
     $params = array('packageName' => $packageName, 'editId' => $editId, 'apkVersionCode' => $apkVersionCode, 'language' => $language, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1457,7 +1457,7 @@ class Google_Service_AndroidPublisher_EditsApks_Resource extends Google_Service_
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidPublisher_ApksAddExternallyHostedResponse
    */
-  public function addexternallyhosted($packageName, $editId, Google_Service_AndroidPublisher_ApksAddExternallyHostedRequest $postBody, $optParams = array())
+  public function addexternallyhosted($packageName, $editId, Google_Service_AndroidPublisher_ApksAddExternallyHostedRequest $postBody, $optParams = [])
   {
     $params = array('packageName' => $packageName, 'editId' => $editId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1473,7 +1473,7 @@ class Google_Service_AndroidPublisher_EditsApks_Resource extends Google_Service_
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidPublisher_ApksListResponse
    */
-  public function listEditsApks($packageName, $editId, $optParams = array())
+  public function listEditsApks($packageName, $editId, $optParams = [])
   {
     $params = array('packageName' => $packageName, 'editId' => $editId);
     $params = array_merge($params, $optParams);
@@ -1489,7 +1489,7 @@ class Google_Service_AndroidPublisher_EditsApks_Resource extends Google_Service_
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidPublisher_Apk
    */
-  public function upload($packageName, $editId, $optParams = array())
+  public function upload($packageName, $editId, $optParams = [])
   {
     $params = array('packageName' => $packageName, 'editId' => $editId);
     $params = array_merge($params, $optParams);
@@ -1517,7 +1517,7 @@ class Google_Service_AndroidPublisher_EditsDetails_Resource extends Google_Servi
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidPublisher_AppDetails
    */
-  public function get($packageName, $editId, $optParams = array())
+  public function get($packageName, $editId, $optParams = [])
   {
     $params = array('packageName' => $packageName, 'editId' => $editId);
     $params = array_merge($params, $optParams);
@@ -1535,7 +1535,7 @@ class Google_Service_AndroidPublisher_EditsDetails_Resource extends Google_Servi
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidPublisher_AppDetails
    */
-  public function patch($packageName, $editId, Google_Service_AndroidPublisher_AppDetails $postBody, $optParams = array())
+  public function patch($packageName, $editId, Google_Service_AndroidPublisher_AppDetails $postBody, $optParams = [])
   {
     $params = array('packageName' => $packageName, 'editId' => $editId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1552,7 +1552,7 @@ class Google_Service_AndroidPublisher_EditsDetails_Resource extends Google_Servi
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidPublisher_AppDetails
    */
-  public function update($packageName, $editId, Google_Service_AndroidPublisher_AppDetails $postBody, $optParams = array())
+  public function update($packageName, $editId, Google_Service_AndroidPublisher_AppDetails $postBody, $optParams = [])
   {
     $params = array('packageName' => $packageName, 'editId' => $editId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1583,7 +1583,7 @@ class Google_Service_AndroidPublisher_EditsExpansionfiles_Resource extends Googl
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidPublisher_ExpansionFile
    */
-  public function get($packageName, $editId, $apkVersionCode, $expansionFileType, $optParams = array())
+  public function get($packageName, $editId, $apkVersionCode, $expansionFileType, $optParams = [])
   {
     $params = array('packageName' => $packageName, 'editId' => $editId, 'apkVersionCode' => $apkVersionCode, 'expansionFileType' => $expansionFileType);
     $params = array_merge($params, $optParams);
@@ -1605,7 +1605,7 @@ class Google_Service_AndroidPublisher_EditsExpansionfiles_Resource extends Googl
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidPublisher_ExpansionFile
    */
-  public function patch($packageName, $editId, $apkVersionCode, $expansionFileType, Google_Service_AndroidPublisher_ExpansionFile $postBody, $optParams = array())
+  public function patch($packageName, $editId, $apkVersionCode, $expansionFileType, Google_Service_AndroidPublisher_ExpansionFile $postBody, $optParams = [])
   {
     $params = array('packageName' => $packageName, 'editId' => $editId, 'apkVersionCode' => $apkVersionCode, 'expansionFileType' => $expansionFileType, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1627,7 +1627,7 @@ class Google_Service_AndroidPublisher_EditsExpansionfiles_Resource extends Googl
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidPublisher_ExpansionFile
    */
-  public function update($packageName, $editId, $apkVersionCode, $expansionFileType, Google_Service_AndroidPublisher_ExpansionFile $postBody, $optParams = array())
+  public function update($packageName, $editId, $apkVersionCode, $expansionFileType, Google_Service_AndroidPublisher_ExpansionFile $postBody, $optParams = [])
   {
     $params = array('packageName' => $packageName, 'editId' => $editId, 'apkVersionCode' => $apkVersionCode, 'expansionFileType' => $expansionFileType, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1647,7 +1647,7 @@ class Google_Service_AndroidPublisher_EditsExpansionfiles_Resource extends Googl
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidPublisher_ExpansionFilesUploadResponse
    */
-  public function upload($packageName, $editId, $apkVersionCode, $expansionFileType, $optParams = array())
+  public function upload($packageName, $editId, $apkVersionCode, $expansionFileType, $optParams = [])
   {
     $params = array('packageName' => $packageName, 'editId' => $editId, 'apkVersionCode' => $apkVersionCode, 'expansionFileType' => $expansionFileType);
     $params = array_merge($params, $optParams);
@@ -1679,7 +1679,7 @@ class Google_Service_AndroidPublisher_EditsImages_Resource extends Google_Servic
    * attached to this edit.
    * @param array $optParams Optional parameters.
    */
-  public function delete($packageName, $editId, $language, $imageType, $imageId, $optParams = array())
+  public function delete($packageName, $editId, $language, $imageType, $imageId, $optParams = [])
   {
     $params = array('packageName' => $packageName, 'editId' => $editId, 'language' => $language, 'imageType' => $imageType, 'imageId' => $imageId);
     $params = array_merge($params, $optParams);
@@ -1700,7 +1700,7 @@ class Google_Service_AndroidPublisher_EditsImages_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidPublisher_ImagesDeleteAllResponse
    */
-  public function deleteall($packageName, $editId, $language, $imageType, $optParams = array())
+  public function deleteall($packageName, $editId, $language, $imageType, $optParams = [])
   {
     $params = array('packageName' => $packageName, 'editId' => $editId, 'language' => $language, 'imageType' => $imageType);
     $params = array_merge($params, $optParams);
@@ -1721,7 +1721,7 @@ class Google_Service_AndroidPublisher_EditsImages_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidPublisher_ImagesListResponse
    */
-  public function listEditsImages($packageName, $editId, $language, $imageType, $optParams = array())
+  public function listEditsImages($packageName, $editId, $language, $imageType, $optParams = [])
   {
     $params = array('packageName' => $packageName, 'editId' => $editId, 'language' => $language, 'imageType' => $imageType);
     $params = array_merge($params, $optParams);
@@ -1742,7 +1742,7 @@ class Google_Service_AndroidPublisher_EditsImages_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidPublisher_ImagesUploadResponse
    */
-  public function upload($packageName, $editId, $language, $imageType, $optParams = array())
+  public function upload($packageName, $editId, $language, $imageType, $optParams = [])
   {
     $params = array('packageName' => $packageName, 'editId' => $editId, 'language' => $language, 'imageType' => $imageType);
     $params = array_merge($params, $optParams);
@@ -1771,7 +1771,7 @@ class Google_Service_AndroidPublisher_EditsListings_Resource extends Google_Serv
    * pass "de-AT".
    * @param array $optParams Optional parameters.
    */
-  public function delete($packageName, $editId, $language, $optParams = array())
+  public function delete($packageName, $editId, $language, $optParams = [])
   {
     $params = array('packageName' => $packageName, 'editId' => $editId, 'language' => $language);
     $params = array_merge($params, $optParams);
@@ -1786,7 +1786,7 @@ class Google_Service_AndroidPublisher_EditsListings_Resource extends Google_Serv
    * @param string $editId Unique identifier for this edit.
    * @param array $optParams Optional parameters.
    */
-  public function deleteall($packageName, $editId, $optParams = array())
+  public function deleteall($packageName, $editId, $optParams = [])
   {
     $params = array('packageName' => $packageName, 'editId' => $editId);
     $params = array_merge($params, $optParams);
@@ -1805,7 +1805,7 @@ class Google_Service_AndroidPublisher_EditsListings_Resource extends Google_Serv
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidPublisher_Listing
    */
-  public function get($packageName, $editId, $language, $optParams = array())
+  public function get($packageName, $editId, $language, $optParams = [])
   {
     $params = array('packageName' => $packageName, 'editId' => $editId, 'language' => $language);
     $params = array_merge($params, $optParams);
@@ -1822,7 +1822,7 @@ class Google_Service_AndroidPublisher_EditsListings_Resource extends Google_Serv
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidPublisher_ListingsListResponse
    */
-  public function listEditsListings($packageName, $editId, $optParams = array())
+  public function listEditsListings($packageName, $editId, $optParams = [])
   {
     $params = array('packageName' => $packageName, 'editId' => $editId);
     $params = array_merge($params, $optParams);
@@ -1843,7 +1843,7 @@ class Google_Service_AndroidPublisher_EditsListings_Resource extends Google_Serv
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidPublisher_Listing
    */
-  public function patch($packageName, $editId, $language, Google_Service_AndroidPublisher_Listing $postBody, $optParams = array())
+  public function patch($packageName, $editId, $language, Google_Service_AndroidPublisher_Listing $postBody, $optParams = [])
   {
     $params = array('packageName' => $packageName, 'editId' => $editId, 'language' => $language, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1863,7 +1863,7 @@ class Google_Service_AndroidPublisher_EditsListings_Resource extends Google_Serv
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidPublisher_Listing
    */
-  public function update($packageName, $editId, $language, Google_Service_AndroidPublisher_Listing $postBody, $optParams = array())
+  public function update($packageName, $editId, $language, Google_Service_AndroidPublisher_Listing $postBody, $optParams = [])
   {
     $params = array('packageName' => $packageName, 'editId' => $editId, 'language' => $language, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1891,7 +1891,7 @@ class Google_Service_AndroidPublisher_EditsTesters_Resource extends Google_Servi
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidPublisher_Testers
    */
-  public function get($packageName, $editId, $track, $optParams = array())
+  public function get($packageName, $editId, $track, $optParams = [])
   {
     $params = array('packageName' => $packageName, 'editId' => $editId, 'track' => $track);
     $params = array_merge($params, $optParams);
@@ -1909,7 +1909,7 @@ class Google_Service_AndroidPublisher_EditsTesters_Resource extends Google_Servi
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidPublisher_Testers
    */
-  public function patch($packageName, $editId, $track, Google_Service_AndroidPublisher_Testers $postBody, $optParams = array())
+  public function patch($packageName, $editId, $track, Google_Service_AndroidPublisher_Testers $postBody, $optParams = [])
   {
     $params = array('packageName' => $packageName, 'editId' => $editId, 'track' => $track, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1927,7 +1927,7 @@ class Google_Service_AndroidPublisher_EditsTesters_Resource extends Google_Servi
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidPublisher_Testers
    */
-  public function update($packageName, $editId, $track, Google_Service_AndroidPublisher_Testers $postBody, $optParams = array())
+  public function update($packageName, $editId, $track, Google_Service_AndroidPublisher_Testers $postBody, $optParams = [])
   {
     $params = array('packageName' => $packageName, 'editId' => $editId, 'track' => $track, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -1956,7 +1956,7 @@ class Google_Service_AndroidPublisher_EditsTracks_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidPublisher_Track
    */
-  public function get($packageName, $editId, $track, $optParams = array())
+  public function get($packageName, $editId, $track, $optParams = [])
   {
     $params = array('packageName' => $packageName, 'editId' => $editId, 'track' => $track);
     $params = array_merge($params, $optParams);
@@ -1972,7 +1972,7 @@ class Google_Service_AndroidPublisher_EditsTracks_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidPublisher_TracksListResponse
    */
-  public function listEditsTracks($packageName, $editId, $optParams = array())
+  public function listEditsTracks($packageName, $editId, $optParams = [])
   {
     $params = array('packageName' => $packageName, 'editId' => $editId);
     $params = array_merge($params, $optParams);
@@ -1993,7 +1993,7 @@ class Google_Service_AndroidPublisher_EditsTracks_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidPublisher_Track
    */
-  public function patch($packageName, $editId, $track, Google_Service_AndroidPublisher_Track $postBody, $optParams = array())
+  public function patch($packageName, $editId, $track, Google_Service_AndroidPublisher_Track $postBody, $optParams = [])
   {
     $params = array('packageName' => $packageName, 'editId' => $editId, 'track' => $track, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2013,7 +2013,7 @@ class Google_Service_AndroidPublisher_EditsTracks_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidPublisher_Track
    */
-  public function update($packageName, $editId, $track, Google_Service_AndroidPublisher_Track $postBody, $optParams = array())
+  public function update($packageName, $editId, $track, Google_Service_AndroidPublisher_Track $postBody, $optParams = [])
   {
     $params = array('packageName' => $packageName, 'editId' => $editId, 'track' => $track, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2047,7 +2047,7 @@ class Google_Service_AndroidPublisher_Entitlements_Resource extends Google_Servi
    * 'sku1'). This can be used to restrict the result set.
    * @return Google_Service_AndroidPublisher_EntitlementsListResponse
    */
-  public function listEntitlements($packageName, $optParams = array())
+  public function listEntitlements($packageName, $optParams = [])
   {
     $params = array('packageName' => $packageName);
     $params = array_merge($params, $optParams);
@@ -2073,7 +2073,7 @@ class Google_Service_AndroidPublisher_Inappproducts_Resource extends Google_Serv
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidPublisher_InappproductsBatchResponse
    */
-  public function batch(Google_Service_AndroidPublisher_InappproductsBatchRequest $postBody, $optParams = array())
+  public function batch(Google_Service_AndroidPublisher_InappproductsBatchRequest $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2088,7 +2088,7 @@ class Google_Service_AndroidPublisher_Inappproducts_Resource extends Google_Serv
    * @param string $sku Unique identifier for the in-app product.
    * @param array $optParams Optional parameters.
    */
-  public function delete($packageName, $sku, $optParams = array())
+  public function delete($packageName, $sku, $optParams = [])
   {
     $params = array('packageName' => $packageName, 'sku' => $sku);
     $params = array_merge($params, $optParams);
@@ -2103,7 +2103,7 @@ class Google_Service_AndroidPublisher_Inappproducts_Resource extends Google_Serv
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidPublisher_InAppProduct
    */
-  public function get($packageName, $sku, $optParams = array())
+  public function get($packageName, $sku, $optParams = [])
   {
     $params = array('packageName' => $packageName, 'sku' => $sku);
     $params = array_merge($params, $optParams);
@@ -2124,7 +2124,7 @@ class Google_Service_AndroidPublisher_Inappproducts_Resource extends Google_Serv
    * price. Defaults to false.
    * @return Google_Service_AndroidPublisher_InAppProduct
    */
-  public function insert($packageName, Google_Service_AndroidPublisher_InAppProduct $postBody, $optParams = array())
+  public function insert($packageName, Google_Service_AndroidPublisher_InAppProduct $postBody, $optParams = [])
   {
     $params = array('packageName' => $packageName, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2144,7 +2144,7 @@ class Google_Service_AndroidPublisher_Inappproducts_Resource extends Google_Serv
    * @opt_param string maxResults
    * @return Google_Service_AndroidPublisher_InappproductsListResponse
    */
-  public function listInappproducts($packageName, $optParams = array())
+  public function listInappproducts($packageName, $optParams = [])
   {
     $params = array('packageName' => $packageName);
     $params = array_merge($params, $optParams);
@@ -2167,7 +2167,7 @@ class Google_Service_AndroidPublisher_Inappproducts_Resource extends Google_Serv
    * price. Defaults to false.
    * @return Google_Service_AndroidPublisher_InAppProduct
    */
-  public function patch($packageName, $sku, Google_Service_AndroidPublisher_InAppProduct $postBody, $optParams = array())
+  public function patch($packageName, $sku, Google_Service_AndroidPublisher_InAppProduct $postBody, $optParams = [])
   {
     $params = array('packageName' => $packageName, 'sku' => $sku, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2189,7 +2189,7 @@ class Google_Service_AndroidPublisher_Inappproducts_Resource extends Google_Serv
    * price. Defaults to false.
    * @return Google_Service_AndroidPublisher_InAppProduct
    */
-  public function update($packageName, $sku, Google_Service_AndroidPublisher_InAppProduct $postBody, $optParams = array())
+  public function update($packageName, $sku, Google_Service_AndroidPublisher_InAppProduct $postBody, $optParams = [])
   {
     $params = array('packageName' => $packageName, 'sku' => $sku, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2232,7 +2232,7 @@ class Google_Service_AndroidPublisher_PurchasesProducts_Resource extends Google_
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidPublisher_ProductPurchase
    */
-  public function get($packageName, $productId, $token, $optParams = array())
+  public function get($packageName, $productId, $token, $optParams = [])
   {
     $params = array('packageName' => $packageName, 'productId' => $productId, 'token' => $token);
     $params = array_merge($params, $optParams);
@@ -2262,7 +2262,7 @@ class Google_Service_AndroidPublisher_PurchasesSubscriptions_Resource extends Go
    * subscription was purchased.
    * @param array $optParams Optional parameters.
    */
-  public function cancel($packageName, $subscriptionId, $token, $optParams = array())
+  public function cancel($packageName, $subscriptionId, $token, $optParams = [])
   {
     $params = array('packageName' => $packageName, 'subscriptionId' => $subscriptionId, 'token' => $token);
     $params = array_merge($params, $optParams);
@@ -2283,7 +2283,7 @@ class Google_Service_AndroidPublisher_PurchasesSubscriptions_Resource extends Go
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidPublisher_SubscriptionPurchasesDeferResponse
    */
-  public function defer($packageName, $subscriptionId, $token, Google_Service_AndroidPublisher_SubscriptionPurchasesDeferRequest $postBody, $optParams = array())
+  public function defer($packageName, $subscriptionId, $token, Google_Service_AndroidPublisher_SubscriptionPurchasesDeferRequest $postBody, $optParams = [])
   {
     $params = array('packageName' => $packageName, 'subscriptionId' => $subscriptionId, 'token' => $token, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -2303,7 +2303,7 @@ class Google_Service_AndroidPublisher_PurchasesSubscriptions_Resource extends Go
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidPublisher_SubscriptionPurchase
    */
-  public function get($packageName, $subscriptionId, $token, $optParams = array())
+  public function get($packageName, $subscriptionId, $token, $optParams = [])
   {
     $params = array('packageName' => $packageName, 'subscriptionId' => $subscriptionId, 'token' => $token);
     $params = array_merge($params, $optParams);
@@ -2323,7 +2323,7 @@ class Google_Service_AndroidPublisher_PurchasesSubscriptions_Resource extends Go
    * subscription was purchased.
    * @param array $optParams Optional parameters.
    */
-  public function refund($packageName, $subscriptionId, $token, $optParams = array())
+  public function refund($packageName, $subscriptionId, $token, $optParams = [])
   {
     $params = array('packageName' => $packageName, 'subscriptionId' => $subscriptionId, 'token' => $token);
     $params = array_merge($params, $optParams);
@@ -2343,7 +2343,7 @@ class Google_Service_AndroidPublisher_PurchasesSubscriptions_Resource extends Go
    * subscription was purchased.
    * @param array $optParams Optional parameters.
    */
-  public function revoke($packageName, $subscriptionId, $token, $optParams = array())
+  public function revoke($packageName, $subscriptionId, $token, $optParams = [])
   {
     $params = array('packageName' => $packageName, 'subscriptionId' => $subscriptionId, 'token' => $token);
     $params = array_merge($params, $optParams);

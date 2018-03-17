@@ -193,7 +193,7 @@ class Html implements Output
 			<table>';
 
     // Linfo Core. Decide what to show.
-    $core = array();
+    $core = [];
 
     // OS? (with icon, if we have it)
     if (!empty($settings['show']['os'])) {
@@ -259,7 +259,7 @@ class Html implements Output
 
     // The CPUs
     if (!empty($settings['show']['cpu'])) {
-        $cpus = array();
+        $cpus = [];
 
         foreach ((array) $info['CPU'] as $cpu) {
             $cpu_html =
@@ -299,7 +299,7 @@ class Html implements Output
     if (!empty($settings['show']['process_stats']) && $info['processStats']['exists']) {
 
         // Different os' have different keys of info
-        $proc_stats = array();
+        $proc_stats = [];
 
         // Load the keys
         if (array_key_exists('totals', $info['processStats']) && is_array($info['processStats']['totals'])) {
@@ -744,7 +744,7 @@ class Html implements Output
         $total_free = 0;
 
         // Don't add totals for duplicates. (same filesystem mount twice in different places)
-        $done_devices = array();
+        $done_devices = [];
 
         // Are there any?
         if (count($info['Mounts']) > 0) {

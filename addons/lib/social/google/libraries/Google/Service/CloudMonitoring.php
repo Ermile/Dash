@@ -37,7 +37,7 @@ class Google_Service_CloudMonitoring extends Google_Service
   public $metricDescriptors;
   public $timeseries;
   public $timeseriesDescriptors;
-  
+
 
   /**
    * Constructs the internal representation of the CloudMonitoring service.
@@ -261,7 +261,7 @@ class Google_Service_CloudMonitoring_MetricDescriptors_Resource extends Google_S
    * @param array $optParams Optional parameters.
    * @return Google_Service_CloudMonitoring_MetricDescriptor
    */
-  public function create($project, Google_Service_CloudMonitoring_MetricDescriptor $postBody, $optParams = array())
+  public function create($project, Google_Service_CloudMonitoring_MetricDescriptor $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -276,7 +276,7 @@ class Google_Service_CloudMonitoring_MetricDescriptors_Resource extends Google_S
    * @param array $optParams Optional parameters.
    * @return Google_Service_CloudMonitoring_DeleteMetricDescriptorResponse
    */
-  public function delete($project, $metric, $optParams = array())
+  public function delete($project, $metric, $optParams = [])
   {
     $params = array('project' => $project, 'metric' => $metric);
     $params = array_merge($params, $optParams);
@@ -306,7 +306,7 @@ class Google_Service_CloudMonitoring_MetricDescriptors_Resource extends Google_S
    * this field, no metrics are returned.
    * @return Google_Service_CloudMonitoring_ListMetricDescriptorsResponse
    */
-  public function listMetricDescriptors($project, $optParams = array())
+  public function listMetricDescriptors($project, $optParams = [])
   {
     $params = array('project' => $project);
     $params = array_merge($params, $optParams);
@@ -374,7 +374,7 @@ class Google_Service_CloudMonitoring_Timeseries_Resource extends Google_Service_
    * specified, the default time interval will be (youngest - 4 hours, youngest]
    * @return Google_Service_CloudMonitoring_ListTimeseriesResponse
    */
-  public function listTimeseries($project, $metric, $youngest, $optParams = array())
+  public function listTimeseries($project, $metric, $youngest, $optParams = [])
   {
     $params = array('project' => $project, 'metric' => $metric, 'youngest' => $youngest);
     $params = array_merge($params, $optParams);
@@ -396,7 +396,7 @@ class Google_Service_CloudMonitoring_Timeseries_Resource extends Google_Service_
    * @param array $optParams Optional parameters.
    * @return Google_Service_CloudMonitoring_WriteTimeseriesResponse
    */
-  public function write($project, Google_Service_CloudMonitoring_WriteTimeseriesRequest $postBody, $optParams = array())
+  public function write($project, Google_Service_CloudMonitoring_WriteTimeseriesRequest $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -464,7 +464,7 @@ class Google_Service_CloudMonitoring_TimeseriesDescriptors_Resource extends Goog
    * specified, the default time interval will be (youngest - 4 hours, youngest]
    * @return Google_Service_CloudMonitoring_ListTimeseriesDescriptorsResponse
    */
-  public function listTimeseriesDescriptors($project, $metric, $youngest, $optParams = array())
+  public function listTimeseriesDescriptors($project, $metric, $youngest, $optParams = [])
   {
     $params = array('project' => $project, 'metric' => $metric, 'youngest' => $youngest);
     $params = array_merge($params, $optParams);

@@ -35,7 +35,7 @@ class Google_Service_Admin extends Google_Service
       "https://www.googleapis.com/auth/email.migration";
 
   public $mail;
-  
+
 
   /**
    * Constructs the internal representation of the Admin service.
@@ -92,7 +92,7 @@ class Google_Service_Admin_Mail_Resource extends Google_Service_Resource
    * @param Google_MailItem $postBody
    * @param array $optParams Optional parameters.
    */
-  public function insert($userKey, Google_Service_Admin_MailItem $postBody, $optParams = array())
+  public function insert($userKey, Google_Service_Admin_MailItem $postBody, $optParams = [])
   {
     $params = array('userKey' => $userKey, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);

@@ -39,7 +39,7 @@ class Google_Service_Tasks extends Google_Service
 
   public $tasklists;
   public $tasks;
-  
+
 
   /**
    * Constructs the internal representation of the Tasks service.
@@ -83,7 +83,7 @@ class Google_Service_Tasks extends Google_Service
             ),'insert' => array(
               'path' => 'users/@me/lists',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),'list' => array(
               'path' => 'users/@me/lists',
               'httpMethod' => 'GET',
@@ -313,7 +313,7 @@ class Google_Service_Tasks_Tasklists_Resource extends Google_Service_Resource
    * @param string $tasklist Task list identifier.
    * @param array $optParams Optional parameters.
    */
-  public function delete($tasklist, $optParams = array())
+  public function delete($tasklist, $optParams = [])
   {
     $params = array('tasklist' => $tasklist);
     $params = array_merge($params, $optParams);
@@ -327,7 +327,7 @@ class Google_Service_Tasks_Tasklists_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Tasks_TaskList
    */
-  public function get($tasklist, $optParams = array())
+  public function get($tasklist, $optParams = [])
   {
     $params = array('tasklist' => $tasklist);
     $params = array_merge($params, $optParams);
@@ -342,7 +342,7 @@ class Google_Service_Tasks_Tasklists_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Tasks_TaskList
    */
-  public function insert(Google_Service_Tasks_TaskList $postBody, $optParams = array())
+  public function insert(Google_Service_Tasks_TaskList $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -360,9 +360,9 @@ class Google_Service_Tasks_Tasklists_Resource extends Google_Service_Resource
    * page. Optional. The default is 100.
    * @return Google_Service_Tasks_TaskLists
    */
-  public function listTasklists($optParams = array())
+  public function listTasklists($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_Tasks_TaskLists");
   }
@@ -376,7 +376,7 @@ class Google_Service_Tasks_Tasklists_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Tasks_TaskList
    */
-  public function patch($tasklist, Google_Service_Tasks_TaskList $postBody, $optParams = array())
+  public function patch($tasklist, Google_Service_Tasks_TaskList $postBody, $optParams = [])
   {
     $params = array('tasklist' => $tasklist, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -391,7 +391,7 @@ class Google_Service_Tasks_Tasklists_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Tasks_TaskList
    */
-  public function update($tasklist, Google_Service_Tasks_TaskList $postBody, $optParams = array())
+  public function update($tasklist, Google_Service_Tasks_TaskList $postBody, $optParams = [])
   {
     $params = array('tasklist' => $tasklist, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -418,7 +418,7 @@ class Google_Service_Tasks_Tasks_Resource extends Google_Service_Resource
    * @param string $tasklist Task list identifier.
    * @param array $optParams Optional parameters.
    */
-  public function clear($tasklist, $optParams = array())
+  public function clear($tasklist, $optParams = [])
   {
     $params = array('tasklist' => $tasklist);
     $params = array_merge($params, $optParams);
@@ -432,7 +432,7 @@ class Google_Service_Tasks_Tasks_Resource extends Google_Service_Resource
    * @param string $task Task identifier.
    * @param array $optParams Optional parameters.
    */
-  public function delete($tasklist, $task, $optParams = array())
+  public function delete($tasklist, $task, $optParams = [])
   {
     $params = array('tasklist' => $tasklist, 'task' => $task);
     $params = array_merge($params, $optParams);
@@ -447,7 +447,7 @@ class Google_Service_Tasks_Tasks_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Tasks_Task
    */
-  public function get($tasklist, $task, $optParams = array())
+  public function get($tasklist, $task, $optParams = [])
   {
     $params = array('tasklist' => $tasklist, 'task' => $task);
     $params = array_merge($params, $optParams);
@@ -468,7 +468,7 @@ class Google_Service_Tasks_Tasks_Resource extends Google_Service_Resource
    * Optional.
    * @return Google_Service_Tasks_Task
    */
-  public function insert($tasklist, Google_Service_Tasks_Task $postBody, $optParams = array())
+  public function insert($tasklist, Google_Service_Tasks_Task $postBody, $optParams = [])
   {
     $params = array('tasklist' => $tasklist, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -506,7 +506,7 @@ class Google_Service_Tasks_Tasks_Resource extends Google_Service_Resource
    * timestamp) to filter by. Optional. The default is not to filter by due date.
    * @return Google_Service_Tasks_Tasks
    */
-  public function listTasks($tasklist, $optParams = array())
+  public function listTasks($tasklist, $optParams = [])
   {
     $params = array('tasklist' => $tasklist);
     $params = array_merge($params, $optParams);
@@ -529,7 +529,7 @@ class Google_Service_Tasks_Tasks_Resource extends Google_Service_Resource
    * Optional.
    * @return Google_Service_Tasks_Task
    */
-  public function move($tasklist, $task, $optParams = array())
+  public function move($tasklist, $task, $optParams = [])
   {
     $params = array('tasklist' => $tasklist, 'task' => $task);
     $params = array_merge($params, $optParams);
@@ -546,7 +546,7 @@ class Google_Service_Tasks_Tasks_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Tasks_Task
    */
-  public function patch($tasklist, $task, Google_Service_Tasks_Task $postBody, $optParams = array())
+  public function patch($tasklist, $task, Google_Service_Tasks_Task $postBody, $optParams = [])
   {
     $params = array('tasklist' => $tasklist, 'task' => $task, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -562,7 +562,7 @@ class Google_Service_Tasks_Tasks_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Tasks_Task
    */
-  public function update($tasklist, $task, Google_Service_Tasks_Task $postBody, $optParams = array())
+  public function update($tasklist, $task, Google_Service_Tasks_Task $postBody, $optParams = [])
   {
     $params = array('tasklist' => $tasklist, 'task' => $task, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);

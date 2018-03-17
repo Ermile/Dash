@@ -39,7 +39,7 @@ class Google_Service_Reseller extends Google_Service
 
   public $customers;
   public $subscriptions;
-  
+
 
   /**
    * Constructs the internal representation of the Reseller service.
@@ -300,7 +300,7 @@ class Google_Service_Reseller_Customers_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Reseller_Customer
    */
-  public function get($customerId, $optParams = array())
+  public function get($customerId, $optParams = [])
   {
     $params = array('customerId' => $customerId);
     $params = array_merge($params, $optParams);
@@ -318,7 +318,7 @@ class Google_Service_Reseller_Customers_Resource extends Google_Service_Resource
    * https://www.google.com/a/cpanel//TransferToken. Optional.
    * @return Google_Service_Reseller_Customer
    */
-  public function insert(Google_Service_Reseller_Customer $postBody, $optParams = array())
+  public function insert(Google_Service_Reseller_Customer $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -334,7 +334,7 @@ class Google_Service_Reseller_Customers_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Reseller_Customer
    */
-  public function patch($customerId, Google_Service_Reseller_Customer $postBody, $optParams = array())
+  public function patch($customerId, Google_Service_Reseller_Customer $postBody, $optParams = [])
   {
     $params = array('customerId' => $customerId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -350,7 +350,7 @@ class Google_Service_Reseller_Customers_Resource extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    * @return Google_Service_Reseller_Customer
    */
-  public function update($customerId, Google_Service_Reseller_Customer $postBody, $optParams = array())
+  public function update($customerId, Google_Service_Reseller_Customer $postBody, $optParams = [])
   {
     $params = array('customerId' => $customerId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -379,7 +379,7 @@ class Google_Service_Reseller_Subscriptions_Resource extends Google_Service_Reso
    * @param array $optParams Optional parameters.
    * @return Google_Service_Reseller_Subscription
    */
-  public function activate($customerId, $subscriptionId, $optParams = array())
+  public function activate($customerId, $subscriptionId, $optParams = [])
   {
     $params = array('customerId' => $customerId, 'subscriptionId' => $subscriptionId);
     $params = array_merge($params, $optParams);
@@ -396,7 +396,7 @@ class Google_Service_Reseller_Subscriptions_Resource extends Google_Service_Reso
    * @param array $optParams Optional parameters.
    * @return Google_Service_Reseller_Subscription
    */
-  public function changePlan($customerId, $subscriptionId, Google_Service_Reseller_ChangePlanRequest $postBody, $optParams = array())
+  public function changePlan($customerId, $subscriptionId, Google_Service_Reseller_ChangePlanRequest $postBody, $optParams = [])
   {
     $params = array('customerId' => $customerId, 'subscriptionId' => $subscriptionId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -414,7 +414,7 @@ class Google_Service_Reseller_Subscriptions_Resource extends Google_Service_Reso
    * @param array $optParams Optional parameters.
    * @return Google_Service_Reseller_Subscription
    */
-  public function changeRenewalSettings($customerId, $subscriptionId, Google_Service_Reseller_RenewalSettings $postBody, $optParams = array())
+  public function changeRenewalSettings($customerId, $subscriptionId, Google_Service_Reseller_RenewalSettings $postBody, $optParams = [])
   {
     $params = array('customerId' => $customerId, 'subscriptionId' => $subscriptionId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -431,7 +431,7 @@ class Google_Service_Reseller_Subscriptions_Resource extends Google_Service_Reso
    * @param array $optParams Optional parameters.
    * @return Google_Service_Reseller_Subscription
    */
-  public function changeSeats($customerId, $subscriptionId, Google_Service_Reseller_Seats $postBody, $optParams = array())
+  public function changeSeats($customerId, $subscriptionId, Google_Service_Reseller_Seats $postBody, $optParams = [])
   {
     $params = array('customerId' => $customerId, 'subscriptionId' => $subscriptionId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -448,7 +448,7 @@ class Google_Service_Reseller_Subscriptions_Resource extends Google_Service_Reso
    * or downgraded
    * @param array $optParams Optional parameters.
    */
-  public function delete($customerId, $subscriptionId, $deletionType, $optParams = array())
+  public function delete($customerId, $subscriptionId, $deletionType, $optParams = [])
   {
     $params = array('customerId' => $customerId, 'subscriptionId' => $subscriptionId, 'deletionType' => $deletionType);
     $params = array_merge($params, $optParams);
@@ -464,7 +464,7 @@ class Google_Service_Reseller_Subscriptions_Resource extends Google_Service_Reso
    * @param array $optParams Optional parameters.
    * @return Google_Service_Reseller_Subscription
    */
-  public function get($customerId, $subscriptionId, $optParams = array())
+  public function get($customerId, $subscriptionId, $optParams = [])
   {
     $params = array('customerId' => $customerId, 'subscriptionId' => $subscriptionId);
     $params = array_merge($params, $optParams);
@@ -483,7 +483,7 @@ class Google_Service_Reseller_Subscriptions_Resource extends Google_Service_Reso
    * domain/TransferToken. Optional.
    * @return Google_Service_Reseller_Subscription
    */
-  public function insert($customerId, Google_Service_Reseller_Subscription $postBody, $optParams = array())
+  public function insert($customerId, Google_Service_Reseller_Subscription $postBody, $optParams = [])
   {
     $params = array('customerId' => $customerId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -506,9 +506,9 @@ class Google_Service_Reseller_Subscriptions_Resource extends Google_Service_Reso
    * which the subscriptions should be filtered. Optional
    * @return Google_Service_Reseller_Subscriptions
    */
-  public function listSubscriptions($optParams = array())
+  public function listSubscriptions($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_Reseller_Subscriptions");
   }
@@ -522,7 +522,7 @@ class Google_Service_Reseller_Subscriptions_Resource extends Google_Service_Reso
    * @param array $optParams Optional parameters.
    * @return Google_Service_Reseller_Subscription
    */
-  public function startPaidService($customerId, $subscriptionId, $optParams = array())
+  public function startPaidService($customerId, $subscriptionId, $optParams = [])
   {
     $params = array('customerId' => $customerId, 'subscriptionId' => $subscriptionId);
     $params = array_merge($params, $optParams);
@@ -538,7 +538,7 @@ class Google_Service_Reseller_Subscriptions_Resource extends Google_Service_Reso
    * @param array $optParams Optional parameters.
    * @return Google_Service_Reseller_Subscription
    */
-  public function suspend($customerId, $subscriptionId, $optParams = array())
+  public function suspend($customerId, $subscriptionId, $optParams = [])
   {
     $params = array('customerId' => $customerId, 'subscriptionId' => $subscriptionId);
     $params = array_merge($params, $optParams);

@@ -65,7 +65,7 @@ class socialNetwork
 			else
 				$_params = array('status' => $_params);
 
-			$reply = array();
+			$reply = [];
 			$reply['callback'] = $cb->statuses_update($_params);
 			$reply['status']  = $reply['callback']->httpstatus;
 			// return $reply;

@@ -37,7 +37,7 @@ class Google_Service_GamesConfiguration extends Google_Service
   public $achievementConfigurations;
   public $imageConfigurations;
   public $leaderboardConfigurations;
-  
+
 
   /**
    * Constructs the internal representation of the GamesConfiguration service.
@@ -255,7 +255,7 @@ class Google_Service_GamesConfiguration_AchievementConfigurations_Resource exten
    * @param string $achievementId The ID of the achievement used by this method.
    * @param array $optParams Optional parameters.
    */
-  public function delete($achievementId, $optParams = array())
+  public function delete($achievementId, $optParams = [])
   {
     $params = array('achievementId' => $achievementId);
     $params = array_merge($params, $optParams);
@@ -270,7 +270,7 @@ class Google_Service_GamesConfiguration_AchievementConfigurations_Resource exten
    * @param array $optParams Optional parameters.
    * @return Google_Service_GamesConfiguration_AchievementConfiguration
    */
-  public function get($achievementId, $optParams = array())
+  public function get($achievementId, $optParams = [])
   {
     $params = array('achievementId' => $achievementId);
     $params = array_merge($params, $optParams);
@@ -287,7 +287,7 @@ class Google_Service_GamesConfiguration_AchievementConfigurations_Resource exten
    * @param array $optParams Optional parameters.
    * @return Google_Service_GamesConfiguration_AchievementConfiguration
    */
-  public function insert($applicationId, Google_Service_GamesConfiguration_AchievementConfiguration $postBody, $optParams = array())
+  public function insert($applicationId, Google_Service_GamesConfiguration_AchievementConfiguration $postBody, $optParams = [])
   {
     $params = array('applicationId' => $applicationId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -308,7 +308,7 @@ class Google_Service_GamesConfiguration_AchievementConfigurations_Resource exten
    * of resources returned may be less than the specified maxResults.
    * @return Google_Service_GamesConfiguration_AchievementConfigurationListResponse
    */
-  public function listAchievementConfigurations($applicationId, $optParams = array())
+  public function listAchievementConfigurations($applicationId, $optParams = [])
   {
     $params = array('applicationId' => $applicationId);
     $params = array_merge($params, $optParams);
@@ -324,7 +324,7 @@ class Google_Service_GamesConfiguration_AchievementConfigurations_Resource exten
    * @param array $optParams Optional parameters.
    * @return Google_Service_GamesConfiguration_AchievementConfiguration
    */
-  public function patch($achievementId, Google_Service_GamesConfiguration_AchievementConfiguration $postBody, $optParams = array())
+  public function patch($achievementId, Google_Service_GamesConfiguration_AchievementConfiguration $postBody, $optParams = [])
   {
     $params = array('achievementId' => $achievementId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -340,7 +340,7 @@ class Google_Service_GamesConfiguration_AchievementConfigurations_Resource exten
    * @param array $optParams Optional parameters.
    * @return Google_Service_GamesConfiguration_AchievementConfiguration
    */
-  public function update($achievementId, Google_Service_GamesConfiguration_AchievementConfiguration $postBody, $optParams = array())
+  public function update($achievementId, Google_Service_GamesConfiguration_AchievementConfiguration $postBody, $optParams = [])
   {
     $params = array('achievementId' => $achievementId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -368,7 +368,7 @@ class Google_Service_GamesConfiguration_ImageConfigurations_Resource extends Goo
    * @param array $optParams Optional parameters.
    * @return Google_Service_GamesConfiguration_ImageConfiguration
    */
-  public function upload($resourceId, $imageType, $optParams = array())
+  public function upload($resourceId, $imageType, $optParams = [])
   {
     $params = array('resourceId' => $resourceId, 'imageType' => $imageType);
     $params = array_merge($params, $optParams);
@@ -394,7 +394,7 @@ class Google_Service_GamesConfiguration_LeaderboardConfigurations_Resource exten
    * @param string $leaderboardId The ID of the leaderboard.
    * @param array $optParams Optional parameters.
    */
-  public function delete($leaderboardId, $optParams = array())
+  public function delete($leaderboardId, $optParams = [])
   {
     $params = array('leaderboardId' => $leaderboardId);
     $params = array_merge($params, $optParams);
@@ -409,7 +409,7 @@ class Google_Service_GamesConfiguration_LeaderboardConfigurations_Resource exten
    * @param array $optParams Optional parameters.
    * @return Google_Service_GamesConfiguration_LeaderboardConfiguration
    */
-  public function get($leaderboardId, $optParams = array())
+  public function get($leaderboardId, $optParams = [])
   {
     $params = array('leaderboardId' => $leaderboardId);
     $params = array_merge($params, $optParams);
@@ -426,7 +426,7 @@ class Google_Service_GamesConfiguration_LeaderboardConfigurations_Resource exten
    * @param array $optParams Optional parameters.
    * @return Google_Service_GamesConfiguration_LeaderboardConfiguration
    */
-  public function insert($applicationId, Google_Service_GamesConfiguration_LeaderboardConfiguration $postBody, $optParams = array())
+  public function insert($applicationId, Google_Service_GamesConfiguration_LeaderboardConfiguration $postBody, $optParams = [])
   {
     $params = array('applicationId' => $applicationId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -447,7 +447,7 @@ class Google_Service_GamesConfiguration_LeaderboardConfigurations_Resource exten
    * of resources returned may be less than the specified maxResults.
    * @return Google_Service_GamesConfiguration_LeaderboardConfigurationListResponse
    */
-  public function listLeaderboardConfigurations($applicationId, $optParams = array())
+  public function listLeaderboardConfigurations($applicationId, $optParams = [])
   {
     $params = array('applicationId' => $applicationId);
     $params = array_merge($params, $optParams);
@@ -463,7 +463,7 @@ class Google_Service_GamesConfiguration_LeaderboardConfigurations_Resource exten
    * @param array $optParams Optional parameters.
    * @return Google_Service_GamesConfiguration_LeaderboardConfiguration
    */
-  public function patch($leaderboardId, Google_Service_GamesConfiguration_LeaderboardConfiguration $postBody, $optParams = array())
+  public function patch($leaderboardId, Google_Service_GamesConfiguration_LeaderboardConfiguration $postBody, $optParams = [])
   {
     $params = array('leaderboardId' => $leaderboardId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -479,7 +479,7 @@ class Google_Service_GamesConfiguration_LeaderboardConfigurations_Resource exten
    * @param array $optParams Optional parameters.
    * @return Google_Service_GamesConfiguration_LeaderboardConfiguration
    */
-  public function update($leaderboardId, Google_Service_GamesConfiguration_LeaderboardConfiguration $postBody, $optParams = array())
+  public function update($leaderboardId, Google_Service_GamesConfiguration_LeaderboardConfiguration $postBody, $optParams = [])
   {
     $params = array('leaderboardId' => $leaderboardId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);

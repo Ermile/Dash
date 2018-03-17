@@ -34,7 +34,7 @@ class error
 
 	public static function string($code)
 	{
-		$error = array();
+		$error = [];
 		$error[400] = 'BAD REQUEST';
 		$error[401] = 'UNAUTHORIZED';
 		$error[403] = 'FORBIDDEN';

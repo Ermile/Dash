@@ -59,7 +59,7 @@ if (function_exists('mb_get_info')) {
 
     function twig_wordwrap_filter(Twig_Environment $env, $value, $length = 80, $separator = "\n", $preserve = false)
     {
-        $sentences = array();
+        $sentences = [];
 
         $previous = mb_regex_encoding();
         mb_regex_encoding($env->getCharset());

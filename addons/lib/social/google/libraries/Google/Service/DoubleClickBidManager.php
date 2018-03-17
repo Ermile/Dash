@@ -35,7 +35,7 @@ class Google_Service_DoubleClickBidManager extends Google_Service
   public $lineitems;
   public $queries;
   public $reports;
-  
+
 
   /**
    * Constructs the internal representation of the DoubleClickBidManager
@@ -60,11 +60,11 @@ class Google_Service_DoubleClickBidManager extends Google_Service
             'downloadlineitems' => array(
               'path' => 'lineitems/downloadlineitems',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),'uploadlineitems' => array(
               'path' => 'lineitems/uploadlineitems',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),
           )
         )
@@ -78,7 +78,7 @@ class Google_Service_DoubleClickBidManager extends Google_Service
             'createquery' => array(
               'path' => 'query',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),'deletequery' => array(
               'path' => 'query/{queryId}',
               'httpMethod' => 'DELETE',
@@ -102,7 +102,7 @@ class Google_Service_DoubleClickBidManager extends Google_Service
             ),'listqueries' => array(
               'path' => 'queries',
               'httpMethod' => 'GET',
-              'parameters' => array(),
+              'parameters' => [],
             ),'runquery' => array(
               'path' => 'query/{queryId}',
               'httpMethod' => 'POST',
@@ -159,7 +159,7 @@ class Google_Service_DoubleClickBidManager_Lineitems_Resource extends Google_Ser
    * @param array $optParams Optional parameters.
    * @return Google_Service_DoubleClickBidManager_DownloadLineItemsResponse
    */
-  public function downloadlineitems(Google_Service_DoubleClickBidManager_DownloadLineItemsRequest $postBody, $optParams = array())
+  public function downloadlineitems(Google_Service_DoubleClickBidManager_DownloadLineItemsRequest $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -173,7 +173,7 @@ class Google_Service_DoubleClickBidManager_Lineitems_Resource extends Google_Ser
    * @param array $optParams Optional parameters.
    * @return Google_Service_DoubleClickBidManager_UploadLineItemsResponse
    */
-  public function uploadlineitems(Google_Service_DoubleClickBidManager_UploadLineItemsRequest $postBody, $optParams = array())
+  public function uploadlineitems(Google_Service_DoubleClickBidManager_UploadLineItemsRequest $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -199,7 +199,7 @@ class Google_Service_DoubleClickBidManager_Queries_Resource extends Google_Servi
    * @param array $optParams Optional parameters.
    * @return Google_Service_DoubleClickBidManager_Query
    */
-  public function createquery(Google_Service_DoubleClickBidManager_Query $postBody, $optParams = array())
+  public function createquery(Google_Service_DoubleClickBidManager_Query $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -213,7 +213,7 @@ class Google_Service_DoubleClickBidManager_Queries_Resource extends Google_Servi
    * @param string $queryId Query ID to delete.
    * @param array $optParams Optional parameters.
    */
-  public function deletequery($queryId, $optParams = array())
+  public function deletequery($queryId, $optParams = [])
   {
     $params = array('queryId' => $queryId);
     $params = array_merge($params, $optParams);
@@ -227,7 +227,7 @@ class Google_Service_DoubleClickBidManager_Queries_Resource extends Google_Servi
    * @param array $optParams Optional parameters.
    * @return Google_Service_DoubleClickBidManager_Query
    */
-  public function getquery($queryId, $optParams = array())
+  public function getquery($queryId, $optParams = [])
   {
     $params = array('queryId' => $queryId);
     $params = array_merge($params, $optParams);
@@ -240,9 +240,9 @@ class Google_Service_DoubleClickBidManager_Queries_Resource extends Google_Servi
    * @param array $optParams Optional parameters.
    * @return Google_Service_DoubleClickBidManager_ListQueriesResponse
    */
-  public function listqueries($optParams = array())
+  public function listqueries($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('listqueries', array($params), "Google_Service_DoubleClickBidManager_ListQueriesResponse");
   }
@@ -254,7 +254,7 @@ class Google_Service_DoubleClickBidManager_Queries_Resource extends Google_Servi
    * @param Google_RunQueryRequest $postBody
    * @param array $optParams Optional parameters.
    */
-  public function runquery($queryId, Google_Service_DoubleClickBidManager_RunQueryRequest $postBody, $optParams = array())
+  public function runquery($queryId, Google_Service_DoubleClickBidManager_RunQueryRequest $postBody, $optParams = [])
   {
     $params = array('queryId' => $queryId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -280,7 +280,7 @@ class Google_Service_DoubleClickBidManager_Reports_Resource extends Google_Servi
    * @param array $optParams Optional parameters.
    * @return Google_Service_DoubleClickBidManager_ListReportsResponse
    */
-  public function listreports($queryId, $optParams = array())
+  public function listreports($queryId, $optParams = [])
   {
     $params = array('queryId' => $queryId);
     $params = array_merge($params, $optParams);

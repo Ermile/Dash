@@ -64,7 +64,7 @@ class Mbmon
     // Parse and return info from daemon socket
     private function parseSockData($data)
     {
-        $return = array();
+        $return = [];
 
         $lines = (array) explode("\n", trim($data));
 

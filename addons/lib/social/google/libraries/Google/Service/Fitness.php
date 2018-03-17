@@ -53,7 +53,7 @@ class Google_Service_Fitness extends Google_Service
   public $users_dataSources_datasets;
   public $users_dataset;
   public $users_sessions;
-  
+
 
   /**
    * Constructs the internal representation of the Fitness service.
@@ -390,7 +390,7 @@ class Google_Service_Fitness_UsersDataSources_Resource extends Google_Service_Re
    * @param array $optParams Optional parameters.
    * @return Google_Service_Fitness_DataSource
    */
-  public function create($userId, Google_Service_Fitness_DataSource $postBody, $optParams = array())
+  public function create($userId, Google_Service_Fitness_DataSource $postBody, $optParams = [])
   {
     $params = array('userId' => $userId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -407,7 +407,7 @@ class Google_Service_Fitness_UsersDataSources_Resource extends Google_Service_Re
    * @param array $optParams Optional parameters.
    * @return Google_Service_Fitness_DataSource
    */
-  public function delete($userId, $dataSourceId, $optParams = array())
+  public function delete($userId, $dataSourceId, $optParams = [])
   {
     $params = array('userId' => $userId, 'dataSourceId' => $dataSourceId);
     $params = array_merge($params, $optParams);
@@ -424,7 +424,7 @@ class Google_Service_Fitness_UsersDataSources_Resource extends Google_Service_Re
    * @param array $optParams Optional parameters.
    * @return Google_Service_Fitness_DataSource
    */
-  public function get($userId, $dataSourceId, $optParams = array())
+  public function get($userId, $dataSourceId, $optParams = [])
   {
     $params = array('userId' => $userId, 'dataSourceId' => $dataSourceId);
     $params = array_merge($params, $optParams);
@@ -445,7 +445,7 @@ class Google_Service_Fitness_UsersDataSources_Resource extends Google_Service_Re
    * list. If not specified, all data sources will be returned.
    * @return Google_Service_Fitness_ListDataSourcesResponse
    */
-  public function listUsersDataSources($userId, $optParams = array())
+  public function listUsersDataSources($userId, $optParams = [])
   {
     $params = array('userId' => $userId);
     $params = array_merge($params, $optParams);
@@ -468,7 +468,7 @@ class Google_Service_Fitness_UsersDataSources_Resource extends Google_Service_Re
    * @param array $optParams Optional parameters.
    * @return Google_Service_Fitness_DataSource
    */
-  public function patch($userId, $dataSourceId, Google_Service_Fitness_DataSource $postBody, $optParams = array())
+  public function patch($userId, $dataSourceId, Google_Service_Fitness_DataSource $postBody, $optParams = [])
   {
     $params = array('userId' => $userId, 'dataSourceId' => $dataSourceId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -490,7 +490,7 @@ class Google_Service_Fitness_UsersDataSources_Resource extends Google_Service_Re
    * @param array $optParams Optional parameters.
    * @return Google_Service_Fitness_DataSource
    */
-  public function update($userId, $dataSourceId, Google_Service_Fitness_DataSource $postBody, $optParams = array())
+  public function update($userId, $dataSourceId, Google_Service_Fitness_DataSource $postBody, $optParams = [])
   {
     $params = array('userId' => $userId, 'dataSourceId' => $dataSourceId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -533,7 +533,7 @@ class Google_Service_Fitness_UsersDataSourcesDatasets_Resource extends Google_Se
    * @opt_param string currentTimeMillis The client's current time in milliseconds
    * since epoch.
    */
-  public function delete($userId, $dataSourceId, $datasetId, $optParams = array())
+  public function delete($userId, $dataSourceId, $datasetId, $optParams = [])
   {
     $params = array('userId' => $userId, 'dataSourceId' => $dataSourceId, 'datasetId' => $datasetId);
     $params = array_merge($params, $optParams);
@@ -567,7 +567,7 @@ class Google_Service_Fitness_UsersDataSourcesDatasets_Resource extends Google_Se
    * strictly smaller than those in the previous partial response.
    * @return Google_Service_Fitness_Dataset
    */
-  public function get($userId, $dataSourceId, $datasetId, $optParams = array())
+  public function get($userId, $dataSourceId, $datasetId, $optParams = [])
   {
     $params = array('userId' => $userId, 'dataSourceId' => $dataSourceId, 'datasetId' => $datasetId);
     $params = array_merge($params, $optParams);
@@ -596,7 +596,7 @@ class Google_Service_Fitness_UsersDataSourcesDatasets_Resource extends Google_Se
    * request body are in nanoseconds instead of milliseconds.
    * @return Google_Service_Fitness_Dataset
    */
-  public function patch($userId, $dataSourceId, $datasetId, Google_Service_Fitness_Dataset $postBody, $optParams = array())
+  public function patch($userId, $dataSourceId, $datasetId, Google_Service_Fitness_Dataset $postBody, $optParams = [])
   {
     $params = array('userId' => $userId, 'dataSourceId' => $dataSourceId, 'datasetId' => $datasetId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -622,7 +622,7 @@ class Google_Service_Fitness_UsersDataset_Resource extends Google_Service_Resour
    * @param array $optParams Optional parameters.
    * @return Google_Service_Fitness_AggregateResponse
    */
-  public function aggregate($userId, Google_Service_Fitness_AggregateRequest $postBody, $optParams = array())
+  public function aggregate($userId, Google_Service_Fitness_AggregateRequest $postBody, $optParams = [])
   {
     $params = array('userId' => $userId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -651,7 +651,7 @@ class Google_Service_Fitness_UsersSessions_Resource extends Google_Service_Resou
    * @opt_param string currentTimeMillis The client's current time in milliseconds
    * since epoch.
    */
-  public function delete($userId, $sessionId, $optParams = array())
+  public function delete($userId, $sessionId, $optParams = [])
   {
     $params = array('userId' => $userId, 'sessionId' => $sessionId);
     $params = array_merge($params, $optParams);
@@ -677,7 +677,7 @@ class Google_Service_Fitness_UsersSessions_Resource extends Google_Service_Resou
    * between the start and end times will be included in the response.
    * @return Google_Service_Fitness_ListSessionsResponse
    */
-  public function listUsersSessions($userId, $optParams = array())
+  public function listUsersSessions($userId, $optParams = [])
   {
     $params = array('userId' => $userId);
     $params = array_merge($params, $optParams);
@@ -697,7 +697,7 @@ class Google_Service_Fitness_UsersSessions_Resource extends Google_Service_Resou
    * since epoch.
    * @return Google_Service_Fitness_Session
    */
-  public function update($userId, $sessionId, Google_Service_Fitness_Session $postBody, $optParams = array())
+  public function update($userId, $sessionId, Google_Service_Fitness_Session $postBody, $optParams = [])
   {
     $params = array('userId' => $userId, 'sessionId' => $sessionId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);

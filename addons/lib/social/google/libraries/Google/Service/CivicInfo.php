@@ -35,7 +35,7 @@ class Google_Service_CivicInfo extends Google_Service
   public $divisions;
   public $elections;
   public $representatives;
-  
+
 
   /**
    * Constructs the internal representation of the CivicInfo service.
@@ -78,7 +78,7 @@ class Google_Service_CivicInfo extends Google_Service
             'electionQuery' => array(
               'path' => 'elections',
               'httpMethod' => 'GET',
-              'parameters' => array(),
+              'parameters' => [],
             ),'voterInfoQuery' => array(
               'path' => 'voterinfo',
               'httpMethod' => 'GET',
@@ -186,9 +186,9 @@ class Google_Service_CivicInfo_Divisions_Resource extends Google_Service_Resourc
    * http://lucene.apache.org/core/2_9_4/queryparsersyntax.html
    * @return Google_Service_CivicInfo_DivisionSearchResponse
    */
-  public function search($optParams = array())
+  public function search($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('search', array($params), "Google_Service_CivicInfo_DivisionSearchResponse");
   }
@@ -211,9 +211,9 @@ class Google_Service_CivicInfo_Elections_Resource extends Google_Service_Resourc
    * @param array $optParams Optional parameters.
    * @return Google_Service_CivicInfo_ElectionsQueryResponse
    */
-  public function electionQuery($optParams = array())
+  public function electionQuery($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('electionQuery', array($params), "Google_Service_CivicInfo_ElectionsQueryResponse");
   }
@@ -232,7 +232,7 @@ class Google_Service_CivicInfo_Elections_Resource extends Google_Service_Resourc
    * sources will be returned.
    * @return Google_Service_CivicInfo_VoterInfoResponse
    */
-  public function voterInfoQuery($address, $optParams = array())
+  public function voterInfoQuery($address, $optParams = [])
   {
     $params = array('address' => $address);
     $params = array_merge($params, $optParams);
@@ -270,9 +270,9 @@ class Google_Service_CivicInfo_Representatives_Resource extends Google_Service_R
    * the field ocdId is not given in the URL.
    * @return Google_Service_CivicInfo_RepresentativeInfoResponse
    */
-  public function representativeInfoByAddress($optParams = array())
+  public function representativeInfoByAddress($optParams = [])
   {
-    $params = array();
+    $params = [];
     $params = array_merge($params, $optParams);
     return $this->call('representativeInfoByAddress', array($params), "Google_Service_CivicInfo_RepresentativeInfoResponse");
   }
@@ -297,7 +297,7 @@ class Google_Service_CivicInfo_Representatives_Resource extends Google_Service_R
    * a matching office will not be returned.
    * @return Google_Service_CivicInfo_RepresentativeInfoData
    */
-  public function representativeInfoByDivision($ocdId, $optParams = array())
+  public function representativeInfoByDivision($ocdId, $optParams = [])
   {
     $params = array('ocdId' => $ocdId);
     $params = array_merge($params, $optParams);

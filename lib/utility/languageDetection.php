@@ -74,7 +74,7 @@ class languageDetection
 		$complete = '';
 		$b_found = false;// set to default value
 		//prepare user language array
-		$a_user_languages = array();
+		$a_user_languages = [];
 		// debuggers, set to true to trigger action:
 		$b_debugger_1 = false; // print out return array
 		$b_debugger_2 = false; // set fake data values
@@ -92,7 +92,7 @@ class languageDetection
 			foreach ( $a_languages_working as $language_list ) {
 				// pull out the language, place languages into array of full and primary
 				// string structure:
-				$a_temp = array();
+				$a_temp = [];
 				// slice out the part before ; on first step, the part before - on second, place into array
 				$a_temp[0] = substr( $language_list, 0, strcspn( $language_list, ';' ) );//full language
 				$a_temp[1] = substr( $language_list, 0, 2 );// cut out primary language

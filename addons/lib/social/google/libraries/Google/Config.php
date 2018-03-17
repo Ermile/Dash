@@ -126,7 +126,7 @@ class Google_Config
           )
         ),
         'Google_IO_Exception' => array(
-          'retry_map' => !extension_loaded('curl') ? array() : array(
+          'retry_map' => !extension_loaded('curl') ? [] : array(
             CURLE_COULDNT_RESOLVE_HOST => self::TASK_RETRY_ALWAYS,
             CURLE_COULDNT_CONNECT => self::TASK_RETRY_ALWAYS,
             CURLE_OPERATION_TIMEOUTED => self::TASK_RETRY_ALWAYS,
@@ -164,7 +164,7 @@ class Google_Config
   {
     if (!is_array($config)) {
       if (!isset($this->configuration['classes'][$class])) {
-        $this->configuration['classes'][$class] = array();
+        $this->configuration['classes'][$class] = [];
       }
       $this->configuration['classes'][$class][$config] = $value;
     } else {
@@ -445,7 +445,7 @@ class Google_Config
   private function setAuthConfig($key, $value)
   {
     if (!isset($this->configuration['classes'][$this->getAuthClass()])) {
-      $this->configuration['classes'][$this->getAuthClass()] = array();
+      $this->configuration['classes'][$this->getAuthClass()] = [];
     }
     $this->configuration['classes'][$this->getAuthClass()][$key] = $value;
   }

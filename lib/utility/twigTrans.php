@@ -30,7 +30,7 @@ class twigTrans
 
 		// Make sure the path does not contain "/.Trash*" folders and ends eith a .php or .html file
 		$files       = new \RegexIterator($flattened, "/\\.html\$/i");
-		$translation = array();
+		$translation = [];
 
 		foreach($files as $file)
 		{

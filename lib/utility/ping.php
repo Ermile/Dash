@@ -171,7 +171,7 @@ class ping
    */
   public function getIpAddress()
   {
-    $out = array();
+    $out = [];
     if (preg_match('/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/', $this->commandOutput, $out)){
       return $out[0];
     }

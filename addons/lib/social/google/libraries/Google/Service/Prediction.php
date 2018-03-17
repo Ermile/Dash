@@ -46,7 +46,7 @@ class Google_Service_Prediction extends Google_Service
 
   public $hostedmodels;
   public $trainedmodels;
-  
+
 
   /**
    * Constructs the internal representation of the Prediction service.
@@ -224,7 +224,7 @@ class Google_Service_Prediction_Hostedmodels_Resource extends Google_Service_Res
    * @param array $optParams Optional parameters.
    * @return Google_Service_Prediction_Output
    */
-  public function predict($project, $hostedModelName, Google_Service_Prediction_Input $postBody, $optParams = array())
+  public function predict($project, $hostedModelName, Google_Service_Prediction_Input $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'hostedModelName' => $hostedModelName, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -252,7 +252,7 @@ class Google_Service_Prediction_Trainedmodels_Resource extends Google_Service_Re
    * @param array $optParams Optional parameters.
    * @return Google_Service_Prediction_Analyze
    */
-  public function analyze($project, $id, $optParams = array())
+  public function analyze($project, $id, $optParams = [])
   {
     $params = array('project' => $project, 'id' => $id);
     $params = array_merge($params, $optParams);
@@ -266,7 +266,7 @@ class Google_Service_Prediction_Trainedmodels_Resource extends Google_Service_Re
    * @param string $id The unique name for the predictive model.
    * @param array $optParams Optional parameters.
    */
-  public function delete($project, $id, $optParams = array())
+  public function delete($project, $id, $optParams = [])
   {
     $params = array('project' => $project, 'id' => $id);
     $params = array_merge($params, $optParams);
@@ -281,7 +281,7 @@ class Google_Service_Prediction_Trainedmodels_Resource extends Google_Service_Re
    * @param array $optParams Optional parameters.
    * @return Google_Service_Prediction_Insert2
    */
-  public function get($project, $id, $optParams = array())
+  public function get($project, $id, $optParams = [])
   {
     $params = array('project' => $project, 'id' => $id);
     $params = array_merge($params, $optParams);
@@ -296,7 +296,7 @@ class Google_Service_Prediction_Trainedmodels_Resource extends Google_Service_Re
    * @param array $optParams Optional parameters.
    * @return Google_Service_Prediction_Insert2
    */
-  public function insert($project, Google_Service_Prediction_Insert $postBody, $optParams = array())
+  public function insert($project, Google_Service_Prediction_Insert $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -313,7 +313,7 @@ class Google_Service_Prediction_Trainedmodels_Resource extends Google_Service_Re
    * @opt_param string maxResults Maximum number of results to return.
    * @return Google_Service_Prediction_PredictionList
    */
-  public function listTrainedmodels($project, $optParams = array())
+  public function listTrainedmodels($project, $optParams = [])
   {
     $params = array('project' => $project);
     $params = array_merge($params, $optParams);
@@ -329,7 +329,7 @@ class Google_Service_Prediction_Trainedmodels_Resource extends Google_Service_Re
    * @param array $optParams Optional parameters.
    * @return Google_Service_Prediction_Output
    */
-  public function predict($project, $id, Google_Service_Prediction_Input $postBody, $optParams = array())
+  public function predict($project, $id, Google_Service_Prediction_Input $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'id' => $id, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -345,7 +345,7 @@ class Google_Service_Prediction_Trainedmodels_Resource extends Google_Service_Re
    * @param array $optParams Optional parameters.
    * @return Google_Service_Prediction_Insert2
    */
-  public function update($project, $id, Google_Service_Prediction_Update $postBody, $optParams = array())
+  public function update($project, $id, Google_Service_Prediction_Update $postBody, $optParams = [])
   {
     $params = array('project' => $project, 'id' => $id, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);

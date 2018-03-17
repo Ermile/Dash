@@ -38,7 +38,7 @@ class Google_Service_Doubleclicksearch extends Google_Service
   public $conversion;
   public $reports;
   public $savedColumns;
-  
+
 
   /**
    * Constructs the internal representation of the Doubleclicksearch service.
@@ -118,7 +118,7 @@ class Google_Service_Doubleclicksearch extends Google_Service
             ),'insert' => array(
               'path' => 'conversion',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),'patch' => array(
               'path' => 'conversion',
               'httpMethod' => 'PATCH',
@@ -162,11 +162,11 @@ class Google_Service_Doubleclicksearch extends Google_Service
             ),'update' => array(
               'path' => 'conversion',
               'httpMethod' => 'PUT',
-              'parameters' => array(),
+              'parameters' => [],
             ),'updateAvailability' => array(
               'path' => 'conversion/updateAvailability',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),
           )
         )
@@ -180,7 +180,7 @@ class Google_Service_Doubleclicksearch extends Google_Service
             'generate' => array(
               'path' => 'reports/generate',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),'get' => array(
               'path' => 'reports/{reportId}',
               'httpMethod' => 'GET',
@@ -209,7 +209,7 @@ class Google_Service_Doubleclicksearch extends Google_Service
             ),'request' => array(
               'path' => 'reports',
               'httpMethod' => 'POST',
-              'parameters' => array(),
+              'parameters' => [],
             ),
           )
         )
@@ -276,7 +276,7 @@ class Google_Service_Doubleclicksearch_Conversion_Resource extends Google_Servic
    * @opt_param string criterionId Numeric ID of the criterion.
    * @return Google_Service_Doubleclicksearch_ConversionList
    */
-  public function get($agencyId, $advertiserId, $engineAccountId, $endDate, $rowCount, $startDate, $startRow, $optParams = array())
+  public function get($agencyId, $advertiserId, $engineAccountId, $endDate, $rowCount, $startDate, $startRow, $optParams = [])
   {
     $params = array('agencyId' => $agencyId, 'advertiserId' => $advertiserId, 'engineAccountId' => $engineAccountId, 'endDate' => $endDate, 'rowCount' => $rowCount, 'startDate' => $startDate, 'startRow' => $startRow);
     $params = array_merge($params, $optParams);
@@ -291,7 +291,7 @@ class Google_Service_Doubleclicksearch_Conversion_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_Doubleclicksearch_ConversionList
    */
-  public function insert(Google_Service_Doubleclicksearch_ConversionList $postBody, $optParams = array())
+  public function insert(Google_Service_Doubleclicksearch_ConversionList $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -316,7 +316,7 @@ class Google_Service_Doubleclicksearch_Conversion_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_Doubleclicksearch_ConversionList
    */
-  public function patch($advertiserId, $agencyId, $endDate, $engineAccountId, $rowCount, $startDate, $startRow, Google_Service_Doubleclicksearch_ConversionList $postBody, $optParams = array())
+  public function patch($advertiserId, $agencyId, $endDate, $engineAccountId, $rowCount, $startDate, $startRow, Google_Service_Doubleclicksearch_ConversionList $postBody, $optParams = [])
   {
     $params = array('advertiserId' => $advertiserId, 'agencyId' => $agencyId, 'endDate' => $endDate, 'engineAccountId' => $engineAccountId, 'rowCount' => $rowCount, 'startDate' => $startDate, 'startRow' => $startRow, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -330,7 +330,7 @@ class Google_Service_Doubleclicksearch_Conversion_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_Doubleclicksearch_ConversionList
    */
-  public function update(Google_Service_Doubleclicksearch_ConversionList $postBody, $optParams = array())
+  public function update(Google_Service_Doubleclicksearch_ConversionList $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -345,7 +345,7 @@ class Google_Service_Doubleclicksearch_Conversion_Resource extends Google_Servic
    * @param array $optParams Optional parameters.
    * @return Google_Service_Doubleclicksearch_UpdateAvailabilityResponse
    */
-  public function updateAvailability(Google_Service_Doubleclicksearch_UpdateAvailabilityRequest $postBody, $optParams = array())
+  public function updateAvailability(Google_Service_Doubleclicksearch_UpdateAvailabilityRequest $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -371,7 +371,7 @@ class Google_Service_Doubleclicksearch_Reports_Resource extends Google_Service_R
    * @param array $optParams Optional parameters.
    * @return Google_Service_Doubleclicksearch_Report
    */
-  public function generate(Google_Service_Doubleclicksearch_ReportRequest $postBody, $optParams = array())
+  public function generate(Google_Service_Doubleclicksearch_ReportRequest $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -385,7 +385,7 @@ class Google_Service_Doubleclicksearch_Reports_Resource extends Google_Service_R
    * @param array $optParams Optional parameters.
    * @return Google_Service_Doubleclicksearch_Report
    */
-  public function get($reportId, $optParams = array())
+  public function get($reportId, $optParams = [])
   {
     $params = array('reportId' => $reportId);
     $params = array_merge($params, $optParams);
@@ -399,7 +399,7 @@ class Google_Service_Doubleclicksearch_Reports_Resource extends Google_Service_R
    * @param int $reportFragment The index of the report fragment to download.
    * @param array $optParams Optional parameters.
    */
-  public function getFile($reportId, $reportFragment, $optParams = array())
+  public function getFile($reportId, $reportFragment, $optParams = [])
   {
     $params = array('reportId' => $reportId, 'reportFragment' => $reportFragment);
     $params = array_merge($params, $optParams);
@@ -413,7 +413,7 @@ class Google_Service_Doubleclicksearch_Reports_Resource extends Google_Service_R
    * @param array $optParams Optional parameters.
    * @return Google_Service_Doubleclicksearch_Report
    */
-  public function request(Google_Service_Doubleclicksearch_ReportRequest $postBody, $optParams = array())
+  public function request(Google_Service_Doubleclicksearch_ReportRequest $postBody, $optParams = [])
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
@@ -441,7 +441,7 @@ class Google_Service_Doubleclicksearch_SavedColumns_Resource extends Google_Serv
    * @param array $optParams Optional parameters.
    * @return Google_Service_Doubleclicksearch_SavedColumnList
    */
-  public function listSavedColumns($agencyId, $advertiserId, $optParams = array())
+  public function listSavedColumns($agencyId, $advertiserId, $optParams = [])
   {
     $params = array('agencyId' => $agencyId, 'advertiserId' => $advertiserId);
     $params = array_merge($params, $optParams);
