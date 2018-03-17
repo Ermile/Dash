@@ -267,52 +267,8 @@ class language
 		$my_first_url = \lib\url::lang();
 		if(self::check($my_first_url))
 		{
-			if(substr(self::$language_default, 0, 2) === $my_first_url)
-			{
-				$redirectURL = \lib\url::directory();
-				if(substr($redirectURL, 0, 2) === $my_first_url)
-				{
-					$redirectURL = substr($redirectURL, 2);
-				}
-				if(!$redirectURL)
-				{
-					$redirectURL = '/';
-				}
-				\lib\redirect::to($redirectURL);
-			}
-			else
-			{
-				// set language
-				self::set_language($my_first_url, true);
-
-				if(self::check(\lib\url::dir(0)))
-				{
-					\lib\error::page("More than one language found");
-				}
-			}
+			self::set_language($my_first_url, true);
 		}
-
-		// Step2 re
-		// if we are not in dev and tld lang is exist
-		// then use only one domain for this site then redirect to main tld
-
-		// $tld_lang = \lib\utility\location\tld::get();
-		// if(\lib\url::isLocal() === false)
-		// {
-		// 	/**
-		// 	 need fix
-		// 	 */
-		// 	// for example redirect ermile.ir to ermile.com/fa
-		// 	$myredirect = new \lib\redirector();
-		// 	$myredirect->set_domain()->set_url($tld_lang);
-		// 	return false;
-		// }
-
-		// if language is not set
-		// if(!self::$language)
-		// {
-		// 	language::set_language(substr(self::$language_default, 0, 2));
-		// }
 	}
 }
 ?>
