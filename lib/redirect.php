@@ -10,7 +10,7 @@ class redirect
 	 * @param  [type]  $_arg special argument like txt in html or type in php
 	 * @return [type]        [description]
 	 */
-	public static function to($_url = null, $_php = true, $_arg = null)
+	public static function to($_url, $_php = true, $_arg = null)
 	{
 		if(\lib\request::json_accept() || \lib\temp::get('api') || \lib\request::ajax())
 		{
@@ -28,6 +28,14 @@ class redirect
 		\lib\code::die();
 	}
 
+	/**
+	 * redirect to current location
+	 */
+	public funtion pwd()
+	{
+		self::to(\lib\url::pwd());
+	}
+
 
 	/**
 	 * via pushstate
@@ -39,6 +47,7 @@ class redirect
 		header('Content-Type: application/json');
 		\lib\debug::msg('redirect', $_loc);
 
+		// echo json_encode(\lib\debug::compile(true));
 		echo json_encode(\lib\debug::compile());
 	}
 
