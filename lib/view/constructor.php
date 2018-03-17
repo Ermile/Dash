@@ -29,7 +29,7 @@ trait constructor
 		$this->data->site['slogan']      = T_("Ermile is intelligent ;)");
 		$this->data->site['langlist']    = \lib\language::list(true);
 		$this->data->site['currentlang'] = \lib\language::get_language();
-		$this->data->site['defaultLang'] = \lib\language::get_language('default');
+		$this->data->site['defaultLang'] = \lib\language::default();
 
 		// save all options to use in display
 		$this->data->options = \lib\option::config();

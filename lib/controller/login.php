@@ -90,7 +90,7 @@ trait login
 
 		if(!$_SESSION && !$cookie && !\lib\url::lang())
 		{
-			$default_site_language = \lib\language::get_language('default');
+			$default_site_language = \lib\language::default();
 			$country_is_ir         = (isset($_SERVER['HTTP_CF_IPCOUNTRY']) && mb_strtoupper($_SERVER['HTTP_CF_IPCOUNTRY']) === 'IR') ? true : false;
 			$redirect_lang         = null;
 

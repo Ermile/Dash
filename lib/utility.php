@@ -295,7 +295,7 @@ class utility
         // get target language
     	if($_type === 'default')
     	{
-    		$_type = \lib\language::get_language('default');
+    		$_type = \lib\language::default();
     	}
     	elseif($_type === 'current')
     	{
