@@ -5,18 +5,18 @@
 
 
 // ----- main url and redirect
-// self::$url['fix']                                   = true;
-// self::$url['protocol']                              = 'https';
-// self::$url['root']                                  = 'ermile';
-// self::$url['tld']                                   = 'com';
-// self::$url['port']                                  = 80;
+// self::$url['fix']      = true;
+// self::$url['protocol'] = 'https';
+// self::$url['root']     = 'ermile';
+// self::$url['tld']      = 'com';
+// self::$url['port']     = 80;
 
 
 // ----- language
-self::$language                                        =
+self::$language           =
 [
-	'default'                                          => 'en',
-	'list'                                             => ['fa','en',],
+	'default'                 => 'en',
+	'list'                    => ['fa','en']
 ];
 
 

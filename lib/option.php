@@ -26,10 +26,7 @@ class option
 		if(empty(self::$config))
 		{
 			// load default option
-			if(file_exists('../../dash/lib/option_defaults.php'))
-			{
-				require_once('../../dash/lib/option_defaults.php');
-			}
+			require_once(lib."engine/option_defaults.php");
 
 			if(file_exists(root.'/includes/option/option.php'))
 			{
