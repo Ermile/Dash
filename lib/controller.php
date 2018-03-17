@@ -263,18 +263,18 @@ class controller
 			header('Content-Type: application/json');
 			if(isset($this->controller()->redirector) && $this->controller()->redirector)
 			{
-				\lib\notif::msg("redirect", \lib\redirect::to()->redirect(true));
+				\lib\notif::msg("redirect", \lib\redirect::pwd()->redirect(true));
 			}
 			echo \lib\notif::compile(true);
 		}
 		elseif(!\lib\temp::get('api') && mb_strtolower($_SERVER['REQUEST_METHOD']) == "post")
 		{
-			\lib\redirect::to();
+			\lib\redirect::pwd();
 		}
 
 		if(isset($this->controller()->redirector) && $this->controller()->redirector && !\lib\request::json_accept())
 		{
-			\lib\redirect::to();
+			\lib\redirect::pwd();
 		}
 
 		if($force_stop)
