@@ -1,29 +1,5 @@
 <?php
 namespace lib;
-/**
- * define error name
- *
- * @var        integer
- */
-const BAD_REQUEST              = 400;
-const UNAUTHORIZED             = 401;
-const FORBIDDEN                = 403;
-const NOT_FOUND                = 404;
-const METHOD_NOT_ALLOWED       = 405;
-const NOT_ACCEPTABLE           = 406;
-const REQUEST_TIME_OUT         = 408;
-const GONE                     = 410;
-const LENGTH_REQUIRED          = 411;
-const PRECONDITION_FAILED      = 412;
-const REQUEST_ENTITY_TOO_LARGE = 413;
-const REQUEST_URI_TOO_LARGE    = 414;
-const UNSUPPORTED_MEDIA_TYPE   = 415;
-const INTERNAL_SERVER_ERROR    = 500;
-const NOT_IMPLEMENTED          = 501;
-const BAD_GATEWAY              = 502;
-const SERVICE_UNAVAILABLE      = 503;
-const VARIANT_ALSO_VARIES      = 506;
-
 
 /**
  * Class for error.
@@ -31,112 +7,77 @@ const VARIANT_ALSO_VARIES      = 506;
  */
 class error
 {
-
-	public static function string($code)
+	public static function config($_code)
 	{
-		$error = [];
-		$error[400] = 'BAD REQUEST';
-		$error[401] = 'UNAUTHORIZED';
-		$error[403] = 'FORBIDDEN';
-		$error[404] = 'NOT FOUND';
-		$error[405] = 'METHOD NOT ALLOWED';
-		$error[406] = 'NOT ACCEPTABLE';
-		$error[408] = 'REQUEST TIME OUT';
-		$error[410] = 'GONE';
-		$error[411] = 'LENGTH REQUIRED';
-		$error[412] = 'PRECONDITION FAILED';
-		$error[413] = 'REQUEST ENTITY TOO LARGE';
-		$error[414] = 'REQUEST URI TOO LARGE';
-		$error[415] = 'UNSUPPORTED MEDIA TYPE';
-		$error[500] = 'INTERNAL SERVER ERROR';
-		$error[501] = 'NOT IMPLEMENTED';
-		$error[502] = 'BAD GATEWAY';
-		$error[503] = 'SERVICE UNAVAILABLE';
-		$error[506] = 'VARIANT ALSO VARIES';
-		return $error[$code];
-	}
+		$error                  = [];
+		$error['bad']           = ['code' => 400, 'title' => 'BAD REQUEST'];
+		$error['login']         = ['code' => 401, 'title' => 'UNAUTHORIZED'];
+		$error['access']        = ['code' => 403, 'title' => 'FORBIDDEN'];
+		$error['page']          = ['code' => 404, 'title' => 'NOT FOUND'];
+		$error['core']          = ['code' => 404, 'title' => 'NOT FOUND'];
+		$error['method']        = ['code' => 405, 'title' => 'METHOD NOT ALLOWED'];
+		$error['notacceptable'] = ['code' => 406, 'title' => 'NOT ACCEPTABLE'];
+		$error['timeout']       = ['code' => 408, 'title' => 'REQUEST TIME OUT'];
+		$error['gone']          = ['code' => 410, 'title' => 'GONE'];
+		$error['length']        = ['code' => 411, 'title' => 'LENGTH REQUIRED'];
+		$error['recondition']   = ['code' => 412, 'title' => 'PRECONDITION FAILED'];
+		$error['large']         = ['code' => 413, 'title' => 'REQUEST ENTITY TOO LARGE'];
+		$error['uritoolarg']    = ['code' => 414, 'title' => 'REQUEST URI TOO LARGE'];
+		$error['type']          = ['code' => 415, 'title' => 'UNSUPPORTED MEDIA TYPE'];
+		$error['internal']      = ['code' => 500, 'title' => 'INTERNAL SERVER ERROR'];
+		$error['unsupport']     = ['code' => 501, 'title' => 'NOT IMPLEMENTED'];
+		$error['gateway']       = ['code' => 502, 'title' => 'BAD GATEWAY'];
+		$error['service']       = ['code' => 503, 'title' => 'SERVICE UNAVAILABLE'];
+		$error['variant']       = ['code' => 506, 'title' => 'VARIANT ALSO VARIES'];
 
-	public static function service($str = null)
-	{
-		$class = debug_backtrace(true);
-		self::make($str, $class, SERVICE_UNAVAILABLE);
-	}
-
-	public static function unsupport($str = null)
-	{
-		$class = debug_backtrace(true);
-		self::make($str, $class, NOT_IMPLEMENTED);
-	}
-
-	public static function page($str=null)
-	{
-		$class = debug_backtrace(true);
-		self::make($str, $class, NOT_FOUND);
+		if(isset($error[$_code]))
+		{
+			return $error[$_code];
+		}
+		return null;
 	}
 
 
-	public static function core($str=null)
+	public static function __callStatic($_fn, $_args = null)
 	{
-		$class = debug_backtrace(true);
-		self::make($str, $class, NOT_FOUND);
-	}
-
-	public static function login($str=null)
-	{
-		$class = debug_backtrace(true);
-		self::make($str, $class, UNAUTHORIZED);
-	}
-
-	public static function access($str=null)
-	{
-		$class = debug_backtrace(true);
-		self::make($str, $class, FORBIDDEN);
-	}
-
-
-	public static function bad($str=null)
-	{
-		$class = debug_backtrace(true);
-		self::make($str, $class, BAD_REQUEST);
-	}
-
-	public static function notacceptable($str=null)
-	{
-		$class = debug_backtrace(true);
-		self::make($str, $class, NOT_ACCEPTABLE);
-	}
-
-	public static function internal($str=null)
-	{
-		$class = debug_backtrace(true);
-		self::make($str, $class, INTERNAL_SERVER_ERROR);
-	}
-
-	public static function method($str=null)
-	{
-		$class = debug_backtrace(true);
-		self::make($str, $class, METHOD_NOT_ALLOWED);
+		if($error = self::config($_fn))
+		{
+			$subtitle = null;
+			if(isset($_args[0]) && is_string($_args[0]))
+			{
+				$subtitle = $_args[0];
+			}
+			self::make($error['code'], $error['title'], $subtitle);
+		}
+		else
+		{
+			\lib\code::exit("function not exist");
+		}
 	}
 
 
-	public static function make($STRING, $obj, $STATUS)
+	public static function make($_code, $_title, $_subtitle)
 	{
-		$HTTP_ERROR = self::string($STATUS);
+		$HTTP_ERROR = $_title;
+		$subtitle   = $_subtitle;
+		$obj        = debug_backtrace(true);
+
 		if(\lib\request::json_accept() || \lib\temp::get('api'))
 		{
 			header('Content-Type: application/json');
-			header("HTTP/1.1 $STATUS ".$HTTP_ERROR);
+			header("HTTP/1.1 $_code ".$HTTP_ERROR);
 			\lib\notif::title($HTTP_ERROR);
-			\lib\notif::error($STRING, $STATUS, "HTTP");
+			\lib\notif::error($_title, $_code, "HTTP");
 			echo \lib\notif::compile(true);
 		}
 		else
 		{
-			header("HTTP/1.1 $STATUS ".$HTTP_ERROR);
+			header("HTTP/1.1 $_code ".$HTTP_ERROR);
 			require_once(lib."engine/error_page.php");
 		}
 		\lib\code::exit();
 	}
+
 
 	// error handler function
 	public static function myErrorHandler($errno = null, $errstr = null, $errfile = null, $errline = null)

@@ -9,7 +9,7 @@
 </head>
 <body>
  <h1><?php echo $HTTP_ERROR?></h1>
- <b class='slash'><?php echo $STRING; ?></b>
+ <b class='slash'><?php echo $subtitle; ?></b>
 <?php if(defined("DEBUG") && DEBUG && \lib\url::isLocal()  ) {?>
  <ol>
 <?php
@@ -35,6 +35,6 @@ foreach ($obj as $key => $value):?>
 
  <a href="<?php echo \lib\url::site(); ?>">Return to Homepage</a>
 
- <div id="no"><?php echo $STATUS?></div>
+ <div id="no"><?php echo $_code?></div>
 </body>
 </html>
