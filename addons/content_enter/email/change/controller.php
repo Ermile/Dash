@@ -3,10 +3,6 @@ namespace addons\content_enter\email\change;
 
 class controller extends \addons\content_enter\main\controller
 {
-	/**
-	 * check route of account
-	 * @return [type] [description]
-	 */
 	public function ready()
 	{
 		if(\lib\url::directory() === 'email/change/google')
@@ -29,7 +25,6 @@ class controller extends \addons\content_enter\main\controller
 
 		$this->get()->ALL('email/change');
 		$this->post('change')->ALL('email/change');
-
 	}
 }
 ?>

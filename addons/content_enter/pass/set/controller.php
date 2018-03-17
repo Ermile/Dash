@@ -3,10 +3,6 @@ namespace addons\content_enter\pass\set;
 
 class controller extends \addons\content_enter\main\controller
 {
-	/**
-	 * check route of account
-	 * @return [type] [description]
-	 */
 	public function ready()
 	{
 		// if this step is locked go to error page and return

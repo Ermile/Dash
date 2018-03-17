@@ -22,9 +22,6 @@ class controller extends  \mvc\controller
 	}
 
 
-	/**
-	 * route
-	 */
 	public function ready()
 	{
 		$url = \lib\url::directory();

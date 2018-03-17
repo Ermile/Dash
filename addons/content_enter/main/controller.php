@@ -4,10 +4,6 @@ namespace addons\content_enter\main;
 class controller extends \mvc\controller
 {
 	use _use;
-	/**
-	 * check route of account
-	 * @return [type] [description]
-	 */
 	public function repository()
 	{
 		$url = \lib\url::directory();

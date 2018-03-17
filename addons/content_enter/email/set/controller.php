@@ -3,10 +3,6 @@ namespace addons\content_enter\email\set;
 
 class controller extends \addons\content_enter\main\controller
 {
-	/**
-	 * check route of account
-	 * @return [type] [description]
-	 */
 	public function ready()
 	{
 		// if the user is login redirect to base
@@ -24,7 +20,6 @@ class controller extends \addons\content_enter\main\controller
 		$this->get()->ALL('email/set');
 
 		$this->post('email')->ALL('email/set');
-
 	}
 }
 ?>

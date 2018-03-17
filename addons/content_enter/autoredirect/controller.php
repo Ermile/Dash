@@ -6,9 +6,6 @@ class controller extends \addons\content_enter\main\controller
 {
 	public static $autoredirect_method = [];
 
-	/**
-	* route
-	*/
 	public function ready()
 	{
 		$autoredirect = [];

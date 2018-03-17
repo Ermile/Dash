@@ -3,10 +3,6 @@ namespace addons\content_enter\username\set;
 
 class controller extends \addons\content_enter\main\controller
 {
-	/**
-	 * check route of account
-	 * @return [type] [description]
-	 */
 	public function ready()
 	{
 		// if the user is login redirect to base

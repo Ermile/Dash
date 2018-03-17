@@ -3,10 +3,6 @@ namespace addons\content_enter\delete\request;
 
 class controller extends \addons\content_enter\main\controller
 {
-	/**
-	 * check route of account
-	 * @return [type] [description]
-	 */
 	public function ready()
 	{
 		// if this step is locked go to error page and return
@@ -16,10 +12,8 @@ class controller extends \addons\content_enter\main\controller
 			return;
 		}
 
-
 		$this->get()->ALL('delete/request');
 		$this->post('delete')->ALL('delete/request');
-
 	}
 }
 ?>
