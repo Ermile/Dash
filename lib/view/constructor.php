@@ -39,8 +39,8 @@ trait constructor
 		$this->data->page['special'] = null;
 		$this->data->bodyclass       = null;
 
-		$this->data->login           = \lib\user::login('all');
-		$this->data->user            = \lib\user::detail();
+		$this->data->user = $this->data->login  = \lib\user::detail();
+
 		// $this->data->perm            = $this->access(null, 'all');
 		// $this->data->permContent     = $this->access('all');
 

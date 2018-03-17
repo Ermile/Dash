@@ -5,7 +5,6 @@ use \lib\api;
 class controller
 {
 	use \lib\mvc;
-	use \lib\controller\login;
 	use \lib\controller\ref;
 
 
@@ -106,9 +105,9 @@ class controller
 		// save referer of users
 		$this->save_ref();
 		// check if isset remember me and login by this
-		$this->check_remeber_login();
+		\lib\user::check_remeber_login();
 		// redirect
-		$this->user_country_redirect();
+		\lib\user::user_country_redirect();
 	}
 
 
