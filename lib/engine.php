@@ -14,14 +14,6 @@ class engine
 	}
 
 
-	public static function route()
-	{
-		$route = new router\route(false);
-		call_user_func_array(array($route, 'check_route'), func_get_args());
-
-		return $route;
-	}
-
 
 	public static function __callstatic($name, $args)
 	{

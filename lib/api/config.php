@@ -93,32 +93,32 @@ class config
 
 	public function check($route)
 	{
-		if ($this->api->controller->method) return;
-		$route_callback = call_user_func_array(array($this->api->controller, 'route'), func_get_args());
-		$api_callback = null;
-		if($route_callback->status)
-		{
-			$this->api->controller->method = $this->api_method;
-			$args_object = new args_callback(array(
-				'method' => $this->api_method,
-				'match' => $route_callback->match
-				));
-			if($this->model_api_name)
-			{
-				$model_api_name = "api_".$this->model_api_name;
+		// if ($this->api->controller->method) return;
+		// $route_callback = call_user_func_array(array($this->api->controller, 'route'), func_get_args());
+		// $api_callback = null;
+		// if($route_callback->status)
+		// {
+		// 	$this->api->controller->method = $this->api_method;
+		// 	$args_object = new args_callback(array(
+		// 		'method' => $this->api_method,
+		// 		'match' => $route_callback->match
+		// 		));
+		// 	if($this->model_api_name)
+		// 	{
+		// 		$model_api_name = "api_".$this->model_api_name;
 
-				$this->api->controller->model_api_processor = $object = (object) array("method" => $model_api_name, "args" => $args_object);
-			}
-			if($this->view_api_name && !\lib\temp::get('api'))
-			{
-				$view_api_name = "view_".$this->view_api_name;
-				if($this->model_api_name)
-				{
-					$args_object->api_callback = $api_callback;
-				}
-				$this->api->controller->view_api_processor = $object = (object) array("method" => $view_api_name, "args" => $args_object);
-			}
-		}
+		// 		$this->api->controller->model_api_processor = $object = (object) array("method" => $model_api_name, "args" => $args_object);
+		// 	}
+		// 	if($this->view_api_name && !\lib\temp::get('api'))
+		// 	{
+		// 		$view_api_name = "view_".$this->view_api_name;
+		// 		if($this->model_api_name)
+		// 		{
+		// 			$args_object->api_callback = $api_callback;
+		// 		}
+		// 		$this->api->controller->view_api_processor = $object = (object) array("method" => $view_api_name, "args" => $args_object);
+		// 	}
+		// }
 	}
 
 }

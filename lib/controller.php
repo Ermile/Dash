@@ -1,6 +1,5 @@
 <?php
 namespace lib;
-use \lib\router\route;
 use \lib\api;
 
 class controller
@@ -394,54 +393,6 @@ class controller
 		}
 
 		return $MyClassName;
-	}
-
-
-	public function caller(...$_args)
-	{
-		if(count($_args) < 3)
-		{
-			error::internal("caller arguments count");
-			return;
-		}
-		elseif((!$_args[0] && !$args[1]) || !$_args[2])
-		{
-			error::internal("caller arguments invalid");
-			return;
-		}
-		$caller = [$_args[0], $_args[1]];
-		$route = new route(false);
-		if(!is_array($_args[2]))
-		{
-			$_args[2] = [$_args[2]];
-		}
-		$return_route = call_user_func_array(array($route, 'check_route'), $_args[2]);
-		if($route->status)
-		{
-			array_push($caller, new api\args_callback(['method'=> 'caller', 'match' => $route->match]));
-			if(!isset($this->caller))
-			{
-				$this->caller = array();
-			}
-			array_push($this->caller, $caller);
-		}
-	}
-
-
-	/**
-	 * [route description]
-	 * @return [type] [description]
-	 */
-	public function route()
-	{
-		$route = new route(false);
-		$return_route = call_user_func_array(array($route, 'check_route'), func_get_args());
-		if($route->status === true)
-		{
-			$this->route_check_true = true;
-		}
-
-		return $route;
 	}
 
 
