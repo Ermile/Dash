@@ -127,51 +127,5 @@ trait mvc
 		}
 		return $return;
 	}
-
-
-	/**
-	 * addons method import
-	 *
-	 * @param      <type>  $_name    The name
-	 * @param      <type>  $_addons  The addons
-	 */
-	public function addons_method_import($_name, $_addons)
-	{
-		$class_type = explode('\\', get_class());
-		$class_type = end($class_type);
-		$addons_path = $_addons['path'];
-		$addons_name = trim($addons_path, '/');
-		$addons_name = '\\'.preg_replace("/\//", '\\', $addons_name).'\\'.$class_type;
-		if(class_exists($addons_name))
-		{
-			$addons_class = new $addons_name($this);
-			$get_methods_name = new \ReflectionClass($addons_name);
-			$methods_name = $get_methods_name->getMethods();
-			foreach ($methods_name as $key => $value)
-			{
-				$Closure = $value->getClosure($addons_class);
-				$this->inject($value->name, [$Closure]);
-			}
-			return true;
-		}
-		return false;
-	}
-
-
-	/**
-	 * check method exits
-	 *
-	 * @param      <type>   $_name  The name
-	 *
-	 * @return     boolean  ( description_of_the_return_value )
-	 */
-	public function method_exists($_name)
-	{
-		if(method_exists($this, $_name) || array_key_exists($_name, $this->Methods))
-		{
-			return true;
-		}
-		return false;
-	}
 }
 ?>

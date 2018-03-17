@@ -87,11 +87,6 @@ class view
 			$this->data->display['home']    = "content/home/display-xhr.html";
 			$this->data->display['account'] = "content_account/home/layout-xhr.html";
 			$this->data->loadMode           = 'ajax';
-
-			if($this->method_exists("pushState"))
-			{
-				$this->ipushState();
-			}
 		}
 		$module       = preg_replace("/^[^\/]*\/?content/", "content", get_class($this->controller));
 		$module       = preg_replace("/^content\\\\|(model|view|controller)$/", "", $module);
