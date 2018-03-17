@@ -7,7 +7,7 @@
 <div class="cbox">
   <div class="msg">{%trans "Factor of team"%} <b>{{invoice.invoice.title}}</b> |
     {%trans "Date"%}
-  {%if site.currentlang == 'fa'%}
+  {%if lang.current == 'fa'%}
      {{invoice.invoice.date|jdate("Y-m-d H:i:s")}}
   {%else%}
     {{invoice.invoice.date}}

@@ -23,7 +23,7 @@
         <td>
         <img src="{{value.logourl}}" height="15" width="15"></td>
         <td>{%set my_plan = value.plan | capitalize %}{%trans my_plan%}</td>
-        {%if site.currentlang == 'fa'%}
+        {%if lang.current == 'fa'%}
           <td>{{value.startplan|jdate("Y-m-d H:i:s")}}</td>
         {%else%}
           <td>{{value.startplan|date("Y-m-d H:i:s")}}</td>

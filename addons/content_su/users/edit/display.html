@@ -81,7 +81,7 @@
           <input type="text" name="birthcity" id="birthcity" placeholder='{%trans "Birth city"%}' value="{{user_detail.birthplace}}" maxlength='50'>
         </div>
 
-        {%if site.currentlang == 'fa'%}
+        {%if lang.current == 'fa'%}
         <label for="shfrom">{%trans "Sh from"%}</label>
         <div class="input">
           <input type="text" name="shfrom" id="shfrom" placeholder='{%trans "Sh from"%}' value="{{user_detail.shfrom}}" maxlength='50'>

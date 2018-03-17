@@ -23,13 +23,16 @@ trait constructor
 		// return all parameters and clean it
 		$this->data->utilityGET = \lib\request::get(null, 'raw');
 
+		// ----- language variable
+		$this->data->lang            = [];
+		$this->data->lang['list']    = \lib\language::list(true);
+		$this->data->lang['current'] = \lib\language::current();
+		$this->data->lang['default'] = \lib\language::default();
+
 
 		$this->data->site['title']       = T_("Ermile Dash");
 		$this->data->site['desc']        = T_("Another Project with Ermile dash");
 		$this->data->site['slogan']      = T_("Ermile is intelligent ;)");
-		$this->data->site['langlist']    = \lib\language::list(true);
-		$this->data->site['currentlang'] = \lib\language::current();
-		$this->data->site['defaultLang'] = \lib\language::default();
 
 		// save all options to use in display
 		$this->data->options = \lib\option::config();
@@ -52,7 +55,7 @@ trait constructor
 		$this->global->title         = null;
 		$this->global->login         = \lib\user::login();
 
-		$this->global->lang          = $this->data->site['currentlang'];
+		$this->global->lang          = $this->data->lang['current'];
 		$this->global->direction     = \lib\language::current('direction');
 		$this->global->id            = implode('_', \lib\url::dir());
 

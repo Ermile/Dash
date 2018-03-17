@@ -95,7 +95,7 @@ trait twigAddons
 		return new \Twig_SimpleFilter('tdate', function ($_string, $_format ="Y/m/d", $_convert = true)
 		{
 			$result = $_string;
-			if($this->data->site['currentlang'] == 'fa')
+			if($this->data->lang['current'] == 'fa')
 			{
 				$result = \lib\utility\jdate::date($_format, $_string, $_convert);
 			}
@@ -116,7 +116,7 @@ trait twigAddons
 	{
 		return new \Twig_SimpleFilter('sdate', function ($_string, $_max ="day", $_format ="Y/m/d")
 		{
-			return \lib\utility::humanTiming($_string, $_max, $_format, $this->data->site['currentlang']);
+			return \lib\utility::humanTiming($_string, $_max, $_format, $this->data->lang['current']);
 		});
 	}
 
@@ -140,7 +140,7 @@ trait twigAddons
 	{
 		return new \Twig_SimpleFilter('persian', function ($_number)
 		{
-			return \lib\utility\human::number($_number, $this->data->site['currentlang']);
+			return \lib\utility\human::number($_number, $this->data->lang['current']);
 		});
 	}
 
@@ -251,7 +251,7 @@ trait twigAddons
 			$all         = array_column(func_get_args(), 'all');
 			$onlyLink    = array_column(func_get_args(), 'onlyLink');
 			$class       = array_column(func_get_args(), 'class');
-			$langList    = $this->data->site['langlist'];
+			$langList    = $this->data->lang['list'];
 			$urlRoot     = \lib\url::root();
 			$urlContent  = \lib\url::content();
 			$urlPath     = \lib\url::path();

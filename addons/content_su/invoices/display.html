@@ -29,7 +29,7 @@
 		{%for key, value in invoices_list%}
 		<tr>
 			<td>{{value.id|number_format|fitNumber}}</td>
-			{%if site.currentlang == 'fa'%}
+			{%if lang.current == 'fa'%}
 				<td>{{value.date|jdate("Y-m-d H:i:s")}}</td>
 			{%else%}
 				<td>{{value.date}}</td>

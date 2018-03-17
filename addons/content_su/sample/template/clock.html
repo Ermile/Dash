@@ -16,7 +16,7 @@
 
     <div class="clock">
        <div class="time">-</div>
-       <div class="date">{% if site.currentlang == "fa" %} {{"now"|jdate("l j F Y") |fitNumber}} {% else %} {{"now"|date("j F Y")}} {% endif %}</div>
+       <div class="date">{% if lang.current == "fa" %} {{"now"|jdate("l j F Y") |fitNumber}} {% else %} {{"now"|date("j F Y")}} {% endif %}</div>
     </div>
 
   </div>

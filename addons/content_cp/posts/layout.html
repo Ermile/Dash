@@ -95,9 +95,9 @@
 <label for="language">{%trans "Language"%}</label>
 <select name="language" class="select">
   <option value=""><i>{%trans "Whithout language"%}</i></option>
-  {%for key, value in site.langlist%}
+  {%for key, value in lang.list%}
     {%if key | length == 2%}
-    <option value="{{key}}" {%if site.currentlang == key %} selected {%endif%}>{{value}}</option>
+    <option value="{{key}}" {%if lang.current == key %} selected {%endif%}>{{value}}</option>
     {%endif%}
   {%endfor%}
 </select>

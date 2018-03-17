@@ -40,7 +40,7 @@
 			<td>{{value.data}}</td>
 			<td>{{value.desc}}</td>
 			<td>{%set myStatus = value.status |capitalize%}{%trans myStatus%}</td>
-			{%if site.currentlang == 'fa'%}
+			{%if lang.current == 'fa'%}
 				<td>{{value.createdate|jdate("Y-m-d H:i:s")}}</td>
 			{%else%}
 				<td>{{value.createdate}}</td>
