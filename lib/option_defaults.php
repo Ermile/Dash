@@ -12,10 +12,18 @@
 // self::$url['port']                                  = 80;
 
 
+// ----- language
+self::$language                                        =
+[
+	'default'                                          => 'en',
+	'list'                                             => ['fa','en',],
+];
 
 
 
-// below values must be check
+
+
+// below values must be @check
 // ---------------------------------------------------------
 
 self::$config['short_url']                             = null;
@@ -29,15 +37,6 @@ self::$config['register']                              = false;
 self::$config['recovery']                              = false;
 self::$config['sms']                                   = false;
 self::$config['account']                               = false;
-
-
-
-// ----- language
-self::$language                                        =
-[
-'default'                                              => 'en',
-'list'                                                 => ['fa','en',],
-];
 
 
 

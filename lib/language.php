@@ -252,18 +252,6 @@ class language
 
 	public static function detect_language()
 	{
-		// if default language is not set, then set it only one time
-		if(!self::$language_default)
-		{
-			self::$language_default = self::default();
-			if(!self::$language_default)
-			{
-				self::$language_default = 'en';
-			}
-		}
-
-		// Step1
-		// if language exist in url like ermile.com/fa/ then simulate remove it from url
 		$my_first_url = \lib\url::lang();
 		if(self::check($my_first_url))
 		{
