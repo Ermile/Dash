@@ -299,7 +299,7 @@ class utility
     	}
     	elseif($_type === 'current')
     	{
-    		$_type = \lib\language::get_language();
+    		$_type = \lib\language::current();
     	}
 
         // if need persian use it else use default date function

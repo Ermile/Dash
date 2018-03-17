@@ -136,10 +136,10 @@ class log extends tg
 
 
 		// change language if needede
-		if(\lib\language::get_language('iso') !== self::$language)
-		{
-			\lib\language::set_language(self::$language);
-		}
+		// if(\lib\language::current('iso') !== self::$language)
+		// {
+		// 	\lib\language::set_language(self::$language);
+		// }
 		return true;
 	}
 

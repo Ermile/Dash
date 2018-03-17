@@ -172,7 +172,7 @@ class irkish
 
         if(isset($T_msg[$_status]))
         {
-            if(\lib\language::get_language() === 'fa')
+            if(\lib\language::current() === 'fa')
             {
                 if(isset($T_msg[$_status]['fa']))
                 {

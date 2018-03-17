@@ -28,7 +28,7 @@ trait constructor
 		$this->data->site['desc']        = T_("Another Project with Ermile dash");
 		$this->data->site['slogan']      = T_("Ermile is intelligent ;)");
 		$this->data->site['langlist']    = \lib\language::list(true);
-		$this->data->site['currentlang'] = \lib\language::get_language();
+		$this->data->site['currentlang'] = \lib\language::current();
 		$this->data->site['defaultLang'] = \lib\language::default();
 
 		// save all options to use in display
@@ -53,7 +53,7 @@ trait constructor
 		$this->global->login         = $this->login();
 
 		$this->global->lang          = $this->data->site['currentlang'];
-		$this->global->direction     = \lib\language::get_language('direction');
+		$this->global->direction     = \lib\language::current('direction');
 		$this->global->id            = implode('_', \lib\url::dir());
 
 		// add special pages to display array to use without name

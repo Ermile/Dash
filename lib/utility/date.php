@@ -11,7 +11,7 @@ class date
      */
     public static function month_precent($_type = null)
     {
-    	$lang = \lib\language::get_language();
+    	$lang = \lib\language::current();
 
     	if($lang === 'fa')
     	{

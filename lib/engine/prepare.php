@@ -5,7 +5,7 @@ class prepare
 	// declare variables to set only one time each one of this variables
 
 
-	public function abc()
+	public static function abc()
 	{
 		/**
 		 * If DEBUG is TRUE you can see the full error description, If set to FALSE show userfriendly messages
@@ -136,10 +136,9 @@ class prepare
 		header("X-Made-In: Ermile!");
 		header("X-Powered-By: Dash!");
 
+
+		// detect language and if need set the new language
 		\lib\language::detect_language();
-		\lib\language::set_language(\lib\language::$language);
-
-
 
 
 		// need check

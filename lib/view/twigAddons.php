@@ -256,7 +256,7 @@ trait twigAddons
 			$urlContent  = \lib\url::content();
 			$urlPath     = \lib\url::path();
 			$urlParam    = \lib\url::query();
-			$currentlang = \lib\language::get_language();
+			$currentlang = \lib\language::current();
 
 			if(!$all)
 			{

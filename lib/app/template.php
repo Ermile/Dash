@@ -164,7 +164,7 @@ class template
 		{
 
 			self::$display_name    = self::$display_prefix. self::$display_name;
-			$current_lang          = \lib\language::get_language('name');
+			$current_lang          = \lib\language::current('name');
 
 			$current_lang_template = substr(self::$display_name, 0, -(strlen(self::$file_ext)));
 			$current_lang_template .= '-'.$current_lang . self::$file_ext;
@@ -294,7 +294,7 @@ class template
 		{
 
 			self::$display_name    = self::$display_prefix. self::$display_name;
-			$current_lang          = \lib\language::get_language('name');
+			$current_lang          = \lib\language::current('name');
 
 			$current_lang_template = substr(self::$display_name, 0, -(strlen(self::$file_ext)));
 			$current_lang_template .= '-'.$current_lang . self::$file_ext;

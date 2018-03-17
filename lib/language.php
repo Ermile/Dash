@@ -37,24 +37,31 @@ class language
 	public static function list($_for_html = false)
 	{
 		$list = \lib\option::language('list');
-		if($_for_html)
+
+		$temp = [];
+
+		if(is_array($list))
 		{
-			$temp = [];
-			if(is_array($list))
+			foreach ($list as $key => $value)
 			{
-				foreach ($list as $key => $value)
+				if(array_key_exists($value, self::$data))
 				{
-					if(array_key_exists($value, self::$data))
+					if($_for_html)
 					{
 						if(isset(self::$data[$value]['localname']))
 						{
 							$temp[$value] = self::$data[$value]['localname'];
 						}
 					}
+					else
+					{
+						$temp[$value] = self::$data[$value];
+					}
 				}
 			}
-			$list = $temp;
 		}
+		$list = $temp;
+
 		return $list;
 	}
 
@@ -85,15 +92,18 @@ class language
 		{
 			$_key = substr($_key, 0, 2);
 		}
-		if(!empty(self::$data) && isset(self::$data[$_key]))
+
+		$site_lang = self::list();
+
+		if(!empty($site_lang) && isset($site_lang[$_key]))
 		{
 			if($_request === 'all' || !$_request)
 			{
-				$result = self::$data[$_key];
+				$result = $site_lang[$_key];
 			}
 			else
 			{
-				$result = self::$data[$_key][$_request];
+				$result = $site_lang[$_key][$_request];
 			}
 		}
 		return $result;
@@ -105,16 +115,12 @@ class language
 	 * @param  string $_request [description]
 	 * @return [type]           [description]
 	 */
-	public static function get_language($_request = 'name')
+	public static function current($_request = 'name')
 	{
 		$result = null;
 		if($_request === 'all')
 		{
 			$result = self::$language;
-		}
-		elseif($_request === 'default')
-		{
-			$result = self::$language_default;
 		}
 		elseif(isset(self::$language[$_request]))
 		{
@@ -162,23 +168,10 @@ class language
 	 * set language of service
 	 * @param [type] $_language [description]
 	 */
-	public static function set_language($_language, $_force = false)
+	public static function set_language($_language)
 	{
+		self::$language_default = self::default();
 
-		// if language is set and force is not set then return null
-		if(self::$language && !$_force)
-		{
-			return null;
-		}
-		// if default language is not set, then set it only one time
-		if(!self::$language_default)
-		{
-			self::$language_default = self::default();
-			if(!self::$language_default)
-			{
-				self::$language_default = 'en';
-			}
-		}
 		// get all detail of this language
 		self::$language = self::get($_language, 'all');
 		if(!self::$language)
@@ -206,7 +199,7 @@ class language
 		$my_first_url = \lib\url::lang();
 		if(self::check($my_first_url))
 		{
-			self::set_language($my_first_url, true);
+			self::set_language($my_first_url);
 		}
 	}
 }

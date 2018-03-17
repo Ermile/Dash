@@ -71,7 +71,7 @@ class model extends \mvc\model
 			'comment'     => \lib\request::post('comment'),
 			'language'    => \lib\request::post('language'),
 			'type'        => \lib\request::get('type'),
-			'language'    => \lib\language::get_language(),
+			'language'    => \lib\language::current(),
 		];
 
 		$all_post = \lib\request::post();

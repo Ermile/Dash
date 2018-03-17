@@ -92,7 +92,7 @@ class human
 		// if language is not set use default language
 		if(!$_lang)
 		{
-			$_lang = \lib\language::get_language();
+			$_lang = \lib\language::current();
 		}
 
 		switch ($_lang)

@@ -13,7 +13,7 @@ class model extends \addons\content_cp\main\model
 		$post['desc']     = \lib\request::post('desc');
 		$post['excerpt']  = \lib\request::post('excerpt');
 		$post['parent']   = \lib\request::post('parent');
-		$post['language'] = \lib\language::get_language();
+		$post['language'] = \lib\language::current();
 		$post['slug']     = \lib\request::post('slug');
 		$post['type']     = \lib\request::get('type');
 		$post['status']   = \lib\request::post('status') ? 'enable' : 'disable' ;
