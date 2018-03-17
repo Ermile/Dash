@@ -222,17 +222,17 @@ class language
 		// if default language is not set, then set it only one time
 		if(!self::$language_default)
 		{
-			self::$language_default = \lib\language::default();
+			self::$language_default = self::default();
 			if(!self::$language_default)
 			{
 				self::$language_default = 'en';
 			}
 		}
 		// get all detail of this language
-		self::$language = \lib\language::get($_language, 'all');
+		self::$language = self::get($_language, 'all');
 		if(!self::$language)
 		{
-			self::$language = \lib\language::get(self::$language_default, 'all');
+			self::$language = self::get(self::$language_default, 'all');
 		}
 
 		// use php gettext function
@@ -255,7 +255,7 @@ class language
 		// if default language is not set, then set it only one time
 		if(!self::$language_default)
 		{
-			self::$language_default = \lib\language::default();
+			self::$language_default = self::default();
 			if(!self::$language_default)
 			{
 				self::$language_default = 'en';
@@ -265,7 +265,7 @@ class language
 		// Step1
 		// if language exist in url like ermile.com/fa/ then simulate remove it from url
 // 		$my_first_url = \lib\url::lang();
-// 		if(\lib\language::check($my_first_url))
+// 		if(self::check($my_first_url))
 // 		{
 // 			if(substr(self::$language_default, 0, 2) === $my_first_url)
 // 			{
@@ -288,7 +288,7 @@ class language
 // 				route---r::$prefix_base .= \lib\url::dir(0);
 // 				// remove language from url and continue
 // 				route---r::remove_url($my_first_url);
-// 				if(\lib\language::check(\lib\url::dir(0)))
+// 				if(self::check(\lib\url::dir(0)))
 // 				{
 // 					\lib\error::page("More than one language found");
 // 				}
