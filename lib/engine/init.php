@@ -13,6 +13,9 @@ class init
 		// detect url and start work with them as first lib used by another one
 		\lib\url::initialize();
 
+		// detect language and if need set the new language
+		\lib\language::detect_language();
+
 		self::appropriate_url();
 	}
 

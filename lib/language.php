@@ -167,10 +167,10 @@ class language
 
 	public static function detect_language()
 	{
-		$my_first_url = \lib\url::lang();
-		if(self::check($my_first_url))
+		$url_lang = \lib\url::lang();
+		if(self::check($url_lang))
 		{
-			self::set_language($my_first_url);
+			self::set_language($url_lang);
 		}
 		else
 		{

@@ -136,11 +136,6 @@ class prepare
 		header("X-Made-In: Ermile!");
 		header("X-Powered-By: Dash!");
 
-
-		// detect language and if need set the new language
-		\lib\language::detect_language();
-
-
 		// need check
 		// if find 2slash together block!
 		if(strpos($_SERVER['REQUEST_URI'], '//') !== false)

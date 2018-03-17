@@ -18,13 +18,17 @@ class option
 	public static $sms      = [];
 	public static $language = [];
 
+	// check loaded option or no to not read file again
+	private static $load_option = false;
+
 	/**
 	 * { function_description }
 	 */
 	public static function _construct()
 	{
-		if(empty(self::$config))
+		if(!self::$load_option)
 		{
+			self::$load_option = true;
 			// load default option
 			require_once(lib."engine/option_defaults.php");
 
@@ -146,6 +150,8 @@ class option
 	 */
 	public static function language($_get = null)
 	{
+		self::_construct();
+
 		if($_get === 'list')
 		{
 			if(isset(self::$language['list']))
