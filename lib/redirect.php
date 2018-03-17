@@ -31,7 +31,7 @@ class redirect
 	/**
 	 * redirect to current location
 	 */
-	public funtion pwd()
+	public static function pwd()
 	{
 		self::to(\lib\url::pwd());
 	}
