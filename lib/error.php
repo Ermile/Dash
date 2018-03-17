@@ -133,7 +133,7 @@ class error
 		else
 		{
 			header("HTTP/1.1 $STATUS ".$HTTP_ERROR);
-			require_once(lib."error_page.php");
+			require_once(lib."engine/error_page.php");
 		}
 		\lib\code::exit();
 	}
