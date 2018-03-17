@@ -125,35 +125,5 @@ trait constructor
 			$this->config();
 		}
 	}
-
-
-	/**
-	 * [save_as_cookie description]
-	 * @return [type] [description]
-	 */
-	public function save_as_cookie()
-	{
-		if(\lib\option::config('save_as_cookie'))
-		{
-			$mygetlist = \lib\request::get(null, 'raw');
-			if($mygetlist)
-			{
-				foreach ($mygetlist as $name => $value)
-				{
-					if($name === 'ssid')
-					{
-						$_SESSION['ssid'] = $value;
-					}
-					elseif( !($name === 'local' || $name === 'lang') )
-					{
-						\lib\utility\cookie::write($name, $value);
-					}
-				}
-
-				// remove get parameter from url
-				header('Location: '. \lib\url::pwd());
-			}
-		}
-	}
 }
 ?>
