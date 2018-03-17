@@ -36,7 +36,7 @@ class file
 		}
 		elseif(!\lib\utility::files($_options['upload_name']))
 		{
-			\lib\debug::error(T_("Unable to upload, because of selected upload name"), 'upload_name', 'arguments');
+			\lib\notif::error(T_("Unable to upload, because of selected upload name"), 'upload_name', 'arguments');
 			return false;
 		}
 
@@ -70,7 +70,7 @@ class file
 
 		$upload      = \lib\utility\upload::upload($ready_upload);
 
-		if(!\lib\debug::$status)
+		if(!\lib\notif::$status)
 		{
 			return false;
 		}
@@ -89,7 +89,7 @@ class file
 		}
 		else
 		{
-			return \lib\debug::error(T_("Can not upload file. undefined error"));
+			return \lib\notif::error(T_("Can not upload file. undefined error"));
 		}
 
 		$file_id_code = null;

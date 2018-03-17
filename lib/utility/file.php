@@ -505,7 +505,7 @@ class file
 
 		if(!$file)
 		{
-			\lib\debug::error(T_('File not exist'));
+			\lib\notif::error(T_('File not exist'));
 			// throw new \RuntimeException(T_('File not exist'));
 		}
 
@@ -533,7 +533,7 @@ class file
 		{
 			fclose($file);
 			fclose($tmp_file);
-			\lib\debug::error(T_('Exceeded filesize limit'));
+			\lib\notif::error(T_('Exceeded filesize limit'));
 			// throw new \RuntimeException(T_('Exceeded filesize limit'));
 			return false;
 		}

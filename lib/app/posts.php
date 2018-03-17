@@ -17,7 +17,7 @@ class posts
 		$post_id = \lib\utility\shortURL::decode($_post_id);
 		if(!$post_id)
 		{
-			\lib\debug::error(T_("Invalid post id"));
+			\lib\notif::error(T_("Invalid post id"));
 			return false;
 		}
 
@@ -25,7 +25,7 @@ class posts
 
 		if(!array_key_exists('meta', $load_post_meta))
 		{
-			\lib\debug::error(T_("Invalid post id"));
+			\lib\notif::error(T_("Invalid post id"));
 			return false;
 		}
 
@@ -50,7 +50,7 @@ class posts
 			{
 				if(in_array($_file_index, $meta['gallery']))
 				{
-					\lib\debug::error(T_("Duplicate file in this gallery"));
+					\lib\notif::error(T_("Duplicate file in this gallery"));
 					return false;
 				}
 				array_push($meta['gallery'], $_file_index);
@@ -66,7 +66,7 @@ class posts
 			{
 				if(!array_key_exists($_file_index, $meta['gallery']))
 				{
-					\lib\debug::error(T_("Invalid gallery id"));
+					\lib\notif::error(T_("Invalid gallery id"));
 					return false;
 				}
 				unset($meta['gallery'][$_file_index]);
@@ -108,13 +108,13 @@ class posts
 		$language = \lib\app::request('language');
 		if($language && mb_strlen($language) !== 2)
 		{
-			\lib\debug::error(T_("Invalid parameter language"), 'language');
+			\lib\notif::error(T_("Invalid parameter language"), 'language');
 			return false;
 		}
 
 		if($language && !\lib\language::check($language))
 		{
-			\lib\debug::error(T_("Invalid parameter language"), 'language');
+			\lib\notif::error(T_("Invalid parameter language"), 'language');
 			return false;
 		}
 
@@ -122,13 +122,13 @@ class posts
 		$title = trim($title);
 		if(!$title)
 		{
-			\lib\debug::error(T_("Title of posts can not be null"), 'title');
+			\lib\notif::error(T_("Title of posts can not be null"), 'title');
 			return false;
 		}
 
 		if($title && mb_strlen($title) > 100)
 		{
-			\lib\debug::error(T_("Please set the title less than 100 character"), 'title');
+			\lib\notif::error(T_("Please set the title less than 100 character"), 'title');
 			return false;
 		}
 
@@ -138,7 +138,7 @@ class posts
 		$excerpt = trim($excerpt);
 		if($excerpt && mb_strlen($excerpt) > 300)
 		{
-			\lib\debug::error(T_("Please set the excerpt less than 300 character"), 'excerpt');
+			\lib\notif::error(T_("Please set the excerpt less than 300 character"), 'excerpt');
 			return false;
 		}
 
@@ -146,7 +146,7 @@ class posts
 		$subtitle = trim($subtitle);
 		if($subtitle && mb_strlen($subtitle) > 300)
 		{
-			\lib\debug::error(T_("Please set the subtitle less than 300 character"), 'subtitle');
+			\lib\notif::error(T_("Please set the subtitle less than 300 character"), 'subtitle');
 			return false;
 		}
 
@@ -155,7 +155,7 @@ class posts
 		$slug = trim($slug);
 		if($slug && mb_strlen($slug) > 100)
 		{
-			\lib\debug::error(T_("Please set the slug less than 100 character"), 'slug');
+			\lib\notif::error(T_("Please set the slug less than 100 character"), 'slug');
 			return false;
 		}
 
@@ -174,7 +174,7 @@ class posts
 			}
 			else
 			{
-				\lib\debug::error(T_("Duplicate slug"), 'slug');
+				\lib\notif::error(T_("Duplicate slug"), 'slug');
 				return false;
 			}
 		}
@@ -182,7 +182,7 @@ class posts
 		$url = \lib\app::request('url');
 		if($url && mb_strlen($url) > 255)
 		{
-			\lib\debug::error(T_("Please set the url less than 100 character"), 'url');
+			\lib\notif::error(T_("Please set the url less than 100 character"), 'url');
 			return false;
 		}
 
@@ -196,7 +196,7 @@ class posts
 		$type = \lib\app::request('type');
 		if($type && mb_strlen($type) > 100)
 		{
-			\lib\debug::error(T_("Please set the type less than 100 character"), 'type');
+			\lib\notif::error(T_("Please set the type less than 100 character"), 'type');
 			return false;
 		}
 
@@ -216,7 +216,7 @@ class posts
 		$status = \lib\app::request('status');
 		if($status && !in_array($status, ['publish','draft','schedule','deleted','expire']))
 		{
-			\lib\debug::error(T_("Invalid parameter status"), 'status');
+			\lib\notif::error(T_("Invalid parameter status"), 'status');
 			return false;
 		}
 
@@ -225,7 +225,7 @@ class posts
 		$publishdate = \lib\app::request('publishdate');
 		if($publishdate && !\lib\date::db($publishdate))
 		{
-			\lib\debug::error(T_("Invalid parameter publishdate"), 'publishdate');
+			\lib\notif::error(T_("Invalid parameter publishdate"), 'publishdate');
 			return false;
 		}
 
@@ -354,7 +354,7 @@ class posts
 			$check_all_is_cat = \lib\db\terms::check_multi_id($category_id, $_type);
 			if(count($check_all_is_cat) !== count($category_id))
 			{
-				\lib\debug::warn(T_("Some :type is wrong", ['type' => T_($_type)]), 'cat');
+				\lib\notif::warn(T_("Some :type is wrong", ['type' => T_($_type)]), 'cat');
 				return false;
 			}
 		}

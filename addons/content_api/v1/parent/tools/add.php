@@ -46,7 +46,7 @@ trait add
 		if(!$this->user_id)
 		{
 			if($_args['save_log']) \lib\db\logs::set('api:parent:user_id:notfound', null, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("User not found"), 'user', 'permission');
+			if($_args['debug']) \lib\notif::error(T_("User not found"), 'user', 'permission');
 			return false;
 		}
 
@@ -55,7 +55,7 @@ trait add
 		if(!$user_id)
 		{
 			if($_args['save_log']) \lib\db\logs::set('api:parent:user_id:not:set', null, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("User not found"), 'user', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("User not found"), 'user', 'arguments');
 			return false;
 		}
 
@@ -65,7 +65,7 @@ trait add
 		if(!$mobile)
 		{
 			if($_args['save_log']) \lib\db\logs::set('api:parent:mobile:not:set', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("Please set the parent mobile"), 'mobile');
+			if($_args['debug']) \lib\notif::error(T_("Please set the parent mobile"), 'mobile');
 			return false;
 		}
 
@@ -74,7 +74,7 @@ trait add
 		if(!$mobile)
 		{
 			if($_args['save_log']) \lib\db\logs::set('api:parent:mobile:invalid', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("Invalid mobile number"), 'mobile');
+			if($_args['debug']) \lib\notif::error(T_("Invalid mobile number"), 'mobile');
 			return false;
 		}
 
@@ -82,7 +82,7 @@ trait add
 		if(!$title)
 		{
 			if($_args['save_log']) \lib\db\logs::set('api:parent:title:not:set', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("Please select one title"));
+			if($_args['debug']) \lib\notif::error(T_("Please select one title"));
 			return false;
 		}
 
@@ -105,7 +105,7 @@ trait add
 		if(!$related_id && \lib\utility::request('related_id'))
 		{
 			\lib\db\logs::set('api:parent:related_id:is:incurrect:add', null, $log_meta);
-			\lib\debug::error(T_("Related id is incurrect"), 'related_id', 'permission');
+			\lib\notif::error(T_("Related id is incurrect"), 'related_id', 'permission');
 			return false;
 		}
 
@@ -115,7 +115,7 @@ trait add
 		if(intval($parent_id) === intval($user_id))
 		{
 			if($_args['save_log']) \lib\db\logs::set('api:parent:parent:yourself', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("You can not set parent yourself"));
+			if($_args['debug']) \lib\notif::error(T_("You can not set parent yourself"));
 			return false;
 		}
 
@@ -148,7 +148,7 @@ trait add
 		if(!in_array($title, $titles))
 		{
 			if($_args['save_log']) \lib\db\logs::set('api:parent:title:inavalid', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("Invalid title"));
+			if($_args['debug']) \lib\notif::error(T_("Invalid title"));
 			return false;
 		}
 
@@ -156,14 +156,14 @@ trait add
 		if($title === 'custom' && !$other_title)
 		{
 			if($_args['save_log']) \lib\db\logs::set('api:parent:title:othertitle:not:set', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("Plase set the other title field"));
+			if($_args['debug']) \lib\notif::error(T_("Plase set the other title field"));
 			return false;
 		}
 
 		if($other_title && mb_strlen($other_title) > 50)
 		{
 			if($_args['save_log']) \lib\db\logs::set('api:parent:title:othertitle:max:lenght', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("You must set other title less than 50 character"));
+			if($_args['debug']) \lib\notif::error(T_("You must set other title less than 50 character"));
 			return false;
 		}
 
@@ -172,7 +172,7 @@ trait add
 			if($this->check_duplicate_request())
 			{
 				if($_args['save_log']) \lib\db\logs::set('api:parent:title:othertitle:max:lenght', $this->user_id, $log_meta);
-				if($_args['debug']) \lib\debug::error(T_("Your request was sended to user, wait for answer user"));
+				if($_args['debug']) \lib\notif::error(T_("Your request was sended to user, wait for answer user"));
 				return ;
 			}
 
@@ -204,9 +204,9 @@ trait add
 
 			$set_notify = \lib\db\notifications::set($send_notify);
 
-			if(\lib\debug::$status)
+			if(\lib\notif::$status)
 			{
-				if($_args['debug']) \lib\debug::true(T_("Your request was sended"));
+				if($_args['debug']) \lib\notif::true(T_("Your request was sended"));
 			}
 			return true;
 		}

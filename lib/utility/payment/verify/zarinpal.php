@@ -33,14 +33,14 @@ trait zarinpal
         if(!\lib\option::config('zarinpal', 'status'))
         {
             \lib\db\logs::set('pay:zarinpal:status:false', self::$user_id, $log_meta);
-            \lib\debug::error(T_("The zarinpal payment on this service is locked"));
+            \lib\notif::error(T_("The zarinpal payment on this service is locked"));
             return self::turn_back();
         }
 
         if(!\lib\option::config('zarinpal', 'MerchantID'))
         {
             \lib\db\logs::set('pay:zarinpal:MerchantID:not:set', self::$user_id, $log_meta);
-            \lib\debug::error(T_("The zarinpal payment MerchantID not set"));
+            \lib\notif::error(T_("The zarinpal payment MerchantID not set"));
             return self::turn_back();
         }
 
@@ -57,7 +57,7 @@ trait zarinpal
         else
         {
             \lib\db\logs::set('pay:zarinpal:SESSION:transaction_id:not:found', self::$user_id, $log_meta);
-            \lib\debug::error(T_("Your session is lost! We can not find your transaction"));
+            \lib\notif::error(T_("Your session is lost! We can not find your transaction"));
             return self::turn_back();
         }
 
@@ -79,7 +79,7 @@ trait zarinpal
         else
         {
             \lib\db\logs::set('pay:zarinpal:SESSION:amount:not:found', self::$user_id, $log_meta);
-            \lib\debug::error(T_("Your session is lost! We can not find amount"));
+            \lib\notif::error(T_("Your session is lost! We can not find amount"));
             return self::turn_back();
         }
 

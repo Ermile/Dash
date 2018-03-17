@@ -31,14 +31,14 @@ trait asanpardakht
         if(!\lib\option::config('asanpardakht', 'status'))
         {
             \lib\db\logs::set('pay:asanpardakht:status:false', $_user_id, $log_meta);
-            \lib\debug::error(T_("The asanpardakht payment on this service is locked"));
+            \lib\notif::error(T_("The asanpardakht payment on this service is locked"));
             return false;
         }
 
         if(!\lib\option::config('asanpardakht', 'MerchantID'))
         {
             \lib\db\logs::set('pay:asanpardakht:MerchantID:false', $_user_id, $log_meta);
-            \lib\debug::error(T_("The asanpardakht payment on this service is locked"));
+            \lib\notif::error(T_("The asanpardakht payment on this service is locked"));
             return false;
         }
 
@@ -84,7 +84,7 @@ trait asanpardakht
 
         $log_meta['data'] = self::$log_data = $transaction_id;
 
-        if(!\lib\debug::$status || !$transaction_id)
+        if(!\lib\notif::$status || !$transaction_id)
         {
             return false;
         }
@@ -134,7 +134,7 @@ trait asanpardakht
             \lib\session::set('redirect_page_args', ['RefId' => $RefId]);
             \lib\session::set('redirect_page_title', T_("Redirect to asanpardakht payment"));
             \lib\session::set('redirect_page_button', T_("Redirect"));
-            \lib\debug::msg('direct', true);
+            \lib\notif::msg('direct', true);
             \lib\redirect::to(self::get_callbck_url('redirect_page'));
             return true;
 

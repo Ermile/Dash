@@ -78,7 +78,7 @@ class model extends \addons\content_su\main\model
 		// API ADD MEMBER FUNCTION
 		$this->add_user(['method' => 'patch']);
 
-		if(\lib\debug::$status)
+		if(\lib\notif::$status)
 		{
 			\lib\redirect::pwd();
 		}

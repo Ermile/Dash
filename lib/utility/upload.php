@@ -251,11 +251,11 @@ class upload
 					'link'      => $link,
 					]);
 
-				return \lib\debug::true(T_("file successful uploaded"));
+				return \lib\notif::true(T_("file successful uploaded"));
 			}
 			else
 			{
-				return \lib\debug::error(T_('Failed to transfer file while moving to temp'));
+				return \lib\notif::error(T_('Failed to transfer file while moving to temp'));
 			}
 		}
 	}
@@ -350,19 +350,19 @@ class upload
 		// check upload name
 		if(!$_options['upload_name'])
 		{
-			return \lib\debug::error(T_("upload name not found"));
+			return \lib\notif::error(T_("upload name not found"));
 		}
 
 		// check foler prefix
 		if(!$_options['folder_prefix'])
 		{
-			return \lib\debug::error(T_("folder prefix not found"));
+			return \lib\notif::error(T_("folder prefix not found"));
 		}
 
 		// check user id
 		if((!$_options['user_id'] || !is_numeric($_options['user_id'])) && $_options['save_as_tmp'] === false)
 		{
-			return \lib\debug::error(T_("user id not set"));
+			return \lib\notif::error(T_("user id not set"));
 		}
 
 		// get the protocol
@@ -415,7 +415,7 @@ class upload
 
 		if(self::$fileSize > $_options['user_size_remaining'])
 		{
-			return \lib\debug::error(T_("The size of file is larger than the upload space you have"), 'file', 'size');
+			return \lib\notif::error(T_("The size of file is larger than the upload space you have"), 'file', 'size');
 		}
 
 		// save file as tmp in tmp_path
@@ -459,7 +459,7 @@ class upload
 			// in duplicate mode debug
 			if($_options['debug'])
 			{
-				\lib\debug::true(T_("File successful uploaded"));
+				\lib\notif::true(T_("File successful uploaded"));
 			}
 			return;
 		}
@@ -469,7 +469,7 @@ class upload
 		{
 			if(!\lib\utility\file::rename(self::$upload_from_path, $_options['move_to']. $url_full, true))
 			{
-				return \lib\debug::error(T_('Fail on tranfering file, upload from path'));
+				return \lib\notif::error(T_('Fail on tranfering file, upload from path'));
 			}
 			$real_url_full = $_options['move_to']. $url_full;
 
@@ -482,7 +482,7 @@ class upload
 		{
 			if(!self::transfer($url_full, $folder_loc))
 			{
-				return \lib\debug::error(T_('Fail on tranfering file'));
+				return \lib\notif::error(T_('Fail on tranfering file'));
 			}
 			$real_url_full = $url_full;
 		}
@@ -567,7 +567,7 @@ class upload
 		\lib\temp::set('upload', ["id" => \lib\db::insert_id(), 'url' => $url, 'size' => self::$fileSize]);
 		if($_options['debug'])
 		{
-			\lib\debug::true("File successful uploaded");
+			\lib\notif::true("File successful uploaded");
 		}
 		return;
 	}

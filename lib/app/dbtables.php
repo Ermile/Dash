@@ -24,7 +24,7 @@ class dbtables
 	{
 		if(!$id)
 		{
-			\lib\debug::error(T_(":dbtables id not set"));
+			\lib\notif::error(T_(":dbtables id not set"));
 			return false;
 		}
 

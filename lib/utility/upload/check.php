@@ -17,7 +17,7 @@ trait check
 		// If this request falls under any of them, treat it invalid.
 		if ( !isset(self::_FILES(self::$fieldName)['error']) || is_array(self::_FILES(self::$fieldName)['error']))
 		{
-			\lib\debug::error(T_('Invalid parameters'), null, 'upload');
+			\lib\notif::error(T_('Invalid parameters'), null, 'upload');
 			return true; // yes, invalid file
 			// throw new \RuntimeException(T_('Invalid parameters'));
 		}
@@ -29,18 +29,18 @@ trait check
 				break;
 
 			case UPLOAD_ERR_NO_FILE:
-				\lib\debug::error(T_('No file sent'), null, 'upload');
+				\lib\notif::error(T_('No file sent'), null, 'upload');
 				return true; // yes, invalid file
 				// throw new \RuntimeException(T_('No file sent'));
 
 			case UPLOAD_ERR_INI_SIZE:
 			case UPLOAD_ERR_FORM_SIZE:
-				\lib\debug::error(T_('Exceeded filesize limit'), null, 'upload');
+				\lib\notif::error(T_('Exceeded filesize limit'), null, 'upload');
 				return true; // yes, invalid file
 				// throw new \RuntimeException(T_('Exceeded filesize limit'));
 
 			default:
-				\lib\debug::error(T_('Unknown errors'), null, 'upload');
+				\lib\notif::error(T_('Unknown errors'), null, 'upload');
 				return true; // yes, invalid file
 				// throw new \RuntimeException(T_('Unknown errors'));
 		}
@@ -70,7 +70,7 @@ trait check
 		self::$fileSize = self::_FILES(self::$fieldName)['size'];
 		if ( self::$fileSize > $_maxSize)
 		{
-			\lib\debug::error(T_('Exceeded filesize limit'), null, 'upload');
+			\lib\notif::error(T_('Exceeded filesize limit'), null, 'upload');
 			return true; // yes, invalid file
 			// throw new \RuntimeException(T_('Exceeded filesize limit'));
 		}
@@ -81,14 +81,14 @@ trait check
 		if(mb_strlen(self::$fileName) > 200 || strpos(self::$fileName, 'htaccess') !== false)
 		// if(mb_strlen(self::$fileName) > 200)
 		{
-			\lib\debug::error(T_('Exceeded file name limit'), null, 'upload');
+			\lib\notif::error(T_('Exceeded file name limit'), null, 'upload');
 			return true; // yes, invalid file
 			// throw new \RuntimeException(T_('Exceeded file name limit'));
 		}
 		// file with long extension does not allowed in our system
 		if(mb_strlen(self::$fileExt) > 10 || self::$fileDisallow )
 		{
-			\lib\debug::error(T_('Exceeded file extension limit'), null, 'upload');
+			\lib\notif::error(T_('Exceeded file extension limit'), null, 'upload');
 			return true; // yes, invalid file
 			// throw new \RuntimeException(T_('Exceeded file extension limit'));
 		}
@@ -98,7 +98,7 @@ trait check
 
 		if(is_array(self::$extentions) && !in_array(self::$fileExt, self::$extentions))
 		{
-			\lib\debug::error(T_("We don't support this type of file"), null, 'upload');
+			\lib\notif::error(T_("We don't support this type of file"), null, 'upload');
 			return true; // yes, invalid file
 			// throw new \RuntimeException(T_("We don't support this type of file"));
 		}
@@ -111,7 +111,7 @@ trait check
 			$finfo = new finfo(FILEINFO_MIME_TYPE);
 			// if (false === $ext = array_search( $finfo->file(self::_FILES(self::$fieldName)['tmp_name']), self::$extentions ), true ))
 			// {
-			// \lib\debug::error(T_('Invalid file format.'), null, 'upload');
+			// \lib\notif::error(T_('Invalid file format.'), null, 'upload');
 			// return true; // yes, invalid file
 			// throw new \RuntimeException(T_('Invalid file format.'));
 			// }

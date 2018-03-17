@@ -30,14 +30,14 @@ trait irkish
         if(!\lib\option::config('irkish', 'status'))
         {
             \lib\db\logs::set('pay:irkish:status:false', $_user_id, $log_meta);
-            \lib\debug::error(T_("The irkish payment on this service is locked"));
+            \lib\notif::error(T_("The irkish payment on this service is locked"));
             return false;
         }
 
         if(!\lib\option::config('irkish', 'merchantId'))
         {
             \lib\db\logs::set('pay:irkish:merchantId:not:set', $_user_id, $log_meta);
-            \lib\debug::error(T_("The irkish payment merchantId not set"));
+            \lib\notif::error(T_("The irkish payment merchantId not set"));
             return false;
         }
 
@@ -86,7 +86,7 @@ trait irkish
 
         $log_meta['data'] = self::$log_data = $transaction_id;
 
-        if(!\lib\debug::$status || !$transaction_id)
+        if(!\lib\notif::$status || !$transaction_id)
         {
             return false;
         }
@@ -123,7 +123,7 @@ trait irkish
             \lib\session::set('redirect_page_args', ['token' => $token, 'merchantId' => \lib\option::config('irkish', 'merchantId')]);
             \lib\session::set('redirect_page_title', T_("Redirect to iran kish payment"));
             \lib\session::set('redirect_page_button', T_("Redirect"));
-            \lib\debug::msg('direct', true);
+            \lib\notif::msg('direct', true);
             \lib\redirect::to(self::get_callbck_url('redirect_page'));
             return true;
         }

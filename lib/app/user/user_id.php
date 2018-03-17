@@ -46,7 +46,7 @@ trait user_id
 			$old_user_detail = \lib\db\users::get_by_id($_old_user_id);
 			if(!isset($old_user_detail['id']))
 			{
-				\lib\debug::error(T_("User not found."));
+				\lib\notif::error(T_("User not found."));
 				return false;
 			}
 

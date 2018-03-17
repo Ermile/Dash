@@ -31,14 +31,14 @@ trait parsian
         if(!\lib\option::config('parsian', 'status'))
         {
             \lib\db\logs::set('pay:parsian:status:false', $_user_id, $log_meta);
-            \lib\debug::error(T_("The parsian payment on this service is locked"));
+            \lib\notif::error(T_("The parsian payment on this service is locked"));
             return false;
         }
 
         if(!\lib\option::config('parsian', 'LoginAccount'))
         {
             \lib\db\logs::set('pay:parsian:LoginAccount:not:set', $_user_id, $log_meta);
-            \lib\debug::error(T_("The parsian payment LoginAccount not set"));
+            \lib\notif::error(T_("The parsian payment LoginAccount not set"));
             return false;
         }
 
@@ -82,7 +82,7 @@ trait parsian
 
         $log_meta['data'] = self::$log_data = $transaction_id;
 
-        if(!\lib\debug::$status || !$transaction_id)
+        if(!\lib\notif::$status || !$transaction_id)
         {
             return false;
         }
@@ -118,7 +118,7 @@ trait parsian
             else
             {
                 \lib\db\logs::set('pay:parsian:Token:not:set', $_user_id, $log_meta);
-                \lib\debug::error(T_("The parsian payment Token not set"));
+                \lib\notif::error(T_("The parsian payment Token not set"));
                 return false;
             }
         }

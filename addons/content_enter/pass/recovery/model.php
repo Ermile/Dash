@@ -25,7 +25,7 @@ class model extends \addons\content_enter\pass\model
 		// check inup is ok
 		if(!self::check_input('pass/recovery'))
 		{
-			\lib\debug::error(T_("Dont!"));
+			\lib\notif::error(T_("Dont!"));
 			return false;
 		}
 
@@ -69,7 +69,7 @@ class model extends \addons\content_enter\pass\model
 			// creazy password !
 			$temp_ramz_hash = \lib\utility::hasher($temp_ramz);
 			// if debug status continue
-			if(\lib\debug::$status)
+			if(\lib\notif::$status)
 			{
 				self::set_enter_session('temp_ramz', $temp_ramz);
 				self::set_enter_session('temp_ramz_hash', $temp_ramz_hash);
@@ -85,7 +85,7 @@ class model extends \addons\content_enter\pass\model
 			// plus count invalid password
 			self::plus_try_session('no_password_send_verify');
 
-			\lib\debug::error(T_("Invalid Password"));
+			\lib\notif::error(T_("Invalid Password"));
 			return false;
 		}
 

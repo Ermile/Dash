@@ -15,28 +15,28 @@ class model extends \addons\content_enter\pass\model
 		// check inup is ok
 		if(!self::check_input('pass/change'))
 		{
-			\lib\debug::error(T_("Dont!"));
+			\lib\notif::error(T_("Dont!"));
 			return false;
 		}
 
 		// check ramz fill
 		if(!\lib\request::post('ramz'))
 		{
-			\lib\debug::error(T_("Please fill the password field"));
+			\lib\notif::error(T_("Please fill the password field"));
 			return false;
 		}
 
 		// check ramz fill
 		if(!\lib\request::post('ramzNew'))
 		{
-			\lib\debug::error(T_("Please fill the new password field"));
+			\lib\notif::error(T_("Please fill the new password field"));
 			return false;
 		}
 
 		// check old pass == new pass?
 		if(\lib\request::post('ramz') == \lib\request::post('ramzNew'))
 		{
-			\lib\debug::error(T_("Please set a different password!"));
+			\lib\notif::error(T_("Please set a different password!"));
 			return false;
 		}
 
@@ -56,15 +56,15 @@ class model extends \addons\content_enter\pass\model
 		if(!\lib\utility::hasher(\lib\request::post('ramz'), $this->login('pass')))
 		{
 			self::plus_try_session('change_password_invalid_old');
-			\lib\debug::error(T_("Invalid old password"));
+			\lib\notif::error(T_("Invalid old password"));
 			return false;
 		}
 
 		// hesh ramz to find is this ramz is easy or no
 		// creazy password !
 		$temp_ramz_hash = \lib\utility::hasher(\lib\request::post('ramzNew'));
-		// if \lib\debug status continue
-		if(\lib\debug::$status)
+		// if \lib\notif status continue
+		if(\lib\notif::$status)
 		{
 			self::set_enter_session('temp_ramz', \lib\request::post('ramzNew'));
 			self::set_enter_session('temp_ramz_hash', $temp_ramz_hash);

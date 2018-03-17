@@ -20,7 +20,7 @@ class model extends \addons\content_enter\main\model
 				}
 				else
 				{
-					\lib\debug::error(T_("Mobile not found"));
+					\lib\notif::error(T_("Mobile not found"));
 					return false;
 				}
 			}
@@ -38,7 +38,7 @@ class model extends \addons\content_enter\main\model
 
 				if(!\lib\db\users::get_by_id($user_id))
 				{
-					\lib\debug::error(T_("User not found"));
+					\lib\notif::error(T_("User not found"));
 					return false;
 				}
 
@@ -90,7 +90,7 @@ class model extends \addons\content_enter\main\model
 		$anotherPerm = \lib\permission::access('enter:another:session');
 		if($count >= 3 && !$anotherPerm)
 		{
-			\lib\debug::error(T_("How are you?"). ":)");
+			\lib\notif::error(T_("How are you?"). ":)");
 			return false;
 		}
 
@@ -132,7 +132,7 @@ class model extends \addons\content_enter\main\model
 		// the user not found must be signup
 		if(!$user_data)
 		{
-			\lib\debug::error(T_("Username not found"));
+			\lib\notif::error(T_("Username not found"));
 			return false;
 		}
 
@@ -168,7 +168,7 @@ class model extends \addons\content_enter\main\model
 			}
 			else
 			{
-				\lib\debug::warn(T_("Opts!, Maybe your browser saved your password incorrectly."). ' '. T_("Please remove your saved password and try again"));
+				\lib\notif::warn(T_("Opts!, Maybe your browser saved your password incorrectly."). ' '. T_("Please remove your saved password and try again"));
 				return false;
 			}
 		}

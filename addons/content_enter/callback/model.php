@@ -24,7 +24,7 @@ class model extends \addons\content_enter\main\model
 		if(!$message || mb_strlen($message) < 1)
 		{
 			\lib\db\logs::set('enter:callback:message:empty', null, $log_meta);
-			\lib\debug::error(T_("Message is empty"));
+			\lib\notif::error(T_("Message is empty"));
 			return false;
 		}
 
@@ -39,7 +39,7 @@ class model extends \addons\content_enter\main\model
 		if(!$mobile)
 		{
 			\lib\db\logs::set('enter:callback:from:not:set', null, $log_meta);
-			\lib\debug::error(T_("Mobile not set"));
+			\lib\notif::error(T_("Mobile not set"));
 			return false;
 		}
 
@@ -65,7 +65,7 @@ class model extends \addons\content_enter\main\model
 		if(!$find_log || !is_array($find_log) || count($find_log) === 0)
 		{
 			\lib\db\logs::set('enter:callback:sms:resieve:log:not:found', $user_id, $log_meta);
-			\lib\debug::error(T_("Log not found"));
+			\lib\notif::error(T_("Log not found"));
 			return false;
 		}
 
@@ -79,7 +79,7 @@ class model extends \addons\content_enter\main\model
 					\lib\db\logs::update(['status' => 'expire'], $value);
 				}
 			}
-			\lib\debug::error(T_("More than one log found"));
+			\lib\notif::error(T_("More than one log found"));
 			return false;
 		}
 
@@ -90,7 +90,7 @@ class model extends \addons\content_enter\main\model
 			if(isset($find_log['id']))
 			{
 				\lib\db\logs::update(['status' => 'deliver'], $find_log['id']);
-				\lib\debug::true(T_("OK"));
+				\lib\notif::true(T_("OK"));
 				return true;
 			}
 		}
@@ -122,7 +122,7 @@ class model extends \addons\content_enter\main\model
 
 		if(!$mobile)
 		{
-			\lib\debug::error(T_("Mobile not set"));
+			\lib\notif::error(T_("Mobile not set"));
 			return false;
 		}
 
@@ -158,7 +158,7 @@ class model extends \addons\content_enter\main\model
 
 		\lib\db\logs::set('enter:callback:sms:registe:reasult', $user_id, $log_meta);
 
-		\lib\debug::true(T_("User signup by sms"));
+		\lib\notif::true(T_("User signup by sms"));
 
 
 	}

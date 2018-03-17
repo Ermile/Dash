@@ -37,7 +37,7 @@ trait add
 		$_args = array_merge($default_args, $_args);
 
 		// set default title of debug
-		if($_args['debug']) \lib\debug::title(T_("Operation Faild"));
+		if($_args['debug']) \lib\notif::title(T_("Operation Faild"));
 
 		// set the log meta
 		$log_meta =
@@ -54,7 +54,7 @@ trait add
 		if(!$this->user_id)
 		{
 			if($_args['save_log']) \lib\db\logs::set('addon:api:user:user_id:notfound', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("User not found"), 'user', 'permission');
+			if($_args['debug']) \lib\notif::error(T_("User not found"), 'user', 'permission');
 			return false;
 		}
 
@@ -70,7 +70,7 @@ trait add
 		if($mobile && !$mobile_syntax)
 		{
 			if($_args['save_log']) \lib\db\logs::set('addon:api:user:mobile:not:set', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("Invalid mobile number"), 'mobile', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("Invalid mobile number"), 'mobile', 'arguments');
 			return false;
 		}
 		elseif($mobile && $mobile_syntax && ctype_digit($mobile))
@@ -98,7 +98,7 @@ trait add
 				if($_args['method'] === 'post')
 				{
 					if($_args['save_log']) \lib\db\logs::set('addon:api:user:mobile:duplicate', $this->user_id, $log_meta);
-					if($_args['debug']) \lib\debug::error(T_("Duplicate mobile"), 'mobile', 'arguments');
+					if($_args['debug']) \lib\notif::error(T_("Duplicate mobile"), 'mobile', 'arguments');
 					return false;
 				}
 				else
@@ -112,7 +112,7 @@ trait add
 					else
 					{
 						if($_args['save_log']) \lib\db\logs::set('addon:api:user:mobile:duplicate:update', $this->user_id, $log_meta);
-						if($_args['debug']) \lib\debug::error(T_("Duplicate mobile"), 'mobile', 'arguments');
+						if($_args['debug']) \lib\notif::error(T_("Duplicate mobile"), 'mobile', 'arguments');
 						return false;
 					}
 				}
@@ -126,7 +126,7 @@ trait add
 		 */
 		$return_function = $this->user_check_args($_args, $args, $log_meta);
 
-		if(!\lib\debug::$status || $return_function === false)
+		if(!\lib\notif::$status || $return_function === false)
 		{
 			return false;
 		}
@@ -149,7 +149,7 @@ trait add
 			if(!$id)
 			{
 				if($_args['save_log']) \lib\db\logs::set('addon:api:user:pathc:id:not:set', $this->user_id, $log_meta);
-				if($_args['debug']) \lib\debug::error(T_("Id not set"), 'id', 'arguments');
+				if($_args['debug']) \lib\notif::error(T_("Id not set"), 'id', 'arguments');
 				return false;
 			}
 
@@ -231,18 +231,18 @@ trait add
 
 		$return = [];
 
-		if(\lib\debug::$status)
+		if(\lib\notif::$status)
 		{
-			if($_args['debug']) \lib\debug::title(T_("Operation Complete"));
+			if($_args['debug']) \lib\notif::title(T_("Operation Complete"));
 
 			if($_args['method'] === 'post')
 			{
-				if($_args['debug']) \lib\debug::true(T_("user successfully added"));
+				if($_args['debug']) \lib\notif::true(T_("user successfully added"));
 				$return['user_id'] = \lib\utility\shortURL::encode(\lib\db::insert_id());
 			}
 			elseif($_args['method'] === 'patch')
 			{
-				if($_args['debug']) \lib\debug::true(T_("user successfully updated"));
+				if($_args['debug']) \lib\notif::true(T_("user successfully updated"));
 				$return['user_id'] = \lib\utility::request('id');
 			}
 		}

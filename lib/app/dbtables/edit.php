@@ -20,9 +20,9 @@ trait edit
 		{
 			$update = \lib\db\config::public_update($args, $_id);
 
-			if(\lib\debug::$status)
+			if(\lib\notif::$status)
 			{
-				\lib\debug::true(T_("Record successfully updated"));
+				\lib\notif::true(T_("Record successfully updated"));
 			}
 		}
 	}

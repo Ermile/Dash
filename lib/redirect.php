@@ -45,10 +45,10 @@ class redirect
 	private static function via_pushstate($_loc)
 	{
 		header('Content-Type: application/json');
-		\lib\debug::msg('redirect', $_loc);
+		\lib\notif::msg('redirect', $_loc);
 
-		// echo json_encode(\lib\debug::compile(true));
-		echo json_encode(\lib\debug::compile());
+		// echo json_encode(\lib\notif::compile(true));
+		echo json_encode(\lib\notif::compile());
 	}
 
 

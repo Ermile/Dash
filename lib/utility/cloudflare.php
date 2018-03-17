@@ -233,11 +233,11 @@ class cloudflare
 
 		if(intval($mycode) === 200)
 		{
-			\lib\debug::true(T_("The api Cloudflare opration success"));
+			\lib\notif::true(T_("The api Cloudflare opration success"));
 		}
 		else
 		{
-			\lib\debug::warn(T_("The api Cloudflare opration faild"));
+			\lib\notif::warn(T_("The api Cloudflare opration faild"));
 		}
 		return $response;
 	}

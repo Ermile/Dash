@@ -41,9 +41,9 @@ trait get_token
 		$temp_token = \lib\utility::request("temp_token");
 		if(!$temp_token)
 		{
-			if(\lib\debug::$status)
+			if(\lib\notif::$status)
 			{
-				\lib\debug::error(T_("Invalid parameter temp_token"), 'temp_token', 'arguments');
+				\lib\notif::error(T_("Invalid parameter temp_token"), 'temp_token', 'arguments');
 			}
 			return false;
 		}

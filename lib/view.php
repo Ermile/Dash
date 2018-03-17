@@ -176,7 +176,7 @@ class view
 		$template		= $twig->loadTemplate($tmpname);
 		if(\lib\request::ajax())
 		{
-			$this->data->global->debug = \lib\debug::compile();
+			$this->data->global->debug = \lib\notif::compile();
 			// check apache request header and use if exist
 			if(function_exists('apache_request_headers'))
 			{

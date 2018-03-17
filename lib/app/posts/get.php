@@ -57,7 +57,7 @@ trait get
 
 		if(!$id)
 		{
-			\lib\debug::error(T_("Invalid posts id"));
+			\lib\notif::error(T_("Invalid posts id"));
 			return false;
 		}
 

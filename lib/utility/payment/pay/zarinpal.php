@@ -30,14 +30,14 @@ trait zarinpal
         if(!\lib\option::config('zarinpal', 'status'))
         {
             \lib\db\logs::set('pay:zarinpal:status:false', $_user_id, $log_meta);
-            \lib\debug::error(T_("The zarinpal payment on this service is locked"));
+            \lib\notif::error(T_("The zarinpal payment on this service is locked"));
             return false;
         }
 
         if(!\lib\option::config('zarinpal', 'MerchantID'))
         {
             \lib\db\logs::set('pay:zarinpal:MerchantID:not:set', $_user_id, $log_meta);
-            \lib\debug::error(T_("The zarinpal payment MerchantID not set"));
+            \lib\notif::error(T_("The zarinpal payment MerchantID not set"));
             return false;
         }
 
@@ -94,7 +94,7 @@ trait zarinpal
 
         $log_meta['data'] = self::$log_data = $transaction_id;
 
-        if(!\lib\debug::$status || !$transaction_id)
+        if(!\lib\notif::$status || !$transaction_id)
         {
             return false;
         }
@@ -131,7 +131,7 @@ trait zarinpal
             else
             {
                 \lib\db\logs::set('pay:zarinpal:Authority:not:set', $_user_id, $log_meta);
-                \lib\debug::error(T_("Zarinpal payment Authority not found"));
+                \lib\notif::error(T_("Zarinpal payment Authority not found"));
                 return false;
             }
         }

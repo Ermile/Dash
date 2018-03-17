@@ -228,7 +228,7 @@ class controller
 
 			if($mycallback !== false && $mycallback !== null)
 			{
-				debug::result($mycallback);
+				\lib\notif::result($mycallback);
 			}
 			$processor_arg = (object) array('force_json'=>true);
 		}
@@ -268,9 +268,9 @@ class controller
 			header('Content-Type: application/json');
 			if(isset($this->controller()->redirector) && $this->controller()->redirector)
 			{
-				debug::msg("redirect", \lib\redirect::to()->redirect(true));
+				\lib\notif::msg("redirect", \lib\redirect::to()->redirect(true));
 			}
-			echo debug::compile(true);
+			echo \lib\notif::compile(true);
 		}
 		elseif(!\lib\temp::get('api') && mb_strtolower($_SERVER['REQUEST_METHOD']) == "post")
 		{

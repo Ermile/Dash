@@ -45,14 +45,14 @@ trait add
 		if(!\lib\user::id())
 		{
 			if($_option['save_log']) \lib\app::log('api:user:user_id:notfound', null, $log_meta);
-			if($_option['debug']) \lib\debug::error(T_("User not found"), 'user');
+			if($_option['debug']) \lib\notif::error(T_("User not found"), 'user');
 			return false;
 		}
 
 		// check args
 		$args = self::check($_option);
 
-		if($args === false || !\lib\debug::$status)
+		if($args === false || !\lib\notif::$status)
 		{
 			return false;
 		}
@@ -66,7 +66,7 @@ trait add
 		if(!$user_id)
 		{
 			if($_option['save_log']) \lib\app::log('api:user:no:way:to:insert:user', \lib\user::id(), $log_meta);
-			if($_option['debug']) \lib\debug::error(T_("No way to insert user"), 'db', 'system');
+			if($_option['debug']) \lib\notif::error(T_("No way to insert user"), 'db', 'system');
 			return false;
 		}
 
@@ -79,9 +79,9 @@ trait add
 			\lib\app\contact::merge($_args, $_option);
 		}
 
-		if(\lib\debug::$status)
+		if(\lib\notif::$status)
 		{
-			if($_option['debug']) \lib\debug::true(T_("User successfuly added"));
+			if($_option['debug']) \lib\notif::true(T_("User successfuly added"));
 		}
 
 		return $return;

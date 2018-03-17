@@ -37,7 +37,7 @@ class model extends \addons\content_enter\main\model
 			if(\lib\db\sessions::is_my_session(\lib\request::post('id'), $this->login('id')))
 			{
 				\lib\db\sessions::terminate_id(\lib\request::post('id'));
-				\lib\debug::true(T_("Session terminated"));
+				\lib\notif::true(T_("Session terminated"));
 				return true;
 			}
 		}

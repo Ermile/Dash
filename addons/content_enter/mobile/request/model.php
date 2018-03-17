@@ -32,7 +32,7 @@ class model extends \addons\content_enter\main\model
 
 		// if(!\lib\request::post('mobile'))
 		// {
-		// 	\lib\debug::error(T_("Please enter mobile or skip this step"));
+		// 	\lib\notif::error(T_("Please enter mobile or skip this step"));
 		// 	return false;
 		// }
 
@@ -40,7 +40,7 @@ class model extends \addons\content_enter\main\model
 
 		// if(!$mobile)
 		// {
-		// 	\lib\debug::error(T_("Please enter a valid mobile number"));
+		// 	\lib\notif::error(T_("Please enter a valid mobile number"));
 		// 	return false;
 		// }
 

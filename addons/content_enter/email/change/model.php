@@ -37,13 +37,13 @@ class model extends \addons\content_enter\main\model
 
 		if(!\lib\request::post('emailNew'))
 		{
-			\lib\debug::error(T_("Plese fill the new email"));
+			\lib\notif::error(T_("Plese fill the new email"));
 			return false;
 		}
 
 		if($this->login('email') == \lib\request::post('emailNew'))
 		{
-			\lib\debug::error(T_("Please select a different email"));
+			\lib\notif::error(T_("Please select a different email"));
 			return false;
 		}
 

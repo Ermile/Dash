@@ -8,7 +8,7 @@ trait link
 
 	public function upload_file($_options = [])
 	{
-		\lib\debug::title(T_("Can not upload file"));
+		\lib\notif::title(T_("Can not upload file"));
 
 		$default_options =
 		[
@@ -37,7 +37,7 @@ trait link
 		}
 		elseif(!\lib\utility::files($_options['upload_name']))
 		{
-			return \lib\debug::error(T_("Unable to upload, because of selected upload name"), 'upload_name', 'arguments');
+			return \lib\notif::error(T_("Unable to upload, because of selected upload name"), 'upload_name', 'arguments');
 		}
 
 		$ready_upload            = [];
@@ -70,7 +70,7 @@ trait link
 
 		$upload      = \lib\utility\upload::upload($ready_upload);
 
-		if(!\lib\debug::$status)
+		if(!\lib\notif::$status)
 		{
 			return false;
 		}
@@ -89,7 +89,7 @@ trait link
 		}
 		else
 		{
-			return \lib\debug::error(T_("Can not upload file. undefined error"));
+			return \lib\notif::error(T_("Can not upload file. undefined error"));
 		}
 
 		$file_id_code = null;
@@ -106,7 +106,7 @@ trait link
 			$url = \lib\url::site(). '/'. $file_detail['url'];
 		}
 
-		\lib\debug::title(T_("File upload completed"));
+		\lib\notif::title(T_("File upload completed"));
 		return ['code' => $file_id_code, 'url' => $url];
 	}
 }

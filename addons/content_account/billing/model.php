@@ -38,7 +38,7 @@ class model extends \mvc\model
 	{
 		if(!$this->login())
 		{
-			\lib\debug::error(T_("You must login to pay amount"));
+			\lib\notif::error(T_("You must login to pay amount"));
 			return false;
 		}
 
@@ -51,7 +51,7 @@ class model extends \mvc\model
 			}
 			else
 			{
-				\lib\debug::error(T_("Invalid promo code"), 'promo', 'arguments');
+				\lib\notif::error(T_("Invalid promo code"), 'promo', 'arguments');
 				return false;
 			}
 		}
@@ -85,7 +85,7 @@ class model extends \mvc\model
 		if(!preg_match("/^ref\_([A-Za-z0-9]+)$/", $promo, $split))
 		{
 			\lib\db\logs::set('ref:reqular:invalid', $this->login('id'), $log_meta);
-			\lib\debug::error(T_("Invalid promo code"), 'promo', 'arguments');
+			\lib\notif::error(T_("Invalid promo code"), 'promo', 'arguments');
 			return false;
 		}
 		if(isset($split[1]))
@@ -95,7 +95,7 @@ class model extends \mvc\model
 			if(!$ref)
 			{
 				\lib\db\logs::set('ref:shortURL:invalid', $this->login('id'), $log_meta);
-				\lib\debug::error(T_("Invalid promo code"), 'promo', 'arguments');
+				\lib\notif::error(T_("Invalid promo code"), 'promo', 'arguments');
 				return false;
 			}
 		}
@@ -103,14 +103,14 @@ class model extends \mvc\model
 		if(intval($this->login('id')) === intval($ref))
 		{
 			\lib\db\logs::set('ref:yourself', $this->login('id'), $log_meta);
-			\lib\debug::error(T_("You try to referral yourself!"), 'promo', 'arguments');
+			\lib\notif::error(T_("You try to referral yourself!"), 'promo', 'arguments');
 			return false;
 		}
 
 		if($this->login('ref'))
 		{
 			\lib\db\logs::set('ref:full', $this->login('id'), $log_meta);
-			\lib\debug::error(T_("You have ref. can not set another ref"), 'promo', 'arguments');
+			\lib\notif::error(T_("You have ref. can not set another ref"), 'promo', 'arguments');
 			return false;
 		}
 
@@ -119,7 +119,7 @@ class model extends \mvc\model
 		if(!isset($check_ref['id']))
 		{
 			\lib\db\logs::set('ref:user:not:found', $this->login('id'), $log_meta);
-			\lib\debug::error(T_("Ref not found"), 'promo', 'arguments');
+			\lib\notif::error(T_("Ref not found"), 'promo', 'arguments');
 			return false;
 		}
 
@@ -162,11 +162,11 @@ class model extends \mvc\model
         \lib\db\notifications::set($notify_ref);
 
 
-        if(\lib\debug::$status)
+        if(\lib\notif::$status)
         {
         	\lib\db\logs::set('user:use:ref', $this->login('id'), $log_meta);
         	\lib\db\logs::set('user:was:ref', $ref, $log_meta);
-        	\lib\debug::true(T_("Your ref was set and your account was charge"));
+        	\lib\notif::true(T_("Your ref was set and your account was charge"));
         }
 	}
 

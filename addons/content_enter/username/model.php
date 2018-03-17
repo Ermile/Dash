@@ -8,7 +8,7 @@ class model extends \addons\content_enter\main\model
 	{
 		if(!self::check_password_is_null())
 		{
-			\lib\debug::error(T_("Dont!"));
+			\lib\notif::error(T_("Dont!"));
 			return false;
 		}
 		// get user name
@@ -16,7 +16,7 @@ class model extends \addons\content_enter\main\model
 		// check user name is fill
 		if(!$username)
 		{
-			\lib\debug::error(T_("Please fill the username field"), 'username');
+			\lib\notif::error(T_("Please fill the username field"), 'username');
 			return false;
 		}
 
@@ -36,7 +36,7 @@ class model extends \addons\content_enter\main\model
 		{
 			self::plus_try_session('invalid_username');
 
-			\lib\debug::error(T_("Username not found"));
+			\lib\notif::error(T_("Username not found"));
 			return false;
 		}
 		elseif(!self::user_data('password'))

@@ -21,13 +21,13 @@ class model extends \mvc\model
 
 			if(!$telegram_id)
 			{
-				\lib\debug::error(T_("Telegram id not found"), 'telegram_id', 'post');
+				\lib\notif::error(T_("Telegram id not found"), 'telegram_id', 'post');
 				return false;
 			}
 
 			if(!is_numeric($telegram_id))
 			{
-				\lib\debug::error(T_("Invalid telegram id"), 'telegram_id', 'post');
+				\lib\notif::error(T_("Invalid telegram id"), 'telegram_id', 'post');
 				return false;
 			}
 
@@ -55,13 +55,13 @@ class model extends \mvc\model
 			}
 		}
 
-		if(\lib\debug::$status)
+		if(\lib\notif::$status)
 		{
-			\lib\debug::title(T_("Operation complete"));
+			\lib\notif::title(T_("Operation complete"));
 		}
 		else
 		{
-			\lib\debug::title(T_("Operation faild"));
+			\lib\notif::title(T_("Operation faild"));
 		}
 	}
 
@@ -75,13 +75,13 @@ class model extends \mvc\model
 			$this->config_user_data();
 		}
 
-		if(\lib\debug::$status)
+		if(\lib\notif::$status)
 		{
-			\lib\debug::title(T_("Operation complete"));
+			\lib\notif::title(T_("Operation complete"));
 		}
 		else
 		{
-			\lib\debug::title(T_("Operation faild"));
+			\lib\notif::title(T_("Operation faild"));
 		}
 	}
 
@@ -100,7 +100,7 @@ class model extends \mvc\model
 
 		if(!$authorization)
 		{
-			\lib\debug::error(T_('Authorization not found'), 'authorization', 'access');
+			\lib\notif::error(T_('Authorization not found'), 'authorization', 'access');
 			return false;
 		}
 
@@ -111,7 +111,7 @@ class model extends \mvc\model
 		}
 		else
 		{
-			\lib\debug::error(T_('Invalid Authorization'), 'authorization', 'access');
+			\lib\notif::error(T_('Invalid Authorization'), 'authorization', 'access');
 			return false;
 		}
 
@@ -136,19 +136,19 @@ class model extends \mvc\model
 
 		if(!$mobile)
 		{
-			\lib\debug::error(T_("Mobile is not set"), 'tg_mobile', 'post');
+			\lib\notif::error(T_("Mobile is not set"), 'tg_mobile', 'post');
 			return false;
 		}
 
 		if(!$telegram_id)
 		{
-			\lib\debug::error(T_("Telegram id not found"), 'telegram_id', 'post');
+			\lib\notif::error(T_("Telegram id not found"), 'telegram_id', 'post');
 			return false;
 		}
 
 		if(!is_numeric($telegram_id))
 		{
-			\lib\debug::error(T_("Invalid telegram id"), 'telegram_id', 'post');
+			\lib\notif::error(T_("Invalid telegram id"), 'telegram_id', 'post');
 			return false;
 		}
 
@@ -213,7 +213,7 @@ class model extends \mvc\model
 			}
 			else
 			{
-				\lib\debug::error(T_("System error 1"));
+				\lib\notif::error(T_("System error 1"));
 				return false;
 			}
 		}
@@ -237,7 +237,7 @@ class model extends \mvc\model
 			}
 			else
 			{
-				\lib\debug::error(T_("System error 2"));
+				\lib\notif::error(T_("System error 2"));
 				return false;
 			}
 		}
@@ -254,7 +254,7 @@ class model extends \mvc\model
 			}
 			else
 			{
-				\lib\debug::error(T_("System error 3"));
+				\lib\notif::error(T_("System error 3"));
 				return false;
 			}
 		}
@@ -287,11 +287,11 @@ class model extends \mvc\model
 		// }
 
 		// $log['request']        = json_encode(\lib\utility::request(), JSON_UNESCAPED_UNICODE);
-		// $log['\lib\debug']          = json_encode(\lib\debug::compile(), JSON_UNESCAPED_UNICODE);
-		// $log['response']       = json_encode(\lib\debug::get_result(), JSON_UNESCAPED_UNICODE);
+		// $log['\lib\notif']          = json_encode(\lib\notif::compile(), JSON_UNESCAPED_UNICODE);
+		// $log['response']       = json_encode(\lib\notif::get_result(), JSON_UNESCAPED_UNICODE);
 		// $log['requestheader']  = json_encode(\lib\utility::header(), JSON_UNESCAPED_UNICODE);
 		// $log['responseheader'] = json_encode(apache_response_headers(), JSON_UNESCAPED_UNICODE);
-		// $log['status']         = \lib\debug::$status;
+		// $log['status']         = \lib\notif::$status;
 		// $log['token']          = $this->authorization;
 		// $log['user_id']        = $this->user_id;
 		// $log['apikeyuserid']   = $this->parent_api_key_user_id;

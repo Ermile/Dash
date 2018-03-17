@@ -18,13 +18,13 @@ class model extends \addons\content_enter\main\model
 		{
 			if(mb_strlen($username) < 5)
 			{
-				\lib\debug::error(T_("You must set large than 5 character in username"));
+				\lib\notif::error(T_("You must set large than 5 character in username"));
 				return false;
 			}
 
 			if(mb_strlen($username) > 50)
 			{
-				\lib\debug::error(T_("You must set less than 50 character in username"));
+				\lib\notif::error(T_("You must set less than 50 character in username"));
 				return false;
 			}
 
@@ -33,7 +33,7 @@ class model extends \addons\content_enter\main\model
 
 			if(!empty($check_exist_name))
 			{
-				\lib\debug::error(T_("This username alreay taked!"));
+				\lib\notif::error(T_("This username alreay taked!"));
 				return false;
 			}
 
@@ -48,7 +48,7 @@ class model extends \addons\content_enter\main\model
 		}
 		else
 		{
-			\lib\debug::error(T_("Please enter the username"));
+			\lib\notif::error(T_("Please enter the username"));
 			return false;
 		}
 	}

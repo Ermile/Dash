@@ -46,7 +46,7 @@ class mail
 		{
 			if($_args['debug'])
 			{
-				\lib\debug::error(T_("Mailer Error :error", ['error' => $mail->ErrorInfo]));
+				\lib\notif::error(T_("Mailer Error :error", ['error' => $mail->ErrorInfo]));
 			}
 		    return false;
 		}

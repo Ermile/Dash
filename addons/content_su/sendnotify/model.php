@@ -27,7 +27,7 @@ class model extends \addons\content_su\main\model
 
 		if(empty($data))
 		{
-			\lib\debug::error(T_("User not found"));
+			\lib\notif::error(T_("User not found"));
 			return false;
 		}
 
@@ -61,7 +61,7 @@ class model extends \addons\content_su\main\model
 		$msg = \lib\request::post('msg');
 		if(!$msg)
 		{
-			\lib\debug::error(T_("No message was sended"));
+			\lib\notif::error(T_("No message was sended"));
 			return false;
 		}
 
@@ -79,19 +79,19 @@ class model extends \addons\content_su\main\model
 		if($notification && $user_id)
 		{
 	        $this->send_notification(['text' => $msg, 'cat' => 'supervisor', 'to' => $user_id]);
-	        \lib\debug::true(T_("Inner notification was sended"));
+	        \lib\notif::true(T_("Inner notification was sended"));
 		}
 
 		if($mobile)
 		{
 			\lib\utility\sms::send_array($mobile, $msg);
-			\lib\debug::true("SMS was sended");
+			\lib\notif::true("SMS was sended");
 		}
 
 		if($telegram)
 		{
 			\lib\utility\telegram::sendMessage($telegram, $msg);
-			\lib\debug::true("Telegram was sended");
+			\lib\notif::true("Telegram was sended");
 		}
 	}
 }

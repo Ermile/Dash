@@ -34,7 +34,7 @@ trait add
 		if(!\lib\user::id())
 		{
 			if($_option['save_log']) \lib\app::log('api:posts:user_id:notfound', null, \lib\app::log_meta());
-			if($_option['debug']) \lib\debug::error(T_("User not found"), 'user');
+			if($_option['debug']) \lib\notif::error(T_("User not found"), 'user');
 			return false;
 		}
 
@@ -43,7 +43,7 @@ trait add
 
 		$args['user_id'] = \lib\user::id();
 
-		if($args === false || !\lib\debug::$status)
+		if($args === false || !\lib\notif::$status)
 		{
 			return false;
 		}
@@ -70,7 +70,7 @@ trait add
 		if(!$post_id)
 		{
 			if($_option['save_log']) \lib\app::log('api:posts:no:way:to:insert:post', \lib\user::id(), \lib\app::log_meta());
-			if($_option['debug']) \lib\debug::error(T_("No way to insert post"), 'db', 'system');
+			if($_option['debug']) \lib\notif::error(T_("No way to insert post"), 'db', 'system');
 			return false;
 		}
 
@@ -96,9 +96,9 @@ trait add
 
 		$return['post_id'] = \lib\utility\shortURL::encode($post_id);
 
-		if(\lib\debug::$status)
+		if(\lib\notif::$status)
 		{
-			if($_option['debug']) \lib\debug::true(T_("Post successfuly added"));
+			if($_option['debug']) \lib\notif::true(T_("Post successfuly added"));
 		}
 
 		return $return;

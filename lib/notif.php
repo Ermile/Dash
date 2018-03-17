@@ -1,9 +1,9 @@
 <?php
 namespace lib;
 /**
- * Class for debug.
+ * Class for notif.
  */
-class debug
+class notif
 {
 	/**
 	 * static var
@@ -123,7 +123,7 @@ class debug
 
 
 	/**
-	 * set property for debug
+	 * set property for notif
 	 * @param  [type]  $_property [description]
 	 * @param  boolean $_value    [description]
 	 * @return [type]             [description]
@@ -182,29 +182,29 @@ class debug
 	 */
 	public static function compile($_json = false)
 	{
-		$debug           = array();
-		$debug['status'] = self::$status;
-		$debug['title']  = self::$title;
+		$notif           = array();
+		$notif['status'] = self::$status;
+		$notif['title']  = self::$title;
 		$messages        = array();
 		if(count(self::$error) > 0) $messages['error'] = self::$error;
 		if(count(self::$warn) > 0)  $messages['warn']  = self::$warn;
-		if(count(self::$msg) > 0)   $debug['msg']      = self::$msg;
+		if(count(self::$msg) > 0)   $notif['msg']      = self::$msg;
 		if(count(self::$property) > 0)
 		{
 			foreach (self::$property as $key => $value)
 			{
-				$debug[$key] = $value;
+				$notif[$key] = $value;
 			}
 		}
 		if(self::$result !== null && self::$result !== false)
 		{
-			$debug['result'] = self::$result;
+			$notif['result'] = self::$result;
 		}
 
-		if(count(self::$form) > 0) $debug['msg']['form'] = self::$form;
-		if(count(self::$true) > 0 || count($debug) == 0) $messages['true'] = self::$true;
-		if(count($messages) > 0) $debug['messages'] = $messages;
-		return ($_json)? json_encode($debug) : $debug;
+		if(count(self::$form) > 0) $notif['msg']['form'] = self::$form;
+		if(count(self::$true) > 0 || count($notif) == 0) $messages['true'] = self::$true;
+		if(count($messages) > 0) $notif['messages'] = $messages;
+		return ($_json)? json_encode($notif) : $notif;
 	}
 
 

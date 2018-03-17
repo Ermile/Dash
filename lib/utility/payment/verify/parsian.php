@@ -27,14 +27,14 @@ trait parsian
         if(!\lib\option::config('parsian', 'status'))
         {
             \lib\db\logs::set('pay:parsian:status:false', self::$user_id, $log_meta);
-            \lib\debug::error(T_("The parsian payment on this service is locked"));
+            \lib\notif::error(T_("The parsian payment on this service is locked"));
             return self::turn_back();
         }
 
         if(!\lib\option::config('parsian', 'LoginAccount'))
         {
             \lib\db\logs::set('pay:parsian:LoginAccount:not:set', self::$user_id, $log_meta);
-            \lib\debug::error(T_("The parsian payment LoginAccount not set"));
+            \lib\notif::error(T_("The parsian payment LoginAccount not set"));
             return self::turn_back();
         }
 
@@ -50,7 +50,7 @@ trait parsian
         if(!$Token)
         {
             \lib\db\logs::set('pay:parsian:Token:verify:not:found', self::$user_id, $log_meta);
-            \lib\debug::error(T_("The parsian payment Token not set"));
+            \lib\notif::error(T_("The parsian payment Token not set"));
             return self::turn_back();
         }
 
@@ -61,7 +61,7 @@ trait parsian
         else
         {
             \lib\db\logs::set('pay:parsian:SESSION:transaction_id:not:found', self::$user_id, $log_meta);
-            \lib\debug::error(T_("Your session is lost! We can not find your transaction"));
+            \lib\notif::error(T_("Your session is lost! We can not find your transaction"));
             return self::turn_back();
         }
 
@@ -88,14 +88,14 @@ trait parsian
         else
         {
             \lib\db\logs::set('pay:parsian:SESSION:amount:not:found', self::$user_id, $log_meta);
-            \lib\debug::error(T_("Your session is lost! We can not find amount"));
+            \lib\notif::error(T_("Your session is lost! We can not find amount"));
             return self::turn_back();
         }
 
         if($Amount_SESSION != $Amount)
         {
             \lib\db\logs::set('pay:parsian:Amount_SESSION:amount:is:not:equals', self::$user_id, $log_meta);
-            \lib\debug::error(T_("Your session is lost! We can not find amount"));
+            \lib\notif::error(T_("Your session is lost! We can not find amount"));
             return self::turn_back();
         }
 

@@ -126,9 +126,9 @@ class error
 		{
 			header('Content-Type: application/json');
 			header("HTTP/1.1 $STATUS ".$HTTP_ERROR);
-			\lib\debug::title($HTTP_ERROR);
-			\lib\debug::error($STRING, $STATUS, "HTTP");
-			echo \lib\debug::compile(true);
+			\lib\notif::title($HTTP_ERROR);
+			\lib\notif::error($STRING, $STATUS, "HTTP");
+			echo \lib\notif::compile(true);
 		}
 		else
 		{

@@ -57,7 +57,7 @@ trait user_check_args
 		if($displayname && mb_strlen($displayname) > 50)
 		{
 			if($_args['save_log']) \lib\db\logs::set('addon:api:teacher:displayname:max:length', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("You can set the displayname less than 50 character"), 'displayname', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("You can set the displayname less than 50 character"), 'displayname', 'arguments');
 			return false;
 		}
 
@@ -67,7 +67,7 @@ trait user_check_args
 		if($firstname && mb_strlen($firstname) > 50)
 		{
 			if($_args['save_log']) \lib\db\logs::set('addon:api:teacher:firstname:max:length', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("You can set the firstname less than 50 character"), 'firstname', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("You can set the firstname less than 50 character"), 'firstname', 'arguments');
 			return false;
 		}
 
@@ -77,7 +77,7 @@ trait user_check_args
 		if($lastname && mb_strlen($lastname) > 50)
 		{
 			if($_args['save_log']) \lib\db\logs::set('addon:api:teacher:lastname:max:length', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("You can set the lastname less than 50 character"), 'lastname', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("You can set the lastname less than 50 character"), 'lastname', 'arguments');
 			return false;
 		}
 
@@ -86,7 +86,7 @@ trait user_check_args
 		if($postion && mb_strlen($postion) > 100)
 		{
 			if($_args['save_log']) \lib\db\logs::set('addon:api:teacher:postion:max:length', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("You can set the postion less than 100 character"), 'postion', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("You can set the postion less than 100 character"), 'postion', 'arguments');
 			return false;
 		}
 
@@ -96,7 +96,7 @@ trait user_check_args
 		if($personnelcode && mb_strlen($personnelcode) > 9)
 		{
 			if($_args['save_log']) \lib\db\logs::set('addon:api:teacher:code:max:length', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("You can set the personnel_code less than 9 character "), 'personnel_code', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("You can set the personnel_code less than 9 character "), 'personnel_code', 'arguments');
 			return false;
 		}
 
@@ -131,7 +131,7 @@ trait user_check_args
 		if($status && mb_strlen($status) > 50)
 		{
 			if($_args['save_log']) \lib\db\logs::set('addon:api:teacher:status:invalid', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("Invalid parameter status"), 'status', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("Invalid parameter status"), 'status', 'arguments');
 			return false;
 		}
 
@@ -144,7 +144,7 @@ trait user_check_args
 		if($nationalcode && mb_strlen($nationalcode) > 50)
 		{
 			if($_args['save_log']) \lib\db\logs::set('addon:api:teacher:nationalcode:max:length', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("You must set the national code less than 50 character"), 'nationalcode', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("You must set the national code less than 50 character"), 'nationalcode', 'arguments');
 			return false;
 		}
 
@@ -152,7 +152,7 @@ trait user_check_args
 		if($father && mb_strlen($father) > 50)
 		{
 			if($_args['save_log']) \lib\db\logs::set('addon:api:teacher:father:max:length', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("You must set the father name less than 50 character"), 'father', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("You must set the father name less than 50 character"), 'father', 'arguments');
 			return false;
 		}
 
@@ -160,7 +160,7 @@ trait user_check_args
 		if($birthday && mb_strlen($birthday) > 50)
 		{
 			if($_args['save_log']) \lib\db\logs::set('addon:api:teacher:birthday:max:length', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("You must set the birthday name less than 50 character"), 'birthday', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("You must set the birthday name less than 50 character"), 'birthday', 'arguments');
 			return false;
 		}
 
@@ -181,7 +181,7 @@ trait user_check_args
 		if($gender && !in_array($gender, ['male', 'female']))
 		{
 			if($_args['save_log']) \lib\db\logs::set('addon:api:teacher:gender:invalid', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("Invalid gender field"), 'gender', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("Invalid gender field"), 'gender', 'arguments');
 			return false;
 		}
 
@@ -189,7 +189,7 @@ trait user_check_args
 		if($type && mb_strlen($type) > 50)
 		{
 			if($_args['save_log']) \lib\db\logs::set('addon:api:teacher:type:max:length', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("You must set the type less than 50 character"), 'type', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("You must set the type less than 50 character"), 'type', 'arguments');
 			return false;
 		}
 
@@ -197,7 +197,7 @@ trait user_check_args
 		if($marital && !in_array($marital, ['single', 'married']))
 		{
 			if($_args['save_log']) \lib\db\logs::set('addon:api:user:marital:invalid', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("Invalid marital field"), 'marital', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("Invalid marital field"), 'marital', 'arguments');
 			return false;
 		}
 
@@ -205,7 +205,7 @@ trait user_check_args
 		if($child && mb_strlen($child) > 50)
 		{
 			if($_args['save_log']) \lib\db\logs::set('addon:api:user:child:max:lenght', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("You must set the child less than 50 character"), 'child', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("You must set the child less than 50 character"), 'child', 'arguments');
 			return false;
 		}
 
@@ -213,7 +213,7 @@ trait user_check_args
 		if($birthplace && mb_strlen($birthplace) > 50)
 		{
 			if($_args['save_log']) \lib\db\logs::set('addon:api:user:birthplace:max:lenght', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("You must set the birthplace less than 50 character"), 'birthplace', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("You must set the birthplace less than 50 character"), 'birthplace', 'arguments');
 			return false;
 		}
 
@@ -221,7 +221,7 @@ trait user_check_args
 		if($shfrom && mb_strlen($shfrom) > 50)
 		{
 			if($_args['save_log']) \lib\db\logs::set('addon:api:user:shfrom:max:lenght', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("You must set the shfrom less than 50 character"), 'shfrom', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("You must set the shfrom less than 50 character"), 'shfrom', 'arguments');
 			return false;
 		}
 
@@ -229,7 +229,7 @@ trait user_check_args
 		if($shcode && mb_strlen($shcode) > 50)
 		{
 			if($_args['save_log']) \lib\db\logs::set('addon:api:user:shcode:max:lenght', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("You must set the shcode less than 50 character"), 'shcode', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("You must set the shcode less than 50 character"), 'shcode', 'arguments');
 			return false;
 		}
 
@@ -237,7 +237,7 @@ trait user_check_args
 		if($education && mb_strlen($education) > 50)
 		{
 			if($_args['save_log']) \lib\db\logs::set('addon:api:user:education:max:lenght', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("You must set the education less than 50 character"), 'education', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("You must set the education less than 50 character"), 'education', 'arguments');
 			return false;
 		}
 
@@ -245,7 +245,7 @@ trait user_check_args
 		if($job && mb_strlen($job) > 50)
 		{
 			if($_args['save_log']) \lib\db\logs::set('addon:api:user:job:max:lenght', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("You must set the job less than 50 character"), 'job', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("You must set the job less than 50 character"), 'job', 'arguments');
 			return false;
 		}
 
@@ -253,7 +253,7 @@ trait user_check_args
 		if($passportcode && mb_strlen($passportcode) > 50)
 		{
 			if($_args['save_log']) \lib\db\logs::set('addon:api:user:passportcode:max:lenght', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("You must set the passportcode less than 50 character"), 'passportcode', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("You must set the passportcode less than 50 character"), 'passportcode', 'arguments');
 			return false;
 		}
 
@@ -261,7 +261,7 @@ trait user_check_args
 		if($passportexpire && mb_strlen($passportexpire) > 50)
 		{
 			if($_args['save_log']) \lib\db\logs::set('addon:api:user:passportexpire:max:lenght', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("You must set the passportexpire less than 50 character"), 'passportexpire', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("You must set the passportexpire less than 50 character"), 'passportexpire', 'arguments');
 			return false;
 		}
 
@@ -269,7 +269,7 @@ trait user_check_args
 		if($paymentaccountnumber && mb_strlen($paymentaccountnumber) > 50)
 		{
 			if($_args['save_log']) \lib\db\logs::set('addon:api:user:paymentaccountnumber:max:lenght', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("You must set the paymentaccountnumber less than 50 character"), 'paymentaccountnumber', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("You must set the paymentaccountnumber less than 50 character"), 'paymentaccountnumber', 'arguments');
 			return false;
 		}
 
@@ -277,7 +277,7 @@ trait user_check_args
 		if($shaba && mb_strlen($shaba) > 50)
 		{
 			if($_args['save_log']) \lib\db\logs::set('addon:api:user:shaba:max:lenght', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("You must set the shaba less than 50 character"), 'shaba', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("You must set the shaba less than 50 character"), 'shaba', 'arguments');
 			return false;
 		}
 
@@ -285,7 +285,7 @@ trait user_check_args
 		if($cardnumber && mb_strlen($cardnumber) > 50)
 		{
 			if($_args['save_log']) \lib\db\logs::set('addon:api:user:cardnumber:max:lenght', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("You must set the cardnumber less than 50 character"), 'cardnumber', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("You must set the cardnumber less than 50 character"), 'cardnumber', 'arguments');
 			return false;
 		}
 
@@ -296,7 +296,7 @@ trait user_check_args
 		if($email && mb_strlen($email) > 50)
 		{
 			if($_args['save_log']) \lib\db\logs::set('addon:api:user:email:max:lenght', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("Email is incorrect"), 'email', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("Email is incorrect"), 'email', 'arguments');
 			return false;
 		}
 
@@ -305,7 +305,7 @@ trait user_check_args
 		if(!$parent && \lib\utility::request('parent'))
 		{
 			if($_args['save_log']) \lib\db\logs::set('addon:api:user:parent:max:lenght', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("Parent is incorrect"), 'parent', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("Parent is incorrect"), 'parent', 'arguments');
 			return false;
 		}
 
@@ -313,7 +313,7 @@ trait user_check_args
 		if($permission && mb_strlen($permission) > 900)
 		{
 			if($_args['save_log']) \lib\db\logs::set('addon:api:user:permission:max:lenght', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("Permission is incorrect"), 'permission', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("Permission is incorrect"), 'permission', 'arguments');
 			return false;
 		}
 
@@ -321,7 +321,7 @@ trait user_check_args
 		if($username && mb_strlen($username) > 50)
 		{
 			if($_args['save_log']) \lib\db\logs::set('addon:api:user:username:max:lenght', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("Username is incorrect"), 'username', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("Username is incorrect"), 'username', 'arguments');
 			return false;
 		}
 
@@ -329,7 +329,7 @@ trait user_check_args
 		if($group && mb_strlen($group) > 50)
 		{
 			if($_args['save_log']) \lib\db\logs::set('addon:api:user:group:max:lenght', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("Group is incorrect"), 'group', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("Group is incorrect"), 'group', 'arguments');
 			return false;
 		}
 
@@ -337,7 +337,7 @@ trait user_check_args
 		if(($pin && mb_strlen($pin) > 4) || ($pin && !is_numeric($pin)))
 		{
 			if($_args['save_log']) \lib\db\logs::set('addon:api:user:pin:max:lenght', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("Pin is incorrect"), 'pin', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("Pin is incorrect"), 'pin', 'arguments');
 			return false;
 		}
 
@@ -346,7 +346,7 @@ trait user_check_args
 		if(!$ref && \lib\utility::request('ref'))
 		{
 			if($_args['save_log']) \lib\db\logs::set('addon:api:user:ref:max:lenght', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("Ref is incorrect"), 'ref', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("Ref is incorrect"), 'ref', 'arguments');
 			return false;
 		}
 
@@ -360,7 +360,7 @@ trait user_check_args
 		if($notification && mb_strlen($notification) > 50)
 		{
 			if($_args['save_log']) \lib\db\logs::set('addon:api:user:notification:max:lenght', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("Notification is incorrect"), 'notification', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("Notification is incorrect"), 'notification', 'arguments');
 			return false;
 		}
 
@@ -374,7 +374,7 @@ trait user_check_args
 		if($nationality && mb_strlen($nationality) > 50)
 		{
 			if($_args['save_log']) \lib\db\logs::set('addon:api:user:nationality:max:lenght', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("Nationality is incorrect"), 'nationality', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("Nationality is incorrect"), 'nationality', 'arguments');
 			return false;
 		}
 
@@ -382,7 +382,7 @@ trait user_check_args
 		if($region && mb_strlen($region) > 50)
 		{
 			if($_args['save_log']) \lib\db\logs::set('addon:api:user:region:max:lenght', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("Region is incorrect"), 'region', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("Region is incorrect"), 'region', 'arguments');
 			return false;
 		}
 
@@ -390,7 +390,7 @@ trait user_check_args
 		if($insurancetype && mb_strlen($insurancetype) > 50)
 		{
 			if($_args['save_log']) \lib\db\logs::set('addon:api:user:insurancetype:max:lenght', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("Insurancetype is incorrect"), 'insurancetype', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("Insurancetype is incorrect"), 'insurancetype', 'arguments');
 			return false;
 		}
 
@@ -398,7 +398,7 @@ trait user_check_args
 		if($insurancecode && mb_strlen($insurancecode) > 50)
 		{
 			if($_args['save_log']) \lib\db\logs::set('addon:api:user:insurancecode:max:lenght', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("Insurancecode is incorrect"), 'insurancecode', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("Insurancecode is incorrect"), 'insurancecode', 'arguments');
 			return false;
 		}
 
@@ -406,7 +406,7 @@ trait user_check_args
 		if($dependantscount && mb_strlen($dependantscount) > 50)
 		{
 			if($_args['save_log']) \lib\db\logs::set('addon:api:user:dependantscount:max:lenght', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("Dependantscount is incorrect"), 'dependantscount', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("Dependantscount is incorrect"), 'dependantscount', 'arguments');
 			return false;
 		}
 
@@ -414,7 +414,7 @@ trait user_check_args
 		if($unit_id && !is_numeric($unit_id))
 		{
 			if($_args['save_log']) \lib\db\logs::set('addon:api:user:unit_id:max:lenght', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("Unit id is incorrect"), 'unit_id', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("Unit id is incorrect"), 'unit_id', 'arguments');
 			return false;
 		}
 
@@ -422,7 +422,7 @@ trait user_check_args
 		if($language && !\lib\language::check($language))
 		{
 			if($_args['save_log']) \lib\db\logs::set('addon:api:user:language:max:lenght', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("Language is incorrect"), 'language', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("Language is incorrect"), 'language', 'arguments');
 			return false;
 		}
 

@@ -32,7 +32,7 @@ trait delete
 		if(!$this->user_id)
 		{
 			\lib\db\logs::set('api:parent:remove:request:user_id:notfound', null, $log_meta);
-			\lib\debug::error(T_("User not found"), 'user', 'permission');
+			\lib\notif::error(T_("User not found"), 'user', 'permission');
 			return false;
 		}
 
@@ -42,7 +42,7 @@ trait delete
 		if(!$notify_id)
 		{
 			\lib\db\logs::set('api:parent:remove:request:notify:id:not:set', $this->user_id, $log_meta);
-			\lib\debug::error(T_("Invalid request id"));
+			\lib\notif::error(T_("Invalid request id"));
 			return false;
 		}
 
@@ -64,15 +64,15 @@ trait delete
 		if(!$check_ok)
 		{
 			\lib\db\logs::set('api:parent:remove:request:notify:data:invalid:access', $this->user_id, $log_meta);
-			\lib\debug::error(T_("Invalid request data"));
+			\lib\notif::error(T_("Invalid request data"));
 			return false;
 		}
 
 		\lib\db\notifications::update(['status' => 'cancel'], $notify_id);
-		if(\lib\debug::$status)
+		if(\lib\notif::$status)
 		{
 			\lib\db\logs::set('api:parent:remove:request:sucsessful', $this->user_id, $log_meta);
-			\lib\debug::true(T_("Your request canceled"));
+			\lib\notif::true(T_("Your request canceled"));
 		}
 
 	}
@@ -110,7 +110,7 @@ trait delete
 		if(!$this->user_id)
 		{
 			\lib\db\logs::set('api:parent:delete:user_id:notfound', null, $log_meta);
-			\lib\debug::error(T_("User not found"), 'user', 'permission');
+			\lib\notif::error(T_("User not found"), 'user', 'permission');
 			return false;
 		}
 
@@ -119,7 +119,7 @@ trait delete
 		if(!$userparents_id)
 		{
 			\lib\db\logs::set('api:parent:delete:notify:data:invalid:access', $this->user_id, $log_meta);
-			\lib\debug::error(T_("Invalid remove data"));
+			\lib\notif::error(T_("Invalid remove data"));
 			return false;
 		}
 
@@ -128,7 +128,7 @@ trait delete
 		if(!$userparents_id && \lib\utility::request('related_id'))
 		{
 			\lib\db\logs::set('api:parent:delete:related_id:invalid', $this->user_id, $log_meta);
-			\lib\debug::error(T_("Invalid remove data"));
+			\lib\notif::error(T_("Invalid remove data"));
 			return false;
 		}
 
@@ -156,15 +156,15 @@ trait delete
 		if(!isset($check['id']))
 		{
 			\lib\db\logs::set('api:parent:delete:notify:data:invalid:access:id', $this->user_id, $log_meta);
-			\lib\debug::error(T_("Invalid remove details"));
+			\lib\notif::error(T_("Invalid remove details"));
 			return false;
 		}
 
 		\lib\db\userparents::update(['status' => 'deleted'], $userparents_id);
-		if(\lib\debug::$status)
+		if(\lib\notif::$status)
 		{
 			\lib\db\logs::set('api:parent:delete:sucsessful', $this->user_id, $log_meta);
-			\lib\debug::true(T_("Parent removed"));
+			\lib\notif::true(T_("Parent removed"));
 		}
 	}
 }

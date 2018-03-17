@@ -9,13 +9,13 @@ class model extends \addons\content_cp\main\model
 
 		if(!$status)
 		{
-			\lib\debug::error(T_("Invalid status"));
+			\lib\notif::error(T_("Invalid status"));
 			return false;
 		}
 
 		$post_detail = \lib\app\comment::edit(['status' => $status], \lib\request::get('id'));
 
-		if(\lib\debug::$status)
+		if(\lib\notif::$status)
 		{
 			\lib\redirect::pwd();
 		}

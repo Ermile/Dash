@@ -28,11 +28,11 @@ class model extends \addons\content_cp\main\model
 			\lib\app\term::add($post);
 		}
 
-		if(\lib\debug::$status)
+		if(\lib\notif::$status)
 		{
 			if(\lib\request::get('edit'))
 			{
-				\lib\debug::true(T_("Term successfully edited"));
+				\lib\notif::true(T_("Term successfully edited"));
 
 				$url = \lib\url::here(). '/terms';
 
@@ -45,7 +45,7 @@ class model extends \addons\content_cp\main\model
 			}
 			else
 			{
-				\lib\debug::true(T_("Term successfully added"));
+				\lib\notif::true(T_("Term successfully added"));
 				\lib\redirect::to(\lib\url::full());
 			}
 		}

@@ -81,7 +81,7 @@ class model extends \addons\content_su\main\model
 
 		if(!$this->login())
 		{
-			\lib\debug::error(T_("You must login to add new transaction"));
+			\lib\notif::error(T_("You must login to add new transaction"));
 			return false;
 		}
 
@@ -90,14 +90,14 @@ class model extends \addons\content_su\main\model
 		if(!$title)
 		{
 			\lib\db\logs::set('su:transactions:add:title:not:set', $user_id, $log_meta);
-			\lib\debug::error(T_("Please set the transaction title"));
+			\lib\notif::error(T_("Please set the transaction title"));
 			return false;
 		}
 
 		if(!$unit)
 		{
 			\lib\db\logs::set('su:transactions:add:unit:not:set', $user_id, $log_meta);
-			\lib\debug::error(T_("Please select one of the unit items"));
+			\lib\notif::error(T_("Please select one of the unit items"));
 			return false;
 		}
 
@@ -105,14 +105,14 @@ class model extends \addons\content_su\main\model
 		if(!$mobile)
 		{
 			\lib\db\logs::set('su:transactions:add:mobile:not:set', $user_id, $log_meta);
-			\lib\debug::error(T_("Mobile can not be null"));
+			\lib\notif::error(T_("Mobile can not be null"));
 			return false;
 		}
 
 		if(!$type)
 		{
 			\lib\db\logs::set('su:transactions:add:type:not:set', $user_id, $log_meta);
-			\lib\debug::error(T_("Please select one of the type items"));
+			\lib\notif::error(T_("Please select one of the type items"));
 			return false;
 		}
 
@@ -120,21 +120,21 @@ class model extends \addons\content_su\main\model
 		if(!in_array($type, ['money', 'gift', 'prize', 'transfer']))
 		{
 			\lib\db\logs::set('su:transactions:add:invalid:type', $user_id, $log_meta);
-			\lib\debug::error(T_("Invalid type"));
+			\lib\notif::error(T_("Invalid type"));
 			return false;
 		}
 
 		if(!$plus && !$minus)
 		{
 			\lib\db\logs::set('su:transactions:add:no:minus:no:plus', $user_id, $log_meta);
-			\lib\debug::error(T_("Please fill the minus or plus field"));
+			\lib\notif::error(T_("Please fill the minus or plus field"));
 			return false;
 		}
 
 		if($plus && !is_numeric($plus))
 		{
 			\lib\db\logs::set('su:transactions:add:plus:isnot:numeric', $user_id, $log_meta);
-			\lib\debug::error(T_("Invalid plus field"));
+			\lib\notif::error(T_("Invalid plus field"));
 			return false;
 		}
 
@@ -142,7 +142,7 @@ class model extends \addons\content_su\main\model
 		if($minus && !is_numeric($minus))
 		{
 			\lib\db\logs::set('su:transactions:add:minus:isnot:numeric', $user_id, $log_meta);
-			\lib\debug::error(T_("Invalid minus field"));
+			\lib\notif::error(T_("Invalid minus field"));
 			return false;
 		}
 
@@ -154,14 +154,14 @@ class model extends \addons\content_su\main\model
 		else
 		{
 			\lib\db\logs::set('su:transactions:add:mobile:notexist', $user_id, $log_meta);
-			\lib\debug::error(T_("Mobile not exist"));
+			\lib\notif::error(T_("Mobile not exist"));
 			return false;
 		}
 
 		if($plus && $minus)
 		{
 			\lib\db\logs::set('su:transactions:add:plus:and:minus:set', $user_id, $log_meta);
-			\lib\debug::error(T_("One of the plus or minus field must be set"));
+			\lib\notif::error(T_("One of the plus or minus field must be set"));
 			return false;
 		}
 
@@ -191,9 +191,9 @@ class model extends \addons\content_su\main\model
 
 		\lib\db\transactions::set($insert);
 
-		if(\lib\debug::$status)
+		if(\lib\notif::$status)
 		{
-			\lib\debug::true(T_("Transaction inserted"));
+			\lib\notif::true(T_("Transaction inserted"));
 			\lib\redirect::to(\lib\url::here(). '/transactions');
 		}
 	}

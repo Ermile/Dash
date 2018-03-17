@@ -52,7 +52,7 @@ trait go_to
 	{
 		if($_direct)
 		{
-			\lib\debug::msg('direct', true);
+			\lib\notif::msg('direct', true);
 		}
 
 		\lib\redirect::to($_url);

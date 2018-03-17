@@ -123,7 +123,7 @@ class model extends \addons\content_enter\main\model
 		{
 			if(!self::get_enter_session('run_call_to_user'))
 			{
-				\lib\debug::result("Call sended");
+				\lib\notif::result("Call sended");
 				self::set_enter_session('run_call_to_user', true);
 				$this->send_call_code();
 			}

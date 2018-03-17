@@ -51,7 +51,7 @@ class asanpardakht
             {
                 \lib\db\logs::set('payment:asanpardakht:soapclient:not:install', self::$user_id, $log_meta);
             }
-            \lib\debug::error(T_("Can not connect to asanpardakht gateway. Install it!"));
+            \lib\notif::error(T_("Can not connect to asanpardakht gateway. Install it!"));
             return false;
         }
 
@@ -94,7 +94,7 @@ class asanpardakht
                 else
                 {
                     \lib\db\logs::set('payment:asanpardakht:error1', self::$user_id, $log_meta);
-                    \lib\debug::error(T_("Error in payment code :result", ['result' => (string) $result]));
+                    \lib\notif::error(T_("Error in payment code :result", ['result' => (string) $result]));
                     return false;
                 }
 
@@ -102,14 +102,14 @@ class asanpardakht
             else
             {
                 \lib\db\logs::set('payment:asanpardakht:error2', self::$user_id, $log_meta);
-                \lib\debug::error(T_("Error in payment (have not result)"));
+                \lib\notif::error(T_("Error in payment (have not result)"));
                 return false;
             }
         }
         catch (SoapFault $E)
         {
             \lib\db\logs::set('payment:asanpardakht:error:load:web:services', self::$user_id, $log_meta);
-            \lib\debug::error(T_("Error in load web services"));
+            \lib\notif::error(T_("Error in load web services"));
             return false;
         }
     }

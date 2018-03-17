@@ -31,13 +31,13 @@ class comment
 		$id = \lib\utility\shortURL::decode($_id);
 		if(!$id)
 		{
-			\lib\debug::error(T_("Can not access to edit comment"));
+			\lib\notif::error(T_("Can not access to edit comment"));
 			return false;
 		}
 
 		$args = self::check($id);
 
-		if($args === false || !\lib\debug::$status)
+		if($args === false || !\lib\notif::$status)
 		{
 			return false;
 		}
@@ -45,9 +45,9 @@ class comment
 
 		\lib\db\comments::update($args, $id);
 
-		if(\lib\debug::$status)
+		if(\lib\notif::$status)
 		{
-			\lib\debug::true(T_("Comment successfully updated"));
+			\lib\notif::true(T_("Comment successfully updated"));
 		}
 	}
 
@@ -113,7 +113,7 @@ class comment
 		$status = \lib\app::request('status');
 		if($status && !in_array($status, ['approved', 'unapproved', 'spam', 'deleted']))
 		{
-			\lib\debug::error(T_("Invalid status"), 'status');
+			\lib\notif::error(T_("Invalid status"), 'status');
 			return false;
 		}
 

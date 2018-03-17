@@ -12,13 +12,13 @@ class model extends \addons\content_enter\main\model
 		$exist_mobile_email = $this->view()->data->get_usernamemobile;
 		if($mobile_email !== $exist_mobile_email)
 		{
-			\lib\debug::error(T_("What are you doing?"));
+			\lib\notif::error(T_("What are you doing?"));
 			return false;
 		}
 
 		if(!in_array($send_code, self::list_send_code_way($mobile_email)))
 		{
-			\lib\debug::error(T_("Dont!"));
+			\lib\notif::error(T_("Dont!"));
 			return false;
 		}
 
@@ -30,7 +30,7 @@ class model extends \addons\content_enter\main\model
 
 		if(\lib\url::isLocal())
 		{
-			\lib\debug::true(T_("Verify code in local is :code", ['code' => '<b>11111</b>']));
+			\lib\notif::true(T_("Verify code in local is :code", ['code' => '<b>11111</b>']));
 		}
 
 		$select_way = 'verify/'. $send_code;

@@ -210,7 +210,7 @@ class telegram
 			{
 				\lib\db\logs::set('telegram:curl:not:install', null, ['meta' =>[]]);
 			}
-			\lib\debug::warn(T_("Please install curl on your system"));
+			\lib\notif::warn(T_("Please install curl on your system"));
 		}
 
 		if(self::$force_send_telegram_service)

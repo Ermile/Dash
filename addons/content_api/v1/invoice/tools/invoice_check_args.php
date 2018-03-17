@@ -12,14 +12,14 @@ trait invoice_check_args
 		if(!$title)
 		{
 			if($_args['save_log']) \lib\db\logs::set('addons:api:invoice:title:not:set', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("title id not found"), 'title', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("title id not found"), 'title', 'arguments');
 			return false;
 		}
 
 		if($title && mb_strlen($title) > 50)
 		{
 			if($_args['save_log']) \lib\db\logs::set('addons:api:invoice:title:max:length', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("You must set title less than 50 character"), 'title', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("You must set title less than 50 character"), 'title', 'arguments');
 			return false;
 		}
 
@@ -28,7 +28,7 @@ trait invoice_check_args
 		if(!$buyer)
 		{
 			if($_args['save_log']) \lib\db\logs::set('addons:api:invoice:buyer:not:set', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("buyer id not found"), 'buyer', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("buyer id not found"), 'buyer', 'arguments');
 			return false;
 		}
 
@@ -40,7 +40,7 @@ trait invoice_check_args
 		else
 		{
 			if($_args['save_log']) \lib\db\logs::set('addons:api:invoice:buyer:not:found', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("buyer not found"), 'buyer', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("buyer not found"), 'buyer', 'arguments');
 			return false;
 		}
 
@@ -52,7 +52,7 @@ trait invoice_check_args
 		// {
 
 			// if($_args['save_log']) \lib\db\logs::set('addons:api:invoice:seller:not:set', $this->user_id, $log_meta);
-			// if($_args['debug']) \lib\debug::error(T_("seller id not found"), 'seller', 'arguments');
+			// if($_args['debug']) \lib\notif::error(T_("seller id not found"), 'seller', 'arguments');
 			// return false;
 		// }
 
@@ -60,7 +60,7 @@ trait invoice_check_args
 		if($desc && mb_strlen($desc) > 50)
 		{
 			if($_args['save_log']) \lib\db\logs::set('addons:api:invoice:desc:max:length', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("You must set desc less than 50 character"), 'desc', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("You must set desc less than 50 character"), 'desc', 'arguments');
 			return false;
 		}
 
@@ -69,7 +69,7 @@ trait invoice_check_args
 		if($status && !in_array($status, ['enable', 'disable', 'expire']))
 		{
 			if($_args['save_log']) \lib\db\logs::set('addons:api:invoice:status:not:set', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("Invalid status"), 'status', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("Invalid status"), 'status', 'arguments');
 			return false;
 		}
 
@@ -78,7 +78,7 @@ trait invoice_check_args
 		if(strtotime($date) === false)
 		{
 			if($_args['save_log']) \lib\db\logs::set('addons:api:invoice:date:not:set', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("Invalid invoice date"), 'date', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("Invalid invoice date"), 'date', 'arguments');
 			return false;
 		}
 		$date = date("Y-m-d", strtotime($date));
@@ -103,14 +103,14 @@ trait invoice_check_args
 		if(!$details)
 		{
 			if($_args['save_log']) \lib\db\logs::set('addon:api:invoice:detail:not:found', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("No detail was sended"), 'detail', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("No detail was sended"), 'detail', 'arguments');
 			return false;
 		}
 
 		if(!is_array($details))
 		{
 			if($_args['save_log']) \lib\db\logs::set('addon:api:invoice:details:not:array', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("You must set the details as array"), 'details', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("You must set the details as array"), 'details', 'arguments');
 			return false;
 		}
 
@@ -163,7 +163,7 @@ trait invoice_check_args
 		if(!$count_detail)
 		{
 			if($_args['save_log']) \lib\db\logs::set('addon:api:invoice:details:invalid', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("No valid details was sended"), 'details', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("No valid details was sended"), 'details', 'arguments');
 			return false;
 		}
 

@@ -48,12 +48,12 @@ class model extends \addons\content_su\main\model
 			$result = \lib\db\logitems::update($update, $id);
 			if($result)
 			{
-				\lib\debug::true(T_("Update successfull"));
+				\lib\notif::true(T_("Update successfull"));
 				\lib\redirect::to(\lib\url::here(). '/logitems');
 			}
 			else
 			{
-				\lib\debug::error(T_("Update faild"));
+				\lib\notif::error(T_("Update faild"));
 			}
 
 		}

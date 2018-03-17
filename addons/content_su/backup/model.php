@@ -17,7 +17,7 @@ class model extends \addons\content_su\main\model
 			}
 			else
 			{
-				\lib\debug::error(T_("Database of logs dose not exists"));
+				\lib\notif::error(T_("Database of logs dose not exists"));
 				return false;
 			}
 		}
@@ -30,14 +30,14 @@ class model extends \addons\content_su\main\model
 			$file_name = \lib\request::post('file');
 			if(\lib\utility\file::delete(database. 'backup/files/'. $file_name))
 			{
-				\lib\debug::true(T_("File successfully deleted"));
+				\lib\notif::true(T_("File successfully deleted"));
 				\lib\redirect::pwd();
 				return;
 			}
 		}
 		else
 		{
-			\lib\debug::true(T_("Dont!"));
+			\lib\notif::true(T_("Dont!"));
 			return false;
 		}
 	}
@@ -46,7 +46,7 @@ class model extends \addons\content_su\main\model
 	{
 		if(\lib\db::backup_dump(['download' => false, 'db_name' => $_db_name]))
 		{
-			\lib\debug::true(T_("Backup complete"));
+			\lib\notif::true(T_("Backup complete"));
 		}
 		\lib\redirect::pwd();
 	}
@@ -75,7 +75,7 @@ class model extends \addons\content_su\main\model
 		$url .= '/schedule';
 		\lib\utility\file::write($url, $array);
 
-		\lib\debug::true(T_("Auto backup schedule saved"));
+		\lib\notif::true(T_("Auto backup schedule saved"));
 
 	}
 }

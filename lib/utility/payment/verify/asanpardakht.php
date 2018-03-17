@@ -27,14 +27,14 @@ trait asanpardakht
         if(!\lib\option::config('asanpardakht', 'status'))
         {
             \lib\db\logs::set('pay:asanpardakht:status:false', $_user_id, $log_meta);
-            \lib\debug::error(T_("The asanpardakht payment on this service is locked"));
+            \lib\notif::error(T_("The asanpardakht payment on this service is locked"));
             return false;
         }
 
         if(!\lib\option::config('asanpardakht', 'MerchantID'))
         {
             \lib\db\logs::set('pay:asanpardakht:MerchantID:false', $_user_id, $log_meta);
-            \lib\debug::error(T_("The asanpardakht payment on this service is locked"));
+            \lib\notif::error(T_("The asanpardakht payment on this service is locked"));
             return false;
         }
 
@@ -65,7 +65,7 @@ trait asanpardakht
         else
         {
             \lib\db\logs::set('pay:asanpardakht:SESSION:transaction_id:not:found', self::$user_id, $log_meta);
-            \lib\debug::error(T_("Your session is lost! We can not find your transaction"));
+            \lib\notif::error(T_("Your session is lost! We can not find your transaction"));
             return self::turn_back();
         }
 
@@ -91,14 +91,14 @@ trait asanpardakht
         else
         {
             \lib\db\logs::set('pay:asanpardakht:SESSION:amount:not:found', self::$user_id, $log_meta);
-            \lib\debug::error(T_("Your session is lost! We can not find amount"));
+            \lib\notif::error(T_("Your session is lost! We can not find amount"));
             return self::turn_back();
         }
 
         if($Amount_SESSION != $Amount)
         {
             \lib\db\logs::set('pay:asanpardakht:Amount_SESSION:amount:is:not:equals', self::$user_id, $log_meta);
-            \lib\debug::error(T_("Your session is lost! We can not find amount"));
+            \lib\notif::error(T_("Your session is lost! We can not find amount"));
             return self::turn_back();
         }
 

@@ -110,7 +110,7 @@ class model extends \addons\content_enter\main\model
 		{
 			if(!self::get_enter_session('run_send_sms_code'))
 			{
-				\lib\debug::result("Sms sended");
+				\lib\notif::result("Sms sended");
 				self::set_enter_session('run_send_sms_code', true);
 				$this->send_sms_code();
 			}

@@ -16,13 +16,13 @@ class model extends \mvc\model
 				\lib\app\posts::post_gallery(\lib\request::get('id'), $uploaded_file['url'], 'add');
 			}
 
-			if(!\lib\debug::$status)
+			if(!\lib\notif::$status)
 			{
-				\lib\debug::error(T_("Can not upload file"));
+				\lib\notif::error(T_("Can not upload file"));
 			}
 			else
 			{
-				\lib\debug::true(T_("File successfully uploaded"));
+				\lib\notif::true(T_("File successfully uploaded"));
 			}
 
 			return true;
@@ -39,7 +39,7 @@ class model extends \mvc\model
 			return false;
 		}
 		\lib\app\posts::post_gallery(\lib\request::get('id'), $id, 'remove');
-		\lib\debug::msg('direct', true);
+		\lib\notif::msg('direct', true);
 		\lib\redirect::to(\lib\url::full());
 
 	}
@@ -95,7 +95,7 @@ class model extends \mvc\model
 				$post['thumb'] = $uploaded_file['url'];
 			}
 			// if in upload have error return
-			if(!\lib\debug::$status)
+			if(!\lib\notif::$status)
 			{
 				return false;
 			}

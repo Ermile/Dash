@@ -19,7 +19,7 @@ trait comment_check_args
 		if($author && mb_strlen($author) >= 50)
 		{
 			if($_args['save_log']) \lib\db\logs::set('addons:api:comment:author:max:length', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("You must set the author less than 50 character"), 'author', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("You must set the author less than 50 character"), 'author', 'arguments');
 			return false;
 		}
 
@@ -27,7 +27,7 @@ trait comment_check_args
 		if($email && mb_strlen($email) >= 50)
 		{
 			if($_args['save_log']) \lib\db\logs::set('addons:api:comment:email:max:length', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("You must set the email less than 50 character"), 'email', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("You must set the email less than 50 character"), 'email', 'arguments');
 			return false;
 		}
 
@@ -35,7 +35,7 @@ trait comment_check_args
 		if($url && mb_strlen($url) >= 1500)
 		{
 			if($_args['save_log']) \lib\db\logs::set('addons:api:comment:url:max:length', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("You must set the url less than 1500 character"), 'url', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("You must set the url less than 1500 character"), 'url', 'arguments');
 			return false;
 		}
 
@@ -43,14 +43,14 @@ trait comment_check_args
 		if($content && mb_strlen($content) >= 5000)
 		{
 			if($_args['save_log']) \lib\db\logs::set('addons:api:comment:content:max:length', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("Your text is too large!"), 'content', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("Your text is too large!"), 'content', 'arguments');
 			return false;
 		}
 
 		if(!$content && $_args['method'] === 'post')
 		{
 			if($_args['save_log']) \lib\db\logs::set('addons:api:comment:content:max:length', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("Content can not be null"), 'content', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("Content can not be null"), 'content', 'arguments');
 			return false;
 		}
 
@@ -70,7 +70,7 @@ trait comment_check_args
 		if($status && !in_array($status, ['approved','unapproved','spam','deleted']))
 		{
 			if($_args['save_log']) \lib\db\logs::set('addons:api:comment:status:max:length', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("Invalid parameter status"), 'status', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("Invalid parameter status"), 'status', 'arguments');
 			return false;
 		}
 
@@ -86,7 +86,7 @@ trait comment_check_args
 		if(!$user_id && \lib\utility::request('user_id'))
 		{
 			if($_args['save_log']) \lib\db\logs::set('addons:api:comment:user_id:max:length', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("Invalid parameter user_id"), 'user_id', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("Invalid parameter user_id"), 'user_id', 'arguments');
 			return false;
 		}
 
@@ -94,7 +94,7 @@ trait comment_check_args
 		if($type && mb_strlen($type) >= 50)
 		{
 			if($_args['save_log']) \lib\db\logs::set('addons:api:comment:type:max:length', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("You must set the type less than 50 character"), 'type', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("You must set the type less than 50 character"), 'type', 'arguments');
 			return false;
 		}
 

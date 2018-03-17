@@ -118,7 +118,7 @@ class permission
 			}
 			else
 			{
-				\lib\debug::error(T_("Can not access to it"));
+				\lib\notif::error(T_("Can not access to it"));
 				return false;
 			}
 		}

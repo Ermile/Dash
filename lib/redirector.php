@@ -64,8 +64,8 @@ class redirector
 		if(\lib\request::json_accept() || \lib\temp::get('api') || \lib\request::ajax())
 		{
 			header('Content-Type: application/json');
-			debug::msg('redirect', $newLocation);
-			echo json_encode(debug::compile());
+			\lib\notif::msg('redirect', $newLocation);
+			echo json_encode(\lib\notif::compile());
 			\lib\code::exit();
 		}
 

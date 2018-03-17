@@ -8,12 +8,12 @@ class model extends \addons\content_su\main\model
 		if(\lib\request::post('active'))
 		{
 			\lib\utility\cronjob\options::active();
-			\lib\debug::true(T_("Your cronjob is actived"));
+			\lib\notif::true(T_("Your cronjob is actived"));
 		}
 		else
 		{
 			\lib\utility\cronjob\options::deactive();
-			\lib\debug::warn(T_("Your cronjob is deactived"));
+			\lib\notif::warn(T_("Your cronjob is deactived"));
 		}
 
 		\lib\redirect::pwd();

@@ -32,7 +32,7 @@ trait get
 		if(!$this->user_id)
 		{
 			\lib\db\logs::set('api:parent:user_id:notfound', null, $log_meta);
-			\lib\debug::error(T_("User not found"), 'user', 'permission');
+			\lib\notif::error(T_("User not found"), 'user', 'permission');
 			return false;
 		}
 
@@ -41,7 +41,7 @@ trait get
 		if(!$user_id)
 		{
 			\lib\db\logs::set('api:parent:user_id:is:incurrect', null, $log_meta);
-			\lib\debug::error(T_("User not found"), 'user', 'permission');
+			\lib\notif::error(T_("User not found"), 'user', 'permission');
 			return false;
 		}
 
@@ -51,7 +51,7 @@ trait get
 		if(!$related_id && \lib\utility::request('related_id'))
 		{
 			\lib\db\logs::set('api:parent:related_id:is:incurrect', null, $log_meta);
-			\lib\debug::error(T_("Related id is incurrect"), 'related_id', 'permission');
+			\lib\notif::error(T_("Related id is incurrect"), 'related_id', 'permission');
 			return false;
 		}
 

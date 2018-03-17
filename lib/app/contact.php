@@ -48,7 +48,7 @@ class contact
 		if(!$_option['user_id'])
 		{
 			\lib\app::log("api:contact:user:id:not:set", \lib\user::id(), $log_meta);
-			\lib\debug::error(T_("User id not set"), 'user_id');
+			\lib\notif::error(T_("User id not set"), 'user_id');
 			return false;
 		}
 
@@ -101,14 +101,14 @@ class contact
 			if(mb_strlen($key) >= 100)
 			{
 				\lib\app::log("api:contact:$key:the:key:max:length", \lib\user::id(), $log_meta);
-				\lib\debug::error(T_("Key of contact is too large"), $key);
+				\lib\notif::error(T_("Key of contact is too large"), $key);
 				return false;
 			}
 
 			if(mb_strlen($value) >= 100)
 			{
 				\lib\app::log("api:contact:$key:max:length", \lib\user::id(), $log_meta);
-				\lib\debug::error(T_("Contact value is too large."), $key);
+				\lib\notif::error(T_("Contact value is too large."), $key);
 				return false;
 			}
 

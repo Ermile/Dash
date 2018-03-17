@@ -47,7 +47,7 @@ class pay
         else
         {
             \lib\db\logs::set('pay:irkish:amount:invalid', $_user_id);
-            \lib\debug::error(T_("Invalid amount"));
+            \lib\notif::error(T_("Invalid amount"));
             return false;
         }
 
@@ -65,7 +65,7 @@ class pay
         }
         else
         {
-            \lib\debug::error(T_("This payment is not supported in this system"));
+            \lib\notif::error(T_("This payment is not supported in this system"));
             return false;
         }
     }

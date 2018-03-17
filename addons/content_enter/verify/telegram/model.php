@@ -59,7 +59,7 @@ class model extends \addons\content_enter\main\model
 		{
 			if(!self::get_enter_session('run_telegram_to_user'))
 			{
-				\lib\debug::result("Telegram sended");
+				\lib\notif::result("Telegram sended");
 				self::set_enter_session('run_telegram_to_user', true);
 				$this->send_telegram_code();
 			}

@@ -40,7 +40,7 @@ trait edit
 		// check args
 		$args = self::check($_option);
 
-		if($args === false || !\lib\debug::$status)
+		if($args === false || !\lib\notif::$status)
 		{
 			return false;
 		}
@@ -51,7 +51,7 @@ trait edit
 		if(!$id)
 		{
 			\lib\app::log('api:staff:edit:permission:denide', \lib\user::id(), $log_meta);
-			\lib\debug::error(T_("Can not access to edit staff"), 'staff');
+			\lib\notif::error(T_("Can not access to edit staff"), 'staff');
 			return false;
 		}
 
@@ -78,9 +78,9 @@ trait edit
 
 		\lib\app\contact::merge($_args, $_option);
 
-		if(\lib\debug::$status)
+		if(\lib\notif::$status)
 		{
-			\lib\debug::true(T_("Profile successfully updated"));
+			\lib\notif::true(T_("Profile successfully updated"));
 		}
 	}
 }

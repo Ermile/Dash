@@ -53,7 +53,7 @@ trait get
 			if($_options['debug'])
 			{
 				\lib\app::log('api:staff:id:shortname:not:set', \lib\user::id(), $log_meta);
-				\lib\debug::error(T_("Store id or shortname not set"), 'id', 'arguments');
+				\lib\notif::error(T_("Store id or shortname not set"), 'id', 'arguments');
 			}
 			return false;
 		}

@@ -37,7 +37,7 @@ trait edit
 		if(!$id)
 		{
 			\lib\app::log('api:posta:edit:permission:denide', \lib\user::id(), \lib\app::log_meta());
-			\lib\debug::error(T_("Can not access to edit posta"), 'posta');
+			\lib\notif::error(T_("Can not access to edit posta"), 'posta');
 			return false;
 		}
 
@@ -45,7 +45,7 @@ trait edit
 
 		if(!isset($load_posts['id']))
 		{
-			\lib\debug::error(T_("Invalid posts id"));
+			\lib\notif::error(T_("Invalid posts id"));
 			return false;
 		}
 
@@ -70,7 +70,7 @@ trait edit
 		// check args
 		$args = self::check($id, $_option);
 
-		if($args === false || !\lib\debug::$status)
+		if($args === false || !\lib\notif::$status)
 		{
 			return false;
 		}
@@ -112,9 +112,9 @@ trait edit
 		\lib\db\posts::update($args, $id);
 
 
-		if(\lib\debug::$status)
+		if(\lib\notif::$status)
 		{
-			\lib\debug::true(T_("Post successfully updated"));
+			\lib\notif::true(T_("Post successfully updated"));
 		}
 	}
 }

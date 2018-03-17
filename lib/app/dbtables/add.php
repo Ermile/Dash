@@ -17,7 +17,7 @@ trait add
 
 		if(!\lib\user::id())
 		{
-			\lib\debug::error(T_(":user not found"), 'user');
+			\lib\notif::error(T_(":user not found"), 'user');
 			return false;
 		}
 
@@ -26,9 +26,9 @@ trait add
 
 		$dbtables_id = \lib\db\config::public_insert(self::$tables, $args);
 
-		if(\lib\debug::$status)
+		if(\lib\notif::$status)
 		{
-			\lib\debug::true(T_("Record successfuly added"));
+			\lib\notif::true(T_("Record successfuly added"));
 		}
 	}
 }

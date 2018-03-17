@@ -21,7 +21,7 @@ class model extends \addons\content_enter\main\model
 			// plus count invalid emailword
 			self::plus_try_session('no_email_send_set');
 
-			\lib\debug::error(T_("No email was send"));
+			\lib\notif::error(T_("No email was send"));
 			return false;
 		}
 

@@ -120,7 +120,7 @@ class google
                }
                else
                {
-                    \lib\debug::error(T_("Invalid access token"));
+                    \lib\notif::error(T_("Invalid access token"));
                     return false;
                }
           }

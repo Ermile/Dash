@@ -35,7 +35,7 @@ trait add
 		$_args = array_merge($default_args, $_args);
 
 		// set default title of debug
-		if($_args['debug']) \lib\debug::title(T_("Operation Faild"));
+		if($_args['debug']) \lib\notif::title(T_("Operation Faild"));
 
 		// set the log meta
 		$log_meta =
@@ -52,7 +52,7 @@ trait add
 		if(!$this->user_id)
 		{
 			// if($_args['save_log']) \lib\db\logs::set('addon:api:comment:user_id:notfound', $this->user_id, $log_meta);
-			// if($_args['debug']) \lib\debug::error(T_("User not found"), 'comment', 'permission');
+			// if($_args['debug']) \lib\notif::error(T_("User not found"), 'comment', 'permission');
 			// return false;
 		}
 
@@ -61,7 +61,7 @@ trait add
 		 */
 		$return_function = $this->comment_check_args($_args, $args, $log_meta);
 
-		if(!\lib\debug::$status || $return_function === false)
+		if(!\lib\notif::$status || $return_function === false)
 		{
 			return false;
 		}
@@ -79,7 +79,7 @@ trait add
 			if(!$id)
 			{
 				if($_args['save_log']) \lib\db\logs::set('addons:api:comment:id:not:found', $this->user_id, $log_meta);
-				if($_args['debug']) \lib\debug::true(T_("Id not found"));
+				if($_args['debug']) \lib\notif::true(T_("Id not found"));
 				return false;
 			}
 
@@ -97,24 +97,24 @@ trait add
 			\lib\db\comments::update($args, $id);
 		}
 
-		if(\lib\debug::$status)
+		if(\lib\notif::$status)
 		{
-			if($_args['debug']) \lib\debug::title(T_("Operation Complete"));
+			if($_args['debug']) \lib\notif::title(T_("Operation Complete"));
 
 			if($_args['method'] === 'post')
 			{
 				if($_args['save_log']) \lib\db\logs::set('user:send:request', $this->user_id, $log_meta);
-				if($_args['debug']) \lib\debug::true(T_("Thank You For contacting us"));
+				if($_args['debug']) \lib\notif::true(T_("Thank You For contacting us"));
 			}
 			elseif($_args['method'] === 'patch')
 			{
-				if($_args['debug']) \lib\debug::true(T_("Comment data updated"));
+				if($_args['debug']) \lib\notif::true(T_("Comment data updated"));
 			}
 		}
 		else
 		{
 			if($_args['save_log']) \lib\db\logs::set('user:send:request:fail', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("We could'nt save the request"));
+			if($_args['debug']) \lib\notif::error(T_("We could'nt save the request"));
 		}
 	}
 }

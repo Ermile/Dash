@@ -64,7 +64,7 @@ class token
 	 */
 	private static function create_token($_args = [])
 	{
-		if(!\lib\debug::$status)
+		if(!\lib\notif::$status)
 		{
 			return null;
 		}
@@ -178,12 +178,12 @@ class token
 			}
 			else
 			{
-				\lib\debug::error(T_("Invalid user or parent"), 'user', 'system');
+				\lib\notif::error(T_("Invalid user or parent"), 'user', 'system');
 			}
 		}
 		else
 		{
-			\lib\debug::error(T_("Token not verified"),'temp_token', 'argument');
+			\lib\notif::error(T_("Token not verified"),'temp_token', 'argument');
 		}
 		return null;
 	}
@@ -212,7 +212,7 @@ class token
 
 		if(!$get || empty($get) || !array_key_exists('parent_id', $get))
 		{
-			\lib\debug::error(T_("authorization faild (parent not found)"), 'authorization', 'access');
+			\lib\notif::error(T_("authorization faild (parent not found)"), 'authorization', 'access');
 			return false;
 		}
 
@@ -224,7 +224,7 @@ class token
 			case 'guest':
 				if(is_null($parent_id))
 				{
-					\lib\debug::error(T_("authorization faild (this authorization is not a valid token)"), 'authorization', 'access');
+					\lib\notif::error(T_("authorization faild (this authorization is not a valid token)"), 'authorization', 'access');
 					return false;
 				}
 				break;
@@ -239,7 +239,7 @@ class token
 				if(!$temp_time ||  \DateTime::createFromFormat('Y-m-d H:i:s', $temp_time) === false)
 				{
 
-					\lib\debug::error(T_("Invalid token"), 'authorization', 'system');
+					\lib\notif::error(T_("Invalid token"), 'authorization', 'system');
 					return false;
 				}
 
@@ -249,7 +249,7 @@ class token
 
 				if($diff_seconds > $max_life_time)
 				{
-					return \lib\debug::error(T_("The api key is expired"), 'authorization', 'access');
+					return \lib\notif::error(T_("The api key is expired"), 'authorization', 'access');
 				}
 
 				break;
@@ -257,13 +257,13 @@ class token
 			case 'api_key':
 				if(!is_null($parent_id))
 				{
-					\lib\debug::error(T_("authorization faild (this authorization is not a api key)"), 'authorization', 'access');
+					\lib\notif::error(T_("authorization faild (this authorization is not a api key)"), 'authorization', 'access');
 					return false;
 				}
 				break;
 
 			default:
-				\lib\debug::error(T_("Invalid type"), 'authorization', 'system');
+				\lib\notif::error(T_("Invalid type"), 'authorization', 'system');
 				return false;
 				break;
 		}
@@ -287,7 +287,7 @@ class token
 	{
 		self::check($_token, 'token');
 
-		if(!\lib\debug::$status)
+		if(!\lib\notif::$status)
 		{
 			return;
 		}
@@ -302,7 +302,7 @@ class token
 
 			if(!$token_time ||  \DateTime::createFromFormat('Y-m-d H:i:s', $token_time) === false)
 			{
-				\lib\debug::error(T_("Invalid token"), 'authorization', 'system');
+				\lib\notif::error(T_("Invalid token"), 'authorization', 'system');
 				return false;
 			}
 
@@ -312,7 +312,7 @@ class token
 
 			if($diff_seconds > $max_life_time)
 			{
-				\lib\debug::error(T_("Invalid token"), 'authorization', 'time');
+				\lib\notif::error(T_("Invalid token"), 'authorization', 'time');
 				return false;
 			}
 
@@ -321,7 +321,7 @@ class token
 
 			if($guest_token_user_id && $guest_token_user_id != $_user_id)
 			{
-				\lib\debug::error(T_("Invalid token"), 'authorization', 'user');
+				\lib\notif::error(T_("Invalid token"), 'authorization', 'user');
 				return false;
 			}
 
@@ -348,7 +348,7 @@ class token
 		}
 		else
 		{
-			\lib\debug::error(T_("Invalid token (tmp login)"), 'authorization', 'access');
+			\lib\notif::error(T_("Invalid token (tmp login)"), 'authorization', 'access');
 			return false;
 		}
 

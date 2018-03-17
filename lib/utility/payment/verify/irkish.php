@@ -27,14 +27,14 @@ trait irkish
         if(!\lib\option::config('irkish', 'status'))
         {
             \lib\db\logs::set('pay:irkish:status:false', self::$user_id, $log_meta);
-            debug::error(T_("The irkish payment on this service is locked"));
+            \lib\notif::error(T_("The irkish payment on this service is locked"));
             return self::turn_back();
         }
 
         if(!\lib\option::config('irkish', 'merchantId'))
         {
             \lib\db\logs::set('pay:irkish:merchantId:not:set', self::$user_id, $log_meta);
-            debug::error(T_("The irkish payment merchantId not set"));
+            \lib\notif::error(T_("The irkish payment merchantId not set"));
             return self::turn_back();
         }
 
@@ -50,14 +50,14 @@ trait irkish
         if(!$token)
         {
             \lib\db\logs::set('pay:irkish:token:verify:not:found', self::$user_id, $log_meta);
-            debug::error(T_("The irkish payment token not set"));
+            \lib\notif::error(T_("The irkish payment token not set"));
             return self::turn_back();
         }
 
         if(!$resultCode)
         {
             \lib\db\logs::set('pay:irkish:resultCode:verify:not:found', self::$user_id, $log_meta);
-            debug::error(T_("The irkish payment resultCode not set"));
+            \lib\notif::error(T_("The irkish payment resultCode not set"));
             return self::turn_back();
         }
 
@@ -68,7 +68,7 @@ trait irkish
         else
         {
             \lib\db\logs::set('pay:irkish:SESSION:transaction_id:not:found', self::$user_id, $log_meta);
-            debug::error(T_("Your session is lost! We can not find your transaction"));
+            \lib\notif::error(T_("Your session is lost! We can not find your transaction"));
             return self::turn_back();
         }
 
@@ -88,14 +88,14 @@ trait irkish
         else
         {
             \lib\db\logs::set('pay:irkish:SESSION:amount:not:found', self::$user_id, $log_meta);
-            debug::error(T_("Your session is lost! We can not find amount"));
+            \lib\notif::error(T_("Your session is lost! We can not find amount"));
             return self::turn_back();
         }
 
         if($amount_SESSION != $amount)
         {
             \lib\db\logs::set('pay:irkish:amount_SESSION:amount:is:not:equals', self::$user_id, $log_meta);
-            debug::error(T_("Your session is lost! We can not find amount"));
+            \lib\notif::error(T_("Your session is lost! We can not find amount"));
             return self::turn_back();
         }
 

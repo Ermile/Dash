@@ -35,7 +35,7 @@ trait add
 		$_args = array_merge($default_args, $_args);
 
 		// set default title of debug
-		if($_args['debug']) \lib\debug::title(T_("Operation Faild"));
+		if($_args['debug']) \lib\notif::title(T_("Operation Faild"));
 
 		// set the log meta
 		$log_meta =
@@ -52,7 +52,7 @@ trait add
 		if(!$this->user_id)
 		{
 			if($_args['save_log']) \lib\db\logs::set('addon:api:invoice:user_id:notfound', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("invoice not found"), 'invoice', 'permission');
+			if($_args['debug']) \lib\notif::error(T_("invoice not found"), 'invoice', 'permission');
 			return false;
 		}
 
@@ -62,7 +62,7 @@ trait add
 		 */
 		$return_function = $this->invoice_check_args($_args, $args, $log_meta);
 
-		if(!\lib\debug::$status || $return_function === false)
+		if(!\lib\notif::$status || $return_function === false)
 		{
 			return false;
 		}
@@ -103,7 +103,7 @@ trait add
 			if(!$id)
 			{
 				if($_args['save_log']) \lib\db\logs::set('addon:api:invoice:pathc:id:not:set', $this->user_id, $log_meta);
-				if($_args['debug']) \lib\debug::error(T_("Id not set"), 'id', 'arguments');
+				if($_args['debug']) \lib\notif::error(T_("Id not set"), 'id', 'arguments');
 				return false;
 			}
 
@@ -113,17 +113,17 @@ trait add
 			}
 		}
 
-		if(\lib\debug::$status)
+		if(\lib\notif::$status)
 		{
-			if($_args['debug']) \lib\debug::title(T_("Operation Complete"));
+			if($_args['debug']) \lib\notif::title(T_("Operation Complete"));
 
 			if($_args['method'] === 'post')
 			{
-				if($_args['debug']) \lib\debug::true(T_("invoice successfully added"));
+				if($_args['debug']) \lib\notif::true(T_("invoice successfully added"));
 			}
 			elseif($_args['method'] === 'patch')
 			{
-				if($_args['debug']) \lib\debug::true(T_("invoice successfully updated"));
+				if($_args['debug']) \lib\notif::true(T_("invoice successfully updated"));
 			}
 		}
 

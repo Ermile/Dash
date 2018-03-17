@@ -17,12 +17,12 @@ class model extends \content_account\main\model
 			$check = \lib\utility\appkey::create_app_key(\lib\user::id());
 			if($check)
 			{
-				\lib\debug::true(T_("Creat new api key successfully complete"));
+				\lib\notif::true(T_("Creat new api key successfully complete"));
 				\lib\redirect::pwd();
 			}
 			else
 			{
-				\lib\debug::error(T_("Error in create new api key"));
+				\lib\notif::error(T_("Error in create new api key"));
 			}
 		}
 	}

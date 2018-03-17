@@ -51,7 +51,7 @@ trait get
 
 		$get_args = $this->invoice_make_where($_args, $where, $log_meta);
 
-		if(!\lib\debug::$status || $get_args === false)
+		if(!\lib\notif::$status || $get_args === false)
 		{
 			return false;
 		}
@@ -84,7 +84,7 @@ trait get
 	 */
 	public function get_invoice($_args = [])
 	{
-		\lib\debug::title(T_("Operation Faild"));
+		\lib\notif::title(T_("Operation Faild"));
 
 		$log_meta =
 		[
@@ -98,7 +98,7 @@ trait get
 		if(!$this->invoice_id)
 		{
 			\lib\db\logs::set('api:invoice:invoice_id:notfound', $this->invoice_id, $log_meta);
-			\lib\debug::error(T_("invoice not found"), 'invoice', 'permission');
+			\lib\notif::error(T_("invoice not found"), 'invoice', 'permission');
 			return false;
 		}
 
@@ -108,7 +108,7 @@ trait get
 		if(!$id)
 		{
 			\lib\db\logs::set('api:invoice:id:not:set', $this->invoice_id, $log_meta);
-			\lib\debug::error(T_("Id not set"), 'id', 'arguments');
+			\lib\notif::error(T_("Id not set"), 'id', 'arguments');
 			return false;
 		}
 

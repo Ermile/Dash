@@ -76,7 +76,7 @@ class model extends \mvc\model
 
 		$this->api_key();
 
-		if(!\lib\debug::$status)
+		if(!\lib\notif::$status)
 		{
 			$this->_processor(['force_stop' => true]);
 		}
@@ -105,7 +105,7 @@ class model extends \mvc\model
 
 		if(!$authorization)
 		{
-			return \lib\debug::error('Authorization not found', 'authorization', 'access');
+			return \lib\notif::error('Authorization not found', 'authorization', 'access');
 		}
 
 		// static token list
@@ -125,7 +125,7 @@ class model extends \mvc\model
 		{
 			$token = \addons\content_enter\main\tools\token::get_type($authorization);
 
-			if(!\lib\debug::$status)
+			if(!\lib\notif::$status)
 			{
 				return false;
 			}
@@ -137,7 +137,7 @@ class model extends \mvc\model
 				case 'guest':
 					if($this->url == 'v1/token/login' || $this->url == 'v1/token/guest')
 					{
-						\lib\debug::error(T_("Access denide (Invalid url)"), 'authorization', 'access');
+						\lib\notif::error(T_("Access denide (Invalid url)"), 'authorization', 'access');
 						return false;
 					}
 
@@ -150,7 +150,7 @@ class model extends \mvc\model
 
 					if(!$user_id)
 					{
-						\lib\debug::error(T_("Invalid authorization key (User not found)"), 'authorization', 'access');
+						\lib\notif::error(T_("Invalid authorization key (User not found)"), 'authorization', 'access');
 						return false;
 					}
 
@@ -163,13 +163,13 @@ class model extends \mvc\model
 				case 'api_key':
 					if($this->url != 'v1/token/temp' && $this->url != 'v1/token/guest' && $this->url != 'v1/token/login')
 					{
-						\lib\debug::error(T_("Access denide to load this url by api key"), 'authorization', 'access');
+						\lib\notif::error(T_("Access denide to load this url by api key"), 'authorization', 'access');
 						return false;
 					}
 					break;
 
 				default :
-					\lib\debug::error(T_("Invalid token"), 'authorization', 'access');
+					\lib\notif::error(T_("Invalid token"), 'authorization', 'access');
 					return false;
 			}
 
@@ -200,7 +200,7 @@ class model extends \mvc\model
 		$mobile = \lib\utility\filter::mobile($mobile);
 		if(!$mobile)
 		{
-			\lib\debug::error(T_("Mobile not set"), 'mobile', 'header');
+			\lib\notif::error(T_("Mobile not set"), 'mobile', 'header');
 			return false;
 		}
 
@@ -220,7 +220,7 @@ class model extends \mvc\model
 		if(!$this->user_id)
 		{
 			\lib\db\logs::set('addons:api:static_token:user:not:found:register:faild');
-			\lib\debug::error(T_("User not found and can not register the user"), 'static_token', 'header');
+			\lib\notif::error(T_("User not found and can not register the user"), 'static_token', 'header');
 			return false;
 		}
 
@@ -238,7 +238,7 @@ class model extends \mvc\model
 
 		if(!$telegramid)
 		{
-			\lib\debug::error(T_("telegramid is not set"), 'telegramid', 'header');
+			\lib\notif::error(T_("telegramid is not set"), 'telegramid', 'header');
 			return false;
 		}
 
@@ -251,7 +251,7 @@ class model extends \mvc\model
 		$user_data = \lib\db\config::public_get('users', $where);
 		if(!$user_data || !isset($user_data['id']))
 		{
-			\lib\debug::error(T_("User not found, please register from /enter/hook"), 'telegramid', 'header');
+			\lib\notif::error(T_("User not found, please register from /enter/hook"), 'telegramid', 'header');
 			return false;
 		}
 		$this->user_id = (int) $user_data['id'];
@@ -286,11 +286,11 @@ class model extends \mvc\model
 		// }
 
 		// $log['request']        = json_encode(\lib\utility::request(), JSON_UNESCAPED_UNICODE);
-		// $log['debug']          = json_encode(\lib\debug::compile(), JSON_UNESCAPED_UNICODE);
-		// $log['response']       = json_encode(\lib\debug::get_result(), JSON_UNESCAPED_UNICODE);
+		// $log['debug']          = json_encode(\lib\notif::compile(), JSON_UNESCAPED_UNICODE);
+		// $log['response']       = json_encode(\lib\notif::get_result(), JSON_UNESCAPED_UNICODE);
 		// $log['requestheader']  = json_encode(\lib\utility::header(), JSON_UNESCAPED_UNICODE);
 		// $log['responseheader'] = json_encode(apache_response_headers(), JSON_UNESCAPED_UNICODE);
-		// $log['status']         = \lib\debug::$status;
+		// $log['status']         = \lib\notif::$status;
 		// $log['token']          = $this->authorization;
 		// $log['user_id']        = $this->user_id;
 		// $log['apikeyuserid']   = $this->parent_api_key_user_id;

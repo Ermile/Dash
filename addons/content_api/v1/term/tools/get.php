@@ -46,7 +46,7 @@ trait get
 
 		$get_args = $this->term_make_where($_args, $where, $log_meta);
 
-		if(!\lib\debug::$status || $get_args === false)
+		if(!\lib\notif::$status || $get_args === false)
 		{
 			return false;
 		}
@@ -79,7 +79,7 @@ trait get
 	 */
 	public function get_term($_args = [])
 	{
-		\lib\debug::title(T_("Operation Faild"));
+		\lib\notif::title(T_("Operation Faild"));
 
 		$log_meta =
 		[
@@ -93,7 +93,7 @@ trait get
 		if(!$this->user_id)
 		{
 			\lib\db\logs::set('api:term:term_id:notfound', $this->user_id, $log_meta);
-			\lib\debug::error(T_("term not found"), 'term', 'permission');
+			\lib\notif::error(T_("term not found"), 'term', 'permission');
 			return false;
 		}
 
@@ -104,7 +104,7 @@ trait get
 		if(!$id)
 		{
 			\lib\db\logs::set('api:term:id:not:set', $this->user_id, $log_meta);
-			\lib\debug::error(T_("Id not set"), 'id', 'arguments');
+			\lib\notif::error(T_("Id not set"), 'id', 'arguments');
 			return false;
 		}
 

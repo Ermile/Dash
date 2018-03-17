@@ -14,7 +14,7 @@ trait term_check_args
 		if($language && !\lib\language::check($language))
 		{
 			if($_args['save_log']) \lib\db\logs::set('addons:api:term:language:invalid', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("Invalid parameter language"), 'language', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("Invalid parameter language"), 'language', 'arguments');
 			return false;
 		}
 
@@ -23,7 +23,7 @@ trait term_check_args
 		// if($title && mb_strlen($title) > 50)
 		// {
 		// 	if($_args['save_log']) \lib\db\logs::set('addons:api:term:title:max:lenth', $this->user_id, $log_meta);
-		// 	if($_args['debug']) \lib\debug::error(T_("Invalid parameter title"), 'title', 'arguments');
+		// 	if($_args['debug']) \lib\notif::error(T_("Invalid parameter title"), 'title', 'arguments');
 		// 	return false;
 		// }
 
@@ -32,7 +32,7 @@ trait term_check_args
 		// if($slug && mb_strlen($slug) > 50)
 		// {
 		// 	if($_args['save_log']) \lib\db\logs::set('addons:api:term:slug:max:lenth', $this->user_id, $log_meta);
-		// 	if($_args['debug']) \lib\debug::error(T_("Invalid parameter slug"), 'slug', 'arguments');
+		// 	if($_args['debug']) \lib\notif::error(T_("Invalid parameter slug"), 'slug', 'arguments');
 		// 	return false;
 		// }
 
@@ -44,7 +44,7 @@ trait term_check_args
 		// if(!$slug)
 		// {
 		// 	if($_args['save_log']) \lib\db\logs::set('addons:api:term:slug:can:not:null', $this->user_id, $log_meta);
-		// 	if($_args['debug']) \lib\debug::error(T_("Title or slug is required"), 'slug', 'arguments');
+		// 	if($_args['debug']) \lib\notif::error(T_("Title or slug is required"), 'slug', 'arguments');
 		// 	return false;
 		// }
 
@@ -53,7 +53,7 @@ trait term_check_args
 		// if($url && mb_strlen($url) > 50)
 		// {
 		// 	if($_args['save_log']) \lib\db\logs::set('addons:api:term:url:max:lenth', $this->user_id, $log_meta);
-		// 	if($_args['debug']) \lib\debug::error(T_("Invalid parameter url"), 'url', 'arguments');
+		// 	if($_args['debug']) \lib\notif::error(T_("Invalid parameter url"), 'url', 'arguments');
 		// 	return false;
 		// }
 
@@ -62,7 +62,7 @@ trait term_check_args
 		// if($desc && mb_strlen($desc) > 50)
 		// {
 		// 	if($_args['save_log']) \lib\db\logs::set('addons:api:term:desc:max:lenth', $this->user_id, $log_meta);
-		// 	if($_args['debug']) \lib\debug::error(T_("Invalid parameter desc"), 'desc', 'arguments');
+		// 	if($_args['debug']) \lib\notif::error(T_("Invalid parameter desc"), 'desc', 'arguments');
 		// 	return false;
 		// }
 
@@ -72,7 +72,7 @@ trait term_check_args
 		if(!$related)
 		{
 			if($_args['save_log']) \lib\db\logs::set('addons:api:term:related:not:set', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("Related parameter not set"), 'related', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("Related parameter not set"), 'related', 'arguments');
 			return false;
 		}
 
@@ -86,7 +86,7 @@ trait term_check_args
 		if(!in_array($related, $default_related))
 		{
 			if($_args['save_log']) \lib\db\logs::set('addons:api:term:related:invalid', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("Invalid related parameter"), 'related', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("Invalid related parameter"), 'related', 'arguments');
 			return false;
 		}
 
@@ -94,14 +94,14 @@ trait term_check_args
 		if(!$related_id)
 		{
 			if($_args['save_log']) \lib\db\logs::set('addons:api:term:related_id:invalid', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("Invalid related_id parameter"), 'related_id', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("Invalid related_id parameter"), 'related_id', 'arguments');
 			return false;
 		}
 
 		if(!is_array($related_id))
 		{
 			if($_args['save_log']) \lib\db\logs::set('addons:api:term:related_id:invalid:array', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("Related id must be array"), 'related_id', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("Related id must be array"), 'related_id', 'arguments');
 			return false;
 		}
 
@@ -118,7 +118,7 @@ trait term_check_args
 		if(empty($related_id))
 		{
 			if($_args['save_log']) \lib\db\logs::set('addons:api:term:related_id:invalid:array:empty', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("No valid related_id found"), 'related_id', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("No valid related_id found"), 'related_id', 'arguments');
 			return false;
 		}
 
@@ -127,14 +127,14 @@ trait term_check_args
 		if($order && !is_numeric($order))
 		{
 			if($_args['save_log']) \lib\db\logs::set('addons:api:term:order:invalid', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("Invalid order parameter"), 'order', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("Invalid order parameter"), 'order', 'arguments');
 			return false;
 		}
 
 		if($order && intval($order) > 9999)
 		{
 			if($_args['save_log']) \lib\db\logs::set('addons:api:term:order:invalid:max', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("You must set the order less than 9999"), 'order', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("You must set the order less than 9999"), 'order', 'arguments');
 			return false;
 		}
 
@@ -145,7 +145,7 @@ trait term_check_args
 		if($status && !in_array($status, $default_status))
 		{
 			if($_args['save_log']) \lib\db\logs::set('addons:api:term:status:invalid', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("Invalid parameter status"), 'status', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("Invalid parameter status"), 'status', 'arguments');
 			return false;
 		}
 
@@ -188,7 +188,7 @@ trait term_check_args
 		if($type && !in_array($type, $check_type))
 		{
 			if($_args['save_log']) \lib\db\logs::set('addons:api:term:type:invalid', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("Invalid parameter type"), 'type', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("Invalid parameter type"), 'type', 'arguments');
 			return false;
 		}
 
@@ -197,7 +197,7 @@ trait term_check_args
 		if($cat && !is_array($cat))
 		{
 			if($_args['save_log']) \lib\db\logs::set('addons:api:term:cat:not:array', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("Cats must be array"), 'cat', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("Cats must be array"), 'cat', 'arguments');
 			return false;
 		}
 
@@ -205,7 +205,7 @@ trait term_check_args
 		if($tag && !is_array($tag))
 		{
 			if($_args['save_log']) \lib\db\logs::set('addons:api:term:tag:not:array', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\debug::error(T_("Cats must be array"), 'tag', 'arguments');
+			if($_args['debug']) \lib\notif::error(T_("Cats must be array"), 'tag', 'arguments');
 			return false;
 		}
 

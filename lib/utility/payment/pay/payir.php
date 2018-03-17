@@ -30,14 +30,14 @@ trait payir
         if(!\lib\option::config('payir', 'status'))
         {
             \lib\db\logs::set('pay:payir:status:false', $_user_id, $log_meta);
-            \lib\debug::error(T_("The payir payment on this service is locked"));
+            \lib\notif::error(T_("The payir payment on this service is locked"));
             return false;
         }
 
         if(!\lib\option::config('payir', 'api'))
         {
             \lib\db\logs::set('pay:payir:api:not:set', $_user_id, $log_meta);
-            \lib\debug::error(T_("The payir payment api not set"));
+            \lib\notif::error(T_("The payir payment api not set"));
             return false;
         }
 
@@ -81,7 +81,7 @@ trait payir
 
         $log_meta['data'] = self::$log_data = $transaction_id;
 
-        if(!\lib\debug::$status || !$transaction_id)
+        if(!\lib\notif::$status || !$transaction_id)
         {
             return false;
         }

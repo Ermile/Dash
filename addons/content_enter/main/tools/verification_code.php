@@ -152,19 +152,19 @@ trait verification_code
 
 		// if(!self::check_input_current_mobile())
 		// {
-		// 	\lib\debug::error(T_("Dont!"));
+		// 	\lib\notif::error(T_("Dont!"));
 		// 	return false;
 		// }
 
 		if(!\lib\request::post('code'))
 		{
-			\lib\debug::error(T_("Please fill the verification code"), 'code');
+			\lib\notif::error(T_("Please fill the verification code"), 'code');
 			return false;
 		}
 
 		if(!is_numeric(\lib\request::post('code')))
 		{
-			\lib\debug::error(T_("What happend? the code is number. you try to send string!?"), 'code');
+			\lib\notif::error(T_("What happend? the code is number. you try to send string!?"), 'code');
 			return false;
 		}
 
@@ -185,7 +185,7 @@ trait verification_code
 					if(!$get_log_detail || !isset($get_log_detail['status']))
 					{
 						\lib\db\logs::set('enter:verify:sendsmsm:log:not:found', self::user_data('id'), $log_meta);
-						\lib\debug::error(T_("System error, try again"));
+						\lib\notif::error(T_("System error, try again"));
 						return false;
 					}
 
@@ -209,7 +209,7 @@ trait verification_code
 						case 'enable':
 							// user not send sms or not deliver to us
 							\lib\db\logs::set('enter:verify:sendsmsm:sms:not:deliver:to:us', self::user_data('id'), $log_meta);
-							\lib\debug::error(T_("Your sms not deliver to us!"));
+							\lib\notif::error(T_("Your sms not deliver to us!"));
 							return false;
 							break;
 
@@ -217,7 +217,7 @@ trait verification_code
 							// the user user from this way and can not use this way again
 							// this is a bug!
 							\lib\db\logs::set('enter:verify:sendsmsm:sms:expire:log:bug', self::user_data('id'), $log_meta);
-							\lib\debug::error(T_("What are you doing?"));
+							\lib\notif::error(T_("What are you doing?"));
 							return false;
 						default:
 							// bug!
@@ -228,14 +228,14 @@ trait verification_code
 				else
 				{
 					\lib\db\logs::set('enter:verify:sendsmsm:log:id:not:found', self::user_data('id'), $log_meta);
-					\lib\debug::error(T_("What are you doing?"));
+					\lib\notif::error(T_("What are you doing?"));
 					return false;
 				}
 			}
 			else
 			{
 				\lib\db\logs::set('enter:verify:sendsmsm:user:inspected:change:html', self::user_data('id'), $log_meta);
-				\lib\debug::error(T_("What are you doing?"));
+				\lib\notif::error(T_("What are you doing?"));
 				return false;
 			}
 		}
@@ -588,7 +588,7 @@ trait verification_code
 			// plus count invalid code
 			self::plus_try_session('invalid_code');
 
-			\lib\debug::error(T_("Invalid code, try again"), 'code');
+			\lib\notif::error(T_("Invalid code, try again"), 'code');
 			return false;
 		}
 	}
