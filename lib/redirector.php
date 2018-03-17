@@ -8,7 +8,7 @@ class redirector
 
 	public function __construct($_url = null, $_php = true)
 	{
-		$this->cache = new router\cache;
+		// $this->cache = new router\cache;
 		$this->php = $_php;
 		$this->url = $_url;
 		if($_url)
