@@ -96,19 +96,6 @@ trait constructor
 		$this->include->siftal       = true;
 		$this->include->css          = true;
 		$this->include->js           = true;
-		if(isset($this->controller->pagnation))
-		{
-			$this->data->pagnation = $this->controller->pagnation_get();
-		}
-
-		if(isset($this->url->MainStatic) && $this->url->MainStatic)
-		{
-			$this->url->myStatic = $this->url->MainStatic;
-		}
-		elseif(isset($this->url->MainStatic))
-		{
-			$this->url->myStatic = $this->url->static;
-		}
 
 
 		// we offer 3 type of function to be used in order to have some change on module
