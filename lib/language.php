@@ -4,8 +4,8 @@ namespace lib;
 
 class language
 {
-	public static $language;
-	public static $language_default;
+	public static $language = [];
+	public static $language_default = null;
 
 	/**
 	 * all language dash supported it
@@ -74,7 +74,7 @@ class language
 	 */
 	public static function check($_lang)
 	{
-		return in_array($_lang, self::list());
+		return array_key_exists($_lang, self::list());
 	}
 
 
@@ -117,6 +117,11 @@ class language
 	 */
 	public static function current($_request = 'name')
 	{
+		if(!self::$language)
+		{
+			self::detect_language();
+		}
+
 		$result = null;
 		if($_request === 'all')
 		{
@@ -200,6 +205,10 @@ class language
 		if(self::check($my_first_url))
 		{
 			self::set_language($my_first_url);
+		}
+		else
+		{
+			self::set_language(self::default());
 		}
 	}
 }
