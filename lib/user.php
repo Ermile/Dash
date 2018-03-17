@@ -33,8 +33,10 @@ class user
 
 	public static function refresh()
 	{
-		$detail = \lib\db\users::get_by_id(self::id());
-		self::init(self::id(), $detail);
+		$user_id = self::id();
+		$detail = \lib\db\users::get_by_id($user_id);
+		self::destroy();
+		self::init($user_id, $detail);
 	}
 
 
