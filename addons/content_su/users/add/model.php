@@ -10,7 +10,7 @@ class model extends \addons\content_su\main\model
 		$request['mobile']      = \lib\request::post('mobile');
 		$request['displayname'] = \lib\request::post('displayname');
 		\lib\utility::set_request_array($request);
-		$this->user_id = $this->login('id');
+		$this->user_id = \lib\user::id();
 		$this->add_user();
 	}
 }

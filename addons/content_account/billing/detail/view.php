@@ -17,7 +17,7 @@ class view extends \content_account\main\view
 	 */
 	public function view_detail($_args)
 	{
-		if(!$this->login())
+		if(!\lib\user::login())
 		{
 			return;
 		}

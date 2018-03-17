@@ -9,9 +9,9 @@ class model extends \addons\content_enter\main\model
 	 */
 	public function remove_email()
 	{
-		if($this->login('email') && $this->login('id'))
+		if(\lib\user::login('email') && \lib\user::id())
 		{
-			\lib\db\users::update(['email' => null], $this->login('id'));
+			\lib\db\users::update(['email' => null], \lib\user::id());
 			// set the alert message
 			self::set_alert(T_("Your email was removed"));
 			// open lock of alert page
@@ -41,7 +41,7 @@ class model extends \addons\content_enter\main\model
 			return false;
 		}
 
-		if($this->login('email') == \lib\request::post('emailNew'))
+		if(\lib\user::login('email') == \lib\request::post('emailNew'))
 		{
 			\lib\notif::error(T_("Please select a different email"));
 			return false;

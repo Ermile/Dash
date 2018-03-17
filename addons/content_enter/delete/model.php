@@ -19,7 +19,7 @@ class model extends \addons\content_enter\main\model
 			self::set_enter_session('why', \lib\request::post('why'));
 		}
 		// save log the user try to delete account
-		\lib\db\logs::set('enter:delete:try', $this->login('id'), ['meta' => ['session' => $_SESSION, 'input' => \lib\request::post()]]);
+		\lib\db\logs::set('enter:delete:try', \lib\user::id(), ['meta' => ['session' => $_SESSION, 'input' => \lib\request::post()]]);
 		// set session verify_from signup
 		self::set_enter_session('verify_from', 'delete');
 

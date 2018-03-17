@@ -19,9 +19,9 @@ class view extends \mvc\view
 		$session_mobile = self::get_enter_session('usernameormobile');
 		$temp_mobile    = self::get_enter_session('temp_mobile');
 		$myMobile       = null;
-		if($this->login('mobile'))
+		if(\lib\user::login('mobile'))
 		{
-			$myMobile = $this->login('mobile');
+			$myMobile = \lib\user::login('mobile');
 		}
 		elseif($session_mobile)
 		{

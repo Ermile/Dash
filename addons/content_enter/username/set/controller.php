@@ -10,7 +10,7 @@ class controller extends \addons\content_enter\main\controller
 
 		// if the user have not an email can not change her email
 		// he must set email
-		if($this->login('username'))
+		if(\lib\user::login('username'))
 		{
 			\lib\redirect::to(\lib\url::base(). '/enter/username/change');
 			return;

@@ -28,7 +28,7 @@ class controller extends \mvc\controller
 	*/
 	public function if_login_not_route()
 	{
-		if($this->login())
+		if(\lib\user::login())
 		{
 			self::go_to(\lib\url::base());
 		}
@@ -40,7 +40,7 @@ class controller extends \mvc\controller
 	*/
 	public function if_login_route()
 	{
-		if(!$this->login())
+		if(!\lib\user::login())
 		{
 			self::go_to(\lib\url::base());
 		}
@@ -52,7 +52,7 @@ class controller extends \mvc\controller
 	*/
 	public function check_remember_me()
 	{
-		if(\lib\db\sessions::get_cookie() && !$this->login())
+		if(\lib\db\sessions::get_cookie() && !\lib\user::login())
 		{
 			$user_id = \lib\db\sessions::get_user_id();
 

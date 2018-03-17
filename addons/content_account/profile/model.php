@@ -11,7 +11,7 @@ class model extends \content_account\main\model
 		$update_user = [];
 
 		// check the user is login
-		if(!$this->login())
+		if(!\lib\user::login())
 		{
 			\lib\notif::error(T_("Please login to change your profile"), false, 'arguments');
 			return false;
@@ -43,7 +43,7 @@ class model extends \content_account\main\model
 
 		if(\lib\utility::files('avatar'))
 		{
-			$this->user_id = $this->login('id');
+			$this->user_id = \lib\user::id();
 			\lib\utility::set_request_array(['upload_name' => 'avatar']);
 			$uploaded_file = $this->upload_file(['\lib\notif' => false]);
 
@@ -63,7 +63,7 @@ class model extends \content_account\main\model
 
 
 		// if the postion exist update user display postion
-		if(\lib\request::post('displayname') !== $this->login('displayname'))
+		if(\lib\request::post('displayname') !== \lib\user::login('displayname'))
 		{
 			$update_user['displayname'] = \lib\request::post('displayname');
 		}
@@ -72,7 +72,7 @@ class model extends \content_account\main\model
 		// update user record
 		if(!empty($update_user))
 		{
-			\lib\db\users::update($update_user, $this->login('id'));
+			\lib\db\users::update($update_user, \lib\user::id());
 			\lib\user::refresh();
 		}
 

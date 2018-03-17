@@ -11,7 +11,7 @@ class controller extends \addons\content_enter\main\controller
 		// parent::ready();
 		// if the user have email can not set email again
 		// he must change her email
-		if($this->login('email'))
+		if(\lib\user::login('email'))
 		{
 			\lib\redirect::to(\lib\url::base(). '/enter/email/change');
 			return;

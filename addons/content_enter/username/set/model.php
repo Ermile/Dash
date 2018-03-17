@@ -37,7 +37,7 @@ class model extends \addons\content_enter\main\model
 				return false;
 			}
 
-			\lib\db\users::update(['username' => $username], $this->login('id'));
+			\lib\db\users::update(['username' => $username], \lib\user::id());
 			// set the alert message
 			self::set_alert(T_("Your username was set"));
 			// open lock of alert page

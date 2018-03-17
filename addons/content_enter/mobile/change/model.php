@@ -53,7 +53,7 @@ class model extends \addons\content_enter\pass\model
 		}
 
 		// check old password is okay
-		if(!\lib\utility::hasher(\lib\request::post('ramz'), $this->login('pass')))
+		if(!\lib\utility::hasher(\lib\request::post('ramz'), \lib\user::login('pass')))
 		{
 			self::plus_try_session('change_password_invalid_old');
 			\lib\notif::error(T_("Invalid old password"));

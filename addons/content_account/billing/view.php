@@ -10,9 +10,9 @@ class view extends \content_account\main\view
 		$this->data->page['title'] = T_("Billing information");
 		$this->data->page['desc']  = T_("Check your balance, charge your account, and bill your invoices!");
 
-		if($this->login())
+		if(\lib\user::login())
 		{
-			$user_unit             = \lib\utility\units::find_user_unit($this->login('id'), true);
+			$user_unit             = \lib\utility\units::find_user_unit(\lib\user::id(), true);
 			$user_unit_id          = \lib\utility\units::get_id($user_unit);
 			$user_unit_id          = (int) $user_unit_id;
 			if($user_unit          == 'dollar')
@@ -21,7 +21,7 @@ class view extends \content_account\main\view
 			}
 			$this->data->user_unit = T_($user_unit);
 
-			$user_cash_all = \lib\db\transactions::budget($this->login('id'), ['unit' => 'all']);
+			$user_cash_all = \lib\db\transactions::budget(\lib\user::id(), ['unit' => 'all']);
 			$this->data->user_cash_all = $user_cash_all;
 			if(is_array($user_cash_all))
 			{
@@ -41,7 +41,7 @@ class view extends \content_account\main\view
 	 */
 	public function view_billing($_args)
 	{
-		if(!$this->login())
+		if(!\lib\user::login())
 		{
 			return;
 		}

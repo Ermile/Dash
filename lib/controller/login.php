@@ -44,7 +44,7 @@ trait login
 		$url = \lib\utility\safe::safe($_SERVER['REQUEST_URI']);
 
 		// check if have cookie set login by remember
-		if(!$this->login())
+		if(!\lib\user::login())
 		{
 			\addons\content_enter\main\tools\login::login_by_remember();
 		}

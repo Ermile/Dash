@@ -10,7 +10,7 @@ class model extends \addons\content_enter\main\model
 		{
 			$user_id = null;
 
-			if(\lib\request::post('usernameormobile') !== $this->login('mobile') && !\lib\request::get('userid'))
+			if(\lib\request::post('usernameormobile') !== \lib\user::login('mobile') && !\lib\request::get('userid'))
 			{
 				$user_data = \lib\db\users::get_by_mobile(\lib\utility\filter::mobile(\lib\request::post('usernameormobile')));
 
@@ -33,8 +33,8 @@ class model extends \addons\content_enter\main\model
 			if($user_id)
 			{
 
-				$main_account = $this->login('id');
-				$main_mobile  = $this->login('mobile');
+				$main_account = \lib\user::id();
+				$main_mobile  = \lib\user::login('mobile');
 
 				if(!\lib\db\users::get_by_id($user_id))
 				{

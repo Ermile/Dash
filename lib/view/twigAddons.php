@@ -713,7 +713,7 @@ trait twigAddons
 			// get comments
 			if(isset($args['post_id']))
 			{
-				$comments = \lib\db\comments::get_post_comment($args['post_id'], $limit, $this->login('id'));
+				$comments = \lib\db\comments::get_post_comment($args['post_id'], $limit, \lib\user::id());
 			}
 			return $comments;
 		});

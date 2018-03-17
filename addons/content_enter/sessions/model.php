@@ -11,9 +11,9 @@ class model extends \addons\content_enter\main\model
 	 */
 	public function sessions_list()
 	{
-		if($this->login())
+		if(\lib\user::login())
 		{
-			$user_id = $this->login('id');
+			$user_id = \lib\user::id();
 			$list = \lib\db\sessions::get_active_sessions($user_id);
 			return $list;
 		}
@@ -27,14 +27,14 @@ class model extends \addons\content_enter\main\model
 	 */
 	public function post_sessions($_args)
 	{
-		if(!$this->login())
+		if(!\lib\user::login())
 		{
 			return false;
 		}
 
 		if(\lib\request::post('type') === 'terminate' && \lib\request::post('id') && is_numeric(\lib\request::post('id')))
 		{
-			if(\lib\db\sessions::is_my_session(\lib\request::post('id'), $this->login('id')))
+			if(\lib\db\sessions::is_my_session(\lib\request::post('id'), \lib\user::id()))
 			{
 				\lib\db\sessions::terminate_id(\lib\request::post('id'));
 				\lib\notif::true(T_("Session terminated"));

@@ -79,13 +79,13 @@ class model extends \addons\content_su\main\model
 		$desc   = \lib\request::post('desc');
 		$type   = \lib\request::post('type');
 
-		if(!$this->login())
+		if(!\lib\user::login())
 		{
 			\lib\notif::error(T_("You must login to add new transaction"));
 			return false;
 		}
 
-		$user_id = $this->login('id');
+		$user_id = \lib\user::id();
 
 		if(!$title)
 		{

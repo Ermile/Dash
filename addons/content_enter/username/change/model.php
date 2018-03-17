@@ -43,7 +43,7 @@ class model extends \addons\content_enter\main\model
 		}
 
 
-		if($this->login('username') == \lib\request::post('usernameNew'))
+		if(\lib\user::login('username') == \lib\request::post('usernameNew'))
 		{
 			\lib\notif::error(T_("Please select a different username"));
 			return false;

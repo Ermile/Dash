@@ -39,7 +39,7 @@ trait constructor
 		$this->data->page['special'] = null;
 		$this->data->bodyclass       = null;
 
-		$this->data->login           = $this->login('all');
+		$this->data->login           = \lib\user::login('all');
 		$this->data->user            = \lib\user::detail();
 		// $this->data->perm            = $this->access(null, 'all');
 		// $this->data->permContent     = $this->access('all');
@@ -50,7 +50,7 @@ trait constructor
 
 		// define default value for global
 		$this->global->title         = null;
-		$this->global->login         = $this->login();
+		$this->global->login         = \lib\user::login();
 
 		$this->global->lang          = $this->data->site['currentlang'];
 		$this->global->direction     = \lib\language::current('direction');

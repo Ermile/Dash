@@ -11,7 +11,7 @@ class model extends \addons\content_su\main\model
 		$request['id'] = $id;
 
 		\lib\utility::set_request_array($request);
-		$this->user_id = $this->login('id');
+		$this->user_id = \lib\user::id();
 		return $this->get_user();
 	}
 
@@ -71,7 +71,7 @@ class model extends \addons\content_su\main\model
 		}
 
 		$id = isset($_args->match->url[0][1]) ? $_args->match->url[0][1] : null;
-		$this->user_id = $this->login('id');
+		$this->user_id = \lib\user::id();
 		$request['id'] = $id;
 
 		\lib\utility::set_request_array($request);

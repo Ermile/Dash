@@ -51,7 +51,7 @@ class controller extends \mvc\controller
 	public function _permission()
 	{
 		// if user is not login then redirect
-		if(!$this->login())
+		if(!\lib\user::login())
 		{
 			\lib\redirect::to(\lib\url::base(). '/enter');
 			return ;
