@@ -6,7 +6,6 @@ class controller
 {
 	use \lib\mvc;
 	use \lib\controller\login;
-	use \lib\controller\sessions;
 	use \lib\controller\ref;
 
 
