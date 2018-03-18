@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_su\tools\info;
+namespace addons\content_su\info;
 
 class controller extends \addons\content_su\main\controller
 {
@@ -13,7 +13,7 @@ class controller extends \addons\content_su\main\controller
 
 	public function showInfo()
 	{
-		$name = \lib\url::dir(2);
+		$name = \lib\url::dir(1);
 
 		if(!$name)
 		{

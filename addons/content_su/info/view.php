@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_su\tools\info;
+namespace addons\content_su\info;
 
 class view extends \addons\content_su\main\view
 {
