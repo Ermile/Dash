@@ -81,10 +81,8 @@ class header
 		{
 			return $headers_list[$_code];
 		}
-		else
-		{
-			return '';
-		}
+		// find nothing
+		return null;
 	}
 
 
@@ -95,7 +93,7 @@ class header
 	public static function status($_code, $_title = null)
 	{
 		$desc = self::desc($_code);
-		if(empty($desc))
+		if(!$desc)
 		{
 			return false;
 		}
