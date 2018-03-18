@@ -41,7 +41,7 @@ trait get_token
 		$temp_token = \lib\utility::request("temp_token");
 		if(!$temp_token)
 		{
-			if(\lib\notif::$status)
+			if(\lib\engine\process::status())
 			{
 				\lib\notif::error(T_("Invalid parameter temp_token"), 'temp_token', 'arguments');
 			}

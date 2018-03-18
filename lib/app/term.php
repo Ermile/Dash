@@ -306,7 +306,7 @@ class term
 		// check args
 		$args = self::check();
 
-		if($args === false || !\lib\notif::$status)
+		if($args === false || !\lib\engine\process::status())
 		{
 			return false;
 		}
@@ -412,7 +412,7 @@ class term
 		// check args
 		$args = self::check($id);
 
-		if($args === false || !\lib\notif::$status)
+		if($args === false || !\lib\engine\process::status())
 		{
 			return false;
 		}

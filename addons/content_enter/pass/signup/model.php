@@ -43,7 +43,7 @@ class model extends \addons\content_enter\pass\model
 			// creazy password !
 			$temp_ramz_hash = \lib\utility::hasher($temp_ramz);
 			// if debug status continue
-			if(\lib\notif::$status)
+			if(\lib\engine\process::status())
 			{
 				self::set_enter_session('temp_ramz', $temp_ramz);
 				self::set_enter_session('temp_ramz_hash', $temp_ramz_hash);

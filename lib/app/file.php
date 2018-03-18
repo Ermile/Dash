@@ -70,7 +70,7 @@ class file
 
 		$upload      = \lib\utility\upload::upload($ready_upload);
 
-		if(!\lib\notif::$status)
+		if(!\lib\engine\process::status())
 		{
 			return false;
 		}

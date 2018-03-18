@@ -105,7 +105,7 @@ class model extends \addons\content_enter\main\model
 			'status'      => 'awaiting'
 		];
 
-		if(!\lib\notif::$status)
+		if(!\lib\engine\process::status())
 		{
 			return false;
 		}

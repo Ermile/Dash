@@ -55,7 +55,7 @@ class model extends \content_account\main\model
 				$update_user['avatar']  = $temp_url;
 			}
 			// if in upload have error return
-			if(!\lib\notif::$status)
+			if(!\lib\engine\process::status())
 			{
 				return false;
 			}
@@ -76,7 +76,7 @@ class model extends \content_account\main\model
 			\lib\user::refresh();
 		}
 
-		if(\lib\notif::$status)
+		if(\lib\engine\process::status())
 		{
 			\lib\notif::ok(T_("Profile data was updated"));
 			\lib\notif::direct();

@@ -86,7 +86,7 @@ trait irkish
 
         $log_meta['data'] = self::$log_data = $transaction_id;
 
-        if(!\lib\notif::$status || !$transaction_id)
+        if(!\lib\engine\process::status() || !$transaction_id)
         {
             return false;
         }

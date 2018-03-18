@@ -69,7 +69,7 @@ trait delete
 		}
 
 		\lib\db\notifications::update(['status' => 'cancel'], $notify_id);
-		if(\lib\notif::$status)
+		if(\lib\engine\process::status())
 		{
 			\lib\db\logs::set('api:parent:remove:request:sucsessful', $this->user_id, $log_meta);
 			\lib\notif::ok(T_("Your request canceled"));
@@ -161,7 +161,7 @@ trait delete
 		}
 
 		\lib\db\userparents::update(['status' => 'deleted'], $userparents_id);
-		if(\lib\notif::$status)
+		if(\lib\engine\process::status())
 		{
 			\lib\db\logs::set('api:parent:delete:sucsessful', $this->user_id, $log_meta);
 			\lib\notif::ok(T_("Parent removed"));

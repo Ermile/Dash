@@ -48,7 +48,7 @@ trait get
 
 		$get_args = $this->comment_make_where($_args, $where, $log_meta);
 
-		if(!\lib\notif::$status || $get_args === false)
+		if(!\lib\engine\process::status() || $get_args === false)
 		{
 			return false;
 		}

@@ -126,7 +126,7 @@ trait add
 		 */
 		$return_function = $this->user_check_args($_args, $args, $log_meta);
 
-		if(!\lib\notif::$status || $return_function === false)
+		if(!\lib\engine\process::status() || $return_function === false)
 		{
 			return false;
 		}
@@ -231,7 +231,7 @@ trait add
 
 		$return = [];
 
-		if(\lib\notif::$status)
+		if(\lib\engine\process::status())
 		{
 			// if($_args['debug']) \lib\notif::title(T_("Operation Complete"));
 

@@ -341,7 +341,7 @@ class users
 			$password = null;
 		}
 
-		if(!\lib\notif::$status)
+		if(!\lib\engine\process::status())
 		{
 			return false;
 		}

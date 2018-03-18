@@ -59,7 +59,7 @@ trait add
 		 */
 		$return_function = $this->comment_check_args($_args, $args, $log_meta);
 
-		if(!\lib\notif::$status || $return_function === false)
+		if(!\lib\engine\process::status() || $return_function === false)
 		{
 			return false;
 		}
@@ -95,7 +95,7 @@ trait add
 			\lib\db\comments::update($args, $id);
 		}
 
-		if(\lib\notif::$status)
+		if(\lib\engine\process::status())
 		{
 
 

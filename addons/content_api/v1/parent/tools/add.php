@@ -204,7 +204,7 @@ trait add
 
 			$set_notify = \lib\db\notifications::set($send_notify);
 
-			if(\lib\notif::$status)
+			if(\lib\engine\process::status())
 			{
 				if($_args['debug']) \lib\notif::ok(T_("Your request was sended"));
 			}

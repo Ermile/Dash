@@ -26,7 +26,7 @@ trait add
 
 		$dbtables_id = \lib\db\config::public_insert(self::$tables, $args);
 
-		if(\lib\notif::$status)
+		if(\lib\engine\process::status())
 		{
 			\lib\notif::ok(T_("Record successfuly added"));
 		}

@@ -37,7 +37,7 @@ class comment
 
 		$args = self::check($id);
 
-		if($args === false || !\lib\notif::$status)
+		if($args === false || !\lib\engine\process::status())
 		{
 			return false;
 		}
@@ -45,7 +45,7 @@ class comment
 
 		\lib\db\comments::update($args, $id);
 
-		if(\lib\notif::$status)
+		if(\lib\engine\process::status())
 		{
 			\lib\notif::ok(T_("Comment successfully updated"));
 		}

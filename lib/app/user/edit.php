@@ -40,7 +40,7 @@ trait edit
 		// check args
 		$args = self::check($_option);
 
-		if($args === false || !\lib\notif::$status)
+		if($args === false || !\lib\engine\process::status())
 		{
 			return false;
 		}
@@ -78,7 +78,7 @@ trait edit
 
 		\lib\app\contact::merge($_args, $_option);
 
-		if(\lib\notif::$status)
+		if(\lib\engine\process::status())
 		{
 			\lib\notif::ok(T_("Profile successfully updated"));
 		}

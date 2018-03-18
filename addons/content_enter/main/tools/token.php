@@ -64,7 +64,7 @@ class token
 	 */
 	private static function create_token($_args = [])
 	{
-		if(!\lib\notif::$status)
+		if(!\lib\engine\process::status())
 		{
 			return null;
 		}
@@ -287,7 +287,7 @@ class token
 	{
 		self::check($_token, 'token');
 
-		if(!\lib\notif::$status)
+		if(!\lib\engine\process::status())
 		{
 			return;
 		}

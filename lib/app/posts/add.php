@@ -43,7 +43,7 @@ trait add
 
 		$args['user_id'] = \lib\user::id();
 
-		if($args === false || !\lib\notif::$status)
+		if($args === false || !\lib\engine\process::status())
 		{
 			return false;
 		}
@@ -96,7 +96,7 @@ trait add
 
 		$return['post_id'] = \lib\utility\shortURL::encode($post_id);
 
-		if(\lib\notif::$status)
+		if(\lib\engine\process::status())
 		{
 			if($_option['debug']) \lib\notif::ok(T_("Post successfuly added"));
 		}

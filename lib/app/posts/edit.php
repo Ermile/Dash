@@ -70,7 +70,7 @@ trait edit
 		// check args
 		$args = self::check($id, $_option);
 
-		if($args === false || !\lib\notif::$status)
+		if($args === false || !\lib\engine\process::status())
 		{
 			return false;
 		}
@@ -112,7 +112,7 @@ trait edit
 		\lib\db\posts::update($args, $id);
 
 
-		if(\lib\notif::$status)
+		if(\lib\engine\process::status())
 		{
 			\lib\notif::ok(T_("Post successfully updated"));
 		}

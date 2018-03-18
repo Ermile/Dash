@@ -55,7 +55,7 @@ class model extends \mvc\model
 			}
 		}
 
-		if(\lib\notif::$status)
+		if(\lib\engine\process::status())
 		{
 			\lib\notif::title(T_("Operation complete"));
 		}
@@ -75,7 +75,7 @@ class model extends \mvc\model
 			$this->config_user_data();
 		}
 
-		if(\lib\notif::$status)
+		if(\lib\engine\process::status())
 		{
 			\lib\notif::title(T_("Operation complete"));
 		}
@@ -291,7 +291,7 @@ class model extends \mvc\model
 		// $log['response']       = json_encode(\lib\notif::get_result(), JSON_UNESCAPED_UNICODE);
 		// $log['requestheader']  = json_encode(\lib\header::get((), JSON_UNESCAPED_UNICODE);
 		// $log['responseheader'] = json_encode(apache_response_headers(), JSON_UNESCAPED_UNICODE);
-		// $log['status']         = \lib\notif::$status;
+		// $log['status']         = \lib\engine\process::status();
 		// $log['token']          = $this->authorization;
 		// $log['user_id']        = $this->user_id;
 		// $log['apikeyuserid']   = $this->parent_api_key_user_id;

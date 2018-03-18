@@ -9,20 +9,20 @@ class model extends \addons\content_cp\posts\main\model
 
 		$posts = self::getPost();
 
-		if(!$posts || !\lib\notif::$status)
+		if(!$posts || !\lib\engine\process::status())
 		{
 			return false;
 		}
 
 		$post_detail = \lib\app\posts::add($posts);
 
-		if(\lib\notif::$status && isset($post_detail['post_id']))
+		if(\lib\engine\process::status() && isset($post_detail['post_id']))
 		{
 			\lib\redirect::to(\lib\url::here(). '/posts/edit?id='. $post_detail['post_id']);
 			return;
 		}
 
-		if(\lib\notif::$status)
+		if(\lib\engine\process::status())
 		{
 			\lib\redirect::pwd();
 		}

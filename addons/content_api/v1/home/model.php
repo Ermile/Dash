@@ -76,7 +76,7 @@ class model extends \mvc\model
 
 		$this->api_key();
 
-		if(!\lib\notif::$status)
+		if(!\lib\engine\process::status())
 		{
 			$this->_processor(['force_stop' => true]);
 		}
@@ -125,7 +125,7 @@ class model extends \mvc\model
 		{
 			$token = \addons\content_enter\main\tools\token::get_type($authorization);
 
-			if(!\lib\notif::$status)
+			if(!\lib\engine\process::status())
 			{
 				return false;
 			}
@@ -290,7 +290,7 @@ class model extends \mvc\model
 		// $log['response']       = json_encode(\lib\notif::get_result(), JSON_UNESCAPED_UNICODE);
 		// $log['requestheader']  = json_encode(\lib\header::get((), JSON_UNESCAPED_UNICODE);
 		// $log['responseheader'] = json_encode(apache_response_headers(), JSON_UNESCAPED_UNICODE);
-		// $log['status']         = \lib\notif::$status;
+		// $log['status']         = \lib\engine\process::status();
 		// $log['token']          = $this->authorization;
 		// $log['user_id']        = $this->user_id;
 		// $log['apikeyuserid']   = $this->parent_api_key_user_id;

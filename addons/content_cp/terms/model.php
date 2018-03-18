@@ -28,7 +28,7 @@ class model extends \addons\content_cp\main\model
 			\lib\app\term::add($post);
 		}
 
-		if(\lib\notif::$status)
+		if(\lib\engine\process::status())
 		{
 			if(\lib\request::get('edit'))
 			{

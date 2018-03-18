@@ -15,7 +15,7 @@ class model extends \addons\content_cp\main\model
 
 		$post_detail = \lib\app\comment::edit(['status' => $status], \lib\request::get('id'));
 
-		if(\lib\notif::$status)
+		if(\lib\engine\process::status())
 		{
 			\lib\redirect::pwd();
 		}

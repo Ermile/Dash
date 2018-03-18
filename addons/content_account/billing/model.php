@@ -162,7 +162,7 @@ class model extends \mvc\model
         \lib\db\notifications::set($notify_ref);
 
 
-        if(\lib\notif::$status)
+        if(\lib\engine\process::status())
         {
         	\lib\db\logs::set('user:use:ref', \lib\user::id(), $log_meta);
         	\lib\db\logs::set('user:was:ref', $ref, $log_meta);

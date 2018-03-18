@@ -16,7 +16,7 @@ class model extends \mvc\model
 				\lib\app\posts::post_gallery(\lib\request::get('id'), $uploaded_file['url'], 'add');
 			}
 
-			if(!\lib\notif::$status)
+			if(!\lib\engine\process::status())
 			{
 				\lib\notif::error(T_("Can not upload file"));
 			}
@@ -95,7 +95,7 @@ class model extends \mvc\model
 				$post['thumb'] = $uploaded_file['url'];
 			}
 			// if in upload have error return
-			if(!\lib\notif::$status)
+			if(!\lib\engine\process::status())
 			{
 				return false;
 			}

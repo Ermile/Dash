@@ -20,7 +20,7 @@ trait edit
 		{
 			$update = \lib\db\config::public_update($args, $_id);
 
-			if(\lib\notif::$status)
+			if(\lib\engine\process::status())
 			{
 				\lib\notif::ok(T_("Record successfully updated"));
 			}

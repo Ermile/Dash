@@ -191,7 +191,7 @@ class model extends \addons\content_su\main\model
 
 		\lib\db\transactions::set($insert);
 
-		if(\lib\notif::$status)
+		if(\lib\engine\process::status())
 		{
 			\lib\notif::ok(T_("Transaction inserted"));
 			\lib\redirect::to(\lib\url::here(). '/transactions');
