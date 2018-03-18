@@ -235,7 +235,7 @@ class notifications
 					'body'    => $value->content,
 					'debug'   => false,
 				];
-				\lib\utility\mail::send($mail);
+				// \lib\utility\mail::send($mail);
 
 			}
 			else

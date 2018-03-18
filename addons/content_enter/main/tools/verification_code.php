@@ -610,7 +610,7 @@ trait verification_code
 			'body'    => "salam". $code,
 			'debug'   => true,
 		];
-		$mail = \lib\utility\mail::send($mail);
+		// $mail = \lib\utility\mail::send($mail);
 		return $mail;
 	}
 
