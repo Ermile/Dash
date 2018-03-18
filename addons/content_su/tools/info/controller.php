@@ -38,7 +38,8 @@ class controller extends \addons\content_su\main\controller
 					echo "<a target='_blank' href='http://www.php.net/manual/en/class.com.php'>" . T_("Read More") . "</a>";
 					break;
 				}
-				\lib\utility\tools::linfo();
+
+				require addons.'lib/linfo/index.php';
 
 				$this->display_name	= 'content_su/tools/raw-all.html';
 				break;

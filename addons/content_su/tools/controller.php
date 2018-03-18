@@ -13,11 +13,6 @@ class controller extends \addons\content_su\main\controller
 
 		switch ($url_child)
 		{
-			case 'dbtables':
-				// 	$exist    = true;
-				// 	echo \lib\utility\dbTables::create();
-				// 	break;
-
 			case 'db':
 
 				\lib\db::$link_open    = [];
@@ -66,19 +61,6 @@ class controller extends \addons\content_su\main\controller
 				\lib\code::print($result, true);
 				\lib\code::exit();
 				break;
-
-
-			case 'mergefiles':
-				// 	$exist = true;
-				// 	echo \lib\utility\tools::mergefiles('merged-project.php');
-				// 	if(\lib\request::get('type') === 'all')
-				// 	{
-				// 		echo \lib\utility\tools::mergefiles('merged-lib.php', core.lib);
-				// 		echo \lib\utility\tools::mergefiles('merged-su.php', addons.'content_su/');
-				// 		echo \lib\utility\tools::mergefiles('merged-account.php', addons.'content_account/');
-				// 		echo \lib\utility\tools::mergefiles('merged-includes.php', addons.'includes/');
-				// 	}
-				// 	break;
 
 			case null:
 				$mypath = str_replace('/', '_', \lib\url::path());
