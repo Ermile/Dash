@@ -6,6 +6,10 @@ namespace lib;
  */
 class session
 {
+	private static $key       = 'session_storage';
+	private static $key_time  = 'session_storage_time';
+	private static $key_limit = 'session_storage_time_limit';
+
 
 	/**
 	 * save data in session
@@ -19,21 +23,21 @@ class session
 	{
 		if($_cat)
 		{
-			$_SESSION['session_storage'][$_cat][$_key] = $_value;
+			$_SESSION[self::$key][$_cat][$_key] = $_value;
 
 			if($_time && is_numeric($_time))
 			{
-				$_SESSION['session_storage_time'][$_cat][$_key]       = time();
-				$_SESSION['session_storage_time_limit'][$_cat][$_key] = $_time;
+				$_SESSION[self::$key_time][$_cat][$_key]       = time();
+				$_SESSION[self::$key_limit][$_cat][$_key] = $_time;
 			}
 		}
 		else
 		{
-			$_SESSION['session_storage'][$_key] = $_value;
+			$_SESSION[self::$key][$_key] = $_value;
 			if($_time && is_numeric($_time))
 			{
-				$_SESSION['session_storage_time'][$_key]       = time();
-				$_SESSION['session_storage_time_limit'][$_key] = $_time;
+				$_SESSION[self::$key_time][$_key]       = time();
+				$_SESSION[self::$key_limit][$_key] = $_time;
 			}
 		}
 	}
@@ -53,17 +57,17 @@ class session
 		{
 			if($_cat)
 			{
-				if(isset($_SESSION['session_storage'][$_cat][$_key]))
+				if(isset($_SESSION[self::$key][$_cat][$_key]))
 				{
-					if(isset($_SESSION['session_storage_time'][$_cat][$_key]) && isset($_SESSION['session_storage_time_limit'][$_cat][$_key]))
+					if(isset($_SESSION[self::$key_time][$_cat][$_key]) && isset($_SESSION[self::$key_limit][$_cat][$_key]))
 					{
-						if(time() - intval($_SESSION['session_storage_time'][$_cat][$_key]) > intval($_SESSION['session_storage_time_limit'][$_cat][$_key]))
+						if(time() - intval($_SESSION[self::$key_time][$_cat][$_key]) > intval($_SESSION[self::$key_limit][$_cat][$_key]))
 						{
 							return null;
 						}
 					}
 
-					return $_SESSION['session_storage'][$_cat][$_key];
+					return $_SESSION[self::$key][$_cat][$_key];
 				}
 				else
 				{
@@ -72,17 +76,17 @@ class session
 			}
 			else
 			{
-				if(isset($_SESSION['session_storage'][$_key]))
+				if(isset($_SESSION[self::$key][$_key]))
 				{
-					if(isset($_SESSION['session_storage_time'][$_key]) && isset($_SESSION['session_storage_time_limit'][$_key]))
+					if(isset($_SESSION[self::$key_time][$_key]) && isset($_SESSION[self::$key_limit][$_key]))
 					{
-						if(time() - intval($_SESSION['session_storage_time'][$_key]) > intval($_SESSION['session_storage_time_limit'][$_key]))
+						if(time() - intval($_SESSION[self::$key_time][$_key]) > intval($_SESSION[self::$key_limit][$_key]))
 						{
 							return null;
 						}
 					}
 
-					return $_SESSION['session_storage'][$_key];
+					return $_SESSION[self::$key][$_key];
 				}
 				else
 				{
@@ -94,13 +98,13 @@ class session
 		{
 			if(!$_cat)
 			{
-				return $_SESSION['session_storage'];
+				return $_SESSION[self::$key];
 			}
 			else
 			{
-				if(isset($_SESSION['session_storage'][$_cat]))
+				if(isset($_SESSION[self::$key][$_cat]))
 				{
-					return $_SESSION['session_storage'][$_cat];
+					return $_SESSION[self::$key][$_cat];
 				}
 				else
 				{
