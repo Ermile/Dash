@@ -12,7 +12,6 @@ class init
 
 		if (\lib\option::config('debug'))
 		{
-			ini_set('display_errors'        , 'On');
 			ini_set('display_startup_errors', 'On');
 			ini_set('error_reporting'       , 'E_ALL | E_STRICT');
 			ini_set('track_errors'          , 'On');
