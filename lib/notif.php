@@ -21,8 +21,12 @@ class notif
 		[
 			'type' => $_type,
 			'text' => $_text,
-			'meta' => $_meta,
 		];
+
+		if($_meta)
+		{
+			$make['meta'] = $_meta;
+		}
 
 		array_push(self::$notif['msg'], $make);
 	}
