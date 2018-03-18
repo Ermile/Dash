@@ -72,7 +72,7 @@ trait mvc
 			return call_user_func_array(array($this->controller, $_name), $_args);
 		}
 
-		\lib\error::internal(get_called_class()."()->$_name()");
+		\lib\header::status(500, get_called_class()."()->$_name()");
 	}
 
 
@@ -92,7 +92,7 @@ trait mvc
 		$call_method_exists = method_exists($this, $_call);
 		if(!$method_exists && !$call_method_exists)
 		{
-			\lib\error::internal(get_called_class()."()->$_name()");
+			\lib\header::status(500, get_called_class()."()->$_name()");
 		}
 		if($method_exists && array_key_exists('before', $this->Methods[$_call]))
 		{
