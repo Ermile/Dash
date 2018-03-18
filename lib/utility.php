@@ -2,10 +2,8 @@
 namespace lib;
 class utility
 {
-	public static $COOKIE;
 	public static $HEADER;
 	public static $REQUEST;
-
 
 
 	public static function request()
@@ -40,34 +38,6 @@ class utility
 			'request' => $_array,
 		];
 		self::$REQUEST = new utility\request($_array);
-	}
-
-
-	/**
-	 * filter cookie and safe it
-	 * @param  string $_name unsafe cookie key
-	 * @return string        safe cookie
-	 */
-	public static function cookie($_name = null)
-	{
-		if(!self::$COOKIE)
-		{
-			self::$COOKIE = utility\safe::safe($_COOKIE);
-		}
-		if($_name)
-		{
-			if(array_key_exists($_name, self::$COOKIE))
-			{
-				return self::$COOKIE[$_name];
-			}
-			else
-			{
-				return null;
-			}
-		}else
-		{
-			return self::$COOKIE;
-		}
 	}
 
 

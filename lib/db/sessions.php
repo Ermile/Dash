@@ -123,7 +123,7 @@ class sessions
 	 */
 	public static function get_cookie()
 	{
-		return \lib\utility::cookie('remember_me_');
+		return \lib\utility\cookie::read('remember_me_');
 	}
 
 
