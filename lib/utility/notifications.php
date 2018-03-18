@@ -229,13 +229,11 @@ class notifications
 				$this->compelete($value->id, 'email');
 				$mail =
 				[
-					'from'    => 'info@tejarak.com',
 					'to'      => $this->get_email($value->user_id),
 					'subject' => $value->title,
 					'body'    => $value->content,
-					'debug'   => false,
 				];
-				// \lib\utility\mail::send($mail);
+				// \lib\mail::send($mail);
 
 			}
 			else

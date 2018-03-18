@@ -604,13 +604,11 @@ trait verification_code
 		$code  = self::generate_verification_code();
 		$mail =
 		[
-			'from'    => 'info@tejarak.com',
 			'to'      => $email,
 			'subject' => 'contact',
 			'body'    => "salam". $code,
-			'debug'   => true,
 		];
-		// $mail = \lib\utility\mail::send($mail);
+		// $mail = \lib\mail::send($mail);
 		return $mail;
 	}
 
