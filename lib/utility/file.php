@@ -35,7 +35,7 @@
  * - File
  */
 namespace lib\utility;
-use \lib\utility\upload;
+
 
 /** Files management : write, read, delete, upload... **/
 class file
@@ -289,69 +289,6 @@ class file
 			return unlink( $path );
 		}
 		return true;
-	}
-
-
-	/**
-	 * Recovers an uploaded file and store it in the tmp dir
-	 *
-	 * @param string $name	Name of the input[type=file] tag
-	 * @return string|array|bool	Path of the file in the tmp dir, or array of paths if multi-upload, false on failure
-	 */
-	public static function upload( $_name , $_path = null)
-	{
-		if( upload::_FILES($_name) && isset( upload::_FILES($_name)['name'] ) && upload::_FILES($_name)['size'] != 0 )
-		{
-			// Multi-upload
-			if( is_array( upload::_FILES($_name)['name'] ) )
-			{
-				$paths = [];
-				$files_count = count(upload::_FILES($_name)['name']);
-
-				for( $i = 0; $i < $files_count; $i++ )
-				{
-					if(!$_path)
-					{
-						$path = DATA_DIR . \Config::DIR_DATA_TMP . upload::_FILES($_name)['name'][ $i ];
-					}
-					else
-					{
-						$path = $_path;
-					}
-
-					if( move_uploaded_file( upload::_FILES($_name)['tmp_name'][ $i ], $path ) )
-					{
-						@chmod( $path, 0777 );
-						$paths[] = $path;
-					}
-				}
-
-				if( count( $paths ) != 0 )
-				{
-					return $paths;
-				}
-
-				// Single file
-			}
-			else
-			{
-				if(!$_path)
-				{
-					$path = DATA_DIR . \Config::DIR_DATA_TMP . upload::_FILES($_name)['name'];
-				}
-				else
-				{
-					$path = $_path;
-				}
-
-				if( move_uploaded_file( upload::_FILES($_name)['tmp_name'], $path ) )
-				{
-					@chmod( $path, 0777 );
-					return $path;
-				}
-			}
-		}
-		return false;
 	}
 
 
