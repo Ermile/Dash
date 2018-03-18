@@ -2,7 +2,7 @@
 /**
  * require default define
  */
-require_once ("define.php");
+require_once (__DIR__.'/lib/engine/define.php');
 
 
 /*

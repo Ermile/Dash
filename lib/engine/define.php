@@ -7,12 +7,15 @@
 // Core name
 define('core_name'	,'dash');
 
+$dir = __DIR__;
+$dir = str_replace('/lib/engine', '', $dir);
 
 // Define Dash variables ****************************************************
 if(!defined("core"))
 {
-	define("core", preg_replace("[\\\\]", "/", __DIR__).'/' );
+	define("core", preg_replace("[\\\\]", "/", $dir).'/' );
 }
+
 
 // Dash library
 if(!defined("lib"))
@@ -42,7 +45,7 @@ set_include_path(get_include_path() . PATH_SEPARATOR . core);
 // Project database
 if(!defined("database"))
 {
-	define("database", root.'includes/'."database/");
+	define("database", root.'includes/database/');
 }
 
 // Set default timezone to Asia/Tehran, Please set timezone in your php.ini
