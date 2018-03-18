@@ -15,7 +15,7 @@ trait error
 		switch ($_module)
 		{
 			default:
-				\lib\error::page($_module);
+				\lib\header::status(404, $_module);
 				break;
 		}
 	}
@@ -31,7 +31,7 @@ trait error
 		switch ($_module)
 		{
 			default:
-				\lib\error::page($_module);
+				\lib\header::status(404, $_module);
 				break;
 		}
 	}

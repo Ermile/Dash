@@ -10,7 +10,7 @@ class controller extends \mvc\controller
 		// /main can not route
 		if($url === 'main')
 		{
-			\lib\error::page(T_("Unavalible"));
+			\lib\header::status(404, T_("Unavalible"));
 		}
 
 		// // redirect subdomain to main domain on enter

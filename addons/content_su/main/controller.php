@@ -34,7 +34,7 @@ class controller extends \mvc\controller
 			}
 			else
 			{
-				\lib\error::page(T_("System was installed!"));
+				\lib\header::status(404, T_("System was installed!"));
 			}
 		}
 	}
@@ -72,7 +72,7 @@ class controller extends \mvc\controller
 			else
 			{
 				// set 404 to the user never underestand this url is exist ;)
-				\lib\error::page();
+				\lib\header::status(404);
 			}
 		}
 	}

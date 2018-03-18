@@ -405,7 +405,7 @@ class template
 		// else show dash default error page
 		else
 		{
-			\lib\error::page(T_("Does not exist!"));
+			\lib\header::status(404, T_("Does not exist!"));
 			return false;
 		}
 	}

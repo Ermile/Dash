@@ -11,7 +11,7 @@ class controller extends \addons\content_cp\main\controller
 
 		if(!$id || !\lib\utility\shortURL::is($id))
 		{
-			\lib\error::page(T_("Invalid id"));
+			\lib\header::status(404, T_("Invalid id"));
 		}
 
 		$this->get()->ALL();

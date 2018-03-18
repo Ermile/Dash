@@ -29,7 +29,7 @@ class controller extends \addons\content_enter\main\controller
 				break;
 
 			default:
-				\lib\error::page(T_("Invalid payment type"));
+				\lib\header::status(404, T_("Invalid payment type"));
 				break;
 		}
 	}

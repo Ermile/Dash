@@ -384,7 +384,7 @@ class controller
 
 		if(!class_exists($MyClassName))
 		{
-			\lib\error::page($_className . " not found");
+			\lib\header::status(404, $_className . " not found");
 		}
 
 		return $MyClassName;
@@ -440,7 +440,7 @@ class controller
 			return $this->mvc_inject_finder($_name, $_args, $icall[1]);
 		}
 
-		\lib\error::page(get_called_class()."->$_name()");
+		\lib\header::status(404, get_called_class()."->$_name()");
 	}
 
 

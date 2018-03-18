@@ -72,7 +72,7 @@ class main
 		}
 
 		// nothing found, show error page
-		\lib\error::page("nothing found!");
+		\lib\header::status(404, "nothing found!");
 	}
 
 
@@ -139,7 +139,7 @@ class main
 	{
 		if(!class_exists($_controller))
 		{
-			\lib\error::page($_controller);
+			\lib\header::status(404, $_controller);
 		}
 		$my_controller    = new $_controller;
 		self::$controller = $my_controller;

@@ -9,7 +9,7 @@ class controller extends \addons\content_su\main\controller
 
 		if(\lib\url::directory() === 'permission')
 		{
-			\lib\error::page();
+			\lib\header::status(404);
 		}
 
 		$this->get(false, "add")->ALL("/^permission\/([a-zA-Z0-9]+)$/");

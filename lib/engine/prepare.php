@@ -144,7 +144,7 @@ class prepare
 			// http://dash.local/enter?referer=http://dash.local/cp
 			if(strpos($_SERVER['REQUEST_URI'], '?') === false || strpos($_SERVER['REQUEST_URI'], '?') > strpos($_SERVER['REQUEST_URI'], '//'))
 			{
-				\lib\error::page('What are you doing!');
+				\lib\header::status(404, 'What are you doing!');
 			}
 		}
 

@@ -18,7 +18,7 @@ class controller extends \addons\content_enter\main\controller
 
 		if(empty(array_filter($autoredirect)))
 		{
-			\lib\error::page();
+			\lib\header::status(404);
 		}
 		else
 		{

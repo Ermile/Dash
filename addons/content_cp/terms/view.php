@@ -98,7 +98,7 @@ class view extends \addons\content_cp\main\view
 
 			if(!$this->data->datarow)
 			{
-				\lib\error::page(T_("Id not found"));
+				\lib\header::status(404, T_("Id not found"));
 			}
 		}
 	}
