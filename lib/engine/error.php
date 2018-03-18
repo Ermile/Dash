@@ -3,6 +3,25 @@ namespace lib\engine;
 
 class error
 {
+
+	public static function handle_exception($e)
+	{
+		$msg = $e->getFile(). " : " . $e->getLine(). "\n";
+		$msg .= \get_class($e). "(". $e->getMessage(). ")";
+		self::log($msg, 'exception.log', 'php');
+	}
+
+
+	public static function handle_fatal()
+	{
+		$error = error_get_last();
+		if ($error["type"] == E_ERROR)
+		{
+			self::log_error($error["type"], $error["message"], $error["file"], $error["line"]);
+		}
+	}
+
+
 	/**
 	 * error handler function
 	 * @param  [type] $_level   [description]
@@ -11,7 +30,7 @@ class error
 	 * @param  [type] $_line [description]
 	 * @return [type]          [description]
 	 */
-	public static function handle($_level = null, $_msg = null, $_file = null, $_line = null)
+	public static function handle_error($_level = null, $_msg = null, $_file = null, $_line = null)
 	{
 		// This error code is not included in error_reporting
 		if (!(error_reporting() & $_level))
@@ -23,7 +42,7 @@ class error
 		$msg .= "[$_level] ($_msg)";
 
 		// echo "</pre>";
-		if(is_string($_level))
+		if(is_numeric($_level))
 		{
 			$type = $_level;
 		}
