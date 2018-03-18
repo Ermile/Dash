@@ -19,6 +19,9 @@ class baby
 			\lib\header::status(406, 'Hi Father!');
 		}
 
+		// check duble slash in url
+		self::dbl_slash();
+
 		// check request uri
 		self::check($_SERVER['REQUEST_URI'], true);
 
@@ -66,6 +69,25 @@ class baby
 		// we can add some check on php://input and maybe another one!
 	}
 
+
+	private static function dbl_slash()
+	{
+		// @check
+		// if find 2slash together block!
+		if(strpos($_SERVER['REQUEST_URI'], '//') !== false)
+		{
+			// route url like this
+			// http://dash.local/enter?referer=http://dash.local/cp
+			if(strpos($_SERVER['REQUEST_URI'], '?') === false || strpos($_SERVER['REQUEST_URI'], '?') > strpos($_SERVER['REQUEST_URI'], '//'))
+			{
+				\lib\header::status(404, 'What are you doing!');
+			}
+		}
+	}
+
+	/**
+	 * check duble slass in url
+	 */
 	private static function pacifier()
 	{
 		$msg = 'Hi Baby'. str_repeat('!', self::$level);
@@ -79,6 +101,7 @@ class baby
 		}
 		self::$level = null;
 	}
+
 
 	/**
 	 * check input text to have problem with hex or invalid chars

@@ -84,19 +84,6 @@ class prepare
 				\lib\code::exit();
 			}
 		}
-
-		// need check
-		// if find 2slash together block!
-		if(strpos($_SERVER['REQUEST_URI'], '//') !== false)
-		{
-			// route url like this
-			// http://dash.local/enter?referer=http://dash.local/cp
-			if(strpos($_SERVER['REQUEST_URI'], '?') === false || strpos($_SERVER['REQUEST_URI'], '?') > strpos($_SERVER['REQUEST_URI'], '//'))
-			{
-				\lib\header::status(404, 'What are you doing!');
-			}
-		}
-
 	}
 }
 ?>
