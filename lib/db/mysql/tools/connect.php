@@ -91,7 +91,7 @@ trait connect
 		// if mysqli class does not exist or have some problem show related error
 		if(!class_exists('mysqli'))
 		{
-			\lib\error::service(T_("we can't find database service!"). " ". T_("Please contact administrator!"));
+			\lib\header::status(503, T_("we can't find database service!"). " ". T_("Please contact administrator!"));
 		}
 
 		$link = @mysqli_connect(self::$db_host, self::$db_user, self::$db_pass, self::$db_name);
@@ -103,7 +103,7 @@ trait connect
 			{
 				// Access denied for user 'user'@'hostname' (using password: YES)
 				case 1045:
-					\lib\error::service(T_("We can't connect to database service!"). " ". T_("Please contact administrator!"));
+					\lib\header::status(503, T_("We can't connect to database service!"). " ". T_("Please contact administrator!"));
 					break;
 
 				// ERROR 1049 (42000): Unknown database
