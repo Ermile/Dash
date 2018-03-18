@@ -45,7 +45,7 @@ if(isset($_POST['username']) && isset($_POST['password']))
 			}
 		}
 
-		if(DEBUG)
+		if(\lib\option::config('debug'))
 		{
 			$log = $result;
 		}

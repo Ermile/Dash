@@ -105,7 +105,7 @@ class db
 		$qry_exec_time = microtime(true) - $qry_exec_time;
 
 		// if debug mod is true save all string query
-		if(DEBUG)
+		if(\lib\option::config('debug'))
 		{
 			self::log($_qry, $qry_exec_time);
 		}

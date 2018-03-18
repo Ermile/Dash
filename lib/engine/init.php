@@ -10,23 +10,7 @@ class init
 		header("X-Made-In: Ermile!");
 		header("X-Powered-By: Dash!");
 
-		/**
-		 * If DEBUG is TRUE you can see the full error description, If set to FALSE show userfriendly messages
-		 * change it from project config.php
-		 */
-		if (!defined('DEBUG'))
-		{
-			if(\lib\option::config('debug'))
-			{
-				define('DEBUG', true);
-			}
-			else
-			{
-				define('DEBUG', false);
-			}
-		}
-
-		if (DEBUG)
+		if (\lib\option::config('debug'))
 		{
 			ini_set('display_errors'        , 'On');
 			ini_set('display_startup_errors', 'On');

@@ -25,7 +25,7 @@
 
  <h1><?php echo $desc?></h1>
  <b class='slash'><?php echo $_title; ?></b>
-<?php if(defined("DEBUG") && DEBUG && \lib\url::isLocal()  ) {?>
+<?php if(\lib\option::config('debug') || \lib\url::isLocal()) {?>
  <ol>
 <?php
 $debug_backtrace = array_reverse($debug_backtrace);
