@@ -41,7 +41,7 @@ class controller extends  \mvc\controller
 	{
 		if(!$this->method && $_SERVER['REQUEST_METHOD'] !== 'GET')
 		{
-			\lib\error::method($_SERVER['REQUEST_METHOD'] . " not allowed");
+			\lib\header::status(405, $_SERVER['REQUEST_METHOD'] . " not allowed");
 		}
 	}
 }
