@@ -6,10 +6,12 @@ namespace lib;
 class notif
 {
 	private static $notif = [];
-
+	private static $ok    = true;
 
 	private static function make($_type, $_text, $_meta)
 	{
+		self::$notif['ok'] = self::$ok;
+
 		if(!isset(self::$notif['msg']))
 		{
 			self::$notif['msg'] = [];
@@ -46,6 +48,8 @@ class notif
 
 	public static function error($_text, $_meta = [])
 	{
+		self::$ok = false;
+
 		self::make('error', $_text, $_meta);
 		// stop engine process
 		\lib\engine\process::stop();
