@@ -3,6 +3,7 @@ namespace addons\content_enter\email\change\google;
 
 class controller extends \addons\content_enter\main\controller
 {
+	public function ready()
 	{
 		$url = \lib\url::directory();
 		// if(self::lock('email/change/google'))
