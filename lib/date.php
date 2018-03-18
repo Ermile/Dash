@@ -6,6 +6,52 @@ class date
 	private static $lang = null;
 
 
+    /**
+     * check language and if needed convert to persian date
+     * else show default date
+     * @param  [type] $_date [description]
+     * @return [type]        [description]
+     */
+    public static function fit_lang($_format, $_stamp = false, $_type = false, $_persianChar = true)
+    {
+    	$result = null;
+
+    	if(mb_strlen($_stamp) < 2)
+    	{
+    		$_stamp = false;
+    	}
+
+        // get target language
+    	if($_type === 'default')
+    	{
+    		$_type = \lib\language::default();
+    	}
+    	elseif($_type === 'current')
+    	{
+    		$_type = \lib\language::current();
+    	}
+
+        // if need persian use it else use default date function
+    	if($_type === true || $_type === 'fa' || $_type === 'fa_IR')
+    	{
+    		$result = \lib\utility\jdate::date($_format, $_stamp, $_persianChar);
+    	}
+    	else
+    	{
+    		if($_stamp)
+    		{
+    			$result = date($_format, $_stamp);
+    		}
+    		else
+    		{
+    			$result = date($_format);
+    		}
+    	}
+
+    	return $result;
+    }
+
+
 	private static function formatFinder($_type, $_format = 'short')
 	{
 		$format     = "Y-m-d H:i:s";

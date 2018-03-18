@@ -83,31 +83,6 @@ class utility
 
 
 	/**
-	 * create a random code for use in verification
-	 * @param  integer $_length [description]
-	 * @param  boolean $type    [description]
-	 * @return [type]           [description]
-	 */
-	public static function randomCode($_length = 4, $type = true)
-	{
-		$mystring	= '';
-		if($type === true)
-			$mycharacters = "23456789";
-		elseif($type == 'all')
-			$mycharacters = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-		elseif($type == 'protected')
-			$mycharacters = "123456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ";
-		else
-			$mycharacters = "23456789ABCDEFHJKLMNPRTVWXYZ";
-
-		for ($p = 0; $p < $_length; $p++)
-			$mystring .= $mycharacters[mt_rand(0, mb_strlen($mycharacters)-1)];
-
-		return $mystring;
-	}
-
-
-	/**
 	 * convert datetime to human timing for better reading
 	 * @param  [type] $_time   [description]
 	 * @param  string $_max    [description]
@@ -166,51 +141,5 @@ class utility
 			return $finalDate;
 		}
 	}
-
-
-    /**
-     * check language and if needed convert to persian date
-     * else show default date
-     * @param  [type] $_date [description]
-     * @return [type]        [description]
-     */
-    public static function date($_format, $_stamp = false, $_type = false, $_persianChar = true)
-    {
-    	$result = null;
-
-    	if(mb_strlen($_stamp) < 2)
-    	{
-    		$_stamp = false;
-    	}
-
-        // get target language
-    	if($_type === 'default')
-    	{
-    		$_type = \lib\language::default();
-    	}
-    	elseif($_type === 'current')
-    	{
-    		$_type = \lib\language::current();
-    	}
-
-        // if need persian use it else use default date function
-    	if($_type === true || $_type === 'fa' || $_type === 'fa_IR')
-    	{
-    		$result = \lib\utility\jdate::date($_format, $_stamp, $_persianChar);
-    	}
-    	else
-    	{
-    		if($_stamp)
-    		{
-    			$result = date($_format, $_stamp);
-    		}
-    		else
-    		{
-    			$result = date($_format);
-    		}
-    	}
-
-    	return $result;
-    }
 }
 ?>
