@@ -11,6 +11,12 @@ class engine
 		// check min requirement to run dash core!
 		\lib\engine\init::minimum_requirement();
 
+		// check debug and set php ini
+		\lib\engine\init::debug();
+
+		// check comming soon page
+		\lib\engine\init::coming_soon();
+
 		// detect url and start work with them as first lib used by another one
 		\lib\url::initialize();
 
@@ -22,9 +28,6 @@ class engine
 
 		// start session
 		\lib\session::start();
-
-		// debug set anc check comming soon page
-		\lib\engine\prepare::abc();
 
 		// block baby to not allow to harm yourself :/
 		\lib\engine\baby::block();
