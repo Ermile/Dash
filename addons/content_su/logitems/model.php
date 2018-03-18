@@ -48,7 +48,7 @@ class model extends \addons\content_su\main\model
 			$result = \lib\db\logitems::update($update, $id);
 			if($result)
 			{
-				\lib\notif::true(T_("Update successfull"));
+				\lib\notif::ok(T_("Update successfull"));
 				\lib\redirect::to(\lib\url::here(). '/logitems');
 			}
 			else

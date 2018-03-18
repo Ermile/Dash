@@ -90,7 +90,7 @@ class model extends \addons\content_enter\main\model
 			if(isset($find_log['id']))
 			{
 				\lib\db\logs::update(['status' => 'deliver'], $find_log['id']);
-				\lib\notif::true(T_("OK"));
+				\lib\notif::ok(T_("OK"));
 				return true;
 			}
 		}
@@ -158,7 +158,7 @@ class model extends \addons\content_enter\main\model
 
 		\lib\db\logs::set('enter:callback:sms:registe:reasult', $user_id, $log_meta);
 
-		\lib\notif::true(T_("User signup by sms"));
+		\lib\notif::ok(T_("User signup by sms"));
 
 
 	}

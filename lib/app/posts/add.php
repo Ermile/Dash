@@ -98,7 +98,7 @@ trait add
 
 		if(\lib\notif::$status)
 		{
-			if($_option['debug']) \lib\notif::true(T_("Post successfuly added"));
+			if($_option['debug']) \lib\notif::ok(T_("Post successfuly added"));
 		}
 
 		return $return;

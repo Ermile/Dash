@@ -30,7 +30,7 @@ class model extends \addons\content_enter\main\model
 
 		if(\lib\url::isLocal())
 		{
-			\lib\notif::true(T_("Verify code in local is :code", ['code' => '<b>11111</b>']));
+			\lib\notif::ok(T_("Verify code in local is :code", ['code' => '<b>11111</b>']));
 		}
 
 		$select_way = 'verify/'. $send_code;

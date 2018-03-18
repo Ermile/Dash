@@ -96,11 +96,11 @@ trait add
 
 			if($_args['method'] === 'post')
 			{
-				if($_args['debug']) \lib\notif::true(T_("transaction successfully added"));
+				if($_args['debug']) \lib\notif::ok(T_("transaction successfully added"));
 			}
 			elseif($_args['method'] === 'patch')
 			{
-				if($_args['debug']) \lib\notif::true(T_("transaction successfully updated"));
+				if($_args['debug']) \lib\notif::ok(T_("transaction successfully updated"));
 			}
 		}
 	}

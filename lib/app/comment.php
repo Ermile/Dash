@@ -47,7 +47,7 @@ class comment
 
 		if(\lib\notif::$status)
 		{
-			\lib\notif::true(T_("Comment successfully updated"));
+			\lib\notif::ok(T_("Comment successfully updated"));
 		}
 	}
 

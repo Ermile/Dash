@@ -72,7 +72,7 @@ trait delete
 		if(\lib\notif::$status)
 		{
 			\lib\db\logs::set('api:parent:remove:request:sucsessful', $this->user_id, $log_meta);
-			\lib\notif::true(T_("Your request canceled"));
+			\lib\notif::ok(T_("Your request canceled"));
 		}
 
 	}
@@ -164,7 +164,7 @@ trait delete
 		if(\lib\notif::$status)
 		{
 			\lib\db\logs::set('api:parent:delete:sucsessful', $this->user_id, $log_meta);
-			\lib\notif::true(T_("Parent removed"));
+			\lib\notif::ok(T_("Parent removed"));
 		}
 	}
 }

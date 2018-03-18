@@ -32,7 +32,7 @@ class model extends \addons\content_cp\main\model
 		{
 			if(\lib\request::get('edit'))
 			{
-				\lib\notif::true(T_("Term successfully edited"));
+				\lib\notif::ok(T_("Term successfully edited"));
 
 				$url = \lib\url::here(). '/terms';
 
@@ -45,7 +45,7 @@ class model extends \addons\content_cp\main\model
 			}
 			else
 			{
-				\lib\notif::true(T_("Term successfully added"));
+				\lib\notif::ok(T_("Term successfully added"));
 				\lib\redirect::to(\lib\url::full());
 			}
 		}

@@ -206,7 +206,7 @@ trait add
 
 			if(\lib\notif::$status)
 			{
-				if($_args['debug']) \lib\notif::true(T_("Your request was sended"));
+				if($_args['debug']) \lib\notif::ok(T_("Your request was sended"));
 			}
 			return true;
 		}

@@ -30,14 +30,14 @@ class model extends \addons\content_su\main\model
 			$file_name = \lib\request::post('file');
 			if(\lib\utility\file::delete(database. 'backup/files/'. $file_name))
 			{
-				\lib\notif::true(T_("File successfully deleted"));
+				\lib\notif::ok(T_("File successfully deleted"));
 				\lib\redirect::pwd();
 				return;
 			}
 		}
 		else
 		{
-			\lib\notif::true(T_("Dont!"));
+			\lib\notif::ok(T_("Dont!"));
 			return false;
 		}
 	}
@@ -46,7 +46,7 @@ class model extends \addons\content_su\main\model
 	{
 		if(\lib\db::backup_dump(['download' => false, 'db_name' => $_db_name]))
 		{
-			\lib\notif::true(T_("Backup complete"));
+			\lib\notif::ok(T_("Backup complete"));
 		}
 		\lib\redirect::pwd();
 	}
@@ -75,7 +75,7 @@ class model extends \addons\content_su\main\model
 		$url .= '/schedule';
 		\lib\utility\file::write($url, $array);
 
-		\lib\notif::true(T_("Auto backup schedule saved"));
+		\lib\notif::ok(T_("Auto backup schedule saved"));
 
 	}
 }

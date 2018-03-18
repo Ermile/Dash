@@ -80,7 +80,7 @@ trait edit
 
 		if(\lib\notif::$status)
 		{
-			\lib\notif::true(T_("Profile successfully updated"));
+			\lib\notif::ok(T_("Profile successfully updated"));
 		}
 	}
 }

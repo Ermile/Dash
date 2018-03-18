@@ -251,7 +251,7 @@ class upload
 					'link'      => $link,
 					]);
 
-				return \lib\notif::true(T_("file successful uploaded"));
+				return \lib\notif::ok(T_("file successful uploaded"));
 			}
 			else
 			{
@@ -459,7 +459,7 @@ class upload
 			// in duplicate mode debug
 			if($_options['debug'])
 			{
-				\lib\notif::true(T_("File successful uploaded"));
+				\lib\notif::ok(T_("File successful uploaded"));
 			}
 			return;
 		}
@@ -567,7 +567,7 @@ class upload
 		\lib\temp::set('upload', ["id" => \lib\db::insert_id(), 'url' => $url, 'size' => self::$fileSize]);
 		if($_options['debug'])
 		{
-			\lib\notif::true("File successful uploaded");
+			\lib\notif::ok("File successful uploaded");
 		}
 		return;
 	}

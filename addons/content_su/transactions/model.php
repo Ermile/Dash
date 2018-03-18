@@ -193,7 +193,7 @@ class model extends \addons\content_su\main\model
 
 		if(\lib\notif::$status)
 		{
-			\lib\notif::true(T_("Transaction inserted"));
+			\lib\notif::ok(T_("Transaction inserted"));
 			\lib\redirect::to(\lib\url::here(). '/transactions');
 		}
 	}

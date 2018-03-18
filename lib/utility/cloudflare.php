@@ -233,7 +233,7 @@ class cloudflare
 
 		if(intval($mycode) === 200)
 		{
-			\lib\notif::true(T_("The api Cloudflare opration success"));
+			\lib\notif::ok(T_("The api Cloudflare opration success"));
 		}
 		else
 		{

@@ -81,7 +81,7 @@ trait add
 
 		if(\lib\notif::$status)
 		{
-			if($_option['debug']) \lib\notif::true(T_("User successfuly added"));
+			if($_option['debug']) \lib\notif::ok(T_("User successfuly added"));
 		}
 
 		return $return;

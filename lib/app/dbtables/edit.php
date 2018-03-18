@@ -22,7 +22,7 @@ trait edit
 
 			if(\lib\notif::$status)
 			{
-				\lib\notif::true(T_("Record successfully updated"));
+				\lib\notif::ok(T_("Record successfully updated"));
 			}
 		}
 	}

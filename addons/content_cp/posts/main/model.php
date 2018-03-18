@@ -22,7 +22,7 @@ class model extends \mvc\model
 			}
 			else
 			{
-				\lib\notif::true(T_("File successfully uploaded"));
+				\lib\notif::ok(T_("File successfully uploaded"));
 			}
 
 			return true;

@@ -17,7 +17,7 @@ class model extends \content_account\main\model
 			$check = \lib\utility\appkey::create_app_key(\lib\user::id());
 			if($check)
 			{
-				\lib\notif::true(T_("Creat new api key successfully complete"));
+				\lib\notif::ok(T_("Creat new api key successfully complete"));
 				\lib\redirect::pwd();
 			}
 			else

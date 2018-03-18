@@ -8,7 +8,7 @@ class model extends \addons\content_su\main\model
 		if(\lib\request::post('active'))
 		{
 			\lib\utility\cronjob\options::active();
-			\lib\notif::true(T_("Your cronjob is actived"));
+			\lib\notif::ok(T_("Your cronjob is actived"));
 		}
 		else
 		{

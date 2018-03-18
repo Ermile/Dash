@@ -114,7 +114,7 @@ trait edit
 
 		if(\lib\notif::$status)
 		{
-			\lib\notif::true(T_("Post successfully updated"));
+			\lib\notif::ok(T_("Post successfully updated"));
 		}
 	}
 }

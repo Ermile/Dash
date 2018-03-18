@@ -237,12 +237,12 @@ trait add
 
 			if($_args['method'] === 'post')
 			{
-				if($_args['debug']) \lib\notif::true(T_("user successfully added"));
+				if($_args['debug']) \lib\notif::ok(T_("user successfully added"));
 				$return['user_id'] = \lib\utility\shortURL::encode(\lib\db::insert_id());
 			}
 			elseif($_args['method'] === 'patch')
 			{
-				if($_args['debug']) \lib\notif::true(T_("user successfully updated"));
+				if($_args['debug']) \lib\notif::ok(T_("user successfully updated"));
 				$return['user_id'] = \lib\utility::request('id');
 			}
 		}

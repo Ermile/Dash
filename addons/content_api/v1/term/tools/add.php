@@ -77,11 +77,11 @@ trait add
 
 			if($_args['method'] === 'post')
 			{
-				if($_args['debug']) \lib\notif::true(T_("term successfully added"));
+				if($_args['debug']) \lib\notif::ok(T_("term successfully added"));
 			}
 			elseif($_args['method'] === 'patch')
 			{
-				if($_args['debug']) \lib\notif::true(T_("term successfully updated"));
+				if($_args['debug']) \lib\notif::ok(T_("term successfully updated"));
 			}
 		}
 	}

@@ -166,7 +166,7 @@ class model extends \mvc\model
         {
         	\lib\db\logs::set('user:use:ref', \lib\user::id(), $log_meta);
         	\lib\db\logs::set('user:was:ref', $ref, $log_meta);
-        	\lib\notif::true(T_("Your ref was set and your account was charge"));
+        	\lib\notif::ok(T_("Your ref was set and your account was charge"));
         }
 	}
 

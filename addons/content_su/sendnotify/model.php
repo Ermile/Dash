@@ -79,19 +79,19 @@ class model extends \addons\content_su\main\model
 		if($notification && $user_id)
 		{
 	        $this->send_notification(['text' => $msg, 'cat' => 'supervisor', 'to' => $user_id]);
-	        \lib\notif::true(T_("Inner notification was sended"));
+	        \lib\notif::ok(T_("Inner notification was sended"));
 		}
 
 		if($mobile)
 		{
 			\lib\utility\sms::send_array($mobile, $msg);
-			\lib\notif::true("SMS was sended");
+			\lib\notif::ok("SMS was sended");
 		}
 
 		if($telegram)
 		{
 			\lib\utility\telegram::sendMessage($telegram, $msg);
-			\lib\notif::true("Telegram was sended");
+			\lib\notif::ok("Telegram was sended");
 		}
 	}
 }

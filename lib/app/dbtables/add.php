@@ -28,7 +28,7 @@ trait add
 
 		if(\lib\notif::$status)
 		{
-			\lib\notif::true(T_("Record successfuly added"));
+			\lib\notif::ok(T_("Record successfuly added"));
 		}
 	}
 }

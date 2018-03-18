@@ -77,7 +77,7 @@ trait add
 			if(!$id)
 			{
 				if($_args['save_log']) \lib\db\logs::set('addons:api:comment:id:not:found', $this->user_id, $log_meta);
-				if($_args['debug']) \lib\notif::true(T_("Id not found"));
+				if($_args['debug']) \lib\notif::ok(T_("Id not found"));
 				return false;
 			}
 
@@ -102,11 +102,11 @@ trait add
 			if($_args['method'] === 'post')
 			{
 				if($_args['save_log']) \lib\db\logs::set('user:send:request', $this->user_id, $log_meta);
-				if($_args['debug']) \lib\notif::true(T_("Thank You For contacting us"));
+				if($_args['debug']) \lib\notif::ok(T_("Thank You For contacting us"));
 			}
 			elseif($_args['method'] === 'patch')
 			{
-				if($_args['debug']) \lib\notif::true(T_("Comment data updated"));
+				if($_args['debug']) \lib\notif::ok(T_("Comment data updated"));
 			}
 		}
 		else

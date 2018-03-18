@@ -52,7 +52,7 @@ class model extends \addons\content_su\main\model
 		{
 			$perm_field = implode(',', $perm_list);
 			\lib\db\users::update(['permission' => $perm_field], $id);
-			\lib\notif::true(T_("Permission added to this user"));
+			\lib\notif::ok(T_("Permission added to this user"));
 		}
 
 	}
