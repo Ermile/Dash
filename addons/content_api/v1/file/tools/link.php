@@ -35,7 +35,7 @@ trait link
 		{
 			$file_path = true;
 		}
-		elseif(!\lib\utility::files($_options['upload_name']))
+		elseif(!\lib\request::files($_options['upload_name']))
 		{
 			return \lib\notif::error(T_("Unable to upload, because of selected upload name"), 'upload_name', 'arguments');
 		}

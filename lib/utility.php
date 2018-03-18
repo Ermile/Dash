@@ -4,35 +4,8 @@ class utility
 {
 	public static $COOKIE;
 	public static $HEADER;
-	public static $FILES;
 	public static $REQUEST;
 
-
-	/**
-	 * get files
-	 *
-	 * @param      <type>  $_name  The name
-	 */
-	public static function files($_name = null)
-	{
-		if(!self::$FILES)
-		{
-			self::$FILES = $_FILES;
-		}
-
-		if($_name)
-		{
-			if(isset(self::$FILES[$_name]) && (isset(self::$FILES[$_name]['error']) && self::$FILES[$_name]['error'] != 4))
-			{
-				return self::$FILES[$_name];
-			}
-			else
-			{
-				return null;
-			}
-		}
-		return self::$FILES;
-	}
 
 
 	public static function request()

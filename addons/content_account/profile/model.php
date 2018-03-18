@@ -41,7 +41,7 @@ class model extends \content_account\main\model
 		$file_code = null;
 		$temp_url  = null;
 
-		if(\lib\utility::files('avatar'))
+		if(\lib\request::files('avatar'))
 		{
 			$this->user_id = \lib\user::id();
 			\lib\utility::set_request_array(['upload_name' => 'avatar']);

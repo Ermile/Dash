@@ -6,7 +6,7 @@ class model extends \mvc\model
 {
 	public static function upload_gallery()
 	{
-		if(\lib\utility::files('gallery'))
+		if(\lib\request::files('gallery'))
 		{
 			$uploaded_file = \lib\app\file::upload(['debug' => false, 'upload_name' => 'gallery']);
 
@@ -86,7 +86,7 @@ class model extends \mvc\model
 			}
 		}
 
-		if(\lib\utility::files('thumb'))
+		if(\lib\request::files('thumb'))
 		{
 			$uploaded_file = \lib\app\file::upload(['debug' => false, 'upload_name' => 'thumb']);
 
