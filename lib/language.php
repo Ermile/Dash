@@ -151,7 +151,7 @@ class language
 		}
 
 		// use php gettext function
-		require_once(lib.'utility/gettext/gettext.inc');
+		require_once(lib.'engine/gettext/gettext.inc');
 		// if we have iso then trans
 		if(isset(self::$language['iso']))
 		{
