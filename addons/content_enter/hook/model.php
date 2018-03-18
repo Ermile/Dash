@@ -91,11 +91,11 @@ class model extends \mvc\model
 	 */
 	public function check_api_key()
 	{
-		$authorization = \lib\utility::header("authorization");
+		$authorization = \lib\header::get(("authorization");
 
 		if(!$authorization)
 		{
-			$authorization = \lib\utility::header("Authorization");
+			$authorization = \lib\header::get(("Authorization");
 		}
 
 		if(!$authorization)
@@ -289,7 +289,7 @@ class model extends \mvc\model
 		// $log['request']        = json_encode(\lib\utility::request(), JSON_UNESCAPED_UNICODE);
 		// $log['\lib\notif']          = json_encode(\lib\notif::compile(), JSON_UNESCAPED_UNICODE);
 		// $log['response']       = json_encode(\lib\notif::get_result(), JSON_UNESCAPED_UNICODE);
-		// $log['requestheader']  = json_encode(\lib\utility::header(), JSON_UNESCAPED_UNICODE);
+		// $log['requestheader']  = json_encode(\lib\header::get((), JSON_UNESCAPED_UNICODE);
 		// $log['responseheader'] = json_encode(apache_response_headers(), JSON_UNESCAPED_UNICODE);
 		// $log['status']         = \lib\notif::$status;
 		// $log['token']          = $this->authorization;

@@ -3,6 +3,60 @@ namespace lib;
 
 class header
 {
+	private static $HEADER;
+
+	/**
+	* get header
+	*/
+	public static function get($_name = null)
+	{
+		if(!self::$HEADER)
+		{
+			$my_header = null;
+			// get apache headers
+			if(function_exists('apache_request_headers'))
+			{
+				$my_header = apache_request_headers();
+			}
+			else
+			{
+				$out = null;
+				foreach($_SERVER as $key => $value)
+		        {
+		            if (substr($key,0,5)=="HTTP_")
+		            {
+		                $key = str_replace(" ","-", strtolower(str_replace("_"," ",substr($key,5))));
+		                $out[$key] = $value;
+		            }
+		            else
+		            {
+		                $out[$key] = $value;
+					}
+		    	}
+		    	$my_header = $out;
+			}
+
+			self::$HEADER = utility\safe::safe($my_header);
+		}
+
+		if($_name)
+		{
+			if(array_key_exists($_name, self::$HEADER))
+			{
+				return self::$HEADER[$_name];
+			}
+			else
+			{
+				return null;
+			}
+		}
+		else
+		{
+			return self::$HEADER;
+		}
+	}
+
+
 	/**
 	 * Retrieve the description for the HTTP status
 	 * @param int $_code HTTP status code

@@ -2,7 +2,6 @@
 namespace lib;
 class utility
 {
-	public static $HEADER;
 	public static $REQUEST;
 
 
@@ -40,57 +39,6 @@ class utility
 		self::$REQUEST = new utility\request($_array);
 	}
 
-
-	/**
-	 * filter cookie and safe it
-	 * @param  string $_name unsafe cookie key
-	 * @return string        safe cookie
-	 */
-	public static function header($_name = null)
-	{
-		if(!self::$HEADER)
-		{
-			$my_header = null;
-			// get apache headers
-			if(function_exists('apache_request_headers'))
-			{
-				$my_header = apache_request_headers();
-			}
-			else
-			{
-				$out = null;
-				foreach($_SERVER as $key => $value)
-		        {
-		            if (substr($key,0,5)=="HTTP_")
-		            {
-		                $key = str_replace(" ","-", strtolower(str_replace("_"," ",substr($key,5))));
-		                $out[$key]=$value;
-		            }
-		            else
-		            {
-		                $out[$key]=$value;
-					}
-		    	}
-		    	$my_header = $out;
-			}
-
-			self::$HEADER = utility\safe::safe($my_header);
-		}
-		if($_name)
-		{
-			if(array_key_exists($_name, self::$HEADER))
-			{
-				return self::$HEADER[$_name];
-			}
-			else
-			{
-				return null;
-			}
-		}else
-		{
-			return self::$HEADER;
-		}
-	}
 
 	/**
 	 * Call this funtion for encode or decode your password.

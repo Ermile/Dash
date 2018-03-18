@@ -91,16 +91,16 @@ class model extends \mvc\model
 	public function api_key()
 	{
 
-		$api_token = \lib\utility::header("api_token") ? \lib\utility::header("api_token") : \lib\utility::header("Api_token");
+		$api_token = \lib\header::get(("api_token") ? \lib\header::get(("api_token") : \lib\header::get(("Api_token");
 
-		$authorization = \lib\utility::header("authorization");
+		$authorization = \lib\header::get(("authorization");
 		if($api_token)
 		{
 			$authorization = $api_token;
 		}
 		elseif(!$authorization)
 		{
-			$authorization = \lib\utility::header("Authorization");
+			$authorization = \lib\header::get(("Authorization");
 		}
 
 		if(!$authorization)
@@ -195,7 +195,7 @@ class model extends \mvc\model
 	 */
 	public function static_token()
 	{
-		$mobile = \lib\utility::header("mobile");
+		$mobile = \lib\header::get(("mobile");
 
 		$mobile = \lib\utility\filter::mobile($mobile);
 		if(!$mobile)
@@ -234,7 +234,7 @@ class model extends \mvc\model
 	 */
 	public function telegram_token()
 	{
-		$telegramid = \lib\utility::header("telegramid");
+		$telegramid = \lib\header::get(("telegramid");
 
 		if(!$telegramid)
 		{
@@ -288,7 +288,7 @@ class model extends \mvc\model
 		// $log['request']        = json_encode(\lib\utility::request(), JSON_UNESCAPED_UNICODE);
 		// $log['debug']          = json_encode(\lib\notif::compile(), JSON_UNESCAPED_UNICODE);
 		// $log['response']       = json_encode(\lib\notif::get_result(), JSON_UNESCAPED_UNICODE);
-		// $log['requestheader']  = json_encode(\lib\utility::header(), JSON_UNESCAPED_UNICODE);
+		// $log['requestheader']  = json_encode(\lib\header::get((), JSON_UNESCAPED_UNICODE);
 		// $log['responseheader'] = json_encode(apache_response_headers(), JSON_UNESCAPED_UNICODE);
 		// $log['status']         = \lib\notif::$status;
 		// $log['token']          = $this->authorization;
