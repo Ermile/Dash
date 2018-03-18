@@ -58,54 +58,6 @@ class prepare
 		    }
 		}
 
-		// if($cookie_domain)
-		// {
-		// 	session_name($cookie_domain);
-		// 	$cookie_domain = $cookie_domain. '.'. \lib\url::domain();
-		// 	session_set_cookie_params(0, '/', $cookie_domain, false, true);
-		// }
-		// else
-		// {
-		// 	session_name(\lib\url::root());
-		// 	$cookie_domain = \lib\url::domain();
-		// 	session_set_cookie_params(0, '/');
-		// }
-
-		if(is_string(\lib\url::root()))
-		{
-			session_name(\lib\url::root());
-		}
-		// set session cookie params
-		session_set_cookie_params(0, '/', '.'.\lib\url::domain(), false, true);
-		/**
-		 * A session is a way to store information (in variables) to be used across multiple pages.
-		 * Unlike a cookie, the information is not stored on the users computer.
-		 * access to session with this code: $_SESSION["test"]
-		 */
-
-		// if(is_string(\lib\url::root()))
-		// {
-		// 	session_name(\lib\url::root());
-		// }
-
-		// if(is_string($cookie_domain))
-		// {
-		// 	session_name($cookie_domain);
-		// }
-
-		// session_set_cookie_params(0, '/', $cookie_domain, false, true);
-
-		// set session cookie params
-		// if user enable saving sessions in db
-		// temporary disable because not work properly
-		if(false)
-		{
-			$handler = new \lib\utility\sessionHandler();
-			session_set_save_handler($handler, true);
-		}
-		// start sessions
-		session_start();
-
 		// change header and remove php from it
 		header("X-Made-In: Ermile!");
 		header("X-Powered-By: Dash!");

@@ -20,7 +20,10 @@ class engine
 		// check need redirect for lang or www or https or main domain
 		\lib\engine\init::appropriate_url();
 
-		// session start and debug set anc check comming soon page
+		// start session
+		\lib\session::start();
+
+		// debug set anc check comming soon page
 		\lib\engine\prepare::abc();
 
 		// block baby to not allow to harm yourself :/

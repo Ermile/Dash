@@ -11,6 +11,31 @@ class session
 	private static $key_limit = 'session_storage_time_limit';
 
 
+	// start session
+	public static function start()
+	{
+		if(is_string(\lib\url::root()))
+		{
+			session_name(\lib\url::root());
+		}
+
+		// set session cookie params
+		session_set_cookie_params(0, '/', '.'.\lib\url::domain(), false, true);
+
+		// set session cookie params
+		// if user enable saving sessions in db
+		// temporary disable because not work properly
+		if(false)
+		{
+			$handler = new \lib\utility\sessionHandler();
+			session_set_save_handler($handler, true);
+		}
+
+		// start sessions
+		session_start();
+	}
+
+
 	/**
 	 * save data in session
 	 * by key and cat
