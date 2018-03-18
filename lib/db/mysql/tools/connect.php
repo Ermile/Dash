@@ -138,7 +138,7 @@ trait connect
 					// else only show related message
 					else
 					{
-						\lib\error::unsupport(T_("We can't connect to correct database!"). " ". T_("Please contact administrator!"));
+						\lib\header::status(501, T_("We can't connect to correct database!"). " ". T_("Please contact administrator!"));
 					}
 					break;
 
