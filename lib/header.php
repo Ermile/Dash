@@ -162,7 +162,7 @@ class header
 
 			\lib\notif::title($desc);
 			\lib\notif::error($_title, $_code, "HTTP");
-			echo \lib\notif::compile(true);
+			echo \lib\notif::json();
 		}
 		else
 		{

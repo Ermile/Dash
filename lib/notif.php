@@ -8,16 +8,16 @@ class notif
 	private static $notif = [];
 	private static $ok    = true;
 
-	private static function make($_type, $_text, $_meta)
+	private static function add($_type, $_text, $_meta)
 	{
-		self::$notif['ok'] = self::$ok;
+		self::$notif['ok'] = \lib\engine\process::status();
 
 		if(!isset(self::$notif['msg']))
 		{
 			self::$notif['msg'] = [];
 		}
 
-		$make =
+		$add =
 		[
 			'type' => $_type,
 			'text' => $_text,
@@ -25,38 +25,37 @@ class notif
 
 		if($_meta)
 		{
-			$make['meta'] = $_meta;
+			$add['meta'] = $_meta;
 		}
 
-		array_push(self::$notif['msg'], $make);
+		array_push(self::$notif['msg'], $add);
 	}
 
 
 	public static function info($_text, $_meta = [])
 	{
-		self::make('info', $_text, $_meta);
+		self::add('info', $_text, $_meta);
 	}
 
 
 	public static function ok($_text, $_meta = [])
 	{
-		self::make('ok', $_text, $_meta);
+		self::add('ok', $_text, $_meta);
 	}
 
 
 	public static function warn($_text, $_meta = [])
 	{
-		self::make('warn', $_text, $_meta);
+		self::add('warn', $_text, $_meta);
 	}
 
 
 	public static function error($_text, $_meta = [])
 	{
-		self::$ok = false;
-
-		self::make('error', $_text, $_meta);
 		// stop engine process
 		\lib\engine\process::stop();
+
+		self::add('error', $_text, $_meta);
 	}
 
 
@@ -78,17 +77,9 @@ class notif
 	}
 
 
-	public static function compile($_json = false)
+	public static function json()
 	{
-		if($_json)
-		{
-			$return = json_encode(self::$notif);
-		}
-		else
-		{
-			$return = self::$notif;
-		}
-		return $return;
+		return json_encode(self::$notif);
 	}
 
 

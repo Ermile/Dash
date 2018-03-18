@@ -263,7 +263,7 @@ class controller
 			{
 				\lib\notif::redirect(\lib\redirect::pwd());
 			}
-			echo \lib\notif::compile(true);
+			echo \lib\notif::json();
 		}
 		elseif(!\lib\temp::get('api') && mb_strtolower($_SERVER['REQUEST_METHOD']) == "post")
 		{

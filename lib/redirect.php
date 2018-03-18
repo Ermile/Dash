@@ -46,9 +46,7 @@ class redirect
 	{
 		header('Content-Type: application/json');
 		\lib\notif::redirect($_loc);
-
-		// echo json_encode(\lib\notif::compile(true));
-		echo json_encode(\lib\notif::compile());
+		echo \lib\notif::json();
 	}
 
 
