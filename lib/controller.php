@@ -6,8 +6,6 @@ class controller
 {
 	use \lib\mvc;
 
-	public static $language = false;
-	public $custom_language = false;
 	public $api, $model, $view, $method;
 	public $model_name, $view_name, $display_name;
 	public $debug           = true;
@@ -263,7 +261,7 @@ class controller
 			header('Content-Type: application/json');
 			if(isset($this->controller()->redirector) && $this->controller()->redirector)
 			{
-				\lib\notif::msg("redirect", \lib\redirect::pwd()->redirect(true));
+				\lib\notif::msg("redirect", \lib\redirect::pwd());
 			}
 			echo \lib\notif::compile(true);
 		}
