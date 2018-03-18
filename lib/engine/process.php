@@ -1,7 +1,7 @@
 <?php
 namespace lib\engine;
 
-class proccess
+class process
 {
 
 	private static $status = true;

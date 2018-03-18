@@ -47,6 +47,8 @@ class notif
 	public static function error($_text, $_meta = [])
 	{
 		self::make('error', $_text, $_meta);
+		// stop engine process
+		\lib\engine\process::stop();
 	}
 
 
