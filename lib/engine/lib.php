@@ -33,6 +33,6 @@ class lib
 			return new $class_name(...$args);
 		}
 
-		\lib\error::core("lib\\{$name}");
+		\lib\header::status(404, "lib\\{$name}");
 	}
 }
