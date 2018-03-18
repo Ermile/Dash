@@ -27,7 +27,7 @@ class controller extends \mvc\controller
 			}
 			else
 			{
-				\lib\error::access(T_("Can not access to cp"));
+				\lib\header::status(403, T_("Can not access to cp"));
 			}
 		}
 	}

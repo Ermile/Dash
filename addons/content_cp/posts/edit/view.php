@@ -12,7 +12,7 @@ class view extends \addons\content_cp\posts\main\view
 		$detail = \lib\app\posts::get($id);
 		if(!$detail)
 		{
-			\lib\error::access(T_("Invalid id"));
+			\lib\header::status(403, T_("Invalid id"));
 		}
 
 		$this->data->dataRaw = $detail;

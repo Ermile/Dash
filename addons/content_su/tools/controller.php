@@ -39,7 +39,7 @@ class controller extends \addons\content_su\main\controller
 				}
 				else
 				{
-					\lib\error::access(T_("Permission denide for run upgrade database"));
+					\lib\header::status(403, T_("Permission denide for run upgrade database"));
 				}
 
 				\lib\db::$debug_error = false;

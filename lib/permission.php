@@ -130,7 +130,7 @@ class permission
 			}
 			else
 			{
-				\lib\error::access(T_("Access denied"));
+				\lib\header::status(403, T_("Access denied"));
 				return false;
 			}
 		}
