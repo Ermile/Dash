@@ -45,11 +45,7 @@ class prepare
 		{
 			error_reporting(0);
 			ini_set('display_errors', 0);
-
 		}
-
-		// block baby to not allow to harm yourself :/
-		\lib\engine\baby::block();
 
 		$cookie_domain = null;
 		if(isset($_SERVER['HTTP_HOST']))
@@ -110,6 +106,10 @@ class prepare
 		// start sessions
 		session_start();
 
+		// change header and remove php from it
+		header("X-Made-In: Ermile!");
+		header("X-Powered-By: Dash!");
+
 		/**
 		 * in coming soon period show public_html/pages/coming/ folder
 		 * developer must set get parameter like site.com/dev=anyvalue
@@ -132,9 +132,6 @@ class prepare
 				\lib\code::exit();
 			}
 		}
-		// change header and remove php from it
-		header("X-Made-In: Ermile!");
-		header("X-Powered-By: Dash!");
 
 		// need check
 		// if find 2slash together block!

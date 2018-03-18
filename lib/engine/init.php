@@ -1,31 +1,16 @@
 <?php
 namespace lib\engine;
+
+
 class init
 {
-	/**
-	 * start init dash core and run first needle used in core
-	 * @return [type] [description]
-	 */
-	public static function run()
-	{
-		// check min requirement to run dash core!
-		self::minimum_requirement();
-		// detect url and start work with them as first lib used by another one
-		\lib\url::initialize();
-
-		// detect language and if need set the new language
-		\lib\language::detect_language();
-
-		self::appropriate_url();
-	}
-
 
 	/**
 	 * check current version of server technologies like php and mysql
 	 * and if is less than min, show error message
 	 * @return [type] [description]
 	 */
-	private static function minimum_requirement()
+	public static function minimum_requirement()
 	{
 		// check php version to upper than 7.0
 		if(version_compare(phpversion(), '7.0', '<'))
@@ -35,7 +20,7 @@ class init
 	}
 
 
-	private static function appropriate_url()
+	public static function appropriate_url()
 	{
 		if(\lib\option::url('fix') !== true)
 		{

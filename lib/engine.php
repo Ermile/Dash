@@ -8,10 +8,28 @@ class engine
 
 	public function __construct()
 	{
-		\lib\engine\init::run();
+		// check min requirement to run dash core!
+		\lib\engine\init::minimum_requirement();
+
+		// detect url and start work with them as first lib used by another one
+		\lib\url::initialize();
+
+		// detect language and if need set the new language
+		\lib\language::detect_language();
+
+		// check need redirect for lang or www or https or main domain
+		\lib\engine\init::appropriate_url();
+
+		// session start and debug set anc check comming soon page
 		\lib\engine\prepare::abc();
+
+		// block baby to not allow to harm yourself :/
+		\lib\engine\baby::block();
+
+		// LUNCH !
 		\lib\engine\main::start();
 	}
+
 
 
 	public static function __callstatic($name, $args)
