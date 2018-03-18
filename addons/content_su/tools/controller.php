@@ -68,10 +68,6 @@ class controller extends \addons\content_su\main\controller
 				break;
 
 
-			case 'twitter':
-				$a = \lib\utility\socialNetwork::twitter('hello! test #api');
-				break;
-
 			case 'mergefiles':
 				// 	$exist = true;
 				// 	echo \lib\utility\tools::mergefiles('merged-project.php');
