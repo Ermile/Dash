@@ -47,17 +47,6 @@ class prepare
 			ini_set('display_errors', 0);
 		}
 
-		$cookie_domain = null;
-		if(isset($_SERVER['HTTP_HOST']))
-		{
-			$urlHostSegments = explode('.', $_SERVER['HTTP_HOST']);
-			// if have subdomain
-		    if(count($urlHostSegments) > 2)
-		    {
-				$cookie_domain = $urlHostSegments[0];
-		    }
-		}
-
 		// change header and remove php from it
 		header("X-Made-In: Ermile!");
 		header("X-Powered-By: Dash!");
