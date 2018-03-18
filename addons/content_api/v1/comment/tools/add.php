@@ -34,8 +34,6 @@ trait add
 		// merge default args and args
 		$_args = array_merge($default_args, $_args);
 
-		// set default title of debug
-		if($_args['debug']) \lib\notif::title(T_("Operation Faild"));
 
 		// set the log meta
 		$log_meta =
@@ -99,7 +97,7 @@ trait add
 
 		if(\lib\notif::$status)
 		{
-			if($_args['debug']) \lib\notif::title(T_("Operation Complete"));
+
 
 			if($_args['method'] === 'post')
 			{

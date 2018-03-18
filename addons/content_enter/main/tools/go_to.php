@@ -51,7 +51,7 @@ trait go_to
 	{
 		if($_direct)
 		{
-			\lib\notif::msg('direct', true);
+			\lib\notif::direct();
 		}
 
 		\lib\redirect::to($_url);

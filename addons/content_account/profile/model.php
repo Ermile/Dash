@@ -79,7 +79,7 @@ class model extends \content_account\main\model
 		if(\lib\notif::$status)
 		{
 			\lib\notif::true(T_("Profile data was updated"));
-			\lib\notif::msg('direct', true);
+			\lib\notif::direct();
 			\lib\redirect::to(\lib\url::here());
 		}
 	}

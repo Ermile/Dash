@@ -21,7 +21,7 @@ trait get
 		$_args = array_merge($default_args, $_args);
 
 		// set default title of debug
-		if($_args['debug']) \lib\notif::title(T_("Operation Faild"));
+		// if($_args['debug']) \lib\notif::title(T_("Operation Faild"));
 
 		// set the log meta
 		$log_meta =

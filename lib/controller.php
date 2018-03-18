@@ -261,7 +261,7 @@ class controller
 			header('Content-Type: application/json');
 			if(isset($this->controller()->redirector) && $this->controller()->redirector)
 			{
-				\lib\notif::msg("redirect", \lib\redirect::pwd());
+				\lib\notif::redirect(\lib\redirect::pwd());
 			}
 			echo \lib\notif::compile(true);
 		}

@@ -39,7 +39,7 @@ class model extends \mvc\model
 			return false;
 		}
 		\lib\app\posts::post_gallery(\lib\request::get('id'), $id, 'remove');
-		\lib\notif::msg('direct', true);
+		\lib\notif::direct();
 		\lib\redirect::to(\lib\url::full());
 
 	}

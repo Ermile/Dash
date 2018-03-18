@@ -134,7 +134,7 @@ trait asanpardakht
             \lib\session::set('redirect_page_args', ['RefId' => $RefId]);
             \lib\session::set('redirect_page_title', T_("Redirect to asanpardakht payment"));
             \lib\session::set('redirect_page_button', T_("Redirect"));
-            \lib\notif::msg('direct', true);
+            \lib\notif::direct();
             \lib\redirect::to(self::get_callbck_url('redirect_page'));
             return true;
 

@@ -123,7 +123,7 @@ trait irkish
             \lib\session::set('redirect_page_args', ['token' => $token, 'merchantId' => \lib\option::config('irkish', 'merchantId')]);
             \lib\session::set('redirect_page_title', T_("Redirect to iran kish payment"));
             \lib\session::set('redirect_page_button', T_("Redirect"));
-            \lib\notif::msg('direct', true);
+            \lib\notif::direct();
             \lib\redirect::to(self::get_callbck_url('redirect_page'));
             return true;
         }
