@@ -64,7 +64,7 @@ class permission
 	/**
 	 * Loads an user data.
 	 */
-	public static function load_user_data()
+	private static function load_user_data()
 	{
 		// if permission is set before it, return true
 		if(self::$permission)
