@@ -33,13 +33,13 @@ class prepare
 			error_reporting(E_ALL);
 
 			//Setting for the PHP Error Handler
-			// set_error_handler('\lib\engine\error::myErrorHandler');
+			set_error_handler('\lib\engine\error::handle');
 
 			//Setting for the PHP Exceptions Error Handler
-			// set_exception_handler('\lib\engine\error::myErrorHandler');
+			// set_exception_handler('\lib\engine\error::handle');
 
 			//Setting for the PHP Fatal Error
-			// register_shutdown_function('\lib\engine\error::myErrorHandler');
+			// register_shutdown_function('\lib\engine\error::handle');
 		}
 		else
 		{

@@ -5,47 +5,66 @@ class error
 {
 	/**
 	 * error handler function
-	 * @param  [type] $errno   [description]
-	 * @param  [type] $errstr  [description]
-	 * @param  [type] $errfile [description]
-	 * @param  [type] $errline [description]
+	 * @param  [type] $_level   [description]
+	 * @param  [type] $_msg  [description]
+	 * @param  [type] $_file [description]
+	 * @param  [type] $_line [description]
 	 * @return [type]          [description]
 	 */
-	public static function myErrorHandler($errno = null, $errstr = null, $errfile = null, $errline = null)
+	public static function handle($_level = null, $_msg = null, $_file = null, $_line = null)
 	{
 		// This error code is not included in error_reporting
-		if (!(error_reporting() & $errno))
+		if (!(error_reporting() & $_level))
 		{
 			return;
 		}
 
-		echo "<pre>";
-		switch ($errno)
+		$msg = "$_file : $_line\n";
+		$msg .= "[$_level] ($_msg)";
+
+		// echo "</pre>";
+		if(is_string($_level))
 		{
-			case E_USER_ERROR:
-				echo "<b>My ERROR</b> [$errno] $errstr<br />\n";
-				echo "  Fatal error on line $errline in file $errfile";
-				echo ", PHP " . PHP_VERSION . " (" . PHP_OS . ")<br />\n";
-				echo "Aborting...<br />\n";
-				\lib\code::exit();
-				break;
-
-			case E_USER_WARNING:
-				echo "<b>My WARNING</b> [$errno] $errstr<br />\n";
-				break;
-
-			case E_USER_NOTICE:
-				echo "<b>My NOTICE</b> [$errno] $errstr<br />\n";
-				break;
-
-			default:
-				echo "<b>Unknown error type</b>: [$errno] $errstr<br />\n";
-				break;
+			$type = $_level;
 		}
-		echo "</pre>";
+		else
+		{
+			$type = 'unknown';
+		}
+		self::log($msg, $type.'.log', 'php');
 
 		/* Don't execute PHP internal error handler */
 		return true;
+	}
+
+
+	/**
+	 * save text into file to check later!
+	 * @param  [type] $_text [description]
+	 * @return [type]        [description]
+	 */
+	public static function log($_text, $_name = 'error.log', $_group = 'general')
+	{
+		$date_now        = new \DateTime("now", new \DateTimeZone('Asia/Tehran') );
+		$debug_backtrace = array_column(debug_backtrace(), 'file');
+		$directory_addr  = root.'includes/log/'. $_group. '/';
+		$file_addr       = $directory_addr. $_name;
+
+		// start saving
+		\lib\utility\file::makeDir($directory_addr, null, true);
+
+		// set evenet datetime and file address
+		$my_text  = "#". str_repeat("-", 10);
+		$my_text .= $date_now->format("Y-m-d H:i:s");
+		$my_text .= str_repeat("-", 50). ' ';
+		$my_text .= urldecode(\lib\url::pwd());
+		$my_text .= "\n";
+
+		// add final text
+		$my_text .= trim($_text);
+		$my_text .= "\r\n";
+
+		@file_put_contents($file_addr, $my_text. PHP_EOL, FILE_APPEND);
 	}
 }
 ?>
