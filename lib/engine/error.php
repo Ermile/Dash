@@ -17,7 +17,7 @@ class error
 		$error = error_get_last();
 		if ($error["type"] == E_ERROR)
 		{
-			self::log_error($error["type"], $error["message"], $error["file"], $error["line"]);
+			self::handle_error($error["type"], $error["message"], $error["file"], $error["line"]);
 		}
 	}
 
