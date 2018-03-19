@@ -4,7 +4,7 @@ namespace lib\engine;
 
 class main
 {
-	private static $allow      = null;
+	private static $allow      = [];
 
 	public static $module_addr = null;
 	public static $view_addr   = null;
