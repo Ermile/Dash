@@ -32,7 +32,7 @@ trait edit
 		$_option = array_merge($default_option, $_option);
 
 		$id = \lib\app::request('id');
-		$id = \lib\utility\shortURL::decode($id);
+		$id = \lib\coding::decode($id);
 
 		if(!$id)
 		{

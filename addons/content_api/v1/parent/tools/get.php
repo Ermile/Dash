@@ -37,7 +37,7 @@ trait get
 		}
 
 		$user_id = \lib\utility::request('id');
-		$user_id = \lib\utility\shortURL::decode($user_id);
+		$user_id = \lib\coding::decode($user_id);
 		if(!$user_id)
 		{
 			\lib\db\logs::set('api:parent:user_id:is:incurrect', null, $log_meta);
@@ -47,7 +47,7 @@ trait get
 
 
 		$related_id = \lib\utility::request('related_id');
-		$related_id = \lib\utility\shortURL::decode($related_id);
+		$related_id = \lib\coding::decode($related_id);
 		if(!$related_id && \lib\utility::request('related_id'))
 		{
 			\lib\db\logs::set('api:parent:related_id:is:incurrect', null, $log_meta);

@@ -12,8 +12,8 @@ class view extends \addons\content_su\main\view
 
 		if($val)
 		{
-			$this->data->val_decode = \lib\utility\shortURL::decode($val);
-			$this->data->val_encode = \lib\utility\shortURL::encode($val);
+			$this->data->val_decode = \lib\coding::decode($val);
+			$this->data->val_encode = \lib\coding::encode($val);
 		}
 
 	}

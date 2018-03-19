@@ -104,7 +104,7 @@ trait add
 				else
 				{
 					$id = \lib\utility::request('id');
-					$id = \lib\utility\shortURL::decode($id);
+					$id = \lib\coding::decode($id);
 					if(intval($id) === intval($check_duplicate['id']))
 					{
 						// no problem this is current user
@@ -145,7 +145,7 @@ trait add
 		{
 
 			$id = \lib\utility::request('id');
-			$id = \lib\utility\shortURL::decode($id);
+			$id = \lib\coding::decode($id);
 			if(!$id)
 			{
 				if($_args['save_log']) \lib\db\logs::set('addon:api:user:pathc:id:not:set', $this->user_id, $log_meta);
@@ -238,7 +238,7 @@ trait add
 			if($_args['method'] === 'post')
 			{
 				if($_args['debug']) \lib\notif::ok(T_("user successfully added"));
-				$return['user_id'] = \lib\utility\shortURL::encode(\lib\db::insert_id());
+				$return['user_id'] = \lib\coding::encode(\lib\db::insert_id());
 			}
 			elseif($_args['method'] === 'patch')
 			{

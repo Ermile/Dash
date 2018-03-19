@@ -252,7 +252,7 @@ class filter
 		{
 			$_num = time(). rand(0,9);
 		}
-		$rand = \lib\utility\shortURL::encode($_num, $alphabet);
+		$rand = \lib\coding::encode($_num, $alphabet);
 		if(!$_num)
 		{
 			return "rand_". $rand;

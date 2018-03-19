@@ -107,7 +107,7 @@ trait user_check_args
 		$file_url  = null;
 		if($file_code)
 		{
-			$file_id = \lib\utility\shortURL::decode($file_code);
+			$file_id = \lib\coding::decode($file_code);
 			if($file_id)
 			{
 				$logo_record = \lib\db\posts::is_attachment($file_id);
@@ -301,7 +301,7 @@ trait user_check_args
 		}
 
 		$parent = \lib\utility::request('parent');
-		$parent = \lib\utility\shortURL::decode($parent);
+		$parent = \lib\coding::decode($parent);
 		if(!$parent && \lib\utility::request('parent'))
 		{
 			if($_args['save_log']) \lib\db\logs::set('addon:api:user:parent:max:lenght', $this->user_id, $log_meta);
@@ -342,7 +342,7 @@ trait user_check_args
 		}
 
 		$ref = \lib\utility::request('ref');
-		$ref = \lib\utility\shortURL::decode($ref);
+		$ref = \lib\coding::decode($ref);
 		if(!$ref && \lib\utility::request('ref'))
 		{
 			if($_args['save_log']) \lib\db\logs::set('addon:api:user:ref:max:lenght', $this->user_id, $log_meta);

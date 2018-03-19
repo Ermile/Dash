@@ -73,7 +73,7 @@ trait add
 		elseif($_args['method'] === 'patch')
 		{
 			$id = \lib\utility::request('id');
-			$id = \lib\utility\shortURL::decode($id);
+			$id = \lib\coding::decode($id);
 			if(!$id)
 			{
 				if($_args['save_log']) \lib\db\logs::set('addons:api:comment:id:not:found', $this->user_id, $log_meta);

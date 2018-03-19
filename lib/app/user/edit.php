@@ -46,7 +46,7 @@ trait edit
 		}
 
 		$id = \lib\app::request('id');
-		$id = \lib\utility\shortURL::decode($id);
+		$id = \lib\coding::decode($id);
 
 		if(!$id)
 		{

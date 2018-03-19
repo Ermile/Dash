@@ -104,7 +104,7 @@ trait get
 
 
 		$id = \lib\utility::request('id');
-		$id = \lib\utility\shortURL::decode($id);
+		$id = \lib\coding::decode($id);
 		if(!$id)
 		{
 			\lib\db\logs::set('api:transaction:id:not:set', $this->transaction_id, $log_meta);
@@ -151,7 +151,7 @@ trait get
 			switch ($key)
 			{
 				case 'id':
-					$result[$key] = \lib\utility\shortURL::encode($value);
+					$result[$key] = \lib\coding::encode($value);
 					break;
 				default:
 					$result[$key] = $value;

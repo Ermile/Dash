@@ -7,7 +7,7 @@ class model extends \addons\content_su\main\model
 	public function get_load($_args)
 	{
 		$id = isset($_args->match->url[0][1]) ? $_args->match->url[0][1] : null;
-		$id = \lib\utility\shortURL::decode($id);
+		$id = \lib\coding::decode($id);
 		$result = [];
 		if($id && is_numeric($id))
 		{

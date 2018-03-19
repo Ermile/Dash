@@ -70,7 +70,7 @@ trait add
 			return false;
 		}
 
-		$return['user_id'] = \lib\utility\shortURL::encode($user_id);
+		$return['user_id'] = \lib\coding::encode($user_id);
 
 		$_option['user_id'] = $user_id;
 

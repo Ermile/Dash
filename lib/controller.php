@@ -517,7 +517,7 @@ class controller
 		if(\lib\request::get("ref") && !\lib\user::login())
 		{
 			$url_ref = \lib\request::get('ref');
-			$url_ref = \lib\utility\shortURL::decode($url_ref);
+			$url_ref = \lib\coding::decode($url_ref);
 
 			if(!$url_ref)
 			{

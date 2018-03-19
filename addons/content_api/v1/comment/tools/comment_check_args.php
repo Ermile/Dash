@@ -9,7 +9,7 @@ trait comment_check_args
 		$log_meta = $_log_meta;
 
 		$post_id = \lib\utility::request('post_id');
-		$post_id = \lib\utility\shortURL::decode($post_id);
+		$post_id = \lib\coding::decode($post_id);
 		if(!$post_id)
 		{
 			$post_id = null;
@@ -75,14 +75,14 @@ trait comment_check_args
 		}
 
 		$parent = \lib\utility::request('parent');
-		$parent = \lib\utility\shortURL::decode($parent);
+		$parent = \lib\coding::decode($parent);
 		if(!$parent)
 		{
 			$parent = null;
 		}
 
 		$user_id = \lib\utility::request('user_id');
-		$user_id = \lib\utility\shortURL::decode($user_id);
+		$user_id = \lib\coding::decode($user_id);
 		if(!$user_id && \lib\utility::request('user_id'))
 		{
 			if($_args['save_log']) \lib\db\logs::set('addons:api:comment:user_id:max:length', $this->user_id, $log_meta);
@@ -136,7 +136,7 @@ trait comment_check_args
 		$user_id = \lib\utility::request('user_id');
 		if($user_id && is_string($user_id) || is_numeric($user_id))
 		{
-			$where['user_id'] = \lib\utility\shortURL::decode($user_id);
+			$where['user_id'] = \lib\coding::decode($user_id);
 		}
 
 		if(!$user_id && \lib\utility::isset_request('user_id'))

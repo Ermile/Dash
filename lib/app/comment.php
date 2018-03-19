@@ -11,7 +11,7 @@ class comment
 
 	public static function get($_id)
 	{
-		$id = \lib\utility\shortURL::decode($_id);
+		$id = \lib\coding::decode($_id);
 		if(!$id)
 		{
 			return false;
@@ -28,7 +28,7 @@ class comment
 	{
 		\lib\app::variable($_args);
 		// check args
-		$id = \lib\utility\shortURL::decode($_id);
+		$id = \lib\coding::decode($_id);
 		if(!$id)
 		{
 			\lib\notif::error(T_("Can not access to edit comment"));
@@ -142,7 +142,7 @@ class comment
 				case 'term_id':
 					if(isset($value))
 					{
-						$result[$key] = \lib\utility\shortURL::encode($value);
+						$result[$key] = \lib\coding::encode($value);
 					}
 					else
 					{

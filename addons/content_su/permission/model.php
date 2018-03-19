@@ -32,7 +32,7 @@ class model extends \addons\content_su\main\model
 	public function post_add($_args)
 	{
 		$id = isset($_args->match->url[0][1]) ? $_args->match->url[0][1] : null;
-		$id = \lib\utility\shortURL::decode($id);
+		$id = \lib\coding::decode($id);
 		if(!$id)
 		{
 			return false;

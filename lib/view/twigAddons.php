@@ -820,11 +820,11 @@ trait twigAddons
 			$result = null;
 			if($_type === 'decode')
 			{
-				$result = \lib\utility\shortURL::decode($_url, $_alphabet);
+				$result = \lib\coding::decode($_url, $_alphabet);
 			}
 			elseif($_type === 'encode')
 			{
-				$result = \lib\utility\shortURL::encode($_url, $_alphabet);
+				$result = \lib\coding::encode($_url, $_alphabet);
 			}
 			return $result;
 		});

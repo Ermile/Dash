@@ -108,7 +108,7 @@ trait term_check_args
 		$related_ids = [];
 		foreach ($related_id as $key => $value)
 		{
-			$temp = \lib\utility\shortURL::decode($value);
+			$temp = \lib\coding::decode($value);
 			if($temp)
 			{
 				array_push($related_ids, $temp);

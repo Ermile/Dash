@@ -38,7 +38,7 @@ trait delete
 
 		$notify_id = \lib\utility::request('id');
 
-		$notify_id = \lib\utility\shortURL::decode($notify_id);
+		$notify_id = \lib\coding::decode($notify_id);
 		if(!$notify_id)
 		{
 			\lib\db\logs::set('api:parent:remove:request:notify:id:not:set', $this->user_id, $log_meta);
@@ -115,7 +115,7 @@ trait delete
 		}
 
 		$userparents_id = \lib\utility::request('id');
-		$userparents_id = \lib\utility\shortURL::decode($userparents_id);
+		$userparents_id = \lib\coding::decode($userparents_id);
 		if(!$userparents_id)
 		{
 			\lib\db\logs::set('api:parent:delete:notify:data:invalid:access', $this->user_id, $log_meta);
@@ -124,7 +124,7 @@ trait delete
 		}
 
 		$related_id = \lib\utility::request('related_id');
-		$related_id = \lib\utility\shortURL::decode($related_id);
+		$related_id = \lib\coding::decode($related_id);
 		if(!$userparents_id && \lib\utility::request('related_id'))
 		{
 			\lib\db\logs::set('api:parent:delete:related_id:invalid', $this->user_id, $log_meta);

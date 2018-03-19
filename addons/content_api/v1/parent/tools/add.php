@@ -51,7 +51,7 @@ trait add
 		}
 
 		$user_id = \lib\utility::request('id');
-		$user_id = \lib\utility\shortURL::decode($user_id);
+		$user_id = \lib\coding::decode($user_id);
 		if(!$user_id)
 		{
 			if($_args['save_log']) \lib\db\logs::set('api:parent:user_id:not:set', null, $log_meta);
@@ -101,7 +101,7 @@ trait add
 		\lib\temp::set('add_parent_detail', $get_parent_data);
 
 		$related_id = \lib\utility::request('related_id');
-		$related_id = \lib\utility\shortURL::decode($related_id);
+		$related_id = \lib\coding::decode($related_id);
 		if(!$related_id && \lib\utility::request('related_id'))
 		{
 			\lib\db\logs::set('api:parent:related_id:is:incurrect:add', null, $log_meta);

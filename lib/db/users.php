@@ -239,7 +239,7 @@ class users
 
 		if($_ref)
 		{
-			$ref_id = \lib\utility\shortURL::decode($_ref);
+			$ref_id = \lib\coding::decode($_ref);
 			if($ref_id)
 			{
 				$check_ref = self::get($ref_id);

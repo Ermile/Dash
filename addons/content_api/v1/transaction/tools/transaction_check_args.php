@@ -25,7 +25,7 @@ trait transaction_check_args
 		}
 
 		$user_id = \lib\utility::request('user_id');
-		$user_id = \lib\utility\shortURL::decode($user_id);
+		$user_id = \lib\coding::decode($user_id);
 		if(!$user_id)
 		{
 			if($_args['save_log']) \lib\db\logs::set('addons:api:trransaction:user_id:invalid', $this->user_id, $log_meta);

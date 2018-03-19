@@ -1,8 +1,8 @@
 <?php
-namespace lib\utility;
+namespace lib;
 
 /** ShortURL: Bijective conversion between natural numbers (IDs) and short strings **/
-class shortURL
+class coding
 {
 	/**
 	 * ShortURL::encode() takes an ID and turns it into a short string
@@ -103,14 +103,6 @@ class shortURL
 	}
 
 
-	/**
-	 * encode number to another number
-	 *
-	 * @param      <type>  $_num       The number
-	 * @param      string  $_alphabet  The alphabet
-	 *
-	 * @return     <type>  ( description_of_the_return_value )
-	 */
 	public static function encode_number($_num, $_alphabet = null)
 	{
 		if($_alphabet === null)
@@ -121,14 +113,6 @@ class shortURL
 	}
 
 
-	/**
-	 * decode number to another number
-	 *
-	 * @param      <type>  $_num       The number
-	 * @param      <type>  $_alphabet  The alphabet
-	 *
-	 * @return     <type>  ( description_of_the_return_value )
-	 */
 	public static function decode_number($_num, $_alphabet = null)
 	{
 		if($_alphabet === null)
@@ -140,14 +124,6 @@ class shortURL
 
 
 
-	/**
-	 * encode number whith all alphabet
-	 *
-	 * @param      <type>  $_num       The all
-	 * @param      string  $_alphabet  The alphabet
-	 *
-	 * @return     <type>  ( description_of_the_return_value )
-	 */
 	public static function encode_all($_num, $_alphabet = null)
 	{
 		if($_alphabet === null)
@@ -158,14 +134,6 @@ class shortURL
 	}
 
 
-	/**
-	 * decode from all alphabet to number
-	 *
-	 * @param      <type>  $_string       The all
-	 * @param      <type>  $_alphabet  The alphabet
-	 *
-	 * @return     <type>  ( description_of_the_return_value )
-	 */
 	public static function decode_all($_string, $_alphabet = null)
 	{
 		if($_alphabet === null)

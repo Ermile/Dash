@@ -111,7 +111,7 @@ trait get
 
 
 		$id = \lib\utility::request('id');
-		$id = \lib\utility\shortURL::decode($id);
+		$id = \lib\coding::decode($id);
 		if(!$id)
 		{
 			\lib\db\logs::set('api:user:id:not:set', $this->user_id, $log_meta);
@@ -154,7 +154,7 @@ trait get
 			$user_ids = array_column($_data, 'id');
 		}
 
-		$user_ids_decode = array_map(function($_a){return \lib\utility\shortURL::decode($_a);}, $user_ids);
+		$user_ids_decode = array_map(function($_a){return \lib\coding::decode($_a);}, $user_ids);
 
 		$get_term_multi =
 		[
@@ -173,7 +173,7 @@ trait get
 			{
 				if(isset($value['related_id']) && isset($value['type']) && isset($value['title']))
 				{
-					$related_encode = \lib\utility\shortURL::encode($value['related_id']);
+					$related_encode = \lib\coding::encode($value['related_id']);
 					$cat_tag[$related_encode][$value['type']][] = $value['title'];
 				}
 			}
@@ -239,7 +239,7 @@ trait get
 				case 'id':
 				case 'fileid':
 				case 'parent':
-					$result[$key] = \lib\utility\shortURL::encode($value);
+					$result[$key] = \lib\coding::encode($value);
 					break;
 
 				case 'birthday':

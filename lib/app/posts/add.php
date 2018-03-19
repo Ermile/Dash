@@ -94,7 +94,7 @@ trait add
 			}
 		}
 
-		$return['post_id'] = \lib\utility\shortURL::encode($post_id);
+		$return['post_id'] = \lib\coding::encode($post_id);
 
 		if(\lib\engine\process::status())
 		{

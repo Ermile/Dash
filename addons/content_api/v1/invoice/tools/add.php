@@ -98,7 +98,7 @@ trait add
 		{
 
 			$id = \lib\utility::request('id');
-			$id = \lib\utility\shortURL::decode($id);
+			$id = \lib\coding::decode($id);
 			if(!$id)
 			{
 				if($_args['save_log']) \lib\db\logs::set('addon:api:invoice:pathc:id:not:set', $this->user_id, $log_meta);

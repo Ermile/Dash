@@ -116,7 +116,7 @@ trait get
 
 
 		$id = \lib\utility::request('id');
-		$id = \lib\utility\shortURL::decode($id);
+		$id = \lib\coding::decode($id);
 		if(!$id)
 		{
 			\lib\db\logs::set('api:comment:id:not:set', $this->user_id, $log_meta);
@@ -166,7 +166,7 @@ trait get
 				case 'id':
 				case 'post_id':
 				case 'user_id':
-					$result[$key] = \lib\utility\shortURL::encode($value);
+					$result[$key] = \lib\coding::encode($value);
 					break;
 
 				case 'meta':

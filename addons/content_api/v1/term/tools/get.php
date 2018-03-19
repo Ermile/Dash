@@ -99,7 +99,7 @@ trait get
 
 
 		$id = \lib\utility::request('id');
-		$id = \lib\utility\shortURL::decode($id);
+		$id = \lib\coding::decode($id);
 
 		if(!$id)
 		{
@@ -149,7 +149,7 @@ trait get
 				case 'id':
 				case 'user_id':
 				case 'parent':
-					$result[$key] = \lib\utility\shortURL::encode($value);
+					$result[$key] = \lib\coding::encode($value);
 					break;
 
 				case 'meta':

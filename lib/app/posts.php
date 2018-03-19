@@ -14,7 +14,7 @@ class posts
 
 	public static function post_gallery($_post_id, $_file_index, $_type = 'add')
 	{
-		$post_id = \lib\utility\shortURL::decode($_post_id);
+		$post_id = \lib\coding::decode($_post_id);
 		if(!$post_id)
 		{
 			\lib\notif::error(T_("Invalid post id"));
@@ -347,7 +347,7 @@ class posts
 				return null;
 			}
 
-			$category_id = array_map(function($_a){return \lib\utility\shortURL::decode($_a);}, $category);
+			$category_id = array_map(function($_a){return \lib\coding::decode($_a);}, $category);
 			$category_id = array_filter($category_id);
 			$category_id = array_unique($category_id);
 
@@ -522,7 +522,7 @@ class posts
 				case 'term_id':
 					if(isset($value))
 					{
-						$result[$key] = \lib\utility\shortURL::encode($value);
+						$result[$key] = \lib\coding::encode($value);
 					}
 					else
 					{

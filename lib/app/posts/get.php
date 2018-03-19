@@ -7,7 +7,7 @@ trait get
 
 	public static function get_category_tag($_post_id, $_type)
 	{
-		$post_id = \lib\utility\shortURL::decode($_post_id);
+		$post_id = \lib\coding::decode($_post_id);
 		if(!$post_id)
 		{
 			return false;
@@ -53,7 +53,7 @@ trait get
 			return false;
 		}
 
-		$id = \lib\utility\shortURL::decode($_id);
+		$id = \lib\coding::decode($_id);
 
 		if(!$id)
 		{
@@ -102,7 +102,7 @@ trait get
 		}
 		elseif($_options['term'])
 		{
-			$_options['term'] = \lib\utility\shortURL::decode($_options['term']);
+			$_options['term'] = \lib\coding::decode($_options['term']);
 			$get_last_posts   = \lib\db\posts::get_posts_term($_options, 'term');
 		}
 		else

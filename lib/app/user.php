@@ -121,7 +121,7 @@ class user
 		}
 
 		$parent = \lib\app::request('parent');
-		$parent = \lib\utility\shortURL::decode($parent);
+		$parent = \lib\coding::decode($parent);
 		if(!$parent && \lib\app::request('parent'))
 		{
 			if($_option['save_log']) \lib\app::log('addon:api:user:parent:max:lenght', \lib\user::id(), $log_meta);
@@ -156,7 +156,7 @@ class user
 		}
 
 		$ref = \lib\app::request('ref');
-		$ref = \lib\utility\shortURL::decode($ref);
+		$ref = \lib\coding::decode($ref);
 		if(!$ref && \lib\app::request('ref'))
 		{
 			if($_option['save_log']) \lib\app::log('addon:api:user:ref:max:lenght', \lib\user::id(), $log_meta);
@@ -227,7 +227,7 @@ class user
 				case 'parent':
 					if(isset($value))
 					{
-						$result[$key] = \lib\utility\shortURL::encode($value);
+						$result[$key] = \lib\coding::encode($value);
 					}
 					else
 					{

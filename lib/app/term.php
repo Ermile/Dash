@@ -29,7 +29,7 @@ class term
 
 	public static function get($_id)
 	{
-		$id = \lib\utility\shortURL::decode($_id);
+		$id = \lib\coding::decode($_id);
 		if(!$id)
 		{
 			return false;
@@ -156,7 +156,7 @@ class term
 		}
 
 		$parent = \lib\app::request('parent');
-		if($parent && !\lib\utility\shortURL::is($parent))
+		if($parent && !\lib\coding::is($parent))
 		{
 			\lib\notif::error(T_("Invalid parent"), 'parent');
 			return false;
@@ -168,7 +168,7 @@ class term
 		{
 			if($parent)
 			{
-				$parent = \lib\utility\shortURL::decode($parent);
+				$parent = \lib\coding::decode($parent);
 
 				$get_parent = \lib\db\terms::get(['id' => $parent, 'limit' => 1]);
 
@@ -225,7 +225,7 @@ class term
 				case 'parent':
 					if(isset($value))
 					{
-						$result[$key] = \lib\utility\shortURL::encode($value);
+						$result[$key] = \lib\coding::encode($value);
 					}
 					else
 					{
@@ -401,7 +401,7 @@ class term
 		$_option = array_merge($default_option, $_option);
 
 		$id = \lib\app::request('id');
-		$id = \lib\utility\shortURL::decode($id);
+		$id = \lib\coding::decode($id);
 
 		if(!$id)
 		{

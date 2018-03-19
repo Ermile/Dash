@@ -96,7 +96,7 @@ class file
 
 		if($file_id)
 		{
-			$file_id_code = \lib\utility\shortURL::encode($file_id);
+			$file_id_code = \lib\coding::encode($file_id);
 		}
 
 		$url = null;

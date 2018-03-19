@@ -9,7 +9,7 @@ class controller extends \addons\content_cp\main\controller
 
 		$id = \lib\request::get('id');
 
-		if(!$id || !\lib\utility\shortURL::is($id))
+		if(!$id || !\lib\coding::is($id))
 		{
 			\lib\header::status(404, T_("Invalid id"));
 		}
