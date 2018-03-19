@@ -157,15 +157,6 @@ trait twigAddons
 	}
 
 
-	public function twig_filter_fitNationalcode()
-	{
-		return new \Twig_SimpleFilter('fitNationalcode', function ($_number)
-		{
-			return \lib\utility\nationalcode::fit_syntax($_number);
-		});
-	}
-
-
 	/**
 	 * [twig_filter_exist description]
 	 * @return [type] [description]

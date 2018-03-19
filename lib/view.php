@@ -113,7 +113,6 @@ class view
 		$this->add_twig_filter('readableSize');
 		$this->add_twig_filter('persian');
 		$this->add_twig_filter('fitNumber');
-		$this->add_twig_filter('fitNationalcode');
 		$this->add_twig_filter('humantime');
 		$this->add_twig_filter('exist');
 		$this->add_twig_filter('decode');
