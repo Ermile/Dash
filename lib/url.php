@@ -67,7 +67,8 @@ class url
 
 		self::$split_host = explode('.', $host);
 
-		self::$uri        = self::server('REQUEST_URI');
+		self::$uri = self::server('REQUEST_URI');
+		self::$uri = rtrim(self::$uri, '/');
 
 		if(substr(self::$uri, 0, 1) === '/')
 		{
