@@ -41,6 +41,7 @@ class coding
 			case '':
 			case true:
 			case false:
+			case 'default':
 				$alphabet = self::$ALPHABET;
 				break;
 
@@ -96,16 +97,15 @@ class coding
 		}
 
 		$lenght = mb_strlen($_alphabet);
-
 		$num    = 0;
 		$len    = mb_strlen($_str);
-
 		$_str   = str_split($_str);
 
 		for ($i = 0; $i < $len; $i++)
 		{
 			$num = $num * $lenght + strpos($_alphabet, $_str[$i]);
 		}
+
 		return $num;
 	}
 
@@ -120,8 +120,14 @@ class coding
 	public static function is($_string, $_alphabet = null)
 	{
 		$_alphabet = self::alphabet($_alphabet);
-
-		return preg_match("/^[". $_alphabet. "]+$/", $_string);
+		if(preg_match("/^[". $_alphabet. "]+$/", $_string))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 }
 ?>
