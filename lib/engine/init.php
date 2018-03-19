@@ -77,8 +77,79 @@ class init
 	}
 
 
+	private static function account_urls()
+	{
+		$param = \lib\url::query();
+		if($param)
+		{
+			$param = '?'.$param;
+		}
+
+		$myrep = \lib\url::content();
+		switch (\lib\url::module())
+		{
+			case 'signin':
+			case 'login':
+				$url = \lib\url::base(). '/enter'. $param;
+				\lib\redirect::to($url);
+				break;
+
+			case 'signup':
+				if($myrep !== 'enter')
+				{
+					$url = \lib\url::base(). '/enter/signup'. $param;
+					\lib\redirect::to($url);
+				}
+				break;
+
+			case 'register':
+
+				$url = \lib\url::base(). '/enter/signup'. $param;
+				\lib\redirect::to($url);
+				break;
+
+			case 'signout':
+			case 'logout':
+				if($myrep !== 'enter')
+				{
+					$url = \lib\url::base(). '/enter/logout'. $param;
+					\lib\redirect::to($url);
+				}
+
+				break;
+		}
+
+		switch (\lib\url::directory())
+		{
+			case 'account/recovery':
+			case 'account/changepass':
+			case 'account/verification':
+			case 'account/verificationsms':
+			case 'account/signin':
+			case 'account/login':
+				$url = \lib\url::base(). '/enter'. $param;
+				\lib\redirect::to($url);
+				break;
+
+			case 'account/signup':
+			case 'account/register':
+				$url = \lib\url::base(). '/enter/signup'. $param;
+				\lib\redirect::to($url);
+				break;
+
+			case 'account/logout':
+			case 'account/signout':
+				$url = \lib\url::base(). '/enter/logout'. $param;
+				\lib\redirect::to($url);
+				break;
+		}
+	}
+
+
 	public static function appropriate_url()
 	{
+		self::account_urls();
+
 		if(\lib\option::url('fix') !== true)
 		{
 			return null;
