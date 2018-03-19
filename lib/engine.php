@@ -9,7 +9,7 @@ class engine
 	public function __construct()
 	{
 		// check debug and set php ini
-		\lib\engine\init::debug();
+		\lib\engine\dev::set_php_ini();
 
 		// block baby to not allow to harm yourself :/
 		\lib\engine\baby::block();
