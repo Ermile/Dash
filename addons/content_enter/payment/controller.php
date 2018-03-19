@@ -14,7 +14,7 @@ class controller extends \addons\content_enter\main\controller
 		$args            = [];
 		$args['get']     = \lib\request::get(null, 'raw');
 		$args['post']    = \lib\request::post();
-		$args['request'] = \lib\utility\safe::safe($_REQUEST);
+		$args['request'] = \lib\safe::safe($_REQUEST);
 
 		$this->display = false;
 

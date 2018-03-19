@@ -177,7 +177,7 @@ class model extends \mvc\model
 		{
 			// calc full_name of user
 			$fullName = trim($first_name. ' '. $last_name);
-			$fullName = \lib\utility\safe::safe($fullName, 'sqlinjection');
+			$fullName = \lib\safe::safe($fullName, 'sqlinjection');
 
 			if(mb_strlen($fullName) > 50)
 			{
@@ -299,7 +299,7 @@ class model extends \mvc\model
 		// $log['clientip']       = \lib\server::ip(true);
 		// $log['visit_id']       = null;
 
-		// $log                   = \lib\utility\safe::safe($log);
+		// $log                   = \lib\safe::safe($log);
 
 		// \lib\db\apilogs::insert($log);
 

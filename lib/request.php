@@ -18,7 +18,7 @@ class request
 	{
 		if(!self::$POST)
 		{
-			self::$POST = utility\safe::safe($_POST, 'sqlinjection');
+			self::$POST = \lib\safe::safe($_POST, 'sqlinjection');
 		}
 		$myvalue = null;
 		if(!$_name)
@@ -85,7 +85,7 @@ class request
 	{
 		if(!self::$GET)
 		{
-			self::$GET = utility\safe::safe($_GET, 'sqlinjection');
+			self::$GET = \lib\safe::safe($_GET, 'sqlinjection');
 		}
 		$myget = [];
 		foreach (self::$GET as $key => &$value)

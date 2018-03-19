@@ -21,7 +21,7 @@ class sessions
 	{
 		$code =  'Ermile'. $_user_id. '_;)_'. time(). '(^_^)' . rand(1000, 9999);
 		$code = \lib\utility::hasher($code, false);
-		$code = \lib\utility\safe::safe($code);
+		$code = \lib\safe::safe($code);
 		return $code;
 	}
 

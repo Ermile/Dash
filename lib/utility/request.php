@@ -41,21 +41,21 @@ class request
 				break;
 
 			case 'array':
-				$this->request = utility\safe::safe($this->request, 'sqlinjection');
+				$this->request = \lib\safe::safe($this->request, 'sqlinjection');
 				break;
 
 			case 'json':
 				$json = json_decode($this->request);
-				$this->request = utility\safe::safe($json, 'sqlinjection');
+				$this->request = \lib\safe::safe($json, 'sqlinjection');
 				break;
 
 			case 'object':
-				$this->request = utility\safe::safe($this->request, 'sqlinjection');
+				$this->request = \lib\safe::safe($this->request, 'sqlinjection');
 				break;
 
 			case 'input_json':
 				$input = json_decode(file_get_contents('php://input'), true);
-				$this->request = utility\safe::safe($input, 'sqlinjection');
+				$this->request = \lib\safe::safe($input, 'sqlinjection');
 				break;
 
 			default:

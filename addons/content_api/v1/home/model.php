@@ -298,7 +298,7 @@ class model extends \mvc\model
 		// $log['clientip']       = \lib\server::ip(true);
 		// $log['visit_id']       = null;
 
-		// $log                   = \lib\utility\safe::safe($log);
+		// $log                   = \lib\safe::safe($log);
 
 		// \lib\db\apilogs::insert($log);
 

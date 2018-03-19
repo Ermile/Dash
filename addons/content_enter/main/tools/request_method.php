@@ -14,7 +14,7 @@ trait request_method
 	{
 		if(isset($_SERVER['REQUEST_METHOD']) && is_string($_SERVER['REQUEST_METHOD']))
 		{
-			return \lib\utility\safe::safe(mb_strtolower($_SERVER['REQUEST_METHOD']));
+			return \lib\safe::safe(mb_strtolower($_SERVER['REQUEST_METHOD']));
 		}
 		return false;
 	}

@@ -36,7 +36,7 @@ class header
 		    	$my_header = $out;
 			}
 
-			self::$HEADER = utility\safe::safe($my_header);
+			self::$HEADER = \lib\safe::safe($my_header);
 		}
 
 		if($_name)

@@ -72,7 +72,7 @@ class appkey
 
 		$app_key = \lib\utility::hasher($app_key, null, true);
 
-		$app_key = \lib\utility\safe::safe($app_key);
+		$app_key = \lib\safe::safe($app_key);
 
 		$arg =
 		[

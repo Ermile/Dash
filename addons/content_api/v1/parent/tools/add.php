@@ -197,7 +197,7 @@ trait add
 				'related_foreign' => 'users',
 				'status'		  => 'enable',
 				'related_id'      => $user_id,
-				'meta'            => json_encode(\lib\utility\safe::safe($meta), JSON_UNESCAPED_UNICODE),
+				'meta'            => json_encode(\lib\safe::safe($meta), JSON_UNESCAPED_UNICODE),
 				'needanswer'      => 1,
 				'content'         => T_("Are you :title of this user?", ['title' => T_($title)]),
 			];

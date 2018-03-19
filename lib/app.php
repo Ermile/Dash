@@ -18,7 +18,7 @@ class app
 	{
 		if(is_array($_args))
 		{
-			$args = \lib\utility\safe::safe($_args);
+			$args = \lib\safe::safe($_args);
 
 			self::$REQUEST_APP = $args;
 		}

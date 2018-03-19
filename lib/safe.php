@@ -1,5 +1,7 @@
 <?php
-namespace lib\utility;
+namespace lib;
+
+
 class safe
 {
 	/**
@@ -14,36 +16,26 @@ class safe
 			return self::walk($_string, $_remove_inject);
 		}
 
-		// check baby to not allow to harm yourself
-		// \lib\engine\baby::check($_string);
-		// if uncomment above code we have problem on some codes
-
-		if(
-			gettype($_string) == 'integer' ||
-			gettype($_string) == 'double' ||
-			gettype($_string) == 'boolean' ||
-			$_string === null
-			)
+		if(gettype($_string) == 'integer' || gettype($_string) == 'double' || gettype($_string) == 'boolean' ||	$_string === null)
 		{
 			return $_string;
 		}
-		if(is_string($_remove_inject))
+
+		if($_remove_inject === 'sqlinjection')
 		{
-			switch ($_remove_inject)
-			{
-				case 'sqlinjection':
-					$_remove_inject = ["'", '"', '\\\\\\', '`', '\*', "\\?", ';'];
-					break;
-			}
+			$_remove_inject = ["'", '"', '\\\\\\', '`', '\*', "\\?", ';'];
 		}
+
 		if(is_array($_remove_inject))
 		{
 			$_string = preg_replace("/\s?[" . join('', $_remove_inject) . "]/", "", $_string);
 		}
+
 		$string = htmlspecialchars($_string, ENT_QUOTES | ENT_HTML5);
 		$string = addcslashes($string, '\\');
 		return $string;
 	}
+
 
 	/**
 	 * Nested function for walk array or object

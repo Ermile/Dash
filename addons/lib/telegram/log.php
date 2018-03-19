@@ -292,7 +292,7 @@ class log extends tg
 	 */
 	private static function catchTelegramUser($_telegram_id, $_fromDetail = null)
 	{
-		$_fromDetail = \lib\utility\safe::safe($_fromDetail, 'sqlinjection');
+		$_fromDetail = \lib\safe::safe($_fromDetail, 'sqlinjection');
 		// if user_id is not set try to give user_id from database
 		// search in db to find user_id
 		$qry = "SELECT `user_id`
@@ -313,7 +313,7 @@ class log extends tg
 		{
 			// calc full_name of user
 			$fullName = trim(self::response('from','first_name'). ' '. self::response('from','last_name'));
-			$fullName = \lib\utility\safe::safe($fullName, 'sqlinjection');
+			$fullName = \lib\safe::safe($fullName, 'sqlinjection');
 			$mobile = 'tg_'. $_telegram_id;
 			$user = \lib\db\users::get_by_mobile($mobile);
 			if(empty($user))
@@ -434,7 +434,7 @@ class log extends tg
 				break;
 		}
 
-		// \lib\db\users::updateDetail(self::$user_id, $_type, 'telegram', \lib\utility\safe::safe($_args, 'sqlinjection'));
+		// \lib\db\users::updateDetail(self::$user_id, $_type, 'telegram', \lib\safe::safe($_args, 'sqlinjection'));
 	}
 }
 ?>
