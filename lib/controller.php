@@ -1,24 +1,16 @@
 <?php
 namespace lib;
-use \lib\api;
+
 
 class controller
 {
-	use \lib\mvc;
+	public $display      = true;
+	public $display_name = null;
 
-	public $api, $model, $view, $method;
-	public $model_name, $view_name, $display_name;
-	public $debug           = true;
-	public $datarow         = null;
+	public $model_name   = null;
+	public $view_name    = null;
 
-
-	/**
-	 * if display true && method get corridor run view display
-	 * @var boolean
-	 */
-	public $display = true;
-
-	public $route_check_true = false;
+	private $allow       = [];
 
 	/**
 	 * [__construct description]
@@ -27,100 +19,53 @@ class controller
 	{
 		// check if isset remember me and login by this
 		\lib\user::check_remeber_login();
+
 		// redirect
 		\lib\user::user_country_redirect();
 	}
 
 
-	/**
-	 * [loadModel description]
-	 * @return [type] [description]
-	 */
-	public function loadModel()
+	public function allow($_method, $_function_name = null)
 	{
-		if(!isset($this->loadModel)) $this->loadModel = new \lib\load($this, "model");
-		return call_user_func_array(array($this->loadModel, 'method'), func_get_args());
+		if(!$_function_name)
+		{
+			$_function_name = $_method;
+		}
+		$this->allow[$_method] = $_function_name;
+	}
+
+
+	private function method_function($_method)
+	{
+		if(!array_key_exists($_method, $this->allow))
+		{
+			\lib\header::status(405);
+		}
+
+		if(is_callable([$this->model, $this->allow[$_method]]))
+		{
+			return call_user_func_array([$this->model, $this->allow[$_method]], []);
+		}
+		else
+		{
+			\lib\header::status(500, "Function ". $this->allow[$_method]. " not exist!");
+		}
 	}
 
 
 	/**
-	 * [loadView description]
-	 * @return [type] [description]
-	 */
-	public function loadView()
-	{
-		if(!isset($this->loadModel)) $this->loadModel = new \lib\load($this, "view");
-		return call_user_func_array(array($this->loadModel, 'method'), func_get_args());
-	}
-
-
-	/**
-	 * [_corridor description]
-	 * @return [type] [description]
-	 */
+	* RUN VEIW AND MODE FUNCTIONS
+	*/
 	public function _corridor()
 	{
-		if(method_exists($this, 'corridor'))
-		{
-			$this->corridor();
-		}
-		if(!$this->method)
-		{
-			$this->method = 'get';
-		}
-
-		$processor_arg = false;
-
-		if(isset($this->model_api_processor))
-		{
-			$name = $this->model_api_processor->method;
-			$args = $this->model_api_processor->args;
-			$api_callback = call_user_func_array(array($this->model(), $name), array($args));
-			$this->api_callback = $api_callback;
-
-		}
-
-		if(isset($this->caller))
-		{
-			foreach ($this->caller as $key => $value)
-			{
-				$args = $value[2];
-				if($value[0])
-				{
-					$caller_callback = call_user_func_array(array($this->model(), "api_".$value[0]), array($args));
-					$this->caller[$key][2]->callback = $caller_callback;
-				}
-			}
-		}
-
 		if(\lib\request::json_accept())
 		{
 			$this->display = false;
 		}
 
-		if(!\lib\temp::get('api') && $this->method == 'get' && $this->display)
+		if(!\lib\temp::get('api') && $this->method() === 'get' && $this->display)
 		{
 			$this->view();
-
-			if(isset($this->view_api_processor))
-			{
-				$name = $this->view_api_processor->method;
-				$args = $this->view_api_processor->args;
-				if(isset($this->api_callback)) $args->api_callback = $api_callback;
-				call_user_func_array(array($this->view(), $name), array($args));
-
-			}
-
-			if(isset($this->caller))
-			{
-				foreach ($this->caller as $key => $value) {
-					$args = $value[2];
-					if($value[1])
-					{
-						$caller_callback = call_user_func_array(array($this->view(), 'caller_'.$value[1]), array($args));
-					}
-				}
-			}
 
 			if($this->display)
 			{
@@ -129,67 +74,43 @@ class controller
 		}
 		elseif(\lib\temp::get('api') || !$this->display)
 		{
-			$mycallback = isset($this->api_callback)? $this->api_callback: null;
-
-			if($mycallback !== false && $mycallback !== null)
+			$this->model();
+			if($this->model)
 			{
-				\lib\notif::result($mycallback);
+				$this_method = $this->method();
+				$this->method_function($this_method);
 			}
-			$processor_arg = (object) array('force_json'=>true);
 		}
-
-		if($this->model)
+		else
 		{
-			$this->model()->_processor($processor_arg);
+			\lib\header::status(424);
 		}
 
+		if(!\lib\temp::get('api') && $this->method() === "post")
+		{
+			\lib\redirect::pwd();
+		}
 	}
 
 
-	/**
-	 * [_processor description]
-	 * @param  boolean $options [description]
-	 * @return [type]           [description]
-	 */
-	public function _processor($options = false)
+	public function method($_name = null)
 	{
-		if(is_array($options))
+		$method = $_SERVER['REQUEST_METHOD'];
+		$method = mb_strtolower($method);
+		if($_name)
 		{
-			$options = (object) $options;
-		}
-
-		$force_json   = gettype($options) == 'object' && isset($options->force_json)   && $options->force_json   ? true : false;
-		$force_stop   = gettype($options) == 'object' && isset($options->force_stop)   && $options->force_stop   ? true : false;
-		$not_redirect = gettype($options) == 'object' && isset($options->not_redirect) && $options->not_redirect ? true : false;
-
-		if($not_redirect)
-		{
-			$this->controller()->redirector = false;
-		}
-
-
-		if(\lib\request::json_accept() || $force_json || \lib\temp::get('api'))
-		{
-			header('Content-Type: application/json');
-			if(isset($this->controller()->redirector) && $this->controller()->redirector)
+			if($_name === $method)
 			{
-				\lib\notif::redirect(\lib\redirect::pwd());
+				return true;
 			}
-			echo \lib\notif::json();
+			else
+			{
+				return false;
+			}
 		}
-		elseif(!\lib\temp::get('api') && mb_strtolower($_SERVER['REQUEST_METHOD']) == "post")
+		else
 		{
-			\lib\redirect::pwd();
-		}
-
-		if(isset($this->controller()->redirector) && $this->controller()->redirector && !\lib\request::json_accept())
-		{
-			\lib\redirect::pwd();
-		}
-
-		if($force_stop)
-		{
-			\lib\code::exit();
+			return $method;
 		}
 	}
 
@@ -208,14 +129,11 @@ class controller
 			}
 			else
 			{
-				// $class_name = get_called_class();
-				// $class_name = preg_replace("/\\\controller$/", '\model', $class_name);
-				$class_name = $this->findParentClass(__FUNCTION__);
+				$class_name = get_called_class();
+				$class_name = preg_replace("/\\\controller$/", '\model', $class_name);
 			}
 
-			$object = (object) [];
-			$object->controller = $this;
-			$this->model = new $class_name($object);
+			$this->model    = new $class_name();
 		}
 		return $this->model;
 	}
@@ -235,122 +153,16 @@ class controller
 			}
 			else
 			{
-				// $class_name = get_called_class();
-				// $class_name = preg_replace("/\\\controller$/", '\\\view', $class_name);
-				$class_name = $this->findParentClass(__FUNCTION__);
+				$class_name = get_called_class();
+				$class_name = preg_replace("/\\\controller$/", '\\\view', $class_name);
 			}
 
-			$object = (object) [];
+			$object             = (object) [];
 			$object->controller = $this;
-			$this->view = new $class_name($object);
+			$this->view         = new $class_name($object);
 
 		}
 		return $this->view;
-	}
-
-
-	/**
-	 * this function find parent class, if class exist return the name of parent class
-	 * else find a parent folder and if class exist use the parent one
-	 * @param  [type] $_className the name of class, view or model
-	 * @return [type]             return the address of exist class or show error page
-	 */
-	protected function findParentClass($_className)
-	{
-		$MyClassName = get_called_class();
-		$MyClassName = str_replace("\controller", '\\'.$_className, $MyClassName);
-
-		// if class not exist remove one slash and check it
-		if(!class_exists($MyClassName))
-		{
-			// have more than one back slash for example content\aa\bb\view
-			if(substr_count($MyClassName, "\\") > 2)
-			{
-				$MyClassName = str_replace("\\".$_className, '', $MyClassName);
-				$MyClassName = substr($MyClassName, 0, strrpos( $MyClassName, '\\')) . $_className;
-			}
-
-			// if after remove one back slash(if exist), class not exist
-			if(!class_exists($MyClassName))
-			{
-				// have more than one back slash for example content\aa\view
-				if(substr_count($MyClassName, "\\") == 2)
-				{
-					$MyClassName = str_replace("\\".$_className, '', $MyClassName);
-					$MyClassName = substr($MyClassName, 0, strrpos( $MyClassName, '\\')) . "\home\\" . $_className;
-				}
-				// have more than one back slash for example content\home
-				else
-				{
-					// i dont know this condtion!
-					// do nothing!
-				}
-			}
-			if(!class_exists($MyClassName))
-			{
-				$MyClassName = preg_replace("/\\\[^\\\]*\\\controller$/", '\home\\'.$_className, get_called_class());
-			}
-		}
-
-		if(!class_exists($MyClassName))
-		{
-			\lib\header::status(404, $_className . " not found");
-		}
-
-		return $MyClassName;
-	}
-
-
-	/**
-	 * route everything ;)
-	 */
-	public function allow()
-	{
-		$this->get()->ALL("/.*/");
-		$this->post()->ALL("/.*/");
-	}
-
-
-	/**
-	 * [check_api description]
-	 * @param  [type]  $name           [description]
-	 * @param  [type]  $model_function [description]
-	 * @param  boolean $view_function  [description]
-	 * @return [type]                  [description]
-	 */
-	public final function check_api($name, $model_function = null, $view_function = false)
-	{
-		if(!$this->api)
-		{
-			$this->api = new api($this);
-		}
-		return $this->api->$name($model_function, $view_function);
-	}
-
-
-	/**
-	 * [__call description]
-	 * @param  [type] $_name [description]
-	 * @param  [type] $_args [description]
-	 * @return [type]       [description]
-	 */
-	public function __call($_name, $_args)
-	{
-		if(preg_grep("/^$_name$/", array('get', 'post', 'put', 'delete', 'patch', 'link', 'unlink')))
-		{
-			array_unshift($_args, $_name);
-			return call_user_func_array(array($this, 'check_api'), $_args);
-		}
-		elseif(preg_match("#^inject_((after_|before_)?.+)$#Ui", $_name, $inject))
-		{
-			return $this->inject($inject[1], $_args);
-		}
-		elseif(preg_match("#^i(.*)$#Ui", $_name, $icall))
-		{
-			return $this->mvc_inject_finder($_name, $_args, $icall[1]);
-		}
-
-		\lib\header::status(404, get_called_class()."->$_name()");
 	}
 
 
@@ -363,63 +175,9 @@ class controller
 		return $this;
 	}
 
-
-	/**
-	 * [change_model description]
-	 * @param  [type] $name [description]
-	 * @return [type]       [description]
-	 */
-	public function change_model($name)
-	{
-		$this->model_name = $name;
-	}
-
-
-	/**
-	 * [change_view description]
-	 * @param  [type] $name [description]
-	 * @return [type]       [description]
-	 */
-	public function change_view($name)
-	{
-		$this->view_name = $name;
-	}
-
-
-	/**
-	 * [property description]
-	 * @return [type] [description]
-	 */
-	public function property()
-	{
-		$args = func_get_args();
-		if(count($args) == 1)
-		{
-			$name = $args[0];
-			return $this->$name;
-		}
-		elseif(count($args) == 2)
-		{
-			$name = $args[0];
-			return $this->$name = $args[1];
-		}
-	}
-
-
-	/**
-	 * [debug description]
-	 * @return [type] [description]
-	 */
 	public function debug()
 	{
 		return $this->debug;
-	}
-
-
-	public function url($_type = false)
-	{
-		$new_url = \lib\url::{$_type}();
-		return $new_url;
 	}
 }
 ?>
