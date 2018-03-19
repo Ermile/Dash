@@ -1,10 +1,14 @@
 <?php
 namespace lib\engine;
+
+
 class main
 {
-	private static $ctrl_name   = null;
+	private static $allow      = null;
+
 	public static $module_addr = null;
-	public static $controller   = null;
+	public static $view_addr   = null;
+	public static $controller  = null;
 
 
 	/**
@@ -22,7 +26,10 @@ class main
 
 			self::load_view();
 
-			self::load_model();
+			if(self::method() !== 'get')
+			{
+				self::load_model();
+			}
 		}
 	}
 
@@ -133,7 +140,12 @@ class main
 
 		if(is_callable([$controller, 'ready']))
 		{
-			$load_controller = $controller::ready();
+			$controller::ready();
+		}
+
+		if(self::method() !== 'get')
+		{
+			self::check_allow_method(self::method());
 		}
 	}
 
@@ -150,6 +162,7 @@ class main
 			{
 				$view::config();
 			}
+
 			\lib\view::twig();
 		}
 	}
@@ -163,7 +176,7 @@ class main
 		{
 			if(class_exists($model))
 			{
-				self::method_function();
+				self::check_allow_method(self::method(), true);
 			}
 		}
 
@@ -171,7 +184,40 @@ class main
 		{
 			\lib\redirect::pwd();
 		}
+	}
 
+
+	public static function allow($_method, $_function_name = null)
+	{
+		if(!$_function_name)
+		{
+			$_function_name = $_method;
+		}
+
+		self::$allow[$_method] = $_function_name;
+	}
+
+
+	public static function check_allow_method($_method, $_load_model = false)
+	{
+		if(!array_key_exists($_method, self::$allow))
+		{
+			\lib\header::status(405);
+		}
+
+		if($_load_model)
+		{
+			$model = self::$module_addr. '\\model';
+			if(is_callable([$model, self::$allow[$_method]]))
+			{
+				$fn   = self::$allow[$_method];
+				$model::$fn();
+			}
+			else
+			{
+				\lib\header::status(500, "Function ". self::$allow[$_method]. " not exist!");
+			}
+		}
 	}
 
 

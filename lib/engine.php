@@ -34,6 +34,12 @@ class engine
 
 		// LUNCH !
 		\lib\engine\main::start();
+		// 		// @check
+		// // check if isset remember me and login by this
+		// \lib\user::check_remeber_login();
+
+		// // redirect
+		// \lib\user::user_country_redirect();
 	}
 
 
