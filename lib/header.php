@@ -159,6 +159,11 @@ class header
 		if(\lib\request::json_accept() || \lib\temp::get('api'))
 		{
 			@header('Content-Type: application/json');
+
+			if(!$_title)
+			{
+				$_title = self::desc($_code);
+			}
 			\lib\notif::error($_title, $_code);
 			echo \lib\notif::json();
 		}
