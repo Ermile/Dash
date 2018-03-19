@@ -11,12 +11,7 @@ class view
 	 * @var array
 	 */
 	public $twig = [];
-	/**
-	 * constructor
-	 * @param boolean $_startObject controller
-	 */
 
-	public $twig_include_path = [];
 
 	public function __construct($_startObject = false)
 	{
@@ -24,9 +19,6 @@ class view
 		{
 			return;
 		}
-
-		array_push($this->twig_include_path, root);
-		array_push($this->twig_include_path, addons);
 
 		$this->controller            = $_startObject->controller;
 
@@ -212,8 +204,13 @@ class view
 
 		require_once core.'addons/lib/Twig/lib/Twig/Autoloader.php';
 		\Twig_Autoloader::register();
-		$loader		  = new \Twig_Loader_Filesystem($this->twig_include_path);
-		$array_option = [];
+
+		$twig_include_path   = [];
+		$twig_include_path[] = root;
+		$twig_include_path[] = addons;
+		$loader              = new \Twig_Loader_Filesystem($twig_include_path);
+		$array_option        = [];
+
 		if($this->controller()->debug())
 		{
 			$array_option['debug'] = true;
