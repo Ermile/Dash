@@ -36,7 +36,7 @@
 	<tbody>
 		{%for key, value in users_list%}
 		<tr>
-			<td>{% set user_code = value.id|shortURL("encode")%}{{user_code}}</td>
+			<td>{% set user_code = value.id|coding("encode")%}{{user_code}}</td>
 			<td>{{value.mobile|fitNumber}}</td>
 			<td>{{value.email}}</td>
 			<td>{{value.displayname}}</td>

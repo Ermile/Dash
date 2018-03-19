@@ -810,12 +810,12 @@ trait twigAddons
 
 
 	/**
-	 * [twig shortURL decode|encode]
+	 * [twig coding decode|encode]
 	 * @return [type] [description]
 	 */
-	public function twig_filter_shortURL()
+	public function twig_filter_coding()
 	{
-		return new \Twig_SimpleFilter('shortURL', function ($_url, $_type = 'decode', $_alphabet = null)
+		return new \Twig_SimpleFilter('coding', function ($_url, $_type = 'decode', $_alphabet = null)
 		{
 			$result = null;
 			if($_type === 'decode')

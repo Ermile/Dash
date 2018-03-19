@@ -196,7 +196,7 @@ class view
 		$this->add_twig_filter('humantime');
 		$this->add_twig_filter('exist');
 		$this->add_twig_filter('decode');
-		$this->add_twig_filter('shortURL');
+		$this->add_twig_filter('coding');
 		$this->add_twig_filter('filemtime');
 		$this->add_twig_function('breadcrumb');
 		$this->add_twig_function('langList');

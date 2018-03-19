@@ -36,12 +36,12 @@
 
     <div class="input pTB10 w400">
       <label class="addon" for="youRefLink">{%trans "Link"%}</label>
-      <input type="text" id="youRefLink" readonly value="jibres.com?ref={{login.id | shortURL('encode')}}" class="ltr">
+      <input type="text" id="youRefLink" readonly value="jibres.com?ref={{login.id | coding('encode')}}" class="ltr">
       <button class="addon btn primary" data-copy='#youRefLink'>Copy <span class="sf-link"></span></button>
     </div>
     <div class="input pTB10 w400">
       <label class="addon" for="youRefPromo">{%trans "Promo code"%}</label>
-      <input type="text" id="youRefPromo" readonly value="ref={{login.id | shortURL('encode')}}" class="ltr">
+      <input type="text" id="youRefPromo" readonly value="ref={{login.id | coding('encode')}}" class="ltr">
       <button class="addon btn primary" data-copy='#youRefPromo'>Copy <span class="sf-link"></span></button>
     </div>
   </div>
