@@ -36,8 +36,8 @@ class options
 			$new_crontab_txt = str_replace(self::current_cronjob_path(). PHP_EOL, '', $new_crontab_txt);
 		}
 
-		file_put_contents('/tmp/crontab.txt', $new_crontab_txt);
-		exec('crontab /tmp/crontab.txt', $result, $return_val);
+		file_put_contents(__DIR__.'/crontab.txt', $new_crontab_txt);
+		exec('crontab '. __DIR__.'/crontab.txt', $result, $return_val);
 		if($return_val === 0)
 		{
 			return true;
