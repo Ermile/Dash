@@ -62,7 +62,9 @@ class error
 	{
 		if(\lib\engine\dev::debug())
 		{
+			echo '<pre>';
 			echo $_msg;
+			echo '</pre>';
 		}
 	}
 
