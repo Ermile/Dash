@@ -18,9 +18,39 @@ class coding
 	 *
 	 * Source: https://github.com/delight-im/ShortURL (Apache License 2.0)
 	 */
-	public static $ALPHABET        = '23456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ';
 	public static $ALPHABET_NUMBER = '2513964078';
+	public static $ALPHABET        = '23456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ';
 	public static $ALPHABET_ALL    = 'Q4W3cvE5xRiTyu67qw1JKoplaGHLPkjhOYUrtfNMdsASDFIgZXezVB890C2bnm';
+
+
+	private static function alphabet($_alphabet)
+	{
+		$alphabet = null;
+
+		switch ($_alphabet)
+		{
+			case 'number':
+				$alphabet = slef::$ALPHABET_NUMBER;
+				break;
+
+			case 'all':
+				$alphabet = self::$ALPHABET_ALL;
+				break;
+
+			case null:
+			case '':
+			case true:
+			case false:
+				$alphabet = self::$ALPHABET;
+				break;
+
+			default:
+				$alphabet = $_alphabet;
+				break;
+		}
+
+		return $alphabet;
+	}
 
 
 	/**
@@ -31,10 +61,7 @@ class coding
 	 */
 	public static function encode($_num = null, $_alphabet = null)
 	{
-		if($_alphabet === null)
-		{
-			$_alphabet = self::$ALPHABET;
-		}
+		$_alphabet = self::alphabet($_alphabet);
 
 		if(!is_numeric($_num))
 		{
@@ -61,10 +88,7 @@ class coding
 	 */
 	public static function decode($_str = null, $_alphabet = null)
 	{
-		if($_alphabet === null)
-		{
-			$_alphabet = self::$ALPHABET;
-		}
+		$_alphabet = self::alphabet($_alphabet);
 
 		if(!self::is($_str, $_alphabet))
 		{
@@ -95,51 +119,9 @@ class coding
 	 */
 	public static function is($_string, $_alphabet = null)
 	{
-		if($_alphabet === null)
-		{
-			$_alphabet = self::$ALPHABET;
-		}
+		$_alphabet = self::alphabet($_alphabet);
+
 		return preg_match("/^[". $_alphabet. "]+$/", $_string);
 	}
-
-
-	public static function encode_number($_num, $_alphabet = null)
-	{
-		if($_alphabet === null)
-		{
-			$_alphabet = self::$ALPHABET_NUMBER;
-		}
-		return self::encode($_num, $_alphabet);
-	}
-
-
-	public static function decode_number($_num, $_alphabet = null)
-	{
-		if($_alphabet === null)
-		{
-			$_alphabet = self::$ALPHABET_NUMBER;
-		}
-		return self::decode($_num, $_alphabet);
-	}
-
-
-
-	public static function encode_all($_num, $_alphabet = null)
-	{
-		if($_alphabet === null)
-		{
-			$_alphabet = self::$ALPHABET_ALL;
-		}
-		return self::encode($_num, $_alphabet);
-	}
-
-
-	public static function decode_all($_string, $_alphabet = null)
-	{
-		if($_alphabet === null)
-		{
-			$_alphabet = self::$ALPHABET_ALL;
-		}
-		return self::decode($_string, $_alphabet);
-	}
 }
+?>
