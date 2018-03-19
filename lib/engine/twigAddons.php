@@ -1,64 +1,70 @@
 <?php
-namespace lib\utility;
+namespace lib\engine;
 
-trait twigAddons
+class twigAddons
 {
-	/**
-	 * add twig filter
-	 * @param string $method [description]
-	 */
-	public function add_twig_filter($method)
+
+	public static function init($_twig)
 	{
-		if(!isset($this->twig['filter'])) $this->twig['filter'] = [];
-		array_push($this->twig['filter'], $method);
-	}
+		$filters   = [];
+		$filters[] = self::filter_fcache();
+		$filters[] = self::filter_jdate();
+		$filters[] = self::filter_tdate();
+		$filters[] = self::filter_sdate();
+		$filters[] = self::filter_readableSize();
+		$filters[] = self::filter_persian();
+		$filters[] = self::filter_fitNumber();
+		$filters[] = self::filter_humantime();
+		$filters[] = self::filter_exist();
+		$filters[] = self::filter_decode();
+		$filters[] = self::filter_coding();
+		$filters[] = self::filter_filemtime();
+		$filters[] = self::filter_unset_type();
+		$filters[] = self::filter_var_dump();
 
-
-	/**
-	 * add twig function
-	 * @param string $method [description]
-	 */
-	public function add_twig_function($method)
-	{
-		if(!isset($this->twig['function'])) $this->twig['function'] = [];
-		array_push($this->twig['function'], $method);
-	}
-
-
-	/**
-	 * attach twig extentions
-	 * @param  object $twig
-	 */
-	public function twig_Extentions($twig)
-	{
-		foreach ($this->twig as $key => $value)
+		foreach ($filters as $key => $value)
 		{
-			$ext="add".ucfirst($key);
-			foreach ($value as $k => $v)
-			{
-				$method_name = "twig_{$key}_$v";
-				$twig->$ext($this->$method_name());
-			}
+			$_twig->addFilter($value);
+		}
+
+
+		$functions   = [];
+		$functions[] = self::function_breadcrumb();
+		$functions[] = self::function_langList();
+		$functions[] = self::function_posts();
+		$functions[] = self::function_tags();
+		$functions[] = self::function_category();
+		$functions[] = self::function_comments();
+		$functions[] = self::function_similar_post();
+		$functions[] = self::function_attachment();
+		$functions[] = self::function_post_search();
+		$functions[] = self::function_perm();
+		$functions[] = self::function_perm_su();
+
+		foreach ($functions as $key => $value)
+		{
+			$_twig->addFunction($value);
 		}
 	}
 
 
-	/**
-	 * [twig_macro description]
-	 * @param  [type] $name [description]
-	 * @return [type]       [description]
-	 */
-	public function twig_macro($name)
+	private static function filter_var_dump()
 	{
-		if(!isset($this->data->twig_macro)) $this->data->twig_macro = [];
-		if(array_search($name, $this->data->twig_macro) === false) array_push($this->data->twig_macro, $name);
+		return new \Twig_SimpleFilter('dump', 'var_dump');
 	}
 
 
-	/**
-	 * twig custom filter for static file cache
-	 */
-	public function twig_filter_fcache()
+	private static function filter_unset_type()
+	{
+		return new \Twig_SimpleFilter('unset_type', function ($array= null)
+		{
+			unset($array['attr']['type']);
+			return $array;
+		});
+	}
+
+
+	private static function filter_fcache()
 	{
 		return new \Twig_SimpleFilter('fcache', function ($string)
 		{
@@ -74,10 +80,7 @@ trait twigAddons
 	}
 
 
-	/**
-	 * twig custom filter for convert date to jalai with custom format like php date func format
-	 */
-	public function twig_filter_jdate()
+	private static function filter_jdate()
 	{
 		return new \Twig_SimpleFilter('jdate', function ($_string, $_format ="Y/m/d", $_convert = true)
 		{
@@ -90,7 +93,7 @@ trait twigAddons
 	 * twig custom filter for convert date to best type of showing on each language
 	 * tdate means translated date
 	 */
-	public function twig_filter_tdate()
+	private static function filter_tdate()
 	{
 		return new \Twig_SimpleFilter('tdate', function ($_string, $_format ="Y/m/d", $_convert = true)
 		{
@@ -112,7 +115,7 @@ trait twigAddons
 	/**
 	 * twig custom filter for convert date to best type of showing
 	 */
-	public function twig_filter_sdate()
+	private static function filter_sdate()
 	{
 		return new \Twig_SimpleFilter('sdate', function ($_string, $_max ="day", $_format ="Y/m/d")
 		{
@@ -124,7 +127,7 @@ trait twigAddons
 	/**
 	 * twig custom filter for convert date to jalai with custom format like php date func format
 	 */
-	public function twig_filter_readableSize()
+	private static function filter_readableSize()
 	{
 		return new \Twig_SimpleFilter('readableSize', function ($_string, $_type = 'file', $_emptyTxt = null)
 		{
@@ -136,7 +139,7 @@ trait twigAddons
 	/**
 	 * twig custom filter for convert date to jalai with custom format like php date func format
 	 */
-	public function twig_filter_persian()
+	private static function filter_persian()
 	{
 		return new \Twig_SimpleFilter('persian', function ($_number)
 		{
@@ -148,7 +151,7 @@ trait twigAddons
 	/**
 	 * twig custom filter for convert date to jalai with custom format like php date func format
 	 */
-	public function twig_filter_fitNumber()
+	private static function filter_fitNumber()
 	{
 		return new \Twig_SimpleFilter('fitNumber', function ($_number, $_autoFormat = true)
 		{
@@ -158,10 +161,10 @@ trait twigAddons
 
 
 	/**
-	 * [twig_filter_exist description]
+	 * [filter_exist description]
 	 * @return [type] [description]
 	 */
-	public function twig_filter_exist()
+	private static function filter_exist()
 	{
 		return new \Twig_SimpleFilter('exist', function ($_file, $_alternative = null)
 		{
@@ -171,7 +174,7 @@ trait twigAddons
 	}
 
 
-	public function twig_filter_humantime()
+	private static function filter_humantime()
 	{
 		return new \Twig_SimpleFilter('humantime', function ()
 		{
@@ -182,10 +185,10 @@ trait twigAddons
 
 
 	/**
-	 * [twig_filter_decode description]
+	 * [filter_decode description]
 	 * @return [type] [description]
 	 */
-	public function twig_filter_decode()
+	private static function filter_decode()
 	{
 		return new \Twig_SimpleFilter('decode', function ($_array, $_key = null)
 		{
@@ -207,7 +210,7 @@ trait twigAddons
 	/**
 	 * twig custom filter for dump with php
 	 */
-	public function twig_function_dump()
+	private static function function_dump()
 	{
 		return new \Twig_SimpleFunction('dump', function()
 		{
@@ -217,10 +220,10 @@ trait twigAddons
 
 
 	/**
-	 * [twig_function_result description]
+	 * [function_result description]
 	 * @return [type] [description]
 	 */
-	public function twig_function_result()
+	private static function function_result()
 	{
 		return new \Twig_SimpleFunction('result', function()
 		{
@@ -230,10 +233,10 @@ trait twigAddons
 
 
 	/**
-	 * [twig_function_language description]
+	 * [function_language description]
 	 * @return [type] [description]
 	 */
-	public function twig_function_langList()
+	private static function function_langList()
 	{
 		return new \Twig_SimpleFunction('langList', function()
 		{
@@ -315,10 +318,10 @@ trait twigAddons
 
 
 	/**
-	 * [twig_function_breadcrumb description]
+	 * [function_breadcrumb description]
 	 * @return [type] [description]
 	 */
-	public function twig_function_breadcrumb()
+	private static function function_breadcrumb()
 	{
 		return new \Twig_SimpleFunction('breadcrumb', function ($_path = null, $_direct = null, $_homepage = true, $_hideLast = null)
 		{
@@ -417,10 +420,10 @@ trait twigAddons
 
 
 	/**
-	 * [twig_function_posts description]
+	 * [function_posts description]
 	 * @return [type] [description]
 	 */
-	public function twig_function_posts()
+	private static function function_posts()
 	{
 		return new \Twig_SimpleFunction('posts', function()
 		{
@@ -480,10 +483,10 @@ trait twigAddons
 
 
 	/**
-	 * [twig_function_posts description]
+	 * [function_posts description]
 	 * @return [type] [description]
 	 */
-	public function twig_function_tags()
+	private static function function_tags()
 	{
 		return new \Twig_SimpleFunction('tags', function()
 		{
@@ -593,10 +596,10 @@ trait twigAddons
 
 
 	/**
-	 * [twig_function_posts description]
+	 * [function_posts description]
 	 * @return [type] [description]
 	 */
-	public function twig_function_category()
+	private static function function_category()
 	{
 		return new \Twig_SimpleFunction('category', function()
 		{
@@ -672,10 +675,10 @@ trait twigAddons
 	}
 
 	/**
-	 * [twig_function_posts description]
+	 * [function_posts description]
 	 * @return [type] [description]
 	 */
-	public function twig_function_comments()
+	private static function function_comments()
 	{
 		return new \Twig_SimpleFunction('comments', function()
 		{
@@ -712,10 +715,10 @@ trait twigAddons
 
 
 	/**
-	 * [twig_function_posts description]
+	 * [function_posts description]
 	 * @return [type] [description]
 	 */
-	public function twig_function_post_search()
+	private static function function_post_search()
 	{
 		return new \Twig_SimpleFunction('post_search', function()
 		{
@@ -733,10 +736,10 @@ trait twigAddons
 
 
 	/**
-	 * [twig_function_posts description]
+	 * [function_posts description]
 	 * @return [type] [description]
 	 */
-	public function twig_function_similar_post()
+	private static function function_similar_post()
 	{
 		return new \Twig_SimpleFunction('similar_post', function()
 		{
@@ -813,7 +816,7 @@ trait twigAddons
 	 * [twig coding decode|encode]
 	 * @return [type] [description]
 	 */
-	public function twig_filter_coding()
+	private static function filter_coding()
 	{
 		return new \Twig_SimpleFilter('coding', function ($_url, $_type = 'decode', $_alphabet = null)
 		{
@@ -831,7 +834,7 @@ trait twigAddons
 	}
 
 
-	public function twig_filter_filemtime()
+	private static function filter_filemtime()
 	{
 		return new \Twig_SimpleFilter('filemtime', function ($_url, $_withReturn = null)
 		{
@@ -862,7 +865,7 @@ trait twigAddons
 	 *
 	 * @return     \     ( description_of_the_return_value )
 	 */
-	public function twig_function_attachment()
+	private static function function_attachment()
 	{
 		return new \Twig_SimpleFunction('attachment', function()
 		{
@@ -915,7 +918,7 @@ trait twigAddons
 	 *
 	 * @return     \     ( description_of_the_return_value )
 	 */
-	public function twig_function_perm()
+	private static function function_perm()
 	{
 		return new \Twig_SimpleFunction('perm', function()
 		{
@@ -954,7 +957,7 @@ trait twigAddons
 	 *
 	 * @return     \     ( description_of_the_return_value )
 	 */
-	public function twig_function_perm_su()
+	private static function function_perm_su()
 	{
 		return new \Twig_SimpleFunction('perm_su', function()
 		{
