@@ -9,6 +9,7 @@ class error
 		$msg = $e->getFile(). " : " . $e->getLine(). "\n";
 		$msg .= \get_class($e). "(". $e->getMessage(). ")";
 		self::log($msg, 'exception.log', 'php');
+		self::show_error($msg);
 	}
 
 
@@ -51,9 +52,18 @@ class error
 			$type = 'unknown';
 		}
 		self::log($msg, $type.'.log', 'php');
+		self::show_error($msg);
 
 		/* Don't execute PHP internal error handler */
 		return true;
+	}
+
+	public static function show_error($_msg)
+	{
+		if(\lib\engine\dev::debug())
+		{
+			echo $_msg;
+		}
 	}
 
 
