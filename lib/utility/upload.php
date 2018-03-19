@@ -51,15 +51,15 @@ class upload
 		if(self::$upload_from_path)
 		{
 			$path = self::$upload_from_path;
-			if(\lib\utility\file::exists($path))
+			if(\lib\file::exists($path))
 			{
 				$tmp_FILES =
 				[
-					'name'     => \lib\utility\file::getName(self::$real_file_path),
-					'type'     => \lib\utility\file::content_type($path),
+					'name'     => \lib\file::getName(self::$real_file_path),
+					'type'     => \lib\file::content_type($path),
 					'tmp_name' => $path,
 					'error'    => 0,
-					'size'     => \lib\utility\file::getSize($path),
+					'size'     => \lib\file::getSize($path),
 				];
 				self::$FILES[$_name] = $tmp_FILES;
 			}
@@ -178,7 +178,7 @@ class upload
 	{
 		if($_folder && !is_dir($_folder))
 		{
-			\lib\utility\file::makeDir($_folder, 0775, true);
+			\lib\file::makeDir($_folder, 0775, true);
 		}
 
 		if($_folder && !is_dir($_folder))
@@ -230,7 +230,7 @@ class upload
 				}
 			}
 
-			$file_name   = \lib\utility\file::getName(self::$real_file_path);
+			$file_name   = \lib\file::getName(self::$real_file_path);
 			$master_name = $master_name. '_'. $file_name;
 			$new_name    = $move_to. $master_name;
 
@@ -238,10 +238,10 @@ class upload
 
 			if($move_to && !is_dir($move_to))
 			{
-				\lib\utility\file::makeDir($move_to, 0775, true);
+				\lib\file::makeDir($move_to, 0775, true);
 			}
 
-			if(\lib\utility\file::move(self::$upload_from_path, $new_name, true))
+			if(\lib\file::move(self::$upload_from_path, $new_name, true))
 			{
 				\lib\temp::set('upload',[
 					'result'    => $file_name,
@@ -392,7 +392,7 @@ class upload
 				case 'https':
 				case 'ftp':
 				case 'sftp':
-					$file_path = \lib\utility\file::open($_options['file_path'], ['MAX_SIZE' => $_options['user_size_remaining']]);
+					$file_path = \lib\file::open($_options['file_path'], ['MAX_SIZE' => $_options['user_size_remaining']]);
 					break;
 
 				default:
@@ -435,7 +435,7 @@ class upload
 
 		if($folder_loc && !is_dir($folder_loc))
 		{
-			\lib\utility\file::makeDir($folder_loc, 0775, true);
+			\lib\file::makeDir($folder_loc, 0775, true);
 		}
 
 		$file_id       = $qry_count % $_options['folder_size'] + 1;
@@ -467,7 +467,7 @@ class upload
 		// 4. transfer file to project folder with new name
 		if($upload_from_path)
 		{
-			if(!\lib\utility\file::rename(self::$upload_from_path, $_options['move_to']. $url_full, true))
+			if(!\lib\file::rename(self::$upload_from_path, $_options['move_to']. $url_full, true))
 			{
 				return \lib\notif::error(T_('Fail on tranfering file, upload from path'));
 			}
@@ -475,7 +475,7 @@ class upload
 
 			if($_options['copy'] === false || $_options['move'] === true)
 			{
-				\lib\utility\file::delete(self::$upload_from_path);
+				\lib\file::delete(self::$upload_from_path);
 			}
 		}
 		else

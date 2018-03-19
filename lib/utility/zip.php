@@ -41,7 +41,7 @@ class zip
 		{
 			$_name = 'test.zip';
 		}
-		\lib\utility\file::download($_addr, $_name, 'archive/zip');
+		\lib\file::download($_addr, $_name, 'archive/zip');
 		// exit to download it
 		\lib\code::exit();
 	}

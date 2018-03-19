@@ -70,7 +70,7 @@ class error
 		$file_addr       = $directory_addr. $_name;
 
 		// start saving
-		\lib\utility\file::makeDir($directory_addr, null, true);
+		\lib\file::makeDir($directory_addr, null, true);
 
 		// set evenet datetime and file address
 		$my_text  = "#". str_repeat("-", 10);

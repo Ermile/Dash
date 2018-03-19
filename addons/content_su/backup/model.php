@@ -28,7 +28,7 @@ class model extends \addons\content_su\main\model
 		elseif(\lib\request::post('type') === 'remove' && \lib\request::post('file'))
 		{
 			$file_name = \lib\request::post('file');
-			if(\lib\utility\file::delete(database. 'backup/files/'. $file_name))
+			if(\lib\file::delete(database. 'backup/files/'. $file_name))
 			{
 				\lib\notif::ok(T_("File successfully deleted"));
 				\lib\redirect::pwd();
@@ -67,13 +67,13 @@ class model extends \addons\content_su\main\model
 
 		$url    = database . 'backup';
 
-		if(!\lib\utility\file::exists($url))
+		if(!\lib\file::exists($url))
 		{
-			\lib\utility\file::makeDir($url, null, true);
+			\lib\file::makeDir($url, null, true);
 		}
 
 		$url .= '/schedule';
-		\lib\utility\file::write($url, $array);
+		\lib\file::write($url, $array);
 
 		\lib\notif::ok(T_("Auto backup schedule saved"));
 

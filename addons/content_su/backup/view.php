@@ -11,10 +11,10 @@ class view extends \addons\content_su\main\view
 
 		if(\lib\request::get('show') === 'log')
 		{
-			$this->data->auto_backup_log = @\lib\utility\file::read(database. 'backup/log');
+			$this->data->auto_backup_log = @\lib\file::read(database. 'backup/log');
 		}
 
-		$config_backup = @\lib\utility\file::read(database. 'backup/schedule');
+		$config_backup = @\lib\file::read(database. 'backup/schedule');
 		if($config_backup && is_string($config_backup))
 		{
 			$config_backup = json_decode($config_backup, true);

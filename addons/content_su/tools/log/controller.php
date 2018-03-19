@@ -157,7 +157,7 @@ class controller extends \addons\content_su\main\controller
 		// if wanna clear this file, transfer it to new address and clear it
 		if($isClear)
 		{
-			\lib\utility\file::rename($filepath, $clearURL);
+			\lib\file::rename($filepath, $clearURL);
 			\lib\redirect::to('?name='. $name);
 		}
 		if($isZip)

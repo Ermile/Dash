@@ -1,7 +1,4 @@
 <?php
-namespace lib;
-
-
 /** In The name of Allah **/
 /*  Proudly made in IRAN, powered by Dash, under licence of Ermile */
 
@@ -37,6 +34,9 @@ namespace lib;
  * Classes list:
  * - File
  */
+namespace lib\utility;
+
+
 /** Files management : write, read, delete, upload... **/
 class file
 {

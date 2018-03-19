@@ -167,7 +167,7 @@ trait backup
 		{
 			if($_options['download'])
 			{
-				\lib\utility\file::download($dest_dir. $dest_file);
+				\lib\file::download($dest_dir. $dest_file);
 			}
 			return true;
 		}

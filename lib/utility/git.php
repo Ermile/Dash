@@ -93,7 +93,7 @@ class git
 		$resultBool = null;
 		$output     = null;
 		// if folder of location exist prepare commands
-		if(\lib\utility\file::exists($_location))
+		if(\lib\file::exists($_location))
 		{
 			// change location to address of requested
 			chdir($_location);

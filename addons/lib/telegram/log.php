@@ -24,7 +24,7 @@ class log extends tg
 		}
 		$fileAddr = root.'public_html/files/telegram/';
 		// if dir doesn't exist, make it
-		\lib\utility\file::makeDir($fileAddr, null, true);
+		\lib\file::makeDir($fileAddr, null, true);
 		// set file address
 		// $fileAddr .= 'tg_'. self::$name. '.json';
 		// if(!self::$once_log){
@@ -186,7 +186,7 @@ class log extends tg
 		// if dir is not created, create it
 		if(!is_dir(self::$saveDest))
 		{
-			\lib\utility\file::makeDir(self::$saveDest, 0775, true);
+			\lib\file::makeDir(self::$saveDest, 0775, true);
 		}
 
 		// loop on all photos

@@ -27,7 +27,7 @@ trait info
 
 
 	public static function global_status($_link = null)
-	{	
+	{
 		if($_link === null)
 		{
 			$_link = self::$link;
@@ -168,20 +168,20 @@ trait info
 		}
 
 		$file_url = database. 'version/';
-		if(!\lib\utility\file::exists($file_url))
+		if(!\lib\file::exists($file_url))
 		{
-			\lib\utility\file::makeDir($file_url);
+			\lib\file::makeDir($file_url);
 		}
 
 		$file_url .= $file_name;
 
-		if(\lib\utility\file::exists($file_url))
+		if(\lib\file::exists($file_url))
 		{
-			$version = \lib\utility\file::read($file_url);
+			$version = \lib\file::read($file_url);
 		}
 		else
 		{
-			\lib\utility\file::write($file_url, null);
+			\lib\file::write($file_url, null);
 		}
 
 		return $version;
@@ -210,14 +210,14 @@ trait info
 
 		$file_url = database. 'version/';
 
-		if(!\lib\utility\file::exists($file_url))
+		if(!\lib\file::exists($file_url))
 		{
-			\lib\utility\file::makeDir($file_url);
+			\lib\file::makeDir($file_url);
 		}
 
 		$file_url .= $file_name;
 
-		\lib\utility\file::write($file_url, $_version);
+		\lib\file::write($file_url, $_version);
 
 	}
 

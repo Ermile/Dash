@@ -165,7 +165,7 @@ trait twigAddons
 	{
 		return new \Twig_SimpleFilter('exist', function ($_file, $_alternative = null)
 		{
-			$result = \lib\utility\file::alternative($_file, $_alternative);
+			$result = \lib\file::alternative($_file, $_alternative);
 			return $result;
 		});
 	}
@@ -842,7 +842,7 @@ trait twigAddons
 				$complete_url .= 'static/';
 			}
 			$complete_url .= $_url;
-			if($_url && \lib\utility\file::exists($complete_url))
+			if($_url && \lib\file::exists($complete_url))
 			{
 				$result = filemtime($complete_url);
 			}
