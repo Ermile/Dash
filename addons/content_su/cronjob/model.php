@@ -7,12 +7,12 @@ class model extends \addons\content_su\main\model
 	{
 		if(\lib\request::post('active'))
 		{
-			\lib\utility\cronjob\options::active();
+			\lib\engine\cronjob\options::active();
 			\lib\notif::ok(T_("Your cronjob is actived"));
 		}
 		else
 		{
-			\lib\utility\cronjob\options::deactive();
+			\lib\engine\cronjob\options::deactive();
 			\lib\notif::warn(T_("Your cronjob is deactived"));
 		}
 

@@ -7,7 +7,7 @@ class view extends \addons\content_su\main\view
 	public function config()
 	{
 		parent::config();
-		$this->data->cronjob = \lib\utility\cronjob\options::status();
+		$this->data->cronjob = \lib\engine\cronjob\options::status();
 	}
 }
 ?>
