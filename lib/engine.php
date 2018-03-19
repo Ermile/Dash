@@ -38,7 +38,7 @@ class engine
 		// @check
 		\lib\user::user_country_redirect();
 
-		// LUNCH !
+		// LAUNCH !
 		\lib\engine\main::start();
 
 	}
