@@ -70,7 +70,7 @@ class view
 		$this->data->url = $this->url;
 
 		// return all parameters and clean it
-		$this->data->utilityGET = \lib\request::get(null, 'raw');
+		$this->data->requestGET = \lib\request::get(null, 'raw');
 
 		// ----- language variable
 		$this->data->lang            = [];
@@ -87,9 +87,6 @@ class view
 		$this->data->bodyclass       = null;
 
 		$this->data->user = $this->data->login  = \lib\user::detail();
-
-		// $this->data->perm            = $this->access(null, 'all');
-		// $this->data->permContent     = $this->access('all');
 
 		// set detail of browser
 		$this->data->browser         = \lib\utility\browserDetection::browser_detection('full_assoc');

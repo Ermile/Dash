@@ -4,7 +4,7 @@
 {%block pageContent%}
 
 <div class="f justify-center">
-{%if utilityGET.type%}
+{%if requestGET.type%}
   <div class="c4 s12 pRa20">
     {{block ('iAddEditBox') }}
   </div>
@@ -20,7 +20,7 @@
 <form method="post" class="cbox">
   {{block ('iTitle') }}
   {{block ('iSlug') }}
-{%if utilityGET.type == 'category'%}
+{%if requestGET.type == 'category'%}
   {{block ('iParent') }}
 {%endif%}
   {{block ('iDescription') }}
@@ -69,7 +69,7 @@
 <div class="cbox fs12">
   <form method="get" data-action>
     <div class="input">
-      <input type="search" name="q" placeholder='{%trans "Search"%}' id="q" value="{{utilityGET.q}}" autofocus  autocomplete='off'>
+      <input type="search" name="q" placeholder='{%trans "Search"%}' id="q" value="{{requestGET.q}}" autofocus  autocomplete='off'>
       <button class="addon btn ">{%trans "Search" %}</button>
     </div>
   </form>
@@ -85,7 +85,7 @@
         <th>{%trans "Title"%}</th>
         <th>{%trans "Slug"%}</th>
         <th>{%trans "Type"%}</th>
-        {%if not utilityGET.type%}
+        {%if not requestGET.type%}
           <th>{%trans "Status"%}</th>
         {%endif%}
       </tr>
@@ -95,7 +95,7 @@
         <tr>
           <td><a href="{{url.this}}?type={{value.type}}&edit={{value.id}}">{{value.title}}</a></td>
           <td><a href="{{url.base}}/{{value.url}}" target="_blank"><span class="sf-share"></span> {{value.slug}}</a></td>
-          {%if not utilityGET.type%}
+          {%if not requestGET.type%}
             <td><a href="{{url.this}}?type={{value.type}}">{%set vType = value.type%}{%trans vType%}</a></td>
           {%endif%}
           <td class="collapsing">{%set vStatus = value.status%}{%trans vStatus%}</td>
@@ -140,7 +140,7 @@
 <select name="parent" class="input select">
   <option value="">{%trans "Please select one itme"%}</option>
   {%for key, item in dataTable%}
-{%if item.id == utilityGET.edit%}
+{%if item.id == requestGET.edit%}
 {%else%}
     <option value="{{item.id}}" {%if datarow.parent == item.id %} selected {%endif%}>{{item.title}}</option>
 {%endif%}

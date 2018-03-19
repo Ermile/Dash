@@ -54,7 +54,7 @@
 <div class="cbox fs12">
   <form method="get" action='{{url.here}}/dbtables' data-action>
     <div class="input">
-      <input type="search" name="q" placeholder='{%trans "Search in :dbtabless"%}' id="q" value="{{utilityGET.q}}" autofocus  data-pass='submit' autocomplete='off'>
+      <input type="search" name="q" placeholder='{%trans "Search in :dbtabless"%}' id="q" value="{{requestGET.q}}" autofocus  data-pass='submit' autocomplete='off'>
       <button class="addon btn ">{%trans "Search" %}</button>
     </div>
   </form>

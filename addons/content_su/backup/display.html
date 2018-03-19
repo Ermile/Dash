@@ -5,7 +5,7 @@
   <h2>{%trans "Backup database"%}</h2>
 </div>
 
-{%if auto_backup_log or utilityGET.show == 'log' %}
+{%if auto_backup_log or requestGET.show == 'log' %}
 <div class="cbox">
     <p><a href="{{url.here}}/backup" class="badge primary">{%trans "Back"%}</a></p>
     {%if auto_backup_log%}

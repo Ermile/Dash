@@ -121,7 +121,7 @@
 
 {%block iTag%}
 
-{%set postTag = tags({"post_id" : utilityGET.id , "title" : true, "format" : 'csv'}) %}
+{%set postTag = tags({"post_id" : requestGET.id , "title" : true, "format" : 'csv'}) %}
 <div class="tagDetector" title='{%trans "Add tag manually to link articles togethers"%}'>
   <div class="input mB10 hide">
     <input type="text" class="input tagVals" name="tag" value="{{postTag}}" id="tagValues" placeholder='{%trans "Tag"%}'>
