@@ -25,30 +25,10 @@ class controller
 	 */
 	public function __construct()
 	{
-		/**
-		 * register shutdown function
-		 * after ending code this function is called
-		 */
-		register_shutdown_function([$this, 'sp_shutdown']);
-
 		// check if isset remember me and login by this
 		\lib\user::check_remeber_login();
 		// redirect
 		\lib\user::user_country_redirect();
-	}
-
-
-
-	/**
-	 * this function is calling at the end of all codes
-	 * @return [type] [description]
-	 */
-	public function sp_shutdown()
-	{
-		// close writing sessions and start saving it
-		// session_write_close();
-		// close the mysql connection
-		\lib\db::close();
 	}
 
 
