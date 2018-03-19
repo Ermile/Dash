@@ -3,10 +3,8 @@ namespace lib;
 
 class view
 {
-	use mvc;
-
-	use view\twigAddons;
-
+	use \lib\mvc;
+	use \lib\utility\twigAddons;
 
 	/**
 	 * twig options
@@ -235,11 +233,9 @@ class view
 		$twig->addFilter($filter_unset_type);				// add a new filter to twig
 		$twig->addGlobal("session", $_SESSION);
 
-
 		if($this->controller()->debug())
 		{
 			$twig->addExtension(new \Twig_Extension_Debug());
-
 		}
 		else
 		{

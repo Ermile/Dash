@@ -1,5 +1,5 @@
 <?php
-namespace lib\view;
+namespace lib\utility;
 
 trait twigAddons
 {
