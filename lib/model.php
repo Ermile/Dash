@@ -4,8 +4,6 @@ namespace lib;
 class model
 {
 	use \lib\mvc;
-	use \lib\controller\login;
-
 
 	/**
 	 * construct
