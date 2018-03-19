@@ -116,7 +116,7 @@ trait twigAddons
 	{
 		return new \Twig_SimpleFilter('sdate', function ($_string, $_max ="day", $_format ="Y/m/d")
 		{
-			return \lib\utility::humanTiming($_string, $_max, $_format, $this->data->lang['current']);
+			return \lib\utility\human::timing($_string, $_max, $_format, $this->data->lang['current']);
 		});
 	}
 

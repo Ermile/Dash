@@ -38,7 +38,7 @@ class view extends \addons\content_su\main\view
 					'time' => filemtime($value),
 					'size' => round(filesize($value) / 1024 / 1024, 1),
 					'date' => date("Y-m-d H:i:s", filemtime($value)),
-					'ago' => \lib\utility::humanTiming(date("Y-m-d H:i:s", filemtime($value))),
+					'ago' => \lib\utility\human::timing(date("Y-m-d H:i:s", filemtime($value))),
 				];
 			}
 			$old_backup_files = array_reverse($old_backup_files);

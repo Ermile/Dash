@@ -9,6 +9,66 @@ class human
 	 * v1.4
 	 */
 
+	/**
+	 * convert datetime to human timing for better reading
+	 * @param  [type] $_time   [description]
+	 * @param  string $_max    [description]
+	 * @param  string $_format [description]
+	 * @param  string $_lang   [description]
+	 * @return [type]          [description]
+	 */
+	public static function timing($_time, $_max = 'ultimate', $_format = "Y/m/d", $_lang = 'en')
+	{
+		// auto convert with strtotime function
+		$_time     = strtotime($_time);
+		$time_diff = time() - $_time; // to get the time since that moment
+		$tokens    = array (
+			31536000 => T_('year'),
+			2592000  => T_('month'),
+			604800   => T_('week'),
+			86400    => T_('day'),
+			3600     => T_('hour'),
+			60       => T_('minute'),
+			1        => T_('second')
+			);
+		if($time_diff < 10)
+			return T_('A few seconds ago');
+
+		$type = array_search(T_($_max), $tokens);
+
+		foreach ($tokens as $unit => $text)
+		{
+			if ($time_diff < $unit)
+			{
+				continue;
+			}
+			$finalDate = null;
+			// if time diff less than user request change it to humansizing
+			if($time_diff < $type || $_max === 'ultimate')
+			{
+				$numberOfUnits = floor($time_diff / $unit);
+				$finalDate = $numberOfUnits.' '.$text.(($numberOfUnits>1)? T_('s '):' ').T_('ago');
+			}
+			// else show it dependig on current language
+			else
+			{
+				if($_lang == 'fa')
+				{
+					$finalDate = \lib\utility\jdate::date($_format, $_time);
+				}
+				else
+				{
+					$finalDate = date($_format, $_time);
+				}
+			}
+			if($_lang == 'fa')
+			{
+				$finalDate = \lib\utility\human::number($finalDate, $_lang);
+			}
+			return $finalDate;
+		}
+	}
+
 
 	/**
 	 * [time description]
