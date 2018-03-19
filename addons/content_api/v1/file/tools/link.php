@@ -8,7 +8,7 @@ trait link
 
 	public function upload_file($_options = [])
 	{
-		\lib\notif::title(T_("Can not upload file"));
+		// \lib\notif::title(T_("Can not upload file"));
 
 		$default_options =
 		[
@@ -106,7 +106,7 @@ trait link
 			$url = \lib\url::site(). '/'. $file_detail['url'];
 		}
 
-		\lib\notif::title(T_("File upload completed"));
+		// \lib\notif::title(T_("File upload completed"));
 		return ['code' => $file_id_code, 'url' => $url];
 	}
 }

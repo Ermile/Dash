@@ -84,7 +84,7 @@ trait get
 	 */
 	public function get_invoice($_args = [])
 	{
-		\lib\notif::title(T_("Operation Faild"));
+		// \lib\notif::title(T_("Operation Faild"));
 
 		$log_meta =
 		[

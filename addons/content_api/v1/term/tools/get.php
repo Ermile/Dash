@@ -79,7 +79,7 @@ trait get
 	 */
 	public function get_term($_args = [])
 	{
-		\lib\notif::title(T_("Operation Faild"));
+		// \lib\notif::title(T_("Operation Faild"));
 
 		$log_meta =
 		[

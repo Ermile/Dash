@@ -96,7 +96,7 @@ trait get
 
 		$_args = array_merge($default_args, $_args);
 
-		\lib\notif::title(T_("Operation Faild"));
+		// \lib\notif::title(T_("Operation Faild"));
 
 		$log_meta =
 		[

@@ -57,11 +57,11 @@ class model extends \mvc\model
 
 		if(\lib\engine\process::status())
 		{
-			\lib\notif::title(T_("Operation complete"));
+			// \lib\notif::title(T_("Operation complete"));
 		}
 		else
 		{
-			\lib\notif::title(T_("Operation faild"));
+			// \lib\notif::title(T_("Operation faild"));
 		}
 	}
 
@@ -77,11 +77,11 @@ class model extends \mvc\model
 
 		if(\lib\engine\process::status())
 		{
-			\lib\notif::title(T_("Operation complete"));
+			// \lib\notif::title(T_("Operation complete"));
 		}
 		else
 		{
-			\lib\notif::title(T_("Operation faild"));
+			// \lib\notif::title(T_("Operation faild"));
 		}
 	}
 

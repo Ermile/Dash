@@ -160,7 +160,7 @@ class header
 		{
 			@header('Content-Type: application/json');
 
-			\lib\notif::title($desc);
+			// \lib\notif::title($desc);
 			\lib\notif::error($_title, $_code, "HTTP");
 			echo \lib\notif::json();
 		}
