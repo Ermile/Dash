@@ -12,6 +12,15 @@
 // self::$url['port']     = 80;
 
 
+// ----- debug
+self::$config['debug']         = false;
+
+
+// self::$config['dev']           = [];
+// self::$config['dev']['siftal'] = false;
+// self::$config['dev']['dash']   = false;
+
+
 // ----- language
 self::$language           =
 [
@@ -40,9 +49,6 @@ self::$config['account']                               = false;
 
 
 
-
-// ----- debug
-self::$config['debug']                                 = false;
 
 // ----- comming soon page
 self::$config['coming']                                = false;
