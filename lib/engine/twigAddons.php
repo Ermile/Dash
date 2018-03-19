@@ -98,7 +98,7 @@ class twigAddons
 		return new \Twig_SimpleFilter('tdate', function ($_string, $_format ="Y/m/d", $_convert = true)
 		{
 			$result = $_string;
-			if($this->data->lang['current'] == 'fa')
+			if(\lib\view::$data->lang['current'] == 'fa')
 			{
 				$result = \lib\utility\jdate::date($_format, $_string, $_convert);
 			}
@@ -119,7 +119,7 @@ class twigAddons
 	{
 		return new \Twig_SimpleFilter('sdate', function ($_string, $_max ="day", $_format ="Y/m/d")
 		{
-			return \lib\utility\human::timing($_string, $_max, $_format, $this->data->lang['current']);
+			return \lib\utility\human::timing($_string, $_max, $_format, \lib\view::$data->lang['current']);
 		});
 	}
 
@@ -143,7 +143,7 @@ class twigAddons
 	{
 		return new \Twig_SimpleFilter('persian', function ($_number)
 		{
-			return \lib\utility\human::number($_number, $this->data->lang['current']);
+			return \lib\utility\human::number($_number, \lib\view::$data->lang['current']);
 		});
 	}
 
@@ -220,6 +220,7 @@ class twigAddons
 
 
 	/**
+	 * @check
 	 * [function_result description]
 	 * @return [type] [description]
 	 */
@@ -227,7 +228,7 @@ class twigAddons
 	{
 		return new \Twig_SimpleFunction('result', function()
 		{
-			\lib\code::dump($this->model());
+			\lib\code::dump('@check to remove it!!!');
 		});
 	}
 
@@ -245,7 +246,7 @@ class twigAddons
 			$all         = array_column(func_get_args(), 'all');
 			$onlyLink    = array_column(func_get_args(), 'onlyLink');
 			$class       = array_column(func_get_args(), 'class');
-			$langList    = $this->data->lang['list'];
+			$langList    = \lib\view::$data->lang['list'];
 			$urlRoot     = \lib\url::root();
 			$urlContent  = \lib\url::content();
 			$urlPath     = \lib\url::path();
@@ -351,9 +352,9 @@ class twigAddons
 					$myContent     = \lib\url::content();
 					$myContentName = $myContent;
 					// if contetent name is exist use it as alternative
-					if(isset($this->data->breadcrumb[$myContent]))
+					if(isset(\lib\view::$data->breadcrumb[$myContent]))
 					{
-						$myContentName = $this->data->breadcrumb[$myContent];
+						$myContentName = \lib\view::$data->breadcrumb[$myContent];
 					}
 					elseif($myContent === 'cp')
 					{
@@ -372,9 +373,9 @@ class twigAddons
 				$anchorUrl   = trim($baseURLFull.'/'.$currentUrl, '/');
 				$location    = $part;
 				// set title of each locations
-				if(isset($this->data->breadcrumb[$location]))
+				if(isset(\lib\view::$data->breadcrumb[$location]))
 				{
-					$location = $this->data->breadcrumb[$location];
+					$location = \lib\view::$data->breadcrumb[$location];
 				}
 
 				// if trans of exact text is exist use it
@@ -500,9 +501,9 @@ class twigAddons
 			// get post id
 			if(!isset($args['post_id']))
 			{
-				if(isset($this->data->datarow['id']))
+				if(isset(\lib\view::$data->datarow['id']))
 				{
-					$args['post_id'] = $this->data->datarow['id'];
+					$args['post_id'] = \lib\view::$data->datarow['id'];
 				}
 			}
 			// get tags
@@ -614,9 +615,9 @@ class twigAddons
 			// get post id
 			if(!isset($args['post_id']))
 			{
-				if(isset($this->data->datarow['id']))
+				if(isset(\lib\view::$data->datarow['id']))
 				{
-					$args['post_id'] = $this->data->datarow['id'];
+					$args['post_id'] = \lib\view::$data->datarow['id'];
 				}
 			}
 			// get category
@@ -692,9 +693,9 @@ class twigAddons
 			// get post id
 			if(!isset($args['post_id']))
 			{
-				if(isset($this->data->datarow['id']))
+				if(isset(\lib\view::$data->datarow['id']))
 				{
-					$args['post_id'] = $this->data->datarow['id'];
+					$args['post_id'] = \lib\view::$data->datarow['id'];
 				}
 			}
 			// count of show comments
@@ -753,9 +754,9 @@ class twigAddons
 			// get post id
 			if(!isset($args['post_id']))
 			{
-				if(isset($this->data->datarow['id']))
+				if(isset(\lib\view::$data->datarow['id']))
 				{
-					$args['post_id'] = $this->data->datarow['id'];
+					$args['post_id'] = \lib\view::$data->datarow['id'];
 				}
 			}
 
@@ -927,9 +928,9 @@ class twigAddons
 			$action  = null;
 			$user_id = null;
 
-			if(isset($this->data->login['id']))
+			if(isset(\lib\view::$data->login['id']))
 			{
-				$user_id = $this->data->login['id'];
+				$user_id = \lib\view::$data->login['id'];
 			}
 
 			$args = func_get_args();
@@ -964,9 +965,9 @@ class twigAddons
 
 			$user_id = null;
 
-			if(isset($this->data->login['id']))
+			if(isset(\lib\view::$data->login['id']))
 			{
-				$user_id = $this->data->login['id'];
+				$user_id = \lib\view::$data->login['id'];
 			}
 
 			$args = func_get_args();
