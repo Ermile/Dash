@@ -4,11 +4,12 @@ namespace lib;
 
 class controller
 {
-	public $display      = true;
 	public $display_name = null;
 
 	public $model_name   = null;
 	public $view_name    = null;
+
+	public $debug    = null;
 
 	private $allow       = [];
 
@@ -17,6 +18,7 @@ class controller
 	 */
 	public function __construct()
 	{
+		// @check
 		// check if isset remember me and login by this
 		\lib\user::check_remeber_login();
 
@@ -58,21 +60,22 @@ class controller
 	*/
 	public function _corridor()
 	{
+		$display = true;
 		if(\lib\request::json_accept())
 		{
-			$this->display = false;
+			$display = false;
 		}
 
-		if(!\lib\temp::get('api') && $this->method() === 'get' && $this->display)
+		if($this->method() === 'get' && $display)
 		{
 			$this->view();
 
-			if($this->display)
+			if($display)
 			{
 				$this->view()->corridor();
 			}
 		}
-		elseif(\lib\temp::get('api') || !$this->display)
+		elseif(!$display)
 		{
 			$this->model();
 			if($this->model)
@@ -86,7 +89,7 @@ class controller
 			\lib\header::status(424);
 		}
 
-		if(!\lib\temp::get('api') && $this->method() === "post")
+		if($this->method() === "post")
 		{
 			\lib\redirect::pwd();
 		}
@@ -121,21 +124,24 @@ class controller
 	 */
 	public function model()
 	{
-		if(!$this->model)
-		{
-			if($this->model_name)
-			{
-				$class_name = $this->model_name;
-			}
-			else
-			{
-				$class_name = get_called_class();
-				$class_name = preg_replace("/\\\controller$/", '\model', $class_name);
-			}
 
-			$this->model    = new $class_name();
+		if($this->model_name)
+		{
+			$class_name = $this->model_name;
 		}
-		return $this->model;
+		else
+		{
+			$class_name = get_called_class();
+			$class_name = preg_replace("/\\\controller$/", '\model', $class_name);
+		}
+
+		if(class_exists($class_name))
+		{
+			$this->model = $class_name;
+			return $this->model;
+		}
+
+		return null;
 	}
 
 
@@ -145,31 +151,26 @@ class controller
 	 */
 	public function view()
 	{
-		if(!$this->view)
+		if($this->view_name)
 		{
-			if($this->view_name)
-			{
-				$class_name = $this->view_name;
-			}
-			else
-			{
-				$class_name = get_called_class();
-				$class_name = preg_replace("/\\\controller$/", '\\\view', $class_name);
-			}
+			$class_name = $this->view_name;
+		}
+		else
+		{
+			$class_name = get_called_class();
+			$class_name = preg_replace("/\\\controller$/", '\\\view', $class_name);
+		}
 
+		if(class_exists($class_name))
+		{
 			$object             = (object) [];
 			$object->controller = $this;
 			$this->view         = new $class_name($object);
-
+			return $this->view;
 		}
-		return $this->view;
+		return null;
 	}
 
-
-	/**
-	 * [controller description]
-	 * @return [type] [description]
-	 */
 	public function controller()
 	{
 		return $this;
