@@ -334,7 +334,7 @@ trait twigAddons
 			// if user dont pass a path give it from controller
 			if(!$_path)
 			{
-				$myurl = $this->model()->breadcrumb();
+				$myurl = \lib\utility\breadcrumb::get();
 				$_path = \lib\url::dir();
 			}
 			$direct = null;

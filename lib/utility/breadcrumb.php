@@ -1,13 +1,13 @@
 <?php
 namespace lib\model;
 
-trait breadcrumb
+class breadcrumb
 {
 	/**
 	 * create breadcrumb and location of it
 	 * @return [type] [description]
 	 */
-	public function breadcrumb()
+	public static function get()
 	{
 
 		$_addr      = \lib\url::dir();

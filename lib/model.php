@@ -4,8 +4,6 @@ namespace lib;
 class model
 {
 	use \lib\mvc;
-
-	use \lib\model\breadcrumb;
 	use \lib\controller\login;
 
 
