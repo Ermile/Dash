@@ -110,7 +110,7 @@ class transactions
 				{
 					if(isset($value['unit_id']))
 					{
-						$_result[$key]['unit'] = \lib\utility\units::get($value['unit_id'], true);
+						$_result[$key]['unit'] = \lib\app\units::get($value['unit_id'], true);
 					}
 
 					if(isset($value['code']))
@@ -124,7 +124,7 @@ class transactions
 			{
 				if(isset($_result['unit_id']))
 				{
-					$_result['unit'] = \lib\utility\units::get($_result['unit_id'], true);
+					$_result['unit'] = \lib\app\units::get($_result['unit_id'], true);
 				}
 
 				if(isset($_result['code']))

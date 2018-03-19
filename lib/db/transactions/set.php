@@ -153,7 +153,7 @@ trait set
 			return false;
 		}
 
-		$unit_id = \lib\utility\units::get_id($_args['unit']);
+		$unit_id = \lib\app\units::get_id($_args['unit']);
 
 		unset($_args['unit']);
 		unset($insert['unit']);

@@ -86,7 +86,7 @@ trait transaction_check_args
 			return false;
 		}
 
-		if($unit && !\lib\utility\units::check($unit))
+		if($unit && !\lib\app\units::check($unit))
 		{
 			if($_args['save_log']) \lib\db\logs::set('addons:api:trransaction:unit:invalid', $this->user_id, $log_meta);
 			if($_args['debug']) \lib\notif::error(T_("Invalid unit"), 'unit', 'arguments');

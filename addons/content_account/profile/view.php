@@ -13,7 +13,7 @@ class view extends \content_account\main\view
 	{
 		if(\lib\user::login('unit_id'))
 		{
-			$this->data->user_unit = \lib\utility\units::get(\lib\user::login('unit_id'), true);
+			$this->data->user_unit = \lib\app\units::get(\lib\user::login('unit_id'), true);
 		}
 	}
 }

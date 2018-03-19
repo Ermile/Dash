@@ -1,5 +1,6 @@
 <?php
-namespace lib\utility;
+namespace lib\app;
+
 /** units managing **/
 class units
 {

@@ -12,8 +12,8 @@ class view extends \content_account\main\view
 
 		if(\lib\user::login())
 		{
-			$user_unit             = \lib\utility\units::find_user_unit(\lib\user::id(), true);
-			$user_unit_id          = \lib\utility\units::get_id($user_unit);
+			$user_unit             = \lib\app\units::find_user_unit(\lib\user::id(), true);
+			$user_unit_id          = \lib\app\units::get_id($user_unit);
 			$user_unit_id          = (int) $user_unit_id;
 			if($user_unit          == 'dollar')
 			{
