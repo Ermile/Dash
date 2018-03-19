@@ -28,6 +28,9 @@ class view
 			return;
 		}
 
+		array_push($this->twig_include_path, root);
+		array_push($this->twig_include_path, addons);
+
 		$this->controller            = $_startObject->controller;
 
 		$this->data                  = (object) [];
@@ -38,25 +41,108 @@ class view
 		$this->global                = $this->data->global;
 		$this->include               = $this->data->include;
 
-		// default data property
-		$this->data->macro['forms']   = 'includes/macro/forms.html';
 		// default display value
-		$this->data->display['mvc']   = "includes/html/display-mvc.html";
-		$this->data->display['dash']  = "includes/html/display-dash.html";
-		$this->data->display['enter'] = "includes/html/display-enter.html";
+		$this->data->display['mvc']        = "includes/html/display-mvc.html";
+		$this->data->display['dash']       = "includes/html/display-dash.html";
+		$this->data->display['enter']      = "includes/html/display-enter.html";
+		// add special pages to display array to use without name
+		$this->data->display['main']       = "content/main/layout.html";
+		$this->data->display['home']       = "content/home/display.html";
+		$this->data->display['account']    = "content_account/home/layout.html";
+		$this->data->display['cp']         = "content_cp/home/layout.html";
+		$this->data->display['su']         = "content_su/home/layout.html";
+		$this->data->display['cpMain']     = "content_cp/main/layout.html";
+		$this->data->display['suMain']     = "content_su/main/layout.html";
+		$this->data->display['pagination'] = "includes/html/inc_pagination.html";
+		// add special pages to template array to use without name
+		$this->data->template['header']    = 'content/template/header.html';
+		$this->data->template['sidebar']   = 'content/template/sidebar.html';
+		$this->data->template['footer']    = 'content/template/footer.html';
 
-
-		$myurl = \lib\url::site().$_SERVER['REQUEST_URI'];
-		if( isset($_SERVER['HTTP_REFERER']) && isset($_SESSION['debug'][md5($_SERVER['HTTP_REFERER'])]) )
+		// set url values
+		$this->url               = \lib\url::all();
+		$this->url['static']     = \lib\url::site(). '/static/';
+		$this->url['repository'] = 'site';
+		if(\lib\url::content())
 		{
-			$myurl = $_SERVER['HTTP_REFERER'];
+			$this->url['repository'] = \lib\url::content();
 		}
 
-		array_push($this->twig_include_path, root);
+		$this->data->url = $this->url;
 
-		if(method_exists($this, 'mvc_construct'))
+		// return all parameters and clean it
+		$this->data->utilityGET = \lib\request::get(null, 'raw');
+
+		// ----- language variable
+		$this->data->lang            = [];
+		$this->data->lang['list']    = \lib\language::list(true);
+		$this->data->lang['current'] = \lib\language::current();
+		$this->data->lang['default'] = \lib\language::default();
+
+		// save all options to use in display
+		$this->data->options = \lib\option::config();
+
+		$this->data->page['title']   = null;
+		$this->data->page['desc']    = null;
+		$this->data->page['special'] = null;
+		$this->data->bodyclass       = null;
+
+		$this->data->user = $this->data->login  = \lib\user::detail();
+
+		// $this->data->perm            = $this->access(null, 'all');
+		// $this->data->permContent     = $this->access('all');
+
+		// set detail of browser
+		$this->data->browser         = \lib\utility\browserDetection::browser_detection('full_assoc');
+		$this->data->visitor         = 'not ready!';
+
+		// define default value for global
+		$this->global->title         = null;
+		$this->global->login         = \lib\user::login();
+		$this->global->lang          = $this->data->lang['current'];
+		$this->global->direction     = \lib\language::current('direction');
+		$this->global->id            = implode('_', \lib\url::dir());
+
+		$this->data->dev = \lib\option::config('dev');
+
+		$this->data->site['title']       = T_("Ermile Dash");
+		$this->data->site['desc']        = T_("Another Project with Ermile dash");
+		$this->data->site['slogan']      = T_("Ermile is intelligent ;)");
+
+		// if allow to use social then get social network account list
+		if(\lib\option::social('status'))
 		{
-			$this->mvc_construct();
+			$this->data->social = \lib\option::social('list');
+			// create data of share url
+			$this->data->share['title']       = $this->data->site['title'];
+			$this->data->share['desc']        = $this->data->site['desc'];
+			$this->data->share['image']       = $this->url['static']. 'images/logo.png';
+			$this->data->share['twitterCard'] = 'summary';
+		}
+
+		// define default value for include
+		$this->include->newline      = PHP_EOL;
+		$this->include->css_ermile   = false;
+		$this->include->js_main      = false;
+		$this->include->siftal       = true;
+		$this->include->css          = true;
+		$this->include->js           = true;
+
+		// we offer 3 type of function to be used in order to have some change on module
+		// you can call this all time needed, but Recomended to call on project mvc view
+		if(method_exists($this, 'project'))
+		{
+			$this->project();
+		}
+		// like project but recomend to call on repository
+		if(method_exists($this, 'repository'))
+		{
+			$this->repository();
+		}
+		// like project but recomend to call on special module
+		if(method_exists($this, 'config'))
+		{
+			$this->config();
 		}
 	}
 
