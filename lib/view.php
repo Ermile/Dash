@@ -6,7 +6,6 @@ class view
 	use mvc;
 
 	use view\twigAddons;
-	use view\constructor;
 
 
 	/**
