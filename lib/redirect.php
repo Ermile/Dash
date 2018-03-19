@@ -16,6 +16,7 @@ class redirect
 		{
 			self::via_pushstate($_url);
 		}
+
 		if($_php)
 		{
 			self::via_php($_url, $_arg);
@@ -47,6 +48,7 @@ class redirect
 		header('Content-Type: application/json');
 		\lib\notif::redirect($_loc);
 		echo \lib\notif::json();
+		\lib\code::die();
 	}
 
 
