@@ -124,6 +124,7 @@ class autoload
 	}
 }
 spl_autoload_register("\autoload::load");
-// RUN DASH!
-new \lib\engine;
+
+// LAUNCH DASH!
+\lib\engine::launch();
 ?>

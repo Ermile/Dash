@@ -6,7 +6,7 @@ namespace lib;
 class engine
 {
 
-	public function __construct()
+	public static function launch()
 	{
 		// check debug and set php ini
 		\lib\engine\dev::set_php_ini();
