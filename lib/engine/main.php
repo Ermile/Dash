@@ -158,7 +158,7 @@ class main
 		{
 			\lib\view::variable();
 
-			if(is_callable([self::$module_addr. '\\view', 'config']))
+			if(is_callable([$view, 'config']))
 			{
 				$view::config();
 			}
