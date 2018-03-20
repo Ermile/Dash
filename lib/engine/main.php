@@ -233,14 +233,15 @@ class main
 		if($_load_model)
 		{
 			$model = self::$module_addr. '\\model';
-			if(is_callable([$model, self::$allow[$_method]]))
+			$fn    = self::$allow[$_method];
+
+			if(is_callable([$model, $fn]))
 			{
-				$fn   = self::$allow[$_method];
 				$model::$fn();
 			}
 			else
 			{
-				\lib\header::status(500, "Function ". self::$allow[$_method]. " not exist!");
+				\lib\header::status(500, "Function $fn not exist!");
 			}
 		}
 	}
