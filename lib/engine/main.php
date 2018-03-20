@@ -5,6 +5,8 @@ namespace lib\engine;
 class main
 {
 	private static $allow      = [];
+	private static $allow_url  = [];
+	private static $ctrl_url   = null;
 
 	public static $module_addr = null;
 	public static $view_addr   = null;
@@ -51,6 +53,7 @@ class main
 			$my_controller = self::checking($my_repo. $my_module. $my_child);
 			if($my_controller)
 			{
+				self::$ctrl_url = \lib\url::content(). '/'. \lib\url::module(). '/'. \lib\url::child();
 				return $my_controller;
 			}
 		}
@@ -61,6 +64,7 @@ class main
 			$my_controller = self::checking($my_repo. $my_module. '\home');
 			if($my_controller)
 			{
+				self::$ctrl_url = \lib\url::content(). '/'. \lib\url::module();
 				return $my_controller;
 			}
 
@@ -68,6 +72,7 @@ class main
 			$my_controller = self::checking($my_repo. $my_module);
 			if($my_controller)
 			{
+				self::$ctrl_url = \lib\url::content(). '/'. \lib\url::module();
 				return $my_controller;
 			}
 		}
@@ -76,6 +81,7 @@ class main
 		$my_controller = self::checking($my_repo. '\home');
 		if($my_controller)
 		{
+			self::$ctrl_url = \lib\url::content();
 			return $my_controller;
 		}
 
@@ -83,6 +89,7 @@ class main
 		$my_controller = self::checking('\content\home');
 		if($my_controller)
 		{
+			self::$ctrl_url = \lib\url::content();
 			return $my_controller;
 		}
 
@@ -143,6 +150,18 @@ class main
 			$controller::ready();
 		}
 
+		$url_query = \lib\url::query();
+		$url_path  = \lib\url::path();
+		$raw_path  = str_replace('?'. $url_query, '', $url_path);
+
+		if($raw_path !== self::$ctrl_url)
+		{
+			if(!in_array($raw_path, self::$allow_url))
+			{
+				\lib\header::status(404, "Unavalible");
+			}
+		}
+
 		if(self::method() !== 'get')
 		{
 			self::check_allow_method(self::method());
@@ -184,6 +203,12 @@ class main
 		{
 			\lib\redirect::pwd();
 		}
+	}
+
+
+	public static function allow_url($_url)
+	{
+		array_push(self::$allow_url, $_url);
 	}
 
 
