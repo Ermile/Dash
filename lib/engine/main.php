@@ -4,13 +4,13 @@ namespace lib\engine;
 
 class main
 {
-	private static $allow      = [];
-	private static $allow_url  = [];
-	private static $ctrl_url   = null;
+	private static $allow          = [];
+	private static $allow_url      = [];
+	private static $controller_url = null;
 
-	public static $module_addr = null;
-	public static $view_addr   = null;
-	public static $controller  = null;
+	public static $module_addr     = null;
+	public static $view_addr       = null;
+	public static $controller      = null;
 
 
 	/**
@@ -28,10 +28,7 @@ class main
 
 			self::load_view();
 
-			if(self::method() !== 'get')
-			{
-				self::load_model();
-			}
+			self::load_model();
 		}
 	}
 
@@ -53,7 +50,7 @@ class main
 			$my_controller = self::checking($my_repo. $my_module. $my_child);
 			if($my_controller)
 			{
-				self::$ctrl_url = \lib\url::content(). '/'. \lib\url::module(). '/'. \lib\url::child();
+				self::$controller_url = \lib\url::content(). '/'. \lib\url::module(). '/'. \lib\url::child();
 				return $my_controller;
 			}
 		}
@@ -64,7 +61,7 @@ class main
 			$my_controller = self::checking($my_repo. $my_module. '\home');
 			if($my_controller)
 			{
-				self::$ctrl_url = \lib\url::content(). '/'. \lib\url::module();
+				self::$controller_url = \lib\url::content(). '/'. \lib\url::module();
 				return $my_controller;
 			}
 
@@ -72,17 +69,18 @@ class main
 			$my_controller = self::checking($my_repo. $my_module);
 			if($my_controller)
 			{
-				self::$ctrl_url = \lib\url::content(). '/'. \lib\url::module();
+				self::$controller_url = \lib\url::content(). '/'. \lib\url::module();
 				return $my_controller;
 			}
 		}
+
 		if(\lib\engine\content::get())
 		{
 			// something like \content_su\home\controller.php
 			$my_controller = self::checking($my_repo. '\home');
 			if($my_controller)
 			{
-				self::$ctrl_url = \lib\url::content();
+				self::$controller_url = \lib\url::content();
 				return $my_controller;
 			}
 		}
@@ -91,7 +89,7 @@ class main
 		$my_controller = self::checking('\content\home');
 		if($my_controller)
 		{
-			self::$ctrl_url = \lib\url::content();
+			self::$controller_url = \lib\url::content();
 			return $my_controller;
 		}
 
@@ -147,26 +145,21 @@ class main
 			\lib\header::status(404, $controller);
 		}
 
-		if(is_callable([$controller, 'ready']))
+		if(is_callable([$controller, 'run']))
 		{
-			$controller::ready();
+			$controller::run();
 		}
 
 		$url_query = \lib\url::query();
 		$url_path  = \lib\url::path();
 		$raw_path  = str_replace('?'. $url_query, '', $url_path);
 
-		if($raw_path !== self::$ctrl_url)
+		if($raw_path !== self::$controller_url)
 		{
 			if(!in_array($raw_path, self::$allow_url))
 			{
 				\lib\header::status(404, "Unavalible");
 			}
-		}
-
-		if(self::method() !== 'get')
-		{
-			self::check_allow_method(self::method());
 		}
 	}
 
@@ -179,12 +172,28 @@ class main
 		{
 			\lib\view::variable();
 
-			if(is_callable([$view, 'config']))
+			if(is_callable([$view, 'run']))
 			{
-				$view::config();
+				$view::run();
 			}
 
-			\lib\view::twig();
+			if(array_key_exists('get', self::$allow))
+			{
+				$view_function = self::$allow['get'];
+
+				if(is_callable([$view, $view_function]))
+				{
+					$view::$view_function();
+				}
+			}
+
+			$display_addr = root. ltrim(self::$module_addr, '\\');
+			$display_addr = str_replace('\\', DIRECTORY_SEPARATOR, $display_addr);
+			$display_addr = str_replace('/', DIRECTORY_SEPARATOR, $display_addr);
+			if(file_exists($display_addr))
+			{
+				\lib\view::twig();
+			}
 		}
 	}
 
@@ -193,11 +202,30 @@ class main
 	{
 		$model = self::$module_addr. '\\model';
 
-		if(\lib\request::json_accept())
+		$method = self::method();
+
+		if(\lib\request::json_accept() && $method !== 'get')
 		{
 			if(class_exists($model))
 			{
-				self::check_allow_method(self::method(), true);
+
+				if(array_key_exists($method, self::$allow))
+				{
+					$model_function = self::$allow[$method];
+				}
+				else
+				{
+					$model_function = $method;
+				}
+
+				if(is_callable([$model, $model_function]))
+				{
+					$model::$model_function();
+				}
+				else
+				{
+					\lib\header::status(405);
+				}
 			}
 		}
 
@@ -222,30 +250,6 @@ class main
 		}
 
 		self::$allow[$_method] = $_function_name;
-	}
-
-
-	public static function check_allow_method($_method, $_load_model = false)
-	{
-		if(!array_key_exists($_method, self::$allow))
-		{
-			\lib\header::status(405);
-		}
-
-		if($_load_model)
-		{
-			$model = self::$module_addr. '\\model';
-			$fn    = self::$allow[$_method];
-
-			if(is_callable([$model, $fn]))
-			{
-				$model::$fn();
-			}
-			else
-			{
-				\lib\header::status(500, "Function $fn not exist!");
-			}
-		}
 	}
 
 
