@@ -138,10 +138,11 @@ class view
 			^\/]*\/?content/", "content", \lib\engine\main::$module_addr);
 		$module       = preg_replace("/^content\\\\|(model|view|controller)$/", "", $module);
 		$module       = preg_replace("/[\\\]/", "/", $module);
-		$repository   = \lib\engine\content::get();
-		$repository   = $repository ==='content'? $repository.'/': null;
+		// $repository   = \lib\engine\content::get();
+		// $repository   = $repository ==='content'? $repository.'/': null;
 		// $tmpname      = (self::$controller()->display_name)? self::$controller()->display_name : $repository.'/'.$module.'display.html';
-		$tmpname      = $repository.$module.'/display.html';
+		// $tmpname      = $repository.$module.'/display.html';
+		$tmpname      = $module.'/display.html';
 
 		if(\lib\url::content() === null)
 		{
