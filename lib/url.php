@@ -46,8 +46,6 @@ class url
 	private static $temp_path_split = [];
 	// check url is ip [example: 127.0.0.2]
 	private static $host_is_ip      = false;
-	// save base to use in some function
-	private static $base            = null;
 
 
 	/**
