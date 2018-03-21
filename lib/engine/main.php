@@ -76,13 +76,15 @@ class main
 				return $my_controller;
 			}
 		}
-
-		// something like \content_su\home\controller.php
-		$my_controller = self::checking($my_repo. '\home');
-		if($my_controller)
+		if(\lib\engine\content::get())
 		{
-			self::$ctrl_url = \lib\url::content();
-			return $my_controller;
+			// something like \content_su\home\controller.php
+			$my_controller = self::checking($my_repo. '\home');
+			if($my_controller)
+			{
+				self::$ctrl_url = \lib\url::content();
+				return $my_controller;
+			}
 		}
 
 		// something like \content\home\controller.php
