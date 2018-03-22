@@ -2,7 +2,7 @@
 namespace lib;
 /**
  * this lib handle url of our PHP framework, Dash
- * v 3.3
+ * v 4.0
  *
  * This lib detect all part of url and return each one seperate or combine some of them
  * Below example is the sample of this url lib
@@ -31,28 +31,22 @@ namespace lib;
  * 'path'       => '/en/a/thirdparty/general/edit/test=yes?id=5&page=8'
  * 'lang'       => 'en'
  * 'content'    => 'a'
+ * 'prefix'     => 'en/a'								[lang+content]
  * 'module'     => 'thirdparty'
  * 'child'      => 'general'
  * 'subchild'   => 'edit'
- * 'prefix'     => '/en/a'								[lang+content]
  * 'dir'        => [ 0 => 'thirdparty', 1 => 'general', 2 => 'edit', 3=> 'test=yes']
  * 'directory'  => 'thirdparty/general/edit/test=yes'
- * 'pwd'        => 'http://ermile.jibres.com/en/a/thirdparty/general/edit/test=yes?id=5&page=8'
- * 'current'    => 'http://ermile.jibres.com/en/a/thirdparty/general/edit/test=yes'
- * 'this' 		=> 'http://ermile.jibres.com/en/a/thirdparty'
+ *
  * 'here'       => 'http://ermile.jibres.com/en/a'
+ * 'this' 		=> 'http://ermile.jibres.com/en/a/thirdparty'
+ * 'current'    => 'http://ermile.jibres.com/en/a/thirdparty/general/edit/test=yes'
+ * 'pwd'        => 'http://ermile.jibres.com/en/a/thirdparty/general/edit/test=yes?id=5&page=8'
  */
 class url
 {
 	// declare variables
-	private static $url             = [];
-	// the server request_uri
-	private static $uri             = [];
-	// split host in $_SERVER by '.'
-	private static $split_host      = [];
-	// split request_uri in $_SERVER by '/'
-	private static $path_split      = [];
-	private static $temp_path_split = [];
+	private static $url = [];
 
 
 	/**
@@ -64,57 +58,189 @@ class url
 		self::$url = [];
 
 		// get base values from server
-		self::$url['protocol'] = self::_protocol();
-		self::$url['host']     = self::_host();
-		self::$url['port']     = self::_port();
-		self::$url['uri']      = self::_uri();
-		self::$url['query']    = self::_query();
+		self::$url['protocol']  = self::_protocol();
+		self::$url['host']      = self::_host();
+		self::$url['port']      = self::_port();
+		self::$url['uri']       = self::_uri();
+		self::$url['query']     = self::_query();
 
 		// analyse host
-		// self::$url = array_merge(self::$url, self::analyse_host(self::$url['host']));
-		$analysed_host = self::analyse_host(self::$url['host']);
-		self::$url['subdomain'] = $analysed_host['subdomain'];
-		self::$url['root']      = $analysed_host['root'];
-		self::$url['tld']       = $analysed_host['tld'];
+		$analysed_host          = self::analyse_host(self::$url['host']);
+		self::$url              = array_merge(self::$url, $analysed_host);
 
 		// generate with host and protocol
 		self::$url['domain']    = self::_domain();
 		self::$url['site']      = self::_site();
 		self::$url['base']      = self::_base();
 
-		// generate with uri
+		// generate with path
 		self::$url['path']      = self::_path();
+		$analysed_path          = self::analyse_path(self::$url['path']);
+		self::$url              = array_merge(self::$url, $analysed_path);
 
-
-
-
-
-		self::$uri = self::server('REQUEST_URI');
-		self::$uri = rtrim(self::$uri, '/');
-
-		if(substr(self::$uri, 0, 1) === '/')
-		{
-			self::$uri = substr(self::$uri, 1);
-		}
-
-		self::$path_split       = explode('/', self::remove_query(self::$uri));
-		self::$temp_path_split  = self::$path_split;
-
-
-		self::$url['lang']      = self::_lang();
-		self::$url['content']   = self::_content();
-		self::$url['dir']       = self::_dir();
-		self::$url['directory'] = self::_directory();
-		self::$url['module']    = self::_module();
-		self::$url['child']     = self::_child();
-		self::$url['subchild']  = self::_subchild();
-		self::$url['pwd']       = self::_pwd();
-		self::$url['current']   = self::_current();
-		self::$url['prefix']    = self::_prefix();
+		// generate with host and path
 		self::$url['here']      = self::_here();
 		self::$url['this']      = self::_this();
+		self::$url['current']   = self::_current();
+		self::$url['pwd']       = self::_pwd();
 
-		var_dump(self::$url);
+		// return final result
+		return self::$url;
+	}
+
+
+
+	/**
+	 * pwd - query
+	 * @return string of url
+	 */
+	private static function _current()
+	{
+		$current_url = self::$url['base'];
+		if(self::$url['path'])
+		{
+			$current_url .= self::$url['path'];
+		}
+		$current_url = strtok($current_url, '?');
+
+		return $current_url;
+	}
+
+
+	/**
+	 * full url with all parts
+	 * @return string of url
+	 */
+	private static function _pwd()
+	{
+		$full_url = self::$url['base'];
+		if(self::$url['path'])
+		{
+			$full_url .= self::$url['path'];
+		}
+
+		return $full_url;
+	}
+
+
+	/**
+	 * here + module
+	 * @return string of result
+	 */
+	private static function _this()
+	{
+		$this_url = self::$url['here'];
+		if(self::$url['module'])
+		{
+			$this_url .= '/' . self::$url['module'];
+		}
+
+		return $this_url;
+	}
+
+
+	/**
+	 * base + prefix
+	 * @return string of result
+	 */
+	private static function _here()
+	{
+		$here_url = self::$url['base'];
+		if(self::$url['prefix'])
+		{
+			$here_url .= '/' . self::$url['prefix'];
+		}
+		return $here_url;
+	}
+
+
+	/**
+	 * get path and analyse it for extract all part if exist
+	 * @param  string $_path
+	 * @return array of result
+	 */
+	private static function analyse_path($_path)
+	{
+		$path_result =
+		[
+			'lang'      => null,
+			'content'   => null,
+			'prefix'    => null,
+			'dir'       => [],
+			'directory' => null,
+			'module'    => null,
+			'child'     => null,
+			'subchild'  => null,
+		];
+
+		$my_path = trim(strtok($_path, '?'), '/');
+
+		// if we are in root, return empty path result
+		if(!$my_path)
+		{
+			return $path_result;
+		}
+		// seperate in array
+		$my_dir = explode('/', $my_path);
+
+		// try to detect lang
+		$maybe_lang = reset($my_dir);
+		// maybe first is language
+		if(strlen($maybe_lang) === 2 && \lib\language::check($maybe_lang))
+		{
+			// set language
+			$path_result['lang']   = $maybe_lang;
+			$path_result['prefix'] = $maybe_lang;
+			array_shift($my_dir);
+		}
+
+		// if we have another string in path
+		if(count($my_dir) > 0)
+		{
+			// try to detect content
+			$maybe_content = reset($my_dir);
+			// maybe first is language
+			if($maybe_content && \lib\engine\content::load($maybe_content))
+			{
+				// set language
+				$path_result['content'] = $maybe_content;
+				if($path_result['prefix'])
+				{
+					$path_result['prefix'] .= '/'. $maybe_content;
+				}
+				else
+				{
+					$path_result['prefix'] = $maybe_content;
+				}
+				array_shift($my_dir);
+			}
+		}
+
+		// if we have dir and some other things
+		if(count($my_dir) > 0)
+		{
+			// set remain as dir
+			$path_result['dir'] = $my_dir;
+			// set directory
+			$path_result['directory'] = implode('/', $my_dir);
+			// set module
+			if(isset($my_dir[0]))
+			{
+				$path_result['module'] = $my_dir[0];
+			}
+			// set child
+			if(isset($my_dir[1]))
+			{
+				$path_result['child'] = $my_dir[1];
+			}
+			// set subchild
+			if(isset($my_dir[2]))
+			{
+				$path_result['subchild'] = $my_dir[2];
+			}
+		}
+
+		return $path_result;
 	}
 
 
@@ -338,170 +464,6 @@ class url
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-	private static function _this()
-	{
-		return \lib\url::here(). '/'. \lib\url::module();
-	}
-
-
-	private static function _here()
-	{
-		$new_url = self::$url['base'];
-		if(self::lang())
-		{
-			$new_url .= '/'. self::lang();
-		}
-		if($content = \lib\url::content())
-		{
-			$new_url .= '/'. $content;
-		}
-		return $new_url;
-	}
-
-
-	private static function _prefix()
-	{
-		$prefix = null;
-		if($lang = \lib\url::lang())
-		{
-			$prefix .= $lang;
-		}
-		if($content = \lib\url::content())
-		{
-			$prefix .= '/'. $content;
-		}
-		$new_url = $prefix;
-
-		if(substr($new_url, 0, 1) !== '/')
-		{
-			$new_url = '/'. $new_url;
-		}
-
-		return $new_url;
-	}
-
-
-	private static function _module()
-	{
-		return self::dir(0);
-	}
-
-
-	private static function _child()
-	{
-		return self::dir(1);
-	}
-
-
-	private static function _subchild()
-	{
-		return self::dir(2);
-	}
-
-
-	private static function _pwd()
-	{
-		$full = null;
-		if(self::$uri)
-		{
-			$full = self::$url['base']. '/'. self::$uri;
-		}
-		else
-		{
-			$full = self::$url['base'];
-		}
-		return $full;
-	}
-
-
-	private static function _current()
-	{
-		$full = null;
-		if(self::$uri)
-		{
-			$full = self::$url['base']. '/'. self::$uri;
-		}
-		else
-		{
-			$full = self::$url['base'];
-		}
-		$full = str_replace('?'.self::_query(), '', $full);
-		return $full;
-	}
-
-
-	private static function _lang()
-	{
-		$lang = null;
-
-		if(array_key_exists(0, self::$path_split) && array_key_exists(self::$path_split[0], \lib\language::list()))
-		{
-			$lang = self::$path_split[0];
-			unset(self::$path_split[0]);
-			unset(self::$temp_path_split[0]);
-			self::$path_split = array_values(self::$path_split);
-			if(is_array(self::$temp_path_split))
-			{
-				self::$temp_path_split = array_values(self::$temp_path_split);
-			}
-		}
-		return $lang;
-	}
-
-
-	private static function _content()
-	{
-		$content = null;
-		if(array_key_exists(0, self::$path_split))
-		{
-			if(\lib\engine\content::load(self::$path_split[0]))
-			{
-				$content = self::$path_split[0];
-				unset(self::$temp_path_split[0]);
-				if(is_array(self::$temp_path_split))
-				{
-					self::$temp_path_split = array_values(self::$temp_path_split);
-				}
-			}
-		}
-		return $content;
-	}
-
-
-	private static function _dir()
-	{
-		$dir = [];
-
-		foreach (self::$temp_path_split as $key => $value)
-		{
-			if($value != '')
-			{
-				$dir[] = $value;
-			}
-		}
-		return $dir;
-	}
-
-	private static function _directory()
-	{
-		return implode(self::$temp_path_split, '/');
-	}
-
-	private static function remove_query($_uri)
-	{
-		return strtok($_uri, '?');
-	}
 
 	private static function server($_key = null)
 	{
