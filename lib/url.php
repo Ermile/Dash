@@ -2,7 +2,7 @@
 namespace lib;
 /**
  * this lib handle url of our PHP framework, Dash
- * v 3.0
+ * v 3.1
  *
  * This lib detect all part of url and return each one seperate or combine some of them
  * Below example is the sample of this url lib
@@ -64,9 +64,9 @@ class url
 
 		// get base values from server
 		self::$url['protocol'] = self::_protocol();
-		self::$url['host']     = self::server('HTTP_HOST');
+		self::$url['host']     = self::_host();
 		self::$url['port']     = self::_port();
-		self::$url['uri']      = self::server('REQUEST_URI');
+		self::$url['uri']      = self::_uri();
 		self::$url['query']    = self::_query();
 
 		// analyse host
@@ -108,9 +108,61 @@ class url
 		self::$url['prefix']    = self::_prefix();
 		self::$url['here']      = self::_here();
 		self::$url['this']      = self::_this();
+
+		var_dump(self::$url);
 	}
 
 
+
+
+
+	/**
+	 * get site url
+	 * @return string of site address
+	 */
+	private static function _site()
+	{
+		return \lib\url::protocol(). '://'. \lib\url::domain();
+	}
+
+	/**
+	 * get url base to used in tag or links
+	 * @return sting of base
+	 */
+	private static function _base()
+	{
+		return self::$url['protocol'] . '://'. self::$url['host'];
+	}
+
+
+	/**
+	 * calc domain address
+	 * @return string of domain
+	 */
+	private static function _domain()
+	{
+		$domain = self::$url['root'];
+		if(self::$url['tld'])
+		{
+			$domain .= '.'. self::$url['tld'];
+		}
+		if(self::$url['port'] === 80 || self::$url['port'] === 443)
+		{
+			// do nothing on default ports
+		}
+		else
+		{
+			$domain .= ':'. self::$url['port'];
+		}
+		return $domain;
+	}
+
+
+	/**
+	 * get host of server and return array contain 3part of it
+	 * @param  sting $_host
+	 * @return array of contain subdomain and root and tld
+	 */
 	private static function analyse_host($_host)
 	{
 		$my_host   = explode('.', $_host);
@@ -168,11 +220,81 @@ class url
 	}
 
 
-
-	private static function _site()
+	/**
+	 * get url parameter and query if exist
+	 * @return string query
+	 */
+	private static function _query()
 	{
-		return \lib\url::protocol(). '://'. \lib\url::domain();
+		$query = null;
+		if(self::server('QUERY_STRING'))
+		{
+			$query = self::server('QUERY_STRING');
+		}
+		return $query;
 	}
+
+
+	/**
+	 * get uri from server detail
+	 * @return string uri
+	 */
+	private static function _uri()
+	{
+		return self::server('REQUEST_URI');
+	}
+
+
+	/**
+	 * set the number of port
+	 * @return int port number
+	 */
+	private static function _port()
+	{
+		$port = intval(self::server('SERVER_PORT'));
+		return $port;
+	}
+
+	/**
+	 * get host from server detail
+	 * @return string host
+	 */
+	private static function _host()
+	{
+		return self::server('HTTP_HOST');
+	}
+
+
+	/**
+	 * get protocol contain http and https and support cdn and dns forward
+	 * @return string used protocol
+	 */
+	private static function _protocol()
+	{
+		$protocol = 'http';
+		if((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || self::server('SERVER_PORT') == 443)
+		{
+			$protocol = 'https';
+		}
+		elseif(isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https')
+		{
+			$protocol = $_SERVER['HTTP_X_FORWARDED_PROTO'];
+		}
+
+		return $protocol;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 	private static function _this()
@@ -236,59 +358,6 @@ class url
 	}
 
 
-	/**
-	 * get and ser the protocol
-	 * http
-	 * https
-	 * or other protocol in HTTP_X_FORWARDED_PROTO
-	 */
-	private static function _protocol()
-	{
-		$protocol = 'http';
-		if((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || self::server('SERVER_PORT') == 443)
-		{
-			$protocol = 'https';
-		}
-		elseif(isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https')
-		{
-			$protocol = $_SERVER['HTTP_X_FORWARDED_PROTO'];
-		}
-
-		return $protocol;
-	}
-
-
-	/**
-	 * set the intval of port
-	 */
-	private static function _port()
-	{
-		$port = intval(self::server('SERVER_PORT'));
-		return $port;
-	}
-
-
-	private static function _domain()
-	{
-		$domain = self::$url['root']. '.'. self::$url['tld'];
-		if(self::$url['port'] === 80 || self::$url['port'] === 443)
-		{
-			// do nothing on default ports
-		}
-		else
-		{
-			$domain .= ':'. self::$url['port'];
-		}
-		return $domain;
-	}
-
-
-	private static function _base()
-	{
-		return self::$url['protocol'] . '://'. self::$url['host'];
-	}
-
-
 	private static function _pwd()
 	{
 		$full = null;
@@ -317,17 +386,6 @@ class url
 		}
 		$full = str_replace('?'.self::_query(), '', $full);
 		return $full;
-	}
-
-
-	private static function _query()
-	{
-		$query = null;
-		if(self::server('QUERY_STRING'))
-		{
-			$query = self::server('QUERY_STRING');
-		}
-		return $query;
 	}
 
 
