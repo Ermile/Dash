@@ -2,7 +2,7 @@
 namespace lib;
 /**
  * this lib handle url of our PHP framework, Dash
- * v 3.2
+ * v 3.3
  *
  * This lib detect all part of url and return each one seperate or combine some of them
  * Below example is the sample of this url lib
@@ -25,8 +25,10 @@ namespace lib;
  * 'tld'        => 'com'
  *
  * 'domain'     => 'jibres.com'							[root+tld+port]
- * 'base'       => 'http://ermile.jibres.com'			[protocol+host]
  * 'site'       => 'http://jibres.com'					[protocol+domain]
+ * 'base'       => 'http://ermile.jibres.com'			[protocol+host]
+ *
+ * 'path'       => '/en/a/thirdparty/general/edit/test=yes?id=5&page=8'
  * 'lang'       => 'en'
  * 'content'    => 'a'
  * 'module'     => 'thirdparty'
@@ -35,7 +37,6 @@ namespace lib;
  * 'prefix'     => '/en/a'								[lang+content]
  * 'dir'        => [ 0 => 'thirdparty', 1 => 'general', 2 => 'edit', 3=> 'test=yes']
  * 'directory'  => 'thirdparty/general/edit/test=yes'
- * 'path'       => 'en/a/thirdparty/general/edit/test=yes?id=5&page=8'
  * 'pwd'        => 'http://ermile.jibres.com/en/a/thirdparty/general/edit/test=yes?id=5&page=8'
  * 'current'    => 'http://ermile.jibres.com/en/a/thirdparty/general/edit/test=yes'
  * 'this' 		=> 'http://ermile.jibres.com/en/a/thirdparty'
@@ -78,8 +79,13 @@ class url
 
 		// generate with host and protocol
 		self::$url['domain']    = self::_domain();
-		self::$url['base']      = self::_base();
 		self::$url['site']      = self::_site();
+		self::$url['base']      = self::_base();
+
+		// generate with uri
+		self::$url['path']      = self::_path();
+
+
 
 
 
@@ -95,7 +101,6 @@ class url
 		self::$temp_path_split  = self::$path_split;
 
 
-		self::$url['path']      = self::_path();
 		self::$url['lang']      = self::_lang();
 		self::$url['content']   = self::_content();
 		self::$url['dir']       = self::_dir();
@@ -113,7 +118,20 @@ class url
 	}
 
 
+	/**
+	 * return filterd uri as path
+	 * @return string of url path
+	 */
+	private static function _path()
+	{
+		$my_path = self::$url['uri'];
+		if(self::_in_another_addr())
+		{
+			$my_path = str_replace(self::_in_another_addr(), '', $my_path);
+		}
 
+		return $my_path;
+	}
 
 
 	/**
@@ -420,12 +438,6 @@ class url
 		}
 		$full = str_replace('?'.self::_query(), '', $full);
 		return $full;
-	}
-
-
-	private static function _path()
-	{
-		return self::$uri;
 	}
 
 
