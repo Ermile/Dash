@@ -2,20 +2,29 @@
 namespace lib;
 /**
  * this lib handle url of our PHP framework, Dash
- * v 2.2
+ * v 3.0
  *
  * This lib detect all part of url and return each one seperate or combine some of them
  * Below example is the sample of this url lib
  *
  * example : http://ermile.jibres.com/en/a/thirdparty/general/edit/test=yes?id=5&page=8
  *
+ *** get from $_SERVER
  * 'protocol'   => 'http'
+ * 'host'       => 'ermile.jibres.com'					[subdomain+domain]	(HTTP_HOST)
+ * 'port'       => 80														(SERVER_PORT)
+ * 'query'      => 'id=5&page=8'											(QUERY_STRING)
+ *
+ * dont use uri directly in normal condition
+ * 'uri'        => '/en/a/thirdparty/general/edit/test=yes?id=5&page=8'		(REQUEST_URI)
+ *
+ *
+ *** calculated from above values
  * 'subdomain'  => 'ermile'
  * 'root'       => 'jibres'
  * 'tld'        => 'com'
- * 'port'       => 80
+ *
  * 'domain'     => 'jibres.com'							[root+tld+port]
- * 'host'       => 'saeed.jibres.com'					[subdomain+domain]
  * 'base'       => 'http://ermile.jibres.com'			[protocol+host]
  * 'site'       => 'http://jibres.com'					[protocol+domain]
  * 'lang'       => 'en'
@@ -23,7 +32,6 @@ namespace lib;
  * 'module'     => 'thirdparty'
  * 'child'      => 'general'
  * 'subchild'   => 'edit'
- * 'query'      => 'id=5&page=8'
  * 'prefix'     => '/en/a'								[lang+content]
  * 'dir'        => [ 0 => 'thirdparty', 1 => 'general', 2 => 'edit', 3=> 'test=yes']
  * 'directory'  => 'thirdparty/general/edit/test=yes'
@@ -44,8 +52,6 @@ class url
 	// split request_uri in $_SERVER by '/'
 	private static $path_split      = [];
 	private static $temp_path_split = [];
-	// check url is ip [example: 127.0.0.2]
-	private static $host_is_ip      = false;
 
 
 	/**
@@ -56,14 +62,26 @@ class url
 	{
 		self::$url = [];
 
-		$host = self::server('HTTP_HOST');
+		// get base values from server
+		self::$url['protocol'] = self::_protocol();
+		self::$url['host']     = self::server('HTTP_HOST');
+		self::$url['port']     = self::_port();
+		self::$url['uri']      = self::server('REQUEST_URI');
+		self::$url['query']    = self::_query();
 
-		if(filter_var($host, FILTER_VALIDATE_IP))
-		{
-			self::$host_is_ip = true;
-		}
+		// analyse host
+		// self::$url = array_merge(self::$url, self::analyse_host(self::$url['host']));
+		$analysed_host = self::analyse_host(self::$url['host']);
+		self::$url['subdomain'] = $analysed_host['subdomain'];
+		self::$url['root']      = $analysed_host['root'];
+		self::$url['tld']       = $analysed_host['tld'];
 
-		self::$split_host = explode('.', $host);
+		// generate with host and protocol
+		self::$url['domain']    = self::_domain();
+		self::$url['base']      = self::_base();
+		self::$url['site']      = self::_site();
+
+
 
 		self::$uri = self::server('REQUEST_URI');
 		self::$uri = rtrim(self::$uri, '/');
@@ -76,14 +94,7 @@ class url
 		self::$path_split       = explode('/', self::remove_query(self::$uri));
 		self::$temp_path_split  = self::$path_split;
 
-		self::$url['protocol']  = self::_protocol();
-		self::$url['port']      = self::_port();
-		self::$url['tld']       = self::_tld();
-		self::$url['subdomain'] = self::_subdomain();
-		self::$url['root']      = self::_root();
-		self::$url['domain']    = self::_domain();
-		self::$url['host']      = self::_host();
-		self::$url['base']      = self::_base();
+
 		self::$url['path']      = self::_path();
 		self::$url['lang']      = self::_lang();
 		self::$url['content']   = self::_content();
@@ -92,22 +103,75 @@ class url
 		self::$url['module']    = self::_module();
 		self::$url['child']     = self::_child();
 		self::$url['subchild']  = self::_subchild();
-		self::$url['query']     = self::_query();
 		self::$url['pwd']       = self::_pwd();
 		self::$url['current']   = self::_current();
 		self::$url['prefix']    = self::_prefix();
 		self::$url['here']      = self::_here();
-		self::$url['site']      = self::_site();
 		self::$url['this']      = self::_this();
 	}
 
 
+	private static function analyse_host($_host)
+	{
+		$my_host   = explode('.', $_host);
+		$my_result = ['subdomain' => null, 'root' => null, 'tld' => null];
+
+		// if host is ip, only set as root
+		if(filter_var($_host, FILTER_VALIDATE_IP))
+		{
+			// something like 127.0.0.5
+			$my_result['root'] = $_host;
+		}
+		elseif(count($my_host) === 1)
+		{
+			// something like localhost
+			$my_result['root'] = $_host;
+		}
+		elseif(count($my_host) === 2)
+		{
+			// like jibres.com
+			$my_result['root'] = $my_host[0];
+			$my_result['tld']  = $my_host[1];
+		}
+		elseif(count($my_host) >= 3)
+		{
+			// some conditons like
+			// ermile.ac.ir
+			// ermile.jibres.com
+			// ermile.jibres.ac.ir
+			// a.ermile.jibres.ac.ir
+
+			// get last one as tld
+			$my_result['tld']  = end($my_host);
+			array_pop($my_host);
+
+			// check last one after remove is probably tld or not
+			$known_tld    = ['com', 'org', 'net', 'gov', 'co', 'ac', 'id', 'sch', 'biz'];
+			$probably_tld = end($my_host);
+			if(in_array($probably_tld, $known_tld))
+			{
+				$my_result['tld'] = $probably_tld. '.'. $my_result['tld'];
+				array_pop($my_host);
+			}
+
+			$my_result['root'] = end($my_host);
+			array_pop($my_host);
+
+			// all remain is subdomain
+			if(count($my_host) > 0)
+			{
+				$my_result['subdomain'] = implode('.', $my_host);
+			}
+		}
+
+		return $my_result;
+	}
+
+
+
 	private static function _site()
 	{
-		$site = null;
-		$site .= \lib\url::protocol(). '://';
-		$site .= \lib\url::domain();
-		return $site;
+		return \lib\url::protocol(). '://'. \lib\url::domain();
 	}
 
 
@@ -181,13 +245,13 @@ class url
 	private static function _protocol()
 	{
 		$protocol = 'http';
-		if((self::server('HTTPS') && self::server('HTTPS') !== 'off') || self::server('SERVER_PORT') == 443)
+		if((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || self::server('SERVER_PORT') == 443)
 		{
 			$protocol = 'https';
 		}
-		elseif(self::server('HTTP_X_FORWARDED_PROTO'))
+		elseif(isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https')
 		{
-			$protocol = self::server('HTTP_X_FORWARDED_PROTO');
+			$protocol = $_SERVER['HTTP_X_FORWARDED_PROTO'];
 		}
 
 		return $protocol;
@@ -204,68 +268,18 @@ class url
 	}
 
 
-	private static function _tld()
-	{
-		$tld = null;
-		if(!self::$host_is_ip)
-		{
-			$tld = end(self::$split_host);
-		}
-		return $tld;
-	}
-
-
-	private static function _subdomain()
-	{
-		$subdomain = null;
-		if(count(self::$split_host) >= 3 && !self::$host_is_ip)
-		{
-			$subdomain = (isset(self::$split_host[0])) ? self::$split_host[0] : null;
-		}
-		return $subdomain;
-	}
-
-
-	private static function _root()
-	{
-		$temp = self::$split_host;
-
-		if(self::$url['tld'])
-		{
-			array_pop($temp);
-		}
-
-		if(self::$url['subdomain'])
-		{
-			array_shift($temp);
-		}
-
-		return implode('.', $temp);
-	}
-
-
 	private static function _domain()
 	{
 		$domain = self::$url['root']. '.'. self::$url['tld'];
-		if(self::$url['port'] !== 80)
+		if(self::$url['port'] === 80 || self::$url['port'] === 443)
+		{
+			// do nothing on default ports
+		}
+		else
 		{
 			$domain .= ':'. self::$url['port'];
 		}
 		return $domain;
-	}
-
-
-	private static function _host()
-	{
-		$host = null;
-		if(self::$url['subdomain'])
-		{
-			$host .= self::$url['subdomain']. '.';
-		}
-
-		$host .= self::$url['domain'];
-
-		return $host;
 	}
 
 
