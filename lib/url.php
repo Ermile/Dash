@@ -2,7 +2,7 @@
 namespace lib;
 /**
  * this lib handle url of our PHP framework, Dash
- * v 3.1
+ * v 3.2
  *
  * This lib detect all part of url and return each one seperate or combine some of them
  * Below example is the sample of this url lib
@@ -117,13 +117,35 @@ class url
 
 
 	/**
+	 * if we are in different address, return in
+	 * @return string of another addr
+	 */
+	private static function _in_another_addr()
+	{
+		//
+		if(isset($_SERVER['PHP_SELF']))
+		{
+			$php_self = $_SERVER['PHP_SELF'];
+			$php_self = str_replace('/index.php', '', $php_self);
+			if($php_self)
+			{
+				return $php_self;
+			}
+		}
+
+		return null;
+	}
+
+
+	/**
 	 * get site url
 	 * @return string of site address
 	 */
 	private static function _site()
 	{
-		return \lib\url::protocol(). '://'. \lib\url::domain();
+		return self::$url['protocol']. '://'. self::$url['domain'];
 	}
+
 
 	/**
 	 * get url base to used in tag or links
@@ -131,7 +153,13 @@ class url
 	 */
 	private static function _base()
 	{
-		return self::$url['protocol'] . '://'. self::$url['host'];
+		$my_base = self::$url['protocol'] . '://'. self::$url['host'];
+
+		if(self::_in_another_addr())
+		{
+			$my_base .= self::_in_another_addr();
+		}
+		return $my_base;
 	}
 
 
@@ -154,6 +182,12 @@ class url
 		{
 			$domain .= ':'. self::$url['port'];
 		}
+
+		if(self::_in_another_addr())
+		{
+			$domain .= self::_in_another_addr();
+		}
+
 		return $domain;
 	}
 
