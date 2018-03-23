@@ -9,8 +9,7 @@ class main
 	private static $controller_url = null;
 
 	public static $module_addr     = null;
-	public static $view_addr       = null;
-	public static $controller      = null;
+	public static $module_is_real  = null;
 
 
 	/**
@@ -89,7 +88,7 @@ class main
 		$my_controller = self::checking('\content\home');
 		if($my_controller)
 		{
-			self::$controller_url = \lib\url::content();
+			self::$controller_url = '/';
 			return $my_controller;
 		}
 
@@ -103,7 +102,7 @@ class main
 	 * @param  [type] $_addr [description]
 	 * @return [type]        [description]
 	 */
-	public static function checking($_addr)
+	private static function checking($_addr)
 	{
 		$find            = null;
 		$controller_addr = $_addr. '\\controller';
@@ -123,6 +122,7 @@ class main
 
 		if($find)
 		{
+			// set module addr to use in all other function for addressing
 			self::$module_addr = $_addr;
 		}
 
@@ -136,13 +136,12 @@ class main
 	 * @param  [type] $controller [description]
 	 * @return [type]              [description]
 	 */
-	public static function load_controller()
+	private static function load_controller()
 	{
 		$controller = self::$module_addr. '\\controller';
-
 		if(!class_exists($controller))
 		{
-			\lib\header::status(404, $controller);
+			\lib\header::status(409, $controller);
 		}
 
 		if(is_callable([$controller, 'run']))
@@ -150,13 +149,16 @@ class main
 			$controller::run();
 		}
 
-		$url_query = \lib\url::query();
-		$url_path  = \lib\url::path();
-		$raw_path  = str_replace('?'. $url_query, '', $url_path);
-
-		if($raw_path !== self::$controller_url)
+		$real_address = trim(\lib\url::content(). '/'. \lib\url::directory(), '/');
+		if(!$real_address)
 		{
-			if(!in_array($raw_path, self::$allow_url))
+			$real_address = null;
+		}
+
+		// if we are in another address of current routed in controller, double check
+		if(self::$controller_url != $real_address)
+		{
+			if(!in_array(\lib\url::directory(), self::$allow_url))
 			{
 				\lib\header::status(404, "Unavalible");
 			}
@@ -164,7 +166,7 @@ class main
 	}
 
 
-	public static function load_view()
+	private static function load_view()
 	{
 		$view = self::$module_addr. '\\view';
 
@@ -198,7 +200,7 @@ class main
 	}
 
 
-	public static function load_model()
+	private static function load_model()
 	{
 		$model = self::$module_addr. '\\model';
 
