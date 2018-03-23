@@ -85,11 +85,19 @@ class content
 
 	public static function get()
 	{
+		if(!self::$name)
+		{
+			self::load(null);
+		}
 		return self::$name;
 	}
 
 	public static function get_addr()
 	{
+		if(!self::$addr)
+		{
+			self::load(null);
+		}
 		return self::$addr;
 	}
 
