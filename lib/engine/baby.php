@@ -2,7 +2,7 @@
 namespace lib\engine;
 /**
  * some check for baby to not allow to harm yourself
- * v1.1
+ * v1.2
  */
 class baby
 {
@@ -16,7 +16,7 @@ class baby
 		// if we dont have request url it was very mysterious, say Hi to hitler
 		if(!isset($_SERVER['REQUEST_URI']))
 		{
-			\lib\header::status(406, 'Hi Father!');
+			\lib\header::status(412, 'Hi Father!');
 		}
 
 		// check duble slash in url
@@ -80,7 +80,7 @@ class baby
 			// http://dash.local/enter?referer=http://dash.local/cp
 			if(strpos($_SERVER['REQUEST_URI'], '?') === false || strpos($_SERVER['REQUEST_URI'], '?') > strpos($_SERVER['REQUEST_URI'], '//'))
 			{
-				\lib\header::status(404, 'What are you doing!');
+				\lib\header::status(421, 'What are you doing!');
 			}
 		}
 	}
@@ -93,11 +93,11 @@ class baby
 		$msg = 'Hi Baby'. str_repeat('!', self::$level);
 		if(\lib\request::json_accept() || \lib\temp::get('api') || \lib\request::ajax())
 		{
-			\lib\header::status(406, $msg. ' Are you healthy?');
+			\lib\header::status(418, $msg. ' Are you healthy?');
 		}
 		else
 		{
-			\lib\header::status(406, $msg);
+			\lib\header::status(418, $msg);
 		}
 		self::$level = null;
 	}
