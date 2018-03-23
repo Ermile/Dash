@@ -74,7 +74,7 @@ class language
 	 */
 	public static function check($_lang)
 	{
-		return array_key_exists($_lang, self::list());
+		return array_key_exists($_lang, self::$data);
 	}
 
 
