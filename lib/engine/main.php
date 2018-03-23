@@ -236,6 +236,12 @@ class main
 	}
 
 
+	public static function get_dir_address()
+	{
+		return self::$folder_addr;
+	}
+
+
 	public static function allow_url($_url)
 	{
 		array_push(self::$allow_url, $_url);

@@ -1,12 +1,12 @@
 <?php
-namespace lib;
+namespace lib\engine;
 /**
  * dash main configure
  */
-class engine
+class power
 {
 
-	public static function launch()
+	public static function on()
 	{
 		// check debug and set php ini
 		\lib\engine\dev::set_php_ini();

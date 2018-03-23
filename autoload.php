@@ -126,5 +126,5 @@ class autoload
 spl_autoload_register("\autoload::load");
 
 // LAUNCH DASH!
-\lib\engine::launch();
+\lib\engine\power::on();
 ?>
