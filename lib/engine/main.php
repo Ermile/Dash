@@ -4,12 +4,10 @@ namespace lib\engine;
 
 class main
 {
-	private static $allow          = [];
-	private static $allow_url      = [];
-	private static $controller_url = null;
-
-	public static $module_addr     = null;
-	public static $module_is_real  = null;
+	private static $controller_addr = null;
+	private static $folder_addr     = null;
+	private static $allow           = [];
+	private static $allow_url       = [];
 
 
 	/**
@@ -49,7 +47,7 @@ class main
 			$my_controller = self::checking($my_repo. $my_module. $my_child);
 			if($my_controller)
 			{
-				self::$controller_url = \lib\url::content(). '/'. \lib\url::module(). '/'. \lib\url::child();
+				self::$controller_addr = \lib\url::content(). '/'. \lib\url::module(). '/'. \lib\url::child();
 				return $my_controller;
 			}
 		}
@@ -60,7 +58,7 @@ class main
 			$my_controller = self::checking($my_repo. $my_module. '\home');
 			if($my_controller)
 			{
-				self::$controller_url = \lib\url::content(). '/'. \lib\url::module();
+				self::$controller_addr = \lib\url::content(). '/'. \lib\url::module();
 				return $my_controller;
 			}
 
@@ -68,7 +66,7 @@ class main
 			$my_controller = self::checking($my_repo. $my_module);
 			if($my_controller)
 			{
-				self::$controller_url = \lib\url::content(). '/'. \lib\url::module();
+				self::$controller_addr = \lib\url::content(). '/'. \lib\url::module();
 				return $my_controller;
 			}
 		}
@@ -79,7 +77,7 @@ class main
 			$my_controller = self::checking($my_repo. '\home');
 			if($my_controller)
 			{
-				self::$controller_url = \lib\url::content();
+				self::$controller_addr = \lib\url::content();
 				return $my_controller;
 			}
 		}
@@ -88,7 +86,7 @@ class main
 		$my_controller = self::checking('\content\home');
 		if($my_controller)
 		{
-			self::$controller_url = '/';
+			self::$controller_addr = '/';
 			return $my_controller;
 		}
 
@@ -123,7 +121,7 @@ class main
 		if($find)
 		{
 			// set module addr to use in all other function for addressing
-			self::$module_addr = $_addr;
+			self::$folder_addr = $_addr;
 		}
 
 		return $find;
@@ -138,7 +136,7 @@ class main
 	 */
 	private static function load_controller()
 	{
-		$controller = self::$module_addr. '\\controller';
+		$controller = self::$folder_addr. '\\controller';
 		if(!class_exists($controller))
 		{
 			\lib\header::status(409, $controller);
@@ -156,7 +154,7 @@ class main
 		}
 
 		// if we are in another address of current routed in controller, double check
-		if(self::$controller_url != $real_address)
+		if(self::$controller_addr != $real_address)
 		{
 			if(!in_array(\lib\url::directory(), self::$allow_url))
 			{
@@ -168,7 +166,7 @@ class main
 
 	private static function load_view()
 	{
-		$view = self::$module_addr. '\\view';
+		$view = self::$folder_addr. '\\view';
 
 		if(self::method() === 'get' && !\lib\request::json_accept())
 		{
@@ -189,7 +187,7 @@ class main
 				}
 			}
 
-			$display_addr = root. ltrim(self::$module_addr, '\\');
+			$display_addr = root. ltrim(self::$folder_addr, '\\');
 			$display_addr = str_replace('\\', DIRECTORY_SEPARATOR, $display_addr);
 			$display_addr = str_replace('/', DIRECTORY_SEPARATOR, $display_addr);
 			if(file_exists($display_addr))
@@ -202,7 +200,7 @@ class main
 
 	private static function load_model()
 	{
-		$model = self::$module_addr. '\\model';
+		$model = self::$folder_addr. '\\model';
 
 		$method = self::method();
 
