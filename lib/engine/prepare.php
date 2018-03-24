@@ -48,32 +48,27 @@ class prepare
 	{
 		if(\lib\url::isLocal())
 		{
-			return;
+			return null;
 		}
 
 		if(\lib\agent::isBot())
 		{
-			return ;
+			return false;
 		}
 
 		$referer = (isset($_SERVER['HTTP_REFERER']) && $_SERVER['HTTP_REFERER']) ? true : false;
-
 		if($referer)
 		{
-			return;
+			return false;
 		}
 
-		$key = 'language';
-
-		$cookie = \lib\utility\cookie::read($key);
+		$cookie = \lib\utility\cookie::read('language');
 
 		if(!$_SESSION && !$cookie && !\lib\url::lang())
 		{
 			$default_site_language = \lib\language::default();
 			$country_is_ir         = (isset($_SERVER['HTTP_CF_IPCOUNTRY']) && mb_strtoupper($_SERVER['HTTP_CF_IPCOUNTRY']) === 'IR') ? true : false;
 			$redirect_lang         = null;
-
-			$access_lang = \lib\option::language('list');
 
 			if($default_site_language === 'fa' && !$country_is_ir)
 			{
@@ -86,15 +81,15 @@ class prepare
 			$cookie_lang = $redirect_lang ? $redirect_lang : $default_site_language;
 			$domain = '.'. \lib\url::domain();
 
-			\lib\utility\cookie::write($key, $cookie_lang, (60*60*24*30), $domain);
-			$_SESSION[$key] = $cookie_lang;
+			\lib\utility\cookie::write('language', $cookie_lang, (60*60*24*30), $domain);
+			$_SESSION['language'] = $cookie_lang;
 
-			if($redirect_lang && array_key_exists($redirect_lang, $access_lang))
+			if($redirect_lang && array_key_exists($redirect_lang, \lib\option::language('list')))
 			{
 				$root    = \lib\url::base();
 				$full    = \lib\url::pwd();
 				$new_url = str_replace($root, $root. '/'. $redirect_lang, $full);
-				\lib\redirect::to($new_url);
+				\lib\redirect::to($new_url, true, 302);
 			}
 		}
 	}
