@@ -204,11 +204,10 @@ class mvc
 
 		$method = \lib\request::is();
 
-		if(\lib\request::json_accept() && $method !== 'get')
+		if($method !== 'get' || \lib\request::json_accept())
 		{
 			if(class_exists($model))
 			{
-
 				if(array_key_exists($method, self::$allow))
 				{
 					$model_function = self::$allow[$method];
@@ -226,6 +225,11 @@ class mvc
 				{
 					\lib\header::status(405);
 				}
+			}
+			else
+			{
+				// model does not exist in this folder
+				\lib\header::status(501);
 			}
 		}
 
