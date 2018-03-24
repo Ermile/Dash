@@ -197,7 +197,7 @@ class prepare
 			}
 			else
 			{
-				header('Location: '. $target_url, true, 301);
+				\lib\redirect::to($target_url);
 			}
 		}
 	}
@@ -227,8 +227,7 @@ class prepare
 			}
 			elseif(!isset($_COOKIE["preview"]))
 			{
-				header('Location: '.\lib\url::site().'/static/page/coming/', true, 302);
-				\lib\code::exit();
+				\lib\redirect::to(\lib\url::site().'/static/page/coming/', true, 302);
 			}
 		}
 	}
