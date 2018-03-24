@@ -8,14 +8,10 @@ class power
 
 	public static function on()
 	{
-		// check debug and set php ini
-		\lib\engine\dev::set_php_ini();
+		\lib\engine\prepare::requirements();
 
 		// block baby to not allow to harm yourself :/
 		\lib\engine\baby::block();
-
-		// check min requirement to run dash core!
-		\lib\engine\init::minimum_requirement();
 
 		// detect url and start work with them as first lib used by another one
 		\lib\url::initialize();
@@ -23,14 +19,8 @@ class power
 		// detect language and if need set the new language
 		\lib\language::detect_language();
 
-		// check comming soon page
-		\lib\engine\init::coming_soon();
+		\lib\engine\prepare::basics();
 
-		// check need redirect for lang or www or https or main domain
-		\lib\engine\init::appropriate_url();
-
-		// start session
-		\lib\session::start();
 
 		// // check if isset remember me and login by this
 		\lib\user::check_remeber_login();
@@ -38,9 +28,9 @@ class power
 		// @check
 		\lib\user::user_country_redirect();
 
+
 		// LAUNCH !
 		\lib\engine\main::start();
-
 	}
 }
 ?>
