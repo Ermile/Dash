@@ -202,10 +202,9 @@ class mvc
 	{
 		$model = self::$folder_addr. '\\model';
 
-		$method = \lib\request::is();
-
-		if($method !== 'get' || \lib\request::json_accept())
+		if(!\lib\request::is('get') || \lib\request::json_accept())
 		{
+			$method = \lib\request::is();
 			if(class_exists($model))
 			{
 				if(array_key_exists($method, self::$allow))
@@ -246,20 +245,24 @@ class mvc
 	}
 
 
-	public static function allow_url($_url)
+	public static function allow_url($_url, $_fn = null)
 	{
+		if(!$_fn)
+		{
+			$_fn = 'config';
+		}
 		array_push(self::$allow_url, $_url);
 	}
 
 
-	public static function allow($_method, $_function_name = null)
+	public static function allow($_method, $_fn = null)
 	{
-		if(!$_function_name)
+		if(!$_fn)
 		{
-			$_function_name = $_method;
+			$_fn = $_method;
 		}
 
-		self::$allow[$_method] = $_function_name;
+		self::$allow[$_method] = $_fn;
 	}
 }
 ?>
