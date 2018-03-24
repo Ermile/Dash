@@ -25,9 +25,6 @@ class power
 		// // check if isset remember me and login by this
 		\lib\user::check_remeber_login();
 
-		// @check
-		\lib\user::user_country_redirect();
-
 
 		// LAUNCH !
 		\lib\engine\mvc::fire();
