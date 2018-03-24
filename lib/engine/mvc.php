@@ -91,7 +91,7 @@ class mvc
 		}
 
 		// nothing found, show error page
-		\lib\header::status(404, "nothing found!");
+		\lib\header::status(501, "Hey, Read documentation and start your project!");
 	}
 
 
@@ -158,7 +158,7 @@ class mvc
 		{
 			if(!in_array(\lib\url::directory(), self::$allow_url))
 			{
-				\lib\header::status(404, "Unavalible");
+				\lib\header::status(404, "We can't find the page you're looking for!");
 			}
 		}
 	}
