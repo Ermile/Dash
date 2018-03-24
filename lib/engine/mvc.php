@@ -168,7 +168,7 @@ class mvc
 	{
 		$view = self::$folder_addr. '\\view';
 
-		if(self::method() === 'get' && !\lib\request::json_accept())
+		if(\lib\request::is('get') && !\lib\request::json_accept())
 		{
 			\lib\view::variable();
 
@@ -202,7 +202,7 @@ class mvc
 	{
 		$model = self::$folder_addr. '\\model';
 
-		$method = self::method();
+		$method = \lib\request::is();
 
 		if(\lib\request::json_accept() && $method !== 'get')
 		{
@@ -229,7 +229,7 @@ class mvc
 			}
 		}
 
-		if(self::method() === "post" && !empty(\lib\request::post()))
+		if(\lib\request::is('post') && !empty(\lib\request::post()))
 		{
 			\lib\redirect::pwd();
 		}
@@ -256,28 +256,6 @@ class mvc
 		}
 
 		self::$allow[$_method] = $_function_name;
-	}
-
-
-	public static function method($_name = null)
-	{
-		$method = $_SERVER['REQUEST_METHOD'];
-		$method = mb_strtolower($method);
-		if($_name)
-		{
-			if($_name === $method)
-			{
-				return true;
-			}
-			else
-			{
-				return false;
-			}
-		}
-		else
-		{
-			return $method;
-		}
 	}
 }
 ?>
