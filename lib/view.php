@@ -135,7 +135,7 @@ class view
 			self::$data->loadMode           = 'ajax';
 		}
 		$module       = preg_replace("/^[
-			^\/]*\/?content/", "content", \lib\engine\main::get_dir_address());
+			^\/]*\/?content/", "content", \lib\engine\mvc::get_dir_address());
 		$module       = preg_replace("/^content\\\\|(model|view|controller)$/", "", $module);
 		$module       = preg_replace("/[\\\]/", "/", $module);
 		// $repository   = \lib\engine\content::get();

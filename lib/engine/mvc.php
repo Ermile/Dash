@@ -2,7 +2,7 @@
 namespace lib\engine;
 
 
-class main
+class mvc
 {
 	private static $controller_addr = null;
 	private static $folder_addr     = null;
@@ -14,7 +14,7 @@ class main
 	 * start main to detect controller and from 0 km to ...
 	 * @return [type] [description]
 	 */
-	public static function start()
+	public static function fire()
 	{
 		// get best controller
 		$finded_controller  = self::find_ctrl();

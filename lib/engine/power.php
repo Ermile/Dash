@@ -30,7 +30,7 @@ class power
 
 
 		// LAUNCH !
-		\lib\engine\main::start();
+		\lib\engine\mvc::fire();
 	}
 }
 ?>

@@ -8,7 +8,7 @@ class controller extends \addons\content_enter\main\controller
 		if(\lib\url::directory() === 'email/change/google')
 		{
 			// @check
-			// \lib\engine\main::controller_set("\\addons\content_enter\\email\\change\\google\\controller");
+			// \lib\engine\mvc::controller_set("\\addons\content_enter\\email\\change\\google\\controller");
 			return;
 		}
 
