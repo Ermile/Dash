@@ -1,20 +1,21 @@
+# This sample is incorrect and need to fix!
+
 # Create Contact Form
-##### create contact form in url : `example.local/contact` save & show server request in `example.local/contact/read`
+##### create contact form in url `example.local/contact` save & show server request in `example.local/contact/read`
 1. make directory `contact` in `content` directory
 2. put `controller & view & display` in `contact` directory *tip : because we don't need `model.php` so don't set that
-    - `display.html`'s content :  [Link](https://geeksesi.xyz/upload/view1.text )
     * tip : `display`'s style put in `public_html/static/css`
 3. to Answer Form Request we create
     * view config function to echo Confirmation alert
     * controller config function to save Data to `db.text` in : `public_html/db.text`
 
-## view :
-- view class must be extends `\lib\mvc\view` and namespace must be set : `namespace content\contact` like this code :
+## view
+- view class namespace must be set `namespace content\contact` like this code
 ```
 <?php
 namespace content\contact;
 
-class view extends \lib\mvc\view
+class view
 {
    public function config()
    {
@@ -26,15 +27,16 @@ class view extends \lib\mvc\view
 
 }
 ```
-## controller :
-- controller class must be extends `\lib\mvc\controller` and namespace must be Set : `namespace content\contact` like this code :
+
+## controller
+- controller class namespace must be Set : `namespace content\contact` like this code
 ```
 <?php
 namespace content\contact;
 
-class controller extends \lib\mvc\controller
+class controller
 {
-   public function config()
+   public function routing()
    {
       if(isset($_POST["submit"]))
       {
@@ -52,18 +54,18 @@ class controller extends \lib\mvc\controller
 }
 ```
 ---
----
 
 
-4. to show db.text content in table in `example.local/contact/read` url i make `read` directory in `conten/contact` directory and put new `controller & view & display` in `read` directory like this :
-## controller :
+4. to show db.text content in table in `example.local/contact/read` url i make `read` directory in `conten/contact` directory and put new `controller & view & display` in `read` directory like this
+
+## controller
 ```
 <?php
 namespace content\contact\read;
 
-class controller extends \lib\mvc\controller
+class controller
 {
-   public function config()
+   public function routing()
    {
       $file_size = filesize(root."/public_html/db.text") ;
       if($file_size > 2)
@@ -80,12 +82,12 @@ class controller extends \lib\mvc\controller
 }
 ```
 
-## view :
+## view
 ```
 <?php
 namespace content\contact\read;
 
-class view extends \lib\mvc\view
+class view
 {
     public function view_table()
     {
@@ -111,8 +113,6 @@ class view extends \lib\mvc\view
     }
 }
 ```
-## display :
- [Link](https://geeksesi.xyz/upload/view2.text )
 
 ---
 5. in `example.local/contact/read`'s controller check if `db.text` is `!empty` load `view_table`'s function in `view` else echo `sorry but file is empty`
