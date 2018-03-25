@@ -66,11 +66,11 @@ dash/addons
 ```
 
 
-[Ermile]: <http://ermile.com>
-[ارمایل]: <http://ermile.ir>
+[Ermile]: <https://ermile.com>
+[ارمایل]: <https://ermile.com/fa>
 [Dash on Github]: <https://github.com/Ermile/dash>
-[Dash Official Website]: <http://Ermile.ir>
-[Dash]: <https://Ermile.ir>
+[Dash Official Website]: <https://dash.ermile.com>
+[Dash]: <https://dash.ermile.com>
 [DashSample]: <https://github.com/Ermile/dashSample>
 [Javad Evazzadeh]: <http://evazzadeh.com>
 [cloc]: <http://cloc.sourceforge.net>
