@@ -94,9 +94,9 @@ location ~* \.(css|gif|ico|jpeg|jpg|js|png)$ { expires max; log_not_found off;}
 ---
 2. install Dash :
 ## clone repo :
-`git clone https://github.com/geeksesi/dash.git`
+`git clone https://github.com/Ermile/dash.git`
 ## download link
-[Dash](https://github.com/geeksesi/dash/archive/master.zip)
+[Dash](https://github.com/Ermile/dash/archive/master.zip)
 ## composer
 `composer require geeksesi/dash`
 or add this to `composer.json` :
