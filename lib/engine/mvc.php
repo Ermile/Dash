@@ -7,7 +7,6 @@ class mvc
 	private static $controller_addr = null;
 	private static $folder_addr     = null;
 	private static $allow           = [];
-	private static $allow_url       = [];
 
 
 	/**
@@ -102,19 +101,19 @@ class mvc
 	 */
 	private static function checking($_addr)
 	{
-		$find            = null;
-		$controller_addr = $_addr. '\\controller';
+		$find   = null;
+		$myctrl = $_addr. '\\controller';
 
-		if(class_exists($controller_addr))
+		if(class_exists($myctrl))
 		{
-			$find = $controller_addr;
+			$find = $myctrl;
 		}
 		else
 		{
-			$controller_addr = '\addons'. $controller_addr;
-			if(class_exists($controller_addr))
+			$myctrl = '\addons'. $myctrl;
+			if(class_exists($myctrl))
 			{
-				$find = $controller_addr;
+				$find = $myctrl;
 			}
 		}
 
@@ -147,16 +146,17 @@ class mvc
 			$controller::run();
 		}
 
+		// generate real address of current page
 		$real_address = trim(\lib\url::content(). '/'. \lib\url::directory(), '/');
 		if(!$real_address)
 		{
 			$real_address = null;
 		}
-
 		// if we are in another address of current routed in controller, double check
 		if(self::$controller_addr != $real_address)
 		{
-			if(!in_array(\lib\url::directory(), self::$allow_url))
+			// if this url has no custom licence, block it
+			if(!\lib\method::license())
 			{
 				\lib\header::status(404, "We can't find the page you're looking for!");
 			}
@@ -200,25 +200,16 @@ class mvc
 
 	private static function load_model()
 	{
-		$model = self::$folder_addr. '\\model';
-
+		$my_model = self::$folder_addr. '\\model';
 		if(!\lib\request::is('get') || \lib\request::json_accept())
 		{
-			$method = \lib\request::is();
-			if(class_exists($model))
+			if(class_exists($my_model))
 			{
-				if(array_key_exists($method, self::$allow))
-				{
-					$model_function = self::$allow[$method];
-				}
-				else
-				{
-					$model_function = $method;
-				}
+				$my_model_function = \lib\method::license();
 
-				if(is_callable([$model, $model_function]))
+				if(is_callable([$my_model, $my_model_function]))
 				{
-					$model::$model_function();
+					$my_model::$my_model_function();
 				}
 				else
 				{
@@ -242,16 +233,6 @@ class mvc
 	public static function get_dir_address()
 	{
 		return self::$folder_addr;
-	}
-
-
-	public static function allow_url($_url, $_fn = null)
-	{
-		if(!$_fn)
-		{
-			$_fn = 'config';
-		}
-		array_push(self::$allow_url, $_url);
 	}
 
 
