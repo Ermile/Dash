@@ -1,9 +1,9 @@
 
 # 1. config virtualHosts on webService
 ## Ubuntu
-### Apache :
-- run : `sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/example.conf`
-- run : `sudo vim /etc/apache2/sites-available/example.conf` & change `DocumentRoot & ServerName & Directory` and save change
+### Apache
+- run `sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/example.conf`
+- run `sudo vim /etc/apache2/sites-available/example.conf` & change `DocumentRoot & ServerName & Directory` and save change
 ```
 <VirtualHost 127.0.0.2>
  DocumentRoot /var/www/example/public_html/
@@ -16,33 +16,33 @@
  </Directory>
 </VirtualHost>
 ```
-- run : `sudo a2ensite example.conf`
-- restart apache service : `sudo service apache2 restart`
+- run `sudo a2ensite example.conf`
+- restart apache service `sudo service apache2 restart`
 - run `sudo vim /etc/hosts` and add code to end of file :
-```
- 12.0.0.2       example.local
-```
-- now type in browser : example.local run virtual hosts
-+ more information in : [apache virtualHosts](https://www.digitalocean.com/community/tutorials/how-to-set-up-apache-virtual-hosts-on-ubuntu-14-04-lts "Title")
+
+``` 127.0.0.2       example.local ```
+- now type in browser `example.local` to run as virtual host
++ read more information about [apache virtualHosts](https://www.digitalocean.com/community/tutorials/how-to-set-up-apache-virtual-hosts-on-ubuntu-14-04-lts "Title")
 
 #### Tip
-- in Apache must enable `.htaccess` mode by : `sudo a2enmod rewrite headers`
+- in Apache must enable `.htaccess` mode by `sudo a2enmod rewrite headers`
 
 ### Nginx
-- run : `sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/example`
-- run : `sudo vim /etc/nginx/sites-available/example` & change `root & ServerName ` AND save change
+- run `sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/example`
+- run `sudo vim /etc/nginx/sites-available/example` & change `root & ServerName ` AND save change
 ```
- server {
+server
+{
     listen 80 ;
     listen [::]:80 ;
     root directory/public_html;
     index index.html index.htm index.nginx-debian.html;
     server_name example.local ;
     include sites-available/php.conf;
- }
-
+}
 ```
-- add `php.conf` in `/etc/nginx/sites-available/php.cong` :
+
+- add `php.conf` in `/etc/nginx/sites-available/php.conf`
 ```
 index index.php index.html index.nginx-debian.html;
 
@@ -67,14 +67,14 @@ location = /robots.txt { log_not_found off; access_log off; allow all; }
 location ~* \.(css|gif|ico|jpeg|jpg|js|png)$ { expires max; log_not_found off;}
 
 ```
-- restart nginx service : `sudo service nginx restart`
-- now type in browser : example.local run virtual hosts
-+ more information in : [nginx virtualHosts](https://www.digitalocean.com/community/tutorials/how-to-set-up-nginx-virtual-hosts-server-blocks-on-ubuntu-12-04-lts--3 "Title")
+- restart nginx service `sudo service nginx restart`
+- now type in browser `example.local` to run as virtual host
++ read more information about [nginx virtualHosts](https://www.digitalocean.com/community/tutorials/how-to-set-up-nginx-virtual-hosts-server-blocks-on-ubuntu-12-04-lts--3 "Title")
 ---
 
 ## Windows
 ### Apache (xampp)
-- edite `httpd-vhost.conf` in `c:/exampp/apache/conf/extra`, add this code to end of file :
+- edit `httpd-vhost.conf` in `c:/exampp/apache/conf/extra`, add this code to end of file
 ```
 <VirtualHost 127.0.0.2>
  DocumentRoot c:/xampp/htdocs/example/public_html/
@@ -88,31 +88,31 @@ location ~* \.(css|gif|ico|jpeg|jpg|js|png)$ { expires max; log_not_found off;}
 </VirtualHost>
 ```
 - restart apache service
-- edite `hosts` file in `c:/windows/System32/driver/etc`, add this code to end of file :
- ```
- 12.0.0.2       example.local
- ```
- - for more information : [apache virtualHosts in windows](https://delanomaloney.com/2013/07/10/how-to-set-up-virtual-hosts-using-xampp/)
+- edite `hosts` file in `c:/windows/System32/driver/etc`, add this code to end of file
+ ``` 12.0.0.2       example.local ```
+ - read more information about [apache virtualHosts in windows](https://delanomaloney.com/2013/07/10/how-to-set-up-virtual-hosts-using-xampp/)
 ---
 
-## 2.install Dash :
-### clone repo :
-`git clone https://github.com/Ermile/dash.git`
+## 2. install Dash
+### clone repo
+``` git clone https://github.com/Ermile/dash.git ```
+
 ### download link
-[Dash](https://github.com/Ermile/dash/archive/master.zip)
+[https://github.com/Ermile/dash/archive/master.zip](https://github.com/Ermile/dash/archive/master.zip)
+
 ### composer
-`composer require geeksesi/dash`
+`composer require ermile/dash`
 or add this to `composer.json` :
 ```
 {
 	"require":
 	{
-            "geeksesi/dash": "dev-master"
+            "ermile/dash": "dev-master"
         }
 
 }
 ```
-and run : `composer install`
+and run `composer install`
 
 # 3. To run the project, we need to observe the structure of the folder:
 ```
@@ -127,13 +127,12 @@ and run : `composer install`
  │  ├── lib
  │  ├── public_html
  │  ├── autoload.php
- │  ├── define.php
- │  └── Twig
  ├── content
  │  └── home
- └──config.me.php
+ └──config.php
 ```
-- in `public_html/index.php` must be include `Dash/autoload.php` like this :
+
+- in `public_html/index.php` must be include `Dash/autoload.php` like this
 ```
 // if Dash exist, require it else show related error message
 if ( file_exists( '../dash/autoload.php') )
@@ -142,7 +141,7 @@ if ( file_exists( '../dash/autoload.php') )
 }
 else
 {   // A config file doesn't exist
-	// echo("<p>We can't find <b>Saloos</b>! Please contact administrator!</p>");
+	// echo("<p>We can't find <b>Dash</b>! Please contact administrator!</p>");
 }
 ```
 - in `content` folder must be create project directory like this :
