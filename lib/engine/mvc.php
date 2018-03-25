@@ -135,15 +135,15 @@ class mvc
 	 */
 	private static function load_controller()
 	{
-		$controller = self::$folder_addr. '\\controller';
-		if(!class_exists($controller))
+		$my_controller = self::$folder_addr. '\\controller';
+		if(!class_exists($my_controller))
 		{
-			\lib\header::status(409, $controller);
+			\lib\header::status(409, $my_controller);
 		}
 
-		if(is_callable([$controller, 'routing']))
+		if(is_callable([$my_controller, 'routing']))
 		{
-			$controller::routing();
+			$my_controller::routing();
 		}
 
 		// generate real address of current page
@@ -166,25 +166,22 @@ class mvc
 
 	private static function load_view()
 	{
-		$view = self::$folder_addr. '\\view';
-
+		$my_view = self::$folder_addr. '\\view';
 		if(\lib\request::is('get') && !\lib\request::json_accept())
 		{
 			\lib\view::variable();
 
-			if(is_callable([$view, 'run']))
+			// run default function of view
+			if(is_callable([$my_view, 'run']))
 			{
-				$view::run();
+				$my_view::run();
 			}
 
-			if(array_key_exists('get', self::$allow))
+			// call custom function if exist
+			$my_view_function = \lib\open::license();
+			if(is_callable([$my_view, $my_view_function]))
 			{
-				$view_function = self::$allow['get'];
-
-				if(is_callable([$view, $view_function]))
-				{
-					$view::$view_function();
-				}
+				$my_view::$my_view_function();
 			}
 
 			$display_addr = root. ltrim(self::$folder_addr, '\\');
@@ -210,7 +207,6 @@ class mvc
 			if(class_exists($my_model))
 			{
 				$my_model_function = \lib\open::license();
-
 				if(is_callable([$my_model, $my_model_function]))
 				{
 					$my_model::$my_model_function();
