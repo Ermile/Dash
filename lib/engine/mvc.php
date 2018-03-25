@@ -172,9 +172,9 @@ class mvc
 			\lib\view::variable();
 
 			// run default function of view
-			if(is_callable([$my_view, 'run']))
+			if(is_callable([$my_view, 'config']))
 			{
-				$my_view::run();
+				$my_view::config();
 			}
 
 			// call custom function if exist
