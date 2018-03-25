@@ -156,7 +156,7 @@ class mvc
 		if(self::$controller_addr != $real_address)
 		{
 			// if this url has no custom licence, block it
-			if(!\lib\method::license())
+			if(!\lib\open::license())
 			{
 				\lib\header::status(404, "We can't find the page you're looking for!");
 			}
@@ -198,6 +198,10 @@ class mvc
 	}
 
 
+	/**
+	 * try to load model if needed and empty page post parameter
+	 * @return [type] [description]
+	 */
 	private static function load_model()
 	{
 		$my_model = self::$folder_addr. '\\model';
@@ -205,7 +209,7 @@ class mvc
 		{
 			if(class_exists($my_model))
 			{
-				$my_model_function = \lib\method::license();
+				$my_model_function = \lib\open::license();
 
 				if(is_callable([$my_model, $my_model_function]))
 				{
@@ -213,13 +217,14 @@ class mvc
 				}
 				else
 				{
-					\lib\header::status(405);
+					// show not implemented message
+					\lib\header::status(501);
 				}
 			}
 			else
 			{
-				// model does not exist in this folder
-				\lib\header::status(501);
+				// model does not exist in this folder, show not acceptable message
+				\lib\header::status(406);
 			}
 		}
 
@@ -229,21 +234,13 @@ class mvc
 		}
 	}
 
-
+	/**
+	 * show address of current module dir
+	 * @return [type] [description]
+	 */
 	public static function get_dir_address()
 	{
 		return self::$folder_addr;
-	}
-
-
-	public static function allow($_method, $_fn = null)
-	{
-		if(!$_fn)
-		{
-			$_fn = $_method;
-		}
-
-		self::$allow[$_method] = $_fn;
 	}
 }
 ?>
