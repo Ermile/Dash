@@ -1,7 +1,7 @@
 
-1. config virtualHosts on webService
-# Ubuntu
-## Apache :
+# 1. config virtualHosts on webService
+## Ubuntu
+### Apache :
 - run : `sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/example.conf`
 - run : `sudo vim /etc/apache2/sites-available/example.conf` & change `DocumentRoot & ServerName & Directory` and save change
 ```
@@ -24,10 +24,11 @@
 ```
 - now type in browser : example.local run virtual hosts
 + more information in : [apache virtualHosts](https://www.digitalocean.com/community/tutorials/how-to-set-up-apache-virtual-hosts-on-ubuntu-14-04-lts "Title")
-### Tip
+
+#### Tip
 - in Apache must enable `.htaccess` mode by : `sudo a2enmod rewrite headers`
 
-## Nginx
+### Nginx
 - run : `sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/example`
 - run : `sudo vim /etc/nginx/sites-available/example` & change `root & ServerName ` AND save change
 ```
@@ -70,8 +71,9 @@ location ~* \.(css|gif|ico|jpeg|jpg|js|png)$ { expires max; log_not_found off;}
 - now type in browser : example.local run virtual hosts
 + more information in : [nginx virtualHosts](https://www.digitalocean.com/community/tutorials/how-to-set-up-nginx-virtual-hosts-server-blocks-on-ubuntu-12-04-lts--3 "Title")
 ---
-# Windows
-## Apache (xampp)
+
+## Windows
+### Apache (xampp)
 - edite `httpd-vhost.conf` in `c:/exampp/apache/conf/extra`, add this code to end of file :
 ```
 <VirtualHost 127.0.0.2>
@@ -92,12 +94,13 @@ location ~* \.(css|gif|ico|jpeg|jpg|js|png)$ { expires max; log_not_found off;}
  ```
  - for more information : [apache virtualHosts in windows](https://delanomaloney.com/2013/07/10/how-to-set-up-virtual-hosts-using-xampp/)
 ---
-2. install Dash :
-## clone repo :
+
+## 2.install Dash :
+### clone repo :
 `git clone https://github.com/Ermile/dash.git`
-## download link
+### download link
 [Dash](https://github.com/Ermile/dash/archive/master.zip)
-## composer
+### composer
 `composer require geeksesi/dash`
 or add this to `composer.json` :
 ```
@@ -111,7 +114,7 @@ or add this to `composer.json` :
 ```
 and run : `composer install`
 
-3. To run the project, we need to observe the structure of the folder:
+# 3. To run the project, we need to observe the structure of the folder:
 ```
 
  ProjectFolder :
