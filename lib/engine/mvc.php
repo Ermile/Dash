@@ -141,9 +141,9 @@ class mvc
 			\lib\header::status(409, $controller);
 		}
 
-		if(is_callable([$controller, 'run']))
+		if(is_callable([$controller, 'routing']))
 		{
-			$controller::run();
+			$controller::routing();
 		}
 
 		// generate real address of current page
