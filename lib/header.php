@@ -156,7 +156,7 @@ class header
 		// set header
 		@header($status_header, true, $_code);
 
-		if(\lib\request::json_accept() || \lib\temp::get('api'))
+		if(\lib\request::json_accept())
 		{
 			@header('Content-Type: application/json');
 
