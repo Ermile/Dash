@@ -153,7 +153,7 @@ class mvc
 			$real_address = null;
 		}
 		// if we are in another address of current routed in controller, double check
-		if(self::$controller_addr != $real_address)
+		if(trim(self::$controller_addr, '/') != $real_address)
 		{
 			// if this url has no custom licence, block it
 			if(!\lib\open::license())
