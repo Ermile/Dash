@@ -213,14 +213,19 @@ class prepare
 		// set www subdomain
 		if(\lib\option::url('www'))
 		{
-			if(\lib\url::subdomain() && \lib\url::subdomain() !== 'www')
+			if(\lib\url::subdomain())
 			{
-
+				$target_url .= \lib\url::subdomain(). '.';
 			}
 			else
 			{
 				$target_url .= 'www.';
 			}
+		}
+		elseif(\lib\url::subdomain() && \lib\url::subdomain() !== 'www')
+		{
+
+			$target_url .= \lib\url::subdomain(). '.';
 		}
 
 		// fix root domain
@@ -266,9 +271,8 @@ class prepare
 					break;
 			}
 		}
-
 		// if we have new target url, and dont on force show mode, try to change it
-		if($target_url !== \lib\url::site() && !\lib\request::get('force'))
+		if($target_url !== \lib\url::base() && !\lib\request::get('force'))
 		{
 			$myBrowser = \lib\utility\browserDetection::browser_detection('browser_name');
 			if($myBrowser === 'samsungbrowser')
