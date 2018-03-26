@@ -19,7 +19,7 @@ class prepare
 		// check comming soon page
 		self::coming_soon();
 		// check need redirect for lang or www or https or main domain
-		self::appropriate_url();
+		self::fix_url_host();
 		self::account_urls();
 
 		// start session
@@ -190,7 +190,7 @@ class prepare
 	 * set best domain and url
 	 * @return [type] [description]
 	 */
-	private static function appropriate_url()
+	private static function fix_url_host()
 	{
 		if(\lib\option::url('fix') !== true)
 		{
@@ -208,6 +208,19 @@ class prepare
 		else
 		{
 			$target_url = \lib\url::protocol().'://';
+		}
+
+		// set www subdomain
+		if(\lib\option::url('www'))
+		{
+			if(\lib\url::subdomain() && \lib\url::subdomain() !== 'www')
+			{
+
+			}
+			else
+			{
+				$target_url .= 'www.';
+			}
 		}
 
 		// fix root domain

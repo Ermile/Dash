@@ -4,8 +4,16 @@
 */
 
 
-// ----- main url and redirect
-// self::$url['fix']      = true;
+/**
+ * try to fix url and set some settings of them like slash, www or fix tld or use main domain
+ */
+// on set below value to off, skip all of this part
+self::$url['fix']      = true;
+
+// if true set www else try to remove from url
+self::$url['www']     = false;
+
+// if set below value of host, try to fix them
 // self::$url['protocol'] = 'https';
 // self::$url['root']     = 'ermile';
 // self::$url['tld']      = 'com';
