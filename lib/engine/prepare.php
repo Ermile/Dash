@@ -280,8 +280,6 @@ class prepare
 			if($target_host === \lib\url::base())
 			{
 				// only check last slash
-				var_dump(\lib\url::pwd());
-				var_dump($target_url);
 				if($target_url !== \lib\url::pwd())
 				{
 					\lib\redirect::to($target_url);
