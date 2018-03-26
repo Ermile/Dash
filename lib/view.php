@@ -8,7 +8,6 @@ class view
 	 * twig options
 	 * @var array
 	 */
-	public static $twig    = [];
 	public static $data    = [];
 	public static $url     = [];
 	public static $global  = [];
