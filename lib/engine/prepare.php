@@ -198,16 +198,16 @@ class prepare
 		}
 
 		// decalare target url
-		$target_url = '';
+		$target_host = '';
 
 		// fix protocol
 		if(\lib\option::url('protocol'))
 		{
-			$target_url = \lib\option::url('protocol').'://';
+			$target_host = \lib\option::url('protocol').'://';
 		}
 		else
 		{
-			$target_url = \lib\url::protocol().'://';
+			$target_host = \lib\url::protocol().'://';
 		}
 
 		// set www subdomain
@@ -215,47 +215,47 @@ class prepare
 		{
 			if(\lib\url::subdomain())
 			{
-				$target_url .= \lib\url::subdomain(). '.';
+				$target_host .= \lib\url::subdomain(). '.';
 			}
 			else
 			{
-				$target_url .= 'www.';
+				$target_host .= 'www.';
 			}
 		}
 		elseif(\lib\url::subdomain() && \lib\url::subdomain() !== 'www')
 		{
 
-			$target_url .= \lib\url::subdomain(). '.';
+			$target_host .= \lib\url::subdomain(). '.';
 		}
 
 		// fix root domain
 		if(\lib\option::url('root'))
 		{
-			$target_url .= \lib\option::url('root');
+			$target_host .= \lib\option::url('root');
 		}
 		elseif(\lib\url::root())
 		{
-			$target_url .= \lib\url::root();
+			$target_host .= \lib\url::root();
 		}
 
 		// fix tld
 		if(\lib\option::url('tld'))
 		{
-			$target_url .= '.'.\lib\option::url('tld');
+			$target_host .= '.'.\lib\option::url('tld');
 		}
 		elseif(\lib\url::tld())
 		{
-			$target_url .= '.'.\lib\url::tld();
+			$target_host .= '.'.\lib\url::tld();
 		}
 
 		// fix port, add 443 later @check
 		if(\lib\option::url('port') && \lib\option::url('port') !== 80)
 		{
-			$target_url .= ':'.\lib\option::url('port');
+			$target_host .= ':'.\lib\option::url('port');
 		}
 		elseif(\lib\url::port() && \lib\url::port() !== 80)
 		{
-			$target_url .= ':'.\lib\url::port();
+			$target_host .= ':'.\lib\url::port();
 		}
 
 		// help new language detect in target site by set /fa
@@ -264,7 +264,7 @@ class prepare
 			switch (\lib\url::tld())
 			{
 				case 'ir':
-					$target_url .= $target_url. "/fa";
+					$target_host .= $target_host. "/fa";
 					break;
 
 				default:
@@ -272,19 +272,59 @@ class prepare
 			}
 		}
 		// if we have new target url, and dont on force show mode, try to change it
-		if($target_url !== \lib\url::base() && !\lib\request::get('force'))
+		if(!\lib\request::get('force'))
 		{
-			$myBrowser = \lib\utility\browserDetection::browser_detection('browser_name');
-			if($myBrowser === 'samsungbrowser')
+			// set target url with path
+			$target_url = $target_host. \lib\url::path();
+			$target_url = self::fix_url_slash($target_url);
+			if($target_host === \lib\url::base())
 			{
-				// samsung is stupid!
+				// only check last slash
+				var_dump(\lib\url::pwd());
+				var_dump($target_url);
+				if($target_url !== \lib\url::pwd())
+				{
+					\lib\redirect::to($target_url);
+				}
 			}
 			else
 			{
-				$target_url .= \lib\url::path();
+				// change host and slash together
 				\lib\redirect::to($target_url);
 			}
 		}
+	}
+
+
+	/**
+	 * fix slash, if needed add it else remove it
+	 * @param  [type] $_url [description]
+	 * @return [type]       [description]
+	 */
+	private static function fix_url_slash($_url)
+	{
+		$myBrowser = \lib\utility\browserDetection::browser_detection('browser_name');
+		if($myBrowser === 'samsungbrowser')
+		{
+			// samsung is stupid!
+		}
+		else
+		{
+			// remove slash in normal condition
+			$_url = trim($_url, '/');
+
+			if(\lib\option::url('slash'))
+			{
+				// add slash if set in settings
+				$_url .= '/';
+			}
+			elseif(\lib\url::path() === '/')
+			{
+				// add slash for homepage
+				$_url .= '/';
+			}
+		}
+		return $_url;
 	}
 
 

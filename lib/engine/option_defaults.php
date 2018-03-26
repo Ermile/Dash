@@ -8,10 +8,13 @@
  * try to fix url and set some settings of them like slash, www or fix tld or use main domain
  */
 // on set below value to off, skip all of this part
-self::$url['fix']      = true;
+self::$url['fix']   = true;
 
 // if true set www else try to remove from url
-self::$url['www']     = false;
+self::$url['www']   = false;
+
+// if true add slash at end of url, else remove
+self::$url['slash'] = false;
 
 // if set below value of host, try to fix them
 // self::$url['protocol'] = 'https';
