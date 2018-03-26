@@ -12,7 +12,7 @@ class redirect
 	 */
 	public static function to($_url, $_php = true, $_arg = null)
 	{
-		if(\lib\request::json_accept() || \lib\temp::get('api') || \lib\request::ajax())
+		if(\lib\request::json_accept() || \lib\request::ajax())
 		{
 			self::via_pushstate($_url);
 		}

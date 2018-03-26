@@ -91,7 +91,7 @@ class baby
 	private static function pacifier()
 	{
 		$msg = 'Hi Baby'. str_repeat('!', self::$level);
-		if(\lib\request::json_accept() || \lib\temp::get('api') || \lib\request::ajax())
+		if(\lib\request::json_accept() || \lib\request::ajax())
 		{
 			\lib\header::status(418, $msg. ' Are you healthy?');
 		}
