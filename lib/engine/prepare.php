@@ -271,6 +271,10 @@ class prepare
 					break;
 			}
 		}
+		if(\lib\url::related_url())
+		{
+			$target_host .= \lib\url::related_url();
+		}
 		// if we have new target url, and dont on force show mode, try to change it
 		if(!\lib\request::get('force'))
 		{

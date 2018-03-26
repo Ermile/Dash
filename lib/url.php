@@ -251,9 +251,9 @@ class url
 	private static function _path()
 	{
 		$my_path = self::$url['uri'];
-		if(self::_in_another_addr())
+		if(self::related_url())
 		{
-			$my_path = str_replace(self::_in_another_addr(), '', $my_path);
+			$my_path = str_replace(self::related_url(), '', $my_path);
 		}
 
 		return $my_path;
@@ -264,7 +264,7 @@ class url
 	 * if we are in different address, return in
 	 * @return string of another addr
 	 */
-	private static function _in_another_addr()
+	public static function related_url()
 	{
 		//
 		if(isset($_SERVER['PHP_SELF']))
@@ -299,9 +299,9 @@ class url
 	{
 		$my_base = self::$url['protocol'] . '://'. self::$url['host'];
 
-		if(self::_in_another_addr())
+		if(self::related_url())
 		{
-			$my_base .= self::_in_another_addr();
+			$my_base .= self::related_url();
 		}
 		return $my_base;
 	}
@@ -327,9 +327,9 @@ class url
 			$domain .= ':'. self::$url['port'];
 		}
 
-		if(self::_in_another_addr())
+		if(self::related_url())
 		{
-			$domain .= self::_in_another_addr();
+			$domain .= self::related_url();
 		}
 
 		return $domain;
