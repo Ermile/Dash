@@ -281,6 +281,7 @@ class prepare
 			}
 			else
 			{
+				$target_url .= \lib\url::path();
 				\lib\redirect::to($target_url);
 			}
 		}
