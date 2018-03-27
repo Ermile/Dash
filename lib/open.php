@@ -29,6 +29,12 @@ class open
 		}
 		if(array_key_exists($_type, self::$function_names))
 		{
+			if(self::$function_names[$_type] === null)
+			{
+				// if name is not set, use method name
+				return $_type;
+			}
+			// else return value was set
 			return self::$function_names[$_type];
 		}
 
