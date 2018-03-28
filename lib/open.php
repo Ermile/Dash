@@ -17,11 +17,11 @@ class open
 
 
 	/**
-	 * check licence of open of method if exist
+	 * check license of open of method if exist
 	 * @param  [type] $_type [description]
 	 * @return [type]        [description]
 	 */
-	public static function license($_type = null)
+	public static function license($_type = null, $_force_replace = false)
 	{
 		if(!$_type)
 		{
@@ -29,9 +29,9 @@ class open
 		}
 		if(array_key_exists($_type, self::$function_names))
 		{
-			if(self::$function_names[$_type] === null)
+			if(self::$function_names[$_type] === null && $_force_replace)
 			{
-				// if name is not set, use method name
+				// if name is not set, use method name on force mode
 				return $_type;
 			}
 			// else return value was set
