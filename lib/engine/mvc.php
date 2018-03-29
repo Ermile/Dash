@@ -4,9 +4,10 @@ namespace lib\engine;
 
 class mvc
 {
-	private static $controller_addr = null;
-	private static $folder_addr     = null;
-	private static $allow           = [];
+	private static $controller_addr    = null;
+	private static $without_controller = null;
+	private static $folder_addr        = null;
+	private static $allow              = [];
 
 
 	/**
@@ -115,8 +116,12 @@ class mvc
 			{
 				$find = $myctrl;
 			}
+			elseif(is_dir(root. $_addr))
+			{
+				self::$without_controller = true;
+				$find                     = true;
+			}
 		}
-
 		if($find)
 		{
 			// set module addr to use in all other function for addressing
@@ -136,7 +141,7 @@ class mvc
 	private static function load_controller()
 	{
 		$my_controller = self::$folder_addr. '\\controller';
-		if(!class_exists($my_controller))
+		if(!class_exists($my_controller) && !self::$without_controller)
 		{
 			\lib\header::status(409, $my_controller);
 		}
