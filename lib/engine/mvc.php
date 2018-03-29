@@ -4,7 +4,7 @@ namespace lib\engine;
 
 class mvc
 {
-	private static $controller_addr    = null;
+	private static $routed_addr        = null;
 	private static $without_controller = null;
 	private static $folder_addr        = null;
 	private static $allow              = [];
@@ -47,7 +47,7 @@ class mvc
 			$my_controller = self::checking($my_repo. $my_module. $my_child);
 			if($my_controller)
 			{
-				self::$controller_addr = \lib\url::content(). '/'. \lib\url::module(). '/'. \lib\url::child();
+				self::$routed_addr = \lib\url::content(). '/'. \lib\url::module(). '/'. \lib\url::child();
 				return $my_controller;
 			}
 		}
@@ -58,7 +58,7 @@ class mvc
 			$my_controller = self::checking($my_repo. $my_module. '\home');
 			if($my_controller)
 			{
-				self::$controller_addr = \lib\url::content(). '/'. \lib\url::module();
+				self::$routed_addr = \lib\url::content(). '/'. \lib\url::module();
 				return $my_controller;
 			}
 
@@ -66,7 +66,7 @@ class mvc
 			$my_controller = self::checking($my_repo. $my_module);
 			if($my_controller)
 			{
-				self::$controller_addr = \lib\url::content(). '/'. \lib\url::module();
+				self::$routed_addr = \lib\url::content(). '/'. \lib\url::module();
 				return $my_controller;
 			}
 		}
@@ -77,7 +77,7 @@ class mvc
 			$my_controller = self::checking($my_repo. '\home');
 			if($my_controller)
 			{
-				self::$controller_addr = \lib\url::content();
+				self::$routed_addr = \lib\url::content();
 				return $my_controller;
 			}
 		}
@@ -86,7 +86,7 @@ class mvc
 		$my_controller = self::checking('\content\home');
 		if($my_controller)
 		{
-			self::$controller_addr = '/';
+			self::$routed_addr = '/';
 			return $my_controller;
 		}
 
@@ -158,7 +158,7 @@ class mvc
 			$real_address = null;
 		}
 		// if we are in another address of current routed in controller, double check
-		if(trim(self::$controller_addr, '/') != $real_address)
+		if(trim(self::$routed_addr, '/') != $real_address)
 		{
 			// if this url has no custom licence, block it
 			if(!\lib\open::license())
