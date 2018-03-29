@@ -7,7 +7,6 @@ class mvc
 	private static $routed_addr        = null;
 	private static $without_controller = null;
 	private static $folder_addr        = null;
-	private static $allow              = [];
 
 
 	/**
