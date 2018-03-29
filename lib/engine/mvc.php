@@ -4,9 +4,9 @@ namespace lib\engine;
 
 class mvc
 {
-	private static $routed_addr        = null;
-	private static $without_controller = null;
-	private static $folder_addr        = null;
+	private static $folder_addr = null;
+	private static $routed_addr = null;
+	private static $only_folder = null;
 
 
 	/**
@@ -117,8 +117,8 @@ class mvc
 			}
 			elseif(is_dir(root. $_addr))
 			{
-				self::$without_controller = true;
-				$find                     = true;
+				self::$only_folder = true;
+				$find              = true;
 			}
 		}
 		if($find)
@@ -140,7 +140,7 @@ class mvc
 	private static function load_controller()
 	{
 		$my_controller = self::$folder_addr. '\\controller';
-		if(!class_exists($my_controller) && !self::$without_controller)
+		if(!class_exists($my_controller) && !self::$only_folder)
 		{
 			\lib\header::status(409, $my_controller);
 		}
