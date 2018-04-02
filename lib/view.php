@@ -102,7 +102,6 @@ class view
 		}
 
 		// define default value for include
-		self::$include->css_ermile   = false;
 		self::$include->js_main      = false;
 		self::$include->siftal       = true;
 		self::$include->css          = true;
