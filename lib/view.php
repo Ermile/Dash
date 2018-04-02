@@ -52,12 +52,6 @@ class view
 
 		// set url values
 		self::$url               = \lib\url::all();
-		self::$url['repository'] = 'site';
-		if(\lib\url::content())
-		{
-			self::$url['repository'] = \lib\url::content();
-		}
-
 		self::$data->url = self::$url;
 
 		// return all parameters and clean it
