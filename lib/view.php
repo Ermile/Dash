@@ -52,7 +52,6 @@ class view
 
 		// set url values
 		self::$url               = \lib\url::all();
-		self::$url['static']     = \lib\url::site(). '/static/';
 		self::$url['repository'] = 'site';
 		if(\lib\url::content())
 		{
@@ -104,7 +103,7 @@ class view
 			// create data of share url
 			self::$data->share['title']       = self::$data->site['title'];
 			self::$data->share['desc']        = self::$data->site['desc'];
-			self::$data->share['image']       = self::$url['static']. 'images/logo.png';
+			self::$data->share['image']       = \lib\url::site(). '/static/images/logo.png';
 			self::$data->share['twitterCard'] = 'summary';
 		}
 
