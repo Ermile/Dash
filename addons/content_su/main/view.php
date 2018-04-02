@@ -5,18 +5,9 @@ class view extends \mvc\view
 {
 	public function config()
 	{
-		// $this->data->list             = $this->suModlueList('all');
 		$this->data->bodyclass        = 'siftal';
 		$this->include->css           = false;
 		$this->include->js            = false;
-		// $this->include->fontawesome   = true;
-		// $this->include->datatable     = true;
-		// $this->include->chart         = true;
-		// $this->include->introjs       = true;
-		// $this->include->lightbox      = true;
-		// $this->include->editor        = true;
-		// $this->include->su            = true;
-		// $this->include->uploader      = true;
 		$this->global->js             = [];
 
 		$this->data->display['su_posts'] = "content_su/posts/layout.html";
