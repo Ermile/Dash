@@ -100,12 +100,3 @@
 {%block copyright%}{%endblock%}
    </div>
 {%endblock%}
-
-
-{%block js%}
-{%if include.editor%}
-
- <script src="{{url.site}}/static/{{'siftal/js/medium-editor.min.js' | filemtime(true)}}"></script>
- <link  href="{{url.site}}/static/{{'siftal/css/medium-editor.css' | filemtime(true)}}" rel="stylesheet" media="screen"/>
-{%endif%}
-{%endblock%}
