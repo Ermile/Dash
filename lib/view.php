@@ -28,7 +28,7 @@ class view
 		self::$data->url             = (object) [];
 		self::$data->include         = (object) [];
 		self::$data->global          = (object) [];
-		self::$url                   = self::$data->url;
+		// self::$url                   = self::$data->url;
 		self::$global                = self::$data->global;
 		self::$include               = self::$data->include;
 
@@ -51,7 +51,7 @@ class view
 		self::$data->template['footer']    = 'content/template/footer.html';
 
 		// set url values
-		self::$url               = \lib\url::all();
+		self::$url       = \lib\url::all();
 		self::$data->url = self::$url;
 
 		// return all parameters and clean it
@@ -221,7 +221,7 @@ class view
 				$page_title = ucwords(str_replace('-', ' ', $page_title));
 			}
 			// for child page set the
-			if(self::$url['child'] && \lib\url::subdomain() === 'cp')
+			if(\lib\url::child() && \lib\url::subdomain() === 'cp')
 			{
 				$myModule = \lib\url::module();
 				if(substr($myModule, -3) === 'ies')
