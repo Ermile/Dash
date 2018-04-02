@@ -35,17 +35,19 @@ class data
 	 */
 	public static function __callStatic($_key, $_val = 12345679)
 	{
-		if(array_key_exists($_key, self::$data))
+		if(array_key_exists(0, $_val))
 		{
-			if($_val === 12345679)
+			// we have parameter 1, want to set variable
+			$_val = $_val[0];
+
+			self::$data[$_key] = $_val;
+			return self::$data[$_key];
+		}
+		else
+		{
+			// on get method
+			if(array_key_exists($_key, self::$data))
 			{
-				// get something
-				return self::$data[$_key];
-			}
-			else
-			{
-				// set something
-				self::$data[$_key] = $_val;
 				return self::$data[$_key];
 			}
 		}
@@ -53,6 +55,5 @@ class data
 		// return null if nothing founded!
 		return null;
 	}
-
 }
 ?>
