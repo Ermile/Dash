@@ -50,7 +50,7 @@
 {%if login.avatar%}
      <img src="{{url.base}}/{{login.avatar}}" alt='{%trans "Avatar of you"%}'>
 {%else%}
-     <img src="{{url.static}}siftal/images/default/avatar.png" alt='{%trans "Default Avatar"%}'>
+     <img src="{{url.site}}/static/siftal/images/default/avatar.png" alt='{%trans "Default Avatar"%}'>
 {%endif%}
    </a>
 {%else%}
@@ -74,7 +74,7 @@
 {%block header%}
    <div id='sidenavHandler' class="c0 sauto mauto" title='{%trans "Show side menu"%}'><i class="sf-ellipsis-v"></i></div>
 
-   {%block headerTitle%}<h1 class='cauto' title='{%trans "View website"%}'><a href="{{url.base}}" data-direct target='_blank' class='flex'><img src="{{url.static}}images/logo.png" alt='{{site.title}}'><span>{{site.title}}</span></a></h1>{%endblock%}
+   {%block headerTitle%}<h1 class='cauto' title='{%trans "View website"%}'><a href="{{url.base}}" data-direct target='_blank' class='flex'><img src="{{url.site}}/static/images/logo.png" alt='{{site.title}}'><span>{{site.title}}</span></a></h1>{%endblock%}
 
    <div class='hm flex cauto'>
 {%block headerMenu%}
@@ -105,7 +105,7 @@
 {%block js%}
 {%if include.editor%}
 
- <script src="{{url.static}}{{'siftal/js/medium-editor.min.js' | filemtime(true)}}"></script>
- <link  href="{{url.static}}{{'siftal/css/medium-editor.css' | filemtime(true)}}" rel="stylesheet" media="screen"/>
+ <script src="{{url.site}}/static/{{'siftal/js/medium-editor.min.js' | filemtime(true)}}"></script>
+ <link  href="{{url.site}}/static/{{'siftal/css/medium-editor.css' | filemtime(true)}}" rel="stylesheet" media="screen"/>
 {%endif%}
 {%endblock%}
