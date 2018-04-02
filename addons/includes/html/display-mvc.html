@@ -40,7 +40,7 @@
  {%endif%}
 {%endif%}
 {%block facebook%}
- <meta property ="og:image"                content="{{url.static}}images/logo.png"/>
+ <meta property ="og:image"                content="{{url.site}}/static/images/logo.png"/>
  <meta property ="og:url"                  content="{{url.pwd}}"/>
  <meta property ='og:locale'               content='{{global.lang}}'/>
 {%endblock%}
@@ -49,23 +49,23 @@
 {%block favicon%}
 {% if options.favicon.complete %}
 {%set faviconVer%}{%if options.favicon.version%}?v={{options.favicon.version}}{%endif%}{%endset%}
- <meta name     ="msapplication-config"    content="{{url.static}}images/favicons/browserconfig.xml{{faviconVer}}">
+ <meta name     ="msapplication-config"    content="{{url.site}}/static/images/favicons/browserconfig.xml{{faviconVer}}">
  <meta name     ="theme-color"             content="#ffffff">
- <link rel      ="apple-touch-icon"        href="{{url.static}}images/favicons/apple-touch-icon.png{{faviconVer}}" sizes="180x180">
- <link rel      ="icon"                    href="{{url.static}}images/favicons/favicon-32x32.png{{faviconVer}}" sizes="32x32" type="image/png">
- <link rel      ="icon"                    href="{{url.static}}images/favicons/favicon-16x16.png{{faviconVer}}" sizes="16x16" type="image/png">
- <link rel      ="manifest"                href="{{url.static}}images/favicons/manifest.json{{faviconVer}}">
- <link rel      ="mask-icon"               href="{{url.static}}images/favicons/safari-pinned-tab.svg{{faviconVer}}">
- <link rel      ="shortcut icon"           href="{{url.static}}images/favicons/favicon.ico{{faviconVer}}">
+ <link rel      ="apple-touch-icon"        href="{{url.site}}/static/images/favicons/apple-touch-icon.png{{faviconVer}}" sizes="180x180">
+ <link rel      ="icon"                    href="{{url.site}}/static/images/favicons/favicon-32x32.png{{faviconVer}}" sizes="32x32" type="image/png">
+ <link rel      ="icon"                    href="{{url.site}}/static/images/favicons/favicon-16x16.png{{faviconVer}}" sizes="16x16" type="image/png">
+ <link rel      ="manifest"                href="{{url.site}}/static/images/favicons/manifest.json{{faviconVer}}">
+ <link rel      ="mask-icon"               href="{{url.site}}/static/images/favicons/safari-pinned-tab.svg{{faviconVer}}">
+ <link rel      ="shortcut icon"           href="{{url.site}}/static/images/favicons/favicon.ico{{faviconVer}}">
 {%else%}
- <link rel="shortcut icon"    href="{{url.static}}images/favicon.png"/>
- <link rel="apple-touch-icon" href="{{url.static}}images/favicon.png">
+ <link rel="shortcut icon"    href="{{url.site}}/static/images/favicon.png"/>
+ <link rel="apple-touch-icon" href="{{url.site}}/static/images/favicon.png">
 {%endif%}
 {%endblock%}
 {%if false%}
  <link rel="alternate"        href="{{url.base}}/feed" title="{{site.title}} RSS feed" type="application/rss+xml"/>
 {%endif%}
- <link rel="author"           href="{{url.static}}humans.txt"/>
+ <link rel="author"           href="{{url.site}}/static/humans.txt"/>
 {%for key, lang in lang.list if lang.list|length > 1 and not url.subdomain and lang.current != key|slice(0, 2)%}
 {%set myLangUrl%}
 {{url.base}}{%if lang.default != key|slice(0, 2) %}/{{key|slice(0, 2)}}{%endif%}{%if url.content%}/{{url.content}}{%endif%}{%if url.path%}/{{url.path}}{%endif%}
@@ -77,11 +77,11 @@
 {%if dev.siftal %}
  <link rel="stylesheet"       href="http://siftal.local/dist/css/siftal.css"/>
 {%else%}
- <link rel="stylesheet"       href="{{url.static}}{{'siftal/css/siftal.css' | filemtime(true)}}"/>
+ <link rel="stylesheet"       href="{{url.site}}/static/{{'siftal/css/siftal.css' | filemtime(true)}}"/>
 {%endif%}
 {%endif%}
 {%if include.css %}
- <link rel="stylesheet"       href="{{url.static}}{{'css/style.css' | filemtime(true)}}"/>{{include.newline}}{%endif%}
+ <link rel="stylesheet"       href="{{url.site}}/static/{{'css/style.css' | filemtime(true)}}"/>{{include.newline}}{%endif%}
 {%block head_css         %}{%endblock%}
 {%block head_js          %}{%endblock%}
 {%endblock%}
@@ -130,15 +130,15 @@
 {%endif%}
 {%else%}
 
- <script src="{{url.static}}{{'siftal/js/siftal.min.js' | filemtime(true)}}"></script>
+ <script src="{{url.site}}/static/{{'siftal/js/siftal.min.js' | filemtime(true)}}"></script>
 {%if include.chart %}
- <script src="{{url.static}}{{'siftal/js/amcharts.min.js' | filemtime(true)}}"></script>
+ <script src="{{url.site}}/static/{{'siftal/js/amcharts.min.js' | filemtime(true)}}"></script>
 {%endif%}
 
 {%endif%}
 {%endif%}
 
-{%if include.js        %} <script src="{{url.static}}{{'js/script.js' | filemtime(true)}}"></script>{{include.newline}}{%endif%}
+{%if include.js        %} <script src="{{url.site}}/static/{{'js/script.js' | filemtime(true)}}"></script>{{include.newline}}{%endif%}
 {%block js             %}{%endblock%}
  <div data-xhr='foot_js' class="foot_js">{%block foot_js%}{%endblock%}</div>
 </body>
