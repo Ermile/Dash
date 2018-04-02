@@ -102,12 +102,10 @@ class view
 		}
 
 		// define default value for include
-		self::$include->js_main      = false;
 		self::$include->siftal       = true;
 		self::$include->css          = true;
 		self::$include->js           = true;
 		self::set_title();
-
 	}
 
 
