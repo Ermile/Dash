@@ -81,7 +81,8 @@
 {%endif%}
 {%endif%}
 {%if include.css %}
- <link rel="stylesheet"       href="{{url.site}}/static/{{'css/style.css' | filemtime(true)}}"/>{{include.newline}}{%endif%}
+ <link rel="stylesheet"       href="{{url.site}}/static/{{'css/style.css' | filemtime(true)}}"/>
+{%endif%}
 {%block head_css         %}{%endblock%}
 {%block head_js          %}{%endblock%}
 {%endblock%}
@@ -138,7 +139,9 @@
 {%endif%}
 {%endif%}
 
-{%if include.js        %} <script src="{{url.site}}/static/{{'js/script.js' | filemtime(true)}}"></script>{{include.newline}}{%endif%}
+{%if include.js        %}
+ <script src="{{url.site}}/static/{{'js/script.js' | filemtime(true)}}"></script>
+{%endif%}
 {%if include.editor%}
  <script src="{{url.site}}/static/{{'siftal/js/medium-editor.min.js' | filemtime(true)}}"></script>
  <link  href="{{url.site}}/static/{{'siftal/css/medium-editor.css' | filemtime(true)}}" rel="stylesheet" media="screen"/>
