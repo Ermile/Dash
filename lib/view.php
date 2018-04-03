@@ -25,11 +25,8 @@ class view
 		\lib\data::display("content_su/home/layout.html", 				'su');
 		\lib\data::display("content_cp/main/layout.html", 				'cpMain');
 		\lib\data::display("content_su/main/layout.html", 				'suMain');
+
 		\lib\data::display("includes/html/inc_pagination.html", 		'pagination');
-		// add special pages to template array to use without name
-		\lib\data::template('content/template/header.html', 			'header');
-		\lib\data::template('content/template/sidebar.html', 			'sidebar');
-		\lib\data::template('content/template/footer.html', 			'footer');
 
 		// return all url detail
 		\lib\data::url(\lib\url::all());
