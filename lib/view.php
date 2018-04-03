@@ -94,7 +94,6 @@ class view
 			\lib\data::display("includes/html/display-dash-xhr.html", 	'dash');
 			\lib\data::display("includes/html/display-enter-xhr.html", 	'enter');
 			\lib\data::display("content/main/layout-xhr.html", 			'main');
-			\lib\data::display("content_account/home/layout-xhr.html", 	'account');
 			\lib\data::loadMode('ajax');
 		}
 
