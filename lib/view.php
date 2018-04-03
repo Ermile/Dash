@@ -21,8 +21,6 @@ class view
 		\lib\data::display("content/main/layout.html", 					'main');
 		\lib\data::display("content/home/display.html", 				'home');
 		\lib\data::display("content_account/home/layout.html", 			'account');
-		\lib\data::display("content_cp/home/layout.html", 				'cp');
-		\lib\data::display("content_su/home/layout.html", 				'su');
 		\lib\data::display("content_cp/main/layout.html", 				'cpMain');
 		\lib\data::display("content_su/main/layout.html", 				'suMain');
 
