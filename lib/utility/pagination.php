@@ -3,7 +3,9 @@ namespace lib\utility;
 
 class pagination
 {
-	public static $detail = [];
+	private static $have_pages = false;
+	public static $detail      = [];
+
 
 	/**
 	 * save every thing in temp to get every where
@@ -44,12 +46,13 @@ class pagination
 	 */
 	public static function init($_total_rows, $_limit = 10)
 	{
-		$page           = \lib\request::get('page');
-		$url_get_length = \lib\request::get('length');
+		self::$have_pages = true;
+		$page             = \lib\request::get('page');
+		$url_get_length   = \lib\request::get('length');
 
-		$page           = $page && ctype_digit($page) ? $page : 1;
-		$page           = intval($page) > 0 ? intval($page) : 1;
-		$_total_rows    = intval($_total_rows);
+		$page             = $page && ctype_digit($page) ? $page : 1;
+		$page             = intval($page) > 0 ? intval($page) : 1;
+		$_total_rows      = intval($_total_rows);
 
 		if($url_get_length && ctype_digit($url_get_length) && intval($url_get_length) <= 1000)
 		{
@@ -168,6 +171,11 @@ class pagination
 
 	public static function page_number()
 	{
+		if(!self::$have_pages)
+		{
+			return null;
+		}
+
 		$current    = intval(self::detail('page'));
 		$limit      = intval(self::detail('limit'));
 		$total_rows = intval(self::detail('total_rows'));
