@@ -88,10 +88,6 @@
 {%endblock%}
 {%block head             %}{%endblock%}
 </head>
-{% if extendForm%}
-{% import macro.forms as forms %}
-  {% import macro.forms as forms %}
-{% endif %}
 
 <body data-xhr='body' class='{{global.direction}} {{bodyclass}}' data-in='{%if url.content%}{{url.content}}{%else%}site{%endif%}' data-page='{{global.id}}' {{bodyel|raw}}>
 {%block body%}
