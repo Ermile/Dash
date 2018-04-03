@@ -19,7 +19,6 @@ class view
 		\lib\data::display("includes/html/display-enter.html", 			'enter');
 		// add special pages to display array to use without name
 		\lib\data::display("content/main/layout.html", 					'main');
-		\lib\data::display("content/home/display.html", 				'home');
 		\lib\data::display("content_account/home/layout.html", 			'account');
 		\lib\data::display("content_cp/main/layout.html", 				'cpMain');
 		\lib\data::display("content_su/main/layout.html", 				'suMain');
