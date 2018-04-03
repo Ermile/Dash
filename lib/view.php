@@ -247,7 +247,7 @@ class view
 		}
 		elseif(\lib\data::get('datarow', 'desc'))
 		{
-			\lib\data::page(\lib\utility\excerpt::extractRelevant(self::$data->datarow['desc']), 'desc');
+			\lib\data::page(\lib\utility\excerpt::extractRelevant(\lib\data::get('datarow', 'desc')), 'desc');
 		}
 
 		// set new title
