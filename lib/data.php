@@ -51,13 +51,11 @@ class data
 					$current_value = self::$data[$_variable];
 				}
 
-				// we have current value and need to add new value
-				// create my value as array
-				$my_value = [$my_value => true];
+				$new_value          = $current_value;
+				$new_value[$my_key] = $my_value;
 
-				$new_value = array_merge($current_value, $my_value);
-
-
+				self::$data[$_variable] = $new_value;
+				return self::$data[$_variable];
 			}
 			else
 			{
