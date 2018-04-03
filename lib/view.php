@@ -24,12 +24,13 @@ class view
 	public static function variable()
 	{
 		self::$data                  = (object) [];
-		self::$global                = (object) [];
-		self::$include               = (object) [];
 
 		self::$data->url             = (object) [];
 		self::$data->include         = (object) [];
 		self::$data->global          = (object) [];
+
+		self::$global                = self::$data->global;
+		self::$include               = self::$data->include;
 
 		// default display value
 		self::$data->display['mvc']        = "includes/html/display-mvc.html";
