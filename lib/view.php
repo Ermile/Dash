@@ -23,14 +23,13 @@ class view
 
 	public static function variable()
 	{
-
 		self::$data                  = (object) [];
+		self::$global                = (object) [];
+		self::$include               = (object) [];
+
 		self::$data->url             = (object) [];
 		self::$data->include         = (object) [];
 		self::$data->global          = (object) [];
-		// self::$url                   = self::$data->url;
-		self::$global                = self::$data->global;
-		self::$include               = self::$data->include;
 
 		// default display value
 		self::$data->display['mvc']        = "includes/html/display-mvc.html";
@@ -116,16 +115,16 @@ class view
 		{
 			self::$data->display['dash']    = "includes/html/display-dash-xhr.html";
 			self::$data->display['enter']   = "includes/html/display-enter-xhr.html";
-
 			self::$data->display['main']    = "content/main/layout-xhr.html";
 			self::$data->display['home']    = "content/home/display-xhr.html";
 			self::$data->display['account'] = "content_account/home/layout-xhr.html";
 			self::$data->loadMode           = 'ajax';
 		}
-		$module       = preg_replace("/^[
-			^\/]*\/?content/", "content", \lib\engine\mvc::get_dir_address());
+
+		$module       = preg_replace("/^[^\/]*\/?content/", "content", \lib\engine\mvc::get_dir_address());
 		$module       = preg_replace("/^content\\\\|(model|view|controller)$/", "", $module);
 		$module       = preg_replace("/[\\\]/", "/", $module);
+
 		// $repository   = \lib\engine\content::get();
 		// $repository   = $repository ==='content'? $repository.'/': null;
 		// $tmpname      = (self::$controller()->display_name)? self::$controller()->display_name : $repository.'/'.$module.'display.html';
@@ -142,7 +141,6 @@ class view
 
 		// ************************************************************************************ Twig
 		// twig method
-
 		require_once core.'addons/lib/Twig/lib/Twig/Autoloader.php';
 		\Twig_Autoloader::register();
 
@@ -166,31 +164,16 @@ class view
 
 		$twig->addExtension(new \Twig_Extensions_Extension_I18n());
 
-		$template		= $twig->loadTemplate($tmpname);
+		$template = $twig->loadTemplate($tmpname);
 
 		if(\lib\request::ajax())
 		{
 			self::$data->global->debug = \lib\notif::get();
-			// check apache request header and use if exist
-			if(function_exists('apache_request_headers'))
-			{
-				$req = apache_request_headers();
-			}
+			$xhr_render                = $template->render((array) self::$data);
 
-			$xhr_render                    = $template->render((array) self::$data);
-			// self::$data->display['mvc'] = self::$data->display['xhr'];
-			$md5                           = md5(json_encode(self::$data->global).$xhr_render);
-			if(isset($req['Cached-MD5']) && $req['Cached-MD5'] == $md5)
-			{
-				echo json_encode(array("getFromCache" => true));
-			}
-			else
-			{
-				// self::$data->global->md5 = $md5;
-				echo json_encode(self::$data->global);
-				echo "\n";
-				echo $xhr_render;
-			}
+			echo json_encode(self::$data->global);
+			echo "\n";
+			echo $xhr_render;
 		}
 		else
 		{
