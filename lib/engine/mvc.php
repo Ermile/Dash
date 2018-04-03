@@ -89,8 +89,33 @@ class mvc
 			return $my_controller;
 		}
 
+		$template = self::find_tmplate();
+		if($template)
+		{
+			self::$routed_addr = \lib\url::pwd();
+			return $template;
+		}
+
 		// nothing found, show error page
 		\lib\header::status(501, "Hey, Read documentation and start your project!");
+	}
+
+
+
+	private static function find_tmplate()
+	{
+		if(\lib\url::content())
+		{
+			return false;
+		}
+
+		$template = \lib\app\template::find();
+
+		if(\lib\app\template::$finded_template)
+		{
+			self::$folder_addr = \lib\app\template::$display_name;
+			\lib\view::start();
+		}
 	}
 
 
@@ -162,7 +187,16 @@ class mvc
 			// if this url has no custom licence, block it
 			if(!\lib\open::license())
 			{
-				\lib\header::status(404, "We can't find the page you're looking for!");
+				$template = self::find_tmplate();
+				if($template)
+				{
+					self::$routed_addr = \lib\url::pwd();
+					return $template;
+				}
+				else
+				{
+					\lib\header::status(404, "We can't find the page you're looking for!");
+				}
 			}
 		}
 	}

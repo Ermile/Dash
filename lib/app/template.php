@@ -3,9 +3,8 @@ namespace lib\app;
 
 class template
 {
-	public static $module           = null;
 	public static $display_name     = null;
-	public static $route_check_true = null;
+	public static $finded_template = null;
 	public static $datarow          = null;
 	public static $file_ext         = '.html';
 	public static $display_prefix   = 'content\template\\';
@@ -28,7 +27,7 @@ class template
 		// load simillary about or about-fa .html
 		if(self::fake_static_page())
 		{
-			self::$route_check_true = true;
+			self::$finded_template = true;
 			return true;
 		}
 
@@ -97,9 +96,8 @@ class template
 		}
 		elseif(self::find_404())
 		{
-			// no way to load page
-			return false;
-			// :(
+			// show customize 404 page
+			return true;
 		}
 
 		if($type && $slug && $table)
@@ -118,7 +116,7 @@ class template
 	public static function set_display_name($data, $type, $slug, $table)
 	{
 
-		$route_check_true = false;
+		$finded_template = false;
 
 		// elseif template type with specefic slug exist show it
 		if( is_file(root.'content/template/'.$type.'-'. $slug. self::$file_ext) )
@@ -176,7 +174,7 @@ class template
 			{
 				self::$display_name	= $current_lang_template;
 			}
-			$route_check_true = true;
+			$finded_template = true;
 		}
 
 		if(isset($data['meta']) && is_string($data['meta']) && substr($data['meta'], 0,1) === '{')
@@ -184,10 +182,10 @@ class template
 			$data['meta'] = json_decode($data['meta'], true);
 		}
 
-		if($route_check_true)
+		if($finded_template)
 		{
 			self::$datarow = $data;
-			self::$route_check_true = $route_check_true;
+			self::$finded_template = $finded_template;
 		}
 	}
 
@@ -195,7 +193,7 @@ class template
 	public static function social_short_link()
 	{
 		// save name of current module as name of social
-		$mymodule    = self::$module;
+		$mymodule    = \lib\url::module();
 		$social_name = $mymodule;
 
 		if(\lib\option::social('status'))
@@ -251,7 +249,7 @@ class template
 
 	public static function fake_static_page()
 	{
-		$mymodule    = self::$module;
+		$mymodule    = \lib\url::module();
 
 		// if user entered url contain one of our site language
 		$current_path = \lib\url::dir();
@@ -398,14 +396,12 @@ class template
 	{
 		if( is_file(root.'content/template/404.html') )
 		{
-			header("HTTP/1.1 404 NOT FOUND");
-			self::$display_name	= '404.html';
+			// header("HTTP/1.1 404 NOT FOUND");
+			self::$display_name	= 'content\\template\\404.html';
 			return true;
 		}
-		// else show dash default error page
 		else
 		{
-			\lib\header::status(404, T_("Does not exist!"));
 			return false;
 		}
 	}
