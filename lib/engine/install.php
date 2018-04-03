@@ -13,10 +13,6 @@ if(isset($_POST['username']) && isset($_POST['password']))
 		\lib\db::$db_pass = $_POST['password'];
 	}
 
-
-	// ignore error when installing...
-	\lib\db::$debug_error = false;
-
 	$result = \lib\db::install();
 
 	if($result)
@@ -37,10 +33,7 @@ if(isset($_POST['username']) && isset($_POST['password']))
 
 				if(!$check_exist)
 				{
-					$old_debug_status   = \lib\engine\process::status();
-					\lib\engine\process::status() = 1;
-					$insert             = \lib\db\users::insert($add_user);
-					\lib\engine\process::status() = $old_debug_status;
+					$insert = \lib\db\users::insert($add_user);
 				}
 			}
 		}
