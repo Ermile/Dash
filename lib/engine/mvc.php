@@ -244,7 +244,7 @@ class mvc
 		{
 			if(class_exists($my_model))
 			{
-				$my_model_function = \lib\open::license();
+				$my_model_function = \lib\open::license(null, true);
 				if(is_callable([$my_model, $my_model_function]))
 				{
 					$my_model::$my_model_function();
