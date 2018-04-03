@@ -5,18 +5,9 @@ class view extends \addons\content_cp\main\view
 {
 	public function config()
 	{
-		// $this->data->list             = $this->cpModlueList('all');
 		$this->data->bodyclass        = 'siftal';
 		$this->include->css           = false;
 		$this->include->js            = false;
-		// $this->include->fontawesome   = true;
-		// $this->include->datatable     = true;
-		// $this->include->chart         = true;
-		// $this->include->introjs       = true;
-		// $this->include->lightbox      = true;
-		// $this->include->editor        = true;
-		// $this->include->cp            = true;
-		// $this->include->uploader      = true;
 		$this->global->js             = [];
 
 		$this->data->display['cp_posts']  = "content_cp/posts/layout.html";
