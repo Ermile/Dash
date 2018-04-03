@@ -246,7 +246,7 @@ class twigAddons
 			$all         = array_column(func_get_args(), 'all');
 			$onlyLink    = array_column(func_get_args(), 'onlyLink');
 			$class       = array_column(func_get_args(), 'class');
-			$langList    = \lib\view::$data->lang['list'];
+			$langList    = \lib\data::get('lang', 'list');
 			$urlRoot     = \lib\url::root();
 			$urlContent  = \lib\url::content();
 			$urlPath     = \lib\url::path();
