@@ -13,7 +13,7 @@ class data
 	}
 
 
-	public static function get($_key = null)
+	public static function get($_key = null, $_sub_key = null)
 	{
 		if(!$_key)
 		{
@@ -21,7 +21,21 @@ class data
 		}
 		elseif(array_key_exists($_key, self::$data))
 		{
-			return self::$data[$_key];
+			if($_sub_key && is_array(self::$data[$_key]))
+			{
+				if(array_key_exists($_sub_key, self::$data[$_key]))
+				{
+					return self::$data[$_key][$_sub_key];
+				}
+				else
+				{
+					return null;
+				}
+			}
+			else
+			{
+				return self::$data[$_key];
+			}
 		}
 		return null;
 	}

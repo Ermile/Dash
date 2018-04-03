@@ -4,16 +4,6 @@ namespace lib;
 class view
 {
 
-	/**
-	 * twig options
-	 * @var array
-	 */
-	public static $data    = [];
-	public static $url     = [];
-	public static $global  = [];
-	public static $include = [];
-
-
 	public static function start()
 	{
 		self::variable();
@@ -23,122 +13,110 @@ class view
 
 	public static function variable()
 	{
-		self::$data                  = (object) [];
-
-		self::$data->url             = (object) [];
-		self::$data->include         = (object) [];
-		self::$data->global          = (object) [];
-
-		self::$global                = self::$data->global;
-		self::$include               = self::$data->include;
-
 		// default display value
-		self::$data->display['mvc']        = "includes/html/display-mvc.html";
-		self::$data->display['dash']       = "includes/html/display-dash.html";
-		self::$data->display['enter']      = "includes/html/display-enter.html";
+		\lib\data::display("includes/html/display-mvc.html", 			'mvc');
+		\lib\data::display("includes/html/display-dash.html", 			'dash');
+		\lib\data::display("includes/html/display-enter.html", 			'enter');
 		// add special pages to display array to use without name
-		self::$data->display['main']       = "content/main/layout.html";
-		self::$data->display['home']       = "content/home/display.html";
-		self::$data->display['account']    = "content_account/home/layout.html";
-		self::$data->display['cp']         = "content_cp/home/layout.html";
-		self::$data->display['su']         = "content_su/home/layout.html";
-		self::$data->display['cpMain']     = "content_cp/main/layout.html";
-		self::$data->display['suMain']     = "content_su/main/layout.html";
-		self::$data->display['pagination'] = "includes/html/inc_pagination.html";
+		\lib\data::display("content/main/layout.html", 					'main');
+		\lib\data::display("content/home/display.html", 				'home');
+		\lib\data::display("content_account/home/layout.html", 			'account');
+		\lib\data::display("content_cp/home/layout.html", 				'cp');
+		\lib\data::display("content_su/home/layout.html", 				'su');
+		\lib\data::display("content_cp/main/layout.html", 				'cpMain');
+		\lib\data::display("content_su/main/layout.html", 				'suMain');
+		\lib\data::display("includes/html/inc_pagination.html", 		'pagination');
 		// add special pages to template array to use without name
-		self::$data->template['header']    = 'content/template/header.html';
-		self::$data->template['sidebar']   = 'content/template/sidebar.html';
-		self::$data->template['footer']    = 'content/template/footer.html';
+		\lib\data::template('content/template/header.html', 			'header');
+		\lib\data::template('content/template/sidebar.html', 			'sidebar');
+		\lib\data::template('content/template/footer.html', 			'footer');
 
-		// set url values
-		self::$url       = \lib\url::all();
-		self::$data->url = self::$url;
+		// return all url detail
+		\lib\data::url(\lib\url::all());
 
 		// return all parameters and clean it
-		self::$data->requestGET = \lib\request::get(null, 'raw');
+		\lib\data::requestGET(\lib\request::get(null, 'raw'));
 
 		// ----- language variable
-		self::$data->lang            = [];
-		self::$data->lang['list']    = \lib\language::list(true);
-		self::$data->lang['current'] = \lib\language::current();
-		self::$data->lang['default'] = \lib\language::default();
+		\lib\data::lang(\lib\language::list(true),  'list');
+		\lib\data::lang(\lib\language::current(),   'current');
+		\lib\data::lang(\lib\language::default(),   'default');
 
 		// save all options to use in display
-		self::$data->options = \lib\option::config();
+		\lib\data::options(\lib\option::config());
 
-		self::$data->page['title']   = null;
-		self::$data->page['desc']    = null;
-		self::$data->page['special'] = null;
-		self::$data->bodyclass       = null;
+		\lib\data::page(null, 'title');
+		\lib\data::page(null, 'desc');
+		\lib\data::page(null, 'special');
 
-		self::$data->user = self::$data->login  = \lib\user::detail();
+		\lib\data::bodyclass(null);
+
+		$user_detail = \lib\user::detail();
+		\lib\data::user($user_detail);
+		\lib\data::login($user_detail);
 
 		// set detail of browser
-		self::$data->browser         = \lib\utility\browserDetection::browser_detection('full_assoc');
-		self::$data->visitor         = 'not ready!';
+		\lib\data::browser(\lib\utility\browserDetection::browser_detection('full_assoc'));
+		\lib\data::visitor('not ready!');
 
 		// define default value for global
-		self::$global->title         = null;
-		self::$global->login         = \lib\user::login();
-		self::$global->lang          = self::$data->lang['current'];
-		self::$global->direction     = \lib\language::current('direction');
-		self::$global->id            = implode('_', \lib\url::dir());
+		\lib\data::global(null, 								'title');
+		\lib\data::global(\lib\user::login(), 					'login');
+		\lib\data::global(\lib\language::current(), 	 		'lang');
+		\lib\data::global(\lib\language::current('direction'), 	'direction');
+		\lib\data::global(implode('_', \lib\url::dir()), 		'id');
 
-		self::$data->dev = \lib\option::config('dev');
+		\lib\data::dev(\lib\option::config('dev'));
 
-		self::$data->site['title']       = T_("Ermile Dash");
-		self::$data->site['desc']        = T_("Another Project with Ermile dash");
-		self::$data->site['slogan']      = T_("Ermile is intelligent ;)");
+		\lib\data::site(T_("Ermile Dash"), 						'title');
+		\lib\data::site(T_("Another Project with Ermile dash"), 'desc');
+		\lib\data::site(T_("Ermile is intelligent ;)"), 		'slogan');
 
 		// if allow to use social then get social network account list
 		if(\lib\option::social('status'))
 		{
-			self::$data->social = \lib\option::social('list');
+			\lib\data::social(\lib\option::social('list'));
 			// create data of share url
-			self::$data->share['title']       = self::$data->site['title'];
-			self::$data->share['desc']        = self::$data->site['desc'];
-			self::$data->share['image']       = \lib\url::site(). '/static/images/logo.png';
-			self::$data->share['twitterCard'] = 'summary';
+			\lib\data::share(\lib\data::get('site', 'title'), 				'title');
+			\lib\data::share(\lib\data::get('site', 'desc'), 				'desc');
+			\lib\data::share(\lib\url::site(). '/static/images/logo.png', 	'image');
+			\lib\data::share('summary', 									'twitterCard');
 		}
 
 		// define default value for include
-		self::$include->siftal       = true;
-		self::$include->css          = true;
-		self::$include->js           = true;
+		\lib\data::include(true, 'siftal');
+		\lib\data::include(true, 'css');
+		\lib\data::include(true, 'js');
+
 		self::set_title();
 	}
 
 
 	public static function twig()
 	{
-		self::$data->loadMode = 'normal';
+		\lib\data::loadMode('normal');
 		if(\lib\request::ajax())
 		{
-			self::$data->display['dash']    = "includes/html/display-dash-xhr.html";
-			self::$data->display['enter']   = "includes/html/display-enter-xhr.html";
-			self::$data->display['main']    = "content/main/layout-xhr.html";
-			self::$data->display['home']    = "content/home/display-xhr.html";
-			self::$data->display['account'] = "content_account/home/layout-xhr.html";
-			self::$data->loadMode           = 'ajax';
+			\lib\data::display("includes/html/display-dash-xhr.html", 	'dash');
+			\lib\data::display("includes/html/display-enter-xhr.html", 	'enter');
+			\lib\data::display("content/main/layout-xhr.html", 			'main');
+			\lib\data::display("content/home/display-xhr.html", 		'home');
+			\lib\data::display("content_account/home/layout-xhr.html", 	'account');
+			\lib\data::loadMode('ajax');
 		}
 
-		$module       = preg_replace("/^[^\/]*\/?content/", "content", \lib\engine\mvc::get_dir_address());
-		$module       = preg_replace("/^content\\\\|(model|view|controller)$/", "", $module);
-		$module       = preg_replace("/[\\\]/", "/", $module);
-
-		// $repository   = \lib\engine\content::get();
-		// $repository   = $repository ==='content'? $repository.'/': null;
-		// $tmpname      = (self::$controller()->display_name)? self::$controller()->display_name : $repository.'/'.$module.'display.html';
-		// $tmpname      = $repository.$module.'/display.html';
-		$tmpname      = $module.'/display.html';
+		$module  = preg_replace("/^[^\/]*\/?content/", "content", \lib\engine\mvc::get_dir_address());
+		$module  = preg_replace("/^content\\\\|(model|view|controller)$/", "", $module);
+		$module  = preg_replace("/[\\\]/", "/", $module);
+		$tmpname = $module.'/display.html';
 
 		if(\lib\url::content() === null)
 		{
-			self::$data->datarow = \lib\app\template::$datarow;
+			\lib\data::datarow(\lib\app\template::$datarow);
 			self::set_cms_titles();
 		}
 
-		self::$data->pagination = \lib\utility\pagination::page_number();
+		\lib\data::pagination(\lib\utility\pagination::page_number());
 
 		// ************************************************************************************ Twig
 		// twig method
@@ -169,16 +147,16 @@ class view
 
 		if(\lib\request::ajax())
 		{
-			self::$data->global->debug = \lib\notif::get();
-			$xhr_render                = $template->render((array) self::$data);
+			\lib\data::global(\lib\notif::get(), 'debug');
+			$xhr_render                = $template->render(\lib\data::get());
 
-			echo json_encode(self::$data->global);
+			echo json_encode(\lib\data::get('global'));
 			echo "\n";
 			echo $xhr_render;
 		}
 		else
 		{
-			$template->display((array) self::$data);
+			$template->display(\lib\data::get());
 		}
 	}
 
@@ -188,15 +166,15 @@ class view
 	 */
 	public static function set_title()
 	{
-		if($page_title = self::$data->page['title'])
+		if($page_title = \lib\data::get('page', 'title'))
 		{
 			// set title of locations if exist in breadcrumb
-			if(isset(self::$data->breadcrumb[$page_title]))
+			if(\lib\data::get('breadcrumb', $page_title))
 			{
-				$page_title = self::$data->breadcrumb[$page_title];
+				$page_title = \lib\data::get('breadcrumb', $page_title);
 			}
 			// replace title of page
-			if(!self::$data->page['special'])
+			if(!\lib\data::get('page', 'special'))
 			{
 				$page_title = ucwords(str_replace('-', ' ', $page_title));
 			}
@@ -226,54 +204,54 @@ class view
 
 			// translate all title at last step
 			$page_title = T_($page_title);
-			self::$data->page['title'] = $page_title;
-			if(self::$data->page['special'])
+			\lib\data::page($page_title, 'title');
+			if(\lib\data::get('page', 'special'))
 			{
-				self::$global->title = $page_title;
+				\lib\data::global($page_title, 'title');
 			}
 			else
 			{
-				self::$global->title = $page_title.' | '.T_(self::$data->site['title']);
+				\lib\data::global($page_title.' | '.T_(\lib\data::get('site', 'title')), 'title');
 			}
 		}
 		else
 		{
-			self::$global->title = T_(self::$data->site['title']);
+			\lib\data::global(T_(\lib\data::get('site', 'title')), 'title');
 		}
 
-		self::$global->short_title = substr(self::$global->title, 0, strrpos(substr(self::$global->title, 0, 120), ' ')) . '...';
+		\lib\data::global(substr(\lib\data::get('global', 'title'), 0, strrpos(substr(\lib\data::get('global', 'title'), 0, 120), ' ')) . '...', 'short_title');
 	}
 
 
 	private static function set_cms_titles()
 	{
-		if(!self::$data->datarow)
+		if(!\lib\data::get('datarow'))
 		{
 			return false;
 		}
 
 		// set title
-		if(isset(self::$data->datarow['title']))
+		if(\lib\data::get('datarow', 'title'))
 		{
-			self::$data->page['title'] = self::$data->datarow['title'];
+			\lib\data::page(\lib\data::get('datarow', 'title'), 'title');
 		}
 
 		// set desc
-		if(isset(self::$data->datarow['excerpt']) && self::$data->datarow['excerpt'])
+		if(\lib\data::get('datarow', 'excerpt'))
 		{
-			self::$data->page['desc'] = self::$data->datarow['excerpt'];
+			\lib\data::page(\lib\data::get('datarow', 'excerpt'), 'desc');
 		}
-		elseif(isset(self::$data->datarow['content']) && self::$data->datarow['content'])
+		elseif(\lib\data::get('datarow', 'content'))
 		{
-			self::$data->page['desc'] = \lib\utility\excerpt::extractRelevant(self::$data->datarow['content']);
+			\lib\data::page(\lib\utility\excerpt::extractRelevant(\lib\data::get('datarow', 'content')), 'desc');
 		}
-		elseif(isset(self::$data->datarow['desc']) && self::$data->datarow['desc'])
+		elseif(\lib\data::get('datarow', 'desc'))
 		{
-			self::$data->page['desc'] = \lib\utility\excerpt::extractRelevant(self::$data->datarow['desc']);
+			\lib\data::page(\lib\utility\excerpt::extractRelevant(self::$data->datarow['desc']), 'desc');
 		}
 
 		// set new title
-		self::$set_title();
+		self::set_title();
 	}
 }
 ?>
