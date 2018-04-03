@@ -99,10 +99,12 @@ class view
 			\lib\data::loadMode('ajax');
 		}
 
-		$module       = preg_replace("/^[
-			^\/]*\/?content/", "content", \lib\engine\mvc::get_dir_address());
-		$module  = preg_replace("/^content\\\\|(model|view|controller)$/", "", $module);
-		$module  = preg_replace("/[\\\]/", "/", $module);
+		// $module       = preg_replace("/^[
+		// 	^\/]*\/?content/", "content", \lib\engine\mvc::get_dir_address());
+		// $module  = preg_replace("/^content\\\\|(model|view|controller)$/", "", $module);
+		// $module  = preg_replace("/[\\\]/", "/", $module);
+
+		$module = str_replace('/', '\\', \lib\engine\mvc::get_dir_address());
 		$tmpname = $module.'/display.html';
 
 		if(\lib\url::content() === null)
