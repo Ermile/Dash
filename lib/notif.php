@@ -6,7 +6,6 @@ namespace lib;
 class notif
 {
 	private static $notif = [];
-	private static $ok    = true;
 
 	private static function add($_type, $_text, $_meta)
 	{
