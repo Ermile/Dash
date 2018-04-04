@@ -48,55 +48,72 @@ class data
 	}
 
 
-	/**
-	 * set or get value with function name
-	 * @param  [type] $_key
-	 * @param  [type] $_val
-	 * @return [type]
-	 */
-	public static function __callStatic($_variable, $_args)
+	public static function __callStatic($_variable, $_value)
 	{
-		if(array_key_exists(0, $_args))
+		$sub_key  = null;
+
+		if(strpos($_variable, '_') !== false)
 		{
-			// we have parameter 1, want to set variable
-			$my_value = $_args[0];
+			$sub_key   = substr($_variable, strpos($_variable, '_') + 1);
+			$_variable = str_replace('_'. $sub_key, '', $_variable);
+		}
 
-			// want to append as array, do some more works
-			if(array_key_exists(1, $_args))
+		if(array_key_exists(0, $_value))
+		{
+			$my_value = $_value[0];
+
+			if(!array_key_exists($_variable, self::$data) && $sub_key)
 			{
-				$my_key        = $_args[1];
-				$current_value = [];
-				// if have old value, get it. else add as array
-				if(isset(self::$data[$_variable]) && is_array(self::$data[$_variable]))
-				{
-					$current_value = self::$data[$_variable];
-				}
-
-				$new_value          = $current_value;
-				$new_value[$my_key] = $my_value;
-
-				self::$data[$_variable] = $new_value;
-				return self::$data[$_variable];
+				self::$data[$_variable]           = [];
+				self::$data[$_variable][$sub_key] = $my_value;
 			}
-			else
+			elseif(!array_key_exists($_variable, self::$data) && !$sub_key)
 			{
-				// simply add as new value
 				self::$data[$_variable] = $my_value;
-				return self::$data[$_variable];
 			}
-
+			elseif(array_key_exists($_variable, self::$data) && !$sub_key)
+			{
+				self::$data[$_variable] = $my_value;
+			}
+			elseif(array_key_exists($_variable, self::$data) && $sub_key)
+			{
+				if(is_array(self::$data[$_variable]))
+				{
+					self::$data[$_variable][$sub_key] = $my_value;
+				}
+				else
+				{
+					self::$data[$_variable]           = [self::$data[$_variable]];
+					self::$data[$_variable][$sub_key] = $my_value;
+				}
+			}
 		}
 		else
 		{
 			// on get method
 			if(array_key_exists($_variable, self::$data))
 			{
-				return self::$data[$_variable];
+				if($sub_key)
+				{
+					if(is_array(self::$data[$_variable]) && array_key_exists($sub_key, self::$data[$_variable]))
+					{
+						return self::$data[$_variable][$sub_key];
+					}
+					else
+					{
+						return null;
+					}
+				}
+				else
+				{
+					return self::$data[$_variable];
+				}
+			}
+			else
+			{
+				return null;
 			}
 		}
-
-		// return null if nothing founded!
-		return null;
 	}
 }
 ?>
