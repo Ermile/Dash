@@ -19,22 +19,29 @@ class data
 		{
 			return self::$data;
 		}
-		elseif(array_key_exists($_key, self::$data))
+		else
 		{
-			if($_sub_key && is_array(self::$data[$_key]))
+			if(array_key_exists($_key, self::$data))
 			{
-				if(array_key_exists($_sub_key, self::$data[$_key]))
+				if(isset($_sub_key))
 				{
-					return self::$data[$_key][$_sub_key];
+					if(is_array(self::$data[$_key]) && array_key_exists($_sub_key, self::$data[$_key]))
+					{
+						return self::$data[$_key][$_sub_key];
+					}
+					else
+					{
+						return null;
+					}
 				}
 				else
 				{
-					return null;
+					return self::$data[$_key];
 				}
 			}
 			else
 			{
-				return self::$data[$_key];
+				return null;
 			}
 		}
 		return null;
