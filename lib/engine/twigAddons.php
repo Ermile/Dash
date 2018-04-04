@@ -98,7 +98,7 @@ class twigAddons
 		return new \Twig_SimpleFilter('tdate', function ($_string, $_format ="Y/m/d", $_convert = true)
 		{
 			$result = $_string;
-			if(\lib\view::$data->lang['current'] == 'fa')
+			if(\lib\data::lang_current() == 'fa')
 			{
 				$result = \lib\utility\jdate::date($_format, $_string, $_convert);
 			}
@@ -119,7 +119,7 @@ class twigAddons
 	{
 		return new \Twig_SimpleFilter('sdate', function ($_string, $_max ="day", $_format ="Y/m/d")
 		{
-			return \lib\utility\human::timing($_string, $_max, $_format, \lib\view::$data->lang['current']);
+			return \lib\utility\human::timing($_string, $_max, $_format, \lib\data::lang_current());
 		});
 	}
 
@@ -143,7 +143,7 @@ class twigAddons
 	{
 		return new \Twig_SimpleFilter('persian', function ($_number)
 		{
-			return \lib\utility\human::number($_number, \lib\view::$data->lang['current']);
+			return \lib\utility\human::number($_number, \lib\data::lang_current());
 		});
 	}
 
@@ -352,9 +352,9 @@ class twigAddons
 					$myContent     = \lib\url::content();
 					$myContentName = $myContent;
 					// if contetent name is exist use it as alternative
-					if(isset(\lib\view::$data->breadcrumb[$myContent]))
+					if(\lib\data::get('breadcrumb', $myContent))
 					{
-						$myContentName = \lib\view::$data->breadcrumb[$myContent];
+						$myContentName = \lib\data::get('breadcrumb', $myContent);
 					}
 					elseif($myContent === 'cp')
 					{
@@ -373,9 +373,9 @@ class twigAddons
 				$anchorUrl   = trim($baseURLFull.'/'.$currentUrl, '/');
 				$location    = $part;
 				// set title of each locations
-				if(isset(\lib\view::$data->breadcrumb[$location]))
+				if(\lib\data::get('breadcrumb', $location))
 				{
-					$location = \lib\view::$data->breadcrumb[$location];
+					$location = \lib\data::get('breadcrumb', $location);
 				}
 
 				// if trans of exact text is exist use it
@@ -501,9 +501,9 @@ class twigAddons
 			// get post id
 			if(!isset($args['post_id']))
 			{
-				if(isset(\lib\view::$data->datarow['id']))
+				if(\lib\data::datarow_id())
 				{
-					$args['post_id'] = \lib\view::$data->datarow['id'];
+					$args['post_id'] = \lib\data::datarow_id();
 				}
 			}
 			// get tags
@@ -615,9 +615,9 @@ class twigAddons
 			// get post id
 			if(!isset($args['post_id']))
 			{
-				if(isset(\lib\view::$data->datarow['id']))
+				if(\lib\data::datarow_id())
 				{
-					$args['post_id'] = \lib\view::$data->datarow['id'];
+					$args['post_id'] = \lib\data::datarow_id();
 				}
 			}
 			// get category
@@ -693,9 +693,9 @@ class twigAddons
 			// get post id
 			if(!isset($args['post_id']))
 			{
-				if(isset(\lib\view::$data->datarow['id']))
+				if(\lib\data::datarow_id())
 				{
-					$args['post_id'] = \lib\view::$data->datarow['id'];
+					$args['post_id'] = \lib\data::datarow_id();
 				}
 			}
 			// count of show comments
@@ -754,9 +754,9 @@ class twigAddons
 			// get post id
 			if(!isset($args['post_id']))
 			{
-				if(isset(\lib\view::$data->datarow['id']))
+				if(\lib\data::datarow_id())
 				{
-					$args['post_id'] = \lib\view::$data->datarow['id'];
+					$args['post_id'] = \lib\data::datarow_id();
 				}
 			}
 
@@ -926,12 +926,7 @@ class twigAddons
 
 			$caller  = null;
 			$action  = null;
-			$user_id = null;
-
-			if(isset(\lib\view::$data->login['id']))
-			{
-				$user_id = \lib\view::$data->login['id'];
-			}
+			$user_id = \lib\data::login_id();
 
 			$args = func_get_args();
 
@@ -962,13 +957,7 @@ class twigAddons
 	{
 		return new \Twig_SimpleFunction('perm_su', function()
 		{
-
-			$user_id = null;
-
-			if(isset(\lib\view::$data->login['id']))
-			{
-				$user_id = \lib\view::$data->login['id'];
-			}
+			$user_id = \lib\data::login_id();
 
 			$args = func_get_args();
 
