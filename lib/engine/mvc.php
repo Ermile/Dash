@@ -227,7 +227,7 @@ class mvc
 			$display_addr = str_replace('/', DIRECTORY_SEPARATOR, $display_addr);
 			if(file_exists($display_addr))
 			{
-				\lib\view::twig();
+				\lib\engine\twig::init();
 			}
 		}
 	}
