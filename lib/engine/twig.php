@@ -20,10 +20,11 @@ class twig
 		// $module  = preg_replace("/^content\\\\|(model|view|controller)$/", "", $module);
 		// $module  = preg_replace("/[\\\]/", "/", $module);
 
+		// need check in windows and ubuntu
+		// @check
 		$module = str_replace('/', '\\', \lib\engine\mvc::get_dir_address());
 		$tmpname = $module.'\\display.html';
 
-		// var_dump($tmpname);exit();
 		// twig method
 		require_once core.'addons/lib/Twig/lib/Twig/Autoloader.php';
 		\Twig_Autoloader::register();
