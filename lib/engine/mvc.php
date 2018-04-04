@@ -114,7 +114,7 @@ class mvc
 		if(\lib\app\template::$finded_template)
 		{
 			self::$folder_addr = \lib\app\template::$display_name;
-			\lib\view::start();
+
 		}
 	}
 
@@ -207,7 +207,7 @@ class mvc
 		$my_view = self::$folder_addr. '\\view';
 		if(\lib\request::is('get') && !\lib\request::json_accept())
 		{
-			\lib\view::variable();
+			\lib\engine\view::variable();
 
 			// run default function of view
 			if(is_callable([$my_view, 'config']))
