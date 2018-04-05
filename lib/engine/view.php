@@ -77,14 +77,14 @@ class view
 
 		\lib\data::pagination(\lib\utility\pagination::page_number());
 
+
+		// combine two type of set title into one
+		self::set_title();
+
 		if(\lib\url::content() === null)
 		{
 			\lib\data::datarow(\lib\app\template::$datarow);
 			self::set_cms_titles();
-		}
-		else
-		{
-			self::set_title();
 		}
 	}
 
