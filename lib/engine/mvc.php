@@ -144,7 +144,9 @@ class mvc
 			else
 			{
 				$_addr = trim($_addr, '\\');
-				$_addr = str_replace('\\', '/', $_addr);
+				// @check
+				// this is not work on windows
+				// $_addr = str_replace('\\', '/', $_addr);
 				if(is_dir(root. $_addr))
 				{
 					self::$only_folder = true;
@@ -242,14 +244,14 @@ class mvc
 				$my_view::$my_view_function();
 			}
 
-				// combine two type of set title into one
-				\lib\engine\view::set_title();
+			// combine two type of set title into one
+			\lib\engine\view::set_title();
 
-				if(\lib\url::content() === null)
-				{
-					\lib\data::datarow(\lib\app\template::$datarow);
-					\lib\engine\view::set_cms_titles();
-				}
+			if(\lib\url::content() === null)
+			{
+				\lib\data::datarow(\lib\app\template::$datarow);
+				\lib\engine\view::set_cms_titles();
+			}
 
 
 			\lib\engine\twig::init();
