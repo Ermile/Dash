@@ -228,8 +228,8 @@ class mvc
 			}
 
 			// call custom function if exist
-			$my_view_function = \lib\open::license();
-			if(is_callable([$my_view, $my_view_function]))
+			$my_view_function = \lib\open::license(null, true);
+			if($my_view_function && is_callable([$my_view, $my_view_function]))
 			{
 				$my_view::$my_view_function();
 			}
