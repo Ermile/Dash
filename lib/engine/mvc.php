@@ -139,6 +139,7 @@ class mvc
 			if(class_exists($myctrl))
 			{
 				$find = $myctrl;
+				$_addr = '\addons'. $_addr;
 			}
 			else
 			{
