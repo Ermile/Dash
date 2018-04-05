@@ -175,6 +175,13 @@ class mvc
 			\lib\header::status(409, $my_controller);
 		}
 
+		// run content default function for set something if needed
+		$content_controller = \lib\engine\content::get().'\\controller';
+		if(is_callable([$content_controller, 'routing']))
+		{
+			$content_controller::routing();
+		}
+
 		if(is_callable([$my_controller, 'routing']))
 		{
 			$my_controller::routing();
