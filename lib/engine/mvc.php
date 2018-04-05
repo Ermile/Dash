@@ -214,6 +214,13 @@ class mvc
 		{
 			\lib\engine\view::variable();
 
+			// run content default function for set something if needed
+			$content_view = \lib\engine\content::get().'\\view';
+			if(is_callable([$content_view, 'config']))
+			{
+				$content_view::config();
+			}
+
 			// run default function of view
 			if(is_callable([$my_view, 'config']))
 			{
