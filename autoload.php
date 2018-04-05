@@ -28,6 +28,10 @@ class autoload
 		{
 			return;
 		}
+		if(strpos($name, 'Twig') === 0)
+		{
+			return;
+		}
 
 		$split_name = preg_split("[\\\]", $name);
 		if(count($split_name) > 1)
