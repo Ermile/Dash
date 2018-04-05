@@ -18,6 +18,11 @@ class twig
 		$module = str_replace('/', '\\', \lib\engine\mvc::get_dir_address());
 		$tmpname = $module.'\\display.html';
 
+		if(strpos($tmpname, '\addons') === 0)
+		{
+			$tmpname = str_replace('\addons', '', $tmpname);
+		}
+
 		// twig method
 		require_once core.'addons/lib/Twig/lib/Twig/Autoloader.php';
 		\Twig_Autoloader::register();

@@ -242,13 +242,7 @@ class mvc
 				$my_view::$my_view_function();
 			}
 
-			$display_addr = root. ltrim(self::$folder_addr, '\\');
-			$display_addr = str_replace('\\', DIRECTORY_SEPARATOR, $display_addr);
-			$display_addr = str_replace('/', DIRECTORY_SEPARATOR, $display_addr);
-			if(file_exists($display_addr))
-			{
-				\lib\engine\twig::init();
-			}
+			\lib\engine\twig::init();
 		}
 	}
 

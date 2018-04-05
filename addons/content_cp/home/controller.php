@@ -2,9 +2,9 @@
 namespace addons\content_cp\home;
 
 
-class controller extends \addons\content_cp\main\controller
+class controller
 {
-	public function ready()
+	public static function routing()
 	{
 
 	}
