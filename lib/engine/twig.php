@@ -9,19 +9,12 @@ class twig
 
 		if(\lib\request::ajax())
 		{
-			\lib\data::display("includes/html/display-dash-xhr.html", 	'dash');
-			\lib\data::display("includes/html/display-enter-xhr.html", 	'enter');
-			\lib\data::display("content/main/layout-xhr.html", 			'main');
+			\lib\data::display_dash("includes/html/display-dash-xhr.html");
+			\lib\data::display_enter("includes/html/display-enter-xhr.html");
+			\lib\data::display_main("content/main/layout-xhr.html");
 			\lib\data::loadMode('ajax');
 		}
 
-		// $module       = preg_replace("/^[
-		// 	^\/]*\/?content/", "content", \lib\engine\mvc::get_dir_address());
-		// $module  = preg_replace("/^content\\\\|(model|view|controller)$/", "", $module);
-		// $module  = preg_replace("/[\\\]/", "/", $module);
-
-		// need check in windows and ubuntu
-		// @check
 		$module = str_replace('/', '\\', \lib\engine\mvc::get_dir_address());
 		$tmpname = $module.'\\display.html';
 
