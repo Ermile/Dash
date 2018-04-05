@@ -76,16 +76,6 @@ class view
 		\lib\data::include_js(true);
 
 		\lib\data::pagination(\lib\utility\pagination::page_number());
-
-
-		// combine two type of set title into one
-		self::set_title();
-
-		if(\lib\url::content() === null)
-		{
-			\lib\data::datarow(\lib\app\template::$datarow);
-			self::set_cms_titles();
-		}
 	}
 
 
@@ -153,7 +143,7 @@ class view
 	}
 
 
-	private static function set_cms_titles()
+	public static function set_cms_titles()
 	{
 		if(!\lib\data::get('datarow'))
 		{

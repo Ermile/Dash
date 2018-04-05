@@ -242,6 +242,16 @@ class mvc
 				$my_view::$my_view_function();
 			}
 
+				// combine two type of set title into one
+				\lib\engine\view::set_title();
+
+				if(\lib\url::content() === null)
+				{
+					\lib\data::datarow(\lib\app\template::$datarow);
+					\lib\engine\view::set_cms_titles();
+				}
+
+
 			\lib\engine\twig::init();
 		}
 	}
