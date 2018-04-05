@@ -140,10 +140,15 @@ class mvc
 			{
 				$find = $myctrl;
 			}
-			elseif(is_dir(root. $_addr))
+			else
 			{
-				self::$only_folder = true;
-				$find              = true;
+				$_addr = trim($_addr, '\\');
+				$_addr = str_replace('\\', '/', $_addr);
+				if(is_dir(root. $_addr))
+				{
+					self::$only_folder = true;
+					$find              = true;
+				}
 			}
 		}
 		if($find)
