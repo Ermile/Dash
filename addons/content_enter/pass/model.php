@@ -28,15 +28,15 @@ class model extends \addons\content_enter\main\model
 				{
 					\dash\utility\enter::session_set('verify_from', 'two_step');
 					// find way and redirect to it
-					self::send_code_way();
+					\dash\utility\enter::send_code_way();
 					return;
 				}
 				else
 				{
 					self::enter_set_login();
-					self::next_step('okay');
+					\dash\utility\enter::next_step('okay');
 					// set login session
-					self::go_to('okay');
+					\dash\utility\enter::go_to('okay');
 				}
 			}
 			else
@@ -53,7 +53,7 @@ class model extends \addons\content_enter\main\model
 		}
 		else
 		{
-			self::go_to('error');
+			\dash\utility\enter::go_to('error');
 		}
 	}
 

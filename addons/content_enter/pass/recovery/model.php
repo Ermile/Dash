@@ -43,9 +43,9 @@ class model extends \addons\content_enter\pass\model
 					// set alert button caption
 					self::set_alert_button(T_("Enter"));
 					// open lock alert page
-					self::next_step('alert');
+					\dash\utility\enter::next_step('alert');
 					// go to alert page
-					self::go_to('alert');
+					\dash\utility\enter::go_to('alert');
 					// done ;)
 					return;
 				}
@@ -90,7 +90,7 @@ class model extends \addons\content_enter\pass\model
 		self::set_step_session('pass', true);
 
 		// send code way
-		self::send_code_way();
+		\dash\utility\enter::send_code_way();
 	}
 }
 ?>

@@ -74,7 +74,7 @@ class model extends \addons\content_enter\pass\model
 		// and send code
 
 		// send code way
-		self::send_code_way();
+		\dash\utility\enter::send_code_way();
 	}
 }
 ?>

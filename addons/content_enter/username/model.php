@@ -54,7 +54,7 @@ class model extends \addons\content_enter\main\model
 			];
 			\dash\db\logs::set('enter:username:set:password:notset', \dash\utility\enter::user_data('id'), $log_meta);
 			// go to mobile
-			self::go_to('base');
+			\dash\utility\enter::go_to('base');
 		}
 		else
 		{
@@ -69,12 +69,12 @@ class model extends \addons\content_enter\main\model
 			self::set_step_session('username', true);
 
 			// open this pages after this page
-			self::next_step('pass');
+			\dash\utility\enter::next_step('pass');
 			// open lock pass/recovery to load it
 			self::open_lock('pass/recovery');
 
 			// go to pass page
-			self::go_to('pass');
+			\dash\utility\enter::go_to('pass');
 		}
 
 	}

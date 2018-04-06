@@ -65,7 +65,7 @@ class model extends \addons\content_enter\pass\model
 		self::set_step_session('pass', true);
 
 		self::open_lock('verify');
-		self::go_to('verify');
+		\dash\utility\enter::go_to('verify');
 	}
 }
 ?>

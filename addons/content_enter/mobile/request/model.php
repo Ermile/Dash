@@ -46,7 +46,7 @@ class model extends \addons\content_enter\main\model
 
 		// \dash\utility\enter::session_set('verify_from', 'mobile_request');
 		// \dash\utility\enter::session_set('temp_mobile', $mobile);
-		// self::send_code_way();
+		// \dash\utility\enter::send_code_way();
 		// return;
 	}
 }

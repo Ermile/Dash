@@ -15,8 +15,8 @@ class model extends \addons\content_enter\main\model
 		if(\dash\request::post('update') === 'no')
 		{
 			self::set_alert(T_("Please log in with your previous email or ignore your mobile registration."));
-			self::next_step('alert');
-			self::go_to('alert');
+			\dash\utility\enter::next_step('alert');
+			\dash\utility\enter::go_to('alert');
 			return;
 		}
 
@@ -30,8 +30,8 @@ class model extends \addons\content_enter\main\model
 			\dash\db\users::update(['googlemail' => $new_google_mail], $user_id);
 			self::load_user_data('user_id');
 			self::enter_set_login();
-			self::next_step('okay');
-			self::go_to('okay');
+			\dash\utility\enter::next_step('okay');
+			\dash\utility\enter::go_to('okay');
 		}
 
 	}

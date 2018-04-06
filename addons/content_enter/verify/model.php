@@ -35,7 +35,7 @@ class model extends \addons\content_enter\main\model
 
 		$select_way = 'verify/'. $send_code;
 		self::open_lock($select_way);
-		self::go_to($select_way);
+		\dash\utility\enter::go_to($select_way);
 
 	}
 }

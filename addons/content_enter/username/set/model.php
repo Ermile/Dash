@@ -41,9 +41,9 @@ class model extends \addons\content_enter\main\model
 			// set the alert message
 			self::set_alert(T_("Your username was set"));
 			// open lock of alert page
-			self::next_step('alert');
+			\dash\utility\enter::next_step('alert');
 			// go to alert page
-			self::go_to('alert');
+			\dash\utility\enter::go_to('alert');
 
 		}
 		else

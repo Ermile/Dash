@@ -23,7 +23,7 @@ class model extends \addons\content_enter\main\model
 		// set session verify_from signup
 		\dash\utility\enter::session_set('verify_from', 'delete');
 
-		self::send_code_way();
+		\dash\utility\enter::send_code_way();
 	}
 }
 ?>

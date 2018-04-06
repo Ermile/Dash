@@ -39,7 +39,7 @@ class controller extends \addons\content_enter\main\controller
 					else
 					{
 						// send code way
-						// self::send_code_way();
+						// \dash\utility\enter::send_code_way();
 					}
 				}
 			}

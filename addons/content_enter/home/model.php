@@ -58,9 +58,9 @@ class model
 				// save redirect url in session to get from okay page
 				\dash\utility\enter::session_set('redirect_url', $redirect_url);
 				// set okay as next step
-				self::next_step('okay');
+				\dash\utility\enter::next_step('okay');
 				// go to okay page
-				self::go_to('okay');
+				\dash\utility\enter::go_to('okay');
 				return true;
 			}
 			return false;
@@ -100,7 +100,8 @@ class model
 		// clean existing session
 		\dash\utility\enter::clean_session();
 
-		$password = \dash\request::post('password');
+		$password         = \dash\request::post('password');
+		$usernameormobile = \dash\request::post('usernameormobile');
 
 		/**
 		 * check login by another session
@@ -110,21 +111,18 @@ class model
 			return;
 		}
 
-		$usernameormobile       = \dash\request::post('usernameormobile');
-		self::$usernameormobile = $usernameormobile;
-
 		// if old mobile is different by new mobile
 		// save in session this user change the mobile
-		if($old_usernameormobile && self::$mobile != $old_usernameormobile)
+		if($old_usernameormobile != $usernameormobile)
 		{
 			self::plus_try_session('diffrent_mobile');
 		}
 
 		// set posted mobile in SESSION
-		\dash\utility\enter::session_set('usernameormobile', self::$usernameormobile);
+		\dash\utility\enter::session_set('usernameormobile', $usernameormobile);
 
 		// load user data by mobile
-		$user_data = \dash\utility\enter::load_user_data('usernameormobile');
+		$user_data = \dash\utility\enter::load_user_data('usernameormobile', $usernameormobile);
 
 		// the user not found must be signup
 		if(!$user_data)
@@ -137,9 +135,9 @@ class model
 		if(in_array(\dash\utility\enter::user_data('status'), ['filter', 'block']))
 		{
 			// block page
-			self::next_step('block');
+			\dash\utility\enter::next_step('block');
 			// go to block page
-			self::go_to('block');
+			\dash\utility\enter::go_to('block');
 			return;
 		}
 
@@ -151,7 +149,7 @@ class model
 			// open lock pass/recovery
 			self::open_lock('pass/recovery');
 			// go to pass to check password
-			self::go_to('pass/set');
+			\dash\utility\enter::go_to('pass/set');
 		}
 
 		if($password)
@@ -172,11 +170,11 @@ class model
 		else
 		{
 			// lock all step and set just this page to load
-			self::next_step('pass');
+			\dash\utility\enter::next_step('pass');
 			// open lock pass/recovery
 			self::open_lock('pass/recovery');
 			// go to pass to check password
-			self::go_to('pass');
+			\dash\utility\enter::go_to('pass');
 		}
 
 	}

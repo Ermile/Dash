@@ -43,9 +43,9 @@ class model extends \addons\content_enter\main\model
 					if(in_array(\dash\utility\enter::user_data('status'), self::$block_status))
 					{
 						// the user was blocked
-						self::next_step('block');
+						\dash\utility\enter::next_step('block');
 						// go to block page
-						self::go_to('block');
+						\dash\utility\enter::go_to('block');
 
 						return false;
 					}
@@ -66,7 +66,7 @@ class model extends \addons\content_enter\main\model
 
 									\dash\utility\enter::session_set('logined_by_email', \dash\social\google::user_info('email'));
 									// go to mobile get to enter mobile
-									self::next_step('mobile/request');
+									\dash\utility\enter::next_step('mobile/request');
 									// get go to url
 									$go_to_url = 'mobile/request';
 								}
@@ -82,7 +82,7 @@ class model extends \addons\content_enter\main\model
 
 								\dash\utility\enter::session_set('logined_by_email', \dash\social\google::user_info('email'));
 								// go to mobile get to enter mobile
-								self::next_step('mobile/request');
+								\dash\utility\enter::next_step('mobile/request');
 								// get go to url
 								$go_to_url = 'mobile/request';
 							}
@@ -112,7 +112,7 @@ class model extends \addons\content_enter\main\model
 					\dash\utility\enter::session_set('logined_by_email', \dash\social\google::user_info('email'));
 
 					// go to mobile get to enter mobile
-					self::next_step('mobile/request');
+					\dash\utility\enter::next_step('mobile/request');
 					// get go to url
 					$go_to_url = 'mobile/request';
 				}
@@ -124,9 +124,9 @@ class model extends \addons\content_enter\main\model
 					\dash\utility\enter::session_set('redirect_url', $redirect_url);
 					// save redirect url in session to get from okay page
 					// set okay as next step
-					self::next_step('okay');
+					\dash\utility\enter::next_step('okay');
 					// go to okay page
-					self::go_to('okay');
+					\dash\utility\enter::go_to('okay');
 				}
 				else
 				{
@@ -140,12 +140,12 @@ class model extends \addons\content_enter\main\model
 						self::mobile_request_next_step();
 						return;
 
-						// self::go_to($go_to_url);
+						// \dash\utility\enter::go_to($go_to_url);
 					}
 					else
 					{
 						self::set_alert(T_("System error! try again"));
-						self::go_to('alert');
+						\dash\utility\enter::go_to('alert');
 					}
 				}
 			}
