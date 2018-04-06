@@ -146,7 +146,8 @@ class mvc
 				$_addr = trim($_addr, '\\');
 				// @check
 				// this is not work on windows
-				// $_addr = str_replace('\\', '/', $_addr);
+				$_addr = str_replace('\\', DIRECTORY_SEPARATOR, $_addr);
+				$_addr = str_replace('/',  DIRECTORY_SEPARATOR, $_addr);
 				if(is_dir(root. $_addr))
 				{
 					self::$only_folder = true;
