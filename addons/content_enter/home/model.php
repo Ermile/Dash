@@ -2,9 +2,9 @@
 namespace addons\content_enter\home;
 
 
-class model extends \addons\content_enter\main\model
+class model
 {
-	public function login_another_session()
+	public static function login_another_session()
 	{
 		if(\lib\permission::access('enter:another:session'))
 		{
@@ -75,7 +75,7 @@ class model extends \addons\content_enter\main\model
 	 *
 	 * @param      <type>  $_args  The arguments
 	 */
-	public function post_enter($_args)
+	public static function post()
 	{
 		$count = \lib\session::get('enter_session_check');
 		if($count)

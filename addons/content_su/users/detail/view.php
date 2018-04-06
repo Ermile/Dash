@@ -10,7 +10,7 @@ class view extends \addons\content_su\main\view
 			$data = $_args->api_callback;
 			if(isset($data['user_id']))
 			{
-				$this->data->get_mobile = \lib\db\users::get_mobile($data['user_id']);
+				$this->data->getMobile = \lib\db\users::get_mobile($data['user_id']);
 			}
 			$this->data->user_record = $data;
 		}

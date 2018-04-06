@@ -1,9 +1,10 @@
 <?php
 namespace addons\content_enter\home;
 
-class controller extends \addons\content_enter\main\controller
+
+class controller
 {
-	public function ready()
+	public static function routing()
 	{
 		// if the user login redirect to base
 		if(\lib\permission::access('enter:another:session'))
@@ -13,32 +14,21 @@ class controller extends \addons\content_enter\main\controller
 		}
 		else
 		{
-			parent::if_login_not_route();
+			if(\lib\user::login())
+			{
+				\lib\redirect::to(\lib\url::base());
+				return;
+			}
 		}
 
-		// check remeber me is set
-		// if remeber me is set: login!
-		parent::check_remember_me();
-
 		// save all param-* | param_* in $_GET | $_POST
-		$this->save_param();
+		self::save_param();
 
+		// save referer
+		// to redirect the user ofter login or signup on the referered address
 		if(\lib\request::get('referer') && \lib\request::get('referer') != '')
 		{
 			$_SESSION['enter_referer'] = \lib\request::get('referer');
-		}
-
-		if(self::get_request_method() === 'get')
-		{
-			$this->get(false, 'enter')->ALL();
-		}
-		elseif(self::get_request_method() === 'post')
-		{
-			$this->post('enter')->ALL();
-		}
-		else
-		{
-			self::error_method('home');
 		}
 	}
 
@@ -48,17 +38,9 @@ class controller extends \addons\content_enter\main\controller
 	 * save all param-* in url into the session
 	 *
 	 */
-	public function save_param()
+	public static function save_param()
 	{
-		$post = \lib\request::post();
-		$get = \lib\request::get(null, 'raw');
-
-		$param = [];
-
-		if(is_array($post) && is_array($get))
-		{
-			$param = array_merge($get, $post);
-		}
+		$param = $_REQUEST;
 
 		if(!is_array($param))
 		{
@@ -69,12 +51,9 @@ class controller extends \addons\content_enter\main\controller
 
 		foreach ($param as $key => $value)
 		{
-			if(preg_match("/^param(\-|\_)(.*)$/", $key, $split))
+			if(substr($key, 0, 5) === 'param')
 			{
-				if(isset($split[2]))
-				{
-					$save_param[$split[2]] = $value;
-				}
+				$save_param[substr($key, 6)] = $value;
 			}
 		}
 

@@ -36,18 +36,18 @@ class view extends \mvc\view
 		// get the user mobile from login.mobile
 
 		// set mobile in display
-		$this->data->get_mobile = $myMobile;
+		$this->data->getMobile = $myMobile;
 		$this->data->get_usernamemobile = $myMobile;
 
 
 		// in all page the mobiel input is readonly
 		$this->data->mobile_readonly = true;
 
-		$this->data->google_login = \lib\option::social('google', 'status');
+		$this->data->googleLogin = \lib\option::social('google', 'status');
 
 		if(\lib\url::subdomain())
 		{
-			$this->data->google_login = false;
+			$this->data->googleLogin = false;
 		}
 
 	}

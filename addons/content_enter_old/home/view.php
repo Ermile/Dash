@@ -41,12 +41,12 @@ class view extends \addons\content_enter\main\view
 		{
 			if($this->data->main_account)
 			{
-				$this->data->get_mobile = $mobile;
+				$this->data->getMobile = $mobile;
 
 			}
 			else
 			{
-				$this->data->get_mobile = \lib\utility\filter::mobile($mobile);
+				$this->data->getMobile = \lib\utility\filter::mobile($mobile);
 			}
 		}
 	}
