@@ -13,9 +13,9 @@ class view extends \addons\content_enter\main\view
 	{
 		parent::config();
 
-		if(self::get_enter_session('request_delete_msg'))
+		if(\dash\utility\enter::get_session('request_delete_msg'))
 		{
-			$this->data->get_why = self::get_enter_session('request_delete_msg');
+			$this->data->get_why = \dash\utility\enter::get_session('request_delete_msg');
 		}
 
 

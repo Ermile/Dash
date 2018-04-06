@@ -27,9 +27,9 @@ class model extends \addons\content_enter\main\model
 		{
 			$my_chat_id = self::user_data('chatid');
 		}
-		elseif(self::get_enter_session('temp_chat_id'))
+		elseif(\dash\utility\enter::get_session('temp_chat_id'))
 		{
-			$my_chat_id = self::get_enter_session('temp_chat_id');
+			$my_chat_id = \dash\utility\enter::get_session('temp_chat_id');
 		}
 
 		if(!$my_chat_id)
@@ -37,7 +37,7 @@ class model extends \addons\content_enter\main\model
 			return false;
 		}
 
-		$code = self::get_enter_session('verification_code');
+		$code = \dash\utility\enter::get_session('verification_code');
 		// make text
 		$text = '';
 		$text .= T_("Your login code is :code", ['code' => \dash\utility\human::number($code)]);
@@ -57,7 +57,7 @@ class model extends \addons\content_enter\main\model
 		// runcall
 		if(mb_strtolower(\dash\request::post('verify')) === 'true')
 		{
-			if(!self::get_enter_session('run_telegram_to_user'))
+			if(!\dash\utility\enter::get_session('run_telegram_to_user'))
 			{
 				\dash\notif::result("Telegram sended");
 				self::set_enter_session('run_telegram_to_user', true);

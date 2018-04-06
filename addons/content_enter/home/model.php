@@ -95,7 +95,7 @@ class model
 		}
 
 		// get saved mobile in session to find count of change mobile
-		$old_usernameormobile = self::get_enter_session('usernameormobile');
+		$old_usernameormobile = \dash\utility\enter::get_session('usernameormobile');
 
 		// clean existing session
 		self::clean_session();

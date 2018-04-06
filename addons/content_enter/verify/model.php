@@ -22,7 +22,7 @@ class model extends \addons\content_enter\main\model
 			return false;
 		}
 
-		if(!self::get_enter_session('code_is_created'))
+		if(!\dash\utility\enter::get_session('code_is_created'))
 		{
 			self::set_enter_session('code_is_created', true);
 			self::send_way();

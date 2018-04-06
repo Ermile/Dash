@@ -27,9 +27,9 @@ class controller extends \addons\content_enter\main\controller
 			// if okay route this
 			// else go to nex way
 
-			if(self::get_enter_session('send_code_at_time'))
+			if(\dash\utility\enter::get_session('send_code_at_time'))
 			{
-				if(time() - intval(self::get_enter_session('send_code_at_time')) < self::$resend_after)
+				if(time() - intval(\dash\utility\enter::get_session('send_code_at_time')) < self::$resend_after)
 				{
 					self::error_page('verify/resend/why/harry?');
 					return;

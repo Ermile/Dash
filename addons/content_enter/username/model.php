@@ -60,7 +60,7 @@ class model extends \addons\content_enter\main\model
 		{
 			// user enter by username
 			// we need to her mobile to recovery this
-			if(!self::get_enter_session('mobile') && self::user_data('mobile'))
+			if(!\dash\utility\enter::get_session('mobile') && self::user_data('mobile'))
 			{
 				self::set_enter_session('mobile', self::user_data('mobile'));
 			}

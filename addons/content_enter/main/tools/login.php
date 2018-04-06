@@ -27,7 +27,7 @@ trait login
 			$host = $_SESSION['enter_referer'];
 			unset($_SESSION['enter_referer']);
 		}
-		elseif(self::get_enter_session('first_signup'))
+		elseif(\dash\utility\enter::get_session('first_signup'))
 		{
 			// if first signup
 			if(\dash\option::config('enter', 'singup_redirect'))

@@ -56,12 +56,12 @@ trait verification_code
 
 		if
 		(
-			self::get_enter_session('verification_code') &&
-			self::get_enter_session('verification_code_id') &&
-			self::get_enter_session('verification_code_time')
+			\dash\utility\enter::get_session('verification_code') &&
+			\dash\utility\enter::get_session('verification_code_id') &&
+			\dash\utility\enter::get_session('verification_code_time')
 		)
 		{
-			if(time() - strtotime(self::get_enter_session('verification_code_time')) < self::$life_time_code)
+			if(time() - strtotime(\dash\utility\enter::get_session('verification_code_time')) < self::$life_time_code)
 			{
 				// last code is true
 				// need less to create new code
@@ -175,9 +175,9 @@ trait verification_code
 		if($_module === 'sendsms')
 		{
 			$code = \dash\request::post('code');
-			if($code == self::get_enter_session('sendsms_code'))
+			if($code == \dash\utility\enter::get_session('sendsms_code'))
 			{
-				$log_id = self::get_enter_session('sendsms_code_log_id');
+				$log_id = \dash\utility\enter::get_session('sendsms_code_log_id');
 
 				if($log_id)
 				{
@@ -241,7 +241,7 @@ trait verification_code
 		}
 		else
 		{
-			if(intval(\dash\request::post('code')) === intval(self::get_enter_session('verification_code')))
+			if(intval(\dash\request::post('code')) === intval(\dash\utility\enter::get_session('verification_code')))
 			{
 				$code_is_okay = true;
 			}
@@ -250,11 +250,11 @@ trait verification_code
 		if($code_is_okay)
 		{
 			// expire code
-			if(self::get_enter_session('verification_code_id'))
+			if(\dash\utility\enter::get_session('verification_code_id'))
 			{
 				// the user enter the code and the code is ok
 				// must expire this code
-				\dash\db\logs::update(['status' => 'expire'], self::get_enter_session('verification_code_id'));
+				\dash\db\logs::update(['status' => 'expire'], \dash\utility\enter::get_session('verification_code_id'));
 				self::set_enter_session('verification_code', null);
 				self::set_enter_session('verification_code_time', null);
 				self::set_enter_session('verification_code_way', null);
@@ -271,16 +271,16 @@ trait verification_code
 			 */
 			if(
 				(
-					self::get_enter_session('verify_from') === 'signup' ||
-					self::get_enter_session('verify_from') === 'set' ||
-					self::get_enter_session('verify_from') === 'recovery'
+					\dash\utility\enter::get_session('verify_from') === 'signup' ||
+					\dash\utility\enter::get_session('verify_from') === 'set' ||
+					\dash\utility\enter::get_session('verify_from') === 'recovery'
 				) &&
-				self::get_enter_session('temp_ramz_hash') &&
+				\dash\utility\enter::get_session('temp_ramz_hash') &&
 				is_numeric(self::user_data('id'))
 			  )
 			{
 				// set temp ramz in use pass
-				\dash\db\users::update(['password' => self::get_enter_session('temp_ramz_hash')], self::user_data('id'));
+				\dash\db\users::update(['password' => \dash\utility\enter::get_session('temp_ramz_hash')], self::user_data('id'));
 			}
 
 
@@ -291,7 +291,7 @@ trait verification_code
 			 * TRY TO REMOVE USER NAME
 			 ***********************************************************
 			 */
-			if(self::get_enter_session('verify_from') === 'username_remove' && is_numeric(self::user_data('id')))
+			if(\dash\utility\enter::get_session('verify_from') === 'username_remove' && is_numeric(self::user_data('id')))
 			{
 				// set temp ramz in use pass
 				\dash\db\users::update(['username' => null], self::user_data('id'));
@@ -313,26 +313,26 @@ trait verification_code
 			 * DELETE ACCOUNT
 			 ***********************************************************
 			 */
-			if(self::get_enter_session('verify_from') === 'delete')
+			if(\dash\utility\enter::get_session('verify_from') === 'delete')
 			{
-				if(self::get_enter_session('why'))
+				if(\dash\utility\enter::get_session('why'))
 				{
 					$update_meta  = [];
 
 					$meta = self::user_data('meta');
 					if(!$meta)
 					{
-						$update_meta['why'] = self::get_enter_session('why');
+						$update_meta['why'] = \dash\utility\enter::get_session('why');
 					}
 					elseif(is_string($meta) && substr($meta, 0, 1) !== '{')
 					{
 						$update_meta['other'] = $meta;
-						$update_meta['why'] = self::get_enter_session('why');
+						$update_meta['why'] = \dash\utility\enter::get_session('why');
 					}
 					elseif(is_string($meta) && substr($meta, 0, 1) === '{')
 					{
 						$json = json_decode($meta, true);
-						$update_meta = array_merge($json, ['why' => self::get_enter_session('why')]);
+						$update_meta = array_merge($json, ['why' => \dash\utility\enter::get_session('why')]);
 					}
 
 				}
@@ -363,17 +363,17 @@ trait verification_code
 			 */
 			if(
 				(
-					self::get_enter_session('verify_from') === 'username_set' ||
-					self::get_enter_session('verify_from') === 'username_change'
+					\dash\utility\enter::get_session('verify_from') === 'username_set' ||
+					\dash\utility\enter::get_session('verify_from') === 'username_change'
 				) &&
-				self::get_enter_session('temp_username') &&
+				\dash\utility\enter::get_session('temp_username') &&
 				is_numeric(self::user_data('id'))
 			  )
 			{
 				// set temp ramz in use pass
-				\dash\db\users::update(['username' => self::get_enter_session('temp_username')], self::user_data('id'));
+				\dash\db\users::update(['username' => \dash\utility\enter::get_session('temp_username')], self::user_data('id'));
 				// set the alert message
-				if(self::get_enter_session('verify_from') === 'username_set')
+				if(\dash\utility\enter::get_session('verify_from') === 'username_set')
 				{
 					self::set_alert(T_("Your username was set"));
 				}
@@ -384,7 +384,7 @@ trait verification_code
 
 				if(isset($_SESSION['user']) && is_array($_SESSION['user']))
 				{
-					$_SESSION['user']['username'] = self::get_enter_session('temp_username');
+					$_SESSION['user']['username'] = \dash\utility\enter::get_session('temp_username');
 				}
 
 				// open lock of alert page
@@ -401,12 +401,12 @@ trait verification_code
 			 ***********************************************************
 			 */
 			//////////////////////////////////////////////////////////////////////////////////////////////////////////////	MUST CHECK //////////////////////////////////
-			if(self::get_enter_session('verify_from') === 'mobile_request')
+			if(\dash\utility\enter::get_session('verify_from') === 'mobile_request')
 			{
 				// must loaded mobile data
-				if(self::get_enter_session('temp_mobile') && is_numeric(self::get_enter_session('temp_mobile')))
+				if(\dash\utility\enter::get_session('temp_mobile') && is_numeric(\dash\utility\enter::get_session('temp_mobile')))
 				{
-					$load_mobile_data = \dash\db\users::get_by_mobile(self::get_enter_session('temp_mobile'));
+					$load_mobile_data = \dash\db\users::get_by_mobile(\dash\utility\enter::get_session('temp_mobile'));
 					if($load_mobile_data && isset($load_mobile_data['id']))
 					{
 						if(isset($load_mobile_data['status']) && in_array($load_mobile_data['status'], self::$block_status))
@@ -417,11 +417,11 @@ trait verification_code
 						}
 						else
 						{
-							if(self::get_enter_session('mobile_request_from') === 'google_email_not_exist')
+							if(\dash\utility\enter::get_session('mobile_request_from') === 'google_email_not_exist')
 							{
 								if(isset($load_mobile_data['googlemail']) && $load_mobile_data['googlemail'])
 								{
-									if(self::get_enter_session('logined_by_email') === $load_mobile_data['googlemail'])
+									if(\dash\utility\enter::get_session('logined_by_email') === $load_mobile_data['googlemail'])
 									{
 										self::$user_id = $load_mobile_data['id'];
 										self::load_user_data('user_id');
@@ -429,7 +429,7 @@ trait verification_code
 									else
 									{
 										self::set_enter_session('old_google_mail', $load_mobile_data['googlemail']);
-										self::set_enter_session('new_google_mail', self::get_enter_session('logined_by_email'));
+										self::set_enter_session('new_google_mail', \dash\utility\enter::get_session('logined_by_email'));
 										self::set_enter_session('user_id_must_change_google_mail', $load_mobile_data['id']);
 										// request from user to change email
 										self::next_step('email/change/google');
@@ -439,12 +439,12 @@ trait verification_code
 								}
 								else
 								{
-									\dash\db\users::update(['googlemail' => self::get_enter_session('logined_by_email')], $load_mobile_data['id']);
+									\dash\db\users::update(['googlemail' => \dash\utility\enter::get_session('logined_by_email')], $load_mobile_data['id']);
 									self::$user_id = $load_mobile_data['id'];
 									self::load_user_data('user_id');
 								}
 							}
-							else //if(self::get_enter_session('mobile_request_from') === 'google_email_exist') or more
+							else //if(\dash\utility\enter::get_session('mobile_request_from') === 'google_email_exist') or more
 							{
 								self::set_enter_session('request_delete_msg', T_("Duplicate account"));
 
@@ -456,19 +456,19 @@ trait verification_code
 					}
 					else
 					{
-						if(self::get_enter_session('mobile_request_from') === 'google_email_not_exist')
+						if(\dash\utility\enter::get_session('mobile_request_from') === 'google_email_not_exist')
 						{
-							if(self::get_enter_session('must_signup') && is_array(self::get_enter_session('must_signup')))
+							if(\dash\utility\enter::get_session('must_signup') && is_array(\dash\utility\enter::get_session('must_signup')))
 							{
-								$signup = self::get_enter_session('must_signup');
-								if(self::get_enter_session('temp_mobile'))
+								$signup = \dash\utility\enter::get_session('must_signup');
+								if(\dash\utility\enter::get_session('temp_mobile'))
 								{
-									$signup['mobile'] = self::get_enter_session('temp_mobile');
+									$signup['mobile'] = \dash\utility\enter::get_session('temp_mobile');
 								}
 
-								if(self::get_enter_session('logined_by_email'))
+								if(\dash\utility\enter::get_session('logined_by_email'))
 								{
-									$signup['googlemail'] = self::get_enter_session('logined_by_email');
+									$signup['googlemail'] = \dash\utility\enter::get_session('logined_by_email');
 								}
 
 								$signup['status'] = 'active';
@@ -481,11 +481,11 @@ trait verification_code
 								\dash\db\logs::set('error110000');
 							}
 						}
-						elseif(self::get_enter_session('mobile_request_from') === 'google_email_exist')
+						elseif(\dash\utility\enter::get_session('mobile_request_from') === 'google_email_exist')
 						{
 							if(!self::user_data('mobile'))
 							{
-								\dash\db\users::update(['mobile' => self::get_enter_session('temp_mobile')], self::user_data('id'));
+								\dash\db\users::update(['mobile' => \dash\utility\enter::get_session('temp_mobile')], self::user_data('id'));
 								// login
 							}
 							self::$user_id = self::user_data('id');
@@ -521,15 +521,15 @@ trait verification_code
 			 */
 			if(
 				(
-					self::get_enter_session('verify_from') === 'email_set' ||
-					self::get_enter_session('verify_from') === 'email_change'
+					\dash\utility\enter::get_session('verify_from') === 'email_set' ||
+					\dash\utility\enter::get_session('verify_from') === 'email_change'
 				) &&
-				self::get_enter_session('temp_email') &&
+				\dash\utility\enter::get_session('temp_email') &&
 				is_numeric(self::user_data('id'))
 			  )
 			{
 				// set temp ramz in use pass
-				\dash\db\users::update(['email' => self::get_enter_session('temp_email')], self::user_data('id'));
+				\dash\db\users::update(['email' => \dash\utility\enter::get_session('temp_email')], self::user_data('id'));
 			}
 
 			/**
@@ -538,7 +538,7 @@ trait verification_code
 			 * TWO STEP VERICICATION
 			 ***********************************************************
 			 */
-			if(self::get_enter_session('verify_from') === 'two_step' &&	is_numeric(self::user_data('id')))
+			if(\dash\utility\enter::get_session('verify_from') === 'two_step' &&	is_numeric(self::user_data('id')))
 			{
 				// no thing yet
 			}
@@ -550,7 +550,7 @@ trait verification_code
 			 * TWO STEP VERICICATION SET
 			 ***********************************************************
 			 */
-			if(self::get_enter_session('verify_from') === 'two_step_set' &&	is_numeric(self::user_data('id')))
+			if(\dash\utility\enter::get_session('verify_from') === 'two_step_set' &&	is_numeric(self::user_data('id')))
 			{
 				// set on two_step of this user
 				\dash\db\users::update(['twostep' => 1], self::user_data('id'));
@@ -563,7 +563,7 @@ trait verification_code
 			 * TWO STEP VERICICATION SET
 			 ***********************************************************
 			 */
-			if(self::get_enter_session('verify_from') === 'two_step_unset' &&	is_numeric(self::user_data('id')))
+			if(\dash\utility\enter::get_session('verify_from') === 'two_step_unset' &&	is_numeric(self::user_data('id')))
 			{
 				// set off two_step of this user
 				\dash\db\users::update(['twostep' => 0], self::user_data('id'));
@@ -600,7 +600,7 @@ trait verification_code
 	 */
 	public static function send_code_email()
 	{
-		$email = self::get_enter_session('temp_email');
+		$email = \dash\utility\enter::get_session('temp_email');
 		$code  = self::generate_verification_code();
 		$mail =
 		[
@@ -623,15 +623,15 @@ trait verification_code
 	public static function mobile_request_next_step()
 	{
 		// set temp ramz in use pass
-		switch (self::get_enter_session('mobile_request_from'))
+		switch (\dash\utility\enter::get_session('mobile_request_from'))
 		{
 			case 'google_email_not_exist':
-				if(self::get_enter_session('must_signup'))
+				if(\dash\utility\enter::get_session('must_signup'))
 				{
 					// sign up user
 					self::set_enter_session('first_signup', true);
 
-					$user_id = self::signup_email(self::get_enter_session('must_signup'));
+					$user_id = self::signup_email(\dash\utility\enter::get_session('must_signup'));
 					if($user_id)
 					{
 						self::$user_id = $user_id;
@@ -655,7 +655,7 @@ trait verification_code
 					// we save this time to dontwillsetmobile to never show this message again
 					$update_user_google = [];
 
-					if(self::get_enter_session('dont_will_set_mobile'))
+					if(\dash\utility\enter::get_session('dont_will_set_mobile'))
 					{
 						$update_user_google['dontwillsetmobile'] = date("Y-m-d H:i:s");
 					}

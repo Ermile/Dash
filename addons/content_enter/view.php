@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_enter\main;
+namespace content_enter;
 
 
 class view
@@ -14,8 +14,8 @@ class view
 		\dash\data::bodyclass(\dash\data::bodyclass(). ' bg'. date('g'));
 
 		// get mobile number to show in mobile input
-		// $session_mobile = self::get_enter_session('usernameormobile');
-		// $temp_mobile    = self::get_enter_session('temp_mobile');
+		$session_mobile = \dash\utility\enter::get_session('usernameormobile');
+		$temp_mobile    = \dash\utility\enter::get_session('temp_mobile');
 		$myMobile       = null;
 
 		if(\dash\user::login('mobile'))

@@ -15,9 +15,9 @@ class view extends \addons\content_enter\main\view
 
 
 		$this->data->redirect_url = \dash\url::base();
-		if(self::get_enter_session('redirect_url'))
+		if(\dash\utility\enter::get_session('redirect_url'))
 		{
-			$this->data->redirect_url = self::get_enter_session('redirect_url');
+			$this->data->redirect_url = \dash\utility\enter::get_session('redirect_url');
 		}
 	}
 }

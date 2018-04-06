@@ -119,7 +119,7 @@ trait send_code
 		// we find the way is the first way to send
 		self::generate_verification_code();
 		// get the old way code
-		$old_way = self::get_enter_session('verification_code_way');
+		$old_way = \dash\utility\enter::get_session('verification_code_way');
 
 		// get send rate by look at $_type
 		if($_type == 'send_rate')
@@ -140,9 +140,9 @@ trait send_code
 		{
 			if(isset($rate[0]) && is_string($rate[0]))
 			{
-				if(self::get_enter_session('verification_code_id'))
+				if(\dash\utility\enter::get_session('verification_code_id'))
 				{
-					if(\dash\db\logs::update(['desc' => $rate[0]], self::get_enter_session('verification_code_id')))
+					if(\dash\db\logs::update(['desc' => $rate[0]], \dash\utility\enter::get_session('verification_code_id')))
 					{
 						// update session on nex way
 						self::set_enter_session('verification_code_way', $rate[0]);
@@ -163,10 +163,10 @@ trait send_code
 			if(isset($rate[$next_key]) && is_string($rate[$next_key]))
 			{
 				// nex way
-				if(self::get_enter_session('verification_code_id'))
+				if(\dash\utility\enter::get_session('verification_code_id'))
 				{
 					// update log on next way
-					if(\dash\db\logs::update(['desc' => $rate[$next_key]], self::get_enter_session('verification_code_id')))
+					if(\dash\db\logs::update(['desc' => $rate[$next_key]], \dash\utility\enter::get_session('verification_code_id')))
 					{
 						// update session on nex way
 						self::set_enter_session('verification_code_way', $rate[$next_key]);
@@ -188,7 +188,7 @@ trait send_code
 	public static function get_last_way($_type = 'send_rate')
 	{
 		// get the old way code
-		$old_way = self::get_enter_session('verification_code_way');
+		$old_way = \dash\utility\enter::get_session('verification_code_way');
 
 		// get send rate by look at $_type
 		if($_type == 'send_rate')

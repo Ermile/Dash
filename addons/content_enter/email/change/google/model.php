@@ -20,10 +20,10 @@ class model extends \addons\content_enter\main\model
 			return;
 		}
 
-		$old_google_mail = self::get_enter_session('old_google_mail');
-		$new_google_mail = self::get_enter_session('new_google_mail');
+		$old_google_mail = \dash\utility\enter::get_session('old_google_mail');
+		$new_google_mail = \dash\utility\enter::get_session('new_google_mail');
 
-		$user_id = self::get_enter_session('user_id_must_change_google_mail');
+		$user_id = \dash\utility\enter::get_session('user_id_must_change_google_mail');
 		if($old_google_mail && $new_google_mail && is_numeric($user_id))
 		{
 			self::$user_id = $user_id;

@@ -10,8 +10,8 @@ class view extends \addons\content_enter\main\view
 		$this->data->page['title']   = T_('Change google mail');
 		$this->data->page['desc']    = $this->data->page['title'];
 
-		$this->data->old_google_mail = self::get_enter_session('old_google_mail');
-		$this->data->new_google_mail = self::get_enter_session('new_google_mail');
+		$this->data->old_google_mail = \dash\utility\enter::get_session('old_google_mail');
+		$this->data->new_google_mail = \dash\utility\enter::get_session('new_google_mail');
 	}
 
 }

@@ -136,7 +136,7 @@ trait user_data
 			unset($_SESSION['ref']);
 		}
 
-		$mobile = self::get_enter_session('mobile');
+		$mobile = \dash\utility\enter::get_session('mobile');
 		if($mobile)
 		{
 			// set mobile to use in other function
@@ -160,15 +160,15 @@ trait user_data
 	*/
 	public static function signup_email($_args = [])
 	{
-		if(self::get_enter_session('dont_will_set_mobile'))
+		if(\dash\utility\enter::get_session('dont_will_set_mobile'))
 		{
 			// $_args['dontwillsetmobile'] = date("Y-m-d H:i:s");
 		}
 		else
 		{
-			if(self::get_enter_session('temp_mobile') && !isset($_args['mobile']))
+			if(\dash\utility\enter::get_session('temp_mobile') && !isset($_args['mobile']))
 			{
-				$_args['mobile'] = self::get_enter_session('temp_mobile');
+				$_args['mobile'] = \dash\utility\enter::get_session('temp_mobile');
 			}
 		}
 

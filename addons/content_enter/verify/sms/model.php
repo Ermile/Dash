@@ -20,13 +20,13 @@ class model extends \addons\content_enter\main\model
 		{
 			$my_mobile = self::user_data('mobile');
 		}
-		elseif(self::get_enter_session('mobile'))
+		elseif(\dash\utility\enter::get_session('mobile'))
 		{
-			$my_mobile = self::get_enter_session('mobile');
+			$my_mobile = \dash\utility\enter::get_session('mobile');
 		}
-		elseif(self::get_enter_session('temp_mobile'))
+		elseif(\dash\utility\enter::get_session('temp_mobile'))
 		{
-			$my_mobile = self::get_enter_session('temp_mobile');
+			$my_mobile = \dash\utility\enter::get_session('temp_mobile');
 		}
 
 		if(!$my_mobile)
@@ -35,7 +35,7 @@ class model extends \addons\content_enter\main\model
 		}
 
 
-		$code = self::get_enter_session('verification_code');
+		$code = \dash\utility\enter::get_session('verification_code');
 
 		$log_meta =
 		[
@@ -108,7 +108,7 @@ class model extends \addons\content_enter\main\model
 		// runcall
 		if(mb_strtolower(\dash\request::post('verify')) === 'true')
 		{
-			if(!self::get_enter_session('run_send_sms_code'))
+			if(!\dash\utility\enter::get_session('run_send_sms_code'))
 			{
 				\dash\notif::result("Sms sended");
 				self::set_enter_session('run_send_sms_code', true);

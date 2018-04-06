@@ -72,7 +72,7 @@ class view extends \addons\content_enter\main\view
 
 
 		// swich verify from
-		switch (self::get_enter_session('verify_from'))
+		switch (\dash\utility\enter::get_session('verify_from'))
 		{
 			// user from signup go to this page
 			case 'signup':
