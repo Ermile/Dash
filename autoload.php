@@ -7,8 +7,7 @@ require_once (__DIR__. '/lib/engine/define.php');
 
 class autoload
 {
-
-	private static $required     = [];
+	private static $required = [];
 
 
 	public static function load($_class_name)
@@ -22,7 +21,7 @@ class autoload
 		{
 			$addr = core. 'lib';
 			$addr = $addr. str_replace('dash', '', $_class_name);;
-			$addr = self::os_path($addr);
+			$addr = self::fix_os_path($addr);
 
 			if(self::open($addr))
 			{
@@ -32,7 +31,7 @@ class autoload
 		elseif(substr($_class_name, 0, 7) === 'content')
 		{
 			$addr = root. $_class_name;
-			$addr = self::os_path($addr);
+			$addr = self::fix_os_path($addr);
 
 			if(self::open($addr))
 			{
@@ -41,7 +40,7 @@ class autoload
 			else
 			{
 				$addr = addons. $_class_name;
-				$addr = self::os_path($addr);
+				$addr = self::fix_os_path($addr);
 
 				if(self::open($addr))
 				{
@@ -52,7 +51,7 @@ class autoload
 		elseif(substr($_class_name, 0, 3) === 'lib')
 		{
 			$addr = root. 'includes/'. $_class_name;
-			$addr = self::os_path($addr);
+			$addr = self::fix_os_path($addr);
 
 			if(self::open($addr))
 			{
@@ -64,6 +63,9 @@ class autoload
 
 	private static function open($_addr)
 	{
+		// add php ext to addr
+		$_addr = $_addr. '.php';
+
 		if(is_file($_addr))
 		{
 			include_once($_addr);
@@ -73,11 +75,10 @@ class autoload
 	}
 
 
-	private static function os_path($_addr)
+	public static function fix_os_path($_addr)
 	{
 		$_addr = str_replace('\\', DIRECTORY_SEPARATOR, $_addr);
 		$_addr = str_replace('/', DIRECTORY_SEPARATOR, $_addr);
-		$_addr = $_addr. '.php';
 		return $_addr;
 	}
 }
