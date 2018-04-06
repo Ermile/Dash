@@ -3,9 +3,9 @@ namespace lib;
 
 class request
 {
-	public static $POST;
-	public static $GET;
-	public static $FILES;
+	private static $POST  = [];
+	private static $GET   = [];
+	private static $FILES = [];
 
 	/**
 	 * filter post and safe it
@@ -14,64 +14,28 @@ class request
 	 * @param  [type] $_arg  [description]
 	 * @return [type]        [description]
 	 */
-	public static function post($_name = null, $_type = null, $_arg = null)
+	public static function post($_name = null)
 	{
 		if(!self::$POST)
 		{
 			self::$POST = \lib\safe::safe($_POST, 'sqlinjection');
 		}
-		$myvalue = null;
-		if(!$_name)
+
+		if(isset($_name))
+		{
+			if(array_key_exists($_name, self::$POST))
+			{
+				return self::$POST[$_name];
+			}
+			else
+			{
+				return null;
+			}
+		}
+		else
 		{
 			return self::$POST;
 		}
-		elseif(is_array($_name))
-		{
-			$_name = current($_name);
-			foreach (self::$POST as $key => $value)
-			{
-				if (strpos($key, $_name) === 0)
-				{
-					$myvalue[$key] = $value;
-				}
-			}
-			return $myvalue;
-		}
-		elseif(isset(self::$POST[$_name]))
-		{
-			if(is_array(self::$POST[$_name]))
-				$myvalue = self::$POST[$_name];
-			else
-				$myvalue = self::$POST[$_name];
-
-
-			// if set filter use filter class to clear input value
-			if($_type === 'filter')
-			{
-				if(method_exists('\lib\utility\filter', $_name))
-					$myvalue = \lib\utility\filter::$_name($myvalue, $_arg);
-			}
-			// for password user hasher parameter for hash post value
-			elseif($_type === 'hash')
-			{
-				if($_arg)
-				{
-					$myvalue = self::hasher($myvalue);
-				}
-				elseif(mb_strlen($myvalue) > 4 && mb_strlen(mb_strlen($myvalue) < 50))
-				{
-					$myvalue = self::hasher($myvalue);
-				}
-				else
-				{
-					$myvalue = null;
-				}
-			}
-
-			return $myvalue;
-		}
-
-		return null;
 	}
 
 
@@ -81,42 +45,28 @@ class request
 	 * @param  [type] $_arg  [description]
 	 * @return [type]        [description]
 	 */
-	public static function get($_name = null, $_arg = null)
+	public static function get($_name = null)
 	{
 		if(!self::$GET)
 		{
 			self::$GET = \lib\safe::safe($_GET, 'sqlinjection');
 		}
-		$myget = [];
-		foreach (self::$GET as $key => &$value)
+
+		if(isset($_name))
 		{
-			$pos = strpos($key, '=');
-			if($pos)
+			if(array_key_exists($_name, self::$GET))
 			{
-				$key_t = substr($key, 0, $pos);
-				$value = substr($key, $pos+1);
-				$myget[$key_t] = $value;
+				return self::$GET[$_name];
 			}
 			else
 			{
-				$myget[$key] = $value;
+				return null;
 			}
 		}
-		self::$GET = $myget;
-		unset($myget);
-
-		if($_name)
-			return isset(self::$GET[$_name])? self::$GET[$_name] : null;
-
-		elseif(!empty(self::$GET))
+		else
 		{
-			if($_arg === 'raw')
-				return self::$GET;
-			else
-				return ($_arg? '?': null).http_build_query(self::$GET);
+			return self::$GET;
 		}
-
-		return null;
 	}
 
 
