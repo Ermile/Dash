@@ -2,11 +2,12 @@
 /**
  * require default define
  */
-require_once (__DIR__.'/lib/engine/define.php');
+require_once (__DIR__. '/lib/engine/define.php');
 
 
 class autoload
 {
+
 	private static $required     = [];
 
 
@@ -17,14 +18,11 @@ class autoload
 			return;
 		}
 
-		$addr = null;
-
 		if(substr($_class_name, 0, 4) === 'dash')
 		{
 			$addr = core. 'lib';
 			$addr = $addr. str_replace('dash', '', $_class_name);;
 			$addr = self::os_path($addr);
-			$addr = $addr. '.php';
 
 			if(self::open($addr))
 			{
@@ -35,7 +33,6 @@ class autoload
 		{
 			$addr = root. $_class_name;
 			$addr = self::os_path($addr);
-			$addr = $addr. '.php';
 
 			if(self::open($addr))
 			{
@@ -45,7 +42,7 @@ class autoload
 			{
 				$addr = addons. $_class_name;
 				$addr = self::os_path($addr);
-				$addr = $addr. '.php';
+
 				if(self::open($addr))
 				{
 					self::$required[$_class_name] = true;
@@ -56,7 +53,7 @@ class autoload
 		{
 			$addr = root. 'includes/'. $_class_name;
 			$addr = self::os_path($addr);
-			$addr = $addr. '.php';
+
 			if(self::open($addr))
 			{
 				self::$required[$_class_name] = true;
@@ -80,6 +77,7 @@ class autoload
 	{
 		$_addr = str_replace('\\', DIRECTORY_SEPARATOR, $_addr);
 		$_addr = str_replace('/', DIRECTORY_SEPARATOR, $_addr);
+		$_addr = $_addr. '.php';
 		return $_addr;
 	}
 }
