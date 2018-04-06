@@ -22,13 +22,6 @@ class model extends \addons\content_enter\pass\model
 	 */
 	public function post_pass($_args)
 	{
-		// check inup is ok
-		if(!self::check_input('pass/recovery'))
-		{
-			\lib\notif::error(T_("Dont!"));
-			return false;
-		}
-
 		if(\lib\request::post('ramzNew'))
 		{
 			$temp_ramz = \lib\request::post('ramzNew');

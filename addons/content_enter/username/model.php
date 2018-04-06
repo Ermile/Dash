@@ -6,7 +6,7 @@ class model extends \addons\content_enter\main\model
 {
 	public function post_username()
 	{
-		if(!self::check_password_is_null())
+		if(!\lib\request::post('password'))
 		{
 			\lib\notif::error(T_("Dont!"));
 			return false;
