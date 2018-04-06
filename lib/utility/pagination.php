@@ -311,7 +311,7 @@ class pagination
 		}
 
 		$this_link = \lib\url::current();
-		$get       = \lib\request::get(null, 'raw');
+		$get       = \lib\request::get();
 		unset($get['page']);
 
 		foreach ($result as $key => $value)

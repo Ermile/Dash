@@ -12,7 +12,7 @@ class controller extends \addons\content_enter\main\controller
 		$payment         = \lib\url::dir(2);
 
 		$args            = [];
-		$args['get']     = \lib\request::get(null, 'raw');
+		$args['get']     = \lib\request::get();
 		$args['post']    = \lib\request::post();
 		$args['request'] = \lib\safe::safe($_REQUEST);
 

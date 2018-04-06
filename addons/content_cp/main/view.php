@@ -16,7 +16,7 @@ class view extends \mvc\view
 
 	public static function make_sort_link($_field, $_url)
 	{
-		$get = \lib\request::get(null, 'raw');
+		$get = \lib\request::get();
 		if(!is_array($get))
 		{
 			$get = [];
@@ -57,9 +57,9 @@ class view extends \mvc\view
 
 			$temp_link['q']    = $get['q'];
 
-			if(is_array(\lib\request::get(null , 'raw')))
+			if(is_array(\lib\request::get()))
 			{
-				foreach (\lib\request::get(null , 'raw') as $query_key => $query_value)
+				foreach (\lib\request::get() as $query_key => $query_value)
 				{
 					if(!in_array($query_key, ['q', 'sort', 'order']))
 					{

@@ -51,7 +51,7 @@ class controller extends \addons\content_enter\main\controller
 	public function save_param()
 	{
 		$post = \lib\request::post();
-		$get = \lib\request::get(null, 'raw');
+		$get = \lib\request::get();
 
 		$param = [];
 

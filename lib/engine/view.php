@@ -22,7 +22,7 @@ class view
 		\lib\data::url(\lib\url::all());
 
 		// return all parameters and clean it
-		\lib\data::requestGET(\lib\request::get(null, 'raw'));
+		\lib\data::requestGET(\lib\request::get());
 
 		// ----- language variable
 		\lib\data::lang_list(\lib\language::list(true));

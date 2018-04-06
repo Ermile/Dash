@@ -59,7 +59,7 @@ class request
 				break;
 
 			default:
-				$this->request = \lib\request::get(null, 'raw');
+				$this->request = \lib\request::get();
 				break;
 		}
 	}
