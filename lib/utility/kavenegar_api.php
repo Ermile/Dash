@@ -1,5 +1,5 @@
 <?php
-namespace lib\utility;
+namespace dash\utility;
 /*
 @ Kavenegar Api
 @ Version: 2.1

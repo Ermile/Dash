@@ -1,5 +1,5 @@
 <?php
-namespace lib\app\dbtables;
+namespace dash\app\dbtables;
 
 trait datalist
 {

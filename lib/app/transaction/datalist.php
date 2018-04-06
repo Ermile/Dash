@@ -1,5 +1,5 @@
 <?php
-namespace lib\app\transaction;
+namespace dash\app\transaction;
 
 trait datalist
 {

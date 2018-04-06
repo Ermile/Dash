@@ -1,5 +1,5 @@
 <?php
-namespace lib\utility\location;
+namespace dash\utility\location;
 
 trait tools
 {

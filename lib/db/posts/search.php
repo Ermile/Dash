@@ -1,5 +1,5 @@
 <?php
-namespace lib\db\posts;
+namespace dash\db\posts;
 
 trait search
 {

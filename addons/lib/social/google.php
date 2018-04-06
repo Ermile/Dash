@@ -1,5 +1,5 @@
 <?php
-namespace lib\social;
+namespace dash\social;
 require_once ('google/libraries/Google/autoload.php');
 
 class google

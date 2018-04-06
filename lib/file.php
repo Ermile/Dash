@@ -1,5 +1,5 @@
 <?php
-namespace lib;
+namespace dash;
 /** In The name of Allah **/
 /*  Proudly made in IRAN, powered by Dash, under licence of Ermile */
 

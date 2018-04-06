@@ -1,5 +1,5 @@
 <?php
-namespace lib\db\transactions;
+namespace dash\db\transactions;
 
 trait total_paid
 {

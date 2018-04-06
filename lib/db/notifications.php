@@ -1,5 +1,5 @@
 <?php
-namespace lib\db;
+namespace dash\db;
 
 /** notifications managing **/
 class notifications

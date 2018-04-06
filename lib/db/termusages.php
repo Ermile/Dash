@@ -1,5 +1,5 @@
 <?php
-namespace lib\db;
+namespace dash\db;
 
 /** termusage managing **/
 class termusages

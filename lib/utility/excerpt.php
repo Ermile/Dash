@@ -1,5 +1,5 @@
 <?php
-namespace lib\utility;
+namespace dash\utility;
 
 /** Excerpt input text and return shoet word **/
 class excerpt

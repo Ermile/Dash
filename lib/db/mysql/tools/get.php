@@ -1,5 +1,5 @@
 <?php
-namespace lib\db\mysql\tools;
+namespace dash\db\mysql\tools;
 
 trait get
 {

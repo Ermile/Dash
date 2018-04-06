@@ -1,5 +1,5 @@
 <?php
-namespace lib\utility;
+namespace dash\utility;
 
 /** session: handle session of project **/
 class session

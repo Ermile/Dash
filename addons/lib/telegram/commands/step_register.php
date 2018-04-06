@@ -1,5 +1,5 @@
 <?php
-namespace lib\telegram\commands;
+namespace dash\telegram\commands;
 // use telegram class as bot
 use \lib\telegram\tg as bot;
 use \lib\telegram\step;

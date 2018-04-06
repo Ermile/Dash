@@ -1,5 +1,5 @@
 <?php
-namespace lib\telegram;
+namespace dash\telegram;
 
 /** telegram save library**/
 class log extends tg

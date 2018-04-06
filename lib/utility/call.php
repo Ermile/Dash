@@ -1,5 +1,5 @@
 <?php
-namespace lib\utility;
+namespace dash\utility;
 require(lib."utility/kavenegar_api.php");
 
 /** call management class **/

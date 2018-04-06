@@ -1,5 +1,5 @@
 <?php
-namespace lib;
+namespace dash;
 
 /** Access: handle permissions **/
 class permission

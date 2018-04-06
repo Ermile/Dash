@@ -1,5 +1,5 @@
 <?php
-namespace lib;
+namespace dash;
 class utility
 {
 	public static $REQUEST;

@@ -1,5 +1,5 @@
 <?php
-namespace lib\utility\payment\payment;
+namespace dash\utility\payment\payment;
 
 
 class zarinpal

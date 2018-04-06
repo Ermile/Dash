@@ -1,5 +1,5 @@
 <?php
-namespace lib;
+namespace dash;
 
 require (core.'addons/lib/PHPMailer/Exception.php');
 require (core.'addons/lib/PHPMailer/PHPMailer.php');

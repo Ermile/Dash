@@ -1,5 +1,5 @@
 <?php
-namespace lib\utility\payment\verify;
+namespace dash\utility\payment\verify;
 
 
 trait payir

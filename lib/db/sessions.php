@@ -1,5 +1,5 @@
 <?php
-namespace lib\db;
+namespace dash\db;
 
 /** sessions managing **/
 class sessions

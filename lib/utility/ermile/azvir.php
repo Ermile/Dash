@@ -1,5 +1,5 @@
 <?php
-namespace lib\utility\ermile;
+namespace dash\utility\ermile;
 
 class azvir
 {

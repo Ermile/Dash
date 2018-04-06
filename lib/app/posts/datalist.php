@@ -1,5 +1,5 @@
 <?php
-namespace lib\app\posts;
+namespace dash\app\posts;
 
 trait datalist
 {

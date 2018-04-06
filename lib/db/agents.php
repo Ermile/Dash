@@ -1,5 +1,5 @@
 <?php
-namespace lib\db;
+namespace dash\db;
 
 /** agents managing **/
 class agents

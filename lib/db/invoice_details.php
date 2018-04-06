@@ -1,5 +1,5 @@
 <?php
-namespace lib\db;
+namespace dash\db;
 use \lib\db;
 
 class invoice_details

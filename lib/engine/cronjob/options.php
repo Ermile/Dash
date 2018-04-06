@@ -1,5 +1,5 @@
 <?php
-namespace lib\engine\cronjob;
+namespace dash\engine\cronjob;
 
 class options
 {

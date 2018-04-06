@@ -1,5 +1,5 @@
 <?php
-namespace lib\utility;
+namespace dash\utility;
 
 /** Filter of values : mobile ...etc **/
 class filter

@@ -1,5 +1,5 @@
 <?php
-namespace lib\model;
+namespace dash\model;
 
 class breadcrumb
 {

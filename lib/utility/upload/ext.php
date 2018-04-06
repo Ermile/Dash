@@ -1,5 +1,5 @@
 <?php
-namespace lib\utility\upload;
+namespace dash\utility\upload;
 
 trait ext
 {

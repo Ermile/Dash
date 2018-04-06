@@ -1,5 +1,5 @@
 <?php
-namespace lib;
+namespace dash;
 /**
  * code if life or no
  */

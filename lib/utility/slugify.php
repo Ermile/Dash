@@ -1,5 +1,5 @@
 <?php
-namespace lib\utility;
+namespace dash\utility;
 
 /** Slugify: Converts a string to a slug. **/
 class slugify

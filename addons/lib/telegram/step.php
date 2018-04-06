@@ -1,5 +1,5 @@
 <?php
-namespace lib\telegram;
+namespace dash\telegram;
 
 /** telegram step by step library**/
 class step extends tg

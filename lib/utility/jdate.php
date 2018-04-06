@@ -1,5 +1,5 @@
 <?php
-namespace lib\utility;
+namespace dash\utility;
 /**
  * Jalali (Shamsi) DateTime Class. Supports years higher than 2038.
  *

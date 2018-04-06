@@ -1,5 +1,5 @@
 <?php
-namespace lib;
+namespace dash;
 /**
  * Class for session.
  * save data in session and get it

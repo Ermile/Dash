@@ -1,5 +1,5 @@
 <?php
-namespace lib\utility;
+namespace dash\utility;
 
 /** Detect User Browser with php; full feature! **/
 class browserDetection

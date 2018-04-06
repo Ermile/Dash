@@ -1,5 +1,5 @@
 <?php
-namespace lib\db\chart;
+namespace dash\db\chart;
 
 /** get users stats **/
 class users

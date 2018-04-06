@@ -1,5 +1,5 @@
 <?php
-namespace lib\app;
+namespace dash\app;
 
 /** units managing **/
 class units

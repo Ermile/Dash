@@ -1,5 +1,5 @@
 <?php
-namespace lib;
+namespace dash;
 
 /** ShortURL: Bijective conversion between natural numbers (IDs) and short strings **/
 class coding

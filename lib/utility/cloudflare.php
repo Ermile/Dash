@@ -1,5 +1,5 @@
 <?php
-namespace lib\utility;
+namespace dash\utility;
 /**
  * Class for cloudflare.
  * api to cloudflare

@@ -1,5 +1,5 @@
 <?php
-namespace lib;
+namespace dash;
 
 /** Create simple and clean connection to db **/
 class db

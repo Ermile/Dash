@@ -1,5 +1,5 @@
 <?php
-namespace lib\utility;
+namespace dash\utility;
 
 /** twig Trans Extractor class **/
 class twigTrans

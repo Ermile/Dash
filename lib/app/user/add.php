@@ -1,5 +1,5 @@
 <?php
-namespace lib\app\user;
+namespace dash\app\user;
 
 
 trait add

@@ -1,5 +1,5 @@
 <?php
-namespace lib;
+namespace dash;
 /**
  * this lib handle url of our PHP framework, Dash
  * v 4.0

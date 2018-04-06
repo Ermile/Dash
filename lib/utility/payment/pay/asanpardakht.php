@@ -1,5 +1,5 @@
 <?php
-namespace lib\utility\payment\pay;
+namespace dash\utility\payment\pay;
 
 
 trait asanpardakht
