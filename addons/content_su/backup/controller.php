@@ -6,10 +6,10 @@ class controller extends \addons\content_su\main\controller
 	{
 		parent::ready();
 		$this->post('backup')->ALL();
-		$download = \lib\request::get('download');
+		$download = \dash\request::get('download');
 		if($download)
 		{
-			\lib\file::download(database. 'backup/files/'. $download);
+			\dash\file::download(database. 'backup/files/'. $download);
 			return;
 		}
 	}

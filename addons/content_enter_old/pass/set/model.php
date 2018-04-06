@@ -25,13 +25,13 @@ class model extends \addons\content_enter\pass\model
 		// check inup is ok
 		if(!self::check_input('pass/set'))
 		{
-			\lib\notif::error(T_("Dont!"));
+			\dash\notif::error(T_("Dont!"));
 			return false;
 		}
 
-		if(\lib\request::post('ramzNew'))
+		if(\dash\request::post('ramzNew'))
 		{
-			$temp_ramz = \lib\request::post('ramzNew');
+			$temp_ramz = \dash\request::post('ramzNew');
 
 			// check min and max of password and make error
 			if(!$this->check_pass_syntax($temp_ramz))
@@ -41,9 +41,9 @@ class model extends \addons\content_enter\pass\model
 
 			// hesh ramz to find is this ramz is easy or no
 			// creazy password !
-			$temp_ramz_hash = \lib\utility::hasher($temp_ramz);
+			$temp_ramz_hash = \dash\utility::hasher($temp_ramz);
 			// if debug status continue
-			if(\lib\engine\process::status())
+			if(\dash\engine\process::status())
 			{
 				self::set_enter_session('temp_ramz', $temp_ramz);
 				self::set_enter_session('temp_ramz_hash', $temp_ramz_hash);
@@ -59,7 +59,7 @@ class model extends \addons\content_enter\pass\model
 			// plus count invalid password
 			self::plus_try_session('no_password_send_set');
 
-			\lib\notif::error(T_("No password was send"));
+			\dash\notif::error(T_("No password was send"));
 			return false;
 		}
 

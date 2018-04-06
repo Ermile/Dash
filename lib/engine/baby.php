@@ -16,7 +16,7 @@ class baby
 		// if we dont have request url it was very mysterious, say Hi to hitler
 		if(!isset($_SERVER['REQUEST_URI']))
 		{
-			\lib\header::status(412, 'Hi Father!');
+			\dash\header::status(412, 'Hi Father!');
 		}
 
 		// check duble slash in url
@@ -80,7 +80,7 @@ class baby
 			// http://dash.local/enter?referer=http://dash.local/cp
 			if(strpos($_SERVER['REQUEST_URI'], '?') === false || strpos($_SERVER['REQUEST_URI'], '?') > strpos($_SERVER['REQUEST_URI'], '//'))
 			{
-				\lib\header::status(421, 'What are you doing!');
+				\dash\header::status(421, 'What are you doing!');
 			}
 		}
 	}
@@ -91,13 +91,13 @@ class baby
 	private static function pacifier()
 	{
 		$msg = 'Hi Baby'. str_repeat('!', self::$level);
-		if(\lib\request::json_accept() || \lib\request::ajax())
+		if(\dash\request::json_accept() || \dash\request::ajax())
 		{
-			\lib\header::status(418, $msg. ' Are you healthy?');
+			\dash\header::status(418, $msg. ' Are you healthy?');
 		}
 		else
 		{
-			\lib\header::status(418, $msg);
+			\dash\header::status(418, $msg);
 		}
 		self::$level = null;
 	}

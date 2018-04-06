@@ -6,22 +6,22 @@ class model extends \addons\content_enter\main\model
 {
 	public function post_check()
 	{
-		if(!\lib\request::post('ramz'))
+		if(!\dash\request::post('ramz'))
 		{
 			// plus count empty password
 			self::plus_try_session('empty_password');
 
-			\lib\notif::error(T_("Please enter your password"));
+			\dash\notif::error(T_("Please enter your password"));
 			return false;
 		}
 
 		// get ramz
-		$ramz = \lib\request::post('ramz');
+		$ramz = \dash\request::post('ramz');
 
 		if(self::user_data('password'))
 		{
 			// the password is okay
-			if(\lib\utility::hasher($ramz, self::user_data('password')))
+			if(\dash\utility::hasher($ramz, self::user_data('password')))
 			{
 				// if the user set two step verification send code
 				if(self::user_data('twostep'))
@@ -47,7 +47,7 @@ class model extends \addons\content_enter\main\model
 				// wrong password sleep code
 				self::sleep_code();
 
-				\lib\notif::error(T_("Invalid password, try again"));
+				\dash\notif::error(T_("Invalid password, try again"));
 				return false;
 			}
 		}
@@ -72,7 +72,7 @@ class model extends \addons\content_enter\main\model
 		{
 			if($_debug)
 			{
-				\lib\notif::error(T_("You must set 6 character and large in password"));
+				\dash\notif::error(T_("You must set 6 character and large in password"));
 			}
 			return false;
 		}
@@ -82,7 +82,7 @@ class model extends \addons\content_enter\main\model
 		{
 			if($_debug)
 			{
-				\lib\notif::error(T_("You must set less than 99 character in password"));
+				\dash\notif::error(T_("You must set less than 99 character in password"));
 			}
 			return false;
 		}

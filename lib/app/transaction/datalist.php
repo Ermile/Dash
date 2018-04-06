@@ -24,7 +24,7 @@ trait datalist
 
 	public static function list($_string = null, $_args = [])
 	{
-		if(!\lib\user::id())
+		if(!\dash\user::id())
 		{
 			return false;
 		}
@@ -69,7 +69,7 @@ trait datalist
 
 		unset($option['in']);
 
-		$result = \lib\db\transactions::search($_string, $option, $field);
+		$result = \dash\db\transactions::search($_string, $option, $field);
 
 		return $result;
 	}

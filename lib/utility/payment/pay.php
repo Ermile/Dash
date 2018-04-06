@@ -46,26 +46,26 @@ class pay
         }
         else
         {
-            \lib\db\logs::set('pay:irkish:amount:invalid', $_user_id);
-            \lib\notif::error(T_("Invalid amount"));
+            \dash\db\logs::set('pay:irkish:amount:invalid', $_user_id);
+            \dash\notif::error(T_("Invalid amount"));
             return false;
         }
 
         $_bank = mb_strtolower($_bank);
 
-        if(method_exists("\\lib\\utility\\payment\\pay", $_bank))
+        if(method_exists("\\dash\\utility\\payment\\pay", $_bank))
         {
 
-            \lib\session::set('payment_request_start', true);
-            \lib\session::set('payment_verify_amount', null);
-            \lib\session::set('payment_verify_status', null);
+            \dash\session::set('payment_request_start', true);
+            \dash\session::set('payment_verify_amount', null);
+            \dash\session::set('payment_verify_status', null);
 
 
-            return \lib\utility\payment\pay::$_bank($_user_id, $_amount, $_option);
+            return \dash\utility\payment\pay::$_bank($_user_id, $_amount, $_option);
         }
         else
         {
-            \lib\notif::error(T_("This payment is not supported in this system"));
+            \dash\notif::error(T_("This payment is not supported in this system"));
             return false;
         }
     }
@@ -80,7 +80,7 @@ class pay
      */
     private static function get_callbck_url($_payment)
     {
-        $host = \lib\url::site();
+        $host = \dash\url::site();
         $callback_url =  $host;
         $callback_url .= $lang;
 

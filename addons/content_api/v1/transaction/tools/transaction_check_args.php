@@ -8,88 +8,88 @@ trait transaction_check_args
 	{
 		$log_meta = $_log_meta;
 
-		$caller = \lib\utility::request('caller');
+		$caller = \dash\utility::request('caller');
 		if($caller && mb_strlen($caller) > 20)
 		{
-			if($_args['save_log']) \lib\db\logs::set('addons:api:trransaction:caller:invalid', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\notif::error(T_("Invalid caller"), 'caller', 'arguments');
+			if($_args['save_log']) \dash\db\logs::set('addons:api:trransaction:caller:invalid', $this->user_id, $log_meta);
+			if($_args['debug']) \dash\notif::error(T_("Invalid caller"), 'caller', 'arguments');
 			return false;
 		}
 
-		$title = \lib\utility::request('title');
+		$title = \dash\utility::request('title');
 		if($title && mb_strlen($title) > 50)
 		{
-			if($_args['save_log']) \lib\db\logs::set('addons:api:trransaction:title:invalid', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\notif::error(T_("You must set title less than 50 character"), 'title', 'arguments');
+			if($_args['save_log']) \dash\db\logs::set('addons:api:trransaction:title:invalid', $this->user_id, $log_meta);
+			if($_args['debug']) \dash\notif::error(T_("You must set title less than 50 character"), 'title', 'arguments');
 			return false;
 		}
 
-		$user_id = \lib\utility::request('user_id');
-		$user_id = \lib\coding::decode($user_id);
+		$user_id = \dash\utility::request('user_id');
+		$user_id = \dash\coding::decode($user_id);
 		if(!$user_id)
 		{
-			if($_args['save_log']) \lib\db\logs::set('addons:api:trransaction:user_id:invalid', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\notif::error(T_("Invalid user_id"), 'user_id', 'arguments');
+			if($_args['save_log']) \dash\db\logs::set('addons:api:trransaction:user_id:invalid', $this->user_id, $log_meta);
+			if($_args['debug']) \dash\notif::error(T_("Invalid user_id"), 'user_id', 'arguments');
 			return false;
 		}
 
-		$amount = \lib\utility::request('amount');
+		$amount = \dash\utility::request('amount');
 		if(!$amount)
 		{
-			if($_args['save_log']) \lib\db\logs::set('addons:api:trransaction:amount:not:set', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\notif::error(T_("Amount not set"), 'amount', 'arguments');
+			if($_args['save_log']) \dash\db\logs::set('addons:api:trransaction:amount:not:set', $this->user_id, $log_meta);
+			if($_args['debug']) \dash\notif::error(T_("Amount not set"), 'amount', 'arguments');
 			return false;
 		}
 
 		if(!is_numeric($amount))
 		{
-			if($_args['save_log']) \lib\db\logs::set('addons:api:trransaction:amount:not:a:number', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\notif::error(T_("Amount must be number"), 'amount', 'arguments');
+			if($_args['save_log']) \dash\db\logs::set('addons:api:trransaction:amount:not:a:number', $this->user_id, $log_meta);
+			if($_args['debug']) \dash\notif::error(T_("Amount must be number"), 'amount', 'arguments');
 			return false;
 		}
 
-		$action = \lib\utility::request('action');
+		$action = \dash\utility::request('action');
 		if(!$action)
 		{
-			if($_args['save_log']) \lib\db\logs::set('addons:api:trransaction:action:not:set', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\notif::error(T_("Action not set"), 'action', 'arguments');
+			if($_args['save_log']) \dash\db\logs::set('addons:api:trransaction:action:not:set', $this->user_id, $log_meta);
+			if($_args['debug']) \dash\notif::error(T_("Action not set"), 'action', 'arguments');
 			return false;
 		}
 
 		if($action && !in_array($action, ['minus', 'plus']))
 		{
-			if($_args['save_log']) \lib\db\logs::set('addons:api:trransaction:action:invalid', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\notif::error(T_("Invalid action"), 'action', 'arguments');
+			if($_args['save_log']) \dash\db\logs::set('addons:api:trransaction:action:invalid', $this->user_id, $log_meta);
+			if($_args['debug']) \dash\notif::error(T_("Invalid action"), 'action', 'arguments');
 			return false;
 		}
 
-		$type = \lib\utility::request('type');
+		$type = \dash\utility::request('type');
 		if(!$type)
 		{
-			if($_args['save_log']) \lib\db\logs::set('addons:api:trranstype:type:not:set', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\notif::error(T_("Type not set"), 'type', 'arguments');
+			if($_args['save_log']) \dash\db\logs::set('addons:api:trranstype:type:not:set', $this->user_id, $log_meta);
+			if($_args['debug']) \dash\notif::error(T_("Type not set"), 'type', 'arguments');
 			return false;
 		}
 
 		if($type && !in_array($type, ['gift','prize','transfer','promo','money']))
 		{
-			if($_args['save_log']) \lib\db\logs::set('addons:api:trranstype:type:invalid', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\notif::error(T_("Invalid type"), 'type', 'arguments');
+			if($_args['save_log']) \dash\db\logs::set('addons:api:trranstype:type:invalid', $this->user_id, $log_meta);
+			if($_args['debug']) \dash\notif::error(T_("Invalid type"), 'type', 'arguments');
 			return false;
 		}
 
-		$unit = \lib\utility::request('unit');
+		$unit = \dash\utility::request('unit');
 		if(!$unit)
 		{
-			if($_args['save_log']) \lib\db\logs::set('addons:api:trransaction:unit:not:set', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\notif::error(T_("Unit not set"), 'unit', 'arguments');
+			if($_args['save_log']) \dash\db\logs::set('addons:api:trransaction:unit:not:set', $this->user_id, $log_meta);
+			if($_args['debug']) \dash\notif::error(T_("Unit not set"), 'unit', 'arguments');
 			return false;
 		}
 
-		if($unit && !\lib\app\units::check($unit))
+		if($unit && !\dash\app\units::check($unit))
 		{
-			if($_args['save_log']) \lib\db\logs::set('addons:api:trransaction:unit:invalid', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\notif::error(T_("Invalid unit"), 'unit', 'arguments');
+			if($_args['save_log']) \dash\db\logs::set('addons:api:trransaction:unit:invalid', $this->user_id, $log_meta);
+			if($_args['debug']) \dash\notif::error(T_("Invalid unit"), 'unit', 'arguments');
 			return false;
 		}
 
@@ -127,13 +127,13 @@ trait transaction_check_args
 	 */
 	public function transaction_make_where($_args, &$where, $_log_meta)
 	{
-		$type = \lib\utility::request('type');
+		$type = \dash\utility::request('type');
 		if($type && is_string($type) || is_numeric($type))
 		{
 			$where['type'] = $type;
 		}
 
-		if(!$type && \lib\utility::isset_request('type'))
+		if(!$type && \dash\utility::isset_request('type'))
 		{
 			$where['type'] = null;
 		}

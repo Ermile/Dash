@@ -8,7 +8,7 @@ class agent
 		$agent = self::agent(true);
 		if($_id)
 		{
-			$check_exits_agent = \lib\db\agents::get(['agent' => $agent, 'limit' => 1]);
+			$check_exits_agent = \dash\db\agents::get(['agent' => $agent, 'limit' => 1]);
 
 			if(isset($check_exits_agent['id']))
 			{
@@ -17,7 +17,7 @@ class agent
 
 			$is_bot       = self::isBot();
 
-			$agent_detail = \lib\utility\browserDetection::browser_detection('full_assoc');
+			$agent_detail = \dash\utility\browserDetection::browser_detection('full_assoc');
 
 			$insert =
 			[
@@ -31,7 +31,7 @@ class agent
 				'robot'   => $is_bot ? 1 : null,
 			];
 
-			$agent_id = \lib\db\agents::insert($insert);
+			$agent_id = \dash\db\agents::insert($insert);
 
 			return $agent_id;
 		}

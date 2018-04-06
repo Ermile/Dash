@@ -16,7 +16,7 @@ trait add
 		$content = isset($_args['content']) ? $_args['content'] : null;
 		$content = addslashes($content);
 
-		\lib\app::variable($_args);
+		\dash\app::variable($_args);
 
 		$default_option =
 		[
@@ -31,19 +31,19 @@ trait add
 
 		$_option = array_merge($default_option, $_option);
 
-		if(!\lib\user::id())
+		if(!\dash\user::id())
 		{
-			if($_option['save_log']) \lib\app::log('api:posts:user_id:notfound', null, \lib\app::log_meta());
-			if($_option['debug']) \lib\notif::error(T_("User not found"), 'user');
+			if($_option['save_log']) \dash\app::log('api:posts:user_id:notfound', null, \dash\app::log_meta());
+			if($_option['debug']) \dash\notif::error(T_("User not found"), 'user');
 			return false;
 		}
 
 		// check args
 		$args = self::check($_option);
 
-		$args['user_id'] = \lib\user::id();
+		$args['user_id'] = \dash\user::id();
 
-		if($args === false || !\lib\engine\process::status())
+		if($args === false || !\dash\engine\process::status())
 		{
 			return false;
 		}
@@ -55,7 +55,7 @@ trait add
 
 		if(!$args['excerpt'])
 		{
-			$args['excerpt'] = \lib\utility\excerpt::extractRelevant($content);
+			$args['excerpt'] = \dash\utility\excerpt::extractRelevant($content);
 		}
 
 		if(mb_strlen($args['excerpt']) > 300)
@@ -65,12 +65,12 @@ trait add
 
 		$return         = [];
 
-		$post_id = \lib\db\posts::insert($args);
+		$post_id = \dash\db\posts::insert($args);
 
 		if(!$post_id)
 		{
-			if($_option['save_log']) \lib\app::log('api:posts:no:way:to:insert:post', \lib\user::id(), \lib\app::log_meta());
-			if($_option['debug']) \lib\notif::error(T_("No way to insert post"), 'db', 'system');
+			if($_option['save_log']) \dash\app::log('api:posts:no:way:to:insert:post', \dash\user::id(), \dash\app::log_meta());
+			if($_option['debug']) \dash\notif::error(T_("No way to insert post"), 'db', 'system');
 			return false;
 		}
 
@@ -85,20 +85,20 @@ trait add
 
 				if($post_url)
 				{
-					\lib\db\posts::update(['url' => $args['slug']], $post_id);
+					\dash\db\posts::update(['url' => $args['slug']], $post_id);
 				}
 				else
 				{
-					\lib\db\posts::update(['url' => ltrim($post_url. '/'. $args['slug'], '/')], $post_id);
+					\dash\db\posts::update(['url' => ltrim($post_url. '/'. $args['slug'], '/')], $post_id);
 				}
 			}
 		}
 
-		$return['post_id'] = \lib\coding::encode($post_id);
+		$return['post_id'] = \dash\coding::encode($post_id);
 
-		if(\lib\engine\process::status())
+		if(\dash\engine\process::status())
 		{
-			if($_option['debug']) \lib\notif::ok(T_("Post successfuly added"));
+			if($_option['debug']) \dash\notif::ok(T_("Post successfuly added"));
 		}
 
 		return $return;

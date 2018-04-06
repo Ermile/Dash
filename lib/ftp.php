@@ -4,9 +4,9 @@ namespace dash;
  * Class for ftp.
  * every ftp function
  * for @example
- *  \lib\ftp::pwd();
- *  \lib\ftp::size('remotefile');
- *  \lib\ftp::get(...);
+ *  \dash\ftp::pwd();
+ *  \dash\ftp::size('remotefile');
+ *  \dash\ftp::get(...);
  */
 class ftp
 {
@@ -23,13 +23,13 @@ class ftp
 			$ftp_host = $_host;
 			if(!$ftp_host)
 			{
-				$ftp_host = \lib\option::config('ftp', 'host');
+				$ftp_host = \dash\option::config('ftp', 'host');
 			}
 
 			$ftp_port = $_port;
 			if(!$ftp_port)
 			{
-				$ftp_port = \lib\option::config('ftp', 'port');
+				$ftp_port = \dash\option::config('ftp', 'port');
 			}
 
 			$link = @ftp_connect($ftp_host, $ftp_port);
@@ -50,13 +50,13 @@ class ftp
 		$user = $_user;
 		if(!$user)
 		{
-			$user  = \lib\option::config('ftp', 'user');
+			$user  = \dash\option::config('ftp', 'user');
 		}
 
 		$pass = $_passowrd;
 		if(!$_passowrd)
 		{
-			$pass  = \lib\option::config('ftp', 'pass');
+			$pass  = \dash\option::config('ftp', 'pass');
 		}
 
 		$login = @ftp_login(self::$link, $user, $pass);

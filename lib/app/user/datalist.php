@@ -12,13 +12,13 @@ trait datalist
 	 */
 	public static function list($_args = [])
 	{
-		if(!\lib\user::id())
+		if(!\dash\user::id())
 		{
 			return false;
 		}
 
 		$meta            = [];
-		$result          = \lib\db\users::search(null, $meta);
+		$result          = \dash\db\users::search(null, $meta);
 		$temp            = [];
 		foreach ($result as $key => $value)
 		{

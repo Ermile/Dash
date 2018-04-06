@@ -13,7 +13,7 @@ class contacts
 	 */
 	public static function insert()
 	{
-		\lib\db\config::public_insert('contacts', ...func_get_args());
+		\dash\db\config::public_insert('contacts', ...func_get_args());
 	}
 
 
@@ -26,7 +26,7 @@ class contacts
 	 */
 	public static function insert_multi()
 	{
-		return \lib\db\config::public_multi_insert('contacts', ...func_get_args());
+		return \dash\db\config::public_multi_insert('contacts', ...func_get_args());
 	}
 
 
@@ -59,7 +59,7 @@ class contacts
 			{
 				$set = implode(',', $set);
 				$query = "UPDATE contacts SET $set WHERE contacts.id = $_id LIMIT 1";
-				return \lib\db::query($query);
+				return \dash\db::query($query);
 			}
 		}
 
@@ -74,7 +74,7 @@ class contacts
 	 */
 	public static function update_where()
 	{
-		return \lib\db\config::public_update_where('contacts', ...func_get_args());
+		return \dash\db\config::public_update_where('contacts', ...func_get_args());
 	}
 
 
@@ -88,7 +88,7 @@ class contacts
 	 */
 	public static function get()
 	{
-		return \lib\db\config::public_get('contacts', ...func_get_args());
+		return \dash\db\config::public_get('contacts', ...func_get_args());
 	}
 
 
@@ -100,7 +100,7 @@ class contacts
 	 */
 	public static function search()
 	{
-		return \lib\db\config::public_search('contacts', ...func_get_args());
+		return \dash\db\config::public_search('contacts', ...func_get_args());
 	}
 }
 ?>

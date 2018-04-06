@@ -27,31 +27,31 @@ trait zarinpal
             ]
         ];
 
-        if(!\lib\option::config('zarinpal', 'status'))
+        if(!\dash\option::config('zarinpal', 'status'))
         {
-            \lib\db\logs::set('pay:zarinpal:status:false', $_user_id, $log_meta);
-            \lib\notif::error(T_("The zarinpal payment on this service is locked"));
+            \dash\db\logs::set('pay:zarinpal:status:false', $_user_id, $log_meta);
+            \dash\notif::error(T_("The zarinpal payment on this service is locked"));
             return false;
         }
 
-        if(!\lib\option::config('zarinpal', 'MerchantID'))
+        if(!\dash\option::config('zarinpal', 'MerchantID'))
         {
-            \lib\db\logs::set('pay:zarinpal:MerchantID:not:set', $_user_id, $log_meta);
-            \lib\notif::error(T_("The zarinpal payment MerchantID not set"));
+            \dash\db\logs::set('pay:zarinpal:MerchantID:not:set', $_user_id, $log_meta);
+            \dash\notif::error(T_("The zarinpal payment MerchantID not set"));
             return false;
         }
 
         $zarinpal = [];
-        $zarinpal['MerchantID'] = \lib\option::config('zarinpal', 'MerchantID');
+        $zarinpal['MerchantID'] = \dash\option::config('zarinpal', 'MerchantID');
 
-        if(\lib\option::config('zarinpal', 'Description'))
+        if(\dash\option::config('zarinpal', 'Description'))
         {
-            $zarinpal['Description'] = \lib\option::config('zarinpal', 'Description');
+            $zarinpal['Description'] = \dash\option::config('zarinpal', 'Description');
         }
 
-        if(\lib\option::config('zarinpal', 'CallbackURL'))
+        if(\dash\option::config('zarinpal', 'CallbackURL'))
         {
-            $zarinpal['CallbackURL'] = \lib\option::config('zarinpal', 'CallbackURL');
+            $zarinpal['CallbackURL'] = \dash\option::config('zarinpal', 'CallbackURL');
         }
         else
         {
@@ -90,11 +90,11 @@ trait zarinpal
         }
 
         //START TRANSACTION BY CONDITION REQUEST
-        $transaction_id = \lib\utility\payment\transactions::start($transaction_start);
+        $transaction_id = \dash\utility\payment\transactions::start($transaction_start);
 
         $log_meta['data'] = self::$log_data = $transaction_id;
 
-        if(!\lib\engine\process::status() || !$transaction_id)
+        if(!\dash\engine\process::status() || !$transaction_id)
         {
             return false;
         }
@@ -105,14 +105,14 @@ trait zarinpal
             $_SESSION['turn_back'][$transaction_id] = $_options['turn_back'];
         }
 
-        \lib\utility\payment\payment\zarinpal::$user_id  = $_user_id;
-        \lib\utility\payment\payment\zarinpal::$log_data = self::$log_data;
+        \dash\utility\payment\payment\zarinpal::$user_id  = $_user_id;
+        \dash\utility\payment\payment\zarinpal::$log_data = self::$log_data;
 
-        $redirect = \lib\utility\payment\payment\zarinpal::pay($zarinpal);
+        $redirect = \dash\utility\payment\payment\zarinpal::pay($zarinpal);
 
         if($redirect)
         {
-            $payment_response = \lib\utility\payment\payment\zarinpal::$payment_response;
+            $payment_response = \dash\utility\payment\payment\zarinpal::$payment_response;
             if(isset($payment_response->Authority))
             {
                 // save amount and autority in session to get when verifying
@@ -121,17 +121,17 @@ trait zarinpal
                 $_SESSION['amount']['zarinpal'][$payment_response->Authority]['transaction_id'] = $transaction_id;
 
                 $payment_response = json_encode((array) $payment_response, JSON_UNESCAPED_UNICODE);
-                \lib\db\transactions::update(['condition' => 'redirect', 'payment_response' => $payment_response], $transaction_id);
+                \dash\db\transactions::update(['condition' => 'redirect', 'payment_response' => $payment_response], $transaction_id);
 
                 // redirect to bank
-                \lib\redirect::to($redirect);
+                \dash\redirect::to($redirect);
 
                 return true;
             }
             else
             {
-                \lib\db\logs::set('pay:zarinpal:Authority:not:set', $_user_id, $log_meta);
-                \lib\notif::error(T_("Zarinpal payment Authority not found"));
+                \dash\db\logs::set('pay:zarinpal:Authority:not:set', $_user_id, $log_meta);
+                \dash\notif::error(T_("Zarinpal payment Authority not found"));
                 return false;
             }
         }

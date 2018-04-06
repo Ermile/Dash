@@ -15,9 +15,9 @@ class controller
 	*/
 	public function check_remember_me()
 	{
-		if(\lib\db\sessions::get_cookie() && !\lib\user::login())
+		if(\dash\db\sessions::get_cookie() && !\dash\user::login())
 		{
-			$user_id = \lib\db\sessions::get_user_id();
+			$user_id = \dash\db\sessions::get_user_id();
 
 			if($user_id && is_numeric($user_id))
 			{

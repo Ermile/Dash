@@ -38,7 +38,7 @@ trait get
 			'data' => null,
 			'meta' =>
 			[
-				'input' => \lib\utility::request(),
+				'input' => \dash\utility::request(),
 			]
 		];
 
@@ -47,16 +47,16 @@ trait get
 			return false;
 		}
 		$where           = [];
-		$search          = \lib\utility::request('search');
+		$search          = \dash\utility::request('search');
 
 		$get_args = $this->invoice_make_where($_args, $where, $log_meta);
 
-		if(!\lib\engine\process::status() || $get_args === false)
+		if(!\dash\engine\process::status() || $get_args === false)
 		{
 			return false;
 		}
 
-		$result          = \lib\db\invoices::search($search, $where);
+		$result          = \dash\db\invoices::search($search, $where);
 
 		$temp            = [];
 
@@ -84,35 +84,35 @@ trait get
 	 */
 	public function get_invoice($_args = [])
 	{
-		// \lib\notif::title(T_("Operation Faild"));
+		// \dash\notif::title(T_("Operation Faild"));
 
 		$log_meta =
 		[
 			'data' => null,
 			'meta' =>
 			[
-				'input' => \lib\utility::request(),
+				'input' => \dash\utility::request(),
 			]
 		];
 
 		if(!$this->invoice_id)
 		{
-			\lib\db\logs::set('api:invoice:invoice_id:notfound', $this->invoice_id, $log_meta);
-			\lib\notif::error(T_("invoice not found"), 'invoice', 'permission');
+			\dash\db\logs::set('api:invoice:invoice_id:notfound', $this->invoice_id, $log_meta);
+			\dash\notif::error(T_("invoice not found"), 'invoice', 'permission');
 			return false;
 		}
 
 
-		$id = \lib\utility::request('id');
-		$id = \lib\coding::decode($id);
+		$id = \dash\utility::request('id');
+		$id = \dash\coding::decode($id);
 		if(!$id)
 		{
-			\lib\db\logs::set('api:invoice:id:not:set', $this->invoice_id, $log_meta);
-			\lib\notif::error(T_("Id not set"), 'id', 'arguments');
+			\dash\db\logs::set('api:invoice:id:not:set', $this->invoice_id, $log_meta);
+			\dash\notif::error(T_("Id not set"), 'id', 'arguments');
 			return false;
 		}
 
-		$get_invoice = \lib\db\invoices::get(['id' => $id, 'limit' => 1]);
+		$get_invoice = \dash\db\invoices::get(['id' => $id, 'limit' => 1]);
 
 		$result = $this->ready_invoice($get_invoice);
 
@@ -151,7 +151,7 @@ trait get
 			switch ($key)
 			{
 				case 'id':
-					$result[$key] = \lib\coding::encode($value);
+					$result[$key] = \dash\coding::encode($value);
 					break;
 				default:
 					$result[$key] = $value;

@@ -25,28 +25,28 @@ trait user_id
 			// INSERT NEW USER
 			if(!$new_mobile)
 			{
-				$user_id = \lib\db\users::signup($_args);
+				$user_id = \dash\db\users::signup($_args);
 			}
 			else
 			{
-				$check_mobile_exist = \lib\db\users::get_by_mobile($_args['mobile']);
+				$check_mobile_exist = \dash\db\users::get_by_mobile($_args['mobile']);
 				if(isset($check_mobile_exist['id']) && is_numeric($check_mobile_exist['id']))
 				{
 					$user_id = $check_mobile_exist['id'];
 				}
 				else
 				{
-					$user_id = \lib\db\users::signup($_args);
+					$user_id = \dash\db\users::signup($_args);
 				}
 			}
 		}
 		else
 		{
 			// EDIT OLD USER
-			$old_user_detail = \lib\db\users::get_by_id($_old_user_id);
+			$old_user_detail = \dash\db\users::get_by_id($_old_user_id);
 			if(!isset($old_user_detail['id']))
 			{
-				\lib\notif::error(T_("User not found."));
+				\dash\notif::error(T_("User not found."));
 				return false;
 			}
 
@@ -60,35 +60,35 @@ trait user_id
 			{
 				if($old_mobile)
 				{
-					if(\lib\utility\filter::mobile($_args['mobile']) === \lib\utility\filter::mobile($old_user_detail['mobile']))
+					if(\dash\utility\filter::mobile($_args['mobile']) === \dash\utility\filter::mobile($old_user_detail['mobile']))
 					{
 						$user_id = $old_user_detail['id'];
 					}
 					else
 					{
-						$check_mobile_exist = \lib\db\users::get_by_mobile($_args['mobile']);
+						$check_mobile_exist = \dash\db\users::get_by_mobile($_args['mobile']);
 						if(isset($check_mobile_exist['id']) && is_numeric($check_mobile_exist['id']))
 						{
 							$user_id = $check_mobile_exist['id'];
 						}
 						else
 						{
-							$user_id = \lib\db\users::signup($_args);
+							$user_id = \dash\db\users::signup($_args);
 						}
 					}
 				}
 				else
 				{
-					$check_mobile_exist = \lib\db\users::get_by_mobile($_args['mobile']);
+					$check_mobile_exist = \dash\db\users::get_by_mobile($_args['mobile']);
 					if(isset($check_mobile_exist['id']) && is_numeric($check_mobile_exist['id']))
 					{
-						\lib\db\users::update(['status' => 'unreachable'], $old_user_detail['id']);
+						\dash\db\users::update(['status' => 'unreachable'], $old_user_detail['id']);
 						$user_id = $check_mobile_exist['id'];
 					}
 					else
 					{
 						// set this mobile to this user
-						\lib\db\users::update(['mobile' => $_args['mobile']], $old_user_detail['id']);
+						\dash\db\users::update(['mobile' => $_args['mobile']], $old_user_detail['id']);
 						$user_id = $old_user_detail['id'];
 					}
 				}
@@ -98,7 +98,7 @@ trait user_id
 				// new mobile not set
 				if($old_mobile)
 				{
-					$user_id = \lib\db\users::signup($_args);
+					$user_id = \dash\db\users::signup($_args);
 				}
 				else
 				{

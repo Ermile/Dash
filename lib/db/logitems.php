@@ -37,7 +37,7 @@ class logitems
 	 */
 	public static function get()
 	{
-		return \lib\db\config::public_get('logitems', ...func_get_args());
+		return \dash\db\config::public_get('logitems', ...func_get_args());
 	}
 
 
@@ -48,11 +48,11 @@ class logitems
 	 */
 	public static function insert($_args)
 	{
-		$set = \lib\db\config::make_set($_args);
+		$set = \dash\db\config::make_set($_args);
 		if($set)
 		{
 			$query = " INSERT INTO 	logitems SET $set ";
-			return \lib\db::query($query, self::get_db_log_name());
+			return \dash\db::query($query, self::get_db_log_name());
 		}
 	}
 
@@ -66,11 +66,11 @@ class logitems
 	 */
 	public static function update($_args, $_id)
 	{
-		$set = \lib\db\config::make_set($_args);
+		$set = \dash\db\config::make_set($_args);
 		if($set)
 		{
 			$query = " UPDATE logitems SET $set	WHERE logitems.id = $_id ";
-			return \lib\db::query($query, self::get_db_log_name());
+			return \dash\db::query($query, self::get_db_log_name());
 		}
 	}
 
@@ -107,7 +107,7 @@ class logitems
 	 */
 	public static function caller($_caller, $_options = [])
 	{
-		$cache = \lib\db\cache::get_cache('logs', func_get_args());
+		$cache = \dash\db\cache::get_cache('logs', func_get_args());
 		if($cache)
 		{
 			return $cache;
@@ -129,12 +129,12 @@ class logitems
 		}
 
 		$query = " SELECT $field FROM logitems 	WHERE logitems.caller = '$_caller' LIMIT 1 ";
-		$result = \lib\db::get($query, $get_field, true, self::get_db_log_name());
+		$result = \dash\db::get($query, $get_field, true, self::get_db_log_name());
 		if(!$result || empty($result))
 		{
 			return self::auto_insert($_caller);
 		}
-		\lib\db\cache::set_cache('logs', func_get_args(), $result);
+		\dash\db\cache::set_cache('logs', func_get_args(), $result);
 		return $result;
 	}
 
@@ -157,7 +157,7 @@ class logitems
 		$result = self::insert($insert_log_items);
 		if($result)
 		{
-			return (int) \lib\db::get("SELECT id AS `id` FROM logitems WHERE logitems.caller = '$_caller' LIMIT 1 ", 'id', true, self::get_db_log_name());
+			return (int) \dash\db::get("SELECT id AS `id` FROM logitems WHERE logitems.caller = '$_caller' LIMIT 1 ", 'id', true, self::get_db_log_name());
 		}
 		return false;
 	}
@@ -343,8 +343,8 @@ class logitems
 
 		if($pagenation && !$get_count)
 		{
-			$pagenation_query = (int) \lib\db::get("SELECT COUNT(*) AS `count` FROM logitems $where $search -- get count log for pagenation", 'count', true, self::get_db_log_name());
-			list($limit_start, $limit) = \lib\db::pagnation($pagenation_query, $limit);
+			$pagenation_query = (int) \dash\db::get("SELECT COUNT(*) AS `count` FROM logitems $where $search -- get count log for pagenation", 'count', true, self::get_db_log_name());
+			list($limit_start, $limit) = \dash\db::pagnation($pagenation_query, $limit);
 			$limit = " LIMIT $limit_start, $limit ";
 		}
 		else
@@ -361,12 +361,12 @@ class logitems
 
 		if(!$only_one_value)
 		{
-			$result = \lib\db::get($query, null, false, self::get_db_log_name());
-			$result = \lib\utility\filter::meta_decode($result);
+			$result = \dash\db::get($query, null, false, self::get_db_log_name());
+			$result = \dash\utility\filter::meta_decode($result);
 		}
 		else
 		{
-			$result = \lib\db::get($query, 'logcount', true, self::get_db_log_name());
+			$result = \dash\db::get($query, 'logcount', true, self::get_db_log_name());
 		}
 
 		return $result;

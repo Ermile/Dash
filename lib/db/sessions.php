@@ -20,8 +20,8 @@ class sessions
 	private static function generate_code($_user_id)
 	{
 		$code =  'Ermile'. $_user_id. '_;)_'. time(). '(^_^)' . rand(1000, 9999);
-		$code = \lib\utility::hasher($code, false);
-		$code = \lib\safe::safe($code);
+		$code = \dash\utility::hasher($code, false);
+		$code = \dash\safe::safe($code);
 		return $code;
 	}
 
@@ -35,13 +35,13 @@ class sessions
 	 */
 	private static function insert($_args)
 	{
-		$set = \lib\db\config::make_set($_args);
+		$set = \dash\db\config::make_set($_args);
 		if(!trim($set))
 		{
 			return false;
 		}
 
-		return \lib\db::query("INSERT INTO sessions SET $set");
+		return \dash\db::query("INSERT INTO sessions SET $set");
 	}
 
 
@@ -55,7 +55,7 @@ class sessions
 			return false;
 		}
 		$query = "SELECT * FROM sessions WHERE user_id = $_user_id AND id = $_session_id LIMIT 1";
-		return \lib\db::get($query, null, true);
+		return \dash\db::get($query, null, true);
 	}
 
 
@@ -66,20 +66,20 @@ class sessions
 	 */
 	private static function get($_args)
 	{
-		if(\lib\temp::get('db_remember_me_query'))
+		if(\dash\temp::get('db_remember_me_query'))
 		{
-			return \lib\temp::get('db_remember_me_query_result');
+			return \dash\temp::get('db_remember_me_query_result');
 		}
 
-		$where = \lib\db\config::make_where($_args);
+		$where = \dash\db\config::make_where($_args);
 		if(!trim($where))
 		{
 			return false;
 		}
 
-		$get   = \lib\db::get("SELECT * FROM sessions WHERE $where LIMIT 1", null, true);
-		\lib\temp::set('db_remember_me_query', true);
-		\lib\temp::set('db_remember_me_query_result', $get);
+		$get   = \dash\db::get("SELECT * FROM sessions WHERE $where LIMIT 1", null, true);
+		\dash\temp::set('db_remember_me_query', true);
+		\dash\temp::set('db_remember_me_query_result', $get);
 		return $get;
 	}
 
@@ -123,7 +123,7 @@ class sessions
 	 */
 	public static function get_cookie()
 	{
-		return \lib\utility\cookie::read('remember_me_');
+		return \dash\utility\cookie::read('remember_me_');
 	}
 
 
@@ -155,7 +155,7 @@ class sessions
 			return false;
 		}
 
-		\lib\db::query("UPDATE sessions SET status = 'terminate' WHERE id = $_id LIMIT 1");
+		\dash\db::query("UPDATE sessions SET status = 'terminate' WHERE id = $_id LIMIT 1");
 	}
 
 
@@ -166,7 +166,7 @@ class sessions
 	 */
 	private static function terminate_cookie()
 	{
-		\lib\utility\cookie::delete("remember_me_");
+		\dash\utility\cookie::delete("remember_me_");
 	}
 
 
@@ -177,7 +177,7 @@ class sessions
 	 */
 	private static function set_cookie($_code)
 	{
-		$cookie_domain = '.'. \lib\url::domain();
+		$cookie_domain = '.'. \dash\url::domain();
 		setcookie("remember_me_", $_code, time() + (60*60*24*365), '/', $cookie_domain);
 	}
 
@@ -193,8 +193,8 @@ class sessions
 	{
 		$args =
 		[
-			'ip'       => \lib\server::ip(true),
-			'agent_id' => \lib\agent::get(true),
+			'ip'       => \dash\server::ip(true),
+			'agent_id' => \dash\agent::get(true),
 			'user_id'  => $_user_id,
 			'status'   => 'active'
 		];
@@ -265,7 +265,7 @@ class sessions
 			";
 		}
 
-		$result = \lib\db::get($query, null);
+		$result = \dash\db::get($query, null);
 		// get agent list form dash tools
 		if($result && is_array($result))
 		{
@@ -273,7 +273,7 @@ class sessions
 			$agent_id    = array_unique($agent_id);
 			$agent_id    = implode(',', $agent_id);
 			$agent_query = "SELECT * FROM agents WHERE id IN ($agent_id)";
-			$agents      = \lib\db::get($agent_query);
+			$agents      = \dash\db::get($agent_query);
 			if($agents && is_array($agents))
 			{
 				$agent_id = array_column($agents, 'id');
@@ -363,7 +363,7 @@ class sessions
 			";
 		}
 
-		$result = \lib\db::get($query, null);
+		$result = \dash\db::get($query, null);
 		return $result;
 	}
 
@@ -377,7 +377,7 @@ class sessions
 	{
 		if($_code && is_string($_code))
 		{
-			\lib\db::query("UPDATE sessions SET sessions.count = sessions.count + 1 WHERE code = '$_code'");
+			\dash\db::query("UPDATE sessions SET sessions.count = sessions.count + 1 WHERE code = '$_code'");
 		}
 	}
 
@@ -406,7 +406,7 @@ class sessions
 			}
 		}
 
-		\lib\db::query("UPDATE sessions SET status = '$_status' WHERE user_id = $_user_id $where_code");
+		\dash\db::query("UPDATE sessions SET status = '$_status' WHERE user_id = $_user_id $where_code");
 
 	}
 

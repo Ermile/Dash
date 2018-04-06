@@ -9,19 +9,19 @@ class controller extends \addons\content_enter\main\controller
 		// 10002000200251
 
 
-		if(!\lib\request::get('service') || \lib\request::get('uid') != '201708111')
+		if(!\dash\request::get('service') || \dash\request::get('uid') != '201708111')
 		{
-			\lib\header::status(404, T_("Invalid url"));
+			\dash\header::status(404, T_("Invalid url"));
 		}
 
-		switch (\lib\request::get('service'))
+		switch (\dash\request::get('service'))
 		{
 			case 'kavenegar':
 				$this->model()->kavenegar();
 				break;
 
 			default:
-				\lib\header::status(404, T_("Invalid service"));
+				\dash\header::status(404, T_("Invalid service"));
 				break;
 		}
 	}

@@ -51,13 +51,13 @@ class visitor
 		if(!self::$link || $_force)
 		{
 			// open database connection and create link
-			if(!\lib\db::connect('[tools]', false))
+			if(!\dash\db::connect('[tools]', false))
 			{
 				// cant connect to database
 				return false;
 			}
 			// save link as global variable
-			self::$link = \lib\db::$link;
+			self::$link = \dash\db::$link;
 			return true;
 		}
 		return true;
@@ -71,7 +71,7 @@ class visitor
 	public static function create_query($_array = false)
 	{
 		// declare variables
-		self::$visitor['`visitor_ip`']       = \lib\server::ip(true);
+		self::$visitor['`visitor_ip`']       = \dash\server::ip(true);
 		self::$visitor['`service_id`']       = self::checkDetailExist('service', self::url(true));
 		self::$visitor['`url_id`']           = self::checkDetailExist('url',     self::url());
 		self::$visitor['`agent_id`']         = self::checkDetailExist('agent',   self::agent());
@@ -163,7 +163,7 @@ class visitor
 		{
 			// self::agent()
 			$is_bot = self::isBot();
-			$agent  = \lib\utility\browserDetection::browser_detection('full_assoc');
+			$agent  = \dash\utility\browserDetection::browser_detection('full_assoc');
 			$qry    =
 			"INSERT INTO agents
 			(
@@ -419,7 +419,7 @@ class visitor
 	 */
 	public static function install()
 	{
-		return \lib\db::execFolder('(core_name)_tools', 'visitor', true);
+		return \dash\db::execFolder('(core_name)_tools', 'visitor', true);
 	}
 
 
@@ -454,7 +454,7 @@ class visitor
 			return false;
 		}
 
-		$result = \lib\db::fetch_all($result);
+		$result = \dash\db::fetch_all($result);
 		$result = array_reverse($result);
 
 		$result_total = array_column($result, 'total');
@@ -497,7 +497,7 @@ class visitor
 		if(!$result)
 			return false;
 
-		$result = \lib\db::fetch_all($result);
+		$result = \dash\db::fetch_all($result);
 
 		foreach ($result as $key => $row)
 		{

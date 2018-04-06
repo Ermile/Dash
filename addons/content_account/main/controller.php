@@ -9,9 +9,9 @@ class controller extends \mvc\controller
 	 */
 	public function repository()
 	{
-		if(!\lib\user::login())
+		if(!\dash\user::login())
 		{
-			\lib\redirect::to(\lib\url::base(). '/enter');
+			\dash\redirect::to(\dash\url::base(). '/enter');
 			return;
 		}
 

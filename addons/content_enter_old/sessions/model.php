@@ -11,10 +11,10 @@ class model extends \addons\content_enter\main\model
 	 */
 	public function sessions_list()
 	{
-		if(\lib\user::login())
+		if(\dash\user::login())
 		{
-			$user_id = \lib\user::id();
-			$list = \lib\db\sessions::get_active_sessions($user_id);
+			$user_id = \dash\user::id();
+			$list = \dash\db\sessions::get_active_sessions($user_id);
 			return $list;
 		}
 	}
@@ -27,17 +27,17 @@ class model extends \addons\content_enter\main\model
 	 */
 	public function post_sessions($_args)
 	{
-		if(!\lib\user::login())
+		if(!\dash\user::login())
 		{
 			return false;
 		}
 
-		if(\lib\request::post('type') === 'terminate' && \lib\request::post('id') && is_numeric(\lib\request::post('id')))
+		if(\dash\request::post('type') === 'terminate' && \dash\request::post('id') && is_numeric(\dash\request::post('id')))
 		{
-			if(\lib\db\sessions::is_my_session(\lib\request::post('id'), \lib\user::id()))
+			if(\dash\db\sessions::is_my_session(\dash\request::post('id'), \dash\user::id()))
 			{
-				\lib\db\sessions::terminate_id(\lib\request::post('id'));
-				\lib\notif::ok(T_("Session terminated"));
+				\dash\db\sessions::terminate_id(\dash\request::post('id'));
+				\dash\notif::ok(T_("Session terminated"));
 				return true;
 			}
 		}

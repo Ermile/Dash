@@ -14,7 +14,7 @@ trait go_to
 	public static function go_to($_url = null)
 	{
 
-		$host = \lib\url::base();
+		$host = \dash\url::base();
 
 		switch ($_url)
 		{
@@ -51,10 +51,10 @@ trait go_to
 	{
 		if($_direct)
 		{
-			\lib\notif::direct();
+			\dash\notif::direct();
 		}
 
-		\lib\redirect::to($_url);
+		\dash\redirect::to($_url);
 	}
 }
 ?>

@@ -9,7 +9,7 @@ class notif
 
 	private static function add($_type, $_text, $_meta)
 	{
-		self::$notif['ok'] = \lib\engine\process::status();
+		self::$notif['ok'] = \dash\engine\process::status();
 
 		if(!isset(self::$notif['msg']))
 		{
@@ -52,7 +52,7 @@ class notif
 	public static function error($_text, $_meta = [])
 	{
 		// stop engine process
-		\lib\engine\process::stop();
+		\dash\engine\process::stop();
 
 		self::add('error', $_text, $_meta);
 	}

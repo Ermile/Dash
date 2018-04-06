@@ -20,7 +20,7 @@ trait datalist
 	 */
 	public static function list($_string = null, $_args = [])
 	{
-		if(!\lib\user::id())
+		if(!\dash\user::id())
 		{
 			return false;
 		}
@@ -43,7 +43,7 @@ trait datalist
 			$_args['sort'] = null;
 		}
 
-		$result            = \lib\db\config::public_search(self::$table, $_string, $_args);
+		$result            = \dash\db\config::public_search(self::$table, $_string, $_args);
 		return $result;
 	}
 }

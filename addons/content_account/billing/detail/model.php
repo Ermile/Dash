@@ -10,7 +10,7 @@ class model extends \mvc\model
 	 */
 	public function get_detail($_args)
 	{
-		if(!\lib\user::login())
+		if(!\dash\user::login())
 		{
 			return false;
 		}

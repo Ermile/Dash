@@ -1,8 +1,8 @@
 <?php
 namespace dash\telegram\commands;
 // use telegram class as bot
-use \lib\telegram\tg as bot;
-use \lib\telegram\step;
+use \dash\telegram\tg as bot;
+use \dash\telegram\step;
 
 class step_register
 {

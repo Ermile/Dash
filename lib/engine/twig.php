@@ -5,17 +5,17 @@ class twig
 {
 	public static function init()
 	{
-		\lib\data::loadMode('normal');
+		\dash\data::loadMode('normal');
 
-		if(\lib\request::ajax())
+		if(\dash\request::ajax())
 		{
-			\lib\data::display_dash("includes/html/display-dash-xhr.html");
-			\lib\data::display_enter("includes/html/display-enter-xhr.html");
-			\lib\data::display_main("content/main/layout-xhr.html");
-			\lib\data::loadMode('ajax');
+			\dash\data::display_dash("includes/html/display-dash-xhr.html");
+			\dash\data::display_enter("includes/html/display-enter-xhr.html");
+			\dash\data::display_main("content/main/layout-xhr.html");
+			\dash\data::loadMode('ajax');
 		}
 
-		$module = str_replace('/', '\\', \lib\engine\mvc::get_dir_address());
+		$module = str_replace('/', '\\', \dash\engine\mvc::get_dir_address());
 		$tmpname = $module.'\\display.html';
 
 		if(strpos($tmpname, '\addons') === 0)
@@ -36,11 +36,11 @@ class twig
 
 		$twig = new \Twig_Environment($loader, $array_option);
 
-		\lib\engine\twigAddons::init($twig);
+		\dash\engine\twigAddons::init($twig);
 
 		$twig->addGlobal("session", $_SESSION);
 
-		if(\lib\engine\dev::debug())
+		if(\dash\engine\dev::debug())
 		{
 			$twig->addExtension(new \Twig_Extension_Debug());
 		}
@@ -48,18 +48,18 @@ class twig
 		$twig->addExtension(new \Twig_Extensions_Extension_I18n());
 
 		$template = $twig->loadTemplate($tmpname);
-		if(\lib\request::ajax())
+		if(\dash\request::ajax())
 		{
-			\lib\data::global_debug(\lib\notif::get());
-			$xhr_render = $template->render(\lib\data::get());
+			\dash\data::global_debug(\dash\notif::get());
+			$xhr_render = $template->render(\dash\data::get());
 
-			echo json_encode(\lib\data::get('global'));
+			echo json_encode(\dash\data::get('global'));
 			echo "\n";
 			echo $xhr_render;
 		}
 		else
 		{
-			$template->display(\lib\data::get());
+			$template->display(\dash\data::get());
 		}
 	}
 }

@@ -7,7 +7,7 @@ class view extends \addons\content_su\main\view
 	{
 		parent::config();
 
-		$this->data->page['badge']['link'] = \lib\url::here(). '/logs';
+		$this->data->page['badge']['link'] = \dash\url::here(). '/logs';
 		$this->data->page['badge']['text'] = T_('Back to Logs list');
 	}
 
@@ -16,7 +16,7 @@ class view extends \addons\content_su\main\view
 		$id = isset($_args->match->url[0][1]) ? $_args->match->url[0][1] : null;
 		if($id && is_numeric($id))
 		{
-			$result = \lib\db\logs::get(['id' => $id, 'limit' => 1]);
+			$result = \dash\db\logs::get(['id' => $id, 'limit' => 1]);
 			$this->data->log_detail = $result;
 		}
 	}

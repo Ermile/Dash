@@ -37,7 +37,7 @@ class words
 		}
 		$set = join($set, ',');
 		$query = "INSERT IGNORE INTO words	SET	$set ";
-		return \lib\db::query($query, '[tools]');
+		return \dash\db::query($query, '[tools]');
 	}
 
 
@@ -59,7 +59,7 @@ class words
 
 		$query = "INSERT IGNORE INTO words	(words.word) VALUES	('$_words')	";
 
-		return \lib\db::query($query, '[tools]');
+		return \dash\db::query($query, '[tools]');
 	}
 
 
@@ -123,11 +123,11 @@ class words
 		$query = "SELECT $fields FROM words WHERE $where";
 		if($_only_words)
 		{
-			$result = \lib\db::get($query,'word', false, '[tools]');
+			$result = \dash\db::get($query,'word', false, '[tools]');
 		}
 		else
 		{
-			$result = \lib\db::get($query, null, false, '[tools]');
+			$result = \dash\db::get($query, null, false, '[tools]');
 		}
 		return $result;
 	}
@@ -157,7 +157,7 @@ class words
 		$where = join($where, "OR");
 
 		$query = "UPDATE words SET words.status = '$_status' WHERE $where";
-		return \lib\db::query($query, '[tools]');
+		return \dash\db::query($query, '[tools]');
 	}
 
 

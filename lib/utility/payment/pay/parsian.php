@@ -28,26 +28,26 @@ trait parsian
         ];
 
 
-        if(!\lib\option::config('parsian', 'status'))
+        if(!\dash\option::config('parsian', 'status'))
         {
-            \lib\db\logs::set('pay:parsian:status:false', $_user_id, $log_meta);
-            \lib\notif::error(T_("The parsian payment on this service is locked"));
+            \dash\db\logs::set('pay:parsian:status:false', $_user_id, $log_meta);
+            \dash\notif::error(T_("The parsian payment on this service is locked"));
             return false;
         }
 
-        if(!\lib\option::config('parsian', 'LoginAccount'))
+        if(!\dash\option::config('parsian', 'LoginAccount'))
         {
-            \lib\db\logs::set('pay:parsian:LoginAccount:not:set', $_user_id, $log_meta);
-            \lib\notif::error(T_("The parsian payment LoginAccount not set"));
+            \dash\db\logs::set('pay:parsian:LoginAccount:not:set', $_user_id, $log_meta);
+            \dash\notif::error(T_("The parsian payment LoginAccount not set"));
             return false;
         }
 
         $parsian = [];
-        $parsian['LoginAccount'] = \lib\option::config('parsian', 'LoginAccount');
+        $parsian['LoginAccount'] = \dash\option::config('parsian', 'LoginAccount');
 
-        if(\lib\option::config('parsian', 'CallBackUrl'))
+        if(\dash\option::config('parsian', 'CallBackUrl'))
         {
-            $parsian['CallBackUrl'] = \lib\option::config('parsian', 'CallBackUrl');
+            $parsian['CallBackUrl'] = \dash\option::config('parsian', 'CallBackUrl');
         }
         else
         {
@@ -78,11 +78,11 @@ trait parsian
         }
 
         //START TRANSACTION BY CONDITION REQUEST
-        $transaction_id = \lib\utility\payment\transactions::start($transaction_start);
+        $transaction_id = \dash\utility\payment\transactions::start($transaction_start);
 
         $log_meta['data'] = self::$log_data = $transaction_id;
 
-        if(!\lib\engine\process::status() || !$transaction_id)
+        if(!\dash\engine\process::status() || !$transaction_id)
         {
             return false;
         }
@@ -95,12 +95,12 @@ trait parsian
 
         $parsian['OrderId'] = $transaction_id;
 
-        \lib\utility\payment\payment\parsian::$user_id = $_user_id;
-        \lib\utility\payment\payment\parsian::$log_data = self::$log_data;
+        \dash\utility\payment\payment\parsian::$user_id = $_user_id;
+        \dash\utility\payment\payment\parsian::$log_data = self::$log_data;
 
-        $redirect = \lib\utility\payment\payment\parsian::pay($parsian);
+        $redirect = \dash\utility\payment\payment\parsian::pay($parsian);
 
-        $payment_response = \lib\utility\payment\payment\parsian::$payment_response;
+        $payment_response = \dash\utility\payment\payment\parsian::$payment_response;
         if($redirect)
         {
             if(isset($payment_response->SalePaymentRequestResult->Token))
@@ -111,14 +111,14 @@ trait parsian
                 $_SESSION['amount']['parsian'][$payment_response->SalePaymentRequestResult->Token]['transaction_id'] = $transaction_id;
 
                 $payment_response = json_encode((array) $payment_response, JSON_UNESCAPED_UNICODE);
-                \lib\db\transactions::update(['condition' => 'redirect', 'payment_response' => $payment_response], $transaction_id);
-                \lib\redirect::to($redirect);
+                \dash\db\transactions::update(['condition' => 'redirect', 'payment_response' => $payment_response], $transaction_id);
+                \dash\redirect::to($redirect);
                 return true;
             }
             else
             {
-                \lib\db\logs::set('pay:parsian:Token:not:set', $_user_id, $log_meta);
-                \lib\notif::error(T_("The parsian payment Token not set"));
+                \dash\db\logs::set('pay:parsian:Token:not:set', $_user_id, $log_meta);
+                \dash\notif::error(T_("The parsian payment Token not set"));
                 return false;
             }
         }

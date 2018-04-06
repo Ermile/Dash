@@ -14,13 +14,13 @@ class date
      */
     public static function month_precent($_type = null)
     {
-    	$lang = \lib\language::current();
+    	$lang = \dash\language::current();
 
     	if($lang === 'fa')
     	{
-			$d = intval(\lib\utility\jdate::date("d", false, false));
-			$m = intval(\lib\utility\jdate::date("m", false, false));
-			$t = intval(\lib\utility\jdate::date("t", false, false));
+			$d = intval(\dash\utility\jdate::date("d", false, false));
+			$m = intval(\dash\utility\jdate::date("m", false, false));
+			$t = intval(\dash\utility\jdate::date("t", false, false));
     	}
     	else
     	{
@@ -72,17 +72,17 @@ class date
         // get target language
     	if($_type === 'default')
     	{
-    		$_type = \lib\language::default();
+    		$_type = \dash\language::default();
     	}
     	elseif($_type === 'current')
     	{
-    		$_type = \lib\language::current();
+    		$_type = \dash\language::current();
     	}
 
         // if need persian use it else use default date function
     	if($_type === true || $_type === 'fa' || $_type === 'fa_IR')
     	{
-    		$result = \lib\utility\jdate::date($_format, $_stamp, $_persianChar);
+    		$result = \dash\utility\jdate::date($_format, $_stamp, $_persianChar);
     	}
     	else
     	{
@@ -104,11 +104,11 @@ class date
 	{
 		$format     = "Y-m-d H:i:s";
 
-		$short_time = \lib\option::config('short_time_format');
-		$long_time  = \lib\option::config('long_time_format');
+		$short_time = \dash\option::config('short_time_format');
+		$long_time  = \dash\option::config('long_time_format');
 
-		$short_date = \lib\option::config('short_date_format');
-		$long_date  = \lib\option::config('long_date_format');
+		$short_date = \dash\option::config('short_date_format');
+		$long_date  = \dash\option::config('long_date_format');
 
 
 		if($_type === 'time')
@@ -147,7 +147,7 @@ class date
 	{
 		if(!self::$lang)
 		{
-			self::$lang = \lib\language::current();
+			self::$lang = \dash\language::current();
 		}
 
 		return self::$lang;
@@ -167,7 +167,7 @@ class date
 
 		if($lang === 'fa')
 		{
-			$result = \lib\utility\jdate::date(self::formatFinder('date', $_format),$_timestamp, false);
+			$result = \dash\utility\jdate::date(self::formatFinder('date', $_format),$_timestamp, false);
 		}
 		else
 		{
@@ -190,7 +190,7 @@ class date
 
 		if($lang === 'fa')
 		{
-			$result = \lib\utility\jdate::date(self::formatFinder('time', $_format),$_timestamp, false);
+			$result = \dash\utility\jdate::date(self::formatFinder('time', $_format),$_timestamp, false);
 		}
 		else
 		{
@@ -227,7 +227,7 @@ class date
 		{
 			return null;
 		}
-		$myDate    = \lib\utility\convert::to_en_number($myDate);
+		$myDate    = \dash\utility\convert::to_en_number($myDate);
 		$myDate    = str_replace('/', '-', $myDate);
 		$myDateLen = strlen($myDate);
 

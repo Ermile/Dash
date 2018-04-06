@@ -12,16 +12,16 @@ class model extends \addons\content_enter\main\model
 	 */
 	public function post_email($_args)
 	{
-		if(\lib\request::post('email'))
+		if(\dash\request::post('email'))
 		{
-			self::set_enter_session('temp_email', \lib\request::post('email'));
+			self::set_enter_session('temp_email', \dash\request::post('email'));
 		}
 		else
 		{
 			// plus count invalid emailword
 			self::plus_try_session('no_email_send_set');
 
-			\lib\notif::error(T_("No email was send"));
+			\dash\notif::error(T_("No email was send"));
 			return false;
 		}
 

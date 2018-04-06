@@ -17,7 +17,7 @@ class view extends \content_account\main\view
 
 	public function get_ref()
 	{
-		if(!\lib\user::login())
+		if(!\dash\user::login())
 		{
 			return null;
 		}
@@ -25,13 +25,13 @@ class view extends \content_account\main\view
 		$meta =
 		[
 			'get_count' => true,
-			'data'  => \lib\user::id(),
+			'data'  => \dash\user::id(),
 		];
 		$result = [];
 
-		$result['click'] = \lib\db\logs::search(null, array_merge($meta, ['caller' => 'user:ref:set']));
-		$result['signup'] = \lib\db\logs::search(null, array_merge($meta, ['caller' => 'user:ref:signup']));
-		$result['profile'] = \lib\db\logs::search(null, array_merge($meta, ['caller' => 'user:ref:complete:profile']));
+		$result['click'] = \dash\db\logs::search(null, array_merge($meta, ['caller' => 'user:ref:set']));
+		$result['signup'] = \dash\db\logs::search(null, array_merge($meta, ['caller' => 'user:ref:signup']));
+		$result['profile'] = \dash\db\logs::search(null, array_merge($meta, ['caller' => 'user:ref:complete:profile']));
 		return $result;
 	}
 }

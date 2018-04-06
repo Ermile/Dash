@@ -27,26 +27,26 @@ trait payir
             ]
         ];
 
-        if(!\lib\option::config('payir', 'status'))
+        if(!\dash\option::config('payir', 'status'))
         {
-            \lib\db\logs::set('pay:payir:status:false', $_user_id, $log_meta);
-            \lib\notif::error(T_("The payir payment on this service is locked"));
+            \dash\db\logs::set('pay:payir:status:false', $_user_id, $log_meta);
+            \dash\notif::error(T_("The payir payment on this service is locked"));
             return false;
         }
 
-        if(!\lib\option::config('payir', 'api'))
+        if(!\dash\option::config('payir', 'api'))
         {
-            \lib\db\logs::set('pay:payir:api:not:set', $_user_id, $log_meta);
-            \lib\notif::error(T_("The payir payment api not set"));
+            \dash\db\logs::set('pay:payir:api:not:set', $_user_id, $log_meta);
+            \dash\notif::error(T_("The payir payment api not set"));
             return false;
         }
 
         $payir = [];
 
-        $payir['api']          = \lib\option::config('payir', 'api');
-        if(\lib\option::config('payir', 'redirect'))
+        $payir['api']          = \dash\option::config('payir', 'api');
+        if(\dash\option::config('payir', 'redirect'))
         {
-            $payir['redirect'] = \lib\option::config('payir', 'redirect');
+            $payir['redirect'] = \dash\option::config('payir', 'redirect');
         }
         else
         {
@@ -77,11 +77,11 @@ trait payir
         }
 
         //START TRANSACTION BY CONDITION REQUEST
-        $transaction_id = \lib\utility\payment\transactions::start($transaction_start);
+        $transaction_id = \dash\utility\payment\transactions::start($transaction_start);
 
         $log_meta['data'] = self::$log_data = $transaction_id;
 
-        if(!\lib\engine\process::status() || !$transaction_id)
+        if(!\dash\engine\process::status() || !$transaction_id)
         {
             return false;
         }
@@ -97,12 +97,12 @@ trait payir
         // $payir['specialPaymentId'] = $transaction_id;
         $payir['factorNumber'] = $transaction_id;
 
-        \lib\utility\payment\payment\payir::$user_id  = $_user_id;
-        \lib\utility\payment\payment\payir::$log_data = self::$log_data;
+        \dash\utility\payment\payment\payir::$user_id  = $_user_id;
+        \dash\utility\payment\payment\payir::$log_data = self::$log_data;
 
-        $transId = \lib\utility\payment\payment\payir::pay($payir);
+        $transId = \dash\utility\payment\payment\payir::pay($payir);
 
-        $temp = \lib\utility\payment\payment\payir::$payment_response;
+        $temp = \dash\utility\payment\payment\payir::$payment_response;
 
         if($transId)
         {
@@ -111,9 +111,9 @@ trait payir
             $_SESSION['amount']['payir'][$transId]['amount']         = floatval($_amount) * 10;
             $_SESSION['amount']['payir'][$transId]['transaction_id'] = $transaction_id;
             $payment_response = json_encode((array) $temp, JSON_UNESCAPED_UNICODE);
-            \lib\db\transactions::update(['condition' => 'redirect', 'payment_response' => $payment_response], $transaction_id);
+            \dash\db\transactions::update(['condition' => 'redirect', 'payment_response' => $payment_response], $transaction_id);
             $redirect_url = "https://pay.ir/payment/gateway/". $transId;
-            \lib\redirect::to($redirect_url);
+            \dash\redirect::to($redirect_url);
             return true;
         }
         else

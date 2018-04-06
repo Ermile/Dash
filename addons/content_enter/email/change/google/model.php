@@ -12,7 +12,7 @@ class model extends \addons\content_enter\main\model
 	 */
 	public function post_change_google($_args)
 	{
-		if(\lib\request::post('update') === 'no')
+		if(\dash\request::post('update') === 'no')
 		{
 			self::set_alert(T_("Please log in with your previous email or ignore your mobile registration."));
 			self::next_step('alert');
@@ -27,7 +27,7 @@ class model extends \addons\content_enter\main\model
 		if($old_google_mail && $new_google_mail && is_numeric($user_id))
 		{
 			self::$user_id = $user_id;
-			\lib\db\users::update(['googlemail' => $new_google_mail], $user_id);
+			\dash\db\users::update(['googlemail' => $new_google_mail], $user_id);
 			self::load_user_data('user_id');
 			self::enter_set_login();
 			self::next_step('okay');

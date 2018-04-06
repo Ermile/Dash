@@ -70,13 +70,13 @@ class model extends \mvc\model
 	 */
 	public function _call($_name, $_args, $parm)
 	{
-		$this->url = \lib\url::directory();
+		$this->url = \dash\url::directory();
 
-		\lib\temp::set('api', true);
+		\dash\temp::set('api', true);
 
 		$this->api_key();
 
-		if(!\lib\engine\process::status())
+		if(!\dash\engine\process::status())
 		{
 			$this->_processor(['force_stop' => true]);
 		}
@@ -91,27 +91,27 @@ class model extends \mvc\model
 	public function api_key()
 	{
 
-		$api_token = \lib\header::get("api_token") ? \lib\header::get("api_token") : \lib\header::get("Api_token");
+		$api_token = \dash\header::get("api_token") ? \dash\header::get("api_token") : \dash\header::get("Api_token");
 
-		$authorization = \lib\header::get("authorization");
+		$authorization = \dash\header::get("authorization");
 		if($api_token)
 		{
 			$authorization = $api_token;
 		}
 		elseif(!$authorization)
 		{
-			$authorization = \lib\header::get("Authorization");
+			$authorization = \dash\header::get("Authorization");
 		}
 
 		if(!$authorization)
 		{
-			return \lib\notif::error('Authorization not found', 'authorization', 'access');
+			return \dash\notif::error('Authorization not found', 'authorization', 'access');
 		}
 
 		// static token list
-		$static_token = \lib\option::config('enter', 'static_token');
+		$static_token = \dash\option::config('enter', 'static_token');
 
-		if($authorization === \lib\option::config('enter','telegram_hook'))
+		if($authorization === \dash\option::config('enter','telegram_hook'))
 		{
 			$this->telegram_api_mode = true;
 			$this->telegram_token();
@@ -125,7 +125,7 @@ class model extends \mvc\model
 		{
 			$token = \addons\content_enter\main\tools\token::get_type($authorization);
 
-			if(!\lib\engine\process::status())
+			if(!\dash\engine\process::status())
 			{
 				return false;
 			}
@@ -137,7 +137,7 @@ class model extends \mvc\model
 				case 'guest':
 					if($this->url == 'v1/token/login' || $this->url == 'v1/token/guest')
 					{
-						\lib\notif::error(T_("Access denide (Invalid url)"), 'authorization', 'access');
+						\dash\notif::error(T_("Access denide (Invalid url)"), 'authorization', 'access');
 						return false;
 					}
 
@@ -150,26 +150,26 @@ class model extends \mvc\model
 
 					if(!$user_id)
 					{
-						\lib\notif::error(T_("Invalid authorization key (User not found)"), 'authorization', 'access');
+						\dash\notif::error(T_("Invalid authorization key (User not found)"), 'authorization', 'access');
 						return false;
 					}
 
 					$this->user_id = $user_id;
 					// init user
-					\lib\user::init($user_id);
+					\dash\user::init($user_id);
 
 					break;
 
 				case 'api_key':
 					if($this->url != 'v1/token/temp' && $this->url != 'v1/token/guest' && $this->url != 'v1/token/login')
 					{
-						\lib\notif::error(T_("Access denide to load this url by api key"), 'authorization', 'access');
+						\dash\notif::error(T_("Access denide to load this url by api key"), 'authorization', 'access');
 						return false;
 					}
 					break;
 
 				default :
-					\lib\notif::error(T_("Invalid token"), 'authorization', 'access');
+					\dash\notif::error(T_("Invalid token"), 'authorization', 'access');
 					return false;
 			}
 
@@ -195,16 +195,16 @@ class model extends \mvc\model
 	 */
 	public function static_token()
 	{
-		$mobile = \lib\header::get("mobile");
+		$mobile = \dash\header::get("mobile");
 
-		$mobile = \lib\utility\filter::mobile($mobile);
+		$mobile = \dash\utility\filter::mobile($mobile);
 		if(!$mobile)
 		{
-			\lib\notif::error(T_("Mobile not set"), 'mobile', 'header');
+			\dash\notif::error(T_("Mobile not set"), 'mobile', 'header');
 			return false;
 		}
 
-		$user_data = \lib\db\users::get_by_mobile($mobile);
+		$user_data = \dash\db\users::get_by_mobile($mobile);
 		if(isset($user_data['id']))
 		{
 			$this->user_id = (int) $user_data['id'];
@@ -212,15 +212,15 @@ class model extends \mvc\model
 		else
 		{
 			$signup        = ['mobile' => $mobile];
-			$this->user_id = \lib\db\users::signup_quick($signup);
+			$this->user_id = \dash\db\users::signup_quick($signup);
 		}
 		// init user
-		\lib\user::init($this->user_id);
+		\dash\user::init($this->user_id);
 
 		if(!$this->user_id)
 		{
-			\lib\db\logs::set('addons:api:static_token:user:not:found:register:faild');
-			\lib\notif::error(T_("User not found and can not register the user"), 'static_token', 'header');
+			\dash\db\logs::set('addons:api:static_token:user:not:found:register:faild');
+			\dash\notif::error(T_("User not found and can not register the user"), 'static_token', 'header');
 			return false;
 		}
 
@@ -234,11 +234,11 @@ class model extends \mvc\model
 	 */
 	public function telegram_token()
 	{
-		$telegramid = \lib\header::get("telegramid");
+		$telegramid = \dash\header::get("telegramid");
 
 		if(!$telegramid)
 		{
-			\lib\notif::error(T_("telegramid is not set"), 'telegramid', 'header');
+			\dash\notif::error(T_("telegramid is not set"), 'telegramid', 'header');
 			return false;
 		}
 
@@ -248,15 +248,15 @@ class model extends \mvc\model
 			'limit'        => 1
 		];
 
-		$user_data = \lib\db\config::public_get('users', $where);
+		$user_data = \dash\db\config::public_get('users', $where);
 		if(!$user_data || !isset($user_data['id']))
 		{
-			\lib\notif::error(T_("User not found, please register from /enter/hook"), 'telegramid', 'header');
+			\dash\notif::error(T_("User not found, please register from /enter/hook"), 'telegramid', 'header');
 			return false;
 		}
 		$this->user_id = (int) $user_data['id'];
 		// init user
-		\lib\user::init($this->user_id);
+		\dash\user::init($this->user_id);
 
 	}
 
@@ -285,22 +285,22 @@ class model extends \mvc\model
 		// 	$log['pagestatus'] = $_SERVER['REDIRECT_STATUS'];
 		// }
 
-		// $log['request']        = json_encode(\lib\utility::request(), JSON_UNESCAPED_UNICODE);
-		// $log['debug']          = json_encode(\lib\notif::compile(), JSON_UNESCAPED_UNICODE);
-		// $log['response']       = json_encode(\lib\notif::get_result(), JSON_UNESCAPED_UNICODE);
-		// $log['requestheader']  = json_encode(\lib\header::get('', JSON_UNESCAPED_UNICODE);
+		// $log['request']        = json_encode(\dash\utility::request(), JSON_UNESCAPED_UNICODE);
+		// $log['debug']          = json_encode(\dash\notif::compile(), JSON_UNESCAPED_UNICODE);
+		// $log['response']       = json_encode(\dash\notif::get_result(), JSON_UNESCAPED_UNICODE);
+		// $log['requestheader']  = json_encode(\dash\header::get('', JSON_UNESCAPED_UNICODE);
 		// $log['responseheader'] = json_encode(apache_response_headers(), JSON_UNESCAPED_UNICODE);
-		// $log['status']         = \lib\engine\process::status();
+		// $log['status']         = \dash\engine\process::status();
 		// $log['token']          = $this->authorization;
 		// $log['user_id']        = $this->user_id;
 		// $log['apikeyuserid']   = $this->parent_api_key_user_id;
 		// $log['apikey']         = $this->parent_api_key;
-		// $log['clientip']       = \lib\server::ip(true);
+		// $log['clientip']       = \dash\server::ip(true);
 		// $log['visit_id']       = null;
 
-		// $log                   = \lib\safe::safe($log);
+		// $log                   = \dash\safe::safe($log);
 
-		// \lib\db\apilogs::insert($log);
+		// \dash\db\apilogs::insert($log);
 
 		parent::_processor($options);
 	}

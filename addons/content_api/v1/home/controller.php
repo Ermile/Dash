@@ -8,14 +8,14 @@ class controller extends  \mvc\controller
 	 */
 	public function __construct()
 	{
-		$url = \lib\url::directory();
+		$url = \dash\url::directory();
 		if($url == 'v1')
 		{
-			\lib\temp::set('api', false);
+			\dash\temp::set('api', false);
 		}
 		else
 		{
-			\lib\temp::set('api', true);
+			\dash\temp::set('api', true);
 		}
 
 		parent::__construct();
@@ -24,11 +24,11 @@ class controller extends  \mvc\controller
 
 	public function ready()
 	{
-		$url = \lib\url::directory();
+		$url = \dash\url::directory();
 
 		if($url == 'v1')
 		{
-			\lib\redirect::to('v1/doc');
+			\dash\redirect::to('v1/doc');
 			return;
 		}
 	}
@@ -41,7 +41,7 @@ class controller extends  \mvc\controller
 	{
 		if(!$this->method && $_SERVER['REQUEST_METHOD'] !== 'GET')
 		{
-			\lib\header::status(405, $_SERVER['REQUEST_METHOD'] . " not allowed");
+			\dash\header::status(405, $_SERVER['REQUEST_METHOD'] . " not allowed");
 		}
 	}
 }

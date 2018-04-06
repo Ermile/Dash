@@ -15,7 +15,7 @@ trait total_paid
 			WHERE
 				transactions.verify = 1
 		";
-		return \lib\db::get($query, 'total', true);
+		return \dash\db::get($query, 'total', true);
 	}
 
 
@@ -32,7 +32,7 @@ trait total_paid
 				DATE(transactions.date) = DATE('$_date')
 
 		";
-		return \lib\db::get($query, 'total', true);
+		return \dash\db::get($query, 'total', true);
 	}
 }
 ?>

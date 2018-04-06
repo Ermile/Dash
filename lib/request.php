@@ -18,7 +18,7 @@ class request
 	{
 		if(!self::$POST)
 		{
-			self::$POST = \lib\safe::safe($_POST, 'sqlinjection');
+			self::$POST = \dash\safe::safe($_POST, 'sqlinjection');
 		}
 
 		if(isset($_name))
@@ -49,7 +49,7 @@ class request
 	{
 		if(!self::$GET)
 		{
-			self::$GET = \lib\safe::safe($_GET, 'sqlinjection');
+			self::$GET = \dash\safe::safe($_GET, 'sqlinjection');
 		}
 
 		if(isset($_name))
@@ -109,7 +109,7 @@ class request
 	 */
 	public static function is($_name = null)
 	{
-		$request_method = \lib\server::get('REQUEST_METHOD');
+		$request_method = \dash\server::get('REQUEST_METHOD');
 
 		if($_name)
 		{

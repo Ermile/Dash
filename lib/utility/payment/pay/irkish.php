@@ -27,31 +27,31 @@ trait irkish
             ]
         ];
 
-        if(!\lib\option::config('irkish', 'status'))
+        if(!\dash\option::config('irkish', 'status'))
         {
-            \lib\db\logs::set('pay:irkish:status:false', $_user_id, $log_meta);
-            \lib\notif::error(T_("The irkish payment on this service is locked"));
+            \dash\db\logs::set('pay:irkish:status:false', $_user_id, $log_meta);
+            \dash\notif::error(T_("The irkish payment on this service is locked"));
             return false;
         }
 
-        if(!\lib\option::config('irkish', 'merchantId'))
+        if(!\dash\option::config('irkish', 'merchantId'))
         {
-            \lib\db\logs::set('pay:irkish:merchantId:not:set', $_user_id, $log_meta);
-            \lib\notif::error(T_("The irkish payment merchantId not set"));
+            \dash\db\logs::set('pay:irkish:merchantId:not:set', $_user_id, $log_meta);
+            \dash\notif::error(T_("The irkish payment merchantId not set"));
             return false;
         }
 
         $irkish = [];
 
-        $irkish['paymentId']   = \lib\option::config('irkish', 'paymentId');
-        $irkish['Sha1']        = \lib\option::config('irkish', 'Sha1');
-        $irkish['merchantId']  = \lib\option::config('irkish', 'merchantId');
-        $irkish['description'] = \lib\option::config('irkish', 'description');
+        $irkish['paymentId']   = \dash\option::config('irkish', 'paymentId');
+        $irkish['Sha1']        = \dash\option::config('irkish', 'Sha1');
+        $irkish['merchantId']  = \dash\option::config('irkish', 'merchantId');
+        $irkish['description'] = \dash\option::config('irkish', 'description');
 
 
-        if(\lib\option::config('irkish', 'revertURL'))
+        if(\dash\option::config('irkish', 'revertURL'))
         {
-            $irkish['revertURL'] = \lib\option::config('irkish', 'revertURL');
+            $irkish['revertURL'] = \dash\option::config('irkish', 'revertURL');
         }
         else
         {
@@ -82,11 +82,11 @@ trait irkish
         }
 
         //START TRANSACTION BY CONDITION REQUEST
-        $transaction_id = \lib\utility\payment\transactions::start($transaction_start);
+        $transaction_id = \dash\utility\payment\transactions::start($transaction_start);
 
         $log_meta['data'] = self::$log_data = $transaction_id;
 
-        if(!\lib\engine\process::status() || !$transaction_id)
+        if(!\dash\engine\process::status() || !$transaction_id)
         {
             return false;
         }
@@ -102,10 +102,10 @@ trait irkish
         $irkish['invoiceNo'] = $transaction_id;
 
 
-        \lib\utility\payment\payment\irkish::$user_id  = $_user_id;
-        \lib\utility\payment\payment\irkish::$log_data = self::$log_data;
+        \dash\utility\payment\payment\irkish::$user_id  = $_user_id;
+        \dash\utility\payment\payment\irkish::$log_data = self::$log_data;
 
-        $token = \lib\utility\payment\payment\irkish::pay($irkish);
+        $token = \dash\utility\payment\payment\irkish::pay($irkish);
 
         if($token)
         {
@@ -115,16 +115,16 @@ trait irkish
             $_SESSION['amount']['irkish'][$token]['transaction_id'] = $transaction_id;
 
             $payment_response = json_encode((array) [], JSON_UNESCAPED_UNICODE);
-            \lib\db\transactions::update(['condition' => 'redirect', 'payment_response' => $payment_response], $transaction_id);
+            \dash\db\transactions::update(['condition' => 'redirect', 'payment_response' => $payment_response], $transaction_id);
 
             // redirect to enter/redirect
-            \lib\session::set('redirect_page_url', 'https://ikc.shaparak.ir/TPayment/Payment/index');
-            \lib\session::set('redirect_page_method', 'post');
-            \lib\session::set('redirect_page_args', ['token' => $token, 'merchantId' => \lib\option::config('irkish', 'merchantId')]);
-            \lib\session::set('redirect_page_title', T_("Redirect to iran kish payment"));
-            \lib\session::set('redirect_page_button', T_("Redirect"));
-            \lib\notif::direct();
-            \lib\redirect::to(self::get_callbck_url('redirect_page'));
+            \dash\session::set('redirect_page_url', 'https://ikc.shaparak.ir/TPayment/Payment/index');
+            \dash\session::set('redirect_page_method', 'post');
+            \dash\session::set('redirect_page_args', ['token' => $token, 'merchantId' => \dash\option::config('irkish', 'merchantId')]);
+            \dash\session::set('redirect_page_title', T_("Redirect to iran kish payment"));
+            \dash\session::set('redirect_page_button', T_("Redirect"));
+            \dash\notif::direct();
+            \dash\redirect::to(self::get_callbck_url('redirect_page'));
             return true;
         }
         else

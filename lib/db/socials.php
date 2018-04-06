@@ -17,7 +17,7 @@ class socials
 	 */
 	public static function insert($_args)
 	{
-		return \lib\db\config::public_insert('socials', ...func_get_args());
+		return \dash\db\config::public_insert('socials', ...func_get_args());
 	}
 
 
@@ -31,7 +31,7 @@ class socials
 	 */
 	public static function update($_args, $_id)
 	{
-		return \lib\db\config::public_update('socials', ...func_get_args());
+		return \dash\db\config::public_update('socials', ...func_get_args());
 	}
 
 	/**
@@ -43,7 +43,7 @@ class socials
 	 */
 	public static function get($_where)
 	{
-		return \lib\db\config::public_get('socials', ...func_get_args());
+		return \dash\db\config::public_get('socials', ...func_get_args());
 	}
 
 

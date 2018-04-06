@@ -12,9 +12,9 @@ class locations
 	 */
 	public static function insert($_args)
 	{
-		$set   = \lib\db\config::make_set($_args);
+		$set   = \dash\db\config::make_set($_args);
 		$query ="INSERT IGNORE INTO	locations SET $set ";
-		return \lib\db::query($query, '[tools]');
+		return \dash\db::query($query, '[tools]');
 	}
 
 
@@ -27,9 +27,9 @@ class locations
 	 */
 	public static function update($_args, $_id)
 	{
-		$set   = \lib\db\config::make_set($_args);
+		$set   = \dash\db\config::make_set($_args);
 		$query = " UPDATE locations SET $set WHERE locations.id = $_id ";
-		return \lib\db::query($query, '[tools]');
+		return \dash\db::query($query, '[tools]');
 	}
 
 
@@ -90,14 +90,14 @@ class locations
 
 		$query = " SELECT * FROM locations $where $limit ";
 
-		$result = \lib\db::get($query, null, $only_one_recort, '[tools]');
+		$result = \dash\db::get($query, null, $only_one_recort, '[tools]');
 		if(isset($result['meta']) && substr($result['meta'], 0, 1) == '{')
 		{
 			$result['meta'] = json_decode($result['meta'], true);
 		}
 		else
 		{
-			$result = \lib\utility\filter::meta_decode($result);
+			$result = \dash\utility\filter::meta_decode($result);
 		}
 		return $result;
 	}
@@ -261,9 +261,9 @@ class locations
 		if($pagenation && !$get_count)
 		{
 			$pagenation_query = "SELECT	COUNT(locations.id) AS `count` FROM locations $where $search ";
-			$pagenation_query = \lib\db::get($pagenation_query, 'count', true, '[tools]');
+			$pagenation_query = \dash\db::get($pagenation_query, 'count', true, '[tools]');
 
-			list($limit_start, $limit) = \lib\db::pagnation((int) $pagenation_query, $limit);
+			list($limit_start, $limit) = \dash\db::pagnation((int) $pagenation_query, $limit);
 			$limit = " LIMIT $limit_start, $limit ";
 		}
 		else
@@ -280,12 +280,12 @@ class locations
 
 		if(!$only_one_value)
 		{
-			$result = \lib\db::get($query, null, false, '[tools]');
-			$result = \lib\utility\filter::meta_decode($result);
+			$result = \dash\db::get($query, null, false, '[tools]');
+			$result = \dash\utility\filter::meta_decode($result);
 		}
 		else
 		{
-			$result = \lib\db::get($query, 'locationcount', true, '[tools]');
+			$result = \dash\db::get($query, 'locationcount', true, '[tools]');
 		}
 
 		return $result;
@@ -328,7 +328,7 @@ class locations
 			return false;
 		}
 		$query = "SELECT * FROM locations WHERE `type` = '$type' AND  `id` = $id LIMIT 1 ";
-		$result = \lib\db::get($query, null, true, '[tools]');
+		$result = \dash\db::get($query, null, true, '[tools]');
 
 		return $result;
 
@@ -349,7 +349,7 @@ class locations
 			return false;
 		}
 		$query  = "SELECT * FROM locations WHERE `parent` = $id ";
-		$result = \lib\db::get($query, null, false, '[tools]');
+		$result = \dash\db::get($query, null, false, '[tools]');
 		return $result;
 
 	}

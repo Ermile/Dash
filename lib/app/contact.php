@@ -16,7 +16,7 @@ class contact
 	 */
 	public static function merge($_args, $_option = [])
 	{
-		\lib\app::variable($_args);
+		\dash\app::variable($_args);
 
 		$default_option =
 		[
@@ -39,7 +39,7 @@ class contact
 			'data' => null,
 			'meta' =>
 			[
-				'input' => \lib\app::request(),
+				'input' => \dash\app::request(),
 			]
 		];
 
@@ -47,12 +47,12 @@ class contact
 
 		if(!$_option['user_id'])
 		{
-			\lib\app::log("api:contact:user:id:not:set", \lib\user::id(), $log_meta);
-			\lib\notif::error(T_("User id not set"), 'user_id');
+			\dash\app::log("api:contact:user:id:not:set", \dash\user::id(), $log_meta);
+			\dash\notif::error(T_("User id not set"), 'user_id');
 			return false;
 		}
 
-		$all_request = \lib\app::request();
+		$all_request = \dash\app::request();
 
 		if($_option['other_field'] && $_option['other_field_id'])
 		{
@@ -71,7 +71,7 @@ class contact
 			];
 		}
 
-		$get_old_contact_data = \lib\db\contacts::get($get_old_contact_data);
+		$get_old_contact_data = \dash\db\contacts::get($get_old_contact_data);
 
 		$exist_key   = [];
 		$exist_value = [];
@@ -100,15 +100,15 @@ class contact
 
 			if(mb_strlen($key) >= 100)
 			{
-				\lib\app::log("api:contact:$key:the:key:max:length", \lib\user::id(), $log_meta);
-				\lib\notif::error(T_("Key of contact is too large"), $key);
+				\dash\app::log("api:contact:$key:the:key:max:length", \dash\user::id(), $log_meta);
+				\dash\notif::error(T_("Key of contact is too large"), $key);
 				return false;
 			}
 
 			if(mb_strlen($value) >= 100)
 			{
-				\lib\app::log("api:contact:$key:max:length", \lib\user::id(), $log_meta);
-				\lib\notif::error(T_("Contact value is too large."), $key);
+				\dash\app::log("api:contact:$key:max:length", \dash\user::id(), $log_meta);
+				\dash\notif::error(T_("Contact value is too large."), $key);
 				return false;
 			}
 
@@ -161,17 +161,17 @@ class contact
 			$change_any_thing = true;
 			foreach ($must_update as $key => $value)
 			{
-				\lib\db\contacts::update($value['args'], $value['id']);
+				\dash\db\contacts::update($value['args'], $value['id']);
 			}
 		}
 
 		if(!empty($must_insert))
 		{
 			$change_any_thing = true;
-			\lib\db\contacts::insert_multi($must_insert);
+			\dash\db\contacts::insert_multi($must_insert);
 		}
 
-		\lib\temp::set('contact_change_any_thing', $change_any_thing);
+		\dash\temp::set('contact_change_any_thing', $change_any_thing);
 
 		return true;
 
@@ -197,7 +197,7 @@ class contact
 				// case 'parent':
 					if(isset($value))
 					{
-						$result[$key] = \lib\coding::encode($value);
+						$result[$key] = \dash\coding::encode($value);
 					}
 					else
 					{

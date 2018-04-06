@@ -13,9 +13,9 @@ trait get_token
 	{
 
 		$guest_token = null;
-		if(\lib\utility::request("guest"))
+		if(\dash\utility::request("guest"))
 		{
-			$guest_token = \lib\utility::request("guest");
+			$guest_token = \dash\utility::request("guest");
 		}
 
 		$token = null;
@@ -38,12 +38,12 @@ trait get_token
 	 */
 	public function check_verify()
 	{
-		$temp_token = \lib\utility::request("temp_token");
+		$temp_token = \dash\utility::request("temp_token");
 		if(!$temp_token)
 		{
-			if(\lib\engine\process::status())
+			if(\dash\engine\process::status())
 			{
-				\lib\notif::error(T_("Invalid parameter temp_token"), 'temp_token', 'arguments');
+				\dash\notif::error(T_("Invalid parameter temp_token"), 'temp_token', 'arguments');
 			}
 			return false;
 		}

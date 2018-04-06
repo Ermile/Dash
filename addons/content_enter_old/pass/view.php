@@ -30,7 +30,7 @@ class view extends \addons\content_enter\main\view
 		$this->data->page['title'] = T_('Password');
 		$this->data->page['desc']  = T_('Please enter password to enter');
 
-		switch (\lib\url::dir(1))
+		switch (\dash\url::dir(1))
 		{
 			case 'recovery':
 				$this->data->page['title'] = T_('Recovery Password');

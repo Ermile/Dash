@@ -47,8 +47,8 @@ class pagination
 	public static function init($_total_rows, $_limit = 10)
 	{
 		self::$have_pages = true;
-		$page             = \lib\request::get('page');
-		$url_get_length   = \lib\request::get('length');
+		$page             = \dash\request::get('page');
+		$url_get_length   = \dash\request::get('length');
 
 		$page             = $page && ctype_digit($page) ? $page : 1;
 		$page             = intval($page) > 0 ? intval($page) : 1;
@@ -152,7 +152,7 @@ class pagination
 				$link   = true;
 				$page   = $_page_number;
 				$text   = $_page_number;
-				// $title  = T_("Page"). ' '. \lib\utility\human::fitNumber($_page_number);
+				// $title  = T_("Page"). ' '. \dash\utility\human::fitNumber($_page_number);
 				$class  = null;
 				break;
 		}
@@ -161,7 +161,7 @@ class pagination
 		[
 			'page'   => $page,
 			'link'	 => $link,
-			'text'   => $text ? \lib\utility\human::fitNumber($text) : null,
+			'text'   => $text ? \dash\utility\human::fitNumber($text) : null,
 			'title'  => $title,
 			'class'  => $class,
 		];
@@ -183,9 +183,9 @@ class pagination
 		$first      = ($current - 1) >= 1  ? ($current - 1) : 1;
 		$total_page = intval(self::detail('total_page'));
 
-		if(\lib\option::config('pagination_count_link') && ctype_digit(\lib\option::config('pagination_count_link')))
+		if(\dash\option::config('pagination_count_link') && ctype_digit(\dash\option::config('pagination_count_link')))
 		{
-			$count_link = intval(\lib\option::config('pagination_count_link'));
+			$count_link = intval(\dash\option::config('pagination_count_link'));
 		}
 		else
 		{
@@ -310,8 +310,8 @@ class pagination
 			}
 		}
 
-		$this_link = \lib\url::current();
-		$get       = \lib\request::get();
+		$this_link = \dash\url::current();
+		$get       = \dash\request::get();
 		unset($get['page']);
 
 		foreach ($result as $key => $value)

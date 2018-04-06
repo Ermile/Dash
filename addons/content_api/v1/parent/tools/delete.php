@@ -25,24 +25,24 @@ trait delete
 			'data' => null,
 			'meta' =>
 			[
-				'input' => \lib\utility::request(),
+				'input' => \dash\utility::request(),
 			]
 		];
 
 		if(!$this->user_id)
 		{
-			\lib\db\logs::set('api:parent:remove:request:user_id:notfound', null, $log_meta);
-			\lib\notif::error(T_("User not found"), 'user', 'permission');
+			\dash\db\logs::set('api:parent:remove:request:user_id:notfound', null, $log_meta);
+			\dash\notif::error(T_("User not found"), 'user', 'permission');
 			return false;
 		}
 
-		$notify_id = \lib\utility::request('id');
+		$notify_id = \dash\utility::request('id');
 
-		$notify_id = \lib\coding::decode($notify_id);
+		$notify_id = \dash\coding::decode($notify_id);
 		if(!$notify_id)
 		{
-			\lib\db\logs::set('api:parent:remove:request:notify:id:not:set', $this->user_id, $log_meta);
-			\lib\notif::error(T_("Invalid request id"));
+			\dash\db\logs::set('api:parent:remove:request:notify:id:not:set', $this->user_id, $log_meta);
+			\dash\notif::error(T_("Invalid request id"));
 			return false;
 		}
 
@@ -60,19 +60,19 @@ trait delete
 			'limit'           => 1,
 		];
 
-		$check_ok = \lib\db\notifications::get($get_notify);
+		$check_ok = \dash\db\notifications::get($get_notify);
 		if(!$check_ok)
 		{
-			\lib\db\logs::set('api:parent:remove:request:notify:data:invalid:access', $this->user_id, $log_meta);
-			\lib\notif::error(T_("Invalid request data"));
+			\dash\db\logs::set('api:parent:remove:request:notify:data:invalid:access', $this->user_id, $log_meta);
+			\dash\notif::error(T_("Invalid request data"));
 			return false;
 		}
 
-		\lib\db\notifications::update(['status' => 'cancel'], $notify_id);
-		if(\lib\engine\process::status())
+		\dash\db\notifications::update(['status' => 'cancel'], $notify_id);
+		if(\dash\engine\process::status())
 		{
-			\lib\db\logs::set('api:parent:remove:request:sucsessful', $this->user_id, $log_meta);
-			\lib\notif::ok(T_("Your request canceled"));
+			\dash\db\logs::set('api:parent:remove:request:sucsessful', $this->user_id, $log_meta);
+			\dash\notif::ok(T_("Your request canceled"));
 		}
 
 	}
@@ -103,32 +103,32 @@ trait delete
 			'data' => null,
 			'meta' =>
 			[
-				'input' => \lib\utility::request(),
+				'input' => \dash\utility::request(),
 			]
 		];
 
 		if(!$this->user_id)
 		{
-			\lib\db\logs::set('api:parent:delete:user_id:notfound', null, $log_meta);
-			\lib\notif::error(T_("User not found"), 'user', 'permission');
+			\dash\db\logs::set('api:parent:delete:user_id:notfound', null, $log_meta);
+			\dash\notif::error(T_("User not found"), 'user', 'permission');
 			return false;
 		}
 
-		$userparents_id = \lib\utility::request('id');
-		$userparents_id = \lib\coding::decode($userparents_id);
+		$userparents_id = \dash\utility::request('id');
+		$userparents_id = \dash\coding::decode($userparents_id);
 		if(!$userparents_id)
 		{
-			\lib\db\logs::set('api:parent:delete:notify:data:invalid:access', $this->user_id, $log_meta);
-			\lib\notif::error(T_("Invalid remove data"));
+			\dash\db\logs::set('api:parent:delete:notify:data:invalid:access', $this->user_id, $log_meta);
+			\dash\notif::error(T_("Invalid remove data"));
 			return false;
 		}
 
-		$related_id = \lib\utility::request('related_id');
-		$related_id = \lib\coding::decode($related_id);
-		if(!$userparents_id && \lib\utility::request('related_id'))
+		$related_id = \dash\utility::request('related_id');
+		$related_id = \dash\coding::decode($related_id);
+		if(!$userparents_id && \dash\utility::request('related_id'))
 		{
-			\lib\db\logs::set('api:parent:delete:related_id:invalid', $this->user_id, $log_meta);
-			\lib\notif::error(T_("Invalid remove data"));
+			\dash\db\logs::set('api:parent:delete:related_id:invalid', $this->user_id, $log_meta);
+			\dash\notif::error(T_("Invalid remove data"));
 			return false;
 		}
 
@@ -152,19 +152,19 @@ trait delete
 			];
 		}
 
-		$check = \lib\db\userparents::get($get);
+		$check = \dash\db\userparents::get($get);
 		if(!isset($check['id']))
 		{
-			\lib\db\logs::set('api:parent:delete:notify:data:invalid:access:id', $this->user_id, $log_meta);
-			\lib\notif::error(T_("Invalid remove details"));
+			\dash\db\logs::set('api:parent:delete:notify:data:invalid:access:id', $this->user_id, $log_meta);
+			\dash\notif::error(T_("Invalid remove details"));
 			return false;
 		}
 
-		\lib\db\userparents::update(['status' => 'deleted'], $userparents_id);
-		if(\lib\engine\process::status())
+		\dash\db\userparents::update(['status' => 'deleted'], $userparents_id);
+		if(\dash\engine\process::status())
 		{
-			\lib\db\logs::set('api:parent:delete:sucsessful', $this->user_id, $log_meta);
-			\lib\notif::ok(T_("Parent removed"));
+			\dash\db\logs::set('api:parent:delete:sucsessful', $this->user_id, $log_meta);
+			\dash\notif::ok(T_("Parent removed"));
 		}
 	}
 }

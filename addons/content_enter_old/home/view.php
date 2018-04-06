@@ -36,7 +36,7 @@ class view extends \addons\content_enter\main\view
 
 		}
 
-		$mobile = \lib\request::get('mobile');
+		$mobile = \dash\request::get('mobile');
 		if($mobile)
 		{
 			if($this->data->main_account)
@@ -46,7 +46,7 @@ class view extends \addons\content_enter\main\view
 			}
 			else
 			{
-				$this->data->getMobile = \lib\utility\filter::mobile($mobile);
+				$this->data->getMobile = \dash\utility\filter::mobile($mobile);
 			}
 		}
 	}

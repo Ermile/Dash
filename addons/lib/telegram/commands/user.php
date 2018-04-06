@@ -1,7 +1,7 @@
 <?php
 namespace dash\telegram\commands;
 // use telegram class as bot
-use \lib\telegram\tg as bot;
+use \dash\telegram\tg as bot;
 
 class user
 {
@@ -102,7 +102,7 @@ class user
 			],
 		];
 		// on debug mode send made by ermile at the end of start msg
-		if(\lib\option::social('telegram', 'debug'))
+		if(\dash\option::social('telegram', 'debug'))
 		{
 			$result[] =
 			[

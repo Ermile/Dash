@@ -27,8 +27,8 @@ class zarinpal
         // if soap is not exist return false
         if(!class_exists("soapclient"))
         {
-            \lib\db\logs::set('payment:zarinpal:soapclient:not:install', self::$user_id);
-            \lib\notif::error(T_("Can not connect to zarinpal gateway. Install it!"));
+            \dash\db\logs::set('payment:zarinpal:soapclient:not:install', self::$user_id);
+            \dash\notif::error(T_("Can not connect to zarinpal gateway. Install it!"));
             return false;
         }
 
@@ -45,22 +45,22 @@ class zarinpal
 
             if ($result->Status == 100)
             {
-                \lib\db\logs::set('payment:zarinpal:redirect', self::$user_id, $log_meta);
+                \dash\db\logs::set('payment:zarinpal:redirect', self::$user_id, $log_meta);
 
                 $url = "https://www.zarinpal.com/pg/StartPay/" . $result->Authority;
                 return $url;
             }
             else
             {
-                \lib\db\logs::set('payment:zarinpal:error', self::$user_id, $log_meta);
-                \lib\notif::error($msg);
+                \dash\db\logs::set('payment:zarinpal:error', self::$user_id, $log_meta);
+                \dash\notif::error($msg);
                 return false;
             }
         }
         catch (SoapFault $e)
         {
-            \lib\db\logs::set('payment:zarinpal:error:load:web:services', self::$user_id, $log_meta);
-            \lib\notif::error(T_("Error in load web services"));
+            \dash\db\logs::set('payment:zarinpal:error:load:web:services', self::$user_id, $log_meta);
+            \dash\notif::error(T_("Error in load web services"));
             return false;
         }
     }
@@ -102,15 +102,15 @@ class zarinpal
             }
             else
             {
-                \lib\db\logs::set('payment:zarinpal:verify:error', self::$user_id, $log_meta);
-                \lib\notif::error($msg);
+                \dash\db\logs::set('payment:zarinpal:verify:error', self::$user_id, $log_meta);
+                \dash\notif::error($msg);
                 return false;
             }
         }
         catch (SoapFault $e)
         {
-            \lib\db\logs::set('payment:zarinpal:verify:error:load:web:services', self::$user_id, $log_meta);
-            return \lib\notif::error(T_("Error in load web services"));
+            \dash\db\logs::set('payment:zarinpal:verify:error:load:web:services', self::$user_id, $log_meta);
+            return \dash\notif::error(T_("Error in load web services"));
         }
     }
 

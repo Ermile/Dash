@@ -7,22 +7,22 @@ class model extends \content_account\main\model
 
 	public function post_appkey()
 	{
-		if(!\lib\user::id())
+		if(!\dash\user::id())
 		{
 			return;
 		}
 
-		if(\lib\request::post('add') === 'appkey')
+		if(\dash\request::post('add') === 'appkey')
 		{
-			$check = \lib\utility\appkey::create_app_key(\lib\user::id());
+			$check = \dash\utility\appkey::create_app_key(\dash\user::id());
 			if($check)
 			{
-				\lib\notif::ok(T_("Creat new api key successfully complete"));
-				\lib\redirect::pwd();
+				\dash\notif::ok(T_("Creat new api key successfully complete"));
+				\dash\redirect::pwd();
 			}
 			else
 			{
-				\lib\notif::error(T_("Error in create new api key"));
+				\dash\notif::error(T_("Error in create new api key"));
 			}
 		}
 	}

@@ -12,7 +12,7 @@ class redirect
 	 */
 	public static function to($_url, $_php = true, $_arg = null)
 	{
-		if(\lib\request::json_accept() || \lib\request::ajax())
+		if(\dash\request::json_accept() || \dash\request::ajax())
 		{
 			self::via_pushstate($_url);
 		}
@@ -26,7 +26,7 @@ class redirect
 			self::via_html($_url, $_arg);
 		}
 
-		\lib\code::die();
+		\dash\code::die();
 	}
 
 	/**
@@ -34,7 +34,7 @@ class redirect
 	 */
 	public static function pwd()
 	{
-		self::to(\lib\url::pwd());
+		self::to(\dash\url::pwd());
 	}
 
 
@@ -46,9 +46,9 @@ class redirect
 	private static function via_pushstate($_loc)
 	{
 		header('Content-Type: application/json');
-		\lib\notif::redirect($_loc);
-		echo \lib\notif::json();
-		\lib\code::die();
+		\dash\notif::redirect($_loc);
+		echo \dash\notif::json();
+		\dash\code::die();
 	}
 
 

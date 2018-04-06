@@ -1,6 +1,6 @@
 <?php
 namespace dash\db;
-use \lib\db;
+use \dash\db;
 
 class invoice_details
 {
@@ -12,7 +12,7 @@ class invoice_details
 	 */
 	public static function get()
 	{
-		return \lib\db\config::public_get('invoice_details', ...func_get_args());
+		return \dash\db\config::public_get('invoice_details', ...func_get_args());
 	}
 
 
@@ -23,8 +23,8 @@ class invoice_details
 	 */
 	public static function insert()
 	{
-		\lib\db\config::public_insert('invoice_details', ...func_get_args());
-		return \lib\db::insert_id();
+		\dash\db\config::public_insert('invoice_details', ...func_get_args());
+		return \dash\db::insert_id();
 	}
 
 
@@ -35,7 +35,7 @@ class invoice_details
 	 */
 	public static function search()
 	{
-		return \lib\db\config::public_search('invoice_details', ...func_get_args());
+		return \dash\db\config::public_search('invoice_details', ...func_get_args());
 	}
 }
 ?>

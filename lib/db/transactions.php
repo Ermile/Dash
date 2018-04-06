@@ -6,9 +6,9 @@ namespace dash\db;
 class transactions
 {
 
-	use \lib\db\transactions\set;
-	use \lib\db\transactions\budget;
-	use \lib\db\transactions\total_paid;
+	use \dash\db\transactions\set;
+	use \dash\db\transactions\budget;
+	use \dash\db\transactions\total_paid;
 
 
 	/**
@@ -20,8 +20,8 @@ class transactions
 	 */
 	private static function insert()
 	{
-		\lib\db\config::public_insert('transactions', ...func_get_args());
-		return \lib\db::insert_id();
+		\dash\db\config::public_insert('transactions', ...func_get_args());
+		return \dash\db::insert_id();
 	}
 
 
@@ -33,7 +33,7 @@ class transactions
 	 */
 	public static function update()
 	{
-		return \lib\db\config::public_update('transactions', ...func_get_args());
+		return \dash\db\config::public_update('transactions', ...func_get_args());
 	}
 
 
@@ -44,7 +44,7 @@ class transactions
 	 */
 	public static function get()
 	{
-		$result = \lib\db\config::public_get('transactions', ...func_get_args());
+		$result = \dash\db\config::public_get('transactions', ...func_get_args());
 		$result = self::ready($result);
 		return $result;
 	}
@@ -62,7 +62,7 @@ class transactions
 			$_options = [];
 		}
 
-		$en_number = \lib\utility\convert::to_en_number($_string);
+		$en_number = \dash\utility\convert::to_en_number($_string);
 
 		$default_option =
 		[
@@ -88,7 +88,7 @@ class transactions
 
 		$_options = array_merge($default_option, $_options);
 
-		$result = \lib\db\config::public_search('transactions', $_string, $_options);
+		$result = \dash\db\config::public_search('transactions', $_string, $_options);
 		$result = self::ready($result, true);
 		return $result;
 	}
@@ -110,7 +110,7 @@ class transactions
 				{
 					if(isset($value['unit_id']))
 					{
-						$_result[$key]['unit'] = \lib\app\units::get($value['unit_id'], true);
+						$_result[$key]['unit'] = \dash\app\units::get($value['unit_id'], true);
 					}
 
 					if(isset($value['code']))
@@ -124,7 +124,7 @@ class transactions
 			{
 				if(isset($_result['unit_id']))
 				{
-					$_result['unit'] = \lib\app\units::get($_result['unit_id'], true);
+					$_result['unit'] = \dash\app\units::get($_result['unit_id'], true);
 				}
 
 				if(isset($_result['code']))

@@ -16,7 +16,7 @@ trait edit
 		$content = isset($_args['content']) ? $_args['content'] : null;
 		$content = addslashes($content);
 
-		\lib\app::variable($_args);
+		\dash\app::variable($_args);
 
 		$default_option =
 		[
@@ -31,21 +31,21 @@ trait edit
 
 		$_option = array_merge($default_option, $_option);
 
-		$id = \lib\app::request('id');
-		$id = \lib\coding::decode($id);
+		$id = \dash\app::request('id');
+		$id = \dash\coding::decode($id);
 
 		if(!$id)
 		{
-			\lib\app::log('api:posta:edit:permission:denide', \lib\user::id(), \lib\app::log_meta());
-			\lib\notif::error(T_("Can not access to edit posta"), 'posta');
+			\dash\app::log('api:posta:edit:permission:denide', \dash\user::id(), \dash\app::log_meta());
+			\dash\notif::error(T_("Can not access to edit posta"), 'posta');
 			return false;
 		}
 
-		$load_posts = \lib\db\posts::get(['id' => $id, 'limit' => 1]);
+		$load_posts = \dash\db\posts::get(['id' => $id, 'limit' => 1]);
 
 		if(!isset($load_posts['id']))
 		{
-			\lib\notif::error(T_("Invalid posts id"));
+			\dash\notif::error(T_("Invalid posts id"));
 			return false;
 		}
 
@@ -70,7 +70,7 @@ trait edit
 		// check args
 		$args = self::check($id, $_option);
 
-		if($args === false || !\lib\engine\process::status())
+		if($args === false || !\dash\engine\process::status())
 		{
 			return false;
 		}
@@ -82,7 +82,7 @@ trait edit
 
 		if(!$args['excerpt'])
 		{
-			$args['excerpt'] = \lib\utility\excerpt::extractRelevant($content);
+			$args['excerpt'] = \dash\utility\excerpt::extractRelevant($content);
 		}
 
 		if(mb_strlen($args['excerpt']) > 300)
@@ -109,12 +109,12 @@ trait edit
 			}
 		}
 
-		\lib\db\posts::update($args, $id);
+		\dash\db\posts::update($args, $id);
 
 
-		if(\lib\engine\process::status())
+		if(\dash\engine\process::status())
 		{
-			\lib\notif::ok(T_("Post successfully updated"));
+			\dash\notif::ok(T_("Post successfully updated"));
 		}
 	}
 }

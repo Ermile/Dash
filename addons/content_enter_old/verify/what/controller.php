@@ -19,7 +19,7 @@ class controller extends \addons\content_enter\main\controller
 			self::loaded_module('verify/what', true);
 			if(self::get_enter_session('verification_code_id') && is_numeric(self::get_enter_session('verification_code_id')))
 			{
-				\lib\db\logs::update(['status' => 'expire'], self::get_enter_session('verification_code_id'));
+				\dash\db\logs::update(['status' => 'expire'], self::get_enter_session('verification_code_id'));
 			}
 		}
 

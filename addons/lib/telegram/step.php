@@ -215,7 +215,7 @@ class step extends tg
 			}
 			elseif(self::get('name'))
 			{
-				$call = '\lib\telegram\commands\\';
+				$call = '\dash\telegram\commands\\';
 				if(is_callable($call.$funcName))
 				{
 					// get and return response

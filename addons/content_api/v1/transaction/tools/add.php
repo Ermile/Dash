@@ -35,7 +35,7 @@ trait add
 		$_args = array_merge($default_args, $_args);
 
 		// set default title of debug
-		// if($_args['debug']) // \lib\notif::title(T_("Operation Faild"));
+		// if($_args['debug']) // \dash\notif::title(T_("Operation Faild"));
 
 		// set the log meta
 		$log_meta =
@@ -44,15 +44,15 @@ trait add
 			'meta' =>
 			[
 				'user_id' => $this->user_id,
-				'input'   => \lib\utility::request(),
+				'input'   => \dash\utility::request(),
 			]
 		];
 
 		// check transaction id is exist
 		if(!$this->user_id)
 		{
-			if($_args['save_log']) \lib\db\logs::set('addon:api:transaction:user_id:notfound', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\notif::error(T_("transaction not found"), 'transaction', 'permission');
+			if($_args['save_log']) \dash\db\logs::set('addon:api:transaction:user_id:notfound', $this->user_id, $log_meta);
+			if($_args['debug']) \dash\notif::error(T_("transaction not found"), 'transaction', 'permission');
 			return false;
 		}
 
@@ -62,7 +62,7 @@ trait add
 		 */
 		$return_function = $this->transaction_check_args($_args, $args, $log_meta);
 
-		if(!\lib\engine\process::status() || $return_function === false)
+		if(!\dash\engine\process::status() || $return_function === false)
 		{
 			return false;
 		}
@@ -70,37 +70,37 @@ trait add
 		// insert new transaction team
 		if($_args['method'] === 'post')
 		{
-			\lib\db\transactions::set($args);
+			\dash\db\transactions::set($args);
 		}
 		elseif($_args['method'] === 'patch')
 		{
 
-			// $id = \lib\utility::request('id');
-			// $id = \lib\coding::decode($id);
+			// $id = \dash\utility::request('id');
+			// $id = \dash\coding::decode($id);
 			// if(!$id)
 			// {
-			// 	if($_args['save_log']) \lib\db\logs::set('addon:api:transaction:pathc:id:not:set', $this->user_id, $log_meta);
-			// 	if($_args['debug']) \lib\notif::error(T_("Id not set"), 'id', 'arguments');
+			// 	if($_args['save_log']) \dash\db\logs::set('addon:api:transaction:pathc:id:not:set', $this->user_id, $log_meta);
+			// 	if($_args['debug']) \dash\notif::error(T_("Id not set"), 'id', 'arguments');
 			// 	return false;
 			// }
 
 			// if(!empty($args))
 			// {
-			// 	\lib\db\transactions::update($args, $id);
+			// 	\dash\db\transactions::update($args, $id);
 			// }
 		}
 
-		if(\lib\engine\process::status())
+		if(\dash\engine\process::status())
 		{
-			// if($_args['debug']) // \lib\notif::title(T_("Operation Complete"));
+			// if($_args['debug']) // \dash\notif::title(T_("Operation Complete"));
 
 			if($_args['method'] === 'post')
 			{
-				if($_args['debug']) \lib\notif::ok(T_("transaction successfully added"));
+				if($_args['debug']) \dash\notif::ok(T_("transaction successfully added"));
 			}
 			elseif($_args['method'] === 'patch')
 			{
-				if($_args['debug']) \lib\notif::ok(T_("transaction successfully updated"));
+				if($_args['debug']) \dash\notif::ok(T_("transaction successfully updated"));
 			}
 		}
 	}

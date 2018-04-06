@@ -8,12 +8,12 @@ class view extends \addons\content_enter\main\view
 	{
 		parent::config();
 
-		$this->data->auth_url = \lib\social\google::auth_url();
+		$this->data->auth_url = \dash\social\google::auth_url();
 
 		// auto redirect if url is clean
-		if($this->data->auth_url && !\lib\request::get() && !\lib\request::post() && $this->data->googleLogin)
+		if($this->data->auth_url && !\dash\request::get() && !\dash\request::post() && $this->data->googleLogin)
 		{
-			\lib\redirect::to($this->data->auth_url);
+			\dash\redirect::to($this->data->auth_url);
 		}
 
 

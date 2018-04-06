@@ -10,8 +10,8 @@ class model extends \addons\content_su\main\model
 		$request       = [];
 		$request['id'] = $id;
 
-		\lib\utility::set_request_array($request);
-		$this->user_id = \lib\user::id();
+		\dash\utility::set_request_array($request);
+		$this->user_id = \dash\user::id();
 		return $this->get_user();
 	}
 
@@ -25,24 +25,24 @@ class model extends \addons\content_su\main\model
 	{
 		$post =
 		[
-			'firstname'            => \lib\request::post('name'),
-			'lastname'             => \lib\request::post('lastName'),
-			'mobile'               => \lib\request::post('mobile'),
-			'nationalcode'         => \lib\request::post('nationalcode'),
-			'father'               => \lib\request::post('father'),
-			'birthday'             => \lib\request::post('birthday'),
-			'gender'               => \lib\request::post('gender'),
-			'marital'              => \lib\request::post('marital'),
-			'child'                => \lib\request::post('child'),
-			'birthcity'            => \lib\request::post('birthcity'),
-			'shfrom'               => \lib\request::post('shfrom'),
-			'shcode'               => \lib\request::post('shcode'),
-			'education'            => \lib\request::post('education'),
-			'job'                  => \lib\request::post('job'),
-			'passportcode'         => \lib\request::post('passportcode'),
-			'passportexpire'       => \lib\request::post('passportexpire'),
-			'paymentaccountnumber' => \lib\request::post('paymentaccountnumber'),
-			'shaba'                => \lib\request::post('shaba'),
+			'firstname'            => \dash\request::post('name'),
+			'lastname'             => \dash\request::post('lastName'),
+			'mobile'               => \dash\request::post('mobile'),
+			'nationalcode'         => \dash\request::post('nationalcode'),
+			'father'               => \dash\request::post('father'),
+			'birthday'             => \dash\request::post('birthday'),
+			'gender'               => \dash\request::post('gender'),
+			'marital'              => \dash\request::post('marital'),
+			'child'                => \dash\request::post('child'),
+			'birthcity'            => \dash\request::post('birthcity'),
+			'shfrom'               => \dash\request::post('shfrom'),
+			'shcode'               => \dash\request::post('shcode'),
+			'education'            => \dash\request::post('education'),
+			'job'                  => \dash\request::post('job'),
+			'passportcode'         => \dash\request::post('passportcode'),
+			'passportexpire'       => \dash\request::post('passportexpire'),
+			'paymentaccountnumber' => \dash\request::post('paymentaccountnumber'),
+			'shaba'                => \dash\request::post('shaba'),
 		];
 		// $file_code = $this->upload_avatar();
 		// // we have an error in upload avatar
@@ -71,16 +71,16 @@ class model extends \addons\content_su\main\model
 		}
 
 		$id = isset($_args->match->url[0][1]) ? $_args->match->url[0][1] : null;
-		$this->user_id = \lib\user::id();
+		$this->user_id = \dash\user::id();
 		$request['id'] = $id;
 
-		\lib\utility::set_request_array($request);
+		\dash\utility::set_request_array($request);
 		// API ADD MEMBER FUNCTION
 		$this->add_user(['method' => 'patch']);
 
-		if(\lib\engine\process::status())
+		if(\dash\engine\process::status())
 		{
-			\lib\redirect::pwd();
+			\dash\redirect::pwd();
 		}
 	}
 }

@@ -1,7 +1,7 @@
 <?php
 namespace dash\telegram\commands;
 // use telegram class as bot
-use \lib\telegram\tg as bot;
+use \dash\telegram\tg as bot;
 
 class simple
 {
@@ -52,7 +52,7 @@ class simple
 	 */
 	public static function test()
 	{
-		$result['text'] = 'Test *'.ucfirst(core_name).'* bot on '. \lib\url::root();
+		$result['text'] = 'Test *'.ucfirst(core_name).'* bot on '. \dash\url::root();
 		return $result;
 	}
 

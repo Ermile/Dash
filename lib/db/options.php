@@ -17,8 +17,8 @@ class options
 	 */
 	public static function insert()
 	{
-		\lib\db\config::public_insert('options', ...func_get_args());
-		return \lib\db::insert_id();
+		\dash\db\config::public_insert('options', ...func_get_args());
+		return \dash\db::insert_id();
 	}
 
 
@@ -31,7 +31,7 @@ class options
 	 */
 	public static function insert_multi()
 	{
-		return \lib\db\config::public_insert_multi('options', ...func_get_args());
+		return \dash\db\config::public_insert_multi('options', ...func_get_args());
 	}
 
 
@@ -44,8 +44,8 @@ class options
 	public static function update_on_error($_args, $_where)
 	{
 		// ready fields and values to update syntax query [update table set field = 'value' , field = 'value' , .....]
-		$set_fields = \lib\db\config::make_set($_args);
-		$where      = \lib\db\config::make_where($_where);
+		$set_fields = \dash\db\config::make_set($_args);
+		$where      = \dash\db\config::make_where($_where);
 		if(!$_args || !$_where)
 		{
 			return false;
@@ -53,7 +53,7 @@ class options
 
 		// make update fields
 		$query = "UPDATE options SET $set_fields	WHERE $where ";
-		return \lib\db::query($query);
+		return \dash\db::query($query);
 	}
 
 
@@ -66,7 +66,7 @@ class options
 	 */
 	public static function update()
 	{
-		return \lib\db\config::public_update('options', ...func_get_args());
+		return \dash\db\config::public_update('options', ...func_get_args());
 	}
 
 
@@ -85,7 +85,7 @@ class options
 		}
 		elseif(is_array($_where_or_id))
 		{
-			$where = \lib\db\config::make_where($_where_or_id);
+			$where = \dash\db\config::make_where($_where_or_id);
 		}
 		else
 		{
@@ -93,7 +93,7 @@ class options
 		}
 
 		$query = " UPDATE options  SET options.status = 'disable' WHERE $where ";
-		return \lib\db::query($query);
+		return \dash\db::query($query);
 	}
 
 
@@ -112,7 +112,7 @@ class options
 		}
 		elseif(is_array($_where_or_id))
 		{
-			$where = \lib\db\config::make_where($_where_or_id);
+			$where = \dash\db\config::make_where($_where_or_id);
 		}
 		else
 		{
@@ -120,7 +120,7 @@ class options
 		}
 
 		$query = " DELETE FROM	options	WHERE $where ";
-		return \lib\db::query($query);
+		return \dash\db::query($query);
 	}
 
 
@@ -133,7 +133,7 @@ class options
 	 */
 	public static function get()
 	{
-		$result = \lib\db\config::public_get('options', ...func_get_args());
+		$result = \dash\db\config::public_get('options', ...func_get_args());
 		if(isset($result['meta']) && substr($result['meta'], 0, 1) == '{')
 		{
 			$result['meta'] = json_decode($result['meta'], true);
@@ -150,8 +150,8 @@ class options
 	 */
 	private static function plus_value($_where, $_plus_minue = 1, $_type = 'plus')
 	{
-		$where = \lib\db\config::make_where($_where);
-		$set = \lib\db\config::make_set($_where);
+		$where = \dash\db\config::make_where($_where);
+		$set = \dash\db\config::make_set($_where);
 		if(!$where || !$set)
 		{
 			return false;
@@ -176,7 +176,7 @@ class options
 				options.status = 'enable'
 
 		";
-		$result = \lib\db::query($query);
+		$result = \dash\db::query($query);
 		return $result;
 	}
 

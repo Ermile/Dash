@@ -16,17 +16,17 @@ class controller extends \addons\content_su\main\controller
 	{
 		$exist      = true;
 		$output     = '<html>';
-		$name       = \lib\request::get('name');
-		$isClear    = \lib\request::get('clear');
-		$isZip      = \lib\request::get('zip');
+		$name       = \dash\request::get('name');
+		$isClear    = \dash\request::get('clear');
+		$isZip      = \dash\request::get('zip');
 		$clearName  = '';
 		$clearURL   = '';
-		$page       = \lib\request::get('p') * 100000;
+		$page       = \dash\request::get('p') * 100000;
 		if($page< 0)
 		{
 			$page = 0;
 		}
-		$lenght      = \lib\request::get('lenght');
+		$lenght      = \dash\request::get('lenght');
 		if($lenght< 100000)
 		{
 			$lenght = 100100;
@@ -157,16 +157,16 @@ class controller extends \addons\content_su\main\controller
 		// if wanna clear this file, transfer it to new address and clear it
 		if($isClear)
 		{
-			\lib\file::rename($filepath, $clearURL);
-			\lib\redirect::to('?name='. $name);
+			\dash\file::rename($filepath, $clearURL);
+			\dash\redirect::to('?name='. $name);
 		}
 		if($isZip)
 		{
 			$newZipAddr = database.'log/dl.zip';
 			// create zip
-			if(\lib\utility\zip::create($filepath, $newZipAddr) === true)
+			if(\dash\utility\zip::create($filepath, $newZipAddr) === true)
 			{
-				\lib\utility\zip::download_on_fly($newZipAddr, $clearName);
+				\dash\utility\zip::download_on_fly($newZipAddr, $clearName);
 			}
 		}
 
@@ -174,9 +174,9 @@ class controller extends \addons\content_su\main\controller
 		$fileData = @file_get_contents($filepath, FILE_USE_INCLUDE_PATH, null, $page, $lenght);
 		if($fileData)
 		{
-			$myURL    = \lib\url::site().'/static';
-			$myCommon = \lib\url::protocol()."://ermile.".\lib\url::tld().'/static/js/common.js';
-			$myCode   = \lib\url::protocol()."://code.ermile.".\lib\url::tld().'/';
+			$myURL    = \dash\url::site().'/static';
+			$myCommon = \dash\url::protocol()."://ermile.".\dash\url::tld().'/static/js/common.js';
+			$myCode   = \dash\url::protocol()."://code.ermile.".\dash\url::tld().'/';
 
 			$output .= "<head>";
 			$output .= ' <title>Log | '. $name. '</title>';
@@ -202,7 +202,7 @@ class controller extends \addons\content_su\main\controller
 
 		$output .= "</body></html>";
 		echo $output;
-		\lib\code::exit();
+		\dash\code::exit();
 
 	}
 

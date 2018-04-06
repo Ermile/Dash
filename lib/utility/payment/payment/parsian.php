@@ -37,9 +37,9 @@ class parsian
         {
             if(self::$save_log)
             {
-                \lib\db\logs::set('payment:parsian:soapclient:not:install', self::$user_id, $log_meta);
+                \dash\db\logs::set('payment:parsian:soapclient:not:install', self::$user_id, $log_meta);
             }
-            \lib\notif::error(T_("Can not connect to parsian gateway. Install it!"));
+            \dash\notif::error(T_("Can not connect to parsian gateway. Install it!"));
             return false;
         }
 
@@ -64,21 +64,21 @@ class parsian
 
             if ($status === 0 && $token > 0)
             {
-                \lib\db\logs::set('payment:parsian:redirect', self::$user_id, $log_meta);
+                \dash\db\logs::set('payment:parsian:redirect', self::$user_id, $log_meta);
                 $url = "https://pec.shaparak.ir/NewIPG/?Token=" . $token;
                 return $url;
             }
             else
             {
-                \lib\db\logs::set('payment:parsian:error', self::$user_id, $log_meta);
-                \lib\notif::error($msg);
+                \dash\db\logs::set('payment:parsian:error', self::$user_id, $log_meta);
+                \dash\notif::error($msg);
                 return false;
             }
         }
         catch (SoapFault $e)
         {
-            \lib\db\logs::set('payment:parsian:error:load:web:services', self::$user_id, $log_meta);
-            \lib\notif::error(T_("Error in load web services"));
+            \dash\db\logs::set('payment:parsian:error:load:web:services', self::$user_id, $log_meta);
+            \dash\notif::error(T_("Error in load web services"));
             return false;
         }
     }
@@ -129,20 +129,20 @@ class parsian
 
             if($Status === 0)
             {
-                \lib\db\logs::set('payment:parsian:transaction:ok', self::$user_id, $log_meta);
+                \dash\db\logs::set('payment:parsian:transaction:ok', self::$user_id, $log_meta);
                 return true;
             }
             else
             {
-                \lib\db\logs::set('payment:parsian:error:verify', self::$user_id, $log_meta);
-                \lib\notif::error(self::msg($Status));
+                \dash\db\logs::set('payment:parsian:error:verify', self::$user_id, $log_meta);
+                \dash\notif::error(self::msg($Status));
                 return false;
             }
         }
         catch(Exception $e)
         {
-            \lib\db\logs::set('payment:parsian:error:load:web:services:verify', self::$user_id, $log_meta);
-            \lib\notif::error(T_("Error in load web services"));
+            \dash\db\logs::set('payment:parsian:error:load:web:services:verify', self::$user_id, $log_meta);
+            \dash\notif::error(T_("Error in load web services"));
             return false;
         }
     }
@@ -182,20 +182,20 @@ class parsian
 
             if($Status === 0)
             {
-                \lib\db\logs::set('payment:parsian:transaction:ok', self::$user_id, $log_meta);
+                \dash\db\logs::set('payment:parsian:transaction:ok', self::$user_id, $log_meta);
                 return true;
             }
             else
             {
-                \lib\db\logs::set('payment:parsian:error:verify', self::$user_id, $log_meta);
-                \lib\notif::error(self::msg($Status));
+                \dash\db\logs::set('payment:parsian:error:verify', self::$user_id, $log_meta);
+                \dash\notif::error(self::msg($Status));
                 return false;
             }
         }
         catch(Exception $e)
         {
-            \lib\db\logs::set('payment:parsian:error:load:web:services:verify', self::$user_id, $log_meta);
-            \lib\notif::error(T_("Error in load web services"));
+            \dash\db\logs::set('payment:parsian:error:load:web:services:verify', self::$user_id, $log_meta);
+            \dash\notif::error(T_("Error in load web services"));
             return false;
         }
     }
@@ -308,7 +308,7 @@ class parsian
 
         if(isset($T_msg[$_status]))
         {
-            if(\lib\language::current() === 'fa')
+            if(\dash\language::current() === 'fa')
             {
                 if(isset($T_msg[$_status]['fa']))
                 {

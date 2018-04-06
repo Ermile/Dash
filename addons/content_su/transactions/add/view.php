@@ -10,7 +10,7 @@ class view extends \addons\content_su\transactions\view
 		$this->data->page['title'] = T_("Add new transactions");
 		$this->data->page['desc'] = T_("Add new transactions for every one");
 
-		$this->data->page['badge']['link'] = \lib\url::this(). '/transactions';
+		$this->data->page['badge']['link'] = \dash\url::this(). '/transactions';
 		$this->data->page['badge']['text'] = T_('Back to transactions list');
 	}
 }

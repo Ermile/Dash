@@ -21,7 +21,7 @@ trait check
 		// 	'cat'     => 'user_uploaded_size_'. $_user_id,
 		// 	'limit'   => 1,
 		// ];
-		// $result =  \lib\db\options::get($where);
+		// $result =  \dash\db\options::get($where);
 		// if(isset($result['value']))
 		// {
 		// 	return (int) $result['value'];
@@ -44,7 +44,7 @@ trait check
 			'cat'     => 'user_uploaded_size_vip_'. $_user_id,
 			'limit'   => 1,
 		];
-		$result =  \lib\db\options::get($where);
+		$result =  \dash\db\options::get($where);
 		if(isset($result['value']))
 		{
 			return (int) $result['value'];
@@ -69,17 +69,17 @@ trait check
 		return $default_user_size;
 
 
-		// \lib\permission::$user_id = $_user_id;
+		// \dash\permission::$user_id = $_user_id;
 
-		// if(\lib\permission::access('upload_1000_mb'))
+		// if(\dash\permission::access('upload_1000_mb'))
 		// {
 		// 	$default_user_size = 1000 * $MB; // 1 TB
 		// }
-		// elseif(\lib\permission::access('upload_100_mb'))
+		// elseif(\dash\permission::access('upload_100_mb'))
 		// {
 		// 	$default_user_size = 100 * $MB; // 100 MB
 		// }
-		// elseif(\lib\permission::access('upload_10_mb'))
+		// elseif(\dash\permission::access('upload_10_mb'))
 		// {
 		// 	$default_user_size = 10 * $MB; // 10 MB
 		// }
@@ -112,7 +112,7 @@ trait check
 		// 	'post_id' => null,
 		// 	'cat'     => 'user_uploaded_size_'. $_user_id,
 		// ];
-		// \lib\db\options::plus($where, (int) $_size);
+		// \dash\db\options::plus($where, (int) $_size);
 	}
 
 }

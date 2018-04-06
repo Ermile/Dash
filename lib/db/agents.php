@@ -11,8 +11,8 @@ class agents
 	 */
 	public static function insert()
 	{
-		\lib\db\config::public_insert('agents', ...func_get_args());
-		return \lib\db::insert_id();
+		\dash\db\config::public_insert('agents', ...func_get_args());
+		return \dash\db::insert_id();
 	}
 
 
@@ -23,7 +23,7 @@ class agents
 	 */
 	public static function get()
 	{
-		return \lib\db\config::public_get('agents', ...func_get_args());
+		return \dash\db\config::public_get('agents', ...func_get_args());
 	}
 }
 ?>

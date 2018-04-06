@@ -1,7 +1,7 @@
 <?php
 namespace dash\telegram\commands;
 // use telegram class as bot
-use \lib\telegram\tg as bot;
+use \dash\telegram\tg as bot;
 
 class callback
 {

@@ -6,13 +6,13 @@ class model extends \addons\content_enter\main\model
 {
 	public function login_another_session()
 	{
-		if(\lib\permission::access('enter:another:session'))
+		if(\dash\permission::access('enter:another:session'))
 		{
 			$user_id = null;
 
-			if(\lib\request::post('usernameormobile') !== \lib\user::login('mobile') && !\lib\request::get('userid'))
+			if(\dash\request::post('usernameormobile') !== \dash\user::login('mobile') && !\dash\request::get('userid'))
 			{
-				$user_data = \lib\db\users::get_by_mobile(\lib\utility\filter::mobile(\lib\request::post('usernameormobile')));
+				$user_data = \dash\db\users::get_by_mobile(\dash\utility\filter::mobile(\dash\request::post('usernameormobile')));
 
 				if(isset($user_data['id']))
 				{
@@ -20,25 +20,25 @@ class model extends \addons\content_enter\main\model
 				}
 				else
 				{
-					\lib\notif::error(T_("Mobile not found"));
+					\dash\notif::error(T_("Mobile not found"));
 					return false;
 				}
 			}
 
-			if(!$user_id && \lib\request::get('userid'))
+			if(!$user_id && \dash\request::get('userid'))
 			{
-				$user_id = \lib\request::get('userid');
+				$user_id = \dash\request::get('userid');
 			}
 
 			if($user_id)
 			{
 
-				$main_account = \lib\user::id();
-				$main_mobile  = \lib\user::login('mobile');
+				$main_account = \dash\user::id();
+				$main_mobile  = \dash\user::login('mobile');
 
-				if(!\lib\db\users::get_by_id($user_id))
+				if(!\dash\db\users::get_by_id($user_id))
 				{
-					\lib\notif::error(T_("User not found"));
+					\dash\notif::error(T_("User not found"));
 					return false;
 				}
 
@@ -77,20 +77,20 @@ class model extends \addons\content_enter\main\model
 	 */
 	public function post_enter($_args)
 	{
-		$count = \lib\session::get('enter_session_check');
+		$count = \dash\session::get('enter_session_check');
 		if($count)
 		{
-			\lib\session::set('enter_session_check', $count + 1, null, 60 * 3);
+			\dash\session::set('enter_session_check', $count + 1, null, 60 * 3);
 		}
 		else
 		{
-			\lib\session::set('enter_session_check', 1, null, 60 * 3);
+			\dash\session::set('enter_session_check', 1, null, 60 * 3);
 		}
 
-		$anotherPerm = \lib\permission::access('enter:another:session');
+		$anotherPerm = \dash\permission::access('enter:another:session');
 		if($count >= 3 && !$anotherPerm)
 		{
-			\lib\notif::error(T_("How are you?"). ":)");
+			\dash\notif::error(T_("How are you?"). ":)");
 			return false;
 		}
 
@@ -100,7 +100,7 @@ class model extends \addons\content_enter\main\model
 		// clean existing session
 		self::clean_session();
 
-		$password = \lib\request::post('password');
+		$password = \dash\request::post('password');
 
 		/**
 		 * check login by another session
@@ -110,7 +110,7 @@ class model extends \addons\content_enter\main\model
 			return;
 		}
 
-		$usernameormobile       = \lib\request::post('usernameormobile');
+		$usernameormobile       = \dash\request::post('usernameormobile');
 		self::$usernameormobile = $usernameormobile;
 
 		// if old mobile is different by new mobile
@@ -132,7 +132,7 @@ class model extends \addons\content_enter\main\model
 		// the user not found must be signup
 		if(!$user_data)
 		{
-			\lib\notif::error(T_("Username not found"));
+			\dash\notif::error(T_("Username not found"));
 			return false;
 		}
 
@@ -159,7 +159,7 @@ class model extends \addons\content_enter\main\model
 
 		if($password)
 		{
-			if(\lib\utility::hasher($password, self::user_data('password')))
+			if(\dash\utility::hasher($password, self::user_data('password')))
 			{
 				// login
 				// the browser was saved the password
@@ -168,7 +168,7 @@ class model extends \addons\content_enter\main\model
 			}
 			else
 			{
-				\lib\notif::warn(T_("Opts!, Maybe your browser saved your password incorrectly."). ' '. T_("Please remove your saved password and try again"));
+				\dash\notif::warn(T_("Opts!, Maybe your browser saved your password incorrectly."). ' '. T_("Please remove your saved password and try again"));
 				return false;
 			}
 		}

@@ -10,9 +10,9 @@ class model extends \addons\content_su\main\model
 		$meta['admin'] = true;
 
 		$search = null;
-		if(\lib\request::get('search'))
+		if(\dash\request::get('search'))
 		{
-			$search = \lib\request::get('search');
+			$search = \dash\request::get('search');
 		}
 
 		foreach ($_fields as $key => $value)
@@ -23,7 +23,7 @@ class model extends \addons\content_su\main\model
 			}
 		}
 
-		$result = \lib\db\logitems::search($search, $meta);
+		$result = \dash\db\logitems::search($search, $meta);
 
 		return $result;
 	}
@@ -39,21 +39,21 @@ class model extends \addons\content_su\main\model
 		{
 			$update =
 			[
-				'title'    => \lib\request::post('title'),
-				'type'     => \lib\request::post('type'),
-				'priority' => \lib\request::post('priority'),
-				'desc'     => \lib\request::post('desc'),
+				'title'    => \dash\request::post('title'),
+				'type'     => \dash\request::post('type'),
+				'priority' => \dash\request::post('priority'),
+				'desc'     => \dash\request::post('desc'),
 			];
 
-			$result = \lib\db\logitems::update($update, $id);
+			$result = \dash\db\logitems::update($update, $id);
 			if($result)
 			{
-				\lib\notif::ok(T_("Update successfull"));
-				\lib\redirect::to(\lib\url::here(). '/logitems');
+				\dash\notif::ok(T_("Update successfull"));
+				\dash\redirect::to(\dash\url::here(). '/logitems');
 			}
 			else
 			{
-				\lib\notif::error(T_("Update faild"));
+				\dash\notif::error(T_("Update faild"));
 			}
 
 		}

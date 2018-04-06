@@ -66,9 +66,9 @@ class utility
 		{
 			if(!$_not_check_crazy)
 			{
-				if(\lib\utility\passwords::is_crazy($raw_password))
+				if(\dash\utility\passwords::is_crazy($raw_password))
 				{
-					\lib\notif::error(T_("This password is very simple and guessable, please use stronger password!"));
+					\dash\notif::error(T_("This password is very simple and guessable, please use stronger password!"));
 					return false;
 				}
 			}

@@ -49,7 +49,7 @@ trait lock
 		{
 			// in dev and when we in debug mode
 			// we have not any page to lock!
-			if(\lib\url::isLocal() && self::$debug_mode)
+			if(\dash\url::isLocal() && self::$debug_mode)
 			{
 				return false;
 			}

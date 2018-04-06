@@ -6,7 +6,7 @@ class dev
 {
 	public static function debug()
 	{
-		if(\lib\option::config('debug'))
+		if(\dash\option::config('debug'))
 		{
 			return true;
 		}

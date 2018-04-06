@@ -29,7 +29,7 @@ class users
 			GROUP BY date
 		";
 
-		$result = \lib\db::get($qry);
+		$result = \dash\db::get($qry);
 		return $result;
 	}
 }

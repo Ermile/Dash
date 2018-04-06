@@ -24,29 +24,29 @@ trait asanpardakht
         ];
 
 
-        if(!\lib\option::config('asanpardakht', 'status'))
+        if(!\dash\option::config('asanpardakht', 'status'))
         {
-            \lib\db\logs::set('pay:asanpardakht:status:false', $_user_id, $log_meta);
-            \lib\notif::error(T_("The asanpardakht payment on this service is locked"));
+            \dash\db\logs::set('pay:asanpardakht:status:false', $_user_id, $log_meta);
+            \dash\notif::error(T_("The asanpardakht payment on this service is locked"));
             return false;
         }
 
-        if(!\lib\option::config('asanpardakht', 'MerchantID'))
+        if(!\dash\option::config('asanpardakht', 'MerchantID'))
         {
-            \lib\db\logs::set('pay:asanpardakht:MerchantID:false', $_user_id, $log_meta);
-            \lib\notif::error(T_("The asanpardakht payment on this service is locked"));
+            \dash\db\logs::set('pay:asanpardakht:MerchantID:false', $_user_id, $log_meta);
+            \dash\notif::error(T_("The asanpardakht payment on this service is locked"));
             return false;
         }
 
-        $username = \lib\option::config('asanpardakht', 'Username');
-        $password = \lib\option::config('asanpardakht', 'Password');
+        $username = \dash\option::config('asanpardakht', 'Username');
+        $password = \dash\option::config('asanpardakht', 'Password');
 
         $asanpardakht = [];
 
         $ReturningParams    = isset($_REQUEST['ReturningParams']) ? (string) $_REQUEST['ReturningParams'] : null;
 
-        \lib\utility\payment\payment\asanpardakht::set_key_iv();
-        $ReturningParams    = \lib\utility\payment\payment\asanpardakht::decrypt($ReturningParams);
+        \dash\utility\payment\payment\asanpardakht::set_key_iv();
+        $ReturningParams    = \dash\utility\payment\payment\asanpardakht::decrypt($ReturningParams);
 
         $RetArr             = explode(",", $ReturningParams);
         $Amount             = isset($RetArr[0]) ? $RetArr[0] : null;
@@ -64,8 +64,8 @@ trait asanpardakht
         }
         else
         {
-            \lib\db\logs::set('pay:asanpardakht:SESSION:transaction_id:not:found', self::$user_id, $log_meta);
-            \lib\notif::error(T_("Your session is lost! We can not find your transaction"));
+            \dash\db\logs::set('pay:asanpardakht:SESSION:transaction_id:not:found', self::$user_id, $log_meta);
+            \dash\notif::error(T_("Your session is lost! We can not find your transaction"));
             return self::turn_back();
         }
 
@@ -78,8 +78,8 @@ trait asanpardakht
             'payment_response' => json_encode((array) $_args, JSON_UNESCAPED_UNICODE),
         ];
 
-        \lib\db\transactions::update($update, $transaction_id);
-        \lib\db\logs::set('pay:asanpardakht:pending:request', self::$user_id, $log_meta);
+        \dash\db\transactions::update($update, $transaction_id);
+        \dash\db\logs::set('pay:asanpardakht:pending:request', self::$user_id, $log_meta);
 
         $asanpardakht                 = [];
 
@@ -90,27 +90,27 @@ trait asanpardakht
         }
         else
         {
-            \lib\db\logs::set('pay:asanpardakht:SESSION:amount:not:found', self::$user_id, $log_meta);
-            \lib\notif::error(T_("Your session is lost! We can not find amount"));
+            \dash\db\logs::set('pay:asanpardakht:SESSION:amount:not:found', self::$user_id, $log_meta);
+            \dash\notif::error(T_("Your session is lost! We can not find amount"));
             return self::turn_back();
         }
 
         if($Amount_SESSION != $Amount)
         {
-            \lib\db\logs::set('pay:asanpardakht:Amount_SESSION:amount:is:not:equals', self::$user_id, $log_meta);
-            \lib\notif::error(T_("Your session is lost! We can not find amount"));
+            \dash\db\logs::set('pay:asanpardakht:Amount_SESSION:amount:is:not:equals', self::$user_id, $log_meta);
+            \dash\notif::error(T_("Your session is lost! We can not find amount"));
             return self::turn_back();
         }
 
 
         if($ResCode == '0' || $ResCode == '00')
         {
-            \lib\utility\payment\payment\asanpardakht::$user_id = self::$user_id;
-            \lib\utility\payment\payment\asanpardakht::$log_data = self::$log_data;
+            \dash\utility\payment\payment\asanpardakht::$user_id = self::$user_id;
+            \dash\utility\payment\payment\asanpardakht::$log_data = self::$log_data;
 
-            $is_ok = \lib\utility\payment\payment\asanpardakht::verify($RetArr);
+            $is_ok = \dash\utility\payment\payment\asanpardakht::verify($RetArr);
 
-            $payment_response = \lib\utility\payment\payment\asanpardakht::$payment_response;
+            $payment_response = \dash\utility\payment\payment\asanpardakht::$payment_response;
 
             $log_meta['meta']['payment_response'] = (array) $payment_response;
 
@@ -126,13 +126,13 @@ trait asanpardakht
                     'payment_response' => $payment_response,
                 ];
 
-                \lib\db\transactions::calc_budget($transaction_id, $Amount_SESSION / 10, 0, $update);
+                \dash\db\transactions::calc_budget($transaction_id, $Amount_SESSION / 10, 0, $update);
 
-                \lib\db\logs::set('pay:asanpardakht:ok:request', self::$user_id, $log_meta);
+                \dash\db\logs::set('pay:asanpardakht:ok:request', self::$user_id, $log_meta);
 
-                \lib\session::set('payment_verify_amount', $Amount_SESSION / 10);
+                \dash\session::set('payment_verify_amount', $Amount_SESSION / 10);
 
-                \lib\session::set('payment_verify_status', 'ok');
+                \dash\session::set('payment_verify_status', 'ok');
 
                 unset($_SESSION['amount']['asanpardakht'][$Token]);
 
@@ -146,9 +146,9 @@ trait asanpardakht
                     'condition'        => 'verify_error',
                     'payment_response' => $payment_response,
                 ];
-                \lib\session::set('payment_verify_status', 'verify_error');
-                \lib\db\transactions::update($update, $transaction_id);
-                \lib\db\logs::set('pay:asanpardakht:verify_error:request', self::$user_id, $log_meta);
+                \dash\session::set('payment_verify_status', 'verify_error');
+                \dash\db\transactions::update($update, $transaction_id);
+                \dash\db\logs::set('pay:asanpardakht:verify_error:request', self::$user_id, $log_meta);
                 return self::turn_back($transaction_id);
             }
         }
@@ -160,9 +160,9 @@ trait asanpardakht
                 'condition'        => 'error',
                 'payment_response' => json_encode((array) $_args, JSON_UNESCAPED_UNICODE),
             ];
-            \lib\session::set('payment_verify_status', 'error');
-            \lib\db\transactions::update($update, $transaction_id);
-            \lib\db\logs::set('pay:asanpardakht:error:request', self::$user_id, $log_meta);
+            \dash\session::set('payment_verify_status', 'error');
+            \dash\db\transactions::update($update, $transaction_id);
+            \dash\db\logs::set('pay:asanpardakht:error:request', self::$user_id, $log_meta);
             return self::turn_back($transaction_id);
         }
     }

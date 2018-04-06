@@ -19,11 +19,11 @@ class view extends \addons\content_enter\main\view
 		if(!empty($autoredirect))
 		{
 			$this->data->autoredirect = $autoredirect;
-			\lib\session::set('redirect_page_url', null);
-			\lib\session::set('redirect_page_method', null);
-			\lib\session::set('redirect_page_args', null);
-			\lib\session::set('redirect_page_title', null);
-			\lib\session::set('redirect_page_button', null);
+			\dash\session::set('redirect_page_url', null);
+			\dash\session::set('redirect_page_method', null);
+			\dash\session::set('redirect_page_args', null);
+			\dash\session::set('redirect_page_title', null);
+			\dash\session::set('redirect_page_button', null);
 		}
 	}
 }

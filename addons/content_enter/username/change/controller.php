@@ -10,9 +10,9 @@ class controller extends \addons\content_enter\main\controller
 
 		// if the user have not an email can not change her email
 		// he must set email
-		if(!\lib\user::login('username'))
+		if(!\dash\user::login('username'))
 		{
-			\lib\redirect::to(\lib\url::base(). '/enter/username/set');
+			\dash\redirect::to(\dash\url::base(). '/enter/username/set');
 			return;
 		}
 

@@ -20,29 +20,29 @@ class google
      */
      private static function config()
      {
-          if(!\lib\option::social('google', 'status'))
+          if(!\dash\option::social('google', 'status'))
           {
                return false;
           }
           /**
            * get client id
            */
-          self::$client_id     = \lib\option::social('google', 'client_id');
+          self::$client_id     = \dash\option::social('google', 'client_id');
           /**
            * get client secret
            */
-          self::$client_secret = \lib\option::social('google', 'client_secret');
+          self::$client_secret = \dash\option::social('google', 'client_secret');
 
-          if(\lib\option::social('google', 'redirect_url'))
+          if(\dash\option::social('google', 'redirect_url'))
           {
-               self::$redirect_url  = \lib\option::social('google', 'redirect_url');
+               self::$redirect_url  = \dash\option::social('google', 'redirect_url');
           }
           else
           {
-               // self::$redirect_url  = \lib\url::protocol(). '://';
-               // self::$redirect_url .= \lib\url::host();
+               // self::$redirect_url  = \dash\url::protocol(). '://';
+               // self::$redirect_url .= \dash\url::host();
                // self::$redirect_url .= '/google';
-               self::$redirect_url = \lib\url::here(). '/google';
+               self::$redirect_url = \dash\url::here(). '/google';
           }
 
           /************************************************
@@ -119,7 +119,7 @@ class google
                }
                else
                {
-                    \lib\notif::error(T_("Invalid access token"));
+                    \dash\notif::error(T_("Invalid access token"));
                     return false;
                }
           }

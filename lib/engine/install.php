@@ -9,18 +9,18 @@ if(isset($_POST['username']) && isset($_POST['password']))
 
 	if($_POST['username'])
 	{
-		\lib\db::$db_user = $_POST['username'];
-		\lib\db::$db_pass = $_POST['password'];
+		\dash\db::$db_user = $_POST['username'];
+		\dash\db::$db_pass = $_POST['password'];
 	}
 
-	$result = \lib\db::install();
+	$result = \dash\db::install();
 
 	if($result)
 	{
 		// insert the admin mobile and set her permission as admin
 		if(isset($_POST['mobile']))
 		{
-			$mobile = \lib\utility\filter::mobile($_POST['mobile']);
+			$mobile = \dash\utility\filter::mobile($_POST['mobile']);
 			if($mobile)
 			{
 				$add_user =
@@ -29,16 +29,16 @@ if(isset($_POST['username']) && isset($_POST['password']))
 					'permission' => 'supervisor',
 				];
 
-				$check_exist = \lib\db\users::get(array_merge($add_user, ['limit' => 1]));
+				$check_exist = \dash\db\users::get(array_merge($add_user, ['limit' => 1]));
 
 				if(!$check_exist)
 				{
-					$insert = \lib\db\users::insert($add_user);
+					$insert = \dash\db\users::insert($add_user);
 				}
 			}
 		}
 
-		if(\lib\option::config('debug'))
+		if(\dash\option::config('debug'))
 		{
 			$log = $result;
 		}
@@ -98,4 +98,4 @@ if(isset($_POST['username']) && isset($_POST['password']))
 <div id="no"><img src="/static/images/logo.png" alt="Logo" id='logo'></div>
 </body>
 </html>
-<?php \lib\code::exit(); ?>
+<?php \dash\code::exit(); ?>

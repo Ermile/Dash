@@ -216,7 +216,7 @@ trait install
 						if($qry)
 						{
 							self::query($qry, $_db_name, ['resume_on_error' => true]);
-							if(\lib\db::error())
+							if(\dash\db::error())
 							{
 								$has_error = true;
 							}

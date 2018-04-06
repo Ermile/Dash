@@ -29,7 +29,7 @@ class invoices
 			return false;
 		}
 
-		$get_invoice_detail = \lib\db\invoice_details::get(['invoice_id' => $get_invoice['id']]);
+		$get_invoice_detail = \dash\db\invoice_details::get(['invoice_id' => $get_invoice['id']]);
 
 		$result = [];
 		$result['invoice'] = $get_invoice;
@@ -56,7 +56,7 @@ class invoices
 		];
 		$_options = array_merge($default_options, $_options);
 
-		return \lib\db\config::public_search('invoices', $_search, $_options);
+		return \dash\db\config::public_search('invoices', $_search, $_options);
 	}
 
 
@@ -67,7 +67,7 @@ class invoices
 	 */
 	public static function get()
 	{
-		return \lib\db\config::public_get('invoices', ...func_get_args());
+		return \dash\db\config::public_get('invoices', ...func_get_args());
 	}
 
 
@@ -78,8 +78,8 @@ class invoices
 	 */
 	public static function insert()
 	{
-		\lib\db\config::public_insert('invoices', ...func_get_args());
-		return \lib\db::insert_id();
+		\dash\db\config::public_insert('invoices', ...func_get_args());
+		return \dash\db::insert_id();
 	}
 
 
@@ -127,12 +127,12 @@ class invoices
 			$this->invoice['count_detail'] = count($this->invoice_detail);
 		}
 
-		$invoice_id = \lib\db\invoices::insert($this->invoice);
+		$invoice_id = \dash\db\invoices::insert($this->invoice);
 
 		foreach ($this->invoice_detail as $key => $value)
 		{
 			$value['invoice_id'] = $invoice_id;
-			\lib\db\invoice_details::insert($value);
+			\dash\db\invoice_details::insert($value);
 		}
 
 		return $invoice_id;

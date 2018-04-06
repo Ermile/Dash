@@ -16,18 +16,18 @@ class model extends \mvc\model
 	{
 		if($this->check_api_key())
 		{
-			$telegram_id = \lib\utility::request("telegramid");
+			$telegram_id = \dash\utility::request("telegramid");
 
 
 			if(!$telegram_id)
 			{
-				\lib\notif::error(T_("Telegram id not found"), 'telegram_id', 'post');
+				\dash\notif::error(T_("Telegram id not found"), 'telegram_id', 'post');
 				return false;
 			}
 
 			if(!is_numeric($telegram_id))
 			{
-				\lib\notif::error(T_("Invalid telegram id"), 'telegram_id', 'post');
+				\dash\notif::error(T_("Invalid telegram id"), 'telegram_id', 'post');
 				return false;
 			}
 
@@ -37,31 +37,31 @@ class model extends \mvc\model
 				'limit'        => 1
 			];
 
-			$exist_chart_id = \lib\db\config::public_get('users', $where);
+			$exist_chart_id = \dash\db\config::public_get('users', $where);
 
 			$log_meta =
 			[
 				'meta' =>
 					[
-						'request'        => \lib\utility::request(),
+						'request'        => \dash\utility::request(),
 						'record_chat_id' => $exist_chart_id,
 					],
 			];
 			if(isset($exist_chart_id['id']))
 			{
 				$remove_all_this_chat_id = "UPDATE users SET chatid = NULL WHERE chatid = '$telegram_id' ";
-				\lib\db::query($remove_all_this_chat_id);
-				\lib\db\logs::set('enter:hook:remove:all:chat:id:by:delete:request', $exist_chart_id['id'], $log_meta);
+				\dash\db::query($remove_all_this_chat_id);
+				\dash\db\logs::set('enter:hook:remove:all:chat:id:by:delete:request', $exist_chart_id['id'], $log_meta);
 			}
 		}
 
-		if(\lib\engine\process::status())
+		if(\dash\engine\process::status())
 		{
-			// \lib\notif::title(T_("Operation complete"));
+			// \dash\notif::title(T_("Operation complete"));
 		}
 		else
 		{
-			// \lib\notif::title(T_("Operation faild"));
+			// \dash\notif::title(T_("Operation faild"));
 		}
 	}
 
@@ -75,13 +75,13 @@ class model extends \mvc\model
 			$this->config_user_data();
 		}
 
-		if(\lib\engine\process::status())
+		if(\dash\engine\process::status())
 		{
-			// \lib\notif::title(T_("Operation complete"));
+			// \dash\notif::title(T_("Operation complete"));
 		}
 		else
 		{
-			// \lib\notif::title(T_("Operation faild"));
+			// \dash\notif::title(T_("Operation faild"));
 		}
 	}
 
@@ -91,27 +91,27 @@ class model extends \mvc\model
 	 */
 	public function check_api_key()
 	{
-		$authorization = \lib\header::get("authorization");
+		$authorization = \dash\header::get("authorization");
 
 		if(!$authorization)
 		{
-			$authorization = \lib\header::get("Authorization");
+			$authorization = \dash\header::get("Authorization");
 		}
 
 		if(!$authorization)
 		{
-			\lib\notif::error(T_('Authorization not found'), 'authorization', 'access');
+			\dash\notif::error(T_('Authorization not found'), 'authorization', 'access');
 			return false;
 		}
 
-		if($authorization === \lib\option::config('enter', 'telegram_hook'))
+		if($authorization === \dash\option::config('enter', 'telegram_hook'))
 		{
 			$this->authorization = $authorization;
 			return true;
 		}
 		else
 		{
-			\lib\notif::error(T_('Invalid Authorization'), 'authorization', 'access');
+			\dash\notif::error(T_('Invalid Authorization'), 'authorization', 'access');
 			return false;
 		}
 
@@ -125,30 +125,30 @@ class model extends \mvc\model
 	 */
 	public function config_user_data()
 	{
-		$telegram_id = \lib\utility::request("tg_id");
-		$first_name  = \lib\utility::request('tg_first_name');
-		$last_name   = \lib\utility::request('tg_last_name');
-		$username    = \lib\utility::request('tg_username');
-		$started     = \lib\utility::request('tg_start');
-		$ref         = \lib\utility::request('tg_ref');
-		$mobile      = \lib\utility::request('tg_mobile');
-		$mobile      = \lib\utility\filter::mobile($mobile);
+		$telegram_id = \dash\utility::request("tg_id");
+		$first_name  = \dash\utility::request('tg_first_name');
+		$last_name   = \dash\utility::request('tg_last_name');
+		$username    = \dash\utility::request('tg_username');
+		$started     = \dash\utility::request('tg_start');
+		$ref         = \dash\utility::request('tg_ref');
+		$mobile      = \dash\utility::request('tg_mobile');
+		$mobile      = \dash\utility\filter::mobile($mobile);
 
 		if(!$mobile)
 		{
-			\lib\notif::error(T_("Mobile is not set"), 'tg_mobile', 'post');
+			\dash\notif::error(T_("Mobile is not set"), 'tg_mobile', 'post');
 			return false;
 		}
 
 		if(!$telegram_id)
 		{
-			\lib\notif::error(T_("Telegram id not found"), 'telegram_id', 'post');
+			\dash\notif::error(T_("Telegram id not found"), 'telegram_id', 'post');
 			return false;
 		}
 
 		if(!is_numeric($telegram_id))
 		{
-			\lib\notif::error(T_("Invalid telegram id"), 'telegram_id', 'post');
+			\dash\notif::error(T_("Invalid telegram id"), 'telegram_id', 'post');
 			return false;
 		}
 
@@ -158,16 +158,16 @@ class model extends \mvc\model
 			'limit'        => 1
 		];
 
-		$exist_chart_id = \lib\db\config::public_get('users', $where);
+		$exist_chart_id = \dash\db\config::public_get('users', $where);
 
-		$exist_mobile = \lib\db\users::get_by_mobile($mobile);
+		$exist_mobile = \dash\db\users::get_by_mobile($mobile);
 
 
 		$log_meta =
 		[
 			'meta' =>
 				[
-					'request'        => \lib\utility::request(),
+					'request'        => \dash\utility::request(),
 					'record_mobile'  => $exist_mobile,
 					'record_chat_id' => $exist_chart_id,
 				],
@@ -177,7 +177,7 @@ class model extends \mvc\model
 		{
 			// calc full_name of user
 			$fullName = trim($first_name. ' '. $last_name);
-			$fullName = \lib\safe::safe($fullName, 'sqlinjection');
+			$fullName = \dash\safe::safe($fullName, 'sqlinjection');
 
 			if(mb_strlen($fullName) > 50)
 			{
@@ -189,9 +189,9 @@ class model extends \mvc\model
 			$insert_user['displayname'] = $fullName;
 			$insert_user['chatid']      = $telegram_id;
 			$insert_user['datecreated'] = date("Y-m-d H:i:s");
-			\lib\db\users::insert($insert_user);
-			$this->user_id = \lib\db::insert_id();
-			\lib\db\logs::set('enter:hook:signup:new', $exist_mobile['id'], $log_meta);
+			\dash\db\users::insert($insert_user);
+			$this->user_id = \dash\db::insert_id();
+			\dash\db\logs::set('enter:hook:signup:new', $exist_mobile['id'], $log_meta);
 
 		}
 		elseif($exist_chart_id && $exist_mobile)
@@ -205,15 +205,15 @@ class model extends \mvc\model
 				else
 				{
 					$remove_all_this_chat_id = "UPDATE users SET chatid = NULL WHERE chatid = '$telegram_id' ";
-					\lib\db::query($remove_all_this_chat_id);
-					\lib\db\logs::set('enter:hook:remove:all:chat:id', $exist_mobile['id'], $log_meta);
-					\lib\db\users::update(['chatid' => $telegram_id], $exist_mobile['id']);
+					\dash\db::query($remove_all_this_chat_id);
+					\dash\db\logs::set('enter:hook:remove:all:chat:id', $exist_mobile['id'], $log_meta);
+					\dash\db\users::update(['chatid' => $telegram_id], $exist_mobile['id']);
 					$this->user_id = (int) $exist_mobile['id'];
 				}
 			}
 			else
 			{
-				\lib\notif::error(T_("System error 1"));
+				\dash\notif::error(T_("System error 1"));
 				return false;
 			}
 		}
@@ -225,19 +225,19 @@ class model extends \mvc\model
 				{
 					$remove_all_this_chat_id = "UPDATE users SET chatid = NULL WHERE chatid = '$telegram_id' ";
 
-					\lib\db::query($remove_all_this_chat_id);
+					\dash\db::query($remove_all_this_chat_id);
 
-					\lib\db\logs::set('enter:hook:remove:all:chat:id', $exist_chart_id['id'], $log_meta);
+					\dash\db\logs::set('enter:hook:remove:all:chat:id', $exist_chart_id['id'], $log_meta);
 
-					\lib\db\users::update(['mobile' => $mobile, 'chatid' => $telegram_id], $exist_chart_id['id']);
+					\dash\db\users::update(['mobile' => $mobile, 'chatid' => $telegram_id], $exist_chart_id['id']);
 
-					\lib\db\logs::set('enter:hook:change:mobile', $exist_chart_id['id'], $log_meta);
+					\dash\db\logs::set('enter:hook:change:mobile', $exist_chart_id['id'], $log_meta);
 				}
 				$this->user_id = (int) $exist_chart_id['id'];
 			}
 			else
 			{
-				\lib\notif::error(T_("System error 2"));
+				\dash\notif::error(T_("System error 2"));
 				return false;
 			}
 		}
@@ -247,14 +247,14 @@ class model extends \mvc\model
 			{
 				if($telegram_id)
 				{
-					\lib\db\users::update(['chatid' => $telegram_id], $exist_mobile['id']);
-					\lib\db\logs::set('enter:hook:change:chat_id', $exist_mobile['id'], $log_meta);
+					\dash\db\users::update(['chatid' => $telegram_id], $exist_mobile['id']);
+					\dash\db\logs::set('enter:hook:change:chat_id', $exist_mobile['id'], $log_meta);
 				}
 				$this->user_id = (int) $exist_mobile['id'];
 			}
 			else
 			{
-				\lib\notif::error(T_("System error 3"));
+				\dash\notif::error(T_("System error 3"));
 				return false;
 			}
 		}
@@ -286,22 +286,22 @@ class model extends \mvc\model
 		// 	$log['pagestatus'] = $_SERVER['REDIRECT_STATUS'];
 		// }
 
-		// $log['request']        = json_encode(\lib\utility::request(), JSON_UNESCAPED_UNICODE);
-		// $log['\lib\notif']          = json_encode(\lib\notif::compile(), JSON_UNESCAPED_UNICODE);
-		// $log['response']       = json_encode(\lib\notif::get_result(), JSON_UNESCAPED_UNICODE);
-		// $log['requestheader']  = json_encode(\lib\header::get('', JSON_UNESCAPED_UNICODE);
+		// $log['request']        = json_encode(\dash\utility::request(), JSON_UNESCAPED_UNICODE);
+		// $log['\dash\notif']          = json_encode(\dash\notif::compile(), JSON_UNESCAPED_UNICODE);
+		// $log['response']       = json_encode(\dash\notif::get_result(), JSON_UNESCAPED_UNICODE);
+		// $log['requestheader']  = json_encode(\dash\header::get('', JSON_UNESCAPED_UNICODE);
 		// $log['responseheader'] = json_encode(apache_response_headers(), JSON_UNESCAPED_UNICODE);
-		// $log['status']         = \lib\engine\process::status();
+		// $log['status']         = \dash\engine\process::status();
 		// $log['token']          = $this->authorization;
 		// $log['user_id']        = $this->user_id;
 		// $log['apikeyuserid']   = $this->parent_api_key_user_id;
 		// $log['apikey']         = $this->parent_api_key;
-		// $log['clientip']       = \lib\server::ip(true);
+		// $log['clientip']       = \dash\server::ip(true);
 		// $log['visit_id']       = null;
 
-		// $log                   = \lib\safe::safe($log);
+		// $log                   = \dash\safe::safe($log);
 
-		// \lib\db\apilogs::insert($log);
+		// \dash\db\apilogs::insert($log);
 
 		parent::_processor($options);
 	}

@@ -7,9 +7,9 @@ class controller extends \addons\content_enter\main\controller
 	{
 		parent::if_login_not_route();
 
-		if(\lib\request::get('referer') && \lib\request::get('referer') != '')
+		if(\dash\request::get('referer') && \dash\request::get('referer') != '')
 		{
-			$_SESSION['enter_referer'] = \lib\request::get('referer');
+			$_SESSION['enter_referer'] = \dash\request::get('referer');
 		}
 
 		if(self::get_request_method() === 'get')

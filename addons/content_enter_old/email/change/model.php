@@ -9,9 +9,9 @@ class model extends \addons\content_enter\main\model
 	 */
 	public function remove_email()
 	{
-		if(\lib\user::login('email') && \lib\user::id())
+		if(\dash\user::login('email') && \dash\user::id())
 		{
-			\lib\db\users::update(['email' => null], \lib\user::id());
+			\dash\db\users::update(['email' => null], \dash\user::id());
 			// set the alert message
 			self::set_alert(T_("Your email was removed"));
 			// open lock of alert page
@@ -29,27 +29,27 @@ class model extends \addons\content_enter\main\model
 	 */
 	public function post_change($_args)
 	{
-		if(\lib\request::post('type') === 'remove')
+		if(\dash\request::post('type') === 'remove')
 		{
 			$this->remove_email();
 			return;
 		}
 
-		if(!\lib\request::post('emailNew'))
+		if(!\dash\request::post('emailNew'))
 		{
-			\lib\notif::error(T_("Plese fill the new email"));
+			\dash\notif::error(T_("Plese fill the new email"));
 			return false;
 		}
 
-		if(\lib\user::login('email') == \lib\request::post('emailNew'))
+		if(\dash\user::login('email') == \dash\request::post('emailNew'))
 		{
-			\lib\notif::error(T_("Please select a different email"));
+			\dash\notif::error(T_("Please select a different email"));
 			return false;
 		}
 
-		if(\lib\request::post('emailNew'))
+		if(\dash\request::post('emailNew'))
 		{
-			self::set_enter_session('temp_email', \lib\request::post('emailNew'));
+			self::set_enter_session('temp_email', \dash\request::post('emailNew'));
 		}
 
 		// set session verify_from set

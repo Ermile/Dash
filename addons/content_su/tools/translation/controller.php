@@ -5,7 +5,7 @@ class controller extends \addons\content_su\main\controller
 {
 	public function ready()
 	{
-		if(\lib\url::isLocal())
+		if(\dash\url::isLocal())
 		{
 			// dont chcek permission on local
 		}
@@ -22,12 +22,12 @@ class controller extends \addons\content_su\main\controller
 	{
 
 		$exist    = true;
-		$mypath   = \lib\request::get('path');
-		$myupdate = \lib\request::get('update');
+		$mypath   = \dash\request::get('path');
+		$myupdate = \dash\request::get('update');
 		if($mypath)
 		{
-			echo \lib\utility\twigTrans::extract($mypath, $myupdate);
-			\lib\code::exit();
+			echo \dash\utility\twigTrans::extract($mypath, $myupdate);
+			\dash\code::exit();
 		}
 	}
 }

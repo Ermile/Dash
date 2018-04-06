@@ -11,7 +11,7 @@ class notifications
 	 */
 	public static function insert()
 	{
-		return \lib\db\config::public_insert('notifications', ...func_get_args());
+		return \dash\db\config::public_insert('notifications', ...func_get_args());
 	}
 
 
@@ -22,7 +22,7 @@ class notifications
 	 */
 	public static function multi_insert()
 	{
-		return \lib\db\config::public_multi_insert('notifications', ...func_get_args());
+		return \dash\db\config::public_multi_insert('notifications', ...func_get_args());
 	}
 
 
@@ -33,7 +33,7 @@ class notifications
 	 */
 	public static function update()
 	{
-		return \lib\db\config::public_update('notifications', ...func_get_args());
+		return \dash\db\config::public_update('notifications', ...func_get_args());
 	}
 
 
@@ -44,7 +44,7 @@ class notifications
 	 */
 	public static function get()
 	{
-		return \lib\db\config::public_get('notifications', ...func_get_args());
+		return \dash\db\config::public_get('notifications', ...func_get_args());
 	}
 
 
@@ -55,7 +55,7 @@ class notifications
 	 */
 	public static function search()
 	{
-		$result = \lib\db\config::public_search('notifications', ...func_get_args());
+		$result = \dash\db\config::public_search('notifications', ...func_get_args());
 		return $result;
 	}
 
@@ -68,7 +68,7 @@ class notifications
 	public static function get_not_sended()
 	{
 		$query = "SELECT * FROM notifications WHERE notifications.senddate IS NULL";
-		return \lib\db::get($query);
+		return \dash\db::get($query);
 	}
 
 
@@ -97,11 +97,11 @@ class notifications
 
 		if($_count)
 		{
-			return \lib\db::get($query, 'count', true);
+			return \dash\db::get($query, 'count', true);
 		}
 		else
 		{
-			return \lib\db::get($query);
+			return \dash\db::get($query);
 		}
 	}
 
@@ -170,7 +170,7 @@ class notifications
 		$cat_detail         = [];
 		$cat_id             = null;
 
-		$all_cat_list       = \lib\option::config('notification', 'cat');
+		$all_cat_list       = \dash\option::config('notification', 'cat');
 		$all_cat_list_title = array_column($all_cat_list, 'title');
 		$all_cat_list_title = array_combine(array_keys($all_cat_list), $all_cat_list_title);
 

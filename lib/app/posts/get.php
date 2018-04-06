@@ -7,13 +7,13 @@ trait get
 
 	public static function get_category_tag($_post_id, $_type)
 	{
-		$post_id = \lib\coding::decode($_post_id);
+		$post_id = \dash\coding::decode($_post_id);
 		if(!$post_id)
 		{
 			return false;
 		}
 
-		$result = \lib\db\termusages::usage($post_id, $_type);
+		$result = \dash\db\termusages::usage($post_id, $_type);
 
 		$temp = [];
 		if(is_array($result))
@@ -48,20 +48,20 @@ trait get
 
 		$_options = array_merge($default_options, $_options);
 
-		if(!\lib\user::id())
+		if(!\dash\user::id())
 		{
 			return false;
 		}
 
-		$id = \lib\coding::decode($_id);
+		$id = \dash\coding::decode($_id);
 
 		if(!$id)
 		{
-			\lib\notif::error(T_("Invalid posts id"));
+			\dash\notif::error(T_("Invalid posts id"));
 			return false;
 		}
 
-		$detail = \lib\db\posts::get(['id' => $id, 'limit' => 1]);
+		$detail = \dash\db\posts::get(['id' => $id, 'limit' => 1]);
 
 		$temp = [];
 
@@ -94,20 +94,20 @@ trait get
 
 		if($_options['cat'])
 		{
-			$get_last_posts = \lib\db\posts::get_posts_term($_options, 'cat');
+			$get_last_posts = \dash\db\posts::get_posts_term($_options, 'cat');
 		}
 		elseif($_options['tag'])
 		{
-			$get_last_posts = \lib\db\posts::get_posts_term($_options, 'tag');
+			$get_last_posts = \dash\db\posts::get_posts_term($_options, 'tag');
 		}
 		elseif($_options['term'])
 		{
-			$_options['term'] = \lib\coding::decode($_options['term']);
-			$get_last_posts   = \lib\db\posts::get_posts_term($_options, 'term');
+			$_options['term'] = \dash\coding::decode($_options['term']);
+			$get_last_posts   = \dash\db\posts::get_posts_term($_options, 'term');
 		}
 		else
 		{
-			$get_last_posts = \lib\db\posts::get_last_posts($_options);
+			$get_last_posts = \dash\db\posts::get_last_posts($_options);
 		}
 
 		$temp = [];

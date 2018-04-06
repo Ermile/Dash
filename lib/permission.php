@@ -52,7 +52,7 @@ class permission
 		 	}
 		 	else
 			{
-				self::$user_id = \lib\user::id();
+				self::$user_id = \dash\user::id();
 			}
 		}
 
@@ -79,7 +79,7 @@ class permission
 		// else if we have user_id get it from user detail
 		else if(self::$user_id && is_numeric(self::$user_id))
 		{
-			$user_data = \lib\db\users::get_by_id(self::$user_id);
+			$user_data = \dash\db\users::get_by_id(self::$user_id);
 			if(isset($user_data['permission']))
 			{
 				self::$permission = trim($user_data['permission']);
@@ -118,7 +118,7 @@ class permission
 			}
 			else
 			{
-				\lib\notif::error(T_("Can not access to it"));
+				\dash\notif::error(T_("Can not access to it"));
 				return false;
 			}
 		}
@@ -130,7 +130,7 @@ class permission
 			}
 			else
 			{
-				\lib\header::status(403, T_("Access denied"));
+				\dash\header::status(403, T_("Access denied"));
 				return false;
 			}
 		}

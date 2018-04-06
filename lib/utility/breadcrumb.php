@@ -10,7 +10,7 @@ class breadcrumb
 	public static function get()
 	{
 
-		$_addr      = \lib\url::dir();
+		$_addr      = \dash\url::dir();
 		$breadcrumb = [];
 
 		foreach ($_addr as $key => $value)
@@ -25,7 +25,7 @@ class breadcrumb
 			}
 		}
 
-		// $qry = \lib\db\posts::get(['url', ["IN",  "('".join("' , '", $breadcrumb)."')"]]);
+		// $qry = \dash\db\posts::get(['url', ["IN",  "('".join("' , '", $breadcrumb)."')"]]);
 		$titles    = [];
 		$post_urls = [];
 
@@ -38,7 +38,7 @@ class breadcrumb
 
 		if(count($breadcrumb) != $titles)
 		{
-			// $terms_qry = \lib\db\terms::get(['url', ["IN", "('".join("' , '", $breadcrumb)."')"]]);
+			// $terms_qry = \dash\db\terms::get(['url', ["IN", "('".join("' , '", $breadcrumb)."')"]]);
 			$term_titles = [];
 			$term_urls   = [];
 			// if(is_array($terms_qry))

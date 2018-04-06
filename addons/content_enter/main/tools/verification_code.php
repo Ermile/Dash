@@ -34,7 +34,7 @@ trait verification_code
 
 
 		// save this code in logs table and session
-		$log_id = \lib\db\logs::set('user:verification:code', self::user_data('id'), $log_meta);
+		$log_id = \dash\db\logs::set('user:verification:code', self::user_data('id'), $log_meta);
 
 		self::set_enter_session('verification_code', $code);
 		self::set_enter_session('verification_code_time', $time);
@@ -82,7 +82,7 @@ trait verification_code
 					'status' => 'enable',
 					'limit'      => 1,
 				];
-				$log_code = \lib\db\logs::get($where);
+				$log_code = \dash\db\logs::get($where);
 
 				if($log_code)
 				{
@@ -123,7 +123,7 @@ trait verification_code
 						// we expire the log
 						if(isset($log_code['id']))
 						{
-							\lib\db\logs::update(['status' => 'expire'], $log_code['id']);
+							\dash\db\logs::update(['status' => 'expire'], $log_code['id']);
 						}
 					}
 				}
@@ -146,25 +146,25 @@ trait verification_code
 			'meta' =>
 			[
 				'session' => $_SESSION,
-				'post'    => \lib\request::post(),
+				'post'    => \dash\request::post(),
 			]
 		];
 
 		// if(!self::check_input_current_mobile())
 		// {
-		// 	\lib\notif::error(T_("Dont!"));
+		// 	\dash\notif::error(T_("Dont!"));
 		// 	return false;
 		// }
 
-		if(!\lib\request::post('code'))
+		if(!\dash\request::post('code'))
 		{
-			\lib\notif::error(T_("Please fill the verification code"), 'code');
+			\dash\notif::error(T_("Please fill the verification code"), 'code');
 			return false;
 		}
 
-		if(!is_numeric(\lib\request::post('code')))
+		if(!is_numeric(\dash\request::post('code')))
 		{
-			\lib\notif::error(T_("What happend? the code is number. you try to send string!?"), 'code');
+			\dash\notif::error(T_("What happend? the code is number. you try to send string!?"), 'code');
 			return false;
 		}
 
@@ -174,18 +174,18 @@ trait verification_code
 		// and this code is deffirent by verification code
 		if($_module === 'sendsms')
 		{
-			$code = \lib\request::post('code');
+			$code = \dash\request::post('code');
 			if($code == self::get_enter_session('sendsms_code'))
 			{
 				$log_id = self::get_enter_session('sendsms_code_log_id');
 
 				if($log_id)
 				{
-					$get_log_detail = \lib\db\logs::get(['id' => $log_id, 'limit' => 1]);
+					$get_log_detail = \dash\db\logs::get(['id' => $log_id, 'limit' => 1]);
 					if(!$get_log_detail || !isset($get_log_detail['status']))
 					{
-						\lib\db\logs::set('enter:verify:sendsmsm:log:not:found', self::user_data('id'), $log_meta);
-						\lib\notif::error(T_("System error, try again"));
+						\dash\db\logs::set('enter:verify:sendsmsm:log:not:found', self::user_data('id'), $log_meta);
+						\dash\notif::error(T_("System error, try again"));
 						return false;
 					}
 
@@ -193,7 +193,7 @@ trait verification_code
 					{
 						case 'deliver':
 							// the user must be login
-							\lib\db\logs::update(['status' => 'expire'], $log_id);
+							\dash\db\logs::update(['status' => 'expire'], $log_id);
 							$code_is_okay = true;
 							// set login session
 							// $redirect_url = self::enter_set_login();
@@ -208,16 +208,16 @@ trait verification_code
 
 						case 'enable':
 							// user not send sms or not deliver to us
-							\lib\db\logs::set('enter:verify:sendsmsm:sms:not:deliver:to:us', self::user_data('id'), $log_meta);
-							\lib\notif::error(T_("Your sms not deliver to us!"));
+							\dash\db\logs::set('enter:verify:sendsmsm:sms:not:deliver:to:us', self::user_data('id'), $log_meta);
+							\dash\notif::error(T_("Your sms not deliver to us!"));
 							return false;
 							break;
 
 						case 'expire':
 							// the user user from this way and can not use this way again
 							// this is a bug!
-							\lib\db\logs::set('enter:verify:sendsmsm:sms:expire:log:bug', self::user_data('id'), $log_meta);
-							\lib\notif::error(T_("What are you doing?"));
+							\dash\db\logs::set('enter:verify:sendsmsm:sms:expire:log:bug', self::user_data('id'), $log_meta);
+							\dash\notif::error(T_("What are you doing?"));
 							return false;
 						default:
 							// bug!
@@ -227,21 +227,21 @@ trait verification_code
 				}
 				else
 				{
-					\lib\db\logs::set('enter:verify:sendsmsm:log:id:not:found', self::user_data('id'), $log_meta);
-					\lib\notif::error(T_("What are you doing?"));
+					\dash\db\logs::set('enter:verify:sendsmsm:log:id:not:found', self::user_data('id'), $log_meta);
+					\dash\notif::error(T_("What are you doing?"));
 					return false;
 				}
 			}
 			else
 			{
-				\lib\db\logs::set('enter:verify:sendsmsm:user:inspected:change:html', self::user_data('id'), $log_meta);
-				\lib\notif::error(T_("What are you doing?"));
+				\dash\db\logs::set('enter:verify:sendsmsm:user:inspected:change:html', self::user_data('id'), $log_meta);
+				\dash\notif::error(T_("What are you doing?"));
 				return false;
 			}
 		}
 		else
 		{
-			if(intval(\lib\request::post('code')) === intval(self::get_enter_session('verification_code')))
+			if(intval(\dash\request::post('code')) === intval(self::get_enter_session('verification_code')))
 			{
 				$code_is_okay = true;
 			}
@@ -254,7 +254,7 @@ trait verification_code
 			{
 				// the user enter the code and the code is ok
 				// must expire this code
-				\lib\db\logs::update(['status' => 'expire'], self::get_enter_session('verification_code_id'));
+				\dash\db\logs::update(['status' => 'expire'], self::get_enter_session('verification_code_id'));
 				self::set_enter_session('verification_code', null);
 				self::set_enter_session('verification_code_time', null);
 				self::set_enter_session('verification_code_way', null);
@@ -280,7 +280,7 @@ trait verification_code
 			  )
 			{
 				// set temp ramz in use pass
-				\lib\db\users::update(['password' => self::get_enter_session('temp_ramz_hash')], self::user_data('id'));
+				\dash\db\users::update(['password' => self::get_enter_session('temp_ramz_hash')], self::user_data('id'));
 			}
 
 
@@ -294,7 +294,7 @@ trait verification_code
 			if(self::get_enter_session('verify_from') === 'username_remove' && is_numeric(self::user_data('id')))
 			{
 				// set temp ramz in use pass
-				\lib\db\users::update(['username' => null], self::user_data('id'));
+				\dash\db\users::update(['username' => null], self::user_data('id'));
 				// remove usename from sessions
 				unset($_SESSION['user']['username']);
 				// set the alert message
@@ -344,9 +344,9 @@ trait verification_code
 				}
 				$update_user['status'] = 'removed';
 
-				\lib\db\users::update($update_user, self::user_data('id'));
+				\dash\db\users::update($update_user, self::user_data('id'));
 
-				\lib\db\sessions::delete_account(self::user_data('id'));
+				\dash\db\sessions::delete_account(self::user_data('id'));
 
 				//put logout
 				self::set_logout(self::user_data('id'), false);
@@ -371,7 +371,7 @@ trait verification_code
 			  )
 			{
 				// set temp ramz in use pass
-				\lib\db\users::update(['username' => self::get_enter_session('temp_username')], self::user_data('id'));
+				\dash\db\users::update(['username' => self::get_enter_session('temp_username')], self::user_data('id'));
 				// set the alert message
 				if(self::get_enter_session('verify_from') === 'username_set')
 				{
@@ -406,7 +406,7 @@ trait verification_code
 				// must loaded mobile data
 				if(self::get_enter_session('temp_mobile') && is_numeric(self::get_enter_session('temp_mobile')))
 				{
-					$load_mobile_data = \lib\db\users::get_by_mobile(self::get_enter_session('temp_mobile'));
+					$load_mobile_data = \dash\db\users::get_by_mobile(self::get_enter_session('temp_mobile'));
 					if($load_mobile_data && isset($load_mobile_data['id']))
 					{
 						if(isset($load_mobile_data['status']) && in_array($load_mobile_data['status'], self::$block_status))
@@ -439,7 +439,7 @@ trait verification_code
 								}
 								else
 								{
-									\lib\db\users::update(['googlemail' => self::get_enter_session('logined_by_email')], $load_mobile_data['id']);
+									\dash\db\users::update(['googlemail' => self::get_enter_session('logined_by_email')], $load_mobile_data['id']);
 									self::$user_id = $load_mobile_data['id'];
 									self::load_user_data('user_id');
 								}
@@ -473,19 +473,19 @@ trait verification_code
 
 								$signup['status'] = 'active';
 								self::set_enter_session('first_signup', true);
-								self::$user_id = \lib\db\users::signup($signup);
+								self::$user_id = \dash\db\users::signup($signup);
 								self::load_user_data('user_id');
 							}
 							else
 							{
-								\lib\db\logs::set('error110000');
+								\dash\db\logs::set('error110000');
 							}
 						}
 						elseif(self::get_enter_session('mobile_request_from') === 'google_email_exist')
 						{
 							if(!self::user_data('mobile'))
 							{
-								\lib\db\users::update(['mobile' => self::get_enter_session('temp_mobile')], self::user_data('id'));
+								\dash\db\users::update(['mobile' => self::get_enter_session('temp_mobile')], self::user_data('id'));
 								// login
 							}
 							self::$user_id = self::user_data('id');
@@ -496,7 +496,7 @@ trait verification_code
 						{
 							// other way go to here
 							// facebook not exist email and ...
-							\lib\db\logs::set('error110');
+							\dash\db\logs::set('error110');
 							return false;
 						}
 					}
@@ -505,7 +505,7 @@ trait verification_code
 				{
 					// no mobile was found :|
 					// bug. return false;
-					\lib\db\logs::set('error11');
+					\dash\db\logs::set('error11');
 					return false;
 				}
 			}
@@ -529,7 +529,7 @@ trait verification_code
 			  )
 			{
 				// set temp ramz in use pass
-				\lib\db\users::update(['email' => self::get_enter_session('temp_email')], self::user_data('id'));
+				\dash\db\users::update(['email' => self::get_enter_session('temp_email')], self::user_data('id'));
 			}
 
 			/**
@@ -553,7 +553,7 @@ trait verification_code
 			if(self::get_enter_session('verify_from') === 'two_step_set' &&	is_numeric(self::user_data('id')))
 			{
 				// set on two_step of this user
-				\lib\db\users::update(['twostep' => 1], self::user_data('id'));
+				\dash\db\users::update(['twostep' => 1], self::user_data('id'));
 			}
 
 
@@ -566,7 +566,7 @@ trait verification_code
 			if(self::get_enter_session('verify_from') === 'two_step_unset' &&	is_numeric(self::user_data('id')))
 			{
 				// set off two_step of this user
-				\lib\db\users::update(['twostep' => 0], self::user_data('id'));
+				\dash\db\users::update(['twostep' => 0], self::user_data('id'));
 			}
 
 			// set login session
@@ -588,7 +588,7 @@ trait verification_code
 			// plus count invalid code
 			self::plus_try_session('invalid_code');
 
-			\lib\notif::error(T_("Invalid code, try again"), 'code');
+			\dash\notif::error(T_("Invalid code, try again"), 'code');
 			return false;
 		}
 	}
@@ -608,7 +608,7 @@ trait verification_code
 			'subject' => 'contact',
 			'body'    => "salam". $code,
 		];
-		// $mail = \lib\mail::send($mail);
+		// $mail = \dash\mail::send($mail);
 		return $mail;
 	}
 
@@ -661,7 +661,7 @@ trait verification_code
 					}
 					if(!empty($update_user_google))
 					{
-						\lib\db\users::update($update_user_google, self::user_data('id'));
+						\dash\db\users::update($update_user_google, self::user_data('id'));
 					}
 					//auto redirect to redirect url
 					self::enter_set_login(null, true);

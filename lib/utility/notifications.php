@@ -71,7 +71,7 @@ class notifications
 					notifications.id = $_id
 				LIMIT 1
 			";
-			\lib\db::query($query);
+			\dash\db::query($query);
 		}
 	}
 
@@ -106,7 +106,7 @@ class notifications
 					notifications.id = $_id
 				LIMIT 1
 			";
-			\lib\db::query($query);
+			\dash\db::query($query);
 		}
 	}
 
@@ -137,7 +137,7 @@ class notifications
 			{
 				$msg = $value->title . ' '. $value->content;
 				$this->compelete($value->id, 'telegram');
-				\lib\utility\telegram::sendMessage($this->get_chat_id($value->user_id), $msg, ['sort' => 1]);
+				\dash\utility\telegram::sendMessage($this->get_chat_id($value->user_id), $msg, ['sort' => 1]);
 
 			}
 			else
@@ -151,8 +151,8 @@ class notifications
 			}
 		}
 
-		\lib\utility\telegram::sort_send();
-		\lib\utility\telegram::clean_cash();
+		\dash\utility\telegram::sort_send();
+		\dash\utility\telegram::clean_cash();
 	}
 
 
@@ -186,7 +186,7 @@ class notifications
 				$sms['mobile'] = $this->get_mobile($value->user_id);
 				$sms['msg']    = $value->title . ' '. $value->content;
 				$sms['args']   = null;
-				\lib\utility\sms::send($sms);
+				\dash\utility\sms::send($sms);
 			}
 			else
 			{
@@ -233,7 +233,7 @@ class notifications
 					'subject' => $value->title,
 					'body'    => $value->content,
 				];
-				// \lib\mail::send($mail);
+				// \dash\mail::send($mail);
 
 			}
 			else
@@ -326,7 +326,7 @@ class notifications
 				notifications.$_type = 1 AND
 				notifications.status = 'enable'
 		";
-		return \lib\db::get($query);
+		return \dash\db::get($query);
 	}
 
 
@@ -337,7 +337,7 @@ class notifications
 	public function config()
 	{
 		// notification status is off
-		if(!\lib\option::config('notification', 'status'))
+		if(!\dash\option::config('notification', 'status'))
 		{
 			$this->status = false;
 			return false;
@@ -392,8 +392,8 @@ class notifications
 					users
 				WHERE users.id IN ($_user_ids)
 			";
-			$user_details       = \lib\db::get($query);
-			$user_details       = \lib\utility\filter::meta_decode($user_details, "/notification/");
+			$user_details       = \dash\db::get($query);
+			$user_details       = \dash\utility\filter::meta_decode($user_details, "/notification/");
 			$user_details_id    = array_column($user_details, 'id');
 			$user_details       = array_combine($user_details_id, $user_details);
 			$this->user_details = $user_details;
@@ -413,7 +413,7 @@ class notifications
 	{
 		if(isset($this->user_details[$_user_id]['mobile']))
 		{
-			if($mobile = \lib\utility\filter::mobile($this->user_details[$_user_id]['mobile']))
+			if($mobile = \dash\utility\filter::mobile($this->user_details[$_user_id]['mobile']))
 			{
 				return $mobile;
 			}
@@ -482,7 +482,7 @@ class notifications
 	 */
 	public function is_block($_user_id, $_cat)
 	{
-		$cat_list = \lib\option::config('notification', 'cat');
+		$cat_list = \dash\option::config('notification', 'cat');
 		$cat_keys = array_keys($cat_list);
 		$cat_list = array_column($cat_list, 'title');
 		$cat_list = array_combine($cat_keys, $cat_list);

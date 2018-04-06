@@ -34,7 +34,7 @@ class session
 			$session['id'] = $_id;
 		}
 		// save in options table and if successful return session_id
-		if(\lib\utility\option::set($session, true))
+		if(\dash\utility\option::set($session, true))
 		{
 			return $session_id;
 		}
@@ -87,7 +87,7 @@ class session
 			$qry .= "AND `meta` $_like '$_meta'";
 		}
 		// run query and get result
-		$session_exist = \lib\db::get($qry, null, true);
+		$session_exist = \dash\db::get($qry, null, true);
 		$session_id    = null;
 
 		// if record is not exist save session for first time
@@ -180,7 +180,7 @@ class session
 	 */
 	public static function deleteByPerm($_permName)
 	{
-		$permList     = \lib\utility\option::permList(true);
+		$permList     = \dash\utility\option::permList(true);
 		$deleteResult = [];
 
 		// if permission exist
@@ -189,7 +189,7 @@ class session
 			// find user with this permission
 			$perm_id = $permList[$_permName];
 			// connect to database
-			\lib\db::connect(true);
+			\dash\db::connect(true);
 			$qry =
 			"SELECT `options`.value
 				FROM users
@@ -197,9 +197,9 @@ class session
 				WHERE `options`.cat = 'session' AND
 					permission = $perm_id;";
 			// run query and give result
-			$result = @mysqli_query(\lib\db::$link, $qry);
+			$result = @mysqli_query(\dash\db::$link, $qry);
 			// fetch all records
-			$result = \lib\db::fetch_all($result, 'value');
+			$result = \dash\db::fetch_all($result, 'value');
 			if($result)
 			{
 				$deleteResult = self::delete($result);
@@ -210,7 +210,7 @@ class session
 					if($value === true)
 					{
 						$qry = "DELETE FROM options WHERE cat = 'session' AND value = '$key';";
-						@mysqli_query(\lib\db::$link, $qry);
+						@mysqli_query(\dash\db::$link, $qry);
 					}
 				}
 				return $deleteResult;

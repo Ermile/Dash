@@ -9,44 +9,44 @@ class model extends \addons\content_cp\main\model
 	{
 
 		$post             = [];
-		$post['title']    = \lib\request::post('title');
-		$post['desc']     = \lib\request::post('desc');
-		$post['excerpt']  = \lib\request::post('excerpt');
-		$post['parent']   = \lib\request::post('parent');
-		$post['language'] = \lib\language::current();
-		$post['slug']     = \lib\request::post('slug');
-		$post['type']     = \lib\request::get('type');
-		$post['status']   = \lib\request::post('status') ? 'enable' : 'disable' ;
+		$post['title']    = \dash\request::post('title');
+		$post['desc']     = \dash\request::post('desc');
+		$post['excerpt']  = \dash\request::post('excerpt');
+		$post['parent']   = \dash\request::post('parent');
+		$post['language'] = \dash\language::current();
+		$post['slug']     = \dash\request::post('slug');
+		$post['type']     = \dash\request::get('type');
+		$post['status']   = \dash\request::post('status') ? 'enable' : 'disable' ;
 
-		if(\lib\request::get('edit'))
+		if(\dash\request::get('edit'))
 		{
-			$post['id'] = \lib\request::get('edit');
-			\lib\app\term::edit($post);
+			$post['id'] = \dash\request::get('edit');
+			\dash\app\term::edit($post);
 		}
 		else
 		{
-			\lib\app\term::add($post);
+			\dash\app\term::add($post);
 		}
 
-		if(\lib\engine\process::status())
+		if(\dash\engine\process::status())
 		{
-			if(\lib\request::get('edit'))
+			if(\dash\request::get('edit'))
 			{
-				\lib\notif::ok(T_("Term successfully edited"));
+				\dash\notif::ok(T_("Term successfully edited"));
 
-				$url = \lib\url::here(). '/terms';
+				$url = \dash\url::here(). '/terms';
 
-				if(\lib\request::get('type'))
+				if(\dash\request::get('type'))
 				{
-					$url .= '?type='. \lib\request::get('type');
+					$url .= '?type='. \dash\request::get('type');
 				}
 
-				\lib\redirect::to($url);
+				\dash\redirect::to($url);
 			}
 			else
 			{
-				\lib\notif::ok(T_("Term successfully added"));
-				\lib\redirect::to(\lib\url::full());
+				\dash\notif::ok(T_("Term successfully added"));
+				\dash\redirect::to(\dash\url::full());
 			}
 		}
 	}

@@ -21,7 +21,7 @@ trait code_list
 		$list[8] = "payment:payir";
 		$list[9] = "payment:asanpardakht";
 
-		if($option_list = \lib\option::config('transactions_code'))
+		if($option_list = \dash\option::config('transactions_code'))
 		{
 			if(is_array($option_list))
 			{

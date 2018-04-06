@@ -88,9 +88,9 @@ class template
 				$type = 'category';
 			}
 
-			$new_url = \lib\url::base(). '/'. $type. '/'. $url;
+			$new_url = \dash\url::base(). '/'. $type. '/'. $url;
 
-			\lib\redirect::to($new_url);
+			\dash\redirect::to($new_url);
 			return;
 
 		}
@@ -162,7 +162,7 @@ class template
 		{
 
 			self::$display_name    = self::$display_prefix. self::$display_name;
-			$current_lang          = \lib\language::current('name');
+			$current_lang          = \dash\language::current('name');
 
 			$current_lang_template = substr(self::$display_name, 0, -(strlen(self::$file_ext)));
 			$current_lang_template .= '-'.$current_lang . self::$file_ext;
@@ -193,10 +193,10 @@ class template
 	public static function social_short_link()
 	{
 		// save name of current module as name of social
-		$mymodule    = \lib\url::module();
+		$mymodule    = \dash\url::module();
 		$social_name = $mymodule;
 
-		if(\lib\option::social('status'))
+		if(\dash\option::social('status'))
 		{
 			// declare list of shortkey for socials
 			$social_list =
@@ -232,14 +232,14 @@ class template
 		// if social name exist in social adresses then redirect to it
 		if(
 			isset($social_list[$social_name]) &&
-			\lib\option::social($social_name, 'name') &&
-			is_string(\lib\option::social($social_name, 'name'))
+			\dash\option::social($social_name, 'name') &&
+			is_string(\dash\option::social($social_name, 'name'))
 		  )
 		{
 			// create url of social network
-			$social_url = $social_list[$social_name] . \lib\option::social($social_name, 'name');
+			$social_url = $social_list[$social_name] . \dash\option::social($social_name, 'name');
 			// redirect to new address
-			\lib\redirect::to($social_url);
+			\dash\redirect::to($social_url);
 			return true;
 		}
 
@@ -249,10 +249,10 @@ class template
 
 	public static function fake_static_page()
 	{
-		$mymodule    = \lib\url::module();
+		$mymodule    = \dash\url::module();
 
 		// if user entered url contain one of our site language
-		$current_path = \lib\url::dir();
+		$current_path = \dash\url::dir();
 		if(is_array($current_path))
 		{
 			$current_path = implode('/', $current_path);
@@ -292,7 +292,7 @@ class template
 		{
 
 			self::$display_name    = self::$display_prefix. self::$display_name;
-			$current_lang          = \lib\language::current('name');
+			$current_lang          = \dash\language::current('name');
 
 			$current_lang_template = substr(self::$display_name, 0, -(strlen(self::$file_ext)));
 			$current_lang_template .= '-'.$current_lang . self::$file_ext;
@@ -314,8 +314,8 @@ class template
 
 	private static function get_my_url()
 	{
-		$myUrl = \lib\url::directory();
-		$myUrl = \lib\url::urlfilterer($myUrl);
+		$myUrl = \dash\url::directory();
+		$myUrl = \dash\url::urlfilterer($myUrl);
 		return $myUrl;
 	}
 
@@ -326,7 +326,7 @@ class template
 
 		if(substr($myUrl, 0, 9) === 'category/')
 		{
-			$cat_data = \lib\db\terms::get(['url' => substr($myUrl, 9), 'limit' => 1]);
+			$cat_data = \dash\db\terms::get(['url' => substr($myUrl, 9), 'limit' => 1]);
 			if($cat_data)
 			{
 				return $cat_data;
@@ -342,7 +342,7 @@ class template
 
 		if(substr($myUrl, 0, 4) === 'tag/')
 		{
-			$cat_data = \lib\db\terms::get(['url' => substr($myUrl, 4), 'limit' => 1]);
+			$cat_data = \dash\db\terms::get(['url' => substr($myUrl, 4), 'limit' => 1]);
 			if($cat_data)
 			{
 				return $cat_data;
@@ -361,14 +361,14 @@ class template
 			return false;
 		}
 
-		$term_data = \lib\db\terms::get(['url' => $myUrl, 'type' => 'cat', 'limit' => 1]);
+		$term_data = \dash\db\terms::get(['url' => $myUrl, 'type' => 'cat', 'limit' => 1]);
 
 		if($term_data)
 		{
 			return $term_data;
 		}
 
-		$term_data = \lib\db\terms::get(['url' => $myUrl, 'type' => 'tag', 'limit' => 1]);
+		$term_data = \dash\db\terms::get(['url' => $myUrl, 'type' => 'tag', 'limit' => 1]);
 
 		if($term_data)
 		{
@@ -382,7 +382,7 @@ class template
 	{
 		if(!empty(db_name))
 		{
-			$post_detail = \lib\app\posts::find_post();
+			$post_detail = \dash\app\posts::find_post();
 			if($post_detail)
 			{
 				return $post_detail;

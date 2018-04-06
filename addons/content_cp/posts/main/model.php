@@ -6,23 +6,23 @@ class model extends \mvc\model
 {
 	public static function upload_gallery()
 	{
-		if(\lib\request::files('gallery'))
+		if(\dash\request::files('gallery'))
 		{
-			$uploaded_file = \lib\app\file::upload(['debug' => false, 'upload_name' => 'gallery']);
+			$uploaded_file = \dash\app\file::upload(['debug' => false, 'upload_name' => 'gallery']);
 
 			if(isset($uploaded_file['url']))
 			{
 				// save uploaded file
-				\lib\app\posts::post_gallery(\lib\request::get('id'), $uploaded_file['url'], 'add');
+				\dash\app\posts::post_gallery(\dash\request::get('id'), $uploaded_file['url'], 'add');
 			}
 
-			if(!\lib\engine\process::status())
+			if(!\dash\engine\process::status())
 			{
-				\lib\notif::error(T_("Can not upload file"));
+				\dash\notif::error(T_("Can not upload file"));
 			}
 			else
 			{
-				\lib\notif::ok(T_("File successfully uploaded"));
+				\dash\notif::ok(T_("File successfully uploaded"));
 			}
 
 			return true;
@@ -33,14 +33,14 @@ class model extends \mvc\model
 
 	public static function remove_gallery()
 	{
-		$id = \lib\request::post('id');
+		$id = \dash\request::post('id');
 		if(!is_numeric($id))
 		{
 			return false;
 		}
-		\lib\app\posts::post_gallery(\lib\request::get('id'), $id, 'remove');
-		\lib\notif::direct();
-		\lib\redirect::to(\lib\url::full());
+		\dash\app\posts::post_gallery(\dash\request::get('id'), $id, 'remove');
+		\dash\notif::direct();
+		\dash\redirect::to(\dash\url::full());
 
 	}
 
@@ -51,7 +51,7 @@ class model extends \mvc\model
 			return false;
 		}
 
-		if(\lib\request::post('type') === 'remove_gallery')
+		if(\dash\request::post('type') === 'remove_gallery')
 		{
 			self::remove_gallery();
 			return false;
@@ -59,22 +59,22 @@ class model extends \mvc\model
 
 		$post =
 		[
-			'id'          => \lib\request::get('id'),
-			'subtitle'    => \lib\request::post('subtitle'),
-			'excerpt'     => \lib\request::post('excerpt'),
-			'title'       => \lib\request::post('title'),
-			'tag'         => \lib\request::post('tag'),
-			'slug'        => \lib\request::post('slug'),
+			'id'          => \dash\request::get('id'),
+			'subtitle'    => \dash\request::post('subtitle'),
+			'excerpt'     => \dash\request::post('excerpt'),
+			'title'       => \dash\request::post('title'),
+			'tag'         => \dash\request::post('tag'),
+			'slug'        => \dash\request::post('slug'),
 			'content'     => isset($_POST['content']) ? $_POST['content'] : null,
-			'publishdate' => \lib\request::post('publishdate'),
-			'status'      => \lib\request::post('status'),
-			'comment'     => \lib\request::post('comment'),
-			'language'    => \lib\request::post('language'),
-			'type'        => \lib\request::get('type'),
-			'language'    => \lib\language::current(),
+			'publishdate' => \dash\request::post('publishdate'),
+			'status'      => \dash\request::post('status'),
+			'comment'     => \dash\request::post('comment'),
+			'language'    => \dash\request::post('language'),
+			'type'        => \dash\request::get('type'),
+			'language'    => \dash\language::current(),
 		];
 
-		$all_post = \lib\request::post();
+		$all_post = \dash\request::post();
 
 		$post['cat'] = [];
 
@@ -86,16 +86,16 @@ class model extends \mvc\model
 			}
 		}
 
-		if(\lib\request::files('thumb'))
+		if(\dash\request::files('thumb'))
 		{
-			$uploaded_file = \lib\app\file::upload(['debug' => false, 'upload_name' => 'thumb']);
+			$uploaded_file = \dash\app\file::upload(['debug' => false, 'upload_name' => 'thumb']);
 
 			if(isset($uploaded_file['url']))
 			{
 				$post['thumb'] = $uploaded_file['url'];
 			}
 			// if in upload have error return
-			if(!\lib\engine\process::status())
+			if(!\dash\engine\process::status())
 			{
 				return false;
 			}

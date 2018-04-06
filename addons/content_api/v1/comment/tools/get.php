@@ -34,7 +34,7 @@ trait get
 			'data' => null,
 			'meta' =>
 			[
-				'input' => \lib\utility::request(),
+				'input' => \dash\utility::request(),
 			]
 		];
 
@@ -44,16 +44,16 @@ trait get
 		}
 		$where               = [];
 		$where['pagenation'] = $_args['pagenation'];
-		$search              = \lib\utility::request('search');
+		$search              = \dash\utility::request('search');
 
 		$get_args = $this->comment_make_where($_args, $where, $log_meta);
 
-		if(!\lib\engine\process::status() || $get_args === false)
+		if(!\dash\engine\process::status() || $get_args === false)
 		{
 			return false;
 		}
 
-		$result          = \lib\db\comments::search($search, $where);
+		$result          = \dash\db\comments::search($search, $where);
 
 		$temp            = [];
 
@@ -96,35 +96,35 @@ trait get
 
 		$_args = array_merge($default_args, $_args);
 
-		// \lib\notif::title(T_("Operation Faild"));
+		// \dash\notif::title(T_("Operation Faild"));
 
 		$log_meta =
 		[
 			'data' => null,
 			'meta' =>
 			[
-				'input' => \lib\utility::request(),
+				'input' => \dash\utility::request(),
 			]
 		];
 
 		if(!$this->user_id)
 		{
-			\lib\db\logs::set('api:comment:comment_id:notfound', $this->user_id, $log_meta);
-			\lib\notif::error(T_("User not found"), 'comment', 'permission');
+			\dash\db\logs::set('api:comment:comment_id:notfound', $this->user_id, $log_meta);
+			\dash\notif::error(T_("User not found"), 'comment', 'permission');
 			return false;
 		}
 
 
-		$id = \lib\utility::request('id');
-		$id = \lib\coding::decode($id);
+		$id = \dash\utility::request('id');
+		$id = \dash\coding::decode($id);
 		if(!$id)
 		{
-			\lib\db\logs::set('api:comment:id:not:set', $this->user_id, $log_meta);
-			\lib\notif::error(T_("Id not set"), 'id', 'arguments');
+			\dash\db\logs::set('api:comment:id:not:set', $this->user_id, $log_meta);
+			\dash\notif::error(T_("Id not set"), 'id', 'arguments');
 			return false;
 		}
 
-		$get_comment = \lib\db\comments::get(['id' => $id, 'limit' => 1]);
+		$get_comment = \dash\db\comments::get(['id' => $id, 'limit' => 1]);
 
 		$result = $this->ready_comment($get_comment, $_args);
 
@@ -166,7 +166,7 @@ trait get
 				case 'id':
 				case 'post_id':
 				case 'user_id':
-					$result[$key] = \lib\coding::encode($value);
+					$result[$key] = \dash\coding::encode($value);
 					break;
 
 				case 'meta':

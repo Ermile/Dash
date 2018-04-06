@@ -19,7 +19,7 @@ class model extends \addons\content_enter\main\model
 	{
 		// IN THIS TIME EVERYONE CLICK ON NO BUTTON
 		// THE MOBILE AND EMAIN MUST BE CHECK !!!
-		// if(\lib\request::post('will') === 'no')
+		// if(\dash\request::post('will') === 'no')
 		// {
 			// the user dont whill to enter mobile :/
 			// never ask this question at this user
@@ -30,17 +30,17 @@ class model extends \addons\content_enter\main\model
 			return;
 		// }
 
-		// if(!\lib\request::post('mobile'))
+		// if(!\dash\request::post('mobile'))
 		// {
-		// 	\lib\notif::error(T_("Please enter mobile or skip this step"));
+		// 	\dash\notif::error(T_("Please enter mobile or skip this step"));
 		// 	return false;
 		// }
 
-		// $mobile = \lib\utility\filter::mobile(\lib\request::post('mobile'));
+		// $mobile = \dash\utility\filter::mobile(\dash\request::post('mobile'));
 
 		// if(!$mobile)
 		// {
-		// 	\lib\notif::error(T_("Please enter a valid mobile number"));
+		// 	\dash\notif::error(T_("Please enter a valid mobile number"));
 		// 	return false;
 		// }
 

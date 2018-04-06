@@ -5,11 +5,11 @@ class model extends \addons\content_su\main\model
 {
 	public function post_backup()
 	{
-		if(\lib\request::post('backup') === 'now')
+		if(\dash\request::post('backup') === 'now')
 		{
 			$this->backup_now();
 		}
-		elseif(\lib\request::post('backup') === 'now_log')
+		elseif(\dash\request::post('backup') === 'now_log')
 		{
 			if(defined('db_log_name'))
 			{
@@ -17,38 +17,38 @@ class model extends \addons\content_su\main\model
 			}
 			else
 			{
-				\lib\notif::error(T_("Database of logs dose not exists"));
+				\dash\notif::error(T_("Database of logs dose not exists"));
 				return false;
 			}
 		}
-		elseif(\lib\request::post('backup') === 'schedule')
+		elseif(\dash\request::post('backup') === 'schedule')
 		{
 			$this->backup_schedule();
 		}
-		elseif(\lib\request::post('type') === 'remove' && \lib\request::post('file'))
+		elseif(\dash\request::post('type') === 'remove' && \dash\request::post('file'))
 		{
-			$file_name = \lib\request::post('file');
-			if(\lib\file::delete(database. 'backup/files/'. $file_name))
+			$file_name = \dash\request::post('file');
+			if(\dash\file::delete(database. 'backup/files/'. $file_name))
 			{
-				\lib\notif::ok(T_("File successfully deleted"));
-				\lib\redirect::pwd();
+				\dash\notif::ok(T_("File successfully deleted"));
+				\dash\redirect::pwd();
 				return;
 			}
 		}
 		else
 		{
-			\lib\notif::ok(T_("Dont!"));
+			\dash\notif::ok(T_("Dont!"));
 			return false;
 		}
 	}
 
 	public function backup_now($_db_name = null)
 	{
-		if(\lib\db::backup_dump(['download' => false, 'db_name' => $_db_name]))
+		if(\dash\db::backup_dump(['download' => false, 'db_name' => $_db_name]))
 		{
-			\lib\notif::ok(T_("Backup complete"));
+			\dash\notif::ok(T_("Backup complete"));
 		}
-		\lib\redirect::pwd();
+		\dash\redirect::pwd();
 	}
 
 	public function backup_schedule()
@@ -56,10 +56,10 @@ class model extends \addons\content_su\main\model
 
 		$array =
 		[
-			'auto_backup' => \lib\request::post('auto_backup') === 'on' ? true : false,
-			'every'       => \lib\request::post('every'),
-			'time'        => \lib\request::post('time'),
-			'life_time'   => \lib\request::post('life_time'),
+			'auto_backup' => \dash\request::post('auto_backup') === 'on' ? true : false,
+			'every'       => \dash\request::post('every'),
+			'time'        => \dash\request::post('time'),
+			'life_time'   => \dash\request::post('life_time'),
 			'db_name'     => db_name,
 		];
 
@@ -67,15 +67,15 @@ class model extends \addons\content_su\main\model
 
 		$url    = database . 'backup';
 
-		if(!\lib\file::exists($url))
+		if(!\dash\file::exists($url))
 		{
-			\lib\file::makeDir($url, null, true);
+			\dash\file::makeDir($url, null, true);
 		}
 
 		$url .= '/schedule';
-		\lib\file::write($url, $array);
+		\dash\file::write($url, $array);
 
-		\lib\notif::ok(T_("Auto backup schedule saved"));
+		\dash\notif::ok(T_("Auto backup schedule saved"));
 
 	}
 }

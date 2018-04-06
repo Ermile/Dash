@@ -24,17 +24,17 @@ class controller extends \mvc\controller
 	protected function install_first_time()
 	{
 		// run if get is set and no database exist
-		if($this->suModule('raw') == 'install' && \lib\request::get('time') == 'first_time')
+		if($this->suModule('raw') == 'install' && \dash\request::get('time') == 'first_time')
 		{
-			if(!\lib\db::count_table())
+			if(!\dash\db::count_table())
 			{
 				require_once(lib."engine/install.php");
 				// this code exit the code
-				\lib\engine\mvc::$controller->_processor(['force_stop' => true, 'force_json' => false]);
+				\dash\engine\mvc::$controller->_processor(['force_stop' => true, 'force_json' => false]);
 			}
 			else
 			{
-				\lib\header::status(404, T_("System was installed!"));
+				\dash\header::status(404, T_("System was installed!"));
 			}
 		}
 	}
@@ -51,28 +51,28 @@ class controller extends \mvc\controller
 	public function _permission()
 	{
 		// if user is not login then redirect
-		if(!\lib\user::login())
+		if(!\dash\user::login())
 		{
-			\lib\redirect::to(\lib\url::base(). '/enter');
+			\dash\redirect::to(\dash\url::base(). '/enter');
 			return ;
 		}
 
 		// Check permission and if user can do this operation
 		// allow to do it, else show related message in notify center
-		if(\lib\url::isLocal() && false)
+		if(\dash\url::isLocal() && false)
 		{
 			// on tld dev open the su to upgrade for test
 		}
 		else
 		{
-			if(\lib\permission::access_su())
+			if(\dash\permission::access_su())
 			{
 				// the user have permission of su
 			}
 			else
 			{
 				// set 404 to the user never underestand this url is exist ;)
-				\lib\header::status(404);
+				\dash\header::status(404);
 			}
 		}
 	}
@@ -88,7 +88,7 @@ class controller extends \mvc\controller
 	{
 		$mymodule = $this->suModule('table');
 		$suModule = $this->suModule('raw');
-		$mypath   = str_replace('/', '_', \lib\url::path());
+		$mypath   = str_replace('/', '_', \dash\url::path());
 
 		if( is_file(addons.'content_su/'.$suModule.'/model.php') && !$this->model_name)
 		{
@@ -119,7 +119,7 @@ class controller extends \mvc\controller
 			// 	break;
 
 			case 'logout':
-				\lib\redirect::to(null, false)->set_url('logout');
+				\dash\redirect::to(null, false)->set_url('logout');
 				break;
 		}
 
@@ -134,7 +134,7 @@ class controller extends \mvc\controller
 	{
 		if($_module === null)
 		{
-			$_module = \lib\url::dir(0);
+			$_module = \dash\url::dir(0);
 		}
 
 		$myprefix = substr($_module, 0, -1);

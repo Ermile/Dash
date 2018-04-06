@@ -12,7 +12,7 @@ trait sql
 	public static function attachment_count()
 	{
 		$query = "SELECT COUNT(posts.id) AS 'count' FROM posts WHERE posts.type = 'attachment' ";
-		$count = \lib\db::get($query,'count', true);
+		$count = \dash\db::get($query,'count', true);
 		return $count;
 	}
 
@@ -25,7 +25,7 @@ trait sql
 	{
 
 		$qry_count = "SELECT * FROM posts WHERE posts.slug = '$_md5' LIMIT 1";
-		$qry_count = \lib\db::get($qry_count, null, true);
+		$qry_count = \dash\db::get($qry_count, null, true);
 		if($qry_count || !empty($qry_count))
 		{
 			$meta = [];
@@ -51,7 +51,7 @@ trait sql
 			{
 				$id = (int) $qry_count['id'];
 			}
-			\lib\temp::set('upload', ["id" =>  $id, 'url' => $url, 'size' => $size]);
+			\dash\temp::set('upload', ["id" =>  $id, 'url' => $url, 'size' => $size]);
 			return true;
 		}
 		return false;

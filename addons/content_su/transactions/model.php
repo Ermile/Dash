@@ -10,9 +10,9 @@ class model extends \addons\content_su\main\model
 		$meta['admin'] = true;
 
 		$search = null;
-		if(\lib\request::get('search'))
+		if(\dash\request::get('search'))
 		{
-			$search = \lib\request::get('search');
+			$search = \dash\request::get('search');
 		}
 
 		foreach ($_fields as $key => $value)
@@ -23,7 +23,7 @@ class model extends \addons\content_su\main\model
 			}
 		}
 
-		$result = \lib\db\transactions::search($search, $meta);
+		$result = \dash\db\transactions::search($search, $meta);
 		return $result;
 	}
 
@@ -41,7 +41,7 @@ class model extends \addons\content_su\main\model
 
 		if($id)
 		{
-			$result = \lib\db\transactions::get(['id' => $id, 'limit' => 1]);
+			$result = \dash\db\transactions::get(['id' => $id, 'limit' => 1]);
 		}
 		return $result;
 	}
@@ -65,103 +65,103 @@ class model extends \addons\content_su\main\model
 			'data' => $id,
 			'meta' =>
 			[
-				'input'   => \lib\request::post(),
+				'input'   => \dash\request::post(),
 				'session' => $_SESSION
 			],
 		];
 
 
-		$title  = \lib\request::post('title');
-		$unit   = \lib\request::post('unit');
-		$mobile = \lib\request::post('mobile');
-		$minus  = \lib\request::post('minus');
-		$plus   = \lib\request::post('plus');
-		$desc   = \lib\request::post('desc');
-		$type   = \lib\request::post('type');
+		$title  = \dash\request::post('title');
+		$unit   = \dash\request::post('unit');
+		$mobile = \dash\request::post('mobile');
+		$minus  = \dash\request::post('minus');
+		$plus   = \dash\request::post('plus');
+		$desc   = \dash\request::post('desc');
+		$type   = \dash\request::post('type');
 
-		if(!\lib\user::login())
+		if(!\dash\user::login())
 		{
-			\lib\notif::error(T_("You must login to add new transaction"));
+			\dash\notif::error(T_("You must login to add new transaction"));
 			return false;
 		}
 
-		$user_id = \lib\user::id();
+		$user_id = \dash\user::id();
 
 		if(!$title)
 		{
-			\lib\db\logs::set('su:transactions:add:title:not:set', $user_id, $log_meta);
-			\lib\notif::error(T_("Please set the transaction title"));
+			\dash\db\logs::set('su:transactions:add:title:not:set', $user_id, $log_meta);
+			\dash\notif::error(T_("Please set the transaction title"));
 			return false;
 		}
 
 		if(!$unit)
 		{
-			\lib\db\logs::set('su:transactions:add:unit:not:set', $user_id, $log_meta);
-			\lib\notif::error(T_("Please select one of the unit items"));
+			\dash\db\logs::set('su:transactions:add:unit:not:set', $user_id, $log_meta);
+			\dash\notif::error(T_("Please select one of the unit items"));
 			return false;
 		}
 
 
 		if(!$mobile)
 		{
-			\lib\db\logs::set('su:transactions:add:mobile:not:set', $user_id, $log_meta);
-			\lib\notif::error(T_("Mobile can not be null"));
+			\dash\db\logs::set('su:transactions:add:mobile:not:set', $user_id, $log_meta);
+			\dash\notif::error(T_("Mobile can not be null"));
 			return false;
 		}
 
 		if(!$type)
 		{
-			\lib\db\logs::set('su:transactions:add:type:not:set', $user_id, $log_meta);
-			\lib\notif::error(T_("Please select one of the type items"));
+			\dash\db\logs::set('su:transactions:add:type:not:set', $user_id, $log_meta);
+			\dash\notif::error(T_("Please select one of the type items"));
 			return false;
 		}
 
 
 		if(!in_array($type, ['money', 'gift', 'prize', 'transfer']))
 		{
-			\lib\db\logs::set('su:transactions:add:invalid:type', $user_id, $log_meta);
-			\lib\notif::error(T_("Invalid type"));
+			\dash\db\logs::set('su:transactions:add:invalid:type', $user_id, $log_meta);
+			\dash\notif::error(T_("Invalid type"));
 			return false;
 		}
 
 		if(!$plus && !$minus)
 		{
-			\lib\db\logs::set('su:transactions:add:no:minus:no:plus', $user_id, $log_meta);
-			\lib\notif::error(T_("Please fill the minus or plus field"));
+			\dash\db\logs::set('su:transactions:add:no:minus:no:plus', $user_id, $log_meta);
+			\dash\notif::error(T_("Please fill the minus or plus field"));
 			return false;
 		}
 
 		if($plus && !is_numeric($plus))
 		{
-			\lib\db\logs::set('su:transactions:add:plus:isnot:numeric', $user_id, $log_meta);
-			\lib\notif::error(T_("Invalid plus field"));
+			\dash\db\logs::set('su:transactions:add:plus:isnot:numeric', $user_id, $log_meta);
+			\dash\notif::error(T_("Invalid plus field"));
 			return false;
 		}
 
 
 		if($minus && !is_numeric($minus))
 		{
-			\lib\db\logs::set('su:transactions:add:minus:isnot:numeric', $user_id, $log_meta);
-			\lib\notif::error(T_("Invalid minus field"));
+			\dash\db\logs::set('su:transactions:add:minus:isnot:numeric', $user_id, $log_meta);
+			\dash\notif::error(T_("Invalid minus field"));
 			return false;
 		}
 
-		$user_id = \lib\db\users::get_by_mobile(\lib\utility\filter::mobile($mobile));
+		$user_id = \dash\db\users::get_by_mobile(\dash\utility\filter::mobile($mobile));
 		if(isset($user_id['id']))
 		{
 			$user_id = $user_id['id'];
 		}
 		else
 		{
-			\lib\db\logs::set('su:transactions:add:mobile:notexist', $user_id, $log_meta);
-			\lib\notif::error(T_("Mobile not exist"));
+			\dash\db\logs::set('su:transactions:add:mobile:notexist', $user_id, $log_meta);
+			\dash\notif::error(T_("Mobile not exist"));
 			return false;
 		}
 
 		if($plus && $minus)
 		{
-			\lib\db\logs::set('su:transactions:add:plus:and:minus:set', $user_id, $log_meta);
-			\lib\notif::error(T_("One of the plus or minus field must be set"));
+			\dash\db\logs::set('su:transactions:add:plus:and:minus:set', $user_id, $log_meta);
+			\dash\notif::error(T_("One of the plus or minus field must be set"));
 			return false;
 		}
 
@@ -189,12 +189,12 @@ class model extends \addons\content_su\main\model
 			'verify'    => 1,
 		];
 
-		\lib\db\transactions::set($insert);
+		\dash\db\transactions::set($insert);
 
-		if(\lib\engine\process::status())
+		if(\dash\engine\process::status())
 		{
-			\lib\notif::ok(T_("Transaction inserted"));
-			\lib\redirect::to(\lib\url::here(). '/transactions');
+			\dash\notif::ok(T_("Transaction inserted"));
+			\dash\redirect::to(\dash\url::here(). '/transactions');
 		}
 	}
 }

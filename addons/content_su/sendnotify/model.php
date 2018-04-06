@@ -12,28 +12,28 @@ class model extends \addons\content_su\main\model
 	public function connection_way($_mobile_id)
 	{
 		$data = [];
-		$is_mobile = \lib\utility\filter::mobile($_mobile_id);
+		$is_mobile = \dash\utility\filter::mobile($_mobile_id);
 		if($is_mobile)
 		{
-			$data = \lib\db\users::get_by_mobile($is_mobile);
+			$data = \dash\db\users::get_by_mobile($is_mobile);
 		}
 		else
 		{
 			if(is_numeric($_mobile_id))
 			{
-				$data = \lib\db\users::get(['id' => $_mobile_id, 'limit' => 1]);
+				$data = \dash\db\users::get(['id' => $_mobile_id, 'limit' => 1]);
 			}
 		}
 
 		if(empty($data))
 		{
-			\lib\notif::error(T_("User not found"));
+			\dash\notif::error(T_("User not found"));
 			return false;
 		}
 
 		$way  = [];
 		$info = [];
-		if(isset($data['mobile']) && \lib\utility\filter::mobile($data['mobile']))		$way['mobile'] = $data['mobile'];
+		if(isset($data['mobile']) && \dash\utility\filter::mobile($data['mobile']))		$way['mobile'] = $data['mobile'];
 		if(isset($data['email']))			$way['email']        = $data['email'];
 		if(isset($data['googlemail']))		$way['googlemail']   = $data['googlemail'];
 		if(isset($data['chatid']))			$way['telegram']     = $data['chatid'];
@@ -58,40 +58,40 @@ class model extends \addons\content_su\main\model
 
 	public function post_nofity($_args)
 	{
-		$msg = \lib\request::post('msg');
+		$msg = \dash\request::post('msg');
 		if(!$msg)
 		{
-			\lib\notif::error(T_("No message was sended"));
+			\dash\notif::error(T_("No message was sended"));
 			return false;
 		}
 
-		$user         = \lib\request::get('user');
+		$user         = \dash\request::get('user');
 		$detail       = $this->connection_way($user);
-		$email        = (\lib\request::post('email') && isset($detail['way']['email'])) 					? $detail['way']['email'] 			: null;
-		$googlemail   = (\lib\request::post('googlemail') && isset($detail['way']['googlemail'])) 		? $detail['way']['googlemail'] 		: null;
-		$telegram     = (\lib\request::post('telegram') && isset($detail['way']['telegram'])) 			? $detail['way']['telegram'] 		: null;
-		$facebookmail = (\lib\request::post('facebookmail') && isset($detail['way']['facebookmail'])) 	? $detail['way']['facebookmail'] 	: null;
-		$twittermail  = (\lib\request::post('twittermail') && isset($detail['way']['twittermail'])) 		? $detail['way']['twittermail'] 	: null;
-		$notification = (\lib\request::post('notification')) ? true : false;
-		$mobile       = (\lib\request::post('mobile') && isset($detail['way']['mobile'])) 				? $detail['way']['mobile'] 			: null;
+		$email        = (\dash\request::post('email') && isset($detail['way']['email'])) 					? $detail['way']['email'] 			: null;
+		$googlemail   = (\dash\request::post('googlemail') && isset($detail['way']['googlemail'])) 		? $detail['way']['googlemail'] 		: null;
+		$telegram     = (\dash\request::post('telegram') && isset($detail['way']['telegram'])) 			? $detail['way']['telegram'] 		: null;
+		$facebookmail = (\dash\request::post('facebookmail') && isset($detail['way']['facebookmail'])) 	? $detail['way']['facebookmail'] 	: null;
+		$twittermail  = (\dash\request::post('twittermail') && isset($detail['way']['twittermail'])) 		? $detail['way']['twittermail'] 	: null;
+		$notification = (\dash\request::post('notification')) ? true : false;
+		$mobile       = (\dash\request::post('mobile') && isset($detail['way']['mobile'])) 				? $detail['way']['mobile'] 			: null;
 		$user_id      = $detail['user_id'];
 
 		if($notification && $user_id)
 		{
 	        $this->send_notification(['text' => $msg, 'cat' => 'supervisor', 'to' => $user_id]);
-	        \lib\notif::ok(T_("Inner notification was sended"));
+	        \dash\notif::ok(T_("Inner notification was sended"));
 		}
 
 		if($mobile)
 		{
-			\lib\utility\sms::send_array($mobile, $msg);
-			\lib\notif::ok("SMS was sended");
+			\dash\utility\sms::send_array($mobile, $msg);
+			\dash\notif::ok("SMS was sended");
 		}
 
 		if($telegram)
 		{
-			\lib\utility\telegram::sendMessage($telegram, $msg);
-			\lib\notif::ok("Telegram was sended");
+			\dash\utility\telegram::sendMessage($telegram, $msg);
+			\dash\notif::ok("Telegram was sended");
 		}
 	}
 }

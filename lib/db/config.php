@@ -19,7 +19,7 @@ class config
 		}
 		else
 		{
-			$first = \lib\db::insert_id();
+			$first = \dash\db::insert_id();
 		}
 
 		$count = count($_args);
@@ -53,7 +53,7 @@ class config
 
 		if($_where)
 		{
-			$where = \lib\db\config::make_where($_where);
+			$where = \dash\db\config::make_where($_where);
 			if(!$where)
 			{
 				return false;
@@ -67,7 +67,7 @@ class config
 
 		if($query)
 		{
-			$result = \lib\db::get($query, $field, $only_one_record);
+			$result = \dash\db::get($query, $field, $only_one_record);
 			return intval($result);
 		}
 		return 0;
@@ -323,11 +323,11 @@ class config
 
 			unset($_where['limit']);
 
-			$where = \lib\db\config::make_where($_where, $_options);
+			$where = \dash\db\config::make_where($_where, $_options);
 			if($where)
 			{
 				$query = "SELECT $_options[public_show_field] FROM $_table $_options[master_join] WHERE $where $limit";
-				$result = \lib\db::get($query, null, $only_one_value);
+				$result = \dash\db::get($query, null, $only_one_value);
 				return $result;
 			}
 
@@ -344,11 +344,11 @@ class config
 	 */
 	public static function public_multi_insert($_table, $_args)
 	{
-		$set = \lib\db\config::make_multi_insert($_args);
+		$set = \dash\db\config::make_multi_insert($_args);
 		if($set)
 		{
 			$query = " INSERT INTO $_table $set ";
-			return \lib\db::query($query);
+			return \dash\db::query($query);
 		}
 	}
 
@@ -363,11 +363,11 @@ class config
 	 */
 	public static function public_insert($_table, $_args)
 	{
-		$set = \lib\db\config::make_set($_args);
+		$set = \dash\db\config::make_set($_args);
 		if($set)
 		{
 			$query = " INSERT INTO $_table SET $set ";
-			return \lib\db::query($query);
+			return \dash\db::query($query);
 		}
 	}
 
@@ -382,12 +382,12 @@ class config
 	 */
 	public static function public_update($_table, $_args, $_id)
 	{
-		$set = \lib\db\config::make_set($_args);
+		$set = \dash\db\config::make_set($_args);
 		if($set && $_id && is_numeric($_id))
 		{
 			// make update query
 			$query = "UPDATE $_table SET $set WHERE $_table.id = $_id ";
-			return \lib\db::query($query);
+			return \dash\db::query($query);
 		}
 	}
 
@@ -409,7 +409,7 @@ class config
 			return false;
 		}
 		$query = "UPDATE $_table SET $set WHERE $where";
-		return \lib\db::query($query);
+		return \dash\db::query($query);
 	}
 
 
@@ -652,9 +652,9 @@ class config
 		if($pagenation && !$get_count)
 		{
 			$pagenation_query = "SELECT	COUNT(*) AS `count`	FROM `$_table` $master_join	$where $search ";
-			$pagenation_query = \lib\db::get($pagenation_query, 'count', true);
+			$pagenation_query = \dash\db::get($pagenation_query, 'count', true);
 
-			list($limit_start, $limit) = \lib\db::pagnation((int) $pagenation_query, $limit);
+			list($limit_start, $limit) = \dash\db::pagnation((int) $pagenation_query, $limit);
 			$limit = " LIMIT $limit_start, $limit ";
 		}
 		else
@@ -676,12 +676,12 @@ class config
 
 		if(!$only_one_value)
 		{
-			$result = \lib\db::get($query, null, false);
-			$result = \lib\utility\filter::meta_decode($result);
+			$result = \dash\db::get($query, null, false);
+			$result = \dash\utility\filter::meta_decode($result);
 		}
 		else
 		{
-			$result = \lib\db::get($query, 'searchcount', true);
+			$result = \dash\db::get($query, 'searchcount', true);
 		}
 
 		return $result;

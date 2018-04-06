@@ -60,7 +60,7 @@ class error
 
 	public static function show_error($_msg)
 	{
-		if(\lib\engine\dev::debug())
+		if(\dash\engine\dev::debug())
 		{
 			echo '<pre>';
 			echo $_msg;
@@ -82,13 +82,13 @@ class error
 		$file_addr       = $directory_addr. $_name;
 
 		// start saving
-		\lib\file::makeDir($directory_addr, null, true);
+		\dash\file::makeDir($directory_addr, null, true);
 
 		// set evenet datetime and file address
 		$my_text  = "#". str_repeat("-", 10);
 		$my_text .= $date_now->format("Y-m-d H:i:s");
 		$my_text .= str_repeat("-", 50). ' ';
-		$my_text .= urldecode(\lib\url::pwd());
+		$my_text .= urldecode(\dash\url::pwd());
 		$my_text .= "\n";
 
 		// add final text

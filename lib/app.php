@@ -18,7 +18,7 @@ class app
 	{
 		if(is_array($_args))
 		{
-			$args = \lib\safe::safe($_args);
+			$args = \dash\safe::safe($_args);
 
 			self::$REQUEST_APP = $args;
 		}
@@ -67,7 +67,7 @@ class app
 	 */
 	public static function log()
 	{
-		\lib\db\logs::set(...func_get_args());
+		\dash\db\logs::set(...func_get_args());
 	}
 
 
@@ -87,7 +87,7 @@ class app
 					'data' => null,
 					'meta' =>
 					[
-						'input' => \lib\app::request(),
+						'input' => \dash\app::request(),
 						'args'  => $_array,
 					],
 				];
@@ -100,7 +100,7 @@ class app
 					'data' => null,
 					'meta' =>
 					[
-						'input'   => \lib\app::request(),
+						'input'   => \dash\app::request(),
 						'session' => $_SESSION,
 						'args'    => $_array,
 					],
@@ -117,7 +117,7 @@ class app
 						'request' => $_REQUEST,
 						'server'  => $_SERVER,
 						'session' => $_SESSION,
-						'input'   => \lib\app::request(),
+						'input'   => \dash\app::request(),
 						'args'    => $_array,
 					],
 				];
@@ -138,7 +138,7 @@ class app
 	 */
 	public static function static_logo_url()
 	{
-		$url = \lib\url::site(). '/';
+		$url = \dash\url::site(). '/';
 		$url .= 'static/siftal/images/default/logo.png';
 		return $url;
 	}
@@ -149,7 +149,7 @@ class app
 	 */
 	public static function static_image_url()
 	{
-		$url = \lib\url::site(). '/';
+		$url = \dash\url::site(). '/';
 		$url .= 'static/siftal/images/default/image.png';
 		return $url;
 	}
@@ -157,7 +157,7 @@ class app
 
 	public static function static_avatar_url()
 	{
-		$url = \lib\url::site(). '/';
+		$url = \dash\url::site(). '/';
 		$url .= 'static/siftal/images/default/avatar.png';
 		return $url;
 	}

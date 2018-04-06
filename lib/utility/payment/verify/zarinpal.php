@@ -30,22 +30,22 @@ trait zarinpal
             return self::turn_back();
         }
 
-        if(!\lib\option::config('zarinpal', 'status'))
+        if(!\dash\option::config('zarinpal', 'status'))
         {
-            \lib\db\logs::set('pay:zarinpal:status:false', self::$user_id, $log_meta);
-            \lib\notif::error(T_("The zarinpal payment on this service is locked"));
+            \dash\db\logs::set('pay:zarinpal:status:false', self::$user_id, $log_meta);
+            \dash\notif::error(T_("The zarinpal payment on this service is locked"));
             return self::turn_back();
         }
 
-        if(!\lib\option::config('zarinpal', 'MerchantID'))
+        if(!\dash\option::config('zarinpal', 'MerchantID'))
         {
-            \lib\db\logs::set('pay:zarinpal:MerchantID:not:set', self::$user_id, $log_meta);
-            \lib\notif::error(T_("The zarinpal payment MerchantID not set"));
+            \dash\db\logs::set('pay:zarinpal:MerchantID:not:set', self::$user_id, $log_meta);
+            \dash\notif::error(T_("The zarinpal payment MerchantID not set"));
             return self::turn_back();
         }
 
         $zarinpal = [];
-        $zarinpal['MerchantID'] = \lib\option::config('zarinpal', 'MerchantID');
+        $zarinpal['MerchantID'] = \dash\option::config('zarinpal', 'MerchantID');
 
         $zarinpal['Authority']  = $_args['get']['Authority'];
 
@@ -56,8 +56,8 @@ trait zarinpal
         }
         else
         {
-            \lib\db\logs::set('pay:zarinpal:SESSION:transaction_id:not:found', self::$user_id, $log_meta);
-            \lib\notif::error(T_("Your session is lost! We can not find your transaction"));
+            \dash\db\logs::set('pay:zarinpal:SESSION:transaction_id:not:found', self::$user_id, $log_meta);
+            \dash\notif::error(T_("Your session is lost! We can not find your transaction"));
             return self::turn_back();
         }
 
@@ -68,9 +68,9 @@ trait zarinpal
             'condition'        => 'pending',
             'payment_response' => json_encode((array) $_args, JSON_UNESCAPED_UNICODE),
         ];
-        \lib\db\transactions::update($update, $transaction_id);
+        \dash\db\transactions::update($update, $transaction_id);
 
-        \lib\db\logs::set('pay:zarinpal:pending:request', self::$user_id, $log_meta);
+        \dash\db\logs::set('pay:zarinpal:pending:request', self::$user_id, $log_meta);
 
         if(isset($_SESSION['amount']['zarinpal'][$zarinpal['Authority']]['amount']))
         {
@@ -78,8 +78,8 @@ trait zarinpal
         }
         else
         {
-            \lib\db\logs::set('pay:zarinpal:SESSION:amount:not:found', self::$user_id, $log_meta);
-            \lib\notif::error(T_("Your session is lost! We can not find amount"));
+            \dash\db\logs::set('pay:zarinpal:SESSION:amount:not:found', self::$user_id, $log_meta);
+            \dash\notif::error(T_("Your session is lost! We can not find amount"));
             return self::turn_back();
         }
 
@@ -91,18 +91,18 @@ trait zarinpal
                 'condition'        => 'cancel',
                 'payment_response' => json_encode((array) $_args, JSON_UNESCAPED_UNICODE),
             ];
-            \lib\db\transactions::update($update, $transaction_id);
-            \lib\db\logs::set('pay:zarinpal:cancel:request', self::$user_id, $log_meta);
+            \dash\db\transactions::update($update, $transaction_id);
+            \dash\db\logs::set('pay:zarinpal:cancel:request', self::$user_id, $log_meta);
             return self::turn_back($transaction_id);
         }
         else
         {
-            \lib\utility\payment\payment\zarinpal::$user_id = self::$user_id;
-            \lib\utility\payment\payment\zarinpal::$log_data = self::$log_data;
+            \dash\utility\payment\payment\zarinpal::$user_id = self::$user_id;
+            \dash\utility\payment\payment\zarinpal::$log_data = self::$log_data;
 
-            $is_ok = \lib\utility\payment\payment\zarinpal::verify($zarinpal);
+            $is_ok = \dash\utility\payment\payment\zarinpal::verify($zarinpal);
 
-            $payment_response = \lib\utility\payment\payment\zarinpal::$payment_response;
+            $payment_response = \dash\utility\payment\payment\zarinpal::$payment_response;
 
             $log_meta['meta']['payment_response'] = (array) $payment_response;
 
@@ -118,12 +118,12 @@ trait zarinpal
                     'payment_response' => $payment_response,
                 ];
 
-                \lib\db\transactions::calc_budget($transaction_id, $zarinpal['Amount'], 0, $update);
+                \dash\db\transactions::calc_budget($transaction_id, $zarinpal['Amount'], 0, $update);
 
-                \lib\db\logs::set('pay:zarinpal:ok:request', self::$user_id, $log_meta);
+                \dash\db\logs::set('pay:zarinpal:ok:request', self::$user_id, $log_meta);
 
-                \lib\session::set('payment_verify_amount', $zarinpal['Amount']);
-                \lib\session::set('payment_verify_status', 'ok');
+                \dash\session::set('payment_verify_amount', $zarinpal['Amount']);
+                \dash\session::set('payment_verify_status', 'ok');
 
                 unset($_SESSION['amount']['zarinpal'][$zarinpal['Authority']]);
 
@@ -137,9 +137,9 @@ trait zarinpal
                     'condition'        => 'verify_error',
                     'payment_response' => $payment_response,
                 ];
-                \lib\session::set('payment_verify_status', 'verify_error');
-                \lib\db\transactions::update($update, $transaction_id);
-                \lib\db\logs::set('pay:zarinpal:verify_error:request', self::$user_id, $log_meta);
+                \dash\session::set('payment_verify_status', 'verify_error');
+                \dash\db\transactions::update($update, $transaction_id);
+                \dash\db\logs::set('pay:zarinpal:verify_error:request', self::$user_id, $log_meta);
                 return self::turn_back($transaction_id);
             }
         }

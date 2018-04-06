@@ -14,12 +14,12 @@ class model extends \addons\content_enter\main\model
 	 */
 	public function post_delete($_args)
 	{
-		if(\lib\request::post('why'))
+		if(\dash\request::post('why'))
 		{
-			self::set_enter_session('why', \lib\request::post('why'));
+			self::set_enter_session('why', \dash\request::post('why'));
 		}
 		// save log the user try to delete account
-		\lib\db\logs::set('enter:delete:try', \lib\user::id(), ['meta' => ['session' => $_SESSION, 'input' => \lib\request::post()]]);
+		\dash\db\logs::set('enter:delete:try', \dash\user::id(), ['meta' => ['session' => $_SESSION, 'input' => \dash\request::post()]]);
 		// set session verify_from signup
 		self::set_enter_session('verify_from', 'delete');
 

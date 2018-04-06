@@ -16,7 +16,7 @@ trait log
 		$fileAddr = database.'log/';
 		$time_ms  = round($_time*1000);
 		$date_now = new \DateTime("now", new \DateTimeZone('Asia/Tehran') );
-		\lib\file::makeDir($fileAddr, null, true);
+		\dash\file::makeDir($fileAddr, null, true);
 		// set file address
 		$fileAddr .= $_name;
 		$my_text  = "\n#". str_repeat("-", 70). ' '. urldecode($_SERVER['REQUEST_URI']);

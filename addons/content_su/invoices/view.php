@@ -19,9 +19,9 @@ class view extends \addons\content_su\main\view
 			$this->data->pagnation = $this->controller->pagnation_get();
 		}
 
-		if(\lib\request::get('search'))
+		if(\dash\request::get('search'))
 		{
-			$this->data->get_search = \lib\request::get('search');
+			$this->data->get_search = \dash\request::get('search');
 		}
 	}
 

@@ -80,7 +80,7 @@ class telegram
 			"content-type: application/json",
 		];
 
-		if(\lib\url::isLocal())
+		if(\dash\url::isLocal())
 		{
 			$temp_content = [];
 			foreach ($_args['content'] as $key => $value)
@@ -140,7 +140,7 @@ class telegram
 			return false;
 		}
 
-		if(\lib\url::isLocal())
+		if(\dash\url::isLocal())
 		{
 			if(!in_array($_args['chat_id'], [33263188, '33263188', 46898544, '46898544']))
 			{
@@ -191,9 +191,9 @@ class telegram
 	 */
 	private static function curlExec($_url, $_headers, $_content, $_option = [])
 	{
-		if(\lib\option::social('telegram', 'bot') && !self::$bot_key)
+		if(\dash\option::social('telegram', 'bot') && !self::$bot_key)
 		{
-			self::$telegram_api_url  .= \lib\option::social('telegram', 'bot');
+			self::$telegram_api_url  .= \dash\option::social('telegram', 'bot');
 		}
 		elseif($bot_key)
 		{
@@ -208,9 +208,9 @@ class telegram
 		{
 			if(self::$save_log)
 			{
-				\lib\db\logs::set('telegram:curl:not:install', null, ['meta' =>[]]);
+				\dash\db\logs::set('telegram:curl:not:install', null, ['meta' =>[]]);
 			}
-			\lib\notif::warn(T_("Please install curl on your system"));
+			\dash\notif::warn(T_("Please install curl on your system"));
 		}
 
 		if(self::$force_send_telegram_service)
@@ -241,7 +241,7 @@ class telegram
 
 						if(self::$save_log)
 						{
-							\lib\db\logs::set("telegram:service:curl", null, ['meta' => ['response' => $response, 'http_code' => $mycode, 'args' => func_get_args()]]);
+							\dash\db\logs::set("telegram:service:curl", null, ['meta' => ['response' => $response, 'http_code' => $mycode, 'args' => func_get_args()]]);
 						}
 					}
 				}
@@ -269,7 +269,7 @@ class telegram
 
 					if(self::$save_log)
 					{
-						\lib\db\logs::set("telegram:service:curl", null, ['meta' => ['response' => $response, 'http_code' => $mycode, 'args' => func_get_args()]]);
+						\dash\db\logs::set("telegram:service:curl", null, ['meta' => ['response' => $response, 'http_code' => $mycode, 'args' => func_get_args()]]);
 					}
 				}
 			}
@@ -294,7 +294,7 @@ class telegram
 
 			if(self::$save_log)
 			{
-				\lib\db\logs::set("telegram:curl", null, ['meta' => ['response' => $response, 'http_code' => $mycode, 'args' => func_get_args()]]);
+				\dash\db\logs::set("telegram:curl", null, ['meta' => ['response' => $response, 'http_code' => $mycode, 'args' => func_get_args()]]);
 			}
 		}
 	}

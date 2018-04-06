@@ -7,16 +7,16 @@ class controller
 	public static function routing()
 	{
 		// if the user login redirect to base
-		if(\lib\permission::access('enter:another:session'))
+		if(\dash\permission::access('enter:another:session'))
 		{
 			// the admin can login by another session
 			// never redirect to main
 		}
 		else
 		{
-			if(\lib\user::login())
+			if(\dash\user::login())
 			{
-				\lib\redirect::to(\lib\url::base());
+				\dash\redirect::to(\dash\url::base());
 				return;
 			}
 		}
@@ -26,9 +26,9 @@ class controller
 
 		// save referer
 		// to redirect the user ofter login or signup on the referered address
-		if(\lib\request::get('referer') && \lib\request::get('referer') != '')
+		if(\dash\request::get('referer') && \dash\request::get('referer') != '')
 		{
-			$_SESSION['enter_referer'] = \lib\request::get('referer');
+			$_SESSION['enter_referer'] = \dash\request::get('referer');
 		}
 	}
 

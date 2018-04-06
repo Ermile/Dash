@@ -21,7 +21,7 @@ trait send_code
 		$mobile    = self::user_data('mobile');
 		$email     = self::user_data('email');
 
-		if(\lib\utility\filter::mobile($mobile))
+		if(\dash\utility\filter::mobile($mobile))
 		{
 			$i_can     = true;
 			$is_mobile = true;
@@ -45,27 +45,27 @@ trait send_code
 
 		if($is_mobile)
 		{
-			if(self::user_data('chatid') && \lib\option::social('telegram', 'status'))
+			if(self::user_data('chatid') && \dash\option::social('telegram', 'status'))
 			{
-				if(\lib\option::config('enter', 'verify_telegram'))
+				if(\dash\option::config('enter', 'verify_telegram'))
 				{
 					array_push($way, 'telegram');
 				}
 			}
 
-			if(self::user_data('mobile') && \lib\utility\filter::mobile(self::user_data('mobile')))
+			if(self::user_data('mobile') && \dash\utility\filter::mobile(self::user_data('mobile')))
 			{
-				if(\lib\option::config('enter', 'verify_sms'))
+				if(\dash\option::config('enter', 'verify_sms'))
 				{
 					array_push($way, 'sms');
 				}
 
-				if(\lib\option::config('enter', 'verify_call'))
+				if(\dash\option::config('enter', 'verify_call'))
 				{
 					array_push($way, 'call');
 				}
 
-				if(\lib\option::config('enter', 'verify_sendsms'))
+				if(\dash\option::config('enter', 'verify_sendsms'))
 				{
 					array_push($way, 'sendsms');
 				}
@@ -73,7 +73,7 @@ trait send_code
 			}
 		}
 
-		if(\lib\url::isLocal() && empty($way))
+		if(\dash\url::isLocal() && empty($way))
 		{
 			array_push($way, 'sms');
 		}
@@ -95,7 +95,7 @@ trait send_code
 	 */
 	public static function send_code_way()
 	{
-		$host = \lib\url::base();
+		$host = \dash\url::base();
 		$host .= '/enter/verify/';
 		self::open_lock('verify');
 
@@ -142,7 +142,7 @@ trait send_code
 			{
 				if(self::get_enter_session('verification_code_id'))
 				{
-					if(\lib\db\logs::update(['desc' => $rate[0]], self::get_enter_session('verification_code_id')))
+					if(\dash\db\logs::update(['desc' => $rate[0]], self::get_enter_session('verification_code_id')))
 					{
 						// update session on nex way
 						self::set_enter_session('verification_code_way', $rate[0]);
@@ -166,7 +166,7 @@ trait send_code
 				if(self::get_enter_session('verification_code_id'))
 				{
 					// update log on next way
-					if(\lib\db\logs::update(['desc' => $rate[$next_key]], self::get_enter_session('verification_code_id')))
+					if(\dash\db\logs::update(['desc' => $rate[$next_key]], self::get_enter_session('verification_code_id')))
 					{
 						// update session on nex way
 						self::set_enter_session('verification_code_way', $rate[$next_key]);

@@ -17,7 +17,7 @@ class termusages
 	 */
 	public static function insert()
 	{
-		return \lib\db\config::public_insert('termusages', ...func_get_args());
+		return \dash\db\config::public_insert('termusages', ...func_get_args());
 	}
 
 
@@ -42,7 +42,7 @@ class termusages
 			termusages.related_id = $_related_id AND
 			terms.type            = '$_type'
 		";
-		$result = \lib\db::get($query);
+		$result = \dash\db::get($query);
 		return $result;
 	}
 
@@ -71,7 +71,7 @@ class termusages
 		}
 		$_option = array_merge($default_option, $_option);
 
-		return \lib\db\config::public_get('termusages', $_args, $_option);
+		return \dash\db\config::public_get('termusages', $_args, $_option);
 	}
 
 
@@ -84,11 +84,11 @@ class termusages
 	 */
 	public static function hard_delete($_where)
 	{
-		$where = \lib\db\config::make_where($_where);
+		$where = \dash\db\config::make_where($_where);
 		if($where)
 		{
 			$query = "DELETE FROM termusages WHERE $where ";
-			return \lib\db::query($query);
+			return \dash\db::query($query);
 		}
 	}
 
@@ -117,11 +117,11 @@ class termusages
 	 */
 	public static function update($_where, $_set)
 	{
-		$set = \lib\db\config::make_set($_set);
-		$where = \lib\db\config::make_where($_where);
+		$set = \dash\db\config::make_set($_set);
+		$where = \dash\db\config::make_where($_where);
 
 		$query = " UPDATE termusages SET $set WHERE $where LIMIT 1 ";
-		return \lib\db::query($query);
+		return \dash\db::query($query);
 	}
 
 
@@ -191,7 +191,7 @@ class termusages
 		}
 		// crate string query
 		$query = "INSERT $ignore INTO termusages ($fields) VALUES ($values) ";
-		return \lib\db::query($query);
+		return \dash\db::query($query);
 	}
 
 }

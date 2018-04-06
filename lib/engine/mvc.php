@@ -35,29 +35,29 @@ class mvc
 	 */
 	private static function find_ctrl()
 	{
-		$my_repo       = '\\'. \lib\engine\content::get();
-		$my_module     = '\\'. \lib\url::module();
-		$my_child      = '\\'. \lib\url::child();
+		$my_repo       = '\\'. \dash\engine\content::get();
+		$my_module     = '\\'. \dash\url::module();
+		$my_child      = '\\'. \dash\url::child();
 		$my_controller = null;
 
-		if(\lib\url::child())
+		if(\dash\url::child())
 		{
 			// something like \content_su\tools\test\controller.php
 			$my_controller = self::checking($my_repo. $my_module. $my_child);
 			if($my_controller)
 			{
-				self::$routed_addr = \lib\url::content(). '/'. \lib\url::module(). '/'. \lib\url::child();
+				self::$routed_addr = \dash\url::content(). '/'. \dash\url::module(). '/'. \dash\url::child();
 				return $my_controller;
 			}
 		}
 
-		if(\lib\url::module())
+		if(\dash\url::module())
 		{
 			// something like \content_su\tools\home\controller.php
 			$my_controller = self::checking($my_repo. $my_module. '\home');
 			if($my_controller)
 			{
-				self::$routed_addr = \lib\url::content(). '/'. \lib\url::module();
+				self::$routed_addr = \dash\url::content(). '/'. \dash\url::module();
 				return $my_controller;
 			}
 
@@ -65,18 +65,18 @@ class mvc
 			$my_controller = self::checking($my_repo. $my_module);
 			if($my_controller)
 			{
-				self::$routed_addr = \lib\url::content(). '/'. \lib\url::module();
+				self::$routed_addr = \dash\url::content(). '/'. \dash\url::module();
 				return $my_controller;
 			}
 		}
 
-		if(\lib\engine\content::get())
+		if(\dash\engine\content::get())
 		{
 			// something like \content_su\home\controller.php
 			$my_controller = self::checking($my_repo. '\home');
 			if($my_controller)
 			{
-				self::$routed_addr = \lib\url::content();
+				self::$routed_addr = \dash\url::content();
 				return $my_controller;
 			}
 		}
@@ -92,28 +92,28 @@ class mvc
 		$template = self::find_tmplate();
 		if($template)
 		{
-			self::$routed_addr = \lib\url::pwd();
+			self::$routed_addr = \dash\url::pwd();
 			return $template;
 		}
 
 		// nothing found, show error page
-		\lib\header::status(501, "Hey, Read documentation and start your project!");
+		\dash\header::status(501, "Hey, Read documentation and start your project!");
 	}
 
 
 
 	private static function find_tmplate()
 	{
-		if(\lib\url::content())
+		if(\dash\url::content())
 		{
 			return false;
 		}
 
-		$template = \lib\app\template::find();
+		$template = \dash\app\template::find();
 
-		if(\lib\app\template::$finded_template)
+		if(\dash\app\template::$finded_template)
 		{
-			self::$folder_addr = \lib\app\template::$display_name;
+			self::$folder_addr = \dash\app\template::$display_name;
 
 		}
 	}
@@ -176,11 +176,11 @@ class mvc
 		$my_controller = self::$folder_addr. '\\controller';
 		if(!class_exists($my_controller) && !self::$only_folder)
 		{
-			\lib\header::status(409, $my_controller);
+			\dash\header::status(409, $my_controller);
 		}
 
 		// run content default function for set something if needed
-		$content_controller = \lib\engine\content::get().'\\controller';
+		$content_controller = \dash\engine\content::get().'\\controller';
 		if(is_callable([$content_controller, 'routing']))
 		{
 			$content_controller::routing();
@@ -192,7 +192,7 @@ class mvc
 		}
 
 		// generate real address of current page
-		$real_address = trim(\lib\url::content(). '/'. \lib\url::directory(), '/');
+		$real_address = trim(\dash\url::content(). '/'. \dash\url::directory(), '/');
 		if(!$real_address)
 		{
 			$real_address = null;
@@ -201,17 +201,17 @@ class mvc
 		if(trim(self::$routed_addr, '/') != $real_address)
 		{
 			// if this url has no custom licence, block it
-			if(!\lib\open::license())
+			if(!\dash\open::license())
 			{
 				$template = self::find_tmplate();
 				if($template)
 				{
-					self::$routed_addr = \lib\url::pwd();
+					self::$routed_addr = \dash\url::pwd();
 					return $template;
 				}
 				else
 				{
-					\lib\header::status(404, "We can't find the page you're looking for!");
+					\dash\header::status(404, "We can't find the page you're looking for!");
 				}
 			}
 		}
@@ -221,12 +221,12 @@ class mvc
 	private static function load_view()
 	{
 		$my_view = self::$folder_addr. '\\view';
-		if(\lib\request::is('get') && !\lib\request::json_accept())
+		if(\dash\request::is('get') && !\dash\request::json_accept())
 		{
-			\lib\engine\view::variable();
+			\dash\engine\view::variable();
 
 			// run content default function for set something if needed
-			$content_view = \lib\engine\content::get().'\\view';
+			$content_view = \dash\engine\content::get().'\\view';
 			if(is_callable([$content_view, 'config']))
 			{
 				$content_view::config();
@@ -239,23 +239,23 @@ class mvc
 			}
 
 			// call custom function if exist
-			$my_view_function = \lib\open::license(null, true);
+			$my_view_function = \dash\open::license(null, true);
 			if($my_view_function && is_callable([$my_view, $my_view_function]))
 			{
 				$my_view::$my_view_function();
 			}
 
 			// combine two type of set title into one
-			\lib\engine\view::set_title();
+			\dash\engine\view::set_title();
 
-			if(\lib\url::content() === null)
+			if(\dash\url::content() === null)
 			{
-				\lib\data::datarow(\lib\app\template::$datarow);
-				\lib\engine\view::set_cms_titles();
+				\dash\data::datarow(\dash\app\template::$datarow);
+				\dash\engine\view::set_cms_titles();
 			}
 
 
-			\lib\engine\twig::init();
+			\dash\engine\twig::init();
 		}
 	}
 
@@ -267,11 +267,11 @@ class mvc
 	private static function load_model()
 	{
 		$my_model = self::$folder_addr. '\\model';
-		if(!\lib\request::is('get') || \lib\request::json_accept())
+		if(!\dash\request::is('get') || \dash\request::json_accept())
 		{
 			if(class_exists($my_model))
 			{
-				$my_model_function = \lib\open::license(null, true);
+				$my_model_function = \dash\open::license(null, true);
 				if($my_model_function && is_callable([$my_model, $my_model_function]))
 				{
 					$my_model::$my_model_function();
@@ -279,19 +279,19 @@ class mvc
 				else
 				{
 					// show not implemented message
-					\lib\header::status(501);
+					\dash\header::status(501);
 				}
 			}
 			else
 			{
 				// model does not exist in this folder, show not acceptable message
-				\lib\header::status(406);
+				\dash\header::status(406);
 			}
 		}
 
-		if(\lib\request::is('post') && !empty(\lib\request::post()))
+		if(\dash\request::is('post') && !empty(\dash\request::post()))
 		{
-			\lib\redirect::pwd();
+			\dash\redirect::pwd();
 		}
 	}
 

@@ -122,19 +122,19 @@ class cloudflare
 	 */
 	private static function config($_args)
 	{
-		$status                  = \lib\option::config('cloudflare', 'status');
+		$status                  = \dash\option::config('cloudflare', 'status');
 		if(!$status) 			 return false;
 
-		$ZoneID                  = \lib\option::config('cloudflare', 'ZoneID');
+		$ZoneID                  = \dash\option::config('cloudflare', 'ZoneID');
 		if(!$ZoneID) 			 return false;
 
-		$X_Auth_Key              = \lib\option::config('cloudflare', 'X-Auth-Key');
+		$X_Auth_Key              = \dash\option::config('cloudflare', 'X-Auth-Key');
 		if(!$X_Auth_Key)		 return false;
 
-		$X_Auth_Email            = \lib\option::config('cloudflare', 'X-Auth-Email');
+		$X_Auth_Email            = \dash\option::config('cloudflare', 'X-Auth-Email');
 		if(!$X_Auth_Email)		 return false;
 
-		$X_Auth_User_Service_Key = \lib\option::config('cloudflare', 'X-Auth-User-Service-Key');
+		$X_Auth_User_Service_Key = \dash\option::config('cloudflare', 'X-Auth-User-Service-Key');
 
 		if(!$X_Auth_Email && !$X_Auth_User_Service_Key && !$X_Auth_Key)
 		{
@@ -229,15 +229,15 @@ class cloudflare
 				'response' => $response,
 			],
 		];
-		\lib\db\logs::set('cloudflare_curl:exec', null, $log_meta);
+		\dash\db\logs::set('cloudflare_curl:exec', null, $log_meta);
 
 		if(intval($mycode) === 200)
 		{
-			\lib\notif::ok(T_("The api Cloudflare opration success"));
+			\dash\notif::ok(T_("The api Cloudflare opration success"));
 		}
 		else
 		{
-			\lib\notif::warn(T_("The api Cloudflare opration faild"));
+			\dash\notif::warn(T_("The api Cloudflare opration faild"));
 		}
 		return $response;
 	}

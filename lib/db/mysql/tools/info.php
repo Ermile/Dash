@@ -168,20 +168,20 @@ trait info
 		}
 
 		$file_url = database. 'version/';
-		if(!\lib\file::exists($file_url))
+		if(!\dash\file::exists($file_url))
 		{
-			\lib\file::makeDir($file_url);
+			\dash\file::makeDir($file_url);
 		}
 
 		$file_url .= $file_name;
 
-		if(\lib\file::exists($file_url))
+		if(\dash\file::exists($file_url))
 		{
-			$version = \lib\file::read($file_url);
+			$version = \dash\file::read($file_url);
 		}
 		else
 		{
-			\lib\file::write($file_url, null);
+			\dash\file::write($file_url, null);
 		}
 
 		return $version;
@@ -210,14 +210,14 @@ trait info
 
 		$file_url = database. 'version/';
 
-		if(!\lib\file::exists($file_url))
+		if(!\dash\file::exists($file_url))
 		{
-			\lib\file::makeDir($file_url);
+			\dash\file::makeDir($file_url);
 		}
 
 		$file_url .= $file_name;
 
-		\lib\file::write($file_url, $_version);
+		\dash\file::write($file_url, $_version);
 
 	}
 

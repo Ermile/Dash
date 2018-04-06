@@ -17,7 +17,7 @@ class comments
 	 */
 	public static function insert()
 	{
-		return \lib\db\config::public_insert('comments', ...func_get_args());
+		return \dash\db\config::public_insert('comments', ...func_get_args());
 	}
 
 
@@ -40,7 +40,7 @@ class comments
 
 		$_options = array_merge($default_options, $_options);
 
-		return \lib\db\config::public_search('comments', $_string, $_options);
+		return \dash\db\config::public_search('comments', $_string, $_options);
 	}
 
 
@@ -51,7 +51,7 @@ class comments
 	 */
 	public static function get()
 	{
-		return \lib\db\config::public_get('comments', ...func_get_args());
+		return \dash\db\config::public_get('comments', ...func_get_args());
 	}
 
 	/**
@@ -63,7 +63,7 @@ class comments
 	 */
 	public static function update()
 	{
-		return \lib\db\config::public_update('comments', ...func_get_args());
+		return \dash\db\config::public_update('comments', ...func_get_args());
 	}
 
 
@@ -82,7 +82,7 @@ class comments
 				WHERE comments.id = $_id
 				";
 
-		return \lib\db::query($query);
+		return \dash\db::query($query);
 	}
 
 
@@ -170,9 +170,9 @@ class comments
 		$qry       = "INSERT INTO comments ( $list_field ) VALUES ( $list_values )";
 
 		// run query and insert into db
-		$result    = \lib\db::query($qry);
+		$result    = \dash\db::query($qry);
 		// get insert id
-		$commentId = \lib\db::insert_id();
+		$commentId = \dash\db::insert_id();
 		// return last insert id
 		return $commentId;
 	}
@@ -257,7 +257,7 @@ class comments
 				type = 'rate'
 			LIMIT 1;
 		";
-		$rate = \lib\db::get($query, 'id', true);
+		$rate = \dash\db::get($query, 'id', true);
 		return $rate;
 	}
 
@@ -332,7 +332,7 @@ class comments
 					'value' => 'rate',
 					'meta'  => $first_meta
 				];
-				return \lib\db\options::insert($arg);
+				return \dash\db\options::insert($arg);
 			}
 			else
 			{
@@ -362,7 +362,7 @@ class comments
 						'avg'   => round($_rate / 1, 1)
 					];
 				}
-				return \lib\db\options::update(['meta' => json_encode($meta, JSON_UNESCAPED_UNICODE)], $id);
+				return \dash\db\options::update(['meta' => json_encode($meta, JSON_UNESCAPED_UNICODE)], $id);
 			}
 		}
 	}
@@ -392,7 +392,7 @@ class comments
 				value = 'rate'
 			LIMIT 1;
 		";
-		$result = \lib\db::get($query, null, true);
+		$result = \dash\db::get($query, null, true);
 		return $result;
 	}
 
@@ -414,7 +414,7 @@ class comments
 		$pagenation_query =
 		"SELECT	id	FROM comments WHERE	comments.type = 'comment' AND comments.status = 'unapproved'
 		 -- comments::admin_get() for pagenation ";
-		list($limit_start, $_limit) = \lib\db::pagnation($pagenation_query, $_limit);
+		list($limit_start, $_limit) = \dash\db::pagnation($pagenation_query, $_limit);
 		$limit = " LIMIT $limit_start, $_limit ";
 
 		$query =
@@ -436,7 +436,7 @@ class comments
 			$limit
 			-- comments::admin_get()
 		";
-		return \lib\db::get($query);
+		return \dash\db::get($query);
 	}
 }
 ?>

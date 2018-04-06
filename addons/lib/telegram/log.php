@@ -24,7 +24,7 @@ class log extends tg
 		}
 		$fileAddr = root.'public_html/files/telegram/';
 		// if dir doesn't exist, make it
-		\lib\file::makeDir($fileAddr, null, true);
+		\dash\file::makeDir($fileAddr, null, true);
 		// set file address
 		// $fileAddr .= 'tg_'. self::$name. '.json';
 		// if(!self::$once_log){
@@ -136,9 +136,9 @@ class log extends tg
 
 
 		// change language if needede
-		// if(\lib\language::current('iso') !== self::$language)
+		// if(\dash\language::current('iso') !== self::$language)
 		// {
-		// 	\lib\language::set_language(self::$language);
+		// 	\dash\language::set_language(self::$language);
 		// }
 		return true;
 	}
@@ -186,7 +186,7 @@ class log extends tg
 		// if dir is not created, create it
 		if(!is_dir(self::$saveDest))
 		{
-			\lib\file::makeDir(self::$saveDest, 0775, true);
+			\dash\file::makeDir(self::$saveDest, 0775, true);
 		}
 
 		// loop on all photos
@@ -292,7 +292,7 @@ class log extends tg
 	 */
 	private static function catchTelegramUser($_telegram_id, $_fromDetail = null)
 	{
-		$_fromDetail = \lib\safe::safe($_fromDetail, 'sqlinjection');
+		$_fromDetail = \dash\safe::safe($_fromDetail, 'sqlinjection');
 		// if user_id is not set try to give user_id from database
 		// search in db to find user_id
 		$qry = "SELECT `user_id`
@@ -302,7 +302,7 @@ class log extends tg
 				`key` = 'id' AND
 				`value` = '$_telegram_id'
 		";
-		$my_user_id = \lib\db::get($qry, 'user_id', true);
+		$my_user_id = \dash\db::get($qry, 'user_id', true);
 		if(is_numeric($my_user_id))
 		{
 			self::$user_id = $my_user_id;
@@ -313,13 +313,13 @@ class log extends tg
 		{
 			// calc full_name of user
 			$fullName = trim(self::response('from','first_name'). ' '. self::response('from','last_name'));
-			$fullName = \lib\safe::safe($fullName, 'sqlinjection');
+			$fullName = \dash\safe::safe($fullName, 'sqlinjection');
 			$mobile = 'tg_'. $_telegram_id;
-			$user = \lib\db\users::get_by_mobile($mobile);
+			$user = \dash\db\users::get_by_mobile($mobile);
 			if(empty($user))
 			{
 				// generate password
-				// $password = \lib\utility\filter::temp_password();
+				// $password = \dash\utility\filter::temp_password();
 				preg_match("#/start.*ref_([^\s\t-]+)([\s\t\n-]+.*)?$#Ui", self::response('text'), $_ref);
 				$ref = null;
 				if(is_array($_ref) && isset($_ref[1]))
@@ -328,7 +328,7 @@ class log extends tg
 				}
 				$port = substr(self::response('text'), 0, 6) === '/start' ? 'telegram' : 'telegram_guest';
 
-				\lib\db\users::signup(
+				\dash\db\users::signup(
 				[
 					'mobile'      => $mobile,
 					'password'    => null,
@@ -339,8 +339,8 @@ class log extends tg
 					'port'        => $port, // telegram|telagram_guest; the users answer the inline keyboard or in bot
 					'subport'     => null, // the group code or chanal code
 				]);
-				\lib\temp::set('is_new_user', true);
-				self::$user_id = \lib\db\users::$user_id;
+				\dash\temp::set('is_new_user', true);
+				self::$user_id = \dash\db\users::$user_id;
 			}
 			elseif (isset($user['id']))
 			{
@@ -365,12 +365,12 @@ class log extends tg
 				$userDetail['status'] = 'disable';
 			}
 			// save in options table
-			\lib\utility\option::set($userDetail, true);
+			\dash\utility\option::set($userDetail, true);
 		}
 
 		// save session id database only one time
 		// if exist use old one else insert new one to database
-		// \lib\utility\session::save_once(self::$user_id, 'telegram_'.$_telegram_id);
+		// \dash\utility\session::save_once(self::$user_id, 'telegram_'.$_telegram_id);
 		if(!array_key_exists('tg', $_SESSION) || !is_array($_SESSION['tg']))
 		{
 			$_SESSION['tg'] = [];
@@ -408,7 +408,7 @@ class log extends tg
 					// if this is for current user
 					if(isset($contact['user_id']) && isset($from['user_id']) && $from['user_id'] == $contact['user_id'])
 					{
-						\lib\temp::set('user_sync', ['mobile' => $mobile]);
+						\dash\temp::set('user_sync', ['mobile' => $mobile]);
 					}
 					// else ask real contact detail
 					else
@@ -434,7 +434,7 @@ class log extends tg
 				break;
 		}
 
-		// \lib\db\users::updateDetail(self::$user_id, $_type, 'telegram', \lib\safe::safe($_args, 'sqlinjection'));
+		// \dash\db\users::updateDetail(self::$user_id, $_type, 'telegram', \dash\safe::safe($_args, 'sqlinjection'));
 	}
 }
 ?>

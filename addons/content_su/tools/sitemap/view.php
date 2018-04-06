@@ -1,7 +1,7 @@
 <?php
 namespace addons\content_su\tools\sitemap;
 
-class view extends \lib\view
+class view extends \dash\view
 {
 	public function config()
 	{
@@ -10,7 +10,7 @@ class view extends \lib\view
 
 		$this->data->page['title']   = T_('Sitemap');
 
-		if(\lib\request::get('run') === 'yes')
+		if(\dash\request::get('run') === 'yes')
 		{
 			$this->data->sitemapData = $this->model()->generate_sitemap();
 		}

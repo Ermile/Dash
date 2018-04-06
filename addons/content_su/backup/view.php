@@ -9,12 +9,12 @@ class view extends \addons\content_su\main\view
 		parent::config();
 
 
-		if(\lib\request::get('show') === 'log')
+		if(\dash\request::get('show') === 'log')
 		{
-			$this->data->auto_backup_log = @\lib\file::read(database. 'backup/log');
+			$this->data->auto_backup_log = @\dash\file::read(database. 'backup/log');
 		}
 
-		$config_backup = @\lib\file::read(database. 'backup/schedule');
+		$config_backup = @\dash\file::read(database. 'backup/schedule');
 		if($config_backup && is_string($config_backup))
 		{
 			$config_backup = json_decode($config_backup, true);
@@ -22,7 +22,7 @@ class view extends \addons\content_su\main\view
 		}
 
 
-		$this->data->mysql_info = \lib\db::global_status();
+		$this->data->mysql_info = \dash\db::global_status();
 
 		$old_backup = @glob(database .'backup/files/*');
 
@@ -38,7 +38,7 @@ class view extends \addons\content_su\main\view
 					'time' => filemtime($value),
 					'size' => round(filesize($value) / 1024 / 1024, 1),
 					'date' => date("Y-m-d H:i:s", filemtime($value)),
-					'ago' => \lib\utility\human::timing(date("Y-m-d H:i:s", filemtime($value))),
+					'ago' => \dash\utility\human::timing(date("Y-m-d H:i:s", filemtime($value))),
 				];
 			}
 			$old_backup_files = array_reverse($old_backup_files);

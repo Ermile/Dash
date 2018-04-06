@@ -6,7 +6,7 @@ class controller extends \addons\content_enter\main\controller
 	public function ready()
 	{
 		// if the user login redirect to base
-		if(\lib\permission::access('enter:another:session'))
+		if(\dash\permission::access('enter:another:session'))
 		{
 			// the admin can login by another session
 			// never redirect to main
@@ -23,9 +23,9 @@ class controller extends \addons\content_enter\main\controller
 		// save all param-* | param_* in $_GET | $_POST
 		$this->save_param();
 
-		if(\lib\request::get('referer') && \lib\request::get('referer') != '')
+		if(\dash\request::get('referer') && \dash\request::get('referer') != '')
 		{
-			$_SESSION['enter_referer'] = \lib\request::get('referer');
+			$_SESSION['enter_referer'] = \dash\request::get('referer');
 		}
 
 		if(self::get_request_method() === 'get')
@@ -50,8 +50,8 @@ class controller extends \addons\content_enter\main\controller
 	 */
 	public function save_param()
 	{
-		$post = \lib\request::post();
-		$get = \lib\request::get();
+		$post = \dash\request::post();
+		$get = \dash\request::get();
 
 		$param = [];
 

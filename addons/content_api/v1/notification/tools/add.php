@@ -44,7 +44,7 @@ trait add
 			'cat'     => $_args['cat'],
         ];
 
-        return \lib\db\notifications::set($notify_set);
+        return \dash\db\notifications::set($notify_set);
 	}
 }
 ?>

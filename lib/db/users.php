@@ -19,7 +19,7 @@ class users
 	 */
 	public static function get()
 	{
-		return \lib\db\config::public_get('users', ...func_get_args());
+		return \dash\db\config::public_get('users', ...func_get_args());
 	}
 
 
@@ -31,7 +31,7 @@ class users
 		}
 
 		$query = "DELETE FROM users WHERE users.id = $_id LIMIT 1";
-		return \lib\db::query($query);
+		return \dash\db::query($query);
 	}
 
 
@@ -64,7 +64,7 @@ class users
 
 		unset($_where['limit']);
 
-		$where = \lib\db\config::make_where($_where);
+		$where = \dash\db\config::make_where($_where);
 
 		if(!$where)
 		{
@@ -73,7 +73,7 @@ class users
 
 		$query = "SELECT * FROM `$_database_name`.`users` WHERE $where $limit ";
 
-		$result = \lib\db::get($query, null, $only_one_value);
+		$result = \dash\db::get($query, null, $only_one_value);
 
 		return $result;
 	}
@@ -86,11 +86,11 @@ class users
 	 */
 	public static function get_ref_count($_args)
 	{
-		$where = \lib\db\config::make_where($_args);
+		$where = \dash\db\config::make_where($_args);
 		if($where)
 		{
 			$query = "SELECT COUNT(*) AS `count` FROM users WHERE $where ";
-			return \lib\db::get($query, 'count', true);
+			return \dash\db::get($query, 'count', true);
 		}
 	}
 
@@ -132,7 +132,7 @@ class users
 			)
 		";
 		// public_show_field
-		return \lib\db\config::public_search('users', ...func_get_args());
+		return \dash\db\config::public_search('users', ...func_get_args());
 	}
 
 
@@ -146,7 +146,7 @@ class users
 	public static function get_by_email($_email, $_field = false)
 	{
 		$query = "SELECT * FROM users WHERE users.email = '$_email' AND users.status != 'removed' ORDER BY users.id DESC LIMIT 1 ";
-		return \lib\db::get($query, null, true);
+		return \dash\db::get($query, null, true);
 	}
 
 
@@ -194,7 +194,7 @@ class users
 	 */
 	public static function insert()
 	{
-		return \lib\db\config::public_insert('users', ...func_get_args());
+		return \dash\db\config::public_insert('users', ...func_get_args());
 	}
 
 
@@ -207,8 +207,8 @@ class users
 	 */
 	public static function insert_multi()
 	{
-		\lib\db\config::public_insert_multi('users', ...func_get_args());
-		return \lib\db::insert_id();
+		\dash\db\config::public_insert_multi('users', ...func_get_args());
+		return \dash\db::insert_id();
 	}
 
 
@@ -221,7 +221,7 @@ class users
 	 */
 	public static function update()
 	{
-		return \lib\db\config::public_update('users', ...func_get_args());
+		return \dash\db\config::public_update('users', ...func_get_args());
 	}
 
 
@@ -239,7 +239,7 @@ class users
 
 		if($_ref)
 		{
-			$ref_id = \lib\coding::decode($_ref);
+			$ref_id = \dash\coding::decode($_ref);
 			if($ref_id)
 			{
 				$check_ref = self::get($ref_id);
@@ -264,7 +264,7 @@ class users
 	{
 		$_args      = array_merge(['datecreated' => date('Y-m-d H:i:s')], $_args);
 		$insert_new = self::insert($_args);
-		$insert_id  = \lib\db::insert_id();
+		$insert_id  = \dash\db::insert_id();
 		return $insert_id;
 	}
 
@@ -334,14 +334,14 @@ class users
 
 		if($_args['password'])
 		{
-			$password = \lib\utility::hasher($_args['password']);
+			$password = \dash\utility::hasher($_args['password']);
 		}
 		else
 		{
 			$password = null;
 		}
 
-		if(!\lib\engine\process::status())
+		if(!\dash\engine\process::status())
 		{
 			return false;
 		}
@@ -355,14 +355,14 @@ class users
 		$_args['datecreated'] = date("Y-m-d H:i:s");
 
 		$insert_new    = self::insert($_args);
-		$insert_id     = \lib\db::insert_id();
+		$insert_id     = \dash\db::insert_id();
 		self::$user_id = $insert_id;
 
-		if(method_exists('\lib\utility\users', 'signup'))
+		if(method_exists('\dash\utility\users', 'signup'))
 		{
 			$_args['insert_id'] = $insert_id;
 			$_args['ref']       = $ref;
-			\lib\utility\users::signup($_args);
+			\dash\utility\users::signup($_args);
 		}
 		return $insert_id;
 
@@ -396,7 +396,7 @@ class users
 		/**
 		 * set user id to get every where
 		 */
-		\lib\user::init($_user_id, $user_data);
+		\dash\user::init($_user_id, $user_data);
 
 	}
 
@@ -411,7 +411,7 @@ class users
 	 */
 	public static function get_count()
 	{
-		return \lib\db\config::public_get_count('users', ...func_get_args());
+		return \dash\db\config::public_get_count('users', ...func_get_args());
 	}
 
 
@@ -431,7 +431,7 @@ class users
 				{
 					if(!isset(self::$USERS_DETAIL[$_args[0]]))
 					{
-						self::$USERS_DETAIL[$_args[0]] = \lib\db\users::get_by_id($_args[0]);
+						self::$USERS_DETAIL[$_args[0]] = \dash\db\users::get_by_id($_args[0]);
 					}
 				}
 				if($split[1] === 'get')
@@ -490,7 +490,7 @@ class users
 				case 'unit':
 					if(isset(self::$USERS_DETAIL[$_user_id]['unit_id']))
 					{
-						$unit = \lib\app\units::get(self::$USERS_DETAIL[$_user_id]['unit_id']);
+						$unit = \dash\app\units::get(self::$USERS_DETAIL[$_user_id]['unit_id']);
 						if(isset($unit['title']))
 						{
 							return $unit['title'];
@@ -537,14 +537,14 @@ class users
 		switch ($_field)
 		{
 			case 'language':
-				if(\lib\language::check($_value))
+				if(\dash\language::check($_value))
 				{
 					$update['language'] = $_value;
 				}
 				break;
 
 			case 'unit':
-				$unit_id = \lib\app\units::get_id($_value);
+				$unit_id = \dash\app\units::get_id($_value);
 				if($unit_id)
 				{
 					$update['unit_id'] = $unit_id;
@@ -552,7 +552,7 @@ class users
 				break;
 
 			case 'unit_id':
-				$check = \lib\app\units::get($_value);
+				$check = \dash\app\units::get($_value);
 				if($check)
 				{
 					$update['unit_id'] = $_value;
@@ -565,7 +565,7 @@ class users
 		}
 		if(!empty($update))
 		{
-			\lib\db\users::update($update, $_user_id);
+			\dash\db\users::update($update, $_user_id);
 			unset(self::$USERS_DETAIL[$_user_id]);
 		}
 	}
@@ -614,14 +614,14 @@ class users
 		}
 
 		$query_mobile = null;
-		if($temp_mobile = \lib\utility\filter::mobile($_find))
+		if($temp_mobile = \dash\utility\filter::mobile($_find))
 		{
 			$query_mobile = " OR users.mobile = '$temp_mobile' ";
 		}
 
 		$query = "SELECT * FROM users WHERE users.email = '$_find' OR users.username = '$_find' $query_mobile LIMIT 1";
 
-		$is_in_users = \lib\db::get($query, null, true);
+		$is_in_users = \dash\db::get($query, null, true);
 		if($is_in_users)
 		{
 			return $is_in_users;

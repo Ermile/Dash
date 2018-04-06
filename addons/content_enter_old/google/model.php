@@ -20,10 +20,10 @@ class model extends \addons\content_enter\main\model
 {
 	public function get_google()
 	{
-		if(\lib\request::get('code'))
+		if(\dash\request::get('code'))
 		{
 			// check access from google
-			$check = \lib\social\google::check();
+			$check = \dash\social\google::check();
 			if($check)
 			{
 				// go to what url
@@ -31,9 +31,9 @@ class model extends \addons\content_enter\main\model
 
 				$no_problem_to_login = false;
 
-				$user_data = \lib\social\google::user_info();
+				$user_data = \dash\social\google::user_info();
 				// get user email
-				self::$email = \lib\social\google::user_info('email');
+				self::$email = \dash\social\google::user_info('email');
 				// load data by email in field user google mail
 				self::load_user_data('email', ['email_field' => 'googlemail']);
 				// the user exist in system
@@ -64,7 +64,7 @@ class model extends \addons\content_enter\main\model
 								{
 									self::set_enter_session('mobile_request_from', 'google_email_exist');
 
-									self::set_enter_session('logined_by_email', \lib\social\google::user_info('email'));
+									self::set_enter_session('logined_by_email', \dash\social\google::user_info('email'));
 									// go to mobile get to enter mobile
 									self::next_step('mobile/request');
 									// get go to url
@@ -80,7 +80,7 @@ class model extends \addons\content_enter\main\model
 							{
 								self::set_enter_session('mobile_request_from', 'google_email_exist');
 
-								self::set_enter_session('logined_by_email', \lib\social\google::user_info('email'));
+								self::set_enter_session('logined_by_email', \dash\social\google::user_info('email'));
 								// go to mobile get to enter mobile
 								self::next_step('mobile/request');
 								// get go to url
@@ -93,23 +93,23 @@ class model extends \addons\content_enter\main\model
 				{
 					// the email of this user is not exist in system
 					$args = [];
-					if(\lib\social\google::user_info('name'))
+					if(\dash\social\google::user_info('name'))
 					{
-						$args['displayname'] = \lib\social\google::user_info('name');
+						$args['displayname'] = \dash\social\google::user_info('name');
 					}
-					elseif(\lib\social\google::user_info('familyName') || \lib\social\google::user_info('givenName'))
+					elseif(\dash\social\google::user_info('familyName') || \dash\social\google::user_info('givenName'))
 					{
-						$args['displayname'] = trim(\lib\social\google::user_info('familyName'). ' '. \lib\social\google::user_info('givenName'));
+						$args['displayname'] = trim(\dash\social\google::user_info('familyName'). ' '. \dash\social\google::user_info('givenName'));
 					}
 
-					$args['email'] = \lib\social\google::user_info('email');
+					$args['email'] = \dash\social\google::user_info('email');
 					$args['datecreated']  = date("Y-m-d H:i:s");
 
 					self::set_enter_session('mobile_request_from', 'google_email_not_exist');
 
 					self::set_enter_session('must_signup', $args);
 
-					self::set_enter_session('logined_by_email', \lib\social\google::user_info('email'));
+					self::set_enter_session('logined_by_email', \dash\social\google::user_info('email'));
 
 					// go to mobile get to enter mobile
 					self::next_step('mobile/request');

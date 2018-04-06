@@ -7,26 +7,26 @@ class view extends \addons\content_cp\posts\main\view
 	{
 		parent::config();
 
-		$id = \lib\request::get('id');
+		$id = \dash\request::get('id');
 
-		$detail = \lib\app\posts::get($id);
+		$detail = \dash\app\posts::get($id);
 		if(!$detail)
 		{
-			\lib\header::status(403, T_("Invalid id"));
+			\dash\header::status(403, T_("Invalid id"));
 		}
 
 		$this->data->dataRaw = $detail;
-		$this->data->cat_list = \lib\app\term::cat_list();
+		$this->data->cat_list = \dash\app\term::cat_list();
 
 
 
 		$this->data->page['title'] = T_("Edit post");
 		$this->data->page['desc']  = T_("You can change everything, change url and add gallery or some other change");
 
-		$this->data->page['badge']['link'] = \lib\url::this(). $this->data->moduleType;
+		$this->data->page['badge']['link'] = \dash\url::this(). $this->data->moduleType;
 		$this->data->page['badge']['text'] = T_('Back to list of posts');
 
-		$myType = \lib\request::get('type');
+		$myType = \dash\request::get('type');
 		if($myType)
 		{
 			switch ($myType)

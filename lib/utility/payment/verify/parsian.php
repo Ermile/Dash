@@ -24,17 +24,17 @@ trait parsian
             ]
         ];
 
-        if(!\lib\option::config('parsian', 'status'))
+        if(!\dash\option::config('parsian', 'status'))
         {
-            \lib\db\logs::set('pay:parsian:status:false', self::$user_id, $log_meta);
-            \lib\notif::error(T_("The parsian payment on this service is locked"));
+            \dash\db\logs::set('pay:parsian:status:false', self::$user_id, $log_meta);
+            \dash\notif::error(T_("The parsian payment on this service is locked"));
             return self::turn_back();
         }
 
-        if(!\lib\option::config('parsian', 'LoginAccount'))
+        if(!\dash\option::config('parsian', 'LoginAccount'))
         {
-            \lib\db\logs::set('pay:parsian:LoginAccount:not:set', self::$user_id, $log_meta);
-            \lib\notif::error(T_("The parsian payment LoginAccount not set"));
+            \dash\db\logs::set('pay:parsian:LoginAccount:not:set', self::$user_id, $log_meta);
+            \dash\notif::error(T_("The parsian payment LoginAccount not set"));
             return self::turn_back();
         }
 
@@ -49,8 +49,8 @@ trait parsian
         $Amount         = str_replace(',', '', $Amount);
         if(!$Token)
         {
-            \lib\db\logs::set('pay:parsian:Token:verify:not:found', self::$user_id, $log_meta);
-            \lib\notif::error(T_("The parsian payment Token not set"));
+            \dash\db\logs::set('pay:parsian:Token:verify:not:found', self::$user_id, $log_meta);
+            \dash\notif::error(T_("The parsian payment Token not set"));
             return self::turn_back();
         }
 
@@ -60,8 +60,8 @@ trait parsian
         }
         else
         {
-            \lib\db\logs::set('pay:parsian:SESSION:transaction_id:not:found', self::$user_id, $log_meta);
-            \lib\notif::error(T_("Your session is lost! We can not find your transaction"));
+            \dash\db\logs::set('pay:parsian:SESSION:transaction_id:not:found', self::$user_id, $log_meta);
+            \dash\notif::error(T_("Your session is lost! We can not find your transaction"));
             return self::turn_back();
         }
 
@@ -74,11 +74,11 @@ trait parsian
             'payment_response' => json_encode((array) $_args, JSON_UNESCAPED_UNICODE),
         ];
 
-        \lib\db\transactions::update($update, $transaction_id);
-        \lib\db\logs::set('pay:parsian:pending:request', self::$user_id, $log_meta);
+        \dash\db\transactions::update($update, $transaction_id);
+        \dash\db\logs::set('pay:parsian:pending:request', self::$user_id, $log_meta);
 
         $parsian                 = [];
-        $parsian['LoginAccount'] = \lib\option::config('parsian', 'LoginAccount');
+        $parsian['LoginAccount'] = \dash\option::config('parsian', 'LoginAccount');
         $parsian['Token']        = $Token;
 
         if(isset($_SESSION['amount']['parsian'][$Token]['amount']))
@@ -87,27 +87,27 @@ trait parsian
         }
         else
         {
-            \lib\db\logs::set('pay:parsian:SESSION:amount:not:found', self::$user_id, $log_meta);
-            \lib\notif::error(T_("Your session is lost! We can not find amount"));
+            \dash\db\logs::set('pay:parsian:SESSION:amount:not:found', self::$user_id, $log_meta);
+            \dash\notif::error(T_("Your session is lost! We can not find amount"));
             return self::turn_back();
         }
 
         if($Amount_SESSION != $Amount)
         {
-            \lib\db\logs::set('pay:parsian:Amount_SESSION:amount:is:not:equals', self::$user_id, $log_meta);
-            \lib\notif::error(T_("Your session is lost! We can not find amount"));
+            \dash\db\logs::set('pay:parsian:Amount_SESSION:amount:is:not:equals', self::$user_id, $log_meta);
+            \dash\notif::error(T_("Your session is lost! We can not find amount"));
             return self::turn_back();
         }
 
 
         if($status === '0' && intval($Token) > 0)
         {
-            \lib\utility\payment\payment\parsian::$user_id = self::$user_id;
-            \lib\utility\payment\payment\parsian::$log_data = self::$log_data;
+            \dash\utility\payment\payment\parsian::$user_id = self::$user_id;
+            \dash\utility\payment\payment\parsian::$log_data = self::$log_data;
 
-            $is_ok = \lib\utility\payment\payment\parsian::verify($parsian);
+            $is_ok = \dash\utility\payment\payment\parsian::verify($parsian);
 
-            $payment_response = \lib\utility\payment\payment\parsian::$payment_response;
+            $payment_response = \dash\utility\payment\payment\parsian::$payment_response;
 
             $log_meta['meta']['payment_response'] = (array) $payment_response;
 
@@ -123,13 +123,13 @@ trait parsian
                     'payment_response' => $payment_response,
                 ];
 
-                \lib\db\transactions::calc_budget($transaction_id, $Amount_SESSION / 10, 0, $update);
+                \dash\db\transactions::calc_budget($transaction_id, $Amount_SESSION / 10, 0, $update);
 
-                \lib\db\logs::set('pay:parsian:ok:request', self::$user_id, $log_meta);
+                \dash\db\logs::set('pay:parsian:ok:request', self::$user_id, $log_meta);
 
-                \lib\session::set('payment_verify_amount', $Amount_SESSION / 10);
+                \dash\session::set('payment_verify_amount', $Amount_SESSION / 10);
 
-                \lib\session::set('payment_verify_status', 'ok');
+                \dash\session::set('payment_verify_status', 'ok');
 
                 unset($_SESSION['amount']['parsian'][$Token]);
 
@@ -143,9 +143,9 @@ trait parsian
                     'condition'        => 'verify_error',
                     'payment_response' => $payment_response,
                 ];
-                \lib\session::set('payment_verify_status', 'verify_error');
-                \lib\db\transactions::update($update, $transaction_id);
-                \lib\db\logs::set('pay:parsian:verify_error:request', self::$user_id, $log_meta);
+                \dash\session::set('payment_verify_status', 'verify_error');
+                \dash\db\transactions::update($update, $transaction_id);
+                \dash\db\logs::set('pay:parsian:verify_error:request', self::$user_id, $log_meta);
                 return self::turn_back($transaction_id);
             }
         }
@@ -157,9 +157,9 @@ trait parsian
                 'condition'        => 'error',
                 'payment_response' => json_encode((array) $_args, JSON_UNESCAPED_UNICODE),
             ];
-            \lib\session::set('payment_verify_status', 'error');
-            \lib\db\transactions::update($update, $transaction_id);
-            \lib\db\logs::set('pay:parsian:error:request', self::$user_id, $log_meta);
+            \dash\session::set('payment_verify_status', 'error');
+            \dash\db\transactions::update($update, $transaction_id);
+            \dash\db\logs::set('pay:parsian:error:request', self::$user_id, $log_meta);
             return self::turn_back($transaction_id);
         }
     }

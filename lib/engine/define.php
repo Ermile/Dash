@@ -9,7 +9,7 @@ define('core_name'	,'dash');
 
 $dir = __DIR__;
 $dir = str_replace('/lib/engine', '', $dir);
-$dir = str_replace('\lib\engine', '', $dir);
+$dir = str_replace('\dash\engine', '', $dir);
 
 // Define Dash variables ****************************************************
 if(!defined("core"))

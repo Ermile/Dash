@@ -51,7 +51,7 @@ class export
         fclose($df);
         echo ob_get_clean();
 
-        \lib\code::die();
+        \dash\code::die();
     }
 }
 ?>

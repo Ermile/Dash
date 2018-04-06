@@ -65,7 +65,7 @@ trait budget
 		$update['budget_before'] = $budget_before;
 		$update['budget']        = $budget;
 
-		\lib\db\transactions::update($update, $_transaction_id);
+		\dash\db\transactions::update($update, $_transaction_id);
 
 	}
 	/**
@@ -117,7 +117,7 @@ trait budget
 			return false;
 		}
 
-		$result = \lib\db::get($query, $field, $only_one_value);
+		$result = \dash\db::get($query, $field, $only_one_value);
 
 		if(!$result)
 		{
@@ -171,7 +171,7 @@ trait budget
 				)
 			-- get all budget in all units of users
 			";
-			$all_unit =  \lib\db::get($all_unit, ['unit', 'budget']);
+			$all_unit =  \dash\db::get($all_unit, ['unit', 'budget']);
 			return $all_unit;
 		}
 
@@ -268,7 +268,7 @@ trait budget
 			";
 
 		}
-		$result = \lib\db::get($query, $field, $only_one_value);
+		$result = \dash\db::get($query, $field, $only_one_value);
 		if(!$result)
 		{
 			return 0;

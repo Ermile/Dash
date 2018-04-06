@@ -43,15 +43,15 @@ trait add
 			'meta' =>
 			[
 				'user_id' => $this->user_id,
-				'input'   => \lib\utility::request(),
+				'input'   => \dash\utility::request(),
 			]
 		];
 
 		// check invoice id is exist
 		if(!$this->user_id)
 		{
-			if($_args['save_log']) \lib\db\logs::set('addon:api:invoice:user_id:notfound', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\notif::error(T_("invoice not found"), 'invoice', 'permission');
+			if($_args['save_log']) \dash\db\logs::set('addon:api:invoice:user_id:notfound', $this->user_id, $log_meta);
+			if($_args['debug']) \dash\notif::error(T_("invoice not found"), 'invoice', 'permission');
 			return false;
 		}
 
@@ -61,7 +61,7 @@ trait add
 		 */
 		$return_function = $this->invoice_check_args($_args, $args, $log_meta);
 
-		if(!\lib\engine\process::status() || $return_function === false)
+		if(!\dash\engine\process::status() || $return_function === false)
 		{
 			return false;
 		}
@@ -76,7 +76,7 @@ trait add
 		// insert new invoice team
 		if($_args['method'] === 'post')
 		{
-			$invoice = new \lib\db\invoices;
+			$invoice = new \dash\db\invoices;
 	        $invoice->add($args);
 	        foreach ($invoice_detail as $key => $value)
 	        {
@@ -97,31 +97,31 @@ trait add
 		elseif($_args['method'] === 'patch')
 		{
 
-			$id = \lib\utility::request('id');
-			$id = \lib\coding::decode($id);
+			$id = \dash\utility::request('id');
+			$id = \dash\coding::decode($id);
 			if(!$id)
 			{
-				if($_args['save_log']) \lib\db\logs::set('addon:api:invoice:pathc:id:not:set', $this->user_id, $log_meta);
-				if($_args['debug']) \lib\notif::error(T_("Id not set"), 'id', 'arguments');
+				if($_args['save_log']) \dash\db\logs::set('addon:api:invoice:pathc:id:not:set', $this->user_id, $log_meta);
+				if($_args['debug']) \dash\notif::error(T_("Id not set"), 'id', 'arguments');
 				return false;
 			}
 
 			if(!empty($args))
 			{
-				\lib\db\invoices::update($args, $id);
+				\dash\db\invoices::update($args, $id);
 			}
 		}
 
-		if(\lib\engine\process::status())
+		if(\dash\engine\process::status())
 		{
 
 			if($_args['method'] === 'post')
 			{
-				if($_args['debug']) \lib\notif::ok(T_("invoice successfully added"));
+				if($_args['debug']) \dash\notif::ok(T_("invoice successfully added"));
 			}
 			elseif($_args['method'] === 'patch')
 			{
-				if($_args['debug']) \lib\notif::ok(T_("invoice successfully updated"));
+				if($_args['debug']) \dash\notif::ok(T_("invoice successfully updated"));
 			}
 		}
 

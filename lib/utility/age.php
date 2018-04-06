@@ -22,7 +22,7 @@ class age
         // to convert the jalali date to gregorian date
         if(intval($brith_year) > 1300 && intval($brith_year) < 1400)
         {
-            list($brith_year, $brith_month, $brith_day) = \lib\utility\jdate::toGregorian($brith_year, $brith_month, $brith_day);
+            list($brith_year, $brith_month, $brith_day) = \dash\utility\jdate::toGregorian($brith_year, $brith_month, $brith_day);
             if($brith_month < 10)
             {
                 $brith_month = "0". $brith_month;

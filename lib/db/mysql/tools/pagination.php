@@ -13,7 +13,7 @@ trait pagination
 	 */
 	public static function pagnation($_total_rows, $_length)
 	{
-		return \lib\utility\pagination::init($_total_rows, $_length);
+		return \dash\utility\pagination::init($_total_rows, $_length);
 	}
 }
 ?>

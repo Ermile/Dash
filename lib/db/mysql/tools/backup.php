@@ -73,7 +73,7 @@ trait backup
 		if($_period === true)
 		{
 			$clean_result = self::clean(false);
-			\lib\code::print($clean_result);
+			\dash\code::print($clean_result);
 			echo "<hr />";
 			$_period = null;
 		}
@@ -129,15 +129,15 @@ trait backup
 
 		if(!$_options['db_name'])
 		{
-			$db_name = \lib\db::$db_name;
+			$db_name = \dash\db::$db_name;
 		}
 		else
 		{
 			$db_name = $_options['db_name'];
 		}
 
-		$db_host    = \lib\db::$db_host;
-		$db_charset = \lib\db::$db_charset;
+		$db_host    = \dash\db::$db_host;
+		$db_charset = \dash\db::$db_charset;
 		$dest_file  = $db_name.'_'. date('Y-m-d_H-i-s'). '.sql.bz2';
 		$dest_dir   = database."backup/files/";
 		// create folder if not exist
@@ -154,8 +154,8 @@ trait backup
 		}
 
 		$cmd .= " --host='$db_host' --set-charset='$db_charset'";
-		$cmd .= " --user='".\lib\db::$db_user."'";
-		$cmd .= " --password='".\lib\db::$db_pass."' '". $db_name."'";
+		$cmd .= " --user='".\dash\db::$db_user."'";
+		$cmd .= " --password='".\dash\db::$db_pass."' '". $db_name."'";
 		$cmd .= " | bzip2 -c > $dest_dir$dest_file";
 		// to import this file
 		// bunzip2 < filename.sql.bz2 | mysql -u root -p db_name
@@ -167,7 +167,7 @@ trait backup
 		{
 			if($_options['download'])
 			{
-				\lib\file::download($dest_dir. $dest_file);
+				\dash\file::download($dest_dir. $dest_file);
 			}
 			return true;
 		}

@@ -17,8 +17,8 @@ class terms
 	 */
 	public static function insert()
 	{
-		\lib\db\config::public_insert('terms', ...func_get_args());
-		return \lib\db::insert_id();
+		\dash\db\config::public_insert('terms', ...func_get_args());
+		return \dash\db::insert_id();
 	}
 
 
@@ -31,7 +31,7 @@ class terms
 	 */
 	public static function multi_insert()
 	{
-		return \lib\db\config::public_multi_insert('terms', ...func_get_args());
+		return \dash\db\config::public_multi_insert('terms', ...func_get_args());
 	}
 
 
@@ -45,7 +45,7 @@ class terms
 	 */
 	public static function update()
 	{
-		return \lib\db\config::public_update('terms', ...func_get_args());
+		return \dash\db\config::public_update('terms', ...func_get_args());
 	}
 
 
@@ -59,7 +59,7 @@ class terms
 	 */
 	public static function get()
 	{
-		return \lib\db\config::public_get('terms', ...func_get_args());
+		return \dash\db\config::public_get('terms', ...func_get_args());
 	}
 
 
@@ -71,7 +71,7 @@ class terms
 	 */
 	public static function search()
 	{
-		return \lib\db\config::public_search('terms', ...func_get_args());
+		return \dash\db\config::public_search('terms', ...func_get_args());
 	}
 
 
@@ -112,7 +112,7 @@ class terms
 				terms.id IN ($_ids) AND
 				terms.type = '$_type'
 		";
-		$result = \lib\db::get($query);
+		$result = \dash\db::get($query);
 
 		return $result;
 
@@ -136,7 +136,7 @@ class terms
 				terms.title IN ('$_titles') AND
 				terms.type = '$_type'
 		";
-		$result = \lib\db::get($query);
+		$result = \dash\db::get($query);
 
 		return $result;
 	}

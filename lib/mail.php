@@ -11,7 +11,7 @@ class mail
 
 	public static function send($_args = [])
 	{
-		$senderName = T_(ucfirst(\lib\url::root()));
+		$senderName = T_(ucfirst(\dash\url::root()));
 
 		$default_args =
 		[
@@ -45,7 +45,7 @@ class mail
 		{
 			if($_args['debug'])
 			{
-				\lib\notif::error(T_("Mailer Error :error", ['error' => $mail->ErrorInfo]));
+				\dash\notif::error(T_("Mailer Error :error", ['error' => $mail->ErrorInfo]));
 			}
 		    return false;
 		}
@@ -110,8 +110,8 @@ class mail
 		$mail->SMTPDebug = 2;
 
 		//Set who the message is to be sent from
-		// $mail->setFrom('info@'.\lib\url::domain(), T_(ucfirst(\lib\url::root())));
-		$senderName = T_(ucfirst(\lib\url::root()));
+		// $mail->setFrom('info@'.\dash\url::domain(), T_(ucfirst(\dash\url::root())));
+		$senderName = T_(ucfirst(\dash\url::root()));
 		$mail->setFrom('info@ermile.com', $senderName, 0);
 
 		//Set who the message is to be sent to

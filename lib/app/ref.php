@@ -9,10 +9,10 @@ class ref
 	{
 		// it the user is not login and use from ref in url
 		// plus click ref of the referer user
-		if(\lib\request::get("ref") && !\lib\user::login())
+		if(\dash\request::get("ref") && !\dash\user::login())
 		{
-			$url_ref = \lib\request::get('ref');
-			$url_ref = \lib\coding::decode($url_ref);
+			$url_ref = \dash\request::get('ref');
+			$url_ref = \dash\coding::decode($url_ref);
 
 			if(!$url_ref)
 			{
@@ -28,8 +28,8 @@ class ref
 				'data' => $url_ref,
 				'meta' =>
 				[
-					'url'     => \lib\url::directory(),
-					'ref'     => \lib\request::get(),
+					'url'     => \dash\url::directory(),
+					'ref'     => \dash\request::get(),
 					'session' => $_SESSION,
 				],
 			];
@@ -45,7 +45,7 @@ class ref
 				else
 				{
 					// user change the ref
-					\lib\db\logs::set('user:ref:changed', null, $log_meta);
+					\dash\db\logs::set('user:ref:changed', null, $log_meta);
 					$plus_counter_click = true;
 				}
 			}
@@ -58,7 +58,7 @@ class ref
 
 			if($plus_counter_click)
 			{
-				$check_user_exist = \lib\db\users::get(['id' => $url_ref, 'limit' => 1]);
+				$check_user_exist = \dash\db\users::get(['id' => $url_ref, 'limit' => 1]);
 				if(isset($check_user_exist['id']))
 				{
 					$where =
@@ -66,12 +66,12 @@ class ref
 						'user_id' => $check_user_exist['id'],
 						'key'     => 'user_ref_'. (string) $check_user_exist['id'],
 					];
-					\lib\db\options::plus($where);
+					\dash\db\options::plus($where);
 				}
 				else
 				{
 					unset($_SESSION['ref']);
-					\lib\db\logs::set('user:ref:referer:not:exist', null, $log_meta);
+					\dash\db\logs::set('user:ref:referer:not:exist', null, $log_meta);
 				}
 			}
 		}

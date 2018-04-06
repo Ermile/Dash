@@ -34,7 +34,7 @@ class user
 	public static function refresh()
 	{
 		$user_id = self::id();
-		$detail = \lib\db\users::get_by_id($user_id);
+		$detail = \dash\db\users::get_by_id($user_id);
 		self::destroy();
 		self::init($user_id, $detail);
 	}
@@ -129,9 +129,9 @@ class user
 	public static function check_remeber_login()
 	{
 		// check if have cookie set login by remember
-		if(!\lib\user::login())
+		if(!\dash\user::login())
 		{
-			\addons\content_enter\main\tools\login::login_by_remember();
+			// \addons\content_enter\main\tools\login::login_by_remember();
 		}
 	}
 }

@@ -9,22 +9,22 @@ class model extends \addons\content_cp\posts\main\model
 
 		$posts = self::getPost();
 
-		if(!$posts || !\lib\engine\process::status())
+		if(!$posts || !\dash\engine\process::status())
 		{
 			return false;
 		}
 
-		$post_detail = \lib\app\posts::add($posts);
+		$post_detail = \dash\app\posts::add($posts);
 
-		if(\lib\engine\process::status() && isset($post_detail['post_id']))
+		if(\dash\engine\process::status() && isset($post_detail['post_id']))
 		{
-			\lib\redirect::to(\lib\url::here(). '/posts/edit?id='. $post_detail['post_id']);
+			\dash\redirect::to(\dash\url::here(). '/posts/edit?id='. $post_detail['post_id']);
 			return;
 		}
 
-		if(\lib\engine\process::status())
+		if(\dash\engine\process::status())
 		{
-			\lib\redirect::pwd();
+			\dash\redirect::pwd();
 		}
 	}
 }

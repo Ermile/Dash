@@ -91,7 +91,7 @@ trait search
 
 		if($_options['check_language'] === true)
 		{
-			$language = \lib\language::current();
+			$language = \dash\language::current();
 			$where[] = " (posts.language IS NULL OR posts.language = '$language') ";
 		}
 
@@ -140,7 +140,7 @@ trait search
 		if($pagenation)
 		{
 			$pagenation_query = "SELECT	* FROM posts WHERE $where $search ";
-			list($limit_start, $limit) = \lib\db::pagnation($pagenation_query, $limit);
+			list($limit_start, $limit) = \dash\db::pagnation($pagenation_query, $limit);
 			$limit = " LIMIT $limit_start, $limit ";
 		}
 		else
@@ -166,8 +166,8 @@ trait search
 			-- posts::search()
 		";
 
-		$result = \lib\db::get($query);
-		$result = \lib\utility\filter::meta_decode($result);
+		$result = \dash\db::get($query);
+		$result = \dash\utility\filter::meta_decode($result);
 		return $result;
 	}
 }

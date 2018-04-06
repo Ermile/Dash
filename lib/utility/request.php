@@ -37,29 +37,29 @@ class request
 
 		switch ($this->method) {
 			case 'post':
-				$this->request = \lib\request::post();
+				$this->request = \dash\request::post();
 				break;
 
 			case 'array':
-				$this->request = \lib\safe::safe($this->request, 'sqlinjection');
+				$this->request = \dash\safe::safe($this->request, 'sqlinjection');
 				break;
 
 			case 'json':
 				$json = json_decode($this->request);
-				$this->request = \lib\safe::safe($json, 'sqlinjection');
+				$this->request = \dash\safe::safe($json, 'sqlinjection');
 				break;
 
 			case 'object':
-				$this->request = \lib\safe::safe($this->request, 'sqlinjection');
+				$this->request = \dash\safe::safe($this->request, 'sqlinjection');
 				break;
 
 			case 'input_json':
 				$input = json_decode(file_get_contents('php://input'), true);
-				$this->request = \lib\safe::safe($input, 'sqlinjection');
+				$this->request = \dash\safe::safe($input, 'sqlinjection');
 				break;
 
 			default:
-				$this->request = \lib\request::get();
+				$this->request = \dash\request::get();
 				break;
 		}
 	}

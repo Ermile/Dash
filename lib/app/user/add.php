@@ -14,14 +14,14 @@ trait add
 	 */
 	public static function add($_args, $_option = [])
 	{
-		\lib\app::variable($_args);
+		\dash\app::variable($_args);
 
 		$log_meta =
 		[
 			'data' => null,
 			'meta' =>
 			[
-				'input' => \lib\app::request(),
+				'input' => \dash\app::request(),
 			]
 		];
 
@@ -42,17 +42,17 @@ trait add
 		$_option = array_merge($default_option, $_option);
 
 
-		if(!\lib\user::id())
+		if(!\dash\user::id())
 		{
-			if($_option['save_log']) \lib\app::log('api:user:user_id:notfound', null, $log_meta);
-			if($_option['debug']) \lib\notif::error(T_("User not found"), 'user');
+			if($_option['save_log']) \dash\app::log('api:user:user_id:notfound', null, $log_meta);
+			if($_option['debug']) \dash\notif::error(T_("User not found"), 'user');
 			return false;
 		}
 
 		// check args
 		$args = self::check($_option);
 
-		if($args === false || !\lib\engine\process::status())
+		if($args === false || !\dash\engine\process::status())
 		{
 			return false;
 		}
@@ -65,23 +65,23 @@ trait add
 
 		if(!$user_id)
 		{
-			if($_option['save_log']) \lib\app::log('api:user:no:way:to:insert:user', \lib\user::id(), $log_meta);
-			if($_option['debug']) \lib\notif::error(T_("No way to insert user"), 'db', 'system');
+			if($_option['save_log']) \dash\app::log('api:user:no:way:to:insert:user', \dash\user::id(), $log_meta);
+			if($_option['debug']) \dash\notif::error(T_("No way to insert user"), 'db', 'system');
 			return false;
 		}
 
-		$return['user_id'] = \lib\coding::encode($user_id);
+		$return['user_id'] = \dash\coding::encode($user_id);
 
 		$_option['user_id'] = $user_id;
 
 		if($_option['contact'])
 		{
-			\lib\app\contact::merge($_args, $_option);
+			\dash\app\contact::merge($_args, $_option);
 		}
 
-		if(\lib\engine\process::status())
+		if(\dash\engine\process::status())
 		{
-			if($_option['debug']) \lib\notif::ok(T_("User successfuly added"));
+			if($_option['debug']) \dash\notif::ok(T_("User successfuly added"));
 		}
 
 		return $return;

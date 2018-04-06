@@ -22,7 +22,7 @@ class language
 
 	public static function default()
 	{
-		$default = \lib\option::language('default');
+		$default = \dash\option::language('default');
 		if(!$default)
 		{
 			$default = 'en';
@@ -36,7 +36,7 @@ class language
 	 */
 	public static function list($_for_html = false)
 	{
-		$list = \lib\option::language('list');
+		$list = \dash\option::language('list');
 
 		$temp = [];
 
@@ -167,7 +167,7 @@ class language
 
 	public static function detect_language()
 	{
-		$url_lang = \lib\url::lang();
+		$url_lang = \dash\url::lang();
 		if(self::check($url_lang))
 		{
 			self::set_language($url_lang);

@@ -32,7 +32,7 @@ trait get
 			'data' => null,
 			'meta' =>
 			[
-				'input' => \lib\utility::request(),
+				'input' => \dash\utility::request(),
 			]
 		];
 
@@ -42,16 +42,16 @@ trait get
 		}
 
 		$where           = [];
-		$search          = \lib\utility::request('search');
+		$search          = \dash\utility::request('search');
 
 		$get_args = $this->term_make_where($_args, $where, $log_meta);
 
-		if(!\lib\engine\process::status() || $get_args === false)
+		if(!\dash\engine\process::status() || $get_args === false)
 		{
 			return false;
 		}
 
-		$result          = \lib\db\terms::search($search, $where);
+		$result          = \dash\db\terms::search($search, $where);
 
 		$temp            = [];
 
@@ -79,36 +79,36 @@ trait get
 	 */
 	public function get_term($_args = [])
 	{
-		// \lib\notif::title(T_("Operation Faild"));
+		// \dash\notif::title(T_("Operation Faild"));
 
 		$log_meta =
 		[
 			'data' => null,
 			'meta' =>
 			[
-				'input' => \lib\utility::request(),
+				'input' => \dash\utility::request(),
 			]
 		];
 
 		if(!$this->user_id)
 		{
-			\lib\db\logs::set('api:term:term_id:notfound', $this->user_id, $log_meta);
-			\lib\notif::error(T_("term not found"), 'term', 'permission');
+			\dash\db\logs::set('api:term:term_id:notfound', $this->user_id, $log_meta);
+			\dash\notif::error(T_("term not found"), 'term', 'permission');
 			return false;
 		}
 
 
-		$id = \lib\utility::request('id');
-		$id = \lib\coding::decode($id);
+		$id = \dash\utility::request('id');
+		$id = \dash\coding::decode($id);
 
 		if(!$id)
 		{
-			\lib\db\logs::set('api:term:id:not:set', $this->user_id, $log_meta);
-			\lib\notif::error(T_("Id not set"), 'id', 'arguments');
+			\dash\db\logs::set('api:term:id:not:set', $this->user_id, $log_meta);
+			\dash\notif::error(T_("Id not set"), 'id', 'arguments');
 			return false;
 		}
 
-		$get_term = \lib\db\terms::get(['id' => $id, 'limit' => 1]);
+		$get_term = \dash\db\terms::get(['id' => $id, 'limit' => 1]);
 
 		$result = $this->ready_term($get_term);
 
@@ -149,7 +149,7 @@ trait get
 				case 'id':
 				case 'user_id':
 				case 'parent':
-					$result[$key] = \lib\coding::encode($value);
+					$result[$key] = \dash\coding::encode($value);
 					break;
 
 				case 'meta':

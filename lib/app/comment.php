@@ -11,12 +11,12 @@ class comment
 
 	public static function get($_id)
 	{
-		$id = \lib\coding::decode($_id);
+		$id = \dash\coding::decode($_id);
 		if(!$id)
 		{
 			return false;
 		}
-		$get = \lib\db\comments::get(['id' => $id, 'limit' => 1]);
+		$get = \dash\db\comments::get(['id' => $id, 'limit' => 1]);
 		if(is_array($get))
 		{
 			return self::ready($get);
@@ -26,28 +26,28 @@ class comment
 
 	public static function edit($_args, $_id)
 	{
-		\lib\app::variable($_args);
+		\dash\app::variable($_args);
 		// check args
-		$id = \lib\coding::decode($_id);
+		$id = \dash\coding::decode($_id);
 		if(!$id)
 		{
-			\lib\notif::error(T_("Can not access to edit comment"));
+			\dash\notif::error(T_("Can not access to edit comment"));
 			return false;
 		}
 
 		$args = self::check($id);
 
-		if($args === false || !\lib\engine\process::status())
+		if($args === false || !\dash\engine\process::status())
 		{
 			return false;
 		}
 
 
-		\lib\db\comments::update($args, $id);
+		\dash\db\comments::update($args, $id);
 
-		if(\lib\engine\process::status())
+		if(\dash\engine\process::status())
 		{
-			\lib\notif::ok(T_("Comment successfully updated"));
+			\dash\notif::ok(T_("Comment successfully updated"));
 		}
 	}
 
@@ -79,7 +79,7 @@ class comment
 
 		$_args = array_merge($default_meta, $_args);
 
-		$result            = \lib\db\comments::search($_string, $_args);
+		$result            = \dash\db\comments::search($_string, $_args);
 		$temp              = [];
 
 		foreach ($result as $key => $value)
@@ -110,10 +110,10 @@ class comment
 
 		$_option = array_merge($default_option, $_option);
 
-		$status = \lib\app::request('status');
+		$status = \dash\app::request('status');
 		if($status && !in_array($status, ['approved', 'unapproved', 'spam', 'deleted']))
 		{
-			\lib\notif::error(T_("Invalid status"), 'status');
+			\dash\notif::error(T_("Invalid status"), 'status');
 			return false;
 		}
 
@@ -142,7 +142,7 @@ class comment
 				case 'term_id':
 					if(isset($value))
 					{
-						$result[$key] = \lib\coding::encode($value);
+						$result[$key] = \dash\coding::encode($value);
 					}
 					else
 					{

@@ -17,7 +17,7 @@ class controller extends \addons\content_su\main\controller
 		$exist        = true;
 		$rep          = null;
 		$location     = null;
-		$name         = \lib\request::get('git');
+		$name         = \dash\request::get('git');
 		if(!$name)
 		{
 			return;
@@ -38,10 +38,10 @@ class controller extends \addons\content_su\main\controller
 				self::updateDash();
 
 				// pull current project
-				$name = \lib\url::root();
+				$name = \dash\url::root();
 				$location = '../../'. $name;
 				echo "<h1>$name <small>Current Project</small></h1>";
-				echo \lib\utility\git::pull($location);
+				echo \dash\utility\git::pull($location);
 				break;
 
 			case '':
@@ -49,12 +49,12 @@ class controller extends \addons\content_su\main\controller
 
 			default:
 				$location = '../../'. $name;
-				echo \lib\utility\git::pull($location);
+				echo \dash\utility\git::pull($location);
 				// $exist = false;
 				// return;
 				break;
 		}
-		\lib\code::exit();
+		\dash\code::exit();
 	}
 
 
@@ -73,7 +73,7 @@ class controller extends \addons\content_su\main\controller
 		}
 
 		echo "<h1>Dash</h1>";
-		echo \lib\utility\git::pull($dashLocation);
+		echo \dash\utility\git::pull($dashLocation);
 	}
 
 }

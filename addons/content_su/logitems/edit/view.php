@@ -8,7 +8,7 @@ class view extends \addons\content_su\main\view
 		$id = isset($_args->match->url[0][1]) ? $_args->match->url[0][1] : null;
 		if($id && is_numeric($id))
 		{
-			$result = \lib\db\logitems::get(['id' => $id, 'limit' => 1]);
+			$result = \dash\db\logitems::get(['id' => $id, 'limit' => 1]);
 			$this->data->logitem = $result;
 		}
 	}

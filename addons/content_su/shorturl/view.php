@@ -8,12 +8,12 @@ class view extends \addons\content_su\main\view
 	{
 		parent::config();
 
-		$val = \lib\request::get('val');
+		$val = \dash\request::get('val');
 
 		if($val)
 		{
-			$this->data->val_decode = \lib\coding::decode($val);
-			$this->data->val_encode = \lib\coding::encode($val);
+			$this->data->val_decode = \dash\coding::decode($val);
+			$this->data->val_encode = \dash\coding::encode($val);
 		}
 
 	}

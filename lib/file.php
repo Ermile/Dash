@@ -416,7 +416,7 @@ class file
 		}
 
 		readfile($_filePath);
-		\lib\code::exit();
+		\dash\code::exit();
 	}
 
 
@@ -427,7 +427,7 @@ class file
 	 */
 	public static function open($_path, $_options = [])
 	{
-		$max_size = \lib\utility\upload::max_file_upload_in_bytes(true);
+		$max_size = \dash\utility\upload::max_file_upload_in_bytes(true);
 		$default_options =
 		[
 			'read_size' => 1024 * 5, // 5 MB
@@ -442,7 +442,7 @@ class file
 
 		if(!$file)
 		{
-			\lib\notif::error(T_('File not exist'));
+			\dash\notif::error(T_('File not exist'));
 			// throw new \RuntimeException(T_('File not exist'));
 		}
 
@@ -470,7 +470,7 @@ class file
 		{
 			fclose($file);
 			fclose($tmp_file);
-			\lib\notif::error(T_('Exceeded filesize limit'));
+			\dash\notif::error(T_('Exceeded filesize limit'));
 			// throw new \RuntimeException(T_('Exceeded filesize limit'));
 			return false;
 		}

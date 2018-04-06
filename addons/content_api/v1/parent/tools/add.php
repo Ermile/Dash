@@ -39,58 +39,58 @@ trait add
 			'data' => null,
 			'meta' =>
 			[
-				'input' => \lib\utility::request(),
+				'input' => \dash\utility::request(),
 			]
 		];
 
 		if(!$this->user_id)
 		{
-			if($_args['save_log']) \lib\db\logs::set('api:parent:user_id:notfound', null, $log_meta);
-			if($_args['debug']) \lib\notif::error(T_("User not found"), 'user', 'permission');
+			if($_args['save_log']) \dash\db\logs::set('api:parent:user_id:notfound', null, $log_meta);
+			if($_args['debug']) \dash\notif::error(T_("User not found"), 'user', 'permission');
 			return false;
 		}
 
-		$user_id = \lib\utility::request('id');
-		$user_id = \lib\coding::decode($user_id);
+		$user_id = \dash\utility::request('id');
+		$user_id = \dash\coding::decode($user_id);
 		if(!$user_id)
 		{
-			if($_args['save_log']) \lib\db\logs::set('api:parent:user_id:not:set', null, $log_meta);
-			if($_args['debug']) \lib\notif::error(T_("User not found"), 'user', 'arguments');
+			if($_args['save_log']) \dash\db\logs::set('api:parent:user_id:not:set', null, $log_meta);
+			if($_args['debug']) \dash\notif::error(T_("User not found"), 'user', 'arguments');
 			return false;
 		}
 
 		$parent_id = null;
 
-		$mobile = \lib\utility::request('mobile');
+		$mobile = \dash\utility::request('mobile');
 		if(!$mobile)
 		{
-			if($_args['save_log']) \lib\db\logs::set('api:parent:mobile:not:set', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\notif::error(T_("Please set the parent mobile"), 'mobile');
+			if($_args['save_log']) \dash\db\logs::set('api:parent:mobile:not:set', $this->user_id, $log_meta);
+			if($_args['debug']) \dash\notif::error(T_("Please set the parent mobile"), 'mobile');
 			return false;
 		}
 
-		$mobile = \lib\utility\filter::mobile($mobile);
+		$mobile = \dash\utility\filter::mobile($mobile);
 
 		if(!$mobile)
 		{
-			if($_args['save_log']) \lib\db\logs::set('api:parent:mobile:invalid', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\notif::error(T_("Invalid mobile number"), 'mobile');
+			if($_args['save_log']) \dash\db\logs::set('api:parent:mobile:invalid', $this->user_id, $log_meta);
+			if($_args['debug']) \dash\notif::error(T_("Invalid mobile number"), 'mobile');
 			return false;
 		}
 
-		$title = \lib\utility::request('title');
+		$title = \dash\utility::request('title');
 		if(!$title)
 		{
-			if($_args['save_log']) \lib\db\logs::set('api:parent:title:not:set', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\notif::error(T_("Please select one title"));
+			if($_args['save_log']) \dash\db\logs::set('api:parent:title:not:set', $this->user_id, $log_meta);
+			if($_args['debug']) \dash\notif::error(T_("Please select one title"));
 			return false;
 		}
 
-		$get_parent_data = \lib\db\users::get_by_mobile($mobile);
+		$get_parent_data = \dash\db\users::get_by_mobile($mobile);
 
 		if(!isset($get_parent_data['id']))
 		{
-			$parent_id = \lib\db\users::signup_quick(['mobile' => $mobile]);
+			$parent_id = \dash\db\users::signup_quick(['mobile' => $mobile]);
 			$get_parent_data['mobile'] = $mobile;
 		}
 		else
@@ -98,14 +98,14 @@ trait add
 			$parent_id = $get_parent_data['id'];
 		}
 
-		\lib\temp::set('add_parent_detail', $get_parent_data);
+		\dash\temp::set('add_parent_detail', $get_parent_data);
 
-		$related_id = \lib\utility::request('related_id');
-		$related_id = \lib\coding::decode($related_id);
-		if(!$related_id && \lib\utility::request('related_id'))
+		$related_id = \dash\utility::request('related_id');
+		$related_id = \dash\coding::decode($related_id);
+		if(!$related_id && \dash\utility::request('related_id'))
 		{
-			\lib\db\logs::set('api:parent:related_id:is:incurrect:add', null, $log_meta);
-			\lib\notif::error(T_("Related id is incurrect"), 'related_id', 'permission');
+			\dash\db\logs::set('api:parent:related_id:is:incurrect:add', null, $log_meta);
+			\dash\notif::error(T_("Related id is incurrect"), 'related_id', 'permission');
 			return false;
 		}
 
@@ -114,8 +114,8 @@ trait add
 
 		if(intval($parent_id) === intval($user_id))
 		{
-			if($_args['save_log']) \lib\db\logs::set('api:parent:parent:yourself', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\notif::error(T_("You can not set parent yourself"));
+			if($_args['save_log']) \dash\db\logs::set('api:parent:parent:yourself', $this->user_id, $log_meta);
+			if($_args['debug']) \dash\notif::error(T_("You can not set parent yourself"));
 			return false;
 		}
 
@@ -147,23 +147,23 @@ trait add
 
 		if(!in_array($title, $titles))
 		{
-			if($_args['save_log']) \lib\db\logs::set('api:parent:title:inavalid', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\notif::error(T_("Invalid title"));
+			if($_args['save_log']) \dash\db\logs::set('api:parent:title:inavalid', $this->user_id, $log_meta);
+			if($_args['debug']) \dash\notif::error(T_("Invalid title"));
 			return false;
 		}
 
-		$other_title = \lib\utility::request('othertitle');
+		$other_title = \dash\utility::request('othertitle');
 		if($title === 'custom' && !$other_title)
 		{
-			if($_args['save_log']) \lib\db\logs::set('api:parent:title:othertitle:not:set', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\notif::error(T_("Plase set the other title field"));
+			if($_args['save_log']) \dash\db\logs::set('api:parent:title:othertitle:not:set', $this->user_id, $log_meta);
+			if($_args['debug']) \dash\notif::error(T_("Plase set the other title field"));
 			return false;
 		}
 
 		if($other_title && mb_strlen($other_title) > 50)
 		{
-			if($_args['save_log']) \lib\db\logs::set('api:parent:title:othertitle:max:lenght', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\notif::error(T_("You must set other title less than 50 character"));
+			if($_args['save_log']) \dash\db\logs::set('api:parent:title:othertitle:max:lenght', $this->user_id, $log_meta);
+			if($_args['debug']) \dash\notif::error(T_("You must set other title less than 50 character"));
 			return false;
 		}
 
@@ -171,12 +171,12 @@ trait add
 		{
 			if($this->check_duplicate_request())
 			{
-				if($_args['save_log']) \lib\db\logs::set('api:parent:title:othertitle:max:lenght', $this->user_id, $log_meta);
-				if($_args['debug']) \lib\notif::error(T_("Your request was sended to user, wait for answer user"));
+				if($_args['save_log']) \dash\db\logs::set('api:parent:title:othertitle:max:lenght', $this->user_id, $log_meta);
+				if($_args['debug']) \dash\notif::error(T_("Your request was sended to user, wait for answer user"));
 				return ;
 			}
 
-			$get_user_data = \lib\db\users::get_by_id($user_id);
+			$get_user_data = \dash\db\users::get_by_id($user_id);
 
 			$meta                       = [];
 			$meta['user_id']            = $user_id;
@@ -197,16 +197,16 @@ trait add
 				'related_foreign' => 'users',
 				'status'		  => 'enable',
 				'related_id'      => $user_id,
-				'meta'            => json_encode(\lib\safe::safe($meta), JSON_UNESCAPED_UNICODE),
+				'meta'            => json_encode(\dash\safe::safe($meta), JSON_UNESCAPED_UNICODE),
 				'needanswer'      => 1,
 				'content'         => T_("Are you :title of this user?", ['title' => T_($title)]),
 			];
 
-			$set_notify = \lib\db\notifications::set($send_notify);
+			$set_notify = \dash\db\notifications::set($send_notify);
 
-			if(\lib\engine\process::status())
+			if(\dash\engine\process::status())
 			{
-				if($_args['debug']) \lib\notif::ok(T_("Your request was sended"));
+				if($_args['debug']) \dash\notif::ok(T_("Your request was sended"));
 			}
 			return true;
 		}
@@ -222,11 +222,11 @@ trait add
 				'limit'      => 1,
 			];
 
-			$check_exits_parent = \lib\db\userparents::get($check_exits_parent);
+			$check_exits_parent = \dash\db\userparents::get($check_exits_parent);
 			if(isset($check_exits_parent['id']) && isset($check_exits_parent['parent']))
 			{
 				$update = ['parent' => $parent_id, 'status' => 'enable'];
-				\lib\db\userparents::update($update, $check_exits_parent['id']);
+				\dash\db\userparents::update($update, $check_exits_parent['id']);
 			}
 			else
 			{
@@ -239,7 +239,7 @@ trait add
 					'creator'    => $this->user_id,
 					'parent'     => $parent_id,
 				];
-				\lib\db\userparents::insert($insert);
+				\dash\db\userparents::insert($insert);
 			}
 
 		}
@@ -264,7 +264,7 @@ trait add
 			'limit'           => 1,
 		];
 
-		$check_notify = \lib\db\notifications::get($get);
+		$check_notify = \dash\db\notifications::get($get);
 
 		if($check_notify && is_array($check_notify))
 		{

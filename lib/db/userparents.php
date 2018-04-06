@@ -11,7 +11,7 @@ class userparents
 	 */
 	public static function insert()
 	{
-		return \lib\db\config::public_insert('userparents', ...func_get_args());
+		return \dash\db\config::public_insert('userparents', ...func_get_args());
 	}
 
 
@@ -22,7 +22,7 @@ class userparents
 	 */
 	public static function multi_insert()
 	{
-		return \lib\db\config::public_multi_insert('userparents', ...func_get_args());
+		return \dash\db\config::public_multi_insert('userparents', ...func_get_args());
 	}
 
 
@@ -33,7 +33,7 @@ class userparents
 	 */
 	public static function update()
 	{
-		return \lib\db\config::public_update('userparents', ...func_get_args());
+		return \dash\db\config::public_update('userparents', ...func_get_args());
 	}
 
 
@@ -44,7 +44,7 @@ class userparents
 	 */
 	public static function get()
 	{
-		return \lib\db\config::public_get('userparents', ...func_get_args());
+		return \dash\db\config::public_get('userparents', ...func_get_args());
 	}
 
 
@@ -55,7 +55,7 @@ class userparents
 	 */
 	public static function search()
 	{
-		$result = \lib\db\config::public_search('userparents', ...func_get_args());
+		$result = \dash\db\config::public_search('userparents', ...func_get_args());
 		return $result;
 	}
 
@@ -78,7 +78,7 @@ class userparents
 		$parent_ids     = array_column($result, 'parent');
 		$parent_ids     = implode(',', $parent_ids);
 		$query          = "SELECT * FROM users WHERE users.id IN ($parent_ids) ";
-		$parent_details = \lib\db::get($query);
+		$parent_details = \dash\db::get($query);
 		$user_ids       = array_column($parent_details, 'id');
 		$parent_details = array_combine($user_ids, $parent_details);
 		$return         = [];

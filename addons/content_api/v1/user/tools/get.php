@@ -38,7 +38,7 @@ trait get
 			'data' => null,
 			'meta' =>
 			[
-				'input' => \lib\utility::request(),
+				'input' => \dash\utility::request(),
 			]
 		];
 
@@ -47,16 +47,16 @@ trait get
 			return false;
 		}
 		$where           = [];
-		$search          = \lib\utility::request('search');
+		$search          = \dash\utility::request('search');
 
 		$get_args = $this->user_make_where($_args, $where, $log_meta);
 
-		if(!\lib\engine\process::status() || $get_args === false)
+		if(!\dash\engine\process::status() || $get_args === false)
 		{
 			return false;
 		}
 
-		$result          = \lib\db\users::search($search, $where);
+		$result          = \dash\db\users::search($search, $where);
 
 		$temp            = [];
 
@@ -73,7 +73,7 @@ trait get
 		}
 
 
-		if(\lib\utility::request('get_term'))
+		if(\dash\utility::request('get_term'))
 		{
 			$this->get_user_term($temp);
 		}
@@ -91,39 +91,39 @@ trait get
 	 */
 	public function get_user($_args = [])
 	{
-		// \lib\notif::title(T_("Operation Faild"));
+		// \dash\notif::title(T_("Operation Faild"));
 
 		$log_meta =
 		[
 			'data' => null,
 			'meta' =>
 			[
-				'input' => \lib\utility::request(),
+				'input' => \dash\utility::request(),
 			]
 		];
 
 		if(!$this->user_id)
 		{
-			\lib\db\logs::set('api:user:user_id:notfound', $this->user_id, $log_meta);
-			\lib\notif::error(T_("User not found"), 'user', 'permission');
+			\dash\db\logs::set('api:user:user_id:notfound', $this->user_id, $log_meta);
+			\dash\notif::error(T_("User not found"), 'user', 'permission');
 			return false;
 		}
 
 
-		$id = \lib\utility::request('id');
-		$id = \lib\coding::decode($id);
+		$id = \dash\utility::request('id');
+		$id = \dash\coding::decode($id);
 		if(!$id)
 		{
-			\lib\db\logs::set('api:user:id:not:set', $this->user_id, $log_meta);
-			\lib\notif::error(T_("Id not set"), 'id', 'arguments');
+			\dash\db\logs::set('api:user:id:not:set', $this->user_id, $log_meta);
+			\dash\notif::error(T_("Id not set"), 'id', 'arguments');
 			return false;
 		}
 
-		$get_user = \lib\db\users::get(['id' => $id, 'limit' => 1]);
+		$get_user = \dash\db\users::get(['id' => $id, 'limit' => 1]);
 
 		$result = $this->ready_user($get_user);
 
-		if(\lib\utility::request('get_term'))
+		if(\dash\utility::request('get_term'))
 		{
 			$this->get_user_term($result);
 		}
@@ -154,7 +154,7 @@ trait get
 			$user_ids = array_column($_data, 'id');
 		}
 
-		$user_ids_decode = array_map(function($_a){return \lib\coding::decode($_a);}, $user_ids);
+		$user_ids_decode = array_map(function($_a){return \dash\coding::decode($_a);}, $user_ids);
 
 		$get_term_multi =
 		[
@@ -165,7 +165,7 @@ trait get
 
 		$cat_tag = [];
 
-		$get_term_multi = \lib\db\termusages::get($get_term_multi);
+		$get_term_multi = \dash\db\termusages::get($get_term_multi);
 
 		if(is_array($get_term_multi))
 		{
@@ -173,7 +173,7 @@ trait get
 			{
 				if(isset($value['related_id']) && isset($value['type']) && isset($value['title']))
 				{
-					$related_encode = \lib\coding::encode($value['related_id']);
+					$related_encode = \dash\coding::encode($value['related_id']);
 					$cat_tag[$related_encode][$value['type']][] = $value['title'];
 				}
 			}
@@ -239,7 +239,7 @@ trait get
 				case 'id':
 				case 'fileid':
 				case 'parent':
-					$result[$key] = \lib\coding::encode($value);
+					$result[$key] = \dash\coding::encode($value);
 					break;
 
 				case 'birthday':
@@ -250,7 +250,7 @@ trait get
 						if(strtotime($value) !== false)
 						{
 							$time = strtotime($value);
-							$toGregorian = \lib\utility\jdate::toGregorian(date("Y", $time), date("m", $time), date("d", $time));
+							$toGregorian = \dash\utility\jdate::toGregorian(date("Y", $time), date("m", $time), date("d", $time));
 							$result['birthday_gregorian'] = implode('-', $toGregorian);
 						}
 					}

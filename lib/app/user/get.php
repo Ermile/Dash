@@ -16,7 +16,7 @@ trait get
 	public static function get($_args, $_options = [])
 	{
 
-		\lib\app::variable($_args);
+		\dash\app::variable($_args);
 
 		$default_options =
 		[
@@ -37,23 +37,23 @@ trait get
 			'data' => null,
 			'meta' =>
 			[
-				'input' => \lib\app::request(),
+				'input' => \dash\app::request(),
 			]
 		];
 
-		if(!\lib\user::id())
+		if(!\dash\user::id())
 		{
 			return false;
 		}
 
-		$id = \lib\app::request("id");
-		$id = \lib\coding::decode($id);
+		$id = \dash\app::request("id");
+		$id = \dash\coding::decode($id);
 		if(!$id)
 		{
 			if($_options['debug'])
 			{
-				\lib\app::log('api:staff:id:shortname:not:set', \lib\user::id(), $log_meta);
-				\lib\notif::error(T_("Store id or shortname not set"), 'id', 'arguments');
+				\dash\app::log('api:staff:id:shortname:not:set', \dash\user::id(), $log_meta);
+				\dash\notif::error(T_("Store id or shortname not set"), 'id', 'arguments');
 			}
 			return false;
 		}
@@ -66,7 +66,7 @@ trait get
 			$get_contact[$_options['other_field']] = $_options['other_field_id'];
 		}
 
-		$get_contact_detail = \lib\db\contacts::get($get_contact);
+		$get_contact_detail = \dash\db\contacts::get($get_contact);
 
 		if(is_array($get_contact_detail))
 		{

@@ -8,11 +8,11 @@ trait link
 
 	public function upload_file($_options = [])
 	{
-		// \lib\notif::title(T_("Can not upload file"));
+		// \dash\notif::title(T_("Can not upload file"));
 
 		$default_options =
 		[
-			'upload_name' => \lib\utility::request('upload_name'),
+			'upload_name' => \dash\utility::request('upload_name'),
 			'url'         => null,
 			'debug'       => true,
 		];
@@ -24,9 +24,9 @@ trait link
 
 		$_options = array_merge($default_options, $_options);
 
-		if(\lib\utility::request('url') && !$_options['url'])
+		if(\dash\utility::request('url') && !$_options['url'])
 		{
-			$_options['url'] = \lib\utility::request('url');
+			$_options['url'] = \dash\utility::request('url');
 		}
 
 		$file_path = false;
@@ -35,9 +35,9 @@ trait link
 		{
 			$file_path = true;
 		}
-		elseif(!\lib\request::files($_options['upload_name']))
+		elseif(!\dash\request::files($_options['upload_name']))
 		{
-			return \lib\notif::error(T_("Unable to upload, because of selected upload name"), 'upload_name', 'arguments');
+			return \dash\notif::error(T_("Unable to upload, because of selected upload name"), 'upload_name', 'arguments');
 		}
 
 		$ready_upload            = [];
@@ -53,7 +53,7 @@ trait link
 			$ready_upload['upload_name'] = $_options['upload_name'];
 		}
 
-		// if(\lib\permission::access('admin:admin:view', null, $this->user_id))
+		// if(\dash\permission::access('admin:admin:view', null, $this->user_id))
 		// {
 		// 	$ready_upload['status'] = 'publish';
 		// }
@@ -68,14 +68,14 @@ trait link
 
 		// upload::$extentions = ['png', 'jpeg', 'jpg'];
 
-		$upload      = \lib\utility\upload::upload($ready_upload);
+		$upload      = \dash\utility\upload::upload($ready_upload);
 
-		if(!\lib\engine\process::status())
+		if(!\dash\engine\process::status())
 		{
 			return false;
 		}
 
-		$file_detail = \lib\temp::get('upload');
+		$file_detail = \dash\temp::get('upload');
 		$file_id     = null;
 
 		if(isset($file_detail['size']))
@@ -89,24 +89,24 @@ trait link
 		}
 		else
 		{
-			return \lib\notif::error(T_("Can not upload file. undefined error"));
+			return \dash\notif::error(T_("Can not upload file. undefined error"));
 		}
 
 		$file_id_code = null;
 
 		if($file_id)
 		{
-			$file_id_code = \lib\coding::encode($file_id);
+			$file_id_code = \dash\coding::encode($file_id);
 		}
 
 		$url = null;
 
 		if(isset($file_detail['url']))
 		{
-			$url = \lib\url::site(). '/'. $file_detail['url'];
+			$url = \dash\url::site(). '/'. $file_detail['url'];
 		}
 
-		// \lib\notif::title(T_("File upload completed"));
+		// \dash\notif::title(T_("File upload completed"));
 		return ['code' => $file_id_code, 'url' => $url];
 	}
 }

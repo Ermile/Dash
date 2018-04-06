@@ -5,7 +5,7 @@ class controller extends \addons\content_enter\main\controller
 {
 	public function ready()
 	{
-		$url = \lib\url::directory();
+		$url = \dash\url::directory();
 		// if(self::lock('email/change/google'))
 		// {
 		// 	self::error_page('email/change/google');

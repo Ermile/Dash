@@ -5,7 +5,7 @@ namespace dash\db;
 class posts
 {
 
-	use \lib\db\posts\search;
+	use \dash\db\posts\search;
 
 	/**
 	 * this library work with posts
@@ -20,8 +20,8 @@ class posts
 	 */
 	public static function insert()
 	{
-		\lib\db\config::public_insert('posts', ...func_get_args());
-		return \lib\db::insert_id();
+		\dash\db\config::public_insert('posts', ...func_get_args());
+		return \dash\db::insert_id();
 	}
 
 
@@ -34,7 +34,7 @@ class posts
 	 */
 	public static function update()
 	{
-		return \lib\db\config::public_update('posts', ...func_get_args());
+		return \dash\db\config::public_update('posts', ...func_get_args());
 	}
 
 
@@ -53,7 +53,7 @@ class posts
 				WHERE posts.id = $_id
 				";
 
-		return \lib\db::query($query);
+		return \dash\db::query($query);
 	}
 
 
@@ -67,8 +67,8 @@ class posts
 	public static function get_one($_post_id)
 	{
 		$query = "SELECT * FROM posts WHERE id = $_post_id LIMIT 1";
-		$result = \lib\db::get($query);
-		$result = \lib\utility\filter::meta_decode($result);
+		$result = \dash\db::get($query);
+		$result = \dash\utility\filter::meta_decode($result);
 		if(isset($result[0]))
 		{
 			$result = $result[0];
@@ -96,8 +96,8 @@ class posts
 			$_ids = implode(',', $_ids);
 		}
 
-		$result = \lib\db::get("SELECT * FROM posts WHERE id IN ($_ids)");
-		$result = \lib\utility\filter::meta_decode($result);
+		$result = \dash\db::get("SELECT * FROM posts WHERE id IN ($_ids)");
+		$result = \dash\utility\filter::meta_decode($result);
 		return $result;
 	}
 
@@ -122,7 +122,7 @@ class posts
 			AND posts.status IN ('draft', 'publish')
 			LIMIT 1
 		";
-		$result = \lib\db::get($query, null, true);
+		$result = \dash\db::get($query, null, true);
 
 		if($result)
 		{
@@ -145,7 +145,7 @@ class posts
 	 */
 	public static function get()
 	{
-		return \lib\db\config::public_get('posts', ...func_get_args());
+		return \dash\db\config::public_get('posts', ...func_get_args());
 	}
 
 
@@ -169,8 +169,8 @@ class posts
 					posts.publishdate <= '$date_now'
 			";
 
-			$pagenation_query = \lib\db::get($pagenation_query, 'count', true);
-			list($limit_start, $limit) = \lib\db::pagnation((int) $pagenation_query, $_options['limit']);
+			$pagenation_query = \dash\db::get($pagenation_query, 'count', true);
+			list($limit_start, $limit) = \dash\db::pagnation((int) $pagenation_query, $_options['limit']);
 			$limit = " LIMIT $limit_start, $limit ";
 		}
 
@@ -187,7 +187,7 @@ class posts
 			ORDER BY posts.publishdate DESC
 			$limit
 		";
-		return \lib\db::get($query);
+		return \dash\db::get($query);
 	}
 
 
@@ -267,7 +267,7 @@ class posts
 			ORDER BY posts.publishdate DESC
 			LIMIT $_options[limit]
 		";
-		$result = \lib\db::get($query);
+		$result = \dash\db::get($query);
 		return $result;
 	}
 }

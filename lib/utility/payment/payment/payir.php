@@ -62,7 +62,7 @@ class payir
 
         if(array_key_exists('status', $result))
         {
-            \lib\notif::error(self::msg($result['status'], 'send'));
+            \dash\notif::error(self::msg($result['status'], 'send'));
         }
 
         return false;
@@ -112,7 +112,7 @@ class payir
 
         if(array_key_exists('status', $result))
         {
-            \lib\notif::error(self::msg($result['status'], 'verify'));
+            \dash\notif::error(self::msg($result['status'], 'verify'));
         }
 
         return false;

@@ -8,26 +8,26 @@ class power
 
 	public static function on()
 	{
-		\lib\engine\prepare::requirements();
+		\dash\engine\prepare::requirements();
 
 		// block baby to not allow to harm yourself :/
-		\lib\engine\baby::block();
+		\dash\engine\baby::block();
 
 		// detect url and start work with them as first lib used by another one
-		\lib\url::initialize();
+		\dash\url::initialize();
 
 		// detect language and if need set the new language
-		\lib\language::detect_language();
+		\dash\language::detect_language();
 
-		\lib\engine\prepare::basics();
+		\dash\engine\prepare::basics();
 
 
 		// // check if isset remember me and login by this
-		\lib\user::check_remeber_login();
+		\dash\user::check_remeber_login();
 
 
 		// LAUNCH !
-		\lib\engine\mvc::fire();
+		\dash\engine\mvc::fire();
 	}
 }
 ?>

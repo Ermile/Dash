@@ -15,7 +15,7 @@ class dbtables
 
 	public static function get_field()
 	{
-		$result = \lib\db::get("DESC ". self::$table);
+		$result = \dash\db::get("DESC ". self::$table);
 		$result = array_column($result, 'Field');
 		return $result;
 	}
@@ -24,11 +24,11 @@ class dbtables
 	{
 		if(!$id)
 		{
-			\lib\notif::error(T_(":dbtables id not set"));
+			\dash\notif::error(T_(":dbtables id not set"));
 			return false;
 		}
 
-		$get = \lib\db\config::public_get(self::$table, ['id' => $id, 'school_id' => \lib\school::id(), 'limit' => 1]);
+		$get = \dash\db\config::public_get(self::$table, ['id' => $id, 'school_id' => \dash\school::id(), 'limit' => 1]);
 
 		return $get;
 	}
@@ -42,7 +42,7 @@ class dbtables
 	private static function check($_id = null)
 	{
 		$args           = [];
-		foreach (\lib\app::request() as $key => $value)
+		foreach (\dash\app::request() as $key => $value)
 		{
 			$args[$key]  = $value;
 		}

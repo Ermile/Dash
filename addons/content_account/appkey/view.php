@@ -6,7 +6,7 @@ class view extends \content_account\main\view
 
 	public function config()
 	{
-		$this->data->appkey = \lib\utility\appkey::get_app_key(\lib\user::id());
+		$this->data->appkey = \dash\utility\appkey::get_app_key(\dash\user::id());
 	}
 }
 ?>

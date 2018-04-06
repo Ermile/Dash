@@ -186,7 +186,7 @@ class url
 		// try to detect lang
 		$maybe_lang = reset($my_dir);
 		// maybe first is language
-		if(strlen($maybe_lang) === 2 && \lib\language::check($maybe_lang))
+		if(strlen($maybe_lang) === 2 && \dash\language::check($maybe_lang))
 		{
 			// set language
 			$path_result['lang']   = $maybe_lang;
@@ -200,7 +200,7 @@ class url
 			// try to detect content
 			$maybe_content = reset($my_dir);
 			// maybe first is language
-			if($maybe_content && \lib\engine\content::load($maybe_content))
+			if($maybe_content && \dash\engine\content::load($maybe_content))
 			{
 				// set language
 				$path_result['content'] = $maybe_content;

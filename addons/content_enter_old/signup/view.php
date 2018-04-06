@@ -17,7 +17,7 @@ class view extends \addons\content_enter\main\view
 
 		// set el value to use in display
 		$this->data->el = [];
-		$this->data->el['username'] = \lib\option::config('enter', 'singup_username');
+		$this->data->el['username'] = \dash\option::config('enter', 'singup_username');
 	}
 }
 ?>

@@ -19,9 +19,9 @@ class view extends \mvc\view
 		$session_mobile = self::get_enter_session('usernameormobile');
 		$temp_mobile    = self::get_enter_session('temp_mobile');
 		$myMobile       = null;
-		if(\lib\user::login('mobile'))
+		if(\dash\user::login('mobile'))
 		{
-			$myMobile = \lib\user::login('mobile');
+			$myMobile = \dash\user::login('mobile');
 		}
 		elseif($session_mobile)
 		{
@@ -43,9 +43,9 @@ class view extends \mvc\view
 		// in all page the mobiel input is readonly
 		$this->data->mobile_readonly = true;
 
-		$this->data->googleLogin = \lib\option::social('google', 'status');
+		$this->data->googleLogin = \dash\option::social('google', 'status');
 
-		if(\lib\url::subdomain())
+		if(\dash\url::subdomain())
 		{
 			$this->data->googleLogin = false;
 		}

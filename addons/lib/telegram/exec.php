@@ -30,7 +30,7 @@ class exec extends tg
 			unset($_data['storage']);
 		}
 		// if telegram is off then do not run
-		if(!\lib\option::social('telegram', 'status'))
+		if(!\dash\option::social('telegram', 'status'))
 		{
 			return 'telegram is off!';
 		}
@@ -42,7 +42,7 @@ class exec extends tg
 				if($key == 7) break;
 				$log[] = $value;
 			}
-			\lib\db::log($log, null, 'telegram-error.json', 'json');
+			\dash\db::log($log, null, 'telegram-error.json', 'json');
 			return 'method or data is not set!';
 		}
 		if(array_key_exists('method', $_data))
@@ -63,7 +63,7 @@ class exec extends tg
 		// if api key is not set get it from options
 		if(!self::$api_key)
 		{
-			self::$api_key = \lib\option::social('telegram', 'key');
+			self::$api_key = \dash\option::social('telegram', 'key');
 		}
 		// if key is not correct return
 		if(strlen(self::$api_key) < 20)
@@ -107,13 +107,13 @@ class exec extends tg
 				// curl_setopt( $ch, CURLOPT_POSTFIELDS, http_build_query($_data));
 			}
 		}
-		if(\lib\url::isLocal())
+		if(\dash\url::isLocal())
 		{
 			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 		}
 
 		$result = curl_exec($ch);
-		\lib\db::log([$curlConfig, curl_getinfo($ch)], null, 'telegram-info.json', 'json');
+		\dash\db::log([$curlConfig, curl_getinfo($ch)], null, 'telegram-info.json', 'json');
 
 		if($response_callback)
 		{

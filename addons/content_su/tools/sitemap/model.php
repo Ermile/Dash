@@ -16,11 +16,11 @@ class model extends \mvc\model
 		// create sitemap for each language
 		$result   = '';
 
-		$site_url = \lib\url::site().'/';
+		$site_url = \dash\url::site().'/';
 
 		$result   .= "<pre>";
 		$result   .= $site_url.'<br/>';
-		$sitemap  = new \lib\utility\sitemap($site_url , root.'public_html/', 'sitemap' );
+		$sitemap  = new \dash\utility\sitemap($site_url , root.'public_html/', 'sitemap' );
 
 		$counter  =
 		[
@@ -59,7 +59,7 @@ class model extends \mvc\model
 		// PERSIAN
 		// add all language static page automatically
 		// we must detect pages automatically and list static pages here
-		$lang_data = \lib\option::$language;
+		$lang_data = \dash\option::$language;
 		if(isset($lang_data['list']))
 		{
 			foreach ($lang_data['list'] as $key => $myLang)
@@ -203,7 +203,7 @@ class model extends \mvc\model
 
 		$qry .= " ORDER BY id DESC ";
 
-		return \lib\db::get($qry);
+		return \dash\db::get($qry);
 	}
 
 

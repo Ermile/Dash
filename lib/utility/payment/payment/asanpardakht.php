@@ -22,8 +22,8 @@ class asanpardakht
 
     public static function set_key_iv()
     {
-        self::$KEY = \lib\option::config('asanpardakht', 'EncryptionKey');
-        self::$IV  = \lib\option::config('asanpardakht', 'EncryptionVector');
+        self::$KEY = \dash\option::config('asanpardakht', 'EncryptionKey');
+        self::$IV  = \dash\option::config('asanpardakht', 'EncryptionVector');
     }
 
 
@@ -49,9 +49,9 @@ class asanpardakht
         {
             if(self::$save_log)
             {
-                \lib\db\logs::set('payment:asanpardakht:soapclient:not:install', self::$user_id, $log_meta);
+                \dash\db\logs::set('payment:asanpardakht:soapclient:not:install', self::$user_id, $log_meta);
             }
-            \lib\notif::error(T_("Can not connect to asanpardakht gateway. Install it!"));
+            \dash\notif::error(T_("Can not connect to asanpardakht gateway. Install it!"));
             return false;
         }
 
@@ -74,12 +74,12 @@ class asanpardakht
 
             $result_param =
             [
-                'merchantConfigurationID' => \lib\option::config('asanpardakht', 'MerchantConfigID'),
+                'merchantConfigurationID' => \dash\option::config('asanpardakht', 'MerchantConfigID'),
                 'encryptedRequest'        => $encryptedRequest,
             ];
 
             $result = $client->RequestOperation($result_param);
-            \lib\db\mysql\tools\log::log($result, null, 'log.sql', 'json');
+            \dash\db\mysql\tools\log::log($result, null, 'log.sql', 'json');
 
             if(isset($result->RequestOperationResult))
             {
@@ -87,29 +87,29 @@ class asanpardakht
 
                 if ($result{0} == '0')
                 {
-                    \lib\db\logs::set('payment:asanpardakht:redirect', self::$user_id, $log_meta);
+                    \dash\db\logs::set('payment:asanpardakht:redirect', self::$user_id, $log_meta);
                     $token = substr($result,2);
                     return $token;
                 }
                 else
                 {
-                    \lib\db\logs::set('payment:asanpardakht:error1', self::$user_id, $log_meta);
-                    \lib\notif::error(T_("Error in payment code :result", ['result' => (string) $result]));
+                    \dash\db\logs::set('payment:asanpardakht:error1', self::$user_id, $log_meta);
+                    \dash\notif::error(T_("Error in payment code :result", ['result' => (string) $result]));
                     return false;
                 }
 
             }
             else
             {
-                \lib\db\logs::set('payment:asanpardakht:error2', self::$user_id, $log_meta);
-                \lib\notif::error(T_("Error in payment (have not result)"));
+                \dash\db\logs::set('payment:asanpardakht:error2', self::$user_id, $log_meta);
+                \dash\notif::error(T_("Error in payment (have not result)"));
                 return false;
             }
         }
         catch (SoapFault $E)
         {
-            \lib\db\logs::set('payment:asanpardakht:error:load:web:services', self::$user_id, $log_meta);
-            \lib\notif::error(T_("Error in load web services"));
+            \dash\db\logs::set('payment:asanpardakht:error:load:web:services', self::$user_id, $log_meta);
+            \dash\notif::error(T_("Error in load web services"));
             return false;
         }
     }
@@ -147,14 +147,14 @@ class asanpardakht
             $params = ['stream_context' => stream_context_create($options)];
             $client = @new \SoapClient("https://services.asanpardakht.net/paygate/merchantservices.asmx?WSDL", $params);
 
-            $username = \lib\option::config('asanpardakht', 'Username');
-            $password = \lib\option::config('asanpardakht', 'Password');
+            $username = \dash\option::config('asanpardakht', 'Username');
+            $password = \dash\option::config('asanpardakht', 'Password');
 
             $encryptedCredintials = self::encrypt("{$username},{$password}");
 
             $params_result =
             [
-                'merchantConfigurationID' => \lib\option::config('asanpardakht', 'MerchantConfigID'),
+                'merchantConfigurationID' => \dash\option::config('asanpardakht', 'MerchantConfigID'),
                 'encryptedCredentials'    => $encryptedCredintials,
                 'payGateTranID'           => $PayGateTranID,
             ];

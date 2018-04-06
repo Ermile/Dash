@@ -4,7 +4,7 @@ namespace dash\db\transactions;
 
 trait set
 {
-	use \lib\db\transactions\code_list;
+	use \dash\db\transactions\code_list;
 
 	/**
 	 * set a record of transactions
@@ -80,8 +80,8 @@ trait set
 		{
 			if($debug)
 			{
-				\lib\db\logs::set('transactions:set:user_id:is:null', null, $log_meta);
-				\lib\notif::error(T_("Transaction user_id can not be null"));
+				\dash\db\logs::set('transactions:set:user_id:is:null', null, $log_meta);
+				\dash\notif::error(T_("Transaction user_id can not be null"));
 			}
 			return false;
 		}
@@ -92,8 +92,8 @@ trait set
 		{
 			if($debug)
 			{
-				\lib\db\logs::set('transactions:set:code:is:null', null, $log_meta);
-				\lib\notif::error(T_("Transaction caller can not be null"));
+				\dash\db\logs::set('transactions:set:code:is:null', null, $log_meta);
+				\dash\notif::error(T_("Transaction caller can not be null"));
 			}
 			return false;
 		}
@@ -103,8 +103,8 @@ trait set
 		{
 			if($debug)
 			{
-				\lib\db\logs::set('transactions:set:title:is:null', $_args['user_id'], $log_meta);
-				\lib\notif::error(T_("Transaction title can not be null"));
+				\dash\db\logs::set('transactions:set:title:is:null', $_args['user_id'], $log_meta);
+				\dash\notif::error(T_("Transaction title can not be null"));
 			}
 			return false;
 		}
@@ -114,8 +114,8 @@ trait set
 		{
 			if($debug)
 			{
-				\lib\db\logs::set('transactions:set:type:is:null', $_args['user_id'], $log_meta);
-				\lib\notif::error(T_("Transaction type can not be null"));
+				\dash\db\logs::set('transactions:set:type:is:null', $_args['user_id'], $log_meta);
+				\dash\notif::error(T_("Transaction type can not be null"));
 			}
 			return false;
 		}
@@ -125,8 +125,8 @@ trait set
 		{
 			if($debug)
 			{
-				\lib\db\logs::set('transactions:set:status:is:null', $_args['user_id'], $log_meta);
-				\lib\notif::error(T_("Transaction status can not be null"));
+				\dash\db\logs::set('transactions:set:status:is:null', $_args['user_id'], $log_meta);
+				\dash\notif::error(T_("Transaction status can not be null"));
 			}
 			return false;
 		}
@@ -136,8 +136,8 @@ trait set
 		{
 			if($debug)
 			{
-				\lib\db\logs::set('transactions:set:verify:is:invalid', $_args['user_id'], $log_meta);
-				\lib\notif::error(T_("Invalid transaction verify field"));
+				\dash\db\logs::set('transactions:set:verify:is:invalid', $_args['user_id'], $log_meta);
+				\dash\notif::error(T_("Invalid transaction verify field"));
 			}
 			return false;
 		}
@@ -147,13 +147,13 @@ trait set
 		{
 			if($debug)
 			{
-				\lib\db\logs::set('transactions:set:unit:is:null', $_args['user_id'], $log_meta);
-				\lib\notif::error(T_("Transaction unit can not be null"));
+				\dash\db\logs::set('transactions:set:unit:is:null', $_args['user_id'], $log_meta);
+				\dash\notif::error(T_("Transaction unit can not be null"));
 			}
 			return false;
 		}
 
-		$unit_id = \lib\app\units::get_id($_args['unit']);
+		$unit_id = \dash\app\units::get_id($_args['unit']);
 
 		unset($_args['unit']);
 		unset($insert['unit']);
@@ -164,8 +164,8 @@ trait set
 		{
 			if($debug)
 			{
-				\lib\db\logs::set('transactions:set:unit_id:is:null', $_args['user_id'], $log_meta);
-				\lib\notif::error(T_("Transaction unit_id can not be null"));
+				\dash\db\logs::set('transactions:set:unit_id:is:null', $_args['user_id'], $log_meta);
+				\dash\notif::error(T_("Transaction unit_id can not be null"));
 			}
 			return false;
 		}
@@ -199,7 +199,7 @@ trait set
 
 		$insert_id = self::insert($insert);
 
-		\lib\db\logs::set('transactions:insert', $_args['user_id'], $log_meta);
+		\dash\db\logs::set('transactions:insert', $_args['user_id'], $log_meta);
 		return $insert_id;
 	}
 

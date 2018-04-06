@@ -13,31 +13,31 @@ class model extends \mvc\model
 	public function _construct()
 	{
 		// get the enter way sorting from options
-		if(\lib\option::config('enter', 'send_rate') && is_array(\lib\option::config('enter', 'send_rate')))
+		if(\dash\option::config('enter', 'send_rate') && is_array(\dash\option::config('enter', 'send_rate')))
 		{
-			self::$send_rate = \lib\option::config('enter', 'send_rate');
+			self::$send_rate = \dash\option::config('enter', 'send_rate');
 		}
 
 		// get resend rate code from lib option
-		if(\lib\option::config('enter', 'resend_rate') && is_array(\lib\option::config('enter', 'resend_rate')))
+		if(\dash\option::config('enter', 'resend_rate') && is_array(\dash\option::config('enter', 'resend_rate')))
 		{
-			self::$resend_rate = \lib\option::config('enter', 'resend_rate');
+			self::$resend_rate = \dash\option::config('enter', 'resend_rate');
 		}
 
 		// get sms rate
-		if(\lib\option::config('enter', 'sms_rate') && is_array(\lib\option::config('enter', 'sms_rate')))
+		if(\dash\option::config('enter', 'sms_rate') && is_array(\dash\option::config('enter', 'sms_rate')))
 		{
-			self::$sms_rate = \lib\option::config('enter', 'sms_rate');
+			self::$sms_rate = \dash\option::config('enter', 'sms_rate');
 		}
 
 		// get block status
-		if(\lib\option::config('enter', 'block_status') && is_array(\lib\option::config('enter', 'block_status')))
+		if(\dash\option::config('enter', 'block_status') && is_array(\dash\option::config('enter', 'block_status')))
 		{
-			self::$block_status = \lib\option::config('enter', 'block_status');
+			self::$block_status = \dash\option::config('enter', 'block_status');
 		}
 
 		// in dev mode
-		if(\lib\url::isLocal())
+		if(\dash\url::isLocal())
 		{
 			self::$dev_mode = true;
 		}

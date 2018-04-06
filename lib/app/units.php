@@ -15,7 +15,7 @@ class units
 	{
 		if(empty(self::$UNITS))
 		{
-			self::$UNITS = \lib\option::config('units');
+			self::$UNITS = \dash\option::config('units');
 		}
 		return self::$UNITS;
 	}
@@ -93,8 +93,8 @@ class units
 	public static function user_unit($_user_id)
 	{
 
-		$user_unit = \lib\db\users::get_unit($_user_id);
-		$force_unit = \lib\option::config('force_unit');
+		$user_unit = \dash\db\users::get_unit($_user_id);
+		$force_unit = \dash\option::config('force_unit');
 
 		if($force_unit && (self::get_id($user_unit) != $force_unit))
 		{
@@ -125,7 +125,7 @@ class units
 			return false;
 		}
 
-		\lib\db\users::set_unit($_user_id, $_unit);
+		\dash\db\users::set_unit($_user_id, $_unit);
 		return true;
 	}
 
@@ -146,14 +146,14 @@ class units
 
 		if($_set_user_unit_if_find)
 		{
-			if(\lib\option::config('force_unit') && ($force_unit = self::get(\lib\option::config('force_unit'), true)))
+			if(\dash\option::config('force_unit') && ($force_unit = self::get(\dash\option::config('force_unit'), true)))
 			{
 				self::set_user_unit($_user_id, $force_unit);
 				return $force_unit;
 			}
 			else
 			{
-				if(\lib\option::config('default_unit') && ($default_unit = self::get(\lib\option::config('default_unit'), true)))
+				if(\dash\option::config('default_unit') && ($default_unit = self::get(\dash\option::config('default_unit'), true)))
 				{
 					self::set_user_unit($_user_id, $default_unit);
 					return $default_unit;

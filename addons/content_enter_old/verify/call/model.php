@@ -34,16 +34,16 @@ class model extends \addons\content_enter\main\model
 			return false;
 		}
 
-		if(!\lib\option::config('enter', 'call'))
+		if(!\dash\option::config('enter', 'call'))
 		{
 			return false;
 		}
 
-		$language     = \lib\language::current();
+		$language     = \dash\language::current();
 		// find template to call by it
-		if(\lib\option::config('enter', "call_template_$language"))
+		if(\dash\option::config('enter', "call_template_$language"))
 		{
-			$template   = \lib\option::config('enter', "call_template_$language");
+			$template   = \dash\option::config('enter', "call_template_$language");
 		}
 		else
 		{
@@ -67,18 +67,18 @@ class model extends \addons\content_enter\main\model
 		}
 		else
 		{
-			$kavenegar_send_result = \lib\utility\call::send($my_mobile, $template, $code);
+			$kavenegar_send_result = \dash\utility\call::send($my_mobile, $template, $code);
 		}
 
 		if($kavenegar_send_result === 411 && substr($my_mobile, 0, 2) === '98')
 		{
 			// invalid user mobil
-			\lib\db\logs::set('kavenegar:service:411:call', self::user_data('id'), $log_meta);
+			\dash\db\logs::set('kavenegar:service:411:call', self::user_data('id'), $log_meta);
 			return false;
 		}
 		elseif($kavenegar_send_result === false)
 		{
-			\lib\db\logs::set('kavenegar:service:down:call', self::user_data('id'), $log_meta);
+			\dash\db\logs::set('kavenegar:service:down:call', self::user_data('id'), $log_meta);
 			// the kavenegar service is down!!!
 		}
 		elseif($kavenegar_send_result)
@@ -98,13 +98,13 @@ class model extends \addons\content_enter\main\model
 				}
 			}
 
-			\lib\db\logs::set('enter:send:call:result', self::user_data('id'), $log_meta);
+			\dash\db\logs::set('enter:send:call:result', self::user_data('id'), $log_meta);
 
 			return true;
 		}
 		else
 		{
-			\lib\db\logs::set('enter:send:cannot:send:call', self::user_data('id'), $log_meta);
+			\dash\db\logs::set('enter:send:cannot:send:call', self::user_data('id'), $log_meta);
 		}
 
 		// why?!
@@ -119,11 +119,11 @@ class model extends \addons\content_enter\main\model
 	public function post_verify()
 	{
 		// runcall
-		if(mb_strtolower(\lib\request::post('verify')) === 'true')
+		if(mb_strtolower(\dash\request::post('verify')) === 'true')
 		{
 			if(!self::get_enter_session('run_call_to_user'))
 			{
-				\lib\notif::result("Call sended");
+				\dash\notif::result("Call sended");
 				self::set_enter_session('run_call_to_user', true);
 				$this->send_call_code();
 			}

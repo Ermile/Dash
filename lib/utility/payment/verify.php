@@ -35,37 +35,37 @@ class verify
 		}
 		else
 		{
-			$host      = \lib\url::site();
+			$host      = \dash\url::site();
 			$turn_back =  $host;
 			$turn_back .= $lang;
 
-			if(\lib\option::config('redirect'))
+			if(\dash\option::config('redirect'))
 			{
-		        $turn_back .= '/'. \lib\option::config('redirect');
+		        $turn_back .= '/'. \dash\option::config('redirect');
 			}
 		}
 
 		if(!$turn_back)
 		{
-			$turn_back = \lib\url::site();
+			$turn_back = \dash\url::site();
 		}
 
 		// redirect to turn back url
-        \lib\redirect::to($turn_back);
+        \dash\redirect::to($turn_back);
 	}
 
 
 	public static function clear_session()
 	{
-        \lib\session::set('payment_request_start', false);
-        \lib\session::set('payment_verify_amount', null);
-        \lib\session::set('payment_verify_status', null);
+        \dash\session::set('payment_request_start', false);
+        \dash\session::set('payment_verify_amount', null);
+        \dash\session::set('payment_verify_status', null);
 	}
 
 
 	public static function get_amount()
 	{
-  		$amount = \lib\session::get('payment_verify_amount');
+  		$amount = \dash\session::get('payment_verify_amount');
 
 		if($amount)
 		{
@@ -78,7 +78,7 @@ class verify
 
 	public static function get_status()
 	{
-        $status = \lib\session::get('payment_verify_status');
+        $status = \dash\session::get('payment_verify_status');
 
         if($status)
         {
@@ -92,7 +92,7 @@ class verify
 	        }
         }
 
- 		$start = \lib\session::get('payment_request_start');
+ 		$start = \dash\session::get('payment_request_start');
 
  		if($start)
  		{

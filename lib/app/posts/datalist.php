@@ -36,7 +36,7 @@ trait datalist
 
 		$_args = array_merge($default_meta, $_args);
 
-		$result            = \lib\db\posts::search($_string, $_args);
+		$result            = \dash\db\posts::search($_string, $_args);
 		$temp              = [];
 
 		foreach ($result as $key => $value)

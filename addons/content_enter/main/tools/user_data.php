@@ -29,7 +29,7 @@ trait user_data
 			case 'usernameormobile':
 				if(self::$usernameormobile)
 				{
-					$data = \lib\db\users::find_user_to_login(self::$usernameormobile);
+					$data = \dash\db\users::find_user_to_login(self::$usernameormobile);
 				}
 				break;
 
@@ -37,7 +37,7 @@ trait user_data
 			case 'mobile':
 				if(self::$mobile)
 				{
-					$data = \lib\db\users::get_by_mobile(self::$mobile);
+					$data = \dash\db\users::get_by_mobile(self::$mobile);
 				}
 				break;
 
@@ -45,7 +45,7 @@ trait user_data
 			case 'username':
 				if(self::$username)
 				{
-					$data = \lib\db\users::get_by_username(self::$username);
+					$data = \dash\db\users::get_by_username(self::$username);
 				}
 				break;
 
@@ -53,7 +53,7 @@ trait user_data
 			case 'user_id':
 				if(self::$user_id)
 				{
-					$data = \lib\db\users::get_by_id(self::$user_id);
+					$data = \dash\db\users::get_by_id(self::$user_id);
 				}
 				break;
 
@@ -61,7 +61,7 @@ trait user_data
 			case 'email':
 				if(self::$email)
 				{
-					$data = \lib\db\users::get_by_email(self::$email, $_option['email_field']);
+					$data = \dash\db\users::get_by_email(self::$email, $_option['email_field']);
 				}
 				break;
 
@@ -144,7 +144,7 @@ trait user_data
 			$_args['mobile'] = $mobile;
 			$_args['email']  = self::$email;
 
-			$user_id = \lib\db\users::signup_quick($_args);
+			$user_id = \dash\db\users::signup_quick($_args);
 
 			if($user_id)
 			{
@@ -181,11 +181,11 @@ trait user_data
 			unset($_SESSION['ref']);
 		}
 
-		$user_id = \lib\db\users::insert($_args);
+		$user_id = \dash\db\users::insert($_args);
 
 		if($user_id)
 		{
-			self::$user_id = \lib\db::insert_id();
+			self::$user_id = \dash\db::insert_id();
 			self::load_user_data('user_id');
 		}
 		return self::$user_id;

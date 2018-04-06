@@ -122,7 +122,7 @@ class Google_Auth_OAuth2 extends Google_Auth_Abstract
           $errorText .= ": " . $decodedResponse['error_description'];
         }
       }
-      \lib\notif::error($errorText);
+      \dash\notif::error($errorText);
       return false;
       // throw new Google_Auth_Exception(
       //     sprintf(

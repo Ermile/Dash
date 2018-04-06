@@ -15,7 +15,7 @@ class view extends \addons\content_enter\main\view
 
 		$this->data->alert_msg = self::get_alert();
 
-		$this->data->alert_link = \lib\url::here(). '/enter';
+		$this->data->alert_link = \dash\url::here(). '/enter';
 		if(self::get_alert('link'))
 		{
 			$this->data->alert_link = self::get_alert('link');

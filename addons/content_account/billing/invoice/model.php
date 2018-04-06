@@ -10,12 +10,12 @@ class model extends \mvc\model
 	 */
 	public function get_invoice($_args)
 	{
-		if(!\lib\user::login())
+		if(!\dash\user::login())
 		{
 			return false;
 		}
 		$invoice_id = isset($_args->match->url[0][1]) ? $_args->match->url[0][1] : null;
-		$invoice_detail = \lib\db\invoices::load($invoice_id, \lib\user::id());
+		$invoice_detail = \dash\db\invoices::load($invoice_id, \dash\user::id());
 		return $invoice_detail;
 	}
 

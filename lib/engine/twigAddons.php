@@ -84,7 +84,7 @@ class twigAddons
 	{
 		return new \Twig_SimpleFilter('jdate', function ($_string, $_format ="Y/m/d", $_convert = true)
 		{
-			return \lib\utility\jdate::date($_format, $_string, $_convert);
+			return \dash\utility\jdate::date($_format, $_string, $_convert);
 		});
 	}
 
@@ -98,9 +98,9 @@ class twigAddons
 		return new \Twig_SimpleFilter('tdate', function ($_string, $_format ="Y/m/d", $_convert = true)
 		{
 			$result = $_string;
-			if(\lib\data::lang_current() == 'fa')
+			if(\dash\data::lang_current() == 'fa')
 			{
-				$result = \lib\utility\jdate::date($_format, $_string, $_convert);
+				$result = \dash\utility\jdate::date($_format, $_string, $_convert);
 			}
 			else
 			{
@@ -119,7 +119,7 @@ class twigAddons
 	{
 		return new \Twig_SimpleFilter('sdate', function ($_string, $_max ="day", $_format ="Y/m/d")
 		{
-			return \lib\utility\human::timing($_string, $_max, $_format, \lib\data::lang_current());
+			return \dash\utility\human::timing($_string, $_max, $_format, \dash\data::lang_current());
 		});
 	}
 
@@ -131,7 +131,7 @@ class twigAddons
 	{
 		return new \Twig_SimpleFilter('readableSize', function ($_string, $_type = 'file', $_emptyTxt = null)
 		{
-			return \lib\utility\upload::readableSize($_string, $_type, $_emptyTxt);
+			return \dash\utility\upload::readableSize($_string, $_type, $_emptyTxt);
 		});
 	}
 
@@ -143,7 +143,7 @@ class twigAddons
 	{
 		return new \Twig_SimpleFilter('persian', function ($_number)
 		{
-			return \lib\utility\human::number($_number, \lib\data::lang_current());
+			return \dash\utility\human::number($_number, \dash\data::lang_current());
 		});
 	}
 
@@ -155,7 +155,7 @@ class twigAddons
 	{
 		return new \Twig_SimpleFilter('fitNumber', function ($_number, $_autoFormat = true)
 		{
-			return \lib\utility\human::fitNumber($_number, $_autoFormat);
+			return \dash\utility\human::fitNumber($_number, $_autoFormat);
 		});
 	}
 
@@ -168,7 +168,7 @@ class twigAddons
 	{
 		return new \Twig_SimpleFilter('exist', function ($_file, $_alternative = null)
 		{
-			$result = \lib\file::alternative($_file, $_alternative);
+			$result = \dash\file::alternative($_file, $_alternative);
 			return $result;
 		});
 	}
@@ -178,7 +178,7 @@ class twigAddons
 	{
 		return new \Twig_SimpleFilter('humantime', function ()
 		{
-			$result = \lib\utility\human::time(...func_get_args());
+			$result = \dash\utility\human::time(...func_get_args());
 			return $result;
 		});
 	}
@@ -228,7 +228,7 @@ class twigAddons
 	{
 		return new \Twig_SimpleFunction('result', function()
 		{
-			\lib\code::dump('@check to remove it!!!');
+			\dash\code::dump('@check to remove it!!!');
 		});
 	}
 
@@ -246,12 +246,12 @@ class twigAddons
 			$all         = array_column(func_get_args(), 'all');
 			$onlyLink    = array_column(func_get_args(), 'onlyLink');
 			$class       = array_column(func_get_args(), 'class');
-			$langList    = \lib\data::get('lang', 'list');
-			$urlRoot     = \lib\url::root();
-			$urlContent  = \lib\url::content();
-			$urlPath     = \lib\url::path();
-			$urlParam    = \lib\url::query();
-			$currentlang = \lib\language::current();
+			$langList    = \dash\data::get('lang', 'list');
+			$urlRoot     = \dash\url::root();
+			$urlContent  = \dash\url::content();
+			$urlPath     = \dash\url::path();
+			$urlParam    = \dash\url::query();
+			$currentlang = \dash\language::current();
 
 			if(!$all)
 			{
@@ -329,8 +329,8 @@ class twigAddons
 			// if user dont pass a path give it from controller
 			if(!$_path)
 			{
-				$myurl = \lib\utility\breadcrumb::get();
-				$_path = \lib\url::dir();
+				$myurl = \dash\utility\breadcrumb::get();
+				$_path = \dash\url::dir();
 			}
 			$direct = null;
 			if($_direct === true)
@@ -342,19 +342,19 @@ class twigAddons
 			$result     = '';
 			if($_homepage || count($myurl))
 			{
-				$baseURL    = \lib\url::base();
-				if(\lib\url::content() === null)
+				$baseURL    = \dash\url::base();
+				if(\dash\url::content() === null)
 				{
 					$result = '<a href="'. $baseURL. '" tabindex="-1" '. $direct.'><span class="fa fa-home"></span> '.T_('Homepage').'</a>';
 				}
 				else
 				{
-					$myContent     = \lib\url::content();
+					$myContent     = \dash\url::content();
 					$myContentName = $myContent;
 					// if contetent name is exist use it as alternative
-					if(\lib\data::get('breadcrumb', $myContent))
+					if(\dash\data::get('breadcrumb', $myContent))
 					{
-						$myContentName = \lib\data::get('breadcrumb', $myContent);
+						$myContentName = \dash\data::get('breadcrumb', $myContent);
 					}
 					elseif($myContent === 'cp')
 					{
@@ -369,13 +369,13 @@ class twigAddons
 			foreach ($myurl as $key => $part)
 			{
 				$currentUrl  .= $_path[$key].'/';
-				$baseURLFull = \lib\url::here();
+				$baseURLFull = \dash\url::here();
 				$anchorUrl   = trim($baseURLFull.'/'.$currentUrl, '/');
 				$location    = $part;
 				// set title of each locations
-				if(\lib\data::get('breadcrumb', $location))
+				if(\dash\data::get('breadcrumb', $location))
 				{
-					$location = \lib\data::get('breadcrumb', $location);
+					$location = \dash\data::get('breadcrumb', $location);
 				}
 
 				// if trans of exact text is exist use it
@@ -428,7 +428,7 @@ class twigAddons
 	{
 		return new \Twig_SimpleFunction('posts', function()
 		{
-			$posts  = \lib\app\posts::get_post_list(...func_get_args());
+			$posts  = \dash\app\posts::get_post_list(...func_get_args());
 			$html   = array_column(func_get_args(), 'html');
 			$desc   = array_column(func_get_args(), 'desc');
 			if($html && count($html) === 1)
@@ -456,7 +456,7 @@ class twigAddons
 						$result .= "<a href='/".$item['url']."'>".$item['title']."</a>";
 						if(isset($item['content']))
 						{
-							$content = \lib\utility\excerpt::get($item['content']);
+							$content = \dash\utility\excerpt::get($item['content']);
 							if($content)
 							{
 								$result .= '<p>'. $content .'</p>';
@@ -501,24 +501,24 @@ class twigAddons
 			// get post id
 			if(!isset($args['post_id']))
 			{
-				if(\lib\data::datarow_id())
+				if(\dash\data::datarow_id())
 				{
-					$args['post_id'] = \lib\data::datarow_id();
+					$args['post_id'] = \dash\data::datarow_id();
 				}
 			}
 			// get tags
 			if(isset($args['post_id']))
 			{
 				$cache_key = 'post_tag_'. $args['post_id'];
-				if(\lib\temp::get($cache_key))
+				if(\dash\temp::get($cache_key))
 				{
-					$tags = \lib\temp::get($cache_key);
+					$tags = \dash\temp::get($cache_key);
 
 				}
 				else
 				{
-					$tags = \lib\app\posts::get_category_tag($args['post_id'], 'tag');
-					\lib\temp::set($cache_key, $tags);
+					$tags = \dash\app\posts::get_category_tag($args['post_id'], 'tag');
+					\dash\temp::set($cache_key, $tags);
 				}
 			}
 
@@ -556,7 +556,7 @@ class twigAddons
 						$html = '';
 						if(is_array($tags))
 						{
-							$baset_url = \lib\url::base();
+							$baset_url = \dash\url::base();
 
 							foreach ($tags as $key => $value)
 							{
@@ -615,15 +615,15 @@ class twigAddons
 			// get post id
 			if(!isset($args['post_id']))
 			{
-				if(\lib\data::datarow_id())
+				if(\dash\data::datarow_id())
 				{
-					$args['post_id'] = \lib\data::datarow_id();
+					$args['post_id'] = \dash\data::datarow_id();
 				}
 			}
 			// get category
 			if(isset($args['post_id']))
 			{
-				$category = \lib\app\posts::get_category_tag($args['post_id'], 'cat');
+				$category = \dash\app\posts::get_category_tag($args['post_id'], 'cat');
 			}
 
 			if(isset($args['id']) && $args['id'] && is_array($category))
@@ -653,7 +653,7 @@ class twigAddons
 
 					case 'html':
 						$html      = '';
-						$baset_url = \lib\url::base();
+						$baset_url = \dash\url::base();
 						foreach ($category as $key => $value)
 						{
 							if(array_key_exists('url', $value) && isset($value['title']))
@@ -693,9 +693,9 @@ class twigAddons
 			// get post id
 			if(!isset($args['post_id']))
 			{
-				if(\lib\data::datarow_id())
+				if(\dash\data::datarow_id())
 				{
-					$args['post_id'] = \lib\data::datarow_id();
+					$args['post_id'] = \dash\data::datarow_id();
 				}
 			}
 			// count of show comments
@@ -708,7 +708,7 @@ class twigAddons
 			// get comments
 			if(isset($args['post_id']))
 			{
-				$comments = \lib\db\comments::get_post_comment($args['post_id'], $limit, \lib\user::id());
+				$comments = \dash\db\comments::get_post_comment($args['post_id'], $limit, \dash\user::id());
 			}
 			return $comments;
 		});
@@ -729,7 +729,7 @@ class twigAddons
 			{
 				$args = $args[0];
 			}
-			$post_search = \lib\db\posts::search(null, $args);
+			$post_search = \dash\db\posts::search(null, $args);
 			return $post_search;
 
 		});
@@ -754,9 +754,9 @@ class twigAddons
 			// get post id
 			if(!isset($args['post_id']))
 			{
-				if(\lib\data::datarow_id())
+				if(\dash\data::datarow_id())
 				{
-					$args['post_id'] = \lib\data::datarow_id();
+					$args['post_id'] = \dash\data::datarow_id();
 				}
 			}
 
@@ -793,7 +793,7 @@ class twigAddons
 
 			if(isset($args['post_id']))
 			{
-				$similar_post = \lib\db\tags::get_post_similar($args['post_id'], $options);
+				$similar_post = \dash\db\tags::get_post_similar($args['post_id'], $options);
 			}
 
 			if(isset($args['html']))
@@ -824,11 +824,11 @@ class twigAddons
 			$result = null;
 			if($_type === 'decode')
 			{
-				$result = \lib\coding::decode($_url, $_alphabet);
+				$result = \dash\coding::decode($_url, $_alphabet);
 			}
 			elseif($_type === 'encode')
 			{
-				$result = \lib\coding::encode($_url, $_alphabet);
+				$result = \dash\coding::encode($_url, $_alphabet);
 			}
 			return $result;
 		});
@@ -846,7 +846,7 @@ class twigAddons
 				$complete_url .= 'static/';
 			}
 			$complete_url .= $_url;
-			if($_url && \lib\file::exists($complete_url))
+			if($_url && \dash\file::exists($complete_url))
 			{
 				$result = filemtime($complete_url);
 			}
@@ -886,7 +886,7 @@ class twigAddons
 
 			if(isset($args['id']))
 			{
-				$attachment = \lib\db\posts::get_one($args['id']);
+				$attachment = \dash\db\posts::get_one($args['id']);
 				if(isset($attachment['post_type']) && $attachment['post_type'] != 'attachment')
 				{
 					return [];
@@ -906,7 +906,7 @@ class twigAddons
 			{
 				if(isset($attachment['meta']['url']))
 				{
-					return  \lib\url::site().'/'. $attachment['meta']['url'];
+					return  \dash\url::site().'/'. $attachment['meta']['url'];
 				}
 			}
 			return $attachment;
@@ -926,7 +926,7 @@ class twigAddons
 
 			$caller  = null;
 			$action  = null;
-			$user_id = \lib\data::login_id();
+			$user_id = \dash\data::login_id();
 
 			$args = func_get_args();
 
@@ -942,8 +942,8 @@ class twigAddons
 			{
 				$user_id = $args[2];
 			}
-			\lib\permission::$user_id = $user_id;
-			return \lib\permission::access($caller, $action);
+			\dash\permission::$user_id = $user_id;
+			return \dash\permission::access($caller, $action);
 		});
 	}
 
@@ -957,7 +957,7 @@ class twigAddons
 	{
 		return new \Twig_SimpleFunction('perm_su', function()
 		{
-			$user_id = \lib\data::login_id();
+			$user_id = \dash\data::login_id();
 
 			$args = func_get_args();
 
@@ -966,7 +966,7 @@ class twigAddons
 				$user_id = $args[0];
 			}
 
-			return \lib\permission::access_su($user_id);
+			return \dash\permission::access_su($user_id);
 		});
 	}
 }

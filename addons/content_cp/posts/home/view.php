@@ -8,12 +8,12 @@ class view extends \addons\content_cp\posts\main\view
 	{
 		parent::config();
 
-		$myType = \lib\request::get('type');
+		$myType = \dash\request::get('type');
 
 		$this->data->page['title'] = T_("Posts");
 		$this->data->page['desc']  = T_('Check list of posts and search or filter in them to find your posts.'). ' '. T_('Also add or edit specefic post.');
 
-		$this->data->page['badge']['link'] = \lib\url::this(). '/add'. $this->data->moduleType;
+		$this->data->page['badge']['link'] = \dash\url::this(). '/add'. $this->data->moduleType;
 		$this->data->page['badge']['text'] = T_('Add new :val', ['val' => $myType]);
 
 
@@ -30,12 +30,12 @@ class view extends \addons\content_cp\posts\main\view
 		}
 
 		// add back level to summary link
-		$product_list_link        =  '<a href="'. \lib\url::here() .'" data-shortkey="121">'. T_('Back to dashboard'). '</a>';
+		$product_list_link        =  '<a href="'. \dash\url::here() .'" data-shortkey="121">'. T_('Back to dashboard'). '</a>';
 		$this->data->page['desc'] .= ' | '. $product_list_link;
 
 
 
-		$search_string            = \lib\request::get('q');
+		$search_string            = \dash\request::get('q');
 		if($search_string)
 		{
 			$this->data->page['title'] .= ' | '. T_('Search for :search', ['search' => $search_string]);
@@ -43,27 +43,27 @@ class view extends \addons\content_cp\posts\main\view
 
 		$args =
 		[
-			'sort'  => \lib\request::get('sort'),
-			'order' => \lib\request::get('order'),
+			'sort'  => \dash\request::get('sort'),
+			'order' => \dash\request::get('order'),
 		];
 
-		if(\lib\request::get('status'))
+		if(\dash\request::get('status'))
 		{
-			$args['status'] = \lib\request::get('status');
+			$args['status'] = \dash\request::get('status');
 		}
 
-		if(\lib\request::get('type'))
+		if(\dash\request::get('type'))
 		{
-			$args['type'] = \lib\request::get('type');
+			$args['type'] = \dash\request::get('type');
 		}
 		else
 		{
 			$args['type'] = 'post';
 		}
 
-		if(\lib\request::get('unittype'))
+		if(\dash\request::get('unittype'))
 		{
-			$args['unittype'] = \lib\request::get('unittype');
+			$args['unittype'] = \dash\request::get('unittype');
 		}
 
 		if(!$args['order'])
@@ -78,8 +78,8 @@ class view extends \addons\content_cp\posts\main\view
 		}
 
 
-		$this->data->sort_link  = self::make_sort_link(\lib\app\posts::$sort_field, \lib\url::this());
-		$this->data->dataTable = \lib\app\posts::list(\lib\request::get('q'), $args);
+		$this->data->sort_link  = self::make_sort_link(\dash\app\posts::$sort_field, \dash\url::this());
+		$this->data->dataTable = \dash\app\posts::list(\dash\request::get('q'), $args);
 
 		if(isset($this->controller->pagnation))
 		{

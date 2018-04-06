@@ -16,7 +16,7 @@ class model extends \addons\content_enter\main\model
 	public function send_telegram_code()
 	{
 		// the telegram is off for this project
-		if(!\lib\option::social('telegram', 'status'))
+		if(!\dash\option::social('telegram', 'status'))
 		{
 			return false;
 		}
@@ -40,11 +40,11 @@ class model extends \addons\content_enter\main\model
 		$code = self::get_enter_session('verification_code');
 		// make text
 		$text = '';
-		$text .= T_("Your login code is :code", ['code' => \lib\utility\human::number($code)]);
+		$text .= T_("Your login code is :code", ['code' => \dash\utility\human::number($code)]);
 		$text .= "\n\n". T_("This code can be used to log in to your account. Do not give it to anyone!");
 		$text .= "\n" . T_("If you didn't request this code, ignore this message.");
 
-		\lib\utility\telegram::sendMessage($my_chat_id, $text);
+		\dash\utility\telegram::sendMessage($my_chat_id, $text);
 		return true;
 	}
 
@@ -55,11 +55,11 @@ class model extends \addons\content_enter\main\model
 	public function post_verify()
 	{
 		// runcall
-		if(mb_strtolower(\lib\request::post('verify')) === 'true')
+		if(mb_strtolower(\dash\request::post('verify')) === 'true')
 		{
 			if(!self::get_enter_session('run_telegram_to_user'))
 			{
-				\lib\notif::result("Telegram sended");
+				\dash\notif::result("Telegram sended");
 				self::set_enter_session('run_telegram_to_user', true);
 				$this->send_telegram_code();
 			}

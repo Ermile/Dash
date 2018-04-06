@@ -54,7 +54,7 @@ class human
 			{
 				if($_lang == 'fa')
 				{
-					$finalDate = \lib\utility\jdate::date($_format, $_time);
+					$finalDate = \dash\utility\jdate::date($_format, $_time);
 				}
 				else
 				{
@@ -63,7 +63,7 @@ class human
 			}
 			if($_lang == 'fa')
 			{
-				$finalDate = \lib\utility\human::number($finalDate, $_lang);
+				$finalDate = \dash\utility\human::number($finalDate, $_lang);
 			}
 			return $finalDate;
 		}
@@ -152,7 +152,7 @@ class human
 		// if language is not set use default language
 		if(!$_lang)
 		{
-			$_lang = \lib\language::current();
+			$_lang = \dash\language::current();
 		}
 
 		switch ($_lang)

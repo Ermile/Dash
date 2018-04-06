@@ -9,61 +9,61 @@ class controller extends \addons\content_su\main\controller
 
 		$exist    = false;
 
-		$url_child = \lib\url::dir(1);
+		$url_child = \dash\url::dir(1);
 
 		switch ($url_child)
 		{
 			case 'db':
 
-				\lib\db::$link_open    = [];
-				\lib\db::$link_default = null;
-				if(\lib\request::post('username'))
+				\dash\db::$link_open    = [];
+				\dash\db::$link_default = null;
+				if(\dash\request::post('username'))
 				{
-					\lib\db::$db_user = \lib\request::post("username");
-					\lib\db::$db_pass = \lib\request::post("password");
+					\dash\db::$db_user = \dash\request::post("username");
+					\dash\db::$db_pass = \dash\request::post("password");
 				}
 				elseif(defined('admin_db_user') && defined('admin_db_pass'))
 				{
-					\lib\db::$db_user = constant("admin_db_user");
-					\lib\db::$db_pass = constant("admin_db_pass");
+					\dash\db::$db_user = constant("admin_db_user");
+					\dash\db::$db_pass = constant("admin_db_pass");
 				}
 				elseif(defined('db_user') && defined('db_pass'))
 				{
-					\lib\db::$db_user = constant("db_user");
-					\lib\db::$db_pass = constant("db_pass");
+					\dash\db::$db_user = constant("db_user");
+					\dash\db::$db_pass = constant("db_pass");
 				}
 				else
 				{
-					\lib\header::status(403, T_("Permission denide for run upgrade database"));
+					\dash\header::status(403, T_("Permission denide for run upgrade database"));
 				}
 
-				\lib\db::$debug_error = false;
+				\dash\db::$debug_error = false;
 
 				$result = null;
 				$exist  = true;
 
-				if(\lib\request::post('type') == 'upgrade')
+				if(\dash\request::post('type') == 'upgrade')
 				{
 					// do upgrade
-					$result = \lib\db::install(true, true);
+					$result = \dash\db::install(true, true);
 				}
-				elseif(\lib\request::post('type') == 'backup')
+				elseif(\dash\request::post('type') == 'backup')
 				{
 					// do backup
-					$result = \lib\db::backup(true);
+					$result = \dash\db::backup(true);
 				}
-				elseif(\lib\request::post('type') == 'backup_dump')
+				elseif(\dash\request::post('type') == 'backup_dump')
 				{
 					// do backup
-					$result = \lib\db::backup_dump();
+					$result = \dash\db::backup_dump();
 				}
 
-				\lib\code::print($result, true);
-				\lib\code::exit();
+				\dash\code::print($result, true);
+				\dash\code::exit();
 				break;
 
 			case null:
-				$mypath = str_replace('/', '_', \lib\url::path());
+				$mypath = str_replace('/', '_', \dash\url::path());
 				if( is_file(addons.'content_su/templates/static_'.$mypath.'.html') )
 				{
 					$this->display_name	= 'content_su/templates/static_'.$mypath.'.html';

@@ -8,13 +8,13 @@ class db
 	 * this library doing useful db actions
 	 * v4.4
 	 */
-	use \lib\db\mysql\tools\connect;
-	use \lib\db\mysql\tools\backup;
-	use \lib\db\mysql\tools\install;
-	use \lib\db\mysql\tools\get;
-	use \lib\db\mysql\tools\info;
-	use \lib\db\mysql\tools\pagination;
-	use \lib\db\mysql\tools\log;
+	use \dash\db\mysql\tools\connect;
+	use \dash\db\mysql\tools\backup;
+	use \dash\db\mysql\tools\install;
+	use \dash\db\mysql\tools\get;
+	use \dash\db\mysql\tools\info;
+	use \dash\db\mysql\tools\pagination;
+	use \dash\db\mysql\tools\log;
 
 
 	/**
@@ -105,7 +105,7 @@ class db
 		$qry_exec_time = microtime(true) - $qry_exec_time;
 
 		// if debug mod is true save all string query
-		if(\lib\option::config('debug'))
+		if(\dash\option::config('debug'))
 		{
 			self::log($_qry, $qry_exec_time);
 		}

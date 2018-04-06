@@ -25,7 +25,7 @@
 
  <h1><?php echo $desc?></h1>
  <b class='slash'><?php echo $_title; ?></b>
-<?php if(\lib\option::config('debug') || \lib\url::isLocal()) {?>
+<?php if(\dash\option::config('debug') || \dash\url::isLocal()) {?>
  <ol>
 <?php
 $debug_backtrace = array_reverse($debug_backtrace);
@@ -47,7 +47,7 @@ foreach ($debug_backtrace as $key => $value):?>
  <div id="smile">:(</div>
 <?php } ?>
 
- <a href="<?php echo \lib\url::site(); ?>" class='site'>Return to Homepage</a>
+ <a href="<?php echo \dash\url::site(); ?>" class='site'>Return to Homepage</a>
 
  <div id="no"><?php echo $_code?></div>
 </body>

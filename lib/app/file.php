@@ -7,11 +7,11 @@ class file
 
 	public static function upload($_options = [])
 	{
-		\lib\app::variable($_options);
+		\dash\app::variable($_options);
 
 		$default_options =
 		[
-			'upload_name' => \lib\app::request('upload_name'),
+			'upload_name' => \dash\app::request('upload_name'),
 			'url'         => null,
 			'debug'       => true,
 		];
@@ -23,9 +23,9 @@ class file
 
 		$_options = array_merge($default_options, $_options);
 
-		if(\lib\app::request('url') && !$_options['url'])
+		if(\dash\app::request('url') && !$_options['url'])
 		{
-			$_options['url'] = \lib\app::request('url');
+			$_options['url'] = \dash\app::request('url');
 		}
 
 		$file_path = false;
@@ -34,14 +34,14 @@ class file
 		{
 			$file_path = true;
 		}
-		elseif(!\lib\request::files($_options['upload_name']))
+		elseif(!\dash\request::files($_options['upload_name']))
 		{
-			\lib\notif::error(T_("Unable to upload, because of selected upload name"), 'upload_name', 'arguments');
+			\dash\notif::error(T_("Unable to upload, because of selected upload name"), 'upload_name', 'arguments');
 			return false;
 		}
 
 		$ready_upload            = [];
-		$ready_upload['user_id'] = \lib\user::id();
+		$ready_upload['user_id'] = \dash\user::id();
 		$ready_upload['debug']   = $_options['debug'];
 
 		if($file_path)
@@ -53,7 +53,7 @@ class file
 			$ready_upload['upload_name'] = $_options['upload_name'];
 		}
 
-		// if(\lib\permission::access('admin:admin:view', null, \lib\user::id()))
+		// if(\dash\permission::access('admin:admin:view', null, \dash\user::id()))
 		// {
 		// 	$ready_upload['status'] = 'publish';
 		// }
@@ -64,23 +64,23 @@ class file
 
 		$ready_upload['status'] = 'publish';
 
-		// $ready_upload['user_size_remaining'] = self::remaining(\lib\user::id());
+		// $ready_upload['user_size_remaining'] = self::remaining(\dash\user::id());
 
 		// upload::$extentions = ['png', 'jpeg', 'jpg'];
 
-		$upload      = \lib\utility\upload::upload($ready_upload);
+		$upload      = \dash\utility\upload::upload($ready_upload);
 
-		if(!\lib\engine\process::status())
+		if(!\dash\engine\process::status())
 		{
 			return false;
 		}
 
-		$file_detail = \lib\temp::get('upload');
+		$file_detail = \dash\temp::get('upload');
 		$file_id     = null;
 
 		// if(isset($file_detail['size']))
 		// {
-		// 	self::user_size_plus(\lib\user::id(), $file_detail['size']);
+		// 	self::user_size_plus(\dash\user::id(), $file_detail['size']);
 		// }
 
 		if(isset($file_detail['id']) && is_numeric($file_detail['id']))
@@ -89,21 +89,21 @@ class file
 		}
 		else
 		{
-			return \lib\notif::error(T_("Can not upload file. undefined error"));
+			return \dash\notif::error(T_("Can not upload file. undefined error"));
 		}
 
 		$file_id_code = null;
 
 		if($file_id)
 		{
-			$file_id_code = \lib\coding::encode($file_id);
+			$file_id_code = \dash\coding::encode($file_id);
 		}
 
 		$url = null;
 
 		if(isset($file_detail['url']))
 		{
-			$url = \lib\url::site(). '/'. $file_detail['url'];
+			$url = \dash\url::site(). '/'. $file_detail['url'];
 		}
 
 		return ['code' => $file_id_code, 'url' => $url];

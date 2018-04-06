@@ -11,16 +11,16 @@ trait login
 	 */
 	public static function find_redirect_url($_url = null)
 	{
-		$host = \lib\url::base();
+		$host = \dash\url::base();
 		if($_url)
 		{
 			return $_url;
 		}
 		// get url language
 		// if have referer redirect to referer
-		if(\lib\request::get('referer'))
+		if(\dash\request::get('referer'))
 		{
-			$host = \lib\request::get('referer');
+			$host = \dash\request::get('referer');
 		}
 		elseif(isset($_SESSION['enter_referer']) && $_SESSION['enter_referer'])
 		{
@@ -30,21 +30,21 @@ trait login
 		elseif(self::get_enter_session('first_signup'))
 		{
 			// if first signup
-			if(\lib\option::config('enter', 'singup_redirect'))
+			if(\dash\option::config('enter', 'singup_redirect'))
 			{
-				$host .= '/'. \lib\option::config('enter', 'singup_redirect');
+				$host .= '/'. \dash\option::config('enter', 'singup_redirect');
 			}
 			else
 			{
-				$host .= \lib\option::config('redirect');
+				$host .= \dash\option::config('redirect');
 			}
 		}
 		else
 		{
 
-			$language = \lib\db\users::get_language(self::user_data('id'));
+			$language = \dash\db\users::get_language(self::user_data('id'));
 			// @check
-			if($language && \lib\language::check($language))
+			if($language && \dash\language::check($language))
 			{
 
 			}
@@ -53,7 +53,7 @@ trait login
 
 			}
 
-			$host .='/'. \lib\option::config('redirect');
+			$host .='/'. \dash\option::config('redirect');
 		}
 
 		return $host;
@@ -65,13 +65,13 @@ trait login
 	 */
 	public static function login_by_remember($_url = null)
 	{
-		$cookie = \lib\db\sessions::get_cookie();
+		$cookie = \dash\db\sessions::get_cookie();
 		if($cookie)
 		{
-			$user_id = \lib\db\sessions::get_user_id();
+			$user_id = \dash\db\sessions::get_user_id();
 			if($user_id)
 			{
-				\lib\db\users::set_login_session($user_id);
+				\dash\db\users::set_login_session($user_id);
 
 				if(isset($_SESSION['main_account']))
 				{
@@ -80,7 +80,7 @@ trait login
 				}
 				else
 				{
-					\lib\db\sessions::set($user_id);
+					\dash\db\sessions::set($user_id);
 				}
 			}
 		}
@@ -93,7 +93,7 @@ trait login
 	public static function enter_set_login($_url = null, $_auto_redirect = false)
 	{
 
-		\lib\db\users::set_login_session(self::user_data('id'));
+		\dash\db\users::set_login_session(self::user_data('id'));
 
 		if(self::user_data('id'))
 		{
@@ -101,7 +101,7 @@ trait login
 			{
 				if(isset($_SESSION['user']['mobile']) && $_SESSION['user']['mobile'] === $_SESSION['main_mobile'])
 				{
-					\lib\db\sessions::set(self::user_data('id'));
+					\dash\db\sessions::set(self::user_data('id'));
 				}
 				// if the admin user login by this user
 				// not save the session
@@ -109,13 +109,13 @@ trait login
 			else
 			{
 				// set remeber and save session
-				\lib\db\sessions::set(self::user_data('id'));
+				\dash\db\sessions::set(self::user_data('id'));
 				// check user status
 				// if the user status is awaiting
 				// set the user status as enable
 				if(self::user_data('status') === 'awaiting' && is_numeric(self::user_data('id')))
 				{
-					\lib\db\users::update(['status' => 'active'], self::user_data('id'));
+					\dash\db\users::update(['status' => 'active'], self::user_data('id'));
 				}
 			}
 		}
@@ -152,7 +152,7 @@ trait login
 			{
 				if($_SESSION['user']['mobile'] === $_SESSION['main_mobile'])
 				{
-					\lib\db\sessions::logout($_user_id);
+					\dash\db\sessions::logout($_user_id);
 				}
 				// if the admin user login by this user
 				// not save the session
@@ -160,14 +160,14 @@ trait login
 			else
 			{
 				// set this session as logout
-				\lib\db\sessions::logout($_user_id);
+				\dash\db\sessions::logout($_user_id);
 			}
 		}
 
 		/**
 		 * destroy user id
 		 */
-		\lib\user::destroy();
+		\dash\user::destroy();
 
 		$_SESSION['user']    = [];
 		$_SESSION['contact'] = [];

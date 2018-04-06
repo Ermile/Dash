@@ -42,15 +42,15 @@ trait add
 			'meta' =>
 			[
 				'user_id' => $this->user_id,
-				'input'   => \lib\utility::request(),
+				'input'   => \dash\utility::request(),
 			]
 		];
 
 		// check comment id is exist
 		if(!$this->user_id)
 		{
-			// if($_args['save_log']) \lib\db\logs::set('addon:api:comment:user_id:notfound', $this->user_id, $log_meta);
-			// if($_args['debug']) \lib\notif::error(T_("User not found"), 'comment', 'permission');
+			// if($_args['save_log']) \dash\db\logs::set('addon:api:comment:user_id:notfound', $this->user_id, $log_meta);
+			// if($_args['debug']) \dash\notif::error(T_("User not found"), 'comment', 'permission');
 			// return false;
 		}
 
@@ -59,7 +59,7 @@ trait add
 		 */
 		$return_function = $this->comment_check_args($_args, $args, $log_meta);
 
-		if(!\lib\engine\process::status() || $return_function === false)
+		if(!\dash\engine\process::status() || $return_function === false)
 		{
 			return false;
 		}
@@ -67,52 +67,52 @@ trait add
 		// insert new comment team
 		if($_args['method'] === 'post')
 		{
-			\lib\db\comments::insert($args);
-			\lib\db::insert_id();
+			\dash\db\comments::insert($args);
+			\dash\db::insert_id();
 		}
 		elseif($_args['method'] === 'patch')
 		{
-			$id = \lib\utility::request('id');
-			$id = \lib\coding::decode($id);
+			$id = \dash\utility::request('id');
+			$id = \dash\coding::decode($id);
 			if(!$id)
 			{
-				if($_args['save_log']) \lib\db\logs::set('addons:api:comment:id:not:found', $this->user_id, $log_meta);
-				if($_args['debug']) \lib\notif::ok(T_("Id not found"));
+				if($_args['save_log']) \dash\db\logs::set('addons:api:comment:id:not:found', $this->user_id, $log_meta);
+				if($_args['debug']) \dash\notif::ok(T_("Id not found"));
 				return false;
 			}
 
-			if(!\lib\utility::isset_request('post_id'))unset($args['post_id']);
-			if(!\lib\utility::isset_request('author')) unset($args['author']);
-			if(!\lib\utility::isset_request('email'))  unset($args['email']);
-			if(!\lib\utility::isset_request('url'))    unset($args['url']);
-			if(!\lib\utility::isset_request('content'))unset($args['content']);
-			if(!\lib\utility::isset_request('meta'))   unset($args['meta']);
-			if(!\lib\utility::isset_request('status')) unset($args['status']);
-			if(!\lib\utility::isset_request('parent')) unset($args['parent']);
-			if(!\lib\utility::isset_request('user_id'))unset($args['user_id']);
-			if(!\lib\utility::isset_request('type'))   unset($args['type']);
+			if(!\dash\utility::isset_request('post_id'))unset($args['post_id']);
+			if(!\dash\utility::isset_request('author')) unset($args['author']);
+			if(!\dash\utility::isset_request('email'))  unset($args['email']);
+			if(!\dash\utility::isset_request('url'))    unset($args['url']);
+			if(!\dash\utility::isset_request('content'))unset($args['content']);
+			if(!\dash\utility::isset_request('meta'))   unset($args['meta']);
+			if(!\dash\utility::isset_request('status')) unset($args['status']);
+			if(!\dash\utility::isset_request('parent')) unset($args['parent']);
+			if(!\dash\utility::isset_request('user_id'))unset($args['user_id']);
+			if(!\dash\utility::isset_request('type'))   unset($args['type']);
 
-			\lib\db\comments::update($args, $id);
+			\dash\db\comments::update($args, $id);
 		}
 
-		if(\lib\engine\process::status())
+		if(\dash\engine\process::status())
 		{
 
 
 			if($_args['method'] === 'post')
 			{
-				if($_args['save_log']) \lib\db\logs::set('user:send:request', $this->user_id, $log_meta);
-				if($_args['debug']) \lib\notif::ok(T_("Thank You For contacting us"));
+				if($_args['save_log']) \dash\db\logs::set('user:send:request', $this->user_id, $log_meta);
+				if($_args['debug']) \dash\notif::ok(T_("Thank You For contacting us"));
 			}
 			elseif($_args['method'] === 'patch')
 			{
-				if($_args['debug']) \lib\notif::ok(T_("Comment data updated"));
+				if($_args['debug']) \dash\notif::ok(T_("Comment data updated"));
 			}
 		}
 		else
 		{
-			if($_args['save_log']) \lib\db\logs::set('user:send:request:fail', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\notif::error(T_("We could'nt save the request"));
+			if($_args['save_log']) \dash\db\logs::set('user:send:request:fail', $this->user_id, $log_meta);
+			if($_args['debug']) \dash\notif::error(T_("We could'nt save the request"));
 		}
 	}
 }

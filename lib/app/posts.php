@@ -4,28 +4,28 @@ namespace dash\app;
 class posts
 {
 
-	use \lib\app\posts\add;
-	use \lib\app\posts\datalist;
-	use \lib\app\posts\edit;
-	use \lib\app\posts\get;
+	use \dash\app\posts\add;
+	use \dash\app\posts\datalist;
+	use \dash\app\posts\edit;
+	use \dash\app\posts\get;
 
 	public static $datarow = null;
 
 
 	public static function post_gallery($_post_id, $_file_index, $_type = 'add')
 	{
-		$post_id = \lib\coding::decode($_post_id);
+		$post_id = \dash\coding::decode($_post_id);
 		if(!$post_id)
 		{
-			\lib\notif::error(T_("Invalid post id"));
+			\dash\notif::error(T_("Invalid post id"));
 			return false;
 		}
 
-		$load_post_meta = \lib\db\posts::get(['id' => $post_id, 'limit' => 1]);
+		$load_post_meta = \dash\db\posts::get(['id' => $post_id, 'limit' => 1]);
 
 		if(!array_key_exists('meta', $load_post_meta))
 		{
-			\lib\notif::error(T_("Invalid post id"));
+			\dash\notif::error(T_("Invalid post id"));
 			return false;
 		}
 
@@ -50,7 +50,7 @@ class posts
 			{
 				if(in_array($_file_index, $meta['gallery']))
 				{
-					\lib\notif::error(T_("Duplicate file in this gallery"));
+					\dash\notif::error(T_("Duplicate file in this gallery"));
 					return false;
 				}
 				array_push($meta['gallery'], $_file_index);
@@ -66,7 +66,7 @@ class posts
 			{
 				if(!array_key_exists($_file_index, $meta['gallery']))
 				{
-					\lib\notif::error(T_("Invalid gallery id"));
+					\dash\notif::error(T_("Invalid gallery id"));
 					return false;
 				}
 				unset($meta['gallery'][$_file_index]);
@@ -76,7 +76,7 @@ class posts
 
 		$meta = json_encode($meta, JSON_UNESCAPED_UNICODE);
 
-		\lib\db\posts::update(['meta' => $meta], $post_id);
+		\dash\db\posts::update(['meta' => $meta], $post_id);
 		return true;
 
 	}
@@ -85,8 +85,8 @@ class posts
 
 	public static function get_url()
 	{
-		$myUrl = \lib\url::directory();
-		$myUrl = \lib\url::urlfilterer($myUrl);
+		$myUrl = \dash\url::directory();
+		$myUrl = \dash\url::urlfilterer($myUrl);
 		return $myUrl;
 	}
 
@@ -105,67 +105,67 @@ class posts
 
 		$_option = array_merge($default_option, $_option);
 
-		$language = \lib\app::request('language');
+		$language = \dash\app::request('language');
 		if($language && mb_strlen($language) !== 2)
 		{
-			\lib\notif::error(T_("Invalid parameter language"), 'language');
+			\dash\notif::error(T_("Invalid parameter language"), 'language');
 			return false;
 		}
 
-		if($language && !\lib\language::check($language))
+		if($language && !\dash\language::check($language))
 		{
-			\lib\notif::error(T_("Invalid parameter language"), 'language');
+			\dash\notif::error(T_("Invalid parameter language"), 'language');
 			return false;
 		}
 
-		$title = \lib\app::request('title');
+		$title = \dash\app::request('title');
 		$title = trim($title);
 		if(!$title)
 		{
-			\lib\notif::error(T_("Title of posts can not be null"), 'title');
+			\dash\notif::error(T_("Title of posts can not be null"), 'title');
 			return false;
 		}
 
 		if($title && mb_strlen($title) > 100)
 		{
-			\lib\notif::error(T_("Please set the title less than 100 character"), 'title');
+			\dash\notif::error(T_("Please set the title less than 100 character"), 'title');
 			return false;
 		}
 
 
 
-		$excerpt = \lib\app::request('excerpt');
+		$excerpt = \dash\app::request('excerpt');
 		$excerpt = trim($excerpt);
 		if($excerpt && mb_strlen($excerpt) > 300)
 		{
-			\lib\notif::error(T_("Please set the excerpt less than 300 character"), 'excerpt');
+			\dash\notif::error(T_("Please set the excerpt less than 300 character"), 'excerpt');
 			return false;
 		}
 
-		$subtitle = \lib\app::request('subtitle');
+		$subtitle = \dash\app::request('subtitle');
 		$subtitle = trim($subtitle);
 		if($subtitle && mb_strlen($subtitle) > 300)
 		{
-			\lib\notif::error(T_("Please set the subtitle less than 300 character"), 'subtitle');
+			\dash\notif::error(T_("Please set the subtitle less than 300 character"), 'subtitle');
 			return false;
 		}
 
 
-		$slug = \lib\app::request('slug');
+		$slug = \dash\app::request('slug');
 		$slug = trim($slug);
 		if($slug && mb_strlen($slug) > 100)
 		{
-			\lib\notif::error(T_("Please set the slug less than 100 character"), 'slug');
+			\dash\notif::error(T_("Please set the slug less than 100 character"), 'slug');
 			return false;
 		}
 
 
 		if($title && !$slug)
 		{
-			$slug = \lib\utility\filter::slug($title, null, 'persian');
+			$slug = \dash\utility\filter::slug($title, null, 'persian');
 		}
 
-		$check_duplicate_slug = \lib\db\posts::get(['slug' => $slug, 'language' => $language, 'limit' => 1]);
+		$check_duplicate_slug = \dash\db\posts::get(['slug' => $slug, 'language' => $language, 'limit' => 1]);
 		if(isset($check_duplicate_slug['id']))
 		{
 			if(intval($check_duplicate_slug['id']) === intval($_id))
@@ -174,15 +174,15 @@ class posts
 			}
 			else
 			{
-				\lib\notif::error(T_("Duplicate slug"), 'slug');
+				\dash\notif::error(T_("Duplicate slug"), 'slug');
 				return false;
 			}
 		}
 
-		$url = \lib\app::request('url');
+		$url = \dash\app::request('url');
 		if($url && mb_strlen($url) > 255)
 		{
-			\lib\notif::error(T_("Please set the url less than 100 character"), 'url');
+			\dash\notif::error(T_("Please set the url less than 100 character"), 'url');
 			return false;
 		}
 
@@ -191,12 +191,12 @@ class posts
 			$url = $slug;
 		}
 
-		$content = \lib\app::request('content');
+		$content = \dash\app::request('content');
 
-		$type = \lib\app::request('type');
+		$type = \dash\app::request('type');
 		if($type && mb_strlen($type) > 100)
 		{
-			\lib\notif::error(T_("Please set the type less than 100 character"), 'type');
+			\dash\notif::error(T_("Please set the type less than 100 character"), 'type');
 			return false;
 		}
 
@@ -206,44 +206,44 @@ class posts
 		}
 
 
-		$comment = \lib\app::request('comment');
+		$comment = \dash\app::request('comment');
 		$comment = $comment ? 'open' : 'closed';
 
 
-		$count = \lib\app::request('count');
-		$order = \lib\app::request('order');
+		$count = \dash\app::request('count');
+		$order = \dash\app::request('order');
 
-		$status = \lib\app::request('status');
+		$status = \dash\app::request('status');
 		if($status && !in_array($status, ['publish','draft','schedule','deleted','expire']))
 		{
-			\lib\notif::error(T_("Invalid parameter status"), 'status');
+			\dash\notif::error(T_("Invalid parameter status"), 'status');
 			return false;
 		}
 
-		// $parent = \lib\app::request('parent');
+		// $parent = \dash\app::request('parent');
 
-		$publishdate = \lib\app::request('publishdate');
-		if($publishdate && !\lib\date::db($publishdate))
+		$publishdate = \dash\app::request('publishdate');
+		if($publishdate && !\dash\date::db($publishdate))
 		{
-			\lib\notif::error(T_("Invalid parameter publishdate"), 'publishdate');
+			\dash\notif::error(T_("Invalid parameter publishdate"), 'publishdate');
 			return false;
 		}
 
 		if($language === 'fa' && $publishdate)
 		{
-			$publishdate  = \lib\utility\jdate::to_gregorian($publishdate);
+			$publishdate  = \dash\utility\jdate::to_gregorian($publishdate);
 			$publishdate .= " ". date("H:i:s");
 		}
 
-		if(\lib\app::isset_request('publishdate') && !$publishdate)
+		if(\dash\app::isset_request('publishdate') && !$publishdate)
 		{
 			$publishdate = date("Y-m-d H:i:s");
 		}
 
 		$meta = $_option['meta'];
-		if(\lib\app::isset_request('thumb') && \lib\app::request('thumb'))
+		if(\dash\app::isset_request('thumb') && \dash\app::request('thumb'))
 		{
-			$meta['thumb'] = \lib\app::request('thumb');
+			$meta['thumb'] = \dash\app::request('thumb');
 		}
 
 
@@ -274,7 +274,7 @@ class posts
 
 	public static function set_post_term($_post_id, $_type)
 	{
-		$category = \lib\app::request($_type);
+		$category = \dash\app::request($_type);
 
 		$check_all_is_cat = null;
 
@@ -286,7 +286,7 @@ class posts
 			$tag = array_filter($tag);
 			$tag = array_unique($tag);
 
-			$check_exist_tag = \lib\db\terms::get_mulit_term_title($tag, 'tag');
+			$check_exist_tag = \dash\db\terms::get_mulit_term_title($tag, 'tag');
 
 			$all_tags_id = [];
 
@@ -319,7 +319,7 @@ class posts
 				$multi_insert_tag = [];
 				foreach ($must_insert_tag as $key => $value)
 				{
-					$slug = \lib\utility\filter::slug($value, null, 'persian');
+					$slug = \dash\utility\filter::slug($value, null, 'persian');
 
 					$multi_insert_tag[] =
 					[
@@ -328,13 +328,13 @@ class posts
 						'title'    => $value,
 						'slug'     => $slug,
 						'url'      => $slug,
-						'user_id'  => \lib\user::id(),
-						'language' => \lib\language::current(),
+						'user_id'  => \dash\user::id(),
+						'language' => \dash\language::current(),
 					];
 				}
 
-				$first_id    = \lib\db\terms::multi_insert($multi_insert_tag);
-				$all_tags_id = array_merge($all_tags_id, \lib\db\config::multi_insert_id($multi_insert_tag, $first_id));
+				$first_id    = \dash\db\terms::multi_insert($multi_insert_tag);
+				$all_tags_id = array_merge($all_tags_id, \dash\db\config::multi_insert_id($multi_insert_tag, $first_id));
 			}
 
 			$category_id = $all_tags_id;
@@ -347,19 +347,19 @@ class posts
 				return null;
 			}
 
-			$category_id = array_map(function($_a){return \lib\coding::decode($_a);}, $category);
+			$category_id = array_map(function($_a){return \dash\coding::decode($_a);}, $category);
 			$category_id = array_filter($category_id);
 			$category_id = array_unique($category_id);
 
-			$check_all_is_cat = \lib\db\terms::check_multi_id($category_id, $_type);
+			$check_all_is_cat = \dash\db\terms::check_multi_id($category_id, $_type);
 			if(count($check_all_is_cat) !== count($category_id))
 			{
-				\lib\notif::warn(T_("Some :type is wrong", ['type' => T_($_type)]), 'cat');
+				\dash\notif::warn(T_("Some :type is wrong", ['type' => T_($_type)]), 'cat');
 				return false;
 			}
 		}
 
-		$get_old_post_cat = \lib\db\termusages::usage($_post_id, $_type);
+		$get_old_post_cat = \dash\db\termusages::usage($_post_id, $_type);
 
 		$must_insert = [];
 		$must_remove = [];
@@ -391,7 +391,7 @@ class posts
 			}
 			if(!empty($insert_multi))
 			{
-				\lib\db\termusages::insert_multi($insert_multi);
+				\dash\db\termusages::insert_multi($insert_multi);
 			}
 		}
 
@@ -401,7 +401,7 @@ class posts
 			$must_remove = array_unique($must_remove);
 
 			$must_remove = implode(',', $must_remove);
-			\lib\db\termusages::hard_delete(['related_id' => $_post_id, 'related' => 'posts', 'term_id' => ["IN", "($must_remove)"]]);
+			\dash\db\termusages::hard_delete(['related_id' => $_post_id, 'related' => 'posts', 'term_id' => ["IN", "($must_remove)"]]);
 		}
 
 
@@ -436,8 +436,8 @@ class posts
 		$url = str_replace('`', '', $url);
 		$url = str_replace('%', '', $url);
 
-		$language = \lib\language::current();
-		$preview  = \lib\request::get('preview');
+		$language = \dash\language::current();
+		$preview  = \dash\request::get('preview');
 
 		$qry =
 		"
@@ -451,9 +451,9 @@ class posts
 			LIMIT 1
 		";
 
-		$datarow = \lib\db::get($qry, null, true);
+		$datarow = \dash\db::get($qry, null, true);
 
-		if(isset($datarow['user_id']) && (int) $datarow['user_id'] === (int) \lib\user::id())
+		if(isset($datarow['user_id']) && (int) $datarow['user_id'] === (int) \dash\user::id())
 		{
 			// no problem to load this post
 		}
@@ -522,7 +522,7 @@ class posts
 				case 'term_id':
 					if(isset($value))
 					{
-						$result[$key] = \lib\coding::encode($value);
+						$result[$key] = \dash\coding::encode($value);
 					}
 					else
 					{

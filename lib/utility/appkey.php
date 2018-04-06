@@ -25,7 +25,7 @@ class appkey
 				'limit'  => 1,
 			];
 
-			$tmp = \lib\db\options::get($arg);
+			$tmp = \dash\db\options::get($arg);
 			self::$APP_KEY = $tmp;
 		}
 
@@ -46,7 +46,7 @@ class appkey
 			'status'  => 'enable',
 			'limit'   => 1
 		];
-		$app_key = \lib\db\options::get($where);
+		$app_key = \dash\db\options::get($where);
 
 		if($app_key && isset($app_key['value']))
 		{
@@ -70,9 +70,9 @@ class appkey
 
 		$app_key = rand(3, 1001). "!~ERMILE~!". (string) $_user_id. ':_APP_KEY_:'. (string) time(). "*DASH*". rand(251, 1408);
 
-		$app_key = \lib\utility::hasher($app_key, null, true);
+		$app_key = \dash\utility::hasher($app_key, null, true);
 
-		$app_key = \lib\safe::safe($app_key);
+		$app_key = \dash\safe::safe($app_key);
 
 		$arg =
 		[
@@ -81,7 +81,7 @@ class appkey
 			// 'key'     => 'app_key_'. (string) $_user_id,
 			'value'   => $app_key
 		];
-		$set = \lib\db\options::insert($arg);
+		$set = \dash\db\options::insert($arg);
 
 		if($set)
 		{
@@ -107,7 +107,7 @@ class appkey
 
 		$set = ['status' => 'disable'];
 
-		\lib\db\options::update_on_error($set, $where);
+		\dash\db\options::update_on_error($set, $where);
 	}
 
 
@@ -124,7 +124,7 @@ class appkey
 			'value' => $_appkey,
 		];
 		$set = ['status' => 'disable'];
-		return \lib\db\options::update_on_error($set, $where);
+		return \dash\db\options::update_on_error($set, $where);
 	}
 }
 ?>

@@ -5,19 +5,19 @@ class model extends \addons\content_cp\main\model
 {
 	public function post_change_status()
 	{
-		$status = \lib\request::post('status');
+		$status = \dash\request::post('status');
 
 		if(!$status)
 		{
-			\lib\notif::error(T_("Invalid status"));
+			\dash\notif::error(T_("Invalid status"));
 			return false;
 		}
 
-		$post_detail = \lib\app\comment::edit(['status' => $status], \lib\request::get('id'));
+		$post_detail = \dash\app\comment::edit(['status' => $status], \dash\request::get('id'));
 
-		if(\lib\engine\process::status())
+		if(\dash\engine\process::status())
 		{
-			\lib\redirect::pwd();
+			\dash\redirect::pwd();
 		}
 	}
 }

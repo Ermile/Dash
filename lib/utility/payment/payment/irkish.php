@@ -37,9 +37,9 @@ class irkish
         {
             if(self::$save_log)
             {
-                \lib\db\logs::set('payment:irkish:soapclient:not:install', self::$user_id, $log_meta);
+                \dash\db\logs::set('payment:irkish:soapclient:not:install', self::$user_id, $log_meta);
             }
-            \lib\notif::error(T_("Can not connect to irkish gateway. Install it!"));
+            \dash\notif::error(T_("Can not connect to irkish gateway. Install it!"));
             return false;
         }
 
@@ -57,20 +57,20 @@ class irkish
             if(isset($result->MakeTokenResult->result) && $result->MakeTokenResult->result === true && isset($result->MakeTokenResult->token))
             {
                 $token = $result->MakeTokenResult->token;
-                \lib\db\logs::set('payment:irkish:redirect', self::$user_id, $log_meta);
+                \dash\db\logs::set('payment:irkish:redirect', self::$user_id, $log_meta);
                 return $token;
             }
             else
             {
-                \lib\db\logs::set('payment:irkish:error', self::$user_id, $log_meta);
-                \lib\notif::error(T_("Error in connecting to bank service"));
+                \dash\db\logs::set('payment:irkish:error', self::$user_id, $log_meta);
+                \dash\notif::error(T_("Error in connecting to bank service"));
                 return false;
             }
         }
         catch (SoapFault $e)
         {
-            \lib\db\logs::set('payment:irkish:error:load:web:services', self::$user_id, $log_meta);
-            \lib\notif::error(T_("Error in load web services"));
+            \dash\db\logs::set('payment:irkish:error:load:web:services', self::$user_id, $log_meta);
+            \dash\notif::error(T_("Error in load web services"));
             return false;
         }
     }
@@ -131,8 +131,8 @@ class irkish
         }
         catch(Exception $e)
         {
-            \lib\db\logs::set('payment:irkish:error:load:web:services:verify', self::$user_id, $log_meta);
-            \lib\notif::error(T_("Error in load web services"));
+            \dash\db\logs::set('payment:irkish:error:load:web:services:verify', self::$user_id, $log_meta);
+            \dash\notif::error(T_("Error in load web services"));
             return false;
         }
     }
@@ -172,7 +172,7 @@ class irkish
 
         if(isset($T_msg[$_status]))
         {
-            if(\lib\language::current() === 'fa')
+            if(\dash\language::current() === 'fa')
             {
                 if(isset($T_msg[$_status]['fa']))
                 {

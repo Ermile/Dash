@@ -46,12 +46,12 @@ class prepare
 	*/
 	private static function user_country_redirect()
 	{
-		if(\lib\url::isLocal())
+		if(\dash\url::isLocal())
 		{
 			return null;
 		}
 
-		if(\lib\agent::isBot())
+		if(\dash\agent::isBot())
 		{
 			return false;
 		}
@@ -62,11 +62,11 @@ class prepare
 			return false;
 		}
 
-		$cookie = \lib\utility\cookie::read('language');
+		$cookie = \dash\utility\cookie::read('language');
 
-		if(!$_SESSION && !$cookie && !\lib\url::lang())
+		if(!$_SESSION && !$cookie && !\dash\url::lang())
 		{
-			$default_site_language = \lib\language::default();
+			$default_site_language = \dash\language::default();
 			$country_is_ir         = (isset($_SERVER['HTTP_CF_IPCOUNTRY']) && mb_strtoupper($_SERVER['HTTP_CF_IPCOUNTRY']) === 'IR') ? true : false;
 			$redirect_lang         = null;
 
@@ -79,17 +79,17 @@ class prepare
 				$redirect_lang = 'fa';
 			}
 			$cookie_lang = $redirect_lang ? $redirect_lang : $default_site_language;
-			$domain = '.'. \lib\url::domain();
+			$domain = '.'. \dash\url::domain();
 
-			\lib\utility\cookie::write('language', $cookie_lang, (60*60*24*30), $domain);
+			\dash\utility\cookie::write('language', $cookie_lang, (60*60*24*30), $domain);
 			$_SESSION['language'] = $cookie_lang;
 
-			if($redirect_lang && array_key_exists($redirect_lang, \lib\option::language('list')))
+			if($redirect_lang && array_key_exists($redirect_lang, \dash\option::language('list')))
 			{
-				$root    = \lib\url::base();
-				$full    = \lib\url::pwd();
+				$root    = \dash\url::base();
+				$full    = \dash\url::pwd();
 				$new_url = str_replace($root, $root. '/'. $redirect_lang, $full);
-				\lib\redirect::to($new_url, true, 302);
+				\dash\redirect::to($new_url, true, 302);
 			}
 		}
 	}
@@ -100,13 +100,13 @@ class prepare
 	 */
 	private static function session_start()
 	{
-		if(is_string(\lib\url::root()))
+		if(is_string(\dash\url::root()))
 		{
-			session_name(\lib\url::root());
+			session_name(\dash\url::root());
 		}
 
 		// set session cookie params
-		session_set_cookie_params(0, '/', '.'.\lib\url::domain(), false, true);
+		session_set_cookie_params(0, '/', '.'.\dash\url::domain(), false, true);
 
 		// start sessions
 		session_start();
@@ -119,47 +119,47 @@ class prepare
 	 */
 	private static function account_urls()
 	{
-		$param = \lib\url::query();
+		$param = \dash\url::query();
 		if($param)
 		{
 			$param = '?'.$param;
 		}
 
-		$myrep = \lib\url::content();
-		switch (\lib\url::module())
+		$myrep = \dash\url::content();
+		switch (\dash\url::module())
 		{
 			case 'signin':
 			case 'login':
-				$url = \lib\url::base(). '/enter'. $param;
-				\lib\redirect::to($url);
+				$url = \dash\url::base(). '/enter'. $param;
+				\dash\redirect::to($url);
 				break;
 
 			case 'signup':
 				if($myrep !== 'enter')
 				{
-					$url = \lib\url::base(). '/enter/signup'. $param;
-					\lib\redirect::to($url);
+					$url = \dash\url::base(). '/enter/signup'. $param;
+					\dash\redirect::to($url);
 				}
 				break;
 
 			case 'register':
 
-				$url = \lib\url::base(). '/enter/signup'. $param;
-				\lib\redirect::to($url);
+				$url = \dash\url::base(). '/enter/signup'. $param;
+				\dash\redirect::to($url);
 				break;
 
 			case 'signout':
 			case 'logout':
 				if($myrep !== 'enter')
 				{
-					$url = \lib\url::base(). '/enter/logout'. $param;
-					\lib\redirect::to($url);
+					$url = \dash\url::base(). '/enter/logout'. $param;
+					\dash\redirect::to($url);
 				}
 
 				break;
 		}
 
-		switch (\lib\url::directory())
+		switch (\dash\url::directory())
 		{
 			case 'account/recovery':
 			case 'account/changepass':
@@ -167,20 +167,20 @@ class prepare
 			case 'account/verificationsms':
 			case 'account/signin':
 			case 'account/login':
-				$url = \lib\url::base(). '/enter'. $param;
-				\lib\redirect::to($url);
+				$url = \dash\url::base(). '/enter'. $param;
+				\dash\redirect::to($url);
 				break;
 
 			case 'account/signup':
 			case 'account/register':
-				$url = \lib\url::base(). '/enter/signup'. $param;
-				\lib\redirect::to($url);
+				$url = \dash\url::base(). '/enter/signup'. $param;
+				\dash\redirect::to($url);
 				break;
 
 			case 'account/logout':
 			case 'account/signout':
-				$url = \lib\url::base(). '/enter/logout'. $param;
-				\lib\redirect::to($url);
+				$url = \dash\url::base(). '/enter/logout'. $param;
+				\dash\redirect::to($url);
 				break;
 		}
 	}
@@ -192,7 +192,7 @@ class prepare
 	 */
 	private static function fix_url_host()
 	{
-		if(\lib\option::url('fix') !== true)
+		if(\dash\option::url('fix') !== true)
 		{
 			return null;
 		}
@@ -201,67 +201,67 @@ class prepare
 		$target_host = '';
 
 		// fix protocol
-		if(\lib\option::url('protocol'))
+		if(\dash\option::url('protocol'))
 		{
-			$target_host = \lib\option::url('protocol').'://';
+			$target_host = \dash\option::url('protocol').'://';
 		}
 		else
 		{
-			$target_host = \lib\url::protocol().'://';
+			$target_host = \dash\url::protocol().'://';
 		}
 
 		// set www subdomain
-		if(\lib\option::url('www'))
+		if(\dash\option::url('www'))
 		{
-			if(\lib\url::subdomain())
+			if(\dash\url::subdomain())
 			{
-				$target_host .= \lib\url::subdomain(). '.';
+				$target_host .= \dash\url::subdomain(). '.';
 			}
 			else
 			{
 				$target_host .= 'www.';
 			}
 		}
-		elseif(\lib\url::subdomain() && \lib\url::subdomain() !== 'www')
+		elseif(\dash\url::subdomain() && \dash\url::subdomain() !== 'www')
 		{
 
-			$target_host .= \lib\url::subdomain(). '.';
+			$target_host .= \dash\url::subdomain(). '.';
 		}
 
 		// fix root domain
-		if(\lib\option::url('root'))
+		if(\dash\option::url('root'))
 		{
-			$target_host .= \lib\option::url('root');
+			$target_host .= \dash\option::url('root');
 		}
-		elseif(\lib\url::root())
+		elseif(\dash\url::root())
 		{
-			$target_host .= \lib\url::root();
+			$target_host .= \dash\url::root();
 		}
 
 		// fix tld
-		if(\lib\option::url('tld'))
+		if(\dash\option::url('tld'))
 		{
-			$target_host .= '.'.\lib\option::url('tld');
+			$target_host .= '.'.\dash\option::url('tld');
 		}
-		elseif(\lib\url::tld())
+		elseif(\dash\url::tld())
 		{
-			$target_host .= '.'.\lib\url::tld();
+			$target_host .= '.'.\dash\url::tld();
 		}
 
 		// fix port, add 443 later @check
-		if(\lib\option::url('port') && \lib\option::url('port') !== 80)
+		if(\dash\option::url('port') && \dash\option::url('port') !== 80)
 		{
-			$target_host .= ':'.\lib\option::url('port');
+			$target_host .= ':'.\dash\option::url('port');
 		}
-		elseif(\lib\url::port() && \lib\url::port() !== 80)
+		elseif(\dash\url::port() && \dash\url::port() !== 80)
 		{
-			$target_host .= ':'.\lib\url::port();
+			$target_host .= ':'.\dash\url::port();
 		}
 
 		// help new language detect in target site by set /fa
-		if(\lib\option::url('tld') !== \lib\url::tld())
+		if(\dash\option::url('tld') !== \dash\url::tld())
 		{
-			switch (\lib\url::tld())
+			switch (\dash\url::tld())
 			{
 				case 'ir':
 					$target_host .= $target_host. "/fa";
@@ -271,28 +271,28 @@ class prepare
 					break;
 			}
 		}
-		if(\lib\url::related_url())
+		if(\dash\url::related_url())
 		{
-			$target_host .= \lib\url::related_url();
+			$target_host .= \dash\url::related_url();
 		}
 		// if we have new target url, and dont on force show mode, try to change it
-		if(!\lib\request::get('force'))
+		if(!\dash\request::get('force'))
 		{
 			// set target url with path
-			$target_url = $target_host. \lib\url::path();
+			$target_url = $target_host. \dash\url::path();
 			$target_url = self::fix_url_slash($target_url);
-			if($target_host === \lib\url::base())
+			if($target_host === \dash\url::base())
 			{
 				// only check last slash
-				if($target_url !== \lib\url::pwd())
+				if($target_url !== \dash\url::pwd())
 				{
-					\lib\redirect::to($target_url);
+					\dash\redirect::to($target_url);
 				}
 			}
 			else
 			{
 				// change host and slash together
-				\lib\redirect::to($target_url);
+				\dash\redirect::to($target_url);
 			}
 		}
 	}
@@ -305,7 +305,7 @@ class prepare
 	 */
 	private static function fix_url_slash($_url)
 	{
-		$myBrowser = \lib\utility\browserDetection::browser_detection('browser_name');
+		$myBrowser = \dash\utility\browserDetection::browser_detection('browser_name');
 		if($myBrowser === 'samsungbrowser')
 		{
 			// samsung is stupid!
@@ -315,12 +315,12 @@ class prepare
 			// remove slash in normal condition
 			$_url = trim($_url, '/');
 
-			if(\lib\option::url('slash'))
+			if(\dash\option::url('slash'))
 			{
 				// add slash if set in settings
 				$_url .= '/';
 			}
-			elseif(\lib\url::path() === '/')
+			elseif(\dash\url::path() === '/')
 			{
 				// add slash for homepage
 				$_url .= '/';
@@ -341,20 +341,20 @@ class prepare
 		 * developer must set get parameter like site.com/dev=anyvalue
 		 * for disable this attribute turn off it from config.php in project root
 		 */
-		if(\lib\option::config('coming'))
+		if(\dash\option::config('coming'))
 		{
 			// if user set dev in get, show the site
 			if(isset($_GET['dev']))
 			{
-				setcookie('preview','yes',time() + 30*24*60*60,'/','.'.\lib\url::domain());
+				setcookie('preview','yes',time() + 30*24*60*60,'/','.'.\dash\url::domain());
 			}
-			elseif(\lib\url::dir(0) === 'hook')
+			elseif(\dash\url::dir(0) === 'hook')
 			{
 				// allow telegram to commiunate on coming soon
 			}
 			elseif(!isset($_COOKIE["preview"]))
 			{
-				\lib\redirect::to(\lib\url::site().'/static/page/coming/', true, 302);
+				\dash\redirect::to(\dash\url::site().'/static/page/coming/', true, 302);
 			}
 		}
 	}
@@ -363,16 +363,16 @@ class prepare
 	/**
 	 * set custom error handler
 	 */
-	private function error_handler()
+	private static function error_handler()
 	{
 		//Setting for the PHP Error Handler
-		set_error_handler( "\\lib\\engine\\error::handle_error" );
+		set_error_handler( "\\dash\\engine\\error::handle_error" );
 
 		//Setting for the PHP Exceptions Error Handler
-		set_exception_handler( "\\lib\\engine\\error::handle_exception" );
+		set_exception_handler( "\\dash\\engine\\error::handle_exception" );
 
 		//Setting for the PHP Fatal Error
-		register_shutdown_function( "\\lib\\engine\\error::handle_fatal" );
+		register_shutdown_function( "\\dash\\engine\\error::handle_fatal" );
 	}
 
 
@@ -380,11 +380,11 @@ class prepare
 	 * set debug status
 	 * @param  [type] $_status [description]
 	 */
-	public function debug($_status = null)
+	public static function debug($_status = null)
 	{
 		if($_status === null)
 		{
-			$_status = \lib\option::config('debug');
+			$_status = \dash\option::config('debug');
 		}
 
 		if($_status)
@@ -413,14 +413,14 @@ class prepare
 		// check php version to upper than 7.0
 		if(version_compare(phpversion(), '7.0', '<'))
 		{
-			\lib\code::die("<p>For using Dash you must update php version to 7.0 or higher!</p>");
+			\dash\code::die("<p>For using Dash you must update php version to 7.0 or higher!</p>");
 		}
 	}
 
 	/**
 	 * set some header and say hi to developers
 	 */
-	private function hi_developers()
+	private static function hi_developers()
 	{
 		// change header and remove php from it
 		@header("X-Made-In: Ermile!");

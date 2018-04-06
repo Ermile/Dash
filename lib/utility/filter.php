@@ -181,7 +181,7 @@ class filter
 
 		if($_rules === true)
 		{
-			$slugify = new \lib\utility\slugify();
+			$slugify = new \dash\utility\slugify();
 			$slugify->activateRuleset('persian');
 		}
 		elseif($_rules === 'persian')
@@ -193,7 +193,7 @@ class filter
 		}
 		else
 		{
-			$slugify = new \lib\utility\slugify();
+			$slugify = new \dash\utility\slugify();
 		}
 		if($_splitor)
 			return $slugify->slugify($_string, $_splitor);
@@ -252,7 +252,7 @@ class filter
 		{
 			$_num = time(). rand(0,9);
 		}
-		$rand = \lib\coding::encode($_num, $alphabet);
+		$rand = \dash\coding::encode($_num, $alphabet);
 		if(!$_num)
 		{
 			return "rand_". $rand;
@@ -279,7 +279,7 @@ class filter
 				table_name = 'users' AND
 				table_schema = DATABASE()
 		";
-		$result  = \lib\db::get($query, "NEXTID", true);
+		$result  = \dash\db::get($query, "NEXTID", true);
 		$next_id = intval($result) + 1;
 		$next_id = self::temp_password($next_id);
 		return "temp_". $next_id;
@@ -299,7 +299,7 @@ class filter
 	{
 		$code        = rand(1000, 9999);
 		$caller      = "account_verification_sms";
-		$log_item_id = \lib\db\logitems::get_id($caller);
+		$log_item_id = \dash\db\logitems::get_id($caller);
 
 		if(!$log_item_id)
 		{
@@ -314,7 +314,7 @@ class filter
 			'status'     => 'enable',
 			'datecreated' => date('Y-m-d H:i:s')
 		];
-		$result = \lib\db\logs::insert($arg);
+		$result = \dash\db\logs::insert($arg);
 		if($result)
 		{
 			$_SESSION['verification_mobile'] = $_mobile;

@@ -6,13 +6,13 @@ trait tools
 	/**
 	 * get the cost detail of country
 	 *
-	 * @example \lib\utility\location\countries::get('id', 107, 'name')
+	 * @example \dash\utility\location\countries::get('id', 107, 'name')
 	 * @return string "Iran"
 	 *
-	 * @example \lib\utility\location\countries::get('name', 'Iran', 'id')
+	 * @example \dash\utility\location\countries::get('name', 'Iran', 'id')
 	 * @return string "107"
 	 *
-	 * @example \lib\utility\location\countries::get('name', 'Iran', ['id','language'])
+	 * @example \dash\utility\location\countries::get('name', 'Iran', ['id','language'])
 	 * @return array ['id' => "107", 'language' => "fa-IR"]
 	 *
 	 * @param      string      		  $_type     The type

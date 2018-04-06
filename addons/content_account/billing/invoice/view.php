@@ -18,7 +18,7 @@ class view extends \content_account\main\view
 	 */
 	public function view_invoice($_args)
 	{
-		if(!\lib\user::login())
+		if(!\dash\user::login())
 		{
 			return;
 		}

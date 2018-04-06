@@ -14,7 +14,7 @@ class term
 
 	public static function cat_list()
 	{
-		$result = \lib\db\terms::get(['type' => 'cat', 'status' => 'enable']);
+		$result = \dash\db\terms::get(['type' => 'cat', 'status' => 'enable']);
 		$temp   = [];
 
 		if(is_array($result))
@@ -29,13 +29,13 @@ class term
 
 	public static function get($_id)
 	{
-		$id = \lib\coding::decode($_id);
+		$id = \dash\coding::decode($_id);
 		if(!$id)
 		{
 			return false;
 		}
 
-		$result = \lib\db\terms::get(['id' => $id, 'limit' => 1]);
+		$result = \dash\db\terms::get(['id' => $id, 'limit' => 1]);
 		$temp = [];
 		if(is_array($result))
 		{
@@ -51,58 +51,58 @@ class term
 	public static function check($_id = null)
 	{
 
-		$title = \lib\app::request('title');
+		$title = \dash\app::request('title');
 		if(!$title)
 		{
-			\lib\notif::error(T_("Please set the term title"), 'title');
+			\dash\notif::error(T_("Please set the term title"), 'title');
 			return false;
 		}
 
 		if(mb_strlen($title) > 150)
 		{
-			\lib\notif::error(T_("Please set the term title less than 150 character"), 'title');
+			\dash\notif::error(T_("Please set the term title less than 150 character"), 'title');
 			return false;
 		}
 
 
-		$slug = \lib\app::request('slug');
+		$slug = \dash\app::request('slug');
 
 		if($slug && mb_strlen($slug) > 150)
 		{
-			\lib\notif::error(T_("Please set the term slug less than 150 character"), 'slug');
+			\dash\notif::error(T_("Please set the term slug less than 150 character"), 'slug');
 			return false;
 		}
 
 		if(!$slug)
 		{
-			$slug = \lib\utility\filter::slug($title, null, 'persian');
+			$slug = \dash\utility\filter::slug($title, null, 'persian');
 		}
 		else
 		{
-			$slug = \lib\utility\filter::slug($slug, null, 'persian');
+			$slug = \dash\utility\filter::slug($slug, null, 'persian');
 		}
 
-		$language = \lib\app::request('language');
+		$language = \dash\app::request('language');
 		if($language && mb_strlen($language) !== 2)
 		{
-			\lib\notif::error(T_("Invalid parameter language"), 'language');
+			\dash\notif::error(T_("Invalid parameter language"), 'language');
 			return false;
 		}
 
-		if($language && !\lib\language::check($language))
+		if($language && !\dash\language::check($language))
 		{
-			\lib\notif::error(T_("Invalid parameter language"), 'language');
+			\dash\notif::error(T_("Invalid parameter language"), 'language');
 			return false;
 		}
 
-		$desc = \lib\app::request('desc');
+		$desc = \dash\app::request('desc');
 		if($desc && mb_strlen($desc) > 500)
 		{
-			\lib\notif::error(T_("Please set the term desc less than 500 character"), 'desc');
+			\dash\notif::error(T_("Please set the term desc less than 500 character"), 'desc');
 			return false;
 		}
 
-		$type = \lib\app::request('type');
+		$type = \dash\app::request('type');
 		switch ($type)
 		{
 			case 'tag':
@@ -118,22 +118,22 @@ class term
 				break;
 
 			default:
-				\lib\notif::error(T_("Please set the term type"), 'type');
+				\dash\notif::error(T_("Please set the term type"), 'type');
 				return false;
 				break;
 		}
 
-		$status = \lib\app::request('status');
+		$status = \dash\app::request('status');
 
 		if($status && !in_array($status, ['enable', 'disable']))
 		{
-			\lib\notif::error(T_("Invalid status of term"));
+			\dash\notif::error(T_("Invalid status of term"));
 			return false;
 		}
 
 		// check duplicate
 		// type+lang+slug
-		$check_duplicate = \lib\db\terms::get(['type' => $type, 'slug' => $slug, 'language' => $language, 'limit' => 1]);
+		$check_duplicate = \dash\db\terms::get(['type' => $type, 'slug' => $slug, 'language' => $language, 'limit' => 1]);
 
 		if(isset($check_duplicate['id']))
 		{
@@ -143,22 +143,22 @@ class term
 			}
 			else
 			{
-				\lib\notif::error(T_("Duplicate term"), ['type', 'slug', 'language', 'title']);
+				\dash\notif::error(T_("Duplicate term"), ['type', 'slug', 'language', 'title']);
 				return false;
 			}
 		}
 
-		$excerpt = \lib\app::request('excerpt');
+		$excerpt = \dash\app::request('excerpt');
 		if($excerpt && mb_strlen($excerpt) > 500)
 		{
-			\lib\notif::error(T_("Please set the term excerpt less than 500 character"), 'excerpt');
+			\dash\notif::error(T_("Please set the term excerpt less than 500 character"), 'excerpt');
 			return false;
 		}
 
-		$parent = \lib\app::request('parent');
-		if($parent && !\lib\coding::is($parent))
+		$parent = \dash\app::request('parent');
+		if($parent && !\dash\coding::is($parent))
 		{
-			\lib\notif::error(T_("Invalid parent"), 'parent');
+			\dash\notif::error(T_("Invalid parent"), 'parent');
 			return false;
 		}
 
@@ -168,24 +168,24 @@ class term
 		{
 			if($parent)
 			{
-				$parent = \lib\coding::decode($parent);
+				$parent = \dash\coding::decode($parent);
 
-				$get_parent = \lib\db\terms::get(['id' => $parent, 'limit' => 1]);
+				$get_parent = \dash\db\terms::get(['id' => $parent, 'limit' => 1]);
 
 				if(!isset($get_parent['id']) || !array_key_exists('type', $get_parent) || !array_key_exists('url', $get_parent))
 				{
-					\lib\notif::error(T_("Parent not found"), 'parent');
+					\dash\notif::error(T_("Parent not found"), 'parent');
 					return false;
 				}
 
 				if(intval($get_parent['id']) === intval($_id))
 				{
-					\lib\notif::error(T_("Can not set the parent as yourself"), 'parent');
+					\dash\notif::error(T_("Can not set the parent as yourself"), 'parent');
 					return false;
 				}
 				if($get_parent['type'] != $type)
 				{
-					\lib\notif::error(T_("The parent is not a :type", ['type' => $type]), 'parent');
+					\dash\notif::error(T_("The parent is not a :type", ['type' => $type]), 'parent');
 					return false;
 				}
 				$url = $get_parent['url'] . '/'. $slug;
@@ -225,7 +225,7 @@ class term
 				case 'parent':
 					if(isset($value))
 					{
-						$result[$key] = \lib\coding::encode($value);
+						$result[$key] = \dash\coding::encode($value);
 					}
 					else
 					{
@@ -281,7 +281,7 @@ class term
 	 */
 	public static function add($_args, $_option = [])
 	{
-		\lib\app::variable($_args);
+		\dash\app::variable($_args);
 
 
 		$default_option =
@@ -297,27 +297,27 @@ class term
 		$_option = array_merge($default_option, $_option);
 
 
-		if(!\lib\user::id())
+		if(!\dash\user::id())
 		{
-			if($_option['debug']) \lib\notif::error(T_("User not found"), 'user');
+			if($_option['debug']) \dash\notif::error(T_("User not found"), 'user');
 			return false;
 		}
 
 		// check args
 		$args = self::check();
 
-		if($args === false || !\lib\engine\process::status())
+		if($args === false || !\dash\engine\process::status())
 		{
 			return false;
 		}
 
 		$return         = [];
 
-		$term_id = \lib\db\terms::insert($args);
+		$term_id = \dash\db\terms::insert($args);
 
 		if(!$term_id)
 		{
-			\lib\notif::error(T_("No way to insert term"));
+			\dash\notif::error(T_("No way to insert term"));
 			return false;
 		}
 
@@ -327,7 +327,7 @@ class term
 	public static function list($_string = null, $_args = [])
 	{
 
-		if(!\lib\user::id())
+		if(!\dash\user::id())
 		{
 			return false;
 		}
@@ -366,7 +366,7 @@ class term
 
 		unset($option['in']);
 
-		$result = \lib\db\terms::search($_string, $option, $field);
+		$result = \dash\db\terms::search($_string, $option, $field);
 
 		$temp            = [];
 
@@ -386,7 +386,7 @@ class term
 
 	public static function edit($_args, $_option = [])
 	{
-		\lib\app::variable($_args);
+		\dash\app::variable($_args);
 
 		$default_option =
 		[
@@ -400,24 +400,24 @@ class term
 
 		$_option = array_merge($default_option, $_option);
 
-		$id = \lib\app::request('id');
-		$id = \lib\coding::decode($id);
+		$id = \dash\app::request('id');
+		$id = \dash\coding::decode($id);
 
 		if(!$id)
 		{
-			\lib\notif::error(T_("Can not access to edit term"), 'term');
+			\dash\notif::error(T_("Can not access to edit term"), 'term');
 			return false;
 		}
 
 		// check args
 		$args = self::check($id);
 
-		if($args === false || !\lib\engine\process::status())
+		if($args === false || !\dash\engine\process::status())
 		{
 			return false;
 		}
 
-		\lib\db\terms::update($args, $id);
+		\dash\db\terms::update($args, $id);
 
 		return true;
 	}

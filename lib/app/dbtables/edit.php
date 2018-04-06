@@ -12,17 +12,17 @@ trait edit
 	 */
 	public static function edit($_args, $_id)
 	{
-		\lib\app::variable($_args);
+		\dash\app::variable($_args);
 
 		$args = self::check($id);
 
 		if(!empty($args))
 		{
-			$update = \lib\db\config::public_update($args, $_id);
+			$update = \dash\db\config::public_update($args, $_id);
 
-			if(\lib\engine\process::status())
+			if(\dash\engine\process::status())
 			{
-				\lib\notif::ok(T_("Record successfully updated"));
+				\dash\notif::ok(T_("Record successfully updated"));
 			}
 		}
 	}

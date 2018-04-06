@@ -14,7 +14,7 @@ trait options
 	public static function host($_type = null)
 	{
 
-		$host = \lib\url::site();
+		$host = \dash\url::site();
 
 		if(defined('simulation_com') && simulation_com)
 		{
@@ -65,8 +65,8 @@ trait options
 	 */
 	public static function check_api_permission($_caller, $_action = null, $_user_id = null)
 	{
-		\lib\permission::$user_id = $_user_id;
-		return \lib\permission::access(...func_get_args());
+		\dash\permission::$user_id = $_user_id;
+		return \dash\permission::access(...func_get_args());
 	}
 
 }

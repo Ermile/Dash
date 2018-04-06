@@ -10,10 +10,10 @@ class view extends \addons\content_cp\main\view
 		$this->data->page['title'] = T_("Terms");
 		$this->data->page['desc']  = T_("Check terms and filter by type or view and edit some terms");
 
-		$this->data->page['badge']['link'] = \lib\url::here();
+		$this->data->page['badge']['link'] = \dash\url::here();
 		$this->data->page['badge']['text'] = T_('Back to dashboard');
 
-		$myType = \lib\request::get('type');
+		$myType = \dash\request::get('type');
 		if($myType)
 		{
 			switch ($myType)
@@ -37,8 +37,8 @@ class view extends \addons\content_cp\main\view
 
 		$args =
 		[
-			'order' => \lib\request::get('order'),
-			'sort'  => \lib\request::get('sort'),
+			'order' => \dash\request::get('order'),
+			'sort'  => \dash\request::get('sort'),
 		];
 
 		if(!$args['order'])
@@ -58,7 +58,7 @@ class view extends \addons\content_cp\main\view
 			}
 		}
 
-		$search_string            = \lib\request::get('q');
+		$search_string            = \dash\request::get('q');
 
 		if($search_string)
 		{
@@ -66,17 +66,17 @@ class view extends \addons\content_cp\main\view
 		}
 
 		$export = false;
-		if(\lib\request::get('export') === 'true')
+		if(\dash\request::get('export') === 'true')
 		{
 			$export = true;
 			$args['pagenation'] = false;
 		}
 
-		$this->data->dataTable = \lib\app\term::list($search_string, $args);
+		$this->data->dataTable = \dash\app\term::list($search_string, $args);
 
 		if($export)
 		{
-			\lib\utility\export::csv(['name' => 'export_service', 'data' => $this->data->dataTable]);
+			\dash\utility\export::csv(['name' => 'export_service', 'data' => $this->data->dataTable]);
 		}
 
 		if(isset($this->controller->pagnation))
@@ -89,16 +89,16 @@ class view extends \addons\content_cp\main\view
 
 	public function view_edit()
 	{
-		if(\lib\request::get('edit'))
+		if(\dash\request::get('edit'))
 		{
 			$this->data->edit_mode = true;
 
-			$id = \lib\request::get('edit');
-			$this->data->datarow = \lib\app\term::get($id);
+			$id = \dash\request::get('edit');
+			$this->data->datarow = \dash\app\term::get($id);
 
 			if(!$this->data->datarow)
 			{
-				\lib\header::status(404, T_("Id not found"));
+				\dash\header::status(404, T_("Id not found"));
 			}
 		}
 	}

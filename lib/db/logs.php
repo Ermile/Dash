@@ -13,7 +13,7 @@ class logs
 	 */
 	public static function get_db_log_name()
 	{
-		return \lib\db\logitems::get_db_log_name();
+		return \dash\db\logitems::get_db_log_name();
 	}
 
 	/**
@@ -48,20 +48,20 @@ class logs
 	public static function insert($_args)
 	{
 
-		$set = \lib\db\config::make_set($_args);
+		$set = \dash\db\config::make_set($_args);
 		if($set)
 		{
 			$query  ="INSERT IGNORE INTO logs SET $set ";
 
-			$resutl = \lib\db::query($query, self::get_db_log_name());
+			$resutl = \dash\db::query($query, self::get_db_log_name());
 			// get the link
 			if(self::get_db_log_name() === true)
 			{
-				$resutl = \lib\db::insert_id();
+				$resutl = \dash\db::insert_id();
 			}
-			elseif(isset(\lib\db::$link_open[self::get_db_log_name()]))
+			elseif(isset(\dash\db::$link_open[self::get_db_log_name()]))
 			{
-				$resutl = \lib\db::insert_id(\lib\db::$link_open[self::get_db_log_name()]);
+				$resutl = \dash\db::insert_id(\dash\db::$link_open[self::get_db_log_name()]);
 			}
 			return $resutl;
 		}
@@ -77,12 +77,12 @@ class logs
 	 */
 	public static function update($_args, $_id)
 	{
-		$set  = \lib\db\config::make_set($_args);
+		$set  = \dash\db\config::make_set($_args);
 		if($set)
 		{
 			// make update query
 			$query = " UPDATE logs SET $set WHERE logs.id = $_id ";
-			return \lib\db::query($query, self::get_db_log_name());
+			return \dash\db::query($query, self::get_db_log_name());
 		}
 	}
 
@@ -102,7 +102,7 @@ class logs
 		WHERE logs.id = $_id
 		";
 
-		return \lib\db::query($query, self::get_db_log_name());
+		return \dash\db::query($query, self::get_db_log_name());
 	}
 
 
@@ -114,7 +114,7 @@ class logs
 	public static function select($_query, $_type = 'query')
 	{
 		return false;
-		// return \lib\db::$_type($_query, self::get_db_log_name());
+		// return \dash\db::$_type($_query, self::get_db_log_name());
 	}
 
 
@@ -127,7 +127,7 @@ class logs
 	 */
 	public static function set($_caller, $_user_id = null, $_options = [])
 	{
-		$log_item_id = \lib\db\logitems::caller($_caller);
+		$log_item_id = \dash\db\logitems::caller($_caller);
 
 		if(!$log_item_id)
 		{
@@ -149,7 +149,7 @@ class logs
 
 		$_options = array_merge($default_options, $_options);
 
-		$_options['meta'] = \lib\safe::safe($_options['meta']);
+		$_options['meta'] = \dash\safe::safe($_options['meta']);
 
 		if(is_array($_options['meta']) || is_object($_options['meta']))
 		{
@@ -209,7 +209,7 @@ class logs
 		// get logitemid by caller in one query
 		if(isset($_args['caller']) && $_args['caller'] && is_string($_args['caller']))
 		{
-			$logitem_id = \lib\db\logitems::get(['caller' => $_args['caller'], 'limit' => 1]);
+			$logitem_id = \dash\db\logitems::get(['caller' => $_args['caller'], 'limit' => 1]);
 			if(isset($logitem_id['id']))
 			{
 				$logitem_id = $logitem_id['id'];
@@ -222,18 +222,18 @@ class logs
 		}
 		unset($_args['caller']);
 
-		$where = \lib\db\config::make_where($_args);
+		$where = \dash\db\config::make_where($_args);
 
 		$query = " SELECT * FROM logs WHERE $where $limit ";
 
-		$result = \lib\db::get($query, null, $only_one_recort, self::get_db_log_name());
+		$result = \dash\db::get($query, null, $only_one_recort, self::get_db_log_name());
 		if(isset($result['meta']) && substr($result['meta'], 0, 1) == '{')
 		{
 			$result['meta'] = json_decode($result['meta'], true);
 		}
 		else
 		{
-			$result = \lib\utility\filter::meta_decode($result);
+			$result = \dash\utility\filter::meta_decode($result);
 		}
 		return $result;
 	}
@@ -314,7 +314,7 @@ class logs
 			$limit         = null;
 			$public_fields = self::$fields;
 
-			$domain = \lib\url::root();
+			$domain = \dash\url::root();
 			$domain = explode('.', $domain);
 			if(count($domain) === 2 && isset($domain[0]))
 			{
@@ -500,9 +500,9 @@ class logs
 			logs
 			LEFT JOIN logitems ON logitems.id = logs.logitem_id
 			$where $search ";
-			$pagenation_query = \lib\db::get($pagenation_query, 'count', true, self::get_db_log_name());
+			$pagenation_query = \dash\db::get($pagenation_query, 'count', true, self::get_db_log_name());
 
-			list($limit_start, $limit) = \lib\db::pagnation((int) $pagenation_query, $limit);
+			list($limit_start, $limit) = \dash\db::pagnation((int) $pagenation_query, $limit);
 			$limit = " LIMIT $limit_start, $limit ";
 		}
 		else
@@ -519,12 +519,12 @@ class logs
 
 		if(!$only_one_value)
 		{
-			$result = \lib\db::get($query, null, false, self::get_db_log_name());
-			$result = \lib\utility\filter::meta_decode($result);
+			$result = \dash\db::get($query, null, false, self::get_db_log_name());
+			$result = \dash\utility\filter::meta_decode($result);
 		}
 		else
 		{
-			$result = \lib\db::get($query, 'logcount', true, self::get_db_log_name());
+			$result = \dash\db::get($query, 'logcount', true, self::get_db_log_name());
 		}
 
 		return $result;
@@ -553,7 +553,7 @@ class logs
 		INNER JOIN logitems ON logitems.id = logs.logitem_id
 		$where
 		ORDER BY logs.datecreated DESC LIMIT 0,1";
-		return \lib\db::get($query, null, true, self::get_db_log_name());
+		return \dash\db::get($query, null, true, self::get_db_log_name());
 	}
 }
 ?>

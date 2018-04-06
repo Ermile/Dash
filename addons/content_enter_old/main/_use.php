@@ -151,15 +151,15 @@ trait _use
 	{
 		if($_seconds && is_int($_seconds))
 		{
-			\lib\code::sleep($_seconds);
+			\dash\code::sleep($_seconds);
 		}
 		elseif(self::$wait)
 		{
-			\lib\code::sleep(self::$wait);
+			\dash\code::sleep(self::$wait);
 		}
 		else
 		{
-			\lib\code::sleep(1);
+			\dash\code::sleep(1);
 		}
 	}
 }

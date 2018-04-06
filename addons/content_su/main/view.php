@@ -19,10 +19,10 @@ class view extends \mvc\view
 
 		$this->data->dir['right']        = $this->global->direction == 'rtl'? 'left':  'right';
 		$this->data->dir['left']         = $this->global->direction == 'rtl'? 'right': 'left';
-		$this->data->page['title']       = T_(ucfirst( str_replace('/', ' ', \lib\url::directory()) ));
+		$this->data->page['title']       = T_(ucfirst( str_replace('/', ' ', \dash\url::directory()) ));
 
-		$this->data->dash['version']     = \lib\engine\version::get();
-		$this->data->dash['lastUpdate']  = \lib\utility\git::getLastUpdate();
+		$this->data->dash['version']     = \dash\engine\version::get();
+		$this->data->dash['lastUpdate']  = \dash\utility\git::getLastUpdate();
 	}
 
 
@@ -77,7 +77,7 @@ class view extends \mvc\view
 
 	public static function su_make_sort_link($_field, $_url)
 	{
-		$get = \lib\request::get();
+		$get = \dash\request::get();
 		if(!is_array($get))
 		{
 			$get = [];
@@ -118,9 +118,9 @@ class view extends \mvc\view
 
 			$temp_link['q']    = $get['q'];
 
-			if(is_array(\lib\request::get()))
+			if(is_array(\dash\request::get()))
 			{
-				foreach (\lib\request::get() as $query_key => $query_value)
+				foreach (\dash\request::get() as $query_key => $query_value)
 				{
 					if(!in_array($query_key, ['q', 'sort', 'order']))
 					{
@@ -164,7 +164,7 @@ class view extends \mvc\view
 				}
 				if(is_numeric($value))
 				{
-					$value = \lib\utility\human::fitNumber($value);
+					$value = \dash\utility\human::fitNumber($value);
 				}
 				$result .= T_($key) . ' <b>'. T_(ucfirst($value)). '</b>';
 				$index++;

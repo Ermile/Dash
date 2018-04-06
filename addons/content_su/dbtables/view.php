@@ -14,30 +14,30 @@ class view extends \addons\content_su\main\view
 		$this->data->page['desc'] .= ' | '. $product_list_link;
 
 
-		$this->data->page['badge']['link'] = \lib\url::this(). '/dbtables';
+		$this->data->page['badge']['link'] = \dash\url::this(). '/dbtables';
 		$this->data->page['badge']['text'] = T_('Select table');
 
-		$search_string            = \lib\request::get('q');
+		$search_string            = \dash\request::get('q');
 		if($search_string)
 		{
 			$this->data->page['title'] .= ' | '. T_('Search for :search', ['search' => $search_string]);
 		}
 
-		$table = \lib\request::get('table');
+		$table = \dash\request::get('table');
 		if($table)
 		{
-			\lib\app\dbtables::$table = $table;
+			\dash\app\dbtables::$table = $table;
 
 			$args =
 			[
-				'sort'  => \lib\request::get('sort'),
-				'order' => \lib\request::get('order'),
+				'sort'  => \dash\request::get('sort'),
+				'order' => \dash\request::get('order'),
 			];
 
-			$this->data->all_field = \lib\app\dbtables::get_field();
+			$this->data->all_field = \dash\app\dbtables::get_field();
 
-			$this->data->sort_link = self::su_make_sort_link(\lib\app\dbtables::sort_field(), \lib\url::here(). '/dbtables');
-			$this->data->dataTable = \lib\app\dbtables::list(\lib\request::get('q'), $args);
+			$this->data->sort_link = self::su_make_sort_link(\dash\app\dbtables::sort_field(), \dash\url::here(). '/dbtables');
+			$this->data->dataTable = \dash\app\dbtables::list(\dash\request::get('q'), $args);
 
 			$check_empty_datatable = $args;
 			unset($check_empty_datatable['sort']);
@@ -48,7 +48,7 @@ class view extends \addons\content_su\main\view
 		}
 		else
 		{
-			$temp = \lib\db::get("Show tables");
+			$temp = \dash\db::get("Show tables");
 			$show_all_tables = [];
 			if(is_array($temp))
 			{

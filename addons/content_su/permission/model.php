@@ -10,9 +10,9 @@ class model extends \addons\content_su\main\model
 		$meta['admin'] = true;
 		$search        = null;
 
-		if(\lib\request::get('search'))
+		if(\dash\request::get('search'))
 		{
-			$search = \lib\request::get('search');
+			$search = \dash\request::get('search');
 		}
 		foreach ($_fields as $key => $value)
 		{
@@ -32,13 +32,13 @@ class model extends \addons\content_su\main\model
 	public function post_add($_args)
 	{
 		$id = isset($_args->match->url[0][1]) ? $_args->match->url[0][1] : null;
-		$id = \lib\coding::decode($id);
+		$id = \dash\coding::decode($id);
 		if(!$id)
 		{
 			return false;
 		}
 
-		$post = \lib\request::post();
+		$post = \dash\request::post();
 		$perm_list = [];
 		foreach ($post as $key => $value)
 		{
@@ -51,8 +51,8 @@ class model extends \addons\content_su\main\model
 		if(!empty($perm_list))
 		{
 			$perm_field = implode(',', $perm_list);
-			\lib\db\users::update(['permission' => $perm_field], $id);
-			\lib\notif::ok(T_("Permission added to this user"));
+			\dash\db\users::update(['permission' => $perm_field], $id);
+			\dash\notif::ok(T_("Permission added to this user"));
 		}
 
 	}

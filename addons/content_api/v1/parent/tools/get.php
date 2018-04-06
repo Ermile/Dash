@@ -25,33 +25,33 @@ trait get
 			'data' => null,
 			'meta' =>
 			[
-				'input' => \lib\utility::request(),
+				'input' => \dash\utility::request(),
 			]
 		];
 
 		if(!$this->user_id)
 		{
-			\lib\db\logs::set('api:parent:user_id:notfound', null, $log_meta);
-			\lib\notif::error(T_("User not found"), 'user', 'permission');
+			\dash\db\logs::set('api:parent:user_id:notfound', null, $log_meta);
+			\dash\notif::error(T_("User not found"), 'user', 'permission');
 			return false;
 		}
 
-		$user_id = \lib\utility::request('id');
-		$user_id = \lib\coding::decode($user_id);
+		$user_id = \dash\utility::request('id');
+		$user_id = \dash\coding::decode($user_id);
 		if(!$user_id)
 		{
-			\lib\db\logs::set('api:parent:user_id:is:incurrect', null, $log_meta);
-			\lib\notif::error(T_("User not found"), 'user', 'permission');
+			\dash\db\logs::set('api:parent:user_id:is:incurrect', null, $log_meta);
+			\dash\notif::error(T_("User not found"), 'user', 'permission');
 			return false;
 		}
 
 
-		$related_id = \lib\utility::request('related_id');
-		$related_id = \lib\coding::decode($related_id);
-		if(!$related_id && \lib\utility::request('related_id'))
+		$related_id = \dash\utility::request('related_id');
+		$related_id = \dash\coding::decode($related_id);
+		if(!$related_id && \dash\utility::request('related_id'))
 		{
-			\lib\db\logs::set('api:parent:related_id:is:incurrect', null, $log_meta);
-			\lib\notif::error(T_("Related id is incurrect"), 'related_id', 'permission');
+			\dash\db\logs::set('api:parent:related_id:is:incurrect', null, $log_meta);
+			\dash\notif::error(T_("Related id is incurrect"), 'related_id', 'permission');
 			return false;
 		}
 
@@ -67,10 +67,10 @@ trait get
 			'answer'          => null,
 		];
 
-		$notify_list = \lib\db\notifications::get($get_notify);
+		$notify_list = \dash\db\notifications::get($get_notify);
 		if($notify_list && is_array($notify_list))
 		{
-			$notify_list = \lib\utility\filter::meta_decode($notify_list);
+			$notify_list = \dash\utility\filter::meta_decode($notify_list);
 			foreach ($notify_list as $key => $value)
 			{
 				$temp                = [];
@@ -98,11 +98,11 @@ trait get
 
 		if($related_id)
 		{
-			$parent_resutl = \lib\db\userparents::load_parent(['user_id' => $user_id, 'status' => 'enable', 'related_id' => $related_id]);
+			$parent_resutl = \dash\db\userparents::load_parent(['user_id' => $user_id, 'status' => 'enable', 'related_id' => $related_id]);
 		}
 		else
 		{
-			$parent_resutl = \lib\db\userparents::load_parent(['user_id' => $user_id, 'status' => 'enable']);
+			$parent_resutl = \dash\db\userparents::load_parent(['user_id' => $user_id, 'status' => 'enable']);
 		}
 		if(is_array($parent_resutl))
 		{

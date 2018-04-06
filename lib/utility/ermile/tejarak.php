@@ -19,19 +19,19 @@ class tejarak
 	 */
 	public function __construct($_mobile, $_token = null, $_version = null, $_header = [])
 	{
-		if(\lib\url::isLocal())
+		if(\dash\url::isLocal())
 		{
 			$this->api_url = "http://tejarak.local/api/%s/%s";
 		}
 
-		if(!\lib\option::config('tejarak', 'status'))
+		if(!\dash\option::config('tejarak', 'status'))
 		{
 			return false;
 		}
 
 		if($_token === null)
 		{
-			$_token = \lib\option::config('tejarak', 'token');
+			$_token = \dash\option::config('tejarak', 'token');
 		}
 
 		if($_version === null)
@@ -74,7 +74,7 @@ class tejarak
 		curl_setopt($handle, CURLOPT_HTTPHEADER, $this->header);
 		curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
 
-		if(\lib\url::isLocal() === false)
+		if(\dash\url::isLocal() === false)
 		{
 			curl_setopt($handle, CURLOPT_SSL_VERIFYPEER, 1);
 		}

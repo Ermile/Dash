@@ -11,7 +11,7 @@ class controller extends \addons\content_enter\main\controller
 		if(self::get_request_method() === 'get')
 		{
 			// get user logout
-			self::set_logout(\lib\user::id());
+			self::set_logout(\dash\user::id());
 		}
 		else
 		{

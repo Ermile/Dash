@@ -7,11 +7,11 @@ class controller extends \addons\content_cp\main\controller
 	public function ready()
 	{
 
-		$id = \lib\request::get('id');
+		$id = \dash\request::get('id');
 
-		if(!$id || !\lib\coding::is($id))
+		if(!$id || !\dash\coding::is($id))
 		{
-			\lib\header::status(404, T_("Invalid id"));
+			\dash\header::status(404, T_("Invalid id"));
 		}
 
 		$this->get()->ALL();

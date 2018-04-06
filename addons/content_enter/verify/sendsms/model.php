@@ -29,7 +29,7 @@ class model extends \addons\content_enter\main\model
 
 		self::set_enter_session('sendsms_code', $code);
 
-		$log_id = \lib\db\logs::set('enter:get:sms:from:user', $user_id, ['data' => $code, 'meta' => ['session' => $_SESSION]]);
+		$log_id = \dash\db\logs::set('enter:get:sms:from:user', $user_id, ['data' => $code, 'meta' => ['session' => $_SESSION]]);
 
 		self::set_enter_session('sendsms_code_log_id', $log_id);
 

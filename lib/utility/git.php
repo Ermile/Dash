@@ -93,7 +93,7 @@ class git
 		$resultBool = null;
 		$output     = null;
 		// if folder of location exist prepare commands
-		if(\lib\file::exists($_location))
+		if(\dash\file::exists($_location))
 		{
 			// change location to address of requested
 			chdir($_location);
@@ -159,10 +159,10 @@ class git
 				unset($res[$k]);
 		}
 		//recount array
-		\lib\code::dump($res);
+		\dash\code::dump($res);
 		array_values($res);
 		echo "<h1>Files found in git log result:</h1>";
-		\lib\code::print($res);
+		\dash\code::print($res);
 		echo "<hr />";
 		//specify the folder where your packages are stored
 		$packagesfolder = core."packages";
@@ -202,7 +202,7 @@ class git
 		exec('rm -rf '.$folder.'/');
 		echo "<h1>package folder removed</h1>";
 		echo "<hr />";
-		\lib\code::die("done");
+		\dash\code::die("done");
 	}
 
 
@@ -232,7 +232,7 @@ class git
 			$zip = new \ZipArchive();
 			if($zip->open($destination, $overwrite ? \ZIPARCHIVE::OVERWRITE : \ZIPARCHIVE::CREATE) !== true)
 			{
-				\lib\code::dump($destination);
+				\dash\code::dump($destination);
 				return false;
 			}
 			//add the files

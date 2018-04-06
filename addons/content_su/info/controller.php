@@ -13,7 +13,7 @@ class controller extends \addons\content_su\main\controller
 
 	public function showInfo()
 	{
-		$name = \lib\url::dir(1);
+		$name = \dash\url::dir(1);
 
 		if(!$name)
 		{
@@ -50,7 +50,7 @@ class controller extends \addons\content_su\main\controller
 				break;
 		}
 
-		\lib\code::exit();
+		\dash\code::exit();
 	}
 }
 ?>

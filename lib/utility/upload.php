@@ -51,22 +51,22 @@ class upload
 		if(self::$upload_from_path)
 		{
 			$path = self::$upload_from_path;
-			if(\lib\file::exists($path))
+			if(\dash\file::exists($path))
 			{
 				$tmp_FILES =
 				[
-					'name'     => \lib\file::getName(self::$real_file_path),
-					'type'     => \lib\file::content_type($path),
+					'name'     => \dash\file::getName(self::$real_file_path),
+					'type'     => \dash\file::content_type($path),
 					'tmp_name' => $path,
 					'error'    => 0,
-					'size'     => \lib\file::getSize($path),
+					'size'     => \dash\file::getSize($path),
 				];
 				self::$FILES[$_name] = $tmp_FILES;
 			}
 		}
 		else
 		{
-			self::$FILES = \lib\request::files();
+			self::$FILES = \dash\request::files();
 		}
 
 		if(isset(self::$FILES[$_name]))
@@ -178,13 +178,13 @@ class upload
 	{
 		if($_folder && !is_dir($_folder))
 		{
-			\lib\file::makeDir($_folder, 0775, true);
+			\dash\file::makeDir($_folder, 0775, true);
 		}
 
 		if($_folder && !is_dir($_folder))
 		{
 			header("HTTP/1.1 412 Precondition Failed");
-			\lib\code::exit();
+			\dash\code::exit();
 		}
 
 		if(move_uploaded_file(self::_FILES(self::$fieldName)['tmp_name'], $_url))
@@ -193,7 +193,7 @@ class upload
 
 			@chmod($real_file_path, 0644);
 
-			\lib\temp::set('upload',['url' => $_url]);
+			\dash\temp::set('upload',['url' => $_url]);
 			return true;
 		}
 		else
@@ -230,20 +230,20 @@ class upload
 				}
 			}
 
-			$file_name   = \lib\file::getName(self::$real_file_path);
+			$file_name   = \dash\file::getName(self::$real_file_path);
 			$master_name = $master_name. '_'. $file_name;
 			$new_name    = $move_to. $master_name;
 
-			$link = \lib\url::site().DIRECTORY_SEPARATOR.$_options['tmp_path']. $master_name;
+			$link = \dash\url::site().DIRECTORY_SEPARATOR.$_options['tmp_path']. $master_name;
 
 			if($move_to && !is_dir($move_to))
 			{
-				\lib\file::makeDir($move_to, 0775, true);
+				\dash\file::makeDir($move_to, 0775, true);
 			}
 
-			if(\lib\file::move(self::$upload_from_path, $new_name, true))
+			if(\dash\file::move(self::$upload_from_path, $new_name, true))
 			{
-				\lib\temp::set('upload',[
+				\dash\temp::set('upload',[
 					'result'    => $file_name,
 					'file_name' => $master_name,
 					'new_name'  => $new_name,
@@ -251,11 +251,11 @@ class upload
 					'link'      => $link,
 					]);
 
-				return \lib\notif::ok(T_("file successful uploaded"));
+				return \dash\notif::ok(T_("file successful uploaded"));
 			}
 			else
 			{
-				return \lib\notif::error(T_('Failed to transfer file while moving to temp'));
+				return \dash\notif::error(T_('Failed to transfer file while moving to temp'));
 			}
 		}
 	}
@@ -350,19 +350,19 @@ class upload
 		// check upload name
 		if(!$_options['upload_name'])
 		{
-			return \lib\notif::error(T_("upload name not found"));
+			return \dash\notif::error(T_("upload name not found"));
 		}
 
 		// check foler prefix
 		if(!$_options['folder_prefix'])
 		{
-			return \lib\notif::error(T_("folder prefix not found"));
+			return \dash\notif::error(T_("folder prefix not found"));
 		}
 
 		// check user id
 		if((!$_options['user_id'] || !is_numeric($_options['user_id'])) && $_options['save_as_tmp'] === false)
 		{
-			return \lib\notif::error(T_("user id not set"));
+			return \dash\notif::error(T_("user id not set"));
 		}
 
 		// get the protocol
@@ -392,7 +392,7 @@ class upload
 				case 'https':
 				case 'ftp':
 				case 'sftp':
-					$file_path = \lib\file::open($_options['file_path'], ['MAX_SIZE' => $_options['user_size_remaining']]);
+					$file_path = \dash\file::open($_options['file_path'], ['MAX_SIZE' => $_options['user_size_remaining']]);
 					break;
 
 				default:
@@ -415,7 +415,7 @@ class upload
 
 		if(self::$fileSize > $_options['user_size_remaining'])
 		{
-			return \lib\notif::error(T_("The size of file is larger than the upload space you have"), 'file', 'size');
+			return \dash\notif::error(T_("The size of file is larger than the upload space you have"), 'file', 'size');
 		}
 
 		// save file as tmp in tmp_path
@@ -435,7 +435,7 @@ class upload
 
 		if($folder_loc && !is_dir($folder_loc))
 		{
-			\lib\file::makeDir($folder_loc, 0775, true);
+			\dash\file::makeDir($folder_loc, 0775, true);
 		}
 
 		$file_id       = $qry_count % $_options['folder_size'] + 1;
@@ -459,7 +459,7 @@ class upload
 			// in duplicate mode debug
 			if($_options['debug'])
 			{
-				\lib\notif::ok(T_("File successful uploaded"));
+				\dash\notif::ok(T_("File successful uploaded"));
 			}
 			return;
 		}
@@ -467,22 +467,22 @@ class upload
 		// 4. transfer file to project folder with new name
 		if($upload_from_path)
 		{
-			if(!\lib\file::rename(self::$upload_from_path, $_options['move_to']. $url_full, true))
+			if(!\dash\file::rename(self::$upload_from_path, $_options['move_to']. $url_full, true))
 			{
-				return \lib\notif::error(T_('Fail on tranfering file, upload from path'));
+				return \dash\notif::error(T_('Fail on tranfering file, upload from path'));
 			}
 			$real_url_full = $_options['move_to']. $url_full;
 
 			if($_options['copy'] === false || $_options['move'] === true)
 			{
-				\lib\file::delete(self::$upload_from_path);
+				\dash\file::delete(self::$upload_from_path);
 			}
 		}
 		else
 		{
 			if(!self::transfer($url_full, $folder_loc))
 			{
-				return \lib\notif::error(T_('Fail on tranfering file'));
+				return \dash\notif::error(T_('Fail on tranfering file'));
 			}
 			$real_url_full = $url_full;
 		}
@@ -504,12 +504,12 @@ class upload
 					$url_thumb  = $url_file.'-thumb.'.self::$fileExt;
 					$url_normal = $url_file.'-normal.'.self::$fileExt;
 
-					\lib\utility\image::load($real_url_full);
-					\lib\utility\image::thumb(600, 400);
-					\lib\utility\image::save($url_normal);
+					\dash\utility\image::load($real_url_full);
+					\dash\utility\image::thumb(600, 400);
+					\dash\utility\image::save($url_normal);
 
-					\lib\utility\image::thumb(150, 150);
-					\lib\utility\image::save($url_thumb);
+					\dash\utility\image::thumb(150, 150);
+					\dash\utility\image::save($url_thumb);
 				}
 				break;
 		}
@@ -552,9 +552,9 @@ class upload
 			'publishdate' => date('Y-m-d H:i:s')
 		];
 
-		$new_id = \lib\db\posts::insert($insert_attachment);
+		$new_id = \dash\db\posts::insert($insert_attachment);
 
-		$url = \lib\temp::get('upload');
+		$url = \dash\temp::get('upload');
 
 		if(isset($url['url']))
 		{
@@ -564,10 +564,10 @@ class upload
 		{
 			$url = null;
 		}
-		\lib\temp::set('upload', ["id" => \lib\db::insert_id(), 'url' => $url, 'size' => self::$fileSize]);
+		\dash\temp::set('upload', ["id" => \dash\db::insert_id(), 'url' => $url, 'size' => self::$fileSize]);
 		if($_options['debug'])
 		{
-			\lib\notif::ok("File successful uploaded");
+			\dash\notif::ok("File successful uploaded");
 		}
 		return;
 	}

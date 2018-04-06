@@ -36,7 +36,7 @@ class header
 		    	$my_header = $out;
 			}
 
-			self::$HEADER = \lib\safe::safe($my_header);
+			self::$HEADER = \dash\safe::safe($my_header);
 		}
 
 		if($_name)
@@ -156,7 +156,7 @@ class header
 		// set header
 		@header($status_header, true, $_code);
 
-		if(\lib\request::json_accept())
+		if(\dash\request::json_accept())
 		{
 			@header('Content-Type: application/json');
 
@@ -164,8 +164,8 @@ class header
 			{
 				$_title = self::desc($_code);
 			}
-			\lib\notif::error($_title, $_code);
-			echo \lib\notif::json();
+			\dash\notif::error($_title, $_code);
+			echo \dash\notif::json();
 		}
 		else
 		{
@@ -173,7 +173,7 @@ class header
 			require_once(lib."engine/error_page.php");
 		}
 
-		\lib\code::exit();
+		\dash\code::exit();
 	}
 }
 ?>

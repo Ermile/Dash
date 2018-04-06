@@ -28,28 +28,28 @@ trait asanpardakht
         ];
 
 
-        if(!\lib\option::config('asanpardakht', 'status'))
+        if(!\dash\option::config('asanpardakht', 'status'))
         {
-            \lib\db\logs::set('pay:asanpardakht:status:false', $_user_id, $log_meta);
-            \lib\notif::error(T_("The asanpardakht payment on this service is locked"));
+            \dash\db\logs::set('pay:asanpardakht:status:false', $_user_id, $log_meta);
+            \dash\notif::error(T_("The asanpardakht payment on this service is locked"));
             return false;
         }
 
-        if(!\lib\option::config('asanpardakht', 'MerchantID'))
+        if(!\dash\option::config('asanpardakht', 'MerchantID'))
         {
-            \lib\db\logs::set('pay:asanpardakht:MerchantID:false', $_user_id, $log_meta);
-            \lib\notif::error(T_("The asanpardakht payment on this service is locked"));
+            \dash\db\logs::set('pay:asanpardakht:MerchantID:false', $_user_id, $log_meta);
+            \dash\notif::error(T_("The asanpardakht payment on this service is locked"));
             return false;
         }
 
-        $username = \lib\option::config('asanpardakht', 'Username');
-        $password = \lib\option::config('asanpardakht', 'Password');
+        $username = \dash\option::config('asanpardakht', 'Username');
+        $password = \dash\option::config('asanpardakht', 'Password');
 
         $asanpardakht = [];
 
-        if(\lib\option::config('asanpardakht', 'CallBackUrl'))
+        if(\dash\option::config('asanpardakht', 'CallBackUrl'))
         {
-            $asanpardakht['CallBackUrl'] = \lib\option::config('asanpardakht', 'CallBackUrl');
+            $asanpardakht['CallBackUrl'] = \dash\option::config('asanpardakht', 'CallBackUrl');
         }
         else
         {
@@ -80,11 +80,11 @@ trait asanpardakht
         }
 
         //START TRANSACTION BY CONDITION REQUEST
-        $transaction_id = \lib\utility\payment\transactions::start($transaction_start);
+        $transaction_id = \dash\utility\payment\transactions::start($transaction_start);
 
         $log_meta['data'] = self::$log_data = $transaction_id;
 
-        if(!\lib\engine\process::status() || !$transaction_id)
+        if(!\dash\engine\process::status() || !$transaction_id)
         {
             return false;
         }
@@ -110,12 +110,12 @@ trait asanpardakht
             $_SESSION['turn_back'][$transaction_id] = $_options['turn_back'];
         }
 
-        \lib\utility\payment\payment\asanpardakht::$user_id = $_user_id;
-        \lib\utility\payment\payment\asanpardakht::$log_data = self::$log_data;
+        \dash\utility\payment\payment\asanpardakht::$user_id = $_user_id;
+        \dash\utility\payment\payment\asanpardakht::$log_data = self::$log_data;
 
-        $RefId = \lib\utility\payment\payment\asanpardakht::pay($asanpardakht_args);
+        $RefId = \dash\utility\payment\payment\asanpardakht::pay($asanpardakht_args);
 
-        $payment_response = \lib\utility\payment\payment\asanpardakht::$payment_response;
+        $payment_response = \dash\utility\payment\payment\asanpardakht::$payment_response;
 
         if($RefId)
         {
@@ -126,16 +126,16 @@ trait asanpardakht
 
             $payment_response = json_encode((array) $payment_response, JSON_UNESCAPED_UNICODE);
 
-            \lib\db\transactions::update(['condition' => 'redirect', 'payment_response' => $payment_response], $transaction_id);
+            \dash\db\transactions::update(['condition' => 'redirect', 'payment_response' => $payment_response], $transaction_id);
 
             // redirect to enter/redirect
-            \lib\session::set('redirect_page_url', 'https://asan.shaparak.ir/');
-            \lib\session::set('redirect_page_method', 'post');
-            \lib\session::set('redirect_page_args', ['RefId' => $RefId]);
-            \lib\session::set('redirect_page_title', T_("Redirect to asanpardakht payment"));
-            \lib\session::set('redirect_page_button', T_("Redirect"));
-            \lib\notif::direct();
-            \lib\redirect::to(self::get_callbck_url('redirect_page'));
+            \dash\session::set('redirect_page_url', 'https://asan.shaparak.ir/');
+            \dash\session::set('redirect_page_method', 'post');
+            \dash\session::set('redirect_page_args', ['RefId' => $RefId]);
+            \dash\session::set('redirect_page_title', T_("Redirect to asanpardakht payment"));
+            \dash\session::set('redirect_page_button', T_("Redirect"));
+            \dash\notif::direct();
+            \dash\redirect::to(self::get_callbck_url('redirect_page'));
             return true;
 
         }

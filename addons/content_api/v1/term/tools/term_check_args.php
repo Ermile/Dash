@@ -9,70 +9,70 @@ trait term_check_args
 		$log_meta = $_log_meta;
 
 		// term detail
-		$language = \lib\utility::request('language');
+		$language = \dash\utility::request('language');
 		$language = trim($language);
-		if($language && !\lib\language::check($language))
+		if($language && !\dash\language::check($language))
 		{
-			if($_args['save_log']) \lib\db\logs::set('addons:api:term:language:invalid', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\notif::error(T_("Invalid parameter language"), 'language', 'arguments');
+			if($_args['save_log']) \dash\db\logs::set('addons:api:term:language:invalid', $this->user_id, $log_meta);
+			if($_args['debug']) \dash\notif::error(T_("Invalid parameter language"), 'language', 'arguments');
 			return false;
 		}
 
-		// $title = \lib\utility::request('title');
+		// $title = \dash\utility::request('title');
 		// $title = trim($title);
 		// if($title && mb_strlen($title) > 50)
 		// {
-		// 	if($_args['save_log']) \lib\db\logs::set('addons:api:term:title:max:lenth', $this->user_id, $log_meta);
-		// 	if($_args['debug']) \lib\notif::error(T_("Invalid parameter title"), 'title', 'arguments');
+		// 	if($_args['save_log']) \dash\db\logs::set('addons:api:term:title:max:lenth', $this->user_id, $log_meta);
+		// 	if($_args['debug']) \dash\notif::error(T_("Invalid parameter title"), 'title', 'arguments');
 		// 	return false;
 		// }
 
-		// $slug = \lib\utility::request('slug');
+		// $slug = \dash\utility::request('slug');
 		// $slug = trim($slug);
 		// if($slug && mb_strlen($slug) > 50)
 		// {
-		// 	if($_args['save_log']) \lib\db\logs::set('addons:api:term:slug:max:lenth', $this->user_id, $log_meta);
-		// 	if($_args['debug']) \lib\notif::error(T_("Invalid parameter slug"), 'slug', 'arguments');
+		// 	if($_args['save_log']) \dash\db\logs::set('addons:api:term:slug:max:lenth', $this->user_id, $log_meta);
+		// 	if($_args['debug']) \dash\notif::error(T_("Invalid parameter slug"), 'slug', 'arguments');
 		// 	return false;
 		// }
 
 		// if(!$slug && $title)
 		// {
-		// 	$slug = \lib\utility\filter::slug($title);
+		// 	$slug = \dash\utility\filter::slug($title);
 		// }
 
 		// if(!$slug)
 		// {
-		// 	if($_args['save_log']) \lib\db\logs::set('addons:api:term:slug:can:not:null', $this->user_id, $log_meta);
-		// 	if($_args['debug']) \lib\notif::error(T_("Title or slug is required"), 'slug', 'arguments');
+		// 	if($_args['save_log']) \dash\db\logs::set('addons:api:term:slug:can:not:null', $this->user_id, $log_meta);
+		// 	if($_args['debug']) \dash\notif::error(T_("Title or slug is required"), 'slug', 'arguments');
 		// 	return false;
 		// }
 
-		// $url = \lib\utility::request('url');
+		// $url = \dash\utility::request('url');
 		// $url = trim($url);
 		// if($url && mb_strlen($url) > 50)
 		// {
-		// 	if($_args['save_log']) \lib\db\logs::set('addons:api:term:url:max:lenth', $this->user_id, $log_meta);
-		// 	if($_args['debug']) \lib\notif::error(T_("Invalid parameter url"), 'url', 'arguments');
+		// 	if($_args['save_log']) \dash\db\logs::set('addons:api:term:url:max:lenth', $this->user_id, $log_meta);
+		// 	if($_args['debug']) \dash\notif::error(T_("Invalid parameter url"), 'url', 'arguments');
 		// 	return false;
 		// }
 
-		// $desc = \lib\utility::request('desc');
+		// $desc = \dash\utility::request('desc');
 		// $desc = trim($desc);
 		// if($desc && mb_strlen($desc) > 50)
 		// {
-		// 	if($_args['save_log']) \lib\db\logs::set('addons:api:term:desc:max:lenth', $this->user_id, $log_meta);
-		// 	if($_args['debug']) \lib\notif::error(T_("Invalid parameter desc"), 'desc', 'arguments');
+		// 	if($_args['save_log']) \dash\db\logs::set('addons:api:term:desc:max:lenth', $this->user_id, $log_meta);
+		// 	if($_args['debug']) \dash\notif::error(T_("Invalid parameter desc"), 'desc', 'arguments');
 		// 	return false;
 		// }
 
 
-		$related = \lib\utility::request('related');
+		$related = \dash\utility::request('related');
 		$related = trim($related);
 		if(!$related)
 		{
-			if($_args['save_log']) \lib\db\logs::set('addons:api:term:related:not:set', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\notif::error(T_("Related parameter not set"), 'related', 'arguments');
+			if($_args['save_log']) \dash\db\logs::set('addons:api:term:related:not:set', $this->user_id, $log_meta);
+			if($_args['debug']) \dash\notif::error(T_("Related parameter not set"), 'related', 'arguments');
 			return false;
 		}
 
@@ -85,30 +85,30 @@ trait term_check_args
 
 		if(!in_array($related, $default_related))
 		{
-			if($_args['save_log']) \lib\db\logs::set('addons:api:term:related:invalid', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\notif::error(T_("Invalid related parameter"), 'related', 'arguments');
+			if($_args['save_log']) \dash\db\logs::set('addons:api:term:related:invalid', $this->user_id, $log_meta);
+			if($_args['debug']) \dash\notif::error(T_("Invalid related parameter"), 'related', 'arguments');
 			return false;
 		}
 
-		$related_id = \lib\utility::request('related_id');
+		$related_id = \dash\utility::request('related_id');
 		if(!$related_id)
 		{
-			if($_args['save_log']) \lib\db\logs::set('addons:api:term:related_id:invalid', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\notif::error(T_("Invalid related_id parameter"), 'related_id', 'arguments');
+			if($_args['save_log']) \dash\db\logs::set('addons:api:term:related_id:invalid', $this->user_id, $log_meta);
+			if($_args['debug']) \dash\notif::error(T_("Invalid related_id parameter"), 'related_id', 'arguments');
 			return false;
 		}
 
 		if(!is_array($related_id))
 		{
-			if($_args['save_log']) \lib\db\logs::set('addons:api:term:related_id:invalid:array', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\notif::error(T_("Related id must be array"), 'related_id', 'arguments');
+			if($_args['save_log']) \dash\db\logs::set('addons:api:term:related_id:invalid:array', $this->user_id, $log_meta);
+			if($_args['debug']) \dash\notif::error(T_("Related id must be array"), 'related_id', 'arguments');
 			return false;
 		}
 
 		$related_ids = [];
 		foreach ($related_id as $key => $value)
 		{
-			$temp = \lib\coding::decode($value);
+			$temp = \dash\coding::decode($value);
 			if($temp)
 			{
 				array_push($related_ids, $temp);
@@ -117,39 +117,39 @@ trait term_check_args
 
 		if(empty($related_id))
 		{
-			if($_args['save_log']) \lib\db\logs::set('addons:api:term:related_id:invalid:array:empty', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\notif::error(T_("No valid related_id found"), 'related_id', 'arguments');
+			if($_args['save_log']) \dash\db\logs::set('addons:api:term:related_id:invalid:array:empty', $this->user_id, $log_meta);
+			if($_args['debug']) \dash\notif::error(T_("No valid related_id found"), 'related_id', 'arguments');
 			return false;
 		}
 
-		$order = \lib\utility::request('order');
+		$order = \dash\utility::request('order');
 		$order = trim($order);
 		if($order && !is_numeric($order))
 		{
-			if($_args['save_log']) \lib\db\logs::set('addons:api:term:order:invalid', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\notif::error(T_("Invalid order parameter"), 'order', 'arguments');
+			if($_args['save_log']) \dash\db\logs::set('addons:api:term:order:invalid', $this->user_id, $log_meta);
+			if($_args['debug']) \dash\notif::error(T_("Invalid order parameter"), 'order', 'arguments');
 			return false;
 		}
 
 		if($order && intval($order) > 9999)
 		{
-			if($_args['save_log']) \lib\db\logs::set('addons:api:term:order:invalid:max', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\notif::error(T_("You must set the order less than 9999"), 'order', 'arguments');
+			if($_args['save_log']) \dash\db\logs::set('addons:api:term:order:invalid:max', $this->user_id, $log_meta);
+			if($_args['debug']) \dash\notif::error(T_("You must set the order less than 9999"), 'order', 'arguments');
 			return false;
 		}
 
 		$default_status = ['enable','disable','expired','awaiting','filtered','blocked','spam','violence','pornography','other','deleted'];
 
-		$status = \lib\utility::request('status');
+		$status = \dash\utility::request('status');
 		$status = trim($status);
 		if($status && !in_array($status, $default_status))
 		{
-			if($_args['save_log']) \lib\db\logs::set('addons:api:term:status:invalid', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\notif::error(T_("Invalid parameter status"), 'status', 'arguments');
+			if($_args['save_log']) \dash\db\logs::set('addons:api:term:status:invalid', $this->user_id, $log_meta);
+			if($_args['debug']) \dash\notif::error(T_("Invalid parameter status"), 'status', 'arguments');
 			return false;
 		}
 
-		$type = \lib\utility::request('type');
+		$type = \dash\utility::request('type');
 		$type = trim($type);
 
 		$check_type =
@@ -187,25 +187,25 @@ trait term_check_args
 
 		if($type && !in_array($type, $check_type))
 		{
-			if($_args['save_log']) \lib\db\logs::set('addons:api:term:type:invalid', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\notif::error(T_("Invalid parameter type"), 'type', 'arguments');
+			if($_args['save_log']) \dash\db\logs::set('addons:api:term:type:invalid', $this->user_id, $log_meta);
+			if($_args['debug']) \dash\notif::error(T_("Invalid parameter type"), 'type', 'arguments');
 			return false;
 		}
 
 		// term usage detail
-		$cat = \lib\utility::request('cat');
+		$cat = \dash\utility::request('cat');
 		if($cat && !is_array($cat))
 		{
-			if($_args['save_log']) \lib\db\logs::set('addons:api:term:cat:not:array', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\notif::error(T_("Cats must be array"), 'cat', 'arguments');
+			if($_args['save_log']) \dash\db\logs::set('addons:api:term:cat:not:array', $this->user_id, $log_meta);
+			if($_args['debug']) \dash\notif::error(T_("Cats must be array"), 'cat', 'arguments');
 			return false;
 		}
 
-		$tag = \lib\utility::request('tag');
+		$tag = \dash\utility::request('tag');
 		if($tag && !is_array($tag))
 		{
-			if($_args['save_log']) \lib\db\logs::set('addons:api:term:tag:not:array', $this->user_id, $log_meta);
-			if($_args['debug']) \lib\notif::error(T_("Cats must be array"), 'tag', 'arguments');
+			if($_args['save_log']) \dash\db\logs::set('addons:api:term:tag:not:array', $this->user_id, $log_meta);
+			if($_args['debug']) \dash\notif::error(T_("Cats must be array"), 'tag', 'arguments');
 			return false;
 		}
 
@@ -224,7 +224,7 @@ trait term_check_args
 				break;
 		}
 
-		$duplicate = \lib\utility::request('duplicate') ? true : false;
+		$duplicate = \dash\utility::request('duplicate') ? true : false;
 
 		if($cat && is_array($cat))
 		{
@@ -239,10 +239,10 @@ trait term_check_args
 				[
 					'type'  => $term_type,
 					'title' => $value,
-					'slug'  => \lib\utility\filter::slug($value),
+					'slug'  => \dash\utility\filter::slug($value),
 				];
 
-				$check_exist_term = \lib\db\terms::get(array_merge($insert_term, ['limit' => 1]));
+				$check_exist_term = \dash\db\terms::get(array_merge($insert_term, ['limit' => 1]));
 				if(isset($check_exist_term['id']))
 				{
 					$term_id = $check_exist_term['id'];
@@ -250,7 +250,7 @@ trait term_check_args
 				else
 				{
 					$insert_term['user_id'] = $this->user_id;
-					$term_id = \lib\db\terms::insert($insert_term);
+					$term_id = \dash\db\terms::insert($insert_term);
 				}
 
 
@@ -266,12 +266,12 @@ trait term_check_args
 
 					if(!$duplicate)
 					{
-						\lib\db\termusages::hard_delete($insert_termusage);
+						\dash\db\termusages::hard_delete($insert_termusage);
 					}
 
 					$insert_termusage['term_id'] = $term_id;
 
-					\lib\db\termusages::insert($insert_termusage);
+					\dash\db\termusages::insert($insert_termusage);
 				}
 			}
 		}
@@ -288,14 +288,14 @@ trait term_check_args
 	 */
 	public function term_make_where($_args, &$where, $_log_meta)
 	{
-		$type = \lib\utility::request('type');
+		$type = \dash\utility::request('type');
 		$type = trim($type);
 		if($type && is_string($type) || is_numeric($type))
 		{
 			$where['type'] = $type;
 		}
 
-		if(!$type && \lib\utility::isset_request('type'))
+		if(!$type && \dash\utility::isset_request('type'))
 		{
 			$where['type'] = null;
 		}

@@ -8,16 +8,16 @@ class model extends \addons\content_cp\posts\main\model
 
 		$posts = self::getPost();
 
-		if(!$posts || !\lib\engine\process::status())
+		if(!$posts || !\dash\engine\process::status())
 		{
 			return false;
 		}
 
-		$post_detail = \lib\app\posts::edit($posts);
+		$post_detail = \dash\app\posts::edit($posts);
 
-		if(\lib\engine\process::status())
+		if(\dash\engine\process::status())
 		{
-			\lib\redirect::pwd();
+			\dash\redirect::pwd();
 		}
 	}
 }

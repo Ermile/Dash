@@ -25,7 +25,7 @@ class RSS
 		$this->rssFeed .= '    <title>'.$_title.'</title>'."\n";
 		$this->rssFeed .= '    <link>'.$_protocol.$_url.'</link>'."\n";
 		$this->rssFeed .= '    <description>'.$_desc.'</description>'."\n";
-		$this->rssFeed .= '    <language>'.str_replace('_', '-', \lib\language::default()).'</language>'."\n";
+		$this->rssFeed .= '    <language>'.str_replace('_', '-', \dash\language::default()).'</language>'."\n";
 		$this->rssFeed .= '    <copyright>Copyright (C) '.date("Y").' '.$_url.'</copyright>'."\n";
 		$this->rssFeed .= '    <generator>'.'ERMILE!'.'</generator>'."\n";
 
@@ -34,7 +34,7 @@ class RSS
 	public function addItem($_link, $_title, $_desc, $_date)
 	{
 		// strip_tags(
-		$_desc = \lib\utility\excerpt::extractRelevant($_desc, $_title, 500);
+		$_desc = \dash\utility\excerpt::extractRelevant($_desc, $_title, 500);
 		$this->rssFeed .= "\n";
 		$this->rssFeed .= '    <item>'."\n";
 		$this->rssFeed .= '      <title>' . $_title . '</title>'."\n";

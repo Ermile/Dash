@@ -45,7 +45,7 @@ class codes
 			'limit' => 1,
 		];
 
-		$check_exist_code = \lib\db\terms::get($check_exist_code);
+		$check_exist_code = \dash\db\terms::get($check_exist_code);
 
 		if(isset($check_exist_code['id']))
 		{
@@ -62,7 +62,7 @@ class codes
 				'user_id' => $_args['creator'],
 				'status'  => 'enable',
 			];
-			$term_id = \lib\db\terms::insert($insert_term);
+			$term_id = \dash\db\terms::insert($insert_term);
 		}
 
 		if(!$term_id)
@@ -80,7 +80,7 @@ class codes
 			'limit'      => 1,
 		];
 
-		$check_exist_usage = \lib\db\termusages::get($check_exist_usage);
+		$check_exist_usage = \dash\db\termusages::get($check_exist_usage);
 
 		if(!$check_exist_usage)
 		{
@@ -92,7 +92,7 @@ class codes
 				'type'       => $_args['type'],
 				'status'     => 'enable',
 			];
-			\lib\db\termusages::insert($insert_termusage);
+			\dash\db\termusages::insert($insert_termusage);
 		}
 		elseif(isset($check_exist_usage['term_id']) && isset($check_exist_usage['status']))
 		{
@@ -109,7 +109,7 @@ class codes
 					'status'     => 'enable',
 				];
 
-				\lib\db\termusages::delete($where);
+				\dash\db\termusages::delete($where);
 
 				$insert_termusage =
 				[
@@ -119,7 +119,7 @@ class codes
 					'type'       => $_args['type'],
 					'status'     => 'enable',
 				];
-				\lib\db\termusages::insert($insert_termusage);
+				\dash\db\termusages::insert($insert_termusage);
 			}
 		}
 		else
@@ -203,7 +203,7 @@ class codes
 				$status_query
 		";
 
-		return \lib\db::get($query);
+		return \dash\db::get($query);
 	}
 
 
@@ -242,7 +242,7 @@ class codes
 			'status'     => 'enable',
 		];
 
-		\lib\db\termusages::delete($where);
+		\dash\db\termusages::delete($where);
 	}
 
 

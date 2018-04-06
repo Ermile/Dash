@@ -13,7 +13,7 @@ trait edit
 	 */
 	public static function edit($_args, $_option = [])
 	{
-		\lib\app::variable($_args);
+		\dash\app::variable($_args);
 
 		$default_option =
 		[
@@ -33,25 +33,25 @@ trait edit
 			'data' => null,
 			'meta' =>
 			[
-				'input' => \lib\app::request(),
+				'input' => \dash\app::request(),
 			]
 		];
 
 		// check args
 		$args = self::check($_option);
 
-		if($args === false || !\lib\engine\process::status())
+		if($args === false || !\dash\engine\process::status())
 		{
 			return false;
 		}
 
-		$id = \lib\app::request('id');
-		$id = \lib\coding::decode($id);
+		$id = \dash\app::request('id');
+		$id = \dash\coding::decode($id);
 
 		if(!$id)
 		{
-			\lib\app::log('api:staff:edit:permission:denide', \lib\user::id(), $log_meta);
-			\lib\notif::error(T_("Can not access to edit staff"), 'staff');
+			\dash\app::log('api:staff:edit:permission:denide', \dash\user::id(), $log_meta);
+			\dash\notif::error(T_("Can not access to edit staff"), 'staff');
 			return false;
 		}
 
@@ -59,9 +59,9 @@ trait edit
 
 		if(intval($user_id) !== intval($id))
 		{
-			\lib\temp::set('app_user_id_changed', true);
-			\lib\temp::set('app_new_user_id_changed', $user_id);
-			\lib\temp::set('app_old_user_id_changed', $id);
+			\dash\temp::set('app_user_id_changed', true);
+			\dash\temp::set('app_new_user_id_changed', $user_id);
+			\dash\temp::set('app_old_user_id_changed', $id);
 
 			$update_contact_user_id            = [];
 			$update_contact_user_id['user_id'] = $id;
@@ -71,16 +71,16 @@ trait edit
 				$update_contact_user_id[$_option['other_field']] = $_option['other_field_id'];
 			}
 
-			\lib\db\contacts::update_where(['user_id' => $user_id], $update_contact_user_id);
+			\dash\db\contacts::update_where(['user_id' => $user_id], $update_contact_user_id);
 		}
 
 		$_option['user_id']        = $user_id;
 
-		\lib\app\contact::merge($_args, $_option);
+		\dash\app\contact::merge($_args, $_option);
 
-		if(\lib\engine\process::status())
+		if(\dash\engine\process::status())
 		{
-			\lib\notif::ok(T_("Profile successfully updated"));
+			\dash\notif::ok(T_("Profile successfully updated"));
 		}
 	}
 }

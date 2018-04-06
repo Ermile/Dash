@@ -10,9 +10,9 @@ class model extends \addons\content_su\main\model
 		$meta['admin'] = true;
 
 		$search = null;
-		if(\lib\request::get('search'))
+		if(\dash\request::get('search'))
 		{
-			$search = \lib\request::get('search');
+			$search = \dash\request::get('search');
 		}
 
 		foreach ($_fields as $key => $value)
@@ -23,7 +23,7 @@ class model extends \addons\content_su\main\model
 			}
 		}
 
-		$result = \lib\db\notifications::search($search, $meta);
+		$result = \dash\db\notifications::search($search, $meta);
 
 		return $result;
 	}

@@ -7,75 +7,75 @@ class view
 	public static function variable()
 	{
 		// default display value
-		\lib\data::display_mvc("includes/html/display-mvc.html");
-		\lib\data::display_dash("includes/html/display-dash.html");
-		\lib\data::display_enter("includes/html/display-enter.html");
+		\dash\data::display_mvc("includes/html/display-mvc.html");
+		\dash\data::display_dash("includes/html/display-dash.html");
+		\dash\data::display_enter("includes/html/display-enter.html");
 		// add special pages to display array to use without name
-		\lib\data::display_main("content/main/layout.html");
-		\lib\data::display_account("content_account/home/layout.html");
-		\lib\data::display_cpMain("content_cp/main/layout.html");
-		\lib\data::display_suMain("content_su/main/layout.html");
+		\dash\data::display_main("content/main/layout.html");
+		\dash\data::display_account("content_account/home/layout.html");
+		\dash\data::display_cpMain("content_cp/main/layout.html");
+		\dash\data::display_suMain("content_su/main/layout.html");
 
-		\lib\data::display_pagination("includes/html/inc_pagination.html");
+		\dash\data::display_pagination("includes/html/inc_pagination.html");
 
 		// return all url detail
-		\lib\data::url(\lib\url::all());
+		\dash\data::url(\dash\url::all());
 
 		// return all parameters and clean it
-		\lib\data::requestGET(\lib\request::get());
+		\dash\data::requestGET(\dash\request::get());
 
 		// ----- language variable
-		\lib\data::lang_list(\lib\language::list(true));
-		\lib\data::lang_current(\lib\language::current());
-		\lib\data::lang_default(\lib\language::default());
+		\dash\data::lang_list(\dash\language::list(true));
+		\dash\data::lang_current(\dash\language::current());
+		\dash\data::lang_default(\dash\language::default());
 
 		// save all options to use in display
-		\lib\data::options(\lib\option::config());
+		\dash\data::options(\dash\option::config());
 
-		\lib\data::page_title(null);
-		\lib\data::page_desc(null);
-		\lib\data::page_special(null);
+		\dash\data::page_title(null);
+		\dash\data::page_desc(null);
+		\dash\data::page_special(null);
 
-		\lib\data::bodyclass(null);
+		\dash\data::bodyclass(null);
 
-		$user_detail = \lib\user::detail();
-		\lib\data::user($user_detail);
-		\lib\data::login($user_detail);
+		$user_detail = \dash\user::detail();
+		\dash\data::user($user_detail);
+		\dash\data::login($user_detail);
 
 		// set detail of browser
-		\lib\data::browser(\lib\utility\browserDetection::browser_detection('full_assoc'));
-		\lib\data::visitor('not ready!');
+		\dash\data::browser(\dash\utility\browserDetection::browser_detection('full_assoc'));
+		\dash\data::visitor('not ready!');
 
 		// define default value for global
-		\lib\data::global_title(null);
-		\lib\data::global_login(\lib\user::login());
-		\lib\data::global_lang(\lib\language::current());
-		\lib\data::global_direction(\lib\language::current('direction'));
-		\lib\data::global_id(implode('_', \lib\url::dir()));
+		\dash\data::global_title(null);
+		\dash\data::global_login(\dash\user::login());
+		\dash\data::global_lang(\dash\language::current());
+		\dash\data::global_direction(\dash\language::current('direction'));
+		\dash\data::global_id(implode('_', \dash\url::dir()));
 
-		\lib\data::dev(\lib\option::config('dev'));
+		\dash\data::dev(\dash\option::config('dev'));
 
-		\lib\data::site_title(T_("Ermile Dash"));
-		\lib\data::site_desc(T_("Another Project with Ermile dash"));
-		\lib\data::site_slogan(T_("Ermile is intelligent ;)"));
+		\dash\data::site_title(T_("Ermile Dash"));
+		\dash\data::site_desc(T_("Another Project with Ermile dash"));
+		\dash\data::site_slogan(T_("Ermile is intelligent ;)"));
 
 		// if allow to use social then get social network account list
-		if(\lib\option::social('status'))
+		if(\dash\option::social('status'))
 		{
-			\lib\data::social(\lib\option::social('list'));
+			\dash\data::social(\dash\option::social('list'));
 			// create data of share url
-			\lib\data::share_title(\lib\data::get('site', 'title'));
-			\lib\data::share_desc(\lib\data::get('site', 'desc'));
-			\lib\data::share_image(\lib\url::site(). '/static/images/logo.png');
-			\lib\data::share_twitterCard('summary');
+			\dash\data::share_title(\dash\data::get('site', 'title'));
+			\dash\data::share_desc(\dash\data::get('site', 'desc'));
+			\dash\data::share_image(\dash\url::site(). '/static/images/logo.png');
+			\dash\data::share_twitterCard('summary');
 		}
 
 		// define default value for include
-		\lib\data::include_siftal(true);
-		\lib\data::include_css(true);
-		\lib\data::include_js(true);
+		\dash\data::include_siftal(true);
+		\dash\data::include_css(true);
+		\dash\data::include_js(true);
 
-		\lib\data::pagination(\lib\utility\pagination::page_number());
+		\dash\data::pagination(\dash\utility\pagination::page_number());
 	}
 
 
@@ -84,22 +84,22 @@ class view
 	 */
 	public static function set_title()
 	{
-		if($page_title = \lib\data::page_title())
+		if($page_title = \dash\data::page_title())
 		{
 			// set title of locations if exist in breadcrumb
-			if(\lib\data::get('breadcrumb', $page_title))
+			if(\dash\data::get('breadcrumb', $page_title))
 			{
-				$page_title = \lib\data::get('breadcrumb', $page_title);
+				$page_title = \dash\data::get('breadcrumb', $page_title);
 			}
 			// replace title of page
-			if(!\lib\data::page_special())
+			if(!\dash\data::page_special())
 			{
 				$page_title = ucwords(str_replace('-', ' ', $page_title));
 			}
 			// for child page set the
-			if(\lib\url::child() && \lib\url::subdomain() === 'cp')
+			if(\dash\url::child() && \dash\url::subdomain() === 'cp')
 			{
-				$myModule = \lib\url::module();
+				$myModule = \dash\url::module();
 				if(substr($myModule, -3) === 'ies')
 				{
 					$moduleName = substr($myModule, 0, -3).'y';
@@ -113,7 +113,7 @@ class view
 					$moduleName = $myModule;
 				}
 
-				$childName = \lib\url::child();
+				$childName = \dash\url::child();
 				if($childName)
 				{
 					$page_title = T_($childName).' '.T_($moduleName);
@@ -123,51 +123,51 @@ class view
 			// translate all title at last step
 			$page_title = T_($page_title);
 
-			\lib\data::page_title($page_title);
+			\dash\data::page_title($page_title);
 
-			if(\lib\data::page_special())
+			if(\dash\data::page_special())
 			{
-				\lib\data::global_title($page_title);
+				\dash\data::global_title($page_title);
 			}
 			else
 			{
-				\lib\data::global_title($page_title.' | '.T_(\lib\data::site_title()));
+				\dash\data::global_title($page_title.' | '.T_(\dash\data::site_title()));
 			}
 		}
 		else
 		{
-			\lib\data::global_title(T_(\lib\data::site_title()));
+			\dash\data::global_title(T_(\dash\data::site_title()));
 		}
 
-		\lib\data::global_short_title(substr(\lib\data::global_title(), 0, strrpos(substr(\lib\data::global_title(), 0, 120), ' ')). '...');
+		\dash\data::global_short_title(substr(\dash\data::global_title(), 0, strrpos(substr(\dash\data::global_title(), 0, 120), ' ')). '...');
 	}
 
 
 	public static function set_cms_titles()
 	{
-		if(!\lib\data::get('datarow'))
+		if(!\dash\data::get('datarow'))
 		{
 			return false;
 		}
 
 		// set title
-		if(\lib\data::datarow_title())
+		if(\dash\data::datarow_title())
 		{
-			\lib\data::page_title(\lib\data::datarow_title());
+			\dash\data::page_title(\dash\data::datarow_title());
 		}
 
 		// set desc
-		if(\lib\data::datarow_excerpt())
+		if(\dash\data::datarow_excerpt())
 		{
-			\lib\data::page_desc(\lib\data::datarow_excerpt());
+			\dash\data::page_desc(\dash\data::datarow_excerpt());
 		}
-		elseif(\lib\data::datarow_content())
+		elseif(\dash\data::datarow_content())
 		{
-			\lib\data::page_desc(\lib\utility\excerpt::extractRelevant(\lib\data::datarow_content()));
+			\dash\data::page_desc(\dash\utility\excerpt::extractRelevant(\dash\data::datarow_content()));
 		}
-		elseif(\lib\data::datarow_desc())
+		elseif(\dash\data::datarow_desc())
 		{
-			\lib\data::page_desc(\lib\utility\excerpt::extractRelevant(\lib\data::datarow_desc()));
+			\dash\data::page_desc(\dash\utility\excerpt::extractRelevant(\dash\data::datarow_desc()));
 		}
 
 		// set new title

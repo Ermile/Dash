@@ -17,7 +17,7 @@ class commentdetails
 	 */
 	public static function insert()
 	{
-		return \lib\db\config::public_insert('commentdetails', ...func_get_args());
+		return \dash\db\config::public_insert('commentdetails', ...func_get_args());
 	}
 
 
@@ -40,7 +40,7 @@ class commentdetails
 				comment_id = $_comment_id
 			LIMIT 1
 		";
-		$result = \lib\db::get($query, 'type', true);
+		$result = \dash\db::get($query, 'type', true);
 		return $result;
 	}
 
@@ -66,7 +66,7 @@ class commentdetails
 				type       = '$_old_type'
 			LIMIT 1
 		";
-		$result = \lib\db::query($query);
+		$result = \dash\db::query($query);
 		return $result;
 	}
 
@@ -141,7 +141,7 @@ class commentdetails
 			WHERE
 				id = $_comment_id
 		";
-		return \lib\db::query($query);
+		return \dash\db::query($query);
 	}
 }
 ?>

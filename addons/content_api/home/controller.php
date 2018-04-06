@@ -5,17 +5,17 @@ class controller extends  \mvc\controller
 {
 	public function __construct()
 	{
-		\lib\temp::set('api', false);
+		\dash\temp::set('api', false);
 		parent::__construct();
 	}
 
 	public function ready()
 	{
 
-		$url = \lib\url::directory();
+		$url = \dash\url::directory();
 		if($url == '')
 		{
-			\lib\redirect::to('api/v1');
+			\dash\redirect::to('api/v1');
 			return;
 		}
 	}

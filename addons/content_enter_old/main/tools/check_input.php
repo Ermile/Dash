@@ -11,20 +11,20 @@ trait check_input
 	{
 		if($_mobile === null)
 		{
-			$_mobile = \lib\request::post('mobile');
+			$_mobile = \dash\request::post('mobile');
 		}
 
-		if(intval(\lib\request::post('mobile')) === intval(self::get_enter_session('mobile')))
+		if(intval(\dash\request::post('mobile')) === intval(self::get_enter_session('mobile')))
 		{
 			return true;
 		}
 
-		if(intval(\lib\request::post('mobile')) === intval(self::get_enter_session('temp_mobile')))
+		if(intval(\dash\request::post('mobile')) === intval(self::get_enter_session('temp_mobile')))
 		{
 			return true;
 		}
 
-		if(intval(\lib\request::post('mobile')) === intval(self::user_data('mobile')))
+		if(intval(\dash\request::post('mobile')) === intval(self::user_data('mobile')))
 		{
 			return true;
 		}
@@ -40,7 +40,7 @@ trait check_input
 	 */
 	public static function check_password_is_null()
 	{
-		if(\lib\request::post('password'))
+		if(\dash\request::post('password'))
 		{
 			return false;
 		}
@@ -88,7 +88,7 @@ trait check_input
 			// in step mobile (first step)
 			case 'mobile':
 				// just when only posted 1 item and this item is mobile can continue
-				if(count(\lib\request::post()) === 2 && \lib\request::post('usernameormobile') && !\lib\request::post('password'))
+				if(count(\dash\request::post()) === 2 && \dash\request::post('usernameormobile') && !\dash\request::post('password'))
 				{
 					$return = true;
 				}
