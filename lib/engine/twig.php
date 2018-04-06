@@ -48,11 +48,10 @@ class twig
 		$twig->addExtension(new \Twig_Extensions_Extension_I18n());
 
 		$template = $twig->loadTemplate($tmpname);
-
 		if(\lib\request::ajax())
 		{
-			\lib\data::global(\lib\notif::get(), 'debug');
-			$xhr_render                = $template->render(\lib\data::get());
+			\lib\data::global_debug(\lib\notif::get());
+			$xhr_render = $template->render(\lib\data::get());
 
 			echo json_encode(\lib\data::get('global'));
 			echo "\n";
