@@ -9,33 +9,22 @@ define('core_name', 'dash');
 
 
 // Define Dash variables ****************************************************
-if(!defined("core"))
-{
-	$dir = __DIR__;
-	$dir = str_replace('\\', '/', $dir);
-	$dir = str_replace('/lib/engine', '', $dir);
-	define("core", preg_replace("[\\\\]", "/", $dir).'/' );
-}
+$dir = __DIR__;
+$dir = str_replace('\\', '/', $dir);
+$dir = str_replace('/lib/engine', '', $dir);
+define("core", preg_replace("[\\\\]", "/", $dir).'/' );
 
 
 // Dash library
-if(!defined("lib"))
-{
-	define("lib", "lib/");
-}
+define("lib", "lib/");
 
 // set include path for lib
 // Dash plugin
-if(!defined("addons"))
-{
-	define("addons", core."addons/");
-}
+define("addons", core."addons/");
 
 // Define Project variables ***************************************************
-if(!defined("root"))
-{
-	define("root", dirname(dirname($_SERVER['SCRIPT_FILENAME'])).'/' );
-}
+define("root", dirname(dirname($_SERVER['SCRIPT_FILENAME'])).'/' );
+
 
 set_include_path(get_include_path() . PATH_SEPARATOR . root.'includes/');
 set_include_path(get_include_path() . PATH_SEPARATOR . core.'addons/');
@@ -44,19 +33,16 @@ set_include_path(get_include_path() . PATH_SEPARATOR . core);
 
 
 // Project database
-if(!defined("database"))
-{
-	define("database", root.'includes/database/');
-}
+define("database", root.'includes/database/');
 
 // Set default timezone to Asia/Tehran, Please set timezone in your php.ini
-if(!defined("timezone"))
+if(defined("timezone"))
 {
-	date_default_timezone_set('Asia/Tehran');
+	date_default_timezone_set(constant('timezone'));
 }
 else
 {
-	date_default_timezone_set(constant('timezone'));
+	date_default_timezone_set('Asia/Tehran');
 }
 
 
