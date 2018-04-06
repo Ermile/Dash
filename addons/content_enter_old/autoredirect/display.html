@@ -1,0 +1,27 @@
+{%extends display.enter%}
+
+
+
+{%block contentBody%}
+	<div class="text">
+	 <p>{{autoredirect.title}}</p>
+	</div>
+
+	<form method="{{autoredirect.method}}" data-action action="{{autoredirect.url}}" id='autoredirectform'>
+	{%for key, value in autoredirect.args%}
+		<input type="hidden" name="{{key}}" value="{{value}}">
+	{%endfor%}
+
+		<button type="submit" class="btn block primary mT25">
+			{%if autoredirect.button%}{{autoredirect.button}}{%else%}{%trans "Go"%}{%endif%}
+		</button>
+	</form>
+
+<script>
+	document.getElementById('autoredirectform').submit();
+</script>
+
+{%endblock%}
+
+
+{%block contentFooter%}{%endblock%}

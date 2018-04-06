@@ -1,0 +1,13 @@
+{%extends display.enter%}
+
+
+
+{%block contentForm%}
+
+{{block('eAllInput')}}
+{{block('epass')}}
+{{block('eramz')}}
+{{block('elogin')}}
+
+   <a class="link" href="{{url.base}}/enter/pass/recovery">{%trans "Can't access your account?"%}</a>
+{%endblock%}

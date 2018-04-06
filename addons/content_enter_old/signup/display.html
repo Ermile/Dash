@@ -1,0 +1,19 @@
+{%extends display.enter%}
+
+{%block contentForm%}
+{{block('emobilesignup')}}
+{{block('eFullname')}}
+
+{%if el.username%} {{block('eusername')}} {%endif%}
+
+{{block('epass')}}
+{{block('eramzNewSignup')}}
+{{block('esignup')}}
+
+{{block('eMethods')}}
+
+
+{%endblock%}
+
+
+{%block contentFooter%}{%endblock%}

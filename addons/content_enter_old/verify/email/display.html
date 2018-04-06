@@ -1,0 +1,19 @@
+{%extends display.enter%}
+
+
+
+{%block content%}
+<p class="f">{%trans "We can not find eny way to send verification code to you!"%}</p>
+<a href='{{url.base}}/enter'>Go back :(</a>
+
+{%endblock%}
+
+
+
+
+{%block contentFooter%}
+   <footer class='f'>
+{{block('ereset')}}
+{{block('everifyback')}}
+   </footer>
+{%endblock%}
