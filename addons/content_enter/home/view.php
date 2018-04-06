@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_enter\home;
+namespace content_enter\home;
 
 
 class view
@@ -7,11 +7,10 @@ class view
 
 	public static function config()
 	{
-		\dash\data::mobileReadonly(false);
-
 		\dash\data::page_special(true);
 		\dash\data::page_title(T_('Enter to :name with mobile', ['name' => \dash\data::site_title()]));
 		\dash\data::page_desc(\dash\data::page_title());
+		\dash\data::mobileReadonly(false);
 
 		$main_account = false;
 		if(isset($_SESSION['main_account']))

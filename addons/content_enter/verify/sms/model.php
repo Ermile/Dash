@@ -16,9 +16,9 @@ class model extends \addons\content_enter\main\model
 	public function send_sms_code()
 	{
 		$my_mobile = null;
-		if(self::user_data('mobile'))
+		if(\dash\utility\enter::user_data('mobile'))
 		{
-			$my_mobile = self::user_data('mobile');
+			$my_mobile = \dash\utility\enter::user_data('mobile');
 		}
 		elseif(\dash\utility\enter::get_session('mobile'))
 		{
@@ -62,12 +62,12 @@ class model extends \addons\content_enter\main\model
 		if($kavenegar_send_result === 411 && substr($my_mobile, 0, 2) === '98')
 		{
 			// invalid user mobil
-			\dash\db\logs::set('kavenegar:service:411:sms', self::user_data('id'), $log_meta);
+			\dash\db\logs::set('kavenegar:service:411:sms', \dash\utility\enter::user_data('id'), $log_meta);
 			return false;
 		}
 		elseif($kavenegar_send_result === false)
 		{
-			\dash\db\logs::set('kavenegar:service:done:sms', self::user_data('id'), $log_meta);
+			\dash\db\logs::set('kavenegar:service:done:sms', \dash\utility\enter::user_data('id'), $log_meta);
 			// the kavenegar service is down!!!
 		}
 		elseif($kavenegar_send_result)
@@ -87,13 +87,13 @@ class model extends \addons\content_enter\main\model
 				}
 			}
 
-			\dash\db\logs::set('enter:send:sems:result', self::user_data('id'), $log_meta);
+			\dash\db\logs::set('enter:send:sems:result', \dash\utility\enter::user_data('id'), $log_meta);
 
 			return true;
 		}
 		else
 		{
-			\dash\db\logs::set('enter:send:cannot:send:sms', self::user_data('id'), $log_meta);
+			\dash\db\logs::set('enter:send:cannot:send:sms', \dash\utility\enter::user_data('id'), $log_meta);
 		}
 
 		return false;
@@ -111,7 +111,7 @@ class model extends \addons\content_enter\main\model
 			if(!\dash\utility\enter::get_session('run_send_sms_code'))
 			{
 				\dash\notif::result("Sms sended");
-				self::set_enter_session('run_send_sms_code', true);
+				\dash\utility\enter::session_set('run_send_sms_code', true);
 				$this->send_sms_code();
 			}
 			return;

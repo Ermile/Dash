@@ -23,9 +23,9 @@ class model extends \addons\content_enter\main\model
 
 		$my_chat_id = null;
 
-		if(self::user_data('chatid'))
+		if(\dash\utility\enter::user_data('chatid'))
 		{
-			$my_chat_id = self::user_data('chatid');
+			$my_chat_id = \dash\utility\enter::user_data('chatid');
 		}
 		elseif(\dash\utility\enter::get_session('temp_chat_id'))
 		{
@@ -60,7 +60,7 @@ class model extends \addons\content_enter\main\model
 			if(!\dash\utility\enter::get_session('run_telegram_to_user'))
 			{
 				\dash\notif::result("Telegram sended");
-				self::set_enter_session('run_telegram_to_user', true);
+				\dash\utility\enter::session_set('run_telegram_to_user', true);
 				$this->send_telegram_code();
 			}
 			return;

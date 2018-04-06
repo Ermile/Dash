@@ -36,8 +36,8 @@ class view
 		// get the user mobile from login.mobile
 
 		// set mobile in display
-		// $this->data->getMobile = $myMobile;
-		// $this->data->get_usernamemobile = $myMobile;
+		\dash\data::getMobile($myMobile);
+		\dash\data::getUsernamemobile($myMobile);
 
 
 		// in all page the mobiel input is readonly

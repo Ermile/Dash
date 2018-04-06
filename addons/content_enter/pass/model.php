@@ -18,15 +18,15 @@ class model extends \addons\content_enter\main\model
 		// get ramz
 		$ramz = \dash\request::post('ramz');
 
-		if(self::user_data('password'))
+		if(\dash\utility\enter::user_data('password'))
 		{
 			// the password is okay
-			if(\dash\utility::hasher($ramz, self::user_data('password')))
+			if(\dash\utility::hasher($ramz, \dash\utility\enter::user_data('password')))
 			{
 				// if the user set two step verification send code
-				if(self::user_data('twostep'))
+				if(\dash\utility\enter::user_data('twostep'))
 				{
-					self::set_enter_session('verify_from', 'two_step');
+					\dash\utility\enter::session_set('verify_from', 'two_step');
 					// find way and redirect to it
 					self::send_code_way();
 					return;

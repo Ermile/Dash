@@ -23,7 +23,7 @@ class model extends \addons\content_enter\main\model
 		// {
 			// the user dont whill to enter mobile :/
 			// never ask this question at this user
-			self::set_enter_session('dont_will_set_mobile', true);
+			\dash\utility\enter::session_set('dont_will_set_mobile', true);
 
 			self::mobile_request_next_step();
 
@@ -44,8 +44,8 @@ class model extends \addons\content_enter\main\model
 		// 	return false;
 		// }
 
-		// self::set_enter_session('verify_from', 'mobile_request');
-		// self::set_enter_session('temp_mobile', $mobile);
+		// \dash\utility\enter::session_set('verify_from', 'mobile_request');
+		// \dash\utility\enter::session_set('temp_mobile', $mobile);
 		// self::send_code_way();
 		// return;
 	}

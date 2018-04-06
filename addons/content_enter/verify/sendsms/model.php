@@ -16,9 +16,9 @@ class model extends \addons\content_enter\main\model
 	public function send_sendsms_code()
 	{
 
-		if(self::user_data('id'))
+		if(\dash\utility\enter::user_data('id'))
 		{
-			$user_id = self::user_data('id');
+			$user_id = \dash\utility\enter::user_data('id');
 		}
 		else
 		{
@@ -27,11 +27,11 @@ class model extends \addons\content_enter\main\model
 
 		$code = rand(10000,99999);
 
-		self::set_enter_session('sendsms_code', $code);
+		\dash\utility\enter::session_set('sendsms_code', $code);
 
 		$log_id = \dash\db\logs::set('enter:get:sms:from:user', $user_id, ['data' => $code, 'meta' => ['session' => $_SESSION]]);
 
-		self::set_enter_session('sendsms_code_log_id', $log_id);
+		\dash\utility\enter::session_set('sendsms_code_log_id', $log_id);
 
 		return true;
 	}

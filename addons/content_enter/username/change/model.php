@@ -16,7 +16,7 @@ class model extends \addons\content_enter\main\model
 		if(\dash\request::post('type') === 'remove')
 		{
 			// set session verify_from username remove
-			self::set_enter_session('verify_from', 'username_remove');
+			\dash\utility\enter::session_set('verify_from', 'username_remove');
 
 			// send code way
 			self::send_code_way();
@@ -62,11 +62,11 @@ class model extends \addons\content_enter\main\model
 
 		if(\dash\request::post('usernameNew'))
 		{
-			self::set_enter_session('temp_username', \dash\request::post('usernameNew'));
+			\dash\utility\enter::session_set('temp_username', \dash\request::post('usernameNew'));
 		}
 
 		// set session verify_from set
-		self::set_enter_session('verify_from', 'username_change');
+		\dash\utility\enter::session_set('verify_from', 'username_change');
 
 		// send code way
 		self::send_code_way();

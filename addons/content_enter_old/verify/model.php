@@ -9,7 +9,7 @@ class model extends \addons\content_enter\main\model
 		$mobile_email = \dash\request::post('usernameormobile');
 		$send_code    = mb_strtolower(\dash\request::post('sendCod'));
 
-		$exist_mobile_email = $this->view()->data->get_usernamemobile;
+		$exist_mobile_email = \dash\data::get_usernamemobile();
 		if($mobile_email !== $exist_mobile_email)
 		{
 			\dash\notif::error(T_("What are you doing?"));

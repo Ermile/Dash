@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_enter\home;
+namespace content_enter\home;
 
 
 class model
@@ -56,7 +56,7 @@ class model
 				// set login session
 				$redirect_url = self::enter_set_login();
 				// save redirect url in session to get from okay page
-				self::set_enter_session('redirect_url', $redirect_url);
+				\dash\utility\enter::session_set('redirect_url', $redirect_url);
 				// set okay as next step
 				self::next_step('okay');
 				// go to okay page
@@ -98,14 +98,14 @@ class model
 		$old_usernameormobile = \dash\utility\enter::get_session('usernameormobile');
 
 		// clean existing session
-		self::clean_session();
+		\dash\utility\enter::clean_session();
 
 		$password = \dash\request::post('password');
 
 		/**
 		 * check login by another session
 		 */
-		if($this->login_another_session())
+		if(self::login_another_session())
 		{
 			return;
 		}
@@ -121,13 +121,10 @@ class model
 		}
 
 		// set posted mobile in SESSION
-		self::set_enter_session('usernameormobile', self::$usernameormobile);
+		\dash\utility\enter::session_set('usernameormobile', self::$usernameormobile);
 
 		// load user data by mobile
-		$user_data = self::load_user_data('usernameormobile');
-
-		// set this step is done
-		self::set_step_session('usernameormobile', true);
+		$user_data = \dash\utility\enter::load_user_data('usernameormobile');
 
 		// the user not found must be signup
 		if(!$user_data)
@@ -137,7 +134,7 @@ class model
 		}
 
 		// if this user is blocked or filtered go to block page
-		if(in_array(self::user_data('status'), self::$block_status))
+		if(in_array(\dash\utility\enter::user_data('status'), ['filter', 'block']))
 		{
 			// block page
 			self::next_step('block');
@@ -147,7 +144,7 @@ class model
 		}
 
 		// the password field is empty
-		if(!self::user_data('password'))
+		if(!\dash\utility\enter::user_data('password'))
 		{
 			// lock all step and set just this page to load
 			self::open_lock('pass/set');
@@ -159,7 +156,7 @@ class model
 
 		if($password)
 		{
-			if(\dash\utility::hasher($password, self::user_data('password')))
+			if(\dash\utility::hasher($password, \dash\utility\enter::user_data('password')))
 			{
 				// login
 				// the browser was saved the password

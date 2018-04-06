@@ -37,7 +37,7 @@ class view extends \mvc\view
 
 		// set mobile in display
 		$this->data->getMobile = $myMobile;
-		$this->data->get_usernamemobile = $myMobile;
+		\dash\data::getUsernamemobile($myMobile);
 
 
 		// in all page the mobiel input is readonly

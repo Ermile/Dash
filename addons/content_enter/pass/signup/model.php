@@ -38,8 +38,8 @@ class model extends \addons\content_enter\pass\model
 			// if debug status continue
 			if(\dash\engine\process::status())
 			{
-				self::set_enter_session('temp_ramz', $temp_ramz);
-				self::set_enter_session('temp_ramz_hash', $temp_ramz_hash);
+				\dash\utility\enter::session_set('temp_ramz', $temp_ramz);
+				\dash\utility\enter::session_set('temp_ramz_hash', $temp_ramz_hash);
 			}
 			else
 			{
@@ -57,7 +57,7 @@ class model extends \addons\content_enter\pass\model
 		}
 
 		// set session verify_from signup
-		self::set_enter_session('verify_from', 'signup');
+		\dash\utility\enter::session_set('verify_from', 'signup');
 		// find send way to send code
 		// and send code
 		// set step pass is done

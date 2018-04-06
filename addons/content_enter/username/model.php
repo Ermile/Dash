@@ -32,14 +32,14 @@ class model extends \addons\content_enter\main\model
 		self::set_session('username', 'temp_username', $username);
 
 		// check username exist
-		if(!self::user_data() || !self::user_data('id'))
+		if(!\dash\utility\enter::user_data() || !\dash\utility\enter::user_data('id'))
 		{
 			self::plus_try_session('invalid_username');
 
 			\dash\notif::error(T_("Username not found"));
 			return false;
 		}
-		elseif(!self::user_data('password'))
+		elseif(!\dash\utility\enter::user_data('password'))
 		{
 			// BUG username set and password is not set
 
@@ -49,10 +49,10 @@ class model extends \addons\content_enter\main\model
 				'meta' =>
 				[
 					'session'   => $_SESSION,
-					'user_data' => self::user_data(),
+					'user_data' => \dash\utility\enter::user_data(),
 				],
 			];
-			\dash\db\logs::set('enter:username:set:password:notset', self::user_data('id'), $log_meta);
+			\dash\db\logs::set('enter:username:set:password:notset', \dash\utility\enter::user_data('id'), $log_meta);
 			// go to mobile
 			self::go_to('base');
 		}
@@ -60,9 +60,9 @@ class model extends \addons\content_enter\main\model
 		{
 			// user enter by username
 			// we need to her mobile to recovery this
-			if(!\dash\utility\enter::get_session('mobile') && self::user_data('mobile'))
+			if(!\dash\utility\enter::get_session('mobile') && \dash\utility\enter::user_data('mobile'))
 			{
-				self::set_enter_session('mobile', self::user_data('mobile'));
+				\dash\utility\enter::session_set('mobile', \dash\utility\enter::user_data('mobile'));
 			}
 
 			// set step session

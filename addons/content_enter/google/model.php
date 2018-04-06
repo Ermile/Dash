@@ -12,7 +12,7 @@ namespace addons\content_enter\google;
 
 // 	public static function user_info($_key = null)
 // 	{
-// 		return self::user_data($_key);
+// 		return \dash\utility\enter::user_data($_key);
 // 	}
 // }
 
@@ -37,10 +37,10 @@ class model extends \addons\content_enter\main\model
 				// load data by email in field user google mail
 				self::load_user_data('email', ['email_field' => 'googlemail']);
 				// the user exist in system
-				if(self::user_data('id'))
+				if(\dash\utility\enter::user_data('id'))
 				{
 					// check user status
-					if(in_array(self::user_data('status'), self::$block_status))
+					if(in_array(\dash\utility\enter::user_data('status'), self::$block_status))
 					{
 						// the user was blocked
 						self::next_step('block');
@@ -51,20 +51,20 @@ class model extends \addons\content_enter\main\model
 					}
 					else
 					{
-						if(self::user_data('mobile'))
+						if(\dash\utility\enter::user_data('mobile'))
 						{
 							// no problem to login this user
 							$no_problem_to_login = true;
 						}
 						else
 						{
-							if(self::user_data('dontwillsetmobile'))
+							if(\dash\utility\enter::user_data('dontwillsetmobile'))
 							{
-								if(strtotime(self::user_data('dontwillsetmobile')) > (60*60*24*365))
+								if(strtotime(\dash\utility\enter::user_data('dontwillsetmobile')) > (60*60*24*365))
 								{
-									self::set_enter_session('mobile_request_from', 'google_email_exist');
+									\dash\utility\enter::session_set('mobile_request_from', 'google_email_exist');
 
-									self::set_enter_session('logined_by_email', \dash\social\google::user_info('email'));
+									\dash\utility\enter::session_set('logined_by_email', \dash\social\google::user_info('email'));
 									// go to mobile get to enter mobile
 									self::next_step('mobile/request');
 									// get go to url
@@ -78,9 +78,9 @@ class model extends \addons\content_enter\main\model
 							}
 							else
 							{
-								self::set_enter_session('mobile_request_from', 'google_email_exist');
+								\dash\utility\enter::session_set('mobile_request_from', 'google_email_exist');
 
-								self::set_enter_session('logined_by_email', \dash\social\google::user_info('email'));
+								\dash\utility\enter::session_set('logined_by_email', \dash\social\google::user_info('email'));
 								// go to mobile get to enter mobile
 								self::next_step('mobile/request');
 								// get go to url
@@ -105,11 +105,11 @@ class model extends \addons\content_enter\main\model
 					$args['email'] = \dash\social\google::user_info('email');
 					$args['datecreated']  = date("Y-m-d H:i:s");
 
-					self::set_enter_session('mobile_request_from', 'google_email_not_exist');
+					\dash\utility\enter::session_set('mobile_request_from', 'google_email_not_exist');
 
-					self::set_enter_session('must_signup', $args);
+					\dash\utility\enter::session_set('must_signup', $args);
 
-					self::set_enter_session('logined_by_email', \dash\social\google::user_info('email'));
+					\dash\utility\enter::session_set('logined_by_email', \dash\social\google::user_info('email'));
 
 					// go to mobile get to enter mobile
 					self::next_step('mobile/request');
@@ -121,7 +121,7 @@ class model extends \addons\content_enter\main\model
 				{
 					// set login session
 					$redirect_url = self::enter_set_login();
-					self::set_enter_session('redirect_url', $redirect_url);
+					\dash\utility\enter::session_set('redirect_url', $redirect_url);
 					// save redirect url in session to get from okay page
 					// set okay as next step
 					self::next_step('okay');
@@ -136,7 +136,7 @@ class model extends \addons\content_enter\main\model
 						// in this time we need time to check next step
 						// so we set for ever dont whill set mobile and go to next step
 						// to login quick by google mail
-						self::set_enter_session('dont_will_set_mobile', true);
+						\dash\utility\enter::session_set('dont_will_set_mobile', true);
 						self::mobile_request_next_step();
 						return;
 

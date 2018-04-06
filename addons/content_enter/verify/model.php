@@ -9,7 +9,7 @@ class model extends \addons\content_enter\main\model
 		$mobile_email = \dash\request::post('usernameormobile');
 		$send_code    = mb_strtolower(\dash\request::post('sendCod'));
 
-		$exist_mobile_email = $this->view()->data->get_usernamemobile;
+		$exist_mobile_email = \dash\data::getUsernamemobile();
 		if($mobile_email !== $exist_mobile_email)
 		{
 			\dash\notif::error(T_("What are you doing?"));
@@ -24,7 +24,7 @@ class model extends \addons\content_enter\main\model
 
 		if(!\dash\utility\enter::get_session('code_is_created'))
 		{
-			self::set_enter_session('code_is_created', true);
+			\dash\utility\enter::session_set('code_is_created', true);
 			self::send_way();
 		}
 
