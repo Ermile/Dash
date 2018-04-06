@@ -43,18 +43,18 @@ class model
 				}
 
 				// clean existing session
-				self::clean_session();
+				\dash\utility\enter::clean_session();
 				unset($_SESSION['user']);
 				unset($_SESSION['permission']);
 
-				self::$user_id = $user_id;
-				self::load_user_data('user_id');
+				\dash\utility\enter::$user_id = $user_id;
+				\dash\utility\enter::load_user_data('user_id');
 
 				$_SESSION['main_account'] = $main_account;
 				$_SESSION['main_mobile']  = $main_mobile;
 
 				// set login session
-				$redirect_url = self::enter_set_login();
+				$redirect_url = \dash\utility\enter::enter_set_login();
 				// save redirect url in session to get from okay page
 				\dash\utility\enter::session_set('redirect_url', $redirect_url);
 				// set okay as next step
@@ -115,11 +115,11 @@ class model
 		// save in session this user change the mobile
 		if($old_usernameormobile != $usernameormobile)
 		{
-			self::plus_try_session('diffrent_mobile');
+			\dash\utility\enter::set_session('diffrent_mobile', intval(\dash\utility\enter::get_session('diffrent_mobile')) + 1);
 		}
 
 		// set posted mobile in SESSION
-		\dash\utility\enter::session_set('usernameormobile', $usernameormobile);
+		\dash\utility\enter::set_session('usernameormobile', $usernameormobile);
 
 		// load user data by mobile
 		$user_data = \dash\utility\enter::load_user_data('usernameormobile', $usernameormobile);
@@ -145,9 +145,9 @@ class model
 		if(!\dash\utility\enter::user_data('password'))
 		{
 			// lock all step and set just this page to load
-			self::open_lock('pass/set');
+			\dash\utility\enter::open_lock('pass/set');
 			// open lock pass/recovery
-			self::open_lock('pass/recovery');
+			\dash\utility\enter::open_lock('pass/recovery');
 			// go to pass to check password
 			\dash\utility\enter::go_to('pass/set');
 		}
@@ -158,7 +158,7 @@ class model
 			{
 				// login
 				// the browser was saved the password
-				self::enter_set_login(null, true);
+				\dash\utility\enter::enter_set_login(null, true);
 				return ;
 			}
 			else
@@ -172,7 +172,7 @@ class model
 			// lock all step and set just this page to load
 			\dash\utility\enter::next_step('pass');
 			// open lock pass/recovery
-			self::open_lock('pass/recovery');
+			\dash\utility\enter::open_lock('pass/recovery');
 			// go to pass to check password
 			\dash\utility\enter::go_to('pass');
 		}

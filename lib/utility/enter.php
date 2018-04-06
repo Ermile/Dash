@@ -41,12 +41,6 @@ class enter
 			'email_field' => 'googlemail',
 		];
 
-		if(!is_array($_option))
-		{
-			$_option = [];
-		}
-		$_option = array_merge($default_option, $_option);
-
 		$data = [];
 
 		switch ($_type)
@@ -98,7 +92,7 @@ class enter
 
 		if($data)
 		{
-			self::session_set('user_data', $data);
+			self::set_session('user_data', $data);
 		}
 		return $data;
 	}
@@ -1298,6 +1292,175 @@ class enter
 				break;
 		}
 		return true;
+	}
+
+
+	/**
+	 * set redirect url
+	 *
+	 * @param      <type>  $_url   The url
+	 */
+	public static function done_step($_module)
+	{
+		switch ($_module)
+		{
+			default:
+				if(self::get_step_session($_module))
+				{
+					return true;
+				}
+
+				break;
+		}
+		return false;
+	}
+
+
+	/**
+	 * lock or unlock step
+	 * and check is lock or not lock
+	 *
+	 * @param      <type>  $_module  The module
+	 * @param      <type>  $_acction     The set
+	 */
+	public static function lock($_module, $_acction = null)
+	{
+		if($_acction === true)
+		{
+			self::set_session('lock'. $_module, true);
+		}
+
+		if($_acction === false)
+		{
+			self::set_session('lock'. $_module, false);
+		}
+
+		if($_acction === null)
+		{
+			// in dev and when we in debug mode
+			// we have not any page to lock!
+			if(\dash\url::isLocal() && self::$debug_mode)
+			{
+				return false;
+			}
+			// get lock from session
+			$is_lock = self::get_session('lock'. $_module);
+			// if is lock or not set
+			if($is_lock === true || $is_lock === null)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+	}
+
+
+	/**
+	 * Opens a lock.
+	 *
+	 * @param      <type>  $_module  The module
+	 */
+	public static function open_lock($_module)
+	{
+		self::lock($_module, false);
+	}
+
+
+	/**
+	 * disable all lock page and set only this module is true
+	 *
+	 * @param      <type>  $_module  The module
+	 */
+	public static function next_step($_module)
+	{
+		// unset all other lock
+		unset($_SESSION['lock']);
+		// set jusn this lock
+		self::set_session('lock'. $_module, false);
+	}
+
+
+	/**
+	 * check and set loaded module
+	 *
+	 * @param      <type>  $_module  The module
+	 * @param      <type>  $_type    The type
+	 */
+	public static function loaded_module($_module, $_type = null)
+	{
+		if($_type === null)
+		{
+			if(self::get_session('loaded_module'. $_module))
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		if($_type === true)
+		{
+			$_SESSION['loaded_module'] = [];
+			self::set_session('loaded_module'. $_module, true);
+		}
+	}
+
+	/**
+	 * redirect to url
+	 *
+	 * @param      <type>  $_url   The url
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public static function go_to($_url = null)
+	{
+
+		$host = \dash\url::base();
+
+		switch ($_url)
+		{
+			// redirect to base
+			case 'base':
+				$host .= '/enter';
+				self::go_redirect($host);
+				break;
+
+			case 'main':
+				self::go_redirect($host);
+				break;
+
+			case 'okay':
+				if($url = self::get_session('redirect_url'))
+				{
+					self::go_redirect($url, false, true);
+				}
+				break;
+
+			default:
+				self::go_redirect($_url);
+				break;
+		}
+	}
+
+
+	/**
+	 * set redirect url
+	 *
+	 * @param      <type>  $_url   The url
+	 */
+	public static function go_redirect($_url, $_return = false, $_direct = false)
+	{
+		if($_direct)
+		{
+			\dash\notif::direct();
+		}
+
+		\dash\redirect::to($_url);
 	}
 }
 ?>
