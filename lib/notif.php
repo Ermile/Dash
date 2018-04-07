@@ -7,6 +7,7 @@ class notif
 {
 	private static $notif = [];
 
+
 	private static function add($_type, $_text, $_meta)
 	{
 		self::$notif['ok'] = \dash\engine\process::status();
@@ -28,6 +29,13 @@ class notif
 		}
 
 		array_push(self::$notif['msg'], $add);
+	}
+
+
+	private static function add_detail($_key, $_value)
+	{
+		self::$notif['ok']  = \dash\engine\process::status();
+		self::$notif[$_key] = $_value;
 	}
 
 
@@ -60,19 +68,19 @@ class notif
 
 	public static function direct($_direct = true)
 	{
-		self::$notif['direct'] = $_direct;
+		self::add_detail('direct', $_direct);
 	}
 
 
 	public static function redirect($_url)
 	{
-		self::$notif['redirect'] = $_url;
+		self::add_detail('redirect', $_url);
 	}
 
 
 	public static function result($_result)
 	{
-		self::$notif['result'] = $_result;
+		self::add_detail('result', $_result);
 	}
 
 
