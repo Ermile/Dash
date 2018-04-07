@@ -16,27 +16,39 @@ class user
 	 *
 	 * @param      <type>  $_user_id  The user identifier
 	 */
-	public static function init($_user_id, $_detail = [])
+	public static function init($_user_id)
 	{
-		self::$USER_ID = $_user_id;
-		$_SESSION['auth']['id'] = $_user_id;
-
-		if(is_array($_detail))
+		if(!is_numeric($_user_id))
 		{
-			foreach ($_detail as $key => $value)
+			return;
+		}
+
+		$detail  = \dash\db\users::get_by_id($_user_id);
+
+		if(!isset($detail['id']))
+		{
+			return;
+		}
+
+		if(is_array($detail))
+		{
+			foreach ($detail as $key => $value)
 			{
 				$_SESSION['auth'][$key] = $value;
 			}
 		}
+
+		self::$USER_ID          = $_user_id;
+		$_SESSION['auth']['id'] = $_user_id;
+
 	}
 
 
 	public static function refresh()
 	{
 		$user_id = self::id();
-		$detail = \dash\db\users::get_by_id($user_id);
 		self::destroy();
-		self::init($user_id, $detail);
+		self::init($user_id);
 	}
 
 
@@ -135,18 +147,10 @@ class user
 			if($cookie)
 			{
 				$user_id = \dash\db\sessions::get_user_id();
+
 				if($user_id && is_numeric($user_id))
 				{
-					// load all user field
-					$user_data = \dash\db\users::get_by_id($user_id);
-
-					// check the reault is true
-					if(!is_array($user_data))
-					{
-						return false;
-					}
-
-					self::init($user_id, $user_data);
+					self::init($user_id);
 
 					if(isset($_SESSION['main_account']))
 					{
