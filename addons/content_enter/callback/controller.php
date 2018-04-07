@@ -2,13 +2,11 @@
 namespace content_enter\callback;
 
 
-class controller extends \addons\content_enter\main\controller
+class controller
 {
-	public function ready()
+	public static function routing()
 	{
 		// 10002000200251
-
-
 		if(!\dash\request::get('service') || \dash\request::get('uid') != '201708111')
 		{
 			\dash\header::status(404, T_("Invalid url"));
@@ -17,7 +15,7 @@ class controller extends \addons\content_enter\main\controller
 		switch (\dash\request::get('service'))
 		{
 			case 'kavenegar':
-				$this->model()->kavenegar();
+				\content_enter\callback\model::kavenegar();
 				break;
 
 			default:

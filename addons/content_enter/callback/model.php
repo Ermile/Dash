@@ -2,9 +2,9 @@
 namespace content_enter\callback;
 
 
-class model extends \addons\content_enter\main\model
+class model
 {
-	public function kavenegar()
+	public static function kavenegar()
 	{
 		\dash\temp::set('api', true);
 		$log_meta =
@@ -47,7 +47,7 @@ class model extends \addons\content_enter\main\model
 
 		if(!$user_data || !isset($user_data['id']))
 		{
-			return $this->first_signup_sms();
+			return self::first_signup_sms();
 		}
 
 		$user_id = $user_data['id'];
@@ -111,7 +111,7 @@ class model extends \addons\content_enter\main\model
 	/**
 	 * singup user and send the regirster sms to he
 	 */
-	public function first_signup_sms()
+	public static function first_signup_sms()
 	{
 		$mobile = \dash\request::post('from');
 
