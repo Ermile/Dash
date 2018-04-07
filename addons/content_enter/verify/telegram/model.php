@@ -2,8 +2,25 @@
 namespace content_enter\verify\telegram;
 
 
-class model extends \addons\content_enter\main\model
+class model
 {
+
+	public function post_verify()
+	{
+		// runcall
+		if(mb_strtolower(\dash\request::post('verify')) === 'true')
+		{
+			if(!\dash\utility\enter::get_session('run_telegram_to_user'))
+			{
+				\dash\notif::result("Telegram sended");
+				\dash\utility\enter::set_session('run_telegram_to_user', true);
+				self::send_telegram_code();
+			}
+			return;
+		}
+		\dash\data::check_code('telegram');
+	}
+
 
 	/**
 	 * send verification code to the user telegram
@@ -13,7 +30,7 @@ class model extends \addons\content_enter\main\model
 	 *
 	 * @return     <type>  ( description_of_the_return_value )
 	 */
-	public function send_telegram_code()
+	public static function send_telegram_code()
 	{
 		// the telegram is off for this project
 		if(!\dash\option::social('telegram', 'status'))
@@ -46,26 +63,6 @@ class model extends \addons\content_enter\main\model
 
 		\dash\utility\telegram::sendMessage($my_chat_id, $text);
 		return true;
-	}
-
-
-	/**
-	* check sended code
-	*/
-	public function post_verify()
-	{
-		// runcall
-		if(mb_strtolower(\dash\request::post('verify')) === 'true')
-		{
-			if(!\dash\utility\enter::get_session('run_telegram_to_user'))
-			{
-				\dash\notif::result("Telegram sended");
-				\dash\utility\enter::set_session('run_telegram_to_user', true);
-				$this->send_telegram_code();
-			}
-			return;
-		}
-		self::check_code('telegram');
 	}
 }
 ?>

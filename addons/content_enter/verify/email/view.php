@@ -2,8 +2,11 @@
 namespace content_enter\verify\email;
 
 
-class view extends \addons\content_enter\verify\view
+class view
 {
+	public static function config()
+	{
 
+	}
 }
 ?>

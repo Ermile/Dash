@@ -2,28 +2,23 @@
 namespace content_enter\verify\what;
 
 
-class controller extends \addons\content_enter\main\controller
+class controller
 {
-	public function ready()
+	public static function routing()
 	{
-
-		// if this step is locked go to error page and return
 		if(\dash\utility\enter::lock('verify/what'))
 		{
 			\dash\header::status(404, 'verify/what');
-			return;
 		}
 
-		if(!self::loaded_module('verify/what'))
+		if(!\dash\utility\enter::get_session('verify/what'))
 		{
-			self::loaded_module('verify/what', true);
+			\dash\utility\enter::set_session('verify/what', true);
 			if(\dash\utility\enter::get_session('verification_code_id') && is_numeric(\dash\utility\enter::get_session('verification_code_id')))
 			{
 				\dash\db\logs::update(['status' => 'expire'], \dash\utility\enter::get_session('verification_code_id'));
 			}
 		}
-
-		$this->get()->ALL('verify/what');
 	}
 }
 ?>

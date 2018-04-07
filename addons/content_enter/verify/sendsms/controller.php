@@ -2,9 +2,9 @@
 namespace content_enter\verify\sendsms;
 
 
-class controller extends \addons\content_enter\main\controller
+class controller
 {
-	public function ready()
+	public static function routing()
 	{
 		// // bug fix two redirect to this page
 		// if(isset($_SERVER['HTTP_ACCEPT']) && $_SERVER['HTTP_ACCEPT'] === '*/*')

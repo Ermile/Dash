@@ -2,18 +2,26 @@
 namespace content_enter\verify\sms;
 
 
-class model extends \addons\content_enter\main\model
+class model
 {
 
-	/**
-	 * send verification code to the user sms
-	 *
-	 * @param      <type>  $_chat_id  The chat identifier
-	 * @param      <type>  $_text     The text
-	 *
-	 * @return     <type>  ( description_of_the_return_value )
-	 */
-	public function send_sms_code()
+	public static function post()
+	{
+		if(mb_strtolower(\dash\request::post('verify')) === 'true')
+		{
+			if(!\dash\utility\enter::get_session('run_send_sms_code'))
+			{
+				\dash\notif::result("Sms sended");
+				\dash\utility\enter::set_session('run_send_sms_code', true);
+				self::send_sms_code();
+			}
+			return;
+		}
+		\dash\data::check_code('sms');
+	}
+
+
+	public static function send_sms_code()
 	{
 		$my_mobile = null;
 		if(\dash\utility\enter::user_data('mobile'))
@@ -97,26 +105,6 @@ class model extends \addons\content_enter\main\model
 		}
 
 		return false;
-	}
-
-
-	/**
-	*  check verify code
-	*/
-	public function post_verify()
-	{
-		// runcall
-		if(mb_strtolower(\dash\request::post('verify')) === 'true')
-		{
-			if(!\dash\utility\enter::get_session('run_send_sms_code'))
-			{
-				\dash\notif::result("Sms sended");
-				\dash\utility\enter::set_session('run_send_sms_code', true);
-				$this->send_sms_code();
-			}
-			return;
-		}
-		self::check_code('sms');
 	}
 }
 ?>

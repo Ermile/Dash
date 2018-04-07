@@ -42,7 +42,7 @@ class model extends \addons\content_enter\main\model
 	*/
 	public function post_verify()
 	{
-		self::check_code('sendsms');
+		\dash\data::check_code('sendsms');
 	}
 }
 ?>

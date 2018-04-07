@@ -2,15 +2,26 @@
 namespace content_enter\verify\call;
 
 
-class model extends \addons\content_enter\main\model
+class model
 {
 
-	/**
-	 * send verification by call
-	 *
-	 * @return     boolean  ( description_of_the_return_value )
-	 */
-	public function send_call_code()
+	public function post_verify()
+	{
+		if(mb_strtolower(\dash\request::post('verify')) === 'true')
+		{
+			if(!\dash\utility\enter::get_session('run_call_to_user'))
+			{
+				\dash\notif::result("Call sended");
+				\dash\utility\enter::set_session('run_call_to_user', true);
+				self::send_call_code();
+			}
+			return;
+		}
+		\dash\data::check_code('call');
+	}
+
+
+	public static function send_call_code()
 	{
 		$code = \dash\utility\enter::get_session('verification_code');
 
@@ -110,27 +121,5 @@ class model extends \addons\content_enter\main\model
 		// why?!
 		return false;
 	}
-
-
-	/**
-	* cehck sended code
-	*
-	*/
-	public function post_verify()
-	{
-		// runcall
-		if(mb_strtolower(\dash\request::post('verify')) === 'true')
-		{
-			if(!\dash\utility\enter::get_session('run_call_to_user'))
-			{
-				\dash\notif::result("Call sended");
-				\dash\utility\enter::set_session('run_call_to_user', true);
-				$this->send_call_code();
-			}
-			return;
-		}
-		self::check_code('call');
-	}
-
 }
 ?>
