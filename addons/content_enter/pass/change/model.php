@@ -34,13 +34,13 @@ class model extends \addons\content_enter\pass\model
 		}
 
 		// check min and max password
-		if(!$this->check_pass_syntax(\dash\request::post('ramz')))
+		if(!\dash\utility\enter::check_pass_syntax(\dash\request::post('ramz')))
 		{
 			return false;
 		}
 
 		// check min and max password
-		if(!$this->check_pass_syntax(\dash\request::post('ramzNew')))
+		if(!\dash\utility\enter::check_pass_syntax(\dash\request::post('ramzNew')))
 		{
 			return false;
 		}

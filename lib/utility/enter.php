@@ -1184,5 +1184,39 @@ class enter
 			\dash\redirect::to($url);
 		}
 	}
+
+
+	/**
+	 * check password syntax
+	 * min
+	 * max
+	 *
+	 * @param      <type>  $_password  The password
+	 */
+	public static function check_pass_syntax($_password, $_debug = true)
+	{
+		// cehck min leng of password is 6 character
+		if(mb_strlen($_password) < 6)
+		{
+			if($_debug)
+			{
+				\dash\notif::error(T_("You must set 6 character and large in password"));
+			}
+			return false;
+		}
+
+		// cehck max length of password
+		if(mb_strlen($_password) > 99)
+		{
+			if($_debug)
+			{
+				\dash\notif::error(T_("You must set less than 99 character in password"));
+			}
+			return false;
+		}
+
+		// no problem ;)
+		return true;
+	}
 }
 ?>

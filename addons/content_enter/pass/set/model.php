@@ -28,7 +28,7 @@ class model extends \addons\content_enter\pass\model
 			$temp_ramz = \dash\request::post('ramzNew');
 
 			// check min and max of password and make error
-			if(!$this->check_pass_syntax($temp_ramz))
+			if(!\dash\utility\enter::check_pass_syntax($temp_ramz))
 			{
 				return false;
 			}
