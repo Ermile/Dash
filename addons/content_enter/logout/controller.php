@@ -1,23 +1,16 @@
 <?php
 namespace content_enter\logout;
 
-class controller extends \addons\content_enter\main\controller
+
+class controller
 {
-	public function ready()
+	public static function routing()
 	{
-		// if user login just can view this page
-		self::if_login_route();
-		// check request method
-		if(self::get_request_method() === 'get')
-		{
-			// get user logout
-			self::set_logout(\dash\user::id());
-		}
-		else
-		{
-			// make error method
-			self::error_method('logout');
-		}
+		// // if user login just can view this page
+		// self::if_login_route();
+
+		// get user logout
+		\dash\utility\enter::set_logout(\dash\user::id());
 	}
 }
 ?>

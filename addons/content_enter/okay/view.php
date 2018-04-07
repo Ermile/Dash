@@ -2,22 +2,18 @@
 namespace content_enter\okay;
 
 
-class view extends \addons\content_enter\main\view
+class view
 {
-	public function config()
+	public static function config()
 	{
-		// read parent config to fill the mobile input and other thing
-		parent::config();
+		\dash\data::page_title(T_('Horray!'));
+		\dash\data::page_special(true);
+		\dash\data::page_desc(T_('Live and learn'));
 
-		$this->data->page['title']   = T_('Horray!');
-		$this->data->page['special'] = true;
-		$this->data->page['desc']    = T_('Live and learn');
-
-
-		$this->data->redirect_url = \dash\url::base();
+		\dash\data::redirectUrl(\dash\url::base());
 		if(\dash\utility\enter::get_session('redirect_url'))
 		{
-			$this->data->redirect_url = \dash\utility\enter::get_session('redirect_url');
+			\dash\data::redirectUrl(\dash\utility\enter::get_session('redirect_url'));
 		}
 	}
 }
