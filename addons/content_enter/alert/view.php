@@ -2,29 +2,32 @@
 namespace content_enter\alert;
 
 
-class view extends \addons\content_enter\main\view
+class view
 {
-	public function config()
+	public static function config()
 	{
-		// read parent config to fill the mobile input and other thing
-		parent::config();
+		\dash\data::page_title(T_('Alert!'));
+		\dash\data::page_special(true);
+		\dash\data::page_desc(\dash\data::page_title());
 
-		$this->data->page['title']   = T_('Alert!');
-		$this->data->page['special'] = true;
-		$this->data->page['desc']    = $this->data->page['title'];
+		$alert = \dash\utility\enter::get_session('alert');
 
-		$this->data->alert_msg = self::get_alert();
-
-		$this->data->alert_link = \dash\url::here(). '/enter';
-		if(self::get_alert('link'))
+		\dash\data::alertMsg(T_("Alert!"). ' '. T_("What are you doing?"));
+		if(isset($alert['text']))
 		{
-			$this->data->alert_link = self::get_alert('link');
+			\dash\data::alertMsg($alert['text']);
 		}
 
-		$this->data->alert_button = T_("Go back");
-		if(self::get_alert('button'))
+		\dash\data::alertLink(\dash\url::here(). '/enter');
+		if(isset($alert['link']))
 		{
-			$this->data->alert_button = self::get_alert('button');
+			\dash\data::alertLink($alert['link']);
+		}
+
+		\dash\data::alertButton(T_("Go back"));
+		if(isset($alert['button']))
+		{
+			\dash\data::alertButton($alert['button']);
 		}
 	}
 }
