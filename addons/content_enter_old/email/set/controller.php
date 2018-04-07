@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_enter\email\set;
+namespace content_enter\email\set;
 
 class controller extends \addons\content_enter\main\controller
 {

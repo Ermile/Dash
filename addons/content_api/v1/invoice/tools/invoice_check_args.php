@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_api\v1\invoice\tools;
+namespace content_api\v1\invoice\tools;
 
 
 trait invoice_check_args

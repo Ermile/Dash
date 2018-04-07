@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_api\v1\parent;
+namespace content_api\v1\parent;
 
 class controller extends \mvc\controller
 {

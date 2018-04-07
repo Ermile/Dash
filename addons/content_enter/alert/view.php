@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_enter\alert;
+namespace content_enter\alert;
 
 
 class view extends \addons\content_enter\main\view

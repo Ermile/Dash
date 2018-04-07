@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_su\logitems\edit;
+namespace content_su\logitems\edit;
 
 class controller extends \addons\content_su\main\controller
 {

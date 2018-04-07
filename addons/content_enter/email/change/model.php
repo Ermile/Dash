@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_enter\email\change;
+namespace content_enter\email\change;
 
 
 class model extends \addons\content_enter\main\model

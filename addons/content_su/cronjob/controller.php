@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_su\cronjob;
+namespace content_su\cronjob;
 class controller extends \addons\content_su\main\controller
 {
 	public function ready()

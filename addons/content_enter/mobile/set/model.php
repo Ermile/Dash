@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_enter\pass\set;
+namespace content_enter\pass\set;
 
 
 class model extends \addons\content_enter\pass\model

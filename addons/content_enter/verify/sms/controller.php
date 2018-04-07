@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_enter\verify\sms;
+namespace content_enter\verify\sms;
 
 
 class controller extends \addons\content_enter\main\controller

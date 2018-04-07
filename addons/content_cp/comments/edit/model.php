@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_cp\comments\edit;
+namespace content_cp\comments\edit;
 
 class model extends \addons\content_cp\main\model
 {

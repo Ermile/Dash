@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_enter\main;
+namespace content_enter\main;
 
 class view extends \mvc\view
 {

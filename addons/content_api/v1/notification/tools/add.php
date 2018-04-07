@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_api\v1\notification\tools;
+namespace content_api\v1\notification\tools;
 
 
 trait add

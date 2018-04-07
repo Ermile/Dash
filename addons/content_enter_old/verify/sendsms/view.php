@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_enter\verify\sendsms;
+namespace content_enter\verify\sendsms;
 
 
 class view extends \addons\content_enter\verify\view

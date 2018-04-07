@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_enter\payment;
+namespace content_enter\payment;
 
 
 class controller extends \addons\content_enter\main\controller

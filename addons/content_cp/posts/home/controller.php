@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_cp\posts\home;
+namespace content_cp\posts\home;
 
 
 class controller extends \addons\content_cp\main\controller

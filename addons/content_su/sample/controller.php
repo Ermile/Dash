@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_su\sample;
+namespace content_su\sample;
 
 class controller extends \addons\content_su\main\controller
 {

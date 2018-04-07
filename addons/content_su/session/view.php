@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_su\session;
+namespace content_su\session;
 
 
 class view extends \addons\content_su\main\view

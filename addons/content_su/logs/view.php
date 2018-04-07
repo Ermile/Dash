@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_su\logs;
+namespace content_su\logs;
 
 class view extends \addons\content_su\main\view
 {

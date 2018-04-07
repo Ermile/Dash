@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_enter\sessions;
+namespace content_enter\sessions;
 
 class view extends \addons\content_enter\main\view
 {

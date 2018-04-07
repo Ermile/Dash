@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_cp\comments\edit;
+namespace content_cp\comments\edit;
 
 class view extends \addons\content_cp\main\view
 {

@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_su\sendnotify;
+namespace content_su\sendnotify;
 
 class view extends \addons\content_su\main\view
 {

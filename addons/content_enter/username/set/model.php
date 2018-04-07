@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_enter\username\set;
+namespace content_enter\username\set;
 
 
 class model extends \addons\content_enter\main\model

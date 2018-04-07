@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_su\notifications;
+namespace content_su\notifications;
 
 
 class model extends \addons\content_su\main\model

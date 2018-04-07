@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_enter\autoredirect;
+namespace content_enter\autoredirect;
 
 
 class view extends \addons\content_enter\main\view

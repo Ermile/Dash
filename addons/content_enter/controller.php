@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_enter;
+namespace content_enter;
 
 class controller
 {

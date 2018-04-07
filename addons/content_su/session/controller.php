@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_su\session;
+namespace content_su\session;
 class controller extends \addons\content_su\main\controller
 {
 	public function ready()

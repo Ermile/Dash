@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_enter\verify\call;
+namespace content_enter\verify\call;
 
 
 class model extends \addons\content_enter\main\model

@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_cp\posts\add;
+namespace content_cp\posts\add;
 
 
 class model extends \addons\content_cp\posts\main\model

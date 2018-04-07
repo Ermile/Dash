@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_su\invoicedetails;
+namespace content_su\invoicedetails;
 
 class controller extends \addons\content_su\main\controller
 {

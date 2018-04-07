@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_enter\pass;
+namespace content_enter\pass;
 
 
 class view extends \addons\content_enter\main\view

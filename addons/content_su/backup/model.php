@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_su\backup;
+namespace content_su\backup;
 
 class model extends \addons\content_su\main\model
 {

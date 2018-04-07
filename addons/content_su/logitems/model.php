@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_su\logitems;
+namespace content_su\logitems;
 
 
 class model extends \addons\content_su\main\model

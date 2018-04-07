@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_su\transactions\add;
+namespace content_su\transactions\add;
 
 
 class controller extends \addons\content_su\transactions\controller

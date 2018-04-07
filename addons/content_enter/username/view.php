@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_enter\username;
+namespace content_enter\username;
 
 
 class view extends \addons\content_enter\main\view

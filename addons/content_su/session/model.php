@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_su\session;
+namespace content_su\session;
 
 class model extends \addons\content_su\main\model
 {

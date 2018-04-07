@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_enter\verify;
+namespace content_enter\verify;
 
 
 class controller extends \addons\content_enter\main\controller

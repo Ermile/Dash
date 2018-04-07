@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_api\v1\file;
+namespace content_api\v1\file;
 
 class controller extends  \addons\content_api\v1\home\controller
 {

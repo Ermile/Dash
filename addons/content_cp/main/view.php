@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_cp\main;
+namespace content_cp\main;
 
 class view extends \mvc\view
 {

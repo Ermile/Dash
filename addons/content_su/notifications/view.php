@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_su\notifications;
+namespace content_su\notifications;
 
 class view extends \addons\content_su\main\view
 {

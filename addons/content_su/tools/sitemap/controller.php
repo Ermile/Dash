@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_su\tools\sitemap;
+namespace content_su\tools\sitemap;
 
 class controller extends \addons\content_su\main\controller
 {

@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_su\invoices;
+namespace content_su\invoices;
 
 
 class model extends \addons\content_su\main\model

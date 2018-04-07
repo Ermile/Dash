@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_enter\delete;
+namespace content_enter\delete;
 
 
 class view extends \addons\content_enter\main\view

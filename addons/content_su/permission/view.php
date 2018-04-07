@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_su\permission;
+namespace content_su\permission;
 
 class view extends \addons\content_su\main\view
 {

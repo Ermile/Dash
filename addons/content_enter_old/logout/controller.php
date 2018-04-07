@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_enter\logout;
+namespace content_enter\logout;
 
 class controller extends \addons\content_enter\main\controller
 {

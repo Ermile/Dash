@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_enter\pass\signup;
+namespace content_enter\pass\signup;
 
 
 class model extends \addons\content_enter\pass\model

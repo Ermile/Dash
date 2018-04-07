@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_su\main;
+namespace content_su\main;
 
 
 class model extends \mvc\model

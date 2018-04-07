@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_su\dbtables;
+namespace content_su\dbtables;
 class controller extends \addons\content_su\main\controller
 {
 	public function ready()

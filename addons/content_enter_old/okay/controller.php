@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_enter\okay;
+namespace content_enter\okay;
 
 
 class controller extends \addons\content_enter\main\controller

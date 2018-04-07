@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_enter\main\tools;
+namespace content_enter\main\tools;
 
 
 trait login

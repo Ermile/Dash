@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_enter\verify\sms;
+namespace content_enter\verify\sms;
 
 
 class model extends \addons\content_enter\main\model

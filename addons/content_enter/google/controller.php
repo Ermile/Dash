@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_enter\google;
+namespace content_enter\google;
 
 
 class controller extends \addons\content_enter\main\controller

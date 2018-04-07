@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_enter\google;
+namespace content_enter\google;
 
 // class google
 // {

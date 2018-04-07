@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_su\sendnotify;
+namespace content_su\sendnotify;
 class controller extends \addons\content_su\main\controller
 {
 	public function ready()

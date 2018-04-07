@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_enter\email;
+namespace content_enter\email;
 
 
 class view extends \addons\content_enter\main\view

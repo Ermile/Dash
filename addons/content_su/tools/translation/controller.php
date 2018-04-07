@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_su\tools\translation;
+namespace content_su\tools\translation;
 
 class controller extends \addons\content_su\main\controller
 {

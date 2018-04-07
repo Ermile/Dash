@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_enter\signup;
+namespace content_enter\signup;
 
 
 class model extends \addons\content_enter\main\model

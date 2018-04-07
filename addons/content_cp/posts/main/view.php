@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_cp\posts\main;
+namespace content_cp\posts\main;
 
 
 class view extends \addons\content_cp\main\view

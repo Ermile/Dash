@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_enter\verify\telegram;
+namespace content_enter\verify\telegram;
 
 
 class controller extends \addons\content_enter\main\controller

@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_enter\pass;
+namespace content_enter\pass;
 
 
 class controller extends \addons\content_enter\main\controller

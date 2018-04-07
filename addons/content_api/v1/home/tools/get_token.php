@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_api\v1\home\tools;
+namespace content_api\v1\home\tools;
 
 
 trait get_token

@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_su\transactions;
+namespace content_su\transactions;
 
 
 class model extends \addons\content_su\main\model

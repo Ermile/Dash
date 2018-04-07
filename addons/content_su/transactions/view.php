@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_su\transactions;
+namespace content_su\transactions;
 
 class view extends \addons\content_su\main\view
 {

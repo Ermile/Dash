@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_api\v1\parent\tools;
+namespace content_api\v1\parent\tools;
 
 
 trait delete

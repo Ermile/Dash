@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_cp\terms;
+namespace content_cp\terms;
 
 
 class model extends \addons\content_cp\main\model

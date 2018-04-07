@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_enter\callback;
+namespace content_enter\callback;
 
 
 class controller extends \addons\content_enter\main\controller

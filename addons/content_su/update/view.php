@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_su\update;
+namespace content_su\update;
 
 class view extends \addons\content_su\main\view
 {

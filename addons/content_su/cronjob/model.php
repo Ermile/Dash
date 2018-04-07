@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_su\cronjob;
+namespace content_su\cronjob;
 
 class model extends \addons\content_su\main\model
 {

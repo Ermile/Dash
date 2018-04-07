@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_enter\ban;
+namespace content_enter\ban;
 
 
 class controller extends \addons\content_enter\main\controller

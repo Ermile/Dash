@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_enter\username\change;
+namespace content_enter\username\change;
 
 class controller extends \addons\content_enter\main\controller
 {

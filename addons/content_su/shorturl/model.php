@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_su\shorturl;
+namespace content_su\shorturl;
 
 
 class model extends \addons\content_su\main\model

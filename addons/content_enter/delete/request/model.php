@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_enter\delete\request;
+namespace content_enter\delete\request;
 
 
 class model extends \addons\content_enter\main\model

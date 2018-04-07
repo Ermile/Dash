@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_enter\byebye;
+namespace content_enter\byebye;
 
 
 class controller extends \addons\content_enter\main\controller

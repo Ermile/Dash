@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_enter\email\change\google;
+namespace content_enter\email\change\google;
 
 class controller extends \addons\content_enter\main\controller
 {

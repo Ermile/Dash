@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_enter\verify\call;
+namespace content_enter\verify\call;
 
 
 class view extends \addons\content_enter\verify\view

@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_enter\autoredirect;
+namespace content_enter\autoredirect;
 
 
 class controller extends \addons\content_enter\main\controller

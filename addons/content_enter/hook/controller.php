@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_enter\hook;
+namespace content_enter\hook;
 
 class controller extends  \mvc\controller
 {

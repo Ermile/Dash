@@ -1,5 +1,5 @@
 <?php
-namespace addons\content_enter\mobile\request;
+namespace content_enter\mobile\request;
 
 class controller extends \addons\content_enter\main\controller
 {
