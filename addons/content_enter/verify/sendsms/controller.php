@@ -20,42 +20,42 @@ class controller
 			return;
 		}
 
-		if(self::get_request_method() === 'get')
-		{
-			// if the user start my bot and wa have her chat id
-			// if user start my bot try to send code to this use
-			// if okay route this
-			// else go to nex way
-			if(!self::loaded_module('verify/sendsms'))
-			{
-				if(isset($_SERVER['REQUEST_URI']) && preg_match("/enter\/verify\/sendsms$/", urldecode($_SERVER['REQUEST_URI'])))
-				{
-					self::loaded_module('verify/sendsms', true);
+		// if(self::get_request_method() === 'get')
+		// {
+		// 	// if the user start my bot and wa have her chat id
+		// 	// if user start my bot try to send code to this use
+		// 	// if okay route this
+		// 	// else go to nex way
+		// 	if(!self::loaded_module('verify/sendsms'))
+		// 	{
+		// 		if(isset($_SERVER['REQUEST_URI']) && preg_match("/enter\/verify\/sendsms$/", urldecode($_SERVER['REQUEST_URI'])))
+		// 		{
+		// 			self::loaded_module('verify/sendsms', true);
 
-					if($this->model()->send_sendsms_code())
-					{
-						$this->get()->ALL('verify/sendsms');
-					}
-					else
-					{
-						// send code way
-						// \dash\utility\enter::go_to_verify();
-					}
-				}
-			}
-			else
-			{
-				$this->get()->ALL('verify/sendsms');
-			}
-		}
-		elseif(self::get_request_method() === 'post')
-		{
-			$this->post('verify')->ALL('verify/sendsms');
-		}
-		else
-		{
-			self::error_method('verify/sendsms');
-		}
+		// 			if($this->model()->send_sendsms_code())
+		// 			{
+		// 				$this->get()->ALL('verify/sendsms');
+		// 			}
+		// 			else
+		// 			{
+		// 				// send code way
+		// 				// \dash\utility\enter::go_to_verify();
+		// 			}
+		// 		}
+		// 	}
+		// 	else
+		// 	{
+		// 		$this->get()->ALL('verify/sendsms');
+		// 	}
+		// }
+		// elseif(self::get_request_method() === 'post')
+		// {
+		// 	$this->post('verify')->ALL('verify/sendsms');
+		// }
+		// else
+		// {
+		// 	self::error_method('verify/sendsms');
+		// }
 	}
 }
 ?>

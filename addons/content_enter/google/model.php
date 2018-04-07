@@ -19,9 +19,9 @@ class model
 
 				$user_data = \dash\social\google::user_info();
 				// get user email
-				self::$email = \dash\social\google::user_info('email');
+				$email = \dash\social\google::user_info('email');
 				// load data by email in field user google mail
-				self::load_user_data($email, 'googlemail']);
+				\dash\utility\enter::load_user_data($email, 'googlemail']);
 				// the user exist in system
 				if(\dash\utility\enter::user_data('id'))
 				{
@@ -106,7 +106,7 @@ class model
 				if($no_problem_to_login)
 				{
 					// set login session
-					$redirect_url = self::enter_set_login();
+					$redirect_url = \dash\utility\enter::enter_set_login();
 					\dash\utility\enter::set_session('redirect_url', $redirect_url);
 					// save redirect url in session to get from okay page
 					// set okay as next step
@@ -123,14 +123,14 @@ class model
 						// so we set for ever dont whill set mobile and go to next step
 						// to login quick by google mail
 						\dash\utility\enter::set_session('dont_will_set_mobile', true);
-						self::mobile_request_next_step();
+						// self::mobile_request_next_step();
 						return;
 
 						// \dash\utility\enter::go_to($go_to_url);
 					}
 					else
 					{
-						self::set_alert(T_("System error! try again"));
+						// self::set_alert(T_("System error! try again"));
 						\dash\utility\enter::go_to('alert');
 					}
 				}
