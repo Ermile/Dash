@@ -2,23 +2,20 @@
 namespace content_enter\autoredirect;
 
 
-class view extends \addons\content_enter\main\view
+class view
 {
-	public function config()
+	public static function config()
 	{
-		parent::config();
-		$this->data->page['title']   = T_('redirecting...');
-		$this->data->page['desc']    = T_('in redirect process...');
-		$this->data->page['special'] = true;
-	}
+		\dash\data::page_title(T_('redirecting...'));
+		\dash\data::page_desc(T_('in redirect process...'));
+		\dash\data::page_special(true);
 
+		$autoredirect = \dash\temp::get('autoredirect');
 
-	public function view_autoredirect()
-	{
-		$autoredirect = $this->controller()::$autoredirect_method;
 		if(!empty($autoredirect))
 		{
-			$this->data->autoredirect = $autoredirect;
+			\dash\data::autoredirect($autoredirect);
+
 			\dash\session::set('redirect_page_url', null);
 			\dash\session::set('redirect_page_method', null);
 			\dash\session::set('redirect_page_args', null);

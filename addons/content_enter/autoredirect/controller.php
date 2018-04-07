@@ -2,13 +2,11 @@
 namespace content_enter\autoredirect;
 
 
-class controller extends \addons\content_enter\main\controller
+class controller
 {
-	public static $autoredirect_method = [];
-
-	public function ready()
+	public static function routing()
 	{
-		$autoredirect = [];
+		$autoredirect           = [];
 
 		$autoredirect['url']    = \dash\session::get('redirect_page_url');
 		$autoredirect['method'] = \dash\session::get('redirect_page_method');
@@ -22,8 +20,7 @@ class controller extends \addons\content_enter\main\controller
 		}
 		else
 		{
-			self::$autoredirect_method = $autoredirect;
-			$this->get(false, 'autoredirect')->ALL();
+			\dash\temp::set('autoredirect', $autoredirect);
 		}
 	}
 }
