@@ -9,7 +9,7 @@ class view
 		$auth_url = \dash\addons\social\google::auth_url();
 
 		// auto redirect if url is clean
-		if($auth_url && !\dash\request::get() && !\dash\request::post() && $this->data->googleLogin)
+		if($auth_url && !\dash\request::get() && !\dash\request::post() && \dash\data::googleLogin())
 		{
 			\dash\redirect::to($auth_url);
 		}

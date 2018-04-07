@@ -21,7 +21,7 @@ class model
 				// get user email
 				$email = \dash\social\google::user_info('email');
 				// load data by email in field user google mail
-				\dash\utility\enter::load_user_data($email, 'googlemail']);
+				\dash\utility\enter::load_user_data($email, 'googlemail');
 				// the user exist in system
 				if(\dash\utility\enter::user_data('id'))
 				{
