@@ -369,38 +369,6 @@ class users
 	}
 
 
-
-	/**
-	 * set login session
-	 *
-	 * @param      <type>  $_user_id  The user identifier
-	 */
-	public static function set_login_session($_user_id)
-	{
-
-		// if user id set load user data by get from database
-		if(!$_user_id || !is_numeric($_user_id))
-		{
-			return false;
-		}
-
-		// load all user field
-		$user_data = self::get_by_id($_user_id);
-
-		// check the reault is true
-		if(!is_array($user_data))
-		{
-			return false;
-		}
-
-		/**
-		 * set user id to get every where
-		 */
-		\dash\user::init($_user_id, $user_data);
-
-	}
-
-
 	/**
 	 * Gets the count of users
 	 * set $_type null to get all users by status and validstatus

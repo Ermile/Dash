@@ -131,7 +131,34 @@ class user
 		// check if have cookie set login by remember
 		if(!\dash\user::login())
 		{
-			// \addons\content_enter\main\tools\login::login_by_remember();
+			$cookie = \dash\db\sessions::get_cookie();
+			if($cookie)
+			{
+				$user_id = \dash\db\sessions::get_user_id();
+				if($user_id && is_numeric($user_id))
+				{
+					// load all user field
+					$user_data = \dash\db\users::get_by_id($user_id);
+
+					// check the reault is true
+					if(!is_array($user_data))
+					{
+						return false;
+					}
+
+					self::init($user_id, $user_data);
+
+					if(isset($_SESSION['main_account']))
+					{
+						// if the admin user login by this user
+						// not save the session
+					}
+					else
+					{
+						\dash\db\sessions::set($user_id);
+					}
+				}
+			}
 		}
 	}
 }
