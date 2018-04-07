@@ -2,26 +2,21 @@
 namespace content_enter\google;
 
 
-class view extends \addons\content_enter\main\view
+class view
 {
-	public function config()
+	public static function config()
 	{
-		parent::config();
-
-		$this->data->auth_url = \dash\social\google::auth_url();
+		$auth_url = \dash\addons\social\google::auth_url();
 
 		// auto redirect if url is clean
-		if($this->data->auth_url && !\dash\request::get() && !\dash\request::post() && $this->data->googleLogin)
+		if($auth_url && !\dash\request::get() && !\dash\request::post() && $this->data->googleLogin)
 		{
-			\dash\redirect::to($this->data->auth_url);
+			\dash\redirect::to($auth_url);
 		}
 
-
-		$this->data->page['title']   = T_('Enter to :name with google', ['name' => $this->data->site['title']]);
-		$this->data->page['special'] = true;
-		$this->data->page['desc']    = $this->data->page['title'];
-
-
+		\dash\data::page_title(T_('Enter to :name with google', ['name' => \dash\data::site_title()]));
+		\dash\data::page_special(true);
+		\dash\data::page_desc(\dash\data::page_title());
 	}
 }
 ?>

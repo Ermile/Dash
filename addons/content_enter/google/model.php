@@ -1,24 +1,10 @@
 <?php
 namespace content_enter\google;
 
-// class google
-// {
-// 	use \addons\content_enter\main\_use;
 
-// 	public static function check()
-// 	{
-// 		return true;
-// 	}
-
-// 	public static function user_info($_key = null)
-// 	{
-// 		return \dash\utility\enter::user_data($_key);
-// 	}
-// }
-
-class model extends \addons\content_enter\main\model
+class model
 {
-	public function get_google()
+	public static function get()
 	{
 		if(\dash\request::get('code'))
 		{
