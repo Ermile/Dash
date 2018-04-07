@@ -5,21 +5,21 @@
 {%block contentForm%}
 {{block('eAllInput')}}
 
-{%if 'telegram' in send_way_cod%}
+{%if 'telegram' in sendWayCod%}
 	<div class="radio1">
 		<input type="radio" name="sendCod" value="telegram" id="sRd3">
 		<label for="sRd3">{%trans "Send code in your Telegram"%}</label>
 	</div>
 {%endif%}
 
-{%if 'sms' in send_way_cod%}
+{%if 'sms' in sendWayCod%}
 	<div class="radio1">
 		<input type="radio" name="sendCod" value="sms" id="sRd1">
 		<label for="sRd1">{%trans "Send code as sms to your phone"%}</label>
 	</div>
 {%endif%}
 
-{%if 'call' in send_way_cod%}
+{%if 'call' in sendWayCod%}
 	<div class="radio1">
 		<input type="radio" name="sendCod" value="call" id="sRd2">
 		<label for="sRd2">{%trans "Call you to send code"%}</label>
@@ -27,7 +27,7 @@
 {%endif%}
 
 
-{%if 'sendsms' in send_way_cod%}
+{%if 'sendsms' in sendWayCod%}
 	<div class="radio1">
 		<input type="radio" name="sendCod" value="sendsms" id="sRd4">
 		<label for="sRd4">{%trans "You send code to us and we check it"%}</label>
@@ -35,7 +35,7 @@
 {%endif%}
 
 
-{%if 'email' in send_way_cod%}
+{%if 'email' in sendWayCod%}
 	<div class="radio1">
 		<input type="radio" name="sendCod" value="email" id="sRd5">
 		<label for="sRd5">{%trans "Send code in your email"%}</label>

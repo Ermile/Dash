@@ -2,47 +2,26 @@
 namespace content_enter\verify;
 
 
-class view extends \addons\content_enter\main\view
+class view
 {
 
-	public function view_verify_way()
+	public static function config()
 	{
-
 
 		$mobile_or_email = \dash\data::getUsernamemobile();
 
-		$this->data->send_way_cod = self::list_go_to_verify($mobile_or_email);
-	}
+		\dash\data::sendWayCod(\dash\utility\enter::list_send_code_way($mobile_or_email));
 
-
-	/**
-	 * config
-	 */
-	public function config()
-	{
-		parent::config();
-
-		// change inpu
-		if(self::done_step('username'))
-		{
-			// if user go to this page from username page
-			$this->data->mobile_username = 'eusername';
-		}
-		else
-		{
-			// if user go to this page from mobile page
-			$this->data->mobile_username = 'emobile';
-		}
 		// load temp username in username field
-		if(self::get_session('username', 'temp_username'))
+		if(\dash\utility\enter::get_session('username', 'temp_username'))
 		{
-			$this->data->get_username = self::get_session('username', 'temp_username');
+			\dash\data::getUsername(\dash\utility\enter::get_session('username', 'temp_username'));
 		}
 
 		// the verify msg
 		$myDesc  = T_('Please verify yourself.'). ' ';
 
-		switch (\dash\url::dir(1))
+		switch (\dash\url::child())
 		{
 			case 'telegram':
 				$myDesc .= T_("We've sent the code via Telegram. Please enter the code below.");
@@ -98,7 +77,6 @@ class view extends \addons\content_enter\main\view
 		}
 
 		$myDesc                 = trim($myDesc);
-		$this->data->verify_msg = $myDesc;
 		$myTitle                = T_('Verify');
 		// set title of pages
 		switch (\dash\url::dir(1))
@@ -116,8 +94,8 @@ class view extends \addons\content_enter\main\view
 				break;
 		}
 
-		$this->data->page['title'] = $myTitle;
-		$this->data->page['desc']  = $myDesc;
+		\dash\data::page_title($myTitle);
+		\dash\data::page_desc($myDesc);
 	}
 }
 ?>
