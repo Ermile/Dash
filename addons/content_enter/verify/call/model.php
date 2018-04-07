@@ -124,7 +124,7 @@ class model extends \addons\content_enter\main\model
 			if(!\dash\utility\enter::get_session('run_call_to_user'))
 			{
 				\dash\notif::result("Call sended");
-				\dash\utility\enter::session_set('run_call_to_user', true);
+				\dash\utility\enter::set_session('run_call_to_user', true);
 				$this->send_call_code();
 			}
 			return;

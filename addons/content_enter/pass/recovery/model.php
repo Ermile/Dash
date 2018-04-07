@@ -2,25 +2,10 @@
 namespace content_enter\pass\recovery;
 
 
-class model extends \addons\content_enter\pass\model
+class model
 {
-	/**
-	 * Gets the enter.
-	 *
-	 * @param      <type>  $_args  The arguments
-	 */
-	public function get_pass($_args)
-	{
 
-	}
-
-
-	/**
-	 * Posts an enter.
-	 *
-	 * @param      <type>  $_args  The arguments
-	 */
-	public function post_pass($_args)
+	public static function post()
 	{
 		if(\dash\request::post('ramzNew'))
 		{
@@ -35,13 +20,13 @@ class model extends \addons\content_enter\pass\model
 					// old pass = new pass
 					// aletr to user the new pass = old pass
 					// login
-					$url = self::enter_set_login();
-					// set alert text
-					self::set_alert(T_("Your new password is your old password"));
-					// set alert link
-					self::set_alert_link($url);
-					// set alert button caption
-					self::set_alert_button(T_("Enter"));
+					$url             = \dash\utility\enter::enter_set_login();
+					$alert           = [];
+					$alter['text']   = T_("Your new password is your old password");
+					$alter['link']   = $url;
+					$alter['button'] = T_("Enter");
+
+					\dash\utility\enter::set_session('alert', $alert);
 					// open lock alert page
 					\dash\utility\enter::next_step('alert');
 					// go to alert page
@@ -64,8 +49,8 @@ class model extends \addons\content_enter\pass\model
 			// if debug status continue
 			if(\dash\engine\process::status())
 			{
-				\dash\utility\enter::session_set('temp_ramz', $temp_ramz);
-				\dash\utility\enter::session_set('temp_ramz_hash', $temp_ramz_hash);
+				\dash\utility\enter::set_session('temp_ramz', $temp_ramz);
+				\dash\utility\enter::set_session('temp_ramz_hash', $temp_ramz_hash);
 			}
 			else
 			{
@@ -75,19 +60,13 @@ class model extends \addons\content_enter\pass\model
 		}
 		else
 		{
-			// plus count invalid password
-			self::plus_try_session('no_password_send_verify');
-
+			\dash\code::sleep(3);
 			\dash\notif::error(T_("Invalid Password"));
 			return false;
 		}
 
 		// set session verify_from recovery
-		\dash\utility\enter::session_set('verify_from', 'recovery');
-		// find send way to send code
-		// and send code
-		// set step pass is done
-		self::set_step_session('pass', true);
+		\dash\utility\enter::set_session('verify_from', 'recovery');
 
 		// send code way
 		\dash\utility\enter::go_to_verify();

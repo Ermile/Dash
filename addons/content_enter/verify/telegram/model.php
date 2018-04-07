@@ -60,7 +60,7 @@ class model extends \addons\content_enter\main\model
 			if(!\dash\utility\enter::get_session('run_telegram_to_user'))
 			{
 				\dash\notif::result("Telegram sended");
-				\dash\utility\enter::session_set('run_telegram_to_user', true);
+				\dash\utility\enter::set_session('run_telegram_to_user', true);
 				$this->send_telegram_code();
 			}
 			return;

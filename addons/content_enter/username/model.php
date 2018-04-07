@@ -62,7 +62,7 @@ class model extends \addons\content_enter\main\model
 			// we need to her mobile to recovery this
 			if(!\dash\utility\enter::get_session('mobile') && \dash\utility\enter::user_data('mobile'))
 			{
-				\dash\utility\enter::session_set('mobile', \dash\utility\enter::user_data('mobile'));
+				\dash\utility\enter::set_session('mobile', \dash\utility\enter::user_data('mobile'));
 			}
 
 			// set step session

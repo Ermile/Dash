@@ -5,7 +5,7 @@ namespace content_enter\pass;
 class model
 {
 
-	public function post()
+	public static function post()
 	{
 		if(!\dash\request::post('ramz'))
 		{
@@ -28,7 +28,7 @@ class model
 			else
 			{
 				// wrong password sleep code
-				\lib\code::sleep(3);
+				\dash\code::sleep(3);
 				\dash\notif::error(T_("Invalid password, try again"));
 				return false;
 			}

@@ -56,7 +56,7 @@ class model
 				// set login session
 				$redirect_url = \dash\utility\enter::enter_set_login();
 				// save redirect url in session to get from okay page
-				\dash\utility\enter::session_set('redirect_url', $redirect_url);
+				\dash\utility\enter::set_session('redirect_url', $redirect_url);
 				// set okay as next step
 				\dash\utility\enter::next_step('okay');
 				// go to okay page

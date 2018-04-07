@@ -49,11 +49,11 @@ class model extends \addons\content_enter\main\model
 
 		if(\dash\request::post('emailNew'))
 		{
-			\dash\utility\enter::session_set('temp_email', \dash\request::post('emailNew'));
+			\dash\utility\enter::set_session('temp_email', \dash\request::post('emailNew'));
 		}
 
 		// set session verify_from set
-		\dash\utility\enter::session_set('verify_from', 'email_set');
+		\dash\utility\enter::set_session('verify_from', 'email_set');
 
 		// send code whit email
 		self::send_code_email();

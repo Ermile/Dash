@@ -27,11 +27,11 @@ class model extends \addons\content_enter\main\model
 
 		$code = rand(10000,99999);
 
-		\dash\utility\enter::session_set('sendsms_code', $code);
+		\dash\utility\enter::set_session('sendsms_code', $code);
 
 		$log_id = \dash\db\logs::set('enter:get:sms:from:user', $user_id, ['data' => $code, 'meta' => ['session' => $_SESSION]]);
 
-		\dash\utility\enter::session_set('sendsms_code_log_id', $log_id);
+		\dash\utility\enter::set_session('sendsms_code_log_id', $log_id);
 
 		return true;
 	}

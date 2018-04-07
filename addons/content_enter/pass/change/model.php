@@ -59,8 +59,8 @@ class model extends \addons\content_enter\pass\model
 		// if \dash\notif status continue
 		if(\dash\engine\process::status())
 		{
-			\dash\utility\enter::session_set('temp_ramz', \dash\request::post('ramzNew'));
-			\dash\utility\enter::session_set('temp_ramz_hash', $temp_ramz_hash);
+			\dash\utility\enter::set_session('temp_ramz', \dash\request::post('ramzNew'));
+			\dash\utility\enter::set_session('temp_ramz_hash', $temp_ramz_hash);
 		}
 		else
 		{
@@ -69,7 +69,7 @@ class model extends \addons\content_enter\pass\model
 		}
 
 		// set session verify_from change
-		\dash\utility\enter::session_set('verify_from', 'change');
+		\dash\utility\enter::set_session('verify_from', 'change');
 		// find send way to send code
 		// and send code
 

@@ -24,7 +24,7 @@ class model extends \addons\content_enter\main\model
 
 		if(!\dash\utility\enter::get_session('code_is_created'))
 		{
-			\dash\utility\enter::session_set('code_is_created', true);
+			\dash\utility\enter::set_session('code_is_created', true);
 			// self::send_way();
 		}
 

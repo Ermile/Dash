@@ -111,7 +111,7 @@ class model extends \addons\content_enter\main\model
 			if(!\dash\utility\enter::get_session('run_send_sms_code'))
 			{
 				\dash\notif::result("Sms sended");
-				\dash\utility\enter::session_set('run_send_sms_code', true);
+				\dash\utility\enter::set_session('run_send_sms_code', true);
 				$this->send_sms_code();
 			}
 			return;

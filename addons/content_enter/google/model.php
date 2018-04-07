@@ -62,9 +62,9 @@ class model extends \addons\content_enter\main\model
 							{
 								if(strtotime(\dash\utility\enter::user_data('dontwillsetmobile')) > (60*60*24*365))
 								{
-									\dash\utility\enter::session_set('mobile_request_from', 'google_email_exist');
+									\dash\utility\enter::set_session('mobile_request_from', 'google_email_exist');
 
-									\dash\utility\enter::session_set('logined_by_email', \dash\social\google::user_info('email'));
+									\dash\utility\enter::set_session('logined_by_email', \dash\social\google::user_info('email'));
 									// go to mobile get to enter mobile
 									\dash\utility\enter::next_step('mobile/request');
 									// get go to url
@@ -78,9 +78,9 @@ class model extends \addons\content_enter\main\model
 							}
 							else
 							{
-								\dash\utility\enter::session_set('mobile_request_from', 'google_email_exist');
+								\dash\utility\enter::set_session('mobile_request_from', 'google_email_exist');
 
-								\dash\utility\enter::session_set('logined_by_email', \dash\social\google::user_info('email'));
+								\dash\utility\enter::set_session('logined_by_email', \dash\social\google::user_info('email'));
 								// go to mobile get to enter mobile
 								\dash\utility\enter::next_step('mobile/request');
 								// get go to url
@@ -105,11 +105,11 @@ class model extends \addons\content_enter\main\model
 					$args['email'] = \dash\social\google::user_info('email');
 					$args['datecreated']  = date("Y-m-d H:i:s");
 
-					\dash\utility\enter::session_set('mobile_request_from', 'google_email_not_exist');
+					\dash\utility\enter::set_session('mobile_request_from', 'google_email_not_exist');
 
-					\dash\utility\enter::session_set('must_signup', $args);
+					\dash\utility\enter::set_session('must_signup', $args);
 
-					\dash\utility\enter::session_set('logined_by_email', \dash\social\google::user_info('email'));
+					\dash\utility\enter::set_session('logined_by_email', \dash\social\google::user_info('email'));
 
 					// go to mobile get to enter mobile
 					\dash\utility\enter::next_step('mobile/request');
@@ -121,7 +121,7 @@ class model extends \addons\content_enter\main\model
 				{
 					// set login session
 					$redirect_url = self::enter_set_login();
-					\dash\utility\enter::session_set('redirect_url', $redirect_url);
+					\dash\utility\enter::set_session('redirect_url', $redirect_url);
 					// save redirect url in session to get from okay page
 					// set okay as next step
 					\dash\utility\enter::next_step('okay');
@@ -136,7 +136,7 @@ class model extends \addons\content_enter\main\model
 						// in this time we need time to check next step
 						// so we set for ever dont whill set mobile and go to next step
 						// to login quick by google mail
-						\dash\utility\enter::session_set('dont_will_set_mobile', true);
+						\dash\utility\enter::set_session('dont_will_set_mobile', true);
 						self::mobile_request_next_step();
 						return;
 
