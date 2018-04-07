@@ -440,142 +440,15 @@ class enter
 	/**
 	 * Sends a code way.
 	 */
-	public static function send_code_way()
+	public static function go_to_verify()
 	{
 		$host = \dash\url::base();
 		$host .= '/enter/verify/';
 		self::open_lock('verify');
-
-
 		\dash\redirect::to($host);
 	}
 
 
-	/**
-	 * Sends a way.
-	 * find send way
-	 * @param      string  $_type  The type [ send_rate | resend_rate]
-	 *
-	 * @return     <type>  ( description_of_the_return_value )
-	 */
-	public static function send_way($_type = 'send_rate')
-	{
-		// generate verify code to find what old way
-		// if no code was set
-		// make new code and way is null
-		// we find the way is the first way to send
-		self::generate_verification_code();
-		// get the old way code
-		$old_way = self::get_session('verification_code_way');
-
-		// get send rate by look at $_type
-		if($_type == 'send_rate')
-		{
-			$rate = self::$send_rate;
-		}
-		elseif($_type == 'resend_rate')
-		{
-			$rate = self::$resend_rate;
-		}
-		else
-		{
-			$rate = self::$send_rate;
-		}
-
-		// first send way code
-		if(!$old_way)
-		{
-			if(isset($rate[0]) && is_string($rate[0]))
-			{
-				if(self::get_session('verification_code_id'))
-				{
-					if(\dash\db\logs::update(['desc' => $rate[0]], self::get_session('verification_code_id')))
-					{
-						// update session on nex way
-						self::set_session('verification_code_way', $rate[0]);
-						// first way to send code
-						return $rate[0];
-					}
-				}
-			}
-		}
-
-		// find key of this old way
-		$current_key = array_search($old_way, $rate);
-		// if the key is find
-		if(isset($current_key))
-		{
-			// go to nex key
-			$next_key = $current_key + 1;
-			if(isset($rate[$next_key]) && is_string($rate[$next_key]))
-			{
-				// nex way
-				if(self::get_session('verification_code_id'))
-				{
-					// update log on next way
-					if(\dash\db\logs::update(['desc' => $rate[$next_key]], self::get_session('verification_code_id')))
-					{
-						// update session on nex way
-						self::set_session('verification_code_way', $rate[$next_key]);
-						// return the way to got to this step
-						return $rate[$next_key];
-					}
-				}
-			}
-		}
-		return false;
-	}
-
-
-	/**
-	 * Gets the last way.
-	 * get last way of send rate
-	 *
-	 */
-	public static function get_last_way($_type = 'send_rate')
-	{
-		// get the old way code
-		$old_way = self::get_session('verification_code_way');
-
-		// get send rate by look at $_type
-		if($_type == 'send_rate')
-		{
-			$rate = self::$send_rate;
-		}
-		elseif($_type == 'resend_rate')
-		{
-			$rate = self::$resend_rate;
-		}
-		else
-		{
-			$rate = self::$send_rate;
-		}
-
-		// first send way code
-		if(!$old_way)
-		{
-			$old_way = ':/';
-		}
-
-		// find key of this old way
-		$current_key = array_search($old_way, $rate);
-		// if the key is find
-		if(isset($current_key))
-		{
-			// go to nex key
-			$next_key = $current_key - 1;
-			if(isset($rate[$next_key]) && is_string($rate[$next_key]))
-			{
-				return $rate[$next_key];
-			}
-		}
-
-		if(isset($rate[0]) && is_string($rate[0]))
-		{
-			return $rate[0];
-		}
-		return false;
-	}
 
 	/**
 	 * generate verification code
@@ -595,10 +468,10 @@ class enter
 
 		$log_meta =
 		[
-			'data'     => $code,
+			'data' => $code,
 			'desc' => $_way,
-			'time'     => $time,
-			'meta'     =>
+			'time' => $time,
+			'meta' =>
 			[
 				'session' => $_SESSION,
 			],
@@ -1154,10 +1027,7 @@ class enter
 		else
 		{
 			// wrong code sleep code
-			self::sleep_code();
-
-			// plus count invalid code
-			self::plus_try_session('invalid_code');
+			\lib\code::sleep(3);
 
 			\dash\notif::error(T_("Invalid code, try again"), 'code');
 			return false;
@@ -1186,71 +1056,6 @@ class enter
 
 
 	/**
-	 * user fill the mobile/request
-	 * this function find next step
-	 * signup user
-	 * or login only
-	 */
-	public static function mobile_request_next_step()
-	{
-		// set temp ramz in use pass
-		switch (self::get_session('mobile_request_from'))
-		{
-			case 'google_email_not_exist':
-				if(self::get_session('must_signup'))
-				{
-					// sign up user
-					self::set_session('first_signup', true);
-
-					$user_id = self::signup_email(self::get_session('must_signup'));
-					if($user_id)
-					{
-						$user_id = $user_id;
-						\dash\utility\enter::load_user_data($user_id, 'user_id');
-						// auto redirect to redirect url
-						self::enter_set_login(null, true);
-						return;
-					}
-					else
-					{
-						// can not signup
-						return false;
-					}
-				}
-				break;
-
-			case 'google_email_exist':
-				if(is_numeric(\dash\utility\enter::user_data('id')))
-				{
-					// the user click on dont will mobile
-					// we save this time to dontwillsetmobile to never show this message again
-					$update_user_google = [];
-
-					if(self::get_session('dont_will_set_mobile'))
-					{
-						$update_user_google['dontwillsetmobile'] = date("Y-m-d H:i:s");
-					}
-					if(!empty($update_user_google))
-					{
-						\dash\db\users::update($update_user_google, \dash\utility\enter::user_data('id'));
-					}
-					//auto redirect to redirect url
-					self::enter_set_login(null, true);
-					return ;
-				}
-
-				return false;
-				break;
-
-			default:
-				# code...
-				break;
-		}
-		return true;
-	}
-
-
-	/**
 	 * lock or unlock step
 	 * and check is lock or not lock
 	 *
@@ -1261,12 +1066,12 @@ class enter
 	{
 		if($_acction === true)
 		{
-			self::set_session('lock'. $_module, true);
+			self::set_session('lock', true, $_module);
 		}
 
 		if($_acction === false)
 		{
-			self::set_session('lock'. $_module, false);
+			self::set_session('lock', false, $_module);
 		}
 
 		if($_acction === null)
@@ -1278,7 +1083,7 @@ class enter
 				return false;
 			}
 			// get lock from session
-			$is_lock = self::get_session('lock'. $_module);
+			$is_lock = self::get_session('lock', $_module);
 			// if is lock or not set
 			if($is_lock === true || $is_lock === null)
 			{
@@ -1311,38 +1116,11 @@ class enter
 	public static function next_step($_module)
 	{
 		// unset all other lock
-		unset($_SESSION['lock']);
+		unset($_SESSION['enter']['lock']);
 		// set jusn this lock
-		self::set_session('lock'. $_module, false);
+		self::set_session('lock', false, $_module);
 	}
 
-
-	/**
-	 * check and set loaded module
-	 *
-	 * @param      <type>  $_module  The module
-	 * @param      <type>  $_type    The type
-	 */
-	public static function loaded_module($_module, $_type = null)
-	{
-		if($_type === null)
-		{
-			if(self::get_session('loaded_module'. $_module))
-			{
-				return true;
-			}
-			else
-			{
-				return false;
-			}
-		}
-
-		if($_type === true)
-		{
-			$_SESSION['loaded_module'] = [];
-			self::set_session('loaded_module'. $_module, true);
-		}
-	}
 
 	/**
 	 * redirect to url
@@ -1355,29 +1133,37 @@ class enter
 	{
 
 		$host = \dash\url::base();
-
+		$url  = null;
 		switch ($_url)
 		{
 			// redirect to base
 			case 'base':
-				$host .= '/enter';
-				\dash\redirect::to($host);
+				$url = $host. '/enter';
 				break;
 
 			case 'main':
-				\dash\redirect::to($host);
+				$url = $host;
 				break;
 
 			case 'okay':
-				if($url = self::get_session('redirect_url'))
+				if(self::get_session('redirect_url'))
 				{
-					\dash\redirect::to($url);
+					$url = self::get_session('redirect_url');
+				}
+				else
+				{
+					$url = $host;
 				}
 				break;
 
 			default:
-				\dash\redirect::to($_url);
+				$url = $host. '/enter/'. $_url;
 				break;
+		}
+
+		if($url)
+		{
+			\dash\redirect::to($url);
 		}
 	}
 }

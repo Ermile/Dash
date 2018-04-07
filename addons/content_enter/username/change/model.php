@@ -19,7 +19,7 @@ class model extends \addons\content_enter\main\model
 			\dash\utility\enter::session_set('verify_from', 'username_remove');
 
 			// send code way
-			\dash\utility\enter::send_code_way();
+			\dash\utility\enter::go_to_verify();
 
 			return;
 		}
@@ -69,7 +69,7 @@ class model extends \addons\content_enter\main\model
 		\dash\utility\enter::session_set('verify_from', 'username_change');
 
 		// send code way
-		\dash\utility\enter::send_code_way();
+		\dash\utility\enter::go_to_verify();
 	}
 }
 ?>

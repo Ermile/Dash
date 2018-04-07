@@ -48,7 +48,7 @@ class model
 				unset($_SESSION['permission']);
 
 				\dash\utility\enter::$user_id = $user_id;
-				\dash\utility\enter::load_user_data('user_id');
+				\dash\utility\enter::load_user_data($user_id, 'user_id');
 
 				$_SESSION['main_account'] = $main_account;
 				$_SESSION['main_mobile']  = $main_mobile;
@@ -122,7 +122,7 @@ class model
 		\dash\utility\enter::set_session('usernameormobile', $usernameormobile);
 
 		// load user data by mobile
-		$user_data = \dash\utility\enter::load_user_data('usernameormobile', $usernameormobile);
+		$user_data = \dash\utility\enter::load_user_data($usernameormobile, 'usernameormobile');
 
 		// the user not found must be signup
 		if(!$user_data)

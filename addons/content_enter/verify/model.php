@@ -16,7 +16,7 @@ class model extends \addons\content_enter\main\model
 			return false;
 		}
 
-		if(!in_array($send_code, self::list_send_code_way($mobile_email)))
+		if(!in_array($send_code, self::list_go_to_verify($mobile_email)))
 		{
 			\dash\notif::error(T_("Dont!"));
 			return false;
@@ -25,7 +25,7 @@ class model extends \addons\content_enter\main\model
 		if(!\dash\utility\enter::get_session('code_is_created'))
 		{
 			\dash\utility\enter::session_set('code_is_created', true);
-			self::send_way();
+			// self::send_way();
 		}
 
 		if(\dash\url::isLocal())

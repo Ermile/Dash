@@ -64,7 +64,7 @@ class model extends \addons\content_enter\pass\model
 		self::set_step_session('pass', true);
 
 		// send code way
-		\dash\utility\enter::send_code_way();
+		\dash\utility\enter::go_to_verify();
 	}
 }
 ?>

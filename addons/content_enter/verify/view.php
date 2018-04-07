@@ -11,7 +11,7 @@ class view extends \addons\content_enter\main\view
 
 		$mobile_or_email = \dash\data::getUsernamemobile();
 
-		$this->data->send_way_cod = self::list_send_code_way($mobile_or_email);
+		$this->data->send_way_cod = self::list_go_to_verify($mobile_or_email);
 	}
 
 

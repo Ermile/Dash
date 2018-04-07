@@ -28,7 +28,7 @@ class model extends \addons\content_enter\main\model
 				{
 					\dash\utility\enter::session_set('verify_from', 'two_step');
 					// find way and redirect to it
-					\dash\utility\enter::send_code_way();
+					\dash\utility\enter::go_to_verify();
 					return;
 				}
 				else

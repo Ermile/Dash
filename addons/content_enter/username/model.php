@@ -26,7 +26,7 @@ class model extends \addons\content_enter\main\model
 		// set username
 		self::$username = $username;
 		// load userdata by username
-		self::load_user_data('username');
+		self::load_user_data($username, 'username');
 
 		// save username in $_SESSION['username']['temp_username']
 		self::set_session('username', 'temp_username', $username);

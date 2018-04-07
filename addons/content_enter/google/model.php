@@ -35,7 +35,7 @@ class model extends \addons\content_enter\main\model
 				// get user email
 				self::$email = \dash\social\google::user_info('email');
 				// load data by email in field user google mail
-				self::load_user_data('email', ['email_field' => 'googlemail']);
+				self::load_user_data($email, 'googlemail']);
 				// the user exist in system
 				if(\dash\utility\enter::user_data('id'))
 				{

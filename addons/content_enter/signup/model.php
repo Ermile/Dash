@@ -119,7 +119,7 @@ class model extends \addons\content_enter\main\model
 		}
 
 		self::$user_id = $user_id;
-		self::load_user_data('user_id');
+		self::load_user_data($user_id, 'user_id');
 		self::enter_set_login(null, true);
 
 	}

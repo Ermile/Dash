@@ -28,7 +28,7 @@ class model extends \addons\content_enter\main\model
 		{
 			self::$user_id = $user_id;
 			\dash\db\users::update(['googlemail' => $new_google_mail], $user_id);
-			self::load_user_data('user_id');
+			self::load_user_data($user_id, 'user_id');
 			self::enter_set_login();
 			\dash\utility\enter::next_step('okay');
 			\dash\utility\enter::go_to('okay');

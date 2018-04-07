@@ -37,7 +37,7 @@ class controller extends \addons\content_enter\main\controller
 				else
 				{
 					// send code way
-					\dash\utility\enter::send_code_way();
+					\dash\utility\enter::go_to_verify();
 
 					$args['force_json']   = false;
 					$args['force_stop']   = true;
