@@ -2,30 +2,10 @@
 namespace content_enter\sessions;
 
 
-class model extends \addons\content_enter\main\model
+class model
 {
-	/**
-	 * Gets the enter.
-	 *
-	 * @param      <type>  $_args  The arguments
-	 */
-	public function sessions_list()
-	{
-		if(\dash\user::login())
-		{
-			$user_id = \dash\user::id();
-			$list = \dash\db\sessions::get_active_sessions($user_id);
-			return $list;
-		}
-	}
 
-
-	/**
-	 * Posts an sessions.
-	 *
-	 * @param      <type>  $_args  The arguments
-	 */
-	public function post_sessions($_args)
+	public static function post()
 	{
 		if(!\dash\user::login())
 		{

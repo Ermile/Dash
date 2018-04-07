@@ -1,17 +1,12 @@
 <?php
 namespace content_enter\sessions;
 
-class view extends \addons\content_enter\main\view
+class view
 {
 
-	/**
-	 * view enter
-	 *
-	 * @param      <type>  $_args  The arguments
-	 */
-	public function view_sessions($_args)
+	public static function config()
 	{
-		$mySessions    = $this->model()->sessions_list();
+		$mySessions    = self::sessions_list();
 		$mySessionData = [];
 		foreach ($mySessions as $key => $row)
 		{
@@ -41,11 +36,23 @@ class view extends \addons\content_enter\main\view
 			}
 		}
 
-		$this->data->sessions_list = $mySessionData;
+		\dash\data::sessionsList($mySessionData);
 
-		$this->data->page['title']   = T_('Active sessions');
-		$this->data->page['desc']    = $this->data->page['title'];
-
+		\dash\data::page_title(T_('Active sessions'));
+		\dash\data::page_desc(\dash\data::page_title());
 	}
+
+
+	public static function sessions_list()
+	{
+		if(\dash\user::login())
+		{
+			$user_id = \dash\user::id();
+			$list    = \dash\db\sessions::get_active_sessions($user_id);
+			return $list;
+		}
+		return [];
+	}
+
 }
 ?>

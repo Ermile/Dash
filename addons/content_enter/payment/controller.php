@@ -2,9 +2,9 @@
 namespace content_enter\payment;
 
 
-class controller extends \addons\content_enter\main\controller
+class controller
 {
-	public function ready()
+	public static function routing()
 	{
 		$url             = \dash\url::directory();
 
@@ -15,8 +15,6 @@ class controller extends \addons\content_enter\main\controller
 		$args['get']     = \dash\request::get();
 		$args['post']    = \dash\request::post();
 		$args['request'] = \dash\safe::safe($_REQUEST);
-
-		$this->display = false;
 
 		switch ($url_type)
 		{

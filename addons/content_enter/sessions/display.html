@@ -2,7 +2,7 @@
 
 {%block contentBody%}
   <div class="sessions">
-{%for key, row in sessions_list%}
+{%for key, row in sessionsList%}
    <div>
     <div class="browser">{{row.browser}} {{row.browserVer | fitNumber}}</div>
     <div class="os">{{row.os}} {{row.osVer | fitNumber}}</div>
