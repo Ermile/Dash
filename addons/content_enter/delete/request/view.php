@@ -1,15 +1,13 @@
 <?php
 namespace content_enter\delete\request;
 
-class view extends \addons\content_enter\main\view
+
+class view
 {
-	public function config()
+	public static function config()
 	{
-		parent::config();
-
-		$this->data->page['title']   = T_('Request delete account');
-		$this->data->page['desc']    = $this->data->page['title'];
+		\dash\data::page_title(T_('Request delete account'));
+		\dash\data::page_desc(\dash\data::page_title());
 	}
-
 }
 ?>

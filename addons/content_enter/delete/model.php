@@ -2,17 +2,9 @@
 namespace content_enter\delete;
 
 
-class model extends \addons\content_enter\main\model
+class model
 {
-
-	/**
-	 * Posts an enter.
-	 * user try to delete her account
-	 * save why posted and verify user account
-	 *
-	 * @param      <type>  $_args  The arguments
-	 */
-	public function post_delete($_args)
+	public static function post()
 	{
 		if(\dash\request::post('why'))
 		{

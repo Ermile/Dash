@@ -1,12 +1,11 @@
 <?php
 namespace content_enter\delete;
 
-class controller extends \addons\content_enter\main\controller
+class controller
 {
-	public function ready()
+	public static function routing()
 	{
-		$this->get()->ALL();
-		$this->post('delete')->ALL();
+
 	}
 }
 ?>
