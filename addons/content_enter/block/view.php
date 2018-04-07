@@ -2,15 +2,12 @@
 namespace content_enter\block;
 
 
-class view extends \addons\content_enter\main\view
+class view
 {
-	public function config()
+	public static function config()
 	{
-		// read parent config to fill the mobile input and other thing
-		parent::config();
-
-		$this->data->page['title']   = T_('Hey! You are Blocked!!');
-		$this->data->page['desc']    = $this->data->page['title'];
+		\dash\data::page_title(T_('Hey! You are Blocked!!'));
+		\dash\data::page_desc(\data\data::page_title());
 	}
 }
 ?>
