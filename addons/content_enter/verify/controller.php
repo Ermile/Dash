@@ -10,9 +10,9 @@ class controller extends \addons\content_enter\main\controller
 		parent::if_login_not_route();
 
 		// if this step is locked go to error page and return
-		if(self::lock('verify'))
+		if(\dash\utility\enter::lock('verify'))
 		{
-			self::error_page('verify');
+			\dash\header::status(404, 'verify');
 			return;
 		}
 

@@ -7,9 +7,9 @@ class controller extends \addons\content_enter\main\controller
 	public function ready()
 	{
 		// if this step is locked go to error page and return
-		if(self::lock('verify/call'))
+		if(\dash\utility\enter::lock('verify/call'))
 		{
-			self::error_page('verify/call');
+			\dash\header::status(404, 'verify/call');
 			return;
 		}
 

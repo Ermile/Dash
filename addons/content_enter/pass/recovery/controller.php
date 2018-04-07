@@ -7,9 +7,9 @@ class controller extends \addons\content_enter\main\controller
 	{
 
 		// if this step is locked go to error page and return
-		if(self::lock('pass/recovery'))
+		if(\dash\utility\enter::lock('pass/recovery'))
 		{
-			self::error_page('pass/recovery');
+			\dash\header::status(404, 'pass/recovery');
 			return;
 		}
 

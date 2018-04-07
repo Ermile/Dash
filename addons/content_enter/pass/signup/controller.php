@@ -7,9 +7,9 @@ class controller extends \addons\content_enter\main\controller
 	{
 
 		// if this step is locked go to error page and return
-		if(self::lock('pass/signup'))
+		if(\dash\utility\enter::lock('pass/signup'))
 		{
-			self::error_page('pass/signup');
+			\dash\header::status(404, 'pass/signup');
 			return;
 		}
 
@@ -23,7 +23,7 @@ class controller extends \addons\content_enter\main\controller
 		else
 		{
 			// make page error or redirect
-			self::error_page('pass/signup');
+			\dash\header::status(404, 'pass/signup');
 		}
 	}
 }

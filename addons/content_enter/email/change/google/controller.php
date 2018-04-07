@@ -6,9 +6,9 @@ class controller extends \addons\content_enter\main\controller
 	public function ready()
 	{
 		$url = \dash\url::directory();
-		// if(self::lock('email/change/google'))
+		// if(\dash\utility\enter::lock('email/change/google'))
 		// {
-		// 	self::error_page('email/change/google');
+		// 	\dash\header::status(404, 'email/change/google');
 		// 	return;
 		// }
 

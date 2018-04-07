@@ -1,28 +1,20 @@
 <?php
-namespace addons\content_enter\pass\set;
+namespace content_enter\pass\set;
 
-class controller extends \addons\content_enter\main\controller
+class controller
 {
-	public function ready()
+	public static function routing()
 	{
 		// if this step is locked go to error page and return
-		if(self::lock('pass/set'))
+		if(\dash\utility\enter::lock('pass/set'))
 		{
-			self::error_page('pass/set');
-			return;
+			\dash\header::status(404, 'pass/set');
 		}
 
 		// if step mobile is done
-		if(!\dash\utility\enter::user_data('password'))
+		if(\dash\utility\enter::user_data('password'))
 		{
-			// parent::ready();
-			$this->get('pass')->ALL('pass/set');
-			$this->post('pass')->ALL('pass/set');
-		}
-		else
-		{
-			// make page error or redirect
-			self::error_page('pass/set');
+			\dash\header::status(404, 'pass/set');
 		}
 	}
 }

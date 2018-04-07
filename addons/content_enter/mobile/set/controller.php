@@ -6,9 +6,9 @@ class controller extends \addons\content_enter\main\controller
 	public function ready()
 	{
 		// if this step is locked go to error page and return
-		if(self::lock('pass/set'))
+		if(\dash\utility\enter::lock('pass/set'))
 		{
-			self::error_page('pass/set');
+			\dash\header::status(404, 'pass/set');
 			return;
 		}
 
@@ -22,7 +22,7 @@ class controller extends \addons\content_enter\main\controller
 		else
 		{
 			// make page error or redirect
-			self::error_page('pass/set');
+			\dash\header::status(404, 'pass/set');
 		}
 	}
 }

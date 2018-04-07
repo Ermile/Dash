@@ -103,7 +103,25 @@ class enter
 	 */
 	public static function user_data($_key = null)
 	{
-		return self::get_session($_key, 'user_data');
+		if(!isset($_SESSION['enter']['user_data']))
+		{
+			self::load_user_data('mobile');
+		}
+
+		if($_key)
+		{
+			if(isset($_SESSION['enter']['user_data'][$_key]))
+			{
+				return $_SESSION['enter']['user_data'][$_key];
+			}
+			return null;
+		}
+
+		if(isset($_SESSION['enter']['user_data']))
+		{
+			return $_SESSION['enter']['user_data'];
+		}
+		return null;
 	}
 
 
@@ -1078,7 +1096,7 @@ class enter
 		{
 			// in dev and when we in debug mode
 			// we have not any page to lock!
-			if(\dash\url::isLocal() && self::$debug_mode)
+			if(\dash\url::isLocal())
 			{
 				return false;
 			}

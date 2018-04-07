@@ -1,9 +1,12 @@
 <?php
-namespace addons\content_enter\pass\set;
+namespace content_enter\pass\set;
 
-class view extends \addons\content_enter\pass\view
+class view
 {
+	public static function config()
+	{
 
+	}
 
 }
 ?>

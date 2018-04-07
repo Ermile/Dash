@@ -7,9 +7,9 @@ class controller extends \addons\content_enter\main\controller
 	{
 
 		// if this step is locked go to error page and return
-		if(self::lock('pass/change'))
+		if(\dash\utility\enter::lock('pass/change'))
 		{
-			self::error_page('pass/change');
+			\dash\header::status(404, 'pass/change');
 			return;
 		}
 		// if the user is login redirect to base

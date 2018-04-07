@@ -8,9 +8,9 @@ class controller extends \addons\content_enter\main\controller
 	{
 
 		// if this step is locked go to error page and return
-		if(self::lock('verify/telegram'))
+		if(\dash\utility\enter::lock('verify/telegram'))
 		{
-			self::error_page('verify/telegram');
+			\dash\header::status(404, 'verify/telegram');
 			return;
 		}
 

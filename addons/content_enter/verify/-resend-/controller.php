@@ -13,9 +13,9 @@ class controller extends \addons\content_enter\main\controller
 		// }
 
 		// if this step is locked go to error page and return
-		if(self::lock('verify/resend'))
+		if(\dash\utility\enter::lock('verify/resend'))
 		{
-			self::error_page('verify/resend');
+			\dash\header::status(404, 'verify/resend');
 			return;
 		}
 
@@ -31,7 +31,7 @@ class controller extends \addons\content_enter\main\controller
 			{
 				if(time() - intval(\dash\utility\enter::get_session('send_code_at_time')) < self::$resend_after)
 				{
-					self::error_page('verify/resend/why/harry?');
+					\dash\header::status(404, 'verify/resend/why/harry?');
 					return;
 				}
 				else
@@ -48,7 +48,7 @@ class controller extends \addons\content_enter\main\controller
 			}
 			else
 			{
-				self::error_page('verify/resend/time?');
+				\dash\header::status(404, 'verify/resend/time?');
 			}
 		}
 		else

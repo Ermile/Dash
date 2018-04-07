@@ -8,9 +8,9 @@ class controller extends \addons\content_enter\main\controller
 	{
 
 		// if this step is locked go to error page and return
-		if(self::lock('verify/what'))
+		if(\dash\utility\enter::lock('verify/what'))
 		{
-			self::error_page('verify/what');
+			\dash\header::status(404, 'verify/what');
 			return;
 		}
 

@@ -14,9 +14,9 @@ class controller extends \addons\content_enter\main\controller
 		// }
 
 		// if this step is locked go to error page and return
-		if(self::lock('verify/sendsms'))
+		if(\dash\utility\enter::lock('verify/sendsms'))
 		{
-			self::error_page('verify/sendsms');
+			\dash\header::status(404, 'verify/sendsms');
 			return;
 		}
 
