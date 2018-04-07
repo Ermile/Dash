@@ -2,9 +2,9 @@
 namespace content_enter\pass;
 
 
-class controller extends \addons\content_enter\main\controller
+class controller
 {
-	public function ready()
+	public static function routing()
 	{
 		// if this step is locked go to error page and return
 		if(\dash\utility\enter::lock('pass'))
@@ -12,9 +12,6 @@ class controller extends \addons\content_enter\main\controller
 			\dash\header::status(404, 'pass');
 			return;
 		}
-
-		$this->post('check')->ALL('pass');
-
 	}
 }
 ?>
