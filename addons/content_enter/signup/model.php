@@ -2,15 +2,10 @@
 namespace content_enter\signup;
 
 
-class model extends \addons\content_enter\main\model
+class model
 {
 
-	/**
-	 * Posts an enter.
-	 *
-	 * @param      <type>  $_args  The arguments
-	 */
-	public function post_signup($_args)
+	public static function post()
 	{
 
 		$count = \dash\session::get('count_signup_check');
@@ -118,10 +113,8 @@ class model extends \addons\content_enter\main\model
 			return false;
 		}
 
-		self::$user_id = $user_id;
-		self::load_user_data($user_id, 'user_id');
-		self::enter_set_login(null, true);
-
+		\dash\utility\enter::load_user_data($user_id, 'user_id');
+		\dash\utility\enter::enter_set_login(null, true);
 	}
 }
 ?>

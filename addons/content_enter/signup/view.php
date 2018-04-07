@@ -1,23 +1,17 @@
 <?php
 namespace content_enter\signup;
 
-class view extends \addons\content_enter\main\view
+class view
 {
 
-	/**
-	 * view enter
-	 *
-	 * @param      <type>  $_args  The arguments
-	 */
-	public function view_signup($_args)
+	public static function config()
 	{
-		$this->data->page['special'] = true;
-		$this->data->page['title']   = T_('Signup in :name' , ['name' => $this->data->site['title']]);
-		$this->data->page['desc']    = $this->data->page['title'];
+		\dash\data::page_special(true);
+		\dash\data::page_title(T_('Signup in :name' , ['name' => \dash\data::site_title()]));
+		\dash\data::page_desc(\dash\data::page_title());
 
 		// set el value to use in display
-		$this->data->el = [];
-		$this->data->el['username'] = \dash\option::config('enter', 'singup_username');
+		\dash\data::el_username(\dash\option::config('enter', 'singup_username'));
 	}
 }
 ?>
