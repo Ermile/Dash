@@ -153,6 +153,12 @@ class mvc
 					self::$only_folder = true;
 					$find              = true;
 				}
+				elseif(is_dir(addons. $_addr))
+				{
+					// load addons only folder
+					self::$only_folder = true;
+					$find              = true;
+				}
 			}
 		}
 		if($find)
