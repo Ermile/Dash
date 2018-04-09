@@ -6,7 +6,7 @@ class view
 {
 	public static function config()
 	{
-		$auth_url = \dash\addons\social\google::auth_url();
+		$auth_url = \dash\utility\google::auth_url();
 
 		// auto redirect if url is clean
 		if($auth_url && !\dash\request::get() && !\dash\request::post() && \dash\data::googleLogin())

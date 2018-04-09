@@ -1,6 +1,6 @@
 <?php
-namespace dash\social;
-require_once ('google/libraries/Google/autoload.php');
+namespace dash\utility;
+require_once (addons.'lib/social/google/libraries/Google/autoload.php');
 
 class google
 {

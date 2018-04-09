@@ -9,7 +9,7 @@ class model
 		if(\dash\request::get('code'))
 		{
 			// check access from google
-			$check = \dash\social\google::check();
+			$check = \dash\utility\google::check();
 			if($check)
 			{
 				// go to what url
@@ -17,9 +17,9 @@ class model
 
 				$no_problem_to_login = false;
 
-				$user_data = \dash\social\google::user_info();
+				$user_data = \dash\utility\google::user_info();
 				// get user email
-				$email = \dash\social\google::user_info('email');
+				$email = \dash\utility\google::user_info('email');
 				// load data by email in field user google mail
 				\dash\utility\enter::load_user_data($email, 'googlemail');
 				// the user exist in system
@@ -50,7 +50,7 @@ class model
 								{
 									\dash\utility\enter::set_session('mobile_request_from', 'google_email_exist');
 
-									\dash\utility\enter::set_session('logined_by_email', \dash\social\google::user_info('email'));
+									\dash\utility\enter::set_session('logined_by_email', \dash\utility\google::user_info('email'));
 									// go to mobile get to enter mobile
 									\dash\utility\enter::next_step('mobile/request');
 									// get go to url
@@ -66,7 +66,7 @@ class model
 							{
 								\dash\utility\enter::set_session('mobile_request_from', 'google_email_exist');
 
-								\dash\utility\enter::set_session('logined_by_email', \dash\social\google::user_info('email'));
+								\dash\utility\enter::set_session('logined_by_email', \dash\utility\google::user_info('email'));
 								// go to mobile get to enter mobile
 								\dash\utility\enter::next_step('mobile/request');
 								// get go to url
@@ -79,23 +79,23 @@ class model
 				{
 					// the email of this user is not exist in system
 					$args = [];
-					if(\dash\social\google::user_info('name'))
+					if(\dash\utility\google::user_info('name'))
 					{
-						$args['displayname'] = \dash\social\google::user_info('name');
+						$args['displayname'] = \dash\utility\google::user_info('name');
 					}
-					elseif(\dash\social\google::user_info('familyName') || \dash\social\google::user_info('givenName'))
+					elseif(\dash\utility\google::user_info('familyName') || \dash\utility\google::user_info('givenName'))
 					{
-						$args['displayname'] = trim(\dash\social\google::user_info('familyName'). ' '. \dash\social\google::user_info('givenName'));
+						$args['displayname'] = trim(\dash\utility\google::user_info('familyName'). ' '. \dash\utility\google::user_info('givenName'));
 					}
 
-					$args['email'] = \dash\social\google::user_info('email');
+					$args['email'] = \dash\utility\google::user_info('email');
 					$args['datecreated']  = date("Y-m-d H:i:s");
 
 					\dash\utility\enter::set_session('mobile_request_from', 'google_email_not_exist');
 
 					\dash\utility\enter::set_session('must_signup', $args);
 
-					\dash\utility\enter::set_session('logined_by_email', \dash\social\google::user_info('email'));
+					\dash\utility\enter::set_session('logined_by_email', \dash\utility\google::user_info('email'));
 
 					// go to mobile get to enter mobile
 					\dash\utility\enter::next_step('mobile/request');
