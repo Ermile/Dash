@@ -83,10 +83,4 @@ else
 	// A config file doesn't exist
 	// echo("<p>There doesn't seem to be a <code>config.php</code> file. I need this before we can get started.</p>");
 }
-
-// if personal define exist, require it
-if(file_exists(root .'define.php'))
-{
-	require_once(root .'define.php');
-}
 ?>
