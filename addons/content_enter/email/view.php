@@ -2,16 +2,13 @@
 namespace content_enter\email;
 
 
-class view extends \addons\content_enter\main\view
+class view
 {
-	public function config()
+	public static function config()
 	{
-		// read parent config to fill the mobile input and other thing
-		parent::config();
-
-		$this->data->page['title']   = T_('Enter to :name with email', ['name' => $this->data->site['title']]);
-		$this->data->page['special'] = true;
-		$this->data->page['desc']    = $this->data->page['title'];
+		\dash\data::page_title(T_('Enter to :name with email', ['name' => \dash\data::site_title()]));
+		\dash\data::page_special(true);
+		\dash\data::page_desc(\dash\data::page_title());
 	}
 }
 ?>

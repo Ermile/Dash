@@ -5,10 +5,10 @@
 {%block contentForm%}
 <p>{% trans "We found your Google Mail that is different from your current google mail" %}</p>
 <p>{% trans "Would you like to change your old google mail?" %}</p>
-{%if old_google_mail and new_google_mail%}
-<p>{{old_google_mail}}</p>
+{%if oldGoogle_mail and newGoogle_mail%}
+<p>{{oldGoogle_mail}}</p>
 <p>{% trans "Change to" %}</p>
-<p>{{new_google_mail}}</p>
+<p>{{newGoogle_mail}}</p>
 {%endif%}
 <div class='flex' id='ego'>
 	<button type="submit">{%trans "Update google mail"%}</button>

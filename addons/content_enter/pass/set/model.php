@@ -2,27 +2,11 @@
 namespace content_enter\pass\set;
 
 
-class model extends \addons\content_enter\pass\model
+class model
 {
-	/**
-	 * Gets the enter.
-	 *
-	 * @param      <type>  $_args  The arguments
-	 */
-	public function get_pass($_args)
+
+	public static function post()
 	{
-
-	}
-
-
-	/**
-	 * Posts an enter.
-	 *
-	 * @param      <type>  $_args  The arguments
-	 */
-	public function post_pass($_args)
-	{
-
 		if(\dash\request::post('ramzNew'))
 		{
 			$temp_ramz = \dash\request::post('ramzNew');
@@ -50,22 +34,15 @@ class model extends \addons\content_enter\pass\model
 		}
 		else
 		{
-			// plus count invalid password
-			self::plus_try_session('no_password_send_set');
-
 			\dash\notif::error(T_("No password was send"));
 			return false;
 		}
 
 		// set session verify_from set
 		\dash\utility\enter::set_session('verify_from', 'set');
-		// find send way to send code
-		// and send code
-		// set step pass is done
-		self::set_step_session('pass', true);
 
-		\dash\data::open_lock('verify');
-		\dash\utility\enter::go_to('verify');
+		// send code way
+		\dash\utility\enter::go_to_verify();
 	}
 }
 ?>

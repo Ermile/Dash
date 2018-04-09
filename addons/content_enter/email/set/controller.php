@@ -1,25 +1,15 @@
 <?php
 namespace content_enter\email\set;
 
-class controller extends \addons\content_enter\main\controller
+class controller
 {
-	public function ready()
+	public static function routing()
 	{
-		// if the user is login redirect to base
-		parent::if_login_route();
-
-		// parent::ready();
-		// if the user have email can not set email again
-		// he must change her email
 		if(\dash\user::login('email'))
 		{
 			\dash\redirect::to(\dash\url::base(). '/enter/email/change');
 			return;
 		}
-
-		$this->get()->ALL('email/set');
-
-		$this->post('email')->ALL('email/set');
 	}
 }
 ?>

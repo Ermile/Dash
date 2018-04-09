@@ -2,15 +2,10 @@
 namespace content_enter\pass\change;
 
 
-class model extends \addons\content_enter\pass\model
+class model
 {
 
-	/**
-	 * Posts an enter.
-	 *
-	 * @param      <type>  $_args  The arguments
-	 */
-	public function post_pass($_args)
+	public static function post()
 	{
 		// check ramz fill
 		if(!\dash\request::post('ramz'))

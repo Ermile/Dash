@@ -2,12 +2,10 @@
 namespace content_enter\email\change;
 
 
-class model extends \addons\content_enter\main\model
+class model
 {
-	/**
-	 * Removes an email.
-	 */
-	public function remove_email()
+
+	public static function remove_email()
 	{
 		if(\dash\user::login('email') && \dash\user::id())
 		{
@@ -27,11 +25,11 @@ class model extends \addons\content_enter\main\model
 	 *
 	 * @param      <type>  $_args  The arguments
 	 */
-	public function post_change($_args)
+	public function post()
 	{
 		if(\dash\request::post('type') === 'remove')
 		{
-			$this->remove_email();
+			self::remove_email();
 			return;
 		}
 
@@ -56,7 +54,7 @@ class model extends \addons\content_enter\main\model
 		\dash\utility\enter::set_session('verify_from', 'email_set');
 
 		// send code whit email
-		self::send_code_email();
+		\dash\utility\enter::send_code_email();
 	}
 }
 ?>

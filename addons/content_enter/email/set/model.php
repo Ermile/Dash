@@ -2,15 +2,10 @@
 namespace content_enter\email\set;
 
 
-class model extends \addons\content_enter\main\model
+class model
 {
 
-	/**
-	 * Posts an enter.
-	 *
-	 * @param      <type>  $_args  The arguments
-	 */
-	public function post_email($_args)
+	public function post()
 	{
 		if(\dash\request::post('email'))
 		{

@@ -1,18 +1,16 @@
 <?php
 namespace content_enter\email\change\google;
 
-class view extends \addons\content_enter\main\view
+class view
 {
-	public function config()
+
+	public static function config()
 	{
-		parent::config();
+		\dash\data::page_title(T_('Change google mail'));
+		\dash\data::page_desc(\dash\data::page_title());
 
-		$this->data->page['title']   = T_('Change google mail');
-		$this->data->page['desc']    = $this->data->page['title'];
-
-		$this->data->old_google_mail = \dash\utility\enter::get_session('old_google_mail');
-		$this->data->new_google_mail = \dash\utility\enter::get_session('new_google_mail');
+		\dash\data::oldGoogle_mail(\dash\utility\enter::get_session('old_google_mail'));
+		\dash\data::newGoogle_mail(\dash\utility\enter::get_session('new_google_mail'));
 	}
-
 }
 ?>

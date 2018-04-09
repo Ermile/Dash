@@ -1,17 +1,13 @@
 <?php
 namespace content_enter\email\change;
 
-class view extends \addons\content_enter\main\view
+class view
 {
-	public function config()
+	public static function config()
 	{
-		parent::config();
-
-		$this->data->get_email = \dash\user::login('email');
-
-		$this->data->page['title']   = T_('Change email');
-		$this->data->page['desc']    = $this->data->page['title'];
+		\dash\data::getEmail(\dash\user::login('email'));
+		\dash\data::page_title(T_('Change email'));
+		\dash\data::page_desc(\dash\data::page['title']);
 	}
-
 }
 ?>
