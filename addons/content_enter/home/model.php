@@ -103,6 +103,12 @@ class model
 		$password         = \dash\request::post('password');
 		$usernameormobile = \dash\request::post('usernameormobile');
 
+		if(!$usernameormobile)
+		{
+			\dash\notif::error(T_("Please set the username or mobile or email"));
+			return false;
+		}
+
 		/**
 		 * check login by another session
 		 */

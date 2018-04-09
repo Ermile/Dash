@@ -4,6 +4,28 @@ namespace dash\utility;
 class enter
 {
 
+	public static function try($_module)
+	{
+		self::set_session($_module, intval(self::get_session($_module)) + 1);
+
+		$count_try = intval(self::get_session($_module));
+
+		switch ($_module)
+		{
+			case 'invalid_password':
+				if($count_try > 10)
+				{
+					// ban user
+				}
+				break;
+
+			default:
+				# code...
+				break;
+		}
+	}
+
+
 	public static function clean_session()
 	{
 		unset($_SESSION['enter']);

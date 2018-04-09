@@ -23,6 +23,24 @@ class controller
 				\dash\header::status(404, $my_directory);
 			}
 		}
+
+
+		$if_login_route_module =
+		[
+			'session',
+			'byebye',
+			'delete',
+		];
+
+		$module = \dash\url::module();
+
+		if(in_array($module, $if_login_route_module))
+		{
+			if(!\dash\user::login())
+			{
+				\dash\redirect::to(\dash\url::here());
+			}
+		}
 	}
 }
 ?>
