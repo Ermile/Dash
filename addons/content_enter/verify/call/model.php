@@ -5,7 +5,7 @@ namespace content_enter\verify\call;
 class model
 {
 
-	public function post_verify()
+	public static function post()
 	{
 		if(mb_strtolower(\dash\request::post('verify')) === 'true')
 		{
