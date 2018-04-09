@@ -295,7 +295,7 @@ class mvc
 			}
 		}
 
-		if(\dash\request::is('post') && !empty(\dash\request::post()) && !\dash\request::ajax())
+		if(\dash\request::is('post') && !empty(\dash\request::post()))
 		{
 			\dash\redirect::pwd();
 		}
