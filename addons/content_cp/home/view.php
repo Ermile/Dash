@@ -6,9 +6,6 @@ class view
 	public static function config()
 	{
 		\dash\data::bodyclass('siftal');
-		// $this->include->css           = false;
-		// $this->include->js            = false;
-		// $this->global->js             = [];
 
 		\dash\data::display_cp_posts("content_cp/posts/layout.html");
 		\dash\data::display_cpSample("content_cp/sample/layout.html");
