@@ -2,10 +2,9 @@
 namespace content_cp\terms;
 
 
-class model extends \addons\content_cp\main\model
+class model
 {
-
-	public function post_terms()
+	public static function post()
 	{
 
 		$post             = [];

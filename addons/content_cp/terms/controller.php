@@ -2,20 +2,18 @@
 namespace content_cp\terms;
 
 
-class controller extends \addons\content_cp\main\controller
+class controller
 {
-	public function ready()
+	public static function routing()
 	{
-
-		$this->post('terms')->ALL();
-		if(\dash\request::get('edit'))
-		{
-			$this->get(false, 'edit')->ALL();
-		}
-		else
-		{
-			$this->get()->ALL();
-		}
+		// if(\dash\request::get('edit'))
+		// {
+		// 	$this->get(false, 'edit')->ALL();
+		// }
+		// else
+		// {
+		// 	$this->get()->ALL();
+		// }
 	}
 }
 ?>

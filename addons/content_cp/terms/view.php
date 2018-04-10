@@ -2,16 +2,13 @@
 namespace content_cp\terms;
 
 
-class view extends \addons\content_cp\main\view
+class view
 {
-	public function config()
+	public static function config()
 	{
 
-		$this->data->page['title'] = T_("Terms");
-		$this->data->page['desc']  = T_("Check terms and filter by type or view and edit some terms");
-
-		$this->data->page['badge']['link'] = \dash\url::here();
-		$this->data->page['badge']['text'] = T_('Back to dashboard');
+		$myTitle = T_("Terms");
+		$myDesc  = T_("Check terms and filter by type or view and edit some terms");
 
 		$myType = \dash\request::get('type');
 		if($myType)
@@ -20,18 +17,22 @@ class view extends \addons\content_cp\main\view
 			{
 				case 'cat':
 				case 'category':
-					$this->data->page['title'] = T_('Categories');
-					$this->data->page['desc']  = T_("Check categories and add or edit some new category");
+					$myTitle = T_('Categories');
+					$myDesc  = T_("Check categories and add or edit some new category");
 					break;
 
 				case 'tag':
-					$this->data->page['title'] = T_('Tags');
-					$this->data->page['desc']  = T_("Check tags and add or edit some new tag");
+					$myTitle = T_('Tags');
+					$myDesc  = T_("Check tags and add or edit some new tag");
 					break;
 			}
 		}
 
+		\dash\data::page_title($myTitle);
+		\dash\data::page_desc($myDesc);
 
+		\dash\data::badge_text(T_('Back to dashboard'));
+		\dash\data::badge_link(\dash\url::here());
 
 
 
@@ -58,11 +59,11 @@ class view extends \addons\content_cp\main\view
 			}
 		}
 
-		$search_string            = \dash\request::get('q');
+		$search_string = \dash\request::get('q');
 
 		if($search_string)
 		{
-			$this->data->page['title'] = T_('Search'). ' '.  $search_string;
+			$myTitle = T_('Search'). ' '.  $search_string;
 		}
 
 		$export = false;
@@ -72,31 +73,24 @@ class view extends \addons\content_cp\main\view
 			$args['pagenation'] = false;
 		}
 
-		$this->data->dataTable = \dash\app\term::list($search_string, $args);
+		$dataTable = \dash\app\term::list($search_string, $args);
+		\dash\data::dataTable($dataTable);
+
 
 		if($export)
 		{
-			\dash\utility\export::csv(['name' => 'export_service', 'data' => $this->data->dataTable]);
+			\dash\utility\export::csv(['name' => 'export_service', 'data' => $dataTable]);
 		}
 
-		if(isset($this->controller->pagnation))
-		{
-			$this->data->pagnation = $this->controller->pagnation_get();
-		}
-
-	}
-
-
-	public function view_edit()
-	{
 		if(\dash\request::get('edit'))
 		{
-			$this->data->edit_mode = true;
+			\dash\data::editMode(true);
 
 			$id = \dash\request::get('edit');
-			$this->data->datarow = \dash\app\term::get($id);
+			$datarow = \dash\app\term::get($id);
+			\dash\data::datarow($datarow);
 
-			if(!$this->data->datarow)
+			if(!$datarow)
 			{
 				\dash\header::status(404, T_("Id not found"));
 			}
