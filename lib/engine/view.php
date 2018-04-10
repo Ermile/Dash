@@ -75,7 +75,6 @@ class view
 		\dash\data::include_css(true);
 		\dash\data::include_js(true);
 
-		\dash\data::pagination(\dash\utility\pagination::page_number());
 	}
 
 

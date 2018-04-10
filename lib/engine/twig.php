@@ -23,6 +23,8 @@ class twig
 			$tmpname = str_replace('\addons', '', $tmpname);
 		}
 
+		\dash\data::pagination(\dash\utility\pagination::page_number());
+
 		// twig method
 		require_once core.'addons/lib/Twig/lib/Twig/Autoloader.php';
 		\Twig_Autoloader::register();
