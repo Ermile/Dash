@@ -158,14 +158,18 @@ class header
 
 		if(\dash\request::json_accept())
 		{
-			@header('Content-Type: application/json');
 
 			if(!$_title)
 			{
 				$_title = self::desc($_code);
 			}
 			\dash\notif::error($_title, $_code);
-			echo \dash\notif::json();
+			// end process code and return as json
+			\dash\code::end();
+
+			// remove below code if have no problem
+			// @header('Content-Type: application/json');
+			// echo \dash\notif::json();
 		}
 		else
 		{
