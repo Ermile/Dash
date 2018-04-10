@@ -2,9 +2,9 @@
 namespace content_cp\posts\main;
 
 
-class view extends \addons\content_cp\main\view
+class view
 {
-	public function config()
+	public static function config()
 	{
 		$this->data->moduleTypeTxt = \dash\request::get('type');
 		$this->data->moduleType    = '';

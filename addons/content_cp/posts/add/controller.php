@@ -1,15 +1,11 @@
 <?php
 namespace content_cp\posts\add;
 
-class controller extends \addons\content_cp\main\controller
+class controller
 {
-	public function ready()
+	public static function routing()
 	{
 		\dash\permission::access('cp:posts:add', 'block');
-
-		$this->get()->ALL();
-		$this->post('add_posts')->ALL();
-
 	}
 }
 ?>

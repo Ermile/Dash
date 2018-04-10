@@ -4,7 +4,7 @@ namespace content_cp\posts\add;
 
 class model extends \addons\content_cp\posts\main\model
 {
-	public function post_add_posts()
+	public function post()
 	{
 
 		$posts = self::getPost();

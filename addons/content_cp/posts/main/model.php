@@ -2,7 +2,7 @@
 namespace content_cp\posts\main;
 
 
-class model extends \mvc\model
+class model
 {
 	public static function upload_gallery()
 	{

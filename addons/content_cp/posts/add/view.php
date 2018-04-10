@@ -1,19 +1,28 @@
 <?php
 namespace content_cp\posts\add;
 
-class view extends \addons\content_cp\posts\main\view
+class view
 {
-	public function config()
+	public static function config()
 	{
-		parent::config();
-		$this->data->cat_list = \dash\app\term::cat_list();
+		$moduleTypeTxt = \dash\request::get('type');
+		$moduleType    = '';
+
+		if(\dash\request::get('type'))
+		{
+			$moduleType = '?type='. \dash\request::get('type');
+		}
+
+		\dash\data::moduleTypeTxt($moduleTypeTxt);
+		\dash\data::moduleType($moduleType);
+		\dash\data::listCats(\dash\app\term::cat_list());
 
 
-		$this->data->page['title'] = T_("Add new post");
-		$this->data->page['desc']  = T_("Posts can contain keyword and category with title and descriptions.");
+		$myTitle   = T_("Add new post");
+		$myDesc    = T_("Posts can contain keyword and category with title and descriptions.");
 
-		$this->data->page['badge']['link'] = \dash\url::this(). $this->data->moduleType;
-		$this->data->page['badge']['text'] = T_('Back to list of posts');
+		$myBadgeLink = \dash\url::this(). $moduleType;
+		$myBadgeText = T_('Back to list of posts');
 
 		$myType = \dash\request::get('type');
 		if($myType)
@@ -21,14 +30,19 @@ class view extends \addons\content_cp\posts\main\view
 			switch ($myType)
 			{
 				case 'page':
-					$this->data->page['title'] = T_('Add new page');
-					$this->data->page['desc']  = T_("Add new static page like about or honors");
+					$myTitle = T_('Add new page');
+					$myDesc  = T_("Add new static page like about or honors");
 
-					$this->data->page['badge']['text'] = T_('Back to list of pages');
+					$myBadgeText = T_('Back to list of pages');
 					break;
 			}
 		}
 
+		\dash\data::page_title($myTitle);
+		\dash\data::page_desc($myDesc);
+
+		\dash\data::badge_text($myBadgeText);
+		\dash\data::badge_link($myBadgeLink);
 	}
 }
 ?>
