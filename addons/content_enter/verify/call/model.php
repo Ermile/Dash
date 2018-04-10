@@ -17,7 +17,7 @@ class model
 			}
 			return;
 		}
-		\dash\data::check_code('call');
+		\dash\utility\enter::check_code('call');
 	}
 
 

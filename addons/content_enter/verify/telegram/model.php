@@ -18,7 +18,7 @@ class model
 			}
 			return;
 		}
-		\dash\data::check_code('telegram');
+		\dash\utility\enter::check_code('telegram');
 	}
 
 

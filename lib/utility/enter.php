@@ -1067,7 +1067,7 @@ class enter
 		else
 		{
 			// wrong code sleep code
-			\lib\code::sleep(3);
+			\dash\code::sleep(3);
 
 			\dash\notif::error(T_("Invalid code, try again"), 'code');
 			return false;

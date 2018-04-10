@@ -17,7 +17,7 @@ class model
 			}
 			return;
 		}
-		\dash\data::check_code('sms');
+		\dash\utility\enter::check_code('sms');
 	}
 
 
