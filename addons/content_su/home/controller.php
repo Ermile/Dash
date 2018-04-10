@@ -1,6 +1,6 @@
 <?php
 namespace content_su\home;
-class controller extends \addons\content_su\main\controller
+class controller
 {
 	public function ready()
 	{
