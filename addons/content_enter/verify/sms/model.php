@@ -58,7 +58,7 @@ class model
 
 		$msg = T_("Your verification code is :code ", ['code' => $code]);
 
-		if(self::$dev_mode)
+		if(\dash\url::isLocal())
 		{
 			$kavenegar_send_result = true;
 		}

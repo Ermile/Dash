@@ -11,7 +11,7 @@ class model
 		{
 			\dash\db\users::update(['email' => null], \dash\user::id());
 			// set the alert message
-			self::set_alert(T_("Your email was removed"));
+			\dash\utility\enter::set_session('alert', ['text' => T_("Your email was removed")]);
 			// open lock of alert page
 			\dash\utility\enter::next_step('alert');
 			// go to alert page

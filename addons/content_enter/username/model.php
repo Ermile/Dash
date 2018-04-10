@@ -21,21 +21,17 @@ class model extends \addons\content_enter\main\model
 		}
 
 		// clean session
-		self::clean_session();
+		\dash\utility\enter::clean_session();
 
-		// set username
-		self::$username = $username;
 		// load userdata by username
-		self::load_user_data($username, 'username');
+		\dash\utility\enter::load_user_data($username, 'username');
 
 		// save username in $_SESSION['username']['temp_username']
-		self::set_session('username', 'temp_username', $username);
+		\dash\utility\enter::set_session('username', 'temp_username', $username);
 
 		// check username exist
 		if(!\dash\utility\enter::user_data() || !\dash\utility\enter::user_data('id'))
 		{
-			self::plus_try_session('invalid_username');
-
 			\dash\notif::error(T_("Username not found"));
 			return false;
 		}
@@ -66,7 +62,7 @@ class model extends \addons\content_enter\main\model
 			}
 
 			// set step session
-			self::set_step_session('username', true);
+			\dash\utility\enter::set_step_session('username', true);
 
 			// open this pages after this page
 			\dash\utility\enter::next_step('pass');

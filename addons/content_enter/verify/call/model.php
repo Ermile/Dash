@@ -72,7 +72,7 @@ class model
 		];
 
 
-		if(self::$dev_mode)
+		if(\dash\url::isLocal())
 		{
 			$kavenegar_send_result = true;
 		}

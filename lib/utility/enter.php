@@ -3,6 +3,8 @@ namespace dash\utility;
 
 class enter
 {
+	public static $life_time_code = 60 * 5;
+
 
 	public static function try($_module)
 	{
@@ -188,7 +190,7 @@ class enter
 
 			if($user_id)
 			{
-				\dash\utility\enter::load_user_data($user_id, 'user_id');
+				self::load_user_data($user_id, 'user_id');
 			}
 			return $user_id;
 		}
@@ -226,7 +228,7 @@ class enter
 		if($user_id)
 		{
 			$_value = \dash\db::insert_id();
-			\dash\utility\enter::load_user_data($_value, 'user_id');
+			self::load_user_data($_value, 'user_id');
 		}
 		return $_value;
 
@@ -270,7 +272,7 @@ class enter
 		else
 		{
 
-			$language = \dash\db\users::get_language(\dash\utility\enter::user_data('id'));
+			$language = \dash\db\users::get_language(self::user_data('id'));
 			// @check
 			if($language && \dash\language::check($language))
 			{
@@ -294,7 +296,7 @@ class enter
 	 */
 	public static function enter_set_login($_url = null, $_auto_redirect = false)
 	{
-		$user_id = \dash\utility\enter::user_data('id');
+		$user_id = self::user_data('id');
 
 		if(!$user_id)
 		{
@@ -319,7 +321,7 @@ class enter
 			// check user status
 			// if the user status is awaiting
 			// set the user status as enable
-			if(\dash\utility\enter::user_data('status') === 'awaiting' && is_numeric($user_id))
+			if(self::user_data('status') === 'awaiting' && is_numeric($user_id))
 			{
 				\dash\db\users::update(['status' => 'active'], $user_id);
 			}
@@ -331,6 +333,8 @@ class enter
 		{
 			// clean session
 			self::clean_session();
+
+			\dash\notif::direct(true);
 			// go to new address
 			\dash\redirect::to($url);
 		}
@@ -405,8 +409,8 @@ class enter
 		$is_mobile = false;
 		$is_email  = false;
 
-		$mobile    = \dash\utility\enter::user_data('mobile');
-		$email     = \dash\utility\enter::user_data('email');
+		$mobile    = self::user_data('mobile');
+		$email     = self::user_data('email');
 
 		if(\dash\utility\filter::mobile($mobile))
 		{
@@ -432,7 +436,7 @@ class enter
 
 		if($is_mobile)
 		{
-			if(\dash\utility\enter::user_data('chatid') && \dash\option::social('telegram', 'status'))
+			if(self::user_data('chatid') && \dash\option::social('telegram', 'status'))
 			{
 				if(\dash\option::config('enter', 'verify_telegram'))
 				{
@@ -440,7 +444,7 @@ class enter
 				}
 			}
 
-			if(\dash\utility\enter::user_data('mobile') && \dash\utility\filter::mobile(\dash\utility\enter::user_data('mobile')))
+			if(self::user_data('mobile') && \dash\utility\filter::mobile(self::user_data('mobile')))
 			{
 				if(\dash\option::config('enter', 'verify_sms'))
 				{
@@ -498,7 +502,8 @@ class enter
 	public static function create_new_code($_way = null)
 	{
 		$code =  rand(10000,99999);
-		if(self::$dev_mode)
+
+		if(\dash\url::isLocal())
 		{
 			$code = 11111;
 		}
@@ -519,7 +524,7 @@ class enter
 
 
 		// save this code in logs table and session
-		$log_id = \dash\db\logs::set('user:verification:code', \dash\utility\enter::user_data('id'), $log_meta);
+		$log_id = \dash\db\logs::set('user:verification:code', self::user_data('id'), $log_meta);
 
 		self::set_session('verification_code', $code);
 		self::set_session('verification_code_time', $time);
@@ -558,12 +563,12 @@ class enter
 		// user code not found
 		if(!$last_code_ok)
 		{
-			if(\dash\utility\enter::user_data('id'))
+			if(self::user_data('id'))
 			{
 				$where =
 				[
 					'caller'     => 'user:verification:code',
-					'user_id'    => \dash\utility\enter::user_data('id'),
+					'user_id'    => self::user_data('id'),
 					'status' => 'enable',
 					'limit'      => 1,
 				];
@@ -669,7 +674,7 @@ class enter
 					$get_log_detail = \dash\db\logs::get(['id' => $log_id, 'limit' => 1]);
 					if(!$get_log_detail || !isset($get_log_detail['status']))
 					{
-						\dash\db\logs::set('enter:verify:sendsmsm:log:not:found', \dash\utility\enter::user_data('id'), $log_meta);
+						\dash\db\logs::set('enter:verify:sendsmsm:log:not:found', self::user_data('id'), $log_meta);
 						\dash\notif::error(T_("System error, try again"));
 						return false;
 					}
@@ -693,7 +698,7 @@ class enter
 
 						case 'enable':
 							// user not send sms or not deliver to us
-							\dash\db\logs::set('enter:verify:sendsmsm:sms:not:deliver:to:us', \dash\utility\enter::user_data('id'), $log_meta);
+							\dash\db\logs::set('enter:verify:sendsmsm:sms:not:deliver:to:us', self::user_data('id'), $log_meta);
 							\dash\notif::error(T_("Your sms not deliver to us!"));
 							return false;
 							break;
@@ -701,7 +706,7 @@ class enter
 						case 'expire':
 							// the user user from this way and can not use this way again
 							// this is a bug!
-							\dash\db\logs::set('enter:verify:sendsmsm:sms:expire:log:bug', \dash\utility\enter::user_data('id'), $log_meta);
+							\dash\db\logs::set('enter:verify:sendsmsm:sms:expire:log:bug', self::user_data('id'), $log_meta);
 							\dash\notif::error(T_("What are you doing?"));
 							return false;
 						default:
@@ -712,14 +717,14 @@ class enter
 				}
 				else
 				{
-					\dash\db\logs::set('enter:verify:sendsmsm:log:id:not:found', \dash\utility\enter::user_data('id'), $log_meta);
+					\dash\db\logs::set('enter:verify:sendsmsm:log:id:not:found', self::user_data('id'), $log_meta);
 					\dash\notif::error(T_("What are you doing?"));
 					return false;
 				}
 			}
 			else
 			{
-				\dash\db\logs::set('enter:verify:sendsmsm:user:inspected:change:html', \dash\utility\enter::user_data('id'), $log_meta);
+				\dash\db\logs::set('enter:verify:sendsmsm:user:inspected:change:html', self::user_data('id'), $log_meta);
 				\dash\notif::error(T_("What are you doing?"));
 				return false;
 			}
@@ -732,346 +737,240 @@ class enter
 			}
 		}
 
-		if($code_is_okay)
-		{
-			// expire code
-			if(self::get_session('verification_code_id'))
-			{
-				// the user enter the code and the code is ok
-				// must expire this code
-				\dash\db\logs::update(['status' => 'expire'], self::get_session('verification_code_id'));
-				self::set_session('verification_code', null);
-				self::set_session('verification_code_time', null);
-				self::set_session('verification_code_way', null);
-				self::set_session('verification_code_id', null);
-			}
-
-			/**
-			 ***********************************************************
-			 * VERIFY FROM
-			 * PASS/SIGNUP
-			 * PASS/SET
-			 * PASS/RECOVERY
-			 ***********************************************************
-			 */
-			if(
-				(
-					self::get_session('verify_from') === 'signup' ||
-					self::get_session('verify_from') === 'set' ||
-					self::get_session('verify_from') === 'recovery'
-				) &&
-				self::get_session('temp_ramz_hash') &&
-				is_numeric(\dash\utility\enter::user_data('id'))
-			  )
-			{
-				// set temp ramz in use pass
-				\dash\db\users::update(['password' => self::get_session('temp_ramz_hash')], \dash\utility\enter::user_data('id'));
-			}
-
-
-			/**
-			 ***********************************************************
-			 * VERIFY FROM
-			 * USERNAME
-			 * TRY TO REMOVE USER NAME
-			 ***********************************************************
-			 */
-			if(self::get_session('verify_from') === 'username_remove' && is_numeric(\dash\utility\enter::user_data('id')))
-			{
-				// set temp ramz in use pass
-				\dash\db\users::update(['username' => null], \dash\utility\enter::user_data('id'));
-				// remove usename from sessions
-				unset($_SESSION['user']['username']);
-				// set the alert message
-				self::set_alert(T_("Your username was removed"));
-				// open lock of alert page
-				self::next_step('alert');
-				// go to alert page
-				self::go_to('alert');
-				return;
-			}
-
-			/**
-			 ***********************************************************
-			 * VERIFY FROM
-			 * ENTER/DELETE
-			 * DELETE ACCOUNT
-			 ***********************************************************
-			 */
-			if(self::get_session('verify_from') === 'delete')
-			{
-				if(self::get_session('why'))
-				{
-					$update_meta  = [];
-
-					$meta = \dash\utility\enter::user_data('meta');
-					if(!$meta)
-					{
-						$update_meta['why'] = self::get_session('why');
-					}
-					elseif(is_string($meta) && substr($meta, 0, 1) !== '{')
-					{
-						$update_meta['other'] = $meta;
-						$update_meta['why'] = self::get_session('why');
-					}
-					elseif(is_string($meta) && substr($meta, 0, 1) === '{')
-					{
-						$json = json_decode($meta, true);
-						$update_meta = array_merge($json, ['why' => self::get_session('why')]);
-					}
-
-				}
-
-				$update_user = [];
-				if(!empty($update_meta))
-				{
-					$update_user['meta'] = json_encode($update_meta, JSON_UNESCAPED_UNICODE);
-				}
-				$update_user['status'] = 'removed';
-
-				\dash\db\users::update($update_user, \dash\utility\enter::user_data('id'));
-
-				\dash\db\sessions::delete_account(\dash\utility\enter::user_data('id'));
-
-				//put logout
-				self::set_logout(\dash\utility\enter::user_data('id'), false);
-				self::next_step('byebye');
-				self::go_to('byebye');
-			}
-
-			/**
-			 ***********************************************************
-			 * VERIFY FROM
-			 * USERNAME/SET
-			 * USERNAME/CHANGE
-			 ***********************************************************
-			 */
-			if(
-				(
-					self::get_session('verify_from') === 'username_set' ||
-					self::get_session('verify_from') === 'username_change'
-				) &&
-				self::get_session('temp_username') &&
-				is_numeric(\dash\utility\enter::user_data('id'))
-			  )
-			{
-				// set temp ramz in use pass
-				\dash\db\users::update(['username' => self::get_session('temp_username')], \dash\utility\enter::user_data('id'));
-				// set the alert message
-				if(self::get_session('verify_from') === 'username_set')
-				{
-					self::set_alert(T_("Your username was set"));
-				}
-				else
-				{
-					self::set_alert(T_("Your username was change"));
-				}
-
-				if(isset($_SESSION['user']) && is_array($_SESSION['user']))
-				{
-					$_SESSION['user']['username'] = self::get_session('temp_username');
-				}
-
-				// open lock of alert page
-				self::next_step('alert');
-				// go to alert page
-				self::go_to('alert');
-				return;
-			}
-
-			/**
-			 ***********************************************************
-			 * VERIFY FROM
-			 * MOBILI/REQUEST
-			 ***********************************************************
-			 */
-			//////////////////////////////////////////////////////////////////////////////////////////////////////////////	MUST CHECK //////////////////////////////////
-			if(self::get_session('verify_from') === 'mobile_request')
-			{
-				// must loaded mobile data
-				if(self::get_session('temp_mobile') && is_numeric(self::get_session('temp_mobile')))
-				{
-					$load_mobile_data = \dash\db\users::get_by_mobile(self::get_session('temp_mobile'));
-					if($load_mobile_data && isset($load_mobile_data['id']))
-					{
-						if(isset($load_mobile_data['status']) && in_array($load_mobile_data['status'], self::$block_status))
-						{
-							self::next_step('block');
-							self::go_to('block');
-							return ;
-						}
-						else
-						{
-							if(self::get_session('mobile_request_from') === 'google_email_not_exist')
-							{
-								if(isset($load_mobile_data['googlemail']) && $load_mobile_data['googlemail'])
-								{
-									if(self::get_session('logined_by_email') === $load_mobile_data['googlemail'])
-									{
-										\dash\utility\enter::load_user_data($load_mobile_data['id'], 'user_id');
-									}
-									else
-									{
-										self::set_session('old_google_mail', $load_mobile_data['googlemail']);
-										self::set_session('new_google_mail', self::get_session('logined_by_email'));
-										self::set_session('user_id_must_change_google_mail', $load_mobile_data['id']);
-										// request from user to change email
-										self::next_step('email/change/google');
-										self::go_to('email/change/google');
-										return ;
-									}
-								}
-								else
-								{
-									\dash\db\users::update(['googlemail' => self::get_session('logined_by_email')], $load_mobile_data['id']);
-
-									\dash\utility\enter::load_user_data($load_mobile_data['id'],'user_id');
-								}
-							}
-							else //if(self::get_session('mobile_request_from') === 'google_email_exist') or more
-							{
-								self::set_session('request_delete_msg', T_("Duplicate account"));
-
-								self::next_step('delete/request');
-								self::go_to('delete/request');
-								return ;
-							}
-						}
-					}
-					else
-					{
-						if(self::get_session('mobile_request_from') === 'google_email_not_exist')
-						{
-							if(self::get_session('must_signup') && is_array(self::get_session('must_signup')))
-							{
-								$signup = self::get_session('must_signup');
-								if(self::get_session('temp_mobile'))
-								{
-									$signup['mobile'] = self::get_session('temp_mobile');
-								}
-
-								if(self::get_session('logined_by_email'))
-								{
-									$signup['googlemail'] = self::get_session('logined_by_email');
-								}
-
-								$signup['status'] = 'active';
-								self::set_session('first_signup', true);
-								$user_id = \dash\db\users::signup($signup);
-								\dash\utility\enter::load_user_data($user_id, 'user_id');
-							}
-							else
-							{
-								\dash\db\logs::set('error110000');
-							}
-						}
-						elseif(self::get_session('mobile_request_from') === 'google_email_exist')
-						{
-							if(!\dash\utility\enter::user_data('mobile'))
-							{
-								\dash\db\users::update(['mobile' => self::get_session('temp_mobile')], \dash\utility\enter::user_data('id'));
-								// login
-							}
-							$user_id = \dash\utility\enter::user_data('id');
-							\dash\utility\enter::load_user_data($user_id, 'user_id');
-
-						}
-						else
-						{
-							// other way go to here
-							// facebook not exist email and ...
-							\dash\db\logs::set('error110');
-							return false;
-						}
-					}
-				}
-				else
-				{
-					// no mobile was found :|
-					// bug. return false;
-					\dash\db\logs::set('error11');
-					return false;
-				}
-			}
-			//////////////////////////////////////////////////////////////////////////////////////////////////////////////	MUST CHECK //////////////////////////////////
-
-
-			/**
-			 ***********************************************************
-			 * VERIFY FROM
-			 * EMAIL/SET
-			 * EMAIL/CHANGE
-			 ***********************************************************
-			 */
-			if(
-				(
-					self::get_session('verify_from') === 'email_set' ||
-					self::get_session('verify_from') === 'email_change'
-				) &&
-				self::get_session('temp_email') &&
-				is_numeric(\dash\utility\enter::user_data('id'))
-			  )
-			{
-				// set temp ramz in use pass
-				\dash\db\users::update(['email' => self::get_session('temp_email')], \dash\utility\enter::user_data('id'));
-			}
-
-			/**
-			 ***********************************************************
-			 * VERIFY FROM
-			 * TWO STEP VERICICATION
-			 ***********************************************************
-			 */
-			if(self::get_session('verify_from') === 'two_step' &&	is_numeric(\dash\utility\enter::user_data('id')))
-			{
-				// no thing yet
-			}
-
-
-			/**
-			 ***********************************************************
-			 * VERIFY FROM
-			 * TWO STEP VERICICATION SET
-			 ***********************************************************
-			 */
-			if(self::get_session('verify_from') === 'two_step_set' &&	is_numeric(\dash\utility\enter::user_data('id')))
-			{
-				// set on two_step of this user
-				\dash\db\users::update(['twostep' => 1], \dash\utility\enter::user_data('id'));
-			}
-
-
-			/**
-			 ***********************************************************
-			 * VERIFY FROM
-			 * TWO STEP VERICICATION SET
-			 ***********************************************************
-			 */
-			if(self::get_session('verify_from') === 'two_step_unset' &&	is_numeric(\dash\utility\enter::user_data('id')))
-			{
-				// set off two_step of this user
-				\dash\db\users::update(['twostep' => 0], \dash\utility\enter::user_data('id'));
-			}
-
-			// set login session
-			$redirect_url = self::enter_set_login();
-
-			// save redirect url in session to get from okay page
-			self::set_session('redirect_url', $redirect_url);
-			// set okay as next step
-			self::next_step('okay');
-			// go to okay page
-			self::go_to('okay');
-
-		}
-		else
+		if(!$code_is_okay)
 		{
 			// wrong code sleep code
 			\dash\code::sleep(3);
-
 			\dash\notif::error(T_("Invalid code, try again"), 'code');
 			return false;
 		}
+
+		// expire code
+		if(self::get_session('verification_code_id'))
+		{
+			// the user enter the code and the code is ok
+			// must expire this code
+			\dash\db\logs::update(['status' => 'expire'], self::get_session('verification_code_id'));
+			self::set_session('verification_code', null);
+			self::set_session('verification_code_time', null);
+			self::set_session('verification_code_way', null);
+			self::set_session('verification_code_id', null);
+		}
+
+		/**
+		 ***********************************************************
+		 * VERIFY FROM
+		 * PASS/SIGNUP
+		 * PASS/SET
+		 * PASS/RECOVERY
+		 ***********************************************************
+		 */
+		if(
+			(
+				self::get_session('verify_from') === 'signup' ||
+				self::get_session('verify_from') === 'set' ||
+				self::get_session('verify_from') === 'recovery'
+			) &&
+			self::get_session('temp_ramz_hash') &&
+			is_numeric(self::user_data('id'))
+		  )
+		{
+			// set temp ramz in use pass
+			\dash\db\users::update(['password' => self::get_session('temp_ramz_hash')], self::user_data('id'));
+		}
+
+
+		/**
+		 ***********************************************************
+		 * VERIFY FROM
+		 * USERNAME
+		 * TRY TO REMOVE USER NAME
+		 ***********************************************************
+		 */
+		if(self::get_session('verify_from') === 'username_remove' && is_numeric(self::user_data('id')))
+		{
+			// set temp ramz in use pass
+			\dash\db\users::update(['username' => null], self::user_data('id'));
+			// remove usename from sessions
+			unset($_SESSION['user']['username']);
+			// set the alert message
+			$alert =
+			[
+				'text' => T_("Your username was removed"),
+				'link' => \dash\url::site(),
+			];
+
+			self::set_session('alert', $alert);
+			// open lock of alert page
+			self::next_step('alert');
+			// go to alert page
+			self::go_to('alert');
+			return;
+		}
+
+		/**
+		 ***********************************************************
+		 * VERIFY FROM
+		 * ENTER/DELETE
+		 * DELETE ACCOUNT
+		 ***********************************************************
+		 */
+		if(self::get_session('verify_from') === 'delete')
+		{
+			if(self::get_session('why'))
+			{
+				$update_meta  = [];
+
+				$meta = self::user_data('meta');
+				if(!$meta)
+				{
+					$update_meta['why'] = self::get_session('why');
+				}
+				elseif(is_string($meta) && substr($meta, 0, 1) !== '{')
+				{
+					$update_meta['other'] = $meta;
+					$update_meta['why'] = self::get_session('why');
+				}
+				elseif(is_string($meta) && substr($meta, 0, 1) === '{')
+				{
+					$json = json_decode($meta, true);
+					$update_meta = array_merge($json, ['why' => self::get_session('why')]);
+				}
+
+			}
+
+			$update_user = [];
+			if(!empty($update_meta))
+			{
+				$update_user['meta'] = json_encode($update_meta, JSON_UNESCAPED_UNICODE);
+			}
+			$update_user['status'] = 'removed';
+
+			\dash\db\users::update($update_user, self::user_data('id'));
+
+			\dash\db\sessions::delete_account(self::user_data('id'));
+
+			//put logout
+			self::set_logout(self::user_data('id'), false);
+			self::next_step('byebye');
+			self::go_to('byebye');
+		}
+
+		/**
+		 ***********************************************************
+		 * VERIFY FROM
+		 * USERNAME/SET
+		 * USERNAME/CHANGE
+		 ***********************************************************
+		 */
+		if(
+			(
+				self::get_session('verify_from') === 'username_set' ||
+				self::get_session('verify_from') === 'username_change'
+			) &&
+			self::get_session('temp_username') &&
+			is_numeric(self::user_data('id'))
+		  )
+		{
+			// set temp ramz in use pass
+			\dash\db\users::update(['username' => self::get_session('temp_username')], self::user_data('id'));
+			// set the alert message
+			if(self::get_session('verify_from') === 'username_set')
+			{
+				$text = T_("Your username was set");
+			}
+			else
+			{
+				$text = T_("Your username was change");
+			}
+
+
+			if(isset($_SESSION['user']) && is_array($_SESSION['user']))
+			{
+				$_SESSION['user']['username'] = self::get_session('temp_username');
+			}
+
+				// set the alert message
+			$alert =
+			[
+				'text' => $text,
+				'link' => \dash\url::site(),
+			];
+
+			self::set_session('alert', $alert);
+			// open lock of alert page
+			self::next_step('alert');
+			// go to alert page
+			self::go_to('alert');
+			return;
+		}
+
+		/**
+		 ***********************************************************
+		 * VERIFY FROM
+		 * EMAIL/SET
+		 * EMAIL/CHANGE
+		 ***********************************************************
+		 */
+		if(
+			(
+				self::get_session('verify_from') === 'email_set' ||
+				self::get_session('verify_from') === 'email_change'
+			) &&
+			self::get_session('temp_email') &&
+			is_numeric(self::user_data('id'))
+		  )
+		{
+			// set temp ramz in use pass
+			\dash\db\users::update(['email' => self::get_session('temp_email')], self::user_data('id'));
+		}
+
+		/**
+		 ***********************************************************
+		 * VERIFY FROM
+		 * TWO STEP VERICICATION
+		 ***********************************************************
+		 */
+		if(self::get_session('verify_from') === 'two_step' &&	is_numeric(self::user_data('id')))
+		{
+			// no thing yet
+		}
+
+
+		/**
+		 ***********************************************************
+		 * VERIFY FROM
+		 * TWO STEP VERICICATION SET
+		 ***********************************************************
+		 */
+		if(self::get_session('verify_from') === 'two_step_set' &&	is_numeric(self::user_data('id')))
+		{
+			// set on two_step of this user
+			\dash\db\users::update(['twostep' => 1], self::user_data('id'));
+		}
+
+
+		/**
+		 ***********************************************************
+		 * VERIFY FROM
+		 * TWO STEP VERICICATION SET
+		 ***********************************************************
+		 */
+		if(self::get_session('verify_from') === 'two_step_unset' &&	is_numeric(self::user_data('id')))
+		{
+			// set off two_step of this user
+			\dash\db\users::update(['twostep' => 0], self::user_data('id'));
+		}
+
+		// set login session
+		$redirect_url = self::enter_set_login();
+
+		// save redirect url in session to get from okay page
+		self::set_session('redirect_url', $redirect_url);
+		// set okay as next step
+		self::next_step('okay');
+		// go to okay page
+		self::go_to('okay');
 	}
 
 

@@ -13,9 +13,6 @@ class model
 		}
 		else
 		{
-			// plus count invalid emailword
-			self::plus_try_session('no_email_send_set');
-
 			\dash\notif::error(T_("No email was send"));
 			return false;
 		}
@@ -24,7 +21,7 @@ class model
 		\dash\utility\enter::set_session('verify_from', 'email_set');
 
 		// send code whit email
-		self::send_code_email();
+		\dash\utility\enter::send_code_email();
 	}
 }
 ?>

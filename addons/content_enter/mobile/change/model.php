@@ -48,7 +48,6 @@ class model extends \addons\content_enter\pass\model
 		// check old password is okay
 		if(!\dash\utility::hasher(\dash\request::post('ramz'), \dash\user::login('pass')))
 		{
-			self::plus_try_session('change_password_invalid_old');
 			\dash\notif::error(T_("Invalid old password"));
 			return false;
 		}

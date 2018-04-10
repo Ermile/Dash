@@ -26,7 +26,7 @@ class model
 				if(\dash\utility\enter::user_data('id'))
 				{
 					// check user status
-					if(in_array(\dash\utility\enter::user_data('status'), self::$block_status))
+					if(in_array(\dash\utility\enter::user_data('status'), ['filter', 'block']))
 					{
 						// the user was blocked
 						\dash\utility\enter::next_step('block');

@@ -25,7 +25,7 @@ class model extends \addons\content_enter\main\model
 			// never ask this question at this user
 			\dash\utility\enter::set_session('dont_will_set_mobile', true);
 
-			self::mobile_request_next_step();
+			// self::mobile_request_next_step();
 
 			return;
 		// }

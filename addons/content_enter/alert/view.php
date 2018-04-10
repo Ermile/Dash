@@ -18,13 +18,13 @@ class view
 			\dash\data::alertMsg($alert['text']);
 		}
 
-		\dash\data::alertLink(\dash\url::here(). '/enter');
+		\dash\data::alertLink(\dash\url::here());
 		if(isset($alert['link']))
 		{
 			\dash\data::alertLink($alert['link']);
 		}
 
-		\dash\data::alertButton(T_("Go back"));
+		\dash\data::alertButton(T_("OK"));
 		if(isset($alert['button']))
 		{
 			\dash\data::alertButton($alert['button']);

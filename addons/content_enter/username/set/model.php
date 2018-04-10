@@ -39,7 +39,7 @@ class model extends \addons\content_enter\main\model
 
 			\dash\db\users::update(['username' => $username], \dash\user::id());
 			// set the alert message
-			self::set_alert(T_("Your username was set"));
+			\dash\utility\enter::set_session('alert' , ['text' => T_("Your username was set")]);
 			// open lock of alert page
 			\dash\utility\enter::next_step('alert');
 			// go to alert page
