@@ -22,9 +22,9 @@ class model
 					// login
 					$url             = \dash\utility\enter::enter_set_login();
 					$alert           = [];
-					$alter['text']   = T_("Your new password is your old password");
-					$alter['link']   = $url;
-					$alter['button'] = T_("Enter");
+					$alert['text']   = T_("Your new password is your old password");
+					$alert['link']   = $url;
+					$alert['button'] = T_("Enter");
 
 					\dash\utility\enter::set_session('alert', $alert);
 					// open lock alert page

@@ -130,7 +130,7 @@ class model
 					}
 					else
 					{
-						// self::set_alert(T_("System error! try again"));
+						\dash\utility\enter::set_session('alert' ,['text' => T_("System error! try again")]);
 						\dash\utility\enter::go_to('alert');
 					}
 				}
