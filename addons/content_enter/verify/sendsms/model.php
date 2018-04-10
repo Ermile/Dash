@@ -2,7 +2,7 @@
 namespace content_enter\verify\sendsms;
 
 
-class model extends \addons\content_enter\main\model
+class model
 {
 
 	/**
@@ -40,7 +40,7 @@ class model extends \addons\content_enter\main\model
 	/**
 	* check sended code
 	*/
-	public function post_verify()
+	public function post()
 	{
 		\dash\utility\enter::check_code('sendsms');
 	}

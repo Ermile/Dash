@@ -5,7 +5,7 @@ class view
 {
 	public static function config()
 	{
-
+		\content_enter\pass\view::config();
 	}
 
 }

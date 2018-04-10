@@ -6,6 +6,8 @@ class view
 {
 	public static function config()
 	{
+		\content_enter\verify\view::verifyPageTitle();
+
 		if(!\dash\utility\enter::get_session('run_call_to_user'))
 		{
 			\dash\utility\enter::set_session('run_call_to_user', true);

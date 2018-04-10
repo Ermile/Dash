@@ -2,23 +2,27 @@
 namespace content_enter\verify\sendsms;
 
 
-class view extends \addons\content_enter\verify\view
+class view
 {
-	public function config()
+	public static function config()
 	{
-		parent::config();
-		// $this->data->page['title'] = ;
-		// $this->data->page['desc']  = T_("Send SMS to login");
+		\content_enter\verify\view::verifyPageTitle();
+		if(!\dash\utility\enter::get_session('sendsms_code_run'))
+		{
+			\content_enter\verify\sendsms\model::send_sendsms_code();
+			\dash\utility\enter::set_session('sendsms_code_run', true);
+		}
+
 		if(\dash\utility\enter::get_session('sendsms_code'))
 		{
-			$this->data->codeSend    = \dash\utility\enter::get_session('sendsms_code');
-			$this->data->codeSendNum = '+98 1000 66600 66600';
-			$this->data->codeSendMsg = T_('Send ":code" to :num',
+			\dash\data::codeSend(\dash\utility\enter::get_session('sendsms_code'));
+			\dash\data::codeSendNum('+98 1000 66600 66600');
+			\dash\data::codeSendMsg(T_('Send ":code" to :num',
 				[
-					'code' => $this->data->codeSend,
-					'num' => '<b><code>'. $this->data->codeSendNum. '</code></b>'
+					'code' => \dash\data::codeSend(),
+					'num' => '<b><code>'. \dash\data::codeSendNum(). '</code></b>'
 				]
-				);
+				));
 		}
 	}
 }

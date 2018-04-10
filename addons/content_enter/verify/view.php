@@ -18,6 +18,13 @@ class view
 			\dash\data::getUsername(\dash\utility\enter::get_session('username', 'temp_username'));
 		}
 
+		self::verifyPageTitle();
+
+	}
+
+	public static function verifyPageTitle()
+	{
+
 		// the verify msg
 		$myDesc  = T_('Please verify yourself.'). ' ';
 
