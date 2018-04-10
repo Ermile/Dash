@@ -640,12 +640,6 @@ class enter
 			]
 		];
 
-		// if(!self::check_input_current_mobile())
-		// {
-		// 	\dash\notif::error(T_("Dont!"));
-		// 	return false;
-		// }
-
 		if(!\dash\request::post('code'))
 		{
 			\dash\notif::error(T_("Please fill the verification code"), 'code');

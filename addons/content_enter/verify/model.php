@@ -23,11 +23,6 @@ class model
 			return false;
 		}
 
-		if(!\dash\utility\enter::get_session('code_is_created'))
-		{
-			\dash\utility\enter::set_session('code_is_created', true);
-		}
-
 		if(\dash\url::isLocal())
 		{
 			\dash\notif::ok(T_("Verify code in local is :code", ['code' => '<b>11111</b>']));
