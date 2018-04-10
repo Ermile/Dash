@@ -6,10 +6,15 @@ namespace dash;
 class code
 {
 	/**
-	 * exit the code
+	 * end the code and if needed echo json of notif
 	 */
 	public static function end()
 	{
+		if(\dash\request::json_accept() || \dash\request::ajax())
+		{
+			@header('Content-Type: application/json');
+			echo \dash\notif::json();
+		}
 		self::exit();
 	}
 
