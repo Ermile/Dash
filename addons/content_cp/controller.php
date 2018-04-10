@@ -1,10 +1,10 @@
 <?php
-namespace content_cp\main;
+namespace content_cp;
 
-class controller extends \mvc\controller
+class controller
 {
 
-	public function repository()
+	public static function routing()
 	{
 
 		if(!\dash\user::login())

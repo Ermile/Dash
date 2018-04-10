@@ -1,19 +1,8 @@
 <?php
 namespace content_cp\main;
 
-class view extends \mvc\view
+class view
 {
-	public function repository()
-	{
-		$this->data->bodyclass = 'siftal';
-
-		$this->include->editor = true;
-
-		// set shortkey for all badges is this content
-		$this->data->page['badge']['shortkey'] = 120;
-	}
-
-
 	public static function make_sort_link($_field, $_url)
 	{
 		$get = \dash\request::get();
