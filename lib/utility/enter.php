@@ -1078,17 +1078,6 @@ class enter
 				$url = $host;
 				break;
 
-			case 'okay':
-				if(self::get_session('redirect_url'))
-				{
-					$url = self::get_session('redirect_url');
-				}
-				else
-				{
-					$url = $host;
-				}
-				break;
-
 			default:
 				$url = $host. '/enter/'. $_url;
 				break;
