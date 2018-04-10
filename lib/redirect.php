@@ -45,10 +45,13 @@ class redirect
 	 */
 	private static function via_pushstate($_loc)
 	{
-		header('Content-Type: application/json');
 		\dash\notif::redirect($_loc);
-		echo \dash\notif::json();
-		\dash\code::die();
+		\dash\code::end();
+
+		// remove below code if have no problem
+		// header('Content-Type: application/json');
+		// echo \dash\notif::json();
+		// \dash\code::die();
 	}
 
 
