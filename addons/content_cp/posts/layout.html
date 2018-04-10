@@ -108,7 +108,7 @@
 {%block iCat%}
 {%set postCat = category({"post_id" : dataRaw.id, "id" : true})%}
 <div title='{%trans "Choose category of post"%}'>
-{%for key, value in cat_list%}
+{%for key, value in listCats%}
 <div class="check1">
   <input type="checkbox" name="cat_{{value.id}}" value="{{value.title}}" id="cat_{{value.id}}" {%if value.id in postCat %} checked {%endif%}>
   <label for="cat_{{value.id}}">{{value.title}}</label>

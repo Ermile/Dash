@@ -3,7 +3,7 @@ namespace content_cp\posts\edit;
 
 class model extends \addons\content_cp\posts\main\model
 {
-	public function post_edit_post()
+	public function post()
 	{
 
 		$posts = self::getPost();
