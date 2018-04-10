@@ -106,7 +106,7 @@
 {%block eusername%}
    <div class='flex fix' id='eusername'>
     <label for='usercode' title='{%trans "username"%}'><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 258.75 258.75" style="enable-background:new 0 0 258.75 258.75;" xml:space="preserve" width="30px" height="30px"><circle cx="129.375" cy="60" r="60" fill="#FFFFFF"/><path d="M129.375,150c-60.061,0-108.75,48.689-108.75,108.75h217.5C238.125,198.689,189.436,150,129.375,150z" fill="#FFFFFF"/></svg></label>
-    <input id='usercode' name="username" type='text' placeholder='{%trans "username"%}' autocomplete="off" value="{{get_username}}" pattern=".{4,50}" title='{%trans "Enter a valid username from 4 to 50 character"%}' required>
+    <input id='usercode' name="username" type='text' placeholder='{%trans "username"%}' autocomplete="off" value="{{getUsername}}" pattern=".{4,50}" title='{%trans "Enter a valid username from 4 to 50 character"%}' required>
    </div>
 {%endblock%}
 

@@ -2,7 +2,7 @@
 namespace content_enter\email\change\google;
 
 
-class model extends \addons\content_enter\main\model
+class model
 {
 
 	/**
@@ -10,7 +10,7 @@ class model extends \addons\content_enter\main\model
 	 *
 	 * @param      <type>  $_args  The arguments
 	 */
-	public function post_change_google($_args)
+	public function post()
 	{
 		if(\dash\request::post('update') === 'no')
 		{

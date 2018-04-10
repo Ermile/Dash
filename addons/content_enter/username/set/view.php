@@ -1,16 +1,14 @@
 <?php
 namespace content_enter\username\set;
 
-class view extends \addons\content_enter\main\view
+
+class view
 {
-	public function config()
+	public static function config()
 	{
-		parent::config();
-
-		$this->data->get_username = \dash\user::login('username');
-
-		$this->data->page['title']   = T_('Set username');
-		$this->data->page['desc']    = $this->data->page['title'];
+		\dash\data::getUsername(\dash\user::login('username'));
+		\dash\data::page_title(T_('Set username'));
+		\dash\data::page_desc(\dash\data::page_title());
 	}
 
 }

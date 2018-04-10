@@ -2,9 +2,9 @@
 namespace content_enter\username;
 
 
-class model extends \addons\content_enter\main\model
+class model
 {
-	public function post_username()
+	public  static function post()
 	{
 		if(!\dash\request::post('password'))
 		{

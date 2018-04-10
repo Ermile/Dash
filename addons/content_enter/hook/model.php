@@ -2,19 +2,14 @@
 namespace content_enter\hook;
 
 
-class model extends \mvc\model
+class model
 {
+	public static $user_id = null;
 
-	/**
-	 * the user id
-	 *
-	 * @var        integer
-	 */
-	public $user_id = null;
 
-	public function delete_chat_id()
+	public static function delete()
 	{
-		if($this->check_api_key())
+		if(self::check_api_key())
 		{
 			$telegram_id = \dash\utility::request("telegramid");
 
@@ -34,7 +29,7 @@ class model extends \mvc\model
 			$where =
 			[
 				'chatid' => $telegram_id,
-				'limit'        => 1
+				'limit'  => 1
 			];
 
 			$exist_chart_id = \dash\db\config::public_get('users', $where);
@@ -68,11 +63,11 @@ class model extends \mvc\model
 	/**
 	 * get user data
 	 */
-	public function post_user()
+	public static function post()
 	{
-		if($this->check_api_key())
+		if(self::check_api_key())
 		{
-			$this->config_user_data();
+			self::config_user_data();
 		}
 
 		if(\dash\engine\process::status())
@@ -89,7 +84,7 @@ class model extends \mvc\model
 	/**
 	 * check api key and set the user id
 	 */
-	public function check_api_key()
+	public static function check_api_key()
 	{
 		$authorization = \dash\header::get("authorization");
 
@@ -106,7 +101,6 @@ class model extends \mvc\model
 
 		if($authorization === \dash\option::config('enter', 'telegram_hook'))
 		{
-			$this->authorization = $authorization;
 			return true;
 		}
 		else
@@ -123,7 +117,7 @@ class model extends \mvc\model
 	 *
 	 * @return     boolean  ( description_of_the_return_value )
 	 */
-	public function config_user_data()
+	public static function config_user_data()
 	{
 		$telegram_id = \dash\utility::request("tg_id");
 		$first_name  = \dash\utility::request('tg_first_name');
@@ -190,7 +184,7 @@ class model extends \mvc\model
 			$insert_user['chatid']      = $telegram_id;
 			$insert_user['datecreated'] = date("Y-m-d H:i:s");
 			\dash\db\users::insert($insert_user);
-			$this->user_id = \dash\db::insert_id();
+			self::$user_id = \dash\db::insert_id();
 			\dash\db\logs::set('enter:hook:signup:new', $exist_mobile['id'], $log_meta);
 
 		}
@@ -200,7 +194,7 @@ class model extends \mvc\model
 			{
 				if(intval($exist_chart_id['id']) === intval($exist_mobile['id']))
 				{
-					$this->user_id = (int) $exist_mobile['id'];
+					self::$user_id = (int) $exist_mobile['id'];
 				}
 				else
 				{
@@ -208,7 +202,7 @@ class model extends \mvc\model
 					\dash\db::query($remove_all_this_chat_id);
 					\dash\db\logs::set('enter:hook:remove:all:chat:id', $exist_mobile['id'], $log_meta);
 					\dash\db\users::update(['chatid' => $telegram_id], $exist_mobile['id']);
-					$this->user_id = (int) $exist_mobile['id'];
+					self::$user_id = (int) $exist_mobile['id'];
 				}
 			}
 			else
@@ -233,7 +227,7 @@ class model extends \mvc\model
 
 					\dash\db\logs::set('enter:hook:change:mobile', $exist_chart_id['id'], $log_meta);
 				}
-				$this->user_id = (int) $exist_chart_id['id'];
+				self::$user_id = (int) $exist_chart_id['id'];
 			}
 			else
 			{
@@ -250,7 +244,7 @@ class model extends \mvc\model
 					\dash\db\users::update(['chatid' => $telegram_id], $exist_mobile['id']);
 					\dash\db\logs::set('enter:hook:change:chat_id', $exist_mobile['id'], $log_meta);
 				}
-				$this->user_id = (int) $exist_mobile['id'];
+				self::$user_id = (int) $exist_mobile['id'];
 			}
 			else
 			{
@@ -258,52 +252,6 @@ class model extends \mvc\model
 				return false;
 			}
 		}
-
-	}
-
-
-	/**
-	 * save api log
-	 *
-	 * @param      boolean  $options  The options
-	 */
-	public function _processor($options = false)
-	{
-		// $log = [];
-
-		// if(isset($_SERVER['REQUEST_URI']))
-		// {
-		// 	$log['url'] = $_SERVER['REQUEST_URI'];
-		// }
-
-		// if(isset($_SERVER['REQUEST_METHOD']))
-		// {
-		// 	$log['method'] = $_SERVER['REQUEST_METHOD'];
-		// }
-
-		// if(isset($_SERVER['REDIRECT_STATUS']))
-		// {
-		// 	$log['pagestatus'] = $_SERVER['REDIRECT_STATUS'];
-		// }
-
-		// $log['request']        = json_encode(\dash\utility::request(), JSON_UNESCAPED_UNICODE);
-		// $log['\dash\notif']          = json_encode(\dash\notif::compile(), JSON_UNESCAPED_UNICODE);
-		// $log['response']       = json_encode(\dash\notif::get_result(), JSON_UNESCAPED_UNICODE);
-		// $log['requestheader']  = json_encode(\dash\header::get('', JSON_UNESCAPED_UNICODE);
-		// $log['responseheader'] = json_encode(apache_response_headers(), JSON_UNESCAPED_UNICODE);
-		// $log['status']         = \dash\engine\process::status();
-		// $log['token']          = $this->authorization;
-		// $log['user_id']        = $this->user_id;
-		// $log['apikeyuserid']   = $this->parent_api_key_user_id;
-		// $log['apikey']         = $this->parent_api_key;
-		// $log['clientip']       = \dash\server::ip(true);
-		// $log['visit_id']       = null;
-
-		// $log                   = \dash\safe::safe($log);
-
-		// \dash\db\apilogs::insert($log);
-
-		parent::_processor($options);
 	}
 }
 ?>

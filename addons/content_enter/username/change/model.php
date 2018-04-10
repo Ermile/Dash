@@ -2,7 +2,7 @@
 namespace content_enter\username\change;
 
 
-class model extends \addons\content_enter\main\model
+class model
 {
 
 	/**
@@ -10,7 +10,7 @@ class model extends \addons\content_enter\main\model
 	 *
 	 * @param      <type>  $_args  The arguments
 	 */
-	public function post_username($_args)
+	public function post()
 	{
 		// remove username
 		if(\dash\request::post('type') === 'remove')

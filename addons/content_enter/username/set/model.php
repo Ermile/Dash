@@ -2,15 +2,10 @@
 namespace content_enter\username\set;
 
 
-class model extends \addons\content_enter\main\model
+class model
 {
 
-	/**
-	 * Posts an enter.
-	 *
-	 * @param      <type>  $_args  The arguments
-	 */
-	public function post_username($_args)
+	public function post()
 	{
 		$username = \dash\request::post('username');
 		$username = trim($username);
