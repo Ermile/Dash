@@ -58,7 +58,7 @@ class view extends \addons\content_cp\main\view
 			$args['sort'] = 'id';
 		}
 
-		$this->data->sort_link  = self::make_sort_link(\dash\app\comment::$sort_field, \dash\url::this());
+		$this->data->sort_link  = \content_cp\view::make_sort_link(\dash\app\comment::$sort_field, \dash\url::this());
 		$this->data->dataTable = \dash\app\comment::list(\dash\request::get('q'), $args);
 	}
 }

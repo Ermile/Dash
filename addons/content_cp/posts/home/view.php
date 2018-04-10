@@ -78,7 +78,7 @@ class view extends \addons\content_cp\posts\main\view
 		}
 
 
-		$this->data->sort_link  = self::make_sort_link(\dash\app\posts::$sort_field, \dash\url::this());
+		$this->data->sort_link  = \content_cp\view::::make_sort_link(\dash\app\posts::$sort_field, \dash\url::this());
 		$this->data->dataTable = \dash\app\posts::list(\dash\request::get('q'), $args);
 
 		if(isset($this->controller->pagnation))
