@@ -2,43 +2,53 @@
 namespace content_cp\posts\home;
 
 
-class view extends \addons\content_cp\posts\main\view
+class view
 {
-	public function config()
+	public static function config()
 	{
-		parent::config();
+		$moduleTypeTxt = \dash\request::get('type');
+		$moduleType    = '';
+
+		if(\dash\request::get('type'))
+		{
+			$moduleType = '?type='. \dash\request::get('type');
+		}
+
+		\dash\data::moduleTypeTxt($moduleTypeTxt);
+		\dash\data::moduleType($moduleType);
 
 		$myType = \dash\request::get('type');
 
-		$this->data->page['title'] = T_("Posts");
-		$this->data->page['desc']  = T_('Check list of posts and search or filter in them to find your posts.'). ' '. T_('Also add or edit specefic post.');
-
-		$this->data->page['badge']['link'] = \dash\url::this(). '/add'. $this->data->moduleType;
-		$this->data->page['badge']['text'] = T_('Add new :val', ['val' => $myType]);
-
+		$myTitle = T_("Posts");
+		$myDesc  = T_('Check list of posts and search or filter in them to find your posts.'). ' '. T_('Also add or edit specefic post.');
 
 		if($myType)
 		{
 			switch ($myType)
 			{
 				case 'page':
-					$this->data->page['title'] = T_('Pages');
-					$this->data->page['desc']  = T_('Check list of pages and to find your pages.'). ' '. T_('Also add or edit specefic static page.');
+					$myTitle = T_('Pages');
+					$myDesc  = T_('Check list of pages and to find your pages.'). ' '. T_('Also add or edit specefic static page.');
 					break;
 			}
 
 		}
 
 		// add back level to summary link
-		$product_list_link        =  '<a href="'. \dash\url::here() .'" data-shortkey="121">'. T_('Back to dashboard'). '</a>';
-		$this->data->page['desc'] .= ' | '. $product_list_link;
+		$product_list_link =  '<a href="'. \dash\url::here() .'" data-shortkey="121">'. T_('Back to dashboard'). '</a>';
+		$myDesc .= ' | '. $product_list_link;
+
+		\dash\data::page_title($myTitle);
+		\dash\data::page_desc($myDesc);
+
+		\dash\data::badge_text(T_('Add new :val', ['val' => $myType]));
+		\dash\data::badge_link(\dash\url::this(). '/add'. $moduleType);
 
 
-
-		$search_string            = \dash\request::get('q');
+		$search_string = \dash\request::get('q');
 		if($search_string)
 		{
-			$this->data->page['title'] .= ' | '. T_('Search for :search', ['search' => $search_string]);
+			$myTitle .= ' | '. T_('Search for :search', ['search' => $search_string]);
 		}
 
 		$args =
@@ -77,14 +87,8 @@ class view extends \addons\content_cp\posts\main\view
 			$args['sort'] = 'id';
 		}
 
-
-		$this->data->sort_link  = \content_cp\view::::make_sort_link(\dash\app\posts::$sort_field, \dash\url::this());
-		$this->data->dataTable = \dash\app\posts::list(\dash\request::get('q'), $args);
-
-		if(isset($this->controller->pagnation))
-		{
-			$this->data->pagnation = $this->controller->pagnation_get();
-		}
+		\dash\data::sortLink(\content_cp\view::make_sort_link(\dash\app\posts::$sort_field, \dash\url::this()) );
+		\dash\data::dataTable(\dash\app\posts::list(\dash\request::get('q'), $args) );
 	}
 }
 ?>
