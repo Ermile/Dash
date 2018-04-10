@@ -7,17 +7,6 @@ class model
 
 	public function post_verify()
 	{
-		// runcall
-		if(mb_strtolower(\dash\request::post('verify')) === 'true')
-		{
-			if(!\dash\utility\enter::get_session('run_telegram_to_user'))
-			{
-				\dash\notif::result("Telegram sended");
-				\dash\utility\enter::set_session('run_telegram_to_user', true);
-				self::send_telegram_code();
-			}
-			return;
-		}
 		\dash\utility\enter::check_code('telegram');
 	}
 
@@ -53,6 +42,8 @@ class model
 		{
 			return false;
 		}
+
+		\dash\utility\enter::generate_verification_code();
 
 		$code = \dash\utility\enter::get_session('verification_code');
 		// make text

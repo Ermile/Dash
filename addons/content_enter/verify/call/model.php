@@ -7,22 +7,14 @@ class model
 
 	public static function post()
 	{
-		if(mb_strtolower(\dash\request::post('verify')) === 'true')
-		{
-			if(!\dash\utility\enter::get_session('run_call_to_user'))
-			{
-				\dash\notif::result("Call sended");
-				\dash\utility\enter::set_session('run_call_to_user', true);
-				self::send_call_code();
-			}
-			return;
-		}
 		\dash\utility\enter::check_code('call');
 	}
 
 
 	public static function send_call_code()
 	{
+		\dash\utility\enter::generate_verification_code();
+
 		$code = \dash\utility\enter::get_session('verification_code');
 
 		$my_mobile = null;
