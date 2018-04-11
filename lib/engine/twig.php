@@ -18,10 +18,12 @@ class twig
 		$module = str_replace('/', '\\', \dash\engine\mvc::get_dir_address());
 		$tmpname = $module.'\\display.html';
 		// show error if display is not exist
-		if(!is_file(root.$tmpname))
+		$tmpname_addr = \autoload::fix_os_path(root. ltrim($tmpname, '\\'));
+		if(!is_file($tmpname_addr))
 		{
 			// display file is not exist in root
-			if(!is_file(addons.$tmpname))
+			$tmpname_addr = \autoload::fix_os_path(addons. ltrim($tmpname, '\\'));
+			if(!is_file($tmpname_addr))
 			{
 				\dash\header::status(206, "without display");
 				return false;
