@@ -295,10 +295,10 @@ class mvc
 			}
 		}
 
-		if(\dash\request::is('post') && !empty(\dash\request::post()))
-		{
-			\dash\redirect::pwd();
-		}
+		// if(\dash\request::is('post') && !empty(\dash\request::post()))
+		// {
+		// 	\dash\redirect::pwd();
+		// }
 	}
 
 	/**
