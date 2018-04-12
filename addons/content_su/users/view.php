@@ -12,7 +12,7 @@ class view extends \addons\content_su\main\view
 
 		$this->data->users_list = $list;
 
-		$this->order_url($_args, $field);
+		$this->orderUrl($_args, $field);
 
 		if(isset($this->controller->pagnation))
 		{
@@ -32,9 +32,9 @@ class view extends \addons\content_su\main\view
 	 * @param      <type>  $_args    The arguments
 	 * @param      <type>  $_fields  The fields
 	 */
-	public function order_url($_args, $_fields)
+	public function orderUrl($_args, $_fields)
 	{
-		$order_url = [];
+		$orderUrl = [];
 		foreach ($_fields as $key => $value)
 		{
 
@@ -44,26 +44,26 @@ class view extends \addons\content_su\main\view
 				{
 					if(mb_strtolower($_args->get("order")[0]) == mb_strtolower('ASC'))
 					{
-						$order_url[$value] = "sort=$value/order=desc";
+						$orderUrl[$value] = "sort=$value/order=desc";
 					}
 					else
 					{
-						$order_url[$value] = "sort=$value/order=asc";
+						$orderUrl[$value] = "sort=$value/order=asc";
 					}
 				}
 				else
 				{
 
-					$order_url[$value] = "sort=$value/order=asc";
+					$orderUrl[$value] = "sort=$value/order=asc";
 				}
 			}
 			else
 			{
-				$order_url[$value] = "sort=$value/order=asc";
+				$orderUrl[$value] = "sort=$value/order=asc";
 			}
 		}
 
-		$this->data->order_url = $order_url;
+		$this->data->orderUrl = $orderUrl;
 	}
 }
 ?>

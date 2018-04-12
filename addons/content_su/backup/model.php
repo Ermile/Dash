@@ -1,19 +1,19 @@
 <?php
 namespace content_su\backup;
 
-class model extends \addons\content_su\main\model
+class model
 {
-	public function post_backup()
+	public static function post()
 	{
 		if(\dash\request::post('backup') === 'now')
 		{
-			$this->backup_now();
+			self::backup_now();
 		}
 		elseif(\dash\request::post('backup') === 'now_log')
 		{
 			if(defined('db_log_name'))
 			{
-				$this->backup_now(db_log_name);
+				self::backup_now(db_log_name);
 			}
 			else
 			{
@@ -23,7 +23,7 @@ class model extends \addons\content_su\main\model
 		}
 		elseif(\dash\request::post('backup') === 'schedule')
 		{
-			$this->backup_schedule();
+			self::backup_schedule();
 		}
 		elseif(\dash\request::post('type') === 'remove' && \dash\request::post('file'))
 		{
@@ -42,7 +42,7 @@ class model extends \addons\content_su\main\model
 		}
 	}
 
-	public function backup_now($_db_name = null)
+	public static function backup_now($_db_name = null)
 	{
 		if(\dash\db::backup_dump(['download' => false, 'db_name' => $_db_name]))
 		{
@@ -51,7 +51,7 @@ class model extends \addons\content_su\main\model
 		\dash\redirect::pwd();
 	}
 
-	public function backup_schedule()
+	public static function backup_schedule()
 	{
 
 		$array =

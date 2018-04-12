@@ -5,12 +5,12 @@
   <h2>{%trans "Backup database"%}</h2>
 </div>
 
-{%if auto_backup_log or requestGET.show == 'log' %}
+{%if autoBackup_log or requestGET.show == 'log' %}
 <div class="cbox">
     <p><a href="{{url.here}}/backup" class="badge primary">{%trans "Back"%}</a></p>
-    {%if auto_backup_log%}
+    {%if autoBackup_log%}
     <pre>
-      {{auto_backup_log}}
+      {{autoBackup_log}}
     {%else%}
       <i>{%trans "File is empty"%}...</i>
     {%endif%}
@@ -24,8 +24,8 @@
     <div class="cbox">
       <h6>{%trans "Database info"%}</h6>
       <div class="msg">
-        <li>Trafic received: <span>{{(((mysql_info.Bytes_received) / 1024 ) / 1024) | number_format }}</span> <small>MB</small></li>
-        <li>Trafic send: <span>{{(((mysql_info.Bytes_sent) / 1024 ) / 1024) | number_format }}</span> <small>MB</small></li>
+        <li>Trafic received: <span>{{(((mysqlInfo.Bytes_received) / 1024 ) / 1024) | number_format }}</span> <small>MB</small></li>
+        <li>Trafic send: <span>{{(((mysqlInfo.Bytes_sent) / 1024 ) / 1024) | number_format }}</span> <small>MB</small></li>
       </div>
        <p><a href="{{url.here}}/backup?show=log">{%trans "Show Auto backup log file"%}</a></p>
       <form method="post">
@@ -33,7 +33,7 @@
           <h6>{%trans "You can create backup now"%}</h6>
           <button class="btn success block">{%trans "Backup now"%}</button>
       </form>
-      {%if database_log%}
+      {%if databaseLog%}
         <br>
         {%trans "You have another database for logs"%} <a href="{{url.pwd}}" data-ajaxify data-data='{"backup" : "now_log"}' data-method='post'><small>{%trans "Click for create backup from log database"%}</small></a>
       {%endif%}
@@ -46,12 +46,12 @@
       <input type="hidden" name="backup" value="schedule">
 
       <div class="switch1">
-       <input type="checkbox" name="auto_backup" id="auto_backup" {%if config_backup.auto_backup%} checked {%endif%}>
+       <input type="checkbox" name="auto_backup" id="auto_backup" {%if configBackup.auto_backup%} checked {%endif%}>
        <label for="auto_backup"></label>
        <label for="auto_backup">{%trans "Auto backup"%}</label>
       </div>
 
-      <div data-response="auto_backup" {%if config_backup.auto_backup%} {%else%}  data-response-hide {%endif%} class="">
+      <div data-response="auto_backup" {%if configBackup.auto_backup%} {%else%}  data-response-hide {%endif%} class="">
         <div class="f">
           <div class="c">{{block('iEvery')}}</div>
           <div class="c mLa5">{{block('iStartAtTime')}}</div>
@@ -87,9 +87,9 @@
 
 
 {%block iShowFiles%}
-{%if old_backup%}
+{%if oldBackup%}
 
-{%for key, value in old_backup%}
+{%for key, value in oldBackup%}
   <div class="msg f" title="{{value.name}}">
     <div class="cauto">
       <span class="sf-database fs15  pRa25 vlbottom" ></span>
@@ -127,40 +127,40 @@
 {%block iEvery%}
 <label for="every">{%trans "Start backup every"%}</label>
 <select name="every" id="every" class="select">
-  <option value="year" {%if config_backup.every == 'year' %} selected {%endif%} >{%trans "Year"%}</option>
-  <option value="month" {%if config_backup.every == 'month' %} selected {%endif%} >{%trans "Month"%}</option>
-  <option value="week" {%if config_backup.every == 'week' %} selected {%endif%} >{%trans "Week"%}</option>
-  <option value="day" {%if config_backup.every == 'day' %} selected {%endif%} >{%trans "Day"%}</option>
-  <option value="hour" {%if config_backup.every == 'hour' %} selected {%endif%} >{%trans "hour"%}</option>
+  <option value="year" {%if configBackup.every == 'year' %} selected {%endif%} >{%trans "Year"%}</option>
+  <option value="month" {%if configBackup.every == 'month' %} selected {%endif%} >{%trans "Month"%}</option>
+  <option value="week" {%if configBackup.every == 'week' %} selected {%endif%} >{%trans "Week"%}</option>
+  <option value="day" {%if configBackup.every == 'day' %} selected {%endif%} >{%trans "Day"%}</option>
+  <option value="hour" {%if configBackup.every == 'hour' %} selected {%endif%} >{%trans "hour"%}</option>
 </select>
 {%endblock%}
 
 {%block iStartAtTime%}
 <label for="time">{%trans "Start backup at time"%}</label>
 <select name="time" id="time" class="select">
-  <option value="00" {%if config_backup.time == '00' %} selected {%endif%} >{{"00" | fitNumber}}</option>
-  <option value="01" {%if config_backup.time == '01' %} selected {%endif%} >{{"01" | fitNumber}}</option>
-  <option value="02" {%if config_backup.time == '02' %} selected {%endif%} >{{"02" | fitNumber}}</option>
-  <option value="03" {%if config_backup.time == '03' %} selected {%endif%} >{{"03" | fitNumber}}</option>
-  <option value="04" {%if config_backup.time == '04' %} selected {%endif%} >{{"04" | fitNumber}}</option>
-  <option value="05" {%if config_backup.time == '05' %} selected {%endif%} >{{"05" | fitNumber}}</option>
-  <option value="06" {%if config_backup.time == '06' %} selected {%endif%} >{{"06" | fitNumber}}</option>
-  <option value="07" {%if config_backup.time == '07' %} selected {%endif%} >{{"07" | fitNumber}}</option>
-  <option value="08" {%if config_backup.time == '08' %} selected {%endif%} >{{"08" | fitNumber}}</option>
-  <option value="09" {%if config_backup.time == '09' %} selected {%endif%} >{{"09" | fitNumber}}</option>
-  <option value="10" {%if config_backup.time == '10' %} selected {%endif%} >{{"10" | fitNumber}}</option>
-  <option value="11" {%if config_backup.time == '11' %} selected {%endif%} >{{"11" | fitNumber}}</option>
-  <option value="12" {%if config_backup.time == '12' %} selected {%endif%} >{{"12" | fitNumber}}</option>
-  <option value="13" {%if config_backup.time == '13' %} selected {%endif%} >{{"13" | fitNumber}}</option>
-  <option value="14" {%if config_backup.time == '14' %} selected {%endif%} >{{"14" | fitNumber}}</option>
-  <option value="15" {%if config_backup.time == '15' %} selected {%endif%} >{{"15" | fitNumber}}</option>
-  <option value="14" {%if config_backup.time == '14' %} selected {%endif%} >{{"14" | fitNumber}}</option>
-  <option value="17" {%if config_backup.time == '17' %} selected {%endif%} >{{"17" | fitNumber}}</option>
-  <option value="19" {%if config_backup.time == '19' %} selected {%endif%} >{{"19" | fitNumber}}</option>
-  <option value="20" {%if config_backup.time == '20' %} selected {%endif%} >{{"20" | fitNumber}}</option>
-  <option value="21" {%if config_backup.time == '21' %} selected {%endif%} >{{"21" | fitNumber}}</option>
-  <option value="22" {%if config_backup.time == '22' %} selected {%endif%} >{{"22" | fitNumber}}</option>
-  <option value="23" {%if config_backup.time == '23' %} selected {%endif%} >{{"23" | fitNumber}}</option>
+  <option value="00" {%if configBackup.time == '00' %} selected {%endif%} >{{"00" | fitNumber}}</option>
+  <option value="01" {%if configBackup.time == '01' %} selected {%endif%} >{{"01" | fitNumber}}</option>
+  <option value="02" {%if configBackup.time == '02' %} selected {%endif%} >{{"02" | fitNumber}}</option>
+  <option value="03" {%if configBackup.time == '03' %} selected {%endif%} >{{"03" | fitNumber}}</option>
+  <option value="04" {%if configBackup.time == '04' %} selected {%endif%} >{{"04" | fitNumber}}</option>
+  <option value="05" {%if configBackup.time == '05' %} selected {%endif%} >{{"05" | fitNumber}}</option>
+  <option value="06" {%if configBackup.time == '06' %} selected {%endif%} >{{"06" | fitNumber}}</option>
+  <option value="07" {%if configBackup.time == '07' %} selected {%endif%} >{{"07" | fitNumber}}</option>
+  <option value="08" {%if configBackup.time == '08' %} selected {%endif%} >{{"08" | fitNumber}}</option>
+  <option value="09" {%if configBackup.time == '09' %} selected {%endif%} >{{"09" | fitNumber}}</option>
+  <option value="10" {%if configBackup.time == '10' %} selected {%endif%} >{{"10" | fitNumber}}</option>
+  <option value="11" {%if configBackup.time == '11' %} selected {%endif%} >{{"11" | fitNumber}}</option>
+  <option value="12" {%if configBackup.time == '12' %} selected {%endif%} >{{"12" | fitNumber}}</option>
+  <option value="13" {%if configBackup.time == '13' %} selected {%endif%} >{{"13" | fitNumber}}</option>
+  <option value="14" {%if configBackup.time == '14' %} selected {%endif%} >{{"14" | fitNumber}}</option>
+  <option value="15" {%if configBackup.time == '15' %} selected {%endif%} >{{"15" | fitNumber}}</option>
+  <option value="14" {%if configBackup.time == '14' %} selected {%endif%} >{{"14" | fitNumber}}</option>
+  <option value="17" {%if configBackup.time == '17' %} selected {%endif%} >{{"17" | fitNumber}}</option>
+  <option value="19" {%if configBackup.time == '19' %} selected {%endif%} >{{"19" | fitNumber}}</option>
+  <option value="20" {%if configBackup.time == '20' %} selected {%endif%} >{{"20" | fitNumber}}</option>
+  <option value="21" {%if configBackup.time == '21' %} selected {%endif%} >{{"21" | fitNumber}}</option>
+  <option value="22" {%if configBackup.time == '22' %} selected {%endif%} >{{"22" | fitNumber}}</option>
+  <option value="23" {%if configBackup.time == '23' %} selected {%endif%} >{{"23" | fitNumber}}</option>
 </select>
 {%endblock%}
 
@@ -168,16 +168,16 @@
 {%block iLifeTime%}
 <label for="life_time">{%trans "Life time of old backup"%}</label>
 <select name="life_time" id="life_time" class="select">
-  <option value="year2" {%if config_backup.life_time == 'year2' %} selected {%endif%}>{%trans "2 years"%}</option>
-  <option value="year" {%if config_backup.life_time == 'year' %} selected {%endif%}>{%trans "one year"%}</option>
-  <option value="month6" {%if config_backup.life_time == 'month6' %} selected {%endif%}>{%trans "6 months"%}</option>
-  <option value="month3" {%if config_backup.life_time == 'month3' %} selected {%endif%}>{%trans "3 months"%}</option>
-  <option value="month2" {%if config_backup.life_time == 'month2' %} selected {%endif%}>{%trans "2 months"%}</option>
-  <option value="month" {%if config_backup.life_time == 'month' %} selected {%endif%}>{%trans "one month"%}</option>
-  <option value="week" {%if config_backup.life_time == 'week' %} selected {%endif%}>{%trans "one week"%}</option>
-  <option value="week2" {%if config_backup.life_time == 'week2' %} selected {%endif%}>{%trans "2 weeks"%}</option>
-  <option value="day" {%if config_backup.life_time == 'day' %} selected {%endif%}>{%trans "one day"%}</option>
-  <option value="day3" {%if config_backup.life_time == 'day3' %} selected {%endif%}>{%trans "3 days"%}</option>
-  <option value="day5" {%if config_backup.life_time == 'day5' %} selected {%endif%}>{%trans "5 days"%}</option>
+  <option value="year2" {%if configBackup.life_time == 'year2' %} selected {%endif%}>{%trans "2 years"%}</option>
+  <option value="year" {%if configBackup.life_time == 'year' %} selected {%endif%}>{%trans "one year"%}</option>
+  <option value="month6" {%if configBackup.life_time == 'month6' %} selected {%endif%}>{%trans "6 months"%}</option>
+  <option value="month3" {%if configBackup.life_time == 'month3' %} selected {%endif%}>{%trans "3 months"%}</option>
+  <option value="month2" {%if configBackup.life_time == 'month2' %} selected {%endif%}>{%trans "2 months"%}</option>
+  <option value="month" {%if configBackup.life_time == 'month' %} selected {%endif%}>{%trans "one month"%}</option>
+  <option value="week" {%if configBackup.life_time == 'week' %} selected {%endif%}>{%trans "one week"%}</option>
+  <option value="week2" {%if configBackup.life_time == 'week2' %} selected {%endif%}>{%trans "2 weeks"%}</option>
+  <option value="day" {%if configBackup.life_time == 'day' %} selected {%endif%}>{%trans "one day"%}</option>
+  <option value="day3" {%if configBackup.life_time == 'day3' %} selected {%endif%}>{%trans "3 days"%}</option>
+  <option value="day5" {%if configBackup.life_time == 'day5' %} selected {%endif%}>{%trans "5 days"%}</option>
 </select>
 {%endblock%}

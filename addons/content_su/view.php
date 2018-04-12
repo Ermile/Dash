@@ -1,35 +1,26 @@
 <?php
-namespace content_su\main;
+namespace content_su;
 
-class view extends \mvc\view
+class view
 {
-	public function config()
+	public static function config()
 	{
-		$this->data->bodyclass        = 'siftal';
-		$this->include->css           = false;
-		$this->include->js            = false;
-		$this->global->js             = [];
+		\dash\data::bodyclass('siftal');
+		\dash\data::include_css(false);
+		\dash\data::include_js(false);
+		\dash\data::global_js([]);
 
-		$this->data->display['su_posts'] = "content_su/posts/layout.html";
-		$this->data->display['suSample'] = "content_su/sample/layout.html";
+		\dash\data::display_su_posts("content_su/posts/layout.html");
+		\dash\data::display_suSample("content_su/sample/layout.html");
 
-		$this->data->dash['langlist']    = ['fa_IR' => 'Persian - فارسی',
-											 'en_US' => 'English',
-											 'ar_SU' => 'Arabic - العربية'];
+		\dash\data::dir_right(\dash\data::global_direction() == 'rtl'? 'left':  'right');
+		\dash\data::dir_left(\dash\data::global_direction() == 'rtl'? 'right': 'left');
+		\dash\data::page_title(T_(ucfirst( str_replace('/', ' ', \dash\url::directory()) )));
 
-		$this->data->dir['right']        = $this->global->direction == 'rtl'? 'left':  'right';
-		$this->data->dir['left']         = $this->global->direction == 'rtl'? 'right': 'left';
-		$this->data->page['title']       = T_(ucfirst( str_replace('/', ' ', \dash\url::directory()) ));
-
-		$this->data->dash['version']     = \dash\engine\version::get();
-		$this->data->dash['lastUpdate']  = \dash\utility\git::getLastUpdate();
+		\dash\data::dash_version(\dash\engine\version::get());
+		\dash\data::dash_lastUpdate(\dash\utility\git::getLastUpdate());
 	}
 
-
-	public function view_child()
-	{
-		$mytable                = $this->suModule('table');
-	}
 
 
 	/**

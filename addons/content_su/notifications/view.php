@@ -11,7 +11,7 @@ class view extends \addons\content_su\main\view
 		$list                           = $this->model()->notifications_list($_args, $field);
 
 		$this->data->notifications_list = $list;
-		$this->order_url($_args, $field);
+		$this->orderUrl($_args, $field);
 		if(isset($this->controller->pagnation))
 		{
 			$this->data->pagnation = $this->controller->pagnation_get();

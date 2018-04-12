@@ -12,7 +12,7 @@ class view extends \addons\content_su\main\view
 
 		$this->data->invoices_list = $list;
 
-		$this->order_url($_args, $field);
+		$this->orderUrl($_args, $field);
 
 		if(isset($this->controller->pagnation))
 		{

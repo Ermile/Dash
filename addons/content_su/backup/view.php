@@ -2,37 +2,35 @@
 namespace content_su\backup;
 
 
-class view extends \addons\content_su\main\view
+class view
 {
-	public function config()
+	public static function config()
 	{
-		parent::config();
-
 
 		if(\dash\request::get('show') === 'log')
 		{
-			$this->data->auto_backup_log = @\dash\file::read(database. 'backup/log');
+			\dash\data::autoBackup_log(@\dash\file::read(database. 'backup/log'));
 		}
 
-		$config_backup = @\dash\file::read(database. 'backup/schedule');
-		if($config_backup && is_string($config_backup))
+		$configBackup = @\dash\file::read(database. 'backup/schedule');
+		if($configBackup && is_string($configBackup))
 		{
-			$config_backup = json_decode($config_backup, true);
-			$this->data->config_backup = $config_backup;
+			$configBackup = json_decode($configBackup, true);
+			\dash\data::configBackup($configBackup);
 		}
 
 
-		$this->data->mysql_info = \dash\db::global_status();
+		\dash\data::mysqlInfo(\dash\db::global_status());
 
-		$old_backup = @glob(database .'backup/files/*');
+		$oldBackup = @glob(database .'backup/files/*');
 
-		$old_backup_files = [];
+		$oldBackup_files = [];
 
-		if($old_backup && is_array($old_backup))
+		if($oldBackup && is_array($oldBackup))
 		{
-			foreach ($old_backup as $key => $value)
+			foreach ($oldBackup as $key => $value)
 			{
-				$old_backup_files [] =
+				$oldBackup_files [] =
 				[
 					'name' => basename($value),
 					'time' => filemtime($value),
@@ -41,14 +39,14 @@ class view extends \addons\content_su\main\view
 					'ago' => \dash\utility\human::timing(date("Y-m-d H:i:s", filemtime($value))),
 				];
 			}
-			$old_backup_files = array_reverse($old_backup_files);
-			$this->data->old_backup = $old_backup_files;
+			$oldBackup_files = array_reverse($oldBackup_files);
+			\dash\data::oldBackup($oldBackup_files);
 		}
 
 
 		if(defined('db_log_name'))
 		{
-			$this->data->database_log = true;
+			\dash\data::databaseLog(true);
 		}
 	}
 }
