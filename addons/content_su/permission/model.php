@@ -12,7 +12,7 @@ class model
 	 */
 	public static function post()
 	{
-		$id = \dash\request::get('id')
+		$id = \dash\request::get('id');
 		$id = \dash\coding::decode($id);
 		if(!$id)
 		{
