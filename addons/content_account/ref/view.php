@@ -1,21 +1,21 @@
 <?php
 namespace content_account\ref;
 
-class view extends \content_account\main\view
+class view
 {
-	public function view_ref($_args)
+	public static function config()
 	{
-		$result = $this->get_ref();
+		$result = self::get_ref();
 		if(is_array($result))
 		{
 			foreach ($result as $key => $value)
 			{
-				$this->data->$key = $value;
+				\dash\data::set($key, $value);
 			}
 		}
 	}
 
-	public function get_ref()
+	public static function get_ref()
 	{
 		if(!\dash\user::login())
 		{
