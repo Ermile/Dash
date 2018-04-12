@@ -78,8 +78,8 @@ class model
 
 		if($notification && $user_id)
 		{
-	        $this->send_notification(['text' => $msg, 'cat' => 'supervisor', 'to' => $user_id]);
-	        \dash\notif::ok(T_("Inner notification was sended"));
+	        // $this->send_notification(['text' => $msg, 'cat' => 'supervisor', 'to' => $user_id]);
+	        // \dash\notif::ok(T_("Inner notification was sended"));
 		}
 
 		if($mobile)
