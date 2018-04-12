@@ -1,11 +1,10 @@
 <?php
 namespace content_su\tools;
 
-class controller extends \addons\content_su\main\controller
+class controller
 {
-	public function ready()
+	public static function ready()
 	{
-		parent::ready();
 
 		$exist    = false;
 
