@@ -29,7 +29,7 @@ class view
 	 * @param      <type>  $_args    The arguments
 	 * @param      <type>  $_fields  The fields
 	 */
-	public function orderUrl($_args, $_fields)
+	public static function orderUrl($_args, $_fields)
 	{
 		$orderUrl = [];
 		foreach ($_fields as $key => $value)
@@ -66,7 +66,7 @@ class view
 
 
 
-	public static function su_make_sort_link($_field, $_url)
+	public static function su_make_sortLink($_field, $_url)
 	{
 		$get = \dash\request::get();
 		if(!is_array($get))
@@ -126,7 +126,7 @@ class view
 	}
 
 
-	public function su_createFilterMsg($_searchText, $_filterArray)
+	public static function su_createFilterMsg($_searchText, $_filterArray)
 	{
 		$result = null;
 

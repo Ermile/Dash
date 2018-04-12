@@ -75,7 +75,7 @@ class view extends \mvc\view
 
 
 
-	public static function su_make_sort_link($_field, $_url)
+	public static function su_make_sortLink($_field, $_url)
 	{
 		$get = \dash\request::get();
 		if(!is_array($get))

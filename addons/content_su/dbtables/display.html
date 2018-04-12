@@ -4,10 +4,10 @@
 
 {%block pageContent%}
 
-{%if all_tables%}
+{%if allTables%}
 <div class="f">
 
-  {%for key, value in all_tables%}
+  {%for key, value in allTables%}
   <div class="c2">
     <a class="dcard x1 " href='{{url.here}}/dbtables?table={{key}}'>
      <div class="statistic">
@@ -67,8 +67,8 @@
   <table class="tbl bordered1">
     <thead class="primary">
       <tr>
-        {%for key, value in all_field%}
-        <th data-sort="{{sort_link[value]['order']}}"><a href='{{sort_link[value]["link"]}}'>{%set myField = value | capitalize%}{%trans value%}</a></th>
+        {%for key, value in allField%}
+        <th data-sort="{{sortLink[value]['order']}}"><a href='{{sortLink[value]["link"]}}'>{%set myField = value | capitalize%}{%trans value%}</a></th>
         {%endfor%}
       </tr>
     </thead>
@@ -76,7 +76,7 @@
     <tbody>
       {%for key, value in dataTable%}
       <tr>
-        {%for fkey, fvalue in all_field%}
+        {%for fkey, fvalue in allField%}
         {%if value[fvalue] is iterable%}
           <td>ARRAY!</td>
         {%else%}

@@ -48,7 +48,7 @@ class view extends \addons\content_su\main\view
 			$args['transactions.type'] = \dash\request::get('type');
 		}
 
-		$this->data->sort_link  = self::su_make_sort_link(\dash\app\transaction::$sort_field, \dash\url::this());
+		$this->data->sortLink  = self::su_make_sortLink(\dash\app\transaction::$sort_field, \dash\url::this());
 		$this->data->dataTable = \dash\app\transaction::list(\dash\request::get('q'), $args);
 
 		$check_empty_datatable = $args;
