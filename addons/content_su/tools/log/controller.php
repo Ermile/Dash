@@ -1,19 +1,11 @@
 <?php
 namespace content_su\tools\log;
 
-class controller extends \addons\content_su\main\controller
+class controller
 {
-	public function ready()
+	public static function routing()
 	{
-		parent::ready();
 
-		$this->showLog();
-		$this->get()->ALL();
-	}
-
-
-	public function showLog()
-	{
 		$exist      = true;
 		$output     = '<html>';
 		$name       = \dash\request::get('name');
