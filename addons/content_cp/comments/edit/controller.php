@@ -1,10 +1,10 @@
 <?php
 namespace content_cp\comments\edit;
 
-class controller extends \addons\content_cp\main\controller
+class controller
 {
 
-	public function ready()
+	public static function routing()
 	{
 
 		$id = \dash\request::get('id');
@@ -13,11 +13,6 @@ class controller extends \addons\content_cp\main\controller
 		{
 			\dash\header::status(404, T_("Invalid id"));
 		}
-
-		$this->get()->ALL();
-
-		$this->post('change_status')->ALL();
-
 	}
 }
 ?>

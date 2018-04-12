@@ -3,7 +3,7 @@ namespace content_cp\posts\edit;
 
 class view
 {
-	public function config()
+	public static function config()
 	{
 		$moduleTypeTxt = \dash\request::get('type');
 		$moduleType    = '';
@@ -32,7 +32,7 @@ class view
 		$myTitle = T_("Edit post");
 		$myDesc  = T_("You can change everything, change url and add gallery or some other change");
 
-		$myBadgeLink = \dash\url::this(). $this->data->moduleType;
+		$myBadgeLink = \dash\url::this(). $moduleType;
 		$myBadgeText = T_('Back to list of posts');
 
 		$myType = \dash\request::get('type');

@@ -1,12 +1,12 @@
 <?php
 namespace content_cp\posts\edit;
 
-class model extends \addons\content_cp\posts\main\model
+class model
 {
-	public function post()
+	public static function post()
 	{
 
-		$posts = self::getPost();
+		$posts = \content_cp\posts\main\model::getPost();
 
 		if(!$posts || !\dash\engine\process::status())
 		{

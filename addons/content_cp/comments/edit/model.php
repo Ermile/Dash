@@ -1,9 +1,9 @@
 <?php
 namespace content_cp\comments\edit;
 
-class model extends \addons\content_cp\main\model
+class model
 {
-	public function post_change_status()
+	public static function post()
 	{
 		$status = \dash\request::post('status');
 

@@ -2,25 +2,25 @@
 namespace content_cp\comments\home;
 
 
-class view extends \addons\content_cp\main\view
+class view
 {
-	public function config()
+	public static function config()
 	{
 
-		$this->data->page['title'] = T_("Comments");
-		$this->data->page['desc']  = T_('Check list of comments and search or filter in them to find your comments.'). ' '. T_('Also add or edit specefic comments.');
+		\dash\data::page_title(T_("Comments"));
+		\dash\data::page_desc(T_('Check list of comments and search or filter in them to find your comments.'). ' '. T_('Also add or edit specefic comments.'));
 
 		// $this->data->page['badge']['link'] = \dash\url::this(). '';
 		// $this->data->page['badge']['text'] = T_('Add new :val', ['val' => $myType]);
 
 		// add back level to summary link
 		$product_list_link        =  '<a href="'. \dash\url::here() .'" data-shortkey="121">'. T_('Back to dashboard'). '</a>';
-		$this->data->page['desc'] .= ' | '. $product_list_link;
+		\dash\data::page_desc(\dash\data::page_desc(). ' | '. $product_list_link);
 
 		$search_string            = \dash\request::get('q');
 		if($search_string)
 		{
-			$this->data->page['title'] .= ' | '. T_('Search for :search', ['search' => $search_string]);
+			\dash\data::page_title(\dash\data::page_title(). ' | '. T_('Search for :search', ['search' => $search_string]));
 		}
 
 		$args =
@@ -58,8 +58,8 @@ class view extends \addons\content_cp\main\view
 			$args['sort'] = 'id';
 		}
 
-		$this->data->sort_link  = \content_cp\view::make_sort_link(\dash\app\comment::$sort_field, \dash\url::this());
-		$this->data->dataTable = \dash\app\comment::list(\dash\request::get('q'), $args);
+		\dash\data::sortLink(\content_cp\view::make_sort_link(\dash\app\comment::$sort_field, \dash\url::this()));
+		\dash\data::dataTable(\dash\app\comment::list(\dash\request::get('q'), $args));
 	}
 }
 ?>
