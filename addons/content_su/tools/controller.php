@@ -65,7 +65,7 @@ class controller
 				$mypath = str_replace('/', '_', \dash\url::path());
 				if( is_file(addons.'content_su/templates/static_'.$mypath.'.html') )
 				{
-					$this->display_name	= 'content_su/templates/static_'.$mypath.'.html';
+					// $this->display_name	= 'content_su/templates/static_'.$mypath.'.html';
 				}
 				// $this->display_name	= 'content_su/templates/static_'.$mypath.'.html';
 				break;
@@ -78,7 +78,7 @@ class controller
 
 		if($exist)
 		{
-			$this->model()->_processor((object) array("force_json" => false, "force_stop" => true));
+			// $this->model()->_processor((object) array("force_json" => false, "force_stop" => true));
 		}
 	}
 }
