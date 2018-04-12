@@ -2,12 +2,11 @@
 namespace content_su\session;
 
 
-class view extends \addons\content_su\main\view
+class view
 {
-	public function config()
+	public static function config()
 	{
-		parent::config();
-		$this->data->my_session = $_SESSION;
+		\dash\data::session($_SESSION);
 	}
 }
 ?>
