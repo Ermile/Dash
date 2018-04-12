@@ -6,13 +6,13 @@ class view
 {
 	public static function config()
 	{
-		$this->data->moduleTypeTxt = \dash\request::get('type');
-		$this->data->moduleType    = '';
+		// $this->data->moduleTypeTxt = \dash\request::get('type');
+		// $this->data->moduleType    = '';
 
-		if(\dash\request::get('type'))
-		{
-			$this->data->moduleType = '?type='. \dash\request::get('type');
-		}
+		// if(\dash\request::get('type'))
+		// {
+		// 	$this->data->moduleType = '?type='. \dash\request::get('type');
+		// }
 	}
 }
 ?>
