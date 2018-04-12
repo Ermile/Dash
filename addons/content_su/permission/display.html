@@ -8,7 +8,7 @@
 
 <div class="cbox">
 	<h4>{%trans "Permission cat"%}</h4>
-{%for key, value in perm_cat%}
+{%for key, value in permCat%}
 	<div class="switch1">
 		<input type="checkbox" name="perm_cat_{{value}}" id="perm_{{value}}">
 		<label for="perm_{{value}}"></label>
@@ -22,9 +22,9 @@
 		<div class="cbox">
 		<form method="post">
 
-		{%for key, value in permission_list%}
+		{%for key, value in permissionList%}
 		<div class="switch1">
-			<input type="checkbox" name="perm_{{key}}" id="perm_{{key}}" {%if key in user_permission%}checked{%endif%} {%if value.cat%}data-response="perm_cat_{{value.cat}}" data-response-repeat{%endif%}>
+			<input type="checkbox" name="perm_{{key}}" id="perm_{{key}}" {%if key in userPermission%}checked{%endif%} {%if value.cat%}data-response="perm_cat_{{value.cat}}" data-response-repeat{%endif%}>
 			<label for="perm_{{key}}"></label>
 			<label for="perm_{{key}}">{%if value.title%}{{value.title}}{%else%}{{value.caller}}{%endif%}</label>
 		</div>

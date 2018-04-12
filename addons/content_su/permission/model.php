@@ -2,36 +2,17 @@
 namespace content_su\permission;
 
 
-class model extends \addons\content_su\main\model
+class model
 {
-	public function permission_list($_args, $_fields = [])
-	{
-		$meta          = [];
-		$meta['admin'] = true;
-		$search        = null;
-
-		if(\dash\request::get('search'))
-		{
-			$search = \dash\request::get('search');
-		}
-		foreach ($_fields as $key => $value)
-		{
-			if(isset($_args->get($value)[0]))
-			{
-				$meta[$value] = $_args->get($value)[0];
-			}
-		}
-	}
-
 
 	/**
 	 * Posts an add.
 	 *
 	 * @param      <type>  $_args  The arguments
 	 */
-	public function post_add($_args)
+	public static function post()
 	{
-		$id = isset($_args->match->url[0][1]) ? $_args->match->url[0][1] : null;
+		$id = \dash\request::get('id')
 		$id = \dash\coding::decode($id);
 		if(!$id)
 		{
