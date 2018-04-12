@@ -293,6 +293,8 @@ class mvc
 				// model does not exist in this folder, show not acceptable message
 				\dash\header::status(406);
 			}
+
+			\dash\code::end();
 		}
 
 		// if(\dash\request::is('post') && !empty(\dash\request::post()))

@@ -44,23 +44,16 @@ class model
 
 				// clean existing session
 				\dash\utility\enter::clean_session();
-				unset($_SESSION['user']);
-				unset($_SESSION['permission']);
 
-				\dash\utility\enter::$user_id = $user_id;
+				\dash\user::destroy();
+
 				\dash\utility\enter::load_user_data($user_id, 'user_id');
 
 				$_SESSION['main_account'] = $main_account;
 				$_SESSION['main_mobile']  = $main_mobile;
 
 				// set login session
-				$redirect_url = \dash\utility\enter::enter_set_login();
-				// save redirect url in session to get from okay page
-				\dash\utility\enter::set_session('redirect_url', $redirect_url);
-				// set okay as next step
-				\dash\utility\enter::next_step('okay');
-				// go to okay page
-				\dash\utility\enter::go_to('okay');
+				$redirect_url = \dash\utility\enter::enter_set_login(null, true);
 				return true;
 			}
 			return false;
@@ -77,6 +70,14 @@ class model
 	 */
 	public static function post()
 	{
+		/**
+		 * check login by another session
+		 */
+		if(self::login_another_session())
+		{
+			return;
+		}
+
 		$count = \dash\session::get('enter_session_check');
 		if($count)
 		{
@@ -109,13 +110,6 @@ class model
 			return false;
 		}
 
-		/**
-		 * check login by another session
-		 */
-		if(self::login_another_session())
-		{
-			return;
-		}
 
 		// if old mobile is different by new mobile
 		// save in session this user change the mobile
