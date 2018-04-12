@@ -2,9 +2,9 @@
 namespace content_account\profile;
 
 
-class model extends \content_account\main\model
+class model
 {
-	public function post_profile($_args)
+	public static function post()
 	{
 
 		// update user details
@@ -43,9 +43,9 @@ class model extends \content_account\main\model
 
 		if(\dash\request::files('avatar'))
 		{
-			$this->user_id = \dash\user::id();
-			\dash\utility::set_request_array(['upload_name' => 'avatar']);
-			$uploaded_file = $this->upload_file(['\dash\notif' => false]);
+
+			\dash\utility::set_request_array([]);
+			$uploaded_file = \dash\app\file::upload(['debug' => false, 'upload_name' => 'avatar']);
 
 			if(isset($uploaded_file['url']))
 			{

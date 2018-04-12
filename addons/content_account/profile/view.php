@@ -1,19 +1,15 @@
 <?php
 namespace content_account\profile;
 
-class view extends \content_account\main\view
+class view
 {
-	public function config()
+	public static function config()
 	{
-		$this->data->page['title'] = T_("Edit profile");
-		$this->data->page['desc']  = T_("Check your profile and edit name or avatar of your account");
-	}
-
-	public function view_profile()
-	{
+		\dash\data::page_title(T_("Edit profile"));
+		\dash\data::page_desc(T_("Check your profile and edit name or avatar of your account"));
 		if(\dash\user::login('unit_id'))
 		{
-			$this->data->user_unit = \dash\app\units::get(\dash\user::login('unit_id'), true);
+			\dash\data::userUnit(\dash\app\units::get(\dash\user::login('unit_id'), true));
 		}
 	}
 }
