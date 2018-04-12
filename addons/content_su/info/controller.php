@@ -1,17 +1,9 @@
 <?php
 namespace content_su\info;
 
-class controller extends \addons\content_su\main\controller
+class controller
 {
-	public function ready()
-	{
-		parent::ready();
-		$this->showInfo();
-		$this->get()->ALL();
-	}
-
-
-	public function showInfo()
+	public static function routing()
 	{
 		$name = \dash\url::dir(1);
 
@@ -41,7 +33,6 @@ class controller extends \addons\content_su\main\controller
 
 				require addons.'lib/linfo/index.php';
 
-				$this->display_name	= 'content_su/tools/raw-all.html';
 				break;
 
 
