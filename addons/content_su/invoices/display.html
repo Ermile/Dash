@@ -26,7 +26,7 @@
 		<th>{%trans "Detail"%}</th>
 	</thead>
 	<tbody>
-		{%for key, value in invoices_list%}
+		{%for key, value in invoicesList%}
 		<tr>
 			<td>{{value.id|number_format|fitNumber}}</td>
 			{%if lang.current == 'fa'%}
