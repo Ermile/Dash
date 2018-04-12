@@ -2,31 +2,22 @@
 namespace content_account\billing;
 
 
-class model extends \mvc\model
+class model
 {
-
-	/**
-	 * the user id
-	 *
-	 * @var        <type>
-	 */
-	public $user_id = null;
-
 
 	/**
 	 * get billing data to show
 	 */
-	public function get_billing($_args)
+	public static function get_billing()
 	{
 		if(!\dash\user::login())
 		{
 			return false;
 		}
+
 		$meta            = [];
-		$this->user_id   = \dash\user::id();
-		$meta['user_id'] = $this->user_id;
-		// $meta['admin']   = false ;
-		$meta['verify'] = 1;
+		$meta['user_id'] = \dash\user::id();
+		$meta['verify']  = 1;
 		$billing_history = \dash\db\transactions::search(null, $meta);
 		return $billing_history;
 	}
@@ -34,7 +25,7 @@ class model extends \mvc\model
 	/**
 	 * post data and update or insert billing data
 	 */
-	public function post_billing()
+	public static function post()
 	{
 		if(!\dash\user::login())
 		{
@@ -46,7 +37,7 @@ class model extends \mvc\model
 		{
 			if(\dash\request::post('promo'))
 			{
-				$this->check_promo();
+				self::check_promo();
 				return;
 			}
 			else
@@ -63,7 +54,7 @@ class model extends \mvc\model
 
 
 
-	public function check_promo()
+	public static function check_promo()
 	{
 		$promo     = \dash\request::post('promo');
 		$amount    = 0;

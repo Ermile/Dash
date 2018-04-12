@@ -36,7 +36,7 @@
           </div>
 
          <div class="input pA5">
-          <label class="addon" for="amount-number">{%trans user_unit%}</label>
+          <label class="addon" for="amount-number">{%trans userUnit%}</label>
           <input id="amount-number" type="number" name="amount" value="{{amount}}" placeholder='{%trans "Amount"%}' required min=0>
           <button class="addon btn primary">{%trans "Checkout"%}</button>
          </div>
@@ -65,9 +65,9 @@
        <div class="statistic blue">
         <div class="value">
           <i class="sf-credit-card"></i>
-          <span>{{user_cash.total|number_format| fitNumber}}</span>
+          <span>{{userCash.total|number_format| fitNumber}}</span>
         </div>
-        <div class="label">{%trans "Your credit"%} <small>{%trans user_unit%}</small></div>
+        <div class="label">{%trans "Your credit"%} <small>{%trans userUnit%}</small></div>
        </div>
       </div>
       <a class="cbox" href="{{url.here}}/billing/detail" title='{%trans "Click to check detail"%}'>
@@ -76,7 +76,7 @@
           <i class="sf-bag"></i>
           <span class="counter">{{usage|number_format}}</span>
         </div>
-        <div class="label">{%trans "Usage"%} <small>{%trans user_unit%}</small></div>
+        <div class="label">{%trans "Usage"%} <small>{%trans userUnit%}</small></div>
        </div>
       </a>
     </div>
