@@ -1,25 +1,25 @@
 <?php
 namespace content_su\transactions;
 
-class view extends \addons\content_su\main\view
+class view
 {
-	public function config()
+	public static function config()
 	{
-		parent::config();
 
-		$this->data->page['title'] = T_("Transactions list");
-		$this->data->page['desc']  = T_('Check list of Transactions and search or filter in them to find your transactions.'). ' '. T_('Also add or edit specefic transactions.');
+
+		\dash\data::page_title(T_("Transactions list"));
+		\dash\data::page_desc(T_('Check list of Transactions and search or filter in them to find your transactions.'). ' '. T_('Also add or edit specefic transactions.'));
 		// add back level to summary link
 
 
 
-		$this->data->page['badge']['link'] = \dash\url::this(). '/add';
-		$this->data->page['badge']['text'] = T_('Add new transactions');
+		\dash\data::badge_link(\dash\url::this(). '/add');
+		\dash\data::badge_text(T_('Add new transactions'));
 
 		$search_string            = \dash\request::get('q');
 		if($search_string)
 		{
-			$this->data->page['title'] .= ' | '. T_('Search for :search', ['search' => $search_string]);
+			\dash\data::page_title(\dash\data::page_title() . ' | '. T_('Search for :search', ['search' => $search_string]));
 		}
 
 		$args =
@@ -48,15 +48,15 @@ class view extends \addons\content_su\main\view
 			$args['transactions.type'] = \dash\request::get('type');
 		}
 
-		$this->data->sortLink  = self::su_make_sortLink(\dash\app\transaction::$sort_field, \dash\url::this());
-		$this->data->dataTable = \dash\app\transaction::list(\dash\request::get('q'), $args);
+		\dash\data::sortLink(\content_su\view::su_make_sortLink(\dash\app\transaction::$sort_field, \dash\url::this()));
+		\dash\data::dataTable(\dash\app\transaction::list(\dash\request::get('q'), $args));
 
 		$check_empty_datatable = $args;
 		unset($check_empty_datatable['sort']);
 		unset($check_empty_datatable['order']);
 
 		// set dataFilter
-		$this->data->dataFilter = $this->su_createFilterMsg($search_string, $check_empty_datatable);
+		\dash\data::dataFilter(\content_su\view::su_createFilterMsg($search_string, $check_empty_datatable));
 	}
 }
 ?>

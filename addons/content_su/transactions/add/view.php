@@ -1,17 +1,14 @@
 <?php
 namespace content_su\transactions\add;
 
-class view extends \addons\content_su\transactions\view
+class view
 {
-	public function config()
+	public static function config()
 	{
-		parent::config();
-
-		$this->data->page['title'] = T_("Add new transactions");
-		$this->data->page['desc'] = T_("Add new transactions for every one");
-
-		$this->data->page['badge']['link'] = \dash\url::this(). '/transactions';
-		$this->data->page['badge']['text'] = T_('Back to transactions list');
+		\dash\data::page_title(T_("Add new transactions"));
+		\dash\data::page_desc(T_("Add new transactions for every one"));
+		\dash\data::badge_link(\dash\url::this(). '/transactions');
+		\dash\data::badge_text(T_('Back to transactions list'));
 	}
 }
 ?>
