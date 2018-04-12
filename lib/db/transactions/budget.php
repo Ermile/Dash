@@ -151,25 +151,39 @@ trait budget
 		{
 			$all_unit =
 			"
-			SELECT
-				transactions.budget AS `budget`,
-				transactions.unit_id AS `unit`
-			FROM
-				transactions
-			WHERE
-				transactions.id IN
-				(
-					SELECT
-						MAX(transactions.dateverify)
-					FROM
-						transactions
-					WHERE
-						transactions.user_id = $_user_id AND
-						transactions.verify  = 1
-					GROUP BY
-						transactions.unit_id
-				)
-			-- get all budget in all units of users
+				SELECT
+					transactions.budget AS `budget`,
+					transactions.unit_id AS `unit`
+				FROM
+					transactions
+				WHERE
+					transactions.user_id = $_user_id AND
+					transactions.verify  = 1 AND
+					transactions.id IN
+					(
+						SELECT
+							transactions.id
+						FROM
+							transactions
+						WHERE
+							transactions.user_id = $_user_id AND
+							transactions.verify  = 1 AND
+							transactions.dateverify =
+							(
+								SELECT
+									MAX(transactions.dateverify)
+								FROM
+									transactions
+								WHERE
+									transactions.user_id = $_user_id AND
+									transactions.verify  = 1
+								GROUP BY
+									transactions.unit_id
+							)
+						GROUP BY
+							transactions.unit_id
+					)
+				-- get all budget in all units of users
 			";
 			$all_unit =  \dash\db::get($all_unit, ['unit', 'budget']);
 			return $all_unit;

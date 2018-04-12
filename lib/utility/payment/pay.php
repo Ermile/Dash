@@ -82,7 +82,10 @@ class pay
     {
         $host = \dash\url::site();
         $callback_url =  $host;
-        $callback_url .= $lang;
+        if(\dash\url::lang())
+        {
+            $callback_url .= '/'.\dash\url::lang();
+        }
 
         if($_payment === 'redirect_page')
         {
@@ -93,6 +96,7 @@ class pay
             $callback_url .= '/'. self::$default_callback_url;
             $callback_url .= '/'. $_payment;
         }
+
         return $callback_url;
     }
 }
