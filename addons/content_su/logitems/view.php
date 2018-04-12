@@ -1,28 +1,31 @@
 <?php
 namespace content_su\logitems;
 
-class view extends \addons\content_su\main\view
+class view
 {
-	public function view_list($_args)
+
+	public static function config()
 	{
+		$list = self::logitems_list();
+		\dash\data::logitemsList($list);
+	}
 
-		$field = $this->controller()->fields;
 
-		$list = $this->model()->logitems_list($_args, $field);
-
-		$this->data->logitems_list = $list;
-
-		$this->orderUrl($_args, $field);
-
-		if(isset($this->controller->pagnation))
-		{
-			$this->data->pagnation = $this->controller->pagnation_get();
-		}
+	public static function logitems_list()
+	{
+		$meta          = [];
+		$meta['admin'] = true;
+		$search        = null;
 
 		if(\dash\request::get('search'))
 		{
-			$this->data->get_search = \dash\request::get('search');
+			$search = \dash\request::get('search');
 		}
+
+		$result = \dash\db\logitems::search($search, $meta);
+
+		return $result;
 	}
+
 }
 ?>

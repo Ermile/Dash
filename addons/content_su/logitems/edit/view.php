@@ -1,15 +1,15 @@
 <?php
 namespace content_su\logitems\edit;
 
-class view extends \addons\content_su\main\view
+class view
 {
-	public function view_edit($_args)
+	public static function config()
 	{
-		$id = isset($_args->match->url[0][1]) ? $_args->match->url[0][1] : null;
+		$id = \dash\request::get('id');
 		if($id && is_numeric($id))
 		{
 			$result = \dash\db\logitems::get(['id' => $id, 'limit' => 1]);
-			$this->data->logitem = $result;
+			\dash\data::logitem($result);
 		}
 	}
 }

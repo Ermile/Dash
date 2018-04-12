@@ -26,7 +26,7 @@
 	</thead>
 
 	<tbody>
-		{%for key, value in logitems_list%}
+		{%for key, value in logitemsList%}
 		<tr>
 			<td>{{value.id|fitNumber}}</td>
 			<td>{{value.type}}</td>
@@ -34,7 +34,7 @@
 			<td>{{value.title}}</td>
 			<td>{%set myPriority = value.priority |capitalize %}{%trans myPriority%}</td>
 			<td>{{value.datecreated | tdate}}</td>
-			<td><a href="{{url.base}}/su/logitems/edit/{{value.id}}"><i class="sf-edit"></i></a></td>
+			<td><a href="{{url.base}}/su/logitems/edit?id={{value.id}}"><i class="sf-edit"></i></a></td>
 		</tr>
 		{%endfor%}
 	</tbody>
