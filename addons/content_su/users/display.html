@@ -34,7 +34,7 @@
 
 	</thead>
 	<tbody>
-		{%for key, value in users_list%}
+		{%for key, value in usersList%}
 		<tr>
 			<td>{% set user_code = value.id|coding("encode")%}{{user_code}}</td>
 			<td>{{value.mobile|fitNumber}}</td>
@@ -51,11 +51,11 @@
 				<td><span class="sf-file-image-o"></span></td>
 			{%endif%}
 
-			<td><a href='{{url.base}}/su/users/detail/{{user_code}}'><span class="sf-align-left-1"></span></a></td>
-			<td><a href='{{url.base}}/su/users/edit/{{user_code}}'><span class="sf-edit-write"></span></a></td>
+			<td><a href='{{url.base}}/su/users/detail?id={{user_code}}'><span class="sf-align-left-1"></span></a></td>
+			<td><a href='{{url.base}}/su/users/edit?id={{user_code}}'><span class="sf-edit-write"></span></a></td>
 			<td><a href='{{url.base}}/su/logs/sort=id/order=desc/user_id={{user_code}}'><span class="sf-archive"></span></a></td>
-			<td><a href='{{url.base}}/su/transactions/sort=id/order=desc/user_id={{user_code}}'><span class="sf-credit-card"></span></a></td>
-			<td><a href='{{url.base}}/su/permission/{{user_code}}'><span class="sf-flag-o"></span></a></td>
+			<td><a href='{{url.base}}/su/transactions?sort=id&order=desc&user_id={{user_code}}'><span class="sf-credit-card"></span></a></td>
+			<td><a href='{{url.base}}/su/permission?id={{user_code}}'><span class="sf-flag-o"></span></a></td>
 		</tr>
 		{%endfor%}
 

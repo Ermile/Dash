@@ -2,26 +2,10 @@
 namespace content_su\users\edit;
 
 
-class model extends \addons\content_su\main\model
+class model
 {
-	public function getUserDetail($_args)
-	{
-		$id            = isset($_args->match->url[0][1]) ? $_args->match->url[0][1] : null;
-		$request       = [];
-		$request['id'] = $id;
 
-		\dash\utility::set_request_array($request);
-		$this->user_id = \dash\user::id();
-		return $this->get_user();
-	}
-
-
-	/**
-	 * Gets the post teacher.
-	 *
-	 * @return     array  The post teacher.
-	 */
-	public function getPostUser()
+	public static function getPostUser()
 	{
 		$post =
 		[
@@ -44,16 +28,7 @@ class model extends \addons\content_su\main\model
 			'paymentaccountnumber' => \dash\request::post('paymentaccountnumber'),
 			'shaba'                => \dash\request::post('shaba'),
 		];
-		// $file_code = $this->upload_avatar();
-		// // we have an error in upload avatar
-		// if($file_code === false)
-		// {
-		// 	return false;
-		// }
-		// if($file_code)
-		// {
-		// 	$post['file'] = $file_code;
-		// }
+
 		return $post;
 	}
 
@@ -61,22 +36,12 @@ class model extends \addons\content_su\main\model
 	/**
 	 * Posts a teacher add.
 	 */
-	public function post_edit($_args)
+	public static function post()
 	{
 		// ready request
-		$request = $this->getPostUser();
-		if($request === false)
-		{
-			return false;
-		}
+		$request = self::getPostUser();
 
-		$id = isset($_args->match->url[0][1]) ? $_args->match->url[0][1] : null;
-		$this->user_id = \dash\user::id();
-		$request['id'] = $id;
-
-		\dash\utility::set_request_array($request);
-		// API ADD MEMBER FUNCTION
-		$this->add_user(['method' => 'patch']);
+		\dash\app\user::edit($request, \dash\request::get('id'));
 
 		if(\dash\engine\process::status())
 		{

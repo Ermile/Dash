@@ -1,19 +1,20 @@
 <?php
 namespace content_su\users\detail;
 
-class view extends \addons\content_su\main\view
+class view
 {
-	public function view_detail($_args)
+	public static function config()
 	{
-		if(isset($_args->api_callback))
+		$id     = \dash\request::get('id');
+		$id     = \dash\coding::decode($id);
+		$result = [];
+
+		if($id && is_numeric($id))
 		{
-			$data = $_args->api_callback;
-			if(isset($data['user_id']))
-			{
-				$this->data->getMobile = \dash\db\users::get_mobile($data['user_id']);
-			}
-			$this->data->user_record = $data;
+			$result = \dash\db\users::get_by_id($id);
 		}
+
+		\dash\data::userRecord($result);
 	}
 }
 ?>

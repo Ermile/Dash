@@ -1,12 +1,12 @@
 <?php
 namespace content_su\users\edit;
 
-class view extends \addons\content_su\main\view
+class view
 {
-	public function view_edit($_args)
+	public static function config()
 	{
-		$this->data->edit_mode = true;
-		$this->data->user_detail = $this->model()->getUserDetail($_args);
+		\dash\data::editMode(true);
+		\dash\data::userDetail(\dash\db\users::get_by_id(\dash\coding::decode(\dash\request::get('id'))));
 	}
 }
 ?>

@@ -1,69 +1,28 @@
 <?php
 namespace content_su\users;
 
-class view extends \addons\content_su\main\view
+class view
 {
-	public function view_list($_args)
+	public static function config()
 	{
-
-		$field = $this->controller()->fields;
-
-		$list = $this->model()->users_list($_args, $field);
-
-		$this->data->users_list = $list;
-
-		$this->orderUrl($_args, $field);
-
-		if(isset($this->controller->pagnation))
-		{
-			$this->data->pagnation = $this->controller->pagnation_get();
-		}
-
-		if(isset($_args->get("search")[0]))
-		{
-			$this->data->get_search = $_args->get("search")[0];
-		}
+		$list = self::users_list();
+		\dash\data::usersList($list);
 	}
 
 
-	/**
-	 * MAKE ORDER URL
-	 *
-	 * @param      <type>  $_args    The arguments
-	 * @param      <type>  $_fields  The fields
-	 */
-	public function orderUrl($_args, $_fields)
+	public static function users_list()
 	{
-		$orderUrl = [];
-		foreach ($_fields as $key => $value)
+		$meta          = [];
+		$meta['admin'] = true;
+		$search        = null;
+
+		if(\dash\request::get('search'))
 		{
-
-			if(isset($_args->get("sort")[0]))
-			{
-				if($_args->get("sort")[0] == $value)
-				{
-					if(mb_strtolower($_args->get("order")[0]) == mb_strtolower('ASC'))
-					{
-						$orderUrl[$value] = "sort=$value/order=desc";
-					}
-					else
-					{
-						$orderUrl[$value] = "sort=$value/order=asc";
-					}
-				}
-				else
-				{
-
-					$orderUrl[$value] = "sort=$value/order=asc";
-				}
-			}
-			else
-			{
-				$orderUrl[$value] = "sort=$value/order=asc";
-			}
+			$search = \dash\request::get('search');
 		}
 
-		$this->data->orderUrl = $orderUrl;
+		$result = \dash\db\users::search($search, $meta);
+		return $result;
 	}
 }
 ?>

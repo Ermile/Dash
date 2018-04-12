@@ -14,7 +14,7 @@
 	<th>{%trans "Value"%}</th>
 	</thead>
 	<tbody>
-		{%for key, value in user_record%}
+		{%for key, value in userRecord%}
 			<tr>
 				<td>{%set myKey = key |capitalize%}{%trans key%}</td>
 				<td>{{value|fitNumber}}</td>
