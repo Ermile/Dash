@@ -24,7 +24,7 @@
 
 	</thead>
 	<tbody>
-		{%for key, value in invoicedetails_list%}
+		{%for key, value in invoicedetailsList%}
 		<tr>
 			<td>{{value.id|fitNumber}}</td>
 			<td><a href="{{url.base}}/su/invoices/id={{value.invoice_id}}">{{value.invoice_id|fitNumber}}</a></td>

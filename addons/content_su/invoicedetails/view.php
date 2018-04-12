@@ -1,23 +1,28 @@
 <?php
 namespace content_su\invoicedetails;
 
-class view extends \addons\content_su\main\view
+class view
 {
-	public function view_list($_args)
+	public static function config()
 	{
-		$field = $this->controller()->fields;
-		$list  = $this->model()->invoicedetails_list($_args, $field);
-		$this->data->invoicedetails_list = $list;
+		$list  = self::invoicedetails_list();
+		\dash\data::invoicedetailsList($list);
+	}
 
-		$this->orderUrl($_args, $field);
-		if(isset($this->controller->pagnation))
-		{
-			$this->data->pagnation = $this->controller->pagnation_get();
-		}
+
+	public static function invoicedetails_list()
+	{
+		$meta          = [];
+		$meta['admin'] = true;
+		$search        = null;
 		if(\dash\request::get('search'))
 		{
-			$this->data->get_search = \dash\request::get('search');
+			$search = \dash\request::get('search');
 		}
+
+		$result = \dash\db\invoice_details::search($search, $meta);
+
+		return $result;
 	}
 }
 ?>
