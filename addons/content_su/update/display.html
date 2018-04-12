@@ -77,7 +77,7 @@
 
 
 {%block iUpdateDb%}
- <form method="post" action="{{url.here}}/tools/db" data-action class="cbox">
+ <form method="post" action="{{url.here}}/db" data-action class="cbox">
   <h2>{%trans "Upgrade Database"%}</h2>
   <div class="msg danger2 txtC">{%trans "Submit this form carefully"%}</div>
   <div class="input mB10">
@@ -107,13 +107,13 @@
    <p class="msg warn2 txtC">{%trans "Before update create a full backup from database and files"%}</p>
    <div class="f">
     <div class="c6 pRa10">
-      <a target='_blank' class="btn block mB10 c6 secondary" href="{{url.here}}/tools/update?git={{url.root}}">{%trans "Update"%} {%trans "Current Project Repository"%}</a>
+      <a target='_blank' class="btn block mB10 c6 secondary" href="{{url.here}}/update?git={{url.root}}">{%trans "Update"%} {%trans "Current Project Repository"%}</a>
     </div>
     <div class="c6">
-      <a target='_blank' class="btn block mB10 c6 secondary" href="{{url.here}}/tools/update?git=dash">{%trans "Update"%} {%trans "Dash Repository"%}</a>
+      <a target='_blank' class="btn block mB10 c6 secondary" href="{{url.here}}/update?git=dash">{%trans "Update"%} {%trans "Dash Repository"%}</a>
     </div>
    </div>
-    <a target='_blank' class="btn block mB10 xl" href="{{url.here}}/tools/update?git=all">{%trans "Update"%} {%trans "Dash + Current Poject Repository"%}</a>
+    <a target='_blank' class="btn block mB10 xl" href="{{url.here}}/update?git=all">{%trans "Update"%} {%trans "Dash + Current Poject Repository"%}</a>
  </div>
 {%endblock%}
 

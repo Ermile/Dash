@@ -1,25 +1,25 @@
 <?php
 namespace content_su\update;
 
-class view extends \addons\content_su\main\view
+class view
 {
-	public function config()
+	public static function config()
 	{
-		parent::config();
-		$this->data->page['title'] = T_("Update");
-		$this->data->page['desc']  = T_('Check curent version of dash and update to latest version if available.');
 
-		$this->data->dashLoc = null;;
+		\dash\data::page_title(T_("Update"));
+		\dash\data::page_desc(T_('Check curent version of dash and update to latest version if available.'));
 
+		$dashLoc = null;
 		// go to root url
 		if(is_dir(root. 'dash'))
 		{
-			$this->data->dashLoc = T_('Inside project'). ' <span class="sf-chain-broken fc-green"></span>';
+			$dashLoc = T_('Inside project'). ' <span class="sf-chain-broken fc-green"></span>';
 		}
 		elseif(is_dir(root. '../dash'))
 		{
-			$this->data->dashLoc = T_('Global'). ' <span class="sf-globe-1 fc-red"></span>';
+			$dashLoc = T_('Global'). ' <span class="sf-globe-1 fc-red"></span>';
 		}
+		\dash\data::dashLoc($dashLoc);
 	}
 }
 ?>

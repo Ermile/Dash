@@ -1,17 +1,9 @@
 <?php
 namespace content_su\update;
 
-class controller extends \addons\content_su\main\controller
+class controller
 {
-	public function ready()
-	{
-		parent::ready();
-		$this->updateGitRepo();
-		$this->get()->ALL();
-	}
-
-
-	public function updateGitRepo()
+	public static function routing()
 	{
 		// declare variables
 		$exist        = true;
