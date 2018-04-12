@@ -1,9 +1,9 @@
 <?php
 namespace content_su\cronjob;
 
-class model extends \addons\content_su\main\model
+class model
 {
-	public function post_cronjob()
+	public static function post()
 	{
 		if(\dash\request::post('active'))
 		{
