@@ -60,7 +60,7 @@ class view
 			}
 		}
 
-		$this->data->orderUrl = $orderUrl;
+		\dash\data::orderUrl($orderUrl);
 	}
 
 
