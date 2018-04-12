@@ -2,14 +2,14 @@
 namespace content_su\sendnotify;
 
 
-class model extends \addons\content_su\main\model
+class model
 {
 	/**
 	 * find connection to send notify to this users
 	 *
 	 * @param      <type>  $_mobile_id  The mobile identifier
 	 */
-	public function connection_way($_mobile_id)
+	public static function connection_way($_mobile_id)
 	{
 		$data = [];
 		$is_mobile = \dash\utility\filter::mobile($_mobile_id);
@@ -56,7 +56,7 @@ class model extends \addons\content_su\main\model
 	}
 
 
-	public function post_nofity($_args)
+	public static function post()
 	{
 		$msg = \dash\request::post('msg');
 		if(!$msg)
@@ -66,7 +66,7 @@ class model extends \addons\content_su\main\model
 		}
 
 		$user         = \dash\request::get('user');
-		$detail       = $this->connection_way($user);
+		$detail       = self::connection_way($user);
 		$email        = (\dash\request::post('email') && isset($detail['way']['email'])) 					? $detail['way']['email'] 			: null;
 		$googlemail   = (\dash\request::post('googlemail') && isset($detail['way']['googlemail'])) 		? $detail['way']['googlemail'] 		: null;
 		$telegram     = (\dash\request::post('telegram') && isset($detail['way']['telegram'])) 			? $detail['way']['telegram'] 		: null;

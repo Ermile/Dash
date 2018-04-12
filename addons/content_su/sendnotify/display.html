@@ -22,14 +22,14 @@
 <div class="normal f">
 <div class="c">
   <div class="vcard mA10">
-    {%if user_info.info.fileurl%}
-      <img src="{{url.base}}/{{user_info.info.fileurl}}">
+    {%if userInfo.info.fileurl%}
+      <img src="{{url.base}}/{{userInfo.info.fileurl}}">
     {%else%}
       <img src="http://code.ermile.local/siftal/images/avatar/1.png">
     {%endif%}
     <div class="content">
-      <div class="header">{{user_info.info.displayname}}</div>
-      <div class="meta"><span>{{user_info.info.name}} {{user_info.info.lastname}}</span></div>
+      <div class="header">{{userInfo.info.displayname}}</div>
+      <div class="meta"><span>{{userInfo.info.name}} {{userInfo.info.lastname}}</span></div>
     </div>
   </div>
 
@@ -41,7 +41,7 @@
      <label for="notification"></label>
      <label for="notification">{%trans "Inner system notification"%}</label>
     </div>
-    {%for key,value in user_info.way%}
+    {%for key,value in userInfo.way%}
     <div class="switch1">
      <input type="checkbox" name="{{key}}" id="{{key}}" >
      <label for="{{key}}"></label>
@@ -56,7 +56,7 @@
 
 
 <div class="cbox">
-  <textarea class="txt" name="msg" rows="10" placeholder='{%trans "What do you want to send to this user?"%}'>{{send_notify_text}}</textarea>
+  <textarea class="txt" name="msg" rows="10" placeholder='{%trans "What do you want to send to this user?"%}'>{{sendNotify_text}}</textarea>
   <div class="f">
     <div class="c"></div>
     <div class="cauto">
