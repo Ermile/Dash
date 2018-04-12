@@ -10,7 +10,6 @@ class view
 		\dash\data::include_css(false);
 		\dash\data::include_js(false);
 		\dash\data::bodyclass('unselectable enter');
-		// $this->data->bodyclass .= ' bg'. rand(1, 15);
 		\dash\data::bodyclass(\dash\data::bodyclass(). ' bg'. date('g'));
 
 		// get mobile number to show in mobile input
