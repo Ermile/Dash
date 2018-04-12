@@ -1,13 +1,11 @@
 <?php
 namespace content_account\appkey;
 
-class controller extends  \content_account\main\controller
+class controller
 {
-
-	public function ready()
+	public static function routing()
 	{
-		$this->get()->ALL();
-		$this->post('appkey')->ALL();
+
 	}
 }
 ?>

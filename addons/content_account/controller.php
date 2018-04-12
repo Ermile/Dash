@@ -1,20 +1,18 @@
 <?php
-namespace content_account\main;
+namespace content_account;
 
-class controller extends \mvc\controller
+class controller
 {
-
 	/**
 	 * rout
 	 */
-	public function repository()
+	public static function routing()
 	{
 		if(!\dash\user::login())
 		{
 			\dash\redirect::to(\dash\url::base(). '/enter');
 			return;
 		}
-
 	}
 }
 ?>

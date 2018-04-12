@@ -2,10 +2,9 @@
 namespace content_account\appkey;
 
 
-class model extends \content_account\main\model
+class model
 {
-
-	public function post_appkey()
+	public static function post()
 	{
 		if(!\dash\user::id())
 		{
