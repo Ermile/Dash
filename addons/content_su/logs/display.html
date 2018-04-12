@@ -28,9 +28,9 @@
 		<!-- <div class="c0">{%trans "Meta"%}</div> -->
 	</thead>
 	<tbody>
-		{%for key, value in logs_list%}
+		{%for key, value in logsList%}
 		<tr>
-			<td><a href="{{url.base}}/su/logs/detail/{{value.id}}">{{value.id|fitNumber}}</a></td>
+			<td><a href="{{url.base}}/su/logs/detail?id={{value.id}}">{{value.id|fitNumber}}</a></td>
 			<td>{{value.logitem_id|fitNumber}}</td>
 			<td>{{value.type}}</td>
 			<td><a href="{{url.base}}/su/logs/caller={{value.caller}}">{{value.caller}}</a></td>

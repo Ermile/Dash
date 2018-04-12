@@ -1,35 +1,30 @@
 <?php
 namespace content_su\logs;
 
-class view extends \addons\content_su\main\view
+class view
 {
-	public function config()
+	public static function config()
 	{
-		parent::config();
-		$this->data->page['title'] = T_("Logs list");
-		$this->data->page['desc'] = T_("All event in this system");
+		\dash\data::page_title(T_("Logs list"));
+		\dash\data::page_desc(T_("All event in this system"));
+		$list                  = self::logs_list();
+		\dash\data::logsList($list);
 	}
 
 
-	public function view_list($_args)
+	public static function logs_list()
 	{
-
-		$field                 = $this->controller()->fields;
-
-		$list                  = $this->model()->logs_list($_args, $field);
-		$this->data->logs_list = $list;
-
-		$this->orderUrl($_args, $field);
-
-		if(isset($this->controller->pagnation))
-		{
-			$this->data->pagnation = $this->controller->pagnation_get();
-		}
-
+		$meta          = [];
+		$meta['admin'] = true;
+		$search        = null;
 		if(\dash\request::get('search'))
 		{
-			$this->data->get_search = \dash\request::get('search');
+			$search = \dash\request::get('search');
 		}
+
+		$result = \dash\db\logs::search($search, $meta);
+
+		return $result;
 	}
 }
 ?>

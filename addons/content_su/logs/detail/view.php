@@ -1,23 +1,19 @@
 <?php
 namespace content_su\logs\detail;
 
-class view extends \addons\content_su\main\view
+class view
 {
-	public function config()
+	public static function config()
 	{
-		parent::config();
+		\dash\data::badge_link(\dash\url::here(). '/logs');
+		\dash\data::badge_text(T_('Back to Logs list'));
 
-		$this->data->page['badge']['link'] = \dash\url::here(). '/logs';
-		$this->data->page['badge']['text'] = T_('Back to Logs list');
-	}
+		$id = \dash\request::get('id');
 
-	public function view_detail($_args)
-	{
-		$id = isset($_args->match->url[0][1]) ? $_args->match->url[0][1] : null;
 		if($id && is_numeric($id))
 		{
 			$result = \dash\db\logs::get(['id' => $id, 'limit' => 1]);
-			$this->data->log_detail = $result;
+			\dash\data::logDetail($result);
 		}
 	}
 }
