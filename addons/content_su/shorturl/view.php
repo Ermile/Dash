@@ -2,18 +2,15 @@
 namespace content_su\shorturl;
 
 
-class view extends \addons\content_su\main\view
+class view
 {
-	public function config()
+	public static function config()
 	{
-		parent::config();
-
 		$val = \dash\request::get('val');
-
 		if($val)
 		{
-			$this->data->val_decode = \dash\coding::decode($val);
-			$this->data->val_encode = \dash\coding::encode($val);
+			\dash\data::valEncode(\dash\coding::decode($val));
+			\dash\data::valDecode(\dash\coding::encode($val));
 		}
 
 	}
