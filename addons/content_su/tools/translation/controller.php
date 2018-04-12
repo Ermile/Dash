@@ -1,27 +1,10 @@
 <?php
 namespace content_su\tools\translation;
 
-class controller extends \addons\content_su\main\controller
+class controller
 {
-	public function ready()
+	public static function routing()
 	{
-		if(\dash\url::isLocal())
-		{
-			// dont chcek permission on local
-		}
-		else
-		{
-			parent::ready();
-		}
-
-		$this->getUpdates();
-		$this->get()->ALL();
-	}
-
-	public function getUpdates()
-	{
-
-		$exist    = true;
 		$mypath   = \dash\request::get('path');
 		$myupdate = \dash\request::get('update');
 		if($mypath)
@@ -30,5 +13,6 @@ class controller extends \addons\content_su\main\controller
 			\dash\code::exit();
 		}
 	}
+
 }
 ?>
