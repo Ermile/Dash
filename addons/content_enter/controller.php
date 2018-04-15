@@ -8,7 +8,6 @@ class controller
 	public static function routing()
 	{
 		self::check_unlock_page();
-		self::always_open_module();
 		self::if_login_route();
 		self::if_login_not_route();
 		self::check_baned_user();
@@ -70,29 +69,6 @@ class controller
 	}
 
 
-	private static function always_open_module()
-	{
-		$always_open_modole =
-		[
-			'signup',
-			'hook',
-			'google',
-			'logout',
-			'callback',
-			null,
-		];
-
-		$my_directory = \dash\url::directory();
-
-
-		if(!in_array($my_directory, $always_open_modole))
-		{
-			if(\dash\utility\enter::lock($my_directory))
-			{
-				\dash\header::status(404, $my_directory);
-			}
-		}
-	}
 
 
 	private static function if_login_route()

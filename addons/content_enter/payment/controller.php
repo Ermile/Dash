@@ -8,8 +8,8 @@ class controller
 	{
 		$url             = \dash\url::directory();
 
-		$url_type        = \dash\url::module();
-		$payment         = \dash\url::child();
+		$url_type        = \dash\url::child();
+		$payment         = \dash\url::subchild();
 
 		$args            = [];
 		$args['get']     = \dash\request::get();
