@@ -60,6 +60,7 @@ class model
 		}
 		else
 		{
+			\dash\utility\enter::try('pass_recovery_pass_not_set');
 			\dash\code::sleep(3);
 			\dash\notif::error(T_("Invalid Password"));
 			return false;

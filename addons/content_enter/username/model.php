@@ -67,7 +67,7 @@ class model
 			// open this pages after this page
 			\dash\utility\enter::next_step('pass');
 			// open lock pass/recovery to load it
-			\dash\data::open_lock('pass/recovery');
+			\dash\utility\enter::open_lock('pass/recovery');
 
 			// go to pass page
 			\dash\utility\enter::go_to('pass');

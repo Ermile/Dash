@@ -29,7 +29,7 @@ class model
 		}
 
 		$select_way = 'verify/'. $send_code;
-		\dash\data::open_lock($select_way);
+		\dash\utility\enter::open_lock($select_way);
 		\dash\utility\enter::go_to($select_way);
 	}
 }

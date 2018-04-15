@@ -115,6 +115,7 @@ class model
 		// save in session this user change the mobile
 		if($old_usernameormobile != $usernameormobile)
 		{
+			\dash\utility\enter::try('diffrent_mobile');
 			\dash\utility\enter::set_session('diffrent_mobile', intval(\dash\utility\enter::get_session('diffrent_mobile')) + 1);
 		}
 
@@ -127,6 +128,7 @@ class model
 		// the user not found must be signup
 		if(!$user_data)
 		{
+			\dash\utility\enter::try('login_user_not_found');
 			\dash\notif::error(T_("Username not found"));
 			return false;
 		}
@@ -134,6 +136,7 @@ class model
 		// if this user is blocked or filtered go to block page
 		if(in_array(\dash\utility\enter::user_data('status'), ['filter', 'block']))
 		{
+			\dash\utility\enter::try('login_status_block');
 			// block page
 			\dash\utility\enter::next_step('block');
 			// go to block page
@@ -163,6 +166,7 @@ class model
 			}
 			else
 			{
+				\dash\utility\enter::try('browser_pass_saved_invalid');
 				\dash\notif::warn(T_("Opts!, Maybe your browser saved your password incorrectly."). ' '. T_("Please remove your saved password and try again"));
 				return false;
 			}

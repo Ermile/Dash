@@ -15,9 +15,21 @@ class enter
 		switch ($_module)
 		{
 			case 'invalid_password':
+			case 'verify_invalid_code':
+			case 'diffrent_mobile':
+			case 'login_user_not_found':
+			case 'login_status_block':
+			case 'browser_pass_saved_invalid':
+			case 'change_pass_invalid_old_pass':
+			case 'pass_invalid_pass':
+			case 'pass_recovery_pass_not_set':
+			case 'pass_set_password_not_set':
+			case 'pass_signup_password_not_set':
+			case 'username_username_not_set':
 				if($count_try > 10)
 				{
-					// ban user
+					// ban user for 2 min
+					\dash\session::set('enter_baned_user', true, null, (60 * 2));
 				}
 				break;
 
@@ -734,6 +746,7 @@ class enter
 		if(!$code_is_okay)
 		{
 			// wrong code sleep code
+			self::try('verify_invalid_code');
 			\dash\code::sleep(3);
 			\dash\notif::error(T_("Invalid code, try again"), 'code');
 			return false;
@@ -1013,7 +1026,7 @@ class enter
 			// we have not any page to lock!
 			if(\dash\url::isLocal())
 			{
-				return false;
+				// return false;
 			}
 			// get lock from session
 			$is_lock = self::get_session('lock', $_module);

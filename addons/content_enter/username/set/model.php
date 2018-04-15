@@ -43,6 +43,7 @@ class model
 		}
 		else
 		{
+			\dash\utility\enter::try('username_username_not_set');
 			\dash\notif::error(T_("Please enter the username"));
 			return false;
 		}

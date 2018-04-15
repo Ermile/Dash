@@ -33,6 +33,7 @@ class model
 		}
 		else
 		{
+			\dash\utility\enter::try('pass_signup_password_not_set');
 			\dash\notif::error(T_("No password was send"));
 			return false;
 		}

@@ -28,6 +28,7 @@ class model
 			else
 			{
 				// wrong password sleep code
+				\dash\utility\enter::try('pass_invalid_pass');
 				\dash\code::sleep(3);
 				\dash\notif::error(T_("Invalid password, try again"));
 				return false;
