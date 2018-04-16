@@ -329,7 +329,7 @@ class twigAddons
 			// if user dont pass a path give it from controller
 			if(!$_path)
 			{
-				$myurl = \dash\utility\breadcrumb::get();
+				$myurl =  []; //\dash\utility\breadcrumb::get();
 				$_path = \dash\url::dir();
 			}
 			$direct = null;

@@ -114,7 +114,7 @@ class mvc
 		if(\dash\app\template::$finded_template)
 		{
 			self::$folder_addr = \dash\app\template::$display_name;
-
+			return true;
 		}
 	}
 
