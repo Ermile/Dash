@@ -144,10 +144,7 @@ class mvc
 			else
 			{
 				$_addr = trim($_addr, '\\');
-				// @check
-				// this is not work on windows
-				$temp_addr = str_replace('\\', DIRECTORY_SEPARATOR, $_addr);
-				$temp_addr = str_replace('/',  DIRECTORY_SEPARATOR, $temp_addr);
+				$temp_addr = \autoload::fix_os_path($_addr);
 				if(is_dir(root. $temp_addr))
 				{
 					self::$only_folder = true;
