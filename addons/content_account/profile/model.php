@@ -43,8 +43,6 @@ class model
 
 		if(\dash\request::files('avatar'))
 		{
-
-			\dash\utility::set_request_array([]);
 			$uploaded_file = \dash\app\file::upload(['debug' => false, 'upload_name' => 'avatar']);
 
 			if(isset($uploaded_file['url']))

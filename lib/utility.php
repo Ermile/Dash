@@ -1,44 +1,8 @@
 <?php
 namespace dash;
+
 class utility
 {
-	public static $REQUEST;
-
-
-	public static function request()
-	{
-		if(!self::$REQUEST)
-		{
-			self::$REQUEST = new utility\request();
-		}
-		return self::$REQUEST->get(...func_get_args());
-	}
-
-	public static function isset_request()
-	{
-		if(!self::$REQUEST)
-		{
-			self::$REQUEST = new utility\request();
-		}
-		return self::$REQUEST->isset(...func_get_args());
-	}
-
-
-	/**
-	 * Sets the request array.
-	 *
-	 * @param      array  $_array  The array
-	 */
-	public static function set_request_array($_array)
-	{
-		$_array =
-		[
-			'method'  => 'array',
-			'request' => $_array,
-		];
-		self::$REQUEST = new utility\request($_array);
-	}
-
 
 	/**
 	 * Call this funtion for encode or decode your password.
