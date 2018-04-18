@@ -248,12 +248,11 @@ class prepare
 			$target_host .= '.'.\dash\url::tld();
 		}
 
-		// fix port, add 443 later @check
-		if(\dash\option::url('port') && \dash\option::url('port') !== 80)
+		if(\dash\option::url('port') && \dash\option::url('port') !== 80 && \dash\option::url('port') !== 443)
 		{
 			$target_host .= ':'.\dash\option::url('port');
 		}
-		elseif(\dash\url::port() && \dash\url::port() !== 80)
+		elseif(\dash\url::port() && \dash\url::port() !== 80 && \dash\url::port() !== 443)
 		{
 			$target_host .= ':'.\dash\url::port();
 		}
