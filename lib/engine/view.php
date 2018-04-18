@@ -13,7 +13,7 @@ class view
 		// add special pages to display array to use without name
 		\dash\data::display_main("content/main/layout.html");
 		\dash\data::display_account("content_account/home/layout.html");
-		\dash\data::display_cpMain("content_cp/main/layout.html");
+		\dash\data::display_cpMain("content_cp/layout.html");
 		\dash\data::display_suMain("content_su/main/layout.html");
 
 		\dash\data::display_pagination("includes/html/inc_pagination.html");
