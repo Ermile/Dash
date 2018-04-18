@@ -261,14 +261,17 @@ class prepare
 		// help new language detect in target site by set /fa
 		if(\dash\option::url('tld') !== \dash\url::tld())
 		{
-			switch (\dash\url::tld())
+			if(!\dash\url::lang())
 			{
-				case 'ir':
-					$target_host .= '/fa';
-					break;
+				switch (\dash\url::tld())
+				{
+					case 'ir':
+						$target_host .= '/fa';
+						break;
 
-				default:
-					break;
+					default:
+						break;
+				}
 			}
 		}
 		if(\dash\url::related_url())
