@@ -258,6 +258,11 @@ class prepare
 			$target_host .= ':'.\dash\url::port();
 		}
 
+		if(\dash\url::related_url())
+		{
+			$target_host .= \dash\url::related_url();
+		}
+
 		// help new language detect in target site by set /fa
 		if(\dash\option::url('tld') !== \dash\url::tld())
 		{
@@ -274,16 +279,14 @@ class prepare
 				}
 			}
 		}
-		if(\dash\url::related_url())
-		{
-			$target_host .= \dash\url::related_url();
-		}
+
+		// set target url with path
+		$target_url = $target_host. \dash\url::path();
+		$target_url = self::fix_url_slash($target_url);
+
 		// if we have new target url, and dont on force show mode, try to change it
 		if(!\dash\request::get('force'))
 		{
-			// set target url with path
-			$target_url = $target_host. \dash\url::path();
-			$target_url = self::fix_url_slash($target_url);
 			if($target_host === \dash\url::base())
 			{
 				// only check last slash
