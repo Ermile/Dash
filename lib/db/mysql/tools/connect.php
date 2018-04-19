@@ -50,6 +50,12 @@ trait connect
 	 */
 	public static function connect($_db_name = null, $_autoCreate = null)
 	{
+		// check if db detail is not exist return false
+		if(!defined('db_name') || !defined('db_user') || !defined('db_pass'))
+		{
+			return false;
+		}
+
 		if($_db_name === true || $_db_name === db_name)
 		{
 			// connect to default db
