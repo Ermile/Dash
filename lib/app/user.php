@@ -165,7 +165,7 @@ class user
 		}
 
 		$twostep = null;
-		if(\dash\utility::isset_request('twostep'))
+		if(\dash\app::isset_request('twostep'))
 		{
 			$twostep = \dash\app::request('twostep');
 			$twostep = $twostep ? 1 : 0;
