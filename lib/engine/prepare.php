@@ -16,6 +16,8 @@ class prepare
 
 	public static function basics()
 	{
+		// dont run on some condition
+		self::dont_run_exception();
 		// check comming soon page
 		self::coming_soon();
 		// check need redirect for lang or www or https or main domain
@@ -416,6 +418,26 @@ class prepare
 		if(version_compare(phpversion(), '7.0', '<'))
 		{
 			\dash\code::die("<p>For using Dash you must update php version to 7.0 or higher!</p>");
+		}
+	}
+
+
+	private static function dont_run_exception()
+	{
+		// files
+		if(strpos(\dash\url::path(), '/files') === 0)
+		{
+			\dash\header::status(404);
+		}
+		// static
+		if(strpos(\dash\url::path(), '/static') === 0)
+		{
+			\dash\header::status(404);
+		}
+		// favicon
+		if(strpos(\dash\url::path(), '/favicon.ico') === 0)
+		{
+			\dash\header::status(404);
 		}
 	}
 
