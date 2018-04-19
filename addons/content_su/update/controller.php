@@ -51,7 +51,7 @@ class controller
 
 
 
-	public function updateDash()
+	public static function updateDash()
 	{
 		$dashLocation = null;
 		// check dash location
