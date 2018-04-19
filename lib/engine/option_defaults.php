@@ -44,6 +44,8 @@ self::$language           =
 // for example posts, tags, term , ...
 self::$config['db_template'] = true;
 
+// redirect to this path after login
+self::$config['redirect']    = null;
 
 // below values must be @check
 // ---------------------------------------------------------
@@ -54,7 +56,6 @@ self::$config['log_visitors']                          = false;
 // self::$config['passkey']                               = null;
 // self::$config['passvalue']                             = null;
 // self::$config['default']                               = null;
-// self::$config['redirect']                              = null;
 // self::$config['register']                              = false;
 // self::$config['recovery']                              = false;
 // self::$config['sms']                                   = false;
