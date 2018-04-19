@@ -127,6 +127,9 @@ trait backup
 
 		$_options = array_merge($default_options, $_options);
 
+		// TO CONNECT TO DATABSE AND SET DB_USER
+		\dash\db::get("SELECT NULL");
+
 		if(!$_options['db_name'])
 		{
 			$db_name = \dash\db::$db_name;
@@ -157,6 +160,7 @@ trait backup
 		$cmd .= " --user='".\dash\db::$db_user."'";
 		$cmd .= " --password='".\dash\db::$db_pass."' '". $db_name."'";
 		$cmd .= " | bzip2 -c > $dest_dir$dest_file";
+
 		// to import this file
 		// bunzip2 < filename.sql.bz2 | mysql -u root -p db_name
 		$return_var = NULL;

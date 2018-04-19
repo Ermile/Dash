@@ -1,0 +1,55 @@
+{%extends display.cpMain%}
+
+{%block content%}
+
+<div class="tbox">
+  <h2>{%trans "Backup Project"%}</h2>
+</div>
+
+<div class="cbox">
+    <form method="post">
+      <input type="hidden" name="backup" value="now">
+        <h6>{%trans "You can create backup now"%}</h6>
+        <button class="btn success block">{%trans "Backup now"%}</button>
+    </form>
+    <hr>
+  {{block("iShowFiles")}}
+</div>
+{%endblock%}
+
+
+
+
+{%block iShowFiles%}
+
+{%if oldBackup%}
+
+{%for key, value in oldBackup%}
+  <div class="msg f" title="{{value.name}}">
+    <div class="cauto">
+      <span class="sf-database fs15  pRa25 vlbottom" ></span>
+    </div>
+    <div class="c">
+      {{value.name}} |
+      <div class="badge secondary">{{value.ago | fitNumber}}</div>
+      <div class="badge primary">{%trans "Sise"%} {{value.size | fitNumber}} MB</div>
+      <div class="badge danger"><a href="{{url.pwd}}" data-ajaxify data-data='{"type" : "remove", "file" : "{{value.name}}"}' data-method='post'>{%trans "Remove"%}</a></div>
+      <div class="badge success"><a href="{{url.here}}/backup?download={{value.name}}" >{%trans "Download"%}</a></div>
+    </div>
+  </div>
+{%endfor%}
+{%else%}
+<div class="msg danger">{%trans "No backup was found"%}</div>
+{%endif%}
+
+
+
+{%endblock%}
+
+
+
+
+
+
+
+
