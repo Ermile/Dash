@@ -55,9 +55,9 @@ class view
 
 		\dash\data::dev(\dash\option::config('dev'));
 
-		\dash\data::site_title(T_("Ermile Dash"));
-		\dash\data::site_desc(T_("Another Project with Ermile dash"));
-		\dash\data::site_slogan(T_("Ermile is intelligent ;)"));
+		\dash\data::site_title(\dash\option::config('site', 'title'));
+		\dash\data::site_desc(\dash\option::config('site', 'desc'));
+		\dash\data::site_slogan(\dash\option::config('site', 'slogan'));
 
 		// if allow to use social then get social network account list
 		if(\dash\option::social('status'))

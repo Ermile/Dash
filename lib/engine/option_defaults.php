@@ -24,8 +24,12 @@ self::$url['slash'] = false;
 
 
 // ----- debug
-self::$config['debug']         = false;
+self::$config['debug']         = true;
 
+
+self::$config['site']['title']  = "Ermile Dash";
+self::$config['site']['desc']   = "Another Project with Ermile dash";
+self::$config['site']['slogan'] = "Ermile is intelligent ;)";
 
 // self::$config['dev']           = [];
 // self::$config['dev']['siftal'] = false;
