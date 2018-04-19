@@ -24,7 +24,7 @@ self::$url['slash'] = false;
 
 
 // ----- debug
-self::$config['debug']         = true;
+self::$config['debug']         = false;
 
 
 self::$config['site']['title']  = "Ermile Dash";
