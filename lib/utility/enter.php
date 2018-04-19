@@ -499,7 +499,7 @@ class enter
 	public static function go_to_verify()
 	{
 		$host = \dash\url::base();
-		$host .= '/enter/verify/';
+		$host .= '/enter/verify';
 		self::open_lock('verify');
 		\dash\redirect::to($host);
 	}
