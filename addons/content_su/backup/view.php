@@ -9,7 +9,7 @@ class view
 
 		if(\dash\request::get('show') === 'log')
 		{
-			\dash\data::autoBackup_log(@\dash\file::read(database. 'backup/log'));
+			\dash\data::autoBackupLog(@\dash\file::read(database. 'backup/log'));
 		}
 
 		$configBackup = @\dash\file::read(database. 'backup/schedule');
