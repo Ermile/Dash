@@ -6,6 +6,9 @@ class view
 	public static function config()
 	{
 		\dash\data::bodyclass('siftal');
+		\dash\data::include_css(false);
+		\dash\data::include_js(false);
+
 		\dash\data::include_editor(true);
 		\dash\data::badge_shortkey(120);
 	}
