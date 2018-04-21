@@ -51,7 +51,7 @@ class git
 			if(self::command_exists('git'))
 			{
 				$commitDate = new \DateTime(trim(exec('git log -n1 --pretty=%ci HEAD')));
-				$commitDate = $commitDate->format('Y-m-d');
+				$commitDate = $commitDate->format('Y-m-d H:i:s');
 			}
 		}
 		catch (\Exception $e)
