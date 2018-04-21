@@ -1,66 +1,20 @@
 <?php
 class backup
 {
-	/**
-	 * file paths finded
-	 *
-	 * @var        array
-	 */
-	public $paths = [];
-
-	/**
-	 * Searches for the first match.
-	 * sarch in all project and finde 'backup.php'
-	 */
-	public function find()
-	{
-		$this_dir = __DIR__;
-		chdir($this_dir);
-		chdir("../../../..");
-
-		$path = realpath(''). DIRECTORY_SEPARATOR;
-
-		$directory   = new \RecursiveDirectoryIterator($path);
-		$flattened   = new \RecursiveIteratorIterator($directory);
-
-		$url = [];
-		$url[] = 'includes';
-		$url[] = 'database';
-		$url[] = 'backup';
-		$url[] = 'schedule';
-		$url = implode('\\'. DIRECTORY_SEPARATOR, $url);
-
-		$files       = new \RegexIterator($flattened, "/$url$/");
-
-		foreach($files as $file)
-		{
-			$file_name = $file->getPath() . DIRECTORY_SEPARATOR . $file->getFilename();
-			$this->paths[] = $file_name;
-		}
-	}
-
 
 	/**
 	 * exec all finded backup.php
 	 */
 	public function run()
 	{
-		$this->find();
+		$dir = __DIR__;
+		$dir = str_replace('dash/lib/engine/cronjob', '', $dir);
+		$dir .= 'includes/database/backup/schedule';
 
-		if(!empty($this->paths))
+		if(is_file($dir))
 		{
-			foreach ($this->paths as $key => $value)
-			{
-				if(!$value || !is_string($value) || !file_exists($value))
-				{
-					continue;
-				}
-				else
-				{
-					$this->clean($value);
-					$this->run_backup($value);
-				}
-			}
+			$this->clean($dir);
+			$this->run_backup($dir);
 		}
 	}
 
