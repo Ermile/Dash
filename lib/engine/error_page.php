@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" dir="ltr">
 <head>
  <meta charset="UTF-8"/>
  <title>(>_<?php echo $_code;?>_<)</title>
- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no"/>
+ <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/><![endif]-->
+ <meta name ="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0 maximum-scale=1.5, minimal-ui"/>
  <link rel="shortcut icon"    href="/static/images/favicon-error.png"/>
- <style type="text/css">
+ <style>
 	*{font-family:sans-serif;box-sizing:border-box;}
 	html{min-height:100%;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;}
 	body{width:90%;margin:0 auto;padding:3% 0;background-color:#0e5860;color:#fff}
