@@ -6,20 +6,19 @@ class model
 	public static function post()
 	{
 		\dash\notif::warn(T_("Not ready"));
-		return;
 
-		if(\dash\request::post('backup') === 'now')
-		{
-			if(self::backup_db())
-			{
-				self::backup_project();
-			}
-		}
-		else
-		{
-			\dash\notif::ok(T_("Dont!"));
-			return false;
-		}
+		// if(\dash\request::post('backup') === 'now')
+		// {
+		// 	if(self::backup_db())
+		// 	{
+		// 		self::backup_project();
+		// 	}
+		// }
+		// else
+		// {
+		// 	\dash\notif::ok(T_("Dont!"));
+		// 	return false;
+		// }
 	}
 
 	private static function backup_db($_db_name = null)
