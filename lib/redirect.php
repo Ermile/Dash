@@ -65,6 +65,10 @@ class redirect
 	{
 		if (!headers_sent())
 		{
+			if(!$_type)
+			{
+				$_type = 301;
+			}
 			header('Pragma: no-cache');
 			header('Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
 			header("Expires: Fri, 08 Sep 2017 06:12:00 GMT");
