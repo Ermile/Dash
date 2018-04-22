@@ -15,14 +15,14 @@ Also you can see [Dash Official Website]
 
 
 
-<h1 dir="rtl"><a href="https://ermile.com/dash">دش</a></h1>
+<h1 dir="rtl"><a href="https://dash.ermile.com">دش</a></h1>
 <p dir="rtl">اگرچه زبان پی‌اچ‌پی یکی از قدرتمندترین زبان های برنامه‌نویسی وب می‌باشد و پراستفاده‌ترین آنها در جهان نیز بشمار می‌آید، اما باید گفت برای حرکت به سمت برنامه‌های تجاری بزرگ و مقیاس پذیر به‌تنهایی جواب‌گو نیست. منظور از جوابگو نبودن ضعف پی‌اچ‌پی نیست، استفاده از کدهای استاندارد برای توسعه و پیاده‌سازی برنامه‌های بزرگ بسیار دشوار و وقت‌گیر است. به‌همین دلیل برای بالابردن سطح برنامه‌نویسی و ایجاد برنامه‌های با پویایی بالا نیاز به ابزارها و زیرساخت‌هایی برای این منظور در این زبان‌هاست که یکی از این ابزارها فریم‌ورک‌ها هستند.</p>
 
 
 <blockquote dir="rtl">فریم‌ورک‌ها به یک چارچوب از پیش تعریف شده توسط برنامه‌نویسان حرفه‌ای گفته می‌شود که این کمک را به سایر برنامه نویسان می‌کند تا چرخ را از نو اختراع نکنند!</blockquote>
 
 
-<p dir="rtl"><a href="https://ermile.com/dash">دش</a> توسط <a href="https://ermile.com/fa">ارمایل</a> با پشتوانه بیش از یک دهه تجربه در وب و با نگاه **<a href="https://en.wikipedia.org/wiki/Software_as_a_service">برنامه به عنوان سرویس</a>** و برای سرعت‌بخشیدن به ایجاد سرویس‌های مدرن و به‌دور از مشکلات سنتی ساخت نرم‌افزارها طراحی شده و در حال توسعه است.</p>
+<p dir="rtl"><a href="https://dash.ermile.com">دش</a> توسط <a href="https://ermile.com/fa">ارمایل</a> با پشتوانه بیش از یک دهه تجربه در وب و با نگاه **<a href="https://en.wikipedia.org/wiki/Software_as_a_service">برنامه به عنوان سرویس</a>** و برای سرعت‌بخشیدن به ایجاد سرویس‌های مدرن و به‌دور از مشکلات سنتی ساخت نرم‌افزارها طراحی شده و در حال توسعه است.</p>
 
 
 
@@ -68,7 +68,7 @@ Author
 ------
 [Dash] is Created by [Ermile] in IRAN ![alt text][logo]
 
-<p dir="rtl"><a href="https://ermile.com/dash">دش</a> در ایران و توسط <a href="https://ermile.com/fa">ارمایل</a> خلق شده است.</p>
+<p dir="rtl"><a href="https://dash.ermile.com">دش</a> در ایران و توسط <a href="https://ermile.com/fa">ارمایل</a> خلق شده است.</p>
 
 [Hasan Salehi], [Javad Evazzadeh], [Reza Mohiti], [Ahmad Karimi]
 
@@ -82,8 +82,8 @@ Licensed under the MIT License:)
 [Ermile]: <https://ermile.com>
 [ارمایل]: <http://ermile.ir>
 [Dash on Github]: <https://github.com/Ermile/dash>
-[Dash Official Website]: <https://ermile.com/dash>
-[Dash]: <https://ermile.com/dash>
+[Dash Official Website]: <https://dash.ermile.com>
+[Dash]: <https://dash.ermile.com>
 [Dash Project]: <https://github.com/Ermile/Dash-Project>
 [Hasan Salehi]: <http://github.com/baravak>
 [Javad Evazzadeh]: <http://evazzadeh.com>
