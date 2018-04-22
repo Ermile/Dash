@@ -14,7 +14,7 @@
 
         }
     ],
-    "homepage": "https://github.com/ermile/dash",
+    "homepage": "https://dash.ermile.com/",
     "require": {
         "php": ">=7.0"
     }
