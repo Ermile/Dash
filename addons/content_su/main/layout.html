@@ -18,9 +18,6 @@
 
 
 {%block copyright%}
-{%set versionHint%}
-{%if dash.lastUpdate%}data-hint='{%trans "Last update on"%} {{dash.lastUpdate | tdate}}'{%else%}data-hint='{%trans "wait for next version!"%}'{%endif%}
-{%endset%}
-    <span>{%trans "Powered by"%} <a href='https://ermile.com/dash' target="_blank" title='{%trans "Some right reserved"%}' tabindex='-1'>{%trans "Ermile"%}</a></span> | <abbr class="hint--left" {{versionHint}}>{%trans "Version"%} {{dash.version | fitNumber}}</abbr>
+    <span>{%trans "Powered by"%} <a href='https://ermile.com/dash' target="_blank" title='{%trans "Some right reserved"%}' tabindex='-1'>{%trans "Ermile"%}</a></span> | <abbr>{%trans "Version"%} {{dash.version | fitNumber}}</abbr>
 {%endblock%}
 
