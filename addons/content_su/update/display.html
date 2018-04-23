@@ -36,12 +36,6 @@
 </div>
 
 <p class="msg danger fs16 txtC">{%trans "If you dont know about this page, leave it!"%}</p>
-<div class="f mB25">
-  <div class="c">
-    {{block('iRepo')}}
-  </div>
-</div>
-
 
 <p class="msg danger2 txtC">{%trans "Submit this form carefully"%}</p>
 <div class="f">
@@ -66,6 +60,7 @@
 <div class="dcard x4 mB10">
   <img src="{{url.base}}/static/siftal/images/logo/dash.svg" alt="dash logo" class="pA10-f">
   <h2>{%trans "Dash"%}</h2>
+  <a target='_blank' class="btn block primary mT50" href="{{url.here}}/update?git=all" title='{%trans "Press it if you are sure!"%}'>{%trans "Update All"%}</a>
 </div>
 {%endblock%}
 
@@ -96,7 +91,7 @@
     <div class="value"><span>{{dash.commitCount | fitNumber}}</span></div>
     <div class="label">{%trans "Commits"%}</div>
   </div>
-  <a target='_blank' class="badge warn" href="{{url.here}}/update?git=dash" title='{%trans "Do it if you know it"%}'>{%trans "Update Dash Repository"%}</a>
+  <a target='_blank' class="badge black" href="{{url.here}}/update?git=dash" title='{%trans "Do it if you know it"%}'>{%trans "Update Dash Repository"%}</a>
 </div>
 {%endblock%}
 
@@ -126,7 +121,7 @@
     <div class="value"><span>{{dash.projectCommitCount | fitNumber}}</span></div>
     <div class="label">{%trans "Commits"%}</div>
   </div>
-  <a target='_blank' class="badge warn" href="{{url.here}}/update?git={{url.root}}" title='{%trans "Do it if you know it"%}'>{%trans "Update Repository"%}</a>
+  <a target='_blank' class="badge black" href="{{url.here}}/update?git={{url.root}}" title='{%trans "Do it if you know it"%}'>{%trans "Update Repository"%}</a>
 </div>
 {%endblock%}
 
@@ -150,7 +145,7 @@
 
 
 {%block iUpdateDb%}
- <form method="post" action="{{url.here}}/db" data-action class="dcard x2">
+ <form method="post" action="{{url.here}}/db" data-action class="dcard x2 mB50">
   <div class="input mB5">
    <span class="addon">{%trans "Username"%}</span>
    <input type="text" name="username" placeholder="db username">
@@ -169,23 +164,6 @@
   </div>
   <button class="btn block danger outline">{%trans "Submit"%}</button>
  </form>
-{%endblock%}
-
-
-{%block iRepo%}
- <div class="cbox">
-   <h2>{%trans "Update Git Repositories"%}</h2>
-   <p class="msg warn2 txtC">{%trans "Before update create a full backup from database and files"%}</p>
-   <div class="f">
-    <div class="c6 pRa10">
-      <a target='_blank' class="btn block mB10 c6 secondary" href="{{url.here}}/update?git={{url.root}}">{%trans "Update"%} {%trans "Current Project Repository"%}</a>
-    </div>
-    <div class="c6">
-      <a target='_blank' class="btn block mB10 c6 secondary" href="{{url.here}}/update?git=dash">{%trans "Update"%} {%trans "Dash Repository"%}</a>
-    </div>
-   </div>
-    <a target='_blank' class="btn block mB10 xl" href="{{url.here}}/update?git=all">{%trans "Update"%} {%trans "Dash + Current Poject Repository"%}</a>
- </div>
 {%endblock%}
 
 
