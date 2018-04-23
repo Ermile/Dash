@@ -4,7 +4,7 @@
 
 {%if true or perm.tools.view%}
 
-<div class="f mB10">
+<div class="f mB25">
   <div class="c3 s12">
     {{block('iCurrent')}}
   </div>
@@ -14,8 +14,8 @@
 
   </div>
   <div class="c s12">
-    {{block('iLocation')}}
     {{block('iLastUpdate')}}
+    {{block('iLocation')}}
   </div>
 </div>
 
@@ -64,7 +64,7 @@
 
 {%block iLastUpdate%}
 <div class="dcard x2 mB10">
-  <div class="statistic grey" title='{{dash.lastUpdate}}'>
+  <div class="statistic brown" title2='{{dash.lastUpdate}}'>
     <div class="value"><span>{{dash.lastUpdate | sdate}}</span></div>
     <div class="label">{%trans "Last update"%}</div>
   </div>
@@ -77,25 +77,6 @@
   <div class="statistic teal">
     <div class="value">{{dash.version | fitNumber(false)}}</div>
     <div class="label">{%trans "Current Version"%}</div>
-  </div>
-</div>
-{%endblock%}
-
-
-{%block iProjectVersion%}
-<div class="dcard x2 mB10">
-  <div class="statistic teal" title='{{dash.projectVersion}}'>
-    <div class="value">{{dash.projectVersion | sdate}}</div>
-    <div class="label">{%trans "Last update"%}</div>
-  </div>
-</div>
-{%endblock%}
-
-{%block iPorjectCommitCount%}
-<div class="dcard x2 mB10">
-  <div class="statistic grey">
-    <div class="value"><span>{{dash.projectCommitCount | fitNumber}}</span></div>
-    <div class="label">{%trans "Commits"%}</div>
   </div>
 </div>
 {%endblock%}
@@ -116,6 +97,25 @@
   <div class="statistic">
     <div class="value">{{dashLoc | raw}}</div>
     <div class="label">{%trans "Dash Engine Location"%}</div>
+  </div>
+</div>
+{%endblock%}
+
+
+{%block iProjectVersion%}
+<div class="dcard x2 mB10">
+  <div class="statistic blue" title='{{dash.projectVersion}}'>
+    <div class="value">{{dash.projectVersion | sdate}}</div>
+    <div class="label">{%trans "Last update"%}</div>
+  </div>
+</div>
+{%endblock%}
+
+{%block iPorjectCommitCount%}
+<div class="dcard x2 mB10">
+  <div class="statistic grey">
+    <div class="value"><span>{{dash.projectCommitCount | fitNumber}}</span></div>
+    <div class="label">{%trans "Commits"%}</div>
   </div>
 </div>
 {%endblock%}
