@@ -21,6 +21,10 @@ class git
 			{
 				chdir(core);
 			}
+			else
+			{
+				chdir(root);
+			}
 			if(self::command_exists('git'))
 			{
 				$commitCount = exec('git rev-list --all --count');
@@ -48,6 +52,12 @@ class git
 			{
 				chdir(core);
 			}
+			else
+			{
+				chdir(root);
+			}
+			// var_dump(core);
+			// var_dump(root);
 			if(self::command_exists('git'))
 			{
 				$commitDate = new \DateTime(trim(exec('git log -n1 --pretty=%ci HEAD')));

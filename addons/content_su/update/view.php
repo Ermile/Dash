@@ -21,8 +21,10 @@ class view
 		}
 		\dash\data::dashLoc($dashLoc);
 
+		\dash\data::dash_projectVersion(\dash\utility\git::getLastUpdate(false));
+		\dash\data::dash_projectCommitCount(\dash\utility\git::getCommitCount(false));
 		\dash\data::dash_version(\dash\engine\version::get());
-		\dash\data::dash_lastUpdate(\dash\utility\git::getLastUpdate());
+		\dash\data::dash_lastUpdate();
 		\dash\data::dash_commitCount(\dash\utility\git::getCommitCount());
 	}
 }

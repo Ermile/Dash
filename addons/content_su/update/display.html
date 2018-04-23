@@ -4,17 +4,34 @@
 
 {%if true or perm.tools.view%}
 
-<div class="f mB100">
-  <div class="c3 s12 pRa25">
+<div class="f mB10">
+  <div class="c3 s12">
     {{block('iCurrent')}}
   </div>
   <div class="c4 s12">
     {{block('iCurrentVersion')}}
+    {{block('icommitCount')}}
+
+  </div>
+  <div class="c s12">
+    {{block('iLocation')}}
     {{block('iLastUpdate')}}
   </div>
-  <div class="c">
-    {{block('iLocation')}}
-    {{block('icommitCount')}}
+</div>
+
+<div class="f mB50">
+  <div class="c s12">
+    <a class="dcard x2 mB10" href="{{url.site}}">
+      <img src="{{url.site}}/static/images/logo.png" alt='{{site.title}}' class="w100">
+      <h1>{{site.title}}</h1>
+    </a>
+  </div>
+
+  <div class="c3 s6">
+    {{block('iPorjectCommitCount')}}
+  </div>
+  <div class="c4 s6">
+    {{block('iProjectVersion')}}
   </div>
 </div>
 
@@ -38,18 +55,16 @@
 
 
 {%block iCurrent%}
-<div class="vcard shadow txtC fs14 mB10">
+<div class="dcard x4 mB10">
   <img src="{{url.base}}/static/siftal/images/logo/dash.svg" alt="dash logo" class="pA10-f">
-  <div class="content">
-    <a class="header">{%trans "Dash"%}</a>
-  </div>
+  <h2>{%trans "Dash"%}</h2>
 </div>
 {%endblock%}
 
 
 {%block iLastUpdate%}
 <div class="dcard x2 mB10">
-  <div class="statistic grey">
+  <div class="statistic grey" title='{{dash.lastUpdate}}'>
     <div class="value"><span>{{dash.lastUpdate | sdate}}</span></div>
     <div class="label">{%trans "Last update"%}</div>
   </div>
@@ -62,6 +77,25 @@
   <div class="statistic teal">
     <div class="value">{{dash.version | fitNumber(false)}}</div>
     <div class="label">{%trans "Current Version"%}</div>
+  </div>
+</div>
+{%endblock%}
+
+
+{%block iProjectVersion%}
+<div class="dcard x2 mB10">
+  <div class="statistic teal" title='{{dash.projectVersion}}'>
+    <div class="value">{{dash.projectVersion | sdate}}</div>
+    <div class="label">{%trans "Last update"%}</div>
+  </div>
+</div>
+{%endblock%}
+
+{%block iPorjectCommitCount%}
+<div class="dcard x2 mB10">
+  <div class="statistic grey">
+    <div class="value"><span>{{dash.projectCommitCount | fitNumber}}</span></div>
+    <div class="label">{%trans "Commits"%}</div>
   </div>
 </div>
 {%endblock%}
