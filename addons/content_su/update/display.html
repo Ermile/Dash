@@ -96,6 +96,7 @@
     <div class="value"><span>{{dash.commitCount | fitNumber}}</span></div>
     <div class="label">{%trans "Commits"%}</div>
   </div>
+  <a target='_blank' class="badge warn" href="{{url.here}}/update?git=dash" title='{%trans "Do it if you know it"%}'>{%trans "Update Dash Repository"%}</a>
 </div>
 {%endblock%}
 
@@ -125,6 +126,7 @@
     <div class="value"><span>{{dash.projectCommitCount | fitNumber}}</span></div>
     <div class="label">{%trans "Commits"%}</div>
   </div>
+  <a target='_blank' class="badge warn" href="{{url.here}}/update?git={{url.root}}" title='{%trans "Do it if you know it"%}'>{%trans "Update Repository"%}</a>
 </div>
 {%endblock%}
 
