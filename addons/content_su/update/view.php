@@ -28,7 +28,9 @@ class view
 		\dash\data::dash_commitCount(\dash\utility\git::getCommitCount());
 
 		\dash\data::dash_dbVersion(\dash\db::db_version());
+		\dash\data::dash_dbVersionDate(\dash\db::db_version(true, false, true));
 		\dash\data::dash_dbVersionAddon(\dash\db::db_version(true, true));
+		\dash\data::dash_dbVersionAddonDate(\dash\db::db_version(true, true, true));
 	}
 }
 ?>

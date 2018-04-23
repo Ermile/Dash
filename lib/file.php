@@ -65,6 +65,10 @@ class file
 		return file_put_contents( $filepath, $content, LOCK_EX );
 	}
 
+	public static function mtime($_filepath)
+	{
+		return filemtime($_filepath);
+	}
 
 	/**
 	 * Writes at the end of a file

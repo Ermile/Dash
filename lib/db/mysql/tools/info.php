@@ -151,7 +151,7 @@ trait info
 	 *
 	 * @param      boolean  $_db_name  The database name
 	 */
-	public static function db_version($_db_name = true, $_addons_version = false)
+	public static function db_version($_db_name = true, $_addons_version = false, $_time = false)
 	{
 		$version = null;
 
@@ -177,7 +177,14 @@ trait info
 
 		if(\dash\file::exists($file_url))
 		{
-			$version = \dash\file::read($file_url);
+			if($_time)
+			{
+				$version = \dash\file::mtime($file_url);
+			}
+			else
+			{
+				$version = \dash\file::read($file_url);
+			}
 		}
 		else
 		{
