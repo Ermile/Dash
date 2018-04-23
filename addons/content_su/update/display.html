@@ -37,16 +37,24 @@
 
 <p class="msg danger fs16 txtC">{%trans "If you dont know about this page, leave it!"%}</p>
 <div class="f mB25">
-  <div class="c8 s12 pRa25">
+  <div class="c">
     {{block('iRepo')}}
-  </div>
-  <div class="c4 s12">
-    {{block('iUpdateDb')}}
   </div>
 </div>
 
 
-
+<p class="msg danger2 txtC">{%trans "Submit this form carefully"%}</p>
+<div class="f">
+  <div class="c s12">
+    {{block('iUpdateDb')}}
+  </div>
+  <div class="c4 s6">
+    {{block('iDbVersion')}}
+  </div>
+  <div class="c4 s6">
+    {{block('iDbVersionAddon')}}
+  </div>
+</div>
 
 
 {%endif%}
@@ -120,16 +128,32 @@
 </div>
 {%endblock%}
 
+{%block iDbVersion%}
+<div class="dcard x2 mB10">
+  <div class="statistic red">
+    <div class="value">{{dash.dbVersion | fitNumber(false)}}</div>
+    <div class="label">{%trans "Project database"%}</div>
+  </div>
+</div>
+{%endblock%}
+
+{%block iDbVersionAddon%}
+<div class="dcard x2 mB10">
+  <div class="statistic yellow">
+    <div class="value">{{dash.dbVersionAddon | fitNumber(false)}}</div>
+    <div class="label">{%trans "Addon Database"%}</div>
+  </div>
+</div>
+{%endblock%}
+
 
 {%block iUpdateDb%}
- <form method="post" action="{{url.here}}/db" data-action class="cbox">
-  <h2>{%trans "Upgrade Database"%}</h2>
-  <div class="msg danger2 txtC">{%trans "Submit this form carefully"%}</div>
-  <div class="input mB10">
+ <form method="post" action="{{url.here}}/db" data-action class="dcard x2">
+  <div class="input mB5">
    <span class="addon">{%trans "Username"%}</span>
    <input type="text" name="username" placeholder="db username">
   </div>
-  <div class="input mB10">
+  <div class="input mB5">
    <span class="addon">{%trans "Password"%}</span>
    <input type="password" name="password" placeholder="db password" autocomplete="new-password" class="input">
   </div>

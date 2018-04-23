@@ -26,6 +26,9 @@ class view
 		\dash\data::dash_version(\dash\engine\version::get());
 		\dash\data::dash_lastUpdate(\dash\utility\git::getLastUpdate());
 		\dash\data::dash_commitCount(\dash\utility\git::getCommitCount());
+
+		\dash\data::dash_dbVersion(\dash\db::db_version());
+		\dash\data::dash_dbVersionAddon(\dash\db::db_version(true, true));
 	}
 }
 ?>
