@@ -130,7 +130,7 @@
 
 {%block iDbVersion%}
 <div class="dcard x2 mB10">
-  <div class="statistic red" title='{{dash.dbVersionDate | sdate}}'>
+  <div class="statistic red" title='{{dash.dbVersionDate | date}}'>
     <div class="value">{{dash.dbVersion | fitNumber(false)}}</div>
     <div class="label">{%trans "Project database"%}</div>
   </div>
@@ -139,7 +139,7 @@
 
 {%block iDbVersionAddon%}
 <div class="dcard x2 mB10">
-  <div class="statistic yellow" title='{{dash.dbVersionAddonDate | sdate}}'>
+  <div class="statistic yellow" title='{{dash.dbVersionAddonDate | date}}'>
     <div class="value">{{dash.dbVersionAddon | fitNumber(false)}}</div>
     <div class="label">{%trans "Addon Database"%}</div>
   </div>
