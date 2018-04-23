@@ -20,6 +20,10 @@ class view
 			$dashLoc = T_('Global'). ' <span class="sf-globe-1 fc-red"></span>';
 		}
 		\dash\data::dashLoc($dashLoc);
+
+		\dash\data::dash_version(\dash\engine\version::get());
+		\dash\data::dash_lastUpdate(\dash\utility\git::getLastUpdate());
+		\dash\data::dash_commitCount(\dash\utility\git::getCommitCount());
 	}
 }
 ?>

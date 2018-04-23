@@ -14,6 +14,7 @@
   </div>
   <div class="c">
     {{block('iLocation')}}
+    {{block('icommitCount')}}
   </div>
 </div>
 
@@ -61,6 +62,16 @@
   <div class="statistic teal">
     <div class="value">{{dash.version | fitNumber(false)}}</div>
     <div class="label">{%trans "Current Version"%}</div>
+  </div>
+</div>
+{%endblock%}
+
+
+{%block icommitCount%}
+<div class="dcard x2 mB10">
+  <div class="statistic grey">
+    <div class="value"><span>{{dash.commitCount | fitNumber}}</span></div>
+    <div class="label">{%trans "Commits"%}</div>
   </div>
 </div>
 {%endblock%}

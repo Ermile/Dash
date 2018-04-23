@@ -16,9 +16,6 @@ class view
 		\dash\data::dir_right(\dash\data::global_direction() == 'rtl'? 'left':  'right');
 		\dash\data::dir_left(\dash\data::global_direction() == 'rtl'? 'right': 'left');
 		\dash\data::page_title(T_(ucfirst( str_replace('/', ' ', \dash\url::directory()) )));
-
-		\dash\data::dash_version(\dash\engine\version::get());
-		\dash\data::dash_lastUpdate(\dash\utility\git::getLastUpdate());
 	}
 
 
