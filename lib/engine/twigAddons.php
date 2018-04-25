@@ -247,7 +247,7 @@ class twigAddons
 			$onlyLink    = array_column(func_get_args(), 'onlyLink');
 			$class       = array_column(func_get_args(), 'class');
 			$langList    = \dash\data::get('lang', 'list');
-			$urlRoot     = \dash\url::root();
+			$urlRoot     = \dash\url::base();
 			$urlContent  = \dash\url::content();
 			$urlPath     = \dash\url::path();
 			$urlParam    = \dash\url::query();
@@ -271,19 +271,12 @@ class twigAddons
 					{
 						$activeClass = " class='active'";
 					}
+					$href           .= '/'.$key;
 
-					if($urlContent)
-					{
-						$href           .= '/'.$urlContent;
-					}
 					if($urlPath)
 					{
-						$href           .= '/'.$urlPath;
+						$href           .= $urlPath;
 						$urlPathCurrent .= $urlPath;
-					}
-					if($urlParam)
-					{
-						$href .= $urlParam;
 					}
 					$lang_string .= "<a href='". $href . "'$activeClass hreflang='$key' data-direct>";
 					$lang_string .= $value;
