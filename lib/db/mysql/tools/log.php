@@ -13,7 +13,7 @@ trait log
 		$classes  = (array_column(debug_backtrace(), 'file'));
 
 		// start saving
-		$fileAddr = database.'log/';
+		$fileAddr = root.'/includes/log/database/';
 		$time_ms  = round($_time*1000);
 		$date_now = new \DateTime("now", new \DateTimeZone('Asia/Tehran') );
 		\dash\file::makeDir($fileAddr, null, true);
