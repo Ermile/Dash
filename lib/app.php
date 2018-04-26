@@ -155,10 +155,23 @@ class app
 	}
 
 
-	public static function static_avatar_url()
+	public static function static_avatar_url($_type = 'default')
 	{
 		$url = \dash\url::site(). '/';
-		$url .= 'static/siftal/images/default/avatar.png';
+		switch ($_type)
+		{
+			case 'male':
+				$url .= 'static/siftal/images/avatar/man.png';
+				break;
+
+			case 'female':
+				$url .= 'static/siftal/images/avatar/woman.png';
+				break;
+
+			default:
+				$url .= 'static/siftal/images/default/avatar.png';
+				break;
+		}
 		return $url;
 	}
 
