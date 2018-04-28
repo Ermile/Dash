@@ -8,10 +8,10 @@ class zip
 	{
 		$zip = new \ZipArchive();
 
-		if ($zip->open($_zipAddr, \ZIPARCHIVE::OVERWRITE) !== TRUE)
+		if ($zip->open($_zipAddr, \ZIPARCHIVE::OVERWRITE) !== true)
 		{
 			// if file not exist, add to existing file
-			if ($zip->open($_zipAddr, \ZipArchive::CREATE) !== TRUE)
+			if ($zip->open($_zipAddr, \ZipArchive::CREATE) !== true)
 			{
 				return("cannot open <$_zipAddr>\n");
 			}
@@ -46,5 +46,60 @@ class zip
 		\dash\code::exit();
 	}
 
+
+	public static function folder($_zipAddr, $_addr)
+	{
+		$zip = new \ZipArchive;
+
+		if ($zip->open($_zipAddr, \ZIPARCHIVE::OVERWRITE) !== true)
+		{
+			// if file not exist, add to existing file
+			if ($zip->open($_zipAddr, \ZipArchive::CREATE) !== true)
+			{
+				return false;
+			}
+		}
+
+	   self::addFolderToZip($_addr, $zip);
+
+	   $zip->close();
+
+	   return true;
+	}
+
+
+	private static function addFolderToZip($dir, $zipArchive, $zipdir = '')
+	{
+	    if(is_dir($dir))
+	    {
+	        if($dh = opendir($dir))
+	        {
+	            // Loop through all the files
+	            while (($file = readdir($dh)) !== false)
+	            {
+	                //If it's a folder, run the function again!
+	                if(!is_file($dir . $file))
+	                {
+			            //Add the directory
+			            if($zipdir)
+			            {
+			            	$zipArchive->addEmptyDir($zipdir);
+			            }
+
+	                    // Skip parent and root directories
+	                    if(($file !== ".") && ($file !== ".."))
+	                    {
+	                        self::addFolderToZip($dir. '/' . $file . "/", $zipArchive, $zipdir. '/' . $file);
+	                    }
+	                }
+	                else
+	                {
+	                    // Add the files
+	                    $zipArchive->addFile($dir. '/' . $file, $zipdir .'/'. $file);
+	                }
+	            }
+	        }
+	    }
+	}
 }
 ?>
