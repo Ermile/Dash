@@ -133,6 +133,22 @@ class user
 	}
 
 
+	public static function sidebar()
+	{
+		$meta = \dash\user::detail('meta');
+
+		if(is_string($meta) && substr($meta, 0, 1) === '{')
+		{
+			$meta = json_decode($meta, true);
+		}
+
+		if(isset($meta['toggle_sidebar']) && $meta['toggle_sidebar'])
+		{
+			return true;
+		}
+		return false;
+
+	}
 
 	/**
 	* check is set remember of this user and login by this

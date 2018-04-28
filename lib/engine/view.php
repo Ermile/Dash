@@ -59,6 +59,9 @@ class view
 		\dash\data::site_desc(T_(\dash\option::config('site', 'desc')));
 		\dash\data::site_slogan(T_(\dash\option::config('site', 'slogan')));
 
+		// toggle side bar
+		\dash\data::userToggleSidebar(\dash\user::sidebar());
+
 		// if allow to use social then get social network account list
 		if(\dash\option::social('status'))
 		{
