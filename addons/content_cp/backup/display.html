@@ -27,7 +27,7 @@
 {%for key, value in oldBackup%}
   <div class="msg f" title="{{value.name}}">
     <div class="cauto">
-      <span class="sf-database fs15  pRa25 vlbottom" ></span>
+      <span class="{%if value.zip%}fs30 sf-file-archive-o{%else%}sf-database{%endif%} fs15  pRa25 vlbottom" ></span>
     </div>
     <div class="c">
       {{value.name}} |
