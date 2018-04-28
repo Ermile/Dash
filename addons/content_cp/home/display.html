@@ -1,9 +1,23 @@
 {%extends display.cpMain%}
 
 
+
 {%block content%}
+<div class="tbox">
+  {%trans "Control Panel"%}
+</div>
+<div class="f">
+ <div class="c4 s12">{{block ("iCms")}}</div>
+ </div>
+{%endblock%}
 
-<span>Dashboard!</span>
-Fill it...
 
+
+{%block iCms%}
+<a class="dcard x1" href='{{url.base}}/cp/cms'>
+ <div class="statistic">
+  <div class="value"><i class="sf-diamond"></i></div>
+  <div class="label">{%trans "CMS"%}</div>
+ </div>
+</a>
 {%endblock%}
