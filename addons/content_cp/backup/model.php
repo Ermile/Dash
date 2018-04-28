@@ -3,6 +3,13 @@ namespace content_cp\backup;
 
 class model
 {
+	// save backup in this folder
+	private static function backup_addr()
+	{
+		return root. '/public_html/files/backup/';
+	}
+
+
 	public static function post()
 	{
 		if(\dash\request::post('backup') === 'now')
@@ -29,6 +36,11 @@ class model
 	{
 		if(\dash\db::backup_dump(['download' => false, 'db_name' => $_db_name]))
 		{
+			if(defined('db_log_name'))
+			{
+				\dash\db::backup_dump(['download' => false, 'db_name' => db_log_name]);
+			}
+
 			return true;
 		}
 		return false;
@@ -39,7 +51,7 @@ class model
 	{
 		self::clean_old();
 
-		$zip_addr = \content_cp\backup\controller::backup_addr();
+		$zip_addr = self::backup_addr();
 		\dash\file::makeDir($zip_addr, null, true);
 
 
@@ -59,7 +71,7 @@ class model
 
 	private static function clean_old()
 	{
-		$oldBackup = @glob(\content_cp\backup\controller::backup_addr().'*');
+		$oldBackup = @glob(self::backup_addr().'*');
 		if($oldBackup && is_array($oldBackup))
 		{
 			foreach ($oldBackup as $key => $value)
