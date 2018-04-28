@@ -60,7 +60,10 @@ class view
 		\dash\data::site_slogan(T_(\dash\option::config('site', 'slogan')));
 
 		// toggle side bar
-		\dash\data::userToggleSidebar(\dash\user::sidebar());
+		if(\dash\user::sidebar() === null || \dash\user::sidebar() === true)
+		{
+			\dash\data::userToggleSidebar(true);
+		}
 
 		// if allow to use social then get social network account list
 		if(\dash\option::social('status'))

@@ -142,11 +142,19 @@ class user
 			$meta = json_decode($meta, true);
 		}
 
-		if(isset($meta['toggle_sidebar']) && $meta['toggle_sidebar'])
+		if(is_array($meta) && array_key_exists('toggle_sidebar', $meta))
 		{
-			return true;
+			if($meta['toggle_sidebar'])
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
 		}
-		return false;
+
+		return null;
 
 	}
 
