@@ -32,6 +32,7 @@
     <div class="c">
       {{value.name}} |
       <div class="badge secondary">{{value.ago | fitNumber}}</div>
+      <div class="badge danger"><a href="{{url.pwd}}" data-ajaxify data-data='{"type" : "remove", "file" : "{{value.name}}"}' data-method='post'>{%trans "Remove"%}</a></div>
       <div class="badge primary">{%trans "Sise"%} {{value.size | fitNumber}} MB</div>
       <div class="badge success"><a href="{{url.site}}/files/backup/{{value.name}}" >{%trans "Download"%}</a></div>
     </div>

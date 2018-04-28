@@ -28,6 +28,16 @@ class model
 			}
 			\dash\redirect::pwd();
 		}
+		elseif(\dash\request::post('type') === 'remove')
+		{
+			$file_name = \dash\request::post('file');
+			if(\dash\file::delete(self::backup_addr(). $file_name))
+			{
+				\dash\notif::ok(T_("File successfully deleted"));
+				\dash\redirect::pwd();
+				return;
+			}
+		}
 		else
 		{
 			\dash\notif::ok(T_("Dont!"));
