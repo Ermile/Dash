@@ -118,6 +118,7 @@ trait backup
 			'lock_tables' => false,
 			'download'    => true,
 			'db_name'     => null,
+			'dir'         => null,
 		];
 
 		if(!is_array($_options))
@@ -142,7 +143,16 @@ trait backup
 		$db_host    = \dash\db::$db_host;
 		$db_charset = \dash\db::$db_charset;
 		$dest_file  = $db_name.'_'. date('Y-m-d_H-i-s'). '.sql.bz2';
-		$dest_dir   = database."backup/files/";
+
+		if(!$_options['dir'])
+		{
+			$dest_dir   = database."backup/files/";
+		}
+		else
+		{
+			$dest_dir   = $_options['dir'];
+		}
+
 		// create folder if not exist
 		if(!is_dir($dest_dir))
 		{

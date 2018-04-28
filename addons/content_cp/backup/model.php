@@ -6,7 +6,7 @@ class model
 	// save backup in this folder
 	private static function backup_addr()
 	{
-		return root. '/public_html/files/backup/';
+		return root. 'public_html/files/backup/';
 	}
 
 
@@ -14,6 +14,10 @@ class model
 	{
 		if(\dash\request::post('backup') === 'now')
 		{
+			self::clean_old();
+
+			\dash\file::makeDir(self::backup_addr(), null, true);
+
 			if(self::backup_db())
 			{
 				self::backup_project();
@@ -34,11 +38,11 @@ class model
 
 	private static function backup_db($_db_name = null)
 	{
-		if(\dash\db::backup_dump(['download' => false, 'db_name' => $_db_name]))
+		if(\dash\db::backup_dump(['download' => false, 'db_name' => $_db_name, 'dir' => self::backup_addr()]))
 		{
 			if(defined('db_log_name'))
 			{
-				\dash\db::backup_dump(['download' => false, 'db_name' => db_log_name]);
+				\dash\db::backup_dump(['download' => false, 'db_name' => db_log_name, 'dir' => self::backup_addr()]);
 			}
 
 			return true;
@@ -49,10 +53,8 @@ class model
 
 	private static function backup_project()
 	{
-		self::clean_old();
 
 		$zip_addr = self::backup_addr();
-		\dash\file::makeDir($zip_addr, null, true);
 
 
 		$file_name = "Backup_". date("Y_m_d_H_i_"). \dash\url::root(). '.zip';
