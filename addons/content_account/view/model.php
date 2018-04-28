@@ -34,6 +34,8 @@ class model
 
 		\dash\notif::ok(T_("Your change was saved"));
 
+		\dash\notif::direct();
+
 		\dash\redirect::pwd();
 	}
 }
