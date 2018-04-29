@@ -35,6 +35,13 @@ class pagination
 	}
 
 
+	private static function destroy()
+	{
+		self::$have_pages = false;
+		self::$detail     = [];
+	}
+
+
 	/**
 	 * Gets the query limit.
 	 *
@@ -46,6 +53,8 @@ class pagination
 	 */
 	public static function init($_total_rows, $_limit = 10)
 	{
+		self::destroy();
+
 		self::$have_pages = true;
 		$page             = \dash\request::get('page');
 		$url_get_length   = \dash\request::get('length');
