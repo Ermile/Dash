@@ -6,6 +6,7 @@ class error
 
 	public static function handle_exception($e)
 	{
+		@header("HTTP/1.1 506", true, 506);
 		$msg = $e->getFile(). " : " . $e->getLine(). "\n";
 		$msg .= \get_class($e). "(". $e->getMessage(). ")";
 		self::log($msg, 'exception.log', 'php');
