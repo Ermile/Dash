@@ -246,6 +246,11 @@ trait install
 	 */
 	public static function find_dbName($_loc)
 	{
+		// show error message if config does not exist
+		if(!defined('db_name'))
+		{
+			\dash\header::status(501, 'config does not exist!');
+		}
 		$myDbName = preg_replace("[\\\\]", "/", $_loc);
 		$myDbName = substr( $myDbName, (strrpos($myDbName, "/" )+ 1));
 		// change db_name and core_name to defined value
