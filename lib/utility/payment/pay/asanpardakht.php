@@ -126,7 +126,7 @@ trait asanpardakht
 
             $payment_response = json_encode((array) $payment_response, JSON_UNESCAPED_UNICODE);
 
-            \dash\db\transactions::update(['condition' => 'redirect', 'payment_response' => $payment_response], $transaction_id);
+            \dash\utility\payment\transactions::update(['condition' => 'redirect', 'payment_response' => $payment_response], $transaction_id);
 
             // redirect to enter/redirect
             \dash\session::set('redirect_page_url', 'https://asan.shaparak.ir/');

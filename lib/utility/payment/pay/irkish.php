@@ -115,7 +115,7 @@ trait irkish
             $_SESSION['amount']['irkish'][$token]['transaction_id'] = $transaction_id;
 
             $payment_response = json_encode((array) [], JSON_UNESCAPED_UNICODE);
-            \dash\db\transactions::update(['condition' => 'redirect', 'payment_response' => $payment_response], $transaction_id);
+            \dash\utility\payment\transactions::update(['condition' => 'redirect', 'payment_response' => $payment_response], $transaction_id);
 
             // redirect to enter/redirect
             \dash\session::set('redirect_page_url', 'https://ikc.shaparak.ir/TPayment/Payment/index');

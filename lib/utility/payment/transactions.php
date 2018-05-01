@@ -14,5 +14,17 @@ class transactions
 		$_args['condition'] = 'request';
 		return \dash\db\transactions::set($_args);
 	}
+
+
+	public static function update()
+	{
+		return \dash\db\transactions::update(...func_get_args());
+	}
+
+
+	public static function calc_budget()
+	{
+		return \dash\db\transactions::calc_budget(...func_get_args());
+	}
 }
 ?>

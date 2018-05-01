@@ -111,7 +111,7 @@ trait payir
             $_SESSION['amount']['payir'][$transId]['amount']         = floatval($_amount) * 10;
             $_SESSION['amount']['payir'][$transId]['transaction_id'] = $transaction_id;
             $payment_response = json_encode((array) $temp, JSON_UNESCAPED_UNICODE);
-            \dash\db\transactions::update(['condition' => 'redirect', 'payment_response' => $payment_response], $transaction_id);
+            \dash\utility\payment\transactions::update(['condition' => 'redirect', 'payment_response' => $payment_response], $transaction_id);
             $redirect_url = "https://pay.ir/payment/gateway/". $transId;
             \dash\redirect::to($redirect_url);
             return true;

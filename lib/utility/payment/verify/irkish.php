@@ -106,7 +106,7 @@ trait irkish
             'payment_response' => json_encode((array) $_args, JSON_UNESCAPED_UNICODE),
         ];
 
-        \dash\db\transactions::update($update, $transaction_id);
+        \dash\utility\payment\transactions::update($update, $transaction_id);
 
         \dash\db\logs::set('pay:irkish:pending:request', self::$user_id, $log_meta);
 
@@ -136,7 +136,7 @@ trait irkish
                     'payment_response' => $payment_response,
                 ];
 
-                \dash\db\transactions::calc_budget($transaction_id, $amount_SESSION / 10, 0, $update);
+                \dash\utility\payment\transactions::calc_budget($transaction_id, $amount_SESSION / 10, 0, $update);
 
                 \dash\db\logs::set('pay:irkish:ok:request', self::$user_id, $log_meta);
 
@@ -158,7 +158,7 @@ trait irkish
 
                 \dash\session::set('payment_verify_status', 'verify_error');
 
-                \dash\db\transactions::update($update, $transaction_id);
+                \dash\utility\payment\transactions::update($update, $transaction_id);
                 \dash\db\logs::set('pay:irkish:verify_error:request', self::$user_id, $log_meta);
                 return self::turn_back($transaction_id);
             }
@@ -174,7 +174,7 @@ trait irkish
 
             \dash\session::set('payment_verify_status', 'error');
 
-            \dash\db\transactions::update($update, $transaction_id);
+            \dash\utility\payment\transactions::update($update, $transaction_id);
             \dash\db\logs::set('pay:irkish:error:request', self::$user_id, $log_meta);
             return self::turn_back($transaction_id);
         }

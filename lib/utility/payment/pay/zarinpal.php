@@ -121,7 +121,7 @@ trait zarinpal
                 $_SESSION['amount']['zarinpal'][$payment_response->Authority]['transaction_id'] = $transaction_id;
 
                 $payment_response = json_encode((array) $payment_response, JSON_UNESCAPED_UNICODE);
-                \dash\db\transactions::update(['condition' => 'redirect', 'payment_response' => $payment_response], $transaction_id);
+                \dash\utility\payment\transactions::update(['condition' => 'redirect', 'payment_response' => $payment_response], $transaction_id);
 
                 // redirect to bank
                 \dash\redirect::to($redirect);

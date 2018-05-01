@@ -68,7 +68,7 @@ trait zarinpal
             'condition'        => 'pending',
             'payment_response' => json_encode((array) $_args, JSON_UNESCAPED_UNICODE),
         ];
-        \dash\db\transactions::update($update, $transaction_id);
+        \dash\utility\payment\transactions::update($update, $transaction_id);
 
         \dash\db\logs::set('pay:zarinpal:pending:request', self::$user_id, $log_meta);
 
@@ -91,7 +91,7 @@ trait zarinpal
                 'condition'        => 'cancel',
                 'payment_response' => json_encode((array) $_args, JSON_UNESCAPED_UNICODE),
             ];
-            \dash\db\transactions::update($update, $transaction_id);
+            \dash\utility\payment\transactions::update($update, $transaction_id);
             \dash\db\logs::set('pay:zarinpal:cancel:request', self::$user_id, $log_meta);
             return self::turn_back($transaction_id);
         }
@@ -118,7 +118,7 @@ trait zarinpal
                     'payment_response' => $payment_response,
                 ];
 
-                \dash\db\transactions::calc_budget($transaction_id, $zarinpal['Amount'], 0, $update);
+                \dash\utility\payment\transactions::calc_budget($transaction_id, $zarinpal['Amount'], 0, $update);
 
                 \dash\db\logs::set('pay:zarinpal:ok:request', self::$user_id, $log_meta);
 
@@ -138,7 +138,7 @@ trait zarinpal
                     'payment_response' => $payment_response,
                 ];
                 \dash\session::set('payment_verify_status', 'verify_error');
-                \dash\db\transactions::update($update, $transaction_id);
+                \dash\utility\payment\transactions::update($update, $transaction_id);
                 \dash\db\logs::set('pay:zarinpal:verify_error:request', self::$user_id, $log_meta);
                 return self::turn_back($transaction_id);
             }

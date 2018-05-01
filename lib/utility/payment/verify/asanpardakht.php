@@ -78,7 +78,7 @@ trait asanpardakht
             'payment_response' => json_encode((array) $_args, JSON_UNESCAPED_UNICODE),
         ];
 
-        \dash\db\transactions::update($update, $transaction_id);
+        \dash\utility\payment\transactions::update($update, $transaction_id);
         \dash\db\logs::set('pay:asanpardakht:pending:request', self::$user_id, $log_meta);
 
         $asanpardakht                 = [];
@@ -126,7 +126,7 @@ trait asanpardakht
                     'payment_response' => $payment_response,
                 ];
 
-                \dash\db\transactions::calc_budget($transaction_id, $Amount_SESSION / 10, 0, $update);
+                \dash\utility\payment\transactions::calc_budget($transaction_id, $Amount_SESSION / 10, 0, $update);
 
                 \dash\db\logs::set('pay:asanpardakht:ok:request', self::$user_id, $log_meta);
 
@@ -147,7 +147,7 @@ trait asanpardakht
                     'payment_response' => $payment_response,
                 ];
                 \dash\session::set('payment_verify_status', 'verify_error');
-                \dash\db\transactions::update($update, $transaction_id);
+                \dash\utility\payment\transactions::update($update, $transaction_id);
                 \dash\db\logs::set('pay:asanpardakht:verify_error:request', self::$user_id, $log_meta);
                 return self::turn_back($transaction_id);
             }
@@ -161,7 +161,7 @@ trait asanpardakht
                 'payment_response' => json_encode((array) $_args, JSON_UNESCAPED_UNICODE),
             ];
             \dash\session::set('payment_verify_status', 'error');
-            \dash\db\transactions::update($update, $transaction_id);
+            \dash\utility\payment\transactions::update($update, $transaction_id);
             \dash\db\logs::set('pay:asanpardakht:error:request', self::$user_id, $log_meta);
             return self::turn_back($transaction_id);
         }
