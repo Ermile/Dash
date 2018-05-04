@@ -30,7 +30,7 @@ class coding
 		switch ($_alphabet)
 		{
 			case 'number':
-				$alphabet = slef::$ALPHABET_NUMBER;
+				$alphabet = self::$ALPHABET_NUMBER;
 				break;
 
 			case 'all':
@@ -89,12 +89,12 @@ class coding
 	 */
 	public static function decode($_str = null, $_alphabet = null)
 	{
-		$_alphabet = self::alphabet($_alphabet);
-
 		if(!self::is($_str, $_alphabet))
 		{
 			return false;
 		}
+
+		$_alphabet = self::alphabet($_alphabet);
 
 		$lenght = mb_strlen($_alphabet);
 		$num    = 0;
@@ -120,6 +120,7 @@ class coding
 	public static function is($_string, $_alphabet = null)
 	{
 		$_alphabet = self::alphabet($_alphabet);
+
 		if(preg_match("/^[". $_alphabet. "]+$/", $_string))
 		{
 			return true;
