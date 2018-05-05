@@ -39,7 +39,6 @@ class coding
 
 			case null:
 			case '':
-			case true:
 			case false:
 			case 'default':
 				$alphabet = self::$ALPHABET;
