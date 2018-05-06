@@ -959,7 +959,7 @@ class twigAddons
 				$user_id = $args[0];
 			}
 
-			return \dash\permission::access_su($user_id);
+			return \dash\permission::supervisor($user_id);
 		});
 	}
 }
