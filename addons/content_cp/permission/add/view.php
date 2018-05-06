@@ -6,9 +6,11 @@ class view
 {
 	public static function config()
 	{
-		\dash\data::page_title(T_("Permissions"));
-		\dash\data::page_desc(T_("Set and config permission of users and allow them to do something."));
+		\dash\data::page_title(T_("Add new permissions"));
+		\dash\data::page_desc(T_("Set and config permission group to categorize user access."));
 
+		\dash\data::badge_link(\dash\url::this());
+		\dash\data::badge_text(T_('Back to list of permissions'));
 
 		\dash\data::perm_list(
 			[
