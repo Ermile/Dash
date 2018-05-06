@@ -21,15 +21,17 @@
 
 
 {%for ckey, cvalue in perm.list%}
-<div class="cbox mB10 f">
+<div class="cbox mB10">
   <h3>{{ckey}}</h3>
+  <div class="f">
 {%for key, value in cvalue%}
-  <div class="switch1">
-   <input type="checkbox" name="{{key}}" id="{{key}}" data-require="{{value.require | join('|') }}">
-   <label for="{{key}}"></label>
-   <label for="{{key}}">{{value.title}}</label>
-  </div>
+    <div class="switch1 c4 s12">
+     <input type="checkbox" name="{{key}}" id="{{key}}" data-require="{{value.require | join('|') }}">
+     <label for="{{key}}"></label>
+     <label for="{{key}}" title='{{key}}'>{{value.title}}</label>
+    </div>
 {%endfor%}
+  </div>
 </div>
 {%endfor%}
 
@@ -40,23 +42,31 @@
 
 {%block foot_js%}
 <script>
-
-$('input[type=checkbox]').on('change', function()
+route('*', function ()
 {
-  var myRequire = $(this).attr('data-require');
-  if($(this).is(":checked") === true && myRequire)
-  {
-    myRequire = myRequire.split('|');
-    console.log(myRequire);
 
-    $.each(myRequire, function(index, val)
+}).once(function()
+{
+  $('input[type=checkbox]').off('change');
+  $('input[type=checkbox]').on('change', function()
+  {
+    var myRequire = $(this).attr('data-require');
+    if($(this).is(":checked") === true && myRequire)
     {
-      console.log(val)
-      console.log($('#'+ val));
-      $('#'+ val).prop('checked', true);
-    });
-  }
+      myRequire = myRequire.split('|');
+      console.log(myRequire);
+
+      $.each(myRequire, function(index, val)
+      {
+        console.log(val)
+        console.log($('#'+ val));
+        $('#'+ val).prop('checked', true);
+      });
+    }
+  });
 });
+
+
 
 </script>
 {%endblock%}
