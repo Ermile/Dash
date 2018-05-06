@@ -9,8 +9,10 @@
     <thead class="primary">
       <tr>
         <th>{%trans "Permission title"%}</th>
-        {%for myGroup in perm.group%}
-        <th class="txtC">{{myGroup.title}}</th>
+        {%for slug, myGroup in perm.group%}
+        <th title="{{slug}}" class="txtC">{{myGroup.title}}
+          {%if myGroup in perm.groupPos%}<span class="badge">{%trans "Customized"%}</span>{%endif%}
+        </th>
         {%endfor%}
       </tr>
     </thead>

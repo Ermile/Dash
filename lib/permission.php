@@ -33,16 +33,21 @@ class permission
 			self::$project_group     = self::read_file(root.'/includes/permission/group.me.json');
 			self::$core_perm_list    = self::read_file(core.'addons/includes/permission/list.json');
 			self::$core_group        = self::read_file(core.'addons/includes/permission/group.json');
-
 		}
-
 	}
 
 
-	public static function groups()
+	public static function groups($_project = false)
 	{
 		self::load();
-		$all_group = array_merge(self::$core_group, self::$project_group);
+		if($_project)
+		{
+			$all_group = self::$project_group;
+		}
+		else
+		{
+			$all_group = array_merge(self::$core_group, self::$project_group);
+		}
 		return $all_group;
 	}
 
@@ -66,7 +71,6 @@ class permission
 
 		$result['dash'] = $core_cat;
 
-
 		$project_cat = [];
 
 		foreach (self::$project_perm_list as $key => $value)
@@ -84,6 +88,7 @@ class permission
 		return $result;
 	}
 
+
 	public static function save_permission($_name, $_lable, $_contain)
 	{
 		self::load();
@@ -98,8 +103,9 @@ class permission
 		$new = json_encode($new, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 		\dash\file::write(root.'/includes/permission/group.me.json', $new);
 		return true;
-
 	}
+
+
 
 
 
