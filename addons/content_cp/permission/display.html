@@ -2,25 +2,27 @@
 
 
 {%block pageContent%}
-{%for content, allPerms in perm.list%}
 <div class="cbox">
-  <h3>{%trans content%}</h3>
+
   <table class="tbl">
     <thead class="primary">
       <tr>
         <th>{%trans "Permission title"%}</th>
         {%for slug, myGroup in perm.group%}
-        <th title="{{slug}}" class="txtC">{{myGroup.title}}
-          {%if myGroup in perm.groupPos%}<span class="badge">{%trans "Customized"%}</span>{%endif%}
+        <th title='{{slug}} {%if myGroup in perm.groupPos%} <br><b>{%trans "Customized"%}</b>{%endif%}' class="txtC">{{myGroup.title}}
+          <br>
+
         </th>
         {%endfor%}
       </tr>
     </thead>
 
     <tbody>
+{%for content, allPerms in perm.list%}
+
       {%for cat, permList in allPerms%}
       <tr class="active">
-        <th colspan="{{ (perm.group | length) + 1}}">{{cat}}</th>
+        <th colspan="{{ (perm.group | length) + 1}}"><span class="badge floatRa">{%trans content%}</span> {{cat}}</th>
       </tr>
       {%for key, value in permList%}
       <tr>
@@ -39,10 +41,11 @@
       </tr>
       {%endfor%}
       {%endfor%}
+
+{%endfor%}
     </tbody>
   </table>
 </div>
-{%endfor%}
 {%endblock%}
 
 
