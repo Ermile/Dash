@@ -19,6 +19,10 @@ class permission
 		{
 			$perm = \dash\file::read($_addr);
 			$perm = json_decode($perm, true);
+			if(!is_array($perm))
+			{
+				$perm = [];
+			}
 		}
 		return $perm;
 	}
