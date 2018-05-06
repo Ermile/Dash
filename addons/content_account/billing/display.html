@@ -123,7 +123,7 @@
           <td>{{value.budget|number_format|fitNumber}} {%trans my_unit%}</td>
           <td>
 {%if value.invoice_id%}
-            <a href="{{url.here}}/billing/invoice/{{value.invoice_id}}"><i class="sf-file-text"></i></a>
+            <a href="{{url.here}}/billing/invoice?id={{value.invoice_id}}"><i class="sf-file-text"></i></a>
 {%else%}
             <i>-</i>
 {%endif%}
