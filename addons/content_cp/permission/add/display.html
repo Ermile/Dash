@@ -1,0 +1,33 @@
+{%extends display.cpMain%}
+
+
+{%block pageContent%}
+
+<div class="cbox mB10">
+  <div class="f">
+    <div class="c s12 input pRa5">
+      <label>{%trans "Name"%} <small class="fc-red">{%trans "Require"%} *</small></label>
+      <input type="text" name="name" title='{%trans "The permission name should be unique and contain only alphanameric characters and underscores"%}' placeholder='{%trans "Name of your permission"%} *' autocomplete="off">
+    </div>
+
+    <div class="c s12 input">
+      <label>{%trans "Label"%} <small class="fc-red">{%trans "Require"%} *</small></label>
+      <input type="text" name="label" title='{%trans "The permission label is used to represent your permission in user management"%}' placeholder='{%trans "Label of your permission"%} *' autocomplete="off">
+    </div>
+  </div>
+</div>
+
+
+
+<div class="cbox mB10">
+{%for gkey, gvalue in perm.group%}
+        <th>{{gvalue.title}}</th>
+{%endfor%}
+</div>
+
+
+
+{%endblock%}
+
+
+
