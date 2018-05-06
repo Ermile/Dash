@@ -1,0 +1,36 @@
+{%extends display.cpMain%}
+
+
+{%block pageContent%}
+
+<div class="cbox">
+  <table class="tbl">
+    <thead class="primary">
+      <tr>
+        <th>{%trans "Permission title"%}</th>
+{%for gkey, gvalue in perm.group%}
+        <th>{{gvalue.title}}</th>
+{%endfor%}
+      </tr>
+    </thead>
+
+    <tbody>
+{%for key, value in perm.list%}
+      <tr>
+        <td title="{{key}}<br>{{value.title}}">{{value.title}}</td>
+{%for gkey, gvalue in perm.group%}
+        <td>
+          <i class="sf-check fc-green"></i>
+        </td>
+{%endfor%}
+      </tr>
+{%endfor%}
+
+    </tbody>
+  </table>
+
+</div>
+{%endblock%}
+
+
+
