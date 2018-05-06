@@ -4,6 +4,100 @@ namespace dash;
 /** Access: handle permissions **/
 class permission
 {
+	private static $load              = false;
+	private static $project_perm_list = [];
+	private static $project_group     = [];
+	private static $core_perm_list    = [];
+	private static $core_group        = [];
+
+
+	private static function read_file($_addr)
+	{
+		$perm = [];
+
+		if(is_file($_addr))
+		{
+			$perm = \dash\file::read($_addr);
+			$perm = json_decode($perm, true);
+		}
+		return $perm;
+	}
+
+
+	private static function load()
+	{
+		if(!self::$load)
+		{
+			self::$load        = true;
+			self::$project_perm_list = self::read_file(root.'/includes/permission/list.json');
+			self::$project_group     = self::read_file(root.'/includes/permission/group.json');
+			self::$core_perm_list    = self::read_file(core.'addons/includes/permission/list.json');
+			self::$core_group        = self::read_file(core.'addons/includes/permission/group.json');
+
+		}
+
+	}
+
+	public static function draw_list()
+	{
+		self::load();
+
+		$draw           = [];
+		$all_list       = array_merge(self::$core_perm_list, self::$project_perm_list);
+		$all_list_name  = array_keys($all_list);
+		$all_group      = array_merge(self::$core_group, self::$project_group);
+		$all_group_name = array_keys($all_group);
+		$all_cat        = array_column($all_list, 'cat');
+		$all_cat        = array_unique($all_cat);
+
+
+		foreach ($all_list_name as $key => $perm)
+		{
+			foreach ($all_cat as $ckey => $cat)
+			{
+				foreach ($all_group_name as $gkey => $group)
+				{
+					$access = false;
+					if(isset(self::$core_group[$group]['contain']))
+					{
+						if(in_array($perm, self::$core_group[$group]['contain']))
+						{
+							$access = true;
+						}
+					}
+					$draw[$cat][$perm][$group] = $access;
+				}
+			}
+		}
+
+		$result['list']  = $draw;
+		$result['title'] = $all_group_name;
+		return $result;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	public static $perm_list       = [];
 	public static $user_id         = null;
@@ -16,6 +110,7 @@ class permission
 	 */
 	public static function _construct()
 	{
+		self::load();
 		if(empty(self::$perm_list))
 		{
 			if(file_exists(root.'/includes/permission/permission.php'))

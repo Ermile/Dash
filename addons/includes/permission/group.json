@@ -1,0 +1,26 @@
+{
+  "admin": {
+    "title": "مدیر کل",
+    "contain": [
+      "cp:news:view",
+      "cp:news:add",
+      "cp:news:edit",
+      "cp:news:delete"
+    ]
+  },
+  "editor": {
+    "title": "ویراستار",
+    "contain": [
+      "cp:news:view",
+      "cp:news:add",
+      "cp:news:edit"
+    ]
+  },
+  "writer": {
+    "title": "نویسنده",
+    "contain": [
+      "cp:news:view",
+      "cp:news:add"
+    ]
+  }
+}

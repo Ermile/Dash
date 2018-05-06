@@ -175,5 +175,73 @@ class app
 		return $url;
 	}
 
+
+	public static function ready($_data)
+	{
+		$result = [];
+		foreach ($_data as $key => $value)
+		{
+			switch ($key)
+			{
+				case 'id':
+				case 'user_id':
+				case 'creator':
+				case 'parent':
+					if(isset($value))
+					{
+						$result[$key] = \dash\coding::encode($value);
+					}
+					else
+					{
+						$result[$key] = null;
+					}
+					break;
+
+				case 'logo':
+					if($value)
+					{
+						$result['logo'] = $value;
+					}
+					else
+					{
+						$result['logo'] = \dash\app::static_logo_url();
+					}
+					break;
+
+				case 'avatar':
+					if($value)
+					{
+						$avatar = $value;
+					}
+					else
+					{
+						if(isset($_data['gender']))
+						{
+							if($_data['gender'] === 'male')
+							{
+								$avatar = \dash\app::static_avatar_url('male');
+							}
+							else
+							{
+								$avatar = \dash\app::static_avatar_url('female');
+							}
+						}
+						else
+						{
+							$avatar = \dash\app::static_avatar_url();
+						}
+					}
+					$result[$key] = $avatar;
+					break;
+
+				default:
+					$result[$key] = $value;
+					break;
+			}
+		}
+
+		return $result;
+	}
+
 }
 ?>

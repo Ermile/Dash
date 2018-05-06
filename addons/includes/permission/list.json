@@ -1,0 +1,36 @@
+{
+  "cp:news:view": {
+    "title": "مشاهده خبر",
+    "cat": "cp",
+    "check": false,
+    "verify": false,
+    "require": null
+  },
+  "cp:news:add": {
+    "title": "افزودن خبر",
+    "cat": "cp",
+    "check": false,
+    "verify": false,
+    "require": [
+      "cp:news:view"
+    ]
+  },
+  "cp:news:edit": {
+    "title": "ویرایش خبر",
+    "cat": "cp",
+    "check": false,
+    "verify": false,
+    "require": [
+      "cp:news:view"
+    ]
+  },
+  "cp:news:delete": {
+    "title": "حذف خبر",
+    "cat": "cp",
+    "check": false,
+    "verify": false,
+    "require": [
+      "cp:news:view"
+    ]
+  }
+}

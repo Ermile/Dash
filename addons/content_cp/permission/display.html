@@ -8,25 +8,35 @@
     <thead class="primary">
       <tr>
         <th>{%trans "Permission title"%}</th>
-{%for gkey, gvalue in perm.group%}
-        <th class="txtC">{{gvalue.title}}</th>
+{%for gkey, gvalue in drawPerm.title%}
+        <th class="txtC">{{gvalue}}</th>
 {%endfor%}
       </tr>
     </thead>
 
     <tbody>
-{%for key, value in perm.list%}
+{%for key, value in drawPerm.list%}
+
       <tr class="active">
-        <th colspan="{{ (perm.group | length) + 1}}">Salam</th>
+        <th colspan="{{ (drawPerm.title | length) + 1}}">{{key}}</th>
       </tr>
-      <tr>
-        <td title="{{key}}<br>{{value.title}}">{{value.title}}</td>
-{%for gkey, gvalue in perm.group%}
-        <td class="txtC">
-          <i class="sf-check fc-green"></i>
-        </td>
-{%endfor%}
-      </tr>
+
+  {%for gkey, gvalue in value%}
+        <tr>
+          <td class="txtC">
+            {{gkey}}
+          </td>
+          {%for ggkey, ggvalue in gvalue%}
+            <td class="txtC">
+                {%if ggvalue%}
+                  <i class="sf-check fc-green"></i>
+                {%else%}
+                  <i class="sf-times fc-red"></i>
+                {%endif%}
+                </td>
+        {%endfor%}
+        </tr>
+  {%endfor%}
 {%endfor%}
 
     </tbody>

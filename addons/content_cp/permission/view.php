@@ -13,6 +13,9 @@ class view
 		\dash\data::badge_link(\dash\url::this().'/add');
 		\dash\data::badge_text(T_('Add new permission'));
 
+		\dash\data::drawPerm(\dash\permission::draw_list());
+		// var_dump(\dash\permission::draw_list());exit();
+
 		\dash\data::perm_group(
 			[
 				'admin'=> ['title' => 'مدیر کل'],
