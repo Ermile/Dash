@@ -38,43 +38,6 @@ class permission
 
 	}
 
-	public static function old_draw_list()
-	{
-		self::load();
-
-		$draw           = [];
-		$all_list       = array_merge(self::$core_perm_list, self::$project_perm_list);
-		$all_list_name  = array_keys($all_list);
-		$all_group      = array_merge(self::$core_group, self::$project_group);
-		$all_group_name = array_keys($all_group);
-		$all_cat        = array_column($all_list, 'cat');
-		$all_cat        = array_unique($all_cat);
-
-
-		foreach ($all_list_name as $key => $perm)
-		{
-			foreach ($all_cat as $ckey => $cat)
-			{
-				foreach ($all_group_name as $gkey => $group)
-				{
-					$access = false;
-					if(isset(self::$core_group[$group]['contain']))
-					{
-						if(in_array($perm, self::$core_group[$group]['contain']))
-						{
-							$access = true;
-						}
-					}
-					$draw[$cat][$perm][$group] = $access;
-				}
-			}
-		}
-
-		$result['list']  = $draw;
-		$result['title'] = $all_group_name;
-		return $result;
-	}
-
 
 	public static function groups()
 	{
@@ -121,7 +84,22 @@ class permission
 		return $result;
 	}
 
+	public static function save_permission($_name, $_lable, $_contain)
+	{
+		self::load();
+		if(array_key_exists($_name, self::$project_group))
+		{
+			\dash\notif::error(T_("This key was reserved, Try another"), 'name');
+			return false;
+		}
 
+		$new = self::$project_group;
+		$new = array_merge($new, [$_name => ['title' => $_lable, 'contain' => $_contain]]);
+		$new = json_encode($new, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+		\dash\file::write(root.'/includes/permission/group.json', $new);
+		return true;
+
+	}
 
 
 
