@@ -108,6 +108,12 @@ class permission
 			}
 		}
 
+		if($_name === 'supervisor' || $_name === 'admin')
+		{
+			\dash\notif::error(T_("This key was reserved, Try another"), 'name');
+			return false;
+		}
+
 		if(mb_strlen($_name) > 30)
 		{
 			\dash\notif::error(T_("Name too large, Try another"), 'name');
