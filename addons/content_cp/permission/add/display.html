@@ -19,11 +19,19 @@
 
 
 
+
+{%for ckey, cvalue in perm.list%}
 <div class="cbox mB10">
-{%for gkey, gvalue in perm.group%}
-        <th>{{gvalue.title}}</th>
-{%endfor%}
+  <h3>{{ckey}}</h3>
+  {%for key, value in cvalue%}
+        <div class="switch1">
+         <input type="checkbox" name="{{key}}" id="{{key}}">
+         <label for="{{key}}"></label>
+         <label for="{{key}}">{{value.title}}</label>
+        </div>
+  {%endfor%}
 </div>
+{%endfor%}
 
 
 

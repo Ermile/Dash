@@ -32,6 +32,27 @@ class view
 						'verify' => false,
 						'require' => ['cp:news:view'],
 					],
+				],
+				'terms'=>
+				[
+					'cp:terms:view' =>
+					[
+						'title' => 'مشاهده کلیدواژه',
+						'cat' => 'cp',
+						'subcat' => 'terms',
+						'check' => false,
+						'verify' => false,
+						'require' => null,
+					],
+					'cp:terms:add'=>
+					[
+						'title' => 'افزودن کلیدواژه',
+						'cat' => 'cp',
+						'subcat' => 'terms',
+						'check' => false,
+						'verify' => false,
+						'require' => ['cp:terms:view'],
+					],
 				]
 			]
 		);
