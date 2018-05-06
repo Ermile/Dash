@@ -30,7 +30,7 @@ class permission
 		{
 			self::$load        = true;
 			self::$project_perm_list = self::read_file(root.'/includes/permission/list.json');
-			self::$project_group     = self::read_file(root.'/includes/permission/group.json');
+			self::$project_group     = self::read_file(root.'/includes/permission/group.me.json');
 			self::$core_perm_list    = self::read_file(core.'addons/includes/permission/list.json');
 			self::$core_group        = self::read_file(core.'addons/includes/permission/group.json');
 
@@ -96,7 +96,7 @@ class permission
 		$new = self::$project_group;
 		$new = array_merge($new, [$_name => ['title' => $_lable, 'contain' => $_contain]]);
 		$new = json_encode($new, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-		\dash\file::write(root.'/includes/permission/group.json', $new);
+		\dash\file::write(root.'/includes/permission/group.me.json', $new);
 		return true;
 
 	}
