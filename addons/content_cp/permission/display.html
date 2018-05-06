@@ -2,8 +2,9 @@
 
 
 {%block pageContent%}
-
+{%for content, allPerms in perm.list%}
 <div class="cbox">
+  <h3>{%trans content%}</h3>
   <table class="tbl">
     <thead class="primary">
       <tr>
@@ -15,15 +16,13 @@
     </thead>
 
     <tbody>
-      {%for cat, permList in perm.list.dash%}
-
+      {%for cat, permList in allPerms%}
       <tr class="active">
         <th colspan="{{ (perm.group | length) + 1}}">{{cat}}</th>
       </tr>
-
       {%for key, value in permList%}
       <tr>
-        <td class="txtC">
+        <td class="txtB" title="{{key}}">
           {{value.title}}
         </td>
         {%for groupList in perm.group%}
@@ -38,11 +37,10 @@
       </tr>
       {%endfor%}
       {%endfor%}
-
     </tbody>
   </table>
-
 </div>
+{%endfor%}
 {%endblock%}
 
 
