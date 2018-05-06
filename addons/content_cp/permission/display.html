@@ -28,9 +28,9 @@
         <td class="txtB" title="{{key}}">
           {{value.title}}
         </td>
-        {%for groupList in perm.group%}
+        {%for groupName, groupList in perm.group%}
         <td class="txtC">
-          {%if key in groupList.contain%}
+          {%if key in groupList.contain or groupName == 'admin'%}
           <i class="sf-check fc-green"></i>
           {%else%}
           <i class="sf-times fc-red"></i>
