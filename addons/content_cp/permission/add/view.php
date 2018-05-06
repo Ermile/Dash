@@ -14,7 +14,7 @@ class view
 			[
 				'news'=>
 				[
-					'cp:news:view' =>
+					'cp_news_view' =>
 					[
 						'title' => 'مشاهده خبر',
 						'cat' => 'cp',
@@ -23,19 +23,28 @@ class view
 						'verify' => false,
 						'require' => null,
 					],
-					'cp:news:add'=>
+					'cp_news_add'=>
 					[
 						'title' => 'افزودن خبر',
 						'cat' => 'cp',
 						'subcat' => 'news',
 						'check' => false,
 						'verify' => false,
-						'require' => ['cp:news:view'],
+						'require' => ['cp_news_view'],
+					],
+					'cp_news_remove'=>
+					[
+						'title' => 'افزودن خبر',
+						'cat' => 'cp',
+						'subcat' => 'news',
+						'check' => false,
+						'verify' => false,
+						'require' => ['cp_news_view'],
 					],
 				],
 				'terms'=>
 				[
-					'cp:terms:view' =>
+					'cp_terms_view' =>
 					[
 						'title' => 'مشاهده کلیدواژه',
 						'cat' => 'cp',
@@ -44,14 +53,14 @@ class view
 						'verify' => false,
 						'require' => null,
 					],
-					'cp:terms:add'=>
+					'cp_terms_add'=>
 					[
 						'title' => 'افزودن کلیدواژه',
 						'cat' => 'cp',
 						'subcat' => 'terms',
 						'check' => false,
 						'verify' => false,
-						'require' => ['cp:terms:view'],
+						'require' => ['cp_terms_view'],
 					],
 				]
 			]

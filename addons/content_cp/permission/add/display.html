@@ -5,11 +5,11 @@
 
 <div class="cbox mB10">
   <div class="f">
+
     <div class="c s12 input pRa5">
       <label>{%trans "Name"%} <small class="fc-red">{%trans "Require"%} *</small></label>
-      <input type="text" name="name" title='{%trans "The permission name should be unique and contain only alphanameric characters and underscores"%}' placeholder='{%trans "Name of your permission"%} *' autocomplete="off">
+      <input type="text" name="name" title='{%trans "The permission name should be unique and contain only alphanameric characters and underscores"%}' placeholder='{%trans "Name of your permission"%} *' autocomplete="off" class="ltr">
     </div>
-
     <div class="c s12 input">
       <label>{%trans "Label"%} <small class="fc-red">{%trans "Require"%} *</small></label>
       <input type="text" name="label" title='{%trans "The permission label is used to represent your permission in user management"%}' placeholder='{%trans "Label of your permission"%} *' autocomplete="off">
@@ -21,15 +21,15 @@
 
 
 {%for ckey, cvalue in perm.list%}
-<div class="cbox mB10">
+<div class="cbox mB10 f">
   <h3>{{ckey}}</h3>
-  {%for key, value in cvalue%}
-        <div class="switch1">
-         <input type="checkbox" name="{{key}}" id="{{key}}">
-         <label for="{{key}}"></label>
-         <label for="{{key}}">{{value.title}}</label>
-        </div>
-  {%endfor%}
+{%for key, value in cvalue%}
+  <div class="switch1">
+   <input type="checkbox" name="{{key}}" id="{{key}}" data-require="{{value.require | join('|') }}">
+   <label for="{{key}}"></label>
+   <label for="{{key}}">{{value.title}}</label>
+  </div>
+{%endfor%}
 </div>
 {%endfor%}
 
@@ -37,5 +37,28 @@
 
 {%endblock%}
 
+
+{%block foot_js%}
+<script>
+
+$('input[type=checkbox]').on('change', function()
+{
+  var myRequire = $(this).attr('data-require');
+  if($(this).is(":checked") === true && myRequire)
+  {
+    myRequire = myRequire.split('|');
+    console.log(myRequire);
+
+    $.each(myRequire, function(index, val)
+    {
+      console.log(val)
+      console.log($('#'+ val));
+      $('#'+ val).prop('checked', true);
+    });
+  }
+});
+
+</script>
+{%endblock%}
 
 
