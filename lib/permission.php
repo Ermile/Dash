@@ -38,7 +38,7 @@ class permission
 
 	}
 
-	public static function draw_list()
+	public static function old_draw_list()
 	{
 		self::load();
 
@@ -75,6 +75,51 @@ class permission
 		return $result;
 	}
 
+
+	public static function groups()
+	{
+		self::load();
+		$all_group = array_merge(self::$core_group, self::$project_group);
+		return $all_group;
+	}
+
+
+	public static function categorize_list()
+	{
+		self::load();
+
+		$result   = [];
+		$core_cat = [];
+
+		foreach (self::$core_perm_list as $key => $value)
+		{
+			if(!isset($core_cat[$value['cat']]))
+			{
+				$core_cat[$value['cat']] = [];
+			}
+
+			$core_cat[$value['cat']][$key] = $value;
+		}
+
+		$result['dash'] = $core_cat;
+
+
+		$project_cat = [];
+
+		foreach (self::$project_perm_list as $key => $value)
+		{
+			if(!isset($project_cat[$value['cat']]))
+			{
+				$project_cat[$value['cat']] = [];
+			}
+
+			$project_cat[$value['cat']][$key] = $value;
+		}
+
+		$result['project'] = $project_cat;
+
+		return $result;
+	}
 
 
 

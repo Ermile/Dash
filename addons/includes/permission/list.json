@@ -32,5 +32,14 @@
     "require": [
       "cp:news:view"
     ]
+  },
+  "su:news:delete": {
+    "title": "حذف خبر",
+    "cat": "su",
+    "check": false,
+    "verify": false,
+    "require": [
+      "su:news:view"
+    ]
   }
 }

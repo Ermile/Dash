@@ -13,56 +13,8 @@ class view
 		\dash\data::badge_link(\dash\url::this().'/add');
 		\dash\data::badge_text(T_('Add new permission'));
 
-		\dash\data::drawPerm(\dash\permission::draw_list());
-		// var_dump(\dash\permission::draw_list());exit();
-
-		\dash\data::perm_group(
-			[
-				'admin'=> ['title' => 'مدیر کل'],
-				'editor'=> ['title' => 'ویراستار'],
-				'writer'=> ['title' => 'نویسنده'],
-			]
-		);
-		\dash\data::perm_list(
-			[
-				'cp:news:view'=>
-				[
-					'title' => 'مشاهده خبر',
-					'cat' => 'cp',
-					'subcat' => 'news',
-					'check' => false,
-					'verify' => false,
-					'require' => null,
-				],
-				'cp:news:add'=>
-				[
-					'title' => 'افزودن خبر',
-					'cat' => 'cp',
-					'subcat' => 'news',
-					'check' => false,
-					'verify' => false,
-					'require' => ['cp:news:view'],
-				],
-				'cp:news:edit'=>
-				[
-					'title' => 'ویرایش خبر',
-					'cat' => 'cp',
-					'subcat' => 'news',
-					'check' => false,
-					'verify' => false,
-					'require' => ['cp:news:view'],
-				],
-				'cp:news:delete'=>
-				[
-					'title' => 'حذف خبر',
-					'cat' => 'cp',
-					'subcat' => 'news',
-					'check' => false,
-					'verify' => false,
-					'require' => ['cp:news:view'],
-				],
-			]
-		);
+		\dash\data::perm_list(\dash\permission::categorize_list());
+		\dash\data::perm_group(\dash\permission::groups());
 
 	}
 }
