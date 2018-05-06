@@ -5,13 +5,12 @@
 <div class="cbox">
 
   <table class="tbl">
-    <thead class="primary">
+    <thead class="">
       <tr>
         <th>{%trans "Permission title"%}</th>
         {%for slug, myGroup in perm.group%}
-        <th title='{{slug}} {%if myGroup in perm.groupPos%} <br><b>{%trans "Customized"%}</b>{%endif%}' class="txtC">{{myGroup.title}}
-          <br>
-
+        <th title='{{slug}} {%if myGroup in perm.groupPos%} <br><b>{%trans "Customized"%}</b>{%endif%}' class="txtC">
+          <a href="{{url.this}}/add?id={{slug}}">{{myGroup.title}}</a>
         </th>
         {%endfor%}
       </tr>

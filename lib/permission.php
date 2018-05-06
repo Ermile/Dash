@@ -89,12 +89,31 @@ class permission
 	}
 
 
-	public static function save_permission($_name, $_lable, $_contain)
+	public static function save_permission($_name, $_lable, $_contain, $_update = false)
 	{
 		self::load();
-		if(array_key_exists($_name, self::$project_group))
+
+		$_name = \dash\utility\filter::slug($_name);
+
+		if(!$_update)
 		{
-			\dash\notif::error(T_("This key was reserved, Try another"), 'name');
+			if(array_key_exists($_name, self::$project_group))
+			{
+				\dash\notif::error(T_("This key was reserved, Try another"), 'name');
+				return false;
+			}
+		}
+
+		if(mb_strlen($_name) > 30)
+		{
+			\dash\notif::error(T_("Name too large, Try another"), 'name');
+			return false;
+		}
+
+
+		if(mb_strlen($_lable) > 30)
+		{
+			\dash\notif::error(T_("Label too large, Try another"), 'label');
 			return false;
 		}
 
@@ -102,10 +121,28 @@ class permission
 		$new = array_merge($new, [$_name => ['title' => $_lable, 'contain' => $_contain]]);
 		$new = json_encode($new, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 		\dash\file::write(root.'/includes/permission/group.me.json', $new);
+		\dash\notif::ok(T_("Permission saved"));
 		return true;
 	}
 
 
+	public static function load_permission($_id)
+	{
+		self::load();
+
+		if(array_key_exists($_id, self::$project_group))
+		{
+			return self::$project_group[$_id];
+		}
+
+		if(array_key_exists($_id, self::$core_group))
+		{
+			return self::$core_group[$_id];
+		}
+
+		return false;
+
+	}
 
 
 

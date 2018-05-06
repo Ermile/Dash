@@ -6,8 +6,14 @@ class model
 {
 	public static function post()
 	{
+		$update = true;
+		$name   = \dash\request::get('id');
+		if(!$name)
+		{
+			$update = false;
+			$name   = \dash\request::post('name');
+		}
 
-		$name   = \dash\request::post('name');
 		$label  = \dash\request::post('label');
 
 		$contain = [];
@@ -24,10 +30,17 @@ class model
 			}
 		}
 
-		$save = \dash\permission::save_permission($name, $label, $contain);
+		$save = \dash\permission::save_permission($name, $label, $contain, $update);
 		if($save)
 		{
-			\dash\redirect::to(\dash\url::this());
+			if($update)
+			{
+				\dash\redirect::pwd();
+			}
+			else
+			{
+				\dash\redirect::to(\dash\url::this());
+			}
 		}
 
 	}

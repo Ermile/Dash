@@ -10,11 +10,11 @@
 
     <div class="c s12 input pRa5">
       <label>{%trans "Name"%} <small class="fc-red">{%trans "Require"%} *</small></label>
-      <input type="text" name="name" title='{%trans "The permission name should be unique and contain only alphanameric characters and underscores"%}' placeholder='{%trans "Name of your permission"%} *' autocomplete="off" class="ltr">
+      <input type="text" name="name" title='{%trans "The permission name should be unique and contain only alphanameric characters and underscores"%}' placeholder='{%trans "Name of your permission"%} *' autocomplete="off" class="ltr" {%if perm.load.title%} readonly disabled {%endif%} value="{{requestGET.id}}">
     </div>
     <div class="c s12 input">
       <label>{%trans "Label"%} <small class="fc-red">{%trans "Require"%} *</small></label>
-      <input type="text" name="label" title='{%trans "The permission label is used to represent your permission in user management"%}' placeholder='{%trans "Label of your permission"%} *' autocomplete="off">
+      <input type="text" name="label" title='{%trans "The permission label is used to represent your permission in user management"%}' placeholder='{%trans "Label of your permission"%} *' autocomplete="off" value="{{perm.load.title}}">
     </div>
   </div>
 </div>
@@ -26,7 +26,7 @@
   <div class="f">
 {%for key, value in cvalue%}
     <div class="switch1 c4 s12">
-     <input type="checkbox" name="{{key}}" id="{{key}}" data-require="{{value.require | join('|') }}">
+     <input type="checkbox" name="{{key}}" id="{{key}}" data-require="{{value.require | join('|') }}" {%if key in perm.load.contain%} checked {%endif%}>
      <label for="{{key}}"></label>
      <label for="{{key}}" title='{{key}}'>{{value.title}}</label>
     </div>
