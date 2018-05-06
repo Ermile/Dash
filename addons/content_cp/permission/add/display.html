@@ -19,7 +19,8 @@
   </div>
 </div>
 
-{%for ckey, cvalue in perm.list%}
+{%for permList in perm.list%}
+{%for ckey, cvalue in permList%}
 <div class="cbox mB10">
   <h3>{{ckey}}</h3>
   <div class="f">
@@ -32,6 +33,7 @@
 {%endfor%}
   </div>
 </div>
+{%endfor%}
 {%endfor%}
 
 <button class="btn primary block xl">{%trans "Save"%}</button>

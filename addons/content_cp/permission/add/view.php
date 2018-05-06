@@ -12,61 +12,9 @@ class view
 		\dash\data::badge_link(\dash\url::this());
 		\dash\data::badge_text(T_('Back to list of permissions'));
 
-		\dash\data::perm_list(
-			[
-				'news'=>
-				[
-					'cp_news_view' =>
-					[
-						'title' => 'مشاهده خبر',
-						'cat' => 'cp',
-						'subcat' => 'news',
-						'check' => false,
-						'verify' => false,
-						'require' => null,
-					],
-					'cp_news_add'=>
-					[
-						'title' => 'افزودن خبر',
-						'cat' => 'cp',
-						'subcat' => 'news',
-						'check' => false,
-						'verify' => false,
-						'require' => ['cp_news_view'],
-					],
-					'cp_news_remove'=>
-					[
-						'title' => 'افزودن خبر',
-						'cat' => 'cp',
-						'subcat' => 'news',
-						'check' => false,
-						'verify' => false,
-						'require' => ['cp_news_view'],
-					],
-				],
-				'terms'=>
-				[
-					'cp_terms_view' =>
-					[
-						'title' => 'مشاهده کلیدواژه',
-						'cat' => 'cp',
-						'subcat' => 'terms',
-						'check' => false,
-						'verify' => false,
-						'require' => null,
-					],
-					'cp_terms_add'=>
-					[
-						'title' => 'افزودن کلیدواژه',
-						'cat' => 'cp',
-						'subcat' => 'terms',
-						'check' => false,
-						'verify' => false,
-						'require' => ['cp_terms_view'],
-					],
-				]
-			]
-		);
+
+		\dash\data::perm_list(\dash\permission::categorize_list());
+		\dash\data::perm_group(\dash\permission::groups());
 
 	}
 }
