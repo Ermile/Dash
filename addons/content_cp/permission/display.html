@@ -9,17 +9,20 @@
       <tr>
         <th>{%trans "Permission title"%}</th>
 {%for gkey, gvalue in perm.group%}
-        <th>{{gvalue.title}}</th>
+        <th class="txtC">{{gvalue.title}}</th>
 {%endfor%}
       </tr>
     </thead>
 
     <tbody>
 {%for key, value in perm.list%}
+      <tr class="active">
+        <th colspan="{{ (perm.group | length) + 1}}">Salam</th>
+      </tr>
       <tr>
         <td title="{{key}}<br>{{value.title}}">{{value.title}}</td>
 {%for gkey, gvalue in perm.group%}
-        <td>
+        <td class="txtC">
           <i class="sf-check fc-green"></i>
         </td>
 {%endfor%}
