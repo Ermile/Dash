@@ -5,13 +5,16 @@ namespace dash;
 class permission
 {
 	private static $load                    = false;
+	private static $user_loaded             = false;
+	private static $user_permission         = null;
+
 	private static $project_perm_list       = [];
 	private static $project_group           = [];
+
 	private static $core_perm_list          = [];
 	private static $core_group              = [];
-	private static $user_permission         = null;
+
 	private static $user_permission_contain = [];
-	private static $user_loaded             = false;
 
 
 	private static function read_file($_addr)
@@ -136,24 +139,6 @@ class permission
 		\dash\file::write(root.'/includes/permission/group.me.json', $new);
 		\dash\notif::ok(T_("Permission saved"));
 		return true;
-	}
-
-
-	public static function load_permission($_id)
-	{
-		self::load();
-
-		if(array_key_exists($_id, self::$project_group))
-		{
-			return self::$project_group[$_id];
-		}
-
-		if(array_key_exists($_id, self::$core_group))
-		{
-			return self::$core_group[$_id];
-		}
-
-		return false;
 	}
 
 
