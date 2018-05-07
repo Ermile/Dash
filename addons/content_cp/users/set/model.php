@@ -34,12 +34,29 @@ class model
 	{
 		$post =
 		[
-			'mobile'      => \dash\request::post('mobile'),
+			'twostep'     => \dash\request::post('twostep'),
+			'sidebar'     => \dash\request::post('sidebar'),
+			'language'    => \dash\request::post('language'),
+			'website'     => \dash\request::post('website'),
+			'instagram'   => \dash\request::post('instagram'),
+			'facebook'    => \dash\request::post('facebook'),
+			'twitter'     => \dash\request::post('twitter'),
+			'gmail'       => \dash\request::post('gmail'),
+			'firstname'   => \dash\request::post('firstname'),
+			'lastname'    => \dash\request::post('lastname'),
+			'username'    => \dash\request::post('username'),
+			'title'       => \dash\request::post('title'),
+			'type'        => \dash\request::post('type'),
+			'birthday'    => \dash\request::post('birthday'),
+			'bio'         => \dash\request::post('bio'),
 			'displayname' => \dash\request::post('displayname'),
-			'email'       => \dash\request::post('email'),
-			'permission'  => \dash\request::post('permission'),
-			'status'      => \dash\request::post('status'),
+			'fullname'    => \dash\request::post('fullname'),
+			'mobile'      => \dash\request::post('mobile'),
 			'gender'      => \dash\request::post('gender'),
+			'status'      => \dash\request::post('status'),
+			'permission'  => \dash\request::post('permission'),
+			'email'       => \dash\request::post('email'),
+
 		];
 
 		$avatar = self::upload_avatar();
