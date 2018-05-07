@@ -37,8 +37,6 @@ class model
 			'mobile'      => \dash\request::post('mobile'),
 			'displayname' => \dash\request::post('displayname'),
 			'email'       => \dash\request::post('email'),
-			'password'    => \dash\request::post('password'),
-			'repassword'  => \dash\request::post('repassword'),
 			'permission'  => \dash\request::post('permission'),
 			'status'      => \dash\request::post('status'),
 			'gender'      => \dash\request::post('gender'),
@@ -60,6 +58,27 @@ class model
 	 */
 	public static function post()
 	{
+
+		$password   = \dash\request::post('password');
+		$repassword = \dash\request::post('repassword');
+		$change_password = false;
+		if($password)
+		{
+			if(!$repassword)
+			{
+				\dash\notif::error(T_("Please set repassword"), 'repassword');
+				return false;
+			}
+
+			if($password !== $repassword)
+			{
+				\dash\notif::error(T_("Password not match whit repassword"), ['element' => ['password', 'repassword']]);
+				return false;
+			}
+
+			$change_password = true;
+		}
+
 		// ready request
 		$request = self::getPost();
 
@@ -75,8 +94,15 @@ class model
 
 		if(\dash\engine\process::status())
 		{
+			if($change_password)
+			{
+				$password = \dash\utility::hasher($password);
+				\dash\db\users::update(['password' => $password], \dash\coding::decode(\dash\request::get('id')));
+			}
+
 			if(isset($result['user_id']))
 			{
+
 				\dash\redirect::to(\dash\url::here(). '/users/edit?id='. $result['user_id']);
 			}
 			else

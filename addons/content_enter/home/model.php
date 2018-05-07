@@ -6,7 +6,7 @@ class model
 {
 	public static function login_another_session()
 	{
-		if(\dash\permission::access('enter:another:session'))
+		if(\dash\permission::check('enter:another:session'))
 		{
 			$user_id = null;
 
@@ -88,7 +88,7 @@ class model
 			\dash\session::set('enter_session_check', 1, null, 60 * 3);
 		}
 
-		$anotherPerm = \dash\permission::access('enter:another:session');
+		$anotherPerm = \dash\permission::check('enter:another:session');
 		if($count >= 3 && !$anotherPerm)
 		{
 			\dash\notif::error(T_("How are you?"). ":)");
