@@ -7,7 +7,8 @@ class controller
 	{
 		if(\dash\option::config('full_backup') || \dash\permission::supervisor())
 		{
-			// no problem
+			// no problem if the user have permission
+			\dash\permission::access('cpBackup');
 		}
 		else
 		{

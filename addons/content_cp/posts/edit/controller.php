@@ -7,7 +7,7 @@ class controller
 	public static function ready()
 	{
 
-		\dash\permission::access('cp:posts:invoices');
+		\dash\permission::access('cpPostsEdit');
 
 		$id = \dash\request::get('id');
 		if(!$id || !\dash\coding::is($id))

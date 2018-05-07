@@ -6,6 +6,7 @@ class view
 {
 	public static function config()
 	{
+		\dash\permission::access('cpCommentsView');
 
 		\dash\data::page_title(T_("Comments"));
 		\dash\data::page_desc(T_('Check list of comments and search or filter in them to find your comments.'). ' '. T_('Also add or edit specefic comments.'));

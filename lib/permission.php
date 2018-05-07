@@ -238,12 +238,11 @@ class permission
 			if(\dash\request::json_accept() || \dash\request::ajax())
 			{
 				\dash\notif::error(T_("Permission denied"));
-				return false;
+				\dash\code::end();
 			}
 			else
 			{
 				\dash\header::status(403, T_("Permission denied"));
-				return false;
 			}
 		}
 		return true;

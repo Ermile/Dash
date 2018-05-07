@@ -917,7 +917,7 @@ class twigAddons
 		return new \Twig_SimpleFunction('perm', function()
 		{
 			$caller  = null;
-			$user_id = \dash\data::login_id();
+			$user_id = null;
 			$args    = func_get_args();
 
 			if(isset($args[0]))
@@ -944,16 +944,7 @@ class twigAddons
 	{
 		return new \Twig_SimpleFunction('perm_su', function()
 		{
-			$user_id = \dash\data::login_id();
-
-			$args = func_get_args();
-
-			if(isset($args[0]))
-			{
-				$user_id = $args[0];
-			}
-
-			return \dash\permission::supervisor($user_id);
+			return \dash\permission::supervisor();
 		});
 	}
 }

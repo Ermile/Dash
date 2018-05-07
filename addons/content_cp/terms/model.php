@@ -6,6 +6,7 @@ class model
 {
 	public static function post()
 	{
+		\dash\permission::access('cpTermsEdit');
 
 		$post             = [];
 		$post['title']    = \dash\request::post('title');

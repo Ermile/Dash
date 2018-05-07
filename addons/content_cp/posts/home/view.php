@@ -6,6 +6,8 @@ class view
 {
 	public static function config()
 	{
+		\dash\permission::access('cpPostsView');
+
 		$moduleTypeTxt = \dash\request::get('type');
 		$moduleType    = '';
 

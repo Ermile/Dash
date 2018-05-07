@@ -7,6 +7,8 @@ class view
 
 	public static function config()
 	{
+		\dash\permission::access('cpUsersEdit');
+
 		\dash\data::page_title(T_('Add new user'));
 		\dash\data::page_desc(T_('You can add new user and after add with minimal data, we allow you to add extra detail of user.'));
 
