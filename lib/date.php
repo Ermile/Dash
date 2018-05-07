@@ -6,6 +6,46 @@ class date
 	private static $lang = null;
 
 
+	public static function birthdate($_birthdate, $_notif = false)
+	{
+		if(!$_birthdate)
+		{
+			return null;
+		}
+
+		$birthdate = self::db($_birthdate);
+
+		if($birthdate === false)
+		{
+			if($_notif)
+			{
+				\dash\notif::error(T_("Invalid birthdate"), 'birthdate');
+			}
+			return false;
+		}
+
+
+		if(\dash\utility\jdate::is_jalali($birthdate))
+		{
+			$birthdate = \dash\utility\jdate::to_gregorian($birthdate);
+		}
+
+		$datetime1 = new \DateTime($birthdate);
+		$datetime2 = new \DateTime(date("Y-m-d"));
+
+		if($datetime1 >= $datetime2)
+		{
+			if($_notif)
+			{
+				\dash\notif::error(T_("Invalid birthdate, birthdate can not larger than date now!"), 'birthdate');
+			}
+			return false;
+		}
+
+		return $birthdate;
+	}
+
+
 	/**
      * get month precent
      *

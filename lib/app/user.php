@@ -193,6 +193,7 @@ class user
 		}
 
 		$website = \dash\app::request('website');
+		$website = trim($website);
 		if($website && mb_strlen($website) > 200)
 		{
 			\dash\notif::error(T_("website is out of range"), 'website');
@@ -200,6 +201,7 @@ class user
 		}
 
 		$facebook = \dash\app::request('facebook');
+		$facebook = trim($facebook);
 		if($facebook && mb_strlen($facebook) > 200)
 		{
 			\dash\notif::error(T_("facebook is out of range"), 'facebook');
@@ -207,6 +209,7 @@ class user
 		}
 
 		$twitter = \dash\app::request('twitter');
+		$twitter = trim($twitter);
 		if($twitter && mb_strlen($twitter) > 200)
 		{
 			\dash\notif::error(T_("twitter is out of range"), 'twitter');
@@ -214,6 +217,7 @@ class user
 		}
 
 		$instagram = \dash\app::request('instagram');
+		$instagram = trim($instagram);
 		if($instagram && mb_strlen($instagram) > 200)
 		{
 			\dash\notif::error(T_("instagram is out of range"), 'instagram');
@@ -221,6 +225,7 @@ class user
 		}
 
 		$linkedin = \dash\app::request('linkedin');
+		$linkedin = trim($linkedin);
 		if($linkedin && mb_strlen($linkedin) > 200)
 		{
 			\dash\notif::error(T_("linkedin is out of range"), 'linkedin');
@@ -228,6 +233,7 @@ class user
 		}
 
 		$gmail = \dash\app::request('gmail');
+		$gmail = trim($gmail);
 		if($gmail && mb_strlen($gmail) > 200)
 		{
 			\dash\notif::error(T_("gmail is out of range"), 'gmail');
@@ -235,9 +241,11 @@ class user
 		}
 
 		$sidebar = \dash\app::request('sidebar');
+		$sidebar = trim($sidebar);
 		$sidebar = $sidebar ? 1 : null;
 
 		$firstname = \dash\app::request('firstname');
+		$firstname = trim($firstname);
 		if($firstname && mb_strlen($firstname) > 100)
 		{
 			\dash\notif::error(T_("firstname is out of range"), 'firstname');
@@ -245,6 +253,7 @@ class user
 		}
 
 		$lastname = \dash\app::request('lastname');
+		$lastname = trim($lastname);
 		if($lastname && mb_strlen($lastname) > 100)
 		{
 			\dash\notif::error(T_("lastname is out of range"), 'lastname');
@@ -252,6 +261,7 @@ class user
 		}
 
 		$bio = \dash\app::request('bio');
+		$bio = trim($bio);
 		if($bio && mb_strlen($bio) > 50000)
 		{
 			\dash\notif::error(T_("bio is out of range"), 'bio');
@@ -259,14 +269,10 @@ class user
 		}
 
 		$birthday = \dash\app::request('birthday');
-		if($birthday)
+		$birthday = \dash\date::birthdate($birthday, true);
+		if($birthday === false)
 		{
-			$birthday = \dash\date::db($birthday);
-			if($birthday === false)
-			{
-				\dash\notif::error(T_("Invalid birthday"), 'birthday');
-				return false;
-			}
+			return false;
 		}
 
 

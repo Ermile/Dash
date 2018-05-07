@@ -66,8 +66,8 @@
   <label for="language">{%trans "Language"%}</label>
   <select name="language" class="ui dropdown" id="language">
     <option value="" readonly>{%trans "Select one item"%}</option>
-    {%for lang in lang.list%}
-      <option value="{{lang}}" {%if dataRaw.language == lang%} selected {%endif%} >{%trans lang%}</option>
+    {%for key, lang in lang.list%}
+      <option value="{{key}}" {%if dataRaw.language == key%} selected {%endif%} >{{lang}}</option>
     {%endfor%}
   </select>
 </div>
