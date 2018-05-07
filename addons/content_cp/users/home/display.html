@@ -1,4 +1,4 @@
-{%extends display.dash%}
+{%extends display.cpMain%}
 
 
 
@@ -53,27 +53,83 @@
   <table class="tbl bordered1">
     <thead class="primary">
       <tr>
-        <th data-sort="{{sortLink.id.order}}"><a href='{{sortLink.id.link}}'>{%trans "Id"%}</a></th>
-        <th data-sort="{{sortLink.gender.order}}" class="s0 collapsing"><a href='{{sortLink.gender.link}}'>{%trans "Gender"%}</a></th>
-        <th data-sort="{{sortLink.displayname.order}}"><a href='{{sortLink.displayname.link}}'>{%trans "Display name"%}</a></th>
-        <th data-sort="{{sortLink.mobile.order}}"><a href='{{sortLink.mobile.link}}'>{%trans "Mobile"%}</a></th>
-        <th data-sort="{{sortLink.password.order}}" class="s0"><a href='{{sortLink.password.link}}'>{%trans "Password"%}</a></th>
-        <th data-sort="{{sortLink.status.order}}" class="s0"><a href='{{sortLink.status.link}}'>{%trans "Status"%}</a></th>
-        <th data-sort="{{sortLink.email.order}}" class="s0"><a href='{{sortLink.email.link}}'>{%trans "Email"%}</a></th>
-        <th data-sort="{{sortLink.permission.order}}" class="s0 m0"><a href='{{sortLink.permission.link}}'>{%trans "Permission"%}</a></th>
+        <th data-sort="{{sortLink.gender.order}}" class="s0 collapsing">
+          <a href='{{sortLink.gender.link}}'>{%trans "Gender"%}</a>
+        </th>
+        <th data-sort="{{sortLink.firstname.order}}">
+          <a href='{{sortLink.firstname.link}}'>{%trans "Name"%}</a>
+        </th>
+        <th data-sort="{{sortLink.lastname.order}}">
+          <a href='{{sortLink.lastname.link}}'>{%trans "Family"%}</a>
+        </th>
+        <th data-sort="{{sortLink.title.order}}">
+          <a href='{{sortLink.title.link}}'>{%trans "Nick Name"%}</a>
+        </th>
+        <th data-sort="{{sortLink.displayname.order}}">
+          <a href='{{sortLink.displayname.link}}'>{%trans "Display name"%}</a>
+        </th>
+        <th data-sort="{{sortLink.mobile.order}}">
+          <a href='{{sortLink.mobile.link}}'>{%trans "Mobile"%}</a>
+        </th>
+        <th data-sort="{{sortLink.email.order}}">
+          <a href='{{sortLink.email.link}}'>{%trans "Email"%}</a>
+        </th>
+        <th data-sort="{{sortLink.password.order}}" class="s0">
+          <a href='{{sortLink.password.link}}'>{%trans "Password"%}</a>
+        </th>
+        <th data-sort="{{sortLink.website.order}}" class="s0">
+          <a href='{{sortLink.website.link}}'>{%trans "Website"%}</a>
+        </th>
+        <th data-sort="{{sortLink.bio.order}}" class="s0">
+          <a href='{{sortLink.bio.link}}'>{%trans "Bio"%}</a>
+        </th>
+        <th data-sort="{{sortLink.status.order}}" class="s0">
+          <a href='{{sortLink.status.link}}'>{%trans "Status"%}</a>
+        </th>
+        <th data-sort="{{sortLink.permission.order}}" class="s0 m0">
+          <a href='{{sortLink.permission.link}}'>{%trans "Permission"%}</a>
+        </th>
       </tr>
     </thead>
     <tbody>
       {%for key, value in dataTable%}
       <tr {%if value.status=='disable'%} class='negative'{%endif%}>
-        <td><a href="{{url.here}}/users/set?id={{value.id}}">{{value.id}}</a></td>
-        <td class="s0">{%if value.gender == 'male'%}{%trans "Mr"%} {%elseif value.gender == 'female'%}{%trans "Mrs"%}{%else%}-{%endif%}</td>
-        <td><a href="{{url.here}}/users/set?id={{value.id}}">{{value.displayname}}</a></td>
-        <td><a href="{{url.here}}/users/set?id={{value.id}}">{{value.mobile | persian}}</a></td>
-        <td class="s0"><span class="disabled">{%if value.password%}{%trans "Set"%}{%else%}{%trans "Not set"%}{%endif%}</span></td>
-        <td class="s0"><a href="{{url.here}}/users?status={{value.status}}">{%set myStatus = value.status %}{%trans myStatus%}</a></td>
-        <td class="s0">{{value.email}}</td>
-        <td class="s0 m0"><a href="{{url.here}}/users?permission={{value.permission}}">{{value.permission}}</a></td>
+        <td class="s0">
+        {%if value.gender == 'male'%}{%trans "Mr"%} {%elseif value.gender == 'female'%}{%trans "Mrs"%}{%else%}-{%endif%}
+        </td>
+        <td>
+          <a href="{{url.here}}/users/set?id={{value.id}}">{{value.firstname}}</a>
+        </td>
+        <td>
+          <a href="{{url.here}}/users/set?id={{value.id}}">{{value.lastname}}</a>
+        </td>
+        <td>
+          <a href="{{url.here}}/users/set?id={{value.id}}">{{value.title}}</a>
+        </td>
+        <td>
+          <a href="{{url.here}}/users/set?id={{value.id}}">{{value.displayname}}</a>
+        </td>
+        <td>
+          <a href="{{url.here}}/users/set?id={{value.id}}">{{value.mobile | persian}}</a>
+        </td>
+        <td>
+          <a href="{{url.here}}/users/set?id={{value.id}}">{{value.email}}</a>
+        </td>
+        <td class="s0"><span class="disabled">
+          {%if value.password%}<i class="sf-check fc-green"></i>{%else%}<i class="sf-times fc-red"></i>{%endif%}</span>
+        </td>
+        <td>
+          <a href="{{url.here}}/users/set?id={{value.id}}">{{value.website}}</a>
+        </td>
+        <td>
+          <a href="{{url.here}}/users/set?id={{value.id}}">{{value.bio}}</a>
+        </td>
+        <td class="s0">
+          <a href="{{url.here}}/users?status={{value.status}}">{%set myStatus = value.status %}{%trans myStatus%}</a>
+        </td>
+        <td class="s0 m0">
+          <a href="{{url.here}}/users?permission={{value.permission}}">{{value.permission}}</a>
+        </td>
       </tr>
       {%endfor%}
     </tbody>
