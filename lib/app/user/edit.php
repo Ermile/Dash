@@ -61,7 +61,6 @@ trait edit
 			return false;
 		}
 
-
 		if($args['mobile'])
 		{
 			$check_mobile_exist = \dash\db\users::get_by_mobile($args['mobile']);
@@ -72,30 +71,40 @@ trait edit
 			}
 		}
 
-		// $user_id = self::find_user_id($args, $_option, true, $id);
 
-		// if(intval($user_id) !== intval($id))
-		// {
-		// 	\dash\temp::set('app_user_id_changed', true);
-		// 	\dash\temp::set('app_new_user_id_changed', $user_id);
-		// 	\dash\temp::set('app_old_user_id_changed', $id);
+		if(!\dash\app::isset_request('mobile'))     unset($args['mobile']);
+		if(!\dash\app::isset_request('displayname')) unset($args['displayname']);
+		if(!\dash\app::isset_request('title'))      unset($args['title']);
+		if(!\dash\app::isset_request('avatar'))     unset($args['avatar']);
+		if(!\dash\app::isset_request('status'))     unset($args['status']);
+		if(!\dash\app::isset_request('gender'))     unset($args['gender']);
+		if(!\dash\app::isset_request('type'))       unset($args['type']);
+		if(!\dash\app::isset_request('email'))      unset($args['email']);
+		if(!\dash\app::isset_request('parent'))     unset($args['parent']);
+		if(!\dash\app::isset_request('permission')) unset($args['permission']);
+		if(!\dash\app::isset_request('username'))   unset($args['username']);
+		if(!\dash\app::isset_request('pin'))        unset($args['pin']);
+		if(!\dash\app::isset_request('ref'))        unset($args['ref']);
+		if(!\dash\app::isset_request('twostep'))    unset($args['twostep']);
+		if(!\dash\app::isset_request('unit_id'))    unset($args['unit_id']);
+		if(!\dash\app::isset_request('language'))   unset($args['language']);
+		if(!\dash\app::isset_request('password'))   unset($args['password']);
+		if(!\dash\app::isset_request('website'))    unset($args['website']);
+		if(!\dash\app::isset_request('facebook'))   unset($args['facebook']);
+		if(!\dash\app::isset_request('twitter'))    unset($args['twitter']);
+		if(!\dash\app::isset_request('instagram'))  unset($args['instagram']);
+		if(!\dash\app::isset_request('linkedin'))   unset($args['linkedin']);
+		if(!\dash\app::isset_request('gmail'))      unset($args['gmail']);
+		if(!\dash\app::isset_request('sidebar'))    unset($args['sidebar']);
+		if(!\dash\app::isset_request('firstname'))  unset($args['firstname']);
+		if(!\dash\app::isset_request('lastname'))   unset($args['lastname']);
+		if(!\dash\app::isset_request('bio'))        unset($args['bio']);
+		if(!\dash\app::isset_request('birthday'))   unset($args['birthday']);
 
-		// 	$update_contact_user_id            = [];
-		// 	$update_contact_user_id['user_id'] = $id;
-
-		// 	if($_option['other_field'] && $_option['other_field_id'])
-		// 	{
-		// 		$update_contact_user_id[$_option['other_field']] = $_option['other_field_id'];
-		// 	}
-
-		// 	\dash\db\contacts::update_where(['user_id' => $user_id], $update_contact_user_id);
-		// }
-
-		// $_option['user_id']        = $user_id;
-
-		// \dash\app\contact::merge($_args, $_option);
-
-		\dash\db\users::update($args, $id);
+		if(!empty($args))
+		{
+			\dash\db\users::update($args, $id);
+		}
 
 		if(\dash\engine\process::status())
 		{

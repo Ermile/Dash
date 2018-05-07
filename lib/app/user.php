@@ -192,23 +192,112 @@ class user
 			$args['password'] = \dash\utility::hasher($password);
 		}
 
+		$website = \dash\app::request('website');
+		if($website && mb_strlen($website) > 200)
+		{
+			\dash\notif::error(T_("website is out of range"), 'website');
+			return false;
+		}
 
-		$args['mobile']       = $mobile;
-		$args['displayname']  = $displayname;
-		$args['title']        = $title;
-		$args['avatar']       = $avatar;
-		$args['status']       = $status;
-		$args['gender']       = $gender;
-		$args['type']         = $type;
-		$args['email']        = $email;
-		$args['parent']       = $parent;
-		$args['permission']   = $permission;
-		$args['username']     = $username;
-		$args['pin']          = $pin;
-		$args['ref']          = $ref;
-		$args['twostep']      = $twostep;
-		$args['unit_id']      = $unit_id;
-		$args['language']     = $language;
+		$facebook = \dash\app::request('facebook');
+		if($facebook && mb_strlen($facebook) > 200)
+		{
+			\dash\notif::error(T_("facebook is out of range"), 'facebook');
+			return false;
+		}
+
+		$twitter = \dash\app::request('twitter');
+		if($twitter && mb_strlen($twitter) > 200)
+		{
+			\dash\notif::error(T_("twitter is out of range"), 'twitter');
+			return false;
+		}
+
+		$instagram = \dash\app::request('instagram');
+		if($instagram && mb_strlen($instagram) > 200)
+		{
+			\dash\notif::error(T_("instagram is out of range"), 'instagram');
+			return false;
+		}
+
+		$linkedin = \dash\app::request('linkedin');
+		if($linkedin && mb_strlen($linkedin) > 200)
+		{
+			\dash\notif::error(T_("linkedin is out of range"), 'linkedin');
+			return false;
+		}
+
+		$gmail = \dash\app::request('gmail');
+		if($gmail && mb_strlen($gmail) > 200)
+		{
+			\dash\notif::error(T_("gmail is out of range"), 'gmail');
+			return false;
+		}
+
+		$sidebar = \dash\app::request('sidebar');
+		$sidebar = $sidebar ? 1 : null;
+
+		$firstname = \dash\app::request('firstname');
+		if($firstname && mb_strlen($firstname) > 100)
+		{
+			\dash\notif::error(T_("firstname is out of range"), 'firstname');
+			return false;
+		}
+
+		$lastname = \dash\app::request('lastname');
+		if($lastname && mb_strlen($lastname) > 100)
+		{
+			\dash\notif::error(T_("lastname is out of range"), 'lastname');
+			return false;
+		}
+
+		$bio = \dash\app::request('bio');
+		if($bio && mb_strlen($bio) > 50000)
+		{
+			\dash\notif::error(T_("bio is out of range"), 'bio');
+			return false;
+		}
+
+		$birthday = \dash\app::request('birthday');
+		if($birthday)
+		{
+			$birthday = \dash\date::db($birthday);
+			if($birthday === false)
+			{
+				\dash\notif::error(T_("Invalid birthday"), 'birthday');
+				return false;
+			}
+		}
+
+
+		$args['birthday']    = $birthday;
+		$args['website']     = $website;
+		$args['facebook']    = $facebook;
+		$args['twitter']     = $twitter;
+		$args['instagram']   = $instagram;
+		$args['linkedin']    = $linkedin;
+		$args['gmail']       = $gmail;
+		$args['sidebar']     = $sidebar;
+		$args['firstname']   = $firstname;
+		$args['lastname']    = $lastname;
+		$args['bio']         = $bio;
+
+		$args['mobile']      = $mobile;
+		$args['displayname'] = $displayname;
+		$args['title']       = $title;
+		$args['avatar']      = $avatar;
+		$args['status']      = $status;
+		$args['gender']      = $gender;
+		$args['type']        = $type;
+		$args['email']       = $email;
+		$args['parent']      = $parent;
+		$args['permission']  = $permission;
+		$args['username']    = $username;
+		$args['pin']         = $pin;
+		$args['ref']         = $ref;
+		$args['twostep']     = $twostep;
+		$args['unit_id']     = $unit_id;
+		$args['language']    = $language;
 
 		return $args;
 	}
@@ -219,7 +308,7 @@ class user
 	 *
 	 * @param      <type>  $_data  The data
 	 */
-	public static function ready($_data)
+	public static function ready($_data, $_id = null)
 	{
 		$result = [];
 		foreach ($_data as $key => $value)
@@ -241,7 +330,14 @@ class user
 					break;
 
 				case 'avatar':
-					$result['avatar'] = $value ? $value : \dash\app::static_avatar_url();
+					if($_id)
+					{
+						$result['avatar'] = $value;
+					}
+					else
+					{
+						$result['avatar'] = $value ? $value : \dash\app::static_avatar_url();
+					}
 					break;
 
 				default:
