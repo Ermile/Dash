@@ -186,6 +186,12 @@ class user
 			return false;
 		}
 
+		$password = \dash\app::request('password');
+		if($password)
+		{
+			$args['password'] = \dash\utility::hasher($password);
+		}
+
 
 		$args['mobile']       = $mobile;
 		$args['displayname']  = $displayname;

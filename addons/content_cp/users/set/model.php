@@ -59,9 +59,11 @@ class model
 	public static function post()
 	{
 
+		$request = self::getPost();
+
 		$password   = \dash\request::post('password');
 		$repassword = \dash\request::post('repassword');
-		$change_password = false;
+
 		if($password)
 		{
 			if(!$repassword)
@@ -76,11 +78,11 @@ class model
 				return false;
 			}
 
-			$change_password = true;
+			$request['password'] = $password;
+
 		}
 
 		// ready request
-		$request = self::getPost();
 
 		if(\dash\request::get('id'))
 		{
@@ -94,16 +96,10 @@ class model
 
 		if(\dash\engine\process::status())
 		{
-			if($change_password)
-			{
-				$password = \dash\utility::hasher($password);
-				\dash\db\users::update(['password' => $password], \dash\coding::decode(\dash\request::get('id')));
-			}
 
 			if(isset($result['user_id']))
 			{
-
-				\dash\redirect::to(\dash\url::here(). '/users/edit?id='. $result['user_id']);
+				\dash\redirect::to(\dash\url::here(). '/users/set?id='. $result['user_id']);
 			}
 			else
 			{
