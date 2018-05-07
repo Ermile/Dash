@@ -16,6 +16,24 @@ class view
 
 		$perm_list = \dash\permission::groups();
 		\dash\data::permGroup(array_keys($perm_list));
+
+		if(\dash\request::get('id'))
+		{
+			$id = \dash\coding::decode(\dash\request::get('id'));
+			if(!$id)
+			{
+				\dash\header::status(404, T_("Invalid user id"));
+			}
+
+			$user_detail = \dash\db\users::get_by_id($id);
+			if(!$user_detail)
+			{
+				\dash\header::status(404, T_("User id not found"));
+			}
+
+			\dash\data::dataRaw(\dash\app\user::ready($user_detail));
+
+		}
 	}
 }
 ?>

@@ -52,10 +52,10 @@
 {%endblock%}
 
 
-{%block ifamily%}
-<label for="lastName">{%trans "Last name"%} <small class="fc-red">* {%trans "Require"%}</small></label>
+{%block iFullname%}
+<label for="fullname">{%trans "Last name"%} <small class="fc-red">* {%trans "Require"%}</small></label>
 <div class="input">
-  <input type="text" name="lastName" id="lastName" placeholder='{%trans "Last name"%} *' value="{{dataRaw.lastname}}" maxlength='60' required>
+  <input type="text" name="fullname" id="fullname" placeholder='{%trans "Full name"%} *' value="{{dataRaw.fullname}}" maxlength='60' >
 </div>
 {%endblock%}
 
@@ -70,26 +70,17 @@
 
 
 
-{%block ibirthday%}
-<label for="birthdate">{%trans "Birthday"%}</label>
-<div class="input">
-  <input class="datepicker" type="text" name="birthdate" id="birthdate" placeholder='{{"1369/04/15" | fitNumber}}' value="{{dataRaw.birthdate}}" data-view="year" autocomplete='off'>
-</div>
-{%endblock%}
-
-
-
 {%block igender%}
 <div class="mT10">
   <label for="gender">{%trans "Gender"%} <small class="fc-red">* {%trans "Require"%}</small></label>
   <div class="f">
    <div class="radio1 green">
-    <input type="radio" id="r-male" name="gender" value="male" {%if dataRaw.gender == 'male' or ( not dataRaw.gender and defaultDenderExpert == 'male') %}checked{%endif%}>
+    <input type="radio" id="r-male" name="gender" value="male" {%if dataRaw.gender == 'male' %}checked{%endif%}>
     <label for="r-male">{%trans "Male"%}</label>
    </div>
 
    <div class="radio1 green">
-    <input type="radio" id="r-female" name="gender" value="female" {%if dataRaw.gender == 'female' or ( not dataRaw.gender and defaultDenderExpert == 'female') %}checked{%endif%}>
+    <input type="radio" id="r-female" name="gender" value="female" {%if dataRaw.gender == 'female' %}checked{%endif%}>
     <label for="r-female">{%trans "Female"%}</label>
    </div>
   </div>
@@ -102,12 +93,12 @@
   <label for="status">{%trans "Status"%}</label>
   <select name="status" class="ui dropdown" id="status">
     <option value="" readonly>{%trans "Select one item"%} *</option>
-    <option value="active">{%trans "Active"%}</option>
-    <option value="awaiting">{%trans "Awaiting"%}</option>
-    <option value="deactive">{%trans "Deactive"%}</option>
-    <option value="removed">{%trans "Removed"%}</option>
-    <option value="filter">{%trans "Filter"%}</option>
-    <option value="unreachable">{%trans "Unreachable"%}</option>
+    <option value="active" {% if dataRaw.status == 'active' %} selected {%endif%}>{%trans "Active"%}</option>
+    <option value="awaiting" {% if dataRaw.status == 'awaiting' %} selected {%endif%}>{%trans "Awaiting"%}</option>
+    <option value="deactive" {% if dataRaw.status == 'deactive' %} selected {%endif%}>{%trans "Deactive"%}</option>
+    <option value="removed" {% if dataRaw.status == 'removed' %} selected {%endif%}>{%trans "Removed"%}</option>
+    <option value="filter" {% if dataRaw.status == 'filter' %} selected {%endif%}>{%trans "Filter"%}</option>
+    <option value="unreachable" {% if dataRaw.status == 'unreachable' %} selected {%endif%}>{%trans "Unreachable"%}</option>
   </select>
 </div>
 {%endblock%}
@@ -119,7 +110,7 @@
   <select name="permission" class="ui dropdown" id="permission">
     <option value="" readonly>{%trans "No permission"%}</option>
     {%for perm in permGroup%}
-      <option value="{{perm}}">{%trans perm%}</option>
+      <option value="{{perm}}" {%if dataRaw.permission == perm%} selected {%endif%} >{%trans perm%}</option>
     {%endfor%}
   </select>
 </div>
@@ -136,7 +127,7 @@
 {%block iPassword%}
 <label for="password">{%trans "Password"%}</label>
 <div class="input">
-  <input type="password" name="password" id="password" placeholder='{%trans "Password"%}' value="{{dataRaw.password}}" maxlength='50'>
+  <input type="password" name="password" id="password" placeholder='{%if dataRaw.password%}{%trans "Password was set, enter to change it!"%}{%else%}{%trans "Password not set, enter  to set it!"%}{%endif%}'  maxlength='50'>
 </div>
 {%endblock%}
 
@@ -144,7 +135,7 @@
 {%block irePassword%}
 <label for="repassword">{%trans "RePassword"%}</label>
 <div class="input">
-  <input type="password" name="repassword" id="repassword" placeholder='{%trans "Password"%}' value="{{dataRaw.password}}" maxlength='50'>
+  <input type="password" name="repassword" id="repassword" placeholder='{%if dataRaw.password%}{%trans "Password was set, enter to change it!"%}{%else%}{%trans "Password not set, enter  to set it!"%}{%endif%}'  maxlength='50'>
 </div>
 {%endblock%}
 
