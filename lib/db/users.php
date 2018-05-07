@@ -124,15 +124,18 @@ class users
 		{
 			$_options = [];
 		}
-		$_options['search_field'] =
+		$default_options['search_field'] =
 		"
 			(
 				users.mobile LIKE '%__string__%' OR
 				users.displayname LIKE '%__string__%'
 			)
 		";
+
+		$_options = array_merge($default_options, $_options);
+
 		// public_show_field
-		return \dash\db\config::public_search('users', ...func_get_args());
+		return \dash\db\config::public_search('users', $_string, $_options);
 	}
 
 

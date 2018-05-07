@@ -72,5 +72,45 @@ class view
 		}
 		return $link;
 	}
+
+
+	public static function createFilterMsg($_searchText, $_filterArray)
+	{
+		$result = null;
+
+		if($_searchText)
+		{
+			$result = T_('Search with keyword :search', ['search' => '<b>'. $_searchText. '</b>']);
+		}
+
+		if($_filterArray)
+		{
+			$result .= ' '. T_('with condition'). ' ';
+			$index  = 0;
+			foreach ($_filterArray as $key => $value)
+			{
+				if($result && $index > 0)
+				{
+					$result .= T_(', ');
+				}
+				if($value === 1)
+				{
+					$value = 'enable';
+				}
+				elseif($value === 0)
+				{
+					$value = 'disable';
+				}
+				if(is_numeric($value))
+				{
+					$value = \dash\utility\human::fitNumber($value);
+				}
+				$result .= T_($key) . ' <b>'. T_(ucfirst($value)). '</b>';
+				$index++;
+			}
+		}
+
+		return $result;
+	}
 }
 ?>

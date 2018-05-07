@@ -3,6 +3,34 @@ namespace dash\app\user;
 
 trait datalist
 {
+	public static $sort_field =
+	[
+		'id' ,
+		'username' ,
+		'displayname' ,
+		'gender' ,
+		'title' ,
+		'password' ,
+		'mobile' ,
+		'email' ,
+		'chatid' ,
+		'status' ,
+		'avatar' ,
+		'parent' ,
+		'permission' ,
+		'type' ,
+		'datecreated' ,
+		'datemodified' ,
+		'pin' ,
+		'ref' ,
+		'twostep' ,
+		'birthday' ,
+		'unit_id' ,
+		'language' ,
+		'meta' ,
+		'fullname',
+	];
+
 	/**
 	 * Gets the user.
 	 *
@@ -10,15 +38,28 @@ trait datalist
 	 *
 	 * @return     <type>  The user.
 	 */
-	public static function list($_args = [])
+	public static function list($_string = null, $_args = [])
 	{
 		if(!\dash\user::id())
 		{
 			return false;
 		}
 
-		$meta            = [];
-		$result          = \dash\db\users::search(null, $meta);
+		$default_args =
+		[
+			'sort'  => null,
+			'order' => null,
+		];
+
+		$_args = array_merge($default_args, $_args);
+
+		if($_args['sort'] && !in_array($_args['sort'], self::$sort_field))
+		{
+			$_args['sort'] = null;
+		}
+
+		$meta            = $_args;
+		$result          = \dash\db\users::search($_string, $meta);
 		$temp            = [];
 		foreach ($result as $key => $value)
 		{
