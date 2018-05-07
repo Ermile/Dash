@@ -342,7 +342,22 @@ class user
 					}
 					else
 					{
-						$result['avatar'] = $value ? $value : \dash\app::static_avatar_url();
+						if(isset($_data['gender']))
+						{
+							if($_data['gender'] === 'male')
+							{
+								$avatar = \dash\app::static_avatar_url('male');
+							}
+							else
+							{
+								$avatar = \dash\app::static_avatar_url('female');
+							}
+						}
+						else
+						{
+							$avatar = \dash\app::static_avatar_url();
+						}
+						$result['avatar'] = $value ? $value : $avatar;
 					}
 					break;
 
