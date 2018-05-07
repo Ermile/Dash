@@ -5,7 +5,7 @@ class controller
 {
 	public static function routing()
 	{
-		\dash\permission::access('cp:posts:add', 'block');
+		\dash\permission::access('cp:posts:add');
 	}
 }
 ?>

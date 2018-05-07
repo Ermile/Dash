@@ -53,15 +53,6 @@ class file
 			$ready_upload['upload_name'] = $_options['upload_name'];
 		}
 
-		// if(\dash\permission::access('admin:admin:view', null, \dash\user::id()))
-		// {
-		// 	$ready_upload['status'] = 'publish';
-		// }
-		// else
-		// {
-		// 	$ready_upload['status'] = 'draft';
-		// }
-
 		$ready_upload['status'] = 'publish';
 
 		// $ready_upload['user_size_remaining'] = self::remaining(\dash\user::id());

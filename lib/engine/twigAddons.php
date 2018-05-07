@@ -916,27 +916,21 @@ class twigAddons
 	{
 		return new \Twig_SimpleFunction('perm', function()
 		{
-
 			$caller  = null;
-			$action  = null;
 			$user_id = \dash\data::login_id();
-
-			$args = func_get_args();
+			$args    = func_get_args();
 
 			if(isset($args[0]))
 			{
 				$caller = $args[0];
 			}
+
 			if(isset($args[1]))
 			{
-				$action = $args[1];
+				$user_id = $args[1];
 			}
-			if(isset($args[2]))
-			{
-				$user_id = $args[2];
-			}
-			\dash\permission::$user_id = $user_id;
-			return \dash\permission::access($caller, $action);
+
+			return \dash\permission::check($caller, $user_id);
 		});
 	}
 

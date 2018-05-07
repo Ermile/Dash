@@ -21,7 +21,7 @@ class controller
 		}
 		else
 		{
-			if(\dash\permission::access('cp'))
+			if(\dash\permission::check('cp'))
 			{
 				// the user have permission of cp
 			}
