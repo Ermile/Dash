@@ -87,16 +87,16 @@
       <tr {%if value.status=='disable' or value.status=='removed'%} class='negative'{%elseif value.status=='awaiting'%} class='warning'{%endif%}>
         <td>
           <a href="{{url.this}}/set?id={{value.id}}">
-            <img src="{{value.avatar}}" width="40" class="pRa5"> {{value.username}}
+            <img src="{{value.avatar}}" alt='{{value.id}}' width="40" class="pRa5"> {{value.username}}
           </a>
         </td>
         <td class="s0">
           <div class="" title='{{value.title}}'>
             <small>
               <a href="{{url.this}}?gender={{value.gender}}">{%if value.gender == 'male'%}{%trans "Mr"%} {%elseif value.gender == 'female'%}{%trans "Mrs"%}{%else%}-{%endif%}</a>
-              <a href="{{url.this}}?firstname={{value.firstname}}">{{value.firstname}}</a>
+              <a href="{{url.this}}?firstname={{value.firstname | url_encode}}">{{value.firstname}}</a>
             </small>
-            <a href="{{url.this}}?lastname={{value.lastname}}">{{value.lastname}}</a>
+            <a href="{{url.this}}?lastname={{value.lastname | url_encode}}">{{value.lastname}}</a>
           </div>
           <div class="mT5">
             <a href="{{url.this}}/set?id={{value.id}}" class="txtB block">{{value.displayname}}</a>
