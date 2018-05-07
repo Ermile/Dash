@@ -28,7 +28,17 @@ trait datalist
 		'unit_id' ,
 		'language' ,
 		'meta' ,
-		'fullname',
+		'birthday',
+		'website',
+		'facebook',
+		'twitter',
+		'instagram',
+		'linkedin',
+		'gmail',
+		'sidebar',
+		'firstname',
+		'lastname',
+		'bio',
 	];
 
 	/**

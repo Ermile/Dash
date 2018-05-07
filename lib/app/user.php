@@ -346,18 +346,6 @@ class user
 			}
 		}
 
-		$result['fullname'] = '';
-
-		if(isset($result['firstname']))
-		{
-			$result['fullname'] .= $result['firstname'];
-		}
-
-		if(isset($result['lastname']))
-		{
-			$result['fullname'] .= ' '. $result['lastname'];
-		}
-
 		return $result;
 	}
 
