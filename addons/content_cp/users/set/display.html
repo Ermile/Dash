@@ -2,6 +2,8 @@
 
 
 {%block pageContent%}
+
+
 <form method="post" enctype="multipart/form-data">
 <div class="f justify-center">
   <div class="c6 s12">
@@ -41,6 +43,144 @@
 {%endblock%}
 
 
+{%block iTwostep%}
+<label for="twostep">{%trans "Twostep"%}</label>
+<div class="switch1 mTB0">
+ <input type="checkbox" name="twostep" id="twostep" {%if dataRaw.twostep  %}checked{%endif%}>
+ <label for="twostep"></label>
+</div>
+{%endblock%}
+
+
+{%block iSidebar%}
+<label for="xsidebar">{%trans "Sidebar"%}</label>
+<div class="switch1 mTB0">
+ <input type="checkbox" name="sidebar" id="xsidebar" {%if dataRaw.sidebar  %}checked{%endif%}>
+ <label for="xsidebar"></label>
+</div>
+{%endblock%}
+
+
+{%block iLanguage%}
+<div class="mT10">
+  <label for="language">{%trans "Language"%}</label>
+  <select name="language" class="ui dropdown" id="language">
+    <option value="" readonly>{%trans "Select one item"%}</option>
+    {%for lang in lang.list%}
+      <option value="{{lang}}" {%if dataRaw.language == lang%} selected {%endif%} >{%trans lang%}</option>
+    {%endfor%}
+  </select>
+</div>
+{%endblock%}
+
+
+{%block iWebsite%}
+<label for="website">{%trans "Website"%}</label>
+<div class="input">
+  <input type="url" name="website" id="website" placeholder='{%trans "Website"%}' value="{{dataRaw.website}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid website from 3 to 40 character"%}' >
+</div>
+{%endblock%}
+
+
+
+{%block iInstagram%}
+<label for="instagram">{%trans "Instagram"%}</label>
+<div class="input">
+  <input type="text" name="instagram" id="instagram" placeholder='{%trans "Instagram"%}' value="{{dataRaw.instagram}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid instagram from 3 to 40 character"%}' >
+</div>
+{%endblock%}
+
+{%block iFacebook%}
+<label for="facebook">{%trans "Facebook"%}</label>
+<div class="input">
+  <input type="text" name="facebook" id="facebook" placeholder='{%trans "Facebook"%}' value="{{dataRaw.facebook}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid facebook from 3 to 40 character"%}' >
+</div>
+{%endblock%}
+
+
+{%block iTwitter%}
+<label for="twitter">{%trans "Twitter"%}</label>
+<div class="input">
+  <input type="text" name="twitter" id="twitter" placeholder='{%trans "Twitter"%}' value="{{dataRaw.twitter}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid twitter from 3 to 40 character"%}' >
+</div>
+{%endblock%}
+
+
+{%block iLinkedin%}
+<label for="twitter">{%trans "Linkedin"%}</label>
+<div class="input">
+  <input type="text" name="twitter" id="twitter" placeholder='{%trans "Linkedin"%}' value="{{dataRaw.twitter}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid twitter from 3 to 40 character"%}' >
+</div>
+{%endblock%}
+
+
+
+{%block iGmail%}
+<label for="gmail">{%trans "Gmail"%}</label>
+<div class="input">
+  <input type="email" name="gmail" id="gmail" placeholder='{%trans "Like"%} abc@example.com' value="{{dataRaw.gmail}}" maxlength='50'>
+</div>
+{%endblock%}
+
+
+
+{%block iFirstname%}
+<label for="firstname">{%trans "Firstname"%}</label>
+<div class="input">
+  <input type="text" name="firstname" id="firstname" placeholder='{%trans "Firstname"%}' value="{{dataRaw.firstname}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid firstname from 3 to 40 character"%}' >
+</div>
+{%endblock%}
+
+
+
+{%block iLastname%}
+<label for="lastname">{%trans "Lastname"%}</label>
+<div class="input">
+  <input type="text" name="lastname" id="lastname" placeholder='{%trans "Lastname"%}' value="{{dataRaw.lastname}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid lastname from 3 to 40 character"%}' >
+</div>
+{%endblock%}
+
+
+
+{%block iUsername%}
+<label for="username">{%trans "Username"%}</label>
+<div class="input">
+  <input type="text" name="username" id="username" placeholder='{%trans "Username"%}' value="{{dataRaw.username}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid username from 3 to 40 character"%}' >
+</div>
+{%endblock%}
+
+
+
+{%block iTitle%}
+<label for="title">{%trans "Title"%}</label>
+<div class="input">
+  <input type="text" name="title" id="title" placeholder='{%trans "Title"%}' value="{{dataRaw.title}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid title from 3 to 40 character"%}' >
+</div>
+{%endblock%}
+
+
+
+
+{%block iType%}
+<label for="type">{%trans "Type"%}</label>
+<div class="input">
+  <input type="text" name="type" id="type" placeholder='{%trans "Type"%}' value="{{dataRaw.type}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid type from 3 to 40 character"%}' >
+</div>
+{%endblock%}
+
+{%block ibirthday%}
+<label for="birthday">{%trans "Birthday"%}  <small class="fc-red">* {%trans "Require"%}</small></label>
+<div class="input">
+  <input class="datepicker" type="text" name="birthday" id="birthday" placeholder='{{"1369/04/15" | fitNumber}} *' value="{{dataRaw.birthday}}" data-view="year" autocomplete='off'>
+</div>
+{%endblock%}
+
+
+
+{%block iBio%}
+<label for="bio">{%trans "Bio"%}</label>
+<textarea class="txt mB20" name="bio" placeholder='{%trans "Bio"%}' maxlength='300' rows="3">{{dataRaw.bio}}</textarea>
+{%endblock%}
 
 
 
