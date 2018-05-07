@@ -91,12 +91,16 @@
           </a>
         </td>
         <td class="s0">
-          <a href="{{url.this}}?gender={{value.gender}}">{%if value.gender == 'male'%}{%trans "Mr"%} {%elseif value.gender == 'female'%}{%trans "Mrs"%}{%else%}-{%endif%}</a>
-          <a href="{{url.this}}?firstname={{value.firstname}}">{{value.firstname}}</a>
-          <a href="{{url.this}}?lastname={{value.lastname}}">{{value.lastname}}</a>
-          <a href="{{url.this}}/set?id={{value.id}}">{{value.title}}</a>
-          <br>
-          <a href="{{url.this}}/set?id={{value.id}}" class="txtB">{{value.displayname}}</a>
+          <div class="" title='{{value.title}}'>
+            <small>
+              <a href="{{url.this}}?gender={{value.gender}}">{%if value.gender == 'male'%}{%trans "Mr"%} {%elseif value.gender == 'female'%}{%trans "Mrs"%}{%else%}-{%endif%}</a>
+              <a href="{{url.this}}?firstname={{value.firstname}}">{{value.firstname}}</a>
+            </small>
+            <a href="{{url.this}}?lastname={{value.lastname}}">{{value.lastname}}</a>
+          </div>
+          <div class="mT5">
+            <a href="{{url.this}}/set?id={{value.id}}" class="txtB block">{{value.displayname}}</a>
+          </div>
         </td>
         <td>
           <a href="{{url.this}}/set?id={{value.id}}">{{value.mobile | persian}}</a>
