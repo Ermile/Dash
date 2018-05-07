@@ -38,7 +38,7 @@
 
 {%block htmlSearchBox%}
 <div class="cbox fs12">
-  <form method="get" action='{{url.here}}/users' data-action>
+  <form method="get" action='{{url.this}}' data-action>
     <div class="input">
       <input type="search" name="q" placeholder='{%trans "Search"%}' id="q" value="{{requestGET.q}}" autofocus  data-pass='submit' autocomplete='off'>
       <button class="addon btn ">{%trans "Search" %}</button>
@@ -51,85 +51,71 @@
 {%block htmlTable%}
  <div class="cbox fs12">
   <table class="tbl bordered1">
-    <thead class="primary">
+    <thead class="primary fs09">
       <tr>
-        <th data-sort="{{sortLink.gender.order}}" class="s0 collapsing">
-          <a href='{{sortLink.gender.link}}'>{%trans "Gender"%}</a>
-        </th>
-        <th data-sort="{{sortLink.firstname.order}}">
-          <a href='{{sortLink.firstname.link}}'>{%trans "Name"%}</a>
-        </th>
-        <th data-sort="{{sortLink.lastname.order}}">
-          <a href='{{sortLink.lastname.link}}'>{%trans "Family"%}</a>
-        </th>
-        <th data-sort="{{sortLink.title.order}}">
-          <a href='{{sortLink.title.link}}'>{%trans "Nick Name"%}</a>
+        <th data-sort="{{sortLink.username.order}}">
+          <a href='{{sortLink.username.link}}'>{%trans "Username"%}</a>
         </th>
         <th data-sort="{{sortLink.displayname.order}}">
-          <a href='{{sortLink.displayname.link}}'>{%trans "Display name"%}</a>
+          <a href='{{sortLink.displayname.link}}'>{%trans "Display Name"%}</a>
         </th>
-        <th data-sort="{{sortLink.mobile.order}}">
+        <th data-sort="{{sortLink.mobile.order}}" class="collapsing">
           <a href='{{sortLink.mobile.link}}'>{%trans "Mobile"%}</a>
         </th>
-        <th data-sort="{{sortLink.email.order}}">
+        <th data-sort="{{sortLink.email.order}}" class="collapsing s0">
           <a href='{{sortLink.email.link}}'>{%trans "Email"%}</a>
         </th>
-        <th data-sort="{{sortLink.password.order}}" class="s0">
+        <th data-sort="{{sortLink.password.order}}" class="collapsing">
           <a href='{{sortLink.password.link}}'>{%trans "Password"%}</a>
         </th>
-        <th data-sort="{{sortLink.website.order}}" class="s0">
-          <a href='{{sortLink.website.link}}'>{%trans "Website"%}</a>
-        </th>
-        <th data-sort="{{sortLink.bio.order}}" class="s0">
-          <a href='{{sortLink.bio.link}}'>{%trans "Bio"%}</a>
-        </th>
-        <th data-sort="{{sortLink.status.order}}" class="s0">
+        <th data-sort="{{sortLink.status.order}}" class="collapsing s0">
           <a href='{{sortLink.status.link}}'>{%trans "Status"%}</a>
         </th>
-        <th data-sort="{{sortLink.permission.order}}" class="s0 m0">
+        <th data-sort="{{sortLink.permission.order}}" class="collapsing s0 m0">
           <a href='{{sortLink.permission.link}}'>{%trans "Permission"%}</a>
+        </th>
+        <th data-sort="{{sortLink.datecreated.order}}" class="collapsing s0 m0">
+          <a href='{{sortLink.datecreated.link}}'>{%trans "Created date"%}</a>
+        </th>
+        <th data-sort="{{sortLink.datemodified.order}}" class="collapsing s0 m0">
+          <a href='{{sortLink.datemodified.link}}'>{%trans "Last Modified"%}</a>
         </th>
       </tr>
     </thead>
     <tbody>
       {%for key, value in dataTable%}
-      <tr {%if value.status=='disable'%} class='negative'{%endif%}>
-        <td class="s0">
-        {%if value.gender == 'male'%}{%trans "Mr"%} {%elseif value.gender == 'female'%}{%trans "Mrs"%}{%else%}-{%endif%}
-        </td>
+      <tr {%if value.status=='disable' or value.status=='removed'%} class='negative'{%elseif value.status=='awaiting'%} class='warning'{%endif%}>
         <td>
-          <a href="{{url.here}}/users/set?id={{value.id}}">{{value.firstname}}</a>
-        </td>
-        <td>
-          <a href="{{url.here}}/users/set?id={{value.id}}">{{value.lastname}}</a>
-        </td>
-        <td>
-          <a href="{{url.here}}/users/set?id={{value.id}}">{{value.title}}</a>
-        </td>
-        <td>
-          <a href="{{url.here}}/users/set?id={{value.id}}">{{value.displayname}}</a>
-        </td>
-        <td>
-          <a href="{{url.here}}/users/set?id={{value.id}}">{{value.mobile | persian}}</a>
-        </td>
-        <td>
-          <a href="{{url.here}}/users/set?id={{value.id}}">{{value.email}}</a>
-        </td>
-        <td class="s0"><span class="disabled">
-          {%if value.password%}<i class="sf-check fc-green"></i>{%else%}<i class="sf-times fc-red"></i>{%endif%}</span>
-        </td>
-        <td>
-          <a href="{{url.here}}/users/set?id={{value.id}}">{{value.website}}</a>
-        </td>
-        <td>
-          <a href="{{url.here}}/users/set?id={{value.id}}">{{value.bio}}</a>
+          <a href="{{url.this}}/set?id={{value.id}}">
+            <img src="{{value.avatar}}" width="40" class="pRa5"> {{value.username}}
+          </a>
         </td>
         <td class="s0">
-          <a href="{{url.here}}/users?status={{value.status}}">{%set myStatus = value.status %}{%trans myStatus%}</a>
+          <a href="{{url.this}}?gender={{value.gender}}">{%if value.gender == 'male'%}{%trans "Mr"%} {%elseif value.gender == 'female'%}{%trans "Mrs"%}{%else%}-{%endif%}</a>
+          <a href="{{url.this}}?firstname={{value.firstname}}">{{value.firstname}}</a>
+          <a href="{{url.this}}?lastname={{value.lastname}}">{{value.lastname}}</a>
+          <a href="{{url.this}}/set?id={{value.id}}">{{value.title}}</a>
+          <br>
+          <a href="{{url.this}}/set?id={{value.id}}" class="txtB">{{value.displayname}}</a>
+        </td>
+        <td>
+          <a href="{{url.this}}/set?id={{value.id}}">{{value.mobile | persian}}</a>
+        </td>
+        <td>
+          <a href="{{url.this}}/set?id={{value.id}}">{{value.email}}</a>
+        </td>
+        <td class="s0">
+          {%if value.password%}<i class="sf-check fc-green" title='{%trans "Password is set"%}'></i>{%else%}<i class="sf-times fc-red" title='{%trans "Password is not set!"%}'></i>{%endif%}
+          {%if value.twostep%}<i class="sf-unlock-alt fc-green" title='{%trans "Two step verification in enabled"%}'></i>{%else%}<i class="sf-unlock fc-mute" title='{%trans "Two step verification in disable"%}'></i>{%endif%}
+        </td>
+        <td class="s0">
+          <a href="{{url.this}}?status={{value.status}}">{%set myStatus = value.status | capitalize %}{%trans myStatus%}</a>
         </td>
         <td class="s0 m0">
-          <a href="{{url.here}}/users?permission={{value.permission}}">{{value.permission}}</a>
+          <a href="{{url.this}}?permission={{value.permission}}">{%set myPerm = value.permission | capitalize %}{%trans myPerm%}</a>
         </td>
+        <td class="s0 m0 txtC" title="{{value.datecreated | tdate('Y/m/d H:i')}}"><small class="fc-mute">{%if value.datecreated%}{{value.datecreated | sdate}}{%else%}-{%endif%}</small></td>
+        <td class="s0 m0 txtC" title="{{value.datemodified | tdate('Y/m/d H:i')}}"><small class="fc-mute">{%if value.datemodified%}{{value.datemodified | sdate}}{%else%}-{%endif%}</small></td>
       </tr>
       {%endfor%}
     </tbody>
@@ -142,7 +128,7 @@
 {%block htmlFilter%}
 <p class="f fs14 alert alert-info">
   <span class="c">{{dataFilter | raw}}</span>
-  <a class="cauto" href="{{url.here}}/users">{%trans "Clear filters"%}</a>
+  <a class="cauto" href="{{url.this}}">{%trans "Clear filters"%}</a>
 </p>
 {%endblock%}
 
@@ -150,13 +136,13 @@
 {%block htmlFilterNoResult%}
 <p class="f fs14 alert alert-error">
   <span class="c">{%trans "Result not found!"%} {%trans "Search with new keywords."%}</span>
-  <a class="cauto" href="{{url.here}}/users">{%trans "Clear filters"%}</a>
+  <a class="cauto" href="{{url.this}}">{%trans "Clear filters"%}</a>
 </p>
 {%endblock%}
 
 
 {%block htmlStartAddNew%}
-<p class="fs14 alert alert-success pTB20">{%trans "Hi!"%} <a href="{{url.here}}/users/add">{%trans "Try to start with add new user!"%}</a></p>
+<p class="fs14 alert alert-success pTB20">{%trans "Hi!"%} <a href="{{url.this}}/add">{%trans "Try to start with add new user!"%}</a></p>
 {%endblock%}
 
 
