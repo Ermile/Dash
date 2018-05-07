@@ -63,7 +63,15 @@ class model
 		// ready request
 		$request = self::getPost();
 
-		$result = \dash\app\user::add($request);
+		if(\dash\request::get('id'))
+		{
+			$request['id'] = \dash\request::get('id');
+			$result = \dash\app\user::edit($request);
+		}
+		else
+		{
+			$result = \dash\app\user::add($request);
+		}
 
 		if(\dash\engine\process::status())
 		{

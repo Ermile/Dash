@@ -59,9 +59,22 @@ trait add
 
 		$return         = [];
 
-		$args['status'] = 'awaiting';
+		if(!$args['status'])
+		{
+			$args['status'] = 'awaiting';
+		}
 
-		$user_id        = self::find_user_id($args, $_option, false, null);
+		if($args['mobile'])
+		{
+			$check_mobile_exist = \dash\db\users::get_by_mobile($args['mobile']);
+			if(isset($check_mobile_exist['id']))
+			{
+				\dash\notif::error(T_("Duplicate mobile"), 'mobile');
+				return false;
+			}
+		}
+
+		$user_id = \dash\db\users::signup($args);
 
 		if(!$user_id)
 		{
@@ -72,12 +85,12 @@ trait add
 
 		$return['user_id'] = \dash\coding::encode($user_id);
 
-		$_option['user_id'] = $user_id;
+		// $_option['user_id'] = $user_id;
 
-		if($_option['contact'])
-		{
-			\dash\app\contact::merge($_args, $_option);
-		}
+		// if($_option['contact'])
+		// {
+		// 	\dash\app\contact::merge($_args, $_option);
+		// }
 
 		if(\dash\engine\process::status())
 		{

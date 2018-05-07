@@ -50,37 +50,56 @@ trait edit
 
 		if(!$id)
 		{
-			\dash\app::log('api:staff:edit:permission:denide', \dash\user::id(), $log_meta);
 			\dash\notif::error(T_("Can not access to edit staff"), 'staff');
 			return false;
 		}
 
-		$user_id = self::find_user_id($args, $_option, true, $id);
-
-		if(intval($user_id) !== intval($id))
+		$load_user = \dash\db\users::get_by_id($id);
+		if(!isset($load_user['id']))
 		{
-			\dash\temp::set('app_user_id_changed', true);
-			\dash\temp::set('app_new_user_id_changed', $user_id);
-			\dash\temp::set('app_old_user_id_changed', $id);
-
-			$update_contact_user_id            = [];
-			$update_contact_user_id['user_id'] = $id;
-
-			if($_option['other_field'] && $_option['other_field_id'])
-			{
-				$update_contact_user_id[$_option['other_field']] = $_option['other_field_id'];
-			}
-
-			\dash\db\contacts::update_where(['user_id' => $user_id], $update_contact_user_id);
+			\dash\notif::error(T_("Invalid user id"));
+			return false;
 		}
 
-		$_option['user_id']        = $user_id;
 
-		\dash\app\contact::merge($_args, $_option);
+		if($args['mobile'])
+		{
+			$check_mobile_exist = \dash\db\users::get_by_mobile($args['mobile']);
+			if(isset($check_mobile_exist['id']) && intval($check_mobile_exist['id']) !== intval($id))
+			{
+				\dash\notif::error(T_("Duplicate mobile"), 'mobile');
+				return false;
+			}
+		}
+
+		// $user_id = self::find_user_id($args, $_option, true, $id);
+
+		// if(intval($user_id) !== intval($id))
+		// {
+		// 	\dash\temp::set('app_user_id_changed', true);
+		// 	\dash\temp::set('app_new_user_id_changed', $user_id);
+		// 	\dash\temp::set('app_old_user_id_changed', $id);
+
+		// 	$update_contact_user_id            = [];
+		// 	$update_contact_user_id['user_id'] = $id;
+
+		// 	if($_option['other_field'] && $_option['other_field_id'])
+		// 	{
+		// 		$update_contact_user_id[$_option['other_field']] = $_option['other_field_id'];
+		// 	}
+
+		// 	\dash\db\contacts::update_where(['user_id' => $user_id], $update_contact_user_id);
+		// }
+
+		// $_option['user_id']        = $user_id;
+
+		// \dash\app\contact::merge($_args, $_option);
+
+		\dash\db\users::update($args, $id);
 
 		if(\dash\engine\process::status())
 		{
-			\dash\notif::ok(T_("Profile successfully updated"));
+			\dash\notif::ok(T_("User successfully updated"));
 		}
 	}
 }
