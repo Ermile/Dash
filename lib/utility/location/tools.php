@@ -75,6 +75,20 @@ trait tools
 	}
 
 
+	public static function key_list($_colomn)
+	{
+		$result = [];
+		foreach (self::$data as $key => $value)
+		{
+			if(array_key_exists($_colomn, $value))
+			{
+				$result[$key] = $value[$_colomn];
+			}
+		}
+		return $result;
+	}
+
+
 	/**
 	 * get list of country
 	 */
