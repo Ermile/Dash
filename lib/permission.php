@@ -237,6 +237,23 @@ class permission
 	}
 
 
+	public static function load_permission($_id)
+	{
+		self::load();
+
+		if(array_key_exists($_id, self::$project_group))
+		{
+			return self::$project_group[$_id];
+		}
+
+		if(array_key_exists($_id, self::$core_group))
+		{
+			return self::$core_group[$_id];
+		}
+
+		return false;
+	}
+
 	public static function check($_caller, $_user_id = null)
 	{
 		self::load_user($_user_id);
