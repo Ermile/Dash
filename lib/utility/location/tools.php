@@ -171,12 +171,6 @@ trait tools
 			return true;
 		}
 
-		// search in localname
-		$localname = self::list("localname");
-		if(in_array($_name, $localname))
-		{
-			return true;
-		}
 		return false;
 	}
 
