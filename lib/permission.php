@@ -299,7 +299,7 @@ class permission
 
 		if(isset($all_contain[self::$user_permission]['contain']))
 		{
-			if(in_array($_caller, $all_contain[self::$user_permission]['contain']))
+			if(is_array($all_contain[self::$user_permission]['contain']) && in_array($_caller, $all_contain[self::$user_permission]['contain']))
 			{
 				return true;
 			}
