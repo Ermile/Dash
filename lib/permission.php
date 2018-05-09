@@ -254,6 +254,7 @@ class permission
 		return false;
 	}
 
+
 	public static function check($_caller, $_user_id = null)
 	{
 		self::load_user($_user_id);
@@ -262,6 +263,32 @@ class permission
 		{
 			return true;
 		}
+
+		if(is_callable(['\lib\permission', 'plan']))
+		{
+			$check_plan = \lib\permission::plan($_caller);
+			if($check_plan === false)
+			{
+				return false;
+			}
+			else
+			{
+				if(is_callable(['\lib\permission', 'check']))
+				{
+					$check_advance_perm = \lib\permission::check($_caller);
+
+					if($check_advance_perm === false)
+					{
+						return false;
+					}
+					elseif($check_advance_perm === true)
+					{
+						return true;
+					}
+				}
+			}
+		}
+
 
 		if(self::$user_permission === 'admin')
 		{
