@@ -101,13 +101,18 @@ class permission
 	public static function groups($_project = false)
 	{
 		self::load();
+		$all_group = [];
+
 		if($_project)
 		{
 			$all_group = self::$project_group;
 		}
 		else
 		{
-			$all_group = array_merge(self::$core_group, self::$project_group);
+			if(is_array(self::$core_group) && is_array(self::$project_group))
+			{
+				$all_group = array_merge(self::$core_group, self::$project_group);
+			}
 		}
 		return $all_group;
 	}
