@@ -27,6 +27,8 @@
       <tr>
         <td class="txtB" title="{{key}}">
           {{value.title}}
+          {%if value.check%}<span class="sf-bolt floatRa" data-tippy-placement="bottom" data-tippy-animation="perspective" title='{%trans "Need double check permission for some sensitive permissions"%}'></span>{%endif%}
+          {%if value.verify%}<span class="sf-chain-broken floatRa" data-tippy-placement="bottom" data-tippy-animation="perspective" title='{%trans "Do hard check and need to enter again"%}'></span>{%endif%}
         </td>
         {%for groupName, groupList in perm.group%}
         <td class="txtC">
