@@ -91,7 +91,7 @@ class model
 		$anotherPerm = \dash\permission::check('enter:another:session');
 		if($count >= 3 && !$anotherPerm)
 		{
-			\dash\notif::error(T_("How are you?"). ":)");
+			\dash\notif::error(T_("You hit our maximum try limit."). ' '. T_("Try again later!"));
 			return false;
 		}
 
@@ -169,8 +169,8 @@ class model
 				\dash\utility\enter::try('browser_pass_saved_invalid');
 				$get = \dash\request::get();
 				$get['clean'] = '1';
+				\dash\notif::warn(T_("Opts!, Maybe your browser saved your password incorrectly."). ' '. T_("Try again!"));
 				\dash\redirect::to(\dash\url::this(). '?'. http_build_query($get));
-				// \dash\notif::warn(T_("Opts!, Maybe your browser saved your password incorrectly."). ' '. T_("Please remove your saved password and try again"));
 				return false;
 			}
 		}
