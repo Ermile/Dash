@@ -167,7 +167,10 @@ class model
 			else
 			{
 				\dash\utility\enter::try('browser_pass_saved_invalid');
-				\dash\notif::warn(T_("Opts!, Maybe your browser saved your password incorrectly."). ' '. T_("Please remove your saved password and try again"));
+				$get = \dash\request::get();
+				$get['clean'] = '1';
+				\dash\redirect::to(\dash\url::this(). '?'. http_build_query($get));
+				// \dash\notif::warn(T_("Opts!, Maybe your browser saved your password incorrectly."). ' '. T_("Please remove your saved password and try again"));
 				return false;
 			}
 		}
