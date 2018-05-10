@@ -94,7 +94,11 @@ class permission
 			self::$project_group     = self::read_file(root.'/includes/permission/group.me.json');
 
 			self::$core_perm_list    = self::read_file(core.'addons/includes/permission/list.json');
-			self::$core_group        = self::read_file(core.'addons/includes/permission/group.json');
+
+			if(!self::$project_group)
+			{
+				self::$core_group        = self::read_file(core.'addons/includes/permission/group.json');
+			}
 
 			if(is_callable(['\lib\permission', 'perm_list']))
 			{
@@ -108,6 +112,35 @@ class permission
 				self::$core_group    = \lib\permission::group_list(self::$core_group, 'dash');
 			}
 		}
+	}
+
+
+	public static function delete_permission($_id)
+	{
+		$user_count = self::usercount();
+		if(isset($user_count[$_id]) && intval($user_count[$_id]) > 0)
+		{
+			return false;
+		}
+
+		self::load();
+
+		$new = self::groups();
+
+		unset($new[$_id]);
+
+		if(is_callable(['\lib\permission', 'save_permission']))
+		{
+			\lib\permission::save_permission($new);
+		}
+		else
+		{
+			$new = json_encode($new, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+			\dash\file::write(root.'/includes/permission/group.me.json', $new);
+		}
+
+		\dash\notif::warn(T_("Permission removed"));
+		return true;
 	}
 
 
