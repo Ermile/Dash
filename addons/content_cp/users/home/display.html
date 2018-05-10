@@ -84,7 +84,7 @@
     </thead>
     <tbody>
       {%for key, value in dataTable%}
-      <tr {%if value.status=='disable' or value.status=='removed'%} class='negative'{%elseif value.status=='awaiting'%} class='warning'{%endif%}>
+      <tr {%if value.status=='disable' or value.status=='removed' or value.status=='filter' or value.status=='unreachable'%} class='negative' {%elseif value.status=='awaiting'%} class='warning' {%endif%}>
         <td>
           <a href="{{url.this}}/set?id={{value.id}}">
             <img src="{{value.avatar}}" alt='{{value.id}}' width="40" class="pRa5"> {{value.username}}
