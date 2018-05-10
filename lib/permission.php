@@ -120,6 +120,13 @@ class permission
 		$user_count = self::usercount();
 		if(isset($user_count[$_id]) && intval($user_count[$_id]) > 0)
 		{
+			\dash\notif::error(T_("Someone have this permission!"). ' '. T_("Can not remove it."));
+			return false;
+		}
+
+		if($_id === 'admin')
+		{
+			\dash\notif::error(T_("Can not remove admin!"));
 			return false;
 		}
 
@@ -128,10 +135,9 @@ class permission
 		$new = self::groups();
 
 		unset($new[$_id]);
-
-		if(is_callable(['\lib\permission', 'save_permission']))
+		if(is_callable(['\lib\permission', 'delete_permission']))
 		{
-			\lib\permission::save_permission($new);
+			\lib\permission::delete_permission($new);
 		}
 		else
 		{
@@ -265,6 +271,17 @@ class permission
 				\dash\notif::error(T_("This key was reserved, Try another"), 'name');
 				return false;
 			}
+
+			if(!$_lable)
+			{
+				$_lable = $_name;
+			}
+
+			if($_name === 'supervisor' || $_name === 'admin')
+			{
+				\dash\notif::error(T_("This key was reserved, Try another"), 'name');
+				return false;
+			}
 		}
 		else
 		{
@@ -275,11 +292,6 @@ class permission
 			}
 		}
 
-		if($_name === 'supervisor' || $_name === 'admin')
-		{
-			\dash\notif::error(T_("This key was reserved, Try another"), 'name');
-			return false;
-		}
 
 		if(mb_strlen($_name) > 30)
 		{
