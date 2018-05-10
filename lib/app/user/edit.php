@@ -108,6 +108,11 @@ trait edit
 
 		if(\dash\engine\process::status())
 		{
+			if(intval($id) === intval(\dash\user::id()))
+			{
+				\dash\user::refresh();
+			}
+
 			\dash\notif::ok(T_("User successfully updated"));
 		}
 	}

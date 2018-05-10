@@ -4,53 +4,23 @@ namespace content_account\profile;
 
 class model
 {
-	public static function post()
+
+	/**
+	 * UploAads an avatar.
+	 *
+	 * @return     boolean  ( description_of_the_return_value )
+	 */
+	public static function upload_avatar()
 	{
-
-		// update user details
-		$update_user = [];
-
-		// check the user is login
-		if(!\dash\user::login())
-		{
-			\dash\notif::error(T_("Please login to change your profile"), false, 'arguments');
-			return false;
-		}
-
-		// check name lenght
-		if(mb_strlen(\dash\request::post('name')) > 50)
-		{
-			\dash\notif::error(T_("Please enter your name less than 50 character"), 'name', 'arguments');
-			return false;
-		}
-
-		// check name lenght
-		if(mb_strlen(\dash\request::post('displayname')) > 50)
-		{
-			\dash\notif::error(T_("Please enter your displayname less than 50 character"), 'displayname', 'arguments');
-			return false;
-		}
-
-		// check name lenght
-		if(mb_strlen(\dash\request::post('family')) > 50)
-		{
-			\dash\notif::error(T_("Please enter your family less than 50 character"), 'family', 'arguments');
-			return false;
-		}
-
-		$file_code = null;
-		$temp_url  = null;
-
 		if(\dash\request::files('avatar'))
 		{
 			$uploaded_file = \dash\app\file::upload(['debug' => false, 'upload_name' => 'avatar']);
 
 			if(isset($uploaded_file['url']))
 			{
-				$temp_url                = $uploaded_file['url'];
-				$host                    = \dash\url::site(). '/';
-				$temp_url                = str_replace($host, '', $temp_url);
-				$update_user['avatar']  = $temp_url;
+				\dash\notif::direct();
+
+				return $uploaded_file['url'];
 			}
 			// if in upload have error return
 			if(!\dash\engine\process::status())
@@ -58,29 +28,67 @@ class model
 				return false;
 			}
 		}
+		return null;
+	}
 
 
-		// if the postion exist update user display postion
-		if(\dash\request::post('displayname') !== \dash\user::login('displayname'))
+	public static function getPost()
+	{
+		$post =
+		[
+			'twostep'     => \dash\request::post('twostep'),
+			'sidebar'     => \dash\request::post('sidebar'),
+			'language'    => \dash\request::post('language'),
+			'website'     => \dash\request::post('website'),
+			'instagram'   => \dash\request::post('instagram'),
+			'linkedin'    => \dash\request::post('linkedin'),
+			'facebook'    => \dash\request::post('facebook'),
+			'twitter'     => \dash\request::post('twitter'),
+			'gmail'       => \dash\request::post('gmail'),
+			'firstname'   => \dash\request::post('firstname'),
+			'lastname'    => \dash\request::post('lastname'),
+			'username'    => \dash\request::post('username'),
+			'title'       => \dash\request::post('title'),
+			'type'        => \dash\request::post('type'),
+			'birthday'    => \dash\request::post('birthday'),
+			'bio'         => \dash\request::post('bio'),
+			'displayname' => \dash\request::post('displayname'),
+			'fullname'    => \dash\request::post('fullname'),
+			'mobile'      => \dash\request::post('mobile'),
+			'gender'      => \dash\request::post('gender'),
+			'status'      => \dash\request::post('status'),
+			'email'       => \dash\request::post('email'),
+		];
+
+		$avatar = self::upload_avatar();
+
+		if($avatar)
 		{
-			$update_user['displayname'] = \dash\request::post('displayname');
+			$post['avatar'] = $avatar;
 		}
 
+		return $post;
+	}
 
-		// update user record
-		if(!empty($update_user))
-		{
-			\dash\db\users::update($update_user, \dash\user::id());
-			\dash\user::refresh();
-		}
+
+	/**
+	 * Posts a user add.
+	 */
+	public static function post()
+	{
+
+		$request = self::getPost();
+
+		// ready request
+		$request['id'] = \dash\coding::encode(\dash\user::id());
+
+		$result = \dash\app\user::edit($request);
 
 		if(\dash\engine\process::status())
 		{
-			\dash\notif::ok(T_("Profile data was updated"));
-			\dash\notif::direct();
-			\dash\redirect::to(\dash\url::here());
+			\dash\user::refresh();
+			\dash\redirect::pwd();
 		}
 	}
-
 }
 ?>

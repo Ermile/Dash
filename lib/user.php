@@ -135,23 +135,20 @@ class user
 
 	public static function sidebar()
 	{
-		$meta = \dash\user::detail('meta');
+		$sidebar = \dash\user::detail('sidebar');
 
-		if(is_string($meta) && substr($meta, 0, 1) === '{')
+		if(is_null($sidebar) || $sidebar === '')
 		{
-			$meta = json_decode($meta, true);
+			return null;
 		}
 
-		if(is_array($meta) && array_key_exists('toggle_sidebar', $meta))
+		if(intval($sidebar) === 1)
 		{
-			if($meta['toggle_sidebar'])
-			{
-				return true;
-			}
-			else
-			{
-				return false;
-			}
+			return true;
+		}
+		elseif($sidebar === '0')
+		{
+			return false;
 		}
 
 		return null;

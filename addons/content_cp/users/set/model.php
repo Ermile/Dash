@@ -39,6 +39,7 @@ class model
 			'language'    => \dash\request::post('language'),
 			'website'     => \dash\request::post('website'),
 			'instagram'   => \dash\request::post('instagram'),
+			'linkedin'   => \dash\request::post('linkedin'),
 			'facebook'    => \dash\request::post('facebook'),
 			'twitter'     => \dash\request::post('twitter'),
 			'gmail'       => \dash\request::post('gmail'),
@@ -56,7 +57,6 @@ class model
 			'status'      => \dash\request::post('status'),
 			'permission'  => \dash\request::post('permission'),
 			'email'       => \dash\request::post('email'),
-
 		];
 
 		if($post['permission'] === 'supervisor' && !\dash\url::isLocal() && !\dash\permission::supervisor())
@@ -113,6 +113,12 @@ class model
 
 			$request['id'] = \dash\request::get('id');
 			$result = \dash\app\user::edit($request);
+
+			if(intval(\dash\coding::decode($request['id'])) === intval(\dash\user::id()))
+			{
+				\dash\notif::direct();
+				\dash\redirect::pwd();
+			}
 		}
 		else
 		{

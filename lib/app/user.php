@@ -258,7 +258,7 @@ class user
 
 		$sidebar = \dash\app::request('sidebar');
 		$sidebar = trim($sidebar);
-		$sidebar = $sidebar ? 1 : null;
+		$sidebar = $sidebar ? 1 : 0;
 
 		$firstname = \dash\app::request('firstname');
 		$firstname = trim($firstname);
@@ -290,7 +290,6 @@ class user
 		{
 			return false;
 		}
-
 
 		$args['birthday']    = $birthday;
 		$args['website']     = $website;

@@ -1,118 +1,330 @@
-{%extends display.admin%}
+{%extends display.cpMain%}
 
 
 {%block pageContent%}
-  <div class='f justify-center'>
-   <div class='c6 s12'>
-
-    <form method="post" class="cbox">
-
-{{block ("iavatar")}}
-{{block ("inickname")}}
 
 
-{{block ("imobile")}}
-{{block ("iemail")}}
+<form method="post" enctype="multipart/form-data" autocomplete="off">
+  <div class="f justify-center">
+    <div class="c8">
 
-{{block ("isubmit")}}
+      <div class="cbox">
+        <h3 class="txtC">{%trans "Name and Global Details"%}</h3>
+{{block("iUsername")}}
+        <div class="f">
+          <div class="c6 pRa5">{{block("iFirstname")}}</div>
+          <div class="c6">{{block("iLastname")}}</div>
+        </div>
+{{block("iTitle")}}
+{{block("iDisplayName")}}
+{{block("iBio")}}
+{{block("iSaveAll")}}
+      </div>
 
-    </form>
-   </div>
+      <div class="cbox">
+        <h3 class="txtC">{%trans "Email and Social Networks"%}</h3>
+{{block("iWebsite")}}
+{{block("iEmail")}}
+{{block("iGmail")}}
+{{block("iInstagram")}}
+{{block("iFacebook")}}
+{{block("iTwitter")}}
+{{block("iLinkedin")}}
+{{block("iSaveAll")}}
+      </div>
+
+      <div class="cbox">
+        <h3 class="txtC">{%trans "Security and Enter"%}</h3>
+{{block("imobile")}}
+{{block("iPassword")}}
+{{block("irePassword")}}
+{{block("iPermission")}}
+{{block("iTwostep")}}
+{{block("iSaveAll")}}
+      </div>
+
+      <div class="cbox">
+        <h3 class="txtC">{%trans "Improve User Experience"%}</h3>
+
+{{block("iAvatar")}}
+{{block("iLanguage")}}
+{{block("ibirthday")}}
+{{block("igender")}}
+{{block("iSidebar")}}
+
+{{block("iStatus")}}
+{{block("iSaveAll")}}
+      </div>
+    </div>
   </div>
+</form>
 {%endblock%}
 
 
-
-
-{%block iname%}
-<div class="input">
- <input type="text" name="name" value="{{login.name}}" placeholder='{%trans "First Name *"%}' id="name" autofocus maxlength='30' minlength="3" pattern=".{3,30}" title='{%trans "Enter a valid name from 3 to 30 character"%}'>
+{%block iTwostep%}
+<div class="switch1 mT20">
+ <input type="checkbox" name="twostep" id="twostep" {%if dataRaw.twostep  %}checked{%endif%}>
+ <label for="twostep"></label>
+ <label for="twostep">{%trans "Two step verification"%}</label>
 </div>
 {%endblock%}
 
 
-{%block ifamily%}
-<div class="input">
- <input type="text" name="family" value="{{login.family}}" placeholder='{%trans "Last Name"%}' id="family" maxlength='50' minlength="3" pattern=".{3,50}" title='{%trans "Enter a valid family from 3 to 50 character"%}'>
+{%block iSidebar%}
+<label for="xsidebar">{%trans "Auto hide sidebar"%}</label>
+<div class="switch1 mTB0">
+ <input type="checkbox" name="sidebar" id="xsidebar" {%if dataRaw.sidebar %}checked{%endif%}>
+ <label for="xsidebar"></label>
 </div>
 {%endblock%}
 
 
-{%block inickname%}
+{%block iLanguage%}
+<div class="mTB10">
+  <label for="language">{%trans "Default language"%}</label>
+  <select name="language" class="ui dropdown" id="language">
+    <option value="" readonly>{%trans "Select one item"%}</option>
+    {%for key, lang in lang.list%}
+      <option value="{{key}}" {%if dataRaw.language == key%} selected {%endif%} >{{lang}}</option>
+    {%endfor%}
+  </select>
+</div>
+{%endblock%}
+
+
+{%block iWebsite%}
+<label for="website">{%trans "Website"%}</label>
+<div class="input ltr">
+  <input type="url" name="website" id="website" placeholder='{%trans "Website"%} {%trans "like"%} https://ermile.com' value="{{dataRaw.website}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid website from 3 to 40 character"%}' >
+</div>
+{%endblock%}
+
+
+
+{%block iInstagram%}
+<label for="instagram">{%trans "Instagram"%}</label>
+<div class="input ltr">
+  <span class="addon"><i class="sf-instagram"></i> instagram.com/</span>
+  <input type="text" name="instagram" id="instagram" placeholder='{%trans "Instagram"%}' value="{{dataRaw.instagram}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid instagram from 3 to 40 character"%}' >
+</div>
+{%endblock%}
+
+{%block iFacebook%}
+<label for="facebook">{%trans "Facebook"%}</label>
+<div class="input ltr">
+  <span class="addon"><i class="sf-facebook-official"></i> facebook.com/</span>
+  <input type="text" name="facebook" id="facebook" placeholder='{%trans "Facebook"%}' value="{{dataRaw.facebook}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid facebook from 3 to 40 character"%}' >
+</div>
+{%endblock%}
+
+
+{%block iTwitter%}
+<label for="twitter">{%trans "Twitter"%}</label>
+<div class="input ltr">
+  <span class="addon"><i class="sf-twitter"></i> twitter.com/</span>
+  <input type="text" name="twitter" id="twitter" placeholder='{%trans "Twitter"%}' value="{{dataRaw.twitter}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid twitter from 3 to 40 character"%}' >
+</div>
+{%endblock%}
+
+
+{%block iLinkedin%}
+<label for="linkedin">{%trans "Linkedin"%}</label>
+<div class="input ltr">
+  <span class="addon"><i class="sf-linkedin"></i> linkedin.com/</span>
+  <input type="text" name="linkedin" id="linkedin" placeholder='{%trans "Linkedin"%}' value="{{dataRaw.linkedin}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid linkedin from 3 to 40 character"%}' >
+</div>
+{%endblock%}
+
+
+
+{%block iGmail%}
+<label for="gmail">{%trans "Gmail"%}</label>
+<div class="input ltr">
+  <input type="email" name="gmail" id="gmail" placeholder='{%trans "Like"%} your-mail' value="{{dataRaw.gmail}}" maxlength='50'>
+</div>
+{%endblock%}
+
+
+
+{%block iFirstname%}
+<label for="firstname">{%trans "Firstname"%}</label>
+<div class="input">
+  <input type="text" name="firstname" id="firstname" placeholder='{%trans "Firstname"%}' value="{{dataRaw.firstname}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid firstname from 3 to 40 character"%}' >
+</div>
+{%endblock%}
+
+
+
+{%block iLastname%}
+<label for="lastname">{%trans "Lastname"%}</label>
+<div class="input">
+  <input type="text" name="lastname" id="lastname" placeholder='{%trans "Lastname"%}' value="{{dataRaw.lastname}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid lastname from 3 to 40 character"%}' >
+</div>
+{%endblock%}
+
+
+
+{%block iUsername%}
+<label for="username">{%trans "Username"%}</label>
+<div class="input ltr">
+  <input type="text" name="username" id="username" placeholder='{%trans "Username"%}' value="{{dataRaw.username}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid username from 3 to 40 character"%}' autofocus>
+</div>
+{%endblock%}
+
+
+
+{%block iTitle%}
+<label for="title">{%trans "Nick name"%}</label>
+<div class="input">
+  <input type="text" name="title" id="title" placeholder='{%trans "Title"%}' value="{{dataRaw.title}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid title from 3 to 40 character"%}' >
+</div>
+{%endblock%}
+
+
+
+
+{%block iType%}
+<label for="type">{%trans "Type"%}</label>
+<div class="input">
+  <input type="text" name="type" id="type" placeholder='{%trans "Type"%}' value="{{dataRaw.type}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid type from 3 to 40 character"%}' >
+</div>
+{%endblock%}
+
+{%block ibirthday%}
+<label for="birthday">{%trans "Birthday"%}  <small class="fc-red">* {%trans "Require"%}</small></label>
+<div class="input">
+  <input class="datepicker" type="text" name="birthday" id="birthday" placeholder='{{"1369/04/15" | fitNumber}} *' value="{{dataRaw.birthday}}" data-view="year" autocomplete='off'>
+</div>
+{%endblock%}
+
+
+
+{%block iBio%}
+<label for="bio">{%trans "Bio"%}</label>
+<textarea class="txt mB20 pB25" name="bio" placeholder='{%trans "Bio"%}' maxlength='300' rows="3">{{dataRaw.bio}}</textarea>
+{%endblock%}
+
+
+
+{%block iDisplayName%}
 <label for="displayname">{%trans "Display name"%}</label>
 <div class="input">
- <input type="text" name="displayname" value="{{login.displayname}}" placeholder='{%trans "Display name"%}' id="displayname" maxlength='50' minlength="3" pattern=".{3,50}" title='{%trans "Enter a valid team position from 3 to 50 character"%}'>
+  <input type="text" name="displayname" id="displayname" placeholder='{%trans "Display name"%}' value="{{dataRaw.displayname}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid displayname from 3 to 40 character"%}' >
 </div>
 {%endblock%}
 
-
-{%block iavatar%}
-<div class="input preview">
- <input type="file" accept="image/gif, image/jpeg, image/png" name="avatar" id="avatar" data-preview data-max="1000">
- <label for="avatar" title='{%trans "allowed extentions jpg, png. Max 1000Kb"%}'>
-{%if login.avatar%}
-  <img src="{{url.base}}/{{login.avatar}}" alt="{{member.displayname}}" id="logoPreview">
-{%endif%}
- </label>
-</div>
-
-
-{%endblock%}
 
 
 
 {%block imobile%}
-<label for="mobile">{%trans "mobile"%}</label>
+<label for="mobile">{%trans "Mobile"%} <small class="fc-red">* {%trans "Require"%}</small></label>
 <div class="input">
-  <input type="text" name="mobile" placeholder='{%trans "Your mobile"%}' id="mobile" readonly value="{{login.mobile}}">
+  <input type="text" name="mobile" id="mobile" placeholder='{%trans "Like 09120123456"%} *' value="{{dataRaw.mobile}}" maxlength='30' required {%if dataRaw.mobile%} readonly{%endif%}>
 </div>
 {%endblock%}
 
 
-{%block iemail%}
-<label for="email">{%trans "email"%}</label>
-<div class="input">
-  <input type="text" name="email" placeholder='{%trans "Your email"%}' id="email" readonly value="{{login.email}}">
+
+{%block igender%}
+<div class="mT10">
+  <label for="gender">{%trans "Gender"%} <small class="fc-red">* {%trans "Require"%}</small></label>
+  <div class="f">
+   <div class="radio1 green">
+    <input type="radio" id="r-male" name="gender" value="male" {%if dataRaw.gender == 'male' %}checked{%endif%}>
+    <label for="r-male">{%trans "Male"%}</label>
+   </div>
+
+   <div class="radio1 green">
+    <input type="radio" id="r-female" name="gender" value="female" {%if dataRaw.gender == 'female' %}checked{%endif%}>
+    <label for="r-female">{%trans "Female"%}</label>
+   </div>
+  </div>
 </div>
 {%endblock%}
 
 
-{%block iunit%}
-<div class="f g1">
- <div class="cauto s0 lbl"><label for="email">{%trans "Money unit"%}</label></div>
- <div class="c s12">
- {{block('iunitRadio')}}
- </div>
-</div>
-{%endblock%}
-
-
-{%block iunitSelect%}
-  <select name="user-unit">
-   <option value="" readonly>{%trans "Please select one unit for default"%}</option>
-   <option value="toman" {% if user_unit == 'toman' or user_unit == 'تومان' %} selected="selected" {%endif%}>{%trans "Toman"%}</option>
-   <option value="dollar" {% if user_unit == 'dollar' or user_unit == '$' %} selected="selected" {%endif%}>{%trans "$"%}</option>
+{%block iStatus%}
+<div class="mT10">
+  <label for="status">{%trans "Status"%}</label>
+  <select name="status" class="ui dropdown" id="status">
+    <option value="" readonly>{%trans "Select one item"%} *</option>
+    <option value="active" {% if dataRaw.status == 'active' %} selected {%endif%}>{%trans "Active"%}</option>
+    <option value="awaiting" {% if dataRaw.status == 'awaiting' %} selected {%endif%}>{%trans "Awaiting"%}</option>
+    <option value="deactive" {% if dataRaw.status == 'deactive' %} selected {%endif%}>{%trans "Deactive"%}</option>
+    <option value="removed" {% if dataRaw.status == 'removed' %} selected {%endif%}>{%trans "Removed"%}</option>
+    <option value="filter" {% if dataRaw.status == 'filter' %} selected {%endif%}>{%trans "Filter"%}</option>
+    <option value="unreachable" {% if dataRaw.status == 'unreachable' %} selected {%endif%}>{%trans "Unreachable"%}</option>
   </select>
+</div>
 {%endblock%}
 
 
-{%block iunitRadio%}
- <div class="f radio1t">
-  <div class="c">
-   <input type="radio" id="r-toman" name="user-unit" value="toman" {%if user_unit=='toman' or user_unit=='تومان'%}checked{%endif%}>
-   <label for="r-toman">{%trans "Toman"%}</label>
-  </div>
+{%block iPermission%}
+<div class="mT10">
+  <label for="permission">{%trans "Permission"%}</label>
+  <select name="permission" class="ui dropdown" id="permission">
+    <option value="" readonly>{%trans "No permission"%}</option>
+    {%for perm in permGroup%}
+      <option value="{{perm}}" {%if dataRaw.permission == perm%} selected {%endif%} >{%trans perm%}</option>
+    {%endfor%}
+  </select>
+</div>
+{%endblock%}
 
-  <div class="c">
-   <input type="radio" id="r-dollar" name="user-unit" value="dollar" {%if user_unit=='dollar' or user_unit=='$'%}checked{%endif%}>
-   <label for="r-dollar">{%trans "Dollar"%}</label>
-  </div>
- </div>
+{%block iEmail%}
+<label for="email">{%trans "Email"%}</label>
+<div class="input">
+  <input type="email" name="email" id="email" placeholder='{%trans "Like"%} abc@example.com' value="{{dataRaw.email}}" maxlength='50'>
+</div>
 {%endblock%}
 
 
-{%block isubmit%}
-<button class="btn block primary mT25">{%trans "Update profile"%}</button>
+{%block iPassword%}
+<label for="password">{%trans "Password"%} <small>{%trans "Enter to change pass"%}</small></label>
+<div class="input">
+  <input type="password" name="password" id="password" placeholder='{%if dataRaw.password%}{%trans "Password was set, enter to change it!"%}{%else%}{%trans "Password not set, enter  to set it!"%}{%endif%}' maxlength='50' data-response-realtime autocomplete="new-password">
+</div>
 {%endblock%}
+
+
+{%block irePassword%}
+<div data-response='password' data-response-hide data-response-effect='slide'>
+  <label for="repassword">{%trans "Confirm password"%} <small class="fc-red">* {%trans "Require to change current password"%}</small></label>
+  <div class="input">
+  <input type="password" name="repassword" id="repassword" placeholder='{%if dataRaw.password%}{%trans "Password was set, enter to change it!"%}{%else%}{%trans "Password not set, enter  to set it!"%}{%endif%}'  maxlength='50'>
+</div>
+</div>
+{%endblock%}
+
+
+{%block iAvatar%}
+<div class="input preview">
+ <input type="file" accept="image/gif, image/jpeg, image/png" name="avatar" id="avatar1" data-preview data-max="500">
+ <label for="avatar1" title="Simple Title">
+    {%if dataRaw.avatar%}<img src="{{dataRaw.avatar}}">{%endif%}
+ </label>
+</div>
+{%endblock%}
+
+
+
+{%block iadd%}
+<button class="btn primary block mT20">{%trans "Add"%}</button>
+{%endblock%}
+
+{%block isave%}
+<button class="btn primary block mT20">{%trans "Save"%}</button>
+{%endblock%}
+
+{%block iSaveAll%}
+<button class="btn primary block mT20">{%trans "Save all"%}</button>
+{%endblock%}
+
+
+
+
+
+
+
 
 
