@@ -524,15 +524,7 @@ class permission
 
 		if(!$check)
 		{
-			if(\dash\request::json_accept() || \dash\request::ajax())
-			{
-				\dash\notif::error(T_("Permission denied"));
-				\dash\code::end();
-			}
-			else
-			{
-				\dash\header::status(403, T_("Permission denied"));
-			}
+			\dash\header::status(403, T_("Permission denied"));
 		}
 		return true;
 	}

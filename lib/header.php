@@ -156,13 +156,13 @@ class header
 		// set header
 		@header($status_header, true, $_code);
 
-		if(\dash\request::json_accept())
+		if(\dash\request::json_accept() || \dash\request::ajax())
 		{
-
 			if(!$_title)
 			{
 				$_title = self::desc($_code);
 			}
+
 			\dash\notif::error($_title, $_code);
 			// end process code and return as json
 			\dash\code::end();

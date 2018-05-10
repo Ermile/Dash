@@ -291,7 +291,7 @@ class mvc
 				\dash\header::status(406);
 			}
 
-			\dash\code::end();
+			\dash\code::compile();
 		}
 
 		// if(\dash\request::is('post') && !empty(\dash\request::post()))

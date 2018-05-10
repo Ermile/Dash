@@ -5,16 +5,23 @@ namespace dash;
  */
 class code
 {
-	/**
-	 * end the code and if needed echo json of notif
-	 */
-	public static function end()
+	// echo json of notif
+	public static function compile()
 	{
 		if(\dash\request::json_accept() || \dash\request::ajax())
 		{
 			@header('Content-Type: application/json');
 			echo \dash\notif::json();
 		}
+	}
+
+
+	/**
+	 * end the code and if needed echo json of notif
+	 */
+	public static function end()
+	{
+		self::compile();
 		self::exit();
 	}
 
