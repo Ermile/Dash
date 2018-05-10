@@ -9,7 +9,7 @@
     <div class="c8">
 
       <div class="cbox">
-        <h3 class="txtC">{%trans "Name and global details"%}</h3>
+        <h3 class="txtC">{%trans "Name and Global Details"%}</h3>
 {{block("iUsername")}}
         <div class="f">
           <div class="c6 pRa5">{{block("iFirstname")}}</div>
@@ -44,12 +44,12 @@
       </div>
 
       <div class="cbox">
-        <h3 class="txtC">{%trans "Improve user experience"%}</h3>
+        <h3 class="txtC">{%trans "Improve User Experience"%}</h3>
 
 {{block("iAvatar")}}
 {{block("iLanguage")}}
-{{block("igender")}}
 {{block("ibirthday")}}
+{{block("igender")}}
 {{block("iSidebar")}}
 
 {{block("iStatus")}}
@@ -141,7 +141,6 @@
 <label for="gmail">{%trans "Gmail"%}</label>
 <div class="input ltr">
   <input type="email" name="gmail" id="gmail" placeholder='{%trans "Like"%} your-mail' value="{{dataRaw.gmail}}" maxlength='50'>
-  <span class="addon">@gmail.com</span>
 </div>
 {%endblock%}
 
@@ -167,7 +166,7 @@
 
 {%block iUsername%}
 <label for="username">{%trans "Username"%}</label>
-<div class="input">
+<div class="input ltr">
   <input type="text" name="username" id="username" placeholder='{%trans "Username"%}' value="{{dataRaw.username}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid username from 3 to 40 character"%}' autofocus>
 </div>
 {%endblock%}
