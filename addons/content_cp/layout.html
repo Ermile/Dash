@@ -3,17 +3,26 @@
 
 
 {%block sidenav%}
-    <li><a href="{{url.base}}/cp"><i class='sf-gauge'></i> <span>{% trans "Dashboard" %}</span></a></li>
+    <li><a href="{{url.here}}"><i class='sf-gauge'></i> <span>{% trans "Dashboard" %}</span></a></li>
     <li>
         <a href="{{url.here}}/cms"><i class='sf-diamond'></i> <span>{% trans "CMS" %}</span></a>
         <ul>
-            <li><a href="{{url.here}}/posts">{% trans "News" %}</a></li>
-            <li><a href="{{url.here}}/terms?type=cat">{% trans "Categries" %}</a></li>
-            <li><a href="{{url.here}}/terms?type=tag">{% trans "Tags" %}</a></li>
-            <li><a href="{{url.here}}/posts?type=page">{% trans "Pages" %}</a></li>
+            <li><a href="{{url.here}}/posts">{% trans "News" %} <i class='floatRa mRa10 fc-mute sf-pinboard'></i></a></li>
+            <li><a href="{{url.here}}/terms?type=cat">{% trans "Categries" %} <i class='floatRa mRa10 fc-mute sf-grid'></i></a></li>
+            <li><a href="{{url.here}}/terms?type=tag">{% trans "Tags" %} <i class='floatRa mRa10 fc-mute sf-tags'></i></a></li>
+            <li><a href="{{url.here}}/posts?type=page">{% trans "Pages" %} <i class='floatRa mRa10 fc-mute sf-files-o'></i></a></li>
+            <li><a href="{{url.here}}/attachments">{% trans "Files" %} <i class='floatRa mRa10 fc-mute sf-attach'></i></a></li>
+            <li><a href="{{url.here}}/comments">{% trans "Comments" %} <i class='floatRa mRa10 fc-mute sf-comment'></i></a></li>
         </ul>
     </li>
-    <li><a href="{{url.base}}/cp/options"><i class='sf-tools'></i> <span>{% trans "Options" %}</span></a></li>
+    <li>
+        <a href="{{url.here}}/users"><i class='sf-users'></i> <span>{% trans "Users" %}</span></a>
+        <ul>
+            <li><a href="{{url.here}}/users/set">{% trans "Add new user" %} <i class='floatRa mRa10 fc-mute sf-user-plus'></i></a></li>
+            <li><a href="{{url.here}}/permission">{% trans "Permissions" %} <i class='floatRa mRa10 fc-mute sf-lock'></i></a></li>
+        </ul>
+    </li>
+    <li><a href="{{url.here}}/options"><i class='sf-tools'></i> <span>{% trans "Options" %}</span></a></li>
 {%endblock%}
 
 
