@@ -386,6 +386,13 @@ class users
 	}
 
 
+	public static function permission_group()
+	{
+		$query = "SELECT COUNT(*) AS `count`, users.permission AS `permission` FROM users GROUP BY users.permission";
+		return \dash\db::get($query, ['permission', 'count']);
+	}
+
+
 		/**
 	 * get users method
 	 *

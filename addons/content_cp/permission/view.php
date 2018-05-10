@@ -18,6 +18,7 @@ class view
 		\dash\data::perm_list(\dash\permission::categorize_list());
 		\dash\data::perm_group(\dash\permission::groups());
 		\dash\data::perm_groupPos(\dash\permission::groups(true));
+		\dash\data::perm_usercount(\dash\permission::usercount());
 
 
 	}

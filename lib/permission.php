@@ -111,6 +111,29 @@ class permission
 	}
 
 
+	public static function usercount()
+	{
+		$count = \dash\db\users::permission_group();
+		$group = self::groups();
+
+		$new_count = [];
+
+		foreach ($group as $key => $value)
+		{
+			if(array_key_exists($key, $count))
+			{
+				$new_count[$key] = intval($count[$key]);
+			}
+			else
+			{
+				$new_count[$key] = 0;
+			}
+		}
+
+		return $new_count;
+	}
+
+
 	public static function groups($_project = false)
 	{
 		self::load();
