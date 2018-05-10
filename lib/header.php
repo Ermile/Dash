@@ -163,8 +163,8 @@ class header
 				$_title = self::desc($_code);
 			}
 
-			\dash\notif::error($_title, $_code);
-			// end process code and return as json
+			\dash\notif::error($_title, ['title'=> T_(self::desc($_code)).' '. $_code]);
+  			// end process code and return as json
 			\dash\code::end();
 
 			// remove below code if have no problem
