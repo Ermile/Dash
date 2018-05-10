@@ -102,11 +102,7 @@ class permission
 			self::$project_group     = self::read_file(root.'/includes/permission/group.me.json');
 
 			self::$core_perm_list    = self::read_file(core.'addons/includes/permission/list.json');
-
-			if(!self::$project_group)
-			{
-				self::$core_group        = self::read_file(core.'addons/includes/permission/group.json');
-			}
+			self::$core_group        = self::read_file(core.'addons/includes/permission/group.json');
 
 			if(is_callable(['\lib\permission', 'perm_list']))
 			{
@@ -146,7 +142,12 @@ class permission
 		unset($new[$_id]);
 		if(is_callable(['\lib\permission', 'delete_permission']))
 		{
-			\lib\permission::delete_permission($new);
+			$result = \lib\permission::delete_permission($new);
+			if($result === null)
+			{
+				$new = json_encode($new, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+				\dash\file::write(root.'/includes/permission/group.me.json', $new);
+			}
 		}
 		else
 		{
@@ -165,6 +166,10 @@ class permission
 		if(is_callable(['\lib\permission', 'usercount']))
 		{
 			$count = \lib\permission::usercount();
+			if($count === null)
+			{
+				$count = \dash\db\users::permission_group();
+			}
 		}
 		else
 		{
@@ -195,6 +200,7 @@ class permission
 	public static function groups($_project = false)
 	{
 		self::load();
+
 		$all_group = [];
 
 		if($_project)
@@ -217,6 +223,7 @@ class permission
 	public static function lists($_project = false)
 	{
 		self::load();
+
 		$all_list = [];
 
 		if($_project)
@@ -283,11 +290,13 @@ class permission
 			return false;
 		}
 
+		$groups = self::groups();
+
 		if(!$_update)
 		{
 			$_name = \dash\utility\filter::slug($_name);
 
-			if(array_key_exists($_name, self::$project_group))
+			if(array_key_exists($_name, $groups))
 			{
 				\dash\notif::error(T_("This key was reserved, Try another"), 'name');
 				return false;
@@ -306,7 +315,13 @@ class permission
 		}
 		else
 		{
-			if(!array_key_exists($_name, self::$project_group))
+			if($_name === 'supervisor' || $_name === 'admin')
+			{
+				\dash\notif::warn(T_("Can not change admin permission"));
+				return false;
+			}
+
+			if(!array_key_exists($_name, $groups))
 			{
 				\dash\notif::error(T_("This key was not found in your permission list!"), 'name');
 				return false;
@@ -350,7 +365,12 @@ class permission
 
 		if(is_callable(['\lib\permission', 'save_permission']))
 		{
-			\lib\permission::save_permission($new);
+			$result = \lib\permission::save_permission($new);
+			if($result === null)
+			{
+				$new = json_encode($new, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+				\dash\file::write(root.'/includes/permission/group.me.json', $new);
+			}
 		}
 		else
 		{
