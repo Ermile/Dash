@@ -103,11 +103,16 @@ class model
 
 		if(\dash\request::get('id'))
 		{
+			\dash\permission::access('cpUsersEdit');
+
 			$request['id'] = \dash\request::get('id');
 			$result = \dash\app\user::edit($request);
 		}
 		else
 		{
+
+			\dash\permission::access('cpUsersAdd');
+
 			$result = \dash\app\user::add($request);
 		}
 

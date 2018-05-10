@@ -6,6 +6,19 @@ class model
 {
 	public static function post()
 	{
+		$myType = \dash\request::get('type');
+		switch ($myType)
+		{
+			case 'page':
+				\dash\permission::access('cpPageAdd');
+				break;
+
+			case 'post':
+			default:
+				\dash\permission::access('cpPostsAdd');
+				break;
+		}
+
 
 		$posts = \content_cp\posts\main\model::getPost();
 

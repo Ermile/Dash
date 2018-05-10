@@ -7,7 +7,7 @@ class controller
 	public static function routing()
 	{
 		// if the user login redirect to base
-		if(\dash\permission::check('enter:another:session'))
+		if(\dash\permission::supervisor())
 		{
 			// the admin can login by another session
 			// never redirect to main

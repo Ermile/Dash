@@ -13,6 +13,7 @@ class controller
 			\dash\redirect::to(\dash\url::base(). '/enter');
 			return;
 		}
+
 	}
 }
 ?>

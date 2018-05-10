@@ -27,8 +27,6 @@ class view
 		\dash\data::dataRaw($detail);
 		\dash\data::listCats(\dash\app\term::cat_list());
 
-
-
 		$myTitle = T_("Edit post");
 		$myDesc  = T_("You can change everything, change url and add gallery or some other change");
 
@@ -36,15 +34,27 @@ class view
 		$myBadgeText = T_('Back to list of posts');
 
 		$myType = \dash\request::get('type');
+
 		if($myType)
 		{
 			switch ($myType)
 			{
 				case 'page':
+					\dash\permission::access('cpPageEdit');
+					break;
+
 					$myTitle = T_('Edit page');
 					$myBadgeText = T_('Back to list of pages');
 					break;
+
+				case 'post':
+				default:
+					\dash\permission::access('cpPostsEdit');
 			}
+		}
+		else
+		{
+			\dash\permission::access('cpPostsEdit');
 		}
 
 		\dash\data::page_title($myTitle);

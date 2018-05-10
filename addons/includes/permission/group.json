@@ -1,26 +1,71 @@
 {
   "admin": {
-    "title": "مدیر کل",
+    "title": "Admin",
     "contain": [
-      "cp:news:view",
-      "cp:news:add",
-      "cp:news:edit",
-      "cp:news:delete"
+      "cpPermissionAdd",
+      "cpPermissionEdit",
+      "cpPermissionDelete",
+      "cpPermissionView",
+      "cpCommentsEdit",
+      "cpCommentsView",
+      "cotentCp",
+      "cpUsersView",
+      "cpUsersEdit",
+      "cpUsersAdd",
+      "cpCategoryView",
+      "cpTagView",
+      "cpCategoryEdit",
+      "cpTagEdit",
+      "cpCategoryAdd",
+      "cpTagAdd",
+      "cpBackup",
+      "cpPageAdd",
+      "cpPostsAdd",
+      "cpPageEdit",
+      "cpPostsEdit",
+      "cpPageView",
+      "cpPostsView"
     ]
   },
   "editor": {
-    "title": "ویراستار",
+    "title": "Editor",
     "contain": [
-      "cp:news:view",
-      "cp:news:add",
-      "cp:news:edit"
+      "cpCommentsEdit",
+      "cpCommentsView",
+      "cotentCp",
+      "cpUsersView",
+      "cpCategoryView",
+      "cpTagView",
+      "cpCategoryEdit",
+      "cpTagEdit",
+      "cpCategoryAdd",
+      "cpTagAdd",
+      "cpBackup",
+      "cpPageAdd",
+      "cpPostsAdd",
+      "cpPageEdit",
+      "cpPostsEdit",
+      "cpPageView",
+      "cpPostsView"
     ]
   },
   "writer": {
-    "title": "نویسنده",
+    "title": "Writer",
     "contain": [
-      "cp:news:view",
-      "cp:news:add"
+      "cotentCp",
+      "cpCategoryView",
+      "cpTagView",
+      "cpCategoryEdit",
+      "cpTagEdit",
+      "cpCategoryAdd",
+      "cpTagAdd",
+      "cpBackup",
+      "cpPageAdd",
+      "cpPostsAdd",
+      "cpPageEdit",
+      "cpPostsEdit",
+      "cpPageView",
+      "cpPostsView"
     ]
   }
 }

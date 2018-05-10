@@ -6,7 +6,6 @@ class view
 {
 	public static function config()
 	{
-		\dash\permission::access('cpPostsView');
 
 		$moduleTypeTxt = \dash\request::get('type');
 		$moduleType    = '';
@@ -29,11 +28,20 @@ class view
 			switch ($myType)
 			{
 				case 'page':
+					\dash\permission::access('cpPageView');
 					$myTitle = T_('Pages');
 					$myDesc  = T_('Check list of pages and to find your pages.'). ' '. T_('Also add or edit specefic static page.');
 					break;
-			}
 
+				case 'post':
+				default:
+					\dash\permission::access('cpPostsView');
+					break;
+			}
+		}
+		else
+		{
+			\dash\permission::access('cpPostsView');
 		}
 
 		// add back level to summary link

@@ -21,14 +21,7 @@ class controller
 		}
 		else
 		{
-			if(\dash\permission::check('cp'))
-			{
-				// the user have permission of cp
-			}
-			else
-			{
-				\dash\header::status(403, T_("Can not access to cp"));
-			}
+			\dash\permission::access('cotentCp');
 		}
 	}
 }

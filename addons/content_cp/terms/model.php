@@ -6,7 +6,6 @@ class model
 {
 	public static function post()
 	{
-		\dash\permission::access('cpTermsEdit');
 
 		$post             = [];
 		$post['title']    = \dash\request::post('title');
@@ -18,13 +17,53 @@ class model
 		$post['type']     = \dash\request::get('type');
 		$post['status']   = \dash\request::post('status') ? 'enable' : 'disable' ;
 
+		$myType = \dash\request::get('type');
+
 		if(\dash\request::get('edit'))
 		{
+			if($myType)
+			{
+				switch ($myType)
+				{
+					case 'cat':
+					case 'category':
+						\dash\permission::access('cpCategoryEdit');
+						break;
+
+					case 'tag':
+						\dash\permission::access('cpTagEdit');
+						break;
+				}
+			}
+			else
+			{
+				\dash\permission::access('cpTagEdit');
+			}
+
 			$post['id'] = \dash\request::get('edit');
 			\dash\app\term::edit($post);
 		}
 		else
 		{
+			if($myType)
+			{
+				switch ($myType)
+				{
+					case 'cat':
+					case 'category':
+						\dash\permission::access('cpCategoryAdd');
+						break;
+
+					case 'tag':
+						\dash\permission::access('cpTagAdd');
+						break;
+				}
+			}
+			else
+			{
+				\dash\permission::access('cpTagAdd');
+			}
+
 			\dash\app\term::add($post);
 		}
 

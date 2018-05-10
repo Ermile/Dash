@@ -23,7 +23,6 @@ class view
 			\dash\data::page_title(\dash\data::page_title(). ' | '. T_('Search for :search', ['search' => $search_string]));
 		}
 
-
 		$args =
 		[
 			'sort'  => \dash\request::get('sort'),

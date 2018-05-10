@@ -30,12 +30,24 @@ class view
 			switch ($myType)
 			{
 				case 'page':
+
+					\dash\permission::access('cpPageAdd');
+
 					$myTitle = T_('Add new page');
 					$myDesc  = T_("Add new static page like about or honors");
 
 					$myBadgeText = T_('Back to list of pages');
 					break;
+
+				case 'post':
+				default:
+					\dash\permission::access('cpPostsAdd');
+					break;
 			}
+		}
+		else
+		{
+			\dash\permission::access('cpPostsAdd');
 		}
 
 		\dash\data::page_title($myTitle);

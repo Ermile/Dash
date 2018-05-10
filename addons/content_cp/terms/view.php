@@ -6,7 +6,6 @@ class view
 {
 	public static function config()
 	{
-		\dash\permission::access('cpTermView');
 
 		$myTitle = T_("Terms");
 		$myDesc  = T_("Check terms and filter by type or view and edit some terms");
@@ -18,15 +17,23 @@ class view
 			{
 				case 'cat':
 				case 'category':
+					\dash\permission::access('cpCategoryView');
+
 					$myTitle = T_('Categories');
 					$myDesc  = T_("Check categories and add or edit some new category");
 					break;
 
 				case 'tag':
+					\dash\permission::access('cpTagView');
+
 					$myTitle = T_('Tags');
 					$myDesc  = T_("Check tags and add or edit some new tag");
 					break;
 			}
+		}
+		else
+		{
+			\dash\permission::access('cpTagView');
 		}
 
 		\dash\data::page_title($myTitle);
@@ -34,7 +41,6 @@ class view
 
 		\dash\data::badge_text(T_('Back to dashboard'));
 		\dash\data::badge_link(\dash\url::here());
-
 
 
 		$args =
@@ -57,6 +63,14 @@ class view
 			else
 			{
 				$args['type'] = $myType;
+			}
+		}
+
+		if($args['type'] === 'cat')
+		{
+			if(!\dash\permission::check('cpCategoryView'))
+			{
+				// @check
 			}
 		}
 

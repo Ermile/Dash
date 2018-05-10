@@ -1,45 +1,140 @@
 {
-  "cp:news:view": {
-    "title": "مشاهده خبر",
-    "cat": "cp",
+  "cpPermissionAdd": {
+    "title": "cpPermissionAdd",
+    "cat": "Control Panel",
     "check": false,
-    "verify": false,
-    "require": null
+    "require": []
   },
-  "cp:news:add": {
-    "title": "افزودن خبر",
-    "cat": "cp",
+  "cpPermissionEdit": {
+    "title": "cpPermissionEdit",
+    "cat": "Control Panel",
     "check": false,
-    "verify": false,
-    "require": [
-      "cp:news:view"
-    ]
+    "require": []
   },
-  "cp:news:edit": {
-    "title": "ویرایش خبر",
-    "cat": "cp",
+  "cpPermissionDelete": {
+    "title": "cpPermissionDelete",
+    "cat": "Control Panel",
     "check": false,
-    "verify": false,
-    "require": [
-      "cp:news:view"
-    ]
+    "require": []
   },
-  "cp:news:delete": {
-    "title": "حذف خبر",
-    "cat": "cp",
+  "cpPermissionView": {
+    "title": "cpPermissionView",
+    "cat": "Control Panel",
     "check": false,
-    "verify": false,
-    "require": [
-      "cp:news:view"
-    ]
+    "require": []
   },
-  "su:news:delete": {
-    "title": "حذف خبر",
-    "cat": "su",
+  "cpCommentsEdit": {
+    "title": "cpCommentsEdit",
+    "cat": "Control Panel",
     "check": false,
-    "verify": false,
-    "require": [
-      "su:news:view"
-    ]
+    "require": []
+  },
+  "cpCommentsView": {
+    "title": "cpCommentsView",
+    "cat": "Control Panel",
+    "check": false,
+    "require": []
+  },
+  "cotentCp": {
+    "title": "cotentCp",
+    "cat": "Control Panel",
+    "check": false,
+    "require": []
+  },
+  "cpUsersView": {
+    "title": "cpUsersView",
+    "cat": "Control Panel",
+    "check": false,
+    "require": []
+  },
+  "cpUsersEdit": {
+    "title": "cpUsersEdit",
+    "cat": "Control Panel",
+    "check": false,
+    "require": []
+  },
+  "cpUsersAdd": {
+    "title": "cpUsersAdd",
+    "cat": "Control Panel",
+    "check": false,
+    "require": []
+  },
+  "cpCategoryView": {
+    "title": "cpCategoryView",
+    "cat": "Control Panel",
+    "check": false,
+    "require": []
+  },
+  "cpTagView": {
+    "title": "cpTagView",
+    "cat": "Control Panel",
+    "check": false,
+    "require": []
+  },
+  "cpCategoryEdit": {
+    "title": "cpCategoryEdit",
+    "cat": "Control Panel",
+    "check": false,
+    "require": []
+  },
+  "cpTagEdit": {
+    "title": "cpTagEdit",
+    "cat": "Control Panel",
+    "check": false,
+    "require": []
+  },
+  "cpCategoryAdd": {
+    "title": "cpCategoryAdd",
+    "cat": "Control Panel",
+    "check": false,
+    "require": []
+  },
+  "cpTagAdd": {
+    "title": "cpTagAdd",
+    "cat": "Control Panel",
+    "check": false,
+    "require": []
+  },
+  "cpBackup": {
+    "title": "cpBackup",
+    "cat": "Control Panel",
+    "check": false,
+    "require": []
+  },
+  "cpPageAdd": {
+    "title": "cpPageAdd",
+    "cat": "Control Panel",
+    "check": false,
+    "require": []
+  },
+  "cpPostsAdd": {
+    "title": "cpPostsAdd",
+    "cat": "Control Panel",
+    "check": false,
+    "require": []
+  },
+  "cpPageEdit": {
+    "title": "cpPageEdit",
+    "cat": "Control Panel",
+    "check": false,
+    "require": []
+  },
+  "cpPostsEdit": {
+    "title": "cpPostsEdit",
+    "cat": "Control Panel",
+    "check": false,
+    "require": []
+  },
+  "cpPageView": {
+    "title": "cpPageView",
+    "cat": "Control Panel",
+    "check": false,
+    "require": []
+  },
+  "cpPostsView": {
+    "title": "cpPostsView",
+    "cat": "Control Panel",
+    "check": false,
+    "require": []
   }
 }

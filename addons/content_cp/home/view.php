@@ -5,8 +5,6 @@ class view
 {
 	public static function config()
 	{
-		\dash\permission::access('cp');
-
 		\dash\data::bodyclass('siftal');
 
 		\dash\data::display_cp_posts("content_cp/posts/layout.html");

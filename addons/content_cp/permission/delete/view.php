@@ -6,7 +6,7 @@ class view
 {
 	public static function config()
 	{
-		\dash\permission::access('cpPermissionAddEdit');
+		\dash\permission::access('cpPermissionDelete');
 
 		\dash\data::page_title(T_("Delete a permissions"));
 		\dash\data::page_desc(T_("Set and config permission group to categorize user access."));

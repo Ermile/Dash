@@ -6,7 +6,7 @@ class view
 {
 	public static function config()
 	{
-		\dash\permission::access('cpPermissionAddEdit');
+		\dash\permission::access('cpPermissionAdd');
 
 		\dash\data::page_title(T_("Add new permissions"));
 		\dash\data::page_desc(T_("Set and config permission group to categorize user access."));
@@ -20,6 +20,8 @@ class view
 
 		if(\dash\request::get('id'))
 		{
+			\dash\permission::access('cpPermissionEdit');
+
 			$id = \dash\request::get('id');
 			$load_permission = \dash\permission::load_permission($id);
 
