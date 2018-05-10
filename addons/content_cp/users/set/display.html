@@ -4,66 +4,84 @@
 {%block pageContent%}
 
 
-<form method="post" enctype="multipart/form-data">
-<div class="f justify-center">
-  <div class="c6 s12">
-    <div class="cbox">
+<form method="post" enctype="multipart/form-data" autocomplete="off">
+  <div class="f justify-center">
+    <div class="c8">
 
-        {{block("iAvatar")}}
-        <br>
-
-      <div class="f">
-        <div class="c6 s12 pRa5">{{block("imobile")}}</div>
-        <div class="c6 s12">{{block("iDisplayName")}}</div>
+      <div class="cbox">
+        <h3 class="txtC">{%trans "Name and global details"%}</h3>
+{{block("iUsername")}}
+        <div class="f">
+          <div class="c6 pRa5">{{block("iFirstname")}}</div>
+          <div class="c6">{{block("iLastname")}}</div>
+        </div>
+{{block("iTitle")}}
+{{block("iDisplayName")}}
+{{block("iBio")}}
+{{block("iSaveAll")}}
       </div>
 
-      <div class="f">
-        <div class="c6 s12 pRa5">{{block("iEmail")}}</div>
-
+      <div class="cbox">
+        <h3 class="txtC">{%trans "Email and Social Networks"%}</h3>
+{{block("iWebsite")}}
+{{block("iEmail")}}
+{{block("iGmail")}}
+{{block("iInstagram")}}
+{{block("iFacebook")}}
+{{block("iTwitter")}}
+{{block("iLinkedin")}}
+{{block("iSaveAll")}}
       </div>
 
-      <div class="f">
-        <div class="c s12 pRa5">{{block("iPassword")}}</div>
-        <div class="c s12">{{block("irePassword")}}</div>
+      <div class="cbox">
+        <h3 class="txtC">{%trans "Security and Enter"%}</h3>
+{{block("imobile")}}
+{{block("iPassword")}}
+{{block("irePassword")}}
+{{block("iPermission")}}
+{{block("iTwostep")}}
+{{block("iSaveAll")}}
       </div>
 
-      <div class="f">
-        <div class="c s12 pRa5">{{block("iPermission")}}</div>
-        <div class="c s12">{{block("iStatus")}}</div>
+      <div class="cbox">
+        <h3 class="txtC">{%trans "Improve user experience"%}</h3>
+
+{{block("iAvatar")}}
+{{block("iLanguage")}}
+{{block("igender")}}
+{{block("ibirthday")}}
+{{block("iSidebar")}}
+
+{{block("iStatus")}}
+{{block("iSaveAll")}}
       </div>
-
-      {{block("igender")}}
-
-      {{block("iadd")}}
-
     </div>
   </div>
-</div>
 </form>
 {%endblock%}
 
 
 {%block iTwostep%}
-<label for="twostep">{%trans "Twostep"%}</label>
-<div class="switch1 mTB0">
+<div class="switch1 mT20">
  <input type="checkbox" name="twostep" id="twostep" {%if dataRaw.twostep  %}checked{%endif%}>
  <label for="twostep"></label>
+ <label for="twostep">{%trans "Two step verification"%}</label>
 </div>
 {%endblock%}
 
 
 {%block iSidebar%}
-<label for="xsidebar">{%trans "Sidebar"%}</label>
+<label for="xsidebar">{%trans "Auto hide sidebar"%}</label>
 <div class="switch1 mTB0">
- <input type="checkbox" name="sidebar" id="xsidebar" {%if dataRaw.sidebar  %}checked{%endif%}>
+ <input type="checkbox" name="sidebar" id="xsidebar" {%if dataRaw.sidebar %}checked{%endif%}>
  <label for="xsidebar"></label>
 </div>
 {%endblock%}
 
 
 {%block iLanguage%}
-<div class="mT10">
-  <label for="language">{%trans "Language"%}</label>
+<div class="mTB10">
+  <label for="language">{%trans "Default language"%}</label>
   <select name="language" class="ui dropdown" id="language">
     <option value="" readonly>{%trans "Select one item"%}</option>
     {%for key, lang in lang.list%}
@@ -76,8 +94,8 @@
 
 {%block iWebsite%}
 <label for="website">{%trans "Website"%}</label>
-<div class="input">
-  <input type="url" name="website" id="website" placeholder='{%trans "Website"%}' value="{{dataRaw.website}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid website from 3 to 40 character"%}' >
+<div class="input ltr">
+  <input type="url" name="website" id="website" placeholder='{%trans "Website"%} {%trans "like"%} https://ermile.com' value="{{dataRaw.website}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid website from 3 to 40 character"%}' >
 </div>
 {%endblock%}
 
@@ -85,14 +103,16 @@
 
 {%block iInstagram%}
 <label for="instagram">{%trans "Instagram"%}</label>
-<div class="input">
+<div class="input ltr">
+  <span class="addon"><i class="sf-instagram"></i> instagram.com/</span>
   <input type="text" name="instagram" id="instagram" placeholder='{%trans "Instagram"%}' value="{{dataRaw.instagram}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid instagram from 3 to 40 character"%}' >
 </div>
 {%endblock%}
 
 {%block iFacebook%}
 <label for="facebook">{%trans "Facebook"%}</label>
-<div class="input">
+<div class="input ltr">
+  <span class="addon"><i class="sf-facebook-official"></i> facebook.com/</span>
   <input type="text" name="facebook" id="facebook" placeholder='{%trans "Facebook"%}' value="{{dataRaw.facebook}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid facebook from 3 to 40 character"%}' >
 </div>
 {%endblock%}
@@ -100,16 +120,18 @@
 
 {%block iTwitter%}
 <label for="twitter">{%trans "Twitter"%}</label>
-<div class="input">
+<div class="input ltr">
+  <span class="addon"><i class="sf-twitter"></i> twitter.com/</span>
   <input type="text" name="twitter" id="twitter" placeholder='{%trans "Twitter"%}' value="{{dataRaw.twitter}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid twitter from 3 to 40 character"%}' >
 </div>
 {%endblock%}
 
 
 {%block iLinkedin%}
-<label for="twitter">{%trans "Linkedin"%}</label>
-<div class="input">
-  <input type="text" name="twitter" id="twitter" placeholder='{%trans "Linkedin"%}' value="{{dataRaw.twitter}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid twitter from 3 to 40 character"%}' >
+<label for="linkedin">{%trans "Linkedin"%}</label>
+<div class="input ltr">
+  <span class="addon"><i class="sf-linkedin"></i> linkedin.com/</span>
+  <input type="text" name="linkedin" id="linkedin" placeholder='{%trans "Linkedin"%}' value="{{dataRaw.linkedin}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid linkedin from 3 to 40 character"%}' >
 </div>
 {%endblock%}
 
@@ -117,8 +139,9 @@
 
 {%block iGmail%}
 <label for="gmail">{%trans "Gmail"%}</label>
-<div class="input">
-  <input type="email" name="gmail" id="gmail" placeholder='{%trans "Like"%} abc@example.com' value="{{dataRaw.gmail}}" maxlength='50'>
+<div class="input ltr">
+  <input type="email" name="gmail" id="gmail" placeholder='{%trans "Like"%} your-mail' value="{{dataRaw.gmail}}" maxlength='50'>
+  <span class="addon">@gmail.com</span>
 </div>
 {%endblock%}
 
@@ -145,14 +168,14 @@
 {%block iUsername%}
 <label for="username">{%trans "Username"%}</label>
 <div class="input">
-  <input type="text" name="username" id="username" placeholder='{%trans "Username"%}' value="{{dataRaw.username}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid username from 3 to 40 character"%}' >
+  <input type="text" name="username" id="username" placeholder='{%trans "Username"%}' value="{{dataRaw.username}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid username from 3 to 40 character"%}' autofocus>
 </div>
 {%endblock%}
 
 
 
 {%block iTitle%}
-<label for="title">{%trans "Title"%}</label>
+<label for="title">{%trans "Nick name"%}</label>
 <div class="input">
   <input type="text" name="title" id="title" placeholder='{%trans "Title"%}' value="{{dataRaw.title}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid title from 3 to 40 character"%}' >
 </div>
@@ -179,7 +202,7 @@
 
 {%block iBio%}
 <label for="bio">{%trans "Bio"%}</label>
-<textarea class="txt mB20" name="bio" placeholder='{%trans "Bio"%}' maxlength='300' rows="3">{{dataRaw.bio}}</textarea>
+<textarea class="txt mB20 pB25" name="bio" placeholder='{%trans "Bio"%}' maxlength='300' rows="3">{{dataRaw.bio}}</textarea>
 {%endblock%}
 
 
@@ -192,19 +215,12 @@
 {%endblock%}
 
 
-{%block iFullname%}
-<label for="fullname">{%trans "Last name"%} <small class="fc-red">* {%trans "Require"%}</small></label>
-<div class="input">
-  <input type="text" name="fullname" id="fullname" placeholder='{%trans "Full name"%} *' value="{{dataRaw.fullname}}" maxlength='60' >
-</div>
-{%endblock%}
-
 
 
 {%block imobile%}
 <label for="mobile">{%trans "Mobile"%} <small class="fc-red">* {%trans "Require"%}</small></label>
 <div class="input">
-  <input type="text" name="mobile" id="mobile" placeholder='{%trans "Like 09120123456"%} *' value="{{dataRaw.mobile}}" maxlength='30' required autofocus>
+  <input type="text" name="mobile" id="mobile" placeholder='{%trans "Like 09120123456"%} *' value="{{dataRaw.mobile}}" maxlength='30' required {%if dataRaw.mobile%} readonly{%endif%}>
 </div>
 {%endblock%}
 
@@ -265,17 +281,19 @@
 
 
 {%block iPassword%}
-<label for="password">{%trans "Password"%}</label>
+<label for="password">{%trans "Password"%} <small>{%trans "Enter to change pass"%}</small></label>
 <div class="input">
-  <input type="password" name="password" id="password" placeholder='{%if dataRaw.password%}{%trans "Password was set, enter to change it!"%}{%else%}{%trans "Password not set, enter  to set it!"%}{%endif%}'  maxlength='50'>
+  <input type="password" name="password" id="password" placeholder='{%if dataRaw.password%}{%trans "Password was set, enter to change it!"%}{%else%}{%trans "Password not set, enter  to set it!"%}{%endif%}' maxlength='50' data-response-realtime autocomplete="new-password">
 </div>
 {%endblock%}
 
 
 {%block irePassword%}
-<label for="repassword">{%trans "RePassword"%}</label>
-<div class="input">
+<div data-response='password' data-response-hide data-response-effect='slide'>
+  <label for="repassword">{%trans "Confirm password"%} <small class="fc-red">* {%trans "Require to change current password"%}</small></label>
+  <div class="input">
   <input type="password" name="repassword" id="repassword" placeholder='{%if dataRaw.password%}{%trans "Password was set, enter to change it!"%}{%else%}{%trans "Password not set, enter  to set it!"%}{%endif%}'  maxlength='50'>
+</div>
 </div>
 {%endblock%}
 
@@ -299,6 +317,9 @@
 <button class="btn primary block mT20">{%trans "Save"%}</button>
 {%endblock%}
 
+{%block iSaveAll%}
+<button class="btn primary block mT20">{%trans "Save all"%}</button>
+{%endblock%}
 
 
 
