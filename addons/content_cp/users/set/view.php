@@ -17,6 +17,12 @@ class view
 		\dash\data::badge_text(T_('Back to list of users'));
 
 		$perm_list = \dash\permission::groups();
+
+		if(\dash\url::isLocal() || \dash\permission::supervisor())
+		{
+			$perm_list['supervisor'] = [];
+		}
+
 		\dash\data::permGroup(array_keys($perm_list));
 
 		if(\dash\request::get('id'))
@@ -35,7 +41,7 @@ class view
 
 			if(isset($user_detail['permission']))
 			{
-				if($post['permission'] === 'supervisor' && !\dash\url::isLocal() && !\dash\permission::supervisor())
+				if($user_detail['permission'] === 'supervisor' && !\dash\url::isLocal() && !\dash\permission::supervisor())
 				{
 					\dash\header::status(404, T_("User not found"));
 				}

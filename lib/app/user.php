@@ -132,9 +132,25 @@ class user
 		$permission = \dash\app::request('permission');
 		if($permission && !in_array($permission, array_keys(\dash\permission::groups())))
 		{
-			if($_option['save_log']) \dash\app::log('addon:api:user:permission:max:lenght', \dash\user::id(), $log_meta);
-			if($_option['debug']) \dash\notif::error(T_("Permission is incorrect"), 'permission');
-			return false;
+			if($permission === 'supervisor')
+			{
+				if(!\dash\url::isLocal() && !\dash\permission::supervisor())
+				{
+					\dash\notif::error("Permission is incorrect", 'permission');
+					return false;
+				}
+				else
+				{
+					// no problem
+					// supervisor make a new supervisor
+				}
+			}
+			else
+			{
+				if($_option['save_log']) \dash\app::log('addon:api:user:permission:max:lenght', \dash\user::id(), $log_meta);
+				if($_option['debug']) \dash\notif::error(T_("Permission is incorrect"), 'permission');
+				return false;
+			}
 		}
 
 		$username = \dash\app::request('username');
