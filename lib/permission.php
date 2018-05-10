@@ -4,19 +4,26 @@ namespace dash;
 /** Access: handle permissions **/
 class permission
 {
+	// check to not duplicate load permission file
 	private static $load                    = false;
+	// check to not duplicate load user data
 	private static $user_loaded             = false;
+	// user permissio as a group name
 	private static $user_permission         = null;
-
+	// loaded user group permission and find whate containg of the user
+	private static $user_permission_contain = [];
+	// list of project permissin list
 	private static $project_perm_list       = [];
+	// list of project permission group
 	private static $project_group           = [];
-
+	// list of dash permission list
 	private static $core_perm_list          = [];
+	// list of dash permission group
 	private static $core_group              = [];
 
-	private static $user_permission_contain = [];
 
-
+	// write permission file
+	// not use!
 	public static function write_file($_caller, $_postion)
 	{
 		self::load();
@@ -67,7 +74,7 @@ class permission
 
 	}
 
-
+	// read permission file and json_decode to make an array of it
 	public static function read_file($_addr)
 	{
 		$perm = [];
@@ -85,6 +92,7 @@ class permission
 	}
 
 
+	// load all permission file and if exist lib\permission check this list by this function
 	private static function load()
 	{
 		if(!self::$load)
@@ -115,6 +123,7 @@ class permission
 	}
 
 
+	// delete permission from project file
 	public static function delete_permission($_id)
 	{
 		$user_count = self::usercount();
@@ -150,6 +159,7 @@ class permission
 	}
 
 
+	// get count of user by permission group
 	public static function usercount()
 	{
 		if(is_callable(['\lib\permission', 'usercount']))
@@ -181,6 +191,7 @@ class permission
 	}
 
 
+	// show all group name
 	public static function groups($_project = false)
 	{
 		self::load();
@@ -202,7 +213,7 @@ class permission
 	}
 
 
-
+	// show all permission list
 	public static function lists($_project = false)
 	{
 		self::load();
@@ -223,6 +234,7 @@ class permission
 	}
 
 
+	// make an array to draw permission list in quick view
 	public static function categorize_list()
 	{
 		self::load();
@@ -260,6 +272,7 @@ class permission
 	}
 
 
+	// save permission if file of every where
 	public static function save_permission($_name, $_lable, $_contain, $_update = false)
 	{
 		self::load();
@@ -350,6 +363,7 @@ class permission
 	}
 
 
+	// load user data
 	private static function load_user($_user_id, $_force = false)
 	{
 		if($_user_id && is_numeric($_user_id))
@@ -381,19 +395,7 @@ class permission
 	}
 
 
-	public static function supervisor($_force_load_user = true)
-	{
-		self::load_user(null, $_force_load_user);
-
-		if(self::$user_permission === 'supervisor')
-		{
-			return true;
-		}
-
-		return false;
-	}
-
-
+	// opern permission for edit or delete
 	public static function load_permission($_id)
 	{
 		self::load();
@@ -412,6 +414,21 @@ class permission
 	}
 
 
+	// check the user is supervisor or not
+	public static function supervisor($_force_load_user = true)
+	{
+		self::load_user(null, $_force_load_user);
+
+		if(self::$user_permission === 'supervisor')
+		{
+			return true;
+		}
+
+		return false;
+	}
+
+
+	// check permission
 	public static function check($_caller, $_user_id = null)
 	{
 		self::load_user($_user_id);
@@ -466,6 +483,7 @@ class permission
 	}
 
 
+	// check access
 	public static function access($_caller)
 	{
 		$check = self::check($_caller);
