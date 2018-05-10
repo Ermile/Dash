@@ -26,6 +26,7 @@ class enter
 			case 'pass_set_password_not_set':
 			case 'pass_signup_password_not_set':
 			case 'username_username_not_set':
+			case 'change_pass_have_not_pass':
 				if($count_try > 10)
 				{
 					// ban user for 2 min
@@ -40,9 +41,25 @@ class enter
 	}
 
 
-	public static function clean_session()
+	public static function clean_session($_low = false)
 	{
-		unset($_SESSION['enter']);
+		if($_low)
+		{
+			$alert = [];
+
+			if(isset($_SESSION['enter']['alert']))
+			{
+				$alert = $_SESSION['enter']['alert'];
+			}
+
+			unset($_SESSION['enter']);
+
+			$_SESSION['enter']['alert'] = $alert;
+		}
+		else
+		{
+			unset($_SESSION['enter']);
+		}
 	}
 
 
@@ -141,7 +158,7 @@ class enter
 	{
 		if(!isset($_SESSION['enter']['user_data']))
 		{
-			self::load_user_data('mobile');
+			self::load_user_data(self::get_session('usernameormobile'), 'mobile');
 		}
 
 		if($_key)
@@ -484,8 +501,9 @@ class enter
 
 		if(!$i_can || empty($way))
 		{
-			self::open_lock('verify/what');
 			self::next_step('verify/what');
+			self::open_lock('verify/what');
+			self::open_lock('verify');
 			self::go_to('verify/what');
 		}
 
@@ -810,6 +828,8 @@ class enter
 			self::set_session('alert', $alert);
 			// open lock of alert page
 			self::next_step('alert');
+
+			// self::clean_session(true);
 			// go to alert page
 			self::go_to('alert');
 			return;
@@ -828,7 +848,7 @@ class enter
 			{
 				$update_meta  = [];
 
-				$meta = self::user_data('meta');
+				$meta = \dash\user::detail('meta');
 				if(!$meta)
 				{
 					$update_meta['why'] = self::get_session('why');
@@ -853,14 +873,14 @@ class enter
 			}
 			$update_user['status'] = 'removed';
 
-			\dash\db\users::update($update_user, self::user_data('id'));
+			\dash\db\users::update($update_user, \dash\user::id());
 
-			\dash\db\sessions::delete_account(self::user_data('id'));
+			\dash\db\sessions::delete_account(\dash\user::id());
 
-			//put logout
-			self::set_logout(self::user_data('id'), false);
 			self::next_step('byebye');
+			// self::clean_session(true);
 			self::go_to('byebye');
+			return;
 		}
 
 		/**
@@ -897,7 +917,7 @@ class enter
 				$_SESSION['user']['username'] = self::get_session('temp_username');
 			}
 
-				// set the alert message
+			// set the alert message
 			$alert =
 			[
 				'text' => $text,
@@ -907,6 +927,7 @@ class enter
 			self::set_session('alert', $alert);
 			// open lock of alert page
 			self::next_step('alert');
+			// self::clean_session(true);
 			// go to alert page
 			self::go_to('alert');
 			return;
@@ -967,6 +988,28 @@ class enter
 		{
 			// set off two_step of this user
 			\dash\db\users::update(['twostep' => 0], self::user_data('id'));
+		}
+
+
+		if(self::get_session('verify_from') === 'password_change' && \dash\user::id() && self::get_session('temp_ramz_hash'))
+		{
+			// set off two_step of this user
+			\dash\db\users::update(['password' => self::get_session('temp_ramz_hash')], self::user_data('id'));
+			\dash\db\sessions::change_password(\dash\user::id());
+			$alert =
+			[
+				'text' => T_("Your password was changed"),
+				'link' => \dash\url::site(),
+			];
+
+			self::set_session('alert', $alert);
+			// open lock of alert page
+			self::next_step('alert');
+			// self::clean_session(true);
+			// go to alert page
+			self::go_to('alert');
+			return;
+
 		}
 
 		// set login session

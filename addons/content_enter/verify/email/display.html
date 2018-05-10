@@ -13,7 +13,9 @@
 
 {%block contentFooter%}
    <footer class='f'>
-{{block('ereset')}}
+{%if startNewMobile%}
+	{{block('ereset')}}
+{%endif%}
 {{block('everifyback')}}
    </footer>
 {%endblock%}

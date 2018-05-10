@@ -8,6 +8,8 @@ class view
 	{
 		\dash\data::page_title(T_('Come back to us!'));
 		\dash\data::page_desc(\dash\data::page_title());
+		//put logout
+		\dash\utility\enter::set_logout(\dash\user::id(), false);
 	}
 }
 ?>

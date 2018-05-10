@@ -15,6 +15,8 @@ class model
 		// set session verify_from signup
 		\dash\utility\enter::set_session('verify_from', 'delete');
 
+		\dash\utility\enter::set_session('usernameormobile', \dash\user::detail('mobile'));
+
 		\dash\utility\enter::go_to_verify();
 	}
 }

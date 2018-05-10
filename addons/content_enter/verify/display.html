@@ -44,7 +44,12 @@
 
 
 {{block('ego')}}
-
+{%if rememberLink%}
    <a class='link' href="{{url.base}}/enter/pass">{%trans "Remembered your password?"%}</a>
+ {%endif%}
+
+ {%if not startNewMobile%}
+ 	{%block contentFooter%}{%endblock%}
+ {%endif%}
 {%endblock%}
 

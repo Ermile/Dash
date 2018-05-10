@@ -7,7 +7,6 @@ class view
 
 	public static function config()
 	{
-
 		$mobile_or_email = \dash\data::getUsernamemobile();
 
 		\dash\data::sendWayCod(\dash\utility\enter::list_send_code_way($mobile_or_email));
@@ -18,13 +17,17 @@ class view
 			\dash\data::getUsername(\dash\utility\enter::get_session('username', 'temp_username'));
 		}
 
+
 		self::verifyPageTitle();
+
 
 	}
 
 	public static function verifyPageTitle()
 	{
 
+		\dash\data::rememberLink(true);
+		\dash\data::startNewMobile(true);
 		// the verify msg
 		$myDesc  = T_('Please verify yourself.'). ' ';
 
@@ -63,11 +66,15 @@ class view
 			// user from signup go to this page
 			case 'signup':
 			case 'set':
+				\dash\data::rememberLink(false);
+				\dash\data::startNewMobile(false);
 				// $myDesc .= T_("Your verification code send to your telegram.");
 				break;
 
 			// user from delete go to this page
 			case 'delete':
+				\dash\data::rememberLink(false);
+				\dash\data::startNewMobile(false);
 				$myDesc .= ' '. T_("This is request of delete account!");
 				break;
 
@@ -77,7 +84,9 @@ class view
 				break;
 
 			// user from change password go to this page
-			case 'change':
+			case 'password_change':
+				\dash\data::rememberLink(false);
+				\dash\data::startNewMobile(false);
 				// swich way
 				$myDesc .= ' '. T_("This is request of change password.");
 				break;

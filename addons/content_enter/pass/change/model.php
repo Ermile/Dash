@@ -40,10 +40,18 @@ class model
 			return false;
 		}
 
+		if(!\dash\user::detail('password'))
+		{
+			\dash\utility\enter::try('change_pass_have_not_pass');
+			\dash\notif::error(T_("You do not have any password!"). ' '. T_("Please logout and login again."));
+			return false;
+		}
+
 		// check old password is okay
-		if(!\dash\utility::hasher(\dash\request::post('ramz'), \dash\user::login('pass')))
+		if(!\dash\utility::hasher(\dash\request::post('ramz'), \dash\user::detail('password')))
 		{
 			\dash\utility\enter::try('change_pass_invalid_old_pass');
+			\dash\code::sleep(3);
 			\dash\notif::error(T_("Invalid old password"));
 			return false;
 		}
@@ -64,7 +72,7 @@ class model
 		}
 
 		// set session verify_from change
-		\dash\utility\enter::set_session('verify_from', 'change');
+		\dash\utility\enter::set_session('verify_from', 'password_change');
 		// find send way to send code
 		// and send code
 
