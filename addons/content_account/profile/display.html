@@ -36,23 +36,18 @@
       <div class="cbox">
         <h3 class="txtC">{%trans "Security and Enter"%}</h3>
 {{block("imobile")}}
-{{block("iPassword")}}
-{{block("irePassword")}}
-{{block("iPermission")}}
+{{block("iPasswordLink")}}
+{{block("DeleteAccount")}}
 {{block("iTwostep")}}
 {{block("iSaveAll")}}
       </div>
-
       <div class="cbox">
         <h3 class="txtC">{%trans "Improve User Experience"%}</h3>
-
 {{block("iAvatar")}}
 {{block("iLanguage")}}
 {{block("ibirthday")}}
 {{block("igender")}}
 {{block("iSidebar")}}
-
-{{block("iStatus")}}
 {{block("iSaveAll")}}
       </div>
     </div>
@@ -138,10 +133,12 @@
 
 
 {%block iGmail%}
+{%if value.gmail %}
 <label for="gmail">{%trans "Gmail"%}</label>
 <div class="input ltr">
-  <input type="email" name="gmail" id="gmail" placeholder='{%trans "Like"%} your-mail' value="{{dataRaw.gmail}}" maxlength='50'>
+  <input type="email" name="gmail" id="gmail" placeholder='{%trans "Like"%} your-mail' value="{{dataRaw.gmail}}" maxlength='50' readonly disabled>
 </div>
+{%endif%}
 {%endblock%}
 
 
@@ -279,13 +276,16 @@
 {%endblock%}
 
 
-{%block iPassword%}
-<label for="password">{%trans "Password"%} <small>{%trans "Enter to change pass"%}</small></label>
-<div class="input">
-  <input type="password" name="password" id="password" placeholder='{%if dataRaw.password%}{%trans "Password was set, enter to change it!"%}{%else%}{%trans "Password not set, enter  to set it!"%}{%endif%}' maxlength='50' data-response-realtime autocomplete="new-password">
-</div>
+{%block iPasswordLink%}
+<p class="msg txtC">{%trans "To change your password"%} <a href="{{url.base}}/enter/pass/change" data-direct target="_blank">{%trans "Click here"%}</a></p>
 {%endblock%}
 
+{%block DeleteAccount%}
+<div>
+  <a class="btn danger outline floatRa sm" href="{{url.base}}/enter/delete" data-direct target="_blank">{%trans "Delete your account"%}</a>
+</div>
+
+{%endblock%}
 
 {%block irePassword%}
 <div data-response='password' data-response-hide data-response-effect='slide'>
