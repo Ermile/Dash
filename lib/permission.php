@@ -200,13 +200,21 @@ class permission
 			return false;
 		}
 
-		$_name = \dash\utility\filter::slug($_name);
-
 		if(!$_update)
 		{
+			$_name = \dash\utility\filter::slug($_name);
+
 			if(array_key_exists($_name, self::$project_group))
 			{
 				\dash\notif::error(T_("This key was reserved, Try another"), 'name');
+				return false;
+			}
+		}
+		else
+		{
+			if(!array_key_exists($_name, self::$project_group))
+			{
+				\dash\notif::error(T_("This key was not found in your permission list!"), 'name');
 				return false;
 			}
 		}
@@ -247,8 +255,8 @@ class permission
 			}
 		}
 
-		$new = self::$project_group;
 
+		$new = self::$project_group;
 		$new = array_merge($new, [$_name => ['title' => $_lable, 'contain' => $_contain]]);
 
 		if(is_callable(['\lib\permission', 'save_permission']))
