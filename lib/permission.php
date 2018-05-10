@@ -392,6 +392,11 @@ class permission
 				self::$user_permission = $user_detail['permission'];
 			}
 		}
+
+		if(is_callable(['\lib\permission', 'load_user']))
+		{
+			\lib\permission::load_user($_user_id, $_force);
+		}
 	}
 
 
@@ -436,6 +441,15 @@ class permission
 		if(self::supervisor(false))
 		{
 			return true;
+		}
+
+		$all_list = self::lists();
+		if(array_key_exists($_caller, $all_list))
+		{
+			if(isset($all_list[$_caller]['check']) && $all_list[$_caller]['check']);
+			{
+				self::load_user($_user_id, true);
+			}
 		}
 
 		if(is_callable(['\lib\permission', 'plan']))
