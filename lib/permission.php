@@ -68,7 +68,7 @@ class permission
 	}
 
 
-	private static function read_file($_addr)
+	public static function read_file($_addr)
 	{
 		$perm = [];
 
@@ -92,8 +92,21 @@ class permission
 			self::$load              = true;
 			self::$project_perm_list = self::read_file(root.'/includes/permission/list.json');
 			self::$project_group     = self::read_file(root.'/includes/permission/group.me.json');
+
 			self::$core_perm_list    = self::read_file(core.'addons/includes/permission/list.json');
 			self::$core_group        = self::read_file(core.'addons/includes/permission/group.json');
+
+			if(is_callable(['\lib\permission', 'perm_list']))
+			{
+				self::$project_perm_list = \lib\permission::perm_list(self::$project_perm_list, 'project');
+				self::$core_perm_list    = \lib\permission::perm_list(self::$core_perm_list, 'dash');
+			}
+
+			if(is_callable(['\lib\permission', 'group_list']))
+			{
+				self::$project_group = \lib\permission::group_list(self::$project_group, 'project');
+				self::$core_group    = \lib\permission::group_list(self::$core_group, 'dash');
+			}
 		}
 	}
 
@@ -114,6 +127,7 @@ class permission
 				$all_group = array_merge(self::$core_group, self::$project_group);
 			}
 		}
+
 		return $all_group;
 	}
 
@@ -180,6 +194,12 @@ class permission
 	{
 		self::load();
 
+		if(!$_name)
+		{
+			\dash\notif::error(T_("Please set a valid name for permission"), 'name');
+			return false;
+		}
+
 		$_name = \dash\utility\filter::slug($_name);
 
 		if(!$_update)
@@ -210,10 +230,37 @@ class permission
 			return false;
 		}
 
+		if(!is_array($_contain))
+		{
+			\dash\notif::error(T_("Invalid contain of permission"));
+			return false;
+		}
+
+		$all_list = self::lists();
+
+		foreach ($_contain as $key => $value)
+		{
+			if(!array_key_exists($value, $all_list))
+			{
+				\dash\notif::error(T_("This item is not in your permission list!"));
+				return false;
+			}
+		}
+
 		$new = self::$project_group;
+
 		$new = array_merge($new, [$_name => ['title' => $_lable, 'contain' => $_contain]]);
-		$new = json_encode($new, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-		\dash\file::write(root.'/includes/permission/group.me.json', $new);
+
+		if(is_callable(['\lib\permission', 'save_permission']))
+		{
+			\lib\permission::save_permission($new);
+		}
+		else
+		{
+			$new = json_encode($new, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+			\dash\file::write(root.'/includes/permission/group.me.json', $new);
+		}
+
 		\dash\notif::ok(T_("Permission saved"));
 		return true;
 	}
