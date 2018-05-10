@@ -118,6 +118,27 @@ class permission
 	}
 
 
+
+	public static function lists($_project = false)
+	{
+		self::load();
+		$all_list = [];
+
+		if($_project)
+		{
+			$all_list = self::$project_perm_list;
+		}
+		else
+		{
+			if(is_array(self::$core_perm_list) && is_array(self::$project_perm_list))
+			{
+				$all_list = array_merge(self::$core_perm_list, self::$project_perm_list);
+			}
+		}
+		return $all_list;
+	}
+
+
 	public static function categorize_list()
 	{
 		self::load();
