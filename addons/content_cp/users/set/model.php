@@ -59,6 +59,12 @@ class model
 
 		];
 
+		if($post['permission'] === 'supervisor' && !\dash\url::isLocal() && !\dash\permission::supervisor())
+		{
+			\dash\notif::error("Invlid permission name", 'permission');
+			return false;
+		}
+
 		$avatar = self::upload_avatar();
 
 		if($avatar)

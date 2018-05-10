@@ -33,6 +33,14 @@ class view
 				\dash\header::status(404, T_("User id not found"));
 			}
 
+			if(isset($user_detail['permission']))
+			{
+				if($post['permission'] === 'supervisor' && !\dash\url::isLocal() && !\dash\permission::supervisor())
+				{
+					\dash\header::status(404, T_("User not found"));
+				}
+			}
+
 			\dash\data::dataRaw(\dash\app\user::ready($user_detail, true));
 
 		}

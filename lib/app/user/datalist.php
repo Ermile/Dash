@@ -68,6 +68,11 @@ trait datalist
 			$_args['sort'] = null;
 		}
 
+		if(!\dash\url::isLocal() && !\dash\permission::supervisor())
+		{
+			$_args['permission'] = ["!=", " 'supervisor' OR `permission` IS NULL OR `permission` = '' "];
+		}
+
 		$meta            = $_args;
 		$result          = \dash\db\users::search($_string, $meta);
 		$temp            = [];
