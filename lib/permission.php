@@ -152,7 +152,15 @@ class permission
 
 	public static function usercount()
 	{
-		$count = \dash\db\users::permission_group();
+		if(is_callable(['\lib\permission', 'usercount']))
+		{
+			$count = \lib\permission::usercount();
+		}
+		else
+		{
+			$count = \dash\db\users::permission_group();
+		}
+
 		$group = self::groups();
 
 		$new_count = [];
