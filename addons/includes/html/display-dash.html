@@ -48,7 +48,7 @@
 {%if login%}
    <a href="{{url.base}}/account/profile" title='{%trans "Edit your profile"%}' class="avatar">
 {%if login.avatar%}
-     <img src="{{url.base}}/{{login.avatar}}" alt='{%trans "Avatar of you"%}'>
+     <img src="{{login.avatar}}" alt='{%trans "Avatar of you"%}'>
 {%else%}
      <img src="{{url.site}}/static/siftal/images/default/avatar.png" alt='{%trans "Default Avatar"%}'>
 {%endif%}
