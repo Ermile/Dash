@@ -52,6 +52,11 @@ class view
 		\dash\data::global_lang(\dash\language::current());
 		\dash\data::global_direction(\dash\language::current('direction'));
 		\dash\data::global_id(implode('_', \dash\url::dir()));
+		\dash\data::global_content(\dash\url::content());
+		if(\dash\data::global_content() === null)
+		{
+			\dash\data::global_content('site');
+		}
 
 		\dash\data::dev(\dash\option::config('dev'));
 
