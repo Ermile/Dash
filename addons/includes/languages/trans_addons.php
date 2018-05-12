@@ -56,7 +56,7 @@ class twigTransTerms
 
 	//-----------------------------------addons/content_enter/verify/what/display.html
 	echo T_("You must set a mobile or email to continue");                            // Line 7
-	echo T_("Go back");                                                               // Line 151
+	echo T_("Go back");                                                               // Line 156
 
 	//--------------------------------------addons/content_enter/callback/display.html
 
@@ -77,10 +77,35 @@ class twigTransTerms
 	echo T_("If you are human being, what are you doing here! be personable...");     // Line 9
 
 	//----------------------------------addons/content_enter/autoredirect/display.html
-	echo T_("Go");                                                                    // Line 129
+	echo T_("Go");                                                                    // Line 134
 
 	//------------------------------------------addons/content_enter/home/display.html
 	echo T_("You");                                                                   // Line 5
+
+	//-----------------------------------addons/content_cp/permission/add/display.html
+	echo T_("Name");                                                                  // Line 17
+	echo T_("Require");                                                               // Line 227
+	echo T_("The permission name should be unique and contain only alphanameric characters and underscores");// Line 14
+	echo T_("Name of your permission");                                               // Line 14
+	echo T_("Label");                                                                 // Line 17
+	echo T_("The permission label is used to represent your permission in user management");// Line 18
+	echo T_("Label of your permission");                                              // Line 18
+	echo T_("Save");                                                                  // Line 61
+
+	//--------------------------------addons/content_cp/permission/delete/display.html
+	echo T_("Remove");                                                                // Line 101
+
+	//---------------------------------------addons/content_cp/permission/display.html
+	echo T_("Permission title");                                                      // Line 10
+	echo T_("Customized");                                                            // Line 12
+	echo T_("Edit");                                                                  // Line 150 Seperate
+	echo T_("Need double check permission for some sensitive permissions");           // Line 33
+	echo T_("Do hard check and need to enter again");                                 // Line 34
+	echo T_("Count of user in permission");                                           // Line 51
+	echo T_("Remove this permission if not need");                                    // Line 55
+	echo T_("No user");                                                               // Line 55
+	echo T_("Click to show list of user by thie permission");                         // Line 57
+	echo T_("User");                                                                  // Line 54
 
 	//----------------------------------------------addons/content_cp/cms/display.html
 	echo T_("Comments");                                                              // Line 98 Seperate
@@ -106,21 +131,89 @@ class twigTransTerms
 	echo T_("Hi!");                                                                   // Line 110
 	echo T_("Try to start with add new record!");                                     // Line 92
 
-	//--------------------------------------------addons/content_cp/terms/display.html
+	//----------------------------------------addons/content_cp/users/set/display.html
+	echo T_("Name and Global Details");                                               // Line 12
+	echo T_("Email and Social Networks");                                             // Line 25
+	echo T_("Security and Enter");                                                    // Line 37
+	echo T_("Improve User Experience");                                               // Line 45
+	echo T_("Two step verification");                                                 // Line 63
+	echo T_("Show sidebar");                                                          // Line 74
+	echo T_("Default language");                                                      // Line 79
+	echo T_("Select one item");                                                       // Line 247
+	echo T_("Website");                                                               // Line 93
+	echo T_("like");                                                                  // Line 93
+	echo T_("Enter a valid website from 3 to 40 character");                          // Line 93
+	echo T_("Instagram");                                                             // Line 103
+	echo T_("Enter a valid instagram from 3 to 40 character");                        // Line 103
+	echo T_("Facebook");                                                              // Line 111
+	echo T_("Enter a valid facebook from 3 to 40 character");                         // Line 111
+	echo T_("Twitter");                                                               // Line 120
+	echo T_("Enter a valid twitter from 3 to 40 character");                          // Line 120
+	echo T_("Linkedin");                                                              // Line 256 Seperate
+	echo T_("Enter a valid linkedin from 3 to 40 character");                         // Line 129
+	echo T_("Gmail");                                                                 // Line 137
+	echo T_("Like");                                                                  // Line 274
+	echo T_("Firstname");                                                             // Line 149
+	echo T_("Enter a valid firstname from 3 to 40 character");                        // Line 149
+	echo T_("Lastname");                                                              // Line 158
+	echo T_("Enter a valid lastname from 3 to 40 character");                         // Line 158
+	echo T_("Username");                                                              // Line 27
+	echo T_("Enter a valid username from 3 to 40 character");                         // Line 167
+	echo T_("Nick name");                                                             // Line 174
 	echo T_("Title");                                                                 // Line 200 Seperate
-	echo T_("Slug");                                                                  // Line 28
+	echo T_("Enter a valid title from 3 to 40 character");                            // Line 176
 	echo T_("Type");                                                                  // Line 158
+	echo T_("Enter a valid type from 3 to 40 character");                             // Line 186
+	echo T_("Birthday");                                                              // Line 51
+	echo T_("Bio");                                                                   // Line 201
+	echo T_("Display name");                                                          // Line 24
+	echo T_("Enter a valid displayname from 3 to 40 character");                      // Line 209
+	echo T_("Mobile");                                                                // Line 168 Seperate
+	echo T_("Like 09120123456");                                                      // Line 219
+	echo T_("Gender");                                                                // Line 54
+	echo T_("Male");                                                                  // Line 57
+	echo T_("Female");                                                                // Line 61
+	echo T_("Active");                                                                // Line 248
+	echo T_("Awaiting");                                                              // Line 249
+	echo T_("Deactive");                                                              // Line 250
+	echo T_("Removed");                                                               // Line 251
+	echo T_("Filter");                                                                // Line 252
+	echo T_("Unreachable");                                                           // Line 253
+	echo T_("Permission");                                                            // Line 12
+	echo T_("No permission");                                                         // Line 263
+	echo T_("Password");                                                              // Line 169 Seperate
+	echo T_("Enter to change pass");                                                  // Line 283
+	echo T_("Password was set, enter to change it!");                                 // Line 294
+	echo T_("Password not set, enter  to set it!");                                   // Line 294
+	echo T_("Confirm password");                                                      // Line 292
+	echo T_("Require to change current password");                                    // Line 292
 	echo T_("Add");                                                                   // Line 149 Seperate
-	echo T_("Edit");                                                                  // Line 150 Seperate
-	echo T_("Require");                                                               // Line 122
+	echo T_("Save all");                                                              // Line 320
+
+	//---------------------------------------addons/content_cp/users/home/display.html
+	echo T_("Display Name");                                                          // Line 60
+	echo T_("Created date");                                                          // Line 78
+	echo T_("Last Modified");                                                         // Line 81
+	echo T_("Mr");                                                                    // Line 96
+	echo T_("Mrs");                                                                   // Line 96
+	echo T_("Password is set");                                                       // Line 112
+	echo T_("Password is not set!");                                                  // Line 112
+	echo T_("Two step verification in enabled");                                      // Line 113
+	echo T_("Two step verification in disable");                                      // Line 113
+	echo T_("Try to start with add new user!");                                       // Line 149
+	echo T_("All :Members");                                                          // Line 159
+	echo T_(":Experts");                                                              // Line 168
+	echo T_(":Teachers");                                                             // Line 178
+	echo T_("Students");                                                              // Line 189
+
+	//--------------------------------------------addons/content_cp/terms/display.html
+	echo T_("Slug");                                                                  // Line 28
 	echo T_("Enter a valid title");                                                   // Line 124
 	echo T_("Used for url");                                                          // Line 130
 	echo T_("Enter a valid slug");                                                    // Line 132
 	echo T_("Parent Category");                                                       // Line 139
 	echo T_("Please select one itme");                                                // Line 141
 	echo T_("Description");                                                           // Line 199 Seperate
-	echo T_("Active");                                                                // Line 161
-	echo T_("Deactive");                                                              // Line 161
 	echo T_("Excerpt");                                                               // Line 169
 	echo T_("Try to start with add new records!");                                    // Line 193
 
@@ -132,6 +225,10 @@ class twigTransTerms
 	echo T_("Sise");                                                                  // Line 100
 	echo T_("Download");                                                              // Line 102
 	echo T_("No backup was found");                                                   // Line 107
+
+	//---------------------------------------------addons/content_cp/home/display.html
+	echo T_("Control Panel");                                                         // Line 151 Seperate
+	echo T_("CMS");                                                                   // Line 56
 
 	//---------------------------------------addons/content_cp/posts/home/display.html
 
@@ -146,7 +243,6 @@ class twigTransTerms
 	echo T_("Write post ");                                                           // Line 34
 	echo T_("Publish date");                                                          // Line 41
 	echo T_("To add image gallery drop file here or");                                // Line 47
-	echo T_("Save");                                                                  // Line 61
 	echo T_("Publish");                                                               // Line 68
 	echo T_("Draft");                                                                 // Line 73
 	echo T_("Deleted");                                                               // Line 78
@@ -164,19 +260,38 @@ class twigTransTerms
 	echo T_("MP3");                                                                   // Line 175
 	echo T_("PDF");                                                                   // Line 177
 	echo T_("Without preview");                                                       // Line 179
-	echo T_("Remove");                                                                // Line 101
 
 	//---------------------------------------------------addons/content_cp/layout.html
 	echo T_("Dashboard");                                                             // Line 93 Seperate
-	echo T_("CMS");                                                                   // Line 56
 	echo T_("News");                                                                  // Line 10
 	echo T_("Categries");                                                             // Line 11
 	echo T_("Pages");                                                                 // Line 95 Seperate
+	echo T_("Files");                                                                 // Line 14
+	echo T_("Users");                                                                 // Line 100 Seperate
+	echo T_("Add new user");                                                          // Line 6
+	echo T_("Permissions");                                                           // Line 211 Seperate
 	echo T_("Options");                                                               // Line 84 Seperate
 	echo T_("Powered by");                                                            // Line 21
 	echo T_("Some right reserved");                                                   // Line 21
 	echo T_("Ermile");                                                                // Line 177 Seperate
 	echo T_("Version");                                                               // Line 108 Seperate
+
+	//-----------------------------------addons/content_account/profile--/display.html
+	echo T_("First Name *");                                                          // Line 29
+	echo T_("Enter a valid name from 3 to 30 character");                             // Line 29
+	echo T_("Last Name");                                                             // Line 36
+	echo T_("Enter a valid family from 3 to 50 character");                           // Line 36
+	echo T_("Enter a valid team position from 3 to 50 character");                    // Line 44
+	echo T_("mobile");                                                                // Line 65
+	echo T_("Your mobile");                                                           // Line 67
+	echo T_("email");                                                                 // Line 101
+	echo T_("Your email");                                                            // Line 75
+	echo T_("Money unit");                                                            // Line 82
+	echo T_("Please select one unit for default");                                    // Line 92
+	echo T_("Toman");                                                                 // Line 29
+	echo T_("$");                                                                     // Line 30
+	echo T_("Dollar");                                                                // Line 108
+	echo T_("Update profile");                                                        // Line 115
 
 	//-----------------------------------------addons/content_account/ref/display.html
 	echo T_("Referral Program");                                                      // Line 11
@@ -228,23 +343,16 @@ class twigTransTerms
 	echo T_("Use our logo to help spread the word.");                                 // Line 141
 	echo T_("Enter to Jibres");                                                       // Line 144
 
+	//----------------------------------------addons/content_account/view/display.html
+	echo T_("Toggle side bar");                                                       // Line 10
+	echo T_("You can save side bar status");                                          // Line 11
+	echo T_("Are your need side bar?");                                               // Line 18
+
 	//-------------------------------------addons/content_account/profile/display.html
-	echo T_("First Name *");                                                          // Line 29
-	echo T_("Enter a valid name from 3 to 30 character");                             // Line 29
-	echo T_("Last Name");                                                             // Line 36
-	echo T_("Enter a valid family from 3 to 50 character");                           // Line 36
-	echo T_("Display name");                                                          // Line 24
-	echo T_("Enter a valid team position from 3 to 50 character");                    // Line 44
-	echo T_("mobile");                                                                // Line 65
-	echo T_("Your mobile");                                                           // Line 67
-	echo T_("email");                                                                 // Line 101
-	echo T_("Your email");                                                            // Line 75
-	echo T_("Money unit");                                                            // Line 82
-	echo T_("Please select one unit for default");                                    // Line 92
-	echo T_("Toman");                                                                 // Line 29
-	echo T_("$");                                                                     // Line 30
-	echo T_("Dollar");                                                                // Line 108
-	echo T_("Update profile");                                                        // Line 115
+	echo T_("Auto hide sidebar");                                                     // Line 69
+	echo T_("To change your password");                                               // Line 280
+	echo T_("Click here");                                                            // Line 280
+	echo T_("Delete your account");                                                   // Line 285
 
 	//--------------------------------------addons/content_account/appkey/display.html
 	echo T_("YOUR API KEY");                                                          // Line 8
@@ -278,7 +386,6 @@ class twigTransTerms
 	echo T_("You are not have payment history yet!");                                 // Line 139
 
 	//------------------------------addons/content_account/billing/detail/display.html
-	echo T_("Name");                                                                  // Line 17
 	echo T_("plan");                                                                  // Line 12
 	echo T_("Start plan");                                                            // Line 13
 	echo T_("Active member");                                                         // Line 14
@@ -341,13 +448,11 @@ class twigTransTerms
 	echo T_("Transfer");                                                              // Line 21
 	echo T_("Prize");                                                                 // Line 22
 	echo T_("Unit");                                                                  // Line 26
-	echo T_("Mobile");                                                                // Line 168 Seperate
 	echo T_("Minus");                                                                 // Line 59
 	echo T_("Plus");                                                                  // Line 58
 
 	//-------------------------------------addons/content_su/transactions/display.html
 	echo T_("Search in :transactionss");                                              // Line 41
-	echo T_("User");                                                                  // Line 54
 	echo T_("Budget before");                                                         // Line 60
 	echo T_("Budget");                                                                // Line 61
 	echo T_("Condition");                                                             // Line 63
@@ -391,12 +496,10 @@ class twigTransTerms
 	echo T_("Update Repository");                                                     // Line 124
 	echo T_("Project database");                                                      // Line 132
 	echo T_("Addon Database");                                                        // Line 141
-	echo T_("Username");                                                              // Line 27
-	echo T_("Password");                                                              // Line 169 Seperate
 	echo T_("Upgrade");                                                               // Line 160
 	echo T_("Backup");                                                                // Line 11
 	echo T_("Backup by dump");                                                        // Line 162
-	echo T_("Submit");                                                                // Line 202
+	echo T_("Submit");                                                                // Line 207
 
 	//------------------------------------------addons/content_su/cronjob/display.html
 	echo T_("Run cronjob for this service");                                          // Line 15
@@ -405,12 +508,10 @@ class twigTransTerms
 	echo T_("Tools");                                                                 // Line 162 Seperate
 	echo T_("Transactions");                                                          // Line 85
 	echo T_("Logs");                                                                  // Line 17
-	echo T_("Users");                                                                 // Line 100 Seperate
 	echo T_("Send Nofity");                                                           // Line 11
 	echo T_("Sample Design");                                                         // Line 13
 
 	//----------------------------------------addons/content_su/users/add/display.html
-	echo T_("Add new user");                                                          // Line 6
 
 	//---------------------------------------addons/content_su/users/edit/display.html
 	echo T_("Edit user detail");                                                      // Line 6
@@ -419,10 +520,6 @@ class twigTransTerms
 	echo T_("allowed extentions jpg, png (gif for bussiness plans). Max 500Kb");      // Line 27
 	echo T_("National code");                                                         // Line 41
 	echo T_("Father name");                                                           // Line 46
-	echo T_("Birthday");                                                              // Line 51
-	echo T_("Gender");                                                                // Line 54
-	echo T_("Male");                                                                  // Line 57
-	echo T_("Female");                                                                // Line 61
 	echo T_("Marital");                                                               // Line 64
 	echo T_("Single");                                                                // Line 67
 	echo T_("Married");                                                               // Line 71
@@ -443,7 +540,6 @@ class twigTransTerms
 	echo T_("Parent");                                                                // Line 26
 	echo T_("Avatar");                                                                // Line 28
 	echo T_("More");                                                                  // Line 29
-	echo T_("Permission");                                                            // Line 33
 
 	//-------------------------------------addons/content_su/users/detail/display.html
 	echo T_("User detail");                                                           // Line 6
@@ -462,7 +558,7 @@ class twigTransTerms
 	echo T_("Year");                                                                  // Line 130
 	echo T_("Month");                                                                 // Line 131
 	echo T_("Week");                                                                  // Line 132
-	echo T_("Day");                                                                   // Line 458 Seperate
+	echo T_("Day");                                                                   // Line 502 Seperate
 	echo T_("hour");                                                                  // Line 33 Seperate
 	echo T_("Start backup at time");                                                  // Line 139
 	echo T_("Life time of old backup");                                               // Line 169
@@ -482,7 +578,6 @@ class twigTransTerms
 	echo T_("System master controll");                                                // Line 6
 	echo T_("Raw table");                                                             // Line 36
 	echo T_("Cronjob");                                                               // Line 46
-	echo T_("Control Panel");                                                         // Line 151 Seperate
 	echo T_("Log items");                                                             // Line 96
 	echo T_("Notifications");                                                         // Line 126
 	echo T_("Short URL");                                                             // Line 137
@@ -522,10 +617,10 @@ class twigTransTerms
 	//--------------------------------------------addons/content_su/tools/display.html
 	echo T_("You can use our tools");                                                 // Line 5
 	echo T_("Special tools");                                                         // Line 9
-	echo T_("Sitemap");                                                               // Line 12
-	echo T_("Server information");                                                    // Line 13
-	echo T_("Log");                                                                   // Line 14
-	echo T_("Translation tools");                                                     // Line 16
+	echo T_("Sitemap");                                                               // Line 13
+	echo T_("Server information");                                                    // Line 14
+	echo T_("Log");                                                                   // Line 15
+	echo T_("Translation tools");                                                     // Line 17
 	echo T_("Update");                                                                // Line 152 Seperate
 
 	//--------------------------------addons/content_su/tools/translation/display.html
@@ -552,16 +647,16 @@ class twigTransTerms
 	echo T_("datemodified");                                                          // Line 33
 
 	//------------------------------------------addons/includes/html/display-dash.html
-	echo T_("Edit your profile");                                                     // Line 47
-	echo T_("Avatar of you");                                                         // Line 49
-	echo T_("Default Avatar");                                                        // Line 51
-	echo T_("Hello");                                                                 // Line 57
-	echo T_("Click to toggle sidebar status");                                        // Line 67
-	echo T_("Show side menu");                                                        // Line 73
-	echo T_("View website");                                                          // Line 75
-	echo T_("Work in your language");                                                 // Line 79
+	echo T_("Edit your profile");                                                     // Line 49
+	echo T_("Avatar of you");                                                         // Line 51
+	echo T_("Default Avatar");                                                        // Line 53
+	echo T_("Hello");                                                                 // Line 59
+	echo T_("Click to toggle sidebar status");                                        // Line 69
+	echo T_("Show side menu");                                                        // Line 75
+	echo T_("View website");                                                          // Line 77
+	echo T_("Work in your language");                                                 // Line 81
 	echo T_("Logout");                                                                // Line 104 Seperate
-	echo T_("View your current location and navigate to parent of it");               // Line 96
+	echo T_("View your current location and navigate to parent of it");               // Line 98
 
 	//-------------------------------------------addons/includes/html/display-mvc.html
 
@@ -582,30 +677,31 @@ class twigTransTerms
 	echo T_("send to this number");                                                   // Line 80
 	echo T_("Send code to this number!");                                             // Line 80
 	echo T_("Full name");                                                             // Line 94
-	echo T_("Enter a valid eamil!");                                                  // Line 351
+	echo T_("Enter a valid eamil!");                                                  // Line 356
 	echo T_("username");                                                              // Line 109
 	echo T_("Enter a valid username from 4 to 50 character");                         // Line 109
-	echo T_("Go and check it");                                                       // Line 122
-	echo T_("Next");                                                                  // Line 137
+	echo T_("Delete Account");                                                        // Line 122
+	echo T_("Go and check it");                                                       // Line 127
+	echo T_("Next");                                                                  // Line 142
 	echo T_("Login");                                                                 // Line 172 Seperate
-	echo T_("Create Account");                                                        // Line 159
-	echo T_("Signup");                                                                // Line 166
-	echo T_("Set Password");                                                          // Line 173
-	echo T_("Recovery password");                                                     // Line 180
-	echo T_("Enter");                                                                 // Line 194
-	echo T_("Enter with another methods");                                            // Line 213
-	echo T_("Log in with mobile");                                                    // Line 229
-	echo T_("Enter with mobile");                                                     // Line 231
-	echo T_("Enter with Google");                                                     // Line 241
-	echo T_("Enter with email");                                                      // Line 249
-	echo T_("Enter with username");                                                   // Line 258
-	echo T_("Resend code");                                                           // Line 331
-	echo T_("After end timer you can request code again");                            // Line 338
-	echo T_("Another way?");                                                          // Line 338
-	echo T_("Restart with new mobile");                                               // Line 344
-	echo T_("New email");                                                             // Line 351
-	echo T_("New username");                                                          // Line 359
-	echo T_("Enter a valid username!");                                               // Line 359
+	echo T_("Create Account");                                                        // Line 164
+	echo T_("Signup");                                                                // Line 171
+	echo T_("Set Password");                                                          // Line 178
+	echo T_("Recovery password");                                                     // Line 185
+	echo T_("Enter");                                                                 // Line 199
+	echo T_("Enter with another methods");                                            // Line 218
+	echo T_("Log in with mobile");                                                    // Line 234
+	echo T_("Enter with mobile");                                                     // Line 236
+	echo T_("Enter with Google");                                                     // Line 246
+	echo T_("Enter with email");                                                      // Line 254
+	echo T_("Enter with username");                                                   // Line 263
+	echo T_("Resend code");                                                           // Line 336
+	echo T_("After end timer you can request code again");                            // Line 343
+	echo T_("Another way?");                                                          // Line 343
+	echo T_("Restart with new mobile");                                               // Line 349
+	echo T_("New email");                                                             // Line 356
+	echo T_("New username");                                                          // Line 364
+	echo T_("Enter a valid username!");                                               // Line 364
 
 	//-------------------------------------addons/includes/languages/trans_static.html
 	echo T_("dash");                                                                  // Line 8 Seperate
@@ -654,7 +750,7 @@ class twigTransTerms
 	echo T_("Iran");                                                                  // Line 61 Seperate
 	echo T_("iran");                                                                  // Line 62 Seperate
 	echo T_("Qom");                                                                   // Line 63 Seperate
-	echo T_("qom");                                                                   // Line 423 Seperate
+	echo T_("qom");                                                                   // Line 467 Seperate
 	echo T_("submit");                                                                // Line 65 Seperate
 	echo T_("save");                                                                  // Line 66 Seperate
 	echo T_("add new");                                                               // Line 67 Seperate
@@ -719,11 +815,11 @@ class twigTransTerms
 	echo T_("upload");                                                                // Line 147 Seperate
 	echo T_("View");                                                                  // Line 148 Seperate
 	echo T_("visitor");                                                               // Line 153 Seperate
-	echo T_("Editor");                                                                // Line 154 Seperate
+	echo T_("Editor");                                                                // Line 437 Seperate
 	echo T_("editor");                                                                // Line 155 Seperate
-	echo T_("Admin");                                                                 // Line 156 Seperate
+	echo T_("Admin");                                                                 // Line 436 Seperate
 	echo T_("Administrator");                                                         // Line 158 Seperate
-	echo T_("Writer");                                                                // Line 159 Seperate
+	echo T_("Writer");                                                                // Line 438 Seperate
 	echo T_("utility");                                                               // Line 160 Seperate
 	echo T_("Utility");                                                               // Line 161 Seperate
 	echo T_("tools");                                                                 // Line 163 Seperate
@@ -764,7 +860,6 @@ class twigTransTerms
 	echo T_("filecategories");                                                        // Line 208 Seperate
 	echo T_("bookcategories");                                                        // Line 209 Seperate
 	echo T_("permissions");                                                           // Line 210 Seperate
-	echo T_("Permissions");                                                           // Line 211 Seperate
 	echo T_("logout");                                                                // Line 212 Seperate
 	echo T_("lock");                                                                  // Line 213 Seperate
 	echo T_("profile");                                                               // Line 214 Seperate
@@ -795,7 +890,6 @@ class twigTransTerms
 	echo T_("line number");                                                           // Line 253 Seperate
 	echo T_("apikey");                                                                // Line 254 Seperate
 	echo T_("Github");                                                                // Line 255 Seperate
-	echo T_("Linkedin");                                                              // Line 256 Seperate
 	echo T_("Aparat");                                                                // Line 257 Seperate
 	echo T_("Google Plus");                                                           // Line 258 Seperate
 	echo T_("Status of sms service");                                                 // Line 259 Seperate
@@ -904,68 +998,585 @@ class twigTransTerms
 	echo T_("We dont need another users contact:?)");                                 // Line 397 Seperate
 	echo T_("We need mobile number!");                                                // Line 398 Seperate
 	echo T_(" ");                                                                     // Line 400 Seperate
-	echo T_("east azerbaijan");                                                       // Line 404 Seperate
-	echo T_("west azerbaijan");                                                       // Line 405 Seperate
-	echo T_("ardabil");                                                               // Line 406 Seperate
-	echo T_("esfahan");                                                               // Line 407 Seperate
-	echo T_("alborz");                                                                // Line 408 Seperate
-	echo T_("eilam");                                                                 // Line 409 Seperate
-	echo T_("bushehr");                                                               // Line 410 Seperate
-	echo T_("tehran");                                                                // Line 411 Seperate
-	echo T_("Asia/Tehran");                                                           // Line 412 Seperate
-	echo T_("chaharmahal and bakhtiari");                                             // Line 413 Seperate
-	echo T_("south khorasan");                                                        // Line 414 Seperate
-	echo T_("razavi khorasan");                                                       // Line 415 Seperate
-	echo T_("north khorasan");                                                        // Line 416 Seperate
-	echo T_("khuzestan");                                                             // Line 417 Seperate
-	echo T_("zanjan");                                                                // Line 418 Seperate
-	echo T_("semnan");                                                                // Line 419 Seperate
-	echo T_("sistan and baluchestan");                                                // Line 420 Seperate
-	echo T_("fars");                                                                  // Line 421 Seperate
-	echo T_("qazvin");                                                                // Line 422 Seperate
-	echo T_("kordestan");                                                             // Line 424 Seperate
-	echo T_("kerman");                                                                // Line 425 Seperate
-	echo T_("kermanshah");                                                            // Line 426 Seperate
-	echo T_("kohgiluyeh and boyerahmad");                                             // Line 427 Seperate
-	echo T_("golestan");                                                              // Line 428 Seperate
-	echo T_("gilan");                                                                 // Line 429 Seperate
-	echo T_("lorestan");                                                              // Line 430 Seperate
-	echo T_("mazandaran");                                                            // Line 431 Seperate
-	echo T_("markazi");                                                               // Line 432 Seperate
-	echo T_("hormozgan");                                                             // Line 433 Seperate
-	echo T_("hamedan");                                                               // Line 434 Seperate
-	echo T_("yazd");                                                                  // Line 435 Seperate
-	echo T_("Saderat");                                                               // Line 439 Seperate
-	echo T_("Mellat");                                                                // Line 440 Seperate
-	echo T_("Tejarat");                                                               // Line 441 Seperate
-	echo T_("Melli");                                                                 // Line 442 Seperate
-	echo T_("Sepah");                                                                 // Line 443 Seperate
-	echo T_("Keshavarzi");                                                            // Line 444 Seperate
-	echo T_("Maskan");                                                                // Line 445 Seperate
-	echo T_("Refah");                                                                 // Line 446 Seperate
-	echo T_("Novin");                                                                 // Line 447 Seperate
-	echo T_("Ansar");                                                                 // Line 448 Seperate
-	echo T_("Pasargad");                                                              // Line 449 Seperate
-	echo T_("Saman");                                                                 // Line 450 Seperate
-	echo T_("Sina");                                                                  // Line 451 Seperate
-	echo T_("Post");                                                                  // Line 452 Seperate
-	echo T_("Ghavamin");                                                              // Line 453 Seperate
-	echo T_("Taavon");                                                                // Line 454 Seperate
-	echo T_("Shahr");                                                                 // Line 455 Seperate
-	echo T_("Ayande");                                                                // Line 456 Seperate
-	echo T_("Sarmayeh");                                                              // Line 457 Seperate
-	echo T_("Hekmat");                                                                // Line 459 Seperate
-	echo T_("Iranzamin");                                                             // Line 460 Seperate
-	echo T_("Karafarin");                                                             // Line 461 Seperate
-	echo T_("Gardeshgari");                                                           // Line 462 Seperate
-	echo T_("Madan");                                                                 // Line 463 Seperate
-	echo T_("Tsaderat");                                                              // Line 464 Seperate
-	echo T_("Khavarmiyane");                                                          // Line 465 Seperate
-	echo T_("Ivbb");                                                                  // Line 466 Seperate
-	echo T_("Irkish");                                                                // Line 467 Seperate
-	echo T_("Asanpardakht");                                                          // Line 468 Seperate
-	echo T_("Zarinpal");                                                              // Line 469 Seperate
-	echo T_("Payir");                                                                 // Line 470 Seperate
+	echo T_("cpPermissionAdd");                                                       // Line 407 Seperate
+	echo T_("cpPermissionEdit");                                                      // Line 408 Seperate
+	echo T_("cpPermissionDelete");                                                    // Line 409 Seperate
+	echo T_("cpPermissionView");                                                      // Line 410 Seperate
+	echo T_("cpCommentsEdit");                                                        // Line 411 Seperate
+	echo T_("cpCommentsView");                                                        // Line 412 Seperate
+	echo T_("cotentCp");                                                              // Line 413 Seperate
+	echo T_("cpUsersView");                                                           // Line 414 Seperate
+	echo T_("cpUsersEdit");                                                           // Line 415 Seperate
+	echo T_("cpUsersAdd");                                                            // Line 416 Seperate
+	echo T_("cpCategoryView");                                                        // Line 417 Seperate
+	echo T_("cpTagView");                                                             // Line 418 Seperate
+	echo T_("cpCategoryEdit");                                                        // Line 419 Seperate
+	echo T_("cpTagEdit");                                                             // Line 420 Seperate
+	echo T_("cpCategoryAdd");                                                         // Line 421 Seperate
+	echo T_("cpTagAdd");                                                              // Line 422 Seperate
+	echo T_("cpBackup");                                                              // Line 423 Seperate
+	echo T_("cpPageAdd");                                                             // Line 424 Seperate
+	echo T_("cpPostsAdd");                                                            // Line 425 Seperate
+	echo T_("cpPageEdit");                                                            // Line 426 Seperate
+	echo T_("cpPostsEdit");                                                           // Line 427 Seperate
+	echo T_("cpPageView");                                                            // Line 428 Seperate
+	echo T_("cpPostsView");                                                           // Line 429 Seperate
+	echo T_("east azerbaijan");                                                       // Line 448 Seperate
+	echo T_("west azerbaijan");                                                       // Line 449 Seperate
+	echo T_("ardabil");                                                               // Line 450 Seperate
+	echo T_("esfahan");                                                               // Line 451 Seperate
+	echo T_("alborz");                                                                // Line 452 Seperate
+	echo T_("eilam");                                                                 // Line 453 Seperate
+	echo T_("bushehr");                                                               // Line 454 Seperate
+	echo T_("tehran");                                                                // Line 455 Seperate
+	echo T_("Asia/Tehran");                                                           // Line 456 Seperate
+	echo T_("chaharmahal and bakhtiari");                                             // Line 457 Seperate
+	echo T_("south khorasan");                                                        // Line 458 Seperate
+	echo T_("razavi khorasan");                                                       // Line 459 Seperate
+	echo T_("north khorasan");                                                        // Line 460 Seperate
+	echo T_("khuzestan");                                                             // Line 461 Seperate
+	echo T_("zanjan");                                                                // Line 462 Seperate
+	echo T_("semnan");                                                                // Line 463 Seperate
+	echo T_("sistan and baluchestan");                                                // Line 464 Seperate
+	echo T_("fars");                                                                  // Line 465 Seperate
+	echo T_("qazvin");                                                                // Line 466 Seperate
+	echo T_("kordestan");                                                             // Line 468 Seperate
+	echo T_("kerman");                                                                // Line 469 Seperate
+	echo T_("kermanshah");                                                            // Line 470 Seperate
+	echo T_("kohgiluyeh and boyerahmad");                                             // Line 471 Seperate
+	echo T_("golestan");                                                              // Line 472 Seperate
+	echo T_("gilan");                                                                 // Line 473 Seperate
+	echo T_("lorestan");                                                              // Line 474 Seperate
+	echo T_("mazandaran");                                                            // Line 475 Seperate
+	echo T_("markazi");                                                               // Line 476 Seperate
+	echo T_("hormozgan");                                                             // Line 477 Seperate
+	echo T_("hamedan");                                                               // Line 478 Seperate
+	echo T_("yazd");                                                                  // Line 479 Seperate
+	echo T_("Saderat");                                                               // Line 483 Seperate
+	echo T_("Mellat");                                                                // Line 484 Seperate
+	echo T_("Tejarat");                                                               // Line 485 Seperate
+	echo T_("Melli");                                                                 // Line 486 Seperate
+	echo T_("Sepah");                                                                 // Line 487 Seperate
+	echo T_("Keshavarzi");                                                            // Line 488 Seperate
+	echo T_("Maskan");                                                                // Line 489 Seperate
+	echo T_("Refah");                                                                 // Line 490 Seperate
+	echo T_("Novin");                                                                 // Line 491 Seperate
+	echo T_("Ansar");                                                                 // Line 492 Seperate
+	echo T_("Pasargad");                                                              // Line 493 Seperate
+	echo T_("Saman");                                                                 // Line 494 Seperate
+	echo T_("Sina");                                                                  // Line 495 Seperate
+	echo T_("Post");                                                                  // Line 496 Seperate
+	echo T_("Ghavamin");                                                              // Line 497 Seperate
+	echo T_("Taavon");                                                                // Line 498 Seperate
+	echo T_("Shahr");                                                                 // Line 499 Seperate
+	echo T_("Ayande");                                                                // Line 500 Seperate
+	echo T_("Sarmayeh");                                                              // Line 501 Seperate
+	echo T_("Hekmat");                                                                // Line 503 Seperate
+	echo T_("Iranzamin");                                                             // Line 504 Seperate
+	echo T_("Karafarin");                                                             // Line 505 Seperate
+	echo T_("Gardeshgari");                                                           // Line 506 Seperate
+	echo T_("Madan");                                                                 // Line 507 Seperate
+	echo T_("Tsaderat");                                                              // Line 508 Seperate
+	echo T_("Khavarmiyane");                                                          // Line 509 Seperate
+	echo T_("Ivbb");                                                                  // Line 510 Seperate
+	echo T_("Irkish");                                                                // Line 511 Seperate
+	echo T_("Asanpardakht");                                                          // Line 512 Seperate
+	echo T_("Zarinpal");                                                              // Line 513 Seperate
+	echo T_("Payir");                                                                 // Line 514 Seperate
+	echo T_("afghanistan");                                                           // Line 520 Seperate
+	echo T_("åland");                                                                 // Line 521 Seperate
+	echo T_("albania");                                                               // Line 522 Seperate
+	echo T_("algeria");                                                               // Line 523 Seperate
+	echo T_("american samoa");                                                        // Line 524 Seperate
+	echo T_("andorra");                                                               // Line 525 Seperate
+	echo T_("angola");                                                                // Line 526 Seperate
+	echo T_("anguilla");                                                              // Line 527 Seperate
+	echo T_("antarctica");                                                            // Line 528 Seperate
+	echo T_("antigua and barbuda");                                                   // Line 529 Seperate
+	echo T_("argentina");                                                             // Line 530 Seperate
+	echo T_("armenia");                                                               // Line 531 Seperate
+	echo T_("aruba");                                                                 // Line 532 Seperate
+	echo T_("australia");                                                             // Line 533 Seperate
+	echo T_("austria");                                                               // Line 534 Seperate
+	echo T_("azerbaijan");                                                            // Line 535 Seperate
+	echo T_("bahamas");                                                               // Line 536 Seperate
+	echo T_("bahrain");                                                               // Line 537 Seperate
+	echo T_("bangladesh");                                                            // Line 538 Seperate
+	echo T_("barbados");                                                              // Line 539 Seperate
+	echo T_("belarus");                                                               // Line 540 Seperate
+	echo T_("belgium");                                                               // Line 541 Seperate
+	echo T_("belize");                                                                // Line 542 Seperate
+	echo T_("benin");                                                                 // Line 543 Seperate
+	echo T_("bermuda");                                                               // Line 544 Seperate
+	echo T_("bhutan");                                                                // Line 545 Seperate
+	echo T_("bolivia");                                                               // Line 546 Seperate
+	echo T_("bonaire");                                                               // Line 547 Seperate
+	echo T_("bosnia and herzegovina");                                                // Line 548 Seperate
+	echo T_("botswana");                                                              // Line 549 Seperate
+	echo T_("bouvet island");                                                         // Line 550 Seperate
+	echo T_("brazil");                                                                // Line 551 Seperate
+	echo T_("british indian ocean territory");                                        // Line 552 Seperate
+	echo T_("british virgin islands");                                                // Line 553 Seperate
+	echo T_("brunei");                                                                // Line 554 Seperate
+	echo T_("bulgaria");                                                              // Line 555 Seperate
+	echo T_("burkina faso");                                                          // Line 556 Seperate
+	echo T_("burundi");                                                               // Line 557 Seperate
+	echo T_("cambodia");                                                              // Line 558 Seperate
+	echo T_("cameroon");                                                              // Line 559 Seperate
+	echo T_("canada");                                                                // Line 560 Seperate
+	echo T_("cape verde");                                                            // Line 561 Seperate
+	echo T_("cayman islands");                                                        // Line 562 Seperate
+	echo T_("central african republic");                                              // Line 563 Seperate
+	echo T_("chad");                                                                  // Line 564 Seperate
+	echo T_("chile");                                                                 // Line 565 Seperate
+	echo T_("china");                                                                 // Line 566 Seperate
+	echo T_("christmas island");                                                      // Line 567 Seperate
+	echo T_("cocos (keeling) islands");                                               // Line 568 Seperate
+	echo T_("colombia");                                                              // Line 569 Seperate
+	echo T_("comoros");                                                               // Line 570 Seperate
+	echo T_("cook islands");                                                          // Line 571 Seperate
+	echo T_("costa rica");                                                            // Line 572 Seperate
+	echo T_("croatia");                                                               // Line 573 Seperate
+	echo T_("cuba");                                                                  // Line 574 Seperate
+	echo T_("curacao");                                                               // Line 575 Seperate
+	echo T_("cyprus");                                                                // Line 576 Seperate
+	echo T_("czech republic");                                                        // Line 577 Seperate
+	echo T_("democratic republic of the congo");                                      // Line 578 Seperate
+	echo T_("denmark");                                                               // Line 579 Seperate
+	echo T_("djibouti");                                                              // Line 580 Seperate
+	echo T_("dominica");                                                              // Line 581 Seperate
+	echo T_("dominican republic");                                                    // Line 582 Seperate
+	echo T_("east timor");                                                            // Line 583 Seperate
+	echo T_("ecuador");                                                               // Line 584 Seperate
+	echo T_("egypt");                                                                 // Line 585 Seperate
+	echo T_("el salvador");                                                           // Line 586 Seperate
+	echo T_("equatorial guinea");                                                     // Line 587 Seperate
+	echo T_("eritrea");                                                               // Line 588 Seperate
+	echo T_("estonia");                                                               // Line 589 Seperate
+	echo T_("ethiopia");                                                              // Line 590 Seperate
+	echo T_("falkland islands");                                                      // Line 591 Seperate
+	echo T_("faroe islands");                                                         // Line 592 Seperate
+	echo T_("fiji");                                                                  // Line 593 Seperate
+	echo T_("finland");                                                               // Line 594 Seperate
+	echo T_("france");                                                                // Line 595 Seperate
+	echo T_("french guiana");                                                         // Line 596 Seperate
+	echo T_("french polynesia");                                                      // Line 597 Seperate
+	echo T_("french southern territories");                                           // Line 598 Seperate
+	echo T_("gabon");                                                                 // Line 599 Seperate
+	echo T_("gambia");                                                                // Line 600 Seperate
+	echo T_("georgia");                                                               // Line 601 Seperate
+	echo T_("germany");                                                               // Line 602 Seperate
+	echo T_("ghana");                                                                 // Line 603 Seperate
+	echo T_("gibraltar");                                                             // Line 604 Seperate
+	echo T_("greece");                                                                // Line 605 Seperate
+	echo T_("greenland");                                                             // Line 606 Seperate
+	echo T_("grenada");                                                               // Line 607 Seperate
+	echo T_("guadeloupe");                                                            // Line 608 Seperate
+	echo T_("guam");                                                                  // Line 609 Seperate
+	echo T_("guatemala");                                                             // Line 610 Seperate
+	echo T_("guernsey");                                                              // Line 611 Seperate
+	echo T_("guinea");                                                                // Line 612 Seperate
+	echo T_("guinea-bissau");                                                         // Line 613 Seperate
+	echo T_("guyana");                                                                // Line 614 Seperate
+	echo T_("haiti");                                                                 // Line 615 Seperate
+	echo T_("heard island and mcdonald islands");                                     // Line 616 Seperate
+	echo T_("honduras");                                                              // Line 617 Seperate
+	echo T_("hong kong");                                                             // Line 618 Seperate
+	echo T_("hungary");                                                               // Line 619 Seperate
+	echo T_("iceland");                                                               // Line 620 Seperate
+	echo T_("india");                                                                 // Line 621 Seperate
+	echo T_("indonesia");                                                             // Line 622 Seperate
+	echo T_("iraq");                                                                  // Line 623 Seperate
+	echo T_("ireland");                                                               // Line 624 Seperate
+	echo T_("isle of man");                                                           // Line 625 Seperate
+	echo T_("italy");                                                                 // Line 626 Seperate
+	echo T_("ivory coast");                                                           // Line 627 Seperate
+	echo T_("jamaica");                                                               // Line 628 Seperate
+	echo T_("japan");                                                                 // Line 629 Seperate
+	echo T_("jersey");                                                                // Line 630 Seperate
+	echo T_("jordan");                                                                // Line 631 Seperate
+	echo T_("kazakhstan");                                                            // Line 632 Seperate
+	echo T_("kenya");                                                                 // Line 633 Seperate
+	echo T_("kiribati");                                                              // Line 634 Seperate
+	echo T_("kosovo");                                                                // Line 635 Seperate
+	echo T_("kuwait");                                                                // Line 636 Seperate
+	echo T_("kyrgyzstan");                                                            // Line 637 Seperate
+	echo T_("laos");                                                                  // Line 638 Seperate
+	echo T_("latvia");                                                                // Line 639 Seperate
+	echo T_("lebanon");                                                               // Line 640 Seperate
+	echo T_("lesotho");                                                               // Line 641 Seperate
+	echo T_("liberia");                                                               // Line 642 Seperate
+	echo T_("libya");                                                                 // Line 643 Seperate
+	echo T_("liechtenstein");                                                         // Line 644 Seperate
+	echo T_("lithuania");                                                             // Line 645 Seperate
+	echo T_("luxembourg");                                                            // Line 646 Seperate
+	echo T_("macau");                                                                 // Line 647 Seperate
+	echo T_("macedonia");                                                             // Line 648 Seperate
+	echo T_("madagascar");                                                            // Line 649 Seperate
+	echo T_("malawi");                                                                // Line 650 Seperate
+	echo T_("malaysia");                                                              // Line 651 Seperate
+	echo T_("maldives");                                                              // Line 652 Seperate
+	echo T_("mali");                                                                  // Line 653 Seperate
+	echo T_("malta");                                                                 // Line 654 Seperate
+	echo T_("marshall islands");                                                      // Line 655 Seperate
+	echo T_("martinique");                                                            // Line 656 Seperate
+	echo T_("mauritania");                                                            // Line 657 Seperate
+	echo T_("mauritius");                                                             // Line 658 Seperate
+	echo T_("mayotte");                                                               // Line 659 Seperate
+	echo T_("mexico");                                                                // Line 660 Seperate
+	echo T_("micronesia");                                                            // Line 661 Seperate
+	echo T_("moldova");                                                               // Line 662 Seperate
+	echo T_("monaco");                                                                // Line 663 Seperate
+	echo T_("mongolia");                                                              // Line 664 Seperate
+	echo T_("montenegro");                                                            // Line 665 Seperate
+	echo T_("montserrat");                                                            // Line 666 Seperate
+	echo T_("morocco");                                                               // Line 667 Seperate
+	echo T_("mozambique");                                                            // Line 668 Seperate
+	echo T_("myanmar (burma)");                                                       // Line 669 Seperate
+	echo T_("namibia");                                                               // Line 670 Seperate
+	echo T_("nauru");                                                                 // Line 671 Seperate
+	echo T_("nepal");                                                                 // Line 672 Seperate
+	echo T_("netherlands");                                                           // Line 673 Seperate
+	echo T_("new caledonia");                                                         // Line 674 Seperate
+	echo T_("new zealand");                                                           // Line 675 Seperate
+	echo T_("nicaragua");                                                             // Line 676 Seperate
+	echo T_("niger");                                                                 // Line 677 Seperate
+	echo T_("nigeria");                                                               // Line 678 Seperate
+	echo T_("niue");                                                                  // Line 679 Seperate
+	echo T_("norfolk island");                                                        // Line 680 Seperate
+	echo T_("north korea");                                                           // Line 681 Seperate
+	echo T_("northern mariana islands");                                              // Line 682 Seperate
+	echo T_("norway");                                                                // Line 683 Seperate
+	echo T_("oman");                                                                  // Line 684 Seperate
+	echo T_("pakistan");                                                              // Line 685 Seperate
+	echo T_("palau");                                                                 // Line 686 Seperate
+	echo T_("palestine");                                                             // Line 687 Seperate
+	echo T_("panama");                                                                // Line 688 Seperate
+	echo T_("papua new guinea");                                                      // Line 689 Seperate
+	echo T_("paraguay");                                                              // Line 690 Seperate
+	echo T_("peru");                                                                  // Line 691 Seperate
+	echo T_("philippines");                                                           // Line 692 Seperate
+	echo T_("pitcairn islands");                                                      // Line 693 Seperate
+	echo T_("poland");                                                                // Line 694 Seperate
+	echo T_("portugal");                                                              // Line 695 Seperate
+	echo T_("puerto rico");                                                           // Line 696 Seperate
+	echo T_("qatar");                                                                 // Line 697 Seperate
+	echo T_("republic of the congo");                                                 // Line 698 Seperate
+	echo T_("réunion");                                                               // Line 699 Seperate
+	echo T_("romania");                                                               // Line 700 Seperate
+	echo T_("russia");                                                                // Line 701 Seperate
+	echo T_("rwanda");                                                                // Line 702 Seperate
+	echo T_("saint barthélemy");                                                      // Line 703 Seperate
+	echo T_("saint helena");                                                          // Line 704 Seperate
+	echo T_("saint kitts and nevis");                                                 // Line 705 Seperate
+	echo T_("saint lucia");                                                           // Line 706 Seperate
+	echo T_("saint martin");                                                          // Line 707 Seperate
+	echo T_("saint pierre and miquelon");                                             // Line 708 Seperate
+	echo T_("saint vincent and the grenadines");                                      // Line 709 Seperate
+	echo T_("samoa");                                                                 // Line 710 Seperate
+	echo T_("san marino");                                                            // Line 711 Seperate
+	echo T_("são tomé and príncipe");                                                 // Line 712 Seperate
+	echo T_("saudi arabia");                                                          // Line 713 Seperate
+	echo T_("senegal");                                                               // Line 714 Seperate
+	echo T_("serbia");                                                                // Line 715 Seperate
+	echo T_("seychelles");                                                            // Line 716 Seperate
+	echo T_("sierra leone");                                                          // Line 717 Seperate
+	echo T_("singapore");                                                             // Line 718 Seperate
+	echo T_("sint maarten");                                                          // Line 719 Seperate
+	echo T_("slovakia");                                                              // Line 720 Seperate
+	echo T_("slovenia");                                                              // Line 721 Seperate
+	echo T_("solomon islands");                                                       // Line 722 Seperate
+	echo T_("somalia");                                                               // Line 723 Seperate
+	echo T_("south africa");                                                          // Line 724 Seperate
+	echo T_("south georgia and the south sandwich islands");                          // Line 725 Seperate
+	echo T_("south korea");                                                           // Line 726 Seperate
+	echo T_("south sudan");                                                           // Line 727 Seperate
+	echo T_("spain");                                                                 // Line 728 Seperate
+	echo T_("sri lanka");                                                             // Line 729 Seperate
+	echo T_("sudan");                                                                 // Line 730 Seperate
+	echo T_("suriname");                                                              // Line 731 Seperate
+	echo T_("svalbard and jan mayen");                                                // Line 732 Seperate
+	echo T_("swaziland");                                                             // Line 733 Seperate
+	echo T_("sweden");                                                                // Line 734 Seperate
+	echo T_("switzerland");                                                           // Line 735 Seperate
+	echo T_("syria");                                                                 // Line 736 Seperate
+	echo T_("taiwan");                                                                // Line 737 Seperate
+	echo T_("tajikistan");                                                            // Line 738 Seperate
+	echo T_("tanzania");                                                              // Line 739 Seperate
+	echo T_("thailand");                                                              // Line 740 Seperate
+	echo T_("togo");                                                                  // Line 741 Seperate
+	echo T_("tokelau");                                                               // Line 742 Seperate
+	echo T_("tonga");                                                                 // Line 743 Seperate
+	echo T_("trinidad and tobago");                                                   // Line 744 Seperate
+	echo T_("tunisia");                                                               // Line 745 Seperate
+	echo T_("turkey");                                                                // Line 746 Seperate
+	echo T_("turkmenistan");                                                          // Line 747 Seperate
+	echo T_("turks and caicos islands");                                              // Line 748 Seperate
+	echo T_("tuvalu");                                                                // Line 749 Seperate
+	echo T_("minor outlying islands");                                                // Line 750 Seperate
+	echo T_("uganda");                                                                // Line 751 Seperate
+	echo T_("ukraine");                                                               // Line 752 Seperate
+	echo T_("united arab emirates");                                                  // Line 753 Seperate
+	echo T_("united kingdom");                                                        // Line 754 Seperate
+	echo T_("united states");                                                         // Line 755 Seperate
+	echo T_("uruguay");                                                               // Line 756 Seperate
+	echo T_("uzbekistan");                                                            // Line 757 Seperate
+	echo T_("vanuatu");                                                               // Line 758 Seperate
+	echo T_("vatican city");                                                          // Line 759 Seperate
+	echo T_("venezuela");                                                             // Line 760 Seperate
+	echo T_("vietnam");                                                               // Line 761 Seperate
+	echo T_("wallis and futuna");                                                     // Line 762 Seperate
+	echo T_("western sahara");                                                        // Line 763 Seperate
+	echo T_("yemen");                                                                 // Line 764 Seperate
+	echo T_("zambia");                                                                // Line 765 Seperate
+	echo T_("zimbabwe");                                                              // Line 766 Seperate
+	echo T_("Afghanistan");                                                           // Line 767 Seperate
+	echo T_("Åland");                                                                 // Line 768 Seperate
+	echo T_("Albania");                                                               // Line 769 Seperate
+	echo T_("Algeria");                                                               // Line 770 Seperate
+	echo T_("American samoa");                                                        // Line 771 Seperate
+	echo T_("Andorra");                                                               // Line 772 Seperate
+	echo T_("Angola");                                                                // Line 773 Seperate
+	echo T_("Anguilla");                                                              // Line 774 Seperate
+	echo T_("Antarctica");                                                            // Line 775 Seperate
+	echo T_("Antigua and barbuda");                                                   // Line 776 Seperate
+	echo T_("Argentina");                                                             // Line 777 Seperate
+	echo T_("Armenia");                                                               // Line 778 Seperate
+	echo T_("Aruba");                                                                 // Line 779 Seperate
+	echo T_("Australia");                                                             // Line 780 Seperate
+	echo T_("Austria");                                                               // Line 781 Seperate
+	echo T_("Azerbaijan");                                                            // Line 782 Seperate
+	echo T_("Bahamas");                                                               // Line 783 Seperate
+	echo T_("Bahrain");                                                               // Line 784 Seperate
+	echo T_("Bangladesh");                                                            // Line 785 Seperate
+	echo T_("Barbados");                                                              // Line 786 Seperate
+	echo T_("Belarus");                                                               // Line 787 Seperate
+	echo T_("Belgium");                                                               // Line 788 Seperate
+	echo T_("Belize");                                                                // Line 789 Seperate
+	echo T_("Benin");                                                                 // Line 790 Seperate
+	echo T_("Bermuda");                                                               // Line 791 Seperate
+	echo T_("Bhutan");                                                                // Line 792 Seperate
+	echo T_("Bolivia");                                                               // Line 793 Seperate
+	echo T_("Bonaire");                                                               // Line 794 Seperate
+	echo T_("Bosnia and herzegovina");                                                // Line 795 Seperate
+	echo T_("Botswana");                                                              // Line 796 Seperate
+	echo T_("Bouvet island");                                                         // Line 797 Seperate
+	echo T_("Brazil");                                                                // Line 798 Seperate
+	echo T_("British indian ocean territory");                                        // Line 799 Seperate
+	echo T_("British virgin islands");                                                // Line 800 Seperate
+	echo T_("Brunei");                                                                // Line 801 Seperate
+	echo T_("Bulgaria");                                                              // Line 802 Seperate
+	echo T_("Burkina faso");                                                          // Line 803 Seperate
+	echo T_("Burundi");                                                               // Line 804 Seperate
+	echo T_("Cambodia");                                                              // Line 805 Seperate
+	echo T_("Cameroon");                                                              // Line 806 Seperate
+	echo T_("Canada");                                                                // Line 807 Seperate
+	echo T_("Cape verde");                                                            // Line 808 Seperate
+	echo T_("Cayman islands");                                                        // Line 809 Seperate
+	echo T_("Central african republic");                                              // Line 810 Seperate
+	echo T_("Chad");                                                                  // Line 811 Seperate
+	echo T_("Chile");                                                                 // Line 812 Seperate
+	echo T_("China");                                                                 // Line 813 Seperate
+	echo T_("Christmas island");                                                      // Line 814 Seperate
+	echo T_("Cocos (keeling) islands");                                               // Line 815 Seperate
+	echo T_("Colombia");                                                              // Line 816 Seperate
+	echo T_("Comoros");                                                               // Line 817 Seperate
+	echo T_("Cook islands");                                                          // Line 818 Seperate
+	echo T_("Costa rica");                                                            // Line 819 Seperate
+	echo T_("Croatia");                                                               // Line 820 Seperate
+	echo T_("Cuba");                                                                  // Line 821 Seperate
+	echo T_("Curacao");                                                               // Line 822 Seperate
+	echo T_("Cyprus");                                                                // Line 823 Seperate
+	echo T_("Czech republic");                                                        // Line 824 Seperate
+	echo T_("Democratic republic of the congo");                                      // Line 825 Seperate
+	echo T_("Denmark");                                                               // Line 826 Seperate
+	echo T_("Djibouti");                                                              // Line 827 Seperate
+	echo T_("Dominica");                                                              // Line 828 Seperate
+	echo T_("Dominican republic");                                                    // Line 829 Seperate
+	echo T_("East timor");                                                            // Line 830 Seperate
+	echo T_("Ecuador");                                                               // Line 831 Seperate
+	echo T_("Egypt");                                                                 // Line 832 Seperate
+	echo T_("El salvador");                                                           // Line 833 Seperate
+	echo T_("Equatorial guinea");                                                     // Line 834 Seperate
+	echo T_("Eritrea");                                                               // Line 835 Seperate
+	echo T_("Estonia");                                                               // Line 836 Seperate
+	echo T_("Ethiopia");                                                              // Line 837 Seperate
+	echo T_("Falkland islands");                                                      // Line 838 Seperate
+	echo T_("Faroe islands");                                                         // Line 839 Seperate
+	echo T_("Fiji");                                                                  // Line 840 Seperate
+	echo T_("Finland");                                                               // Line 841 Seperate
+	echo T_("France");                                                                // Line 842 Seperate
+	echo T_("French guiana");                                                         // Line 843 Seperate
+	echo T_("French polynesia");                                                      // Line 844 Seperate
+	echo T_("French southern territories");                                           // Line 845 Seperate
+	echo T_("Gabon");                                                                 // Line 846 Seperate
+	echo T_("Gambia");                                                                // Line 847 Seperate
+	echo T_("Georgia");                                                               // Line 848 Seperate
+	echo T_("Germany");                                                               // Line 849 Seperate
+	echo T_("Ghana");                                                                 // Line 850 Seperate
+	echo T_("Gibraltar");                                                             // Line 851 Seperate
+	echo T_("Greece");                                                                // Line 852 Seperate
+	echo T_("Greenland");                                                             // Line 853 Seperate
+	echo T_("Grenada");                                                               // Line 854 Seperate
+	echo T_("Guadeloupe");                                                            // Line 855 Seperate
+	echo T_("Guam");                                                                  // Line 856 Seperate
+	echo T_("Guatemala");                                                             // Line 857 Seperate
+	echo T_("Guernsey");                                                              // Line 858 Seperate
+	echo T_("Guinea");                                                                // Line 859 Seperate
+	echo T_("Guinea-bissau");                                                         // Line 860 Seperate
+	echo T_("Guyana");                                                                // Line 861 Seperate
+	echo T_("Haiti");                                                                 // Line 862 Seperate
+	echo T_("Heard island and mcdonald islands");                                     // Line 863 Seperate
+	echo T_("Honduras");                                                              // Line 864 Seperate
+	echo T_("Hong kong");                                                             // Line 865 Seperate
+	echo T_("Hungary");                                                               // Line 866 Seperate
+	echo T_("Iceland");                                                               // Line 867 Seperate
+	echo T_("India");                                                                 // Line 868 Seperate
+	echo T_("Indonesia");                                                             // Line 869 Seperate
+	echo T_("Iraq");                                                                  // Line 870 Seperate
+	echo T_("Ireland");                                                               // Line 871 Seperate
+	echo T_("Isle of man");                                                           // Line 872 Seperate
+	echo T_("Italy");                                                                 // Line 873 Seperate
+	echo T_("Ivory coast");                                                           // Line 874 Seperate
+	echo T_("Jamaica");                                                               // Line 875 Seperate
+	echo T_("Japan");                                                                 // Line 876 Seperate
+	echo T_("Jersey");                                                                // Line 877 Seperate
+	echo T_("Jordan");                                                                // Line 878 Seperate
+	echo T_("Kazakhstan");                                                            // Line 879 Seperate
+	echo T_("Kenya");                                                                 // Line 880 Seperate
+	echo T_("Kiribati");                                                              // Line 881 Seperate
+	echo T_("Kosovo");                                                                // Line 882 Seperate
+	echo T_("Kuwait");                                                                // Line 883 Seperate
+	echo T_("Kyrgyzstan");                                                            // Line 884 Seperate
+	echo T_("Laos");                                                                  // Line 885 Seperate
+	echo T_("Latvia");                                                                // Line 886 Seperate
+	echo T_("Lebanon");                                                               // Line 887 Seperate
+	echo T_("Lesotho");                                                               // Line 888 Seperate
+	echo T_("Liberia");                                                               // Line 889 Seperate
+	echo T_("Libya");                                                                 // Line 890 Seperate
+	echo T_("Liechtenstein");                                                         // Line 891 Seperate
+	echo T_("Lithuania");                                                             // Line 892 Seperate
+	echo T_("Luxembourg");                                                            // Line 893 Seperate
+	echo T_("Macau");                                                                 // Line 894 Seperate
+	echo T_("Macedonia");                                                             // Line 895 Seperate
+	echo T_("Madagascar");                                                            // Line 896 Seperate
+	echo T_("Malawi");                                                                // Line 897 Seperate
+	echo T_("Malaysia");                                                              // Line 898 Seperate
+	echo T_("Maldives");                                                              // Line 899 Seperate
+	echo T_("Mali");                                                                  // Line 900 Seperate
+	echo T_("Malta");                                                                 // Line 901 Seperate
+	echo T_("Marshall islands");                                                      // Line 902 Seperate
+	echo T_("Martinique");                                                            // Line 903 Seperate
+	echo T_("Mauritania");                                                            // Line 904 Seperate
+	echo T_("Mauritius");                                                             // Line 905 Seperate
+	echo T_("Mayotte");                                                               // Line 906 Seperate
+	echo T_("Mexico");                                                                // Line 907 Seperate
+	echo T_("Micronesia");                                                            // Line 908 Seperate
+	echo T_("Moldova");                                                               // Line 909 Seperate
+	echo T_("Monaco");                                                                // Line 910 Seperate
+	echo T_("Mongolia");                                                              // Line 911 Seperate
+	echo T_("Montenegro");                                                            // Line 912 Seperate
+	echo T_("Montserrat");                                                            // Line 913 Seperate
+	echo T_("Morocco");                                                               // Line 914 Seperate
+	echo T_("Mozambique");                                                            // Line 915 Seperate
+	echo T_("Myanmar (burma)");                                                       // Line 916 Seperate
+	echo T_("Namibia");                                                               // Line 917 Seperate
+	echo T_("Nauru");                                                                 // Line 918 Seperate
+	echo T_("Nepal");                                                                 // Line 919 Seperate
+	echo T_("Netherlands");                                                           // Line 920 Seperate
+	echo T_("New caledonia");                                                         // Line 921 Seperate
+	echo T_("New zealand");                                                           // Line 922 Seperate
+	echo T_("Nicaragua");                                                             // Line 923 Seperate
+	echo T_("Niger");                                                                 // Line 924 Seperate
+	echo T_("Nigeria");                                                               // Line 925 Seperate
+	echo T_("Niue");                                                                  // Line 926 Seperate
+	echo T_("Norfolk island");                                                        // Line 927 Seperate
+	echo T_("North korea");                                                           // Line 928 Seperate
+	echo T_("Northern mariana islands");                                              // Line 929 Seperate
+	echo T_("Norway");                                                                // Line 930 Seperate
+	echo T_("Oman");                                                                  // Line 931 Seperate
+	echo T_("Pakistan");                                                              // Line 932 Seperate
+	echo T_("Palau");                                                                 // Line 933 Seperate
+	echo T_("Palestine");                                                             // Line 934 Seperate
+	echo T_("Panama");                                                                // Line 935 Seperate
+	echo T_("Papua new guinea");                                                      // Line 936 Seperate
+	echo T_("Paraguay");                                                              // Line 937 Seperate
+	echo T_("Peru");                                                                  // Line 938 Seperate
+	echo T_("Philippines");                                                           // Line 939 Seperate
+	echo T_("Pitcairn islands");                                                      // Line 940 Seperate
+	echo T_("Poland");                                                                // Line 941 Seperate
+	echo T_("Portugal");                                                              // Line 942 Seperate
+	echo T_("Puerto rico");                                                           // Line 943 Seperate
+	echo T_("Qatar");                                                                 // Line 944 Seperate
+	echo T_("Republic of the congo");                                                 // Line 945 Seperate
+	echo T_("Réunion");                                                               // Line 946 Seperate
+	echo T_("Romania");                                                               // Line 947 Seperate
+	echo T_("Russia");                                                                // Line 948 Seperate
+	echo T_("Rwanda");                                                                // Line 949 Seperate
+	echo T_("Saint barthélemy");                                                      // Line 950 Seperate
+	echo T_("Saint helena");                                                          // Line 951 Seperate
+	echo T_("Saint kitts and nevis");                                                 // Line 952 Seperate
+	echo T_("Saint lucia");                                                           // Line 953 Seperate
+	echo T_("Saint martin");                                                          // Line 954 Seperate
+	echo T_("Saint pierre and miquelon");                                             // Line 955 Seperate
+	echo T_("Saint vincent and the grenadines");                                      // Line 956 Seperate
+	echo T_("Samoa");                                                                 // Line 957 Seperate
+	echo T_("San marino");                                                            // Line 958 Seperate
+	echo T_("São tomé and príncipe");                                                 // Line 959 Seperate
+	echo T_("Saudi arabia");                                                          // Line 960 Seperate
+	echo T_("Senegal");                                                               // Line 961 Seperate
+	echo T_("Serbia");                                                                // Line 962 Seperate
+	echo T_("Seychelles");                                                            // Line 963 Seperate
+	echo T_("Sierra leone");                                                          // Line 964 Seperate
+	echo T_("Singapore");                                                             // Line 965 Seperate
+	echo T_("Sint maarten");                                                          // Line 966 Seperate
+	echo T_("Slovakia");                                                              // Line 967 Seperate
+	echo T_("Slovenia");                                                              // Line 968 Seperate
+	echo T_("Solomon islands");                                                       // Line 969 Seperate
+	echo T_("Somalia");                                                               // Line 970 Seperate
+	echo T_("South africa");                                                          // Line 971 Seperate
+	echo T_("South georgia and the south sandwich islands");                          // Line 972 Seperate
+	echo T_("South korea");                                                           // Line 973 Seperate
+	echo T_("South sudan");                                                           // Line 974 Seperate
+	echo T_("Spain");                                                                 // Line 975 Seperate
+	echo T_("Sri lanka");                                                             // Line 976 Seperate
+	echo T_("Sudan");                                                                 // Line 977 Seperate
+	echo T_("Suriname");                                                              // Line 978 Seperate
+	echo T_("Svalbard and jan mayen");                                                // Line 979 Seperate
+	echo T_("Swaziland");                                                             // Line 980 Seperate
+	echo T_("Sweden");                                                                // Line 981 Seperate
+	echo T_("Switzerland");                                                           // Line 982 Seperate
+	echo T_("Syria");                                                                 // Line 983 Seperate
+	echo T_("Taiwan");                                                                // Line 984 Seperate
+	echo T_("Tajikistan");                                                            // Line 985 Seperate
+	echo T_("Tanzania");                                                              // Line 986 Seperate
+	echo T_("Thailand");                                                              // Line 987 Seperate
+	echo T_("Togo");                                                                  // Line 988 Seperate
+	echo T_("Tokelau");                                                               // Line 989 Seperate
+	echo T_("Tonga");                                                                 // Line 990 Seperate
+	echo T_("Trinidad and tobago");                                                   // Line 991 Seperate
+	echo T_("Tunisia");                                                               // Line 992 Seperate
+	echo T_("Turkey");                                                                // Line 993 Seperate
+	echo T_("Turkmenistan");                                                          // Line 994 Seperate
+	echo T_("Turks and caicos islands");                                              // Line 995 Seperate
+	echo T_("Tuvalu");                                                                // Line 996 Seperate
+	echo T_("Minor outlying islands");                                                // Line 997 Seperate
+	echo T_("Uganda");                                                                // Line 998 Seperate
+	echo T_("Ukraine");                                                               // Line 999 Seperate
+	echo T_("United arab emirates");                                                  // Line 1000 Seperate
+	echo T_("United kingdom");                                                        // Line 1001 Seperate
+	echo T_("United states");                                                         // Line 1002 Seperate
+	echo T_("Uruguay");                                                               // Line 1003 Seperate
+	echo T_("Uzbekistan");                                                            // Line 1004 Seperate
+	echo T_("Vanuatu");                                                               // Line 1005 Seperate
+	echo T_("Vatican city");                                                          // Line 1006 Seperate
+	echo T_("Venezuela");                                                             // Line 1007 Seperate
+	echo T_("Vietnam");                                                               // Line 1008 Seperate
+	echo T_("Wallis and futuna");                                                     // Line 1009 Seperate
+	echo T_("Western sahara");                                                        // Line 1010 Seperate
+	echo T_("Yemen");                                                                 // Line 1011 Seperate
+	echo T_("Zambia");                                                                // Line 1012 Seperate
+	echo T_("Zimbabwe");                                                              // Line 1013 Seperate
 
  }
 }
