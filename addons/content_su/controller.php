@@ -38,8 +38,7 @@ class controller
 			}
 			else
 			{
-				// set 404 to the user never underestand this url is exist ;)
-				\dash\header::status(404);
+				\dash\header::status(403);
 			}
 		}
 	}
