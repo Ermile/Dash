@@ -5,7 +5,8 @@ class view
 {
 	public static function config()
 	{
-		\dash\data::bodyclass('siftal');
+		\dash\data::include_siftal(true);
+		\dash\data::include_css(false);
 
 
 		\dash\data::page_title(T_('Sitemap'));

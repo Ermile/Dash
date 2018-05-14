@@ -5,7 +5,8 @@ class view
 {
 	public static function config()
 	{
-		\dash\data::bodyclass('siftal');
+		\dash\data::include_siftal(true);
+		\dash\data::include_css(false);
 
 		\dash\data::display_cp_posts("content_cp/posts/layout.html");
 		\dash\data::display_cpSample("content_cp/sample/layout.html");
