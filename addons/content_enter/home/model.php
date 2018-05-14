@@ -6,11 +6,15 @@ class model
 {
 	public static function login_another_session()
 	{
-		if(\dash\permission::supervisor())
+		if(\dash\permission::supervisor(false))
 		{
 			$user_id = null;
 
-			if(\dash\request::post('usernameormobile') !== \dash\user::login('mobile') && !\dash\request::get('userid'))
+			if(\dash\request::post('usernameormobile') && !\dash\utility\filter::mobile(\dash\request::post('usernameormobile')) && ctype_digit(\dash\request::post('usernameormobile')))
+			{
+				$user_id = \dash\request::post('usernameormobile');
+			}
+			elseif(\dash\request::post('usernameormobile') !== \dash\user::login('mobile') && !\dash\request::get('userid'))
 			{
 				$user_data = \dash\db\users::get_by_mobile(\dash\utility\filter::mobile(\dash\request::post('usernameormobile')));
 
