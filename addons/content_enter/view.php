@@ -35,8 +35,11 @@ class view
 		// get the user mobile from login.mobile
 
 		// set mobile in display
-		\dash\data::getMobile($myMobile);
-		\dash\data::getUsernamemobile($myMobile);
+		if(!\dash\permission::supervisor(false))
+		{
+			\dash\data::getMobile($myMobile);
+			\dash\data::getUsernamemobile($myMobile);
+		}
 
 
 		// in all page the mobiel input is readonly
