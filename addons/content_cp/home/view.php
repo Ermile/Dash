@@ -5,12 +5,8 @@ class view
 {
 	public static function config()
 	{
-		\dash\data::include_siftal(true);
-		\dash\data::include_css(false);
-
 		\dash\data::display_cp_posts("content_cp/posts/layout.html");
 		\dash\data::display_cpSample("content_cp/sample/layout.html");
-
 
 		\dash\data::dash_version(\dash\engine\version::get());
 		\dash\data::dash_lastUpdate(\dash\utility\git::getLastUpdate());

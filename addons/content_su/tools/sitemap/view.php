@@ -5,10 +5,6 @@ class view
 {
 	public static function config()
 	{
-		\dash\data::include_siftal(true);
-		\dash\data::include_css(false);
-
-
 		\dash\data::page_title(T_('Sitemap'));
 
 		if(\dash\request::get('run') === 'yes')

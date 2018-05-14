@@ -87,7 +87,6 @@ class view
 
 		// define default value for include
 		\dash\data::include_siftal(true);
-		\dash\data::include_css(false);
 		\dash\data::include_css(true);
 		\dash\data::include_js(true);
 
