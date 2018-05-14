@@ -204,7 +204,7 @@ class user
 
 		$password = \dash\app::request('password');
 
-		if(\dash\permission::check("cpUsersPasswordChange")
+		if(\dash\permission::check("cpUsersPasswordChange"))
 		{
 			if($password)
 			{
