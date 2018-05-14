@@ -4,7 +4,8 @@ namespace dash\utility;
 
 class permissionlist
 {
-	private static $count;
+	private static $count_use = 0;
+	private static $count = 0;
 
 	private static function find($_path)
 	{
@@ -29,7 +30,7 @@ class permissionlist
 					preg_match("/permission\::access\((\'|\")([\w\d\:\_\-]+)(\'|\")\)/", $line, $split);
 					if(isset($split[2]))
 					{
-						self::$count += 1;
+						self::$count_use++;
 						$permission_caller[] = $split[2];
 					}
 				}
@@ -39,7 +40,7 @@ class permissionlist
 					preg_match("/permission\::check\((\'|\")([\w\d\:\_\-]+)(\'|\")\)/", $line, $split);
 					if(isset($split[2]))
 					{
-						self::$count += 1;
+						self::$count_use++;
 						$permission_caller[] = $split[2];
 					}
 				}
@@ -51,7 +52,7 @@ class permissionlist
 						preg_match("/perm\((\'|\")([\w\d\:\_\-]+)(\'|\")\)/", $line, $split);
 						if(isset($split[2]))
 						{
-							self::$count += 1;
+							self::$count_use++;
 							$permission_caller[] = $split[2];
 						}
 					}
@@ -62,6 +63,7 @@ class permissionlist
 		$permission_caller = array_filter($permission_caller);
 		$permission_caller = array_unique($permission_caller);
 		$permission_caller = array_values($permission_caller);
+		self::$count += count($permission_caller);
 		return $permission_caller;
 	}
 
@@ -74,13 +76,14 @@ class permissionlist
 		$mypath            = realpath(core).DIRECTORY_SEPARATOR;
 		$permission_caller = self::find($mypath);
 		// \dash\permission::write_file($permission_caller, 'dash');
-
-		echo '<h1>EXTRACT PERMISSION CALLERS ('.self::$count.' callers founded)</h1><hr><h3>DASH</h3>';
-		\dash\code::print($permission_caller, true);
+		$dash_caller = $permission_caller;
 
 		$mypath            = realpath(root).DIRECTORY_SEPARATOR;
 		$permission_caller = self::find($mypath);
 		// \dash\permission::write_file($permission_caller, 'project');
+
+		echo '<h1>EXTRACT PERMISSION CALLERS ('.self::$count.' callers founded | used in: '.self::$count_use.' place)</h1><hr><h3>DASH</h3>';
+		\dash\code::print($dash_caller, true);
 
 		echo '<hr><h3>PROJECT</h3>';
 		\dash\code::print($permission_caller, true);
