@@ -203,9 +203,13 @@ class user
 		}
 
 		$password = \dash\app::request('password');
-		if($password)
+
+		if(\dash\permission::check("cpUsersPasswordChange")
 		{
-			$args['password'] = \dash\utility::hasher($password);
+			if($password)
+			{
+				$args['password'] = \dash\utility::hasher($password);
+			}
 		}
 
 		$website = \dash\app::request('website');
@@ -319,6 +323,11 @@ class user
 		$args['twostep']     = $twostep;
 		$args['unit_id']     = $unit_id;
 		$args['language']    = $language;
+
+		if(!\dash\permission::check("cpUsersPermission"))
+		{
+			unset($args['permission']);
+		}
 
 		return $args;
 	}

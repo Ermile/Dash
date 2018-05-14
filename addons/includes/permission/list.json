@@ -136,5 +136,17 @@
     "cat": "Control Panel",
     "check": false,
     "require": []
+  },
+  "cpUsersPermission": {
+    "title": "cpUsersPermission",
+    "cat": "Control Panel",
+    "check": false,
+    "require": []
+  },
+  "cpUsersPasswordChange": {
+    "title": "cpUsersPasswordChange",
+    "cat": "Control Panel",
+    "check": false,
+    "require": []
   }
 }
