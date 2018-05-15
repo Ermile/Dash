@@ -52,7 +52,7 @@ class view
 		\dash\data::global_lang(\dash\language::current());
 		\dash\data::global_direction(\dash\language::current('direction'));
 		\dash\data::global_id(implode('_', \dash\url::dir()));
-		if(!\dash\data::global_id() && \dash\url::module() == null)
+		if(!\dash\data::global_id() && \dash\url::module() === null)
 		{
 			\dash\data::global_id('home');
 		}
