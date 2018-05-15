@@ -41,8 +41,6 @@ class view
 			{
 				case 'page':
 					\dash\permission::access('cpPageEdit');
-					break;
-
 					$myTitle = T_('Edit page');
 					$myBadgeText = T_('Back to list of pages');
 					break;
@@ -50,6 +48,9 @@ class view
 				case 'post':
 				default:
 					\dash\permission::access('cpPostsEdit');
+					$myTitle = T_('Edit post');
+					$myBadgeText = T_('Back to list of posts');
+					break;
 			}
 		}
 		else
