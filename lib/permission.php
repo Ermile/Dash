@@ -442,10 +442,7 @@ class permission
 	// check the user is supervisor or not
 	public static function supervisor($_force_load_user = false)
 	{
-		if($_force_load_user)
-		{
-			self::load_user(null, $_force_load_user);
-		}
+		self::load_user(null, $_force_load_user);
 
 		if(self::$user_permission === 'supervisor')
 		{

@@ -659,6 +659,7 @@ class twigTransTerms
 	echo T_("View your current location and navigate to parent of it");               // Line 98
 
 	//-------------------------------------------addons/includes/html/display-mvc.html
+	echo T_("You are supervisor!");                                                   // Line 104
 
 	//----------------------------------addons/includes/html/display-enter-blocks.html
 	echo T_("Please enter valid mobile number");                                      // Line 12
