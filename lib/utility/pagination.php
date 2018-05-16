@@ -332,6 +332,7 @@ class pagination
 				$temp_link            = $this_link . '?'. http_build_query($temp_get);
 				$result[$key]['link'] = $temp_link;
 			}
+			$result[$key]['total_rows'] = self::detail('total_rows');
 		}
 
 		return $result;
