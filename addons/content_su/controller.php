@@ -32,7 +32,7 @@ class controller
 		}
 		else
 		{
-			if(\dash\permission::supervisor())
+			if(\dash\permission::supervisor(true))
 			{
 				// the user have permission of su
 			}

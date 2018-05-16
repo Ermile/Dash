@@ -440,9 +440,12 @@ class permission
 
 
 	// check the user is supervisor or not
-	public static function supervisor($_force_load_user = true)
+	public static function supervisor($_force_load_user = false)
 	{
-		self::load_user(null, $_force_load_user);
+		if($_force_load_user)
+		{
+			self::load_user(null, $_force_load_user);
+		}
 
 		if(self::$user_permission === 'supervisor')
 		{
@@ -466,7 +469,7 @@ class permission
 		$all_list = self::lists();
 		if(array_key_exists($_caller, $all_list))
 		{
-			if(isset($all_list[$_caller]['check']) && $all_list[$_caller]['check']);
+			if(isset($all_list[$_caller]['check']) && $all_list[$_caller]['check'])
 			{
 				self::load_user($_user_id, true);
 			}
