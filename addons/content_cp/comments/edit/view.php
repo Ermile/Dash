@@ -14,7 +14,7 @@ class view
 			\dash\header::status(403, T_("Invalid id"));
 		}
 
-		\dash\data::dataRaw($detail);
+		\dash\data::dataRow($detail);
 		// $this->data->cat_list              = \dash\app\term::cat_list();
 
 		\dash\data::page_title(T_("Edit comment"));

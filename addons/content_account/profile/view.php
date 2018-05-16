@@ -27,7 +27,7 @@ class view
 			\dash\header::status(404, T_("User id not found"));
 		}
 
-		\dash\data::dataRaw(\dash\app\user::ready($user_detail, true));
+		\dash\data::dataRow(\dash\app\user::ready($user_detail, true));
 	}
 }
 ?>

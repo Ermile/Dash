@@ -24,7 +24,7 @@ class view
 			\dash\header::status(403, T_("Invalid id"));
 		}
 
-		\dash\data::dataRaw($detail);
+		\dash\data::dataRow($detail);
 		\dash\data::listCats(\dash\app\term::cat_list());
 
 		$myTitle = T_("Edit post");

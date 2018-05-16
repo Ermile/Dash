@@ -58,7 +58,7 @@
 
 {%block iTwostep%}
 <div class="switch1 mT20">
- <input type="checkbox" name="twostep" id="twostep" {%if dataRaw.twostep  %}checked{%endif%}>
+ <input type="checkbox" name="twostep" id="twostep" {%if dataRow.twostep  %}checked{%endif%}>
  <label for="twostep"></label>
  <label for="twostep">{%trans "Two step verification"%}</label>
 </div>
@@ -68,7 +68,7 @@
 {%block iSidebar%}
 <label for="xsidebar">{%trans "Auto hide sidebar"%}</label>
 <div class="switch1 mTB0">
- <input type="checkbox" name="sidebar" id="xsidebar" {%if dataRaw.sidebar %}checked{%endif%}>
+ <input type="checkbox" name="sidebar" id="xsidebar" {%if dataRow.sidebar %}checked{%endif%}>
  <label for="xsidebar"></label>
 </div>
 {%endblock%}
@@ -80,7 +80,7 @@
   <select name="language" class="ui dropdown" id="language">
     <option value="" readonly>{%trans "Select one item"%}</option>
     {%for key, lang in lang.list%}
-      <option value="{{key}}" {%if dataRaw.language == key%} selected {%endif%} >{{lang}}</option>
+      <option value="{{key}}" {%if dataRow.language == key%} selected {%endif%} >{{lang}}</option>
     {%endfor%}
   </select>
 </div>
@@ -90,7 +90,7 @@
 {%block iWebsite%}
 <label for="website">{%trans "Website"%}</label>
 <div class="input ltr">
-  <input type="url" name="website" id="website" placeholder='{%trans "Website"%} {%trans "like"%} https://ermile.com' value="{{dataRaw.website}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid website from 3 to 40 character"%}' >
+  <input type="url" name="website" id="website" placeholder='{%trans "Website"%} {%trans "like"%} https://ermile.com' value="{{dataRow.website}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid website from 3 to 40 character"%}' >
 </div>
 {%endblock%}
 
@@ -100,7 +100,7 @@
 <label for="instagram">{%trans "Instagram"%}</label>
 <div class="input ltr">
   <span class="addon"><i class="sf-instagram"></i> instagram.com/</span>
-  <input type="text" name="instagram" id="instagram" placeholder='{%trans "Instagram"%}' value="{{dataRaw.instagram}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid instagram from 3 to 40 character"%}' >
+  <input type="text" name="instagram" id="instagram" placeholder='{%trans "Instagram"%}' value="{{dataRow.instagram}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid instagram from 3 to 40 character"%}' >
 </div>
 {%endblock%}
 
@@ -108,7 +108,7 @@
 <label for="facebook">{%trans "Facebook"%}</label>
 <div class="input ltr">
   <span class="addon"><i class="sf-facebook-official"></i> facebook.com/</span>
-  <input type="text" name="facebook" id="facebook" placeholder='{%trans "Facebook"%}' value="{{dataRaw.facebook}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid facebook from 3 to 40 character"%}' >
+  <input type="text" name="facebook" id="facebook" placeholder='{%trans "Facebook"%}' value="{{dataRow.facebook}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid facebook from 3 to 40 character"%}' >
 </div>
 {%endblock%}
 
@@ -117,7 +117,7 @@
 <label for="twitter">{%trans "Twitter"%}</label>
 <div class="input ltr">
   <span class="addon"><i class="sf-twitter"></i> twitter.com/</span>
-  <input type="text" name="twitter" id="twitter" placeholder='{%trans "Twitter"%}' value="{{dataRaw.twitter}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid twitter from 3 to 40 character"%}' >
+  <input type="text" name="twitter" id="twitter" placeholder='{%trans "Twitter"%}' value="{{dataRow.twitter}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid twitter from 3 to 40 character"%}' >
 </div>
 {%endblock%}
 
@@ -126,7 +126,7 @@
 <label for="linkedin">{%trans "Linkedin"%}</label>
 <div class="input ltr">
   <span class="addon"><i class="sf-linkedin"></i> linkedin.com/</span>
-  <input type="text" name="linkedin" id="linkedin" placeholder='{%trans "Linkedin"%}' value="{{dataRaw.linkedin}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid linkedin from 3 to 40 character"%}' >
+  <input type="text" name="linkedin" id="linkedin" placeholder='{%trans "Linkedin"%}' value="{{dataRow.linkedin}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid linkedin from 3 to 40 character"%}' >
 </div>
 {%endblock%}
 
@@ -136,7 +136,7 @@
 {%if value.gmail %}
 <label for="gmail">{%trans "Gmail"%}</label>
 <div class="input ltr">
-  <input type="email" name="gmail" id="gmail" placeholder='{%trans "Like"%} your-mail' value="{{dataRaw.gmail}}" maxlength='50' readonly disabled>
+  <input type="email" name="gmail" id="gmail" placeholder='{%trans "Like"%} your-mail' value="{{dataRow.gmail}}" maxlength='50' readonly disabled>
 </div>
 {%endif%}
 {%endblock%}
@@ -146,7 +146,7 @@
 {%block iFirstname%}
 <label for="firstname">{%trans "Firstname"%}</label>
 <div class="input">
-  <input type="text" name="firstname" id="firstname" placeholder='{%trans "Firstname"%}' value="{{dataRaw.firstname}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid firstname from 3 to 40 character"%}' >
+  <input type="text" name="firstname" id="firstname" placeholder='{%trans "Firstname"%}' value="{{dataRow.firstname}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid firstname from 3 to 40 character"%}' >
 </div>
 {%endblock%}
 
@@ -155,7 +155,7 @@
 {%block iLastname%}
 <label for="lastname">{%trans "Lastname"%}</label>
 <div class="input">
-  <input type="text" name="lastname" id="lastname" placeholder='{%trans "Lastname"%}' value="{{dataRaw.lastname}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid lastname from 3 to 40 character"%}' >
+  <input type="text" name="lastname" id="lastname" placeholder='{%trans "Lastname"%}' value="{{dataRow.lastname}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid lastname from 3 to 40 character"%}' >
 </div>
 {%endblock%}
 
@@ -164,7 +164,7 @@
 {%block iUsername%}
 <label for="username">{%trans "Username"%}</label>
 <div class="input ltr">
-  <input type="text" name="username" id="username" placeholder='{%trans "Username"%}' value="{{dataRaw.username}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid username from 3 to 40 character"%}' autofocus>
+  <input type="text" name="username" id="username" placeholder='{%trans "Username"%}' value="{{dataRow.username}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid username from 3 to 40 character"%}' autofocus>
 </div>
 {%endblock%}
 
@@ -173,7 +173,7 @@
 {%block iTitle%}
 <label for="title">{%trans "Nick name"%}</label>
 <div class="input">
-  <input type="text" name="title" id="title" placeholder='{%trans "Title"%}' value="{{dataRaw.title}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid title from 3 to 40 character"%}' >
+  <input type="text" name="title" id="title" placeholder='{%trans "Title"%}' value="{{dataRow.title}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid title from 3 to 40 character"%}' >
 </div>
 {%endblock%}
 
@@ -183,14 +183,14 @@
 {%block iType%}
 <label for="type">{%trans "Type"%}</label>
 <div class="input">
-  <input type="text" name="type" id="type" placeholder='{%trans "Type"%}' value="{{dataRaw.type}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid type from 3 to 40 character"%}' >
+  <input type="text" name="type" id="type" placeholder='{%trans "Type"%}' value="{{dataRow.type}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid type from 3 to 40 character"%}' >
 </div>
 {%endblock%}
 
 {%block ibirthday%}
 <label for="birthday">{%trans "Birthday"%}  <small class="fc-red">* {%trans "Require"%}</small></label>
 <div class="input">
-  <input class="datepicker" type="text" name="birthday" id="birthday" placeholder='{{"1369/04/15" | fitNumber}} *' value="{{dataRaw.birthday}}" data-view="year" autocomplete='off'>
+  <input class="datepicker" type="text" name="birthday" id="birthday" placeholder='{{"1369/04/15" | fitNumber}} *' value="{{dataRow.birthday}}" data-view="year" autocomplete='off'>
 </div>
 {%endblock%}
 
@@ -198,7 +198,7 @@
 
 {%block iBio%}
 <label for="bio">{%trans "Bio"%}</label>
-<textarea class="txt mB20 pB25" name="bio" placeholder='{%trans "Bio"%}' maxlength='300' rows="3">{{dataRaw.bio}}</textarea>
+<textarea class="txt mB20 pB25" name="bio" placeholder='{%trans "Bio"%}' maxlength='300' rows="3">{{dataRow.bio}}</textarea>
 {%endblock%}
 
 
@@ -206,7 +206,7 @@
 {%block iDisplayName%}
 <label for="displayname">{%trans "Display name"%}</label>
 <div class="input">
-  <input type="text" name="displayname" id="displayname" placeholder='{%trans "Display name"%}' value="{{dataRaw.displayname}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid displayname from 3 to 40 character"%}' >
+  <input type="text" name="displayname" id="displayname" placeholder='{%trans "Display name"%}' value="{{dataRow.displayname}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid displayname from 3 to 40 character"%}' >
 </div>
 {%endblock%}
 
@@ -216,7 +216,7 @@
 {%block imobile%}
 <label for="mobile">{%trans "Mobile"%} <small class="fc-red">* {%trans "Require"%}</small></label>
 <div class="input">
-  <input type="text" name="mobile" id="mobile" placeholder='{%trans "Like 09120123456"%} *' value="{{dataRaw.mobile}}" maxlength='30' required {%if dataRaw.mobile%} readonly{%endif%}>
+  <input type="text" name="mobile" id="mobile" placeholder='{%trans "Like 09120123456"%} *' value="{{dataRow.mobile}}" maxlength='30' required {%if dataRow.mobile%} readonly{%endif%}>
 </div>
 {%endblock%}
 
@@ -227,12 +227,12 @@
   <label for="gender">{%trans "Gender"%} <small class="fc-red">* {%trans "Require"%}</small></label>
   <div class="f">
    <div class="radio1 green">
-    <input type="radio" id="r-male" name="gender" value="male" {%if dataRaw.gender == 'male' %}checked{%endif%}>
+    <input type="radio" id="r-male" name="gender" value="male" {%if dataRow.gender == 'male' %}checked{%endif%}>
     <label for="r-male">{%trans "Male"%}</label>
    </div>
 
    <div class="radio1 green">
-    <input type="radio" id="r-female" name="gender" value="female" {%if dataRaw.gender == 'female' %}checked{%endif%}>
+    <input type="radio" id="r-female" name="gender" value="female" {%if dataRow.gender == 'female' %}checked{%endif%}>
     <label for="r-female">{%trans "Female"%}</label>
    </div>
   </div>
@@ -245,12 +245,12 @@
   <label for="status">{%trans "Status"%}</label>
   <select name="status" class="ui dropdown" id="status">
     <option value="" readonly>{%trans "Select one item"%} *</option>
-    <option value="active" {% if dataRaw.status == 'active' %} selected {%endif%}>{%trans "Active"%}</option>
-    <option value="awaiting" {% if dataRaw.status == 'awaiting' %} selected {%endif%}>{%trans "Awaiting"%}</option>
-    <option value="deactive" {% if dataRaw.status == 'deactive' %} selected {%endif%}>{%trans "Deactive"%}</option>
-    <option value="removed" {% if dataRaw.status == 'removed' %} selected {%endif%}>{%trans "Removed"%}</option>
-    <option value="filter" {% if dataRaw.status == 'filter' %} selected {%endif%}>{%trans "Filter"%}</option>
-    <option value="unreachable" {% if dataRaw.status == 'unreachable' %} selected {%endif%}>{%trans "Unreachable"%}</option>
+    <option value="active" {% if dataRow.status == 'active' %} selected {%endif%}>{%trans "Active"%}</option>
+    <option value="awaiting" {% if dataRow.status == 'awaiting' %} selected {%endif%}>{%trans "Awaiting"%}</option>
+    <option value="deactive" {% if dataRow.status == 'deactive' %} selected {%endif%}>{%trans "Deactive"%}</option>
+    <option value="removed" {% if dataRow.status == 'removed' %} selected {%endif%}>{%trans "Removed"%}</option>
+    <option value="filter" {% if dataRow.status == 'filter' %} selected {%endif%}>{%trans "Filter"%}</option>
+    <option value="unreachable" {% if dataRow.status == 'unreachable' %} selected {%endif%}>{%trans "Unreachable"%}</option>
   </select>
 </div>
 {%endblock%}
@@ -262,7 +262,7 @@
   <select name="permission" class="ui dropdown" id="permission">
     <option value="" readonly>{%trans "No permission"%}</option>
     {%for perm in permGroup%}
-      <option value="{{perm}}" {%if dataRaw.permission == perm%} selected {%endif%} >{%trans perm%}</option>
+      <option value="{{perm}}" {%if dataRow.permission == perm%} selected {%endif%} >{%trans perm%}</option>
     {%endfor%}
   </select>
 </div>
@@ -271,7 +271,7 @@
 {%block iEmail%}
 <label for="email">{%trans "Email"%}</label>
 <div class="input">
-  <input type="email" name="email" id="email" placeholder='{%trans "Like"%} abc@example.com' value="{{dataRaw.email}}" maxlength='50'>
+  <input type="email" name="email" id="email" placeholder='{%trans "Like"%} abc@example.com' value="{{dataRow.email}}" maxlength='50'>
 </div>
 {%endblock%}
 
@@ -291,7 +291,7 @@
 <div data-response='password' data-response-hide data-response-effect='slide'>
   <label for="repassword">{%trans "Confirm password"%} <small class="fc-red">* {%trans "Require to change current password"%}</small></label>
   <div class="input">
-  <input type="password" name="repassword" id="repassword" placeholder='{%if dataRaw.password%}{%trans "Password was set, enter to change it!"%}{%else%}{%trans "Password not set, enter  to set it!"%}{%endif%}'  maxlength='50'>
+  <input type="password" name="repassword" id="repassword" placeholder='{%if dataRow.password%}{%trans "Password was set, enter to change it!"%}{%else%}{%trans "Password not set, enter  to set it!"%}{%endif%}'  maxlength='50'>
 </div>
 </div>
 {%endblock%}
@@ -301,7 +301,7 @@
 <div class="input preview">
  <input type="file" accept="image/gif, image/jpeg, image/png" name="avatar" id="avatar1" data-preview data-max="500">
  <label for="avatar1" title="Simple Title">
-    {%if dataRaw.avatar%}<img src="{{dataRaw.avatar}}">{%endif%}
+    {%if dataRow.avatar%}<img src="{{dataRow.avatar}}">{%endif%}
  </label>
 </div>
 {%endblock%}
