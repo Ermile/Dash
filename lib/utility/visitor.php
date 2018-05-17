@@ -491,36 +491,54 @@ class visitor
 	 */
 	public static function top_pages($_count = 10)
 	{
-		// self::createLink();
-		// $service_id = self::service();
+		if(!defined('db_log_name'))
+		{
+			return;
+		}
 
-		// $query =
-		// 	"SELECT
-		// 		urls.url_url as url,
-		// 		count(visitors.id) as total
-		// 	FROM urls
-		// 	INNER JOIN visitors ON urls.id = visitors.url_id
-		// 	WHERE visitors.`service_id` = $service_id
+		self::createLink();
+		$service_id = self::service();
 
-		// 	GROUP BY visitors.url_id
-		// 	ORDER BY total DESC
-		// 	LIMIT 0, $_count";
-		// $result  = @mysqli_query(self::$link, $query);
-		// if(!$result)
-		// 	return false;
+		$query =
+		"
+			SELECT
+				urls.url as url,
+				count(visitors.id) as total
+			FROM
+				urls
+			INNER JOIN visitors ON urls.id = visitors.url_id
+			WHERE
+				visitors.`service_id` = $service_id
+			GROUP BY
+				visitors.url_id
+			ORDER BY
+				total DESC
+			LIMIT 0, $_count
+		";
 
-		// $result = \dash\db::fetch_all($result);
 
-		// foreach ($result as $key => $row)
-		// {
-		// 	$result[$key]['url'] = urldecode($row['url']);
-		// 	if(strpos($result[$key]['url'], 'http://') !== false)
-		// 	{
-		// 		$result[$key]['text'] = substr($result[$key]['url'], 7);
-		// 	}
+		$result  = \dash\db::get($query, null, false, db_log_name);
 
-		// }
-		// return $result;
+		if(!$result)
+		{
+			return false;
+		}
+
+		$temp = [];
+		foreach ($result as $key => $value)
+		{
+			$url = urldecode($value['url']);
+			if(strpos($result[$key]['url'], 'http://') !== false)
+			{
+				$url = substr($result[$key]['url'], 7);
+			}
+
+			$temp[] = ['key' => $url, 'value' => $value['total']];
+		}
+
+		$temp = json_encode($temp, JSON_UNESCAPED_UNICODE);
+		return $temp;
+
 	}
 }
 ?>

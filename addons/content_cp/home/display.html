@@ -10,6 +10,7 @@
  <div class="c4 s12">{{block ("iCms")}}</div>
  </div>
  {{block('cpVisitorChart')}}
+ {{block('cpVisitorTotalPage')}}
 {%endblock%}
 
 
@@ -27,6 +28,15 @@
 {%block cpVisitorChart%}
 <div class="dcard x3 pA0">
  <div class="chart" data-type='bar' data-vals='{{visitor.chart}}'>
+ </div>
+</div>
+{%endblock%}
+
+
+
+{%block cpVisitorTotalPage%}
+<div class="dcard x3 pA0">
+ <div class="chart" data-type='area' data-vals='{{visitor.totalpages}}'>
  </div>
 </div>
 {%endblock%}
