@@ -193,7 +193,7 @@ class visitor
 			$insert_agent['os']      = array_key_exists('os', $agent) 				? $agent['os'] 					: null;
 			$insert_agent['osnum']   = array_key_exists('os_number', $agent) 		? $agent['os_number'] 			: null;
 			$insert_agent['meta']    = json_encode($agent, true);
-			$insert_agent['robot']   = $is_bot === 'NULL' ? null : 1;
+			$insert_agent['robot']   = $is_bot ? 1 : null;
 			$set                     = \dash\db\config::make_set($insert_agent);
 			$query                   = "INSERT INTO agents SET $set ";
 		}
@@ -293,7 +293,7 @@ class visitor
 			}
 		}
 
-		return 'NULL';
+		return null;
 	}
 
 
@@ -356,7 +356,7 @@ class visitor
 	 */
 	public static function isBot()
 	{
-		$robot   = 'NULL';
+		$robot   = null;
 		$agent   = self::agent();
 		$botlist =
 		[
@@ -428,50 +428,60 @@ class visitor
 	 * show visitor result
 	 * @return [type] [description]
 	 */
-	public static function chart()
+	public static function chart($_json = false)
 	{
+		if(!defined('db_log_name'))
+		{
+			return;
+		}
 
-		// self::createLink();
-		// $service_id = self::service();
-		// /**
-		//  add getting unique visitor in next update
-		//  */
+		self::createLink();
+		$service_id = self::service();
+		/**
+		 add getting unique visitor in next update
+		 */
 
-		// $qry =
-		// 	"SELECT
-		// 		visitor_date as date,
-		// 		0 as bots,
-		// 		count(*) as humans,
-		// 		count(*) as total
+		$query =
+		"
+			SELECT
+				visitors.date AS `date`,
+				COUNT(*)       AS `humans`,
+				COUNT(*)       AS `total`
+			FROM
+				`visitors`
+			WHERE
+				`service_id` = $service_id
+			GROUP BY
+				visitors.date
+			ORDER BY
+				visitors.date DESC
+			LIMIT 10
+		";
 
-		// 		FROM `visitors`
-		// 		WHERE `service_id` = $service_id
+		$result = \dash\db::get($query, null, false, db_log_name);
 
-		// 		GROUP BY visitor_date
-		// 		ORDER BY visitor_date DESC
-		// 		LIMIT 0, 10";
-		// $result  = @mysqli_query(self::$link, $qry);
-		// if(!$result)
-		// {
-		// 	return false;
-		// }
+		if(!$result)
+		{
+			return false;
+		}
 
-		// $result = \dash\db::fetch_all($result);
-		// $result = array_reverse($result);
+		$result = array_reverse($result);
+		$temp = [];
+		foreach ($result as $key => $value)
+		{
+			$date = $value['date'];
+			if(\dash\data::lang_current() == 'fa')
+			{
+				$date = \dash\utility\jdate::date("Y/m/d", $value['date']);
+			}
 
-		// $result_total = array_column($result, 'total');
-		// self::$result['chart'] = $result;
-		// self::$result['total'] = null;
-		// self::$result['max']   = null;
-		// self::$result['min']   = null;
-		// if($result_total)
-		// {
-		// 	self::$result['total'] = array_sum($result_total);
-		// 	self::$result['max']   = max($result_total);
-		// 	self::$result['min']   = min($result_total);
-		// }
-		// // return result
-		// return $result;
+			$temp[] = ['key' => $date, 'value' => $value['total']];
+		}
+		if($_json)
+		{
+			$temp = json_encode($temp, JSON_UNESCAPED_UNICODE);
+		}
+		return $temp;
 	}
 
 
@@ -484,7 +494,7 @@ class visitor
 		// self::createLink();
 		// $service_id = self::service();
 
-		// $qry =
+		// $query =
 		// 	"SELECT
 		// 		urls.url_url as url,
 		// 		count(visitors.id) as total
@@ -495,7 +505,7 @@ class visitor
 		// 	GROUP BY visitors.url_id
 		// 	ORDER BY total DESC
 		// 	LIMIT 0, $_count";
-		// $result  = @mysqli_query(self::$link, $qry);
+		// $result  = @mysqli_query(self::$link, $query);
 		// if(!$result)
 		// 	return false;
 
