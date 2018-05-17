@@ -419,8 +419,28 @@ class enter
 
 		if($_auto_redirect)
 		{
-			// go to base
-			self::go_to('main');
+
+			if(\dash\request::get('referer') || \dash\request::get('mobile'))
+			{
+				$get_enter_query = [];
+				if(\dash\request::get('mobile'))
+				{
+					$get_enter_query['mobile']   = \dash\request::get('mobile');
+					$get_enter_query['autosend'] = 1;
+				}
+
+				if(\dash\request::get('referer'))
+				{
+					$get_enter_query['referer']   = \dash\request::get('referer');
+				}
+
+				\dash\redirect::to(\dash\url::base(). '/enter?'. http_build_query($get_enter_query));
+			}
+			else
+			{
+				// go to base
+				self::go_to('main');
+			}
 		}
 
 	}

@@ -29,6 +29,10 @@ class view
 		{
 			$myMobile = $temp_mobile;
 		}
+		elseif(\dash\request::get('mobile') && \dash\utility\filter::mobile(\dash\request::get('mobile')))
+		{
+			$myMobile = \dash\utility\filter::mobile(\dash\request::get('mobile'));
+		}
 
 		// if mobile not set but the user was login
 		// for example in pass/change page

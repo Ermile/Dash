@@ -66,13 +66,18 @@ class model
 	}
 
 
+	public static function post()
+	{
+		self::enter_post(\dash\request::post('usernameormobile'), \dash\request::post('password'));
+	}
+
 
 	/**
 	 * Posts an enter.
 	 *
 	 * @param      <type>  $_args  The arguments
 	 */
-	public static function post()
+	public static function enter_post($_usernameormobile, $_password = null)
 	{
 		/**
 		 * check login by another session
@@ -105,8 +110,8 @@ class model
 		// clean existing session
 		\dash\utility\enter::clean_session();
 
-		$password         = \dash\request::post('password');
-		$usernameormobile = \dash\request::post('usernameormobile');
+		$password         = $_password;
+		$usernameormobile = $_usernameormobile;
 
 		if(!$usernameormobile)
 		{

@@ -28,6 +28,15 @@ class view
 
 			\dash\data::getMobile($mobile);
 		}
+
+		if(\dash\request::get('autosend') && \dash\request::get('mobile'))
+		{
+			$mobile = \dash\utility\filter::mobile(\dash\request::get('mobile'));
+			if($mobile)
+			{
+				\content_enter\home\model::enter_post($mobile);
+			}
+		}
 	}
 }
 ?>
