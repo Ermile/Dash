@@ -28,8 +28,18 @@ class prepare
 		self::session_start();
 
 		self::user_country_redirect();
+
+		self::dash_shutdown_function();
 	}
 
+
+	private static function dash_shutdown_function()
+	{
+		if(\dash\option::config('visitor'))
+		{
+			register_shutdown_function(['\dash\utility\visitor', 'save']);
+		}
+	}
 
 
 	/**

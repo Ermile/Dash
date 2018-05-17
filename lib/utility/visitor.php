@@ -23,16 +23,24 @@ class visitor
 	 */
 	public static function save()
 	{
+		if(!defined('db_log_name'))
+		{
+			return;
+		}
 		// create link to database
 		$connect = self::createLink();
+
 		if($connect)
 		{
 			// create a query string
-			$qry     = self::create_query();
-			// execute query and save result
-			$result  = @mysqli_query(self::$link, $qry);
-			// return resul
-			return $result;
+			$query     = self::create_query();
+			if($query)
+			{
+				// execute query and save result
+				$result  = \dash\db::query($query, db_log_name);
+				// return resul
+				return $result;
+			}
 		}
 		// else we have problem in connection, fix it later
 		// header("HTTP/1.1 200 OK");
@@ -47,11 +55,10 @@ class visitor
 	 */
 	private static function createLink($_force = false)
 	{
-
 		if(!self::$link || $_force)
 		{
 			// open database connection and create link
-			if(!\dash\db::connect('[tools]', false))
+			if(!\dash\db::connect(db_log_name, false))
 			{
 				// cant connect to database
 				return false;
@@ -71,15 +78,19 @@ class visitor
 	public static function create_query($_array = false)
 	{
 		// declare variables
-		self::$visitor['`visitor_ip`']       = \dash\server::ip(true);
-		self::$visitor['`service_id`']       = self::checkDetailExist('service', self::url(true));
-		self::$visitor['`url_id`']           = self::checkDetailExist('url',     self::url());
-		self::$visitor['`agent_id`']         = self::checkDetailExist('agent',   self::agent());
-		self::$visitor['`url_idreferer`']    = self::checkDetailExist('url',     self::referer());
-		self::$visitor['`user_id`']          = self::user_id();
-		self::$visitor['`visitor_external`'] = self::$external;
-		self::$visitor['`visitor_date`']     = "'".date('Y-m-d')."'";
-		self::$visitor['`visitor_time`']     = "'".date('H:i:s')."'";
+		self::$visitor['visitor_ip']    = \dash\server::ip(true);
+		self::$visitor['service_id']    = self::checkDetailExist('services', self::service(), 	'name');
+		self::$visitor['url_id']        = self::checkDetailExist('urls',     self::url(), 		'url');
+		self::$visitor['agent_id']      = self::checkDetailExist('agents',   self::agent(), 	'agent');
+		self::$visitor['url_idreferer'] = self::checkDetailExist('urls',     self::referer(), 	'url');
+		self::$visitor['user_id']       = \dash\user::id();
+		self::$visitor['external']      = self::$external;
+		self::$visitor['date']          = date('Y-m-d');
+		self::$visitor['time']          = date('H:i:s');
+		self::$visitor['timeraw']       = time();
+		self::$visitor['year']          = date('Y');
+		self::$visitor['month']         = date('m');
+		self::$visitor['day']           = date('d');
 
 		if($_array === true)
 		{
@@ -87,11 +98,14 @@ class visitor
 		}
 
 		// create query string
-		$qry_fields = implode(', ', array_keys(self::$visitor));
-		$qry_values = implode(', ', self::$visitor);
-		$qry = "INSERT INTO visitors ( $qry_fields ) VALUES ( $qry_values );";
-		// return query
-		return $qry;
+		$set = \dash\db\config::make_set(self::$visitor);
+		if($set)
+		{
+			$query = "INSERT INTO visitors SET $set";
+			// return query
+			return $query;
+		}
+		return null;
 	}
 
 
@@ -107,7 +121,7 @@ class visitor
 		switch ($_type)
 		{
 			case 'agent':
-				$return = self::checkDetailExist('agent',   self::agent());
+				$return = self::checkDetailExist('agents',   self::agent(), 'agent');
 				break;
 
 			default:
@@ -124,89 +138,80 @@ class visitor
 	 * @param  [type] $_value value to check
 	 * @return [type]         final id
 	 */
-	public static function checkDetailExist($_table, $_value)
+	public static function checkDetailExist($_table, $_value, $_field = null)
 	{
 		// create link to database
 		self::createLink();
+
 		$default = 0;
-		$field   = $_table. '_';
-		if($_table === 'service')
+
+		if($_table === 'services')
 		{
-			$field .= 'name';
+			return $_value;
 		}
-		else
+
+		if(!$_value)
 		{
-			$field .=  $_table;
+			return null;
 		}
-		$qry     = "SELECT * FROM $_table"."s WHERE $field = '$_value';";
-		// run qry and save result
-		$result  = @mysqli_query(self::$link, $qry);
-		// if result is not mysqli result return false
-		if(!is_a($result, 'mysqli_result'))
+
+		$query     = "SELECT * FROM $_table WHERE $_field = '$_value' LIMIT 1";
+		// run query and save result
+		$result  = \dash\db::get($query, null, true, db_log_name);
+
+		if(isset($result['id']))
 		{
-			// no record exist
-			return 'NULL';
-		}
-		// if has result return id
-		if($result && $row = @mysqli_fetch_assoc($result))
-		{
-			if(isset($row['id']))
-			{
-				return $row['id'];
-			}
-			return $default;
+			return $result['id'];
 		}
 
 		// create insert query to add new record
-		$qry     = "INSERT INTO $_table"."s ( $_table".'_'."$_table ) VALUES ( '$_value' );";
-		if($_table === 'agent')
+		$query = null;
+
+		if($_table === 'agents')
 		{
 			// self::agent()
-			$is_bot = self::isBot();
-			$agent  = \dash\utility\browserDetection::browser_detection('full_assoc');
-			$qry    =
-			"INSERT INTO agents
-			(
-				`agent_agent`,
-				`agent_group`,
-				`agent_name`,
-				`agent_version`,
-				`agent_os`,
-				`agent_osnum`,
-				`agent_meta`,
-				`agent_robot`
-			)
-			VALUES
-			(
-				'$_value',
-				'".$agent['browser_working']."',
-				'".$agent['browser_name']."',
-				'".$agent['browser_number']."',
-				'".$agent['os']."',
-				'".$agent['os_number']."',
-				'".json_encode($agent, true)."',
-				$is_bot
-			);";
+			$is_bot                  = self::isBot();
+			$agent                   = \dash\utility\browserDetection::browser_detection('full_assoc');
+			$insert_agent            = [];
+			$insert_agent['agent']   = $_value;
+			$insert_agent['group']   = array_key_exists('browser_working', $agent)  ? $agent['browser_working'] 	: null;
+			$insert_agent['name']    = array_key_exists('browser_name', $agent) 	? $agent['browser_name'] 		: null;
+			$insert_agent['version'] = array_key_exists('browser_number', $agent)	? $agent['browser_number'] 		: null;
+			$insert_agent['os']      = array_key_exists('os', $agent) 				? $agent['os'] 					: null;
+			$insert_agent['osnum']   = array_key_exists('os_number', $agent) 		? $agent['os_number'] 			: null;
+			$insert_agent['meta']    = json_encode($agent, true);
+			$insert_agent['robot']   = $is_bot === 'NULL' ? null : 1;
+			$set                     = \dash\db\config::make_set($insert_agent);
+			$query                   = "INSERT INTO agents SET $set ";
 		}
-		elseif($_table === 'url')
+		elseif($_table === 'urls')
 		{
-			$qry =
-			"INSERT INTO urls
-			( url_url, `url_host` )
-			VALUES ( '$_value', '". parse_url(urldecode($_value), PHP_URL_HOST). "' );";
+			$insert_url         = [];
+			$insert_url['url']  = $_value;
+			$insert_url['host'] = parse_url(urldecode($_value), PHP_URL_HOST);
+			$set                = \dash\db\config::make_set($insert_url);
+			$query              = "INSERT INTO urls SET $set ";
 		}
-		elseif($_table === 'service')
+		elseif($_table === 'services')
 		{
-			$qry = "INSERT INTO services ( service_name ) VALUES ( '$_value' );";
+			$insert_service              = [];
+			$insert_service['name']      = $_value ? $_value : \dash\url::domain();
+			$insert_service['subdomain'] = \dash\url::subdomain();
+			$set                         = \dash\db\config::make_set($insert_service);
+			$query                       = "INSERT INTO services SET $set ";
 		}
-		// execute query
-		$result  = @mysqli_query(self::$link, $qry);
-		// give last insert id
-		$last_id = @mysqli_insert_id(self::$link);
-		// if have last insert it return it
-		if($last_id)
+
+		if($query)
 		{
-			return $last_id;
+			\dash\db::query($query, db_log_name);
+
+			$last_id = \dash\db::insert_id(self::$link);
+
+			if($last_id)
+			{
+				return $last_id;
+			}
+
 		}
 		// return default value
 		return $default;
@@ -217,24 +222,11 @@ class visitor
 	 * return current url
 	 * @return [type] [description]
 	 */
-	public static function url($_host = false)
+	public static function url()
 	{
-		$url = null;
-		// get protocol
-		$url = 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://';
-		// get name
-		$url .= $_SERVER['SERVER_NAME'];
-		// get port
-		$url .= $_SERVER["SERVER_PORT"] != "80"? ":".$_SERVER["SERVER_PORT"]: '';
-		// get request url
-		$url .= $_SERVER['REQUEST_URI'];
-		// if user want only host
-		if($_host)
-		{
-			$url = self::domain($url);
-		}
+		// $url = \dash\url::current();
+		$url = \dash\url::pwd();
 		$url = urlencode($url);
-		// return result
 		return $url;
 	}
 
@@ -245,57 +237,46 @@ class visitor
 	 */
 	public static function service()
 	{
-		$domain = self::url(true);
-		$qry     = "SELECT * FROM services WHERE service_name = '$domain';";
-		// run qry and save result
-		$result  = @mysqli_query(self::$link, $qry);
-		// if has result return id
-		if(is_a($result, 'mysqli_result') && $row = @mysqli_fetch_assoc($result))
+		$domain = \dash\url::domain();
+
+		$sub = null;
+
+		if(\dash\url::subdomain())
 		{
-			if(isset($row['id']))
+			$subdomain = \dash\url::subdomain();
+			$sub = " AND subdomain = '$subdomain' ";
+		}
+
+		$query = "SELECT * FROM services WHERE name = '$domain' $sub LIMIT 1";
+
+		$result  = \dash\db::get($query, null, true, db_log_name);
+		// if has result return id
+		if(isset($result['id']))
+		{
+			return $result['id'];
+		}
+		else
+		{
+			$insert_service              = [];
+			$insert_service['name']      = \dash\url::domain();
+			$insert_service['subdomain'] = \dash\url::subdomain();
+			$set                         = \dash\db\config::make_set($insert_service);
+			$query                       = "INSERT INTO services SET $set ";
+
+			\dash\db::query($query, db_log_name);
+
+			$last_id = \dash\db::insert_id(self::$link);
+
+			if($last_id)
 			{
-				return $row['id'];
+				return $last_id;
 			}
 		}
+
 		return 'NULL';
 	}
 
 
-	/**
-	 * get url and return the name of domain
-	 * @param  [type] $_url [description]
-	 * @return [type]       [description]
-	 */
-	public static function domain($_url)
-	{
-		$pieces = parse_url($_url);
-		$domain = isset($pieces['host']) ? $pieces['host'] : '';
-		if (preg_match('/(?P<domain>[a-z0-9][a-z0-9\-]{1,63}\.[a-z\.]{2,6})$/i', $domain, $regs))
-		{
-			return $regs['domain'];
-		}
-		return false;
-	}
-
-
-	/**
-	 * return user_id if loginned to system
-	 * @return [type] [description]
-	 */
-	public static function user_id($_returnNull = true)
-	{
-		$userid = null;
-		if($_returnNull)
-		{
-			$userid = 'NULL';
-		}
-		if(isset($_SESSION['user']['id']))
-		{
-			$userid = $_SESSION['user']['id'];
-		}
-		// return result
-		return $userid;
-	}
 
 
 	/**
@@ -429,47 +410,48 @@ class visitor
 	 */
 	public static function chart()
 	{
-		self::createLink();
-		$service_id = self::service();
-		/**
-		 add getting unique visitor in next update
-		 */
 
-		$qry =
-			"SELECT
-				visitor_date as date,
-				0 as bots,
-				count(*) as humans,
-				count(*) as total
+		// self::createLink();
+		// $service_id = self::service();
+		// /**
+		//  add getting unique visitor in next update
+		//  */
 
-				FROM `visitors`
-				WHERE `service_id` = $service_id
+		// $qry =
+		// 	"SELECT
+		// 		visitor_date as date,
+		// 		0 as bots,
+		// 		count(*) as humans,
+		// 		count(*) as total
 
-				GROUP BY visitor_date
-				ORDER BY visitor_date DESC
-				LIMIT 0, 10";
-		$result  = @mysqli_query(self::$link, $qry);
-		if(!$result)
-		{
-			return false;
-		}
+		// 		FROM `visitors`
+		// 		WHERE `service_id` = $service_id
 
-		$result = \dash\db::fetch_all($result);
-		$result = array_reverse($result);
+		// 		GROUP BY visitor_date
+		// 		ORDER BY visitor_date DESC
+		// 		LIMIT 0, 10";
+		// $result  = @mysqli_query(self::$link, $qry);
+		// if(!$result)
+		// {
+		// 	return false;
+		// }
 
-		$result_total = array_column($result, 'total');
-		self::$result['chart'] = $result;
-		self::$result['total'] = null;
-		self::$result['max']   = null;
-		self::$result['min']   = null;
-		if($result_total)
-		{
-			self::$result['total'] = array_sum($result_total);
-			self::$result['max']   = max($result_total);
-			self::$result['min']   = min($result_total);
-		}
-		// return result
-		return $result;
+		// $result = \dash\db::fetch_all($result);
+		// $result = array_reverse($result);
+
+		// $result_total = array_column($result, 'total');
+		// self::$result['chart'] = $result;
+		// self::$result['total'] = null;
+		// self::$result['max']   = null;
+		// self::$result['min']   = null;
+		// if($result_total)
+		// {
+		// 	self::$result['total'] = array_sum($result_total);
+		// 	self::$result['max']   = max($result_total);
+		// 	self::$result['min']   = min($result_total);
+		// }
+		// // return result
+		// return $result;
 	}
 
 
@@ -479,36 +461,36 @@ class visitor
 	 */
 	public static function top_pages($_count = 10)
 	{
-		self::createLink();
-		$service_id = self::service();
+		// self::createLink();
+		// $service_id = self::service();
 
-		$qry =
-			"SELECT
-				urls.url_url as url,
-				count(visitors.id) as total
-			FROM urls
-			INNER JOIN visitors ON urls.id = visitors.url_id
-			WHERE visitors.`service_id` = $service_id
+		// $qry =
+		// 	"SELECT
+		// 		urls.url_url as url,
+		// 		count(visitors.id) as total
+		// 	FROM urls
+		// 	INNER JOIN visitors ON urls.id = visitors.url_id
+		// 	WHERE visitors.`service_id` = $service_id
 
-			GROUP BY visitors.url_id
-			ORDER BY total DESC
-			LIMIT 0, $_count";
-		$result  = @mysqli_query(self::$link, $qry);
-		if(!$result)
-			return false;
+		// 	GROUP BY visitors.url_id
+		// 	ORDER BY total DESC
+		// 	LIMIT 0, $_count";
+		// $result  = @mysqli_query(self::$link, $qry);
+		// if(!$result)
+		// 	return false;
 
-		$result = \dash\db::fetch_all($result);
+		// $result = \dash\db::fetch_all($result);
 
-		foreach ($result as $key => $row)
-		{
-			$result[$key]['url'] = urldecode($row['url']);
-			if(strpos($result[$key]['url'], 'http://') !== false)
-			{
-				$result[$key]['text'] = substr($result[$key]['url'], 7);
-			}
+		// foreach ($result as $key => $row)
+		// {
+		// 	$result[$key]['url'] = urldecode($row['url']);
+		// 	if(strpos($result[$key]['url'], 'http://') !== false)
+		// 	{
+		// 		$result[$key]['text'] = substr($result[$key]['url'], 7);
+		// 	}
 
-		}
-		return $result;
+		// }
+		// return $result;
 	}
 }
 ?>
