@@ -233,7 +233,22 @@ class prepare
 		// fix root domain
 		if(\dash\option::url('root'))
 		{
-			$target_host .= \dash\option::url('root');
+			if(\dash\option::url('root') !== \dash\url::root())
+			{
+				if(is_callable(['\lib\alias', 'url']) && \lib\alias::url())
+				{
+					$target_host .= \dash\url::root();
+				}
+				else
+				{
+					$target_host .= \dash\option::url('root');
+				}
+			}
+			else
+			{
+				$target_host .= \dash\option::url('root');
+			}
+
 		}
 		elseif(\dash\url::root())
 		{
@@ -243,7 +258,14 @@ class prepare
 		// fix tld
 		if(\dash\option::url('tld'))
 		{
-			$target_host .= '.'.\dash\option::url('tld');
+			if(is_callable(['\lib\alias', 'url']) && \lib\alias::url())
+			{
+				$target_host .= '.'. \dash\url::tld();
+			}
+			else
+			{
+				$target_host .= '.'.\dash\option::url('tld');
+			}
 		}
 		elseif(\dash\url::tld())
 		{
@@ -281,6 +303,7 @@ class prepare
 		// set target url with path
 		$target_url = $target_host. \dash\url::path();
 		$target_url = self::fix_url_slash($target_url);
+
 
 		// if we have new target url, and dont on force show mode, try to change it
 		if(!\dash\request::get('force'))

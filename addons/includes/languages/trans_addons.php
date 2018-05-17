@@ -365,7 +365,7 @@ class twigTransTerms
 
 	//-----------------------------addons/content_account/billing/invoice/display.html
 	echo T_("Factor of team");                                                        // Line 8
-	echo T_("Total");                                                                 // Line 21
+	echo T_("Total");                                                                 // Line 3
 	echo T_("Price");                                                                 // Line 20
 
 	//-------------------------------------addons/content_account/billing/display.html
@@ -660,6 +660,8 @@ class twigTransTerms
 
 	//-------------------------------------------addons/includes/html/display-mvc.html
 	echo T_("You are supervisor!");                                                   // Line 104
+
+	//----------------------------------------addons/includes/html/inc_pagination.html
 
 	//----------------------------------addons/includes/html/display-enter-blocks.html
 	echo T_("Please enter valid mobile number");                                      // Line 12
