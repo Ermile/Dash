@@ -140,6 +140,15 @@ class visitor
 	 */
 	public static function checkDetailExist($_table, $_value, $_field = null)
 	{
+		$cache_key = 'visitor_'. md5(json_encode($_value, true));
+
+		if($_table !== 'urls')
+		{
+			if($cache = \dash\session::get($cache_key))
+			{
+				return $cache;
+			}
+		}
 		// create link to database
 		self::createLink();
 
@@ -161,6 +170,10 @@ class visitor
 
 		if(isset($result['id']))
 		{
+			if($_table !== 'urls')
+			{
+				\dash\session::set($cache_key, $result['id']);
+			}
 			return $result['id'];
 		}
 
@@ -247,12 +260,19 @@ class visitor
 			$sub = " AND subdomain = '$subdomain' ";
 		}
 
+		$cache_key = 'visitor_'. $domain. '_'. \dash\url::subdomain();
+		if($cache = \dash\session::get($cache_key))
+		{
+			return $cache;
+		}
+
 		$query = "SELECT * FROM services WHERE name = '$domain' $sub LIMIT 1";
 
 		$result  = \dash\db::get($query, null, true, db_log_name);
 		// if has result return id
 		if(isset($result['id']))
 		{
+			\dash\session::set($cache_key, $result['id']);
 			return $result['id'];
 		}
 		else
