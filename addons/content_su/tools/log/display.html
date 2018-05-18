@@ -29,8 +29,7 @@
         <div class="label">{{value.name}}</div>
         <hr>
         <div class="label ">{%trans "datemodified"%}</div>
-        <div class=" txtC mT10">{{value.mtime | sdate}}</div>
-
+        <div class=" txtC mT10" title="{{value.mtime | tdate('Y-m-d H:i:s')}}">{{value.mtime | sdate}}</div>
         <hr>
         <div class="label">{{value.size | fitNumber}} {%trans "MB"%}</div>
        </div>
