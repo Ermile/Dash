@@ -3,14 +3,44 @@
 {%block content%}
 
 {%if url.tld == 'local'%}
- <div class=" dbox">
+
+ <div class="">
   <h2>{%trans "Translate"%}</h2>
-  <div class="btns">
-   <a target='_blank' href="{{url.here}}/tools/translation?path=current">{%trans "Extract twig trans func in current project"%}</a>
-   <br/><br/>
-   <a target='_blank' href="{{url.here}}/tools/translation?path=addons">{%trans "Extract twig trans func in dash addons"%}</a>
-   <a target='_blank' href="{{url.here}}/tools/translation?path=addons&update=dash">{%trans "Extract twig trans func in dash addons and update on dash addons"%}</a>
-  </div>
+
+  <div class="f">
+
+   <div class="c12 s12">
+      <a class="dcard x2 success2" target="_blank" href="{{url.here}}/tools/translation?path=current">
+       <div class="statistic">
+        <div class="value"><i class="sf-language"></i></div>
+        <div class="label">{%trans "Extract twig trans func in current project"%}</div>
+       </div>
+      </a>
+   </div>
+
+
+   <div class="c6 s12">
+      <a class="dcard x2" target='_blank' href="{{url.here}}/tools/translation?path=addons">
+       <div class="statistic">
+        <div class="value"><i class="sf-wheelchair"></i></div>
+        <div class="label">{%trans "Extract twig trans func in dash addons"%}</div>
+       </div>
+      </a>
+   </div>
+
+   <div class="c6 s12">
+     <a class="dcard x2" target='_blank' href="{{url.here}}/tools/translation?path=addons&update=dash">
+       <div class="statistic">
+        <div class="value"><i class="sf-bug-2"></i></div>
+        <div class="label">{%trans "Extract twig trans func in dash addons and update on dash addons"%}</div>
+       </div>
+      </a>
+   </div>
+
+
+</div>
+
+
  </div>
 {%endif%}
 
