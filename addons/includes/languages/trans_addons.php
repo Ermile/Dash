@@ -179,7 +179,7 @@ class twigTransTerms
 	echo T_("Removed");                                                               // Line 251
 	echo T_("Filter");                                                                // Line 252
 	echo T_("Unreachable");                                                           // Line 253
-	echo T_("Permission");                                                            // Line 12
+	echo T_("Permission");                                                            // Line 24
 	echo T_("No permission");                                                         // Line 263
 	echo T_("Password");                                                              // Line 169 Seperate
 	echo T_("Enter to change pass");                                                  // Line 283
@@ -482,7 +482,7 @@ class twigTransTerms
 	echo T_("discount");                                                              // Line 1080 Seperate
 
 	//-------------------------------------------addons/content_su/update/display.html
-	echo T_("If you dont know about this page, leave it!");                           // Line 5
+	echo T_("If you dont know about this page, leave it!");                           // Line 6
 	echo T_("Submit this form carefully");                                            // Line 40
 	echo T_("Dash");                                                                  // Line 7 Seperate
 	echo T_("Press it if you are sure!");                                             // Line 63
@@ -497,7 +497,7 @@ class twigTransTerms
 	echo T_("Project database");                                                      // Line 132
 	echo T_("Addon Database");                                                        // Line 141
 	echo T_("Upgrade");                                                               // Line 160
-	echo T_("Backup");                                                                // Line 11
+	echo T_("Backup");                                                                // Line 15
 	echo T_("Backup by dump");                                                        // Line 162
 	echo T_("Submit");                                                                // Line 207
 
@@ -507,7 +507,7 @@ class twigTransTerms
 	//----------------------------------------------addons/content_su/main/layout.html
 	echo T_("Tools");                                                                 // Line 162 Seperate
 	echo T_("Transactions");                                                          // Line 85
-	echo T_("Logs");                                                                  // Line 17
+	echo T_("Logs");                                                                  // Line 105
 	echo T_("Send Nofity");                                                           // Line 11
 	echo T_("Sample Design");                                                         // Line 13
 
@@ -547,7 +547,7 @@ class twigTransTerms
 
 	//-------------------------------------------addons/content_su/backup/display.html
 	echo T_("Backup database");                                                       // Line 5
-	echo T_("Back");                                                                  // Line 10
+	echo T_("Back");                                                                  // Line 22
 	echo T_("File is empty");                                                         // Line 15
 	echo T_("Database info");                                                         // Line 25
 	echo T_("Show Auto backup log file");                                             // Line 30
@@ -593,19 +593,8 @@ class twigTransTerms
 	echo T_("Send");                                                                  // Line 63
 
 	//----------------------------------------addons/content_su/tools/log/display.html
-	echo T_("Server Logs");                                                           // Line 7
-	echo T_("Access logs");                                                           // Line 9
-	echo T_("Error logs");                                                            // Line 10
-	echo T_("Database Logs");                                                         // Line 15
-	echo T_("Logs - check");                                                          // Line 18
-	echo T_("Logs - warn");                                                           // Line 19
-	echo T_("Logs - critical");                                                       // Line 20
-	echo T_("Error Logs");                                                            // Line 21
-	echo T_("Cronjob log");                                                           // Line 26
-	echo T_("Cronjob Logs");                                                          // Line 28
-	echo T_("Telegram Errors");                                                       // Line 34
-	echo T_("telegram Logs");                                                         // Line 37
-	echo T_("telegram - Error Logs");                                                 // Line 38
+	echo T_("datemodified");                                                          // Line 33
+	echo T_("MB");                                                                    // Line 49 Seperate
 
 	//------------------------------------addons/content_su/tools/sitemap/display.html
 	echo T_("Create sitemap automatically by click on this page");                    // Line 6
@@ -615,19 +604,19 @@ class twigTransTerms
 	echo T_("Create Sitemap Result");                                                 // Line 18
 
 	//--------------------------------------------addons/content_su/tools/display.html
-	echo T_("You can use our tools");                                                 // Line 5
-	echo T_("Special tools");                                                         // Line 9
-	echo T_("Sitemap");                                                               // Line 13
-	echo T_("Server information");                                                    // Line 14
-	echo T_("Log");                                                                   // Line 15
-	echo T_("Translation tools");                                                     // Line 17
+	echo T_("You can use our tools");                                                 // Line 6
+	echo T_("Special tools");                                                         // Line 7
+	echo T_("Sitemap");                                                               // Line 34
+	echo T_("Server information");                                                    // Line 44
+	echo T_("Log");                                                                   // Line 54
+	echo T_("Translation tools");                                                     // Line 64
 	echo T_("Update");                                                                // Line 152 Seperate
 
 	//--------------------------------addons/content_su/tools/translation/display.html
-	echo T_("Translate");                                                             // Line 7
-	echo T_("Extract twig trans func in current project");                            // Line 9
-	echo T_("Extract twig trans func in dash addons");                                // Line 11
-	echo T_("Extract twig trans func in dash addons and update on dash addons");      // Line 12
+	echo T_("Translate");                                                             // Line 8
+	echo T_("Extract twig trans func in current project");                            // Line 16
+	echo T_("Extract twig trans func in dash addons");                                // Line 26
+	echo T_("Extract twig trans func in dash addons and update on dash addons");      // Line 35
 
 	//------------------------------------addons/content_su/notifications/display.html
 	echo T_("user_id");                                                               // Line 17
@@ -644,7 +633,6 @@ class twigTransTerms
 	echo T_("readdate");                                                              // Line 30
 	echo T_("gateway");                                                               // Line 31
 	echo T_("auto");                                                                  // Line 32
-	echo T_("datemodified");                                                          // Line 33
 
 	//------------------------------------------addons/includes/html/display-dash.html
 	echo T_("Edit your profile");                                                     // Line 49
@@ -741,7 +729,6 @@ class twigTransTerms
 	echo T_("NaN");                                                                   // Line 46 Seperate
 	echo T_("Byte");                                                                  // Line 47 Seperate
 	echo T_("KB");                                                                    // Line 48 Seperate
-	echo T_("MB");                                                                    // Line 49 Seperate
 	echo T_("GB");                                                                    // Line 50 Seperate
 	echo T_("TB");                                                                    // Line 51 Seperate
 	echo T_("PB");                                                                    // Line 52 Seperate
