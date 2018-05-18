@@ -179,6 +179,8 @@ trait install
 			$addons_version = true;
 		}
 
+		$_db_version = self::db_version(self::$db_name);
+
 		if($addons_version === true)
 		{
 			// get the addons version on this database
