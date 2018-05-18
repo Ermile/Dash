@@ -3,9 +3,8 @@ namespace content_su\tools\log;
 
 class controller
 {
-	public static function routing()
+	public static function routing2()
 	{
-
 		$exist      = true;
 		$output     = '<html>';
 		$name       = \dash\request::get('name');

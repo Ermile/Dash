@@ -1,44 +1,42 @@
 {%extends display.suMain%}
 
-{%block content%}
-
-{%if true or perm.tools.view%}
- <div class="dbox">
-  <h2>{%trans "Server Logs"%}</h2>
-  <div class="btns">
-   <a target='_blank' href="{{url.here}}/tools/log?name=accesslog">{%trans "Access logs"%}</a>
-   <a target='_blank' class="warn" href="{{url.here}}/tools/log?name=errorlog">{%trans "Error logs"%}</a>
+{%block pageContent%}
+{%if logList%}
+  <div class="f">
+  {%for value in logList%}
+    <div class="c s12">
+        <a class="dcard x1 fc-red"  href='{{url.this}}/log?folder={{value.name}}'>
+         <div class="statistic ">
+          <div class="value "><i class="sf-bug"></i></div>
+          <div class="label">Folder: {{value.name}}</div>
+         </div>
+        </a>
+     </div>
   </div>
- </div><br/>
-
- <div class="dbox">
-  <h2>{%trans "Database Logs"%}</h2>
-  <div class="btns">
-   <a target='_blank' href="{{url.here}}/tools/log?name=sql">{%trans "Logs"%}</a>
-   <a target='_blank' class="info" href="{{url.here}}/tools/log?name=sql_check">{%trans "Logs - check"%}</a>
-   <a target='_blank' class="info" href="{{url.here}}/tools/log?name=sql_warn">{%trans "Logs - warn"%}</a>
-   <a target='_blank' class="info" href="{{url.here}}/tools/log?name=sql_critical">{%trans "Logs - critical"%}</a>
-   <a target='_blank' class="warn" href="{{url.here}}/tools/log?name=sql_error">{%trans "Error Logs"%}</a>
+  {%endfor%}
   </div>
- </div><br/>
-
-  <div class="dbox">
-  <h2>{%trans "Cronjob log"%}</h2>
-  <div class="btns">
-   <a target='_blank' href="{{url.here}}/tools/log?name=cronjob">{%trans "Cronjob Logs"%}</a>
-   <br/>
-  </div>
- </div>
-
- <div class="dbox">
-  <h2>{%trans "Telegram Errors"%}</h2>
-  <div class="btns">
-   <a target='_blank' href="{{url.here}}/tools/log?name=telegram">{%trans "telegram Logs"%}</a>
-   <a target='_blank' href="{{url.here}}/tools/log?name=telegram_info">{%trans "telegram Logs"%}</a>
-   <a target='_blank' class="warn" href="{{url.here}}/tools/log?name=telegram_error">{%trans "telegram - Error Logs"%}</a>
-   <br/>
-  </div>
- </div>
 {%endif%}
 
+{%if logFileList%}
+
+<a class="btn mB10 outline primary block" href="{{url.this}}/log">{%trans "Back"%}</a>
+<div class="f">
+{%for value in logFileList%}
+  <div class="c s12">
+      <a class="dcard x2"  href='{{url.this}}/log?folder={{requestGET.folder}}&file={{value.name}}'>
+       <div class="statistic ">
+        <div class="value "><i class="sf-file-1"></i></div>
+        <div class="label">{{value.name}}</div>
+        <hr>
+        <div class="label ">{%trans "datemodified"%}</div>
+        <div class=" txtC mT10">{{value.mtime | tdate("Y-m-d")}}</div>
+        <div class="txtC">{{value.mtime | tdate("H:i:s")}}</div>
+        <hr>
+        <div class="label">{{value.size | fitNumber}} {%trans "MB"%}</div>
+       </div>
+      </a>
+   </div>
+{%endfor%}
+</div>
+{%endif%}
 {%endblock%}
