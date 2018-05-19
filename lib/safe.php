@@ -21,6 +21,11 @@ class safe
 			return $_string;
 		}
 
+		if($_remove_inject === 'get_url')
+		{
+			$_remove_inject = ["'", '"', '\\\\\\', '`', '\*', ';'];
+		}
+
 		if($_remove_inject === 'sqlinjection')
 		{
 			$_remove_inject = ["'", '"', '\\\\\\', '`', '\*', "\\?", ';'];
