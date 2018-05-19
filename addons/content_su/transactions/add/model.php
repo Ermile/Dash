@@ -145,6 +145,7 @@ class model
 			'date'      => date("Y-m-d H:i:s"),
 			'parent_id' => $id,
 			'verify'    => 1,
+			'dateverify' => time(),
 		];
 
 		\dash\db\transactions::set($insert);
