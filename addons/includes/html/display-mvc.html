@@ -89,7 +89,7 @@
 {%block head             %}{%endblock%}
 </head>
 
-<body class='{{global.direction}}{%if include.adminPanel%} siftal{%endif%} {{bodyclass}}' data-in='{%if url.content%}{{url.content}}{%else%}site{%endif%}' data-page='{{global.id}}'{%if userToggleSidebar %} data-clean{%endif%}{%if bodyel%}{{bodyel|raw}}{%endif%}>
+<body class='{{global.direction}}{%if include.adminPanel%} siftal{%endif%} {{bodyclass}}' data-in='{%if url.content%}{{url.content}}{%else%}site{%endif%}' data-page='{{global.id}}'{%if userToggleSidebar %}{%else%} data-clean{%endif%}{%if bodyel%}{{bodyel|raw}}{%endif%}>
 {%block body%}
 {%block header%}{%endblock%}
 {%block content%}
