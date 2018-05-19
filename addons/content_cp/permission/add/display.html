@@ -22,7 +22,7 @@
 {%for permList in perm.list%}
 {%for ckey, cvalue in permList%}
 <div class="cbox mB10">
-  <h3>{{ckey}}</h3>
+  <h3>{%trans ckey%}</h3>
   <div class="f">
 {%for key, value in cvalue%}
     <div class="switch1 c4 s12">
