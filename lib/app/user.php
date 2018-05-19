@@ -260,9 +260,13 @@ class user
 			return false;
 		}
 
-		$sidebar = \dash\app::request('sidebar');
-		$sidebar = trim($sidebar);
-		$sidebar = $sidebar ? 1 : 0;
+		$sidebar = null;
+		if(\dash\app::isset_request('sidebar'))
+		{
+			$sidebar = \dash\app::request('sidebar');
+			$sidebar = trim($sidebar);
+			$sidebar = $sidebar ? 1 : 0;
+		}
 
 		$firstname = \dash\app::request('firstname');
 		$firstname = trim($firstname);
