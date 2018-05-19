@@ -67,14 +67,25 @@ class db
 			return null;
 		}
 
+		// get time before execute query
+		$qry_exec_time = microtime(true);
+
 		// to fix: mysql server has gone away!
 		if(!@mysqli_ping(self::$link))
 		{
-			return false;
-		}
+			$temp_error = "#". date("Y-m-d H:i:s") . "\n$_qry\n/* ERROR\tMYSQL ERROR\n". mysqli_error(self::$link)." */";
 
-		// get time before execute query
-		$qry_exec_time = microtime(true);
+			self::log($temp_error, $qry_exec_time, 'gone-away.sql');
+
+			self::connect($_db_name);
+
+			if(!@mysqli_ping(self::$link))
+			{
+				$temp_error = "#". date("Y-m-d H:i:s") . "/* AFTER CONNECTION AGAIN! \n ERROR\tMYSQL ERROR\n". mysqli_error(self::$link)." */";
+				self::log($temp_error, $qry_exec_time, 'gone-away.sql');
+				return false;
+			}
+		}
 		/**
 		 * send the query to mysql engine
 		 */
