@@ -34,7 +34,7 @@ class view
 					'size'  => round((filesize($value) / 1024) / 1024, 2),
 				];
 			}
-
+			$list = array_reverse($list);
 			\dash\data::logFileList($list);
 		}
 		else
@@ -57,6 +57,15 @@ class view
 
 	private static function load_file($_filepath)
 	{
+		if(\dash\request::get('clear'))
+		{
+			$mbasename = basename($_filepath);
+			$basename  = date("Y-m-d_H-i-s_"). $mbasename;
+			$clearURL  = str_replace($mbasename, $basename, $_filepath);
+			\dash\file::rename($_filepath, $clearURL);
+			\dash\redirect::to(\dash\url::current(). '?folder='. \dash\request::get('folder'));
+		}
+
 
 		$output     = '<html>';
 		$name       = \dash\request::get('file');
@@ -114,8 +123,8 @@ class view
 
 		$output .= ' <script>$(document).ready(function() {$("pre").each(function(i, block) {hljs.highlightBlock(block);}); });</script>';
 		$output .= "</head><body>";
-		$output .= '<a class="clear primary" href="'. \dash\url::this(). '/log?folder='.\dash\request::get('folder').'">Back!</a>';
-		// $output .= '<a class="clear" href="?name='. $name. '&clear=true">Clear it!</a>';
+		// $output .= '<a class="clear primary" href="'. \dash\url::this(). '/log?folder='.\dash\request::get('folder').'">Back!</a>';
+		$output .= '<a class="clear" href="'. \dash\url::this(). '/log?clear=1&folder='.\dash\request::get('folder').'&file='.\dash\request::get('file').'">Clear it!</a>';
 		$output .= '<a class="zip" href="?name='. $name. '&zip=true">ZIP it!</a>';
 		$output .= "<pre class=''>";
 		$output .= $fileData;
