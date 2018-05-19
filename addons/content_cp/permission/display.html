@@ -24,12 +24,12 @@
 
       {%for cat, permList in allPerms%}
       <tr class="active">
-        <th colspan="{{ (perm.group | length) + 1}}"><span class="badge floatRa">{%trans content%}</span> {{cat}}</th>
+        <th colspan="{{ (perm.group | length) + 1}}"><span class="badge floatRa">{%trans content%}</span> {%trans cat%}</th>
       </tr>
       {%for key, value in permList%}
       <tr>
         <td class="txtB" title="{{key}}">
-          {{value.title}}
+          {%set myTitle = value.title%}{%trans myTitle%}
           {%if value.check%}<span class="sf-bolt floatRa" data-tippy-placement="bottom" data-tippy-animation="perspective" title='{%trans "Need double check permission for some sensitive permissions"%}'></span>{%endif%}
           {%if value.verify%}<span class="sf-chain-broken floatRa" data-tippy-placement="bottom" data-tippy-animation="perspective" title='{%trans "Do hard check and need to enter again"%}'></span>{%endif%}
         </td>
