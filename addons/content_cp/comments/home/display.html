@@ -63,11 +63,10 @@
     <tbody>
       {%for key, value in dataTable%}
       <tr>
-        <td>{{value.author}}</td>
+        <td><a href="{{url.here}}/users/set?id={{value.user_id}}"><span class="sf-user"></span> {{value.author}}</td>
         <td>{{value.email}}</td>
         <td><a href="{{url.here}}/comments/edit?id={{value.id}}">{{value.content}}</a></td>
         <td>{%set myStatus = value.status | capitalize%}{%trans myStatus%}</td>
-
         <td title="{{value.datecreated}}">{{value.datecreated | tdate}}</td>
       </tr>
       {%endfor%}
