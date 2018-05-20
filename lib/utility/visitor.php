@@ -80,9 +80,9 @@ class visitor
 		// declare variables
 		self::$visitor['visitor_ip']    = \dash\server::ip(true);
 		self::$visitor['service_id']    = self::checkDetailExist('services', self::service(), 	'name');
-		self::$visitor['url_id']        = self::checkDetailExist('urls',     self::url(), 		'url');
+		self::$visitor['url_id']        = self::checkDetailExist('urls',     self::url(true),	'urlmd5', 'url');
 		self::$visitor['agent_id']      = self::checkDetailExist('agents',   self::agent(), 	'agent');
-		self::$visitor['url_idreferer'] = self::checkDetailExist('urls',     self::referer(), 	'url');
+		self::$visitor['url_idreferer'] = self::checkDetailExist('urls',     self::referer(true), 	'urlmd5', 'referer');
 		self::$visitor['user_id']       = \dash\user::id();
 		self::$visitor['external']      = self::$external;
 		self::$visitor['date']          = date('Y-m-d');
@@ -138,7 +138,7 @@ class visitor
 	 * @param  [type] $_value value to check
 	 * @return [type]         final id
 	 */
-	public static function checkDetailExist($_table, $_value, $_field = null)
+	public static function checkDetailExist($_table, $_value, $_field = null, $_fn = null)
 	{
 		$cache_key = 'visitor_'. md5(json_encode($_value, true));
 
@@ -199,17 +199,38 @@ class visitor
 		}
 		elseif($_table === 'urls')
 		{
-			$insert_url         = [];
-			$insert_url['url']  = $_value;
-			$insert_url['host'] = parse_url(urldecode($_value), PHP_URL_HOST);
-			$set                = \dash\db\config::make_set($insert_url);
-			$query              = "INSERT INTO urls SET $set ";
+			$insert_url           = [];
+
+			if($_fn === 'referer')
+			{
+				$url                  = self::referer(false);
+				$url                  = urldecode($url);
+
+				$insert_url['domain'] = addslashes(parse_url($url, PHP_URL_SCHEME). '://'. parse_url($url, PHP_URL_HOST));
+				$insert_url['query']  = strpos($url, '?') ? addslashes(substr($url, strpos($url, '?'))) : null;
+				$insert_url['url']    = addslashes(strtok(str_replace(\dash\url::protocol(). '://'. $insert_url['domain'], '', $url), '?'));
+				$insert_url['pwd']    = addslashes($url);
+				$insert_url['urlmd5'] = addslashes(md5($url));
+				$insert_url['host']   = addslashes(parse_url(urldecode($url), PHP_URL_HOST));
+			}
+			else
+			{
+				$insert_url['domain'] = addslashes(\dash\url::base());
+				$insert_url['query']  = addslashes(\dash\url::query());
+				$insert_url['url']    = addslashes(strtok(\dash\url::path(), '?'));
+				$insert_url['pwd']    = addslashes(\dash\url::pwd());
+				$insert_url['urlmd5'] = addslashes(self::url(true));
+				$insert_url['host']   = addslashes(\dash\url::domain());
+			}
+
+			$set                  = \dash\db\config::make_set($insert_url);
+			$query                = "INSERT INTO urls SET $set ";
 		}
 		elseif($_table === 'services')
 		{
 			$insert_service              = [];
-			$insert_service['name']      = $_value ? $_value : \dash\url::domain();
-			$insert_service['subdomain'] = \dash\url::subdomain();
+			$insert_service['name']      = addslashes($_value ? $_value : \dash\url::domain());
+			$insert_service['subdomain'] = addslashes(\dash\url::subdomain());
 			$set                         = \dash\db\config::make_set($insert_service);
 			$query                       = "INSERT INTO services SET $set ";
 		}
@@ -235,10 +256,15 @@ class visitor
 	 * return current url
 	 * @return [type] [description]
 	 */
-	public static function url()
+	public static function url($_md5 = false)
 	{
 		// $url = \dash\url::current();
 		$url = \dash\url::pwd();
+		if($_md5)
+		{
+			return md5($url);
+		}
+
 		$url = urlencode($url);
 		return $url;
 	}
@@ -303,7 +329,7 @@ class visitor
 	 * return referer of visitor in current page
 	 * @return [type] [description]
 	 */
-	public static function referer($_encode = true)
+	public static function referer($_md5 = true)
 	{
 		$referer = null;
 		if(isset($_SERVER['HTTP_REFERER']))
@@ -320,11 +346,12 @@ class visitor
 			self::$external = 1;
 		}
 
-		// if user want encode referer
-		if($_encode)
+		if($_md5)
 		{
-			$referer = urlencode($referer);
+			return md5($referer);
 		}
+
+		$referer = urlencode($referer);
 
 		return $referer;
 	}
