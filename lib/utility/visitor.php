@@ -206,6 +206,11 @@ class visitor
 				$url                  = self::referer(false);
 				$url                  = urldecode($url);
 
+				if(!$url)
+				{
+					return null;
+				}
+
 				$insert_url['domain'] = addslashes(parse_url($url, PHP_URL_SCHEME). '://'. parse_url($url, PHP_URL_HOST));
 				$insert_url['query']  = strpos($url, '?') ? addslashes(substr($url, strpos($url, '?'))) : null;
 				$insert_url['url']    = addslashes(strtok(str_replace(\dash\url::protocol(). '://'. $insert_url['domain'], '', $url), '?'));
@@ -348,6 +353,10 @@ class visitor
 
 		if($_md5)
 		{
+			if(!$referer)
+			{
+				return null;
+			}
 			return md5($referer);
 		}
 
