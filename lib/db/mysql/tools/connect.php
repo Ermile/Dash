@@ -40,6 +40,10 @@ trait connect
 				}
 			}
 		}
+
+		self::$link         = null;
+		self::$link_open    = [];
+		self::$link_default = null;
 	}
 
 

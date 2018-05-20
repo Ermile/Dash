@@ -73,6 +73,8 @@ class db
 		// to fix: mysql server has gone away!
 		if(!@mysqli_ping(self::$link))
 		{
+			self::close();
+
 			$temp_error = "#". date("Y-m-d H:i:s") . "\n$_qry\n/* ERROR\tMYSQL ERROR\n". mysqli_error(self::$link)." */";
 
 			self::log($temp_error, $qry_exec_time, 'gone-away.sql');
