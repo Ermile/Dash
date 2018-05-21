@@ -19,7 +19,7 @@ trait log
 		\dash\file::makeDir($fileAddr, null, true);
 		// set file address
 		$fileAddr .= $_name;
-		$my_text  = "\n#". str_repeat("-", 70). ' '. urldecode($_SERVER['REQUEST_URI']);
+		$my_text  = "\n#". str_repeat("-", 70). ' '. \dash\url::pwd();
 		$my_text .= "\n---". $date_now->format("Y-m-d H:i:s");
 		//$my_text .= "\n---". mysqli_info(self::$link);
 		$my_text .= "\n";
