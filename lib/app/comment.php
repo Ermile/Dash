@@ -111,11 +111,12 @@ class comment
 		$_option = array_merge($default_option, $_option);
 
 		$status = \dash\app::request('status');
-		if($status && !in_array($status, ['approved', 'unapproved', 'spam', 'deleted']))
+		if($status && !in_array($status, ['approved', 'unapproved', 'spam', 'deleted', 'awaiting']))
 		{
 			\dash\notif::error(T_("Invalid status"), 'status');
 			return false;
 		}
+
 
 		$args           = [];
 		$args['status'] = $status;
