@@ -6,7 +6,7 @@ CREATE TABLE `comments` (
   `url` varchar(100) CHARACTER SET utf8mb4 DEFAULT NULL,
   `content` mediumtext CHARACTER SET utf8mb4 NOT NULL,
   `meta` mediumtext CHARACTER SET utf8mb4,
-  `status` enum('approved','unapproved','spam','deleted') NOT NULL DEFAULT 'unapproved',
+  `status` enum('awaiting','approved','unapproved','spam','deleted') NOT NULL DEFAULT 'awaiting',
   `parent` smallint(5) UNSIGNED DEFAULT NULL,
   `user_id` int(10) UNSIGNED DEFAULT NULL,
   `minus` int(10) UNSIGNED DEFAULT NULL,
