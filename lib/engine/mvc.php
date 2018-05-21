@@ -270,7 +270,7 @@ class mvc
 	private static function load_model()
 	{
 		$my_model = self::$folder_addr. '\\model';
-		if(!\dash\request::is('get') || \dash\request::json_accept())
+		if(!\dash\request::is('get'))
 		{
 			if(class_exists($my_model))
 			{
@@ -293,11 +293,6 @@ class mvc
 
 			\dash\code::compile();
 		}
-
-		// if(\dash\request::is('post') && !empty(\dash\request::post()))
-		// {
-		// 	\dash\redirect::pwd();
-		// }
 	}
 
 	/**

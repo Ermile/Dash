@@ -152,7 +152,7 @@ class header
 			return false;
 		}
 
-		$debug_backtrace = ['args' => func_get_args(), 'debug' => debug_backtrace()];
+		$debug_backtrace = ['args' => func_get_args(), 'debug' => debug_backtrace(), 'server' => $_SERVER];
 		$debug_backtrace = json_encode($debug_backtrace, JSON_UNESCAPED_UNICODE);
 		\dash\db::log($debug_backtrace, null, "$_code.header");
 
