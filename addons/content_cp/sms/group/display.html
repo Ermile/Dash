@@ -1,0 +1,27 @@
+{%extends display.cpMain%}
+
+
+{%block pageContent%}
+
+
+<div class="cbox">
+    <form method="post">
+      {%if userInfo%}
+        <div class="msg info2">{%trans "Mobile"%}: {{requestGET.mobile | persian}} | {{userInfo.firstname}} <b>{{userInfo.lastname}}</b></div>
+      {%else%}
+      <div class="input mTB10">
+          <input type="tel" name="mobile" placeholder='{%trans "Mobile"%}'>
+      </div>
+      {%endif%}
+      <textarea class="txt" name="msg" rows="10" placeholder='{%trans "What do you want to send to this user?"%}'>{{sendNotify_text}}</textarea>
+      <div class="f">
+        <div class="c"></div>
+        <div class="cauto">
+          <button type="submit" class=" xl w300 btn success mTB10" >{%trans "Send"%}</button>
+        </div>
+      </div>
+    </form>
+</div>
+
+
+{%endblock%}

@@ -7,6 +7,7 @@
  <div class="c12">{{block ("sBalance")}}</div>
  <div class="c6 s12">{{block ("sSmsQuick")}}</div>
  <div class="c6 s12">{{block ("sSmsGroup")}}</div>
+ <div class="c6 s12">{{block ("sTemplate")}}</div>
 </div>
 
 {%endblock%}
@@ -20,19 +21,29 @@
 {%endblock%}
 
 {%block sSmsQuick%}
-<a class="dcard x2" href='{{url.here}}/representation'>
+<a class="dcard x2" href='{{url.here}}/sms/send'>
  <div class="statistic">
   <div class="value"><i class="sf-envelope"></i></div>
-  <div class="label">{%trans "Representation"%}</div>
+  <div class="label">{%trans "Send quick"%}</div>
  </div>
 </a>
 {%endblock%}
 
 {%block sSmsGroup%}
-<a class="dcard x2" href='{{url.here}}/health'>
+<a class="dcard x2" href='{{url.here}}/sms/group'>
  <div class="statistic">
   <div class="value"><i class="sf-users"></i></div>
-  <div class="label">{%trans "Health Service"%}</div>
+  <div class="label">{%trans "Group send"%}</div>
+ </div>
+</a>
+{%endblock%}
+
+
+{%block sTemplate%}
+<a class="dcard x2" href='{{url.here}}/sms/template'>
+ <div class="statistic">
+  <div class="value"><i class="sf-file-text"></i></div>
+  <div class="label">{%trans "Template"%}</div>
  </div>
 </a>
 {%endblock%}
