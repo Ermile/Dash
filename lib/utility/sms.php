@@ -231,5 +231,27 @@ class sms
 
 		return $result;
 	}
+
+
+	public static function info()
+	{
+		// disable status
+		// sms sevice is locked
+		if(!\dash\option::sms('kavenegar', 'status'))
+		{
+			return false;
+		}
+
+		// cehck api key
+		$api_key = \dash\option::sms('kavenegar','apikey');
+		if(!$api_key)
+		{
+			return false;
+		}
+
+		$api    = new \dash\utility\kavenegar_api($api_key);
+		$result = $api->account_info();
+		return $result;
+	}
 }
 ?>

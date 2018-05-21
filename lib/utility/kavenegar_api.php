@@ -43,7 +43,7 @@ class kavenegar_api
 	public $linenumber = '__YOUR LINE NUMBER__';
 	public $status     = null;
 	public $msg        = null;
-	const apipath      = "http://api.kavenegar.com/v1/%s/%s/%s.json";
+	const apipath      = "https://api.kavenegar.com/v1/%s/%s/%s.json";
 
 	/**
 	 * set api key and line number
