@@ -24,6 +24,18 @@ class model
 			return;
 		}
 
+		$mobile = [];
+		$group = \dash\request::post('group');
+		if($group)
+		{
+			$group = \dash\app\smsgroup::get($group);
+			if($group === false)
+			{
+				return false;
+			}
+			$mobile = $group;
+		}
+
 		$msg = \dash\request::post('msg');
 		if(!$msg)
 		{
@@ -31,15 +43,11 @@ class model
 			return false;
 		}
 
-		if(!$usersmobile)
-		{
-			\dash\notif::error(T_("Please fill the mobiles field"), 'usersmobile');
-			return false;
-		}
+		$usersmobile = \dash\request::post('usersmobile');
+		$split       = explode("\n", $usersmobile);
+		$mobile      = array_merge($mobile, $split);
 
-		$mobile = [];
-		$split = explode("\n", $usersmobile);
-		foreach ($split as $key => $value)
+		foreach ($mobile as $key => $value)
 		{
 			$value = trim($value);
 			$temp = \dash\utility\filter::mobile($value);

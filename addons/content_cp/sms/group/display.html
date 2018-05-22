@@ -7,6 +7,7 @@
 <div class="cbox">
     <form method="post">
       {{block('iTemplate')}}
+      {{block('iGroup')}}
       <div class="f">
         <div class="c3">
             <textarea class="txt" name="usersmobile" rows="12" placeholder='{%trans "Users mobile"%} {%trans "Every mobile in one line"%}'>{{usermobiles}}</textarea>
@@ -48,6 +49,21 @@
     </div>
 
   </div>
+</div>
+
+{%endblock%}
+
+
+{%block iGroup%}
+
+<div class="mT10 mB10">
+  <label for="group">{%trans "Group"%}</label>
+    <select name="group" class="ui dropdown search" id="group">
+      <option value="" readonly>{%trans "No group"%}</option>
+      {%for key, value in groupList%}
+        <option value="{{key}}" {%if requestGET.group == key%} selected {%endif%} >{{key}} | {{value}}</option>
+      {%endfor%}
+    </select>
 </div>
 
 {%endblock%}

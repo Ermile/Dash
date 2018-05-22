@@ -12,6 +12,26 @@ class users
 
 	public static $user_id;
 
+
+	public static function all_user_mobile($_where = null)
+	{
+		$where = null;
+
+		if($_where)
+		{
+			$where = \dash\db\config::make_where($_where);
+			if($where)
+			{
+				$where = " AND $where";
+			}
+		}
+
+		$query = "SELECT users.mobile AS `mobile` FROM users WHERE users.mobile IS NOT NULL  $where";
+
+		return \dash\db::get($query, 'mobile');
+	}
+
+
 	/**
 	 * get users data in users table
 	 *

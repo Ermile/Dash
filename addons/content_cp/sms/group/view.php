@@ -28,6 +28,7 @@ class view
 
 		$templateList = \dash\app\smstemplate::list();
 		\dash\data::templateList($templateList);
+		\dash\data::groupList(\dash\app\smsgroup::list());
 
 		$template_get = \dash\request::get('template');
 
