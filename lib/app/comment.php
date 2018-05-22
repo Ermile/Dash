@@ -75,6 +75,13 @@ class comment
 		}
 		$args['content'] = $content;
 
+		if(!\dash\app::isset_request('status')) unset($args['status']);
+		if(!\dash\app::isset_request('content')) unset($args['content']);
+		if(!\dash\app::isset_request('author')) unset($args['author']);
+		if(!\dash\app::isset_request('type'))   unset($args['type']);
+		if(!\dash\app::isset_request('user_id')) unset($args['user_id']);
+		if(!\dash\app::isset_request('meta'))   unset($args['meta']);
+
 		return \dash\db\comments::update($args, $id);
 	}
 
@@ -133,7 +140,8 @@ class comment
 		$_option = array_merge($default_option, $_option);
 
 		$content = \dash\app::request('content');
-		if(!$content)
+
+		if(!$content && \dash\app::isset_request('content'))
 		{
 			\dash\notif::error(T_("Please fill the content box"), 'content');
 			return false;

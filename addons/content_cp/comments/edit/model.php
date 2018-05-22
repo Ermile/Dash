@@ -21,10 +21,16 @@ class model
 			'status'  => \dash\request::post('status'),
 		];
 
-		$post_detail = \dash\db\comments::update($update, \dash\coding::decode(\dash\request::get('id')));
+		if($update['content'])
+		{
+			$update['content'] = $_POST['content'];
+		}
+
+		$post_detail = \dash\app\comment::edit($update, \dash\request::get('id'));
 
 		if(\dash\engine\process::status())
 		{
+			\dash\notif::ok(T_("Comment successfully updated"));
 			\dash\redirect::pwd();
 		}
 	}

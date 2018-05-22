@@ -11,7 +11,7 @@ class view
 		$detail = \dash\app\comment::get($id);
 		if(!$detail)
 		{
-			\dash\header::status(403, T_("Invalid id"));
+			\dash\header::status(404, T_("Invalid id"));
 		}
 
 		\dash\data::dataRow($detail);
