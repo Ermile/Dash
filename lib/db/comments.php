@@ -454,7 +454,7 @@ class comments
 		}
 
 		$set = [];
-		$set[] = " comment_$_type = IF(comment_$_type IS NULL, 1, comment_$_type + 1) ";
+		$set[] = " $_type = IF($_type IS NULL, 1, $_type + 1) ";
 
 		if($_update)
 		{
@@ -463,7 +463,7 @@ class comments
 			{
 				$reverse = 'plus';
 			}
-			$set[] = " comment_$reverse = IF(comment_$reverse IS NULL, 0, comment_$reverse - 1) ";
+			$set[] = " $reverse = IF($reverse IS NULL, 0, $reverse - 1) ";
 		}
 		$set = join($set, ', ');
 		$query =
