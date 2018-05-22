@@ -6,18 +6,18 @@
 
 <div class="cbox">
     <form method="post">
-      {%if userInfo%}
-        <div class="msg info2">{%trans "Mobile"%}: {{requestGET.mobile | persian}} | {{userInfo.firstname}} <b>{{userInfo.lastname}}</b></div>
-      {%else%}
-      <div class="input mTB10">
-          <input type="tel" name="mobile" placeholder='{%trans "Mobile"%}'>
+      <div class="f">
+        <div class="c3">
+            <textarea class="txt" name="usersmobile" rows="12" placeholder='{%trans "Users mobile"%} {%trans "Every mobile in one line"%}'></textarea>
+        </div>
+        <div class="c">
+            <textarea class="txt mLa5" name="msg" rows="12" placeholder='{%trans "What do you want to send to this users?"%}'>{{sendNotify_text}}</textarea>
+        </div>
       </div>
-      {%endif%}
-      <textarea class="txt" name="msg" rows="10" placeholder='{%trans "What do you want to send to this user?"%}'>{{sendNotify_text}}</textarea>
       <div class="f">
         <div class="c"></div>
         <div class="cauto">
-          <button type="submit" class=" xl w300 btn success mTB10" >{%trans "Send"%}</button>
+          <button type="submit" class=" xl w300 btn danger mTB10" >{%trans "Send"%}</button>
         </div>
       </div>
     </form>

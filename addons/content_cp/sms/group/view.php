@@ -1,5 +1,5 @@
 <?php
-namespace content_cp\sms;
+namespace content_cp\sms\group;
 
 class view
 {
@@ -7,8 +7,8 @@ class view
 	{
 		\dash\permission::access('cpSmsSend');
 
-		\dash\data::page_title(T_("Send Sms to user"));
-		\dash\data::page_desc(T_("Send every sms to every user by mobile"));
+		\dash\data::page_title(T_("Send Sms to group of users"));
+		\dash\data::page_desc(T_("Send every sms to every group users by mobile"));
 
 
 		\dash\data::badge_link(\dash\url::here());

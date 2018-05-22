@@ -1,5 +1,5 @@
 <?php
-namespace content_cp\sms;
+namespace content_cp\sms\group;
 
 
 class model
@@ -13,16 +13,37 @@ class model
 			return false;
 		}
 
-		$mobile         = \dash\request::post('mobile');
-		$mobile = \dash\utility\filter::mobile($mobile);
-		if(!$mobile)
+		$usersmobile = \dash\request::post('usersmobile');
+		if(!$usersmobile)
 		{
-			\dash\notif::error(T_("Invalid mobile number"), 'mobile');
+			\dash\notif::error(T_("Please fill the mobiles field"), 'usersmobile');
 			return false;
 		}
 
-		\dash\utility\sms::send($mobile, $msg);
-		\dash\notif::ok("SMS was sended");
+		$mobile = [];
+		$split = explode("\n", $usersmobile);
+		foreach ($split as $key => $value)
+		{
+			$value = trim($value);
+			$temp = \dash\utility\filter::mobile($value);
+
+			if($temp)
+			{
+				$mobile[] = $temp;
+			}
+		}
+
+		$mobile = array_filter($mobile);
+		$mobile = array_unique($mobile);
+
+		if(!$mobile)
+		{
+			\dash\notif::error(T_("No valid mobile find in your list"), 'usersmobile');
+			return false;
+		}
+
+		\dash\utility\sms::send_array($mobile, $msg);
+		\dash\notif::ok(T_("SMS was sended to :count unique mobile number", ['count' => count($mobile)]));
 
 	}
 }

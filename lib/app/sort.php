@@ -73,6 +73,9 @@ class sort
 		{
 			$result = T_('Search with keyword :search', ['search' => '<b>'. $_searchText. '</b>']);
 		}
+		unset($_filterArray['sort']);
+		unset($_filterArray['order']);
+
 
 		if($_filterArray)
 		{
