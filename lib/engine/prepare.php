@@ -469,10 +469,18 @@ class prepare
 		{
 			\dash\header::status(404);
 		}
-		// favicon
-		if(strpos(\dash\url::path(), '/favicon.ico') === 0)
+		// static
+		if(strpos(\dash\url::path(), '/index.html') !== false || strpos(\dash\url::path(), '/index.php') !== false)
 		{
-			\dash\header::status(404);
+			$myAddr = str_replace('/index.html', '', \dash\url::path());
+			$myAddr = str_replace('/index.php', '', $myAddr);
+
+			\dash\redirect::to(\dash\url::base(). $myAddr);
+		}
+		// favicon
+		if(strpos(\dash\url::path(), '/favicon.ico') !== false)
+		{
+			\dash\redirect::to(\dash\url::site().'/static/images/favicons/favicon.ico');
 		}
 	}
 
