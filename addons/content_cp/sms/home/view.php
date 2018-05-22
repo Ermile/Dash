@@ -13,17 +13,24 @@ class view
 
 		\dash\data::badge_link(\dash\url::here());
 		\dash\data::badge_text(T_('Dashboard'));
-		$default =
-		[
-			'remaincredit' => null,
-			'expiredate'   => null,
-			'type'         => 'Unknow',
-		];
-		$get_balance = \dash\utility\sms::info();
 
-		if(is_array($get_balance))
+		$get_balance = \dash\session::get('sms_panel_detail');
+		if(!$get_balance)
 		{
-			$get_balance = array_merge($default, $get_balance);
+			$default =
+			[
+				'remaincredit' => null,
+				'expiredate'   => null,
+				'type'         => 'Unknow',
+			];
+			$get_balance = \dash\utility\sms::info();
+
+			if(is_array($get_balance))
+			{
+				$get_balance = array_merge($default, $get_balance);
+			}
+
+			\dash\session::set('sms_panel_detail', $get_balance, null, (60 * 10));
 		}
 
 		\dash\data::SMSbalance($get_balance);
