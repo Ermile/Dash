@@ -68,7 +68,7 @@ trait log
 			break;
 		}
 		// add final text
-		// $my_text .= "\n";
+		$my_text .= "\n";
 		$my_text .= $_text;
 		$my_text .= "\r\n";
 

@@ -24,6 +24,30 @@ class comment
 		return false;
 	}
 
+	public static function add($_args)
+	{
+		$content = null;
+		if(isset($_args['content']))
+		{
+			$content = $_args['content'];
+		}
+
+		\dash\app::variable($_args);
+
+		// check args
+		$args = self::check();
+
+		if($args === false || !\dash\engine\process::status())
+		{
+			return false;
+		}
+
+		$args['content'] = $content;
+
+		return \dash\db\comments::insert($args);
+	}
+
+
 	public static function edit($_args, $_id)
 	{
 		\dash\app::variable($_args);
@@ -41,7 +65,6 @@ class comment
 		{
 			return false;
 		}
-
 
 		\dash\db\comments::update($args, $id);
 
@@ -98,6 +121,7 @@ class comment
 	public static function check($_id = null, $_option = [])
 	{
 
+
 		$default_option =
 		[
 			'meta' => [],
@@ -110,6 +134,30 @@ class comment
 
 		$_option = array_merge($default_option, $_option);
 
+		$author = \dash\app::request('author');
+		if($author && mb_strlen($author) >= 100)
+		{
+			$author = substr($author, 0, 99);
+		}
+
+		$type = \dash\app::request('type');
+		if($type && mb_strlen($type) >= 50)
+		{
+			$type = substr($type, 0, 49);
+		}
+
+		$meta = \dash\app::request('meta');
+		if($meta && (is_array($meta) || is_object($meta)))
+		{
+			$meta = json_encode($meta, JSON_UNESCAPED_UNICODE);
+		}
+
+		$user_id = \dash\app::request('user_id');
+		if($user_id && !ctype_digit($user_id))
+		{
+			$user_id = null;
+		}
+
 		$status = \dash\app::request('status');
 		if($status && !in_array($status, ['approved', 'unapproved', 'spam', 'deleted', 'awaiting']))
 		{
@@ -117,9 +165,13 @@ class comment
 			return false;
 		}
 
+		$args            = [];
+		$args['status']  = $status ? $status : 'awaiting';
+		$args['author']  = $author;
+		$args['type']    = $type;
+		$args['user_id'] = $user_id;
+		$args['meta']    = $meta;
 
-		$args           = [];
-		$args['status'] = $status;
 		return $args;
 	}
 
