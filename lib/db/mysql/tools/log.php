@@ -19,8 +19,8 @@ trait log
 		\dash\file::makeDir($fileAddr, null, true);
 		// set file address
 		$fileAddr .= $_name;
-		$my_text  = "\n#". str_repeat("-", 70). ' '. \dash\url::pwd();
-		$my_text .= "\n---". $date_now->format("Y-m-d H:i:s");
+		$my_text = "\n#". $date_now->format("Y-m-d H:i:s");
+		$my_text .= " | ". str_repeat("-", 10). ' '. \dash\url::pwd();
 		//$my_text .= "\n---". mysqli_info(self::$link);
 		$my_text .= "\n";
 		if($_time)
@@ -58,7 +58,7 @@ trait log
 				// add tab before it
 				// trim input text
 				$_text = trim($_text);
-				$_text = "\t". $_text;
+				$_text =  $_text;
 				break;
 			case 'json' :
 				if(is_array($_text) || is_object($_text))
@@ -68,7 +68,7 @@ trait log
 			break;
 		}
 		// add final text
-		$my_text .= "\n";
+		// $my_text .= "\n";
 		$my_text .= $_text;
 		$my_text .= "\r\n";
 
