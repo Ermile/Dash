@@ -97,6 +97,10 @@ class twigAddons
 	{
 		return new \Twig_SimpleFilter('tdate', function ($_string, $_format ="Y/m/d", $_convert = true)
 		{
+			if($_format === true)
+			{
+				$_format = "Y/m/d H:i:s";
+			}
 			$result = $_string;
 			if(\dash\data::lang_current() == 'fa')
 			{
