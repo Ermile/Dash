@@ -9,7 +9,11 @@
     <form method="post">
       {{block ('iName') }}
       {{block ('iText') }}
-      {{block ('iadd')}}
+      {%if editMode%}
+        {{block ('iedit')}}
+      {%else%}
+        {{block ('iadd')}}
+      {%endif%}
     </form>
   </div>
 </div>
@@ -22,7 +26,7 @@
       <thead>
         <tr>
           <th>{%trans "Name"%}</th>
-          <th>{%trans "Text"%}</th>
+          <th>{%trans "Template text"%}</th>
           <th>{%trans "Edit"%}</th>
           <th>{%trans "Delete"%}</th>
         </tr>
@@ -30,10 +34,10 @@
       <tbody>
         {%for key, value in templateList%}
           <tr>
-            <td>{{value.name}}</td>
-            <td>{{value.text}}</td>
-            <td class="collapsing"><a class="badge primary" href="{{url.this}}/template?id={{value.id}}">{%trans "Edit"%}</a></td>
-            <td class="collapsing"><a href="{{url.pwd}}" data-ajaxify data-method="post" data-data='{"key": "{{value}}", "type":"delete"}'><button class="btn danger xs">{%trans "Remove"%}</button></a></td>
+            <td>{{key}}</td>
+            <td>{{value}}</td>
+            <td class="collapsing"><a class="badge primary" href="{{url.this}}/template?name={{key}}">{%trans "Edit"%}</a></td>
+            <td class="collapsing"><a href="{{url.pwd}}" data-ajaxify data-method="post" data-data='{"name": "{{key}}", "type":"delete"}'><button class="btn danger xs">{%trans "Remove"%}</button></a></td>
           </tr>
         {%endfor%}
       </tbody>
@@ -47,6 +51,11 @@
 
 
 
+{%block iedit%}
+<button class="btn primary block mT25">{%trans "Edit"%}</button>
+{%endblock%}
+
+
 
 {%block iadd%}
 <button class="btn primary block mT25">{%trans "Add"%}</button>
@@ -54,9 +63,9 @@
 
 
 {%block iName%}
-<label for='fway'>{%trans "Template name"%}</label>
+<label for='tname'>{%trans "Template name"%}</label>
 <div class="input">
-  <input type="text" name="name" value="{{dataRow.name}}" autofocus placeholder='{%trans "Template Name"%}'>
+  <input type="text" name="name" id="tname" value="{{dataRow.name}}" autofocus placeholder='{%trans "Template Name"%}'>
 </div>
 {%endblock%}
 
@@ -64,7 +73,7 @@
 {%block iText%}
 <label for='text'>{%trans "Template text"%}</label>
 <div class="input">
-  <textarea class="txt" rows="4" name="way" placeholder='{%trans "Template Text"%}'  maxlength='500' minlength="1" pattern=".{1,500}" title='{%trans "Template Text"%}' id='text'></textarea>
+  <textarea class="txt" rows="4" name="text" placeholder='{%trans "Template Text"%}'  maxlength='500' minlength="1" pattern=".{1,500}" title='{%trans "Template Text"%}' id='text'>{{dataRow.text}}</textarea>
 </div>
 {%endblock%}
 

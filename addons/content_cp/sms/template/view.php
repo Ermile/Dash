@@ -15,7 +15,18 @@ class view
 		\dash\data::bodyclass('unselectable');
 		\dash\data::include_adminPanel(true);
 		\dash\data::include_css(false);
-		\dash\data::templateList(\lib\app\donate::way_list('sms'));
+
+		$list = \dash\app\smstemplate::list();
+		\dash\data::templateList($list);
+
+		if($name = \dash\request::get('name'))
+		{
+			if(is_array($list) && array_key_exists($name, $list))
+			{
+				\dash\data::dataRow(['name' => $name, 'text' => $list[$name]]);
+				\dash\data::editMode(true);
+			}
+		}
 	}
 }
 ?>

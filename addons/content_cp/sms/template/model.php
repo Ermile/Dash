@@ -7,11 +7,13 @@ class model
 
 	public static function post()
 	{
-		\dash\permission::access('cpTemplateSMS');
+		$edit = false;
 
-		if(\dash\request::post('type') === 'delete' && \dash\request::post('key'))
+		\dash\permission::access('cpSmsTemplateEdit');
+
+		if(\dash\request::post('type') === 'delete' && \dash\request::post('name'))
 		{
-			if(\lib\app\donate::remove_way(\dash\request::post('key'), 'sms'))
+			if(\dash\app\smstemplate::remove(\dash\request::post('name')))
 			{
 				\dash\notif::warn(T_("The template successfully removed"));
 			}
@@ -22,18 +24,39 @@ class model
 		}
 		else
 		{
-			$way = \dash\request::post('way');
 
-			\lib\app\donate::set_way($way, false, 'sms');
+
+			$post         = [];
+			$post['name'] = \dash\request::post('name');
+			$post['text'] = \dash\request::post('text');
+
+			$edit = \dash\request::get('name');
+
+			\dash\app\smstemplate::set($post, $edit);
+
 			if(\dash\engine\process::status())
 			{
-				\dash\notif::ok(T_("Sms template successfully added"));
+				if($edit)
+				{
+					\dash\notif::ok(T_("Sms template successfully updated"));
+				}
+				else
+				{
+					\dash\notif::ok(T_("Sms template successfully added"));
+				}
 			}
 		}
 
 		if(\dash\engine\process::status())
 		{
-			\dash\redirect::pwd();
+			if($edit)
+			{
+				\dash\redirect::to(\dash\url::this(). '/template?name='. \dash\request::post('name'));
+			}
+			else
+			{
+				\dash\redirect::pwd();
+			}
 		}
 	}
 }
