@@ -4,10 +4,10 @@
 {%block pageContent%}
 
 <div class="f">
- <div class="c12">{{block ("sBalance")}}</div>
+ <div class="c6 s12">{{block ("sBalance")}}</div>
  <div class="c6 s12">{{block ("sSmsQuick")}}</div>
- <div class="c6 s12">{{block ("sSmsGroup")}}</div>
  <div class="c6 s12">{{block ("sTemplate")}}</div>
+ <div class="c6 s12">{{block ("sSmsGroup")}}</div>
 </div>
 
 {%endblock%}
@@ -21,7 +21,7 @@
 {%endblock%}
 
 {%block sSmsQuick%}
-<a class="dcard x2" href='{{url.here}}/sms/send'>
+<a class="dcard x3" href='{{url.here}}/sms/send'>
  <div class="statistic">
   <div class="value"><i class="sf-envelope"></i></div>
   <div class="label">{%trans "Send quick"%}</div>
