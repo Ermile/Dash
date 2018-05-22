@@ -438,5 +438,44 @@ class comments
 		";
 		return \dash\db::get($query);
 	}
+
+
+	/**
+	 * Sets the comment data.
+	 *
+	 * @param      <type>  $_comment_id  The comment identifier
+	 * @param      <type>  $_type        The type
+	 */
+	public static function set_comment_data($_comment_id, $_type, $_update = false)
+	{
+		if($_type != 'minus' && $_type != 'plus')
+		{
+			return false;
+		}
+
+		$set = [];
+		$set[] = " comment_$_type = IF(comment_$_type IS NULL, 1, comment_$_type + 1) ";
+
+		if($_update)
+		{
+			$reverse = 'minus';
+			if($_type == 'minus')
+			{
+				$reverse = 'plus';
+			}
+			$set[] = " comment_$reverse = IF(comment_$reverse IS NULL, 0, comment_$reverse - 1) ";
+		}
+		$set = join($set, ', ');
+		$query =
+		"
+			UPDATE
+				comments
+			SET
+				$set
+			WHERE
+				id = $_comment_id
+		";
+		return \dash\db::query($query);
+	}
 }
 ?>
