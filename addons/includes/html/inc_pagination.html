@@ -1,6 +1,6 @@
 {% spaceless %}
 	{%if pagination%}
-		<nav class="pagination mA10" data-xhr='pagination' title='{%trans "Total"%}: {{pagination[0]["total_rows"] | fitNumber}}'>
+		<nav class="pagination mA10" data-xhr='pagination' title='{%trans "Total"%} {{pagination[0]["total_rows"] | fitNumber}}'>
 		{%for key, value in pagination%}
 			<a {%if value.link%} href="{{value.link}}" {%endif%} title="{{value.title}}" class="{{value.class}}">{{value.text}}</a>
 		{%endfor%}
