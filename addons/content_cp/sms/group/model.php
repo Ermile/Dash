@@ -12,8 +12,8 @@ class model
 		if(\dash\request::post('changeTemplate'))
 		{
 			$query             = [];
-
 			$query['template'] = $template_post;
+			$query['group']    = \dash\request::post('group');
 			if($usersmobile)
 			{
 				\dash\session::set('usersmobile_sms', $usersmobile);
