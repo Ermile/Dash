@@ -67,8 +67,13 @@ class model
 			return false;
 		}
 
-		\dash\utility\sms::send_array($mobile, $msg);
-		\dash\notif::ok(T_("SMS was sended to :count unique mobile number", ['count' => count($mobile)]));
+		$send           = [];
+		$send['msg']    = $msg;
+		$send['mobile'] = $mobile;
+
+		\dash\session::set('verify_sms_send', $send);
+
+		\dash\redirect::to(\dash\url::this().'/verify');
 
 	}
 }

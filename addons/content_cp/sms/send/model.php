@@ -40,9 +40,13 @@ class model
 			return false;
 		}
 
-		\dash\utility\sms::send($mobile, $msg);
+		$send           = [];
+		$send['msg']    = $msg;
+		$send['mobile'] = $mobile;
 
-		\dash\notif::ok("SMS was sended");
+		\dash\session::set('verify_sms_send', $send);
+
+		\dash\redirect::to(\dash\url::this().'/verify');
 
 	}
 }
