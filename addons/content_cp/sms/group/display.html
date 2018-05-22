@@ -6,12 +6,13 @@
 
 <div class="cbox">
     <form method="post">
+      {{block('iTemplate')}}
       <div class="f">
         <div class="c3">
-            <textarea class="txt" name="usersmobile" rows="12" placeholder='{%trans "Users mobile"%} {%trans "Every mobile in one line"%}'></textarea>
+            <textarea class="txt" name="usersmobile" rows="12" placeholder='{%trans "Users mobile"%} {%trans "Every mobile in one line"%}'>{{usermobiles}}</textarea>
         </div>
         <div class="c">
-            <textarea class="txt mLa5" name="msg" rows="12" placeholder='{%trans "What do you want to send to this users?"%}'>{{sendNotify_text}}</textarea>
+            <textarea class="txt mLa5" name="msg" rows="12" placeholder='{%trans "What do you want to send to this users?"%}'>{{templateLoad}}</textarea>
         </div>
       </div>
       <div class="f">
@@ -23,5 +24,30 @@
     </form>
 </div>
 
+
+{%endblock%}
+
+
+
+{%block iTemplate%}
+
+<div class="mT10 mB10">
+
+  <label for="template">{%trans "Template"%}</label>
+  <div class="f">
+    <div class="c">
+      <select name="template" class="ui dropdown search" id="template">
+        <option value="" readonly>{%trans "No template"%}</option>
+        {%for key, value in templateList%}
+          <option value="{{key}}" {%if requestGET.template == key%} selected {%endif%} >{{key}} | {{value}}</option>
+        {%endfor%}
+      </select>
+    </div>
+    <div class="cauto">
+      <button name="changeTemplate" value="1" class="btn primary addon">{%trans "Show"%}</button>
+    </div>
+
+  </div>
+</div>
 
 {%endblock%}

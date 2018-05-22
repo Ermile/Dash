@@ -6,6 +6,24 @@ class model
 {
 	public static function post()
 	{
+		$template_post     = \dash\request::post('template');
+		$usersmobile = \dash\request::post('usersmobile');
+
+		if(\dash\request::post('changeTemplate'))
+		{
+			$query             = [];
+
+			$query['template'] = $template_post;
+			if($usersmobile)
+			{
+				\dash\session::set('usersmobile_sms', $usersmobile);
+			}
+
+			\dash\redirect::to(\dash\url::this(). '/group?'. http_build_query($query));
+
+			return;
+		}
+
 		$msg = \dash\request::post('msg');
 		if(!$msg)
 		{
@@ -13,7 +31,6 @@ class model
 			return false;
 		}
 
-		$usersmobile = \dash\request::post('usersmobile');
 		if(!$usersmobile)
 		{
 			\dash\notif::error(T_("Please fill the mobiles field"), 'usersmobile');

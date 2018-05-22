@@ -25,6 +25,23 @@ class view
 		{
 			\dash\data::userInfo(\dash\db\users::get_by_mobile($mobile));
 		}
+
+		$templateList = \dash\app\smstemplate::list();
+		\dash\data::templateList($templateList);
+
+		$template_get = \dash\request::get('template');
+
+
+		if($template_get && is_string($template_get) && array_key_exists($template_get, $templateList))
+		{
+			\dash\data::templateLoad($templateList[$template_get]);
+		}
+
+		if(\dash\session::get('usersmobile_sms'))
+		{
+			\dash\data::usermobiles(\dash\session::get('usersmobile_sms'));
+			\dash\session::set('usersmobile_sms', null);
+		}
 	}
 }
 ?>
