@@ -128,13 +128,35 @@ trait budget
 	}
 
 
+	public static function budget($_user_id)
+	{
+		if(!$_user_id || !is_numeric($_user_id))
+		{
+			return false;
+		}
+
+		$query =
+		"
+			SELECT budget
+			FROM transactions
+			WHERE
+				transactions.user_id = $_user_id AND
+				transactions.verify  = 1
+			ORDER BY transactions.dateverify DESC
+			LIMIT 1
+		";
+		return floatval(\dash\db::get($query, 'budget', true));
+	}
+
+
 	/**
 	 * get the budget of users
 	 *
 	 * @param      <type>  $_user_id  The user identifier
 	 */
-	public static function budget($_user_id, $_options = [])
+	public static function budget_old($_user_id, $_options = [])
 	{
+
 		$default_options =
 		[
 			'type' => null,
