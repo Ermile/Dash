@@ -9,6 +9,7 @@ class comment
 		'id',
 	];
 
+
 	public static function get($_id)
 	{
 		$id = \dash\coding::decode($_id);
@@ -24,12 +25,13 @@ class comment
 		return false;
 	}
 
+
 	public static function add($_args)
 	{
 		$content = null;
 		if(isset($_args['content']))
 		{
-			$content = $_args['content'];
+			$content = addslashes($_args['content']);
 		}
 
 		\dash\app::variable($_args);
@@ -50,6 +52,12 @@ class comment
 
 	public static function edit($_args, $_id)
 	{
+		$content = null;
+		if(isset($_args['content']))
+		{
+			$content = addslashes($_args['content']);
+		}
+
 		\dash\app::variable($_args);
 		// check args
 		$id = \dash\coding::decode($_id);
@@ -65,22 +73,12 @@ class comment
 		{
 			return false;
 		}
+		$args['content'] = $content;
 
-		\dash\db\comments::update($args, $id);
-
-		if(\dash\engine\process::status())
-		{
-			\dash\notif::ok(T_("Comment successfully updated"));
-		}
+		return \dash\db\comments::update($args, $id);
 	}
 
-	/**
-	 * Gets the course.
-	 *
-	 * @param      <type>  $_args  The arguments
-	 *
-	 * @return     <type>  The course.
-	 */
+
 	public static function list($_string = null, $_args = [])
 	{
 
@@ -133,6 +131,13 @@ class comment
 		}
 
 		$_option = array_merge($default_option, $_option);
+
+		$content = \dash\app::request('content');
+		if(!$content)
+		{
+			\dash\notif::error(T_("Please fill the content box"), 'content');
+			return false;
+		}
 
 		$author = \dash\app::request('author');
 		if($author && mb_strlen($author) >= 100)
