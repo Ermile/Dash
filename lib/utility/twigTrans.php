@@ -16,11 +16,12 @@ class twigTrans
 		{
 			case 'addons':
 				$mypath = realpath(addons).DIRECTORY_SEPARATOR;
-				$export_file_name = 'addons';
+				$export_file_name = 'dash';
 				break;
 
 			default:
 				$mypath = is_dir($_path)? $_path: realpath(root).DIRECTORY_SEPARATOR;
+				$export_file_name = 'project';
 				break;
 		}
 

@@ -148,5 +148,40 @@
     "cat": "Control Panel",
     "check": false,
     "require": []
+  },
+  "cpSmsSend": {
+    "title": "cpSmsSend",
+    "cat": "SMS",
+    "require": []
+  },
+  "cpTemplateSmsView": {
+    "title": "cpTemplateSmsView",
+    "cat": "SMS",
+    "require": []
+  },
+  "cpSmsTemplateEdit": {
+    "title": "cpSmsTemplateEdit",
+    "cat": "SMS",
+    "require": []
+  },
+  "cpSmsSendGroup": {
+    "title": "cpSmsSendGroup",
+    "cat": "SMS",
+    "require": []
+  },
+  "cpSMS": {
+    "title": "cpSMS",
+    "cat": "SMS",
+    "require": []
+  },
+  "cpEmailSend": {
+    "title": "cpEmailSend",
+    "cat": "Email",
+    "require": []
+  },
+  "cpEmail": {
+    "title": "cpEmail",
+    "cat": "Email",
+    "require": []
   }
 }
