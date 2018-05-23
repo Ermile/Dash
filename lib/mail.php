@@ -152,7 +152,7 @@ class mail
 			// $mail->Port = 587;                                    // TCP port to connect to
 
 			// use sendmail
-			$mail->isSendmail();
+			// $mail->isSendmail();
 
 
 			//Recipients
