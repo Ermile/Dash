@@ -6,6 +6,7 @@ class model
 {
 	public static function post()
 	{
+		\dash\permission::access('cpSmsSendGroup');
 		$template_post     = \dash\request::post('template');
 		$usersmobile = \dash\request::post('usersmobile');
 

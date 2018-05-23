@@ -4,33 +4,42 @@
 
 {%block sidenav%}
     <li><a href="{{url.here}}"><i class='sf-gauge'></i> <span>{% trans "Dashboard" %}</span></a></li>
+    {%if perm('cpPostsView') or perm('cpCategoryView') or perm('cpPageView') or perm('cpTagView') or perm('cpCommentsView')  %}
     <li>
         <a href="{{url.here}}/cms"><i class='sf-diamond'></i> <span>{% trans "CMS" %}</span></a>
         <ul>
-            <li><a href="{{url.here}}/posts">{% trans "News" %} <i class='floatRa mRa10 fc-mute sf-pinboard'></i></a></li>
-            <li><a href="{{url.here}}/terms?type=cat">{% trans "Categries" %} <i class='floatRa mRa10 fc-mute sf-grid'></i></a></li>
-            <li><a href="{{url.here}}/terms?type=tag">{% trans "Tags" %} <i class='floatRa mRa10 fc-mute sf-tags'></i></a></li>
-            <li><a href="{{url.here}}/posts?type=page">{% trans "Pages" %} <i class='floatRa mRa10 fc-mute sf-files-o'></i></a></li>
-            <li><a href="{{url.here}}/attachments">{% trans "Files" %} <i class='floatRa mRa10 fc-mute sf-attach'></i></a></li>
-            <li><a href="{{url.here}}/comments">{% trans "Comments" %} <i class='floatRa mRa10 fc-mute sf-comments'></i></a></li>
+            {%if perm('cpPostsView') %}<li><a href="{{url.here}}/posts">{% trans "News" %} <i class='floatRa mRa10 fc-mute sf-pinboard'></i></a></li>{%endif%}
+            {%if perm('cpCategoryView') %}<li><a href="{{url.here}}/terms?type=cat">{% trans "Categries" %} <i class='floatRa mRa10 fc-mute sf-grid'></i></a></li>{%endif%}
+            {%if perm('cpTagView') %}<li><a href="{{url.here}}/terms?type=tag">{% trans "Tags" %} <i class='floatRa mRa10 fc-mute sf-tags'></i></a></li>{%endif%}
+            {%if perm('cpPageView') %}<li><a href="{{url.here}}/posts?type=page">{% trans "Pages" %} <i class='floatRa mRa10 fc-mute sf-files-o'></i></a></li>{%endif%}
+            {%if perm('cpPostsView') %}<li><a href="{{url.here}}/attachments">{% trans "Files" %} <i class='floatRa mRa10 fc-mute sf-attach'></i></a></li>{%endif%}
+            {%if perm('cpCommentsView') %}<li><a href="{{url.here}}/comments">{% trans "Comments" %} <i class='floatRa mRa10 fc-mute sf-comments'></i></a></li>{%endif%}
         </ul>
     </li>
+    {%endif%}
+
+    {%if perm('cpUsersView') or perm('cpUsersAdd') or perm('cpPermissionView') %}
     <li>
-        <a href="{{url.here}}/users"><i class='sf-users'></i> <span>{% trans "Users" %}</span></a>
+        {%if perm('cpUsersView') %}<a href="{{url.here}}/users"><i class='sf-users'></i> <span>{% trans "Users" %}</span></a>{%endif%}
         <ul>
-            <li><a href="{{url.here}}/users/set">{% trans "Add new user" %} <i class='floatRa mRa10 fc-mute sf-user-plus'></i></a></li>
-            <li><a href="{{url.here}}/permission">{% trans "Permissions" %} <i class='floatRa mRa10 fc-mute sf-lock'></i></a></li>
+            {%if perm('cpUsersAdd') %}<li><a href="{{url.here}}/users/set">{% trans "Add new user" %} <i class='floatRa mRa10 fc-mute sf-user-plus'></i></a></li>{%endif%}
+            {%if perm('cpPermissionView') %}<li><a href="{{url.here}}/permission">{% trans "Permissions" %} <i class='floatRa mRa10 fc-mute sf-lock'></i></a></li>{%endif%}
         </ul>
     </li>
+    {%endif%}
+
+    {%if perm('cpSMS') or perm('cpSmsSend') or perm('cpSmsSendGroup') or perm('cpTemplateSmsView') %}
     <li>
-        <a href="{{url.here}}/sms"><i class='sf-envelope'></i> <span>{% trans "SMS" %}</span></a>
+        {%if perm('cpSMS') %}<a href="{{url.here}}/sms"><i class='sf-envelope'></i> <span>{% trans "SMS" %}</span></a>{%endif%}
         <ul>
-            <li><a href="{{url.here}}/sms/send">{% trans "Quick send" %} <i class='floatRa mRa10 fc-mute sf-paper-plane'></i></a></li>
-            <li><a href="{{url.here}}/sms/group">{% trans "Group send" %} <i class='floatRa mRa10 fc-mute sf-rocket'></i></a></li>
-            <li><a href="{{url.here}}/sms/template">{% trans "Templates" %} <i class='floatRa mRa10 fc-mute sf-right-quote-alt'></i></a></li>
+            {%if perm('cpSmsSend') %}<li><a href="{{url.here}}/sms/send">{% trans "Quick send" %} <i class='floatRa mRa10 fc-mute sf-paper-plane'></i></a></li>{%endif%}
+            {%if perm('cpSmsSendGroup') %}<li><a href="{{url.here}}/sms/group">{% trans "Group send" %} <i class='floatRa mRa10 fc-mute sf-rocket'></i></a></li>{%endif%}
+            {%if perm('cpTemplateSmsView') %}<li><a href="{{url.here}}/sms/template">{% trans "Templates" %} <i class='floatRa mRa10 fc-mute sf-right-quote-alt'></i></a></li>{%endif%}
         </ul>
     </li>
-    <li><a href="{{url.here}}/options"><i class='sf-tools'></i> <span>{% trans "Options" %}</span></a></li>
+    {%endif%}
+
+
 {%endblock%}
 
 

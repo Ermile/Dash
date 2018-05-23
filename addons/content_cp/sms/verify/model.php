@@ -6,6 +6,8 @@ class model
 {
 	public static function post()
 	{
+		\dash\permission::access('cpSmsSend');
+
 		$sms = \dash\session::get('verify_sms_send');
 		\dash\session::set('verify_sms_send', null);
 		if(\dash\request::post('ok'))

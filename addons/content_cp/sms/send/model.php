@@ -6,6 +6,7 @@ class model
 {
 	public static function post()
 	{
+		\dash\permission::access('cpSmsSend');
 		$template_post     = \dash\request::post('template');
 		$mobile            = \dash\request::post('mobile');
 		if(\dash\request::post('changeTemplate'))

@@ -6,7 +6,8 @@ class view
 {
 	public static function config()
 	{
-		\dash\permission::access('cpTemplateSMS');
+		\dash\permission::access('cpTemplateSmsView');
+
 		\dash\data::page_pictogram('envelope-o');
 		\dash\data::page_title(T_("Template SMS"));
 		\dash\data::page_desc(T_("check and update some options on template sms"));

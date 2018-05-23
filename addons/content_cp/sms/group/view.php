@@ -5,7 +5,7 @@ class view
 {
 	public static function config()
 	{
-		\dash\permission::access('cpSmsSend');
+		\dash\permission::access('cpSmsSendGroup');
 
 		\dash\data::page_title(T_("Send Sms to group of users"));
 		\dash\data::page_desc(T_("Send every sms to every group users by mobile"));
