@@ -7,6 +7,13 @@ class comment
 	public static $sort_field =
 	[
 		'id',
+		'plus',
+		'minus',
+		'datecreated',
+		'status',
+		'mobile',
+		'author',
+		'email',
 	];
 
 

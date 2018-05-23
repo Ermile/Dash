@@ -99,11 +99,11 @@
         <td>
           <p>{{value.content}}</p>
           <div class="rowAction floatRa">
-            <a class="mRa5 fc-green" href="#" data-ajaxify data-method='post' data-data='{"id":"{{value.id}}", "action":"approve"}'>{%trans "Approve"%}</a>
+            <a class="mRa5 fc-green" href="{{url.pwd}}" data-ajaxify data-method='post' data-data='{"id":"{{value.id}}", "action":"approved"}'>{%trans "Approve"%}</a>
             <a class="mRa5 fc-mute" href="{{url.this}}/edit?id={{value.id}}">{%trans "Edit"%}</a>
-            <a class="mRa5 fc-black" href="#" data-ajaxify data-method='post' data-data='{"id":"{{value.id}}", "action":"unapprove"}'>{%trans "Unapprove"%}</a>
-            <a class="mRa5 fc-red" href="#" data-ajaxify data-method='post' data-data='{"id":"{{value.id}}", "action":"trash"}'>{%trans "Trash"%}</a>
-            <a class="mRa5 fc-red" href="#" data-ajaxify data-method='post' data-data='{"id":"{{value.id}}", "action":"spam"}'>{%trans "Spam"%}</a>
+            <a class="mRa5 fc-black" href="{{url.pwd}}" data-ajaxify data-method='post' data-data='{"id":"{{value.id}}", "action":"unapproved"}'>{%trans "Unapprove"%}</a>
+            <a class="mRa5 fc-red" href="{{url.pwd}}" data-ajaxify data-method='post' data-data='{"id":"{{value.id}}", "action":"deleted"}'>{%trans "Trash"%}</a>
+            <a class="mRa5 fc-red" href="{{url.pwd}}" data-ajaxify data-method='post' data-data='{"id":"{{value.id}}", "action":"spam"}'>{%trans "Spam"%}</a>
           </div>
         </td>
         <td class="collapsing s0 m0"><span class="badge danger">{{value.minus}}</span></td>
