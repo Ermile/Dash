@@ -1,0 +1,18 @@
+<?php
+namespace content_cp\email\home;
+
+class view
+{
+	public static function config()
+	{
+		\dash\permission::access('cpEmail');
+
+		\dash\data::page_title(T_("SMS Dashboard"));
+		\dash\data::page_desc(T_("Check your sms setting and balance and quick navigate to every where"));
+
+
+		\dash\data::badge_link(\dash\url::here());
+		\dash\data::badge_text(T_('Dashboard'));
+	}
+}
+?>
