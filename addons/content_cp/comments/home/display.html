@@ -90,7 +90,7 @@
           {%if value.visitor_id%}<a class="sf-info-circle" href='{{url.here}}/visitor?id={{value.visitor_id}}' title='{%trans "Visitor detail"%}'></a>{%endif%}
         </td>
         <td>
-          <a href="">{{value.content}}</a>
+          <p>{{value.content}}</p>
           <div class="rowAction floatRa">
             <a class="mRa5 fc-green" href="#" data-ajaxify data-method='post' data-data='{"id":"{{value.id}}", "action":"approve"}'>{%trans "Approve"%}</a>
             <a class="mRa5 fc-mute" href="{{url.this}}/edit?id={{value.id}}">{%trans "Edit"%}</a>
