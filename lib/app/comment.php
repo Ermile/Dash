@@ -31,7 +31,7 @@ class comment
 		$content = null;
 		if(isset($_args['content']))
 		{
-			$content = addslashes($_args['content']);
+			$content = \dash\safe::safe($_args['content'], 'raw');
 		}
 
 		\dash\app::variable($_args);
@@ -46,7 +46,18 @@ class comment
 
 		$args['content']    = $content;
 
+		if(isset($args['user_id']) && is_numeric($args['user_id']))
+		{
+			$check_duplicate = \dash\db\comments::get(['user_id' => $args['user_id'], 'content' => $args['content'], 'limit' => 1]);
+			if(isset($check_duplicate['id']))
+			{
+				\dash\notif::warn(T_("Duplicate comment from you was received"), 'content');
+				return false;
+			}
+		}
+
 		$args['visitor_id'] = \dash\utility\visitor::id();
+		$args['ip']         = \dash\server::ip(true);
 
 		return \dash\db\comments::insert($args);
 	}
@@ -83,6 +94,7 @@ class comment
 		if(!\dash\app::isset_request('type'))   unset($args['type']);
 		if(!\dash\app::isset_request('user_id')) unset($args['user_id']);
 		if(!\dash\app::isset_request('meta'))   unset($args['meta']);
+		if(!\dash\app::isset_request('mobile')) unset($args['mobile']);
 
 		return \dash\db\comments::update($args, $id);
 	}
@@ -167,8 +179,14 @@ class comment
 			$meta = json_encode($meta, JSON_UNESCAPED_UNICODE);
 		}
 
+		$mobile = \dash\app::request('mobile');
+		if($mobile && mb_strlen($mobile) > 15)
+		{
+			$mobile = substr($mobile, 0, 14);
+		}
+
 		$user_id = \dash\app::request('user_id');
-		if($user_id && !ctype_digit($user_id))
+		if($user_id && !is_numeric($user_id))
 		{
 			$user_id = null;
 		}
@@ -186,6 +204,7 @@ class comment
 		$args['type']    = $type;
 		$args['user_id'] = $user_id;
 		$args['meta']    = $meta;
+		$args['mobile']  = $mobile;
 
 		return $args;
 	}

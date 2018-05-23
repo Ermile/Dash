@@ -14,7 +14,7 @@ trait edit
 	public static function edit($_args, $_option = [])
 	{
 		$content = isset($_args['content']) ? $_args['content'] : null;
-		$content = addslashes($content);
+		$content = \dash\safe::safe($content, 'raw');
 
 		\dash\app::variable($_args);
 
