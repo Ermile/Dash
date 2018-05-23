@@ -38,7 +38,7 @@ class comment
 		$content = null;
 		if(isset($_args['content']))
 		{
-			$content = \dash\safe::safe($_args['content'], 'raw');
+			$content = \dash\safe::safe($_args['content']);
 		}
 
 		\dash\app::variable($_args);
@@ -75,7 +75,7 @@ class comment
 		$content = null;
 		if(isset($_args['content']))
 		{
-			$content = addslashes($_args['content']);
+			$content = \dash\safe::safe($_args['content']);
 		}
 
 		\dash\app::variable($_args);
