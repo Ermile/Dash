@@ -107,7 +107,7 @@
 {%if perm('cp')%}
   <div id="xaccess">
     <a class='siteAdmin{%if url.tld != "local"%} public{%endif%}' data-direct href='{{url.base}}/cp' title='{%trans "Control Panel"%}' data-tippy-placement='right' data-tippy-animation="shift-away" data-tippy-inertia="true"><span class="sf-gauge"></span></a>
-{%if main_account or perm('admin:everyone_login:view') %}
+{%if main_account or perm_su() %}
     <a href="{{url.base}}/enter?mobile={{main_mobile}}&referer={{url.pwd}}" data-direct title='{%trans "Enter with another user"%}' data-tippy-placement='right' data-tippy-animation="shift-away" data-tippy-inertia="true"><span class="sf-enter"></span></a>
 {%endif%}
   </div>
