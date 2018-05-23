@@ -24,6 +24,12 @@ class convert
         return $result;
     }
 
+    public static function ar_to_fa_number($_string)
+    {
+        $result = str_replace(self::$ar, self::$fa, $_string);
+        return $result;
+    }
+
 
     public static function to_ar_number($_string)
     {

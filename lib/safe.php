@@ -36,9 +36,44 @@ class safe
 			$_string = preg_replace("/\s?[" . join('', $_remove_inject) . "]/", "", $_string);
 		}
 
-		$string = htmlspecialchars($_string, ENT_QUOTES | ENT_HTML5);
-		$string = addcslashes($string, '\\');
-		return $string;
+		$_string = trim($_string);
+
+		$_string = self::persian_char($_string);
+
+		$_string = self::remove_2s($_string);
+
+		$_string = self::remove_2nl($_string);
+
+		$_string = htmlspecialchars($_string, ENT_QUOTES | ENT_HTML5);
+
+		$_string = addslashes($_string);
+
+		return $_string;
+	}
+
+
+	public static function persian_char($_string)
+	{
+		if(\dash\language::current() === 'fa')
+		{
+			$_string = str_replace(['ي', 'ك'], ['ی', 'ک'], $_string);
+			$_string = \dash\utility\convert::ar_to_fa_number($_string);
+		}
+		return $_string;
+	}
+
+
+	public static function remove_2nl($_string)
+	{
+		$_string = preg_replace("/[\r\n]{2,}/", "\n", $_string);
+		return $_string;
+	}
+
+
+	public static function remove_2s($_string)
+	{
+		$_string = preg_replace("/\h+/", " ", $_string);
+		return $_string;
 	}
 
 
