@@ -656,9 +656,10 @@ class twigTransTerms
 
 	//--------------------------------addons/content_su/tools/translation/display.html
 	echo T_("Translate");                                                             // Line 8
-	echo T_("Extract twig trans func in current project");                            // Line 16
-	echo T_("Extract twig trans func in dash addons");                                // Line 26
-	echo T_("Extract twig trans func in dash addons and update on dash addons");      // Line 35
+	echo T_("Extract All trans func");                                                // Line 16
+	echo T_("Extract twig trans func in current project");                            // Line 25
+	echo T_("Extract twig trans func in dash addons");                                // Line 35
+	echo T_("Extract twig trans func in dash addons and update on dash addons");      // Line 44
 
 	//------------------------------------addons/content_su/notifications/display.html
 	echo T_("user_id");                                                               // Line 17
