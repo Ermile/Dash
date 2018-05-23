@@ -12,12 +12,10 @@ class view
 		\dash\data::page_desc(T_('Check list of comments and search or filter in them to find your comments.'). ' '. T_('Also add or edit specefic comments.'));
 		\dash\data::page_pictogram('comments');
 
-		// $this->data->page['badge']['link'] = \dash\url::this(). '';
-		// $this->data->page['badge']['text'] = T_('Add new :val', ['val' => $myType]);
-
 		// add back level to summary link
-		$product_list_link        =  '<a href="'. \dash\url::here() .'" data-shortkey="121">'. T_('Back to dashboard'). '</a>';
-		\dash\data::page_desc(\dash\data::page_desc(). ' | '. $product_list_link);
+		\dash\data::badge2_text(T_('Back to dashboard'));
+		\dash\data::badge2_link(\dash\url::here());
+
 
 		$search_string            = \dash\request::get('q');
 		if($search_string)
