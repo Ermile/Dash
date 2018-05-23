@@ -11,6 +11,12 @@ class transaction
 		return intval($total_paid);
 	}
 
+	public static function total_paid_count()
+	{
+		$total_paid = \dash\db\transactions::total_paid_count();
+		return intval($total_paid);
+	}
+
 
 	public static function total_paid_date($_date)
 	{

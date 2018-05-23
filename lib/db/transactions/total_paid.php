@@ -34,5 +34,22 @@ trait total_paid
 		";
 		return \dash\db::get($query, 'total', true);
 	}
+
+
+	public static function total_paid_count()
+	{
+		$query =
+		"
+			SELECT
+				COUNT(*) AS `total`
+			FROM
+				transactions
+			WHERE
+				transactions.verify = 1
+
+
+		";
+		return \dash\db::get($query, 'total', true);
+	}
 }
 ?>
