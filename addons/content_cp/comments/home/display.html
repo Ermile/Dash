@@ -52,12 +52,12 @@
     <thead class="primary">
       <tr>
         <th data-sort="{{sortLink.author.order}}"><a href="{{sortLink.author.link}}">{%trans "Author"%}</a></th>
-        <th>{%trans "Detail"%}</th>
+        <th class="s0">{%trans "Detail"%}</th>
         <th data-sort="{{sortLink.content.order}}"><a href="{{sortLink.content.link}}">{%trans "Comment"%}</a></th>
-        <th data-sort="{{sortLink.minus.order}}"><a href="{{sortLink.minus.link}}" class="sf-minus-circle" title='{%trans "Upvote"%}'></a></th>
-        <th data-sort="{{sortLink.plus.order}}"><a href="{{sortLink.plus.link}}" class="sf-plus-circle" title='{%trans "Downvote"%}'></a></th>
-        <th data-sort="{{sortLink.status.order}}"><a href="{{sortLink.status.link}}">{%trans "Status"%}</a></th>
-        <th data-sort="{{sortLink.datecreated.order}}"><a href="{{sortLink.datecreated.link}}">{%trans "Date"%}</a></th>
+        <th class="m0 s0" data-sort="{{sortLink.minus.order}}"><a href="{{sortLink.minus.link}}" class="sf-minus-circle" title='{%trans "Upvote"%}'></a></th>
+        <th class="m0 s0" data-sort="{{sortLink.plus.order}}"><a href="{{sortLink.plus.link}}" class="sf-plus-circle" title='{%trans "Downvote"%}'></a></th>
+        <th class="s0" data-sort="{{sortLink.status.order}}"><a href="{{sortLink.status.link}}">{%trans "Status"%}</a></th>
+        <th class="m0 s0" data-sort="{{sortLink.datecreated.order}}"><a href="{{sortLink.datecreated.link}}">{%trans "Date"%}</a></th>
       </tr>
     </thead>
 
@@ -71,7 +71,7 @@
 {%endif%}
 {%endset%}
       <tr class="{{statusClass}} {{value.status}}">
-        <td class="collapsing">
+        <td class="collapsing sauto">
 {%if value.user_id%}
           <a href="{{url.here}}/users/set?id={{value.user_id}}">
             <span class="sf-user fc-mute"></span>
@@ -90,7 +90,7 @@
             {%endif%}
 {%endif%}
         </td>
-        <td class="collapsing">
+        <td class="collapsing s0">
           {%if value.meta.mobile%}<a class="sf-phone-square" href='tel:{{value.meta.mobile}}' title='{{value.meta.mobile}}'></a>{%endif%}
           {%if value.url%}<a class="sf-globe" href='{{value.url}}' title='{{value.url}}'></a>{%endif%}
           {%if value.email%}<a class="sf-envelope" href='mailto:{{value.email}}' title='{{value.email}}'></a>{%endif%}
@@ -106,10 +106,10 @@
             <a class="mRa5 fc-red" href="#" data-ajaxify data-method='post' data-data='{"id":"{{value.id}}", "action":"spam"}'>{%trans "Spam"%}</a>
           </div>
         </td>
-        <td class="collapsing"><span class="badge danger">{{value.minus}}</span></td>
-        <td class="collapsing"><span class="badge success">{{value.plus}}</span></td>
-        <td class="collapsing" title='{{value.datemodified}}'>{%set myStatus = value.status | capitalize%}{%trans myStatus%}</td>
-        <td class="collapsing" title='{%trans "Created on"%} {{value.datecreated}}'>{{value.datecreated | sdate('year')}}</td>
+        <td class="collapsing s0 m0"><span class="badge danger">{{value.minus}}</span></td>
+        <td class="collapsing s0 m0"><span class="badge success">{{value.plus}}</span></td>
+        <td class="collapsing s0" title='{{value.datemodified}}'>{%set myStatus = value.status | capitalize%}{%trans myStatus%}</td>
+        <td class="collapsing s0 m0" title='{%trans "Created on"%} {{value.datecreated}}'>{{value.datecreated | sdate('year')}}</td>
       </tr>
       {%endfor%}
     </tbody>
