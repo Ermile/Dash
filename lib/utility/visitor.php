@@ -16,6 +16,15 @@ class visitor
 	private static $external;
 
 
+	public static function id()
+	{
+		if(isset($_SESSION['last_visitor_id']))
+		{
+			return $_SESSION['last_visitor_id'];
+		}
+		return null;
+	}
+
 
 	/**
 	 * save a visitor in database
@@ -38,6 +47,7 @@ class visitor
 			{
 				// execute query and save result
 				$result  = \dash\db::query($query, db_log_name);
+				$_SESSION['last_visitor_id'] = \dash\db::insert_id(self::$link);
 				// return resul
 				return $result;
 			}

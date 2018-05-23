@@ -44,7 +44,9 @@ class comment
 			return false;
 		}
 
-		$args['content'] = $content;
+		$args['content']    = $content;
+
+		$args['visitor_id'] = \dash\utility\visitor::id();
 
 		return \dash\db\comments::insert($args);
 	}
