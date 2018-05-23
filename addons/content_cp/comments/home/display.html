@@ -92,8 +92,8 @@
         <td><a href="{{url.here}}/comments/edit?id={{value.id}}">{{value.content}}</a></td>
         <td class="collapsing"><span class="badge danger">{{value.minus}}</span></td>
         <td class="collapsing"><span class="badge success">{{value.plus}}</span></td>
-        <td class="collapsing">{%set myStatus = value.status | capitalize%}{%trans myStatus%}</td>
-        <td class="collapsing" title="{{value.datecreated}}">{{value.datecreated | sdate('year')}}</td>
+        <td class="collapsing" title='{{value.datemodified}}'>{%set myStatus = value.status | capitalize%}{%trans myStatus%}</td>
+        <td class="collapsing" title='{%trans "Created on"%} {{value.datecreated}}'>{{value.datecreated | sdate('year')}}</td>
       </tr>
       {%endfor%}
     </tbody>
