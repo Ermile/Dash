@@ -65,7 +65,7 @@
       {%for key, value in dataTable%}
 {%set statusClass%}
 {%if value.status == 'spam'%}negative
-{%elseif value.status == 'trash'%}negative
+{%elseif value.status == 'deleted'%}negative
 {%elseif value.status == 'awaiting'%}active
 {%elseif value.status == 'unapproved'%}warning
 {%endif%}
