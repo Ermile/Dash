@@ -63,7 +63,14 @@
 
     <tbody>
       {%for key, value in dataTable%}
-      <tr>
+{%set statusClass%}
+{%if value.status == 'spam'%}negative
+{%elseif value.status == 'trash'%}negative
+{%elseif value.status == 'awaiting'%}active
+{%elseif value.status == 'unapproved'%}warning
+{%endif%}
+{%endset%}
+      <tr class="{{statusClass}} {{value.status}}">
         <td class="collapsing">
 {%if value.user_id%}
           <a href="{{url.here}}/users/set?id={{value.user_id}}">
