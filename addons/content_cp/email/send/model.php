@@ -8,8 +8,16 @@ class model
 	{
 		$email_to = \dash\request::post('email');
 		$msg      = \dash\request::post('msg');
-
-		\dash\mail::send_new2($email_to, 'test3', $msg);
+		$settings =
+		[
+			'from'    => 'info@dash.ermile.com',
+			'to'      => $email_to,
+			'subject' => 'test5',
+			'body'    => $msg,
+			'altbody' => '123',
+			'is_html' => true,
+		];
+		\dash\mail::send($settings);
 	}
 }
 ?>
