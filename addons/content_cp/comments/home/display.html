@@ -53,9 +53,9 @@
       <tr>
         <th data-sort="{{sortLink.author.order}}"><a href="{{sortLink.author.link}}">{%trans "Author"%}</a></th>
         <th>{%trans "Detail"%}</th>
-        <th data-sort="{{sortLink.content.order}}"><a href="{{sortLink.content.link}}">{%trans "Content"%}</a></th>
-        <th data-sort="{{sortLink.minus.order}}"><a href="{{sortLink.minus.link}}" class="sf-minus-circle"></a></th>
-        <th data-sort="{{sortLink.plus.order}}"><a href="{{sortLink.plus.link}}" class="sf-plus-circle"></a></th>
+        <th data-sort="{{sortLink.content.order}}"><a href="{{sortLink.content.link}}">{%trans "Comment"%}</a></th>
+        <th data-sort="{{sortLink.minus.order}}"><a href="{{sortLink.minus.link}}" class="sf-minus-circle" title='{%trans "Upvote"%}'></a></th>
+        <th data-sort="{{sortLink.plus.order}}"><a href="{{sortLink.plus.link}}" class="sf-plus-circle" title='{%trans "Downvote"%}'></a></th>
         <th data-sort="{{sortLink.status.order}}"><a href="{{sortLink.status.link}}">{%trans "Status"%}</a></th>
         <th data-sort="{{sortLink.datecreated.order}}"><a href="{{sortLink.datecreated.link}}">{%trans "Date"%}</a></th>
       </tr>
@@ -89,7 +89,16 @@
           {%if value.email%}<a class="sf-envelope" href='mailto:{{value.email}}' title='{{value.email}}'></a>{%endif%}
           {%if value.visitor_id%}<a class="sf-info-circle" href='{{url.here}}/visitor?id={{value.visitor_id}}' title='{%trans "Visitor detail"%}'></a>{%endif%}
         </td>
-        <td><a href="{{url.here}}/comments/edit?id={{value.id}}">{{value.content}}</a></td>
+        <td>
+          <a href="">{{value.content}}</a>
+          <div class="rowAction floatRa">
+            <a class="mRa5 fc-green" href="#" data-ajaxify data-method='post' data-data='{"id":"{{value.id}}", "action":"approve"}'>{%trans "Approve"%}</a>
+            <a class="mRa5 fc-mute" href="{{url.this}}/edit?id={{value.id}}">{%trans "Edit"%}</a>
+            <a class="mRa5 fc-black" href="#" data-ajaxify data-method='post' data-data='{"id":"{{value.id}}", "action":"unapprove"}'>{%trans "Unapprove"%}</a>
+            <a class="mRa5 fc-red" href="#" data-ajaxify data-method='post' data-data='{"id":"{{value.id}}", "action":"trash"}'>{%trans "Trash"%}</a>
+            <a class="mRa5 fc-red" href="#" data-ajaxify data-method='post' data-data='{"id":"{{value.id}}", "action":"spam"}'>{%trans "Spam"%}</a>
+          </div>
+        </td>
         <td class="collapsing"><span class="badge danger">{{value.minus}}</span></td>
         <td class="collapsing"><span class="badge success">{{value.plus}}</span></td>
         <td class="collapsing" title='{{value.datemodified}}'>{%set myStatus = value.status | capitalize%}{%trans myStatus%}</td>
