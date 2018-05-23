@@ -51,23 +51,43 @@
   <table class="tbl bordered1">
     <thead class="primary">
       <tr>
-
-        <th data-sort="{{sortLink.author.order}}"><a href="{{sortLink.author.link}}">{%trans "Author"%}</a>
-        <th data-sort="{{sortLink.email.order}}"><a href="{{sortLink.email.link}}">{%trans "Email"%}</a>
-        <th data-sort="{{sortLink.content.order}}"><a href="{{sortLink.content.link}}">{%trans "Content"%}</a>
-        <th data-sort="{{sortLink.status.order}}"><a href="{{sortLink.status.link}}">{%trans "Status"%}</a>
-        <th data-sort="{{sortLink.datecreated.order}}"><a href="{{sortLink.datecreated.link}}">{%trans "Date"%}</a>
+        <th data-sort="{{sortLink.author.order}}"><a href="{{sortLink.author.link}}">{%trans "Author"%}</a></th>
+        <th>{%trans "Detail"%}</th>
+        <th data-sort="{{sortLink.content.order}}"><a href="{{sortLink.content.link}}">{%trans "Content"%}</a></th>
+        <th data-sort="{{sortLink.status.order}}"><a href="{{sortLink.status.link}}">{%trans "Status"%}</a></th>
+        <th data-sort="{{sortLink.datecreated.order}}"><a href="{{sortLink.datecreated.link}}">{%trans "Date"%}</a></th>
       </tr>
     </thead>
 
     <tbody>
       {%for key, value in dataTable%}
       <tr>
-        <td><a href="{{url.here}}/users/set?id={{value.user_id}}"><span class="sf-user"></span> {{value.author}}</td>
-        <td>{{value.email}}</td>
+        <td class="collapsing">
+{%if value.user_id%}
+          <a href="{{url.here}}/users/set?id={{value.user_id}}">
+            <span class="sf-user fc-mute"></span>
+            {%if value.author%}
+            {{value.author}}
+            {%else%}
+            <small class='fc-mute'>{%trans "Without name"%}</small>
+            {%endif%}
+          </a>
+{%else%}
+            {%if value.author%}
+            {{value.author}}
+            {%else%}
+            <small class='fc-mute'>{%trans "Without name"%}</small>
+            {%endif%}
+{%endif%}
+        </td>
+        <td class="collapsing">
+          {%if value.meta.mobile%}<a class="sf-phone-square" href='tel:{{value.meta.mobile}}' title='{{value.meta.mobile}}'></a>{%endif%}
+          {%if value.url%}<a class="sf-globe" href='{{value.url}}' title='{{value.url}}'></a>{%endif%}
+          {%if value.email%}<a class="sf-envelope" href='mailto:{{value.email}}' title='{{value.email}}'></a>{%endif%}
+        </td>
         <td><a href="{{url.here}}/comments/edit?id={{value.id}}">{{value.content}}</a></td>
-        <td>{%set myStatus = value.status | capitalize%}{%trans myStatus%}</td>
-        <td title="{{value.datecreated}}">{{value.datecreated | tdate}}</td>
+        <td class="collapsing">{%set myStatus = value.status | capitalize%}{%trans myStatus%}</td>
+        <td class="collapsing" title="{{value.datecreated}}">{{value.datecreated | sdate('year')}}</td>
       </tr>
       {%endfor%}
     </tbody>
