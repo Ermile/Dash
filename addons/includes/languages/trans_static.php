@@ -394,7 +394,6 @@ class TransStatic
 	echo T_("Your phone number registered successfully;)");
 	echo T_("We dont need another users contact:?)");
 	echo T_("We need mobile number!");
-	echo T_("");
 	echo T_(" ");
 
 
