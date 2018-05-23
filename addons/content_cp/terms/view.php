@@ -6,6 +6,7 @@ class view
 {
 	public static function config()
 	{
+		\dash\data::page_pictogram('align-justify');
 
 		$myTitle = T_("Terms");
 		$myDesc  = T_("Check terms and filter by type or view and edit some terms");

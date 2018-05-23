@@ -11,6 +11,8 @@ class view
 		\dash\data::page_title(T_("Delete a permissions"));
 		\dash\data::page_desc(T_("Set and config permission group to categorize user access."));
 
+		\dash\data::page_pictogram('unlock');
+
 		\dash\data::badge_link(\dash\url::this());
 		\dash\data::badge_text(T_('Back to list of permissions'));
 

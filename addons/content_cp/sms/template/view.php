@@ -7,7 +7,7 @@ class view
 	public static function config()
 	{
 		\dash\permission::access('cpTemplateSMS');
-
+		\dash\data::page_pictogram('envelope-o');
 		\dash\data::page_title(T_("Template SMS"));
 		\dash\data::page_desc(T_("check and update some options on template sms"));
 		\dash\data::badge_link(\dash\url::here());

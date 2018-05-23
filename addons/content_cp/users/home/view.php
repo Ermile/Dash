@@ -7,7 +7,7 @@ class view
 	public static function config()
 	{
 		\dash\permission::access('cpUsersView');
-
+		\dash\data::page_pictogram('users');
 		\dash\data::page_title(T_('List of users'));
 		\dash\data::page_desc(T_('Some detail about your users!'));
 		\dash\data::page_desc(T_('Check list of users and search or filter in them to find your user.'));

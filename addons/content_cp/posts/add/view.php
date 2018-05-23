@@ -13,6 +13,8 @@ class view
 			$moduleType = '?type='. \dash\request::get('type');
 		}
 
+		\dash\data::page_pictogram('file-text-o');
+
 		\dash\data::moduleTypeTxt($moduleTypeTxt);
 		\dash\data::moduleType($moduleType);
 		\dash\data::listCats(\dash\app\term::cat_list());

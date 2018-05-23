@@ -11,6 +11,8 @@ class view
 		\dash\data::dash_version(\dash\engine\version::get());
 		\dash\data::dash_lastUpdate(\dash\utility\git::getLastUpdate());
 
+		\dash\data::page_pictogram('cog');
+
 		if(\dash\option::config('visitor'))
 		{
 			\dash\data::visitor_chart(\dash\utility\visitor::chart(true));

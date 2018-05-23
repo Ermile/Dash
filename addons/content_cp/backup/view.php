@@ -6,6 +6,7 @@ class view
 {
 	public static function config()
 	{
+		\dash\data::page_pictogram('database');
 
 		$oldBackup = @glob(root .'public_html/files/backup/*');
 

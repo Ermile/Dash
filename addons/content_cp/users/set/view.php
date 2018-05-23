@@ -7,6 +7,7 @@ class view
 
 	public static function config()
 	{
+		\dash\data::page_pictogram('user');
 		\dash\permission::access('cpUsersView');
 
 		\dash\data::page_title(T_('Add new user'));

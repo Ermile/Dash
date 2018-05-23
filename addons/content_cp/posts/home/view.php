@@ -15,6 +15,7 @@ class view
 			$moduleType = '?type='. \dash\request::get('type');
 		}
 
+		\dash\data::page_pictogram('files-o');
 		\dash\data::moduleTypeTxt($moduleTypeTxt);
 		\dash\data::moduleType($moduleType);
 

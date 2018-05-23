@@ -10,6 +10,7 @@ class view
 		\dash\data::page_title(T_("Send Sms to user"));
 		\dash\data::page_desc(T_("Send every sms to every user by mobile"));
 
+		\dash\data::page_pictogram('envelope-o');
 
 		\dash\data::badge_link(\dash\url::here());
 		\dash\data::badge_text(T_('Dashboard'));
