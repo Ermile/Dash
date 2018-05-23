@@ -38,7 +38,7 @@ class comment
 		$content = null;
 		if(isset($_args['content']))
 		{
-			$content = \dash\safe::safe($_args['content']);
+			$content = \dash\safe::safe($_args['content'], 'sqlinjection');
 		}
 
 		\dash\app::variable($_args);
@@ -75,7 +75,7 @@ class comment
 		$content = null;
 		if(isset($_args['content']))
 		{
-			$content = \dash\safe::safe($_args['content']);
+			$content = \dash\safe::safe($_args['content'], 'sqlinjection');
 		}
 
 		\dash\app::variable($_args);
