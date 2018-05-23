@@ -10,6 +10,7 @@ class view
 
 		\dash\data::page_title(T_("Comments"));
 		\dash\data::page_desc(T_('Check list of comments and search or filter in them to find your comments.'). ' '. T_('Also add or edit specefic comments.'));
+		\dash\data::page_pictogram('comments');
 
 		// $this->data->page['badge']['link'] = \dash\url::this(). '';
 		// $this->data->page['badge']['text'] = T_('Add new :val', ['val' => $myType]);
