@@ -3,13 +3,11 @@
 
 {%block pageContent%}
 <div class="f">
-
- <div class="c4 s12">{{block ("iPost")}}</div>
- <div class="c4 s12">{{block ("iPage")}}</div>
- <div class="c4 s12">{{block ("iTermCat")}}</div>
- <div class="c4 s12">{{block ("iTermTag")}}</div>
- <div class="c4 s12">{{block ("iComment")}}</div>
-
+ {%if perm('cpPostsView') %}<div class="c4 s12">{{block ("iPost")}}</div>{%endif%}
+ {%if perm('cpPageView') %}<div class="c4 s12">{{block ("iPage")}}</div>{%endif%}
+ {%if perm('cpCategoryView') %}<div class="c4 s12">{{block ("iTermCat")}}</div>{%endif%}
+ {%if perm('cpTagView') %}<div class="c4 s12">{{block ("iTermTag")}}</div>{%endif%}
+ {%if perm('cpCommentsView') %}<div class="c4 s12">{{block ("iComment")}}</div>{%endif%}
 </div>
 {%endblock%}
 
