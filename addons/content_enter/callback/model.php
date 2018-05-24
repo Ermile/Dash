@@ -4,6 +4,20 @@ namespace content_enter\callback;
 
 class model
 {
+	public static function post()
+	{
+		switch (\dash\request::get('service'))
+		{
+			case 'kavenegar':
+				self::kavenegar();
+				break;
+
+			default:
+				\dash\header::status(404, T_("Invalid service"));
+				break;
+		}
+	}
+
 	public static function kavenegar()
 	{
 		\dash\temp::set('api', true);

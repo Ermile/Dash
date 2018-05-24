@@ -12,16 +12,6 @@ class controller
 			\dash\header::status(404, T_("Invalid url"));
 		}
 
-		switch (\dash\request::get('service'))
-		{
-			case 'kavenegar':
-				\content_enter\callback\model::kavenegar();
-				break;
-
-			default:
-				\dash\header::status(404, T_("Invalid service"));
-				break;
-		}
 	}
 }
 ?>
