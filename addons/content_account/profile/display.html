@@ -66,9 +66,9 @@
 
 
 {%block iSidebar%}
-<label for="xsidebar">{%trans "Auto hide sidebar"%}</label>
+<label for="xsidebar">{%trans "Show sidebar"%}</label>
 <div class="switch1 mTB0">
- <input type="checkbox" name="sidebar" id="xsidebar" {%if dataRow.sidebar %}checked{%endif%}>
+ <input type="checkbox" name="sidebar" id="xsidebar" {%if userToggleSidebar %}checked{%endif%}>
  <label for="xsidebar"></label>
 </div>
 {%endblock%}

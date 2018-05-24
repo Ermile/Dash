@@ -37,7 +37,7 @@ class model
 		$post =
 		[
 			'twostep'     => \dash\request::post('twostep'),
-			'sidebar'     => \dash\request::post('sidebar'),
+			'sidebar'     => \dash\request::post('sidebar') ? true : false,
 			'language'    => \dash\request::post('language'),
 			'website'     => \dash\request::post('website'),
 			'instagram'   => \dash\request::post('instagram'),
