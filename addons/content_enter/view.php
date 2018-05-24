@@ -37,12 +37,17 @@ class view
 		// if mobile not set but the user was login
 		// for example in pass/change page
 		// get the user mobile from login.mobile
-
 		// set mobile in display
-		if(!\dash\permission::supervisor(false))
+		\dash\data::getMobile($myMobile);
+		\dash\data::getUsernamemobile($myMobile);
+
+		if(!\dash\url::module())
 		{
-			\dash\data::getMobile($myMobile);
-			\dash\data::getUsernamemobile($myMobile);
+			if(\dash\permission::supervisor())
+			{
+				\dash\data::getMobile(null);
+				\dash\data::getUsernamemobile(null);
+			}
 		}
 
 
