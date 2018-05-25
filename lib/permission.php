@@ -328,6 +328,11 @@ class permission
 			}
 		}
 
+		if(is_numeric($_name))
+		{
+			\dash\notif::error(T_("The title must include at least one alphabetical character"), 'name');
+			return false;
+		}
 
 		if(mb_strlen($_name) > 30)
 		{
