@@ -25,7 +25,7 @@
   <h3>{%trans ckey%}</h3>
   <div class="f">
 {%for key, value in cvalue%}
-    <div class="switch1 c4 s12">
+    <div class="switch1 c4 s12 mT5">
      <input type="checkbox" name="{{key}}" id="{{key}}" data-require="{{value.require | join('|') }}" {%if key in perm.load.contain or requestGET.id == 'admin' %} checked {%endif%}>
      <label for="{{key}}"></label>
      <label for="{{key}}" title='{{key}}'>{%set myTitle = value.title%}{%trans myTitle%}</label>
