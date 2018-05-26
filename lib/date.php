@@ -247,15 +247,26 @@ class date
 	}
 
 
-	public static function forceEn()
+	public static function force_gregorian($_date)
 	{
+		if(\dash\utility\jdate::is_jalali($_date))
+		{
+			$_date = \dash\utility\jdate::to_gregorian($_date);
+		}
+
+		return $_date;
 
 	}
 
 
-	public static function forceFa($_date)
+	public static function force_jalali($_date)
 	{
+		if(\dash\utility\jdate::is_gregorian($_date))
+		{
+			$_date = \dash\utility\jdate::date("Y-m-d", strtotime($_date));
+		}
 
+		return $_date;
 	}
 
 
