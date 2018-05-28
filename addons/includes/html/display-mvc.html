@@ -118,18 +118,12 @@
 {%if dev.siftal %}
  <script src="http://siftal.local/dist/js/siftal.min.js"></script>
 {%if include.chart %}
- <script src="http://siftal.local/dist/js/amcharts.min.js"></script>
-{%endif%}
-{%if include.chart4 %}
  <script src="http://siftal.local/dist/js/amcharts4.min.js"></script>
 {%endif%}
 {%else%}
 
  <script src="{{url.site}}/static/{{'siftal/js/siftal.min.js' | filemtime(true)}}"></script>
 {%if include.chart %}
- <script src="{{url.site}}/static/{{'siftal/js/amcharts.min.js' | filemtime(true)}}"></script>
-{%endif%}
-{%if include.chart4 %}
  <script src="{{url.site}}/static/{{'siftal/js/amcharts4.min.js' | filemtime(true)}}"></script>
 {%endif%}
 {%endif%}
