@@ -94,5 +94,11 @@ class notif
 	{
 		return self::$notif;
 	}
+
+
+	public static function clean()
+	{
+		self::$notif = [];
+	}
 }
 ?>
