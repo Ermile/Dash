@@ -147,10 +147,10 @@ class app
 	/**
 	 * return the url of static logo file
 	 */
-	public static function static_image_url()
+	public static function static_image_url($_type = 'image')
 	{
 		$url = \dash\url::site(). '/';
-		$url .= 'static/siftal/images/default/image.png';
+		$url .= 'static/siftal/images/default/'. $_type. '.png';
 		return $url;
 	}
 
