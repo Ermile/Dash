@@ -120,11 +120,17 @@
 {%if include.chart %}
  <script src="http://siftal.local/dist/js/amcharts4.min.js"></script>
 {%endif%}
+{%if include.chart3 %}
+ <script src="http://siftal.local/dist/js/amcharts3.min.js"></script>
+{%endif%}
 {%else%}
 
  <script src="{{url.site}}/static/{{'siftal/js/siftal.min.js' | filemtime(true)}}"></script>
 {%if include.chart %}
  <script src="{{url.site}}/static/{{'siftal/js/amcharts4.min.js' | filemtime(true)}}"></script>
+{%endif%}
+{%if include.chart3 %}
+ <script src="{{url.site}}/static/{{'siftal/js/amcharts3.min.js' | filemtime(true)}}"></script>
 {%endif%}
 {%endif%}
 {%endif%}
