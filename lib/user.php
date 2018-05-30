@@ -38,8 +38,10 @@ class user
 			}
 		}
 
-		self::$USER_ID          = $_user_id;
-		$_SESSION['auth']['id'] = $_user_id;
+		self::$USER_ID                 = $_user_id;
+		$_SESSION['auth']['id']        = $_user_id;
+		$_SESSION['auth']['logintime'] = time();
+
 
 	}
 
