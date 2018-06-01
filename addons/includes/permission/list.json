@@ -211,51 +211,53 @@
   "cpSMS":
   {
     "title": "cpSMS",
-    "cat": "Control Panel SMS",
+    "cat": "Control Panel Contact",
+    "titleBefore": "SMS",
     "require": ["cotentCp"]
   },
   "cpSmsSend":
   {
     "title": "cpSmsSend",
-    "cat": "Control Panel SMS",
+    "cat": "Control Panel Contact",
     "require": ["cotentCp", "cpSMS"]
   },
   "cpSmsSendGroup":
   {
     "title": "cpSmsSendGroup",
-    "cat": "Control Panel SMS",
+    "cat": "Control Panel Contact",
     "require": ["cotentCp", "cpSMS"]
   },
   "cpSmsTemplateView":
   {
     "title": "cpSmsTemplateView",
-    "cat": "Control Panel SMS",
+    "cat": "Control Panel Contact",
     "require": ["cotentCp", "cpSMS"]
   },
   "cpSmsTemplateEdit":
   {
     "title": "cpSmsTemplateEdit",
-    "cat": "Control Panel SMS",
+    "cat": "Control Panel Contact",
     "require": ["cotentCp", "cpSMS", "cpSmsTemplateView"]
   },
   "cpSmsTemplateDelete":
   {
     "title": "cpSmsTemplateDelete",
-    "cat": "Control Panel SMS",
+    "cat": "Control Panel Contact",
     "require": ["cotentCp", "cpSMS", "cpSmsTemplateView", "cpSmsTemplateEdit"]
   },
-
 
   "cpEmail":
   {
     "title": "cpEmail",
-    "cat": "Control Panel Email",
+    "cat": "Control Panel Contact",
+    "titleBefore": "Email",
     "require": ["cotentCp"]
   },
   "cpEmailSend":
   {
     "title": "cpEmailSend",
-    "cat": "Control Panel Email",
+    "cat": "Control Panel Contact",
     "require": ["cotentCp", "cpEmail"]
   }
+
 }
