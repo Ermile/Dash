@@ -1,187 +1,261 @@
+
 {
-  "cpPermissionAdd": {
-    "title": "cpPermissionAdd",
-    "cat": "Control Panel",
-    "check": false,
-    "require": []
-  },
-  "cpPermissionEdit": {
-    "title": "cpPermissionEdit",
-    "cat": "Control Panel",
-    "check": false,
-    "require": []
-  },
-  "cpPermissionDelete": {
-    "title": "cpPermissionDelete",
-    "cat": "Control Panel",
-    "check": false,
-    "require": []
-  },
-  "cpPermissionView": {
-    "title": "cpPermissionView",
-    "cat": "Control Panel",
-    "check": false,
-    "require": []
-  },
-  "cpCommentsEdit": {
-    "title": "cpCommentsEdit",
-    "cat": "Control Panel",
-    "check": false,
-    "require": []
-  },
-  "cpCommentsView": {
-    "title": "cpCommentsView",
-    "cat": "Control Panel",
-    "check": false,
-    "require": []
-  },
-  "cotentCp": {
+  "cotentCp":
+  {
     "title": "cotentCp",
-    "cat": "Control Panel",
-    "check": false,
-    "require": []
+    "cat": "Control Panel CMS",
+    "breakAfter": true,
+    "require": ["cotentCp"]
   },
-  "cpUsersView": {
-    "title": "cpUsersView",
-    "cat": "Control Panel",
-    "check": false,
-    "require": []
-  },
-  "cpUsersEdit": {
-    "title": "cpUsersEdit",
-    "cat": "Control Panel",
-    "check": false,
-    "require": []
-  },
-  "cpUsersAdd": {
-    "title": "cpUsersAdd",
-    "cat": "Control Panel",
-    "check": false,
-    "require": []
-  },
-  "cpCategoryView": {
-    "title": "cpCategoryView",
-    "cat": "Control Panel",
-    "check": false,
-    "require": []
-  },
-  "cpTagView": {
-    "title": "cpTagView",
-    "cat": "Control Panel",
-    "check": false,
-    "require": []
-  },
-  "cpCategoryEdit": {
-    "title": "cpCategoryEdit",
-    "cat": "Control Panel",
-    "check": false,
-    "require": []
-  },
-  "cpTagEdit": {
-    "title": "cpTagEdit",
-    "cat": "Control Panel",
-    "check": false,
-    "require": []
-  },
-  "cpCategoryAdd": {
-    "title": "cpCategoryAdd",
-    "cat": "Control Panel",
-    "check": false,
-    "require": []
-  },
-  "cpTagAdd": {
-    "title": "cpTagAdd",
-    "cat": "Control Panel",
-    "check": false,
-    "require": []
-  },
-  "cpBackup": {
-    "title": "cpBackup",
-    "cat": "Control Panel",
-    "check": false,
-    "require": []
-  },
-  "cpPageAdd": {
-    "title": "cpPageAdd",
-    "cat": "Control Panel",
-    "check": false,
-    "require": []
-  },
-  "cpPostsAdd": {
-    "title": "cpPostsAdd",
-    "cat": "Control Panel",
-    "check": false,
-    "require": []
-  },
-  "cpPageEdit": {
-    "title": "cpPageEdit",
-    "cat": "Control Panel",
-    "check": false,
-    "require": []
-  },
-  "cpPostsEdit": {
-    "title": "cpPostsEdit",
-    "cat": "Control Panel",
-    "check": false,
-    "require": []
-  },
-  "cpPageView": {
-    "title": "cpPageView",
-    "cat": "Control Panel",
-    "check": false,
-    "require": []
-  },
-  "cpPostsView": {
+
+
+  "cpPostsView":
+  {
     "title": "cpPostsView",
-    "cat": "Control Panel",
-    "check": false,
-    "require": []
+    "cat": "Control Panel CMS",
+    "titleBefore": "Posts",
+    "require": ["cotentCp"]
   },
-  "cpUsersPermission": {
+  "cpPostsAdd":
+  {
+    "title": "cpPostsAdd",
+    "cat": "Control Panel CMS",
+    "require": ["cotentCp", "cpPostsView"]
+  },
+  "cpPostsEdit":
+  {
+    "title": "cpPostsEdit",
+    "cat": "Control Panel CMS",
+    "require": ["cotentCp", "cpPostsView"]
+  },
+  "cpPostsDelete":
+  {
+    "title": "cpPostsDelete",
+    "cat": "Control Panel CMS",
+    "require": ["cotentCp", "cpPostsView", "cpPostsEdit"]
+  },
+
+  "cpCategoryView":
+  {
+    "title": "cpCategoryView",
+    "cat": "Control Panel CMS",
+    "titleBefore": "Categories",
+    "require": ["cotentCp"]
+  },
+  "cpCategoryAdd":
+  {
+    "title": "cpCategoryAdd",
+    "cat": "Control Panel CMS",
+    "require": ["cotentCp", "cpCategoryView"]
+  },
+  "cpCategoryEdit":
+  {
+    "title": "cpCategoryEdit",
+    "cat": "Control Panel CMS",
+    "require": ["cotentCp", "cpCategoryView"]
+  },
+  "cpCategoryDelete":
+  {
+    "title": "cpCategoryDelete",
+    "cat": "Control Panel CMS",
+    "require": ["cotentCp", "cpCategoryView", "cpCategoryEdit"]
+  },
+
+  "cpTagView":
+  {
+    "title": "cpTagView",
+    "cat": "Control Panel CMS",
+    "titleBefore": "Tags",
+    "require": ["cotentCp"]
+  },
+  "cpTagAdd":
+  {
+    "title": "cpTagAdd",
+    "cat": "Control Panel CMS",
+    "require": ["cotentCp", "cpTagView"]
+  },
+  "cpTagEdit":
+  {
+    "title": "cpTagEdit",
+    "cat": "Control Panel CMS",
+    "require": ["cotentCp", "cpTagView"]
+  },
+  "cpTagDelete":
+  {
+    "title": "cpTagDelete",
+    "cat": "Control Panel CMS",
+    "require": ["cotentCp", "cpTagView", "cpTagEdit"]
+  },
+
+  "cpPageView":
+  {
+    "title": "cpPageView",
+    "cat": "Control Panel CMS",
+    "titleBefore": "Pages",
+    "require": ["cotentCp"]
+  },
+  "cpPageAdd":
+  {
+    "title": "cpPageAdd",
+    "cat": "Control Panel CMS",
+    "require": ["cotentCp", "cpPageView"]
+  },
+  "cpPageEdit":
+  {
+    "title": "cpPageEdit",
+    "cat": "Control Panel CMS",
+    "require": ["cotentCp", "cpPageView"]
+  },
+  "cpPageDelete":
+  {
+    "title": "cpPageDelete",
+    "cat": "Control Panel CMS",
+    "require": ["cotentCp", "cpPageView", "cpPageEdit"]
+  },
+
+  "cpCommentsView":
+  {
+    "title": "cpCommentsView",
+    "cat": "Control Panel CMS",
+    "titleBefore": "Comments",
+    "require": ["cotentCp"]
+  },
+  "cpCommentsEdit":
+  {
+    "title": "cpCommentsEdit",
+    "cat": "Control Panel CMS",
+    "require": ["cotentCp", "cpCommentsView"]
+  },
+  "cpCommentsDelete":
+  {
+    "title": "cpCommentsDelete",
+    "cat": "Control Panel CMS",
+    "require": ["cotentCp", "cpCommentsView", "cpCommentsEdit"]
+  },
+  "cpBackup":
+  {
+    "title": "cpBackup",
+    "cat": "Control Panel CMS",
+    "titleBefore": "Backup",
+    "require": ["cotentCp"]
+  },
+
+
+
+  "cpUsersView":
+  {
+    "title": "cpUsersView",
+    "cat": "Control Panel Users",
+    "titleBefore": "Users",
+    "require": ["cotentCp"]
+  },
+  "cpUsersAdd":
+  {
+    "title": "cpUsersAdd",
+    "cat": "Control Panel Users",
+    "require": ["cotentCp", "cpUsersView"]
+  },
+  "cpUsersEdit":
+  {
+    "title": "cpUsersEdit",
+    "cat": "Control Panel Users",
+    "require": ["cotentCp", "cpUsersView"]
+  },
+  "cpUsersPermission":
+  {
     "title": "cpUsersPermission",
-    "cat": "Control Panel",
-    "check": false,
-    "require": []
+    "cat": "Control Panel Users",
+    "require": ["cotentCp", "cpUsersView", "cpUsersEdit"]
   },
-  "cpUsersPasswordChange": {
+  "cpUsersPasswordChange":
+  {
     "title": "cpUsersPasswordChange",
-    "cat": "Control Panel",
-    "check": false,
-    "require": []
+    "cat": "Control Panel Users",
+    "require": ["cotentCp", "cpUsersView", "cpUsersEdit"]
   },
-  "cpSmsSend": {
-    "title": "cpSmsSend",
-    "cat": "SMS",
-    "require": []
+  "cpUsersDelete":
+  {
+    "title": "cpUsersDelete",
+    "cat": "Control Panel Users",
+    "require": ["cotentCp", "cpUsersView", "cpUsersEdit"]
   },
-  "cpTemplateSmsView": {
-    "title": "cpTemplateSmsView",
-    "cat": "SMS",
-    "require": []
+
+  "cpPermissionView":
+  {
+    "title": "cpPermissionView",
+    "cat": "Control Panel Users",
+    "titleBefore": "Permissions",
+    "require": ["cotentCp"]
   },
-  "cpSmsTemplateEdit": {
-    "title": "cpSmsTemplateEdit",
-    "cat": "SMS",
-    "require": []
+  "cpPermissionAdd":
+  {
+    "title": "cpPermissionAdd",
+    "cat": "Control Panel Users",
+    "require": ["cotentCp", "cpPermissionView"]
   },
-  "cpSmsSendGroup": {
-    "title": "cpSmsSendGroup",
-    "cat": "SMS",
-    "require": []
+  "cpPermissionEdit":
+  {
+    "title": "cpPermissionEdit",
+    "cat": "Control Panel Users",
+    "require": ["cotentCp", "cpPermissionView"]
   },
-  "cpSMS": {
+  "cpPermissionDelete":
+  {
+    "title": "cpPermissionDelete",
+    "cat": "Control Panel Users",
+    "require": ["cotentCp", "cpPermissionView", "cpPermissionEdit"]
+  },
+
+
+
+  "cpSMS":
+  {
     "title": "cpSMS",
-    "cat": "SMS",
-    "require": []
+    "cat": "Control Panel SMS",
+    "require": ["cotentCp"]
   },
-  "cpEmailSend": {
-    "title": "cpEmailSend",
-    "cat": "Email",
-    "require": []
+  "cpSmsSend":
+  {
+    "title": "cpSmsSend",
+    "cat": "Control Panel SMS",
+    "require": ["cotentCp", "cpSMS"]
   },
-  "cpEmail": {
+  "cpSmsSendGroup":
+  {
+    "title": "cpSmsSendGroup",
+    "cat": "Control Panel SMS",
+    "require": ["cotentCp", "cpSMS"]
+  },
+  "cpSmsTemplateView":
+  {
+    "title": "cpSmsTemplateView",
+    "cat": "Control Panel SMS",
+    "require": ["cotentCp", "cpSMS"]
+  },
+  "cpSmsTemplateEdit":
+  {
+    "title": "cpSmsTemplateEdit",
+    "cat": "Control Panel SMS",
+    "require": ["cotentCp", "cpSMS", "cpSmsTemplateView"]
+  },
+  "cpSmsTemplateDelete":
+  {
+    "title": "cpSmsTemplateDelete",
+    "cat": "Control Panel SMS",
+    "require": ["cotentCp", "cpSMS", "cpSmsTemplateView", "cpSmsTemplateEdit"]
+  },
+
+
+  "cpEmail":
+  {
     "title": "cpEmail",
-    "cat": "Email",
-    "require": []
+    "cat": "Control Panel Email",
+    "require": ["cotentCp"]
+  },
+  "cpEmailSend":
+  {
+    "title": "cpEmailSend",
+    "cat": "Control Panel Email",
+    "require": ["cotentCp", "cpEmail"]
   }
 }

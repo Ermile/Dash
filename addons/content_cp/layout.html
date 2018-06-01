@@ -28,13 +28,13 @@
     </li>
     {%endif%}
 
-    {%if perm('cpSMS') or perm('cpSmsSend') or perm('cpSmsSendGroup') or perm('cpTemplateSmsView') %}
+    {%if perm('cpSMS') or perm('cpSmsSend') or perm('cpSmsSendGroup') or perm('cpSmsTemplateView') %}
     <li>
         {%if perm('cpSMS') %}<a href="{{url.here}}/sms"><i class='sf-envelope'></i> <span>{% trans "SMS" %}</span></a>{%endif%}
         <ul>
             {%if perm('cpSmsSend') %}<li><a href="{{url.here}}/sms/send">{% trans "Quick send" %} <i class='floatRa mRa10 fc-mute sf-paper-plane'></i></a></li>{%endif%}
             {%if perm('cpSmsSendGroup') %}<li><a href="{{url.here}}/sms/group">{% trans "Group send" %} <i class='floatRa mRa10 fc-mute sf-rocket'></i></a></li>{%endif%}
-            {%if perm('cpTemplateSmsView') %}<li><a href="{{url.here}}/sms/template">{% trans "Templates" %} <i class='floatRa mRa10 fc-mute sf-right-quote-alt'></i></a></li>{%endif%}
+            {%if perm('cpSmsTemplateView') %}<li><a href="{{url.here}}/sms/template">{% trans "Templates" %} <i class='floatRa mRa10 fc-mute sf-right-quote-alt'></i></a></li>{%endif%}
         </ul>
     </li>
     {%endif%}

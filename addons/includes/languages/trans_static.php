@@ -841,7 +841,7 @@ class TransStatic
 	echo T_("SMS");
 	echo T_("Email");
 	echo T_("cpSmsSend");
-	echo T_("cpTemplateSmsView");
+	echo T_("cpSmsTemplateView");
 	echo T_("cpSmsTemplateEdit");
 	echo T_("cpSmsSendGroup");
 	echo T_("cpSMS");
