@@ -45,19 +45,17 @@
     "contain":
     [
       "cotentCp",
-      "cpCategoryView",
-      "cpTagView",
-      "cpCategoryEdit",
-      "cpTagEdit",
-      "cpCategoryAdd",
-      "cpTagAdd",
-      "cpBackup",
-      "cpPageAdd",
+      "cpPostsView",
       "cpPostsAdd",
-      "cpPageEdit",
       "cpPostsEdit",
-      "cpPageView",
-      "cpPostsView"
+      "cpPostsDelete",
+      "cpCategoryView",
+      "cpCategoryAdd",
+      "cpTagView",
+      "cpTagAdd",
+      "cpAttachmentView",
+      "cpAttachmentAdd",
+      "cpAttachmentEdit"
     ]
   }
 }
