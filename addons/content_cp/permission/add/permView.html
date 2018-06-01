@@ -1,0 +1,42 @@
+
+<form method="post">
+
+<div class="cbox mB10">
+  <div class="f">
+
+    <div class="c s12 input pRa5">
+      <label>{%trans "Name"%} <small class="fc-red">{%trans "Require"%} *</small></label>
+      <input type="text" name="name" title='{%trans "The permission name should be unique and contain only alphanameric characters and underscores"%}' placeholder='{%trans "Name of your permission"%} *' autocomplete="off" class="ltr" {%if perm.load.title%} readonly disabled {%endif%} value="{{requestGET.id}}">
+    </div>
+    <div class="c s12 input">
+      <label>{%trans "Label"%} <small class="fc-red">{%trans "Require"%} *</small></label>
+      <input type="text" name="label" title='{%trans "The permission label is used to represent your permission in user management"%}' placeholder='{%trans "Label of your permission"%} *' autocomplete="off" value="{{perm.load.title}}">
+    </div>
+  </div>
+</div>
+
+{%for permKey, permList in perm.list%}
+{%for ckey, cvalue in permList%}
+<div class="cbox mB10 fs11">
+  <h2>
+    <span class="badge info mRa10">{%trans permKey%}</span>{%trans ckey%}
+  </h2>
+  <div class="f">
+{%for key, value in cvalue%}
+{%if value.titleBefore%}<h4 class='c12 mT10'>{%set myTitle = value.titleBefore%} {%trans myTitle%}</h4>{%endif%}
+    <div class="switch1 c3 m6 s12">
+     <input type="checkbox" name="{{key}}" id="{{key}}" data-require="{{value.require | join('|') }}" {%if key in perm.load.contain or requestGET.id == 'admin' %} checked {%endif%}>
+     <label for="{{key}}"></label>
+     <label for="{{key}}" title='{{key}}'>{%set myTitle = value.title%}{%trans myTitle%}</label>
+    </div>
+{%if value.breakAfter%}<div class='c12 mT10'></div>{%endif%}
+{%endfor%}
+  </div>
+</div>
+{%endfor%}
+{%endfor%}
+
+
+<button class="btn primary block xl">{%trans "Save"%}</button>
+</form>
+
