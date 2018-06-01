@@ -1,57 +1,49 @@
 {
-  "admin": {
+  "admin":
+  {
     "title": "Admin",
-    "contain": [
-      "cpPermissionAdd",
-      "cpPermissionEdit",
-      "cpPermissionDelete",
-      "cpPermissionView",
-      "cpCommentsEdit",
-      "cpCommentsView",
-      "cotentCp",
-      "cpUsersView",
-      "cpUsersEdit",
-      "cpUsersAdd",
-      "cpCategoryView",
-      "cpTagView",
-      "cpCategoryEdit",
-      "cpTagEdit",
-      "cpCategoryAdd",
-      "cpTagAdd",
-      "cpBackup",
-      "cpPageAdd",
-      "cpPostsAdd",
-      "cpPageEdit",
-      "cpPostsEdit",
-      "cpPageView",
-      "cpPostsView"
-    ]
+    "contain": []
   },
-  "editor": {
+  "editor":
+  {
     "title": "Editor",
-    "contain": [
-      "cpCommentsEdit",
-      "cpCommentsView",
+    "contain":
+    [
       "cotentCp",
-      "cpUsersView",
-      "cpCategoryView",
-      "cpTagView",
-      "cpCategoryEdit",
-      "cpTagEdit",
-      "cpCategoryAdd",
-      "cpTagAdd",
-      "cpBackup",
-      "cpPageAdd",
+      "cpPostsView",
+      "cpPostsViewAll",
       "cpPostsAdd",
-      "cpPageEdit",
       "cpPostsEdit",
+      "cpPostsEditPublished",
+      "cpPostsEditForOthers",
+      "cpPostsDelete",
+      "cpPostsDeleteForOthers",
+      "cpCategoryView",
+      "cpCategoryAdd",
+      "cpCategoryEdit",
+      "cpCategoryDelete",
+      "cpTagView",
+      "cpTagAdd",
+      "cpTagEdit",
+      "cpTagDelete",
       "cpPageView",
-      "cpPostsView"
+      "cpPageAdd",
+      "cpPageEdit",
+      "cpPageDelete",
+      "cpAttachmentView",
+      "cpAttachmentAdd",
+      "cpAttachmentEdit",
+      "cpAttachmentDelete",
+      "cpCommentsView",
+      "cpCommentsEdit",
+      "cpCommentsDelete"
     ]
   },
-  "writer": {
-    "title": "Writer",
-    "contain": [
+  "author":
+  {
+    "title": "Author",
+    "contain":
+    [
       "cotentCp",
       "cpCategoryView",
       "cpTagView",

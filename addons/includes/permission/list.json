@@ -16,6 +16,12 @@
     "titleBefore": "Posts",
     "require": ["cotentCp"]
   },
+  "cpPostsViewAll":
+  {
+    "title": "cpPostsViewAll",
+    "cat": "Control Panel CMS",
+    "require": ["cotentCp", "cpPostsView"]
+  },
   "cpPostsAdd":
   {
     "title": "cpPostsAdd",
@@ -28,11 +34,29 @@
     "cat": "Control Panel CMS",
     "require": ["cotentCp", "cpPostsView"]
   },
+  "cpPostsEditPublished":
+  {
+    "title": "cpPostsEditPublished",
+    "cat": "Control Panel CMS",
+    "require": ["cotentCp", "cpPostsView", "cpPostsEdit"]
+  },
+  "cpPostsEditForOthers":
+  {
+    "title": "cpPostsEditForOthers",
+    "cat": "Control Panel CMS",
+    "require": ["cotentCp", "cpPostsView", "cpPostsViewAll", "cpPostsEdit"]
+  },
   "cpPostsDelete":
   {
     "title": "cpPostsDelete",
     "cat": "Control Panel CMS",
     "require": ["cotentCp", "cpPostsView", "cpPostsEdit"]
+  },
+  "cpPostsDeleteForOthers":
+  {
+    "title": "cpPostsDeleteForOthers",
+    "cat": "Control Panel CMS",
+    "require": ["cotentCp", "cpPostsView", "cpPostsViewAll", "cpPostsEdit", "cpPostsEditForOthers", "cpPostsDelete"]
   },
 
   "cpCategoryView":
@@ -111,6 +135,32 @@
     "title": "cpPageDelete",
     "cat": "Control Panel CMS",
     "require": ["cotentCp", "cpPageView", "cpPageEdit"]
+  },
+
+  "cpAttachmentView":
+  {
+    "title": "cpAttachmentView",
+    "cat": "Control Panel CMS",
+    "titleBefore": "Attachments",
+    "require": ["cotentCp"]
+  },
+  "cpAttachmentAdd":
+  {
+    "title": "cpAttachmentAdd",
+    "cat": "Control Panel CMS",
+    "require": ["cotentCp", "cpAttachmentView"]
+  },
+  "cpAttachmentEdit":
+  {
+    "title": "cpAttachmentEdit",
+    "cat": "Control Panel CMS",
+    "require": ["cotentCp", "cpAttachmentView"]
+  },
+  "cpAttachmentDelete":
+  {
+    "title": "cpAttachmentDelete",
+    "cat": "Control Panel CMS",
+    "require": ["cotentCp", "cpAttachmentView", "cpAttachmentEdit"]
   },
 
   "cpCommentsView":
