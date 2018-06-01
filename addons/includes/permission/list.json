@@ -34,6 +34,12 @@
     "cat": "Control Panel CMS",
     "require": ["cotentCp", "cpPostsView"]
   },
+  "cpPostsEditStatus":
+  {
+    "title": "cpPostsEditStatus",
+    "cat": "Control Panel CMS",
+    "require": ["cotentCp", "cpPostsView", "cpPostsEdit"]
+  },
   "cpPostsEditPublished":
   {
     "title": "cpPostsEditPublished",

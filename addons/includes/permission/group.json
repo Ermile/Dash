@@ -14,6 +14,7 @@
       "cpPostsViewAll",
       "cpPostsAdd",
       "cpPostsEdit",
+      "cpPostsEditStatus",
       "cpPostsEditPublished",
       "cpPostsEditForOthers",
       "cpPostsDelete",
@@ -48,12 +49,28 @@
       "cpPostsView",
       "cpPostsAdd",
       "cpPostsEdit",
+      "cpPostsEditStatus",
       "cpPostsDelete",
       "cpCategoryView",
       "cpCategoryAdd",
       "cpTagView",
       "cpTagAdd",
       "cpAttachmentView",
+      "cpAttachmentAdd",
+      "cpAttachmentEdit"
+    ]
+  },
+  "contributor":
+  {
+    "title": "Contributor",
+    "contain":
+    [
+      "cotentCp",
+      "cpPostsView",
+      "cpPostsAdd",
+      "cpPostsEdit",
+      "cpPostsDelete",
+      "cpTagAdd",
       "cpAttachmentAdd",
       "cpAttachmentEdit"
     ]
