@@ -281,7 +281,7 @@
   {
     "title": "cpSmsSendGroup",
     "cat": "Control Panel Contact",
-    "require": ["cotentCp", "cpSMS"]
+    "require": ["cotentCp", "cpSMS", "cpSmsSend"]
   },
   "cpSmsTemplateView":
   {
