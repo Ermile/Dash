@@ -635,20 +635,21 @@ class jdate
     public static function jalali_month($_year, $_month)
     {
 
-        $j_days_in_month = [
-                             '01'  => 31,
-                             '02'  => 31,
-                             '03'  => 31,
-                             '04'  => 31,
-                             '05'  => 31,
-                             '06'  => 31,
-                             '07'  => 30,
-                             '08'  => 30,
-                             '09'  => 30,
-                             '10' => 30,
-                             '11' => 30,
-                             '12' => 29
-                             ];
+        $j_days_in_month =
+        [
+            '01' => 31,
+            '02' => 31,
+            '03' => 31,
+            '04' => 31,
+            '05' => 31,
+            '06' => 31,
+            '07' => 30,
+            '08' => 30,
+            '09' => 30,
+            '10' => 30,
+            '11' => 30,
+            '12' => 29
+        ];
 
         $start_day  = 1;
         $end_day    = $j_days_in_month[$_month];
@@ -698,7 +699,15 @@ class jdate
      */
     public static function is_jalali($_date)
     {
-        $year = (new \DateTime($_date))->format("Y");
+        // $year = (new \DateTime($_date))->format("Y");
+        $strtotime = strtotime($_date);
+
+        if(!$strtotime)
+        {
+            return false;
+        }
+
+        $year = date("Y", $strtotime);
 
         $date_is_jalali = false;
 
@@ -719,7 +728,16 @@ class jdate
      */
     public static function is_gregorian($_date)
     {
-        $year = (new \DateTime($_date))->format("Y");
+        // $year = (new \DateTime($_date))->format("Y");
+        $strtotime = strtotime($_date);
+
+        if(!$strtotime)
+        {
+            return false;
+        }
+
+        $year = date("Y", $strtotime);
+
 
         $date_is_gregorian = false;
 
