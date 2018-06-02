@@ -336,7 +336,7 @@ class enter
 
 		if(isset($_SESSION['main_account']) && isset($_SESSION['main_mobile']))
 		{
-			if(isset($_SESSION['user']['mobile']) && $_SESSION['user']['mobile'] === $_SESSION['main_mobile'])
+			if(isset($_SESSION['auth']['mobile']) && $_SESSION['auth']['mobile'] === $_SESSION['main_mobile'])
 			{
 				\dash\db\sessions::set($user_id);
 			}
@@ -386,9 +386,9 @@ class enter
 
 		if($_user_id && is_numeric($_user_id))
 		{
-			if(isset($_SESSION['main_account']) && isset($_SESSION['main_mobile']) && isset($_SESSION['user']['mobile']))
+			if(isset($_SESSION['main_account']) && isset($_SESSION['main_mobile']) && isset($_SESSION['auth']['mobile']))
 			{
-				if($_SESSION['user']['mobile'] === $_SESSION['main_mobile'])
+				if($_SESSION['auth']['mobile'] === $_SESSION['main_mobile'])
 				{
 					\dash\db\sessions::logout($_user_id);
 				}
@@ -837,7 +837,7 @@ class enter
 			// set temp ramz in use pass
 			\dash\db\users::update(['username' => null], self::user_data('id'));
 			// remove usename from sessions
-			unset($_SESSION['user']['username']);
+			unset($_SESSION['auth']['username']);
 			// set the alert message
 			$alert =
 			[
@@ -932,9 +932,9 @@ class enter
 			}
 
 
-			if(isset($_SESSION['user']) && is_array($_SESSION['user']))
+			if(isset($_SESSION['auth']) && is_array($_SESSION['auth']))
 			{
-				$_SESSION['user']['username'] = self::get_session('temp_username');
+				$_SESSION['auth']['username'] = self::get_session('temp_username');
 			}
 
 			// set the alert message

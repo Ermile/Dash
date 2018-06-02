@@ -13,9 +13,9 @@ class verify
 	 */
 	public static function config()
 	{
-		if(!self::$user_id && isset($_SESSION['user']['id']))
+		if(!self::$user_id && \dash\user::id())
 		{
-			self::$user_id = $_SESSION['user']['id'];
+			self::$user_id = $_SESSION['auth']['id'];
 		}
 	}
 

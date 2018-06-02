@@ -3,7 +3,7 @@ namespace dash\utility\ermile;
 
 class azvir
 {
-	private $api_url = "http://azvir.local/api/%s/%s";
+	private $api_url = "https://azvir.com/api/%s/%s";
 	private $version = null;
 	private $url     = null;
 	private $data    = [];

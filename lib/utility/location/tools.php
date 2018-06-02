@@ -174,6 +174,14 @@ trait tools
 		return false;
 	}
 
+	// search in field and return the key
+	public static function get_key($_value, $_field = 'localname')
+	{
+		$list   = array_combine(array_keys(self::$data), array_column(self::$data, $_field));
+		$result = array_search($_value, $list);
+		return $result ? $result : null;
+	}
+
 
 	/**
 	 * Searches for the first match.

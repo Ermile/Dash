@@ -80,7 +80,7 @@ class pay
      */
     private static function get_callbck_url($_payment)
     {
-        $host = \dash\url::site();
+        $host = \dash\url::base();
         $callback_url =  $host;
         if(\dash\url::lang())
         {

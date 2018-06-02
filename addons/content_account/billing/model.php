@@ -115,7 +115,7 @@ class model
 		}
 
 		\dash\db\users::update(['ref' => $ref], \dash\user::id());
-		$_SESSION['user']['ref'] = $ref;
+		$_SESSION['auth']['ref'] = $ref;
 
 		$transaction_set =
         [
