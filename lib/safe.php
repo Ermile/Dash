@@ -23,25 +23,41 @@ class safe
 
 		$remove_inject    = null;
 		$htmlspecialchars = true;
+		$trim             = true;
 
-		switch ($_type)
+		if(strpos($_type, '-') !== false)
 		{
-			case 'get_url':
-				$remove_inject = ["'", '"', '\\\\\\', '`', '\*', ';'];
-				break;
+			$_type = explode('-', $_type);
+		}
+		else
+		{
+			$_type = [$_type];
+		}
 
-			case 'sqlinjection':
-				$remove_inject = ["'", '"', '\\\\\\', '`', '\*', "\\?", ';'];
-				break;
+		foreach ($_type as $key => $value)
+		{
+			switch ($value)
+			{
+				case 'get_url':
+					$remove_inject = ["'", '"', '\\\\\\', '`', '\*', ';'];
+					break;
 
-			// use in content of post and comment
-			case 'raw':
-				$htmlspecialchars = false;
-				break;
+				case 'sqlinjection':
+					$remove_inject = ["'", '"', '\\\\\\', '`', '\*', "\\?", ';'];
+					break;
 
-			default:
-				// no thing
-				break;
+				case 'raw':
+					$htmlspecialchars = false;
+					break;
+
+				case 'nottrim':
+					$trim = false;
+					break;
+
+				default:
+					// no thing
+					break;
+			}
 		}
 
 		if($remove_inject)
@@ -49,11 +65,14 @@ class safe
 			$_string = preg_replace("/\s?[" . join('', $remove_inject) . "]/", "", $_string);
 		}
 
-		$_string = trim($_string);
-
 		$_string = self::persian_char($_string);
 
-		$_string = self::remove_2s($_string);
+		if($trim)
+		{
+			$_string = trim($_string);
+
+			$_string = self::remove_2s($_string);
+		}
 
 		$_string = self::remove_2nl($_string);
 

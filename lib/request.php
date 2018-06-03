@@ -49,7 +49,7 @@ class request
 	{
 		if(!self::$GET)
 		{
-			self::$GET = \dash\safe::safe($_GET, 'get_url');
+			self::$GET = \dash\safe::safe($_GET, 'get_url-nottrim');
 		}
 
 		if(isset($_name))
