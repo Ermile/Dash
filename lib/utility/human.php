@@ -196,9 +196,38 @@ class human
 		$new_text = $_number;
 		if(is_numeric($new_text))
 		{
-			if($_autoFormat)
+			if($_autoFormat == 'phone12')
 			{
-				$new_text = (number_format($new_text));
+				if(strlen($new_text) == 12)
+				{
+					$country     = substr($new_text, 0, 2);
+					$firstChain  = substr($new_text, 2, 3);
+					$secondChain = substr($new_text, 5, 3);
+					$thirdChain  = substr($new_text, 8, 4);
+					$new_text    = '('. $country . ')'. $firstChain . '-' . $secondChain . '-' . $thirdChain;
+				}
+			}
+			elseif($_autoFormat == 'phone')
+			{
+				if(strlen($new_text) == 12)
+				{
+					$country     = substr($new_text, 0, 2);
+					$firstChain  = substr($new_text, 2, 3);
+					$secondChain = substr($new_text, 5, 3);
+					$thirdChain  = substr($new_text, 8, 4);
+					$new_text    = $firstChain . '-' . $secondChain . '-' . $thirdChain;
+				}
+				elseif(strlen($new_text) == 10)
+				{
+					$firstChain  = substr($new_text, 0, 3);
+					$secondChain = substr($new_text, 3, 3);
+					$thirdChain  = substr($new_text, 6, 4);
+					$new_text     = $firstChain . '-' . $secondChain . '-' . $thirdChain;
+				}
+			}
+			elseif($_autoFormat)
+			{
+				$new_text = number_format($new_text);
 			}
 		}
 		$new_text = self::number($new_text);
