@@ -17,14 +17,14 @@ class azvir
 	 * @param      string  $_version  The version
 	 * @param      array   $_header   The header
 	 */
-	public function __construct(string $_token, string $_school, string $_version, array $_header = [])
+	public function __construct(string $_token, string $_academy, string $_version, array $_header = [])
 	{
 		$this->version = 'v'. $_version;
 
 		array_push($this->header, 'Accept: application/json');
 		array_push($this->header, 'Content-type: application/json');
 		array_push($this->header, "Authorization: $_token");
-		array_push($this->header, "school: $_school");
+		array_push($this->header, "academy: $_academy");
 
 		if(is_array($_header) && !empty($_header))
 		{

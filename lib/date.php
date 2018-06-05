@@ -30,15 +30,22 @@ class date
 			$birthdate = \dash\utility\jdate::to_gregorian($birthdate);
 		}
 
-		$datetime1 = new \DateTime($birthdate);
-		$datetime2 = new \DateTime(date("Y-m-d"));
-
-		if($datetime1 >= $datetime2)
+		try
 		{
-			if($_notif)
+			$datetime1 = new \DateTime($birthdate);
+			$datetime2 = new \DateTime(date("Y-m-d"));
+
+			if($datetime1 >= $datetime2)
 			{
-				\dash\notif::error(T_("Invalid birthdate, birthdate can not larger than date now!"), 'birthdate');
+				if($_notif)
+				{
+					\dash\notif::error(T_("Invalid birthdate, birthdate can not larger than date now!"), 'birthdate');
+				}
+				return false;
 			}
+		}
+		catch(\Exception $e)
+		{
 			return false;
 		}
 
@@ -290,7 +297,7 @@ class date
 		{
 			// try to fix more on date as yyyy-mm-dd soon
 			$convertedDate = strtotime($myDate);
-			if ($convertedDate === FALSE)
+			if ($convertedDate === false)
 			{
 				return false;
 			}
@@ -303,9 +310,16 @@ class date
 
 		if($_seperator !== '-')
 		{
+			try
+			{
+				$convertedDate = \DateTime::createFromFormat("Y-m-d", $myDate);
+				$myDate = $convertedDate->format('Y'. $_seperator. 'm'. $_seperator. 'd');
+			}
+			catch(\Exception $e)
+			{
+				return false;
+			}
 
-			$convertedDate = \DateTime::createFromFormat("Y-m-d", $myDate);
-			$myDate = $convertedDate->format('Y'. $_seperator. 'm'. $_seperator. 'd');
 		}
 
 		// retult always have 10 chars with format yyyy-mm-dd
@@ -318,9 +332,17 @@ class date
 		$myDate = self::db($_date);
 
 		$convertedDate = strtotime($myDate);
-		if ($convertedDate === FALSE)
+		if ($convertedDate === false)
 		{
-			$convertedDate = \DateTime::createFromFormat($_formatInput, $myDate);
+			try
+			{
+				$convertedDate = \DateTime::createFromFormat($_formatInput, $myDate);
+			}
+			catch(\Exception $e)
+			{
+				return false;
+			}
+
 			if($convertedDate)
 			{
 				$convertedDate = $convertedDate->format($_format);
