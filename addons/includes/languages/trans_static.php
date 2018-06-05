@@ -407,7 +407,7 @@ class TransStatic
 	echo T_("cpPermissionView");
 	echo T_("cpCommentsEdit");
 	echo T_("cpCommentsView");
-	echo T_("cotentCp");
+	echo T_("contentCp");
 	echo T_("cpUsersView");
 	echo T_("cpUsersEdit");
 	echo T_("cpUsersAdd");

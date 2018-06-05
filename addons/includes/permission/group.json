@@ -9,7 +9,7 @@
     "title": "Editor",
     "contain":
     [
-      "cotentCp",
+      "contentCp",
       "cpPostsView",
       "cpPostsViewAll",
       "cpPostsAdd",
@@ -45,7 +45,7 @@
     "title": "Author",
     "contain":
     [
-      "cotentCp",
+      "contentCp",
       "cpPostsView",
       "cpPostsAdd",
       "cpPostsEdit",
@@ -65,7 +65,7 @@
     "title": "Contributor",
     "contain":
     [
-      "cotentCp",
+      "contentCp",
       "cpPostsView",
       "cpPostsAdd",
       "cpPostsEdit",

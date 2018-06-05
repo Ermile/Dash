@@ -21,7 +21,7 @@ class controller
 		}
 		else
 		{
-			\dash\permission::access('cotentCp');
+			\dash\permission::access('contentCp');
 		}
 	}
 }
