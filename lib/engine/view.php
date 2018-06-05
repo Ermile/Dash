@@ -67,6 +67,7 @@ class view
 		\dash\data::site_title(T_(\dash\option::config('site', 'title')));
 		\dash\data::site_desc(T_(\dash\option::config('site', 'desc')));
 		\dash\data::site_slogan(T_(\dash\option::config('site', 'slogan')));
+		\dash\data::site_logo(\dash\url::site(). '/static/images/logo.png');
 
 		// add service detail
 		\dash\data::service_title(T_('Ermile'));
