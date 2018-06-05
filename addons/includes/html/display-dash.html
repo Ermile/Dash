@@ -50,9 +50,10 @@
   <figure>
 {%block avatar%}
 {%if login%}
-   <a href="{{url.base}}/account/profile" title='{%trans "Edit your profile"%}' class="avatar">
+{%set avatarLink%}{%if dash.avatarLink is empty%}{{url.base}}/account/profile{%else%}{{dash.avatarLink}}{%endif%}{%endset%}
+   <a href="{{avatarLink}}" title='{%trans "Edit your profile"%}' class="avatar">
 {%if login.avatar%}
-     <img src="{{login.avatar}}" alt='{%trans "Avatar of you"%}'>
+     <img src="{{login.avatar}}" alt='{%trans "Avatar of you"%} {{login.displayname}}'>
 {%else%}
      <img src="{{url.site}}/static/siftal/images/default/avatar.png" alt='{%trans "Default Avatar"%}'>
 {%endif%}
