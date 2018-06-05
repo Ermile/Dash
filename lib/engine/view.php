@@ -68,6 +68,13 @@ class view
 		\dash\data::site_desc(T_(\dash\option::config('site', 'desc')));
 		\dash\data::site_slogan(T_(\dash\option::config('site', 'slogan')));
 
+		// add service detail
+		\dash\data::service_title(T_('Ermile'));
+		\dash\data::service_desc(T_('As easy as ABC is our slogan!'). '<br>'. T_('If you are not finded a solution for your problem, call us.'));
+		\dash\data::service_slogan(T_('Software Solution Designer'));
+		\dash\data::service_logo(\dash\url::site(). '/static/siftal/images/logo/ermile.png');
+		\dash\data::service_url('https://ermile.com');
+
 		// toggle side bar
 		if(\dash\user::sidebar() === null || \dash\user::sidebar() === true)
 		{
