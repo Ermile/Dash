@@ -196,7 +196,7 @@ class human
 		$new_text = $_number;
 		if(is_numeric($new_text))
 		{
-			if($_autoFormat == 'phone12')
+			if($_autoFormat == 'mobile12')
 			{
 				if(strlen($new_text) == 12)
 				{
@@ -207,7 +207,7 @@ class human
 					$new_text    = '('. $country . ')'. $firstChain . '-' . $secondChain . '-' . $thirdChain;
 				}
 			}
-			elseif($_autoFormat == 'phone')
+			elseif($_autoFormat == 'mobile')
 			{
 				if(strlen($new_text) == 12)
 				{
