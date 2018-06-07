@@ -97,7 +97,7 @@ class mvc
 		}
 
 		// nothing found, show error page
-		\dash\header::status(501, "Hey, Read documentation and start your project!");
+		\dash\header::status(501, T_("Hey, Read documentation and start your project!"));
 	}
 
 
@@ -214,7 +214,7 @@ class mvc
 				}
 				else
 				{
-					\dash\header::status(404, "We can't find the page you're looking for!");
+					\dash\header::status(404, T_("We can't find the page you're looking for!"));
 				}
 			}
 		}
