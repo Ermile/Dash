@@ -245,17 +245,18 @@ class twigAddons
 	{
 		return new \Twig_SimpleFunction('langList', function()
 		{
-			$result      = null;
-			$html        = array_column(func_get_args(), 'html');
-			$all         = array_column(func_get_args(), 'all');
-			$onlyLink    = array_column(func_get_args(), 'onlyLink');
-			$class       = array_column(func_get_args(), 'class');
-			$langList    = \dash\data::get('lang', 'list');
-			$urlRoot     = \dash\url::base();
-			$urlContent  = \dash\url::content();
-			$urlPath     = \dash\url::path();
-			$urlParam    = \dash\url::query();
-			$currentlang = \dash\language::current();
+			$result       = null;
+			$html         = array_column(func_get_args(), 'html');
+			$all          = array_column(func_get_args(), 'all');
+			$onlyLink     = array_column(func_get_args(), 'onlyLink');
+			$class        = array_column(func_get_args(), 'class');
+			$langList     = \dash\data::get('lang', 'list');
+			$urlBase      = \dash\url::base();
+			$urlContent   = \dash\url::content();
+			$urlPath      = \dash\url::path();
+			$urlParam     = \dash\url::query();
+			$urlDirectory = \dash\url::directory();
+			$currentlang  = \dash\language::current();
 
 			if(!$all)
 			{
@@ -268,7 +269,7 @@ class twigAddons
 				$urlPathCurrent = '';
 				foreach ($langList as $key => $value)
 				{
-					$href           = $urlRoot;
+					$href           = $urlBase;
 					$activeClass    = '';
 					$urlPathCurrent = '';
 					if($key === $currentlang)
@@ -277,11 +278,17 @@ class twigAddons
 					}
 					$href           .= '/'.$key;
 
-					if($urlPath)
+					if($urlContent)
 					{
-						$href           .= $urlPath;
-						$urlPathCurrent .= $urlPath;
+						$href           .= '/'. $urlContent;
+						$urlPathCurrent .= '/'. $urlContent;
 					}
+					if($urlDirectory)
+					{
+						$href           .= '/'. $urlDirectory;
+						$urlPathCurrent .= '/'. $urlDirectory;
+					}
+
 					$lang_string .= "<a href='". $href . "'$activeClass hreflang='$key' data-direct>";
 					$lang_string .= $value;
 					$lang_string .= "</a>";
