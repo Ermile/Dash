@@ -10,7 +10,7 @@
         <th>{%trans "Permission title"%}</th>
         {%for slug, myGroup in perm.group%}
         <th title='{{slug}} {%if myGroup in perm.groupPos%} <br><b>{%trans "Customized"%}</b>{%endif%}' class="txtC">
-          <a href="{{url.this}}/add?id={{slug}}">{{myGroup.title}}
+          <a href="{{url.this}}/add?id={{slug}}">{%set myGroupTitle = myGroup.title%}{%trans myGroupTitle%}
           <br>
           <small class="badge mT5">{%trans "Edit"%}</small>
           </a>
