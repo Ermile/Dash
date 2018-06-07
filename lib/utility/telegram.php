@@ -233,7 +233,7 @@ class telegram
 						curl_setopt($handle, CURLOPT_POSTFIELDS, json_encode($value, JSON_UNESCAPED_UNICODE));
 						curl_setopt($handle, CURLOPT_CONNECTTIMEOUT, 2);
 						curl_setopt($handle, CURLOPT_TIMEOUT, 2  );
-						curl_setopt($handle, CURLOPT_RETURNTRANSFER, false);
+						// curl_setopt($handle, CURLOPT_RETURNTRANSFER, false);
 
 						$response = curl_exec($handle);
 						$mycode   = curl_getinfo($handle, CURLINFO_HTTP_CODE);
@@ -262,7 +262,7 @@ class telegram
 					curl_setopt($handle, CURLOPT_POSTFIELDS, $_content);
 					curl_setopt($handle, CURLOPT_CONNECTTIMEOUT, 2);
 					curl_setopt($handle, CURLOPT_TIMEOUT, 2  );
-					curl_setopt($handle, CURLOPT_RETURNTRANSFER, false);
+					// curl_setopt($handle, CURLOPT_RETURNTRANSFER, false);
 
 					$response = curl_exec($handle);
 					$mycode   = curl_getinfo($handle, CURLINFO_HTTP_CODE);
@@ -288,7 +288,7 @@ class telegram
 			curl_setopt($handle, CURLOPT_POSTFIELDS, $_content);
 			curl_setopt($handle, CURLOPT_CONNECTTIMEOUT, 2);
 			curl_setopt($handle, CURLOPT_TIMEOUT, 2  );
-			curl_setopt($handle, CURLOPT_RETURNTRANSFER, false);
+			// curl_setopt($handle, CURLOPT_RETURNTRANSFER, false);
 
 			$response = curl_exec($handle);
 			$mycode   = curl_getinfo($handle, CURLINFO_HTTP_CODE);
