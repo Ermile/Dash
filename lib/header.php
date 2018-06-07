@@ -167,7 +167,7 @@ class header
 				$_title = self::desc($_code);
 			}
 
-			\dash\notif::error($_title, ['title'=> T_(self::desc($_code)).' '. $_code]);
+			\dash\notif::error($_title, ['title'=> T_(self::desc($_code)).' '. \dash\utility\human::fitNumber($_code)]);
   			// end process code and return as json
 			\dash\code::end();
 
