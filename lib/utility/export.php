@@ -32,24 +32,26 @@ class export
         header("Content-Disposition: attachment;filename={$filename}.{$type}");
         header("Content-Transfer-Encoding: binary");
 
-        if (count($data) == 0 || !$data || empty($data))
+        if (count($data) == 0 || !$data || empty($data) || !is_array($data))
         {
             echo  null;
         }
-
-        ob_start();
-
-        $df = fopen("php://output", 'w');
-
-        fputcsv($df, array_keys(reset($data)));
-
-        foreach ($data as $row)
+        else
         {
-            fputcsv($df, $row);
-        }
+            ob_start();
 
-        fclose($df);
-        echo ob_get_clean();
+            $df = fopen("php://output", 'w');
+
+            fputcsv($df, array_keys(reset($data)));
+
+            foreach ($data as $row)
+            {
+                fputcsv($df, $row);
+            }
+
+            fclose($df);
+            echo ob_get_clean();
+        }
 
         \dash\code::die();
     }
