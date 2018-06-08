@@ -80,10 +80,10 @@
  <link rel="stylesheet"       href="{{url.site}}/static/{{'siftal/css/siftal.css' | filemtime(true)}}"/>
 {%endif%}
 {%endif%}
+{%block head_css         %}{%endblock%}
 {%if include.css %}
  <link rel="stylesheet"       href="{{url.site}}/static/{{'css/style.css' | filemtime(true)}}"/>
 {%endif%}
-{%block head_css         %}{%endblock%}
 {%block head_js          %}{%endblock%}
 {%endblock%}
 {%block head             %}{%endblock%}
@@ -135,15 +135,15 @@
 {%endif%}
 {%endif%}
 
-{%if include.js        %}
- <script src="{{url.site}}/static/{{'js/script.js' | filemtime(true)}}"></script>
-{%endif%}
+{%block js             %}{%endblock%}
 {%if include.editor%}
  <script src="{{url.site}}/static/{{'siftal/js/medium-editor.min.js' | filemtime(true)}}"></script>
  <link  href="{{url.site}}/static/{{'siftal/css/medium-editor.css' | filemtime(true)}}" rel="stylesheet" media="screen"/>
 {%endif%}
+{%if include.js        %}
+ <script src="{{url.site}}/static/{{'js/script.js' | filemtime(true)}}"></script>
+{%endif%}
 
-{%block js             %}{%endblock%}
  <div data-xhr='foot_js' class="foot_js">{%block foot_js%}{%endblock%}</div>
 </body>
 </html>
