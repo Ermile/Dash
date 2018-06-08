@@ -109,6 +109,8 @@ trait edit
 			}
 		}
 
+		if(!\dash\app::isset_request('type')) unset($args['type']);
+
 		\dash\db\posts::update($args, $id);
 
 

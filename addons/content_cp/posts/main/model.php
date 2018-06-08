@@ -69,10 +69,13 @@ class model
 			'publishdate' => \dash\request::post('publishdate'),
 			'status'      => \dash\request::post('status'),
 			'comment'     => \dash\request::post('comment'),
-			'language'    => \dash\request::post('language'),
-			'type'        => \dash\request::get('type'),
 			'language'    => \dash\language::current(),
 		];
+
+		if(\dash\request::get('type'))
+		{
+			$post['type'] = \dash\request::get('type');
+		}
 
 		$all_post = \dash\request::post();
 
