@@ -101,19 +101,15 @@ class pagination
 	private static function make($_type = null, $_page_number = null)
 	{
 
-		$page   = null;
-		$text   = null;
+		$page   = $_page_number;
+		$text   = $_page_number;
 		$title  = null;
 		$class  = null;
-		$link   = null;
+		$link   = true;
 
 		switch ($_type)
 		{
 			case 'first':
-				$link   = true;
-				$page   = $_page_number;
-				$text   = $_page_number;
-				// $title  = T_("First page");
 				$class  = 'first';
 				break;
 
@@ -121,49 +117,28 @@ class pagination
 				$link   = false;
 				$page   = null;
 				$text   = '...';
-				// $title  = null;
 				$class  = 'spliter';
 				break;
 
 			case 'end':
-				$link   = true;
-				$page   = $_page_number;
-				$text   = $_page_number;
-				// $title  = T_("End page");
 				$class  = 'end';
 				break;
 
 			case 'current':
 				$link   = false;
-				$page   = $_page_number;
-				$text   = $_page_number;
-				// $title  = T_("Current page");
 				$class  = 'active';
 				break;
 
 			case 'next':
-				$link   = true;
-				$page   = $_page_number;
-				$text   = '';
-				// $title  = T_("Next page");
+				$text   = null;
 				$class  = 'next';
 				break;
 
 			case 'prev':
-				$link   = true;
-				$page   = $_page_number;
-				$text   = '';
-				// $title  = T_("Prev page");
+				$text   = null;
 				$class  = 'prev';
 				break;
 
-			default:
-				$link   = true;
-				$page   = $_page_number;
-				$text   = $_page_number;
-				// $title  = T_("Page"). ' '. \dash\utility\human::fitNumber($_page_number);
-				$class  = null;
-				break;
 		}
 
 		$result =
