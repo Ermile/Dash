@@ -12,7 +12,7 @@ class model
 		$post['desc']     = \dash\request::post('desc');
 		$post['excerpt']  = \dash\request::post('excerpt');
 		$post['parent']   = \dash\request::post('parent');
-		$post['language'] = \dash\language::current();
+		$post['language'] = \dash\request::post('language');;
 		$post['slug']     = \dash\request::post('slug');
 		$post['type']     = \dash\request::get('type');
 		$post['status']   = \dash\request::post('status') ? 'enable' : 'disable' ;
@@ -85,7 +85,7 @@ class model
 			else
 			{
 				\dash\notif::ok(T_("Term successfully added"));
-				\dash\redirect::to(\dash\url::full());
+				\dash\redirect::to(\dash\url::pwd());
 			}
 		}
 	}

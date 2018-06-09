@@ -24,6 +24,8 @@
   {{block ('iParent') }}
 {%endif%}
   {{block ('iDescription') }}
+  {{block ('iLanguage') }}
+
   {{block ('iStatus') }}
   {%if editMode%}{{block ('iedit')}}{%else%}{{block ('iadd')}}
   {%endif%}
@@ -156,7 +158,7 @@
 
 
 {%block iStatus%}
-<div class="switch1">
+<div class="switch1 mT10">
     <input type="checkbox" name="status" id="switch12" {%if datarow.status == 'enable' or not datarow %} checked {%endif%}>
     <label for="switch12" data-on='{%trans "Active"%}' data-off='{%trans "Deactive"%}'></label>
     <label for="switch12">{%trans "Status"%}</label>
@@ -191,4 +193,17 @@
 
 {%block htmlStartAddNew%}
 <p class="fs14 msg success2">{%trans "Hi!"%} {%trans "Try to start with add new records!"%}</p>
+{%endblock%}
+
+
+{%block iLanguage%}
+<label for="language">{%trans "Language"%}</label>
+<select name="language" class="select">
+  <option value=""><i>{%trans "Please select one item"%}</i></option>
+  {%for key, value in lang.list%}
+    {%if key | length == 2%}
+    <option value="{{key}}" {%if datarow.language == key or (not datarow.lang and lang.current == key)  %} selected {%endif%}>{{value}}</option>
+    {%endif%}
+  {%endfor%}
+</select>
 {%endblock%}

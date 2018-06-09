@@ -67,7 +67,9 @@ class view
 			}
 		}
 
-		if($args['type'] === 'cat')
+		$args['language'] = \dash\language::current();
+
+		if(isset($args['type']) && $args['type'] === 'cat')
 		{
 			if(!\dash\permission::check('cpCategoryView'))
 			{
