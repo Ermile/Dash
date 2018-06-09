@@ -122,6 +122,17 @@
 {%block iTag%}
 
 {%set postTag = tags({"post_id" : requestGET.id , "title" : true, "format" : 'csv'}) %}
+
+  {%if not requestGET.type or requestGET.type == 'post' %}
+    {%if options.slider_tag%}
+      <div class="">
+        {%for key, value in options.slider_tag%}
+          <a class="badge {%if value in postTag%} success {%endif%}" href="#">{{value}}</a>
+        {%endfor%}
+      </div>
+    {%endif%}
+  {%endif%}
+
 <div class="tagDetector" title='{%trans "Add tag manually to link articles togethers"%}'>
   <div class="input mB10 hide">
     <input type="text" class="input tagVals" name="tag" value="{{postTag}}" id="tagValues" placeholder='{%trans "Tag"%}'>

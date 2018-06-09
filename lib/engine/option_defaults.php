@@ -43,6 +43,8 @@ self::$language           =
 	'list'                    => ['fa','en']
 ];
 
+// default tag of slider
+// self::$config['slider_tag'][]  = "slider";
 
 // try to find database template module
 // for example posts, tags, term , ...
