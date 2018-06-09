@@ -186,7 +186,7 @@ class url
 		// try to detect lang
 		$maybe_lang = reset($my_dir);
 		// maybe first is language
-		if(strlen($maybe_lang) === 2 && \dash\language::check($maybe_lang))
+		if(strlen($maybe_lang) === 2 && \dash\language::check($maybe_lang, true))
 		{
 			// set language
 			$path_result['lang']   = $maybe_lang;

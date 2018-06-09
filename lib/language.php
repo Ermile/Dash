@@ -72,9 +72,16 @@ class language
 	 * @param  string $_column [description]
 	 * @return [type]          [description]
 	 */
-	public static function check($_lang)
+	public static function check($_lang, $_all = false)
 	{
-		return array_key_exists($_lang, self::$data);
+		if($_all)
+		{
+			return array_key_exists($_lang, self::$data);
+		}
+		else
+		{
+			return array_key_exists($_lang, self::list());
+		}
 	}
 
 
