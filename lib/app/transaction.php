@@ -5,22 +5,22 @@ class transaction
 {
 	use \dash\app\transaction\datalist;
 
-	public static function total_paid($_unit = null)
+	public static function total_paid($_where = null)
 	{
-		$total_paid = \dash\db\transactions::total_paid($_unit);
+		$total_paid = \dash\db\transactions::total_paid($_where);
 		return intval($total_paid);
 	}
 
-	public static function total_paid_count()
+	public static function total_paid_count($_where = null)
 	{
-		$total_paid = \dash\db\transactions::total_paid_count();
+		$total_paid = \dash\db\transactions::total_paid_count($_where);
 		return intval($total_paid);
 	}
 
 
-	public static function total_paid_date($_date)
+	public static function total_paid_date($_date, $_where = null)
 	{
-		$total_paid = \dash\db\transactions::total_paid_date($_date);
+		$total_paid = \dash\db\transactions::total_paid_date($_date, $_where);
 		return intval($total_paid);
 	}
 }
