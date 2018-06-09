@@ -16,7 +16,7 @@ class language
 	[
 		'en' => ['name' => 'en', 'direction' => 'ltr', 'iso' => 'en_US', 'localname' => 'English', 'country' => ['United Kingdom', 'United States']],
 		'fa' => ['name' => 'fa', 'direction' => 'rtl', 'iso' => 'fa_IR', 'localname' => 'فارسی', 'country' => ['Iran']],
-		'ar' => ['name' => 'ar', 'direction' => 'rtl', 'iso' => 'ar_SU', 'localname' => 'العربية', 'country' => ['Saudi Arabia']],
+		'ar' => ['name' => 'ar', 'direction' => 'rtl', 'iso' => 'ar_IQ', 'localname' => 'العربية', 'country' => ['Saudi Arabia']],
 	];
 
 
