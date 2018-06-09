@@ -205,7 +205,7 @@ class date
 	}
 
 
-	public static function tdate($_timestamp = false, $_format = 'short')
+	public static function tdate($_timestamp = false, $_format = 'short', $_persianChar = false)
 	{
 		if($_timestamp === false)
 		{
@@ -218,7 +218,7 @@ class date
 
 		if($lang === 'fa')
 		{
-			$result = \dash\utility\jdate::date(self::formatFinder('date', $_format),$_timestamp, false);
+			$result = \dash\utility\jdate::date(self::formatFinder('date', $_format),$_timestamp, $_persianChar);
 		}
 		else
 		{
