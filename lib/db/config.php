@@ -103,6 +103,11 @@ class config
 			$table_name = "`$_options[table_name]`.";
 		}
 
+		if(!is_array($_where))
+		{
+			$_where = [];
+		}
+
 		$where = [];
 		foreach ($_where as $field => $value)
 		{
