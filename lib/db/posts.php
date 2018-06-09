@@ -155,6 +155,12 @@ class posts
 
 		$limit = "LIMIT $_options[limit]";
 
+		$lang = \dash\language::current();
+		if(isset($_options['lang']))
+		{
+			$lang = $_options['lang'];
+		}
+
 		if($_options['pagenation'])
 		{
 			$pagenation_query =
@@ -164,9 +170,11 @@ class posts
 				FROM
 					posts
 				WHERE
-					posts.status      = 'publish' AND
-					posts.type        = 'post' AND
-					posts.publishdate <= '$date_now'
+					posts.status            = 'publish' AND
+					posts.type              = 'post' AND
+					posts.language          = '$lang' AND
+					DATE(posts.publishdate) <= DATE('$date_now') AND
+					TIME(posts.publishdate) <= TIME('$date_now')
 			";
 
 			$pagenation_query = \dash\db::get($pagenation_query, 'count', true);
@@ -181,9 +189,11 @@ class posts
 			FROM
 				posts
 			WHERE
-				posts.status      = 'publish' AND
-				posts.type        = 'post' AND
-				posts.publishdate <= '$date_now'
+				posts.status            = 'publish' AND
+				posts.type              = 'post' AND
+				posts.language          = '$lang' AND
+				DATE(posts.publishdate) <= DATE('$date_now') AND
+				TIME(posts.publishdate) <= TIME('$date_now')
 			ORDER BY posts.publishdate DESC
 			$limit
 		";
@@ -210,6 +220,12 @@ class posts
 		$_options = array_merge($default_options, $_options);
 
 		$my_query = null;
+
+		$lang = \dash\language::current();
+		if(isset($_options['lang']))
+		{
+			$lang = $_options['lang'];
+		}
 
 		switch ($_type)
 		{
@@ -261,9 +277,11 @@ class posts
 						$my_query
 						termusages.related_id = posts.id
 				) AND
-				posts.status      = 'publish' AND
-				posts.type        = 'post' AND
-				posts.publishdate <= '$date_now'
+				posts.status            = 'publish' AND
+				posts.type              = 'post' AND
+				posts.lang              = '$lang' AND
+				DATE(posts.publishdate) <= DATE('$date_now') AND
+				TIME(posts.publishdate) <= TIME('$date_now')
 			ORDER BY posts.publishdate DESC
 			LIMIT $_options[limit]
 		";
