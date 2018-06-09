@@ -223,6 +223,7 @@ class posts
 		// $parent = \dash\app::request('parent');
 
 		$publishdate = \dash\app::request('publishdate');
+		$publishdate = \dash\utility\convert::to_en_number($publishdate);
 		if($publishdate && !\dash\date::db($publishdate))
 		{
 			\dash\notif::error(T_("Invalid parameter publishdate"), 'publishdate');

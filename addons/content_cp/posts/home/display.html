@@ -53,6 +53,7 @@
     <thead class="primary">
       <tr>
         <th data-sort="{{sortLink.title.order}}"><a href='{{sortLink.title.link}}'>{%trans "Title"%}</a></th>
+        <th data-sort="{{sortLink.publishdate.order}}"><a href='{{sortLink.publishdate.link}}'>{%trans "Publish date"%}</a></th>
         <th data-sort="{{sortLink.status.order}}"><a href='{{sortLink.status.link}}'>{%trans "Status"%}</a></th>
       </tr>
     </thead>
@@ -62,6 +63,7 @@
       <tr {%if value.status=='deleted'%} class='negative'{%endif%}>
         <td><a href="{{url.base}}/{{value.url}}" target="_blank"><span class="sf-share"></span></a>
         <a href="{{url.here}}/posts/edit?id={{value.id}}">{{value.title}}</a></td>
+        <td class="collapsing">{{value.publishdate | tdate}}</td>
         <td class="collapsing">{%set myStatus = value.status | capitalize %}<a href="{{url.here}}/posts?status={{value.status}}">{%trans myStatus%}</a></td>
       </tr>
       {%endfor%}

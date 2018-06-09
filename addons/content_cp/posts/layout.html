@@ -36,9 +36,9 @@
 
 
 {%block iPublishdate %}
-<label for="publishdate"></label>
+<label for="publishdate" class="mT5">{%trans "Publish date"%}</label>
 <div class="input">
-  <input class="datepicker" type="text" name="publishdate" id="publishdate" placeholder='{%trans "Publish date"%}' value="{{dataRow.publishdate | fitNumber}}" maxlength='15' data-format="YYYY/MM/DD" data-initialValue='false' data-view="year">
+  <input class="datepicker" type="text" name="publishdate" id="publishdate" placeholder='{%trans "Publish date"%}' value="{{dataRow.publishdate}}" maxlength='15' data-format="YYYY/MM/DD" data-initialValue='false' data-view="year">
 </div>
 {% endblock %}
 
@@ -94,10 +94,10 @@
 {%block iLanguage%}
 <label for="language">{%trans "Language"%}</label>
 <select name="language" class="select">
-  <option value=""><i>{%trans "Whithout language"%}</i></option>
+  <option value=""><i>{%trans "Please select one item"%}</i></option>
   {%for key, value in lang.list%}
     {%if key | length == 2%}
-    <option value="{{key}}" {%if lang.current == key %} selected {%endif%}>{{value}}</option>
+    <option value="{{key}}" {%if dataRow.language == key or (not dataRow.lang and lang.current == key)  %} selected {%endif%}>{{value}}</option>
     {%endif%}
   {%endfor%}
 </select>

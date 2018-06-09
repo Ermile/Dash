@@ -98,6 +98,8 @@ class view
 			$args['sort'] = 'id';
 		}
 
+		$args['language'] = \dash\language::current();
+
 		\dash\data::sortLink(\content_cp\view::make_sort_link(\dash\app\posts::$sort_field, \dash\url::this()) );
 		\dash\data::dataTable(\dash\app\posts::list(\dash\request::get('q'), $args) );
 	}
