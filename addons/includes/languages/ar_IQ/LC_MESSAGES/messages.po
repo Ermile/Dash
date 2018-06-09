@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Khadije - Arabic\n"
-"POT-Creation-Date: 2018-06-09 16:30+0430\n"
-"PO-Revision-Date: 2018-06-09 16:30+0430\n"
+"POT-Creation-Date: 2018-06-09 16:47+0430\n"
+"PO-Revision-Date: 2018-06-09 16:48+0430\n"
 "Last-Translator: Javad <J.Evazzadeh@gmail.com>\n"
 "Language-Team: Ermile <J.Evazzadeh@gmail.com>\n"
 "Language: ar_IQ\n"
@@ -4635,7 +4635,7 @@ msgstr "نحتاج رقم الجوال!"
 
 #: addons/includes/languages/trans_static.php:397
 msgid " "
-msgstr ""
+msgstr " "
 
 #: addons/includes/languages/trans_static.php:404
 msgid "cpPermissionAdd"
@@ -4979,867 +4979,867 @@ msgstr "الدفع"
 
 #: addons/includes/languages/trans_static.php:508
 msgid "afghanistan"
-msgstr ""
+msgstr "أفغانستان"
 
 #: addons/includes/languages/trans_static.php:509
 msgid "åland"
-msgstr ""
+msgstr "أرض"
 
 #: addons/includes/languages/trans_static.php:510
 msgid "albania"
-msgstr ""
+msgstr "ألبانيا"
 
 #: addons/includes/languages/trans_static.php:511
 msgid "algeria"
-msgstr ""
+msgstr "الجزائر"
 
 #: addons/includes/languages/trans_static.php:512
 msgid "american samoa"
-msgstr ""
+msgstr "ساموا الأمريكية"
 
 #: addons/includes/languages/trans_static.php:513
 msgid "andorra"
-msgstr ""
+msgstr "أندورا"
 
 #: addons/includes/languages/trans_static.php:514
 msgid "angola"
-msgstr ""
+msgstr "أنغولا"
 
 #: addons/includes/languages/trans_static.php:515
 msgid "anguilla"
-msgstr ""
+msgstr "أنغيلا"
 
 #: addons/includes/languages/trans_static.php:516
 msgid "antarctica"
-msgstr ""
+msgstr "القارة القطبية الجنوبية"
 
 #: addons/includes/languages/trans_static.php:517
 msgid "antigua and barbuda"
-msgstr ""
+msgstr "أنتيغوا وبربودا"
 
 #: addons/includes/languages/trans_static.php:518
 msgid "argentina"
-msgstr ""
+msgstr "الأرجنتين"
 
 #: addons/includes/languages/trans_static.php:519
 msgid "armenia"
-msgstr ""
+msgstr "أرمينيا"
 
 #: addons/includes/languages/trans_static.php:520
 msgid "aruba"
-msgstr ""
+msgstr "أروبا"
 
 #: addons/includes/languages/trans_static.php:521
 msgid "australia"
-msgstr ""
+msgstr "أستراليا"
 
 #: addons/includes/languages/trans_static.php:522
 msgid "austria"
-msgstr ""
+msgstr "النمسا"
 
 #: addons/includes/languages/trans_static.php:523
 msgid "azerbaijan"
-msgstr ""
+msgstr "أذربيجان"
 
 #: addons/includes/languages/trans_static.php:524
 msgid "bahamas"
-msgstr ""
+msgstr "جزر البهاما"
 
 #: addons/includes/languages/trans_static.php:525
 msgid "bahrain"
-msgstr ""
+msgstr "البحرين"
 
 #: addons/includes/languages/trans_static.php:526
 msgid "bangladesh"
-msgstr ""
+msgstr "بنغلاديش"
 
 #: addons/includes/languages/trans_static.php:527
 msgid "barbados"
-msgstr ""
+msgstr "بربادوس"
 
 #: addons/includes/languages/trans_static.php:528
 msgid "belarus"
-msgstr ""
+msgstr "روسيا البيضاء"
 
 #: addons/includes/languages/trans_static.php:529
 msgid "belgium"
-msgstr ""
+msgstr "بلجيكا"
 
 #: addons/includes/languages/trans_static.php:530
 msgid "belize"
-msgstr ""
+msgstr "بليز"
 
 #: addons/includes/languages/trans_static.php:531
 msgid "benin"
-msgstr ""
+msgstr "بنين"
 
 #: addons/includes/languages/trans_static.php:532
 msgid "bermuda"
-msgstr ""
+msgstr "برمودا"
 
 #: addons/includes/languages/trans_static.php:533
 msgid "bhutan"
-msgstr ""
+msgstr "بوتان"
 
 #: addons/includes/languages/trans_static.php:534
 msgid "bolivia"
-msgstr ""
+msgstr "بوليفيا"
 
 #: addons/includes/languages/trans_static.php:535
 msgid "bonaire"
-msgstr ""
+msgstr "بونير"
 
 #: addons/includes/languages/trans_static.php:536
 msgid "bosnia and herzegovina"
-msgstr ""
+msgstr "البوسنة والهرسك"
 
 #: addons/includes/languages/trans_static.php:537
 msgid "botswana"
-msgstr ""
+msgstr "بوتسوانا"
 
 #: addons/includes/languages/trans_static.php:538
 msgid "bouvet island"
-msgstr ""
+msgstr "جزيرة بوفيت"
 
 #: addons/includes/languages/trans_static.php:539
 msgid "brazil"
-msgstr ""
+msgstr "البرازيل"
 
 #: addons/includes/languages/trans_static.php:540
 msgid "british indian ocean territory"
-msgstr ""
+msgstr "إقليم المحيط البريطاني الهندي"
 
 #: addons/includes/languages/trans_static.php:541
 msgid "british virgin islands"
-msgstr ""
+msgstr "جزر فيرجن البريطانية"
 
 #: addons/includes/languages/trans_static.php:542
 msgid "brunei"
-msgstr ""
+msgstr "بروناي"
 
 #: addons/includes/languages/trans_static.php:543
 msgid "bulgaria"
-msgstr ""
+msgstr "بلغاريا"
 
 #: addons/includes/languages/trans_static.php:544
 msgid "burkina faso"
-msgstr ""
+msgstr "بوركينا فاسو"
 
 #: addons/includes/languages/trans_static.php:545
 msgid "burundi"
-msgstr ""
+msgstr "بوروندي"
 
 #: addons/includes/languages/trans_static.php:546
 msgid "cambodia"
-msgstr ""
+msgstr "كمبوديا"
 
 #: addons/includes/languages/trans_static.php:547
 msgid "cameroon"
-msgstr ""
+msgstr "الكاميرون"
 
 #: addons/includes/languages/trans_static.php:548
 msgid "canada"
-msgstr ""
+msgstr "كندا"
 
 #: addons/includes/languages/trans_static.php:549
 msgid "cape verde"
-msgstr ""
+msgstr "الرأس الأخضر"
 
 #: addons/includes/languages/trans_static.php:550
 msgid "cayman islands"
-msgstr ""
+msgstr "جزر كايمان"
 
 #: addons/includes/languages/trans_static.php:551
 msgid "central african republic"
-msgstr ""
+msgstr "جمهورية افريقيا الوسطى"
 
 #: addons/includes/languages/trans_static.php:552
 msgid "chad"
-msgstr ""
+msgstr "تشاد"
 
 #: addons/includes/languages/trans_static.php:553
 msgid "chile"
-msgstr ""
+msgstr "تشيلي"
 
 #: addons/includes/languages/trans_static.php:554
 msgid "china"
-msgstr ""
+msgstr "الصين"
 
 #: addons/includes/languages/trans_static.php:555
 msgid "christmas island"
-msgstr ""
+msgstr "جزيرة عيد الميلاد"
 
 #: addons/includes/languages/trans_static.php:556
 msgid "cocos (keeling) islands"
-msgstr ""
+msgstr "جزر كوكوس (keeling)"
 
 #: addons/includes/languages/trans_static.php:557
 msgid "colombia"
-msgstr ""
+msgstr "كولومبيا"
 
 #: addons/includes/languages/trans_static.php:558
 msgid "comoros"
-msgstr ""
+msgstr "جزر القمر"
 
 #: addons/includes/languages/trans_static.php:559
 msgid "cook islands"
-msgstr ""
+msgstr "جزر كوك"
 
 #: addons/includes/languages/trans_static.php:560
 msgid "costa rica"
-msgstr ""
+msgstr "كوستا ريكا"
 
 #: addons/includes/languages/trans_static.php:561
 msgid "croatia"
-msgstr ""
+msgstr "كرواتيا"
 
 #: addons/includes/languages/trans_static.php:562
 msgid "cuba"
-msgstr ""
+msgstr "كوبا"
 
 #: addons/includes/languages/trans_static.php:563
 msgid "curacao"
-msgstr ""
+msgstr "كوراكاو"
 
 #: addons/includes/languages/trans_static.php:564
 msgid "cyprus"
-msgstr ""
+msgstr "قبرص"
 
 #: addons/includes/languages/trans_static.php:565
 msgid "czech republic"
-msgstr ""
+msgstr "جمهورية التشيك"
 
 #: addons/includes/languages/trans_static.php:566
 msgid "democratic republic of the congo"
-msgstr ""
+msgstr "جمهورية الكونغو الديموقراطية"
 
 #: addons/includes/languages/trans_static.php:567
 msgid "denmark"
-msgstr ""
+msgstr "الدنمارك"
 
 #: addons/includes/languages/trans_static.php:568
 msgid "djibouti"
-msgstr ""
+msgstr "جيبوتي"
 
 #: addons/includes/languages/trans_static.php:569
 msgid "dominica"
-msgstr ""
+msgstr "دومينيكا"
 
 #: addons/includes/languages/trans_static.php:570
 msgid "dominican republic"
-msgstr ""
+msgstr "جمهورية الدومنيكان"
 
 #: addons/includes/languages/trans_static.php:571
 msgid "east timor"
-msgstr ""
+msgstr "تيمور الشرقية"
 
 #: addons/includes/languages/trans_static.php:572
 msgid "ecuador"
-msgstr ""
+msgstr "الاكوادور"
 
 #: addons/includes/languages/trans_static.php:573
 msgid "egypt"
-msgstr ""
+msgstr "مصر"
 
 #: addons/includes/languages/trans_static.php:574
 msgid "el salvador"
-msgstr ""
+msgstr "السلفادور"
 
 #: addons/includes/languages/trans_static.php:575
 msgid "equatorial guinea"
-msgstr ""
+msgstr "غينيا الإستوائية"
 
 #: addons/includes/languages/trans_static.php:576
 msgid "eritrea"
-msgstr ""
+msgstr "إريتريا"
 
 #: addons/includes/languages/trans_static.php:577
 msgid "estonia"
-msgstr ""
+msgstr "استونيا"
 
 #: addons/includes/languages/trans_static.php:578
 msgid "ethiopia"
-msgstr ""
+msgstr "أثيوبيا"
 
 #: addons/includes/languages/trans_static.php:579
 msgid "falkland islands"
-msgstr ""
+msgstr "جزر فوكلاند"
 
 #: addons/includes/languages/trans_static.php:580
 msgid "faroe islands"
-msgstr ""
+msgstr "جزر صناعية"
 
 #: addons/includes/languages/trans_static.php:581
 msgid "fiji"
-msgstr ""
+msgstr "فيجي"
 
 #: addons/includes/languages/trans_static.php:582
 msgid "finland"
-msgstr ""
+msgstr "فنلندا"
 
 #: addons/includes/languages/trans_static.php:583
 msgid "france"
-msgstr ""
+msgstr "فرنسا"
 
 #: addons/includes/languages/trans_static.php:584
 msgid "french guiana"
-msgstr ""
+msgstr "غيانا الفرنسية"
 
 #: addons/includes/languages/trans_static.php:585
 msgid "french polynesia"
-msgstr ""
+msgstr "بولينيزيا الفرنسية"
 
 #: addons/includes/languages/trans_static.php:586
 msgid "french southern territories"
-msgstr ""
+msgstr "المناطق الجنوبية لفرنسا"
 
 #: addons/includes/languages/trans_static.php:587
 msgid "gabon"
-msgstr ""
+msgstr "الغابون"
 
 #: addons/includes/languages/trans_static.php:588
 msgid "gambia"
-msgstr ""
+msgstr "غامبيا"
 
 #: addons/includes/languages/trans_static.php:589
 msgid "georgia"
-msgstr ""
+msgstr "جورجيا"
 
 #: addons/includes/languages/trans_static.php:590
 msgid "germany"
-msgstr ""
+msgstr "ألمانيا"
 
 #: addons/includes/languages/trans_static.php:591
 msgid "ghana"
-msgstr ""
+msgstr "غانا"
 
 #: addons/includes/languages/trans_static.php:592
 msgid "gibraltar"
-msgstr ""
+msgstr "جبل طارق"
 
 #: addons/includes/languages/trans_static.php:593
 msgid "greece"
-msgstr ""
+msgstr "اليونان"
 
 #: addons/includes/languages/trans_static.php:594
 msgid "greenland"
-msgstr ""
+msgstr "الأرض الخضراء"
 
 #: addons/includes/languages/trans_static.php:595
 msgid "grenada"
-msgstr ""
+msgstr "غرينادا"
 
 #: addons/includes/languages/trans_static.php:596
 msgid "guadeloupe"
-msgstr ""
+msgstr "جوادلوب"
 
 #: addons/includes/languages/trans_static.php:597
 msgid "guam"
-msgstr ""
+msgstr "غوام"
 
 #: addons/includes/languages/trans_static.php:598
 msgid "guatemala"
-msgstr ""
+msgstr "غواتيمالا"
 
 #: addons/includes/languages/trans_static.php:599
 msgid "guernsey"
-msgstr ""
+msgstr "غيرنسي"
 
 #: addons/includes/languages/trans_static.php:600
 msgid "guinea"
-msgstr ""
+msgstr "غينيا"
 
 #: addons/includes/languages/trans_static.php:601
 msgid "guinea-bissau"
-msgstr ""
+msgstr "غينيا بيساو"
 
 #: addons/includes/languages/trans_static.php:602
 msgid "guyana"
-msgstr ""
+msgstr "غيانا"
 
 #: addons/includes/languages/trans_static.php:603
 msgid "haiti"
-msgstr ""
+msgstr "هايتي"
 
 #: addons/includes/languages/trans_static.php:604
 msgid "heard island and mcdonald islands"
-msgstr ""
+msgstr "قلب الجزيرة وجزر ماكدونالز"
 
 #: addons/includes/languages/trans_static.php:605
 msgid "honduras"
-msgstr ""
+msgstr "هندوراس"
 
 #: addons/includes/languages/trans_static.php:606
 msgid "hong kong"
-msgstr ""
+msgstr "هونج كونج"
 
 #: addons/includes/languages/trans_static.php:607
 msgid "hungary"
-msgstr ""
+msgstr "اليونان"
 
 #: addons/includes/languages/trans_static.php:608
 msgid "iceland"
-msgstr ""
+msgstr "أيسلندا"
 
 #: addons/includes/languages/trans_static.php:609
 msgid "india"
-msgstr ""
+msgstr "الهند"
 
 #: addons/includes/languages/trans_static.php:610
 msgid "indonesia"
-msgstr ""
+msgstr "أندونيسيا"
 
 #: addons/includes/languages/trans_static.php:611
 msgid "iraq"
-msgstr ""
+msgstr "العراق"
 
 #: addons/includes/languages/trans_static.php:612
 msgid "ireland"
-msgstr ""
+msgstr "أيرلندا"
 
 #: addons/includes/languages/trans_static.php:613
 msgid "isle of man"
-msgstr ""
+msgstr "جزيرة آيل أوف مان"
 
 #: addons/includes/languages/trans_static.php:614
 msgid "italy"
-msgstr ""
+msgstr "إيطاليا"
 
 #: addons/includes/languages/trans_static.php:615
 msgid "ivory coast"
-msgstr ""
+msgstr "ساحل العاج"
 
 #: addons/includes/languages/trans_static.php:616
 msgid "jamaica"
-msgstr ""
+msgstr "جامايكا"
 
 #: addons/includes/languages/trans_static.php:617
 msgid "japan"
-msgstr ""
+msgstr "اليابان"
 
 #: addons/includes/languages/trans_static.php:618
 msgid "jersey"
-msgstr ""
+msgstr "جيرسي"
 
 #: addons/includes/languages/trans_static.php:619
 msgid "jordan"
-msgstr ""
+msgstr "الأردن"
 
 #: addons/includes/languages/trans_static.php:620
 msgid "kazakhstan"
-msgstr ""
+msgstr "كازاخستان"
 
 #: addons/includes/languages/trans_static.php:621
 msgid "kenya"
-msgstr ""
+msgstr "كينيا"
 
 #: addons/includes/languages/trans_static.php:622
 msgid "kiribati"
-msgstr ""
+msgstr "كيريباس"
 
 #: addons/includes/languages/trans_static.php:623
 msgid "kosovo"
-msgstr ""
+msgstr "كوسوفو"
 
 #: addons/includes/languages/trans_static.php:624
 msgid "kuwait"
-msgstr ""
+msgstr "الكويت"
 
 #: addons/includes/languages/trans_static.php:625
 msgid "kyrgyzstan"
-msgstr ""
+msgstr "قيرغيزستان"
 
 #: addons/includes/languages/trans_static.php:626
 msgid "laos"
-msgstr ""
+msgstr "لاوس"
 
 #: addons/includes/languages/trans_static.php:627
 msgid "latvia"
-msgstr ""
+msgstr "لاتفيا"
 
 #: addons/includes/languages/trans_static.php:628
 msgid "lebanon"
-msgstr ""
+msgstr "لبنان"
 
 #: addons/includes/languages/trans_static.php:629
 msgid "lesotho"
-msgstr ""
+msgstr "ليسوتو"
 
 #: addons/includes/languages/trans_static.php:630
 msgid "liberia"
-msgstr ""
+msgstr "ليبيريا"
 
 #: addons/includes/languages/trans_static.php:631
 msgid "libya"
-msgstr ""
+msgstr "ليبيا"
 
 #: addons/includes/languages/trans_static.php:632
 msgid "liechtenstein"
-msgstr ""
+msgstr "ليختنشتاين"
 
 #: addons/includes/languages/trans_static.php:633
 msgid "lithuania"
-msgstr ""
+msgstr "ليتوانيا"
 
 #: addons/includes/languages/trans_static.php:634
 msgid "luxembourg"
-msgstr ""
+msgstr "لوكسمبورغ"
 
 #: addons/includes/languages/trans_static.php:635
 msgid "macau"
-msgstr ""
+msgstr "ماكاو"
 
 #: addons/includes/languages/trans_static.php:636
 msgid "macedonia"
-msgstr ""
+msgstr "مقدونيا"
 
 #: addons/includes/languages/trans_static.php:637
 msgid "madagascar"
-msgstr ""
+msgstr "مدغشقر"
 
 #: addons/includes/languages/trans_static.php:638
 msgid "malawi"
-msgstr ""
+msgstr "ملاوي"
 
 #: addons/includes/languages/trans_static.php:639
 msgid "malaysia"
-msgstr ""
+msgstr "ماليزيا"
 
 #: addons/includes/languages/trans_static.php:640
 msgid "maldives"
-msgstr ""
+msgstr "جزر المالديف"
 
 #: addons/includes/languages/trans_static.php:641
 msgid "mali"
-msgstr ""
+msgstr "مالي"
 
 #: addons/includes/languages/trans_static.php:642
 msgid "malta"
-msgstr ""
+msgstr "مالطا"
 
 #: addons/includes/languages/trans_static.php:643
 msgid "marshall islands"
-msgstr ""
+msgstr "جزر مارشال"
 
 #: addons/includes/languages/trans_static.php:644
 msgid "martinique"
-msgstr ""
+msgstr "مارتينيك"
 
 #: addons/includes/languages/trans_static.php:645
 msgid "mauritania"
-msgstr ""
+msgstr "موريتانيا"
 
 #: addons/includes/languages/trans_static.php:646
 msgid "mauritius"
-msgstr ""
+msgstr "موريشيوس"
 
 #: addons/includes/languages/trans_static.php:647
 msgid "mayotte"
-msgstr ""
+msgstr "مايوت"
 
 #: addons/includes/languages/trans_static.php:648
 msgid "mexico"
-msgstr ""
+msgstr "المكسيك"
 
 #: addons/includes/languages/trans_static.php:649
 msgid "micronesia"
-msgstr ""
+msgstr "ميكرونيزيا"
 
 #: addons/includes/languages/trans_static.php:650
 msgid "moldova"
-msgstr ""
+msgstr "مولدوفا"
 
 #: addons/includes/languages/trans_static.php:651
 msgid "monaco"
-msgstr ""
+msgstr "موناكو"
 
 #: addons/includes/languages/trans_static.php:652
 msgid "mongolia"
-msgstr ""
+msgstr "منغوليا"
 
 #: addons/includes/languages/trans_static.php:653
 msgid "montenegro"
-msgstr ""
+msgstr "الجبل الأسود"
 
 #: addons/includes/languages/trans_static.php:654
 msgid "montserrat"
-msgstr ""
+msgstr "مونتسيرات"
 
 #: addons/includes/languages/trans_static.php:655
 msgid "morocco"
-msgstr ""
+msgstr "المغرب"
 
 #: addons/includes/languages/trans_static.php:656
 msgid "mozambique"
-msgstr ""
+msgstr "موزمبيق"
 
 #: addons/includes/languages/trans_static.php:657
 msgid "myanmar (burma)"
-msgstr ""
+msgstr "ميانمار (بورما)"
 
 #: addons/includes/languages/trans_static.php:658
 msgid "namibia"
-msgstr ""
+msgstr "ناميبيا"
 
 #: addons/includes/languages/trans_static.php:659
 msgid "nauru"
-msgstr ""
+msgstr "ناورو"
 
 #: addons/includes/languages/trans_static.php:660
 msgid "nepal"
-msgstr ""
+msgstr "نيبال"
 
 #: addons/includes/languages/trans_static.php:661
 msgid "netherlands"
-msgstr ""
+msgstr "هولندا"
 
 #: addons/includes/languages/trans_static.php:662
 msgid "new caledonia"
-msgstr ""
+msgstr "كاليدونيا الجديدة"
 
 #: addons/includes/languages/trans_static.php:663
 msgid "new zealand"
-msgstr ""
+msgstr "نيوزيلاندا"
 
 #: addons/includes/languages/trans_static.php:664
 msgid "nicaragua"
-msgstr ""
+msgstr "نيكاراغوا"
 
 #: addons/includes/languages/trans_static.php:665
 msgid "niger"
-msgstr ""
+msgstr "النيجر"
 
 #: addons/includes/languages/trans_static.php:666
 msgid "nigeria"
-msgstr ""
+msgstr "نيجيريا"
 
 #: addons/includes/languages/trans_static.php:667
 msgid "niue"
-msgstr ""
+msgstr "نيوي"
 
 #: addons/includes/languages/trans_static.php:668
 msgid "norfolk island"
-msgstr ""
+msgstr "جزيرة نورفولك"
 
 #: addons/includes/languages/trans_static.php:669
 msgid "north korea"
-msgstr ""
+msgstr "كوريا الشمالية"
 
 #: addons/includes/languages/trans_static.php:670
 msgid "northern mariana islands"
-msgstr ""
+msgstr "جزر مريانا الشمالية"
 
 #: addons/includes/languages/trans_static.php:671
 msgid "norway"
-msgstr ""
+msgstr "النرويج"
 
 #: addons/includes/languages/trans_static.php:672
 msgid "oman"
-msgstr ""
+msgstr "سلطنة عمان"
 
 #: addons/includes/languages/trans_static.php:673
 msgid "pakistan"
-msgstr ""
+msgstr "باكستان"
 
 #: addons/includes/languages/trans_static.php:674
 msgid "palau"
-msgstr ""
+msgstr "بالاو"
 
 #: addons/includes/languages/trans_static.php:675
 msgid "palestine"
-msgstr ""
+msgstr "فلسطين"
 
 #: addons/includes/languages/trans_static.php:676
 msgid "panama"
-msgstr ""
+msgstr "بناما"
 
 #: addons/includes/languages/trans_static.php:677
 msgid "papua new guinea"
-msgstr ""
+msgstr "بابوا الجديدة غينيا"
 
 #: addons/includes/languages/trans_static.php:678
 msgid "paraguay"
-msgstr ""
+msgstr "باراغواي"
 
 #: addons/includes/languages/trans_static.php:679
 msgid "peru"
-msgstr ""
+msgstr "بيرو"
 
 #: addons/includes/languages/trans_static.php:680
 msgid "philippines"
-msgstr ""
+msgstr "الفلبين"
 
 #: addons/includes/languages/trans_static.php:681
 msgid "pitcairn islands"
-msgstr ""
+msgstr "جزر بيتكيرن"
 
 #: addons/includes/languages/trans_static.php:682
 msgid "poland"
-msgstr ""
+msgstr "بولندا"
 
 #: addons/includes/languages/trans_static.php:683
 msgid "portugal"
-msgstr ""
+msgstr "البرتغال"
 
 #: addons/includes/languages/trans_static.php:684
 msgid "puerto rico"
-msgstr ""
+msgstr "بورتوريكو"
 
 #: addons/includes/languages/trans_static.php:685
 msgid "qatar"
-msgstr ""
+msgstr "دولة قطر"
 
 #: addons/includes/languages/trans_static.php:686
 msgid "republic of the congo"
-msgstr ""
+msgstr "جمهورية الكونغو"
 
 #: addons/includes/languages/trans_static.php:687
 msgid "réunion"
-msgstr ""
+msgstr "جمع شمل"
 
 #: addons/includes/languages/trans_static.php:688
 msgid "romania"
-msgstr ""
+msgstr "رومانيا"
 
 #: addons/includes/languages/trans_static.php:689
 msgid "russia"
-msgstr ""
+msgstr "روسيا"
 
 #: addons/includes/languages/trans_static.php:690
 msgid "rwanda"
-msgstr ""
+msgstr "رواندا"
 
 #: addons/includes/languages/trans_static.php:691
 msgid "saint barthélemy"
-msgstr ""
+msgstr "سانت بارتيليمي"
 
 #: addons/includes/languages/trans_static.php:692
 msgid "saint helena"
-msgstr ""
+msgstr "القديس هيلينا"
 
 #: addons/includes/languages/trans_static.php:693
 msgid "saint kitts and nevis"
-msgstr ""
+msgstr "سانت كيتس ونيفيس"
 
 #: addons/includes/languages/trans_static.php:694
 msgid "saint lucia"
-msgstr ""
+msgstr "القديسة لوسيا"
 
 #: addons/includes/languages/trans_static.php:695
 msgid "saint martin"
-msgstr ""
+msgstr "القديس مارتن"
 
 #: addons/includes/languages/trans_static.php:696
 msgid "saint pierre and miquelon"
-msgstr ""
+msgstr "سانت بيير وميكلون"
 
 #: addons/includes/languages/trans_static.php:697
 msgid "saint vincent and the grenadines"
-msgstr ""
+msgstr "سانت فنسنت وجزر غرينادين"
 
 #: addons/includes/languages/trans_static.php:698
 msgid "samoa"
-msgstr ""
+msgstr "ساموا"
 
 #: addons/includes/languages/trans_static.php:699
 msgid "san marino"
-msgstr ""
+msgstr "سان مارينو"
 
 #: addons/includes/languages/trans_static.php:700
 msgid "são tomé and príncipe"
-msgstr ""
+msgstr "ساو توم وبرينسيبي"
 
 #: addons/includes/languages/trans_static.php:701
 msgid "saudi arabia"
-msgstr ""
+msgstr "المملكة العربية السعودية"
 
 #: addons/includes/languages/trans_static.php:702
 msgid "senegal"
-msgstr ""
+msgstr "السنغال"
 
 #: addons/includes/languages/trans_static.php:703
 msgid "serbia"
-msgstr ""
+msgstr "صربيا"
 
 #: addons/includes/languages/trans_static.php:704
 msgid "seychelles"
-msgstr ""
+msgstr "سيشيل"
 
 #: addons/includes/languages/trans_static.php:705
 msgid "sierra leone"
-msgstr ""
+msgstr "سيرا ليون"
 
 #: addons/includes/languages/trans_static.php:706
 msgid "singapore"
-msgstr ""
+msgstr "سنغافورة"
 
 #: addons/includes/languages/trans_static.php:707
 msgid "sint maarten"
-msgstr ""
+msgstr "سينت مارتن"
 
 #: addons/includes/languages/trans_static.php:708
 msgid "slovakia"
-msgstr ""
+msgstr "سلوفاكيا"
 
 #: addons/includes/languages/trans_static.php:709
 msgid "slovenia"
-msgstr ""
+msgstr "سلوفينيا"
 
 #: addons/includes/languages/trans_static.php:710
 msgid "solomon islands"
-msgstr ""
+msgstr "جزر سليمان"
 
 #: addons/includes/languages/trans_static.php:711
 msgid "somalia"
-msgstr ""
+msgstr "الصومال"
 
 #: addons/includes/languages/trans_static.php:712
 msgid "south africa"
-msgstr ""
+msgstr "جنوب أفريقيا"
 
 #: addons/includes/languages/trans_static.php:713
 msgid "south georgia and the south sandwich islands"
-msgstr ""
+msgstr "جورجيا الجنوبية وجزر ساندويتش الجنوبية"
 
 #: addons/includes/languages/trans_static.php:714
 msgid "south korea"
-msgstr ""
+msgstr "كوريا الجنوبية"
 
 #: addons/includes/languages/trans_static.php:715
 msgid "south sudan"
-msgstr ""
+msgstr "جنوب السودان"
 
 #: addons/includes/languages/trans_static.php:716
 msgid "spain"
-msgstr ""
+msgstr "إسبانيا"
 
 #: addons/includes/languages/trans_static.php:717
 msgid "sri lanka"
-msgstr ""
+msgstr "سيريلانكا"
 
 #: addons/includes/languages/trans_static.php:718
 msgid "sudan"
-msgstr ""
+msgstr "سودان"
 
 #: addons/includes/languages/trans_static.php:719
 msgid "suriname"
-msgstr ""
+msgstr "سورينام"
 
 #: addons/includes/languages/trans_static.php:720
 msgid "svalbard and jan mayen"
-msgstr ""
+msgstr "سفالبارد وجان ماين"
 
 #: addons/includes/languages/trans_static.php:721
 msgid "swaziland"
-msgstr ""
+msgstr "سوازيلاند"
 
 #: addons/includes/languages/trans_static.php:722
 msgid "sweden"
-msgstr ""
+msgstr "السويد"
 
 #: addons/includes/languages/trans_static.php:723
 msgid "switzerland"
-msgstr ""
+msgstr "سويسرا"
 
 #: addons/includes/languages/trans_static.php:724
 msgid "syria"
@@ -5847,123 +5847,123 @@ msgstr "السورية"
 
 #: addons/includes/languages/trans_static.php:725
 msgid "taiwan"
-msgstr ""
+msgstr "تايوان"
 
 #: addons/includes/languages/trans_static.php:726
 msgid "tajikistan"
-msgstr ""
+msgstr "طاجيكستان"
 
 #: addons/includes/languages/trans_static.php:727
 msgid "tanzania"
-msgstr ""
+msgstr "تنزانيا"
 
 #: addons/includes/languages/trans_static.php:728
 msgid "thailand"
-msgstr ""
+msgstr "تايلند"
 
 #: addons/includes/languages/trans_static.php:729
 msgid "togo"
-msgstr ""
+msgstr "ليذهب"
 
 #: addons/includes/languages/trans_static.php:730
 msgid "tokelau"
-msgstr ""
+msgstr "توكيلاو"
 
 #: addons/includes/languages/trans_static.php:731
 msgid "tonga"
-msgstr ""
+msgstr "تونغا"
 
 #: addons/includes/languages/trans_static.php:732
 msgid "trinidad and tobago"
-msgstr ""
+msgstr "ترينداد وتوباغو"
 
 #: addons/includes/languages/trans_static.php:733
 msgid "tunisia"
-msgstr ""
+msgstr "تونس"
 
 #: addons/includes/languages/trans_static.php:734
 msgid "turkey"
-msgstr ""
+msgstr "ديك رومي"
 
 #: addons/includes/languages/trans_static.php:735
 msgid "turkmenistan"
-msgstr ""
+msgstr "تركمانستان"
 
 #: addons/includes/languages/trans_static.php:736
 msgid "turks and caicos islands"
-msgstr ""
+msgstr "جزر تركس وكايكوس"
 
 #: addons/includes/languages/trans_static.php:737
 msgid "tuvalu"
-msgstr ""
+msgstr "توفالو"
 
 #: addons/includes/languages/trans_static.php:738
 msgid "minor outlying islands"
-msgstr ""
+msgstr "الجزر الصغيرة النائية"
 
 #: addons/includes/languages/trans_static.php:739
 msgid "uganda"
-msgstr ""
+msgstr "أوغندا"
 
 #: addons/includes/languages/trans_static.php:740
 msgid "ukraine"
-msgstr ""
+msgstr "أوكرانيا"
 
 #: addons/includes/languages/trans_static.php:741
 msgid "united arab emirates"
-msgstr ""
+msgstr "الإمارات العربية المتحدة"
 
 #: addons/includes/languages/trans_static.php:742
 msgid "united kingdom"
-msgstr ""
+msgstr "المملكة المتحدة"
 
 #: addons/includes/languages/trans_static.php:743
 msgid "united states"
-msgstr ""
+msgstr "الولايات المتحدة الامريكانية"
 
 #: addons/includes/languages/trans_static.php:744
 msgid "uruguay"
-msgstr ""
+msgstr "أوروغواي"
 
 #: addons/includes/languages/trans_static.php:745
 msgid "uzbekistan"
-msgstr ""
+msgstr "أوزبكستان"
 
 #: addons/includes/languages/trans_static.php:746
 msgid "vanuatu"
-msgstr ""
+msgstr "فانواتو"
 
 #: addons/includes/languages/trans_static.php:747
 msgid "vatican city"
-msgstr ""
+msgstr "مدينة الفاتيكان"
 
 #: addons/includes/languages/trans_static.php:748
 msgid "venezuela"
-msgstr ""
+msgstr "فنزويلا"
 
 #: addons/includes/languages/trans_static.php:749
 msgid "vietnam"
-msgstr ""
+msgstr "فيتنام"
 
 #: addons/includes/languages/trans_static.php:750
 msgid "wallis and futuna"
-msgstr ""
+msgstr "واليس وفوتونا"
 
 #: addons/includes/languages/trans_static.php:751
 msgid "western sahara"
-msgstr ""
+msgstr "الصحراء الغربية"
 
 #: addons/includes/languages/trans_static.php:752
 msgid "yemen"
-msgstr ""
+msgstr "اليمن"
 
 #: addons/includes/languages/trans_static.php:753
 msgid "zambia"
-msgstr ""
+msgstr "زامبيا"
 
 #: addons/includes/languages/trans_static.php:754
 msgid "zimbabwe"
-msgstr ""
+msgstr "زيمبابوي"
 
 #: addons/includes/languages/trans_static.php:760
 msgid "expire"
