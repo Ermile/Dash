@@ -1,0 +1,37 @@
+{%extends display.cpMain%}
+
+
+
+{%block pageContent%}
+
+ {{block('cpVisitorChart')}}
+ {{block('cpVisitorTotalPage')}}
+{%endblock%}
+
+
+
+{%block iCms%}
+<a class="dcard x1" href='{{url.base}}/cp/cms'>
+ <div class="statistic">
+  <div class="value"><i class="sf-diamond"></i></div>
+  <div class="label">{%trans "CMS"%}</div>
+ </div>
+</a>
+{%endblock%}
+
+
+{%block cpVisitorChart%}
+<div class="dcard x3 pA0">
+ <div class="chart" data-type='bar' data-vals='{{visitor.chart |raw}}'>
+ </div>
+</div>
+{%endblock%}
+
+
+
+{%block cpVisitorTotalPage%}
+<div class="dcard x3 pA0">
+ <div class="chart" data-type='area' data-vals='{{visitor.totalpages |raw}}'>
+ </div>
+</div>
+{%endblock%}
