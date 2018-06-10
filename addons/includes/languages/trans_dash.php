@@ -208,7 +208,7 @@ class twigTransTerms
 	echo T_("Result not found!");                                                     // Line 103
 	echo T_("Search with new keywords.");                                             // Line 103
 	echo T_("Hi!");                                                                   // Line 110
-	echo T_("Try to start with add new record!");                                     // Line 92
+	echo T_("Try to start with add new record!");                                     // Line 94
 
 	//---------------------------------------addons\content_cp\email\home\display.html
 	echo T_("Your sms panel balance");                                                // Line 18
@@ -262,6 +262,7 @@ class twigTransTerms
 	echo T_("User");                                                                  // Line 54
 
 	//---------------------------------------addons\content_cp\posts\home\display.html
+	echo T_("Publish date");                                                          // Line 41
 
 	//---------------------------------------------addons\content_cp\posts\layout.html
 	echo T_("Enter title here");                                                      // Line 4
@@ -270,27 +271,26 @@ class twigTransTerms
 	echo T_("Subtitle can used based on theme support");                              // Line 11
 	echo T_("Enter excerpt here");                                                    // Line 17
 	echo T_("Excerpt used for social media and search engines");                      // Line 17
-	echo T_("Slug");                                                                  // Line 132
+	echo T_("Slug");                                                                  // Line 134
 	echo T_("Slug used to create url");                                               // Line 28
 	echo T_("Write post ");                                                           // Line 34
-	echo T_("Publish date");                                                          // Line 41
 	echo T_("To add image gallery drop file here or");                                // Line 47
 	echo T_("Publish");                                                               // Line 68
 	echo T_("Draft");                                                                 // Line 73
 	echo T_("Deleted");                                                               // Line 78
-	echo T_("Language");                                                              // Line 95
-	echo T_("Whithout language");                                                     // Line 97
+	echo T_("Language");                                                              // Line 200
+	echo T_("Please select one item");                                                // Line 28
 	echo T_("Choose category of post");                                               // Line 110
-	echo T_("Add tag manually to link articles togethers");                           // Line 125
-	echo T_("Tag");                                                                   // Line 127
-	echo T_("Tag keywords...");                                                       // Line 131
-	echo T_("Add tag");                                                               // Line 132
-	echo T_("allowed extentions jpg, png. Max 1000Kb");                               // Line 142
-	echo T_("Click to download");                                                     // Line 179
-	echo T_("Video");                                                                 // Line 169
-	echo T_("MP3");                                                                   // Line 175
-	echo T_("PDF");                                                                   // Line 177
-	echo T_("Without preview");                                                       // Line 179
+	echo T_("Add tag manually to link articles togethers");                           // Line 136
+	echo T_("Tag");                                                                   // Line 138
+	echo T_("Tag keywords...");                                                       // Line 142
+	echo T_("Add tag");                                                               // Line 143
+	echo T_("allowed extentions jpg, png. Max 1000Kb");                               // Line 153
+	echo T_("Click to download");                                                     // Line 190
+	echo T_("Video");                                                                 // Line 180
+	echo T_("MP3");                                                                   // Line 186
+	echo T_("PDF");                                                                   // Line 188
+	echo T_("Without preview");                                                       // Line 190
 
 	//----------------------------------------addons\content_cp\sms\group\display.html
 	echo T_("Users mobile");                                                          // Line 13
@@ -317,13 +317,13 @@ class twigTransTerms
 	echo T_("Cancel");                                                                // Line 14
 
 	//--------------------------------------------addons\content_cp\terms\display.html
-	echo T_("Enter a valid title");                                                   // Line 124
-	echo T_("Used for url");                                                          // Line 130
-	echo T_("Enter a valid slug");                                                    // Line 132
-	echo T_("Parent Category");                                                       // Line 139
-	echo T_("Please select one itme");                                                // Line 141
-	echo T_("Excerpt");                                                               // Line 169
-	echo T_("Try to start with add new records!");                                    // Line 193
+	echo T_("Enter a valid title");                                                   // Line 126
+	echo T_("Used for url");                                                          // Line 132
+	echo T_("Enter a valid slug");                                                    // Line 134
+	echo T_("Parent Category");                                                       // Line 141
+	echo T_("Please select one itme");                                                // Line 143
+	echo T_("Excerpt");                                                               // Line 171
+	echo T_("Try to start with add new records!");                                    // Line 195
 
 	//---------------------------------------addons\content_cp\users\home\display.html
 	echo T_("Display Name");                                                          // Line 60
@@ -345,6 +345,11 @@ class twigTransTerms
 	//----------------------------------------addons\content_cp\users\set\display.html
 	echo T_("Enter to change pass");                                                  // Line 283
 	echo T_("Password not set, enter  to set it!");                                   // Line 294
+
+	//---------------------------------------addons\content_cp\users\view\display.html
+	echo T_("Field");                                                                 // Line 13
+
+	//------------------------------------------addons\content_cp\visitor\display.html
 
 	//----------------------------------addons\content_enter\autoredirect\display.html
 	echo T_("Go");                                                                    // Line 144
@@ -593,7 +598,6 @@ class twigTransTerms
 
 	//---------------------------------addons\content_su\transactions\add\display.html
 	echo T_("type");                                                                  // Line 16
-	echo T_("Please select one item");                                                // Line 28
 	echo T_("Money");                                                                 // Line 19
 	echo T_("Gift");                                                                  // Line 20
 	echo T_("Transfer");                                                              // Line 21
@@ -669,7 +673,6 @@ class twigTransTerms
 	echo T_("Default Avatar");                                                        // Line 58
 	echo T_("Hello");                                                                 // Line 64
 	echo T_("Click to toggle sidebar status");                                        // Line 75
-	echo T_("Show side menu");                                                        // Line 91
 	echo T_("View website");                                                          // Line 93
 	echo T_("Work in your language");                                                 // Line 97
 	echo T_("Logout");                                                                // Line 105

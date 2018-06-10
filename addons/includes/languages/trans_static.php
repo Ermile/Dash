@@ -836,7 +836,10 @@ class TransStatic
 	echo T_("awaiting");
 	echo T_("approved");
 	echo T_("unapproved");
-
+	echo T_("Ok");
+	echo T_("Awaiting");
+	echo T_("Approved");
+	echo T_("Unapproved");
 
 	echo T_("SMS");
 	echo T_("Email");

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Dash - Persian\n"
-"POT-Creation-Date: 2018-06-07 19:26+0430\n"
-"PO-Revision-Date: 2018-06-07 19:27+0430\n"
+"POT-Creation-Date: 2018-06-10 18:54+0430\n"
+"PO-Revision-Date: 2018-06-10 18:54+0430\n"
 "Last-Translator: Javad <J.Evazzadeh@gmail.com>\n"
 "Language-Team: Ermile <J.Evazzadeh@gmail.com>\n"
 "Language: fa_IR\n"
@@ -103,7 +103,7 @@ msgid "Account of your user to change profile details or change billing informat
 msgstr "حساب‌کاربری شما برای ویرایش اطلاعات پروفایل یا بررسی و افزودن اعتبار مالی"
 
 #: addons/content_account/profile/view.php:10
-#: addons/includes/languages/trans_dash.php:667
+#: addons/includes/languages/trans_dash.php:671
 msgid "Edit your profile"
 msgstr "پروفایل خود را ویرایش کنید"
 
@@ -116,11 +116,12 @@ msgid "Back to dashbaord"
 msgstr "بازگشت به داشبورد"
 
 #: addons/content_account/profile/view.php:20 addons/content_cp/users/set/view.php:34
-#: lib/app/user/edit.php:60
+#: addons/content_cp/users/view/view.php:26 lib/app/user/edit.php:60
 msgid "Invalid user id"
 msgstr "شناسه کاربر نامعتبر است"
 
 #: addons/content_account/profile/view.php:27 addons/content_cp/users/set/view.php:40
+#: addons/content_cp/users/view/view.php:32
 msgid "User id not found"
 msgstr "شناسه کاربر یافت نشد"
 
@@ -446,12 +447,12 @@ msgstr "کلیدواژه‌ها"
 msgid "Check tags and add or edit some new tag"
 msgstr "برچسب ها را بررسی کنید و برخی از برچسب های جدید را اضافه یا ویرایش کنید"
 
-#: addons/content_cp/terms/view.php:82 addons/includes/languages/trans_dash.php:198
+#: addons/content_cp/terms/view.php:84 addons/includes/languages/trans_dash.php:198
 #: addons/includes/languages/trans_static.php:112
 msgid "Search"
 msgstr "جستجو"
 
-#: addons/content_cp/terms/view.php:111 addons/content_su/permission/view.php:11
+#: addons/content_cp/terms/view.php:113 addons/content_su/permission/view.php:11
 msgid "Id not found"
 msgstr "کد یافت نشد"
 
@@ -472,6 +473,7 @@ msgid "Also add or edit specefic user."
 msgstr "همچنین کاربر خاصی را اضافه یا ویرایش کنید."
 
 #: addons/content_cp/users/home/view.php:18 addons/content_cp/users/set/view.php:13
+#: addons/content_cp/users/view/view.php:13
 #: addons/includes/languages/trans_dash.php:234
 msgid "Add new user"
 msgstr "اضافه‌کردن یوزر جدید"
@@ -484,7 +486,7 @@ msgstr "لطفا تکرار کلمه عبور را وارد کنید"
 msgid "Password not match whit repassword"
 msgstr "تکرار کلمه عبور با کلمه عبور برابر نیست"
 
-#: addons/content_cp/users/set/view.php:14
+#: addons/content_cp/users/set/view.php:14 addons/content_cp/users/view/view.php:14
 msgid ""
 "You can add new user and after add with minimal data, we allow you to add extra "
 "detail of user."
@@ -492,7 +494,7 @@ msgstr ""
 "شما می توانید کاربر جدید را اضافه کنید و پس از اضافه کردن اطلاعات کم، به شما اجازه "
 "می دهیم جزئیات بیشتری از کاربر اضافه کنید."
 
-#: addons/content_cp/users/set/view.php:18
+#: addons/content_cp/users/set/view.php:18 addons/content_cp/users/view/view.php:18
 msgid "Back to list of users"
 msgstr "بازگشت به لیست کاربران"
 
@@ -763,7 +765,7 @@ msgid "Your new password is your old password"
 msgstr "کلمه‌عبور جدید شما همان قدیمی‌است"
 
 #: addons/content_enter/pass/recovery/model.php:27
-#: addons/includes/languages/trans_dash.php:710
+#: addons/includes/languages/trans_dash.php:713
 msgid "Enter"
 msgstr "ورود"
 
@@ -792,7 +794,7 @@ msgstr ""
 "اگر گذرواژه‌ی خود را فراموش کرده‌اید، مقدار جدیدی را وارد کنید. پس از تکمیل "
 "اعتبارسنجی، این گذرواژه قابل استفاده خواهد بود."
 
-#: addons/content_enter/pass/view.php:22 addons/includes/languages/trans_dash.php:708
+#: addons/content_enter/pass/view.php:22 addons/includes/languages/trans_dash.php:711
 msgid "Set Password"
 msgstr "تنظیم گذرواژه"
 
@@ -1002,7 +1004,7 @@ msgid "This is request of change password."
 msgstr "این درخواست برای تغییر گذرواژه است."
 
 #: addons/content_enter/verify/view.php:96
-#: addons/includes/languages/trans_dash.php:611
+#: addons/includes/languages/trans_dash.php:615
 msgid "Verify"
 msgstr "اعتبارسنجی"
 
@@ -1091,7 +1093,7 @@ msgid "Do you wanna something here!?"
 msgstr "چیز میخواهید اینجا؟"
 
 #: addons/content_su/tools/sitemap/view.php:8
-#: addons/includes/languages/trans_dash.php:572
+#: addons/includes/languages/trans_dash.php:577
 msgid "Sitemap"
 msgstr "نقشه‌ی سایت"
 
@@ -1510,6 +1512,7 @@ msgid "Active"
 msgstr "فعال"
 
 #: addons/includes/languages/trans_dash.php:97
+#: addons/includes/languages/trans_static.php:840
 msgid "Awaiting"
 msgstr "در حال انتظار"
 
@@ -1538,7 +1541,7 @@ msgid "No permission"
 msgstr "بدون سطح دسترسی"
 
 #: addons/includes/languages/trans_dash.php:104
-#: addons/includes/languages/trans_static.php:842
+#: addons/includes/languages/trans_static.php:845
 msgid "Email"
 msgstr "رایانامه"
 
@@ -1986,7 +1989,7 @@ msgid "Users"
 msgstr "کاربران"
 
 #: addons/includes/languages/trans_dash.php:236
-#: addons/includes/languages/trans_static.php:841
+#: addons/includes/languages/trans_static.php:844
 msgid "SMS"
 msgstr "پیام کوتاه"
 
@@ -2076,45 +2079,45 @@ msgstr "برای نمایش لیست افراد با این سطح دسترسی 
 msgid "User"
 msgstr "کاربر"
 
-#: addons/includes/languages/trans_dash.php:267
+#: addons/includes/languages/trans_dash.php:265
+msgid "Publish date"
+msgstr "تاریخ انتشار"
+
+#: addons/includes/languages/trans_dash.php:268
 msgid "Enter title here"
 msgstr "عنوان را اینجا وارد کنید"
 
-#: addons/includes/languages/trans_dash.php:268
+#: addons/includes/languages/trans_dash.php:269
 msgid "Enter a good and short title"
 msgstr "عنوانی کوتاه و مناسب وارد کنید"
 
-#: addons/includes/languages/trans_dash.php:269
+#: addons/includes/languages/trans_dash.php:270
 msgid "Enter subtitle here"
 msgstr "زیرنویس را اینجا وارد کنید"
 
-#: addons/includes/languages/trans_dash.php:270
+#: addons/includes/languages/trans_dash.php:271
 msgid "Subtitle can used based on theme support"
 msgstr "زیرنویس می تواند بر اساس پشتیبانی تم مورد استفاده قرار گیرد"
 
-#: addons/includes/languages/trans_dash.php:271
+#: addons/includes/languages/trans_dash.php:272
 msgid "Enter excerpt here"
 msgstr "گزیده متن را اینجا بنویسید"
 
-#: addons/includes/languages/trans_dash.php:272
+#: addons/includes/languages/trans_dash.php:273
 msgid "Excerpt used for social media and search engines"
 msgstr "گزیده متن برای رسانه های اجتماعی و موتورهای جستجو استفاده می شود"
 
-#: addons/includes/languages/trans_dash.php:273
+#: addons/includes/languages/trans_dash.php:274
 msgid "Slug"
 msgstr "نامک"
 
-#: addons/includes/languages/trans_dash.php:274
+#: addons/includes/languages/trans_dash.php:275
 msgid "Slug used to create url"
 msgstr "نامک برای استفاده در آدرس به کار می رود"
 
-#: addons/includes/languages/trans_dash.php:275
+#: addons/includes/languages/trans_dash.php:276
 msgid "Write post "
 msgstr "نوشتن پست"
-
-#: addons/includes/languages/trans_dash.php:276
-msgid "Publish date"
-msgstr "تاریخ انتشار"
 
 #: addons/includes/languages/trans_dash.php:277
 msgid "To add image gallery drop file here or"
@@ -2137,8 +2140,8 @@ msgid "Language"
 msgstr "زبان"
 
 #: addons/includes/languages/trans_dash.php:282
-msgid "Whithout language"
-msgstr "بدون زبان"
+msgid "Please select one item"
+msgstr "لطفا یک گزینه را انتخاب کنید"
 
 #: addons/includes/languages/trans_dash.php:283
 msgid "Choose category of post"
@@ -2335,1112 +2338,1108 @@ msgid "Password not set, enter  to set it!"
 msgstr "کلمه عبور تنظیم نشده است، آن را تنظیم کنید!"
 
 #: addons/includes/languages/trans_dash.php:350
+msgid "Field"
+msgstr "فیلد"
+
+#: addons/includes/languages/trans_dash.php:355
 msgid "Go"
 msgstr "برو"
 
-#: addons/includes/languages/trans_dash.php:353
+#: addons/includes/languages/trans_dash.php:358
 msgid "What are you doing!"
 msgstr "چیکار میکنی!"
 
-#: addons/includes/languages/trans_dash.php:354
+#: addons/includes/languages/trans_dash.php:359
 msgid "If you are bot, be easy and call your mom"
 msgstr "اگر شما بات هستید، آرام باشید و با مامان جونتون تماس بگیرید"
 
-#: addons/includes/languages/trans_dash.php:355
+#: addons/includes/languages/trans_dash.php:360
 msgid "If you are human being, what are you doing here! be personable..."
 msgstr "اگر انسان هستید، اینجا چیکار میکنید! با شخصیت باشید..."
 
-#: addons/includes/languages/trans_dash.php:358
+#: addons/includes/languages/trans_dash.php:363
 msgid "You are blocked becauese of some reason!"
 msgstr "شما به دلایلی بلاک شده‌اید!"
 
-#: addons/includes/languages/trans_dash.php:359
+#: addons/includes/languages/trans_dash.php:364
 msgid "If have problem"
 msgstr "در صورت بروز مشکل"
 
-#: addons/includes/languages/trans_dash.php:360
+#: addons/includes/languages/trans_dash.php:365
 msgid "Contact us"
 msgstr "با ما تماس بگیرید"
 
-#: addons/includes/languages/trans_dash.php:363
+#: addons/includes/languages/trans_dash.php:368
 msgid "We are so sorry for losing you!"
 msgstr "ما برای از دست دادن شما خیلی متاسفیم!"
 
-#: addons/includes/languages/trans_dash.php:364
+#: addons/includes/languages/trans_dash.php:369
 msgid "if you want you can come back to"
 msgstr "در صورتی که بخواهید می‌توانید برگردید"
 
-#: addons/includes/languages/trans_dash.php:365
+#: addons/includes/languages/trans_dash.php:370
 msgid "join us"
 msgstr "به ما ملحق شوید"
 
-#: addons/includes/languages/trans_dash.php:366
+#: addons/includes/languages/trans_dash.php:371
 msgid "Bye Bye :("
 msgstr "خداحافط :("
 
-#: addons/includes/languages/trans_dash.php:369
+#: addons/includes/languages/trans_dash.php:374
 msgid "Hi"
 msgstr "سلام"
 
-#: addons/includes/languages/trans_dash.php:370
+#: addons/includes/languages/trans_dash.php:375
 msgid "You must not be here!"
 msgstr "شما نباید اینجا باشید!"
 
-#: addons/includes/languages/trans_dash.php:373
+#: addons/includes/languages/trans_dash.php:378
 msgid "Why you want to delete your account!?"
 msgstr "چرا می‌خواهید حساب‌کاربری خود را حذف کنید!؟"
 
-#: addons/includes/languages/trans_dash.php:376
+#: addons/includes/languages/trans_dash.php:381
 msgid "We detected two accout for you"
 msgstr "ما متوجه وجود دو حساب کاربری برای شما شدیم"
 
-#: addons/includes/languages/trans_dash.php:377
+#: addons/includes/languages/trans_dash.php:382
 msgid "Please remove one of them and"
 msgstr "لطفا یکی را حذف کنید و"
 
-#: addons/includes/languages/trans_dash.php:378
+#: addons/includes/languages/trans_dash.php:383
 msgid "if you want to delete this account"
 msgstr "اگر می‌خواهید این حساب‌کاربری را حذف کنید"
 
-#: addons/includes/languages/trans_dash.php:379
+#: addons/includes/languages/trans_dash.php:384
 msgid "click here"
 msgstr "اینجا کلیک کنید"
 
-#: addons/includes/languages/trans_dash.php:382
+#: addons/includes/languages/trans_dash.php:387
 msgid "Remove my email address"
 msgstr "بازیابی ایمیل"
 
-#: addons/includes/languages/trans_dash.php:385
+#: addons/includes/languages/trans_dash.php:390
 msgid "We found your Google Mail that is different from your current google mail"
 msgstr "رایانامه گوگل وارد شده با رایانامه فعلی شما مطابقت ندارد"
 
-#: addons/includes/languages/trans_dash.php:386
+#: addons/includes/languages/trans_dash.php:391
 msgid "Would you like to change your old google mail?"
 msgstr "آیا مایلید رایانامه گوگل قدیمی‌خود را تغییر دهید؟"
 
-#: addons/includes/languages/trans_dash.php:387
+#: addons/includes/languages/trans_dash.php:392
 msgid "Change to"
 msgstr "تغییر به"
 
-#: addons/includes/languages/trans_dash.php:388
+#: addons/includes/languages/trans_dash.php:393
 msgid "Update google mail"
 msgstr "به‌روزرسانی رایانامه گوگل"
 
-#: addons/includes/languages/trans_dash.php:389
+#: addons/includes/languages/trans_dash.php:394
 msgid "Don't change"
 msgstr "تغییر نده"
 
-#: addons/includes/languages/trans_dash.php:394
+#: addons/includes/languages/trans_dash.php:399
 msgid "You"
 msgstr "شما"
 
-#: addons/includes/languages/trans_dash.php:397
+#: addons/includes/languages/trans_dash.php:402
 msgid "You are logined ;)"
 msgstr "شما وارد سیستم هستید;)"
 
-#: addons/includes/languages/trans_dash.php:398
+#: addons/includes/languages/trans_dash.php:403
 msgid "Be patient or"
 msgstr "صبور باشید یا"
 
-#: addons/includes/languages/trans_dash.php:399
+#: addons/includes/languages/trans_dash.php:404
 msgid "click here!"
 msgstr "اینجا کلیک کنید!"
 
-#: addons/includes/languages/trans_dash.php:402
+#: addons/includes/languages/trans_dash.php:407
 msgid "Can't access your account?"
 msgstr "نمی‌توانید به حساب خود وارد شوید؟"
 
-#: addons/includes/languages/trans_dash.php:405
+#: addons/includes/languages/trans_dash.php:410
 msgid "Remembered your password?"
 msgstr "کلمه عبور خود را به خاطر آوردید!؟"
 
-#: addons/includes/languages/trans_dash.php:408
+#: addons/includes/languages/trans_dash.php:413
 msgid "Terminate"
 msgstr "مسدودسازی"
 
-#: addons/includes/languages/trans_dash.php:411
+#: addons/includes/languages/trans_dash.php:416
 msgid "Remove username"
 msgstr "حذف نام کاربری"
 
-#: addons/includes/languages/trans_dash.php:414
+#: addons/includes/languages/trans_dash.php:419
 msgid "Send code in your Telegram"
 msgstr "ارسال کد در تلگرام شما"
 
-#: addons/includes/languages/trans_dash.php:415
+#: addons/includes/languages/trans_dash.php:420
 msgid "Send code as sms to your phone"
 msgstr "ارسال کد از طریق پیامک به تلفن‌همراه شما"
 
-#: addons/includes/languages/trans_dash.php:416
+#: addons/includes/languages/trans_dash.php:421
 msgid "Call you to send code"
 msgstr "تماس با شما برای ارسال کد"
 
-#: addons/includes/languages/trans_dash.php:417
+#: addons/includes/languages/trans_dash.php:422
 msgid "You send code to us and we check it"
 msgstr "شما کد را برای ما ارسال کنید و ما چک کنیم"
 
-#: addons/includes/languages/trans_dash.php:418
+#: addons/includes/languages/trans_dash.php:423
 msgid "Send code in your email"
 msgstr "ارسال کد به رایانامه شما"
 
-#: addons/includes/languages/trans_dash.php:421
+#: addons/includes/languages/trans_dash.php:426
 msgid "We can not find eny way to send verification code to you!"
 msgstr "ما راهی برای ارسال کد به شما نیافتیم!"
 
-#: addons/includes/languages/trans_dash.php:424
+#: addons/includes/languages/trans_dash.php:429
 msgid "You must set a mobile or email to continue"
 msgstr "برای ادامه شما باید تلفن‌همراه یا رایانامه را وارد کنید."
 
-#: addons/includes/languages/trans_dash.php:425
+#: addons/includes/languages/trans_dash.php:430
 msgid "Go back"
 msgstr "برگرد"
 
-#: addons/includes/languages/trans_dash.php:428
+#: addons/includes/languages/trans_dash.php:433
 msgid "Backup database"
 msgstr "پشتیبان گیری پایگاه داده"
 
-#: addons/includes/languages/trans_dash.php:429
+#: addons/includes/languages/trans_dash.php:434
 msgid "Back"
 msgstr "قبلی"
 
-#: addons/includes/languages/trans_dash.php:430
+#: addons/includes/languages/trans_dash.php:435
 msgid "File is empty"
 msgstr "فایل خالی است"
 
-#: addons/includes/languages/trans_dash.php:431
+#: addons/includes/languages/trans_dash.php:436
 msgid "Database info"
 msgstr "اطلاعات دیتابیس"
 
-#: addons/includes/languages/trans_dash.php:432
+#: addons/includes/languages/trans_dash.php:437
 msgid "Show Auto backup log file"
 msgstr "نمایش لاگ پشتیبان گیری‌های خود کار"
 
-#: addons/includes/languages/trans_dash.php:433
+#: addons/includes/languages/trans_dash.php:438
 msgid "You have another database for logs"
 msgstr "شما یک دیتابیس دیگر هم برای لاگ‌ها دارید"
 
-#: addons/includes/languages/trans_dash.php:434
+#: addons/includes/languages/trans_dash.php:439
 msgid "Click for create backup from log database"
 msgstr "برای پشتیبان‌گیری از دیتابیس لاگ‌ها کلیک کنید"
 
-#: addons/includes/languages/trans_dash.php:435
+#: addons/includes/languages/trans_dash.php:440
 msgid "Auto backup"
 msgstr "پشتیبان گیری خودکار"
 
-#: addons/includes/languages/trans_dash.php:436
+#: addons/includes/languages/trans_dash.php:441
 msgid "Start backup every"
 msgstr "شروع عملیات پشتیبان گیری هر"
 
-#: addons/includes/languages/trans_dash.php:437
+#: addons/includes/languages/trans_dash.php:442
 msgid "Year"
 msgstr "سال"
 
-#: addons/includes/languages/trans_dash.php:438
+#: addons/includes/languages/trans_dash.php:443
 msgid "Month"
 msgstr "ماه"
 
-#: addons/includes/languages/trans_dash.php:439
+#: addons/includes/languages/trans_dash.php:444
 msgid "Week"
 msgstr "هفته"
 
-#: addons/includes/languages/trans_dash.php:440
+#: addons/includes/languages/trans_dash.php:445
 #: addons/includes/languages/trans_static.php:490
 msgid "Day"
 msgstr "روز"
 
-#: addons/includes/languages/trans_dash.php:441
+#: addons/includes/languages/trans_dash.php:446
 #: addons/includes/languages/trans_static.php:33 lib/utility/human.php:30
 #: lib/utility/human.php:105
 msgid "hour"
 msgstr "ساعت"
 
-#: addons/includes/languages/trans_dash.php:442
+#: addons/includes/languages/trans_dash.php:447
 msgid "Start backup at time"
 msgstr "شروع عملیات پشتیبان گیری در ساعت"
 
-#: addons/includes/languages/trans_dash.php:443
+#: addons/includes/languages/trans_dash.php:448
 msgid "Life time of old backup"
 msgstr "طل عمر فایل های پشتیبان گیری قبلی"
 
-#: addons/includes/languages/trans_dash.php:444
+#: addons/includes/languages/trans_dash.php:449
 msgid "2 years"
 msgstr "دو سال"
 
-#: addons/includes/languages/trans_dash.php:445
+#: addons/includes/languages/trans_dash.php:450
 msgid "one year"
 msgstr "یک سال"
 
-#: addons/includes/languages/trans_dash.php:446
+#: addons/includes/languages/trans_dash.php:451
 msgid "6 months"
 msgstr "شش ماه"
 
-#: addons/includes/languages/trans_dash.php:447
+#: addons/includes/languages/trans_dash.php:452
 msgid "3 months"
 msgstr "سه ماه"
 
-#: addons/includes/languages/trans_dash.php:448
+#: addons/includes/languages/trans_dash.php:453
 msgid "2 months"
 msgstr "دو ماه"
 
-#: addons/includes/languages/trans_dash.php:449
+#: addons/includes/languages/trans_dash.php:454
 msgid "one month"
 msgstr "یک ماه"
 
-#: addons/includes/languages/trans_dash.php:450
+#: addons/includes/languages/trans_dash.php:455
 msgid "one week"
 msgstr "یک هفته"
 
-#: addons/includes/languages/trans_dash.php:451
+#: addons/includes/languages/trans_dash.php:456
 msgid "2 weeks"
 msgstr "۲ هفته"
 
-#: addons/includes/languages/trans_dash.php:452
+#: addons/includes/languages/trans_dash.php:457
 msgid "one day"
 msgstr "یک روز"
 
-#: addons/includes/languages/trans_dash.php:453
+#: addons/includes/languages/trans_dash.php:458
 msgid "3 days"
 msgstr "۳ روز"
 
-#: addons/includes/languages/trans_dash.php:454
+#: addons/includes/languages/trans_dash.php:459
 msgid "5 days"
 msgstr "۵ روز"
 
-#: addons/includes/languages/trans_dash.php:457
+#: addons/includes/languages/trans_dash.php:462
 msgid "Run cronjob for this service"
 msgstr "اجرای کرون جاب برای این سرویس"
 
-#: addons/includes/languages/trans_dash.php:460
+#: addons/includes/languages/trans_dash.php:465
 msgid "Search in :dbtabless"
 msgstr "جستجو..."
 
-#: addons/includes/languages/trans_dash.php:461
+#: addons/includes/languages/trans_dash.php:466
 msgid "Try to start with add new :dbtables!"
 msgstr "با افزودن رکورد جدید تلاشی برای شروع داشته باشید!"
 
-#: addons/includes/languages/trans_dash.php:464
+#: addons/includes/languages/trans_dash.php:469
 msgid "System master controll"
 msgstr "مدیریت فنی سیستم"
 
-#: addons/includes/languages/trans_dash.php:465
+#: addons/includes/languages/trans_dash.php:470
 msgid "Raw table"
 msgstr "جدول‌های خام"
 
-#: addons/includes/languages/trans_dash.php:466
+#: addons/includes/languages/trans_dash.php:471
 msgid "Cronjob"
 msgstr "کرون جاب"
 
-#: addons/includes/languages/trans_dash.php:467
+#: addons/includes/languages/trans_dash.php:472
 #: addons/includes/languages/trans_static.php:160
 msgid "Tools"
 msgstr "ابزارها"
 
-#: addons/includes/languages/trans_dash.php:468
+#: addons/includes/languages/trans_dash.php:473
 msgid "Transactions"
 msgstr "تراکنش‌ها"
 
-#: addons/includes/languages/trans_dash.php:469
+#: addons/includes/languages/trans_dash.php:474
 msgid "Log items"
 msgstr "لاگ آیتم‌ها"
 
-#: addons/includes/languages/trans_dash.php:470
+#: addons/includes/languages/trans_dash.php:475
 msgid "Logs"
 msgstr "لاگ"
 
-#: addons/includes/languages/trans_dash.php:471
+#: addons/includes/languages/trans_dash.php:476
 msgid "Notifications"
 msgstr "اطلاع‌رسانی‌ها"
 
-#: addons/includes/languages/trans_dash.php:472
+#: addons/includes/languages/trans_dash.php:477
 msgid "Short URL"
 msgstr "لینک کوتاه"
 
-#: addons/includes/languages/trans_dash.php:473
+#: addons/includes/languages/trans_dash.php:478
 msgid "Send notify"
 msgstr "ارسال پیام"
 
-#: addons/includes/languages/trans_dash.php:474
+#: addons/includes/languages/trans_dash.php:479
 msgid "Sample"
 msgstr "نمونه"
 
-#: addons/includes/languages/trans_dash.php:477
+#: addons/includes/languages/trans_dash.php:482
 msgid "Info"
 msgstr "درباره"
 
-#: addons/includes/languages/trans_dash.php:478
+#: addons/includes/languages/trans_dash.php:483
 msgid "Show server info"
 msgstr "نمایش اطلاعات سرور"
 
-#: addons/includes/languages/trans_dash.php:479
+#: addons/includes/languages/trans_dash.php:484
 msgid "Show PHP info"
 msgstr "نمایش اطلاعات پی‌اچ‌پی"
 
-#: addons/includes/languages/trans_dash.php:482
+#: addons/includes/languages/trans_dash.php:487
 msgid "id"
 msgstr "کد"
 
-#: addons/includes/languages/trans_dash.php:483
+#: addons/includes/languages/trans_dash.php:488
 msgid "invoice_id"
 msgstr "کد فاکتور"
 
-#: addons/includes/languages/trans_dash.php:484
+#: addons/includes/languages/trans_dash.php:489
 #: addons/includes/languages/trans_static.php:228
 msgid "title"
 msgstr "عنوان"
 
-#: addons/includes/languages/trans_dash.php:485
+#: addons/includes/languages/trans_dash.php:490
 msgid "price"
 msgstr "قیمت"
 
-#: addons/includes/languages/trans_dash.php:486
+#: addons/includes/languages/trans_dash.php:491
 msgid "count"
 msgstr "تعداد"
 
-#: addons/includes/languages/trans_dash.php:487
+#: addons/includes/languages/trans_dash.php:492
 msgid "total"
 msgstr "مجموع"
 
-#: addons/includes/languages/trans_dash.php:488
+#: addons/includes/languages/trans_dash.php:493
 #: addons/includes/languages/trans_static.php:804
 msgid "discount"
 msgstr "تخفیف"
 
-#: addons/includes/languages/trans_dash.php:489
+#: addons/includes/languages/trans_dash.php:494
 msgid "desc"
 msgstr "توضیح"
 
-#: addons/includes/languages/trans_dash.php:492
+#: addons/includes/languages/trans_dash.php:497
 msgid "ID"
 msgstr "شناسه"
 
-#: addons/includes/languages/trans_dash.php:493
+#: addons/includes/languages/trans_dash.php:498
 msgid "User id"
 msgstr "کد کاربر"
 
-#: addons/includes/languages/trans_dash.php:494
+#: addons/includes/languages/trans_dash.php:499
 msgid "Is Temp?"
 msgstr "موقتی است؟"
 
-#: addons/includes/languages/trans_dash.php:495
+#: addons/includes/languages/trans_dash.php:500
 msgid "Total Discount"
 msgstr "جمع تخفیف"
 
-#: addons/includes/languages/trans_dash.php:496
+#: addons/includes/languages/trans_dash.php:501
 msgid "Count Detail"
 msgstr "تعداد جزئیات"
 
-#: addons/includes/languages/trans_dash.php:497
+#: addons/includes/languages/trans_dash.php:502
 msgid "Yes"
 msgstr "بلی"
 
-#: addons/includes/languages/trans_dash.php:498
+#: addons/includes/languages/trans_dash.php:503
 msgid "No"
 msgstr "خیر"
 
-#: addons/includes/languages/trans_dash.php:501
+#: addons/includes/languages/trans_dash.php:506
 msgid "Caller"
 msgstr "صداکننده"
 
-#: addons/includes/languages/trans_dash.php:502
+#: addons/includes/languages/trans_dash.php:507
 msgid "Priority"
 msgstr "اولویت"
 
-#: addons/includes/languages/trans_dash.php:503
+#: addons/includes/languages/trans_dash.php:508
 msgid "datecreated"
 msgstr "تاریخ‌ایجاد"
 
-#: addons/includes/languages/trans_dash.php:504
+#: addons/includes/languages/trans_dash.php:509
 msgid "Click to show all logs by this logitems"
 msgstr "کلیک کنید تا تمامی لاگ‌هایی که با این عنوان ثبت شده است نمایش داده شود"
 
-#: addons/includes/languages/trans_dash.php:507
+#: addons/includes/languages/trans_dash.php:512
 msgid "logitems Detail"
 msgstr "جزئیات لاگ آیتم"
 
-#: addons/includes/languages/trans_dash.php:508
+#: addons/includes/languages/trans_dash.php:513
 msgid "caller"
 msgstr "صدا کننده"
 
-#: addons/includes/languages/trans_dash.php:509
+#: addons/includes/languages/trans_dash.php:514
 msgid "priority"
 msgstr "اولویت"
 
-#: addons/includes/languages/trans_dash.php:510
+#: addons/includes/languages/trans_dash.php:515
 msgid "Critical"
 msgstr "بحرانی"
 
-#: addons/includes/languages/trans_dash.php:511
+#: addons/includes/languages/trans_dash.php:516
 msgid "High"
 msgstr "زیاد"
 
-#: addons/includes/languages/trans_dash.php:512
+#: addons/includes/languages/trans_dash.php:517
 msgid "Medium"
 msgstr "متوسط"
 
-#: addons/includes/languages/trans_dash.php:513
+#: addons/includes/languages/trans_dash.php:518
 msgid "Low"
 msgstr "کم"
 
-#: addons/includes/languages/trans_dash.php:516
+#: addons/includes/languages/trans_dash.php:521
 msgid "Log item id"
 msgstr "کد آیتم لاگ"
 
-#: addons/includes/languages/trans_dash.php:517
+#: addons/includes/languages/trans_dash.php:522
 msgid "User_id"
 msgstr "کد کاربر"
 
-#: addons/includes/languages/trans_dash.php:518
+#: addons/includes/languages/trans_dash.php:523
 msgid "Data"
 msgstr "داده"
 
-#: addons/includes/languages/trans_dash.php:519
+#: addons/includes/languages/trans_dash.php:524
 msgid "Desc"
 msgstr "توضیح"
 
-#: addons/includes/languages/trans_dash.php:520
+#: addons/includes/languages/trans_dash.php:525
 msgid "createdate"
 msgstr "تاریخ ایجاد"
 
-#: addons/includes/languages/trans_dash.php:521
+#: addons/includes/languages/trans_dash.php:526
 msgid "Meta"
 msgstr "متا"
 
-#: addons/includes/languages/trans_dash.php:524
+#: addons/includes/languages/trans_dash.php:529
 msgid "Send Nofity"
 msgstr "ارسال پیام"
 
-#: addons/includes/languages/trans_dash.php:525
+#: addons/includes/languages/trans_dash.php:530
 msgid "Sample Design"
 msgstr "نمونه دیزاین"
 
-#: addons/includes/languages/trans_dash.php:528
+#: addons/includes/languages/trans_dash.php:533
 msgid "user_id"
 msgstr "کد کاربر"
 
-#: addons/includes/languages/trans_dash.php:529
+#: addons/includes/languages/trans_dash.php:534
 msgid "user_idsender"
 msgstr "شناسه کاربر ارسال کننده"
 
-#: addons/includes/languages/trans_dash.php:530
+#: addons/includes/languages/trans_dash.php:535
 msgid "content"
 msgstr "محتوا"
 
-#: addons/includes/languages/trans_dash.php:531
+#: addons/includes/languages/trans_dash.php:536
 msgid "url"
 msgstr "نشانی اینترنتی"
 
-#: addons/includes/languages/trans_dash.php:532
+#: addons/includes/languages/trans_dash.php:537
 msgid "read"
 msgstr "خوانده شده"
 
-#: addons/includes/languages/trans_dash.php:533
+#: addons/includes/languages/trans_dash.php:538
 msgid "star"
 msgstr "ستاره"
 
-#: addons/includes/languages/trans_dash.php:534
+#: addons/includes/languages/trans_dash.php:539
 msgid "status"
 msgstr "وضعیت"
 
-#: addons/includes/languages/trans_dash.php:535
+#: addons/includes/languages/trans_dash.php:540
 #: addons/includes/languages/trans_static.php:137
 msgid "category"
 msgstr "دسته"
 
-#: addons/includes/languages/trans_dash.php:536
+#: addons/includes/languages/trans_dash.php:541
 msgid "senddate"
 msgstr "تاریخ ارسال"
 
-#: addons/includes/languages/trans_dash.php:537
+#: addons/includes/languages/trans_dash.php:542
 msgid "deliverdate"
 msgstr "تاریخ دلیور"
 
-#: addons/includes/languages/trans_dash.php:538
+#: addons/includes/languages/trans_dash.php:543
 msgid "expiredate"
 msgstr "تاریخ انقضا"
 
-#: addons/includes/languages/trans_dash.php:539
+#: addons/includes/languages/trans_dash.php:544
 msgid "readdate"
 msgstr "تاریخ مشاهده"
 
-#: addons/includes/languages/trans_dash.php:540
+#: addons/includes/languages/trans_dash.php:545
 msgid "gateway"
 msgstr "ورودی"
 
-#: addons/includes/languages/trans_dash.php:541
+#: addons/includes/languages/trans_dash.php:546
 msgid "auto"
 msgstr "خودکار"
 
-#: addons/includes/languages/trans_dash.php:542
+#: addons/includes/languages/trans_dash.php:547
 msgid "datemodified"
 msgstr "تاریخ ویرایش"
 
-#: addons/includes/languages/trans_dash.php:545
+#: addons/includes/languages/trans_dash.php:550
 msgid "Change permission of user"
 msgstr "تغییر سطح‌دسترسی کاربر"
 
-#: addons/includes/languages/trans_dash.php:546
+#: addons/includes/languages/trans_dash.php:551
 msgid "Permission cat"
 msgstr "سطح‌دسترسی فراخوانی"
 
-#: addons/includes/languages/trans_dash.php:547
+#: addons/includes/languages/trans_dash.php:552
 msgid "Save change"
 msgstr "ذخیره‌کردن تغییرات"
 
-#: addons/includes/languages/trans_dash.php:550
+#: addons/includes/languages/trans_dash.php:555
 msgid "Send every notification from every way to user"
 msgstr "ارسال هر پیامی از هر روشی به کاربر"
 
-#: addons/includes/languages/trans_dash.php:551
+#: addons/includes/languages/trans_dash.php:556
 msgid "Mobile or user_id"
 msgstr "موبایل یا کد کاربر"
 
-#: addons/includes/languages/trans_dash.php:552
+#: addons/includes/languages/trans_dash.php:557
 msgid "Find Connection way"
 msgstr "یافتن روش ارتباط"
 
-#: addons/includes/languages/trans_dash.php:553
+#: addons/includes/languages/trans_dash.php:558
 msgid "Inner system notification"
 msgstr "پیام داخل سیستمی"
 
-#: addons/includes/languages/trans_dash.php:561
+#: addons/includes/languages/trans_dash.php:566
 msgid "Test coding function"
 msgstr "بررسی تابع کدینگ"
 
-#: addons/includes/languages/trans_dash.php:562
+#: addons/includes/languages/trans_dash.php:567
 msgid "String or Number"
 msgstr "رشته یا شماره"
 
-#: addons/includes/languages/trans_dash.php:563
+#: addons/includes/languages/trans_dash.php:568
 msgid "Run"
 msgstr "اجرا"
 
-#: addons/includes/languages/trans_dash.php:564
+#: addons/includes/languages/trans_dash.php:569
 msgid "Encode"
 msgstr "رمزگذاری"
 
-#: addons/includes/languages/trans_dash.php:565
+#: addons/includes/languages/trans_dash.php:570
 msgid "Decode"
 msgstr "رمزگشایی"
 
-#: addons/includes/languages/trans_dash.php:568
+#: addons/includes/languages/trans_dash.php:573
 msgid "You can use our tools"
 msgstr "شما می‌توانید از ابزارهای ما استفاده کنید."
 
-#: addons/includes/languages/trans_dash.php:569
+#: addons/includes/languages/trans_dash.php:574
 msgid "If you dont know about this page, leave it!"
 msgstr "اگر چیزی در مورد این صفحه نمی‌دانید، آن را ترک کنید!"
 
-#: addons/includes/languages/trans_dash.php:570
+#: addons/includes/languages/trans_dash.php:575
 msgid "Special tools"
 msgstr "ابزارهای خاص"
 
-#: addons/includes/languages/trans_dash.php:571
+#: addons/includes/languages/trans_dash.php:576
 msgid "Backup"
 msgstr "پشتیبان‌گیری"
 
-#: addons/includes/languages/trans_dash.php:573
+#: addons/includes/languages/trans_dash.php:578
 msgid "Server information"
 msgstr "اطلاعات سرور"
 
-#: addons/includes/languages/trans_dash.php:574
+#: addons/includes/languages/trans_dash.php:579
 msgid "Log"
 msgstr "لاگ"
 
-#: addons/includes/languages/trans_dash.php:575
+#: addons/includes/languages/trans_dash.php:580
 msgid "Translation tools"
 msgstr "ابزارهای ترجمه"
 
-#: addons/includes/languages/trans_dash.php:578
+#: addons/includes/languages/trans_dash.php:583
 #: addons/includes/languages/trans_static.php:49 lib/utility/upload.php:92
 msgid "MB"
 msgstr "مگابایت"
 
-#: addons/includes/languages/trans_dash.php:581
+#: addons/includes/languages/trans_dash.php:586
 msgid "Create sitemap automatically by click on this page"
 msgstr "با کلیک در این صفحه نقشه‌ی سایت را بطور خودکار ایجاد کنید"
 
-#: addons/includes/languages/trans_dash.php:582
+#: addons/includes/languages/trans_dash.php:587
 msgid "Base Sitemap"
 msgstr "سایت‌مپ اصلی"
 
-#: addons/includes/languages/trans_dash.php:583
+#: addons/includes/languages/trans_dash.php:588
 msgid "Sitemap Detail"
 msgstr "جزئیات سایت‌مپ"
 
-#: addons/includes/languages/trans_dash.php:584
+#: addons/includes/languages/trans_dash.php:589
 msgid "Create it Again"
 msgstr "دوباره بسازش"
 
-#: addons/includes/languages/trans_dash.php:585
+#: addons/includes/languages/trans_dash.php:590
 msgid "Create Sitemap Result"
 msgstr "ایجاد نتیجه نقشه سایت"
 
-#: addons/includes/languages/trans_dash.php:588
+#: addons/includes/languages/trans_dash.php:593
 msgid "Translate"
 msgstr "ترجمه"
 
-#: addons/includes/languages/trans_dash.php:589
+#: addons/includes/languages/trans_dash.php:594
 msgid "Extract All trans func"
 msgstr "استخراج توابع ترجمه  در دش و پروژه جاری"
 
-#: addons/includes/languages/trans_dash.php:590
+#: addons/includes/languages/trans_dash.php:595
 msgid "Extract twig trans func in current project"
 msgstr "بیرون کشیدن متن‌های قابل ترجمه توئیگ از پروژه جاری"
 
-#: addons/includes/languages/trans_dash.php:591
+#: addons/includes/languages/trans_dash.php:596
 msgid "Extract twig trans func in dash addons"
 msgstr "استخراج توابع ترجمه توییگ در دش"
 
-#: addons/includes/languages/trans_dash.php:592
+#: addons/includes/languages/trans_dash.php:597
 msgid "Extract twig trans func in dash addons and update on dash addons"
 msgstr "استخراج توابع ترجمه توییگ در دش به‌همراه بروزرسانی آن در هسته"
 
-#: addons/includes/languages/trans_dash.php:595
+#: addons/includes/languages/trans_dash.php:600
 msgid "type"
 msgstr "نوع"
 
-#: addons/includes/languages/trans_dash.php:596
-msgid "Please select one item"
-msgstr "لطفا یک گزینه را انتخاب کنید"
-
-#: addons/includes/languages/trans_dash.php:597
+#: addons/includes/languages/trans_dash.php:601
 msgid "Money"
 msgstr "پول"
 
-#: addons/includes/languages/trans_dash.php:598
+#: addons/includes/languages/trans_dash.php:602
 msgid "Gift"
 msgstr "هدیه"
 
-#: addons/includes/languages/trans_dash.php:599
+#: addons/includes/languages/trans_dash.php:603
 msgid "Transfer"
 msgstr "انتقال"
 
-#: addons/includes/languages/trans_dash.php:600
+#: addons/includes/languages/trans_dash.php:604
 msgid "Prize"
 msgstr "جایزه"
 
-#: addons/includes/languages/trans_dash.php:601
+#: addons/includes/languages/trans_dash.php:605
 msgid "Unit"
 msgstr "واحد"
 
-#: addons/includes/languages/trans_dash.php:602
+#: addons/includes/languages/trans_dash.php:606
 msgid "$"
 msgstr "$"
 
-#: addons/includes/languages/trans_dash.php:603
+#: addons/includes/languages/trans_dash.php:607
 msgid "Minus"
 msgstr "هدر رفت"
 
-#: addons/includes/languages/trans_dash.php:604
+#: addons/includes/languages/trans_dash.php:608
 msgid "Plus"
 msgstr "افزودن"
 
-#: addons/includes/languages/trans_dash.php:607
+#: addons/includes/languages/trans_dash.php:611
 msgid "Search in :transactionss"
 msgstr "جستجو در تراکنش‌ها"
 
-#: addons/includes/languages/trans_dash.php:608
+#: addons/includes/languages/trans_dash.php:612
 msgid "Budget before"
 msgstr "بودجه قبل"
 
-#: addons/includes/languages/trans_dash.php:609
+#: addons/includes/languages/trans_dash.php:613
 msgid "Budget"
 msgstr "بودجه"
 
-#: addons/includes/languages/trans_dash.php:610
+#: addons/includes/languages/trans_dash.php:614
 msgid "Condition"
 msgstr "قانون"
 
-#: addons/includes/languages/trans_dash.php:612
+#: addons/includes/languages/trans_dash.php:616
 msgid "Try to start with add new :transactions!"
 msgstr "با افزودن رکورد جدید تلاشی برای شروع داشته باشید!"
 
-#: addons/includes/languages/trans_dash.php:615
+#: addons/includes/languages/trans_dash.php:619
 msgid "Submit this form carefully"
 msgstr "این را با احتیاط بفشارید"
 
-#: addons/includes/languages/trans_dash.php:616
+#: addons/includes/languages/trans_dash.php:620
 #: addons/includes/languages/trans_static.php:7
 msgid "Dash"
 msgstr "دش"
 
-#: addons/includes/languages/trans_dash.php:617
+#: addons/includes/languages/trans_dash.php:621
 msgid "Press it if you are sure!"
 msgstr "اگر مطمئن هستید، بفشارید!"
 
-#: addons/includes/languages/trans_dash.php:618
+#: addons/includes/languages/trans_dash.php:622
 msgid "Update All"
 msgstr "بروزرسانی همه"
 
-#: addons/includes/languages/trans_dash.php:619
+#: addons/includes/languages/trans_dash.php:623
 msgid "Last update"
 msgstr "آخرین به‌روزرسانی"
 
-#: addons/includes/languages/trans_dash.php:620
+#: addons/includes/languages/trans_dash.php:624
 msgid "Current Version"
 msgstr "نسخه فعلی"
 
-#: addons/includes/languages/trans_dash.php:621
+#: addons/includes/languages/trans_dash.php:625
 msgid "Commits"
 msgstr "کامیت‌ها"
 
-#: addons/includes/languages/trans_dash.php:622
+#: addons/includes/languages/trans_dash.php:626
 msgid "Do it if you know it"
 msgstr "اگر می‌دانید انجامش دهید"
 
-#: addons/includes/languages/trans_dash.php:623
+#: addons/includes/languages/trans_dash.php:627
 msgid "Update Dash Repository"
 msgstr "بروزرسانی مخزن دش"
 
-#: addons/includes/languages/trans_dash.php:624
+#: addons/includes/languages/trans_dash.php:628
 msgid "Dash Engine Location"
 msgstr "محل قرارگیری موتور دش"
 
-#: addons/includes/languages/trans_dash.php:625
+#: addons/includes/languages/trans_dash.php:629
 msgid "Update Repository"
 msgstr "بروزرسانی مخزن"
 
-#: addons/includes/languages/trans_dash.php:626
+#: addons/includes/languages/trans_dash.php:630
 msgid "Project database"
 msgstr "دیتابیس پروژه"
 
-#: addons/includes/languages/trans_dash.php:627
+#: addons/includes/languages/trans_dash.php:631
 msgid "Addon Database"
 msgstr "دیتابیس افزونه"
 
-#: addons/includes/languages/trans_dash.php:628
+#: addons/includes/languages/trans_dash.php:632
 msgid "Upgrade"
 msgstr "ارتقا"
 
-#: addons/includes/languages/trans_dash.php:629
+#: addons/includes/languages/trans_dash.php:633
 msgid "Backup by dump"
 msgstr "پشتیبان با دامپ"
 
-#: addons/includes/languages/trans_dash.php:630
+#: addons/includes/languages/trans_dash.php:634
 msgid "Submit"
 msgstr "تایید"
 
-#: addons/includes/languages/trans_dash.php:635
+#: addons/includes/languages/trans_dash.php:639
 msgid "User detail"
 msgstr "جزئیات‌کاربران"
 
-#: addons/includes/languages/trans_dash.php:636
+#: addons/includes/languages/trans_dash.php:640
 #: addons/includes/languages/trans_static.php:115
 msgid "Key"
 msgstr "کلید"
 
-#: addons/includes/languages/trans_dash.php:639
+#: addons/includes/languages/trans_dash.php:643
 msgid "Users list"
 msgstr "لیست‌کاربران"
 
-#: addons/includes/languages/trans_dash.php:640
+#: addons/includes/languages/trans_dash.php:644
 msgid "Add new"
 msgstr "افزودن جدید"
 
-#: addons/includes/languages/trans_dash.php:641
+#: addons/includes/languages/trans_dash.php:645
 msgid "Parent"
 msgstr "والد"
 
-#: addons/includes/languages/trans_dash.php:642
+#: addons/includes/languages/trans_dash.php:646
 msgid "Avatar"
 msgstr "آواتار"
 
-#: addons/includes/languages/trans_dash.php:643
+#: addons/includes/languages/trans_dash.php:647
 msgid "More"
 msgstr "بیشتر"
 
-#: addons/includes/languages/trans_dash.php:646
+#: addons/includes/languages/trans_dash.php:650
 msgid "Edit user detail"
 msgstr "ویرایش‌کردن جزئیات‌‌کاربر"
 
-#: addons/includes/languages/trans_dash.php:647
+#: addons/includes/languages/trans_dash.php:651
 msgid "Enter a valid name from 3 to 40 character"
 msgstr "نام معتبری بین ۳ تا ۳۰ کاراکتر وارد کنید"
 
-#: addons/includes/languages/trans_dash.php:648
+#: addons/includes/languages/trans_dash.php:652
 msgid "Last name"
 msgstr "نام‌خانوادگی"
 
-#: addons/includes/languages/trans_dash.php:649
+#: addons/includes/languages/trans_dash.php:653
 msgid "allowed extentions jpg, png (gif for bussiness plans). Max 500Kb"
 msgstr ""
 "پسوندهای مجاز jpg و png هستند‌(‌gif برای پلن‌های تجاری). حداکثر حجم مجاز ۵۰۰ کیلوبایت"
 
-#: addons/includes/languages/trans_dash.php:650
+#: addons/includes/languages/trans_dash.php:654
 msgid "National code"
 msgstr "کد ملی"
 
-#: addons/includes/languages/trans_dash.php:651
+#: addons/includes/languages/trans_dash.php:655
 msgid "Father name"
 msgstr "نام پدر"
 
-#: addons/includes/languages/trans_dash.php:652
+#: addons/includes/languages/trans_dash.php:656
 msgid "Marital"
 msgstr "وضعیت تاهل"
 
-#: addons/includes/languages/trans_dash.php:653
+#: addons/includes/languages/trans_dash.php:657
 msgid "Single"
 msgstr "مجرد"
 
-#: addons/includes/languages/trans_dash.php:654
+#: addons/includes/languages/trans_dash.php:658
 msgid "Married"
 msgstr "متاهل"
 
-#: addons/includes/languages/trans_dash.php:655
+#: addons/includes/languages/trans_dash.php:659
 msgid "Child count"
 msgstr "تعداد فرزندان"
 
-#: addons/includes/languages/trans_dash.php:656
+#: addons/includes/languages/trans_dash.php:660
 msgid "Birth city"
 msgstr "شهر محل تولد"
 
-#: addons/includes/languages/trans_dash.php:657
+#: addons/includes/languages/trans_dash.php:661
 msgid "Sh from"
 msgstr "محل صدور شناسنامه"
 
-#: addons/includes/languages/trans_dash.php:658
+#: addons/includes/languages/trans_dash.php:662
 msgid "Sh code"
 msgstr "شماره شناسنامه"
 
-#: addons/includes/languages/trans_dash.php:659
+#: addons/includes/languages/trans_dash.php:663
 msgid "Last education"
 msgstr "آخرین مدرک تحصیلی"
 
-#: addons/includes/languages/trans_dash.php:660
+#: addons/includes/languages/trans_dash.php:664
 msgid "Job"
 msgstr "شغل"
 
-#: addons/includes/languages/trans_dash.php:661
+#: addons/includes/languages/trans_dash.php:665
 msgid "Pasport code"
 msgstr "شماره گذرنامه"
 
-#: addons/includes/languages/trans_dash.php:662
+#: addons/includes/languages/trans_dash.php:666
 msgid "Pasport expire"
 msgstr "تاریخ اتمام اعتبار گذرنامه"
 
-#: addons/includes/languages/trans_dash.php:663
+#: addons/includes/languages/trans_dash.php:667
 msgid "Bank account number"
 msgstr "شماره حساب بانکی"
 
-#: addons/includes/languages/trans_dash.php:664
+#: addons/includes/languages/trans_dash.php:668
 msgid "Last education degree"
 msgstr "معدل آخرین مدرک تحصیلی"
 
-#: addons/includes/languages/trans_dash.php:668
+#: addons/includes/languages/trans_dash.php:672
 msgid "Avatar of you"
 msgstr "آواتار شما"
 
-#: addons/includes/languages/trans_dash.php:669
+#: addons/includes/languages/trans_dash.php:673
 msgid "Default Avatar"
 msgstr "آواتار پیش‌فرض"
 
-#: addons/includes/languages/trans_dash.php:670
+#: addons/includes/languages/trans_dash.php:674
 msgid "Hello"
 msgstr "سلام"
 
-#: addons/includes/languages/trans_dash.php:671
+#: addons/includes/languages/trans_dash.php:675
 msgid "Click to toggle sidebar status"
 msgstr "برای تغییر وضعیت منوی کناری کلیک کنید"
 
-#: addons/includes/languages/trans_dash.php:672
-msgid "Show side menu"
-msgstr "نمایش منوی کناری"
-
-#: addons/includes/languages/trans_dash.php:673
+#: addons/includes/languages/trans_dash.php:676
 msgid "View website"
 msgstr "مشاهده وب‌سایت"
 
-#: addons/includes/languages/trans_dash.php:674
+#: addons/includes/languages/trans_dash.php:677
 msgid "Work in your language"
 msgstr "به زبان خود کار کنید"
 
-#: addons/includes/languages/trans_dash.php:675
+#: addons/includes/languages/trans_dash.php:678
 #: addons/includes/languages/trans_static.php:104
 msgid "Logout"
 msgstr "خروج از سیستم"
 
-#: addons/includes/languages/trans_dash.php:676
+#: addons/includes/languages/trans_dash.php:679
 msgid "View your current location and navigate to parent of it"
 msgstr "مکان فعلی خود را دیده و به مکان‌های والد آن منتقل شوید"
 
-#: addons/includes/languages/trans_dash.php:679
+#: addons/includes/languages/trans_dash.php:682
 msgid "Please enter valid mobile number"
 msgstr "لطفا شماره موبایل معتبری وارد کنید"
 
-#: addons/includes/languages/trans_dash.php:680
+#: addons/includes/languages/trans_dash.php:683
 msgid "Enter correct iranian mobile from 10 to 14 character"
 msgstr "شماره موبایل صحیح ایران باید بین ۱۰ تا ۱۴ رقم باشد"
 
-#: addons/includes/languages/trans_dash.php:681
+#: addons/includes/languages/trans_dash.php:684
 msgid "7 to 15 characters is allowed for mobile"
 msgstr "بین ۷ تا ۱۵ رقم برای موبایل مجاز است"
 
-#: addons/includes/languages/trans_dash.php:682
+#: addons/includes/languages/trans_dash.php:685
 msgid "Username or Mobile or email"
 msgstr "نام‌کاربری یا موبایل یا رایانامه"
 
-#: addons/includes/languages/trans_dash.php:683
+#: addons/includes/languages/trans_dash.php:686
 msgid "Username or Mobile or Email"
 msgstr "نام‌کاربری یا موبایل یا رایانامه"
 
-#: addons/includes/languages/trans_dash.php:684
+#: addons/includes/languages/trans_dash.php:687
 msgid "Please enter valid mobile or username or email number"
 msgstr "لطفا نام‌کاربری یا موبایل یا رایانامه معتبری وارد کنید"
 
-#: addons/includes/languages/trans_dash.php:685
+#: addons/includes/languages/trans_dash.php:688
 msgid "Enter a valid password from 6 to 40 character"
 msgstr "گذرواژه‌ای معتبر بین ۶ تا ۴۰ کاراکتر انتخاب کنید"
 
-#: addons/includes/languages/trans_dash.php:686
+#: addons/includes/languages/trans_dash.php:689
 #: addons/includes/languages/trans_static.php:339
 msgid "New Password"
 msgstr "گذرواژه جدید"
 
-#: addons/includes/languages/trans_dash.php:687
+#: addons/includes/languages/trans_dash.php:690
 msgid "Password?"
 msgstr "کلمه عبور؟"
 
-#: addons/includes/languages/trans_dash.php:688
+#: addons/includes/languages/trans_dash.php:691
 msgid "Verify Code"
 msgstr "کد اعتبارسنجی"
 
-#: addons/includes/languages/trans_dash.php:689
+#: addons/includes/languages/trans_dash.php:692
 msgid "Enter a valid code!"
 msgstr "کد معتبر وارد کنید!"
 
-#: addons/includes/languages/trans_dash.php:690
+#: addons/includes/languages/trans_dash.php:693
 msgid "Code"
 msgstr "کد"
 
-#: addons/includes/languages/trans_dash.php:691
+#: addons/includes/languages/trans_dash.php:694
 msgid "Send this code to our number!"
 msgstr "این کد را به شماره‌ی ما پیامک کنید"
 
-#: addons/includes/languages/trans_dash.php:692
+#: addons/includes/languages/trans_dash.php:695
 msgid "send to this number"
 msgstr "به این شماره پیامک کنید"
 
-#: addons/includes/languages/trans_dash.php:693
+#: addons/includes/languages/trans_dash.php:696
 msgid "Send code to this number!"
 msgstr "کد را به این شماره ارسال کنید!"
 
-#: addons/includes/languages/trans_dash.php:694
+#: addons/includes/languages/trans_dash.php:697
 msgid "Full name"
 msgstr "نام کامل"
 
-#: addons/includes/languages/trans_dash.php:695
+#: addons/includes/languages/trans_dash.php:698
 msgid "email"
 msgstr "رایانامه"
 
-#: addons/includes/languages/trans_dash.php:696
+#: addons/includes/languages/trans_dash.php:699
 msgid "Enter a valid eamil!"
 msgstr "رایانامه‌ی معتبر را وارد کنید!"
 
-#: addons/includes/languages/trans_dash.php:697
+#: addons/includes/languages/trans_dash.php:700
 msgid "username"
 msgstr "نام‌کاربری"
 
-#: addons/includes/languages/trans_dash.php:698
+#: addons/includes/languages/trans_dash.php:701
 msgid "Enter a valid username from 4 to 50 character"
 msgstr "نام‌کاربری معتبری بین ۴ تا ۵۰ کاراکتر وارد کنید"
 
-#: addons/includes/languages/trans_dash.php:699
+#: addons/includes/languages/trans_dash.php:702
 msgid "Delete Account"
 msgstr "حذف حساب‌کاربری"
 
-#: addons/includes/languages/trans_dash.php:700
+#: addons/includes/languages/trans_dash.php:703
 msgid "Go and check it"
 msgstr "برو و چک کن"
 
-#: addons/includes/languages/trans_dash.php:701
+#: addons/includes/languages/trans_dash.php:704
 msgid "Next"
 msgstr "بعدی"
 
-#: addons/includes/languages/trans_dash.php:702
+#: addons/includes/languages/trans_dash.php:705
 msgid "Sign in instead"
 msgstr "یا وارد شوید"
 
-#: addons/includes/languages/trans_dash.php:703
+#: addons/includes/languages/trans_dash.php:706
 #: addons/includes/languages/trans_static.php:170
 msgid "Login"
 msgstr "ورود به سیستم"
 
-#: addons/includes/languages/trans_dash.php:704
+#: addons/includes/languages/trans_dash.php:707
 msgid "No account?"
 msgstr "حساب کاربری ندارید؟"
 
-#: addons/includes/languages/trans_dash.php:705
+#: addons/includes/languages/trans_dash.php:708
 msgid "Create for yourself"
 msgstr "حساب‌کاربری خود را بسازید"
 
-#: addons/includes/languages/trans_dash.php:706
+#: addons/includes/languages/trans_dash.php:709
 msgid "Create Account"
 msgstr "ساخت حساب‌کاربری"
 
-#: addons/includes/languages/trans_dash.php:707
+#: addons/includes/languages/trans_dash.php:710
 msgid "Signup"
 msgstr "ثبت‌نام"
 
-#: addons/includes/languages/trans_dash.php:709
+#: addons/includes/languages/trans_dash.php:712
 msgid "Recovery password"
 msgstr "بازیابی گذرواژه"
 
-#: addons/includes/languages/trans_dash.php:711
+#: addons/includes/languages/trans_dash.php:714
 msgid "Enter with another methods"
 msgstr "ورود با سایر روش‌ها"
 
-#: addons/includes/languages/trans_dash.php:712
+#: addons/includes/languages/trans_dash.php:715
 msgid "Log in with mobile"
 msgstr "ورود با موبایل"
 
-#: addons/includes/languages/trans_dash.php:713
+#: addons/includes/languages/trans_dash.php:716
 msgid "Enter with mobile"
 msgstr "ورود با موبایل"
 
-#: addons/includes/languages/trans_dash.php:714
+#: addons/includes/languages/trans_dash.php:717
 msgid "Enter with Google"
 msgstr "ورود با گوگل"
 
-#: addons/includes/languages/trans_dash.php:715
+#: addons/includes/languages/trans_dash.php:718
 msgid "Enter with email"
 msgstr "ورود با رایانامه"
 
-#: addons/includes/languages/trans_dash.php:716
+#: addons/includes/languages/trans_dash.php:719
 msgid "Enter with username"
 msgstr "ورود با نام‌کاربری"
 
-#: addons/includes/languages/trans_dash.php:717
+#: addons/includes/languages/trans_dash.php:720
 msgid "Resend code"
 msgstr "ارسال دوباره‌ی کد"
 
-#: addons/includes/languages/trans_dash.php:718
+#: addons/includes/languages/trans_dash.php:721
 msgid "After end timer you can request code again"
 msgstr "پس از به‌اتمام رسیدن زمان، شما امکان درخواست مجدد کد را خواهید داشت"
 
-#: addons/includes/languages/trans_dash.php:719
+#: addons/includes/languages/trans_dash.php:722
 msgid "Another way?"
 msgstr "روش دیگر؟"
 
-#: addons/includes/languages/trans_dash.php:720
+#: addons/includes/languages/trans_dash.php:723
 msgid "Restart with new mobile"
 msgstr "شروع دوباره با موبایل جدید"
 
-#: addons/includes/languages/trans_dash.php:721
+#: addons/includes/languages/trans_dash.php:724
 msgid "New email"
 msgstr "رایانامه‌ی جدید"
 
-#: addons/includes/languages/trans_dash.php:722
+#: addons/includes/languages/trans_dash.php:725
 msgid "New username"
 msgstr "نام کاربری جدید"
 
-#: addons/includes/languages/trans_dash.php:723
+#: addons/includes/languages/trans_dash.php:726
 msgid "Enter a valid username!"
 msgstr "نام کاربری معتبر وارد کنید!"
 
-#: addons/includes/languages/trans_dash.php:726
+#: addons/includes/languages/trans_dash.php:729
 msgid "You are supervisor!"
 msgstr "شما مدیر فنی سیستم هستید!"
 
-#: addons/includes/languages/trans_dash.php:727
+#: addons/includes/languages/trans_dash.php:730
 msgid "Enter with another user"
 msgstr "ورود با کاربر دیگر"
 
@@ -6267,31 +6266,43 @@ msgstr "تایید شده"
 msgid "unapproved"
 msgstr "تایید نشده"
 
-#: addons/includes/languages/trans_static.php:843
+#: addons/includes/languages/trans_static.php:839
+msgid "Ok"
+msgstr "بسیار خب"
+
+#: addons/includes/languages/trans_static.php:841
+msgid "Approved"
+msgstr "تایید شده"
+
+#: addons/includes/languages/trans_static.php:842
+msgid "Unapproved"
+msgstr "تایید نشده"
+
+#: addons/includes/languages/trans_static.php:846
 msgid "cpSmsSend"
 msgstr "ارسال پیام کوتاه"
 
-#: addons/includes/languages/trans_static.php:844
+#: addons/includes/languages/trans_static.php:847
 msgid "cpSmsTemplateView"
 msgstr "مشاهده الگوهای پیامک"
 
-#: addons/includes/languages/trans_static.php:845
+#: addons/includes/languages/trans_static.php:848
 msgid "cpSmsTemplateEdit"
 msgstr "ویرایش الگوهای پیام کوتاه"
 
-#: addons/includes/languages/trans_static.php:846
+#: addons/includes/languages/trans_static.php:849
 msgid "cpSmsSendGroup"
 msgstr "ارسال پیام کوتاه به صورت گروهی"
 
-#: addons/includes/languages/trans_static.php:847
+#: addons/includes/languages/trans_static.php:850
 msgid "cpSMS"
 msgstr "داشبورد پیام کوتاه"
 
-#: addons/includes/languages/trans_static.php:848
+#: addons/includes/languages/trans_static.php:851
 msgid "cpEmailSend"
 msgstr "ارسال ایمیل"
 
-#: addons/includes/languages/trans_static.php:849
+#: addons/includes/languages/trans_static.php:852
 msgid "cpEmail"
 msgstr "داشبورد ایمیل"
 
@@ -6474,11 +6485,11 @@ msgstr "لطفا نوع را کمتر از ۱۰۰ حرف وارد کنید"
 msgid "Invalid parameter status"
 msgstr "پارامتر وضعیت نامعتبر است"
 
-#: lib/app/posts.php:228
+#: lib/app/posts.php:229
 msgid "Invalid parameter publishdate"
 msgstr "تاریخ انتشار پست اشتباه است"
 
-#: lib/app/posts.php:357
+#: lib/app/posts.php:358
 msgid "Some :type is wrong"
 msgstr "برخی از :type اشتباه هستند"
 
@@ -6498,7 +6509,7 @@ msgstr "شما دسترسی لازم را برای ویرایش این پست ن
 msgid "Invalid posts id"
 msgstr "شناسه پست اشتباه است"
 
-#: lib/app/posts/edit.php:117
+#: lib/app/posts/edit.php:119
 msgid "Post successfully updated"
 msgstr "پست با موفقیت به روز رسانی شد"
 
@@ -7439,6 +7450,12 @@ msgstr "نام فایل غیرمجاز"
 msgid "Exceeded file extension limit"
 msgstr "نوع فایل غیرمجاز"
 
+#~ msgid "Whithout language"
+#~ msgstr "بدون زبان"
+
+#~ msgid "Show side menu"
+#~ msgstr "نمایش منوی کناری"
+
 #~ msgid "Please login to change your profile"
 #~ msgstr "لطفا برای تغییر پروفایل خود وارد شوید"
 
@@ -7504,12 +7521,6 @@ msgstr "نوع فایل غیرمجاز"
 
 #~ msgid "Text"
 #~ msgstr "متن ساده"
-
-#~ msgid "Approved"
-#~ msgstr "تایید شده"
-
-#~ msgid "Unapproved"
-#~ msgstr "تایید نشده"
 
 #~ msgid "Content"
 #~ msgstr "محتوا"
@@ -8936,9 +8947,6 @@ msgstr "نوع فایل غیرمجاز"
 
 #~ msgid "Simple Notification"
 #~ msgstr "اطلاع‌رسانی ساده"
-
-#~ msgid "Ok"
-#~ msgstr "بسیار خب"
 
 #~ msgid "With title"
 #~ msgstr "با عنوان"
