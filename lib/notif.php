@@ -25,6 +25,19 @@ class notif
 
 		if($_meta)
 		{
+			if(is_string($_meta))
+			{
+				$_meta = ['element' => $_meta];
+			}
+
+			if(is_array($_meta))
+			{
+				if(!array_key_exists('image', $_meta))
+				{
+					$_meta['image'] = \dash\url::site(). '/static/images/logo.png';
+				}
+			}
+
 			$add['meta'] = $_meta;
 		}
 
