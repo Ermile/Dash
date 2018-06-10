@@ -1,0 +1,37 @@
+{%extends display.cpMain%}
+
+
+{%block pageContent%}
+<div class="f justify-center">
+  <div class="cbox c8">
+    <table class="tbl">
+      <thead>
+        <tr class="primary">
+          <th>{%trans "Field"%}</th>
+          <th>{%trans "Value"%}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {%for key, value in dataRow%}
+          {%if key in ['password', 'unit_id'] %}
+          {%else%}
+            <tr>
+              <td>{%trans key%}</td>
+              <td>{%trans value%}</td>
+            </tr>
+          {%endif%}
+        {%endfor%}
+      </tbody>
+    </table>
+  </div>
+</div>
+{%endblock%}
+
+
+
+
+
+
+
+
+
