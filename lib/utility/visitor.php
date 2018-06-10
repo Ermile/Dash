@@ -36,6 +36,12 @@ class visitor
 		{
 			return;
 		}
+
+		if(\dash\temp::get('force_stop_visitor'))
+		{
+			return;
+		}
+
 		// create link to database
 		$connect = self::createLink();
 
