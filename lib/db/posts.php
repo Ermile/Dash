@@ -279,7 +279,7 @@ class posts
 				) AND
 				posts.status            = 'publish' AND
 				posts.type              = 'post' AND
-				posts.lang              = '$lang' AND
+				posts.language          = '$lang' AND
 				DATE(posts.publishdate) <= DATE('$date_now') AND
 				TIME(posts.publishdate) <= TIME('$date_now')
 			ORDER BY posts.publishdate DESC
