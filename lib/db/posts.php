@@ -151,7 +151,7 @@ class posts
 
 	public static function get_last_posts($_options = [])
 	{
-		$date_now = date("Y-m-d H:i:s");
+		$date_now = date("Y-m-d");
 
 		$limit = "LIMIT $_options[limit]";
 
@@ -173,8 +173,7 @@ class posts
 					posts.status            = 'publish' AND
 					posts.type              = 'post' AND
 					posts.language          = '$lang' AND
-					DATE(posts.publishdate) <= DATE('$date_now') AND
-					TIME(posts.publishdate) <= TIME('$date_now')
+					DATE(posts.publishdate) <= DATE('$date_now')
 			";
 
 			$pagenation_query = \dash\db::get($pagenation_query, 'count', true);
@@ -192,8 +191,7 @@ class posts
 				posts.status            = 'publish' AND
 				posts.type              = 'post' AND
 				posts.language          = '$lang' AND
-				DATE(posts.publishdate) <= DATE('$date_now') AND
-				TIME(posts.publishdate) <= TIME('$date_now')
+				DATE(posts.publishdate) <= DATE('$date_now')
 			ORDER BY posts.publishdate DESC
 			$limit
 		";
@@ -203,7 +201,7 @@ class posts
 
 	public static function get_posts_term($_options = [], $_type = null)
 	{
-		$date_now = date("Y-m-d H:i:s");
+		$date_now = date("Y-m-d");
 		$default_options =
 		[
 			'limit' => 10,
@@ -280,8 +278,7 @@ class posts
 				posts.status            = 'publish' AND
 				posts.type              = 'post' AND
 				posts.language          = '$lang' AND
-				DATE(posts.publishdate) <= DATE('$date_now') AND
-				TIME(posts.publishdate) <= TIME('$date_now')
+				DATE(posts.publishdate) <= DATE('$date_now')
 			ORDER BY posts.publishdate DESC
 			LIMIT $_options[limit]
 		";
