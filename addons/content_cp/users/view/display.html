@@ -4,6 +4,9 @@
 {%block pageContent%}
 <div class="f justify-center">
   <div class="cbox c8">
+    {%if perm('cpUsersEdit') %}
+      <a class="btn danger outline block mB20" href="{{url.this}}/set?id={{requestGET.id}}">{%trans "Edit"%}</a>
+    {%endif%}
     <table class="tbl">
       <thead>
         <tr class="primary">
