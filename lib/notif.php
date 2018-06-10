@@ -34,7 +34,10 @@ class notif
 			{
 				if(!array_key_exists('image', $_meta))
 				{
-					$_meta['image'] = \dash\url::site(). '/static/images/logo.png';
+					if(\dash\option::config('notif', 'image'))
+					{
+						$_meta['image'] = \dash\url::site(). \dash\option::config('notif', 'image');
+					}
 				}
 			}
 

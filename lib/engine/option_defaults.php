@@ -43,6 +43,8 @@ self::$language           =
 	'list'                    => ['fa','en']
 ];
 
+// self::$config['notif']['image'] = '/static/images/logo.png';
+
 // default tag of slider
 // self::$config['slider_tag'][]  = "slider";
 
