@@ -16,7 +16,7 @@ class view
 		\dash\data::page_pictogram('file-text-o');
 
 
-		$pageList = \dash\db\posts::get(['type' => 'page', 'status' => ["NOT IN", "('deleted')"]]);
+		$pageList = \dash\db\posts::get(['type' => 'page', 'language' => \dash\language::current(), 'status' => ["NOT IN", "('deleted')"]]);
 		$pageList = array_map(['\dash\app\posts', 'ready'], $pageList);
 		\dash\data::pageList($pageList);
 
