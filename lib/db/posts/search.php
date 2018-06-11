@@ -139,7 +139,8 @@ trait search
 
 		if($pagenation)
 		{
-			$pagenation_query = "SELECT	* FROM posts WHERE $where $search ";
+			$pagenation_query = "SELECT	COUNT(*) AS `count` FROM posts WHERE $where $search ";
+			$pagenation_query = \dash\db::get($pagenation_query, 'count', true);
 			list($limit_start, $limit) = \dash\db::pagnation($pagenation_query, $limit);
 			$limit = " LIMIT $limit_start, $limit ";
 		}
@@ -152,19 +153,7 @@ trait search
 			}
 		}
 
-		$query =
-		"
-			SELECT
-				*
-			FROM
-				posts
-			WHERE
-				$where
-				$search
-			$order
-			$limit
-			-- posts::search()
-		";
+		$query = " SELECT * FROM posts WHERE $where 	$search	$order	$limit	-- posts::search()	";
 
 		$result = \dash\db::get($query);
 		$result = \dash\utility\filter::meta_decode($result);

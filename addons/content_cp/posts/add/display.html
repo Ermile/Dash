@@ -32,6 +32,12 @@
   </div>
 {%endif%}
 
+{%if requestGET.type == 'page' or dataRow.type == 'page' %}
+  <div class="cbox">
+   {{block('iParent')}}
+  </div>
+{%endif%}
+
   <div class="cbox">
    {{block('iThumb')}}
   </div>

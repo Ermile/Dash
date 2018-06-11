@@ -119,7 +119,6 @@ class posts
 		}
 
 		$title = \dash\app::request('title');
-		$title = trim($title);
 		if(!$title)
 		{
 			\dash\notif::error(T_("Title of posts can not be null"), 'title');
@@ -132,10 +131,7 @@ class posts
 			return false;
 		}
 
-
-
 		$excerpt = \dash\app::request('excerpt');
-		$excerpt = trim($excerpt);
 		if($excerpt && mb_strlen($excerpt) > 300)
 		{
 			\dash\notif::error(T_("Please set the excerpt less than 300 character"), 'excerpt');
@@ -143,27 +139,27 @@ class posts
 		}
 
 		$subtitle = \dash\app::request('subtitle');
-		$subtitle = trim($subtitle);
 		if($subtitle && mb_strlen($subtitle) > 300)
 		{
 			\dash\notif::error(T_("Please set the subtitle less than 300 character"), 'subtitle');
 			return false;
 		}
 
-
 		$slug = \dash\app::request('slug');
-		$slug = trim($slug);
 		if($slug && mb_strlen($slug) > 100)
 		{
 			\dash\notif::error(T_("Please set the slug less than 100 character"), 'slug');
 			return false;
 		}
 
-
 		if($title && !$slug)
 		{
-			$slug = \dash\utility\filter::slug($title, null, 'persian');
+			$slug = $title;
 		}
+
+		$slug = str_replace(substr($slug, 0, strrpos($slug, '/')). '/', '', $slug);
+
+		$slug = \dash\utility\filter::slug($slug, null, 'persian');
 
 		$check_duplicate_slug = \dash\db\posts::get(['slug' => $slug, 'language' => $language, 'limit' => 1]);
 		if(isset($check_duplicate_slug['id']))
@@ -205,10 +201,8 @@ class posts
 			$type = 'post';
 		}
 
-
 		$comment = \dash\app::request('comment');
 		$comment = $comment ? 'open' : 'closed';
-
 
 		$count = \dash\app::request('count');
 		$order = \dash\app::request('order');
@@ -220,7 +214,74 @@ class posts
 			return false;
 		}
 
-		// $parent = \dash\app::request('parent');
+		$parent_url  = null;
+		$parent_slug = null;
+
+		$parent = \dash\app::request('parent');
+
+		if($parent)
+		{
+			$parent = \dash\coding::decode($parent);
+			if(!$parent)
+			{
+				\dash\notif::error(T_("Invalid parameter parent"), 'parent');
+				return false;
+			}
+
+			$parent_detail = \dash\db\posts::get(['id' => $parent, 'limit' => 1]);
+			if(!isset($parent_detail['slug']) || !isset($parent_detail['url']))
+			{
+				\dash\notif::error(T_("Parent post not found"), 'parent');
+				return false;
+			}
+
+			if($_id)
+			{
+				if(intval($parent) === intval($_id))
+				{
+					\dash\notif::error(T_("Can not set page as parent of self!"), 'parent');
+					return false;
+				}
+
+				$current_post_detail = \dash\db\posts::get(['id' => $_id, 'limit' => 1]);
+				if(isset($current_post_detail['parent']) && intval($current_post_detail['parent']) !== intval($parent))
+				{
+					$current_post_parent_detail = \dash\db\posts::get(['id' => $current_post_detail['parent'], 'limit' => 1]);
+
+					if(isset($current_post_parent_detail['slug']) && isset($current_post_parent_detail['url']))
+					{
+						$slug = str_replace($current_post_parent_detail['slug']. '-', '', $slug);
+						$url = str_replace($current_post_parent_detail['url']. '/', '', $url);
+
+						$parent_slug = $parent_detail['slug'];
+						$parent_url = $parent_detail['url'];
+					}
+				}
+				else
+				{
+					// no change in slug or url
+					$parent_slug = $parent_detail['slug'];
+					$parent_url = $parent_detail['url'];
+				}
+
+			}
+			else
+			{
+				$parent_slug = $parent_detail['slug'];
+				$parent_url = $parent_detail['url'];
+			}
+		}
+
+
+		if($parent_slug)
+		{
+			$slug = $parent_slug . '/'. $slug;
+		}
+
+		if($parent_url)
+		{
+			$url = $parent_url . '/'. $url;
+		}
 
 		$publishdate = \dash\app::request('publishdate');
 		$publishdate = \dash\utility\convert::to_en_number($publishdate);
@@ -265,7 +326,7 @@ class posts
 		$args['status']      = $status;
 		$args['excerpt']     = $excerpt;
 		$args['subtitle']    = $subtitle;
-		// $args['parent']   = $parent;
+		$args['parent']   = $parent;
 		$args['publishdate'] = $publishdate;
 
 		return $args;
@@ -283,7 +344,6 @@ class posts
 		{
 			$tag = $category;
 			$tag = explode(',', $tag);
-			$tag = array_map(function($_a){return trim($_a);}, $tag);
 			$tag = array_filter($tag);
 			$tag = array_unique($tag);
 

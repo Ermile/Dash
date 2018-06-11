@@ -70,6 +70,7 @@ class model
 			'status'      => \dash\request::post('status'),
 			'comment'     => \dash\request::post('comment'),
 			'language'    => \dash\request::post('language'),
+			'parent'      => \dash\request::post('parent'),
 		];
 
 		if(\dash\request::get('type'))

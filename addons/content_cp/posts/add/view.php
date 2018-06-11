@@ -19,6 +19,10 @@ class view
 		\dash\data::moduleType($moduleType);
 		\dash\data::listCats(\dash\app\term::cat_list());
 
+		$pageList = \dash\db\posts::get(['type' => 'page', 'status' => ["NOT IN", "('deleted')"]]);
+		$pageList = array_map(['\dash\app\posts', 'ready'], $pageList);
+		\dash\data::pageList($pageList);
+
 
 		$myTitle   = T_("Add new post");
 		$myDesc    = T_("Posts can contain keyword and category with title and descriptions.");
