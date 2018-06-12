@@ -24,7 +24,7 @@ class view
 			$perm_list['supervisor'] = [];
 		}
 
-		\dash\data::permGroup(array_keys($perm_list));
+		\dash\data::permGroup($perm_list);
 
 		if(\dash\request::get('id'))
 		{

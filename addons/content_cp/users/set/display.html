@@ -264,8 +264,8 @@
   <label for="permission">{%trans "Permission"%}</label>
   <select name="permission" class="ui dropdown" id="permission">
     <option value="" readonly>{%trans "No permission"%}</option>
-    {%for perm in permGroup%}
-      <option value="{{perm}}" {%if dataRow.permission == perm%} selected {%endif%} >{%trans perm%}</option>
+    {%for permKey, permVal in permGroup%}
+      <option value="{{permKey}}" {%if dataRow.permission == permKey%} selected {%endif%} >{%set myPermTitle = permVal.title%}{%trans myPermTitle%}</option>
     {%endfor%}
   </select>
 </div>
