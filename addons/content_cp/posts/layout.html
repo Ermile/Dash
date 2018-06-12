@@ -19,7 +19,7 @@
 
 
 {%block iUrl %}
-<a href="{{url.base}}/{{dataRow.url}}" class="msg block ltr" target="_blank"><small>{{url.domain}}/</small>{{dataRow.url}}</a>
+<a href="{{url.base}}/{{dataRow.url}}" class="msg block ltr" target="_blank" title='{%trans "Url of this post."%} {%trans "You can change by set slug and category or parent for this post"%}'><i class="sf-share floatLa"></i> <small>{{url.domain}}/</small>{{dataRow.url}}</a>
 {% endblock %}
 
 
