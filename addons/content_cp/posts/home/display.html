@@ -50,20 +50,27 @@
 {%block htmlTable%}
  <div class="cbox fs12">
   <table class="tbl bordered1">
-    <thead class="primary">
+    <thead class="primary fs09">
       <tr>
         <th data-sort="{{sortLink.title.order}}"><a href='{{sortLink.title.link}}'>{%trans "Title"%}</a></th>
+        <th class="s0 max-w200" data-sort="{{sortLink.slug.order}}"><a href='{{sortLink.slug.link}}'>{%trans "Slug"%}</a></th>
+        <th data-sort="{{sortLink.category.order}}"><a href='{{sortLink.category.link}}'>{%trans "Categories"%}</a></th>
         <th data-sort="{{sortLink.publishdate.order}}"><a href='{{sortLink.publishdate.link}}'>{%trans "Publish date"%}</a></th>
+        <th data-sort="{{sortLink.comments.order}}"><a href='{{sortLink.comments.link}}'><i class="sf-comments fs16"></i></a></th>
         <th data-sort="{{sortLink.status.order}}"><a href='{{sortLink.status.link}}'>{%trans "Status"%}</a></th>
       </tr>
     </thead>
 
     <tbody>
       {%for key, value in dataTable%}
-      <tr {%if value.status=='deleted'%} class='negative'{%endif%}>
-        <td><a href="{{url.base}}/{{value.url}}" target="_blank"><span class="sf-share"></span></a>
-        <a href="{{url.here}}/posts/edit?id={{value.id}}">{{value.title}}</a></td>
-        <td class="collapsing">{{value.publishdate | tdate}}</td>
+      <tr class="{%if value.status=='deleted'%}negative{%elseif value.status=='draft'%}warning{%endif%}">
+        <td>
+          <a href="{{url.here}}/posts/edit?id={{value.id}}">{{value.title}}</a>
+        </td>
+        <td class="s0 m0" title="{{value.url}}"><a href="{{url.base}}/{{value.url}}" target="_blank"><span class="sf-share"></span> {{value.slug}}</a></td>
+        <td class="collapsing">{{value.category}}</td>
+        <td class="collapsing" title="{{value.publishdate | tdate(true)}}">{{value.publishdate | sdate('year')}}</td>
+        <td class="collapsing txtC">{%if value.comments%}{{value.comments | fitNumber}}{%else%}<span class="sf-mute">-</span>{%endif%}</td>
         <td class="collapsing">{%set myStatus = value.status | capitalize %}<a href="{{url.here}}/posts?status={{value.status}}">{%trans myStatus%}</a></td>
       </tr>
       {%endfor%}
