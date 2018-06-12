@@ -10,8 +10,8 @@ class view
 		\dash\data::page_pictogram('user');
 		\dash\permission::access('cpUsersView');
 
-		\dash\data::page_title(T_('Add new user'));
-		\dash\data::page_desc(T_('You can add new user and after add with minimal data, we allow you to add extra detail of user.'));
+		\dash\data::page_title(T_('User detail'));
+		\dash\data::page_desc(T_('You can check all details of this user.'));
 
 
 		\dash\data::badge_link(\dash\url::this());
