@@ -142,9 +142,9 @@
 
   {%if not requestGET.type or requestGET.type == 'post' %}
     {%if options.slider_tag%}
-      <div class="">
+      <div class="specialTags mB5">
         {%for key, value in options.slider_tag%}
-          <a class="badge {%if value in postTag%} success {%endif%}" href="#">{{value}}</a>
+          <a class="badge {%if key in postTag%} success{%endif%}" href="#" title="{%trans value%}">{%if key in postTag%}<i class="sf-check compact"></i> {%endif%}{{key}}</a>
         {%endfor%}
       </div>
     {%endif%}
