@@ -421,7 +421,16 @@ class TransStatic
 	echo T_("unit_id");
 	echo T_("language");
 	echo T_("meta");
-
+	echo T_("website");
+	echo T_("facebook");
+	echo T_("twitter");
+	echo T_("instagram");
+	echo T_("linkedin");
+	echo T_("gmail");
+	echo T_("sidebar");
+	echo T_("firstname");
+	echo T_("lastname");
+	echo T_("bio");
 
 
 

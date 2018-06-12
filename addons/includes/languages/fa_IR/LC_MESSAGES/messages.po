@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Dash - Persian\n"
-"POT-Creation-Date: 2018-06-12 08:49+0430\n"
-"PO-Revision-Date: 2018-06-12 08:49+0430\n"
+"POT-Creation-Date: 2018-06-12 08:52+0430\n"
+"PO-Revision-Date: 2018-06-12 08:52+0430\n"
 "Last-Translator: Javad <J.Evazzadeh@gmail.com>\n"
 "Language-Team: Ermile <J.Evazzadeh@gmail.com>\n"
 "Language: fa_IR\n"
@@ -1529,7 +1529,7 @@ msgid "Active"
 msgstr "فعال"
 
 #: addons/includes/languages/trans_dash.php:97
-#: addons/includes/languages/trans_static.php:865
+#: addons/includes/languages/trans_static.php:874
 msgid "Awaiting"
 msgstr "در حال انتظار"
 
@@ -1558,7 +1558,7 @@ msgid "No permission"
 msgstr "بدون سطح دسترسی"
 
 #: addons/includes/languages/trans_dash.php:104
-#: addons/includes/languages/trans_static.php:870
+#: addons/includes/languages/trans_static.php:879
 msgid "Email"
 msgstr "رایانامه"
 
@@ -2006,7 +2006,7 @@ msgid "Users"
 msgstr "کاربران"
 
 #: addons/includes/languages/trans_dash.php:236
-#: addons/includes/languages/trans_static.php:869
+#: addons/includes/languages/trans_static.php:878
 msgid "SMS"
 msgstr "پیام کوتاه"
 
@@ -2579,7 +2579,7 @@ msgid "Week"
 msgstr "هفته"
 
 #: addons/includes/languages/trans_dash.php:448
-#: addons/includes/languages/trans_static.php:515
+#: addons/includes/languages/trans_static.php:524
 msgid "Day"
 msgstr "روز"
 
@@ -2738,7 +2738,7 @@ msgid "total"
 msgstr "مجموع"
 
 #: addons/includes/languages/trans_dash.php:496
-#: addons/includes/languages/trans_static.php:829
+#: addons/includes/languages/trans_static.php:838
 msgid "discount"
 msgstr "تخفیف"
 
@@ -3650,7 +3650,7 @@ msgid "Qom"
 msgstr "قم"
 
 #: addons/includes/languages/trans_static.php:64
-#: addons/includes/languages/trans_static.php:480
+#: addons/includes/languages/trans_static.php:489
 msgid "qom"
 msgstr "قم"
 
@@ -3911,7 +3911,7 @@ msgid "visitor"
 msgstr "بازدیدکننده"
 
 #: addons/includes/languages/trans_static.php:152
-#: addons/includes/languages/trans_static.php:456
+#: addons/includes/languages/trans_static.php:465
 msgid "Editor"
 msgstr "ویراستار"
 
@@ -3920,7 +3920,7 @@ msgid "editor"
 msgstr "ویراستار"
 
 #: addons/includes/languages/trans_static.php:154
-#: addons/includes/languages/trans_static.php:455
+#: addons/includes/languages/trans_static.php:464
 msgid "Admin"
 msgstr "مدیریت"
 
@@ -3929,7 +3929,7 @@ msgid "Administrator"
 msgstr "مدیر"
 
 #: addons/includes/languages/trans_static.php:157
-#: addons/includes/languages/trans_static.php:457
+#: addons/includes/languages/trans_static.php:466
 msgid "Writer"
 msgstr "نویسنده"
 
@@ -4099,7 +4099,7 @@ msgid "logout"
 msgstr "خروج از سیستم"
 
 #: addons/includes/languages/trans_static.php:211
-#: addons/includes/languages/trans_static.php:787
+#: addons/includes/languages/trans_static.php:796
 msgid "lock"
 msgstr "قفل سیستم"
 
@@ -4140,12 +4140,12 @@ msgid "Site"
 msgstr "سایت"
 
 #: addons/includes/languages/trans_static.php:229
-#: addons/includes/languages/trans_static.php:783
+#: addons/includes/languages/trans_static.php:792
 msgid "enable"
 msgstr "فعال"
 
 #: addons/includes/languages/trans_static.php:230
-#: addons/includes/languages/trans_static.php:784
+#: addons/includes/languages/trans_static.php:793
 msgid "disable"
 msgstr "غیرفعال"
 
@@ -4730,1676 +4730,1716 @@ msgstr "زبان"
 msgid "meta"
 msgstr "متا"
 
+#: addons/includes/languages/trans_static.php:424
+msgid "website"
+msgstr "وب‌سایت"
+
+#: addons/includes/languages/trans_static.php:425
+msgid "facebook"
+msgstr "فیسبوک"
+
+#: addons/includes/languages/trans_static.php:426
+msgid "twitter"
+msgstr "توییتر"
+
+#: addons/includes/languages/trans_static.php:427
+msgid "instagram"
+msgstr "اینستاگرام"
+
+#: addons/includes/languages/trans_static.php:428
+msgid "linkedin"
+msgstr "لینکدین"
+
 #: addons/includes/languages/trans_static.php:429
+msgid "gmail"
+msgstr "جیمیل"
+
+#: addons/includes/languages/trans_static.php:430
+msgid "sidebar"
+msgstr "نوار کناری"
+
+#: addons/includes/languages/trans_static.php:431
+msgid "firstname"
+msgstr "نام"
+
+#: addons/includes/languages/trans_static.php:432
+msgid "lastname"
+msgstr "نام‌خانوادگی"
+
+#: addons/includes/languages/trans_static.php:433
+msgid "bio"
+msgstr "زندگی‌نامه"
+
+#: addons/includes/languages/trans_static.php:438
 msgid "cpPermissionAdd"
 msgstr "افزودن سطح دسترسی در کنترل پنل"
 
-#: addons/includes/languages/trans_static.php:430
+#: addons/includes/languages/trans_static.php:439
 msgid "cpPermissionEdit"
 msgstr "ویرایش سطح دسترسی در کنترل پنل"
 
-#: addons/includes/languages/trans_static.php:431
+#: addons/includes/languages/trans_static.php:440
 msgid "cpPermissionDelete"
 msgstr "حذف سطح دسترسی  در کنترل پنل"
 
-#: addons/includes/languages/trans_static.php:432
+#: addons/includes/languages/trans_static.php:441
 msgid "cpPermissionView"
 msgstr "نمایش سطوح دسترسی  در کنترل پنل"
 
-#: addons/includes/languages/trans_static.php:433
+#: addons/includes/languages/trans_static.php:442
 msgid "cpCommentsEdit"
 msgstr "ویرایش دیدگاه در کنترل پنل"
 
-#: addons/includes/languages/trans_static.php:434
+#: addons/includes/languages/trans_static.php:443
 msgid "cpCommentsView"
 msgstr "نمایش دیدگاه در کنترل پنل"
 
-#: addons/includes/languages/trans_static.php:435
+#: addons/includes/languages/trans_static.php:444
 msgid "contentCp"
 msgstr "محتوای کنترل‌پنل"
 
-#: addons/includes/languages/trans_static.php:436
+#: addons/includes/languages/trans_static.php:445
 msgid "cpUsersView"
 msgstr "نمایش کاربران در کنترل پنل"
 
-#: addons/includes/languages/trans_static.php:437
+#: addons/includes/languages/trans_static.php:446
 msgid "cpUsersEdit"
 msgstr "ویرایش کاربران در کنترل پنل"
 
-#: addons/includes/languages/trans_static.php:438
+#: addons/includes/languages/trans_static.php:447
 msgid "cpUsersAdd"
 msgstr "افزودن کاربر در کنترل پنل"
 
-#: addons/includes/languages/trans_static.php:439
+#: addons/includes/languages/trans_static.php:448
 msgid "cpCategoryView"
 msgstr "نمایش دسته‌بندی‌ها در کنترل پنل"
 
-#: addons/includes/languages/trans_static.php:440
+#: addons/includes/languages/trans_static.php:449
 msgid "cpTagView"
 msgstr "نایش کلید‌واژه‌ها در کنترل پنل"
 
-#: addons/includes/languages/trans_static.php:441
+#: addons/includes/languages/trans_static.php:450
 msgid "cpCategoryEdit"
 msgstr "ویرایش دسته‌بندی‌ها  در کنترل پنل"
 
-#: addons/includes/languages/trans_static.php:442
+#: addons/includes/languages/trans_static.php:451
 msgid "cpTagEdit"
 msgstr "ویرایش کلید‌واژه‌ها در کنترل پنل"
 
-#: addons/includes/languages/trans_static.php:443
+#: addons/includes/languages/trans_static.php:452
 msgid "cpCategoryAdd"
 msgstr "افزودن دسته‌بندی جدید‌ در کنترل پنل"
 
-#: addons/includes/languages/trans_static.php:444
+#: addons/includes/languages/trans_static.php:453
 msgid "cpTagAdd"
 msgstr "افزودن کلیدواژه در کنترل پنل"
 
-#: addons/includes/languages/trans_static.php:445
+#: addons/includes/languages/trans_static.php:454
 msgid "cpBackup"
 msgstr "پشتیبا‌ن‌گیری"
 
-#: addons/includes/languages/trans_static.php:446
+#: addons/includes/languages/trans_static.php:455
 msgid "cpPageAdd"
 msgstr "افزودن صفحه‌ در کنترل پنل"
 
-#: addons/includes/languages/trans_static.php:447
+#: addons/includes/languages/trans_static.php:456
 msgid "cpPostsAdd"
 msgstr "افزودن خبر در کنترل پنل"
 
-#: addons/includes/languages/trans_static.php:448
+#: addons/includes/languages/trans_static.php:457
 msgid "cpPageEdit"
 msgstr "ویرایش صفحه در کنترل پنل"
 
-#: addons/includes/languages/trans_static.php:449
+#: addons/includes/languages/trans_static.php:458
 msgid "cpPostsEdit"
 msgstr "ویرایش خبر در کنترل پنل"
 
-#: addons/includes/languages/trans_static.php:450
+#: addons/includes/languages/trans_static.php:459
 msgid "cpPageView"
 msgstr "نمایش لیست صفحات در کنترل پنل"
 
-#: addons/includes/languages/trans_static.php:451
+#: addons/includes/languages/trans_static.php:460
 msgid "cpPostsView"
 msgstr "نمایش لیست اخبار در کنترل پنل"
 
-#: addons/includes/languages/trans_static.php:461
+#: addons/includes/languages/trans_static.php:470
 msgid "east azerbaijan"
 msgstr "آذربایجان شرقی"
 
-#: addons/includes/languages/trans_static.php:462
+#: addons/includes/languages/trans_static.php:471
 msgid "west azerbaijan"
 msgstr "آذربایجان غربی"
 
-#: addons/includes/languages/trans_static.php:463
+#: addons/includes/languages/trans_static.php:472
 msgid "ardabil"
 msgstr "اردبیل"
 
-#: addons/includes/languages/trans_static.php:464
+#: addons/includes/languages/trans_static.php:473
 msgid "esfahan"
 msgstr "اصفهان"
 
-#: addons/includes/languages/trans_static.php:465
+#: addons/includes/languages/trans_static.php:474
 msgid "alborz"
 msgstr "البرز"
 
-#: addons/includes/languages/trans_static.php:466
+#: addons/includes/languages/trans_static.php:475
 msgid "eilam"
 msgstr "ایلام"
 
-#: addons/includes/languages/trans_static.php:467
+#: addons/includes/languages/trans_static.php:476
 msgid "bushehr"
 msgstr "بوشهر"
 
-#: addons/includes/languages/trans_static.php:468
+#: addons/includes/languages/trans_static.php:477
 msgid "tehran"
 msgstr "تهران"
 
-#: addons/includes/languages/trans_static.php:469
+#: addons/includes/languages/trans_static.php:478
 msgid "Asia/Tehran"
 msgstr "آسیا/تهران"
 
-#: addons/includes/languages/trans_static.php:470
+#: addons/includes/languages/trans_static.php:479
 msgid "chaharmahal and bakhtiari"
 msgstr "چهارمحال و بختیاری"
 
-#: addons/includes/languages/trans_static.php:471
+#: addons/includes/languages/trans_static.php:480
 msgid "south khorasan"
 msgstr "خراسان جنوبی"
 
-#: addons/includes/languages/trans_static.php:472
+#: addons/includes/languages/trans_static.php:481
 msgid "razavi khorasan"
 msgstr "خراسان رضوی"
 
-#: addons/includes/languages/trans_static.php:473
+#: addons/includes/languages/trans_static.php:482
 msgid "north khorasan"
 msgstr "خراسان شمالی"
 
-#: addons/includes/languages/trans_static.php:474
+#: addons/includes/languages/trans_static.php:483
 msgid "khuzestan"
 msgstr "خوزستان"
 
-#: addons/includes/languages/trans_static.php:475
+#: addons/includes/languages/trans_static.php:484
 msgid "zanjan"
 msgstr "زنجان"
 
-#: addons/includes/languages/trans_static.php:476
+#: addons/includes/languages/trans_static.php:485
 msgid "semnan"
 msgstr "سمنان"
 
-#: addons/includes/languages/trans_static.php:477
+#: addons/includes/languages/trans_static.php:486
 msgid "sistan and baluchestan"
 msgstr "سیستان و بلوچستان"
 
-#: addons/includes/languages/trans_static.php:478
+#: addons/includes/languages/trans_static.php:487
 msgid "fars"
 msgstr "فارس"
 
-#: addons/includes/languages/trans_static.php:479
+#: addons/includes/languages/trans_static.php:488
 msgid "qazvin"
 msgstr "قزوین"
 
-#: addons/includes/languages/trans_static.php:481
+#: addons/includes/languages/trans_static.php:490
 msgid "kordestan"
 msgstr "کردستان"
 
-#: addons/includes/languages/trans_static.php:482
+#: addons/includes/languages/trans_static.php:491
 msgid "kerman"
 msgstr "کرمان"
 
-#: addons/includes/languages/trans_static.php:483
+#: addons/includes/languages/trans_static.php:492
 msgid "kermanshah"
 msgstr "کرمانشاه"
 
-#: addons/includes/languages/trans_static.php:484
+#: addons/includes/languages/trans_static.php:493
 msgid "kohgiluyeh and boyerahmad"
 msgstr "کهکیلویه و بویراحمد"
 
-#: addons/includes/languages/trans_static.php:485
+#: addons/includes/languages/trans_static.php:494
 msgid "golestan"
 msgstr "گلستان"
 
-#: addons/includes/languages/trans_static.php:486
+#: addons/includes/languages/trans_static.php:495
 msgid "gilan"
 msgstr "گیلان"
 
-#: addons/includes/languages/trans_static.php:487
+#: addons/includes/languages/trans_static.php:496
 msgid "lorestan"
 msgstr "لرستان"
 
-#: addons/includes/languages/trans_static.php:488
+#: addons/includes/languages/trans_static.php:497
 msgid "mazandaran"
 msgstr "مازندران"
 
-#: addons/includes/languages/trans_static.php:489
+#: addons/includes/languages/trans_static.php:498
 msgid "markazi"
 msgstr "مرکزی"
 
-#: addons/includes/languages/trans_static.php:490
+#: addons/includes/languages/trans_static.php:499
 msgid "hormozgan"
 msgstr "هرمزگان"
 
-#: addons/includes/languages/trans_static.php:491
+#: addons/includes/languages/trans_static.php:500
 msgid "hamedan"
 msgstr "همدان"
 
-#: addons/includes/languages/trans_static.php:492
+#: addons/includes/languages/trans_static.php:501
 msgid "yazd"
 msgstr "یزد"
 
-#: addons/includes/languages/trans_static.php:496
+#: addons/includes/languages/trans_static.php:505
 msgid "Saderat"
 msgstr "بانک صادرات"
 
-#: addons/includes/languages/trans_static.php:497
+#: addons/includes/languages/trans_static.php:506
 msgid "Mellat"
 msgstr "بانک ملت"
 
-#: addons/includes/languages/trans_static.php:498
+#: addons/includes/languages/trans_static.php:507
 msgid "Tejarat"
 msgstr "بانک تجارت"
 
-#: addons/includes/languages/trans_static.php:499
+#: addons/includes/languages/trans_static.php:508
 msgid "Melli"
 msgstr "بانک ملی"
 
-#: addons/includes/languages/trans_static.php:500
+#: addons/includes/languages/trans_static.php:509
 msgid "Sepah"
 msgstr "بانک سپه"
 
-#: addons/includes/languages/trans_static.php:501
+#: addons/includes/languages/trans_static.php:510
 msgid "Keshavarzi"
 msgstr "بانک کشاورزی"
 
-#: addons/includes/languages/trans_static.php:502
+#: addons/includes/languages/trans_static.php:511
 msgid "Maskan"
 msgstr "بانک مسکن"
 
-#: addons/includes/languages/trans_static.php:503
+#: addons/includes/languages/trans_static.php:512
 msgid "Refah"
 msgstr "بانک رفاه"
 
-#: addons/includes/languages/trans_static.php:504
+#: addons/includes/languages/trans_static.php:513
 msgid "Novin"
 msgstr "بانک نوین"
 
-#: addons/includes/languages/trans_static.php:505
+#: addons/includes/languages/trans_static.php:514
 msgid "Ansar"
 msgstr "بانک انصار"
 
-#: addons/includes/languages/trans_static.php:506
+#: addons/includes/languages/trans_static.php:515
 msgid "Pasargad"
 msgstr "بانک پاسارگاد"
 
-#: addons/includes/languages/trans_static.php:507
+#: addons/includes/languages/trans_static.php:516
 msgid "Saman"
 msgstr "بانک سامان"
 
-#: addons/includes/languages/trans_static.php:508
+#: addons/includes/languages/trans_static.php:517
 msgid "Sina"
 msgstr "بانک سینا"
 
-#: addons/includes/languages/trans_static.php:509
+#: addons/includes/languages/trans_static.php:518
 msgid "Post"
 msgstr "نوشته"
 
-#: addons/includes/languages/trans_static.php:510
+#: addons/includes/languages/trans_static.php:519
 msgid "Ghavamin"
 msgstr "بانک قوامین"
 
-#: addons/includes/languages/trans_static.php:511
+#: addons/includes/languages/trans_static.php:520
 msgid "Taavon"
 msgstr "بانک تعاون"
 
-#: addons/includes/languages/trans_static.php:512
+#: addons/includes/languages/trans_static.php:521
 msgid "Shahr"
 msgstr "بانک شهر"
 
-#: addons/includes/languages/trans_static.php:513
+#: addons/includes/languages/trans_static.php:522
 msgid "Ayande"
 msgstr "بانک آینده"
 
-#: addons/includes/languages/trans_static.php:514
+#: addons/includes/languages/trans_static.php:523
 msgid "Sarmayeh"
 msgstr "بانک سرمایه"
 
-#: addons/includes/languages/trans_static.php:516
+#: addons/includes/languages/trans_static.php:525
 msgid "Hekmat"
 msgstr "بانک حکمت"
 
-#: addons/includes/languages/trans_static.php:517
+#: addons/includes/languages/trans_static.php:526
 msgid "Iranzamin"
 msgstr "بانک ایران زمین"
 
-#: addons/includes/languages/trans_static.php:518
+#: addons/includes/languages/trans_static.php:527
 msgid "Karafarin"
 msgstr "بانک کار آفرین"
 
-#: addons/includes/languages/trans_static.php:519
+#: addons/includes/languages/trans_static.php:528
 msgid "Gardeshgari"
 msgstr "بانک گردشگری"
 
-#: addons/includes/languages/trans_static.php:520
+#: addons/includes/languages/trans_static.php:529
 msgid "Madan"
 msgstr "بانک مدائن"
 
-#: addons/includes/languages/trans_static.php:521
+#: addons/includes/languages/trans_static.php:530
 msgid "Tsaderat"
 msgstr "بانک صادرات"
 
-#: addons/includes/languages/trans_static.php:522
+#: addons/includes/languages/trans_static.php:531
 msgid "Khavarmiyane"
 msgstr "بانک خاور میانه"
 
-#: addons/includes/languages/trans_static.php:523
+#: addons/includes/languages/trans_static.php:532
 msgid "Ivbb"
 msgstr "بانک مشترک ایران و ونزوئلا"
 
-#: addons/includes/languages/trans_static.php:524
+#: addons/includes/languages/trans_static.php:533
 msgid "Irkish"
 msgstr "ایران کیش"
 
-#: addons/includes/languages/trans_static.php:525
+#: addons/includes/languages/trans_static.php:534
 msgid "Asanpardakht"
 msgstr "آسان پرداخت"
 
-#: addons/includes/languages/trans_static.php:526
+#: addons/includes/languages/trans_static.php:535
 msgid "Zarinpal"
 msgstr "زرین پال"
 
-#: addons/includes/languages/trans_static.php:527
+#: addons/includes/languages/trans_static.php:536
 msgid "Payir"
 msgstr "پی‌آی‌آر"
 
-#: addons/includes/languages/trans_static.php:533
+#: addons/includes/languages/trans_static.php:542
 msgid "afghanistan"
 msgstr "افغانستان"
 
-#: addons/includes/languages/trans_static.php:534
+#: addons/includes/languages/trans_static.php:543
 msgid "åland"
 msgstr "ایلند"
 
-#: addons/includes/languages/trans_static.php:535
+#: addons/includes/languages/trans_static.php:544
 msgid "albania"
 msgstr "آلبانی"
 
-#: addons/includes/languages/trans_static.php:536
+#: addons/includes/languages/trans_static.php:545
 msgid "algeria"
 msgstr "الجزیره"
 
-#: addons/includes/languages/trans_static.php:537
+#: addons/includes/languages/trans_static.php:546
 msgid "american samoa"
 msgstr "ساموآی آمریکا"
 
-#: addons/includes/languages/trans_static.php:538
+#: addons/includes/languages/trans_static.php:547
 msgid "andorra"
 msgstr "آندورا"
 
-#: addons/includes/languages/trans_static.php:539
+#: addons/includes/languages/trans_static.php:548
 msgid "angola"
 msgstr "آنگولا"
 
-#: addons/includes/languages/trans_static.php:540
+#: addons/includes/languages/trans_static.php:549
 msgid "anguilla"
 msgstr "آنگویلا"
 
-#: addons/includes/languages/trans_static.php:541
+#: addons/includes/languages/trans_static.php:550
 msgid "antarctica"
 msgstr "قطب جنوب"
 
-#: addons/includes/languages/trans_static.php:542
+#: addons/includes/languages/trans_static.php:551
 msgid "antigua and barbuda"
 msgstr "آنتیگوا و باربودا"
 
-#: addons/includes/languages/trans_static.php:543
+#: addons/includes/languages/trans_static.php:552
 msgid "argentina"
 msgstr "آرژانتین"
 
-#: addons/includes/languages/trans_static.php:544
+#: addons/includes/languages/trans_static.php:553
 msgid "armenia"
 msgstr "آرمانیا"
 
-#: addons/includes/languages/trans_static.php:545
+#: addons/includes/languages/trans_static.php:554
 msgid "aruba"
 msgstr "آرابا"
 
-#: addons/includes/languages/trans_static.php:546
+#: addons/includes/languages/trans_static.php:555
 msgid "australia"
 msgstr "استرالیا"
 
-#: addons/includes/languages/trans_static.php:547
+#: addons/includes/languages/trans_static.php:556
 msgid "austria"
 msgstr "اتریش"
 
-#: addons/includes/languages/trans_static.php:548
+#: addons/includes/languages/trans_static.php:557
 msgid "azerbaijan"
 msgstr "آذربایجان"
 
-#: addons/includes/languages/trans_static.php:549
+#: addons/includes/languages/trans_static.php:558
 msgid "bahamas"
 msgstr "باهاما"
 
-#: addons/includes/languages/trans_static.php:550
+#: addons/includes/languages/trans_static.php:559
 msgid "bahrain"
 msgstr "باهری"
 
-#: addons/includes/languages/trans_static.php:551
+#: addons/includes/languages/trans_static.php:560
 msgid "bangladesh"
 msgstr "بنگلادش"
 
-#: addons/includes/languages/trans_static.php:552
+#: addons/includes/languages/trans_static.php:561
 msgid "barbados"
 msgstr "باربادوس"
 
-#: addons/includes/languages/trans_static.php:553
+#: addons/includes/languages/trans_static.php:562
 msgid "belarus"
 msgstr "بلاروس"
 
-#: addons/includes/languages/trans_static.php:554
+#: addons/includes/languages/trans_static.php:563
 msgid "belgium"
 msgstr "بلژیک"
 
-#: addons/includes/languages/trans_static.php:555
+#: addons/includes/languages/trans_static.php:564
 msgid "belize"
 msgstr "بیگانه"
 
-#: addons/includes/languages/trans_static.php:556
+#: addons/includes/languages/trans_static.php:565
 msgid "benin"
 msgstr "بنین"
 
-#: addons/includes/languages/trans_static.php:557
+#: addons/includes/languages/trans_static.php:566
 msgid "bermuda"
 msgstr "برمودا"
 
-#: addons/includes/languages/trans_static.php:558
+#: addons/includes/languages/trans_static.php:567
 msgid "bhutan"
 msgstr "بوتان"
 
-#: addons/includes/languages/trans_static.php:559
+#: addons/includes/languages/trans_static.php:568
 msgid "bolivia"
 msgstr "بولیوی"
 
-#: addons/includes/languages/trans_static.php:560
+#: addons/includes/languages/trans_static.php:569
 msgid "bonaire"
 msgstr "بونیر"
 
-#: addons/includes/languages/trans_static.php:561
+#: addons/includes/languages/trans_static.php:570
 msgid "bosnia and herzegovina"
 msgstr "بوسنی و هرزگوین"
 
-#: addons/includes/languages/trans_static.php:562
+#: addons/includes/languages/trans_static.php:571
 msgid "botswana"
 msgstr "بوتسوانا"
 
-#: addons/includes/languages/trans_static.php:563
+#: addons/includes/languages/trans_static.php:572
 msgid "bouvet island"
 msgstr "جزیره بوک"
 
-#: addons/includes/languages/trans_static.php:564
+#: addons/includes/languages/trans_static.php:573
 msgid "brazil"
 msgstr "برزیل"
 
-#: addons/includes/languages/trans_static.php:565
+#: addons/includes/languages/trans_static.php:574
 msgid "british indian ocean territory"
 msgstr "قلمرو اقیانوس هند بریتانیا"
 
-#: addons/includes/languages/trans_static.php:566
+#: addons/includes/languages/trans_static.php:575
 msgid "british virgin islands"
 msgstr "جزایر باکره بریتانیایی"
 
-#: addons/includes/languages/trans_static.php:567
+#: addons/includes/languages/trans_static.php:576
 msgid "brunei"
 msgstr "برونئی"
 
-#: addons/includes/languages/trans_static.php:568
+#: addons/includes/languages/trans_static.php:577
 msgid "bulgaria"
 msgstr "بلغارستان"
 
-#: addons/includes/languages/trans_static.php:569
+#: addons/includes/languages/trans_static.php:578
 msgid "burkina faso"
 msgstr "بورکینافاسو"
 
-#: addons/includes/languages/trans_static.php:570
+#: addons/includes/languages/trans_static.php:579
 msgid "burundi"
 msgstr "بوروندی"
 
-#: addons/includes/languages/trans_static.php:571
+#: addons/includes/languages/trans_static.php:580
 msgid "cambodia"
 msgstr "کامبوج"
 
-#: addons/includes/languages/trans_static.php:572
+#: addons/includes/languages/trans_static.php:581
 msgid "cameroon"
 msgstr "کامرون"
 
-#: addons/includes/languages/trans_static.php:573
+#: addons/includes/languages/trans_static.php:582
 msgid "canada"
 msgstr "کانادایی"
 
-#: addons/includes/languages/trans_static.php:574
+#: addons/includes/languages/trans_static.php:583
 msgid "cape verde"
 msgstr "کلاه سرخ"
 
-#: addons/includes/languages/trans_static.php:575
+#: addons/includes/languages/trans_static.php:584
 msgid "cayman islands"
 msgstr "جزایر کیمن"
 
-#: addons/includes/languages/trans_static.php:576
+#: addons/includes/languages/trans_static.php:585
 msgid "central african republic"
 msgstr "جمهوری آفریقای مرکزی"
 
-#: addons/includes/languages/trans_static.php:577
+#: addons/includes/languages/trans_static.php:586
 msgid "chad"
 msgstr "چاد"
 
-#: addons/includes/languages/trans_static.php:578
+#: addons/includes/languages/trans_static.php:587
 msgid "chile"
 msgstr "شیلی"
 
-#: addons/includes/languages/trans_static.php:579
+#: addons/includes/languages/trans_static.php:588
 msgid "china"
 msgstr "چین"
 
-#: addons/includes/languages/trans_static.php:580
+#: addons/includes/languages/trans_static.php:589
 msgid "christmas island"
 msgstr "جزیره کریسمس"
 
-#: addons/includes/languages/trans_static.php:581
+#: addons/includes/languages/trans_static.php:590
 msgid "cocos (keeling) islands"
 msgstr "جزایر کوکوس"
 
-#: addons/includes/languages/trans_static.php:582
+#: addons/includes/languages/trans_static.php:591
 msgid "colombia"
 msgstr "کلمبیا"
 
-#: addons/includes/languages/trans_static.php:583
+#: addons/includes/languages/trans_static.php:592
 msgid "comoros"
 msgstr "کومور"
 
-#: addons/includes/languages/trans_static.php:584
+#: addons/includes/languages/trans_static.php:593
 msgid "cook islands"
 msgstr "جزایر کوک"
 
-#: addons/includes/languages/trans_static.php:585
+#: addons/includes/languages/trans_static.php:594
 msgid "costa rica"
 msgstr "کاستاریکا"
 
-#: addons/includes/languages/trans_static.php:586
+#: addons/includes/languages/trans_static.php:595
 msgid "croatia"
 msgstr "کرواتی"
 
-#: addons/includes/languages/trans_static.php:587
+#: addons/includes/languages/trans_static.php:596
 msgid "cuba"
 msgstr "کوبا"
 
-#: addons/includes/languages/trans_static.php:588
+#: addons/includes/languages/trans_static.php:597
 msgid "curacao"
 msgstr "کوراسائو"
 
-#: addons/includes/languages/trans_static.php:589
+#: addons/includes/languages/trans_static.php:598
 msgid "cyprus"
 msgstr "قبرس"
 
-#: addons/includes/languages/trans_static.php:590
+#: addons/includes/languages/trans_static.php:599
 msgid "czech republic"
 msgstr "جمهوری چک"
 
-#: addons/includes/languages/trans_static.php:591
+#: addons/includes/languages/trans_static.php:600
 msgid "democratic republic of the congo"
 msgstr "جمهوری دموکراتیک کنگو"
 
-#: addons/includes/languages/trans_static.php:592
+#: addons/includes/languages/trans_static.php:601
 msgid "denmark"
 msgstr "علامت"
 
-#: addons/includes/languages/trans_static.php:593
+#: addons/includes/languages/trans_static.php:602
 msgid "djibouti"
 msgstr "جیبوتی"
 
-#: addons/includes/languages/trans_static.php:594
+#: addons/includes/languages/trans_static.php:603
 msgid "dominica"
 msgstr "دومینیکا"
 
-#: addons/includes/languages/trans_static.php:595
+#: addons/includes/languages/trans_static.php:604
 msgid "dominican republic"
 msgstr "جمهوری دومینیکن"
 
-#: addons/includes/languages/trans_static.php:596
+#: addons/includes/languages/trans_static.php:605
 msgid "east timor"
 msgstr "تایمر شرقی"
 
-#: addons/includes/languages/trans_static.php:597
+#: addons/includes/languages/trans_static.php:606
 msgid "ecuador"
 msgstr "اکوادور"
 
-#: addons/includes/languages/trans_static.php:598
+#: addons/includes/languages/trans_static.php:607
 msgid "egypt"
 msgstr "مصر"
 
-#: addons/includes/languages/trans_static.php:599
+#: addons/includes/languages/trans_static.php:608
 msgid "el salvador"
 msgstr "السالوادور"
 
-#: addons/includes/languages/trans_static.php:600
+#: addons/includes/languages/trans_static.php:609
 msgid "equatorial guinea"
 msgstr "گینه استوایی"
 
-#: addons/includes/languages/trans_static.php:601
+#: addons/includes/languages/trans_static.php:610
 msgid "eritrea"
 msgstr "اریتره"
 
-#: addons/includes/languages/trans_static.php:602
+#: addons/includes/languages/trans_static.php:611
 msgid "estonia"
 msgstr "استونی"
 
-#: addons/includes/languages/trans_static.php:603
+#: addons/includes/languages/trans_static.php:612
 msgid "ethiopia"
 msgstr "اتیوپی"
 
-#: addons/includes/languages/trans_static.php:604
+#: addons/includes/languages/trans_static.php:613
 msgid "falkland islands"
 msgstr "جزایر فالکلند"
 
-#: addons/includes/languages/trans_static.php:605
+#: addons/includes/languages/trans_static.php:614
 msgid "faroe islands"
 msgstr "جزایر فارو"
 
-#: addons/includes/languages/trans_static.php:606
+#: addons/includes/languages/trans_static.php:615
 msgid "fiji"
 msgstr "فیجی"
 
-#: addons/includes/languages/trans_static.php:607
+#: addons/includes/languages/trans_static.php:616
 msgid "finland"
 msgstr "مالزی"
 
-#: addons/includes/languages/trans_static.php:608
+#: addons/includes/languages/trans_static.php:617
 msgid "france"
 msgstr "فرانسه"
 
-#: addons/includes/languages/trans_static.php:609
+#: addons/includes/languages/trans_static.php:618
 msgid "french guiana"
 msgstr "گویان فرانسوی"
 
-#: addons/includes/languages/trans_static.php:610
+#: addons/includes/languages/trans_static.php:619
 msgid "french polynesia"
 msgstr "پلینزی فرانسوی"
 
-#: addons/includes/languages/trans_static.php:611
+#: addons/includes/languages/trans_static.php:620
 msgid "french southern territories"
 msgstr "سرزمین های جنوبی فرانسوی"
 
-#: addons/includes/languages/trans_static.php:612
+#: addons/includes/languages/trans_static.php:621
 msgid "gabon"
 msgstr "گابون"
 
-#: addons/includes/languages/trans_static.php:613
+#: addons/includes/languages/trans_static.php:622
 msgid "gambia"
 msgstr "گامبیا"
 
-#: addons/includes/languages/trans_static.php:614
+#: addons/includes/languages/trans_static.php:623
 msgid "georgia"
 msgstr "جورجیا"
 
-#: addons/includes/languages/trans_static.php:615
+#: addons/includes/languages/trans_static.php:624
 msgid "germany"
 msgstr "آلمان"
 
-#: addons/includes/languages/trans_static.php:616
+#: addons/includes/languages/trans_static.php:625
 msgid "ghana"
 msgstr "غنا"
 
-#: addons/includes/languages/trans_static.php:617
+#: addons/includes/languages/trans_static.php:626
 msgid "gibraltar"
 msgstr "جبل الطارق"
 
-#: addons/includes/languages/trans_static.php:618
+#: addons/includes/languages/trans_static.php:627
 msgid "greece"
 msgstr "یونان"
 
-#: addons/includes/languages/trans_static.php:619
+#: addons/includes/languages/trans_static.php:628
 msgid "greenland"
 msgstr "گرینلند"
 
-#: addons/includes/languages/trans_static.php:620
+#: addons/includes/languages/trans_static.php:629
 msgid "grenada"
 msgstr "گرانادا"
 
-#: addons/includes/languages/trans_static.php:621
+#: addons/includes/languages/trans_static.php:630
 msgid "guadeloupe"
 msgstr "گوادلوپ"
 
-#: addons/includes/languages/trans_static.php:622
+#: addons/includes/languages/trans_static.php:631
 msgid "guam"
 msgstr "گام"
 
-#: addons/includes/languages/trans_static.php:623
+#: addons/includes/languages/trans_static.php:632
 msgid "guatemala"
 msgstr "گواتمالا"
 
-#: addons/includes/languages/trans_static.php:624
+#: addons/includes/languages/trans_static.php:633
 msgid "guernsey"
 msgstr "گرسنه"
 
-#: addons/includes/languages/trans_static.php:625
+#: addons/includes/languages/trans_static.php:634
 msgid "guinea"
 msgstr "گینه"
 
-#: addons/includes/languages/trans_static.php:626
+#: addons/includes/languages/trans_static.php:635
 msgid "guinea-bissau"
 msgstr "گینه بیسائو"
 
-#: addons/includes/languages/trans_static.php:627
+#: addons/includes/languages/trans_static.php:636
 msgid "guyana"
 msgstr "گویانا"
 
-#: addons/includes/languages/trans_static.php:628
+#: addons/includes/languages/trans_static.php:637
 msgid "haiti"
 msgstr "هیتی"
 
-#: addons/includes/languages/trans_static.php:629
+#: addons/includes/languages/trans_static.php:638
 msgid "heard island and mcdonald islands"
 msgstr "جزیره و جزایر مادونالد را شنیده است"
 
-#: addons/includes/languages/trans_static.php:630
+#: addons/includes/languages/trans_static.php:639
 msgid "honduras"
 msgstr "هندوراس"
 
-#: addons/includes/languages/trans_static.php:631
+#: addons/includes/languages/trans_static.php:640
 msgid "hong kong"
 msgstr "هنگ کنگ"
 
-#: addons/includes/languages/trans_static.php:632
+#: addons/includes/languages/trans_static.php:641
 msgid "hungary"
 msgstr "مجارستان"
 
-#: addons/includes/languages/trans_static.php:633
+#: addons/includes/languages/trans_static.php:642
 msgid "iceland"
 msgstr "اقیانوس آرام"
 
-#: addons/includes/languages/trans_static.php:634
+#: addons/includes/languages/trans_static.php:643
 msgid "india"
 msgstr "هندوستان"
 
-#: addons/includes/languages/trans_static.php:635
+#: addons/includes/languages/trans_static.php:644
 msgid "indonesia"
 msgstr "اندونزی"
 
-#: addons/includes/languages/trans_static.php:636
+#: addons/includes/languages/trans_static.php:645
 msgid "iraq"
 msgstr "اراک"
 
-#: addons/includes/languages/trans_static.php:637
+#: addons/includes/languages/trans_static.php:646
 msgid "ireland"
 msgstr "ایرلند"
 
-#: addons/includes/languages/trans_static.php:638
+#: addons/includes/languages/trans_static.php:647
 msgid "isle of man"
 msgstr "جزیره ای از انسان"
 
-#: addons/includes/languages/trans_static.php:639
+#: addons/includes/languages/trans_static.php:648
 msgid "italy"
 msgstr "ایتالیا"
 
-#: addons/includes/languages/trans_static.php:640
+#: addons/includes/languages/trans_static.php:649
 msgid "ivory coast"
 msgstr "ساحل عاج"
 
-#: addons/includes/languages/trans_static.php:641
+#: addons/includes/languages/trans_static.php:650
 msgid "jamaica"
 msgstr "جامائیکا"
 
-#: addons/includes/languages/trans_static.php:642
+#: addons/includes/languages/trans_static.php:651
 msgid "japan"
 msgstr "ژاپن"
 
-#: addons/includes/languages/trans_static.php:643
+#: addons/includes/languages/trans_static.php:652
 msgid "jersey"
 msgstr "جرس"
 
-#: addons/includes/languages/trans_static.php:644
+#: addons/includes/languages/trans_static.php:653
 msgid "jordan"
 msgstr "اردن"
 
-#: addons/includes/languages/trans_static.php:645
+#: addons/includes/languages/trans_static.php:654
 msgid "kazakhstan"
 msgstr "قزاقستان"
 
-#: addons/includes/languages/trans_static.php:646
+#: addons/includes/languages/trans_static.php:655
 msgid "kenya"
 msgstr "کنیا"
 
-#: addons/includes/languages/trans_static.php:647
+#: addons/includes/languages/trans_static.php:656
 msgid "kiribati"
 msgstr "کریباتی"
 
-#: addons/includes/languages/trans_static.php:648
+#: addons/includes/languages/trans_static.php:657
 msgid "kosovo"
 msgstr "کوزوو"
 
-#: addons/includes/languages/trans_static.php:649
+#: addons/includes/languages/trans_static.php:658
 msgid "kuwait"
 msgstr "کویت"
 
-#: addons/includes/languages/trans_static.php:650
+#: addons/includes/languages/trans_static.php:659
 msgid "kyrgyzstan"
 msgstr "قرقیزستان"
 
-#: addons/includes/languages/trans_static.php:651
+#: addons/includes/languages/trans_static.php:660
 msgid "laos"
 msgstr "لاوس"
 
-#: addons/includes/languages/trans_static.php:652
+#: addons/includes/languages/trans_static.php:661
 msgid "latvia"
 msgstr "لتونی"
 
-#: addons/includes/languages/trans_static.php:653
+#: addons/includes/languages/trans_static.php:662
 msgid "lebanon"
 msgstr "لبنان"
 
-#: addons/includes/languages/trans_static.php:654
+#: addons/includes/languages/trans_static.php:663
 msgid "lesotho"
 msgstr "لسوتو"
 
-#: addons/includes/languages/trans_static.php:655
+#: addons/includes/languages/trans_static.php:664
 msgid "liberia"
 msgstr "لیبریا"
 
-#: addons/includes/languages/trans_static.php:656
+#: addons/includes/languages/trans_static.php:665
 msgid "libya"
 msgstr "لیبیا"
 
-#: addons/includes/languages/trans_static.php:657
+#: addons/includes/languages/trans_static.php:666
 msgid "liechtenstein"
 msgstr "لیختن اشتاین"
 
-#: addons/includes/languages/trans_static.php:658
+#: addons/includes/languages/trans_static.php:667
 msgid "lithuania"
 msgstr "لیتوانی"
 
-#: addons/includes/languages/trans_static.php:659
+#: addons/includes/languages/trans_static.php:668
 msgid "luxembourg"
 msgstr "لوکسبورگ"
 
-#: addons/includes/languages/trans_static.php:660
+#: addons/includes/languages/trans_static.php:669
 msgid "macau"
 msgstr "ماکائو"
 
-#: addons/includes/languages/trans_static.php:661
+#: addons/includes/languages/trans_static.php:670
 msgid "macedonia"
 msgstr "مقدونیه"
 
-#: addons/includes/languages/trans_static.php:662
+#: addons/includes/languages/trans_static.php:671
 msgid "madagascar"
 msgstr "ماداگاسکار"
 
-#: addons/includes/languages/trans_static.php:663
+#: addons/includes/languages/trans_static.php:672
 msgid "malawi"
 msgstr "مالاوی"
 
-#: addons/includes/languages/trans_static.php:664
+#: addons/includes/languages/trans_static.php:673
 msgid "malaysia"
 msgstr "مالزی"
 
-#: addons/includes/languages/trans_static.php:665
+#: addons/includes/languages/trans_static.php:674
 msgid "maldives"
 msgstr "مالدیو"
 
-#: addons/includes/languages/trans_static.php:666
+#: addons/includes/languages/trans_static.php:675
 msgid "mali"
 msgstr "ماله"
 
-#: addons/includes/languages/trans_static.php:667
+#: addons/includes/languages/trans_static.php:676
 msgid "malta"
 msgstr "مالتا"
 
-#: addons/includes/languages/trans_static.php:668
+#: addons/includes/languages/trans_static.php:677
 msgid "marshall islands"
 msgstr "جزایر مارشال"
 
-#: addons/includes/languages/trans_static.php:669
+#: addons/includes/languages/trans_static.php:678
 msgid "martinique"
 msgstr "مارتینیک"
 
-#: addons/includes/languages/trans_static.php:670
+#: addons/includes/languages/trans_static.php:679
 msgid "mauritania"
 msgstr "موریتانی"
 
-#: addons/includes/languages/trans_static.php:671
+#: addons/includes/languages/trans_static.php:680
 msgid "mauritius"
 msgstr "موریس"
 
-#: addons/includes/languages/trans_static.php:672
+#: addons/includes/languages/trans_static.php:681
 msgid "mayotte"
 msgstr "مایوته"
 
-#: addons/includes/languages/trans_static.php:673
+#: addons/includes/languages/trans_static.php:682
 msgid "mexico"
 msgstr "مکزیکو"
 
-#: addons/includes/languages/trans_static.php:674
+#: addons/includes/languages/trans_static.php:683
 msgid "micronesia"
 msgstr "میکرونزی"
 
-#: addons/includes/languages/trans_static.php:675
+#: addons/includes/languages/trans_static.php:684
 msgid "moldova"
 msgstr "مولداوی"
 
-#: addons/includes/languages/trans_static.php:676
+#: addons/includes/languages/trans_static.php:685
 msgid "monaco"
 msgstr "موناکو"
 
-#: addons/includes/languages/trans_static.php:677
+#: addons/includes/languages/trans_static.php:686
 msgid "mongolia"
 msgstr "مغولستان"
 
-#: addons/includes/languages/trans_static.php:678
+#: addons/includes/languages/trans_static.php:687
 msgid "montenegro"
 msgstr "مونته‌نگرو"
 
-#: addons/includes/languages/trans_static.php:679
+#: addons/includes/languages/trans_static.php:688
 msgid "montserrat"
 msgstr "مونتسرات"
 
-#: addons/includes/languages/trans_static.php:680
+#: addons/includes/languages/trans_static.php:689
 msgid "morocco"
 msgstr "مراکش"
 
-#: addons/includes/languages/trans_static.php:681
+#: addons/includes/languages/trans_static.php:690
 msgid "mozambique"
 msgstr "موزامبیک"
 
-#: addons/includes/languages/trans_static.php:682
+#: addons/includes/languages/trans_static.php:691
 msgid "myanmar (burma)"
 msgstr "میانمار (بورام)"
 
-#: addons/includes/languages/trans_static.php:683
+#: addons/includes/languages/trans_static.php:692
 msgid "namibia"
 msgstr "نامیبیا"
 
-#: addons/includes/languages/trans_static.php:684
+#: addons/includes/languages/trans_static.php:693
 msgid "nauru"
 msgstr "نائورو"
 
-#: addons/includes/languages/trans_static.php:685
+#: addons/includes/languages/trans_static.php:694
 msgid "nepal"
 msgstr "نپال"
 
-#: addons/includes/languages/trans_static.php:686
+#: addons/includes/languages/trans_static.php:695
 msgid "netherlands"
 msgstr "هلند"
 
-#: addons/includes/languages/trans_static.php:687
+#: addons/includes/languages/trans_static.php:696
 msgid "new caledonia"
 msgstr "کالدونیای جدید"
 
-#: addons/includes/languages/trans_static.php:688
+#: addons/includes/languages/trans_static.php:697
 msgid "new zealand"
 msgstr "نیوزلند"
 
-#: addons/includes/languages/trans_static.php:689
+#: addons/includes/languages/trans_static.php:698
 msgid "nicaragua"
 msgstr "نیکاراگوئه"
 
-#: addons/includes/languages/trans_static.php:690
+#: addons/includes/languages/trans_static.php:699
 msgid "niger"
 msgstr "نایگر"
 
-#: addons/includes/languages/trans_static.php:691
+#: addons/includes/languages/trans_static.php:700
 msgid "nigeria"
 msgstr "نیجریه"
 
-#: addons/includes/languages/trans_static.php:692
+#: addons/includes/languages/trans_static.php:701
 msgid "niue"
 msgstr "نیچه"
 
-#: addons/includes/languages/trans_static.php:693
+#: addons/includes/languages/trans_static.php:702
 msgid "norfolk island"
 msgstr "جزیره نورفولک"
 
-#: addons/includes/languages/trans_static.php:694
+#: addons/includes/languages/trans_static.php:703
 msgid "north korea"
 msgstr "کره شمالی"
 
-#: addons/includes/languages/trans_static.php:695
+#: addons/includes/languages/trans_static.php:704
 msgid "northern mariana islands"
 msgstr "جزایر ماریانای شمالی"
 
-#: addons/includes/languages/trans_static.php:696
+#: addons/includes/languages/trans_static.php:705
 msgid "norway"
 msgstr "نروژی"
 
-#: addons/includes/languages/trans_static.php:697
+#: addons/includes/languages/trans_static.php:706
 msgid "oman"
 msgstr "مالک"
 
-#: addons/includes/languages/trans_static.php:698
+#: addons/includes/languages/trans_static.php:707
 msgid "pakistan"
 msgstr "پاکستان"
 
-#: addons/includes/languages/trans_static.php:699
+#: addons/includes/languages/trans_static.php:708
 msgid "palau"
 msgstr "پائولو"
 
-#: addons/includes/languages/trans_static.php:700
+#: addons/includes/languages/trans_static.php:709
 msgid "palestine"
 msgstr "فلسطین"
 
-#: addons/includes/languages/trans_static.php:701
+#: addons/includes/languages/trans_static.php:710
 msgid "panama"
 msgstr "پاناما"
 
-#: addons/includes/languages/trans_static.php:702
+#: addons/includes/languages/trans_static.php:711
 msgid "papua new guinea"
 msgstr "پاپو گینه جدید"
 
-#: addons/includes/languages/trans_static.php:703
+#: addons/includes/languages/trans_static.php:712
 msgid "paraguay"
 msgstr "پاراگوئه"
 
-#: addons/includes/languages/trans_static.php:704
+#: addons/includes/languages/trans_static.php:713
 msgid "peru"
 msgstr "پرو"
 
-#: addons/includes/languages/trans_static.php:705
+#: addons/includes/languages/trans_static.php:714
 msgid "philippines"
 msgstr "فیلیپین"
 
-#: addons/includes/languages/trans_static.php:706
+#: addons/includes/languages/trans_static.php:715
 msgid "pitcairn islands"
 msgstr "جزایر پیت کرن"
 
-#: addons/includes/languages/trans_static.php:707
+#: addons/includes/languages/trans_static.php:716
 msgid "poland"
 msgstr "لهستان"
 
-#: addons/includes/languages/trans_static.php:708
+#: addons/includes/languages/trans_static.php:717
 msgid "portugal"
 msgstr "کشور پرتغال"
 
-#: addons/includes/languages/trans_static.php:709
+#: addons/includes/languages/trans_static.php:718
 msgid "puerto rico"
 msgstr "پورتوریکو"
 
-#: addons/includes/languages/trans_static.php:710
+#: addons/includes/languages/trans_static.php:719
 msgid "qatar"
 msgstr "قطر"
 
-#: addons/includes/languages/trans_static.php:711
+#: addons/includes/languages/trans_static.php:720
 msgid "republic of the congo"
 msgstr "جمهوری کنگو"
 
-#: addons/includes/languages/trans_static.php:712
+#: addons/includes/languages/trans_static.php:721
 msgid "réunion"
 msgstr "تجدید دیدار"
 
-#: addons/includes/languages/trans_static.php:713
+#: addons/includes/languages/trans_static.php:722
 msgid "romania"
 msgstr "رومانی"
 
-#: addons/includes/languages/trans_static.php:714
+#: addons/includes/languages/trans_static.php:723
 msgid "russia"
 msgstr "روسیه"
 
-#: addons/includes/languages/trans_static.php:715
+#: addons/includes/languages/trans_static.php:724
 msgid "rwanda"
 msgstr "رواندا"
 
-#: addons/includes/languages/trans_static.php:716
+#: addons/includes/languages/trans_static.php:725
 msgid "saint barthélemy"
 msgstr "سنت بارتملی"
 
-#: addons/includes/languages/trans_static.php:717
+#: addons/includes/languages/trans_static.php:726
 msgid "saint helena"
 msgstr "صلیب هلنا"
 
-#: addons/includes/languages/trans_static.php:718
+#: addons/includes/languages/trans_static.php:727
 msgid "saint kitts and nevis"
 msgstr "کتیبه های سنت و نه"
 
-#: addons/includes/languages/trans_static.php:719
+#: addons/includes/languages/trans_static.php:728
 msgid "saint lucia"
 msgstr "سنت لوسیا"
 
-#: addons/includes/languages/trans_static.php:720
+#: addons/includes/languages/trans_static.php:729
 msgid "saint martin"
 msgstr "مارتین سنت"
 
-#: addons/includes/languages/trans_static.php:721
+#: addons/includes/languages/trans_static.php:730
 msgid "saint pierre and miquelon"
 msgstr "سنت پرور و میکلون"
 
-#: addons/includes/languages/trans_static.php:722
+#: addons/includes/languages/trans_static.php:731
 msgid "saint vincent and the grenadines"
 msgstr "سنت وینسنت و گرانادین"
 
-#: addons/includes/languages/trans_static.php:723
+#: addons/includes/languages/trans_static.php:732
 msgid "samoa"
 msgstr "ساموا"
 
-#: addons/includes/languages/trans_static.php:724
+#: addons/includes/languages/trans_static.php:733
 msgid "san marino"
 msgstr "سان مارینو"
 
-#: addons/includes/languages/trans_static.php:725
+#: addons/includes/languages/trans_static.php:734
 msgid "são tomé and príncipe"
 msgstr "سائوتومه و پرنسیپ"
 
-#: addons/includes/languages/trans_static.php:726
+#: addons/includes/languages/trans_static.php:735
 msgid "saudi arabia"
 msgstr "عربستان سعودی"
 
-#: addons/includes/languages/trans_static.php:727
+#: addons/includes/languages/trans_static.php:736
 msgid "senegal"
 msgstr "سنگال"
 
-#: addons/includes/languages/trans_static.php:728
+#: addons/includes/languages/trans_static.php:737
 msgid "serbia"
 msgstr "صربستان"
 
-#: addons/includes/languages/trans_static.php:729
+#: addons/includes/languages/trans_static.php:738
 msgid "seychelles"
 msgstr "سیشل"
 
-#: addons/includes/languages/trans_static.php:730
+#: addons/includes/languages/trans_static.php:739
 msgid "sierra leone"
 msgstr "سیرا لئون"
 
-#: addons/includes/languages/trans_static.php:731
+#: addons/includes/languages/trans_static.php:740
 msgid "singapore"
 msgstr "سیناپور"
 
-#: addons/includes/languages/trans_static.php:732
+#: addons/includes/languages/trans_static.php:741
 msgid "sint maarten"
 msgstr "سینت مارتین"
 
-#: addons/includes/languages/trans_static.php:733
+#: addons/includes/languages/trans_static.php:742
 msgid "slovakia"
 msgstr "اسلواکی"
 
-#: addons/includes/languages/trans_static.php:734
+#: addons/includes/languages/trans_static.php:743
 msgid "slovenia"
 msgstr "اسلوونی"
 
-#: addons/includes/languages/trans_static.php:735
+#: addons/includes/languages/trans_static.php:744
 msgid "solomon islands"
 msgstr "جزایر سلیمان"
 
-#: addons/includes/languages/trans_static.php:736
+#: addons/includes/languages/trans_static.php:745
 msgid "somalia"
 msgstr "سومالی"
 
-#: addons/includes/languages/trans_static.php:737
+#: addons/includes/languages/trans_static.php:746
 msgid "south africa"
 msgstr "آفریقای جنوبی"
 
-#: addons/includes/languages/trans_static.php:738
+#: addons/includes/languages/trans_static.php:747
 msgid "south georgia and the south sandwich islands"
 msgstr "جورجیا جنوبی و جزایر ساندویچ جنوبی"
 
-#: addons/includes/languages/trans_static.php:739
+#: addons/includes/languages/trans_static.php:748
 msgid "south korea"
 msgstr "کره جنوبی"
 
-#: addons/includes/languages/trans_static.php:740
+#: addons/includes/languages/trans_static.php:749
 msgid "south sudan"
 msgstr "سودان جنوبی"
 
-#: addons/includes/languages/trans_static.php:741
+#: addons/includes/languages/trans_static.php:750
 msgid "spain"
 msgstr "اسپانیا"
 
-#: addons/includes/languages/trans_static.php:742
+#: addons/includes/languages/trans_static.php:751
 msgid "sri lanka"
 msgstr "سری لانکا"
 
-#: addons/includes/languages/trans_static.php:743
+#: addons/includes/languages/trans_static.php:752
 msgid "sudan"
 msgstr "سودان"
 
-#: addons/includes/languages/trans_static.php:744
+#: addons/includes/languages/trans_static.php:753
 msgid "suriname"
 msgstr "سورینام"
 
-#: addons/includes/languages/trans_static.php:745
+#: addons/includes/languages/trans_static.php:754
 msgid "svalbard and jan mayen"
 msgstr "اسلوبارد و یان مهن"
 
-#: addons/includes/languages/trans_static.php:746
+#: addons/includes/languages/trans_static.php:755
 msgid "swaziland"
 msgstr "سوازیلند"
 
-#: addons/includes/languages/trans_static.php:747
+#: addons/includes/languages/trans_static.php:756
 msgid "sweden"
 msgstr "سوئد"
 
-#: addons/includes/languages/trans_static.php:748
+#: addons/includes/languages/trans_static.php:757
 msgid "switzerland"
 msgstr "سوئیس"
 
-#: addons/includes/languages/trans_static.php:749
+#: addons/includes/languages/trans_static.php:758
 msgid "syria"
 msgstr "سوریه"
 
-#: addons/includes/languages/trans_static.php:750
+#: addons/includes/languages/trans_static.php:759
 msgid "taiwan"
 msgstr "تایوان"
 
-#: addons/includes/languages/trans_static.php:751
+#: addons/includes/languages/trans_static.php:760
 msgid "tajikistan"
 msgstr "تاجیکستان"
 
-#: addons/includes/languages/trans_static.php:752
+#: addons/includes/languages/trans_static.php:761
 msgid "tanzania"
 msgstr "تانزانیا"
 
-#: addons/includes/languages/trans_static.php:753
+#: addons/includes/languages/trans_static.php:762
 msgid "thailand"
 msgstr "تایلند"
 
-#: addons/includes/languages/trans_static.php:754
+#: addons/includes/languages/trans_static.php:763
 msgid "togo"
 msgstr "رفتن"
 
-#: addons/includes/languages/trans_static.php:755
+#: addons/includes/languages/trans_static.php:764
 msgid "tokelau"
 msgstr "توکلو"
 
-#: addons/includes/languages/trans_static.php:756
+#: addons/includes/languages/trans_static.php:765
 msgid "tonga"
 msgstr "تنگا"
 
-#: addons/includes/languages/trans_static.php:757
+#: addons/includes/languages/trans_static.php:766
 msgid "trinidad and tobago"
 msgstr "ترینیداد و توباگو"
 
-#: addons/includes/languages/trans_static.php:758
+#: addons/includes/languages/trans_static.php:767
 msgid "tunisia"
 msgstr "تونس"
 
-#: addons/includes/languages/trans_static.php:759
+#: addons/includes/languages/trans_static.php:768
 msgid "turkey"
 msgstr "بوقلمون"
 
-#: addons/includes/languages/trans_static.php:760
+#: addons/includes/languages/trans_static.php:769
 msgid "turkmenistan"
 msgstr "تركمنستان"
 
-#: addons/includes/languages/trans_static.php:761
+#: addons/includes/languages/trans_static.php:770
 msgid "turks and caicos islands"
 msgstr "جزایر تورک و کیکوس"
 
-#: addons/includes/languages/trans_static.php:762
+#: addons/includes/languages/trans_static.php:771
 msgid "tuvalu"
 msgstr "تووالو"
 
-#: addons/includes/languages/trans_static.php:763
+#: addons/includes/languages/trans_static.php:772
 msgid "minor outlying islands"
 msgstr "جزایر جزر و مدی کوچک"
 
-#: addons/includes/languages/trans_static.php:764
+#: addons/includes/languages/trans_static.php:773
 msgid "uganda"
 msgstr "گوگولا"
 
-#: addons/includes/languages/trans_static.php:765
+#: addons/includes/languages/trans_static.php:774
 msgid "ukraine"
 msgstr "اوکراین"
 
-#: addons/includes/languages/trans_static.php:766
+#: addons/includes/languages/trans_static.php:775
 msgid "united arab emirates"
 msgstr "امارات متحده عربی"
 
-#: addons/includes/languages/trans_static.php:767
+#: addons/includes/languages/trans_static.php:776
 msgid "united kingdom"
 msgstr "انگلستان"
 
-#: addons/includes/languages/trans_static.php:768
+#: addons/includes/languages/trans_static.php:777
 msgid "united states"
 msgstr "ایالات متحده"
 
-#: addons/includes/languages/trans_static.php:769
+#: addons/includes/languages/trans_static.php:778
 msgid "uruguay"
 msgstr "اروگوئه"
 
-#: addons/includes/languages/trans_static.php:770
+#: addons/includes/languages/trans_static.php:779
 msgid "uzbekistan"
 msgstr "ازبکستان"
 
-#: addons/includes/languages/trans_static.php:771
+#: addons/includes/languages/trans_static.php:780
 msgid "vanuatu"
 msgstr "وانواتو"
 
-#: addons/includes/languages/trans_static.php:772
+#: addons/includes/languages/trans_static.php:781
 msgid "vatican city"
 msgstr "شهر واتیکان"
 
-#: addons/includes/languages/trans_static.php:773
+#: addons/includes/languages/trans_static.php:782
 msgid "venezuela"
 msgstr "ونزوئلا"
 
-#: addons/includes/languages/trans_static.php:774
+#: addons/includes/languages/trans_static.php:783
 msgid "vietnam"
 msgstr "ویتنام"
 
-#: addons/includes/languages/trans_static.php:775
+#: addons/includes/languages/trans_static.php:784
 msgid "wallis and futuna"
 msgstr "والیس و فوتونا"
 
-#: addons/includes/languages/trans_static.php:776
+#: addons/includes/languages/trans_static.php:785
 msgid "western sahara"
 msgstr "ساحره غرب"
 
-#: addons/includes/languages/trans_static.php:777
+#: addons/includes/languages/trans_static.php:786
 msgid "yemen"
 msgstr "یمن"
 
-#: addons/includes/languages/trans_static.php:778
+#: addons/includes/languages/trans_static.php:787
 msgid "zambia"
 msgstr "زامبیا"
 
-#: addons/includes/languages/trans_static.php:779
+#: addons/includes/languages/trans_static.php:788
 msgid "zimbabwe"
 msgstr "زیمبابوه"
 
-#: addons/includes/languages/trans_static.php:785
+#: addons/includes/languages/trans_static.php:794
 msgid "expire"
 msgstr "منقضی شده"
 
-#: addons/includes/languages/trans_static.php:786
+#: addons/includes/languages/trans_static.php:795
 msgid "deleted"
 msgstr "حذف شده"
 
-#: addons/includes/languages/trans_static.php:788
-#: addons/includes/languages/trans_static.php:861
+#: addons/includes/languages/trans_static.php:797
+#: addons/includes/languages/trans_static.php:870
 msgid "awaiting"
 msgstr "در حال انتظار"
 
-#: addons/includes/languages/trans_static.php:789
+#: addons/includes/languages/trans_static.php:798
 msgid "block"
 msgstr "قفل شده"
 
-#: addons/includes/languages/trans_static.php:790
+#: addons/includes/languages/trans_static.php:799
 msgid "filter"
 msgstr "فیلتر"
 
-#: addons/includes/languages/trans_static.php:791
+#: addons/includes/languages/trans_static.php:800
 msgid "close"
 msgstr "بسته"
 
-#: addons/includes/languages/trans_static.php:792
+#: addons/includes/languages/trans_static.php:801
 msgid "male"
 msgstr "مرد"
 
-#: addons/includes/languages/trans_static.php:793
+#: addons/includes/languages/trans_static.php:802
 msgid "female"
 msgstr "زن"
 
-#: addons/includes/languages/trans_static.php:794
+#: addons/includes/languages/trans_static.php:803
 msgid "single"
 msgstr "مجرد"
 
-#: addons/includes/languages/trans_static.php:795
+#: addons/includes/languages/trans_static.php:804
 msgid "married"
 msgstr "متاهل"
 
-#: addons/includes/languages/trans_static.php:796
+#: addons/includes/languages/trans_static.php:805
 msgid "leave"
 msgstr "ترک کردن"
 
-#: addons/includes/languages/trans_static.php:797
+#: addons/includes/languages/trans_static.php:806
 msgid "real"
 msgstr "حقیقی"
 
-#: addons/includes/languages/trans_static.php:798
+#: addons/includes/languages/trans_static.php:807
 msgid "learn"
 msgstr "آموزش"
 
-#: addons/includes/languages/trans_static.php:799
+#: addons/includes/languages/trans_static.php:808
 msgid "requirement"
 msgstr "نیازمند"
 
-#: addons/includes/languages/trans_static.php:800
+#: addons/includes/languages/trans_static.php:809
 msgid "beside"
 msgstr "داخلی"
 
-#: addons/includes/languages/trans_static.php:801
+#: addons/includes/languages/trans_static.php:810
 msgid "soon"
 msgstr "به زودی"
 
-#: addons/includes/languages/trans_static.php:802
+#: addons/includes/languages/trans_static.php:811
 msgid "next"
 msgstr "بعدی"
 
-#: addons/includes/languages/trans_static.php:803
+#: addons/includes/languages/trans_static.php:812
 msgid "active"
 msgstr "فعال"
 
-#: addons/includes/languages/trans_static.php:804
+#: addons/includes/languages/trans_static.php:813
 msgid "deactive"
 msgstr "غیر فعال"
 
-#: addons/includes/languages/trans_static.php:805
+#: addons/includes/languages/trans_static.php:814
 msgid "full"
 msgstr "کامل"
 
-#: addons/includes/languages/trans_static.php:806
+#: addons/includes/languages/trans_static.php:815
 msgid "all"
 msgstr "همه"
 
-#: addons/includes/languages/trans_static.php:807
+#: addons/includes/languages/trans_static.php:816
 msgid "sunday"
 msgstr "یک شنبه"
 
-#: addons/includes/languages/trans_static.php:808
+#: addons/includes/languages/trans_static.php:817
 msgid "monday"
 msgstr "دوشنبه"
 
-#: addons/includes/languages/trans_static.php:809
+#: addons/includes/languages/trans_static.php:818
 msgid "tuesday"
 msgstr "سه شنبه"
 
-#: addons/includes/languages/trans_static.php:810
+#: addons/includes/languages/trans_static.php:819
 msgid "wednesday"
 msgstr "چهارشنبه"
 
-#: addons/includes/languages/trans_static.php:811
+#: addons/includes/languages/trans_static.php:820
 msgid "thursday"
 msgstr "سه شنبه"
 
-#: addons/includes/languages/trans_static.php:812
+#: addons/includes/languages/trans_static.php:821
 msgid "friday"
 msgstr "جمعه"
 
-#: addons/includes/languages/trans_static.php:813
+#: addons/includes/languages/trans_static.php:822
 msgid "saturday"
 msgstr "شنبه"
 
-#: addons/includes/languages/trans_static.php:814
+#: addons/includes/languages/trans_static.php:823
 msgid "class"
 msgstr "کلاس"
 
-#: addons/includes/languages/trans_static.php:815
+#: addons/includes/languages/trans_static.php:824
 msgid "exam"
 msgstr "آزمون"
 
-#: addons/includes/languages/trans_static.php:816
+#: addons/includes/languages/trans_static.php:825
 msgid "weekly"
 msgstr "هفتگی "
 
-#: addons/includes/languages/trans_static.php:817
+#: addons/includes/languages/trans_static.php:826
 msgid "rotational"
 msgstr "چرخشی"
 
-#: addons/includes/languages/trans_static.php:818
+#: addons/includes/languages/trans_static.php:827
 msgid "date"
 msgstr "تاریخ"
 
-#: addons/includes/languages/trans_static.php:819
+#: addons/includes/languages/trans_static.php:828
 msgid "taken"
 msgstr "گرفتن"
 
-#: addons/includes/languages/trans_static.php:820
+#: addons/includes/languages/trans_static.php:829
 msgid "remove"
 msgstr "حذف"
 
-#: addons/includes/languages/trans_static.php:821
+#: addons/includes/languages/trans_static.php:830
 msgid "add"
 msgstr "اضافه کردن"
 
-#: addons/includes/languages/trans_static.php:822
+#: addons/includes/languages/trans_static.php:831
 msgid "removeforce"
 msgstr "حذف اضطراری"
 
-#: addons/includes/languages/trans_static.php:823
+#: addons/includes/languages/trans_static.php:832
 msgid "removeadmin"
 msgstr "حذف مدیریت"
 
-#: addons/includes/languages/trans_static.php:824
+#: addons/includes/languages/trans_static.php:833
 msgid "cancel"
 msgstr "رد کردن"
 
-#: addons/includes/languages/trans_static.php:825
+#: addons/includes/languages/trans_static.php:834
 msgid "student"
 msgstr "دانش آموز"
 
-#: addons/includes/languages/trans_static.php:826
+#: addons/includes/languages/trans_static.php:835
 msgid "expert"
 msgstr "تخصص"
 
-#: addons/includes/languages/trans_static.php:827
+#: addons/includes/languages/trans_static.php:836
 msgid "acept"
 msgstr "قبول کردن"
 
-#: addons/includes/languages/trans_static.php:828
+#: addons/includes/languages/trans_static.php:837
 msgid "reject"
 msgstr "رد کردن"
 
-#: addons/includes/languages/trans_static.php:830
+#: addons/includes/languages/trans_static.php:839
 msgid "teacher"
 msgstr "استاد"
 
-#: addons/includes/languages/trans_static.php:831
+#: addons/includes/languages/trans_static.php:840
 msgid "other"
 msgstr "سایر"
 
-#: addons/includes/languages/trans_static.php:832
+#: addons/includes/languages/trans_static.php:841
 msgid "removed"
 msgstr "حذف شده"
 
-#: addons/includes/languages/trans_static.php:833
+#: addons/includes/languages/trans_static.php:842
 msgid "unreachable"
 msgstr "غیر قابل دسترس"
 
-#: addons/includes/languages/trans_static.php:834
+#: addons/includes/languages/trans_static.php:843
 msgid "paid"
 msgstr "پرداخت شده"
 
-#: addons/includes/languages/trans_static.php:835
+#: addons/includes/languages/trans_static.php:844
 msgid "skipped"
 msgstr "رد شده"
 
-#: addons/includes/languages/trans_static.php:836
+#: addons/includes/languages/trans_static.php:845
 msgid "critical"
 msgstr "بحرانی"
 
-#: addons/includes/languages/trans_static.php:837
+#: addons/includes/languages/trans_static.php:846
 msgid "high"
 msgstr "بالا"
 
-#: addons/includes/languages/trans_static.php:838
+#: addons/includes/languages/trans_static.php:847
 msgid "medium"
 msgstr "متوسط"
 
-#: addons/includes/languages/trans_static.php:839
+#: addons/includes/languages/trans_static.php:848
 msgid "low"
 msgstr "کم"
 
-#: addons/includes/languages/trans_static.php:840
+#: addons/includes/languages/trans_static.php:849
 msgid "deliver"
 msgstr "تحویل‌داده‌شده"
 
-#: addons/includes/languages/trans_static.php:841
+#: addons/includes/languages/trans_static.php:850
 msgid "draft"
 msgstr "پیش نویس"
 
-#: addons/includes/languages/trans_static.php:842
+#: addons/includes/languages/trans_static.php:851
 msgid "true"
 msgstr "درست"
 
-#: addons/includes/languages/trans_static.php:843
+#: addons/includes/languages/trans_static.php:852
 msgid "false"
 msgstr "اشتباه"
 
-#: addons/includes/languages/trans_static.php:844
+#: addons/includes/languages/trans_static.php:853
 msgid "skip"
 msgstr "پرش کردن"
 
-#: addons/includes/languages/trans_static.php:845
+#: addons/includes/languages/trans_static.php:854
 msgid "gift"
 msgstr "هدیه"
 
-#: addons/includes/languages/trans_static.php:846
+#: addons/includes/languages/trans_static.php:855
 msgid "prize"
 msgstr "جایزه"
 
-#: addons/includes/languages/trans_static.php:847
+#: addons/includes/languages/trans_static.php:856
 msgid "transfer"
 msgstr "جابجایی"
 
-#: addons/includes/languages/trans_static.php:848
+#: addons/includes/languages/trans_static.php:857
 msgid "promo"
 msgstr "تخفیف"
 
-#: addons/includes/languages/trans_static.php:849
+#: addons/includes/languages/trans_static.php:858
 msgid "money"
 msgstr "پول"
 
-#: addons/includes/languages/trans_static.php:850
+#: addons/includes/languages/trans_static.php:859
 msgid "expired"
 msgstr "منقضی شده"
 
-#: addons/includes/languages/trans_static.php:851
+#: addons/includes/languages/trans_static.php:860
 msgid "filtered"
 msgstr "فیلترشده"
 
-#: addons/includes/languages/trans_static.php:852
+#: addons/includes/languages/trans_static.php:861
 msgid "blocked"
 msgstr "قفل شده"
 
-#: addons/includes/languages/trans_static.php:853
+#: addons/includes/languages/trans_static.php:862
 msgid "spam"
 msgstr "هرزنامه"
 
-#: addons/includes/languages/trans_static.php:854
+#: addons/includes/languages/trans_static.php:863
 msgid "request"
 msgstr "درخواست"
 
-#: addons/includes/languages/trans_static.php:855
+#: addons/includes/languages/trans_static.php:864
 msgid "redirect"
 msgstr "تغییر مسیر"
 
-#: addons/includes/languages/trans_static.php:856
+#: addons/includes/languages/trans_static.php:865
 msgid "pending"
 msgstr "در انتظار ارسال"
 
-#: addons/includes/languages/trans_static.php:857
+#: addons/includes/languages/trans_static.php:866
 msgid "error"
 msgstr "خطا"
 
-#: addons/includes/languages/trans_static.php:858
+#: addons/includes/languages/trans_static.php:867
 msgid "verify_request"
 msgstr "درخواست تایید"
 
-#: addons/includes/languages/trans_static.php:859
+#: addons/includes/languages/trans_static.php:868
 msgid "verify_error"
 msgstr "خطای تایید"
 
-#: addons/includes/languages/trans_static.php:860
+#: addons/includes/languages/trans_static.php:869
 msgid "ok"
 msgstr "بسیارخب"
 
-#: addons/includes/languages/trans_static.php:862
+#: addons/includes/languages/trans_static.php:871
 msgid "approved"
 msgstr "تایید شده"
 
-#: addons/includes/languages/trans_static.php:863
+#: addons/includes/languages/trans_static.php:872
 msgid "unapproved"
 msgstr "تایید نشده"
 
-#: addons/includes/languages/trans_static.php:864
+#: addons/includes/languages/trans_static.php:873
 msgid "Ok"
 msgstr "بسیار خب"
 
-#: addons/includes/languages/trans_static.php:866
+#: addons/includes/languages/trans_static.php:875
 msgid "Approved"
 msgstr "تایید شده"
 
-#: addons/includes/languages/trans_static.php:867
+#: addons/includes/languages/trans_static.php:876
 msgid "Unapproved"
 msgstr "تایید نشده"
 
-#: addons/includes/languages/trans_static.php:871
+#: addons/includes/languages/trans_static.php:880
 msgid "cpSmsSend"
 msgstr "ارسال پیام کوتاه"
 
-#: addons/includes/languages/trans_static.php:872
+#: addons/includes/languages/trans_static.php:881
 msgid "cpSmsTemplateView"
 msgstr "مشاهده الگوهای پیامک"
 
-#: addons/includes/languages/trans_static.php:873
+#: addons/includes/languages/trans_static.php:882
 msgid "cpSmsTemplateEdit"
 msgstr "ویرایش الگوهای پیام کوتاه"
 
-#: addons/includes/languages/trans_static.php:874
+#: addons/includes/languages/trans_static.php:883
 msgid "cpSmsSendGroup"
 msgstr "ارسال پیام کوتاه به صورت گروهی"
 
-#: addons/includes/languages/trans_static.php:875
+#: addons/includes/languages/trans_static.php:884
 msgid "cpSMS"
 msgstr "داشبورد پیام کوتاه"
 
-#: addons/includes/languages/trans_static.php:876
+#: addons/includes/languages/trans_static.php:885
 msgid "cpEmailSend"
 msgstr "ارسال ایمیل"
 
-#: addons/includes/languages/trans_static.php:877
+#: addons/includes/languages/trans_static.php:886
 msgid "cpEmail"
 msgstr "داشبورد ایمیل"
 
