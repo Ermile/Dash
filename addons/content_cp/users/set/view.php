@@ -7,11 +7,11 @@ class view
 
 	public static function config()
 	{
-		\dash\data::page_pictogram('user');
 		\dash\permission::access('cpUsersView');
 
 		\dash\data::page_title(T_('Add new user'));
 		\dash\data::page_desc(T_('You can add new user and after add with minimal data, we allow you to add extra detail of user.'));
+		\dash\data::page_pictogram('user-plus');
 
 
 		\dash\data::badge_link(\dash\url::this());
@@ -50,6 +50,10 @@ class view
 
 			\dash\data::dataRow(\dash\app\user::ready($user_detail, true));
 
+			// set page title on edit
+			\dash\data::page_title(T_('Edit profile of :val', ['val' => $user_detail['displayname']]));
+			\dash\data::page_desc(T_('Edit user detail and change all fields of this user, be careful!'));
+			\dash\data::page_pictogram('user-secret');
 		}
 	}
 }
