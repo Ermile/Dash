@@ -72,6 +72,10 @@ class model
 			'language'    => \dash\request::post('language'),
 			'parent'      => \dash\request::post('parent'),
 		];
+		if(!$post['status'])
+		{
+			$post['status'] = 'draft';
+		}
 
 		if(\dash\request::get('type'))
 		{
