@@ -38,12 +38,18 @@
 {%block iPublishdate %}
 <div title='{%trans "Allow change default publish date"%}'>
   <label for="publishdate">{%trans "Publish date"%}</label>
-  <div class="input">
+  <div class="input ltr">
     <input class="datepicker" type="text" name="publishdate" id="publishdate" placeholder='{%trans "Default is now"%}' value="{{dataRow.publishdate}}" maxlength='15' data-format="YYYY/MM/DD" data-initialValue='false' data-view="year">
   </div>
 </div>
 {% endblock %}
 
+{%block iPublishtime%}
+<label for="publishtime">{%trans "Publish time"%}</label>
+<div class="input clockpicker ltr">
+  <input type="text" name="publishtime" id="publishtime" placeholder='{%trans "Publish time"%}' autocomplete="off">
+</div>
+{%endblock%}
 
 {%block galleryImporter %}
 <div class="dropzone">{%trans "To add image gallery drop file here or"%}  <input id="gallery" type="file" name="gallery" multiple></div>
