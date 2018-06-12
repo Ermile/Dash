@@ -1,7 +1,7 @@
 
 {%block iTitle %}
 <div class="input mB10">
-  <input type="text" name="title" id="title" placeholder='{%trans "Enter title here"%} *' value="{{dataRow.title}}" autofocus required maxlength='200' minlength="1" pattern=".{1,200}" title='{%trans "Enter a good and short title"%} *'>
+  <input type="text" name="title" id="title" placeholder='{%trans "Enter title here"%} *' value="{{dataRow.title}}" autofocus required maxlength='200' minlength="1" pattern=".{1,200}" title='{%trans "Recommended being more than 40 character and appear at the beginning of page content"%}'>
 </div>
 {% endblock %}
 
@@ -24,7 +24,7 @@
 
 
 {%block iSlug %}
-<div class="input ltr">
+<div class="input ltr mB10">
   <input type="text" name="slug" id="slug" placeholder='{%trans "Slug"%}' value="{{dataRow.slug}}" maxlength='100' minlength="1" pattern=".{1,100}" title='{%trans "Slug used to create url"%}'>
 </div>
 {% endblock %}
@@ -36,9 +36,11 @@
 
 
 {%block iPublishdate %}
-<label for="publishdate" class="mT5">{%trans "Publish date"%}</label>
-<div class="input">
-  <input class="datepicker" type="text" name="publishdate" id="publishdate" placeholder='{%trans "Publish date"%}' value="{{dataRow.publishdate}}" maxlength='15' data-format="YYYY/MM/DD" data-initialValue='false' data-view="year">
+<div title='{%trans "Allow change default publish date"%}'>
+  <label for="publishdate">{%trans "Publish date"%}</label>
+  <div class="input">
+    <input class="datepicker" type="text" name="publishdate" id="publishdate" placeholder='{%trans "Default is now"%}' value="{{dataRow.publishdate}}" maxlength='15' data-format="YYYY/MM/DD" data-initialValue='false' data-view="year">
+  </div>
 </div>
 {% endblock %}
 
@@ -92,15 +94,17 @@
 
 
 {%block iLanguage%}
-<label for="language">{%trans "Language"%}</label>
-<select name="language" class="select">
-  <option value=""><i>{%trans "Please select one item"%}</i></option>
-  {%for key, value in lang.list%}
-    {%if key | length == 2%}
-    <option value="{{key}}" {%if dataRow.language == key or (not dataRow.lang and lang.current == key)  %} selected {%endif%}>{{value}}</option>
-    {%endif%}
-  {%endfor%}
-</select>
+<div class="mB10" title='{%trans "You can publish in another language"%}'>
+  <label for="language">{%trans "Language"%}</label>
+  <select name="language" class="ui dropdown select">
+    <option value=""><i>{%trans "Please select one item"%}</i></option>
+    {%for key, value in lang.list%}
+      {%if key | length == 2%}
+      <option value="{{key}}" {%if dataRow.language == key or (not dataRow.lang and lang.current == key)  %} selected {%endif%}>{{value}}</option>
+      {%endif%}
+    {%endfor%}
+  </select>
+</div>
 {%endblock%}
 
 
