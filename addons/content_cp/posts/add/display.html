@@ -22,8 +22,7 @@
    {{block('iSlug')}}
    {{block('iPublishdate')}}
    {{block('iLanguage')}}
-   {{block('iStatus')}}
-   {{block('iadd')}}
+   <button class="btn primary block mT20" title='{%trans "First save as draft and do all checks, then publish."%}'>{%trans "Save as draft"%}</button>
   </div>
 
 {%if not requestGET.type or requestGET.type == 'post' %}
