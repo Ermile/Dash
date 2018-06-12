@@ -99,11 +99,11 @@
             <a href="{{url.this}}?lastname={{value.lastname | url_encode}}">{{value.lastname}}</a>
           </div>
           <div class="mT5">
-            <a href="{{url.this}}/view?id={{value.id}}" class="txtB block">{{value.displayname}}</a>
+            <a href="{{url.this}}/view?id={{value.id}}" class="txtB block"><span class="sf-user"></span> {{value.displayname}}</a>
           </div>
         </td>
         <td>
-          <a href="{{url.this}}/view?id={{value.id}}">{{value.mobile | persian}}</a>
+          <a href="{{url.this}}/view?id={{value.id}}">{{value.mobile | fitNumber('mobile12')}}</a>
         </td>
         <td>
           <a href="{{url.this}}/view?id={{value.id}}">{{value.email}}</a>
@@ -118,8 +118,8 @@
         <td class="s0 m0">
           <a href="{{url.this}}?permission={{value.permission}}">{%set myPerm = value.permission | capitalize %}{%trans myPerm%}</a>
         </td>
-        <td class="s0 m0 txtC" title="{{value.datecreated | tdate('Y/m/d H:i')}}"><small class="fc-mute">{%if value.datecreated%}{{value.datecreated | sdate}}{%else%}-{%endif%}</small></td>
-        <td class="s0 m0 txtC" title="{{value.datemodified | tdate('Y/m/d H:i')}}"><small class="fc-mute">{%if value.datemodified%}{{value.datemodified | sdate}}{%else%}-{%endif%}</small></td>
+        <td class="s0 m0 txtC" title="{{value.datecreated | tdate('Y/m/d H:i')}}"><small class="fc-mute">{%if value.datecreated%}{{value.datecreated | sdate('year')}}{%else%}-{%endif%}</small></td>
+        <td class="s0 m0 txtC" title="{{value.datemodified | tdate('Y/m/d H:i')}}"><small class="fc-mute">{%if value.datemodified%}{{value.datemodified | sdate('year')}}{%else%}-{%endif%}</small></td>
       </tr>
       {%endfor%}
     </tbody>
