@@ -204,7 +204,7 @@ class human
 					$firstChain  = substr($new_text, 2, 3);
 					$secondChain = substr($new_text, 5, 3);
 					$thirdChain  = substr($new_text, 8, 4);
-					$new_text    = '('. $country . ')'. $firstChain . '-' . $secondChain . '-' . $thirdChain;
+					$new_text    = ''. $country . '-'. $firstChain . '-' . $secondChain . '-' . $thirdChain;
 				}
 			}
 			elseif($_autoFormat === 'mobile')
