@@ -8,13 +8,13 @@
 
 {%block iSubtitle %}
 <div class="input mB10">
-  <input type="text" name="subtitle" id="subtitle" placeholder='{%trans "Enter subtitle here"%}' value="{{dataRow.subtitle}}" maxlength='300' minlength="1" pattern=".{1,300}" title='{%trans "Subtitle can used based on theme support"%}'>
+  <input type="text" name="subtitle" id="subtitle" placeholder='{%trans "Enter subtitle here"%}' value="{{dataRow.subtitle}}" maxlength='300' minlength="1" pattern=".{1,300}" title='{%trans "Subtitle show under title and used on press websites"%}'>
 </div>
 {% endblock %}
 
 
 {%block iExcerpt %}
-<textarea class="txt mB10" name="excerpt" id="excerpt" placeholder='{%trans "Enter excerpt here"%} *' maxlength='300' minlength="1" pattern=".{1,300}" title='{%trans "Excerpt used for social media and search engines"%}' rows='3'>{{dataRow.excerpt}}</textarea>
+<textarea class="txt mB10" name="excerpt" id="excerpt" placeholder='{%trans "Enter excerpt here"%} *' maxlength='300' minlength="1" title='{%trans "Excerpt used for social media and search engines"%}' rows='3'>{{dataRow.excerpt}}</textarea>
 {% endblock %}
 
 
