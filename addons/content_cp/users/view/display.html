@@ -3,29 +3,44 @@
 
 {%block pageContent%}
 <div class="f justify-center">
-  <div class="cbox c8">
-    {%if perm('cpUsersEdit') %}
-      <a class="btn danger outline block mB20" href="{{url.this}}/set?id={{requestGET.id}}">{%trans "Edit"%}</a>
-    {%endif%}
-    <table class="tbl">
-      <thead>
-        <tr class="primary">
-          <th>{%trans "Field"%}</th>
-          <th>{%trans "Value"%}</th>
-        </tr>
-      </thead>
-      <tbody>
-        {%for key, value in dataRow%}
-          {%if key in ['password', 'unit_id'] %}
-          {%else%}
-            <tr>
-              <td>{%trans key%}</td>
-              <td>{%trans value%}</td>
-            </tr>
-          {%endif%}
-        {%endfor%}
-      </tbody>
-    </table>
+  <div class="c6 s12">
+    <div class="cbox">
+      {%if perm('cpUsersEdit') %}
+        <a class="btn danger outline block mB20" href="{{url.this}}/set?id={{requestGET.id}}">{%trans "Edit"%}</a>
+      {%endif%}
+      <table class="tbl">
+        <thead>
+          <tr class="primary">
+            <th>{%trans "Field"%}</th>
+            <th>{%trans "Value"%}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {%for key, value in dataRow%}
+            {%if key in ['password', 'unit_id'] %}
+            {%elseif key == 'mobile'%}
+              <tr class="f-{{key}} positive">
+                <th>{%trans key%}</th>
+                <td class="ltr"><a href="tel:{{value}}"><i class="sf-mobile"></i> {{value | fitNumber('mobile12')}}</a></td>
+              </tr>
+            {%else%}
+              <tr class="f-{{key}} {%if key == 'username' or key == 'mobile'%}positive{%endif%}">
+                <th class="collapsing">{%trans key%}</th>
+                <td>{%set myValue = value | capitalize | fitNumber(false)%}
+                {%if key == 'birthday' or 'date' in key %}
+                  <span class="block ltr" title="{{value}}"><i class="sf-calendar"></i> {{value | tdate(true)}}</span>
+                {%elseif 'code' in key or 'id' in key%}
+                  <span class="block ltr">{{myValue}}</span>
+                {%else%}
+                  {%trans myValue%}
+                {%endif%}
+                </td>
+              </tr>
+            {%endif%}
+          {%endfor%}
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 {%endblock%}
