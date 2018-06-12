@@ -71,7 +71,7 @@ class twigTransTerms
 	echo T_("Linkedin");                                                              // Line 134
 	echo T_("Enter a valid linkedin from 3 to 40 character");                         // Line 134
 	echo T_("Gmail");                                                                 // Line 141
-	echo T_("Like");                                                                  // Line 277
+	echo T_("Like");                                                                  // Line 281
 	echo T_("Firstname");                                                             // Line 152
 	echo T_("Enter a valid firstname from 3 to 40 character");                        // Line 152
 	echo T_("Lastname");                                                              // Line 161
@@ -100,18 +100,18 @@ class twigTransTerms
 	echo T_("Filter");                                                                // Line 255
 	echo T_("Unreachable");                                                           // Line 256
 	echo T_("Permission");                                                            // Line 33
-	echo T_("No permission");                                                         // Line 266
+	echo T_("No permission");                                                         // Line 269
 	echo T_("Email");                                                                 // Line 108
 	echo T_("To change your password");                                               // Line 280
 	echo T_("Click here");                                                            // Line 280
 	echo T_("Delete your account");                                                   // Line 285
-	echo T_("Confirm password");                                                      // Line 292
-	echo T_("Require to change current password");                                    // Line 292
-	echo T_("Password was set, enter to change it!");                                 // Line 294
+	echo T_("Confirm password");                                                      // Line 296
+	echo T_("Require to change current password");                                    // Line 296
+	echo T_("Password was set, enter to change it!");                                 // Line 298
 	echo T_("Password not set, enter to set it!");                                    // Line 294
 	echo T_("Add");                                                                   // Line 130
 	echo T_("Save");                                                                  // Line 46
-	echo T_("Save all");                                                              // Line 320
+	echo T_("Save all");                                                              // Line 324
 
 	//-----------------------------------------addons\content_account\ref\display.html
 	echo T_("Referral Program");                                                      // Line 11
@@ -280,17 +280,19 @@ class twigTransTerms
 	echo T_("Deleted");                                                               // Line 78
 	echo T_("Language");                                                              // Line 200
 	echo T_("Please select one item");                                                // Line 28
-	echo T_("Choose category of post");                                               // Line 110
-	echo T_("Add tag manually to link articles togethers");                           // Line 136
-	echo T_("Tag");                                                                   // Line 138
-	echo T_("Tag keywords...");                                                       // Line 142
-	echo T_("Add tag");                                                               // Line 143
-	echo T_("allowed extentions jpg, png. Max 1000Kb");                               // Line 153
-	echo T_("Click to download");                                                     // Line 190
-	echo T_("Video");                                                                 // Line 180
-	echo T_("MP3");                                                                   // Line 186
-	echo T_("PDF");                                                                   // Line 188
-	echo T_("Without preview");                                                       // Line 190
+	echo T_("Parent");                                                                // Line 26
+	echo T_("Master");                                                                // Line 112
+	echo T_("Choose category of post");                                               // Line 123
+	echo T_("Add tag manually to link articles togethers");                           // Line 149
+	echo T_("Tag");                                                                   // Line 151
+	echo T_("Tag keywords...");                                                       // Line 155
+	echo T_("Add tag");                                                               // Line 156
+	echo T_("allowed extentions jpg, png. Max 1000Kb");                               // Line 166
+	echo T_("Click to download");                                                     // Line 203
+	echo T_("Video");                                                                 // Line 193
+	echo T_("MP3");                                                                   // Line 199
+	echo T_("PDF");                                                                   // Line 201
+	echo T_("Without preview");                                                       // Line 203
 
 	//----------------------------------------addons\content_cp\sms\group\display.html
 	echo T_("Users mobile");                                                          // Line 13
@@ -343,11 +345,12 @@ class twigTransTerms
 	echo T_("Students");                                                              // Line 189
 
 	//----------------------------------------addons\content_cp\users\set\display.html
-	echo T_("Enter to change pass");                                                  // Line 283
-	echo T_("Password not set, enter  to set it!");                                   // Line 294
+	echo T_("This user is supervisor!");                                              // Line 264
+	echo T_("Enter to change pass");                                                  // Line 287
+	echo T_("Password not set, enter  to set it!");                                   // Line 298
 
 	//---------------------------------------addons\content_cp\users\view\display.html
-	echo T_("Field");                                                                 // Line 13
+	echo T_("Field");                                                                 // Line 14
 
 	//------------------------------------------addons\content_cp\visitor\display.html
 
@@ -642,7 +645,6 @@ class twigTransTerms
 	//--------------------------------------------addons\content_su\users\display.html
 	echo T_("Users list");                                                            // Line 6
 	echo T_("Add new");                                                               // Line 6
-	echo T_("Parent");                                                                // Line 26
 	echo T_("Avatar");                                                                // Line 28
 	echo T_("More");                                                                  // Line 29
 

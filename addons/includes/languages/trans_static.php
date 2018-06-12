@@ -395,7 +395,32 @@ class TransStatic
 	echo T_("We dont need another users contact:?)");
 	echo T_("We need mobile number!");
 	echo T_(" ");
-
+	// -------------------------------------- users table fields
+	echo T_("table");
+	echo T_("users");
+	echo T_("id");
+	echo T_("username");
+	echo T_("displayname");
+	echo T_("gender");
+	echo T_("title");
+	echo T_("password");
+	echo T_("mobile");
+	echo T_("email");
+	echo T_("chatid");
+	echo T_("status");
+	echo T_("avatar");
+	echo T_("parent");
+	echo T_("permission");
+	echo T_("type");
+	echo T_("datecreated");
+	echo T_("datemodified");
+	echo T_("pin");
+	echo T_("ref");
+	echo T_("twostep");
+	echo T_("birthday");
+	echo T_("unit_id");
+	echo T_("language");
+	echo T_("meta");
 
 
 
