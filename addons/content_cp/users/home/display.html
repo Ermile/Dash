@@ -65,10 +65,10 @@
         <th data-sort="{{sortLink.email.order}}" class="collapsing s0">
           <a href='{{sortLink.email.link}}'>{%trans "Email"%}</a>
         </th>
-        <th data-sort="{{sortLink.password.order}}" class="collapsing">
+        <th data-sort="{{sortLink.password.order}}" class="collapsing s0">
           <a href='{{sortLink.password.link}}'>{%trans "Password"%}</a>
         </th>
-        <th data-sort="{{sortLink.status.order}}" class="collapsing s0">
+        <th data-sort="{{sortLink.status.order}}" class="collapsing">
           <a href='{{sortLink.status.link}}'>{%trans "Status"%}</a>
         </th>
         <th data-sort="{{sortLink.permission.order}}" class="collapsing s0 m0">
@@ -90,8 +90,8 @@
             <img src="{{value.avatar}}" alt='{{value.id}}' width="40" class="pRa5"> {{value.username}}
           </a>
         </td>
-        <td class="s0">
-          <div class="" title='{{value.title}}'>
+        <td>
+          <div class="s0" title='{{value.title}}'>
             <small>
               <a href="{{url.this}}?gender={{value.gender}}">{%if value.gender == 'male'%}{%trans "Mr"%} {%elseif value.gender == 'female'%}{%trans "Mrs"%}{%else%}-{%endif%}</a>
               <a href="{{url.this}}?firstname={{value.firstname | url_encode}}">{{value.firstname}}</a>
@@ -105,14 +105,14 @@
         <td>
           <a href="{{url.this}}/view?id={{value.id}}">{{value.mobile | fitNumber('mobile12')}}</a>
         </td>
-        <td>
+        <td class="s0">
           <a href="{{url.this}}/view?id={{value.id}}">{{value.email}}</a>
         </td>
         <td class="s0">
           {%if value.password%}<i class="sf-check fc-green" title='{%trans "Password is set"%}'></i>{%else%}<i class="sf-times fc-red" title='{%trans "Password is not set!"%}'></i>{%endif%}
           {%if value.twostep%}<i class="sf-unlock-alt fc-green" title='{%trans "Two step verification in enabled"%}'></i>{%else%}<i class="sf-unlock fc-mute" title='{%trans "Two step verification in disable"%}'></i>{%endif%}
         </td>
-        <td class="s0">
+        <td>
           <a href="{{url.this}}?status={{value.status}}">{%set myStatus = value.status | capitalize %}{%trans myStatus%}</a>
         </td>
         <td class="s0 m0">
