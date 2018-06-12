@@ -54,7 +54,9 @@
       <tr>
         <th data-sort="{{sortLink.title.order}}"><a href='{{sortLink.title.link}}'>{%trans "Title"%}</a></th>
         <th class="s0 max-w200" data-sort="{{sortLink.slug.order}}"><a href='{{sortLink.slug.link}}'>{%trans "Slug"%}</a></th>
+{%if requestGET.type is empty or requestGET.type == 'post'%}
         <th data-sort="{{sortLink.category.order}}"><a href='{{sortLink.category.link}}'>{%trans "Categories"%}</a></th>
+{%endif%}
         <th data-sort="{{sortLink.publishdate.order}}"><a href='{{sortLink.publishdate.link}}'>{%trans "Publish date"%}</a></th>
         <th data-sort="{{sortLink.comments.order}}"><a href='{{sortLink.comments.link}}'><i class="sf-comments fs16"></i></a></th>
         <th data-sort="{{sortLink.status.order}}"><a href='{{sortLink.status.link}}'>{%trans "Status"%}</a></th>
@@ -68,7 +70,9 @@
           <a href="{{url.here}}/posts/edit?id={{value.id}}">{{value.title}}</a>
         </td>
         <td class="s0 m0" title="{{value.url}}"><a href="{{url.base}}/{{value.url}}" target="_blank"><span class="sf-share"></span> {{value.slug}}</a></td>
+{%if requestGET.type is empty or requestGET.type == 'post'%}
         <td class="collapsing">{{value.category}}</td>
+{%endif%}
         <td class="collapsing" title="{{value.publishdate | tdate(true)}}">{{value.publishdate | sdate('year')}}</td>
         <td class="collapsing txtC">{%if value.comments%}{{value.comments | fitNumber}}{%else%}<span class="sf-mute">-</span>{%endif%}</td>
         <td class="collapsing">{%set myStatus = value.status | capitalize %}<a href="{{url.here}}/posts?status={{value.status}}">{%trans myStatus%}</a></td>
