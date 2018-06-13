@@ -312,8 +312,20 @@ class prepare
 			}
 		}
 
+		$target_url = $target_host;
+		if(\dash\url::lang() === \dash\language::default())
+		{
+			// try to remove lang from url
+			if(\dash\url::directory())
+			{
+				$target_url .= '/'. \dash\url::directory();
+			}
+		}
+		else
+		{
+			$target_url .= \dash\url::path();
+		}
 		// set target url with path
-		$target_url = $target_host. \dash\url::path();
 		$target_url = self::fix_url_slash($target_url);
 
 
