@@ -99,7 +99,14 @@ class sort
 				{
 					$value = \dash\utility\human::fitNumber($value);
 				}
-				$result .= T_($key) . ' <b>'. T_(ucfirst($value)). '</b>';
+				if(is_string($value))
+				{
+					$result .= T_($key) . ' <b>'. T_(ucfirst($value)). '</b>';
+				}
+				else
+				{
+					$result .= T_($key);
+				}
 				$index++;
 			}
 		}
