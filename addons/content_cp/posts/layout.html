@@ -47,12 +47,14 @@
 {%block iPublishtime%}
 <label for="publishtime">{%trans "Publish time"%}</label>
 <div class="input clockpicker ltr">
-  <input type="text" name="publishtime" id="publishtime" placeholder='{%trans "Publish time"%}' autocomplete="off" value="{{dataRow.publishdate | tdate('H:i')}}">
+  <input type="text" name="publishtime" id="publishtime" placeholder='{%trans "Publish time"%}' autocomplete="off" value="{{dataRow.publishdate | date('H:i')}}">
 </div>
 {%endblock%}
 
 {%block galleryImporter %}
-<div class="dropzone">{%trans "To add image gallery drop file here or"%}  <input id="gallery" type="file" name="gallery" multiple></div>
+<div class="dropzone">
+  <h4>{%trans "Add to gallery"%}</h4>
+  {%trans "To add image gallery drop file here or"%} <input id="gallery" type="file" name="gallery" multiple></div>
 {% endblock %}
 
 
@@ -169,6 +171,7 @@
 
 
 {%block iThumb%}
+<label for="fthumb" class="block txtC">{%trans "Featured Image"%}</label>
 <div class="input preview">
  <input type="file" accept="image/gif, image/jpeg, image/png" name="thumb" id="fthumb" data-preview data-max="1000">
  <label for="fthumb" title='{%trans "allowed extentions jpg, png. Max 1000Kb"%}'>
@@ -185,7 +188,8 @@
 {%block iGalleryShow%}
 
 {%if dataRow.meta.gallery%}
-<div class=" cbox">
+<div class="cbox">
+  <h2>{%trans "Gallery"%}</h2>
   <div class="normal f">
 
     {% for key, myUrl in dataRow.meta.gallery%}
