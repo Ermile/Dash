@@ -250,6 +250,7 @@ class twigAddons
 			$all          = array_column(func_get_args(), 'all');
 			$onlyLink     = array_column(func_get_args(), 'onlyLink');
 			$class        = array_column(func_get_args(), 'class');
+			$reset        = array_column(func_get_args(), 'reset');
 			$langList     = \dash\data::get('lang', 'list');
 			$urlBase      = \dash\url::base();
 			$urlContent   = \dash\url::content();
@@ -257,6 +258,7 @@ class twigAddons
 			$urlParam     = \dash\url::query();
 			$urlDirectory = \dash\url::directory();
 			$currentlang  = \dash\language::current();
+			$defaultlang  = \dash\language::default();
 
 			if(!$all)
 			{
@@ -276,7 +278,14 @@ class twigAddons
 					{
 						$activeClass = " class='active'";
 					}
-					$href           .= '/'.$key;
+					if($defaultlang === $key)
+					{
+						$key = "";
+					}
+					if($key)
+					{
+						$href           .= '/'.$key;
+					}
 
 					if($urlContent)
 					{
