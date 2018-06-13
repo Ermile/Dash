@@ -29,8 +29,22 @@
                 <td>{%set myValue = value | capitalize | fitNumber(false)%}
                 {%if key == 'birthday' or 'date' in key %}
                   <span class="block ltr" title="{{value}}"><i class="sf-calendar"></i> {{value | tdate(true)}}</span>
-                {%elseif 'code' in key or 'id' in key%}
+                {%elseif 'code' in key or 'id' in key or key == 'phone'%}
                   <span class="block ltr">{{myValue}}</span>
+                {%elseif key == 'website'%}
+                  <a class="block ltr" href="{{value}}">{{value}}</a>
+                {%elseif key == 'facebook'%}
+                  <a class="block ltr" href="https://facebook.com/{{value}}">{{value}}</a>
+                {%elseif key == 'twitter'%}
+                  <a class="block ltr" href="https://twitter.com/{{value}}">{{value}}</a>
+                {%elseif key == 'instagram'%}
+                  <a class="block ltr" href="https://instagram.com/{{value}}">{{value}}</a>
+                {%elseif key == 'linkedin'%}
+                  <a class="block ltr" href="https://linkedin.com/in/{{value}}">{{value}}</a>
+                {%elseif key == 'email' or key == 'gmail'%}
+                  <a class="block ltr" href="mailto:{{value}}">{{value}}</a>
+                {%elseif key == 'avatar' %}
+                  <img src="{{value}}" class="size-we80">
                 {%else%}
                   {%trans myValue%}
                 {%endif%}
