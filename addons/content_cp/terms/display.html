@@ -83,13 +83,14 @@
 <div class="cbox">
   <table class="tbl">
     <thead>
-      <tr class="">
+      <tr class="primary">
         <th>{%trans "Title"%}</th>
         <th>{%trans "Slug"%}</th>
         <th>{%trans "Type"%}</th>
         {%if not requestGET.type%}
           <th>{%trans "Status"%}</th>
         {%endif%}
+        <th>{%trans "Check"%}</th>
       </tr>
     </thead>
     <tbody>
@@ -101,6 +102,7 @@
             <td><a href="{{url.this}}?type={{value.type}}">{%set vType = value.type%}{%trans vType%}</a></td>
           {%endif%}
           <td class="collapsing">{%set vStatus = value.status%}{%trans vStatus%}</td>
+          <td class="collapsing"><a target="_blank" class="badge primary" href="{{url.base}}/{{value.type}}/{{value.slug}}">{%trans "Check"%}</a></td>
         </tr>
       {%endfor%}
     </tbody>
