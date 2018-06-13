@@ -125,7 +125,7 @@
 {%block iTitle%}
 <label for='ftitle'>{%trans "Title"%} <small class="fc-red">* {%trans "Require"%}</small></label>
 <div class="input">
- <input type="text" name="title" placeholder='{%trans "Title"%} *' value="{{datarow.title}}" autofocus maxlength='100' minlength="1" pattern=".{1,100}" title='{%trans "Enter a valid title"%}' id='ftitle' required>
+ <input type="text" name="title" placeholder='{%trans "Title"%} *' value="{{datarow.title}}" autofocus maxlength='100' minlength="1" pattern=".{1,100}" title='{%trans "Title is used to show on website"%}' id='ftitle' required>
 </div>
 {%endblock%}
 
@@ -133,7 +133,7 @@
 {%block iSlug%}
 <label for='fslug'>{%trans "Slug"%} <small>{%trans "Used for url"%}</small></label>
 <div class="input ltr">
- <input type="text" name="slug" placeholder='{%trans "Slug"%}' value="{{datarow.slug}}" maxlength='50' minlength="1" pattern=".{1,50}" title='{%trans "Enter a valid slug"%}' id='fslug'>
+ <input type="text" name="slug" placeholder='{%trans "Slug"%}' value="{{datarow.slug}}" maxlength='50' minlength="1" pattern=".{1,50}" title='{%trans "Used in url for categorize addresses"%}' id='fslug'>
 </div>
 {%endblock%}
 
@@ -154,8 +154,10 @@
 
 
 {%block iDescription%}
-<label for='fdesc'>{%trans "Description"%}</label>
-<textarea class="txt" name="desc" rows="7" placeholder='{%trans "Description"%}' id='fdesc'>{{datarow.desc}}</textarea>
+<div class="mB10">
+  <label for='fdesc'>{%trans "Description"%}</label>
+  <textarea class="txt" name="desc" rows="7" placeholder='{%trans "Description"%}' id='fdesc'>{{datarow.desc}}</textarea>
+</div>
 {%endblock%}
 
 
@@ -199,13 +201,15 @@
 
 
 {%block iLanguage%}
-<label for="language">{%trans "Language"%}</label>
-<select name="language" class="select">
-  <option value=""><i>{%trans "Please select one item"%}</i></option>
-  {%for key, value in lang.list%}
-    {%if key | length == 2%}
-    <option value="{{key}}" {%if datarow.language == key or (not datarow.lang and lang.current == key)  %} selected {%endif%}>{{value}}</option>
-    {%endif%}
-  {%endfor%}
-</select>
+<div class="mB10">
+  <label for="language">{%trans "Language"%}</label>
+  <select name="language" class="ui dropdown select">
+    <option value=""><i>{%trans "Please select one item"%}</i></option>
+    {%for key, value in lang.list%}
+      {%if key | length == 2%}
+      <option value="{{key}}" {%if datarow.language == key or (not datarow.lang and lang.current == key)  %} selected {%endif%}>{{value}}</option>
+      {%endif%}
+    {%endfor%}
+  </select>
+</div>
 {%endblock%}
