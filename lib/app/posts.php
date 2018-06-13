@@ -218,6 +218,10 @@ class posts
 		}
 
 		$content = \dash\app::request('content');
+		if(mb_strlen($content) > 1E+5)
+		{
+			\dash\notif::warn(T_("This text is too large!"), 'content');
+		}
 
 		$type = \dash\app::request('type');
 		if($type && mb_strlen($type) > 100)
