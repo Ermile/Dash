@@ -2,7 +2,7 @@
 namespace dash;
 /**
  * this lib handle url of our PHP framework, Dash
- * v 4.0
+ * v 4.1
  *
  * This lib detect all part of url and return each one seperate or combine some of them
  * Below example is the sample of this url lib
@@ -38,6 +38,7 @@ namespace dash;
  * 'dir'        => [ 0 => 'thirdparty', 1 => 'general', 2 => 'edit', 3=> 'test=yes']
  * 'directory'  => 'thirdparty/general/edit/test=yes'
  *
+ * 'kingdom'    => 'http://ermile.jibres.com/en'
  * 'here'       => 'http://ermile.jibres.com/en/a'
  * 'this' 		=> 'http://ermile.jibres.com/en/a/thirdparty'
  * 'current'    => 'http://ermile.jibres.com/en/a/thirdparty/general/edit/test=yes'
@@ -79,6 +80,7 @@ class url
 		self::$url              = array_merge(self::$url, $analysed_path);
 
 		// generate with host and path
+		self::$url['kingdom']   = self::_kingdom();
 		self::$url['here']      = self::_here();
 		self::$url['this']      = self::_this();
 		self::$url['current']   = self::_current();
@@ -304,6 +306,22 @@ class url
 			$my_base .= self::related_url();
 		}
 		return $my_base;
+	}
+
+
+	/**
+	 * get url base to used in tag or links
+	 * @return sting of base
+	 */
+	private static function _kingdom()
+	{
+		$my_kingdom = self::$url['base'];
+
+		if(self::$url['lang'])
+		{
+			$my_kingdom .= '/'. self::$url['lang'];
+		}
+		return $my_kingdom;
 	}
 
 
