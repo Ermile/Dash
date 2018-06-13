@@ -4,6 +4,8 @@
 
 {%block pageContent%}
 
+{{block('pageSteps')}}
+
 {%if dataTable%}
  {%if dataFilter%}
 
@@ -105,3 +107,41 @@
 <p class="fs14 alert alert-success pTB20">{%trans "Hi!"%} <a href="{{url.here}}/posts/add{{moduleType}}">{%trans "Try to start with add new record!"%}</a></p>
 {%endblock%}
 
+
+
+
+
+{%block pageSteps%}
+  <div class="f">
+
+   <div class="c">
+    <a class="dcard {%if requestGET.status == 'publishde' or not requestGET.status %}active{%endif%}" href='{{url.this}}{%if requestGET.type%}?type={{requestGET.type}}{%endif%}' data-shortkey="49ctrlshift" title='{%trans "All publish posts"%}'>
+     <div class="statistic">
+      <div class="value"><i class="sf-publish"></i></div>
+      <div class="label">{%trans "Published"%} <kbd class=" hide mT5">Shift+1</kbd></div>
+     </div>
+    </a>
+   </div>
+
+   <div class="c">
+    <a class="dcard {%if requestGET.status == 'draft' %}active{%endif%}" href='{{url.this}}?status=draft{%if requestGET.type%}&type={{requestGET.type}}{%endif%}' data-shortkey="50ctrlshift" title='{%trans "All publish posts"%}'>
+     <div class="statistic">
+      <div class="value"><i class="sf-file-1"></i></div>
+      <div class="label">{%trans "Draft"%} <kbd class=" hide mT5">Shift+2</kbd></div>
+     </div>
+    </a>
+   </div>
+
+   <div class="c">
+    <a class="dcard {%if requestGET.status == 'deleted' %}active{%endif%}" href='{{url.this}}?status=deleted{%if requestGET.type%}&type={{requestGET.type}}{%endif%}' data-shortkey="51ctrlshift" title='{%trans "All publish posts"%}'>
+     <div class="statistic">
+      <div class="value"><i class="sf-trash"></i></div>
+      <div class="label">{%trans "Deleted"%} <kbd class=" hide mT5">Shift+2</kbd></div>
+     </div>
+    </a>
+   </div>
+
+
+
+  </div>
+{%endblock%}

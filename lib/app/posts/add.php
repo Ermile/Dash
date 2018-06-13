@@ -85,11 +85,11 @@ trait add
 
 				if($post_url)
 				{
-					\dash\db\posts::update(['url' => $args['slug']], $post_id);
+					\dash\db\posts::update(['url' => ltrim($post_url. '/'. $args['slug'], '/')], $post_id);
 				}
 				else
 				{
-					\dash\db\posts::update(['url' => ltrim($post_url. '/'. $args['slug'], '/')], $post_id);
+					\dash\db\posts::update(['url' => $args['slug']], $post_id);
 				}
 			}
 		}
