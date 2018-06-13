@@ -6,7 +6,6 @@ class view
 {
 	public static function config()
 	{
-		\dash\data::page_pictogram('align-justify');
 
 		$myTitle = T_("Terms");
 		$myDesc  = T_("Check terms and filter by type or view and edit some terms");
@@ -22,6 +21,7 @@ class view
 
 					$myTitle = T_('Categories');
 					$myDesc  = T_("Check categories and add or edit some new category");
+					\dash\data::page_pictogram('grid');
 					break;
 
 				case 'tag':
@@ -29,6 +29,7 @@ class view
 
 					$myTitle = T_('Tags');
 					$myDesc  = T_("Check tags and add or edit some new tag");
+					\dash\data::page_pictogram('tags');
 					break;
 			}
 		}
