@@ -6,6 +6,10 @@ trait datalist
 	public static $sort_field =
 	[
 		'id',
+		'title',
+		'slug',
+		'publishdate',
+		'status',
 	];
 
 	/**
