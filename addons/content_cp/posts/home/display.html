@@ -71,7 +71,7 @@
         <td>
           <a href="{{url.here}}/posts/edit?id={{value.id}}">{{value.title}}</a>
         </td>
-        <td class="s0 m0" title="{{value.url}}"><a href="{{url.base}}/{{value.url}}" target="_blank"><span class="sf-share"></span> {{value.slug}}</a></td>
+        <td class="s0 m0 fs09" title="{{value.url}}"><a href="{{url.base}}/{{value.url}}" target="_blank"><span class="sf-share"></span> {{value.slug}}</a></td>
 {%if requestGET.type is empty or requestGET.type == 'post'%}
         <td class="collapsing">{{value.category}}</td>
 {%endif%}
@@ -124,16 +124,16 @@
    </div>
 
    <div class="c">
-    <a class="dcard {%if requestGET.status == 'draft' %}active{%endif%}" href='{{url.this}}?status=draft{%if requestGET.type%}&type={{requestGET.type}}{%endif%}' data-shortkey="50ctrlshift" title='{%trans "All publish posts"%}'>
+    <a class="dcard {%if requestGET.status == 'draft' %}active{%endif%}" href='{{url.this}}?status=draft{%if requestGET.type%}&type={{requestGET.type}}{%endif%}' data-shortkey="50ctrlshift" title='{%trans "All draft posts"%}'>
      <div class="statistic">
-      <div class="value"><i class="sf-file-1"></i></div>
+      <div class="value"><i class="sf-edit"></i></div>
       <div class="label">{%trans "Draft"%} <kbd class=" hide mT5">Shift+2</kbd></div>
      </div>
     </a>
    </div>
 
    <div class="c">
-    <a class="dcard {%if requestGET.status == 'deleted' %}active{%endif%}" href='{{url.this}}?status=deleted{%if requestGET.type%}&type={{requestGET.type}}{%endif%}' data-shortkey="51ctrlshift" title='{%trans "All publish posts"%}'>
+    <a class="dcard {%if requestGET.status == 'deleted' %}active{%endif%}" href='{{url.this}}?status=deleted{%if requestGET.type%}&type={{requestGET.type}}{%endif%}' data-shortkey="51ctrlshift" title='{%trans "All trash posts"%}'>
      <div class="statistic">
       <div class="value"><i class="sf-trash"></i></div>
       <div class="label">{%trans "Deleted"%} <kbd class=" hide mT5">Shift+2</kbd></div>
