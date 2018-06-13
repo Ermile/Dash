@@ -83,26 +83,24 @@
 <div class="cbox">
   <table class="tbl">
     <thead>
-      <tr class="primary">
+      <tr class="primary fs09">
         <th>{%trans "Title"%}</th>
         <th>{%trans "Slug"%}</th>
+{%if not requestGET.type%}
         <th>{%trans "Type"%}</th>
-        {%if not requestGET.type%}
-          <th>{%trans "Status"%}</th>
-        {%endif%}
-        <th>{%trans "Check"%}</th>
+{%endif%}
+        <th>{%trans "Status"%}</th>
       </tr>
     </thead>
     <tbody>
       {%for key, value in dataTable%}
         <tr>
           <td><a href="{{url.this}}?type={{value.type}}&edit={{value.id}}">{{value.title}}</a></td>
-          <td><a href="{{url.base}}/{{value.url}}" target="_blank"><span class="sf-share"></span> {{value.slug}}</a></td>
+          <td class="fs08"><a href="{{url.base}}/{{url.lang}}/{{value.url}}" target="_blank"><span class="sf-share"></span> {{value.slug}}</a></td>
           {%if not requestGET.type%}
             <td><a href="{{url.this}}?type={{value.type}}">{%set vType = value.type%}{%trans vType%}</a></td>
           {%endif%}
           <td class="collapsing">{%set vStatus = value.status%}{%trans vStatus%}</td>
-          <td class="collapsing"><a target="_blank" class="badge primary" href="{{url.base}}/{{value.type}}/{{value.slug}}">{%trans "Check"%}</a></td>
         </tr>
       {%endfor%}
     </tbody>
