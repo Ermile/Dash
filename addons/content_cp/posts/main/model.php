@@ -66,15 +66,23 @@ class model
 			'tag'         => \dash\request::post('tag'),
 			'slug'        => \dash\request::post('slug'),
 			'content'     => isset($_POST['content']) ? $_POST['content'] : null,
-			'publishdate' => \dash\utility\convert::to_en_number(\dash\request::post('publishdate')),
+			'publishdate' => \dash\request::post('publishdate'),
+			'publishtime' => \dash\request::post('publishtime'),
 			'status'      => \dash\request::post('status'),
 			'comment'     => \dash\request::post('comment'),
 			'language'    => \dash\request::post('language'),
 			'parent'      => \dash\request::post('parent'),
 		];
+
+
 		if(!$post['status'])
 		{
 			$post['status'] = 'draft';
+		}
+
+		if(!\dash\permission::check('cpPostsEditStatus'))
+		{
+			unset($post['status']);
 		}
 
 		if(\dash\request::get('type'))

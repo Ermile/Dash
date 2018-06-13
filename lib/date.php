@@ -5,6 +5,40 @@ class date
 {
 	private static $lang = null;
 
+	private static function make_time($_time)
+	{
+		$_time = \dash\utility\convert::to_en_number($_time);
+		if(!$_time)
+		{
+			return null;
+		}
+
+		if(preg_match("/^\d{2}\:\d{2}\:\d{2}$/", $_time))
+		{
+			$_time = $_time;
+		}
+		elseif(preg_match("/^\d{2}\:\d{2}$/", $_time))
+		{
+			$_time = $_time . ':00';
+		}
+		elseif(preg_match("/^\d{4}$/", $_time))
+		{
+			$split = str_split($_time);
+			$_time = $split[0] . $split[1]. ':'. $split[2]. $split[3]. ':00';
+		}
+		elseif(preg_match("/^\d{2}$/", $_time))
+		{
+			$split = str_split($_time);
+			$_time = $split[0] . $split[1]. ':00:00';
+		}
+		else
+		{
+			return false;
+		}
+
+		return $_time;
+	}
+
 
 	public static function birthdate($_birthdate, $_notif = false)
 	{

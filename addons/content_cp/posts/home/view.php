@@ -98,6 +98,11 @@ class view
 			$args['sort'] = 'publishdate';
 		}
 
+		if(!\dash\permission::check('cpPostsViewAll'))
+		{
+			$args['user_id'] = \dash\user::id();
+		}
+
 		$args['language'] = \dash\language::current();
 
 		\dash\data::sortLink(\content_cp\view::make_sort_link(\dash\app\posts::$sort_field, \dash\url::this()) );

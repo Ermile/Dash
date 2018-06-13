@@ -105,6 +105,36 @@ class posts
 
 		$_option = array_merge($default_option, $_option);
 
+
+		if($_id)
+		{
+			$current_post_detail = \dash\db\posts::get(['id' => $_id, 'limit' => 1]);
+			if(isset($current_post_detail['status']))
+			{
+				if($current_post_detail['status'] === 'publish')
+				{
+					if(!\dash\permission::check('cpPostsEditPublished'))
+					{
+						\dash\notif::error(T_("This post is published. And you can not edit it!"));
+						return false;
+					}
+				}
+			}
+
+			if(isset($current_post_detail['user_id']))
+			{
+				if(intval($current_post_detail['user_id']) !== intval(\dash\user::id()))
+				{
+					if(!\dash\permission::check('cpPostsEditForOthers'))
+					{
+						\dash\notif::error(T_("This is not your post. And you can not edit it!"));
+						return false;
+					}
+				}
+			}
+
+		}
+
 		$language = \dash\app::request('language');
 		if($language && mb_strlen($language) !== 2)
 		{
@@ -214,6 +244,27 @@ class posts
 			return false;
 		}
 
+		if($status === 'deleted')
+		{
+			if(!\dash\permission::check('cpPostsDelete'))
+			{
+				\dash\notif::error(T_("You can not delete post"));
+				return false;
+			}
+
+			if(isset($current_post_detail['user_id']))
+			{
+				if(intval($current_post_detail['user_id']) !== intval(\dash\user::id()))
+				{
+					if(!\dash\permission::check('cpPostsDeleteForOthers'))
+					{
+						\dash\notif::error(T_("This is not your post. And you can not delete it!"));
+						return false;
+					}
+				}
+			}
+		}
+
 		$parent_url  = null;
 		$parent_slug = null;
 
@@ -243,7 +294,6 @@ class posts
 					return false;
 				}
 
-				$current_post_detail = \dash\db\posts::get(['id' => $_id, 'limit' => 1]);
 				if(isset($current_post_detail['parent']) && intval($current_post_detail['parent']) !== intval($parent))
 				{
 					$current_post_parent_detail = \dash\db\posts::get(['id' => $current_post_detail['parent'], 'limit' => 1]);
@@ -285,6 +335,7 @@ class posts
 
 		$publishdate = \dash\app::request('publishdate');
 		$publishdate = \dash\utility\convert::to_en_number($publishdate);
+
 		if($publishdate && !\dash\date::db($publishdate))
 		{
 			\dash\notif::error(T_("Invalid parameter publishdate"), 'publishdate');
@@ -294,13 +345,32 @@ class posts
 		if($language === 'fa' && $publishdate)
 		{
 			$publishdate  = \dash\utility\jdate::to_gregorian($publishdate);
-			$publishdate .= " ". date("H:i:s");
 		}
 
 		if(\dash\app::isset_request('publishdate') && !$publishdate)
 		{
-			$publishdate = date("Y-m-d H:i:s");
+			$publishdate = date("Y-m-d");
 		}
+
+		$publishtime = \dash\app::request('publishtime');
+		$publishtime = \dash\utility\convert::to_en_number($publishtime);
+		if($publishtime)
+		{
+			if(\dash\data::make_time($publishtime) === false)
+			{
+				\dash\notif::error(T_("Invalid publish time"), 'publishtime');
+				return false;
+			}
+			elseif(!$publishtime)
+			{
+				$publishtime = date("H:i");
+			}
+		}
+		else
+		{
+			$publishtime = date("H:i");
+		}
+
 
 		$meta = $_option['meta'];
 		if(\dash\app::isset_request('thumb') && \dash\app::request('thumb'))
@@ -327,7 +397,7 @@ class posts
 		$args['excerpt']     = $excerpt;
 		$args['subtitle']    = $subtitle;
 		$args['parent']   = $parent;
-		$args['publishdate'] = $publishdate;
+		$args['publishdate'] = $publishdate. ' '. $publishtime ;
 
 		return $args;
 

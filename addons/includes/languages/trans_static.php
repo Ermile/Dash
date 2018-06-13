@@ -885,6 +885,41 @@ class TransStatic
 	echo T_("cpEmailSend");
 	echo T_("cpEmail");
 
+	echo T_("cpPostsViewAll");
+	echo T_("cpPostsEditStatus");
+	echo T_("cpPostsEditPublished");
+	echo T_("cpPostsEditForOthers");
+	echo T_("cpPostsDelete");
+	echo T_("cpPostsDeleteForOthers");
+	echo T_("cpCategoryDelete");
+	echo T_("cpTagDelete");
+	echo T_("cpPageDelete");
+	echo T_("cpAttachmentView");
+	echo T_("cpAttachmentAdd");
+	echo T_("cpAttachmentEdit");
+	echo T_("cpAttachmentDelete");
+	echo T_("cpCommentsDelete");
+	echo T_("cpUsersPermission");
+	echo T_("cpUsersPasswordChange");
+	echo T_("cpUsersDelete");
+	echo T_("cpSmsTemplateDelete");
+
+	echo T_("Control Panel CMS");
+	echo T_("Control Panel Users");
+	echo T_("Control Panel Contact");
+
+	echo T_("Posts");
+	echo T_("Categories");
+	echo T_("Tags");
+	echo T_("Pages");
+	echo T_("Attachments");
+	echo T_("Comments");
+	echo T_("Backup");
+	echo T_("Users");
+	echo T_("Permissions");
+	echo T_("SMS");
+	echo T_("Email");
+
  }
 }
 ?>

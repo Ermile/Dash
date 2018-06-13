@@ -25,8 +25,13 @@
   <div class="cbox">
    {{block('iSlug')}}
    {{block('iPublishdate')}}
+   {{block('iPublishtime')}}
    {{block('iLanguage')}}
-   {{block('iStatus')}}
+
+   {%if perm('cpPostsEditStatus')%}
+    {{block('iStatus')}}
+   {%endif%}
+
    {{block('iadd')}}
   </div>
 
