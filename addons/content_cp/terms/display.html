@@ -17,7 +17,7 @@
 
 
 {%block iAddEditBox%}
-<form method="post" class="cbox">
+<form method="post" class="cbox" autocomplete="off">
   {{block ('iTitle') }}
   {{block ('iSlug') }}
 {%if requestGET.type == 'category'%}
