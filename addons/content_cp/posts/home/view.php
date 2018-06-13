@@ -15,7 +15,6 @@ class view
 			$moduleType = '?type='. \dash\request::get('type');
 		}
 
-		\dash\data::page_pictogram('files-o');
 		\dash\data::moduleTypeTxt($moduleTypeTxt);
 		\dash\data::moduleType($moduleType);
 
@@ -23,6 +22,7 @@ class view
 
 		$myTitle = T_("Posts");
 		$myDesc  = T_('Check list of posts and search or filter in them to find your posts.'). ' '. T_('Also add or edit specefic post.');
+		\dash\data::page_pictogram('pinboard');
 
 		if($myType)
 		{
@@ -32,6 +32,7 @@ class view
 					\dash\permission::access('cpPageView');
 					$myTitle = T_('Pages');
 					$myDesc  = T_('Check list of pages and to find your pages.'). ' '. T_('Also add or edit specefic static page.');
+					\dash\data::page_pictogram('files-o');
 					break;
 
 				case 'post':
