@@ -535,6 +535,66 @@ class TransStatic
 	echo T_("Zarinpal");
 	echo T_("Payir");
 
+	// -------------------------------------- headers
+	echo T_('Continue');
+	echo T_('Switching Protocols');
+	echo T_('Processing');
+	echo T_('OK');
+	echo T_('Created');
+	echo T_('Accepted');
+	echo T_('Non-Authoritative Information');
+	echo T_('No Content');
+	echo T_('Reset Content');
+	echo T_('Partial Content');
+	echo T_('Multi-Status');
+	echo T_('IM Used');
+	echo T_('Multiple Choices');
+	echo T_('Moved Permanently');
+	echo T_('Found');
+	echo T_('See Other');
+	echo T_('Not Modified');
+	echo T_('Use Proxy');
+	echo T_('Reserved');
+	echo T_('Temporary Redirect');
+	echo T_('Permanent Redirect');
+	echo T_('Bad Request');
+	echo T_('Unauthorized');
+	echo T_('Payment Required');
+	echo T_('Forbidden');
+	echo T_('Not Found');
+	echo T_('Method Not Allowed');
+	echo T_('Not Acceptable');
+	echo T_('Proxy Authentication Required');
+	echo T_('Request Timeout');
+	echo T_('Conflict');
+	echo T_('Gone');
+	echo T_('Length Required');
+	echo T_('Precondition Failed');
+	echo T_('Request Entity Too Large');
+	echo T_('Request-URI Too Long');
+	echo T_('Unsupported Media Type');
+	echo T_('Requested Range Not Satisfiable');
+	echo T_('Expectation Failed');
+	echo T_('I\'m a teapot');
+	echo T_('Misdirected Request');
+	echo T_('Unprocessable Entity');
+	echo T_('Locked');
+	echo T_('Failed Dependency');
+	echo T_('Upgrade Required');
+	echo T_('Precondition Required');
+	echo T_('Too Many Requests');
+	echo T_('Request Header Fields Too Large');
+	echo T_('Unavailable For Legal Reasons');
+	echo T_('Internal Server Error');
+	echo T_('Not Implemented');
+	echo T_('Bad Gateway');
+	echo T_('Service Unavailable');
+	echo T_('Gateway Timeout');
+	echo T_('HTTP Version Not Supported');
+	echo T_('Variant Also Negotiates');
+	echo T_('Insufficient Storage');
+	echo T_('Not Extended');
+	echo T_('Network Authentication Required');
 
 
 
