@@ -73,6 +73,11 @@ class view
 			$args['status'] = \dash\request::get('status');
 		}
 
+		if(!isset($args['status']))
+		{
+			$args['status'] = ["NOT IN", "('draft', 'deleted')"];
+		}
+
 		if(\dash\request::get('type'))
 		{
 			$args['type'] = \dash\request::get('type');
@@ -80,11 +85,6 @@ class view
 		else
 		{
 			$args['type'] = 'post';
-		}
-
-		if(\dash\request::get('unittype'))
-		{
-			$args['unittype'] = \dash\request::get('unittype');
 		}
 
 		if(!$args['order'])
@@ -95,7 +95,7 @@ class view
 
 		if(!$args['sort'])
 		{
-			$args['sort'] = 'id';
+			$args['sort'] = 'publishdate';
 		}
 
 		$args['language'] = \dash\language::current();

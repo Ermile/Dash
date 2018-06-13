@@ -22,7 +22,8 @@ class human
 		// auto convert with strtotime function
 		$_time     = strtotime($_time);
 		$time_diff = time() - $_time; // to get the time since that moment
-		$tokens    = array (
+		$tokens    =
+		[
 			31536000 => T_('year'),
 			2592000  => T_('month'),
 			604800   => T_('week'),
@@ -30,9 +31,16 @@ class human
 			3600     => T_('hour'),
 			60       => T_('minute'),
 			1        => T_('second')
-			);
+		];
+		if($time_diff < 0)
+		{
+			return T_('In the future');
+		}
+
 		if($time_diff < 10)
+		{
 			return T_('A few seconds ago');
+		}
 
 		$type = array_search(T_($_max), $tokens);
 
@@ -47,7 +55,7 @@ class human
 			if($time_diff < $type || $_max === 'ultimate')
 			{
 				$numberOfUnits = floor($time_diff / $unit);
-				$finalDate = $numberOfUnits.' '.$text.(($numberOfUnits>1)? T_('s '):' ').T_('ago');
+				$finalDate     = $numberOfUnits. ' '. $text. (($numberOfUnits>1) ? T_('s ') : ' ' ). T_('ago');
 			}
 			// else show it dependig on current language
 			else
