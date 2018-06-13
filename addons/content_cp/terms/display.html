@@ -5,7 +5,7 @@
 
 <div class="f justify-center">
 {%if requestGET.type%}
-  <div class="c4 s12 pRa20">
+  <div class="c4 s12 pRa10">
     {{block ('iAddEditBox') }}
   </div>
 {%endif%}
@@ -89,18 +89,20 @@
 {%if not requestGET.type%}
         <th>{%trans "Type"%}</th>
 {%endif%}
+        <th>{%trans "Used"%}</th>
         <th>{%trans "Status"%}</th>
       </tr>
     </thead>
     <tbody>
       {%for key, value in dataTable%}
-        <tr>
+        <tr class="{%if value.status=='disable'%}negative{%elseif value.status=='expired'%}warning{%endif%}">
           <td><a href="{{url.this}}?type={{value.type}}&edit={{value.id}}">{{value.title}}</a></td>
           <td class="fs08"><a href="{{url.kingdom}}/{{value.url}}" target="_blank"><span class="sf-share"></span> {{value.slug}}</a></td>
           {%if not requestGET.type%}
             <td><a href="{{url.this}}?type={{value.type}}">{%set vType = value.type%}{%trans vType%}</a></td>
           {%endif%}
-          <td class="collapsing">{%set vStatus = value.status%}{%trans vStatus%}</td>
+          <td class="collapsing txtC">{{ "-" | fitNumber}}</td>
+          <td class="collapsing txtC">{%set vStatus = value.status%}{%trans vStatus%}</td>
         </tr>
       {%endfor%}
     </tbody>
