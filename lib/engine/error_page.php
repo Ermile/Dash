@@ -5,7 +5,7 @@
  <title>(>_<?php echo $_code;?>_<)</title>
  <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/><![endif]-->
  <meta name ="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0 maximum-scale=1.5, minimal-ui"/>
- <link rel="shortcut icon"    href="/static/images/favicon-error.png"/>
+ <link rel="shortcut icon" href="/static/images/favicon-error.png"/>
  <style>
 	*{font-family:sans-serif;box-sizing:border-box;}
 	html{min-height:100%;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;}
@@ -25,7 +25,7 @@
 <body class='s<?php echo(substr($_code,0,2));?>'>
 
  <h1><?php echo $desc?></h1>
- <b class='slash'><?php echo $_title; ?></b>
+ <b class='slash'><?php echo $_text; ?></b>
 <?php if(\dash\option::config('debug') || \dash\url::isLocal()) {?>
  <ol>
 <?php

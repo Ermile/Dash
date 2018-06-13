@@ -144,12 +144,17 @@ class header
 	 * Set HTTP status header.
 	 * @param int    $_code       new HTTP status code
 	 */
-	public static function status($_code, $_title = null)
+	public static function status($_code, $_text = null)
 	{
 		$desc = self::desc($_code);
 		if(!$desc)
 		{
 			return false;
+		}
+		// translate desc of header if in this level T_ fn is defined!
+		if(function_exists("T_"))
+		{
+			$desc = T_($desc);
 		}
 
 		$debug_backtrace = ['args' => func_get_args(), 'debug' => debug_backtrace(), 'server' => $_SERVER];
@@ -162,16 +167,11 @@ class header
 
 		if(\dash\request::json_accept() || \dash\request::ajax())
 		{
-			// translate desc of header if in this level T_ fn is defined!
-			if(function_exists("T_"))
-			{
-				$desc = T_($desc);
-			}
 			$desc .= ' '. \dash\utility\human::fitNumber($_code);
 			// depending on title if exist or not
-			if($_title)
+			if($_text)
 			{
-				\dash\notif::error($_title, ['title'=> $desc]);
+				\dash\notif::error($_text, ['title'=> $desc]);
 			}
 			else
 			{
