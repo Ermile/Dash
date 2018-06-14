@@ -55,7 +55,11 @@
 <div class="dropzone">
   <h4>{%trans "Add to gallery"%}</h4>
   <label for='gallery' class="btn light">{%trans "To add image gallery drop file here or"%}</label>
-  <input id="gallery" type="file" name="gallery" multiple></div>
+  <input id="gallery" type="file" name="gallery" multiple>
+  <div class="progress shadow" data-percent='30'>
+    <div class="bar"></div>
+  </div>
+</div>
 {% endblock %}
 
 
