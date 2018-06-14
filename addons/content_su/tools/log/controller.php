@@ -175,12 +175,15 @@ class controller
 			$output .= ' <script src="'. $myCode. 'js/highlight.min.js"></script>';
 			$output .= ' <link rel="stylesheet" href="'. $myCode. 'css/highlight-atom-one-dark.css">';
 			$output .= ' <style>';
-			$output .= 'body{margin:0;height:100%;} .clear{position:absolute;top:1em;right:2em;border:1px solid #fff;color:#fff;border-radius:3px;padding:0.5em 1em;text-decoration:none} .zip{position:absolute;bottom:1.5em;right:2em;background-color:#000;color:#fff;border-radius:3px;padding:0.5em 1em;text-decoration:none} .hljs{padding:0;max-height:100%;height:100%;}';
+			$output .= 'body{margin:0;height:100%;} .clear{position:absolute;top:1em;right:2em;border:1px solid #fff;color:#fff;border-radius:3px;padding:0.5em 1em;text-decoration:none}
+			.downloaditnow{position:absolute;top:5em;right:5em;border:1px solid #fff;color:#fff;border-radius:3px;padding:0.5em 1em;text-decoration:none}
+			.zip{position:absolute;bottom:1.5em;right:2em;background-color:#000;color:#fff;border-radius:3px;padding:0.5em 1em;text-decoration:none} .hljs{padding:0;max-height:100%;height:100%;}';
 			$output .= ' </style>';
 
 			$output .= ' <script>$(document).ready(function() {$("pre").each(function(i, block) {hljs.highlightBlock(block);}); });</script>';
 			$output .= "</head><body>";
 			$output .= '<a class="clear" href="?name='. $name. '&clear=true">Clear it!</a>';
+			$output .= '<a class="downloaditnow" href="?name='. $name. '&download=true">Donwload it!</a>';
 			$output .= '<a class="zip" href="?name='. $name. '&zip=true">ZIP it!</a>';
 			$output .= "<pre class='$lang'>";
 			$output .= $fileData;
@@ -190,7 +193,7 @@ class controller
 		{
 			$output .= 'File does not exist!';
 		}
-
+		var_dump($output);exit();
 		$output .= "</body></html>";
 		echo $output;
 		\dash\code::exit();

@@ -16,6 +16,9 @@
 </form>
 <br>
 
+<div class="cbox">
+
+
 <table class="tbl">
 	<thead>
 		<th><a href="{{url.base}}/su/users/{{orderUrl.id}}">{%trans "ID"%}</a></th>
@@ -36,7 +39,7 @@
 	<tbody>
 		{%for key, value in usersList%}
 		<tr>
-			<td>{% set user_code = value.id|coding("encode")%}{{user_code}}</td>
+			<td>{% set user_code = value.id|coding("encode")%}{{value.id | fitNumber(false)}}</td>
 			<td>{{value.mobile|fitNumber}}</td>
 			<td>{{value.email}}</td>
 			<td>{{value.displayname}}</td>
@@ -61,6 +64,7 @@
 
 	</tbody>
 </table>
+</div>
 {%include display.pagination%}
 
 {%endblock%}

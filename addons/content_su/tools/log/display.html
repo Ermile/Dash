@@ -22,15 +22,16 @@
 <a class="btn mB10 outline primary block" href="{{url.this}}/log">{%trans "Back"%}</a>
 <div class="f">
 {%for value in logFileList%}
-<a class="dcard x2 txtC"  href='{{url.this}}/log?folder={{requestGET.folder}}&file={{value.name}}'>
-  <div class="msg">
+<div class="c2 mA5 txtC">
+<a   href='{{url.this}}/log?folder={{requestGET.folder}}&file={{value.name}}'>
+  <div class="msg {%if value.is_old%} secondary2 {%endif%}">
     <i class="sf-file-1 fs30"></i>
-        <div class="label"><b>{{value.name}}</b></div>
-        <div class=" txtC mT10" title="{{value.mtime | tdate('Y-m-d H:i:s')}}">{{value.mtime | sdate}}</div>
-        <div class="label">{{value.size | fitNumber}} {%trans "MB"%}</div>
-
+    <div class="label"><b>{{value.name}}</b></div>
+    <div class=" txtC mT10" title="{{value.mtime | tdate('Y-m-d H:i:s')}}">{{value.mtime | sdate}}</div>
+    <div class="label">{{value.size}} {%trans "MB"%}</div>
   </div>
 </a>
+</div>
 
 {%endfor%}
 </div>

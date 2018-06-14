@@ -20,6 +20,7 @@ class view
 		elseif(\dash\request::get('folder'))
 		{
 			$folder = '/'. trim(\dash\request::get('folder'),'/');
+
 			$addr = root. 'includes/log'. $folder. '/*';
 			$addr = \autoload::fix_os_path($addr);
 
@@ -27,13 +28,23 @@ class view
 			$list = [];
 			foreach ($glob as $key => $value)
 			{
+				$name = basename($value);
+				$is_old = false;
+
+				if(strtotime(substr($name, 0, 10)) !== false)
+				{
+					$is_old = true;
+				}
+
 				$list[] =
 				[
-					'name'  => basename($value),
+					'name'  => $name,
 					'mtime' => filemtime($value),
 					'size'  => round((filesize($value) / 1024) / 1024, 2),
+					'is_old' => $is_old,
 				];
 			}
+
 			$list = array_reverse($list);
 			\dash\data::logFileList($list);
 		}
@@ -105,9 +116,13 @@ class view
 			}
 		}
 
+		if (\dash\request::get('download'))
+		{
+			\dash\file::download($filepath);
+			return;
+		}
 		// read file data
 		$fileData = @file_get_contents($filepath, FILE_USE_INCLUDE_PATH, null, $page, $lenght);
-
 		$myURL    = \dash\url::site().'/static';
 		$myCommon = \dash\url::site().'/static/siftal/js/siftal.min.js';
 		$myCode   = \dash\url::site().'/static/siftal/';
@@ -118,13 +133,16 @@ class view
 		$output .= ' <script src="'. $myCode. 'js/highlight.min.js"></script>';
 		$output .= ' <link rel="stylesheet" href="'. $myCode. 'css/highlight-atom-one-dark.css">';
 		$output .= ' <style>';
-		$output .= 'body{margin:0;height:100%;} .clear{position:absolute;top:1em;right:2em;border:1px solid #fff;color:#fff;border-radius:3px;padding:0.5em 1em;text-decoration:none} .zip{position:absolute;bottom:1.5em;right:2em;background-color:#000;color:#fff;border-radius:3px;padding:0.5em 1em;text-decoration:none} .hljs{padding:0;max-height:100%;height:100%;}';
+		$output .= 'body{margin:0;height:100%;} .clear{position:absolute;top:1em;right:2em;border:1px solid #fff;color:#fff;border-radius:3px;padding:0.5em 1em;text-decoration:none} .zip{position:absolute;bottom:1.5em;right:2em;background-color:#000;color:#fff;border-radius:3px;padding:0.5em 1em;text-decoration:none}
+		.downloaditnow{position:absolute;top:5em;right:2em;border:1px solid #fff;color:#fff;border-radius:3px;padding:0.5em 1em;text-decoration:none}
+		.hljs{padding:0;max-height:100%;height:100%;}';
 		$output .= ' </style>';
 
 		$output .= ' <script>$(document).ready(function() {$("pre").each(function(i, block) {hljs.highlightBlock(block);}); });</script>';
 		$output .= "</head><body>";
 		// $output .= '<a class="clear primary" href="'. \dash\url::this(). '/log?folder='.\dash\request::get('folder').'">Back!</a>';
 		$output .= '<a class="clear" href="'. \dash\url::this(). '/log?clear=1&folder='.\dash\request::get('folder').'&file='.\dash\request::get('file').'">Clear it!</a>';
+		$output .= '<a class="downloaditnow" href="'. \dash\url::this(). '/log?download=1&folder='.\dash\request::get('folder').'&file='.\dash\request::get('file').'">Download it!</a>';
 		$output .= '<a class="zip" href="?name='. $name. '&zip=true">ZIP it!</a>';
 		$output .= "<pre class=''>";
 		$output .= $fileData;
