@@ -1,0 +1,137 @@
+{%extends display.cpMain%}
+
+
+
+{%block pageContent%}
+
+{%if dataTable%}
+ {%if dataFilter%}
+
+  {{block('htmlSearchBox')}}
+  {{block('htmlTable')}}
+  {{block('htmlFilter')}}
+
+ {%else%}
+
+  {{block('htmlSearchBox')}}
+  {{block('htmlTable')}}
+
+ {%endif%}
+{%else%}
+ {%if dataFilter%}
+
+  {{block('htmlSearchBox')}}
+  {{block('htmlFilterNoResult')}}
+
+ {%else%}
+  {{block('htmlStartAddNew')}}
+
+ {%endif%}
+{%endif%}
+
+{%endblock%}
+
+
+
+
+{%block htmlSearchBox%}
+<div class="cbox fs12">
+  <form method="get" action='{{url.this}}{{moduleType}}' data-action>
+    <div class="input">
+      <input type="search" name="q" placeholder='{%trans "Search"%}' id="q" value="{{requestGET.q}}" autofocus autocomplete='off'>
+      <button class="addon btn ">{%trans "Search" %}</button>
+    </div>
+  </form>
+</div>
+{%endblock%}
+
+
+{%block htmlTable%}
+ <div class="cbox fs12">
+  <table class="tbl bordered1">
+    <thead>
+      <tr>
+        <th data-sort="{{sortLink.author.order}}"><a href="{{sortLink.author.link}}">{%trans "Author"%}</a></th>
+        <th class="s0">{%trans "Detail"%}</th>
+        <th data-sort="{{sortLink.content.order}}"><a href="{{sortLink.content.link}}">{%trans "Comment"%}</a></th>
+        <th class="s0" data-sort="{{sortLink.status.order}}"><a href="{{sortLink.status.link}}">{%trans "Status"%}</a></th>
+        <th class="m0 s0" data-sort="{{sortLink.datecreated.order}}"><a href="{{sortLink.datecreated.link}}">{%trans "Date"%}</a></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {%for key, value in dataTable%}
+{%set statusClass%}
+{%if value.status == 'spam'%}negative
+{%elseif value.status == 'deleted'%}negative
+{%elseif value.status == 'awaiting'%}active
+{%elseif value.status == 'unapproved'%}warning
+{%endif%}
+{%endset%}
+      <tr class="{{statusClass}} {{value.status}}">
+        <td class="collapsing sauto">
+{%if value.user_id%}
+          <a href="{{url.here}}/users/set?id={{value.user_id}}">
+            <span class="sf-user fc-mute"></span>
+            {%if value.author%}
+            {{value.author}}
+            {%else%}
+            <small class='fc-mute'>{%trans "Without name"%}</small>
+            {%endif%}
+          </a>
+{%else%}
+            <span class="sf-chain-broken fc-mute"></span>
+            {%if value.author%}
+            {{value.author}}
+            {%else%}
+            <small class='fc-mute'>{%trans "Without name"%}</small>
+            {%endif%}
+{%endif%}
+        </td>
+        <td class="collapsing s0">
+          {%if value.meta.mobile%}<a class="sf-phone-square" href='tel:{{value.meta.mobile}}' title='{{value.meta.mobile}}'></a>{%endif%}
+          {%if value.url%}<a class="sf-globe" href='{{value.url}}' title='{{value.url}}'></a>{%endif%}
+          {%if value.email%}<a class="sf-envelope" href='mailto:{{value.email}}' title='{{value.email}}'></a>{%endif%}
+          {%if value.visitor_id%}<a class="sf-info-circle" href='{{url.here}}/visitor?id={{value.visitor_id}}' title='{%trans "Visitor detail"%}'></a>{%endif%}
+        </td>
+        <td>
+          <p>{{value.content}}</p>
+          <div class="rowAction floatRa">
+            <a class="mRa5 fc-green" href="{{url.pwd}}" data-ajaxify data-method='post' data-data='{"id":"{{value.id}}", "action":"approved"}'>{%trans "Approve"%}</a>
+            <a class="mRa5 fc-mute" href="{{url.this}}/edit?id={{value.id}}">{%trans "Edit"%}</a>
+            <a class="mRa5 fc-black" href="{{url.pwd}}" data-ajaxify data-method='post' data-data='{"id":"{{value.id}}", "action":"unapproved"}'>{%trans "Unapprove"%}</a>
+            <a class="mRa5 fc-red" href="{{url.pwd}}" data-ajaxify data-method='post' data-data='{"id":"{{value.id}}", "action":"deleted"}'>{%trans "Trash"%}</a>
+            <a class="mRa5 fc-red" href="{{url.pwd}}" data-ajaxify data-method='post' data-data='{"id":"{{value.id}}", "action":"spam"}'>{%trans "Spam"%}</a>
+          </div>
+        </td>
+        <td class="collapsing s0" title='{{value.datemodified}}'>{%set myStatus = value.status | capitalize%}{%trans myStatus%}</td>
+        <td class="collapsing s0 m0" title='{%trans "Created on"%} {{value.datecreated}}'>{{value.datecreated | sdate('year')}}</td>
+      </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+  {%include display.pagination%}
+ </div>
+{%endblock%}
+
+
+{%block htmlFilter%}
+<p class="f fs14 alert alert-info">
+  <span class="c">{{dataFilter | raw}}</span>
+  <a class="cauto" href="{{url.here}}/admincontact">{%trans "Clear filters"%}</a>
+</p>
+{%endblock%}
+
+
+{%block htmlFilterNoResult%}
+<p class="f fs14 alert alert-error">
+  <span class="c">{%trans "Result not found!"%} {%trans "Search with new keywords."%}</span>
+  <a class="cauto" href="{{url.here}}/admincontact">{%trans "Clear filters"%}</a>
+</p>
+{%endblock%}
+
+
+{%block htmlStartAddNew%}
+<p class="fs14 alert alert-success pTB20">{%trans "No record exist!"%}</p>
+{%endblock%}
+

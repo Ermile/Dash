@@ -1,0 +1,70 @@
+{%extends display.cpMain%}
+
+
+{%block pageContent%}
+<form class="f" method='post' autocomplete="off">
+  <div class="c8 s12 pRa10">
+    <div class="cbox">
+      <textarea class="txt" rows="10" name="content">{{dataRow.content}}</textarea>
+    </div>
+    <div class="cbox">
+      <div class="input">
+        <label for="author">{%trans "Author"%}</label>
+        <input type="text" name="author" value="{{dataRow.author}}">
+      </div>
+      <div class="input">
+        <label for="mobile">{%trans "Mobile"%}</label>
+        <input type="tel" name="mobile" value="{{dataRow.meta.mobile}}">
+      </div>
+      <div class="input">
+        <label for="email">{%trans "Email"%}</label>
+        <input type="text" name="email" value="{{dataRow.email}}">
+      </div>
+      <div class="input">
+        <label for="website">{%trans "Website"%}</label>
+        <input type="text" name="website" value="{{dataRow.url}}">
+      </div>
+    </div>
+  </div>
+  <div class="c4 s12">
+
+    <div class="cbox">
+
+     <div class="msg" title="{{dataRow.datecreated | tdate(true)}}">{%trans "Submitted on"%} <b>{{dataRow.datecreated | sdate("year")}}</b></div>
+     <div class="msg" title="{{dataRow.datemodified | tdate(true)}}">{%trans "Updated on"%} <b>{{dataRow.datemodified | sdate("year")}}</b></div>
+     <div class="msg{%if dataRow.status == 'approved'%} success2{%elseif dataRow.status == 'spam' or dataRow.status == 'deleted' %} danger2{%elseif dataRow.status == 'unapproved' %} warn2{%endif%}">
+      {%set myStatus = dataRow.status | capitalize%}{%trans "Current status"%} <b>{%trans myStatus%}</b>
+     </div>
+
+     <div>
+       <label>{%trans "Status"%}</label>
+       <div class="radio1 green">
+        <input type="radio" id="r-approved" name="status" value="approved" {%if dataRow.status == 'approved'%}checked{%endif%}>
+        <label for="r-approved">{%trans "Approve"%}</label>
+       </div>
+       <div class="radio1">
+        <input type="radio" id="r-awaiting" name="status" value="awaiting" {%if dataRow.status == 'awaiting'%}checked{%endif%}>
+        <label for="r-awaiting">{%trans "Awaiting"%}</label>
+       </div>
+       <div class="radio1">
+        <input type="radio" id="r-unapproved" name="status" value="unapproved" {%if dataRow.status == 'unapproved'%}checked{%endif%}>
+        <label for="r-unapproved">{%trans "Unapprove"%}</label>
+       </div>
+       <div class="radio1 red">
+        <input type="radio" id="r-trash" name="status" value="trash" {%if dataRow.status == 'trash'%}checked{%endif%}>
+        <label for="r-trash">{%trans "Trash"%}</label>
+       </div>
+       <div class="radio1 red">
+        <input type="radio" id="r-spam" name="status" value="spam" {%if dataRow.status == 'spam'%}checked{%endif%}>
+        <label for="r-spam">{%trans "Spam"%}</label>
+       </div>
+     </div>
+
+     <button class="btn block primary mT25">{%trans "Update"%}</button>
+    </div>
+
+
+  </div>
+</form>
+{% endblock %}
+
