@@ -119,6 +119,10 @@
 
 {%block iedit%}
 <button class="btn primary block mT25">{%trans "Edit"%}</button>
+<div class="ovh">
+  <a href="{{url.pwd}}" class="badge danger floatL mT5" data-ajaxify data-method='post' data-data='{"action": "remove"}'>{%trans "Remove"%}</a>
+</div>
+
 {%endblock%}
 
 

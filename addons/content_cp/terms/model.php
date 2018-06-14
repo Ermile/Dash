@@ -6,6 +6,35 @@ class model
 {
 	public static function post()
 	{
+		if(\dash\request::post('action') === 'remove')
+		{
+			$term_id = \dash\request::get('edit');
+			$term_id = \dash\coding::decode($term_id);
+			if(!$term_id)
+			{
+				\dash\notif::error(T_("Invalid term id"));
+				return false;
+			}
+
+			$remove = \dash\db\terms::remove($term_id);
+			if($remove)
+			{
+				\dash\notif::warn(T_("Data successfully removed"));
+				if(\dash\request::get('type'))
+				{
+					\dash\redirect::to(\dash\url::this(). '?type='. \dash\request::get('type'));
+				}
+				else
+				{
+					\dash\redirect::to(\dash\url::this());
+				}
+			}
+			else
+			{
+				\dash\notif::error(T_("This term or tag used in post and can not delete it!"));
+			}
+			return;
+		}
 
 		$post             = [];
 		$post['title']    = \dash\request::post('title');

@@ -152,5 +152,19 @@ class terms
 
 		return $result;
 	}
+
+
+	public static function remove($_term_id)
+	{
+		$query = "SELECT * FROM termusages WHERE termusages.term_id = $_term_id LIMIT 1";
+		$check_exist = \dash\db::get($query, null, true);
+		if($check_exist)
+		{
+			return false;
+		}
+
+		$query = "DELETE FROM terms WHERE terms.id = $_term_id LIMIT 1";
+		return \dash\db::query($query);
+	}
 }
 ?>
