@@ -31,7 +31,7 @@ class export
 
         // disposition / encoding on response body
         header("Content-Disposition: attachment;filename={$filename}.{$type}");
-        header("Content-Transfer-Encoding: binary");
+        // header("Content-Transfer-Encoding: binary");
 
         if (count($data) == 0 || !$data || empty($data) || !is_array($data))
         {
@@ -39,9 +39,11 @@ class export
         }
         else
         {
-            ob_start();
+            // BOM header UTF-8
+            echo "\xEF\xBB\xBF";
 
-            $df = fopen("php://output", 'w');
+            ob_start();
+            $df = @fopen("php://output", 'w');
 
             fputcsv($df, array_keys(reset($data)));
 
