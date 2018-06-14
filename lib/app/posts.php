@@ -250,6 +250,15 @@ class posts
 
 		if($status === 'deleted')
 		{
+			if(isset($current_post_detail['type']) && $current_post_detail['type'] === 'page')
+			{
+				if(!\dash\permission::check('cpPageDelete'))
+				{
+					\dash\notif::error(T_("You can not delete page"));
+					return false;
+				}
+			}
+
 			if(!\dash\permission::check('cpPostsDelete'))
 			{
 				\dash\notif::error(T_("You can not delete post"));

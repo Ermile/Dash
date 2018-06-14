@@ -16,6 +16,23 @@ class model
 				return false;
 			}
 
+			$load_term = \dash\db\terms::get(['id' => $term_id, 'limit' => 1]);
+			if(!isset($load_term['type']))
+			{
+				\dash\notif::error(T_("Term id not found"));
+				return false;
+			}
+
+			if($load_term['type'] === 'tag')
+			{
+				\dash\permission::access('cpTagDelete');
+			}
+
+			if($load_term['type'] === 'cat')
+			{
+				\dash\permission::access('cpCategoryDelete');
+			}
+
 			$remove = \dash\db\terms::remove($term_id);
 			if($remove)
 			{
