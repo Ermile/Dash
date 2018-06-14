@@ -74,6 +74,11 @@ class view
 			$args['status'] = \dash\request::get('status');
 		}
 
+		if(\dash\request::get('term'))
+		{
+			$args['term'] = \dash\request::get('term');
+		}
+
 		if(!isset($args['status']))
 		{
 			$args['status'] = ["NOT IN", "('draft', 'deleted')"];
@@ -108,6 +113,23 @@ class view
 
 		\dash\data::sortLink(\content_cp\view::make_sort_link(\dash\app\posts::$sort_field, \dash\url::this()) );
 		\dash\data::dataTable(\dash\app\posts::list(\dash\request::get('q'), $args) );
+
+		$filterArray = $args;
+		unset($filterArray['language']);
+		unset($filterArray['type']);
+
+		if(isset($filterArray['status']))
+		{
+			if(is_string($filterArray['status']))
+			{
+				$filterArray[T_("Status")] = $filterArray['status'];
+			}
+			unset($filterArray['status']);
+		}
+
+		// set dataFilter
+		$dataFilter = \dash\app\sort::createFilterMsg($search_string, $filterArray);
+		\dash\data::dataFilter($dataFilter);
 	}
 }
 ?>

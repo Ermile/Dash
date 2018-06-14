@@ -101,7 +101,7 @@
           {%if not requestGET.type%}
             <td><a href="{{url.this}}?type={{value.type}}">{%set vType = value.type%}{%trans vType%}</a></td>
           {%endif%}
-          <td class="collapsing txtC">{%if value.count%}{{ value.count | fitNumber}}{%else%}-{%endif%}</td>
+          <td class="collapsing txtC">{%if value.count%}<a target="_blank" href="{{url.here}}/posts?term={{value.slug}}">{{ value.count | fitNumber}}</a>{%else%}-{%endif%}</td>
           <td class="collapsing txtC">{%set vStatus = value.status%}{%trans vStatus%}</td>
         </tr>
       {%endfor%}

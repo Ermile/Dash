@@ -26,31 +26,32 @@ trait search
 		[
 
 			// enable|disable paignation,
-			"pagenation"  => true,
+			"pagenation"       => true,
 
 			// for example in get_count mode we needless to limit and pagenation
 			// default limit of record is 10
-			// set the limit  = null and pagenation = false to get all record whitout limit
-			"limit"           => 10,
+			// set the limit   = null and pagenation = false to get all record whitout limit
+			"limit"            => 10,
 
 			// for manual pagenation set the statrt_limit and end limit
-			"start_limit"     => 0,
+			"start_limit"      => 0,
 
 			// for manual pagenation set the statrt_limit and end limit
-			"end_limit"       => 10,
+			"end_limit"        => 10,
 
 			// the the last record inserted to post table
-			"get_last"        => false,
+			"get_last"         => false,
 
-			// default order by ASC you can change to DESC
-			"order"           => "ASC",
+			// default order byASC you can change to DESC
+			"order"            => "ASC",
 
 			// custom sort by field
-			"sort"			  => null,
+			"sort"             => null,
 
 			// default we check the language of user
 			// and load only the post was this language or her lang is null
-			"check_language"  => true,
+			"check_language"   => true,
+			"term"             => null,
 
 		];
 		$_options = array_merge($default_options, $_options);
@@ -95,6 +96,23 @@ trait search
 			$where[] = " (posts.language IS NULL OR posts.language = '$language') ";
 		}
 
+		if($_options['term'])
+		{
+			$where[] =
+			"
+				posts.id IN
+				(
+					SELECT
+						termusages.related_id
+					FROM
+						termusages
+					INNER JOIN terms ON terms.id = termusages.term_id
+					WHERE
+						terms.slug = '$_options[term]' AND
+						termusages.related_id = posts.id
+				)
+			";
+		}
 		// ------------------ remove system index
 		// unset some value to not search in database as a field
 		unset($_options['pagenation']);
@@ -106,6 +124,7 @@ trait search
 		unset($_options['all']);
 		unset($_options['check_language']);
 		unset($_options['sort']);
+		unset($_options['term']);
 
 		foreach ($_options as $key => $value)
 		{
