@@ -118,7 +118,7 @@
 {%block htmlFilter%}
 <p class="f fs14 alert alert-info">
   <span class="c">{{dataFilter | raw}}</span>
-  <a class="cauto" href="{{url.here}}/admincontact">{%trans "Clear filters"%}</a>
+  <a class="cauto" href="{{url.here}}/{{url.module}}">{%trans "Clear filters"%}</a>
 </p>
 {%endblock%}
 
@@ -126,7 +126,7 @@
 {%block htmlFilterNoResult%}
 <p class="f fs14 alert alert-error">
   <span class="c">{%trans "Result not found!"%} {%trans "Search with new keywords."%}</span>
-  <a class="cauto" href="{{url.here}}/admincontact">{%trans "Clear filters"%}</a>
+  <a class="cauto" href="{{url.here}}/{{url.module}}">{%trans "Clear filters"%}</a>
 </p>
 {%endblock%}
 
