@@ -38,9 +38,9 @@ class model
 		{
 			return false;
 		}
+
 		\dash\app\posts::post_gallery(\dash\request::get('id'), $id, 'remove');
-		\dash\notif::direct();
-		\dash\redirect::to(\dash\url::full());
+		\dash\redirect::pwd();
 
 	}
 
