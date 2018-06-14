@@ -47,7 +47,7 @@
 {%block iPublishtime%}
 <label for="publishtime">{%trans "Publish time"%}</label>
 <div class="input clockpicker ltr">
-  <input type="text" name="publishtime" id="publishtime" placeholder='{%trans "Publish time"%}' autocomplete="off" value="{{dataRow.publishdate | date('H:i')}}">
+  <input type="text" name="publishtime" id="publishtime" placeholder='{%trans "Publish time"%}' autocomplete="off" {%if dataRow.publishdate %} value="{{dataRow.publishdate | date('H:i')}}" {%endif%}>
 </div>
 {%endblock%}
 
