@@ -103,6 +103,11 @@ class comment
 		if(!\dash\app::isset_request('meta'))   unset($args['meta']);
 		if(!\dash\app::isset_request('mobile')) unset($args['mobile']);
 
+		if(isset($args['status']) && $args['status'] === 'deleted')
+		{
+			\dash\permission::check('cpCommentsDelete');
+		}
+
 		return \dash\db\comments::update($args, $id);
 	}
 
