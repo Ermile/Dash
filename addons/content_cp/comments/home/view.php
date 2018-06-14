@@ -34,19 +34,7 @@ class view
 			$args['status'] = \dash\request::get('status');
 		}
 
-		if(\dash\request::get('type'))
-		{
-			$args['type'] = \dash\request::get('type');
-		}
-		else
-		{
-			$args['type'] = 'comment';
-		}
-
-		if(\dash\request::get('unittype'))
-		{
-			$args['unittype'] = \dash\request::get('unittype');
-		}
+		$args['type'] = 'comment';
 
 		if(!$args['order'])
 		{
@@ -60,6 +48,14 @@ class view
 
 		\dash\data::sortLink(\content_cp\view::make_sort_link(\dash\app\comment::$sort_field, \dash\url::this()));
 		\dash\data::dataTable(\dash\app\comment::list(\dash\request::get('q'), $args));
+
+		$filterArray = $args;
+		unset($filterArray['type']);
+
+		// set dataFilter
+		$dataFilter = \dash\app\sort::createFilterMsg($search_string, $filterArray);
+		\dash\data::dataFilter($dataFilter);
+
 	}
 }
 ?>
