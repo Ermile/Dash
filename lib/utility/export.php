@@ -27,6 +27,7 @@ class export
         header("Content-Type: application/force-download");
         header("Content-Type: application/octet-stream");
         header("Content-Type: application/download");
+        header("Content-Type: application/csv;charset=UTF-8");
 
         // disposition / encoding on response body
         header("Content-Disposition: attachment;filename={$filename}.{$type}");
