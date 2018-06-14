@@ -69,9 +69,21 @@ class terms
 	 * @param      <type>  $_title  The title
 	 * @return     <type>  ( description_of_the_return_value )
 	 */
-	public static function search()
+	public static function search($_string = null, $_options = [])
 	{
-		return \dash\db\config::public_search('terms', ...func_get_args());
+		$default_option =
+		[
+			'public_show_field' => " terms.* , (SELECT COUNT(*) FROM termusages WHERE termusages.term_id = terms.id) AS `count`",
+		];
+
+		if(!is_array($_options))
+		{
+			$_options = [];
+		}
+
+		$_options = array_merge($default_option, $_options);
+
+		return \dash\db\config::public_search('terms', $_string, $_options);
 	}
 
 

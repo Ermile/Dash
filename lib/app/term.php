@@ -10,6 +10,9 @@ class term
 	[
 		'title',
 		'slug',
+		'count',
+		'type',
+		'status',
 	];
 
 	public static function cat_list()

@@ -85,21 +85,10 @@ class view
 			$myTitle = T_('Search'). ' '.  $search_string;
 		}
 
-		$export = false;
-		if(\dash\request::get('export') === 'true')
-		{
-			$export = true;
-			$args['pagenation'] = false;
-		}
 
 		$dataTable = \dash\app\term::list($search_string, $args);
+		\dash\data::sortLink(\content_cp\view::make_sort_link(\dash\app\term::$sort_field, \dash\url::this()));
 		\dash\data::dataTable($dataTable);
-
-
-		if($export)
-		{
-			\dash\utility\export::csv(['name' => 'export_service', 'data' => $dataTable]);
-		}
 
 		if(\dash\request::get('edit'))
 		{
