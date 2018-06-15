@@ -186,17 +186,16 @@ class Html implements Output
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>'.$appName.' - '.$info['HostName'].'</title>
 	<link href="./layout/favicon.ico" type="image/x-icon" rel="shortcut icon">
-	<style>' .'</style>
-    <link id="themeCssLink" href="./layout/theme_'.$chosen_theme.'.css" rel="stylesheet">'.($show_icons ? '
-	<link href="./layout/icons.css" rel="stylesheet">' : ''
-    ).'
-	<script src="./layout/scripts.min.js"></script>
+    <style>
+    body{font-family:arial,sans-serif;background-color:#fff;color:#000;font-size:12px}a{color:#666}a:hover{color:#000}table{border-collapse:collapse;width:100%}table th{font-weight:normal;color:#444}table th,table td{border-right:1px solid #c3c3c3;border-left:1px solid #c3c3c3;border-bottom:1px solid #c3c3c3;padding:4px;background-color:#eee}table tr th,table tr.alt td{background-color:#ddd}.infoTable{margin:10px 5px 10px 5px;clear:both;box-shadow:none}.infoTable h2{margin:0;padding:5px;color:#fff;text-shadow:#2665a7 1px 1px 1px;border:1px solid #4a8fd6;background-color:#5c9ada}.infoTable,.infoTable h2{border-top-left-radius:3px;border-top-right-radius:3px;-moz-border-radius-topleft:3px;-moz-border-radius-topright:3px}.infoTable.collapsed{border-bottom-left-radius:4px;border-bottom-right-radius:4px;-moz-border-radius-bottomleft:4px;-moz-border-radius-bottomright:4px}.collapsed h2{border-bottom-left-radius:3px;border-bottom-right-radius:3px;-moz-border-radius-bottomleft:3px;-moz-border-radius-bottomright:3px}.collapsed table{display:none}#foot{margin:15px 0px 20px 15px;color:#444;float:left}#foot_time{margin:15px 15px 20px 0px;color:#444;float:right;vertical-align:bottom}h1{font-size:1.6em;margin:0;padding:0}h2{font-size:1.2em;margin:0}.col2{overflow:hidden}.col2 .col{float:left;width:50%}#info .center{text-align:center}td.none{text-align:center;font-size:12px;padding:10px;color:#666}span.perc,span.faded{color:#666}span.caption{font-size:90%}td ul{margin:0;padding:0}td ul li{list-style-type:square;padding:0;margin-left:15px;margin-top:0;margin-bottom:0;margin-right:0}.raid_normal{color:green}.raid_spare{color:blue}.raid_failed{color:red}.raid_unknown{color:purple}.margin_auto{margin:auto}table.mini{padding:0;font-size:90%;border-collapse:collapse}table.mini th,table.mini td{margin:0;padding:0;border:none}table.mini th{background-color:inherit;color:#444}.net_up{color:green}.net_down{color:red}.net_unknown{color:purple}#errorList,#timerList{font-size:75%;margin-top:15px;margin-bottom:15px}.bar_chart{position:relative;margin:auto}.smaller_bar_chart{padding-bottom:2px}.smaller_bar_chart .bar_text{text-align:left !important}.bar_inner{border-radius:2px;-moz-border-radius:2px;min-height:18px;background-color:#b7cce2}.bar_text{position:absolute;line-height:18px;font-size:12px;text-indent:2px;text-align:center;width:100%}.new_bar_outer{position:relative;margin:auto;background-color:inherit}.new_bar_text{z-index:2;position:relative;padding:2px;text-align:center;color:#000}.new_bar_bg{border-radius:2px;-moz-border-radius:2px;z-index:1;height:100%;position:absolute;display:block;background-color:#b7cce2}.new_bar_left .new_bar_text{text-align:left}.alt .bar_inner,.alt .new_bar_bg{background-color:#96b4d5}.service_up{color:green}.service_down{color:maroon}.service_zombie{color:orange}span.toggler{line-height:24px;color:#8abdf2;float:right;font-family:"Courier New";cursor:pointer;font-weight:bold;font-size:1.4em;padding-top:0.2em;padding-right:0.4em}.infoTable span.toggler:hover{color:#fff}#header{padding:5px 0px 5px 5px}#header:before{float:left;content:url("icons/logo.png");display:inline-block;margin-right:10px}.subtitle{color:#999;font-size:12px}.time{padding:5px 15px 0px 0px;color:#999;float:right;text-align:right}.col2_side{overflow:hidden}.col2_side_left{float:left;width:80%}.col2_side_right{float:left;width:20%}
+
+        @media only screen and (max-width: 640px) {
+        .col2 .col{width:100%}.infoTable{margin:0px 0px 5px 0px}#header{padding:0px 0px 5px 2px}.filesystem_mounts table th:nth-child(2),.filesystem_mounts table td:nth-child(2),.filesystem_mounts table th:nth-child(3),.filesystem_mounts table td:nth-child(3),.filesystem_mounts table th:nth-child(4),.filesystem_mounts table td:nth-child(4),.network_devices table th:nth-child(2),.network_devices table td:nth-child(2),.drives table th:nth-child(2),.drives table td:nth-child(2),.drives table th:nth-child(3),.drives table td:nth-child(3){display:none}#foot_time{margin:0}#foot{margin:5px 5px 0px 5px}
+        }
+    </style>
+
 	<meta name="generator" content="'.$appName.' ('.$version.')">
 	<meta name="author" content="Joseph Gillotti &amp; friends">
-	<!--[if lt IE 8]>
-	<link href="./layout/old_ie.css" type="text/css" rel="stylesheet">
-	<![endif]-->
-	<link rel="stylesheet" type="text/css" href="./layout/mobile.css" media="screen and (max-width: 640px)">
 </head>
 <body id="info">
 <div id="header">';
