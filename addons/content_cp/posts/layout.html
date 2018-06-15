@@ -126,10 +126,10 @@
 {%block iParent%}
 <label for="parent">{%trans "Parent"%}</label>
 <select name="parent" class="select ui dropdown search">
-  <option value=""><i>{%trans "Master"%}</i></option>
-  <option value="0"><i>{%trans "Master"%}</i></option>
+  <option value=""><i>{%trans "Choose Parent"%}</i></option>
+  <option value="0"><i>{%trans "Without Parent"%}</i></option>
   {%for key, value in pageList%}
-    <option value="{{value.id}}" {%if dataRow.parent == value.id  %} selected {%endif%}>{{value.title | slice(0, 30)}} ... </option>
+    <option value="{{value.id}}" {%if dataRow.parent == value.id %} selected {%endif%}>{{value.title | slice(0, 50)}}</option>
   {%endfor%}
 </select>
 {%endblock%}
