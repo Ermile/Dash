@@ -9,9 +9,6 @@ class view
 		\dash\data::page_desc(T_("Hey there!"));
 
 		\dash\data::page_pictogram('gauge');
-
-		\dash\data::server_cpu(\dash\utility\server::getServerLoad());
-
 	}
 }
 ?>
