@@ -1,44 +1,58 @@
-function getServerStat() {
+function getServerStat(_chartConfig)
+{
   $.ajax({
     url: '{{url.here}}?server=status',
-    success: function (response)
+    success: function (_response)
     {
-      console.log(response);
+      _response = JSON.parse(_response);
+      if(_response)
+      {
+        addNewServerData(_chartConfig, _response)
+      }
+
       setTimeout(function ()
       {
-        getCpu();
+        getServerStat(_chartConfig);
       }, 1000);
-      return response;
     }
   });
 }
 
 
+function addNewServerData(_chartConfig, _result)
+{
+  if (_chartConfig.data.datasets.length > 0)
+  {
+    logy(_result);
+    if(_result)
+    {
+      _chartConfig.data.labels.push(_result.time);
+
+      _chartConfig.data.datasets[0].data.push(_result.cpu);
+      _chartConfig.data.datasets[1].data.push(_result.memory);
+      _chartConfig.data.datasets[2].data.push(_result.disk);
+
+      window.myLine.update();
+    }
+  }
+}
+
 
 
 function chartDrawer()
 {
-    var timeFormat = 'MM/DD/YYYY HH:mm';
-
-    function newDate(days) {
-      return moment().add(days, 'd').toDate();
-    }
-
-    function newDateString(days) {
-      return moment().add(days, 'd').format(timeFormat);
-    }
-
-    var color = Chart.helpers.color;
-    var config =
+    // var timeFormat = 'MM/DD/YYYY HH:mm';
+    var color      = Chart.helpers.color;
+    var config     =
     {
       type: 'line',
       data:
       {
         labels:
         [ // Date Objects
-          newDate(0),
-          newDate(1),
-          newDate(2)
+          "18:22:04",
+          "18:22:05",
+          "18:22:06"
         ],
         datasets: [
         {
@@ -99,16 +113,16 @@ function chartDrawer()
         },
         scales:
         {
-          xAxes: [
-          {
-            type: 'time',
-            time:
-            {
-              format: timeFormat,
-              // round: 'day'
-              tooltipFormat: 'll HH:mm'
-            },
-          }],
+          // xAxes: [
+          // {
+          //   type: 'time',
+          //   time:
+          //   {
+          //     format: timeFormat,
+          //     // round: 'day'
+          //     tooltipFormat: 'HH:mm'
+          //   },
+          // }],
           yAxes: [
           {
             scaleLabel:
@@ -128,32 +142,10 @@ function chartDrawer()
 
     };
 
-    document.getElementById('addData').addEventListener('click', function()
-    {
-      if (config.data.datasets.length > 0)
-      {
-        config.data.labels.push(newDate(config.data.labels.length));
-        newVal =
-        {
-          cpu:10,
-          memory:80,
-          disk:30
-        };
-        // newVal = getServerStat;
-        if(newVal)
-        {
-          config.data.datasets[0].data.push(newVal.cpu);
-          config.data.datasets[1].data.push(newVal.memory);
-          config.data.datasets[2].data.push(newVal.disk);
-        }
-
-        window.myLine.update();
-      }
-    });
+    getServerStat(config);
 }
 
-function addNewServerData()
-{
 
-}
+
+
 
