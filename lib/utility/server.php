@@ -94,7 +94,7 @@ class server
 		return $obj;
 	}
 
-	public static function getDisk()
+	public static function diskusage()
 	{
 		$obj = new \stdClass();
 		$cmd = "df -h";
@@ -123,7 +123,7 @@ class server
 		return $obj;
 	}
 
-	public static function humanFileSize($size, $unit = "")
+	private static function humanFileSize($size, $unit = "")
 	{
 		if ((!$unit && $size >= 1 << 30) || $unit == "GB")
 			return number_format($size / (1 << 30), 2) . "GB";
@@ -137,7 +137,7 @@ class server
 		return number_format($size) . " bytes";
 	}
 
-	static private function _getServerLoadLinuxData()
+	private static function _getServerLoadLinuxData()
 	{
 		if (is_readable("/proc/stat"))
 		{
