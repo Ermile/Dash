@@ -124,27 +124,31 @@
 
 
 {%block iParent%}
-<label for="parent">{%trans "Parent"%}</label>
-<select name="parent" class="select ui dropdown search">
-  <option value=""><i>{%trans "Choose Parent"%}</i></option>
-  <option value="0"><i>{%trans "Without Parent"%}</i></option>
-  {%for key, value in pageList%}
-    <option value="{{value.id}}" {%if dataRow.parent == value.id %} selected {%endif%}>{{value.title | slice(0, 50)}}</option>
-  {%endfor%}
-</select>
+<div title='{%trans "Choose parent for this page to create related url as tree"%}'>
+  <label for="parent">{%trans "Parent"%}</label>
+  <select name="parent" class="select ui dropdown search">
+    <option value=""><i>{%trans "Choose Parent"%}</i></option>
+    <option value="0"><i>{%trans "Without Parent"%}</i></option>
+{%for key, value in pageList%}
+      <option value="{{value.id}}" {%if dataRow.parent == value.id %} selected {%endif%}>{{value.title | slice(0, 50)}}</option>
+{%endfor%}
+  </select>
+</div>
 {%endblock%}
 
 
 
 {%block iCat%}
+<div>
 {%set postCat = category({"post_id" : dataRow.id, "id" : true})%}
-<div title='{%trans "Choose category of post"%}'>
+  <div title='{%trans "Choose category of post"%}'>
 {%for key, value in listCats%}
-<div class="check1">
-  <input type="checkbox" name="cat_{{value.id}}" value="{{value.title}}" id="cat_{{value.id}}" {%if value.id in postCat %} checked {%endif%}>
-  <label for="cat_{{value.id}}">{{value.title}}</label>
-</div>
+    <div class="check1">
+      <input type="checkbox" name="cat_{{value.id}}" value="{{value.title}}" id="cat_{{value.id}}" {%if value.id in postCat %} checked {%endif%}>
+      <label for="cat_{{value.id}}">{{value.title}}</label>
+    </div>
 {%endfor%}
+  </div>
 </div>
 {%endblock%}
 
