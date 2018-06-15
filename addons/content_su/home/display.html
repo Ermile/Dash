@@ -1,10 +1,15 @@
 {%extends display.suMain%}
 
 
-{%block content%}
-<div class="tbox">
-  {%trans "System master controll"%}
+{%block pageContent%}
+
+<div class="mB25">
+    <canvas id="canvas"></canvas>
+  <br>
+  <button id="addData">Add Data</button>
 </div>
+
+
 <div class="f">
   <div class="c12">
     <div class="f ">
@@ -158,5 +163,13 @@
   <div class="label">{%trans "Sample"%}</div>
  </div>
 </a>
+{%endblock%}
+
+
+
+{%block foot_js%}
+<script>
+  {%include 'content_su/home/chart.js'%}
+</script>
 {%endblock%}
 
