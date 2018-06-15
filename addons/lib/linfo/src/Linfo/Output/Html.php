@@ -147,6 +147,7 @@ class Html implements Output
 
         // Start compressed output buffering. Try to not do this if we've had errors or otherwise already outputted stuff
         if ((!function_exists('error_get_last') || !error_get_last()) && (!isset($settings['compress_content']) || $settings['compress_content'])) {
+            ob_end_clean();
             ob_start(function_exists('ob_gzhandler') ? 'ob_gzhandler' : null);
         }
 
@@ -185,7 +186,8 @@ class Html implements Output
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>'.$appName.' - '.$info['HostName'].'</title>
 	<link href="./layout/favicon.ico" type="image/x-icon" rel="shortcut icon">
-	<link id="themeCssLink" href="./layout/theme_'.$chosen_theme.'.css" rel="stylesheet">'.($show_icons ? '
+	<style>'. .'</style>
+    <link id="themeCssLink" href="./layout/theme_'.$chosen_theme.'.css" rel="stylesheet">'.($show_icons ? '
 	<link href="./layout/icons.css" rel="stylesheet">' : ''
     ).'
 	<script src="./layout/scripts.min.js"></script>
@@ -565,6 +567,19 @@ echo '
         // Show them
         foreach ($info['services'] as $service => $state) {
             $state_parts = explode(' ', $state['state'], 2);
+            // set as empty if is not set
+            if(!isset($state['pid'])){
+                $state['pid'] = '';
+                if(isset($state['name'])){
+                    $state['pid'] = $state['name'];
+                }
+            }
+            if(!isset($state['threads'])){
+                $state['threads'] = '';
+            }
+            if(!isset($state['memory_usage'])){
+                $state['memory_usage'] = '';
+            }
             echo '
 				<tr>
 					<td>'.$service.'</td>

@@ -13,7 +13,7 @@ $settings['icons'] = true; // simple icons
 $settings['theme'] = 'default'; // Theme file (layout/theme_$n.css). Look at the contents of the layout/ folder for other themes.
 
 
-$settings['allow_changing_themes'] = true; // Allow changing the theme per user in the UI?
+$settings['allow_changing_themes'] = false; // Allow changing the theme per user in the UI?
 
 /*
  * Possibly don't show stuff
@@ -29,8 +29,8 @@ $settings['show']['ram'] = true;
 $settings['show']['hd'] = true;
 $settings['show']['mounts'] = true;
 $settings['show']['mounts_options'] = false; // Might be useless/confidential information; disabled by default.
-$settings['show']['webservice'] = true; // Might be dangerous/confidential information; disabled by default.
-$settings['show']['phpversion'] = true; // Might be dangerous/confidential information; disabled by default.
+$settings['show']['webservice'] = false; // Might be dangerous/confidential information; disabled by default.
+$settings['show']['phpversion'] = false; // Might be dangerous/confidential information; disabled by default.
 $settings['show']['network'] = true;
 $settings['show']['uptime'] = true;
 $settings['show']['cpu'] = true;
@@ -45,23 +45,23 @@ $settings['show']['virtualization'] = true; # whether this is a VPS/VM and what 
 // CPU Usage on Linux (per core and overall). This requires running sleep(1) once so it slows
 // the entire page load down. Enable at your own inconvenience, especially since the load averages
 // are more useful.
-$settings['cpu_usage'] = true;
+$settings['cpu_usage'] = false;
 
 // Sometimes a filesystem mount is mounted more than once. Only list the first one I see?
 // (note, duplicates are not shown twice in the file system totals)
 $settings['show']['duplicate_mounts'] = true;
 
 // Disabled by default as they require extra config below
-$settings['show']['temps'] = true;
-$settings['show']['raid'] = true;
+$settings['show']['temps'] = false;
+$settings['show']['raid'] = false;
 
 // Following are probably only useful on laptop/desktop/workstation systems, not servers, although they work just as well
-$settings['show']['battery'] = true;
-$settings['show']['sound'] = true;
-$settings['show']['wifi'] = true; # Not finished
+$settings['show']['battery'] = false;
+$settings['show']['sound'] = false;
+$settings['show']['wifi'] = false; # Not finished
 
 // Service monitoring
-$settings['show']['services'] = true;
+$settings['show']['services'] = false;
 
 /*
  * Misc settings pertaining to the above follow below:
@@ -94,7 +94,7 @@ $settings['raid']['mdadm'] = false;  # For Linux; known to support RAID 1, 5, an
 // Various ways of getting temps/voltages/etc. Set to true to enable. Currently these are just for Linux
 $settings['temps']['hwmon'] = true; // Requires no extra config, is fast, and is in /sys :)
 $settings['temps']['thermal_zone'] = false;
-$settings['temps']['hddtemp'] = true;
+$settings['temps']['hddtemp'] = false;
 $settings['temps']['mbmon'] = false;
 $settings['temps']['sensord'] = false; // Part of lm-sensors; logs periodically to syslog. slow
 $settings['temps_show0rpmfans'] = false; // Set to true to show fans with 0 RPM
