@@ -193,8 +193,8 @@ class controller
 		{
 			$output .= 'File does not exist!';
 		}
-		var_dump($output);exit();
-		$output .= "</body></html>";
+		// var_dump($output);exit();
+		// $output .= "</body></html>";
 		echo $output;
 		\dash\code::exit();
 
