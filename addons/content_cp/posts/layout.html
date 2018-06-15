@@ -139,7 +139,7 @@
 
 
 {%block iCat%}
-<div>
+<div title='{%trans "Choose category for posts is fix url of post relative and help people find it better."%}'>
 {%set postCat = category({"post_id" : dataRow.id, "id" : true})%}
   <div title='{%trans "Choose category of post"%}'>
 {%for key, value in listCats%}
