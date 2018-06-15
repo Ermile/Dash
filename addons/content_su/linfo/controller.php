@@ -10,7 +10,7 @@ class controller
 			return;
 		}
 
-		require addons.'lib/linfo2/index.php';
+		require addons.'lib/linfo/index.php';
 		\dash\code::exit();
 	}
 }
