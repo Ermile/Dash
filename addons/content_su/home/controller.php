@@ -10,11 +10,12 @@ class controller
 			$serverDetail =
 			[
 				'cpu'    => \dash\utility\server::getServerLoad(),
-				'memory' => \dash\utility\server::getServerLoad()+10,
-				'disk'   => \dash\utility\server::getServerLoad()+20
+				'memory' => rand(50,100),
+				'disk'   => rand(10,30),
+				'time'   => date('H:i:s')
 			];
 
-			echo json_encode($serverDetail);
+			echo json_encode($serverDetail, JSON_UNESCAPED_UNICODE);
 			\dash\code::exit();
 		}
 
