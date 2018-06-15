@@ -58,8 +58,33 @@ class server
 		return $obj;
 	}
 
-
 	public static function memory()
+	{
+		if (stristr(PHP_OS, "win"))
+		{
+			return self::memoryWin();
+		}
+		else
+		{
+			return self::memoryLinux();
+		}
+	}
+
+	public static function memoryWin()
+	{
+		// total memory of system
+		@exec('wmic memorychip get capacity', $eachMemory);
+		$totalMemory = array_sum($eachMemory);
+		$totalMemory = self::humanFileSize($totalMemory);
+
+		$totalMemory = self::humanFileSize(memory_get_usage());
+
+		// var_dump($totalMemory);
+		return $totalMemory;
+	}
+
+
+	public static function memoryLinux()
 	{
 		$obj = new \stdClass();
 		$cmd = "free";
