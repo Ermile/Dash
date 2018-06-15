@@ -35,13 +35,13 @@
    {{block('iadd')}}
   </div>
 
-{%if not requestGET.type or requestGET.type == 'post' %}
+{%if dataRow.type == 'post' %}
   <div class="cbox">
    {{block('iCat')}}
   </div>
 {%endif%}
 
-{%if requestGET.type == 'page' or dataRow.type == 'page' %}
+{%if dataRow.type == 'page' %}
   <div class="cbox">
    {{block('iParent')}}
   </div>
