@@ -186,7 +186,7 @@ class Html implements Output
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>'.$appName.' - '.$info['HostName'].'</title>
 	<link href="./layout/favicon.ico" type="image/x-icon" rel="shortcut icon">
-	<style>'. .'</style>
+	<style>' .'</style>
     <link id="themeCssLink" href="./layout/theme_'.$chosen_theme.'.css" rel="stylesheet">'.($show_icons ? '
 	<link href="./layout/icons.css" rel="stylesheet">' : ''
     ).'
