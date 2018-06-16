@@ -233,7 +233,19 @@ class comments
 			";
 		}
 
-		return \dash\db::get($query);
+		$result = \dash\db::get($query);
+		$temp = [];
+
+		if(is_array($result))
+		{
+			foreach ($result as $key => $value)
+			{
+				$temp[$value['id']] = $value;
+			}
+			$temp = array_values($temp);
+		}
+
+		return $temp;
 	}
 
 
