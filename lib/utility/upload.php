@@ -491,6 +491,15 @@ class upload
 		$url_thumb  = null;
 		$url_normal = null;
 
+
+		// 5. get filemeta data
+		$file_meta         = [];
+		$file_meta['mime'] = self::$fileMime;
+		$file_meta['type'] = self::$fileType;
+		$file_meta['size'] = self::$fileSize;
+		$file_meta['ext']  = $file_ext;
+		$file_meta['url']  = $url_full;
+
 		switch ($file_ext)
 		{
 			case 'jpg':
@@ -505,26 +514,34 @@ class upload
 					$url_normal = $url_file.'-normal.'.self::$fileExt;
 
 					\dash\utility\image::load($real_url_full);
+
 					\dash\utility\image::thumb(600, 400);
 					\dash\utility\image::save($url_normal);
+					$file_meta['normal'] = $url_normal;
 
 					\dash\utility\image::thumb(150, 150);
 					\dash\utility\image::save($url_thumb);
+					$file_meta['thumb']  = $url_thumb;
+
+					$option_crop_size = \dash\option::config('crop_size');
+					if($option_crop_size && is_array($option_crop_size))
+					{
+						foreach ($option_crop_size as $key => $value)
+						{
+							if(isset($value[0]) && isset($value[1]))
+							{
+								$key_url = $url_file. '-'. $key. '.'. self::$fileExt;
+								\dash\utility\image::thumb($value[0], $value[1]);
+								\dash\utility\image::save($key_url);
+								$file_meta[$key]  = $url_thumb;
+							}
+						}
+					}
 				}
 				break;
 		}
 
-		// 5. get filemeta data
-		$file_meta =
-		[
-			'mime'   => self::$fileMime,
-			'type'   => self::$fileType,
-			'size'   => self::$fileSize,
-			'ext'    => $file_ext,
-			'url'    => $url_full,
-			'thumb'  => $url_thumb,
-			'normal' => $url_normal,
-		];
+
 		$file_meta = array_merge($file_meta, $_options['meta']);
 
 		$url_slug = self::$fileMd5;
