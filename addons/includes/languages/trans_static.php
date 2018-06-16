@@ -980,6 +980,10 @@ class TransStatic
 	echo T_("SMS");
 	echo T_("Email");
 
+	echo T_("cpContactView");
+	echo T_("cpContactChangeStatus");
+	echo T_("cpTemplateSmsView");
+
  }
 }
 ?>

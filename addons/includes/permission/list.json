@@ -314,6 +314,26 @@
     "title": "cpEmailSend",
     "cat": "Control Panel Contact",
     "require": ["contentCp", "cpEmail"]
-  }
+  },
 
+  "cpContactView":
+  {
+    "title": "cpContactView",
+    "cat": "Control Panel Contact",
+    "require": ["contentCp", "cpEmail"]
+  },
+
+  "cpContactChangeStatus":
+  {
+    "title": "cpContactChangeStatus",
+    "cat": "Control Panel Contact",
+    "require": ["contentCp", "cpEmail"]
+  },
+
+  "cpTemplateSmsView":
+  {
+    "title": "cpTemplateSmsView",
+    "cat": "SMS",
+    "require": ["contentCp", "cpEmail"]
+  }
 }
