@@ -4,73 +4,123 @@ namespace dash\utility;
 
 class server
 {
-	public static function temporary()
+	public static function cpu_usage()
 	{
-		$obj = new \stdClass();
-		$cmd = "cat /sys/class/thermal/thermal_zone0/temp";
-		exec($cmd . "  2>&1", $output, $return_val);
-		if ($return_val !== 0)
+		$cpu = self::cpu_detail();
+		if(isset($cpu['percent']))
 		{
-			$obj->error = "Get t°  ERROR** " . print_r($output, true);
-			$obj->command = $cmd;
+			return $cpu['percent'];
 		}
-		else
-		{
-			$obj->title = "t° Raspberry";
-			$obj->success = 1;
-			$obj->output = $output;
-			$obj->command = $cmd;
-			$obj->percent = 0;
-			$obj->percent = $output[0]/1000;
-           // $obj->percent = intval(self::getServerLoad());
-		}
-		return $obj;
+		return false;
 	}
 
-	public static function cpu()
+
+	public static function cpu_detail()
 	{
-		$obj = new \stdClass();
-		$cmd = "cat /proc/cpuinfo";
-		exec($cmd . "  2>&1", $output, $return_val);
-		if ($return_val !== 0)
+		$cmd = "cat /proc/cpuinfo 2>&1";
+		exec($cmd, $output, $return_val);
+		if ($return_val === 0)
 		{
-			$obj->error = "Get CPU ERROR** " . print_r($output, true);
-			$obj->command = $cmd;
-		}
-		else
-		{
-			$obj->title = "";
-			$obj->success = 1;
-			$obj->output = $output;
-			$obj->command = $cmd;
-			$obj->percent = 0;
-			$obj->percent = intval(self::getServerLoad());
+			$return          = [];
+			$return['title'] = null;
+
 			// find model name
 			foreach ($output as $value)
 			{
 				if (preg_match("/model name.+:(.*)/i", $value, $match))
 				{
-					$obj->title = $match[1];
+					$return['title'] = trim($match[1]);
 					break;
 				}
 			}
-		}
-		return $obj;
-	}
 
-	public static function memory()
-	{
-		if (stristr(PHP_OS, "win"))
-		{
-			return self::memoryWin();
+			$return['percent'] = intval(self::getServerLoad());
+			$return['desc'] = $output;
+
+			return $return;
 		}
 		else
 		{
-			return self::memoryLinux();
+			return false;
 		}
 	}
 
-	public static function memoryWin()
+	public static function disk_usage()
+	{
+		$disc = self::disk_detail();
+		if(isset($disc['percent']))
+		{
+			return $disc['percent'];
+		}
+		return false;
+	}
+
+
+	public static function disk_detail()
+	{
+		$cmd = "df -h 2>&1";
+		exec($cmd, $output, $return_val);
+		if ($return_val === 0)
+		{
+			$return['percent'] = 0;
+			foreach ($output as $value)
+			{
+				if(preg_match("/([0-9]+)% \/$/i", $value, $match))
+				{
+					$return['percent'] = intval($match[1]);
+					break;
+				}
+			}
+			$return['title']   = "Usage of {$return['percent']}%";
+			$return['desc']    = $output;
+			$return['command'] = $cmd;
+			return $return;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+
+	public static function memory_usage()
+	{
+		if (stristr(PHP_OS, "win"))
+		{
+			$memory = self::memoryWin_detail();
+			if(isset($memory['percent']))
+			{
+				return $memory['percent'];
+			}
+			return false; self::memoryWin_detail();
+		}
+		else
+		{
+			$memory = self::memoryLinux_detail();
+			if(isset($memory['percent']))
+			{
+				return $memory['percent'];
+			}
+			return false;
+		}
+	}
+
+
+	public static function memory_detail()
+	{
+		if (stristr(PHP_OS, "win"))
+		{
+			return self::memoryWin_detail();
+		}
+		else
+		{
+			return self::memoryLinux_detail();
+		}
+	}
+
+
+
+	public static function memoryWin_detail()
 	{
 		// total memory of system
 		@exec('wmic memorychip get capacity', $eachMemory);
@@ -84,83 +134,93 @@ class server
 	}
 
 
-	public static function memoryLinux()
+	public static function memoryLinux_detail()
 	{
-		$obj = new \stdClass();
-		$cmd = "free";
-		exec($cmd . "  2>&1", $output, $return_val);
-		if ($return_val !== 0) {
+		$cmd = "free 2>&1";
+		exec($cmd, $output, $return_val);
+		if ($return_val === 0) {
 
-			$obj->error = "Get Memmory ERROR** " . print_r($output, true);
-			$obj->command = $cmd;
-		}
-		else
-		{
-			$obj->title = "";
-			$obj->success = 1;
-			$obj->output = $output;
-			$obj->command = $cmd;
-			$obj->memTotalBytes = 0;
-			$obj->memUsedBytes = 0;
-			$obj->memFreeBytes = 0;
+			$return = [];
+
+			$return['memTotalBytes'] = 0;
+			$return['memUsedBytes']  = 0;
+			$return['memFreeBytes']  = 0;
+
 			if (preg_match("/Mem: *([0-9]+) *([0-9]+) *([0-9]+) */i", $output[1], $match))
 			{
-				$obj->memTotalBytes = $match[1]*1024;
-				$obj->memUsedBytes = $match[2]*1024;
-				$obj->memFreeBytes = $match[3]*1024;
-				$onePc = $obj->memTotalBytes / 100;
-				$obj->memTotal = self::humanFileSize($obj->memTotalBytes);
-				$obj->memUsed = self::humanFileSize($obj->memUsedBytes);
-				$obj->memFree = self::humanFileSize($obj->memFreeBytes);
-				$obj->percent = intval($obj->memUsedBytes / $onePc);
-				$obj->title = "Total: {$obj->memTotal} | Free: {$obj->memFree} | Used: {$obj->memUsed}";
+				$return['memTotalBytes'] = $match[1]*1024;
+				$return['memUsedBytes']  = $match[2]*1024;
+				$return['memFreeBytes']  = $match[3]*1024;
+				$onePc                   = $return['memTotalBytes'] / 100;
+				$return['memTotal']      = self::humanFileSize($return['memTotalBytes']);
+				$return['memUsed']       = self::humanFileSize($return['memUsedBytes']);
+				$return['memFree']       = self::humanFileSize($return['memFreeBytes']);
+				$return['percent']       = intval($return['memUsedBytes'] / $onePc);
+				$return['title']         = "Total: {$return['memTotal']} | Free: {$return['memFree']} | Used: {$return['memUsed']}";
 			}
-		}
-		return $obj;
-	}
-
-	public static function diskusage()
-	{
-		$obj = new \stdClass();
-		$cmd = "df -h";
-		exec($cmd . "  2>&1", $output, $return_val);
-		if ($return_val !== 0)
-		{
-			$obj->error = "Get Disk ERROR** " . print_r($output, true);
-			$obj->command = $cmd;
+			return $return;
 		}
 		else
 		{
-			$obj->percent = 0;
-			foreach ($output as $value)
-			{
-				if (preg_match("/([0-9]+)% \/$/i", $value, $match))
-				{
-					$obj->percent = intval($match[1]);
-					break;
-				}
-			}
-			$obj->title = "Usage of {$obj->percent}%";
-			$obj->success = 1;
-			$obj->output = $output;
-			$obj->command = $cmd;
+			return false;
 		}
-		return $obj;
 	}
+
+
+
+
+	public static function temperature_usage()
+	{
+		$temperature = self::temperature();
+		if(isset($temperature['percent']))
+		{
+			return $temperature['percent'];
+		}
+		return false;
+	}
+
+
+	public static function temperature()
+	{
+		$cmd = "cat /sys/class/thermal/thermal_zone0/temp 2>&1";
+		exec($cmd, $output, $return_val);
+		if ($return_val === 0)
+		{
+			$return['title']   = "t° Raspberry";
+			$return['success'] = 1;
+			$return['output']  = $output;
+			$return['command'] = $cmd;
+			$return['percent'] = 0;
+			$return['percent'] = $output[0]/1000;
+			return $return;
+		}
+		else
+		{
+           return false;
+		}
+	}
+
 
 	private static function humanFileSize($size, $unit = "")
 	{
 		if ((!$unit && $size >= 1 << 30) || $unit == "GB")
-			return number_format($size / (1 << 30), 2) . "GB";
+		{
+			return number_format($size / (1 << 30), 2) . " GB";
+		}
 
 		if ((!$unit && $size >= 1 << 20) || $unit == "MB")
-			return number_format($size / (1 << 20), 2) . "MB";
+		{
+			return number_format($size / (1 << 20), 2) . " MB";
+		}
 
 		if ((!$unit && $size >= 1 << 10) || $unit == "KB")
-			return number_format($size / (1 << 10), 2) . "KB";
+		{
+			return number_format($size / (1 << 10), 2) . " KB";
+		}
 
 		return number_format($size) . " bytes";
 	}
+
 
 	private static function _getServerLoadLinuxData()
 	{
@@ -185,8 +245,8 @@ class server
 					// Found!
 					if
 					(
-							(count($statLineData) >= 5) &&
-							($statLineData[0] == "cpu")
+						(count($statLineData) >= 5) &&
+						($statLineData[0] == "cpu")
 					)
 					{
 						return array(
@@ -250,8 +310,15 @@ class server
 					// the percentage of idle time (which is part of the 4 values!)
 					$cpuTime = $statData2[0] + $statData2[1] + $statData2[2] + $statData2[3];
 
-					// Invert percentage to get CPU time, not idle time
-					$load = 100 - ($statData2[3] * 100 / $cpuTime);
+					if($cpuTime === 0)
+					{
+
+					}
+					else
+					{
+						// Invert percentage to get CPU time, not idle time
+						$load = 100 - ($statData2[3] * 100 / $cpuTime);
+					}
 				}
 			}
 		}
