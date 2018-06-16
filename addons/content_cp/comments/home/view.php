@@ -34,6 +34,15 @@ class view
 			$args['status'] = \dash\request::get('status');
 		}
 
+		if(\dash\request::get('post_id'))
+		{
+			$args['post_id'] = \dash\coding::decode(\dash\request::get('post_id'));
+			if(!$args['post_id'])
+			{
+				unset($args['post_id']);
+			}
+		}
+
 		$args['type'] = 'comment';
 
 		if(!$args['order'])
@@ -51,6 +60,10 @@ class view
 
 		$filterArray = $args;
 		unset($filterArray['type']);
+		if(isset($filterArray['post_id']))
+		{
+			$filterArray['post_id'] = \dash\coding::encode($filterArray['post_id']);
+		}
 
 		// set dataFilter
 		$dataFilter = \dash\app\sort::createFilterMsg($search_string, $filterArray);
