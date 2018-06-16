@@ -102,6 +102,11 @@ class model
 			}
 		}
 
+		if(empty($post['cat']) && (!isset($post['type']) || (isset($post['type']) && $post['type'] === 'post')))
+		{
+			\dash\notif::warn(T_("Category setting for better access is suggested"));
+		}
+
 		if(\dash\request::files('thumb'))
 		{
 			$uploaded_file = \dash\app\file::upload(['debug' => false, 'upload_name' => 'thumb']);
