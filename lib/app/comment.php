@@ -235,9 +235,15 @@ class comment
 			}
 
 			$check_ok_post = \dash\db\posts::get(['id' => $post_id, 'limit' => 1]);
-			if(!$check_ok_post)
+			if(!isset($check_ok_post['comment']))
 			{
 				\dash\notif::error(T_("Invalid post id"));
+				return false;
+			}
+
+			if($check_ok_post['comment'] !== 'open')
+			{
+				\dash\notif::error(T_("Comment of this post is closed!"));
 				return false;
 			}
 		}

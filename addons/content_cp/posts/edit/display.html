@@ -36,8 +36,13 @@
   </div>
 
 {%if dataRow.type == 'post' %}
+
   <div class="cbox">
    {{block('iCat')}}
+  </div>
+
+  <div class="cbox">
+   {{block('iComment')}}
   </div>
 {%endif%}
 
