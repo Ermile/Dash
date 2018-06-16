@@ -117,6 +117,7 @@ class view
 		$filterArray = $args;
 		unset($filterArray['language']);
 		unset($filterArray['type']);
+		unset($filterArray['user_id']);
 
 		if(isset($filterArray['status']))
 		{
