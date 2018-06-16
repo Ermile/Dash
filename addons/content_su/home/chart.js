@@ -49,10 +49,7 @@ function chartDrawer()
       data:
       {
         labels:
-        [ // Date Objects
-          "18:22:04",
-          "18:22:05",
-          "18:22:06"
+        [
         ],
         datasets: [
         {
@@ -62,9 +59,6 @@ function chartDrawer()
           fill: false,
           data:
           [
-            74,
-            58,
-            94
           ],
         },
         {
@@ -74,9 +68,6 @@ function chartDrawer()
           fill: false,
           data:
           [
-            25,
-            49,
-            30
           ],
         },
         {
@@ -86,9 +77,6 @@ function chartDrawer()
           fill: false,
           data:
           [
-            10,
-            11,
-            13
           ],
         }]
       },
@@ -104,27 +92,13 @@ function chartDrawer()
           {
             ticks:
             {
+              min: 0,
+              // max: 100,
               // the data minimum used for determining the ticks is Math.min(dataMin, suggestedMin)
-              suggestedMin: 0,
+              // suggestedMin: 0,
               // the data maximum used for determining the ticks is Math.max(dataMax, suggestedMax)
               suggestedMax: 100
-            }
-          }]
-        },
-        scales:
-        {
-          // xAxes: [
-          // {
-          //   type: 'time',
-          //   time:
-          //   {
-          //     format: timeFormat,
-          //     // round: 'day'
-          //     tooltipFormat: 'HH:mm'
-          //   },
-          // }],
-          yAxes: [
-          {
+            },
             scaleLabel:
             {
               display: true,
@@ -132,6 +106,12 @@ function chartDrawer()
             }
           }]
         },
+        tooltips:
+        {
+          position: 'nearest',
+          mode: 'index',
+          intersect: false,
+        }
       }
     };
 
@@ -145,6 +125,17 @@ function chartDrawer()
     getServerStat(config);
 }
 
+    // document.getElementById('removeData').addEventListener('click', function()
+    // {
+    //   config.data.labels.splice(-1, 1); // remove the label first
+
+    //   config.data.datasets.forEach(function(dataset)
+    //   {
+    //     dataset.data.pop();
+    //   });
+
+    //   window.myLine.update();
+    // });
 
 
 
