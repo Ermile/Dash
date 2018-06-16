@@ -53,8 +53,6 @@ function removeOldServerData()
         dataset.data.shift();
       }
     });
-
-    window.myLine.update();
 }
 
 
