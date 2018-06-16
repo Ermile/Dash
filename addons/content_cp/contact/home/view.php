@@ -8,9 +8,9 @@ class view
 	{
 		\dash\permission::access('cpContactView');
 
-		\dash\data::page_title(T_("Contact with manager"));
-		\dash\data::page_desc(T_('Check list of contact and search or filter in them to find your contact.'). ' '. T_('Also add or edit specefic contact.'));
-		\dash\data::page_pictogram('user-secret');
+		\dash\data::page_title(T_("Contact"));
+		\dash\data::page_desc(T_('Check list of contact and search or filter in them to find your contact.'). ' '. T_('Also edit specefic contact.'));
+		\dash\data::page_pictogram('comment-o');
 
 		// add back level to summary link
 		\dash\data::badge2_text(T_('Back to dashboard'));
