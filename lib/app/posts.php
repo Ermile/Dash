@@ -694,6 +694,27 @@ class posts
 					}
 					break;
 
+				case 'slug':
+					$result[$key] = $value;
+					$split = explode('/', $value);
+					$parent_url = [];
+					$my_parent_url = [];
+					if(count($split) > 1)
+					{
+						foreach ($split as $index => $parent_slug)
+						{
+							$parent_url[] = $parent_slug;
+							$my_parent_url[] = implode('/', $parent_url);
+						}
+
+						array_pop($my_parent_url);
+					}
+
+					$result['parent_url'] = $my_parent_url;
+
+					break;
+
+
 				default:
 					$result[$key] = $value;
 					break;

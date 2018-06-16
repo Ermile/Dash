@@ -69,9 +69,16 @@
       {%for key, value in dataTable%}
       <tr class="{%if value.status=='deleted'%}negative{%elseif value.status=='draft'%}warning{%endif%}">
         <td>
+           {%if value.parent_url%}
+            {%for pKey, pValue in value.parent_url%}
+              <a target="_blank" title='{%trans "Parent"%} {{(pKey + 1) | fitNumber}}' href="{{url.base}}/{{pValue}}"><i class="sf-angle-double-up"></i></a>
+            {%endfor%}
+          {%endif%}
           <a href="{{url.here}}/posts/edit?id={{value.id}}&type={{value.type}}">{{value.title}}</a>
         </td>
-        <td class="s0 m0 fs09" title="{{value.url}}"><a href="{{url.kingdom}}/{{value.url}}" target="_blank"><span class="sf-share"></span> {{value.slug}}</a></td>
+        <td class="s0 m0 fs09" title="{{value.url}}">
+
+          <a href="{{url.kingdom}}/{{value.url}}" target="_blank"><span class="sf-share"></span> {{value.slug}}</a></td>
 {%if requestGET.type is empty or requestGET.type == 'post'%}
         <td class="collapsing">{{value.category}}</td>
 {%endif%}
