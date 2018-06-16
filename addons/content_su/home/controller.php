@@ -9,9 +9,9 @@ class controller
 		{
 			$serverDetail =
 			[
-				'cpu'    => \dash\utility\server::getServerLoad(),
-				'memory' => rand(50,100),
-				'disk'   => rand(10,30),
+				'cpu'    => \dash\utility\server::cpu_usage(),
+				'memory' => \dash\utility\server::memory_usage(),
+				'disk'   => \dash\utility\server::disk_usage(),
 				'time'   => date('H:i:s')
 			];
 
