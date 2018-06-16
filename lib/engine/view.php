@@ -168,6 +168,11 @@ class view
 	{
 		if(!\dash\data::get('datarow'))
 		{
+			if(\dash\url::module() === 'blog')
+			{
+				\dash\data::page_title(T_("Latest news"));
+			}
+			self::set_title();
 			return false;
 		}
 
