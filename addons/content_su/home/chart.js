@@ -23,7 +23,7 @@ function addNewServerData(_chartConfig, _result)
 {
   if (_chartConfig.data.datasets.length > 0)
   {
-    logy(_result);
+    // logy(_result);
     if(_result)
     {
       _chartConfig.data.labels.push(_result.time);
@@ -31,10 +31,30 @@ function addNewServerData(_chartConfig, _result)
       _chartConfig.data.datasets[0].data.push(_result.cpu);
       _chartConfig.data.datasets[1].data.push(_result.memory);
       _chartConfig.data.datasets[2].data.push(_result.disk);
+      removeOldServerData();
 
       window.myLine.update();
     }
   }
+}
+
+
+function removeOldServerData()
+{
+    if(window.myLine.config.data.labels.length > 60)
+    {
+      window.myLine.config.data.labels.shift();
+    }
+
+    window.myLine.config.data.datasets.forEach(function(dataset)
+    {
+      if(dataset.data.length > 60)
+      {
+        dataset.data.shift();
+      }
+    });
+
+    window.myLine.update();
 }
 
 
@@ -88,6 +108,10 @@ function chartDrawer()
         },
         scales:
         {
+          // xAxes: [{
+          //   type: 'time',
+          //   display: true,
+          // }],
           yAxes: [
           {
             ticks:
@@ -124,19 +148,4 @@ function chartDrawer()
 
     getServerStat(config);
 }
-
-    // document.getElementById('removeData').addEventListener('click', function()
-    // {
-    //   config.data.labels.splice(-1, 1); // remove the label first
-
-    //   config.data.datasets.forEach(function(dataset)
-    //   {
-    //     dataset.data.pop();
-    //   });
-
-    //   window.myLine.update();
-    // });
-
-
-
 
