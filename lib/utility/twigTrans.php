@@ -30,7 +30,7 @@ class twigTrans
 		$flattened   = new \RecursiveIteratorIterator($directory);
 
 		// Make sure the path does not contain "/.Trash*" folders and ends eith a .php or .html file
-		$files       = new \RegexIterator($flattened, "/\\.html\$/i");
+		$files       = new \RegexIterator($flattened, "/\\.(html|js)\$/i");
 		$translation = [];
 
 		foreach($files as $file)
@@ -46,7 +46,7 @@ class twigTrans
 					$trans_key = substr($file, strpos($file, db_name)+mb_strlen(db_name)+1 );
 					break;
 			}
-			$file_name = basename($file,'.html');
+			// $file_name = basename($file,'.html');
 			$lines     = file($file);
 			$find      = "trans";
 			$count     = 0;
