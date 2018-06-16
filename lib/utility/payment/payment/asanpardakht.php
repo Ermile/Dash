@@ -79,7 +79,6 @@ class asanpardakht
             ];
 
             $result = $client->RequestOperation($result_param);
-            \dash\db\mysql\tools\log::log($result, null, 'log.sql', 'json');
 
             if(isset($result->RequestOperationResult))
             {
