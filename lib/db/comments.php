@@ -233,7 +233,7 @@ class comments
 			";
 		}
 
-		return self::select($query,"get");
+		return \dash\db::get($query);
 	}
 
 

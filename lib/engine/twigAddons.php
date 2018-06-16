@@ -721,7 +721,11 @@ class twigAddons
 			// get comments
 			if(isset($args['post_id']))
 			{
-				$comments = \dash\db\comments::get_post_comment($args['post_id'], $limit, \dash\user::id());
+				$post_id = \dash\coding::decode($args['post_id']);
+				if($post_id)
+				{
+					$comments = \dash\db\comments::get_comment($post_id, $limit, \dash\user::id());
+				}
 			}
 			return $comments;
 		});

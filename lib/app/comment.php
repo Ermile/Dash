@@ -55,7 +55,20 @@ class comment
 
 		if(isset($args['user_id']) && is_numeric($args['user_id']))
 		{
-			$check_duplicate = \dash\db\comments::get(['user_id' => $args['user_id'], 'content' => $args['content'], 'limit' => 1]);
+			$check_duplicate =
+			[
+				'user_id' => $args['user_id'],
+				'content' => $args['content'],
+				'limit'   => 1,
+			];
+
+			if(isset($args['post_id']) && $args['post_id'])
+			{
+				$check_duplicate['post_id'] = $args['post_id'];
+			}
+
+			$check_duplicate = \dash\db\comments::get($check_duplicate);
+
 			if(isset($check_duplicate['id']))
 			{
 				\dash\notif::warn(T_("Duplicate comment from you was received"), 'content');
@@ -100,6 +113,7 @@ class comment
 		if(!\dash\app::isset_request('author')) unset($args['author']);
 		if(!\dash\app::isset_request('type'))   unset($args['type']);
 		if(!\dash\app::isset_request('user_id')) unset($args['user_id']);
+		if(!\dash\app::isset_request('post_id')) unset($args['post_id']);
 		if(!\dash\app::isset_request('meta'))   unset($args['meta']);
 		if(!\dash\app::isset_request('mobile')) unset($args['mobile']);
 
@@ -210,11 +224,34 @@ class comment
 			return false;
 		}
 
+		$post_id = \dash\app::request('post_id');
+		if($post_id)
+		{
+			$post_id = \dash\coding::decode($post_id);
+			if(!$post_id)
+			{
+				\dash\notif::error(T_("Invalid post id"));
+				return false;
+			}
+
+			$check_ok_post = \dash\db\posts::get(['id' => $post_id, 'limit' => 1]);
+			if(!$check_ok_post)
+			{
+				\dash\notif::error(T_("Invalid post id"));
+				return false;
+			}
+		}
+		else
+		{
+			$post_id = null;
+		}
+
 		$args            = [];
 		$args['status']  = $status ? $status : 'awaiting';
 		$args['author']  = $author;
 		$args['type']    = $type;
 		$args['user_id'] = $user_id;
+		$args['post_id'] = $post_id;
 		$args['meta']    = $meta;
 		$args['mobile']  = $mobile;
 
