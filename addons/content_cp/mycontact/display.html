@@ -1,0 +1,49 @@
+{%extends display.cpMain%}
+
+
+{%block pageContent%}
+<div class="f">
+
+   {%if perm('cpContactView')%}
+
+   <div class="c4">
+
+      <a class="dcard x1" href='{{url.here}}/contact'>
+       <div class="statistic">
+        <div class="value"><i class="sf-envelope-o"></i></div>
+        <div class="label">{%trans "Contact"%}</div>
+       </div>
+      </a>
+
+   </div>
+        {%endif%}
+
+        {%if perm('cpAdminContactView')%}
+
+
+       <div class="c4">
+
+          <a class="dcard x1" href='{{url.here}}/admincontact'>
+           <div class="statistic">
+            <div class="value"><i class="sf-user-secret"></i></div>
+            <div class="label">{%trans "Admin Contact"%}</div>
+           </div>
+          </a>
+
+       </div>
+
+        {%endif%}
+
+        {%if perm('cpCommentsView')%}
+        <div class="c4">
+          <a class="dcard x1" href='{{url.here}}/comments'>
+           <div class="statistic">
+            <div class="value"><i class="sf-comment"></i></div>
+            <div class="label">{%trans "Comment"%}</div>
+           </div>
+          </a>
+        </div>
+        {%endif%}
+</div>
+{%endblock%}
+
