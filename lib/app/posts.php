@@ -392,6 +392,15 @@ class posts
 		}
 
 
+		if(isset($current_post_detail['type']) && $current_post_detail['type'] === 'post')
+		{
+			$cat = \dash\app::request('cat');
+			if(!$cat)
+			{
+				\dash\notif::warn(T_("Category setting for better access is suggested"));
+			}
+		}
+
 		$meta = json_encode($meta, JSON_UNESCAPED_UNICODE);
 
 
