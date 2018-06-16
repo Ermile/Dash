@@ -65,7 +65,7 @@ trait search
 		}
 
 		$limit         = null;
-		$public_fields = " * ";
+
 		if($_options['limit'])
 		{
 			$limit = $_options['limit'];
@@ -78,12 +78,25 @@ trait search
 		}
 		else
 		{
-			$order = " ORDER BY posts.id $_options[order] ";
+			if($_options['sort'])
+			{
+				if(!preg_match("/\./", $_options['sort']) || $_options['sort'] === 'commentcount')
+				{
+					$order = " ORDER BY $_options[sort] $_options[order] ";
+				}
+				else
+				{
+					$order = " ORDER BY `$_options[sort]` $_options[order] ";
+				}
+			}
+			else
+			{
+				$order = " ORDER BY posts.id $_options[order] ";
+			}
 		}
 
 		$start_limit = $_options['start_limit'];
 		$end_limit   = $_options['end_limit'];
-
 
 		if(isset($_options['language']))
 		{
@@ -172,7 +185,19 @@ trait search
 			}
 		}
 
-		$query = " SELECT * FROM posts WHERE $where 	$search	$order	$limit	-- posts::search()	";
+		$query =
+		"
+			SELECT
+				posts.*,
+				(SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id AND comments.type = 'comment') AS `commentcount`
+			FROM
+				posts
+			WHERE
+			$where
+			$search
+			$order
+			$limit
+		";
 
 		$result = \dash\db::get($query);
 		$result = \dash\utility\filter::meta_decode($result);

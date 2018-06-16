@@ -10,6 +10,7 @@ trait datalist
 		'slug',
 		'publishdate',
 		'status',
+		'commentcount',
 	];
 
 	/**
