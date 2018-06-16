@@ -49,6 +49,7 @@ class image
 	public static function load($filepath)
 	{
 		self::$loaded = false;
+
 		if(\dash\file::exists($filepath))
 		{
 			list(self::$width, self::$height, $type) = @getimagesize($filepath);
@@ -67,14 +68,19 @@ class image
 				self::$img = @imagecreatefrompng($filepath);
 			}
 			if(!isset(self::$img))
-				throw new \RuntimeException('Error opening image file "'.$filepath.'"');
+			{
+				return false;
+			}
 			if(!in_array($type, array(IMAGETYPE_GIF, IMAGETYPE_JPEG, IMAGETYPE_PNG)))
-				throw new \RuntimeException('Unsupported image file type : "'.$filepath.'"');
+			{
+				return false;
+			}
 
 			self::$type = $type;
 
 			// Preservation of the transparence / alpha for PNG and GIF
-			if($type==IMAGETYPE_GIF || $type==IMAGETYPE_PNG){
+			if($type==IMAGETYPE_GIF || $type==IMAGETYPE_PNG)
+			{
 				imagealphablending(self::$img, false);
 				imagesavealpha(self::$img, true);
 			}
@@ -83,7 +89,7 @@ class image
 		}
 		else
 		{
-			throw new \RuntimeException('The image file "'.$filepath.'" doesn\'t exist');
+			return false;
 		}
 	}
 
@@ -96,20 +102,24 @@ class image
 	public static function save($filepath)
 	{
 		if(!self::$loaded)
-			throw new \RuntimeException('No image loaded');
+		{
+			return false;
+		}
+
 		if(self::$type==IMAGETYPE_JPEG)
 		{
 			imagejpeg(self::$img, $filepath, self::$quality);
 		}
-		else if(self::$type==IMAGETYPE_GIF)
+		elseif(self::$type==IMAGETYPE_GIF)
 		{
 			imagegif(self::$img, $filepath);
 		}
-		else if(self::$type==IMAGETYPE_PNG)
+		elseif(self::$type==IMAGETYPE_PNG)
 		{
 			imagepng(self::$img, $filepath);
 		}
 	}
+
 
 	/**
 	 * Set the quality of the image (JPEG only)
@@ -120,6 +130,7 @@ class image
 	{
 		self::$quality = $quality;
 	}
+
 
 	/**
 	 * Creates an new image resource
@@ -132,7 +143,9 @@ class image
 	private static function create($width, $height, $alpha=null)
 	{
 		if(!isset($alpha))
+		{
 			$alpha = self::$type==1 || self::$type==3;
+		}
 
 		$img = imagecreatetruecolor($width, $height);
 
@@ -145,6 +158,7 @@ class image
 
 		return $img;
 	}
+
 
 	/**
 	 * Crops the image
@@ -159,14 +173,17 @@ class image
 	public static function crop($src_x, $src_y, $src_w, $src_h, $dst_w, $dst_h)
 	{
 		if(!self::$loaded)
-			throw new \RuntimeException('No image loaded');
+		{
+			return false;
+		}
 
 		$img = self::create($dst_w, $dst_h);
 
 		imagecopyresampled($img , self::$img, 0, 0, $src_x, $src_y, $dst_w, $dst_h, $src_w, $src_h);
 		imagedestroy(self::$img);
-		self::$img = $img;
-		self::$width = $dst_w;
+
+		self::$img    = $img;
+		self::$width  = $dst_w;
 		self::$height = $dst_h;
 	}
 
@@ -179,9 +196,13 @@ class image
 	public static function resize($width, $height)
 	{
 		if(!self::$loaded)
-			throw new \RuntimeException('No image loaded');
+		{
+			return false;
+		}
+
 		self::crop(0, 0, self::$width, self::$height, $width, $height);
 	}
+
 
 	/**
 	 * Resizes the width the image
@@ -192,7 +213,10 @@ class image
 	public static function setWidth($width, $prop=false)
 	{
 		if(!self::$loaded)
-			throw new \RuntimeException('No image loaded');
+		{
+			return false;
+		}
+
 		if($prop)
 		{
 			$height = round(self::$height*$width/self::$width);
@@ -201,8 +225,10 @@ class image
 		{
 			$height = self::$height;
 		}
-		self::$resize($width, $height);
+
+		self::resize($width, $height);
 	}
+
 
 	/**
 	 * Resizes the height the image
@@ -213,7 +239,10 @@ class image
 	public static function setHeight($height, $prop=false)
 	{
 		if(!self::$loaded)
-			throw new \RuntimeException('No image loaded');
+		{
+			return false;
+		}
+
 		if($prop)
 		{
 			$width = round(self::$width*$height/self::$height);
@@ -222,8 +251,10 @@ class image
 		{
 			$width = self::$width;
 		}
-		self::$resize($width, $height);
+
+		self::resize($width, $height);
 	}
+
 
 	/**
 	 * Miniaturizes the image to the wanted size, with cropping
@@ -234,14 +265,24 @@ class image
 	public static function thumb($width=null, $height=null)
 	{
 		if(!self::$loaded)
-			throw new \RuntimeException('No image loaded');
+		{
+			return false;
+		}
 
 		if(!isset($width) && !isset($height))
+		{
 			return false;
+		}
+
 		if(!isset($width))
+		{
 			$width = round(self::$width*$height/self::$height);
+		}
+
 		if(!isset($height))
+		{
 			$height = round(self::$height*$width/self::$width);
+		}
 
 		$ratio_ex = self::$width / self::$height;
 		$ratio = $width / $height;
@@ -269,9 +310,12 @@ class image
 	public static function getWidth()
 	{
 		if(!self::$loaded)
-			throw new \RuntimeException('No image loaded');
+		{
+			return false;
+		}
 		return self::$width;
 	}
+
 
 	/**
 	 * Returns the height of the image
@@ -281,9 +325,12 @@ class image
 	public static function getHeight()
 	{
 		if(!self::$loaded)
-			throw new \RuntimeException('No image loaded');
+		{
+			return false;
+		}
 		return self::$height;
 	}
+
 
 	/**
 	 * Returns the type of the image, relative to IMAGETYPE_* constants
@@ -293,9 +340,12 @@ class image
 	public static function getType()
 	{
 		if(!self::$loaded)
-			throw new \RuntimeException('No image loaded');
+		{
+			return false;
+		}
 		return self::$type;
 	}
+
 
 	/**
 	 * Change the type of the image (using IMAGETYPE_* constants)
@@ -305,8 +355,13 @@ class image
 	public static function setType($type)
 	{
 		if(!self::$loaded)
-			throw new \RuntimeException('No image loaded');
+		{
+			return false;
+		}
 		if(in_array($type, array(IMAGETYPE_JPEG, IMAGETYPE_GIF, IMAGETYPE_PNG)))
+		{
 			self::$type = $type;
+		}
 	}
 }
+?>
