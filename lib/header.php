@@ -152,9 +152,10 @@ class header
 			return false;
 		}
 		// translate desc of header if in this level T_ fn is defined!
+		$translatedDesc = T_($desc);
 		if(function_exists("T_"))
 		{
-			$desc = T_($desc);
+			$translatedDesc = T_($desc);
 		}
 
 		$debug_backtrace = ['args' => func_get_args(), 'debug' => debug_backtrace(), 'server' => $_SERVER];
@@ -167,15 +168,15 @@ class header
 
 		if(\dash\request::json_accept() || \dash\request::ajax())
 		{
-			$desc .= ' '. \dash\utility\human::fitNumber($_code);
+			$translatedDesc .= ' '. \dash\utility\human::fitNumber($_code);
 			// depending on title if exist or not
 			if($_text)
 			{
-				\dash\notif::error($_text, ['title'=> $desc]);
+				\dash\notif::error($_text, ['title'=> $translatedDesc]);
 			}
 			else
 			{
-				\dash\notif::error($desc);
+				\dash\notif::error($translatedDesc);
 			}
 
   			// end process code and return as json
