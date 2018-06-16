@@ -1,4 +1,4 @@
-function getServerStat(_chartConfig)
+function getServerStat()
 {
   $.ajax({
     url: '{{url.here}}?server=status',
@@ -7,30 +7,30 @@ function getServerStat(_chartConfig)
       _response = JSON.parse(_response);
       if(_response)
       {
-        addNewServerData(_chartConfig, _response)
+        addNewServerData(_response)
       }
 
       setTimeout(function ()
       {
-        getServerStat(_chartConfig);
-      }, 1000);
+        getServerStat();
+      }, 500);
     }
   });
 }
 
 
-function addNewServerData(_chartConfig, _result)
+function addNewServerData(_result)
 {
-  if (_chartConfig.data.datasets.length > 0)
+  if (window.myLine.config.data.datasets.length > 0)
   {
     // logy(_result);
     if(_result)
     {
-      _chartConfig.data.labels.push(_result.time);
+      window.myLine.config.data.labels.push(_result.time);
 
-      _chartConfig.data.datasets[0].data.push(_result.cpu);
-      _chartConfig.data.datasets[1].data.push(_result.memory);
-      _chartConfig.data.datasets[2].data.push(_result.disk);
+      window.myLine.config.data.datasets[0].data.push(_result.cpu);
+      window.myLine.config.data.datasets[1].data.push(_result.memory);
+      window.myLine.config.data.datasets[2].data.push(_result.disk);
       removeOldServerData();
 
       window.myLine.update();
