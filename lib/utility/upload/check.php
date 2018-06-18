@@ -93,6 +93,11 @@ trait check
 			// throw new \RuntimeException(T_('Exceeded file extension limit'));
 		}
 
+		if(mb_strtolower(self::$fileExt) === 'jpeg')
+		{
+			self::$fileExt = 'jpg';
+		}
+
 		self::$fileFullName = \dash\utility\filter::slug(self::$fileName). '.'. self::$fileExt;
 		self::$fileMd5      = md5_file(self::_FILES(self::$fieldName)['tmp_name']);
 
