@@ -1,27 +1,30 @@
 function getServerStat()
 {
-  $.ajax({
-    url: '{{url.here}}?server=status',
-    success: function (_response)
-    {
-      _response = JSON.parse(_response);
-      if(_response)
+  if($('body').attr('data-in') === 'su' && $('body').attr('data-page') === 'home' && window.myLine)
+  {
+    $.ajax({
+      url: '{{url.here}}?server=status',
+      success: function (_response)
       {
-        addNewServerData(_response)
-      }
+        _response = JSON.parse(_response);
+        if(_response)
+        {
+          addNewServerData(_response)
+        }
 
-      setTimeout(function ()
-      {
-        getServerStat();
-      }, 500);
-    }
-  });
+        setTimeout(function ()
+        {
+          getServerStat();
+        }, 500);
+      }
+    });
+  }
 }
 
 
 function addNewServerData(_result)
 {
-  if (window.myLine.config.data.datasets.length > 0)
+  if (window.myLine && window.myLine.config.data.datasets.length > 0)
   {
     // logy(_result);
     if(_result)
