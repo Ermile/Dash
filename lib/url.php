@@ -2,7 +2,7 @@
 namespace dash;
 /**
  * this lib handle url of our PHP framework, Dash
- * v 4.2
+ * v 5.0
  *
  * This lib detect all part of url and return each one seperate or combine some of them
  * Below example is the sample of this url lib
@@ -624,9 +624,9 @@ class url
 			$result = self::$url[$_func];
 			if($_args)
 			{
-				if(isset($result[$_args]))
+				if(isset($_args) && isset($_args[0]) && $_args[0] === 'hash')
 				{
-					return $result[$_args];
+					return md5($result);
 				}
 				else
 				{
