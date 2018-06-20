@@ -35,6 +35,10 @@ class content
 			// only init set
 			self::set($dynamic_sub_domain);
 		}
+		elseif(self::enterprise_customers())
+		{
+			self::set(self::enterprise_customers());
+		}
 		else
 		{
 			// only init set
@@ -60,6 +64,10 @@ class content
 		elseif($dynamic_sub_domain = self::dynamic_subdomain())
 		{
 			$content = $dynamic_sub_domain;
+		}
+		elseif(self::enterprise_customers())
+		{
+			$content = self::enterprise_customers();
 		}
 		return $content;
 	}
@@ -117,6 +125,23 @@ class content
 			}
 			return false;
 		}
+		return null;
+	}
+
+
+	/**
+	 * check enterprise customer and return special content of them
+	 * @return [type] [description]
+	 */
+	private static function enterprise_customers()
+	{
+		if(is_dir(root. 'enterprise'))
+		{
+
+			// var_dump('yesssss');
+			// return '';
+		}
+
 		return null;
 	}
 }
