@@ -152,7 +152,7 @@ class header
 			return false;
 		}
 		// translate desc of header if in this level T_ fn is defined!
-		$translatedDesc = T_($desc);
+		$translatedDesc = $desc;
 		if(function_exists("T_"))
 		{
 			$translatedDesc = T_($desc);

@@ -6,7 +6,7 @@ namespace dash\engine;
 class version
 {
 	// @var dash engine current version
-	const version = '14.6.6';
+	const version = '14.6.7';
 
 	// @var dash engine current commit number
 	// now get it automatically from git commands
