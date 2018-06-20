@@ -13,9 +13,27 @@
  <div id="nodes"></div>
  <div class="cn">
   <div class="wrapper">
-   <h1><?php echo $translatedDesc;?></h1>
-   <h2><?php echo $_text;?></h2>
-   <a href="<?php echo \dash\url::site(); ?>" class='btn secondary'><?php echo T_("Return to Homepage")?></a>
+   <div class="f">
+    <div class="c s12">
+     <h1><?php echo $translatedDesc;?></h1>
+     <h2><?php echo $_text;?></h2>
+     <a href="<?php echo(\dash\url::site()? \dash\url::site(): '/'); ?>" class='btn lg secondary'><?php echo T_("Return to Homepage")?></a>
+    </div>
+    <div class="cauto os s12">
+     <a href="/" id='ermileBadge' class="f">
+      <div class="cauto">
+       <img src="/static/images/logo.png" alt='error on azvir' class="cauto">
+      </div>
+<?php if(\dash\url::domain())
+{ ?>
+      <div class="c pLa10 f align-center">
+       <h2><?php echo(ucfirst(\dash\url::domain()));?></h2>
+      </div>
+<?php
+} ?>
+     </a>
+    </div>
+   </div>
 <?php if(\dash\option::config('debug') || \dash\url::isLocal()) {?>
    <ol>
 <?php
