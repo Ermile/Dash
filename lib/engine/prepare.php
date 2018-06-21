@@ -316,6 +316,10 @@ class prepare
 		if(\dash\url::lang() === \dash\language::default())
 		{
 			// try to remove lang from url
+			if(\dash\url::content())
+			{
+				$target_url .= '/'. \dash\url::content();
+			}
 			if(\dash\url::directory())
 			{
 				$target_url .= '/'. \dash\url::directory();
