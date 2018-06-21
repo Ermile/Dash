@@ -19,7 +19,7 @@
      <a href="<?php echo(\dash\url::site()? \dash\url::site(): '/'); ?>" class='btn lg light outline'><?php echo T_("Return to Homepage")?></a>
     </div>
     <div class="cauto os s12">
-     <a href="/" id='ermileBadge' class="f">
+     <a href="/" id='ermileBadge' class="f mT10">
       <div class="cauto">
        <img src="/static/images/logo.png" alt='logo of project with Dash!' class="cauto">
       </div>
