@@ -332,6 +332,12 @@ class prepare
 		// set target url with path
 		$target_url = self::fix_url_slash($target_url);
 
+		$full_target = $target_url;
+		if(\dash\url::query())
+		{
+			$full_target .= '?'. \dash\url::query();
+		}
+
 
 		// if we have new target url, and dont on force show mode, try to change it
 		if(!\dash\request::get('force'))
@@ -341,13 +347,13 @@ class prepare
 				// only check last slash
 				if($target_url !== \dash\url::pwd())
 				{
-					\dash\redirect::to($target_url);
+					\dash\redirect::to($full_target);
 				}
 			}
 			else
 			{
 				// change host and slash together
-				\dash\redirect::to($target_url);
+				\dash\redirect::to($full_target);
 			}
 		}
 	}
