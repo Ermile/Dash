@@ -403,6 +403,11 @@ class posts
 
 		$meta = json_encode($meta, JSON_UNESCAPED_UNICODE);
 
+		if(!$slug)
+		{
+			\dash\notif::error(T_("Invalid slug"), 'slug');
+			return false;
+		}
 
 		$args                = [];
 		$args['language']    = $language;
