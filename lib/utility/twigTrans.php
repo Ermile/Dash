@@ -130,6 +130,6 @@ class twigTrans
 		{
 			echo "<strong>Translation file in dash repository is updated</strong>";
 		}
-		echo "<p class='alert alert-success'>Extract string from twig file completed!</p></body></html>";
+		echo "<p class='msg success2'>Extract string from twig file completed!</p></body></html>";
 	}
 }

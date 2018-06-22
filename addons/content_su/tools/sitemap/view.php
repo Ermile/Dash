@@ -186,7 +186,7 @@ class view
 
 		$sitemap->createSitemapIndex();
 		$result .= "</pre>";
-		$result .= "<p class='alert alert-success'>". T_('Create sitemap Successfully!')."</p>";
+		$result .= "<p class='msg success2'>". T_('Create sitemap Successfully!')."</p>";
 
 		foreach ($counter as $key => $value)
 		{
