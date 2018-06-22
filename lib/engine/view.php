@@ -107,7 +107,6 @@ class view
 	{
 		if($page_title = \dash\data::page_title())
 		{
-			$page_title = strip_tags($page_title);
 			// set title of locations if exist in breadcrumb
 			if(\dash\data::get('breadcrumb', $page_title))
 			{
