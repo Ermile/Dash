@@ -143,16 +143,17 @@ class view
 
 			// translate all title at last step
 			$page_title = T_($page_title);
+			$page_title_strip = strip_tags($page_title);
 
 			\dash\data::page_title($page_title);
 
 			if(\dash\data::page_special())
 			{
-				\dash\data::global_title($page_title);
+				\dash\data::global_title($page_title_strip);
 			}
 			else
 			{
-				\dash\data::global_title($page_title.' | '.T_(\dash\data::site_title()));
+				\dash\data::global_title($page_title_strip.' | '.T_(\dash\data::site_title()));
 			}
 		}
 		else
