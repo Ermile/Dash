@@ -133,18 +133,18 @@ class view
 			$counter['helps'] += 1;
 		}
 
-		// add attachments
-		foreach (self::sitemap('posts', 'attachment') as $row)
-		{
-			$myUrl = $row['url'];
-			if($row['language'] && $row['language'] !== 'en')
-			{
-				$myUrl = $row['language'].'/'. $myUrl;
-			}
+		// // add attachments
+		// foreach (self::sitemap('posts', 'attachment') as $row)
+		// {
+		// 	$myUrl = $row['url'];
+		// 	if($row['language'] && $row['language'] !== 'en')
+		// 	{
+		// 		$myUrl = $row['language'].'/'. $myUrl;
+		// 	}
 
-			$sitemap->addItem($myUrl, '0.2', 'weekly', $row['publishdate']);
-			$counter['attachments'] += 1;
-		}
+		// 	$sitemap->addItem($myUrl, '0.2', 'weekly', $row['publishdate']);
+		// 	$counter['attachments'] += 1;
+		// }
 
 		// add other type of post
 		foreach (self::sitemap('posts', false) as $row)
