@@ -17,7 +17,7 @@
 {%block pageHeader%}
 {%if page.title or page.desc%}
 <div class="tbox">
-  <h2>{{page.title}}{%if badge.text%} <a{%if badge.link%} href="{{badge.link}}"{%endif%} class="badge primary" {%if badge.shortkey%} data-shortkey="{{badge.shortkey}}"{%endif%}>{{badge.text}} {%if badge.shortkey == 120%}<kbd>f9</kbd>{%endif%}</a>{%endif%}</h2>
+  <h2>{{page.title | raw}}{%if badge.text%} <a{%if badge.link%} href="{{badge.link}}"{%endif%} class="badge primary" {%if badge.shortkey%} data-shortkey="{{badge.shortkey}}"{%endif%}>{{badge.text}} {%if badge.shortkey == 120%}<kbd>f9</kbd>{%endif%}</a>{%endif%}</h2>
   <p>{{page.desc | raw}} {%if badge2.text and badge2.link and badge2.shortkey%} <a href="{{badge2.link}}" class="badge light" data-shortkey="{{badge2.shortkey}}">{{badge2.text}} {%if badge2.shortkey == 121%}<kbd>f10</kbd>{%endif%}</a>{%endif%}</p>
   {%if page.pictogram%}
   <span class="pictogram sf-{{page.pictogram}}"></span>
