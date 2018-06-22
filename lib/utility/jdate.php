@@ -689,15 +689,7 @@ class jdate
     }
 
 
-    /**
-     * Determines if jalali.
-     * check if year of date > 1300 and < 1600 the date is jalali
-     *
-     * @param      <type>   $_date  The date
-     *
-     * @return     boolean  True if jalali, False otherwise.
-     */
-    public static function is_jalali($_date)
+    private static function between_year($_date, $_start, $_end)
     {
         $strtotime = strtotime($_date);
         $year      = false;
@@ -714,12 +706,25 @@ class jdate
             return false;
         }
 
-        $date_is_jalali = false;
-        if($year && intval($year) > 1200 && intval($year) < 1600)
+        if($year && intval($year) > $_start && intval($year) < $_end)
         {
-            $date_is_jalali = true;
+            return true;
         }
-        return $date_is_jalali;
+        return false;
+    }
+
+
+    /**
+     * Determines if jalali.
+     * check if year of date > 1300 and < 1600 the date is jalali
+     *
+     * @param      <type>   $_date  The date
+     *
+     * @return     boolean  True if jalali, False otherwise.
+     */
+    public static function is_jalali($_date)
+    {
+        return self::between_year($_date, 1200, 1600);
     }
 
 
@@ -732,25 +737,7 @@ class jdate
      */
     public static function is_gregorian($_date)
     {
-        // $year = (new \DateTime($_date))->format("Y");
-        $strtotime = strtotime($_date);
-
-        if(!$strtotime)
-        {
-            return false;
-        }
-
-        $year = date("Y", $strtotime);
-
-
-        $date_is_gregorian = false;
-
-        if($year && intval($year) > 1601 && intval($year) < 4000)
-        {
-            $date_is_gregorian = true;
-        }
-        return $date_is_gregorian;
-
+        return self::between_year($_date, 1601, 4000);
     }
 }
 ?>
