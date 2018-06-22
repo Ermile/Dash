@@ -699,18 +699,22 @@ class jdate
      */
     public static function is_jalali($_date)
     {
-        // $year = (new \DateTime($_date))->format("Y");
         $strtotime = strtotime($_date);
-
-        if(!$strtotime)
+        $year      = false;
+        if($strtotime === false && strlen($_date) === 10)
+        {
+            $year = substr($_date, 0, 4);
+        }
+        else
+        {
+            $year = date("Y", $strtotime);
+        }
+        if(!is_numeric($year))
         {
             return false;
         }
 
-        $year = date("Y", $strtotime);
-
         $date_is_jalali = false;
-
         if($year && intval($year) > 1200 && intval($year) < 1600)
         {
             $date_is_jalali = true;
