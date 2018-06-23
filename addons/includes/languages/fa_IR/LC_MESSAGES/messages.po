@@ -7057,7 +7057,7 @@ msgstr "پرداخت الزامی است"
 
 #: lib/header.php:96
 msgid "Forbidden"
-msgstr "ممنون"
+msgstr "ممنوع"
 
 #: lib/header.php:97
 msgid "Not Found"
