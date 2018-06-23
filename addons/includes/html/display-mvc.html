@@ -9,7 +9,7 @@
 {%if url.base != 'deadbrowser'%}
  <!--[if lte IE 9]><script>document.location = 'https://deadbrowser.com/{{lang.current}}';</script><![endif]-->
 {%endif%}
- <meta name     ="description"             content="{{global.desc | striptags}}"/>
+ <meta name     ="description"             content="{{page.desc | striptags}}"/>
  <meta name     ="site:root"               content="{{url.base}}"/>
 {%block head_twitter%}
  <meta name     ="twitter:card"            content="{{share.twitterCard}}"/>
@@ -17,7 +17,7 @@
  <meta name     ="twitter:site"            content="@{{social.twitter}}"/>
 {%endif%}
  <meta name     ="twitter:title"           content="{{global.title | striptags }}"/>
- <meta name     ="twitter:description"     content="{{global.desc | striptags}}"/>
+ <meta name     ="twitter:description"     content="{{page.desc | striptags}}"/>
  <meta name     ="twitter:image"           content="{{share.image}}"/>
 {%endblock%}
 {%if browser.ua_type == 'mobile' %}
