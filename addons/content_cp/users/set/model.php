@@ -39,7 +39,7 @@ class model
 			'language'    => \dash\request::post('language'),
 			'website'     => \dash\request::post('website'),
 			'instagram'   => \dash\request::post('instagram'),
-			'linkedin'   => \dash\request::post('linkedin'),
+			'linkedin'    => \dash\request::post('linkedin'),
 			'facebook'    => \dash\request::post('facebook'),
 			'twitter'     => \dash\request::post('twitter'),
 			'gmail'       => \dash\request::post('gmail'),
@@ -59,7 +59,7 @@ class model
 			'email'       => \dash\request::post('email'),
 		];
 
-		if($post['permission'] === 'supervisor' && !\dash\url::isLocal() && !\dash\permission::supervisor())
+		if($post['permission'] === 'supervisor')
 		{
 			\dash\notif::error("Invlid permission name", 'permission');
 			return false;

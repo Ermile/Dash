@@ -19,11 +19,6 @@ class view
 
 		$perm_list = \dash\permission::groups();
 
-		if(\dash\url::isLocal() || \dash\permission::supervisor())
-		{
-			$perm_list['supervisor'] = [];
-		}
-
 		\dash\data::permGroup($perm_list);
 
 		if(\dash\request::get('id'))

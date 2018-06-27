@@ -328,6 +328,11 @@ class user
 		$args['unit_id']     = $unit_id;
 		$args['language']    = $language;
 
+		if($args['permission'] === 'supervisor')
+		{
+			unset($args['permission']);
+		}
+
 		if(!\dash\permission::check("cpUsersPermission"))
 		{
 			unset($args['permission']);
@@ -396,7 +401,7 @@ class user
 					}
 					else
 					{
-						$result[$key] = fasle;
+						$result[$key] = false;
 					}
 
 					break;
