@@ -17,7 +17,7 @@ class content
 	public static function load($_content_name)
 	{
 		// list of addons exist in dash,
-		$dash_addons = ['enter', 'su', 'cp', 'account', 'api'];
+		$dash_addons = ['enter', 'su', 'cp', 'account', 'api', 'n'];
 		$myrep       = 'content_'.$_content_name;
 
 		// check content_aaa folder is exist in project or dash addons folder
