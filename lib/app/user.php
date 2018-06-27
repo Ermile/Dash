@@ -389,6 +389,18 @@ class user
 					}
 					break;
 
+				case 'sidebar':
+					if($value || $value === null)
+					{
+						$result[$key] = true;
+					}
+					else
+					{
+						$result[$key] = fasle;
+					}
+
+					break;
+
 				default:
 					$result[$key] = $value;
 					break;
