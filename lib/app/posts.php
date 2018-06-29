@@ -597,19 +597,7 @@ class posts
 		$language = \dash\language::current();
 		$preview  = \dash\request::get('preview');
 
-		$qry =
-		"
-			SELECT
-				*
-			FROM
-				posts
-			WHERE
-				posts.language = '$language' AND
-				posts.url      = '$url'
-			LIMIT 1
-		";
-
-		$datarow = \dash\db::get($qry, null, true);
+		$datarow = \dash\db\posts::get(['language' => $language, 'url' => $url, 'limit' => 1]);
 
 		if(isset($datarow['user_id']) && (int) $datarow['user_id'] === (int) \dash\user::id())
 		{

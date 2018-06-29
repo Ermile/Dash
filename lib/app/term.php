@@ -17,7 +17,7 @@ class term
 
 	public static function cat_list()
 	{
-		$result = \dash\db\terms::get(['type' => 'cat', 'status' => 'enable']);
+		$result = \dash\db\terms::get(['type' => 'cat', 'language' => \dash\language::current(), 'status' => 'enable']);
 		$temp   = [];
 
 		if(is_array($result))

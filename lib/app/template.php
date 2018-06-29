@@ -332,7 +332,7 @@ class template
 
 		if(substr($myUrl, 0, 9) === 'category/')
 		{
-			$cat_data = \dash\db\terms::get(['url' => substr($myUrl, 9), 'limit' => 1]);
+			$cat_data = \dash\db\terms::get(['url' => substr($myUrl, 9), 'language' => \dash\language::current(), 'limit' => 1]);
 			if($cat_data)
 			{
 				return $cat_data;
@@ -348,7 +348,7 @@ class template
 
 		if(substr($myUrl, 0, 4) === 'tag/')
 		{
-			$cat_data = \dash\db\terms::get(['url' => substr($myUrl, 4), 'limit' => 1]);
+			$cat_data = \dash\db\terms::get(['url' => substr($myUrl, 4), 'language' => \dash\language::current(), 'limit' => 1]);
 			if($cat_data)
 			{
 				return $cat_data;
@@ -367,14 +367,14 @@ class template
 			return false;
 		}
 
-		$term_data = \dash\db\terms::get(['url' => $myUrl, 'type' => 'cat', 'limit' => 1]);
+		$term_data = \dash\db\terms::get(['url' => $myUrl, 'type' => 'cat', 'language' => \dash\language::current(), 'limit' => 1]);
 
 		if($term_data)
 		{
 			return $term_data;
 		}
 
-		$term_data = \dash\db\terms::get(['url' => $myUrl, 'type' => 'tag', 'limit' => 1]);
+		$term_data = \dash\db\terms::get(['url' => $myUrl, 'type' => 'tag', 'language' => \dash\language::current(), 'limit' => 1]);
 
 		if($term_data)
 		{

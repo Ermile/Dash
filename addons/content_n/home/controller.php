@@ -21,7 +21,7 @@ class controller
 
 		$load_post = \dash\app\posts::get(\dash\url::module());
 
-		if(!isset($load_post['type']) || !isset($load_post['status']) || !isset($load_post['url']))
+		if(!isset($load_post['type']) || !isset($load_post['status']) || !isset($load_post['url']) || !isset($load_post['language']))
 		{
 			\dash\redirect::to(\dash\url::base());
 		}
@@ -36,7 +36,8 @@ class controller
 			\dash\redirect::to(\dash\url::base());
 		}
 
-		\dash\redirect::to(\dash\url::base().'/'. $load_post['url']);
+
+		\dash\redirect::to(\dash\url::base().'/'. $load_post['language']. '/'. $load_post['url']);
 
 	}
 }
