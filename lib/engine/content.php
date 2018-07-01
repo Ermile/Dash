@@ -137,7 +137,7 @@ class content
 	{
 		if(\dash\option::config('enterprise'))
 		{
-			$myEnterprise = 'enterprise/'. \dash\option::config('enterprise');
+			$myEnterprise = 'enterprise\\'. \dash\option::config('enterprise');
 			if(is_dir(root. $myEnterprise))
 			{
 				return $myEnterprise;

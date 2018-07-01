@@ -28,7 +28,7 @@ class autoload
 				self::$required[$_class_name] = true;
 			}
 		}
-		elseif(substr($_class_name, 0, 7) === 'content')
+		elseif(substr($_class_name, 0, 7) === 'content' || substr($_class_name, 0, 10) === 'enterprise')
 		{
 			$addr = root. $_class_name;
 			$addr = self::fix_os_path($addr);
