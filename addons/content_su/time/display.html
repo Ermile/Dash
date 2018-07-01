@@ -1,0 +1,13 @@
+{%extends display.suMain%}
+
+{%block pageContent%}
+<div class="cbox ltr ">
+<h1>SERVER TIME</h1>
+<h3>{{"now" | date("H:i:s")}}</h3>
+<h3>{{"now" | date("Y-m-d")}}</h3>
+<h3>{{"now" | date("l j F Y")}}</h3>
+<h3>{{"now" | tdate("Y-m-d")}}</h3>
+<h3>{{"now" | tdate("l j F Y")}}</h3>
+<h3>Time zone: {{timeZone}}</h3>
+</div>
+{%endblock%}
