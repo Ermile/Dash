@@ -180,7 +180,7 @@ class git
 			// change location to address of requested
 			chdir($_location);
 
-			$command  = 'git diff ';
+			$command  = ' git checkout . ';
 
 			exec($command, $result);
 			if(!$result || !is_array($result))
