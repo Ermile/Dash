@@ -14,11 +14,43 @@ class app
 	 *
 	 * @param      <type>  $_args  The arguments
 	 */
-	public static function variable($_args)
+	public static function variable($_args, $_options = [])
 	{
 		if(is_array($_args))
 		{
-			$args = \dash\safe::safe($_args);
+			$default =
+			[
+				'raw_field' => []
+			];
+
+			if(!is_array($_options))
+			{
+				$_options = [];
+			}
+
+			$_options = array_merge($default, $_options);
+
+			if(!empty($_options['raw_field']))
+			{
+				$new_safe = [];
+				foreach ($_args as $key => $value)
+				{
+					if(in_array($key, $_options['raw_field']))
+					{
+						$new_safe[$key] = \dash\safe::safe($value, 'raw');
+					}
+					else
+					{
+						$new_safe[$key] = \dash\safe::safe($value);
+					}
+				}
+				$args = $new_safe;
+			}
+			else
+			{
+				$args = \dash\safe::safe($_args);
+			}
+
 
 			self::$REQUEST_APP = $args;
 		}
