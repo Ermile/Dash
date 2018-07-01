@@ -8,6 +8,14 @@ class view
 		\dash\data::page_title(T_("Git Status"));
 		\dash\data::page_desc(T_('Check file status on this project'));
 
+		echo "<h1><a href='". \dash\url::this(). "?discard=all'>Discard all</a></h1>";
+
+		if(\dash\request::get('discard') === 'all')
+		{
+			self::gitDiscard();
+			\dash\redirect::to(\dash\url::this());
+		}
+
 		$result = self::gitStatus();
 
 		if(is_array($result))
@@ -17,6 +25,7 @@ class view
 				echo $value;
 			}
 		}
+
 		echo "<hr>";
 
 		$result = self::gitDiff();
@@ -30,6 +39,30 @@ class view
 		}
 
 		\dash\code::exit();
+	}
+
+		public static function gitDiscard()
+	{
+		$location = null;
+		$result   = [];
+
+		// pull dash
+		if(is_dir(root. 'dash'))
+		{
+			$location = '../dash';
+		}
+		elseif(is_dir(root. '../dash'))
+		{
+			$location = '../../dash';
+		}
+
+		$result[] =  \dash\utility\git::gitdiscard($location);
+
+		// pull current project
+		$name = \dash\url::root();
+		$location = '../../'. $name;
+		$result[] =  \dash\utility\git::gitdiscard($location);
+
 	}
 
 
@@ -48,14 +81,16 @@ class view
 			$location = '../../dash';
 		}
 
-		$result[] = "<h1>Dash</h1>";
+		$result[] = "<h1>GIT STATUS</h1>";
+		$result[] = "<h2>Dash</h2>";
 		$result[] =  \dash\utility\git::gitstatus($location);
 
 		// pull current project
 		$name = \dash\url::root();
 		$location = '../../'. $name;
 
-		$result[] = "<h1>$name <small>Current Project</small></h1>";
+		$result[] = "<hr>";
+		$result[] = "<h2>$name <small>Current Project</small></h2>";
 		$result[] =  \dash\utility\git::gitstatus($location);
 
 		return $result;
@@ -76,14 +111,16 @@ class view
 			$location = '../../dash';
 		}
 
-		$result[] = "<h1>Dash</h1>";
+		$result[] = "<h1>GIT DIFF</h1>";
+		$result[] = "<h2>Dash</h2>";
 		$result[] =  \dash\utility\git::gitdiff($location);
 
 		// pull current project
 		$name = \dash\url::root();
 		$location = '../../'. $name;
 
-		$result[] = "<h1>$name <small>Current Project</small></h1>";
+		$result[] = "<hr>";
+		$result[] = "<h2>$name <small>Current Project</small></h2>";
 		$result[] =  \dash\utility\git::gitdiff($location);
 
 		return $result;
