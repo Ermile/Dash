@@ -135,11 +135,13 @@ class content
 	 */
 	private static function enterprise_customers()
 	{
-		if(is_dir(root. 'enterprise'))
+		if(\dash\option::config('enterprise'))
 		{
-
-			// var_dump('yesssss');
-			// return '';
+			$myEnterprise = 'enterprise/'. \dash\option::config('enterprise');
+			if(is_dir(root. $myEnterprise))
+			{
+				return $myEnterprise;
+			}
 		}
 
 		return null;
