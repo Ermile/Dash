@@ -2,7 +2,6 @@
 
 {%block pageContent%}
 
-{%if true or perm.tools.view%}
 
 <div class="f mB25">
   <div class="c3 s12">
@@ -51,8 +50,6 @@
 </div>
 
 
-{%endif%}
-
 {%endblock%}
 
 
@@ -60,7 +57,16 @@
 <div class="dcard x4 mB10">
   <img src="{{url.base}}/static/siftal/images/logo/dash.svg" alt="dash logo" class="pA10-f">
   <h2>{%trans "Dash"%}</h2>
-  <a target='_blank' class="btn block primary mT50" href="{{url.here}}/update?git=all" title='{%trans "Press it if you are sure!"%}'>{%trans "Update All"%}</a>
+  <small>{%trans "If the git password is saved on your server"%}</small>
+  <a target='_blank' class="btn block primary mT10" href="{{url.here}}/update?git=all" title='{%trans "Press it if you are sure!"%}'>{%trans "Update All"%}</a>
+
+  <form method="post" class="f mT10">
+    <input type="hidden" name="update" value="all">
+    <div class="input c">
+      <input type="password" name="gitPass" placeholder='{%trans "Git password"%}'>
+    </div>
+    <button type="submit" class="cauto btn danger">{%trans "Enter git pass"%}</button>
+  </form>
 </div>
 {%endblock%}
 

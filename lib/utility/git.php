@@ -87,7 +87,7 @@ class git
 	 * @param  [type] $_location [description]
 	 * @return [type]            [description]
 	 */
-	public static function pull($_location, $_boolResult = false)
+	public static function pull($_location, $_boolResult = false, $_password = null)
 	{
 		if(!self::$baseLocation)
 		{
@@ -108,7 +108,14 @@ class git
 			// change location to address of requested
 			chdir($_location);
 			// $command  = 'git pull '.$rep.' 2>&1';
-			$command  = 'git pull origin master 2>&1';
+			if($_password)
+			{
+				$command  = "sshpass -p '$_password' git pull origin master 2>&1";
+			}
+			else
+			{
+				$command  = 'git pull origin master 2>&1';
+			}
 
 
 			// Print the exec

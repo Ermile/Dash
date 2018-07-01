@@ -5,6 +5,19 @@ class view
 {
 	public static function config()
 	{
+		if(\dash\request::get('result') === 'true')
+		{
+			$result = \dash\session::get('lastUpdateGitResult');
+			if($result && is_array($result))
+			{
+				foreach ($result as $key => $value)
+				{
+					echo $value;
+				}
+				\dash\code::exit();
+			}
+		}
+
 		\dash\data::page_title(T_("Update"));
 		\dash\data::page_desc(T_('Check curent version of dash and update to latest version if available.'));
 

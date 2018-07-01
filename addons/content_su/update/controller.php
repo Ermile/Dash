@@ -5,48 +5,57 @@ class controller
 {
 	public static function routing()
 	{
-		// declare variables
-		$exist        = true;
-		$rep          = null;
-		$location     = null;
 		$name         = \dash\request::get('git');
 		if(!$name)
 		{
 			return;
 		}
 
+		$result = self::gitUpdate($name);
+		if(is_array($result))
+		{
+			foreach ($result as $key => $value)
+			{
+				echo $value;
+			}
+		}
+		\dash\code::exit();
+	}
 
 
+	public static function gitUpdate($_name, $_password = null)
+	{
+		$location = null;
+		$result   = [];
 		// switch by name of repository
-		switch ($name)
+		switch ($_name)
 		{
 			case 'dash':
-				self::updateDash();
+				$result[] = self::updateDash();
 				break;
-
 
 			case 'all':
 				// pull dash
-				self::updateDash();
+				$result[] = self::updateDash();
 
 				// pull current project
-				$name = \dash\url::root();
-				$location = '../../'. $name;
-				echo "<h1>$name <small>Current Project</small></h1>";
-				echo \dash\utility\git::pull($location);
+				$_name = \dash\url::root();
+				$location = '../../'. $_name;
+				$result[] = "<h1>$_name <small>Current Project</small></h1>";
+				$result[] =  \dash\utility\git::pull($location, false, $_password);
 				break;
 
 			case '':
 				break;
 
 			default:
-				$location = '../../'. $name;
-				echo \dash\utility\git::pull($location);
-				// $exist = false;
+				$location = '../../'. $_name;
+				$result[] =  \dash\utility\git::pull($location, false, $_password);
+
 				// return;
 				break;
 		}
-		\dash\code::exit();
+		return $result;
 	}
 
 
@@ -64,8 +73,7 @@ class controller
 			$dashLocation = '../../dash';
 		}
 
-		echo "<h1>Dash</h1>";
-		echo \dash\utility\git::pull($dashLocation);
+		return "<h1>Dash</h1>". \dash\utility\git::pull($dashLocation);
 	}
 
 }
