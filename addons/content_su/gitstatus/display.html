@@ -1,0 +1,26 @@
+{%extends display.suMain%}
+
+{%block pageContent%}
+<div class="cbox">
+  {%if requestGET.file%}
+    <a href="{{url.this}}" class="block mT10 btn primary outline ">{%trans "Back"%}</a>
+    <form method="post">
+
+      <div class="ltr mT50">
+        <label for="file" class="ltr xl">{{readFileAddr}}</label>
+        <textarea class="txt ltr" rows="20" name="fileContent">{{readFile}}</textarea>
+      </div>
+       <button type="submit" class="block mT10 btn danger ">{%trans "Save"%}</button>
+    </form>
+  {%else%}
+    <div class="f">
+      <a href="{{url.this}}?file=gitconfig" class="c5 mLa50 mT10 btn primary outline"><code>git config</code></a>
+      <a href="{{url.this}}?file=configme" class="c5 mLa50 mT10 btn primary outline"><code>config.me.php</code></a>
+      <a href="{{url.this}}?file=optionme" class="c5 mLa50 mT10 btn primary outline"><code>option.me.php</code></a>
+      <a href="{{url.this}}?file=option" class="c5 mLa50 mT10 btn danger outline"><code>option.php</code></a>
+      <a href="{{url.this}}?file=cronjob" class="c5 mLa50 mT10 btn primary outline"><code>cronjob.php</code></a>
+      <a href="{{url.this}}?file=gitignore" class="c5 mLa50 mT10 btn primary outline"><code>.gitignore</code></a>
+    </div>
+  {%endif%}
+</div>
+{%endblock%}

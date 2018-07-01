@@ -158,6 +158,106 @@ class git
 	}
 
 
+	public static function gitdiff($_location)
+	{
+		if(!self::$baseLocation)
+		{
+			// if have not baseLocation get the value of this
+			self::$baseLocation = getcwd();
+		}
+		else
+		{
+			// else change folder to baseLocation
+			chdir(self::$baseLocation);
+		}
+
+		$result     = [];
+
+		$output     = null;
+		// if folder of location exist prepare commands
+		if(\dash\file::exists($_location))
+		{
+			// change location to address of requested
+			chdir($_location);
+
+			$command  = 'git diff ';
+
+			exec($command, $result);
+			if(!$result || !is_array($result))
+			{
+				$output     = T_('NO change!');
+			}
+
+			foreach ($result as $line)
+			{
+				$output .= $line . "\n";
+			}
+		}
+		else
+		{
+			$output = T_('This location is not exist!');
+		}
+
+		// start show result
+		$html = "<pre>";
+		$html .= htmlspecialchars($output);
+		$html .= "</pre>";
+
+		return $html;
+
+	}
+
+
+	public static function gitstatus($_location)
+	{
+		if(!self::$baseLocation)
+		{
+			// if have not baseLocation get the value of this
+			self::$baseLocation = getcwd();
+		}
+		else
+		{
+			// else change folder to baseLocation
+			chdir(self::$baseLocation);
+		}
+
+		$result     = [];
+
+		$output     = null;
+		// if folder of location exist prepare commands
+		if(\dash\file::exists($_location))
+		{
+			// change location to address of requested
+			chdir($_location);
+
+			$command  = 'git status ';
+
+			exec($command, $result);
+			if(!$result || !is_array($result))
+			{
+				$output     = T_('Not Work!');
+			}
+
+			foreach ($result as $line)
+			{
+				$output .= $line . "\n";
+			}
+		}
+		else
+		{
+			$output = T_('This location is not exist!');
+		}
+
+		// start show result
+		$html = "<pre>";
+		$html .= $output;
+		$html .= "</pre>";
+
+		return $html;
+
+	}
+
+
 
 	public static function createPackage($_dash = true)
 	{
