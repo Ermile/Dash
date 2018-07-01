@@ -65,6 +65,8 @@ class model
 			return false;
 		}
 
+
+
 		$avatar = self::upload_avatar();
 
 		if($avatar)
@@ -104,6 +106,15 @@ class model
 			$request['password'] = $password;
 
 		}
+
+		if(intval(\dash\coding::decode(\dash\request::get('id'))) === intval(\dash\user::id()))
+		{
+			if(isset($request['permission']) && \dash\user::detail('permission') === 'admin' && $request['permission'] !== 'admin')
+			{
+				unset($request['permission']);
+			}
+		}
+
 
 		// ready request
 

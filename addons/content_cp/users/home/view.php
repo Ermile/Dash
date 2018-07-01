@@ -39,6 +39,14 @@ class view
 			$args['permission'] = \dash\request::get('permission');
 		}
 
+		if(!\dash\permission::supervisor())
+		{
+			if(isset($args['permission']) && $args['permission'] === 'supervisor')
+			{
+				unset($args['permission']);
+			}
+		}
+
 		$sortLink = \content_cp\view::make_sort_link(\dash\app\user::$sort_field, \dash\url::this());
 		$dataTable = \dash\app\user::list(\dash\request::get('q'), $args);
 
@@ -48,6 +56,10 @@ class view
 		$check_empty_datatable = $args;
 		unset($check_empty_datatable['sort']);
 		unset($check_empty_datatable['order']);
+		if(isset($check_empty_datatable['permission']) && is_array($check_empty_datatable['permission']))
+		{
+			unset($check_empty_datatable['permission']);
+		}
 
 		// set dataFilter
 		$dataFilter = \content_cp\view::createFilterMsg($search_string, $check_empty_datatable);

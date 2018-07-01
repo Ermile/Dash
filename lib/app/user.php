@@ -355,6 +355,17 @@ class user
 
 			switch ($key)
 			{
+				case 'permission':
+					if($value === 'supervisor' && !\dash\permission::supervisor())
+					{
+						return false;
+					}
+					else
+					{
+						$result[$key] = $value;
+					}
+
+					break;
 				case 'id':
 				case 'creator':
 				case 'parent':
