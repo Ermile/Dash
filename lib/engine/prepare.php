@@ -478,7 +478,10 @@ class prepare
 			{
 				\dash\code::pretty("<p>For using Dash you must update php version to 7.0 or higher!</p>");
 			}
-			\dash\code::bye("<p>For using Dash you must update php version to 7.0 or higher!</p>");
+			else
+			{
+				\dash\code::bye("<p>For using Dash you must update php version to 7.0 or higher!</p>");
+			}
 		}
 	}
 
