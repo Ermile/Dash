@@ -34,7 +34,7 @@ class language
 	/**
 	 * get lost of languages
 	 */
-	public static function list($_for_html = false)
+	public static function all($_for_html = false)
 	{
 		$list = \dash\option::language('list');
 
@@ -80,7 +80,7 @@ class language
 		}
 		else
 		{
-			return array_key_exists($_lang, self::list());
+			return array_key_exists($_lang, self::all());
 		}
 	}
 
@@ -100,7 +100,7 @@ class language
 			$_key = substr($_key, 0, 2);
 		}
 
-		$site_lang = self::list();
+		$site_lang = self::all();
 
 		if(!empty($site_lang) && isset($site_lang[$_key]))
 		{

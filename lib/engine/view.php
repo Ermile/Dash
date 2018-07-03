@@ -24,7 +24,7 @@ class view
 		\dash\data::requestGET(\dash\request::get());
 
 		// ----- language variable
-		\dash\data::lang_list(\dash\language::list(true));
+		\dash\data::lang_list(\dash\language::all(true));
 		\dash\data::lang_current(\dash\language::current());
 		\dash\data::lang_default(\dash\language::primary());
 
