@@ -3,6 +3,30 @@
 
 {%block pageContent%}
 
+<form>
+	<div class="cbox">
+{{block("iTitle")}}
+{{block("iDesc")}}
+<button class="btn primary block mT20">{%trans "Send"%}</button>
+
+	</div>
+</form>
+
 
 {%endblock%}
 
+
+
+
+{% block iTitle %}
+<label for="title">{%trans "Title"%} <small class="fc-red">* {%trans "Require"%}</small></label>
+<div class="input">
+  <input type="text" name="title" id="title" placeholder='{%trans "Title of your ticket"%} *' value="{{dataRow.title}}" autofocus required maxlength='150' minlength="1" title='{%trans "Set title will help us answer quickly"%}'>
+</div>
+{% endblock %}
+
+
+{%block iDesc%}
+<label for="desc">{%trans "Description"%}</label>
+<textarea class="txt mB10" id='desc' name="desc" placeholder='' maxlength='500' rows="5">{{dataRow.desc}}</textarea>
+{%endblock%}
