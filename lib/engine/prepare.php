@@ -474,6 +474,10 @@ class prepare
 		// check php version to upper than 7.0
 		if(version_compare(phpversion(), '7.0', '<'))
 		{
+			if(version_compare(phpversion(), '5.6', '<'))
+			{
+				\dash\code::pretty("<p>For using Dash you must update php version to 7.0 or higher!</p>");
+			}
 			\dash\code::bye("<p>For using Dash you must update php version to 7.0 or higher!</p>");
 		}
 	}
