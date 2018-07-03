@@ -67,7 +67,7 @@ class code
 	/**
 	 * print_r data
 	 */
-	public static function print($_data, $_pre = false)
+	public static function pretty($_data, $_pre = false)
 	{
 		if($_pre)
 		{
