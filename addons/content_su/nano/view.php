@@ -28,26 +28,6 @@ class view
 				$addr = root. '.git/config';
 				break;
 
-			case 'gitignore':
-				$addr = root. '.gitignore';
-				break;
-
-			case 'configme':
-				$addr = root. 'config.me.php';
-				break;
-
-			case 'optionme':
-				$addr = root. '/includes/option/option.me.php';
-				break;
-
-			case 'option':
-				$addr = root. '/includes/option/option.php';
-				break;
-
-			case 'cronjob':
-				$addr = root. 'cronjob.php';
-				break;
-
 			default:
 				return false;
 				break;

@@ -29,22 +29,6 @@ class model
 				$command[] = " apt-get install sshpass ";
 				break;
 
-			case 'soap':
-				$command[] = " apt-get install php7.1-soap ";
-				break;
-
-			case 'soap72':
-				$command[] = " apt-get install php7.2-soap ";
-				break;
-
-			case 'update':
-				$command[] = " apt-get update ";
-				break;
-
-			case 'upgrade':
-				$command[] = " apt-get upgrade ";
-				break;
-
 			default:
 				\dash\notif::error(T_("Invalid command"));
 				return false;
