@@ -80,7 +80,7 @@ class prepare
 
 		if(!$_SESSION && !$cookie && !\dash\url::lang())
 		{
-			$default_site_language = \dash\language::default();
+			$default_site_language = \dash\language::primary();
 			$country_is_ir         = (isset($_SERVER['HTTP_CF_IPCOUNTRY']) && mb_strtoupper($_SERVER['HTTP_CF_IPCOUNTRY']) === 'IR') ? true : false;
 			$redirect_lang         = null;
 
@@ -313,7 +313,7 @@ class prepare
 		}
 
 		$target_url = $target_host;
-		if(\dash\url::lang() === \dash\language::default())
+		if(\dash\url::lang() === \dash\language::primary())
 		{
 			// try to remove lang from url
 			if(\dash\url::content())

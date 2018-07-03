@@ -26,7 +26,7 @@ class view
 		// ----- language variable
 		\dash\data::lang_list(\dash\language::list(true));
 		\dash\data::lang_current(\dash\language::current());
-		\dash\data::lang_default(\dash\language::default());
+		\dash\data::lang_default(\dash\language::primary());
 
 		// save all options to use in display
 		\dash\data::options(\dash\option::config());

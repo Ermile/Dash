@@ -153,7 +153,7 @@ class date
         // get target language
     	if($_type === 'default')
     	{
-    		$_type = \dash\language::default();
+    		$_type = \dash\language::primary();
     	}
     	elseif($_type === 'current')
     	{

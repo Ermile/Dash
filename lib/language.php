@@ -20,7 +20,7 @@ class language
 	];
 
 
-	public static function default()
+	public static function primary()
 	{
 		$default = \dash\option::language('default');
 		if(!$default)
@@ -148,7 +148,7 @@ class language
 	 */
 	public static function set_language($_language)
 	{
-		self::$language_default = self::default();
+		self::$language_default = self::primary();
 
 		// get all detail of this language
 		self::$language = self::get($_language, 'all');
@@ -181,7 +181,7 @@ class language
 		}
 		else
 		{
-			self::set_language(self::default());
+			self::set_language(self::primary());
 		}
 	}
 }

@@ -258,7 +258,7 @@ class twigAddons
 			$urlParam     = \dash\url::query();
 			$urlDirectory = \dash\url::directory();
 			$currentlang  = \dash\language::current();
-			$defaultlang  = \dash\language::default();
+			$defaultlang  = \dash\language::primary();
 
 			if(!$all)
 			{
