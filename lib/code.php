@@ -86,7 +86,7 @@ class code
 	/**
 	 * eval code
 	 */
-	public static function eval($_string)
+	public static function whooa($_string)
 	{
 		eval($_string);
 	}
