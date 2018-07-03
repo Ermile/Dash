@@ -1,5 +1,5 @@
 <?php
-namespace content_support\home;
+namespace content_support\ticket\add;
 
 class view
 {
