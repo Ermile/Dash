@@ -83,9 +83,9 @@ class permissionlist
 		// \dash\permission::write_file($permission_caller, 'project');
 
 		echo '<h1>EXTRACT PERMISSION CALLERS ('.self::$count.' callers founded | used in: '.self::$count_use.' place)</h1><hr><h3>DASH</h3>';
-		\dash\code::print($dash_caller, true);
+		\dash\code::pretty($dash_caller, true);
 
 		echo '<hr><h3>PROJECT</h3>';
-		\dash\code::print($permission_caller, true);
+		\dash\code::pretty($permission_caller, true);
 	}
 }

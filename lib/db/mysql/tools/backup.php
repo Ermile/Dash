@@ -73,7 +73,7 @@ trait backup
 		if($_period === true)
 		{
 			$clean_result = self::clean(false);
-			\dash\code::print($clean_result);
+			\dash\code::pretty($clean_result);
 			echo "<hr />";
 			$_period = null;
 		}

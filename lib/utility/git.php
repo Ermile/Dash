@@ -328,7 +328,7 @@ class git
 		\dash\code::dump($res);
 		array_values($res);
 		echo "<h1>Files found in git log result:</h1>";
-		\dash\code::print($res);
+		\dash\code::pretty($res);
 		echo "<hr />";
 		//specify the folder where your packages are stored
 		$packagesfolder = core."packages";
