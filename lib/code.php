@@ -28,7 +28,7 @@ class code
 	/**
 	 * die code
 	 */
-	public static function die($_string = null)
+	public static function bye($_string = null)
 	{
 		self::exit($_string);
 	}

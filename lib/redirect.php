@@ -26,7 +26,7 @@ class redirect
 			self::via_html($_url, $_arg);
 		}
 
-		\dash\code::die();
+		\dash\code::bye();
 	}
 
 	/**
@@ -51,7 +51,7 @@ class redirect
 		// remove below code if have no problem
 		// header('Content-Type: application/json');
 		// echo \dash\notif::json();
-		// \dash\code::die();
+		// \dash\code::bye();
 	}
 
 

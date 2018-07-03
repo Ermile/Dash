@@ -56,7 +56,7 @@ class export
             echo ob_get_clean();
         }
 
-        \dash\code::die();
+        \dash\code::bye();
     }
 }
 ?>
