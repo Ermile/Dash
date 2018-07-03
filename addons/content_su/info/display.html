@@ -3,12 +3,18 @@
 {%block content%}
 
 
- <div class="dbox">
+ <div class="cbox">
   <h2>{%trans "Info"%}</h2>
     <div class="btns">
    <a target='_blank' href="{{url.here}}/info/server">{%trans "Show server info"%}</a>
    <a target='_blank' href="{{url.here}}/info/php">{%trans "Show PHP info"%}</a>
   </div>
+ </div>
+
+ <div class="cbox ltr">
+ 	{%for key, value in phpIniInfo%}
+ 	<div class="msg block">{{key}} = {{value}}</div>
+ 	{%endfor%}
  </div>
 
 {%endblock%}
