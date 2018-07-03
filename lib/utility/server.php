@@ -92,7 +92,7 @@ class server
 			{
 				return $memory['percent'];
 			}
-			return false; self::memoryWin_detail();
+			return false;
 		}
 		else
 		{
@@ -292,7 +292,7 @@ class server
 				// Collect 2 samples - each with 1 second period
 				// See: https://de.wikipedia.org/wiki/Load#Der_Load_Average_auf_Unix-Systemen
 				$statData1 = self::_getServerLoadLinuxData();
-				sleep(1);
+				\dash\code::sleep(1);
 				$statData2 = self::_getServerLoadLinuxData();
 
 				if
