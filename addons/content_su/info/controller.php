@@ -41,7 +41,7 @@ class controller
 				break;
 		}
 
-		\dash\code::exit();
+		\dash\code::boom();
 	}
 }
 ?>

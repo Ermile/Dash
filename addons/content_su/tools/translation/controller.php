@@ -14,12 +14,12 @@ class controller
 			{
 				echo \dash\utility\twigTrans::extract('current', $myupdate);
 				echo \dash\utility\twigTrans::extract('addons', $myupdate);
-				\dash\code::exit();
+				\dash\code::boom();
 			}
 			else
 			{
 				echo \dash\utility\twigTrans::extract($mypath, $myupdate);
-				\dash\code::exit();
+				\dash\code::boom();
 			}
 		}
 	}

@@ -43,7 +43,7 @@ class zip
 		}
 		\dash\file::download($_addr, $_name, 'archive/zip');
 		// exit to download it
-		\dash\code::exit();
+		\dash\code::boom();
 	}
 
 

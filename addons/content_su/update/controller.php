@@ -19,7 +19,7 @@ class controller
 				echo $value;
 			}
 		}
-		\dash\code::exit();
+		\dash\code::boom();
 	}
 
 

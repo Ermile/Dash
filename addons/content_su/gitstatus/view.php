@@ -38,7 +38,7 @@ class view
 			}
 		}
 
-		\dash\code::exit();
+		\dash\code::boom();
 	}
 
 		public static function gitDiscard()

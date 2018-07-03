@@ -16,7 +16,7 @@ class controller
 			];
 
 			echo json_encode($serverDetail, JSON_UNESCAPED_UNICODE);
-			\dash\code::exit();
+			\dash\code::boom();
 		}
 
 	}

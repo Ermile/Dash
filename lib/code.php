@@ -22,7 +22,7 @@ class code
 	public static function end()
 	{
 		self::compile();
-		self::exit();
+		self::boom();
 	}
 
 	/**
@@ -30,14 +30,14 @@ class code
 	 */
 	public static function bye($_string = null)
 	{
-		self::exit($_string);
+		self::boom($_string);
 	}
 
 
 	/**
 	 * exit code
 	 */
-	public static function exit($_string = null)
+	public static function boom($_string = null)
 	{
 		exit($_string);
 	}

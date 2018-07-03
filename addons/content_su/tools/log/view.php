@@ -150,7 +150,7 @@ class view
 
 		$output .= "</body></html>";
 		echo $output;
-		\dash\code::exit();
+		\dash\code::boom();
 
 	}
 }

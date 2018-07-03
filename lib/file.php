@@ -420,7 +420,7 @@ class file
 		}
 
 		readfile($_filePath);
-		\dash\code::exit();
+		\dash\code::boom();
 	}
 
 

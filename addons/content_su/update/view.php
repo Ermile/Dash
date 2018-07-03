@@ -14,7 +14,7 @@ class view
 				{
 					echo $value;
 				}
-				\dash\code::exit();
+				\dash\code::boom();
 			}
 		}
 

@@ -6,7 +6,7 @@ class controller
 	public static function routing()
 	{
 		\dash\utility\permissionlist::extract();
-		\dash\code::exit();
+		\dash\code::boom();
 	}
 
 }

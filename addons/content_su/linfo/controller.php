@@ -11,7 +11,7 @@ class controller
 		}
 
 		require addons.'lib/linfo/index.php';
-		\dash\code::exit();
+		\dash\code::boom();
 	}
 }
 ?>

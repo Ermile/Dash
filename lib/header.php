@@ -192,7 +192,7 @@ class header
 			require_once(lib."engine/error_page.php");
 		}
 
-		\dash\code::exit();
+		\dash\code::boom();
 	}
 }
 ?>

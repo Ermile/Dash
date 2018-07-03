@@ -196,7 +196,7 @@ class controller
 		// var_dump($output);exit();
 		// $output .= "</body></html>";
 		echo $output;
-		\dash\code::exit();
+		\dash\code::boom();
 
 	}
 

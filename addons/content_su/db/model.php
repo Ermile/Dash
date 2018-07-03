@@ -50,7 +50,7 @@ class model
 		}
 
 		\dash\code::print($result, true);
-		\dash\code::exit();
+		\dash\code::boom();
 
 
 	}
