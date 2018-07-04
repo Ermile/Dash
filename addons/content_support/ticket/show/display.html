@@ -14,7 +14,7 @@
 <div class="cbox">
 
 {%for key, value in dataTable%}
-<div class="msg block">
+<div class="msg {%if value.user_id == masterTicketUser %}{%else%}info{%endif%} block">
 	<div class="avatar"><img src="{{value.avatar}}"></div>
 	<p>{{value.content}}</p>
 	{%if value.file %}<img src="{{value.file}}">{%endif%}

@@ -26,7 +26,7 @@
  <div class="cbox fs12">
   {%for key, value in dataTable%}
   <div class="msg block">
-    <a href="{{url.this}}/ticket/show?id={{value.id}}">{%if value.title%}{{value.title}}{%else%}{{value.content | slice(0, 30)}}{%endif%}</a>
+    <a href="{{url.this}}/ticket/show?id={{value.id}}">{%if value.title%}{{value.title}}{%else%}{{value.content | slice(0, 70)}}... {%endif%}</a>
     <div class="ltr">{{value.datecreated | tdate("Y-m-d H:i:s")}}</div>
   </div>
   {%endfor%}

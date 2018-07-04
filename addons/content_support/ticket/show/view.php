@@ -19,17 +19,42 @@ class view
 			\dash\header::status(404, T_("Invalid id"));
 		}
 
+		$main = \dash\app\comment::get(\dash\request::get('id'));
+		if(!$main || !isset($main['user_id']))
+		{
+			\dash\header::status(403, T_("Ticket not found"));
+		}
+
+		$ticket_user_id = $main['user_id'];
+		\dash\data::masterTicketUser($ticket_user_id);
+		$ticket_user_id = \dash\coding::decode($ticket_user_id);
+		if(!$ticket_user_id)
+		{
+			\dash\header::status(403, T_("Ticket not found"));
+		}
+
+
+		if(!\dash\permission::check('supportTicketView'))
+		{
+			if(intval($ticket_user_id) === intval(\dash\user::id()))
+			{
+				// no problem
+			}
+			else
+			{
+				\dash\header::status(403, T_("This is not your ticket!"));
+			}
+		}
+
 		$args['sort']            = 'id';
 		$args['order']           = 'desc';
 		$args['comments.type']   = 'ticket';
-		$args['user_id']         = \dash\user::id();
 		$args['comments.parent'] = $parent;
 		$args['pagenation']      = false;
 		$args['join_user']       = true;
 
 		$dataTable = \dash\app\comment::list(null, $args);
 
-		$main = \dash\app\comment::get(\dash\request::get('id'));
 		array_push($dataTable, $main);
 
 		\dash\data::dataTable($dataTable);
