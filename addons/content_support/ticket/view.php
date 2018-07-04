@@ -29,9 +29,10 @@ class view
 			$args['status'] = \dash\request::get('status');
 		}
 
-		$args['type']    = 'ticket';
+		$args['comments.type']    = 'ticket';
 		$args['user_id'] = \dash\user::id();
-		$args['parent']  = null;
+		$args['comments.parent']  = null;
+		$args['join_user']  = true;
 
 		if(!$args['order'])
 		{
@@ -47,9 +48,10 @@ class view
 		\dash\data::dataTable(\dash\app\comment::list(\dash\request::get('q'), $args));
 
 		$filterArray = $args;
-		unset($filterArray['type']);
+		unset($filterArray['comments.type']);
 		unset($filterArray['user_id']);
-		unset($filterArray['parent']);
+		unset($filterArray['comments.parent']);
+		unset($filterArray['join_user']);
 
 		// set dataFilter
 		$dataFilter = \dash\app\sort::createFilterMsg($search_string, $filterArray);

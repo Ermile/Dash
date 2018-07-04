@@ -67,6 +67,11 @@ class comment
 				$check_duplicate['post_id'] = $args['post_id'];
 			}
 
+			if(isset($args['parent']) && $args['parent'])
+			{
+				$check_duplicate['parent'] = $args['parent'];
+			}
+
 			$check_duplicate = \dash\db\comments::get($check_duplicate);
 
 			if(isset($check_duplicate['id']))
@@ -147,6 +152,7 @@ class comment
 			'pagenation' => true,
 			'sort'       => null,
 			'order'      => null,
+			'join_user'  => false,
 		];
 
 		if(!is_array($_args))
@@ -160,7 +166,6 @@ class comment
 		{
 			$_args['sort'] = null;
 		}
-
 
 		$result            = \dash\db\comments::search($_string, $_args);
 		$temp              = [];

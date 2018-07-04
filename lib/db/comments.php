@@ -41,6 +41,12 @@ class comments
 
 		$_options = array_merge($default_options, $_options);
 
+		if(isset($_options['join_user']) && $_options['join_user'])
+		{
+			$_options['master_join'] = "INNER JOIN users ON users.id = comments.user_id ";
+			$_options['public_show_field'] = " comments.*, users.avatar, users.firstname, users.displayname ";
+		}
+
 		return \dash\db\config::public_search('comments', $_string, $_options);
 	}
 

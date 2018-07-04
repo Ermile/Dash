@@ -14,6 +14,7 @@
 
 {%for key, value in dataTable%}
 <div class="msg block">
+	<div class="avatar"><img src="{{value.avatar}}"></div>
 	<p>{{value.content}}</p>
 	<br>
 	<div class="ltr">{{value.datecreated|tdate("Y/m/d H:i:s")}}</div>

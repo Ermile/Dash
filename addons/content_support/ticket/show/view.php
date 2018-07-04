@@ -19,12 +19,13 @@ class view
 			\dash\header::status(404, T_("Invalid id"));
 		}
 
-		$args['sort']       = 'id';
-		$args['order']      = 'desc';
-		$args['type']       = 'ticket';
-		$args['user_id']    = \dash\user::id();
-		$args['parent']     = $parent;
-		$args['pagenation'] = false;
+		$args['sort']            = 'id';
+		$args['order']           = 'desc';
+		$args['comments.type']   = 'ticket';
+		$args['user_id']         = \dash\user::id();
+		$args['comments.parent'] = $parent;
+		$args['pagenation']      = false;
+		$args['join_user']       = true;
 
 		$dataTable = \dash\app\comment::list(null, $args);
 
