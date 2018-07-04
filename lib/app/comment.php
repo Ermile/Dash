@@ -79,7 +79,17 @@ class comment
 		$args['visitor_id'] = \dash\utility\visitor::id();
 		$args['ip']         = \dash\server::ip(true);
 
-		return \dash\db\comments::insert($args);
+		$comment_id = \dash\db\comments::insert($args);
+
+		if(!$comment_id)
+		{
+			\dash\notif::error(T_("No way to add new data"));
+			return false;
+		}
+
+		$return       = [];
+		$return['id'] = \dash\coding::encode($comment_id);
+		return $return;
 	}
 
 

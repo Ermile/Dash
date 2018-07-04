@@ -21,10 +21,10 @@ class model
 		// insert comments
 		$result = \dash\app\comment::add($args);
 
-		if($result)
+		if(isset($result['id']))
 		{
 			\dash\notif::ok(T_("Your ticket was sended"));
-			\dash\redirect::to(\dash\url::this());
+			\dash\redirect::to(\dash\url::this().'/show?id='. $result['id']);
 		}
 	}
 }
