@@ -53,6 +53,28 @@ class model
 			'file'    => $file,
 		];
 
+		$main = \dash\app\comment::get(\dash\request::get('id'));
+		if(!$main || !isset($main['user_id']))
+		{
+			\dash\header::status(403, T_("Ticket not found"));
+		}
+
+		$ticket_user_id = $main['user_id'];
+		$ticket_user_id = \dash\coding::decode($ticket_user_id);
+		if(!$ticket_user_id)
+		{
+			\dash\header::status(403, T_("Ticket not found"));
+		}
+
+		if(intval($ticket_user_id) === intval(\dash\user::id()))
+		{
+			\dash\db\comments::update(['status' => 'awaiting'], \dash\coding::decode(\dash\request::get('id')));
+		}
+		else
+		{
+			\dash\db\comments::update(['status' => 'answered'], \dash\coding::decode(\dash\request::get('id')));
+		}
+
 		// insert comments
 		$result = \dash\app\comment::add($args);
 

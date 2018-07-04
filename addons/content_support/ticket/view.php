@@ -8,7 +8,6 @@ class view
 	{
 		\dash\data::page_title(T_("Tickets"));
 		\dash\data::page_desc(T_("See list of your tickets!"));
-		\dash\permission::access('cpCommentsView');
 
 		\dash\data::page_pictogram('comments');
 

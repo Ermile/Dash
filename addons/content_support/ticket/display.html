@@ -68,7 +68,7 @@
 			{%endif%}
 		{%endset%}
       <tr class="{{statusClass}} {{value.status}}">
-        <td><a href="{{url.this}}/show?id={{value.id}}">{{value.title}}</a></td>
+        <td><a href="{{url.this}}/show?id={{value.id}}">{%if value.title%}{{value.title}}{%else%}{{value.content | slice(0, 70)}}... {%endif%}</a></td>
         <td class="collapsing s0" title='{{value.datemodified}}'>{%set myStatus = value.status | capitalize%}{%trans myStatus%}</td>
         <td class="collapsing s0 m0" title='{%trans "Created on"%} {{value.datecreated}}'>{{value.datecreated | sdate('year')}}</td>
       </tr>
