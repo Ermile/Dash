@@ -73,7 +73,21 @@ class model
 		else
 		{
 			\dash\permission::access('supportTicketView');
-			\dash\db\comments::update(['status' => 'answered'], \dash\coding::decode(\dash\request::get('id')));
+			$update_main = ['status' => 'answered'];
+			if(isset($main['answertime']) && $main['answertime'])
+			{
+				// no change
+			}
+			else
+			{
+				if(isset($main['datecreated']))
+				{
+					$diff                      = time() - strtotime($main['datecreated']);
+					$update_main['answertime'] = $diff;
+				}
+			}
+
+			\dash\db\comments::update($update_main, \dash\coding::decode(\dash\request::get('id')));
 		}
 
 		// insert comments

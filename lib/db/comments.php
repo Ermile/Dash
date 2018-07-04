@@ -61,13 +61,9 @@ class comments
 		$where = \dash\db\config::make_where($_where);
 		if($where)
 		{
-			// $query =
-			// "
-			// 	SELECT * FROM comments WHERE $where
-			// ";
-			// var_dump($query);
-			// $result = \dash\db::get($query);
-			// var_dump($result);exit();
+			$query = " SELECT AVG(comments.answertime) AS `average` FROM comments WHERE $where AND comments.answertime IS NOT NULL	";
+			$result = \dash\db::get($query, 'average', true);
+			return intval($result);
 		}
 
 		return 0;
@@ -75,6 +71,13 @@ class comments
 
 	public static function ticket_avg_archive($_where)
 	{
+		$where = \dash\db\config::make_where($_where);
+		if($where)
+		{
+			$query = " SELECT AVG(TIMESTAMPDIFF(SECOND,comments.datecreated, comments.datemodified)) AS `average` FROM comments WHERE $where AND comments.status = 'close'	";
+			$result = \dash\db::get($query, 'average', true);
+			return intval($result);
+		}
 		return 10;
 	}
 
