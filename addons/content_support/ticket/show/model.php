@@ -72,6 +72,7 @@ class model
 		}
 		else
 		{
+			\dash\permission::access('supportTicketView');
 			\dash\db\comments::update(['status' => 'answered'], \dash\coding::decode(\dash\request::get('id')));
 		}
 

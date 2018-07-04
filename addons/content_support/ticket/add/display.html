@@ -27,9 +27,9 @@
 
 
 {% block iTitle %}
-<label for="title">{%trans "Title"%} <small class="fc-red">* {%trans "Require"%}</small></label>
+<label for="title">{%trans "Title"%}</label>
 <div class="input">
-  <input type="text" name="title" id="title" placeholder='{%trans "Title of your ticket"%} *' value="{{dataRow.title}}" autofocus required maxlength='150' minlength="1" title='{%trans "Set title will help us answer quickly"%}'>
+  <input type="text" name="title" id="title" placeholder='{%trans "Title of your ticket"%}' value="{{dataRow.title}}" autofocus maxlength='150' minlength="1" title='{%trans "Set title will help us answer quickly"%}'>
 </div>
 {% endblock %}
 
