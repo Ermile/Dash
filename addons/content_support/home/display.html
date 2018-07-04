@@ -24,12 +24,18 @@
 
 {%block htmlTable%}
  <div class="cbox fs12">
-  {%for key, value in dataTable%}
-  <div class="msg block">
-    <a href="{{url.this}}/ticket/show?id={{value.id}}">{%if value.title%}{{value.title}}{%else%}{{value.content | slice(0, 70)}}... {%endif%}</a>
-    <div class="ltr">{{value.datecreated | tdate("Y-m-d H:i:s")}}</div>
-  </div>
-  {%endfor%}
+{%for key, value in dataTable%}
+  <a class="msg f align-center" href="{{url.here}}/ticket/show?id={{value.id}}">
+    <span class="cauto"><img src="{{value.avatar}}" class="avatar mRa10"></span>
+    <span class="c2 txtB pRa10">{{value.displayname}}</span>
+    <span class="cauto txtB pRa10">{{value.title}}</span>
+    <span class="c">{{value.content | slice(0, 70)}}</span>
+
+    <span class="cauto pRa10">{%if value.answertime%}<i class="sf-spin-alt fc-green"></i>{%else%}<i class="sf-asterisk spiny fc-red"></i>{%endif%}</span>
+    <span class="cauto pRa10">{{ 6 | fitNumber}} <i class="sf-chat-alt-fill"></i></span>
+    <span class="cauto we80 txtRa os" title='{{value.datecreated | tdate("Y-m-d H:i:s")}}'>{{value.datecreated | sdate("year")}}</span>
+  </a>
+{%endfor%}
  </div>
 {%endblock%}
 
