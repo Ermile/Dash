@@ -10,6 +10,10 @@ class view
 		\dash\data::page_desc(T_("Easily manage your tickets and monitor or track them to get best answer until fix your problem"));
 		\dash\data::page_pictogram('life-ring');
 
+		\dash\data::badge_text(T_('Tickets'));
+		\dash\data::badge_link(\dash\url::here(). '/ticket');
+
+
 		$args['sort']            = 'id';
 		$args['order']           = 'desc';
 		$args['comments.type']   = 'ticket';
