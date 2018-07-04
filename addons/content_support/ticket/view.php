@@ -8,10 +8,9 @@ class view
 	{
 		\dash\data::page_title(T_("Tickets"));
 		\dash\data::page_desc(T_("See list of your tickets!"));
-			\dash\permission::access('cpCommentsView');
+		\dash\permission::access('cpCommentsView');
 
 		\dash\data::page_pictogram('comments');
-
 
 		$search_string            = \dash\request::get('q');
 		if($search_string)
@@ -30,9 +29,9 @@ class view
 			$args['status'] = \dash\request::get('status');
 		}
 
-
-
-		$args['type'] = 'ticket';
+		$args['type']    = 'ticket';
+		$args['user_id'] = \dash\user::id();
+		$args['parent']  = null;
 
 		if(!$args['order'])
 		{
@@ -49,6 +48,8 @@ class view
 
 		$filterArray = $args;
 		unset($filterArray['type']);
+		unset($filterArray['user_id']);
+		unset($filterArray['parent']);
 
 		// set dataFilter
 		$dataFilter = \dash\app\sort::createFilterMsg($search_string, $filterArray);

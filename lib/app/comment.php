@@ -118,6 +118,7 @@ class comment
 		if(!\dash\app::isset_request('mobile')) unset($args['mobile']);
 		if(!\dash\app::isset_request('title')) unset($args['title']);
 		if(!\dash\app::isset_request('file')) unset($args['file']);
+		if(!\dash\app::isset_request('parent')) unset($args['parent']);
 
 		if(isset($args['status']) && $args['status'] === 'deleted')
 		{
@@ -142,12 +143,13 @@ class comment
 			$_args = [];
 		}
 
+		$_args = array_merge($default_meta, $_args);
+
 		if($_args['sort'] && !in_array($_args['sort'], self::$sort_field))
 		{
 			$_args['sort'] = null;
 		}
 
-		$_args = array_merge($default_meta, $_args);
 
 		$result            = \dash\db\comments::search($_string, $_args);
 		$temp              = [];
@@ -262,6 +264,13 @@ class comment
 		}
 
 		$file = \dash\app::request('file');
+		$parent = \dash\app::request('parent');
+		$parent = \dash\coding::decode($parent);
+		if(\dash\app::isset_request('parent') && \dash\app::request('parent') && !$parent)
+		{
+			\dash\notif::error(T_("Invalid parent"));
+			return false;
+		}
 
 
 		$args            = [];
@@ -274,6 +283,7 @@ class comment
 		$args['mobile']  = $mobile;
 		$args['title']   = $title;
 		$args['file']    = $file;
+		$args['parent']    = $parent;
 
 		return $args;
 	}

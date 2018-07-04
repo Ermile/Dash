@@ -1,0 +1,34 @@
+{%extends display.admin%}
+
+
+{%block pageContent%}
+
+<form method="post">
+	<div class="cbox">
+		{{block("iDesc")}}
+		<button class="btn primary block mT20">{%trans "Send"%}</button>
+	</div>
+</form>
+
+<div class="cbox">
+
+{%for key, value in dataTable%}
+<div class="msg block">
+	<p>{{value.content}}</p>
+	<br>
+	<div class="ltr">{{value.datecreated|tdate("Y/m/d H:i:s")}}</div>
+</div>
+{%endfor%}
+
+</div>
+
+{%endblock%}
+
+
+
+
+
+{%block iDesc%}
+<label for="desc">{%trans "Description"%}</label>
+<textarea class="txt mB10" id='desc' name="desc" placeholder='' maxlength='500' rows="5">{{dataRow.desc}}</textarea>
+{%endblock%}
