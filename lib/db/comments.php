@@ -22,6 +22,12 @@ class comments
 	}
 
 
+	public static function get_count()
+	{
+		return \dash\db\config::public_get_count('comments', ...func_get_args());
+	}
+
+
 	/**
 	 * Searches for the first match.
 	 *
@@ -48,6 +54,28 @@ class comments
 		}
 
 		return \dash\db\config::public_search('comments', $_string, $_options);
+	}
+
+	public static function ticket_avg_first($_where)
+	{
+		$where = \dash\db\config::make_where($_where);
+		if($where)
+		{
+			// $query =
+			// "
+			// 	SELECT * FROM comments WHERE $where
+			// ";
+			// var_dump($query);
+			// $result = \dash\db::get($query);
+			// var_dump($result);exit();
+		}
+
+		return 0;
+	}
+
+	public static function ticket_avg_archive($_where)
+	{
+		return 10;
 	}
 
 

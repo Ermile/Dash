@@ -26,6 +26,34 @@ class view
 		$dataTable = \dash\app\comment::list(null, $args);
 
 		\dash\data::dataTable($dataTable);
+
+
+		\dash\data::dashboardDetail(self::dashboardDetail());
+	}
+
+	private static function dashboardDetail()
+	{
+		$args = [];
+		$args['type'] = 'ticket';
+		if(!\dash\permission::check('supportTicketView'))
+		{
+			$args['user_id'] = \dash\user::id();
+		}
+
+		$result               = [];
+		$args['parent']       = null;
+		$result['tickets']    = \dash\db\comments::get_count($args);
+		unset($args['parent']);
+		$result['replies']    = \dash\db\comments::get_count($args);
+		$args['status']       = 'close';
+		$result['archived']   = \dash\db\comments::get_count($args);
+
+		unset($args['status']);
+		$args['parent']       = null;
+		$result['avgfirst']   = \dash\db\comments::ticket_avg_first($args);
+		$result['avgarchive'] = \dash\db\comments::ticket_avg_archive($args);
+
+		return $result;
 	}
 }
 ?>
