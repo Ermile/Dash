@@ -11,6 +11,10 @@ class view
 
 		\dash\data::page_pictogram('comments');
 
+		\dash\data::badge_text(T_('Back to tickets list'));
+		\dash\data::badge_link(\dash\url::this());
+
+
 		$parent = \dash\request::get('id');
 		$parent = \dash\coding::decode($parent);
 
