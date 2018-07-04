@@ -3,32 +3,15 @@
 
 
 {%block pageContent%}
+
   {{block('detailCards')}}
 
 {%if dataTable%}
- {%if dataFilter%}
 
-  {{block('htmlSearchBox')}}
-  {{block('htmlTable')}}
-  {{block('htmlFilter')}}
+{{block('htmlTable')}}
 
- {%else%}
-
-  {{block('htmlSearchBox')}}
-  {{block('htmlTable')}}
-
- {%endif%}
 {%else%}
- {%if dataFilter%}
-
-  {{block('htmlSearchBox')}}
-  {{block('htmlFilterNoResult')}}
-
- {%else%}
-
-  {{block('htmlStartAddNew')}}
-
- {%endif%}
+{{block('htmlStartAddNew')}}
 {%endif%}
 
 {%endblock%}
@@ -36,60 +19,20 @@
 
 
 
-{%block htmlSearchBox%}
-<div class="cbox fs12">
-  <form method="get" action='{{url.here}}' data-action autocomplete='off'>
-    <div class="input">
-      <input type="search" name="q" placeholder='{%trans "Search"%}' id="q" value="{{requestGET.q}}" autofocus  autocomplete='off'>
-      <button class="addon btn ">{%trans "Search"%}</button>
-    </div>
-  </form>
-</div>
-{%endblock%}
+
 
 
 {%block htmlTable%}
  <div class="cbox fs12">
-  <table class="tbl bordered1">
-    <thead class="primary">
-      <tr>
-        <th data-sort="{{sortLink.title.order}}"><a href='{{sortLink.title.link}}'>{%trans "Title"%}</a></th>
-        <th class="collapsing" data-sort="{{sortLink.reply.order}}"><a href='{{sortLink.reply.link}}'>{%trans "Multiclass"%}</a></th>
-        <th class="collapsing" data-sort="{{sortLink.date.order}}"><a href='{{sortLink.date.link}}'>{%trans "Maximum person"%}</a></th>
-        <th data-sort="{{sortLink.status.order}}"><a href='{{sortLink.status.link}}'>{%trans "Status"%}</a></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      {%for key, value in dataTable%}
-      <tr {%if value.status=='disable'%} class='negative'{%endif%}>
-        <td><a href="{{url.here}}/ticket/edit?id={{value.id}}">{{value.title}}</a></td>
-        <td class="txtC">{%if value.multiclass%}<a href="{{url.here}}/ticket?multiclass=yes"><i class="sf-check"></i></a>{%else%}<a href="{{url.here}}/ticket?multiclass=no"><i class="sf-times fc-mute"></i></a>{%endif%}</td>
-        <td class="txtC"><a href="{{url.here}}/ticket?maxperson={{value.maxperson}}">{{value.maxperson | number_format | fitNumber}}</a></td>
-        <td class="collapsing">{%set myStatus = value.status | capitalize %}<a href="{{url.here}}/ticket?status={{value.status}}">{%trans myStatus%}</a></td>
-      </tr>
-      {%endfor%}
-    </tbody>
-  </table>
-  {%include display.pagination%}
+  {%for key, value in dataTable%}
+  <div class="msg block">
+    <a href="{{url.this}}/ticket/show?id={{value.id}}">{%if value.title%}{{value.title}}{%else%}{{value.content | slice(0, 30)}}{%endif%}</a>
+    <div class="ltr">{{value.datecreated | tdate("Y-m-d H:i:s")}}</div>
+  </div>
+  {%endfor%}
  </div>
 {%endblock%}
 
-
-{%block htmlFilter%}
-<p class="f fs14 msg info2">
-  <span class="c">{{dataFilter | raw}}</span>
-  <a class="cauto" href="{{url.here}}/ticket">{%trans "Clear filters"%}</a>
-</p>
-{%endblock%}
-
-
-{%block htmlFilterNoResult%}
-<p class="f fs14 msg warn2">
-  <span class="c">{%trans "Result not found!"%} {%trans "Search with new keywords."%}</span>
-  <a class="cauto" href="{{url.here}}/ticket">{%trans "Clear filters"%}</a>
-</p>
-{%endblock%}
 
 
 {%block htmlStartAddNew%}
