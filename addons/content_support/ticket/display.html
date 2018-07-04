@@ -77,8 +77,10 @@
           <span class="mRa10 fs09">{{value.displayname}}</span>
         </td>
         <td>
-          <a class="txtB mRa5" href="{{url.this}}/show?id={{value.id}}">{{value.title}}</a>
-          <span>{{value.content | slice(0, 70)}}</span>
+          <a class="mRa5" href="{{url.this}}/show?id={{value.id}}">
+            <span class="txtB">{{value.title}}</span>
+            <span>{{value.content | slice(0, 70)}}</span>
+          </a>
         </td>
 
         <td class="collapsing txtC">{%if value.answertime%}<i class="sf-spin-alt fc-green"></i> {{value.answertime | fitNumber(false)}} {%trans "Minute"%}{%else%}<i class="sf-asterisk spiny fc-red"></i>{%endif%}</td>
