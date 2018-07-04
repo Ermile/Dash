@@ -26,7 +26,7 @@
  <div class="cbox fs12 pB5">
 {%for key, value in dataTable%}
   <a class="msg f align-center" href="{{url.here}}/ticket/show?id={{value.id}}">
-    <span class="cauto"><img src="{{value.avatar}}" class="avatar mRa10"></span>
+    <span class="cauto"><img src="{{value.avatar}}" class="avatar mRa10" src="{{value.displayname}}"></span>
     <span class="c2 s0 txtB pRa10">{{value.displayname}}</span>
     <span class="cauto s txtB pRa10">{{value.title}}</span>
     <span class="c s0">{{value.content | slice(0, 70)}}</span>
@@ -42,7 +42,7 @@
 
 
 {%block htmlStartAddNew%}
-<p class="fs14 msg success2 pTB20">{%trans "Hi!"%} <a href="{{url.here}}/ticket/add">{%trans "Try to start with add new ticket!"%}</a></p>
+<p class="fs14 msg success2 pTB20">{%trans "Hi!"%} <a href="{{url.here}}/ticket/add">{%trans "Open new ticket!"%}</a></p>
 {%endblock%}
 
 
