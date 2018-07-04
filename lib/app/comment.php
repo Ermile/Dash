@@ -116,6 +116,8 @@ class comment
 		if(!\dash\app::isset_request('post_id')) unset($args['post_id']);
 		if(!\dash\app::isset_request('meta'))   unset($args['meta']);
 		if(!\dash\app::isset_request('mobile')) unset($args['mobile']);
+		if(!\dash\app::isset_request('title')) unset($args['title']);
+		if(!\dash\app::isset_request('file')) unset($args['file']);
 
 		if(isset($args['status']) && $args['status'] === 'deleted')
 		{
@@ -218,7 +220,7 @@ class comment
 		}
 
 		$status = \dash\app::request('status');
-		if($status && !in_array($status, ['approved', 'unapproved', 'spam', 'deleted', 'awaiting']))
+		if($status && !in_array($status, ['approved','awaiting','unapproved','spam','deleted','filter','close', 'answered']))
 		{
 			\dash\notif::error(T_("Invalid status"), 'status');
 			return false;
@@ -252,6 +254,16 @@ class comment
 			$post_id = null;
 		}
 
+		$title = \dash\app::request('title');
+		if($title && mb_strlen($title) > 400)
+		{
+			\dash\notif::error(T_("Title is out of range!"));
+			return false;
+		}
+
+		$file = \dash\app::request('file');
+
+
 		$args            = [];
 		$args['status']  = $status ? $status : 'awaiting';
 		$args['author']  = $author;
@@ -260,6 +272,8 @@ class comment
 		$args['post_id'] = $post_id;
 		$args['meta']    = $meta;
 		$args['mobile']  = $mobile;
+		$args['title']   = $title;
+		$args['file']    = $file;
 
 		return $args;
 	}
