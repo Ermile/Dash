@@ -3,9 +3,10 @@
 
 {%block pageContent%}
 
-<form method="post">
+<form method="post" enctype="multipart/form-data">
 	<div class="cbox">
 		{{block("iDesc")}}
+		{{block('iFile')}}
 		<button class="btn primary block mT20">{%trans "Send"%}</button>
 	</div>
 </form>
@@ -16,7 +17,7 @@
 <div class="msg block">
 	<div class="avatar"><img src="{{value.avatar}}"></div>
 	<p>{{value.content}}</p>
-	<br>
+	{%if value.file %}<img src="{{value.file}}">{%endif%}
 	<div class="ltr">{{value.datecreated|tdate("Y/m/d H:i:s")}}</div>
 </div>
 {%endfor%}
@@ -25,6 +26,14 @@
 
 {%endblock%}
 
+
+
+{%block iFile%}
+<div class="input preview">
+ <input type="file" accept="image/gif, image/jpeg, image/png" name="file" id="file1" data-preview data-max="500">
+ <label for="file1" title="Simple Title"></label>
+</div>
+{%endblock%}
 
 
 

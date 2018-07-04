@@ -3,18 +3,26 @@
 
 {%block pageContent%}
 
-<form method="post">
+<form method="post" enctype="multipart/form-data">
 	<div class="cbox">
-{{block("iTitle")}}
-{{block("iDesc")}}
-<button class="btn primary block mT20">{%trans "Send"%}</button>
-
+		{{block("iTitle")}}
+		{{block("iDesc")}}
+		{{block("iFile")}}
+		<button class="btn primary block mT20">{%trans "Send"%}</button>
 	</div>
 </form>
 
 
 {%endblock%}
 
+
+
+{%block iFile%}
+<div class="input preview">
+ <input type="file" accept="image/gif, image/jpeg, image/png" name="file" id="file1" data-preview data-max="500">
+ <label for="file1" title="Simple Title"></label>
+</div>
+{%endblock%}
 
 
 
