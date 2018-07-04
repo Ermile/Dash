@@ -4,33 +4,42 @@
 
 {%block sidenav%}
 
-<li><a href="{{url.base}}/a"><i class='sf-gauge'></i> <span>{% trans "Dashboard" %}</span></a></li>
-<li><a href="{{url.here}}/ticket/add"><i class="sf-plus"></i>{%trans "New Ticket"%}</a></li>
+<li><a href="{{url.base}}/a"><i class='sf-gauge'></i> <span>{% trans "Dashboard" %} {{site.title}}</span></a></li>
+<li><a href="{{url.here}}"><i class='sf-life-ring'></i> <span>{% trans "Support Panel" %}</span></a></li>
 
 <li>
-  <a href="{{url.here}}/ticket"><i class="sf-life-ring"></i>{%trans "Tickets"%}</a>
+  <a href="{{url.here}}/ticket"><i class="sf-question-circle"></i>{%trans "Tickets"%}</a>
   <ul>
-    <li>
-      <a href="{{url.here}}/ticket"><span class="floatRa mRa10 fc-mute badge dark">{{35 | fitNumber}}</span>{%trans "Unanswered"%}</a>
-      <a href="{{url.here}}/ticket"><span class="floatRa mRa10 fc-mute badge dark">{{7 | fitNumber}}</span>{%trans "Mine"%}</a>
-      <a href="{{url.here}}/ticket"><span class="floatRa mRa10 fc-mute badge dark">{{72 | fitNumber}}</span>{%trans "All"%}</a>
-      <a href="{{url.here}}/ticket"><span class="floatRa mRa10 fc-mute badge dark">{{3 | fitNumber}}</span>{%trans "Draft"%}</a>
-      <hr>
-
-      <a href="{{url.here}}/ticket"><span class="floatRa mRa10 fc-mute sf-archive"></span>{%trans "Archived"%}</a>
-      <a href="{{url.here}}/ticket"><span class="floatRa mRa10 fc-mute sf-bug"></span>{%trans "Spam"%}</a>
-      <a href="{{url.here}}/ticket"><span class="floatRa mRa10 fc-mute sf-trash"></span>{%trans "Trash"%}</a>
-      <hr>
-
-      <a href="{{url.here}}/ticket"><span class="floatRa mRa10 fc-mute sf-hashtag"></span>{%trans "Billing"%}</a>
-      <a href="{{url.here}}/ticket"><span class="floatRa mRa10 fc-mute sf-hashtag"></span>{%trans "Bug"%}</a>
-      <a href="{{url.here}}/ticket"><span class="floatRa mRa10 fc-mute sf-hashtag"></span>{%trans "Feature"%}</a>
-      <a href="{{url.here}}/ticket"><span class="floatRa mRa10 fc-mute sf-hashtag"></span>{%trans "Jobs"%}</a>
-
-    </li>
+    <li><a href="{{url.here}}/ticket/add"><i class="floatRa mRa10 fc-mute sf-plus"></i>{%trans "New Ticket"%}</a></li>
   </ul>
 </li>
 
+
+{%if 1%}
+<hr>
+<li>
+  <ul>
+    <li><a href="{{url.here}}/ticket"><span class="floatRa mRa10 fc-mute badge dark">{{35 | fitNumber}}</span>{%trans "Unanswered"%}</a></li>
+    <li><a href="{{url.here}}/ticket"><span class="floatRa mRa10 fc-mute badge dark">{{7 | fitNumber}}</span>{%trans "Mine"%}</a></li>
+    <li><a href="{{url.here}}/ticket"><span class="floatRa mRa10 fc-mute badge dark">{{72 | fitNumber}}</span>{%trans "All"%}</a></li>
+    <li>
+    <li><a href="{{url.here}}/ticket?status=close"><span class="floatRa mRa10 fc-mute sf-archive"></span>{%trans "Archived"%}</a></li>
+    <li><a href="{{url.here}}/ticket?status=spam"><span class="floatRa mRa10 fc-mute sf-bug"></span>{%trans "Spam"%}</a></li>
+    <li><a href="{{url.here}}/ticket?status=deleted"><span class="floatRa mRa10 fc-mute sf-trash"></span>{%trans "Trash"%}</a></li>
+  </ul>
+</li>
+
+
+<hr>
+<li>
+  <ul>
+    <li class="title">{%trans "Labels"%}</li>
+    <li><a href="{{url.here}}/ticket?label=billing"><span class="floatRa mRa10 fc-mute sf-tag"></span>{%trans "Billing"%}</a></li>
+    <li><a href="{{url.here}}/ticket?label=bug"><span class="floatRa mRa10 fc-mute sf-tag"></span>{%trans "Bug"%}</a></li>
+    <li><a href="{{url.here}}/ticket?label=feature"><span class="floatRa mRa10 fc-mute sf-tag"></span>{%trans "Feature"%}</a></li>
+  </ul>
+</li>
+{%endif%}
 
 
 {%endblock%}
