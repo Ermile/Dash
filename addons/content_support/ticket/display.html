@@ -51,8 +51,13 @@
   <table class="tbl bordered1">
     <thead>
       <tr class="primary">
-
+        <th>{%trans "Name"%}</th>
         <th data-sort="{{sortLink.title.order}}"><a href="{{sortLink.title.link}}">{%trans "Title"%}</a></th>
+
+        <th>{%trans "First response"%}</th>
+        <th>{%trans "Replies"%}</th>
+
+
         <th class="s0" data-sort="{{sortLink.status.order}}"><a href="{{sortLink.status.link}}">{%trans "Status"%}</a></th>
         <th class="m0 s0" data-sort="{{sortLink.datecreated.order}}"><a href="{{sortLink.datecreated.link}}">{%trans "Date"%}</a></th>
       </tr>
@@ -63,14 +68,24 @@
 		{%set statusClass%}
 			{%if value.status == 'spam'%}negative
 			{%elseif value.status == 'deleted'%}negative
-			{%elseif value.status == 'awaiting'%}active
 			{%elseif value.status == 'unapproved'%}warning
 			{%endif%}
 		{%endset%}
       <tr class="{{statusClass}} {{value.status}}">
-        <td><a href="{{url.this}}/show?id={{value.id}}">{%if value.title%}{{value.title}}{%else%}{{value.content | slice(0, 70)}}... {%endif%}</a></td>
-        <td class="collapsing s0" title='{{value.datemodified}}'>{%set myStatus = value.status | capitalize%}{%trans myStatus%}</td>
-        <td class="collapsing s0 m0" title='{%trans "Created on"%} {{value.datecreated}}'>{{value.datecreated | sdate('year')}}</td>
+        <td class="collapsing2">
+          <img src="{{value.avatar}}" class="avatar mRa5" src="{{value.displayname}}">
+          <span class="mRa10 fs09">{{value.displayname}}</span>
+        </td>
+        <td>
+          <a class="txtB mRa5" href="{{url.this}}/show?id={{value.id}}">{{value.title}}</a>
+          <span>{{value.content | slice(0, 70)}}</span>
+        </td>
+
+        <td class="collapsing txtC">{%if value.answertime%}<i class="sf-spin-alt fc-green"></i> {{value.answertime | fitNumber(false)}} {%trans "Minute"%}{%else%}<i class="sf-asterisk spiny fc-red"></i>{%endif%}</td>
+        <td class="collapsing txtC">{{ 6 | fitNumber}} <i class="sf-chat-alt-fill"></i></td>
+
+        <td class="collapsing txtC fs08 s0" title='{{value.datemodified}}'>{%set myStatus = value.status | capitalize%}{%trans myStatus%}</td>
+        <td class="collapsing fs09 s0 m0" title='{%trans "Created on"%} {{value.datecreated}}'>{{value.datecreated | sdate('year')}}</td>
       </tr>
       {%endfor%}
     </tbody>
