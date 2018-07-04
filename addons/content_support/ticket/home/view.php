@@ -11,6 +11,12 @@ class view
 
 		\dash\data::page_pictogram('question-circle');
 
+		\dash\data::badge_text(T_('New ticket'));
+		\dash\data::badge_link(\dash\url::this(). '/add');
+
+		\dash\data::badge2_text(T_('Back to support panel'));
+		\dash\data::badge2_link(\dash\url::here());
+
 		$search_string            = \dash\request::get('q');
 		if($search_string)
 		{
