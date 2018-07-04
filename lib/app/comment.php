@@ -144,8 +144,9 @@ class comment
 
 		$default_meta =
 		[
-			'sort'  => null,
-			'order' => null,
+			'pagenation' => true,
+			'sort'       => null,
+			'order'      => null,
 		];
 
 		if(!is_array($_args))
