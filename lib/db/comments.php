@@ -49,8 +49,18 @@ class comments
 
 		if(isset($_options['join_user']) && $_options['join_user'])
 		{
+			if(isset($_options['get_tag']) && $_options['get_tag'])
+			{
+				$_options['public_show_field'] = " comments.*, users.avatar, users.firstname, users.displayname,
+				(SELECT GROUP_CONCAT(terms.title) FROM terms INNER JOIN termusages ON termusages.term_id = terms.id WHERE termusages.related = 'comments' AND termusages.related_id = comments.id) AS `tag`
+				 ";
+			}
+			else
+			{
+				$_options['public_show_field'] = " comments.*, users.avatar, users.firstname, users.displayname ";
+			}
+
 			$_options['master_join'] = "INNER JOIN users ON users.id = comments.user_id ";
-			$_options['public_show_field'] = " comments.*, users.avatar, users.firstname, users.displayname ";
 		}
 
 		return \dash\db\config::public_search('comments', $_string, $_options);

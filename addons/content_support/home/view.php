@@ -26,14 +26,26 @@ class view
 		$args['comments.parent'] = null;
 		$args['pagenation']      = false;
 		$args['join_user']       = true;
+		$args['get_tag']         = true;
 		$args['comments.status']       = ["NOT IN", "('close')"];
 
 		$dataTable = \dash\app\comment::list(null, $args);
-
+		$dataTable = array_map(['self', 'tagDetect'], $dataTable);
 		\dash\data::dataTable($dataTable);
 
-
 		\dash\data::dashboardDetail(self::dashboardDetail());
+	}
+
+	public static function tagDetect($_data)
+	{
+		if(isset($_data['tag']))
+		{
+			$tag = $_data['tag'];
+			$tag = explode(',', $tag);
+			$_data['tag'] = $tag;
+		}
+		return $_data;
+
 	}
 
 	private static function dashboardDetail()
