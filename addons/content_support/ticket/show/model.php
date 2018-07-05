@@ -66,14 +66,22 @@ class model
 			\dash\header::status(403, T_("Ticket not found"));
 		}
 
+		$update_main = [];
+
+		$plus = \dash\db\comments::get_count(['type' => 'ticket', 'parent' => \dash\coding::decode(\dash\request::get('id'))]);
+
+		$update_main['plus'] = intval($plus) + 1 + 1 ; // master ticket + this tichet
+
 		if(intval($ticket_user_id) === intval(\dash\user::id()))
 		{
-			\dash\db\comments::update(['status' => 'awaiting'], \dash\coding::decode(\dash\request::get('id')));
+			$update_main['status'] = 'awaiting';
 		}
 		else
 		{
 			\dash\permission::access('supportTicketView');
-			$update_main = ['status' => 'answered'];
+
+			$update_main['status'] = 'answered';
+
 			if(isset($main['answertime']) && $main['answertime'])
 			{
 				// no change
@@ -86,15 +94,17 @@ class model
 					$update_main['answertime'] = $diff;
 				}
 			}
-
-			\dash\db\comments::update($update_main, \dash\coding::decode(\dash\request::get('id')));
 		}
 
-		// insert comments
 		$result = \dash\app\comment::add($args);
 
 		if($result)
 		{
+			if(!empty($update_main))
+			{
+				\dash\db\comments::update($update_main, \dash\coding::decode(\dash\request::get('id')));
+			}
+
 			\dash\notif::ok(T_("Your ticket was sended"));
 			\dash\redirect::pwd();
 		}
