@@ -5,7 +5,7 @@ namespace dash\app\posts;
 trait get
 {
 
-	public static function get_category_tag($_post_id, $_type)
+	public static function get_category_tag($_post_id, $_type, $_related = 'posts')
 	{
 		$post_id = \dash\coding::decode($_post_id);
 		if(!$post_id)
@@ -13,7 +13,7 @@ trait get
 			return false;
 		}
 
-		$result = \dash\db\termusages::usage($post_id, $_type);
+		$result = \dash\db\termusages::usage($post_id, $_type, $_related);
 
 		$temp = [];
 		if(is_array($result))

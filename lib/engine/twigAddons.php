@@ -519,6 +519,14 @@ class twigAddons
 					$args['post_id'] = \dash\data::datarow_id();
 				}
 			}
+
+			// get related
+			$related = 'posts';
+			if(isset($args['related']) && is_string($args['related']) && $args['related'])
+			{
+				$related = $args['related'];
+			}
+
 			// get tags
 			if(isset($args['post_id']))
 			{
@@ -530,7 +538,7 @@ class twigAddons
 				}
 				else
 				{
-					$tags = \dash\app\posts::get_category_tag($args['post_id'], 'tag');
+					$tags = \dash\app\posts::get_category_tag($args['post_id'], 'tag', $related);
 					\dash\temp::set($cache_key, $tags);
 				}
 			}

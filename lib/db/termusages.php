@@ -21,7 +21,7 @@ class termusages
 	}
 
 
-	public static function usage($_related_id, $_type)
+	public static function usage($_related_id, $_type, $_related = 'posts')
 	{
 		if(!$_related_id || !$_type)
 		{
@@ -39,8 +39,9 @@ class termusages
 				termusages
 			INNER JOIN terms ON terms.id = termusages.term_id
 			WHERE
-			termusages.related_id = $_related_id AND
-			terms.type            = '$_type'
+				termusages.related_id = $_related_id AND
+				termusages.related    = '$_related' AND
+				terms.type            = '$_type'
 		";
 		$result = \dash\db::get($query);
 		return $result;

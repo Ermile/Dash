@@ -6,6 +6,7 @@
 <form method="post" enctype="multipart/form-data">
 	<div class="cbox">
 		{{block("iDesc")}}
+		{{block("iTag")}}
 		{{block('iFile')}}
 		<button class="btn primary block mT20">{%trans "Send"%}</button>
 	</div>
@@ -41,4 +42,31 @@
 {%block iDesc%}
 <label for="desc">{%trans "Description"%}</label>
 <textarea class="txt mB10" id='desc' name="desc" placeholder='' maxlength='500' rows="5">{{dataRow.desc}}</textarea>
+{%endblock%}
+
+
+
+{%block iTag%}
+<div class="tagDetector">
+{%set postTag = tags({"post_id" : requestGET.id , "title" : true, "format" : 'csv', "related" : "comments"}) %}
+{%if not requestGET.type or requestGET.type == 'post' %}
+{%if options.tagSpecial%}
+  <div class="specialTags mB5" title='{%trans "Click on special tags to use this depending on your website design"%}'>
+    {%for key, value in options.tagSpecial%}
+      <span class="badge {%if key in postTag%} success{%endif%}" href="#" title="{%trans value%}" data-val='{{key}}'>{%if key in postTag%}<i class="sf-check compact"></i> {%endif%}{{key}}</span>
+    {%endfor%}
+  </div>
+{%endif%}
+{%endif%}
+
+  <div class="input mB10 hide">
+    <input type="text" class="input tagVals" name="tag" value="{{postTag}}" id="tagValues" placeholder='{%trans "Tag"%}'>
+  </div>
+
+  <div class="input" title='{%trans "Add tag manually to link articles togethers"%}'>
+    <input type="text" class="tagInput" placeholder='{%trans "Tag keywords..."%}'>
+    <button class="addon tagAdd">{%trans "Add tag"%}</button>
+  </div>
+  <div class="tagBox"></div>
+</div>
 {%endblock%}

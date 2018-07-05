@@ -431,7 +431,7 @@ class posts
 	}
 
 
-	public static function set_post_term($_post_id, $_type)
+	public static function set_post_term($_post_id, $_type, $_related = 'posts')
 	{
 		$category = \dash\app::request($_type);
 
@@ -517,7 +517,7 @@ class posts
 			}
 		}
 
-		$get_old_post_cat = \dash\db\termusages::usage($_post_id, $_type);
+		$get_old_post_cat = \dash\db\termusages::usage($_post_id, $_type, $_related);
 
 		$must_insert = [];
 		$must_remove = [];
@@ -543,7 +543,7 @@ class posts
 				[
 					'term_id'    => $value,
 					'related_id' => $_post_id,
-					'related'    => 'posts',
+					'related'    => $_related,
 					'type'       => $_type,
 				];
 			}
@@ -559,7 +559,7 @@ class posts
 			$must_remove = array_unique($must_remove);
 
 			$must_remove = implode(',', $must_remove);
-			\dash\db\termusages::hard_delete(['related_id' => $_post_id, 'related' => 'posts', 'term_id' => ["IN", "($must_remove)"]]);
+			\dash\db\termusages::hard_delete(['related_id' => $_post_id, 'related' => $_related, 'term_id' => ["IN", "($must_remove)"]]);
 		}
 
 

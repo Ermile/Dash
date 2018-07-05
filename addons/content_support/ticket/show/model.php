@@ -39,6 +39,17 @@ class model
 			return false;
 		}
 
+		if(\dash\request::post('tag'))
+		{
+			\dash\app::variable(['tag' => \dash\request::post('tag')]);
+			\dash\app\posts::set_post_term(\dash\coding::decode(\dash\request::get('id')), 'tag', 'comments');
+			if(!\dash\request::post('desc'))
+			{
+				\dash\notif::ok(T_("Tag was saved"));
+				return true;
+			}
+		}
+
 		// ready to insert comments
 		$args =
 		[
