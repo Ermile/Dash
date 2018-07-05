@@ -81,6 +81,18 @@ class comments
 		return 10;
 	}
 
+	public static function ticket_mine($_user_id)
+	{
+		if(!$_user_id || !is_numeric($_user_id))
+		{
+			return false;
+		}
+
+		$query = " SELECT COUNT(DISTINCT comments.parent) AS `count` FROM comments WHERE comments.type = 'ticket' AND comments.user_id = $_user_id ";
+		$result = \dash\db::get($query, 'count', true);
+		return intval($result);
+	}
+
 
 	/**
 	 * get the comment

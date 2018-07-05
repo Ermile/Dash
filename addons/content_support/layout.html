@@ -15,13 +15,13 @@
 </li>
 
 
-{%if 1%}
+{%if perm('supportTicketView') %}
 <hr>
 <li>
   <ul>
-    <li><a href="{{url.here}}/ticket"><span class="floatRa mRa10 fc-mute badge dark">{{35 | fitNumber}}</span>{%trans "Unanswered"%}</a></li>
-    <li><a href="{{url.here}}/ticket"><span class="floatRa mRa10 fc-mute badge dark">{{7 | fitNumber}}</span>{%trans "Mine"%}</a></li>
-    <li><a href="{{url.here}}/ticket"><span class="floatRa mRa10 fc-mute badge dark">{{72 | fitNumber}}</span>{%trans "All"%}</a></li>
+    <li><a href="{{url.here}}/ticket"><span class="floatRa mRa10 fc-mute badge dark">{{sidebarDetail.unanswered | fitNumber}}</span>{%trans "Unanswered"%}</a></li>
+    <li><a href="{{url.here}}/ticket"><span class="floatRa mRa10 fc-mute badge dark">{{sidebarDetail.mine | fitNumber}}</span>{%trans "Mine"%}</a></li>
+    <li><a href="{{url.here}}/ticket"><span class="floatRa mRa10 fc-mute badge dark">{{sidebarDetail.all | fitNumber}}</span>{%trans "All"%}</a></li>
     <li>
     <li><a href="{{url.here}}/ticket?status=close"><span class="floatRa mRa10 fc-mute sf-archive"></span>{%trans "Archived"%}</a></li>
     <li><a href="{{url.here}}/ticket?status=spam"><span class="floatRa mRa10 fc-mute sf-bug"></span>{%trans "Spam"%}</a></li>

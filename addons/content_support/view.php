@@ -14,6 +14,23 @@ class view
 
 		\dash\data::include_chart(true);
 		\dash\data::display_admin('content_support/layout.html');
+
+		if(\dash\permission::check('supportTicketView'))
+		{
+			\dash\data::sidebarDetail(self::sidebarDetail());
+		}
+	}
+
+
+	private static function sidebarDetail()
+	{
+		$result               = [];
+		$result['unanswered'] = \dash\db\comments::get_count(['type' => 'ticket', 'answertime' => null]);
+		$result['all']        = \dash\db\comments::get_count(['type' => 'ticket']);
+		$result['mine']       = \dash\db\comments::ticket_mine(\dash\user::id());
+
+		return $result;
+
 	}
 }
 ?>
