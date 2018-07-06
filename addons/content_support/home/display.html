@@ -28,18 +28,17 @@
   <a class="msg f align-center" href="{{url.here}}/ticket/show?id={{value.id}}">
     <span class="cauto"><img src="{{value.avatar}}" class="avatar mRa10" src="{{value.displayname}}"></span>
     <span class="c2 s0 txtB pRa10">{{value.displayname}}</span>
+
+{%if value.tag%}
+    <span class="cauto s0 pRa10">
+{%for Tkey, Tvalue in value.tag%}
+    <span data-val="{{Tvalue}}" class="badge">{{Tvalue}}</span>
+{%endfor%}
+    </span>
+{%endif%}
+
     <span class="cauto s txtB pRa10">{{value.title}}</span>
     <span class="c s0">{{value.content | slice(0, 70)}}</span>
-    <span class="c s0">
-    {%if value.tag%}
-        <div class="tagBox">
-          {%for Tkey, Tvalue in value.tag%}
-              <span data-val="{{Tvalue}}">{{Tvalue}}</span>
-          {%endfor%}
-        </div>
-    {%endif%}
-    </span>
-
     <span class="cauto pRa10">{%if value.answertime%}<i class="sf-spin-alt fc-green"></i>{%else%}<i class="sf-asterisk spiny fc-red"></i>{%endif%}</span>
     <span class="cauto pRa10">{{value.plus | fitNumber}} <i class="sf-chat-alt-fill"></i></span>
     <span class="cauto we80 s0 txtRa os" title='{{value.datecreated | tdate("Y-m-d H:i:s")}}'>{{value.datecreated | sdate("year")}}</span>
