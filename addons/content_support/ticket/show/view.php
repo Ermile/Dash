@@ -6,10 +6,10 @@ class view
 
 	public static function config()
 	{
-		\dash\data::page_title(T_("Add new ticket"));
-		\dash\data::page_desc(T_("Dot worry!"). ' '. T_("Ask your question."). ' '. T_("We are here to answer your questions."));
+		\dash\data::page_title(T_("View ticket"));
+		\dash\data::page_desc(T_("Check detail of your ticket."). ' '. T_("We try to answer to you as soon as posibble."));
 
-		\dash\data::page_pictogram('comments');
+		\dash\data::page_pictogram('comments-o');
 
 		\dash\data::badge_text(T_('Back to tickets list'));
 		\dash\data::badge_link(\dash\url::this());
