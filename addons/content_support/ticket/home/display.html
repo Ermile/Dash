@@ -81,6 +81,14 @@
             <span class="txtB">{{value.title}}</span>
             <span>{{value.content | slice(0, 70)}}</span>
           </a>
+
+{%if value.tag%}
+    <div class="cauto s0 pRa10">
+{%for Tkey, Tvalue in value.tag%}
+      <span class="badge">{{Tvalue}}</span>
+{%endfor%}
+    </div>
+{%endif%}
         </td>
 
         <td class="collapsing txtC">{%if value.answertime%}<i class="sf-spin-alt fc-green"></i> {{(value.answertime) / 60 | fitNumber(false)}} {%trans "Minute"%}{%else%}<i class="sf-asterisk spiny fc-red"></i>{%endif%}</td>
