@@ -39,7 +39,7 @@ class model
 			'author'  => \dash\user::detail('displayname'),
 			'email'   => \dash\user::detail('email'),
 			'type'    => 'ticket',
-			'content' => \dash\request::post('desc'),
+			'content' => \dash\request::post('content'),
 			'title'   => \dash\request::post('title'),
 			'mobile'  => \dash\user::detail("mobile"),
 			'file'    => $file,

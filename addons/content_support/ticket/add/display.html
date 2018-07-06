@@ -18,8 +18,8 @@
 
 
 {%block iFile%}
-<div class="input preview">
- <input type="file" accept="image/gif, image/jpeg, image/png" name="file" id="file1" data-preview data-max="500">
+<div class="input">
+ <input type="file" accept="image/gif, image/jpeg, image/png" name="file" id="file1" data-max="5000">
  <label for="file1" title="Simple Title"></label>
 </div>
 {%endblock%}
@@ -35,6 +35,6 @@
 
 
 {%block iDesc%}
-<label for="desc">{%trans "Description"%}</label>
-<textarea class="txt mB10" id='desc' name="desc" placeholder='' maxlength='500' rows="5">{{dataRow.desc}}</textarea>
+<label for="content">{%trans "Description"%}</label>
+<textarea class="txt mB10" id='content' name="content" placeholder='' maxlength='500' rows="5">{{dataRow.desc}}</textarea>
 {%endblock%}
