@@ -3,46 +3,52 @@
 
 {%block pageContent%}
 
-<form method="post" enctype="multipart/form-data">
-	<div class="cbox">
-		{{block("iDesc")}}
-		{{block("iTag")}}
-		{{block('iFile')}}
-		<button class="btn primary block mT20">{%trans "Send"%}</button>
-	</div>
-</form>
 
+<div class="f">
+  <div class="c9 s12 pRa10">
+    {%include 'content_support/ticket/addForm.html'%}
+		{{block("iChatList")}}
+
+  </div>
+  <div class="c3 s12">
+    <div class="cbox">
+      {{block("iTag")}}
+    </div>
+
+  </div>
+</div>
+{%endblock%}
+
+
+
+
+{%block iChatList%}
 <div class="cbox">
 
 {%for key, value in dataTable%}
-<div class="msg {%if value.user_id == masterTicketUser %}{%else%}info{%endif%} block">
-	<div class="avatar"><img src="{{value.avatar}}"></div>
-	<p>{{value.content}}</p>
-	{%if value.file %}<img src="{{value.file}}">{%endif%}
-	<div class="ltr">{{value.datecreated|tdate("Y/m/d H:i:s")}}</div>
-</div>
+  <div class="msg f align-center {%if value.user_id == masterTicketUser %}{%else%}info{%endif%}">
+    <span class="cauto"><img src="{{value.avatar}}" class="avatar mRa10" src="{{value.displayname}}"></span>
+    <span class="c2 s0 txtB pRa10">{{value.displayname}}</span>
+    <span class="c s0">{{value.content | raw}}
+      {%if value.file %}<hr><a target="_blank" href="{{value.file}}">{%trans "Attachment"%}</a>{%endif%}
+    </span>
+
+    <span class="c s0">
+    {%if value.tag%}
+        <div class="tagBox">
+          {%for Tkey, Tvalue in value.tag%}
+              <span data-val="{{Tvalue}}">{{Tvalue}}</span>
+          {%endfor%}
+        </div>
+    {%endif%}
+    </span>
+
+    <span class="cauto we80 s0 txtRa os" title='{{value.datecreated | tdate("Y-m-d H:i:s")}}'>{{value.datecreated | sdate("year")}}</span>
+  </div>
 {%endfor%}
-
-</div>
-
-{%endblock%}
-
-
-
-{%block iFile%}
-<div class="input preview">
- <input type="file" accept="image/gif, image/jpeg, image/png" name="file" id="file1" data-preview data-max="500">
- <label for="file1" title="Simple Title"></label>
 </div>
 {%endblock%}
 
-
-
-
-{%block iDesc%}
-<label for="desc">{%trans "Description"%}</label>
-<textarea class="txt mB10" id='desc' name="desc" placeholder='' maxlength='500' rows="5">{{dataRow.desc}}</textarea>
-{%endblock%}
 
 
 
@@ -65,7 +71,7 @@
 
   <div class="input" title='{%trans "Add tag manually to link articles togethers"%}'>
     <input type="text" class="tagInput" placeholder='{%trans "Tag keywords..."%}'>
-    <button class="addon tagAdd">{%trans "Add tag"%}</button>
+    <button class="addon tagAdd">+</button>
   </div>
   <div class="tagBox"></div>
 </div>
