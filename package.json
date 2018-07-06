@@ -12,6 +12,6 @@
   },
   "homepage": "https://siftal.ir",
   "dependencies": {
-    "siftal": "^4.0.0",
+    "siftal": ">=4.0.0",
   }
 }
