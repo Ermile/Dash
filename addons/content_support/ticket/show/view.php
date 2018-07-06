@@ -62,6 +62,13 @@ class view
 		array_push($dataTable, $main);
 
 		\dash\data::dataTable($dataTable);
+
+		if(isset($dataTable[0]['id']))
+		{
+		\dash\data::page_title(\dash\data::page_title() . ' '. $dataTable[0]['id'] );
+
+		}
+
 	}
 }
 ?>
