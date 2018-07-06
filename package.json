@@ -1,0 +1,17 @@
+{
+  "name": "Dash",
+  "version": "14.7.5",
+  "description": "The simple framework for php programmers ;)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ermile/dash.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Ermile/dash/issues"
+  },
+  "homepage": "https://siftal.ir",
+  "dependencies": {
+    "siftal": "^4.0.0",
+  }
+}
