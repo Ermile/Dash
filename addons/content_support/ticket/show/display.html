@@ -12,8 +12,39 @@
   </div>
   <div class="c3 s12">
     <div class="cbox">
+      <div class="msg txtC">{%trans "Ticket No"%} <b>{{dataTable.0.id}}</b></div>
+      <div class="msg txtC" title='{{dataTable.0.datecreated | tdate("Y-m-d H:i:s")}}'>{%trans "Create date"%} <b>{{dataTable.0.datecreated | sdate("year")}}</b></div>
+      <div class="msg txtC" title='{{dataTable.0.datecreated | tdate("Y-m-d H:i:s")}}'>{%trans "Last activity"%} <b>{{dataTable.0.datecreated | sdate("year")}}</b></div>
+      <div class="msg txtC info2">{%trans "Status"%} <b>{{dataTable.0.status}}</b></div>
+
+      <button class="btn block mTB10 success">{%trans "Submit as Solved"%}</button>
+{%if 1%}
+      <button class="btn block mTB10 secondary">{%trans "Close ticket"%}</button>
+{%endif%}
+
+    </div>
+{%if user.id == 1%}
+    <div class="cbox">
+<!-- do some admin actions -->
+
+      <label for="creator">{%trans "Creator"%}</label>
+      <div class="input">
+        <input type="text" id="creator" disabled value="{{dataTable.0.author}}">
+      </div>
+
+      <label for="email">{%trans "Email"%}</label>
+      <div class="input">
+        <input type="text" id="email" disabled value="{{dataTable.0.email}}">
+      </div>
+
+      <label for="mobile">{%trans "Mmail"%}</label>
+      <div class="input">
+        <input type="text" id="mobile" disabled value="{{dataTable.0.mobile}}">
+      </div>
+
       {{block("iTag")}}
     </div>
+{%endif%}
 
   </div>
 </div>
@@ -32,17 +63,6 @@
     <span class="c s0">{{value.content | raw}}
       {%if value.file %}<hr><a target="_blank" href="{{value.file}}">{%trans "Attachment"%}</a>{%endif%}
     </span>
-
-    <span class="c s0">
-    {%if value.tag%}
-        <div class="tagBox">
-          {%for Tkey, Tvalue in value.tag%}
-              <span data-val="{{Tvalue}}">{{Tvalue}}</span>
-          {%endfor%}
-        </div>
-    {%endif%}
-    </span>
-
     <span class="cauto we80 s0 txtRa os" title='{{value.datecreated | tdate("Y-m-d H:i:s")}}'>{{value.datecreated | sdate("year")}}</span>
   </div>
 {%endfor%}
@@ -69,7 +89,7 @@
     <input type="text" class="input tagVals" name="tag" value="{{postTag}}" id="tagValues" placeholder='{%trans "Tag"%}'>
   </div>
 
-  <div class="input" title='{%trans "Add tag manually to link articles togethers"%}'>
+  <div class="input" title='{%trans "Add tag manually to link tickets togethers"%}'>
     <input type="text" class="tagInput" placeholder='{%trans "Tag keywords..."%}'>
     <button class="addon tagAdd">+</button>
   </div>
