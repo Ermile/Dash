@@ -92,7 +92,8 @@
         </td>
 
         <td class="collapsing txtC">{%if value.answertime%}<i class="sf-spin-alt fc-green"></i> {{(value.answertime) / 60 | fitNumber(false)}} {%trans "Minute"%}{%else%}<i class="sf-asterisk spiny fc-red"></i>{%endif%}</td>
-        <td class="collapsing txtC">{{ value.plus | fitNumber}} <i class="sf-chat-alt-fill"></i></td>
+
+        <td class="collapsing txtC">{%if value.plus%}{{value.plus | fitNumber}} <i class="sf-chat-alt-fill"></i>{%else%}-{%endif%}</td>
 
         <td class="collapsing txtC fs08 s0" title='{{value.datemodified}}'>{%set myStatus = value.status | capitalize%}{%trans myStatus%}</td>
         <td class="collapsing fs09 s0 m0" title='{%trans "Created on"%} {{value.datecreated}}'>{{value.datecreated | sdate('year')}}</td>
