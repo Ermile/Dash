@@ -1,0 +1,21 @@
+
+<div class="cbox">
+  <form method="post" enctype="multipart/form-data" autocomplete="off">
+
+    <label for="title">{%trans "Subject"%}</label>
+    <div class="input">
+      <input type="text" name="title" id="title" placeholder='{%trans "Subject of your ticket"%}' value="{{dataRow.title}}" autofocus maxlength='150' minlength="1" title='{%trans "Set title will help us answer quickly"%}'>
+    </div>
+
+    <label for="content">{%trans "Description"%} <small class="fc-red">{%trans "Require"%} *</small></label>
+    <textarea class="txt mB10" id='content' name="content" placeholder='' maxlength='1000' rows="5">{{dataRow.desc}}</textarea>
+
+
+    <label for="file1">{%trans "Attachment"%}</label>
+    <div class="input">
+     <input type="file" accept="image/gif, image/jpeg, image/png" name="file" id="file1" data-max="5000">
+    </div>
+
+    <button class="btn primary block mT20">{%trans "Send"%}</button>
+  </form>
+</div>
