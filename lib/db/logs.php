@@ -127,19 +127,17 @@ class logs
 	 */
 	public static function set($_caller, $_user_id = null, $_options = [])
 	{
-		$log_item_id = \dash\db\logitems::caller($_caller);
-
-		if(!$log_item_id)
-		{
-			return false;
-		}
 
 		$default_options =
 		[
-			'data'   => null,
-			'meta'   => null,
-			'time'   => date("Y-m-d H:i:s"),
-			'status' => 'enable',
+			'before'     => null,
+			'after'      => null,
+			'visitor_id' => \dash\utility\visitor::id(),
+			'vars'       => null,
+			'data'       => null,
+			'meta'       => null,
+			'time'       => date("Y-m-d H:i:s"),
+			'status'     => 'enable',
 		];
 
 		if(!is_array($_options))
@@ -158,12 +156,17 @@ class logs
 
 		$insert_log =
 		[
-			'logitem_id'     => $log_item_id,
-			'user_id'        => $_user_id,
-			'data'       => $_options['data'],
-			'status'     => $_options['status'],
-			'meta'       => $_options['meta'],
-			'datecreated' => $_options['time'],
+			// 'logitem_id' => $log_item_id,
+			'caller'        => $_caller,
+			'before'        => $_options['before'],
+			'after'         => $_options['after'],
+			'visitor_id'    => $_options['visitor_id'],
+			'vars'          => $_options['vars'],
+			'user_id'       => $_user_id,
+			'data'          => $_options['data'],
+			'status'        => $_options['status'],
+			'meta'          => $_options['meta'],
+			'datecreated'   => $_options['time'],
 		];
 
 		if(isset($_options['desc']))
