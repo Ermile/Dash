@@ -29,6 +29,8 @@ class view
 			\dash\header::status(403, T_("Ticket not found"));
 		}
 
+		\dash\data::masterTicketDetail($main);
+
 		$ticket_user_id = $main['user_id'];
 		\dash\data::masterTicketUser($ticket_user_id);
 		$ticket_user_id = \dash\coding::decode($ticket_user_id);

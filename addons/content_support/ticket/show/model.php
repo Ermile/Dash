@@ -43,11 +43,24 @@ class model
 		{
 			\dash\app::variable(['tag' => \dash\request::post('tag')]);
 			\dash\app\posts::set_post_term(\dash\coding::decode(\dash\request::get('id')), 'tag', 'comments');
-			if(!\dash\request::post('desc'))
+			\dash\notif::ok(T_("Tag was saved"));
+			if(!\dash\request::post('content'))
 			{
-				\dash\notif::ok(T_("Tag was saved"));
 				return true;
 			}
+		}
+
+
+		if(\dash\request::post('TicketFormType') === 'changeStatus')
+		{
+			if(in_array(\dash\request::post('status'), ['close']))
+			{
+				\dash\db\comments::update(['status' => \dash\request::post('status')], \dash\coding::decode(\dash\request::get('id')));
+				\dash\notif::ok(T_("Ticket status was changed"));
+				\dash\redirect::pwd();
+			}
+
+			return true;
 		}
 
 		// ready to insert comments
@@ -56,7 +69,7 @@ class model
 			'author'  => \dash\user::detail('displayname'),
 			'email'   => \dash\user::detail('email'),
 			'type'    => 'ticket',
-			'content' => \dash\request::post('desc'),
+			'content' => \dash\request::post('content'),
 			'title'   => \dash\request::post('title'),
 			'mobile'  => \dash\user::detail("mobile"),
 			'user_id' => \dash\user::id(),
@@ -65,6 +78,7 @@ class model
 		];
 
 		$main = \dash\app\comment::get(\dash\request::get('id'));
+
 		if(!$main || !isset($main['user_id']))
 		{
 			\dash\header::status(403, T_("Ticket not found"));

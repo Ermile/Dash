@@ -12,37 +12,42 @@
   </div>
   <div class="c3 s12">
     <div class="cbox">
-      <div class="msg txtC">{%trans "Ticket No"%} <b>{{dataTable.0.id}}</b></div>
-      <div class="msg txtC" title='{{dataTable.0.datecreated | tdate("Y-m-d H:i:s")}}'>{%trans "Create date"%} <b>{{dataTable.0.datecreated | sdate("year")}}</b></div>
+      <div class="msg txtC">{%trans "Ticket No"%} <b>{{masterTicketDetail.id}}</b></div>
+      <div class="msg txtC" title='{{masterTicketDetail.datecreated | tdate("Y-m-d H:i:s")}}'>{%trans "Create date"%} <b>{{masterTicketDetail.datecreated | sdate("year")}}</b></div>
       <div class="msg txtC" title='{{dataTable.0.datecreated | tdate("Y-m-d H:i:s")}}'>{%trans "Last activity"%} <b>{{dataTable.0.datecreated | sdate("year")}}</b></div>
-      <div class="msg txtC info2">{%trans "Status"%} <b>{{dataTable.0.status}}</b></div>
-
-      <button class="btn block mTB10 success">{%trans "Submit as Solved"%}</button>
-{%if 1%}
-      <button class="btn block mTB10 secondary">{%trans "Close ticket"%}</button>
-{%endif%}
+      <div class="msg txtC info2">{%trans "Status"%} <b>{%set myStatus =  masterTicketDetail.status%}{%trans myStatus%}</b></div>
+      <form method="post">
+        <input type="hidden" name="TicketFormType" value="changeStatus">
+      <button class="btn block mTB10 success" name="status" value="solved">{%trans "Submit as Solved"%}</button>
+  {%if perm('supportTicketView') %}
+        <button class="btn block mTB10 secondary"  name="status" value="close">{%trans "Close ticket"%}</button>
+  {%endif%}
+      </form>
 
     </div>
-{%if user.id == 1%}
+{%if perm('supportTicketView') %}
     <div class="cbox">
 <!-- do some admin actions -->
 
       <label for="creator">{%trans "Creator"%}</label>
       <div class="input">
-        <input type="text" id="creator" disabled value="{{dataTable.0.author}}">
+        <input type="text" id="creator" disabled value="{{masterTicketDetail.author}}">
       </div>
 
       <label for="email">{%trans "Email"%}</label>
       <div class="input">
-        <input type="text" id="email" disabled value="{{dataTable.0.email}}">
+        <input type="text" id="email" disabled value="{{masterTicketDetail.email}}">
       </div>
 
       <label for="mobile">{%trans "Mmail"%}</label>
       <div class="input">
-        <input type="text" id="mobile" disabled value="{{dataTable.0.mobile}}">
+        <input type="text" id="mobile" disabled value="{{masterTicketDetail.mobile | fitNumber('mobile')}}">
       </div>
 
-      {{block("iTag")}}
+      <form method="post">
+        {{block("iTag")}}
+        <button class="btn block mTB10 primary"  name="TicketFormType" value="tag">{%trans "Save tag"%}</button>
+      </form>
     </div>
 {%endif%}
 
