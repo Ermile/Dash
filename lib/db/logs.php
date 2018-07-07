@@ -210,20 +210,20 @@ class logs
 		}
 
 		// get logitemid by caller in one query
-		if(isset($_args['caller']) && $_args['caller'] && is_string($_args['caller']))
-		{
-			$logitem_id = \dash\db\logitems::get(['caller' => $_args['caller'], 'limit' => 1]);
-			if(isset($logitem_id['id']))
-			{
-				$logitem_id = $logitem_id['id'];
-			}
-			else
-			{
-				$logitem_id = null;
-			}
-			$_args['logs.logitem_id'] = $logitem_id;
-		}
-		unset($_args['caller']);
+		// if(isset($_args['caller']) && $_args['caller'] && is_string($_args['caller']))
+		// {
+		// 	$logitem_id = \dash\db\logitems::get(['caller' => $_args['caller'], 'limit' => 1]);
+		// 	if(isset($logitem_id['id']))
+		// 	{
+		// 		$logitem_id = $logitem_id['id'];
+		// 	}
+		// 	else
+		// 	{
+		// 		$logitem_id = null;
+		// 	}
+		// 	$_args['logs.logitem_id'] = $logitem_id;
+		// }
+		// unset($_args['caller']);
 
 		$where = \dash\db\config::make_where($_args);
 

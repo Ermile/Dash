@@ -30,9 +30,9 @@ class log
 				{
 					if($value != $_after[$key])
 					{
-						$log_detail['vars'][]   = $key;
-						$log_detail['before'][] = $value;
-						$log_detail['after'][]  = $_after[$key];
+						$log_detail['vars'][]   = str_replace(';', '', $key);
+						$log_detail['before'][] = str_replace(';', '', $value);
+						$log_detail['after'][]  = str_replace(';', '', $_after[$key]);
 					}
 				}
 			}
