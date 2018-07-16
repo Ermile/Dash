@@ -4,13 +4,37 @@ namespace dash;
 
 class log
 {
+
 	public static function db($_caller, $_args = [])
 	{
+		$meta          = [];
+		$meta['login'] = array_filter(\dash\user::detail());
+		$meta['url']   = \dash\url::pwd();
+
+		if(isset($_args['meta']) && is_array($_args['meta']))
+		{
+			$_args['meta']['logDetail'] = $meta;
+		}
+		elseif(isset($_args['meta']) && is_object($_args['meta']))
+		{
+			$_args['meta']->logDetail = $meta;
+		}
+		elseif(isset($_args['meta']) && is_string($_args['meta']))
+		{
+			$_args['meta']              = [$_args['meta']];
+			$_args['meta']['logDetail'] = $meta;
+		}
+		else
+		{
+			$_args['meta']              = [];
+			$_args['meta']['logDetail'] = $meta;
+		}
+
 		return \dash\db\logs::set($_caller, \dash\user::id(), $_args);
 	}
 
 
-	public static function before_after($_caller, $_before, $_after, $_args = [])
+	public static function db_before_after($_caller, $_before, $_after, $_args = [])
 	{
 		$log_detail           = [];
 		$log_detail['before'] = [];
