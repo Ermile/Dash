@@ -17,6 +17,7 @@
         </thead>
         <tbody>
           {%for key, value in dataRow%}
+{%if value%}
             {%if key in ['password', 'unit_id'] %}
             {%elseif key == 'mobile'%}
               <tr class="f-{{key}} positive">
@@ -51,6 +52,7 @@
                 </td>
               </tr>
             {%endif%}
+{%endif%}
           {%endfor%}
         </tbody>
       </table>
