@@ -174,10 +174,6 @@ class logs
 		{
 			$caller[] = \dash\url::module();
 		}
-		else
-		{
-			$caller[] = 'home';
-		}
 
 		if(\dash\url::child())
 		{

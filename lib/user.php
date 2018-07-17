@@ -183,6 +183,7 @@ class user
 					else
 					{
 						\dash\db\sessions::set($user_id);
+						\dash\log::db('userLoginByRemember');
 					}
 				}
 			}
