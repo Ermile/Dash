@@ -20,12 +20,15 @@ class model
 
 		if($count >= 3)
 		{
+			\dash\log::db('userHitSignup3>30m');
+
 			\dash\notif::warn(T_("How are you?"). ":)");
 			return false;
 		}
 
 		if(\dash\request::post('password'))
 		{
+			\dash\log::db('hiddenPasswordFieldIsFull');
 			\dash\notif::error(T_("Dont!"));
 			return false;
 		}
@@ -56,6 +59,7 @@ class model
 
 		if(\dash\option::config('enter', 'singup_username') && !preg_match("/[A-Za-z0-9\_]/", $username))
 		{
+			\dash\log::db('usernameInvalidSyntax', ['data' => $username]);
 			\dash\notif::error(T_("Username must in [A-Za-z0-9]"));
 			return false;
 		}
@@ -79,6 +83,7 @@ class model
 			$check_username = \dash\db\users::get_by_username($username);
 			if($check_username)
 			{
+				\dash\log::db('usernameTaken', ['data' => $username]);
 				\dash\notif::error(T_("This username is already taken."));
 				return false;
 			}
@@ -87,6 +92,7 @@ class model
 		$check_mobile = \dash\db\users::get_by_mobile($mobile);
 		if($check_mobile)
 		{
+			\dash\log::db('mobileExistTryToSignup');
 			\dash\notif::error(T_("This mobile is already signuped. You can login by this mobile"));
 			return false;
 		}
@@ -109,9 +115,11 @@ class model
 
 		if(!$user_id)
 		{
+			\dash\log::db('userCanNotSignupDB');
 			\dash\notif::error(T_("We can not signup you"));
 			return false;
 		}
+		\dash\log::db('userSignup');
 
 		\dash\utility\enter::load_user_data($user_id, 'user_id');
 		\dash\utility\enter::enter_set_login(null, true);

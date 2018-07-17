@@ -12,6 +12,9 @@ class controller
 			\dash\header::status(404, T_("Invalid url"));
 		}
 
+		\dash\log::db('smsCallback');
+
+
 	}
 }
 ?>

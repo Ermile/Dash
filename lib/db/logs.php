@@ -51,7 +51,7 @@ class logs
 		$set = \dash\db\config::make_set($_args);
 		if($set)
 		{
-			$query  ="INSERT IGNORE INTO logs SET $set ";
+			$query  ="INSERT INTO logs SET $set ";
 
 			$resutl = \dash\db::query($query, self::get_db_log_name());
 			// get the link
@@ -81,7 +81,7 @@ class logs
 		if($set)
 		{
 			// make update query
-			$query = " UPDATE logs SET $set WHERE logs.id = $_id ";
+			$query = "UPDATE logs SET $set WHERE logs.id = $_id";
 			return \dash\db::query($query, self::get_db_log_name());
 		}
 	}
@@ -96,25 +96,8 @@ class logs
 	public static function delete($_id)
 	{
 		// get id
-		$query =
-		"UPDATE FROM logs
-		SET logs.notification_status = 'expire'
-		WHERE logs.id = $_id
-		";
-
+		$query = "UPDATE FROM logs SET logs.notification_status = 'expire' WHERE logs.id = $_id ";
 		return \dash\db::query($query, self::get_db_log_name());
-	}
-
-
-	/**
-	 * get string query and return mysql result
-	 * @param string $_query string query
-	 * @return mysql result
-	 */
-	public static function select($_query, $_type = 'query')
-	{
-		return false;
-		// return \dash\db::$_type($_query, self::get_db_log_name());
 	}
 
 
@@ -131,10 +114,10 @@ class logs
 		$default_options =
 		[
 			'visitor_id' => \dash\utility\visitor::id(),
+			'status'     => 'enable',
 			'data'       => null,
 			'datalink'   => null,
 			'meta'       => null,
-			'status'     => 'enable',
 		];
 
 		if(!is_array($_options))
@@ -158,10 +141,57 @@ class logs
 			$_options['meta'] = null;
 		}
 
+		$user_id = null;
+
+		if($_user_id && is_numeric($_user_id))
+		{
+			$user_id = $_user_id;
+		}
+		elseif(\dash\user::id())
+		{
+			$user_id = \dash\user::id();
+		}
+
+		if($_options['datalink'] && mb_strlen($_options['datalink']) >= 100)
+		{
+			$_options['datalink'] = substr($_options['datalink'], 0, 98);
+		}
+
+		if($_options['data'] && mb_strlen($_options['data']) >= 200)
+		{
+			$_options['data'] = substr($_options['data'], 0, 198);
+		}
+
+		if($_caller && mb_strlen($_caller) >= 200)
+		{
+			$_caller = substr($_caller, 0, 198);
+		}
+
+		$caller = [];
+		$caller[] = \dash\url::content() ? \dash\url::content() : 'site';
+
+		if(\dash\url::module())
+		{
+			$caller[] = \dash\url::module();
+		}
+		else
+		{
+			$caller[] = 'home';
+		}
+
+		if(\dash\url::child())
+		{
+			$caller[] = \dash\url::child();
+		}
+
+		$caller = implode(':', $caller);
+
+		$caller = $caller. ';'. $_caller;
+
 		$insert_log =
 		[
-			'caller'      => $_caller,
-			'user_id'     => $_user_id,
+			'caller'      => $caller,
+			'user_id'     => $user_id,
 			'datecreated' => date("Y-m-d H:i:s"),
 			'subdomain'   => \dash\url::subdomain() ? \dash\url::subdomain() : null,
 			'visitor_id'  => $_options['visitor_id'],
@@ -205,22 +235,6 @@ class logs
 		{
 			$limit = null;
 		}
-
-		// get logitemid by caller in one query
-		// if(isset($_args['caller']) && $_args['caller'] && is_string($_args['caller']))
-		// {
-		// 	$logitem_id = \dash\db\logitems::get(['caller' => $_args['caller'], 'limit' => 1]);
-		// 	if(isset($logitem_id['id']))
-		// 	{
-		// 		$logitem_id = $logitem_id['id'];
-		// 	}
-		// 	else
-		// 	{
-		// 		$logitem_id = null;
-		// 	}
-		// 	$_args['logs.logitem_id'] = $logitem_id;
-		// }
-		// unset($_args['caller']);
 
 		$where = \dash\db\config::make_where($_args);
 
@@ -532,13 +546,15 @@ class logs
 	public static function end_log($_condition = [])
 	{
 		$where = [];
-		foreach ($_condition as $key => $value) {
+		foreach ($_condition as $key => $value)
+		{
 			if(is_string($value))
 			{
 				$value = "'$value'";
 			}
 			$where[] = "$key = $value";
 		}
+
 		if(!empty($where))
 		{
 			$where = join(" AND " , $where);

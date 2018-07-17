@@ -28,6 +28,8 @@ class model
 			}
 			else
 			{
+				\dash\log::db('creazyPassword');
+
 				// creazy password
 				return false;
 			}
@@ -38,6 +40,8 @@ class model
 			\dash\notif::error(T_("No password was send"));
 			return false;
 		}
+
+		\dash\log::db('setPasswordRequest');
 
 		// set session verify_from set
 		\dash\utility\enter::set_session('verify_from', 'set');

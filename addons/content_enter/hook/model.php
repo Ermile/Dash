@@ -119,6 +119,8 @@ class model
 	 */
 	public static function config_user_data()
 	{
+		\dash\log::db('telegramHook');
+
 		$telegram_id = \dash\utility::request("tg_id");
 		$first_name  = \dash\utility::request('tg_first_name');
 		$last_name   = \dash\utility::request('tg_last_name');

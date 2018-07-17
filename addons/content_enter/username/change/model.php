@@ -55,6 +55,7 @@ class model
 
 		if(!empty($check_exist_name))
 		{
+			\dash\log::db('usernameTaken', ['data' => \dash\request::post('usernameNew')]);
 			\dash\notif::error(T_("This username alreay taked!"));
 			return false;
 		}
@@ -68,6 +69,7 @@ class model
 		// set session verify_from set
 		\dash\utility\enter::set_session('verify_from', 'username_change');
 
+		\dash\log::db('usernameChangeRequest');
 		// send code way
 		\dash\utility\enter::go_to_verify();
 	}

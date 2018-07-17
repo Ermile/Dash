@@ -20,6 +20,8 @@ class model
 					// old pass = new pass
 					// aletr to user the new pass = old pass
 					// login
+					\dash\log::db('oldPassword=newPassword');
+
 					$url             = \dash\utility\enter::enter_set_login();
 					$alert           = [];
 					$alert['text']   = T_("Your new password is your old password");
@@ -54,6 +56,7 @@ class model
 			}
 			else
 			{
+				\dash\log::db('creazyPassword');
 				// creazy password
 				return false;
 			}
@@ -65,6 +68,8 @@ class model
 			\dash\notif::error(T_("Invalid Password"));
 			return false;
 		}
+
+		\dash\log::db('passwordRecoveryRequest');
 
 		// set session verify_from recovery
 		\dash\utility\enter::set_session('verify_from', 'recovery');

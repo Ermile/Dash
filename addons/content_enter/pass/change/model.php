@@ -42,6 +42,8 @@ class model
 
 		if(!\dash\user::detail('password'))
 		{
+			\dash\log::db('userNotPassTryToChangeIt!');
+
 			\dash\utility\enter::try('change_pass_have_not_pass');
 			\dash\notif::error(T_("You do not have any password!"). ' '. T_("Please logout and login again."));
 			return false;
@@ -50,6 +52,7 @@ class model
 		// check old password is okay
 		if(!\dash\utility::hasher(\dash\request::post('ramz'), \dash\user::detail('password')))
 		{
+			\dash\log::db('invalidOldPassword');
 			\dash\utility\enter::try('change_pass_invalid_old_pass');
 			\dash\code::sleep(3);
 			\dash\notif::error(T_("Invalid old password"));
@@ -67,6 +70,7 @@ class model
 		}
 		else
 		{
+			\dash\log::db('creazyPassword');
 			// creazy password
 			return false;
 		}
@@ -76,6 +80,7 @@ class model
 		// find send way to send code
 		// and send code
 
+		\dash\log::db('passwordChaneRequest');
 		// send code way
 		\dash\utility\enter::go_to_verify();
 	}

@@ -52,6 +52,8 @@ class model
 		$text .= "\n\n". T_("This code can be used to log in to your account. Do not give it to anyone!");
 		$text .= "\n" . T_("If you didn't request this code, ignore this message.");
 
+		\dash\log::db('telegram');
+
 		\dash\utility\telegram::sendMessage($my_chat_id, $text);
 		return true;
 	}

@@ -20,6 +20,7 @@ class controller
 		}
 		else
 		{
+			\dash\log::db('autoRedirect', ['data' => $autoredirect['url']]);
 			\dash\temp::set('autoredirect', $autoredirect);
 		}
 	}

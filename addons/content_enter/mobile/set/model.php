@@ -38,6 +38,9 @@ class model
 			return false;
 		}
 
+		\dash\log::db('setMobile');
+
+
 		// set session verify_from set
 		\dash\utility\enter::set_session('verify_from', 'set');
 

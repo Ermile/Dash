@@ -62,6 +62,9 @@ class model
 			return false;
 		}
 
+		\dash\log::db('changeMobile');
+
+
 		// set session verify_from change
 		\dash\utility\enter::set_session('verify_from', 'change');
 		// find send way to send code

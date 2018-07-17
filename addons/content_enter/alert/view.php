@@ -10,6 +10,7 @@ class view
 		\dash\data::page_special(true);
 		\dash\data::page_desc(\dash\data::page_title());
 
+
 		$alert = \dash\utility\enter::get_session('alert');
 
 		\dash\data::alertMsg(T_("Alert!"). ' '. T_("What are you doing?"));
@@ -29,6 +30,7 @@ class view
 		{
 			\dash\data::alertButton($alert['button']);
 		}
+		\dash\log::db('viewAlert', ['data' => \dash\data::alertMsg()]);
 	}
 }
 ?>

@@ -31,6 +31,8 @@ class model
 		{
 			if(\dash\utility\filter::mobile($mobile_email) !== \dash\utility\filter::mobile($exist_mobile_email))
 			{
+				\dash\log::db('existMobileIsNotMathcBySendMobile');
+
 				\dash\notif::error(T_("What are you doing?"));
 				return false;
 			}
@@ -38,6 +40,7 @@ class model
 
 		if(!in_array($send_code, \dash\utility\enter::list_send_code_way($mobile_email)))
 		{
+			\dash\log::db('sendWayInvalid');
 			\dash\notif::error(T_("Dont!"));
 			return false;
 		}
