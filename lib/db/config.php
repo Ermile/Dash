@@ -682,7 +682,7 @@ class config
 			$limit = null;
 		}
 
-		$query = " SELECT $public_fields $where $search $order $limit -- $_table::search() 	-- $json";
+		$query = "SELECT $public_fields $where $search $order $limit";
 
 		if(!$only_one_value)
 		{

@@ -20,14 +20,14 @@ trait log
 		// set file address
 		$fileAddr .= $_name;
 		$my_text = "\n#". $date_now->format("Y-m-d H:i:s");
-		$my_text .= " | ". str_repeat("-", 10). ' '. \dash\url::pwd();
-		//$my_text .= "\n---". mysqli_info(self::$link);
-		$my_text .= "\n";
 		if($_time)
 		{
-			$my_text .= "\t---". $_time. "s";
-			$my_text .= "\t\t---". $time_ms . "ms";
+			// $my_text .= "--- ". $_time. " s";
+			$my_text .= " --- ". $time_ms . " ms";
 		}
+		$my_text .= " | ". str_repeat("-", 5). ' '. \dash\url::pwd();
+		//$my_text .= "\n---". mysqli_info(self::$link);
+		// $my_text .= "\n";
 		if($time_ms > 1000)
 		{
 			$my_text .= "\n"."--- CRITICAL!";
@@ -70,7 +70,7 @@ trait log
 		// add final text
 		$my_text .= "\n";
 		$my_text .= $_text;
-		$my_text .= "\r\n";
+		$my_text .= "\r";
 
 		@file_put_contents($fileAddr, $my_text, FILE_APPEND);
 
