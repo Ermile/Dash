@@ -564,7 +564,7 @@ class enter
 		$log_meta =
 		[
 			'data' => $code,
-			'desc' => $_way,
+			// 'desc' => $_way,
 			'time' => $time,
 			'meta' =>
 			[
@@ -642,14 +642,14 @@ class enter
 							self::set_session('verification_code_time', $log_code['datecreated']);
 						}
 						// save log way
-						if(isset($log_code['desc']))
-						{
-							self::set_session('verification_code_way', $log_code['desc']);
-							if($prev_way = self::get_last_way())
-							{
-								self::set_session('verification_code_way', $prev_way);
-							}
-						}
+						// if(isset($log_code['desc']))
+						// {
+						// 	self::set_session('verification_code_way', $log_code['desc']);
+						// 	if($prev_way = self::get_last_way())
+						// 	{
+						// 		self::set_session('verification_code_way', $prev_way);
+						// 	}
+						// }
 						// save log id
 						if(isset($log_code['id']))
 						{

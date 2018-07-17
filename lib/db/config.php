@@ -193,11 +193,11 @@ class config
 			{
 				if($value)
 				{
-					$set[] = " `$key` = 1";
+					$set[] = " `$key` = 1 ";
 				}
 				else
 				{
-					$set[] = " `$key` = NULL";
+					$set[] = " `$key` = NULL ";
 				}
 			}
 			else

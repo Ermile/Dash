@@ -130,13 +130,10 @@ class logs
 
 		$default_options =
 		[
-			'before'     => null,
-			'after'      => null,
 			'visitor_id' => \dash\utility\visitor::id(),
-			'vars'       => null,
 			'data'       => null,
+			'datalink'   => null,
 			'meta'       => null,
-			'time'       => date("Y-m-d H:i:s"),
 			'status'     => 'enable',
 		];
 
@@ -147,32 +144,32 @@ class logs
 
 		$_options = array_merge($default_options, $_options);
 
-		$_options['meta'] = \dash\safe::safe($_options['meta']);
-
-		if(is_array($_options['meta']) || is_object($_options['meta']))
+		if($_options['meta'])
 		{
-			$_options['meta'] = json_encode($_options['meta'], JSON_UNESCAPED_UNICODE);
+			$_options['meta'] = \dash\safe::safe($_options['meta']);
+
+			if(is_array($_options['meta']) || is_object($_options['meta']))
+			{
+				$_options['meta'] = json_encode($_options['meta'], JSON_UNESCAPED_UNICODE);
+			}
+		}
+		else
+		{
+			$_options['meta'] = null;
 		}
 
 		$insert_log =
 		[
-			// 'logitem_id' => $log_item_id,
-			'caller'        => $_caller,
-			'before'        => $_options['before'],
-			'after'         => $_options['after'],
-			'visitor_id'    => $_options['visitor_id'],
-			'vars'          => $_options['vars'],
-			'user_id'       => $_user_id,
-			'data'          => $_options['data'],
-			'status'        => $_options['status'],
-			'meta'          => $_options['meta'],
-			'datecreated'   => $_options['time'],
+			'caller'      => $_caller,
+			'user_id'     => $_user_id,
+			'datecreated' => date("Y-m-d H:i:s"),
+			'subdomain'   => \dash\url::subdomain() ? \dash\url::subdomain() : null,
+			'visitor_id'  => $_options['visitor_id'],
+			'datalink'    => $_options['datalink'],
+			'data'        => $_options['data'],
+			'status'      => $_options['status'],
+			'meta'        => $_options['meta'],
 		];
-
-		if(isset($_options['desc']))
-		{
-			$insert_log['desc'] = $_options['desc'];
-		}
 
 		return self::insert($insert_log);
 	}
@@ -370,7 +367,6 @@ class logs
 			switch ($_options['sort'])
 			{
 				case 'type':
-				case 'caller':
 				case 'title':
 				case 'meta':
 				case 'priority':
@@ -518,7 +514,7 @@ class logs
 		}
 
 		$json = json_encode(func_get_args());
-		$query = " SELECT $public_fields $where $search $order $limit -- logs::search() 	-- $json";
+		$query = " SELECT $public_fields $where $search $order $limit";
 
 		if(!$only_one_value)
 		{
