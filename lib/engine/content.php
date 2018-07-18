@@ -133,7 +133,7 @@ class content
 	 * check enterprise customer and return special content of them
 	 * @return [type] [description]
 	 */
-	private static function enterprise_customers()
+	public static function enterprise_customers()
 	{
 		$myDomainFile = root. 'enterprise/list/'. \dash\url::domain().'.conf';
 		if(file_exists($myDomainFile))
