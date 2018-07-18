@@ -9,8 +9,8 @@
 
 {%block header%}
   <h1 class='logo'><a href='{{url.base}}' tabindex='1' data-direct>
-{%if lang.current =='fa'%}
-    <img src='{{url.site}}/static/images/logo.png' alt='{{site.title}}'>
+{%if option.enterprise%}
+    <img src='{{url.site}}/enterprise/{{option.enterprise}}/images/logo.png' alt='{{site.title}}'>
 {%else%}
     <img src='{{url.site}}/static/images/logo.png' alt='{{site.title}}'>
 {%endif%}
