@@ -251,6 +251,10 @@ class prepare
 				{
 					$target_host .= \dash\url::root();
 				}
+				elseif(\dash\engine\content::enterprise_customers())
+				{
+					$target_host .= \dash\url::root();
+				}
 				else
 				{
 					$target_host .= \dash\option::url('root');
@@ -271,6 +275,10 @@ class prepare
 		if(\dash\option::url('tld'))
 		{
 			if(is_callable(['\lib\alias', 'url']) && \lib\alias::url())
+			{
+				$target_host .= '.'. \dash\url::tld();
+			}
+			elseif(\dash\engine\content::enterprise_customers())
 			{
 				$target_host .= '.'. \dash\url::tld();
 			}
