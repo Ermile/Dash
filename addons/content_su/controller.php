@@ -41,6 +41,12 @@ class controller
 				\dash\header::status(403);
 			}
 		}
+
+		if(\dash\url::subdomain())
+		{
+			// remove subdomain
+			\dash\redirect::to(\dash\url::site(). \dash\url::path());
+		}
 	}
 }
 ?>

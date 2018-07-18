@@ -6,6 +6,10 @@ class view
 	public static function config()
 	{
 		$result                            = [];
+		$result['mbstring']                = extension_loaded('mbstring');
+		$result['soap']                    = class_exists("soapclient");
+		$result['curl']                    = function_exists('curl_version');
+		$result['zip']                     = class_exists("ZipArchive");
 		$result['max_execution_time']      = ini_get('max_execution_time');
 		$result['max_file_uploads']        = ini_get('max_file_uploads');
 		$result['max_input_time']          = ini_get('max_input_time');
@@ -18,12 +22,10 @@ class view
 		$result['error_reporting']         = ini_get('error_reporting');
 		$result['log_errors']              = ini_get('log_errors');
 		$result['session.name']            = ini_get('session.name');
-		// gettext
-		// soap
-		// zip
-		// curl
-		// mb string
-		// var_dump(ini_get_all());
+
+
+
+
 		\dash\data::phpIniInfo($result);
 
 	}
