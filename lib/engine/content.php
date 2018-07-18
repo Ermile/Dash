@@ -136,14 +136,14 @@ class content
 	public static function enterprise_customers()
 	{
 		$myDomainFile = root. 'enterprise/list/'. \dash\url::domain().'.conf';
-		if(file_exists($myDomainFile))
+		if(file_exists(\autoload::fix_os_path($myDomainFile)))
 		{
 			$myCustomer = trim(file_get_contents($myDomainFile));
 			$myEnterprise = 'enterprise/'. $myCustomer;
-			if(is_dir(root. $myEnterprise))
+			if(is_dir(\autoload::fix_os_path(root. $myEnterprise)))
 			{
 				@header("X-Ermile-Enterprise: ". $myCustomer);
-				return $myEnterprise;
+				return str_replace('/', '\\', $myEnterprise);
 			}
 		}
 		return null;
