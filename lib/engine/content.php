@@ -142,6 +142,7 @@ class content
 			$myEnterprise = 'enterprise\\'. $myCustomer;
 			if(is_dir(root. $myEnterprise))
 			{
+				@header("X-Ermile-Enterprise: ". $myCustomer);
 				return $myEnterprise;
 			}
 		}
