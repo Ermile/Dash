@@ -135,7 +135,7 @@ class content
 	 */
 	public static function enterprise_customers()
 	{
-		$myDomainFile = root. 'enterprise/list/'. \dash\url::domain().'.conf';
+		$myDomainFile = root. 'enterprise\list\\'. \dash\url::domain().'.conf';
 		if(file_exists($myDomainFile))
 		{
 			$myCustomer = trim(file_get_contents($myDomainFile));
