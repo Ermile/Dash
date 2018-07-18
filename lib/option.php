@@ -94,6 +94,55 @@ class option
 		}
 	}
 
+	public static function set_config()
+	{
+		return self::set('config', ...func_get_args());
+	}
+
+	public static function set_url()
+	{
+		return self::set('url', ...func_get_args());
+	}
+
+	public static function set_enter()
+	{
+		return self::set('enter', ...func_get_args());
+	}
+
+	public static function set_social()
+	{
+		return self::set('social', ...func_get_args());
+	}
+
+	public static function set_sms()
+	{
+		return self::set('sms', ...func_get_args());
+	}
+
+	public static function set_language()
+	{
+		return self::set('language', ...func_get_args());
+	}
+
+
+	public static function set($_var, $_key, $_value, $_sub_key = null)
+	{
+		if(!$_key || !$_var)
+		{
+			return false;
+		}
+
+		if($_sub_key)
+		{
+			self::$_var[$_key][$_sub_key] = $_value;
+		}
+		else
+		{
+			self::$$_var[$_key] = $_value;
+		}
+		return true;
+	}
+
 
 	/**
 	 * { function_description }
