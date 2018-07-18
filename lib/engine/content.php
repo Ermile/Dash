@@ -135,12 +135,18 @@ class content
 	 */
 	private static function enterprise_customers()
 	{
-		if(\dash\option::config('enterprise'))
+		if($myEnterpriseOpt = \dash\option::config('enterprise'))
 		{
-			$myEnterprise = 'enterprise\\'. \dash\option::config('enterprise');
-			if(is_dir(root. $myEnterprise))
+			$myCustomer = null;
+			if(array_key_exists(\dash\url::domain(), $myEnterpriseOpt))
 			{
-				return $myEnterprise;
+				$myCustomer = $myEnterpriseOpt[\dash\url::domain()];
+
+				$myEnterprise = 'enterprise\\'. $myCustomer;
+				if(is_dir(root. $myEnterprise))
+				{
+					return $myEnterprise;
+				}
 			}
 		}
 
