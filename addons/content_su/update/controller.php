@@ -25,7 +25,6 @@ class controller
 
 	public static function gitUpdate($_name, $_password = null)
 	{
-		$location = null;
 		$result   = [];
 		// switch by name of repository
 		switch ($_name)
@@ -40,17 +39,16 @@ class controller
 
 				// pull current project
 				$_name = \dash\url::root();
-				$location = '../../'. $_name;
 				$result[] = "<h1>$_name <small>Current Project</small></h1>";
-				$result[] =  \dash\utility\git::pull($location, false, $_password);
+				$result[] = "<p>Project location is <b>". root. "</b></p>";
+				$result[] =  \dash\utility\git::pull(root, false, $_password);
 				break;
 
 			case '':
 				break;
 
 			default:
-				$location = '../../'. $_name;
-				$result[] =  \dash\utility\git::pull($location, false, $_password);
+				$result[] =  \dash\utility\git::pull(root, false, $_password);
 
 				// return;
 				break;
