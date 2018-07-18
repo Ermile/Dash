@@ -139,8 +139,8 @@ class content
 		if(file_exists($myDomainFile))
 		{
 			$myCustomer = trim(file_get_contents($myDomainFile));
-			$myEnterprise = root. 'enterprise\\'. $myCustomer;
-			if(is_dir($myEnterprise))
+			$myEnterprise = 'enterprise\\'. $myCustomer;
+			if(is_dir(root. $myEnterprise))
 			{
 				return $myEnterprise;
 			}
