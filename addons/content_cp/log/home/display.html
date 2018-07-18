@@ -1,0 +1,153 @@
+{%extends display.cpMain%}
+
+
+
+{%block pageContent%}
+
+{{block('pageSteps')}}
+
+{%if dataTable%}
+ {%if dataFilter%}
+
+  {{block('htmlSearchBox')}}
+  {{block('htmlTable')}}
+  {{block('htmlFilter')}}
+
+ {%else%}
+
+  {{block('htmlSearchBox')}}
+  {{block('htmlTable')}}
+
+ {%endif%}
+{%else%}
+ {%if dataFilter%}
+
+  {{block('htmlSearchBox')}}
+  {{block('htmlFilterNoResult')}}
+
+ {%else%}
+
+  {{block('htmlStartAddNew')}}
+
+ {%endif%}
+{%endif%}
+
+{%endblock%}
+
+
+
+
+{%block htmlSearchBox%}
+<div class="cbox fs12">
+  <form method="get" action='{{url.this}}{{moduleType}}' data-action>
+    <div class="input">
+      <input type="search" name="q" placeholder='{%trans "Search"%}' id="q" value="{{requestGET.q}}" autofocus autocomplete='off'>
+      {%if requestGET.type%}
+      <input type="hidden" name="type" value="{{requestGET.type}}">
+      {%endif%}
+      <button class="addon btn ">{%trans "Search" %}</button>
+    </div>
+  </form>
+</div>
+{%endblock%}
+
+
+{%block htmlTable%}
+
+ <div class="cbox fs12">
+  <table class="tbl bordered1">
+    <thead class="primary fs09">
+      <tr>
+        <th>id</th>
+        <th>caller</th>
+        <th>subdomain</th>
+        <th>user_id</th>
+        <th>data</th>
+        <th>datalink</th>
+        <th>status</th>
+        <th>datemodified</th>
+        <th>datecreated</th>
+        <th>visitor_id</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {%for key, value in dataTable%}
+      <tr class="{%if value.status=='deleted'%}negative{%elseif value.status=='draft'%}warning{%endif%}">
+        <td>{{value.id}}</td>
+        <td>{{value.caller}}</td>
+        <td>{{value.subdomain}}</td>
+        <td>{{value.user_id}}</td>
+        <td>{{value.data}}</td>
+        <td>{{value.datalink}}</td>
+        <td>{{value.status}}</td>
+        <td>{{value.datemodified}}</td>
+        <td>{{value.datecreated}}</td>
+        <td>{{value.visitor_id}}</td>
+      </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+  {%include display.pagination%}
+ </div>
+{%endblock%}
+
+
+{%block htmlFilter%}
+<p class="f fs14 msg info2">
+  <span class="c">{{dataFilter | raw}}</span>
+  <a class="cauto" href="{{url.here}}/posts{{moduleType}}">{%trans "Clear filters"%}</a>
+</p>
+{%endblock%}
+
+
+{%block htmlFilterNoResult%}
+<p class="f fs14 msg warn2">
+  <span class="c">{%trans "Result not found!"%} {%trans "Search with new keywords."%}</span>
+  <a class="cauto" href="{{url.here}}/posts{{moduleType}}">{%trans "Clear filters"%}</a>
+</p>
+{%endblock%}
+
+
+{%block htmlStartAddNew%}
+<p class="fs14 msg success2 pTB20">{%trans "Hi!"%} <a href="{{url.here}}/posts/add{{moduleType}}">{%trans "Try to start with add new record!"%}</a></p>
+{%endblock%}
+
+
+
+
+
+{%block pageSteps%}
+  <div class="f">
+
+   <div class="c">
+    <a class="dcard {%if requestGET.status == 'publishde' or not requestGET.status %}active{%endif%}" href='{{url.this}}{%if requestGET.type%}?type={{requestGET.type}}{%endif%}' data-shortkey="49ctrlshift" title='{%trans "All publish posts"%}'>
+     <div class="statistic">
+      <div class="value"><i class="sf-publish"></i></div>
+      <div class="label">{%trans "Published"%} <kbd class=" hide mT5">Shift+1</kbd></div>
+     </div>
+    </a>
+   </div>
+
+   <div class="c">
+    <a class="dcard {%if requestGET.status == 'draft' %}active{%endif%}" href='{{url.this}}?status=draft{%if requestGET.type%}&type={{requestGET.type}}{%endif%}' data-shortkey="50ctrlshift" title='{%trans "All draft posts"%}'>
+     <div class="statistic">
+      <div class="value"><i class="sf-edit"></i></div>
+      <div class="label">{%trans "Draft"%} <kbd class=" hide mT5">Shift+2</kbd></div>
+     </div>
+    </a>
+   </div>
+
+   <div class="c">
+    <a class="dcard {%if requestGET.status == 'deleted' %}active{%endif%}" href='{{url.this}}?status=deleted{%if requestGET.type%}&type={{requestGET.type}}{%endif%}' data-shortkey="51ctrlshift" title='{%trans "All trash posts"%}'>
+     <div class="statistic">
+      <div class="value"><i class="sf-trash"></i></div>
+      <div class="label">{%trans "Deleted"%} <kbd class=" hide mT5">Shift+2</kbd></div>
+     </div>
+    </a>
+   </div>
+
+
+
+  </div>
+{%endblock%}

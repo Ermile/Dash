@@ -21,24 +21,7 @@ class logs
 	 * v1.0
 	 */
 
-	public static $fields =
-	"
-			logs.id          	AS 	`id`,
-			logs.logitem_id  	AS 	`logitem_id`,
-			logitems.type    	AS 	`type`,
-			logitems.caller  	AS 	`caller`,
-			logitems.title   	AS 	`title`,
-			logitems.priority	AS 	`priority`,
-			logs.user_id     	AS 	`user_id`,
-			logs.data        	AS 	`data`,
-			logs.meta        	AS 	`meta`,
-			logs.status      	AS 	`status`,
-			logs.datecreated 	AS 	`createdate`,
-			logs.datemodified	AS 	`datemodified`
-		FROM
-			logs
-		LEFT JOIN logitems ON logitems.id = logs.logitem_id
-	";
+	public static $fields =	" * ";
 
 	/**
 	 * insert new recrod in logs table
@@ -312,10 +295,7 @@ class logs
 		if($_options['get_count'] === true)
 		{
 			$get_count      = true;
-			$public_fields  =
-			" COUNT(logs.id) AS 'logcount' FROM
-				logs
-			LEFT JOIN logitems ON logitems.id = logs.logitem_id";
+			$public_fields  = " * ";
 			$limit          = null;
 			$only_one_value = true;
 		}
@@ -324,39 +304,10 @@ class logs
 			$limit         = null;
 			$public_fields = self::$fields;
 
-			$domain = \dash\url::root();
-			$domain = explode('.', $domain);
-			if(count($domain) === 2 && isset($domain[0]))
-			{
-				if($domain[0] === 'sarshomar')
-				{
-					$log_have_desc = true;
-					$public_fields = " logs.desc AS `desc`, ". $public_fields;
-				}
-			}
-
 			if($_options['limit'])
 			{
 				$limit = $_options['limit'];
 			}
-		}
-
-		if(isset($_options['caller']) && $_options['caller'])
-		{
-			if(preg_match("/\%/", $_options['caller']))
-			{
-				$where[] = " logitems.caller LIKE '$_options[caller]' ";
-
-			}
-			else
-			{
-				$where[] = " logitems.caller = '$_options[caller]' ";
-			}
-		}
-
-		if(isset($_options['user']) && $_options['user'])
-		{
-			$where[] = " logs.user_id = $_options[user] ";
 		}
 
 		if(isset($_options['date']) && $_options['date'])
@@ -373,40 +324,7 @@ class logs
 
 		if($_options['sort'])
 		{
-			$temp_sort = null;
-			switch ($_options['sort'])
-			{
-				case 'type':
-				case 'title':
-				case 'meta':
-				case 'priority':
-					$temp_sort = 'logitems.'.  $_options['sort'];
-					break;
-
-				case 'count':
-					$temp_sort = 'logitems.'.  $_options['sort'];
-					break;
-
-				case 'desc':
-					if(isset($log_have_desc) && $log_have_desc)
-					{
-						$temp_sort = 'logs.desc';
-					}
-					else
-					{
-						$temp_sort = 'logitems.desc';
-					}
-					break;
-
-				case 'date':
-					$temp_sort = 'logs.datecreated';
-					break;
-
-				default:
-					$temp_sort = $_options['sort'];
-					break;
-			}
-			$_options['sort'] = $temp_sort;
+			$_options['sort'] = $_options['sort'];
 		}
 
 		// ------------------ get last
@@ -457,7 +375,6 @@ class logs
 			{
 				if(isset($value[0]) && isset($value[1]) && is_string($value[0]) && is_string($value[1]))
 				{
-					// for similar "logs.`field` LIKE '%valud%'"
 					$where[] = " logs.`$key` $value[0] $value[1] ";
 				}
 			}
@@ -480,12 +397,14 @@ class logs
 		if($_string !== null)
 		{
 			$search =
-			"(
-				logitems.type 		LIKE '%$_string%' OR
-				logitems.caller 	LIKE '%$_string%' OR
-				logitems.title 		LIKE '%$_string%' OR
-				logs.data 				LIKE '%$_string%'
-			)";
+			"
+				(
+					logitems.caller 	LIKE '%$_string%' OR
+					logitems.data 		LIKE '%$_string%' OR
+					logitems.subdomain 	= '$_string'
+				)
+			";
+
 			if($where)
 			{
 				$search = " AND ". $search;
@@ -503,14 +422,8 @@ class logs
 
 		if($pagenation && !$get_count)
 		{
-			$pagenation_query =
-			"SELECT	COUNT(logs.id) AS `count`
-			FROM
-			logs
-			LEFT JOIN logitems ON logitems.id = logs.logitem_id
-			$where $search ";
+			$pagenation_query = "SELECT * FROM logs $where $search ";
 			$pagenation_query = \dash\db::get($pagenation_query, 'count', true, self::get_db_log_name());
-
 			list($limit_start, $limit) = \dash\db::pagnation((int) $pagenation_query, $limit);
 			$limit = " LIMIT $limit_start, $limit ";
 		}
@@ -523,8 +436,7 @@ class logs
 			}
 		}
 
-		$json = json_encode(func_get_args());
-		$query = " SELECT $public_fields $where $search $order $limit";
+		$query = " SELECT $public_fields FROM `logs` $where $search $order $limit";
 
 		if(!$only_one_value)
 		{
@@ -538,6 +450,7 @@ class logs
 
 		return $result;
 	}
+
 
 	public static function end_log($_condition = [])
 	{
