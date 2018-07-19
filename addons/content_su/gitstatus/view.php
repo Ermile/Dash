@@ -87,11 +87,10 @@ class view
 
 		// pull current project
 		$name = \dash\url::root();
-		$location = '../../'. $name;
 
 		$result[] = "<hr>";
 		$result[] = "<h2>$name <small>Current Project</small></h2>";
-		$result[] =  \dash\utility\git::gitstatus($location);
+		$result[] =  \dash\utility\git::gitstatus(root);
 
 		return $result;
 	}
@@ -121,7 +120,7 @@ class view
 
 		$result[] = "<hr>";
 		$result[] = "<h2>$name <small>Current Project</small></h2>";
-		$result[] =  \dash\utility\git::gitdiff($location);
+		$result[] =  \dash\utility\git::gitdiff(root);
 
 		return $result;
 	}

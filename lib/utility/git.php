@@ -235,6 +235,7 @@ class git
 			if(!$result || !is_array($result))
 			{
 				$output     = T_('NO change!');
+				\dash\temp::set('git_diff_change', 0);
 			}
 
 			foreach ($result as $line)
