@@ -338,6 +338,16 @@ class user
 			unset($args['permission']);
 		}
 
+		$id = \dash\app::request('id');
+		if($id && $id = \dash\coding::decode($id))
+		{
+			$load_old_user = \dash\db\users::get(['id' => $id, 'limit' => 1]);
+			if(isset($load_old_user['permission']) && $load_old_user['permission'] === 'supervisor')
+			{
+				unset($args['permission']);
+			}
+		}
+
 		return $args;
 	}
 
