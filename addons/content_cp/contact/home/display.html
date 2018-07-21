@@ -89,7 +89,8 @@
 {%endif%}
         </td>
         <td class="collapsing s0">
-          {%if value.meta.mobile%}<a class="sf-phone-square" href='tel:{{value.meta.mobile}}' title='{{value.meta.mobile}}'></a>{%endif%}
+          {%if value.meta.mobile%}<a class="sf-phone-square" href='tel:{{value.meta.mobile}}' title='{{value.meta.mobile}}'></a>
+            <a class="sf-mobile" href='{{url.here}}/sms/send?mobile={{value.meta.mobile}}' title='{{value.meta.mobile}}'></a>{%endif%}
           {%if value.url%}<a class="sf-globe" href='{{value.url}}' title='{{value.url}}'></a>{%endif%}
           {%if value.email%}<a class="sf-envelope" href='mailto:{{value.email}}' title='{{value.email}}'></a>{%endif%}
           {%if value.visitor_id%}<a class="sf-info-circle" href='{{url.here}}/visitor?id={{value.visitor_id}}' title='{%trans "Visitor detail"%}'></a>{%endif%}
