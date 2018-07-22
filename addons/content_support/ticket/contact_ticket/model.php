@@ -3,11 +3,43 @@ namespace content_support\ticket\contact_ticket;
 
 class model
 {
+
+	public static function check_input_time()
+	{
+		$session_name = 'contact_ticket_count';
+		$time         = 60 * 3; // 3 min
+		$count        = 3;      // 3 times
+
+		$count = \dash\session::get($session_name);
+		if($count)
+		{
+			\dash\session::set($session_name, $count + 1, null, $time);
+		}
+		else
+		{
+			\dash\session::set($session_name, 1, null, $time);
+		}
+
+		if($count >= $count && !\dash\permission::supervisor())
+		{
+			\dash\log::db('tryCount>inMins');
+			\dash\notif::error(T_("You hit our maximum try limit."). ' '. T_("Try again later!"));
+			return false;
+		}
+
+		return true;
+	}
+
 	/**
 	 * save contact form
 	 */
 	public static function post()
 	{
+		if(!self::check_input_time())
+		{
+			return false;
+		}
+
 		// get the content
 		$content = \dash\request::post("content");
 
