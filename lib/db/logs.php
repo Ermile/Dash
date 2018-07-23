@@ -245,39 +245,44 @@ class logs
 
 		if(!$_string && empty($_options))
 		{
-			// default return of this function 10 last record of poll
+			// default return of this function 10 last record of search
 			$_options['get_last'] = true;
 		}
 
 		$default_options =
 		[
 			// just return the count record
-			"get_count"      => false,
+			"get_count"         => false,
 			// enable|disable paignation,
-			"pagenation"     => true,
+			"pagenation"        => true,
 			// for example in get_count mode we needless to limit and pagenation
-			// default limit of record is 15
-			// set the limit = null and pagenation = false to get all record whitout limit
-			"limit"          => 15,
+			// default limit of record is 10
+			// set the limit    = null and pagenation = false to get all record whitout limit
+			"limit"             => 10,
 			// for manual pagenation set the statrt_limit and end limit
-			"start_limit"    => 0,
+			"start_limit"       => 0,
 			// for manual pagenation set the statrt_limit and end limit
-			"end_limit"      => 10,
+			"end_limit"         => 10,
 			// the the last record inserted to post table
-			"get_last"       => false,
+			"get_last"          => false,
 			// default order by DESC you can change to DESC
-			"order"          => "DESC",
+			"order"             => "DESC",
+			"order_rand"        => false,
+			"order_raw"         => null,
 			// custom sort by field
-			"sort"           => null,
-			// search in caller
-			"caller"         => null,
-			// search by user
-			"user"           => null,
-			// search by mobile
-			"mobile"         => null,
-			// search by date
-			"date"           => null,
+			"sort"              => null,
+			"search_field"      => null,
+			"public_show_field" => null,
+			"master_join"       => null,
 		];
+
+		// if limit not set and the pagenation is false
+		// remove limit from query to load add record
+		if(!isset($_options['limit']) && array_key_exists('pagenation', $_options) && $_options['pagenation'] === false)
+		{
+			$default_options['limit'] = null;
+			$default_options['end_limit'] = null;
+		}
 
 		$_options = array_merge($default_options, $_options);
 
@@ -288,6 +293,17 @@ class logs
 			$pagenation = true;
 		}
 
+		$master_join = null;
+		if($_options['master_join'])
+		{
+			$master_join = $_options['master_join'];
+		}
+
+		if($_options['order'] && !in_array(mb_strtolower($_options['order']), ['asc', 'desc']))
+		{
+			$_options['order'] = 'DESC';
+		}
+
 		// ------------------ get count
 		$only_one_value = false;
 		$get_count      = false;
@@ -295,14 +311,23 @@ class logs
 		if($_options['get_count'] === true)
 		{
 			$get_count      = true;
-			$public_fields  = " * ";
+			$public_fields  = " COUNT(*) AS 'searchcount' FROM	`logs` $master_join";
 			$limit          = null;
 			$only_one_value = true;
 		}
 		else
 		{
 			$limit         = null;
-			$public_fields = self::$fields;
+			if($_options['public_show_field'])
+			{
+				$public_show_field = $_options['public_show_field'];
+			}
+			else
+			{
+				$public_show_field = " * ";
+			}
+
+			$public_fields = " $public_show_field FROM `logs` $master_join";
 
 			if($_options['limit'])
 			{
@@ -310,21 +335,17 @@ class logs
 			}
 		}
 
-		if(isset($_options['date']) && $_options['date'])
-		{
-			if(mb_strlen($_options['date']) === 8)
-			{
-				$where[] = " DATE(logs.datecreated) = DATE('$_options[date]') ";
-			}
-			else
-			{
-				$where[] = " TIME(logs.datecreated) = TIME('$_options[date]') ";
-			}
-		}
 
 		if($_options['sort'])
 		{
-			$_options['sort'] = $_options['sort'];
+			$temp_sort = null;
+			switch ($_options['sort'])
+			{
+				default:
+					$temp_sort = $_options['sort'];
+					break;
+			}
+			$_options['sort'] = $temp_sort;
 		}
 
 		// ------------------ get last
@@ -337,26 +358,51 @@ class logs
 			}
 			else
 			{
-				$order = " ORDER BY logs.id DESC ";
+				$order = " ORDER BY `logs`.`id` DESC ";
 			}
+		}
+		elseif($_options['order_rand'])
+		{
+			$order = " ORDER BY RAND() ";
 		}
 		else
 		{
 			if($_options['sort'])
 			{
-				$order = " ORDER BY $_options[sort] $_options[order] ";
+				if(!preg_match("/\./", $_options['sort']))
+				{
+					$order = " ORDER BY `$_options[sort]` $_options[order] ";
+				}
+				else
+				{
+					$order = " ORDER BY $_options[sort] $_options[order] ";
+				}
 			}
 			else
 			{
-				$order = " ORDER BY logs.id $_options[order] ";
+				$order = " ORDER BY `logs`.`id` $_options[order] ";
 			}
+		}
+
+		if(isset($_options['order_raw']) && $_options['order_raw'])
+		{
+			$order = " ORDER BY ".  $_options['order_raw'];
 		}
 
 		$start_limit = $_options['start_limit'];
 		$end_limit   = $_options['end_limit'];
 
+		$no_limit = false;
+		if($_options['limit'] === false)
+		{
+			$no_limit = true;
+		}
+
+		$search_field = " ( logs.caller LIKE '%__string__%' OR logs.subdomain LIKE '%__string__%')";
+
 
 		unset($_options['pagenation']);
+		unset($_options['search_field']);
 		unset($_options['get_count']);
 		unset($_options['limit']);
 		unset($_options['start_limit']);
@@ -364,46 +410,51 @@ class logs
 		unset($_options['get_last']);
 		unset($_options['order']);
 		unset($_options['sort']);
-		unset($_options['caller']);
-		unset($_options['user']);
-		unset($_options['date']);
-		unset($_options['mobile']);
+		unset($_options['public_show_field']);
+		unset($_options['master_join']);
+		unset($_options['order_raw']);
 
 		foreach ($_options as $key => $value)
 		{
+			if(!preg_match("/\./", $key))
+			{
+				$fkey = " `$key` ";
+			}
+			else
+			{
+				$fkey = " $key ";
+			}
+
 			if(is_array($value))
 			{
 				if(isset($value[0]) && isset($value[1]) && is_string($value[0]) && is_string($value[1]))
 				{
-					$where[] = " logs.`$key` $value[0] $value[1] ";
+					// for similar "search.`field` LIKE '%valud%'"
+					$where[] = " $fkey $value[0] $value[1] ";
 				}
 			}
 			elseif($value === null)
 			{
-				$where[] = " logs.`$key` IS NULL ";
+				$where[] = " $fkey IS NULL ";
 			}
 			elseif(is_numeric($value))
 			{
-				$where[] = " logs.`$key` = $value ";
+				$where[] = " $fkey = $value ";
 			}
 			elseif(is_string($value))
 			{
-				$where[] = " logs.`$key` = '$value' ";
+				$where[] = " $fkey = '$value' ";
 			}
 		}
 
 		$where = join($where, " AND ");
 		$search = null;
-		if($_string !== null)
+		if($_string !== null && $search_field && !is_array($_string))
 		{
-			$search =
-			"
-				(
-					logitems.caller 	LIKE '%$_string%' OR
-					logitems.data 		LIKE '%$_string%' OR
-					logitems.subdomain 	= '$_string'
-				)
-			";
+			$_string = trim($_string);
+
+			$search = str_replace('__string__', $_string, $search_field);
+			// "($search_field LIKE '%$_string%' )";
 
 			if($where)
 			{
@@ -422,8 +473,9 @@ class logs
 
 		if($pagenation && !$get_count)
 		{
-			$pagenation_query = "SELECT * FROM logs $where $search ";
+			$pagenation_query = "SELECT	COUNT(*) AS `count`	FROM `logs` $master_join	$where $search ";
 			$pagenation_query = \dash\db::get($pagenation_query, 'count', true, self::get_db_log_name());
+
 			list($limit_start, $limit) = \dash\db::pagnation((int) $pagenation_query, $limit);
 			$limit = " LIMIT $limit_start, $limit ";
 		}
@@ -436,7 +488,13 @@ class logs
 			}
 		}
 
-		$query = " SELECT $public_fields FROM `logs` $where $search $order $limit";
+		$json = json_encode(func_get_args());
+		if($no_limit)
+		{
+			$limit = null;
+		}
+
+		$query = "SELECT $public_fields $where $search $order $limit";
 
 		if(!$only_one_value)
 		{
@@ -445,7 +503,7 @@ class logs
 		}
 		else
 		{
-			$result = \dash\db::get($query, 'logcount', true, self::get_db_log_name());
+			$result = \dash\db::get($query, 'searchcount', true, self::get_db_log_name());
 		}
 
 		return $result;

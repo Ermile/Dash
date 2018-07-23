@@ -35,6 +35,26 @@ class view
 			$args['status'] = \dash\request::get('status');
 		}
 
+		if(\dash\request::get('subdomain'))
+		{
+			$args['subdomain'] = \dash\request::get('subdomain');
+		}
+
+		if(\dash\request::get('caller'))
+		{
+			$args['caller'] = $_GET['caller'];
+		}
+
+		if(\dash\request::get('user_id'))
+		{
+			$args['user_id'] = \dash\request::get('user_id');
+		}
+
+		if(\dash\request::get('data'))
+		{
+			$args['data'] = \dash\request::get('data');
+		}
+
 		if(!$args['order'])
 		{
 			$args['order'] = 'DESC';
@@ -44,6 +64,7 @@ class view
 		{
 			$args['sort'] = 'id';
 		}
+
 
 		$dataTable = \dash\db\logs::search(\dash\request::get('q'), $args);
 		// var_dump($dataTable);exit();
