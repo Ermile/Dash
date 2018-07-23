@@ -45,8 +45,11 @@ class view
 		{
 			if(\dash\permission::supervisor())
 			{
-				\dash\data::getMobile(null);
-				\dash\data::getUsernamemobile(null);
+				if(!\dash\request::get('mobile'))
+				{
+					\dash\data::getMobile(null);
+					\dash\data::getUsernamemobile(null);
+				}
 			}
 		}
 
