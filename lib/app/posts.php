@@ -433,6 +433,8 @@ class posts
 
 	public static function set_post_term($_post_id, $_type, $_related = 'posts')
 	{
+		$have_term_to_save_log = false;
+
 		$category = \dash\app::request($_type);
 
 		$check_all_is_cat = null;
@@ -490,7 +492,7 @@ class posts
 						'language' => \dash\language::current(),
 					];
 				}
-
+				$have_term_to_save_log = true;
 				$first_id    = \dash\db\terms::multi_insert($multi_insert_tag);
 				$all_tags_id = array_merge($all_tags_id, \dash\db\config::multi_insert_id($multi_insert_tag, $first_id));
 			}
@@ -549,6 +551,7 @@ class posts
 			}
 			if(!empty($insert_multi))
 			{
+				$have_term_to_save_log = true;
 				\dash\db\termusages::insert_multi($insert_multi);
 			}
 		}
@@ -559,6 +562,8 @@ class posts
 			$must_remove = array_unique($must_remove);
 
 			$must_remove = implode(',', $must_remove);
+
+			\dash\log::db('removePostTerm', ['data' => $_type, 'datalink' => \dash\coding::encode($_post_id)]);
 			\dash\db\termusages::hard_delete(['related_id' => $_post_id, 'related' => $_related, 'term_id' => ["IN", "($must_remove)"]]);
 		}
 
@@ -570,7 +575,11 @@ class posts
 			$new_url = isset($check_all_is_cat[0]['url']) ? $check_all_is_cat[0]['url'] : null;
 		}
 
-		\dash\log::db('setPostTerm', ['data' => $_type, 'datalink' => \dash\coding::encode($_post_id)]);
+		if($have_term_to_save_log)
+		{
+			\dash\log::db('setPostTerm', ['data' => $_type, 'datalink' => \dash\coding::encode($_post_id)]);
+		}
+
 		return $new_url;
 
 

@@ -300,6 +300,8 @@ class telegram
 				\dash\db\logs::set("telegram:curl", null, ['meta' => ['response' => $response, 'http_code' => $mycode, 'args' => func_get_args()]]);
 			}
 		}
+
+		\dash\log::db('telegramSend');
 	}
 
 
