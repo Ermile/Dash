@@ -32,6 +32,7 @@ class utility
 			{
 				if(\dash\utility\passwords::is_crazy($raw_password))
 				{
+					\dash\log::db('useCreazyPassword');
 					\dash\notif::error(T_("This password is very simple and guessable, please use stronger password!"));
 					return false;
 				}

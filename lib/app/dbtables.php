@@ -11,7 +11,7 @@ class dbtables
 	use \dash\app\dbtables\add;
 	use \dash\app\dbtables\edit;
 	use \dash\app\dbtables\datalist;
-	// use \dash\app\dbtables\dashboard;
+
 
 	public static function get_field()
 	{

@@ -46,7 +46,7 @@ class user
 		$mobile = trim($mobile);
 		if($mobile && !($mobile = \dash\utility\filter::mobile($mobile)))
 		{
-			if($_option['save_log']) \dash\app::log('addon:api:user:mobile:invalid', \dash\user::id(), $log_meta);
+			// if($_option['save_log']) \dash\app::log('addon:api:user:mobile:invalid', \dash\user::id(), $log_meta);
 			if($_option['debug']) \dash\notif::error(T_("Mobile is incorrect"), 'mobile');
 			return false;
 		}
@@ -56,7 +56,7 @@ class user
 		$displayname = trim($displayname);
 		if($displayname && mb_strlen($displayname) > 50)
 		{
-			if($_option['save_log']) \dash\app::log('addon:api:user:displayname:max:length', \dash\user::id(), $log_meta);
+			// if($_option['save_log']) \dash\app::log('addon:api:user:displayname:max:length', \dash\user::id(), $log_meta);
 			if($_option['debug']) \dash\notif::error(T_("You can set the displayname less than 50 character"), 'displayname');
 			return false;
 		}
@@ -66,7 +66,7 @@ class user
 		$title = trim($title);
 		if($title && mb_strlen($title) > 50)
 		{
-			if($_option['save_log']) \dash\app::log('addon:api:user:title:max:length', \dash\user::id(), $log_meta);
+			// if($_option['save_log']) \dash\app::log('addon:api:user:title:max:length', \dash\user::id(), $log_meta);
 			if($_option['debug']) \dash\notif::error(T_("You can set the title less than 50 character"), 'title');
 			return false;
 		}
@@ -76,7 +76,7 @@ class user
 		$avatar = trim($avatar);
 		if($avatar && !is_string($avatar))
 		{
-			if($_option['save_log']) \dash\app::log('addon:api:user:avatar:not:string', \dash\user::id(), $log_meta);
+			// if($_option['save_log']) \dash\app::log('addon:api:user:avatar:not:string', \dash\user::id(), $log_meta);
 			if($_option['debug']) \dash\notif::error(T_("Invalid parameter avatar"), 'avatar');
 			return false;
 		}
@@ -85,7 +85,7 @@ class user
 		$status = \dash\app::request('status');
 		if($status && !in_array($status, ['active','awaiting','deactive','removed','filter','unreachable']))
 		{
-			if($_option['save_log']) \dash\app::log('addon:api:user:status:invalid', \dash\user::id(), $log_meta);
+			// if($_option['save_log']) \dash\app::log('addon:api:user:status:invalid', \dash\user::id(), $log_meta);
 			if($_option['debug']) \dash\notif::error(T_("Invalid parameter status"), 'status');
 			return false;
 		}
@@ -94,7 +94,7 @@ class user
 		$gender = \dash\app::request('gender');
 		if($gender && !in_array($gender, ['male', 'female']))
 		{
-			if($_option['save_log']) \dash\app::log('addon:api:user:gender:invalid', \dash\user::id(), $log_meta);
+			// if($_option['save_log']) \dash\app::log('addon:api:user:gender:invalid', \dash\user::id(), $log_meta);
 			if($_option['debug']) \dash\notif::error(T_("Invalid gender field"), 'gender');
 			return false;
 		}
@@ -103,7 +103,7 @@ class user
 		$type = trim($type);
 		if($type && mb_strlen($type) > 50)
 		{
-			if($_option['save_log']) \dash\app::log('addon:api:user:type:max:length', \dash\user::id(), $log_meta);
+			// if($_option['save_log']) \dash\app::log('addon:api:user:type:max:length', \dash\user::id(), $log_meta);
 			if($_option['debug']) \dash\notif::error(T_("You must set the type less than 50 character"), 'type');
 			return false;
 		}
@@ -115,7 +115,7 @@ class user
 		$email = trim($email);
 		if($email && mb_strlen($email) > 50)
 		{
-			if($_option['save_log']) \dash\app::log('addon:api:user:email:max:lenght', \dash\user::id(), $log_meta);
+			// if($_option['save_log']) \dash\app::log('addon:api:user:email:max:lenght', \dash\user::id(), $log_meta);
 			if($_option['debug']) \dash\notif::error(T_("Email is incorrect"), 'email');
 			return false;
 		}
@@ -124,7 +124,7 @@ class user
 		$parent = \dash\coding::decode($parent);
 		if(!$parent && \dash\app::request('parent'))
 		{
-			if($_option['save_log']) \dash\app::log('addon:api:user:parent:max:lenght', \dash\user::id(), $log_meta);
+			// if($_option['save_log']) \dash\app::log('addon:api:user:parent:max:lenght', \dash\user::id(), $log_meta);
 			if($_option['debug']) \dash\notif::error(T_("Parent is incorrect"), 'parent');
 			return false;
 		}
@@ -147,7 +147,7 @@ class user
 			}
 			else
 			{
-				if($_option['save_log']) \dash\app::log('addon:api:user:permission:max:lenght', \dash\user::id(), $log_meta);
+				// if($_option['save_log']) \dash\app::log('addon:api:user:permission:max:lenght', \dash\user::id(), $log_meta);
 				if($_option['debug']) \dash\notif::error(T_("Permission is incorrect"), 'permission');
 				return false;
 			}
@@ -157,7 +157,7 @@ class user
 		$username = trim($username);
 		if($username && mb_strlen($username) > 50)
 		{
-			if($_option['save_log']) \dash\app::log('addon:api:user:username:max:lenght', \dash\user::id(), $log_meta);
+			// if($_option['save_log']) \dash\app::log('addon:api:user:username:max:lenght', \dash\user::id(), $log_meta);
 			if($_option['debug']) \dash\notif::error(T_("Username is incorrect"), 'username');
 			return false;
 		}
@@ -165,7 +165,7 @@ class user
 		$pin = \dash\app::request('pin');
 		if(($pin && mb_strlen($pin) > 4) || ($pin && !is_numeric($pin)))
 		{
-			if($_option['save_log']) \dash\app::log('addon:api:user:pin:max:lenght', \dash\user::id(), $log_meta);
+			// if($_option['save_log']) \dash\app::log('addon:api:user:pin:max:lenght', \dash\user::id(), $log_meta);
 			if($_option['debug']) \dash\notif::error(T_("Pin is incorrect"), 'pin');
 			return false;
 		}
@@ -174,7 +174,7 @@ class user
 		$ref = \dash\coding::decode($ref);
 		if(!$ref && \dash\app::request('ref'))
 		{
-			if($_option['save_log']) \dash\app::log('addon:api:user:ref:max:lenght', \dash\user::id(), $log_meta);
+			// if($_option['save_log']) \dash\app::log('addon:api:user:ref:max:lenght', \dash\user::id(), $log_meta);
 			if($_option['debug']) \dash\notif::error(T_("Ref is incorrect"), 'ref');
 			return false;
 		}
@@ -189,7 +189,7 @@ class user
 		$unit_id = \dash\app::request('unit_id');
 		if($unit_id && !is_numeric($unit_id))
 		{
-			if($_option['save_log']) \dash\app::log('addon:api:user:unit_id:max:lenght', \dash\user::id(), $log_meta);
+			// if($_option['save_log']) \dash\app::log('addon:api:user:unit_id:max:lenght', \dash\user::id(), $log_meta);
 			if($_option['debug']) \dash\notif::error(T_("Unit id is incorrect"), 'unit_id');
 			return false;
 		}
@@ -197,7 +197,7 @@ class user
 		$language = \dash\app::request('language');
 		if($language && !\dash\language::check($language))
 		{
-			if($_option['save_log']) \dash\app::log('addon:api:user:language:max:lenght', \dash\user::id(), $log_meta);
+			// if($_option['save_log']) \dash\app::log('addon:api:user:language:max:lenght', \dash\user::id(), $log_meta);
 			if($_option['debug']) \dash\notif::error(T_("Language is incorrect"), 'language');
 			return false;
 		}

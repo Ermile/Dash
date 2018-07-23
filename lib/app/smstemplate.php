@@ -85,7 +85,7 @@ class smstemplate
 		$list[$_args['name']] = $_args['text'];
 		$addr                 = root.'/includes/smstemplate/list.json';
 		$list                 = json_encode($list, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-
+		\dash\log::db('setSmsTemplate');
 		\dash\file::write($addr, $list);
 
 		return true;
@@ -105,6 +105,7 @@ class smstemplate
 		$addr                 = root.'/includes/smstemplate/list.json';
 		$list                 = json_encode($list, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 
+		\dash\log::db('removeSmsTemplate');
 		\dash\file::write($addr, $list);
 
 		return true;

@@ -74,6 +74,7 @@ trait add
 			return false;
 		}
 
+
 		if($args['type'] === 'post')
 		{
 			self::set_post_term($post_id, 'tag');
@@ -95,6 +96,7 @@ trait add
 		}
 
 		$return['post_id'] = \dash\coding::encode($post_id);
+		\dash\log::db('addNewPost', ['data' => $post_id, 'datalink' => $return['post_id']]);
 
 		if(\dash\engine\process::status())
 		{

@@ -96,7 +96,7 @@ class file
 		{
 			$url = \dash\url::site(). '/'. $file_detail['url'];
 		}
-
+		\dash\log::db('uploadFile', ['data' => $file_id_code, 'datalink' => $url]);
 		return ['code' => $file_id_code, 'url' => $url];
 	}
 }

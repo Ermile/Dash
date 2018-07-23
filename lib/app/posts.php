@@ -75,7 +75,7 @@ class posts
 		}
 
 		$meta = json_encode($meta, JSON_UNESCAPED_UNICODE);
-
+		\dash\log::db('addPostGallery', ['data' => $post_id, 'datalink' => \dash\coding::encode($post_id)]);
 		\dash\db\posts::update(['meta' => $meta], $post_id);
 		return true;
 
@@ -570,6 +570,7 @@ class posts
 			$new_url = isset($check_all_is_cat[0]['url']) ? $check_all_is_cat[0]['url'] : null;
 		}
 
+		\dash\log::db('setPostTerm', ['data' => $_type, 'datalink' => \dash\coding::encode($_post_id)]);
 		return $new_url;
 
 

@@ -134,7 +134,7 @@ class option
 
 		if($_sub_key)
 		{
-			self::$_var[$_key][$_sub_key] = $_value;
+			self::$$_var[$_key][$_sub_key] = $_value;
 		}
 		else
 		{
