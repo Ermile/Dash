@@ -31,7 +31,7 @@ class view
 		{
 			\dash\utility\git::gitdiff(root);
 			$gitdiff = \dash\temp::get('git_diff_change');
-			var_dump($gitdiff);exit();
+
 			if(!$gitdiff)
 			{
 				// no change
