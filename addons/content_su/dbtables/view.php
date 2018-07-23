@@ -7,6 +7,8 @@ class view
 	{
 		\dash\data::page_title(T_("Database raw table data"));
 
+		\dash\log::db('showDataTableRaw');
+
 		// add back level to summary link
 		$product_list_link        =  T_('Database raw table');
 		\dash\data::page_desc(\dash\data::page_desc() . ' | '. $product_list_link);

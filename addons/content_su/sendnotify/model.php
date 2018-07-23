@@ -64,7 +64,6 @@ class model
 			\dash\notif::error(T_("No message was sended"));
 			return false;
 		}
-
 		$user         = \dash\request::get('user');
 		$detail       = self::connection_way($user);
 		$email        = (\dash\request::post('email') && isset($detail['way']['email'])) 					? $detail['way']['email'] 			: null;
@@ -75,6 +74,8 @@ class model
 		$notification = (\dash\request::post('notification')) ? true : false;
 		$mobile       = (\dash\request::post('mobile') && isset($detail['way']['mobile'])) 				? $detail['way']['mobile'] 			: null;
 		$user_id      = $detail['user_id'];
+
+		\dash\log::db('sendnotify', ['data' => $user_id ]);
 
 		if($notification && $user_id)
 		{

@@ -24,6 +24,7 @@ class view
 		$result['session.name']            = ini_get('session.name');
 
 
+		\dash\log::db('loadServerInfo');
 
 
 		\dash\data::phpIniInfo($result);

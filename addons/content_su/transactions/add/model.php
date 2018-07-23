@@ -12,7 +12,7 @@ class model
 	{
 		$id = \dash\request::get('id');
 
-
+		\dash\log::db('addTransactionManualy');
 		if(!is_numeric($id))
 		{
 			$id = null;

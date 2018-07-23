@@ -5,6 +5,7 @@ class controller
 {
 	public static function routing()
 	{
+		\dash\log::db('extractPermission');
 		\dash\utility\permissionlist::extract();
 		\dash\code::boom();
 	}

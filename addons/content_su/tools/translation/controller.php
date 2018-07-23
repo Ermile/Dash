@@ -10,6 +10,7 @@ class controller
 
 		if($mypath)
 		{
+			\dash\log::db('translationRun');
 			if($mypath === 'all')
 			{
 				echo \dash\utility\twigTrans::extract('current', $myupdate);
