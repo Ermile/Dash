@@ -209,6 +209,7 @@ class git
 
 	public static function gitdiff($_location)
 	{
+		\dash\temp::set('git_diff_change', true);
 		if(!self::$baseLocation)
 		{
 			// if have not baseLocation get the value of this
@@ -235,7 +236,7 @@ class git
 			if(!$result || !is_array($result))
 			{
 				$output     = T_('NO change!');
-				\dash\temp::set('git_diff_change', 0);
+				\dash\temp::set('git_diff_change', false);
 			}
 
 			foreach ($result as $line)
