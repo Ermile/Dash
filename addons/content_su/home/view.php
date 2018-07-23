@@ -27,11 +27,12 @@ class view
 		\dash\utility\git::gitdiff($location);
 		$gitdiff = \dash\temp::get('git_diff_change');
 
-		if($gitdiff === 0)
+		if(!$gitdiff)
 		{
 			\dash\utility\git::gitdiff(root);
 			$gitdiff = \dash\temp::get('git_diff_change');
-			if($gitdiff === 0)
+			var_dump($gitdiff);exit();
+			if(!$gitdiff)
 			{
 				// no change
 			}
