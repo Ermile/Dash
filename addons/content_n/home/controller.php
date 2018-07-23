@@ -36,6 +36,7 @@ class controller
 			\dash\redirect::to(\dash\url::base());
 		}
 
+		\dash\log::db('newCodeRedirect');
 
 		\dash\redirect::to(\dash\url::base().'/'. $load_post['language']. '/'. $load_post['url']);
 

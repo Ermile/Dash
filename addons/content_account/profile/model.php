@@ -82,6 +82,7 @@ class model
 
 		if(\dash\engine\process::status())
 		{
+			\dash\log::db('editProfile');
 			\dash\user::refresh();
 			\dash\redirect::pwd();
 		}

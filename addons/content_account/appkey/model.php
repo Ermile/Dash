@@ -16,6 +16,7 @@ class model
 			$check = \dash\utility\appkey::create_app_key(\dash\user::id());
 			if($check)
 			{
+				\dash\log::db('createNewApiKey');
 				\dash\notif::ok(T_("Creat new api key successfully complete"));
 				\dash\redirect::pwd();
 			}
