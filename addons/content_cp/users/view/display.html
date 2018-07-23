@@ -22,7 +22,16 @@
             {%elseif key == 'mobile'%}
               <tr class="f-{{key}} positive">
                 <th>{%trans key%}</th>
-                <td class="ltr"><a href="tel:{{value}}"><i class="sf-mobile"></i> {{value | fitNumber('mobile12')}}</a></td>
+                <td class="ltr">
+                  <a href="tel:{{value}}"><i class="sf-mobile"></i> {{value | fitNumber('mobile12')}}</a>
+      {%if perm('cpSmsSend') %}
+                  <br>
+                  <a class="btn" href="{{url.here}}/sms/send?mobile={{value}}"><i class="sf-envelope"></i> {%trans "Send SMS"%}</a>
+      {%endif%}
+      {%if perm_su() %}
+                  <a class="btn" href="{{url.base}}/enter?mobile={{value}}"><i class="sf-user"></i> {%trans "Enter"%}</a>
+      {%endif%}
+                </td>
               </tr>
             {%else%}
               <tr class="f-{{key}} {%if key == 'username' or key == 'mobile'%}positive{%endif%}">
