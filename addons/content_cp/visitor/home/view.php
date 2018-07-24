@@ -30,31 +30,6 @@ class view
 			'order' => \dash\request::get('order'),
 		];
 
-		if(\dash\request::get('status'))
-		{
-			$args['status'] = \dash\request::get('status');
-		}
-
-		if(\dash\request::get('subdomain'))
-		{
-			$args['subdomain'] = \dash\request::get('subdomain');
-		}
-
-		if(\dash\request::get('caller'))
-		{
-			$args['caller'] = $_GET['caller'];
-		}
-
-		if(\dash\request::get('user_id'))
-		{
-			$args['user_id'] = \dash\request::get('user_id');
-		}
-
-		if(\dash\request::get('data'))
-		{
-			$args['data'] = \dash\request::get('data');
-		}
-
 		if(!$args['order'])
 		{
 			$args['order'] = 'DESC';
@@ -64,6 +39,17 @@ class view
 		{
 			$args['sort'] = 'visitors.id';
 		}
+
+		if(\dash\request::get('url')) $args['urls.url'] = $_GET['url'];
+		if(\dash\request::get('domain')) $args['urls.domain'] = $_GET['domain'];
+		if(\dash\request::get('query')) $args['urls.query'] = $_GET['query'];
+		if(\dash\request::get('service_id')) $args['visitors.service_id'] = $_GET['service_id'];
+		if(\dash\request::get('visitor_ip')) $args['visitors.visitor_ip'] = $_GET['visitor_ip'];
+		if(\dash\request::get('user_id')) $args['visitors.user_id'] = $_GET['user_id'];
+		if(\dash\request::get('external')) $args['visitors.external'] = $_GET['external'];
+		if(\dash\request::get('date')) $args['visitors.date'] = $_GET['date'];
+		if(\dash\request::get('ref_url')) $args['referer.url'] = $_GET['ref_url'];
+		if(\dash\request::get('ref_pwd')) $args['referer.pwd'] = $_GET['ref_pwd'];
 
 
 		$dataTable = \dash\db\visitors::search(\dash\request::get('q'), $args);

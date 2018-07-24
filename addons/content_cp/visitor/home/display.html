@@ -71,17 +71,17 @@
 
     <tbody>
       {%for key, value in dataTable%}
-      <tr class="{%if value.status=='deleted'%}negative{%elseif value.status=='draft'%}warning{%endif%}">
-        <td>{{value.url}}</td>
-        <td>{{value.domain}}</td>
-        <td>{{value.query}}</td>
-        <td>{{value.service_id}}</td>
-        <td>{{value.visitor_ip}}</td>
-        <td>{{value.user_id}}</td>
-        <td>{{value.external}}</td>
-        <td>{{value.date}}</td>
-        <td>{{value.ref_url}}</td>
-        <td>{{value.ref_pwd}}</td>
+      <tr>
+        <td><a href="{{url.this}}?url={{value.url}}">{{value.url}}</a></td>
+        <td><a href="{{url.this}}?domain={{value.domain}}">{{value.domain}}</a></td>
+        <td><a href="{{url.this}}?query={{value.query}}">{{value.query}}</a></td>
+        <td><a href="{{url.this}}?service_id={{value.service_id}}">{{value.service_id}}</a></td>
+        <td><a href="{{url.this}}?visitor_ip={{value.visitor_ip}}">{{value.visitor_ip}}</a></td>
+        <td><a href="{{url.this}}?user_id={{value.user_id}}">{{value.user_id}}</a></td>
+        <td><a href="{{url.this}}?external={{value.external}}">{{value.external}}</a></td>
+        <td><a href="{{url.this}}?date={{value.date}}">{{value.date}}</a></td>
+        <td><a href="{{url.this}}?ref_url={{value.ref_url}}">{{value.ref_url}}</a></td>
+        <td><a href="{{url.this}}?ref_pwd={{value.ref_pwd}}">{{value.ref_pwd}}</a></td>
       </tr>
       {%endfor%}
     </tbody>
@@ -94,7 +94,7 @@
 {%block htmlFilter%}
 <p class="f fs14 msg info2">
   <span class="c">{{dataFilter | raw}}</span>
-  <a class="cauto" href="{{url.here}}/log{{moduleType}}">{%trans "Clear filters"%}</a>
+  <a class="cauto" href="{{url.here}}/visitor{{moduleType}}">{%trans "Clear filters"%}</a>
 </p>
 {%endblock%}
 
@@ -102,13 +102,13 @@
 {%block htmlFilterNoResult%}
 <p class="f fs14 msg warn2">
   <span class="c">{%trans "Result not found!"%} {%trans "Search with new keywords."%}</span>
-  <a class="cauto" href="{{url.here}}/log{{moduleType}}">{%trans "Clear filters"%}</a>
+  <a class="cauto" href="{{url.here}}/visitor{{moduleType}}">{%trans "Clear filters"%}</a>
 </p>
 {%endblock%}
 
 
 {%block htmlStartAddNew%}
-<p class="fs14 msg success2 pTB20">{%trans "Hi!"%} <a href="{{url.here}}/log/add{{moduleType}}">{%trans "Try to start with add new record!"%}</a></p>
+<p class="fs14 msg success2 pTB20">{%trans "Hi!"%} <a href="{{url.here}}/visitor/add{{moduleType}}">{%trans "Try to start with add new record!"%}</a></p>
 {%endblock%}
 
 
@@ -119,7 +119,7 @@
   <div class="f">
 
    <div class="c">
-    <a class="dcard {%if requestGET.status == 'publishde' or not requestGET.status %}active{%endif%}" href='{{url.this}}{%if requestGET.type%}?type={{requestGET.type}}{%endif%}' data-shortkey="49ctrlshift" title='{%trans "All publish log"%}'>
+    <a class="dcard {%if requestGET.status == 'publishde' or not requestGET.status %}active{%endif%}" href='{{url.this}}{%if requestGET.type%}?type={{requestGET.type}}{%endif%}' data-shortkey="49ctrlshift" title='{%trans "All publish visitor"%}'>
      <div class="statistic">
       <div class="value"><i class="sf-publish"></i></div>
       <div class="label">{%trans "Published"%} <kbd class=" hide mT5">Shift+1</kbd></div>
@@ -128,7 +128,7 @@
    </div>
 
    <div class="c">
-    <a class="dcard {%if requestGET.status == 'draft' %}active{%endif%}" href='{{url.this}}?status=draft{%if requestGET.type%}&type={{requestGET.type}}{%endif%}' data-shortkey="50ctrlshift" title='{%trans "All draft log"%}'>
+    <a class="dcard {%if requestGET.status == 'draft' %}active{%endif%}" href='{{url.this}}?status=draft{%if requestGET.type%}&type={{requestGET.type}}{%endif%}' data-shortkey="50ctrlshift" title='{%trans "All draft visitor"%}'>
      <div class="statistic">
       <div class="value"><i class="sf-edit"></i></div>
       <div class="label">{%trans "Draft"%} <kbd class=" hide mT5">Shift+2</kbd></div>
@@ -137,7 +137,7 @@
    </div>
 
    <div class="c">
-    <a class="dcard {%if requestGET.status == 'deleted' %}active{%endif%}" href='{{url.this}}?status=deleted{%if requestGET.type%}&type={{requestGET.type}}{%endif%}' data-shortkey="51ctrlshift" title='{%trans "All trash log"%}'>
+    <a class="dcard {%if requestGET.status == 'deleted' %}active{%endif%}" href='{{url.this}}?status=deleted{%if requestGET.type%}&type={{requestGET.type}}{%endif%}' data-shortkey="51ctrlshift" title='{%trans "All trash visitor"%}'>
      <div class="statistic">
       <div class="value"><i class="sf-trash"></i></div>
       <div class="label">{%trans "Deleted"%} <kbd class=" hide mT5">Shift+2</kbd></div>

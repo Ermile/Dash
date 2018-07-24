@@ -1,5 +1,5 @@
 <?php
-namespace content_cp\visitor;
+namespace content_cp\visitor\chart;
 
 class view
 {
