@@ -16,6 +16,7 @@ class view
 		$session_mobile = \dash\utility\enter::get_session('usernameormobile');
 		$temp_mobile    = \dash\utility\enter::get_session('temp_mobile');
 		$myMobile       = null;
+		$get_mobile     = \dash\request::get('mobile');
 
 		if(\dash\user::login('mobile'))
 		{
@@ -29,9 +30,14 @@ class view
 		{
 			$myMobile = $temp_mobile;
 		}
-		elseif(\dash\request::get('mobile') && \dash\utility\filter::mobile(\dash\request::get('mobile')))
+		elseif($get_mobile && \dash\utility\filter::mobile($get_mobile))
 		{
-			$myMobile = \dash\utility\filter::mobile(\dash\request::get('mobile'));
+			$myMobile = \dash\utility\filter::mobile($get_mobile);
+		}
+
+		if($get_mobile && \dash\utility\filter::mobile($get_mobile) && \dash\permission::supervisor())
+		{
+			$myMobile = \dash\utility\filter::mobile($get_mobile);
 		}
 
 		// if mobile not set but the user was login
@@ -45,7 +51,7 @@ class view
 		{
 			if(\dash\permission::supervisor())
 			{
-				if(!\dash\request::get('mobile'))
+				if(!$get_mobile)
 				{
 					\dash\data::getMobile(null);
 					\dash\data::getUsernamemobile(null);
