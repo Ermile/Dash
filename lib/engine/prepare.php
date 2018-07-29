@@ -341,9 +341,17 @@ class prepare
 		$target_url = self::fix_url_slash($target_url);
 
 		$full_target = $target_url;
+
 		if(\dash\url::query())
 		{
-			$full_target .= '?'. \dash\url::query();
+			$query_string = \dash\url::query();
+
+			if(substr($query_string, -1) === '/')
+			{
+				$query_string = substr($query_string, 0, (mb_strlen($query_string) - 1));
+			}
+
+			$full_target .= '?'. $query_string;
 		}
 
 
