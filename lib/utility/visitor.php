@@ -14,6 +14,8 @@ class visitor
 	private static $link;
 	private static $result;
 	private static $external;
+	private static $saved_query;
+	private static $saved_query_result;
 
 
 	public static function id()
@@ -180,9 +182,18 @@ class visitor
 			return null;
 		}
 
-		$query     = "SELECT * FROM $_table WHERE $_field = '$_value' LIMIT 1";
-		// run query and save result
-		$result  = \dash\db::get($query, null, true, db_log_name);
+		$query = "SELECT * FROM $_table WHERE $_field = '$_value' LIMIT 1";
+
+		if($query == self::$saved_query)
+		{
+			$result = self::$saved_query_result;
+		}
+		else
+		{
+			self::$saved_query = $query;
+			// run query and save result
+			self::$saved_query_result = $result = \dash\db::get($query, null, true, db_log_name);
+		}
 
 		if(isset($result['id']))
 		{
@@ -220,13 +231,13 @@ class visitor
 			if($_fn === 'referer')
 			{
 				$url                  = self::referer(false);
-				$url                  = urldecode($url);
 
 				if(!$url)
 				{
 					return null;
 				}
 
+				$url                  = urldecode($url);
 				$insert_url['domain'] = addslashes(parse_url($url, PHP_URL_SCHEME). '://'. parse_url($url, PHP_URL_HOST));
 				$insert_url['query']  = strpos($url, '?') ? addslashes(substr($url, strpos($url, '?'))) : null;
 				$insert_url['url']    = addslashes(strtok(str_replace(\dash\url::protocol(). '://'. $insert_url['domain'], '', $url), '?'));
@@ -367,12 +378,13 @@ class visitor
 			self::$external = 1;
 		}
 
+		if(!$referer)
+		{
+			return null;
+		}
+
 		if($_md5)
 		{
-			if(!$referer)
-			{
-				return null;
-			}
 			return md5($referer);
 		}
 
