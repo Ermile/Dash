@@ -11,6 +11,8 @@ class view
 		$result['curl']                    = function_exists('curl_version');
 		$result['zip']                     = class_exists("ZipArchive");
 		$result['max_execution_time']      = ini_get('max_execution_time');
+		$result['upload_max_filesize']     = ini_get('upload_max_filesize');
+		$result['post_max_size']           = ini_get('post_max_size');
 		$result['max_file_uploads']        = ini_get('max_file_uploads');
 		$result['max_input_time']          = ini_get('max_input_time');
 		$result['max_input_vars']          = ini_get('max_input_vars');
