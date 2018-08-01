@@ -26,6 +26,10 @@ self::$url['slash'] = false;
 // ----- debug
 self::$config['debug']         = false;
 
+// max upload file size
+// byte
+// self::$config['max_upload'] = 100 * 1024 * 1024; // 100 MB;
+
 
 self::$config['site']['title']  = "Ermile Dash";
 self::$config['site']['desc']   = "Another Project with Ermile dash";

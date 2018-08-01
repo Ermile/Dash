@@ -431,7 +431,7 @@ class file
 	 */
 	public static function open($_path, $_options = [])
 	{
-		$max_size = \dash\utility\upload::max_file_upload_in_bytes(true);
+		$max_size = \dash\utility\upload::max_file_upload_size();
 		$default_options =
 		[
 			'read_size' => 1024 * 5, // 5 MB

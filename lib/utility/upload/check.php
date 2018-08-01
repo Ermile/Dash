@@ -63,7 +63,7 @@ trait check
 
 		if(!$_maxSize)
 		{
-			$_maxSize = self::max_file_upload_in_bytes(true);
+			$_maxSize = self::max_file_upload_size();
 		}
 
 		// Check filesize here.

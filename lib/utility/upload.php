@@ -9,7 +9,7 @@ class upload
 	use upload\check;
 
 	// default max size is 10MB
-	const MAX_SIZE = 10000000;
+	public static $max_size = 10000000;
 	public static $fieldName;
 	public static $fileName;
 	public static $fileExt;
@@ -96,7 +96,7 @@ class upload
 				$_filesize = $_filesize / $decr;
 				$step++;
 			}
-			return round($_filesize, 2).' '.$prefix[$step];
+			return \dash\utility\human::fitNumber(round($_filesize, 2)).' '.$prefix[$step];
 		}
 		elseif($_type == 'folder')
 		{
@@ -148,24 +148,32 @@ class upload
 	 * Get max file upload size
 	 * @return [type] return in byte
 	 */
-	public static function max_file_upload_in_bytes($_raw = false)
+	public static function max_file_upload_size($_prety = false)
 	{
+
 		//select maximum upload size
 		$max_upload   = self::sp_fileSizeByte(ini_get('upload_max_filesize'));
 		//select post limit
 		$max_post     = self::sp_fileSizeByte(ini_get('post_max_size'));
 		//select memory limit
 		$memory_limit = self::sp_fileSizeByte(ini_get('memory_limit'));
-		// find the smallest of them, this defines the real limit
-		$min = min($max_upload, $max_post, $memory_limit, self::MAX_SIZE);
-		// if user want can get raw value for use in another func
-		if($_raw)
+
+		if(\dash\option::config('max_upload') && is_numeric($max_upload))
 		{
-			return $min;
+			self::$max_size = intval(\dash\option::config('max_upload'));
 		}
 
-		// return the smallest of them in human readable size
-		return self::readableSize($min);
+		// find the smallest of them, this defines the real limit
+		$min = min($max_upload, $max_post, $memory_limit, self::$max_size);
+
+		if($_prety)
+		{
+			// return the smallest of them in human readable size
+			return self::readableSize($min);
+		}
+
+		// if user want can get raw value for use in another func
+		return $min;
 	}
 
 
@@ -251,11 +259,13 @@ class upload
 					'link'      => $link,
 					]);
 
-				return \dash\notif::ok(T_("file successful uploaded"));
+				\dash\notif::ok(T_("file successful uploaded"));
+				return true;
 			}
 			else
 			{
-				return \dash\notif::error(T_('Failed to transfer file while moving to temp'));
+				\dash\notif::error(T_('Failed to transfer file while moving to temp'));
+				return false;
 			}
 		}
 	}
@@ -340,7 +350,7 @@ class upload
 			// the tmp_path
 			'tmp_path'            => implode(DIRECTORY_SEPARATOR, ['files','tmp']). DIRECTORY_SEPARATOR,
 			// use max size remaining
-			'user_size_remaining' => self::MAX_SIZE,
+			'user_size_remaining' => self::max_file_upload_size(),
 			'debug'               => true,
 
 		];
@@ -350,19 +360,22 @@ class upload
 		// check upload name
 		if(!$_options['upload_name'])
 		{
-			return \dash\notif::error(T_("upload name not found"));
+			\dash\notif::error(T_("upload name not found"));
+			return false;
 		}
 
 		// check foler prefix
 		if(!$_options['folder_prefix'])
 		{
-			return \dash\notif::error(T_("folder prefix not found"));
+			\dash\notif::error(T_("folder prefix not found"));
+			return false;
 		}
 
 		// check user id
 		if((!$_options['user_id'] || !is_numeric($_options['user_id'])) && $_options['save_as_tmp'] === false)
 		{
-			return \dash\notif::error(T_("user id not set"));
+			\dash\notif::error(T_("user id not set"));
+			return false;
 		}
 
 		// get the protocol
@@ -392,7 +405,7 @@ class upload
 				case 'https':
 				case 'ftp':
 				case 'sftp':
-					$file_path = \dash\file::open($_options['file_path'], ['MAX_SIZE' => $_options['user_size_remaining']]);
+					$file_path = \dash\file::open($_options['file_path'], ['max_size' => $_options['user_size_remaining']]);
 					break;
 
 				default:
@@ -415,7 +428,8 @@ class upload
 
 		if(self::$fileSize > $_options['user_size_remaining'])
 		{
-			return \dash\notif::error(T_("The size of file is larger than the upload space you have"), 'file', 'size');
+			\dash\notif::error(T_("The size of file is larger than the upload space you have"), 'file', 'size');
+			return false;
 		}
 
 		// save file as tmp in tmp_path
@@ -469,7 +483,8 @@ class upload
 		{
 			if(!\dash\file::rename(self::$upload_from_path, $_options['move_to']. $url_full, true))
 			{
-				return \dash\notif::error(T_('Fail on tranfering file, upload from path'));
+				\dash\notif::error(T_('Fail on tranfering file, upload from path'));
+				return false;
 			}
 			$real_url_full = $_options['move_to']. $url_full;
 
@@ -482,7 +497,8 @@ class upload
 		{
 			if(!self::transfer($url_full, $folder_loc))
 			{
-				return \dash\notif::error(T_('Fail on tranfering file'));
+				\dash\notif::error(T_('Fail on tranfering file'));
+				return false;
 			}
 			$real_url_full = $url_full;
 		}
