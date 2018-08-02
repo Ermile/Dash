@@ -5,7 +5,7 @@ class date
 {
 	private static $lang = null;
 
-	private static function make_time($_time)
+	public static function make_time($_time)
 	{
 		$_time = \dash\utility\convert::to_en_number($_time);
 		if(!$_time)
