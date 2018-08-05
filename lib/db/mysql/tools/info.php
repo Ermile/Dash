@@ -167,6 +167,12 @@ trait info
 			$file_name .= '_addons';
 		}
 
+		$file_url = database;
+		if(!\dash\file::exists($file_url))
+		{
+			\dash\file::makeDir($file_url);
+		}
+
 		$file_url = database. 'version/';
 		if(!\dash\file::exists($file_url))
 		{
