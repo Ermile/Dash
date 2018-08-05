@@ -136,32 +136,33 @@ class twigTransTerms
 	echo T_("Publish time");                                                          // Line 50
 	echo T_("Add to gallery");                                                        // Line 56
 	echo T_("To add image gallery drop file here or");                                // Line 57
-	echo T_("Publish");                                                               // Line 84
+	echo T_("Maximum file size");                                                     // Line 63
+	echo T_("Publish");                                                               // Line 85
 	echo T_("Draft");                                                                 // Line 134
 	echo T_("Deleted");                                                               // Line 143
 	echo T_("Comment");                                                               // Line 42
-	echo T_("You can publish in another language");                                   // Line 111
+	echo T_("You can publish in another language");                                   // Line 112
 	echo T_("Language");                                                              // Line 209
 	echo T_("Please select one item");                                                // Line 28
-	echo T_("Choose parent for this page to create related url as tree");             // Line 127
+	echo T_("Choose parent for this page to create related url as tree");             // Line 128
 	echo T_("Parent");                                                                // Line 77
-	echo T_("Choose Parent");                                                         // Line 130
-	echo T_("Without Parent");                                                        // Line 131
-	echo T_("Choose category for posts is fix url of post relative and help people find it better.");// Line 142
-	echo T_("Choose category of post");                                               // Line 144
+	echo T_("Choose Parent");                                                         // Line 131
+	echo T_("Without Parent");                                                        // Line 132
+	echo T_("Choose category for posts is fix url of post relative and help people find it better.");// Line 143
+	echo T_("Choose category of post");                                               // Line 145
 	echo T_("Click on special tags to use this depending on your website design");    // Line 85
 	echo T_("Tag");                                                                   // Line 94
-	echo T_("Add tag manually to link articles togethers");                           // Line 174
+	echo T_("Add tag manually to link articles togethers");                           // Line 175
 	echo T_("Tag keywords...");                                                       // Line 98
-	echo T_("Add tag");                                                               // Line 176
-	echo T_("Featured Image");                                                        // Line 184
-	echo T_("allowed extentions jpg, png. Max 1000Kb");                               // Line 187
-	echo T_("Gallery");                                                               // Line 202
-	echo T_("Click to download");                                                     // Line 225
-	echo T_("Video");                                                                 // Line 215
-	echo T_("MP3");                                                                   // Line 221
-	echo T_("PDF");                                                                   // Line 223
-	echo T_("Without preview");                                                       // Line 225
+	echo T_("Add tag");                                                               // Line 177
+	echo T_("Featured Image");                                                        // Line 185
+	echo T_("allowed extentions jpg, png. Max 1000Kb");                               // Line 188
+	echo T_("Gallery");                                                               // Line 203
+	echo T_("Click to download");                                                     // Line 226
+	echo T_("Video");                                                                 // Line 216
+	echo T_("MP3");                                                                   // Line 222
+	echo T_("PDF");                                                                   // Line 224
+	echo T_("Without preview");                                                       // Line 226
 	echo T_("Remove");                                                                // Line 101
 
 	//----------------------------------------addons/content_cp/posts/add/display.html
