@@ -5,6 +5,26 @@ namespace dash\app;
 class file
 {
 
+	public static function upload_quick($_upload_name)
+	{
+		if(\dash\request::files($_upload_name))
+		{
+			$uploaded_file = self::upload(['debug' => false, 'upload_name' => $_upload_name]);
+
+			if(isset($uploaded_file['url']))
+			{
+				return $uploaded_file['url'];
+			}
+			// if in upload have error return
+			if(!\dash\engine\process::status())
+			{
+				return false;
+			}
+		}
+		return null;
+	}
+
+
 	public static function upload($_options = [])
 	{
 		\dash\app::variable($_options);
