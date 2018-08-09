@@ -5,15 +5,16 @@ class model
 {
 	public static function post()
 	{
-		$chatid = \dash\request::post('chatid');
-		$text   = \dash\request::post('text');
+		$chatid   = \dash\request::post('chatid');
+		$text     = \dash\request::post('text');
 
-		$myData = ['chat_id' => $chatid, 'text' => $text];
-		$result = \dash\social\telegram\tg::sendMessage($myData);
+		$myData   = ['chat_id' => $chatid, 'text' => $text];
+		$myResult = \dash\social\telegram\tg::sendMessage($myData);
 
+		\dash\session::set('tg_send', $myData);
+		\dash\session::set('tg_response', $myResult);
 
-		var_dump($myData);
-		var_dump($result);
+		\dash\redirect::pwd();
 	}
 }
 ?>
