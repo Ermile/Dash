@@ -1,0 +1,17 @@
+{%extends display.suMain%}
+
+
+
+{%block pageContent%}
+
+<div class="cbox ltr">
+{%for key, value in dataRow%}
+<div class="msg" id="{{key}}">
+	<h4>{{key}}</h4>
+	<pre>{{value}}</pre>
+</div>
+{%endfor%}
+</div>
+
+{%endblock%}
+

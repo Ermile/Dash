@@ -1,0 +1,132 @@
+{%extends display.suMain%}
+
+
+
+{%block pageContent%}
+
+{%if dataTable%}
+ {%if dataFilter%}
+
+  {{block('htmlSearchBox')}}
+  {{block('htmlTable')}}
+  {{block('htmlFilter')}}
+
+ {%else%}
+
+  {{block('htmlSearchBox')}}
+  {{block('htmlTable')}}
+
+ {%endif%}
+{%else%}
+ {%if dataFilter%}
+
+  {{block('htmlSearchBox')}}
+  {{block('htmlFilterNoResult')}}
+
+ {%else%}
+
+  {{block('htmlStartAddNew')}}
+
+ {%endif%}
+{%endif%}
+
+{%endblock%}
+
+
+
+
+{%block htmlSearchBox%}
+<div class="cbox fs12">
+  <form method="get" action='{{url.this}}' data-action>
+    <div class="input">
+      <input type="search" name="q" placeholder='{%trans "Search"%}' id="q" value="{{requestGET.q}}" autofocus autocomplete='off'>
+      {%if requestGET.type%}
+      <input type="hidden" name="type" value="{{requestGET.type}}">
+      {%endif%}
+      <button class="addon btn ">{%trans "Search" %}</button>
+    </div>
+  </form>
+</div>
+{%endblock%}
+
+
+{%block htmlTable%}
+
+ <div class="cbox fs12">
+  <table class="tbl bordered1">
+    <thead class="primary fs09">
+      <tr>
+        <th>id</th>
+        <th>chatid</th>
+        <th>user_id</th>
+        <th>status</th>
+        <th>hook</th>
+        <th>hooktext</th>
+        <th>hookdate</th>
+        <th>step</th>
+        <th>send</th>
+        <th>senddate</th>
+        <th>sendtext</th>
+        <th>response</th>
+        <th>responsedate</th>
+        <th>url</th>
+        <th>hookmessageid</th>
+        <th>sendmesageid</th>
+        <th>sendmethod</th>
+        <th>sendkeyboard</th>
+        <th>meta</th>
+
+      </tr>
+    </thead>
+
+    <tbody>
+      {%for key, value in dataTable%}
+      <tr>
+        <td><a data-direct href="{{url.this}}/logshow?id={{value.id}}" class="badge primary">{{value.id}}</a></td>
+        <td><a href="{{url.this}}/log?chatid={{value.chatid}}">{{value.chatid}}</a></td>
+        <td><a href="{{url.this}}/log?user_id={{value.user_id}}">{{value.user_id}}</a></td>
+        <td><a href="{{url.this}}/log?status={{value.status}}">{{value.status}}</a></td>
+        <td><a data-direct href="{{url.this}}/logshow?id={{value.id}}#hook">{%if value.hook%}<i class="sf-check"></i>{%else%}<i class="sf-times"></i>{%endif%}</a></td>
+        <td><a href="{{url.this}}/log?hooktext={{value.hooktext}}">{{value.hooktext}}</a></td>
+        <td><a href="{{url.this}}/log?hookdate={{value.hookdate}}">{{value.hookdate}}</a></td>
+        <td><a href="{{url.this}}/log?step={{value.step}}">{{value.step}}</a></td>
+        <td><a data-direct href="{{url.this}}/logshow?id={{value.id}}#send">{%if value.send%}<i class="sf-check"></i>{%else%}<i class="sf-times"></i>{%endif%}</a></td>
+        <td><a href="{{url.this}}/log?senddate={{value.senddate}}">{{value.senddate}}</a></td>
+        <td><a href="{{url.this}}/log?sendtext={{value.sendtext}}">{{value.sendtext}}</a></td>
+        <td><a data-direct href="{{url.this}}/logshow?id={{value.id}}#response">{%if value.response%}<i class="sf-check"></i>{%else%}<i class="sf-times"></i>{%endif%}</a></td>
+        <td><a href="{{url.this}}/log?responsedate={{value.responsedate}}">{{value.responsedate}}</a></td>
+        <td><a data-direct href="{{url.this}}/logshow?id={{value.id}}#url">{%if value.url%}<i class="sf-check"></i>{%else%}<i class="sf-times"></i>{%endif%}</a></td>
+        <td><a data-direct href="{{url.this}}/logshow?id={{value.id}}#hookmessageid">{%if value.hookmessageid%}<i class="sf-check"></i>{%else%}<i class="sf-times"></i>{%endif%}</a></td>
+        <td><a data-direct href="{{url.this}}/logshow?id={{value.id}}#sendmesageid">{%if value.sendmesageid%}<i class="sf-check"></i>{%else%}<i class="sf-times"></i>{%endif%}</a></td>
+        <td><a href="{{url.this}}/log?sendmethod={{value.sendmethod}}">{{value.sendmethod}}</a></td>
+        <td><a data-direct href="{{url.this}}/logshow?id={{value.id}}#sendkeyboard">{%if value.sendkeyboard%}<i class="sf-check"></i>{%else%}<i class="sf-times"></i>{%endif%}</a></td>
+        <td><a data-direct href="{{url.this}}/logshow?id={{value.id}}#meta">{%if value.meta%}<i class="sf-check"></i>{%else%}<i class="sf-times"></i>{%endif%}</a></td>
+      </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+  {%include display.pagination%}
+ </div>
+{%endblock%}
+
+
+{%block htmlFilter%}
+<p class="f fs14 msg info2">
+  <span class="c">{{dataFilter | raw}}</span>
+  <a class="cauto" href="{{url.this}}/log">{%trans "Clear filters"%}</a>
+</p>
+{%endblock%}
+
+
+{%block htmlFilterNoResult%}
+<p class="f fs14 msg warn2">
+  <span class="c">{%trans "Result not found!"%} {%trans "Search with new keywords."%}</span>
+  <a class="cauto" href="{{url.this}}/log">{%trans "Clear filters"%}</a>
+</p>
+{%endblock%}
+
+
+{%block htmlStartAddNew%}
+<p class="fs14 msg success2 pTB20">{%trans "Hi!"%} <a href="{{url.this}}/log/add">{%trans "Try to start with add new record!"%}</a></p>
+{%endblock%}
+
