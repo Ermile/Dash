@@ -21,8 +21,8 @@
 
 {%block iOverview%}
 <div class="dcard x4 mB10 {%if tg.info.status%} success{%else%}warn{%endif%}">
-  <h2>{{tg.info.bot}}</h2>
-  <pre class="mT25 txtC">{{tg.info.token}}</pre>
+  <h2><a href="https://t.me/{{tg.info.bot}}" target="_blank">{{tg.info.bot}}</a></h2>
+  <pre class="mT25">{{tg.info.token}}</pre>
 </div>
 {%endblock%}
 
