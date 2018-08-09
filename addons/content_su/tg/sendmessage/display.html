@@ -1,0 +1,21 @@
+{%extends display.suMain%}
+
+{%block pageContent%}
+
+<form class="cbox" method="post">
+  <div class="input ltr mB10">
+    <label for="chatid">{%trans "Chat id or username"%}</label>
+    <input type="text" name="chatid" id="chatid" value="@ErmileSupport" placeholder='{%trans "Unique identifier for the target chat or username of the target channel (in the format @channelusername)"%}'>
+  </div>
+
+  <label for="text">{%trans "Message"%}</label>
+  <textarea class="txt mB10" name="text" id="text" rows="7" placeholder='{%trans "Text of the message to be sent"%}'>{{site.title}}
+
+{{"Now" | jdate("Y-m-d")}}
+{{"Now" | jdate("H:i:s")}}
+</textarea>
+
+  <button class="btn primary block">{%trans "Send"%}</button>
+</form>
+
+{%endblock%}
