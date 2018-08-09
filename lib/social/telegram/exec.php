@@ -1,5 +1,5 @@
 <?php
-namespace lib\telegram;
+namespace dash\social\telegram;
 
 /** telegram execute last commits library**/
 class exec extends tg
