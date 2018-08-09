@@ -1,0 +1,175 @@
+{%extends display.suMain%}
+
+{%block pageContent%}
+
+
+<div class="f mB25">
+  <div class="c3 s12">
+    {{block('iCurrent')}}
+  </div>
+  <div class="c4 s12">
+    {{block('iCurrentVersion')}}
+    {{block('icommitCount')}}
+
+  </div>
+  <div class="c s12">
+    {{block('iLastUpdate')}}
+    {{block('iLocation')}}
+  </div>
+</div>
+
+<div class="f mB50">
+  <div class="c s12">
+    <a class="dcard x2 mB10" href="{{url.site}}">
+      <img src="{{url.site}}/static/images/logo.png" alt='{{site.title}}' class="w100">
+      <h1>{{site.title}}</h1>
+    </a>
+  </div>
+
+  <div class="c3 s6">
+    {{block('iPorjectCommitCount')}}
+  </div>
+  <div class="c4 s6">
+    {{block('iProjectVersion')}}
+  </div>
+</div>
+
+<p class="msg danger fs16 txtC">{%trans "If you dont know about this page, leave it!"%}</p>
+
+<p class="msg danger2 txtC">{%trans "Submit this form carefully"%}</p>
+<div class="f">
+  <div class="c s12">
+    {{block('iUpdateDb')}}
+  </div>
+  <div class="c4 s6">
+    {{block('iDbVersion')}}
+  </div>
+  <div class="c4 s6">
+    {{block('iDbVersionAddon')}}
+  </div>
+</div>
+
+
+{%endblock%}
+
+
+{%block iCurrent%}
+<div class="dcard x4 mB10">
+  <img src="{{url.base}}/static/siftal/images/logo/dash.svg" alt="dash logo" class="pA10-f">
+  <h2>{%trans "Dash"%}</h2>
+  <small>{%trans "If the git password is saved on your server"%}</small>
+  <a target='_blank' class="btn block primary mT10" href="{{url.here}}/update?git=all" title='{%trans "Press it if you are sure!"%}'>{%trans "Update All"%}</a>
+
+  <form method="post" class="f mT10">
+    <input type="hidden" name="update" value="all">
+    <div class="input c">
+      <input type="password" name="gitPass" placeholder='{%trans "Git password"%}'>
+    </div>
+    <button type="submit" class="cauto btn danger">{%trans "Enter git pass"%}</button>
+  </form>
+</div>
+{%endblock%}
+
+
+{%block iLastUpdate%}
+<div class="dcard x2 mB10">
+  <div class="statistic brown" title2='{{dash.lastUpdate}}'>
+    <div class="value"><span>{{dash.lastUpdate | sdate('month')}}</span></div>
+    <div class="label">{%trans "Last update"%}</div>
+  </div>
+</div>
+{%endblock%}
+
+
+{%block iCurrentVersion%}
+<div class="dcard x2 mB10">
+  <div class="statistic teal">
+    <div class="value">{{dash.version | fitNumber(false)}}</div>
+    <div class="label">{%trans "Current Version"%}</div>
+  </div>
+</div>
+{%endblock%}
+
+
+{%block icommitCount%}
+<div class="dcard x2 mB10">
+  <div class="statistic grey">
+    <div class="value"><span>{{dash.commitCount | fitNumber}}</span></div>
+    <div class="label">{%trans "Commits"%}</div>
+  </div>
+  <a target='_blank' class="badge black" href="{{url.here}}/update?git=dash" title='{%trans "Do it if you know it"%}'>{%trans "Update Dash Repository"%}</a>
+</div>
+{%endblock%}
+
+
+{%block iLocation%}
+<div class="dcard x2 mB10">
+  <div class="statistic">
+    <div class="value">{{dashLoc | raw}}</div>
+    <div class="label">{%trans "Dash Engine Location"%}</div>
+  </div>
+</div>
+{%endblock%}
+
+
+{%block iProjectVersion%}
+<div class="dcard x2 mB10">
+  <div class="statistic blue" title='{{dash.projectVersion}}'>
+    <div class="value">{{dash.projectVersion | sdate('month')}}</div>
+    <div class="label">{%trans "Last update"%}</div>
+  </div>
+</div>
+{%endblock%}
+
+{%block iPorjectCommitCount%}
+<div class="dcard x2 mB10">
+  <div class="statistic grey">
+    <div class="value"><span>{{dash.projectCommitCount | fitNumber}}</span></div>
+    <div class="label">{%trans "Commits"%}</div>
+  </div>
+  <a target='_blank' class="badge black" href="{{url.here}}/update?git={{url.root}}" title='{%trans "Do it if you know it"%}'>{%trans "Update Repository"%}</a>
+</div>
+{%endblock%}
+
+{%block iDbVersion%}
+<div class="dcard x2 mB10">
+  <div class="statistic red" title='{{dash.dbVersionDate | date}}'>
+    <div class="value">{{dash.dbVersion | fitNumber(false)}}</div>
+    <div class="label">{%trans "Project database"%}</div>
+  </div>
+</div>
+{%endblock%}
+
+{%block iDbVersionAddon%}
+<div class="dcard x2 mB10">
+  <div class="statistic yellow" title='{{dash.dbVersionAddonDate | date}}'>
+    <div class="value">{{dash.dbVersionAddon | fitNumber(false)}}</div>
+    <div class="label">{%trans "Addon Database"%}</div>
+  </div>
+</div>
+{%endblock%}
+
+
+{%block iUpdateDb%}
+ <form method="post" action="{{url.here}}/db" data-action class="dcard x2 mB50">
+  <div class="input mB5">
+   <span class="addon">{%trans "Username"%}</span>
+   <input type="text" name="username" placeholder="db username">
+  </div>
+  <div class="input mB5">
+   <span class="addon">{%trans "Password"%}</span>
+   <input type="password" name="password" placeholder="db password" autocomplete="new-password" class="input">
+  </div>
+  <div class="input mB10 f">
+   <span class="addon cauto">{%trans "Type"%}</span>
+  <select name="type" class="c input">
+   <option value="upgrade" selected="selected">{%trans "Upgrade"%}</option>
+   <option value="backup" >{%trans "Backup"%}</option>
+   <option value="backup_dump" >{%trans "Backup by dump"%}</option>
+  </select>
+  </div>
+  <button class="btn block danger outline">{%trans "Submit"%}</button>
+ </form>
+{%endblock%}
+
+
