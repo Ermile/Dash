@@ -30,7 +30,7 @@ class exec extends tg
 		// if api key is not set get it from options
 		if(!self::$api_key)
 		{
-			self::$api_key = \dash\option::social('telegram', 'bot')
+			self::$api_key = \dash\option::social('telegram', 'bot');
 		}
 		// if key is not correct return
 		if(strlen(self::$api_key) < 20)

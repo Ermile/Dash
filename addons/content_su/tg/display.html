@@ -3,7 +3,7 @@
 {%block pageContent%}
 <div class="f mB25">
   <div class="c3 s12">
-    {{block('iSample4')}}
+    {{block('iOverview')}}
   </div>
   <div class="c4 s12">
     {{block('iSample')}}
@@ -19,9 +19,10 @@
 {%endblock%}
 
 
-{%block iSample4%}
-<div class="dcard x4 mB10">
-  salam
+{%block iOverview%}
+<div class="dcard x4 mB10 {%if tg.info.status%} success{%else%}warn{%endif%}">
+  <h2>{{tg.info.bot}}</h2>
+  <pre class="mT25 txtC">{{tg.info.token}}</pre>
 </div>
 {%endblock%}
 
