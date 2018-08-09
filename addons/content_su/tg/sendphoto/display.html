@@ -1,0 +1,23 @@
+{%extends display.suMain%}
+
+{%block pageContent%}
+
+<form class="cbox" method="post">
+  <div class="input ltr mB10">
+    <label for="chatid">{%trans "Chat id or username"%}</label>
+    <input type="text" name="chatid" id="chatid" value="46898544" placeholder='{%trans "Unique identifier for the target chat or username of the target channel (in the format @channelusername)"%}'>
+  </div>
+
+  <div class="input preview pTB10">
+    <input type="file" name="file1" accept="image/gif, image/jpeg, image/png" id="file1" data-preview="">
+    <label for="file1" data-tippy="" data-original-title="Simple Title"></label>
+  </div>
+
+
+  <label for="text">{%trans "Caption"%}</label>
+  <textarea class="txt mB10" name="text" id="text" rows="7" placeholder='{%trans "Text of the message to be sent"%}'>{{site.title}}</textarea>
+
+  <button class="btn primary block">{%trans "Send"%}</button>
+</form>
+
+{%endblock%}
