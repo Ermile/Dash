@@ -22,5 +22,15 @@ CREATE TABLE `users` (
 `unit_id` smallint(5) DEFAULT NULL,
 `language` char(2) DEFAULT NULL,
 `meta` mediumtext CHARACTER SET utf8mb4,
+`website` varchar(200) DEFAULT NULL,
+`facebook` varchar(200) DEFAULT NULL,
+`twitter` varchar(200) DEFAULT NULL,
+`instagram` varchar(200) DEFAULT NULL,
+`linkedin` varchar(200) DEFAULT NULL,
+`gmail` varchar(200) DEFAULT NULL,
+`sidebar` bit(1) DEFAULT NULL,
+`firstname` varchar(100) DEFAULT NULL,
+`lastname` varchar(100) DEFAULT NULL,
+`bio` text CHARACTER SET utf8mb4,
 PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
