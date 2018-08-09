@@ -9,16 +9,15 @@ class model
 		$text   = \dash\request::post('text');
 		// $file   = \dash\app\file::upload_quick('file1');
 		$file   = \dash\request::files('file1');
-
 		$file   = file_get_contents(\dash\request::files('file1')['tmp_name']);
-		// var_dump($file);
-		// exit();
 
-		$myData = ['chat_id' => $chatid, 'photo' => $file, 'caption' => $text];
-		$result = \dash\social\telegram\tg::sendMessage($myData);
+		$myData   = ['chat_id' => $chatid, 'photo' => $file, 'caption' => $text];
+		$myResult = \dash\social\telegram\tg::sendMessage($myData);
 
-		var_dump($myData);
-		var_dump($result);
+		\dash\session::set('tg_send', $myData);
+		\dash\session::set('tg_response', $myResult);
+
+		\dash\redirect::pwd();
 	}
 }
 ?>

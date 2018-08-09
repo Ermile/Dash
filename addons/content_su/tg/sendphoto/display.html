@@ -20,4 +20,17 @@
   <button class="btn primary block">{%trans "Send"%}</button>
 </form>
 
+
+{%if tg.send%}
+<div class="cbox">
+  <h2>{%trans "Last request"%}</h2>
+  <div class="msg info2">
+    <pre>{{tg.send | dump}}</pre>
+  </div>
+  <div class="msg">
+    <pre>{{tg.response | dump}}</pre>
+  </div>
+</div>
+{%endif%}
+
 {%endblock%}

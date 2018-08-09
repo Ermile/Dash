@@ -21,6 +21,7 @@
 
 {%if tg.send%}
 <div class="cbox">
+  <h2>{%trans "Last request"%}</h2>
   <div class="msg info2">
     <pre>{{tg.send | dump}}</pre>
   </div>
@@ -29,6 +30,5 @@
   </div>
 </div>
 {%endif%}
-
 
 {%endblock%}
