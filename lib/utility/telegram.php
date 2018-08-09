@@ -286,8 +286,8 @@ class telegram
 			curl_setopt($handle, CURLOPT_SSL_VERIFYPEER, false);
 			curl_setopt($handle, CURLOPT_POST, true);
 			curl_setopt($handle, CURLOPT_POSTFIELDS, $_content);
-			curl_setopt($handle, CURLOPT_CONNECTTIMEOUT, 2);
-			curl_setopt($handle, CURLOPT_TIMEOUT, 2  );
+			curl_setopt($handle, CURLOPT_CONNECTTIMEOUT, 5);
+			curl_setopt($handle, CURLOPT_TIMEOUT, 5);
 			// curl_setopt($handle, CURLOPT_RETURNTRANSFER, false);
 
 			$response = curl_exec($handle);

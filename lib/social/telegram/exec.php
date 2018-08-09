@@ -14,7 +14,7 @@ class exec extends tg
 	 * Execute cURL call
 	 * @return mixed Result of the cURL call
 	 */
-	public static function send($_method = null, array $_data = null, $_output = null)
+	public static function send($_method = null, $_data = null)
 	{
 		// if telegram is off then do not run
 		if(!\dash\option::social('telegram', 'status'))
@@ -28,12 +28,13 @@ class exec extends tg
 		}
 
 		// if api key is not set get it from options
-		if(!self::$api_key)
+		if(!self::$api_token)
 		{
-			self::$api_key = \dash\option::social('telegram', 'bot');
+			self::$api_token = \dash\option::social('telegram', 'token');
 		}
+
 		// if key is not correct return
-		if(strlen(self::$api_key) < 20)
+		if(strlen(self::$api_token) < 20)
 		{
 			return 'api key is not correct!';
 		}
@@ -45,24 +46,28 @@ class exec extends tg
 			return 'Curl failed to initialize';
 		}
 
-		$curlConfig =
-		[
-			CURLOPT_URL            => "https://api.telegram.org/bot".self::$api_key."/$_method",
-			CURLOPT_POST           => true,
-			CURLOPT_RETURNTRANSFER => true,
-			// CURLOPT_HEADER         => true, // get header
-			CURLOPT_HEADER         => false,
-			CURLOPT_SAFE_UPLOAD    => true,
-			CURLOPT_SSL_VERIFYPEER => false,
-		];
-		curl_setopt_array($ch, $curlConfig);
+		// set some settings of curl
+		curl_setopt($ch, CURLOPT_URL, "https://api.telegram.org/bot".self::$api_token."/$_method");
+		// turn on some setting
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_SAFE_UPLOAD, true);
+		// turn off some setting
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+		curl_setopt($ch, CURLOPT_HEADER, false);
+		// timeout setting
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+
 		if (!empty($_data))
 		{
-			curl_setopt($ch, CURLOPT_POSTFIELDS, $_data);
 			curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: multipart/form-data'));
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $_data);
 		}
 
 		$result = curl_exec($ch);
+		$mycode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 		if ($result === false)
 		{
 			return curl_error($ch). ':'. curl_errno($ch);
@@ -76,10 +81,6 @@ class exec extends tg
 		if(substr($result, 0,1) === "{")
 		{
 			$result = json_decode($result, true);
-			if($_output && isset($result[$_output]))
-			{
-				$result = $result[$_output];
-			}
 		}
 		// return result
 		return $result;

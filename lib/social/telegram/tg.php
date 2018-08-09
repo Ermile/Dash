@@ -8,7 +8,7 @@ class tg
 	 * this library get and send telegram messages
 	 * v21.0
 	 */
-	public static $api_key     = null;
+	public static $api_token   = null;
 	public static $name        = null;
 	public static $language    = 'en_US';
 	public static $cmd         = null;
