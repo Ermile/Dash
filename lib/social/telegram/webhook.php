@@ -2,7 +2,7 @@
 namespace dash\social\telegram;
 
 /** telegram **/
-class webhook extends tg
+class webhook
 {
 	/**
 	 * setWebhook for telegram

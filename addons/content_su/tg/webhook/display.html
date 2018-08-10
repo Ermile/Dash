@@ -1,0 +1,19 @@
+{%extends display.suMain%}
+
+{%block pageContent%}
+
+<form class="cbox" method="post" autocomplete="off">
+  <div class="input ltr mB10">
+    <label for="url">{%trans "Chat id or username"%}</label>
+    <input type="url" name="url" id="url" placeholder='{%trans "HTTPS url to send updates to. Use an empty string to remove webhook integration"%}' required value="{{hook.result.url}}">
+  </div>
+
+  <div class="input ltr mB10">
+    <label for="max_connections">{%trans "Max Connections"%}</label>
+    <input type="number" name="max_connections" id="max_connections" min="0" max="200" placeholder='{%trans "Defaults to 40"%}'>
+  </div>
+
+  <button class="btn primary block">{%trans "Set Webhook"%}</button>
+</form>
+
+{%endblock%}
