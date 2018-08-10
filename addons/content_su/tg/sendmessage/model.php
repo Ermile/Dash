@@ -11,8 +11,8 @@ class model
 		$myData   = ['chat_id' => $chatid, 'text' => $text];
 		$myResult = \dash\social\telegram\tg::sendMessage($myData);
 
-		\dash\session::set('tg_send', $myData);
-		\dash\session::set('tg_response', $myResult);
+		\dash\session::set('tg_send', json_encode(, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+		\dash\session::set('tg_response', json_encode($myResult, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
 
 		\dash\redirect::pwd();
 	}
