@@ -24,6 +24,9 @@
   <h2><a href="https://t.me/{{tg.info.bot}}" target="_blank">{{tg.info.bot}}</a></h2>
   <pre class="mT25">{{tg.info.token}}</pre>
   <a class="btn dark outline mT25" href="{{url.this}}/log">{%trans "Logs"%}</a>
+{%if user.id == 1%}
+  <a class="btn danger outline mT10" href="{{url.this}}/webhook">{%trans "Webhook"%}</a>
+{%endif%}
 </div>
 {%endblock%}
 
