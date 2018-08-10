@@ -14,7 +14,7 @@ class exec extends tg
 	 * Execute cURL call
 	 * @return mixed Result of the cURL call
 	 */
-	protected static function send($_method = null, $_data = null)
+	protected static function send($_method = null, $_data = null, $_jsonResult = false)
 	{
 		// if telegram is off then do not run
 		if(!\dash\option::social('telegram', 'status'))
@@ -81,6 +81,10 @@ class exec extends tg
 		if(substr($result, 0,1) === "{")
 		{
 			$result = json_decode($result, true);
+		}
+		if($_jsonResult)
+		{
+			$result = json_encode($result, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
 		}
 		// return result
 		return $result;
