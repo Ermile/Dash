@@ -84,7 +84,7 @@ class exec extends tg
 		}
 		if($_jsonResult)
 		{
-			$result = json_encode($result, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+			$result = json_encode($result, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 		}
 		// return result
 		return $result;
