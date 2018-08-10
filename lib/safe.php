@@ -105,6 +105,13 @@ class safe
 	}
 
 
+	public static function remove_nl($_string)
+	{
+		$_string = preg_replace("/[\n]/", " ", $_string);
+		return $_string;
+	}
+
+
 	public static function remove_2s($_string)
 	{
 		$_string = preg_replace("/\h+/", " ", $_string);
