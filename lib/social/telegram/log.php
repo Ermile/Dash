@@ -30,7 +30,7 @@ class log extends tg
 		\dash\db\telegrams::insert($myDetail);
 	}
 
-	private static function json($_data)
+	public static function json($_data)
 	{
 		if(!$_data)
 		{

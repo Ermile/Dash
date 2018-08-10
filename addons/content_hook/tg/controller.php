@@ -10,19 +10,24 @@ class controller
 	 */
 	public static function routing()
 	{
-
 		$myhook = 'tg/'.\dash\option::social('telegram', 'hookFolder');
 
 		if(\dash\url::child() === \dash\option::social('telegram', 'hookFolder'))
 		{
 			// fire telegram api
 			$result = \dash\social\telegram\tg::fire();
+			if(isset($_SERVER['HTTP_POSTMAN_TOKEN']))
+			{
+				$result = \dash\social\telegram\log::json($result);
+				echo($result);
+			}
 
 			// disable log visitors
 			\dash\temp::set('force_stop_visitor', true);
 			// bobooom :)
 			\dash\code::boom();
 		}
+
 		// log access to this url
 		\dash\log::db('tgUnauthorizedAccess');
 		\dash\header::status(404);
