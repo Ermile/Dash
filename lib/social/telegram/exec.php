@@ -47,7 +47,9 @@ class exec extends tg
 		}
 
 		// set some settings of curl
-		curl_setopt($ch, CURLOPT_URL, "https://api.telegram.org/bot".self::$api_token."/$_method");
+		$apiURL = "https://api.telegram.org/bot".self::$api_token."/$_method";
+		$sendDate = date('Y-m-d H:i:s');
+		curl_setopt($ch, CURLOPT_URL, $apiURL);
 		// turn on some setting
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_POST, true);
@@ -86,6 +88,8 @@ class exec extends tg
 		{
 			$result = json_encode($result, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 		}
+		log::save($_method, $_data, $sendDate, $result);
+
 		// return result
 		return $result;
 	}
