@@ -19,12 +19,12 @@ class exec extends tg
 		// if telegram is off then do not run
 		if(!\dash\option::social('telegram', 'status'))
 		{
-			return T_('telegram is off!');
+			return T_('Telegram is off!');
 		}
 		// if method or data is not set return
 		if(!$_method)
 		{
-			return T_('method is not set!');
+			return T_('Method is not set!');
 		}
 
 		// if api key is not set get it from options
@@ -36,7 +36,7 @@ class exec extends tg
 		// if key is not correct return
 		if(strlen(self::$api_token) < 20)
 		{
-			return T_('api key is not correct!');
+			return T_('Api key is not correct!');
 		}
 
 		// initialize curl
