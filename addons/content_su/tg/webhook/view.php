@@ -12,7 +12,9 @@ class view
 		\dash\data::badge_link(\dash\url::this());
 
 
-		// \dash\data::hook(\dash\social\telegram\tg::getWebhookInfo());
+		$myHook = \dash\social\telegram\tg::getWebhookInfo();
+		$myHook = json_encode($myHook, JSON_PRETTY_PRINT);
+		\dash\data::hook($myHook);
 	}
 }
 ?>
