@@ -5,7 +5,7 @@
   <div class="c3 s12">
     {{block('iOverview')}}
   </div>
-  <div class="c4 s12">
+  <div class="c s12">
     {{block('iSendMessage')}}
     {{block('iSample')}}
 
@@ -23,6 +23,7 @@
 <div class="dcard x4 mB10 {%if tg.info.status%} success{%else%}warn{%endif%}">
   <h2><a href="https://t.me/{{tg.info.bot}}" target="_blank">{{tg.info.bot}}</a></h2>
   <pre class="mT25">{{tg.info.token}}</pre>
+  <a class="btn dark outline mT25" href="{{url.this}}/log">{%trans "Logs"%}</a>
 </div>
 {%endblock%}
 

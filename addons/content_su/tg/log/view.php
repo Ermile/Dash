@@ -8,15 +8,13 @@ class view
 	{
 		$myTitle = T_("Telegram log");
 		$myDesc  = T_('Check list of telegram and search or filter in them to find your telegram.');
-
 		\dash\data::page_title($myTitle);
 		\dash\data::page_desc($myDesc);
-
+		\dash\data::page_pictogram('briefcase');
 		\dash\data::badge_text(T_('Back to dashboard'));
-		\dash\data::badge_link(\dash\url::here() .'/tg');
+		\dash\data::badge_link(\dash\url::this());
 
 
-		\dash\data::page_pictogram('paper-plane');
 
 		$search_string = \dash\request::get('q');
 		if($search_string)
