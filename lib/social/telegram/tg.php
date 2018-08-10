@@ -37,11 +37,22 @@ class tg
 	 */
 	static function __callStatic($_name, $_args)
 	{
+		// try to detect json output
+		$jsonResult = false;
+		if(substr($_name, 0, 5) === 'json_')
+		{
+			$_name = substr($_name, 5);
+			$jsonResult = true;
+		}
 		if(isset($_args[0]))
 		{
 			$_args = $_args[0];
 		}
-		return exec::send($_name, $_args);
+		if($_name)
+		{
+			return exec::send($_name, $_args, $jsonResult);
+		}
+		return false;
 	}
 }
 ?>
