@@ -14,7 +14,7 @@ class exec extends tg
 	 * Execute cURL call
 	 * @return mixed Result of the cURL call
 	 */
-	public static function send($_method = null, $_data = null)
+	private static function send($_method = null, $_data = null)
 	{
 		// if telegram is off then do not run
 		if(!\dash\option::social('telegram', 'status'))
