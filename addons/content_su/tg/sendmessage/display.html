@@ -5,11 +5,11 @@
 <form class="cbox" method="post">
   <div class="input ltr mB10">
     <label for="chatid">{%trans "Chat id or username"%}</label>
-    <input type="text" name="chatid" id="chatid" value="46898544" placeholder='{%trans "Unique identifier for the target chat or username of the target channel (in the format @channelusername)"%}'>
+    <input type="text" name="chatid" id="chatid" value="46898544" placeholder='{%trans "Unique identifier for the target chat or username of the target channel (in the format @channelusername)"%}' required>
   </div>
 
   <label for="text">{%trans "Message"%}</label>
-  <textarea class="txt mB10" name="text" id="text" rows="7" placeholder='{%trans "Text of the message to be sent"%}'>{{site.title}}
+  <textarea class="txt mB10" name="text" id="text" rows="7" placeholder='{%trans "Text of the message to be sent"%}' required>{{site.title}}
 
 {{"Now" | jdate("Y-m-d")}}
 {{"Now" | jdate("H:i:s")}}
