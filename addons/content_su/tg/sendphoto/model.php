@@ -21,10 +21,10 @@ class model
 
 
 		$myData   = ['chat_id' => $chatid, 'photo' => $myFile, 'caption' => $text];
-		$myResult = \dash\social\telegram\tg::sendPhoto($myData);
+		$myResult = \dash\social\telegram\tg::json_sendPhoto($myData);
 
-		\dash\session::set('tg_send', json_encode(, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
-		\dash\session::set('tg_response', json_encode($myResult, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+		\dash\session::set('tg_send', json_encode($myData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+		\dash\session::set('tg_response', $myResult);
 
 		\dash\redirect::pwd();
 	}
