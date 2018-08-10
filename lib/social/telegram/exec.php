@@ -14,17 +14,17 @@ class exec extends tg
 	 * Execute cURL call
 	 * @return mixed Result of the cURL call
 	 */
-	private static function send($_method = null, $_data = null)
+	protected static function send($_method = null, $_data = null)
 	{
 		// if telegram is off then do not run
 		if(!\dash\option::social('telegram', 'status'))
 		{
-			return 'telegram is off!';
+			return T_('telegram is off!');
 		}
 		// if method or data is not set return
-		if(!$_method || !$_data)
+		if(!$_method)
 		{
-			return 'method or data is not set!';
+			return T_('method is not set!');
 		}
 
 		// if api key is not set get it from options
@@ -36,14 +36,14 @@ class exec extends tg
 		// if key is not correct return
 		if(strlen(self::$api_token) < 20)
 		{
-			return 'api key is not correct!';
+			return T_('api key is not correct!');
 		}
 
 		// initialize curl
 		$ch = curl_init();
 		if ($ch === false)
 		{
-			return 'Curl failed to initialize';
+			return T_('Curl failed to initialize');
 		}
 
 		// set some settings of curl
@@ -74,7 +74,7 @@ class exec extends tg
 		}
 		if (empty($result) || is_null($result))
 		{
-			return 'Empty server response';
+			return T_('Empty server response');
 		}
 		curl_close($ch);
 		//Logging curl requests
