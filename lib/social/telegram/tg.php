@@ -68,8 +68,6 @@ class tg
 			return T_('Telegram is off!');
 		}
 		self::hook();
-
-
 	}
 
 
@@ -83,10 +81,16 @@ class tg
 		self::$hook     = json_decode(file_get_contents('php://input'), true);
 		self::$hookDate = date('Y-m-d H:i:s');
 
-		// save log if allow
-		log::save(self::$hook, true);
 		// detect cmd and save it in static value
 		self::$cmd = self::cmdAnalyser(self::response('text'));
+
+		// if we must pass result, we save it on result sending
+		// now we need to save unanswered hook
+		if(true)
+		{
+			// save log if allow
+			log::save();
+		}
 	}
 
 	/**
