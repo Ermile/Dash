@@ -11,7 +11,7 @@
 
   </div>
   <div class="c s12">
-    {{block('iSample')}}
+    {{block('iSendPhoto')}}
     {{block('iSample')}}
   </div>
 </div>
@@ -28,9 +28,16 @@
 
 {%block iSendMessage%}
 <div class="dcard x2 mB10">
-  <a class="btn primary" href="{{url.this}}/sendmessage">{%trans "Send Message"%}</a>
+  <a class="btn primary" href="{{url.this}}/sendmessage">{%trans "Send message"%}</a>
 </div>
 {%endblock%}
+
+{%block iSendPhoto%}
+<div class="dcard x2 mB10">
+  <a class="btn" href="{{url.this}}/sendphoto">{%trans "Send photo"%}</a>
+</div>
+{%endblock%}
+
 
 {%block iSample%}
 <div class="dcard x2 mB10">
