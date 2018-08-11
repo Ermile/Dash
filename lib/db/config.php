@@ -462,6 +462,19 @@ class config
 	}
 
 
+	public static function public_delete_where($_table, $_where)
+	{
+		$where = self::make_where($_where);
+
+		if(!$where)
+		{
+			return false;
+		}
+		$query = "DELETE FROM  $_table WHERE $where";
+		return \dash\db::query($query);
+	}
+
+
 	/**
 	 * Searches for the first match.
 	 *
