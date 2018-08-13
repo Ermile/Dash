@@ -80,15 +80,7 @@
 {%block iTag%}
 <div class="tagDetector">
 {%set postTag = tags({"post_id" : requestGET.id , "title" : true, "format" : 'csv', "related" : "comments"}) %}
-{%if not requestGET.type or requestGET.type == 'post' %}
-{%if options.tagSpecial%}
-  <div class="specialTags mB5" title='{%trans "Click on special tags to use this depending on your website design"%}'>
-    {%for key, value in options.tagSpecial%}
-      <span class="badge {%if key in postTag%} success{%endif%}" href="#" title="{%trans value%}" data-val='{{key}}'>{%if key in postTag%}<i class="sf-check compact"></i> {%endif%}{{key}}</span>
-    {%endfor%}
-  </div>
-{%endif%}
-{%endif%}
+
 
   <div class="input mB10 hide">
     <input type="text" class="input tagVals" name="tag" value="{{postTag}}" id="tagValues" placeholder='{%trans "Tag"%}'>
