@@ -16,7 +16,7 @@ class controller
 		{
 			if(\dash\user::login())
 			{
-				\dash\redirect::to(\dash\url::base());
+				\dash\redirect::to(\dash\url::kingdom());
 				return;
 			}
 		}

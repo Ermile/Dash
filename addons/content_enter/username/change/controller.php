@@ -8,7 +8,7 @@ class controller
 
 		if(!\dash\user::login('username'))
 		{
-			\dash\redirect::to(\dash\url::base(). '/enter/username/set');
+			\dash\redirect::to(\dash\url::kingdom(). '/enter/username/set');
 			return;
 		}
 	}

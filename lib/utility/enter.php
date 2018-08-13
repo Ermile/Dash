@@ -271,7 +271,7 @@ class enter
 	 */
 	public static function find_redirect_url($_url = null)
 	{
-		$host = \dash\url::base();
+		$host = \dash\url::kingdom();
 		if($_url)
 		{
 			return $_url;
@@ -301,18 +301,6 @@ class enter
 		}
 		else
 		{
-
-			$language = \dash\db\users::get_language(self::user_data('id'));
-			// @check
-			if($language && \dash\language::check($language))
-			{
-
-			}
-			else
-			{
-
-			}
-
 			$host .='/'. \dash\option::config('redirect');
 		}
 
@@ -435,7 +423,7 @@ class enter
 					$get_enter_query['referer']   = \dash\request::get('referer');
 				}
 
-				\dash\redirect::to(\dash\url::base(). '/enter?'. http_build_query($get_enter_query));
+				\dash\redirect::to(\dash\url::kingdom(). '/enter?'. http_build_query($get_enter_query));
 			}
 			else
 			{
@@ -537,7 +525,7 @@ class enter
 	 */
 	public static function go_to_verify()
 	{
-		$host = \dash\url::base();
+		$host = \dash\url::kingdom();
 		$host .= '/enter/verify';
 		self::open_lock('verify');
 		\dash\redirect::to($host);
@@ -1156,7 +1144,7 @@ class enter
 	public static function go_to($_url = null)
 	{
 
-		$host = \dash\url::base();
+		$host = \dash\url::kingdom();
 		$url  = null;
 		switch ($_url)
 		{

@@ -10,7 +10,7 @@ class view
 		\dash\data::page_special(true);
 		\dash\data::page_desc(T_('Live and learn'));
 
-		\dash\data::redirectUrl(\dash\url::base());
+		\dash\data::redirectUrl(\dash\url::kingdom());
 		if(\dash\utility\enter::get_session('redirect_url'))
 		{
 			\dash\data::redirectUrl(\dash\utility\enter::get_session('redirect_url'));

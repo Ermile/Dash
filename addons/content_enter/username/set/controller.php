@@ -7,7 +7,7 @@ class controller
 	{
 		if(\dash\user::login('username'))
 		{
-			\dash\redirect::to(\dash\url::base(). '/enter/username/change');
+			\dash\redirect::to(\dash\url::kingdom(). '/enter/username/change');
 			return;
 		}
 	}
