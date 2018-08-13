@@ -155,7 +155,7 @@
 
 
 {%block eloginlink%}
-   <a href="{{url.base}}/enter" id='ebusername' class="c {%if url.module == 'username'%}active{%endif%}" title='{%trans "Sign in instead"%}'>
+   <a href="{{url.kingdom}}/enter" id='ebusername' class="c {%if url.module == 'username'%}active{%endif%}" title='{%trans "Sign in instead"%}'>
       <i class="sf-user-5"></i>
      <span>{%trans "Login"%}</span>
    </a>
@@ -169,7 +169,7 @@
 
 
 {%block esignuplink%}
-   <a href="{{url.base}}/enter/signup" id='ebusername' class="c {%if url.module == 'username'%}active{%endif%}" title='{%trans "No account?"%} {%trans "Create for yourself"%}'>
+   <a href="{{url.kingdom}}/enter/signup" id='ebusername' class="c {%if url.module == 'username'%}active{%endif%}" title='{%trans "No account?"%} {%trans "Create for yourself"%}'>
       <i class="sf-user-plus"></i>
      <span>{%trans "Create Account"%}</span>
    </a>
@@ -241,7 +241,7 @@
 
 
 {%block ebmobile%}
-   <a href="{{url.base}}/enter" title='{%trans "Log in with mobile"%}' id='ebmobile' class="c {%if url.module == 'home'%}active{%endif%}">
+   <a href="{{url.kingdom}}/enter" title='{%trans "Log in with mobile"%}' id='ebmobile' class="c {%if url.module == 'home'%}active{%endif%}">
     <i class="sf-mobile"></i>
     <span>{%trans "Enter with mobile"%}</span>
    </a>
@@ -250,7 +250,7 @@
 
 
 {%block ebgoogle%}
-    <a href="{{url.base}}/enter/google" class="c" id='ebgoogle'>
+    <a href="{{url.kingdom}}/enter/google" class="c" id='ebgoogle'>
      <i class="sf-google"></i>
      <span>{%trans "Enter with Google"%}</span>
     </a>
@@ -260,14 +260,14 @@
 
 {%block ebemail%}
    <div id='ebemail' class="c {%if url.module == 'email'%}active{%endif%}">
-    <a href="{{url.base}}/enter/email">@<abbr>{%trans "Enter with email"%}</abbr></a>
+    <a href="{{url.kingdom}}/enter/email">@<abbr>{%trans "Enter with email"%}</abbr></a>
   </div>
 {%endblock%}
 
 
 
 {%block ebusername%}
-   <a href="{{url.base}}/enter/username" id='ebusername' class="c {%if url.module == 'username'%}active{%endif%}">
+   <a href="{{url.kingdom}}/enter/username" id='ebusername' class="c {%if url.module == 'username'%}active{%endif%}">
      <i class="sf-user-md"></i>
      <span>{%trans "Enter with username"%}</span>
    </a>
@@ -328,34 +328,34 @@
 
 {%block eresend%}
 <div class="c">
- <a data-href="{{url.base}}/enter/verify/resend" data-direct data-text='{%trans "Resend code"%}' data-timer='60' title='{%trans "After end timer you can request code again"%}' id='timer'></a>
+ <a data-href="{{url.kingdom}}/enter/verify/resend" data-direct data-text='{%trans "Resend code"%}' data-timer='60' title='{%trans "After end timer you can request code again"%}' id='timer'></a>
 </div>
 {%endblock%}
 
 
 {%block eresend120%}
 <div class="c">
- <a data-href="{{url.base}}/enter/verify/resend" data-direct data-text='{%trans "Resend code"%}' data-timer='120' title='{%trans "After end timer you can request code again"%}' id='timer'></a>
+ <a data-href="{{url.kingdom}}/enter/verify/resend" data-direct data-text='{%trans "Resend code"%}' data-timer='120' title='{%trans "After end timer you can request code again"%}' id='timer'></a>
 </div>
 {%endblock%}
 
 
 {%block eresend180%}
 <div class="c">
- <a data-href="{{url.base}}/enter/verify/resend" data-direct data-text='{%trans "Resend code"%}' data-timer='180' title='{%trans "After end timer you can request code again"%}' id='timer'></a>
+ <a data-href="{{url.kingdom}}/enter/verify/resend" data-direct data-text='{%trans "Resend code"%}' data-timer='180' title='{%trans "After end timer you can request code again"%}' id='timer'></a>
 </div>
 {%endblock%}
 
 
 {%block eresend240%}
 <div class="c">
- <a data-href="{{url.base}}/enter/verify/resend" data-direct data-text='{%trans "Another way?"%}' data-timer='240' title='{%trans "After end timer you can request code again"%}' id='timer'></a>
+ <a data-href="{{url.kingdom}}/enter/verify/resend" data-direct data-text='{%trans "Another way?"%}' data-timer='240' title='{%trans "After end timer you can request code again"%}' id='timer'></a>
 </div>
 {%endblock%}
 
 
 {%block ereset%}
-<a class="c" href="{{url.base}}/enter" data-direct>{%trans "Restart with new mobile"%}</a>
+<a class="c" href="{{url.kingdom}}/enter" data-direct>{%trans "Restart with new mobile"%}</a>
 {%endblock%}
 
 
