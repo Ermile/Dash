@@ -50,7 +50,7 @@
   <figure>
 {%block avatar%}
 {%if login%}
-{%set avatarLink%}{%if dash.avatarLink is empty%}{{url.base}}/account/profile{%else%}{{dash.avatarLink}}{%endif%}{%endset%}
+{%set avatarLink%}{%if dash.avatarLink is empty%}{{url.kingdom}}/account/profile{%else%}{{dash.avatarLink}}{%endif%}{%endset%}
    <a href="{{avatarLink}}" title='{%trans "Edit your profile"%}' class="avatar">
 {%if login.avatar%}
      <img src="{{login.avatar}}" alt='{%trans "Avatar of you"%} {{login.displayname}}'>
@@ -89,7 +89,7 @@
 {%block header%}
    <div id='sidenavHandler' class="c0 sauto mauto"><i class="sf-ellipsis-v"></i></div>
 
-   {%block headerTitle%}<h1 class='cauto' data-tippy-animation="perspective" title='{%trans "View website"%} {{site.title}}'><a href="{{url.base}}" data-direct class='flex'><img src="{{site.logo}}" alt='{{site.title}}'><span>{{site.title}}</span></a></h1>{%endblock%}
+   {%block headerTitle%}<h1 class='cauto' data-tippy-animation="perspective" title='{%trans "View website"%} {{site.title}}'><a href="{{url.kingdom}}" data-direct class='flex'><img src="{{site.logo}}" alt='{{site.title}}'><span>{{site.title}}</span></a></h1>{%endblock%}
 
    <div class='hm flex cauto'>
 {%block headerMenu%}
@@ -102,7 +102,7 @@
 {%block headerLock%}    <a><i class="sf-unlock-alt"></i></a>{%endblock%}
 {%endif%}
 {%if user.id%}
-    <a href="{{url.base}}/logout" data-tippy-animation="perspective" title='{%trans "Logout"%}<br>{%if user.displayname%}{%trans "You are entered as"%} <b>{{user.displayname}}{%endif%}<br>{{user.mobile | fitNumber("mobile12")}}</b>' data-direct><i class="sf-out"></i></a>
+    <a href="{{url.kingdom}}/logout" data-tippy-animation="perspective" title='{%trans "Logout"%}<br>{%if user.displayname%}{%trans "You are entered as"%} <b>{{user.displayname}}{%endif%}<br>{{user.mobile | fitNumber("mobile12")}}</b>' data-direct><i class="sf-out"></i></a>
 {%endif%}
 {%endblock%}
    </div>
