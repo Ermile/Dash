@@ -1,5 +1,5 @@
 <?php
-namespace content_account\profile;
+namespace content_account\profile\security;
 
 
 class model
@@ -36,24 +36,8 @@ class model
 	{
 		$post =
 		[
-			// 'twostep'     => \dash\request::post('twostep'),
-			// 'sidebar'     => \dash\request::post('sidebar') ? true : false,
-			// 'language'    => \dash\request::post('language'),
-			// 'website'     => \dash\request::post('website'),
-			// 'instagram'   => \dash\request::post('instagram'),
-			// 'linkedin'    => \dash\request::post('linkedin'),
-			// 'facebook'    => \dash\request::post('facebook'),
-			// 'twitter'     => \dash\request::post('twitter'),
-			'firstname'   => \dash\request::post('firstname'),
-			'lastname'    => \dash\request::post('lastname'),
-			'username'    => \dash\request::post('username'),
-			'title'       => \dash\request::post('title'),
-			'bio'         => \dash\request::post('bio'),
-			'displayname' => \dash\request::post('displayname'),
-			// 'birthday'    => \dash\request::post('birthday'),
-			// 'fullname'    => \dash\request::post('fullname'),
-			// 'gender'      => \dash\request::post('gender'),
-			// 'email'       => \dash\request::post('email'),
+			'twostep'     => \dash\request::post('twostep'),
+
 		];
 
 		$avatar = self::upload_avatar();
