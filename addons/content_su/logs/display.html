@@ -14,26 +14,26 @@
 
 <table class="tbl mT15">
 	<thead>
-		<th class="c1"><a href="{{url.base}}/su/logs/{{orderUrl.id}}">{%trans "ID"%}</a></th>
-		<th class="c"><a href="{{url.base}}/su/logs/{{orderUrl.logitem_id}}">{%trans "Log item id"%}</a></th>
-		<th class="c"><a href="{{url.base}}/su/logs/{{orderUrl.type}}">{%trans "Type"%}</a></th>
-		<th class="c"><a href="{{url.base}}/su/logs/{{orderUrl.caller}}">{%trans "Caller"%}</a></th>
-		<th class="c"><a href="{{url.base}}/su/logs/{{orderUrl.title}}">{%trans "Title"%}</a></th>
-		<th class="c"><a href="{{url.base}}/su/logs/{{orderUrl.priority}}">{%trans "Priority"%}</a></th>
-		<th class="c"><a href="{{url.base}}/su/logs/{{orderUrl.user_id}}">{%trans "User_id"%}</a></th>
-		<th class="c"><a href="{{url.base}}/su/logs/{{orderUrl.data}}">{%trans "Data"%}</a></th>
-		<th class="c"><a href="{{url.base}}/su/logs/{{orderUrl.desc}}">{%trans "Desc"%}</a></th>
-		<th class="c"><a href="{{url.base}}/su/logs/{{orderUrl.status}}">{%trans "Status"%}</a></th>
-		<th class="c"><a href="{{url.base}}/su/logs/{{orderUrl.createdate}}">{%trans "createdate"%}</a></th>
+		<th class="c1"><a href="{{url.this}}/{{orderUrl.id}}">{%trans "ID"%}</a></th>
+		<th class="c"><a href="{{url.this}}/{{orderUrl.logitem_id}}">{%trans "Log item id"%}</a></th>
+		<th class="c"><a href="{{url.this}}/{{orderUrl.type}}">{%trans "Type"%}</a></th>
+		<th class="c"><a href="{{url.this}}/{{orderUrl.caller}}">{%trans "Caller"%}</a></th>
+		<th class="c"><a href="{{url.this}}/{{orderUrl.title}}">{%trans "Title"%}</a></th>
+		<th class="c"><a href="{{url.this}}/{{orderUrl.priority}}">{%trans "Priority"%}</a></th>
+		<th class="c"><a href="{{url.this}}/{{orderUrl.user_id}}">{%trans "User_id"%}</a></th>
+		<th class="c"><a href="{{url.this}}/{{orderUrl.data}}">{%trans "Data"%}</a></th>
+		<th class="c"><a href="{{url.this}}/{{orderUrl.desc}}">{%trans "Desc"%}</a></th>
+		<th class="c"><a href="{{url.this}}/{{orderUrl.status}}">{%trans "Status"%}</a></th>
+		<th class="c"><a href="{{url.this}}/{{orderUrl.createdate}}">{%trans "createdate"%}</a></th>
 		<!-- <div class="c0">{%trans "Meta"%}</div> -->
 	</thead>
 	<tbody>
 		{%for key, value in logsList%}
 		<tr>
-			<td><a href="{{url.base}}/su/logs/detail?id={{value.id}}">{{value.id|fitNumber}}</a></td>
+			<td><a href="{{url.this}}/detail?id={{value.id}}">{{value.id|fitNumber}}</a></td>
 			<td>{{value.logitem_id|fitNumber}}</td>
 			<td>{{value.type}}</td>
-			<td><a href="{{url.base}}/su/logs/caller={{value.caller}}">{{value.caller}}</a></td>
+			<td><a href="{{url.this}}/caller={{value.caller}}">{{value.caller}}</a></td>
 			<td>{{value.title}}</td>
 			<td>{{value.priority}}</td>
 			<td>{{value.user_id|fitNumber}}</td>

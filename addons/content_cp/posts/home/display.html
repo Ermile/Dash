@@ -74,7 +74,7 @@
         <td>
            {%if value.parent_url%}
             {%for pKey, pValue in value.parent_url%}
-              <a target="_blank" title='{%trans "Parent"%} {{(pKey + 1) | fitNumber}}' href="{{url.base}}/{{pValue}}"><i class="sf-angle-double-up"></i></a>
+              <a target="_blank" title='{%trans "Parent"%} {{(pKey + 1) | fitNumber}}' href="{{url.kingdom}}/{{pValue}}"><i class="sf-angle-double-up"></i></a>
             {%endfor%}
           {%endif%}
           <a href="{{url.here}}/posts/edit?id={{value.id}}&type={{value.type}}">{{value.title}}</a>

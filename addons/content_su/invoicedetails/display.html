@@ -13,21 +13,21 @@
 
 <table class="tbl">
 	<thead>
-		<th><a href="{{url.base}}/su/invoicedetails/{{orderUrl.id}}">{%trans "id"%}</a></th>
-		<th><a href="{{url.base}}/su/invoicedetails/{{orderUrl.invoice_id}}">{%trans "invoice_id"%}</a></th>
-		<th><a href="{{url.base}}/su/invoicedetails/{{orderUrl.title}}">{%trans "title"%}</a></th>
-		<th><a href="{{url.base}}/su/invoicedetails/{{orderUrl.price}}">{%trans "price"%}</a></th>
-		<th><a href="{{url.base}}/su/invoicedetails/{{orderUrl.count}}">{%trans "count"%}</a></th>
-		<th><a href="{{url.base}}/su/invoicedetails/{{orderUrl.total}}">{%trans "total"%}</a></th>
-		<th><a href="{{url.base}}/su/invoicedetails/{{orderUrl.discount}}">{%trans "discount"%}</a></th>
-		<th><a href="{{url.base}}/su/invoicedetails/{{orderUrl.desc}}">{%trans "desc"%}</a></th>
+		<th><a href="{{url.kingdom}}/su/invoicedetails/{{orderUrl.id}}">{%trans "id"%}</a></th>
+		<th><a href="{{url.kingdom}}/su/invoicedetails/{{orderUrl.invoice_id}}">{%trans "invoice_id"%}</a></th>
+		<th><a href="{{url.kingdom}}/su/invoicedetails/{{orderUrl.title}}">{%trans "title"%}</a></th>
+		<th><a href="{{url.kingdom}}/su/invoicedetails/{{orderUrl.price}}">{%trans "price"%}</a></th>
+		<th><a href="{{url.kingdom}}/su/invoicedetails/{{orderUrl.count}}">{%trans "count"%}</a></th>
+		<th><a href="{{url.kingdom}}/su/invoicedetails/{{orderUrl.total}}">{%trans "total"%}</a></th>
+		<th><a href="{{url.kingdom}}/su/invoicedetails/{{orderUrl.discount}}">{%trans "discount"%}</a></th>
+		<th><a href="{{url.kingdom}}/su/invoicedetails/{{orderUrl.desc}}">{%trans "desc"%}</a></th>
 
 	</thead>
 	<tbody>
 		{%for key, value in invoicedetailsList%}
 		<tr>
 			<td>{{value.id|fitNumber}}</td>
-			<td><a href="{{url.base}}/su/invoices/id={{value.invoice_id}}">{{value.invoice_id|fitNumber}}</a></td>
+			<td><a href="{{url.kingdom}}/su/invoices/id={{value.invoice_id}}">{{value.invoice_id|fitNumber}}</a></td>
 			<td>{{value.title}}</td>
 			<td>{{value.price|number_format|fitNumber}}</td>
 			<td>{{value.count|number_format|fitNumber}}</td>
