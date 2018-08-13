@@ -102,7 +102,9 @@
 {%if false%}
 {%block headerLock%}    <a><i class="sf-unlock-alt"></i></a>{%endblock%}
 {%endif%}
-    <a href="{{url.base}}/logout" title='{%trans "Logout"%}' data-direct><i class="sf-out"></i></a>
+{%if user.id%}
+    <a href="{{url.base}}/logout" data-tippy-animation="perspective" title='{%trans "Logout"%}<br>{%if user.displayname%}{%trans "You are entered as"%} <b>{{user.displayname}}{%endif%}<br>{{user.mobile | fitNumber("mobile12")}}</b>' data-direct><i class="sf-out"></i></a>
+{%endif%}
 {%endblock%}
    </div>
 {%endblock%}
