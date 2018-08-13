@@ -6,11 +6,11 @@
  <base href="{{url.base}}"/>
  <title>{{global.title | striptags }}</title>
  <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/><![endif]-->
-{%if url.base != 'deadbrowser'%}
+{%if url.domain != 'deadbrowser'%}
  <!--[if lte IE 9]><script>document.location = 'https://deadbrowser.com/{{lang.current}}';</script><![endif]-->
 {%endif%}
  <meta name     ="description"             content="{{page.desc | striptags}}"/>
- <meta name     ="site:root"               content="{{url.base}}"/>
+ <meta name     ="site:root"               content="{{url.kingdom}}"/>
 {%block head_twitter%}
  <meta name     ="twitter:card"            content="{{share.twitterCard}}"/>
 {%if social.twitter%}
@@ -61,7 +61,7 @@
 {%endif%}
 {%endblock%}
 {%if false%}
- <link rel="alternate"        href="{{url.base}}/feed" title="{{site.title}} RSS feed" type="application/rss+xml"/>
+ <link rel="alternate"        href="{{url.kingdom}}/feed" title="{{site.title}} RSS feed" type="application/rss+xml"/>
 {%endif%}
  <link rel="author"           href="{{url.site}}/static/humans.txt"/>
 {%for key, lang in lang.list if lang.list|length > 1 and not url.subdomain and lang.current != key|slice(0, 2)%}
@@ -99,14 +99,14 @@
 {%block footer%}{%endblock%}
 {%endblock%}
 {%if user.permission == 'supervisor'%}
-<a class='superAdmin{%if url.tld != "local"%} public{%endif%}' data-direct title='{%trans "You are supervisor!"%}' href='{{url.base}}/su' data-tippy-placement='bottom' data-tippy-animation="perspective" data-tippy-arrowtype="round"></a>
+<a class='superAdmin{%if url.tld != "local"%} public{%endif%}' data-direct title='{%trans "You are supervisor!"%}' href='{{url.kingdom}}/su' data-tippy-placement='bottom' data-tippy-animation="perspective" data-tippy-arrowtype="round"></a>
 {%endif%}
 {%block xaccess%}
 {%if perm('contentCp')%}
   <div id="xaccess">
-    <a class='siteAdmin{%if url.tld != "local"%} public{%endif%}' data-direct href='{{url.base}}/cp' title='{%trans "Control Panel"%}' data-tippy-placement='right' data-tippy-animation="shift-away" data-tippy-inertia="true"><span class="sf-gauge"></span></a>
+    <a class='siteAdmin{%if url.tld != "local"%} public{%endif%}' data-direct href='{{url.kingdom}}/cp' title='{%trans "Control Panel"%}' data-tippy-placement='right' data-tippy-animation="shift-away" data-tippy-inertia="true"><span class="sf-gauge"></span></a>
 {%if main_account or perm_su() %}
-    <a href="{{url.base}}/enter?mobile={{main_mobile}}&referer={{url.pwd}}" data-direct title='{%trans "Enter with another user"%}' data-tippy-placement='right' data-tippy-animation="shift-away" data-tippy-inertia="true"><span class="sf-enter"></span></a>
+    <a href="{{url.kingdom}}/enter?mobile={{main_mobile}}&referer={{url.pwd}}" data-direct title='{%trans "Enter with another user"%}' data-tippy-placement='right' data-tippy-animation="shift-away" data-tippy-inertia="true"><span class="sf-enter"></span></a>
 {%endif%}
   </div>
 {%endif%}
