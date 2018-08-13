@@ -90,6 +90,10 @@ class tg
 		{
 			// save log if allow
 			log::save();
+
+		$myData   = ['chat_id' => 46898544, 'text' => 'Salaaaam'];
+		$myResult = \dash\social\telegram\tg::json_sendMessage($myData);
+
 		}
 	}
 
