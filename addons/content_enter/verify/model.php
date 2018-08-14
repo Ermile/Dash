@@ -38,6 +38,12 @@ class model
 			}
 		}
 
+		if(!$send_code)
+		{
+			\dash\notif::error(T_("Please select one way to send code"), 'sendCod');
+			return false;
+		}
+
 		if(!in_array($send_code, \dash\utility\enter::list_send_code_way($mobile_email)))
 		{
 			\dash\log::db('sendWayInvalid');
