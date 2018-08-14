@@ -18,6 +18,7 @@ class export
         $type     = isset($_args['type']) ? $_args['type'] : 'csv';
         $filename = isset($_args['name']) ? $_args['name'] : 'Untitled';
         $data     = isset($_args['data']) ? $_args['data'] : [];
+        $ignore   = isset($_args['ignore']) ? $_args['ignore'] : [];
 
         // disable caching
         header("Expires: Tue, 03 Jul 2001 06:00:00 GMT");
@@ -45,7 +46,10 @@ class export
             ob_start();
             $df = @fopen("php://output", 'w');
 
-            fputcsv($df, array_keys(reset($data)));
+            $keys = array_keys(reset($data));
+            $keys = array_map('T_', $keys);
+
+            fputcsv($df, $keys);
 
             foreach ($data as $row)
             {
@@ -58,5 +62,6 @@ class export
 
         \dash\code::bye();
     }
+
 }
 ?>
