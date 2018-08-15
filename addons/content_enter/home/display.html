@@ -4,7 +4,7 @@
 {%if login.id%}
 <div class="msg success2 f fs06" title='{%trans "You"%}'>
 	<span class="c">{{login.displayname}}</span>
-	<span class="cauto">{{login.mobile}}</span>
+	<span class="cauto">{{login.mobile | fitNumber('mobile12')}}</span>
   </div>
 {%endif%}
 
