@@ -3,10 +3,7 @@
   "version": "15.3.2",
   "description": "The simple framework for php programmers ;)",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Ermile/dash.git"
-  },
+  "repository": "github:Ermile/dash",
   "bugs": {
     "url": "https://github.com/Ermile/dash/issues"
   },
