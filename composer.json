@@ -16,9 +16,6 @@
     "homepage": "https://dash.ermile.com",
     "require": {
         "php": ">=7.0",
-        "Ermile/siftal": "^4.2.5",
-        "@Ermile/siftal": "^4.2.5",
-        "@Ermile\/siftal": "^4.2.5",
-        "@Ermile\\siftal": "^4.2.5",
+        "ermile/siftal": "4.2.*"
     }
 }
