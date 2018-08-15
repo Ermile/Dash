@@ -63,7 +63,7 @@
   </figure>
 {%endif%}
 {%endblock%}
-  <div class="menu">
+  <div class="menu {%if not login%}mT50{%endif%}">
    <ul class="sidenav" data-xhr='sidenav'>
 {%block sidenav%}
     <li><a href="{{url.here}}"><i class='sf-tachometer'></i> <span>{% trans "Dashboard" %}</span></a></li>
