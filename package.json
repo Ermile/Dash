@@ -12,6 +12,6 @@
   },
   "homepage": "https://dash.ermile.com",
   "dependencies": {
-    "siftal": "Ermile/siftal#feature\/master"
+    "siftal": "Ermile/siftal"
   }
 }
