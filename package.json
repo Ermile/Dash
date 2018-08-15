@@ -1,6 +1,6 @@
 {
   "name": "Dash",
-  "version": "14.7.5",
+  "version": "15.3.2",
   "description": "The simple framework for php programmers ;)",
   "license": "MIT",
   "repository": {
@@ -10,8 +10,8 @@
   "bugs": {
     "url": "https://github.com/Ermile/dash/issues"
   },
-  "homepage": "https://siftal.ir",
+  "homepage": "https://dash.ermile.com",
   "dependencies": {
-    "siftal": ">=4.0.0",
+    "https://github.com/Ermile/siftal": ">=4.0.0",
   }
 }
