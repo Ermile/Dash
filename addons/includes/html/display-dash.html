@@ -47,9 +47,9 @@
 
 {%block aside%}
  <div class="scr">
-  <figure>
 {%block avatar%}
 {%if login%}
+  <figure>
 {%set avatarLink%}{%if dash.avatarLink is empty%}{{url.kingdom}}/account/profile{%else%}{{dash.avatarLink}}{%endif%}{%endset%}
    <a href="{{avatarLink}}" title='{%trans "Edit your profile"%}' class="avatar">
 {%if login.avatar%}
@@ -60,9 +60,9 @@
    </a>
    <figcaption>{%trans "Hello"%} <b>{{login.displayname}}</b></figcaption>
 {%else%}
+  </figure>
 {%endif%}
 {%endblock%}
-  </figure>
   <div class="menu">
    <ul class="sidenav" data-xhr='sidenav'>
 {%block sidenav%}
