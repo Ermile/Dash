@@ -43,7 +43,7 @@
  <meta property ='og:locale'               content='{{global.lang}}'/>
 {%endblock%}
  <meta name     ="application-name"        content="{{global.title | striptags }}"/>
- <meta name     ="viewport"                content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0 maximum-scale=1.5, minimal-ui"/>
+ <meta name     ="viewport"                content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0 {%if include.adminPanel%}maximum-scale=1.0{%else%}maximum-scale=1.2{%endif%}, minimal-ui"/>
 {%block favicon%}
 {% if options.favicon.complete %}
 {%set faviconVer%}{%if options.favicon.version%}?v={{options.favicon.version}}{%endif%}{%endset%}
