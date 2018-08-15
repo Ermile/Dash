@@ -1,5 +1,5 @@
 {
-    "name": "ermile/dash",
+    "name": "Ermile/dash",
     "description": "dash php framework",
     "license": "MIT",
     "type": "project",
@@ -11,12 +11,14 @@
         {
             "name": "ermile",
             "email": "info@ermile.com"
-
         }
     ],
-    "homepage": "https://dash.ermile.com/",
+    "homepage": "https://dash.ermile.com",
     "require": {
         "php": ">=7.0",
-        "ermile/siftal": "^4.0"
+        "Ermile/siftal": "^4.2.5",
+        "@Ermile/siftal": "^4.2.5",
+        "@Ermile\/siftal": "^4.2.5",
+        "@Ermile\\siftal": "^4.2.5",
     }
 }
