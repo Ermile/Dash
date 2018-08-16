@@ -26,6 +26,10 @@ self::$url['slash'] = false;
 // ----- debug
 self::$config['debug']         = false;
 
+// ------ can set upload subdomain to set in upload file
+// for example set upload_subdomain on 'dl' to make dl.domain.tld
+// self::$config['upload_subdomain']  = null;
+
 // max upload file size
 // byte
 // self::$config['max_upload'] = 100 * 1024 * 1024; // 100 MB;

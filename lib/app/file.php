@@ -114,9 +114,22 @@ class file
 
 		if(isset($file_detail['url']))
 		{
-			$url = \dash\url::site(). '/'. $file_detail['url'];
+			if(\dash\option::config('upload_subdomain'))
+			{
+				$url  = '';
+				$url .= \dash\url::protocol(). '://';
+				$url .= \dash\option::config('upload_subdomain'). '.';
+				$url .= \dash\url::domain(). '/';
+				$url .= $file_detail['url'];
+			}
+			else
+			{
+				$url = \dash\url::site(). '/'. $file_detail['url'];
+			}
 		}
+
 		\dash\log::db('uploadFile', ['data' => $file_id_code, 'datalink' => $url]);
+
 		return ['code' => $file_id_code, 'url' => $url];
 	}
 }
