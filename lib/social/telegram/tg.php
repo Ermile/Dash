@@ -11,7 +11,6 @@ class tg
 	public static $api_token   = null;
 	public static $name        = null;
 	public static $hook        = null;
-	public static $user_id     = null;
 
 
 
@@ -87,8 +86,8 @@ class tg
 		self::$hookDate = date('Y-m-d H:i:s');
 		// force set session for this telegram user
 		session::forceSet();
-		// detect user_id
-		self::$user_id  = user::detect();
+		// detect and set user id, access via \dash\user::id()
+		user::detect();
 
 		// detect cmd and save it in static value
 		self::$cmd = self::cmdAnalyser(self::response('text'));
@@ -100,7 +99,7 @@ class tg
 			// save log if allow
 			log::save();
 
-		$_SESSION['tg'][self::$hookDate] = 'salam '. self::$user_id;
+		$_SESSION['tg'][self::$hookDate] = 'salam '. \dash\user::id() ;
 		$msg      = "\n\n<pre>". json_encode($_SESSION, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)."</pre>";
 		$myData   = ['chat_id' => 46898544, 'parse_mode' => 'html', 'text' => 'Salaaaam '. hook::from('first_name'). $msg];
 		$myResult = \dash\social\telegram\tg::json_sendMessage($myData);
