@@ -85,9 +85,10 @@ class tg
 		// get hook and save in static variable
 		self::$hook     = json_decode(file_get_contents('php://input'), true);
 		self::$hookDate = date('Y-m-d H:i:s');
+		// force set session for this telegram user
+		session::forceSet();
 		// detect user_id
 		self::$user_id  = user::detect();
-		session::forceSet();
 
 		// detect cmd and save it in static value
 		self::$cmd = self::cmdAnalyser(self::response('text'));
