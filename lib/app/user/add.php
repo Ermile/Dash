@@ -83,6 +83,7 @@ trait add
 			return false;
 		}
 
+		$return['id']      = \dash\coding::encode($user_id);
 		$return['user_id'] = \dash\coding::encode($user_id);
 		\dash\log::db('addNewUser', ['data' => $user_id, 'datalink' => $return['user_id']]);
 		// $_option['user_id'] = $user_id;

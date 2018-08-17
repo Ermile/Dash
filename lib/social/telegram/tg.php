@@ -10,10 +10,13 @@ class tg
 	 */
 	public static $api_token   = null;
 	public static $name        = null;
+	public static $hook        = null;
+
+
+
 	public static $language    = 'en_US';
 	public static $cmd         = null;
 	public static $cmdFolder   = null;
-	public static $hook        = null;
 	public static $hookDate    = null;
 	public static $fill        = null;
 	public static $user_id     = null;
@@ -78,8 +81,11 @@ class tg
 	 */
 	public static function hook()
 	{
+		// get hook and save in static variable
 		self::$hook     = json_decode(file_get_contents('php://input'), true);
 		self::$hookDate = date('Y-m-d H:i:s');
+
+		user::detect();
 
 		// detect cmd and save it in static value
 		self::$cmd = self::cmdAnalyser(self::response('text'));
