@@ -26,7 +26,7 @@ class user
 	 *
 	 * @param      <type>  $_user_id  The user identifier
 	 */
-	public static function init($_user_id)
+	public static function init($_user_id, $_not_save_session = false)
 	{
 		if(!is_numeric($_user_id))
 		{
@@ -44,7 +44,14 @@ class user
 		{
 			foreach ($detail as $key => $value)
 			{
-				$_SESSION['auth'][$key] = $value;
+				if($value === null)
+				{
+					// nothing
+				}
+				else
+				{
+					$_SESSION['auth'][$key] = $value;
+				}
 			}
 		}
 
