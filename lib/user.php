@@ -28,7 +28,7 @@ class user
 	 *
 	 * @param      <type>  $_user_id  The user identifier
 	 */
-	public static function init($_user_id, $_not_save_session = false)
+	public static function init($_user_id, $_app_mode = false)
 	{
 		if(!is_numeric($_user_id))
 		{
@@ -42,7 +42,7 @@ class user
 			return;
 		}
 
-		if($_not_save_session)
+		if($_app_mode)
 		{
 			$detail = \dash\app\user::ready($detail);
 		}
@@ -59,7 +59,7 @@ class user
 				{
 					self::$USER_DETAIL[$key] = $value;
 
-					if($_not_save_session)
+					if(!$_app_mode)
 					{
 						$_SESSION['auth'][$key] = $value;
 					}
@@ -67,7 +67,7 @@ class user
 			}
 		}
 
-		if($_not_save_session)
+		if(!$_app_mode)
 		{
 			self::$USER_ID                 = $_user_id;
 			$_SESSION['auth']['id']        = $_user_id;
@@ -153,7 +153,7 @@ class user
 	 */
 	public static function detail($_key = null)
 	{
-		if(empty(self::$USER_DETAIL))
+		if(empty(self::$USER_DETAIL) && isset($_SESSION['auth']))
 		{
 			self::$USER_DETAIL = $_SESSION['auth'];
 		}
