@@ -32,13 +32,25 @@ class controller
 		}
 		else
 		{
-			if(\dash\permission::supervisor(true))
+			if(\dash\request::get('server') === 'status')
 			{
-				// the user have permission of su
+				if(!\dash\permission::supervisor())
+				{
+					\dash\header::status(403);
+				}
+
+				\dash\temp::set('force_stop_visitor', true);
 			}
 			else
 			{
-				\dash\header::status(403);
+				if(\dash\permission::supervisor(true))
+				{
+					// the user have permission of su
+				}
+				else
+				{
+					\dash\header::status(403);
+				}
 			}
 		}
 
