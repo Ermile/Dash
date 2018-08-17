@@ -292,6 +292,9 @@ class user
 			return false;
 		}
 
+		$chatid = \dash\app::request('chatid');
+
+
 		$birthday = \dash\app::request('birthday');
 		$birthday = \dash\date::birthdate($birthday, true);
 		if($birthday === false)
@@ -310,6 +313,7 @@ class user
 		$args['firstname']   = $firstname;
 		$args['lastname']    = $lastname;
 		$args['bio']         = $bio;
+		$args['chatid']      = $chatid;
 
 		$args['mobile']      = $mobile;
 		$args['displayname'] = $displayname;
