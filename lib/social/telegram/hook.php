@@ -5,6 +5,98 @@ class hook extends tg
 {
 
 
+	public static function update_id()
+	{
+		$myDetection = null;
+		if(isset(self::$hook['update_id']))
+		{
+			$myDetection = self::$hook['update_id'];
+		}
+		return $myDetection;
+	}
+
+
+	public static function message_id()
+	{
+		$myDetection = null;
+		if(isset(self::$hook['message']['message_id']))
+		{
+			$myDetection = self::$hook['message']['message_id'];
+		}
+		elseif(isset(self::$hook['callback_query']['message']['message_id']))
+		{
+			$myDetection = self::$hook['callback_query']['message']['message_id'];
+		}
+		return $myDetection;
+	}
+
+
+	public static function message()
+	{
+		$myDetection = null;
+		if(isset(self::$hook['message']))
+		{
+			$myDetection = self::$hook['message'];
+		}
+		elseif(isset(self::$hook['callback_query']['message']))
+		{
+			$myDetection = self::$hook['callback_query']['message'];
+		}
+		return $myDetection;
+	}
+
+
+	public static function callback_query($_arg = 'id')
+	{
+		$myDetection = null;
+		if(isset(self::$hook['callback_query']))
+		{
+			$myDetection = self::$hook['callback_query'];
+		}
+		// get only arg
+		if($_arg)
+		{
+			if(isset($myDetection[$_arg]))
+			{
+				$myDetection = $myDetection[$_arg];
+			}
+			else
+			{
+				$myDetection = null;
+			}
+		}
+		return $myDetection;
+	}
+
+
+
+
+	public static function from($_arg = 'id')
+	{
+		$myDetection = null;
+		if(isset(self::$hook['message']['from']))
+		{
+			$myDetection = self::$hook['message']['from'];
+		}
+		elseif(isset(self::$hook['callback_query']['from']))
+		{
+			$myDetection = self::$hook['callback_query']['from'];
+		}
+		// get only arg
+		if($_arg)
+		{
+			if(isset($myDetection[$_arg]))
+			{
+				$myDetection = $myDetection[$_arg];
+			}
+			else
+			{
+				$myDetection = null;
+			}
+		}
+		return $myDetection;
+	}
+
 
 
 
