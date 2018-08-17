@@ -3,7 +3,10 @@ namespace dash\social\telegram;
 
 class hook extends tg
 {
-
+	/**
+	 * v2.0
+	 * this class try to detect all part of hook and return related value
+	 */
 
 	public static function update_id()
 	{
@@ -251,65 +254,47 @@ class hook extends tg
 	}
 
 
-
-
-
-
-
-	/**
-	 * handle response and return needed key if exist
-	 * @param  [type] $_needle [description]
-	 * @return [type]          [description]
-	 */
-	public static function analyse($_needle = null, $_arg = 'id')
+	public static function contact($_arg = 'id')
 	{
 		$myDetection = null;
-
-		switch ($_needle)
+		if(isset(self::$hook['message']['contact']))
 		{
-
-			case 'contact':
-				if(isset(self::$hook['message']['contact']))
-				{
-					$myDetection = self::$hook['message']['contact'];
-				}
-				if($_arg)
-				{
-					if(isset($myDetection[$_arg]))
-					{
-						$myDetection = $myDetection[$_arg];
-					}
-					elseif($_arg !== null)
-					{
-						$myDetection = null;
-					}
-				}
-				break;
-
-			case 'location':
-				if(isset(self::$hook['message']['location']))
-				{
-					$myDetection = self::$hook['message']['location'];
-				}
-				if($_arg)
-				{
-					if(isset($myDetection[$_arg]))
-					{
-						$myDetection = $myDetection[$_arg];
-					}
-					elseif($_arg !== null)
-					{
-						$myDetection = null;
-					}
-				}
-				break;
-
-			default:
-				break;
+			$myDetection = self::$hook['message']['contact'];
 		}
-
+		if($_arg)
+		{
+			if(isset($myDetection[$_arg]))
+			{
+				$myDetection = $myDetection[$_arg];
+			}
+			else
+			{
+				$myDetection = null;
+			}
+		}
 		return $myDetection;
 	}
 
+
+	public static function location($_arg = 'id')
+	{
+		$myDetection = null;
+		if(isset(self::$hook['message']['location']))
+		{
+			$myDetection = self::$hook['message']['location'];
+		}
+		if($_arg)
+		{
+			if(isset($myDetection[$_arg]))
+			{
+				$myDetection = $myDetection[$_arg];
+			}
+			else
+			{
+				$myDetection = null;
+			}
+		}
+		return $myDetection;
+	}
 }
 ?>
