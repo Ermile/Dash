@@ -22,7 +22,7 @@ class user extends tg
 
 		if(isset($myUser['id']))
 		{
-			\dash\user::init_code($myUser['id']);
+			\dash\user::init_tg($myUser['id']);
 			return $myUser['id'];
 		}
 
