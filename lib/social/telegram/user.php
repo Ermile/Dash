@@ -6,6 +6,11 @@ class user extends tg
 
 	public static function detect()
 	{
+		if(\dash\user::id())
+		{
+			return \dash\user::id();
+		}
+
 		$myUser = \dash\app\user::get(['chatid' => hook::from(), 'limit' => 1]);
 		// if not exist try to register
 		if(!isset($myUser['id']))
