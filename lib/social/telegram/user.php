@@ -7,8 +7,6 @@ class user extends tg
 	public static function detect()
 	{
 		$myUser = \dash\app\user::get(['chatid' => hook::from(), 'limit' => 1]);
-		// var_dump(hook::from());
-		// var_dump($myUser);
 		// if not exist try to register
 		if(!isset($myUser['id']))
 		{
@@ -44,9 +42,9 @@ class user extends tg
 			'status'      => 'active',
 		];
 		$result = \dash\app\user::add_f($newUserDetail);
-		if(isset($result['id']))
+		if($result)
 		{
-			return $result['id'];
+			return $result;
 		}
 		return false;
 	}
