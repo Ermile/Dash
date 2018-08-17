@@ -70,7 +70,7 @@ class tg
 		{
 			return T_('Telegram is off!');
 		}
-		session_destroy();
+		// session_destroy();
 		self::hook();
 	}
 
@@ -98,8 +98,8 @@ class tg
 			// save log if allow
 			log::save();
 
-		$_SESSION['tg'][self::$hookDate] = 'salam';
-		$msg      = "\n\n<pre>". json_encode($_SESSION, JSON_PRETTY_PRINT)."</pre>";
+		$_SESSION['tg'][self::$hookDate] = 'salam '. self::$user_id;
+		$msg      = "\n\n<pre>". json_encode($_SESSION, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)."</pre>";
 		$myData   = ['chat_id' => 46898544, 'parse_mode' => 'html', 'text' => 'Salaaaam '. hook::from('first_name'). $msg];
 		$myResult = \dash\social\telegram\tg::json_sendMessage($myData);
 
