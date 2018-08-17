@@ -6,6 +6,38 @@ class log
 	public static $logData = [];
 
 
+	public static function sending($_method = null, $_sendData = null)
+	{
+		if(!isset(self::$logData['sendmethod']))
+		{
+			self::$logData['sendmethod']   = $_method;
+			self::$logData['send']         = self::json($_sendData);
+			self::$logData['senddate']     = date('Y-m-d H:i:s');
+			self::$logData['sendtext']     = '';
+			self::$logData['sendmesageid'] = '';
+			self::$logData['sendkeyboard'] = '';
+		}
+		elseif(!isset(self::$logData['send2']))
+		{
+			self::$logData['send2'] = self::json($_sendData);
+		}
+		elseif(!isset(self::$logData['send3']))
+		{
+			self::$logData['send3'] = self::json($_sendData);
+		}
+		else
+		{
+			// send in meta, because we send something before it
+			if(isset(self::$logData['meta']))
+			{
+				self::$logData['meta'] .= "\n\n\n". self::json($_sendData);
+			}
+			else
+			{
+				self::$logData['meta'] = self::json($_sendData);
+			}
+		}
+	}
 
 
 
@@ -25,7 +57,7 @@ class log
 			'chatid'        => hook::from(),
 			'user_id'       => \dash\user::id(),
 			'hook'          => self::json(tg::$hook),
-			// 'hookdate'      => self::$logData['hook_date'],
+			// 'hookdate'      => '',
 			'hooktext'      => hook::text(),
 			'hookmessageid' => hook::message_id(),
 			// 'sendmethod'    => '',

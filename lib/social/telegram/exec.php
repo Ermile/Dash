@@ -46,9 +46,11 @@ class exec extends tg
 			return T_('Curl failed to initialize');
 		}
 
+		// log send this request
+		log::sending($_method, $_data);
 		// set some settings of curl
 		$apiURL = "https://api.telegram.org/bot".self::$api_token."/$_method";
-		$sendDate = date('Y-m-d H:i:s');
+
 		curl_setopt($ch, CURLOPT_URL, $apiURL);
 		// turn on some setting
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
