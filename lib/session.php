@@ -6,9 +6,9 @@ namespace dash;
  */
 class session
 {
-	private static $key       = 'session_storage';
-	private static $key_time  = 'session_storage_time';
-	private static $key_limit = 'session_storage_time_limit';
+	private static $key       = 'storage';
+	private static $key_time  = 'storage_time';
+	private static $key_limit = 'storage_time_limit';
 
 
 	/**
