@@ -32,13 +32,13 @@ class user extends tg
 	{
 		$newUserDetail =
 		[
-			'firstname'    => null,
-			'lastname'     => null,
-			'displayname'  => null,
-			'chatid'       => hook::from(),
-			// 'mobile'       => null,
-			// 'avatar'       => null,
-			'status'       => 'active',
+			'firstname'   => hook::from('first_name'),
+			'lastname'    => hook::from('last_name'),
+			'title'       => hook::from('username'),
+			'chatid'      => hook::from(),
+			// 'mobile'   => null,
+			// 'avatar'   => null,
+			'status'      => 'active',
 		];
 		$result = \dash\app\user::add_f($newUserDetail);
 		if(isset($result['id']))
