@@ -16,7 +16,7 @@ class user
 		$user_id = \dash\coding::decode($_user_code);
 		if($user_id)
 		{
-			return self::init($_user_id);
+			return self::init($user_id);
 		}
 	}
 
