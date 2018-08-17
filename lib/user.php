@@ -11,6 +11,16 @@ class user
 	private static $USER_ID = null;
 
 
+	public static function init_code($_user_code)
+	{
+		$user_id = \dash\coding::decode($_user_code);
+		if($user_id)
+		{
+			return self::init($_user_id);
+		}
+	}
+
+
 	/**
 	 * Initial user id
 	 *
