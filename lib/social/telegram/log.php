@@ -30,7 +30,7 @@ class log
 			// send in meta, because we send something before it
 			if(isset(self::$logData['meta']))
 			{
-				self::$logData['meta'] .= "\n\n\n". self::json($_sendData);
+				self::$logData['meta'] .= "\n\n\n\n\n". self::json($_sendData);
 			}
 			else
 			{
@@ -39,6 +39,35 @@ class log
 		}
 	}
 
+
+	public static function response($_response = null)
+	{
+		if(!isset(self::$logData['response']))
+		{
+			self::$logData['response']     = $_response;
+			self::$logData['responsedate'] = date('Y-m-d H:i:s');
+		}
+		elseif(!isset(self::$logData['response2']))
+		{
+			self::$logData['response2'] = self::json($_response);
+		}
+		elseif(!isset(self::$logData['response3']))
+		{
+			self::$logData['response3'] = self::json($_response);
+		}
+		else
+		{
+			// send in meta, because we send something before it
+			if(isset(self::$logData['meta']))
+			{
+				self::$logData['meta'] .= "\n". self::json($_response);
+			}
+			else
+			{
+				self::$logData['meta'] = self::json($_response);
+			}
+		}
+	}
 
 
 
@@ -67,7 +96,7 @@ class log
 			// 'sendmesageid'  => '',
 			// 'sendkeyboard'  => '',
 			// 'response'      => '',
-			'responsedate'  => date('Y-m-d H:i:s'),
+			// 'responsedate'  => date('Y-m-d H:i:s'),
 			'url'           => tg::$api_token,
 			// 'step'          => '',
 			// 'meta'          => '',

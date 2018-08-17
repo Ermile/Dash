@@ -89,8 +89,8 @@ class exec extends tg
 		{
 			$result = json_encode($result, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 		}
-		// Logging curl requests
-		// log::save($_method, $_data, $sendDate, $result);
+		// Log curl response
+		log::response($result);
 
 		// return result
 		return $result;
