@@ -69,8 +69,6 @@ class hook extends tg
 	}
 
 
-
-
 	public static function from($_arg = 'id')
 	{
 		$myDetection = null;
@@ -98,6 +96,89 @@ class hook extends tg
 	}
 
 
+	public static function chat($_arg = 'id')
+	{
+		$myDetection = null;
+		if(isset(self::$hook['message']['chat']))
+		{
+			$myDetection = self::$hook['message']['chat'];
+		}
+		elseif(isset(self::$hook['callback_query']['message']['chat']))
+		{
+			$myDetection = self::$hook['callback_query']['message']['chat'];
+		}
+		// get only arg
+		if($_arg)
+		{
+			if(isset($myDetection[$_arg]))
+			{
+				$myDetection = $myDetection[$_arg];
+			}
+			else
+			{
+				$myDetection = null;
+			}
+		}
+		return $myDetection;
+	}
+
+
+	public static function new_chat_member($_arg = 'id')
+	{
+		$myDetection = null;
+		if(isset(self::$hook['message']['new_chat_member']))
+		{
+			$myDetection = self::$hook['message']['new_chat_member'];
+		}
+		elseif(isset(self::$hook['callback_query']['message']['new_chat_member']))
+		{
+			$myDetection = self::$hook['callback_query']['message']['new_chat_member'];
+		}
+		// get only arg
+		if($_arg)
+		{
+			if(isset($myDetection[$_arg]))
+			{
+				$myDetection = $myDetection[$_arg];
+			}
+			else
+			{
+				$myDetection = null;
+			}
+		}
+		return $myDetection;
+	}
+
+
+	public static function new_chat_participant($_arg = 'id')
+	{
+		$myDetection = null;
+		if(isset(self::$hook['message']['new_chat_participant']))
+		{
+			$myDetection = self::$hook['message']['new_chat_participant'];
+		}
+		elseif(isset(self::$hook['callback_query']['message']['new_chat_participant']))
+		{
+			$myDetection = self::$hook['callback_query']['message']['new_chat_participant'];
+		}
+		// get only arg
+		if($_arg)
+		{
+			if(isset($myDetection[$_arg]))
+			{
+				$myDetection = $myDetection[$_arg];
+			}
+			else
+			{
+				$myDetection = null;
+			}
+		}
+		return $myDetection;
+	}
+
+
+
+
 
 
 
@@ -113,87 +194,7 @@ class hook extends tg
 
 		switch ($_needle)
 		{
-			case 'update_id':
-				if(isset(self::$hook['update_id']))
-				{
-					$myDetection = self::$hook['update_id'];
-				}
-				break;
 
-			case 'message_id':
-				if(isset(self::$hook['message']['message_id']))
-				{
-					$myDetection = self::$hook['message']['message_id'];
-				}
-				elseif(isset(self::$hook['callback_query']['message']['message_id']))
-				{
-					$myDetection = self::$hook['callback_query']['message']['message_id'];
-				}
-				break;
-
-			case 'message':
-				if(isset(self::$hook['message']))
-				{
-					$myDetection = self::$hook['message'];
-				}
-				elseif(isset(self::$hook['callback_query']['message']))
-				{
-					$myDetection = self::$hook['callback_query']['message'];
-				}
-				break;
-
-			case 'callback_query_id':
-				if(isset(self::$hook['callback_query']['id']))
-				{
-					$myDetection = self::$hook['callback_query']['id'];
-				}
-				break;
-
-			case 'from':
-				if(isset(self::$hook['message']['from']))
-				{
-					$myDetection = self::$hook['message']['from'];
-				}
-				elseif(isset(self::$hook['callback_query']['from']))
-				{
-					$myDetection = self::$hook['callback_query']['from'];
-				}
-				if($_arg)
-				{
-					if(isset($myDetection[$_arg]))
-					{
-						$myDetection = $myDetection[$_arg];
-					}
-					elseif($_arg !== null)
-					{
-						$myDetection = null;
-					}
-				}
-				break;
-
-			case 'chat':
-			case 'new_chat_member':
-			case 'new_chat_participant':
-				if(isset(self::$hook['message'][$_needle]))
-				{
-					$myDetection = self::$hook['message'][$_needle];
-				}
-				elseif(isset(self::$hook['callback_query']['message'][$_needle]))
-				{
-					$myDetection = self::$hook['callback_query']['message'][$_needle];
-				}
-				if($_arg)
-				{
-					if(isset($myDetection[$_arg]))
-					{
-						$myDetection = $myDetection[$_arg];
-					}
-					elseif($_arg !== null)
-					{
-						$myDetection = null;
-					}
-				}
-				break;
 
 			case 'text':
 				if(isset(self::$hook['message']['text']))
