@@ -12,7 +12,7 @@ class user
 	private static $USER_DETAIL = [];
 
 
-	public static function init_code($_user_code)
+	public static function init_tg($_user_code)
 	{
 		$user_id = \dash\coding::decode($_user_code);
 
@@ -58,24 +58,22 @@ class user
 				else
 				{
 					self::$USER_DETAIL[$key] = $value;
-
-					if(!$_app_mode)
-					{
-						$_SESSION['auth'][$key] = $value;
-					}
+					$_SESSION['auth'][$key] = $value;
 				}
 			}
 		}
+
+		$_SESSION['auth']['logintime'] = time();
 
 		if(!$_app_mode)
 		{
 			self::$USER_ID                 = $_user_id;
 			$_SESSION['auth']['id']        = $_user_id;
-			$_SESSION['auth']['logintime'] = time();
 		}
 		else
 		{
 			self::$USER_ID                  = \dash\coding::encode($_user_id);
+			$_SESSION['auth']['id']         = self::$USER_ID;
 			self::$USER_DETAIL['logintime'] = time();
 		}
 	}
