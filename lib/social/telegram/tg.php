@@ -69,6 +69,8 @@ class tg
 		{
 			return T_('Telegram is off!');
 		}
+		// disable visitor loger
+		\dash\temp::set('force_stop_visitor', true);
 		// session_destroy();
 		self::hook();
 	}
