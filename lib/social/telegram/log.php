@@ -6,6 +6,13 @@ class log
 	public static $logData = [];
 
 
+	/**
+	 * log send request to telegram server into variable
+	 * finish and insert into log db on calling done fn
+	 * @param  [type] $_method   [description]
+	 * @param  [type] $_sendData [description]
+	 * @return [type]            [description]
+	 */
 	public static function sending($_method = null, $_sendData = null)
 	{
 		if(!isset(self::$logData['sendmethod']))
@@ -40,6 +47,12 @@ class log
 	}
 
 
+	/**
+	 * log of request responses from telegram server into variable
+	 * finish and insert into log db on calling done fn
+	 * @param  [type] $_response [description]
+	 * @return [type]            [description]
+	 */
 	public static function response($_response = null)
 	{
 		if(!isset(self::$logData['response']))
@@ -68,11 +81,6 @@ class log
 			}
 		}
 	}
-
-
-
-
-
 
 
 	/**
@@ -110,40 +118,11 @@ class log
 	}
 
 
-
-
-
-
-
-
-
-	public static function save($_method = null, $_sendData = null, $_sendDate = null, $_response = null)
-	{
-		$myDetail =
-		[
-			// 'chatid'        => '',
-			'user_id'       => \dash\user::id(),
-			'hook'          => self::json(self::$hook),
-			'hookdate'      => self::$hookDate,
-			// 'hooktext'      => '',
-			// 'hookmessageid' => '',
-			'sendmethod'    => $_method,
-			'send'          => self::json($_sendData),
-			'senddate'      => $_sendDate,
-			// 'sendtext'      => '',
-			// 'sendmesageid'  => '',
-			// 'sendkeyboard'  => '',
-			'response'      => self::json($_response),
-			'responsedate'  => date('Y-m-d H:i:s'),
-			'url'           => self::$api_token,
-			// 'step'          => '',
-			// 'meta'          => '',
-			// 'status'        => '',
-		];
-
-		\dash\db\telegrams::insert($myDetail);
-	}
-
+	/**
+	 * filter some array into json pretty to save on db and read better
+	 * @param  [type] $_data [description]
+	 * @return [type]        [description]
+	 */
 	public static function json($_data)
 	{
 		if(!$_data)
@@ -152,6 +131,14 @@ class log
 		}
 		return json_encode($_data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 	}
+
+
+
+
+
+
+
+
 
 
 	/**
