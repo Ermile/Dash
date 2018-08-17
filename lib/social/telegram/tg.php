@@ -87,6 +87,7 @@ class tg
 		self::$hookDate = date('Y-m-d H:i:s');
 		// detect user_id
 		self::$user_id  = user::detect();
+		session::forceSet();
 
 		// detect cmd and save it in static value
 		self::$cmd = self::cmdAnalyser(self::response('text'));
