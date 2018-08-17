@@ -1,9 +1,9 @@
 <?php
 namespace dash\social\telegram;
 
-class log extends tg
+class log
 {
-	public static $hookDate    = null;
+	public static $logData = [];
 
 
 
@@ -24,10 +24,10 @@ class log extends tg
 		[
 			'chatid'        => hook::from(),
 			'user_id'       => \dash\user::id(),
-			// 'hook'          => '',
-			// 'hookdate'      => '',
-			// 'hooktext'      => '',
-			// 'hookmessageid' => '',
+			'hook'          => self::json(tg::$hook),
+			// 'hookdate'      => self::$logData['hook_date'],
+			'hooktext'      => hook::text(),
+			'hookmessageid' => hook::message_id(),
 			// 'sendmethod'    => '',
 			// 'send'          => '',
 			// 'senddate'      => '',
@@ -35,14 +35,17 @@ class log extends tg
 			// 'sendmesageid'  => '',
 			// 'sendkeyboard'  => '',
 			// 'response'      => '',
-			// 'responsedate'  => '',
-			// 'url'           => '',
+			'responsedate'  => date('Y-m-d H:i:s'),
+			'url'           => tg::$api_token,
 			// 'step'          => '',
 			// 'meta'          => '',
 			// 'status'        => '',
 		];
 
-		// \dash\db\telegrams::insert($myDetail);
+		// combine collected and generated array together
+		$myDetail = array_merge($myDetail, self::$logData);
+		// save log into database
+		\dash\db\telegrams::insert($myDetail);
 	}
 
 

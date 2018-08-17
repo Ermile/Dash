@@ -79,7 +79,6 @@ class exec extends tg
 			return T_('Empty server response');
 		}
 		curl_close($ch);
-		//Logging curl requests
 		if(substr($result, 0,1) === "{")
 		{
 			$result = json_decode($result, true);
@@ -88,7 +87,8 @@ class exec extends tg
 		{
 			$result = json_encode($result, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 		}
-		log::save($_method, $_data, $sendDate, $result);
+		// Logging curl requests
+		// log::save($_method, $_data, $sendDate, $result);
 
 		// return result
 		return $result;

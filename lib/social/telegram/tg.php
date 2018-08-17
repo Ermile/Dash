@@ -96,8 +96,8 @@ class tg
 		// now we need to save unanswered hook
 		if(true)
 		{
-			// save log if allow
-			log::save();
+			// save log
+			log::done();
 
 		$_SESSION['tg'][self::$hookDate] = 'salam '. \dash\user::id() ;
 		$msg      = "\n\n<pre>". json_encode($_SESSION, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)."</pre>";
