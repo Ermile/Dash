@@ -177,6 +177,79 @@ class hook extends tg
 	}
 
 
+	public static function text($_removeBotName = true)
+	{
+		$myDetection = null;
+		if(isset(self::$hook['message']['text']))
+		{
+			$myDetection = self::$hook['message']['text'];
+		}
+		elseif(isset(self::$hook['callback_query']['data']))
+		{
+			$myDetection = 'cb_'.self::$hook['callback_query']['data'];
+		}
+		elseif(isset(self::$hook['message']['contact'])
+			&& isset(self::$hook['message']['contact']['phone_number'])
+		)
+		{
+			if(isset(self::$hook['message']['contact']['fake']))
+			{
+				$myDetection = 'type_contact '. self::$hook['message']['contact']['phone_number'] .' fake';
+			}
+			else
+			{
+				$myDetection = 'type_contact '. self::$hook['message']['contact']['phone_number'];
+			}
+		}
+		elseif(isset(self::$hook['message']['location'])
+			&& isset(self::$hook['message']['location']['longitude'])
+			&& isset(self::$hook['message']['location']['latitude'])
+		)
+		{
+			$myDetection = 'type_location ';
+			$myDetection .= self::$hook['message']['location']['longitude']. ' ';
+			$myDetection .= self::$hook['message']['location']['latitude'];
+		}
+		elseif(isset(self::$hook['message']['audio']))
+		{
+			$myDetection = 'type_audio';
+		}
+		elseif(isset(self::$hook['message']['document']))
+		{
+			$myDetection = 'type_document';
+		}
+		elseif(isset(self::$hook['message']['photo']))
+		{
+			$myDetection = 'type_photo';
+		}
+		elseif(isset(self::$hook['message']['sticker']))
+		{
+			$myDetection = 'type_sticker';
+		}
+		elseif(isset(self::$hook['message']['video']))
+		{
+			$myDetection = 'type_video';
+		}
+		elseif(isset(self::$hook['message']['voice']))
+		{
+			$myDetection = 'type_voice';
+		}
+		elseif(isset(self::$hook['message']['venue']))
+		{
+			$myDetection = 'type_venue';
+		}
+
+		if($_removeBotName)
+		{
+			// remove @bot_name
+			$myDetection = str_replace('@'.self::$name, '', $myDetection);
+		}
+		// trim text
+		$myDetection = trim($myDetection);
+
+		return $myDetection;
+	}
+
 
 
 
@@ -194,73 +267,6 @@ class hook extends tg
 
 		switch ($_needle)
 		{
-
-
-			case 'text':
-				if(isset(self::$hook['message']['text']))
-				{
-					$myDetection = self::$hook['message']['text'];
-				}
-				elseif(isset(self::$hook['callback_query']['data']))
-				{
-					$myDetection = 'cb_'.self::$hook['callback_query']['data'];
-				}
-				elseif(isset(self::$hook['message']['contact'])
-					&& isset(self::$hook['message']['contact']['phone_number'])
-				)
-				{
-					if(isset(self::$hook['message']['contact']['fake']))
-					{
-						$myDetection = 'type_contact '. self::$hook['message']['contact']['phone_number'] .' fake';
-					}
-					else
-					{
-						$myDetection = 'type_contact '. self::$hook['message']['contact']['phone_number'];
-					}
-				}
-				elseif(isset(self::$hook['message']['location'])
-					&& isset(self::$hook['message']['location']['longitude'])
-					&& isset(self::$hook['message']['location']['latitude'])
-				)
-				{
-					$myDetection = 'type_location ';
-					$myDetection .= self::$hook['message']['location']['longitude']. ' ';
-					$myDetection .= self::$hook['message']['location']['latitude'];
-				}
-				elseif(isset(self::$hook['message']['audio']))
-				{
-					$myDetection = 'type_audio ';
-				}
-				elseif(isset(self::$hook['message']['document']))
-				{
-					$myDetection = 'type_document ';
-				}
-				elseif(isset(self::$hook['message']['photo']))
-				{
-					$myDetection = 'type_photo ';
-				}
-				elseif(isset(self::$hook['message']['sticker']))
-				{
-					$myDetection = 'type_sticker ';
-				}
-				elseif(isset(self::$hook['message']['video']))
-				{
-					$myDetection = 'type_video ';
-				}
-				elseif(isset(self::$hook['message']['voice']))
-				{
-					$myDetection = 'type_voice ';
-				}
-				elseif(isset(self::$hook['message']['venue']))
-				{
-					$myDetection = 'type_venue ';
-				}
-
-				// remove @bot_name
-				$myDetection = str_replace('@'.self::$name, '', $myDetection);
-				// trim text
-				$myDetection = trim($myDetection);
-				break;
 
 			case 'contact':
 				if(isset(self::$hook['message']['contact']))
