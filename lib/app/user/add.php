@@ -5,6 +5,11 @@ namespace dash\app\user;
 trait add
 {
 
+	public static function add_f($_args, $_option = [])
+	{
+		return self::add($_args, ['force_add' => true]);
+	}
+
 	/**
 	 * add new user
 	 *
@@ -32,6 +37,7 @@ trait add
 			'debug'          => true,
 			'other_field'    => null,
 			'other_field_id' => null,
+			'force_add'      => false,
 		];
 
 		if(!is_array($_option))
@@ -42,11 +48,14 @@ trait add
 		$_option = array_merge($default_option, $_option);
 
 
-		if(!\dash\user::id())
+		if(!$_option['force_add'])
 		{
-			if($_option['save_log']) \dash\app::log('api:user:user_id:notfound', null, $log_meta);
-			if($_option['debug']) \dash\notif::error(T_("User not found"), 'user');
-			return false;
+			if(!\dash\user::id())
+			{
+				if($_option['save_log']) \dash\app::log('api:user:user_id:notfound', null, $log_meta);
+				if($_option['debug']) \dash\notif::error(T_("User not found"), 'user');
+				return false;
+			}
 		}
 
 		// check args
