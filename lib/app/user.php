@@ -302,6 +302,15 @@ class user
 			return false;
 		}
 
+
+		if(!$displayname)
+		{
+			if($firstname || $lastname)
+			{
+				$displayname = trim($firstname . ' '. $lastname);
+			}
+		}
+
 		$args['birthday']    = $birthday;
 		$args['website']     = $website;
 		$args['facebook']    = $facebook;
