@@ -11,6 +11,7 @@ class tg
 	public static $api_token   = null;
 	public static $name        = null;
 	public static $hook        = null;
+	public static $user_id     = null;
 
 
 
@@ -19,7 +20,6 @@ class tg
 	public static $cmdFolder   = null;
 	public static $hookDate    = null;
 	public static $fill        = null;
-	public static $user_id     = null;
 	public static $defaultText = 'Undefined';
 	public static $defaultMenu = null;
 	public static $saveDest    = root.'public_html/files/telegram/';
@@ -84,8 +84,8 @@ class tg
 		// get hook and save in static variable
 		self::$hook     = json_decode(file_get_contents('php://input'), true);
 		self::$hookDate = date('Y-m-d H:i:s');
-
-		user::detect();
+		// detect user_id
+		self::$user_id  = user::detect();
 
 		// detect cmd and save it in static value
 		self::$cmd = self::cmdAnalyser(self::response('text'));

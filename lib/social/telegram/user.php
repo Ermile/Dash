@@ -6,26 +6,27 @@ class user extends tg
 
 	public static function detect()
 	{
-		var_dump(hook::from());
 		$myUser = \dash\app\user::get(['chatid' => hook::from(), 'limit' => 1]);
-		var_dump($myUser);
-		if(!$myUser)
+		// if not exist try to register
+		if(!isset($myUser['id']))
 		{
 			$myUser = self::register();
 		}
+		// if not exist yet return null
 		if(!$myUser)
 		{
 			// user not detected
-			var_dump('hello dolly');
-			var_dump(\dash\notif::get());
+			// var_dump(\dash\notif::get());
 			return null;
 		}
-		var_dump($myUser);
 
+		if(isset($myUser['id']))
+		{
+			\dash\user::init_code($myUser['id']);
+			return $myUser['id'];
+		}
 
-
-
-		exit();
+		return false;
 	}
 
 	public static function register()
