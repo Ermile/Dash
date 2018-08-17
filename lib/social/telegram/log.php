@@ -93,25 +93,6 @@ class log
 	}
 
 
-	public static function saveHook()
-	{
-		// try to register user if not exist
-		\dash\social\telegram\user::handle();
-
-		$myDetail =
-		[
-			// 'chatid'        => '',
-			'user_id'       => \dash\user::id(),
-			'hook'          => self::json(self::$hook),
-			'hookdate'      => self::$hookDate,
-			// 'hooktext'      => '',
-			// 'hookmessageid' => '',
-			// 'status'        => '',
-		];
-		\dash\db\telegrams::insert($myDetail);
-	}
-
-
 	/**
 	 * save history of messages into session of this user
 	 * @param  [type] $_text [description]
