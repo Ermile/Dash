@@ -8,15 +8,17 @@ class user
 	 *
 	 * @var        <type>
 	 */
-	private static $USER_ID = null;
+	private static $USER_ID     = null;
+	private static $USER_DETAIL = [];
 
 
 	public static function init_code($_user_code)
 	{
 		$user_id = \dash\coding::decode($_user_code);
+
 		if($user_id)
 		{
-			return self::init($user_id);
+			return self::init($user_id, true);
 		}
 	}
 
@@ -40,6 +42,11 @@ class user
 			return;
 		}
 
+		if($_not_save_session)
+		{
+			$detail = \dash\app\user::ready($detail);
+		}
+
 		if(is_array($detail))
 		{
 			foreach ($detail as $key => $value)
@@ -50,16 +57,27 @@ class user
 				}
 				else
 				{
-					$_SESSION['auth'][$key] = $value;
+					self::$USER_DETAIL[$key] = $value;
+
+					if($_not_save_session)
+					{
+						$_SESSION['auth'][$key] = $value;
+					}
 				}
 			}
 		}
 
-		self::$USER_ID                 = $_user_id;
-		$_SESSION['auth']['id']        = $_user_id;
-		$_SESSION['auth']['logintime'] = time();
-
-
+		if($_not_save_session)
+		{
+			self::$USER_ID                 = $_user_id;
+			$_SESSION['auth']['id']        = $_user_id;
+			$_SESSION['auth']['logintime'] = time();
+		}
+		else
+		{
+			self::$USER_ID                  = \dash\coding::encode($_user_id);
+			self::$USER_DETAIL['logintime'] = time();
+		}
 	}
 
 
@@ -96,9 +114,11 @@ class user
 	 */
 	public static function destroy()
 	{
-		self::$USER_ID = null;
+		self::$USER_ID     = null;
+		self::$USER_DETAIL = [];
 		unset($_SESSION['auth']);
 	}
+
 
 	/**
 	 * return current version
@@ -133,19 +153,24 @@ class user
 	 */
 	public static function detail($_key = null)
 	{
+		if(empty(self::$USER_DETAIL))
+		{
+			self::$USER_DETAIL = $_SESSION['auth'];
+		}
+
 		if($_key)
 		{
-			if(isset($_SESSION['auth'][$_key]))
+			if(isset(self::$USER_DETAIL[$_key]))
 			{
-				return $_SESSION['auth'][$_key];
+				return self::$USER_DETAIL[$_key];
 			}
 			return null;
 		}
 		else
 		{
-			if(isset($_SESSION['auth']))
+			if(isset(self::$USER_DETAIL))
 			{
-				return $_SESSION['auth'];
+				return self::$USER_DETAIL;
 			}
 			return null;
 		}
