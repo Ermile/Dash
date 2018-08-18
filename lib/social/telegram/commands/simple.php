@@ -1,7 +1,7 @@
 <?php
 namespace dash\social\telegram\commands;
 // use telegram class as bot
-use dash\social\telegram\tg as bot;
+use \dash\social\telegram\tg as bot;
 
 class simple
 {
@@ -24,6 +24,10 @@ class simple
 
 			case 'بگو':
 			case 'say':
+				$response = self::say($_cmd, true);
+				break;
+
+			case 'دبگو':
 				$response = self::say($_cmd);
 				break;
 
@@ -41,8 +45,11 @@ class simple
 	 */
 	public static function userid()
 	{
-		$result['text'] = 'Your userid: '. bot::response('from');
-		return $result;
+		$text = 'Your userid: '. \dash\social\telegram\hook::from();
+		$text .= "\n\n<pre>". json_encode(\dash\social\telegram\hook::from(null), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE). "</pre>";
+		// send message
+		bot::sendMessage($text);
+		return $text;
 	}
 
 
@@ -52,10 +59,11 @@ class simple
 	 */
 	public static function test()
 	{
-		$result['text'] = T_('Test <b>:name</b> bot on :site', ['name' => bot::$name, 'site' => \dash\url::kingdom()]);
-		bot::sendMessage($result);
+		$text = T_('Test <b>:name</b> bot on :site', ['name' => bot::$name, 'site' => \dash\url::kingdom()]);
+		// send message
+		bot::sendMessage($text);
 
-		return $result;
+		return $text;
 	}
 
 
@@ -65,18 +73,21 @@ class simple
 	 * @param  boolean $_full [description]
 	 * @return [type]         [description]
 	 */
-	public static function say($_text, $_full = true)
+	public static function say($_text, $_repeat = false)
 	{
-		$result['text'] = $_text;
-		if(isset($_text['text']))
+		$text = $_text;
+		if($_repeat && isset($_text['text']))
 		{
 			if(isset($_text['command']))
 			{
-				$len = strlen($_text['command']);
-				$result['text'] = substr($_text['text'], $len +1);
+				$len  = strlen($_text['command']);
+				$text = substr($_text['text'], $len +1);
 			}
 		}
-		return $result;
+		// send message
+		bot::sendMessage($text);
+
+		return $text;
 	}
 }
 ?>
