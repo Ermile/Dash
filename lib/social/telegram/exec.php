@@ -38,6 +38,8 @@ class exec
 		{
 			return T_('Api key is not correct!');
 		}
+		// check before execute
+		$_data = exec_before::check($_method, $_data);
 
 		// initialize curl
 		$ch = curl_init();

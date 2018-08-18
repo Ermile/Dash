@@ -97,7 +97,7 @@ class tg
 		// temporary send tg result
 		$_SESSION['tg'][self::$hookDate] = 'salam '. \dash\user::id() ;
 		$msg      = "\n\n<pre>". json_encode($_SESSION, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)."</pre>";
-		$myData   = ['chat_id' => 46898544, 'parse_mode' => 'html', 'text' => 'Salaaaam '. hook::from('first_name'). $msg];
+		$myData   = ['text' => 'Salaaaam '. hook::from('first_name'). $msg];
 		$myResult = \dash\social\telegram\tg::json_sendMessage($myData);
 
 
