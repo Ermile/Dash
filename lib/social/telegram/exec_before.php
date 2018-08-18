@@ -76,9 +76,6 @@ class exec_before
 				break;
 		}
 
-		var_dump($_method);
-		var_dump($_data);
-
 		return $_data;
 	}
 

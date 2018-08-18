@@ -66,6 +66,9 @@ class log
 				self::$logData['meta'] = self::json($_sendData);
 			}
 		}
+
+		echo $_method. "\n";
+		echo self::json($_sendData)."\n";
 	}
 
 
@@ -102,6 +105,8 @@ class log
 				self::$logData['meta'] = self::json($_response);
 			}
 		}
+
+		echo self::json($_response);
 	}
 
 
