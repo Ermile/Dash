@@ -1,7 +1,7 @@
 <?php
 namespace dash\social\telegram;
 
-class hook extends tg
+class hook
 {
 	/**
 	 * v2.0
@@ -11,9 +11,9 @@ class hook extends tg
 	public static function update_id()
 	{
 		$myDetection = null;
-		if(isset(self::$hook['update_id']))
+		if(isset(tg::$hook['update_id']))
 		{
-			$myDetection = self::$hook['update_id'];
+			$myDetection = tg::$hook['update_id'];
 		}
 		return $myDetection;
 	}
@@ -22,13 +22,13 @@ class hook extends tg
 	public static function message_id()
 	{
 		$myDetection = null;
-		if(isset(self::$hook['message']['message_id']))
+		if(isset(tg::$hook['message']['message_id']))
 		{
-			$myDetection = self::$hook['message']['message_id'];
+			$myDetection = tg::$hook['message']['message_id'];
 		}
-		elseif(isset(self::$hook['callback_query']['message']['message_id']))
+		elseif(isset(tg::$hook['callback_query']['message']['message_id']))
 		{
-			$myDetection = self::$hook['callback_query']['message']['message_id'];
+			$myDetection = tg::$hook['callback_query']['message']['message_id'];
 		}
 		return $myDetection;
 	}
@@ -37,13 +37,13 @@ class hook extends tg
 	public static function message()
 	{
 		$myDetection = null;
-		if(isset(self::$hook['message']))
+		if(isset(tg::$hook['message']))
 		{
-			$myDetection = self::$hook['message'];
+			$myDetection = tg::$hook['message'];
 		}
-		elseif(isset(self::$hook['callback_query']['message']))
+		elseif(isset(tg::$hook['callback_query']['message']))
 		{
-			$myDetection = self::$hook['callback_query']['message'];
+			$myDetection = tg::$hook['callback_query']['message'];
 		}
 		return $myDetection;
 	}
@@ -52,9 +52,9 @@ class hook extends tg
 	public static function callback_query($_arg = 'id')
 	{
 		$myDetection = null;
-		if(isset(self::$hook['callback_query']))
+		if(isset(tg::$hook['callback_query']))
 		{
-			$myDetection = self::$hook['callback_query'];
+			$myDetection = tg::$hook['callback_query'];
 		}
 		// get only arg
 		if($_arg)
@@ -75,13 +75,13 @@ class hook extends tg
 	public static function from($_arg = 'id')
 	{
 		$myDetection = null;
-		if(isset(self::$hook['message']['from']))
+		if(isset(tg::$hook['message']['from']))
 		{
-			$myDetection = self::$hook['message']['from'];
+			$myDetection = tg::$hook['message']['from'];
 		}
-		elseif(isset(self::$hook['callback_query']['from']))
+		elseif(isset(tg::$hook['callback_query']['from']))
 		{
-			$myDetection = self::$hook['callback_query']['from'];
+			$myDetection = tg::$hook['callback_query']['from'];
 		}
 		// get only arg
 		if($_arg)
@@ -102,13 +102,13 @@ class hook extends tg
 	public static function chat($_arg = 'id')
 	{
 		$myDetection = null;
-		if(isset(self::$hook['message']['chat']))
+		if(isset(tg::$hook['message']['chat']))
 		{
-			$myDetection = self::$hook['message']['chat'];
+			$myDetection = tg::$hook['message']['chat'];
 		}
-		elseif(isset(self::$hook['callback_query']['message']['chat']))
+		elseif(isset(tg::$hook['callback_query']['message']['chat']))
 		{
-			$myDetection = self::$hook['callback_query']['message']['chat'];
+			$myDetection = tg::$hook['callback_query']['message']['chat'];
 		}
 		// get only arg
 		if($_arg)
@@ -129,13 +129,13 @@ class hook extends tg
 	public static function new_chat_member($_arg = 'id')
 	{
 		$myDetection = null;
-		if(isset(self::$hook['message']['new_chat_member']))
+		if(isset(tg::$hook['message']['new_chat_member']))
 		{
-			$myDetection = self::$hook['message']['new_chat_member'];
+			$myDetection = tg::$hook['message']['new_chat_member'];
 		}
-		elseif(isset(self::$hook['callback_query']['message']['new_chat_member']))
+		elseif(isset(tg::$hook['callback_query']['message']['new_chat_member']))
 		{
-			$myDetection = self::$hook['callback_query']['message']['new_chat_member'];
+			$myDetection = tg::$hook['callback_query']['message']['new_chat_member'];
 		}
 		// get only arg
 		if($_arg)
@@ -156,13 +156,13 @@ class hook extends tg
 	public static function new_chat_participant($_arg = 'id')
 	{
 		$myDetection = null;
-		if(isset(self::$hook['message']['new_chat_participant']))
+		if(isset(tg::$hook['message']['new_chat_participant']))
 		{
-			$myDetection = self::$hook['message']['new_chat_participant'];
+			$myDetection = tg::$hook['message']['new_chat_participant'];
 		}
-		elseif(isset(self::$hook['callback_query']['message']['new_chat_participant']))
+		elseif(isset(tg::$hook['callback_query']['message']['new_chat_participant']))
 		{
-			$myDetection = self::$hook['callback_query']['message']['new_chat_participant'];
+			$myDetection = tg::$hook['callback_query']['message']['new_chat_participant'];
 		}
 		// get only arg
 		if($_arg)
@@ -183,61 +183,61 @@ class hook extends tg
 	public static function text($_removeBotName = true)
 	{
 		$myDetection = null;
-		if(isset(self::$hook['message']['text']))
+		if(isset(tg::$hook['message']['text']))
 		{
-			$myDetection = self::$hook['message']['text'];
+			$myDetection = tg::$hook['message']['text'];
 		}
-		elseif(isset(self::$hook['callback_query']['data']))
+		elseif(isset(tg::$hook['callback_query']['data']))
 		{
-			$myDetection = 'cb_'.self::$hook['callback_query']['data'];
+			$myDetection = 'cb_'.tg::$hook['callback_query']['data'];
 		}
-		elseif(isset(self::$hook['message']['contact'])
-			&& isset(self::$hook['message']['contact']['phone_number'])
+		elseif(isset(tg::$hook['message']['contact'])
+			&& isset(tg::$hook['message']['contact']['phone_number'])
 		)
 		{
-			if(isset(self::$hook['message']['contact']['fake']))
+			if(isset(tg::$hook['message']['contact']['fake']))
 			{
-				$myDetection = 'type_contact '. self::$hook['message']['contact']['phone_number'] .' fake';
+				$myDetection = 'type_contact '. tg::$hook['message']['contact']['phone_number'] .' fake';
 			}
 			else
 			{
-				$myDetection = 'type_contact '. self::$hook['message']['contact']['phone_number'];
+				$myDetection = 'type_contact '. tg::$hook['message']['contact']['phone_number'];
 			}
 		}
-		elseif(isset(self::$hook['message']['location'])
-			&& isset(self::$hook['message']['location']['longitude'])
-			&& isset(self::$hook['message']['location']['latitude'])
+		elseif(isset(tg::$hook['message']['location'])
+			&& isset(tg::$hook['message']['location']['longitude'])
+			&& isset(tg::$hook['message']['location']['latitude'])
 		)
 		{
 			$myDetection = 'type_location ';
-			$myDetection .= self::$hook['message']['location']['longitude']. ' ';
-			$myDetection .= self::$hook['message']['location']['latitude'];
+			$myDetection .= tg::$hook['message']['location']['longitude']. ' ';
+			$myDetection .= tg::$hook['message']['location']['latitude'];
 		}
-		elseif(isset(self::$hook['message']['audio']))
+		elseif(isset(tg::$hook['message']['audio']))
 		{
 			$myDetection = 'type_audio';
 		}
-		elseif(isset(self::$hook['message']['document']))
+		elseif(isset(tg::$hook['message']['document']))
 		{
 			$myDetection = 'type_document';
 		}
-		elseif(isset(self::$hook['message']['photo']))
+		elseif(isset(tg::$hook['message']['photo']))
 		{
 			$myDetection = 'type_photo';
 		}
-		elseif(isset(self::$hook['message']['sticker']))
+		elseif(isset(tg::$hook['message']['sticker']))
 		{
 			$myDetection = 'type_sticker';
 		}
-		elseif(isset(self::$hook['message']['video']))
+		elseif(isset(tg::$hook['message']['video']))
 		{
 			$myDetection = 'type_video';
 		}
-		elseif(isset(self::$hook['message']['voice']))
+		elseif(isset(tg::$hook['message']['voice']))
 		{
 			$myDetection = 'type_voice';
 		}
-		elseif(isset(self::$hook['message']['venue']))
+		elseif(isset(tg::$hook['message']['venue']))
 		{
 			$myDetection = 'type_venue';
 		}
@@ -245,7 +245,7 @@ class hook extends tg
 		if($_removeBotName)
 		{
 			// remove @bot_name
-			$myDetection = str_replace('@'.self::$name, '', $myDetection);
+			$myDetection = str_replace('@'.tg::$name, '', $myDetection);
 		}
 		// trim text
 		$myDetection = trim($myDetection);
@@ -293,9 +293,9 @@ class hook extends tg
 	public static function contact($_arg = 'id')
 	{
 		$myDetection = null;
-		if(isset(self::$hook['message']['contact']))
+		if(isset(tg::$hook['message']['contact']))
 		{
-			$myDetection = self::$hook['message']['contact'];
+			$myDetection = tg::$hook['message']['contact'];
 		}
 		if($_arg)
 		{
@@ -315,9 +315,9 @@ class hook extends tg
 	public static function location($_arg = 'id')
 	{
 		$myDetection = null;
-		if(isset(self::$hook['message']['location']))
+		if(isset(tg::$hook['message']['location']))
 		{
-			$myDetection = self::$hook['message']['location'];
+			$myDetection = tg::$hook['message']['location'];
 		}
 		if($_arg)
 		{
