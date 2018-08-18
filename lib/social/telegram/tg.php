@@ -15,19 +15,18 @@ class tg
 
 
 	public static $language    = 'en_US';
-	public static $cmdFolder   = null;
 	public static $fill        = null;
 	public static $defaultText = 'Undefined';
 	public static $defaultMenu = null;
 	public static $saveDest    = root.'public_html/files/telegram/';
 	public static $AnswerOrder =
 	[
-		'handle',
-		'callback',
-		'user',
-		'menu',
-		'simple',
-		'conversation',
+		'\dash\social\telegram\commands\handle',
+		'\dash\social\telegram\commands\callback',
+		'\dash\social\telegram\commands\user',
+		'\dash\social\telegram\commands\menu',
+		'\dash\social\telegram\commands\simple',
+		'\dash\social\telegram\commands\conversation',
 	];
 
 	/**

@@ -11,18 +11,10 @@ class answer extends tg
 
 	public static function finder()
 	{
-		// read from main command template
-		$cmdFolder = __NAMESPACE__ .'\commands\\';
-		// // use user defined command
-		// if(self::$useTemplate && self::$cmdFolder)
-		// {
-		// 	$cmdFolder = self::$cmdFolder;
-		// }
-
 		// try to run classes based on order list
 		foreach (self::$AnswerOrder as $myClass)
 		{
-			$funcName = $cmdFolder. $myClass.'::run';
+			$funcName = $myClass.'::run';
 			// generate func name
 			if(is_callable($funcName))
 			{
