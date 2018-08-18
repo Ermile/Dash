@@ -45,7 +45,7 @@ class simple
 	 */
 	public static function userid()
 	{
-		$text = 'Your userid: '. \dash\social\telegram\hook::from();
+		$text = 'Your userid <code>'. \dash\social\telegram\hook::from(). '</code>';
 		$text .= "\n\n<pre>". json_encode(\dash\social\telegram\hook::from(null), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE). "</pre>";
 		// send message
 		bot::sendMessage($text);
