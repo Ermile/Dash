@@ -2,11 +2,11 @@
 namespace dash\social\telegram;
 
 /** telegram execute last commits library**/
-class exec extends tg
+class exec
 {
 	/**
 	 * this library send request to telegram servers
-	 * v2.0
+	 * v2.1
 	 */
 
 
@@ -14,7 +14,7 @@ class exec extends tg
 	 * Execute cURL call
 	 * @return mixed Result of the cURL call
 	 */
-	protected static function send($_method = null, $_data = null, $_jsonResult = false)
+	public static function send($_method = null, $_data = null, $_jsonResult = false)
 	{
 		// if telegram is off then do not run
 		if(!\dash\option::social('telegram', 'status'))
@@ -28,13 +28,13 @@ class exec extends tg
 		}
 
 		// if api key is not set get it from options
-		if(!self::$api_token)
+		if(!tg::$api_token)
 		{
-			self::$api_token = \dash\option::social('telegram', 'token');
+			tg::$api_token = \dash\option::social('telegram', 'token');
 		}
 
 		// if key is not correct return
-		if(strlen(self::$api_token) < 20)
+		if(strlen(tg::$api_token) < 20)
 		{
 			return T_('Api key is not correct!');
 		}
@@ -49,7 +49,7 @@ class exec extends tg
 		// log send this request
 		log::sending($_method, $_data);
 		// set some settings of curl
-		$apiURL = "https://api.telegram.org/bot".self::$api_token."/$_method";
+		$apiURL = "https://api.telegram.org/bot".tg::$api_token."/$_method";
 
 		curl_setopt($ch, CURLOPT_URL, $apiURL);
 		// turn on some setting
