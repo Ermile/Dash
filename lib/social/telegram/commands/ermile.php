@@ -3,7 +3,7 @@ namespace dash\social\telegram\commands;
 // use telegram class as bot
 use \dash\social\telegram\tg as bot;
 
-class user
+class ermile
 {
 	/**
 	 * execute user request and return best result
@@ -12,6 +12,7 @@ class user
 	 */
 	public static function run($_cmd)
 	{
+		var_dump(22);
 		$response = null;
 		switch ($_cmd['command'])
 		{
@@ -96,19 +97,17 @@ class user
 	{
 		$result =
 		[
-			[
-				'text'         => "به *_fullName_* خوش آمدید."." /help",
-				'reply_markup' => menu::main(true),
-			],
+			'text'         => "به *_fullName_* خوش آمدید."." /help",
+			// 'reply_markup' => menu::main(true),
 		];
-		// on debug mode send made by ermile at the end of start msg
-		if(\dash\option::social('telegram', 'debug'))
-		{
-			$result[] =
-			[
-				'text' => "Made by @Ermile",
-			];
-		}
+
+		$result['text'] = T_('Haloo');
+		$result['text'] .= "\n". T_('We are so glad to meet you.');
+		$result['text'] .= "\n\n".  '/help';
+		$result['text'] .= "\n". T_('Made by @Ermile');
+
+		bot::sendMessage($result);
+
 		return $result;
 	}
 
