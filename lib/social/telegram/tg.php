@@ -29,31 +29,7 @@ class tg
 	public static $defaultMenu = null;
 	public static $saveDest    = root.'public_html/files/telegram/';
 
-	/**
-	 * execute telegram method
-	 * @param  [type] $_name [description]
-	 * @param  [type] $_args [description]
-	 * @return [type]        [description]
-	 */
-	static function __callStatic($_name, $_args)
-	{
-		// try to detect json output
-		$jsonResult = false;
-		if(substr($_name, 0, 5) === 'json_')
-		{
-			$_name = substr($_name, 5);
-			$jsonResult = true;
-		}
-		if(isset($_args[0]))
-		{
-			$_args = $_args[0];
-		}
-		if($_name)
-		{
-			return exec::send($_name, $_args, $jsonResult);
-		}
-		return false;
-	}
+
 
 	/**
 	 * fire telegram api and run hook to get all requests
@@ -97,6 +73,33 @@ class tg
 		session::forceSet();
 		// detect and set user id, access via \dash\user::id()
 		user::detect();
+	}
+
+
+	/**
+	 * execute telegram method
+	 * @param  [type] $_name [description]
+	 * @param  [type] $_args [description]
+	 * @return [type]        [description]
+	 */
+	static function __callStatic($_name, $_args)
+	{
+		// try to detect json output
+		$jsonResult = false;
+		if(substr($_name, 0, 5) === 'json_')
+		{
+			$_name = substr($_name, 5);
+			$jsonResult = true;
+		}
+		if(isset($_args[0]))
+		{
+			$_args = $_args[0];
+		}
+		if($_name)
+		{
+			return exec::send($_name, $_args, $jsonResult);
+		}
+		return false;
 	}
 }
 ?>
