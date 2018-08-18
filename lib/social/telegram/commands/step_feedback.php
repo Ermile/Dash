@@ -3,6 +3,7 @@ namespace dash\social\telegram\commands;
 // use telegram class as bot
 use \dash\social\telegram\tg as bot;
 use \dash\social\telegram\step;
+use \dash\social\telegram\hook;
 
 class step_feedback
 {
@@ -32,7 +33,7 @@ class step_feedback
 		// show give contact menu
 		$menu     = self::$menu;
 		$txt_text = "";
-		if(bot::$user_id)
+		if(\dash\user::id())
 		{
 			$txt_text = "با تشکر از شما بابت اعتمادتان.\n\n";
 		}
@@ -42,11 +43,11 @@ class step_feedback
 
 		$result   =
 		[
-			[
-				'text'         => $txt_text,
-				'reply_markup' => $menu,
-			],
+			'text'         => $txt_text,
+			'reply_markup' => $menu,
 		];
+
+		bot::sendMessage($result);
 
 		// return menu
 		return $result;
@@ -67,11 +68,10 @@ class step_feedback
 		self::saveComment($_feedback);
 		$result   =
 		[
-			[
-				'text'         => $txt_text,
-				'reply_markup' => step::get('menu'),
-			],
+			'text'         => $txt_text,
+			'reply_markup' => step::get('menu'),
 		];
+		bot::sendMessage($result);
 
 		step::stop();
 		return $result;
@@ -89,19 +89,19 @@ class step_feedback
 		[
 			'url' => 'telegram'
 		];
-		if(bot::$user_id)
+		if(\dash\user::id())
 		{
-			$meta['user'] = bot::$user_id;
+			$meta['user'] = \dash\user::id();
 		}
 		$result = \dash\db\comments::save($_feedback, $meta);
 
 		// send feedback to javad account after saving in comments table
 		$text   = "📨 بازخورد جدید از ";
-		$text   .= bot::response('from', 'first_name');
-		$text   .= ' '. bot::response('from', 'last_name');
+		$text   .= hook::from('first_name');
+		$text   .= ' '. hook::from('last_name');
 		$text   .= "\n$_feedback\n";
-		$text   .= "\nکد کاربر ". bot::response('from');
-		$text   .= ' @'. bot::response('from', 'username');
+		$text   .= "\nکد کاربر ". hook::from();
+		$text   .= ' @'. hook::from('username');
 		$msg    =
 		[
 			'method'       => 'sendMessage',
@@ -109,7 +109,8 @@ class step_feedback
 			'chat_id'      => '46898544',
 
 		];
-		$result = bot::sendResponse($msg);
+
+		$result = bot::sendMessage($msg);
 
 
 		return $result;
