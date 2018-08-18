@@ -78,58 +78,58 @@ class exec_before
 	}
 
 
-	/**
-	 * replace fill values if exist
-	 * @param  [type] $_data [description]
-	 * @return [type]        [description]
-	 */
-	public static function replaceFill($_data)
-	{
-		if(!tg::$fill)
-		{
-			return $_data;
-		}
+	// /**
+	//  * replace fill values if exist
+	//  * @param  [type] $_data [description]
+	//  * @return [type]        [description]
+	//  */
+	// public static function replaceFill($_data)
+	// {
+	// 	if(!tg::$fill)
+	// 	{
+	// 		return $_data;
+	// 	}
 
-		// replace all texts
-		if(isset($_data['text']))
-		{
-			foreach (tg::$fill as $search => $replace)
-			{
-				$search	= '_'.$search.'_';
-				$_data['text'] = str_replace($search, $replace, $_data['text']);
-			}
-		}
+	// 	// replace all texts
+	// 	if(isset($_data['text']))
+	// 	{
+	// 		foreach (tg::$fill as $search => $replace)
+	// 		{
+	// 			$search	= '_'.$search.'_';
+	// 			$_data['text'] = str_replace($search, $replace, $_data['text']);
+	// 		}
+	// 	}
 
-		// replace all texts
-		if(isset($_data['caption']))
-		{
-			foreach (tg::$fill as $search => $replace)
-			{
-				$search	= '_'.$search.'_';
-				$_data['caption'] = str_replace($search, $replace, $_data['caption']);
-			}
-		}
+	// 	// replace all texts
+	// 	if(isset($_data['caption']))
+	// 	{
+	// 		foreach (tg::$fill as $search => $replace)
+	// 		{
+	// 			$search	= '_'.$search.'_';
+	// 			$_data['caption'] = str_replace($search, $replace, $_data['caption']);
+	// 		}
+	// 	}
 
-		if(isset($_data['reply_markup']['keyboard']))
-		{
-			foreach ($_data['reply_markup']['keyboard'] as $itemRowKey => $itemRow)
-			{
-				foreach ($itemRow as $key => $itemValue)
-				{
-					if(!is_array($itemValue))
-					{
-						foreach (tg::$fill as $search => $replace)
-						{
-							$search	= '_'.$search.'_';
-							$newValue = str_replace($search, $replace, $itemValue);
+	// 	if(isset($_data['reply_markup']['keyboard']))
+	// 	{
+	// 		foreach ($_data['reply_markup']['keyboard'] as $itemRowKey => $itemRow)
+	// 		{
+	// 			foreach ($itemRow as $key => $itemValue)
+	// 			{
+	// 				if(!is_array($itemValue))
+	// 				{
+	// 					foreach (tg::$fill as $search => $replace)
+	// 					{
+	// 						$search	= '_'.$search.'_';
+	// 						$newValue = str_replace($search, $replace, $itemValue);
 
-							$_data['reply_markup']['keyboard'][$itemRowKey][$key] = $newValue;
-						}
-					}
-				}
-			}
-		}
-		return $_data;
-	}
+	// 						$_data['reply_markup']['keyboard'][$itemRowKey][$key] = $newValue;
+	// 					}
+	// 				}
+	// 			}
+	// 		}
+	// 	}
+	// 	return $_data;
+	// }
 }
 ?>
