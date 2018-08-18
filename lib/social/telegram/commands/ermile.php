@@ -12,7 +12,6 @@ class ermile
 	 */
 	public static function run($_cmd)
 	{
-		var_dump(22);
 		$response = null;
 		switch ($_cmd['command'])
 		{
@@ -97,7 +96,6 @@ class ermile
 	{
 		$result =
 		[
-			'text'         => "به *_fullName_* خوش آمدید."." /help",
 			// 'reply_markup' => menu::main(true),
 		];
 
@@ -118,11 +116,12 @@ class ermile
 	 */
 	public static function about()
 	{
+		$result = [];
 		$result['method']  = "sendPhoto";
-		// $result['photo']   = new \CURLFile(realpath("static/images/telegram/about.jpg"));
-		$result['photo']   = 'AgADBAADtqcxG-eq1QnHfgOD-d-edTTxQhkABMMyWG58No_62ncAAgI';
-		$result['caption'] = "_about_";
+		$result['photo']   = \dash\url::site().'/static/images/logo.png';
+		$result['caption'] = T_("Ermile is inteligent");
 
+		bot::sendPhoto($result);
 
 		return $result;
 	}
