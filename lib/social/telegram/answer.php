@@ -9,19 +9,38 @@ class answer extends tg
 	 * v2.0
 	 */
 
-	public static function finding()
+	public static function finder()
 	{
-		var_dump(11);
-		exit();
+		// read from main command template
+		$cmdFolder = __NAMESPACE__ .'\commands\\';
+		// // use user defined command
+		// if(self::$useTemplate && self::$cmdFolder)
+		// {
+		// 	$cmdFolder = self::$cmdFolder;
+		// }
 
+		// try to run classes based on order list
+		foreach (self::$AnswerOrder as $myClass)
+		{
+			$funcName = $cmdFolder. $myClass.'::run';
+			// generate func name
+			if(is_callable($funcName))
+			{
+				// call this class main fn
+				$answer = call_user_func($funcName, self::$cmd);
+				// if has response break loop
+				if($answer || is_array($answer))
+				{
+					break;
+				}
+			}
+		}
 
-
-
-		// temporary send tg result
-		$_SESSION['tg'][self::$hookDate] = 'salam '. \dash\user::id() ;
-		$msg      = "\n\n<pre>". json_encode($_SESSION, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)."</pre>";
-		$myData   = ['text' => 'Salaaaam '. hook::from('first_name'). $msg];
-		$myResult = \dash\social\telegram\tg::json_sendMessage($myData);
+		// // temporary send tg result
+		// $_SESSION['tg'][self::$hookDate] = 'salam '. \dash\user::id() ;
+		// $msg      = "\n\n<pre>". json_encode($_SESSION, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)."</pre>";
+		// $myData   = ['text' => 'Salaaaam '. hook::from('first_name'). $msg];
+		// $myResult = \dash\social\telegram\tg::json_sendMessage($myData);
 	}
 
 

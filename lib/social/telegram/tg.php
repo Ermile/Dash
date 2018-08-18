@@ -22,7 +22,7 @@ class tg
 	public static $defaultText = 'Undefined';
 	public static $defaultMenu = null;
 	public static $saveDest    = root.'public_html/files/telegram/';
-	public static $priority    =
+	public static $AnswerOrder =
 	[
 		'handle',
 		'callback',
@@ -74,7 +74,7 @@ class tg
 		// session_destroy();
 		self::hook();
 		// find answer for this message if need to answering
-		answer::finding();
+		answer::finder();
 	}
 
 
