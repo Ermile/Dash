@@ -36,8 +36,39 @@ class exec_before
 				}
 				break;
 
-			default:
+			case 'editMessageText':
+			case 'editMessageCaption':
+			case 'editMessageReplyMarkup':
+				// require chat id
+				if(!isset($_data['chat_id']))
+				{
+					$_data['chat_id'] = hook::chat();
+				}
+				$_data['message_id'] = hook::message_id();
+				break;
 
+			case 'getUserProfilePhotos':
+				$_data['user_id']    = hook::from();
+				break;
+
+			case 'sendPhoto':
+			case 'sendAudio':
+			case 'sendDocument':
+			case 'sendVideo':
+			case 'sendAnimation':
+			case 'sendVoice':
+			case 'sendVideoNote':
+			case 'sendMediaGroup':
+			case 'sendLocation':
+			case 'sendVenue':
+			case 'sendContact':
+			case 'sendChatAction':
+			default:
+				// require chat id
+				if(!isset($_data['chat_id']))
+				{
+					$_data['chat_id'] = hook::chat();
+				}
 				break;
 		}
 
