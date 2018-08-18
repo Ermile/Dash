@@ -21,12 +21,12 @@ class tg
 	public static $saveDest    = root.'public_html/files/telegram/';
 	public static $AnswerOrder =
 	[
-		'\dash\social\telegram\commands\handle',
-		'\dash\social\telegram\commands\callback',
-		'\dash\social\telegram\commands\user',
-		'\dash\social\telegram\commands\menu',
-		'\dash\social\telegram\commands\simple',
-		'\dash\social\telegram\commands\conversation',
+		'dash:handle',
+		'dash:callback',
+		'dash:user',
+		'dash:menu',
+		'dash:simple',
+		'dash:conversation',
 	];
 
 	/**

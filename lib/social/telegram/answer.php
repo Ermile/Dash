@@ -14,6 +14,11 @@ class answer extends tg
 		// try to run classes based on order list
 		foreach (self::$AnswerOrder as $myClass)
 		{
+			if(substr($myClass, 0, 5) === 'dash:')
+			{
+				$myClass = '\\' .__NAMESPACE__.'\commands\\'. substr($myClass, 5);
+			}
+
 			$funcName = $myClass.'::run';
 			// generate func name
 			if(is_callable($funcName))
