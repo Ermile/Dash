@@ -12,7 +12,7 @@ class answer extends tg
 	public static function finder()
 	{
 		// try to run classes based on order list
-		foreach (self::$AnswerOrder as $myClass)
+		foreach (tg::$AnswerOrder as $myClass)
 		{
 			if(substr($myClass, 0, 5) === 'dash:')
 			{
