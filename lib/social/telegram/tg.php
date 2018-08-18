@@ -9,7 +9,7 @@ class tg
 	 * v21.0
 	 */
 	public static $api_token   = null;
-	public static $name        = null;
+	public static $name        = 'Ermile';
 	public static $hook        = null;
 	public static $AnswerOrder =
 	[
