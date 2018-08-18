@@ -30,9 +30,21 @@ class log
 			self::$logData['sendmethod']   = $_method;
 			self::$logData['send']         = self::json($_sendData);
 			self::$logData['senddate']     = date('Y-m-d H:i:s');
-			self::$logData['sendtext']     = '';
 			self::$logData['sendmesageid'] = '';
-			self::$logData['sendkeyboard'] = '';
+			// save text of sended message
+			if(isset($_sendData['text']))
+			{
+				self::$logData['sendtext'] = $_sendData['text'];
+			}
+			elseif(isset($_sendData['caption']))
+			{
+				self::$logData['sendtext'] = $_sendData['caption'];
+			}
+			// save keyboard sended seperately
+			if(isset($_sendData['reply_markup']))
+			{
+				self::$logData['sendkeyboard'] = $_sendData['reply_markup'];
+			}
 		}
 		elseif(!isset(self::$logData['send2']))
 		{
