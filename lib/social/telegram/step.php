@@ -180,8 +180,8 @@ class step extends tg
 		// [
 		// 	'text' => $tmp_text
 		// ];
-		// $a = tg::sendResponse($tmp);
-		// $a = self::sendResponse(['text' => json_encode($_SESSION['tg'], JSON_UNESCAPED_UNICODE)]);
+		// $a = tg::sendMessage($tmp);
+		// $a = self::sendMessage(['text' => json_encode($_SESSION['tg'], JSON_UNESCAPED_UNICODE)]);
 
 		// if before this message step started
 		if(self::get(false))
