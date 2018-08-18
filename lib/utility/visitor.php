@@ -318,7 +318,13 @@ class visitor
 			$sub = " AND subdomain = '$subdomain' ";
 		}
 
-		$cache_key = 'visitor_'. $domain. '_'. \dash\url::subdomain();
+		$cache_key = 'visitor_'. $domain;
+
+		if(\dash\url::subdomain())
+		{
+			$cache_key .= '_'. \dash\url::subdomain();
+		}
+
 		if($cache = \dash\session::get($cache_key))
 		{
 			return $cache;

@@ -347,10 +347,11 @@ class enter
 
 		$url = self::find_redirect_url($_url);
 
+		// clean session
+		self::clean_session();
+
 		if($_auto_redirect)
 		{
-			// clean session
-			self::clean_session();
 
 			\dash\notif::direct(true);
 			// go to new address

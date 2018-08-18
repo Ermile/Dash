@@ -11,6 +11,22 @@ class session
 	private static $key_limit = 'storage_time_limit';
 
 
+	public static function clean($_key, $_cat = null)
+	{
+		if($_cat)
+		{
+			unset($_SESSION[self::$key][$_cat][$_key]);
+			unset($_SESSION[self::$key_time][$_cat][$_key]);
+			unset($_SESSION[self::$key_limit][$_cat][$_key]);
+		}
+		else
+		{
+			unset($_SESSION[self::$key][$_key]);
+			unset($_SESSION[self::$key_time][$_key]);
+			unset($_SESSION[self::$key_limit][$_key]);
+		}
+	}
+
 	/**
 	 * save data in session
 	 * by key and cat
@@ -27,7 +43,7 @@ class session
 
 			if($_time && is_numeric($_time))
 			{
-				$_SESSION[self::$key_time][$_cat][$_key]       = time();
+				$_SESSION[self::$key_time][$_cat][$_key]  = time();
 				$_SESSION[self::$key_limit][$_cat][$_key] = $_time;
 			}
 		}
@@ -36,7 +52,7 @@ class session
 			$_SESSION[self::$key][$_key] = $_value;
 			if($_time && is_numeric($_time))
 			{
-				$_SESSION[self::$key_time][$_key]       = time();
+				$_SESSION[self::$key_time][$_key]  = time();
 				$_SESSION[self::$key_limit][$_key] = $_time;
 			}
 		}
@@ -63,6 +79,7 @@ class session
 					{
 						if(time() - intval($_SESSION[self::$key_time][$_cat][$_key]) > intval($_SESSION[self::$key_limit][$_cat][$_key]))
 						{
+							self::clean($_key, $_cat);
 							return null;
 						}
 					}
@@ -82,6 +99,7 @@ class session
 					{
 						if(time() - intval($_SESSION[self::$key_time][$_key]) > intval($_SESSION[self::$key_limit][$_key]))
 						{
+							self::clean($_key);
 							return null;
 						}
 					}
