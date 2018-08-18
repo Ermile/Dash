@@ -134,21 +134,18 @@ class ermile
 	public static function contact()
 	{
 		// get location address from http://www.gps-coordinates.net/
+		$address = T_("Ermile, Floor2, Yas Building"). ', '. T_("1st alley, Haft-e-tir St"). ', '. T_("Qom"). ', '. T_("IRAN"). '.';
 		$result =
 		[
-			[
-				'method'    => "sendVenue",
-				'latitude'  => '34.6349668',
-				'longitude' => '50.87914999999998',
-				'title'     => 'Ermile | ارمایل',
-				'address'   => '#83, Moallem 10, Moallem, Qom, Iran',
-			],
+			'method'    => "sendVenue",
+			'latitude'  => '34.6500896',
+			'longitude' => '50.8789642',
+			'title'     => T_("Ermile"),
+			'address'   => $address,
+			'text'      => T_("We are happy to see you!"),
 		];
 
-		$result[] =
-		[
-			'text' => "_contact_",
-		];
+		bot::sendVenue($result);
 
 		return $result;
 	}
