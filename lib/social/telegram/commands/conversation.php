@@ -19,7 +19,23 @@ class conversation
 		{
 			$response = self::en($_cmd);
 		}
+		if(!$response)
+		{
+			switch ($_cmd['command'])
+			{
+				case 'بگو':
+				case 'say':
+					$response = self::say($_cmd, true);
+					break;
 
+				case 'دبگو':
+					$response = self::say($_cmd);
+					break;
+
+				default:
+					break;
+			}
+		}
 
 		return $response;
 	}
@@ -31,8 +47,7 @@ class conversation
 	 */
 	public static function fa($_cmd)
 	{
-		$response = null;
-		$text     = null;
+		$text = null;
 
 		switch ($_cmd['text'])
 		{
@@ -149,17 +164,12 @@ class conversation
 				$text = false;
 				break;
 		}
-		// create response format
 		if($text)
 		{
-			$response =
-			[
-				'text' => $text
-			];
-			bot::sendMessage($response);
+			bot::sendMessage($text);
 		}
 		// return response as result
-		return $response;
+		return $text;
 	}
 
 
@@ -170,8 +180,7 @@ class conversation
 	 */
 	public static function en($_cmd)
 	{
-		$response = null;
-		$text     = null;
+		$text = null;
 
 		switch ($_cmd['text'])
 		{
@@ -203,21 +212,50 @@ class conversation
 				$text = "I'm fine, thanks";
 				break;
 
+			case 'test':
+				$text = T_('Test <b>:name</b> bot on :site', ['name' => bot::$name, 'site' => \dash\url::kingdom()]);
+				break;
+
+			case 'userid':
+			case 'user_id':
+			case 'myid':
+				$text = "\n\n<pre>". json_encode(\dash\social\telegram\hook::from(null), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE). "</pre>";
+				break;
+
 			default:
 				$text = false;
 				break;
 		}
-		// create response format
 		if($text)
 		{
-			$response =
-			[
-				'text' => $text
-			];
-			bot::sendMessage($response);
+			bot::sendMessage($text);
 		}
 		// return response as result
-		return $response;
+		return $text;
+	}
+
+
+	/**
+	 * repeat given word!
+	 * @param  [type]  $_text [description]
+	 * @param  boolean $_full [description]
+	 * @return [type]         [description]
+	 */
+	public static function say($_text, $_repeat = false)
+	{
+		$text = $_text;
+		if($_repeat && isset($_text['text']))
+		{
+			if(isset($_text['command']))
+			{
+				$len  = strlen($_text['command']);
+				$text = substr($_text['text'], $len +1);
+			}
+		}
+		// send message
+		bot::sendMessage($text);
+
+		return $text;
 	}
 }
 ?>
