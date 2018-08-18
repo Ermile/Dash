@@ -75,6 +75,13 @@ class tg
 		self::hook();
 		// find answer for this message if need to answering
 		answer::finder();
+		// if we must pass result, we save it on result sending
+		// now we need to save unanswered hook
+		if(true)
+		{
+			// save log
+			log::done();
+		}
 	}
 
 
@@ -95,14 +102,6 @@ class tg
 
 		// detect cmd and save it in static value
 		self::$cmd = self::cmdAnalyser(self::response('text'));
-
-		// if we must pass result, we save it on result sending
-		// now we need to save unanswered hook
-		if(true)
-		{
-			// save log
-			log::done();
-		}
 	}
 
 	/**

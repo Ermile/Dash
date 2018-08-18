@@ -57,7 +57,7 @@ class log
 	{
 		if(!isset(self::$logData['response']))
 		{
-			self::$logData['response']     = $_response;
+			self::$logData['response']     = self::json($_response);
 			self::$logData['responsedate'] = date('Y-m-d H:i:s');
 		}
 		elseif(!isset(self::$logData['response2']))
