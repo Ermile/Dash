@@ -130,6 +130,7 @@ class conversation
 				$text = 'خر خودتی'."\r\n";
 				$text .= 'باباته'."\r\n";
 				$text .= 'بی تربیت'."\r\n";
+				$text .= 'نزار چاک دهنم واشه'."\r\n";
 				break;
 
 			case 'سگ تو روحت':
