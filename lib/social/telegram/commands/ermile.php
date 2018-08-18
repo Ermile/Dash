@@ -225,10 +225,10 @@ class ermile
 		}
 		$result =
 		[
-			[
-				'text'  => $text,
-			],
+			'text'  => $text,
 		];
+
+		bot::sendMessage($result);
 
 		return $result;
 	}
@@ -242,9 +242,7 @@ class ermile
 	{
 		$result =
 		[
-			[
-				'method'      => 'getUserProfilePhotos',
-			],
+			'method'      => 'getUserProfilePhotos',
 		];
 
 		return $result;
