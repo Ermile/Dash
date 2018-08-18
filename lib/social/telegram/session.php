@@ -15,7 +15,7 @@ class session
 	 * @param  [type] $_session_id new session id
 	 * @return [type]              [description]
 	 */
-	public static function restart($_session_id)
+	private static function restart($_session_id)
 	{
 		// if a session is currently opened, close it
 		if (session_id() != '')

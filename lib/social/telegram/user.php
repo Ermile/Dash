@@ -1,7 +1,7 @@
 <?php
 namespace dash\social\telegram;
 
-class user extends tg
+class user
 {
 
 	public static function detect()
@@ -34,7 +34,7 @@ class user extends tg
 		return false;
 	}
 
-	public static function register()
+	private static function register()
 	{
 		$newUserDetail =
 		[
