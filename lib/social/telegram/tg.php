@@ -17,7 +17,6 @@ class tg
 	public static $language    = 'en_US';
 	public static $cmd         = null;
 	public static $cmdFolder   = null;
-	public static $hookDate    = null;
 	public static $fill        = null;
 	public static $defaultText = 'Undefined';
 	public static $defaultMenu = null;
@@ -94,7 +93,8 @@ class tg
 	{
 		// get hook and save in static variable
 		self::$hook     = json_decode(file_get_contents('php://input'), true);
-		self::$hookDate = date('Y-m-d H:i:s');
+		// save hook datetime
+		log::hook();
 		// force set session for this telegram user
 		session::forceSet();
 		// detect and set user id, access via \dash\user::id()

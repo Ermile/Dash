@@ -7,6 +7,16 @@ class log
 
 
 	/**
+	 * save hook detail like time
+	 * @return [type] [description]
+	 */
+	public static function hook()
+	{
+		self::$logData['hookdate'] = date('Y-m-d H:i:s');
+	}
+
+
+	/**
 	 * log send request to telegram server into variable
 	 * finish and insert into log db on calling done fn
 	 * @param  [type] $_method   [description]
