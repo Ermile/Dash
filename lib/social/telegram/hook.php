@@ -254,6 +254,42 @@ class hook extends tg
 	}
 
 
+	/**
+	 * seperate input text to command
+	 * @return [type]         [description]
+	 */
+	public static function cmd()
+	{
+		// define variable
+		$cmd =
+		[
+			'text'     => self::text(),
+			'command'  => null,
+			'optional' => null,
+			'argument' => null,
+		];
+		// seperate text by space
+		$text = explode(' ', self::text());
+		// if we have parameter 1 save it as command
+		if(isset($text[0]))
+		{
+			$cmd['command'] = $text[0];
+			// if we have parameter 2 save it as optional
+			if(isset($text[1]))
+			{
+				$cmd['optional'] = $text[1];
+				// if we have parameter 3 save it as argument
+				if(isset($text[2]))
+				{
+					$cmd['argument'] = $text[2];
+				}
+			}
+		}
+		// return analysed text given from user
+		return $cmd;
+	}
+
+
 	public static function contact($_arg = 'id')
 	{
 		$myDetection = null;

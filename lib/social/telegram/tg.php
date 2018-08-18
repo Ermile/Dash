@@ -15,7 +15,6 @@ class tg
 
 
 	public static $language    = 'en_US';
-	public static $cmd         = null;
 	public static $cmdFolder   = null;
 	public static $fill        = null;
 	public static $defaultText = 'Undefined';
@@ -92,56 +91,14 @@ class tg
 	public static function hook()
 	{
 		// get hook and save in static variable
-		self::$hook     = json_decode(file_get_contents('php://input'), true);
+		self::$hook = json_decode(file_get_contents('php://input'), true);
 		// save hook datetime
 		log::hook();
 		// force set session for this telegram user
 		session::forceSet();
 		// detect and set user id, access via \dash\user::id()
 		user::detect();
-
-		// detect cmd and save it in static value
-		self::$cmd = self::cmdAnalyser(self::response('text'));
 	}
-
-	/**
-	 * seperate input text to command
-	 * @param  [type] $_input [description]
-	 * @return [type]         [description]
-	 */
-	public static function cmdAnalyser($_input = null)
-	{
-		// define variable
-		$cmd =
-		[
-			'text'     => null,
-			'command'  => null,
-			'optional' => null,
-			'argument' => null,
-		];
-		// save input value as text
-		$cmd['text'] = $_input;
-		// seperate text by space
-		$text = explode(' ', $_input);
-		// if we have parameter 1 save it as command
-		if(isset($text[0]))
-		{
-			$cmd['command'] = $text[0];
-			// if we have parameter 2 save it as optional
-			if(isset($text[1]))
-			{
-				$cmd['optional'] = $text[1];
-				// if we have parameter 3 save it as argument
-				if(isset($text[2]))
-				{
-					$cmd['argument'] = $text[2];
-				}
-			}
-		}
-		// return analysed text given from user
-		return $cmd;
-	}
-
 
 
 	/**

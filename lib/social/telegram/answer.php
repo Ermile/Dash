@@ -27,7 +27,7 @@ class answer extends tg
 			if(is_callable($funcName))
 			{
 				// call this class main fn
-				$answer = call_user_func($funcName, self::$cmd);
+				$answer = call_user_func($funcName, hook::cmd());
 				// if has response break loop
 				if($answer || is_array($answer))
 				{
