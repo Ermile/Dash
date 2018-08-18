@@ -123,7 +123,7 @@ class user
 	 *
 	 * @return     string  The current version of dash
 	 */
-	public static function id()
+	public static function id($_decode = null)
 	{
 		if(!isset(self::$USER_ID))
 		{
@@ -131,6 +131,10 @@ class user
 			{
 				self::$USER_ID = $_SESSION['auth']['id'];
 			}
+		}
+		if($_decode)
+		{
+			return intval(\dash\coding::decode(self::$USER_ID));
 		}
 
 		if(is_numeric(self::$USER_ID))
