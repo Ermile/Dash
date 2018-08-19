@@ -150,6 +150,11 @@ class step
 	}
 
 
+	public static function current()
+	{
+		return self::get('pointer');
+	}
+
 	/**
 	 * goto specefic step directly
 	 * @param  integer $_step [description]
