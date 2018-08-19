@@ -95,8 +95,8 @@ class step_feedback
 		// send feedback to javad account after saving in comments table
 		$text   = "📨🔔 ". T_('New feedback')."\n";
 		$text   .= '<b>'.hook::from('first_name'). ' '. hook::from('last_name'). "</b>\n";
-		$text   .= '@'. hook::from('username'). "\n";
-		$text   .= "👇👇👇\n\n";
+		$text   .= '@'. hook::from('username'). "\n\n";
+		$text   .= "👇👇👇\n";
 		$text   .= $_feedback. "\n";
 		$text   .= "☝️☝️☝️\n\n";
 		$text   .= T_("User_id"). ' '. hook::from(). "\n";
