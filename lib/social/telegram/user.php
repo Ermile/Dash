@@ -25,6 +25,12 @@ class user
 			return null;
 		}
 
+		// if user blocked us but send message via hook, change status to active
+		if(isset($myUser['tgstatus']) && $myUser['tgstatus'] === 'block')
+		{
+			self::active();
+		}
+
 		if(isset($myUser['id']))
 		{
 			\dash\user::init_tg($myUser['id']);
