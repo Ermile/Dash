@@ -7,7 +7,7 @@ use \dash\social\telegram\hook;
 
 class step_feedback
 {
-	private static $menu = ["hide_keyboard" => true];
+	private static $menu = ["remove_keyboard" => true];
 
 	/**
 	 * create define menu that allow user to select
@@ -33,13 +33,10 @@ class step_feedback
 		// show give contact menu
 		$menu     = self::$menu;
 		$txt_text = "";
-		if(\dash\user::id())
-		{
-			$txt_text = "با تشکر از شما بابت اعتمادتان.\n\n";
-		}
-		$txt_text .= "تمام تلاش ما بر افزایش کیفیت _name_ است. ";
-		$txt_text .= "بدین منظور دانستن نظرات ارزشمند شما درباره مشکلات و نواقص و صد البته پیشنهادات گرانبهای شما سبب کمک به ما برای این مهم خواهد شد.\n";
-		$txt_text .= "لطفا نظر خود را درباره‌ی _name_ برای ما بنویسید.\n";
+
+		$txt_text = T_("Thank you for choosing us.")."\n\n";
+		$txt_text .= T_("Knowing your valuable comments about bugs and problems and more importantly your precious offers will help us in this way.")."\n\n";
+		$txt_text .= T_("Please wrote your request, offer, criticism or appreciation");
 
 		$result   =
 		[
