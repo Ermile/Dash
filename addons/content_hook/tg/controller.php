@@ -14,6 +14,9 @@ class controller
 
 		if(\dash\url::child() === \dash\option::social('telegram', 'hookFolder'))
 		{
+			// disable log visitors
+			\dash\temp::set('force_stop_visitor', true);
+
 			// fire telegram api
 			$result = \dash\social\telegram\tg::fire();
 			if(isset($_SERVER['HTTP_POSTMAN_TOKEN']))
@@ -22,8 +25,6 @@ class controller
 				echo($result);
 			}
 
-			// disable log visitors
-			\dash\temp::set('force_stop_visitor', true);
 			// bobooom :)
 			\dash\code::boom();
 		}
