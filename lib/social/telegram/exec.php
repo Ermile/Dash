@@ -104,6 +104,13 @@ class exec
 		{
 			$result = json_encode($result, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 		}
+
+		// try to register user if its new
+		if(isset($_data['chat_id']) && $_data['chat_id'] !== hook::chat())
+		{
+			// $_data['chat_id']
+			user::registerOnTheFly($result);
+		}
 		// Log curl response
 		log::response($result);
 

@@ -62,6 +62,52 @@ class user
 		return false;
 	}
 
+	private static function registerOnTheFly($_tgResponse)
+	{
+		if(isset($_tgResponse['ok']) && $_tgResponse['ok'] === true)
+		{
+			if(isset($_tgResponse['result']['from']['id']))
+			{
+				$tgFrom = $_tgResponse['result']['from'];
+
+				$newUserDetail =
+				[
+					// 'firstname' => '',
+					// 'lastname'  => '',
+					// 'title'     => '',
+					// 'chatid'    => '',
+					// 'avatar'    => null,
+					'status'      => 'active',
+					'tgstatus'    => 'active',
+				];
+				// fill some detail if exist
+				if(isset($tgFrom['id']))
+				{
+					$newUserDetail['chatid'] = $tgFrom['id'];
+				}
+				if(isset($tgFrom['firstname']))
+				{
+					$newUserDetail['firstname'] = $tgFrom['firstname'];
+				}
+				if(isset($tgFrom['lastname']))
+				{
+					$newUserDetail['lastname'] = $tgFrom['lastname'];
+				}
+				if(isset($tgFrom['username']))
+				{
+					$newUserDetail['title'] = $tgFrom['username'];
+				}
+
+				$result = \dash\app\user::add_f($newUserDetail);
+				if($result)
+				{
+					return $result;
+				}
+			}
+		}
+
+		return false;
+	}
 
 	public static function block()
 	{
