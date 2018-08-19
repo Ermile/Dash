@@ -1,1 +1,0 @@
-ALTER TABLE `users` ADD `tgstatus` ENUM('active','deactive','spam','bot','block','unreachable','unknown','filter') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT NULL;
