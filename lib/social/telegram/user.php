@@ -34,6 +34,7 @@ class user
 		return false;
 	}
 
+
 	private static function register()
 	{
 		$newUserDetail =
@@ -45,6 +46,7 @@ class user
 			// 'mobile'   => null,
 			// 'avatar'   => null,
 			'status'      => 'active',
+			'tgstatus'    => 'active',
 		];
 		$result = \dash\app\user::add_f($newUserDetail);
 		if($result)
@@ -54,5 +56,16 @@ class user
 		return false;
 	}
 
+
+	public static function block()
+	{
+		\dash\app\user::edit(['tgstatus' => 'block'], \dash\user::id());
+	}
+
+
+	public static function active()
+	{
+		\dash\app\user::edit(['tgstatus' => 'active'], \dash\user::id());
+	}
 }
 ?>
