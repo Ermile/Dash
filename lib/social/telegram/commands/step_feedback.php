@@ -54,16 +54,16 @@ class step_feedback
 
 	public static function step2($_feedback)
 	{
-		$txt_text = "نظر ارزشمند شما در ثبت شد.\n";
-		$txt_text .= "ممنون از همراهیتان.";
+		$txt_text = T_("Your valuable feedback is saved.")."\n";
+		$txt_text = T_("Thank you;)");
+
 		if(strlen($_feedback) < 10)
 		{
-			$txt_text = "ممنون!\n";
-			// not registerd!
+			$txt_text = T_('Thanks')."!\n";
 		}
 
 		self::saveComment($_feedback);
-		$result   =
+		$result =
 		[
 			'text'         => $txt_text,
 			'reply_markup' => step::get('menu'),
@@ -93,12 +93,11 @@ class step_feedback
 		$result = \dash\db\comments::save($_feedback, $meta);
 
 		// send feedback to javad account after saving in comments table
-		$text   = "📨 بازخورد جدید از ";
-		$text   .= hook::from('first_name');
-		$text   .= ' '. hook::from('last_name');
-		$text   .= "\n$_feedback\n";
-		$text   .= "\nکد کاربر ". hook::from();
-		$text   .= ' @'. hook::from('username');
+		$text   = "📨🔔 ". T_('New feedback')."\n";
+		$text   .= '<b>'.hook::from('first_name'). ' '. hook::from('last_name'). "</b>\n";
+		$text   .= '@'. hook::from('username'). "\n\n";
+		$text   .= $_feedback. "\n\n";
+		$text   .= T_("User_id"). ' '. hook::from(). "\n";
 		$msg    =
 		[
 			'method'       => 'sendMessage',
