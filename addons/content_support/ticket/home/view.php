@@ -31,7 +31,7 @@ class view
 
 		if(\dash\request::get('status'))
 		{
-			$args['status'] = \dash\request::get('status');
+			$args['comments.status'] = \dash\request::get('status');
 		}
 
 		$args['comments.type']    = 'ticket';
