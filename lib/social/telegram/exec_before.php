@@ -11,18 +11,18 @@ class exec_before
 			$_data = ['text' => $_data];
 		}
 
+		// if chat id is not set then set it
+		if(!isset($_data['chat_id']))
+		{
+			// require chat id
+			$_data['chat_id'] = hook::chat();
+		}
+
 		// check needle of each type and try to add something to this method
 		switch ($_method)
 		{
 			case 'sendMessage':
-				// if chat id is not set then set it
-				if(!isset($_data['chat_id']))
-				{
-					// require chat id
-					$_data['chat_id'] = hook::chat();
-				}
 				// add parse_mode
-				// if chat id is not set then set it
 				if(!isset($_data['parse_mode']))
 				{
 					// require chat id
@@ -43,11 +43,6 @@ class exec_before
 			case 'editMessageText':
 			case 'editMessageCaption':
 			case 'editMessageReplyMarkup':
-				// require chat id
-				if(!isset($_data['chat_id']))
-				{
-					$_data['chat_id'] = hook::chat();
-				}
 				$_data['message_id'] = hook::message_id();
 				break;
 
@@ -68,11 +63,6 @@ class exec_before
 			case 'sendContact':
 			case 'sendChatAction':
 			default:
-				// require chat id
-				if(!isset($_data['chat_id']))
-				{
-					$_data['chat_id'] = hook::chat();
-				}
 				break;
 		}
 
