@@ -223,6 +223,14 @@ class conversation
 				$text = "\n\n<pre>". json_encode(\dash\social\telegram\hook::from(null), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE). "</pre>";
 				break;
 
+			case '/session':
+			case 'session':
+				// temporary send tg result
+				$_SESSION['tg'][date('Y-m-d H:i:s')] = '🔸 '. \dash\user::id();
+				$text      = "\n\n<pre>". json_encode($_SESSION, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)."</pre>";
+				break;
+
+
 			default:
 				$text = false;
 				break;

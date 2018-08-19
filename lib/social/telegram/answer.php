@@ -66,12 +66,6 @@ class answer extends tg
 				tg::sendMessage($answer);
 			}
 		}
-
-		// // temporary send tg result
-		// $_SESSION['tg'][self::$hookDate] = 'salam '. \dash\user::id() ;
-		// $msg      = "\n\n<pre>". json_encode($_SESSION, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)."</pre>";
-		// $myData   = ['text' => 'Salaaaam '. hook::from('first_name'). $msg];
-		// $myResult = \dash\social\telegram\tg::json_sendMessage($myData);
 	}
 
 
