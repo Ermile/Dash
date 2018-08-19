@@ -225,9 +225,17 @@ class conversation
 
 			case '/session':
 			case 'session':
-				// temporary send tg result
-				$_SESSION['tg'][date('Y-m-d H:i:s')] = '🔸 '. \dash\user::id();
-				$text      = "\n\n<pre>". json_encode($_SESSION, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)."</pre>";
+				$chatID = \dash\social\telegram\hook::from();
+				if($chatID === 46898544 || $chatID === 344542267)
+				{
+					// temporary send tg result
+					$_SESSION['tg'][date('Y-m-d H:i:s')] = '🔸 '. \dash\user::id();
+					$text      = "\n\n<pre>". json_encode($_SESSION, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)."</pre>";
+				}
+				else
+				{
+					$text = "Hi baby:)";
+				}
 				break;
 
 
