@@ -81,6 +81,14 @@ class ermile
 				$response = self::help();
 				break;
 
+			case '/feedback':
+			case 'feedback':
+			case 'ثبت بازخورد':
+				\dash\social\telegram\step::set('menu', menu::main(true));
+				var_dump(menu::main(true));
+				$response = step_feedback::start();
+				break;
+
 			default:
 				break;
 		}
