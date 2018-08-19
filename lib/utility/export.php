@@ -45,14 +45,20 @@ class export
 
             ob_start();
             $df = @fopen("php://output", 'w');
+            if(is_array(reset($data)))
+            {
+                $keys = array_keys(reset($data));
+                $keys = array_map('T_', $keys);
 
-            $keys = array_keys(reset($data));
-            $keys = array_map('T_', $keys);
-
-            fputcsv($df, $keys);
+                fputcsv($df, $keys);
+            }
 
             foreach ($data as $row)
             {
+                if(!is_array($row))
+                {
+                    $row = [$row];
+                }
                 fputcsv($df, $row);
             }
 

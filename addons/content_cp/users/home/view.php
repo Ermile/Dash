@@ -47,6 +47,15 @@ class view
 			}
 		}
 
+		if(\dash\request::get('export') === 'mobile')
+		{
+			$exportData = \dash\db\users::all_user_mobile();
+			$exportData = array_filter($exportData);
+			$exportData = array_unique($exportData);
+			\dash\utility\export::csv(['name' => 'export_mobile', 'data' => $exportData]);
+		}
+
+
 		$sortLink = \content_cp\view::make_sort_link(\dash\app\user::$sort_field, \dash\url::this());
 		$dataTable = \dash\app\user::list(\dash\request::get('q'), $args);
 
