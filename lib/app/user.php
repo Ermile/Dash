@@ -81,6 +81,14 @@ class user
 			return false;
 		}
 
+		$tgstatus = \dash\app::request('tgstatus');
+		if($tgstatus && !in_array($tgstatus, ['active','deactive','spam','bot','block','unreachable','unknown','filter']))
+		{
+			if($_option['debug']) \dash\notif::error(T_("Invalid parameter tgstatus"), 'tgstatus');
+			return false;
+		}
+
+
 		// get status
 		$status = \dash\app::request('status');
 		if($status && !in_array($status, ['active','awaiting','deactive','removed','filter','unreachable']))
@@ -312,6 +320,7 @@ class user
 		}
 
 		$args['birthday']    = $birthday;
+		$args['tgstatus']    = $tgstatus;
 		$args['website']     = $website;
 		$args['facebook']    = $facebook;
 		$args['twitter']     = $twitter;
