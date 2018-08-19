@@ -65,7 +65,10 @@ class user
 
 	public static function block()
 	{
-		\dash\app\user::edit(['tgstatus' => 'block'], \dash\user::id());
+		$a = \dash\app\user::edit(['tgstatus' => 'block'], \dash\user::id());
+		var_dump($a);
+		var_dump(\dash\user::id());
+		var_dump(\dash\notif::get());
 	}
 
 

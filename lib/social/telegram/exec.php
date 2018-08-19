@@ -87,6 +87,19 @@ class exec
 		{
 			$result = json_decode($result, true);
 		}
+		// check final result and if have error try to do something
+		if(isset($result['ok']) && $result['ok'] === false && isset($result['error_code']))
+		{
+			switch ($result['error_code'])
+			{
+				case 403:
+					user::block();
+					break;
+
+				default:
+					break;
+			}
+		}
 		if($_jsonResult)
 		{
 			$result = json_encode($result, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
