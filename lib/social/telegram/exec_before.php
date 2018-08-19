@@ -76,6 +76,11 @@ class exec_before
 				break;
 		}
 
+		if(isset($_data['reply_markup']))
+		{
+			$_data['reply_markup'] = json_encode($_data['reply_markup'], JSON_UNESCAPED_UNICODE);
+		}
+
 		return $_data;
 	}
 
