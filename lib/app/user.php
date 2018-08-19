@@ -82,7 +82,7 @@ class user
 		}
 
 		$tgstatus = \dash\app::request('tgstatus');
-		if($tgstatus && !in_array($tgstatus, ['active','deactive','spam','bot','block','unreachable','unknown','filter']))
+		if($tgstatus && !in_array($tgstatus, ['active','deactive','spam','bot','block','unreachable','unknown','filter', 'awaiting']))
 		{
 			if($_option['debug']) \dash\notif::error(T_("Invalid parameter tgstatus"), 'tgstatus');
 			return false;
