@@ -2,7 +2,7 @@
 namespace dash\social\telegram;
 
 /** telegram step by step library**/
-class step extends tg
+class step
 {
 	/**
 	 * this library help create step by step messages
@@ -168,7 +168,7 @@ class step extends tg
 	 * @param  [type] $_text [description]
 	 * @return [type]        [description]
 	 */
-	public static function check($_text, $_command)
+	public static function check($_text)
 	{
 		// $tmp_text =
 		// "user_id_: ".   tg::$user_id.
@@ -202,24 +202,23 @@ class step extends tg
 					break;
 			}
 			// save result of step
-			$result      = null;
-			// create namespace and class name
-			$call        = tg::$cmdFolder;
+			$result         = null;
+			$myhookLocation = '\content_hook\tg\\';
 			// create function full name
-			$funcName    = 'step_'. self::get('name'). '::'. $currentStep;
+			$funcName       = 'step_'. self::get('name'). '::'. $currentStep;
 			// generate func name
-			if(is_callable($call.$funcName))
+			if(is_callable($myhookLocation.$funcName))
 			{
 				// get and return response
-				$result = call_user_func($call.$funcName, $_text);
+				$result = call_user_func($myhookLocation.$funcName, $_text);
 			}
 			elseif(self::get('name'))
 			{
-				$call = '\lib\telegram\commands\\';
-				if(is_callable($call.$funcName))
+				$cmdNamespace = '\\'. __NAMESPACE__. '\commands\\';
+				if(is_callable($cmdNamespace.$funcName))
 				{
 					// get and return response
-					$result = call_user_func($call.$funcName, $_text);
+					$result = call_user_func($cmdNamespace.$funcName, $_text);
 				}
 			}
 

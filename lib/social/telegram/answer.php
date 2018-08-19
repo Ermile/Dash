@@ -11,6 +11,13 @@ class answer extends tg
 
 	public static function finder()
 	{
+		// check for step
+		$response = step::check(hook::text());
+		if($response)
+		{
+			return $response;
+		}
+
 		// try to run classes based on order list
 		foreach (tg::$AnswerOrder as $myClass)
 		{
