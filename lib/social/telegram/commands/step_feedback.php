@@ -55,7 +55,7 @@ class step_feedback
 	public static function step2($_feedback)
 	{
 		$txt_text = T_("Your valuable feedback is saved.")."\n";
-		$txt_text = T_("Thank you;)");
+		$txt_text .= T_("Thank you;)");
 
 		if(strlen($_feedback) < 10)
 		{
