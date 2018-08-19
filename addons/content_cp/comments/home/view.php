@@ -31,7 +31,7 @@ class view
 
 		if(\dash\request::get('status'))
 		{
-			$args['status'] = \dash\request::get('status');
+			$args['comments.status'] = \dash\request::get('status');
 		}
 
 		if(\dash\request::get('post_id'))
@@ -60,6 +60,7 @@ class view
 
 		$filterArray = $args;
 		unset($filterArray['type']);
+		unset($filterArray['comments.status']);
 		if(isset($filterArray['post_id']))
 		{
 			$filterArray['post_id'] = \dash\coding::encode($filterArray['post_id']);

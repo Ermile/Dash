@@ -36,7 +36,7 @@ class view
 
 		if(!isset($args['status']))
 		{
-			$args['status']     = ["NOT IN", "('cancel', 'draft', 'deleted')"];
+			$args['comments.status']     = ["NOT IN", "('cancel', 'draft', 'deleted')"];
 		}
 
 
@@ -58,6 +58,7 @@ class view
 
 		$filterArray = $args;
 		unset($filterArray['type']);
+		unset($filterArray['comments.status']);
 		if(isset($filterArray['status']))
 		{
 			if(is_string($filterArray['status']))
