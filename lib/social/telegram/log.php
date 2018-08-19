@@ -133,7 +133,7 @@ class log
 			// 'response'      => '',
 			// 'responsedate'  => date('Y-m-d H:i:s'),
 			'url'           => tg::$api_token,
-			// 'step'          => '',
+			'step'          => step::current(),
 			// 'meta'          => '',
 			// 'status'        => '',
 		];

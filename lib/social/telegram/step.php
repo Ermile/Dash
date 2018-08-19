@@ -152,7 +152,10 @@ class step
 
 	public static function current()
 	{
-		return self::get('pointer');
+		if(self::get('name'))
+		{
+			return self::get('name'). '::step'. self::get('pointer');
+		}
 	}
 
 	/**
