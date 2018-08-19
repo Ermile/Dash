@@ -11,6 +11,8 @@ class answer extends tg
 
 	public static function finder()
 	{
+		$answer  = null;
+
 		// check for step
 		$response = step::check(hook::text());
 		if($response)
@@ -40,6 +42,31 @@ class answer extends tg
 			}
 		}
 
+		if(!$answer)
+		{
+			if(hook::chat('type') === 'group')
+			{
+				// if your bot joied to group show thanks message
+				if(hook::new_chat_member('username') === self::$name)
+				{
+					$msg = T_("Thanks for using me!")."\r\n\n";
+					$msg .= T_("I'm Bot.");
+					// send this as message
+					tg::sendMessage($msg);
+				}
+			}
+			else
+			{
+				// then if not exist set default text
+				$answer = ['text' => self::randomAnswer()];
+				if(tg::$defaultMenu && is_object(tg::$defaultMenu))
+				{
+					$answer['reply_markup'] = call_user_func(tg::$defaultMenu);
+				}
+				tg::sendMessage($answer);
+			}
+		}
+
 		// // temporary send tg result
 		// $_SESSION['tg'][self::$hookDate] = 'salam '. \dash\user::id() ;
 		// $msg      = "\n\n<pre>". json_encode($_SESSION, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)."</pre>";
@@ -48,62 +75,25 @@ class answer extends tg
 	}
 
 
-
 	/**
-	 * default action to handle message texts
-	 * @param  [type] [description]
-	 * @return [type]       [description]
+	 * generate random answer when no answer is exist for this message
+	 * @return [type] [description]
 	 */
-	public static function answer($forceSample = null)
+	public static function randomAnswer()
 	{
-		$answer  = null;
-		// read from main command template
-		$cmdFolder = __NAMESPACE__ .'\commands\\';
+		$myAnswerList =
+		[
+			T_("Hey 😀"),
+			T_("What's up?"),
+			T_("Tell me a joke!"),
+			T_("Surprise me!"),
+			T_("How are you?"),
+			T_("How old are you?"),
+		];
 
-		// use user defined command
-		if(!$forceSample && self::$cmdFolder)
-		{
-			$cmdFolder = self::$cmdFolder;
-		}
-		foreach (self::$priority as $class)
-		{
-			$funcName = $cmdFolder. $class.'::exec';
-			// generate func name
-			if(is_callable($funcName))
-			{
-				// get response
-				$answer = call_user_func($funcName, self::$cmd);
-				// if has response break loop
-				if($answer || is_array($answer))
-				{
-					break;
-				}
-			}
-		}
-		// if we dont have answer text then use default text
-		if(!$answer)
-		{
-			if(self::response('chat', 'type') === 'group')
-			{
-				// if your bot joied to group show thanks message
-				if(self::response('new_chat_member', 'username') === self::$name)
-				{
-					$msg = "Thanks for using me!\r\n\nI'm Bot.";
-					$msg = "با تشکر از شما عزیزان به خاطر دعوت از من!\r\n\nمن یک ربات هستم.";
-					$answer = ['text' => $msg ];
-				}
-			}
-			elseif(\dash\option::social('telegram', 'debug') && !is_array($answer))
-			{
-				// then if not exist set default text
-				$answer = ['text' => self::$defaultText];
-				if(self::$defaultMenu && is_object(self::$defaultMenu))
-				{
-					$answer['reply_markup'] = call_user_func(self::$defaultMenu);
-				}
-			}
-		}
-		return $answer;
+		$randomAnswer = $myAnswerList[array_rand($myAnswerList)];
+
+		return $randomAnswer;
 	}
 }
 ?>
