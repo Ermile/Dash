@@ -12,7 +12,7 @@ class exec_before
 		}
 
 		// if chat id is not set then set it
-		if(!isset($_data['chat_id']))
+		if(!isset($_data['chat_id']) && hook::chat())
 		{
 			// require chat id
 			$_data['chat_id'] = hook::chat();
