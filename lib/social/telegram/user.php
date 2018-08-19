@@ -62,7 +62,7 @@ class user
 		return false;
 	}
 
-	private static function registerOnTheFly($_tgResponse)
+	public static function registerOnTheFly($_tgResponse)
 	{
 		if(isset($_tgResponse['ok']) && $_tgResponse['ok'] === true)
 		{
