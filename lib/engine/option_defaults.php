@@ -118,6 +118,8 @@ self::$config['force_unit']                            = 1;
 
 
 // ----- enter options
+// self::$config['enter']['force_verify']                = true;
+
 // every wrong pass or code wate for ? [second]
 self::$config['enter']['wait']                         = 10;
 // life time code for ? [second]

@@ -8,7 +8,7 @@ class model
 	{
 		if(!\dash\request::post('password'))
 		{
-			\dash\notif::error(T_("Dont!"));
+			\dash\notif::error(T_("Your browser has sent a saved password. Delete it and continue"));
 			return false;
 		}
 		// get user name

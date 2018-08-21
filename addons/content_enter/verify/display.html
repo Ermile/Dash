@@ -43,6 +43,14 @@
 {%endif%}
 
 
+{%if 'later' in sendWayCod%}
+	<div class="radio1">
+		<input type="radio" name="sendCod" value="later" id="sRd5">
+		<label for="sRd5">{%trans "Verify later"%}</label>
+	</div>
+{%endif%}
+
+
 {{block('ego')}}
 {%if rememberLink%}
    <a class='link' href="{{url.kingdom}}/enter/pass">{%trans "Remembered your password?"%}</a>

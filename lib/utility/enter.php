@@ -442,14 +442,23 @@ class enter
 	 *
 	 * @return     array   ( description_of_the_return_value )
 	 */
-	public static function list_send_code_way()
+	public static function list_send_code_way($_mobile_or_email = null)
 	{
 		$i_can     = false;
 		$is_mobile = false;
 		$is_email  = false;
 
-		$mobile    = self::user_data('mobile');
-		$email     = self::user_data('email');
+
+		if($_mobile_or_email)
+		{
+			$mobile = $_mobile_or_email;
+			$email  = $_mobile_or_email;
+		}
+		else
+		{
+			$mobile = self::user_data('mobile');
+			$email  = self::user_data('email');
+		}
 
 		if(\dash\utility\filter::mobile($mobile))
 		{
@@ -483,7 +492,7 @@ class enter
 				}
 			}
 
-			if(self::user_data('mobile') && \dash\utility\filter::mobile(self::user_data('mobile')))
+			if($mobile && \dash\utility\filter::mobile($mobile))
 			{
 				if(\dash\option::config('enter', 'verify_sms'))
 				{
@@ -508,6 +517,13 @@ class enter
 			array_push($way, 'sms');
 		}
 
+		if(\dash\utility\enter::get_session('verify_from') === 'signup')
+		{
+			if(!\dash\option::config('enter', 'force_verify'))
+			{
+				array_push($way, 'later');
+			}
+		}
 
 		if(!$i_can || empty($way))
 		{

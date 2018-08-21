@@ -27,7 +27,7 @@ class model
 			}
 			else
 			{
-				\dash\notif::error(T_("Dont!"));
+				\dash\notif::error(T_("We can not find some detail to load!"));
 				return false;
 			}
 		}

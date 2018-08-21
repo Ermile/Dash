@@ -1,0 +1,29 @@
+{%extends display.enter%}
+
+
+{%block contentForm%}
+
+
+<p>{%trans "You must confirm your mobile in the future" %}</p>
+
+
+<a href="{{url.this}}" class="btn primary block" type="submit">{%trans "Verify now"%}</a>
+
+<a class="link mT20 txtC " href="{{url.pwd}}" data-ajaxify data-method='post' data-data='{"force_signup" : true}'>{%trans "Verify later"%}</a>
+
+{{block('elater')}}
+
+
+{%endblock%}
+
+
+
+{%block contentFooter%}
+   <footer class='f'>
+{%if startNewMobile%}
+	{{block('ereset')}}
+{%endif%}
+{{block('everifyback')}}
+   </footer>
+{%endblock%}
+

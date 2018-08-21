@@ -11,25 +11,25 @@ class model
 		$count = \dash\session::get('count_signup_check');
 		if($count)
 		{
-			\dash\session::set('count_signup_check', $count + 1, null, 60 * 30);
+			\dash\session::set('count_signup_check', $count + 1, null, 60 * 10);
 		}
 		else
 		{
-			\dash\session::set('count_signup_check', 1, null, 60 * 30);
+			\dash\session::set('count_signup_check', 1, null, 60 * 10);
 		}
 
 		if($count >= 3)
 		{
 			\dash\log::db('userHitSignup3>30m');
 
-			\dash\notif::warn(T_("How are you?"). ":)");
+			\dash\notif::warn(T_("You do not have permission to register for up to ten minutes"). ":)");
 			return false;
 		}
 
 		if(\dash\request::post('password'))
 		{
 			\dash\log::db('hiddenPasswordFieldIsFull');
-			\dash\notif::error(T_("Dont!"));
+			\dash\notif::error(T_("Your browser has sent a saved password. Delete it and continue"));
 			return false;
 		}
 
@@ -101,28 +101,37 @@ class model
 		[
 			'mobile'      => $mobile,
 			'displayname' => $displayname,
-			'password'    => \dash\utility::hasher($ramz),
 			'username'    => $username,
 			'status'      => 'awaiting'
 		];
 
-		if(!\dash\engine\process::status())
-		{
-			return false;
-		}
+		\dash\utility\enter::set_session('verify_from', 'signup');
 
-		$user_id = \dash\db\users::signup_quick($signup);
+		\dash\utility\enter::set_session('temp_ramz_hash', \dash\utility::hasher($ramz));
 
-		if(!$user_id)
-		{
-			\dash\log::db('userCanNotSignupDB');
-			\dash\notif::error(T_("We can not signup you"));
-			return false;
-		}
-		\dash\log::db('userSignup');
+		\dash\utility\enter::set_session('usernameormobile', $mobile);
 
-		\dash\utility\enter::load_user_data($user_id, 'user_id');
-		\dash\utility\enter::enter_set_login(null, true);
+		\dash\utility\enter::set_session('signup_detail', $signup);
+
+		\dash\utility\enter::go_to_verify();
+
+		// if(!\dash\engine\process::status())
+		// {
+		// 	return false;
+		// }
+
+		// $user_id = \dash\db\users::signup_quick($signup);
+
+		// if(!$user_id)
+		// {
+		// 	\dash\log::db('userCanNotSignupDB');
+		// 	\dash\notif::error(T_("We can not signup you"));
+		// 	return false;
+		// }
+		// \dash\log::db('userSignup');
+
+		// \dash\utility\enter::load_user_data($user_id, 'user_id');
+		// \dash\utility\enter::enter_set_login(null, true);
 	}
 }
 ?>

@@ -49,6 +49,10 @@ class view
 				$myDesc .= T_("We can't send code to you with our existing methods! For the last chance of verify yourself you can send code to our number.");
 				break;
 
+			case 'later':
+				$myDesc .= '';
+				break;
+
 			case null:
 				$myDesc .= null;
 				break;

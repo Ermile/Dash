@@ -47,14 +47,42 @@ class model
 		if(!in_array($send_code, \dash\utility\enter::list_send_code_way($mobile_email)))
 		{
 			\dash\log::db('sendWayInvalid');
-			\dash\notif::error(T_("Dont!"));
+			\dash\notif::error(T_("Please select one way to send code"));
 			return false;
 		}
 
-		if(\dash\url::isLocal())
+		if(\dash\url::isLocal() && $send_code !== 'later')
 		{
 			\dash\notif::ok(T_("Verify code in local is :code", ['code' => '<b>11111</b>']));
 		}
+
+		if($send_code !== 'later' && \dash\utility\enter::get_session('verify_from') === 'signup')
+		{
+			$signup = \dash\utility\enter::get_session('signup_detail');
+
+			if(!$signup || !is_array($signup))
+			{
+				\dash\log::db('userDetailLostSignup');
+				\dash\notif::error(T_("We can not find your detail to signup"));
+				return false;
+			}
+
+			$user_id = \dash\db\users::signup_quick($signup);
+
+			if(!$user_id)
+			{
+				\dash\log::db('userCanNotSignupDB');
+				\dash\notif::error(T_("We can not signup you"));
+				return false;
+			}
+
+			// load user data by mobile
+			$user_data = \dash\utility\enter::load_user_data($user_id, 'user_id');
+
+			\dash\log::db('userSignup');
+
+		}
+
 
 		$select_way = 'verify/'. $send_code;
 		\dash\utility\enter::open_lock($select_way);
