@@ -84,6 +84,11 @@ class comment
 		$args['visitor_id'] = \dash\utility\visitor::id();
 		$args['ip']         = \dash\server::ip(true);
 
+		if(\dash\url::subdomain())
+		{
+			$args['subdomain'] = \dash\url::subdomain();
+		}
+
 		$comment_id = \dash\db\comments::insert($args);
 
 		if(!$comment_id)

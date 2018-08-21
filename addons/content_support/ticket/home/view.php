@@ -35,6 +35,14 @@ class view
 		}
 
 		$args['comments.type']    = 'ticket';
+		if(\dash\url::subdomain())
+		{
+			$args['comments.subdomain']    = \dash\url::subdomain();
+		}
+		else
+		{
+			$args['comments.subdomain']    = null;
+		}
 		$args['user_id'] = \dash\user::id();
 		$args['comments.parent']  = null;
 		$args['join_user']  = true;
@@ -54,6 +62,7 @@ class view
 
 		$filterArray = $args;
 		unset($filterArray['comments.type']);
+		unset($filterArray['comments.subdomain']);
 		unset($filterArray['user_id']);
 		unset($filterArray['comments.parent']);
 		unset($filterArray['join_user']);
