@@ -28,6 +28,14 @@ class view
 		$args['join_user']       = true;
 		$args['get_tag']         = true;
 		$args['comments.status']       = ["NOT IN", "('close')"];
+		if(\dash\url::subdomain())
+		{
+			$args['comments.subdomain']    = \dash\url::subdomain();
+		}
+		else
+		{
+			$args['comments.subdomain']    = null;
+		}
 
 		$dataTable = \dash\app\comment::list(null, $args);
 		$dataTable = array_map(['self', 'tagDetect'], $dataTable);
@@ -55,6 +63,14 @@ class view
 		if(!\dash\permission::check('supportTicketView'))
 		{
 			$args['user_id'] = \dash\user::id();
+		}
+		if(\dash\url::subdomain())
+		{
+			$args['comments.subdomain']    = \dash\url::subdomain();
+		}
+		else
+		{
+			$args['comments.subdomain']    = null;
 		}
 
 		$result               = [];

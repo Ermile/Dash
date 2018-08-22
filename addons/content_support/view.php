@@ -24,9 +24,18 @@ class view
 
 	private static function sidebarDetail()
 	{
+		if(\dash\url::subdomain())
+		{
+			$args['comments.subdomain']    = \dash\url::subdomain();
+		}
+		else
+		{
+			$args['comments.subdomain']    = null;
+		}
+
 		$result               = [];
-		$result['unanswered'] = \dash\db\comments::get_count(['type' => 'ticket', 'answertime' => null]);
-		$result['all']        = \dash\db\comments::get_count(['type' => 'ticket']);
+		$result['unanswered'] = \dash\db\comments::get_count(array_merge($args,['type' => 'ticket', 'answertime' => null]));
+		$result['all']        = \dash\db\comments::get_count(array_merge($args, ['type' => 'ticket']));
 		$result['mine']       = \dash\db\comments::ticket_mine(\dash\user::id());
 
 		return $result;
