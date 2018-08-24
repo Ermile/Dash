@@ -189,7 +189,7 @@ class visitors
 
 		if(isset($_options['order_raw']) && $_options['order_raw'])
 		{
-			$order = " ORDER BY ".  $_options['order_raw'];
+			$order = " ORDER BY   $_options[order_raw] ";
 		}
 
 		$start_limit = $_options['start_limit'];
