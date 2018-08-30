@@ -29,7 +29,7 @@
                   <a class="btn" href="{{url.here}}/sms/send?mobile={{value}}"><i class="sf-envelope"></i> {%trans "Send SMS"%}</a>
       {%endif%}
       {%if perm_su() %}
-                  <a class="btn" href="{{url.kingdom}}/enter?mobile={{value}}"><i class="sf-user"></i> {%trans "Enter"%}</a>
+                  <a class="btn" href="{{url.kingdom}}/enter?mobile={{value}}" data-direct><i class="sf-user"></i> {%trans "Enter"%}</a>
       {%endif%}
                 </td>
               </tr>
