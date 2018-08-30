@@ -144,21 +144,21 @@ class prepare
 		{
 			case 'signin':
 			case 'login':
-				$url = \dash\url::base(). '/enter'. $param;
+				$url = \dash\url::kingdom(). '/enter'. $param;
 				\dash\redirect::to($url);
 				break;
 
 			case 'signup':
 				if($myrep !== 'enter')
 				{
-					$url = \dash\url::base(). '/enter/signup'. $param;
+					$url = \dash\url::kingdom(). '/enter/signup'. $param;
 					\dash\redirect::to($url);
 				}
 				break;
 
 			case 'register':
 
-				$url = \dash\url::base(). '/enter/signup'. $param;
+				$url = \dash\url::kingdom(). '/enter/signup'. $param;
 				\dash\redirect::to($url);
 				break;
 
@@ -166,7 +166,7 @@ class prepare
 			case 'logout':
 				if($myrep !== 'enter')
 				{
-					$url = \dash\url::base(). '/enter/logout'. $param;
+					$url = \dash\url::kingdom(). '/enter/logout'. $param;
 					\dash\redirect::to($url);
 				}
 
@@ -181,19 +181,19 @@ class prepare
 			case 'account/verificationsms':
 			case 'account/signin':
 			case 'account/login':
-				$url = \dash\url::base(). '/enter'. $param;
+				$url = \dash\url::kingdom(). '/enter'. $param;
 				\dash\redirect::to($url);
 				break;
 
 			case 'account/signup':
 			case 'account/register':
-				$url = \dash\url::base(). '/enter/signup'. $param;
+				$url = \dash\url::kingdom(). '/enter/signup'. $param;
 				\dash\redirect::to($url);
 				break;
 
 			case 'account/logout':
 			case 'account/signout':
-				$url = \dash\url::base(). '/enter/logout'. $param;
+				$url = \dash\url::kingdom(). '/enter/logout'. $param;
 				\dash\redirect::to($url);
 				break;
 		}
