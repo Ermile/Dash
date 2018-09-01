@@ -226,8 +226,12 @@ class user
 					}
 					else
 					{
-						\dash\db\sessions::set($user_id);
-						\dash\log::db('userLoginByRemember');
+						// default of this variable is true
+						if(\dash\option::config('enter', 'remember_me'))
+						{
+							\dash\db\sessions::set($user_id);
+							\dash\log::db('userLoginByRemember');
+						}
 					}
 				}
 			}

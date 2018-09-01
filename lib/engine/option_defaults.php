@@ -128,6 +128,8 @@ self::$config['enter']['life_time_code']               = 60 * 5;
 // self::$config['enter']['signup_redirect']              = null;
 // after signup user redirect to different page
 self::$config['enter']['singup_username']              = true;
+// save remember me to login
+self::$config['enter']['remember_me']              = true;
 // after login redirect to what?
 // self::$config['enter']['redirect']                     = null;
 // check if call mode is enable to call to user

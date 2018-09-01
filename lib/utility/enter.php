@@ -327,15 +327,23 @@ class enter
 		{
 			if(isset($_SESSION['auth']['mobile']) && $_SESSION['auth']['mobile'] === $_SESSION['main_mobile'])
 			{
-				\dash\db\sessions::set($user_id);
+				// default of this variable is true
+				if(\dash\option::config('enter', 'remember_me'))
+				{
+					\dash\db\sessions::set($user_id);
+				}
 			}
 			// if the admin user login by this user
 			// not save the session
 		}
 		else
 		{
-			// set remeber and save session
-			\dash\db\sessions::set($user_id);
+			// default of this variable is true
+			if(\dash\option::config('enter', 'remember_me'))
+			{
+				// set remeber and save session
+				\dash\db\sessions::set($user_id);
+			}
 			// check user status
 			// if the user status is awaiting
 			// set the user status as enable
