@@ -71,6 +71,12 @@ class model
 			return false;
 		}
 
+		if($username && $ramz && $username === $ramz)
+		{
+			\dash\notif::error(T_("Please do not use your username as password. Never Ever!"));
+			return false;
+		}
+
 		$displayname = \dash\request::post('displayname');
 		if(!$displayname || mb_strlen($displayname) > 50)
 		{
