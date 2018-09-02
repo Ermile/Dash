@@ -76,7 +76,7 @@ class comment
 
 			if(isset($check_duplicate['id']))
 			{
-				\dash\notif::warn(T_("Duplicate comment from you was received"), 'content');
+				\dash\notif::error(T_("This text is duplicate and you are sended something like this before!"), 'content');
 				return false;
 			}
 		}
