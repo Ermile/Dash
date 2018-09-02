@@ -2,13 +2,11 @@
 
 {%block content%}
 
- <div class=" dbox">
+ <div class="cbox">
   <h2>{%trans "Create sitemap automatically by click on this page"%}</h2>
-  <div class="btns">
-   <a target="_blank" href="{{url.base}}/sitemap.xml">{%trans "Base Sitemap"%}</a>
-   <a target="_blank" href="{{url.base}}/sitemap/sitemap.xml">{%trans "Sitemap Detail"%}</a>
-   <a class="special-btn float-right" href="{{site.root}}/su/tools/sitemap?run=yes">{%trans "Create it Again"%}</a>
-  </div>
+   <a class="btn" target="_blank" href="{{url.base}}/sitemap.xml">{%trans "Base Sitemap"%}</a>
+   <a class="btn" target="_blank" href="{{url.base}}/sitemap/sitemap.xml">{%trans "Sitemap Detail"%}</a>
+   <a class="btn floatRa" href="{{site.root}}/su/tools/sitemap?run=yes">{%trans "Create it Again"%}</a>
  </div>
 
 
