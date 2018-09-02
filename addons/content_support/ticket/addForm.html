@@ -10,10 +10,10 @@
 {%endif%}
 
     <label for="content">{%trans "Description"%} <small class="fc-red">{%trans "Require"%} *</small></label>
-    <textarea class="txt mB10" id='content' name="content" placeholder='' maxlength='1000' rows="4">{{dataRow.desc}}</textarea>
+    <textarea class="txt mB10" id='content' name="content" placeholder='' maxlength='1000' rows="5">{{dataRow.desc}}</textarea>
 
 
-    <label for="file1">{%trans "Attachment"%}</label>
+    <label for="file1">{%trans "Attachment"%} <small class="fc-mute">{%trans "Max size 5Mb"%}</small></label>
     <div class="input">
      <input type="file" name="file" id="file1" data-max="5000">
     </div>
