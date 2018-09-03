@@ -284,5 +284,53 @@ class app
 		return $result;
 	}
 
+
+	public static function fix_avatar($_data)
+	{
+		if(!isset($_data['avatar']))
+		{
+			$_data['avatar'] = null;
+		}
+
+		$result = [];
+		foreach ($_data as $key => $value)
+		{
+			switch ($key)
+			{
+				case 'avatar':
+					if($value)
+					{
+						$avatar = $value;
+					}
+					else
+					{
+						if(isset($_data['gender']))
+						{
+							if($_data['gender'] === 'male')
+							{
+								$avatar = \dash\app::static_avatar_url('male');
+							}
+							else
+							{
+								$avatar = \dash\app::static_avatar_url('female');
+							}
+						}
+						else
+						{
+							$avatar = \dash\app::static_avatar_url();
+						}
+					}
+					$result[$key] = $avatar;
+					break;
+
+				default:
+					$result[$key] = $value;
+					break;
+			}
+		}
+
+		return $result;
+	}
+
 }
 ?>

@@ -60,7 +60,7 @@ class view
 		$args['join_user']       = true;
 
 		$dataTable = \dash\app\comment::list(null, $args);
-
+		$main = \dash\app::fix_avatar($main);
 		array_push($dataTable, $main);
 
 		\dash\data::dataTable($dataTable);

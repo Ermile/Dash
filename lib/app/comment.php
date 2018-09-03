@@ -181,6 +181,7 @@ class comment
 			$check = self::ready($value);
 			if($check)
 			{
+				$check = \dash\app::fix_avatar($check);
 				$temp[] = $check;
 			}
 		}

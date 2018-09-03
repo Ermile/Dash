@@ -24,7 +24,7 @@ class view
 		}
 
 		$args['comments.parent'] = null;
-		$args['pagenation']      = false;
+		$args['limit']      = 100;
 		$args['join_user']       = true;
 		$args['get_tag']         = true;
 		$args['comments.status']       = ["NOT IN", "('close')"];
@@ -39,6 +39,7 @@ class view
 
 		$dataTable = \dash\app\comment::list(null, $args);
 		$dataTable = array_map(['self', 'tagDetect'], $dataTable);
+
 		\dash\data::dataTable($dataTable);
 
 		\dash\data::dashboardDetail(self::dashboardDetail());

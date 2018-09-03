@@ -51,8 +51,19 @@ class comments
 		{
 			if(isset($_options['get_tag']) && $_options['get_tag'])
 			{
-				$_options['public_show_field'] = " comments.*, users.avatar, users.firstname, users.displayname,
-				(SELECT GROUP_CONCAT(terms.title) FROM terms INNER JOIN termusages ON termusages.term_id = terms.id WHERE termusages.related = 'comments' AND termusages.related_id = comments.id) AS `tag`
+				$_options['public_show_field'] =
+				"
+					comments.*,
+					users.avatar,
+					users.firstname,
+					users.displayname,
+					(
+						SELECT GROUP_CONCAT(terms.title)
+						FROM terms
+						INNER JOIN termusages ON termusages.term_id = terms.id
+						WHERE termusages.related = 'comments'
+						AND termusages.related_id = comments.id
+					) AS `tag`
 				 ";
 			}
 			else
