@@ -218,6 +218,10 @@ class date
 					$format = $long_date ? $long_date : "Y";
 					break;
 
+				case 'full':
+					$format = "Y-m-d H:i:s";
+					break;
+
 				case 'short':
 				default:
 					$format = $short_date ? $short_date : "Y/m/d";
