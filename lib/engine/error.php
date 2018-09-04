@@ -89,7 +89,10 @@ class error
 		$my_text  = "#". str_repeat("-", 10);
 		$my_text .= $date_now->format("Y-m-d H:i:s");
 		$my_text .= str_repeat("-", 50). ' ';
-		$my_text .= urldecode(\dash\url::pwd());
+		if(is_callable("\dash\url::pwd"))
+		{
+			$my_text .= urldecode(\dash\url::pwd());
+		}
 		$my_text .= "\n";
 
 		// add final text
