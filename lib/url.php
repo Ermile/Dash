@@ -2,7 +2,7 @@
 namespace dash;
 /**
  * this lib handle url of our PHP framework, Dash
- * v 5.2
+ * v 5.3
  *
  * This lib detect all part of url and return each one seperate or combine some of them
  * Below example is the sample of this url lib
@@ -320,7 +320,7 @@ class url
 	private static function _sitelang()
 	{
 		$my_sitelang = self::$url['site'];
-		if(isset(self::$url['lang'])
+		if(isset(self::$url['lang']))
 		{
 			$my_sitelang .= '/'. self::$url['lang'];
 		}
