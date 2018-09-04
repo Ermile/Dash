@@ -1,14 +1,82 @@
 {%extends display.admin%}
 
+
 {%block pageContent%}
-<div class="cbox">
-  <form method="post">
-    <input type="hidden" name="add" value="appkey">
-    <div class="input">
-      <label>{%trans "YOUR API KEY"%}</label>
-      <input type="text" name="appkey" value="{{appkey}}" readonly  class="txtC" placeholder='{%trans "GENERATE NEW API KEY"%}'>
-    </div>
-    <button class="btn primary mT5 block">{%trans "Get new API KEY"%}</button>
-  </form>
-</div>
+
+{%if dataTable%}
+ {%if dataFilter%}
+
+
+  {{block('htmlTable')}}
+  {{block('htmlFilter')}}
+
+ {%else%}
+
+
+  {{block('htmlTable')}}
+
+ {%endif%}
+{%else%}
+ {%if dataFilter%}
+
+
+  {{block('htmlFilterNoResult')}}
+
+ {%else%}
+
+  {{block('htmlStartAddNew')}}
+
+ {%endif%}
+{%endif%}
+
 {%endblock%}
+
+
+
+
+
+{%block htmlTable%}
+
+  <table class="tbl1 v1 cbox">
+    <thead class="primary">
+      <tr>
+        <th>{%trans "Title"%}</th>
+        <th>{%trans "Content"%}</th>
+
+      </tr>
+    </thead>
+
+    <tbody>
+      {%for key, value in dataTable%}
+      <tr {%if value.status=='disable'%} class='negative'{%endif%}>
+        <td>{{value.title}}</td>
+        <td>{{value.content}}</td>
+      </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+  {%include display.pagination%}
+
+{%endblock%}
+
+
+{%block htmlFilter%}
+<p class="f fs14 msg info2">
+  <span class="c">{{dataFilter | raw}}</span>
+  <a class="cauto" href="{{url.this}}">{%trans "Clear filters"%}</a>
+</p>
+{%endblock%}
+
+
+{%block htmlFilterNoResult%}
+<p class="f fs14 msg warn2">
+  <span class="c">{%trans "Result not found!"%} {%trans "Search with new keywords."%}</span>
+  <a class="cauto" href="{{url.this}}">{%trans "Clear filters"%}</a>
+</p>
+{%endblock%}
+
+
+{%block htmlStartAddNew%}
+<p class="fs14 msg success2 pTB20">{%trans "Hi!"%} {%trans "No notifications found"%}</p>
+{%endblock%}
+
