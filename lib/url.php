@@ -2,7 +2,7 @@
 namespace dash;
 /**
  * this lib handle url of our PHP framework, Dash
- * v 5.0
+ * v 5.2
  *
  * This lib detect all part of url and return each one seperate or combine some of them
  * Below example is the sample of this url lib
@@ -26,6 +26,7 @@ namespace dash;
  *
  * 'domain'     => 'jibres.com'							[root+tld+port]
  * 'site'       => 'http://jibres.com'					[protocol+domain]
+ * 'sitelang'   => 'http://jibres.com/en'				[site+lang]
  * 'base'       => 'http://ermile.jibres.com'			[protocol+host]
  *
  * 'path'       => '/en/a/thirdparty/general/edit/test=yes?id=5&page=8'
@@ -81,6 +82,7 @@ class url
 		self::$url              = array_merge(self::$url, $analysed_path);
 
 		// generate with host and path
+		self::$url['sitelang']  = self::_sitelang();
 		self::$url['kingdom']   = self::_kingdom();
 		self::$url['here']      = self::_here();
 		self::$url['this']      = self::_this();
@@ -309,6 +311,22 @@ class url
 	{
 		return self::$url['protocol']. '://'. self::$url['domain'];
 	}
+
+
+	/**
+	 * get site url with language without subdomain
+	 * @return string of site address
+	 */
+	private static function _sitelang()
+	{
+		$my_sitelang = self::$url['site'];
+		if(isset(self::$url['lang'])
+		{
+			$my_sitelang .= '/'. self::$url['lang'];
+		}
+		return $my_sitelang;
+	}
+
 
 
 	/**
