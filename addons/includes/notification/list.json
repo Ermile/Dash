@@ -1,0 +1,19 @@
+{
+  "loadSu": {
+    "title": "load su whit user :user",
+    "content": "The :user was loaded su content",
+    "telegram": true,
+    "sms": true,
+    "email": true,
+    "life_time": "5d",
+    "need_answer": true,
+    "btn": {
+      "accept_owner": "Accept",
+      "reject_owner": "Reject"
+    },
+    "btn_function": {
+      "accept_owner": "\\dash\\user\\permission\\set",
+      "reject_owner": null
+    }
+  }
+}

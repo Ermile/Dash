@@ -5,17 +5,15 @@ namespace dash;
 class notification
 {
 	// check to not duplicate load notification file
-	private static $load                    = false;
+	private static $load               = false;
 	// check to not duplicate load user data
-	private static $user_loaded             = false;
+	private static $user_loaded        = false;
 	// user notifissio as a group name
-	private static $user_notification         = null;
-	// loaded user group notification and find whate containg of the user
-	private static $user_notification_contain = [];
+	private static $user_detail        = null;
 	// list of project notifissin list
-	private static $project_notif_list       = [];
+	private static $project_notif_list = [];
 	// list of dash notification list
-	private static $core_notif_list          = [];
+	private static $core_notif_list    = [];
 
 
 
@@ -78,83 +76,239 @@ class notification
 
 
 	// load user data
-	private static function load_user($_user_id, $_force = false)
+	private static function user_detail($_user_id, $_key = null, $_value = null)
 	{
-		if($_user_id && is_numeric($_user_id))
+		if(!$_user_id)
 		{
-			$user_id = $_user_id;
+			$_user_id = \dash\user::id();
 		}
-		else
+
+		if(!is_numeric($_user_id))
 		{
-			$user_id = \dash\user::id();
+			return false;
 		}
 
 		if(!self::$user_loaded)
 		{
 			self::$user_loaded       = true;
-			self::$user_notification = \dash\user::detail('notification');
-		}
-
-		if($_force)
-		{
-			$user_detail = \dash\db\users::get_by_id($user_id);
-
-			self::$user_notification = null;
-
-			if(isset($user_detail['notification']))
+			if(intval(\dash\user::id()) !== intval(\dash\user::id()))
 			{
-				self::$user_notification = $user_detail['notification'];
+				$user_detail = \dash\db\users::get_by_id($user_id);
 			}
+			else
+			{
+				$user_detail = \dash\user::detail();
+			}
+
+			self::$user_detail = $user_detail;
 		}
 
-		if(is_callable(['\lib\notification', 'load_user']))
-		{
-			\lib\notification::load_user($_user_id, $_force);
-		}
+		return self::$user_detail;
 	}
 
 
-	// opern notification for edit or delete
-	public static function load_notification($_id)
+	private static function get_detail($_detail, $_key)
 	{
-		self::load();
-
-		if(array_key_exists($_id, self::$project_group))
+		if(is_array($_detail))
 		{
-			return self::$project_group[$_id];
+			if(array_key_exists($_key, $_detail))
+			{
+				return $_detail[$_key];
+			}
+			else
+			{
+				return null;
+			}
 		}
+		return null;
+	}
 
-		if(array_key_exists($_id, self::$core_group))
+	private static function calc_life_time($_life_time)
+	{
+		if(preg_match("/^(\d+)([YmdHis])$/", $_life_time, $split))
 		{
-			return self::$core_group[$_id];
-		}
+			$life_time = intval($split[1]);
 
-		return false;
+			switch ($split[2])
+			{
+				case 'Y':
+					$life_time *= 12;
+				case 'm':
+					$life_time *= 30;
+				case 'd':
+					$life_time *= 24;
+				case 'H':
+					$life_time *= 60;
+				case 'i':
+					$life_time *= 60;
+				case 's':
+					$life_time *= 1;
+					break;
+			}
+
+			return $life_time;
+		}
+		else
+		{
+			if(is_numeric($_life_time))
+			{
+				return intval($_life_time);
+			}
+		}
 	}
 
 
 	// send notification
 	public static function send($_caller, $_user_id = null, $_replace = [], $_option = [])
 	{
-		self::load_user($_user_id);
-
 		$all_list = self::lists();
 
-		if(is_callable(['\lib\notification', 'send']))
+		if(!isset($all_list[$_caller]))
 		{
-			$check_advance_notif = \lib\notification::send($_caller, $_user_id, $_replace, $_option);
+			return null;
+		}
 
-			if($check_advance_notif === false)
+		$notif_detail = $all_list[$_caller];
+
+		$user_detail = self::user_detail($_user_id);
+
+		if($user_detail === false)
+		{
+			return false;
+		}
+
+		if(!is_array($_replace))
+		{
+			$_replace = [];
+		}
+
+		if(!is_array($_option))
+		{
+			$_option = [];
+		}
+
+		$add_notif = [];
+
+		// set title
+		$title = self::get_detail($notif_detail, 'title');
+
+		if(isset($_option['title']))
+		{
+			$title = $_option['title'];
+		}
+		elseif($title)
+		{
+			$title = T_($title, $_replace);
+		}
+
+		// set content
+		$content = self::get_detail($notif_detail, 'content');
+
+		if(isset($_option['content']))
+		{
+			$content = $_option['content'];
+		}
+		elseif($content)
+		{
+			$content = T_($content, $_replace);
+		}
+
+		$expiredate = null;
+		$life_time = self::get_detail($notif_detail, 'life_time');
+
+		if($life_time)
+		{
+			$life_time = self::calc_life_time($life_time);
+			if(is_numeric($life_time))
 			{
-				return false;
-			}
-			elseif($check_advance_notif === true)
-			{
-				return true;
+				$expiredate = date("Y-m-d H:i:s", intval( time() + intval($life_time) ));
 			}
 		}
 
-		return true;
+		if(isset($user_detail['chatid']) && $user_detail['chatid'])
+		{
+			if(self::get_detail($notif_detail, 'telegram'))
+			{
+				$add_notif['telegram'] = 1;
+			}
+		}
+
+		if(isset($user_detail['mobile']) && \dash\utility\filter::mobile($user_detail['mobile']))
+		{
+			if(self::get_detail($notif_detail, 'sms'))
+			{
+				$add_notif['sms'] = 1;
+			}
+		}
+
+		if(isset($user_detail['email']) && filter_var($user_detail['email'], FILTER_VALIDATE_EMAIL))
+		{
+			if(self::get_detail($notif_detail, 'email'))
+			{
+				$add_notif['email'] = 1;
+			}
+		}
+
+		if(self::get_detail($notif_detail, 'need_answer'))
+		{
+			$add_notif['needanswer'] = 1;
+		}
+
+		// @check supervisor or admin to load all user
+		if(isset($user_detail['id']) && is_numeric($user_detail['id']))
+		{
+			$add_notif['user_id'] = $user_detail['id'];
+		}
+
+		if(isset($_option['url']) && is_numeric($_option['url']))
+		{
+			$add_notif['url'] = $_option['url'];
+		}
+
+		if(isset($_option['user_idsender']) && is_numeric($_option['user_idsender']))
+		{
+			$add_notif['user_idsender'] = $_option['user_idsender'];
+		}
+
+		if(isset($_option['related_foreign']))
+		{
+			$add_notif['related_foreign'] = $_option['related_foreign'];
+		}
+
+		if(isset($_option['related_id']) && is_numeric($_option['related_id']))
+		{
+			$add_notif['related_id'] = $_option['related_id'];
+		}
+
+		if(isset($_option['desc']) && is_string($_option['desc']))
+		{
+			$add_notif['desc'] = $_option['desc'];
+		}
+
+		if(isset($_option['meta']) && is_string($_option['meta']))
+		{
+			$add_notif['meta'] = $_option['meta'];
+		}
+
+		if(\dash\url::subdomain())
+		{
+			$add_notif['subdomain'] = \dash\url::subdomain();
+		}
+
+		$add_notif['status']     = 'awaiting';
+		$add_notif['title']      = $title;
+		$add_notif['caller']     = $_caller;
+		$add_notif['content']    = $content;
+		$add_notif['expiredate'] = $expiredate;
+
+		if(\dash\db\notifications::insert($add_notif))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 }
 ?>
