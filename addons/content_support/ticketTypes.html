@@ -1,7 +1,7 @@
 
 <div class="f">
   <div class="c">
-    <a class="dcard {%if requestGET.access == 'mine'%} active{%endif%}" href='{{url.here}}?access=mine'>
+    <a class="dcard {%if requestGET.access == 'mine'%} active{%endif%}" href='{{url.this}}?access=mine'>
      <div class="statistic{%if requestGET.access == 'mine'%} blue{%else%} brown{%endif%}">
       <div class="value mB10"><i class="sf-user"></i></div>
       <div class="label">{%trans "My tickets"%}</div>
@@ -9,7 +9,7 @@
     </a>
   </div>
   <div class="c">
-    <a class="dcard {%if requestGET.access == 'manage'%} active{%endif%}" href='{{url.here}}?access=manage'>
+    <a class="dcard {%if requestGET.access == 'manage'%} active{%endif%}" href='{{url.this}}?access=manage'>
      <div class="statistic{%if requestGET.access == 'manage'%} blue{%else%} brown{%endif%}">
       <div class="value mB10"><i class="sf-users"></i></div>
       <div class="label">{%trans "Manage tickets"%}</div>
@@ -17,7 +17,7 @@
     </a>
   </div>
   <div class="c">
-    <a class="dcard {%if requestGET.access == 'all'%} active{%endif%}" href='{{url.here}}?access=all'>
+    <a class="dcard {%if requestGET.access == 'all'%} active{%endif%}" href='{{url.this}}?access=all'>
      <div class="statistic{%if requestGET.access == 'all'%} blue{%else%} brown{%endif%}">
       <div class="value mB10"><i class="sf-user-secret"></i></div>
       <div class="label">{%trans "Manage all tickets"%}</div>
