@@ -3,8 +3,7 @@
 
 
 {%block pageContent%}
-
-  {{block('detailCards')}}
+{%include "content_support/ticketTypes.html"%}
 
 {%if dataTable%}
 
@@ -33,56 +32,4 @@
 {%endblock%}
 
 
-
-
-
-{%block detailCards%}
-
-<div class="f mB10">
-  <div class="c2 s12">
-    <a class="dcard" href="{{url.here}}/ticket">
-      <div class="statistic sm teal">
-        <div class="label mB10"><i class="fs20 mRa5 sf-life-ring"></i> {%trans "Tickets"%}</div>
-        <div class="value counter">{{dashboardDetail.tickets |fitNumber}}</div>
-      </div>
-    </a>
-  </div>
-  <div class="c2 s6">
-    <a class="dcard" href="{{url.here}}/replies">
-      <div class="statistic sm">
-        <div class="label mB10"><i class="fs20 mRa5 sf-chat"></i> {%trans "Replies"%}</div>
-        <div class="value">{{dashboardDetail.replies |fitNumber}}</div>
-      </div>
-    </a>
-  </div>
-
-  <div class="c2 s6">
-    <a class="dcard" href="{{url.here}}/ticket?status=closed">
-      <div class="statistic sm">
-        <div class="label mB10"><i class="fs20 mRa5 sf-archive"></i> {%trans "Archived"%}</div>
-        <div class="value">{{dashboardDetail.archived |fitNumber}}</div>
-      </div>
-    </a>
-  </div>
-
-  <div class="c3 s12">
-    <a class="dcard" href="{{url.here}}/ticket?order=firstResponse">
-      <div class="statistic sm">
-        <div class="label mB10"><i class="fs20 mRa5 sf-clock-o"></i> {%trans "Avg. First Response"%}</div>
-        <div class="value">{{dashboardDetail.avgfirst |fitNumber}} <small class="fs05">{%trans "Minute"%}</small></div>
-      </div>
-    </a>
-  </div>
-
-  <div class="c3 s12">
-    <a class="dcard" href="{{url.here}}/ticket?order=avgArchiveTime">
-      <div class="statistic sm">
-        <div class="label mB10"><i class="fs20 mRa5 sf-calendar-check-o"></i> {%trans "Avg. Time to Archive"%}</div>
-        <div class="value">{{dashboardDetail.avgarchive |fitNumber}} <small class="fs05">{%trans "Hours"%}</small></div>
-      </div>
-    </a>
-  </div>
-
-</div>
-{%endblock%}
 
