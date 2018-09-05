@@ -99,7 +99,7 @@ class ticket
 		\dash\log::db('addComment', ['data' => $comment_id, 'datalink' => \dash\coding::encode($comment_id)]);
 
 		$return       = [];
-		$return['id'] = \dash\coding::encode($comment_id);
+		$return['id'] = $comment_id;
 		return $return;
 	}
 
