@@ -130,7 +130,7 @@ class model
 
 			];
 
-			$result = \dash\app\comment::add($args);
+			$result = \dash\app\ticket::add($args);
 			if($result)
 			{
 				$ticket_link = '<a href="'. \dash\url::site(). '/support">'. T_("You can check your contacting answer here") .'</a>';

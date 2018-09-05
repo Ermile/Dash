@@ -16,14 +16,12 @@ class view
 
 
 		$parent = \dash\request::get('id');
-		$parent = \dash\coding::decode($parent);
-
-		if(!$parent)
+		if(!$parent || !is_numeric($parent))
 		{
 			\dash\header::status(404, T_("Invalid id"));
 		}
 
-		$main = \dash\app\comment::get(\dash\request::get('id'));
+		$main = \dash\app\ticket::get(\dash\request::get('id'));
 		if(!$main || !isset($main['user_id']))
 		{
 			\dash\header::status(403, T_("Ticket not found"));
@@ -59,7 +57,7 @@ class view
 		$args['pagenation']      = false;
 		$args['join_user']       = true;
 
-		$dataTable = \dash\app\comment::list(null, $args);
+		$dataTable = \dash\app\ticket::list(null, $args);
 		$main = \dash\app::fix_avatar($main);
 		array_push($dataTable, $main);
 

@@ -56,7 +56,7 @@ class model
 		{
 			if(in_array(\dash\request::post('status'), ['close']))
 			{
-				\dash\db\comments::update(['status' => \dash\request::post('status')], \dash\coding::decode(\dash\request::get('id')));
+				\dash\db\comments::update(['status' => \dash\request::post('status')], \dash\request::get('id'));
 				\dash\notif::ok(T_("Ticket status was changed"));
 				\dash\redirect::pwd();
 			}
@@ -78,7 +78,7 @@ class model
 			'file'    => $file,
 		];
 
-		$main = \dash\app\comment::get(\dash\request::get('id'));
+		$main = \dash\app\ticket::get(\dash\request::get('id'));
 
 		if(!$main || !isset($main['user_id']))
 		{
@@ -122,7 +122,7 @@ class model
 			}
 		}
 
-		$result = \dash\app\comment::add($args);
+		$result = \dash\app\ticket::add($args);
 
 		if($result)
 		{

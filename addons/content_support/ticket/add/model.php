@@ -47,7 +47,7 @@ class model
 		];
 
 		// insert comments
-		$result = \dash\app\comment::add($args);
+		$result = \dash\app\ticket::add($args);
 
 		if(isset($result['id']))
 		{

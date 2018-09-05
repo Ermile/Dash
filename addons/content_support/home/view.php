@@ -24,7 +24,7 @@ class view
 		}
 
 		$args['comments.parent'] = null;
-		$args['limit']      = 100;
+		$args['limit']      = 5;
 		$args['join_user']       = true;
 		$args['get_tag']         = true;
 		$args['comments.status']       = ["NOT IN", "('close')"];
@@ -37,7 +37,7 @@ class view
 			$args['comments.subdomain']    = null;
 		}
 
-		$dataTable = \dash\app\comment::list(null, $args);
+		$dataTable = \dash\app\ticket::list(null, $args);
 		$dataTable = array_map(['self', 'tagDetect'], $dataTable);
 
 		\dash\data::dataTable($dataTable);

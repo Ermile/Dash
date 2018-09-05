@@ -57,8 +57,8 @@ class view
 			$args['sort'] = 'id';
 		}
 
-		\dash\data::sortLink(\content_cp\view::make_sort_link(\dash\app\comment::$sort_field, \dash\url::this()));
-		\dash\data::dataTable(\dash\app\comment::list(\dash\request::get('q'), $args));
+		\dash\data::sortLink(\content_cp\view::make_sort_link(\dash\app\ticket::$sort_field, \dash\url::this()));
+		\dash\data::dataTable(\dash\app\ticket::list(\dash\request::get('q'), $args));
 
 		$filterArray = $args;
 		unset($filterArray['comments.type']);
