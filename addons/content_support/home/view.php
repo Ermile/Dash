@@ -15,16 +15,36 @@ class view
 
 		$args = [];
 
+		$access_get = null;
+
+		$access_mode = 'mine';
+
 		$access = \dash\request::get('access');
 
-		$access_mode = 'manage';
+		if($access)
+		{
+			$access_mode = $access;
+		}
 
 		\dash\data::haveSubdomain(true);
 
-		$access_get = null;
-
-		if(!$access)
+		if(!in_array($access_mode, ['mine', 'all', 'manage']))
 		{
+			\dash\header::status(412, T_("Invalid access in url"));
+		}
+
+		if($access_mode === 'mine')
+		{
+			$args['user_id'] = \dash\user::id();
+		}
+		elseif($access_mode === 'all')
+		{
+			\dash\permission::access('supportTicketViewAll');
+		}
+		elseif($access_mode === 'manage')
+		{
+			\dash\permission::access('supportTicketView');
+
 			\dash\data::haveSubdomain(false);
 
 			if(\dash\url::subdomain())
@@ -35,48 +55,8 @@ class view
 			{
 				$args['comments.subdomain']    = null;
 			}
-
-			if(!\dash\permission::check('supportTicketView'))
-			{
-				$access_mode     = 'mine';
-				$args['user_id'] = \dash\user::id();
-			}
 		}
-		else
-		{
-			if(!in_array($access, ['mine', 'all', 'manage']))
-			{
-				\dash\header::status(404, T_("Invalid access in url"));
-			}
-
-			$access_mode = $access;
-
-			if($access === 'mine')
-			{
-				$args['user_id']         = \dash\user::id();
-			}
-			elseif($access === 'all')
-			{
-				\dash\permission::access('supportTicketViewAll');
-			}
-			elseif($access === 'manage')
-			{
-				\dash\permission::access('supportTicketView');
-
-				\dash\data::haveSubdomain(false);
-
-				if(\dash\url::subdomain())
-				{
-					$args['comments.subdomain']    = \dash\url::subdomain();
-				}
-				else
-				{
-					$args['comments.subdomain']    = null;
-				}
-
-			}
-			$access_get = 'access='. $access;
-		}
+		$access_get = 'access='. $access;
 
 		\dash\data::accessMode($access_mode);
 		\dash\data::accessGetAnd('&'.$access_get);
@@ -99,6 +79,7 @@ class view
 
 		\content_support\view::sidebarDetail();
 	}
+
 
 	public static function tagDetect($_data)
 	{
