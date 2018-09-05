@@ -16,6 +16,9 @@ class view
 		$args = [];
 
 		$access = \dash\request::get('access');
+
+		$access_mode = 'manage';
+
 		if(!$access)
 		{
 			if(\dash\url::subdomain())
@@ -30,6 +33,7 @@ class view
 
 			if(!\dash\permission::check('supportTicketView'))
 			{
+				$access_mode = 'mine';
 				$args['user_id']         = \dash\user::id();
 			}
 		}
@@ -39,6 +43,8 @@ class view
 			{
 				\dash\header::status(404, T_("Invalid access in url"));
 			}
+
+			$access_mode = $access;
 
 			if($access === 'mine')
 			{
@@ -54,6 +60,8 @@ class view
 				\dash\permission::access('supportTicketView');
 			}
 		}
+
+		\dash\data::accessMode($access_mode);
 
 		$args['sort']            = 'datecreated';
 		$args['order']           = 'desc';
