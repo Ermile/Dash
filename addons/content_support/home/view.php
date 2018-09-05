@@ -46,6 +46,7 @@ class view
 			}
 			elseif($access === 'all')
 			{
+				\dash\data::haveSubdomain(true);
 				\dash\permission::access('supportTicketViewAll');
 			}
 		}
@@ -54,7 +55,7 @@ class view
 		$args['order']           = 'desc';
 		$args['comments.type']   = 'ticket';
 		$args['comments.parent'] = null;
-		$args['limit']           = 100;
+		$args['limit']           = 5;
 		$args['join_user']       = true;
 		$args['get_tag']         = true;
 		$args['comments.status'] = ["NOT IN", "('close')"];
