@@ -35,7 +35,7 @@ class view
 		}
 		else
 		{
-			if(!in_array($access, ['mine', 'all']))
+			if(!in_array($access, ['mine', 'all', 'manage']))
 			{
 				\dash\header::status(404, T_("Invalid access in url"));
 			}
@@ -49,12 +49,17 @@ class view
 				\dash\data::haveSubdomain(true);
 				\dash\permission::access('supportTicketViewAll');
 			}
+			else
+			{
+				\dash\permission::access('supportTicketView');
+			}
 		}
 
 		$args['sort']            = 'datecreated';
 		$args['order']           = 'desc';
 		$args['comments.type']   = 'ticket';
 		$args['comments.parent'] = null;
+		$args['pagenation']      = false;
 		$args['limit']           = 5;
 		$args['join_user']       = true;
 		$args['get_tag']         = true;
