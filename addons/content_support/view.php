@@ -18,7 +18,7 @@ class view
 	}
 
 
-	private static function sidebarDetail()
+	public static function sidebarDetail()
 	{
 		$args = [];
 		if(\dash\data::haveSubdomain())
