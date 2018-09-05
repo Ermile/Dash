@@ -333,6 +333,7 @@ class ticket
 					}
 
 					$result['rowColor'] = $color;
+					$result[$key]       = $value;
 
 					break;
 				case 'user_id':
