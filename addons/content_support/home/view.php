@@ -13,36 +13,58 @@ class view
 		\dash\data::badge_text(T_('Tickets'));
 		\dash\data::badge_link(\dash\url::here(). '/ticket');
 
+		$args = [];
 
-		$args['sort']            = 'id';
-		$args['order']           = 'desc';
-		$args['comments.type']   = 'ticket';
-
-		if(!\dash\permission::check('supportTicketView'))
+		$access = \dash\request::get('access');
+		if(!$access)
 		{
-			$args['user_id']         = \dash\user::id();
-		}
+			if(\dash\url::subdomain())
+			{
+				\dash\data::haveSubdomain(true);
+				$args['comments.subdomain']    = \dash\url::subdomain();
+			}
+			else
+			{
+				$args['comments.subdomain']    = null;
+			}
 
-		$args['comments.parent'] = null;
-		$args['limit']      = 5;
-		$args['join_user']       = true;
-		$args['get_tag']         = true;
-		$args['comments.status']       = ["NOT IN", "('close')"];
-		if(\dash\url::subdomain())
-		{
-			$args['comments.subdomain']    = \dash\url::subdomain();
+			if(!\dash\permission::check('supportTicketView'))
+			{
+				$args['user_id']         = \dash\user::id();
+			}
 		}
 		else
 		{
-			$args['comments.subdomain']    = null;
+			if(!in_array($access, ['mine', 'all']))
+			{
+				\dash\header::status(404, T_("Invalid access in url"));
+			}
+
+			if($access === 'mine')
+			{
+				$args['user_id']         = \dash\user::id();
+			}
+			elseif($access === 'all')
+			{
+				\dash\permission::access('supportTicketViewAll');
+			}
 		}
+
+		$args['sort']            = 'datecreated';
+		$args['order']           = 'desc';
+		$args['comments.type']   = 'ticket';
+		$args['comments.parent'] = null;
+		$args['limit']           = 100;
+		$args['join_user']       = true;
+		$args['get_tag']         = true;
+		$args['comments.status'] = ["NOT IN", "('close')"];
 
 		$dataTable = \dash\app\ticket::list(null, $args);
 		$dataTable = array_map(['self', 'tagDetect'], $dataTable);
 
 		\dash\data::dataTable($dataTable);
 
-		\dash\data::dashboardDetail(self::dashboardDetail());
+		// \dash\data::dashboardDetail(self::dashboardDetail());
 	}
 
 	public static function tagDetect($_data)
