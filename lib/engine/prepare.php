@@ -86,7 +86,7 @@ class prepare
 
 			if(array_key_exists($redirect_lang, \dash\language::all()))
 			{
-				\dash\utility\cookie::write('language', $redirect_lang, (60*60*24*30), '.'. \dash\url::domain());
+				\dash\utility\cookie::write('language', $redirect_lang, (60*60*1), '.'. \dash\url::domain());
 
 				$my_url = \dash\url::base(). '/';
 
