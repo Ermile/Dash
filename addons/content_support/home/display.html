@@ -30,11 +30,11 @@
     <th></th>
     <th></th>
     <th></th>
-    <th class="collapsing txtRa"><a href="{{url.here}}/ticket">{%trans "All Tickets"%}</a></th>
+    <th class="collapsing txtRa"><a href="{{url.here}}/ticket" class="btn dark sm">{%trans "All Tickets"%}</a></th>
   </thead>
   <tbody>
 {%for key, value in dataTable%}
-    <tr>
+    <tr class="{{value.rowColor}}">
       <td class="collapsing txtB"><a href="{{url.here}}/ticket/show?id={{value.id}}">{{value.title | slice(0, 40)}}</a></td>
       <td><a href="{{url.here}}/ticket/show?id={{value.id}}">{{value.content | slice(0, 70)}}</a>
 {%if value.tag%}
@@ -50,7 +50,7 @@
       <td class="collapsing"><span title='{%trans "Created on"%} {{value.datecreated | tdate("Y-m-d H:i:s")}}'>{{value.datecreated | sdate("year")}}</span></td>
       <td class="collapsing fs08">{%set myStatus = value.status%} {%trans myStatus%}</td>
 
-      <td class="collapsing">
+      <td class="collapsing txtRa">
         <span class="txtB">{{value.displayname}}</span>
         <img src="{{value.avatar}}" class="avatar mLa10" src="{{value.displayname}}">
       </td>
@@ -58,31 +58,6 @@
 {%endfor%}
   </tbody>
 </table>
-
-
- <div class="cbox fs12 pB5">
-  <h3>{%trans "Active tickets"%}</h3>
-{%for key, value in dataTable%}
-  <a class="msg f align-center" href="{{url.here}}/ticket/show?id={{value.id}}">
-    <span class="cauto"><img src="{{value.avatar}}" class="avatar mRa10" src="{{value.displayname}}"></span>
-    <span class="c2 s0 txtB pRa10">{{value.displayname}}</span>
-
-{%if value.tag%}
-    <span class="cauto s0 pRa10">
-{%for Tkey, Tvalue in value.tag%}
-      <span class="badge">{{Tvalue}}</span>
-{%endfor%}
-    </span>
-{%endif%}
-
-    <span class="cauto s txtB pRa10">{{value.title}}</span>
-    <span class="c s0">{{value.content | slice(0, 70)}}</span>
-    <span class="cauto pRa10">{%if value.status != 'awaiting'%}<i class="sf-spin-alt fc-green"></i>{%else%}<i class="sf-asterisk spiny fc-red"></i>{%endif%}</span>
-    <span class="cauto pRa10">{{value.plus | fitNumber}} <i class="sf-chat-alt-fill"></i></span>
-    <span class="cauto we80 s0 txtRa os" title='{{value.datecreated | tdate("Y-m-d H:i:s")}}'>{{value.datecreated | sdate("year")}}</span>
-  </a>
-{%endfor%}
- </div>
 {%endblock%}
 
 
