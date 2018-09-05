@@ -297,6 +297,44 @@ class ticket
 
 			switch ($key)
 			{
+				case 'status':
+					$color = null;
+					switch ($value)
+					{
+						case 'awaiting':
+							$color = null;
+							break;
+
+						case 'unapproved':
+							$color = 'warning';
+							break;
+
+						case 'spam':
+						case 'deleted':
+						case 'filter':
+							$color = 'negative';
+							break;
+
+						case 'close':
+							$color = 'disabled';
+							break;
+
+						case 'answered':
+							$color = 'positive';
+							break;
+					}
+
+					if(isset($_data['plus']) && $_data['plus'])
+					{
+						if($value === 'awaiting')
+						{
+							$color = 'active';
+						}
+					}
+
+					$result['rowColor'] = $color;
+
+					break;
 				case 'user_id':
 				case 'term_id':
 					if(isset($value))
