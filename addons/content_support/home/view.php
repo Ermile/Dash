@@ -19,11 +19,16 @@ class view
 
 		$access_mode = 'manage';
 
+		\dash\data::haveSubdomain(true);
+
+		$access_get = null;
+
 		if(!$access)
 		{
+			\dash\data::haveSubdomain(false);
+
 			if(\dash\url::subdomain())
 			{
-				\dash\data::haveSubdomain(true);
 				$args['comments.subdomain']    = \dash\url::subdomain();
 			}
 			else
@@ -33,8 +38,8 @@ class view
 
 			if(!\dash\permission::check('supportTicketView'))
 			{
-				$access_mode = 'mine';
-				$args['user_id']         = \dash\user::id();
+				$access_mode     = 'mine';
+				$args['user_id'] = \dash\user::id();
 			}
 		}
 		else
@@ -52,16 +57,30 @@ class view
 			}
 			elseif($access === 'all')
 			{
-				\dash\data::haveSubdomain(true);
 				\dash\permission::access('supportTicketViewAll');
 			}
-			else
+			elseif($access === 'manage')
 			{
 				\dash\permission::access('supportTicketView');
+
+				\dash\data::haveSubdomain(false);
+
+				if(\dash\url::subdomain())
+				{
+					$args['comments.subdomain']    = \dash\url::subdomain();
+				}
+				else
+				{
+					$args['comments.subdomain']    = null;
+				}
+
 			}
+			$access_get = 'access='. $access;
 		}
 
 		\dash\data::accessMode($access_mode);
+		\dash\data::accessGetAnd('&'.$access_get);
+		\dash\data::accessGet('?'. $access_get);
 
 		$args['sort']            = 'datecreated';
 		$args['order']           = 'desc';
@@ -78,7 +97,7 @@ class view
 
 		\dash\data::dataTable($dataTable);
 
-		// \dash\data::dashboardDetail(self::dashboardDetail());
+		\content_support\view::sidebarDetail();
 	}
 
 	public static function tagDetect($_data)

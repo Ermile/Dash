@@ -15,26 +15,27 @@ class view
 		\dash\data::include_chart(true);
 		\dash\data::display_admin('content_support/layout.html');
 
-		if(\dash\permission::check('supportTicketView'))
-		{
-			\dash\data::sidebarDetail(self::sidebarDetail());
-		}
 	}
 
 
 	private static function sidebarDetail()
 	{
-		if(\dash\url::subdomain())
+		$args = [];
+		if(\dash\data::haveSubdomain())
 		{
-			$args['comments.subdomain']    = \dash\url::subdomain();
-		}
-		else
-		{
-			$args['comments.subdomain']    = null;
+			if(\dash\data::subdomain())
+			{
+				$args['comments.subdomain']    = \dash\url::subdomain();
+			}
+			else
+			{
+				$args['comments.subdomain']    = null;
+			}
 		}
 
+
 		$result               = [];
-		$result['unanswered'] = \dash\db\comments::get_count(array_merge($args,['type' => 'ticket', 'answertime' => null]));
+		$result['awaiting'] = \dash\db\comments::get_count(array_merge($args,['type' => 'ticket', 'answertime' => null]));
 		$result['all']        = \dash\db\comments::get_count(array_merge($args, ['type' => 'ticket']));
 		$result['mine']       = \dash\db\comments::ticket_mine(\dash\user::id());
 
