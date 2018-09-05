@@ -729,11 +729,11 @@ class config
 			// in get count mode the $limit is null
 			if($limit)
 			{
-				$limit = " LIMIT $start_limit, $end_limit ";
+				$limit = " LIMIT $start_limit, $limit ";
 			}
 		}
 
-		$json = json_encode(func_get_args());
+
 		if($no_limit)
 		{
 			$limit = null;
