@@ -60,16 +60,6 @@ class prepare
 	*/
 	private static function user_country_redirect()
 	{
-		if(\dash\url::isLocal())
-		{
-			return null;
-		}
-
-		if(\dash\agent::isBot())
-		{
-			return false;
-		}
-
 		$referer = (isset($_SERVER['HTTP_REFERER']) && $_SERVER['HTTP_REFERER']) ? true : false;
 		if($referer)
 		{
@@ -78,32 +68,43 @@ class prepare
 
 		$cookie = \dash\utility\cookie::read('language');
 
-		if(!$_SESSION && !$cookie && !\dash\url::lang())
+		if(!$cookie && !\dash\url::lang())
 		{
 			$default_site_language = \dash\language::primary();
-			$country_is_ir         = (isset($_SERVER['HTTP_CF_IPCOUNTRY']) && mb_strtoupper($_SERVER['HTTP_CF_IPCOUNTRY']) === 'IR') ? true : false;
-			$redirect_lang         = null;
 
-			if($default_site_language === 'fa' && !$country_is_ir)
+			$redirect_lang         = 'en';
+
+			if(!isset($_SERVER['HTTP_CF_IPCOUNTRY']))
 			{
-				$redirect_lang = 'en';
+				return;
 			}
-			elseif($default_site_language === 'en' && $country_is_ir)
+
+			if(mb_strtoupper($_SERVER['HTTP_CF_IPCOUNTRY']) === 'IR')
 			{
 				$redirect_lang = 'fa';
 			}
-			$cookie_lang = $redirect_lang ? $redirect_lang : $default_site_language;
-			$domain = '.'. \dash\url::domain();
 
-			\dash\utility\cookie::write('language', $cookie_lang, (60*60*24*30), $domain);
-			$_SESSION['language'] = $cookie_lang;
-
-			if($redirect_lang && array_key_exists($redirect_lang, \dash\option::language('list')))
+			if(array_key_exists($redirect_lang, \dash\language::all()))
 			{
-				$root    = \dash\url::base();
-				$full    = \dash\url::pwd();
-				$new_url = str_replace($root, $root. '/'. $redirect_lang, $full);
-				\dash\redirect::to($new_url, true, 302);
+				\dash\utility\cookie::write('language', $redirect_lang, (60*60*24*30), '.'. \dash\url::domain());
+
+				$my_url = \dash\url::base(). '/';
+
+				if($default_site_language === $redirect_lang)
+				{
+					// nothing
+				}
+				else
+				{
+					$my_url .= $redirect_lang;
+				}
+
+				if(\dash\url::path() !== '/')
+				{
+					$my_url .= \dash\url::path();
+				}
+
+				\dash\redirect::to($my_url);
 			}
 		}
 	}
