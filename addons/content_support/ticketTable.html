@@ -1,15 +1,12 @@
 
 <table class="tbl1 v1 cbox fs12">
   <thead>
-    <th colspan="2">{%trans "Last active tickets"%}</th>
-    <th></th>
-{%if haveSubdomain%}
-    <th></th>
-{%endif%}
-    <th></th>
-    <th></th>
+    <th>{%trans "Last active tickets"%}</th>
     <th class="collapsing txtRa"><a href="{{url.here}}/ticket" class="btn dark sm">{%trans "All Tickets"%}</a></th>
   </thead>
+  <tbody></tbody>
+</table>
+<table class="tbl1 v1 cbox fs12">
   <tbody>
 {%for key, value in dataTable%}
     <tr class="{{value.rowColor}}">
@@ -18,7 +15,7 @@
 {%if value.tag%}
         <div class="mT5 fs12">
 {%for Tkey, Tvalue in value.tag%}
-          <a class="badge" href="{{url.here}}/ticket?tag={{Tvalue}}">{{Tvalue}}</a>
+          <a class="badge" href="{{url.here}}/ticket?tag={{Tvalue | url_encode}}">{{Tvalue}}</a>
 {%endfor%}
         </div>
 {%endif%}
