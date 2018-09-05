@@ -8,17 +8,17 @@
 <li><a href="{{url.here}}"><i class='sf-life-ring'></i> <span>{% trans "Support Dashboard" %}</span></a></li>
 
 <li>
-  <a href="{{url.here}}/ticket"><i class="sf-question-circle"></i>{%trans "Tickets"%}</a>
+  <a href="{{url.here}}/ticket{{accessGet}}"><i class="sf-question-circle"></i>{%trans "Tickets"%}</a>
 
   {%if perm('supportTicketView') %}
   <li>
     <ul>
-      <li><a href="{{url.here}}/ticket?status=all"><span class="floatRa mRa10 fc-mute badge dark">{{sidebarDetail.all | fitNumber}}</span>{%trans "All"%}</a></li>
-      <li><a href="{{url.here}}/ticket?status=open"><span class="floatRa mRa10 fc-mute badge dark">{{sidebarDetail.unanswered | fitNumber}}</span>{%trans "Open"%}</a></li>
-      <li><a href="{{url.here}}/ticket?status=awaiting"><span class="floatRa mRa10 fc-mute badge dark">{{sidebarDetail.mine | fitNumber}}</span>{%trans "Awaiting"%}</a></li>
-      <li><a href="{{url.here}}/ticket?status=close"><span class="floatRa mRa10 fc-mute sf-archive"></span>{%trans "Archived"%}</a></li>
+      <li><a href="{{url.here}}/ticket?status=all{{accessGetAnd}}"><span class="floatRa mRa10 fc-mute badge dark">{{sidebarDetail.all | fitNumber}}</span>{%trans "All"%}</a></li>
+      <li><a href="{{url.here}}/ticket?status=open{{accessGetAnd}}"><span class="floatRa mRa10 fc-mute badge dark">{{sidebarDetail.unanswered | fitNumber}}</span>{%trans "Open"%}</a></li>
+      <li><a href="{{url.here}}/ticket?status=awaiting{{accessGetAnd}}"><span class="floatRa mRa10 fc-mute badge dark">{{sidebarDetail.mine | fitNumber}}</span>{%trans "Awaiting"%}</a></li>
+      <li><a href="{{url.here}}/ticket?status=close{{accessGetAnd}}"><span class="floatRa mRa10 fc-mute sf-archive"></span>{%trans "Archived"%}</a></li>
       {%if perm('supportTicketTrash')%}
-      <li><a href="{{url.here}}/ticket?status=deleted"><span class="floatRa mRa10 fc-mute sf-trash"></span>{%trans "Trash"%}</a></li>
+      <li><a href="{{url.here}}/ticket?status=deleted{{accessGetAnd}}"><span class="floatRa mRa10 fc-mute sf-trash"></span>{%trans "Trash"%}</a></li>
       {%endif%}
     </ul>
   </li>
