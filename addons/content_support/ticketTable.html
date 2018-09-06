@@ -11,7 +11,7 @@
 {%for key, value in dataTable%}
     <tr class="{{value.rowColor}}">
       <td class="collapsing txtB"><a href="{{url.here}}/ticket/show?id={{value.id}}"><span class="badge light mRa5">{{value.id | fitNumber}}</span> {{value.title | slice(0, 40)}}</a></td>
-      <td><a href="{{url.here}}/ticket/show?id={{value.id}}">{{value.content | slice(0, 70)}}</a>
+      <td class="s0"><a href="{{url.here}}/ticket/show?id={{value.id}}">{{value.content | slice(0, 70)}}</a>
 {%if value.tag%}
         <div class="mT5 fs12">
 {%for Tkey, Tvalue in value.tag%}
@@ -21,19 +21,19 @@
 {%endif%}
       </td>
 {%if haveSubdomain%}
-    <td class="collapsing">
+    <td class="collapsing s0">
 {%if value.subdomain%}
       <a href="{{url.here}}/ticket?access=all&subdomain={{value.subdomain}}">{{value.subdomain | capitalize}}</a></td>
 {%endif%}
 {%endif%}
-      <td class="collapsing">{%if value.plus%}{{value.plus | fitNumber}} <i class="compact sf-chat-alt-fill"></i>{%else%}{%endif%}</td>
+      <td class="collapsing s0">{%if value.plus%}{{value.plus | fitNumber}} <i class="compact sf-chat-alt-fill"></i>{%else%}{%endif%}</td>
       <td class="collapsing"><span title='{%trans "Created on"%} {{value.datecreated | tdate("Y-m-d H:i:s")}}'>{{value.datecreated | sdate("year")}}</span></td>
-      <td class="collapsing fs08">{%set myStatus = value.status%} {%trans myStatus%} {%if value.status != 'awaiting'%}<i class="compact sf-spin-alt fc-green"></i>{%else%}<i class="compact sf-asterisk spiny fc-red"></i>{%endif%}
+      <td class="collapsing fs08 s0">{%set myStatus = value.status%} {%trans myStatus%} {%if value.status != 'awaiting'%}<i class="compact sf-spin-alt fc-green"></i>{%else%}<i class="compact sf-asterisk spiny fc-red"></i>{%endif%}
       </td>
 {%if accessMode != 'mine'%}
       <td class="collapsing txtRa">
         <a href="{{url.here}}/ticket?access=all&user={{value.user_id}}">
-        <span class="txtB">{{value.displayname}}</span>
+        <span class="txtB s0">{{value.displayname}}</span>
         <img src="{{value.avatar}}" class="avatar mLa10" alt="{{value.displayname}}">
         </a>
       </td>
