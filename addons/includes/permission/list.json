@@ -117,6 +117,32 @@
     "require": ["contentCp", "cpTagView", "cpTagEdit"]
   },
 
+  "cpSupportTagView":
+  {
+    "title": "cpSupportTagView",
+    "cat": "Control Panel CMS",
+    "titleBefore": "SupportTags",
+    "require": ["contentCp"]
+  },
+  "cpSupportTagAdd":
+  {
+    "title": "cpSupportTagAdd",
+    "cat": "Control Panel CMS",
+    "require": ["contentCp", "cpSupportTagView"]
+  },
+  "cpSupportTagEdit":
+  {
+    "title": "cpSupportTagEdit",
+    "cat": "Control Panel CMS",
+    "require": ["contentCp", "cpSupportTagView"]
+  },
+  "cpSupportTagDelete":
+  {
+    "title": "cpSupportTagDelete",
+    "cat": "Control Panel CMS",
+    "require": ["contentCp", "cpSupportTagView", "cpSupportTagEdit"]
+  },
+
   "cpPageView":
   {
     "title": "cpPageView",

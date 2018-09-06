@@ -33,17 +33,22 @@
 </li>
 
 
-{%if false%}
 <hr>
 <li>
   <ul>
+{%if perm('cpSupportTagAdd') %}
+    <li class="title"><a data-direct href="{{url.kingdom}}/cp/terms?type=support_tag">{%trans "Labels"%}</a></li>
+{%else%}
     <li class="title">{%trans "Labels"%}</li>
-    <li><a href="{{url.here}}/ticket?label=billing"><span class="floatRa mRa10 fc-mute sf-tag"></span>{%trans "Billing"%}</a></li>
+{%endif%}
+
+    <!-- <li><a href="{{url.here}}/ticket?label=billing"><span class="floatRa mRa10 fc-mute sf-tag"></span>{%trans "Billing"%}</a></li>
     <li><a href="{{url.here}}/ticket?label=bug"><span class="floatRa mRa10 fc-mute sf-tag"></span>{%trans "Bug"%}</a></li>
     <li><a href="{{url.here}}/ticket?label=feature"><span class="floatRa mRa10 fc-mute sf-tag"></span>{%trans "Feature"%}</a></li>
+     -->
   </ul>
 </li>
-{%endif%}
+
 
 {%endblock%}
 

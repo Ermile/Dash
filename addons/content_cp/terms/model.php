@@ -28,6 +28,11 @@ class model
 				\dash\permission::access('cpTagDelete');
 			}
 
+			if($load_term['type'] === 'support_tag')
+			{
+				\dash\permission::access('cpSupportTagDelete');
+			}
+
 			if($load_term['type'] === 'cat')
 			{
 				\dash\permission::access('cpCategoryDelete');
@@ -93,6 +98,10 @@ class model
 
 					case 'tag':
 						\dash\permission::access('cpTagEdit');
+						break;
+
+					case 'support_tag':
+						\dash\permission::access('cpSupportTagEdit');
 						break;
 				}
 			}

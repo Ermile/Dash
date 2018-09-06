@@ -31,6 +31,14 @@ class view
 					$myDesc  = T_("Check tags and add or edit some new tag");
 					\dash\data::page_pictogram('tags');
 					break;
+
+				case 'support_tag':
+					\dash\permission::access('cpSupportTagView');
+
+					$myTitle = T_('Tags');
+					$myDesc  = T_("Check tags and add or edit some new tag");
+					\dash\data::page_pictogram('tags');
+					break;
 			}
 		}
 		else
@@ -42,7 +50,14 @@ class view
 		\dash\data::page_desc($myDesc);
 
 		\dash\data::badge_text(T_('Back to dashboard'));
-		\dash\data::badge_link(\dash\url::here());
+		if(\dash\request::get('type') === 'support_tag')
+		{
+			\dash\data::badge_link(\dash\url::kingdom(). '/support');
+		}
+		else
+		{
+			\dash\data::badge_link(\dash\url::here());
+		}
 
 
 		$args =

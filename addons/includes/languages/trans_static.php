@@ -986,6 +986,12 @@ class TransStatic
 	echo T_("answered");
 	echo T_("Answered");
 
+	echo T_("cpSupportTagView");
+	echo T_("SupportTags");
+	echo T_("cpSupportTagAdd");
+	echo T_("cpSupportTagEdit");
+	echo T_("cpSupportTagDelete");
+
  }
 }
 ?>
