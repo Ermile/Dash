@@ -11,7 +11,7 @@ class view
 		\dash\data::page_pictogram('life-ring');
 
 		\dash\data::badge_text(T_('Tickets'));
-		\dash\data::badge_link(\dash\url::here(). '/ticket');
+		\dash\data::badge_link(\dash\url::here(). '/ticket'. \dash\data::accessGet());
 
 		$args['sort']            = 'datecreated';
 		$args['order']           = 'desc';
