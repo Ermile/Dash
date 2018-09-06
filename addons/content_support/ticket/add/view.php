@@ -11,7 +11,7 @@ class view
 		\dash\data::page_pictogram('plus-circle');
 
 		\dash\data::badge_text(T_('Back to tickets list'));
-		\dash\data::badge_link(\dash\url::this());
+		\dash\data::badge_link(\dash\url::this(). \dash\data::accessGet());
 	}
 }
 ?>
