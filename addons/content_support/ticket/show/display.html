@@ -44,23 +44,6 @@
 
 {%if perm('supportTicketView') %}
     <div class="cbox">
-<!-- do some admin actions -->
-
-      <label for="creator">{%trans "Creator"%}</label>
-      <div class="input">
-        <input type="text" id="creator" disabled value="{{masterTicketDetail.author}}">
-      </div>
-
-      <label for="email">{%trans "Email"%}</label>
-      <div class="input">
-        <input type="text" id="email" disabled value="{{masterTicketDetail.email}}">
-      </div>
-
-      <label for="mobile">{%trans "Mobile"%}</label>
-      <div class="input">
-        <input type="text" id="mobile" disabled value="{{masterTicketDetail.mobile | fitNumber('mobile')}}">
-      </div>
-
       <form method="post">
         {{block("iTag")}}
         <button class="btn block mTB10 primary"  name="TicketFormType" value="tag">{%trans "Save tag"%}</button>
@@ -92,6 +75,7 @@
           <img src="{{value.avatar}}" class="avatar mRa10" alt="{{value.displayname}}">
           <span class="txtB s0 fs08">{{value.displayname}}</span>
 {%if perm_su()%}
+          <div class="txtRa fs08">{{masterTicketDetail.mobile | fitNumber('mobile12')}}</div>
           <nav class="txtRa">
             <a href="{{url.this}}?user_id={{value.user_id}}" title='{%trans "User tickets"%}'><i class="sf-question-circle"></i></a>
             <a href="{{url.kingdom}}/cp/users/view?id={{value.user_id}}" title='{%trans "User Profile"%}'><i class="sf-user-md"></i></a>
