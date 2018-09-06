@@ -1,0 +1,1 @@
+ALTER TABLE `comments` AUTO_INCREMENT = 3000;
