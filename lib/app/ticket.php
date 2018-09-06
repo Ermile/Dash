@@ -24,7 +24,18 @@ class ticket
 		{
 			return false;
 		}
-		$get = \dash\db\comments::get(['id' => $_id, 'limit' => 1]);
+
+		$_options['public_show_field'] =
+				"
+					comments.*,
+					users.avatar,
+					users.firstname,
+					users.displayname
+				 ";
+		$_options['master_join'] = "INNER JOIN users ON users.id = comments.user_id ";
+
+		$get = \dash\db\comments::get(['comments.id' => $_id, 'limit' => 1], $_options);
+
 		if(is_array($get))
 		{
 			return self::ready($get);
