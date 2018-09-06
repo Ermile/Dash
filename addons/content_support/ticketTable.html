@@ -1,6 +1,6 @@
 
 <div class="msg pain special f align-center fs14">
-  <div class="c">{%if url.module == "ticket"%}{{page.title}}{%else%}{%trans "Last active tickets"%}{%endif%}</div>
+  <div class="c"><span class="txtB">{%if url.module == "ticket"%}{{page.title}}{%else%}{%trans "Last active tickets"%}{%endif%}</span> <span class="badge rounded pA5-f mLa5">{{sidebarDetail.all | fitNumber}}</span></div>
   <div class="cauto os"><a href="{{url.here}}/ticket" class="btn dark sm">{%trans "All Tickets"%}</a></div>
 </div>
 
