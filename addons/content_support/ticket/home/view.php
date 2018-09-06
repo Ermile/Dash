@@ -51,6 +51,7 @@ class view
 					break;
 
 				case 'close':
+				case 'archived':
 					\dash\data::page_title(T_("Archived tickets"));
 					$args['comments.status'] = "close";
 					break;
