@@ -37,7 +37,12 @@ class comments
 	{
 		$default_options =
 		[
-			"search_field"        => " (comments.content LIKE '%__string__%') ",
+			"search_field"        =>
+			"
+				(
+					comments.content LIKE '%__string__%'
+				)
+			",
 		];
 
 		if(!is_array($_options))
@@ -72,6 +77,14 @@ class comments
 			}
 
 			$_options['master_join'] = "INNER JOIN users ON users.id = comments.user_id ";
+			$_options["search_field"] =
+			"	(
+						comments.content LIKE '%__string__%' OR
+						users.mobile LIKE '%__string__%' OR
+						comments.id = '__string__'
+				)
+			";
+
 		}
 
 		return \dash\db\config::public_search('comments', $_string, $_options);

@@ -144,7 +144,7 @@ class view
 				break;
 		}
 
-		$dataTable = \dash\app\ticket::list(null, $args);
+		$dataTable = \dash\app\ticket::list(\dash\request::get('q'), $args);
 		$dataTable = array_map(['self', 'tagDetect'], $dataTable);
 
 		\dash\data::dataTable($dataTable);
