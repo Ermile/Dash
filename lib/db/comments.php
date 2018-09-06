@@ -84,7 +84,7 @@ class comments
 		{
 			$query = " SELECT AVG(comments.answertime) AS `average` FROM comments WHERE $where AND comments.answertime IS NOT NULL	";
 			$result = \dash\db::get($query, 'average', true);
-			return intval($result);
+			return intval($result) / 60 ;
 		}
 
 		return 0;
@@ -95,9 +95,9 @@ class comments
 		$where = \dash\db\config::make_where($_where);
 		if($where)
 		{
-			$query = " SELECT AVG(TIMESTAMPDIFF(SECOND,comments.datecreated, comments.datemodified)) AS `average` FROM comments WHERE $where AND comments.status = 'close'	";
+			$query = " SELECT AVG(TIMESTAMPDIFF(SECOND,comments.datecreated, comments.datemodified)) AS `average` FROM comments WHERE $where ";
 			$result = \dash\db::get($query, 'average', true);
-			return intval($result);
+			return intval($result) / 60 / 60;
 		}
 		return 10;
 	}

@@ -18,7 +18,7 @@ class view
 		\dash\data::maxUploadSize(\dash\utility\upload::max_file_upload_size(true));
 
 		self::acceessModeDetector();
-		self::sidebarDetail();
+		self::sidebarDetail(true);
 	}
 
 
@@ -91,10 +91,11 @@ class view
 			unset($args['parent']);
 			$result['message']    = \dash\db\comments::get_count($args);
 
-			unset($args['status']);
+			$args['status']       = 'close';
 			$args['parent']       = null;
 			$result['avgfirst']   = \dash\db\comments::ticket_avg_first($args);
 			$result['avgarchive'] = \dash\db\comments::ticket_avg_archive($args);
+
 		}
 
 		$tags = \dash\db\comments::ticket_tag($args_tag);
