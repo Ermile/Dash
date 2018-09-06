@@ -6,7 +6,7 @@ class view
 
 	public static function config()
 	{
-		\dash\data::page_title(T_("View ticket"));
+		\dash\data::page_title(T_("View ticket No"));
 		\dash\data::page_desc(T_("Check detail of your ticket."). ' '. T_("We try to answer to you as soon as posibble."));
 
 		\dash\data::page_pictogram('comments-o');
@@ -72,8 +72,7 @@ class view
 
 		if(isset($dataTable[0]['id']))
 		{
-		\dash\data::page_title(\dash\data::page_title() . ' '. $dataTable[0]['id'] );
-
+			\dash\data::page_title(\dash\data::page_title() . ' '. \dash\utility\human::fitNumber($dataTable[0]['id']) );
 		}
 
 	}
