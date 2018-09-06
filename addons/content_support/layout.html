@@ -13,14 +13,25 @@
   {%if perm('supportTicketView') %}
   <li>
     <ul>
+{%if sidebarDetail.all%}
       <li><a href="{{url.here}}/ticket?status=all{{accessGetAnd}}"><span class="floatRa mRa10 fc-mute badge dark">{{sidebarDetail.all | fitNumber}}</span>{%trans "All"%}</a></li>
+{%endif%}
+{%if sidebarDetail.open%}
       <li><a href="{{url.here}}/ticket?status=open{{accessGetAnd}}"><span class="floatRa mRa10 fc-mute badge dark">{{sidebarDetail.open | fitNumber}}</span>{%trans "Open tickets"%}</a></li>
+{%endif%}
+{%if sidebarDetail.answered%}
       <li><a href="{{url.here}}/ticket?status=answered{{accessGetAnd}}"><span class="floatRa mRa10 fc-mute badge dark">{{sidebarDetail.answered | fitNumber}}</span>{%trans "Answered"%}</a></li>
+{%endif%}
+{%if sidebarDetail.awaiting%}
       <li><a href="{{url.here}}/ticket?status=awaiting{{accessGetAnd}}"><span class="floatRa mRa10 fc-mute badge dark">{{sidebarDetail.awaiting | fitNumber}}</span>{%trans "Awaiting answer"%}</a></li>
+{%endif%}
+{%if sidebarDetail.archived%}
       <li><a href="{{url.here}}/ticket?status=archived{{accessGetAnd}}"><span class="floatRa mRa10 fc-mute badge dark">{{sidebarDetail.archived | fitNumber}}</span>{%trans "Archived"%}</a></li>
-      {%if perm('supportTicketTrash')%}
+{%endif%}
+{%if perm('supportTicketTrash')%}
       <li><a href="{{url.here}}/ticket?status=deleted{{accessGetAnd}}"><span class="floatRa mRa10 fc-mute sf-trash"></span>{%trans "Trash"%}</a></li>
-      {%endif%}
+{%endif%}
+
     </ul>
   </li>
 
