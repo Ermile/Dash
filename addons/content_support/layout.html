@@ -5,7 +5,7 @@
 {%block sidenav%}
 
 <li><a href="{{url.kingdom}}/a"><i class='sf-gauge'></i> <span>{% trans "Dashboard" %} {{site.title}}</span></a></li>
-<li><a href="{{url.here}}"><i class='sf-life-ring'></i> <span>{% trans "Support Dashboard" %}</span></a></li>
+<li><a href="{{url.here}}{{accessGet}}"><i class='sf-life-ring'></i> <span>{% trans "Support Dashboard" %}</span></a></li>
 
 <li>
   <a href="{{url.here}}/ticket{{accessGet}}"><i class="sf-question-circle"></i>{%trans "Tickets"%}</a>
@@ -28,7 +28,7 @@
   {%endif%}
   <hr>
   <ul>
-    <li><a href="{{url.here}}/ticket/add"><i class="floatRa mRa10 fc-mute sf-plus"></i>{%trans "New Ticket"%}</a></li>
+    <li><a href="{{url.here}}/ticket/add{{accessGet}}"><i class="floatRa mRa10 fc-mute sf-plus"></i>{%trans "New Ticket"%}</a></li>
   </ul>
 </li>
 
