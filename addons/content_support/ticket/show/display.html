@@ -6,8 +6,8 @@
 
 <div class="f">
   <div class="c9 s12 pRa10">
+    {{block("iChatList")}}
     {%include 'content_support/ticket/addForm.html'%}
-		{{block("iChatList")}}
 
   </div>
   <div class="c3 s12">
@@ -59,7 +59,6 @@
 
 
 {%block iChatList%}
-
 
 <div class="cbox fs12">
   <div class="msg pain special fs12">{{masterTicketDetail.title}}</div>
