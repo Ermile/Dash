@@ -44,30 +44,30 @@
     <a class="dcard" href="{{url.here}}/ticket{{accessGet}}">
       <div class="statistic sm teal">
         <div class="label mB10"><i class="fs20 mRa5 sf-question-circle"></i> {%trans "Tickets"%}</div>
-        <div class="value counter">{{dashboardDetail.tickets |fitNumber}}</div>
+        <div class="value counter">{{dashboardDetail.all |fitNumber}}</div>
       </div>
     </a>
   </div>
   <div class="s6">
-    <a class="dcard" href="{{url.here}}/ticket?status=closed{{accessGetAnd}}">
+    <a class="dcard" href="{{url.here}}/ticket?status=open{{accessGetAnd}}">
       <div class="statistic sm">
         <div class="label mB10"><i class="fs20 mRa5 sf-life-ring"></i> {%trans "Active tickets"%}</div>
-        <div class="value">{{dashboardDetail.archived |fitNumber}}</div>
+        <div class="value">{{dashboardDetail.open |fitNumber}}</div>
       </div>
     </a>
   </div>
-{%if dashboardDetail.replies%}
+{%if true or dashboardDetail.message%}
   <div class="s6">
     <a class="dcard" href="{{url.here}}/messages{{accessGet}}">
       <div class="statistic sm">
         <div class="label mB10"><i class="fs20 mRa5 sf-chat"></i> {%trans "Replies"%}</div>
-        <div class="value">{{dashboardDetail.replies |fitNumber}}</div>
+        <div class="value">{{dashboardDetail.message |fitNumber}}</div>
       </div>
     </a>
   </div>
 {%endif%}
 
-{%if dashboardDetail.avgfirst%}
+{%if true or dashboardDetail.avgfirst%}
   <div class="c3 s12">
     <a class="dcard" href="{{url.here}}/ticket?order=firstResponse">
       <div class="statistic sm">
@@ -78,7 +78,7 @@
   </div>
 {%endif%}
 
-{%if dashboardDetail.avgarchive%}
+{%if true or dashboardDetail.avgarchive%}
   <div class="c3 s12">
     <a class="dcard" href="{{url.here}}/ticket?order=avgArchiveTime">
       <div class="statistic sm">

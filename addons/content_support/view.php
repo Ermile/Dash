@@ -20,8 +20,11 @@ class view
 
 	public static function sidebarDetail()
 	{
-		$args = [];
-		if(\dash\data::haveSubdomain())
+		$args           = [];
+		$args['type']   = 'ticket';
+		$args['parent'] = null;
+
+		if(!\dash\data::haveSubdomain())
 		{
 			if(\dash\data::subdomain())
 			{
@@ -33,12 +36,18 @@ class view
 			}
 		}
 
-
 		$result               = [];
-		$result['awaiting'] = \dash\db\comments::get_count(array_merge($args,['type' => 'ticket', 'answertime' => null]));
-		$result['all']        = \dash\db\comments::get_count(array_merge($args, ['type' => 'ticket']));
-		$result['mine']       = \dash\db\comments::ticket_mine(\dash\user::id());
 
+		if(\dash\data::accessMode() === 'mine')
+		{
+			$args['user_id'] = \dash\user::id();
+			$result['mine']  = \dash\db\comments::get_count(array_merge($args,[]));
+		}
+
+		$result['all']      = \dash\db\comments::get_count(array_merge($args, []));
+		$result['open']     = \dash\db\comments::get_count(array_merge($args,['status' => 'awaiting']));
+		$result['archived'] = \dash\db\comments::get_count(array_merge($args,['status' => 'close']));
+		\dash\data::sidebarDetail($result);
 		return $result;
 
 	}

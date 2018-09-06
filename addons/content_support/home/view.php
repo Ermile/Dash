@@ -95,6 +95,11 @@ class view
 
 	private static function dashboardDetail()
 	{
+		// all
+		// open
+		// message
+		// avgfirst
+		// avgarchive
 		$args = [];
 		$args['type'] = 'ticket';
 		if(!\dash\permission::check('supportTicketView'))
