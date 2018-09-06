@@ -84,7 +84,7 @@
 {%endif%}
         </td>
         <td class="pRa10">{{value.content | raw | nl2br}}</td>
-        <td class="collapsing"><small class="fc-mute compact ltr" title='{{value.datecreated | tdate("Y-m-d H:i:s")}}'>{{value.datecreated | sdate()}}</small></td>
+        <td class="collapsing"><small class="fc-mute" title='{{value.datecreated | tdate("Y-m-d H:i:s")}}'>{{value.datecreated | sdate("year")}}</small></td>
       </tr>
 {%endfor%}
     </tbody>
