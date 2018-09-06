@@ -67,6 +67,15 @@
     <div class="cauto os fs08 compact" title='{%trans "Last activity"%} {{dataTable.0.datecreated | tdate("l d F Y H:i:s")}}'>{{masterTicketDetail.datecreated | tdate("l d F Y H:i:s")}}</div>
   </div>
 
+{%if perm_su()%}
+  <div class="tagBox">
+    <a class="btn rounded sm mB5" href="{{url.this}}?tag=mytag">First tag</a>
+    <a class="btn rounded sm mB5 primary" href="{{url.this}}?tag=mytag">second tag for sample and edit</a>
+    <a class="btn rounded sm mB5 danger" href="{{url.this}}?tag=mytag">third tag</a>
+  </div>
+{%endif%}
+
+
   <table class="tbl1 v5">
     <tbody>
 {%for key, value in dataTable%}
