@@ -40,7 +40,7 @@
 {%block detailCards%}
 
 <div class="f mB10">
-  <div class="s12">
+  <div class="s12 m4">
     <a class="dcard" href="{{url.here}}/ticket{{accessGet}}">
       <div class="statistic sm teal">
         <div class="label mB10"><i class="fs20 mRa5 sf-question-circle"></i> {%trans "Tickets"%}</div>
@@ -48,7 +48,7 @@
       </div>
     </a>
   </div>
-  <div class="s6">
+  <div class="s6 m4">
     <a class="dcard" href="{{url.here}}/ticket?status=open{{accessGetAnd}}">
       <div class="statistic sm">
         <div class="label mB10"><i class="fs20 mRa5 sf-life-ring"></i> {%trans "Active tickets"%}</div>
@@ -57,7 +57,7 @@
     </a>
   </div>
 {%if true or sidebarDetail.message%}
-  <div class="s6">
+  <div class="s6 m4">
     <a class="dcard" href="{{url.here}}/messages{{accessGet}}">
       <div class="statistic sm">
         <div class="label mB10"><i class="fs20 mRa5 sf-chat"></i> {%trans "Replies"%}</div>
@@ -68,7 +68,7 @@
 {%endif%}
 
 {%if true or sidebarDetail.avgfirst%}
-  <div class="c3 s12">
+  <div class="c3 m6 s12">
     <a class="dcard" href="{{url.here}}/ticket?order=firstResponse">
       <div class="statistic sm">
         <div class="label mB10"><i class="fs20 mRa5 sf-clock-o"></i> {%trans "Avg. First Response"%}</div>
@@ -79,7 +79,7 @@
 {%endif%}
 
 {%if true or sidebarDetail.avgarchive%}
-  <div class="c3 s12">
+  <div class="c3 m6 s12">
     <a class="dcard" href="{{url.here}}/ticket?order=avgArchiveTime">
       <div class="statistic sm">
         <div class="label mB10"><i class="fs20 mRa5 sf-calendar-check-o"></i> {%trans "Avg. Time to Archive"%}</div>
