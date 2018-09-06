@@ -997,6 +997,7 @@ class TransStatic
 	echo T_("supportTagAdd");
 	echo T_("supportTagEdit");
 	echo T_("supportTagDelete");
+	echo T_("supportDeleteTicket");
 
  }
 }

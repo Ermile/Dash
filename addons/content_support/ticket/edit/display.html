@@ -1,0 +1,17 @@
+{%extends display.admin%}
+
+
+{%block pageContent%}
+
+
+<div class="f">
+  <div class="cbox">
+    <form method="post">
+      <label for="content">{%trans "Content"%}</label>
+      <textarea class="txt" id="content" name="content" rows=5>{{masterTicketDetail.content}}</textarea>
+      <button class="btn block mTB10 primary" >{%trans "Save"%}</button>
+    </form>
+  </div>
+</div>
+
+{%endblock%}

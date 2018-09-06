@@ -376,6 +376,12 @@
     "cat": "Support Panel",
     "require": ["contentSupport"]
   },
+  "supportDeleteTicket":
+  {
+    "title": "supportDeleteTicket",
+    "cat": "Support Panel",
+    "require": ["contentSupport"]
+  },
     "supportTicketViewAll":
   {
     "title": "supportTicketViewAll",
