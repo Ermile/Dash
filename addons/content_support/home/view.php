@@ -77,8 +77,11 @@ class view
 		$access_get = 'access='. $access;
 
 		\dash\data::accessMode($access_mode);
-		\dash\data::accessGetAnd('&'.$access_get);
-		\dash\data::accessGet('?'. $access_get);
+		if($access)
+		{
+			\dash\data::accessGetAnd('&'.$access_get);
+			\dash\data::accessGet('?'. $access_get);
+		}
 
 		$dataTable = \dash\app\ticket::list(null, $args);
 		$dataTable = array_map(['self', 'tagDetect'], $dataTable);
