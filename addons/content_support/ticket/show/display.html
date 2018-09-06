@@ -60,16 +60,16 @@
 
 {%block iChatList%}
 
-<div class="cbox fs12">
-  <div class="msg pain special fs12">{{masterTicketDetail.title}}</div>
+<div class="cbox">
+  <div class="msg pain special fs10">{{masterTicketDetail.title}}</div>
   <table class="tbl1 v5">
     <tbody>
 {%for key, value in dataTable%}
       <tr class="{{value.rowColor}}" id='msg{{value.id}}'>
         <td class="collapsing">
-          <a href="{{url.here}}/ticket?access=all&user={{value.user_id}}">
+          <a href="{{url.here}}/ticket&user={{value.user_id}}">
           <img src="{{value.avatar}}" class="avatar mRa10" alt="{{value.displayname}}">
-          <span class="txtB s0">{{value.displayname}}</span>
+          <span class="txtB s0 fs08">{{value.displayname}}</span>
           </a>
         </td>
         <td>{{value.content | raw | nl2br}}</td>
