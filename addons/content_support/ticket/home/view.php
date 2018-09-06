@@ -84,6 +84,15 @@ class view
 		}
 
 
+		$subdomain = \dash\request::get('subdomain');
+
+		if($subdomain && \dash\permission::check('supportTicketView'))
+		{
+			$args['comments.subdomain'] = $subdomain;
+		}
+
+
+
 		\content_support\view::dataList($args);
 	}
 
