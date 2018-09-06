@@ -129,11 +129,12 @@ class term
 
 		$status = \dash\app::request('status');
 
-		if($status && !in_array($status, ['enable', 'disable']))
+		if($status && !in_array($status, ['enable','disable','expired','awaiting','filtered','blocked','spam','violence','pornography','other']))
 		{
 			\dash\notif::error(T_("Invalid status of term"));
 			return false;
 		}
+
 
 		// check duplicate
 		// type+lang+slug
@@ -448,9 +449,9 @@ class term
 			return false;
 		}
 
-		\dash\log::db('editTerm', ['data' => $id, 'datalink' => \dash\coding::encode($id)]);
-
 		\dash\db\terms::update($args, $id);
+
+		\dash\log::db('editTerm', ['data' => $id, 'datalink' => \dash\coding::encode($id)]);
 
 		return true;
 	}

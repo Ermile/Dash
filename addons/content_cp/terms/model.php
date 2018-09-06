@@ -68,7 +68,7 @@ class model
 		$post['language'] = \dash\request::post('language');;
 		$post['slug']     = \dash\request::post('slug');
 		$post['type']     = \dash\request::get('type');
-		$post['status']   = \dash\request::post('status') ? 'enable' : 'disable' ;
+		$post['status']   = \dash\request::post('status');
 
 
 		if(\dash\request::post('color') && (\dash\request::get('type') === 'support_tag' || \dash\permission::supervisor() ))
