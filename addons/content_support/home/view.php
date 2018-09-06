@@ -77,7 +77,7 @@ class view
 
 		\dash\data::dataTable($dataTable);
 
-		\content_support\view::sidebarDetail();
+		\content_support\view::sidebarDetail(true);
 	}
 
 
@@ -95,38 +95,7 @@ class view
 
 	private static function dashboardDetail()
 	{
-		// all
-		// open
-		// message
-		// avgfirst
-		// avgarchive
-		$args = [];
-		$args['type'] = 'ticket';
-		if(!\dash\permission::check('supportTicketView'))
-		{
-			$args['user_id'] = \dash\user::id();
-		}
-		if(\dash\url::subdomain())
-		{
-			$args['comments.subdomain']    = \dash\url::subdomain();
-		}
-		else
-		{
-			$args['comments.subdomain']    = null;
-		}
 
-		$result               = [];
-		$args['parent']       = null;
-		$result['tickets']    = \dash\db\comments::get_count($args);
-		unset($args['parent']);
-		$result['replies']    = \dash\db\comments::get_count($args);
-		$args['status']       = 'close';
-		$result['archived']   = \dash\db\comments::get_count($args);
-
-		unset($args['status']);
-		$args['parent']       = null;
-		$result['avgfirst']   = \dash\db\comments::ticket_avg_first($args);
-		$result['avgarchive'] = \dash\db\comments::ticket_avg_archive($args);
 
 		return $result;
 	}

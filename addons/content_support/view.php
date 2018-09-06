@@ -18,7 +18,7 @@ class view
 	}
 
 
-	public static function sidebarDetail()
+	public static function sidebarDetail($_all = false)
 	{
 		$args           = [];
 		$args['type']   = 'ticket';
@@ -41,12 +41,27 @@ class view
 		if(\dash\data::accessMode() === 'mine')
 		{
 			$args['user_id'] = \dash\user::id();
-			$result['mine']  = \dash\db\comments::get_count(array_merge($args,[]));
+			$result['all']   = $result['mine']  = \dash\db\comments::get_count(array_merge($args,[]));
+		}
+		else
+		{
+			$result['all']      = \dash\db\comments::get_count(array_merge($args, []));
 		}
 
-		$result['all']      = \dash\db\comments::get_count(array_merge($args, []));
 		$result['open']     = \dash\db\comments::get_count(array_merge($args,['status' => 'awaiting']));
 		$result['archived'] = \dash\db\comments::get_count(array_merge($args,['status' => 'close']));
+
+		if($_all)
+		{
+			unset($args['parent']);
+			$result['message']    = \dash\db\comments::get_count($args);
+
+			unset($args['status']);
+			$args['parent']       = null;
+			$result['avgfirst']   = \dash\db\comments::ticket_avg_first($args);
+			$result['avgarchive'] = \dash\db\comments::ticket_avg_archive($args);
+		}
+
 		\dash\data::sidebarDetail($result);
 		return $result;
 

@@ -44,7 +44,7 @@
     <a class="dcard" href="{{url.here}}/ticket{{accessGet}}">
       <div class="statistic sm teal">
         <div class="label mB10"><i class="fs20 mRa5 sf-question-circle"></i> {%trans "Tickets"%}</div>
-        <div class="value counter">{{dashboardDetail.all |fitNumber}}</div>
+        <div class="value counter">{{sidebarDetail.all |fitNumber}}</div>
       </div>
     </a>
   </div>
@@ -52,38 +52,38 @@
     <a class="dcard" href="{{url.here}}/ticket?status=open{{accessGetAnd}}">
       <div class="statistic sm">
         <div class="label mB10"><i class="fs20 mRa5 sf-life-ring"></i> {%trans "Active tickets"%}</div>
-        <div class="value">{{dashboardDetail.open |fitNumber}}</div>
+        <div class="value">{{sidebarDetail.open |fitNumber}}</div>
       </div>
     </a>
   </div>
-{%if true or dashboardDetail.message%}
+{%if true or sidebarDetail.message%}
   <div class="s6">
     <a class="dcard" href="{{url.here}}/messages{{accessGet}}">
       <div class="statistic sm">
         <div class="label mB10"><i class="fs20 mRa5 sf-chat"></i> {%trans "Replies"%}</div>
-        <div class="value">{{dashboardDetail.message |fitNumber}}</div>
+        <div class="value">{{sidebarDetail.message |fitNumber}}</div>
       </div>
     </a>
   </div>
 {%endif%}
 
-{%if true or dashboardDetail.avgfirst%}
+{%if true or sidebarDetail.avgfirst%}
   <div class="c3 s12">
     <a class="dcard" href="{{url.here}}/ticket?order=firstResponse">
       <div class="statistic sm">
         <div class="label mB10"><i class="fs20 mRa5 sf-clock-o"></i> {%trans "Avg. First Response"%}</div>
-        <div class="value">{{dashboardDetail.avgfirst |fitNumber}} <small class="fs05">{%trans "Minute"%}</small></div>
+        <div class="value">{{sidebarDetail.avgfirst |fitNumber}} <small class="fs05">{%trans "Minute"%}</small></div>
       </div>
     </a>
   </div>
 {%endif%}
 
-{%if true or dashboardDetail.avgarchive%}
+{%if true or sidebarDetail.avgarchive%}
   <div class="c3 s12">
     <a class="dcard" href="{{url.here}}/ticket?order=avgArchiveTime">
       <div class="statistic sm">
         <div class="label mB10"><i class="fs20 mRa5 sf-calendar-check-o"></i> {%trans "Avg. Time to Archive"%}</div>
-        <div class="value">{{dashboardDetail.avgarchive |fitNumber}} <small class="fs05">{%trans "Hours"%}</small></div>
+        <div class="value">{{sidebarDetail.avgarchive |fitNumber}} <small class="fs05">{%trans "Hours"%}</small></div>
       </div>
     </a>
   </div>
