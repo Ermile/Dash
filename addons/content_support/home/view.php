@@ -33,54 +33,35 @@ class view
 	{
 		$args = $_args;
 
-		$access_get = null;
-
-		$access_mode = 'mine';
-
-		$access = \dash\request::get('access');
-
-		if($access)
-		{
-			$access_mode = $access;
-		}
-
 		\dash\data::haveSubdomain(true);
 
-		if(!in_array($access_mode, ['mine', 'all', 'manage']))
+		switch (\dash\data::accessMode())
 		{
-			\dash\header::status(412, T_("Invalid access in url"));
-		}
+			case 'mine':
+				$args['user_id'] = \dash\user::id();
+				break;
 
-		if($access_mode === 'mine')
-		{
-			$args['user_id'] = \dash\user::id();
-		}
-		elseif($access_mode === 'all')
-		{
-			\dash\permission::access('supportTicketViewAll');
-		}
-		elseif($access_mode === 'manage')
-		{
-			\dash\permission::access('supportTicketView');
+			case 'all':
+				\dash\permission::access('supportTicketViewAll');
+				break;
 
-			\dash\data::haveSubdomain(false);
+			case 'manage':
+				\dash\permission::access('supportTicketView');
 
-			if(\dash\url::subdomain())
-			{
-				$args['comments.subdomain']    = \dash\url::subdomain();
-			}
-			else
-			{
-				$args['comments.subdomain']    = null;
-			}
-		}
-		$access_get = 'access='. $access;
+				\dash\data::haveSubdomain(false);
 
-		\dash\data::accessMode($access_mode);
-		if($access)
-		{
-			\dash\data::accessGetAnd('&'.$access_get);
-			\dash\data::accessGet('?'. $access_get);
+				if(\dash\url::subdomain())
+				{
+					$args['comments.subdomain']    = \dash\url::subdomain();
+				}
+				else
+				{
+					$args['comments.subdomain']    = null;
+				}
+				break;
+
+			default:
+				break;
 		}
 
 		$dataTable = \dash\app\ticket::list(null, $args);
