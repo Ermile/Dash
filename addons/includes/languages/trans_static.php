@@ -983,6 +983,8 @@ class TransStatic
 	echo T_("cpContactView");
 	echo T_("cpContactChangeStatus");
 	echo T_("cpTemplateSmsView");
+	echo T_("answered");
+	echo T_("Answered");
 
  }
 }

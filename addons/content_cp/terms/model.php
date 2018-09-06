@@ -65,6 +65,19 @@ class model
 		$post['type']     = \dash\request::get('type');
 		$post['status']   = \dash\request::post('status') ? 'enable' : 'disable' ;
 
+
+		if(\dash\request::post('color') && (\dash\request::get('type') === 'support_tag' || \dash\permission::supervisor() ))
+		{
+			$color = \dash\request::post('color');
+			if($color && !in_array($color, ['primary','secondary','success','danger','warning','info', 'light', 'dark', 'pain']))
+			{
+				\dash\notif::error(T_("Invalid tag color"), 'color');
+				return false;
+			}
+
+			$post['color'] = $color;
+		}
+
 		$myType = \dash\request::get('type');
 
 		if(\dash\request::get('edit'))

@@ -26,6 +26,7 @@
   {{block ('iDescription') }}
   {{block ('iLanguage') }}
 
+  {{block ('tagColor') }}
   {{block ('iStatus') }}
   {%if editMode%}{{block ('iedit')}}{%else%}{{block ('iadd')}}
   {%endif%}
@@ -66,6 +67,30 @@
 {%endblock%}
 
 
+{%block tagColor%}
+{%if requestGET.type == 'support_tag' or perm_su()%}
+<label>{%trans "Tag color"%}</label>
+<div class="ui fluid selection dropdown">
+  <input type="hidden" name="color" value="{{datarow.meta.color}}">
+  <i class="dropdown icon"></i>
+  <div class="default text">{%trans "Select tag color"%}</div>
+  <div class="menu">
+
+    <div class="item" data-value="primary"><span class="mA3 badge rounded primary">&nbsp;</span> {%trans "Primary" %}</div>
+    <div class="item" data-value="secondary"><span class="mA3 badge rounded secondary">&nbsp;</span> {%trans "Secondary" %}</div>
+    <div class="item" data-value="success"><span class="mA3 badge rounded success">&nbsp;</span> {%trans "Success" %}</div>
+    <div class="item" data-value="danger"><span class="mA3 badge rounded danger">&nbsp;</span> {%trans "Danger" %}</div>
+    <div class="item" data-value="warning"><span class="mA3 badge rounded warning">&nbsp;</span> {%trans "Warning" %}</div>
+    <div class="item" data-value="info"><span class="mA3 badge rounded info">&nbsp;</span> {%trans "Info" %}</div>
+    <div class="item" data-value="light"><span class="mA3 badge rounded light">&nbsp;</span> {%trans "Light" %}</div>
+    <div class="item" data-value="dark"><span class="mA3 badge rounded dark">&nbsp;</span> {%trans "Dark" %}</div>
+    <div class="item" data-value="pain"><span class="mA3 badge rounded pain">&nbsp;</span> {%trans "Pain" %}</div>
+
+  </div>
+</div>
+{%endif%}
+
+{%endblock%}
 
 {%block htmlSearchBox1%}
 <div class="cbox fs12">
@@ -96,7 +121,11 @@
     <tbody>
       {%for key, value in dataTable%}
         <tr class="{%if value.status=='disable'%}negative{%elseif value.status=='expired'%}warning{%endif%}">
-          <td><a href="{{url.this}}?type={{value.type}}&edit={{value.id}}">{{value.title}}</a></td>
+          <td><a href="{{url.this}}?type={{value.type}}&edit={{value.id}}">
+            {%if value.meta.color%}
+              <span class="mA3 floatRa badge rounded {{value.meta.color}}">&nbsp;</span>
+            {%endif%}
+          {{value.title}}</a></td>
           <td class="fs08"><a href="{{url.kingdom}}/{{value.url}}" target="_blank"><span class="sf-share"></span> {{value.slug}}</a></td>
           {%if not requestGET.type%}
             <td><a href="{{url.this}}?type={{value.type}}">{%set vType = value.type%}{%trans vType%}</a></td>

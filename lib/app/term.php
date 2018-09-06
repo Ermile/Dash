@@ -113,6 +113,7 @@ class term
 			case 'code':
 			case 'other':
 			case 'term':
+			case 'support_tag':
 				// nothing
 				break;
 
@@ -196,7 +197,20 @@ class term
 			}
 		}
 
-		$args             = [];
+		$meta = [];
+		$args = [];
+
+		if(\dash\app::request('color'))
+		{
+			$meta['color'] = \dash\app::request('color');
+		}
+
+		if(!empty($meta))
+		{
+			$meta = json_encode($meta, JSON_UNESCAPED_UNICODE);
+			$args['meta'] = $meta;
+		}
+
 		$args['title']    = $title;
 		$args['parent']   = $parent;
 		$args['desc']     = $desc;
@@ -258,6 +272,17 @@ class term
 						{
 							$result[$key] = $_data['type'] . '/'. $value;
 						}
+					}
+					else
+					{
+						$result[$key] = $value;
+					}
+					break;
+
+				case 'meta':
+					if($value && is_string($value))
+					{
+						$result[$key] = json_decode($value, true);
 					}
 					else
 					{
