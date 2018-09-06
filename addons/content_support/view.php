@@ -16,6 +16,7 @@ class view
 		\dash\data::display_admin('content_support/layout.html');
 
 		self::acceessModeDetector();
+		self::sidebarDetail();
 	}
 
 
@@ -92,6 +93,61 @@ class view
 		\dash\data::sidebarDetail($result);
 		return $result;
 
+	}
+
+
+
+	public static function dataList($_args)
+	{
+		$args = $_args;
+
+		\dash\data::haveSubdomain(true);
+
+		switch (\dash\data::accessMode())
+		{
+			case 'mine':
+				$args['user_id'] = \dash\user::id();
+				break;
+
+			case 'all':
+				\dash\permission::access('supportTicketViewAll');
+				break;
+
+			case 'manage':
+				\dash\permission::access('supportTicketView');
+
+				\dash\data::haveSubdomain(false);
+
+				if(\dash\url::subdomain())
+				{
+					$args['comments.subdomain']    = \dash\url::subdomain();
+				}
+				else
+				{
+					$args['comments.subdomain']    = null;
+				}
+				break;
+
+			default:
+				break;
+		}
+
+		$dataTable = \dash\app\ticket::list(null, $args);
+		$dataTable = array_map(['self', 'tagDetect'], $dataTable);
+
+		\dash\data::dataTable($dataTable);
+	}
+
+
+	public static function tagDetect($_data)
+	{
+		if(isset($_data['tag']))
+		{
+			$tag = $_data['tag'];
+			$tag = explode(',', $tag);
+			$_data['tag'] = $tag;
+		}
+		return $_data;
 	}
 }
 ?>

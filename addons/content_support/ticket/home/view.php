@@ -83,10 +83,7 @@ class view
 		}
 
 
-		\content_support\home\view::dataList($args);
-
-		\content_support\view::sidebarDetail();
-
+		\content_support\view::dataList($args);
 	}
 
 }
