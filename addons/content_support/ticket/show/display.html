@@ -84,7 +84,16 @@
           </nav>
 {%endif%}
         </td>
-        <td class="pRa10">{{value.content | raw | nl2br}}</td>
+        <td class="pRa10">{{value.content | raw | nl2br}}
+{%if perm_su()%}
+          <a class="btn outline sm" href="{{url.this}}/message/edit?id={{value.id}}">{%trans "Edit"%}</a>
+{%endif%}
+{%if value.file %}
+  <div>
+    <a class="badge mT10" href="{{value.file}}" target="_blank">{%trans "View attachment"%}</a>
+  </div>
+{%endif%}
+        </td>
         <td class="collapsing"><small class="fc-mute" title='{{value.datecreated | tdate("l d F Y H:i:s")}}'>{{value.datecreated | sdate("year")}}</small></td>
       </tr>
 {%endfor%}
