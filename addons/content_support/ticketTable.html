@@ -29,7 +29,7 @@
       <td class="collapsing fs08 s0 m0">{%set myStatus = value.status%}{%if value.status != 'awaiting'%}<i class="compact mRa5 sf-spin-alt fc-green"></i>{%else%}<i class="compact mRa5 sf-asterisk spiny fc-red"></i>{%endif%}{%trans myStatus%}</td>
 {%if accessMode != 'mine'%}
       <td class="collapsing txtRa">
-        <a href="{{url.here}}/ticket?access=all&user={{value.user_id}}">
+        <a href="{{url.here}}/ticket?user={{value.user_id}}{{accessGetAnd}}">
         <span class="txtB s0">{{value.displayname}}</span>
         <img src="{{value.avatar}}" class="avatar mLa10" alt="{{value.displayname}}">
         </a>
