@@ -27,6 +27,12 @@ class view
 			\dash\header::status(403, T_("Ticket not found"));
 		}
 
+		if(isset($main['parent']))
+		{
+			\dash\redirect::to(\dash\url::this(). '/show?id='. $main['parent']);
+			return;
+		}
+
 		\dash\data::masterTicketDetail($main);
 
 		$ticket_user_id = $main['user_id'];

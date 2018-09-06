@@ -370,5 +370,23 @@
     "cat": "Support Panel",
     "require": ["contentSupport", "supportTagView", "supportTagEdit"]
   },
+  "supportEditTicket":
+  {
+    "title": "supportEditTicket",
+    "cat": "Support Panel",
+    "require": ["contentSupport"]
+  },
+    "supportTicketViewAll":
+  {
+    "title": "supportTicketViewAll",
+    "cat": "Support Panel",
+    "require": ["contentSupport"]
+  },
+    "supportTicketView":
+  {
+    "title": "supportTicketView",
+    "cat": "Support Panel",
+    "require": ["contentSupport"]
+  }
 
 }
