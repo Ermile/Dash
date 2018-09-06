@@ -59,18 +59,26 @@
 
 
 {%block iChatList%}
-<div class="cbox">
 
+
+<div class="cbox fs12">
+  <div class="msg pain special fs12">{{masterTicketDetail.title}}</div>
+  <table class="tbl1 v5">
+    <tbody>
 {%for key, value in dataTable%}
-  <div class="msg f align-center {%if value.user_id == masterTicketUser %}{%else%}info{%endif%}">
-    <span class="cauto"><img src="{{value.avatar}}" class="avatar mRa10" src="{{value.displayname}}"></span>
-    <span class="c2 s0 txtB pRa10">{{value.displayname}}</span>
-    <span class="c s0">{{value.content | raw}}
-      {%if value.file %}<hr><a target="_blank" href="{{value.file}}">{%trans "Attachment"%}</a>{%endif%}
-    </span>
-    <span class="cauto we80 s0 txtRa os" title='{{value.datecreated | tdate("Y-m-d H:i:s")}}'>{{value.datecreated | sdate("year")}}</span>
-  </div>
+      <tr class="{{value.rowColor}}" id='msg{{value.id}}'>
+        <td class="collapsing">
+          <a href="{{url.here}}/ticket?access=all&user={{value.user_id}}">
+          <img src="{{value.avatar}}" class="avatar mRa10" alt="{{value.displayname}}">
+          <span class="txtB s0">{{value.displayname}}</span>
+          </a>
+        </td>
+        <td>{{value.content | raw | nl2br}}</td>
+        <td class="collapsing"><small class="fc-mute">{{value.datecreated | sdate("year")}}</small></td>
+      </tr>
 {%endfor%}
+    </tbody>
+  </table>
 </div>
 {%endblock%}
 
