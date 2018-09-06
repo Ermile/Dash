@@ -998,6 +998,11 @@ class TransStatic
 	echo T_("supportTagEdit");
 	echo T_("supportTagDelete");
 	echo T_("supportDeleteTicket");
+	echo T_("supportTicketAnswer");
+	echo T_("supportTicketAddTag");
+	echo T_("supportTicketAnswerOtherSubdomain");
+	echo T_("supportTicketChangeStatus");
+
 
  }
 }

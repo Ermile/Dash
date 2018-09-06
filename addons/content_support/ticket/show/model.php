@@ -41,6 +41,8 @@ class model
 
 		if(\dash\request::post('tag'))
 		{
+			\dash\permission::access('supportTicketAddTag');
+
 			\dash\app::variable(['support_tag' => \dash\request::post('tag')]);
 			\dash\app\posts::set_post_term(\dash\request::get('id'), 'support_tag', 'comments');
 			\dash\log::db('addTag');
@@ -51,9 +53,9 @@ class model
 			}
 		}
 
-
 		if(\dash\request::post('TicketFormType') === 'changeStatus')
 		{
+			\dash\permission::access('supportTicketChangeStatus');
 			if(in_array(\dash\request::post('status'), ['close']))
 			{
 				\dash\db\comments::update(['status' => \dash\request::post('status')], \dash\request::get('id'));
@@ -104,7 +106,16 @@ class model
 		}
 		else
 		{
-			\dash\permission::access('supportTicketView');
+
+			\dash\permission::access('supportTicketAnswer');
+
+			if(array_key_exists('subdomain', $main))
+			{
+				if($main['subdomain'] != \dash\url::subdomain())
+				{
+					\dash\permission::access('supportTicketAnswerOtherSubdomain');
+				}
+			}
 
 			$update_main['status'] = 'answered';
 

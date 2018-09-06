@@ -382,17 +382,42 @@
     "cat": "Support Panel",
     "require": ["contentSupport"]
   },
-    "supportTicketViewAll":
+  "supportTicketViewAll":
   {
     "title": "supportTicketViewAll",
     "cat": "Support Panel",
     "require": ["contentSupport"]
   },
-    "supportTicketView":
+  "supportTicketView":
   {
     "title": "supportTicketView",
     "cat": "Support Panel",
     "require": ["contentSupport"]
+  },
+  "supportTicketAnswer":
+  {
+    "title": "supportTicketAnswer",
+    "cat": "Support Panel",
+    "require": ["contentSupport"]
+  },
+  "supportTicketAnswerOtherSubdomain":
+  {
+    "title": "supportTicketAnswer",
+    "cat": "Support Panel",
+    "require": ["contentSupport"]
+  },
+  "supportTicketAddTag":
+  {
+    "title": "supportTicketAddTag",
+    "cat": "Support Panel",
+    "require": ["contentSupport"]
+  },
+  "supportTicketChangeStatus":
+  {
+    "title": "supportTicketChangeStatus",
+    "cat": "Support Panel",
+    "require": ["contentSupport"]
   }
+
 
 }
