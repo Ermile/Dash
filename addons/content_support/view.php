@@ -49,9 +49,11 @@ class view
 
 	public static function sidebarDetail($_all = false)
 	{
-		$args           = [];
-		$args['type']   = 'ticket';
-		$args['parent'] = null;
+		$args               = [];
+		$args_tag           = [];
+
+		$args['comments.type']       = 'ticket';
+		$args['comments.parent']     = null;
 
 		if(!\dash\data::haveSubdomain())
 		{
@@ -69,7 +71,7 @@ class view
 
 		if(\dash\data::accessMode() === 'mine')
 		{
-			$args['user_id'] = \dash\user::id();
+			$args['comments.user_id'] = \dash\user::id();
 			$result['all']   = $result['mine']  = \dash\db\comments::get_count(array_merge($args,[]));
 		}
 		else
@@ -83,6 +85,7 @@ class view
 
 		$result['archived'] = \dash\db\comments::get_count(array_merge($args,['status' => 'close']));
 
+		$args_tag = $args;
 		if($_all)
 		{
 			unset($args['parent']);
@@ -93,6 +96,10 @@ class view
 			$result['avgfirst']   = \dash\db\comments::ticket_avg_first($args);
 			$result['avgarchive'] = \dash\db\comments::ticket_avg_archive($args);
 		}
+
+		$tags = \dash\db\comments::ticket_tag($args_tag);
+		$result['tags'] = array_map(['\dash\app\term', 'ready'], $tags);
+
 
 		\dash\data::sidebarDetail($result);
 		return $result;

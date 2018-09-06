@@ -41,11 +41,12 @@
 {%else%}
     <li class="title">{%trans "Labels"%}</li>
 {%endif%}
+{%if sidebarDetail.tags%}
+  {%for key, value in sidebarDetail.tags%}
+    <li><a href="{{url.here}}/ticket?tag={{value.slug}}"><span class="floatRa mRa10 fc-mute sf-tag"></span>{{value.title}}</a></li>
+  {%endfor%}
 
-    <!-- <li><a href="{{url.here}}/ticket?label=billing"><span class="floatRa mRa10 fc-mute sf-tag"></span>{%trans "Billing"%}</a></li>
-    <li><a href="{{url.here}}/ticket?label=bug"><span class="floatRa mRa10 fc-mute sf-tag"></span>{%trans "Bug"%}</a></li>
-    <li><a href="{{url.here}}/ticket?label=feature"><span class="floatRa mRa10 fc-mute sf-tag"></span>{%trans "Feature"%}</a></li>
-     -->
+{%endif%}
   </ul>
 </li>
 

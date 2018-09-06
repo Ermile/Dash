@@ -102,6 +102,30 @@ class comments
 		return 10;
 	}
 
+
+	public static function ticket_tag($_where)
+	{
+		$where = \dash\db\config::make_where($_where);
+		if($where)
+		{
+			$query =
+			"
+				SELECT
+					terms.*
+				FROM
+					terms
+				INNER JOIN termusages ON termusages.term_id  = terms.id
+				INNER JOIN comments ON comments.id  = termusages.related_id
+				WHERE
+					termusages.type = 'support_tag' AND
+					$where
+			";
+			$result = \dash\db::get($query);
+
+			return $result;
+		}
+	}
+
 	public static function ticket_mine($_user_id)
 	{
 		if(!$_user_id || !is_numeric($_user_id))
