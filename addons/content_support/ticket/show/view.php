@@ -60,6 +60,7 @@ class view
 		$dataTable = \dash\app\ticket::list(null, $args);
 		$main = \dash\app::fix_avatar($main);
 		array_push($dataTable, $main);
+		$dataTable = array_reverse($dataTable);
 
 		\dash\data::dataTable($dataTable);
 
