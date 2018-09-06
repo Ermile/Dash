@@ -15,6 +15,8 @@ class view
 		\dash\data::include_chart(true);
 		\dash\data::display_admin('content_support/layout.html');
 
+		\dash\data::maxUploadSize(\dash\utility\upload::max_file_upload_size(true));
+
 		self::acceessModeDetector();
 		self::sidebarDetail();
 	}

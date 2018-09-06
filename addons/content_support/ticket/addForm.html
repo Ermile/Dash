@@ -3,7 +3,7 @@
   <form method="post" enctype="multipart/form-data" autocomplete="off">
 
 {%if url.child == 'add'%}
-    <label for="title">{%trans "Subject"%}</label>
+    <label for="title">{%trans "Ticket Subject"%}</label>
     <div class="input">
       <input type="text" name="title" id="title" placeholder='{%trans "Subject of your ticket"%}' value="{{dataRow.title}}" autofocus maxlength='150' minlength="1" title='{%trans "Set title will help us answer quickly"%}'>
     </div>
@@ -13,7 +13,7 @@
     <textarea class="txt mB10" id='content' name="content" placeholder='' maxlength='1000' rows="5">{{dataRow.desc}}</textarea>
 
 
-    <label for="file1">{%trans "Attachment"%} <small class="fc-mute">{%trans "Max size 5Mb"%}</small></label>
+    <label for="file1">{%trans "Attachment"%} <small class="fc-mute">{%trans "Max size"%} {{maxUploadSize}}</small></label>
     <div class="input">
      <input type="file" name="file" id="file1" data-max="5000">
     </div>
