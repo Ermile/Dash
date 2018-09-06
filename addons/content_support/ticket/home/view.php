@@ -36,25 +36,37 @@ class view
 			switch ($status)
 			{
 				case 'open':
+					\dash\data::page_title(T_("Open tickets"));
 					$args['comments.status'] = ["IN", "('awaiting', 'answered')"];
 					break;
 
 				case 'awaiting':
+					\dash\data::page_title(T_("Tickets waiting for the answer"));
 					$args['comments.status'] = "awaiting";
 					break;
 
+				case 'answered':
+					\dash\data::page_title(T_("Answered tickets"));
+					$args['comments.status'] = "answered";
+					break;
+
 				case 'close':
+					\dash\data::page_title(T_("Archived tickets"));
 					$args['comments.status'] = "close";
 					break;
 
 				case 'deleted':
+					\dash\data::page_title(T_("Deleted tickets"));
 					$args['comments.status'] = "deleted";
 					break;
 
-				default:
 				case 'all':
+					\dash\data::page_title(T_("All tickets"));
 					$args['comments.status'] = ["NOT IN", "('deleted')"];
+					break;
 
+				default:
+					$args['comments.status'] = ["NOT IN", "('deleted')"];
 					break;
 			}
 		}
