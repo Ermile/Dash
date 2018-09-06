@@ -13,7 +13,25 @@ class view
 		\dash\data::badge_text(T_('Tickets'));
 		\dash\data::badge_link(\dash\url::here(). '/ticket');
 
-		$args = [];
+		$args['sort']            = 'datecreated';
+		$args['order']           = 'desc';
+		$args['comments.type']   = 'ticket';
+		$args['comments.parent'] = null;
+		$args['pagenation']      = false;
+		$args['limit']           = 5;
+		$args['join_user']       = true;
+		$args['get_tag']         = true;
+		$args['comments.status'] = ["NOT IN", "('close')"];
+
+		self::dataList($args);
+
+		\content_support\view::sidebarDetail(true);
+	}
+
+
+	public static function dataList($_args)
+	{
+		$args = $_args;
 
 		$access_get = null;
 
@@ -62,22 +80,10 @@ class view
 		\dash\data::accessGetAnd('&'.$access_get);
 		\dash\data::accessGet('?'. $access_get);
 
-		$args['sort']            = 'datecreated';
-		$args['order']           = 'desc';
-		$args['comments.type']   = 'ticket';
-		$args['comments.parent'] = null;
-		$args['pagenation']      = false;
-		$args['limit']           = 5;
-		$args['join_user']       = true;
-		$args['get_tag']         = true;
-		$args['comments.status'] = ["NOT IN", "('close')"];
-
 		$dataTable = \dash\app\ticket::list(null, $args);
 		$dataTable = array_map(['self', 'tagDetect'], $dataTable);
 
 		\dash\data::dataTable($dataTable);
-
-		\content_support\view::sidebarDetail(true);
 	}
 
 
@@ -90,14 +96,6 @@ class view
 			$_data['tag'] = $tag;
 		}
 		return $_data;
-
-	}
-
-	private static function dashboardDetail()
-	{
-
-
-		return $result;
 	}
 }
 ?>
