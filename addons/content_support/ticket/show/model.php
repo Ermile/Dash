@@ -94,7 +94,7 @@ class model
 
 		$update_main = [];
 
-		$plus = \dash\db\comments::get_count(['type' => 'ticket', 'parent' => \dash\coding::decode(\dash\request::get('id'))]);
+		$plus = \dash\db\comments::get_count(['type' => 'ticket', 'parent' => \dash\request::get('id')]);
 
 		$update_main['plus'] = intval($plus) + 1 + 1 ; // master ticket + this tichet
 
@@ -128,7 +128,7 @@ class model
 		{
 			if(!empty($update_main))
 			{
-				\dash\db\comments::update($update_main, \dash\coding::decode(\dash\request::get('id')));
+				\dash\db\comments::update($update_main, \dash\request::get('id'));
 			}
 
 			\dash\notif::ok(T_("Your ticket was sended"));

@@ -336,6 +336,7 @@ class ticket
 					$result[$key]       = $value;
 
 					break;
+
 				case 'user_id':
 				case 'term_id':
 					if(isset($value))

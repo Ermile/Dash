@@ -48,7 +48,8 @@ class view
 			$result['all']      = \dash\db\comments::get_count(array_merge($args, []));
 		}
 
-		$result['open']     = \dash\db\comments::get_count(array_merge($args,['status' => 'awaiting']));
+		$result['open']     = \dash\db\comments::get_count(array_merge($args,['status' => ["IN", "('awaiting', 'answered')"]]));
+		$result['awaiting']     = \dash\db\comments::get_count(array_merge($args,['status' => 'awaiting']));
 		$result['archived'] = \dash\db\comments::get_count(array_merge($args,['status' => 'close']));
 
 		if($_all)

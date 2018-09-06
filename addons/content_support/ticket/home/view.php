@@ -18,58 +18,62 @@ class view
 		\dash\data::badge2_text(T_('Back to support panel'));
 		\dash\data::badge2_link(\dash\url::here());
 
-		$args = [];
 
-		\dash\data::haveSubdomain(true);
-		$access = \dash\request::get('access');
-		if(!$access)
-		{
-			if(\dash\url::subdomain())
-			{
-				\dash\data::haveSubdomain(true);
-				$args['comments.subdomain']    = \dash\url::subdomain();
-			}
-			else
-			{
-				$args['comments.subdomain']    = null;
-			}
-
-			if(!\dash\permission::check('supportTicketView'))
-			{
-				$args['user_id']         = \dash\user::id();
-			}
-		}
-		else
-		{
-			if(!in_array($access, ['mine', 'all']))
-			{
-				\dash\header::status(404, T_("Invalid access in url"));
-			}
-
-			if($access === 'mine')
-			{
-				$args['user_id']         = \dash\user::id();
-			}
-			elseif($access === 'all')
-			{
-				\dash\data::haveSubdomain(true);
-				\dash\permission::access('supportTicketViewAll');
-			}
-		}
-		$args['user_id']         = \dash\user::id();
 		$args['sort']            = 'datecreated';
 		$args['order']           = 'desc';
 		$args['comments.type']   = 'ticket';
 		$args['comments.parent'] = null;
-		$args['limit']           = 100;
+
+		$args['limit']           = 10;
 		$args['join_user']       = true;
 		$args['get_tag']         = true;
-		$args['comments.status'] = ["NOT IN", "('close')"];
 
-		$dataTable = \dash\app\ticket::list(null, $args);
-		$dataTable = array_map(['\content_support\home\view', 'tagDetect'], $dataTable);
+		$status = \dash\request::get('status');
 
-		\dash\data::dataTable($dataTable);
+
+		if($status)
+		{
+			switch ($status)
+			{
+				case 'open':
+					$args['comments.status'] = ["IN", "('awaiting', 'answered')"];
+					break;
+
+				case 'awaiting':
+					$args['comments.status'] = "awaiting";
+					break;
+
+				case 'close':
+					$args['comments.status'] = "close";
+					break;
+
+				case 'deleted':
+					$args['comments.status'] = "deleted";
+					break;
+
+				default:
+				case 'all':
+					$args['comments.status'] = ["NOT IN", "('deleted')"];
+
+					break;
+			}
+		}
+
+		$user = \dash\request::get('user');
+
+		if($user)
+		{
+			$user = \dash\coding::decode($user);
+			if($user && \dash\permission::check('supportTicketView'))
+			{
+				$args['comments.user_id'] = $user;
+			}
+		}
+
+
+		\content_support\home\view::dataList($args);
+
+		\content_support\view::sidebarDetail();
 
 	}
 
