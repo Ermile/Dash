@@ -117,32 +117,6 @@
     "require": ["contentCp", "cpTagView", "cpTagEdit"]
   },
 
-  "cpSupportTagView":
-  {
-    "title": "cpSupportTagView",
-    "cat": "Control Panel CMS",
-    "titleBefore": "SupportTags",
-    "require": ["contentCp"]
-  },
-  "cpSupportTagAdd":
-  {
-    "title": "cpSupportTagAdd",
-    "cat": "Control Panel CMS",
-    "require": ["contentCp", "cpSupportTagView"]
-  },
-  "cpSupportTagEdit":
-  {
-    "title": "cpSupportTagEdit",
-    "cat": "Control Panel CMS",
-    "require": ["contentCp", "cpSupportTagView"]
-  },
-  "cpSupportTagDelete":
-  {
-    "title": "cpSupportTagDelete",
-    "cat": "Control Panel CMS",
-    "require": ["contentCp", "cpSupportTagView", "cpSupportTagEdit"]
-  },
-
   "cpPageView":
   {
     "title": "cpPageView",
@@ -361,5 +335,40 @@
     "title": "cpTemplateSmsView",
     "cat": "SMS",
     "require": ["contentCp", "cpEmail"]
-  }
+  },
+
+  "contentSupport":
+  {
+    "title": "contentSupport",
+    "cat": "Support Panel",
+    "breakAfter": true,
+    "require": ["contentSupport"]
+  },
+
+  "supportTagView":
+  {
+    "title": "supportTagView",
+    "cat": "Support Panel",
+    "titleBefore": "SupportTags",
+    "require": ["contentSupport"]
+  },
+  "supportTagAdd":
+  {
+    "title": "supportTagAdd",
+    "cat": "Support Panel",
+    "require": ["contentSupport", "supportTagView"]
+  },
+  "supportTagEdit":
+  {
+    "title": "supportTagEdit",
+    "cat": "Support Panel",
+    "require": ["contentSupport", "supportTagView"]
+  },
+  "supportTagDelete":
+  {
+    "title": "supportTagDelete",
+    "cat": "Support Panel",
+    "require": ["contentSupport", "supportTagView", "supportTagEdit"]
+  },
+
 }

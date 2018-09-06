@@ -991,6 +991,12 @@ class TransStatic
 	echo T_("cpSupportTagAdd");
 	echo T_("cpSupportTagEdit");
 	echo T_("cpSupportTagDelete");
+	echo T_("contentSupport");
+	echo T_("supportTagView");
+	echo T_("Support Panel");
+	echo T_("supportTagAdd");
+	echo T_("supportTagEdit");
+	echo T_("supportTagDelete");
 
  }
 }
