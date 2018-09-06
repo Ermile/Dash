@@ -5,12 +5,12 @@
 
 
 <div class="f">
-  <div class="c9 s12 pRa10">
+  <div class="c8 s12 pRa10">
     {{block("iChatList")}}
     {%include 'content_support/ticket/addForm.html'%}
 
   </div>
-  <div class="c3 s12">
+  <div class="c4 s12">
 {%if perm('supportTicketView') %}
     <div class="cbox">
 {%if masterTicketDetail.status == 'awaiting' or masterTicketDetail.status == 'answered'%}
