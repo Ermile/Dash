@@ -95,7 +95,9 @@
         </td>
         <td class="pRa10">{{value.content | raw | nl2br}}
 {%if perm_su()%}
-          <a class="btn outline sm" href="{{url.this}}/message/edit?id={{value.id}}">{%trans "Edit"%}</a>
+          <div>
+            <a class="btn outline sm mT10" href="{{url.this}}/message/edit?id={{value.id}}">{%trans "Edit"%}</a>
+          </div>
 {%endif%}
 {%if value.file %}
   <div>
@@ -103,7 +105,7 @@
   </div>
 {%endif%}
         </td>
-        <td class="collapsing"><small class="fc-mute" title='{{value.datecreated | tdate("l d F Y H:i:s")}}'>{{value.datecreated | sdate("year")}}</small></td>
+        <td class="collapsing s0"><small class="fc-mute" title='{{value.datecreated | tdate("l d F Y H:i:s")}}'>{{value.datecreated | sdate("year")}}</small></td>
       </tr>
 {%endfor%}
     </tbody>
