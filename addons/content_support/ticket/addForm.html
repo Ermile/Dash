@@ -18,6 +18,10 @@
      <input type="file" name="file" id="file1" data-max="5000">
     </div>
 
-    <button class="btn primary block mT20">{%trans "Send"%}</button>
+{%if url.child == 'add'%}
+    <button class="btn primary block mT20">{%trans "Submit a ticket"%}</button>
+{%else%}
+    <button class="btn primary block mT20">{%trans "Send new message"%}</button>
+{%endif%}
   </form>
 </div>
