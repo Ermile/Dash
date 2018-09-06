@@ -43,7 +43,9 @@
 {%endif%}
 {%if sidebarDetail.tags%}
   {%for key, value in sidebarDetail.tags%}
-    <li><a href="{{url.here}}/ticket?tag={{value.slug}}"><span class="floatRa mRa10 fc-mute sf-tag"></span>{{value.title}}</a></li>
+        {%if value.status == 'enable' or perm_su()%}
+          <li><a href="{{url.here}}/ticket?tag={{value.slug}}"><span class="floatRa mRa10 fc-mute sf-tag"></span>{{value.title}}</a></li>
+        {%endif%}
   {%endfor%}
 
 {%endif%}
