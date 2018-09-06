@@ -439,14 +439,14 @@ class posts
 
 		$check_all_is_cat = null;
 
-		if($_type === 'tag')
+		if(strpos($_type, 'tag') !== false)
 		{
 			$tag = $category;
 			$tag = explode(',', $tag);
 			$tag = array_filter($tag);
 			$tag = array_unique($tag);
 
-			$check_exist_tag = \dash\db\terms::get_mulit_term_title($tag, 'tag');
+			$check_exist_tag = \dash\db\terms::get_mulit_term_title($tag, $_type);
 
 			$all_tags_id = [];
 
@@ -483,7 +483,7 @@ class posts
 
 					$multi_insert_tag[] =
 					[
-						'type'     => 'tag',
+						'type'     => $_type,
 						'status'   => 'enable',
 						'title'    => $value,
 						'slug'     => $slug,

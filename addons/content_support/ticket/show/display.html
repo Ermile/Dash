@@ -79,7 +79,8 @@
 
 {%block iTag%}
 <div class="tagDetector">
-{%set postTag = tags({"post_id" : requestGET.id , "title" : true, "format" : 'csv', "related" : "comments"}) %}
+  {%set myID = requestGET.id | coding('encode')%}
+{%set postTag = tags({"post_id" : myID , "title" : true, "format" : 'csv', "type" : "support_tag", "related" : "comments"}) %}
 
 
   <div class="input mB10 hide">

@@ -527,6 +527,12 @@ class twigAddons
 				$related = $args['related'];
 			}
 
+			$type = 'tag';
+			if(isset($args['type']) && is_string($args['type']) && $args['type'])
+			{
+				$type = $args['type'];
+			}
+
 			// get tags
 			if(isset($args['post_id']))
 			{
@@ -538,7 +544,7 @@ class twigAddons
 				}
 				else
 				{
-					$tags = \dash\app\posts::get_category_tag($args['post_id'], 'tag', $related);
+					$tags = \dash\app\posts::get_category_tag($args['post_id'], $type, $related);
 					\dash\temp::set($cache_key, $tags);
 				}
 			}
