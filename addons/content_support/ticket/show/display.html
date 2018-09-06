@@ -67,10 +67,16 @@
 {%for key, value in dataTable%}
       <tr class="{{value.rowColor}}" id='msg{{value.id}}'>
         <td class="collapsing">
-          <a href="{{url.here}}/ticket&user={{value.user_id}}">
           <img src="{{value.avatar}}" class="avatar mRa10" alt="{{value.displayname}}">
           <span class="txtB s0 fs08">{{value.displayname}}</span>
-          </a>
+{%if perm_su()%}
+          <nav class="txtRa">
+            <a href="{{url.this}}?user_id={{value.user_id}}" title='{%trans "User tickets"%}'><i class="sf-question-circle"></i></a>
+            <a href="{{url.kingdom}}/cp/users/view?id={{value.user_id}}" title='{%trans "User Profile"%}'><i class="sf-user-md"></i></a>
+            <a href="{{url.kingdom}}/cp/visitor/user?id={{value.user_id}}" title='{%trans "User last visits"%}'><i class="sf-flight"></i></a>
+            <a href="{{url.kingdom}}/cp/visitor/before?id={{value.user_id}}&datetime={{masterTicketDetail.datecreated | url_encode}}" title='{%trans "Before create ticket"%}'><i class="sf-dzone"></i></a>
+          </nav>
+{%endif%}
         </td>
         <td class="pRa10">{{value.content | raw | nl2br}}</td>
         <td class="collapsing"><small class="fc-mute">{{value.datecreated | sdate("year")}}</small></td>
