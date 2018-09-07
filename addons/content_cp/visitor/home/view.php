@@ -40,19 +40,78 @@ class view
 			$args['sort'] = 'visitors.id';
 		}
 
-		if(\dash\request::get('url')) $args['urls.url'] = $_GET['url'];
-		if(\dash\request::get('domain')) $args['urls.domain'] = $_GET['domain'];
-		if(\dash\request::get('query')) $args['urls.query'] = $_GET['query'];
-		if(\dash\request::get('service_id')) $args['visitors.service_id'] = $_GET['service_id'];
-		if(\dash\request::get('visitor_ip')) $args['visitors.visitor_ip'] = $_GET['visitor_ip'];
-		if(\dash\request::get('user_id')) $args['visitors.user_id'] = $_GET['user_id'];
-		if(\dash\request::get('external')) $args['visitors.external'] = $_GET['external'];
-		if(\dash\request::get('date')) $args['visitors.date'] = $_GET['date'];
-		if(\dash\request::get('ref_url')) $args['referer.url'] = $_GET['ref_url'];
-		if(\dash\request::get('ref_pwd')) $args['referer.pwd'] = $_GET['ref_pwd'];
+		if(\dash\request::get('url'))
+		{
+			$args['urls.url'] = $_GET['url'];
+		}
+
+		if(\dash\request::get('domain'))
+		{
+			$args['urls.domain'] = $_GET['domain'];
+		}
+
+		if(\dash\request::get('query'))
+		{
+			$args['urls.query'] = $_GET['query'];
+		}
+
+		if(\dash\request::get('service_id'))
+		{
+			$args['visitors.service_id'] = $_GET['service_id'];
+		}
+
+		if(\dash\request::get('visitor_ip'))
+		{
+			$args['visitors.visitor_ip'] = $_GET['visitor_ip'];
+		}
+
+		if(\dash\request::get('external'))
+		{
+			$args['visitors.external'] = $_GET['external'];
+		}
+
+		if(\dash\request::get('date'))
+		{
+			$args['visitors.date'] = $_GET['date'];
+		}
+
+		if(\dash\request::get('ref_url'))
+		{
+			$args['referer.url'] = $_GET['ref_url'];
+		}
+
+		if(\dash\request::get('ref_pwd'))
+		{
+			$args['referer.pwd'] = $_GET['ref_pwd'];
+		}
+
+		if(\dash\request::get('userid'))
+		{
+			$user_id = \dash\coding::decode(\dash\request::get('userid'));
+			if($user_id)
+			{
+				$args['visitors.user_id'] = $user_id;
+			}
+		}
+
+
+		if(\dash\request::get('type') && in_array(\dash\request::get('type'), ['before', 'after']))
+		{
+			if(\dash\request::get('datetime'))
+			{
+				$datetime = \dash\request::get('datetime');
+				if(strtotime($datetime) !== false)
+				{
+					$operation = \dash\request::get('type') === 'after' ? ' > ' : ' < ';
+					$args['visitors.timeraw'] = [$operation, (string) strtotime($datetime)];
+				}
+			}
+		}
 
 
 		$dataTable = \dash\db\visitors::search(\dash\request::get('q'), $args);
+
+		$dataTable = array_map(['self', 'ready'], $dataTable);
 
 		\dash\data::dataTable($dataTable);
 
@@ -88,6 +147,33 @@ class view
 		// set dataFilter
 		$dataFilter = \dash\app\sort::createFilterMsg($search_string, $filterArray);
 		\dash\data::dataFilter($dataFilter);
+	}
+
+	public static function ready($_data)
+	{
+		$result = [];
+		foreach ($_data as $key => $value)
+		{
+			switch ($key)
+			{
+				case 'user_id':
+					if(isset($value))
+					{
+						$result[$key] = \dash\coding::encode($value);
+					}
+					else
+					{
+						$result[$key] = null;
+					}
+					break;
+
+				default:
+					$result[$key] = $value;
+					break;
+			}
+		}
+
+		return $result;
 	}
 }
 ?>

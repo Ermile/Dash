@@ -92,8 +92,8 @@
           <nav class="txtRa">
             <a href="{{url.this}}?user_id={{value.user_id}}" title='{%trans "User tickets"%}'><i class="sf-question-circle"></i></a>
             <a href="{{url.kingdom}}/cp/users/view?id={{value.user_id}}" title='{%trans "User Profile"%}'><i class="sf-user-md"></i></a>
-            <a href="{{url.kingdom}}/cp/visitor/user?id={{value.user_id}}" title='{%trans "User last visits"%}'><i class="sf-flight"></i></a>
-            <a href="{{url.kingdom}}/cp/visitor/before?id={{value.user_id}}&datetime={{masterTicketDetail.datecreated | url_encode}}" title='{%trans "Before create ticket"%}'><i class="sf-dzone"></i></a>
+            <a href="{{url.kingdom}}/cp/visitor?userid={{value.user_id}}" title='{%trans "User last visits"%}'><i class="sf-flight"></i></a>
+            <a href="{{url.kingdom}}/cp/visitor?type=before&userid={{value.user_id}}&datetime={{masterTicketDetail.datecreated | url_encode}}" title='{%trans "Before create ticket"%}'><i class="sf-dzone"></i></a>
           </nav>
 {%endif%}
         </td>
