@@ -67,6 +67,18 @@ class view
 		// swich verify from
 		switch (\dash\utility\enter::get_session('verify_from'))
 		{
+			case 'two_step_set':
+				\dash\data::rememberLink(false);
+				\dash\data::startNewMobile(false);
+				$myDesc .= ' '. T_("This is request of active two-step verification of you account!");
+				break;
+
+			case 'two_step_unset':
+				\dash\data::rememberLink(false);
+				\dash\data::startNewMobile(false);
+				$myDesc .= ' '. T_("This is request of deactive two-step verification of you account!");
+				break;
+
 			// user from signup go to this page
 			case 'signup':
 			case 'set':

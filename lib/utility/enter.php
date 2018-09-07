@@ -140,6 +140,11 @@ class enter
 			case 'email':
 				$data = \dash\db\users::get_by_email($_user_aut_key);
 				break;
+
+			case 'loaded':
+				$data = $_user_aut_key;
+				break;
+
 		}
 
 		if($data)
@@ -319,6 +324,22 @@ class enter
 		if(!$user_id)
 		{
 			return;
+		}
+
+		if(self::user_data('twostep'))
+		{
+			if(self::get_session('twostep_is_ok'))
+			{
+				// no problem
+			}
+			else
+			{
+				// set session verify_from set
+				\dash\utility\enter::set_session('verify_from', 'ask_twostep');
+
+				// send code way
+				\dash\utility\enter::go_to_verify();
+			}
 		}
 
 		\dash\user::init($user_id);
@@ -806,6 +827,7 @@ class enter
 			return false;
 		}
 
+
 		// expire code
 		if(self::get_session('verification_code_id'))
 		{
@@ -817,6 +839,9 @@ class enter
 			self::set_session('verification_code_way', null);
 			self::set_session('verification_code_id', null);
 		}
+
+		// to no check again
+		self::set_session('twostep_is_ok', true);
 
 		/**
 		 ***********************************************************
@@ -858,8 +883,9 @@ class enter
 			// set the alert message
 			$alert =
 			[
+				'clean_session' => true,
 				'text' => T_("Your username was removed"),
-				'link' => \dash\url::site(),
+				'link' => \dash\url::kingdom(),
 			];
 
 			\dash\log::db('usernameRemoved');
@@ -963,8 +989,9 @@ class enter
 			// set the alert message
 			$alert =
 			[
-				'text' => $text,
-				'link' => \dash\url::site(),
+				'clean_session' => true,
+				'text'          => $text,
+				'link'          => \dash\url::kingdom(),
 			];
 
 			self::set_session('alert', $alert);
@@ -998,16 +1025,6 @@ class enter
 			\dash\db\users::update(['email' => self::get_session('temp_email')], self::user_data('id'));
 		}
 
-		/**
-		 ***********************************************************
-		 * VERIFY FROM
-		 * TWO STEP VERICICATION
-		 ***********************************************************
-		 */
-		if(self::get_session('verify_from') === 'two_step' &&	is_numeric(self::user_data('id')))
-		{
-			// no thing yet
-		}
 
 
 		/**
@@ -1020,6 +1037,19 @@ class enter
 		{
 			// set on two_step of this user
 			\dash\db\users::update(['twostep' => 1], self::user_data('id'));
+			$alert =
+			[
+				'clean_session' => true,
+				'text' => T_("Your two-step verification is now active for your account"),
+				'link' => \dash\url::kingdom(). '/account/profile/security',
+			];
+
+			\dash\log::db('twoStepActive');
+			\dash\user::refresh();
+			self::set_session('alert', $alert);
+			self::next_step('alert');
+			self::go_to('alert');
+			return;
 		}
 
 
@@ -1033,6 +1063,19 @@ class enter
 		{
 			// set off two_step of this user
 			\dash\db\users::update(['twostep' => 0], self::user_data('id'));
+			$alert =
+			[
+				'clean_session' => true,
+				'text' => T_("Your two-step verification is now deactive for your account"),
+				'link' => \dash\url::kingdom(). '/account/profile/security',
+			];
+
+			\dash\log::db('twoStepDeactive');
+			\dash\user::refresh();
+			self::set_session('alert', $alert);
+			self::next_step('alert');
+			self::go_to('alert');
+			return;
 		}
 
 
@@ -1043,8 +1086,9 @@ class enter
 			\dash\db\sessions::change_password(\dash\user::id());
 			$alert =
 			[
+				'clean_session' => true,
 				'text' => T_("Your password was changed"),
-				'link' => \dash\url::site(),
+				'link' => \dash\url::kingdom(),
 			];
 
 			\dash\log::db('passwordChangeOK');

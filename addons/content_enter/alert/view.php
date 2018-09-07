@@ -31,6 +31,11 @@ class view
 			\dash\data::alertButton($alert['button']);
 		}
 		\dash\log::db('viewAlert', ['data' => \dash\data::alertMsg()]);
+
+		if(isset($alert['clean_session']) && $alert['clean_session'])
+		{
+			\dash\utility\enter::clean_session();
+		}
 	}
 }
 ?>

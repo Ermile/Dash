@@ -36,7 +36,7 @@ class model
 	{
 		$post =
 		[
-			'twostep'       => \dash\request::post('twostep'),
+			// 'twostep'       => \dash\request::post('twostep'),
 			'forceremember' => \dash\request::post('forceremember'),
 
 		];

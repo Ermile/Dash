@@ -1,0 +1,22 @@
+{%extends display.enter%}
+
+
+
+{%block contentBody%}
+
+{%if user.twostep  %}
+  <div class='text'>
+   <p>{%trans "Two-step login is now active for you."%}</p>
+  </div>
+  <button href="{{url.pwd}}" data-ajaxify data-method='post' data-data='{"action": "deactive"}' class="btn pain block">{%trans "Deactive two-step"%}</button>
+{%else%}
+  <div class='text'>
+   <p>{%trans "Two-step login is now deactive for you."%}</p>
+  </div>
+  <button href="{{url.pwd}}" data-ajaxify data-method='post' data-data='{"action": "active"}' class="btn success block">{%trans "Active two-step"%}</button>
+{%endif%}
+
+{%endblock%}
+
+
+{%block contentFooter%}{%endblock%}

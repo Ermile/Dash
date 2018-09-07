@@ -31,11 +31,29 @@
 
 
 {%block iTwostep%}
-<div class="switch1 mT20">
- <input type="checkbox" name="twostep" id="twostep" {%if dataRow.twostep  %}checked{%endif%}>
- <label for="twostep"></label>
- <label for="twostep">{%trans "Two step verification"%}</label>
+<div class="f">
+
+{%if dataRow.twostep%}
+<p class="c10 msg success2 txtC">
+  {%trans "Two step verification for your account is active"%}
+  <br>
+  <small>
+    {%trans "To disable it "%}
+    <a href="{{url.kingdom}}/enter/twostep" data-direct target="_blank">{%trans "Click here"%}</a></p>
+  </small>
+
+{%else%}
+<p class="c10 msg warn txtC">
+  {%trans "Two step verification for your account is not active!"%}
+  <br>
+<b>
+  {%trans "To disable it "%}
+  <a href="{{url.kingdom}}/enter/twostep" data-direct target="_blank">{%trans "Click here"%}</a></p>
+</b>
+
+{%endif%}
 </div>
+
 {%endblock%}
 
 {%block iRememberme%}
