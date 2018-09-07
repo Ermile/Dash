@@ -75,6 +75,25 @@ class view
 			\dash\data::page_title(\dash\data::page_title() . ' '. \dash\utility\human::fitNumber($dataTable[0]['id']) );
 		}
 
+		if(\dash\permission::supervisor())
+		{
+			$args =
+			[
+				'sort'  => 'visitors.id',
+				'order' => 'desc',
+				'limit' => 5,
+				'pagenation' => false,
+			];
+			$url = \dash\url::this().'/show?id='. \dash\request::get('id');
+
+			$args['urls.urlmd5'] = md5($url);
+			$args['visitors.user_id'] = $ticket_user_id;
+
+			$lastSeen = \dash\db\visitors::search(\dash\request::get('q'), $args);
+			\dash\data::lastSeen($lastSeen);
+
+		}
+
 	}
 }
 ?>
