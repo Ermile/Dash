@@ -29,7 +29,10 @@ class model
 		if(\dash\request::post('password'))
 		{
 			\dash\log::db('hiddenPasswordFieldIsFull');
-			\dash\notif::error(T_("Your browser has sent a saved password. Delete it and continue"));
+			\dash\notif::warn(T_("Your browser has sent a saved password. Delete it and continue"));
+			$get          = \dash\request::get();
+			$get['clean'] = '1';
+			\dash\redirect::to(\dash\url::this(). '?'. http_build_query($get));
 			return false;
 		}
 
