@@ -273,6 +273,7 @@ class sessions
 			$query =
 			"
 				SELECT
+					code,
 					id,
 					ip,
 					last_seen,

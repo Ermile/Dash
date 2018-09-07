@@ -12,10 +12,14 @@ class view
 		}
 
 		$mySessions    = self::sessions_list();
+
+		\dash\data::currentCookie(\dash\db\sessions::get_cookie());
+
 		$mySessionData = [];
 		foreach ($mySessions as $key => $row)
 		{
 			@$mySessionData[$key]['id']         = $row['id'];
+			@$mySessionData[$key]['code']       = $row['code'];
 			@$mySessionData[$key]['ip']         = long2ip($row['ip']);
 			@$mySessionData[$key]['last']       = $row['last_seen'];
 			@$mySessionData[$key]['browser']    = T_(ucfirst($row['agent_name']));
