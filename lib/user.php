@@ -294,17 +294,24 @@ class user
 				return;
 			}
 
-			$status = \dash\db\sessions::is_active($cookie, \dash\user::id());
-
-			if($status === false)
+			if(isset($_SESSION['main_account']))
 			{
-				\dash\db\sessions::terminate_cookie();
-
-				\dash\log::db('userForceLogoutAuto');
-				// muset force logout this user
-				\dash\utility\enter::set_logout(\dash\user::id());
+				// if the admin user login by this user
+				// not save the session
 			}
+			else
+			{
+				$status = \dash\db\sessions::is_active($cookie, \dash\user::id());
 
+				if($status === false)
+				{
+					\dash\db\sessions::terminate_cookie();
+
+					\dash\log::db('userForceLogoutAuto');
+					// muset force logout this user
+					\dash\utility\enter::set_logout(\dash\user::id());
+				}
+			}
 		}
 	}
 }
