@@ -100,6 +100,17 @@ class ticket
 			$args['subdomain'] = \dash\url::subdomain();
 		}
 
+		$replace =
+		[
+			'domain'      => \dash\url::domain(),
+			'content'     => $args['content'],
+			'displayname' => \dash\user::detail('displayname'),
+		];
+
+		$notif_args = [];
+
+		\dash\notification::send('newTicket', null, $replace, $notif_args);
+
 		$comment_id = \dash\db\comments::insert($args);
 
 		if(!$comment_id)

@@ -5,12 +5,10 @@
     "telegram": true,
     "sms": true,
     "email": true,
-
-    "can_duplicate" : true,
-    "can_duplicate_in_one_day" : true,
-    "can_duplicate_read" : true,
-    "can_duplicate_unread" : true,
-
+    "can_duplicate": true,
+    "can_duplicate_in_one_day": true,
+    "can_duplicate_read": true,
+    "can_duplicate_unread": true,
     "life_time": "5d",
     "need_answer": true,
     "btn": {
@@ -21,5 +19,11 @@
       "accept_owner": "\\dash\\user\\permission\\set",
       "reject_owner": null
     }
+  },
+  "newTicket": {
+    "title": ":displayname add new ticket in :domain",
+    "content": ":content",
+    "telegram": true,
+    "sms": true
   }
 }

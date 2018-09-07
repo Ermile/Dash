@@ -188,6 +188,7 @@ class notification
 		}
 
 		$add_notif = [];
+		$sendnotif = [];
 
 		// set title
 		$title = self::get_detail($notif_detail, 'title');
@@ -229,6 +230,7 @@ class notification
 		{
 			if(self::get_detail($notif_detail, 'telegram'))
 			{
+				$sendnotif['telegram'] = ['to' => $user_detail['chatid']];
 				$add_notif['telegram'] = 1;
 			}
 		}
@@ -237,6 +239,7 @@ class notification
 		{
 			if(self::get_detail($notif_detail, 'sms'))
 			{
+				$sendnotif['sms'] = ['to' => $user_detail['mobile']];
 				$add_notif['sms'] = 1;
 			}
 		}
@@ -245,6 +248,7 @@ class notification
 		{
 			if(self::get_detail($notif_detail, 'email'))
 			{
+				$sendnotif['email'] = ['to' => $user_detail['mobile']];
 				$add_notif['email'] = 1;
 			}
 		}
@@ -303,6 +307,26 @@ class notification
 
 		if(\dash\db\notifications::insert($add_notif))
 		{
+			if(!empty($sendnotif))
+			{
+				$add_send_notif = [];
+				foreach ($sendnotif as $key => $value)
+				{
+					$add_send_notif[]  =
+					[
+						'to'          => $value['to'],
+						'way'         => $key,
+						'status'      => 'awaiting',
+						'text'        => "$add_notif[title] \n $add_notif[content]",
+						'datecreated' => date("Y-m-d H:i:s"),
+					];
+				}
+
+				if(!empty($add_send_notif))
+				{
+					\dash\db\sendnotifications::multi_insert($add_send_notif);
+				}
+			}
 			return true;
 		}
 		else
