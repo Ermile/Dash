@@ -242,6 +242,11 @@ class user
 			$cookie = \dash\db\sessions::get_cookie();
 			if($cookie)
 			{
+				if(!\dash\option::config('enter', 'remember_me'))
+				{
+					// if enter remember_me is false not save session
+					return;
+				}
 				$status = \dash\db\sessions::is_active($cookie, \dash\user::id());
 
 				if($status === false)
