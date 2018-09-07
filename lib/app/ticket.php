@@ -305,33 +305,38 @@ class ticket
 		$result = [];
 		foreach ($_data as $key => $value)
 		{
-
 			switch ($key)
 			{
 				case 'status':
-					$color = null;
+					$color       = null;
+					$color_class = null;
 					switch ($value)
 					{
 						case 'awaiting':
-							$color = null;
+							$color       = null;
+							$color_class = 'pain';
 							break;
 
 						case 'unapproved':
-							$color = 'warning';
+							$color       = 'warning';
+							$color_class = 'warn';
 							break;
 
 						case 'spam':
 						case 'deleted':
 						case 'filter':
-							$color = 'negative';
+							$color       = 'negative';
+							$color_class = 'danger';
 							break;
 
 						case 'close':
-							$color = 'disabled';
+							$color       = 'disabled';
+							$color_class = 'secondary';
 							break;
 
 						case 'answered':
-							$color = 'positive';
+							$color       = 'positive';
+							$color_class = 'success';
 							break;
 					}
 
@@ -343,9 +348,9 @@ class ticket
 						}
 					}
 
-					$result['rowColor'] = $color;
-					$result[$key]       = $value;
-
+					$result['rowColor']   = $color;
+					$result['colorClass'] = $color_class;
+					$result[$key]         = $value;
 					break;
 
 				case 'user_id':
