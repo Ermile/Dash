@@ -1,5 +1,5 @@
 <?php
-namespace content_support\ticket\edit;
+namespace content_support\message\edit;
 
 class view
 {
@@ -8,8 +8,8 @@ class view
 	{
 		\dash\permission::check('supportEditTicket');
 
-		\dash\data::page_title(T_("Edit ticket"));
-		\dash\data::page_desc(T_("Edit your ticket or delete it."));
+		\dash\data::page_title(T_("Edit message"));
+		\dash\data::page_desc(T_("Edit your message or delete it."));
 
 		\dash\data::page_pictogram('edit');
 

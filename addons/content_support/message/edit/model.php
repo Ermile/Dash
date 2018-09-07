@@ -1,5 +1,5 @@
 <?php
-namespace content_support\ticket\edit;
+namespace content_support\message\edit;
 
 class model
 {
@@ -23,12 +23,12 @@ class model
 			'content' => $content,
 		];
 
-		\content_support\ticket\edit\view::config();
+		\content_support\message\edit\view::config();
 
 		\dash\db\comments::update($args, \dash\request::get('id'));
 
 		\dash\notif::ok(T_("Ticket updated"));
-		\dash\redirect::to(\dash\url::this().'/show?id='. \dash\request::get('id'));
+		\dash\redirect::to(\dash\url::here().'/ticket/show?id='. \dash\request::get('id'));
 
 	}
 }

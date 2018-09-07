@@ -100,7 +100,7 @@
         <td class="pRa10">{{value.content | raw | nl2br}}
 {%if perm_su()%}
           <div>
-            <a class="btn outline sm mT10" href="{{url.this}}/message/edit?id={{value.id}}">{%trans "Edit"%}</a>
+            <a class="btn outline sm mT10" href="{{url.here}}/message/edit?id={{value.id}}">{%trans "Edit"%}</a>
           </div>
 {%endif%}
 {%if value.file %}
