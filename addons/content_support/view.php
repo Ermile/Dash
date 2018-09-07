@@ -118,7 +118,7 @@ class view
 		switch (\dash\data::accessMode())
 		{
 			case 'mine':
-				$args['user_id'] = \dash\user::id();
+				$args['comments.user_id'] = \dash\user::id();
 				break;
 
 			case 'all':

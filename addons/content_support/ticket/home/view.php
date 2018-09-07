@@ -83,7 +83,6 @@ class view
 			}
 		}
 
-
 		$subdomain = \dash\request::get('subdomain');
 
 		if($subdomain && \dash\permission::check('supportTicketView'))
@@ -92,6 +91,12 @@ class view
 		}
 
 
+		$tag = \dash\request::get('tag');
+
+		if($tag && \dash\permission::check('supportTicketView'))
+		{
+			$args['search_tag'] = $tag;
+		}
 
 		\content_support\view::dataList($args);
 	}

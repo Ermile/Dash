@@ -54,7 +54,7 @@ class comments
 
 		if(isset($_options['join_user']) && $_options['join_user'])
 		{
-			if(isset($_options['get_tag']) && $_options['get_tag'])
+			if((isset($_options['get_tag']) && $_options['get_tag']) || (isset($_options['search_tag']) && $_options['search_tag']))
 			{
 				$_options['public_show_field'] =
 				"
@@ -85,6 +85,19 @@ class comments
 				)
 			";
 
+			if(isset($_options['search_tag']) && $_options['search_tag'])
+			{
+				$_options['master_join'] =
+				"
+					INNER JOIN users ON users.id = comments.user_id
+					INNER JOIN termusages ON termusages.related_id = comments.id AND termusages.related = 'comments'
+					INNER JOIN terms ON terms.id  = termusages.term_id
+				";
+
+				$_options['terms.slug'] = $_options['search_tag'];
+			}
+
+			unset($_options['search_tag']);
 		}
 
 		return \dash\db\config::public_search('comments', $_string, $_options);
@@ -124,7 +137,12 @@ class comments
 			$query =
 			"
 				SELECT
-					terms.*
+					terms.id,
+					terms.slug,
+					terms.title,
+					terms.meta,
+					terms.status,
+					count(*) AS `useage_count`
 				FROM
 					terms
 				INNER JOIN termusages ON termusages.term_id  = terms.id
@@ -132,6 +150,12 @@ class comments
 				WHERE
 					termusages.type = 'support_tag' AND
 					$where
+				GROUP BY
+					terms.id,
+					terms.slug,
+					terms.title,
+					terms.meta,
+					terms.status
 			";
 			$result = \dash\db::get($query);
 
