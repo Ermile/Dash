@@ -127,6 +127,26 @@ class sessions
 	}
 
 
+	public static function is_active($_code, $_user_id)
+	{
+		if($_code && is_numeric($_user_id))
+		{
+			$_code = addslashes($_code);
+			$get   = \dash\db::get("SELECT sessions.status FROM sessions WHERE sessions.user_id = $_user_id AND sessions.code = '$_code' LIMIT 1", null, true);
+
+			if(isset($get['status']) && $get['status'] === 'active')
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		return null;
+	}
+
+
 	/**
 	 * Gets the user identifier.
 	 *

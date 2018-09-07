@@ -236,6 +236,22 @@ class user
 				}
 			}
 		}
+		else
+		{
+			// check session is not deactive
+			$cookie = \dash\db\sessions::get_cookie();
+			if($cookie)
+			{
+				$status = \dash\db\sessions::is_active($cookie, \dash\user::id());
+
+				if($status === false)
+				{
+					\dash\log::db('userForceLogoutAuto');
+					// muset force logout this user
+					\dash\utility\enter::set_logout(\dash\user::id());
+				}
+			}
+		}
 	}
 }
 ?>
