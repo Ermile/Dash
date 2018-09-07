@@ -60,6 +60,26 @@ class sendnotifications
 	}
 
 
+	public static function not_sended()
+	{
+		$query = "SELECT * FROM sendnotifications WHERE sendnotifications.status = 'awaiting' ";
+		return \dash\db::get($query);
+	}
+
+
+	public static function set_status($_status, $_ids)
+	{
+		$_ids = array_filter($_ids);
+		$_ids = array_unique($_ids);
+
+		if($_ids)
+		{
+			$_ids = implode(',', $_ids);
+			$query = "UPDATE sendnotifications SET sendnotifications.status = '$_status' WHERE sendnotifications.id IN ($_ids) ";
+			return \dash\db::query($query);
+		}
+	}
+
 
 
 }
