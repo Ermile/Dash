@@ -457,6 +457,28 @@ class user
 
 					break;
 
+				case 'forceremember':
+					if($value === null)
+					{
+						if(\dash\option::config('enter', 'remember_me'))
+						{
+							$result[$key] = true;
+						}
+						else
+						{
+							$result[$key] = false;
+						}
+					}
+					elseif($value)
+					{
+						$result[$key] = true;
+					}
+					else
+					{
+						$result[$key] = false;
+					}
+					break;
+
 				default:
 					$result[$key] = $value;
 					break;

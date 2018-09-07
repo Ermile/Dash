@@ -344,27 +344,50 @@ class enter
 
 		\dash\user::init($user_id);
 
-		if(isset($_SESSION['main_account']) && isset($_SESSION['main_mobile']))
-		{
-			if(isset($_SESSION['auth']['mobile']) && $_SESSION['auth']['mobile'] === $_SESSION['main_mobile'])
-			{
-				// default of this variable is true
-				if(\dash\option::config('enter', 'remember_me'))
-				{
-					\dash\db\sessions::set($user_id);
-				}
-			}
-			// if the admin user login by this user
-			// not save the session
-		}
-		else
+		$set_session = false;
+
+		if(is_null(self::user_data('forceremember')))
 		{
 			// default of this variable is true
 			if(\dash\option::config('enter', 'remember_me'))
 			{
-				// set remeber and save session
-				\dash\db\sessions::set($user_id);
+				$set_session = true;
 			}
+			else
+			{
+				// no login by remember
+				$set_session = false;
+			}
+		}
+		elseif(is_numeric(self::user_data('forceremember')))
+		{
+			if(intval(self::user_data('forceremember')) === 0)
+			{
+				$set_session = false;
+				// no login by remember
+			}
+			elseif(intval(self::user_data('forceremember')) === 1)
+			{
+				$set_session = true;
+
+			}
+		}
+
+		if(isset($_SESSION['main_account']) && isset($_SESSION['main_mobile']))
+		{
+			if(isset($_SESSION['auth']['mobile']) && $_SESSION['auth']['mobile'] === $_SESSION['main_mobile'])
+			{
+				// nothign
+				// read $set_session
+			}
+			else
+			{
+				// not save session for other people never
+				$set_session = false;
+			}
+		}
+		else
+		{
 			// check user status
 			// if the user status is awaiting
 			// set the user status as enable
@@ -372,6 +395,12 @@ class enter
 			{
 				\dash\db\users::update(['status' => 'active'], $user_id);
 			}
+		}
+
+		if($set_session)
+		{
+			// set remeber and save session
+			\dash\db\sessions::set($user_id);
 		}
 
 		$url = self::find_redirect_url($_url);

@@ -211,12 +211,57 @@ class user
 		if(!\dash\user::login())
 		{
 			$cookie = \dash\db\sessions::get_cookie();
-			if($cookie)
+			if(!$cookie)
 			{
-				$user_id = \dash\db\sessions::get_user_id();
+				return;
+			}
 
-				if($user_id && is_numeric($user_id))
+			$user_id = \dash\db\sessions::get_user_id();
+
+			if($user_id && is_numeric($user_id))
+			{
+				$load_user = \dash\db\users::get_by_id($user_id);
+
+				if(!isset($load_user['id']))
 				{
+					return;
+				}
+
+				$logi_by_remember = false;
+
+				if(array_key_exists('forceremember', $load_user))
+				{
+					if(is_null($load_user['forceremember']))
+					{
+						// default of this variable is true
+						if(\dash\option::config('enter', 'remember_me'))
+						{
+							$logi_by_remember = true;
+						}
+						else
+						{
+							$logi_by_remember = false;
+							// no login by remember
+						}
+					}
+					elseif(is_numeric($load_user['forceremember']))
+					{
+						if(intval($load_user['forceremember']) === 0)
+						{
+							$logi_by_remember = false;
+							// no login by remember
+						}
+						elseif(intval($load_user['forceremember']) === 1)
+						{
+							$logi_by_remember = true;
+
+						}
+					}
+				}
+
+				if($logi_by_remember)
+				{
+					// login accessed and user must be login
 					self::init($user_id);
 
 					if(isset($_SESSION['main_account']))
@@ -226,36 +271,40 @@ class user
 					}
 					else
 					{
-						// default of this variable is true
-						if(\dash\option::config('enter', 'remember_me'))
-						{
-							\dash\db\sessions::set($user_id);
-							\dash\log::db('userLoginByRemember');
-						}
+						\dash\db\sessions::set($user_id);
+						\dash\log::db('userLoginByRemember');
 					}
 				}
+				else
+				{
+					// code find and not use to login
+					// then we terminate this code
+					\dash\db\sessions::terminate_cookie();
+				}
 			}
+
 		}
 		else
 		{
 			// check session is not deactive
 			$cookie = \dash\db\sessions::get_cookie();
-			if($cookie)
-			{
-				if(!\dash\option::config('enter', 'remember_me'))
-				{
-					// if enter remember_me is false not save session
-					return;
-				}
-				$status = \dash\db\sessions::is_active($cookie, \dash\user::id());
 
-				if($status === false)
-				{
-					\dash\log::db('userForceLogoutAuto');
-					// muset force logout this user
-					\dash\utility\enter::set_logout(\dash\user::id());
-				}
+			if(!$cookie)
+			{
+				return;
 			}
+
+			$status = \dash\db\sessions::is_active($cookie, \dash\user::id());
+
+			if($status === false)
+			{
+				\dash\db\sessions::terminate_cookie();
+
+				\dash\log::db('userForceLogoutAuto');
+				// muset force logout this user
+				\dash\utility\enter::set_logout(\dash\user::id());
+			}
+
 		}
 	}
 }

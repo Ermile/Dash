@@ -6,6 +6,11 @@ class view
 
 	public static function config()
 	{
+		if(!\dash\user::login())
+		{
+			\dash\redirect::to(\dash\url::kingdom());
+		}
+
 		$mySessions    = self::sessions_list();
 		$mySessionData = [];
 		foreach ($mySessions as $key => $row)

@@ -67,6 +67,12 @@ class view
 		// swich verify from
 		switch (\dash\utility\enter::get_session('verify_from'))
 		{
+			case 'ask_twostep':
+				\dash\data::rememberLink(false);
+				\dash\data::startNewMobile(true);
+				$myDesc .= ' '. T_("This is request of two-step verification!");
+				break;
+
 			case 'two_step_set':
 				\dash\data::rememberLink(false);
 				\dash\data::startNewMobile(false);

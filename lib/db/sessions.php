@@ -17,7 +17,7 @@ class sessions
 	 *
 	 * @return     string  ( description_of_the_return_value )
 	 */
-	private static function generate_code($_user_id)
+	public static function generate_code($_user_id)
 	{
 		$code =  'Ermile'. $_user_id. '_;)_'. time(). '(^_^)' . rand(1000, 9999);
 		$code = \dash\utility::hasher($code, false);
@@ -33,7 +33,7 @@ class sessions
 	 *
 	 * @return     <type>  ( description_of_the_return_value )
 	 */
-	private static function insert($_args)
+	public static function insert($_args)
 	{
 		$set = \dash\db\config::make_set($_args);
 		if(!trim($set))
@@ -64,7 +64,7 @@ class sessions
 	 *
 	 * @param      <type>  $_args  The arguments
 	 */
-	private static function get($_args)
+	public static function get($_args)
 	{
 		if(\dash\temp::get('db_remember_me_query'))
 		{
@@ -89,7 +89,7 @@ class sessions
 	 *
 	 * @param      <type>  $_code  The code
 	 */
-	private static function check_code($_code)
+	public static function check_code($_code)
 	{
 		$get = self::get(['code' => $_code]);
 		if(empty($get))
@@ -184,7 +184,7 @@ class sessions
 	 *
 	 * @param      <type>  $_code  The code
 	 */
-	private static function terminate_cookie()
+	public static function terminate_cookie()
 	{
 		\dash\utility\cookie::delete("remember_me_");
 	}
@@ -195,7 +195,7 @@ class sessions
 	 *
 	 * @param      <type>  $_code  The code
 	 */
-	private static function set_cookie($_code)
+	public static function set_cookie($_code)
 	{
 		$cookie_domain = '.'. \dash\url::domain();
 		setcookie("remember_me_", $_code, time() + (60*60*24*365), '/', $cookie_domain);
@@ -408,7 +408,7 @@ class sessions
 	 * @param      <type>  $_user_id  The user identifier
 	 * @param      <type>  $_status   The status
 	 */
-	private static function change_status($_user_id, $_status, $_change_all_code = false)
+	public static function change_status($_user_id, $_status, $_change_all_code = false)
 	{
 		if(!$_user_id || !is_numeric($_user_id) || !$_status || !is_string($_status))
 		{
