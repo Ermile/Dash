@@ -1,0 +1,1 @@
+ALTER TABLE `users` ADD `forceremember` bit(1) NULL DEFAULT NULL;

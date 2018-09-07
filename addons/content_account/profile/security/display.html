@@ -18,6 +18,8 @@
 {{block("iPasswordLink")}}
 {{block("DeleteAccount")}}
 {{block("iTwostep")}}
+{{block("iRememberme")}}
+
 {{block("iSaveAll")}}
       </div>
 
@@ -33,6 +35,14 @@
  <input type="checkbox" name="twostep" id="twostep" {%if dataRow.twostep  %}checked{%endif%}>
  <label for="twostep"></label>
  <label for="twostep">{%trans "Two step verification"%}</label>
+</div>
+{%endblock%}
+
+{%block iRememberme%}
+<div class="switch1 mT20">
+ <input type="checkbox" name="forceremember" id="forceremember" {%if dataRow.forceremember  %}checked{%endif%}>
+ <label for="forceremember"></label>
+ <label for="forceremember">{%trans "Save remember session"%}</label>
 </div>
 {%endblock%}
 
@@ -249,6 +259,8 @@
 
 
 {%block iPasswordLink%}
+
+<p class="msg txtC"><a href="{{url.kingdom}}/enter/sessions" data-direct target="_blank">{%trans "Show active sessions"%}</a></p>
 <p class="msg txtC">{%trans "To change your password"%} <a href="{{url.kingdom}}/enter/pass/change" data-direct target="_blank">{%trans "Click here"%}</a></p>
 {%endblock%}
 

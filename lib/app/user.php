@@ -194,6 +194,13 @@ class user
 			$twostep = $twostep ? 1 : 0;
 		}
 
+		$forceremember = null;
+		if(\dash\app::isset_request('forceremember'))
+		{
+			$forceremember = \dash\app::request('forceremember');
+			$forceremember = $forceremember ? 1 : 0;
+		}
+
 		$unit_id = \dash\app::request('unit_id');
 		if($unit_id && !is_numeric($unit_id))
 		{
@@ -347,6 +354,7 @@ class user
 		$args['pin']         = $pin;
 		$args['ref']         = $ref;
 		$args['twostep']     = $twostep;
+		$args['forceremember']     = $forceremember;
 		$args['unit_id']     = $unit_id;
 		$args['language']    = $language;
 

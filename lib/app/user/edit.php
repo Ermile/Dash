@@ -86,6 +86,7 @@ trait edit
 		if(!\dash\app::isset_request('pin'))        unset($args['pin']);
 		if(!\dash\app::isset_request('ref'))        unset($args['ref']);
 		if(!\dash\app::isset_request('twostep'))    unset($args['twostep']);
+		if(!\dash\app::isset_request('forceremember'))    unset($args['forceremember']);
 		if(!\dash\app::isset_request('unit_id'))    unset($args['unit_id']);
 		if(!\dash\app::isset_request('language'))   unset($args['language']);
 		if(!\dash\app::isset_request('password'))   unset($args['password']);
