@@ -19,6 +19,7 @@ class model
 				\dash\log::db('sessionTerminate');
 				\dash\db\sessions::terminate_id(\dash\request::post('id'));
 				\dash\notif::ok(T_("Session terminated"));
+				\dash\redirect::pwd();
 				return true;
 			}
 		}
