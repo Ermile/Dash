@@ -27,8 +27,8 @@
       </div>
       <form method="post">
         <input type="hidden" name="TicketFormType" value="changeStatus">
-        <button class="btn block sm mTB10 danger outline" name="status" value="delete">{%trans "Delete ticket"%}</button>
-        <button class="btn block lg mTB10 success" name="status" value="open">{%trans "Open it again"%}</button>
+        <button class="btn block sm mTB10 danger outline" name="status" value="deleted">{%trans "Delete ticket"%}</button>
+        <button class="btn block lg mTB10 success" name="status" value="awaiting">{%trans "Open it again"%}</button>
       </form>
 {%elseif masterTicketDetail.status == 'deleted'%}
       <div class="fs08">
@@ -67,11 +67,15 @@
     <div class="cauto os fs08 compact" title='{%trans "Last activity"%} {{dataTable.0.datecreated | tdate("l d F Y H:i:s")}}'>{{masterTicketDetail.datecreated | tdate("l d F Y H:i:s")}}</div>
   </div>
 
-{%if perm_su()%}
+{%set myID = requestGET.id | coding('encode')%}
+{%set myTag = tags({"post_id" : myID ,  "format" : 'array', "type" : "support_tag", "related" : "comments"}) %}
+{%if myTag%}
   <div class="tagBox">
-    <a class="btn rounded sm mB5" href="{{url.this}}?tag=mytag">First tag</a>
-    <a class="btn rounded sm mB5 primary" href="{{url.this}}?tag=mytag">second tag for sample and edit</a>
-    <a class="btn rounded sm mB5 danger" href="{{url.this}}?tag=mytag">third tag</a>
+  {%for key, value in myTag%}
+    {%if value.status == 'enable' or perm_su()%}
+      <a class="btn rounded sm mB5 {%if value.meta.color%}{{value.meta.color}}{%endif%}" href="{{url.this}}?tag={{value.slug}}">{{value.title}}</a>
+    {%endif%}
+  {%endfor%}
   </div>
 {%endif%}
 
@@ -118,7 +122,7 @@
 
 {%block iTag%}
 <div class="tagDetector">
-  {%set myID = requestGET.id | coding('encode')%}
+{%set myID = requestGET.id | coding('encode')%}
 {%set postTag = tags({"post_id" : myID , "title" : true, "format" : 'csv', "type" : "support_tag", "related" : "comments"}) %}
 
 

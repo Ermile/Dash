@@ -561,9 +561,12 @@ class twigAddons
 			if(isset($args['format']) && $args['format'])
 			{
 				$outputFormat = $args['format'];
-
 				switch ($outputFormat)
 				{
+					case 'array':
+						return $tags;
+						break;
+
 					case 'json':
 						if(is_array($tags))
 						{
