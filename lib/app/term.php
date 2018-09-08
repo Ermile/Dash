@@ -340,7 +340,12 @@ class term
 			return false;
 		}
 
-		$return         = [];
+		$return  = [];
+
+		if(!$args['status'])
+		{
+			$args['status'] = 'enable';
+		}
 
 		$term_id = \dash\db\terms::insert($args);
 
