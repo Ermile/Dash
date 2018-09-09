@@ -4,7 +4,11 @@
   <div data-xhr='enter'>
 {%block content%}
 {%block contentTitle%}
+{%if url.module == ""%}
+   <h2 class='flex justify-center align-center'>{{page.title}}</h2>
+{%else%}
    <h2 class='flex justify-center align-center'>{{page.desc|raw}}</h2>
+{%endif%}
 {%endblock%}
 {%block contentBody%}
   <form method="post" autocomplete="off">
