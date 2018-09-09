@@ -8,8 +8,18 @@ class view
 	public static function config()
 	{
 		\dash\data::page_special(true);
-		\dash\data::page_title(T_('Enter to :name with mobile', ['name' => \dash\data::site_title()]));
-		\dash\data::page_desc(\dash\data::page_title());
+		\dash\data::page_title(T_('Enter to :name', ['name' => \dash\data::site_title()]));
+		\dash\data::page_desc(\dash\data::site_desc());
+
+		if(mb_strlen(\dash\data::page_desc()) < 150)
+		{
+			\dash\data::page_desc(\dash\data::page_desc(). ' | '. \dash\data::site_title());
+			if(mb_strlen(\dash\data::page_desc()) < 150)
+			{
+				\dash\data::page_desc(\dash\data::page_desc(). ' | '. \dash\data::service_desc());
+			}
+		}
+		var_dump(\dash\data::page_desc());
 		\dash\data::mobileReadonly(false);
 
 		$main_account = false;
