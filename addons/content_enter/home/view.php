@@ -19,7 +19,6 @@ class view
 				\dash\data::page_desc(\dash\data::page_desc(). ' | '. \dash\data::service_desc());
 			}
 		}
-		var_dump(\dash\data::page_desc());
 		\dash\data::mobileReadonly(false);
 
 		$main_account = false;
