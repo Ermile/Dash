@@ -2,38 +2,52 @@
 
 {%block pageContent%}
 
-  <div class="f">
+{%if options.parsian.status or options.zarinpal.status or options.irkish.status or options.payir.status or options.asanpardakht.status %}
+{% set HaveOnePayment = true%}
+{%endif%}
+<div class="f">
 
-    <div class="c s12 pA10">
+    <div class="c8 s12 pA10">
+    {%if HaveOnePayment %}
       <div class="cbox">
         <h2>{%trans "Charge your account"%}</h2>
         <p>{%trans "Choose a gateway and enter an amount to charge your account"%}</p>
 
         <form method="post" autocomplete="off">
+          {%if options.parsian.status%}
           <div class="radioGateway" title='{%trans "Parsian"%}'>
            <input type="radio" name="bank" value="parsian" id="parsian" checked>
            <label for='parsian' class="spay-64-parsian"></label>
           </div>
+          {%endif%}
 
+          {%if options.zarinpal.status%}
           <div class="radioGateway">
            <input type="radio" name="bank" value="ZarinPal" id="ZarinPal">
            <label for='ZarinPal' class="spay-64-zarinpal"></label>
           </div>
+          {%endif%}
 
+          {%if options.irkish.status%}
            <div class="radioGateway">
            <input type="radio" name="bank" value="irKish" id="irKish">
            <label for='irKish' class="spay-64-irkish"></label>
           </div>
+          {%endif%}
 
+          {%if options.payir.status%}
           <div class="radioGateway">
            <input type="radio" name="bank" value="payir" id="payir">
            <label for='payir' class="spay-64-payir"></label>
           </div>
+          {%endif%}
 
+          {%if options.asanpardakht.status%}
           <div class="radioGateway">
            <input type="radio" name="bank" value="asanpardakht" id="asanpardakht">
            <label for='asanpardakht' class="spay-64-asanpardakht"></label>
           </div>
+          {%endif%}
 
          <div class="input pA5">
           <label class="addon" for="amount-number">{%trans userUnit%}</label>
@@ -42,8 +56,9 @@
          </div>
         </form>
       </div>
+    {%endif%}
 
-      <div>
+
        <div class="cbox">
         <h2>{%trans "Promo code"%}</h2>
         <p>{%trans "If you have a promo code, please enter it below to receive your credit."%}</p>
@@ -57,10 +72,10 @@
         </form>
 
        </div>
-      </div>
+
     </div>
 
-    <div class="c4 s12 pA10">
+    <div class="c s12 pA10">
       <div class="cbox">
        <div class="statistic blue">
         <div class="value">
@@ -70,15 +85,7 @@
         <div class="label">{%trans "Your credit"%} <small>{%trans userUnit%}</small></div>
        </div>
       </div>
-      <a class="cbox" href="{{url.here}}/billing/detail" title='{%trans "Click to check detail"%}'>
-       <div class="statistic brown">
-        <div class="value">
-          <i class="sf-bag"></i>
-          <span class="counter">{{usage|number_format}}</span>
-        </div>
-        <div class="label">{%trans "Usage"%} <small>{%trans userUnit%}</small></div>
-       </div>
-      </a>
+
     </div>
 
   </div>
