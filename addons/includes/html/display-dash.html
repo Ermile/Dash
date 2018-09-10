@@ -51,7 +51,7 @@
 {%if login%}
   <figure>
 {%set avatarLink%}{%if dash.avatarLink is empty%}{{url.kingdom}}/account/profile{%else%}{{dash.avatarLink}}{%endif%}{%endset%}
-   <a href="{{avatarLink}}" title='{%trans "Edit your profile"%}' class="avatar">
+   <a href="{{avatarLink}}" title='{%trans "Edit your profile"%}' class="avatar" data-direct>
 {%if login.avatar%}
      <img src="{{login.avatar}}" alt='{%trans "Avatar of you"%} {{login.displayname}}'>
 {%else%}
