@@ -110,19 +110,22 @@
           </nav>
 {%endif%}
         </td>
-        <td class="pRa10">{{value.content | raw | nl2br}}
-{%if perm_su()%}
-          <div>
-            <a class="btn outline sm mT10" href="{{url.here}}/message/edit?id={{value.id}}">{%trans "Edit"%}</a>
-          </div>
-{%endif%}
+        <td class="pRa10">
+          <div>{{value.content | raw | nl2br}}</div>
+          <div class="f mT10">
 {%if value.file %}
-  <div>
-    <a class="badge mT10" href="{{value.file}}" target="_blank">{%trans "View attachment"%}</a>
-  </div>
+           <div>
+            <a class="badge" href="{{value.file}}" target="_blank">{%trans "View attachment"%}</a>
+           </div>
 {%endif%}
+           <div class="cauto os fc-mute">
+            <small title='{{value.datecreated | tdate("l d F Y H:i:s")}}'>{{value.datecreated | sdate("year")}}</small>
+{%if perm_su()%}
+            <a class="fs08 mLa10" href="{{url.here}}/message/edit?id={{value.id}}">{%trans "Edit"%}</a>
+{%endif%}
+           </div>
+          </div>
         </td>
-        <td class="collapsing s0"><small class="fc-mute" title='{{value.datecreated | tdate("l d F Y H:i:s")}}'>{{value.datecreated | sdate("year")}}</small></td>
       </tr>
 {%endfor%}
     </tbody>
