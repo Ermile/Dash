@@ -80,6 +80,12 @@ class model
 			return false;
 		}
 
+		if($mobile && strpos($ramz, $mobile) !== false)
+		{
+			\dash\notif::error(T_("Please do not use your mobile in password!"));
+			return false;
+		}
+
 		$displayname = \dash\request::post('displayname');
 		if(!$displayname || mb_strlen($displayname) > 50)
 		{
