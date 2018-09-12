@@ -328,17 +328,43 @@ class enter
 
 		if(self::user_data('twostep'))
 		{
-			if(self::get_session('twostep_is_ok'))
+			if(isset($_SESSION['main_account']) && isset($_SESSION['main_mobile']) && self::user_data('mobile') )
 			{
-				// no problem
+				if(self::user_data('mobile') === $_SESSION['main_mobile'])
+				{
+					if(self::get_session('twostep_is_ok'))
+					{
+						// no problem
+					}
+					else
+					{
+						// set session verify_from set
+						\dash\utility\enter::set_session('verify_from', 'ask_twostep');
+
+						// send code way
+						\dash\utility\enter::go_to_verify();
+					}
+				}
+				else
+				{
+					// if the admin user login by this user
+					// not ask two-step
+				}
 			}
 			else
 			{
-				// set session verify_from set
-				\dash\utility\enter::set_session('verify_from', 'ask_twostep');
+				if(self::get_session('twostep_is_ok'))
+				{
+					// no problem
+				}
+				else
+				{
+					// set session verify_from set
+					\dash\utility\enter::set_session('verify_from', 'ask_twostep');
 
-				// send code way
-				\dash\utility\enter::go_to_verify();
+					// send code way
+					\dash\utility\enter::go_to_verify();
+				}
 			}
 		}
 
