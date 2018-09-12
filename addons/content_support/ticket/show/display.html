@@ -136,7 +136,16 @@
 
 
 
+
 {%block iTag%}
+<label for='cat'>{%trans "Tag"%}</label>
+<select name="tag" class="select ui dropdown search addition"  id="tag">
+  <option value="" readonly>{%trans "Tag"%}</option>
+  {%for key, value in tagList%}
+    <option value="{{value.title}}">{{value.title}}</option>
+  {%endfor%}
+</select>
+
 <div class="tagDetector">
 {%if myTag%}
 {%set myID = requestGET.id | coding('encode')%}

@@ -75,8 +75,15 @@ class view
 			\dash\data::page_title(\dash\data::page_title() . ' '. \dash\utility\human::fitNumber($dataTable[0]['id']) );
 		}
 
+
 		if(\dash\permission::supervisor())
 		{
+			$all_tag = \dash\db\terms::get(['type' => 'support_tag']);
+			if(is_array($all_tag))
+			{
+				$all_tag = array_map(['\dash\app\term', 'ready'], $all_tag);
+			}
+			\dash\data::tagList($all_tag);
 			$args =
 			[
 				'sort'  => 'visitors.id',
