@@ -71,6 +71,52 @@ trait tools
 					return self::$data[$key];
 				}
 			}
+			elseif(isset(self::$data[$_type]))
+			{
+
+				if($_request && !is_array($_request))
+				{
+					if(isset(self::$data[$_type][$_request]))
+					{
+						if($_request == "localname" && self::$data[$_type][$_request] == '')
+						{
+							return self::$data[$_type]['name'];
+						}
+						return self::$data[$_type][$_request];
+					}
+					else
+					{
+						return null;
+					}
+				}
+
+				if($_request && is_array($_request))
+				{
+					$result = [];
+					foreach ($_request as $k => $v) {
+						if(isset(self::$data[$_type][$v]))
+						{
+							if($v == "localname" && self::$data[$_type][$v] == '')
+							{
+								$result[$v] = self::$data[$_type]['name'];
+							}
+							else
+							{
+								$result[$v] = self::$data[$_type][$v];
+							}
+						}
+						else
+						{
+							$result[$v] = null;
+						}
+					}
+					return $result;
+				}
+				else
+				{
+					return self::$data[$_type];
+				}
+			}
 		}
 	}
 
