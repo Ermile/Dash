@@ -16,7 +16,7 @@ class view
 			\dash\data::page_desc(\dash\data::page_desc(). ' | '. \dash\data::site_title());
 			if(mb_strlen(\dash\data::page_desc()) < 150)
 			{
-				\dash\data::page_desc(\dash\data::page_desc(). ' | '. \dash\data::service_desc());
+				\dash\data::page_desc(\dash\data::page_desc(). ' | '. \dash\data::service_title());
 			}
 		}
 		\dash\data::mobileReadonly(false);
