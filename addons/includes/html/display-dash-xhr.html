@@ -13,7 +13,7 @@
 {%if page.breadcrumb%}
   <nav class="breadcrumb">
 {%for key, value in page.breadcrumb%}
-   <a{%if value.link%} href="{{value.link}}"{%endif%}{%if value.link%} title="{{value.title}}"{%endif%}>{%if value.icon%}<span class="sf-{{value.icon}} mRa10"></span>{%endif%}{{value.name}}</a>
+   <a{%if value.link%} href="{{value.link}}"{%endif%}{%if value.link%} title="{{value.title}}"{%endif%}>{%if value.icon%}<span class="sf-{{value.icon}} mRa5"></span>{%endif%}{{value.text}}</a>
 {%endfor%}
   </nav>
 {%endif%}
