@@ -281,6 +281,26 @@ class url
 		return $my_path;
 	}
 
+	public static function set_subdomain($_subdomain = null)
+	{
+		if($_subdomain)
+		{
+			$url = null;
+			$url .= self::protocol(). '://';
+			$url .= $_subdomain. '.';
+			$url .= self::domain();
+			if(self::lang())
+			{
+				$url .= '/'. self::lang();
+			}
+			return $url;
+		}
+		else
+		{
+			return self::sitelang();
+		}
+	}
+
 
 	/**
 	 * if we are in different address, return in
