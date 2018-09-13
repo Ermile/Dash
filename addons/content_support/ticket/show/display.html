@@ -138,13 +138,13 @@
 
 
 {%block iTag%}
- <select class="ui fluid search dropdown addition" multiple="">
-      <option value="">State</option>
+ <select class="ui multiple search selection dropdown addition" multiple>
+      <option value="">{%trans "Tag keywords..."%}</option>
       {%for key, value in tagList%}
         <option value="{{value.title}}">{{value.title}}</option>
       {%endfor%}
     </select>
-<!--
+{%if false%}
 <div class="tagDetector">
 
 {%set myID = requestGET.id | coding('encode')%}
@@ -160,5 +160,6 @@
     <button class="addon tagAdd">+</button>
   </div>
   <div class="tagBox"></div>
-</div> -->
+</div>
+{%endif%}
 {%endblock%}
