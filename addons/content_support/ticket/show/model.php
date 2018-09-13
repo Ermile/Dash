@@ -39,7 +39,7 @@ class model
 			return false;
 		}
 
-		if(\dash\request::post('tag'))
+		if(\dash\request::post('TicketFormType') === 'tag')
 		{
 			\dash\permission::access('supportTicketAddTag');
 
