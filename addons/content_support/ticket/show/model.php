@@ -56,7 +56,7 @@ class model
 
 		if(\dash\request::post('TicketFormType') === 'changeStatus')
 		{
-			\dash\permission::access('supportTicketChangeStatus');
+			// \dash\permission::access('supportTicketChangeStatus');
 			if(in_array(\dash\request::post('status'), ['close','deleted','awaiting']))
 			{
 				\dash\db\comments::update(['status' => \dash\request::post('status')], \dash\request::get('id'));
