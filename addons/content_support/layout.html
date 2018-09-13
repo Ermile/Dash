@@ -51,7 +51,7 @@
   <ul>
 {%for key, value in sidebarDetail.tags%}
 {%if value.status == 'enable' or perm_su()%}
-    <li><a href="{{url.here}}/ticket?tag={{value.slug}}"><span class="floatRa mRa10 badge dark fc-mute"> {{value.useage_count | fitNumber}}</span><span class="mRa10 badge rounded {{value.meta.color}}">&nbsp</span>{{value.title}}</a></li>
+    <li><a href="{{url.here}}/ticket?tag={{value.slug}}{{accessGetAnd}}"><span class="floatRa mRa10 badge dark fc-mute"> {{value.useage_count | fitNumber}}</span><span class="mRa10 badge rounded {{value.meta.color}}">&nbsp</span>{{value.title}}</a></li>
 {%endif%}
 {%endfor%}
   </ul>
