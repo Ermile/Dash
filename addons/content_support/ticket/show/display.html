@@ -138,19 +138,18 @@
 
 
 {%block iTag%}
-<label for='cat'>{%trans "Tag"%}</label>
-<select name="tag" class="select ui dropdown search addition"  id="tag">
-  <option value="" readonly>{%trans "Tag"%}</option>
-  {%for key, value in tagList%}
-    <option value="{{value.title}}">{{value.title}}</option>
-  {%endfor%}
-</select>
-
+ <select class="ui fluid search dropdown addition" multiple="">
+      <option value="">State</option>
+      {%for key, value in tagList%}
+        <option value="{{value.title}}">{{value.title}}</option>
+      {%endfor%}
+    </select>
+<!--
 <div class="tagDetector">
-{%if myTag%}
+
 {%set myID = requestGET.id | coding('encode')%}
 {%set postTag = tags({"post_id" : myID , "title" : true, "format" : 'csv', "type" : "support_tag", "related" : "comments"}) %}
-{%endif%}
+
 
   <div class="input mB10 hide">
     <input type="text" class="input tagVals" name="tag" value="{{postTag}}" id="tagValues" placeholder='{%trans "Tag"%}'>
@@ -161,5 +160,5 @@
     <button class="addon tagAdd">+</button>
   </div>
   <div class="tagBox"></div>
-</div>
+</div> -->
 {%endblock%}
