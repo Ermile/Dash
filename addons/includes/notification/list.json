@@ -24,6 +24,12 @@
     "title": ":displayname add new ticket in :domain",
     "content": ":content",
     "telegram": true,
-    "sms": true
+    "sms": false
+  },
+  "newLoginSession": {
+    "title": "We Noticed a New Login, :displayname",
+    "content": "If this was you, you can safely disregard this message. If you didn't do this, please change your password to help secure your account. Learn more about keeping your account secure.",
+    "telegram": true,
+    "email": true
   }
 }
