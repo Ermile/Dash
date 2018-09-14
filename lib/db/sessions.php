@@ -132,9 +132,8 @@ class sessions
 		if($_code && is_numeric($_user_id))
 		{
 			$_code = addslashes($_code);
-			$get   = \dash\db::get("SELECT sessions.status FROM sessions WHERE sessions.user_id = $_user_id AND sessions.code = '$_code' LIMIT 1", null, true);
-
-			if(isset($get['status']) && $get['status'] === 'active')
+			$get   = \dash\db::get("SELECT sessions.status FROM sessions WHERE sessions.user_id = $_user_id AND sessions.status = 'active' AND sessions.code = '$_code' LIMIT 1", null, true);
+			if($get)
 			{
 				return true;
 			}
