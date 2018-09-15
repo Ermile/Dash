@@ -67,12 +67,21 @@ class model
 			return true;
 		}
 
+		$ticket_type = 'ticket';
+		if(\dash\permission::check('supportSecretMessage'))
+		{
+			if(\dash\request::post('secret') === 'message')
+			{
+				$ticket_type = 'ticket_secret';
+			}
+		}
+
 		// ready to insert comments
 		$args =
 		[
 			'author'  => \dash\user::detail('displayname'),
 			'email'   => \dash\user::detail('email'),
-			'type'    => 'ticket',
+			'type'    => $ticket_type,
 			'content' => \dash\request::post('content'),
 			'title'   => \dash\request::post('title'),
 			'mobile'  => \dash\user::detail("mobile"),

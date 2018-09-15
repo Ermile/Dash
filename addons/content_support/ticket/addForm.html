@@ -21,7 +21,18 @@
 {%if url.child == 'add'%}
     <button class="btn primary block mT20">{%trans "Submit a ticket"%}</button>
 {%else%}
+{%if perm('supportSecretMessage') %}
+<div class="f">
+  <div class="c9">
     <button class="btn primary block mT20">{%trans "Send new message"%}</button>
+  </div>
+  <div class="c">
+    <button class="btn secondary outline mLa5 block mT20" name="secret" value="message">{%trans "Send secret message"%}</button>
+  </div>
+</div>
+{%else%}
+    <button class="btn primary block mT20">{%trans "Send new message"%}</button>
+{%endif%}
 {%endif%}
   </form>
 </div>

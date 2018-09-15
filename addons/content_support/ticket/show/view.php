@@ -58,7 +58,15 @@ class view
 
 		$args['sort']            = 'id';
 		$args['order']           = 'desc';
-		$args['comments.type']   = 'ticket';
+		if(\dash\permission::check('supportSecretMessage'))
+		{
+			$args['comments.type']   = ['IN', "('ticket', 'ticket_secret')"];
+		}
+		else
+		{
+			$args['comments.type']   = 'ticket';
+		}
+
 		$args['comments.parent'] = $parent;
 		$args['pagenation']      = false;
 		$args['join_user']       = true;
