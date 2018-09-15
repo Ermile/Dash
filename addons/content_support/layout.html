@@ -10,8 +10,6 @@
 <li>
   <a href="{{url.here}}/ticket{{accessGet}}"><i class="sf-question-circle"></i>{%trans "Tickets"%}</a>
 
-
-
     <ul>
       <li><a href="{{url.here}}/ticket/add{{accessGet}}"><i class="floatRa mRa10 fc-mute sf-plus"></i>{%trans "New Ticket"%}</a></li>
 {%if sidebarDetail.all%}
@@ -32,12 +30,11 @@
 {%if perm('supportTicketTrash')%}
       <li><a href="{{url.here}}/ticket?status=deleted{{accessGetAnd}}"><span class="floatRa mRa10 fc-mute sf-trash"></span>{%trans "Trash"%}</a></li>
 {%endif%}
-
     </ul>
 </li>
 
 
-<hr>
+<li class="hr"></li>
 
 {%if sidebarDetail.tags%}
 <li>
@@ -52,7 +49,7 @@
           <li>
             <a href="{{url.here}}/ticket?tag={{value.slug}}{{accessGetAnd}}">
             <span class="floatRa mRa10 badge dark fc-mute"> {{value.useage_count | fitNumber}}</span>
-            <span class="mRa10 badge rounded {{value.meta.color}}">&nbsp</span>{{value.title}}</a>
+            <span class="mRa10 badge rounded {{value.meta.color}}">&nbsp;</span>{{value.title}}</a>
           </li>
       {%endif%}
     {%endfor%}
