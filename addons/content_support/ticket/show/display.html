@@ -96,7 +96,7 @@
   <table class="tbl1 v5">
     <tbody>
 {%for key, value in dataTable%}
-      <tr class="{{value.rowColor}} {%if value.type == 'ticket_secret'%} disabled {%endif%}" id='msg{{value.id}}'>
+      <tr class="{{value.rowColor}} {%if value.type == 'ticket_note'%} disabled {%endif%}" id='msg{{value.id}}'>
         <td class="collapsing">
           <img src="{{value.avatar}}" class="avatar mRa10" alt="{{value.displayname}}">
           <span class="txtB s0 fs08">{{value.displayname}}</span>
@@ -122,7 +122,7 @@
             <small title='{{value.datecreated | tdate("l d F Y H:i:s")}}'>{{value.datecreated | sdate("year")}}</small>
 {%if perm_su()%}
             <a class="fs08 mLa10" href="{{url.here}}/message/edit?id={{value.id}}">{%trans "Edit"%}</a>
-            {%if value.type == 'ticket_secret'%}
+            {%if value.type == 'ticket_note'%}
               <i class="fc-red sf-user-secret"></i>
             {%endif%}
 {%endif%}

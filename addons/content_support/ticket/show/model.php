@@ -68,11 +68,11 @@ class model
 		}
 
 		$ticket_type = 'ticket';
-		if(\dash\permission::check('supportSecretMessage'))
+		if(\dash\permission::check('supportTicketAddNote'))
 		{
-			if(\dash\request::post('secret') === 'message')
+			if(\dash\request::post('add') === 'note')
 			{
-				$ticket_type = 'ticket_secret';
+				$ticket_type = 'ticket_note';
 			}
 		}
 
@@ -106,41 +106,46 @@ class model
 
 		$update_main = [];
 
-		$plus = \dash\db\comments::get_count(['type' => 'ticket', 'parent' => \dash\request::get('id')]);
-
-		$update_main['plus'] = intval($plus) + 1 + 1 ; // master ticket + this tichet
-
-		if(intval($ticket_user_id) === intval(\dash\user::id()))
-		{
-			$update_main['status'] = 'awaiting';
-		}
-		else
+		if($ticket_type !== 'ticket_note')
 		{
 
-			\dash\permission::access('supportTicketAnswer');
+			$plus = \dash\db\comments::get_count(['type' => 'ticket', 'parent' => \dash\request::get('id')]);
 
-			if(array_key_exists('subdomain', $main))
+			$update_main['plus'] = intval($plus) + 1 + 1 ; // master ticket + this tichet
+
+			if(intval($ticket_user_id) === intval(\dash\user::id()))
 			{
-				if($main['subdomain'] != \dash\url::subdomain())
-				{
-					\dash\permission::access('supportTicketAnswerOtherSubdomain');
-				}
-			}
-
-			$update_main['status'] = 'answered';
-
-			if(isset($main['answertime']) && $main['answertime'])
-			{
-				// no change
+				$update_main['status'] = 'awaiting';
 			}
 			else
 			{
-				if(isset($main['datecreated']))
+
+				\dash\permission::access('supportTicketAnswer');
+
+				if(array_key_exists('subdomain', $main))
 				{
-					$diff                      = time() - strtotime($main['datecreated']);
-					$update_main['answertime'] = $diff;
+					if($main['subdomain'] != \dash\url::subdomain())
+					{
+						\dash\permission::access('supportTicketAnswerOtherSubdomain');
+					}
+				}
+
+				$update_main['status'] = 'answered';
+
+				if(isset($main['answertime']) && $main['answertime'])
+				{
+					// no change
+				}
+				else
+				{
+					if(isset($main['datecreated']))
+					{
+						$diff                      = time() - strtotime($main['datecreated']);
+						$update_main['answertime'] = $diff;
+					}
 				}
 			}
+
 		}
 
 		$result = \dash\app\ticket::add($args);

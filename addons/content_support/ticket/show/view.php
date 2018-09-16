@@ -58,9 +58,9 @@ class view
 
 		$args['sort']            = 'id';
 		$args['order']           = 'desc';
-		if(\dash\permission::check('supportSecretMessage'))
+		if(\dash\permission::check('supportTicketAddNote'))
 		{
-			$args['comments.type']   = ['IN', "('ticket', 'ticket_secret')"];
+			$args['comments.type']   = ['IN', "('ticket', 'ticket_note')"];
 		}
 		else
 		{
