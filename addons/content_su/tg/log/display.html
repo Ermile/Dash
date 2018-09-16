@@ -89,7 +89,7 @@
       <td>
 {%if value.hook%}
         <div class="mB10">
-          <a href="{{url.that}}?hooktext={{value.hooktext}}" class="txtB">{{value.hooktext}}</a>
+          <a href="{{url.that}}?hooktext={{value.hooktext}}">{{value.hooktext | raw}}</a>
         </div>
         <div class="f fs09">
           <a href="{{url.this}}/logshow?id={{value.id}}#hook" class="cauto mRa5"><i class="sf-save-1"></i></a>
