@@ -30,7 +30,7 @@ class account
 
 		if(!$mobile_exist || !isset($mobile_exist['id']))
 		{
-			\dash\db\users::update(['mobile' => $mobile], \dash\user::id());
+			\dash\db\users::update(['mobile' => $mobile], self::id());
 			// to loadmobile and some other field
 			self::relogin_user();
 
@@ -85,11 +85,12 @@ class account
 				}
 
 				$meta['removed_chatid'] = \dash\user::detail('chatid');
+				$meta['removed_mobile'] = \dash\user::detail('moible');
 
 				$update_current_user['meta'] = json_encode($meta, JSON_UNESCAPED_UNICODE);
 			}
 
-			\dash\db\users::update($update_current_user, \dash\user::id());
+			\dash\db\users::update($update_current_user, self::id());
 			\dash\db\users::update($update_new_user, $mobile_exist['id']);
 			self::relogin_user($mobile_exist['id']);
 			return true;
@@ -97,18 +98,23 @@ class account
 	}
 
 
+	private static function id()
+	{
+		return \dash\coding::decode(\dash\user::id());
+	}
+
+
 	private static function relogin_user($_user_id = null)
 	{
 		if(!$_user_id)
 		{
-			$user_id   = \dash\user::id();
+			$user_id   = self::id();
 		}
 		else
 		{
 			$user_id = $_user_id;
 		}
 
-		$user_code = \dash\coding::encode($user_id);
 		\dash\user::destroy();
 		\dash\user::init_tg($user_code);
 	}
