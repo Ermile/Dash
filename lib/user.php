@@ -207,6 +207,12 @@ class user
 	*/
 	public static function check_remeber_login()
 	{
+		if(\dash\url::content() === 'hook')
+		{
+			// no check in tg and bank
+			return;
+		}
+
 		// check if have cookie set login by remember
 		if(!\dash\user::login())
 		{
