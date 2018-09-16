@@ -245,8 +245,8 @@ class conversation
 
 			case '/logout':
 			case 'logout':
-				\dash\user::distroy();
-					$text = T_("Booom");
+					bot::sendMessage('📴 '.T_("Booom"));
+					\dash\user::destroy();
 				break;
 
 
