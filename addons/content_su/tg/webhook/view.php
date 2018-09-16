@@ -13,7 +13,6 @@ class view
 
 
 		// read data from session
-		if(\dash\session::get('tg_send'))
 		\dash\data::tg_send(\dash\session::get('tg_send'));
 		\dash\data::tg_response(\dash\session::get('tg_response'));
 
