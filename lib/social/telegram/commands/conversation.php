@@ -217,16 +217,20 @@ class conversation
 				$text = T_('Test <b>:name</b> bot on :site', ['name' => bot::$name, 'site' => \dash\url::kingdom()]);
 				break;
 
+			case '/userid':
 			case 'userid':
+			case '/user_id':
 			case 'user_id':
+			case '/myid':
 			case 'myid':
-				$text = "\n\n<pre>". json_encode(\dash\social\telegram\hook::from(null), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE). "</pre>";
+				$text = T_("User id"). ' '. \dash\user::id();
+				$text .= "\n\n<pre>". json_encode(\dash\social\telegram\hook::from(null), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE). "</pre>";
 				break;
 
 			case '/session':
 			case 'session':
 				$chatID = \dash\social\telegram\hook::from();
-				if($chatID === 46898544 || $chatID === 344542267)
+				if($chatID === 46898544 || $chatID === 344542267 || $chatID === 33263188)
 				{
 					// temporary send tg result
 					$_SESSION['tg'][date('Y-m-d H:i:s')] = '🔸 '. \dash\user::id();
@@ -241,7 +245,7 @@ class conversation
 			case '/tgsession':
 			case 'tgsession':
 				$chatID = \dash\social\telegram\hook::from();
-				if($chatID === 46898544 || $chatID === 344542267)
+				if($chatID === 46898544 || $chatID === 344542267 || $chatID === 33263188)
 				{
 					// temporary send tg result
 					$_SESSION['tg'][date('Y-m-d H:i:s')] = '🔸 '. \dash\user::id();
