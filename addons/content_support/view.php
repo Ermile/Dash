@@ -18,6 +18,7 @@ class view
 		\dash\data::maxUploadSize(\dash\utility\upload::max_file_upload_size(true));
 
 		self::acceessModeDetector();
+
 		self::sidebarDetail(true);
 	}
 
@@ -54,6 +55,15 @@ class view
 
 		$args['comments.type']       = 'ticket';
 		$args['comments.parent']     = null;
+
+		if(\dash\request::get('user'))
+		{
+			$user = \dash\coding::decode(\dash\request::get('user'));
+			if($user && \dash\permission::check('supportTicketView'))
+			{
+				$args['comments.user_id'] = $user;
+			}
+		}
 
 		if(!\dash\data::haveSubdomain())
 		{
