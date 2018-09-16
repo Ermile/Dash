@@ -82,6 +82,7 @@ class exec
 		$mycode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 		if ($result === false)
 		{
+			\dash\log::db('tg:error', ["meta" => curl_error($ch). ':'. curl_errno($ch)]);
 			return curl_error($ch). ':'. curl_errno($ch);
 		}
 		if (empty($result) || is_null($result))
