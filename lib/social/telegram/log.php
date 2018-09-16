@@ -67,8 +67,8 @@ class log
 			}
 		}
 
-		echo $_method. "\n";
-		echo self::json($_sendData)."\n";
+		log::logy($_method. "\n");
+		log::logy(self::json($_sendData)."\n");
 	}
 
 
@@ -106,7 +106,7 @@ class log
 			}
 		}
 
-		echo self::json($_response);
+		log::logy(self::json($_response));
 	}
 
 
@@ -159,7 +159,22 @@ class log
 		return json_encode($_data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 	}
 
+	public static function logy($_text)
+	{
+		if(!\dash\option::social('telegram', 'debug'))
+		{
+			return T_('debug mode is off!');
+		}
+		if(\dash\url::content() !== "hook")
+		{
+			return false;
+		}
 
+		// if($chatID === 46898544 || $chatID === 344542267 || $chatID === 33263188)
+		{
+			echo $_text;
+		}
+	}
 
 
 
