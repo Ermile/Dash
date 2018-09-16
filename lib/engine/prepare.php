@@ -60,6 +60,11 @@ class prepare
 	*/
 	private static function user_country_redirect()
 	{
+		if(\dash\url::content() === 'hook')
+		{
+			return;
+		}
+
 		$referer = (isset($_SERVER['HTTP_REFERER']) && $_SERVER['HTTP_REFERER']) ? true : false;
 		if($referer)
 		{
