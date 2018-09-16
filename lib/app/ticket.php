@@ -47,12 +47,12 @@ class ticket
 	public static function add($_args)
 	{
 		$content = null;
-		if(isset($_args['content']))
-		{
-			$content = \dash\safe::safe($_args['content'], 'sqlinjection');
-		}
+		// if(isset($_args['content']))
+		// {
+		// 	$content = \dash\safe::safe($_args['content'], 'sqlinjection');
+		// }
 
-		\dash\app::variable($_args);
+		\dash\app::variable($_args, ['raw_field' => ['content']]);
 
 		// check args
 		$args = self::check();
@@ -62,7 +62,7 @@ class ticket
 			return false;
 		}
 
-		$args['content']    = $content;
+		$args['content']    = \dash\app::request('content');
 
 		if(isset($args['user_id']) && is_numeric($args['user_id']))
 		{

@@ -10,7 +10,11 @@
 {%endif%}
 
     <label for="icontent">{%trans "Description"%} <small class="fc-red">{%trans "Require"%} *</small></label>
-    <textarea class="txt mB10" id='icontent' name="content" placeholder='' maxlength='1000' rows="5">{{dataRow.desc}}</textarea>
+    {%if perm('cpUserSignature')%}
+      <textarea class="txt mB10" data-editor id='icontent' name="content"  maxlength='100000' >{%if user.signature%}{{user.signature|raw}}{%endif%}</textarea>
+    {%else%}
+      <textarea class="txt mB10" id='icontent' name="content" placeholder='' maxlength='1000' rows="5">{{dataRow.desc}}</textarea>
+    {%endif%}
 
 
     <label for="file1">{%trans "Attachment"%} <small class="fc-mute">{%trans "Max size"%} {{maxUploadSize}}</small></label>

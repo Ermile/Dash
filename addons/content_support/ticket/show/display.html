@@ -111,7 +111,9 @@
 {%endif%}
         </td>
         <td class="pRa10">
-          <div>{{value.content | raw | nl2br}}</div>
+          <div>
+            {{value.content | raw | nl2br}}
+          </div>
           <div class="f mT10">
 {%if value.file %}
            <div>

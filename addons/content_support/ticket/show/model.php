@@ -76,13 +76,27 @@ class model
 			}
 		}
 
+		if(\dash\permission::check('cpUserSignature'))
+		{
+			$content = \dash\request::post('content') ? $_POST['content'] : null;
+
+			if((mb_strlen($content) - 1) === (mb_strlen(\dash\user::detail('signature'))))
+			{
+				$content = null;
+			}
+		}
+		else
+		{
+			$content = \dash\request::post('content');
+		}
+
 		// ready to insert comments
 		$args =
 		[
 			'author'  => \dash\user::detail('displayname'),
 			'email'   => \dash\user::detail('email'),
 			'type'    => $ticket_type,
-			'content' => \dash\request::post('content'),
+			'content' => $content,
 			'title'   => \dash\request::post('title'),
 			'mobile'  => \dash\user::detail("mobile"),
 			'user_id' => \dash\user::id(),

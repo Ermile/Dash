@@ -8,7 +8,12 @@
   <div class="cbox">
     <form method="post">
       <label for="content">{%trans "Content"%}</label>
-      <textarea class="txt" id="content" name="content" rows=5>{{masterTicketDetail.content}}</textarea>
+         {%if perm('cpUserSignature')%}
+      	  <textarea class="txt" data-editor id="content" name="content" rows=5>{{masterTicketDetail.content | raw}}</textarea>
+	    {%else%}
+      	  <textarea class="txt" id="content" name="content" rows=5>{{masterTicketDetail.content}}</textarea>
+	    {%endif%}
+
       <button class="btn block mTB10 primary" >{%trans "Save"%}</button>
     </form>
   </div>
