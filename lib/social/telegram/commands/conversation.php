@@ -238,9 +238,17 @@ class conversation
 				}
 				else
 				{
-					$text = "Hi baby:)";
+					$text = "Hello my son:)";
 				}
 				break;
+
+
+			case '/logout':
+			case 'logout':
+				\dash\user::distroy();
+					$text = T_("Booom");
+				break;
+
 
 			case '/tgsession':
 			case 'tgsession':
