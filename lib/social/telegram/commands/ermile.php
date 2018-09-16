@@ -280,6 +280,8 @@ class ermile
 			],
 		];
 		bot::sendMessage($result);
+
+		return $result;
 	}
 }
 ?>
