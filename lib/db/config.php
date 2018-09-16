@@ -349,6 +349,7 @@ class config
 				'public_show_field' => "*",
 				'master_join'       => null,
 				'table_name'        => null,
+				'db_name'           => true,
 			];
 
 			if(!is_array($_options))
@@ -376,7 +377,7 @@ class config
 			if($where)
 			{
 				$query = "SELECT $_options[public_show_field] FROM $_table $_options[master_join] WHERE $where $limit";
-				$result = \dash\db::get($query, null, $only_one_value);
+				$result = \dash\db::get($query, null, $only_one_value, $_options['db_name']);
 				return $result;
 			}
 
@@ -391,13 +392,13 @@ class config
 	 * @param      <type>  $_table  The table
 	 * @param      <type>  $_args   The arguments
 	 */
-	public static function public_multi_insert($_table, $_args)
+	public static function public_multi_insert($_table, $_args, $_db_name = true)
 	{
 		$set = \dash\db\config::make_multi_insert($_args);
 		if($set)
 		{
 			$query = " INSERT INTO $_table $set ";
-			return \dash\db::query($query);
+			return \dash\db::query($query, $_db_name);
 		}
 	}
 
@@ -410,13 +411,13 @@ class config
 	 *
 	 * @return     <type>  ( description_of_the_return_value )
 	 */
-	public static function public_insert($_table, $_args)
+	public static function public_insert($_table, $_args, $_db_name = true)
 	{
 		$set = \dash\db\config::make_set($_args);
 		if($set)
 		{
 			$query = " INSERT INTO $_table SET $set ";
-			return \dash\db::query($query);
+			return \dash\db::query($query, $_db_name);
 		}
 	}
 
@@ -429,14 +430,14 @@ class config
 	 *
 	 * @return     <type>  ( description_of_the_return_value )
 	 */
-	public static function public_update($_table, $_args, $_id)
+	public static function public_update($_table, $_args, $_id, $_db_name = true)
 	{
 		$set = \dash\db\config::make_set($_args);
 		if($set && $_id && is_numeric($_id))
 		{
 			// make update query
 			$query = "UPDATE $_table SET $set WHERE $_table.id = $_id ";
-			return \dash\db::query($query);
+			return \dash\db::query($query, $_db_name);
 		}
 	}
 
@@ -516,6 +517,7 @@ class config
 			"search_field"      => null,
 			"public_show_field" => null,
 			"master_join"       => null,
+			"db_name"           => true,
 		];
 
 		// if limit not set and the pagenation is false
@@ -646,6 +648,8 @@ class config
 			$search_field = $_options['search_field'];
 		}
 
+		$db_name = $_options['db_name'];
+
 		unset($_options['pagenation']);
 		unset($_options['search_field']);
 		unset($_options['get_count']);
@@ -658,6 +662,7 @@ class config
 		unset($_options['public_show_field']);
 		unset($_options['master_join']);
 		unset($_options['order_raw']);
+		unset($_options['db_name']);
 
 		foreach ($_options as $key => $value)
 		{
@@ -719,7 +724,7 @@ class config
 		if($pagenation && !$get_count)
 		{
 			$pagenation_query = "SELECT	COUNT(*) AS `count`	FROM `$_table` $master_join	$where $search ";
-			$pagenation_query = \dash\db::get($pagenation_query, 'count', true);
+			$pagenation_query = \dash\db::get($pagenation_query, 'count', true, $db_name);
 
 			list($limit_start, $limit) = \dash\db::pagnation((int) $pagenation_query, $limit);
 			$limit = " LIMIT $limit_start, $limit ";
@@ -743,7 +748,7 @@ class config
 
 		if(!$only_one_value)
 		{
-			$result = \dash\db::get($query, null, false);
+			$result = \dash\db::get($query, null, false, $db_name);
 			$result = \dash\utility\filter::meta_decode($result);
 		}
 		else
