@@ -64,7 +64,7 @@
         </a>
         <div class="txtRa fs08">
           <a href="{{url.that}}?mobile={{value.mobile}}" title='{%trans "Mobile"%}'>{{value.mobile | fitNumber('mobile12')}} 9121234567</a>
-          <a href="{{url.that}}?userid={{value.user_id}}" class="badge" title='{%trans "User id"%}'>{{value.user_id | fitNumber(false)}} 2kf</a>
+          <a href="{{url.that}}?userid={{value.user_id}}" class="badge" title='{%trans "User id"%}'>{{value.user_id | fitNumber(false)}}</a>
         </div>
         <div class="txtRa fs08" data-tippy-placement='left' title='{%trans "Telegram chatid"%}'>
           <a href="{{url.that}}?chatid={{value.chatid}}">{{value.chatid | fitNumber(false)}}</a>
@@ -83,12 +83,21 @@
         </div>
         <div class="f fs09">
           <a href="{{url.this}}/logshow?id={{value.id}}#hook" class="cauto mRa5"><i class="sf-save-1"></i></a>
-          <a href="{{url.that}}?hookdate={{value.hookdate}}" title='{{value.hookdate}}' class="c">{{value.hookdate | tdate('H:i:s')}}</a>
+          <a href="{{url.that}}?hookdate={{value.hookdate}}" title='{{value.hookdate}}' class="cauto">{{value.hookdate | tdate('H:i:s')}}</a>
+          <div class="cauto">
+            {%if value.hookmessageid%}
+            <a href="{{url.this}}/logshow?id={{value.id}}#hookmessageid" class="badge mLa5" title='hook messageid'>{{value.hookmessageid}}</a>
+            {%else%}
+            <i class="sf-times"></i>
+            {%endif%}
+          </div>
         </div>
 {%else%}
         <i class="sf-times fc-yellow" title='{%trans "Without hook"%}'></i>
 {%endif%}
       </td>
+
+      <td class="collapsing"><a href="{{url.that}}?step={{value.step}}">{{value.step}}</a></td>
 
       <td>
         <div class="ltr txtL txtB mB5">
@@ -114,72 +123,20 @@
 {%endif%}
       </td>
 
+      <td class="collapsing">
+        <a href="{{url.this}}/logshow?id={{value.id}}#meta">{%if value.meta%}<i class="sf-folder-1 fc-green"></i>{%else%}<i class="sf-folder fc-mute" title='{%trans "Without meta"%}'></i>{%endif%}</a>
+      </td>
 
-
-      <td>2
+      <td class="collapsing">
+        <a href="{{url.this}}/logshow?id={{value.id}}" class="badge dark pA5" title='{%trans "ID"%}'>{{value.id}}</a>
+        <br>
+        <a href="{{url.that}}?status={{value.status}}">{{value.status}}</a>
       </td>
     </tr>
 {%endfor%}
   </tbody>
 </table>
-
-
-
- <div class="cbox fs12">
-  <table class="tbl bordered1">
-    <thead class="primary fs09">
-      <tr>
-        <th>id</th>
-        <th>chatid</th>
-        <th>user_id</th>
-        <th>status</th>
-        <th>hook</th>
-        <th>hooktext</th>
-        <th>hookdate</th>
-        <th>step</th>
-        <th>send</th>
-        <th>senddate</th>
-        <th>sendtext</th>
-        <th>response</th>
-        <th>responsedate</th>
-        <th>url</th>
-        <th>hookmessageid</th>
-        <th>sendmesageid</th>
-        <th>sendmethod</th>
-        <th>sendkeyboard</th>
-        <th>meta</th>
-
-      </tr>
-    </thead>
-
-    <tbody>
-      {%for key, value in dataTable%}
-      <tr>
-        <td><a data-direct href="{{url.this}}/logshow?id={{value.id}}" class="badge primary">{{value.id}}</a></td>
-        <td><a href="{{url.that}}?chatid={{value.chatid}}">{{value.chatid}}</a></td>
-        <td><a href="{{url.that}}?user_id={{value.user_id}}">{{value.user_id}}</a></td>
-        <td><a href="{{url.that}}?status={{value.status}}">{{value.status}}</a></td>
-        <td><a data-direct href="{{url.this}}/logshow?id={{value.id}}#hook">{%if value.hook%}<i class="sf-check"></i>{%else%}<i class="sf-times"></i>{%endif%}</a></td>
-        <td><a href="{{url.that}}?hooktext={{value.hooktext}}">{{value.hooktext}}</a></td>
-        <td><a href="{{url.that}}?hookdate={{value.hookdate}}">{{value.hookdate}}</a></td>
-        <td><a href="{{url.that}}?step={{value.step}}">{{value.step}}</a></td>
-        <td><a data-direct href="{{url.this}}/logshow?id={{value.id}}#send">{%if value.send%}<i class="sf-check"></i>{%else%}<i class="sf-times"></i>{%endif%}</a></td>
-        <td><a href="{{url.that}}?senddate={{value.senddate}}">{{value.senddate}}</a></td>
-        <td><a href="{{url.that}}?sendtext={{value.sendtext}}">{{value.sendtext}}</a></td>
-        <td><a data-direct href="{{url.this}}/logshow?id={{value.id}}#response">{%if value.response%}<i class="sf-check"></i>{%else%}<i class="sf-times"></i>{%endif%}</a></td>
-        <td><a href="{{url.that}}?responsedate={{value.responsedate}}">{{value.responsedate}}</a></td>
-        <td><a data-direct href="{{url.this}}/logshow?id={{value.id}}#url">{%if value.url%}<i class="sf-check"></i>{%else%}<i class="sf-times"></i>{%endif%}</a></td>
-        <td><a data-direct href="{{url.this}}/logshow?id={{value.id}}#hookmessageid">{%if value.hookmessageid%}<i class="sf-check"></i>{%else%}<i class="sf-times"></i>{%endif%}</a></td>
-        <td><a data-direct href="{{url.this}}/logshow?id={{value.id}}#sendmesageid">{%if value.sendmesageid%}<i class="sf-check"></i>{%else%}<i class="sf-times"></i>{%endif%}</a></td>
-        <td><a href="{{url.that}}?sendmethod={{value.sendmethod}}">{{value.sendmethod}}</a></td>
-        <td><a data-direct href="{{url.this}}/logshow?id={{value.id}}#sendkeyboard">{%if value.sendkeyboard%}<i class="sf-check"></i>{%else%}<i class="sf-times"></i>{%endif%}</a></td>
-        <td><a data-direct href="{{url.this}}/logshow?id={{value.id}}#meta">{%if value.meta%}<i class="sf-check"></i>{%else%}<i class="sf-times"></i>{%endif%}</a></td>
-      </tr>
-      {%endfor%}
-    </tbody>
-  </table>
   {%include display.pagination%}
- </div>
 {%endblock%}
 
 
