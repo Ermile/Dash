@@ -1002,6 +1002,12 @@ class TransStatic
 	echo T_("supportTicketAddTag");
 	echo T_("supportTicketAnswerOtherSubdomain");
 	echo T_("supportTicketChangeStatus");
+	echo T_(":displayname add new ticket in :domain");
+
+	echo T_("load su whit user :user");
+	echo T_("The :user was loaded su content");
+	echo T_("We Noticed a New Login, :displayname");
+	echo T_("If this was you, you can safely disregard this message. If you didn't do this, please change your password to help secure your account. Learn more about keeping your account secure.");
 
 
  }

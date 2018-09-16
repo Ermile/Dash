@@ -69,13 +69,21 @@ class sendnotifications
 
 	public static function set_status($_status, $_ids)
 	{
-		$_ids = array_filter($_ids);
-		$_ids = array_unique($_ids);
-
-		if($_ids)
+		if(is_array($_ids))
 		{
-			$_ids = implode(',', $_ids);
-			$query = "UPDATE sendnotifications SET sendnotifications.status = '$_status' WHERE sendnotifications.id IN ($_ids) ";
+			$_ids = array_filter($_ids);
+			$_ids = array_unique($_ids);
+
+			if($_ids)
+			{
+				$_ids = implode(',', $_ids);
+				$query = "UPDATE sendnotifications SET sendnotifications.status = '$_status' WHERE sendnotifications.id IN ($_ids) ";
+				return \dash\db::query($query);
+			}
+		}
+		elseif(is_numeric($_ids))
+		{
+			$query = "UPDATE sendnotifications SET sendnotifications.status = '$_status' WHERE sendnotifications.id = $_ids LIMIT 1 ";
 			return \dash\db::query($query);
 		}
 	}

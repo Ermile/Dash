@@ -3,7 +3,7 @@
     "title": "load su whit user :user",
     "content": "The :user was loaded su content",
     "telegram": true,
-    "sms": true,
+    "sms": false,
     "email": true,
     "can_duplicate": true,
     "can_duplicate_in_one_day": true,

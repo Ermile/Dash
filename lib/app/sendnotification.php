@@ -47,11 +47,23 @@ class sendnotification
 			}
 			else
 			{
-				\dash\db\sendnotifications::set_status('sended', array_column($send_telegram, 'id'));
+				$start_time = time();
+				$count_send = 0;
 				foreach ($send_telegram as $key => $value)
 				{
 					$myData   = ['chat_id' => $value['to'], 'text' => $value['text']];
-					$myResult = \dash\social\telegram\tg::json_sendMessage($myData);
+					$myResult = \dash\social\telegram\tg::sendMessage($myData);
+					if($myResult)
+					{
+						\dash\db\sendnotifications::set_status('sended', $value['id']);
+					}
+
+					$count_send++;
+
+					if((time() - $start_time) > 60 || $count_send > 20)
+					{
+						return false;
+					}
 				}
 			}
 		}
@@ -64,10 +76,15 @@ class sendnotification
 			}
 			else
 			{
+				if(\dash\url::isLocal())
+				{
+					return;
+				}
+
 				\dash\db\sendnotifications::set_status('sended', array_column($send_sms, 'id'));
 				foreach ($send_sms as $key => $value)
 				{
-					\dash\utility\sms::send($value['to'], $value['text']);
+					// \dash\utility\sms::send($value['to'], $value['text']);
 				}
 			}
 		}
