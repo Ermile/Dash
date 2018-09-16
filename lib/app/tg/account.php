@@ -5,7 +5,7 @@ namespace dash\app\tg;
 class account
 {
 
-	public static function register($_chat_id, $_mobile, $_arg = [])
+	public static function register($_chat_id, $_mobile, $_args = [])
 	{
 		$mobile = \dash\utility\filter::mobile($_mobile);
 		if(!$mobile)
@@ -44,8 +44,37 @@ class account
 			// disable current user and remove  chatid and mobile
 			// relogin user
 
-			$update_new_user               = [];
-			$update_new_user['chatid']     = $_chat_id;
+			$update_new_user             = [];
+			$update_new_user['chatid']   = $_chat_id;
+			$update_new_user['tgstatus'] = 'active';
+
+			if(isset($_args['first_name']) && !isset($mobile_exist['firstname']))
+			{
+				$update_new_user['firstname'] = substr($_args['first_name'], 0, 90);
+			}
+
+			if(isset($_args['last_name']) && !isset($mobile_exist['lastname']))
+			{
+				$update_new_user['lastname'] = substr($_args['last_name'], 0, 90);
+			}
+
+			if(isset($_args['username']) && !isset($mobile_exist['username']))
+			{
+				$update_new_user['username'] = substr($_args['username'], 0, 90);
+
+				$check_duplicate_username = \dash\db\users::get(['username' => $update_new_user['username'], 'limit' => 1]);
+				if($check_duplicate_username)
+				{
+					if(isset($check_duplicate_username['id']) && intval($check_duplicate_username['id']) === $mobile_exist['id'])
+					{
+						// no problem
+					}
+					else
+					{
+						unset($update_new_user['username']);
+					}
+				}
+			}
 
 			if(isset($mobile_exist['chatid']))
 			{
@@ -60,16 +89,23 @@ class account
 					$meta = [];
 				}
 
-				$meta['old_chatid'] = \dash\user::detail('chatid');
+				if(\dash\user::detail('chatid'))
+				{
+					$meta['old_chatid'] = \dash\user::detail('chatid');
+				}
 
-				$update_new_user['meta']  = json_encode($meta, JSON_UNESCAPED_UNICODE);
+				if(!empty($meta))
+				{
+					$update_new_user['meta']  = json_encode($meta, JSON_UNESCAPED_UNICODE);
+				}
 			}
 
 
-			$update_current_user           = [];
-			$update_current_user['chatid'] = null;
-			$update_current_user['mobile'] = null;
-			$update_current_user['status'] = 'unreachable';
+			$update_current_user             = [];
+			$update_current_user['chatid']   = null;
+			$update_current_user['mobile']   = null;
+			$update_current_user['status']   = 'unreachable';
+			$update_current_user['tgstatus'] = 'unreachable';
 
 			if(\dash\user::detail('chatid'))
 			{
@@ -84,14 +120,25 @@ class account
 					$meta = [];
 				}
 
-				$meta['removed_chatid'] = \dash\user::detail('chatid');
-				$meta['removed_mobile'] = \dash\user::detail('moible');
+				if(\dash\user::detail('chatid'))
+				{
+					$meta['removed_chatid'] = \dash\user::detail('chatid');
+				}
 
-				$update_current_user['meta'] = json_encode($meta, JSON_UNESCAPED_UNICODE);
+				if(\dash\user::detail('moible'))
+				{
+					$meta['removed_mobile'] = \dash\user::detail('moible');
+				}
+
+				if(!empty($meta))
+				{
+					$update_current_user['meta'] = json_encode($meta, JSON_UNESCAPED_UNICODE);
+				}
 			}
 
 			\dash\db\users::update($update_current_user, self::id());
 			\dash\db\users::update($update_new_user, $mobile_exist['id']);
+
 			self::relogin_user($mobile_exist['id']);
 			return true;
 		}
