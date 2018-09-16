@@ -75,6 +75,7 @@
           <a href="{{url.kingdom}}/cp/visitor?userid={{value.user_id}}" title='{%trans "User last visits"%}'><i class="sf-flight"></i></a>
         </nav>
       </td>
+
       <td>
 {%if value.hook%}
         <div class="mB10">
@@ -88,6 +89,7 @@
         <i class="sf-times fc-yellow" title='{%trans "Without hook"%}'></i>
 {%endif%}
       </td>
+
       <td>
         <div class="ltr txtL txtB mB5">
           <a href="{{url.that}}?sendmethod={{value.sendmethod}}" title='{%trans "Method"%}'>{{value.sendmethod}}</a>
@@ -102,10 +104,18 @@
           <a href="{{url.this}}/logshow?id={{value.id}}#send" class="cauto mRa5" title='{%trans "Check more detail"%}'><i class="sf-save-1"></i></a>
           <a href="{{url.that}}?senddate={{value.senddate}}" title='{{value.senddate}}' class="c txtB">{{value.senddate | tdate('H:i:s')}}</a>
         </div>
+{%if value.response%}
+        <div class="f fs09">
+          <a href="{{url.this}}/logshow?id={{value.id}}#response" class="cauto mRa5" title='{%trans "Check more detail"%}'><i class="sf-save-1"></i></a>
+          <a href="{{url.that}}?responsedate={{value.responsedate}}" title='{{value.responsedate}}' class="c txtB">{{value.responsedate | tdate('H:i:s')}}</a>
+        </div>
+{%else%}
+        <i class="sf-chain-broken fc-red" title='{%trans "Without response"%}'></i>
+{%endif%}
       </td>
 
-      <td>1
-      </td>
+
+
       <td>2
       </td>
     </tr>
