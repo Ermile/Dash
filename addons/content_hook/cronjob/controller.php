@@ -6,7 +6,6 @@ class controller
 {
 	public static function routing()
 	{
-		var_dump(1);exit();
 		if(\dash\permission::supervisor())
 		{
 			\content\cronjob\model::post();
