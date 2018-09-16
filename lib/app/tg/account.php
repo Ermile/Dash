@@ -7,7 +7,6 @@ class account
 
 	public static function register($_chat_id, $_mobile, $_arg = [])
 	{
-		// var_dump(func_get_args());exit();
 		$mobile = \dash\utility\filter::mobile($_mobile);
 		if(!$mobile)
 		{
@@ -70,7 +69,7 @@ class account
 			$update_current_user           = [];
 			$update_current_user['chatid'] = null;
 			$update_current_user['mobile'] = null;
-			$update_current_user['status'] = 'deactive';
+			$update_current_user['status'] = 'unreachable';
 
 			if(\dash\user::detail('chatid'))
 			{
