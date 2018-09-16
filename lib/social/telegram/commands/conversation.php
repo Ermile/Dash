@@ -247,7 +247,7 @@ class conversation
 			case 'logout':
 					bot::sendMessage('📴 '.T_("Booom"));
 					\dash\user::destroy();
-					return false;
+					\dash\code::boom();
 				break;
 
 
