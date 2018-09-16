@@ -13,7 +13,7 @@ trait edit
 	 */
 	public static function edit($_args, $_option = [])
 	{
-		\dash\app::variable($_args);
+		\dash\app::variable($_args, ['raw_field' => ['signature']]);
 
 		$default_option =
 		[
@@ -73,6 +73,7 @@ trait edit
 
 
 		if(!\dash\app::isset_request('mobile'))     unset($args['mobile']);
+		if(!\dash\app::isset_request('signature'))     unset($args['signature']);
 		if(!\dash\app::isset_request('displayname')) unset($args['displayname']);
 		if(!\dash\app::isset_request('title'))      unset($args['title']);
 		if(!\dash\app::isset_request('avatar'))     unset($args['avatar']);

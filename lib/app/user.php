@@ -326,6 +326,10 @@ class user
 			}
 		}
 
+		$signature = \dash\app::request('signature');
+
+		$args['signature']    = $signature;
+
 		$args['birthday']    = $birthday;
 		$args['tgstatus']    = $tgstatus;
 		$args['website']     = $website;

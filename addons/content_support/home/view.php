@@ -23,6 +23,7 @@ class view
 		$args['order_raw']       = ' FIELD(comments.status, "answered", "awaiting") DESC, comments.status, IF(comments.datemodified is null, comments.datecreated, comments.datemodified) DESC';
 		$args['order']           = 'desc';
 		$args['comments.type']   = 'ticket';
+		$args['comments.status'] = ["NOT IN ", "('deleted')"];
 		$args['comments.parent'] = null;
 		$args['pagenation']      = false;
 		$args['limit']           = 5;

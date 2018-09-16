@@ -69,9 +69,13 @@ class view
 					break;
 
 				default:
-					$args['comments.status'] = ["NOT IN", "('deleted')"];
+					// $args['comments.status'] = ["NOT IN", "('deleted')"];
 					break;
 			}
+		}
+		else
+		{
+			$args['comments.status'] = ["NOT IN", "('deleted')"];
 		}
 
 		$user = \dash\request::get('user');

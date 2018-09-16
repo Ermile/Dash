@@ -53,8 +53,8 @@ class view
 		$args               = [];
 		$args_tag           = [];
 
-		$args['comments.type']       = 'ticket';
-		$args['comments.parent']     = null;
+		$args['comments.type']   = 'ticket';
+		$args['comments.parent'] = null;
 
 		if(\dash\request::get('user'))
 		{
@@ -79,6 +79,7 @@ class view
 
 		$result               = [];
 
+		$args['comments.status'] = ["NOT IN ", "('deleted')"];
 		if(\dash\data::accessMode() === 'mine')
 		{
 			$args['comments.user_id'] = \dash\user::id();
@@ -88,6 +89,7 @@ class view
 		{
 			$result['all']      = \dash\db\comments::get_count(array_merge($args, []));
 		}
+		unset($args['comments.status']);
 
 		$result['answered']       = \dash\db\comments::get_count(array_merge($args,['status' => 'answered']));
 		$result['awaiting']       = \dash\db\comments::get_count(array_merge($args, ['status' => 'awaiting']));
@@ -99,8 +101,8 @@ class view
 		if($_all)
 		{
 			unset($args['parent']);
+			$args['comments.status'] = ["NOT IN ", "('deleted')"];
 			$result['message']    = \dash\db\comments::get_count($args);
-
 			$args['status']       = 'close';
 			$args['parent']       = null;
 			$result['avgfirst']   = \dash\db\comments::ticket_avg_first($args);
