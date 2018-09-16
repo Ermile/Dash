@@ -19,7 +19,8 @@ class view
 		\dash\data::badge_text(T_('Tickets'));
 		\dash\data::badge_link(\dash\url::here(). '/ticket'. \dash\data::accessGet());
 
-		$args['sort']            = 'datecreated';
+		// 'approved','awaiting','unapproved','spam','deleted','filter','close','answered'
+		$args['order_raw']       = ' FIELD(comments.status, "answered", "awaiting") DESC, comments.status, IF(comments.datemodified is null, comments.datecreated, comments.datemodified) DESC';
 		$args['order']           = 'desc';
 		$args['comments.type']   = 'ticket';
 		$args['comments.parent'] = null;
@@ -27,7 +28,7 @@ class view
 		$args['limit']           = 5;
 		$args['join_user']       = true;
 		$args['get_tag']         = true;
-		$args['comments.status'] = ["NOT IN", "('close')"];
+		// $args['comments.status'] = ["NOT IN", "('close')"];
 
 		\content_support\view::dataList($args);
 	}

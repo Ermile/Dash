@@ -70,7 +70,7 @@ class model
 		$ticket_type = 'ticket';
 		if(\dash\permission::check('supportTicketAddNote'))
 		{
-			if(\dash\request::post('add') === 'note')
+			if(\dash\request::post('addnote') === 'note')
 			{
 				$ticket_type = 'ticket_note';
 			}
@@ -145,7 +145,6 @@ class model
 					}
 				}
 			}
-
 		}
 
 		$result = \dash\app\ticket::add($args);

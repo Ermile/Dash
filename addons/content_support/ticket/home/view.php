@@ -19,7 +19,9 @@ class view
 		\dash\data::badge2_link(\dash\url::here().\dash\data::accessGet());
 
 
-		$args['sort']            = 'datecreated';
+		// 'approved','awaiting','unapproved','spam','deleted','filter','close','answered'
+		$args['order_raw']       = ' FIELD(comments.status, "answered", "awaiting") DESC, comments.status, IF(comments.datemodified is null, comments.datecreated, comments.datemodified) DESC';
+		// $args['sort']            = 'datecreated';
 		$args['order']           = 'desc';
 		$args['comments.type']   = 'ticket';
 		$args['comments.parent'] = null;
