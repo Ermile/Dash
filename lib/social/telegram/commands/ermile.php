@@ -268,16 +268,17 @@ class ermile
 	{
 		$result['text'] = T_('Haloo');
 		$result['text'] .= "\n". T_('You can connect your telegram with your mobile number in our service.');
-		$result['text'] .= "\n". T_('Also you can do it anytime you need with /register command.');
+		$result['text'] .= "\n\n". T_('Also you can do it anytime you need with /register command.');
 
 		// add replymarkup keyboard
 		$result['reply_markup'] =
 		[
 			'keyboard' =>
 			[
-				[T_("About")],
-				[T_("Feedback"), T_("Contact")],
+				[ ["text" => T_("Register with mobile"), "request_contact" => true] ],
+				[T_("Help"), T_("Cancel")],
 			],
+			'one_time_keyboard' => true
 		];
 		bot::sendMessage($result);
 
