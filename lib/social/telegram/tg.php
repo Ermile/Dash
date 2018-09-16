@@ -70,6 +70,8 @@ class tg
 		session::forceSet();
 		// detect and set user id, access via \dash\user::id()
 		user::detect();
+		// check if user send contact save user detail
+		user::saveContact();
 	}
 
 

@@ -122,5 +122,61 @@ class user
 	{
 		\dash\app\user::edit(['tgstatus' => 'active'], \dash\user::id());
 	}
+
+
+	public static function saveContact()
+	{
+		$contact = hook::contact(null);
+		// if user is not sended contact return null
+		if(!$contact)
+		{
+			return null;
+		}
+
+		$from    = hook::from(null);
+		$mobile  = null;
+		// if mobile isset, use it
+		if(isset($contact['phone_number']))
+		{
+			$mobile = $contact['phone_number'];
+		}
+		else
+		{
+			// we dont have mobile number for this contact!
+			tg::$hook['message']['contact']['fake'] = true;
+			tg::$hook['message']['contact']['phone_number'] = false;
+			tg::sendMessage(['text' => T_('We need mobile number!')]);
+			return false;
+		}
+
+		// check id is the same
+		if($from['id'] !== $contact['user_id'])
+		{
+			// set fake value for this contact
+			tg::$hook['message']['contact']['fake'] = true;
+			tg::sendMessage(['text' => T_('We dont need another users contact:?)')]);
+			return false;
+		}
+		if($from['first_name'] !== $contact['first_name'])
+		{
+			tg::sendMessage(['text' => T_('Why your name is different!')]);
+		}
+		if($from['last_name'] !== $contact['last_name'])
+		{
+			tg::sendMessage(['text' => T_('Why your family is different!')]);
+		}
+
+		// finally try to save chat id for this user
+		$registerResult = \dash\app\tg\account::register($contact['user_id'], $mobile, $from);
+		if($registerResult)
+		{
+			// if user send contact detail then save all of his/her profile photos
+			tg::sendMessage(['text' => T_('Your phone number registered successfully;)')]);
+		}
+		else
+		{
+			tg::sendMessage(['text' => T_('Registration failed!')]);
+		}
+	}
 }
 ?>
