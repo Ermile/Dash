@@ -53,7 +53,7 @@ class sendnotification
 				{
 					$myData   = ['chat_id' => $value['to'], 'text' => $value['text']];
 					$myResult = \dash\social\telegram\tg::json_sendMessage($myData);
-					\dash\log::db('tgSendResult', ['meta' => [$myResult,$myData]]);
+
 					if($myResult)
 					{
 						\dash\db\sendnotifications::set_status('sended', $value['id']);

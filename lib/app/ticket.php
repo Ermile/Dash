@@ -103,7 +103,6 @@ class ticket
 		$replace =
 		[
 			'domain'      => \dash\url::domain(),
-			'content'     => $args['content'],
 			'displayname' => \dash\user::detail('displayname'),
 		];
 
