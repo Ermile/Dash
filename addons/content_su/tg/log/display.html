@@ -52,6 +52,69 @@
 
 {%block htmlTable%}
 
+
+<table class="tbl1 v1 cbox fs12">
+  <tbody>
+{%for key, value in dataTable%}
+    <tr>
+      <td class="collapsing">
+        <a href="{{url.that}}?user={{value.user_id}}">
+          <img src="{{value.avatar}}http://ermile.local/static/siftal/images/default/avatar.png" class="avatar mRa5" alt="{{value.displayname}}">
+          <span class="txtB s0 fs08">{{value.displayname}} Javad Evazzadeh</span>
+        </a>
+        <div class="txtRa fs08">
+          <a href="{{url.that}}?mobile={{value.mobile}}" title='{%trans "Mobile"%}'>{{value.mobile | fitNumber('mobile12')}} 9121234567</a>
+          <a href="{{url.that}}?userid={{value.user_id}}" class="badge" title='{%trans "User id"%}'>{{value.user_id | fitNumber(false)}} 2kf</a>
+        </div>
+        <div class="txtRa fs08" data-tippy-placement='left' title='{%trans "Telegram chatid"%}'>
+          <a href="{{url.that}}?chatid={{value.chatid}}">{{value.chatid | fitNumber(false)}}</a>
+        </div>
+        <nav class="txtRa">
+          <a href="{{url.that}}?user_id={{value.user_id}}" title='{%trans "User logs"%}'><i class="sf-briefcase"></i></a>
+          <a href="{{url.kingdom}}/cp/users/view?id={{value.user_id}}" title='{%trans "User Profile"%}'><i class="sf-user-md"></i></a>
+          <a href="{{url.kingdom}}/cp/visitor?userid={{value.user_id}}" title='{%trans "User last visits"%}'><i class="sf-flight"></i></a>
+        </nav>
+      </td>
+      <td>
+{%if value.hook%}
+        <div class="mB10">
+          <a href="{{url.that}}?hooktext={{value.hooktext}}" class="txtB">{{value.hooktext}}</a>
+        </div>
+        <div class="f fs09">
+          <a href="{{url.this}}/logshow?id={{value.id}}#hook" class="cauto mRa5"><i class="sf-save-1"></i></a>
+          <a href="{{url.that}}?hookdate={{value.hookdate}}" title='{{value.hookdate}}' class="c">{{value.hookdate | tdate('H:i:s')}}</a>
+        </div>
+{%else%}
+        <i class="sf-times fc-yellow" title='{%trans "Without hook"%}'></i>
+{%endif%}
+      </td>
+      <td>
+        <div class="ltr txtL txtB mB5">
+          <a href="{{url.that}}?sendmethod={{value.sendmethod}}" title='{%trans "Method"%}'>{{value.sendmethod}}</a>
+          <a href="{{url.this}}/logshow?id={{value.id}}#sendkeyboard">{%if value.sendkeyboard%}<i class="sf-thumbnails fc-green" title='{%trans "With keyboard"%}'></i>{%else%}<i class="sf-file-text fc-mute" title='{%trans "Without keyboard"%}'></i>{%endif%}</a>
+          {%if value.sendmesageid%}
+          <a href="{{url.this}}/logshow?id={{value.id}}#sendmesageid" class="badge" title='{%trans "Message id"%}'>{{value.sendmesageid}}</a>{%endif%}
+        </div>
+        <div class="mB10">
+          <a href="{{url.that}}?sendtext={{value.sendtext}}">{{value.sendtext | raw}}</a>
+        </div>
+        <div class="f fs09">
+          <a href="{{url.this}}/logshow?id={{value.id}}#send" class="cauto mRa5" title='{%trans "Check more detail"%}'><i class="sf-save-1"></i></a>
+          <a href="{{url.that}}?senddate={{value.senddate}}" title='{{value.senddate}}' class="c txtB">{{value.senddate | tdate('H:i:s')}}</a>
+        </div>
+      </td>
+
+      <td>1
+      </td>
+      <td>2
+      </td>
+    </tr>
+{%endfor%}
+  </tbody>
+</table>
+
+
+
  <div class="cbox fs12">
   <table class="tbl bordered1">
     <thead class="primary fs09">
