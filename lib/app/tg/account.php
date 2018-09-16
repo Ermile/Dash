@@ -76,6 +76,13 @@ class account
 				}
 			}
 
+			if(!isset($mobile_exist['displayname']) && isset($_args['first_name']) && isset($_args['last_name']))
+			{
+				$update_new_user['displayname'] = substr($_args['first_name']. ' '. $_args['last_name'], 0, 90);
+			}
+
+			$update_new_user = \dash\safe::safe($update_new_user);
+
 			if(isset($mobile_exist['chatid']))
 			{
 				$meta = isset($mobile_exist['meta']) ? $mobile_exist['meta'] : null;
