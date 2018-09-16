@@ -50,6 +50,14 @@ class ermile
 				$response = self::contact();
 				break;
 
+			case '/register':
+			case 'register':
+			case '/signup':
+			case 'signup':
+				$response = self::signup();
+
+				break;
+
 			case 'type_contact':
 				$response = self::register('شماره موبایل', $_cmd);
 				break;
@@ -253,6 +261,25 @@ class ermile
 		];
 
 		return $result;
+	}
+
+
+	public static function signup()
+	{
+		$result['text'] = T_('Haloo');
+		$result['text'] .= "\n". T_('You can connect your telegram with your mobile number in our service.');
+		$result['text'] .= "\n". T_('Also you can do it anytime you need with /register command.');
+
+		// add replymarkup keyboard
+		$result['reply_markup'] =
+		[
+			'keyboard' =>
+			[
+				[T_("About")],
+				[T_("Feedback"), T_("Contact")],
+			],
+		];
+		bot::sendMessage($result);
 	}
 }
 ?>
