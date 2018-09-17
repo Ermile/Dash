@@ -119,7 +119,7 @@ class log
 		$myDetail =
 		[
 			'chatid'        => hook::from(),
-			'user_id'       => \dash\user::id(),
+			'user_id'       => \dash\user::id(true),
 			'hook'          => self::json(tg::$hook),
 			// 'hookdate'      => '',
 			'hooktext'      => hook::text(),
