@@ -8,12 +8,14 @@ class notification
 	private static $load               = false;
 	// check to not duplicate load user data
 	private static $user_loaded        = false;
-	// user notifissio as a group name
-	private static $user_detail        = null;
 	// list of project notifissin list
 	private static $project_notif_list = [];
 	// list of dash notification list
 	private static $core_notif_list    = [];
+
+	private static $notif_detail       = [];
+
+	private static $all_user_detail    = [];
 
 
 
@@ -75,53 +77,6 @@ class notification
 	}
 
 
-	// load user data
-	private static function user_detail($_user_id, $_key = null, $_value = null)
-	{
-		if(!$_user_id)
-		{
-			$_user_id = \dash\user::id();
-		}
-
-		if(!is_numeric($_user_id))
-		{
-			return false;
-		}
-
-		if(!self::$user_loaded)
-		{
-			self::$user_loaded       = true;
-			if(intval(\dash\user::id()) !== intval(\dash\user::id()))
-			{
-				$user_detail = \dash\db\users::get_by_id($user_id);
-			}
-			else
-			{
-				$user_detail = \dash\user::detail();
-			}
-
-			self::$user_detail = $user_detail;
-		}
-
-		return self::$user_detail;
-	}
-
-
-	private static function get_detail($_detail, $_key)
-	{
-		if(is_array($_detail))
-		{
-			if(array_key_exists($_key, $_detail))
-			{
-				return $_detail[$_key];
-			}
-			else
-			{
-				return null;
-			}
-		}
-		return null;
-	}
 
 	private static function calc_life_time($_life_time)
 	{
@@ -158,9 +113,125 @@ class notification
 	}
 
 
+
+	private static function clean()
+	{
+		self::$notif_detail    = [];
+		self::$all_user_detail = [];
+	}
+
+
+	private static function detect_user($_user_id)
+	{
+		$all_user_detail = [];
+		if($_user_id && is_numeric($_user_id))
+		{
+			// force send to this user
+			if(intval($_user_id) === intval(\dash\user::id()))
+			{
+				// neddless to load userdetail again
+				$all_user_detail[] = \dash\user::detail();
+			}
+			else
+			{
+				$find_user = \dash\db\users::get_by_id($_user_id);
+				if(!$find_user)
+				{
+					return false;
+				}
+				$all_user_detail[] = $find_user;
+			}
+		}
+		else
+		{
+			$send_to = self::detail('send_to');
+			if(!$send_to || !is_array($send_to))
+			{
+				return false;
+			}
+
+			if(in_array('supervisor', $send_to))
+			{
+				$load_all_supervisor = \dash\db\users::get(['permission' => 'supervisor', 'status' => 'active']);
+				if($load_all_supervisor)
+				{
+					$all_user_detail = array_merge($all_user_detail, $load_all_supervisor);
+				}
+			}
+
+			if(in_array('admin', $send_to))
+			{
+				$load_all_admin = \dash\db\users::get(['permission' => 'admin', 'status' => 'active']);
+				if($load_all_admin)
+				{
+					$all_user_detail = array_merge($all_user_detail, $load_all_admin);
+				}
+			}
+		}
+
+		if(empty($all_user_detail))
+		{
+			return false;
+		}
+
+		// to remove duplicate if exist
+		$all_user_detail       = array_combine(array_column($all_user_detail, 'id'), $all_user_detail);
+		self::$all_user_detail = $all_user_detail;
+		return true;
+	}
+
+	private static function detail($_key = null, $_sub_key = null)
+	{
+		$detail = self::$notif_detail;
+		if(!$detail)
+		{
+			return null;
+		}
+
+		if($_key)
+		{
+			if($_sub_key)
+			{
+				if(array_key_exists($_key, $detail))
+				{
+					if(is_array($detail[$_key]) && array_key_exists($_sub_key, $detail[$_key]))
+					{
+						return $detail[$_key][$_sub_key];
+					}
+					else
+					{
+						return null;
+					}
+				}
+				else
+				{
+					return null;
+				}
+			}
+			else
+			{
+				if(array_key_exists($_key, $detail))
+				{
+					return $detail[$_key];
+				}
+				else
+				{
+					return null;
+				}
+			}
+		}
+		else
+		{
+			return $detail;
+		}
+	}
+
+
 	// send notification
 	public static function send($_caller, $_user_id = null, $_replace = [], $_option = [])
 	{
+		self::clean();
+
 		$all_list = self::lists();
 
 		if(!isset($all_list[$_caller]))
@@ -168,9 +239,9 @@ class notification
 			return null;
 		}
 
-		$notif_detail = $all_list[$_caller];
+		self::$notif_detail = $notif_detail = $all_list[$_caller];
 
-		$user_detail = self::user_detail($_user_id);
+		$user_detail = self::detect_user($_user_id);
 
 		if($user_detail === false)
 		{
@@ -187,11 +258,13 @@ class notification
 			$_option = [];
 		}
 
+
+
 		$add_notif = [];
 		$sendnotif = [];
 
 		// set title
-		$title = self::get_detail($notif_detail, 'title');
+		$title = self::detail('title');
 
 		if(isset($_option['title']))
 		{
@@ -203,7 +276,7 @@ class notification
 		}
 
 		// set content
-		$content = self::get_detail($notif_detail, 'content');
+		$content = self::detail('content');
 
 		if(isset($_option['content']))
 		{
@@ -215,7 +288,7 @@ class notification
 		}
 
 		$expiredate = null;
-		$life_time = self::get_detail($notif_detail, 'life_time');
+		$life_time = self::detail('life_time');
 
 		if($life_time)
 		{
@@ -226,42 +299,25 @@ class notification
 			}
 		}
 
-		if(isset($user_detail['chatid']) && $user_detail['chatid'])
+		if(self::detail('telegram'))
 		{
-			if(self::get_detail($notif_detail, 'telegram'))
-			{
-				$sendnotif['telegram'] = ['to' => $user_detail['chatid']];
-				$add_notif['telegram'] = 1;
-			}
+			$add_notif['telegram'] = 1;
 		}
 
-		if(isset($user_detail['mobile']) && \dash\utility\filter::mobile($user_detail['mobile']))
+		if(self::detail('sms'))
 		{
-			if(self::get_detail($notif_detail, 'sms'))
-			{
-				$sendnotif['sms'] = ['to' => $user_detail['mobile']];
-				$add_notif['sms'] = 1;
-			}
+			$add_notif['sms'] = 1;
 		}
 
-		if(isset($user_detail['email']) && filter_var($user_detail['email'], FILTER_VALIDATE_EMAIL))
+		if(self::detail('email'))
 		{
-			if(self::get_detail($notif_detail, 'email'))
-			{
-				$sendnotif['email'] = ['to' => $user_detail['mobile']];
-				$add_notif['email'] = 1;
-			}
+			$add_notif['email'] = 1;
 		}
 
-		if(self::get_detail($notif_detail, 'need_answer'))
+
+		if(self::detail('need_answer'))
 		{
 			$add_notif['needanswer'] = 1;
-		}
-
-		// @check supervisor or admin to load all user
-		if(isset($user_detail['id']) && is_numeric($user_detail['id']))
-		{
-			$add_notif['user_id'] = $user_detail['id'];
 		}
 
 		if(isset($_option['url']) && is_numeric($_option['url']))
@@ -305,34 +361,74 @@ class notification
 		$add_notif['content']    = $content;
 		$add_notif['expiredate'] = $expiredate;
 
-		if(\dash\db\notifications::insert($add_notif))
-		{
-			if(!empty($sendnotif))
-			{
-				$add_send_notif = [];
-				foreach ($sendnotif as $key => $value)
-				{
-					$add_send_notif[]  =
-					[
-						'to'          => $value['to'],
-						'way'         => $key,
-						'status'      => 'awaiting',
-						'text'        => "$add_notif[title] \n $add_notif[content]",
-						'datecreated' => date("Y-m-d H:i:s"),
-					];
-				}
+		$save = self::save_notification_record($add_notif);
+		return $save;
 
-				if(!empty($add_send_notif))
-				{
-					\dash\db\sendnotifications::multi_insert($add_send_notif);
-				}
-			}
-			return true;
-		}
-		else
+		// if(\dash\db\notifications::insert($add_notif))
+		// {
+		// 	if(!empty($sendnotif))
+		// 	{
+		// 		$add_send_notif = [];
+		// 		foreach ($sendnotif as $key => $value)
+		// 		{
+		// 			$add_send_notif[]  =
+		// 			[
+		// 				'to'          => $value['to'],
+		// 				'way'         => $key,
+		// 				'status'      => 'awaiting',
+		// 				'text'        => "$add_notif[title] \n $add_notif[content]",
+		// 				'datecreated' => date("Y-m-d H:i:s"),
+		// 			];
+		// 		}
+
+		// 		if(!empty($add_send_notif))
+		// 		{
+		// 			\dash\db\sendnotifications::multi_insert($add_send_notif);
+		// 		}
+		// 	}
+		// 	return true;
+		// }
+		// else
+		// {
+		// 	return false;
+		// }
+	}
+
+
+	private static function save_notification_record($_detail)
+	{
+		$user_detail = self::$all_user_detail;
+
+		$add_notif = [];
+		$add_send_notif = [];
+
+		foreach ($user_detail as $key => $value)
 		{
-			return false;
+			$temp_add_notif      = $_detail;
+			$temp_add_send_notif = [];
+
+			if(!isset($value['id']))
+			{
+				continue;
+			}
+
+			$temp_add_notif['user_id'] = $value['id'];
+
+			// if(isset($value['mobile']) && \dash\utility\filter::mobile($value['mobile']))
+			// {
+			// 	// $temp_add_send_notif['']
+			// }
+
+			$add_notif[] = $temp_add_notif;
 		}
+
+		if(!empty($add_notif))
+		{
+			$result = \dash\db\notifications::multi_insert($add_notif);
+			return $result;
+		}
+
+		return false;
 	}
 }
 ?>
