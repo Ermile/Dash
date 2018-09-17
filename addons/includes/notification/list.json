@@ -1,6 +1,35 @@
 {
+  "sampleAll": {
+    "title": "The title :name",
+    "content": "The :user content",
+    "send_msg": {
+      "telegram": "Hi tg",
+      "sms": "Hi sms",
+      "email": "Hi email"
+    },
+    "telegram": true,
+    "sms": false,
+    "email": true,
+    "duplicate": {
+      "save": "true | false | in one day | if read",
+      "send": false
+    },
+    "life_time": "5d",
+    "need_answer": true,
+    "btn": {
+      "accept_owner": "Accept",
+      "reject_owner": "Reject"
+    },
+    "btn_function": {
+      "accept_owner": [
+        "\\dash\\user\\permission",
+        "set"
+      ],
+      "reject_owner": null
+    }
+  },
   "loadSu": {
-    "title": "load su whit user :user",
+    "title": "Load su whit :user",
     "content": "The :user was loaded su content",
     "telegram": true,
     "sms": false,
