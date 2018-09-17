@@ -349,6 +349,12 @@ class notification
 			}
 		}
 
+		if(self::detail('category'))
+		{
+			$add_notif['category'] = self::detail('category');
+		}
+
+
 		if(self::detail('telegram'))
 		{
 			$add_notif['telegram'] = 1;

@@ -100,10 +100,16 @@ class ticket
 			$args['subdomain'] = \dash\url::subdomain();
 		}
 
+		if(!$comment_id)
+		{
+			\dash\notif::error(T_("No way to add new data"));
+			return false;
+		}
+
 		$replace =
 		[
-			'domain'      => \dash\url::domain(),
 			'displayname' => \dash\user::detail('displayname'),
+			'link'        => \dash\url::pwd(),
 		];
 
 		$notif_args = [];
@@ -112,11 +118,6 @@ class ticket
 
 		$comment_id = \dash\db\comments::insert($args);
 
-		if(!$comment_id)
-		{
-			\dash\notif::error(T_("No way to add new data"));
-			return false;
-		}
 		\dash\log::db('addComment', ['data' => $comment_id, 'datalink' => \dash\coding::encode($comment_id)]);
 
 		$return       = [];

@@ -56,10 +56,25 @@
     }
   },
   "newTicket": {
-    "title": ":displayname add new ticket in :domain",
-    "content": ":content",
+    "title": "You have new ticket",
+    "content": "You have new ticket from :displayname",
+    "category": "ticket",
+    "send_msg": {
+      "telegram": "You have new ticket from :displayname \n see :link"
+    },
+    "send_to": [
+      "admin",
+      "supervisor"
+    ],
     "telegram": true,
-    "sms": false
+    "sms": false,
+    "email": false,
+    "duplicate": {
+      "save": true,
+      "send": true
+    },
+    "life_time": "5d",
+    "need_answer": false
   },
   "newLoginSession": {
     "title": "We Noticed a New Login, :displayname",
