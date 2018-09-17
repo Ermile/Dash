@@ -227,6 +227,41 @@ class notification
 	}
 
 
+	private static function detail_set($_key = null, $_sub_key = null, $_value = null)
+	{
+		$detail = self::$notif_detail;
+		if(!$detail)
+		{
+			return null;
+		}
+
+		if($_key)
+		{
+			if($_sub_key)
+			{
+				if(array_key_exists($_key, $detail))
+				{
+					if(is_array($detail[$_key]) && array_key_exists($_sub_key, $detail[$_key]))
+					{
+						$detail[$_key][$_sub_key] = $_value;
+					}
+				}
+			}
+			else
+			{
+				if(array_key_exists($_key, $detail))
+				{
+					$detail[$_key] = $_value;
+				}
+			}
+		}
+
+		self::$notif_detail = $detail;
+	}
+
+
+
+
 	// send notification
 	public static function send($_caller, $_user_id = null, $_replace = [], $_option = [])
 	{
@@ -285,6 +320,21 @@ class notification
 		elseif($content)
 		{
 			$content = T_($content, $_replace);
+		}
+
+		if(self::detail('send_msg', 'telegram'))
+		{
+			self::detail_set('send_msg', 'telegram', T_(self::detail('send_msg', 'telegram'), $_replace));
+		}
+
+		if(self::detail('send_msg', 'sms'))
+		{
+			self::detail_set('send_msg', 'sms', T_(self::detail('send_msg', 'sms'), $_replace));
+		}
+
+		if(self::detail('send_msg', 'email'))
+		{
+			self::detail_set('send_msg', 'email', T_(self::detail('send_msg', 'email'), $_replace));
 		}
 
 		$expiredate = null;
@@ -363,35 +413,6 @@ class notification
 
 		$save = self::save_notification_record($add_notif);
 		return $save;
-
-		// if(\dash\db\notifications::insert($add_notif))
-		// {
-		// 	if(!empty($sendnotif))
-		// 	{
-		// 		$add_send_notif = [];
-		// 		foreach ($sendnotif as $key => $value)
-		// 		{
-		// 			$add_send_notif[]  =
-		// 			[
-		// 				'to'          => $value['to'],
-		// 				'way'         => $key,
-		// 				'status'      => 'awaiting',
-		// 				'text'        => "$add_notif[title] \n $add_notif[content]",
-		// 				'datecreated' => date("Y-m-d H:i:s"),
-		// 			];
-		// 		}
-
-		// 		if(!empty($add_send_notif))
-		// 		{
-		// 			\dash\db\sendnotifications::multi_insert($add_send_notif);
-		// 		}
-		// 	}
-		// 	return true;
-		// }
-		// else
-		// {
-		// 	return false;
-		// }
 	}
 
 
@@ -399,25 +420,64 @@ class notification
 	{
 		$user_detail = self::$all_user_detail;
 
-		$add_notif = [];
+		$add_notif      = [];
 		$add_send_notif = [];
 
 		foreach ($user_detail as $key => $value)
 		{
 			$temp_add_notif      = $_detail;
-			$temp_add_send_notif = [];
 
 			if(!isset($value['id']))
 			{
 				continue;
 			}
 
-			$temp_add_notif['user_id'] = $value['id'];
+			if(isset($_detail['telegram']) && $_detail['telegram'] && isset($value['chatid']) && $value['chatid'])
+			{
+				$temp_add_send_notif           = [];
+				$temp_add_send_notif['way']    = 'telegram';
+				$temp_add_send_notif['status'] = 'awaiting';
+				$temp_add_send_notif['to']     = $value['chatid'];
 
-			// if(isset($value['mobile']) && \dash\utility\filter::mobile($value['mobile']))
-			// {
-			// 	// $temp_add_send_notif['']
-			// }
+				if(self::detail('send_msg', 'telegram'))
+				{
+					$temp_add_send_notif['text']        = self::detail('send_msg', 'telegram');
+					$temp_add_send_notif['datecreated'] = date("Y-m-d H:i:s");
+					$add_send_notif[]                   = $temp_add_send_notif;
+				}
+			}
+
+			if(isset($_detail['sms']) && $_detail['sms'] && isset($value['mobile']) && \dash\utility\filter::mobile($value['mobile']))
+			{
+				$temp_add_send_notif           = [];
+				$temp_add_send_notif['way']    = 'sms';
+				$temp_add_send_notif['status'] = 'awaiting';
+				$temp_add_send_notif['to']     = $value['mobile'];
+
+				if(self::detail('send_msg', 'sms'))
+				{
+					$temp_add_send_notif['text']        = self::detail('send_msg', 'sms');
+					$temp_add_send_notif['datecreated'] = date("Y-m-d H:i:s");
+					$add_send_notif[]                   = $temp_add_send_notif;
+				}
+			}
+
+			if(isset($_detail['email']) && $_detail['email'] && isset($value['email']) && \dash\utility\filter::email($value['email']))
+			{
+				$temp_add_send_notif           = [];
+				$temp_add_send_notif['way']    = 'email';
+				$temp_add_send_notif['status'] = 'awaiting';
+				$temp_add_send_notif['to']     = $value['email'];
+
+				if(self::detail('send_msg', 'email'))
+				{
+					$temp_add_send_notif['text']        = self::detail('send_msg', 'email');
+					$temp_add_send_notif['datecreated'] = date("Y-m-d H:i:s");
+					$add_send_notif[]                   = $temp_add_send_notif;
+				}
+			}
+
+			$temp_add_notif['user_id'] = $value['id'];
 
 			$add_notif[] = $temp_add_notif;
 		}
@@ -425,7 +485,11 @@ class notification
 		if(!empty($add_notif))
 		{
 			$result = \dash\db\notifications::multi_insert($add_notif);
-			return $result;
+		}
+
+		if(!empty($add_send_notif))
+		{
+			$result = \dash\db\sendnotifications::multi_insert($add_send_notif);
 		}
 
 		return false;

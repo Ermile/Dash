@@ -4,6 +4,11 @@ namespace dash\utility;
 /** Filter of values : mobile ...etc **/
 class filter
 {
+	public static function email($_email)
+	{
+		return filter_var($_email, FILTER_VALIDATE_EMAIL);
+	}
+
 
 	public static function nationalcode($_national_code)
 	{
