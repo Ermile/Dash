@@ -2,11 +2,17 @@
   "sampleAll": {
     "title": "The title :name",
     "content": "The :user content",
+    "category": "test",
+    "url": ":kingdom/sample?id=$id",
     "send_msg": {
       "telegram": "Hi tg",
       "sms": "Hi sms",
       "email": "Hi email"
     },
+    "send_to": [
+      "admin",
+      "supervisor"
+    ],
     "telegram": true,
     "sms": false,
     "email": true,
