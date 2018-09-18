@@ -106,14 +106,14 @@ class model
 
 		$main = \dash\app\ticket::get(\dash\request::get('id'));
 
-		if(!$main || !isset($main['user_id']))
+		if(!$main || !array_key_exists('user_id', $main))
 		{
 			\dash\header::status(403, T_("Ticket not found"));
 		}
 
 		$ticket_user_id = $main['user_id'];
 		$ticket_user_id = \dash\coding::decode($ticket_user_id);
-		if(!$ticket_user_id)
+		if(!$ticket_user_id && !\dash\temp::get('ticketGuest') && !\dash\user::login())
 		{
 			\dash\header::status(403, T_("Ticket not found"));
 		}
@@ -127,35 +127,39 @@ class model
 
 			$update_main['plus'] = intval($plus) + 1 + 1 ; // master ticket + this tichet
 
-			if(intval($ticket_user_id) === intval(\dash\user::id()))
-			{
-				$update_main['status'] = 'awaiting';
-			}
-			else
+			if(!\dash\temp::get('ticketGuest'))
 			{
 
-				\dash\permission::access('supportTicketAnswer');
-
-				if(array_key_exists('subdomain', $main))
+				if(intval($ticket_user_id) === intval(\dash\user::id()))
 				{
-					if($main['subdomain'] != \dash\url::subdomain())
-					{
-						\dash\permission::access('supportTicketAnswerOtherSubdomain');
-					}
-				}
-
-				$update_main['status'] = 'answered';
-
-				if(isset($main['answertime']) && $main['answertime'])
-				{
-					// no change
+					$update_main['status'] = 'awaiting';
 				}
 				else
 				{
-					if(isset($main['datecreated']))
+
+					\dash\permission::access('supportTicketAnswer');
+
+					if(array_key_exists('subdomain', $main))
 					{
-						$diff                      = time() - strtotime($main['datecreated']);
-						$update_main['answertime'] = $diff;
+						if($main['subdomain'] != \dash\url::subdomain())
+						{
+							\dash\permission::access('supportTicketAnswerOtherSubdomain');
+						}
+					}
+
+					$update_main['status'] = 'answered';
+
+					if(isset($main['answertime']) && $main['answertime'])
+					{
+						// no change
+					}
+					else
+					{
+						if(isset($main['datecreated']))
+						{
+							$diff                      = time() - strtotime($main['datecreated']);
+							$update_main['answertime'] = $diff;
+						}
 					}
 				}
 			}

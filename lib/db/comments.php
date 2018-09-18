@@ -76,7 +76,7 @@ class comments
 				$_options['public_show_field'] = " comments.*, users.avatar, users.firstname, users.displayname ";
 			}
 
-			$_options['master_join'] = "INNER JOIN users ON users.id = comments.user_id ";
+			$_options['master_join'] = "LEFT JOIN users ON users.id = comments.user_id ";
 			$_options["search_field"] =
 			"	(
 						comments.content LIKE '%__string__%' OR
@@ -89,7 +89,7 @@ class comments
 			{
 				$_options['master_join'] =
 				"
-					INNER JOIN users ON users.id = comments.user_id
+					LEFT JOIN users ON users.id = comments.user_id
 					INNER JOIN termusages ON termusages.related_id = comments.id AND termusages.related = 'comments'
 					INNER JOIN terms ON terms.id  = termusages.term_id
 				";

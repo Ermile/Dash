@@ -52,6 +52,10 @@ class view
 
 	public static function sidebarDetail($_all = false)
 	{
+		if(!\dash\user::login())
+		{
+			return;
+		}
 		$args               = [];
 		$args_tag           = [];
 

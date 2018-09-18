@@ -22,7 +22,7 @@ class view
 		}
 
 		$main = \dash\app\ticket::get(\dash\request::get('id'));
-		if(!$main || !isset($main['user_id']))
+		if(!$main || !array_key_exists('user_id', $main))
 		{
 			\dash\header::status(403, T_("Ticket not found"));
 		}
@@ -38,7 +38,8 @@ class view
 		$ticket_user_id = $main['user_id'];
 		\dash\data::masterTicketUser($ticket_user_id);
 		$ticket_user_id = \dash\coding::decode($ticket_user_id);
-		if(!$ticket_user_id)
+
+		if(!$ticket_user_id && !\dash\temp::get('ticketGuest') && !\dash\user::login())
 		{
 			\dash\header::status(403, T_("Ticket not found"));
 		}
@@ -52,7 +53,10 @@ class view
 			}
 			else
 			{
-				\dash\header::status(403, T_("This is not your ticket!"));
+				if(!\dash\temp::get('ticketGuest'))
+				{
+					\dash\header::status(403, T_("This is not your ticket!"));
+				}
 			}
 		}
 

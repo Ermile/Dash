@@ -8,10 +8,10 @@
   <div class="c8 s12 pRa10">
     {{block("iChatList")}}
     {%include 'content_support/ticket/addForm.html'%}
-
   </div>
+
   <div class="c4 s12">
-{%if true %}
+
     <div class="cbox">
 {%if masterTicketDetail.status == 'awaiting' or masterTicketDetail.status == 'answered'%}
       <div class="fs08">
@@ -40,7 +40,7 @@
       </form>
 {%endif%}
     </div>
-{%endif%}
+
 
 {%if perm('supportTicketView') %}
     <div class="cbox">
@@ -51,20 +51,20 @@
     </div>
 {%endif%}
 
-{%if perm_su()%}
-{%if lastSeen%}
-  <div class="cbox">
-    {%for key, value in lastSeen%}
-    {%set nowDate = "now" | date("Y-m-d")%}
-    {%if value.date == nowDate%}
-      {%set myClass = 'success2'%}
+  {%if perm_su()%}
+    {%if lastSeen%}
+      <div class="cbox">
+        {%for key, value in lastSeen%}
+        {%set nowDate = "now" | date("Y-m-d")%}
+        {%if value.date == nowDate%}
+          {%set myClass = 'success2'%}
+        {%endif%}
+        <div class="msg {{myClass}}">{{value.timeraw | date("Y-m-d H:i:s") |  tdate("l d F Y H:i:s")}}</div>
+        {%endfor%}
+      </div>
     {%endif%}
-    <div class="msg {{myClass}}">{{value.timeraw | date("Y-m-d H:i:s") |  tdate("l d F Y H:i:s")}}</div>
-    {%endfor%}
+  {%endif%}
   </div>
-{%endif%}
-  </div>
-{%endif%}
 </div>
 {%endblock%}
 

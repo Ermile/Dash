@@ -32,7 +32,7 @@ class ticket
 					users.firstname,
 					users.displayname
 				 ";
-		$_options['master_join'] = "INNER JOIN users ON users.id = comments.user_id ";
+		$_options['master_join'] = "LEFT JOIN users ON users.id = comments.user_id ";
 
 		$get = \dash\db\comments::get(['comments.id' => $_id, 'limit' => 1], $_options);
 
@@ -92,8 +92,12 @@ class ticket
 			}
 		}
 
-		$args['visitor_id'] = \dash\utility\visitor::id();
-		$args['ip']         = \dash\server::ip(true);
+		$dateNow = date("Y-m-d H:i:s");
+
+		$args['visitor_id']  = \dash\utility\visitor::id();
+		$args['ip']          = \dash\server::ip(true);
+		$args['datecreated'] = $dateNow;
+
 
 		if(\dash\url::subdomain())
 		{
@@ -120,8 +124,11 @@ class ticket
 
 		\dash\log::db('addComment', ['data' => $comment_id, 'datalink' => \dash\coding::encode($comment_id)]);
 
-		$return       = [];
-		$return['id'] = $comment_id;
+		$return            = [];
+		$return['id']      = $comment_id;
+		$return['date']    = $dateNow;
+		$return['code']    = md5((string) $comment_id. '^_^-*_*'. $dateNow);
+		$return['codeurl'] = \dash\url::kingdom(). '/support/ticket/show?id='. $return['id']. '&guest='. $return['code'];
 		return $return;
 	}
 

@@ -8,7 +8,7 @@ class model
 	{
 		$session_name = 'contact_ticket_count';
 		$time         = 60 * 3; // 3 min
-		$count        = 3;      // 3 times
+		$max_count    = 3;      // 3 times
 
 		$count = \dash\session::get($session_name);
 		if($count)
@@ -20,7 +20,7 @@ class model
 			\dash\session::set($session_name, 1, null, $time);
 		}
 
-		if($count >= $count && !\dash\permission::supervisor())
+		if($count >= $max_count && !\dash\permission::supervisor())
 		{
 			\dash\log::db('tryCount>inMins');
 			\dash\notif::error(T_("You hit our maximum try limit."). ' '. T_("Try again later!"));
@@ -49,6 +49,7 @@ class model
 			\dash\notif::error(T_("Please try type something!"), "content");
 			return false;
 		}
+
 
 		// check login
 		if(\dash\user::login())
@@ -116,56 +117,50 @@ class model
 			}
 		}
 
-		if($user_id)
+		$args =
+		[
+			'author'  => $displayname,
+			'email'   => $email,
+			'type'    => 'ticket',
+			'content' => $content,
+			'title'   => T_("Contact Us"),
+			'mobile'  => $mobile,
+			'user_id' => $user_id,
+
+		];
+
+		$result = \dash\app\ticket::add($args);
+
+
+		if(\dash\user::login())
 		{
-			$args =
-			[
-				'author'  => $displayname,
-				'email'   => $email,
-				'type'    => 'ticket',
-				'content' => $content,
-				'title'   => T_("Contact Us"),
-				'mobile'  => $mobile,
-				'user_id' => $user_id,
-
-			];
-
-			$result = \dash\app\ticket::add($args);
-			if($result)
+			if(isset($result['id']))
 			{
-				$ticket_link = '<a href="'. \dash\url::site(). '/support">'. T_("You can check your contacting answer here") .'</a>';
+				$ticket_link = '<a href="'. \dash\url::site(). '/support/ticket/show?id='. $result['id'].'">'. T_("You can check your contacting answer here") .'</a>';
 				\dash\notif::ok(T_("Thank You For contacting us"). ' '. $ticket_link);
 			}
 			else
 			{
+				// just if we have error run this code
 				\dash\log::db('contactUsLoginNotSave');
 				\dash\notif::error(T_("We could'nt save the contact"));
 			}
-			return;
 		}
 		else
 		{
-			// ready to insert comments
-			$args =
-			[
-				'author'  => $displayname,
-				'email'   => $email,
-				'type'    => 'contact',
-				'content' => $content,
-				'user_id' => null,
-			];
-			// insert comments
-			$result = \dash\db\comments::insert($args);
-			if($result)
+			if(isset($result['codeurl']))
 			{
-				\dash\notif::ok(T_("Thank You For contacting us"));
+				\dash\session::set('temp_ticket_codeurl', $result['codeurl']);
+				$ticket_link = '<a href="'. $result['codeurl'].'">'. T_("You can check your contacting answer here") .'</a>';
+				\dash\notif::ok(T_("Thank You For contacting us"). ' '. $ticket_link);
+				\dash\redirect::pwd();
+
 			}
 			else
 			{
 				\dash\log::db('contactFail');
 				\dash\notif::error(T_("We could'nt save the contact"));
 			}
-
 		}
 	}
 }
