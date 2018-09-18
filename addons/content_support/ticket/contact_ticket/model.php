@@ -124,7 +124,7 @@ class model
 			'email'   => $email,
 			'type'    => 'ticket',
 			'content' => $content,
-			'title'   => T_("Contact Us"),
+			'title'   => \dash\temp::get('tempTicketTitle') ? \dash\temp::get('tempTicketTitle') : T_("Contact Us"),
 			'mobile'  => $mobile,
 			'user_id' => $user_id,
 
