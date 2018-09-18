@@ -8,12 +8,15 @@ class controller
 	{
 		\dash\permission::access('cpContactChangeStatus');
 
-		$id = \dash\request::get('id');
+		\dash\redirect::to(\dash\url::kingdom(). '/support/ticket?access=all&status=all&q='. T_("Contact Us"));
+		return;
 
-		if(!$id || !\dash\coding::is($id))
-		{
-			\dash\header::status(404, T_("Invalid id"));
-		}
+		// $id = \dash\request::get('id');
+
+		// if(!$id || !\dash\coding::is($id))
+		// {
+		// 	\dash\header::status(404, T_("Invalid id"));
+		// }
 	}
 }
 ?>
