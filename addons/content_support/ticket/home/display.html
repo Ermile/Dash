@@ -19,7 +19,7 @@
 
  {%endif%}
 {%else%}
- {%if dataFilter%}
+ {%if dataFilter or requestGET.q%}
 
   {{block('htmlSearchBox')}}
   {{block('htmlFilterNoResult')}}
@@ -39,6 +39,9 @@
 <div class="cbox fs12">
   <form method="get" action='{{url.this}}{{moduleType}}' data-action>
     <div class="input">
+      {%for key, value in requestGET%}
+        <input type="hidden" name="{{key}}" value="{{value}}">
+      {%endfor%}
       <input type="search" name="q" placeholder='{%trans "Search"%}' id="q" value="{{requestGET.q}}" autofocus autocomplete='off'>
       <button class="addon btn ">{%trans "Search" %}</button>
     </div>
@@ -63,7 +66,7 @@
 {%block htmlFilterNoResult%}
 <p class="f fs14 msg warn2">
   <span class="c">{%trans "Result not found!"%} {%trans "Search with new keywords."%}</span>
-  <a class="cauto" href="{{url.here}}/{{url.module}}">{%trans "Clear filters"%}</a>
+  <a class="cauto" href="{{url.this}}{{accessGet}}">{%trans "Clear filters"%}</a>
 </p>
 {%endblock%}
 

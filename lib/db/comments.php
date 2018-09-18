@@ -80,6 +80,7 @@ class comments
 			$_options["search_field"] =
 			"	(
 						comments.content LIKE '%__string__%' OR
+						comments.title LIKE '%__string__%' OR
 						users.mobile LIKE '%__string__%' OR
 						comments.id = '__string__'
 				)
