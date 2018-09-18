@@ -20,7 +20,8 @@ class view
 		\dash\data::badge_link(\dash\url::here(). '/ticket'. \dash\data::accessGet());
 
 		// 'approved','awaiting','unapproved','spam','deleted','filter','close','answered'
-		$args['order_raw']       = ' FIELD(comments.status, "answered", "awaiting") DESC, comments.status, IF(comments.datemodified is null, comments.datecreated, comments.datemodified) DESC';
+		// $args['order_raw']       = ' FIELD(comments.status, "answered", "awaiting") DESC, comments.status, IF(comments.datemodified is null, comments.datecreated, comments.datemodified) DESC';
+		$args['sort']            = 'comments.id';
 		$args['order']           = 'desc';
 		$args['comments.type']   = 'ticket';
 		$args['comments.status'] = ["NOT IN ", "('deleted')"];

@@ -20,8 +20,8 @@ class view
 
 
 		// 'approved','awaiting','unapproved','spam','deleted','filter','close','answered'
-		$args['order_raw']       = ' FIELD(comments.status, "answered", "awaiting") DESC, comments.status, IF(comments.datemodified is null, comments.datecreated, comments.datemodified) DESC';
-		// $args['sort']            = 'datecreated';
+		// $args['order_raw']       = ' FIELD(comments.status, "answered", "awaiting") DESC, comments.status, IF(comments.datemodified is null, comments.datecreated, comments.datemodified) DESC';
+		$args['sort']            = 'datecreated';
 		$args['order']           = 'desc';
 		$args['comments.type']   = 'ticket';
 		$args['comments.parent'] = null;
@@ -29,6 +29,12 @@ class view
 		$args['limit']           = 10;
 		$args['join_user']       = true;
 		$args['get_tag']         = true;
+
+		if(\dash\request::get('type') === 'last')
+		{
+			$args['order_raw']       = ' FIELD(comments.status, "answered", "awaiting") DESC, comments.status, IF(comments.datemodified is null, comments.datecreated, comments.datemodified) DESC';
+			unset($args['sort']);
+		}
 
 		$status = \dash\request::get('status');
 
