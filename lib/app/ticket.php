@@ -115,10 +115,17 @@ class ticket
 		$replace =
 		[
 			'displayname' => \dash\user::detail('displayname'),
-			'link'        => \dash\url::pwd(),
+			'link'        => \dash\url::this(). '/show?id='. $comment_id,
+
 		];
 
-		$notif_args = [];
+		$notif_args =
+		[
+			'send_msg'    =>
+			[
+				'telegram' => strip_tags($args['content'])
+			],
+		];
 
 		\dash\notification::send('newTicket', null, $replace, $notif_args);
 

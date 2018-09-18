@@ -337,6 +337,11 @@ class notification
 			self::detail_set('send_msg', 'email', T_(self::detail('send_msg', 'email'), $_replace));
 		}
 
+		if(isset($_option['send_msg']['telegram']))
+		{
+			self::detail_set('send_msg', 'telegram', $_option['send_msg']['telegram']);
+		}
+
 		$expiredate = null;
 		$life_time = self::detail('life_time');
 
