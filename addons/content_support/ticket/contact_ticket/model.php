@@ -96,10 +96,11 @@ class model
 		if($mobile && !\dash\user::login())
 		{
 			// check valid mobile
-			if(\dash\utility\filter::mobile($mobile))
+			if($mobile = \dash\utility\filter::mobile($mobile))
 			{
 				// check existing mobile
 				$exists_user = \dash\db\users::get_by_mobile($mobile);
+
 				// register if the mobile is valid
 				if(!$exists_user || empty($exists_user))
 				{
