@@ -10,9 +10,9 @@
     <tr class="{{value.rowColor}}">
       <td class="collapsing txtB">
         {%if value.parent%}
-        <a data-direct href="{{url.here}}/ticket/show?id={{value.parent}}{{accessGetAnd}}#{{value.id}}"><span class="badge light mRa5">{{value.parent | fitNumber}}</span> </a>
+        <a data-direct href="{{url.here}}/ticket/show?id={{value.parent}}{{accessGetAnd}}#{{value.id}}"><span class="badge light mRa5">{{value.parent | fitNumber(false)}}</span> </a>
         {%else%}
-        <a href="{{url.here}}/ticket/show?id={{value.id}}{{accessGetAnd}}"><span class="badge light mRa5">{{value.id | fitNumber}}</span> {{value.title | slice(0, 40)}}</a>
+        <a href="{{url.here}}/ticket/show?id={{value.id}}{{accessGetAnd}}"><span class="badge light mRa5">{{value.id | fitNumber(false)}}</span> {{value.title | slice(0, 40)}}</a>
         {%endif%}
       </td>
       <td class="s0"><a href="{{url.here}}/ticket/show?id={{value.id}}{{accessGetAnd}}">{{value.content | slice(0, 70)}}</a>
