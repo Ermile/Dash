@@ -84,7 +84,7 @@ class view
 
 		if(isset($dataTable[0]['id']))
 		{
-			\dash\data::page_title(\dash\data::page_title() . ' '. \dash\utility\human::fitNumber($dataTable[0]['id']) );
+			\dash\data::page_title(\dash\data::page_title() . ' '. \dash\utility\human::fitNumber($dataTable[0]['id'], false) );
 		}
 
 
