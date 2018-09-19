@@ -164,6 +164,11 @@ class visitor
 			return $_url_id;
 		}
 
+		if($referer === \dash\url::site(). '/')
+		{
+			return null;
+		}
+
 		return self::url_db($referer, true);
 	}
 }
