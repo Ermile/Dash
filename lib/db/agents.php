@@ -9,9 +9,9 @@ class agents
 	 *
 	 * @return     <type>  ( description_of_the_return_value )
 	 */
-	public static function insert()
+	public static function insert($_args)
 	{
-		\dash\db\config::public_insert('agents', ...func_get_args());
+		\dash\db\config::public_insert('agents', $_args, \dash\db::get_db_log_name());
 		return \dash\db::insert_id();
 	}
 
@@ -21,9 +21,9 @@ class agents
 	 *
 	 * @return     <type>  ( description_of_the_return_value )
 	 */
-	public static function get()
+	public static function get($_where)
 	{
-		return \dash\db\config::public_get('agents', ...func_get_args());
+		return \dash\db\config::public_get('agents', $_where, ['db_name' => \dash\db::get_db_log_name()]);
 	}
 }
 ?>
