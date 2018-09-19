@@ -195,12 +195,21 @@ trait install
 				$has_error = false;
 				// read file and save in variable
 				$qry_list = file_get_contents($_path);
+				$my_db_name = $_db_name;
+				if(strpos(substr($qry_list, 0, 100), '-- [database log]') !== false)
+				{
+					if(defined('db_log_name'))
+					{
+						$my_db_name = db_log_name;
+					}
+				}
+
 				// seperate with semicolon
-				if(substr($qry_list, 0,14) == '-- multi_query')
+				if(strpos(substr($qry_list, 0, 100), '-- multi_query') !== false)
 				{
 					if($qry_list)
 					{
-						if(!self::query($qry_list, $_db_name, ['multi_query' => true, 'resume_on_error' => true]))
+						if(!self::query($qry_list, $my_db_name, ['multi_query' => true, 'resume_on_error' => true]))
 						{
 							$has_error = true;
 						}
@@ -217,7 +226,7 @@ trait install
 						$qry = trim($qry);
 						if($qry)
 						{
-							self::query($qry, $_db_name, ['resume_on_error' => true]);
+							self::query($qry, $my_db_name, ['resume_on_error' => true]);
 							if(\dash\db::error())
 							{
 								$has_error = true;
