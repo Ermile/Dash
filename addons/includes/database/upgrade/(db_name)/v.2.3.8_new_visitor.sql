@@ -23,7 +23,7 @@ CREATE TABLE `visitors` (
 `id`			bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
 `statuscode`	int(5) DEFAULT NULL,
 `visitor_ip`	int(10) UNSIGNED DEFAULT NULL,
-`session_id`	bigint(20) UNSIGNED NULL,
+`session_id`	VARCHAR(100) NULL,
 `url_id`		int(10) UNSIGNED NOT NULL,
 `url_idreferer`	int(10) UNSIGNED DEFAULT NULL,
 `agent_id`		int(10) UNSIGNED DEFAULT NULL,

@@ -3,6 +3,20 @@ namespace dash\db\mysql\tools;
 
 trait get
 {
+
+	public static function get_db_log_name()
+	{
+		if(defined('db_log_name'))
+		{
+			return db_log_name;
+		}
+		else
+		{
+			return true;
+		}
+	}
+
+
 	/**
 	 * run query and get result of this query
 	 * @param  [type]  $_qry          [description]
