@@ -55,7 +55,17 @@ class visitor
 
 		if(is_numeric($result))
 		{
-			$_SESSION['last_visitor_id'] = $result;
+			if(self::id())
+			{
+				if(isset($_SESSION['last_visitor_time']))
+				{
+					$avgtime = time() - intval($_SESSION['last_visitor_time']);
+					\dash\db\config::public_update('visitors', ['avgtime' => $avgtime], self::id(), \dash\db::get_db_log_name());
+				}
+			}
+
+			$_SESSION['last_visitor_id']   = $result;
+			$_SESSION['last_visitor_time'] = time();
 		}
 
 		return true;
