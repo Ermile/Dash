@@ -41,7 +41,7 @@ class sessions
 			return false;
 		}
 
-		return \dash\db::query("INSERT INTO sessions SET $set");
+		return \dash\db::query("INSERT INTO sessions SET $set", \dash\db::get_db_log_name());
 	}
 
 
@@ -55,7 +55,7 @@ class sessions
 			return false;
 		}
 		$query = "SELECT * FROM sessions WHERE user_id = $_user_id AND id = $_session_id LIMIT 1";
-		return \dash\db::get($query, null, true);
+		return \dash\db::get($query, null, true, \dash\db::get_db_log_name());
 	}
 
 
@@ -77,7 +77,7 @@ class sessions
 			return false;
 		}
 
-		$get   = \dash\db::get("SELECT * FROM sessions WHERE $where LIMIT 1", null, true);
+		$get   = \dash\db::get("SELECT * FROM sessions WHERE $where LIMIT 1", null, true, \dash\db::get_db_log_name());
 		\dash\temp::set('db_remember_me_query', true);
 		\dash\temp::set('db_remember_me_query_result', $get);
 		return $get;
@@ -127,12 +127,36 @@ class sessions
 	}
 
 
+	/**
+	 * Terminate the cookie.
+	 *
+	 * @param      <type>  $_code  The code
+	 */
+	public static function terminate_cookie()
+	{
+		\dash\utility\cookie::delete("remember_me_");
+	}
+
+
+	/**
+	 * Sets the cookie.
+	 *
+	 * @param      <type>  $_code  The code
+	 */
+	public static function set_cookie($_code)
+	{
+		$cookie_domain = '.'. \dash\url::domain();
+		setcookie("remember_me_", $_code, time() + (60*60*24*365), '/', $cookie_domain);
+	}
+
+
+
 	public static function is_active($_code, $_user_id)
 	{
 		if($_code && is_numeric($_user_id))
 		{
 			$_code = addslashes($_code);
-			$get   = \dash\db::get("SELECT sessions.status FROM sessions WHERE sessions.user_id = $_user_id AND sessions.status = 'active' AND sessions.code = '$_code' LIMIT 1", null, true);
+			$get   = \dash\db::get("SELECT sessions.status FROM sessions WHERE sessions.user_id = $_user_id AND sessions.status = 'active' AND sessions.code = '$_code' LIMIT 1", null, true, \dash\db::get_db_log_name());
 			if($get)
 			{
 				return true;
@@ -174,31 +198,9 @@ class sessions
 			return false;
 		}
 
-		\dash\db::query("UPDATE sessions SET status = 'terminate' WHERE id = $_id LIMIT 1");
+		\dash\db::query("UPDATE sessions SET status = 'terminate' WHERE id = $_id LIMIT 1", \dash\db::get_db_log_name());
 	}
 
-
-	/**
-	 * Terminate the cookie.
-	 *
-	 * @param      <type>  $_code  The code
-	 */
-	public static function terminate_cookie()
-	{
-		\dash\utility\cookie::delete("remember_me_");
-	}
-
-
-	/**
-	 * Sets the cookie.
-	 *
-	 * @param      <type>  $_code  The code
-	 */
-	public static function set_cookie($_code)
-	{
-		$cookie_domain = '.'. \dash\url::domain();
-		setcookie("remember_me_", $_code, time() + (60*60*24*365), '/', $cookie_domain);
-	}
 
 
 	/**
@@ -225,9 +227,15 @@ class sessions
 
 		if(!$exist)
 		{
-			self::insert($args);
-			self::set_cookie($args['code']);
-			return true;
+			if(self::insert($args))
+			{
+				self::set_cookie($args['code']);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
 		}
 		else
 		{
@@ -235,15 +243,27 @@ class sessions
 			{
 				if(isset($exist['code']))
 				{
-					self::login($exist['code']);
-					self::set_cookie($exist['code']);
+					if(self::login($exist['code']))
+					{
+						self::set_cookie($exist['code']);
+					}
+					else
+					{
+						return false;
+					}
 				}
 				return true;
 			}
 			else
 			{
-				self::insert($args);
-				self::set_cookie($args['code']);
+				if(self::insert($args))
+				{
+					self::set_cookie($args['code']);
+				}
+				else
+				{
+					return false;
+				}
 				return true;
 			}
 		}
@@ -285,7 +305,7 @@ class sessions
 			";
 		}
 
-		$result = \dash\db::get($query, null);
+		$result = \dash\db::get($query, null, false, \dash\db::get_db_log_name());
 		// get agent list form dash tools
 		if($result && is_array($result))
 		{
@@ -293,7 +313,7 @@ class sessions
 			$agent_id    = array_unique($agent_id);
 			$agent_id    = implode(',', $agent_id);
 			$agent_query = "SELECT * FROM agents WHERE id IN ($agent_id)";
-			$agents      = \dash\db::get($agent_query);
+			$agents      = \dash\db::get($agent_query, null, false, \dash\db::get_db_log_name());
 			if($agents && is_array($agents))
 			{
 				$agent_id = array_column($agents, 'id');
@@ -383,7 +403,7 @@ class sessions
 			";
 		}
 
-		$result = \dash\db::get($query, null);
+		$result = \dash\db::get($query, null, false, \dash\db::get_db_log_name());
 		return $result;
 	}
 
@@ -397,7 +417,7 @@ class sessions
 	{
 		if($_code && is_string($_code))
 		{
-			\dash\db::query("UPDATE sessions SET sessions.count = sessions.count + 1 WHERE code = '$_code'");
+			\dash\db::query("UPDATE sessions SET sessions.count = sessions.count + 1 WHERE code = '$_code'", \dash\db::get_db_log_name());
 		}
 	}
 
@@ -426,7 +446,7 @@ class sessions
 			}
 		}
 
-		\dash\db::query("UPDATE sessions SET status = '$_status' WHERE user_id = $_user_id $where_code");
+		\dash\db::query("UPDATE sessions SET status = '$_status' WHERE user_id = $_user_id $where_code", \dash\db::get_db_log_name());
 
 	}
 
