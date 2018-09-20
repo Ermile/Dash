@@ -89,6 +89,7 @@ class visitors
 		return $result;
 	}
 
+
 	public static function total_maxtrafictime($_args)
 	{
 		$start_time = self::calc_start_time($_args);
@@ -113,8 +114,55 @@ class visitors
 			return $result['date']. ' '. $result['hour'];
 		}
 		return null;
+	}
+
+
+	public static function chart_visitorchart($_args)
+	{
+		$start_time = self::calc_start_time($_args);
+		if(!$start_time)
+		{
+			return null;
+		}
+
+		$query =
+		"
+			SELECT COUNT(myTable.count) AS `myCount`, myTable.myHour
+			FROM
+				(
+					SELECT
+					HOUR(visitors.date) AS `myHour`,
+					COUNT(*) AS `count`,
+					IF(visitors.user_id IS NULL, visitors.session_id , visitors.user_id) AS `myUser`
+					FROM visitors
+					WHERE
+						visitors.date >= '$start_time'
+					GROUP BY myHour, myUser
+				) AS `myTable`
+			GROUP BY myTable.myHour
+		";
+
+		$result_visitor = \dash\db::get($query, ['myHour', 'myCount'], false, \dash\db::get_db_log_name());
+
+
+		$query =
+		"
+			SELECT
+			HOUR(visitors.date) AS `myHour`,
+			COUNT(*) AS `count`
+			FROM visitors
+			WHERE
+				visitors.date >= '$start_time'
+			GROUP BY myHour
+		";
+
+		$result_visit = \dash\db::get($query, ['myHour', 'count'], false, \dash\db::get_db_log_name());
+
+
+		return ['visitor' => $result_visitor, 'visit' => $result_visit];
 
 	}
+
 
 
 

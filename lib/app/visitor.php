@@ -48,5 +48,25 @@ class visitor
 		$total_maxtrafictime = \dash\db\visitors::total_maxtrafictime($_args);
 		return $total_maxtrafictime;
 	}
+
+	public static function chart_visitorchart($_args = [])
+	{
+		$_args = self::merge_args($_args);
+		$chart_visitorchart = \dash\db\visitors::chart_visitorchart($_args);
+
+		if(isset($chart_visitorchart['visitor']) && isset($chart_visitorchart['visit']) && is_array($chart_visitorchart['visitor']) && is_array($chart_visitorchart['visit']))
+		{
+			$chart = [];
+			foreach ($chart_visitorchart['visit'] as $key => $value)
+			{
+				if(isset($chart_visitorchart['visitor'][$key]))
+				{
+					$chart[] = ['date' => $key, 'visit' => $value, 'visitor' => $chart_visitorchart['visitor'][$key]];
+				}
+			}
+			return json_encode($chart, JSON_UNESCAPED_UNICODE);
+		}
+		return null;
+	}
 }
 ?>

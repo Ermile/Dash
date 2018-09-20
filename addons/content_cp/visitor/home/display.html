@@ -4,6 +4,7 @@
 
 {%block pageContent%}
 <div class="cbox">
+{{block('bChartPrimary')}}
 	<div class="msg primary2">
 		<a class="msg primary" href="{{url.this}}?period=hours24">{%trans "Last 24 hours"%}</a>
 		<a class="msg primary" href="{{url.this}}?period=week">{%trans "Last week"%}</a>
@@ -20,3 +21,16 @@
 {%endblock%}
 
 
+
+{%block bChartPrimary%}
+<a class="dcard x4" >
+ <div class="chart" id="chartdiv" data-type='bar' data-vals='{{visitor.chart}}'></div>
+</a>
+{%endblock%}
+
+
+{%block foot_js%}
+<script type="text/javascript">
+  {%include 'content_cp/visitor/home/chart.js'%}
+</script>
+{%endblock%}
