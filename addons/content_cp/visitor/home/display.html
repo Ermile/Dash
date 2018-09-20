@@ -3,8 +3,14 @@
 
 
 {%block pageContent%}
-<a href="{{url.this}}/datalist">DATA LIST</a>
+<div class="cbox">
+	<a href="{{url.this}}/datalist">DATA LIST</a>
+	<div class="msg">Visit {{dashboardDetail.visit}}</div>
+	<div class="msg">Visitor {{dashboardDetail.visitor}}</div>
+	<div class="msg" title="{{dashboardDetail.avgtime}}">AVG TIME {{dashboardDetail.avgtime}} Second</div>
+	<div class="msg">Max trafic time {{dashboardDetail.maxtrafictime}}</div>
 
+</div>
 {%endblock%}
 
 

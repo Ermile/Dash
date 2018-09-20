@@ -4,24 +4,121 @@ namespace dash\db;
 /** visitors managing **/
 class visitors
 {
-	/**
-	 * Gets the database name.
-	 * if defined db_log return the db_log name to connect to this database
-	 * else return true to connect to default database
-	 *
-	 * @return     boolean  The database name.
-	 */
-	public static function get_db_log_name()
+	public static $fields =	" * ";
+
+
+	private static function calc_start_time($_args)
 	{
-		return \dash\db\logitems::get_db_log_name();
+		if(isset($_args['period']))
+		{
+			$period = null;
+			switch ($_args['period'])
+			{
+				case 'hours24':
+					$period = date("Y-m-d H:i:s", strtotime('-24 hours'));
+					break;
+
+				case 'week':
+					$period = date("Y-m-d H:i:s", strtotime('-1 week'));
+					break;
+
+				case 'month':
+					$period = date("Y-m-d H:i:s", strtotime('-1 month'));
+					break;
+
+				default:
+					# code...
+					break;
+			}
+			return $period;
+		}
+		return false;
 	}
 
-	/**
-	 * this library work with visitors table
-	 * v1.0
-	 */
 
-	public static $fields =	" * ";
+	public static function total_visit($_args)
+	{
+		$start_time = self::calc_start_time($_args);
+		if(!$start_time)
+		{
+			return null;
+		}
+
+		$query = "SELECT COUNT(*) AS `count` FROM visitors WHERE visitors.date >= '$start_time'";
+		$result = \dash\db::get($query, 'count', true, \dash\db::get_db_log_name());
+		return $result;
+	}
+
+	public static function total_visitor($_args)
+	{
+		$start_time = self::calc_start_time($_args);
+		if(!$start_time)
+		{
+			return null;
+		}
+
+		$query =
+		"
+			SELECT COUNT(myTable.count) AS `myCount`
+			FROM
+			(
+				SELECT
+				COUNT(*) AS `count`,
+				IF(visitors.user_id IS NULL, visitors.session_id , visitors.user_id) AS `myUser`
+				FROM visitors
+				WHERE
+					visitors.date >= '$start_time'
+				GROUP BY myUser
+			) AS `myTable`
+		";
+
+		$result = \dash\db::get($query, 'myCount', true, \dash\db::get_db_log_name());
+
+		return $result;
+	}
+
+	public static function total_avgtime($_args)
+	{
+		$start_time = self::calc_start_time($_args);
+		if(!$start_time)
+		{
+			return null;
+		}
+
+		$query = "SELECT AVG(visitors.avgtime) AS `avg` FROM visitors WHERE visitors.avgtime IS NOT NULL AND visitors.date >= '$start_time' ";
+
+		$result = \dash\db::get($query, 'avg', true, \dash\db::get_db_log_name());
+
+		return $result;
+	}
+
+	public static function total_maxtrafictime($_args)
+	{
+		$start_time = self::calc_start_time($_args);
+		if(!$start_time)
+		{
+			return null;
+		}
+
+		$query =
+		"
+			SELECT DATE(visitors.date) AS `date`, HOUR(visitors.date) AS `hour`
+			FROM  visitors
+			WHERE visitors.date >= '$start_time'
+			GROUP BY DATE(visitors.date), HOUR(visitors.date)
+			ORDER BY COUNT(*) DESC
+			LIMIT 1
+		";
+
+		$result = \dash\db::get($query, null, true, \dash\db::get_db_log_name());
+		if(isset($result['date']) && isset($result['hour']))
+		{
+			return $result['date']. ' '. $result['hour'];
+		}
+		return null;
+
+	}
+
 
 
 	/**
@@ -284,7 +381,7 @@ class visitors
 		if($pagenation && !$get_count)
 		{
 			$pagenation_query = "SELECT	COUNT(*) AS `count`	FROM `visitors` $master_join	$where $search ";
-			$pagenation_query = \dash\db::get($pagenation_query, 'count', true, self::get_db_log_name());
+			$pagenation_query = \dash\db::get($pagenation_query, 'count', true, \dash\db::get_db_log_name());
 
 			list($limit_start, $limit) = \dash\db::pagnation((int) $pagenation_query, $limit);
 			$limit = " LIMIT $limit_start, $limit ";
@@ -308,12 +405,12 @@ class visitors
 
 		if(!$only_one_value)
 		{
-			$result = \dash\db::get($query, null, false, self::get_db_log_name());
+			$result = \dash\db::get($query, null, false, \dash\db::get_db_log_name());
 			$result = \dash\utility\filter::meta_decode($result);
 		}
 		else
 		{
-			$result = \dash\db::get($query, 'searchcount', true, self::get_db_log_name());
+			$result = \dash\db::get($query, 'searchcount', true, \dash\db::get_db_log_name());
 		}
 
 		return $result;
