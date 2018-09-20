@@ -79,8 +79,8 @@ class visitors
 			"master_join"       =>
 			"
 				LEFT JOIN $db_name.users ON $db_name.users.id = visitors.user_id
-				INNER JOIN urls ON urls.id = visitors.url_id
-				INNER JOIN urls AS `referer` ON referer.id = visitors.url_idreferer
+				LEFT JOIN urls ON urls.id = visitors.url_id
+				LEFT JOIN urls AS `referer` ON referer.id = visitors.url_idreferer
 			",
 		];
 

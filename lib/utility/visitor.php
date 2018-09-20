@@ -40,6 +40,8 @@ class visitor
 		$visitor['date']          = date('Y-m-d H:i:s');
 		$visitor['session_id']    = session_id();
 		$visitor['statuscode']    = http_response_code();
+		$visitor['country']       = isset($_SERVER['HTTP_CF_IPCOUNTRY']) ? mb_strtolower($_SERVER['HTTP_CF_IPCOUNTRY']) : null;
+		$visitor['method']        = isset($_SERVER['REQUEST_METHOD']) ? mb_strtolower($_SERVER['REQUEST_METHOD']) : null;
 		$visitor['avgtime']       = null;
 
 		$result = \dash\db\config::public_insert('visitors', $visitor, \dash\db::get_db_log_name());

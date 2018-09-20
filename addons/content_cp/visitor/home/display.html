@@ -58,8 +58,6 @@
       <tr>
         <th>{%trans "User"%}</th>
         <th>{%trans "Date"%}</th>
-        <th>{%trans "Avg time"%}</th>
-        <th>{%trans "IP"%}</th>
         <th>{%trans "URL"%}</th>
       </tr>
     </thead>
@@ -68,7 +66,7 @@
       {%for key, value in dataTable%}
       <tr>
         <td class="collapsing">
-
+        {%if value.user_id%}
         <a href="{{url.that}}?user={{value.user_id}}">
           <img src="{%if value.avatar%}{{value.avatar}}{%else%}{{url.site}}/static/siftal/images/default/avatar.png{%endif%}" class="avatar mRa5" alt="{{value.displayname}}">
           <span class="txtB s0 fs08">{{value.displayname}}</span>
@@ -86,19 +84,38 @@
           <a href="{{url.kingdom}}/cp/users/view?id={{value.user_id}}" title='{%trans "User Profile"%}'><i class="sf-user-md"></i></a>
           <a href="{{url.kingdom}}/cp/visitor?userid={{value.user_id}}" title='{%trans "User last visits"%}'><i class="sf-flight"></i></a>
         </nav>
+        {%else%}
+        <a href="{{url.that}}?session_id={{value.session_id}}">
+          <img src="{{url.site}}/static/siftal/images/default/avatar.png" class="avatar mRa5" alt='{%trans "Guest"%}'>
+          <span class="txtB s0 fs08">{%trans "Guest"%}</span>
+        </a>
+        <br>
+        <span class="badge">{{value.session_id}}</span>
+
+        {%endif%}
+      </td>
+      <td>
+        {{value.date | tdate("Y-m-d")}}<br>
+        <b>{{value.date | tdate("H:i:s")}}</b><br>
+        {%if value.avgtime%}
+          <samp title='{%trans "Avg time"%}' class="badge success">{{value.avgtime | fitNumber(false)}}</samp>
+        {%endif%}
       </td>
 
-      <td title="{{value.date}}">{{value.date | tdate("Y-m-d H:i:s")}}</td>
-      <td>{{value.avgtime | fitNumber(false)}}</td>
-      <td>{{value.visitor_ip | fitNumber(false)}}</td>
       <td>
+        <span title='{%trans "Status code"%}' class="badge secondary">{{value.statuscode}}</span>
+        <span title='{%trans "Method"%}' class="badge danger">{{value.method}}</span>
+        {%if value.country%}
+        <span class="">{{value.country}}</span>
+        {%endif%}
+        <span title='{%trans "IP"%}' class="badge warn">{{value.visitor_ip | fitNumber(false)}}</span>
         <span class="badge light">{{value.domain}}</span><br>
         {%if value.subdomain%}
         <span class="badge primary">{{value.subdomain}}</span><br>
         {%endif%}
         <span title="{{value.path}}" class="txtB">{{value.pwd}}</span><br>
         {%if value.ref_pwd%}
-        <span class="badge pain">{{value.ref_pwd}}</span>
+        <span title='{%trans "Referer url"%}' class="badge pain">{{value.ref_pwd}}</span>
         {%endif%}
       </td>
 
