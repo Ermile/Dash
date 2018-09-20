@@ -13,13 +13,6 @@ class view
 
 		\dash\data::page_pictogram('gauge');
 
-		if(\dash\option::config('visitor'))
-		{
-			\dash\data::visitor_chart(\dash\utility\visitor::chart(true));
-			\dash\data::visitor_totalpages(\dash\utility\visitor::top_pages());
-
-			\dash\data::include_chart(true);
-		}
 		// $this->data->page['title']       = T_(ucfirst( str_replace('/', ' ', \dash\url::directory()) ));
 
 		// $this->data->dir['right']     = $this->global->direction == 'rtl'? 'left':  'right';

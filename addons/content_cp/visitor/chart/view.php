@@ -11,9 +11,6 @@ class view
 		if(\dash\option::config('visitor'))
 		{
 
-			\dash\data::visitor_chart(\dash\utility\visitor::chart(true));
-			\dash\data::visitor_totalpages(\dash\utility\visitor::top_pages());
-
 			\dash\data::include_chart3(true);
 		}
 	}
