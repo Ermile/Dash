@@ -9,11 +9,17 @@ class view
 		$myTitle = T_("Visitor");
 		$myDesc  = T_('Check list of visitor and search or filter in them to find your visitor.');
 
+		$args = [];
+		if(\dash\request::get('period'))
+		{
+			$args['period'] = \dash\request::get('period');
+		}
+
 		$dashboard_detail                  = [];
-		$dashboard_detail['visit']         = \dash\app\visitor::total_visit();
-		$dashboard_detail['visitor']       = \dash\app\visitor::total_visitor();
-		$dashboard_detail['avgtime']       = \dash\app\visitor::total_avgtime();
-		$dashboard_detail['maxtrafictime'] = \dash\app\visitor::total_maxtrafictime();
+		$dashboard_detail['visit']         = \dash\app\visitor::total_visit($args);
+		$dashboard_detail['visitor']       = \dash\app\visitor::total_visitor($args);
+		$dashboard_detail['avgtime']       = \dash\app\visitor::total_avgtime($args);
+		$dashboard_detail['maxtrafictime'] = \dash\app\visitor::total_maxtrafictime($args);
 		\dash\data::dashboardDetail($dashboard_detail);
 	}
 }

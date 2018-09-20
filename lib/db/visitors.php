@@ -14,10 +14,6 @@ class visitors
 			$period = null;
 			switch ($_args['period'])
 			{
-				case 'hours24':
-					$period = date("Y-m-d H:i:s", strtotime('-24 hours'));
-					break;
-
 				case 'week':
 					$period = date("Y-m-d H:i:s", strtotime('-1 week'));
 					break;
@@ -26,8 +22,9 @@ class visitors
 					$period = date("Y-m-d H:i:s", strtotime('-1 month'));
 					break;
 
+				case 'hours24':
 				default:
-					# code...
+					$period = date("Y-m-d H:i:s", strtotime('-24 hours'));
 					break;
 			}
 			return $period;

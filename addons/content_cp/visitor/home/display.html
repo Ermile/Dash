@@ -4,6 +4,12 @@
 
 {%block pageContent%}
 <div class="cbox">
+	<div class="msg primary2">
+		<a class="msg primary" href="{{url.this}}?period=hours24">{%trans "Last 24 hours"%}</a>
+		<a class="msg primary" href="{{url.this}}?period=week">{%trans "Last week"%}</a>
+		<a class="msg primary" href="{{url.this}}?period=month">{%trans "Last month"%}</a>
+	</div>
+
 	<a href="{{url.this}}/datalist">DATA LIST</a>
 	<div class="msg">Visit {{dashboardDetail.visit}}</div>
 	<div class="msg">Visitor {{dashboardDetail.visitor}}</div>
