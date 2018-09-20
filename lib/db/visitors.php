@@ -40,6 +40,8 @@ class visitors
 			$_options['get_last'] = true;
 		}
 
+		$db_name = db_name;
+
 		$default_options =
 		[
 			// just return the count record
@@ -65,6 +67,9 @@ class visitors
 			"search_field"      => null,
 			"public_show_field" =>
 			"
+				$db_name.users.displayname,
+				$db_name.users.mobile,
+				$db_name.users.avatar,
 				urls.*,
 				visitors.*,
 				referer.path AS `ref_url`,
@@ -73,6 +78,7 @@ class visitors
 			",
 			"master_join"       =>
 			"
+				LEFT JOIN $db_name.users ON $db_name.users.id = visitors.user_id
 				INNER JOIN urls ON urls.id = visitors.url_id
 				INNER JOIN urls AS `referer` ON referer.id = visitors.url_idreferer
 			",

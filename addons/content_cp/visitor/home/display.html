@@ -68,12 +68,13 @@
       {%for key, value in dataTable%}
       <tr>
         <td class="collapsing">
+
         <a href="{{url.that}}?user={{value.user_id}}">
-          <img src="{{value.avatar}}http://ermile.local/static/siftal/images/default/avatar.png" class="avatar mRa5" alt="{{value.displayname}}">
-          <span class="txtB s0 fs08">{{value.displayname}} Javad Evazzadeh</span>
+          <img src="{%if value.avatar%}{{value.avatar}}{%else%}{{url.site}}/static/siftal/images/default/avatar.png{%endif%}" class="avatar mRa5" alt="{{value.displayname}}">
+          <span class="txtB s0 fs08">{{value.displayname}}</span>
         </a>
         <div class="txtRa fs08">
-          <a href="{{url.that}}?mobile={{value.mobile}}" title='{%trans "Mobile"%}'>{{value.mobile | fitNumber('mobile12')}} 9121234567</a>
+          <a href="{{url.that}}?mobile={{value.mobile}}" title='{%trans "Mobile"%}'>{{value.mobile | fitNumber('mobile12')}}</a>
           <a href="{{url.that}}?userid={{value.user_id}}" class="badge" title='{%trans "User id"%}'>{{value.user_id | fitNumber(false)}}</a>
         </div>
         <div class="txtRa fs08" data-tippy-placement='left' title='{%trans "Telegram chatid"%}'>
