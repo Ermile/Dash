@@ -59,6 +59,7 @@
         <th>{%trans "User"%}</th>
         <th>{%trans "Date"%}</th>
         <th>{%trans "Agent"%}</th>
+        <th>{%trans "Status"%}</th>
         <th>{%trans "URL"%}</th>
       </tr>
     </thead>
@@ -73,12 +74,10 @@
           <span class="txtB s0 fs08">{{value.displayname}}</span>
         </a>
         <div class="txtRa fs08">
-          <a href="{{url.that}}?mobile={{value.mobile}}" title='{%trans "Mobile"%}'>{{value.mobile | fitNumber('mobile12')}}</a>
+          <a title='{%trans "Mobile"%}'>{{value.mobile | fitNumber('mobile12')}}</a>
           <a href="{{url.that}}?userid={{value.user_id}}" class="badge" title='{%trans "User id"%}'>{{value.user_id | fitNumber(false)}}</a>
         </div>
-        <div class="txtRa fs08" data-tippy-placement='left' title='{%trans "Telegram chatid"%}'>
-          <a href="{{url.that}}?chatid={{value.chatid}}">{{value.chatid | fitNumber(false)}}</a>
-        </div>
+
         <span class="badge">{{value.id | fitNumber(false)}}</span>
         <nav class="txtRa">
           <a href="{{url.that}}?user_id={{value.user_id}}" title='{%trans "User logs"%}'><i class="sf-briefcase"></i></a>
@@ -112,20 +111,23 @@
         <div class="badge primary2">{{value.os}}</div>
 
       </td>
+      <td class="collapsing">
 
-      <td>
-        <span title='{%trans "Status code"%}' class="badge secondary">{{value.statuscode}}</span>
-        <span title='{%trans "Method"%}' class="badge danger">{{value.method}}</span>
+        <span title='{%trans "Status code"%}' class="badge secondary">{{value.statuscode}}</span><br>
+        <span title='{%trans "Method"%}' class="badge danger">{{value.method}}</span><br>
         {%if value.country%}
-        <span class="badge">{{value.country}}</span>
+        <span class="badge">{{value.country}}</span><br>
         {%endif%}
-        <span title='{%trans "IP"%}' class="badge warn">{{value.visitor_ip | fitNumber(false)}}</span>
-        <span class="badge light">{{value.domain}}</span><br>
+        <span title='{%trans "IP"%}' class="badge warn">{{value.visitor_ip | fitNumber(false)}}</span><br>
         {%if value.subdomain%}
         <span class="badge primary">{{value.subdomain}}</span><br>
         {%endif%}
+        <span class="badge light">{{value.domain}}</span><br>
+      </td>
+      <td>
         <span title="{{value.path}}" class="txtB ltr">{{value.pwd}}</span><br>
         {%if value.ref_pwd%}
+        <br>
         <span title='{%trans "Referer url"%}' class="badge pain ltr">{{value.ref_pwd}}</span>
         {%endif%}
       </td>
