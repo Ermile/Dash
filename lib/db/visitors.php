@@ -67,9 +67,8 @@ class visitors
 			"
 				urls.*,
 				visitors.*,
-				referer.url AS `ref_url`,
+				referer.path AS `ref_url`,
 				referer.pwd AS `ref_pwd`,
-				referer.host AS `ref_host`,
 				referer.domain AS `ref_domain`
 			",
 			"master_join"       =>
