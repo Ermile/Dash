@@ -58,6 +58,7 @@
       <tr>
         <th>{%trans "User"%}</th>
         <th>{%trans "Date"%}</th>
+        <th>{%trans "Agent"%}</th>
         <th>{%trans "URL"%}</th>
       </tr>
     </thead>
@@ -94,28 +95,38 @@
 
         {%endif%}
       </td>
-      <td>
+      <td class="collapsing">
         {{value.date | tdate("Y-m-d")}}<br>
-        <b>{{value.date | tdate("H:i:s")}}</b><br>
+        <b>{{value.date | tdate("H:i:s")}}</b>
+          <br>
+          <small>{{value.date | sdate()}}</small>
         {%if value.avgtime%}
-          <samp title='{%trans "Avg time"%}' class="badge success">{{value.avgtime | fitNumber(false)}}</samp>
+          <br>
+          <samp title='{%trans "Avg time"%}' class="badge success">{{value.avgtime}}</samp>
         {%endif%}
+      </td>
+      <td class="collapsing">
+        <div class="badge light">{{value.group | capitalize}}</div><br>
+        <div class="badge info">{{value.name | capitalize}}</div><br>
+        <div class="badge info2">{{value.version | fitNumber(false)}}</div><br>
+        <div class="badge primary2">{{value.os}}</div>
+
       </td>
 
       <td>
         <span title='{%trans "Status code"%}' class="badge secondary">{{value.statuscode}}</span>
         <span title='{%trans "Method"%}' class="badge danger">{{value.method}}</span>
         {%if value.country%}
-        <span class="">{{value.country}}</span>
+        <span class="badge">{{value.country}}</span>
         {%endif%}
         <span title='{%trans "IP"%}' class="badge warn">{{value.visitor_ip | fitNumber(false)}}</span>
         <span class="badge light">{{value.domain}}</span><br>
         {%if value.subdomain%}
         <span class="badge primary">{{value.subdomain}}</span><br>
         {%endif%}
-        <span title="{{value.path}}" class="txtB">{{value.pwd}}</span><br>
+        <span title="{{value.path}}" class="txtB ltr">{{value.pwd}}</span><br>
         {%if value.ref_pwd%}
-        <span title='{%trans "Referer url"%}' class="badge pain">{{value.ref_pwd}}</span>
+        <span title='{%trans "Referer url"%}' class="badge pain ltr">{{value.ref_pwd}}</span>
         {%endif%}
       </td>
 

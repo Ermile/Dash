@@ -71,6 +71,7 @@ class visitors
 				$db_name.users.mobile,
 				$db_name.users.avatar,
 				urls.*,
+				agents.*,
 				visitors.*,
 				referer.path AS `ref_url`,
 				referer.pwd AS `ref_pwd`,
@@ -78,6 +79,7 @@ class visitors
 			",
 			"master_join"       =>
 			"
+				LEFT JOIN agents ON visitors.agent_id = agents.id
 				LEFT JOIN $db_name.users ON $db_name.users.id = visitors.user_id
 				LEFT JOIN urls ON urls.id = visitors.url_id
 				LEFT JOIN urls AS `referer` ON referer.id = visitors.url_idreferer
