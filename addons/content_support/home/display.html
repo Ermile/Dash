@@ -15,7 +15,7 @@
   {{block('helpRandom')}}
     </div>
   </div>
-
+{{block('addTicket')}}
 {%endblock%}
 
 
@@ -108,7 +108,7 @@
 
 {%block helpRandom%}
 <div class="cbox fs12">
-  <h2>{%trans "Recent Articles"%}</h2>
+  <h2>{%trans "Random Articles"%}</h2>
   <div>
     <div class="msg">
       <span class="sf-info mRa10"></span>
@@ -138,3 +138,15 @@
   </div>
 </div>
 {%endblock%}
+
+
+{%block addTicket%}
+<div class="msg txtC info2 pTB50 fs20">
+  <h3 class="txtB">{%trans "Can't find what you're looking for?"%}</h3>
+  <div class="mT10"><a class="btn primary" href="{{url.this}}/ticket">{%trans "Contact the legendary support team right now."%}</a></div>
+</div>
+
+
+{%endblock%}
+
+
