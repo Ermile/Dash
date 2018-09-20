@@ -19,20 +19,20 @@ class view
 		\dash\data::badge_text(T_('Tickets'));
 		\dash\data::badge_link(\dash\url::here(). '/ticket'. \dash\data::accessGet());
 
-		// 'approved','awaiting','unapproved','spam','deleted','filter','close','answered'
-		// $args['order_raw']       = ' FIELD(comments.status, "answered", "awaiting") DESC, comments.status, IF(comments.datemodified is null, comments.datecreated, comments.datemodified) DESC';
-		$args['sort']            = 'comments.id';
-		$args['order']           = 'desc';
-		$args['comments.type']   = 'ticket';
-		$args['comments.status'] = ["NOT IN ", "('deleted')"];
-		$args['comments.parent'] = null;
-		$args['pagenation']      = false;
-		$args['limit']           = 5;
-		$args['join_user']       = true;
-		$args['get_tag']         = true;
-		// $args['comments.status'] = ["NOT IN", "('close')"];
+		// // 'approved','awaiting','unapproved','spam','deleted','filter','close','answered'
+		// // $args['order_raw']       = ' FIELD(comments.status, "answered", "awaiting") DESC, comments.status, IF(comments.datemodified is null, comments.datecreated, comments.datemodified) DESC';
+		// $args['sort']            = 'comments.id';
+		// $args['order']           = 'desc';
+		// $args['comments.type']   = 'ticket';
+		// $args['comments.status'] = ["NOT IN ", "('deleted')"];
+		// $args['comments.parent'] = null;
+		// $args['pagenation']      = false;
+		// $args['limit']           = 5;
+		// $args['join_user']       = true;
+		// $args['get_tag']         = true;
+		// // $args['comments.status'] = ["NOT IN", "('close')"];
 
-		\content_support\view::dataList($args);
+		// \content_support\view::dataList($args);
 	}
 }
 ?>
