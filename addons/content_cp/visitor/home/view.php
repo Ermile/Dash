@@ -55,19 +55,9 @@ class view
 			$args['urls.query'] = $_GET['query'];
 		}
 
-		if(\dash\request::get('service_id'))
-		{
-			$args['visitors.service_id'] = $_GET['service_id'];
-		}
-
 		if(\dash\request::get('visitor_ip'))
 		{
 			$args['visitors.visitor_ip'] = $_GET['visitor_ip'];
-		}
-
-		if(\dash\request::get('external'))
-		{
-			$args['visitors.external'] = $_GET['external'];
 		}
 
 		if(\dash\request::get('date'))
@@ -102,8 +92,9 @@ class view
 				$datetime = \dash\request::get('datetime');
 				if(strtotime($datetime) !== false)
 				{
+					$datetime = \dash\request::get('datetime');
 					$operation = \dash\request::get('type') === 'after' ? ' > ' : ' < ';
-					$args['visitors.timeraw'] = [$operation, (string) strtotime($datetime)];
+					$args['visitors.date'] = [$operation, "$datetime"];
 				}
 			}
 		}
@@ -115,35 +106,29 @@ class view
 
 		\dash\data::dataTable($dataTable);
 
-		$filterArray = $args;
-
-		// 'id'            => string '10350' (length=5)
-		// 'url'           => string '/cp/log' (length=7)
-		// 'host'          => string 'azvir.local' (length=11)
-		// 'domain'        => string 'http://haram2.azvir.local' (length=25)
-		// 'query'         => string 'q=ByRemem' (length=9)
-		// 'urlmd5'        => string '2b7453f9a4dc7dbbf865af77e772fe1c' (length=32)
-		// 'pwd'           => string 'http://haram2.azvir.local/cp/log?q=ByRemem' (length=42)
-		// 'service_id'    => string '3' (length=1)
+		// 'id'            => string '110' (length=3)
+		// 'urlmd5'        => string '8cabfbd3156e965bb78885ef93d79ccd' (length=32)
+		// 'domain'        => string 'azvir.local' (length=11)
+		// 'subdomain'     => null
+		// 'path'          => string '/cp/visitor' (length=11)
+		// 'query'         => null
+		// 'pwd'           => string 'http://azvir.local/cp/visitor' (length=29)
+		// 'datecreated'   => string '2018-09-19 22:42:29' (length=19)
+		// 'statuscode'    => string '200' (length=3)
 		// 'visitor_ip'    => string '2130706433' (length=10)
-		// 'url_id'        => string '605' (length=3)
-		// 'url_idreferer' => string '604' (length=3)
+		// 'session_id'    => string 'qng0t7eumeft6h554b1rm4d4hj' (length=26)
+		// 'url_id'        => string '17' (length=2)
+		// 'url_idreferer' => string '16' (length=2)
 		// 'agent_id'      => string '1' (length=1)
 		// 'user_id'       => string '2' (length=1)
-		// 'user_idteam'   => null
-		// 'external'      => string '1' (length=1)
-		// 'date'          => string '2018-07-23' (length=10)
-		// 'time'          => string '19:29:25' (length=8)
-		// 'timeraw'       => string '1532357965' (length=10)
-		// 'year'          => string '2018' (length=4)
-		// 'month'         => string '7' (length=1)
-		// 'day'           => string '23' (length=2)
-		// 'datemodified'  => null
-		// 'ref_url'       => string '/cp/log' (length=7)
-		// 'ref_pwd'       => string 'http://haram2.azvir.local/cp/log?q=mem' (length=38)
-		// 'ref_host'      => string 'azvir.local' (length=11)
-		// 'ref_domain'    => string 'http://haram2.azvir.local' (length=25)
+		// 'date'          => string '2018-09-20 12:45:18' (length=19)
+		// 'avgtime'       => null
+		// 'ref_url'       => string '/cp' (length=3)
+		// 'ref_pwd'       => string 'http://azvir.local/cp' (length=21)
+		// 'ref_domain'    => string 'azvir.local' (length=11)
 
+
+		$filterArray = $args;
 		// set dataFilter
 		$dataFilter = \dash\app\sort::createFilterMsg($search_string, $filterArray);
 		\dash\data::dataFilter($dataFilter);
@@ -156,6 +141,10 @@ class view
 		{
 			switch ($key)
 			{
+				case 'visitor_ip':
+					$result[$key] = long2ip($value);
+					break;
+
 				case 'user_id':
 					if(isset($value))
 					{

@@ -53,43 +53,61 @@
 {%block htmlTable%}
 
  <div class="cbox fs12">
-  <table class="tbl bordered1">
-    <thead class="primary fs09">
+  <table class="tbl1 v1">
+    <thead class="">
       <tr>
-        <th>url</th>
-        <th>domain</th>
-        <th>query</th>
-        <th>service_id</th>
-        <th>visitor_ip</th>
-        <th>user_id</th>
-        <th>external</th>
-        <th>date</th>
-        <th>time</th>
-        <th>ref_url</th>
-        <th>ref_pwd</th>
+        <th>{%trans "User"%}</th>
+        <th>{%trans "Date"%}</th>
+        <th>{%trans "Avg time"%}</th>
+        <th>{%trans "IP"%}</th>
+        <th>{%trans "URL"%}</th>
       </tr>
     </thead>
 
     <tbody>
       {%for key, value in dataTable%}
       <tr>
-        <td><a href="{{url.this}}?url={{value.url}}">{{value.url}}</a></td>
-        <td><a href="{{url.this}}?domain={{value.domain}}">{{value.domain}}</a></td>
-        <td><a href="{{url.this}}?query={{value.query}}">{{value.query}}</a></td>
-        <td><a href="{{url.this}}?service_id={{value.service_id}}">{{value.service_id}}</a></td>
-        <td><a href="{{url.this}}?visitor_ip={{value.visitor_ip}}">{{value.visitor_ip}}</a></td>
-        <td><a href="{{url.this}}?userid={{value.user_id}}">{{value.user_id}}</a></td>
-        <td><a href="{{url.this}}?external={{value.external}}">{{value.external}}</a></td>
-        <td><a href="{{url.this}}?date={{value.date}}">{{value.date}}</a></td>
-        <td><a href="{{url.this}}?time={{value.time}}">{{value.time}}</a></td>
-        <td><a href="{{url.this}}?ref_url={{value.ref_url}}">{{value.ref_url}}</a></td>
-        <td><a href="{{url.this}}?ref_pwd={{value.ref_pwd}}">{{value.ref_pwd}}</a></td>
+        <td class="collapsing">
+        <a href="{{url.that}}?user={{value.user_id}}">
+          <img src="{{value.avatar}}http://ermile.local/static/siftal/images/default/avatar.png" class="avatar mRa5" alt="{{value.displayname}}">
+          <span class="txtB s0 fs08">{{value.displayname}} Javad Evazzadeh</span>
+        </a>
+        <div class="txtRa fs08">
+          <a href="{{url.that}}?mobile={{value.mobile}}" title='{%trans "Mobile"%}'>{{value.mobile | fitNumber('mobile12')}} 9121234567</a>
+          <a href="{{url.that}}?userid={{value.user_id}}" class="badge" title='{%trans "User id"%}'>{{value.user_id | fitNumber(false)}}</a>
+        </div>
+        <div class="txtRa fs08" data-tippy-placement='left' title='{%trans "Telegram chatid"%}'>
+          <a href="{{url.that}}?chatid={{value.chatid}}">{{value.chatid | fitNumber(false)}}</a>
+        </div>
+        <span class="badge">{{value.id | fitNumber(false)}}</span>
+        <nav class="txtRa">
+          <a href="{{url.that}}?user_id={{value.user_id}}" title='{%trans "User logs"%}'><i class="sf-briefcase"></i></a>
+          <a href="{{url.kingdom}}/cp/users/view?id={{value.user_id}}" title='{%trans "User Profile"%}'><i class="sf-user-md"></i></a>
+          <a href="{{url.kingdom}}/cp/visitor?userid={{value.user_id}}" title='{%trans "User last visits"%}'><i class="sf-flight"></i></a>
+        </nav>
+      </td>
+
+      <td title="{{value.date}}">{{value.date | tdate("Y-m-d H:i:s")}}</td>
+      <td>{{value.avgtime | fitNumber(false)}}</td>
+      <td>{{value.visitor_ip | fitNumber(false)}}</td>
+      <td>
+        <span class="badge light">{{value.domain}}</span><br>
+        {%if value.subdomain%}
+        <span class="badge primary">{{value.subdomain}}</span><br>
+        {%endif%}
+        <span title="{{value.path}}" class="txtB">{{value.pwd}}</span><br>
+        {%if value.ref_pwd%}
+        <span class="badge pain">{{value.ref_pwd}}</span>
+        {%endif%}
+      </td>
+
       </tr>
       {%endfor%}
     </tbody>
   </table>
   {%include display.pagination%}
  </div>
+
 {%endblock%}
 
 
