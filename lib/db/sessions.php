@@ -178,7 +178,15 @@ class sessions
 	public static function get_user_id()
 	{
 		$code = self::get_cookie();
-		$get  = self::get(['code' => $code, 'status' => 'active']);
+
+		$get_cookie =
+		[
+			'status'   => 'active',
+			'agent_id' => \dash\agent::get(true),
+			'ip'       => \dash\server::ip(true),
+			'code'     => addslashes($code),
+		];
+		$get  = self::get($get_cookie);
 
 		if(isset($get['user_id']))
 		{
