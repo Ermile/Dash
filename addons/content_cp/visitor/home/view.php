@@ -40,50 +40,89 @@ class view
 			$args['sort'] = 'visitors.id';
 		}
 
-		if(\dash\request::get('url'))
+		if(\dash\request::get('user'))
 		{
-			$args['urls.url'] = $_GET['url'];
+			$args['visitors.user_id'] = \dash\request::get('user');
 		}
-
-		if(\dash\request::get('domain'))
-		{
-			$args['urls.domain'] = $_GET['domain'];
-		}
-
-		if(\dash\request::get('query'))
-		{
-			$args['urls.query'] = $_GET['query'];
-		}
-
-		if(\dash\request::get('visitor_ip'))
-		{
-			$args['visitors.visitor_ip'] = $_GET['visitor_ip'];
-		}
-
-		if(\dash\request::get('date'))
-		{
-			$args['visitors.date'] = $_GET['date'];
-		}
-
-		if(\dash\request::get('ref_url'))
-		{
-			$args['referer.url'] = $_GET['ref_url'];
-		}
-
-		if(\dash\request::get('ref_pwd'))
-		{
-			$args['referer.pwd'] = $_GET['ref_pwd'];
-		}
-
 		if(\dash\request::get('userid'))
 		{
-			$user_id = \dash\coding::decode(\dash\request::get('userid'));
-			if($user_id)
-			{
-				$args['visitors.user_id'] = $user_id;
-			}
+			$args['visitors.user_id'] = \dash\request::get('userid');
+		}
+		if(\dash\request::get('user_id'))
+		{
+			$args['visitors.user_id'] = \dash\request::get('user_id');
+		}
+		if(\dash\request::get('session_id'))
+		{
+			$args['visitors.session_id'] = \dash\request::get('session_id');
+		}
+		if(\dash\request::get('date'))
+		{
+			$date = \dash\request::get('date');
+			$args['1.1'] = [" = 1.1 ", " AND DATE(visitors.date) = DATE('$date')"];
+		}
+		if(\dash\request::get('time'))
+		{
+			$time = \dash\request::get('time');
+			$args['1.1'] = [" = 1.1 ", " AND TIME(visitors.date) = TIME('$time')"];
+		}
+		if(\dash\request::get('datetime'))
+		{
+			$args['visitors.date'] = \dash\request::get('datetime');
 		}
 
+		if(\dash\request::get('avgtime'))
+		{
+			$args['visitors.avgtime'] = \dash\request::get('avgtime');
+		}
+		if(\dash\request::get('group'))
+		{
+			$args['agents.group'] = \dash\request::get('group');
+		}
+		if(\dash\request::get('name'))
+		{
+			$args['agents.name'] = \dash\request::get('name');
+		}
+		if(\dash\request::get('version'))
+		{
+			$args['agents.version'] = \dash\request::get('version');
+		}
+		if(\dash\request::get('os'))
+		{
+			$args['agents.os'] = \dash\request::get('os');
+		}
+		if(\dash\request::get('statuscode'))
+		{
+			$args['visitors.statuscode'] = \dash\request::get('statuscode');
+		}
+		if(\dash\request::get('method'))
+		{
+			$args['visitors.method'] = \dash\request::get('method');
+		}
+		if(\dash\request::get('country'))
+		{
+			$args['visitors.country'] = \dash\request::get('country');
+		}
+		if(\dash\request::get('visitor_ip'))
+		{
+			$args['visitors.visitor_ip'] = ip2long(\dash\request::get('visitor_ip'));
+		}
+		if(\dash\request::get('subdomain'))
+		{
+			$args['urls.subdomain'] = \dash\request::get('subdomain');
+		}
+		if(\dash\request::get('domain'))
+		{
+			$args['urls.domain'] = \dash\request::get('domain');
+		}
+		if(\dash\request::get('pwd'))
+		{
+			$args['urls.pwd'] = \dash\request::get('pwd');
+		}
+		if(\dash\request::get('ref_pwd'))
+		{
+			$args['referer.pwd'] = \dash\request::get('ref_pwd');
+		}
 
 		if(\dash\request::get('type') && in_array(\dash\request::get('type'), ['before', 'after']))
 		{
@@ -105,27 +144,6 @@ class view
 		$dataTable = array_map(['self', 'ready'], $dataTable);
 
 		\dash\data::dataTable($dataTable);
-
-		// 'id'            => string '110' (length=3)
-		// 'urlmd5'        => string '8cabfbd3156e965bb78885ef93d79ccd' (length=32)
-		// 'domain'        => string 'azvir.local' (length=11)
-		// 'subdomain'     => null
-		// 'path'          => string '/cp/visitor' (length=11)
-		// 'query'         => null
-		// 'pwd'           => string 'http://azvir.local/cp/visitor' (length=29)
-		// 'datecreated'   => string '2018-09-19 22:42:29' (length=19)
-		// 'statuscode'    => string '200' (length=3)
-		// 'visitor_ip'    => string '2130706433' (length=10)
-		// 'session_id'    => string 'qng0t7eumeft6h554b1rm4d4hj' (length=26)
-		// 'url_id'        => string '17' (length=2)
-		// 'url_idreferer' => string '16' (length=2)
-		// 'agent_id'      => string '1' (length=1)
-		// 'user_id'       => string '2' (length=1)
-		// 'date'          => string '2018-09-20 12:45:18' (length=19)
-		// 'avgtime'       => null
-		// 'ref_url'       => string '/cp' (length=3)
-		// 'ref_pwd'       => string 'http://azvir.local/cp' (length=21)
-		// 'ref_domain'    => string 'azvir.local' (length=11)
 
 
 		$filterArray = $args;
