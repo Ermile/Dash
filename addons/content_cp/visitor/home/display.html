@@ -52,8 +52,7 @@
 
 {%block htmlTable%}
 
- <div class="cbox fs12">
-  <table class="tbl1 v1">
+  <table class="tbl1 v1 mB10 fs12">
     <thead class="">
       <tr>
         <th>{%trans "User"%}</th>
@@ -116,7 +115,7 @@
         <span title='{%trans "Status code"%}' class="badge secondary"><a href="{{url.this}}?statuscode={{value.statuscode}}">{{value.statuscode}}</a></span><br>
         <span title='{%trans "Method"%}' class="badge danger"><a href="{{url.this}}?method={{value.method}}">{{value.method}}</a></span><br>
         {%if value.country%}
-        <span class="badge"><a href="{{url.this}}?country={{value.country}}">{{value.country}}</a></span><br>
+        <span class="badge light"><a href="{{url.this}}?country={{value.country}}">{{value.country}}</a></span><br>
         {%endif%}
         <span title='{%trans "IP"%}' class="badge warn"><a href="{{url.this}}?visitor_ip={{value.visitor_ip}}">{{value.visitor_ip | fitNumber(false)}}</a></span><br>
         {%if value.subdomain%}
@@ -137,7 +136,6 @@
     </tbody>
   </table>
   {%include display.pagination%}
- </div>
 
 {%endblock%}
 
