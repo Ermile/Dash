@@ -230,6 +230,7 @@ class user
 
 				if(!isset($load_user['id']))
 				{
+					\dash\db\sessions::terminate_cookie();
 					return;
 				}
 
@@ -287,6 +288,12 @@ class user
 					// then we terminate this code
 					\dash\db\sessions::terminate_cookie();
 				}
+			}
+			else
+			{
+				// no user id found from this cookie
+				// delete it
+				\dash\db\sessions::terminate_cookie();
 			}
 
 		}
