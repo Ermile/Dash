@@ -23,6 +23,9 @@
             {%if perm('cpPageView') %}
               <li><a href="{{url.here}}/posts?type=page">{% trans "Pages" %} <i class='floatRa mRa10 fc-mute sf-files-o'></i></a></li>
             {%endif%}
+            {%if perm('cpHelpView') %}
+              <li><a href="{{url.here}}/posts?type=help">{% trans "Help center" %} <i class='floatRa mRa10 fc-mute sf-info-circle'></i></a></li>
+            {%endif%}
         </ul>
     </li>
 {%endif%}
