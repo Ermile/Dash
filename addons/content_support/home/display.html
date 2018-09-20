@@ -4,15 +4,137 @@
 
 {%block pageContent%}
 
-New
+  {{block('htmlSearchBox')}}
+  {{block('helpcats')}}
+
+  <div class="f">
+    <div class="c6 s12 pRa10">
+  {{block('faqRandom')}}
+    </div>
+    <div class="c6 s12">
+  {{block('helpRandom')}}
+    </div>
+  </div>
 
 {%endblock%}
 
 
 
 
+{%block htmlSearchBox%}
+<div class="cbox fs12">
+  <form method="get" action='{{url.this}}' data-action>
+    <div class="input">
+      {%for key, value in requestGET%}
+        <input type="hidden" name="{{key}}" value="{{value}}">
+      {%endfor%}
+      <input type="search" name="q" placeholder='{%trans "Search our knowledge base..."%}' id="q" value="{{requestGET.q}}" autofocus autocomplete='off'>
+      <button class="addon btn ">{%trans "Search" %}</button>
+    </div>
+  </form>
+</div>
+{%endblock%}
 
 
+{%block helpcats%}
+<div class="cbox">
+  <div class="f">
+    <div class="c4 m6 s12 pRa10 mB10">
+      <span class="sf-info fs20 mRa10 mT10 floatLa"></span>
+      <h2 class="simple"><a href="">Getting Start</a></h2>
+      <p>New to Cloudflare? Need help getting started?</p>
+    </div>
 
+    <div class="c4 m6 s12 pRa10 mB10">
+      <span class="sf-info fs20 mRa10 mT10 floatLa"></span>
+      <h2 class="simple"><a href="">Getting Start</a></h2>
+      <p>New to Cloudflare? Need help getting started?</p>
+    </div>
 
+    <div class="c4 m6 s12 pRa10 mB10">
+      <span class="sf-info fs20 mRa10 mT10 floatLa"></span>
+      <h2 class="simple"><a href="">Getting Start</a></h2>
+      <p>New to Cloudflare? Need help getting started?</p>
+    </div>
 
+    <div class="c4 m6 s12 pRa10 mB10">
+      <span class="sf-info fs20 mRa10 mT10 floatLa"></span>
+      <h2 class="simple"><a href="">Getting Start</a></h2>
+      <p>New to Cloudflare? Need help getting started?</p>
+    </div>
+
+    <div class="c4 m6 s12 pRa10 mB10">
+      <span class="sf-info fs20 mRa10 mT10 floatLa"></span>
+      <h2 class="simple"><a href="">Getting Start</a></h2>
+      <p>New to Cloudflare? Need help getting started?</p>
+    </div>
+
+  </div>
+</div>
+{%endblock%}
+
+{%block faqRandom%}
+<div class="cbox fs12">
+  <h2>{%trans "Frequently Asked Questions"%}</h2>
+  <div>
+    <div class="msg">
+      <span class="sf-info mRa10"></span>
+      <a href="#">Do you provide any Dynamic DNS clients?</a>
+      <a href="#" class="floatRa">SSL</a>
+    </div>
+    <div class="msg">
+      <span class="sf-info mRa10"></span>
+      <a href="#">Do you provide any Dynamic DNS clients?</a>
+      <a href="#" class="floatRa">SSL</a>
+    </div>
+    <div class="msg">
+      <span class="sf-info mRa10"></span>
+      <a href="#">Do you provide any Dynamic DNS clients?</a>
+      <a href="#" class="floatRa">SSL</a>
+    </div>
+    <div class="msg">
+      <span class="sf-info mRa10"></span>
+      <a href="#">Do you provide any Dynamic DNS clients?</a>
+      <a href="#" class="floatRa">SSL</a>
+    </div>
+    <div class="msg">
+      <span class="sf-info mRa10"></span>
+      <a href="#">Do you provide any Dynamic DNS clients?</a>
+      <a href="#" class="floatRa">SSL</a>
+    </div>
+  </div>
+</div>
+{%endblock%}
+
+{%block helpRandom%}
+<div class="cbox fs12">
+  <h2>{%trans "Recent Articles"%}</h2>
+  <div>
+    <div class="msg">
+      <span class="sf-info mRa10"></span>
+      <a href="#">Do you provide any Dynamic DNS clients?</a>
+      <a href="#" class="floatRa">SSL</a>
+    </div>
+    <div class="msg">
+      <span class="sf-info mRa10"></span>
+      <a href="#">Do you provide any Dynamic DNS clients?</a>
+      <a href="#" class="floatRa">SSL</a>
+    </div>
+    <div class="msg">
+      <span class="sf-info mRa10"></span>
+      <a href="#">Do you provide any Dynamic DNS clients?</a>
+      <a href="#" class="floatRa">SSL</a>
+    </div>
+    <div class="msg">
+      <span class="sf-info mRa10"></span>
+      <a href="#">Do you provide any Dynamic DNS clients?</a>
+      <a href="#" class="floatRa">SSL</a>
+    </div>
+    <div class="msg">
+      <span class="sf-info mRa10"></span>
+      <a href="#">Do you provide any Dynamic DNS clients?</a>
+      <a href="#" class="floatRa">SSL</a>
+    </div>
+  </div>
+</div>
+{%endblock%}
