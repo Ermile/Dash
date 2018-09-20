@@ -504,8 +504,9 @@ class twigAddons
 	{
 		return new \Twig_SimpleFunction('tags', function()
 		{
-			$tags = [];
-			$args = func_get_args();
+			$tags      = [];
+			$args      = func_get_args();
+			$container = '';
 			if(isset($args[0]))
 			{
 				$args = $args[0];
@@ -557,6 +558,11 @@ class twigAddons
 				}
 			}
 
+			if(isset($args['container']) && $args['container'])
+			{
+				$container = $args['container'];
+			}
+
 
 			if(isset($args['format']) && $args['format'])
 			{
@@ -584,9 +590,13 @@ class twigAddons
 					case 'html':
 					case 'html2':
 						$html = '';
-						if(is_array($tags))
+						if(is_array($tags) && $tags)
 						{
 							$baset_url = \dash\url::base();
+							if($container)
+							{
+								$html = "<div class='$container'>";
+							}
 
 							foreach ($tags as $key => $value)
 							{
@@ -601,6 +611,11 @@ class twigAddons
 										$html .= "<a href='$baset_url/tag/$value[url]'>$value[title]</a>";
 									}
 								}
+							}
+							// close container
+							if($container)
+							{
+								$html .= '</div>';
 							}
 						}
 						elseif(is_string($tags))
@@ -635,7 +650,8 @@ class twigAddons
 		return new \Twig_SimpleFunction('category', function()
 		{
 			$category = [];
-			$args = func_get_args();
+			$args     = func_get_args();
+			$class    = '';
 			if(isset($args[0]))
 			{
 				$args = $args[0];
@@ -659,6 +675,11 @@ class twigAddons
 			if(isset($args['id']) && $args['id'] && is_array($category))
 			{
 				$category = array_column($category, 'term_id');
+			}
+
+			if(isset($args['class']) && $args['class'])
+			{
+				$class = $args['class'];
 			}
 
 			if(isset($args['format']) && $args['format'])
@@ -688,7 +709,14 @@ class twigAddons
 						{
 							if(array_key_exists('url', $value) && isset($value['title']))
 							{
-								$html .= "<a href='$baset_url/category/$value[url]'>$value[title]</a>";
+								if($class)
+								{
+									$html .= "<a href='$baset_url/category/$value[url]' class='$class'>$value[title]</a>";
+								}
+								else
+								{
+									$html .= "<a href='$baset_url/category/$value[url]'>$value[title]</a>";
+								}
 							}
 						}
 						echo $html;
