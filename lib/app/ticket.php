@@ -377,6 +377,14 @@ class ticket
 					$result['colorClass'] = $color_class;
 					$result[$key]         = $value;
 					break;
+				case 'id':
+					$result[$key] = $value;
+					$datecreated = isset($_data['datecreated']) ? $_data['datecreated'] : null;
+					if($datecreated)
+					{
+						$result['code'] =  md5((string) $value. '^_^-*_*'. $datecreated);
+					}
+					break;
 
 				case 'user_id':
 				case 'term_id':

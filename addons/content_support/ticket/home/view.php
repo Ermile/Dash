@@ -7,6 +7,8 @@ class view
 
 	public static function config()
 	{
+		// \dash\redirect::to(\dash\url::base(). '/enter');
+				// return;
 		\dash\data::page_title(T_("Tickets"));
 		\dash\data::page_desc(T_("See list of your tickets!"));
 
@@ -17,6 +19,45 @@ class view
 
 		\dash\data::badge2_text(T_('Back to support panel'));
 		\dash\data::badge2_link(\dash\url::here().\dash\data::accessGet());
+
+		if(!\dash\user::login())
+		{
+			self::is_not_login();
+		}
+		else
+		{
+			self::is_login();
+		}
+
+	}
+
+	private static function is_not_login()
+	{
+		if(isset($_SESSION['guest_ticket']) && is_array($_SESSION['guest_ticket']))
+		{
+			$guest_ticket_id = array_column($_SESSION['guest_ticket'], 'id');
+			if($guest_ticket_id && is_array($guest_ticket_id))
+			{
+				$guest_ticket_id = implode(',', $guest_ticket_id);
+
+				$args['sort']            = 'datecreated';
+				$args['order']           = 'desc';
+				$args['comments.type']   = 'ticket';
+				$args['comments.id']     = ["IN", "($guest_ticket_id)"];
+
+				$args['limit']           = 10;
+				$args['join_user']       = true;
+				$args['get_tag']         = true;
+				$args['comments.status'] = ["NOT IN", "('deleted')"];
+
+				self::dataList($args);
+
+			}
+		}
+	}
+
+	private static function is_login()
+	{
 
 		// load sidebar detail
 		self::acceessModeDetector();
@@ -116,8 +157,6 @@ class view
 
 		self::dataList($args);
 	}
-
-
 
 
 	private static function acceessModeDetector()

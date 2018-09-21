@@ -38,8 +38,8 @@ class controller
 			}
 			else
 			{
-				\dash\redirect::to(\dash\url::base(). '/enter');
-				return;
+				// \dash\redirect::to(\dash\url::base(). '/enter');
+				// return;
 			}
 		}
 

@@ -4,7 +4,12 @@
 {%block pageContent%}
 <div class="f justify-center">
 	<div class="c8 s12">
-{%include 'content_support/ticket/addForm.html'%}
+		{%if not login.id%}
+			<div class="msg fs18 txtC warn">
+			  <a href="{{url.kingdom}}/enter?referer={{url.pwd}}" data-direct>{%trans "Please log in if you need to store this ticket and track it in the future"%}</a>
+			</div>
+		{%endif%}
+		{%include 'content_support/ticket/addForm.html'%}
 	</div>
 </div>
 {%endblock%}

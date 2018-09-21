@@ -38,6 +38,7 @@
 
 
 {%block htmlSearchBox%}
+{%if login.id%}
 <div class="cbox fs12">
   <form method="get" action='{{url.this}}{{moduleType}}' data-action>
     <div class="input">
@@ -49,6 +50,7 @@
     </div>
   </form>
 </div>
+{%endif%}
 {%endblock%}
 
 
@@ -82,56 +84,62 @@
 
 {%block detailCards%}
 
+{%if login.id%}
 <div class="f mB10">
-  <div class="s12 m4">
-    <a class="dcard" href="{{url.here}}/ticket?status=open{{accessGetAnd}}">
-      <div class="statistic sm teal">
-        <div class="label mB10"><i class="fs20 mRa5 sf-life-ring"></i> {%trans "Active tickets"%}</div>
-        <div class="value counter">{{sidebarDetail.open |fitNumber}}</div>
-      </div>
-    </a>
-  </div>
-  <div class="s6 m4">
-    <a class="dcard" href="{{url.here}}/ticket{{accessGet}}">
-      <div class="statistic sm ">
-        <div class="label mB10"><i class="fs20 mRa5 sf-question-circle"></i> {%trans "Tickets"%}</div>
-        <div class="value">{{sidebarDetail.all |fitNumber}}</div>
-      </div>
-    </a>
-  </div>
-{%if true or sidebarDetail.message%}
-  <div class="s6 m4">
-    <a class="dcard" href="{{url.here}}/message{{accessGet}}">
-      <div class="statistic sm">
-        <div class="label mB10"><i class="fs20 mRa5 sf-chat"></i> {%trans "Replies"%}</div>
-        <div class="value">{{sidebarDetail.message |fitNumber}}</div>
-      </div>
-    </a>
-  </div>
-{%endif%}
+    <div class="s12 m4">
+      <a class="dcard" href="{{url.here}}/ticket?status=open{{accessGetAnd}}">
+        <div class="statistic sm teal">
+          <div class="label mB10"><i class="fs20 mRa5 sf-life-ring"></i> {%trans "Active tickets"%}</div>
+          <div class="value counter">{{sidebarDetail.open |fitNumber}}</div>
+        </div>
+      </a>
+    </div>
+    <div class="s6 m4">
+      <a class="dcard" href="{{url.here}}/ticket{{accessGet}}">
+        <div class="statistic sm ">
+          <div class="label mB10"><i class="fs20 mRa5 sf-question-circle"></i> {%trans "Tickets"%}</div>
+          <div class="value">{{sidebarDetail.all |fitNumber}}</div>
+        </div>
+      </a>
+    </div>
+  {%if true or sidebarDetail.message%}
+    <div class="s6 m4">
+      <a class="dcard" href="{{url.here}}/message{{accessGet}}">
+        <div class="statistic sm">
+          <div class="label mB10"><i class="fs20 mRa5 sf-chat"></i> {%trans "Replies"%}</div>
+          <div class="value">{{sidebarDetail.message |fitNumber}}</div>
+        </div>
+      </a>
+    </div>
+  {%endif%}
 
-{%if true or sidebarDetail.avgfirst%}
-  <div class="c3 m6 s12">
-    <a class="dcard" href="{{url.here}}/ticket?order=firstResponse">
-      <div class="statistic sm">
-        <div class="label mB10"><i class="fs20 mRa5 sf-clock-o"></i> {%trans "Avg. First Response"%}</div>
-        <div class="value">{{sidebarDetail.avgfirst |fitNumber}} <small class="fs05">{%trans "Minute"%}</small></div>
-      </div>
-    </a>
-  </div>
-{%endif%}
+  {%if perm_su() %}
+    <div class="c3 m6 s12">
+      <a class="dcard" href="{{url.here}}/ticket?order=firstResponse">
+        <div class="statistic sm">
+          <div class="label mB10"><i class="fs20 mRa5 sf-clock-o"></i> {%trans "Avg. First Response"%}</div>
+          <div class="value">{{sidebarDetail.avgfirst |fitNumber}} <small class="fs05">{%trans "Minute"%}</small></div>
+        </div>
+      </a>
+    </div>
+  {%endif%}
 
-{%if true or sidebarDetail.avgarchive%}
-  <div class="c3 m6 s12">
-    <a class="dcard" href="{{url.here}}/ticket?order=avgArchiveTime">
-      <div class="statistic sm">
-        <div class="label mB10"><i class="fs20 mRa5 sf-calendar-check-o"></i> {%trans "Avg. Time to Archive"%}</div>
-        <div class="value">{{sidebarDetail.avgarchive |fitNumber}} <small class="fs05">{%trans "Hours"%}</small></div>
-      </div>
-    </a>
-  </div>
-{%endif%}
+  {%if perm_su() %}
+    <div class="c3 m6 s12">
+      <a class="dcard" href="{{url.here}}/ticket?order=avgArchiveTime">
+        <div class="statistic sm">
+          <div class="label mB10"><i class="fs20 mRa5 sf-calendar-check-o"></i> {%trans "Avg. Time to Archive"%}</div>
+          <div class="value">{{sidebarDetail.avgarchive |fitNumber}} <small class="fs05">{%trans "Hours"%}</small></div>
+        </div>
+      </a>
+    </div>
+  {%endif%}
 
-</div>
+  </div>
+{%else%}
+
+
+
+{%endif%}
 {%endblock%}
 

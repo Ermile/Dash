@@ -52,7 +52,24 @@ class model
 		if(isset($result['id']))
 		{
 			\dash\notif::ok(T_("Your ticket was sended"));
-			\dash\redirect::to(\dash\url::this().'/show?id='. $result['id']);
+			if(!\dash\user::login())
+			{
+				if(!isset($_SESSION['guest_ticket']) || (isset($_SESSION['guest_ticket']) && !is_array($_SESSION['guest_ticket'])))
+				{
+					$_SESSION['guest_ticket'] = [];
+				}
+
+				array_push($_SESSION['guest_ticket'], $result);
+
+				if(isset($result['code']))
+				{
+					\dash\redirect::to(\dash\url::this().'/show?id='. $result['id']. '&guest='. $result['code']);
+				}
+			}
+			else
+			{
+				\dash\redirect::to(\dash\url::this().'/show?id='. $result['id']);
+			}
 		}
 	}
 }
