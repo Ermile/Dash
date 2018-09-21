@@ -21,6 +21,11 @@ class view
 
 		\dash\data::listCats(\dash\app\term::cat_list('help'));
 
+		$randomArticles = \dash\app\posts::random_post(['type' => 'help', 'limit' => 10, 'status' => 'publish']);
+
+		\dash\data::randomArticles($randomArticles);
+
+
 
 		// // 'approved','awaiting','unapproved','spam','deleted','filter','close','answered'
 		// // $args['order_raw']       = ' FIELD(comments.status, "answered", "awaiting") DESC, comments.status, IF(comments.datemodified is null, comments.datecreated, comments.datemodified) DESC';

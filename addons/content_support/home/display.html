@@ -89,35 +89,23 @@
 
 {%block helpRandom%}
 <div class="cbox fs12">
+{%if randomArticles%}
   <h2>{%trans "Random Articles"%}</h2>
   <div>
+    {%for key, value in randomArticles %}
     <div class="msg">
       <span class="sf-info mRa10"></span>
-      <a href="#">Do you provide any Dynamic DNS clients?</a>
-      <a href="#" class="floatRa">SSL</a>
+      <a href="#">{{value.title}}</a>
+      <a href="#" class="floatRa">{{value.type}}</a>
     </div>
-    <div class="msg">
-      <span class="sf-info mRa10"></span>
-      <a href="#">Do you provide any Dynamic DNS clients?</a>
-      <a href="#" class="floatRa">SSL</a>
-    </div>
-    <div class="msg">
-      <span class="sf-info mRa10"></span>
-      <a href="#">Do you provide any Dynamic DNS clients?</a>
-      <a href="#" class="floatRa">SSL</a>
-    </div>
-    <div class="msg">
-      <span class="sf-info mRa10"></span>
-      <a href="#">Do you provide any Dynamic DNS clients?</a>
-      <a href="#" class="floatRa">SSL</a>
-    </div>
-    <div class="msg">
-      <span class="sf-info mRa10"></span>
-      <a href="#">Do you provide any Dynamic DNS clients?</a>
-      <a href="#" class="floatRa">SSL</a>
-    </div>
+    {%endfor%}
   </div>
+{%else%}
+    <div class="msg warn2">{%trans "No help article found"%}</div>
+{%endif%}
 </div>
+
+
 {%endblock%}
 
 

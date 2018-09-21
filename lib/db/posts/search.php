@@ -44,6 +44,7 @@ trait search
 
 			// default order byASC you can change to DESC
 			"order"            => "ASC",
+			"order_raw"        => null,
 
 			// custom sort by field
 			"sort"             => null,
@@ -126,6 +127,12 @@ trait search
 				)
 			";
 		}
+
+		if(isset($_options['order_raw']) && $_options['order_raw'])
+		{
+			$order = " ORDER BY ".  $_options['order_raw'];
+		}
+
 		// ------------------ remove system index
 		// unset some value to not search in database as a field
 		unset($_options['pagenation']);
@@ -138,6 +145,7 @@ trait search
 		unset($_options['check_language']);
 		unset($_options['sort']);
 		unset($_options['term']);
+		unset($_options['order_raw']);
 
 		foreach ($_options as $key => $value)
 		{

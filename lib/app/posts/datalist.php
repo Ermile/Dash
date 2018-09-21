@@ -13,6 +13,12 @@ trait datalist
 		'commentcount',
 	];
 
+	public static function random_post($_args = [])
+	{
+		$_args['order_raw'] = " RAND() ";
+		return self::list(null, $_args);
+	}
+
 	/**
 	 * Gets the course.
 	 *
@@ -34,12 +40,13 @@ trait datalist
 			$_args = [];
 		}
 
+		$_args = array_merge($default_meta, $_args);
+
 		if($_args['sort'] && !in_array($_args['sort'], self::$sort_field))
 		{
 			$_args['sort'] = null;
 		}
 
-		$_args = array_merge($default_meta, $_args);
 
 		$result            = \dash\db\posts::search($_string, $_args);
 		$temp              = [];
