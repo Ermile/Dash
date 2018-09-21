@@ -22,7 +22,7 @@
 {%if value.meta.icon%}
       <span class="sf-{{value.meta.icon}} mRa10"></span>
 {%endif%}
-      <a href="{{url.this}}/{{value.slug}}">{{value.title}}</a>
+      <a href="{{url.here}}/{{value.slug}}">{{value.title}}</a>
       <a href="#" class="floatRa">{{value.cat}}</a>
     </div>
 {%endfor%}
@@ -34,15 +34,10 @@
 
 {%block posts%}
   <div class="show {{datarow.type}}">
-    <h2 class="txtB mB10"><a href="{{url.pwd}}">{{datarow.title}}</a></h2>
+    <h2 class="txtB txtC mB10"><a href="{{url.pwd}}">{{datarow.title}}</a></h2>
     <div class="ovh">
 {%if datarow.meta.thumb%}
-      <img src="{{datarow.meta.thumb}}" alt="{{datarow.title | raw}}" class="floatRa thumb">
-{%endif%}
-{%if datarow.type == 'post'%}
-{%if datarow.content | length > 500%}
-      <p class="msg fs08">{{datarow.excerpt}}</p>
-{%endif%}
+      <img src="{{datarow.meta.thumb}}" alt="{{datarow.title}}" class="wide">
 {%endif%}
     {{datarow.content | raw}}
     </div>
