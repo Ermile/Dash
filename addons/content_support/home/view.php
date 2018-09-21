@@ -19,6 +19,9 @@ class view
 		\dash\data::badge_text(T_('Tickets'));
 		\dash\data::badge_link(\dash\url::here(). '/ticket'. \dash\data::accessGet());
 
+		\dash\data::listCats(\dash\app\term::cat_list('help'));
+
+
 		// // 'approved','awaiting','unapproved','spam','deleted','filter','close','answered'
 		// // $args['order_raw']       = ' FIELD(comments.status, "answered", "awaiting") DESC, comments.status, IF(comments.datemodified is null, comments.datecreated, comments.datemodified) DESC';
 		// $args['sort']            = 'comments.id';

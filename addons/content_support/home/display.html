@@ -38,38 +38,19 @@
 
 {%block helpcats%}
 <div class="cbox">
-  <div class="f">
-    <div class="c4 m6 s12 pRa10 mB10">
-      <span class="sf-info fs20 mRa10 mT10 floatLa"></span>
-      <h2 class="simple"><a href="">Getting Start</a></h2>
-      <p>New to Cloudflare? Need help getting started?</p>
+  {%if listCats%}
+    <div class="f">
+      {%for key, value in listCats%}
+      <div class="c4 m6 s12 pRa10 mB10">
+        <span class="{%if value.meta.icon%}sf-{{value.meta.icon}}{%else%}sf-info{%endif%} fs20 mRa10 mT10 floatLa"></span>
+        <h2 class="simple"><a href="">{{value.title}}</a></h2>
+        <p>{{value.desc}}</p>
+      </div>
+      {%endfor%}
     </div>
-
-    <div class="c4 m6 s12 pRa10 mB10">
-      <span class="sf-info fs20 mRa10 mT10 floatLa"></span>
-      <h2 class="simple"><a href="">Getting Start</a></h2>
-      <p>New to Cloudflare? Need help getting started?</p>
-    </div>
-
-    <div class="c4 m6 s12 pRa10 mB10">
-      <span class="sf-info fs20 mRa10 mT10 floatLa"></span>
-      <h2 class="simple"><a href="">Getting Start</a></h2>
-      <p>New to Cloudflare? Need help getting started?</p>
-    </div>
-
-    <div class="c4 m6 s12 pRa10 mB10">
-      <span class="sf-info fs20 mRa10 mT10 floatLa"></span>
-      <h2 class="simple"><a href="">Getting Start</a></h2>
-      <p>New to Cloudflare? Need help getting started?</p>
-    </div>
-
-    <div class="c4 m6 s12 pRa10 mB10">
-      <span class="sf-info fs20 mRa10 mT10 floatLa"></span>
-      <h2 class="simple"><a href="">Getting Start</a></h2>
-      <p>New to Cloudflare? Need help getting started?</p>
-    </div>
-
-  </div>
+  {%else%}
+    <div class="msg warn2">{%trans "No category found"%}</div>
+  {%endif%}
 </div>
 {%endblock%}
 
