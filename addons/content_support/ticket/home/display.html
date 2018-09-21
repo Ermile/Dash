@@ -113,7 +113,7 @@
     </div>
   {%endif%}
 
-  {%if perm_su() %}
+  {%if perm('supportTicketViewAll')%}
     <div class="c3 m6 s12">
       <a class="dcard" href="{{url.here}}/ticket?order=firstResponse">
         <div class="statistic sm">
@@ -124,7 +124,7 @@
     </div>
   {%endif%}
 
-  {%if perm_su() %}
+  {%if perm('supportTicketViewAll')%}
     <div class="c3 m6 s12">
       <a class="dcard" href="{{url.here}}/ticket?order=avgArchiveTime">
         <div class="statistic sm">
