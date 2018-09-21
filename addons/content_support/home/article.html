@@ -34,9 +34,6 @@
 
 {%block posts%}
   <div class="show {{datarow.type}}">
-{%if datarow.subtitle%}
-    <div class="mB10">{{datarow.subtitle}}</div>
-{%endif%}
     <h2 class="txtB mB10"><a href="{{url.pwd}}">{{datarow.title}}</a></h2>
     <div class="ovh">
 {%if datarow.meta.thumb%}
