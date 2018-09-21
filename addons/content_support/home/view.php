@@ -42,6 +42,28 @@ class view
 
 		\dash\data::datarow($master);
 		$master = \dash\app\posts::ready($master);
+
+
+		// set back link
+		\dash\data::badge_text(T_('Return to help center'));
+		\dash\data::badge_link(\dash\url::here());
+
+		// set page title
+		if(isset($master['title']))
+		{
+			\dash\data::page_title($master['title']);
+		}
+		// set page desc
+		if(isset($master['excerpt']))
+		{
+			\dash\data::page_desc($master['excerpt']);
+		}
+		// set page desc
+		if(isset($master['meta']['icon']))
+		{
+			\dash\data::page_pictogram($master['meta']['icon']);
+		}
+
 	}
 
 
