@@ -14,7 +14,24 @@ class controller
 		}
 		else
 		{
-			$check = \dash\db\posts::get(['type' => 'help', 'slug' => urldecode(\dash\url::directory()), 'status' => 'publish', 'limit' => 1]);
+			$check_arg =
+			[
+				'type'   => 'help',
+				'slug'   => urldecode(\dash\url::directory()),
+				'limit'  => 1
+			];
+
+			if(\dash\permission::check('supportShowDraftHelpCenter'))
+			{
+				$check_arg['status']   = ["NOT IN", "('deleted')"];
+			}
+			else
+			{
+				$check_arg['status'] = 'publish';
+			}
+
+
+			$check = \dash\db\posts::get($check_arg);
 			if($check)
 			{
 				\dash\data::isHelpCenter(true);

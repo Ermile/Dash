@@ -55,7 +55,7 @@ class view
 			'language' => \dash\language::current(),
 		];
 
-		if(\dash\permission::check('supportShowDraftHelpcenter'))
+		if(\dash\permission::check('supportShowDraftHelpCenter'))
 		{
 			$get_posts_term['status']   = ["NOT IN", "('deleted')"];
 		}
