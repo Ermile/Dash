@@ -316,10 +316,18 @@ class twigAddons
 							}
 							else
 							{
+								// do nothing
 								// in support links in not exact in each language
 								// because of that we are not add content
 								// to addr of another language
 							}
+						}
+						elseif(\dash\url::content() === null && \dash\data::datarow())
+						{
+							// do nothing
+							// because we are in main content and datarow is filled
+							// in this condition we dont know to have exact news in another lang
+							// because of that all links related to main content
 						}
 						else
 						{
