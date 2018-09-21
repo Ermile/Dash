@@ -44,14 +44,14 @@
 {{block('imagegallery')}}
 {{tags({"format" : 'html', "container": "tagBox msg"})}}
 
-{%if datarow.type == 'post' and datarow.datemodified%}
-    <div class='msg f mT20'>
-      <div class="c"><time datetime="{{datarow.datemodified}}">{{datarow.publishdate | tdate('l d F Y H:i')}}</time></div>
-      <div class="cauto os">{{category({"format" : 'html', "class": "badge mRa5"})}} <a href="{{url.base}}/n/{{datarow.id}}" data-direct title='{%trans "For share via social networks"%}'>{%trans "News Code"%} <span class="txtB">{{datarow.id}}</span></a></div>
+{%if datarow.datemodified%}
+    <div class='msg f mT20 fs08'>
+      <div class="c"><time datetime="{{datarow.datemodified}}">{{datarow.publishdate | tdate('l d F Y')}}</time></div>
+      <div class="cauto os">{{category({"format" : 'html', "class": "badge mRa5"})}} <a href="{{url.base}}/n/{{datarow.id}}" data-direct title='{%trans "For share via social networks"%}'>{%trans "Short link"%} <span class="txtB">{{datarow.id}}</span></a></div>
     </div>
 {%endif%}
 
-{{block('setPostComment')}}
+{{block('commentBox')}}
   </div>
 {%endblock%}
 
@@ -121,7 +121,7 @@
 
 
 
-{%block setPostComment%}
+{%block commentBox%}
 {%if datarow.comment == 'open'%}
 <h2>{%trans "Comment"%}</h2>
 <div class="f justify-center">
