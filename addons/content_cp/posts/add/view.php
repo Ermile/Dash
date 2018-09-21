@@ -45,9 +45,11 @@ class view
 					break;
 
 				case 'help':
-					$myTitle     = T_('Edit help');
+					$myTitle     = T_('Add new help');
+					$myDesc      = T_("Add new static help like about or honors");
 					$myBadgeText = T_('Back to list of helps');
-					$myDesc      = T_("Helps can contain keyword and category with title and descriptions.");
+					\dash\data::listCats(\dash\app\term::cat_list('help'));
+
 					break;
 
 				case 'post':

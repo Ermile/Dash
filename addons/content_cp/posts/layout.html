@@ -141,9 +141,9 @@
 
 {%block iCat%}
 
-{%set postCat = category({"post_id" : dataRow.id, "id" : true, "type" : "{{myDataType}}" })%}
-{%if postCat%}
+{%if listCats%}
 <div title='{%trans "Choose category for posts is fix url of post relative and help people find it better."%}'>
+{%set postCat = category({"post_id" : dataRow.id, "id" : true })%}
   <div title='{%trans "Choose category of post"%}'>
 {%for key, value in listCats%}
     <div class="check1">
@@ -154,7 +154,7 @@
   </div>
 </div>
 {%else%}
-<div class="msg warn2"><a href="{{url.here}}/terms?type=cat&posttype={{myDataType}}">{%trans "Add new category"%}</a></div>
+<div class="msg warn2"><a href="{{url.here}}/terms?type={%if myDataType == 'help'%}help{%else%}cat{%endif%}">{%trans "Add new category"%}</a></div>
 {%endif%}
 {%endblock%}
 

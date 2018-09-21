@@ -43,6 +43,9 @@ self::$config['site']['slogan'] = "Ermile is intelligent ;)";
 // self::$config['dev']['siftal'] = false;
 // self::$config['dev']['dash']   = false;
 
+// the project have help center or no
+self::$config['help_center']         = true;
+
 
 // ----- language
 self::$language           =

@@ -59,6 +59,7 @@ class view
 					$myTitle     = T_('Edit help');
 					$myBadgeText = T_('Back to list of helps');
 					$myDesc      = T_("Helps can contain keyword and category with title and descriptions.");
+					\dash\data::listCats(\dash\app\term::cat_list('help'));
 					break;
 
 				case 'post':
