@@ -75,11 +75,12 @@ trait add
 		}
 
 
-		if($args['type'] === 'post')
+		if($args['type'] === 'post' || $args['type'] === 'help' )
 		{
 			self::set_post_term($post_id, 'tag');
 
-			$post_url = self::set_post_term($post_id, 'cat');
+			$myCatType = $args['type'] === 'post' ? 'cat' : $args['type'];
+			$post_url = self::set_post_term($post_id, $myCatType);
 
 			if($post_url !== false)
 			{

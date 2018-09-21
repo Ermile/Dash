@@ -90,11 +90,13 @@ trait edit
 			$args['excerpt'] = substr($args['excerpt'], 0, 300);
 		}
 
-		if($args['type'] === 'post')
+		if($args['type'] === 'post' || $args['type'] === 'help' )
 		{
 			self::set_post_term($id, 'tag');
 
-			$post_url = self::set_post_term($id, 'cat');
+			$myCatType = $args['type'] === 'post' ? 'cat' : $args['type'];
+
+			$post_url = self::set_post_term($id, $myCatType);
 
 			if($post_url !== false)
 			{

@@ -391,8 +391,12 @@ class posts
 			$meta['thumb'] = \dash\app::request('thumb');
 		}
 
+		if(isset($current_post_detail['type']))
+		{
+			$type = $current_post_detail['type'];
+		}
 
-		if(isset($current_post_detail['type']) && $current_post_detail['type'] === 'post')
+		if(in_array($type, ['post', 'help']))
 		{
 			$cat = \dash\app::request('cat');
 			if(!$cat)
@@ -400,6 +404,8 @@ class posts
 				\dash\notif::warn(T_("Category setting for better access is suggested"));
 			}
 		}
+
+
 
 		$meta = json_encode($meta, JSON_UNESCAPED_UNICODE);
 
@@ -501,21 +507,21 @@ class posts
 		}
 		else
 		{
+			$category_id = [];
 
-			if(!is_array($category) || empty($category) || !$category)
+			if($category && is_array($category))
 			{
-				return null;
-			}
+				$category_id = array_map(function($_a){return \dash\coding::decode($_a);}, $category);
+				$category_id = array_filter($category_id);
+				$category_id = array_unique($category_id);
 
-			$category_id = array_map(function($_a){return \dash\coding::decode($_a);}, $category);
-			$category_id = array_filter($category_id);
-			$category_id = array_unique($category_id);
+				$check_all_is_cat = \dash\db\terms::check_multi_id($category_id, $_type);
 
-			$check_all_is_cat = \dash\db\terms::check_multi_id($category_id, $_type);
-			if(count($check_all_is_cat) !== count($category_id))
-			{
-				\dash\notif::warn(T_("Some :type is wrong", ['type' => T_($_type)]), 'cat');
-				return false;
+				if(count($check_all_is_cat) !== count($category_id))
+				{
+					\dash\notif::warn(T_("Some :type is wrong", ['type' => T_($_type)]), 'cat');
+					return false;
+				}
 			}
 		}
 

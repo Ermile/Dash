@@ -652,11 +652,17 @@ class twigAddons
 			$category = [];
 			$args     = func_get_args();
 			$class    = '';
+			$type     = 'cat';
+
 			if(isset($args[0]))
 			{
 				$args = $args[0];
 			}
 
+			if(isset($args['type']))
+			{
+				$type = $args['type'];
+			}
 
 			// get post id
 			if(!isset($args['post_id']))
@@ -669,7 +675,7 @@ class twigAddons
 			// get category
 			if(isset($args['post_id']))
 			{
-				$category = \dash\app\posts::get_category_tag($args['post_id'], 'cat');
+				$category = \dash\app\posts::get_category_tag($args['post_id'], $type);
 			}
 
 			if(isset($args['id']) && $args['id'] && is_array($category))

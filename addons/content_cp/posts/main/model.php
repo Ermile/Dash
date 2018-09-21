@@ -93,14 +93,17 @@ class model
 		$all_post = \dash\request::post();
 
 		$post['cat'] = [];
+		$post['help'] = [];
 
 		foreach ($all_post as $key => $value)
 		{
 			if(substr($key, 0, 4) === 'cat_')
 			{
 				$post['cat'][] = substr($key, 4);
+				$post['help'][] = substr($key, 4);
 			}
 		}
+
 
 		if(\dash\request::files('thumb'))
 		{
