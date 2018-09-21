@@ -13,26 +13,45 @@ class view
 		\dash\data::badge_text(T_('Tickets'));
 		\dash\data::badge_link(\dash\url::here(). '/ticket'. \dash\data::accessGet());
 
-		self::helpDashboard();
-		// // 'approved','awaiting','unapproved','spam','deleted','filter','close','answered'
-		// // $args['order_raw']       = ' FIELD(comments.status, "answered", "awaiting") DESC, comments.status, IF(comments.datemodified is null, comments.datecreated, comments.datemodified) DESC';
-		// $args['sort']            = 'comments.id';
-		// $args['order']           = 'desc';
-		// $args['comments.type']   = 'ticket';
-		// $args['comments.status'] = ["NOT IN ", "('deleted')"];
-		// $args['comments.parent'] = null;
-		// $args['pagenation']      = false;
-		// $args['limit']           = 5;
-		// $args['join_user']       = true;
-		// $args['get_tag']         = true;
-		// // $args['comments.status'] = ["NOT IN", "('close')"];
 
-		// \content_support\view::dataList($args);
+		if(\dash\data::isHelpCenter())
+		{
+			\dash\data::display_supportAdmin('content_support/home/template.html');
+			self::help_center();
+		}
+		else
+		{
+			\dash\data::display_supportAdmin('content_support/home/help.html');
+			self::helpDashboard();
+		}
 	}
+
+	public static function help_center()
+	{
+		$master = \dash\data::moduelRow();
+		if(!isset($master['id']))
+		{
+			return;
+		}
+		$subchildPost = \dash\db\posts::get(['type' => 'help', 'parent' => $master['id'], 'status' => 'publish']);
+		if(is_array($subchildPost))
+		{
+			$subchildPost = array_map(['\dash\app\posts', 'ready'], $subchildPost);
+			\dash\data::subchildPost($subchildPost);
+		}
+
+		\dash\data::datarow($master);
+		$master = \dash\app\posts::ready($master);
+	}
+
+
 
 	public static function helpDashboard()
 	{
-		\dash\data::listCats(\dash\app\term::cat_list('help'));
+		$pageList = \dash\db\posts::get(['type' => 'help', 'parent' => null, 'language' => \dash\language::current(), 'status' => ["NOT IN", "('deleted')"]]);
+		$pageList = array_map(['\dash\app\posts', 'ready'], $pageList);
+
+		\dash\data::listCats($pageList);
 
 		$randomArticles = \dash\app\posts::random_post(['type' => 'help', 'limit' => 10, 'status' => 'publish']);
 

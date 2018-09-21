@@ -396,7 +396,7 @@ class posts
 			$type = $current_post_detail['type'];
 		}
 
-		if(in_array($type, ['post', 'help']))
+		if(in_array($type, ['post']))
 		{
 			$cat = \dash\app::request('cat');
 			if(!$cat)
