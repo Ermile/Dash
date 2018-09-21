@@ -21,7 +21,7 @@ class view
 		}
 		else
 		{
-			\dash\data::display_supportAdmin('content_support/home/help.html');
+			\dash\data::display_supportAdmin('content_support/home/dashboard.html');
 			self::helpDashboard();
 		}
 	}
