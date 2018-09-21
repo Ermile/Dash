@@ -60,7 +60,7 @@ class prepare
 	*/
 	private static function user_country_redirect()
 	{
-		if(\dash\url::content() === null)
+		if(\dash\url::content() !== null)
 		{
 			return;
 		}
