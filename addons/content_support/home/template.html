@@ -4,35 +4,27 @@
 {%block content%}
 
 <div class="cn cms mTB50">
-<div class="cbox">
-{%if datarow.type == 'post' or datarow.type == 'page' or datarow.type == 'help' %}
+  <div class="cbox">
+  {%if datarow.type == 'post' or datarow.type == 'page' or datarow.type == 'help' %}
 
-  {{block('posts')}}
+    {{block('posts')}}
 
-
-  {%if subchildPost%}
-
+    {%if subchildPost%}
         <div>
           {%for key, value in subchildPost%}
           <div class="pRa10 mB10">
             <span class="{%if value.meta.icon%}sf-{{value.meta.icon}}{%else%}sf-info{%endif%} fs20 mRa10 mT10 floatLa"></span>
-            <h2 class="simple"><a href="{{url.this}}/{{value.slug}}">{{value.title}}</a></h2>
+            <h2 class="simple"><a href="{{url.here}}/{{value.slug}}">{{value.title}}</a></h2>
             <p>{{value.desc}}</p>
           </div>
           {%endfor%}
         </div>
-    </div>
+    {%endif%}
 
-
+  {%else%}
+    {{block('terms')}}
   {%endif%}
-
-
-
-
-
-{%else%}
-  {{block('terms')}}
-{%endif%}
+  </div>
 </div>
 
 {%endblock%}

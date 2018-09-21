@@ -14,7 +14,7 @@ class controller
 		}
 		else
 		{
-			$check = \dash\db\posts::get(['type' => 'help', 'slug' => $module, 'parent' => null, 'status' => 'publish', 'limit' => 1]);
+			$check = \dash\db\posts::get(['type' => 'help', 'slug' => urldecode(\dash\url::directory()), 'status' => 'publish', 'limit' => 1]);
 			if($check)
 			{
 				\dash\data::isHelpCenter(true);
