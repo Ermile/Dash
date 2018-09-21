@@ -228,6 +228,7 @@ class TransStatic
 	echo T_("title");
 	echo T_("enable");
 	echo T_("disable");
+	echo T_("help");
 	echo T_("For multilanguage sites enter title in English and translate it");
 
 
@@ -458,7 +459,10 @@ class TransStatic
 	echo T_("cpPostsEdit");
 	echo T_("cpPageView");
 	echo T_("cpPostsView");
-
+	echo T_("cpHelpView");
+	echo T_("cpHelpsView");
+	echo T_("cpHelpEdit");
+	echo T_("cpHelpsEdit");
 
 	// ------------------------------------------ PERMISSION GROUP
 	echo T_("Admin");

@@ -46,7 +46,7 @@ class view
 
 				case 'help':
 					$myTitle     = T_('Add new help');
-					$myDesc      = T_("Add new static help like about or honors");
+					$myDesc      = T_("Add new article to help center or new faq.");
 					$myBadgeText = T_('Back to list of helps');
 					\dash\data::listCats(\dash\app\term::cat_list('help'));
 

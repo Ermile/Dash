@@ -35,6 +35,14 @@ class view
 					\dash\data::page_pictogram('files-o');
 					break;
 
+				case 'help':
+					\dash\permission::access('cpHelpView');
+					$myTitle = T_('Help Center');
+					$myDesc  = T_('Check list of article in help center.'). ' '. T_('Also add or edit specefic article.');
+					$myBadgeText = T_('Back to list of helps');
+					\dash\data::page_pictogram('life-ring');
+					break;
+
 				case 'post':
 				default:
 					\dash\permission::access('cpPostsView');
