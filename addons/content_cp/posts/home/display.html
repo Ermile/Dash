@@ -53,9 +53,8 @@
 
 
 {%block htmlTable%}
- <div class="cbox fs12">
-  <table class="tbl bordered1">
-    <thead class="primary fs09">
+  <table class="tbl1 v1 fs11">
+    <thead>
       <tr>
         <th data-sort="{{sortLink.title.order}}"><a href='{{sortLink.title.link}}'>{%trans "Title"%}</a></th>
         <th class="s0 max-w200" data-sort="{{sortLink.slug.order}}"><a href='{{sortLink.slug.link}}'>{%trans "Slug"%}</a></th>
@@ -93,7 +92,6 @@
     </tbody>
   </table>
   {%include display.pagination%}
- </div>
 {%endblock%}
 
 
