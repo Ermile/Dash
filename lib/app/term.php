@@ -112,6 +112,7 @@ class term
 			case 'cat':
 			case 'code':
 			case 'other':
+			case 'help':
 			case 'term':
 			case 'support_tag':
 				// nothing
