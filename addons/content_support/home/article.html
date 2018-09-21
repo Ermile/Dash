@@ -2,29 +2,32 @@
 
 
 {%block pageContent%}
-
-  <div class="cbox cms">
-  {%if datarow.type == 'post' or datarow.type == 'page' or datarow.type == 'help' %}
-
+  <div class="cms cbox">
     {{block('posts')}}
-
-    {%if subchildPost%}
-        <div>
-          {%for key, value in subchildPost%}
-          <div class="pRa10 mB10">
-            <span class="{%if value.meta.icon%}sf-{{value.meta.icon}}{%else%}sf-info{%endif%} fs20 mRa10 mT10 floatLa"></span>
-            <h2 class="simple"><a href="{{url.here}}/{{value.slug}}">{{value.title}}</a></h2>
-            <p>{{value.desc}}</p>
-          </div>
-          {%endfor%}
-        </div>
-    {%endif%}
-
-  {%else%}
-    {{block('terms')}}
-  {%endif%}
   </div>
 
+
+  {{block('postChilds')}}
+
+{%endblock%}
+
+
+
+{%block postChilds%}
+{%if subchildPost%}
+  <div class="cms cbox">
+    <h4>{%trans "In this section"%}</h4>
+{%for key, value in subchildPost%}
+    <div class="msg">
+{%if value.meta.icon%}
+      <span class="sf-{{value.meta.icon}} mRa10"></span>
+{%endif%}
+      <a href="{{url.this}}/{{value.slug}}">{{value.title}}</a>
+      <a href="#" class="floatRa">{{value.cat}}</a>
+    </div>
+{%endfor%}
+  </div>
+{%endif%}
 {%endblock%}
 
 

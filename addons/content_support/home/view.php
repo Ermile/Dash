@@ -16,7 +16,7 @@ class view
 
 		if(\dash\data::isHelpCenter())
 		{
-			\dash\data::display_supportAdmin('content_support/home/template.html');
+			\dash\data::display_supportAdmin('content_support/home/article.html');
 			self::help_center();
 		}
 		else
