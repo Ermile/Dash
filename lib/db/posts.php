@@ -232,6 +232,7 @@ class posts
 		switch ($_type)
 		{
 			case 'cat':
+			case 'help':
 				if(!$_options['cat'])
 				{
 					return false;

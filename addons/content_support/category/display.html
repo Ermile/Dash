@@ -1,0 +1,59 @@
+{%extends display.admin%}
+
+
+
+{%block pageContent%}
+
+  {{block('htmlSearchBox')}}
+
+
+
+  {{block('postCategory')}}
+
+{%endblock%}
+
+
+
+
+{%block htmlSearchBox%}
+{%if  listCats or randomFAQ or randomArticles%}
+<div class="cbox fs12">
+  <form method="get" action='{{url.this}}' data-action>
+    <div class="input">
+      {%for key, value in requestGET%}
+        <input type="hidden" name="{{key}}" value="{{value}}">
+      {%endfor%}
+      <input type="search" name="q" placeholder='{%trans "Search our knowledge base..."%}' id="q" value="{{requestGET.q}}" autofocus autocomplete='off'>
+      <button class="addon btn ">{%trans "Search" %}</button>
+    </div>
+  </form>
+</div>
+{%endif%}
+{%endblock%}
+
+
+{%block postCategory%}
+
+{%if postCat%}
+<div class="cbox">
+
+  {%if categoryDetail%}
+    <h2>{%trans "Category"%} <b>{{categoryDetail.title}}</b></h2>
+  {%endif%}
+
+  <div>
+    {%for key, value in postCat %}
+    <div class="msg">
+      <span class="sf-info mRa10"></span>
+      <a href="#">{{value.title}}</a>
+      <a href="#" class="floatRa">{{value.type}}</a>
+    </div>
+    {%endfor%}
+  </div>
+</div>
+{%endif%}
+{%endblock%}
+
+
+
+

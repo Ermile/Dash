@@ -50,7 +50,7 @@
       {%for key, value in listCats%}
       <div class="c4 m6 s12 pRa10 mB10">
         <span class="{%if value.meta.icon%}sf-{{value.meta.icon}}{%else%}sf-info{%endif%} fs20 mRa10 mT10 floatLa"></span>
-        <h2 class="simple"><a href="{{url.this}}/{{value.slug}}">{{value.title}}</a></h2>
+        <h2 class="simple"><a href="{{url.this}}/category/{{value.slug}}">{{value.title}}</a></h2>
         <p>{{value.desc}}</p>
       </div>
       {%endfor%}
