@@ -48,7 +48,23 @@ class view
 
 	public static function helpDashboard()
 	{
-		$pageList = \dash\db\posts::get(['type' => 'help', 'parent' => null, 'language' => \dash\language::current(), 'status' => ["NOT IN", "('deleted')"]]);
+		$get_posts_term =
+		[
+			'type'     => 'help',
+			'parent'   => null,
+			'language' => \dash\language::current(),
+		];
+
+		if(\dash\permission::check('supportShowDraftHelpcenter'))
+		{
+			$get_posts_term['status']   = ["NOT IN", "('deleted')"];
+		}
+		else
+		{
+			$get_posts_term['status']   = 'publish';
+		}
+
+		$pageList = \dash\db\posts::get($get_posts_term);
 		$pageList = array_map(['\dash\app\posts', 'ready'], $pageList);
 
 		\dash\data::listCats($pageList);
