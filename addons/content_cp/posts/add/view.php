@@ -17,11 +17,6 @@ class view
 
 		\dash\data::moduleTypeTxt($moduleTypeTxt);
 		\dash\data::moduleType($moduleType);
-		\dash\data::listCats(\dash\app\term::cat_list());
-
-		$pageList = \dash\db\posts::get(['type' => 'page', 'language' => \dash\language::current(), 'status' => ["NOT IN", "('deleted')"]]);
-		$pageList = array_map(['\dash\app\posts', 'ready'], $pageList);
-		\dash\data::pageList($pageList);
 
 
 		$myTitle   = T_("Add new post");
@@ -43,11 +38,22 @@ class view
 					$myDesc  = T_("Add new static page like about or honors");
 
 					$myBadgeText = T_('Back to list of pages');
+
+					$pageList = \dash\db\posts::get(['type' => 'page', 'language' => \dash\language::current(), 'status' => ["NOT IN", "('deleted')"]]);
+					$pageList = array_map(['\dash\app\posts', 'ready'], $pageList);
+					\dash\data::pageList($pageList);
+					break;
+
+				case 'help':
+					$myTitle     = T_('Edit help');
+					$myBadgeText = T_('Back to list of helps');
+					$myDesc      = T_("Helps can contain keyword and category with title and descriptions.");
 					break;
 
 				case 'post':
 				default:
 					\dash\permission::access('cpPostsAdd');
+					\dash\data::listCats(\dash\app\term::cat_list());
 					break;
 			}
 		}
@@ -61,6 +67,8 @@ class view
 
 		\dash\data::badge_text($myBadgeText);
 		\dash\data::badge_link($myBadgeLink);
+
+		\content_cp\posts\main\view::myDataType();
 	}
 }
 ?>
