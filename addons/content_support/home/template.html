@@ -1,10 +1,9 @@
 {%extends display.admin%}
 
 
-{%block content%}
+{%block pageContent%}
 
-<div class="cn cms mTB50">
-  <div class="cbox">
+  <div class="cbox cms">
   {%if datarow.type == 'post' or datarow.type == 'page' or datarow.type == 'help' %}
 
     {{block('posts')}}
@@ -25,7 +24,6 @@
     {{block('terms')}}
   {%endif%}
   </div>
-</div>
 
 {%endblock%}
 
