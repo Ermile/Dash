@@ -7,14 +7,14 @@
 
 {%if 'telegram' in sendWayCod%}
 	<div class="radio1">
-		<input type="radio" name="sendCod" value="telegram" id="sRd3">
+		<input type="radio" name="sendCod" value="telegram" id="sRd3" checked>
 		<label for="sRd3">{%trans "Send code in your Telegram"%}</label>
 	</div>
 {%endif%}
 
 {%if 'sms' in sendWayCod%}
 	<div class="radio1">
-		<input type="radio" name="sendCod" value="sms" id="sRd1" checked>
+		<input type="radio" name="sendCod" value="sms" id="sRd1" {%if 'telegram' in sendWayCod%}{%else%}checked{%endif%}>
 		<label for="sRd1">{%trans "Send code as sms to your phone"%}</label>
 	</div>
 {%endif%}

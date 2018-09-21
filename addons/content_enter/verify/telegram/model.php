@@ -54,7 +54,10 @@ class model
 
 		\dash\log::db('telegram');
 
-		\dash\utility\telegram::sendMessage($my_chat_id, $text);
+		$myData   = ['chat_id' => $my_chat_id, 'text' => $text];
+		$myResult = \dash\social\telegram\tg::sendMessage($myData);
+
+		// \dash\utility\telegram::sendMessage($my_chat_id, $text);
 		return true;
 	}
 }
