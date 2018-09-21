@@ -67,7 +67,7 @@
     {%for key, value in randomFAQ%}
     <div class="msg">
       <span class="sf-info mRa10"></span>
-      <a href="#">{{value.title}}</a>
+      <a href="{{url.this}}/{{value.slug}}">{{value.title}}</a>
       <a href="#" class="floatRa">{{value.cat}}</a>
     </div>
     {%endfor%}
@@ -86,7 +86,7 @@
     {%for key, value in randomArticles %}
     <div class="msg">
       <span class="sf-info mRa10"></span>
-      <a href="#">{{value.title}}</a>
+      <a href="{{url.this}}/{{value.slug}}">{{value.title}}</a>
       <a href="#" class="floatRa">{{value.type}}</a>
     </div>
     {%endfor%}
