@@ -255,10 +255,22 @@ class twigAddons
 			$urlBase      = \dash\url::base();
 			$urlContent   = \dash\url::content();
 			$urlPath      = \dash\url::path();
-			$urlParam     = \dash\url::query();
 			$urlDirectory = \dash\url::directory();
 			$currentlang  = \dash\language::current();
 			$defaultlang  = \dash\language::primary();
+			$urlParam     = \dash\url::query();
+			$urlLocation  = '';
+
+			// create location of link
+			if($urlDirectory)
+			{
+				$urlLocation = '/'. $urlDirectory;
+			}
+			if($urlParam)
+			{
+				$urlLocation .= '?'. $urlParam;
+			}
+
 
 			if(!$all)
 			{
@@ -292,10 +304,29 @@ class twigAddons
 						$href           .= '/'. $urlContent;
 						$urlPathCurrent .= '/'. $urlContent;
 					}
-					if($urlDirectory)
+					if($urlLocation)
 					{
-						$href           .= '/'. $urlDirectory;
-						$urlPathCurrent .= '/'. $urlDirectory;
+						if(\dash\url::content() === 'support')
+						{
+							if(\dash\url::module() === 'ticket')
+							{
+								// support ticket is the same
+								$href           .= $urlLocation;
+								$urlPathCurrent .= $urlLocation;
+							}
+							else
+							{
+								// in support links in not exact in each language
+								// because of that we are not add content
+								// to addr of another language
+							}
+						}
+						else
+						{
+							// add if we are not in cms
+							$href           .= $urlLocation;
+							$urlPathCurrent .= $urlLocation;
+						}
 					}
 
 					$lang_string .= "<a href='". $href . "'$activeClass hreflang='$key' data-direct>";
