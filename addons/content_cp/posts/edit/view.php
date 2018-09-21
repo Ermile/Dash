@@ -60,6 +60,10 @@ class view
 					$myBadgeText = T_('Back to list of helps');
 					$myDesc      = T_("Helps can contain keyword and category with title and descriptions.");
 					\dash\data::listCats(\dash\app\term::cat_list('help'));
+					$pageList = \dash\db\posts::get(['type' => 'help', 'language' => \dash\language::current(), 'status' => ["NOT IN", "('deleted')"]]);
+					$pageList = array_map(['\dash\app\posts', 'ready'], $pageList);
+					\dash\data::pageList($pageList);
+
 					break;
 
 				case 'post':

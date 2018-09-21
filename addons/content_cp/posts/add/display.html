@@ -32,7 +32,7 @@
   </div>
 {%endif%}
 
-{%if requestGET.type == 'page' or dataRow.type == 'page' %}
+{%if requestGET.type == 'page' or dataRow.type == 'help' or requestGET.type == 'help'%}
   <div class="cbox mB10">
    {{block('iParent')}}
   </div>

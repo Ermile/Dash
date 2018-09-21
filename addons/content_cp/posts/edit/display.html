@@ -35,7 +35,7 @@
    {{block('iadd')}}
   </div>
 
-{%if dataRow.type == 'post' or dataRow.type == 'help' %}
+{%if dataRow.type == 'post'  %}
 
   <div class="cbox">
    {{block('iCat')}}
@@ -46,7 +46,7 @@
   </div>
 {%endif%}
 
-{%if dataRow.type == 'page' %}
+{%if dataRow.type == 'page' or dataRow.type == 'help'%}
   <div class="cbox">
    {{block('iParent')}}
   </div>

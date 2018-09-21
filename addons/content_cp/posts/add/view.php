@@ -48,8 +48,11 @@ class view
 					$myTitle     = T_('Add new help');
 					$myDesc      = T_("Add new article to help center or new faq.");
 					$myBadgeText = T_('Back to list of helps');
-					\dash\data::listCats(\dash\app\term::cat_list('help'));
 
+					$pageList    = \dash\db\posts::get(['type' => 'help', 'language' => \dash\language::current(), 'status' => ["NOT IN", "('deleted')"]]);
+					$pageList    = array_map(['\dash\app\posts', 'ready'], $pageList);
+
+					\dash\data::pageList($pageList);
 					break;
 
 				case 'post':
