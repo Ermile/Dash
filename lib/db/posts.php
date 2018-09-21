@@ -205,10 +205,12 @@ class posts
 
 		$default_options =
 		[
-			'limit' => 10,
-			'cat'   => null,
-			'tag'   => null,
-			'term'  => null,
+			'limit'  => 10,
+			'cat'    => null,
+			'tag'    => null,
+			'term'   => null,
+			'type'   => 'post',
+			'random' => false,
 		];
 
 		if(!is_array($_options))
@@ -217,6 +219,7 @@ class posts
 		}
 
 		$_options = array_merge($default_options, $_options);
+
 
 		$my_query = null;
 
@@ -257,6 +260,12 @@ class posts
 				break;
 		}
 
+		$order = " posts.publishdate DESC ";
+		if($_options['random'])
+		{
+			$order = " RAND() ";
+		}
+
 		$query =
 		"
 			SELECT
@@ -277,12 +286,13 @@ class posts
 						termusages.related_id = posts.id
 				) AND
 				posts.status            = 'publish' AND
-				posts.type              = 'post' AND
+				posts.type              = '$_options[type]' AND
 				posts.language          = '$lang' AND
 				UNIX_TIMESTAMP(posts.publishdate) <= $time
-			ORDER BY posts.publishdate DESC
+			ORDER BY $order
 			LIMIT $_options[limit]
 		";
+
 		$result = \dash\db::get($query);
 		return $result;
 	}

@@ -8,12 +8,17 @@
   {{block('helpcats')}}
 
   <div class="f">
-    <div class="c6 s12 pRa10">
-  {{block('faqRandom')}}
-    </div>
-    <div class="c6 s12">
-  {{block('helpRandom')}}
-    </div>
+    {%if randomFAQ%}
+      <div class="{%if not randomArticles%}c12{%else%}c6{%endif%} s12 pRa10">
+        {{block('faqRandom')}}
+      </div>
+    {%endif%}
+
+    {%if randomArticles%}
+      <div class="{%if not randomFAQ%}c12{%else%}c6{%endif%} s12">
+        {{block('helpRandom')}}
+      </div>
+    {%endif%}
   </div>
 {{block('addTicket')}}
 {%endblock%}
@@ -22,6 +27,7 @@
 
 
 {%block htmlSearchBox%}
+{%if  listCats or randomFAQ or randomArticles%}
 <div class="cbox fs12">
   <form method="get" action='{{url.this}}' data-action>
     <div class="input">
@@ -33,12 +39,13 @@
     </div>
   </form>
 </div>
+{%endif%}
 {%endblock%}
 
 
 {%block helpcats%}
-<div class="cbox">
   {%if listCats%}
+<div class="cbox">
     <div class="f">
       {%for key, value in listCats%}
       <div class="c4 m6 s12 pRa10 mB10">
@@ -48,48 +55,32 @@
       </div>
       {%endfor%}
     </div>
-  {%else%}
-    <div class="msg warn2">{%trans "No category found"%}</div>
-  {%endif%}
 </div>
+  {%endif%}
 {%endblock%}
 
 {%block faqRandom%}
+{%if randomFAQ%}
 <div class="cbox fs12">
   <h2>{%trans "Frequently Asked Questions"%}</h2>
   <div>
+    {%for key, value in randomFAQ%}
     <div class="msg">
       <span class="sf-info mRa10"></span>
-      <a href="#">Do you provide any Dynamic DNS clients?</a>
-      <a href="#" class="floatRa">SSL</a>
+      <a href="#">{{value.title}}</a>
+      <a href="#" class="floatRa">{{value.cat}}</a>
     </div>
-    <div class="msg">
-      <span class="sf-info mRa10"></span>
-      <a href="#">Do you provide any Dynamic DNS clients?</a>
-      <a href="#" class="floatRa">SSL</a>
-    </div>
-    <div class="msg">
-      <span class="sf-info mRa10"></span>
-      <a href="#">Do you provide any Dynamic DNS clients?</a>
-      <a href="#" class="floatRa">SSL</a>
-    </div>
-    <div class="msg">
-      <span class="sf-info mRa10"></span>
-      <a href="#">Do you provide any Dynamic DNS clients?</a>
-      <a href="#" class="floatRa">SSL</a>
-    </div>
-    <div class="msg">
-      <span class="sf-info mRa10"></span>
-      <a href="#">Do you provide any Dynamic DNS clients?</a>
-      <a href="#" class="floatRa">SSL</a>
-    </div>
+    {%endfor%}
   </div>
 </div>
+{%endif%}
+
+
 {%endblock%}
 
 {%block helpRandom%}
-<div class="cbox fs12">
 {%if randomArticles%}
+<div class="cbox fs12">
   <h2>{%trans "Random Articles"%}</h2>
   <div>
     {%for key, value in randomArticles %}
@@ -100,12 +91,9 @@
     </div>
     {%endfor%}
   </div>
-{%else%}
-    <div class="msg warn2">{%trans "No help article found"%}</div>
-{%endif%}
+
 </div>
-
-
+{%endif%}
 {%endblock%}
 
 

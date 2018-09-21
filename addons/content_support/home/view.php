@@ -25,6 +25,8 @@ class view
 
 		\dash\data::randomArticles($randomArticles);
 
+		$randomFAQ = \dash\db\posts::get_posts_term(['type' => 'help', 'limit' => 10, 'tag' => 'faq', 'random' => true], 'tag');
+		\dash\data::randomFAQ($randomFAQ);
 
 
 		// // 'approved','awaiting','unapproved','spam','deleted','filter','close','answered'
