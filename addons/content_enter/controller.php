@@ -48,6 +48,7 @@ class controller
 			'verify/call',
 			'verify/email',
 			'verify/sendsms',
+			'verify/telegram',
 			'verify/sms',
 			'verify/what',
 		];
