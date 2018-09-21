@@ -117,6 +117,22 @@
 {%endif%}
 {%if user.id%}
     <a href="{{url.kingdom}}/logout" data-tippy-animation="perspective" title='{%trans "Logout"%}<br>{%if user.displayname%}{%trans "You are entered as"%} <b>{{user.displayname}}{%endif%}<br>{{user.mobile | fitNumber("mobile12")}}</b>' data-direct><i class="sf-out"></i></a>
+
+{%if perm_su()%}
+    <a href="{{url.kingdom}}/account/notification" data-tippy-animation="perspective" title='{%trans "You have no unread notification"%}' data-direct><i class="sf-bell"></i></a>
+
+    <div class="profileShow" data-tippy-animation="perspective" title='{%if user.displayname%}<b>{{user.displayname}}{%endif%}<br>{{user.mobile | fitNumber("mobile12")}}</b>'>
+{%if login.avatar%}
+     <img src="{{login.avatar}}" alt='{%trans "Avatar of you"%} {{login.displayname}}'>
+{%elseif login%}
+     <img src="{{url.site}}/static/siftal/images/default/avatar.png" alt='{%trans "Default Avatar"%}'>
+{%else%}
+     <img src="{{url.site}}/static/siftal/images/avatar/guest.png" alt='{%trans "Default Avatar"%}'>
+{%endif%}
+    </div>
+{%endif%}
+
+
 {%endif%}
 {%endblock%}
    </div>
