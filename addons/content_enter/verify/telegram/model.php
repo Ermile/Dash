@@ -5,7 +5,7 @@ namespace content_enter\verify\telegram;
 class model
 {
 
-	public function post_verify()
+	public static function post()
 	{
 		\dash\utility\enter::check_code('telegram');
 	}
