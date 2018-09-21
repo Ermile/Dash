@@ -207,6 +207,11 @@ class term
 			$meta['color'] = \dash\app::request('color');
 		}
 
+		if(\dash\app::request('icon'))
+		{
+			$meta['icon'] = \dash\app::request('icon');
+		}
+
 		if(!empty($meta))
 		{
 			$meta = json_encode($meta, JSON_UNESCAPED_UNICODE);

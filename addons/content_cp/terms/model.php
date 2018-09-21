@@ -83,6 +83,12 @@ class model
 			$post['color'] = $color;
 		}
 
+		if(\dash\request::post('icon') && (\dash\request::get('type') === 'help' || \dash\permission::supervisor() ))
+		{
+			$icon = \dash\request::post('icon');
+			$post['icon'] = $icon;
+		}
+
 		$myType = \dash\request::get('type');
 
 		if(\dash\request::get('edit'))
