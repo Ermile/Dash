@@ -124,7 +124,7 @@ class model
 		if(!$usernameormobile)
 		{
 			\dash\log::db('emptyUserOrMobileEntered');
-			\dash\notif::error(T_("Please set the username or mobile or email"));
+			\dash\notif::error(T_("Please set the username or mobile or email"),'usernameormobile');
 			return false;
 		}
 
