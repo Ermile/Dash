@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="<?php echo (\dash\language::current()); ?>" dir="<?php echo (\dash\language::current('direction')); ?>">
 <head>
  <meta charset="UTF-8"/>
  <title>(>_<?php echo $_code;?>_<)</title>
