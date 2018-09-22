@@ -60,6 +60,7 @@ foreach ($debug_backtrace as $key => $value):?>
  </div>
  <div id="no"><?php echo $_code?></div>
 
+ <script src="/static/siftal/js/siftal.min.js"></script>
  <script src="/static/siftal/js/error_page.js"></script>
 </body>
 </html>
