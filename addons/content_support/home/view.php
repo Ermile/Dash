@@ -40,8 +40,8 @@ class view
 			\dash\data::subchildPost($subchildPost);
 		}
 
-		\dash\data::datarow($master);
 		$master = \dash\app\posts::ready($master);
+		\dash\data::datarow($master);
 
 
 		// set back link
@@ -63,6 +63,8 @@ class view
 		{
 			\dash\data::page_pictogram($master['meta']['icon']);
 		}
+
+
 
 	}
 

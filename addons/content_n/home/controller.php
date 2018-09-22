@@ -26,7 +26,7 @@ class controller
 			\dash\redirect::to(\dash\url::base());
 		}
 
-		if(!in_array($load_post['type'], ['post', 'page']))
+		if(!in_array($load_post['type'], ['post', 'page', 'help']))
 		{
 			\dash\redirect::to(\dash\url::base());
 		}
@@ -34,6 +34,11 @@ class controller
 		if(!in_array($load_post['status'], ['publish']))
 		{
 			\dash\redirect::to(\dash\url::base());
+		}
+
+		if($load_post['type'] === 'help')
+		{
+			$load_post['url'] = 'support/'. $load_post['url'];
 		}
 
 		\dash\log::db('newCodeRedirect');
