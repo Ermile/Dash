@@ -19,6 +19,7 @@
             {%endif%}
             {%if perm('cpTagView') %}
               <li><a href="{{url.here}}/terms?type=tag">{% trans "Tags" %} <i class='floatRa mRa10 fc-mute sf-tags'></i></a></li>
+              <li><a href="{{url.here}}/terms?type=help_tag">{% trans "Help tags" %} <i class='floatRa mRa10 fc-mute sf-tags'></i></a></li>
             {%endif%}
             {%if perm('cpPageView') %}
               <li><a href="{{url.here}}/posts?type=page">{% trans "Pages" %} <i class='floatRa mRa10 fc-mute sf-files-o'></i></a></li>
