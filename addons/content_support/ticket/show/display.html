@@ -76,6 +76,9 @@
 <div class="cbox">
   <div class="msg {%if masterTicketDetail.colorClass%}{{masterTicketDetail.colorClass}}{%else%}pain{%endif%} special fs10 f" title='{%trans "Status"%} <b>{%trans myStatus%}</b>'>
     <div class="cauto pRa10"><span class="badge rounded" title='{%trans "Ticket No"%}'>{{masterTicketDetail.id | fitNumber(false)}}</span></div>
+{%if masterTicketDetail.subdomain%}
+    <div class="cauto pRa10"><a class="badge" href="{{url.here}}/ticket?access=all&subdomain={{masterTicketDetail.subdomain}}">{{masterTicketDetail.subdomain | capitalize}}</a></div>
+{%endif%}
     <div>{{masterTicketDetail.title}}</div>
     <div class="cauto os fs08 compact" title='{%trans "Last activity"%} {{dataTable.0.datecreated | tdate("l d F Y H:i:s")}}'>{{masterTicketDetail.datecreated | tdate("l d F Y H:i:s")}}</div>
   </div>
