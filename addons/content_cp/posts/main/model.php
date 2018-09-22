@@ -90,6 +90,11 @@ class model
 			$post['type'] = \dash\request::get('type');
 		}
 
+		if(\dash\request::post('icon'))
+		{
+			$post['icon'] = \dash\request::post('icon');
+		}
+
 		$all_post = \dash\request::post();
 
 		$post['cat'] = [];

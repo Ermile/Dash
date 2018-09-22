@@ -405,6 +405,11 @@ class posts
 			}
 		}
 
+		$icon = \dash\app::request('icon');
+		if($icon)
+		{
+			$meta['icon'] = $icon;
+		}
 
 
 		$meta = json_encode($meta, JSON_UNESCAPED_UNICODE);
@@ -697,7 +702,7 @@ class posts
 					{
 						$result['meta'] = $value;
 					}
-					elseif(is_string($value) && substr($value, 0, 1) === '{')
+					elseif(is_string($value))
 					{
 						$result['meta'] = json_decode($value, true);
 					}
