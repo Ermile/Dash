@@ -93,7 +93,7 @@
 
         {%endif%}
       </td>
-      <td class="collapsing">
+      <td class="collapsing ltr txtL">
         <a href="{{url.this}}/datalist?date={{value.date | date('Y-m-d')}}">{{value.date | tdate("Y-m-d")}}</a><br>
         <b><a href="{{url.this}}/datalist?time={{value.date | date('H:i:s')}}">{{value.date | tdate("H:i:s")}}</a></b>
           <br>
@@ -103,14 +103,14 @@
           <samp title='{%trans "Avg time"%}' class="badge success"><a href="{{url.this}}/datalist?avgtime={{value.avgtime}}">{{value.avgtime}}</a></samp>
         {%endif%}
       </td>
-      <td class="collapsing">
+      <td class="collapsing ltr txtL">
         <div class="badge light"><a href="{{url.this}}/datalist?group={{value.group}}">{{value.group | capitalize}}</a></div><br>
         <div class="badge info"><a href="{{url.this}}/datalist?name={{value.name}}">{{value.name | capitalize}}</a></div><br>
         <div class="badge info2"><a href="{{url.this}}/datalist?version={{value.version}}">{{value.version | fitNumber(false)}}</a></div><br>
         <div class="badge primary2"><a href="{{url.this}}/datalist?os={{value.os}}">{{value.os}}</a></div>
 
       </td>
-      <td class="collapsing">
+      <td class="collapsing ltr txtL">
 
         <span title='{%trans "Status code"%}' class="badge secondary"><a href="{{url.this}}/datalist?statuscode={{value.statuscode}}">{{value.statuscode}}</a></span><br>
         <span title='{%trans "Method"%}' class="badge danger"><a href="{{url.this}}/datalist?method={{value.method}}">{{value.method}}</a></span><br>
@@ -123,7 +123,7 @@
         {%endif%}
         <span class="badge light"><a href="{{url.this}}/datalist?domain={{value.domain}}">{{value.domain}}</a></span><br>
       </td>
-      <td>
+      <td class="ltr txtL pRa10">
         <span title="{{value.path}}" class="txtB ltr"><a href="{{url.this}}/datalist?pwd={{value.pwd}}">{{value.pwd}}</a></span><br>
         {%if value.ref_pwd%}
         <br>
