@@ -72,6 +72,7 @@ class view
 
 	public static function helpDashboard()
 	{
+
 		$get_posts_term =
 		[
 			'type'     => 'help',
@@ -86,6 +87,17 @@ class view
 		else
 		{
 			$get_posts_term['status']   = 'publish';
+		}
+
+		$search = \dash\request::get('q');
+
+		if($search)
+		{
+
+			$get_search = $get_posts_term;
+			unset($get_search['parent']);
+			$dataTable = \dash\app\posts::list($search, $get_search);
+			\dash\data::dataTable($dataTable);
 		}
 
 		$pageList = \dash\db\posts::get($get_posts_term);

@@ -5,6 +5,7 @@
 {%block pageContent%}
 
   {{block('htmlSearchBox')}}
+  {{block('searchResult')}}
   {{block('helpcats')}}
 
   <div class="f">
@@ -25,6 +26,27 @@
 
 
 
+
+{%block searchResult%}
+{%if dataTable%}
+<div class="cbox fs12">
+  <h2>{%trans "Search result"%}</h2>
+  <div>
+    {%for key, value in dataTable %}
+    <div class="msg">
+      <span class="sf-info mRa10"></span>
+      <a href="{{url.this}}/{{value.slug}}">{{value.title}} <small>{{value.excerpt}}</small></a>
+      <a href="#" class="floatRa">{{value.type}}</a>
+    </div>
+    {%endfor%}
+  </div>
+
+</div>
+{%elseif requestGET.q%}
+<div class="mgs">{%trans "No result found"%}</div>
+{%endif%}
+
+{%endblock%}
 
 {%block htmlSearchBox%}
 {%if  listCats or randomFAQ or randomArticles%}
