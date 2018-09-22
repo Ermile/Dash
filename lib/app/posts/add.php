@@ -77,7 +77,14 @@ trait add
 
 		if($args['type'] === 'post' || $args['type'] === 'help' )
 		{
-			self::set_post_term($post_id, 'tag');
+			if($args['type'] === 'help')
+			{
+				self::set_post_term($id, 'help_tag', 'posts', \dash\app::request('tag'));
+			}
+			else
+			{
+				self::set_post_term($post_id, 'tag');
+			}
 
 			$myCatType = $args['type'] === 'post' ? 'cat' : $args['type'];
 			$post_url = self::set_post_term($post_id, $myCatType);

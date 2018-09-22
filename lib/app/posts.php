@@ -442,11 +442,15 @@ class posts
 	}
 
 
-	public static function set_post_term($_post_id, $_type, $_related = 'posts')
+	public static function set_post_term($_post_id, $_type, $_related = 'posts', $_data = [])
 	{
 		$have_term_to_save_log = false;
 
 		$category = \dash\app::request($_type);
+		if(!$category && $_data)
+		{
+			$category = $_data;
+		}
 
 		$check_all_is_cat = null;
 
