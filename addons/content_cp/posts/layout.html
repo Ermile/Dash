@@ -133,7 +133,10 @@
     <option value=""><i>{%trans "Choose Parent"%}</i></option>
     <option value="0"><i>{%trans "Without Parent"%}</i></option>
 {%for key, value in pageList%}
+{%if value.id == dataRow.id%}
+{%else%}
       <option value="{{value.id}}" {%if dataRow.parent == value.id %} selected {%endif%}>{{value.title | slice(0, 50)}}</option>
+{%endif%}
 {%endfor%}
   </select>
 </div>
