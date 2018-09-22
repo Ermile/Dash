@@ -115,6 +115,7 @@ class term
 			case 'help':
 			case 'term':
 			case 'support_tag':
+			case 'help_tag':
 				// nothing
 				break;
 
