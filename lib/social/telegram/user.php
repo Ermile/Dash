@@ -143,7 +143,7 @@ class user
 	public static function saveLanguage()
 	{
 		$newLang = null;
-		switch (hook::text())
+		switch (hook::cmd('command'))
 		{
 			// try to save en for user lang
 			case '/english':
@@ -160,9 +160,12 @@ class user
 			case '/language':
 			case '/lang':
 				$msg = T_("Please choose your language"). "\n";
-				$msg .= "/english". "\n";
-				$msg .= "/persian". "\n";
+				$msg .= "/english 🇬🇪". "\n";
+				$msg .= "/persian 🇮🇷". "\n";
 				tg::sendMessage(['text' => $msg]);
+
+				answer::ok();
+				return true;
 				break;
 
 			default:
@@ -185,7 +188,7 @@ class user
 			answer::ok();
 			return true;
 		}
-		elseif(\dash\app\tg\user::lang())
+		if(\dash\app\tg\user::lang())
 		{
 			\dash\language::set_language(\dash\app\tg\user::lang());
 		}
