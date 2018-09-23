@@ -303,17 +303,17 @@ class ermile
 			if($key === 'fa')
 			{
 				$msg .= "/persian 🇮🇷". "\n";
-				$keyboard[] = ["/persian 🇮🇷"];
+				$keyboard[] = [ $value['iso']." 🇮🇷"];
 			}
 			elseif($key === 'en')
 			{
 				$msg .= "/english 🇬🇪". "\n";
-				$keyboard[] = ["/english 🇬🇪"];
+				$keyboard[] = [ $value['iso']." 🇬🇪"];
 			}
 			else
 			{
-				$msg .= "/". $name. "\n";
-				$keyboard[] = ["/". $name];
+				$msg .= "/". $value['name']. "\n";
+				$keyboard[] = ["/". $value['iso']];
 			}
 		}
 		// create result
