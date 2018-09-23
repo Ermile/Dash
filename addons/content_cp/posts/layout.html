@@ -27,7 +27,7 @@
 
 {%block iSlug %}
 <div class="input ltr mB10">
-  <input type="text" name="slug" id="slug" placeholder='{%trans "Slug"%}' value="{{dataRow.slug}}" maxlength='100' minlength="1" pattern=".{1,100}" title='{%trans "Slug used to create url"%}'>
+  <input type="text" name="slug" id="slug" placeholder='{%trans "Slug"%}' value="{{dataRow.slug_raw}}" maxlength='100' minlength="1" pattern=".{1,100}" title='{%trans "Slug used to create url"%}'>
 </div>
 {% endblock %}
 

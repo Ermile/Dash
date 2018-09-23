@@ -728,8 +728,8 @@ class posts
 						array_pop($my_parent_url);
 					}
 
+					$result['slug_raw']   = end($split);
 					$result['parent_url'] = $my_parent_url;
-
 					break;
 
 
