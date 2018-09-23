@@ -134,6 +134,8 @@
 
           {%if value.type == 'help_tag'%}
             <td class="fs08"><a href="{{url.kingdom}}/support/tag/{{value.slug}}" target="_blank"><span class="sf-share"></span> {{value.slug}}</a></td>
+          {%elseif value.type == 'support_tag'%}
+            <td class="fs08"><a href="{{url.kingdom}}/support/ticket?tag={{value.slug}}" target="_blank"><span class="sf-share"></span> {{value.slug}}</a></td>
           {%else%}
             <td class="fs08"><a href="{{url.kingdom}}/{{value.url}}" target="_blank"><span class="sf-share"></span> {{value.slug}}</a></td>
           {%endif%}
@@ -143,6 +145,8 @@
           <td>{{value.desc}}</td>
           {%if value.type == 'help_tag'%}
             <td class="collapsing txtC">{%if value.count%}<a target="_blank" href="{{url.here}}/posts?type=help&term={{value.slug}}">{{ value.count | fitNumber}}</a>{%else%}-{%endif%}</td>
+          {%elseif value.type == 'support_tag'%}
+            <td class="collapsing txtC">{%if value.count%}<a target="_blank" href="{{url.kingdom}}/support/ticket?tag={{value.slug}}">{{ value.count | fitNumber}}</a>{%else%}-{%endif%}</td>
           {%else%}
             <td class="collapsing txtC">{%if value.count%}<a target="_blank" href="{{url.here}}/posts?term={{value.slug}}">{{ value.count | fitNumber}}</a>{%else%}-{%endif%}</td>
           {%endif%}
