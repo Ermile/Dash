@@ -147,12 +147,14 @@ class user
 		{
 			// try to save en for user lang
 			case '/english':
+			case 'en_US':
 				$newLang = 'en';
 				break;
 
 			// try to save fa for user lang
 			case '/persian':
 			case '/farsi':
+			case 'fa_IR':
 				$newLang = 'fa';
 				break;
 
