@@ -6,7 +6,7 @@ class view
 
 	public static function config()
 	{
-		\dash\permission::check('supportEditTicket');
+		\dash\permission::check('supportEditMessage');
 
 		\dash\data::page_title(T_("Edit message"));
 		\dash\data::page_desc(T_("Edit your message or delete it."));

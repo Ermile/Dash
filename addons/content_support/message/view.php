@@ -28,7 +28,7 @@ class view
 				$args['comments.subdomain']    = null;
 			}
 
-			if(!\dash\permission::check('supportTicketView'))
+			if(!\dash\permission::check('supportTicketManage'))
 			{
 				$args['user_id']         = \dash\user::id();
 			}
@@ -46,7 +46,7 @@ class view
 			}
 			elseif($access === 'all')
 			{
-				\dash\permission::access('supportTicketViewAll');
+				\dash\permission::access('supportTicketManageSubdomain');
 			}
 		}
 
@@ -83,7 +83,7 @@ class view
 	{
 		$args = [];
 		$args['type'] = 'ticket';
-		if(!\dash\permission::check('supportTicketView'))
+		if(!\dash\permission::check('supportTicketManage'))
 		{
 			$args['user_id'] = \dash\user::id();
 		}

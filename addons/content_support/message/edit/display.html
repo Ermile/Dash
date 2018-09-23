@@ -8,7 +8,7 @@
   <div class="cbox">
     <form method="post">
       <label for="content">{%trans "Content"%}</label>
-         {%if perm('cpUserSignature')%}
+         {%if perm('supportTicketSignature')%}
       	  <textarea class="txt" data-editor id="content" name="content" rows=5>{{masterTicketDetail.content | raw}}</textarea>
 	    {%else%}
       	  <textarea class="txt" id="content" name="content" rows=5>{{masterTicketDetail.content}}</textarea>

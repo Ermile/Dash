@@ -80,7 +80,7 @@ class view
 			'language' => \dash\language::current(),
 		];
 
-		if(\dash\permission::check('supportShowDraftHelpCenter'))
+		if(\dash\permission::check('cpHelpCenterEditForOthers'))
 		{
 			$get_posts_term['status']   = ["NOT IN", "('deleted')"];
 		}

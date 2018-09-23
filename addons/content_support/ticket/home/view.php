@@ -134,7 +134,7 @@ class view
 		if($user)
 		{
 			$user = \dash\coding::decode($user);
-			if($user && \dash\permission::check('supportTicketView'))
+			if($user && \dash\permission::check('supportTicketManage'))
 			{
 				$args['comments.user_id'] = $user;
 			}
@@ -142,7 +142,7 @@ class view
 
 		$subdomain = \dash\request::get('subdomain');
 
-		if($subdomain && \dash\permission::check('supportTicketView'))
+		if($subdomain && \dash\permission::check('supportTicketManageSubdomain'))
 		{
 			$args['comments.subdomain'] = $subdomain;
 		}
@@ -150,7 +150,7 @@ class view
 
 		$tag = \dash\request::get('tag');
 
-		if($tag && \dash\permission::check('supportTicketView'))
+		if($tag && \dash\permission::check('supportTicketManage'))
 		{
 			$args['search_tag'] = $tag;
 		}

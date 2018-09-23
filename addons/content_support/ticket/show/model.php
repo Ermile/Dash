@@ -41,7 +41,12 @@ class model
 
 		if(\dash\request::post('TicketFormType') === 'tag')
 		{
-			\dash\permission::access('supportTicketAddTag');
+			\dash\permission::access('supportTicketAssignTag');
+
+			if(!\dash\permission::check('cpTagSupportAdd'))
+			{
+				// check tags to not add new tag
+			}
 
 			\dash\app::variable(['support_tag' => \dash\request::post('tag')]);
 			\dash\app\posts::set_post_term(\dash\request::get('id'), 'support_tag', 'comments');
@@ -54,15 +59,79 @@ class model
 			}
 		}
 
+
+		$main = \dash\app\ticket::get(\dash\request::get('id'));
+
+		if(!$main || !array_key_exists('user_id', $main))
+		{
+			\dash\header::status(403, T_("Ticket not found"));
+		}
+
+		$ticket_user_id = $main['user_id'];
+		$ticket_user_id = \dash\coding::decode($ticket_user_id);
+		if(!$ticket_user_id && !\dash\temp::get('ticketGuest') && !\dash\user::login())
+		{
+			\dash\header::status(403, T_("Ticket not found"));
+		}
+
+		$is_my_ticket = false;
+		if($ticket_user_id && \dash\user::login() && intval($ticket_user_id) === intval(\dash\user::id()))
+		{
+			$is_my_ticket = true;
+		}
+		elseif(!\dash\user::login() && \dash\temp::get('ticketGuest'))
+		{
+			$is_my_ticket = true;
+		}
+
+
 		if(\dash\request::post('TicketFormType') === 'changeStatus')
 		{
-			// \dash\permission::access('supportTicketChangeStatus');
-			if(in_array(\dash\request::post('status'), ['close','deleted','awaiting']))
+			$status = \dash\request::post('status');
+
+			if(!in_array($status, ['close','deleted','awaiting']))
 			{
-				\dash\db\comments::update(['status' => \dash\request::post('status')], \dash\request::get('id'));
-				\dash\notif::ok(T_("Ticket status was changed"));
-				\dash\redirect::pwd();
+				\dash\notif::error(T_("Invalid status"));
+				return false;
 			}
+
+			if(!$is_my_ticket)
+			{
+				switch ($status)
+				{
+					case 'close':
+						\dash\permission::access('supportTicketClose');
+						break;
+
+					case 'awaiting':
+						\dash\permission::access('supportTicketReOpen');
+						break;
+
+					case 'deleted':
+						\dash\permission::access('supportTicketDelete');
+						break;
+
+				}
+			}
+
+			\dash\db\comments::update(['status' => $status], \dash\request::get('id'));
+
+			switch ($status)
+			{
+				case 'close':
+					\dash\notif::warn(T_("Ticket closed"));
+					break;
+
+				case 'awaiting':
+					\dash\notif::ok(T_("Ticket was open again"));
+					break;
+
+				case 'deleted':
+					\dash\notif::warn(T_("Ticket was deleted"));
+					break;
+			}
+
+			\dash\redirect::pwd();
 
 			return true;
 		}
@@ -97,7 +166,7 @@ class model
 			}
 		}
 
-		if(\dash\permission::check('cpUserSignature'))
+		if(\dash\permission::check('supportTicketSignature'))
 		{
 			$content = \dash\request::post('content') ? $_POST['content'] : null;
 
@@ -125,20 +194,6 @@ class model
 			'file'    => $file,
 		];
 
-		$main = \dash\app\ticket::get(\dash\request::get('id'));
-
-		if(!$main || !array_key_exists('user_id', $main))
-		{
-			\dash\header::status(403, T_("Ticket not found"));
-		}
-
-		$ticket_user_id = $main['user_id'];
-		$ticket_user_id = \dash\coding::decode($ticket_user_id);
-		if(!$ticket_user_id && !\dash\temp::get('ticketGuest') && !\dash\user::login())
-		{
-			\dash\header::status(403, T_("Ticket not found"));
-		}
-
 		$update_main = [];
 
 		if($ticket_type !== 'ticket_note')
@@ -164,7 +219,7 @@ class model
 					{
 						if($main['subdomain'] != \dash\url::subdomain())
 						{
-							\dash\permission::access('supportTicketAnswerOtherSubdomain');
+							\dash\permission::access('supportTicketManageSubdomain');
 						}
 					}
 

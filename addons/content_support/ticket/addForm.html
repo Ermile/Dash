@@ -10,7 +10,7 @@
 {%endif%}
 
     <label for="icontent">{%trans "Description"%} <small class="fc-red">{%trans "Require"%} *</small></label>
-    {%if perm('cpUserSignature')%}
+    {%if perm('supportTicketSignature')%}
       <textarea class="txt mB10" data-editor id='icontent' name="content"  maxlength='100000' >{%if user.signature%}{{user.signature|raw}}{%endif%}</textarea>
     {%else%}
       <textarea class="txt mB10" id='icontent' name="content" placeholder='' maxlength='1000' rows="5">{{dataRow.desc}}</textarea>

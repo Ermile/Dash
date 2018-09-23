@@ -45,7 +45,7 @@ class view
 		}
 
 
-		if(!\dash\permission::check('supportTicketView'))
+		if(!\dash\permission::check('supportTicketManage'))
 		{
 			if(intval($ticket_user_id) === intval(\dash\user::id()))
 			{

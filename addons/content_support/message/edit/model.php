@@ -9,6 +9,7 @@ class model
 
 	public static function post()
 	{
+		\dash\permission::check('supportEditMessage');
 
 		// ready to insert comments
 		$content = \dash\request::post('content') ? $_POST['content'] : null;
