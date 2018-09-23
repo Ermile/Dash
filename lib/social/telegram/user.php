@@ -8,6 +8,11 @@ class user
 	{
 		if(\dash\user::id())
 		{
+			// if user blocked, change status to unblock
+			if(\dash\user::detail('tgstatus') === 'block')
+			{
+				self::active();
+			}
 			return \dash\user::id();
 		}
 
@@ -112,9 +117,6 @@ class user
 	public static function block()
 	{
 		$a = \dash\app\tg\user::status("block");
-		var_dump($a);
-		var_dump(\dash\user::id());
-		var_dump(\dash\notif::get());
 	}
 
 
