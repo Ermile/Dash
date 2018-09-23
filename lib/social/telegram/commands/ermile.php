@@ -101,6 +101,12 @@ class ermile
 				$response = step_feedback::start();
 				break;
 
+			case '/ticket':
+			case 'ticket':
+				\dash\social\telegram\step::set('menu', menu::main(true));
+				$response = step_ticket::start();
+				break;
+
 			default:
 				break;
 		}
@@ -303,17 +309,17 @@ class ermile
 			if($key === 'fa')
 			{
 				$msg .= "/persian 🇮🇷". "\n";
-				$keyboard[] = [ $value['iso']." 🇮🇷"];
+				$keyboard[] = [ $value['iso']. " ". $value['localname']." 🇮🇷"];
 			}
 			elseif($key === 'en')
 			{
 				$msg .= "/english 🇬🇪". "\n";
-				$keyboard[] = [ $value['iso']." 🇬🇪"];
+				$keyboard[] = [ $value['iso']. " ". $value['localname']." 🇬🇪"];
 			}
 			elseif($key === 'ar')
 			{
 				$msg .= "/arabic". "\n";
-				$keyboard[] = [ $value['iso'] ];
+				$keyboard[] = [ $value['iso']. " ". $value['localname'] ];
 			}
 			else
 			{
