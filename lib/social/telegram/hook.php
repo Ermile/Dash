@@ -258,7 +258,7 @@ class hook
 	 * seperate input text to command
 	 * @return [type]         [description]
 	 */
-	public static function cmd()
+	public static function cmd($_needle = null)
 	{
 		// define variable
 		$cmd =
@@ -283,6 +283,17 @@ class hook
 				{
 					$cmd['argument'] = $text[2];
 				}
+			}
+		}
+		if($_needle)
+		{
+			if(isset($cmd[$_needle]))
+			{
+				$cmd = $cmd[$_needle];
+			}
+			else
+			{
+				$cmd = null;
 			}
 		}
 		// return analysed text given from user
