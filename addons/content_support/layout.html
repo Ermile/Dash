@@ -31,7 +31,7 @@
 {%if sidebarDetail.archived%}
       <li><a href="{{url.here}}/ticket?status=archived{{accessGetAnd}}"><span class="floatRa mRa10 fc-mute badge dark">{{sidebarDetail.archived | fitNumber}}</span>{%trans "Archived"%}</a></li>
 {%endif%}
-{%if perm('supportTicketTrash')%}
+{%if perm('supportTicketTrash') and sidebarDetail.trash%}
       <li><a href="{{url.here}}/ticket?status=deleted{{accessGetAnd}}"><span class="floatRa mRa10 fc-mute sf-trash"></span>{%trans "Trash"%}</a></li>
 {%endif%}
     </ul>

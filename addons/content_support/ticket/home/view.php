@@ -231,11 +231,12 @@ class view
 		}
 		unset($args['comments.status']);
 
-		$result['answered']       = \dash\db\comments::get_count(array_merge($args,['status' => 'answered']));
-		$result['awaiting']       = \dash\db\comments::get_count(array_merge($args, ['status' => 'awaiting']));
-		$result['open']           = intval($result['answered']) + intval($result['awaiting']);
+		$result['answered'] = \dash\db\comments::get_count(array_merge($args,['status' => 'answered']));
+		$result['awaiting'] = \dash\db\comments::get_count(array_merge($args, ['status' => 'awaiting']));
+		$result['open']     = intval($result['answered']) + intval($result['awaiting']);
 
 		$result['archived'] = \dash\db\comments::get_count(array_merge($args,['status' => 'close']));
+		$result['trash']    = \dash\db\comments::get_count(array_merge($args,['status' => 'deleted']));
 
 		$args_tag = $args;
 		if($_all)
