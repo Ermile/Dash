@@ -93,7 +93,7 @@ class prepare
 			{
 				\dash\utility\cookie::write('language', $redirect_lang, (60*60*1), '.'. \dash\url::domain());
 
-				$my_url = \dash\url::base(). '/';
+				$my_url = \dash\url::base();
 
 				if($default_site_language === $redirect_lang)
 				{
@@ -101,7 +101,7 @@ class prepare
 				}
 				else
 				{
-					$my_url .= $redirect_lang;
+					$my_url .= '/'. $redirect_lang;
 				}
 
 				if(\dash\url::path() !== '/')
