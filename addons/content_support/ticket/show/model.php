@@ -67,6 +67,27 @@ class model
 			return true;
 		}
 
+
+		if(\dash\request::post('TicketFormSolved') === 'solvedForm')
+		{
+			\dash\permission::access('supportTicketAnswer');
+
+			$solved = \dash\request::post('solved') ? 1 : null;
+
+			\dash\db\comments::update(['solved' => $solved], \dash\request::get('id'));
+			if($solved)
+			{
+				\dash\notif::ok(T_("Ticket set as solved"));
+			}
+			else
+			{
+				\dash\notif::warn(T_("Ticket set as unsolved"));
+			}
+			\dash\redirect::pwd();
+
+			return true;
+		}
+
 		$ticket_type = 'ticket';
 		if(\dash\permission::check('supportTicketAddNote'))
 		{
