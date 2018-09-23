@@ -143,11 +143,16 @@ class model
 			return true;
 		}
 
+		$msg      = T_("Your ticket was sended");
+		$notif_fn = 'ok';
+
 		$ticket_type = 'ticket';
 		if(\dash\permission::check('supportTicketAddNote'))
 		{
 			if(\dash\request::post('addnote') === 'note')
 			{
+				$msg = T_("Your note saved");
+				$notif_fn = 'warn';
 				$ticket_type = 'ticket_note';
 			}
 		}
@@ -180,6 +185,7 @@ class model
 			'file'    => $file,
 		];
 
+
 		$update_main = [];
 
 		if($ticket_type !== 'ticket_note')
@@ -192,9 +198,11 @@ class model
 			if(!\dash\temp::get('ticketGuest'))
 			{
 
-				if(intval($ticket_user_id) === intval(\dash\user::id()))
+				if($is_my_ticket)
 				{
 					$update_main['status'] = 'awaiting';
+					$msg = T_("Your message has been added");
+					$notif_fn = 'info';
 				}
 				else
 				{
@@ -210,6 +218,7 @@ class model
 					}
 
 					$update_main['status'] = 'answered';
+					$msg = T_("Your answer was saved");
 
 					if(isset($main['answertime']) && $main['answertime'])
 					{
@@ -236,7 +245,7 @@ class model
 				\dash\db\comments::update($update_main, \dash\request::get('id'));
 			}
 
-			\dash\notif::ok(T_("Your ticket was sended"));
+			\dash\notif::$notif_fn($msg);
 			\dash\redirect::pwd();
 		}
 	}
