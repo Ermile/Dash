@@ -172,11 +172,18 @@ class user
 		if($newLang)
 		{
 			\dash\app\tg\user::lang($newLang);
+			// try to change laguage to selected
+			\dash\language::set_language($newLang);
+			// send success message
 			$newLangMsg = T_('Your language was successfully set to :lang.', ['lang' => T_(\dash\app\tg\user::lang())] );
 			tg::sendMessage(['text' => $newLangMsg]);
 
 			answer::ok();
 			return true;
+		}
+		elseif(\dash\app\tg\user::lang())
+		{
+			\dash\language::set_language(\dash\app\tg\user::lang());
 		}
 	}
 }
