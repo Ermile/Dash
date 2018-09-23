@@ -67,22 +67,8 @@ class model
 			\dash\header::status(403, T_("Ticket not found"));
 		}
 
-		$ticket_user_id = $main['user_id'];
-		$ticket_user_id = \dash\coding::decode($ticket_user_id);
-		if(!$ticket_user_id && !\dash\temp::get('ticketGuest') && !\dash\user::login())
-		{
-			\dash\header::status(403, T_("Ticket not found"));
-		}
-
-		$is_my_ticket = false;
-		if($ticket_user_id && \dash\user::login() && intval($ticket_user_id) === intval(\dash\user::id()))
-		{
-			$is_my_ticket = true;
-		}
-		elseif(!\dash\user::login() && \dash\temp::get('ticketGuest'))
-		{
-			$is_my_ticket = true;
-		}
+		// check is my ticket and some permission to load guest , ...
+		$is_my_ticket = \content_support\ticket\show\view::is_my_ticket($main);
 
 
 		if(\dash\request::post('TicketFormType') === 'changeStatus')

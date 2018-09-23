@@ -49,7 +49,7 @@
   {%endif%}
     <ul>
     {%for key, value in sidebarDetail.tags%}
-      {%if value.status == 'enable' or perm_su()%}
+      {%if value.status == 'enable' or perm('cpTagSupportEdit')%}
           <li>
             <a href="{{url.here}}/ticket?tag={{value.slug}}{{accessGetAnd}}">
             <span class="floatRa mRa10 badge dark fc-mute"> {{value.useage_count | fitNumber}}</span>

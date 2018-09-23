@@ -14,6 +14,7 @@
 
     <div class="cbox">
 {%if masterTicketDetail.status == 'awaiting' or masterTicketDetail.status == 'answered'%}
+  {%if isMyTicket or perm('supportTicketClose')%}
       <div class="fs08">
         <p>{%trans "If your problem is solved or do not need to track, please close this ticket by press below bottom."%} {%trans "You can open it anytime you need."%}</p>
       </div>
@@ -21,7 +22,9 @@
         <input type="hidden" name="TicketFormType" value="changeStatus">
         <button class="btn block mTB10 secondary" name="status" value="close">{%trans "Close ticket"%}</button>
       </form>
+  {%endif%}
 {%elseif masterTicketDetail.status == 'close'%}
+  {%if isMyTicket or perm('supportTicketDelete')%}
       <div class="fs08">
         <p>{%trans "This ticket is closed."%} {%trans "You can open it anytime you need."%} {%trans "Also you can delete it if you do not need it."%}</p>
       </div>
@@ -30,7 +33,9 @@
         <button class="btn block sm mTB10 danger outline" name="status" value="deleted">{%trans "Delete ticket"%}</button>
         <button class="btn block lg mTB10 success" name="status" value="awaiting">{%trans "Open it again"%}</button>
       </form>
+  {%endif%}
 {%elseif masterTicketDetail.status == 'deleted'%}
+  {%if isMyTicket or perm('supportTicketReOpen')%}
       <div class="fs08">
         <p>{%trans "This is deleted ticket."%} {%trans "You can change it to close condition if need to save it in history!"%}</p>
       </div>
@@ -38,6 +43,7 @@
         <input type="hidden" name="TicketFormType" value="changeStatus">
         <button class="btn block mTB10 secondary" name="status" value="close">{%trans "Close ticket"%}</button>
       </form>
+  {%endif%}
 {%endif%}
     </div>
 
@@ -74,15 +80,20 @@
     </div>
 {%endif%}
 
-  {%if perm_su()%}
+  {%if perm('supportTicketShowLastVisitor')%}
     {%if lastSeen%}
       <div class="cbox">
+      <h4>{%trans "Last seen"%}</h4>
         {%for key, value in lastSeen%}
         {%set nowDate = "now" | date("Y-m-d")%}
-        {%if value.date == nowDate%}
+
+        {%if (value.date | date("Y-m-d")) == nowDate%}
           {%set myClass = 'success2'%}
+        {%else%}
+          {%set myClass = null %}
         {%endif%}
-        <div class="msg {{myClass}}">{{value.timeraw | date("Y-m-d H:i:s") |  tdate("l d F Y H:i:s")}}</div>
+
+        <div class="msg {{myClass}}">{{value.date | date("Y-m-d H:i:s") |  tdate("l d F Y H:i:s")}}</div>
         {%endfor%}
       </div>
     {%endif%}
@@ -111,7 +122,7 @@
 {%if myTag%}
   <div class="tagBox">
   {%for key, value in myTag%}
-    {%if value.status == 'enable' or perm_su()%}
+    {%if value.status == 'enable' or perm('cpTagSupportEdit')%}
       <a class="btn rounded sm mB5 {%if value.meta.color%}{{value.meta.color}}{%endif%}" href="{{url.this}}?tag={{value.slug}}">{{value.title}}</a>
     {%endif%}
   {%endfor%}
@@ -126,13 +137,18 @@
         <td class="collapsing">
           <img src="{{value.avatar}}" class="avatar mRa10" alt="{{value.displayname}}">
           <span class="txtB s0 fs08">{{value.displayname}}</span>
-{%if perm_su()%}
+{%if perm('supportTicketShowMobile')%}
           <div class="txtRa fs08">{{masterTicketDetail.mobile | fitNumber('mobile12')}}</div>
+
           <nav class="txtRa">
-            <a href="{{url.this}}?user_id={{value.user_id}}" title='{%trans "User tickets"%}'><i class="sf-question-circle"></i></a>
-            <a href="{{url.kingdom}}/cp/users/view?id={{value.user_id}}" title='{%trans "User Profile"%}'><i class="sf-user-md"></i></a>
-            <a href="{{url.kingdom}}/cp/visitor?userid={{value.user_id}}" title='{%trans "User last visits"%}'><i class="sf-flight"></i></a>
-            <a href="{{url.kingdom}}/cp/visitor?type=before&userid={{value.user_id}}&datetime={{masterTicketDetail.datecreated | url_encode}}" title='{%trans "Before create ticket"%}'><i class="sf-dzone"></i></a>
+            {%if perm('supportTicketManage')%}<a href="{{url.this}}?user_id={{value.user_id}}" title='{%trans "User tickets"%}'><i class="sf-question-circle"></i></a>{%endif%}
+            {%if perm('cpUsersView')%}<a href="{{url.kingdom}}/cp/users/view?id={{value.user_id}}" title='{%trans "User Profile"%}'><i class="sf-user-md"></i></a>{%endif%}
+            {%if perm('cpVisitorView')%}
+              <a href="{{url.kingdom}}/cp/visitor?userid={{value.user_id}}" title='{%trans "User last visits"%}'><i class="sf-flight"></i></a>
+            {%endif%}
+            {%if perm('cpVisitorView')%}
+              <a href="{{url.kingdom}}/cp/visitor?type=before&userid={{value.user_id}}&datetime={{masterTicketDetail.datecreated | url_encode}}" title='{%trans "Before create ticket"%}'><i class="sf-dzone"></i></a>
+            {%endif%}
           </nav>
 {%endif%}
         </td>
@@ -148,7 +164,7 @@
 {%endif%}
            <div class="cauto os fc-mute">
             <small title='{{value.datecreated | tdate("l d F Y H:i:s")}}'>{{value.datecreated | sdate("year")}}</small>
-{%if perm_su()%}
+{%if perm('supportEditMessage')%}
             <a class="fs08 mLa10" href="{{url.here}}/message/edit?id={{value.id}}">{%trans "Edit"%}</a>
             {%if value.type == 'ticket_note'%}
               <i class="fc-red sf-user-secret"></i>
