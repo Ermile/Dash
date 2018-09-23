@@ -687,9 +687,43 @@ class posts
 
 			switch ($key)
 			{
+				case 'parent':
+					if(isset($value))
+					{
+						$parent_detail  = \dash\db\posts::get(['id' => $value, 'limit' => 1]);
+
+						$myParentDetail = [];
+
+						if(isset($parent_detail['title']))
+						{
+							$myParentDetail['title'] = $parent_detail['title'];
+						}
+
+						if(isset($parent_detail['slug']))
+						{
+							$myParentDetail['slug'] = $parent_detail['slug'];
+						}
+
+						if(isset($parent_detail['url']))
+						{
+							$myParentDetail['url'] = $parent_detail['url'];
+						}
+
+						if(!empty($myParentDetail))
+						{
+							$result['parent_detail'] = $myParentDetail;
+						}
+
+						$result[$key] = \dash\coding::encode($value);
+					}
+					else
+					{
+						$result[$key] = null;
+					}
+
+					break;
 				case 'id':
 				case 'user_id':
-				case 'parent':
 				case 'term_id':
 					if(isset($value))
 					{
