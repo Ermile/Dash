@@ -146,7 +146,7 @@ class sessions
 	public static function set_cookie($_code)
 	{
 		$cookie_domain = '.'. \dash\url::domain();
-		setcookie("remember_me_", $_code, time() + (60*60*24*365), '/', $cookie_domain);
+		setcookie("remember_me_", $_code, time() + (60*60*24*30), '/', $cookie_domain);
 	}
 
 
@@ -425,7 +425,7 @@ class sessions
 	{
 		if($_code && is_string($_code))
 		{
-			\dash\db::query("UPDATE sessions SET sessions.count = sessions.count + 1 WHERE code = '$_code'", \dash\db::get_db_log_name());
+			return \dash\db::query("UPDATE sessions SET sessions.count = sessions.count + 1 WHERE code = '$_code'", \dash\db::get_db_log_name());
 		}
 	}
 
