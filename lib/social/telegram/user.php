@@ -156,18 +156,6 @@ class user
 				$newLang = 'fa';
 				break;
 
-			// send start lang to say welcome and detect language
-			case '/language':
-			case '/lang':
-				$msg = T_("Please choose your language"). "\n";
-				$msg .= "/english 🇬🇪". "\n";
-				$msg .= "/persian 🇮🇷". "\n";
-				tg::sendMessage(['text' => $msg]);
-
-				answer::ok();
-				return true;
-				break;
-
 			default:
 				break;
 		}

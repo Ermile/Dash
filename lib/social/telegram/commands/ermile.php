@@ -21,6 +21,11 @@ class ermile
 				$response = self::start();
 				break;
 
+			case '/language':
+			case '/lang':
+				$response = self::lang();
+				break;
+
 			case '/about':
 			case 'about':
 			case 'درباره':
@@ -284,5 +289,22 @@ class ermile
 
 		return $result;
 	}
+
+
+
+	public static function lang()
+	{
+		// generate messaage
+		$msg = T_("Please choose your language"). "\n";
+		$msg .= "/english 🇬🇪". "\n";
+		$msg .= "/persian 🇮🇷". "\n";
+		// create result
+		$result = ['text' => $msg];
+		// send message
+		bot::sendMessage($result);
+		// return result
+		return $result;
+	}
+
 }
 ?>
