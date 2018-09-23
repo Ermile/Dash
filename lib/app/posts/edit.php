@@ -105,9 +105,9 @@ trait edit
 				{
 					self::set_post_term($id, 'tag');
 				}
-				$post_url = self::set_post_term($id, 'cat');
 			}
 
+			$post_url = self::set_post_term($id, 'cat');
 
 			if($post_url !== false)
 			{

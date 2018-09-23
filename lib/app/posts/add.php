@@ -39,7 +39,7 @@ trait add
 		}
 
 		// check args
-		$args = self::check($_option);
+		$args = self::check(null, $_option);
 
 		$args['user_id'] = \dash\user::id();
 
@@ -87,7 +87,7 @@ trait add
 			{
 				if(\dash\permission::check('cpTagHelpAdd'))
 				{
-					self::set_post_term($id, 'help_tag', 'posts', \dash\app::request('tag'));
+					self::set_post_term($post_id, 'help_tag', 'posts', \dash\app::request('tag'));
 				}
 			}
 			else
@@ -96,9 +96,9 @@ trait add
 				{
 					self::set_post_term($post_id, 'tag');
 				}
-				$post_url = self::set_post_term($post_id, 'cat');
 			}
 
+			$post_url = self::set_post_term($post_id, 'cat');
 
 			if($post_url !== false)
 			{

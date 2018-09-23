@@ -112,6 +112,7 @@ class posts
 
 		if($_id)
 		{
+
 			$current_post_detail = \dash\db\posts::get(['id' => $_id, 'limit' => 1]);
 			if(!isset($current_post_detail['user_id']) || !isset($current_post_detail['status']) || !isset($current_post_detail['type']))
 			{
@@ -481,6 +482,13 @@ class posts
 			\dash\notif::error(T_("Invalid slug"), 'slug');
 			return false;
 		}
+
+		if($type && !in_array($type, \dash\option::config('allow_post_type')))
+		{
+			\dash\notif::error(T_("Invalid type"));
+			return false;
+		}
+
 
 		$args                = [];
 		$args['language']    = $language;

@@ -87,7 +87,14 @@ self::$config['log_visitors']                          = false;
 // self::$config['account']                               = false;
 
 
-
+self::$config['allow_post_type'] =
+[
+	'post',
+	'page',
+	'help',
+	'attachment',
+	'meeting',
+];
 
 // ----- comming soon page
 self::$config['coming']                                = false;
