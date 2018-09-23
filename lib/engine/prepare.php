@@ -14,8 +14,19 @@ class prepare
 	}
 
 
+	private static function check_is_unload()
+	{
+		// if the request is a unload request needless to run anything!
+		if(\dash\request::is_unload())
+		{
+			\dash\code::boom();
+		}
+	}
+
+
 	public static function basics()
 	{
+
 		// dont run on some condition
 		self::dont_run_exception();
 		// check comming soon page
@@ -30,6 +41,9 @@ class prepare
 		self::user_country_redirect();
 
 		self::dash_shutdown_function();
+
+		// if the request is a unload request needless to run anything!
+		self::check_is_unload();
 	}
 
 
