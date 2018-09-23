@@ -13,6 +13,10 @@ class model
 				\dash\permission::access('cpPageAdd');
 				break;
 
+			case 'help':
+				\dash\permission::access('cpHelpCenterAdd');
+				break;
+
 			case 'post':
 			default:
 				\dash\permission::access('cpPostsAdd');

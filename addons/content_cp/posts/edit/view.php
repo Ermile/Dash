@@ -56,6 +56,7 @@ class view
 					break;
 
 				case 'help':
+					\dash\permission::access('cpHelpCenterEdit');
 					$myTitle     = T_('Edit help');
 					$myBadgeText = T_('Back to list of helps');
 					$myDesc      = T_("Helps can contain keyword and category with title and descriptions.");

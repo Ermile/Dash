@@ -53,6 +53,11 @@ trait add
 			$args['content'] = $content;
 		}
 
+		if(!array_key_exists('status', $args))
+		{
+			$args['status'] = 'draft';
+		}
+
 		if(!$args['excerpt'])
 		{
 			$args['excerpt'] = \dash\utility\excerpt::extractRelevant($content);
@@ -77,17 +82,23 @@ trait add
 
 		if($args['type'] === 'post' || $args['type'] === 'help' )
 		{
+
 			if($args['type'] === 'help')
 			{
-				self::set_post_term($id, 'help_tag', 'posts', \dash\app::request('tag'));
+				if(\dash\permission::check('cpTagHelpAdd'))
+				{
+					self::set_post_term($id, 'help_tag', 'posts', \dash\app::request('tag'));
+				}
 			}
 			else
 			{
-				self::set_post_term($post_id, 'tag');
+				if(\dash\permission::check('cpTagAdd'))
+				{
+					self::set_post_term($post_id, 'tag');
+				}
+				$post_url = self::set_post_term($post_id, 'cat');
 			}
 
-			$myCatType = $args['type'] === 'post' ? 'cat' : $args['type'];
-			$post_url = self::set_post_term($post_id, $myCatType);
 
 			if($post_url !== false)
 			{

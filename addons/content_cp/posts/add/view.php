@@ -45,6 +45,7 @@ class view
 					break;
 
 				case 'help':
+					\dash\permission::access('cpHelpCenterAdd');
 					$myTitle     = T_('Add new help');
 					$myDesc      = T_("Add new article to help center or new faq.");
 					$myBadgeText = T_('Back to list of helps');

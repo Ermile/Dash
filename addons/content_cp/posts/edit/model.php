@@ -12,6 +12,10 @@ class model
 				\dash\permission::access('cpPageEdit');
 				break;
 
+			case 'help':
+				\dash\permission::access('cpHelpCenterEdit');
+				break;
+
 			case 'post':
 			default:
 				\dash\permission::access('cpPostsEdit');

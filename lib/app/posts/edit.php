@@ -94,16 +94,20 @@ trait edit
 		{
 			if($args['type'] === 'help')
 			{
-				self::set_post_term($id, 'help_tag', 'posts', \dash\app::request('tag'));
+				if(\dash\permission::check('cpTagHelpAdd'))
+				{
+					self::set_post_term($id, 'help_tag', 'posts', \dash\app::request('tag'));
+				}
 			}
 			else
 			{
-				self::set_post_term($id, 'tag');
+				if(\dash\permission::check('cpTagAdd'))
+				{
+					self::set_post_term($id, 'tag');
+				}
+				$post_url = self::set_post_term($id, 'cat');
 			}
 
-			$myCatType = $args['type'] === 'post' ? 'cat' : $args['type'];
-
-			$post_url = self::set_post_term($id, $myCatType);
 
 			if($post_url !== false)
 			{

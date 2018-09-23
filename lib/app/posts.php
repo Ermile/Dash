@@ -105,34 +105,69 @@ class posts
 
 		$_option = array_merge($default_option, $_option);
 
+		$current_post_detail            = [];
+		$current_post_detail['user_id'] = null;
+		$current_post_detail['type']    = null;
+		$current_post_detail['status']  = null;
 
 		if($_id)
 		{
 			$current_post_detail = \dash\db\posts::get(['id' => $_id, 'limit' => 1]);
-			if(isset($current_post_detail['status']))
+			if(!isset($current_post_detail['user_id']) || !isset($current_post_detail['status']) || !isset($current_post_detail['type']))
 			{
-				if($current_post_detail['status'] === 'publish')
+				\dash\notif::error(T_("Invalid id"));
+				return false;
+			}
+
+			if($current_post_detail['status'] === 'publish')
+			{
+				switch ($current_post_detail['type'])
 				{
-					if(!\dash\permission::check('cpPostsEditPublished'))
-					{
-						\dash\notif::error(T_("This post is published. And you can not edit it!"));
-						return false;
-					}
+					case 'help':
+						if(!\dash\permission::check('cpHelpCenterEditPublished'))
+						{
+							\dash\notif::error(T_("This help center is published. And you can not edit it!"));
+							return false;
+						}
+						break;
+
+					case 'post':
+					case 'page':
+					default:
+						if(!\dash\permission::check('cpPostsEditPublished'))
+						{
+							\dash\notif::error(T_("This post is published. And you can not edit it!"));
+							return false;
+						}
+
+						break;
 				}
 			}
 
-			if(isset($current_post_detail['user_id']))
+
+			if(intval($current_post_detail['user_id']) !== intval(\dash\user::id()))
 			{
-				if(intval($current_post_detail['user_id']) !== intval(\dash\user::id()))
+				switch ($current_post_detail['type'])
 				{
-					if(!\dash\permission::check('cpPostsEditForOthers'))
-					{
-						\dash\notif::error(T_("This is not your post. And you can not edit it!"));
-						return false;
-					}
+					case 'help':
+						if(!\dash\permission::check('cpHelpCenterEditForOthers'))
+						{
+							\dash\notif::error(T_("This is not your post. And you can not edit it!"));
+							return false;
+						}
+						break;
+
+					case 'post':
+					case 'page':
+					default:
+						if(!\dash\permission::check('cpPostsEditForOthers'))
+						{
+							\dash\notif::error(T_("This is not your post. And you can not edit it!"));
+							return false;
+						}
+						break;
 				}
 			}
-
 		}
 
 		$language = \dash\app::request('language');
@@ -250,32 +285,59 @@ class posts
 
 		if($status === 'deleted')
 		{
-			if(isset($current_post_detail['type']) && $current_post_detail['type'] === 'page')
+			switch ($current_post_detail['type'])
 			{
-				if(!\dash\permission::check('cpPageDelete'))
-				{
-					\dash\notif::error(T_("You can not delete page"));
-					return false;
-				}
-			}
-
-			if(!\dash\permission::check('cpPostsDelete'))
-			{
-				\dash\notif::error(T_("You can not delete post"));
-				return false;
-			}
-
-			if(isset($current_post_detail['user_id']))
-			{
-				if(intval($current_post_detail['user_id']) !== intval(\dash\user::id()))
-				{
-					if(!\dash\permission::check('cpPostsDeleteForOthers'))
+				case 'help':
+					if(!\dash\permission::check('cpHelpCenterDelete'))
 					{
-						\dash\notif::error(T_("This is not your post. And you can not delete it!"));
+						\dash\notif::error(T_("You can not delete help center"));
 						return false;
 					}
+					break;
+
+				case 'page':
+					if(!\dash\permission::check('cpPageDelete'))
+					{
+						\dash\notif::error(T_("You can not delete page"));
+						return false;
+					}
+
+
+				case 'post':
+				default:
+					if(!\dash\permission::check('cpPostsDelete'))
+					{
+						\dash\notif::error(T_("You can not delete post"));
+						return false;
+					}
+					break;
+			}
+
+
+			if(intval($current_post_detail['user_id']) !== intval(\dash\user::id()))
+			{
+				switch ($current_post_detail['type'])
+				{
+					case 'help':
+						if(!\dash\permission::check('cpHelpCenterDeleteForOthers'))
+						{
+							\dash\notif::error(T_("This is not your help center. And you can not delete it!"));
+							return false;
+						}
+						break;
+
+					case 'post':
+					case 'page':
+					default:
+						if(!\dash\permission::check('cpPostsDeleteForOthers'))
+						{
+							\dash\notif::error(T_("This is not your post. And you can not delete it!"));
+							return false;
+						}
+						break;
 				}
 			}
+
 		}
 
 		$parent_url  = null;
@@ -436,6 +498,24 @@ class posts
 		$args['subtitle']    = $subtitle;
 		$args['parent']   = $parent;
 		$args['publishdate'] = $publishdate. ' '. $publishtime ;
+
+		// check status
+		switch ($current_post_detail['type'])
+		{
+			case 'help':
+				if(!\dash\permission::access('cpHelpCenterEditStatus'))
+				{
+					unset($args['status']);
+				}
+				break;
+
+			default:
+				if(!\dash\permission::access('cpPostsEditStatus'))
+				{
+					unset($args['status']);
+				}
+				break;
+		}
 
 		return $args;
 

@@ -80,10 +80,10 @@ class model
 			$post['status'] = 'draft';
 		}
 
-		if(!\dash\permission::check('cpPostsEditStatus'))
-		{
-			unset($post['status']);
-		}
+		// if(!\dash\permission::check('cpPostsEditStatus'))
+		// {
+		// 	unset($post['status']);
+		// }
 
 		if(\dash\request::get('type'))
 		{
