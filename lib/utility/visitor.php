@@ -31,6 +31,12 @@ class visitor
 			return;
 		}
 
+		if(\dash\request::is_unload())
+		{
+			self::save_avg_time();
+			return;
+		}
+
 		$visitor                  = [];
 		$visitor['visitor_ip']    = \dash\server::ip(true);
 		$visitor['url_id']        = self::url_id();
@@ -57,20 +63,26 @@ class visitor
 
 		if(is_numeric($result))
 		{
-			if(self::id())
-			{
-				if(isset($_SESSION['last_visitor_time']))
-				{
-					$avgtime = time() - intval($_SESSION['last_visitor_time']);
-					\dash\db\config::public_update('visitors', ['avgtime' => $avgtime], self::id(), \dash\db::get_db_log_name());
-				}
-			}
+			self::save_avg_time();
 
 			$_SESSION['last_visitor_id']   = $result;
 			$_SESSION['last_visitor_time'] = time();
 		}
 
 		return true;
+	}
+
+
+	private static function save_avg_time()
+	{
+		if(self::id())
+		{
+			if(isset($_SESSION['last_visitor_time']))
+			{
+				$avgtime = time() - intval($_SESSION['last_visitor_time']);
+				\dash\db\config::public_update('visitors', ['avgtime' => $avgtime], self::id(), \dash\db::get_db_log_name());
+			}
+		}
 	}
 
 

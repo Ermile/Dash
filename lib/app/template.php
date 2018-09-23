@@ -12,6 +12,12 @@ class template
 
 	public static function find()
 	{
+		// if is unload request need less to run template
+		if(\dash\request::is_unload())
+		{
+			return;
+		}
+
 		// finded the social short link
 		if(self::social_short_link())
 		{
@@ -128,6 +134,7 @@ class template
 
 	public static function set_display_name($data, $type, $slug, $table)
 	{
+		var_dump(func_get_args());exit();
 		$finded_template = false;
 
 		// elseif template type with specefic slug exist show it
@@ -338,7 +345,7 @@ class template
 
 		if(substr($myUrl, 0, 9) === 'category/')
 		{
-			$cat_data = \dash\db\terms::get(['url' => substr($myUrl, 9), 'language' => \dash\language::current(), 'limit' => 1]);
+			$cat_data = \dash\db\terms::get(['url' => substr($myUrl, 9), 'type' => 'cat', 'language' => \dash\language::current(), 'limit' => 1]);
 			if($cat_data)
 			{
 				return $cat_data;
@@ -354,7 +361,7 @@ class template
 
 		if(substr($myUrl, 0, 4) === 'tag/')
 		{
-			$cat_data = \dash\db\terms::get(['url' => substr($myUrl, 4), 'language' => \dash\language::current(), 'limit' => 1]);
+			$cat_data = \dash\db\terms::get(['url' => substr($myUrl, 4), 'type' => 'tag', 'language' => \dash\language::current(), 'limit' => 1]);
 			if($cat_data)
 			{
 				return $cat_data;
