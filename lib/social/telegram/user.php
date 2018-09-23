@@ -11,7 +11,7 @@ class user
 			return \dash\user::id();
 		}
 
-		$myUser = \dash\app\user::get(['chatid' => hook::from(), 'limit' => 1]);
+		$myUser = \dash\app\tg\user::get(hook::from());
 		// if not exist try to register
 		if(!isset($myUser['id']))
 		{
@@ -33,7 +33,7 @@ class user
 
 		if(isset($myUser['id']))
 		{
-			\dash\user::init_tg($myUser['id']);
+			\dash\app\tg\user::init($myUser['id']);
 			return $myUser['id'];
 		}
 
@@ -54,7 +54,7 @@ class user
 			'status'      => 'active',
 			'tgstatus'    => 'active',
 		];
-		$result = \dash\app\user::add_f($newUserDetail);
+		$result = \dash\app\tg\user::add($newUserDetail);
 		if($result)
 		{
 			return $result;
@@ -98,7 +98,7 @@ class user
 					$newUserDetail['title'] = $tgFrom['username'];
 				}
 
-				$result = \dash\app\user::add_f($newUserDetail);
+				$result = \dash\app\tg\user::add($newUserDetail);
 				if($result)
 				{
 					return $result;
@@ -111,7 +111,7 @@ class user
 
 	public static function block()
 	{
-		$a = \dash\app\user::edit(['tgstatus' => 'block'], \dash\user::id());
+		$a = \dash\app\tg\user::status("block");
 		var_dump($a);
 		var_dump(\dash\user::id());
 		var_dump(\dash\notif::get());
@@ -120,7 +120,7 @@ class user
 
 	public static function active()
 	{
-		\dash\app\user::edit(['tgstatus' => 'active'], \dash\user::id());
+		$a = \dash\app\tg\user::status("active");
 	}
 
 

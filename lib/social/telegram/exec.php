@@ -39,7 +39,7 @@ class exec
 			return T_('Api key is not correct!');
 		}
 		// check user blocked us
-		// if(\dash\user::tgstatus() === 'block')
+		// if(\dash\app\tg\user::status() === 'block')
 		// {
 		// 	return T_('User is blocked us!');
 		// }
