@@ -1,4 +1,4 @@
-{%if perm('supportTicketViewAll') or perm('supportTicketView') %}
+{%if perm('supportTicketManageSubdomain') or perm('supportTicketManage') %}
 <div class="f">
   <div class="c">
     <a class="dcard {%if accessMode == 'mine'%} active{%endif%}" href='{{url.this}}?access=mine'>
@@ -8,7 +8,7 @@
      </div>
     </a>
   </div>
-  {%if perm('supportTicketView')%}
+  {%if perm('supportTicketManage')%}
   <div class="c">
     <a class="dcard {%if accessMode == 'manage'%} active{%endif%}" href='{{url.this}}?access=manage'>
      <div class="statistic{%if accessMode == 'manage'%} blue{%else%} brown{%endif%}">
@@ -18,7 +18,7 @@
     </a>
   </div>
   {%endif%}
-  {%if perm('supportTicketViewAll')%}
+  {%if perm('supportTicketManageSubdomain')%}
   <div class="c">
     <a class="dcard {%if accessMode == 'all'%} active{%endif%}" href='{{url.this}}?access=all'>
      <div class="statistic{%if accessMode == 'all'%} blue{%else%} brown{%endif%}">

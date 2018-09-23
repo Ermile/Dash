@@ -159,7 +159,7 @@ class view
 	}
 
 
-	private static function acceessModeDetector()
+	public static function acceessModeDetector()
 	{
 		$selected_access = 'mine';
 		$get_access      = \dash\request::get('access');
