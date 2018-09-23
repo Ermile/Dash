@@ -71,6 +71,13 @@ class template
 			{
 				$type = $data['type'];
 			}
+
+			$not_allow_type_route = ['help'];
+
+			if(in_array($type, $not_allow_type_route))
+			{
+				return false;
+			}
 		}
 		elseif ($data = self::find_term())
 		{
