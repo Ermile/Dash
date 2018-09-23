@@ -175,7 +175,11 @@ class user
 			// try to change laguage to selected
 			\dash\language::set_language($newLang);
 			// send success message
-			$newLangMsg = T_('Your language was successfully set to :lang.', ['lang' => T_(\dash\app\tg\user::lang())] );
+			if(isset(\dash\language::$data[$newLang]['localname']))
+			{
+				$newLang = \dash\language::$data[$newLang]['localname'];
+			}
+			$newLangMsg = T_('Your language was successfully set to :lang.', ['lang' => "<b>". T_($newLang)."</b>"] );
 			tg::sendMessage(['text' => $newLangMsg]);
 
 			answer::ok();
