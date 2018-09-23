@@ -241,6 +241,7 @@ class posts
 				break;
 
 			case 'tag':
+			case 'help_tag':
 				if(!$_options['tag'])
 				{
 					return false;

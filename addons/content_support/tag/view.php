@@ -1,5 +1,5 @@
 <?php
-namespace content_support\category;
+namespace content_support\tag;
 
 class view
 {
@@ -14,8 +14,8 @@ class view
 		\dash\data::badge_text(T_('Tickets'));
 		\dash\data::badge_link(\dash\url::here(). '/ticket'. \dash\data::accessGet());
 
-		$postCat = \dash\db\posts::get_posts_term(['type' => 'help', 'limit' => 100, 'cat' => \dash\url::child()], 'help');
-		\dash\data::postCat($postCat);
+		$postTag = \dash\db\posts::get_posts_term(['type' => 'help', 'limit' => 100, 'tag' => \dash\url::child()], 'help');
+		\dash\data::postTag($postTag);
 
 		\content_support\home\view::helpDashboard();
 

@@ -32,7 +32,7 @@ class account
 		{
 			\dash\db\users::update(['mobile' => $mobile], self::id());
 			// to loadmobile and some other field
-			self::relogin_user();
+			self::relogin();
 
 			return true;
 		}
@@ -146,7 +146,7 @@ class account
 			\dash\db\users::update($update_current_user, self::id());
 			\dash\db\users::update($update_new_user, $mobile_exist['id']);
 
-			self::relogin_user($mobile_exist['id']);
+			self::relogin($mobile_exist['id']);
 			return true;
 		}
 	}
@@ -158,19 +158,20 @@ class account
 	}
 
 
-	private static function relogin_user($_user_id = null)
+	public static function relogin($_user_id = null)
 	{
 		if(!$_user_id)
 		{
-			$user_id   = self::id();
+			$user_id   = \dash\user::id();
 		}
 		else
 		{
 			$user_id = $_user_id;
+			$user_id = \dash\coding::encode($user_id);
 		}
 
 		\dash\user::destroy();
-		\dash\user::init_tg($user_code);
+		\dash\app\tg\user::init($user_id);
 	}
 }
 ?>

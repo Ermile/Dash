@@ -5,10 +5,7 @@ namespace dash\app\user;
 trait add
 {
 
-	public static function add_f($_args, $_option = [])
-	{
-		return self::add($_args, ['force_add' => true]);
-	}
+
 
 	/**
 	 * add new user

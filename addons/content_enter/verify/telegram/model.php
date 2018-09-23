@@ -43,6 +43,7 @@ class model
 			return false;
 		}
 
+
 		\dash\utility\enter::generate_verification_code();
 
 		$code = \dash\utility\enter::get_session('verification_code');
@@ -52,6 +53,10 @@ class model
 		$text .= "\n\n". T_("This code can be used to log in to your account. Do not give it to anyone!");
 		$text .= "\n" . T_("If you didn't request this code, ignore this message.");
 
+		if(\dash\url::isLocal())
+		{
+			return true;
+		}
 		\dash\log::db('telegram');
 
 		$myData   = ['chat_id' => $my_chat_id, 'text' => $text];

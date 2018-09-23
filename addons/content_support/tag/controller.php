@@ -1,5 +1,5 @@
 <?php
-namespace content_support\category;
+namespace content_support\tag;
 
 class controller
 {
@@ -12,10 +12,10 @@ class controller
 			\dash\redirect::to(\dash\url::here());
 		}
 
-		$check = \dash\db\terms::get(['slug' => $child, 'type' => 'help', 'limit' => 1]);
+		$check = \dash\db\terms::get(['slug' => $child, 'type' => 'help_tag', 'limit' => 1]);
 		if(!$check)
 		{
-			\dash\header::status(404, T_("Invalid category"));
+			\dash\header::status(404, T_("Invalid tag"));
 		}
 		\dash\data::categoryDetail($check);
 

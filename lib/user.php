@@ -12,16 +12,6 @@ class user
 	private static $USER_DETAIL = [];
 
 
-	public static function init_tg($_user_code)
-	{
-		$user_id = \dash\coding::decode($_user_code);
-
-		if($user_id)
-		{
-			return self::init($user_id, true);
-		}
-	}
-
 
 	/**
 	 * Initial user id
