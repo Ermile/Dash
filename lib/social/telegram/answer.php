@@ -8,9 +8,16 @@ class answer extends tg
 	 * this library generate telegram tools
 	 * v2.0
 	 */
+	private static $answerGenerated = null;
+
 
 	public static function finder()
 	{
+		if(self::$answerGenerated)
+		{
+			return true;
+		}
+
 		$answer  = null;
 
 		// check for step
@@ -88,6 +95,12 @@ class answer extends tg
 		$randomAnswer = $myAnswerList[array_rand($myAnswerList)];
 
 		return $randomAnswer;
+	}
+
+
+	public static function ok()
+	{
+		self::$answerGenerated = true;
 	}
 }
 ?>
