@@ -15,7 +15,7 @@
         <a href="{{url.here}}/ticket/show?id={{value.id}}{{accessGetAnd}}{%if not login.id %}&guest={{value.code}}{%endif%}"><span class="badge light mRa5">{{value.id | fitNumber(false)}}</span> {{value.title | slice(0, 40)}}</a>
         {%endif%}
       </td>
-      <td class="s0"><a href="{{url.here}}/ticket/show?id={{value.id}}{{accessGetAnd}}{%if not login.id %}&guest={{value.code}}{%endif%}">{{value.content | slice(0, 70)}}</a>
+      <td class="s0"><a href="{{url.here}}/ticket/show?id={{value.id}}{{accessGetAnd}}{%if not login.id %}&guest={{value.code}}{%endif%}">{{value.content | slice(0, 70) | striptags}}</a>
 {%if value.tag%}
         <div class="mT5 fs12">
 {%for Tkey, Tvalue in value.tag%}
