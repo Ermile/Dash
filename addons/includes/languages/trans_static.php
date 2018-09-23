@@ -1016,6 +1016,43 @@ class TransStatic
 	echo T_("You have new ticket");
 	echo T_("You have new ticket from :displayname \n see :link");
 
+
+	echo T_("cpTagHelpView");
+	echo T_("cpTagHelpAdd");
+	echo T_("cpTagHelpEdit");
+	echo T_("cpTagHelpDelete");
+	echo T_("cpTagSupportView");
+	echo T_("cpTagSupportAdd");
+	echo T_("cpTagSupportEdit");
+	echo T_("cpTagSupportDelete");
+	echo T_("cpHelpCenterView");
+	echo T_("cpHelpCenterViewAll");
+	echo T_("cpHelpCenterAdd");
+	echo T_("cpHelpCenterEdit");
+	echo T_("cpHelpCenterEditStatus");
+	echo T_("cpHelpCenterEditPublished");
+	echo T_("cpHelpCenterEditForOthers");
+	echo T_("cpHelpCenterDelete");
+	echo T_("cpHelpCenterDeleteForOthers");
+	echo T_("cpEmailTemplateView");
+	echo T_("cpEmailTemplateEdit");
+	echo T_("supportTicketReport");
+	echo T_("supportTicketShowLog");
+	echo T_("supportTicketManage");
+	echo T_("supportTicketManageSubdomain");
+	echo T_("supportTicketAnswer");
+	echo T_("supportEditMessage");
+	echo T_("supportDeleteMessage");
+	echo T_("supportTicketShowMobile");
+	echo T_("supportTicketAssignTag");
+	echo T_("supportTicketAddNote");
+	echo T_("supportTicketSignature");
+	echo T_("supportTicketClose");
+	echo T_("supportTicketReOpen");
+	echo T_("supportTicketDelete");
+	echo T_("supportTicketShowLastVisitor");
+	echo T_("cpVisitorView");
+
  }
 }
 ?>
