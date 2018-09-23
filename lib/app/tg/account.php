@@ -83,6 +83,12 @@ class account
 
 			$update_new_user = \dash\safe::safe($update_new_user);
 
+
+			if(\dash\user::detail('language'))
+			{
+				$update_new_user['language'] = \dash\user::detail('language');
+			}
+
 			if(isset($mobile_exist['chatid']))
 			{
 				$meta = isset($mobile_exist['meta']) ? $mobile_exist['meta'] : null;
