@@ -70,10 +70,10 @@ class tg
 		session::forceSet();
 		// detect and set user id, access via \dash\user::id()
 		user::detect();
-		// check if user send contact save user detail
-		user::saveContact();
 		// check user lang and try to save language
 		user::saveLanguage();
+		// check if user send contact save user detail
+		user::saveContact();
 	}
 
 
