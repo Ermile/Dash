@@ -23,19 +23,24 @@ class model
 				return false;
 			}
 
-			if($load_term['type'] === 'tag')
+			switch ($load_term['type'])
 			{
-				\dash\permission::access('cpTagDelete');
-			}
+				case 'cat':
+					\dash\permission::access('cpCategoryDelete');
+					break;
 
-			if($load_term['type'] === 'support_tag')
-			{
-				\dash\permission::access('cpSupportTagDelete');
-			}
+				case 'help_tag':
+					\dash\permission::access('cpTagHelpDelete');
+					break;
 
-			if($load_term['type'] === 'cat')
-			{
-				\dash\permission::access('cpCategoryDelete');
+				case 'support_tag':
+					\dash\permission::access('cpTagSupportDelete');
+					break;
+
+				case 'tag':
+				default:
+					\dash\permission::access('cpTagDelete');
+					break;
 			}
 
 			\dash\log::db('removeTerm', ['data' => $term_id, 'datalink' => \dash\coding::encode($term_id)]);
@@ -102,12 +107,17 @@ class model
 						\dash\permission::access('cpCategoryEdit');
 						break;
 
-					case 'tag':
-						\dash\permission::access('cpTagEdit');
+					case 'help_tag':
+						\dash\permission::access('cpTagHelpEdit');
 						break;
 
 					case 'support_tag':
-						\dash\permission::access('cpSupportTagEdit');
+						\dash\permission::access('cpTagSupportEdit');
+						break;
+
+					case 'tag':
+					default:
+						\dash\permission::access('cpTagEdit');
 						break;
 				}
 			}
@@ -130,7 +140,16 @@ class model
 						\dash\permission::access('cpCategoryAdd');
 						break;
 
+					case 'support_tag':
+						\dash\permission::access('cpTagSupportAdd');
+						break;
+
+					case 'help_tag':
+						\dash\permission::access('cpTagHelpAdd');
+						break;
+
 					case 'tag':
+					default:
 						\dash\permission::access('cpTagAdd');
 						break;
 				}

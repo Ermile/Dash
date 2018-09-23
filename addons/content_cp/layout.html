@@ -14,19 +14,31 @@
             {%if perm('cpPostsView') %}
               <li><a href="{{url.here}}/posts">{% trans "News" %} <i class='floatRa mRa10 fc-mute sf-pinboard'></i></a></li>
             {%endif%}
+
             {%if perm('cpCategoryView') %}
               <li><a href="{{url.here}}/terms?type=cat">{% trans "Categries" %} <i class='floatRa mRa10 fc-mute sf-grid'></i></a></li>
             {%endif%}
+
             {%if perm('cpTagView') %}
               <li><a href="{{url.here}}/terms?type=tag">{% trans "Tags" %} <i class='floatRa mRa10 fc-mute sf-tags'></i></a></li>
-              <li><a href="{{url.here}}/terms?type=help_tag">{% trans "Help tags" %} <i class='floatRa mRa10 fc-mute sf-tags'></i></a></li>
             {%endif%}
+
             {%if perm('cpPageView') %}
               <li><a href="{{url.here}}/posts?type=page">{% trans "Pages" %} <i class='floatRa mRa10 fc-mute sf-files-o'></i></a></li>
             {%endif%}
+
             {%if perm('cpHelpCenterView') %}
               <li><a href="{{url.here}}/posts?type=help">{% trans "Help center" %} <i class='floatRa mRa10 fc-mute sf-info-circle'></i></a></li>
             {%endif%}
+
+            {%if perm('cpTagHelpAdd') or perm('cpTagHelpEdit')%}
+              <li><a href="{{url.here}}/terms?type=help_tag">{% trans "Help tags" %} <i class='floatRa mRa10 fc-mute sf-tags'></i></a></li>
+            {%endif%}
+
+            {%if perm('cpTagSupportAdd') or perm('cpTagSupportEdit')%}
+              <li><a href="{{url.here}}/terms?type=support_tag">{% trans "Support tags" %} <i class='floatRa mRa10 fc-mute sf-tags'></i></a></li>
+            {%endif%}
+
         </ul>
     </li>
 {%endif%}

@@ -24,8 +24,8 @@ class view
 					\dash\data::page_pictogram('grid');
 					break;
 
-				case 'tag':
-					\dash\permission::access('cpTagView');
+				case 'help_tag':
+					\dash\permission::access('cpTagHelpView');
 
 					$myTitle = T_('Tags');
 					$myDesc  = T_("Check tags and add or edit some new tag");
@@ -33,7 +33,16 @@ class view
 					break;
 
 				case 'support_tag':
-					\dash\permission::access('cpSupportTagView');
+					\dash\permission::access('cpTagSupportView');
+
+					$myTitle = T_('Tags');
+					$myDesc  = T_("Check tags and add or edit some new tag");
+					\dash\data::page_pictogram('tags');
+					break;
+
+				case 'tag':
+				default:
+					\dash\permission::access('cpTagView');
 
 					$myTitle = T_('Tags');
 					$myDesc  = T_("Check tags and add or edit some new tag");
@@ -50,6 +59,7 @@ class view
 		\dash\data::page_desc($myDesc);
 
 		\dash\data::badge_text(T_('Back to dashboard'));
+
 		if(\dash\request::get('type') === 'support_tag')
 		{
 			\dash\data::badge_link(\dash\url::kingdom(). '/support');
