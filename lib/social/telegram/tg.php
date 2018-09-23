@@ -72,6 +72,8 @@ class tg
 		user::detect();
 		// check if user send contact save user detail
 		user::saveContact();
+		// check user lang and try to save language
+		user::saveLanguage();
 	}
 
 

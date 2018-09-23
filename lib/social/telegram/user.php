@@ -67,62 +67,16 @@ class user
 		return false;
 	}
 
-	public static function registerOnTheFly($_tgResponse)
-	{
-		if(isset($_tgResponse['ok']) && $_tgResponse['ok'] === true)
-		{
-			if(isset($_tgResponse['result']['from']['id']))
-			{
-				$tgFrom = $_tgResponse['result']['from'];
-
-				$newUserDetail =
-				[
-					// 'firstname' => '',
-					// 'lastname'  => '',
-					// 'title'     => '',
-					// 'chatid'    => '',
-					// 'avatar'    => null,
-					'status'      => 'active',
-					'tgstatus'    => 'active',
-				];
-				// fill some detail if exist
-				if(isset($tgFrom['id']))
-				{
-					$newUserDetail['chatid'] = $tgFrom['id'];
-				}
-				if(isset($tgFrom['firstname']))
-				{
-					$newUserDetail['firstname'] = $tgFrom['firstname'];
-				}
-				if(isset($tgFrom['lastname']))
-				{
-					$newUserDetail['lastname'] = $tgFrom['lastname'];
-				}
-				if(isset($tgFrom['username']))
-				{
-					$newUserDetail['title'] = $tgFrom['username'];
-				}
-
-				$result = \dash\app\tg\user::add($newUserDetail);
-				if($result)
-				{
-					return $result;
-				}
-			}
-		}
-
-		return false;
-	}
 
 	public static function block()
 	{
-		$a = \dash\app\tg\user::status("block");
+		\dash\app\tg\user::status("block");
 	}
 
 
 	public static function active()
 	{
-		$a = \dash\app\tg\user::status("active");
+		\dash\app\tg\user::status("active");
 	}
 
 
@@ -178,6 +132,45 @@ class user
 		else
 		{
 			tg::sendMessage(['text' => T_('Registration failed!')]);
+		}
+	}
+
+
+	public static function saveLanguage()
+	{
+		$newLang = null;
+		switch (hook::text())
+		{
+			// try to save en for user lang
+			case '/english':
+				$newLang = 'en';
+				break;
+
+			// try to save fa for user lang
+			case '/persian':
+			case '/farsi':
+				$newLang = 'fa';
+				break;
+
+			// send start lang to say welcome and detect language
+			case '/language':
+			case '/lang':
+				$msg = T_("Please choose your language"). "\n";
+				$msg .= "/english". "\n";
+				$msg .= "/persian". "\n";
+				tg::sendMessage(['text' => $msg]);
+				break;
+
+			default:
+				break;
+		}
+
+		if($newLang)
+		{
+			\dash\app\tg\user::lang($newLang);
+			$newLangMsg = T_('Your language was successfully set to :lang.', ['lang' => T_(\dash\app\tg\user::lang())] );
+			tg::sendMessage(['text' => $newLangMsg]);
+			return true;
 		}
 	}
 }
