@@ -295,25 +295,35 @@ class ermile
 	public static function lang()
 	{
 		// generate messaage
-		$msg = T_("Please choose your language"). "\n";
+		$msg      = T_("Please choose your language"). "\n\n";
+		$keyboard = [];
 		$langList = \dash\language::all();
 		foreach ($langList as $key => $value)
 		{
 			if($key === 'fa')
 			{
 				$msg .= "/persian 🇮🇷". "\n";
+				$keyboard[] = ["/persian 🇮🇷"];
 			}
 			elseif($key === 'en')
 			{
 				$msg .= "/english 🇬🇪". "\n";
+				$keyboard[] = ["/english 🇬🇪"];
 			}
 			else
 			{
-				$msg .= $name. "\n";
+				$msg .= "/". $name. "\n";
+				$keyboard[] = ["/". $name];
 			}
 		}
 		// create result
 		$result = ['text' => $msg];
+
+		$result['reply_markup'] =
+		[
+			'keyboard' => $keyboard,
+			'one_time_keyboard' => true
+		];
 		// send message
 		bot::sendMessage($result);
 		// return result
