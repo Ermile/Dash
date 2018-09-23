@@ -158,6 +158,11 @@ class user
 				$newLang = 'fa';
 				break;
 
+			case '/arabic':
+			case 'ar_IQ':
+				$newLang = 'ar';
+				break;
+
 			default:
 				break;
 		}

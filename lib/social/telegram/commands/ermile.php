@@ -310,6 +310,11 @@ class ermile
 				$msg .= "/english 🇬🇪". "\n";
 				$keyboard[] = [ $value['iso']." 🇬🇪"];
 			}
+			elseif($key === 'ar')
+			{
+				$msg .= "/arabic". "\n";
+				$keyboard[] = [ $value['iso'] ];
+			}
 			else
 			{
 				$msg .= "/". $value['name']. "\n";
