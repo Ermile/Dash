@@ -296,8 +296,22 @@ class ermile
 	{
 		// generate messaage
 		$msg = T_("Please choose your language"). "\n";
-		$msg .= "/english 🇬🇪". "\n";
-		$msg .= "/persian 🇮🇷". "\n";
+		$langList = \dash\language::all();
+		foreach ($langList as $key => $value)
+		{
+			if($key === 'fa')
+			{
+				$msg .= "/persian 🇮🇷". "\n";
+			}
+			elseif($key === 'en')
+			{
+				$msg .= "/english 🇬🇪". "\n";
+			}
+			else
+			{
+				$msg .= $name. "\n";
+			}
+		}
 		// create result
 		$result = ['text' => $msg];
 		// send message
