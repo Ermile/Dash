@@ -11,8 +11,6 @@ class view
 		\dash\data::page_desc(T_("Easily manage your message and monitor or track them to get best answer until fix your problem"));
 		\dash\data::page_pictogram('life-ring');
 
-		\dash\data::badge_text(T_('Tickets'));
-		\dash\data::badge_link(\dash\url::here(). '/ticket');
 		$args = [];
 
 		$args['sort']            = 'datecreated';
@@ -35,6 +33,9 @@ class view
 		\content_support\ticket\home\view::dataList($args);
 
 		\content_support\ticket\home\view::acceessModeDetector();
+
+		\dash\data::badge_text(T_('Tickets'));
+		\dash\data::badge_link(\dash\url::here(). '/ticket'. \dash\data::accessGet());
 	}
 
 
