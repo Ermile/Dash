@@ -130,7 +130,8 @@ trait search
 
 		if(isset($_options['order_raw']) && $_options['order_raw'])
 		{
-			$order = " ORDER BY ".  $_options['order_raw'];
+			$myOrder = "ORDER BY";
+			$order   = " $myOrder $_options[order_raw] ";
 		}
 
 		// ------------------ remove system index
