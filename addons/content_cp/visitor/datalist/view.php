@@ -9,12 +9,11 @@ class view
 		$myTitle = T_("Visitor");
 		$myDesc  = T_('Check list of visitor and search or filter in them to find your visitor.');
 
-		// add back level to summary link
-		$product_list_link =  '<a href="'. \dash\url::here() .'" data-shortkey="121">'. T_('Back to dashboard'). '</a>';
-		$myDesc .= ' | '. $product_list_link;
-
 		\dash\data::page_title($myTitle);
 		\dash\data::page_desc($myDesc);
+
+		\dash\data::badge_link(\dash\url::this());
+		\dash\data::badge_text(T_("Dashboard"));
 
 		\dash\data::page_pictogram('pinboard');
 
