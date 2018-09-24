@@ -11,11 +11,13 @@
 		<a class="msg primary" href="{{url.this}}?period=month">{%trans "Last month"%}</a>
 	</div>
 
-	<a href="{{url.this}}/datalist">DATA LIST</a>
-	<div class="msg">Visit {{dashboardDetail.visit}}</div>
-	<div class="msg">Visitor {{dashboardDetail.visitor}}</div>
-	<div class="msg" title="{{dashboardDetail.avgtime}}">AVG TIME {{dashboardDetail.avgtime}} Second</div>
-	<div class="msg">Max trafic time {{dashboardDetail.maxtrafictime}}</div>
+	<div class="dcard ">
+		<a href="{{url.this}}/datalist">{%trans "Visitor list"%}</a>
+	</div>
+	<div class="msg">{%trans "Visit"%} <b>{{dashboardDetail.visit | fitNumber}}</b></div>
+	<div class="msg">{%trans "Visitor"%} <b>{{dashboardDetail.visitor | fitNumber}}</b></div>
+	<div class="msg" title="{{dashboardDetail.avgtime}}">{%trans "AVG TIME"%} {{dashboardDetail.avgtime | fitNumber}} {%trans "Second"%}</div>
+	<div class="msg">{%trans "Max trafic time"%} {{(dashboardDetail.maxtrafictime ~ ":00:00") | tdate("l d F Y H:i:s")}}</div>
 
 </div>
 {%endblock%}
