@@ -134,7 +134,6 @@ class template
 
 	public static function set_display_name($data, $type, $slug, $table)
 	{
-		var_dump(func_get_args());exit();
 		$finded_template = false;
 
 		// elseif template type with specefic slug exist show it
