@@ -211,6 +211,7 @@ class posts
 			'term'   => null,
 			'type'   => 'post',
 			'random' => false,
+			'where' => null,
 		];
 
 		if(!is_array($_options))
@@ -268,6 +269,16 @@ class posts
 			$order = " RAND() ";
 		}
 
+		$where = null;
+		if($_options['where'])
+		{
+			$make_where = \dash\db\config::make_where($_options['where']);
+			if($make_where)
+			{
+				$where = $make_where. " AND ";
+			}
+		}
+
 		$query =
 		"
 			SELECT
@@ -287,6 +298,7 @@ class posts
 						$my_query
 						termusages.related_id = posts.id
 				) AND
+				$where
 				posts.status            = 'publish' AND
 				posts.type              = '$_options[type]' AND
 				posts.language          = '$lang' AND

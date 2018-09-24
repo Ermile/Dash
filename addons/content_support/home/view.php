@@ -105,11 +105,11 @@ class view
 
 		\dash\data::listCats($pageList);
 
-		$randomArticles = \dash\app\posts::random_post(['type' => 'help', 'limit' => 10, 'status' => 'publish']);
+		$randomArticles = \dash\app\posts::random_post(['type' => 'help', 'limit' => 5, 'status' => 'publish', 'parent' => ["IS", "NOT NULL"]]);
 
 		\dash\data::randomArticles($randomArticles);
 
-		$randomFAQ = \dash\db\posts::get_posts_term(['type' => 'help', 'limit' => 10, 'tag' => 'faq', 'random' => true], 'help_tag');
+		$randomFAQ = \dash\db\posts::get_posts_term(['type' => 'help', 'limit' => 5, 'tag' => 'faq', 'random' => true], 'help_tag');
 		\dash\data::randomFAQ($randomFAQ);
 
 	}
