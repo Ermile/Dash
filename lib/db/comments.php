@@ -42,7 +42,6 @@ class comments
 				(
 					SELECT DISTINCT comments.user_id FROM comments WHERE comments.parent IN ($_ids)
 				)
-
 		";
 
 		return \dash\db::get($query);
@@ -80,6 +79,12 @@ class comments
 				$_options['public_show_field'] =
 				"
 					comments.*,
+					(
+						SELECT GROUP_CONCAT(DISTINCT uComment.user_id)
+						FROM comments AS `uComment`
+						WHERE uComment.parent = comments.id
+
+					) AS `user_in_ticket`,
 					users.avatar,
 					users.firstname,
 					users.displayname,
@@ -94,7 +99,19 @@ class comments
 			}
 			else
 			{
-				$_options['public_show_field'] = " comments.*, users.avatar, users.firstname, users.displayname ";
+				$_options['public_show_field'] =
+				"
+					comments.*,
+					(
+						SELECT GROUP_CONCAT(DISTINCT uComment.user_id)
+						FROM comments AS `uComment`
+						WHERE uComment.parent = comments.id
+
+					) AS `user_in_ticket`,
+					users.avatar,
+					users.firstname,
+					users.displayname,
+				";
 			}
 
 			$_options['master_join'] = "LEFT JOIN users ON users.id = comments.user_id ";
@@ -122,7 +139,9 @@ class comments
 			unset($_options['search_tag']);
 		}
 
-		return \dash\db\config::public_search('comments', $_string, $_options);
+		$result = \dash\db\config::public_search('comments', $_string, $_options);
+
+		return $result;
 	}
 
 	public static function ticket_avg_first($_where)

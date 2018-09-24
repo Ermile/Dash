@@ -16,6 +16,15 @@ class ticket
 		'email',
 	];
 
+	public static $public_show_field =
+				"
+					comments.*,
+					users.avatar,
+					users.firstname,
+					users.displayname
+				 ";
+	public static $master_join = "LEFT JOIN users ON users.id = comments.user_id ";
+
 	public static function get_user_in_ticket($_ticket_detail)
 	{
 		if(!is_array($_ticket_detail))
@@ -43,8 +52,7 @@ class ticket
 		{
 			$user_detail = array_map(['\dash\app\user', 'ready'], $user_detail);
 		}
-		// return $user_detail;
-		return null;
+		return $user_detail;
 	}
 
 	public static function get($_id)
@@ -55,14 +63,9 @@ class ticket
 			return false;
 		}
 
-		$_options['public_show_field'] =
-				"
-					comments.*,
-					users.avatar,
-					users.firstname,
-					users.displayname
-				 ";
-		$_options['master_join'] = "LEFT JOIN users ON users.id = comments.user_id ";
+		$_options['public_show_field'] = self::$public_show_field;
+
+		$_options['master_join'] = self::$master_join;
 
 		$get = \dash\db\comments::get(['comments.id' => $_id, 'limit' => 1], $_options);
 
@@ -416,6 +419,16 @@ class ticket
 					}
 					break;
 
+				case 'user_in_ticket':
+					if($value)
+					{
+						$result[$key] = explode(',', $value);
+					}
+					else
+					{
+						$result[$key] = [];
+					}
+					break;
 				case 'user_id':
 				case 'term_id':
 					if(isset($value))

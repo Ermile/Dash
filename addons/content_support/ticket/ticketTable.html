@@ -45,7 +45,7 @@
 {%if userInTicket%}
     <td class="collapsing txtRa" title='{%trans "Active in this ticket"%}'>
       {%for mykey, myvalue in userInTicket%}
-          {%if value.user_id != myvalue.id %}
+          {%if value.user_id != myvalue.id and myvalue.id in value.user_in_ticket %}
           <img src="{{myvalue.avatar}}" class="avatar mLa10" alt="{{myvalue.displayname}}">
           {%endif%}
         {%endfor%}
