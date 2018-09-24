@@ -17,7 +17,6 @@
       <li><a href="{{url.here}}/ticket/add{{accessGet}}"><i class="floatRa mRa10 fc-mute sf-plus"></i>{%trans "New Ticket"%}</a></li>
 {%if sidebarDetail.all%}
       <li><a href="{{url.here}}/ticket?status=all{{accessGetAnd}}"><span class="floatRa mRa10 fc-mute badge dark">{{sidebarDetail.all | fitNumber}}</span>{%trans "All"%}</a></li>
-      <li><a href="{{url.here}}/ticket?type=last&status=all{{accessGetAnd}}"><span class="floatRa mRa10 fc-mute badge dark">{{sidebarDetail.all | fitNumber}}</span>{%trans "Last activity"%}</a></li>
 {%endif%}
 {%if sidebarDetail.open%}
       <li><a href="{{url.here}}/ticket?status=open{{accessGetAnd}}"><span class="floatRa mRa10 fc-mute badge dark">{{sidebarDetail.open | fitNumber}}</span>{%trans "Open tickets"%}</a></li>

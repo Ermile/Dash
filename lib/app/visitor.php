@@ -8,8 +8,9 @@ class visitor
 	{
 		$default_args =
 		[
-			'period' => 'hours24',
-			'type'   => null,
+			'period'    => 'hours24',
+			'type'      => null,
+			'subdomain' => null,
 		];
 
 		if(!is_array($_args))

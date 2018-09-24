@@ -130,6 +130,14 @@ class visitors
 			return false;
 		}
 
+		$subdomain = null;
+		$join_url = null;
+		if(isset($_args['subdomain']) && $_args['subdomain'])
+		{
+			$subdomain = " AND urls.subdomain = '$_args[subdomain]' ";
+			$join_url = " LEFT JOIN urls ON urls.id = visitors.url_id ";
+		}
+
 		$diff_query = "HOUR(visitors.date) AS `myDate`,";
 		switch ($_args['period'])
 		{
@@ -154,11 +162,13 @@ class visitors
 				(
 					SELECT
 					$diff_query
-					COUNT(*) AS `count`,
+					COUNT(DISTINCT visitors.id) AS `count`,
 					IF(visitors.user_id IS NULL, visitors.session_id , visitors.user_id) AS `myUser`
 					FROM visitors
+					$join_url
 					WHERE
 						visitors.date >= '$start_time'
+						$subdomain
 					GROUP BY myDate, myUser
 				) AS `myTable`
 			GROUP BY myTable.myDate
@@ -171,10 +181,12 @@ class visitors
 		"
 			SELECT
 			$diff_query
-			COUNT(*) AS `count`
+			COUNT(DISTINCT visitors.id) AS `count`
 			FROM visitors
+			$join_url
 			WHERE
 				visitors.date >= '$start_time'
+				$subdomain
 			GROUP BY myDate
 		";
 
