@@ -7,10 +7,8 @@ class controller
 	{
 		if(\dash\url::child() === null)
 		{
-			echo "<pre>";
-			print_r(\dash\utility\browserDetection::browser_detection('full_assoc'));
-			echo "</pre>";
-			exit();
+			\dash\code::pretty(\dash\utility\browserDetection::browser_detection('full_assoc'));
+			\dash\code::boom();
 		}
 
 	}
