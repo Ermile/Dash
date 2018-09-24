@@ -125,39 +125,60 @@ class visitors
 			return null;
 		}
 
+		if(!isset($_args['period']))
+		{
+			return false;
+		}
+
+		$diff_query = "HOUR(visitors.date) AS `myDate`,";
+		switch ($_args['period'])
+		{
+			case 'week':
+				$diff_query = "DATE(visitors.date) AS `myDate`,";
+				break;
+
+			case 'month':
+				$diff_query = "DATE(visitors.date) AS `myDate`,";
+				break;
+
+			case 'hours24':
+			default:
+				$diff_query = "HOUR(visitors.date) AS `myDate`,";
+				break;
+		}
+
 		$query =
 		"
-			SELECT COUNT(myTable.count) AS `myCount`, myTable.myHour
+			SELECT COUNT(myTable.count) AS `myCount`, myTable.myDate
 			FROM
 				(
 					SELECT
-					HOUR(visitors.date) AS `myHour`,
+					$diff_query
 					COUNT(*) AS `count`,
 					IF(visitors.user_id IS NULL, visitors.session_id , visitors.user_id) AS `myUser`
 					FROM visitors
 					WHERE
 						visitors.date >= '$start_time'
-					GROUP BY myHour, myUser
+					GROUP BY myDate, myUser
 				) AS `myTable`
-			GROUP BY myTable.myHour
+			GROUP BY myTable.myDate
 		";
 
-		$result_visitor = \dash\db::get($query, ['myHour', 'myCount'], false, \dash\db::get_db_log_name());
+		$result_visitor = \dash\db::get($query, ['myDate', 'myCount'], false, \dash\db::get_db_log_name());
 
 
 		$query =
 		"
 			SELECT
-			HOUR(visitors.date) AS `myHour`,
+			$diff_query
 			COUNT(*) AS `count`
 			FROM visitors
 			WHERE
 				visitors.date >= '$start_time'
-			GROUP BY myHour
+			GROUP BY myDate
 		";
 
-		$result_visit = \dash\db::get($query, ['myHour', 'count'], false, \dash\db::get_db_log_name());
-
+		$result_visit = \dash\db::get($query, ['myDate', 'count'], false, \dash\db::get_db_log_name());
 
 		return ['visitor' => $result_visitor, 'visit' => $result_visit];
 
