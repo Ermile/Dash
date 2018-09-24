@@ -186,30 +186,32 @@
 
 {%block iTag%}
 
+{%if perm('supportTicketAssignTag')%}
 
 
 
-<div class="tagDetector">
+  <div class="tagDetector">
 
-{%set myID = requestGET.id | coding('encode')%}
-{%set postTag = tags({"post_id" : myID , "title" : true, "format" : 'csv', "type" : "support_tag", "related" : "comments"}) %}
+  {%set myID = requestGET.id | coding('encode')%}
+  {%set postTag = tags({"post_id" : myID , "title" : true, "format" : 'csv', "type" : "support_tag", "related" : "comments"}) %}
 
+    <div class="input mB10 hide">
+      <input type="text" class="input tagVals" name="tag"  value="{{postTag}}" id="tagValues" placeholder='{%trans "Tag"%}'>
+    </div>
 
-  <div class="input mB10 hide">
-    <input type="text" class="input tagVals" name="tag"  value="{{postTag}}" id="tagValues" placeholder='{%trans "Tag"%}'>
+    <datalist id="taglist">
+      {%for key, value in tagList%}
+        <option value="{{value.title}}">
+      {%endfor%}
+    </datalist>
+
+    <div class="input" title='{%trans "Add tag manually to link tickets togethers"%}'>
+      <input type="text" list="taglist" class="tagInput" placeholder='{%trans "Tag keywords..."%}'>
+      <button class="addon tagAdd">+</button>
+    </div>
+    <div class="tagBox"></div>
   </div>
 
-<datalist id="taglist">
-  {%for key, value in tagList%}
-    <option value="{{value.title}}">
-  {%endfor%}
-</datalist>
-
-  <div class="input" title='{%trans "Add tag manually to link tickets togethers"%}'>
-    <input type="text" list="taglist" class="tagInput" placeholder='{%trans "Tag keywords..."%}'>
-    <button class="addon tagAdd">+</button>
-  </div>
-  <div class="tagBox"></div>
-</div>
+{%endif%}
 
 {%endblock%}
