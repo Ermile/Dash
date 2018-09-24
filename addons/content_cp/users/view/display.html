@@ -19,6 +19,16 @@
           {%for key, value in dataRow%}
 {%if value%}
             {%if key in ['password', 'unit_id'] %}
+            {%elseif key == 'id'%}
+                <tr>
+                  <th>{%trans key%}</th>
+                  <td class="ltr">
+                    {{value}}
+                    {%if perm_su()%}
+                      <div title='{%trans "Decode"%}' class="badge mLR10">{{value | coding("decode") | fitNumber(false)}}</div>
+                    {%endif%}
+                  </td>
+                </tr>
             {%elseif key == 'mobile'%}
               <tr class="f-{{key}} positive">
                 <th>{%trans key%}</th>
