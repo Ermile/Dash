@@ -42,15 +42,27 @@ class view
 
 		if(\dash\request::get('user'))
 		{
-			$args['visitors.user_id'] = \dash\request::get('user');
+			$userid = \dash\coding::decode(\dash\request::get('user'));
+			if($userid)
+			{
+				$args['visitors.user_id'] = $userid;
+			}
 		}
 		if(\dash\request::get('userid'))
 		{
-			$args['visitors.user_id'] = \dash\request::get('userid');
+			$userid = \dash\coding::decode(\dash\request::get('userid'));
+			if($userid)
+			{
+				$args['visitors.user_id'] = $userid;
+			}
 		}
 		if(\dash\request::get('user_id'))
 		{
-			$args['visitors.user_id'] = \dash\request::get('user_id');
+			$userid = \dash\coding::decode(\dash\request::get('user_id'));
+			if($userid)
+			{
+				$args['visitors.user_id'] = $userid;
+			}
 		}
 		if(\dash\request::get('session_id'))
 		{
