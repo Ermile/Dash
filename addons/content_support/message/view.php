@@ -34,6 +34,7 @@ class view
 
 		\content_support\ticket\home\view::dataList($args);
 
+		\content_support\ticket\home\view::acceessModeDetector();
 	}
 
 
