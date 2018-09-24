@@ -115,19 +115,23 @@
         <span title='{%trans "Status code"%}' class="badge secondary"><a href="{{url.this}}/datalist?statuscode={{value.statuscode}}">{{value.statuscode}}</a></span><br>
         <span title='{%trans "Method"%}' class="badge danger"><a href="{{url.this}}/datalist?method={{value.method}}">{{value.method}}</a></span><br>
         {%if value.country%}
-        <span class="badge light"><a href="{{url.this}}/datalist?country={{value.country}}">{{value.country}}</a></span><br>
+        <span title='{%trans "Country"%}' class="badge light"><a href="{{url.this}}/datalist?country={{value.country}}">{{value.country}}</a></span><br>
         {%endif%}
         <span title='{%trans "IP"%}' class="badge warn"><a href="{{url.this}}/datalist?visitor_ip={{value.visitor_ip}}">{{value.visitor_ip | fitNumber(false)}}</a></span><br>
         {%if value.subdomain%}
         <span class="badge primary"><a href="{{url.this}}/datalist?subdomain={{value.subdomain}}">{{value.subdomain}}</a></span><br>
         {%endif%}
-        <span class="badge light"><a href="{{url.this}}/datalist?domain={{value.domain}}">{{value.domain}}</a></span><br>
+        <span title='{%trans "Domain"%}' class="badge light"><a href="{{url.this}}/datalist?domain={{value.domain}}">{{value.domain}}</a></span><br>
       </td>
       <td class="ltr txtL pRa10">
-        <span title="{{value.path}}" class="txtB ltr"><a href="{{url.this}}/datalist?pwd={{value.pwd}}">{{value.pwd}}</a></span><br>
+        <span title="{{value.path}}" class="txtB ltr">
+          <a href="{{url.this}}/datalist?pwd={{value.pwd}}">{{value.pwd}}</a>
+          <a href="{{value.pwd}}" data-direct target="_blank"><i class="sf-link"></i></a>
+        </span><br>
         {%if value.ref_pwd%}
         <br>
         <span title='{%trans "Referer url"%}' class="badge pain ltr"><a href="{{url.this}}/datalist?ref_pwd={{value.ref_pwd}}">{{value.ref_pwd}}</a></span>
+          <a href="{{value.ref_pwd}}" data-direct target="_blank"><i class="sf-link"></i></a>
         {%endif%}
       </td>
 
