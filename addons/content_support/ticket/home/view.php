@@ -7,8 +7,7 @@ class view
 
 	public static function config()
 	{
-		// \dash\redirect::to(\dash\url::base(). '/enter');
-				// return;
+
 		\dash\data::page_title(T_("Tickets"));
 		\dash\data::page_desc(T_("See list of your tickets!"));
 

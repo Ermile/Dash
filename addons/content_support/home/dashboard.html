@@ -90,7 +90,7 @@
   <div>
     {%for key, value in randomFAQ%}
     <div class="msg">
-      <span class="sf-info mRa10"></span>
+      <span class="{%if value.meta.icon%}sf-{{value.meta.icon}}{%else%}sf-info{%endif%} mRa10"></span>
       <a href="{{url.this}}/{{value.slug}}">{{value.title}}</a>
       <a href="#" class="floatRa">{{value.cat}}</a>
     </div>
@@ -109,7 +109,7 @@
   <div>
     {%for key, value in randomArticles %}
     <div class="msg">
-      <span class="sf-info mRa10"></span>
+      <span class="{%if value.meta.icon%}sf-{{value.meta.icon}}{%else%}sf-info{%endif%} mRa10"></span>
       <a href="{{url.this}}/{{value.slug}}">{{value.title}}</a>
       {%if value.parent_detail.title%}<a href="{{url.here}}/{{value.url}}" class="floatRa">{{value.parent_detail.title}}</a>{%endif%}
     </div>
