@@ -27,6 +27,27 @@ class comments
 		return \dash\db\config::public_get_count('comments', ...func_get_args());
 	}
 
+	public static function get_user_in_ticket($_ids)
+	{
+		$query =
+		"
+			SELECT
+				users.id,
+				users.displayname,
+				users.avatar
+			FROM
+				users
+			WHERE
+				users.id IN
+				(
+					SELECT DISTINCT comments.user_id FROM comments WHERE comments.parent IN ($_ids)
+				)
+
+		";
+
+		return \dash\db::get($query);
+	}
+
 
 	/**
 	 * Searches for the first match.

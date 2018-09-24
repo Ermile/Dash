@@ -16,6 +16,36 @@ class ticket
 		'email',
 	];
 
+	public static function get_user_in_ticket($_ticket_detail)
+	{
+		if(!is_array($_ticket_detail))
+		{
+			return false;
+		}
+
+		$ids = array_column($_ticket_detail, 'id');
+		if(!is_array($ids) || empty($ids) || !$ids)
+		{
+			return false;
+		}
+		$ids = array_unique($ids);
+		$ids = array_filter($ids);
+
+		if(empty($ids))
+		{
+			return false;
+		}
+
+		$ids         = implode(',', $ids);
+		$user_detail = \dash\db\comments::get_user_in_ticket($ids);
+
+		if(is_array($user_detail))
+		{
+			$user_detail = array_map(['\dash\app\user', 'ready'], $user_detail);
+		}
+		// return $user_detail;
+		return null;
+	}
 
 	public static function get($_id)
 	{

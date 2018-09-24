@@ -153,7 +153,11 @@ class view
 			$args['search_tag'] = $tag;
 		}
 
-		self::dataList($args);
+		$all_list       = self::dataList($args);
+		$user_in_ticket = \dash\app\ticket::get_user_in_ticket($all_list);
+
+		\dash\data::userInTicket($user_in_ticket);
+
 	}
 
 
@@ -299,6 +303,8 @@ class view
 		$dataTable = array_map(['self', 'tagDetect'], $dataTable);
 
 		\dash\data::dataTable($dataTable);
+
+		return $dataTable;
 	}
 
 

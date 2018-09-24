@@ -42,7 +42,16 @@
         </a>
       </td>
 {%endif%}
+{%if userInTicket%}
+    <td class="collapsing txtRa" title='{%trans "Active in this ticket"%}'>
+      {%for mykey, myvalue in userInTicket%}
+          {%if value.user_id != myvalue.id %}
+          <img src="{{myvalue.avatar}}" class="avatar mLa10" alt="{{myvalue.displayname}}">
+          {%endif%}
+        {%endfor%}
+      </td>
     </tr>
+{%endif%}
 {%endfor%}
   </tbody>
 </table>
