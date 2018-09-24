@@ -39,14 +39,14 @@ class model
 		$mobile = \dash\request::post('mobile');
 		if(!$mobile)
 		{
-			\dash\notif::error(T_("Pleaes set mobile number"));
+			\dash\notif::error(T_("Pleaes set mobile number"), 'mobile');
 			return false;
 		}
 
 		$mobile = \dash\utility\filter::mobile($mobile);
 		if(!$mobile)
 		{
-			\dash\notif::error(T_("Pleaes set a valid mobile number"));
+			\dash\notif::error(T_("Pleaes set a valid mobile number"), 'mobile');
 			return false;
 		}
 
@@ -55,7 +55,7 @@ class model
 		{
 			if(!$username || mb_strlen($username) < 5 || mb_strlen($username) > 50 )
 			{
-				\dash\notif::error(T_("Pleaes set a valid username"));
+				\dash\notif::error(T_("Pleaes set a valid username"), 'username');
 				return false;
 			}
 		}
@@ -63,33 +63,33 @@ class model
 		if(\dash\option::config('enter', 'singup_username') && !preg_match("/[A-Za-z0-9\_]/", $username))
 		{
 			\dash\log::db('usernameInvalidSyntax', ['data' => $username]);
-			\dash\notif::error(T_("Username must in [A-Za-z0-9]"));
+			\dash\notif::error(T_("Username must in [A-Za-z0-9]"), 'username');
 			return false;
 		}
 
 		$ramz = \dash\request::post('ramzNew');
 		if(!$ramz || mb_strlen($ramz) < 5 || mb_strlen($ramz) > 50)
 		{
-			\dash\notif::error(T_("Pleaes set a valid password"));
+			\dash\notif::error(T_("Pleaes set a valid password"), 'ramzNew');
 			return false;
 		}
 
 		if($username && $ramz && $username === $ramz)
 		{
-			\dash\notif::error(T_("Please do not use your username as password. Never Ever!"));
+			\dash\notif::error(T_("Please do not use your username as password. Never Ever!"), ['element' => ['ramzNew', 'username']]);
 			return false;
 		}
 
 		if($mobile && strpos($ramz, $mobile) !== false)
 		{
-			\dash\notif::error(T_("Please do not use your mobile in password!"));
+			\dash\notif::error(T_("Please do not use your mobile in password!"), ['element' => ['ramzNew', 'mobile']]);
 			return false;
 		}
 
 		$displayname = \dash\request::post('displayname');
 		if(!$displayname || mb_strlen($displayname) > 50)
 		{
-			\dash\notif::error(T_("Invalid full name"));
+			\dash\notif::error(T_("Invalid full name"), 'displayname');
 			return false;
 		}
 
@@ -99,7 +99,7 @@ class model
 			if($check_username)
 			{
 				\dash\log::db('usernameTaken', ['data' => $username]);
-				\dash\notif::error(T_("This username is already taken."));
+				\dash\notif::error(T_("This username is already taken."), 'username');
 				return false;
 			}
 		}
@@ -108,7 +108,7 @@ class model
 		if($check_mobile)
 		{
 			\dash\log::db('mobileExistTryToSignup');
-			\dash\notif::error(T_("This mobile is already signuped. You can login by this mobile"));
+			\dash\notif::error(T_("This mobile is already signuped. You can login by this mobile"), 'mobile');
 			return false;
 		}
 

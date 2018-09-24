@@ -24,7 +24,7 @@ class model
 				}
 				else
 				{
-					\dash\notif::error(T_("Mobile not found"));
+					\dash\notif::error(T_("Mobile not found"), 'usernameormobile');
 					return false;
 				}
 			}
@@ -149,7 +149,7 @@ class model
 		{
 			\dash\log::db('userNotFound');
 			\dash\utility\enter::try('login_user_not_found');
-			\dash\notif::error(T_("Username not found"));
+			\dash\notif::error(T_("Username not found"), 'usernameormobile');
 			return false;
 		}
 
