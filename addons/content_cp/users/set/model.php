@@ -65,7 +65,10 @@ class model
 			return false;
 		}
 
-
+		if($post['permission'] === '0')
+		{
+			$post['permission'] = null;
+		}
 
 		$avatar = self::upload_avatar();
 
