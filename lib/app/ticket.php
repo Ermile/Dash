@@ -25,6 +25,7 @@ class ticket
 				 ";
 	public static $master_join = "LEFT JOIN users ON users.id = comments.user_id ";
 
+
 	public static function get_user_in_ticket($_ticket_detail)
 	{
 		if(!is_array($_ticket_detail))
@@ -52,7 +53,31 @@ class ticket
 		{
 			$user_detail = array_map(['\dash\app\user', 'ready'], $user_detail);
 		}
-		return $user_detail;
+
+		$user_detail = array_combine(array_column($user_detail, 'id'), $user_detail);
+
+		foreach ($_ticket_detail as $key => $value)
+		{
+			if(isset($value['user_in_ticket']) && is_array($value['user_in_ticket']))
+			{
+				$user_in_ticket_detail = [];
+
+				foreach ($value['user_in_ticket'] as $k => $v)
+				{
+					if(isset($value['user_id']) && $value['user_id'] === $v)
+					{
+						continue;
+					}
+					if(array_key_exists($v, $user_detail))
+					{
+						$user_in_ticket_detail[] = $user_detail[$v];
+					}
+				}
+				$_ticket_detail[$key]['user_in_ticket_detail'] = $user_in_ticket_detail;
+			}
+		}
+
+		return $_ticket_detail;
 	}
 
 	public static function get($_id)
@@ -422,7 +447,8 @@ class ticket
 				case 'user_in_ticket':
 					if($value)
 					{
-						$result[$key] = explode(',', $value);
+						$explode = explode(',', $value);
+						$result[$key] = array_map(['\dash\coding', 'encode'], $explode);
 					}
 					else
 					{

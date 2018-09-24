@@ -154,9 +154,9 @@ class view
 		}
 
 		$all_list       = self::dataList($args);
-		$user_in_ticket = \dash\app\ticket::get_user_in_ticket($all_list);
 
-		\dash\data::userInTicket($user_in_ticket);
+		$all_list = \dash\app\ticket::get_user_in_ticket($all_list);
+		\dash\data::dataTable($all_list);
 
 	}
 

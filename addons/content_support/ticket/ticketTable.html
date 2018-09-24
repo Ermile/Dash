@@ -42,16 +42,14 @@
         </a>
       </td>
 {%endif%}
-{%if userInTicket%}
-    <td class="collapsing txtRa" title='{%trans "Active in this ticket"%}'>
-      {%for mykey, myvalue in userInTicket%}
-          {%if value.user_id != myvalue.id and myvalue.id in value.user_in_ticket %}
+
+    <td class="collapsing" title='{%trans "Active in this ticket"%}'>
+      {%for mykey, myvalue in value.user_in_ticket_detail%}
           <img src="{{myvalue.avatar}}" class="avatar mLa10" alt="{{myvalue.displayname}}">
-          {%endif%}
         {%endfor%}
       </td>
     </tr>
-{%endif%}
+
 {%endfor%}
   </tbody>
 </table>
