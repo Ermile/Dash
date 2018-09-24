@@ -86,6 +86,7 @@ class comments
 						SELECT GROUP_CONCAT(DISTINCT uComment.user_id)
 						FROM comments AS `uComment`
 						WHERE uComment.parent = comments.id
+						ORDER BY uComment.id ASC
 
 					) AS `user_in_ticket`,
 					(
@@ -106,6 +107,7 @@ class comments
 						SELECT GROUP_CONCAT(DISTINCT uComment.user_id)
 						FROM comments AS `uComment`
 						WHERE uComment.parent = comments.id
+						ORDER BY uComment.id ASC
 
 					) AS `user_in_ticket`,
 					users.avatar,
