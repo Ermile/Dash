@@ -3,35 +3,34 @@
 
 
 {%block pageContent%}
+<div class="cbox">
 
- {{block('cpVisitorChart')}}
- {{block('cpVisitorTotalPage')}}
-{%endblock%}
+	<div class="msg primary2 txtC">
+		<a class="msg primary" href="{{url.this}}/chart?period=hours24{%if requestGET.type%}&type={{requestGET.type}}{%endif%}">{%trans "Last 24 hours"%}</a>
+		<a class="msg primary" href="{{url.this}}/chart?period=week{%if requestGET.type%}&type={{requestGET.type}}{%endif%}">{%trans "Last week"%}</a>
+		<a class="msg primary" href="{{url.this}}/chart?period=month{%if requestGET.type%}&type={{requestGET.type}}{%endif%}">{%trans "Last month"%}</a>
+	</div>
 
+	<div class="msg warn2 txtC">
+		<a class="msg warn" href="{{url.this}}/chart?type=browser{%if requestGET.period %}&period={{requestGET.period}}{%endif%}">{%trans "Group by Browser"%}</a>
+		<a class="msg warn" href="{{url.this}}/chart?type=os{%if requestGET.period %}&period={{requestGET.period}}{%endif%}">{%trans "Group by os"%}</a>
+		<a class="msg warn hide" href="{{url.this}}/chart?type=device{%if requestGET.period %}&period={{requestGET.period}}{%endif%}">{%trans "Group by device"%}</a>
+		<a class="msg warn" href="{{url.this}}/chart?type=country{%if requestGET.period %}&period={{requestGET.period}}{%endif%}">{%trans "Group by country"%}</a>
+	</div>
 
+<div class="dcard x4" >
+ <div class="chart" id="chartdiv"></div>
+</div>
 
-{%block iCms%}
-<a class="dcard x1" href='{{url.kingdom}}/cp/cms'>
- <div class="statistic">
-  <div class="value"><i class="sf-diamond"></i></div>
-  <div class="label">{%trans "CMS"%}</div>
- </div>
-</a>
-{%endblock%}
-
-
-{%block cpVisitorChart%}
-<div class="dcard x3 pA0">
- <div class="chart" data-type='bar' data-vals='{{visitor.chart |raw}}'>
- </div>
 </div>
 {%endblock%}
 
 
 
-{%block cpVisitorTotalPage%}
-<div class="dcard x3 pA0">
- <div class="chart" data-type='area' data-vals='{{visitor.totalpages |raw}}'>
- </div>
-</div>
+
+{%block foot_js%}
+
+<script type="text/javascript">
+  {%include chartDetail.file%}
+</script>
 {%endblock%}

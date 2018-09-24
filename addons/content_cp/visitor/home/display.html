@@ -11,8 +11,15 @@
 		<a class="msg primary" href="{{url.this}}?period=month">{%trans "Last month"%}</a>
 	</div>
 
-	<div class="dcard ">
-		<a href="{{url.this}}/datalist">{%trans "Visitor list"%}</a>
+	<div class="f">
+		<div class="dcard c">
+			<a href="{{url.this}}/datalist">{%trans "Visitor list"%}</a>
+		</div>
+		<div class="dcard c">
+			<a href="{{url.this}}/chart">{%trans "Visitor chart"%}</a>
+		</div>
+
+
 	</div>
 	<div class="msg">{%trans "Visit"%} <b>{{dashboardDetail.visit | fitNumber}}</b></div>
 	<div class="msg">{%trans "Visitor"%} <b>{{dashboardDetail.visitor | fitNumber}}</b></div>

@@ -184,6 +184,80 @@ class visitors
 
 	}
 
+	public static function chart_country($_args)
+	{
+		$start_time = self::calc_start_time($_args);
+		if(!$start_time)
+		{
+			return false;
+		}
+		$query =
+		"
+			SELECT
+				COUNT(*) AS `count`,
+				visitors.country AS `country`
+			FROM
+				visitors
+			WHERE
+				visitors.date >= '$start_time'
+			GROUP BY visitors.country
+		";
+		$result = \dash\db::get($query, ['country', 'count'], false, \dash\db::get_db_log_name());
+		return $result;
+
+	}
+
+
+	public static function chart_browser($_args)
+	{
+		$start_time = self::calc_start_time($_args);
+		if(!$start_time)
+		{
+			return false;
+		}
+		$query =
+		"
+			SELECT
+				COUNT(*) AS `count`,
+				agents.name AS `name`
+			FROM
+				visitors
+			LEFT JOIN agents ON agents.id = visitors.agent_id
+			WHERE
+				visitors.date >= '$start_time'
+			GROUP BY agents.name
+		";
+		$result = \dash\db::get($query, ['name', 'count'], false, \dash\db::get_db_log_name());
+
+		return $result;
+	}
+
+
+	public static function chart_os($_args)
+	{
+		$start_time = self::calc_start_time($_args);
+		if(!$start_time)
+		{
+			return false;
+		}
+		$query =
+		"
+			SELECT
+				COUNT(*) AS `count`,
+				agents.os AS `os`
+			FROM
+				visitors
+			LEFT JOIN agents ON agents.id = visitors.agent_id
+			WHERE
+				visitors.date >= '$start_time'
+			GROUP BY agents.os
+		";
+		$result = \dash\db::get($query, ['os', 'count'], false, \dash\db::get_db_log_name());
+		return $result;
+	}
+
+
+
 
 
 

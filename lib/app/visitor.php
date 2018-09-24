@@ -9,6 +9,7 @@ class visitor
 		$default_args =
 		[
 			'period' => 'hours24',
+			'type'   => null,
 		];
 
 		if(!is_array($_args))
@@ -67,6 +68,63 @@ class visitor
 			return json_encode($chart, JSON_UNESCAPED_UNICODE);
 		}
 		return null;
+	}
+
+
+	public static function chart($_args)
+	{
+		$_args = self::merge_args($_args);
+
+		$data = [];
+		$new_data = [];
+
+		switch ($_args['type'])
+		{
+			case 'device':
+				// not ready yet!
+				break;
+			case 'country':
+				$data = \dash\db\visitors::chart_country($_args);
+				$new_data = [];
+				foreach ($data as $key => $value)
+				{
+					if(!$key)
+					{
+						$key = T_("Unknown");
+					}
+					$new_data[] = ["id" => mb_strtoupper($key), "value" => $value];
+				}
+				return json_encode($new_data, JSON_UNESCAPED_UNICODE);
+				break;
+
+			case 'browser':
+				$data = \dash\db\visitors::chart_browser($_args);
+				break;
+
+			case 'os':
+				$data = \dash\db\visitors::chart_os($_args);
+				break;
+
+			default:
+				return null;
+				break;
+		}
+		if(!is_array($data))
+		{
+			$data = [];
+		}
+
+		$new_data = [];
+		foreach ($data as $key => $value)
+		{
+			if(!$key)
+			{
+				$key = T_("Unknown");
+			}
+			$new_data[] = ["key" => $key, "value" => $value];
+		}
+		return json_encode($new_data, JSON_UNESCAPED_UNICODE);
+
 	}
 }
 ?>
