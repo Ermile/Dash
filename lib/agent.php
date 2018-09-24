@@ -8,7 +8,7 @@ class agent
 		$agent = self::agent(true);
 		if($_id)
 		{
-			$check_exits_agent = \dash\db\agents::get(['agent' => $agent, 'limit' => 1]);
+			$check_exits_agent = \dash\db\agents::get(['agentmd5' => md5($agent), 'limit' => 1]);
 
 			if(isset($check_exits_agent['id']))
 			{
@@ -21,14 +21,15 @@ class agent
 
 			$insert =
 			[
-				'agent'   => $agent,
-				'group'   => isset($agent_detail['browser_working']) ? $agent_detail['browser_working'] : null,
-				'name'    => isset($agent_detail['browser_name']) 	 ? $agent_detail['browser_name'] 	: null,
-				'version' => isset($agent_detail['browser_number'])  ? $agent_detail['browser_number'] 	: null,
-				'os'      => isset($agent_detail['os']) 			 ? $agent_detail['os'] 				: null,
-				'osnum'   => isset($agent_detail['os_number']) 		 ? $agent_detail['os_number'] 		: null,
-				'meta'    => json_encode($agent_detail, true),
-				'robot'   => $is_bot ? 1 : null,
+				'agent'    => $agent,
+				'agentmd5' => md5($agent),
+				'group'    => isset($agent_detail['browser_working']) ? $agent_detail['browser_working'] : null,
+				'name'     => isset($agent_detail['browser_name']) 	 ? $agent_detail['browser_name'] 	: null,
+				'version'  => isset($agent_detail['browser_number'])  ? $agent_detail['browser_number'] 	: null,
+				'os'       => isset($agent_detail['os']) 			 ? $agent_detail['os'] 				: null,
+				'osnum'    => isset($agent_detail['os_number']) 		 ? $agent_detail['os_number'] 		: null,
+				'meta'     => json_encode($agent_detail, true),
+				'robot'    => $is_bot ? 1 : null,
 			];
 
 			$agent_id = \dash\db\agents::insert($insert);
