@@ -27,6 +27,25 @@ class comments
 		return \dash\db\config::public_get_count('comments', ...func_get_args());
 	}
 
+
+	public static function close_solved_ticket()
+	{
+		$yesterday = date("Y-m-d H:i:s", strtotime('-1 days'));
+		$query =
+		"
+			UPDATE comments
+			SET comments.status = 'close'
+			WHERE
+				comments.solved = 1 AND
+				comments.type   = 'ticket' AND
+				comments.parent IS NULL AND
+				comments.status = 'answered' AND
+				comments.datemodified < '$yesterday'
+		";
+		\dash\db::query($query);
+
+	}
+
 	public static function get_user_in_ticket($_ids)
 	{
 		$query =

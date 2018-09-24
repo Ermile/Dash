@@ -8,7 +8,7 @@ class controller
 	{
 		if(\dash\permission::supervisor())
 		{
-			\content\cronjob\model::post();
+			\content_hook\cronjob\model::post();
 			return;
 		}
 

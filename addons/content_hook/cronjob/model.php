@@ -23,6 +23,15 @@ class model
 				\dash\app\sendnotification::send();
 				break;
 
+			case 'closesolved':
+				$time_now    = date("i");
+				// every 10 minuts
+				if((is_string($time_now) && mb_strlen($time_now) === 2 && $time_now{1} == '0') || \dash\permission::supervisor())
+				{
+					\dash\db\comments::close_solved_ticket();
+				}
+				break;
+
 			default:
 				return;
 				break;
