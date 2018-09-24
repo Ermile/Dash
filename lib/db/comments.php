@@ -102,10 +102,9 @@ class comments
 				$_options['public_show_field'] =
 				"
 					comments.*,
-
 					users.avatar,
 					users.firstname,
-					users.displayname,
+					users.displayname
 				";
 			}
 
