@@ -21,7 +21,7 @@ class model
 
 		$args =
 		[
-			'content' => addslashes($content),
+			'content' => \dash\safe::safe($content, 'raw'),
 		];
 
 		\content_support\message\edit\view::config();
