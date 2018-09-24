@@ -120,6 +120,25 @@ class permission
 	}
 
 
+	public static function who_have($_caller)
+	{
+		$perm_name = ['admin'];
+		$group     = self::groups();
+		foreach ($group as $key => $value)
+		{
+			if(isset($value['contain']) && is_array($value['contain']))
+			{
+				if(in_array($_caller, $value['contain']))
+				{
+					array_push($perm_name, $key);
+				}
+			}
+		}
+		return $perm_name;
+
+	}
+
+
 	// delete permission from project file
 	public static function delete_permission($_id)
 	{
