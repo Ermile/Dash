@@ -76,15 +76,15 @@ class comments
 		{
 			if((isset($_options['get_tag']) && $_options['get_tag']) || (isset($_options['search_tag']) && $_options['search_tag']))
 			{
+					// (
+					// 	SELECT GROUP_CONCAT(DISTINCT uComment.user_id)
+					// 	FROM comments AS `uComment`
+					// 	WHERE uComment.parent = comments.id
+
+					// ) AS `user_in_ticket`,
 				$_options['public_show_field'] =
 				"
 					comments.*,
-					(
-						SELECT GROUP_CONCAT(DISTINCT uComment.user_id)
-						FROM comments AS `uComment`
-						WHERE uComment.parent = comments.id
-
-					) AS `user_in_ticket`,
 					users.avatar,
 					users.firstname,
 					users.displayname,
@@ -102,12 +102,7 @@ class comments
 				$_options['public_show_field'] =
 				"
 					comments.*,
-					(
-						SELECT GROUP_CONCAT(DISTINCT uComment.user_id)
-						FROM comments AS `uComment`
-						WHERE uComment.parent = comments.id
 
-					) AS `user_in_ticket`,
 					users.avatar,
 					users.firstname,
 					users.displayname,
