@@ -3,9 +3,9 @@
 {%block pageContent%}
 
 
-<div class="f">
+<div class="f justify-center">
 
-  <div class="c mLa5">
+  <div class="c7 mLa5">
     <div class="cbox">
       <form method="post">
 
@@ -14,8 +14,25 @@
          <label for="active"></label>
          <label for="active">{%trans "Run cronjob for this service"%}</label>
         </div>
-        <button class="btn primary block mT5 ">{%trans "Save"%}</button>
+        <div data-response='active' {%if cronjob%}{%else%}data-response-hide{%endif%}>
+
+        {%for key, value in activeList%}
+          <div class="mT20 pB50 msg {%if value.active%} success2 {%endif%}">
+            {{value.title}}
+            <small>{{value.desc}}</small>
+            {%if value.saved_url%} <a href="{{value.saved_url}}" class="badge warn">{{value.saved_url}}</a>{%endif%}
+            <div class="switch1 pB20 floatL">
+             <input type="checkbox" name="{{key}}" id="{{key}}" {%if value.active %} checked {%endif%}>
+             <label for="{{key}}"></label>
+             <label for="{{key}}"></label>
+            </div>
+          </div>
+        {%endfor%}
+        </div>
+
+        <button class="btn primary block mT20 ">{%trans "Save"%}</button>
     </form>
+
     </div>
   </div>
 

@@ -1,0 +1,10 @@
+{
+  "notification": {
+    "title": "Send notification",
+    "url": "notification"
+  },
+  "closesolved": {
+    "title": "Set ticket close if solved",
+    "url": "closesolved"
+  }
+}
