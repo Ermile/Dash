@@ -3,7 +3,7 @@
     "title": "The title :name",
     "content": "The :user content",
     "category": "test",
-    "notification" : true,
+    "type": "notificatio",
     "url": ":kingdom/sample?id=$id",
     "send_msg": {
       "telegram": "Hi tg",

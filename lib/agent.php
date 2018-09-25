@@ -19,6 +19,12 @@ class agent
 
 			$agent_detail = \dash\utility\browserDetection::browser_detection('full_assoc');
 
+			// can not detect agent
+			if(!$agent)
+			{
+				return null;
+			}
+
 			$insert =
 			[
 				'agent'    => $agent,

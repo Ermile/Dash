@@ -89,15 +89,22 @@ class visitor
 	private static function agent_id()
 	{
 		$agent_session = \dash\session::get('visitor_agent_id');
-		if($agent_session)
+		if($agent_session && is_numeric($agent_session))
 		{
 			return intval($agent_session);
 		}
 		else
 		{
 			$agent_session = \dash\agent::get(true);
-			\dash\session::set('visitor_agent_id', $agent_session);
-			return intval($agent_session);
+			if($agent_session && is_numeric($agent_session))
+			{
+				\dash\session::set('visitor_agent_id', $agent_session);
+				return intval($agent_session);
+			}
+			else
+			{
+				return null;
+			}
 		}
 	}
 

@@ -23,6 +23,12 @@ class logs
 
 	public static $fields =	" * ";
 
+
+	public static function multi_insert($_args)
+	{
+		return \dash\db\config::public_multi_insert('logs', $_args, \dash\db::get_db_log_name());
+	}
+
 	/**
 	 * insert new recrod in logs table
 	 * @param array $_args fields data
@@ -93,7 +99,6 @@ class logs
 	 */
 	public static function set($_caller, $_user_id = null, $_options = [])
 	{
-
 		$default_options =
 		[
 			'visitor_id' => \dash\utility\visitor::id(),
@@ -135,10 +140,10 @@ class logs
 			$user_id = \dash\user::id();
 		}
 
-		if($_options['datalink'] && mb_strlen($_options['datalink']) >= 100)
-		{
-			$_options['datalink'] = substr($_options['datalink'], 0, 98);
-		}
+		// if($_options['datalink'] && mb_strlen($_options['datalink']) >= 100)
+		// {
+		// 	$_options['datalink'] = substr($_options['datalink'], 0, 98);
+		// }
 
 		if($_options['data'] && mb_strlen($_options['data']) >= 200)
 		{
@@ -150,31 +155,31 @@ class logs
 			$_caller = substr($_caller, 0, 198);
 		}
 
-		$caller = [];
-		$caller[] = \dash\url::content() ? \dash\url::content() : 'site';
+		// $caller = [];
+		// $caller[] = \dash\url::content() ? \dash\url::content() : 'site';
 
-		if(\dash\url::module())
-		{
-			$caller[] = \dash\url::module();
-		}
+		// if(\dash\url::module())
+		// {
+		// 	$caller[] = \dash\url::module();
+		// }
 
-		if(\dash\url::child())
-		{
-			$caller[] = \dash\url::child();
-		}
+		// if(\dash\url::child())
+		// {
+		// 	$caller[] = \dash\url::child();
+		// }
 
-		$caller = implode(':', $caller);
+		// $caller = implode(':', $caller);
 
-		$caller = $caller. ';'. $_caller;
+		// $caller = $caller. ';'. $_caller;
 
 		$insert_log =
 		[
-			'caller'      => $caller,
+			'caller'      => $_caller,
 			'user_id'     => $user_id,
 			'datecreated' => date("Y-m-d H:i:s"),
 			'subdomain'   => \dash\url::subdomain() ? \dash\url::subdomain() : null,
 			'visitor_id'  => $_options['visitor_id'],
-			'datalink'    => $_options['datalink'],
+			// 'datalink'    => $_options['datalink'],
 			'data'        => $_options['data'],
 			'status'      => $_options['status'],
 			'meta'        => $_options['meta'],
