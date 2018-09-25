@@ -201,7 +201,7 @@ class view
 		if(\dash\request::get('user'))
 		{
 			$user = \dash\coding::decode(\dash\request::get('user'));
-			if($user && \dash\permission::check('supportTicketView'))
+			if($user && \dash\permission::check('supportTicketManage'))
 			{
 				$args['comments.user_id'] = $user;
 			}
