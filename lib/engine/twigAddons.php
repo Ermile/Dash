@@ -99,7 +99,7 @@ class twigAddons
 		{
 			if($_format === true)
 			{
-				$_format = "Y/m/d H:i:s";
+				$_format = \dash\datetime::format(true);
 			}
 			$result = $_string;
 			if(\dash\data::lang_current() == 'fa')
