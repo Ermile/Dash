@@ -94,7 +94,7 @@
           {%set myClass = null %}
         {%endif%}
 
-        <div class="msg {{myClass}}">{{value.date | tdate(true)}}</div>
+        <div class="msg {{myClass}}">{{value.date | dt(true)}}</div>
         {%endfor%}
       </div>
     {%endif%}
@@ -115,7 +115,7 @@
     <div class="cauto pRa10"><a class="badge" href="{{url.here}}/ticket?access=all&subdomain={{masterTicketDetail.subdomain}}">{{masterTicketDetail.subdomain | capitalize}}</a></div>
 {%endif%}
     <div>{{masterTicketDetail.title}}</div>
-    <div class="cauto os fs08 compact" title='{%trans "Last activity"%} {{dataTable.0.datemodified | tdate(true)}}'>{{masterTicketDetail.datecreated | tdate(true)}}</div>
+    <div class="cauto os fs08 compact" title='{%trans "Last activity"%} {{dataTable.0.datemodified | dt(true)}}'>{{masterTicketDetail.datecreated | dt(true)}}</div>
   </div>
 
 {%set myID = requestGET.id | coding('encode')%}
@@ -164,7 +164,7 @@
            </div>
 {%endif%}
            <div class="cauto os fc-mute">
-            <small title='{{value.datecreated | tdate(true)}}'>{{value.datecreated | sdate("year")}}</small>
+            <small title='{{value.datecreated | dt(true)}}'>{{value.datecreated | sdate("year")}}</small>
 {%if perm('supportEditMessage')%}
             <a class="fs08 mLa10" href="{{url.here}}/message/edit?id={{value.id}}">{%trans "Edit"%}</a>
             {%if value.type == 'ticket_note'%}
@@ -232,7 +232,7 @@
 {%block iDatetime%}
   <div class="f fc-mute mB20 fs09">
     <div class="c fs08">{%trans "Current Time"%}</div>
-    <div class="cauto os">{{"now" | tdate(true)}}</div>
+    <div class="cauto os">{{"now" | dt(true)}}</div>
   </div>
 {%endblock%}
 
