@@ -93,6 +93,11 @@ class datetime
 		{
 			$_lang = \dash\language::current();
 		}
+		// check if we have date in format but value of date is zero, try to remove it
+		if(date('H:i:s', $myDatetime) === '00:00:00' && strpos($myFormat, 'H:i:s') > 0)
+		{
+			$myFormat = str_replace(' H:i:s', '', $myFormat);
+		}
 
 		// step3 - change to new format
 		switch ($_lang)
