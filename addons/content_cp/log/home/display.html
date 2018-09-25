@@ -79,8 +79,8 @@
         <td><a href="{{url.this}}?data={{value.data}}">{{value.data}}</a></td>
         <td><a href="{{url.this}}?datalink={{value.datalink}}">{{value.datalink}}</a></td>
         <td><a href="{{url.this}}?status={{value.status}}">{{value.status}}</a></td>
-        <td>{{value.datemodified | tdate("Y/m/d H:i:s")}}</td>
-        <td>{{value.datecreated | tdate("Y/m/d H:i:s")}}</td>
+        <td>{{value.datemodified | dt(true)}}</td>
+        <td>{{value.datecreated | dt(true)}}</td>
         <td>{{value.visitor_id}}</td>
       </tr>
       {%endfor%}

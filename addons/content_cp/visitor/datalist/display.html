@@ -94,9 +94,9 @@
 
         {%endif%}
       </td>
-      <td class="collapsing ltr txtL">
-        <a href="{{url.this}}/datalist?date={{value.date | date('Y-m-d')}}">{{value.date | tdate("Y-m-d")}}</a><br>
-        <b><a href="{{url.this}}/datalist?time={{value.date | date('H:i:s')}}">{{value.date | tdate("H:i:s")}}</a></b>
+      <td class="collapsing txtL">
+        <a href="{{url.this}}/datalist?date={{value.date | date('Y-m-d')}}">{{value.date | dt(false, 'date')}}</a><br>
+        <b><a href="{{url.this}}/datalist?time={{value.date | date('H:i:s')}}">{{value.date | dt(true, 'time')}}</a></b>
           <br>
           <small><a href="{{url.this}}/datalist?datetime={{value.date}}">{{value.date | sdate()}}</a></small>
         {%if value.avgtime%}

@@ -48,7 +48,7 @@
                 <th class="collapsing">{%trans key%}</th>
                 <td>{%set myValue = value | capitalize | fitNumber(false)%}
                 {%if key == 'birthday' or 'date' in key %}
-                  <span class="block ltr" title="{{value}}"><i class="sf-calendar"></i> {{value | tdate(true)}}</span>
+                  <span class="block ltr" title="{{value}}"><i class="sf-calendar"></i> {{value | dt(true)}}</span>
                 {%elseif 'code' in key or 'id' in key or key == 'phone'%}
                   <span class="block ltr">{{myValue}}</span>
                 {%elseif key == 'website'%}

@@ -24,7 +24,7 @@
 	<div class="msg">{%trans "Visit"%} <b>{{dashboardDetail.visit | fitNumber}}</b></div>
 	<div class="msg">{%trans "Visitor"%} <b>{{dashboardDetail.visitor | fitNumber}}</b></div>
 	<div class="msg" title="{{dashboardDetail.avgtime}}">{%trans "AVG TIME"%} {{dashboardDetail.avgtime | fitNumber}} {%trans "Second"%}</div>
-	<div class="msg">{%trans "Max trafic time"%} {{(dashboardDetail.maxtrafictime ~ ":00:00") | tdate("l d F Y H:i:s")}}</div>
+	<div class="msg">{%trans "Max trafic time"%} {{(dashboardDetail.maxtrafictime ~ ":00:00") | dt(true)}}</div>
 
 </div>
 {%endblock%}
