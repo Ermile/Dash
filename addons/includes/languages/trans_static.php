@@ -1053,6 +1053,9 @@ class TransStatic
 	echo T_("supportTicketShowLastVisitor");
 	echo T_("cpVisitorView");
 
+	echo T_("Send notification");
+	echo T_("Set ticket close if solved");
+
  }
 }
 ?>

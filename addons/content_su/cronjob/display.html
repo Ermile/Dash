@@ -16,14 +16,14 @@
          </label>
         </div>
         <div data-response='active' {%if cronjob%}{%else%}data-response-hide{%endif%}>
-            <p class="msg mT20 primary2 pB50 pT20 ">
+            <p class="msg mT20 primary2 pB50 pT20">
                 <code class="ltr floatL">{{cronjobPHP}}</code>
             </p>
 
         {%for key, value in activeList%}
           <div class="mT20 pB50 msg {%if value.active%} success2 {%endif%}">
-            {{value.title}}
-            <small>{{value.desc}}</small>
+            {%set my_title = value.title%}{%trans my_title%}
+            <small>{%set my_desc = value.desc%}{%trans my_desc%}</small>
             {%if value.saved_url%} <a href="{{value.saved_url}}" class="badge warn">{{value.saved_url}}</a>{%endif%}
             <div class="switch1 pB20 floatL">
              <input type="checkbox" name="{{key}}" id="{{key}}" {%if value.active %} checked {%endif%}>
