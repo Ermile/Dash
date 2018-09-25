@@ -10,6 +10,7 @@ class twigAddons
 		$filters[] = self::filter_fcache();
 		$filters[] = self::filter_jdate();
 		$filters[] = self::filter_tdate();
+		$filters[] = self::filter_dt();
 		$filters[] = self::filter_sdate();
 		$filters[] = self::filter_readableSize();
 		$filters[] = self::filter_persian();
@@ -95,9 +96,36 @@ class twigAddons
 	 */
 	private static function filter_tdate()
 	{
-		return new \Twig_SimpleFilter('tdate', function ($_string, $_format = null, $_convert = true)
+		return new \Twig_SimpleFilter('tdate', function ($_string, $_format ="Y/m/d", $_convert = true)
 		{
-			return \dash\datetime::get($_string, $_format, null, null, $_convert);
+			if($_format === true)
+			{
+				$_format = \dash\datetime::format(true);
+			}
+			$result = $_string;
+			if(\dash\data::lang_current() == 'fa')
+			{
+				$result = \dash\utility\jdate::date($_format, $_string, $_convert);
+			}
+			else
+			{
+				$result = date($_format, strtotime($_string));
+			}
+
+			return $result;
+		});
+	}
+
+
+	/**
+	 * twig custom filter for convert datetime to best type of showing on each language
+	 * dt means datetime
+	 */
+	private static function filter_dt()
+	{
+		return new \Twig_SimpleFilter('dt', function ($_string, $_format = null, $_convert = true)
+		{
+			return \dash\datetime::fit($_string, $_format);
 			return $result;
 		});
 	}
