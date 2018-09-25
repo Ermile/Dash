@@ -10,7 +10,7 @@ class datetime
 	 * @param  boolean $_long [description]
 	 * @return [type]         [description]
 	 */
-	public static function format($_type = null, $_long = null, $_lang = null)
+	public static function format($_long = null, $_type = null, $_lang = null)
 	{
 		switch ($_type)
 		{
@@ -83,7 +83,7 @@ class datetime
 		// step1 - check datetime
 
 		// step2 - get new format
-		$myFormat   = self::format($_type, $_long);
+		$myFormat   = self::format($_long, $_type);
 		$myDatetime = strtotime($_datetime);
 		$finalDate  = null;
 		// detect current lang if not set
