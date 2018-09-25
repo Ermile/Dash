@@ -8,39 +8,72 @@ class controller
 	{
 		if(\dash\permission::supervisor())
 		{
-			\content_hook\cronjob\model::post();
+			self::cronjob_run();
 			return;
 		}
 
-		if(isset($_SERVER['REQUEST_METHOD']) && mb_strtolower($_SERVER['REQUEST_METHOD']) === 'get')
+		if(mb_strtoupper(\dash\request::is()) !== 'POST')
 		{
-			\dash\header::status(404);
+			\dash\header::status(416);
 		}
 
-		// if(\dash\url::isLocal())
-		// {
-		// 	\dash\header::status(404, "Hi Developer :))");
-		// 	return;
-		// }
+		$token = \dash\request::post('token');
 
-		// if
-		// (
-		// 	preg_match("/^127\\.0\\.0\\.\d+$/", $_SERVER['SERVER_ADDR']) ||
-		// 	(
-		// 		isset($_SERVER['REMOTE_ADDR']) &&
-		// 		isset($_SERVER['SERVER_ADDR']) &&
-		// 		$_SERVER['REMOTE_ADDR'] === $_SERVER['SERVER_ADDR']
-		// 	)
-		// )
-		// {
-		// 	// no thing
-		// }
-		// else
-		// {
-		// 	// \dash\utility\telegram::sendMessage("@tejarak_monitor", "#ERROR\n".  json_encode($_SERVER, JSON_UNESCAPED_UNICODE));
-		// 	\dash\header::status(404);
-		// }
+		if(!$token)
+		{
+			\dash\code::boom();
+		}
 
+		$read_file = root. 'list.crontab.txt';
+		if(is_file($read_file))
+		{
+			$check_token = file_get_contents($read_file);
+			$check_token = json_decode($check_token, true);
+
+			if(isset($check_token['token']) && $check_token['token'] === $token)
+			{
+				self::cronjob_run();
+				return true;
+				// this is ok
+			}
+		}
+		\dash\code::boom();
+	}
+
+
+	private static function cronjob_run()
+	{
+		if(!\dash\option::config('cronjob','status'))
+		{
+			return;
+		}
+
+		$url = \dash\request::get('type');
+
+		switch ($url)
+		{
+			// case 'notification':
+			// 	\dash\app\sendnotification::send();
+			// 	break;
+
+			case 'closesolved':
+				$time_now    = date("i");
+				// every 10 minuts
+				if((is_string($time_now) && mb_strlen($time_now) === 2 && $time_now{1} == '0') || \dash\permission::supervisor())
+				{
+					\dash\db\comments::close_solved_ticket();
+				}
+				break;
+
+			default:
+				// nothing
+				break;
+		}
+
+		if(is_callable(['\lib\cronjob', 'run']))
+		{
+			\lib\cronjob::run();
+		}
 	}
 }
 ?>
