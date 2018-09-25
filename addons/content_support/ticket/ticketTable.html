@@ -14,8 +14,6 @@
         {%else%}
         <a href="{{url.here}}/ticket/show?id={{value.id}}{{accessGetAnd}}{%if not login.id %}&guest={{value.code}}{%endif%}"><span class="badge light mRa5">{{value.id | fitNumber(false)}}</span> {{value.title | slice(0, 40)}}</a>
         {%endif%}
-      </td>
-      <td class="s0"><a href="{{url.here}}/ticket/show?id={{value.id}}{{accessGetAnd}}{%if not login.id %}&guest={{value.code}}{%endif%}">{{value.content | slice(0, 70) | striptags}}</a>
 {%if value.tag%}
         <div class="mT5 fs12">
 {%for Tkey, Tvalue in value.tag%}
@@ -24,6 +22,9 @@
         </div>
 {%endif%}
       </td>
+
+      <td class="s0"><a href="{{url.here}}/ticket/show?id={{value.id}}{{accessGetAnd}}{%if not login.id %}&guest={{value.code}}{%endif%}">{{value.content | slice(0, 70) | striptags}}</a>
+      </td>
 {%if haveSubdomain%}
     <td class="collapsing s0 ltr">
 {%if value.subdomain%}
@@ -31,9 +32,15 @@
 {%endif%}
     </td>
 {%endif%}
+
+      <td class="collapsing s0">{%if value.solved%}<div class="badge success">{%trans "Solved"%} <i class="compact sf-check"></i></div>{%endif%}</td>
+
       <td class="collapsing s0">{%if value.plus%}{{value.plus | fitNumber}} <i class="compact sf-chat-alt-fill"></i>{%else%}{%endif%}</td>
+
       <td class="collapsing"><span title='{%trans "Created on"%} {{value.datecreated | dt(true)}}{%if value.datemodified%}<br>{%trans "Last modified on"%} {{value.datemodified | dt(true)}}{%endif%}'>{%if value.datemodified%}{{value.datemodified | sdate("year")}}{%else%}{{value.datecreated | sdate("year")}}{%endif%}</span></td>
+
       <td class="collapsing fs08 s0 m0">{%set myStatus = value.status%}{%if value.status != 'awaiting'%}<i class="compact mRa5 sf-spin-alt fc-green"></i>{%else%}<i class="compact mRa5 sf-asterisk spiny fc-red"></i>{%endif%}{%trans myStatus%}</td>
+
 {%if accessMode != 'mine'%}
       <td class="collapsing txtRa">
         <a href="{{url.here}}/ticket?user={{value.user_id}}{{accessGetAnd}}">
