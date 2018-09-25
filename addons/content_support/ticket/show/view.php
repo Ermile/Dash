@@ -124,6 +124,8 @@ class view
 			\dash\data::lastSeen($lastSeen);
 
 		}
+		\content_support\ticket\home\view::sidebarDetail(true);
+
 
 	}
 
