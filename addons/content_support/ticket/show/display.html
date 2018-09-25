@@ -94,7 +94,7 @@
           {%set myClass = null %}
         {%endif%}
 
-        <div class="msg {{myClass}}">{{value.date | date("Y-m-d H:i:s") |  tdate("l d F Y H:i:s")}}</div>
+        <div class="msg {{myClass}}">{{value.date | tdate(true)}}</div>
         {%endfor%}
       </div>
     {%endif%}
@@ -164,7 +164,7 @@
            </div>
 {%endif%}
            <div class="cauto os fc-mute">
-            <small title='{{value.datecreated | tdate("l d F Y H:i:s")}}'>{{value.datecreated | sdate("year")}}</small>
+            <small title='{{value.datecreated | tdate(true)}}'>{{value.datecreated | sdate("year")}}</small>
 {%if perm('supportEditMessage')%}
             <a class="fs08 mLa10" href="{{url.here}}/message/edit?id={{value.id}}">{%trans "Edit"%}</a>
             {%if value.type == 'ticket_note'%}
