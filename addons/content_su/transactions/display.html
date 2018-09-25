@@ -80,7 +80,7 @@
 		<td>{%set my_status = value.status | capitalize%}<a href="{{url.here}}/transactions?status={{value.status}}">{%trans my_status%}</a></td>
 		<td>{%set my_condition = value.condition | capitalize%}<a href="{{url.here}}/transactions?condition={{value.condition}}">{%trans my_condition%}</a></td>
 		<td>{%if value.verify%}<i class="sf-check-1 fc-green"></i>{%else%}<i class="sf-times fc-red"></i>{%endif%}</td>
-		<td title="{{value.date}}">{{value.date | tdate}}</td>
+		<td title="{{value.date}}">{{value.date | dt}}</td>
       </tr>
       {%endfor%}
     </tbody>
