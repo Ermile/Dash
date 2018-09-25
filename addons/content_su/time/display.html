@@ -1,13 +1,88 @@
 {%extends display.suMain%}
 
 {%block pageContent%}
-<div class="cbox ltr ">
-<h1>SERVER TIME</h1>
-<h3>{{"now" | date("H:i:s")}}</h3>
-<h3>{{"now" | date("Y-m-d")}}</h3>
-<h3>{{"now" | date("l j F Y")}}</h3>
-<h3>{{"now" | tdate("Y-m-d")}}</h3>
-<h3>{{"now" | tdate("l j F Y")}}</h3>
-<h3>Time zone: {{timeZone}}</h3>
+<div class="msg info ltr fs18">{%trans "Time zone"%} <b>{{timeZone}}</b></div>
+
+<div class="f">
+	<div class="c pRa10">
+		<div class="cbox fs12">
+			<div class="msg warn">{%trans "Automatic"%}</div>
+			<h2 class="mT50">{%trans "DateTime"%}</h2>
+			<div class="msg">{{"now" | dt}}</div>
+			<div class="msg info2">{{"now" | dt(true)}}</div>
+
+			<h2 class="mT50">{%trans "Date"%}</h2>
+			<div class="msg">{{"now" | dt(true, 'date')}}</div>
+			<div class="msg">{{"now" | dt(false, 'date')}}</div>
+
+			<h2 class="mT50">{%trans "Time"%}</h2>
+			<div class="msg">{{"now" | dt(true, 'time')}}</div>
+			<div class="msg">{{"now" | dt(false, 'time')}}</div>
+		</div>
+	</div>
+
+	<div class="c pRa10">
+		<div class="cbox fs12 ltr">
+			<div class="msg warn">{%trans "Force English"%}</div>
+			<h2 class="mT50">{%trans "DateTime"%}</h2>
+			<div class="msg">{{"now" | dt(null, null, 'en')}}</div>
+			<div class="msg info2">{{"now" | dt(true, null, 'en')}}</div>
+
+			<h2 class="mT50">{%trans "Date"%}</h2>
+			<div class="msg">{{"now" | dt(true, 'date', 'en')}}</div>
+			<div class="msg">{{"now" | dt(false, 'date', 'en')}}</div>
+
+			<h2 class="mT50">{%trans "Time"%}</h2>
+			<div class="msg">{{"now" | dt(true, 'time', 'en')}}</div>
+			<div class="msg">{{"now" | dt(false, 'time', 'en')}}</div>
+		</div>
+	</div>
+
+	<div class="c">
+		<div class="cbox fs12 rtl">
+			<div class="msg warn">{%trans "Force Persian"%}</div>
+			<h2 class="mT50">{%trans "DateTime"%}</h2>
+			<div class="msg">{{"now" | dt(null, null, 'fa')}}</div>
+			<div class="msg info2">{{"now" | dt(true, null, 'fa')}}</div>
+
+			<h2 class="mT50">{%trans "Date"%}</h2>
+			<div class="msg">{{"now" | dt(true, 'date', 'fa')}}</div>
+			<div class="msg">{{"now" | dt(false, 'date', 'fa')}}</div>
+
+			<h2 class="mT50">{%trans "Time"%}</h2>
+			<div class="msg">{{"now" | dt(true, 'time', 'fa')}}</div>
+			<div class="msg">{{"now" | dt(false, 'time', 'fa')}}</div>
+		</div>
+	</div>
 </div>
+
+
+<div class="cbox">
+	<h2>{%trans "Human Timing"%}</h2>
+	<div class="msg f"><span class="c3">12:30</span>{{"12:30" | dt('human', 'year')}}</div>
+	<div class="msg f"><span class="c3">2015</span>{{"2015" | dt('human', 'year')}}</div>
+	<div class="msg f"><span class="c3">2015-08-12</span> {{"2015-08-12" | dt('human', 'year')}}</div>
+	<div class="msg f"><span class="c3">2017-08-12</span> {{"2017-08-12" | dt('human', 'year')}}</div>
+	<div class="msg f"><span class="c3">2018-08-12</span> {{"2018-08-12" | dt('human', 'year')}}</div>
+	<div class="msg f"><span class="c3">2018-09-20</span> {{"2018-09-20" | dt('human', 'year')}}</div>
+	<div class="msg f"><span class="c3">2018-09-25</span> {{"2018-09-25" | dt('human', 'year')}}</div>
+	<div class="msg f"><span class="c3">4000 days ago</span> {{"4000 days ago" | dt('human', 'year')}}</div>
+	<div class="msg f"><span class="c3">400 days ago</span> {{"400 days ago" | dt('human', 'year')}}</div>
+	<div class="msg f"><span class="c3">200 days ago</span> {{"200 days ago" | dt('human', 'year')}}</div>
+	<div class="msg f"><span class="c3">170000 minute ago</span> {{"170000 minute ago" | dt('human', 'year')}}</div>
+	<div class="msg f"><span class="c3">70000 minute ago</span> {{"70000 minute ago" | dt('human', 'year')}}</div>
+	<div class="msg f"><span class="c3">20000 minute ago</span> {{"20000 minute ago" | dt('human', 'year')}}</div>
+	<div class="msg f"><span class="c3">5000 minute ago</span> {{"5000 minute ago" | dt('human', 'year')}}</div>
+	<div class="msg f"><span class="c3">1500 minute ago</span> {{"1500 minute ago" | dt('human', 'year')}}</div>
+	<div class="msg f"><span class="c3">500 minute ago</span> {{"500 minute ago" | dt('human', 'year')}}</div>
+	<div class="msg f"><span class="c3">200 minute ago</span> {{"200 minute ago" | dt('human', 'year')}}</div>
+	<div class="msg f"><span class="c3">75 minute ago</span> {{"75 minute ago" | dt('human', 'year')}}</div>
+	<div class="msg f"><span class="c3">45 minute ago</span> {{"45 minute ago" | dt('human', 'year')}}</div>
+	<div class="msg f"><span class="c3">27 minute ago</span> {{"27 minute ago" | dt('human', 'year')}}</div>
+	<div class="msg f"><span class="c3">7 minute ago</span> {{"7 minute ago" | dt('human', 'year')}}</div>
+	<div class="msg f"><span class="c3">1 minute ago</span> {{"1 minute ago" | dt('human', 'year')}}</div>
+	<div class="msg f"><span class="c3">45 second ago</span> {{"45 second ago" | dt('human', 'year')}}</div>
+	<div class="msg f"><span class="c3">Now</span> {{"now" | dt('human', 'year')}}</div>
+</div>
+
 {%endblock%}
