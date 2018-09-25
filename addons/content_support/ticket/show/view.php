@@ -35,6 +35,17 @@ class view
 
 		\dash\data::masterTicketDetail($main);
 
+		if(isset($main['solved']) && isset($main['datemodified']))
+		{
+			$closeDate = $main['datemodified'];
+			// add 24 hour to get close date
+			$closeDate = date("Y-m-d H:i:s", strtotime('+24 hour', strtotime($closeDate)));
+
+			$solvedMsg = T_("This ticket closed automatically on :time because it marked as solved.", ['time' => "<b>". \dash\datetime::fit($closeDate, 'shortTime'). "</b>"]). ' '. T_("If it's okay you can close it manually.");
+
+			\dash\data::solvedMsg($solvedMsg);
+		}
+
 		$ticket_user_id = $main['user_id'];
 		\dash\data::masterTicketUser($ticket_user_id);
 		$ticket_user_id = \dash\coding::decode($ticket_user_id);

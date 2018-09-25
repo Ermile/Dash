@@ -177,6 +177,16 @@
 {%endfor%}
     </tbody>
   </table>
+
+{%if masterTicketDetail.status == 'awaiting' and masterTicketDetail.solved%}
+  <form method="post">
+    <p class="msg info mB0-f">{{solvedMsg | raw}}
+      <input type="hidden" name="TicketFormType" value="changeStatus">
+      <button class="btn secondary sm floatRa" name="status" value="close">{%trans "Close ticket"%}</button>
+    </p>
+  </form>
+{%endif%}
+
 </div>
 {%endblock%}
 
