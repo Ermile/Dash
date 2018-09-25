@@ -13,6 +13,7 @@
   <div class="c4 s12">
 
     <div class="cbox">
+      {{block("iDatetime")}}
 {%if masterTicketDetail.status == 'awaiting' or masterTicketDetail.status == 'answered'%}
   {%if isMyTicket or perm('supportTicketClose')%}
       <div class="fs08">
@@ -225,3 +226,14 @@
 {%endif%}
 
 {%endblock%}
+
+
+
+{%block iDatetime%}
+  <div class="f fc-mute mB10">
+    <div class="c fs08">{%trans "Current Time"%}</div>
+    <div class="cauto os">{{"now" | tdate(true)}}</div>
+  </div>
+{%endblock%}
+
+
