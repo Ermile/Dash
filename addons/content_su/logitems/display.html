@@ -33,7 +33,7 @@
 			<td><a href="{{url.kingdom}}/su/logs/caller={{value.caller}}"  title='{%trans "Click to show all logs by this logitems"%}'>{{value.caller}}</a></td>
 			<td>{{value.title}}</td>
 			<td>{%set myPriority = value.priority |capitalize %}{%trans myPriority%}</td>
-			<td>{{value.datecreated | tdate}}</td>
+			<td>{{value.datecreated | dt}}</td>
 			<td><a href="{{url.kingdom}}/su/logitems/edit?id={{value.id}}"><i class="sf-edit"></i></a></td>
 		</tr>
 		{%endfor%}

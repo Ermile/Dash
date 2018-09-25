@@ -93,7 +93,7 @@
         </div>
         <div class="f fs09">
           <a href="{{url.this}}/logshow?id={{value.id}}#hook" class="cauto mRa5"><i class="sf-save-1"></i></a>
-          <a href="{{url.that}}?hookdate={{value.hookdate}}" title='{{value.hookdate}}' class="cauto">{{value.hookdate | tdate('H:i:s')}}</a>
+          <a href="{{url.that}}?hookdate={{value.hookdate}}" title='{{value.hookdate}}' class="cauto">{{value.hookdate | dt(true, 'time')}}</a>
           <div class="cauto">
             {%if value.hookmessageid%}
             <a href="{{url.this}}/logshow?id={{value.id}}#hookmessageid" class="badge mLa5" title='hook messageid'>{{value.hookmessageid}}</a>
@@ -121,12 +121,12 @@
         </div>
         <div class="f fs09">
           <a href="{{url.this}}/logshow?id={{value.id}}#send" class="cauto mRa5" title='{%trans "Check more detail"%}'><i class="sf-save-1"></i></a>
-          <a href="{{url.that}}?senddate={{value.senddate}}" title='{{value.senddate}}' class="c txtB">{{value.senddate | tdate('H:i:s')}}</a>
+          <a href="{{url.that}}?senddate={{value.senddate}}" title='{{value.senddate}}' class="c txtB">{{value.senddate | dt(true, 'time')}}</a>
         </div>
 {%if value.response%}
         <div class="f fs09">
           <a href="{{url.this}}/logshow?id={{value.id}}#response" class="cauto mRa5" title='{%trans "Check more detail"%}'><i class="sf-save-1"></i></a>
-          <a href="{{url.that}}?responsedate={{value.responsedate}}" title='{{value.responsedate}}' class="c txtB">{{value.responsedate | tdate('H:i:s')}}</a>
+          <a href="{{url.that}}?responsedate={{value.responsedate}}" title='{{value.responsedate}}' class="c txtB">{{value.responsedate | dt(true, 'time')}}</a>
         </div>
 {%else%}
         <i class="sf-chain-broken fc-red" title='{%trans "Without response"%}'></i>
