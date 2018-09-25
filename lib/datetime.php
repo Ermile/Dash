@@ -118,9 +118,9 @@ class datetime
 	}
 
 
-	public static function fit($_datetime, $_format = null, $_type = null)
+	public static function fit($_datetime, $_format = null, $_type = null, $_calendar = null)
 	{
-		return self::get($_datetime, $_format, $_type);
+		return self::get($_datetime, $_format, $_type, $_calendar);
 	}
 
 }

@@ -123,9 +123,9 @@ class twigAddons
 	 */
 	private static function filter_dt()
 	{
-		return new \Twig_SimpleFilter('dt', function ($_string, $_format = null, $_type = null)
+		return new \Twig_SimpleFilter('dt', function ($_string, $_format = null, $_type = null, $_calendar = null)
 		{
-			return \dash\datetime::fit($_string, $_format, $_type);
+			return \dash\datetime::fit($_string, $_format, $_type, $_calendar);
 			return $result;
 		});
 	}
