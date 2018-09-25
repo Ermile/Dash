@@ -55,7 +55,6 @@ class view
 			\dash\header::status(403, T_("Ticket not found"));
 		}
 
-
 		if(!\dash\permission::check('supportTicketManage'))
 		{
 			if(intval($ticket_user_id) === intval(\dash\user::id()))

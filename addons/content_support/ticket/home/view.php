@@ -281,7 +281,7 @@ class view
 				break;
 
 			case 'manage':
-				\dash\permission::access('supportTicketView');
+				\dash\permission::access('supportTicketManage');
 
 				\dash\data::haveSubdomain(false);
 
