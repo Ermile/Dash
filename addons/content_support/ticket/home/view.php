@@ -277,7 +277,7 @@ class view
 				break;
 
 			case 'all':
-				\dash\permission::access('supportTicketViewAll');
+				\dash\permission::access('supportTicketManageSubdomain');
 				break;
 
 			case 'manage':
