@@ -52,9 +52,9 @@ class controller
 
 		switch ($url)
 		{
-			// case 'notification':
-			// 	\dash\app\sendnotification::send();
-			// 	break;
+			case 'notification':
+				\dash\app\sendnotification::send();
+				break;
 
 			case 'closesolved':
 				$time_now    = date("i");
