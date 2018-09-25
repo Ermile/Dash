@@ -50,6 +50,14 @@ class datetime
 			default:
 				switch ($_long)
 				{
+					case 'shortTime':
+						return 'l d F Y'. ' '. 'H:i';
+						break;
+
+					case 'shortDate':
+						return 'Y-m-d'. ' '. 'H:i:s';
+						break;
+
 					case true:
 						return 'l d F Y'. ' '. 'H:i:s';
 						break;
@@ -61,7 +69,6 @@ class datetime
 				}
 				break;
 		}
-
 	}
 
 
