@@ -62,7 +62,7 @@ class datetime
 				{
 					return 'l d F Y'. ' '. 'H:i:s';
 				}
-				elseif ($_model === false)
+				elseif ($_model === false || $_model === null)
 				{
 					return 'Y-m-d'. ' '. 'H:i';
 				}
