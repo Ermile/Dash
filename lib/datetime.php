@@ -10,12 +10,12 @@ class datetime
 	 * @param  boolean $_long [description]
 	 * @return [type]         [description]
 	 */
-	public static function format($_long = null, $_type = null, $_lang = null)
+	public static function format($_model = null, $_type = null, $_lang = null)
 	{
 		switch ($_type)
 		{
 			case 'date':
-				switch ($_long)
+				switch ($_model)
 				{
 					case true:
 						// Tuesday 25 September 2018
@@ -31,7 +31,7 @@ class datetime
 				break;
 
 			case 'time':
-				switch ($_long)
+				switch ($_model)
 				{
 					case true:
 						// 4:05:52 PM
@@ -48,26 +48,22 @@ class datetime
 
 			case 'datetime':
 			default:
-				switch ($_long)
+				if($_model === 'shortTime')
 				{
-					case 'shortTime':
-						return 'l d F Y'. ' '. 'H:i';
-						break;
-
-					case 'shortDate':
-						return 'Y-m-d'. ' '. 'H:i:s';
-						break;
-
-					case true:
-						return 'l d F Y'. ' '. 'H:i:s';
-						break;
-
-					case false:
-					default:
-						return 'Y-m-d'. ' '. 'H:i';
-						break;
+					return 'l d F Y'. ' '. 'H:i';
 				}
-				break;
+				elseif($_model === 'shortDate')
+				{
+					return 'Y-m-d'. ' '. 'H:i:s';
+				}
+				elseif ($_model === true)
+				{
+					return 'l d F Y'. ' '. 'H:i:s';
+				}
+				else
+				{
+					return 'Y-m-d'. ' '. 'H:i';
+				}
 		}
 	}
 
