@@ -12,9 +12,13 @@
         <div class="switch1">
          <input type="checkbox" name="active" id="active" {%if cronjob%} checked {%endif%}>
          <label for="active"></label>
-         <label for="active">{%trans "Run cronjob for this service"%}</label>
+         <label for="active">{%trans "Run cronjob for this service"%}
+         </label>
         </div>
         <div data-response='active' {%if cronjob%}{%else%}data-response-hide{%endif%}>
+            <p class="msg mT20 primary2 pB50 pT20 ">
+                <code class="ltr floatL">{{cronjobPHP}}</code>
+            </p>
 
         {%for key, value in activeList%}
           <div class="mT20 pB50 msg {%if value.active%} success2 {%endif%}">

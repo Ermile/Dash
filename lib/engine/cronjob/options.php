@@ -4,7 +4,7 @@ namespace dash\engine\cronjob;
 class options
 {
 
-	private static function current_cronjob_path()
+	public static function current_cronjob_path()
 	{
 		return '* * * * * php '. __DIR__ . '/cronjob.php';
 	}
