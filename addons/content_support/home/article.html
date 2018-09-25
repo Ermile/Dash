@@ -51,7 +51,7 @@
 
 {%if datarow.datemodified%}
     <div class='msg f mT20 fs08'>
-      <div class="c"><time datetime="{{datarow.datemodified}}">{{datarow.publishdate | tdate('l d F Y')}}</time></div>
+      <div class="c"><time datetime="{{datarow.datemodified}}">{{datarow.publishdate | dt(true, 'date')}}</time></div>
       <div class="cauto os">{{category({"format" : 'html', "class": "badge mRa5"})}} <a href="{{url.base}}/n/{{datarow.id}}" data-direct title='{%trans "For share via social networks"%}'>{%trans "Short link"%} <span class="txtB">{{datarow.id}}</span></a></div>
     </div>
 {%endif%}
