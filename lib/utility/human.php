@@ -17,7 +17,7 @@ class human
 	 * @param  string $_lang   [description]
 	 * @return [type]          [description]
 	 */
-	public static function timing($_time, $_max = 'ultimate', $_format = "Y/m/d", $_lang = 'en')
+	public static function timing($_time, $_max = 'ultimate', $_format = "Y/m/d", $_lang = null)
 	{
 		// auto convert with strtotime function
 		$_time     = strtotime($_time);
@@ -32,6 +32,11 @@ class human
 			60       => T_('minute'),
 			1        => T_('second')
 		];
+		// detect current lang if not set
+		if($_lang === null)
+		{
+			$_lang = \dash\language::current();
+		}
 		if($time_diff < 0)
 		{
 			return T_('In the future');
