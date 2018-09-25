@@ -7,7 +7,7 @@ class datetime
 	/**
 	 * return all format supported
 	 * @param  [type]  $_type [description]
-	 * @param  boolean $_long [description]
+	 * @param  boolean $_format [description]
 	 * @return [type]         [description]
 	 */
 	public static function format($_model = null, $_type = null, $_lang = null)
@@ -34,8 +34,10 @@ class datetime
 				switch ($_model)
 				{
 					case true:
+						// 16:05:52
+						return 'H:i:s';
 						// 4:05:52 PM
-						return 'g:i:s A';
+						// return 'g:i:s A';
 						break;
 
 					case false:
@@ -60,9 +62,13 @@ class datetime
 				{
 					return 'l d F Y'. ' '. 'H:i:s';
 				}
-				else
+				elseif ($_model === false)
 				{
 					return 'Y-m-d'. ' '. 'H:i';
+				}
+				else
+				{
+					return $_model;
 				}
 		}
 	}
@@ -70,7 +76,7 @@ class datetime
 
 	public static function get(
 		$_datetime,
-		$_long = null,
+		$_format = null,
 		$_type = 'datetime',
 		$_lang = null,
 		$_convertNumber = null
@@ -79,7 +85,7 @@ class datetime
 		// step1 - check datetime
 
 		// step2 - get new format
-		$myFormat   = self::format($_long, $_type);
+		$myFormat   = self::format($_format, $_type);
 		$myDatetime = strtotime($_datetime);
 		$finalDate  = null;
 		// detect current lang if not set
@@ -112,9 +118,9 @@ class datetime
 	}
 
 
-	public static function fit($_datetime, $_long = null)
+	public static function fit($_datetime, $_format = null, $_type = null)
 	{
-		return self::get($_datetime, $_long);
+		return self::get($_datetime, $_format, $_type);
 	}
 
 }
