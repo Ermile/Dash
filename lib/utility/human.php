@@ -37,10 +37,6 @@ class human
 		{
 			$_lang = \dash\language::current();
 		}
-		if(!$_format)
-		{
-			$_format = \dash\datetime::format();
-		}
 		if($time_diff < 0)
 		{
 			return T_('In the future');
@@ -69,6 +65,20 @@ class human
 			// else show it dependig on current language
 			else
 			{
+				if(!$_format)
+				{
+					// check have time or not
+					if(date('H:i:s', $_time) === '00:00:00')
+					{
+						$_format = \dash\datetime::format(null, 'date');
+					}
+					else
+					{
+						$_format = \dash\datetime::format();
+					}
+				}
+
+
 				if($_lang == 'fa')
 				{
 					$finalDate = \dash\utility\jdate::date($_format, $_time);
