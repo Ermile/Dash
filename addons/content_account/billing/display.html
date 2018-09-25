@@ -113,11 +113,7 @@
          <tr>
           <td class="s0">{%trans my_title%}</td>
 
-{%if lang.current == 'fa' %}
-  <td title='{{value.date|tdate("Y-m-d H:i:s")}}'>{{value.date|sdate}}</td>
-{%else%}
-  <td title='{{value.date|date("Y-m-d H:i:s")}}'>{{value.date|sdate}}</td>
-{%endif%}
+  <td title='{{value.date | dt(true)}}'>{{value.date|dt('human', 'month')}}</td>
 
 
           <td>
