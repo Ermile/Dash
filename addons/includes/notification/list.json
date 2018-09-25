@@ -21,6 +21,7 @@
       "send": false
     },
     "life_time": "5d",
+    "auto_expire": "if read | false | true",
     "need_answer": true,
     "btn": {
       "accept_owner": "Accept",
