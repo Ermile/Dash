@@ -59,7 +59,6 @@ class view
 	{
 
 		// load sidebar detail
-		self::acceessModeDetector();
 		self::sidebarDetail(true);
 
 
@@ -161,29 +160,6 @@ class view
 	}
 
 
-	public static function acceessModeDetector()
-	{
-		$selected_access = 'mine';
-		$get_access      = \dash\request::get('access');
-		if($get_access)
-		{
-			$selected_access = $get_access;
-		}
-		// if not exist show 412 error
-		if(!in_array($selected_access, ['mine', 'all', 'manage']))
-		{
-			\dash\header::status(412, T_("Invalid access in url"));
-		}
-
-		// set data variables
-		\dash\data::accessMode($selected_access);
-		if($get_access)
-		{
-			\dash\data::accessGet('?access='. $get_access);
-			\dash\data::accessGetAnd('&access='. $get_access);
-		}
-
-	}
 
 
 	public static function sidebarDetail($_all = false)

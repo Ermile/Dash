@@ -32,8 +32,6 @@ class view
 
 		\content_support\ticket\home\view::dataList($args);
 
-		\content_support\ticket\home\view::acceessModeDetector();
-
 		\dash\data::badge_text(T_('Tickets'));
 		\dash\data::badge_link(\dash\url::here(). '/ticket'. \dash\data::accessGet());
 	}
