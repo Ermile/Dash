@@ -116,6 +116,11 @@ class language
 		return $result;
 	}
 
+	public static function dir()
+	{
+		return self::current('direction');
+	}
+
 
 	/**
 	 * get detail of language

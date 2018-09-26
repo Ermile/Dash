@@ -110,18 +110,18 @@ class pagination
 		switch ($_type)
 		{
 			case 'first':
-				$class  = 'first';
+				$class  = 'first s0';
 				break;
 
 			case 'spliter':
 				$link   = false;
 				$page   = null;
 				$text   = '...';
-				$class  = 'spliter';
+				$class  = 'spliter s0';
 				break;
 
 			case 'end':
-				$class  = 'end';
+				$class  = 'end s0';
 				break;
 
 			case 'current':
@@ -130,13 +130,27 @@ class pagination
 				break;
 
 			case 'next':
-				$text   = null;
-				$class  = 'next';
+				if(\dash\language::dir() === 'ltr')
+				{
+					$text = '<span class="sf-chevron-right"></span>';
+				}
+				else
+				{
+					$text = '<span class="sf-chevron-left"></span>';
+				}
+				$class  = 'next s0';
 				break;
 
 			case 'prev':
-				$text   = null;
-				$class  = 'prev';
+				if(\dash\language::dir() === 'ltr')
+				{
+					$text = '<span class="sf-chevron-left"></span>';
+				}
+				else
+				{
+					$text = '<span class="sf-chevron-right"></span>';
+				}
+				$class  = 'prev s0';
 				break;
 
 		}
@@ -173,7 +187,7 @@ class pagination
 		}
 		else
 		{
-			$count_link = 7;
+			$count_link = 5;
 		}
 
 		$result = [];
