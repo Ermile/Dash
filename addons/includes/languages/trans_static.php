@@ -900,6 +900,8 @@ class TransStatic
 	echo T_("acept");
 	echo T_("reject");
 	echo T_("discount");
+	echo T_("Count");
+	echo T_("Average");
 	echo T_("teacher");
 	echo T_("other");
 	echo T_("removed");
