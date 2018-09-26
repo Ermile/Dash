@@ -110,18 +110,18 @@ class pagination
 		switch ($_type)
 		{
 			case 'first':
-				$class  = 'first s0';
+				$class  = 'first';
 				break;
 
 			case 'spliter':
 				$link   = false;
 				$page   = null;
 				$text   = '...';
-				$class  = 'spliter s0';
+				$class  = 'spliter';
 				break;
 
 			case 'end':
-				$class  = 'end s0';
+				$class  = 'end';
 				break;
 
 			case 'current':
