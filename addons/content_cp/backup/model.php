@@ -12,7 +12,7 @@ class model
 
 	public static function post()
 	{
-		\dash\log::db('fullBackup');
+		\dash\log::set('fullBackup');
 		if(\dash\request::post('backup') === 'now')
 		{
 			self::clean_old();

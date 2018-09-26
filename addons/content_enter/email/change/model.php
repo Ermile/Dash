@@ -9,7 +9,7 @@ class model
 	{
 		if(\dash\user::login('email') && \dash\user::id())
 		{
-			\dash\log::db('removeEmail');
+			\dash\log::set('removeEmail');
 
 			\dash\db\users::update(['email' => null], \dash\user::id());
 			// set the alert message
@@ -52,7 +52,7 @@ class model
 			\dash\utility\enter::set_session('temp_email', \dash\request::post('emailNew'));
 		}
 
-		\dash\log::db('setNewEmail');
+		\dash\log::set('setNewEmail');
 
 		// set session verify_from set
 		\dash\utility\enter::set_session('verify_from', 'email_set');

@@ -70,7 +70,7 @@ class model
 		}
 		else
 		{
-			\dash\log::db('call');
+			\dash\log::set('call');
 
 			$kavenegar_send_result = \dash\utility\call::send($my_mobile, $template, $code);
 		}

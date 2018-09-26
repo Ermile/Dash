@@ -16,7 +16,7 @@ class controller
 			\dash\utility\enter::set_session('verify/what', true);
 			if(\dash\utility\enter::get_session('verification_code_id') && is_numeric(\dash\utility\enter::get_session('verification_code_id')))
 			{
-				\dash\log::db('verifyWhat');
+				\dash\log::set('verifyWhat');
 
 				\dash\db\logs::update(['status' => 'expire'], \dash\utility\enter::get_session('verification_code_id'));
 			}

@@ -28,12 +28,12 @@ class model
 
 			if(!empty($check_exist_name))
 			{
-				\dash\log::db('usernameTaken', ['data' => $username]);
+				\dash\log::set('usernameTaken', ['data' => $username]);
 				\dash\notif::error(T_("This username alreay taked!"));
 				return false;
 			}
 
-			\dash\log::db('usernameSet', ['data' => $username]);
+			\dash\log::set('usernameSet', ['data' => $username]);
 
 
 			\dash\db\users::update(['username' => $username], \dash\user::id());

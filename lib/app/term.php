@@ -358,12 +358,12 @@ class term
 
 		if(!$term_id)
 		{
-			\dash\log::db('noWayToAddTerm');
+			\dash\log::set('noWayToAddTerm');
 			\dash\notif::error(T_("No way to insert term"));
 			return false;
 		}
 
-		\dash\log::db('addTerm', ['data' => $term_id, 'datalink' => \dash\coding::encode($term_id)]);
+		\dash\log::set('addTerm', ['data' => $term_id, 'datalink' => \dash\coding::encode($term_id)]);
 
 		return $return;
 	}
@@ -463,7 +463,7 @@ class term
 
 		\dash\db\terms::update($args, $id);
 
-		\dash\log::db('editTerm', ['data' => $id, 'datalink' => \dash\coding::encode($id)]);
+		\dash\log::set('editTerm', ['data' => $id, 'datalink' => \dash\coding::encode($id)]);
 
 		return true;
 	}

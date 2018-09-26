@@ -41,7 +41,7 @@ class controller
 			$load_post['url'] = 'support/'. $load_post['url'];
 		}
 
-		\dash\log::db('newCodeRedirect');
+		\dash\log::set('newCodeRedirect');
 
 		\dash\redirect::to(\dash\url::base().'/'. $load_post['language']. '/'. $load_post['url']);
 

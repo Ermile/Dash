@@ -128,7 +128,7 @@ class file
 			}
 		}
 
-		\dash\log::db('uploadFile', ['data' => $file_id_code, 'datalink' => $url]);
+		\dash\log::set('uploadFile', ['data' => $file_id_code, 'datalink' => $url]);
 
 		return ['code' => $file_id_code, 'url' => $url];
 	}

@@ -16,7 +16,7 @@ class model
 		{
 			if(\dash\db\sessions::is_my_session(\dash\request::post('id'), \dash\user::id()))
 			{
-				\dash\log::db('sessionTerminate');
+				\dash\log::set('sessionTerminate');
 				\dash\db\sessions::terminate_id(\dash\request::post('id'));
 				\dash\notif::ok(T_("Session terminated"));
 				\dash\redirect::pwd();

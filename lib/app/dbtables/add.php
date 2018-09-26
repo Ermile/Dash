@@ -23,7 +23,7 @@ trait add
 
 		// check args
 		$args = self::check();
-		\dash\log::db('addDataTabelRaw');
+		\dash\log::set('addDataTabelRaw');
 		$dbtables_id = \dash\db\config::public_insert(self::$tables, $args);
 
 		if(\dash\engine\process::status())

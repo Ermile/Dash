@@ -30,7 +30,7 @@ class controller
 		}
 
 		// log access to this url
-		\dash\log::db('tgUnauthorizedAccess');
+		\dash\log::set('tgUnauthorizedAccess');
 		\dash\header::status(404);
 	}
 }

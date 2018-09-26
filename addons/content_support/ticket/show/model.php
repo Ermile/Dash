@@ -64,7 +64,7 @@ class model
 
 			\dash\app::variable(['support_tag' => \dash\request::post('tag')]);
 			\dash\app\posts::set_post_term(\dash\request::get('id'), 'support_tag', 'comments');
-			\dash\log::db('addTag');
+			\dash\log::set('addTag');
 			\dash\notif::ok(T_("Tag was saved"));
 			if(!\dash\request::post('content'))
 			{

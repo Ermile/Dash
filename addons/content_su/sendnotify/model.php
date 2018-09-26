@@ -75,7 +75,7 @@ class model
 		$mobile       = (\dash\request::post('mobile') && isset($detail['way']['mobile'])) 				? $detail['way']['mobile'] 			: null;
 		$user_id      = $detail['user_id'];
 
-		\dash\log::db('sendnotify', ['data' => $user_id ]);
+		\dash\log::set('sendnotify', ['data' => $user_id ]);
 
 		if($notification && $user_id)
 		{

@@ -56,7 +56,7 @@ class model
 		}
 		else
 		{
-			\dash\log::db('sms');
+			\dash\log::set('sms');
 
 			$kavenegar_send_result = \dash\utility\sms::send($my_mobile, $msg);
 		}

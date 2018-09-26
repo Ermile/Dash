@@ -9,7 +9,7 @@ class controller
 		{
 			return;
 		}
-		\dash\log::db('linfoView');
+		\dash\log::set('linfoView');
 		require addons.'lib/linfo/index.php';
 		\dash\code::boom();
 	}

@@ -8,7 +8,7 @@ class view
 		\dash\data::page_title(T_("Supervisor dashboard"));
 		\dash\data::page_desc(T_("Hey there!"));
 
-		\dash\log::db('loadSU');
+		\dash\log::set('loadSU');
 
 		\dash\data::page_pictogram('gauge');
 

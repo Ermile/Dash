@@ -29,7 +29,7 @@ class enter
 			case 'change_pass_have_not_pass':
 				if($count_try > 10)
 				{
-					\dash\log::db('userBaned');
+					\dash\log::set('userBaned');
 					// ban user for 2 min
 					\dash\session::set('enter_baned_user', true, null, (60 * 2));
 				}
@@ -788,7 +788,7 @@ class enter
 
 		if(!is_numeric(\dash\request::post('code')))
 		{
-			\dash\log::db('codeStringGivenMustNumber');
+			\dash\log::set('codeStringGivenMustNumber');
 			\dash\notif::error(T_("What happend? the code is number. you try to send string!?"), 'code');
 			return false;
 		}
@@ -875,7 +875,7 @@ class enter
 		if(!$code_is_okay)
 		{
 			// wrong code sleep code
-			\dash\log::db('invalidCode');
+			\dash\log::set('invalidCode');
 			self::try('verify_invalid_code');
 			\dash\code::sleep(3);
 			\dash\notif::error(T_("Invalid code, try again"), 'code');
@@ -916,7 +916,7 @@ class enter
 			is_numeric(self::user_data('id'))
 		  )
 		{
-			\dash\log::db('PasswordOK');
+			\dash\log::set('PasswordOK');
 			// set temp ramz in use pass
 			\dash\db\users::update(['password' => self::get_session('temp_ramz_hash')], self::user_data('id'));
 		}
@@ -943,7 +943,7 @@ class enter
 				'link' => \dash\url::kingdom(),
 			];
 
-			\dash\log::db('usernameRemoved');
+			\dash\log::set('usernameRemoved');
 
 			self::set_session('alert', $alert);
 			// open lock of alert page
@@ -995,7 +995,7 @@ class enter
 
 			\dash\db\users::update($update_user, \dash\user::id());
 
-			\dash\log::db('userDeletedOK');
+			\dash\log::set('userDeletedOK');
 
 			\dash\db\sessions::delete_account(\dash\user::id());
 
@@ -1026,12 +1026,12 @@ class enter
 			// set the alert message
 			if(self::get_session('verify_from') === 'username_set')
 			{
-				\dash\log::db('usernameSetOK');
+				\dash\log::set('usernameSetOK');
 				$text = T_("Your username was set");
 			}
 			else
 			{
-				\dash\log::db('usernameChangeOK');
+				\dash\log::set('usernameChangeOK');
 				$text = T_("Your username was change");
 			}
 
@@ -1074,7 +1074,7 @@ class enter
 			is_numeric(self::user_data('id'))
 		  )
 		{
-			\dash\log::db('emailOK');
+			\dash\log::set('emailOK');
 
 			// set temp ramz in use pass
 			\dash\db\users::update(['email' => self::get_session('temp_email')], self::user_data('id'));
@@ -1099,7 +1099,7 @@ class enter
 				'link' => \dash\url::kingdom(). '/account/profile/security',
 			];
 
-			\dash\log::db('twoStepActive');
+			\dash\log::set('twoStepActive');
 			\dash\user::refresh();
 			self::set_session('alert', $alert);
 			self::next_step('alert');
@@ -1125,7 +1125,7 @@ class enter
 				'link' => \dash\url::kingdom(). '/account/profile/security',
 			];
 
-			\dash\log::db('twoStepDeactive');
+			\dash\log::set('twoStepDeactive');
 			\dash\user::refresh();
 			self::set_session('alert', $alert);
 			self::next_step('alert');
@@ -1146,7 +1146,7 @@ class enter
 				'link' => \dash\url::kingdom(),
 			];
 
-			\dash\log::db('passwordChangeOK');
+			\dash\log::set('passwordChangeOK');
 
 
 			self::set_session('alert', $alert);

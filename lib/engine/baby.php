@@ -16,7 +16,7 @@ class baby
 		// if we dont have request url it was very mysterious, say Hi to hitler
 		if(!isset($_SERVER['REQUEST_URI']))
 		{
-			\dash\log::db('hiFather!');
+			\dash\log::set('hiFather!');
 			\dash\header::status(412, 'Hi Father!');
 		}
 

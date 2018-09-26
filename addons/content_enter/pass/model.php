@@ -20,7 +20,7 @@ class model
 			// the password is okay
 			if(\dash\utility::hasher($ramz, \dash\utility\enter::user_data('password')))
 			{
-				\dash\log::db('userLogin');
+				\dash\log::set('userLogin');
 
 				\dash\utility\enter::enter_set_login();
 				\dash\utility\enter::next_step('okay');
@@ -29,7 +29,7 @@ class model
 			}
 			else
 			{
-				\dash\log::db('invalidPassword');
+				\dash\log::set('invalidPassword');
 				// wrong password sleep code
 				\dash\utility\enter::try('pass_invalid_pass');
 				\dash\code::sleep(3);

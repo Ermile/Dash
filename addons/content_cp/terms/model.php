@@ -43,7 +43,7 @@ class model
 					break;
 			}
 
-			\dash\log::db('removeTerm', ['data' => $term_id, 'datalink' => \dash\coding::encode($term_id)]);
+			\dash\log::set('removeTerm', ['data' => $term_id, 'datalink' => \dash\coding::encode($term_id)]);
 
 			$remove = \dash\db\terms::remove($term_id);
 			if($remove)

@@ -38,7 +38,7 @@ class model
 			return false;
 		}
 
-		\dash\log::db('setMobile');
+		\dash\log::set('setMobile');
 
 
 		// set session verify_from set

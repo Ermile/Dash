@@ -124,7 +124,7 @@ trait edit
 
 		if(!\dash\app::isset_request('type')) unset($args['type']);
 
-		\dash\log::db('editPost', ['data' => $id, 'datalink' => \dash\coding::encode($id)]);
+		\dash\log::set('editPost', ['data' => $id, 'datalink' => \dash\coding::encode($id)]);
 
 		\dash\db\posts::update($args, $id);
 

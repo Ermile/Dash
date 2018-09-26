@@ -301,7 +301,7 @@ class telegram
 			}
 		}
 
-		\dash\log::db('telegramSend');
+		\dash\log::set('telegramSend');
 	}
 
 

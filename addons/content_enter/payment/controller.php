@@ -21,7 +21,7 @@ class controller
 			case 'verify':
 				if(method_exists("\\dash\\utility\\payment\\verify", $payment))
 				{
-					\dash\log::db('paymentVerifyCall');
+					\dash\log::set('paymentVerifyCall');
 					\dash\utility\payment\verify::$payment($args);
 					return;
 				}

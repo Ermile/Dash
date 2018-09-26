@@ -20,7 +20,7 @@ class model
 
 		if($count >= 3)
 		{
-			\dash\log::db('userHitSignup3>30m');
+			\dash\log::set('userHitSignup3>30m');
 
 			\dash\notif::warn(T_("You do not have permission to register for up to ten minutes"). ":)");
 			return false;
@@ -28,7 +28,7 @@ class model
 
 		if(\dash\request::post('password'))
 		{
-			\dash\log::db('hiddenPasswordFieldIsFull');
+			\dash\log::set('hiddenPasswordFieldIsFull');
 			\dash\notif::warn(T_("Your browser has sent a saved password. Delete it and continue"));
 			$get          = \dash\request::get();
 			$get['clean'] = '1';
@@ -62,7 +62,7 @@ class model
 
 		if(\dash\option::config('enter', 'singup_username') && !preg_match("/[A-Za-z0-9\_]/", $username))
 		{
-			\dash\log::db('usernameInvalidSyntax', ['data' => $username]);
+			\dash\log::set('usernameInvalidSyntax', ['data' => $username]);
 			\dash\notif::error(T_("Username must in [A-Za-z0-9]"), 'username');
 			return false;
 		}
@@ -98,7 +98,7 @@ class model
 			$check_username = \dash\db\users::get_by_username($username);
 			if($check_username)
 			{
-				\dash\log::db('usernameTaken', ['data' => $username]);
+				\dash\log::set('usernameTaken', ['data' => $username]);
 				\dash\notif::error(T_("This username is already taken."), 'username');
 				return false;
 			}
@@ -107,7 +107,7 @@ class model
 		$check_mobile = \dash\db\users::get_by_mobile($mobile);
 		if($check_mobile)
 		{
-			\dash\log::db('mobileExistTryToSignup');
+			\dash\log::set('mobileExistTryToSignup');
 			\dash\notif::error(T_("This mobile is already signuped. You can login by this mobile"), 'mobile');
 			return false;
 		}
@@ -139,11 +139,11 @@ class model
 
 		// if(!$user_id)
 		// {
-		// 	\dash\log::db('userCanNotSignupDB');
+		// 	\dash\log::set('userCanNotSignupDB');
 		// 	\dash\notif::error(T_("We can not signup you"));
 		// 	return false;
 		// }
-		// \dash\log::db('userSignup');
+		// \dash\log::set('userSignup');
 
 		// \dash\utility\enter::load_user_data($user_id, 'user_id');
 		// \dash\utility\enter::enter_set_login(null, true);

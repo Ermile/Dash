@@ -47,7 +47,7 @@ class model
 				}
 
 				// clean existing session
-				\dash\log::db('supervisorLoginByAnother', ['data' => $user_id]);
+				\dash\log::set('supervisorLoginByAnother', ['data' => $user_id]);
 
 				\dash\utility\enter::clean_session();
 
@@ -107,7 +107,7 @@ class model
 		$anotherPerm = \dash\permission::supervisor();
 		if($count >= 3 && !$anotherPerm)
 		{
-			\dash\log::db('try3>in60s');
+			\dash\log::set('try3>in60s');
 			\dash\notif::error(T_("You hit our maximum try limit."). ' '. T_("Try again later!"));
 			return false;
 		}
@@ -123,7 +123,7 @@ class model
 
 		if(!$usernameormobile)
 		{
-			\dash\log::db('emptyUserOrMobileEntered');
+			\dash\log::set('emptyUserOrMobileEntered');
 			\dash\notif::error(T_("Please set the username or mobile or email"),'usernameormobile');
 			return false;
 		}
@@ -133,7 +133,7 @@ class model
 		// save in session this user change the mobile
 		if($old_usernameormobile != $usernameormobile)
 		{
-			\dash\log::db('diffrentMobileTry');
+			\dash\log::set('diffrentMobileTry');
 			\dash\utility\enter::try('diffrent_mobile');
 			\dash\utility\enter::set_session('diffrent_mobile', intval(\dash\utility\enter::get_session('diffrent_mobile')) + 1);
 		}
@@ -147,7 +147,7 @@ class model
 		// the user not found must be signup
 		if(!$user_data)
 		{
-			\dash\log::db('userNotFound');
+			\dash\log::set('userNotFound');
 			\dash\utility\enter::try('login_user_not_found');
 			\dash\notif::error(T_("Username not found"), 'usernameormobile');
 			return false;
@@ -156,7 +156,7 @@ class model
 		// if this user is blocked or filtered go to block page
 		if(in_array(\dash\utility\enter::user_data('status'), ['filter', 'block']))
 		{
-			\dash\log::db('statusBlockOrFilter');
+			\dash\log::set('statusBlockOrFilter');
 
 			\dash\utility\enter::try('login_status_block');
 			// block page
@@ -181,7 +181,7 @@ class model
 		{
 			if(\dash\utility::hasher($password, \dash\utility\enter::user_data('password')))
 			{
-				\dash\log::db('browserSavePassword');
+				\dash\log::set('browserSavePassword');
 				// login
 				// the browser was saved the password
 				\dash\utility\enter::enter_set_login(null, true);
@@ -189,7 +189,7 @@ class model
 			}
 			else
 			{
-				\dash\log::db('browserSaveInvaliPassword');
+				\dash\log::set('browserSaveInvaliPassword');
 				\dash\utility\enter::try('browser_pass_saved_invalid');
 				$get = \dash\request::get();
 				$get['clean'] = '1';

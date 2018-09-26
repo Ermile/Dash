@@ -57,7 +57,7 @@ class model
 		{
 			return true;
 		}
-		\dash\log::db('telegram');
+		\dash\log::set('telegram');
 
 		$myData   = ['chat_id' => $my_chat_id, 'text' => $text];
 		$myResult = \dash\social\telegram\tg::sendMessage($myData);

@@ -6,7 +6,7 @@ class view
 {
 	public static function config()
 	{
-		\dash\log::db('codingView');
+		\dash\log::set('codingView');
 		$val = \dash\request::get('val');
 		if($val)
 		{

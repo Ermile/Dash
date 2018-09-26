@@ -25,7 +25,7 @@ class view
 		switch ($_name)
 		{
 			case 'gitconfig':
-				\dash\log::db('nanoGitConfig');
+				\dash\log::set('nanoGitConfig');
 				$addr = root. '.git/config';
 				break;
 

@@ -22,7 +22,7 @@ class model
 
 		if($count >= $max_count && !\dash\permission::supervisor())
 		{
-			\dash\log::db('tryCount>inMins');
+			\dash\log::set('tryCount>inMins');
 			\dash\notif::error(T_("You hit our maximum try limit."). ' '. T_("Try again later!"));
 			return false;
 		}
@@ -113,7 +113,7 @@ class model
 					}
 
 					// save log by caller 'user:send:contact:register:by:mobile'
-					\dash\log::db('contactRegisterByMobile');
+					\dash\log::set('contactRegisterByMobile');
 				}
 			}
 		}
@@ -143,7 +143,7 @@ class model
 			else
 			{
 				// just if we have error run this code
-				\dash\log::db('contactUsLoginNotSave');
+				\dash\log::set('contactUsLoginNotSave');
 				\dash\notif::error(T_("We could'nt save the contact"));
 			}
 		}
@@ -159,7 +159,7 @@ class model
 			}
 			else
 			{
-				\dash\log::db('contactFail');
+				\dash\log::set('contactFail');
 				\dash\notif::error(T_("We could'nt save the contact"));
 			}
 		}

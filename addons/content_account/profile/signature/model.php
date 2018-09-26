@@ -23,7 +23,7 @@ class model
 
 		if(\dash\engine\process::status())
 		{
-			\dash\log::db('editProfileSignatur');
+			\dash\log::set('editProfileSignatur');
 			\dash\user::refresh();
 			\dash\redirect::pwd();
 		}

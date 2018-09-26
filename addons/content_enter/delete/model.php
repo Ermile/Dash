@@ -15,7 +15,7 @@ class model
 		// set session verify_from signup
 		\dash\utility\enter::set_session('verify_from', 'delete');
 
-		\dash\log::db('tryToDeleteAccount');
+		\dash\log::set('tryToDeleteAccount');
 
 		\dash\utility\enter::set_session('usernameormobile', \dash\user::detail('mobile'));
 

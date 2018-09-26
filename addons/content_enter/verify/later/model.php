@@ -16,7 +16,7 @@ class model
 
 			if(!$signup || !is_array($signup))
 			{
-				\dash\log::db('userDetailLostSignup');
+				\dash\log::set('userDetailLostSignup');
 				\dash\notif::error(T_("We can not find your detail to signup"));
 				return false;
 			}
@@ -25,12 +25,12 @@ class model
 
 			if(!$user_id)
 			{
-				\dash\log::db('userCanNotSignupDB');
+				\dash\log::set('userCanNotSignupDB');
 				\dash\notif::error(T_("We can not signup you"));
 				return false;
 			}
 
-			\dash\log::db('userSignup');
+			\dash\log::set('userSignup');
 
 			\dash\utility\enter::load_user_data($user_id, 'user_id');
 			\dash\utility\enter::enter_set_login(null, true);

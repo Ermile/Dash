@@ -9,7 +9,7 @@ class controller
 		$download = \dash\request::get('download');
 		if($download)
 		{
-			\dash\log::db('downloadBackup');
+			\dash\log::set('downloadBackup');
 			\dash\file::download(database. 'backup/files/'. $download);
 			return;
 		}

@@ -18,7 +18,7 @@ trait edit
 
 		if(!empty($args))
 		{
-			\dash\log::db('editDataTabelRaw');
+			\dash\log::set('editDataTabelRaw');
 			$update = \dash\db\config::public_update($args, $_id);
 
 			if(\dash\engine\process::status())

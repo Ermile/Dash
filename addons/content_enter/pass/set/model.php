@@ -28,7 +28,7 @@ class model
 			}
 			else
 			{
-				\dash\log::db('creazyPassword');
+				\dash\log::set('creazyPassword');
 
 				// creazy password
 				return false;
@@ -41,7 +41,7 @@ class model
 			return false;
 		}
 
-		\dash\log::db('setPasswordRequest');
+		\dash\log::set('setPasswordRequest');
 
 		// set session verify_from set
 		\dash\utility\enter::set_session('verify_from', 'set');

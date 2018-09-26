@@ -187,7 +187,7 @@ class ticket
 
 		\dash\notification::send('newTicket', null, $replace, $notif_args);
 
-		\dash\log::db('addComment', ['data' => $comment_id, 'datalink' => \dash\coding::encode($comment_id)]);
+		\dash\log::set('addComment', ['data' => $comment_id, 'datalink' => \dash\coding::encode($comment_id)]);
 
 		$return            = [];
 		$return['id']      = $comment_id;
@@ -239,7 +239,7 @@ class ticket
 		{
 			\dash\permission::check('cpCommentsDelete');
 		}
-		\dash\log::db('editComment', ['data' => $_id, 'datalink' => \dash\coding::encode($_id)]);
+		\dash\log::set('editComment', ['data' => $_id, 'datalink' => \dash\coding::encode($_id)]);
 		return \dash\db\comments::update($args, $_id);
 	}
 

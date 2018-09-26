@@ -17,7 +17,7 @@ class view
 
 	public static function generate_sitemap()
 	{
-		\dash\log::db('sitemapGenerate');
+		\dash\log::set('sitemapGenerate');
 		// create sitemap for each language
 		$result   = '';
 

@@ -17,23 +17,23 @@ class model
 		switch ($btn)
 		{
 			case 'nginxrestart':
-				\dash\log::db('commandNginxRestart');
+				\dash\log::set('commandNginxRestart');
 				$command[] = " service nginx restart ";
 				break;
 
 			case 'mysqlrestart':
-				\dash\log::db('commandMysqlRestart');
+				\dash\log::set('commandMysqlRestart');
 				$command[] = " service mysql stop ";
 				$command[] = " service mysql start ";
 				break;
 
 			case 'sshpass':
-				\dash\log::db('commandInstallSshpass');
+				\dash\log::set('commandInstallSshpass');
 				$command[] = " apt-get install sshpass ";
 				break;
 
 			default:
-				\dash\log::db('commandInvalidCommand');
+				\dash\log::set('commandInvalidCommand');
 				\dash\notif::error(T_("Invalid command"));
 				return false;
 				break;

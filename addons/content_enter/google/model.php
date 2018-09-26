@@ -12,7 +12,7 @@ class model
 			$check = \dash\utility\google::check();
 			if($check)
 			{
-				\dash\log::db('loginByGoogle');
+				\dash\log::set('loginByGoogle');
 
 				// go to what url
 				$go_to_url           = null;
@@ -95,7 +95,7 @@ class model
 
 					\dash\utility\enter::set_session('mobile_request_from', 'google_email_not_exist');
 
-					\dash\log::db('loginByGoogleSignuped');
+					\dash\log::set('loginByGoogleSignuped');
 
 					\dash\utility\enter::set_session('must_signup', $args);
 

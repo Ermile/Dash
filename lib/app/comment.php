@@ -96,7 +96,7 @@ class comment
 			\dash\notif::error(T_("No way to add new data"));
 			return false;
 		}
-		\dash\log::db('addComment', ['data' => $comment_id, 'datalink' => \dash\coding::encode($comment_id)]);
+		\dash\log::set('addComment', ['data' => $comment_id, 'datalink' => \dash\coding::encode($comment_id)]);
 
 		$return       = [];
 		$return['id'] = \dash\coding::encode($comment_id);
@@ -145,7 +145,7 @@ class comment
 		{
 			\dash\permission::check('cpCommentsDelete');
 		}
-		\dash\log::db('editComment', ['data' => $id, 'datalink' => \dash\coding::encode($id)]);
+		\dash\log::set('editComment', ['data' => $id, 'datalink' => \dash\coding::encode($id)]);
 		return \dash\db\comments::update($args, $id);
 	}
 

@@ -31,7 +31,7 @@ class model
 		{
 			if(\dash\utility\filter::mobile($mobile_email) !== \dash\utility\filter::mobile($exist_mobile_email))
 			{
-				\dash\log::db('existMobileIsNotMathcBySendMobile');
+				\dash\log::set('existMobileIsNotMathcBySendMobile');
 
 				\dash\notif::error(T_("What are you doing?"));
 				return false;
@@ -46,7 +46,7 @@ class model
 
 		if(!in_array($send_code, \dash\utility\enter::list_send_code_way($mobile_email)))
 		{
-			\dash\log::db('sendWayInvalid');
+			\dash\log::set('sendWayInvalid');
 			\dash\notif::error(T_("Please select one way to send code"));
 			return false;
 		}
@@ -62,7 +62,7 @@ class model
 
 			if(!$signup || !is_array($signup))
 			{
-				\dash\log::db('userDetailLostSignup');
+				\dash\log::set('userDetailLostSignup');
 				\dash\notif::error(T_("We can not find your detail to signup"));
 				return false;
 			}
@@ -71,7 +71,7 @@ class model
 
 			if(!$user_id)
 			{
-				\dash\log::db('userCanNotSignupDB');
+				\dash\log::set('userCanNotSignupDB');
 				\dash\notif::error(T_("We can not signup you"));
 				return false;
 			}
@@ -79,7 +79,7 @@ class model
 			// load user data by mobile
 			$user_data = \dash\utility\enter::load_user_data($user_id, 'user_id');
 
-			\dash\log::db('userSignup');
+			\dash\log::set('userSignup');
 
 		}
 

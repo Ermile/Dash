@@ -49,7 +49,7 @@ class model
 			$result = \dash\db::backup_dump();
 		}
 
-		\dash\log::db('upgradeDataBase');
+		\dash\log::set('upgradeDataBase');
 
 		\dash\code::pretty($result, true);
 		\dash\code::boom();

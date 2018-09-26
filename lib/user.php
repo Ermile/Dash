@@ -269,7 +269,7 @@ class user
 					else
 					{
 						\dash\db\sessions::set($user_id);
-						\dash\log::db('userLoginByRemember');
+						\dash\log::set('userLoginByRemember');
 					}
 				}
 				else
@@ -310,7 +310,7 @@ class user
 				{
 					\dash\db\sessions::terminate_cookie();
 
-					\dash\log::db('userForceLogoutAuto');
+					\dash\log::set('userForceLogoutAuto');
 					// muset force logout this user
 					\dash\utility\enter::set_logout(\dash\user::id());
 				}

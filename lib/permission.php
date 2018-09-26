@@ -70,7 +70,7 @@ class permission
 		}
 
 		$check_list = json_encode($check_list, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-		\dash\log::db('permissionWrite');
+		\dash\log::set('permissionWrite');
 		\dash\file::write($addr, $check_list);
 
 	}
@@ -175,7 +175,7 @@ class permission
 			\dash\file::write(root.'/includes/permission/group.me.json', $new);
 		}
 
-		\dash\log::db('permissionDelete', ['data' => $_id]);
+		\dash\log::set('permissionDelete', ['data' => $_id]);
 		\dash\notif::warn(T_("Permission removed"));
 		return true;
 	}
@@ -404,7 +404,7 @@ class permission
 			\dash\file::write(root.'/includes/permission/group.me.json', $new);
 		}
 
-		\dash\log::db('permissionAddNew', ['data' => $_name]);
+		\dash\log::set('permissionAddNew', ['data' => $_name]);
 
 		\dash\notif::ok(T_("Permission saved"));
 		return true;

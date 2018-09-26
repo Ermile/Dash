@@ -25,7 +25,7 @@ class controller
 
 	public static function gitUpdate($_name, $_password = null)
 	{
-		\dash\log::db('gitUpdate');
+		\dash\log::set('gitUpdate');
 		$result   = [];
 		// switch by name of repository
 		switch ($_name)

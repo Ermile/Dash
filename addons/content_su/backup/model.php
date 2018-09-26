@@ -8,12 +8,12 @@ class model
 
 		if(\dash\request::post('backup') === 'now')
 		{
-			\dash\log::db('backupDb');
+			\dash\log::set('backupDb');
 			self::backup_now();
 		}
 		elseif(\dash\request::post('backup') === 'now_log')
 		{
-			\dash\log::db('backupDbLogDataBase');
+			\dash\log::set('backupDbLogDataBase');
 			if(defined('db_log_name'))
 			{
 				self::backup_now(db_log_name);
@@ -26,7 +26,7 @@ class model
 		}
 		elseif(\dash\request::post('backup') === 'schedule')
 		{
-			\dash\log::db('backupScheduleChange');
+			\dash\log::set('backupScheduleChange');
 			self::backup_schedule();
 		}
 		elseif(\dash\request::post('type') === 'remove' && \dash\request::post('file'))
@@ -34,7 +34,7 @@ class model
 			$file_name = \dash\request::post('file');
 			if(\dash\file::delete(database. 'backup/files/'. $file_name))
 			{
-				\dash\log::db('backupRemoveDb');
+				\dash\log::set('backupRemoveDb');
 				\dash\notif::ok(T_("File successfully deleted"));
 				\dash\redirect::pwd();
 				return;
