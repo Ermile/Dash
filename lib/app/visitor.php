@@ -63,7 +63,7 @@ class visitor
 			{
 				if(isset($chart_visitorchart['visitor'][$key]))
 				{
-					$chart[] = ['date' => $key, 'visit' => $value, 'visitor' => $chart_visitorchart['visitor'][$key]];
+					$chart[] = ['date' => \dash\datetime::fit($key, true, 'date'), 'visit' => $value, 'visitor' => $chart_visitorchart['visitor'][$key]];
 				}
 			}
 			return json_encode($chart, JSON_UNESCAPED_UNICODE);
