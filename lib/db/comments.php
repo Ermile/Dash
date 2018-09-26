@@ -39,7 +39,7 @@ class comments
 				comments.solved = 1 AND
 				comments.type   = 'ticket' AND
 				comments.parent IS NULL AND
-				comments.status = 'answered' AND
+				comments.status IN ('answered', 'awaiting') AND
 				comments.datemodified < '$yesterday'
 		";
 		\dash\db::query($query);
