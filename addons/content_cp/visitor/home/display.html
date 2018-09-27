@@ -4,6 +4,13 @@
 
 {%block pageContent%}
 
+<div class="msg f">
+	<a class="c mRa10 btn {%if requestGET.period == 'hours24'%}primary{%else%}dark outline{%endif%}" href="{{url.this}}?period=hours24">{%trans "Last 24 hours"%}</a>
+	<a class="c mRa10 btn {%if requestGET.period == 'week'%}primary{%else%}dark outline{%endif%}" href="{{url.this}}?period=week">{%trans "Last week"%}</a>
+	<a class="c mRa10 btn {%if requestGET.period == 'month'%}primary{%else%}dark outline{%endif%}" href="{{url.this}}?period=month">{%trans "Last month"%}</a>
+</div>
+
+
 <div class="f">
   <div class="c s6">{{block ("dVisit")}}</div>
   <div class="c s6">{{block ("dPageviews")}}</div>
@@ -28,11 +35,6 @@
 
 
 <div class="cbox">
-	<div class="msg primary2">
-		<a class="msg primary" href="{{url.this}}?period=hours24">{%trans "Last 24 hours"%}</a>
-		<a class="msg primary" href="{{url.this}}?period=week">{%trans "Last week"%}</a>
-		<a class="msg primary" href="{{url.this}}?period=month">{%trans "Last month"%}</a>
-	</div>
 
 	<div class="f">
 		<div class="dcard c">
