@@ -28,6 +28,14 @@
 	</div>
 </div>
 
+<div class="f">
+  <div class="c s6">{{block ("dNewVisits")}}</div>
+  <div class="c s6">{{block ("dBounceRate")}}</div>
+  <div class="c s6">{{block ("dAlexa")}}</div>
+</div>
+
+
+
 
 
 <div class="cbox">
@@ -99,6 +107,34 @@
 {%endblock%}
 
 
+
+{%block dBounceRate%}
+<div class="dcard">
+ <div class="statistic sm">
+  <div class="label mB10"><i class="fs20 mRa5 sf-atom"></i> {%trans "Bounce Rate"%}</div>
+  <div class="value">{{dashboardDetail.bouncerate | fitNumber}}</div>
+ </div>
+</div>
+{%endblock%}
+
+
+{%block dNewVisits%}
+<div class="dcard">
+ <div class="statistic sm">
+  <div class="label mB10"><i class="fs20 mRa5 sf-new-sign"></i> {%trans "New Visits %"%}</div>
+  <div class="value">{{dashboardDetail.newvisits | fitNumber}}</div>
+ </div>
+</div>
+{%endblock%}
+
+{%block dAlexa%}
+<div class="dcard">
+ <div class="statistic sm">
+  <div class="label mB10"><i class="fs20 mRa5 sf-globe"></i> {%trans "Alexa rank"%}</div>
+  <div class="value">{{dashboardDetail.alexa | fitNumber}}</div>
+ </div>
+</div>
+{%endblock%}
 
 
 {%block bChartPrimary%}
