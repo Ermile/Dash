@@ -10,13 +10,24 @@
   <div class="c s6">{{block ("dRatio")}}</div>
   <div class="c s6">{{block ("dAvgTime")}}</div>
 </div>
-<div
 
+<div class="cbox">
+{{block('bChartPrimary')}}
+</div>
+
+<div class="f">
+	<div class="c6 s12 pRa10">
+{{block ("dTopVisit")}}
+	</div>
+	<div class="c6 s12">
+{{block ("dTopReferrers")}}
+
+	</div>
+</div>
 
 
 
 <div class="cbox">
-{{block('bChartPrimary')}}
 	<div class="msg primary2">
 		<a class="msg primary" href="{{url.this}}?period=hours24">{%trans "Last 24 hours"%}</a>
 		<a class="msg primary" href="{{url.this}}?period=week">{%trans "Last week"%}</a>
@@ -86,10 +97,34 @@
 
 
 {%block bChartPrimary%}
-<a class="dcard x4" >
- <div class="chart" id="chartdiv" data-type='bar' data-vals='{{visitor.chart}}'></div>
-</a>
+ <div class="chart x4" id="chartdiv" data-type='bar' data-vals='{{visitor.chart}}'></div>
 {%endblock%}
+
+
+
+{%block dTopVisit%}
+<div class="cbox fs12">
+	<h2>{%trans "Top Pages"%}</h2>
+	<a class="msg block" href="#">Salam</a>
+	<a class="msg block" href="#">Salam</a>
+	<a class="msg block" href="#">Salam</a>
+	<a class="msg block" href="#">Salam</a>
+	<a class="msg block" href="#">Salam</a>
+</div>
+{%endblock%}
+
+
+{%block dTopReferrers%}
+<div class="cbox fs12">
+	<h2>{%trans "Top Referrers"%}</h2>
+	<a class="msg block" href="#">Salam</a>
+	<a class="msg block" href="#">Salam</a>
+	<a class="msg block" href="#">Salam</a>
+	<a class="msg block" href="#">Salam</a>
+	<a class="msg block" href="#">Salam</a>
+</div>
+{%endblock%}
+
 
 
 {%block foot_js%}
