@@ -1,68 +1,106 @@
 function chartDrawer()
 {
-  if($("#chartdiv").length == 1){myChart1();}
+  if($("#chartdiv").length == 1){myChart();}
 }
 
 
 
-function myChart1()
+function myChart()
 {
-/**
- * --------------------------------------------------------
- * This demo was created using amCharts V4 preview release.
- *
- * V4 is the latest installement in amCharts data viz
- * library family, to be released in the first half of
- * 2018.
- *
- * For more information and documentation visit:
- * https://www.amcharts.com/docs/v4/
- * --------------------------------------------------------
- */
+  am4core.useTheme(am4themes_animated);
 
-am4core.useTheme(am4themes_animated);
+  var chart = am4core.create("chartdiv", am4charts.XYChart);
 
-var chart = am4core.create("chartdiv", am4charts.XYChart);
-chart.paddingRight = 0;
+{%if visitor.chart%}
+  chart.data = {{dashboardDetail.visitorchart | raw}};
+{%else%}
+  return;
+{%endif%}
 
-// var data = [];
-// var open = 100;
-// var close = 250;
-
-// for (var i = 1; i < 120; i++) {
-//   open += Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 4);
-//   close = Math.round(open + Math.random() * 5 + i / 5 - (Math.random() < 0.5 ? 1 : -1) * Math.random() * 2);
-//   data.push({ date: new Date(2018, 0, i), open: open, close: close });
-// }
-
-// chart.data = data;
-chart.data = {{dashboardDetail.visitorchart | raw}};
+  var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+  categoryAxis.renderer.grid.template.location = 0;
+  categoryAxis.renderer.ticks.template.disabled = true;
+  categoryAxis.renderer.line.opacity = 0;
+  categoryAxis.renderer.grid.template.disabled = true;
+  categoryAxis.renderer.minGridDistance = 40;
+  categoryAxis.dataFields.category = "date";
 
 
-var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+  var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+  valueAxis.tooltip.disabled = true;
+  valueAxis.renderer.line.opacity = 0;
+  valueAxis.renderer.ticks.template.disabled = true;
+  valueAxis.min = 0;
 
-var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-valueAxis.tooltip.disabled = true;
+  var columnSeries = chart.series.push(new am4charts.ColumnSeries());
+  columnSeries.dataFields.categoryX = "date";
+  columnSeries.dataFields.valueY = "visit";
+  columnSeries.tooltipText = '{%trans "visit"%}' +": {valueY.value}";
+  columnSeries.name = '{%trans "visit"%}';
+  columnSeries.sequencedInterpolation = true;
+  columnSeries.defaultState.transitionDuration = 1500;
+  columnSeries.fill = chart.colors.getIndex(4);
 
-var series = chart.series.push(new am4charts.LineSeries());
-series.dataFields.dateX = "date";
-series.dataFields.openValueY = "visit";
-series.dataFields.valueY = "visitor";
-series.tooltipText = "visit: {openValueY.value} visitor: {valueY.value}";
-series.sequencedInterpolation = true;
-series.fillOpacity = 0.3;
-series.defaultState.transitionDuration = 1000;
-series.tensionX = 0.8;
+  var columnTemplate = columnSeries.columns.template;
+  columnTemplate.column.cornerRadiusTopLeft = 10;
+  columnTemplate.column.cornerRadiusTopRight = 10;
+  columnTemplate.strokeWidth = 1;
+  columnTemplate.strokeOpacity = 1;
+  columnTemplate.stroke = columnSeries.fill;
 
-var series2 = chart.series.push(new am4charts.LineSeries());
-series2.dataFields.dateX = "date";
-series2.dataFields.valueY = "visitor";
-series2.sequencedInterpolation = true;
-series2.defaultState.transitionDuration = 1500;
-series2.stroke = chart.colors.getIndex(6);
-series2.tensionX = 0.8;
+  var desaturateFilter = new am4core.DesaturateFilter();
+  desaturateFilter.saturation = 0.5;
 
-chart.cursor = new am4charts.XYCursor();
-chart.cursor.xAxis = dateAxis;
-chart.scrollbarX = new am4core.Scrollbar();
+  columnTemplate.filters.push(desaturateFilter);
+
+  // first way - get properties from data. but can only be done with columns, as they are separate objects.
+  columnTemplate.propertyFields.strokeDasharray = "stroke";
+  columnTemplate.propertyFields.fillOpacity = "opacity";
+
+  // add some cool saturation effect on hover
+  var desaturateFilterHover = new am4core.DesaturateFilter();
+  desaturateFilterHover.saturation = 1;
+
+  var hoverState = columnTemplate.states.create("hover");
+  hoverState.transitionDuration = 2000;
+  hoverState.filters.push(desaturateFilterHover);
+
+  var valueAxis2 = chart.yAxes.push(new am4charts.ValueAxis());
+  valueAxis2.tooltip.disabled = true;
+  valueAxis2.renderer.opposite = true;
+  valueAxis2.renderer.grid.template.disabled = true;
+
+  var lineSeries = chart.series.push(new am4charts.LineSeries());
+  lineSeries.dataFields.categoryX = "date";
+  lineSeries.dataFields.valueY = "visitor";
+  lineSeries.tooltipText = '{%trans "visitor"%}' +": {valueY.value}";
+  lineSeries.name = '{%trans "visitor"%}';
+  lineSeries.sequencedInterpolation = true;
+  lineSeries.defaultState.transitionDuration = 1500;
+  lineSeries.stroke = chart.colors.getIndex(11);
+  lineSeries.fill = lineSeries.stroke;
+  lineSeries.strokeWidth = 2;
+  lineSeries.yAxis = valueAxis2;
+
+
+
+  var dropShadow = new am4core.DropShadowFilter();
+  dropShadow.opacity = 0.25;
+  lineSeries.filters.push(dropShadow);
+
+  var bullet = lineSeries.bullets.push(new am4charts.CircleBullet());
+  bullet.fill = lineSeries.stroke;
+  bullet.circle.radius = 4;
+
+  chart.cursor = new am4charts.XYCursor();
+  chart.cursor.behavior = "none";
+  chart.cursor.lineX.opacity = 0;
+  chart.cursor.lineY.opacity = 0;
+
+
+  chart.legend = new am4charts.Legend();
+  chart.legend.parent = chart.plotContainer;
+  chart.legend.zIndex = 100;
+  chart.legend.valueLabels.template.text = "{valueY.value.formatNumber('#.')}";
 }
+
