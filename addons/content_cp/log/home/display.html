@@ -52,42 +52,91 @@
 
 {%block htmlTable%}
 
- <div class="cbox fs12">
-  <table class="tbl bordered1">
-    <thead class="primary fs09">
+
+  <table class="tbl1 v1 cbox fs12">
+    <thead class="fs09">
       <tr>
-        <th>id</th>
-        <th>caller</th>
-        <th>subdomain</th>
-        <th>user_id</th>
-        <th>data</th>
-        <th>datalink</th>
-        <th>status</th>
-        <th>datemodified</th>
-        <th>datecreated</th>
-        <th>visitor_id</th>
+        <th>{%trans "User"%}</th>
+        <th>{%trans "Detail"%}</th>
+        <th>{%trans "Description"%}</th>
+        <th>{%trans "Date"%}</th>
+
       </tr>
     </thead>
 
     <tbody>
       {%for key, value in dataTable%}
-      <tr class="{%if value.status=='deleted'%}negative{%elseif value.status=='draft'%}warning{%endif%}">
-        <td>{{value.id}}</td>
-        <td><a href="{{url.this}}?caller={{value.caller}}">{{value.caller}}</a></td>
-        <td><a href="{{url.this}}?subdomain={{value.subdomain}}">{{value.subdomain}}</a></td>
-        <td><a href="{{url.this}}?user_id={{value.user_id}}">{{value.user_id}}</a></td>
-        <td><a href="{{url.this}}?data={{value.data}}">{{value.data}}</a></td>
-        <td><a href="{{url.this}}?datalink={{value.datalink}}">{{value.datalink}}</a></td>
-        <td><a href="{{url.this}}?status={{value.status}}">{{value.status}}</a></td>
-        <td>{{value.datemodified | dt(true)}}</td>
-        <td>{{value.datecreated | dt(true)}}</td>
-        <td>{{value.visitor_id}}</td>
+      <tr class="">
+        <td class="collapsing txtRa">
+          {%if value.user_id%}
+          <a href="{{url.this}}/datalist?user={{value.user_id}}">
+            <img src="{%if value.avatar%}{{value.avatar}}{%else%}{{url.site}}/static/siftal/images/default/avatar.png{%endif%}" class="avatar mRa5" alt="{{value.displayname}}">
+            <span class="txtB s0 fs08">{{value.displayname}}</span>
+          </a>
+          <div class="txtRa fs08">
+            <a title='{%trans "Mobile"%}'>{{value.mobile | fitNumber('mobile12')}}</a>
+            <a href="{{url.this}}/datalist?userid={{value.user_id}}" class="badge" title='{%trans "User id"%}'>{{value.user_id | fitNumber(false)}}</a>
+          </div>
+
+          <span class="badge">{{value.id | fitNumber(false)}}</span>
+          <nav class="txtRa">
+            <a href="{{url.this}}/datalist?user_id={{value.user_id}}" title='{%trans "User logs"%}'><i class="sf-briefcase"></i></a>
+            <a href="{{url.kingdom}}/cp/users/view?id={{value.user_id}}" title='{%trans "User Profile"%}'><i class="sf-user-md"></i></a>
+            <a title='{%trans "Search by user session id"%}' href="{{url.this}}/datalist?session_id={{value.session_id}}"><i class="sf-user-secret"></i></a>
+          </nav>
+        {%else%}
+          <a href="{{url.this}}/datalist?session_id={{value.session_id}}">
+            <img src="{{url.site}}/static/siftal/images/default/avatar.png" class="avatar mRa5" alt='{%trans "Guest"%}'>
+            <span class="txtB s0 fs08">{%trans "Guest"%}</span>
+          </a><br>
+          <span class="badge">{{value.id | fitNumber(false)}}</span>
+        {%endif%}
+        </td>
+
+
+        <td class="collapsing txtRa">
+          <span class="badge warn"><a href="{{url.this}}?caller={{value.caller}}">{{value.caller}}</a></span>
+
+          {%if value.subdomain%}
+          <br>
+            <span class="badge pain" title='{%trans "Subdomain"%}'><a href="{{url.this}}?subdomain={{value.subdomain}}">{{value.subdomain}}</a></span>
+          {%endif%}
+          {%set myStatus = value.status | capitalize%}
+          <br>
+          <a class="badge info" href="{{url.this}}?status={{value.status}}">{%trans myStatus%}</a>
+          {%if value.visitor_id%}
+          <br>
+          <span class="badge success2"><a href="{{url.here}}/visitor/log?id={{value.visitor_id}}">{{value.visitor_id | fitNumber(false)}}</a></span>
+          {%endif%}
+
+        </td>
+
+
+        <td class="">
+          {{value.data}}
+        </td>
+
+        <td class="collapsing">
+          <a href="#" title='{%trans "Date created"%}'>
+            {{value.datecreated | dt(true)}}
+          </a>
+        <br>
+        <span class="badge danger2" title='{%trans "Date modified"%}'>
+          {{value.datemodified | dt(true)}}
+        </span>
+
+        </td>
+
+
+
+
+
       </tr>
       {%endfor%}
     </tbody>
   </table>
   {%include display.pagination%}
- </div>
+
 {%endblock%}
 
 

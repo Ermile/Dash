@@ -10,6 +10,7 @@
  <div class="c6 s12">{{block ("iCms")}}</div>
  <div class="c6 s12">{{block ("iUser")}}</div>
  <div class="c6 s12">{{block ("iVisitor")}}</div>
+ <div class="c6 s12">{{block ("iLog")}}</div>
  </div>
 
 {%endblock%}
@@ -42,6 +43,16 @@
  <div class="statistic">
   <div class="value"><i class="sf-graph"></i></div>
   <div class="label">{%trans "Visitors"%}</div>
+ </div>
+</a>
+{%endblock%}
+
+
+{%block iLog%}
+<a class="dcard x2" href='{{url.kingdom}}/cp/log'>
+ <div class="statistic">
+  <div class="value"><i class="sf-server"></i></div>
+  <div class="label">{%trans "Logs"%}</div>
  </div>
 </a>
 {%endblock%}
