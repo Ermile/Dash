@@ -30,6 +30,7 @@ Highcharts.chart('chartdiv',
     },
     title: {
       text: '{%trans "Page"%}',
+      useHTML: Highcharts.hasBidiBug,
       style: {
         color: Highcharts.getOptions().colors[0]
       }
@@ -38,6 +39,7 @@ Highcharts.chart('chartdiv',
   { // Secondary yAxis
     title: {
       text: '{%trans "Person"%}',
+      useHTML: Highcharts.hasBidiBug,
       style: {
         color: Highcharts.getOptions().colors[1]
       }
@@ -51,6 +53,7 @@ Highcharts.chart('chartdiv',
     opposite: true
   }],
   tooltip: {
+    useHTML: true,
     shared: true
   },
   legend: {
