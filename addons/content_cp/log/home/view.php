@@ -30,6 +30,16 @@ class view
 			'order' => \dash\request::get('order'),
 		];
 
+		if(!$args['sort'])
+		{
+			$args['sort'] = 'id';
+		}
+
+		if(!$args['order'])
+		{
+			$args['order'] = 'desc';
+		}
+
 		if(\dash\request::get('status'))
 		{
 			$args['status'] = \dash\request::get('status');
