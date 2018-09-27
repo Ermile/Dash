@@ -10,7 +10,9 @@
 <div class="f">
   <div class="c s6">{{block ("dVisit")}}</div>
   <div class="c s6">{{block ("dPageviews")}}</div>
+{%if dashboardDetail.visitor and dashboardDetail.visit%}
   <div class="c s6">{{block ("dRatio")}}</div>
+{%endif%}
   <div class="c s6">{{block ("dAvgTime")}}</div>
 </div>
 
