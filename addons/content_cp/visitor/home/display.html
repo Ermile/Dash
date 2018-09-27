@@ -38,8 +38,8 @@
 
 {%block fPeriod%}
 <div class="msg f">
-	<a class="cauto mRa10 btn" href="{{url.this}}/datalist">{%trans "Last visited page"%}</a>
-	<a class="cauto mRa10 btn" href="{{url.this}}/chart">{%trans "Extra chart"%}</a>
+	<a class="cauto mRa10 mT5 btn" href="{{url.this}}/log">{%trans "Visited pages log"%}</a>
+	<a class="cauto mRa25 mT5 btn" href="{{url.this}}/chart">{%trans "Extra chart"%}</a>
 
 	<a class="c s12 mRa10 mT5 btn {%if requestGET.period == 'hours24'%}primary{%else%}dark outline{%endif%}" href="{{url.this}}?period=hours24">{%trans "Last 24 hours"%}</a>
 	<a class="c s12 mRa10 mT5 btn {%if requestGET.period == 'week'%}primary{%else%}dark outline{%endif%}" href="{{url.this}}?period=week">{%trans "Last week"%}</a>

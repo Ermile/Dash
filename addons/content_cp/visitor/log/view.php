@@ -1,5 +1,5 @@
 <?php
-namespace content_cp\visitor\datalist;
+namespace content_cp\visitor\log;
 
 
 class view
