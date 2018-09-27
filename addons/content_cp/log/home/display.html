@@ -102,13 +102,22 @@
           <br>
             <span class="badge pain" title='{%trans "Subdomain"%}'><a href="{{url.this}}?subdomain={{value.subdomain}}">{{value.subdomain}}</a></span>
           {%endif%}
+          {%if value.visitor_id%}
+          <span class="badge success2"><a href="{{url.here}}/visitor/log?id={{value.visitor_id}}">{{value.visitor_id | fitNumber(false)}}</a></span>
+          {%endif%}
+          <br>
+          {%if value.notification %}<i class="sf-bell" title='{%trans "Notification"%}'></i>{%endif%}
+          {%if value.telegram %}<i class="sf-paper-plane" title='{%trans "Telegram"%}'></i>{%endif%}
+          {%if value.sms %}<i class="sf-mobile" title='{%trans "SMS"%}'></i>{%endif%}
+          {%if value.email %}<i class="sf-at" title='{%trans "Email"%}'></i>{%endif%}
+          {%if value.url %}<a href="{{value.url}}"><i class="sf-share" title='{%trans "Url"%}'></i></a>{%endif%}
+          {%if value.life_time %}<span class="badge success2">{{value.life_time}}</span>{%endif%}
+          {%if value.need_answer %}<span class="sf-check"></span>{%endif%}
+          {%if value.auto_expire %}<br><span class="badge warn2">{{value.auto_expire}}</span>{%endif%}
+          {%if value.send_to%}<br><a href="#" class="badge" title='{%trans "Send to"%}'>{{value.send_to | join(',')}}</a>{%endif%}
           {%set myStatus = value.status | capitalize%}
           <br>
           <a class="badge info" href="{{url.this}}?status={{value.status}}">{%trans myStatus%}</a>
-          {%if value.visitor_id%}
-          <br>
-          <span class="badge success2"><a href="{{url.here}}/visitor/log?id={{value.visitor_id}}">{{value.visitor_id | fitNumber(false)}}</a></span>
-          {%endif%}
 
         </td>
 
@@ -117,16 +126,7 @@
           <span class="txtB">{{value.title}}</span>
           <br>
           {{value.content}}
-          <br>
-          {%if value.notification %}<i class="sf-bell" title='{%trans "Notification"%}'></i>{%endif%}
-          {%if value.url %}<a href="{{value.url}}"><i class="sf-share" title='{%trans "Url"%}'></i></a>{%endif%}
-          {%if value.telegram %}<i class="sf-paper-plane" title='{%trans "Telegram"%}'></i>{%endif%}
-          {%if value.sms %}<i class="sf-mobile" title='{%trans "SMS"%}'></i>{%endif%}
-          {%if value.email %}<i class="sf-at" title='{%trans "Email"%}'></i>{%endif%}
-          {%if value.life_time %}<span class="badge success2">{{value.life_time}}</span>{%endif%}
-          {%if value.auto_expire %}<span class="badge warn2">{{value.auto_expire}}</span>{%endif%}
-          {%if value.need_answer %}<span class="sf-check"></span>{%endif%}
-          {%if value.send_to%}<a href="#" class="badge" title='{%trans "Send to"%}'>{{value.send_to | join(',')}}</a>{%endif%}
+
 
           <span class="badge primary">{{value.data}}</span>
 
@@ -136,10 +136,13 @@
           <a href="#" title='{%trans "Date created"%}'>
             {{value.datecreated | dt(true)}}
           </a>
+        <br>{{value.datecreated | sdate("ultimate")}}
+        {%if value.datemodified%}
         <br>
         <span class="badge danger2" title='{%trans "Date modified"%}'>
           {{value.datemodified | dt(true)}}
         </span>
+        {%endif%}
 
         </td>
 
