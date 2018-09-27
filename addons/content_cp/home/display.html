@@ -2,74 +2,204 @@
 
 
 
-{%block content%}
-<div class="tbox">
-  {%trans "Control Panel"%}
-</div>
+
+{%block pageContent%}
+	{{block ("blockCMS")}}
+	{{block ("chartVisitor")}}
+	{{block ("blockHelpCenter")}}
+	{{block ("blockUsers")}}
+{%endblock%}
+
+
+
+{%block blockCMS%}
 <div class="f">
- <div class="c6 s12">{{block ("iCms")}}</div>
- <div class="c6 s12">{{block ("iUser")}}</div>
- <div class="c6 s12">{{block ("iVisitor")}}</div>
- <div class="c6 s12">{{block ("iLog")}}</div>
- </div>
-
-{%endblock%}
-
-
-
-{%block iCms%}
-<a class="dcard x2" href='{{url.kingdom}}/cp/cms'>
- <div class="statistic">
-  <div class="value"><i class="sf-diamond"></i></div>
-  <div class="label">{%trans "CMS"%}</div>
- </div>
-</a>
-{%endblock%}
-
-
-{%block iUser%}
-<a class="dcard x2" href='{{url.kingdom}}/cp/users'>
- <div class="statistic">
-  <div class="value"><i class="sf-users"></i></div>
-  <div class="label">{%trans "Users"%}</div>
- </div>
-</a>
-{%endblock%}
-
-
-
-{%block iVisitor%}
-<a class="dcard x2" href='{{url.kingdom}}/cp/visitor'>
- <div class="statistic">
-  <div class="value"><i class="sf-graph"></i></div>
-  <div class="label">{%trans "Visitors"%}</div>
- </div>
-</a>
-{%endblock%}
-
-
-{%block iLog%}
-<a class="dcard x2" href='{{url.kingdom}}/cp/log'>
- <div class="statistic">
-  <div class="value"><i class="sf-server"></i></div>
-  <div class="label">{%trans "Logs"%}</div>
- </div>
-</a>
-{%endblock%}
-
-
-{%block cpVisitorChart%}
-<div class="dcard x3 pA0">
- <div class="chart" data-type='bar' data-vals='{{visitor.chart}}'>
- </div>
+  <div class="c s6">{{block ("dNews")}}</div>
+  <div class="c s6">{{block ("dCats")}}</div>
+  <div class="c s6">{{block ("dTags")}}</div>
+  <div class="c s6">{{block ("dPages")}}</div>
 </div>
 {%endblock%}
 
 
-
-{%block cpVisitorTotalPage%}
-<div class="dcard x3 pA0">
- <div class="chart" data-type='area' data-vals='{{visitor.totalpages}}'>
+{%block dNews%}
+<a class="dcard" href="{{url.here}}/posts">
+ <div class="statistic sm">
+  <div class="label mB10"><i class="fs20 mRa5 sf-pinboard"></i> {%trans "News"%}</div>
+  <div class="value">{{dashboardDetail.news | fitNumber}}</div>
  </div>
+</a>
+{%endblock%}
+
+
+{%block dCats%}
+<a class="dcard" href="{{url.here}}/terms?type=cat">
+ <div class="statistic sm">
+  <div class="label mB10"><i class="fs20 mRa5 sf-grid"></i> {%trans "Category"%}</div>
+  <div class="value">{{dashboardDetail.cats | fitNumber()}}</div>
+ </div>
+</a>
+{%endblock%}
+
+
+{%block dTags%}
+<a class="dcard" href="{{url.here}}/terms?type=tag">
+ <div class="statistic sm">
+  <div class="label mB10"><i class="fs20 mRa5 sf-tags"></i> {%trans "Tags"%}</div>
+  <div class="value">{{dashboardDetail.tags | fitNumber}}</div>
+ </div>
+</a>
+{%endblock%}
+
+
+{%block dPages%}
+<a class="dcard" href="{{url.here}}/posts?type=page">
+ <div class="statistic sm">
+  <div class="label mB10"><i class="fs20 mRa5 sf-files-o"></i> {%trans "Pages"%}</div>
+  <div class="value">{{dashboardDetail.pages | fitNumber}}</div>
+ </div>
+</a>
+{%endblock%}
+
+
+
+{%block chartVisitor%}
+<a class="cbox pA0" href="{{url.here}}/visitor">
+ <div class="chart x4" id="chartdiv" data-type='bar' data-vals='{{visitor.chart}}'></div>
+</a>
+{%endblock%}
+
+
+
+{%block blockHelpCenter%}
+<div class="f">
+  <div class="c s6">{{block ("dHelpCenter")}}</div>
+  <div class="c s6">{{block ("dHelpCenterTags")}}</div>
+  <div class="c s6">{{block ("dSupportTags")}}</div>
+  <div class="c s6">{{block ("dTickets")}}</div>
 </div>
 {%endblock%}
+
+
+{%block dHelpCenter%}
+<a class="dcard" href="{{url.here}}/posts?type=help">
+ <div class="statistic sm">
+  <div class="label mB10"><i class="fs20 mRa5 sf-info-circle"></i> {%trans "Help Center Article"%}</div>
+  <div class="value">{{dashboardDetail.helpcenter | fitNumber}}</div>
+ </div>
+</a>
+{%endblock%}
+
+
+
+{%block dHelpCenterTags%}
+<a class="dcard" href="{{url.here}}/terms?type=help_tag">
+ <div class="statistic sm">
+  <div class="label mB10"><i class="fs20 mRa5 sf-clone"></i> {%trans "Help tags"%}</div>
+  <div class="value">{{dashboardDetail.helpcentertags | fitNumber()}}</div>
+ </div>
+</a>
+{%endblock%}
+
+
+{%block dSupportTags%}
+<a class="dcard" href="{{url.here}}/terms?type=support_tag">
+ <div class="statistic sm">
+  <div class="label mB10"><i class="fs20 mRa5 sf-bug"></i> {%trans "Support tags"%}</div>
+  <div class="value">{{dashboardDetail.supporttags | fitNumber()}}</div>
+ </div>
+</a>
+{%endblock%}
+
+
+{%block dTickets%}
+<a class="dcard" href="{{url.kingdom}}/support/ticket">
+ <div class="statistic sm">
+  <div class="label mB10"><i class="fs20 mRa5 sf-life-ring"></i> {%trans "Tickets"%}</div>
+  <div class="value">{{dashboardDetail.tickets | fitNumber}}</div>
+ </div>
+</a>
+{%endblock%}
+
+
+
+
+
+{%block blockUsers%}
+<div class="f mB20">
+  <div class="c s6">{{block ("dUsers")}}</div>
+  <div class="c s6">{{block ("dUserPerms")}}</div>
+  <div class="c s6">{{block ("dLogs")}}</div>
+  <div class="c s6">{{block ("dComments")}}</div>
+</div>
+{%endblock%}
+
+
+{%block dUsers%}
+<a class="dcard" href="{{url.here}}/users">
+ <div class="statistic sm">
+  <div class="label mB10"><i class="fs20 mRa5 sf-users"></i> {%trans "Users"%}</div>
+  <div class="value">{{dashboardDetail.users | fitNumber}}</div>
+ </div>
+</a>
+{%endblock%}
+
+
+
+{%block dUserPerms%}
+<a class="dcard" href="{{url.here}}/permission">
+ <div class="statistic sm">
+  <div class="label mB10"><i class="fs20 mRa5 sf-lock"></i> {%trans "Permissions"%}</div>
+  <div class="value">{{dashboardDetail.permissions | fitNumber()}}</div>
+ </div>
+</a>
+{%endblock%}
+
+
+{%block dLogs%}
+<a class="dcard" href="{{url.here}}/logs">
+ <div class="statistic sm">
+  <div class="label mB10"><i class="fs20 mRa5 sf-crosshairs"></i> {%trans "Logs"%}</div>
+  <div class="value">{{dashboardDetail.logs | fitNumber()}}</div>
+ </div>
+</a>
+{%endblock%}
+
+
+{%block dComments%}
+<a class="dcard" href="{{url.here}}/comments">
+ <div class="statistic sm">
+  <div class="label mB10"><i class="fs20 mRa5 sf-comments"></i> {%trans "Comments"%}</div>
+  <div class="value">{{dashboardDetail.comments | fitNumber()}}</div>
+ </div>
+</a>
+{%endblock%}
+
+
+
+
+
+
+
+{%block foot_js%}
+<script type="text/javascript">
+  {%include 'content_cp/visitor/home/chart.js'%}
+</script>
+<style type="text/css">
+.highcharts-tooltip > span {
+    background: rgba(255,255,255,0.85);
+    border: 1px solid silver;
+    border-radius: 3px;
+    box-shadow: 1px 1px 2px #888;
+    padding: 8px;
+}
+.rtl .highcharts-tooltip > span{
+    direction:rtl;
+    text-align:right
+}
+.highcharts-credits{
+  display: none
+}
+</style>
+{%endblock%}
+
