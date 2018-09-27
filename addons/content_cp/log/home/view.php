@@ -76,8 +76,8 @@ class view
 		}
 
 
-		$dataTable = \dash\db\logs::search(\dash\request::get('q'), $args);
-		// var_dump($dataTable);exit();
+		$dataTable = \dash\app\log::list(\dash\request::get('q'), $args);
+
 		\dash\data::dataTable($dataTable);
 
 		$filterArray = $args;

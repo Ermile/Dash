@@ -1,9 +1,9 @@
 {
-  "sampleAll": {
+  "userLoginByRemember": {
     "title": "The title :name",
     "content": "The :user content",
     "category": "test",
-    "type": "notificatio",
+    "notification": true,
     "url": ":kingdom/sample?id=$id",
     "send_msg": {
       "telegram": "Hi tg",
