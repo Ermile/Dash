@@ -3,6 +3,18 @@
 
 
 {%block pageContent%}
+
+<div class="f">
+  <div class="c s6">{{block ("dVisit")}}</div>
+  <div class="c s6">{{block ("dPageviews")}}</div>
+  <div class="c s6">{{block ("dRatio")}}</div>
+  <div class="c s6">{{block ("dAvgTime")}}</div>
+</div>
+<div
+
+
+
+
 <div class="cbox">
 {{block('bChartPrimary')}}
 	<div class="msg primary2">
@@ -28,6 +40,48 @@
 
 </div>
 {%endblock%}
+
+
+
+{%block dVisit%}
+<div class="dcard">
+ <div class="statistic sm">
+  <div class="label mB10"><i class="fs20 mRa5 sf-users"></i> {%trans "Visit"%}</div>
+  <div class="value">{{dashboardDetail.visit | fitNumber}}</div>
+ </div>
+</div>
+{%endblock%}
+
+
+{%block dPageviews%}
+<div class="dcard">
+ <div class="statistic sm">
+  <div class="label mB10"><i class="fs20 mRa5 sf-interface-windows"></i> {%trans "Pageviews"%}</div>
+  <div class="value">{{dashboardDetail.visitor | fitNumber}}</div>
+ </div>
+</div>
+{%endblock%}
+
+
+{%block dRatio%}
+<div class="dcard">
+ <div class="statistic sm">
+  <div class="label mB10"><i class="fs20 mRa5 sf-anchor"></i> {%trans "Pages/Visit"%}</div>
+  <div class="value">{{(dashboardDetail.visitor / dashboardDetail.visit) | round(2) | fitNumber(false)}}</div>
+ </div>
+</div>
+{%endblock%}
+
+
+{%block dAvgTime%}
+<div class="dcard">
+ <div class="statistic sm">
+  <div class="label mB10"><i class="fs20 mRa5 sf-hourglass-end"></i> {%trans "Avg. Time on Site"%}</div>
+  <div class="value">{{dashboardDetail.avgtime | fitNumber}}</div>
+ </div>
+</div>
+{%endblock%}
+
 
 
 
