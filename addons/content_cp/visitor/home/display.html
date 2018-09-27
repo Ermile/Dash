@@ -14,7 +14,7 @@
   <div class="c s6">{{block ("dAvgTime")}}</div>
 </div>
 
-<div class="cbox">
+<div class="cbox" title='{%trans "Max trafic time"%} {{(dashboardDetail.maxtrafictime ~ ":00:00") | dt(true)}}'>
 {{block('bChartPrimary')}}
 </div>
 
@@ -28,41 +28,22 @@
 	</div>
 </div>
 
-<div class="f">
+<div class="f mB25">
   <div class="c s6">{{block ("dNewVisits")}}</div>
   <div class="c s6">{{block ("dBounceRate")}}</div>
-  <div class="c s6">{{block ("dAlexa")}}</div>
+  <div class="c s12">{{block ("dAlexa")}}</div>
 </div>
 
-
-
-
-
-<div class="cbox">
-
-	<div class="f">
-		<div class="dcard c">
-			<a href="{{url.this}}/datalist">{%trans "Visitor list"%}</a>
-		</div>
-		<div class="dcard c">
-			<a href="{{url.this}}/chart">{%trans "Visitor chart"%}</a>
-		</div>
-
-
-	</div>
-	<div class="msg">{%trans "Visit"%} <b>{{dashboardDetail.visit | fitNumber}}</b></div>
-	<div class="msg">{%trans "Visitor"%} <b>{{dashboardDetail.visitor | fitNumber}}</b></div>
-	<div class="msg" title="{{dashboardDetail.avgtime}}">{%trans "AVG TIME"%} {{dashboardDetail.avgtime | fitNumber}} {%trans "Second"%}</div>
-	<div class="msg">{%trans "Max trafic time"%} {{(dashboardDetail.maxtrafictime ~ ":00:00") | dt(true)}}</div>
-
-</div>
 {%endblock%}
 
 {%block fPeriod%}
 <div class="msg f">
-	<a class="c mRa10 btn {%if requestGET.period == 'hours24'%}primary{%else%}dark outline{%endif%}" href="{{url.this}}?period=hours24">{%trans "Last 24 hours"%}</a>
-	<a class="c mRa10 btn {%if requestGET.period == 'week'%}primary{%else%}dark outline{%endif%}" href="{{url.this}}?period=week">{%trans "Last week"%}</a>
-	<a class="c mRa10 btn {%if requestGET.period == 'month'%}primary{%else%}dark outline{%endif%}" href="{{url.this}}?period=month">{%trans "Last month"%}</a>
+	<a class="cauto mRa10 btn" href="{{url.this}}/datalist">{%trans "Last visited page"%}</a>
+	<a class="cauto mRa10 btn" href="{{url.this}}/chart">{%trans "Extra chart"%}</a>
+
+	<a class="c s12 mRa10 mT5 btn {%if requestGET.period == 'hours24'%}primary{%else%}dark outline{%endif%}" href="{{url.this}}?period=hours24">{%trans "Last 24 hours"%}</a>
+	<a class="c s12 mRa10 mT5 btn {%if requestGET.period == 'week'%}primary{%else%}dark outline{%endif%}" href="{{url.this}}?period=week">{%trans "Last week"%}</a>
+	<a class="c s12 mRa10 mT5 btn {%if requestGET.period == 'month'%}primary{%else%}dark outline{%endif%}" href="{{url.this}}?period=month">{%trans "Last month"%}</a>
 </div>
 {%endblock%}
 
