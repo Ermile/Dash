@@ -56,6 +56,23 @@ Highcharts.chart('chartdiv',
     useHTML: true,
     shared: true
   },
+  exporting:
+  {
+    buttons:
+    {
+      contextButton:
+      {
+        menuItems:
+        [
+         'printChart',
+         'separator',
+         'downloadPNG',
+         'downloadJPEG',
+         'downloadSVG'
+        ]
+      }
+    }
+  },
   legend: {
     layout: 'vertical',
     align: 'left',
