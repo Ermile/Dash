@@ -115,6 +115,9 @@
 {%if include.siftal and siftalJS != 'off' %}
 {%if dev.siftal %}
  <script src="http://siftal.local/dist/js/siftal.min.js"></script>
+{%if include.highcharts %}
+ <script src="http://siftal.local/dist/js/highcharts/highcharts.min.js"></script>
+{%endif%}
 {%if include.chart %}
  <script src="http://siftal.local/dist/js/amcharts4.min.js"></script>
 {%endif%}
@@ -124,6 +127,9 @@
 {%else%}
 
  <script src="{{url.site}}/static/{{'siftal/js/siftal.min.js' | filemtime(true)}}"></script>
+{%if include.highcharts %}
+ <script src="{{url.site}}/static/{{'siftal/js/highcharts/highcharts.min.js' | filemtime(true)}}"></script>
+{%endif%}
 {%if include.chart %}
  <script src="{{url.site}}/static/{{'siftal/js/amcharts4.min.js' | filemtime(true)}}"></script>
 {%endif%}
