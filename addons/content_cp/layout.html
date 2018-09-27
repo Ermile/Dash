@@ -32,11 +32,11 @@
             {%endif%}
 
             {%if perm('cpTagHelpAdd') or perm('cpTagHelpEdit')%}
-              <li><a href="{{url.here}}/terms?type=help_tag">{% trans "Help tags" %} <i class='floatRa mRa10 fc-mute sf-tags'></i></a></li>
+              <li><a href="{{url.here}}/terms?type=help_tag">{% trans "Help tags" %} <i class='floatRa mRa10 fc-mute sf-clone'></i></a></li>
             {%endif%}
 
             {%if perm('cpTagSupportAdd') or perm('cpTagSupportEdit')%}
-              <li><a href="{{url.here}}/terms?type=support_tag">{% trans "Support tags" %} <i class='floatRa mRa10 fc-mute sf-tags'></i></a></li>
+              <li><a href="{{url.here}}/terms?type=support_tag">{% trans "Support tags" %} <i class='floatRa mRa10 fc-mute sf-bug'></i></a></li>
             {%endif%}
 
         </ul>
