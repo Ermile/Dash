@@ -26,6 +26,38 @@ class view
 		$dashboard_detail['maxtrafictime'] = \dash\app\visitor::total_maxtrafictime($args);
 		$dashboard_detail['visitorchart']  = \dash\app\visitor::chart_visitorchart($args);
 		\dash\data::dashboardDetail($dashboard_detail);
+		\dash\data::alexa(self::alexaRank());
+
+	}
+
+
+	public static function alexaRank($_website = null)
+	{
+		if(!$_website)
+		{
+			$_website = \dash\url::domain();
+			if(\dash\url::tld() === 'local')
+			{
+				$_website = \dash\url::root(). '.com';
+			}
+		}
+		$apiURL = 'http://data.alexa.com/data?cli=10&dat=snbamz&url='. $_website;
+		$alexaResult = simplexml_load_file($apiURL);
+		$alexaRank = '-';
+		if(isset($alexaResult->SD[1]->POPULARITY))
+		{
+			$alexaRank = $alexaResult->SD[1]->POPULARITY->attributes()->TEXT;
+			$alexaRank = intval($alexaRank);
+		}
+		$result =
+		[
+			'website' => $_website,
+			'rank'    => $alexaRank,
+			'api'     => $apiURL,
+			'url'     => 'https://www.alexa.com/siteinfo/'. $_website
+		];
+
+		return $result;
 	}
 }
 ?>

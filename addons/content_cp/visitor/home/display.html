@@ -128,12 +128,12 @@
 {%endblock%}
 
 {%block dAlexa%}
-<div class="dcard">
+<a class="dcard" href="{{alexa.url}}" target="_blank">
  <div class="statistic sm">
   <div class="label mB10"><i class="fs20 mRa5 sf-globe"></i> {%trans "Alexa rank"%}</div>
-  <div class="value">{{dashboardDetail.alexa | fitNumber}}</div>
+  <div class="value">{{alexa.rank | fitNumber}}</div>
  </div>
-</div>
+</a>
 {%endblock%}
 
 
