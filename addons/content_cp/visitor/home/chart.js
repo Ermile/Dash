@@ -57,6 +57,7 @@ Highcharts.chart('chartdiv',
   }],
   tooltip: {
     useHTML: true,
+    borderWidth: 0,
     shared: true
   },
   exporting:
