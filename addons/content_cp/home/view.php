@@ -12,8 +12,9 @@ class view
 		\dash\data::dash_lastUpdate(\dash\utility\git::getLastUpdate());
 
 		\dash\data::page_title(T_('Control Panel'). ' '. \dash\data::site_title());
-		\dash\data::page_desc(T_('See all detail about your website in a quick view'). ' '. T_('You can manage all parts of site from cms and news until user and logs'));
+		\dash\data::page_desc(T_('See all detail about your website in a quick view.'). ' '. T_('You can manage all parts of site from cms and news until user and logs.'));
 		\dash\data::page_pictogram('gauge');
+		\dash\data::page_special(true);
 
 		// $this->data->page['title']       = T_(ucfirst( str_replace('/', ' ', \dash\url::directory()) ));
 
