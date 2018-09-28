@@ -1058,6 +1058,34 @@ class TransStatic
 	echo T_("Send notification");
 	echo T_("Set ticket close if solved");
 
+	echo T_("Nginx service restarted");
+	echo T_("Mysql service restarted");
+	echo T_("Sshpass installed");
+	echo T_("Invalid command sended");
+	echo T_("Cronjob detail changed");
+	echo T_("Disable cronjob");
+	echo T_("Database upgraded to new version");
+	echo T_("Git config is modified");
+	echo T_("Generate sitemap");
+	echo T_("Run translation extract");
+	echo T_("Git update");
+	echo T_("Telegram send message");
+	echo T_("Telegram send photo");
+	echo T_("Telegram set webhook");
+	echo T_("Add transaction manually");
+	echo T_("The title :name");
+	echo T_("Load su whit :user");
+	echo T_("You have new ticket");
+	echo T_("We Noticed a New Login, :displayname");
+	echo T_("Send message :msg to chatid :chatid");
+	echo T_("Send photo to chatid :chatid");
+	echo T_(":url \n whit max connetcion :max_connections");
+	echo T_("Add transaction :title whit :plus plus and :minus minus to :user_id");
+	echo T_("The :user content");
+	echo T_("The :user was loaded su content");
+	echo T_("You have new ticket from :displayname");
+	echo T_("If this was you, you can safely disregard this message. If you didn't do this, please change your password to help secure your account. Learn more about keeping your account secure.");
+
  }
 }
 ?>

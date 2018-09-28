@@ -37,6 +37,12 @@
   },
   "upgradeDataBase": {
     "title": "Database upgraded to new version",
+    "notification" : true,
+    "send_to" : ["supervisor"],
+    "send_msg":
+    {
+      "telegram": "Database upgraded to new version"
+    },
     "content": null
   },
   "nanoGitConfig": {
@@ -53,6 +59,12 @@
   },
   "gitUpdate": {
     "title": "Git update",
+    "notification" : true,
+    "send_to" : ["supervisor"],
+    "send_msg":
+    {
+      "telegram": "Git update"
+    },
     "content": null
   },
   "tgSendMessage": {
