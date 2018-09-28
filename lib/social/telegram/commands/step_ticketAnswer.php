@@ -93,7 +93,7 @@ class step_ticketAnswer
 		}
 
 		$ticketNo = step::get('ticketNo');
-		\dash\app\tg::ticketAnswer($ticketNo, $_feedback);
+		\dash\app\tg\ticket::answer($ticketNo, $_feedback);
 
 		// after this go to next step
 		$menu     = self::$menu;
