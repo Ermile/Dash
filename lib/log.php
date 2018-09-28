@@ -22,7 +22,7 @@ class log
 	// save log in database
 	public static function db($_caller, $_args = [])
 	{
-		$default_options =
+		$default_args =
 		[
 			'status'        => 'enable',
 			'data'          => null,
@@ -39,12 +39,12 @@ class log
 			'meta'          => null,
 		];
 
-		if(!is_array($_options))
+		if(!is_array($_args))
 		{
-			$_options = [];
+			$_args = [];
 		}
 
-		$_options = array_merge($default_options, $_options);
+		$_args = array_merge($default_args, $_args);
 
 		$user_id = \dash\user::id();
 
@@ -53,32 +53,32 @@ class log
 			$user_id = null;
 		}
 
-		if($_options['data'])
+		if($_args['data'])
 		{
-			$_options['data'] = \dash\safe::safe($_options['data'], 'raw');
+			$_args['data'] = \dash\safe::safe($_args['data'], 'raw');
 
-			if(is_array($_options['data']) || is_object($_options['data']))
+			if(is_array($_args['data']) || is_object($_args['data']))
 			{
-				$_options['data'] = json_encode($_options['data'], JSON_UNESCAPED_UNICODE);
+				$_args['data'] = json_encode($_args['data'], JSON_UNESCAPED_UNICODE);
 			}
 		}
 		else
 		{
-			$_options['data'] = null;
+			$_args['data'] = null;
 		}
 
-		if($_options['meta'])
+		if($_args['meta'])
 		{
-			$_options['meta'] = \dash\safe::safe($_options['meta'], 'raw');
+			$_args['meta'] = \dash\safe::safe($_args['meta'], 'raw');
 
-			if(is_array($_options['meta']) || is_object($_options['meta']))
+			if(is_array($_args['meta']) || is_object($_args['meta']))
 			{
-				$_options['meta'] = json_encode($_options['meta'], JSON_UNESCAPED_UNICODE);
+				$_args['meta'] = json_encode($_args['meta'], JSON_UNESCAPED_UNICODE);
 			}
 		}
 		else
 		{
-			$_options['meta'] = null;
+			$_args['meta'] = null;
 		}
 
 		if($_caller && mb_strlen($_caller) >= 200)
@@ -86,9 +86,9 @@ class log
 			$_caller = substr($_caller, 0, 198);
 		}
 
-		if($_options['code'] && mb_strlen($_options['code']) >= 200)
+		if($_args['code'] && mb_strlen($_args['code']) >= 200)
 		{
-			$_options['code'] = substr($_options['code'], 0, 198);
+			$_args['code'] = substr($_args['code'], 0, 198);
 		}
 
 		$insert_log =
@@ -96,19 +96,19 @@ class log
 			'caller'        => $_caller,
 			'user_id'       => $user_id,
 			'datecreated'   => date("Y-m-d H:i:s"),
-			'subdomain'     => $_options['subdomain'],
+			'subdomain'     => $_args['subdomain'],
 			'visitor_id'    => \dash\utility\visitor::id(),
-			'data'          => $_options['data'],
-			'status'        => $_options['status'],
-			'code'          => $_options['code'],
-			'send'          => $_options['send'],
-			'notif'         => $_options['notif'],
-			'user_idsender' => $_options['user_idsender'],
-			'readdate'      => $_options['readdate'],
-			'telegramdate'  => $_options['telegramdate'],
-			'smsdate'       => $_options['smsdate'],
-			'emaildate'     => $_options['emaildate'],
-			'meta'          => $_options['meta'],
+			'data'          => $_args['data'],
+			'status'        => $_args['status'],
+			'code'          => $_args['code'],
+			'send'          => $_args['send'],
+			'notif'         => $_args['notif'],
+			'user_idsender' => $_args['user_idsender'],
+			'readdate'      => $_args['readdate'],
+			'telegramdate'  => $_args['telegramdate'],
+			'smsdate'       => $_args['smsdate'],
+			'emaildate'     => $_args['emaildate'],
+			'meta'          => $_args['meta'],
 		];
 
 		foreach ($insert_log as $key => $value)

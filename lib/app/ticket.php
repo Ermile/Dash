@@ -172,22 +172,25 @@ class ticket
 
 		$replace =
 		[
-			'displayname' => \dash\user::detail('displayname'),
-			'link'        => \dash\url::this(). '/show?id='. $comment_id,
-
+			'displayname'   => \dash\user::detail('displayname'),
+			'link'          => \dash\url::this(). '/show?id='. $comment_id,
+			'code'          => $comment_id,
+			'ticketContent' => strip_tags($args['content']),
+			'ticketTitle'   => isset($args['title']) ? $args['title'] : null,
 		];
 
-		$notif_args =
-		[
-			'send_msg'    =>
-			[
-				'telegram' => strip_tags($args['content'])
-			],
-		];
+		\dash\log::set('newTicket', $replace);
 
-		\dash\notification::send('newTicket', null, $replace, $notif_args);
+		// $notif_args =
+		// [
+		// 	'send_msg'    =>
+		// 	[
+		// 		'telegram' => strip_tags($args['content'])
+		// 	],
+		// ];
 
-		\dash\log::set('addComment', ['data' => $comment_id, 'datalink' => \dash\coding::encode($comment_id)]);
+		// \dash\notification::send('newTicket', null, $replace, $notif_args);
+
 
 		$return            = [];
 		$return['id']      = $comment_id;

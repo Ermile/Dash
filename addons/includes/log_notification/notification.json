@@ -57,12 +57,33 @@
       "reject_owner": null
     }
   },
-  "newTicket": {
-    "title": "You have new ticket",
-    "content": "You have new ticket from :displayname",
-    "category": "ticket",
+   "newAnserTicket": {
+    "title": "You have new ticket from :displayname",
+    "content": ":ticketTitle \n ticketContent",
+
     "send_msg": {
-      "telegram": "You have new ticket from :displayname \n see :link"
+      "telegram": "You have new ticket from :displayname \n see :link \n\n :ticketContent"
+    },
+    "send_to": [
+      "admin",
+      "supervisor"
+    ],
+    "telegram": true,
+    "sms": false,
+    "email": false,
+    "duplicate": {
+      "save": true,
+      "send": true
+    },
+    "life_time": "5d",
+    "need_answer": false
+  },
+  "newTicket": {
+    "title": "You have new ticket from :displayname",
+    "content": "ticketContent",
+
+    "send_msg": {
+      "telegram": "You have new ticket from :displayname \n see :link \n\n :ticketContent"
     },
     "send_to": [
       "admin",
