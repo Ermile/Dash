@@ -125,6 +125,10 @@ class datetime
 
 	public static function fit($_datetime, $_format = null, $_type = null, $_calendar = null)
 	{
+		if(!$_datetime)
+		{
+			return null;
+		}
 		if($_format === 'human')
 		{
 			return \dash\utility\human::timing($_datetime, $_type);
