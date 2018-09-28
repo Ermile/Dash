@@ -17,15 +17,17 @@ class step_ticketAnswer
 	public static function start($_cmd)
 	{
 		// if we have ticket number continue else return
-		if(isset($_cmd['optional'] && $_cmd['optional']))
+		if(isset($_cmd['optional']) && $_cmd['optional'])
 		{
-			return false;
+			step::set('ticketNo', $_cmd['optional']);
+			step::start('ticketAnswer');
+
+			return self::step1($_cmd);
 		}
-
-		step::set('ticketNo', $_cmd['optional']);
-		step::start('ticketAnswer');
-
-		return self::step1($_cmd);
+		else
+		{
+			return self::requireCode();
+		}
 	}
 
 
@@ -110,5 +112,19 @@ class step_ticketAnswer
 		step::stop();
 		return $result;
 	}
+
+
+	public static function requireCode()
+	{
+		$result =
+		[
+			'text'         => T_("We need ticket number!")." 🙁",
+			'reply_markup' => self::$menu,
+		];
+		bot::sendMessage($result);
+
+		return $result;
+	}
+
 }
 ?>
