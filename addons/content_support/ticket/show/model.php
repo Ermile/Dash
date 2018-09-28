@@ -101,7 +101,13 @@ class model
 				switch ($status)
 				{
 					case 'close':
-						\dash\log::set('setCloseTicket', ['code' => \dash\request::get('id')]);
+						$log =
+						[
+							'code' => \dash\request::get('id'),
+
+						];
+						\dash\log::set('setCloseTicket', $log);
+
 						\dash\permission::access('supportTicketClose');
 						break;
 
@@ -166,12 +172,23 @@ class model
 		$msg      = T_("Your ticket was sended");
 		$notif_fn = 'ok';
 
+		$plus = \dash\db\comments::get_count(['type' => 'ticket', 'parent' => \dash\request::get('id')]);
+
 		$ticket_type = 'ticket';
 		if(\dash\permission::check('supportTicketAddNote'))
 		{
 			if(\dash\request::post('addnote') === 'note')
 			{
-				\dash\log::set('AddNoteTicket', ['code' => \dash\request::get('id')]);
+				$log =
+				[
+					'code'     => \dash\request::get('id'),
+					'tcontent' => $content,
+					'file'     => $file ? $file :"\n",
+					'plus'     => $plus,
+				];
+
+				\dash\log::set('AddNoteTicket', $log);
+
 				$msg = T_("Your note saved");
 				$notif_fn = 'warn';
 				$ticket_type = 'ticket_note';
@@ -209,7 +226,6 @@ class model
 
 		$update_main = [];
 
-		$plus = \dash\db\comments::get_count(['type' => 'ticket', 'parent' => \dash\request::get('id')]);
 
 		if($ticket_type !== 'ticket_note')
 		{
@@ -230,7 +246,8 @@ class model
 					[
 						'code'     => \dash\request::get('id'),
 						'tcontent' => $content,
-						'count'    => $plus,
+						'file'     => $file ? $file :"\n",
+						'plus'     => $update_main['plus'],
 					];
 
 					\dash\log::set('AddToTicket', $log);
@@ -252,7 +269,8 @@ class model
 					[
 						'code'     => \dash\request::get('id'),
 						'tcontent' => $content,
-						'count'    => $plus,
+						'file'     => $file ? $file :"\n",
+						'plus'     => $update_main['plus'],
 					];
 
 					\dash\log::set('AnswerTicket', $log);
