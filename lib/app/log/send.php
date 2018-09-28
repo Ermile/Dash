@@ -69,9 +69,9 @@ class send
 
 					foreach ($value['user_detail'] as $user_id => $user_detail)
 					{
-						if(isset($user_detail['chat_id']) && isset($value['send_sms']['telegram']))
+						if(isset($user_detail['chatid']) && isset($value['send_sms']['telegram']))
 						{
-							$myData   = ['chat_id' => $user_detail['chat_id'], 'text' => $value['send_sms']['telegram']];
+							$myData   = ['chat_id' => $user_detail['chatid'], 'text' => strip_tags($value['send_sms']['telegram'])];
 							$myResult = \dash\social\telegram\tg::json_sendMessage($myData);
 
 							// @check need to check the telegram is send this message or not
