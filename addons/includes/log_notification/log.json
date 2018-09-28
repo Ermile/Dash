@@ -1,4 +1,47 @@
 {
+  "backupDb": {
+    "title": null
+  },
+  "backupDbLogDataBase": {
+    "title": null
+  },
+  "backupScheduleChange": {
+    "title": null
+  },
+  "backupRemoveDb": {
+    "title": null
+  },
+  "commandNginxRestart": {},
+  "commandMysqlRestart": {},
+  "commandInstallSshpass": {},
+  "commandInvalidCommand": {},
+  "cronJobChange": {},
+  "cronJobDeactive": {},
+  "upgradeDataBase": {},
+  "nanoGitConfig": {},
+  "serverView": {},
+  "sessionView": {},
+  "codingView": {},
+  "extractPermission": {},
+  "sitemapGenerate": {},
+  "translationRun": {},
+  "gitUpdate": {},
+  "tgSendMessage": {
+    "title": "Telegram send message",
+    "content": "Send message :msg to chatid :chatid"
+  },
+  "tgSendPhoto": {
+    "title": "Telegram send photo",
+    "content": "Send photo to chatid :chatid"
+  },
+  "tgSetWebhook": {
+    "title": "Telegram set webhook",
+    "content": ":url \n whit max connetcion :max_connections"
+  },
+  "addTransactionManualy": {
+    "title": "Add transaction manually",
+    "content": "Add transaction :title whit :plus plus and :minus minus to :user_id"
+  },
   "userLoginByRemember": {
     "title": "The title :name",
     "content": "The :user content",

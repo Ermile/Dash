@@ -11,7 +11,7 @@ class model
 
 		if(\dash\request::post('active'))
 		{
-			\dash\log::set('cronJobActive');
+			\dash\log::set('cronJobChange');
 			\dash\engine\cronjob\options::active();
 			\dash\notif::ok(T_("Your cronjob is actived"));
 		}

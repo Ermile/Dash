@@ -12,7 +12,6 @@ class model
 	{
 		$id = \dash\request::get('id');
 
-		\dash\log::set('addTransactionManualy');
 		if(!is_numeric($id))
 		{
 			$id = null;
@@ -152,6 +151,7 @@ class model
 
 		if(\dash\engine\process::status())
 		{
+			\dash\log::set('addTransactionManualy', ['title' => $title, 'plus' => $plus, 'minus' => $minus, 'user_id' => $user_id]);
 			\dash\notif::ok(T_("Transaction inserted"));
 			\dash\redirect::to(\dash\url::here(). '/transactions');
 		}

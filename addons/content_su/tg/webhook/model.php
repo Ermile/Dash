@@ -10,6 +10,7 @@ class model
 
 		$myData   = ['url' => $url, 'max_connections' => $max_connections];
 		$myResult = \dash\social\telegram\tg::json_setWebhook($myData);
+		\dash\log::set('tgSetWebhook', ['url' => $url, 'max_connections' => $max_connections]);
 
 		\dash\session::set('tg_send', json_encode($myData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
 		\dash\session::set('tg_response', $myResult);
