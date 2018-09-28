@@ -44,7 +44,7 @@
           "keyboard": [
             [
               "Answer",
-              "visit"
+              "Visit"
             ]
           ],
           "one_time_keyboard": true
@@ -153,13 +153,13 @@
     "send_to": [
       "supervisor"
     ],
-     "btn": {
+    "btn": {
       "telegram": {
         "reply_markup": {
           "keyboard": [
             [
               "Answer",
-              "visit"
+              "Visit"
             ]
           ],
           "one_time_keyboard": true
@@ -177,7 +177,20 @@
     },
     "send_to": [
       "supervisor"
-    ]
+    ],
+    "btn": {
+      "telegram": {
+        "reply_markup": {
+          "keyboard": [
+            [
+              "Answer",
+              "Visit"
+            ]
+          ],
+          "one_time_keyboard": true
+        }
+      }
+    }
   },
   "AddNoteTicket": {
     "title": "Add new note to ticket",
