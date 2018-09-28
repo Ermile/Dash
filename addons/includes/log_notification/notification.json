@@ -60,7 +60,7 @@
    "newAnserTicket": {
     "title": "You have new ticket from :displayname",
     "content": ":ticketTitle \n ticketContent",
-
+    "notification" : true,
     "send_msg": {
       "telegram": "You have new ticket from :displayname \n see :link \n\n :ticketContent"
     },
@@ -81,7 +81,7 @@
   "newTicket": {
     "title": "You have new ticket from :displayname",
     "content": "ticketContent",
-
+    "notification" : true,
     "send_msg": {
       "telegram": "You have new ticket from :displayname \n see :link \n\n :ticketContent"
     },

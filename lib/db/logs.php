@@ -29,6 +29,12 @@ class logs
 		return \dash\db\config::public_multi_insert('logs', $_args, \dash\db::get_db_log_name());
 	}
 
+
+	public static function update_where()
+	{
+		return \dash\db\config::public_update_where('logs', ...func_get_args());
+	}
+
 	/**
 	 * insert new recrod in logs table
 	 * @param array $_args fields data

@@ -53,7 +53,7 @@ class controller
 		switch ($url)
 		{
 			case 'notification':
-				\dash\app\sendnotification::send();
+				\dash\app\log\send::notification();
 				break;
 
 			case 'closesolved':
