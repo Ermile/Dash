@@ -86,53 +86,5 @@
   "addTransactionManualy": {
     "title": "Add transaction manually",
     "content": "Add transaction :title whit :plus plus and :minus minus to :user_id"
-  },
-  "loadSu": {
-    "title": "Load su whit :user",
-    "content": "The :user was loaded su content",
-    "telegram": true,
-    "sms": false,
-    "email": true,
-    "can_duplicate": true,
-    "can_duplicate_in_one_day": true,
-    "can_duplicate_read": true,
-    "can_duplicate_unread": true,
-    "life_time": "5d",
-    "need_answer": true,
-    "btn": {
-      "accept_owner": "Accept",
-      "reject_owner": "Reject"
-    },
-    "btn_function": {
-      "accept_owner": "\\dash\\user\\permission\\set",
-      "reject_owner": null
-    }
-  },
-  "newTicket": {
-    "title": "You have new ticket",
-    "content": "You have new ticket from :displayname",
-    "category": "ticket",
-    "send_msg": {
-      "telegram": "You have new ticket from :displayname \n see :link"
-    },
-    "send_to": [
-      "admin",
-      "supervisor"
-    ],
-    "telegram": true,
-    "sms": false,
-    "email": false,
-    "duplicate": {
-      "save": true,
-      "send": true
-    },
-    "life_time": "5d",
-    "need_answer": false
-  },
-  "newLoginSession": {
-    "title": "We Noticed a New Login, :displayname",
-    "content": "If this was you, you can safely disregard this message. If you didn't do this, please change your password to help secure your account. Learn more about keeping your account secure.",
-    "telegram": true,
-    "email": true
   }
 }
