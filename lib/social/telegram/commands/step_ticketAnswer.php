@@ -14,11 +14,18 @@ class step_ticketAnswer
 	 * @param  boolean $_onlyMenu [description]
 	 * @return [type]             [description]
 	 */
-	public static function start()
+	public static function start($_cmd)
 	{
+		// if we have ticket number continue else return
+		if(isset($_cmd['optional'] && $_cmd['optional']))
+		{
+			return false;
+		}
+
+		step::set('ticketNo', $_cmd['optional']);
 		step::start('ticketAnswer');
 
-		return self::step1();
+		return self::step1($_cmd);
 	}
 
 
@@ -30,6 +37,7 @@ class step_ticketAnswer
 	{
 		// after this go to next step
 		step::plus();
+
 		// show give contact menu
 		$menu     = self::$menu;
 		$txt_text = T_("What do you want to do?")."\n\n";
@@ -79,6 +87,14 @@ class step_ticketAnswer
 
 	public static function step3($_feedback)
 	{
+		if(!$_feedback)
+		{
+			return false;
+		}
+
+		$ticketNo = step::get('ticketNo');
+		\dash\app\tg::ticketAnswer($ticketNo, $_feedback);
+
 		// after this go to next step
 		$menu     = self::$menu;
 		$txt_text = T_("We are save you answer to this ticket.")."\n\n";

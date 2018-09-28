@@ -109,7 +109,7 @@ class ermile
 
 			case '/TicketAnswer':
 				\dash\social\telegram\step::set('menu', menu::main(true));
-				$response = step_ticketAnswer::start();
+				$response = step_ticketAnswer::start($_cmd);
 				break;
 
 			default:
