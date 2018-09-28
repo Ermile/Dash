@@ -64,8 +64,9 @@ class model
 
 			\dash\app::variable(['support_tag' => \dash\request::post('tag')]);
 			\dash\app\posts::set_post_term(\dash\request::get('id'), 'support_tag', 'comments');
-			\dash\log::set('addTag');
+			\dash\log::set('ticketAddTag', ['code' => \dash\request::get('id'), 'tag' => \dash\request::post('tag')]);
 			\dash\notif::ok(T_("Tag was saved"));
+
 			if(!\dash\request::post('content'))
 			{
 				\dash\redirect::pwd();
@@ -100,14 +101,17 @@ class model
 				switch ($status)
 				{
 					case 'close':
+						\dash\log::set('setCloseTicket', ['code' => \dash\request::get('id')]);
 						\dash\permission::access('supportTicketClose');
 						break;
 
 					case 'awaiting':
+						\dash\log::set('setAwaitingTicket', ['code' => \dash\request::get('id')]);
 						\dash\permission::access('supportTicketReOpen');
 						break;
 
 					case 'deleted':
+						\dash\log::set('setDeleteTicket', ['code' => \dash\request::get('id')]);
 						\dash\permission::access('supportTicketDelete');
 						break;
 
@@ -146,10 +150,12 @@ class model
 			\dash\db\comments::update(['solved' => $solved], \dash\request::get('id'));
 			if($solved)
 			{
+				\dash\log::set('setSolvedTicket', ['code' => \dash\request::get('id')]);
 				\dash\notif::ok(T_("Ticket set as solved"));
 			}
 			else
 			{
+				\dash\log::set('setUnSolvedTicket', ['code' => \dash\request::get('id')]);
 				\dash\notif::warn(T_("Ticket set as unsolved"));
 			}
 			\dash\redirect::pwd();
@@ -165,6 +171,7 @@ class model
 		{
 			if(\dash\request::post('addnote') === 'note')
 			{
+				\dash\log::set('AddNoteTicket', ['code' => \dash\request::get('id')]);
 				$msg = T_("Your note saved");
 				$notif_fn = 'warn';
 				$ticket_type = 'ticket_note';
@@ -214,6 +221,7 @@ class model
 
 				if($is_my_ticket)
 				{
+
 					$update_main['status'] = 'awaiting';
 					$msg = T_("Your message has been added");
 					$notif_fn = 'info';
@@ -231,6 +239,7 @@ class model
 						}
 					}
 
+					\dash\log::set('AnswerTicket', ['code' => \dash\request::get('id')]);
 					$update_main['status'] = 'answered';
 					$msg = T_("Your answer was saved");
 

@@ -4,5 +4,152 @@
     "content": "If this was you, you can safely disregard this message. If you didn't do this, please change your password to help secure your account. Learn more about keeping your account secure.",
     "telegram": true,
     "email": true
+  },
+  "viewAlert": {
+    "title": null
+  },
+  "autoRedirect": {
+    "title": null
+  },
+  "userByeBye": {
+    "title": null
+  },
+  "smsCallback": {
+    "title": null
+  },
+  "tryToDeleteAccount": {
+    "title": null
+  },
+  "removeEmail": {
+    "title": null
+  },
+  "setNewEmail": {
+    "title": null
+  },
+  "loginByGoogle": {
+    "title": null
+  },
+  "loginByGoogleSignuped": {
+    "title": null
+  },
+  "supervisorLoginByAnother": {
+    "title": null
+  },
+  "try3": {
+    "title": null
+  },
+  "emptyUserOrMobileEntered": {
+    "title": null
+  },
+  "diffrentMobileTry": {
+    "title": null
+  },
+  "userNotFound": {
+    "title": null
+  },
+  "statusBlockOrFilter": {
+    "title": null
+  },
+  "browserSavePassword": {
+    "title": null
+  },
+  "browserSaveInvaliPassword": {
+    "title": null
+  },
+  "telegramHook": {
+    "title": null
+  },
+  "userLogout": {
+    "title": null
+  },
+  "changeMobile": {
+    "title": null
+  },
+  "setMobile": {
+    "title": null
+  },
+  "userNotPassTryToChangeIt": {
+    "title": null
+  },
+  "invalidOldPassword": {
+    "title": null
+  },
+  "creazyPassword": {
+    "title": null
+  },
+  "passwordChaneRequest": {
+    "title": null
+  },
+  "userLogin": {
+    "title": null
+  },
+  "invalidPassword": {
+    "title": null
+  },
+  "oldPassword": {
+    "title": null
+  },
+  "passwordRecoveryRequest": {
+    "title": null
+  },
+  "setPasswordRequest": {
+    "title": null
+  },
+  "setSignupPasswordRequest": {
+    "title": null
+  },
+  "paymentVerifyCall": {
+    "title": null
+  },
+  "sessionTerminate": {
+    "title": null
+  },
+  "userHitSignup3": {
+    "title": null
+  },
+  "hiddenPasswordFieldIsFull": {
+    "title": null
+  },
+  "usernameInvalidSyntax": {
+    "title": null
+  },
+  "usernameTaken": {
+    "title": null
+  },
+  "mobileExistTryToSignup": {
+    "title": null
+  },
+  "userCanNotSignupDB": {
+    "title": null
+  },
+  "userSignup": {
+    "title": null
+  },
+  "usernameChangeRequest": {
+    "title": null
+  },
+  "usernameSet": {
+    "title": null
+  },
+  "call": {
+    "title": null
+  },
+  "userDetailLostSignup": {
+    "title": null
+  },
+  "existMobileIsNotMathcBySendMobile": {
+    "title": null
+  },
+  "sendWayInvalid": {
+    "title": null
+  },
+  "sms": {
+    "title": null
+  },
+  "telegram": {
+    "title": null
+  },
+  "verifyWhat": {
+    "title": null
   }
 }

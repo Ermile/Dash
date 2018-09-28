@@ -35,5 +35,9 @@
       ],
       "reject_owner": null
     }
+  },
+  "newsCodeRedirect": {
+    "title": null,
+    "urlContent": "n"
   }
 }

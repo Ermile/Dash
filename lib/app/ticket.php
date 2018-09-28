@@ -170,16 +170,16 @@ class ticket
 			return false;
 		}
 
-		$replace =
-		[
-			'displayname'   => \dash\user::detail('displayname'),
-			'link'          => \dash\url::this(). '/show?id='. $comment_id,
-			'code'          => $comment_id,
-			'ticketContent' => strip_tags($args['content']),
-			'ticketTitle'   => isset($args['title']) ? $args['title'] : null,
-		];
+		// $replace =
+		// [
+		// 	'displayname'   => \dash\user::detail('displayname'),
+		// 	'link'          => \dash\url::this(). '/show?id='. $comment_id,
+		// 	'code'          => $comment_id,
+		// 	'ticketContent' => strip_tags($args['content']),
+		// 	'ticketTitle'   => isset($args['title']) ? $args['title'] : null,
+		// ];
 
-		\dash\log::set('newTicket', $replace);
+		// \dash\log::set('newTicket', $replace);
 
 		// $notif_args =
 		// [

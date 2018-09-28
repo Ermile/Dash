@@ -19,5 +19,47 @@
     },
     "life_time": "5d",
     "need_answer": false
+  },
+  "supportMessageEdit": {
+    "title": null
+  },
+  "addNewTicket": {
+    "title": null
+  },
+  "tryCount": {
+    "title": null
+  },
+  "contactRegisterByMobile": {
+    "title": null
+  },
+  "contactUsLoginNotSave": {
+    "title": null
+  },
+  "contactFail": {
+    "title": null
+  },
+  "ticketAddTag": {
+    "title": null
+  },
+  "setCloseTicket": {
+    "title": null
+  },
+  "setAwaitingTicket": {
+    "title": null
+  },
+  "setDeleteTicket": {
+    "title": null
+  },
+  "setSolvedTicket": {
+    "title": null
+  },
+  "setUnSolvedTicket": {
+    "title": null
+  },
+  "AddNoteTicket": {
+    "title": null
+  },
+  "AnswerTicket": {
+    "title": null
   }
 }

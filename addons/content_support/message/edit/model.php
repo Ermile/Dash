@@ -28,6 +28,8 @@ class model
 
 		\dash\db\comments::update($args, \dash\request::get('id'));
 
+		\dash\log::set('supportMessageEdit', ['code' => \dash\request::get('id')]);
+
 		\dash\notif::ok(T_("Ticket updated"));
 		\dash\redirect::to(\dash\url::here().'/ticket/show?id='. \dash\request::get('id'));
 
