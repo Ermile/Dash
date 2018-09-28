@@ -157,7 +157,7 @@
         "reply_markup": {
           "keyboard": [
             [
-              "/TicketAnswer |parent"
+              "/TicketAnswer |code"
             ]
           ],
           "one_time_keyboard": true
@@ -181,7 +181,7 @@
         "reply_markup": {
           "keyboard": [
             [
-              "/TicketAnswer |parent"
+              "/TicketAnswer |code"
             ]
           ],
           "one_time_keyboard": true
