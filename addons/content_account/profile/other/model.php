@@ -70,7 +70,7 @@ class model
 
 		if(\dash\engine\process::status())
 		{
-			\dash\log::set('editProfile');
+			\dash\log::set('editProfileOther', ['code' => \dash\user::id()]);
 			\dash\user::refresh();
 			\dash\redirect::pwd();
 		}

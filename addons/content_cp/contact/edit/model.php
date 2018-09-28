@@ -30,6 +30,7 @@ class model
 
 		if(\dash\engine\process::status())
 		{
+			\dash\log::set('contactEdit', ['code' => \dash\request::get('id')]);
 			\dash\notif::ok(T_("Comment successfully updated"));
 			\dash\redirect::pwd();
 		}

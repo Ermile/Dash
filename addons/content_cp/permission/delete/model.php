@@ -10,6 +10,7 @@ class model
 		$delete = \dash\permission::delete_permission($name);
 		if($delete)
 		{
+			\dash\log::set('permissionDelete', ['name' => $name]);
 			\dash\redirect::to(\dash\url::this());
 		}
 	}

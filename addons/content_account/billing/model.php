@@ -75,7 +75,7 @@ class model
 
 		if(!preg_match("/^ref\_([A-Za-z0-9]+)$/", $promo, $split))
 		{
-			\dash\db\logs::set('ref:reqular:invalid', \dash\user::id(), $log_meta);
+			// \dash\db\logs::set('ref:reqular:invalid', \dash\user::id(), $log_meta);
 			\dash\notif::error(T_("Invalid promo code"), 'promo', 'arguments');
 			return false;
 		}
@@ -85,7 +85,7 @@ class model
 			$ref = \dash\coding::decode($shcode);
 			if(!$ref)
 			{
-				\dash\db\logs::set('ref:shortURL:invalid', \dash\user::id(), $log_meta);
+				// \dash\db\logs::set('ref:shortURL:invalid', \dash\user::id(), $log_meta);
 				\dash\notif::error(T_("Invalid promo code"), 'promo', 'arguments');
 				return false;
 			}
@@ -93,14 +93,14 @@ class model
 
 		if(intval(\dash\user::id()) === intval($ref))
 		{
-			\dash\db\logs::set('ref:yourself', \dash\user::id(), $log_meta);
+			// \dash\db\logs::set('ref:yourself', \dash\user::id(), $log_meta);
 			\dash\notif::error(T_("You try to referral yourself!"), 'promo', 'arguments');
 			return false;
 		}
 
 		if(\dash\user::login('ref'))
 		{
-			\dash\db\logs::set('ref:full', \dash\user::id(), $log_meta);
+			// \dash\db\logs::set('ref:full', \dash\user::id(), $log_meta);
 			\dash\notif::error(T_("You have ref. can not set another ref"), 'promo', 'arguments');
 			return false;
 		}
@@ -109,7 +109,7 @@ class model
 
 		if(!isset($check_ref['id']))
 		{
-			\dash\db\logs::set('ref:user:not:found', \dash\user::id(), $log_meta);
+			// \dash\db\logs::set('ref:user:not:found', \dash\user::id(), $log_meta);
 			\dash\notif::error(T_("Ref not found"), 'promo', 'arguments');
 			return false;
 		}
@@ -155,8 +155,8 @@ class model
 
         if(\dash\engine\process::status())
         {
-        	\dash\db\logs::set('user:use:ref', \dash\user::id(), $log_meta);
-        	\dash\db\logs::set('user:was:ref', $ref, $log_meta);
+        	// \dash\db\logs::set('user:use:ref', \dash\user::id(), $log_meta);
+        	// \dash\db\logs::set('user:was:ref', $ref, $log_meta);
         	\dash\notif::ok(T_("Your ref was set and your account was charge"));
         }
 	}

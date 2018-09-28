@@ -17,6 +17,7 @@ class model
 			'altbody' => '123',
 			'is_html' => true,
 		];
+		\dash\log::set('emailSend', ['to' => $email_to]);
 		\dash\mail::send($settings);
 	}
 }

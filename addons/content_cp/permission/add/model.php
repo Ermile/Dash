@@ -33,6 +33,7 @@ class model
 		$save = \dash\permission::save_permission($name, $label, $contain, $update);
 		if($save)
 		{
+			\dash\log::set('permissionUpdate', ['name' => $name, 'label' => $label]);
 			if($update)
 			{
 				\dash\redirect::pwd();

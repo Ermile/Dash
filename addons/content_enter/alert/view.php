@@ -30,7 +30,7 @@ class view
 		{
 			\dash\data::alertButton($alert['button']);
 		}
-		\dash\log::set('viewAlert', ['data' => \dash\data::alertMsg()]);
+		\dash\log::set('viewAlert', ['msg' => \dash\data::alertMsg()]);
 
 		if(isset($alert['clean_session']) && $alert['clean_session'])
 		{
