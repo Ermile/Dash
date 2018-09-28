@@ -71,7 +71,7 @@ class step_ticketAnswer
 		$txt_text = 'Ticket Step2';
 		$menu     = self::$menu;
 
-		if($_feedback === T_("Answer")
+		if($_feedback === T_("Answer"))
 		{
 			$txt_text = T_("Please wrote your answer");
 		}
