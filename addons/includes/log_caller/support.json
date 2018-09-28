@@ -42,11 +42,13 @@
       "telegram": {
         "reply_markup": {
           "keyboard": [
-            "Answer",
-            "visit"
-          ]
-        },
-        "one_time_keyboard": true
+            [
+              "Answer",
+              "visit"
+            ]
+          ],
+          "one_time_keyboard": true
+        }
       }
     }
   },
@@ -151,15 +153,17 @@
     "send_to": [
       "supervisor"
     ],
-    "btn": {
+     "btn": {
       "telegram": {
         "reply_markup": {
           "keyboard": [
-            "Answer",
-            "visit"
-          ]
-        },
-        "one_time_keyboard": true
+            [
+              "Answer",
+              "visit"
+            ]
+          ],
+          "one_time_keyboard": true
+        }
       }
     }
   },
