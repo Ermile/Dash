@@ -1086,6 +1086,8 @@ class TransStatic
 	echo T_("You have new ticket from :displayname");
 	echo T_("If this was you, you can safely disregard this message. If you didn't do this, please change your password to help secure your account. Learn more about keeping your account secure.");
 
+	echo T_("New Ticket");
+
  }
 }
 ?>

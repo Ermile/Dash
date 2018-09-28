@@ -26,10 +26,13 @@
   "addNewTicket": {
     "title": "Add new ticket",
     "content": ";displayname add new ticket",
+    "T_": {
+      "newtTicket": "New Ticket"
+    },
     "notification": true,
     "telegram": true,
     "send_msg": {
-      "telegram": "🆔 #Ticket|code \n ⛑ New ticket\n👤 ;displayname #user;id\n\n—————\n📬 :ttitle\n:tcontent\n:file\n\n⏳ |longdatecreated"
+      "telegram": "🆔#Ticket|code #New \n🗣 ;displayname #user|user_code\n—————\n📬 :ttitle\n:tcontent\n:file\n\n⏳ |longdatecreated"
     },
     "send_to": [
       "supervisor"

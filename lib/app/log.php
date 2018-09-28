@@ -83,15 +83,21 @@ class log
 
 		$result = [];
 
+		if(isset($_data['caller']))
+		{
+			$_data = array_merge($_data, self::caller_detail($_data['caller']));
+		}
+
 		$replace = [];
 		if(isset($_data['data']) && is_string($_data['data']))
 		{
 			$replace = json_decode($_data['data'], true);
 		}
 
-		if(isset($_data['caller']))
+		if(isset($_data['T_']) && is_array($_data['T_']))
 		{
-			$_data = array_merge($_data, self::caller_detail($_data['caller']));
+			$_data['T_'] = array_map('T_', $_data['T_']);
+			$replace = array_merge($replace, $_data['T_']);
 		}
 
 		$user_detail = self::detect_user($_data, 'user_id');
@@ -149,6 +155,10 @@ class log
 					$result['longdatecreated'] = \dash\datetime::fit($value, true);
 					break;
 
+				case 'user_id':
+					$result[$key]        = $value;
+					$result['user_code'] = \dash\coding::encode($value);
+					break;
 
 			default:
 				$result[$key] = $value;
