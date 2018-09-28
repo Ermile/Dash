@@ -36,7 +36,19 @@
     },
     "send_to": [
       "supervisor"
-    ]
+    ],
+    "need_answer": true,
+    "btn": {
+      "telegram": {
+        "reply_markup": {
+          "keyboard": [
+            "Answer",
+            "visit"
+          ]
+        },
+        "one_time_keyboard": true
+      }
+    }
   },
   "tryCount": {
     "title": null
@@ -138,7 +150,18 @@
     },
     "send_to": [
       "supervisor"
-    ]
+    ],
+    "btn": {
+      "telegram": {
+        "reply_markup": {
+          "keyboard": [
+            "Answer",
+            "visit"
+          ]
+        },
+        "one_time_keyboard": true
+      }
+    }
   },
   "AddToTicket": {
     "title": "Add new message to ticket",
