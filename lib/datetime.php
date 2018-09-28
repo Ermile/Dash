@@ -52,7 +52,7 @@ class datetime
 			default:
 				if($_model === 'shortTime')
 				{
-					return 'l d F Y'. ' '. 'H:i';
+					return 'l j F Y'. ' '. 'H:i';
 				}
 				elseif($_model === 'shortDate')
 				{
@@ -60,7 +60,7 @@ class datetime
 				}
 				elseif ($_model === true)
 				{
-					return 'l d F Y'. ' '. 'H:i:s';
+					return 'l j F Y'. ' '. 'H:i:s';
 				}
 				elseif ($_model === false || $_model === null)
 				{
