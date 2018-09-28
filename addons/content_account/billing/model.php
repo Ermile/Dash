@@ -141,7 +141,7 @@ class model
 			'cat'     => 'ref',
 			'content' => T_("Someone used your ref link in her referral"),
         ];
-        \dash\db\notifications::set($notify_ref);
+        // \dash\db\notifications::set($notify_ref);
 
 
         $notify_ref =
@@ -150,7 +150,7 @@ class model
 			'cat'     => 'useref',
 			'content' => T_("Your are using referral program and your account was charged"),
         ];
-        \dash\db\notifications::set($notify_ref);
+        // \dash\db\notifications::set($notify_ref);
 
 
         if(\dash\engine\process::status())

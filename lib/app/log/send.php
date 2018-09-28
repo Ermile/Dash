@@ -40,8 +40,6 @@ class send
 			}
 		}
 
-		// 'awaiting','sended','expire','cancel','cannotsend', 'turnoff'
-
 		if(!empty($send_telegram))
 		{
 			if(!\dash\option::social('telegram', 'status'))
@@ -95,19 +93,51 @@ class send
 		{
 			if(!\dash\option::social('kavenegar', 'status'))
 			{
-				\dash\db\sendnotifications::set_status('turnoff', array_column($send_sms, 'id'));
+				$id_raw = array_column($send_sms, 'id_raw');
+				if(!empty($id_raw))
+				{
+					$id_raw = implode(',', $id_raw);
+					\dash\db\logs::update_where(['send' => 0],['id' => ["IN", "($id_raw)"]]);
+				}
 			}
 			else
 			{
-				if(\dash\url::isLocal())
-				{
-					return;
-				}
-
-				\dash\db\sendnotifications::set_status('sended', array_column($send_sms, 'id'));
+				$start_time = time();
+				$count_send = 0;
 				foreach ($send_sms as $key => $value)
 				{
-					// \dash\utility\sms::send($value['to'], $value['text']);
+					if(!isset($value['user_detail']) || (isset($value['user_detail']) && !is_array($value['user_detail'])))
+					{
+						\dash\db\logs::update(['send' => 0], $value['id_raw']);
+						continue;
+					}
+
+					\dash\db\logs::update(['send' => 1], $value['id_raw']);
+
+					foreach ($value['user_detail'] as $user_id => $user_detail)
+					{
+						if(isset($user_detail['mobile']) && isset($value['send_msg']['sms']))
+						{
+							if(\dash\url::isLocal())
+							{
+								return;
+							}
+
+							\dash\utility\sms::send($user_detail['mobile'], $value['send_msg']['sms']);
+
+							// @check need to check the telegram is send this message or not
+							if($myResult)
+							{
+							}
+
+							$count_send++;
+
+							if((time() - $start_time) > 60 || $count_send > 20)
+							{
+								return false;
+							}
+						}
+					}
 				}
 			}
 		}

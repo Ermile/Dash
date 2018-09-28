@@ -203,7 +203,7 @@ trait add
 				'content'         => T_("Are you :title of this user?", ['title' => T_($title)]),
 			];
 
-			$set_notify = \dash\db\notifications::set($send_notify);
+			// $set_notify = \dash\db\notifications::set($send_notify);
 
 			if(\dash\engine\process::status())
 			{
@@ -265,7 +265,7 @@ trait add
 			'limit'           => 1,
 		];
 
-		$check_notify = \dash\db\notifications::get($get);
+		// $check_notify = \dash\db\notifications::get($get);
 
 		if($check_notify && is_array($check_notify))
 		{

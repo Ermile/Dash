@@ -60,7 +60,8 @@ trait delete
 			'limit'           => 1,
 		];
 
-		$check_ok = \dash\db\notifications::get($get_notify);
+		// $check_ok = \dash\db\notifications::get($get_notify);
+		$check_ok = null;
 		if(!$check_ok)
 		{
 			\dash\db\logs::set('api:parent:remove:request:notify:data:invalid:access', \dash\user::id(), $log_meta);
@@ -68,7 +69,7 @@ trait delete
 			return false;
 		}
 
-		\dash\db\notifications::update(['status' => 'cancel'], $notify_id);
+		// \dash\db\notifications::update(['status' => 'cancel'], $notify_id);
 		if(\dash\engine\process::status())
 		{
 			\dash\db\logs::set('api:parent:remove:request:sucsessful', \dash\user::id(), $log_meta);

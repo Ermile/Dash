@@ -67,7 +67,8 @@ trait get
 			'answer'          => null,
 		];
 
-		$notify_list = \dash\db\notifications::get($get_notify);
+		// $notify_list = \dash\db\notifications::get($get_notify);
+		$notify_list = null;
 		if($notify_list && is_array($notify_list))
 		{
 			$notify_list = \dash\utility\filter::meta_decode($notify_list);

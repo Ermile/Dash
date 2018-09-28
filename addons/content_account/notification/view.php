@@ -17,10 +17,12 @@ class view
 			$args['order'] = 'desc';
 		}
 
+		$args['notif'] = 1;
+
 		$search_string = \dash\request::get('q');
 
 		$sortLink  = \dash\app\sort::make_sortLink(\lib\app\grade::$sort_field, \dash\url::this());
-		$dataTable = \dash\app\notification::list($search_string, $args);
+		$dataTable = \dash\app\log::list($search_string, $args);
 
 		\dash\data::sortLink($sortLink);
 		\dash\data::dataTable($dataTable);
