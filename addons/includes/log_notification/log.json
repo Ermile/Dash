@@ -37,10 +37,12 @@
   },
   "upgradeDataBase": {
     "title": "Database upgraded to new version",
-    "notification" : true,
-    "send_to" : ["supervisor"],
-    "send_msg":
-    {
+    "notification": true,
+    "telegram": true,
+    "send_to": [
+      "supervisor"
+    ],
+    "send_msg": {
       "telegram": "Database upgraded to new version"
     },
     "content": null
@@ -59,10 +61,12 @@
   },
   "gitUpdate": {
     "title": "Git update",
-    "notification" : true,
-    "send_to" : ["supervisor"],
-    "send_msg":
-    {
+    "notification": true,
+    "telegram": true,
+    "send_to": [
+      "supervisor"
+    ],
+    "send_msg": {
       "telegram": "Git update"
     },
     "content": null
