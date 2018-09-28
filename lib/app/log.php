@@ -94,6 +94,8 @@ class log
 			$_data = array_merge($_data, self::caller_detail($_data['caller']));
 		}
 
+		$user_detail = self::detect_user($_data, 'user_id');
+
 		foreach ($_data as $key => $value)
 		{
 			switch ($key)
@@ -117,6 +119,8 @@ class log
 
 				case 'title':
 				case 'content':
+					// $value = self::userT_($value, $user_detail);
+					// $value = self::logT_($value, $_data);
 					$result[$key] = T_($value, $replace);
 					break;
 
@@ -125,13 +129,14 @@ class log
 					{
 						foreach ($value as $k => $v)
 						{
+							// $v = self::userT_($v, $user_detail);
+							// $v = self::logT_($v, $_data);
 							$result[$key][$k] = T_($v, $replace);
 						}
 					}
 					break;
 
 				case 'send_to':
-				case 'user_id':
 					$result[$key] = $value;
 					if(\dash\temp::get('logLoadUserDetail'))
 					{
@@ -139,16 +144,89 @@ class log
 					}
 					break;
 
+				case 'datecreated':
+					$result[$key]              = $value;
+					$result['longdatecreated'] = \dash\datetime::fit($value, true);
+					break;
 
-				default:
+
+			default:
+				$result[$key] = $value;
+				break;
+			}
+		}
+
+
+		foreach ($result as $key => $value)
+		{
+			switch ($key)
+			{
+				case 'title':
+				case 'content':
+					$value = self::userT_($value, $user_detail);
+					$value = self::logT_($value, $result);
 					$result[$key] = $value;
 					break;
+
+
+				case 'send_msg':
+					if(is_array($value))
+					{
+						foreach ($value as $k => $v)
+						{
+							$v                = self::userT_($v, $user_detail);
+							$v                = self::logT_($v, $result);
+							$result[$key][$k] = $v;
+						}
+					}
+					break;
+
+
+			default:
+				$result[$key] = $value;
+				break;
 			}
 		}
 
 		return $result;
 
 	}
+
+	public static function logT_($_string, $_replace)
+	{
+
+		if(strpos($_string, '|') !== false)
+		{
+			if(is_array($_replace))
+			{
+				foreach ($_replace as $key => $value)
+				{
+					if(is_string($value))
+					{
+						$_string = str_replace('|'. $key, $value, $_string);
+					}
+				}
+			}
+		}
+		return $_string;
+	}
+
+	public static function userT_($_string, $_replace)
+	{
+
+		if(strpos($_string, ';') !== false)
+		{
+			if(is_array($_replace))
+			{
+				foreach ($_replace as $key => $value)
+				{
+					$_string = str_replace(';'. $key, $value, $_string);
+				}
+			}
+		}
+		return $_string;
+	}
+
 
 	private static function detect_user($_detail, $_key)
 	{
@@ -157,8 +235,9 @@ class log
 		{
 			if(isset($_detail['user_id']) && is_numeric($_detail['user_id']))
 			{
-				$all_user_detail[] = \dash\db\users::get_by_id($_detail['user_id']);
+				return \dash\db\users::get_by_id($_detail['user_id']);
 			}
+			return [];
 		}
 		else
 		{

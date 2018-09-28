@@ -51,7 +51,15 @@ class model
 
 		if(isset($result['id']))
 		{
-			\dash\log::set('addNewTicket', ['code' => $result['id'], 'ticketTitle' => $args['title'], 'ticketContent' => $args['content'], 'file' => $args['file']]);
+			$log =
+			[
+				'code'     => $result['id'],
+				'ttitle'   => $args['title'],
+				'tcontent' => $args['content'],
+				'file'     => $args['file'],
+			];
+
+			\dash\log::set('addNewTicket', $log);
 
 			\dash\notif::ok(T_("Your ticket was sended"));
 			if(!\dash\user::login())
