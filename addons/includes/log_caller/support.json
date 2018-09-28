@@ -30,7 +30,10 @@
     "telegram": true,
     "send_msg": {
       "telegram": "🆔 #Ticket|code \n ⛑ New ticket\n👤 ;displayname #user;id\n\n—————\n📬 :ttitle\n:tcontent\n:file\n\n⏳ |longdatecreated"
-    }
+    },
+    "send_to": [
+      "supervisor"
+    ]
   },
   "tryCount": {
     "title": null
