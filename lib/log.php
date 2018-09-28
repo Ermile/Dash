@@ -18,11 +18,114 @@ class log
 
 	private static $all_user_detail    = [];
 
+
 	// save log in database
 	public static function db($_caller, $_args = [])
 	{
-		return \dash\db\logs::set($_caller, \dash\user::id(), $_args);
+		$default_options =
+		[
+			'status'        => 'enable',
+			'data'          => null,
+			'code'          => null,
+			'send'          => null,
+			'subdomain'     => \dash\url::subdomain(),
+			'user_id'       => null,
+			'notif'         => null,
+			'user_idsender' => null,
+			'readdate'      => null,
+			'telegramdate'  => null,
+			'smsdate'       => null,
+			'emaildate'     => null,
+			'meta'          => null,
+		];
+
+		if(!is_array($_options))
+		{
+			$_options = [];
+		}
+
+		$_options = array_merge($default_options, $_options);
+
+		$user_id = \dash\user::id();
+
+		if(!$user_id)
+		{
+			$user_id = null;
+		}
+
+		if($_options['data'])
+		{
+			$_options['data'] = \dash\safe::safe($_options['data'], 'raw');
+
+			if(is_array($_options['data']) || is_object($_options['data']))
+			{
+				$_options['data'] = json_encode($_options['data'], JSON_UNESCAPED_UNICODE);
+			}
+		}
+		else
+		{
+			$_options['data'] = null;
+		}
+
+		if($_options['meta'])
+		{
+			$_options['meta'] = \dash\safe::safe($_options['meta'], 'raw');
+
+			if(is_array($_options['meta']) || is_object($_options['meta']))
+			{
+				$_options['meta'] = json_encode($_options['meta'], JSON_UNESCAPED_UNICODE);
+			}
+		}
+		else
+		{
+			$_options['meta'] = null;
+		}
+
+		if($_caller && mb_strlen($_caller) >= 200)
+		{
+			$_caller = substr($_caller, 0, 198);
+		}
+
+		if($_options['code'] && mb_strlen($_options['code']) >= 200)
+		{
+			$_options['code'] = substr($_options['code'], 0, 198);
+		}
+
+		$insert_log =
+		[
+			'caller'        => $_caller,
+			'user_id'       => $user_id,
+			'datecreated'   => date("Y-m-d H:i:s"),
+			'subdomain'     => $_options['subdomain'],
+			'visitor_id'    => \dash\utility\visitor::id(),
+			'data'          => $_options['data'],
+			'status'        => $_options['status'],
+			'code'          => $_options['code'],
+			'send'          => $_options['send'],
+			'notif'         => $_options['notif'],
+			'user_idsender' => $_options['user_idsender'],
+			'readdate'      => $_options['readdate'],
+			'telegramdate'  => $_options['telegramdate'],
+			'smsdate'       => $_options['smsdate'],
+			'emaildate'     => $_options['emaildate'],
+			'meta'          => $_options['meta'],
+		];
+
+		foreach ($insert_log as $key => $value)
+		{
+			if($value === null)
+			{
+				unset($insert_log[$key]);
+			}
+		}
+
+		if(!empty($insert_log))
+		{
+			return \dash\db\logs::insert($insert_log);
+		}
+		return false;
 	}
+
 
 
 	public static function set($_caller, $_args = [])
@@ -38,12 +141,57 @@ class log
 
 		$caller_detail = $all_list[$_caller];
 
-		if(isset($caller_detail['notification']) && $caller_detail['notification'])
+		if(!is_array($_args))
 		{
-			return self::send(...func_get_args());
+			$_args = [];
 		}
 
-		return self::db(...func_get_args());
+
+		$data  = [];
+		$field = [];
+
+		foreach ($caller_detail as $key => $value)
+		{
+			switch ($key)
+			{
+				case 'notification':
+					$field['notif'] = $value;
+					break;
+
+				default:
+
+					break;
+			}
+		}
+
+		foreach ($_args as $key => $value)
+		{
+			switch ($key)
+			{
+				case 'subdomain':
+				case 'status':
+				case 'code':
+				case 'send':
+				case 'notif':
+				case 'user_idsender':
+				case 'readdate':
+				case 'telegramdate':
+				case 'smsdate':
+				case 'emaildate':
+				case 'meta':
+					$field[$key] = $value;
+					break;
+
+				default:
+					$data[$key] = $value;
+					break;
+			}
+		}
+
+		$new_args         = $field;
+		$new_args['data'] = $data;
+
+		return self::db($_caller, $new_args);
 	}
 
 	// read notification file and json_decode to make an array of it
