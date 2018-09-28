@@ -106,7 +106,7 @@
           </div>
         </td>
         <td class="collapsing s0" title='{{value.datemodified}}'>{%set myStatus = value.status | capitalize%}{%trans myStatus%}</td>
-        <td class="collapsing s0 m0" title='{%trans "Created on"%} {{value.datecreated}}'>{{value.datecreated | sdate('year')}}</td>
+        <td class="collapsing s0 m0" title='{%trans "Created on"%} {{value.datecreated}}'>{{value.datecreated | dt("human", 'year')}}</td>
       </tr>
       {%endfor%}
     </tbody>

@@ -164,7 +164,7 @@
            </div>
 {%endif%}
            <div class="cauto os fc-mute">
-            <small title='{{value.datecreated | dt(true)}}'>{{value.datecreated | sdate("year")}}</small>
+            <small title='{{value.datecreated | dt(true)}}'>{{value.datecreated | dt("human", "year")}}</small>
 {%if perm('supportEditMessage')%}
             <a class="fs08 mLa10" href="{{url.here}}/message/edit?id={{value.id}}">{%trans "Edit"%}</a>
             {%if value.type == 'ticket_note'%}

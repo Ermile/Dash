@@ -118,8 +118,8 @@
         <td class="s0 m0">
           <a href="{{url.this}}?permission={{value.permission}}">{%set myPerm = value.permission | capitalize %}{%trans myPerm%}</a>
         </td>
-        <td class="s0 m0 txtC" title="{{value.datecreated | dt(true)}}"><small class="fc-mute">{%if value.datecreated%}{{value.datecreated | sdate('year')}}{%else%}-{%endif%}</small></td>
-        <td class="s0 m0 txtC" title="{{value.datemodified | dt(true)}}"><small class="fc-mute">{%if value.datemodified%}{{value.datemodified | sdate('year')}}{%else%}-{%endif%}</small></td>
+        <td class="s0 m0 txtC" title="{{value.datecreated | dt(true)}}"><small class="fc-mute">{%if value.datecreated%}{{value.datecreated | dt("human", 'year')}}{%else%}-{%endif%}</small></td>
+        <td class="s0 m0 txtC" title="{{value.datemodified | dt(true)}}"><small class="fc-mute">{%if value.datemodified%}{{value.datemodified | dt("human", 'year')}}{%else%}-{%endif%}</small></td>
       </tr>
       {%endfor%}
     </tbody>

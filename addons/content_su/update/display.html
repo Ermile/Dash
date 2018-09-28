@@ -74,7 +74,7 @@
 {%block iLastUpdate%}
 <div class="dcard x2 mB10">
   <div class="statistic brown" title2='{{dash.lastUpdate}}'>
-    <div class="value"><span>{{dash.lastUpdate | sdate('month')}}</span></div>
+    <div class="value"><span>{{dash.lastUpdate | dt("human", 'month')}}</span></div>
     <div class="label">{%trans "Last update"%}</div>
   </div>
 </div>
@@ -115,7 +115,7 @@
 {%block iProjectVersion%}
 <div class="dcard x2 mB10">
   <div class="statistic blue" title='{{dash.projectVersion}}'>
-    <div class="value">{{dash.projectVersion | sdate('month')}}</div>
+    <div class="value">{{dash.projectVersion | dt("human", 'month')}}</div>
     <div class="label">{%trans "Last update"%}</div>
   </div>
 </div>

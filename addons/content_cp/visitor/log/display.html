@@ -98,7 +98,7 @@
         <a href="{{url.this}}/datalist?date={{value.date | date('Y-m-d')}}">{{value.date | dt(false, 'date')}}</a><br>
         <b><a href="{{url.this}}/datalist?time={{value.date | date('H:i:s')}}">{{value.date | dt(true, 'time')}}</a></b>
           <br>
-          <small><a href="{{url.this}}/datalist?datetime={{value.date}}">{{value.date | sdate()}}</a></small>
+          <small><a href="{{url.this}}/datalist?datetime={{value.date}}">{{value.date | dt('human')}}</a></small>
         {%if value.avgtime%}
           <br>
           <samp title='{%trans "Avg time"%}' class="badge success"><a href="{{url.this}}/datalist?avgtime={{value.avgtime}}">{{value.avgtime}}</a></samp>

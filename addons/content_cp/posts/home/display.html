@@ -85,7 +85,7 @@
         <td class="collapsing">{{value.category}}</td>
         <td class="collapsing txtC">{%if value.commentcount%}<a href="{{url.here}}/comments?post_id={{value.id}}">{{value.commentcount | fitNumber}}</a>{%else%}<span class="sf-mute">-</span>{%endif%}</td>
 {%endif%}
-        <td class="collapsing" title="{{value.publishdate | dt(true)}}">{{value.publishdate | sdate('year')}}</td>
+        <td class="collapsing" title="{{value.publishdate | dt(true)}}">{{value.publishdate | dt("human", 'year')}}</td>
         <td class="collapsing">{%set myStatus = value.status | capitalize %}<a href="{{url.here}}/posts?status={{value.status}}&type={{value.type}}">{%trans myStatus%}</a></td>
       </tr>
       {%endfor%}

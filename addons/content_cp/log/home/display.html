@@ -136,7 +136,7 @@
           <a href="#" title='{%trans "Date created"%}'>
             {{value.datecreated | dt(true)}}
           </a>
-        <br>{{value.datecreated | sdate("ultimate")}}
+        <br>{{value.datecreated | dt("human", "ultimate")}}
         {%if value.datemodified%}
         <br>
         <span class="badge danger2" title='{%trans "Date modified"%}'>

@@ -10,7 +10,7 @@
     {%if row.code == currentCookie %}
     <div class="ip">{%trans "Current session"%}</div>
     {%endif%}
-    <div class="lastseen">{{row.last | sdate}}</div>
+    <div class="lastseen">{{row.last | dt('human')}}</div>
     <a href="{{url.pwd}}" data-ajaxify data-method="post" data-data='{"id" : "{{row.id}}", "type": "terminate" }' tabindex='-1'>{%trans "Terminate"%}</a>
    </div>
 {%endfor%}

@@ -30,8 +30,8 @@
 
     <div class="cbox">
 
-     <div class="msg" title="{{dataRow.datecreated | dt(true)}}">{%trans "Submitted on"%} <b>{{dataRow.datecreated | sdate("year")}}</b></div>
-     <div class="msg" title="{{dataRow.datemodified | dt(true)}}">{%trans "Updated on"%} <b>{{dataRow.datemodified | sdate("year")}}</b></div>
+     <div class="msg" title="{{dataRow.datecreated | dt(true)}}">{%trans "Submitted on"%} <b>{{dataRow.datecreated | dt("human", "year")}}</b></div>
+     <div class="msg" title="{{dataRow.datemodified | dt(true)}}">{%trans "Updated on"%} <b>{{dataRow.datemodified | dt("human", "year")}}</b></div>
      <div class="msg{%if dataRow.status == 'approved'%} success2{%elseif dataRow.status == 'spam' or dataRow.status == 'deleted' %} danger2{%elseif dataRow.status == 'unapproved' %} warn2{%endif%}">
       {%set myStatus = dataRow.status | capitalize%}{%trans "Current status"%} <b>{%trans myStatus%}</b>
      </div>
