@@ -43,8 +43,7 @@
         "reply_markup": {
           "keyboard": [
             [
-              "Answer",
-              "Visit"
+              "/TicketAnswer |id"
             ]
           ],
           "one_time_keyboard": true
@@ -158,8 +157,7 @@
         "reply_markup": {
           "keyboard": [
             [
-              "Answer",
-              "Visit"
+              "/TicketAnswer |parent"
             ]
           ],
           "one_time_keyboard": true
@@ -183,8 +181,7 @@
         "reply_markup": {
           "keyboard": [
             [
-              "Answer",
-              "Visit"
+              "/TicketAnswer |parent"
             ]
           ],
           "one_time_keyboard": true

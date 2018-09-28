@@ -202,6 +202,23 @@ class log
 
 	}
 
+	public static function myT_($_data, $_replace)
+	{
+		if(is_array($_data))
+		{
+			foreach ($_data as $key => $value)
+			{
+				$_data[$key] = self::myT_($value, $_replace);
+			}
+		}
+		else
+		{
+			$_data = self::logT_($_data, $_replace);
+		}
+		return $_data;
+	}
+
+
 	public static function logT_($_string, $_replace)
 	{
 

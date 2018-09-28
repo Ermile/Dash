@@ -75,6 +75,8 @@ class send
 								$myData = array_merge($myData, $value['btn']['telegram']);
 							}
 
+							$myData = \dash\app\log::myT_($myData, $value);
+
 							$myResult = \dash\social\telegram\tg::sendMessage($myData);
 
 							// @check need to check the telegram is send this message or not
