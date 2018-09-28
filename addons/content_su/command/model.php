@@ -33,7 +33,7 @@ class model
 				break;
 
 			default:
-				\dash\log::set('commandInvalidCommand');
+				\dash\log::set('commandInvalidCommand', ['command' => $btn]);
 				\dash\notif::error(T_("Invalid command"));
 				return false;
 				break;

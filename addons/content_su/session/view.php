@@ -6,7 +6,6 @@ class view
 {
 	public static function config()
 	{
-		\dash\log::set('sessionView');
 		\dash\data::session($_SESSION);
 	}
 }

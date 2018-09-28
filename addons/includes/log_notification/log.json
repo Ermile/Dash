@@ -11,21 +11,50 @@
   "backupRemoveDb": {
     "title": null
   },
-  "commandNginxRestart": {},
-  "commandMysqlRestart": {},
-  "commandInstallSshpass": {},
-  "commandInvalidCommand": {},
-  "cronJobChange": {},
-  "cronJobDeactive": {},
-  "upgradeDataBase": {},
-  "nanoGitConfig": {},
-  "serverView": {},
-  "sessionView": {},
-  "codingView": {},
-  "extractPermission": {},
-  "sitemapGenerate": {},
-  "translationRun": {},
-  "gitUpdate": {},
+  "commandNginxRestart": {
+    "title": "Nginx service restarted",
+    "content": null
+  },
+  "commandMysqlRestart": {
+    "title": "Mysql service restarted",
+    "content": null
+  },
+  "commandInstallSshpass": {
+    "title": "Sshpass installed",
+    "content": null
+  },
+  "commandInvalidCommand": {
+    "title": "Invalid command sended",
+    "content": ":command"
+  },
+  "cronJobChange": {
+    "title": "Cronjob detail changed",
+    "content": null
+  },
+  "cronJobDeactive": {
+    "title": "Disable cronjob",
+    "content": null
+  },
+  "upgradeDataBase": {
+    "title": "Database upgraded to new version",
+    "content": null
+  },
+  "nanoGitConfig": {
+    "title": "Git config is modified",
+    "content": null
+  },
+  "sitemapGenerate": {
+    "title": "Generate sitemap",
+    "content": null
+  },
+  "translationRun": {
+    "title": "Run translation extract",
+    "content": null
+  },
+  "gitUpdate": {
+    "title": "Git update",
+    "content": null
+  },
   "tgSendMessage": {
     "title": "Telegram send message",
     "content": "Send message :msg to chatid :chatid"
