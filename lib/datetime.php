@@ -19,7 +19,7 @@ class datetime
 				{
 					case true:
 						// Tuesday 25 September 2018
-						return 'l d F Y';
+						return 'l j F Y';
 						break;
 
 					case false:
