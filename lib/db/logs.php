@@ -16,6 +16,12 @@ class logs
 		return \dash\db\logitems::get_db_log_name();
 	}
 
+
+	public static function get_count($_where = null)
+	{
+		return \dash\db\config::public_get_count('logs', $_where, \dash\db::get_db_log_name());
+	}
+
 	/**
 	 * this library work with logs table
 	 * v1.0

@@ -84,7 +84,7 @@ class config
 	 *
 	 * @return     <type>  The count.
 	 */
-	public static function public_get_count($_table, $_where = null)
+	public static function public_get_count($_table, $_where = null, $_db_name = true)
 	{
 		if(!$_table || !is_string($_table))
 		{
@@ -111,7 +111,7 @@ class config
 
 		if($query)
 		{
-			$result = \dash\db::get($query, $field, $only_one_record);
+			$result = \dash\db::get($query, $field, $only_one_record, $_db_name);
 			return intval($result);
 		}
 		return 0;

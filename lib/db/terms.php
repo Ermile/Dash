@@ -22,6 +22,13 @@ class terms
 	}
 
 
+	public static function get_count()
+	{
+		return \dash\db\config::public_get_count('terms', ...func_get_args());
+	}
+
+
+
 	/**
 	 * insert multi value to terms
 	 *

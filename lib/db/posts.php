@@ -13,6 +13,11 @@ class posts
 	 */
 
 
+	public static function get_count()
+	{
+		return \dash\db\config::public_get_count('posts', ...func_get_args());
+	}
+
 	/**
 	 * insert new recrod in posts table
 	 * @param array $_args fields data
