@@ -12,7 +12,7 @@ class ticket
 		$args =
 		[
 			'type'    => 'ticket',
-			'content' => $_id,
+			'content' => $_answer,
 			'user_id' => \dash\user::id(true),
 			'parent'  => $_id,
 
