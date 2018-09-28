@@ -199,7 +199,7 @@ class model
 			'email'   => \dash\user::detail('email'),
 			'type'    => $ticket_type,
 			'content' => $content,
-			'title'   => \dash\request::post('title'),
+			// 'title'   => \dash\request::post('title'),
 			'mobile'  => \dash\user::detail("mobile"),
 			'user_id' => \dash\user::id(),
 			'parent'  => \dash\request::get('id'),
@@ -209,10 +209,10 @@ class model
 
 		$update_main = [];
 
+		$plus = \dash\db\comments::get_count(['type' => 'ticket', 'parent' => \dash\request::get('id')]);
+
 		if($ticket_type !== 'ticket_note')
 		{
-
-			$plus = \dash\db\comments::get_count(['type' => 'ticket', 'parent' => \dash\request::get('id')]);
 
 			$update_main['plus'] = intval($plus) + 1 + 1 ; // master ticket + this tichet
 
@@ -225,6 +225,15 @@ class model
 					$update_main['status'] = 'awaiting';
 					$msg = T_("Your message has been added");
 					$notif_fn = 'info';
+
+					$log =
+					[
+						'code'     => \dash\request::get('id'),
+						'tcontent' => $content,
+						'count'    => $plus,
+					];
+
+					\dash\log::set('AddToTicket', $log);
 				}
 				else
 				{
@@ -239,7 +248,15 @@ class model
 						}
 					}
 
-					\dash\log::set('AnswerTicket', ['code' => \dash\request::get('id')]);
+					$log =
+					[
+						'code'     => \dash\request::get('id'),
+						'tcontent' => $content,
+						'count'    => $plus,
+					];
+
+					\dash\log::set('AnswerTicket', $log);
+
 					$update_main['status'] = 'answered';
 					$msg = T_("Your answer was saved");
 

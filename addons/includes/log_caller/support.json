@@ -72,6 +72,29 @@
     "title": null
   },
   "AnswerTicket": {
-    "title": null
+    "title": "Answer ticket",
+    "content": ";displayname answer ticket",
+
+    "notification": true,
+    "telegram": true,
+    "send_msg": {
+      "telegram": "🆔#Ticket|code 💌:count \n🗣 ;displayname #user|user_code\n—————\n:tcontent\n:file\n\n⏳ |longdatecreated"
+    },
+    "send_to": [
+      "supervisor"
+    ]
+  },
+  "AddToTicket": {
+    "title": "Add net message to ticket",
+    "content": ";displayname add new message to ticket",
+
+    "notification": true,
+    "telegram": true,
+    "send_msg": {
+      "telegram": "🆔#Ticket|code ⚔️:count \n🗣 ;displayname #user|user_code\n—————\n:tcontent\n:file\n\n⏳ |longdatecreated"
+    },
+    "send_to": [
+      "supervisor"
+    ]
   }
 }
