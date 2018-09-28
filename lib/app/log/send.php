@@ -72,9 +72,10 @@ class send
 							$myData   = ['chat_id' => $user_detail['chatid'], 'text' => strip_tags($value['send_msg']['telegram'])];
 							if(isset($value['btn']['telegram']) && is_array($value['btn']['telegram']))
 							{
-								$myData = array_merge($myData, $value['btn']['telegram'])
+								$myData = array_merge($myData, $value['btn']['telegram']);
 							}
-							$myResult = \dash\social\telegram\tg::json_sendMessage($myData);
+
+							$myResult = \dash\social\telegram\tg::sendMessage($myData);
 
 							// @check need to check the telegram is send this message or not
 							if($myResult)
