@@ -11,8 +11,8 @@
   </div>
 
   <div class="c4 s12">
-
     <div class="cbox">
+
       {{block("iDatetime")}}
 {%if masterTicketDetail.status == 'awaiting' or masterTicketDetail.status == 'answered'%}
   {%if isMyTicket or perm('supportTicketClose')%}
@@ -79,6 +79,17 @@
         <button class="btn block mTB10 primary"  name="TicketFormType" value="tag">{%trans "Save tag"%}</button>
       </form>
     </div>
+{%endif%}
+
+{%if perm_su()%}
+<div class="cbox">
+   <div class="switch1">
+     <input type="checkbox" name="showlog" id="showlog">
+     <label for="showlog"></label>
+     <label for="showlog">{%trans "Show log"%}
+     </label>
+    </div>
+</div>
 {%endif%}
 
   {%if perm('supportTicketShowLastVisitor')%}
@@ -193,7 +204,7 @@
 {%elseif record.xtype == 'visitor'%}
   {%if not lastRecordVisitor%}
   {%set lastRecordVisitor = true%}
-  <tr>
+  <tr data-response='showlog' data-response-hide>
     <td colspan="2" char="pRa10">
       <div class="f">
   {%endif%}
