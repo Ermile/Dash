@@ -77,7 +77,17 @@ class send
 
 							$myData = \dash\app\log::myT_($myData, $value);
 
-							$myResult = \dash\social\telegram\tg::sendMessage($myData);
+							if(isset($value['send_gif']) && $value['send_gif'] && isset($value['gif_url']))
+							{
+								$myData['document'] = $value['gif_url'];
+
+								$myResult = \dash\social\telegram\tg::sendDocument($myData);
+							}
+							else
+							{
+								$myResult = \dash\social\telegram\tg::sendMessage($myData);
+							}
+
 
 							// @check need to check the telegram is send this message or not
 							if($myResult)

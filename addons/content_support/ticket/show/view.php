@@ -125,6 +125,44 @@ class view
 		}
 		\content_support\ticket\home\view::sidebarDetail(true);
 
+		self::see_ticket($main, $dataTable);
+	}
+
+
+	public static function see_ticket($_main, $_dataTable)
+	{
+		if(!self::is_my_ticket($_main) || !\dash\user::id() || !$_dataTable || !is_array($_dataTable))
+		{
+			return;
+		}
+
+		$end_message = end($_dataTable);
+
+		if(!isset($end_message['user_id']) || !isset($end_message['type']) || !isset($end_message['datecreated']))
+		{
+			return;
+		}
+		$end_message['user_id'] = \dash\coding::decode($end_message['user_id']);
+
+		if(intval($end_message['user_id']) === intval(\dash\user::id()))
+		{
+			return;
+		}
+
+		$get_log =
+		[
+			'caller'      => 'seeTicket',
+			'code'        => \dash\request::get('id'),
+			'user_id'     => \dash\user::id(),
+			'datecreated' => [">=", "'$end_message[datecreated]'"],
+		];
+
+		$get_log = \dash\db\logs::get($get_log);
+
+		if(!$get_log)
+		{
+			\dash\log::set('seeTicket',  ['code' => \dash\request::get('id')]);
+		}
 
 	}
 

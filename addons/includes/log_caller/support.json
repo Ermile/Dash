@@ -162,6 +162,20 @@
       "supervisor"
     ]
   },
+  "seeTicket": {
+    "title": "See ticket",
+    "content": ";displayname see ticket |code",
+    "notification": true,
+    "telegram": true,
+    "send_gif": true,
+    "gif_url": "https://media.giphy.com/media/3oz8xyBP22S5b6gmsw/giphy.gif",
+    "send_msg": {
+      "telegram": "🆔#Ticket|code \n😒 ;displayname #user|user_code\n⏳ |longdatecreated"
+    },
+    "send_to": [
+      "supervisor"
+    ]
+  },
   "supportMessageEdit": {
     "title": "The message was edited"
   },
