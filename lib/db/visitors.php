@@ -6,6 +6,36 @@ class visitors
 {
 	public static $fields =	" * ";
 
+	public static function get_url_like($_url, $_where = [])
+	{
+		$where = null;
+		if($_where)
+		{
+			$where = \dash\db\config::make_where($_where);
+			if($where)
+			{
+				$where = " AND $where";
+			}
+		}
+
+		$query =
+		"
+			SELECT
+				visitors.*,
+				urls.pwd,
+				urls.subdomain,
+				urls.domain,
+				urls.path
+			FROM
+				visitors
+			LEFT JOIN urls ON urls.id = visitors.url_id
+			WHERE urls.pwd LIKE '$_url'
+			$where
+		";
+		$result = \dash\db::get($query, null, false, \dash\db::get_db_log_name());
+		return $result;
+	}
+
 
 	private static function calc_start_time($_args)
 	{

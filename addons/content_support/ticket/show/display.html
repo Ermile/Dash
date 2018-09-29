@@ -130,6 +130,99 @@
   </div>
 {%endif%}
 
+{%if superDataTable%}
+
+{%set lastRecordVisitor = false%}
+
+  <table class="tbl1 v5">
+    <tbody>
+{%for xdate, xlist in superDataTable%}
+
+{%for record in xlist%}
+
+{%if record.xtype == 'ticket' %}
+
+  {%if lastRecordVisitor%}
+  {%set lastRecordVisitor = false%}
+      </div>
+    </td>
+  </tr>
+  {%endif%}
+
+      <tr class="{{record.value.rowColor}} {%if record.value.type == 'ticket_note'%} disabled {%endif%}" id='msg{{record.value.id}}'>
+        <td class="collapsing">
+          <img src="{{record.value.avatar}}" class="avatar mRa10" alt="{{record.value.displayname}}">
+          <span class="txtB s0 fs08">{{record.value.displayname}}</span>
+{%if perm('supportTicketShowMobile')%}
+          <div class="txtRa fs08">{{masterTicketDetail.mobile | fitNumber('mobile12')}}</div>
+
+          <nav class="txtRa">
+            {%if perm('supportTicketManage')%}<a href="{{url.this}}?user_id={{record.value.user_id}}" title='{%trans "User tickets"%}'><i class="sf-question-circle"></i></a>{%endif%}
+            {%if perm('cpUsersView')%}<a href="{{url.kingdom}}/cp/users/view?id={{record.value.user_id}}" title='{%trans "User Profile"%}'><i class="sf-user-md"></i></a>{%endif%}
+            {%if perm('cpVisitorView')%}
+              <a href="{{url.kingdom}}/cp/visitor?userid={{record.value.user_id}}" title='{%trans "User last visits"%}'><i class="sf-flight"></i></a>
+            {%endif%}
+            {%if perm('cpVisitorView')%}
+              <a href="{{url.kingdom}}/cp/visitor?type=before&userid={{record.value.user_id}}&datetime={{masterTicketDetail.datecreated | url_encode}}" title='{%trans "Before create ticket"%}'><i class="sf-dzone"></i></a>
+            {%endif%}
+          </nav>
+{%endif%}
+        </td>
+        <td class="pRa10">
+          <div>
+            {{record.value.content | raw | nl2br}}
+          </div>
+          <div class="f mT10">
+{%if record.value.file %}
+           <div>
+            <a class="badge" href="{{record.value.file}}" target="_blank">{%trans "View attachment"%}</a>
+           </div>
+{%endif%}
+           <div class="cauto os fc-mute">
+            <small title='{{record.value.datecreated | dt(true)}}'>{{record.value.datecreated | dt("human", "year")}}</small>
+{%if perm('supportEditMessage')%}
+            <a class="fs08 mLa10" href="{{url.here}}/message/edit?id={{record.value.id}}">{%trans "Edit"%}</a>
+            {%if record.value.type == 'ticket_note'%}
+              <i class="fc-red sf-user-secret"></i>
+            {%endif%}
+{%endif%}
+           </div>
+          </div>
+        </td>
+      </tr>
+{%elseif record.xtype == 'visitor'%}
+  {%if not lastRecordVisitor%}
+  {%set lastRecordVisitor = true%}
+  <tr>
+    <td>
+      <div class="f">
+  {%endif%}
+    <span class="c badge warn2">visitor</span>
+
+{%elseif record.xtype == 'log'%}
+
+  {%if lastRecordVisitor%}
+  {%set lastRecordVisitor = false%}
+      </div>
+    </td>
+  </tr>
+  {%endif%}
+
+<tr>
+  <td>
+    <div class="badge success mLa5">{{record.value.caller}}</div>
+  </td>
+</tr>
+
+
+{%endif%}
+{%endfor%}
+{%endfor%}
+    </tbody>
+  </table>
+
+
+{%else%}
 
   <table class="tbl1 v5">
     <tbody>
@@ -178,6 +271,10 @@
 {%endfor%}
     </tbody>
   </table>
+
+
+{%endif%}
+
 
 
 {%if masterTicketDetail.solved%}

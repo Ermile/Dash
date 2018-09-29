@@ -126,8 +126,92 @@ class view
 		\content_support\ticket\home\view::sidebarDetail(true);
 
 		self::see_ticket($main, $dataTable);
+		self::inline_log($main, $dataTable);
 	}
 
+	public static function inline_log($_main, $_dataTable)
+	{
+		if(!\dash\permission::supervisor())
+		{
+			return;
+		}
+
+		$url = \dash\url::this(). '/show?id='. \dash\request::get('id');
+
+		$get_visitor =
+		[
+			// some where
+		];
+
+		$get_visitor = \dash\db\visitors::get_url_like("$url%", $get_visitor);
+
+		$implode_caller =
+		[
+			'ticketAddTag',
+			'setCloseTicket',
+			'setAwaitingTicket',
+			'setDeleteTicket',
+			'setSolvedTicket',
+			'setUnSolvedTicket',
+			// 'AddNoteTicket',
+			// 'AddToTicket',
+			// 'AnswerTicket',
+		];
+
+		$implode_caller = implode("','", $implode_caller);
+
+		$get_log =
+		[
+			'caller' => ['IN', "('$implode_caller')"],
+			'code' => \dash\request::get('id')
+		];
+		$get_log = \dash\db\logs::get($get_log);
+
+		$date = [];
+		foreach ($_dataTable as $key => $value)
+		{
+			if(isset($value['datecreated']))
+			{
+				if(!isset($date[$value['datecreated']]))
+				{
+					$date[$value['datecreated']] = [];
+				}
+
+				$date[$value['datecreated']][] = ['xtype' => 'ticket', 'value' => $value];
+			}
+		}
+
+		foreach ($get_visitor as $key => $value)
+		{
+			if(isset($value['date']))
+			{
+				if(!isset($date[$value['date']]))
+				{
+					$date[$value['date']] = [];
+				}
+
+				$date[$value['date']][] = ['xtype' => 'visitor', 'value' => $value];
+			}
+		}
+
+
+		foreach ($get_log as $key => $value)
+		{
+			if(isset($value['datecreated']))
+			{
+				if(!isset($date[$value['datecreated']]))
+				{
+					$date[$value['datecreated']] = [];
+				}
+
+				$date[$value['datecreated']][] = ['xtype' => 'log', 'value' => $value];
+			}
+		}
+
+		ksort($date);
+		\dash\data::superDataTable($date);
+
+	}
 
 	public static function see_ticket($_main, $_dataTable)
 	{
