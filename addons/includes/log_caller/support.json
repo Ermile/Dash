@@ -170,7 +170,7 @@
     "send_gif": true,
     "gif_url": "https://media.giphy.com/media/3oz8xyBP22S5b6gmsw/giphy.gif",
     "send_msg": {
-      "telegram": "🆔#Ticket|code \n😒 ;displayname #user|user_code\n⏳ |longdatecreated"
+      "telegram": "🆔#Ticket|code 🙄 \n🗣 ;displayname #user|user_code\n⏳ |longdatecreated"
     },
     "send_to": [
       "supervisor"
