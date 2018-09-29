@@ -1086,7 +1086,33 @@ class TransStatic
 	echo T_("You have new ticket from :displayname");
 	echo T_("If this was you, you can safely disregard this message. If you didn't do this, please change your password to help secure your account. Learn more about keeping your account secure.");
 
+
+
+	echo T_("Add new ticket");
+	echo T_("The ticket closed");
+	echo T_("The ticket set as open ticket");
+	echo T_("The ticket delete ticket");
+	echo T_("The ticket set as solved ticket");
+	echo T_("The ticket set as unsolved ticket");
+	echo T_("Answer ticket");
+	echo T_("Add new message to ticket");
+	echo T_("Add new note to ticket");
+	echo T_("The message was edited");
+	echo T_(";displayname add new ticket");
+	echo T_(";displayname close the ticket");
+	echo T_(";displayname re open the ticket");
+	echo T_(";displayname delete the ticket");
+	echo T_(";displayname set as solved the ticket");
+	echo T_(";displayname set as unsolved the ticket");
+	echo T_(";displayname answer ticket");
+	echo T_(";displayname add new message to ticket");
+	echo T_(";displayname add new note to ticket");
 	echo T_("New Ticket");
+	echo T_("Close the ticket");
+	echo T_("Open the ticket");
+	echo T_("Deleted");
+	echo T_("Solved");
+	echo T_("Back to unsolved");
 
  }
 }

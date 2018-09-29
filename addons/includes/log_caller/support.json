@@ -1,28 +1,4 @@
 {
-  "newTicket": {
-    "title": "You have new ticket",
-    "content": "You have new ticket from :displayname",
-    "category": "ticket",
-    "send_msg": {
-      "telegram": "You have new ticket from :displayname \n see :link"
-    },
-    "send_to": [
-      "admin",
-      "supervisor"
-    ],
-    "telegram": true,
-    "sms": false,
-    "email": false,
-    "duplicate": {
-      "save": true,
-      "send": true
-    },
-    "life_time": "5d",
-    "need_answer": false
-  },
-  "supportMessageEdit": {
-    "title": null
-  },
   "addNewTicket": {
     "title": "Add new ticket",
     "content": ";displayname add new ticket",
@@ -50,21 +26,6 @@
         }
       }
     }
-  },
-  "tryCount": {
-    "title": null
-  },
-  "contactRegisterByMobile": {
-    "title": null
-  },
-  "contactUsLoginNotSave": {
-    "title": null
-  },
-  "contactFail": {
-    "title": null
-  },
-  "ticketAddTag": {
-    "title": null
   },
   "setCloseTicket": {
     "title": "The ticket closed",
@@ -200,5 +161,23 @@
     "send_to": [
       "supervisor"
     ]
+  },
+  "supportMessageEdit": {
+    "title": "The message was edited"
+  },
+  "tryCount": {
+    "title": null
+  },
+  "contactRegisterByMobile": {
+    "title": null
+  },
+  "contactUsLoginNotSave": {
+    "title": null
+  },
+  "contactFail": {
+    "title": null
+  },
+  "ticketAddTag": {
+    "title": null
   }
 }
