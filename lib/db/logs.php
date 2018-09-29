@@ -213,10 +213,20 @@ class logs
 				'db_name' => \dash\db::get_db_log_name(),
 			];
 
-			$_options            = array_merge($default, $_options);
-			unset($_options['join_user']);
 
 		}
+		else
+		{
+			$default =
+			[
+				'db_name' => \dash\db::get_db_log_name(),
+			];
+
+		}
+
+		$_options            = array_merge($default, $_options);
+
+		unset($_options['join_user']);
 
 		return \dash\db\config::public_get('logs', $_args, $_options);
 	}
