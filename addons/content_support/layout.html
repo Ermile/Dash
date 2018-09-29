@@ -24,6 +24,12 @@
 {%if sidebarDetail.answered%}
       <li><a href="{{url.here}}/ticket?status=answered{{accessGetAnd}}"><span class="floatRa mRa10 fc-mute badge dark">{{sidebarDetail.answered | fitNumber}}</span>{%trans "Answered"%}</a></li>
 {%endif%}
+{%if perm('supportTicketAnswer') and sidebarDetail.unsolved%}
+      <li><a href="{{url.here}}/ticket?status=unsolved{{accessGetAnd}}"><span class="floatRa mRa10 fc-mute badge dark">{{sidebarDetail.unsolved | fitNumber}}</span>{%trans "Unsolved"%}</a></li>
+{%endif%}
+{%if perm('supportTicketAnswer') and sidebarDetail.solved%}
+      <li><a href="{{url.here}}/ticket?status=solved{{accessGetAnd}}"><span class="floatRa mRa10 fc-mute badge dark">{{sidebarDetail.solved | fitNumber}}</span>{%trans "Solved"%}</a></li>
+{%endif%}
 {%if sidebarDetail.awaiting%}
       <li><a href="{{url.here}}/ticket?status=awaiting{{accessGetAnd}}"><span class="floatRa mRa10 fc-mute badge dark">{{sidebarDetail.awaiting | fitNumber}}</span>{%trans "Awaiting answer"%}</a></li>
 {%endif%}
@@ -31,7 +37,7 @@
       <li><a href="{{url.here}}/ticket?status=archived{{accessGetAnd}}"><span class="floatRa mRa10 fc-mute badge dark">{{sidebarDetail.archived | fitNumber}}</span>{%trans "Archived"%}</a></li>
 {%endif%}
 {%if perm('supportTicketTrash') and sidebarDetail.trash%}
-      <li><a href="{{url.here}}/ticket?status=deleted{{accessGetAnd}}"><span class="floatRa mRa10 fc-mute sf-trash"></span>{%trans "Trash"%}</a></li>
+      <li><a href="{{url.here}}/ticket?status=deleted{{accessGetAnd}}"><span class="floatRa mRa10 fc-mute badge dark">{{sidebarDetail.trash | fitNumber}}</span>{%trans "Trash"%}</a></li>
 {%endif%}
     </ul>
 </li>
