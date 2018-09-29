@@ -79,6 +79,8 @@ class send
 
 							if(isset($value['send_gif']) && $value['send_gif'] && isset($value['gif_url']))
 							{
+								$myData['caption'] = $myData['text'];
+								unset($myData['text']);
 								$myData['document'] = $value['gif_url'];
 
 								$myResult = \dash\social\telegram\tg::sendDocument($myData);
