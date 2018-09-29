@@ -68,7 +68,7 @@
 {%block ecode%}
    <div class='flex fix' id='ecode'>
     <label for='code'>Code</label>
-    <input id='code' name="code" type='number' placeholder='{%trans "Verify Code"%}' autocomplete="off" inputmode="numeric" min="10000" max="99999" pattern=".{5,5}" title='{%trans "Enter a valid code!"%}' autofocus required>
+    <input id='code' name="code" type='number' placeholder='{%trans "Verify Code"%}' autocomplete="off" inputmode="numeric" min="10000" max="99999" pattern="[0-9]*" title='{%trans "Enter a valid code!"%}' autofocus required>
    </div>
 {%endblock%}
 
