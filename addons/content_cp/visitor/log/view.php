@@ -39,6 +39,10 @@ class view
 			$args['sort'] = 'visitors.id';
 		}
 
+		if(\dash\request::get('id'))
+		{
+			$args['visitors.id'] = \dash\request::get('id');
+		}
 		if(\dash\request::get('user'))
 		{
 			$userid = \dash\coding::decode(\dash\request::get('user'));

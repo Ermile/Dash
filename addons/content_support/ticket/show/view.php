@@ -162,10 +162,12 @@ class view
 
 		$get_log =
 		[
-			'caller' => ['IN', "('$implode_caller')"],
-			'code' => \dash\request::get('id')
+			'caller'    => ['IN', "('$implode_caller')"],
+			'code'      => \dash\request::get('id'),
+
 		];
-		$get_log = \dash\db\logs::get($get_log);
+
+		$get_log = \dash\db\logs::get($get_log, ['join_user' => true]);
 
 		$date = [];
 		foreach ($_dataTable as $key => $value)
@@ -203,6 +205,9 @@ class view
 				{
 					$date[$value['datecreated']] = [];
 				}
+
+				$value = \dash\app\log::ready($value);
+
 
 				$date[$value['datecreated']][] = ['xtype' => 'log', 'value' => $value];
 			}

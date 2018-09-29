@@ -194,10 +194,13 @@
   {%if not lastRecordVisitor%}
   {%set lastRecordVisitor = true%}
   <tr>
-    <td>
+    <td colspan="2" char="pRa10">
       <div class="f">
   {%endif%}
-    <span class="c badge warn2">visitor</span>
+    {%set masterUserId = masterTicketDetail.user_id | coding('decode')%}
+      <span class="c badge mRa10 mT5{%if record.value.user_id != masterUserId%} light{%else%} info2{%endif%} ">
+        <a href="{{url.kingdom}}/cp/visitor/log?id={{record.value.id}}">{{record.value.date |dt(true)}}</a>
+      </span>
 
 {%elseif record.xtype == 'log'%}
 
@@ -209,8 +212,30 @@
   {%endif%}
 
 <tr>
-  <td>
-    <div class="badge success mLa5">{{record.value.caller}}</div>
+  <td class="collapsing">
+      <img src="{{record.value.avatar}}" class="avatar mRa10" alt="{{record.value.displayname}}">
+      <span class="txtB s0 fs08">{{record.value.displayname}}</span>
+
+      <div class="txtRa fs08">{{record.value.mobile | fitNumber('mobile12')}}</div>
+
+      <nav class="txtRa">
+        <a href="{{url.this}}?user_id={{record.value.user_id}}" title='{%trans "User tickets"%}'><i class="sf-question-circle"></i></a>
+        <a href="{{url.kingdom}}/cp/users/view?id={{record.value.user_id}}" title='{%trans "User Profile"%}'><i class="sf-user-md"></i></a>
+        <a href="{{url.kingdom}}/cp/visitor?userid={{record.value.user_id}}" title='{%trans "User last visits"%}'><i class="sf-flight"></i></a>
+        <a href="{{url.kingdom}}/cp/visitor?type=before&userid={{record.value.user_id}}&datetime={{record.value.datecreated | url_encode}}" title='{%trans "Before create ticket"%}'><i class="sf-dzone"></i></a>
+      </nav>
+  </td>
+  <td class="mLa10">
+    <div class=" msg info2 mRa10">
+      <div class="txtB">
+        {{record.value.title}}
+      </div>
+    <br>
+    {{record.value.content}}
+    <small class="floatL">
+      {{record.value.datecreated | dt(true)}}
+    </small>
+    </div>
   </td>
 </tr>
 
