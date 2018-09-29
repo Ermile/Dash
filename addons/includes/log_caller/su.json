@@ -42,8 +42,11 @@
     "send_to": [
       "supervisor"
     ],
+    "T_": {
+      "dbupgrade": "Database upgraded to new version"
+    },
     "send_msg": {
-      "telegram": "Database upgraded to new version"
+      "telegram": "🛢#DbUpgrade\n👨‍💻 ;displayname\n:dbupgrade\n⏳ |longdatecreated"
     },
     "content": null
   },
@@ -66,8 +69,11 @@
     "send_to": [
       "supervisor"
     ],
+    "T_": {
+      "gitupdate": "Git update"
+    },
     "send_msg": {
-      "telegram": "Git update"
+      "telegram": "🛠#GitUpdate\n👨‍💻 ;displayname\n⏳ |longdatecreated"
     },
     "content": null
   },
