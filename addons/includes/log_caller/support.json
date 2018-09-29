@@ -78,6 +78,8 @@
     "T_": {
       "solvedmsg": "Solved"
     },
+    "send_gif": true,
+    "gif_url": "https://media.giphy.com/media/3oz8xZGGYXKrJB5I4g/giphy.gif",
     "notification": true,
     "telegram": true,
     "send_msg": {
