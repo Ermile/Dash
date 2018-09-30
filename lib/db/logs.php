@@ -27,7 +27,7 @@ class logs
 
 	public static function get_caller_group()
 	{
-		$query = "SELECT count(*) AS `count`, logs.caller AS `caller` FROM logs GROUP BY logs.caller";
+		$query = "SELECT count(*) AS `count`, logs.caller AS `caller` FROM logs GROUP BY logs.caller ORDER BY count(*) DESC";
 		$resutl = \dash\db::get($query, ['caller', 'count'], false, \dash\db::get_db_log_name());
 		return $resutl;
 	}
