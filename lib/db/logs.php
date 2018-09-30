@@ -24,6 +24,13 @@ class logs
 		return \dash\db\config::public_get_count('logs', $_where, \dash\db::get_db_log_name());
 	}
 
+
+	public static function get_caller_group()
+	{
+		$query = "SELECT count(*) AS `count`, logs.caller AS `caller` FROM logs GROUP BY logs.caller";
+		$resutl = \dash\db::get($query, ['caller', 'count'], false, \dash\db::get_db_log_name());
+		return $resutl;
+	}
 	/**
 	 * this library work with logs table
 	 * v1.0
