@@ -55,8 +55,8 @@ class model
 			[
 				'code'     => $result['id'],
 				'ttitle'   => $args['title'],
-				'tcontent' => $args['content'],
-				'file'     => $args['file'],
+				'tcontent' => \dash\safe::safe($args['content'], 'raw'),
+				'file'     => $args['file'] ? $args['file'] :"\n",
 			];
 
 			\dash\log::set('addNewTicket', $log);
