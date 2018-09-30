@@ -64,7 +64,15 @@ class controller
 		{
 			if(\dash\utility\enter::lock($check_unlock))
 			{
-				\dash\header::status(404, $check_unlock);
+
+				if($check_unlock === 'okay')
+				{
+					\dash\redirect::to(\dash\url::kingdom());
+				}
+				else
+				{
+					\dash\header::status(404, $check_unlock);
+				}
 			}
 		}
 	}
