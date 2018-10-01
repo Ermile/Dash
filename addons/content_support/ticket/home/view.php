@@ -94,11 +94,13 @@ class view
 				case 'unsolved':
 					\dash\data::page_title(T_("Un solved ticket"));
 					$args['1.1'] = ["= 1.1", " AND (comments.solved = b'0' OR comments.solved IS NULL ) "];
+					$args['comments.status'] = ["NOT IN", "('deleted')"];
 					break;
 
 				case 'solved':
 					\dash\data::page_title(T_("Solved ticket"));
 					$args['comments.solved'] = 1;
+					$args['comments.status'] = ["NOT IN", "('deleted')"];
 					break;
 
 				case 'answered':
@@ -205,6 +207,11 @@ class view
 			}
 		}
 
+		if(\dash\data::accessMode() === 'all')
+		{
+			unset($args['comments.subdomain']);
+		}
+
 		$result               = [];
 
 		$args['comments.status'] = ["NOT IN ", "('deleted')"];
@@ -217,18 +224,18 @@ class view
 		{
 			$result['all']      = \dash\db\comments::get_count(array_merge($args, []));
 		}
-		unset($args['comments.status']);
+		// unset($args['comments.status']);
 
 		$result['unsolved']   = \dash\db\comments::get_count(array_merge($args,['1.1' => ["= 1.1", " AND (comments.solved = b'0' OR comments.solved IS NULL ) "]]));
 
 		$result['solved']   = \dash\db\comments::get_count(array_merge($args,['solved' => 1]));
 
-		$result['answered'] = \dash\db\comments::get_count(array_merge($args,['status' => 'answered']));
-		$result['awaiting'] = \dash\db\comments::get_count(array_merge($args, ['status' => 'awaiting']));
+		$result['answered'] = \dash\db\comments::get_count(array_merge($args,['comments.status' => 'answered']));
+		$result['awaiting'] = \dash\db\comments::get_count(array_merge($args, ['comments.status' => 'awaiting']));
 		$result['open']     = intval($result['answered']) + intval($result['awaiting']);
 
-		$result['archived'] = \dash\db\comments::get_count(array_merge($args,['status' => 'close']));
-		$result['trash']    = \dash\db\comments::get_count(array_merge($args,['status' => 'deleted']));
+		$result['archived'] = \dash\db\comments::get_count(array_merge($args,['comments.status' => 'close']));
+		$result['trash']    = \dash\db\comments::get_count(array_merge($args,['comments.status' => 'deleted']));
 
 		$args_tag = $args;
 		if($_all)
@@ -238,7 +245,7 @@ class view
 
 			$result['message']       = \dash\db\comments::get_count($args);
 			$args['comments.status'] = ["NOT IN ", "('deleted')"];
-			$args['status']          = 'close';
+			$args['comments.status'] = 'close';
 			$args['comments.parent'] = null;
 			$result['avgfirst']      = \dash\db\comments::ticket_avg_first($args);
 			$result['avgarchive']    = \dash\db\comments::ticket_avg_archive($args);
