@@ -14,7 +14,7 @@ class view
 		\dash\data::badge_shortkey(120);
 		\dash\data::badge2_shortkey(121);
 
-		\dash\data::include_chart(true);
+
 		\dash\data::display_admin('content_support/layout.html');
 
 		\dash\data::maxUploadSize(\dash\utility\upload::max_file_upload_size(true));
