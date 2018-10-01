@@ -202,6 +202,10 @@ class model
 				$content = null;
 			}
 		}
+		else
+		{
+			$content = \dash\safe::safe($content);
+		}
 
 		$plus = \dash\db\comments::get_count(['type' => 'ticket', 'parent' => $_id]);
 

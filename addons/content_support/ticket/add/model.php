@@ -33,18 +33,28 @@ class model
 			return false;
 		}
 
+
 		// ready to insert comments
 		$args =
 		[
 			'author'  => \dash\user::detail('displayname'),
 			'email'   => \dash\user::detail('email'),
 			'type'    => 'ticket',
-			'content' => \dash\request::post('content') ? $_POST['content'] : null,
+			// 'content' => \dash\request::post('content') ? $_POST['content'] : null,
 			'title'   => \dash\request::post('title'),
 			'mobile'  => \dash\user::detail("mobile"),
 			'file'    => $file,
 			'user_id' => \dash\user::id(),
 		];
+
+		if(\dash\permission::check('supportTicketSignature'))
+		{
+			$args['content'] = \dash\request::post('content') ? $_POST['content'] : null;
+		}
+		else
+		{
+			$args['content'] = \dash\request::post('content');
+		}
 
 		// insert comments
 		$result = \dash\app\ticket::add($args);

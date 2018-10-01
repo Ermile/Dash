@@ -78,6 +78,7 @@ class safe
 
 		if($htmlspecialchars)
 		{
+			$_string = strip_tags($_string);
 			$_string = htmlspecialchars($_string, ENT_QUOTES | ENT_HTML5);
 		}
 
