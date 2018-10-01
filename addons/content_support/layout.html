@@ -18,26 +18,42 @@
 {%if sidebarDetail.all%}
       <li><a href="{{url.here}}/ticket?status=all{{accessGetAnd}}"><span class="floatRa mRa10 fc-mute badge dark">{{sidebarDetail.all | fitNumber}}</span>{%trans "All"%}</a></li>
 {%endif%}
+
 {%if sidebarDetail.awaiting%}
       <li><a href="{{url.here}}/ticket?status=awaiting{{accessGetAnd}}"><span class="floatRa mRa10 fc-mute badge dark">{{sidebarDetail.awaiting | fitNumber}}</span>{%trans "Awaiting answer"%}</a></li>
 {%endif%}
+
 {%if sidebarDetail.answered%}
       <li><a href="{{url.here}}/ticket?status=answered{{accessGetAnd}}"><span class="floatRa mRa10 fc-mute badge dark">{{sidebarDetail.answered | fitNumber}}</span>{%trans "Answered"%}</a></li>
 {%endif%}
+
+{%if (sidebarDetail.all or sidebarDetail.awaiting or sidebarDetail.answered) and ((perm('supportTicketAnswer') and sidebarDetail.unsolved) or (perm('supportTicketAnswer') and sidebarDetail.solved))%}
 <li class="hr"></li>
+{%endif%}
+
 {%if perm('supportTicketAnswer') and sidebarDetail.unsolved%}
+{%set haveBeforeLink = true%}
       <li><a href="{{url.here}}/ticket?status=unsolved{{accessGetAnd}}"><span class="floatRa mRa10 fc-mute badge dark">{{sidebarDetail.unsolved | fitNumber}}</span>{%trans "Unsolved"%}</a></li>
 {%endif%}
+
 {%if perm('supportTicketAnswer') and sidebarDetail.solved%}
+
+{%set haveBeforeLink = true%}
       <li><a href="{{url.here}}/ticket?status=solved{{accessGetAnd}}"><span class="floatRa mRa10 fc-mute badge dark">{{sidebarDetail.solved | fitNumber}}</span>{%trans "Solved"%}</a></li>
 {%endif%}
+
+{%if haveBeforeLink and (sidebarDetail.open or sidebarDetail.archived)%}
 <li class="hr"></li>
+{%endif%}
+
 {%if sidebarDetail.open%}
       <li><a href="{{url.here}}/ticket?status=open{{accessGetAnd}}"><span class="floatRa mRa10 fc-mute badge dark">{{sidebarDetail.open | fitNumber}}</span>{%trans "Open tickets"%}</a></li>
 {%endif%}
+
 {%if sidebarDetail.archived%}
       <li><a href="{{url.here}}/ticket?status=archived{{accessGetAnd}}"><span class="floatRa mRa10 fc-mute badge dark">{{sidebarDetail.archived | fitNumber}}</span>{%trans "Archived"%}</a></li>
 {%endif%}
+
 {%if perm('supportTicketTrash') and sidebarDetail.trash%}
       <li><a href="{{url.here}}/ticket?status=deleted{{accessGetAnd}}"><span class="floatRa mRa10 fc-mute badge dark">{{sidebarDetail.trash | fitNumber}}</span>{%trans "Trash"%}</a></li>
 {%endif%}
@@ -45,9 +61,9 @@
 </li>
 
 
-<li class="hr"></li>
 
 {%if sidebarDetail.tags%}
+<li class="hr"></li>
 <li>
   {%if perm('cpSupportTagAdd') and 0 %}
     <a data-direct href="{{url.kingdom}}/cp/terms?type=support_tag"><i class='sf-tag'></i> {%trans "Tags"%}</a>
