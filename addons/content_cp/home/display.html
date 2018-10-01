@@ -64,7 +64,7 @@
 
 
 {%block chartVisitor%}
-<a class="cbox pA0" href="{{url.here}}/visitor">
+<a class="cbox pA0">
  <div class="chart x4" id="chartdiv" data-type='bar' data-vals='{{visitor.chart}}'></div>
 </a>
 {%endblock%}
@@ -77,6 +77,7 @@
   <div class="c s6">{{block ("dHelpCenterTags")}}</div>
   <div class="c s6">{{block ("dSupportTags")}}</div>
   <div class="c s6">{{block ("dTickets")}}</div>
+  <div class="c s6">{{block ("dVisitor")}}</div>
 </div>
 {%endblock%}
 
@@ -123,6 +124,17 @@
 
 
 
+{%block dVisitor%}
+<a class="dcard" href="{{url.kingdom}}/cp/visitor">
+ <div class="statistic sm">
+  <div class="label mB10"><i class="fs20 mRa5 sf-life-ring"></i> {%trans "Visitor"%}</div>
+  <div class="value">{{dashboardDetail.visit | fitNumber}}</div>
+ </div>
+</a>
+{%endblock%}
+
+
+
 
 
 {%block blockUsers%}
@@ -131,15 +143,16 @@
   <div class="c s6">{{block ("dUserPerms")}}</div>
   <div class="c s6">{{block ("dLogs")}}</div>
   <div class="c s6">{{block ("dComments")}}</div>
+  <!-- <div class="c s6">{{block ("dComments")}}</div> -->
 </div>
 {%endblock%}
 
 
 {%block dUsers%}
 <a class="dcard" href="{{url.here}}/users">
- <div class="statistic sm">
+ <div class="statistic sm teal">
   <div class="label mB10"><i class="fs20 mRa5 sf-users"></i> {%trans "Users"%}</div>
-  <div class="value">{{dashboardDetail.users | fitNumber}}</div>
+  <div class="value counter" data-value={{dashboardDetail.users}}>{{dashboardDetail.users | fitNumber}}</div>
  </div>
 </a>
 {%endblock%}
@@ -148,7 +161,7 @@
 
 {%block dUserPerms%}
 <a class="dcard" href="{{url.here}}/permission">
- <div class="statistic sm">
+ <div class="statistic sm red">
   <div class="label mB10"><i class="fs20 mRa5 sf-lock"></i> {%trans "Permissions"%}</div>
   <div class="value">{{dashboardDetail.permissions | fitNumber()}}</div>
  </div>
@@ -183,7 +196,9 @@
 
 {%block foot_js%}
 <script type="text/javascript">
-  {%include 'content_cp/visitor/home/chart.js'%}
+    {%include 'content_cp/home/chart.js'%}
+  {%if dashboardDetail.chart.categories and dashboardDetail.chart.visitor and dashboardDetail.chart.visit%}
+  {%endif%}
 </script>
 <style type="text/css">
 .highcharts-tooltip > span {

@@ -59,14 +59,32 @@ class visitor
 		if(isset($chart_visitorchart['visitor']) && isset($chart_visitorchart['visit']) && is_array($chart_visitorchart['visitor']) && is_array($chart_visitorchart['visit']))
 		{
 			$chart = [];
+			$hi_chart = [];
 			foreach ($chart_visitorchart['visit'] as $key => $value)
 			{
 				if(isset($chart_visitorchart['visitor'][$key]))
 				{
-					$chart[] = ['date' => \dash\datetime::fit($key, true, 'date'), 'visit' => $value, 'visitor' => $chart_visitorchart['visitor'][$key]];
+					$date = \dash\datetime::fit($key, true, 'date');
+					if($_args['period'] === 'hours24')
+					{
+						$date = \dash\utility\human::fitNumber($key);
+					}
+
+					$chart[] =
+					[
+						'date'    => $date,
+						'visit'   => intval($value),
+						'visitor' => intval($chart_visitorchart['visitor'][$key])
+					];
 				}
 			}
-			return json_encode($chart, JSON_UNESCAPED_UNICODE);
+
+			$hi_chart['categories'] = json_encode(array_column($chart, 'date'), JSON_UNESCAPED_UNICODE);
+			$hi_chart['visit']      = json_encode(array_column($chart, 'visit'), JSON_UNESCAPED_UNICODE);
+			$hi_chart['visitor']    = json_encode(array_column($chart, 'visitor'), JSON_UNESCAPED_UNICODE);
+			return $hi_chart;
+			// return json_encode($chart, JSON_UNESCAPED_UNICODE);
+
 		}
 		return null;
 	}

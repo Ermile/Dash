@@ -24,7 +24,8 @@ class view
 		$dashboard_detail['visitor']       = \dash\app\visitor::total_visitor($args);
 		$dashboard_detail['avgtime']       = \dash\app\visitor::total_avgtime($args);
 		$dashboard_detail['maxtrafictime'] = \dash\app\visitor::total_maxtrafictime($args);
-		$dashboard_detail['visitorchart']  = \dash\app\visitor::chart_visitorchart($args);
+		$dashboard_detail['chart']         = \dash\app\visitor::chart_visitorchart($args);
+
 		\dash\data::dashboardDetail($dashboard_detail);
 		\dash\data::alexa(self::alexaRank());
 

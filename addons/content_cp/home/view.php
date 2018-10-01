@@ -33,6 +33,18 @@ class view
 			$dashboard_detail['permissions']    = count(\dash\permission::groups());
 			$dashboard_detail['logs']           = \dash\db\logs::get_count();
 			$dashboard_detail['comments']       = \dash\db\comments::get_count(['type' => 'comments']);
+			$dashboard_detail['visit']          = \dash\db\visitors::get_count();
+
+			$get_chart =
+			[
+				'period'    => 'month',
+			];
+			if(\dash\url::subdomain())
+			{
+				$get_chart['subdomain'] = \dash\url::subdomain();
+			}
+			$chart = \dash\app\visitor::chart_visitorchart($get_chart);
+			$dashboard_detail['chart'] = $chart;
 
 			\dash\session::set('cpDashboardCache', $dashboard_detail, null, (60*1));
 		}
@@ -40,6 +52,7 @@ class view
 		{
 			$dashboard_detail = \dash\session::get('cpDashboardCache');
 		}
+		// var_dump($dashboard_detail);exit();
 
 		\dash\data::dashboardDetail($dashboard_detail);
 		// $this->data->page['title']       = T_(ucfirst( str_replace('/', ' ', \dash\url::directory()) ));
