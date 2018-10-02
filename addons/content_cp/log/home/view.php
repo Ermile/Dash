@@ -16,6 +16,9 @@ class view
 		\dash\data::page_title($myTitle);
 		\dash\data::page_desc($myDesc);
 
+		\dash\data::badge_link(\dash\url::this(). '/caller');
+		\dash\data::badge_text(T_("Show log caller"));
+
 		\dash\data::page_pictogram('pinboard');
 
 		$search_string = \dash\request::get('q');
