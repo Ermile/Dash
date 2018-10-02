@@ -1,0 +1,202 @@
+{%extends display.admin%}
+{%use 'content_account/profile/pagestep.html'%}
+
+
+
+{%block pageContent%}
+{{block('pageSteps')}}
+
+<form method="post" enctype="multipart/form-data" autocomplete="off">
+  <div class="f ">
+    <div class="c5 s12">
+      <div class="cbox">
+        <h3 class="txtC">{%trans "Address"%}</h3>
+        {{block('iTitle')}}
+        {{block('iFirstname')}}
+        {{block('iLastname')}}
+        {{block('iCountry')}}
+        {{block('iCity')}}
+        {{block('iPostcode')}}
+        {{block('iPhone')}}
+        {{block('iFax')}}
+        {{block('iAddress')}}
+        {{block('iAddress2')}}
+        {{block('iCompany')}}
+        {{block('iCompanyname')}}
+        {{block('iJobtitle')}}
+        {{block('iStatus')}}
+        {{block('iadd')}}
+      </div>
+    </div>
+    <div class="c7 pLa5">
+      <div class="cbox">
+        <h2>{%trans "Saved address"%}</h2>
+        {%for key, value in dataTable%}
+          <div class="msg">
+            <dib class="badge">{{value.title}}</dib>
+            <dib class="badge">{{value.firstname}}</dib>
+            <dib class="badge">{{value.lastname}}</dib>
+            <dib class="badge">{{value.country}}</dib>
+            <dib class="badge">{{value.address}}</dib>
+            <a class="badge floatL  mLa5 danger" href="{{url.pwd}}" data-ajaxify data-method="post" data-data='{"id" : "{{value.id}}", "type": "remove" }' tabindex='-1'>{%trans "Remove"%}</a>
+            <a class="badge floatL primary" href="{{url.pwd}}" data-ajaxify data-method="post" data-data='{"id" : "{{value.id}}", "type": "edit" }' tabindex='-1'>{%trans "Edit"%}</a>
+          </div>
+        {%endfor%}
+      </div>
+    </div>
+  </div>
+</form>
+{%endblock%}
+
+
+
+
+{%block iFirstname%}
+<label for="firstname">{%trans "Firstname"%}</label>
+<div class="input">
+  <input type="text" name="firstname" id="firstname" placeholder='{%trans "Firstname"%}' value="{{dataRow.firstname}}" maxlength='40' minlength="1" pattern=".{1,40}" >
+</div>
+{%endblock%}
+
+
+
+{%block iLastname%}
+<label for="lastname">{%trans "Lastname"%}</label>
+<div class="input">
+  <input type="text" name="lastname" id="lastname" placeholder='{%trans "Lastname"%}' value="{{dataRow.lastname}}" maxlength='40' minlength="1" pattern=".{1,40}"  >
+</div>
+{%endblock%}
+
+
+
+{%block iCountry%}
+<div class="mB10">
+  <label for='nationality'>{%trans "Nationality"%}</label>
+  <div class="ui fluid search selection dropdown">
+    <input type="hidden" name="nationality" value="{%if dataRow.nationality%}{{dataRow.nationality}}{%else%}iran{%endif%}">
+    <i class="dropdown icon"></i>
+    <div class="default text">{%trans "Choose your nationality"%}</div>
+    <div class="menu">
+{%for key, value in countryList%}
+      <div class="item" data-value="{{key}}">
+        <i class="{{value.iso2 | lower }} flag"></i>{%set myCountry = value.name%} {%trans myCountry%}<small class="description">{{value.name | capitalize}}</small>
+      </div>
+{%endfor%}
+    </div>
+  </div>
+</div>
+{%endblock%}
+
+
+
+{%block iCity%}
+<label for='city'>{%trans "City"%}</label>
+<select name="city" class="ui dropdown select search mB10" id="city">
+  <option value="" readonly>{%trans "Select city"%}</option>
+  {%for key, value in cityList%}
+    <option value="{{key}}" {% if dataRow.city == key %} selected {%endif%}>{{value}}</option>
+  {%endfor%}
+</select>
+{%endblock%}
+
+
+
+
+{%block iPostcode%}
+<label for="postcode">{%trans "Post code"%}</label>
+<div class="input ltr">
+  <input type="text" name="postcode" id="postcode" placeholder='{%trans "Post code"%}' value="{{dataRow.postcode}}" maxlength='40' minlength="1" pattern=".{1,40}" >
+</div>
+{%endblock%}
+
+
+
+{%block iTitle%}
+<label for="title">{%trans "Title"%}</label>
+<div class="input">
+  <input type="text" name="title" id="title" placeholder='{%trans "Title"%}' value="{{dataRow.title}}" maxlength='40' minlength="1" pattern=".{1,40}" >
+</div>
+{%endblock%}
+
+
+
+{%block iPhone%}
+<label for="iphone">{%trans "Phone"%}</label>
+<div class="input">
+  <input type="tel" name="phone" id="iphone" placeholder='{%trans "Phone"%}' value="{{dataRow.phone}}" maxlength='40' minlength="1" pattern=".{1,40}" >
+</div>
+{%endblock%}
+
+
+{%block iFax%}
+<label for="ifax">{%trans "Fax"%}</label>
+<div class="input">
+  <input type="tel" name="fax" id="ifax" placeholder='{%trans "Fax"%}' value="{{dataRow.fax}}" maxlength='40' minlength="1" pattern=".{1,40}" >
+</div>
+{%endblock%}
+
+
+
+
+
+{%block iAddress%}
+<label for="address">{%trans "Address"%}</label>
+<textarea class="txt mB20 pB25" name="address" placeholder='{%trans "Address"%}' maxlength='300' rows="3">{{dataRow.address}}</textarea>
+{%endblock%}
+
+
+
+{%block iAddress2%}
+<label for="address2">{%trans "Address line 2"%}</label>
+<textarea class="txt mB20 pB25" name="address2" placeholder='{%trans "Address"%}' maxlength='300' rows="3">{{dataRow.address2}}</textarea>
+{%endblock%}
+
+
+
+{%block iCompany%}
+<div class="switch1 mB20 mT20">
+ <input type="checkbox" name="company" id="company" {%if dataRow.company  %}checked{%endif%}>
+ <label for="company"></label>
+ <label for="company">{%trans "Is Company?"%}</label>
+</div>
+{%endblock%}
+
+
+
+{%block iCompanyname%}
+<label for="companyname">{%trans "Company name"%}</label>
+<div class="input">
+  <input type="text" name="companyname" id="companyname" placeholder='{%trans "Company name"%}' value="{{dataRow.companyname}}" maxlength='40' minlength="1" pattern=".{1,40}" >
+</div>
+{%endblock%}
+
+
+
+{%block iJobtitle%}
+<label for="jobtitle">{%trans "Job title"%}</label>
+<div class="input">
+  <input type="text" name="jobtitle" id="jobtitle" placeholder='{%trans "Company name"%}' value="{{dataRow.jobtitle}}" maxlength='40' minlength="1" pattern=".{1,40}" >
+</div>
+{%endblock%}
+
+{%block iStatus%}
+<div class="mT10">
+  <label for="status">{%trans "Status"%}</label>
+  <select name="status" class="ui dropdown" id="status">
+    <option value="" readonly>{%trans "Select one item"%} *</option>
+    <option value="enable" {% if dataRow.status == 'enable' %} selected {%endif%}>{%trans "Enable"%}</option>
+    <option value="disable" {% if dataRow.status == 'disable' %} selected {%endif%}>{%trans "Disable"%}</option>
+    <option value="delete" {% if dataRow.status == 'delete' %} selected {%endif%}>{%trans "Removed"%}</option>
+  </select>
+</div>
+{%endblock%}
+
+
+
+{%block iadd%}
+<button class="btn primary block mT20">{%trans "Add"%}</button>
+{%endblock%}
+
+{%block isave%}
+<button class="btn primary block mT20">{%trans "Save"%}</button>
+{%endblock%}
