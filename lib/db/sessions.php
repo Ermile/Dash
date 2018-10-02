@@ -127,6 +127,12 @@ class sessions
 	}
 
 
+	public static function update($_args, $_id)
+	{
+		return \dash\db\config::public_update('sessions',$_args, $_id, \dash\db::get_db_log_name());
+	}
+
+
 	/**
 	 * Terminate the cookie.
 	 *
@@ -156,9 +162,29 @@ class sessions
 		if($_code && is_numeric($_user_id))
 		{
 			$_code = addslashes($_code);
-			$get   = \dash\db::get("SELECT sessions.status FROM sessions WHERE sessions.user_id = $_user_id AND sessions.status = 'active' AND sessions.code = '$_code' LIMIT 1", null, true, \dash\db::get_db_log_name());
-			if($get)
+			$query = "SELECT * FROM sessions WHERE sessions.user_id = $_user_id AND sessions.status = 'active' AND sessions.code = '$_code' LIMIT 1";
+			$get   = \dash\db::get($query, null, true, \dash\db::get_db_log_name());
+
+			if(isset($get['status']))
 			{
+				// check ip and agent and if updated, update it
+				$update_current = [];
+
+				if(isset($get['ip']) && intval($get['ip']) !== intval(\dash\server::ip(true)))
+				{
+					$update_current['ip'] = \dash\server::ip(true);
+				}
+
+				if(isset($get['agent_id']) && intval($get['agent_id']) !== intval(\dash\agent::get(true)))
+				{
+					$update_current['agent_id'] = \dash\agent::get(true);
+				}
+
+				if(!empty($update_current))
+				{
+					self::update($update_current, $get['id']);
+				}
+
 				return true;
 			}
 			else
