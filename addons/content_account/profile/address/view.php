@@ -13,28 +13,19 @@ class view
 		\dash\data::badge_link(\dash\url::base(). '/a');
 		\dash\data::badge_text(T_('Back to dashbaord'));
 
-		$id = \dash\user::id();
-
-		if(!$id)
-		{
-			\dash\header::status(404, T_("Invalid user id"));
-		}
-
-		$user_detail = \dash\db\users::get_by_id($id);
-
-		if(!$user_detail)
-		{
-			\dash\header::status(404, T_("User id not found"));
-		}
-
-		\dash\data::dataRow(\dash\app\user::ready($user_detail, true));
-
 		$args               = [];
 		$args['user_id']    = \dash\user::id();
 		$args['pagenation'] = false;
+		$args['status']     = 'enable';
 		$dataTable          = \dash\app\address::list(null, $args);
 		\dash\data::dataTable($dataTable);
 
+		self::static_var();
+
+	}
+
+	private static function static_var()
+	{
 
 		$countryList = \dash\utility\location\countres::$data;
 		\dash\data::countryList($countryList);

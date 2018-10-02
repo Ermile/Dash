@@ -370,28 +370,20 @@ class address
 	}
 
 
-	public static function edit($_args, $_option = [])
+	public static function edit($_args, $_id)
 	{
 		\dash\app::variable($_args);
 
-		$default_option =
-		[
-
-		];
-
-		if(!is_array($_option))
-		{
-			$_option = [];
-		}
-
-		$_option = array_merge($default_option, $_option);
-
-		$id = \dash\app::request('id');
-		$id = \dash\coding::decode($id);
+		$id = \dash\coding::decode($_id);
 
 		if(!$id)
 		{
 			\dash\notif::error(T_("Can not access to edit address"), 'address');
+			return false;
+		}
+
+		if(!\dash\user::id())
+		{
 			return false;
 		}
 
@@ -428,6 +420,35 @@ class address
 			\dash\log::set('editAddress');
 		}
 
+		return true;
+	}
+
+
+	public static function remove($_id)
+	{
+		$id = \dash\coding::decode($_id);
+
+		if(!$id)
+		{
+			\dash\notif::error(T_("Can not access to remove this address"));
+			return false;
+		}
+
+		if(!\dash\user::id())
+		{
+			return false;
+		}
+
+		$check = ['user_id' => \dash\user::id(), 'id' => $id, 'limit' => 1];
+		$check = \dash\db\address::get($check);
+		if(!isset($check['id']))
+		{
+			\dash\notif::error(T_("Can not access to remove this address"));
+			return false;
+		}
+
+		\dash\db\address::update(['status' => 'delete'], $id);
+		\dash\notif::warn(T_("Address removed"));
 		return true;
 	}
 }

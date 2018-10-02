@@ -10,7 +10,15 @@
   <div class="f {%if not dataTable%} justify-center {%endif%}">
     <div class="c5 s12">
       <div class="cbox">
-        <h3 class="txtC">{%trans "Add new address"%}</h3>
+        {%if dataRow%}
+          {%if dataRow.title%}
+            <h3 class="txtC">{%trans "Edit address"%} <span class="txtB">{{dataRow.title}}</span></h3>
+          {%else%}
+            <h3 class="txtC">{%trans "Edit address"%}</h3>
+          {%endif%}
+        {%else%}
+          <h3 class="txtC">{%trans "Add new address"%}</h3>
+        {%endif%}
         <div class="f">
           <div class="c mRa5">{{block('iFirstname')}}</div>
           <div class="c">{{block('iLastname')}}</div>
@@ -38,8 +46,11 @@
             <div class="c">{{block('iJobtitle')}}</div>
           </div>
         </div>
-
-        {{block('iadd')}}
+        {%if dataRow%}
+          {{block('isave')}}
+        {%else%}
+          {{block('iadd')}}
+        {%endif%}
       </div>
     </div>
     {%if dataTable%}
@@ -51,13 +62,14 @@
           </thead>
           <tbody>
             {%for key, value in dataTable%}
-              <tr>
+              <tr {%if requestGET.id == value.id%} class="negative" {%endif%}>
                 <td class="collapsing txtC">
+                  {%if requestGET.id == value.id%} {%set editClass = ' fc-red'%} {%else%} {%set editClass = null %} {%endif%}
                   {%if value.company%}
-                    <i class="sf-building fs16"></i>
+                    <i class="sf-building fs16{{editClass}}"></i>
 
                   {%else%}
-                    <i class="sf-pin fs16"></i>
+                    <i class="sf-pin fs16{{editClass}}"></i>
                   {%endif%}
 
                 </td>

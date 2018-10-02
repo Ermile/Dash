@@ -7,6 +7,13 @@ class model
 
 	public static function post()
 	{
+		if(\dash\request::post('type') === 'remove' && \dash\request::post('id'))
+		{
+			\dash\app\address::remove(\dash\request::post('id'));
+			\dash\redirect::pwd();
+			return;
+		}
+
 		$post                = [];
 		$post['title']       = \dash\request::post('title');
 		$post['firstname']   = \dash\request::post('firstname');
@@ -23,13 +30,25 @@ class model
 		$post['jobtitle']    = \dash\request::post('jobtitle');
 		$post['status']      = \dash\request::post('status');
 
-		$result = \dash\app\address::add($post);
-
-		if(\dash\engine\process::status())
+		if(\dash\request::get('id'))
 		{
-			\dash\notif::ok(T_("Address successfully added"));
-			\dash\redirect::pwd();
+			$result = \dash\app\address::edit($post, \dash\request::get('id'));
+			if(\dash\engine\process::status())
+			{
+				\dash\notif::ok(T_("Address successfully edited"));
+				\dash\redirect::to(\dash\url::this(). '/address');
+			}
 		}
+		else
+		{
+			$result = \dash\app\address::add($post);
+			if(\dash\engine\process::status())
+			{
+				\dash\notif::ok(T_("Address successfully added"));
+				\dash\redirect::pwd();
+			}
+		}
+
 	}
 }
 ?>
