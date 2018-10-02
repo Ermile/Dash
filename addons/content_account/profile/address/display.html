@@ -42,21 +42,63 @@
         {{block('iadd')}}
       </div>
     </div>
-    <div class="c7 pLa5">
-      <div class="cbox">
-        <h2>{%trans "Saved address"%}</h2>
-        {%for key, value in dataTable%}
-          <div class="msg">
-            <dib class="badge">{{value.title}}</dib>
-            <dib class="badge">{{value.firstname}}</dib>
-            <dib class="badge">{{value.lastname}}</dib>
-            <dib class="badge">{{value.country}}</dib>
-            <dib class="badge">{{value.address}}</dib>
-            <a class="badge floatL  mLa5 danger" href="{{url.pwd}}" data-ajaxify data-method="post" data-data='{"id" : "{{value.id}}", "type": "remove" }' tabindex='-1'>{%trans "Remove"%}</a>
-            <a class="badge floatL primary" href="{{url.pwd}}" data-ajaxify data-method="post" data-data='{"id" : "{{value.id}}", "type": "edit" }' tabindex='-1'>{%trans "Edit"%}</a>
-          </div>
-        {%endfor%}
-      </div>
+    <div class="c7 pLa10">
+        <table class="tbl1 v1 cbox fs12">
+          <thead>
+            <th colspan="3" class="collapsing">{%trans "Saved address"%}</th>
+            <th class="collapsing">{%trans "Action"%}</th>
+          </thead>
+          <tbody>
+            {%for key, value in dataTable%}
+              <tr>
+                <td class="collapsing txtC">
+                  {%if value.company%}
+                    <i class="sf-building fs16"></i>
+
+                  {%else%}
+                    <i class="sf-pin fs16"></i>
+                  {%endif%}
+
+                </td>
+
+                <td class="pA5">
+                  {%if value.title%}<div class="txtB">{{value.title}}</div>{%endif%}
+                  <div class="badge light">{{value.firstname}} {{value.lastname}}</div>
+                  {%if value.country%}
+                    <div class="badge primary">{{value.country}}</div>
+                  {%endif%}
+
+                  {%if value.city%}
+                    <div class="badge info2">{{value.city}}</div>
+                  {%endif%}
+                  <div class="">{{value.address}}</div>
+                  {%if value.companyname%}
+                    <div class="badge primary">{{value.companyname}}</div>
+                  {%endif%}
+                </td>
+
+                <td>
+                  {%if value.postcode%}
+                    <div title='{%trans "Post code"%}'><i class="sf-broadcast"></i> {{value.postcode | fitNumber(false)}}</div>
+                  {%endif%}
+                  {%if value.phone%}
+                    <br>
+                    <div title='{%trans "Phone"%}'><i class="sf-phone"></i> {{value.phone | fitNumber(false)}}</div>
+                  {%endif%}
+                  {%if value.fax%}
+                    <br>
+                    <div title='{%trans "Fax"%}'><i class="sf-fax"></i> {{value.fax | fitNumber(false)}}</div>
+                  {%endif%}
+                </td>
+
+                <td class="collapsing">
+                  <a class="badge primary" href="{{url.pwd}}" data-ajaxify data-method="post" data-data='{"id" : "{{value.id}}", "type": "edit" }' tabindex='-1'>{%trans "Edit"%}</a>
+                  <a class="badge mLa5 danger" href="{{url.pwd}}" data-ajaxify data-method="post" data-data='{"id" : "{{value.id}}", "type": "remove" }' tabindex='-1'>{%trans "Remove"%}</a>
+                </td>
+              </tr>
+            {%endfor%}
+          </tbody>
+        </table>
     </div>
   </div>
 </form>
