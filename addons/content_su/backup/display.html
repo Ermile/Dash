@@ -28,14 +28,14 @@
         <li>Trafic send: <span>{{(((mysqlInfo.Bytes_sent) / 1024 ) / 1024) | number_format }}</span> <small>MB</small></li>
       </div>
        <p><a href="{{url.here}}/backup?show=log">{%trans "Show Auto backup log file"%}</a></p>
-      <form method="post">
+      <form method="post" data-timeout=0>
         <input type="hidden" name="backup" value="now">
           <h6>{%trans "You can create backup now"%}</h6>
           <button class="btn success block">{%trans "Backup now"%}</button>
       </form>
       {%if databaseLog%}
         <br>
-        {%trans "You have another database for logs"%} <a href="{{url.pwd}}" data-ajaxify data-data='{"backup" : "now_log"}' data-method='post'><small>{%trans "Click for create backup from log database"%}</small></a>
+        {%trans "You have another database for logs"%} <a href="{{url.pwd}}" data-ajaxify data-data='{"backup" : "now_log"}' data-timeout=0 data-method='post'><small>{%trans "Click for create backup from log database"%}</small></a>
       {%endif%}
     </div>
   </div>
@@ -97,7 +97,7 @@
     <div class="c">
       {{value.name}} |
       <div class="badge secondary">{{value.ago | fitNumber}}</div>
-      <div class="badge primary">{%trans "Sise"%} {{value.size | fitNumber}} MB</div>
+      <div class="badge primary">{%trans "Sise"%} {{value.size | fitNumber(false)}} MB</div>
       <div class="badge danger"><a href="{{url.pwd}}" data-ajaxify data-data='{"type" : "remove", "file" : "{{value.name}}"}' data-method='post'>{%trans "Remove"%}</a></div>
       <div class="badge success"><a href="{{url.here}}/backup?download={{value.name}}" >{%trans "Download"%}</a></div>
     </div>
