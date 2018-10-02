@@ -99,11 +99,11 @@ class address
 			return false;
 		}
 
-		if($country)
+		if($country && !\dash\utility\location\countres::check($country))
 		{
-			$country = substr($country, 0, 2);
+			\dash\notif::error(T_("Invalid country"), 'country');
+			return false;
 		}
-
 
 		$province = \dash\app::request('province');
 		if($province && mb_strlen($province) > 100)
@@ -112,9 +112,10 @@ class address
 			return false;
 		}
 
-		if($province)
+		if($province && !\dash\utility\location\provinces::check($province))
 		{
-			$province = substr($province, 0, 3);
+			\dash\notif::error(T_("Invalid province"), 'province');
+			return false;
 		}
 
 		$city = \dash\app::request('city');

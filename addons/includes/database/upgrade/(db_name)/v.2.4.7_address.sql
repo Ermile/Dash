@@ -9,7 +9,7 @@ CREATE TABLE `address` (
 `companyname` varchar(100) CHARACTER SET utf8mb4 DEFAULT NULL,
 `jobtitle` varchar(100) CHARACTER SET utf8mb4 DEFAULT NULL,
 `country` char(2) CHARACTER SET utf8mb4 DEFAULT NULL,
-`province` char(3) CHARACTER SET utf8mb4 DEFAULT NULL,
+`province` varchar(6) CHARACTER SET utf8mb4 DEFAULT NULL,
 `city` varchar(100) CHARACTER SET utf8mb4 DEFAULT NULL,
 `address` varchar(500) CHARACTER SET utf8mb4 DEFAULT NULL,
 `address2` varchar(500) CHARACTER SET utf8mb4 DEFAULT NULL,
