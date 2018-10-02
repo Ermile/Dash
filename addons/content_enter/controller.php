@@ -71,7 +71,7 @@ class controller
 				}
 				else
 				{
-					\dash\header::status(404, $check_unlock);
+					\dash\header::status(403, $check_unlock);
 				}
 			}
 		}
