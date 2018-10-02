@@ -10,21 +10,35 @@
   <div class="f ">
     <div class="c5 s12">
       <div class="cbox">
-        <h3 class="txtC">{%trans "Address"%}</h3>
-        {{block('iTitle')}}
-        {{block('iFirstname')}}
-        {{block('iLastname')}}
+        <h3 class="txtC">{%trans "Add new address"%}</h3>
+        <div class="f">
+          <div class="c mRa5">{{block('iFirstname')}}</div>
+          <div class="c">{{block('iLastname')}}</div>
+        </div>
+
         {{block('iCountry')}}
-        {{block('iCity')}}
-        {{block('iPostcode')}}
-        {{block('iPhone')}}
-        {{block('iFax')}}
+
+        <div class="f">
+          <div class="c mRa5">{{block('iCity')}}</div>
+          <div class="c">{{block('iPostcode')}}</div>
+        </div>
+
+        <div class="f">
+          <div class="c mRa5">{{block('iPhone')}}</div>
+          <div class="c">{{block('iFax')}}</div>
+        </div>
+
         {{block('iAddress')}}
-        {{block('iAddress2')}}
+        {{block('iTitle')}}
+
         {{block('iCompany')}}
-        {{block('iCompanyname')}}
-        {{block('iJobtitle')}}
-        {{block('iStatus')}}
+        <div data-response='company' {%if not dataRow.company%} data-response-hide {%endif%}>
+          <div class="f">
+            <div class="c mRa5">{{block('iCompanyname')}}</div>
+            <div class="c">{{block('iJobtitle')}}</div>
+          </div>
+        </div>
+
         {{block('iadd')}}
       </div>
     </div>
@@ -141,14 +155,14 @@
 
 {%block iAddress%}
 <label for="address">{%trans "Address"%}</label>
-<textarea class="txt mB20 pB25" name="address" placeholder='{%trans "Address"%}' maxlength='300' rows="3">{{dataRow.address}}</textarea>
+<textarea class="txt mB20 pB25" name="address" placeholder='{%trans "Address"%}' maxlength='300' rows="2">{{dataRow.address}}</textarea>
 {%endblock%}
 
 
 
 {%block iAddress2%}
 <label for="address2">{%trans "Address line 2"%}</label>
-<textarea class="txt mB20 pB25" name="address2" placeholder='{%trans "Address"%}' maxlength='300' rows="3">{{dataRow.address2}}</textarea>
+<textarea class="txt mB20 pB25" name="address2" placeholder='{%trans "Address"%}' maxlength='300' rows="2">{{dataRow.address2}}</textarea>
 {%endblock%}
 
 
