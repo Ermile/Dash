@@ -11,7 +11,7 @@ class model
 		$post['title']       = \dash\request::post('title');
 		$post['firstname']   = \dash\request::post('firstname');
 		$post['lastname']    = \dash\request::post('lastname');
-		$post['nationality'] = \dash\request::post('nationality');
+		$post['country']     = \dash\request::post('country');
 		$post['city']        = \dash\request::post('city');
 		$post['postcode']    = \dash\request::post('postcode');
 		$post['phone']       = \dash\request::post('phone');

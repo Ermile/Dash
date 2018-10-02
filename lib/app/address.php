@@ -99,11 +99,22 @@ class address
 			return false;
 		}
 
+		if($country)
+		{
+			$country = substr($country, 0, 2);
+		}
+
+
 		$province = \dash\app::request('province');
 		if($province && mb_strlen($province) > 100)
 		{
 			\dash\notif::error(T_("Please set province less than 100 character"), 'province');
 			return false;
+		}
+
+		if($province)
+		{
+			$province = substr($province, 0, 3);
 		}
 
 		$city = \dash\app::request('city');
@@ -117,6 +128,12 @@ class address
 		if($address && mb_strlen($address) > 300)
 		{
 			\dash\notif::error(T_("Please set address less than 300 character"), 'address');
+			return false;
+		}
+
+		if(!$address)
+		{
+			\dash\notif::error(T_("Please fill the address"), 'address');
 			return false;
 		}
 

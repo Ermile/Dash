@@ -46,8 +46,8 @@
     <div class="c7 pLa10">
         <table class="tbl1 v1 cbox fs12">
           <thead>
-            <th colspan="3" class="collapsing">{%trans "Saved address"%}</th>
-            <th class="collapsing">{%trans "Action"%}</th>
+            <th colspan="4" class="collapsing">{%trans "Saved address"%}</th>
+
           </thead>
           <tbody>
             {%for key, value in dataTable%}
@@ -64,7 +64,9 @@
 
                 <td class="pA5">
                   {%if value.title%}<div class="txtB">{{value.title}}</div>{%endif%}
+                  {%if value.firstname or value.lastname%}
                   <div class="badge light">{{value.firstname}} {{value.lastname}}</div>
+                  {%endif%}
                   {%if value.country%}
                     <div class="badge primary">{{value.country}}</div>
                   {%endif%}
@@ -92,9 +94,11 @@
                   {%endif%}
                 </td>
 
-                <td class="collapsing">
-                  <a class="badge primary" href="{{url.pwd}}" data-ajaxify data-method="post" data-data='{"id" : "{{value.id}}", "type": "edit" }' tabindex='-1'>{%trans "Edit"%}</a>
-                  <a class="badge mLa5 danger" href="{{url.pwd}}" data-ajaxify data-method="post" data-data='{"id" : "{{value.id}}", "type": "remove" }' tabindex='-1'>{%trans "Remove"%}</a>
+                <td class="collapsing txtL">
+                  <a class="" href="{{url.this}}/address?id={{value.id}}" title='{%trans "Edit"%}' ><i class="sf-pencil-square-o fs16"></i></a>
+                  <br>
+                  <a class="mT20" title='{%trans "Remove"%}' href="{{url.pwd}}" data-ajaxify data-method="post" data-data='{"id" : "{{value.id}}", "type": "remove" }' tabindex='-1'><i class="sf-trash fc-red"></i></a>
+
                 </td>
               </tr>
             {%endfor%}
@@ -129,11 +133,11 @@
 
 {%block iCountry%}
 <div class="mB10">
-  <label for='nationality'>{%trans "Nationality"%}</label>
+  <label for='country'>{%trans "Country"%}</label>
   <div class="ui fluid search selection dropdown">
-    <input type="hidden" name="nationality" value="{%if dataRow.nationality%}{{dataRow.nationality}}{%else%}iran{%endif%}">
+    <input type="hidden" name="country" value="{%if dataRow.country%}{{dataRow.country}}{%else%}iran{%endif%}">
     <i class="dropdown icon"></i>
-    <div class="default text">{%trans "Choose your nationality"%}</div>
+    <div class="default text">{%trans "Choose your country"%}</div>
     <div class="menu">
 {%for key, value in countryList%}
       <div class="item" data-value="{{key}}">
@@ -198,8 +202,8 @@
 
 
 {%block iAddress%}
-<label for="address">{%trans "Address"%}</label>
-<textarea class="txt mB20 pB25" name="address" placeholder='{%trans "Address"%}' maxlength='300' rows="2">{{dataRow.address}}</textarea>
+<label for="address">{%trans "Address"%} <small class="fc-red">{%trans "Require"%}</small></label>
+<textarea class="txt mB20 pB25" name="address" placeholder='{%trans "Address"%} *' required maxlength='300' rows="2">{{dataRow.address}}</textarea>
 {%endblock%}
 
 
