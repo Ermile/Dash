@@ -28,7 +28,6 @@ class model
 		$post['company']     = \dash\request::post('company');
 		$post['companyname'] = \dash\request::post('companyname');
 		$post['jobtitle']    = \dash\request::post('jobtitle');
-		$post['status']      = \dash\request::post('status');
 
 		if(\dash\request::get('id'))
 		{
