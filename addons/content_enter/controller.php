@@ -84,7 +84,6 @@ class controller
 	{
 		$if_login_route =
 		[
-			'session',
 			'delete',
 		];
 
