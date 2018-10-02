@@ -7,7 +7,7 @@
 {{block('pageSteps')}}
 
 <form method="post" enctype="multipart/form-data" autocomplete="off">
-  <div class="f ">
+  <div class="f {%if not dataTable%} justify-center {%endif%}">
     <div class="c5 s12">
       <div class="cbox">
         <h3 class="txtC">{%trans "Add new address"%}</h3>
@@ -42,6 +42,7 @@
         {{block('iadd')}}
       </div>
     </div>
+    {%if dataTable%}
     <div class="c7 pLa10">
         <table class="tbl1 v1 cbox fs12">
           <thead>
@@ -100,6 +101,7 @@
           </tbody>
         </table>
     </div>
+    {%endif%}
   </div>
 </form>
 {%endblock%}
@@ -212,8 +214,8 @@
 {%block iCompany%}
 <div class="switch1 mB20 mT20">
  <input type="checkbox" name="company" id="company" {%if dataRow.company  %}checked{%endif%}>
- <label for="company"></label>
- <label for="company">{%trans "Is Company?"%}</label>
+ <label for="company" data-on='{%trans "Yes"%}' data-off='{%trans "No"%}'></label>
+ <label for="company" >{%trans "Is this a company's address?"%}</label>
 </div>
 {%endblock%}
 
@@ -231,7 +233,7 @@
 {%block iJobtitle%}
 <label for="jobtitle">{%trans "Job title"%}</label>
 <div class="input">
-  <input type="text" name="jobtitle" id="jobtitle" placeholder='{%trans "Company name"%}' value="{{dataRow.jobtitle}}" maxlength='40' minlength="1" pattern=".{1,40}" >
+  <input type="text" name="jobtitle" id="jobtitle" placeholder='{%trans "Job title"%}' value="{{dataRow.jobtitle}}" maxlength='40' minlength="1" pattern=".{1,40}" >
 </div>
 {%endblock%}
 
