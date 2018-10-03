@@ -1,5 +1,5 @@
 <?php
-namespace content_account\profile\address;
+namespace content_account\address;
 
 
 class model
@@ -22,6 +22,7 @@ class model
 		$post['city']        = \dash\request::post('city');
 		$post['postcode']    = \dash\request::post('postcode');
 		$post['phone']       = \dash\request::post('phone');
+		$post['province']    = null;
 		$post['fax']         = \dash\request::post('fax');
 		$post['address']     = \dash\request::post('address');
 		$post['address2']    = \dash\request::post('address2');
@@ -35,7 +36,7 @@ class model
 			if(\dash\engine\process::status())
 			{
 				\dash\notif::ok(T_("Address successfully edited"));
-				\dash\redirect::to(\dash\url::this(). '/address');
+				\dash\redirect::to(\dash\url::this());
 			}
 		}
 		else

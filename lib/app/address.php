@@ -125,6 +125,15 @@ class address
 			return false;
 		}
 
+		if(!$province && $city)
+		{
+			$province = \dash\utility\location\cites::get($city, 'province', 'province');
+			if(!\dash\utility\location\provinces::check($province))
+			{
+				$province = null;
+			}
+		}
+
 		$address = \dash\app::request('address');
 		if($address && mb_strlen($address) > 300)
 		{
@@ -223,6 +232,22 @@ class address
 					{
 						$result[$key] = null;
 					}
+					break;
+
+				case 'country':
+					$result[$key] = $value;
+					$result['country_name'] = \dash\utility\location\countres::get_localname($value, true);
+					break;
+
+
+				case 'province':
+					$result[$key] = $value;
+					$result['province_name'] = \dash\utility\location\provinces::get_localname($value);
+					break;
+
+				case 'city':
+					$result[$key] = $value;
+					$result['city_name'] = \dash\utility\location\cites::get_localname($value);
 					break;
 
 				case 'map':
@@ -395,7 +420,6 @@ class address
 		{
 			return false;
 		}
-
 
 		if(!\dash\app::isset_request('title')) unset($args['title']);
 		if(!\dash\app::isset_request('firstname')) unset($args['firstname']);

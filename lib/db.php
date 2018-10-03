@@ -146,6 +146,12 @@ class db
 			// save mysql error
 			$temp_error = "#". date("Y-m-d H:i:s") . "\n$_qry\n/* ERROR\tMYSQL ERROR\n". mysqli_error(self::$link)." */";
 			self::log($temp_error, $qry_exec_time, 'error.sql');
+
+			if(\dash\url::isLocal())
+			{
+				\dash\notif::warn(nl2br($temp_error));
+			}
+
 			return false;
 		}
 

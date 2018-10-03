@@ -175,10 +175,10 @@ class sessions
 					$update_current['ip'] = \dash\server::ip(true);
 				}
 
-				if(isset($get['agent_id']) && intval($get['agent_id']) !== intval(\dash\agent::get(true)))
-				{
-					$update_current['agent_id'] = \dash\agent::get(true);
-				}
+				// if(isset($get['agent_id']) && intval($get['agent_id']) !== intval(\dash\agent::get(true)))
+				// {
+				// 	$update_current['agent_id'] = \dash\agent::get(true);
+				// }
 
 				if(!empty($update_current))
 				{

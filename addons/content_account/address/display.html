@@ -1,10 +1,10 @@
 {%extends display.admin%}
-{%use 'content_account/profile/pagestep.html'%}
+
 
 
 
 {%block pageContent%}
-{{block('pageSteps')}}
+
 
 <form method="post" enctype="multipart/form-data" autocomplete="off">
   <div class="f {%if not dataTable%} justify-center {%endif%}">
@@ -80,11 +80,12 @@
                   <div class="badge light">{{value.firstname}} {{value.lastname}}</div>
                   {%endif%}
                   {%if value.country%}
-                    <div class="badge primary">{{value.country}}</div>
+                    <div class="badge primary">{{value.country_name}}</div>
+                    <div class="badge primary">{{value.province_name}}</div>
                   {%endif%}
 
                   {%if value.city%}
-                    <div class="badge info2">{{value.city}}</div>
+                    <div class="badge info2">{{value.city_name}}</div>
                   {%endif%}
                   <div class="">{{value.address}}</div>
                   {%if value.companyname%}
@@ -107,7 +108,7 @@
                 </td>
 
                 <td class="collapsing txtL">
-                  <a class="" href="{{url.this}}/address?id={{value.id}}" title='{%trans "Edit"%}' ><i class="sf-pencil-square-o fs16"></i></a>
+                  <a class="" href="{{url.this}}?id={{value.id}}" title='{%trans "Edit"%}' ><i class="sf-pencil-square-o fs16"></i></a>
                   <br>
                   <a class="mT20" title='{%trans "Remove"%}' href="{{url.pwd}}" data-ajaxify data-method="post" data-data='{"id" : "{{value.id}}", "type": "remove" }' tabindex='-1'><i class="sf-trash fc-red"></i></a>
 

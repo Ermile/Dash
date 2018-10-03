@@ -1,5 +1,5 @@
 <?php
-namespace content_account\profile\address;
+namespace content_account\address;
 
 
 class view

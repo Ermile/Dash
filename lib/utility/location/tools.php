@@ -220,6 +220,28 @@ trait tools
 		return false;
 	}
 
+
+	public static function get_localname($_key, $_trans = false)
+	{
+		$name = null;
+		if(!$_trans && isset(self::$data[$_key]['localname']))
+		{
+			$name = self::$data[$_key]['localname'];
+		}
+		elseif(isset(self::$data[$_key]['name']))
+		{
+			$name = self::$data[$_key]['name'];
+		}
+
+		if($name && $_trans)
+		{
+			return T_($name);
+		}
+
+		return $name;
+	}
+
+
 	// search in field and return the key
 	public static function get_key($_value, $_field = 'localname')
 	{
