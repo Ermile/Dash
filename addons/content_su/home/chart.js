@@ -37,21 +37,21 @@ function addNewServerData(_result)
     chart.series[2].addPoint([myTime, _result.memory], true);
 
 
-    if(chart.series[0].data.length > 90)
+    if(chart.series[0].data.length > 60)
     {
       if (chart.series[0].points[0])
       {
           chart.series[0].points[0].remove();
       }
     }
-    if(chart.series[1].data.length > 90)
+    if(chart.series[1].data.length > 60)
     {
       if (chart.series[1].points[0])
       {
           chart.series[1].points[0].remove();
       }
     }
-    if(chart.series[2].data.length > 90)
+    if(chart.series[2].data.length > 60)
     {
       if (chart.series[2].points[0])
       {
@@ -145,7 +145,9 @@ function highChart()
     [
       {
         name: '{%trans "Disk usage"%}',
-        type: 'column',
+        type: 'area',
+        color: '#777',
+        animation: Highcharts.svg,
         data: [],
         tooltip: {
           valueSuffix: ' {%trans "percentage"%}'
@@ -153,16 +155,20 @@ function highChart()
       },
       {
         name: '{%trans "CPU Usage"%}',
-        type: 'area',
+        type: 'column',
+        animation: Highcharts.svg,
+        color: '#e02020',
+        dashStyle: 'ShortDash',
         data: [],
         tooltip: {
           valueSuffix: ' {%trans "percentage"%}'
         }
-
       },
       {
         name: '{%trans "Memory"%}',
         type: 'spline',
+        color: '#7cb5ec',
+        animation: Highcharts.svg,
         data: [],
         tooltip: {
           valueSuffix: ' {%trans "percentage"%}'
