@@ -146,7 +146,7 @@ function highChart()
       {
         name: '{%trans "Disk usage"%}',
         type: 'area',
-        color: '#777',
+        color: '#eee',
         animation: Highcharts.svg,
         data: [],
         tooltip: {
@@ -157,7 +157,7 @@ function highChart()
         name: '{%trans "CPU Usage"%}',
         type: 'column',
         animation: Highcharts.svg,
-        color: '#e02020',
+        color: '#e66566',
         dashStyle: 'ShortDash',
         data: [],
         tooltip: {
@@ -167,7 +167,7 @@ function highChart()
       {
         name: '{%trans "Memory"%}',
         type: 'spline',
-        color: '#7cb5ec',
+        color: '#bda013',
         animation: Highcharts.svg,
         data: [],
         tooltip: {
