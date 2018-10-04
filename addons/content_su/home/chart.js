@@ -29,7 +29,7 @@ function getServerStat()
 
 function addNewServerData(_result)
 {
-  if(_result)
+  if(_result && _result.disk && _result.cpu && _result.memory)
   {
     var myTime = (new Date()).getTime();
     chart.series[0].addPoint([myTime, _result.disk], true);
@@ -146,7 +146,6 @@ function highChart()
       {
         name: '{%trans "Disk usage"%}',
         type: 'area',
-        color: '#eee',
         animation: Highcharts.svg,
         data: [],
         tooltip: {
@@ -155,7 +154,7 @@ function highChart()
       },
       {
         name: '{%trans "CPU Usage"%}',
-        type: 'column',
+        type: 'areaspline',
         animation: Highcharts.svg,
         color: '#e66566',
         dashStyle: 'ShortDash',
