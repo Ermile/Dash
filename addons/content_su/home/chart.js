@@ -5,7 +5,7 @@ var chart;
 
 function getServerStat()
 {
-  if($('body').attr('data-in') === 'su' && $('body').attr('data-page') === 'home' && window.myLine)
+  if($('body').attr('data-in') === 'su' && $('body').attr('data-page') === 'home' && chart)
   {
     $.ajax({
       url: '{{url.here}}?server=status',
