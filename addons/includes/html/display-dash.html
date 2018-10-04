@@ -9,7 +9,7 @@
 {%block sideBox%} <aside id='sidebar' data-xhr='sidebar'>{{block ('aside')}} </aside>{%endblock%}
 
  <main id='main' data-scroll>
-{%block headerBox%}  <header id='header' class='f'>{{block ('header')}}  </header>{%endblock%}
+{%block headerBox%}  <header id='header' class='f' data-cloner='150'>{{block ('header')}}  </header>{%endblock%}
 {%block contentBox%}
   <div id='content' class='scr' data-xhr='content'>
 {%block content%}
