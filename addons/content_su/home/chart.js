@@ -1,3 +1,8 @@
+
+
+var chart;
+
+
 function getServerStat()
 {
   if($('body').attr('data-in') === 'su' && $('body').attr('data-page') === 'home' && window.myLine)
@@ -24,124 +29,149 @@ function getServerStat()
 
 function addNewServerData(_result)
 {
-  if (window.myLine && window.myLine.config.data.datasets.length > 0)
+  if(_result)
   {
-    // logy(_result);
-    if(_result)
+    var myTime = (new Date()).getTime();
+    chart.series[0].addPoint([myTime, _result.disk], true);
+    chart.series[1].addPoint([myTime, _result.cpu], true);
+    chart.series[2].addPoint([myTime, _result.memory], true);
+
+
+    if(chart.series[0].data.length > 90)
     {
-      window.myLine.config.data.labels.push(_result.time);
-
-      window.myLine.config.data.datasets[0].data.push(_result.cpu);
-      window.myLine.config.data.datasets[1].data.push(_result.memory);
-      window.myLine.config.data.datasets[2].data.push(_result.disk);
-      removeOldServerData();
-
-      window.myLine.update();
+      if (chart.series[0].points[0])
+      {
+          chart.series[0].points[0].remove();
+      }
+    }
+    if(chart.series[1].data.length > 90)
+    {
+      if (chart.series[1].points[0])
+      {
+          chart.series[1].points[0].remove();
+      }
+    }
+    if(chart.series[2].data.length > 90)
+    {
+      if (chart.series[2].points[0])
+      {
+          chart.series[2].points[0].remove();
+      }
     }
   }
-}
-
-
-function removeOldServerData()
-{
-    if(window.myLine.config.data.labels.length > 60)
-    {
-      window.myLine.config.data.labels.shift();
-    }
-
-    window.myLine.config.data.datasets.forEach(function(dataset)
-    {
-      if(dataset.data.length > 60)
-      {
-        dataset.data.shift();
-      }
-    });
 }
 
 
 
 function chartDrawer()
 {
-    // var timeFormat = 'MM/DD/YYYY HH:mm';
-    var color      = Chart.helpers.color;
-    var config     =
-    {
-      type: 'line',
-      data:
-      {
-        labels:
-        [
-        ],
-        datasets: [
-        {
-          label: '{%trans "CPU Usage"%}',
-          backgroundColor: color(window.chartColors.red).alpha(0.7).rgbString(),
-          borderColor: window.chartColors.red,
-          fill: false,
-          data:
-          [
-          ],
-        },
-        {
-          label: '{%trans "Memory"%}',
-          backgroundColor: color(window.chartColors.blue).alpha(0.5).rgbString(),
-          borderColor: window.chartColors.blue,
-          fill: false,
-          data:
-          [
-          ],
-        },
-        {
-          label: '{%trans "Disk usage"%}',
-          backgroundColor: color(window.chartColors.green).alpha(0.5).rgbString(),
-          borderColor: window.chartColors.green,
-          fill: false,
-          data:
-          [
-          ],
-        }]
+  if($("#usageChart").length == 1)
+  {
+    highChart();
+  }
+}
+
+
+
+function highChart()
+{
+
+  chart = Highcharts.chart('usageChart',
+  {
+    chart: {
+      zoomType: 'x',
+      style: {
+        fontFamily: 'IRANSans, Tahoma, sans-serif'
+      }
+    },
+    time: {
+      useUTC: false
+    },
+    title: {
+      text: '{%trans "Server live resource usage"%}'
+    },
+    xAxis: [{
+      type: 'datetime',
+      // tickPixelInterval: 150,
+      crosshair: true
+    }],
+    yAxis: [{ // Primary yAxis
+      labels: {
+        format: '{value}',
+        style: {
+          color: Highcharts.getOptions().colors[0]
+        }
       },
-      options:
-      {
-        title:
-        {
-          text: 'Server usage'
-        },
-        scales:
-        {
-          // xAxes: [{
-          //   type: 'time',
-          //   display: true,
-          // }],
-          yAxes: [
-          {
-            ticks:
-            {
-              min: 0,
-              // max: 100,
-              // the data minimum used for determining the ticks is Math.min(dataMin, suggestedMin)
-              // suggestedMin: 0,
-              // the data maximum used for determining the ticks is Math.max(dataMax, suggestedMax)
-              suggestedMax: 100
-            },
-            scaleLabel:
-            {
-              display: true,
-              labelString: '{%trans "percentage"%}'
-            }
-          }]
-        },
-        tooltips:
-        {
-          position: 'nearest',
-          mode: 'index',
-          intersect: false,
+      title: {
+        text: '{%trans "percentage"%}',
+        useHTML: Highcharts.hasBidiBug,
+        style: {
+          color: Highcharts.getOptions().colors[0]
         }
       }
-    };
+    }],
+    tooltip: {
+      useHTML: true,
+      borderWidth: 0,
+      shared: true
+    },
+    exporting:
+    {
+      buttons:
+      {
+        contextButton:
+        {
+          menuItems:
+          [
+           'printChart',
+           'separator',
+           'downloadPNG',
+           'downloadJPEG',
+           'downloadSVG'
+          ]
+        }
+      }
+    },
+    legend: {
+      layout: 'vertical',
+      align: 'left',
+      x: 120,
+      verticalAlign: 'top',
+      y: 100,
+      floating: true,
+      backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || 'rgba(255,255,255,0.25)'
+    },
+    series:
+    [
+      {
+        name: '{%trans "Disk usage"%}',
+        type: 'column',
+        data: [],
+        tooltip: {
+          valueSuffix: ' {%trans "percentage"%}'
+        }
+      },
+      {
+        name: '{%trans "CPU Usage"%}',
+        type: 'area',
+        data: [],
+        tooltip: {
+          valueSuffix: ' {%trans "percentage"%}'
+        }
 
-    var ctx = document.getElementById('canvas').getContext('2d');
-    window.myLine = new Chart(ctx, config);
-    getServerStat(config);
+      },
+      {
+        name: '{%trans "Memory"%}',
+        type: 'spline',
+        data: [],
+        tooltip: {
+          valueSuffix: ' {%trans "percentage"%}'
+        }
+      }
+    ]
+  });
+
+  getServerStat();
 }
+
 

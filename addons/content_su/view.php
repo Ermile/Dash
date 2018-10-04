@@ -8,6 +8,8 @@ class view
 		\dash\data::include_adminPanel(true);
 		\dash\data::include_css(false);
 		\dash\data::include_js(false);
+		\dash\data::include_highcharts(true);
+
 		\dash\data::global_js([]);
 
 		\dash\data::display_su_posts("content_su/posts/layout.html");
