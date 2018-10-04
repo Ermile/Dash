@@ -94,11 +94,6 @@ trait add
 		\dash\log::set('addNewUser', ['data' => $user_id, 'datalink' => $return['user_id']]);
 		// $_option['user_id'] = $user_id;
 
-		// if($_option['contact'])
-		// {
-		// 	\dash\app\contact::merge($_args, $_option);
-		// }
-
 		if(\dash\engine\process::status())
 		{
 			if($_option['debug']) \dash\notif::ok(T_("User successfuly added"));

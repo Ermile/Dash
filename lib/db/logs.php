@@ -5,20 +5,6 @@ namespace dash\db;
 class logs
 {
 
-
-	/**
-	 * Gets the database name.
-	 * if defined db_log return the db_log name to connect to this database
-	 * else return true to connect to default database
-	 *
-	 * @return     boolean  The database name.
-	 */
-	public static function get_db_log_name()
-	{
-		return \dash\db\logitems::get_db_log_name();
-	}
-
-
 	public static function get_count($_where = null)
 	{
 		return \dash\db\config::public_get_count('logs', $_where, \dash\db::get_db_log_name());
@@ -63,15 +49,15 @@ class logs
 		{
 			$query  ="INSERT INTO logs SET $set ";
 
-			$resutl = \dash\db::query($query, self::get_db_log_name());
+			$resutl = \dash\db::query($query, \dash\db::get_db_log_name());
 			// get the link
-			if(self::get_db_log_name() === true)
+			if(\dash\db::get_db_log_name() === true)
 			{
 				$resutl = \dash\db::insert_id();
 			}
-			elseif(isset(\dash\db::$link_open[self::get_db_log_name()]))
+			elseif(isset(\dash\db::$link_open[\dash\db::get_db_log_name()]))
 			{
-				$resutl = \dash\db::insert_id(\dash\db::$link_open[self::get_db_log_name()]);
+				$resutl = \dash\db::insert_id(\dash\db::$link_open[\dash\db::get_db_log_name()]);
 			}
 			return $resutl;
 		}
@@ -92,7 +78,7 @@ class logs
 		{
 			// make update query
 			$query = "UPDATE logs SET $set WHERE logs.id = $_id";
-			return \dash\db::query($query, self::get_db_log_name());
+			return \dash\db::query($query, \dash\db::get_db_log_name());
 		}
 	}
 
@@ -107,7 +93,7 @@ class logs
 	{
 		// get id
 		$query = "UPDATE FROM logs SET logs.notification_status = 'expire' WHERE logs.id = $_id ";
-		return \dash\db::query($query, self::get_db_log_name());
+		return \dash\db::query($query, \dash\db::get_db_log_name());
 	}
 
 
@@ -306,7 +292,7 @@ class logs
 		INNER JOIN logitems ON logitems.id = logs.logitem_id
 		$where
 		ORDER BY logs.datecreated DESC LIMIT 0,1";
-		return \dash\db::get($query, null, true, self::get_db_log_name());
+		return \dash\db::get($query, null, true, \dash\db::get_db_log_name());
 	}
 }
 ?>
