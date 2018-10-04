@@ -29,7 +29,7 @@ function getServerStat()
 
 function addNewServerData(_result)
 {
-  if(_result && _result.disk && _result.cpu && _result.memory)
+  if(_result && _result.disk && _result.memory)
   {
     var myTime = (new Date()).getTime();
     chart.series[0].addPoint([myTime, _result.disk], true);
