@@ -1,5 +1,5 @@
 <?php
-namespace content_su\tools\translation;
+namespace content_su\translation;
 
 class controller
 {
