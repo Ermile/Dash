@@ -11,24 +11,20 @@
 
 <div class="f">
  <div class="c4 s12">{{block ("iLastUpdate")}}</div>
- <div class="c4 s12">{{block ("iTools")}}</div>
+ <div class="c8 s12">
+ 	<div class="f">
+		 <div class="c6">{{block ("iMemory")}}</div>
+		 <div class="c6">{{block ("iCpu")}}</div>
+		 <div class="c6">{{block ("iDisk")}}</div>
+		 <div class="c6">{{block ("iDiskUsage")}}</div>
+ 	</div>
+ </div>
 
 </div>
 {%endblock%}
 
 
 
-
-
-
-{%block iTools%}
-<a class="dcard x1" href='{{url.here}}/tools'>
- <div class="statistic">
-  <div class="value"><i class="sf-cogs"></i></div>
-  <div class="label">{%trans "Tools"%}</div>
- </div>
-</a>
-{%endblock%}
 
 
 {%block iLastUpdate%}
@@ -40,7 +36,44 @@
 </a>
 {%endblock%}
 
+{%block iCpu%}
+<a class="dcard x1" href='{{url.here}}/tools'>
+ <div class="statistic">
+  <div class="value">{{su.cpu}}</div>
+  <div class="label"><i class="sf-heart"></i> {%trans "CPU"%}</div>
+ </div>
+</a>
+{%endblock%}
 
+
+{%block iMemory%}
+<a class="dcard x1" href='{{url.here}}/tools'>
+ <div class="statistic">
+  <div class="value">{{su.memory}}</div>
+  <div class="label"><i class="sf-database"></i> {%trans "Ram"%}</div>
+ </div>
+</a>
+{%endblock%}
+
+
+{%block iDisk%}
+<a class="dcard x1" href='{{url.here}}/tools'>
+ <div class="statistic">
+  <div class="value">{{su.disk}}</div>
+  <div class="label"><i class="sf-battery-full"></i> {%trans "Disk"%}</div>
+ </div>
+</a>
+{%endblock%}
+
+
+{%block iDiskUsage%}
+<a class="dcard x1" href='{{url.here}}/tools'>
+ <div class="statistic">
+  <div class="value">{{su.diskusage}}</div>
+  <div class="label"><i class="sf-battery-half"></i> {%trans "Disk Usage"%}</div>
+ </div>
+</a>
+{%endblock%}
 
 
 
