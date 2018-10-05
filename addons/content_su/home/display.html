@@ -10,67 +10,14 @@
 </div>
 
 <div class="f">
-  <div class="c12">
-    <div class="f ">
-      <div class="c8 s12">{{block ("iCp")}}</div>
-      <div class="c4 s12">{{block ("iCms")}}</div>
-    </div>
-  </div>
  <div class="c4 s12">{{block ("iTools")}}</div>
- <div class="c4 s12">{{block ("iCronjob")}}</div>
- <div class="c4 s12">{{block ("iTransaction")}}</div>
- <div class="c4 s12">{{block ("iLogItems")}}</div>
- <div class="c4 s12">{{block ("iLogs")}}</div>
- <div class="c4 s12">{{block ("iUsers")}}</div>
- <div class="c4 s12">{{block ("iNotifications")}}</div>
- <div class="c4 s12">{{block ("iShortURL")}}</div>
- <div class="c4 s12">{{block ("iSendNotify")}}</div>
- <div class="c4 s12">{{block ("iRawDatabase")}}</div>
- {%if url.tld == 'local'%}
-  <div class="c4 s12">{{block ("iSample")}}</div>
- {%endif%}
 </div>
 {%endblock%}
 
 
-{%block iRawDatabase%}
-<a class="dcard x1" href='{{url.here}}/dbtables'>
- <div class="statistic">
-  <div class="value"><i class="sf-database"></i></div>
-  <div class="label">{%trans "Raw table"%}</div>
- </div>
-</a>
-{%endblock%}
 
 
-{%block iCronjob%}
-<a class="dcard x1" href='{{url.here}}/cronjob'>
- <div class="statistic">
-  <div class="value"><i class="sf-terminal"></i></div>
-  <div class="label">{%trans "Cronjob"%}</div>
- </div>
-</a>
-{%endblock%}
 
-
-{%block iCms%}
-<a class="dcard x1" href='{{url.kingdom}}/cp/cms'>
- <div class="statistic">
-  <div class="value"><i class="sf-diamond"></i></div>
-  <div class="label">{%trans "CMS"%}</div>
- </div>
-</a>
-{%endblock%}
-
-
-{%block iCp%}
-<a class="dcard x1" href='{{url.kingdom}}/cp'>
- <div class="statistic">
-  <div class="value"><i class="sf-cog"></i></div>
-  <div class="label">{%trans "Control Panel"%}</div>
- </div>
-</a>
-{%endblock%}
 
 {%block iTools%}
 <a class="dcard x1" href='{{url.here}}/tools'>
@@ -82,87 +29,10 @@
 {%endblock%}
 
 
-{%block iTransaction%}
-<a class="dcard x1" href='{{url.here}}/transactions'>
- <div class="statistic">
-  <div class="value"><i class="sf-card"></i></div>
-  <div class="label">{%trans "Transactions"%}</div>
- </div>
-</a>
-{%endblock%}
 
 
 
-{%block iLogItems%}
-<a class="dcard x1" href='{{url.here}}/logitems'>
- <div class="statistic">
-  <div class="value"><i class="sf-list"></i></div>
-  <div class="label">{%trans "Log items"%}</div>
- </div>
-</a>
-{%endblock%}
 
-{%block iLogs%}
-<a class="dcard x1" href='{{url.here}}/logs'>
- <div class="statistic">
-  <div class="value"><i class="sf-align-justify-1"></i></div>
-  <div class="label">{%trans "Logs"%}</div>
- </div>
-</a>
-{%endblock%}
-
-
-
-{%block iUsers%}
-<a class="dcard x1" href='{{url.here}}/users'>
- <div class="statistic">
-  <div class="value"><i class="sf-users"></i></div>
-  <div class="label">{%trans "Users"%}</div>
- </div>
-</a>
-{%endblock%}
-
-
-{%block iNotifications%}
-<a class="dcard x1" href='{{url.here}}/notifications'>
- <div class="statistic">
-  <div class="value"><i class="sf-bell"></i></div>
-  <div class="label">{%trans "Notifications"%}</div>
- </div>
-</a>
-{%endblock%}
-
-
-
-{%block iShortURL%}
-<a class="dcard x1" href='{{url.here}}/shorturl'>
- <div class="statistic">
-  <div class="value"><i class="sf-link"></i></div>
-  <div class="label">{%trans "Short URL"%}</div>
- </div>
-</a>
-{%endblock%}
-
-
-
-{%block iSendNotify%}
-<a class="dcard x1" href='{{url.here}}/sendnotify'>
- <div class="statistic">
-  <div class="value"><i class="sf-bullhorn"></i></div>
-  <div class="label">{%trans "Send notify"%}</div>
- </div>
-</a>
-{%endblock%}
-
-
-{%block iSample%}
-<a class="dcard x1" href='{{url.here}}/sample'>
- <div class="statistic">
-  <div class="value"><i class="sf-male-rounded-1"></i></div>
-  <div class="label">{%trans "Sample"%}</div>
- </div>
-</a>
-{%endblock%}
 
 
 
