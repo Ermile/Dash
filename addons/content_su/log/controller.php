@@ -1,5 +1,5 @@
 <?php
-namespace content_su\tools\log;
+namespace content_su\log;
 
 class controller
 {
