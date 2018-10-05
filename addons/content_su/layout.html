@@ -6,6 +6,46 @@
     <li><a href="{{url.here}}" data-shortkey="119"><i class='sf-heartbeat'></i> <span>{% trans "Supervisor dashboard" %}</span><kbd class="floatRa fs08">F8</kbd></a></li>
     <li><a href="{{url.kingdom}}/cp"><i class='sf-gauge'></i> <span>{% trans "Control Panel" %}</span><span class="floatRa mRa5 sf-share"></span></a></li>
     <li><a href="{{url.here}}/tools" data-shortkey="113"><i class='sf-gavel'></i> <span>{% trans "Tools" %}</span><kbd class="floatRa fs08">F2</kbd></a></li>
+
+    <li class="hr"></li>
+    <li class="title"><i class='sf-database floatRa fc-mute'></i><span>{% trans "Database" %}</span></li>
+    <li>
+    	<ul>
+    		<li><a href="{{url.here}}/backup">{% trans "Backup" %}</a></li>
+    		<li><a href="{{url.here}}/dbtables">{% trans "Raw table" %}</a></li>
+    	</ul>
+    </li>
+
+    <li class="title"><i class='sf-server floatRa fc-mute'></i><span>{% trans "Server" %}</span></li>
+    <li>
+    	<ul>
+    		<li><a href="{{url.here}}/time">{% trans "Date and time" %}</a></li>
+    		<li><a href="{{url.here}}/info">{% trans "Server information" %}</a></li>
+    		<li><a href="{{url.here}}/cronjob">{% trans "Cronjob" %}</a></li>
+    	</ul>
+    </li>
+
+    <li class="title"><i class='sf-git floatRa fc-mute'></i><span>{% trans "Git" %}</span></li>
+    <li>
+    	<ul>
+    		<li><a href="{{url.here}}/gitstatus">{% trans "Git status" %}</a></li>
+    		<li><a href="{{url.here}}/nano">{% trans "Nano" %}</a></li>
+    		<li><a href="{{url.here}}/update">{% trans "Update" %}</a></li>
+    	</ul>
+    </li>
+
+    <li class="title"><i class='sf-wrench floatRa fc-mute'></i><span>{% trans "Tools" %}</span></li>
+    <li>
+    	<ul>
+    		<li><a href="{{url.here}}/tools/permission">{% trans "Permission" %}</a></li>
+    		<li><a href="{{url.here}}/log">{% trans "Log" %}</a></li>
+    		<li><a href="{{url.here}}/tools/translation">{% trans "Translation tools" %}</a></li>
+
+    	</ul>
+    </li>
+
+
+    <li class="hr"></li>
 	<li><a data-direct href="{{url.kingdom}}/support" data-shortkey="112" data-shortkey-prevent data-shortkey-timeout='1000'><i class='sf-life-ring'></i> <span>{% trans "Support" %}</span><kbd class="floatRa fs08">F1</kbd></a></li>
 {%endblock%}
 
