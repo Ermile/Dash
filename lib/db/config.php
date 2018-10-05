@@ -212,6 +212,7 @@ class config
 		{
 			$_options = [];
 		}
+
 		$_options = array_merge($default_options, $_options);
 
 		$set = [];
@@ -219,11 +220,25 @@ class config
 		{
 			if($value === null)
 			{
-				$set[] = " `$key` = NULL ";
+				if($_options['type'] === 'insert')
+				{
+					// continue;
+				}
+				else
+				{
+					$set[] = " `$key` = NULL ";
+				}
 			}
 			elseif(is_string($value) && (!isset($value) || $value == '' ))
 			{
-				$set[] = " `$key` = NULL";
+				if($_options['type'] === 'insert')
+				{
+					// continue;
+				}
+				else
+				{
+					$set[] = " `$key` = NULL ";
+				}
 			}
 			elseif(is_string($value))
 			{
@@ -258,7 +273,7 @@ class config
 			}
 			elseif($_options['type'] === 'insert')
 			{
-
+				$set = implode(',', $set);
 			}
 			else
 			{
@@ -413,7 +428,7 @@ class config
 	 */
 	public static function public_insert($_table, $_args, $_db_name = true)
 	{
-		$set = \dash\db\config::make_set($_args);
+		$set = \dash\db\config::make_set($_args, ['type' => 'insert']);
 		if($set)
 		{
 			$query = " INSERT INTO $_table SET $set ";
