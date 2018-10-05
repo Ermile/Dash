@@ -1,5 +1,5 @@
 <?php
-namespace content_su\tools\sitemap;
+namespace content_cp\sitemap;
 
 class view
 {

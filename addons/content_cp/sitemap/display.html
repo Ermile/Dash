@@ -1,12 +1,12 @@
-{%extends display.suMain%}
+{%extends display.cpMain%}
 
-{%block content%}
+{%block pageContent%}
 
  <div class="cbox">
   <h2>{%trans "Create sitemap automatically by click on this page"%}</h2>
    <a class="btn" target="_blank" href="{{url.base}}/sitemap.xml">{%trans "Base Sitemap"%}</a>
    <a class="btn" target="_blank" href="{{url.base}}/sitemap/sitemap.xml">{%trans "Sitemap Detail"%}</a>
-   <a class="btn floatRa" href="{{site.root}}/su/tools/sitemap?run=yes">{%trans "Create it Again"%}</a>
+   <a class="btn floatRa" href="{{url.this}}?run=yes">{%trans "Create it Again"%}</a>
  </div>
 
 
