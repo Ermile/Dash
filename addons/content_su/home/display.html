@@ -12,8 +12,8 @@
 <div class="f">
  <div class="c8 s12">
  	<div class="f">
+		 <div class="c6">{{block ("iUptime")}}</div>
 		 <div class="c6">{{block ("iMemory")}}</div>
-		 <div class="c6">{{block ("iCpu")}}</div>
 		 <div class="c6">{{block ("iDisk")}}</div>
 		 <div class="c6">{{block ("iDiskUsage")}}</div>
  	</div>
@@ -37,11 +37,11 @@
 {%endblock%}
 
 
-{%block iCpu%}
+{%block iUptime%}
 <div class="dcard x1">
  <div class="statistic">
-  <div class="value">{{su.cpu | fitNumber}}</div>
-  <div class="label"><i class="mRa5 sf-heart"></i> {%trans "CPU"%}</div>
+  <div class="value">{{su.uptime | fitNumber}}</div>
+  <div class="label"><i class="mRa5 sf-heart"></i> {%trans "Uptime"%}</div>
  </div>
 </div>
 {%endblock%}
