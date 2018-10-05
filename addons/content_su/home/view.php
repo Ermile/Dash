@@ -62,17 +62,17 @@ class view
 			\dash\data::su_lastUpdate(\dash\data::dash_projectVersion());
 		}
 
-		// get ram value
-		exec("free -mtl", $ramCapacity);
-		\dash\data::su_ram($ramCapacity);
+		// // get ram value
+		// exec("free -mtl", $ramCapacity);
+		// \dash\data::su_ram($ramCapacity);
 
 		// get uptime
 		$uptime = shell_exec('uptime -p');
 		\dash\data::su_uptime($uptime);
 
 		// get disk total size
-		\dash\data::su_disk(self::roundsize(disk_total_space("/")));
-		\dash\data::su_diskFree(self::roundsize(disk_free_space("/")));
+		\dash\data::su_disk(\dash\utility\upload::readableSize(disk_total_space("/")));
+		\dash\data::su_diskFree(\dash\utility\upload::readableSize(disk_free_space("/")));
 
 
 

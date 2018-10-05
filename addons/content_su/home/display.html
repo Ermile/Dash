@@ -12,8 +12,7 @@
 <div class="f">
  <div class="c8 s12">
  	<div class="f">
-		 <div class="c6">{{block ("iUptime")}}</div>
-		 <div class="c6">{{block ("iMemory")}}</div>
+		 <div class="c12">{{block ("iUptime")}}</div>
 		 <div class="c6">{{block ("iDisk")}}</div>
 		 <div class="c6">{{block ("iDiskUsage")}}</div>
  	</div>
@@ -39,9 +38,9 @@
 
 {%block iUptime%}
 <div class="dcard x1">
- <div class="statistic">
-  <div class="value">{{su.uptime | fitNumber}}</div>
-  <div class="label"><i class="mRa5 sf-heart"></i> {%trans "Uptime"%}</div>
+ <div class="statistic sm green">
+  <div class="value"><i class="mRa5 sf-heart"></i> {%trans "Uptime"%}</div>
+  <div class="label">{{su.uptime}}</div>
  </div>
 </div>
 {%endblock%}
@@ -49,7 +48,7 @@
 
 {%block iMemory%}
 <div class="dcard x1">
- <div class="statistic">
+ <div class="statistic sm">
   <div class="value">{{su.memory | fitNumber}}</div>
   <div class="label"><i class="mRa5 sf-database"></i> {%trans "Ram"%}</div>
  </div>
@@ -59,8 +58,8 @@
 
 {%block iDisk%}
 <div class="dcard x1">
- <div class="statistic">
-  <div class="value">{{su.disk | fitNumber}}</div>
+ <div class="statistic sm">
+  <div class="value mB10">{{su.disk}}</div>
   <div class="label"><i class="mRa5 sf-battery-full"></i> {%trans "Disk space"%}</div>
  </div>
 </div>
@@ -69,8 +68,8 @@
 
 {%block iDiskUsage%}
 <div class="dcard x1">
- <div class="statistic">
-  <div class="value">{{su.diskFree | fitNumber}}</div>
+ <div class="statistic sm">
+  <div class="value mB10">{{su.diskFree}}</div>
   <div class="label"><i class="mRa5 sf-battery-half"></i> {%trans "Disk Free space"%}</div>
  </div>
 </div>
