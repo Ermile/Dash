@@ -4,8 +4,8 @@
 {%block content%}
 
   <p class="msg danger">{%trans "You can use our tools"%}. {%trans "If you dont know about this page, leave it!"%}</p>
-  <h2 class="title">{%trans "Special tools"%}</h2>
 
+  <h2>{%trans "Database"%}</h2>
   <div class="f">
 
    <div class="c4 s12">
@@ -16,32 +16,33 @@
        </div>
       </a>
    </div>
-
-   <div class="c4 s12">
-      <a class="dcard x1" href='{{url.here}}/tools/permission'>
-       <div class="statistic">
-        <div class="value"><i class="sf-unlock-alt"></i></div>
-        <div class="label">{%trans "Permission"%}</div>
-       </div>
-      </a>
-   </div>
-
-
-   <div class="c4 s12">
-      <a class="dcard x1" target="_blank" href='{{url.here}}/tools/sitemap'>
-       <div class="statistic">
-        <div class="value"><i class="sf-sitemap"></i></div>
-        <div class="label">{%trans "Sitemap"%}</div>
-       </div>
-      </a>
-   </div>
+  <div class="c4 s12">
+    <a class="dcard x1" href='{{url.here}}/dbtables'>
+     <div class="statistic">
+      <div class="value"><i class="sf-database"></i></div>
+      <div class="label">{%trans "Raw table"%}</div>
+     </div>
+    </a>
+  </div>
+  </div>
 
 
+  <h2>{%trans "Server"%}</h2>
+  <div class="f">
    <div class="c4 s12">
       <a class="dcard x1" target="_blank" href='{{url.here}}/time'>
        <div class="statistic">
         <div class="value"><i class="sf-clock-o"></i></div>
         <div class="label">{%trans "Date and time"%}</div>
+       </div>
+      </a>
+   </div>
+
+   <div class="c4 s12">
+      <a class="dcard x1" target="_blank" href='{{url.here}}/info'>
+       <div class="statistic">
+        <div class="value"><i class="sf-server"></i></div>
+        <div class="label">{%trans "Server information"%}</div>
        </div>
       </a>
    </div>
@@ -54,18 +55,11 @@
        </div>
       </a>
    </div>
+  </div>
 
 
-
-   <div class="c4 s12">
-      <a class="dcard x1" target="_blank" href='{{url.here}}/nano'>
-       <div class="statistic">
-        <div class="value"><i class="sf-file-text-o"></i></div>
-        <div class="label">{%trans "Nano"%}</div>
-       </div>
-      </a>
-   </div>
-
+  <h2>{%trans "Git"%}</h2>
+  <div class="f">
    <div class="c4 s12">
       <a class="dcard x1" target="_blank" href='{{url.here}}/gitstatus'>
        <div class="statistic">
@@ -74,17 +68,35 @@
        </div>
       </a>
    </div>
-
-
    <div class="c4 s12">
-      <a class="dcard x1" target="_blank" href='{{url.here}}/info'>
+      <a class="dcard x1" target="_blank" href='{{url.here}}/nano'>
        <div class="statistic">
-        <div class="value"><i class="sf-server"></i></div>
-        <div class="label">{%trans "Server information"%}</div>
+        <div class="value"><i class="sf-file-text-o"></i></div>
+        <div class="label">{%trans "Nano"%}</div>
        </div>
       </a>
    </div>
+  <div class="c4 s12">
+      <a class="dcard x1  danger" target="_blank" href='{{url.here}}/update'>
+       <div class="statistic">
+        <div class="value"><i class="sf-git-square"></i></div>
+        <div class="label">{%trans "Update"%}</div>
+       </div>
+      </a>
+   </div>
+  </div>
 
+
+  <h2>{%trans "Tools"%}</h2>
+  <div class="f">
+   <div class="c4 s12">
+      <a class="dcard x1" href='{{url.here}}/tools/permission'>
+       <div class="statistic">
+        <div class="value"><i class="sf-unlock-alt"></i></div>
+        <div class="label">{%trans "Permission"%}</div>
+       </div>
+      </a>
+   </div>
 
   <div class="c4 s12">
       <a class="dcard x1" target="_blank" href='{{url.here}}/log'>
@@ -94,7 +106,6 @@
        </div>
       </a>
    </div>
-
   {%if url.tld == 'local'%}
     <div class="c4 s12">
         <a class="dcard x1" target="_blank" href='{{url.here}}/translation'>
@@ -105,27 +116,6 @@
         </a>
      </div>
   {%endif%}
-
-
-  <div class="c4 s12">
-      <a class="dcard x1  danger" target="_blank" href='{{url.here}}/update'>
-       <div class="statistic">
-        <div class="value"><i class="sf-git-square"></i></div>
-        <div class="label">{%trans "Update"%}</div>
-       </div>
-      </a>
-   </div>
-
-  <div class="c4 s12">
-    <a class="dcard x1" href='{{url.here}}/dbtables'>
-     <div class="statistic">
-      <div class="value"><i class="sf-database"></i></div>
-      <div class="label">{%trans "Raw table"%}</div>
-     </div>
-    </a>
   </div>
-
-</div>
-
 {%endblock%}
 
