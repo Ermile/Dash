@@ -5,7 +5,7 @@ class controller
 {
 	public static function routing()
 	{
-		if(\dash\request::get('server') === 'status')
+		if(\dash\request::get('cmd') === 'health')
 		{
 			$serverDetail =
 			[

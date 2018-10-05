@@ -8,7 +8,7 @@ function getServerStat()
   if($('body').attr('data-in') === 'su' && $('body').attr('data-page') === 'home' && chart)
   {
     $.ajax({
-      url: '{{url.here}}?server=status',
+      url: '{{url.here}}?cmd=health',
       success: function (_response)
       {
         _response = JSON.parse(_response);
