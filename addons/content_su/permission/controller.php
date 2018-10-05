@@ -1,5 +1,5 @@
 <?php
-namespace content_su\tools\permission;
+namespace content_su\permission;
 
 class controller
 {
