@@ -61,6 +61,27 @@ class view
 		{
 			\dash\data::su_lastUpdate(\dash\data::dash_projectVersion());
 		}
+
+		// get ram value
+		exec("free -mtl", $ramCapacity);
+		\dash\data::su_ram($ramCapacity);
+
+		// get disk total size
+		\dash\data::su_disk(self::roundsize(disk_total_space("/")));
+		\dash\data::su_diskFree(self::roundsize(disk_free_space("/")));
+
+	}
+
+	private static function roundsize($size)
+	{
+		$i   = 0;
+		$iec = array("B", "Kb", "Mb", "Gb", "Tb");
+	    while (($size/1024)>1)
+	    {
+	        $size = $size/1024;
+	        $i++;
+	    }
+	    return(round($size,1). " ". $iec[$i]);
 	}
 }
 ?>

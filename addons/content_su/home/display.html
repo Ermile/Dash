@@ -10,7 +10,6 @@
 </div>
 
 <div class="f">
- <div class="c4 s12">{{block ("iLastUpdate")}}</div>
  <div class="c8 s12">
  	<div class="f">
 		 <div class="c6">{{block ("iMemory")}}</div>
@@ -19,6 +18,7 @@
 		 <div class="c6">{{block ("iDiskUsage")}}</div>
  	</div>
  </div>
+ <div class="c4 s12">{{block ("iLastUpdate")}}</div>
 
 </div>
 {%endblock%}
@@ -36,43 +36,44 @@
 </a>
 {%endblock%}
 
+
 {%block iCpu%}
-<a class="dcard x1" href='{{url.here}}/tools'>
+<div class="dcard x1">
  <div class="statistic">
-  <div class="value">{{su.cpu}}</div>
-  <div class="label"><i class="sf-heart"></i> {%trans "CPU"%}</div>
+  <div class="value">{{su.cpu | fitNumber}}</div>
+  <div class="label"><i class="mRa5 sf-heart"></i> {%trans "CPU"%}</div>
  </div>
-</a>
+</div>
 {%endblock%}
 
 
 {%block iMemory%}
-<a class="dcard x1" href='{{url.here}}/tools'>
+<div class="dcard x1">
  <div class="statistic">
-  <div class="value">{{su.memory}}</div>
-  <div class="label"><i class="sf-database"></i> {%trans "Ram"%}</div>
+  <div class="value">{{su.memory | fitNumber}}</div>
+  <div class="label"><i class="mRa5 sf-database"></i> {%trans "Ram"%}</div>
  </div>
-</a>
+</div>
 {%endblock%}
 
 
 {%block iDisk%}
-<a class="dcard x1" href='{{url.here}}/tools'>
+<div class="dcard x1">
  <div class="statistic">
-  <div class="value">{{su.disk}}</div>
-  <div class="label"><i class="sf-battery-full"></i> {%trans "Disk"%}</div>
+  <div class="value">{{su.disk | fitNumber}}</div>
+  <div class="label"><i class="mRa5 sf-battery-full"></i> {%trans "Disk space"%}</div>
  </div>
-</a>
+</div>
 {%endblock%}
 
 
 {%block iDiskUsage%}
-<a class="dcard x1" href='{{url.here}}/tools'>
+<div class="dcard x1">
  <div class="statistic">
-  <div class="value">{{su.diskusage}}</div>
-  <div class="label"><i class="sf-battery-half"></i> {%trans "Disk Usage"%}</div>
+  <div class="value">{{su.diskFree | fitNumber}}</div>
+  <div class="label"><i class="mRa5 sf-battery-half"></i> {%trans "Disk Free space"%}</div>
  </div>
-</a>
+</div>
 {%endblock%}
 
 
