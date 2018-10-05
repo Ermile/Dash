@@ -3,14 +3,16 @@
 
 {%block pageContent%}
 
-{%if gitHaveChange%}<a href="{{url.here}}/gitstatus" class="danger msg fs18 block mA10 txtC">{%trans "Some code was changed!!!"%}</a>{%endif%}
+{%if gitHaveChange%}<a href="{{url.here}}/gitstatus" class=" msg danger fs18 block txtC">{%trans "Some code was changed!!!"%}</a>{%endif%}
 
 <div class="cbox pA0">
     <div class="chart x4" id='usageChart'></div>
 </div>
 
 <div class="f">
+ <div class="c4 s12">{{block ("iLastUpdate")}}</div>
  <div class="c4 s12">{{block ("iTools")}}</div>
+
 </div>
 {%endblock%}
 
@@ -28,6 +30,15 @@
 </a>
 {%endblock%}
 
+
+{%block iLastUpdate%}
+<a class="dcard x2" href="{{url.here}}/update">
+  <div class="statistic blue" title='{%trans "Dash"%} {{dash.lastUpdate | dt(true)}}<br>{{site.title}} {{dash.projectVersion | dt(true)}}'>
+    <div class="value"><span>{{su.lastUpdate | dt("human", 'month')}}</span></div>
+    <div class="label">{%trans "Last update"%}</div>
+  </div>
+</a>
+{%endblock%}
 
 
 

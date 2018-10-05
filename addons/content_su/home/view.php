@@ -48,6 +48,19 @@ class view
 		}
 
 		\dash\data::gitHaveChange($we_have_change);
+
+		// get last update
+		\dash\data::dash_lastUpdate(\dash\utility\git::getLastUpdate());
+		\dash\data::dash_projectVersion(\dash\utility\git::getLastUpdate(false));
+
+		if(\dash\data::dash_lastUpdate() > \dash\data::dash_projectVersion())
+		{
+			\dash\data::su_lastUpdate(\dash\data::dash_lastUpdate());
+		}
+		else
+		{
+			\dash\data::su_lastUpdate(\dash\data::dash_projectVersion());
+		}
 	}
 }
 ?>
