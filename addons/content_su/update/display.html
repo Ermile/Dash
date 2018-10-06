@@ -20,7 +20,7 @@
 
 <div class="f mB50">
   <div class="c s12">
-    <a class="dcard x2 mB10" href="{{url.site}}" data-direct>
+    <a class="dcard x2 mB10 txtC" href="{{url.site}}" data-direct>
       <img src="{{url.site}}/static/images/logo.png" alt='{{site.title}}' class="w100">
       <h1>{{site.title}}</h1>
     </a>
@@ -73,8 +73,8 @@
 
 {%block iLastUpdate%}
 <div class="dcard x2 mB10">
-  <div class="statistic brown" title2='{{dash.lastUpdate}}'>
-    <div class="value"><span>{{dash.lastUpdate | dt("human", 'month')}}</span></div>
+  <div class="statistic brown" title='{{dash.lastUpdate | dt(true)}}'>
+    <div class="value mB10">{{dash.lastUpdate | dt("human", 'month')}}</div>
     <div class="label">{%trans "Last update"%}</div>
   </div>
 </div>
@@ -84,7 +84,7 @@
 {%block iCurrentVersion%}
 <div class="dcard x2 mB10">
   <div class="statistic teal">
-    <div class="value">{{dash.version | fitNumber(false)}}</div>
+    <div class="value mB10">{{dash.version | fitNumber(false)}}</div>
     <div class="label">{%trans "Current Version"%}</div>
   </div>
 </div>
@@ -94,7 +94,7 @@
 {%block icommitCount%}
 <div class="dcard x2 mB10">
   <div class="statistic grey">
-    <div class="value"><span>{{dash.commitCount | fitNumber}}</span></div>
+    <div class="value mB10"><span>{{dash.commitCount | fitNumber}}</span></div>
     <div class="label">{%trans "Commits"%}</div>
   </div>
   <a target='_blank' class="badge black" href="{{url.here}}/update?git=dash" title='{%trans "Do it if you know it"%}'>{%trans "Update Dash Repository"%}</a>
@@ -105,7 +105,7 @@
 {%block iLocation%}
 <div class="dcard x2 mB10">
   <div class="statistic">
-    <div class="value">{{dashLoc | raw}}</div>
+    <div class="value mB20">{{dashLoc | raw}}</div>
     <div class="label">{%trans "Dash Engine Location"%}</div>
   </div>
 </div>
@@ -114,8 +114,8 @@
 
 {%block iProjectVersion%}
 <div class="dcard x2 mB10">
-  <div class="statistic blue" title='{{dash.projectVersion}}'>
-    <div class="value">{{dash.projectVersion | dt("human", 'month')}}</div>
+  <div class="statistic blue" title='{{dash.projectVersion | dt(true)}}'>
+    <div class="value mB10">{{dash.projectVersion | dt("human", 'month')}}</div>
     <div class="label">{%trans "Last update"%}</div>
   </div>
 </div>
