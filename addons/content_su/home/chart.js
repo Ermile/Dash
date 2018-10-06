@@ -88,7 +88,7 @@ function highChart()
       useUTC: false
     },
     title: {
-      text: '{%trans "Server live resource usage"%}'
+      text: '{%trans "Server live resource usage"%} {{site.title}}'
     },
     xAxis: [{
       type: 'datetime',
