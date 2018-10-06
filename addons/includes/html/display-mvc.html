@@ -99,12 +99,12 @@
 {%block footer%}{%endblock%}
 {%endblock%}
 {%if user.permission == 'supervisor'%}
-<a class='superAdmin{%if url.tld != "local"%} public{%endif%}' data-direct title='{%trans "You are supervisor!"%}' href='{{url.kingdom}}/su' data-tippy-placement='bottom' data-tippy-animation="perspective" data-tippy-arrowtype="round"></a>
+<a class='superAdmin{%if url.tld != "local"%} public{%endif%}'{%if not include.adminPanel%} data-direct{%endif%} title='{%trans "You are supervisor!"%}' href='{{url.kingdom}}/su' data-tippy-placement='bottom' data-tippy-animation="perspective" data-tippy-arrowtype="round"></a>
 {%endif%}
 {%block xaccess%}
 {%if perm('contentCp')%}
   <div id="xaccess">
-    <a class='siteAdmin{%if url.tld != "local"%} public{%endif%}' data-direct href='{{url.kingdom}}/cp' title='{%trans "Control Panel"%}' data-tippy-placement='right' data-tippy-animation="shift-away" data-tippy-inertia="true"><span class="sf-gauge"></span></a>
+    <a class='siteAdmin{%if url.tld != "local"%} public{%endif%}'{%if not include.adminPanel%} data-direct{%endif%} href='{{url.kingdom}}/cp' title='{%trans "Control Panel"%}' data-tippy-placement='right' data-tippy-animation="shift-away" data-tippy-inertia="true"><span class="sf-gauge"></span></a>
 {%if main_account or perm_su() %}
     <a href="{{url.kingdom}}/enter?mobile={{main_mobile}}&referer={{url.pwd}}" data-direct title='{%trans "Enter with another user"%}' data-tippy-placement='right' data-tippy-animation="shift-away" data-tippy-inertia="true"><span class="sf-enter"></span></a>
 {%endif%}
