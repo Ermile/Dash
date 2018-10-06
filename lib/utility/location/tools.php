@@ -146,9 +146,8 @@ trait tools
 
 						if(isset(self::$data[$key]['localname']) && self::$data[$key]['localname'])
 						{
-							if($myKey != self::$data[$key]['localname'])
+							if(\dash\utility\filter::slug($myKey) != \dash\utility\filter::slug(self::$data[$key]['localname']))
 							{
-								// $myKey != self::$data[$key]['localname'], $myKey, self::$data[$key]['localname']);
 								$myKey .= ' - '. self::$data[$key]['localname'];
 							}
 						}
