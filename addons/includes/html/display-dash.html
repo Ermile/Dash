@@ -58,7 +58,7 @@
   <figure>
 {%set avatarLink%}{%if dash.avatarLink is empty%}{{url.kingdom}}/account/profile{%else%}{{dash.avatarLink}}{%endif%}{%endset%}
 {%if login%}
-   <a href="{{avatarLink}}" title='{%trans "Edit your profile"%}' class="avatar" data-direct>
+   <a href="{{avatarLink}}" title='{%trans "Edit your profile"%}' class="avatar">
 {%else%}
    <a href="{{url.kingdom}}/enter?referer={{url.pwd}}" title='{%trans "Please login to save anything"%}' class="avatar" data-direct>
 {%endif%}
@@ -119,7 +119,7 @@
     <a href="{{url.kingdom}}/logout" data-tippy-animation="perspective" title='{%trans "Logout"%}<br>{%if user.displayname%}{%trans "You are entered as"%} <b>{{user.displayname}}{%endif%}<br>{{user.mobile | fitNumber("mobile12")}}</b>' data-direct><i class="sf-out"></i></a>
 
 {%if perm_su()%}
-    <a href="{{url.kingdom}}/account/notification" data-tippy-animation="perspective" title='{%trans "You have no unread notification"%}' data-direct><i class="sf-bell"></i></a>
+    <a href="{{url.kingdom}}/account/notification" data-tippy-animation="perspective" title='{%trans "You have no unread notification"%}'><i class="sf-bell"></i></a>
 
     <div class="profileShow" data-tippy-animation="perspective" title='{%if user.displayname%}<b>{{user.displayname}}{%endif%}<br>{{user.mobile | fitNumber("mobile12")}}</b>'>
 {%if login.avatar%}
