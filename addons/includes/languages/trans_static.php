@@ -474,9 +474,9 @@ class TransStatic
 	echo T_("east azerbaijan");
 	echo T_("west azerbaijan");
 	echo T_("ardabil");
-	echo T_("esfahan");
+	echo T_("isfahan");
 	echo T_("alborz");
-	echo T_("eilam");
+	echo T_("ilam");
 	echo T_("bushehr");
 	echo T_("tehran");
 	echo T_("Asia/Tehran");

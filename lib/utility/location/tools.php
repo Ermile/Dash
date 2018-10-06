@@ -121,6 +121,67 @@ trait tools
 	}
 
 
+	public static function fix_key($_data, $_field, $_trans = false)
+	{
+		$result = [];
+
+		if(is_array($_data))
+		{
+			if($_field === 'name-localname')
+			{
+				foreach ($_data as $key => $value)
+				{
+					$myKey = $key;
+
+					if(isset(self::$data[$key]['name']))
+					{
+						if($_trans)
+						{
+							$myKey = T_(self::$data[$key]['name']);
+						}
+						else
+						{
+							$myKey = self::$data[$key]['name'];
+						}
+
+						if(isset(self::$data[$key]['localname']) && self::$data[$key]['localname'])
+						{
+							if($myKey != self::$data[$key]['localname'])
+							{
+								// $myKey != self::$data[$key]['localname'], $myKey, self::$data[$key]['localname']);
+								$myKey .= ' - '. self::$data[$key]['localname'];
+							}
+						}
+					}
+					$result[$myKey] = $value;
+				}
+			}
+			else
+			{
+				foreach ($_data as $key => $value)
+				{
+					$myKey = $key;
+
+					if(isset(self::$data[$key][$_field]))
+					{
+						if($_trans)
+						{
+							$myKey = T_(self::$data[$key][$_field]);
+						}
+						else
+						{
+							$myKey = self::$data[$key][$_field];
+						}
+					}
+					$result[$myKey] = $value;
+				}
+			}
+		}
+
+		return $result;
+	}
+
+
 	public static function key_list($_colomn)
 	{
 		$result = [];
