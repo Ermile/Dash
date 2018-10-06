@@ -210,5 +210,15 @@ class view
 		// set new title
 		self::set_title();
 	}
+
+
+	public static function lastChanges()
+	{
+		if(\dash\data::include_adminPanel())
+		{
+			\dash\data::global_siftal(true);
+		}
+	}
+
 }
 ?>

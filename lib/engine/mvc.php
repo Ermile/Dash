@@ -257,7 +257,7 @@ class mvc
 				\dash\engine\view::set_cms_titles();
 			}
 
-
+			\dash\engine\view::lastChanges();
 			\dash\engine\twig::init();
 		}
 	}
