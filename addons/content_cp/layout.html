@@ -46,16 +46,10 @@
 {%if perm('cpContactView') or perm('cpCommentsView')%}
 
     <li>
-      <a href="{{url.here}}/mycontact"><i class='sf-bell-o'></i> <span>{% trans "Contact" %}</span></a>
       <ul>
         {%if perm('cpCommentsView')%}
           <li><a href="{{url.here}}/comments">{% trans "Comments" %} <i class='floatRa mRa10 fc-mute sf-comments'></i></a></li>
         {%endif%}
-
-        {%if perm('cpContactView')%}
-          <li><a href="{{url.here}}/contact">{% trans "Contact US" %} <i class='floatRa mRa10 fc-mute sf-envelope-o'></i></a></li>
-        {%endif%}
-
       </ul>
     </li>
 {%endif%}
@@ -87,16 +81,11 @@
           {%if perm('cpSmsSend') %}
             <li><a href="{{url.here}}/sms/send">{% trans "Quick send" %} <i class='floatRa mRa10 fc-mute sf-paper-plane'></i></a></li>
           {%endif%}
-          {%if perm('cpSmsSendGroup') %}
-            <li><a href="{{url.here}}/sms/group">{% trans "Group send" %} <i class='floatRa mRa10 fc-mute sf-rocket'></i></a></li>
-          {%endif%}
-          {%if perm('cpTemplateSmsView') %}
-            <li><a href="{{url.here}}/sms/template">{% trans "Templates" %} <i class='floatRa mRa10 fc-mute sf-right-quote-alt'></i></a></li>
-          {%endif%}
         </ul>
     </li>
 {%endif%}
 
+<li class="hr"></li>
 <li><a href="{{url.kingdom}}/support" data-shortkey="112" data-shortkey-prevent data-shortkey-timeout='1000'><i class='sf-life-ring'></i> <span>{% trans "Support" %}</span><kbd class="floatRa fs08">F1</kbd></a></li>
 
 
