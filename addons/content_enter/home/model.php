@@ -121,6 +121,8 @@ class model
 		$password         = $_password;
 		$usernameormobile = $_usernameormobile;
 
+		$usernameormobile = \dash\utility\convert::to_en_number($usernameormobile);
+
 		if(!$usernameormobile)
 		{
 			\dash\log::set('emptyUserOrMobileEntered');
@@ -131,7 +133,7 @@ class model
 
 		// if old mobile is different by new mobile
 		// save in session this user change the mobile
-		if($old_usernameormobile != $usernameormobile)
+		if($old_usernameormobile && $old_usernameormobile != $usernameormobile)
 		{
 			\dash\log::set('diffrentMobileTry');
 			\dash\utility\enter::try('diffrent_mobile');

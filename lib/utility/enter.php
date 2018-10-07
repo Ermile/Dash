@@ -780,13 +780,17 @@ class enter
 			]
 		];
 
-		if(!\dash\request::post('code'))
+		$verificationCode = \dash\request::post('code');
+
+		if(!$verificationCode)
 		{
 			\dash\notif::error(T_("Please fill the verification code"), 'code');
 			return false;
 		}
 
-		if(!is_numeric(\dash\request::post('code')))
+		$verificationCode = \dash\utility\convert::to_en_number($verificationCode);
+
+		if(!is_numeric($verificationCode))
 		{
 			\dash\log::set('codeStringGivenMustNumber');
 			\dash\notif::error(T_("What happend? the code is number. you try to send string!?"), 'code');
@@ -799,7 +803,7 @@ class enter
 		// and this code is deffirent by verification code
 		if($_module === 'sendsms')
 		{
-			$code = \dash\request::post('code');
+			$code = $verificationCode;
 			if($code == self::get_session('sendsms_code'))
 			{
 				$log_id = self::get_session('sendsms_code_log_id');
@@ -866,7 +870,7 @@ class enter
 		}
 		else
 		{
-			if(intval(\dash\request::post('code')) === intval(self::get_session('verification_code')))
+			if(intval($verificationCode) === intval(self::get_session('verification_code')))
 			{
 				$code_is_okay = true;
 			}
