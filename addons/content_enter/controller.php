@@ -7,10 +7,20 @@ class controller
 
 	public static function routing()
 	{
+		self::check_block_cookie();
+
 		self::check_unlock_page();
 		self::if_login_route();
 		self::if_login_not_route();
 		self::check_baned_user();
+	}
+
+	public static function check_block_cookie()
+	{
+		if(empty($_SESSION) || !$_SESSION)
+		{
+			\dash\notif::warn(T_("Your cookies may have been blocked"). ' '. T_("You need to enable cookie for usign this service"));
+		}
 	}
 
 
