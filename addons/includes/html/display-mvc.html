@@ -138,13 +138,17 @@
 {%endif%}
 {%endif%}
 {%endif%}
-
-{%block js             %}{%endblock%}
+{%if youAreDead%}
+<div class="line">
+    <div class="warn pA10">{{youAreDead}}</div>
+</div>
+{%endif%}
+{%block js%}{%endblock%}
 {%if include.editor%}
  <script src="{{url.site}}/static/{{'siftal/js/medium-editor.min.js' | filemtime(true)}}"></script>
  <link  href="{{url.site}}/static/{{'siftal/css/medium-editor.css' | filemtime(true)}}" rel="stylesheet" media="screen"/>
 {%endif%}
-{%if include.js        %}
+{%if include.js%}
  <script src="{{url.site}}/static/{{'js/script.js' | filemtime(true)}}"></script>
 {%endif%}
 

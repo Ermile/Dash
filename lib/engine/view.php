@@ -102,6 +102,7 @@ class view
 		\dash\data::include_css(true);
 		\dash\data::include_js(true);
 
+		self::deadbrowserDetection();
 	}
 
 
@@ -209,6 +210,42 @@ class view
 
 		// set new title
 		self::set_title();
+	}
+
+
+	public static function deadbrowserDetection()
+	{
+		$currentBrowser = \dash\data::browser();
+		$browsers = array(
+			"chrome"  => 64.0,
+			"firefox" => 60.0,
+			"msie"    => 11.0,
+			"edge"    => 13,
+			"opera"	  => 50.0,
+			"safari"  => 534.57
+		);
+
+		if (isset($browsers[$currentBrowser['browser_name']]))
+		{
+			if($currentBrowser['browser_name'] == 'msie')
+			{
+				\dash\data::youAreDead(T_("IE is DIE!"));
+			}
+			elseif ($currentBrowser['browser_math_number'] < $browsers[$currentBrowser['browser_name']])
+			{
+				$msg = T_("You need to update your :browser to new version.", ['browser' => $browsers[$currentBrowser['browser_name']]]). ' '. T_('World is changed!');
+
+				\dash\data::youAreDead($msg);
+			}
+			else
+			{
+				// $myMsg2 = T_("Hooray! You are using the latest version");
+			}
+		}
+		else
+		{
+			\dash\data::youAreDead(T_("Please use famous browser to have better experience!"));
+		}
 	}
 
 
