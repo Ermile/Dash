@@ -21,7 +21,7 @@ class view
 
 		$search_string = \dash\request::get('q');
 
-		$sortLink  = \dash\app\sort::make_sortLink(\lib\app\grade::$sort_field, \dash\url::this());
+		$sortLink  = \dash\app\sort::make_sortLink(\dash\app\log::$sort_field, \dash\url::this());
 		$dataTable = \dash\app\log::list($search_string, $args);
 
 		\dash\data::sortLink($sortLink);
@@ -32,7 +32,7 @@ class view
 		unset($check_empty_datatable['order']);
 
 		// set dataFilter
-		$dataFilter = \content_m\view::createFilterMsg($search_string, $check_empty_datatable);
+		$dataFilter = \dash\app\sort::createFilterMsg($search_string, $check_empty_datatable);
 		\dash\data::dataFilter($dataFilter);
 	}
 }
