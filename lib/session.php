@@ -10,6 +10,12 @@ class session
 	private static $key_time  = 'storage_time';
 	private static $key_limit = 'storage_time_limit';
 
+	public static function clean_cat($_cat)
+	{
+		unset($_SESSION[self::$key][$_cat]);
+		unset($_SESSION[self::$key_time][$_cat]);
+		unset($_SESSION[self::$key_limit][$_cat]);
+	}
 
 	public static function clean($_key, $_cat = null)
 	{

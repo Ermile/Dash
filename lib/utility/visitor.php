@@ -7,9 +7,10 @@ class visitor
 
 	public static function id()
 	{
-		if(isset($_SESSION['last_visitor_id']))
+		$last_id = \dash\session::get('last_id', 'visitor');
+		if($last_id)
 		{
-			return $_SESSION['last_visitor_id'];
+			return $last_id;
 		}
 		return null;
 	}
@@ -64,9 +65,8 @@ class visitor
 		if(is_numeric($result))
 		{
 			self::save_avg_time();
-
-			$_SESSION['last_visitor_id']   = $result;
-			$_SESSION['last_visitor_time'] = time();
+			\dash\session::set('last_id', $result, 'visitor');
+			\dash\session::set('last_time', time(), 'visitor');
 		}
 
 		return true;
@@ -77,9 +77,10 @@ class visitor
 	{
 		if(self::id())
 		{
-			if(isset($_SESSION['last_visitor_time']))
+			$last_time = \dash\session::get('last_time', 'visitor');
+			if($last_time)
 			{
-				$avgtime = time() - intval($_SESSION['last_visitor_time']);
+				$avgtime = time() - intval($last_time);
 				\dash\db\config::public_update('visitors', ['avgtime' => $avgtime], self::id(), \dash\db::get_db_log_name());
 			}
 		}
@@ -98,7 +99,7 @@ class visitor
 			$agent_session = \dash\agent::get(true);
 			if($agent_session && is_numeric($agent_session))
 			{
-				\dash\session::set('visitor_agent_id', $agent_session);
+				\dash\session::set('agent_id', $agent_session, 'visitor');
 				return intval($agent_session);
 			}
 			else

@@ -60,6 +60,7 @@ class enter
 		else
 		{
 			unset($_SESSION['enter']);
+			\dash\session::clean_cat('enter');
 		}
 	}
 

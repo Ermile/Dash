@@ -94,14 +94,14 @@ class model
 			return;
 		}
 
-		$count = \dash\session::get('enter_session_check');
+		$count = \dash\session::get('count_try_to_login', 'enter');
 		if($count)
 		{
-			\dash\session::set('enter_session_check', $count + 1, null, 60 * 3);
+			\dash\session::set('count_try_to_login', $count + 1, 'enter', 60 * 3);
 		}
 		else
 		{
-			\dash\session::set('enter_session_check', 1, null, 60 * 3);
+			\dash\session::set('count_try_to_login', 1, 'enter', 60 * 3);
 		}
 
 		$anotherPerm = \dash\permission::supervisor();

@@ -15,6 +15,8 @@ class view
 		{
 			\dash\data::redirectUrl(\dash\utility\enter::get_session('redirect_url'));
 		}
+
+		\dash\utility\enter::clean_session();
 	}
 }
 ?>
