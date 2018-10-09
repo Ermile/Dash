@@ -9,7 +9,7 @@ class view
 	{
 		$mobile_or_email = \dash\data::getUsernamemobile();
 
-		\dash\data::sendWayCod(\dash\utility\enter::list_send_code_way($mobile_or_email));
+		\dash\data::sendWayCod(\dash\utility\enter::list_send_code_way());
 
 		// load temp username in username field
 		if(\dash\utility\enter::get_session('username', 'temp_username'))
