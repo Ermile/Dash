@@ -76,7 +76,7 @@ self::$config['redirect']    = null;
 // ---------------------------------------------------------
 
 // self::$config['short_url']                             = null;
-self::$config['log_visitors']                          = false;
+self::$config['visitor']                          = false;
 // self::$config['passphrase']                            = null;
 // self::$config['passkey']                               = null;
 // self::$config['passvalue']                             = null;
