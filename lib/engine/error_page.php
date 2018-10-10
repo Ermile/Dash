@@ -16,10 +16,10 @@
     <div class="c s12">
      <h1><?php echo $translatedDesc;?></h1>
      <h2><?php echo $_text;?></h2>
-     <a href="<?php echo(\dash\url::site()? \dash\url::site(): '/'); ?>" class='btn lg light outline'><?php echo T_("Return to Homepage")?></a>
+     <a href="<?php echo(\dash\url::kingdom()); ?>" class='btn lg light outline'><?php echo T_("Return to Homepage")?></a>
     </div>
     <div class="cauto os s12">
-     <a href="/" id='ermileBadge' class="f mT10">
+     <a href="<?php echo(\dash\url::kingdom()); ?>" id='ermileBadge' class="f mT10">
       <div class="cauto">
        <img src="/static/images/logo.png" alt='logo of project with Dash!' class="cauto">
       </div>
