@@ -220,6 +220,7 @@ class view
 			"chrome"  => 64.0,
 			"firefox" => 60.0,
 			"gecko"   => 60.0,
+			"crios"   => 67.0,
 			"msie"    => 11.0,
 			"edge"    => 13,
 			"opera"	  => 50.0,
@@ -230,11 +231,11 @@ class view
 		{
 			if($currentBrowser['browser_name'] == 'msie')
 			{
-				\dash\data::youAreDead(T_("IE is DIE!"));
+				\dash\data::youAreDead(T_("You are using Internet Explorer."). ' '. T_('Really!!!'). ' '. T_('IE is DIE!'));
 			}
 			elseif ($currentBrowser['browser_math_number'] < $browsers[$currentBrowser['browser_name']])
 			{
-				$msg = T_("You need to update your :browser to new version.", ['browser' => $browsers[$currentBrowser['browser_name']]]). ' '. T_('World is changed!');
+				$msg = T_("You need to update your :browser to new version.", ['browser' => $currentBrowser['browser_name']]). ' '. T_('The world is changing rapidly!');
 
 				\dash\data::youAreDead($msg);
 			}
