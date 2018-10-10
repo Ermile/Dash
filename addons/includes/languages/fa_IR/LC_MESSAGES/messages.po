@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Dash - Persian\n"
 "POT-Creation-Date: 2018-10-10 20:59+0330\n"
-"PO-Revision-Date: 2018-10-10 21:00+0330\n"
+"PO-Revision-Date: 2018-10-10 21:02+0330\n"
 "Last-Translator: Javad <J.Evazzadeh@gmail.com>\n"
 "Language-Team: Ermile <J.Evazzadeh@gmail.com>\n"
 "Language: fa_IR\n"
@@ -764,7 +764,7 @@ msgstr "به شرط"
 #: addons/content_cp/view.php:101 addons/content_su/view.php:149
 #: addons/includes/languages/trans_static.php:39 lib/app/sort.php:88
 msgid ", "
-msgstr ""
+msgstr "، "
 
 #: addons/content_cp/visitor/chart/view.php:9
 msgid "Visitor chart"
@@ -1610,7 +1610,7 @@ msgstr "بازگشت به لیست تراکنش‌ها"
 
 #: addons/content_su/transactions/view.php:10
 msgid "Transactions list"
-msgstr ""
+msgstr "لیست تراکنش‌ها"
 
 #: addons/content_su/transactions/view.php:11
 msgid ""
@@ -1980,7 +1980,7 @@ msgstr "بلی"
 
 #: addons/includes/languages/trans_dash.php:27
 msgid "No"
-msgstr ""
+msgstr "خیر"
 
 #: addons/includes/languages/trans_dash.php:28
 msgid "Is this a company's address?"
@@ -4261,7 +4261,7 @@ msgstr "واحد"
 
 #: addons/includes/languages/trans_dash.php:784
 msgid "$"
-msgstr ""
+msgstr "$"
 
 #: addons/includes/languages/trans_dash.php:785
 msgid "Minus"
@@ -4945,7 +4945,7 @@ msgstr "افزودن ناموفق بود!"
 
 #: addons/includes/languages/trans_static.php:19
 msgid "Update Successfully"
-msgstr ""
+msgstr "بروزرسانی با موفقیت انجام شد"
 
 #: addons/includes/languages/trans_static.php:20
 msgid "Update Failed!"
@@ -4998,11 +4998,11 @@ msgstr "قبل"
 
 #: addons/includes/languages/trans_static.php:37
 msgid ","
-msgstr ""
+msgstr "،"
 
 #: addons/includes/languages/trans_static.php:38
 msgid " ,"
-msgstr ""
+msgstr " ،"
 
 #: addons/includes/languages/trans_static.php:40 lib/utility/human.php:63
 msgid "s "
@@ -5181,7 +5181,7 @@ msgstr "مطمئنید؟ بعد از حذف امکان بازگشت وجود ن�
 
 #: addons/includes/languages/trans_static.php:91
 msgid "or"
-msgstr ""
+msgstr "یا"
 
 #: addons/includes/languages/trans_static.php:97
 #: addons/includes/languages/trans_static.php:981
@@ -5782,7 +5782,7 @@ msgstr "ارسال"
 
 #: addons/includes/languages/trans_static.php:284
 msgid " to "
-msgstr ""
+msgstr " تا "
 
 #: addons/includes/languages/trans_static.php:285
 msgid "until"
@@ -6127,7 +6127,7 @@ msgstr "ما به شماره موبایل نیاز داریم!"
 
 #: addons/includes/languages/trans_static.php:398
 msgid " "
-msgstr ""
+msgstr " "
 
 #: addons/includes/languages/trans_static.php:400
 msgid "table"
@@ -7831,7 +7831,7 @@ msgstr "زیمبابوه"
 
 #: addons/includes/languages/trans_static.php:858
 msgid "expire"
-msgstr ""
+msgstr "منقضی‌شده"
 
 #: addons/includes/languages/trans_static.php:859
 msgid "deleted"
@@ -7864,11 +7864,11 @@ msgstr "زن"
 
 #: addons/includes/languages/trans_static.php:867
 msgid "single"
-msgstr ""
+msgstr "مجرد"
 
 #: addons/includes/languages/trans_static.php:868
 msgid "married"
-msgstr ""
+msgstr "متاهل"
 
 #: addons/includes/languages/trans_static.php:869
 msgid "leave"
@@ -7884,11 +7884,11 @@ msgstr "آموزش"
 
 #: addons/includes/languages/trans_static.php:872
 msgid "requirement"
-msgstr ""
+msgstr "پیش‌نیاز"
 
 #: addons/includes/languages/trans_static.php:873
 msgid "beside"
-msgstr ""
+msgstr "هم‌نیاز"
 
 #: addons/includes/languages/trans_static.php:874
 msgid "soon"
@@ -7916,31 +7916,31 @@ msgstr "همه"
 
 #: addons/includes/languages/trans_static.php:880
 msgid "sunday"
-msgstr ""
+msgstr "یک‌شنبه"
 
 #: addons/includes/languages/trans_static.php:881
 msgid "monday"
-msgstr ""
+msgstr "دوشنبه"
 
 #: addons/includes/languages/trans_static.php:882
 msgid "tuesday"
-msgstr ""
+msgstr "سه‌شنبه"
 
 #: addons/includes/languages/trans_static.php:883
 msgid "wednesday"
-msgstr ""
+msgstr "چهارشنبه"
 
 #: addons/includes/languages/trans_static.php:884
 msgid "thursday"
-msgstr ""
+msgstr "پنج‌شنبه"
 
 #: addons/includes/languages/trans_static.php:885
 msgid "friday"
-msgstr ""
+msgstr "جمعه"
 
 #: addons/includes/languages/trans_static.php:886
 msgid "saturday"
-msgstr ""
+msgstr "شنبه"
 
 #: addons/includes/languages/trans_static.php:887
 msgid "class"
@@ -7952,11 +7952,11 @@ msgstr "امتحان"
 
 #: addons/includes/languages/trans_static.php:889
 msgid "weekly"
-msgstr ""
+msgstr "هفتگی"
 
 #: addons/includes/languages/trans_static.php:890
 msgid "rotational"
-msgstr ""
+msgstr "چرخشی"
 
 #: addons/includes/languages/trans_static.php:891
 msgid "date"
@@ -7992,7 +7992,7 @@ msgstr "دانش‌آموز"
 
 #: addons/includes/languages/trans_static.php:899
 msgid "expert"
-msgstr ""
+msgstr "کارشناس"
 
 #: addons/includes/languages/trans_static.php:900
 msgid "acept"
@@ -8000,7 +8000,7 @@ msgstr "تایید"
 
 #: addons/includes/languages/trans_static.php:901
 msgid "reject"
-msgstr ""
+msgstr "رد کردن"
 
 #: addons/includes/languages/trans_static.php:902
 msgid "discount"
@@ -8012,7 +8012,7 @@ msgstr "میانگین"
 
 #: addons/includes/languages/trans_static.php:905
 msgid "teacher"
-msgstr ""
+msgstr "استاد"
 
 #: addons/includes/languages/trans_static.php:906
 msgid "other"
