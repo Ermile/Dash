@@ -41,6 +41,39 @@ class visitors
 		return $result;
 	}
 
+	public static function visitor_page($_url, $_where = [])
+	{
+		$where = null;
+		if($_where)
+		{
+			$where = \dash\db\config::make_where($_where);
+			if($where)
+			{
+				$where = " AND $where";
+			}
+		}
+
+		$query =
+		"
+			SELECT COUNT(myTable.count) AS `myCount`
+			FROM
+			(
+				SELECT
+				COUNT(*) AS `count`,
+				IF(visitors.user_id IS NULL, visitors.session_id , visitors.user_id) AS `myUser`
+				FROM visitors
+				LEFT JOIN urls ON urls.id = visitors.url_id
+				WHERE urls.pwd LIKE '$_url' $where
+				GROUP BY myUser
+			) AS `myTable`
+		";
+
+		$result = \dash\db::get($query, 'myCount', true, \dash\db::get_db_log_name());
+
+		return $result;
+
+	}
+
 
 	private static function calc_start_time($_args)
 	{
