@@ -3,6 +3,8 @@ namespace dash\utility;
 
 class export
 {
+    private static $temp_file = null;
+
 
     /**
      * export data to csv file
@@ -17,8 +19,15 @@ class export
 
         $type     = isset($_args['type']) ? $_args['type'] : 'csv';
         $filename = isset($_args['name']) ? $_args['name'] : 'Untitled';
-        $data     = isset($_args['data']) ? $_args['data'] : [];
-        $ignore   = isset($_args['ignore']) ? $_args['ignore'] : [];
+
+        if(isset($_args['data']) && is_array($_args['data']))
+        {
+            $data = $_args['data'];
+        }
+        else
+        {
+            $data = [];
+        }
 
         // disable caching
         header("Expires: Tue, 03 Jul 2001 06:00:00 GMT");
@@ -69,7 +78,11 @@ class export
         \dash\code::bye();
     }
 
-    private static $temp_file = null;
+
+    public static function new_csv_file()
+    {
+        self::$temp_file = null;
+    }
 
 
     public static function get_link()
@@ -82,9 +95,10 @@ class export
 
     public static function csv_file($_args)
     {
+        $type         = isset($_args['type']) ? $_args['type'] : 'csv';
+        $filename     = isset($_args['name']) ? $_args['name'] : 'Untitled';
 
-        $type     = isset($_args['type']) ? $_args['type'] : 'csv';
-        $filename = isset($_args['name']) ? $_args['name'] : 'Untitled';
+        $first_record = false;
 
         if(!self::$temp_file)
         {
@@ -93,34 +107,49 @@ class export
             {
                 \dash\file::makeDir(self::$temp_file);
             }
+
             self::$temp_file .= '/temp';
             if(!\dash\file::exists(self::$temp_file))
             {
                 \dash\file::makeDir(self::$temp_file);
             }
-            self::$temp_file.= '/'. date("Y_m_d_H_i_s"). '_'. rand(1,999).'_'.$filename. '.'. $type;
+
+            self::$temp_file.= '/'. $filename. '_'. date("Y_m_d_H_i_s"). '_'. rand(11111,99999). '.'. $type;
 
             // BOM header UTF-8
-            file_put_contents(self::$temp_file, "\xEF\xBB\xBF");
+            \dash\file::append(self::$temp_file, "\xEF\xBB\xBF");
+
+            $first_record = true;
         }
 
-        $data     = isset($_args['data']) ? $_args['data'] : [];
-        $ignore   = isset($_args['ignore']) ? $_args['ignore'] : [];
 
-        if (count($data) == 0 || !$data || empty($data) || !is_array($data))
+        if(isset($_args['data']) && is_array($_args['data']))
         {
-            return;
+            $data = $_args['data'];
+        }
+        else
+        {
+            $data = [];
+        }
+
+
+        if(count($data) == 0 || !$data || empty($data) || !is_array($data))
+        {
+            return self::get_link();
         }
         else
         {
             ob_start();
-            $df = @fopen("php://output", 'w');
-            if(is_array(reset($data)))
-            {
-                $keys = array_keys(reset($data));
-                $keys = array_map('T_', $keys);
 
-                fputcsv($df, $keys);
+            $df = @fopen("php://output", 'w');
+
+            if($first_record)
+            {
+                if(is_array(reset($data)))
+                {
+                    $keys = array_keys(reset($data));
+                    fputcsv($df, $keys);
+                }
             }
 
             foreach ($data as $row)
@@ -133,10 +162,11 @@ class export
             }
 
             fclose($df);
-            file_put_contents(self::$temp_file, ob_get_clean(), FILE_APPEND);
+
+            \dash\file::append(self::$temp_file, ob_get_clean());
         }
 
-        return true;
+        return self::get_link();
     }
 
 }
