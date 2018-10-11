@@ -9,11 +9,8 @@ class twigAddons
 		$filters   = [];
 		$filters[] = self::filter_fcache();
 		$filters[] = self::filter_jdate();
-		$filters[] = self::filter_tdate();
 		$filters[] = self::filter_dt();
-		$filters[] = self::filter_sdate();
 		$filters[] = self::filter_readableSize();
-		$filters[] = self::filter_persian();
 		$filters[] = self::filter_fitNumber();
 		$filters[] = self::filter_exist();
 		$filters[] = self::filter_decode();
@@ -89,31 +86,6 @@ class twigAddons
 	}
 
 
-	/**
-	 * twig custom filter for convert date to best type of showing on each language
-	 * tdate means translated date
-	 */
-	private static function filter_tdate()
-	{
-		return new \Twig_SimpleFilter('tdate', function ($_string, $_format ="Y/m/d", $_convert = true)
-		{
-			if($_format === true)
-			{
-				$_format = \dash\datetime::format(true);
-			}
-			$result = $_string;
-			if(\dash\data::lang_current() == 'fa')
-			{
-				$result = \dash\utility\jdate::date($_format, $_string, $_convert);
-			}
-			else
-			{
-				$result = date($_format, strtotime($_string));
-			}
-
-			return $result;
-		});
-	}
 
 
 	/**
@@ -130,16 +102,6 @@ class twigAddons
 	}
 
 
-	/**
-	 * twig custom filter for convert date to best type of showing
-	 */
-	private static function filter_sdate()
-	{
-		return new \Twig_SimpleFilter('sdate', function ($_string, $_max ="day", $_format ="Y/m/d")
-		{
-			return \dash\utility\human::timing($_string, $_max, $_format, \dash\data::lang_current());
-		});
-	}
 
 
 	/**
@@ -150,18 +112,6 @@ class twigAddons
 		return new \Twig_SimpleFilter('readableSize', function ($_string, $_type = 'file', $_emptyTxt = null)
 		{
 			return \dash\utility\upload::readableSize($_string, $_type, $_emptyTxt);
-		});
-	}
-
-
-	/**
-	 * twig custom filter for convert date to jalai with custom format like php date func format
-	 */
-	private static function filter_persian()
-	{
-		return new \Twig_SimpleFilter('persian', function ($_number)
-		{
-			return \dash\utility\human::number($_number, \dash\data::lang_current());
 		});
 	}
 
@@ -226,19 +176,6 @@ class twigAddons
 		});
 	}
 
-
-	/**
-	 * @check
-	 * [function_result description]
-	 * @return [type] [description]
-	 */
-	private static function function_result()
-	{
-		return new \Twig_SimpleFunction('result', function()
-		{
-			\dash\code::dump('@check to remove it!!!');
-		});
-	}
 
 
 	/**
