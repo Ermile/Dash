@@ -9,31 +9,31 @@ class controller
 		$module = \dash\url::module();
 		if(!$module)
 		{
-			\dash\redirect::to(\dash\url::base());
+			\dash\redirect::to(\dash\url::kingdom());
 		}
 
 		$module = \dash\coding::decode($module);
 
 		if(!$module)
 		{
-			\dash\redirect::to(\dash\url::base());
+			\dash\redirect::to(\dash\url::kingdom());
 		}
 
 		$load_post = \dash\app\posts::get(\dash\url::module());
 
 		if(!isset($load_post['type']) || !isset($load_post['status']) || !isset($load_post['url']) || !isset($load_post['language']))
 		{
-			\dash\redirect::to(\dash\url::base());
+			\dash\redirect::to(\dash\url::kingdom());
 		}
 
 		if(!in_array($load_post['type'], ['post', 'page', 'help']))
 		{
-			\dash\redirect::to(\dash\url::base());
+			\dash\redirect::to(\dash\url::kingdom());
 		}
 
 		if(!in_array($load_post['status'], ['publish']))
 		{
-			\dash\redirect::to(\dash\url::base());
+			\dash\redirect::to(\dash\url::kingdom());
 		}
 
 		if($load_post['type'] === 'help')

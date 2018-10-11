@@ -38,7 +38,7 @@ class controller
 			}
 			else
 			{
-				// \dash\redirect::to(\dash\url::base(). '/enter');
+				// \dash\redirect::to(\dash\url::kingdom(). '/enter');
 				// return;
 			}
 		}
