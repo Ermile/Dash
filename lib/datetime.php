@@ -135,7 +135,7 @@ class datetime
 		}
 		if($_format === 'humanTime')
 		{
-			return \dash\utility\human::timing($_datetime, $_type);
+			return \dash\utility\human::time($_datetime, $_type);
 		}
 		return self::get($_datetime, $_format, $_type, $_calendar);
 	}

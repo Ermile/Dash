@@ -100,73 +100,48 @@ class human
 	/**
 	 * [time description]
 	 * @param  [type] $_time [description]
-	 * @param  string $_from [description]
 	 * @return [type]        [description]
 	 */
-	public static function time($_time, $_resultType = 'text', $_lang = null, $_from = 'min')
+	public static function time($_time, $_long = null)
 	{
-		// detect current lang if not set
-		if($_lang === null)
-		{
-			$_lang = \dash\language::current();
-		}
-
 		// change from sec to min
-		if($_from === 'sec')
-		{
-			$_time = floor($_time / 60);
-		}
+		$_time = floor($_time / 60);
 		$result = '';
 		$hour   = (int) floor($_time / 60);
 		$min    = (int) floor($_time % 60);
 
 		// generate result by type of request
-		switch ($_resultType)
+		if($_long)
 		{
-			case 'number':
-				if($hour)
+			if(is_numeric($hour) && $hour)
+			{
+				$result = $hour.' '. T_('hour');
+				if($min)
 				{
-					$result = $hour. ':';
+					$result .= T_(', :min minute', ['min'=> $min]);
 				}
-				$result .= $min;
-				break;
-
-			case 'text':
-			default:
-				if(is_numeric($hour) && $hour)
-				{
-					$result = $hour.' '. T_('hour');
-					if($min)
-					{
-						$result .= T_(', :min minute', ['min'=> $min]);
-					}
-				}
-				else if(is_numeric($min) && $min)
-				{
-					$result = $min.' '. T_('minute');
-				}
-				else
-				{
-					$result = 0;
-				}
-				break;
+			}
+			else if(is_numeric($min) && $min)
+			{
+				$result = $min.' '. T_('minute');
+			}
+			else
+			{
+				$result = 0;
+			}
+		}
+		else
+		{
+			if($hour)
+			{
+				$result = $hour. ':';
+			}
+			$result .= $min;
 		}
 
-		// change numbers to selected language
-		switch ($_lang)
-		{
-			case 'persian':
-			case 'fa':
-			case 'english':
-			case 'en':
-			case 'arabic':
-			case 'ar':
-				$result = self::number($result, $_lang);
-				break;
+		// fit number for current lang
+		$result = self::number($result, \dash\language::current());
 
-			default:
-				break;
-		}
 		// return final result
 		return $result;
 	}
