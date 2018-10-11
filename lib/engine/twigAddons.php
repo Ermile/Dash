@@ -15,7 +15,6 @@ class twigAddons
 		$filters[] = self::filter_readableSize();
 		$filters[] = self::filter_persian();
 		$filters[] = self::filter_fitNumber();
-		$filters[] = self::filter_humantime();
 		$filters[] = self::filter_exist();
 		$filters[] = self::filter_decode();
 		$filters[] = self::filter_coding();
@@ -188,16 +187,6 @@ class twigAddons
 		return new \Twig_SimpleFilter('exist', function ($_file, $_alternative = null)
 		{
 			$result = \dash\file::alternative($_file, $_alternative);
-			return $result;
-		});
-	}
-
-
-	private static function filter_humantime()
-	{
-		return new \Twig_SimpleFilter('humantime', function ()
-		{
-			$result = \dash\utility\human::time(...func_get_args());
 			return $result;
 		});
 	}
