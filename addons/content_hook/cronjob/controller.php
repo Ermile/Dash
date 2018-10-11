@@ -57,11 +57,16 @@ class controller
 				break;
 
 			case 'closesolved':
-				$time_now    = date("i");
-				// every 10 minuts
-				if((is_string($time_now) && mb_strlen($time_now) === 2 && $time_now{1} == '0') || \dash\permission::supervisor())
+				if(self::every_10_min())
 				{
 					\dash\db\comments::close_solved_ticket();
+				}
+				break;
+
+			case 'removetempfile':
+				if(self::every_30_min())
+				{
+					self::removetempfile();
 				}
 				break;
 
@@ -74,6 +79,77 @@ class controller
 		{
 			\lib\cronjob::run();
 		}
+	}
+
+
+	public static function every_hour()
+	{
+		$time_now    = date("i");
+		// every 1 hour
+		if((is_string($time_now) && mb_strlen($time_now) === 2 && in_array($time_now, ['00'])) || \dash\permission::supervisor())
+		{
+			return true;
+		}
+		return false;
+	}
+
+
+	public static function every_30_min()
+	{
+		$time_now    = date("i");
+		// every 30 minuts
+		if((is_string($time_now) && mb_strlen($time_now) === 2 && in_array($time_now, ['00', '30'])) || \dash\permission::supervisor())
+		{
+			return true;
+		}
+		return false;
+	}
+
+
+	public static function every_10_min()
+	{
+		$time_now    = date("i");
+		// every 10 minuts
+		if((is_string($time_now) && mb_strlen($time_now) === 2 && $time_now{1} == '0') || \dash\permission::supervisor())
+		{
+			return true;
+		}
+		return false;
+	}
+
+
+	private static function removetempfile()
+	{
+		$addr = root. 'public_html/files/temp/';
+		if(!\dash\file::exists($addr))
+		{
+			return;
+		}
+
+		$addr = \autoload::fix_os_path($addr);
+
+		$glob = glob($addr. '*');
+
+		$list = [];
+		foreach ($glob as $key => $value)
+		{
+			if((time() - filemtime($value)) > (60*30))
+			{
+				\dash\file::delete($value);
+				continue;
+			}
+
+			$list[] =
+			[
+				'download'  => \dash\url::site(). '/files/temp/'. basename($value),
+				'name'      => basename($value),
+				'remove_in' => (60*30) - (time() - filemtime($value)),
+				'size'      => round((filesize($value)) / 1024, 2).  ' KB',
+			];
+		}
+
+		\dash\code::dump($list);
+
 	}
 }
 ?>

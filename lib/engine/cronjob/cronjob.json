@@ -6,5 +6,9 @@
   "closesolved": {
     "title": "Set ticket close if solved",
     "url": "closesolved"
+  },
+  "removetempfile": {
+    "title": "Remove temp csv file",
+    "url": "removetempfile"
   }
 }
