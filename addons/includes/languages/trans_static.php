@@ -1113,6 +1113,7 @@ class TransStatic
 	echo T_("Deleted");
 	echo T_("Solved");
 	echo T_("Back to unsolved");
+	echo T_("Remove temp csv file");
 
  }
 }
