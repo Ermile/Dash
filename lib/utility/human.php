@@ -103,8 +103,14 @@ class human
 	 * @param  string $_from [description]
 	 * @return [type]        [description]
 	 */
-	public static function time($_time, $_resultType = 'text', $_lang = 'en', $_from = 'min')
+	public static function time($_time, $_resultType = 'text', $_lang = null, $_from = 'min')
 	{
+		// detect current lang if not set
+		if($_lang === null)
+		{
+			$_lang = \dash\language::current();
+		}
+
 		// change from sec to min
 		if($_from === 'sec')
 		{
