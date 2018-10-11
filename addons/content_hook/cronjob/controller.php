@@ -148,7 +148,7 @@ class controller
 			];
 		}
 
-		\dash\code::dump($list);
+		\dash\code::pretty($list, true);
 
 	}
 }
