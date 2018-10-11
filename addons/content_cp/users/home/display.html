@@ -51,8 +51,8 @@
 {%block htmlTable%}
 
   <table class="tbl1 v1 cbox fs12">
-    <thead class="primary fs09">
-      <tr>
+    <thead>
+      <tr class="fs07">
         <th data-sort="{{sortLink.username.order}}">
           <a href='{{sortLink.username.link}}'>{%trans "Username"%}</a>
         </th>
@@ -62,13 +62,13 @@
         <th data-sort="{{sortLink.mobile.order}}" class="collapsing">
           <a href='{{sortLink.mobile.link}}'>{%trans "Mobile"%}</a>
         </th>
-        <th data-sort="{{sortLink.email.order}}" class="collapsing s0">
+        <th data-sort="{{sortLink.email.order}}" class="collapsing s0 m0">
           <a href='{{sortLink.email.link}}'>{%trans "Email"%}</a>
         </th>
         <th data-sort="{{sortLink.password.order}}" class="collapsing s0">
           <a href='{{sortLink.password.link}}'>{%trans "Password"%}</a>
         </th>
-        <th data-sort="{{sortLink.status.order}}" class="collapsing">
+        <th data-sort="{{sortLink.status.order}}" class="collapsing s0">
           <a href='{{sortLink.status.link}}'>{%trans "Status"%}</a>
         </th>
         <th data-sort="{{sortLink.permission.order}}" class="collapsing s0 m0">
@@ -102,24 +102,24 @@
             <a href="{{url.this}}/view?id={{value.id}}" class="txtB block"><span class="sf-user"></span> {{value.displayname}}</a>
           </div>
         </td>
-        <td>
+        <td class="pRa5">
           <a href="{{url.this}}/view?id={{value.id}}">{{value.mobile | fitNumber('mobile12')}}</a>
         </td>
-        <td class="s0">
+        <td class="s0 m0 pRa5">
           <a href="{{url.this}}/view?id={{value.id}}">{{value.email}}</a>
         </td>
         <td class="s0">
           {%if value.password%}<i class="sf-check fc-green" title='{%trans "Password is set"%}'></i>{%else%}<i class="sf-times fc-red" title='{%trans "Password is not set!"%}'></i>{%endif%}
           {%if value.twostep%}<i class="sf-unlock-alt fc-green" title='{%trans "Two step verification in enabled"%}'></i>{%else%}<i class="sf-unlock fc-mute" title='{%trans "Two step verification in disable"%}'></i>{%endif%}
         </td>
-        <td>
+        <td class="s0">
           <a href="{{url.this}}?status={{value.status}}">{%set myStatus = value.status | capitalize %}{%trans myStatus%}</a>
         </td>
         <td class="s0 m0">
           <a href="{{url.this}}?permission={{value.permission}}">{%set myPerm = value.permission | capitalize %}{%trans myPerm%}</a>
         </td>
-        <td class="s0 m0 txtC" title="{{value.datecreated | dt(true)}}"><small class="fc-mute">{%if value.datecreated%}{{value.datecreated | dt("human", 'year')}}{%else%}-{%endif%}</small></td>
-        <td class="s0 m0 txtC" title="{{value.datemodified | dt(true)}}"><small class="fc-mute">{%if value.datemodified%}{{value.datemodified | dt("human", 'year')}}{%else%}-{%endif%}</small></td>
+        <td class="s0 m0" title="{{value.datecreated | dt(true)}}"><small class="fc-mute">{%if value.datecreated%}{{value.datecreated | dt("human", 'year')}}{%else%}-{%endif%}</small></td>
+        <td class="s0 m0" title="{{value.datemodified | dt(true)}}"><small class="fc-mute">{%if value.datemodified%}{{value.datemodified | dt("human", 'year')}}{%else%}-{%endif%}</small></td>
       </tr>
       {%endfor%}
     </tbody>
