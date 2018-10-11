@@ -59,11 +59,13 @@ class visitors
 			FROM
 			(
 				SELECT
-				COUNT(*) AS `count`,
-				IF(visitors.user_id IS NULL, visitors.session_id , visitors.user_id) AS `myUser`
+					COUNT(*) AS `count`,
+					IF(visitors.user_id IS NULL, visitors.session_id , visitors.user_id) AS `myUser`
 				FROM visitors
 				LEFT JOIN urls ON urls.id = visitors.url_id
-				WHERE urls.pwd LIKE '$_url' $where
+				WHERE
+					urls.pwd = '$_url'
+					$where
 				GROUP BY myUser
 			) AS `myTable`
 		";
