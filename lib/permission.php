@@ -480,10 +480,51 @@ class permission
 		return false;
 	}
 
+	// for test and debug permission caller
+	private static $test_mode = false;
+	private static $dump      = false;
+	private static $test_access = [];
+
+	public static function test_access($_caller = null, $_dump = false)
+	{
+		if(\dash\url::isLocal())
+		{
+			self::$test_mode     = true;
+			if(!self::$dump && $_dump)
+			{
+				self::$dump          = $_dump;
+			}
+			self::$test_access[] = $_caller;
+		}
+	}
+
+
+	private static function check_test($_caller)
+	{
+		if(in_array($_caller, self::$test_access))
+		{
+			return true;
+		}
+		else
+		{
+			if(self::$dump)
+			{
+				\dash\code::dump($_caller);
+			}
+			return false;
+		}
+	}
+
 
 	// check permission
 	public static function check($_caller, $_user_id = null)
 	{
+		// for test and debug permission
+		if(self::$test_mode)
+		{
+			return self::check_test($_caller);
+		}
+
 		self::load_user($_user_id);
 
 		if(self::supervisor(false))
