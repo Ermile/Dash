@@ -120,6 +120,35 @@ trait tools
 		}
 	}
 
+	public static function html_data()
+	{
+
+		$countryList = \dash\utility\location\countres::$data;
+		\dash\data::countryList($countryList);
+
+		$cityList    = \dash\utility\location\cites::$data;
+		$proviceList = \dash\utility\location\provinces::key_list('localname');
+
+		$new = [];
+		foreach ($cityList as $key => $value)
+		{
+			$temp = '';
+
+			if(isset($value['province']) && isset($proviceList[$value['province']]))
+			{
+				$temp .= $proviceList[$value['province']]. ' - ';
+			}
+			if(isset($value['localname']))
+			{
+				$temp .= $value['localname'];
+			}
+			$new[$key] = $temp;
+		}
+		asort($new);
+
+		\dash\data::cityList($new);
+	}
+
 
 	public static function fix_key($_data, $_field, $_trans = false)
 	{

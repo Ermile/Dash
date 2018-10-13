@@ -17,6 +17,7 @@ class view
 		$args['user_id']    = \dash\user::id();
 		$args['pagenation'] = false;
 		$args['status']     = 'enable';
+		$args['subdomain']  = null;
 		$dataTable          = \dash\app\address::list(null, $args);
 		\dash\data::dataTable($dataTable);
 
