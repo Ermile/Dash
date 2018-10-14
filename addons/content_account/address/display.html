@@ -6,119 +6,14 @@
 {%block pageContent%}
 
 
+{{block('bAddressList')}}
+
+
 <form method="post" enctype="multipart/form-data" autocomplete="off">
-  <div class="f {%if not dataTable%} justify-center {%endif%}">
-    <div class="c5 s12">
-      <div class="cbox">
-        {%if dataRow%}
-          {%if dataRow.title%}
-            <h3 class="txtC">{%trans "Edit address"%} <span class="txtB">{{dataRow.title}}</span></h3>
-          {%else%}
-            <h3 class="txtC">{%trans "Edit address"%}</h3>
-          {%endif%}
-        {%else%}
-          <h3 class="txtC">{%trans "Add new address"%}</h3>
-        {%endif%}
-        <div class="f">
-          <div class="c mRa5">{{block('iFirstname')}}</div>
-          <div class="c">{{block('iLastname')}}</div>
-        </div>
-
-        {{block('iCountry')}}
-
-        <div class="f">
-          <div class="c mRa5">{{block('iCity')}}</div>
-          <div class="c">{{block('iPostcode')}}</div>
-        </div>
-
-        <div class="f">
-          <div class="c mRa5">{{block('iPhone')}}</div>
-          <div class="c">{{block('iFax')}}</div>
-        </div>
-
-        {{block('iAddress')}}
-        {{block('iTitle')}}
-
-        {{block('iCompany')}}
-        <div data-response='company' {%if not dataRow.company%} data-response-hide {%endif%}>
-          <div class="f">
-            <div class="c mRa5">{{block('iCompanyname')}}</div>
-            <div class="c">{{block('iJobtitle')}}</div>
-          </div>
-        </div>
-        {%if dataRow%}
-          {{block('isave')}}
-        {%else%}
-          {{block('iadd')}}
-        {%endif%}
-      </div>
+  <div class="f justify-center">
+    <div class="x5 c6 m8 s10">
+{{block('bAddressAdd')}}
     </div>
-    {%if dataTable%}
-    <div class="c7 pLa10">
-        <table class="tbl1 v1 cbox fs12">
-          <thead>
-            <th colspan="4" class="collapsing">{%trans "Saved address"%}</th>
-
-          </thead>
-          <tbody>
-            {%for key, value in dataTable%}
-              <tr {%if requestGET.id == value.id%} class="negative" {%endif%}>
-                <td class="collapsing txtC">
-                  {%if requestGET.id == value.id%} {%set editClass = ' fc-red'%} {%else%} {%set editClass = null %} {%endif%}
-                  {%if value.company%}
-                    <i class="sf-building fs16{{editClass}}"></i>
-
-                  {%else%}
-                    <i class="sf-pin fs16{{editClass}}"></i>
-                  {%endif%}
-
-                </td>
-
-                <td class="pA5">
-                  {%if value.title%}<div class="txtB">{{value.title}}</div>{%endif%}
-                  {%if value.firstname or value.lastname%}
-                  <div class="badge light">{{value.firstname}} {{value.lastname}}</div>
-                  {%endif%}
-                  {%if value.country%}
-                    <div class="badge primary">{{value.country_name}}</div>
-                    <div class="badge primary">{{value.province_name}}</div>
-                  {%endif%}
-
-                  {%if value.city%}
-                    <div class="badge info2">{{value.city_name}}</div>
-                  {%endif%}
-                  <div class="">{{value.address}}</div>
-                  {%if value.companyname%}
-                    <div class="badge primary">{{value.companyname}}</div>
-                  {%endif%}
-                </td>
-
-                <td>
-                  {%if value.postcode%}
-                    <div title='{%trans "Post code"%}'><i class="sf-broadcast"></i> {{value.postcode | fitNumber(false)}}</div>
-                  {%endif%}
-                  {%if value.phone%}
-                    <br>
-                    <div title='{%trans "Phone"%}'><i class="sf-phone"></i> {{value.phone | fitNumber(false)}}</div>
-                  {%endif%}
-                  {%if value.fax%}
-                    <br>
-                    <div title='{%trans "Fax"%}'><i class="sf-fax"></i> {{value.fax | fitNumber(false)}}</div>
-                  {%endif%}
-                </td>
-
-                <td class="collapsing txtL">
-                  <a class="" href="{{url.this}}?id={{value.id}}" title='{%trans "Edit"%}' ><i class="sf-pencil-square-o fs16"></i></a>
-                  <br>
-                  <a class="mT20" title='{%trans "Remove"%}' href="{{url.pwd}}" data-ajaxify data-method="post" data-data='{"id" : "{{value.id}}", "type": "remove" }' tabindex='-1'><i class="sf-trash fc-red"></i></a>
-
-                </td>
-              </tr>
-            {%endfor%}
-          </tbody>
-        </table>
-    </div>
-    {%endif%}
   </div>
 </form>
 {%endblock%}
@@ -126,10 +21,126 @@
 
 
 
+{%block bAddressAdd%}
+  <div class="cbox">
+    <h3 class="txtC">
+    {%if dataRow%}
+        {%trans "Edit address"%} <span class="txtB fc-blue">{{dataRow.title}}</span>
+    {%else%}
+      {%trans "Add new address"%}
+    {%endif%}
+    </h3>
+
+    {{block('iTitle')}}
+    <div class="f">
+      <div class="c pRa5">{{block('iFirstname')}}</div>
+      <div class="c">{{block('iLastname')}}</div>
+    </div>
+
+    {{block('iCountry')}}
+    {{block('iCity')}}
+    {{block('Neighborhood')}}
+    {{block('iAddress')}}
+    {{block('iPostcode')}}
+
+    <div class="f">
+      <div class="c pRa5">{{block('iPhone')}}</div>
+      <div class="c">{{block('iFax')}}</div>
+    </div>
+
+    {{block('iCompany')}}
+    <div data-response='company' {%if not dataRow.company%} data-response-hide {%endif%}>
+      <div class="f">
+        <div class="c pRa5">{{block('iCompanyname')}}</div>
+      </div>
+    </div>
+
+    {%if dataRow%}
+      {{block('isave')}}
+    {%else%}
+      {{block('iadd')}}
+    {%endif%}
+
+  </div>
+{%endblock%}
+
+
+
+{%block bAddressList%}
+  {%if dataTable%}
+  <div>
+      <table class="tbl1 v1 cbox fs12">
+        <thead>
+          <th colspan="4" class="collapsing">{%trans "Saved address"%}</th>
+
+        </thead>
+        <tbody>
+          {%for key, value in dataTable%}
+            <tr {%if requestGET.id == value.id%} class="negative" {%endif%}>
+              <td class="collapsing txtC">
+                {%if requestGET.id == value.id%} {%set editClass = ' fc-red'%} {%else%} {%set editClass = null %} {%endif%}
+                {%if value.company%}
+                  <i class="sf-building fs16{{editClass}}"></i>
+
+                {%else%}
+                  <i class="sf-pin fs16{{editClass}}"></i>
+                {%endif%}
+
+              </td>
+
+              <td class="pA5">
+                {%if value.title%}<div class="txtB">{{value.title}}</div>{%endif%}
+                {%if value.firstname or value.lastname%}
+                <div class="badge light">{{value.firstname}} {{value.lastname}}</div>
+                {%endif%}
+                {%if value.country%}
+                  <div class="badge primary">{{value.country_name}}</div>
+                  <div class="badge primary">{{value.province_name}}</div>
+                {%endif%}
+
+                {%if value.city%}
+                  <div class="badge info2">{{value.city_name}}</div>
+                {%endif%}
+                <div class="">{{value.address}}</div>
+                {%if value.companyname%}
+                  <div class="badge primary">{{value.companyname}}</div>
+                {%endif%}
+              </td>
+
+              <td>
+                {%if value.postcode%}
+                  <div title='{%trans "Post code"%}'><i class="sf-broadcast"></i> {{value.postcode | fitNumber(false)}}</div>
+                {%endif%}
+                {%if value.phone%}
+                  <br>
+                  <div title='{%trans "Phone"%}'><i class="sf-phone"></i> {{value.phone | fitNumber(false)}}</div>
+                {%endif%}
+                {%if value.fax%}
+                  <br>
+                  <div title='{%trans "Fax"%}'><i class="sf-fax"></i> {{value.fax | fitNumber(false)}}</div>
+                {%endif%}
+              </td>
+
+              <td class="collapsing txtL">
+                <a class="" href="{{url.this}}?id={{value.id}}" title='{%trans "Edit"%}' ><i class="sf-pencil-square-o fs16"></i></a>
+                <br>
+                <a class="mT20" title='{%trans "Remove"%}' href="{{url.pwd}}" data-ajaxify data-method="post" data-data='{"id" : "{{value.id}}", "type": "remove" }' tabindex='-1'><i class="sf-trash fc-red"></i></a>
+
+              </td>
+            </tr>
+          {%endfor%}
+        </tbody>
+      </table>
+  </div>
+  {%endif%}
+{%endblock%}
+
+
+
 {%block iFirstname%}
 <label for="firstname">{%trans "Firstname"%}</label>
 <div class="input">
-  <input type="text" name="firstname" id="firstname" placeholder='{%trans "Firstname"%}' value="{{dataRow.firstname}}" maxlength='40' minlength="1" pattern=".{1,40}" >
+  <input type="text" name="firstname" id="firstname" value="{{dataRow.firstname}}" maxlength='40' minlength="1" pattern=".{1,40}" >
 </div>
 {%endblock%}
 
@@ -138,7 +149,7 @@
 {%block iLastname%}
 <label for="lastname">{%trans "Lastname"%}</label>
 <div class="input">
-  <input type="text" name="lastname" id="lastname" placeholder='{%trans "Lastname"%}' value="{{dataRow.lastname}}" maxlength='40' minlength="1" pattern=".{1,40}"  >
+  <input type="text" name="lastname" id="lastname" value="{{dataRow.lastname}}" maxlength='40' minlength="1" pattern=".{1,40}"  >
 </div>
 {%endblock%}
 
@@ -148,7 +159,7 @@
 <div class="mB10">
   <label for='country'>{%trans "Country"%}</label>
   <div class="ui fluid search selection dropdown">
-    <input type="hidden" name="country" value="{%if dataRow.country%}{{dataRow.country}}{%else%}iran{%endif%}">
+    <input type="hidden" name="country" value="{%if dataRow.country%}{{dataRow.country}}{%elseif lang.current == 'fa'%}IR{%endif%}">
     <i class="dropdown icon"></i>
     <div class="default text">{%trans "Choose your country"%}</div>
     <div class="menu">
@@ -180,16 +191,16 @@
 {%block iPostcode%}
 <label for="postcode">{%trans "Post code"%}</label>
 <div class="input ltr">
-  <input type="text" name="postcode" id="postcode" placeholder='{%trans "Post code"%}' value="{{dataRow.postcode}}" maxlength='40' minlength="1" pattern=".{1,40}" >
+  <input type="text" name="postcode" id="postcode" value="{{dataRow.postcode}}" maxlength='40' minlength="1" pattern=".{1,40}" >
 </div>
 {%endblock%}
 
 
 
 {%block iTitle%}
-<label for="title">{%trans "Title"%}</label>
+<label for="title">{%trans "Title of address"%}</label>
 <div class="input">
-  <input type="text" name="title" id="title" placeholder='{%trans "Title"%}' value="{{dataRow.title}}" maxlength='40' minlength="1" pattern=".{1,40}" >
+  <input type="text" name="title" id="title" value="{{dataRow.title}}" maxlength='40' minlength="1">
 </div>
 {%endblock%}
 
@@ -198,7 +209,7 @@
 {%block iPhone%}
 <label for="iphone">{%trans "Phone"%}</label>
 <div class="input">
-  <input type="tel" name="phone" id="iphone" placeholder='{%trans "Phone"%}' value="{{dataRow.phone}}" maxlength='40' minlength="1" pattern=".{1,40}" >
+  <input type="tel" name="phone" id="iphone" value="{{dataRow.phone}}" pattern=".{1,20}">
 </div>
 {%endblock%}
 
@@ -206,26 +217,16 @@
 {%block iFax%}
 <label for="ifax">{%trans "Fax"%}</label>
 <div class="input">
-  <input type="tel" name="fax" id="ifax" placeholder='{%trans "Fax"%}' value="{{dataRow.fax}}" maxlength='40' minlength="1" pattern=".{1,40}" >
+  <input type="tel" name="fax" id="ifax" value="{{dataRow.fax}}" pattern=".{1,20}">
 </div>
 {%endblock%}
 
 
 
-
-
 {%block iAddress%}
 <label for="address">{%trans "Address"%} <small class="fc-red">{%trans "Require"%}</small></label>
-<textarea class="txt mB20 pB25" name="address" placeholder='{%trans "Address"%} *' required maxlength='300' rows="2">{{dataRow.address}}</textarea>
+<textarea class="txt mB10 pB25" name="address" required maxlength='300' rows="2">{{dataRow.address}}</textarea>
 {%endblock%}
-
-
-
-{%block iAddress2%}
-<label for="address2">{%trans "Address line 2"%}</label>
-<textarea class="txt mB20 pB25" name="address2" placeholder='{%trans "Address"%}' maxlength='300' rows="2">{{dataRow.address2}}</textarea>
-{%endblock%}
-
 
 
 {%block iCompany%}
@@ -241,18 +242,12 @@
 {%block iCompanyname%}
 <label for="companyname">{%trans "Company name"%}</label>
 <div class="input">
-  <input type="text" name="companyname" id="companyname" placeholder='{%trans "Company name"%}' value="{{dataRow.companyname}}" maxlength='40' minlength="1" pattern=".{1,40}" >
+  <input type="text" name="companyname" id="companyname" value="{{dataRow.companyname}}" maxlength='40' minlength="1" >
 </div>
 {%endblock%}
 
 
 
-{%block iJobtitle%}
-<label for="jobtitle">{%trans "Job title"%}</label>
-<div class="input">
-  <input type="text" name="jobtitle" id="jobtitle" placeholder='{%trans "Job title"%}' value="{{dataRow.jobtitle}}" maxlength='40' minlength="1" pattern=".{1,40}" >
-</div>
-{%endblock%}
 
 {%block iStatus%}
 <div class="mT10">
