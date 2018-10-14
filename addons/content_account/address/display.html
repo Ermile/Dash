@@ -33,11 +33,7 @@
     </h3>
 
     {{block('iTitle')}}
-    <div class="f">
-      <div class="c pRa5">{{block('iFirstname')}}</div>
-      <div class="c">{{block('iLastname')}}</div>
-    </div>
-
+    {{block('iName')}}
     {{block('iCountry')}}
     {{block('iCity')}}
     {{block('Neighborhood')}}
@@ -46,7 +42,7 @@
 
     <div class="f">
       <div class="c pRa5">{{block('iPhone')}}</div>
-      <div class="c">{{block('iFax')}}</div>
+      <div class="c">{{block('iMobile')}}</div>
     </div>
 
     {{block('iCompany')}}
@@ -144,7 +140,7 @@
 {%block iFirstname%}
 <label for="firstname">{%trans "Firstname"%}</label>
 <div class="input">
-  <input type="text" name="firstname" id="firstname" value="{{dataRow.firstname}}" maxlength='40' minlength="1" pattern=".{1,40}" >
+  <input type="text" name="firstname" id="firstname" value="{%if dataRow.firstname%}{{dataRow.firstname}}{%else%}{{user.firstname}}{%endif%}" maxlength='40' minlength="1">
 </div>
 {%endblock%}
 
@@ -153,7 +149,15 @@
 {%block iLastname%}
 <label for="lastname">{%trans "Lastname"%}</label>
 <div class="input">
-  <input type="text" name="lastname" id="lastname" value="{{dataRow.lastname}}" maxlength='40' minlength="1" pattern=".{1,40}"  >
+  <input type="text" name="lastname" id="lastname" value="{%if dataRow.lastname%}{{dataRow.lastname}}{%else%}{{user.lastname}}{%endif%}" maxlength='40' minlength="1" >
+</div>
+{%endblock%}
+
+
+{%block iName%}
+<label for="name">{%trans "Name"%}</label>
+<div class="input">
+  <input type="text" name="name" id="name" value="{%if dataRow.name%}{{dataRow.name}}{%else%}{{user.displayname}}{%endif%}" maxlength='40' minlength="1" placeholder='{%trans "Name of person in this address"%}'>
 </div>
 {%endblock%}
 
@@ -224,6 +228,15 @@
   <input type="tel" name="fax" id="ifax" value="{{dataRow.fax}}" pattern=".{1,20}">
 </div>
 {%endblock%}
+
+
+{%block iMobile%}
+<label for="iMobile">{%trans "Mobile"%}</label>
+<div class="input">
+  <input type="tel" name="mobile" id="iMobile" value="{%if dataRow.mobile%}{{dataRow.mobile}}{%else%}{{user.mobile}}{%endif%}" pattern=".{1,20}">
+</div>
+{%endblock%}
+
 
 
 
