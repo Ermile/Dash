@@ -26,6 +26,7 @@
     <h3 class="txtC">
     {%if dataRow%}
         {%trans "Edit address"%} <span class="txtB fc-blue">{{dataRow.title}}</span>
+        <a class="badge secondary" href="{{url.this}}">{%trans "Cancel"%}</a>
     {%else%}
       {%trans "Add new address"%}
     {%endif%}
@@ -56,7 +57,10 @@
     </div>
 
     {%if dataRow%}
-      {{block('isave')}}
+      <div class="f">
+        <div class="c pRa5">{{block('isave')}}</div>
+        <div class="cauto os">{{block('idelete')}}</div>
+      </div>
     {%else%}
       {{block('iadd')}}
     {%endif%}
@@ -264,9 +268,14 @@
 
 
 {%block iadd%}
-<button class="btn primary block mT20">{%trans "Add"%}</button>
+<button class="btn primary block mT20" cvalue="add">{%trans "Add"%}</button>
 {%endblock%}
 
 {%block isave%}
-<button class="btn primary block mT20">{%trans "Save"%}</button>
+<button class="btn primary block mT20" name="btn" value="add">{%trans "Save"%}</button>
 {%endblock%}
+
+{%block idelete%}
+<button class="btn danger outline block mT20" name="btn" value="delete">{%trans "Delete"%}</button>
+{%endblock%}
+
