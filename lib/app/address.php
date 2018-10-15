@@ -59,19 +59,13 @@ class address
 			return false;
 		}
 
-		$firstname = \dash\app::request('firstname');
-		if($firstname && mb_strlen($firstname) > 100)
+		$name = \dash\app::request('name');
+		if($name && mb_strlen($name) > 100)
 		{
-			\dash\notif::error(T_("Please set firstname less than 100 character"), 'firstname');
+			\dash\notif::error(T_("Please set name less than 100 character"), 'name');
 			return false;
 		}
 
-		$lastname = \dash\app::request('lastname');
-		if($lastname && mb_strlen($lastname) > 100)
-		{
-			\dash\notif::error(T_("Please set lastname less than 100 character"), 'lastname');
-			return false;
-		}
 
 		$isdefault = \dash\app::request('isdefault') ? 1 : null;
 
@@ -161,6 +155,13 @@ class address
 			return false;
 		}
 
+		$mobile = \dash\app::request('mobile');
+		if($mobile && !\dash\utility\filter::mobile($mobile))
+		{
+			\dash\notif::error(T_("Invalid mobile"), 'mobile');
+			return false;
+		}
+
 		$postcode = \dash\app::request('postcode');
 		if($postcode && mb_strlen($postcode) > 50)
 		{
@@ -192,10 +193,9 @@ class address
 		$favorite = \dash\app::request('favorite') ? 1 : null;
 
 		$args                = [];
-
 		$args['title']       = $title;
-		$args['firstname']   = $firstname;
-		$args['lastname']    = $lastname;
+		$args['name']        = $name;
+		$args['mobile']      = $mobile;
 		$args['isdefault']   = $isdefault;
 		$args['company']     = $company;
 		$args['companyname'] = $companyname;
@@ -225,6 +225,7 @@ class address
 	public static function ready($_data)
 	{
 		$result = [];
+		$result['location_string'] = [];
 		foreach ($_data as $key => $value)
 		{
 
@@ -245,17 +246,20 @@ class address
 				case 'country':
 					$result[$key] = $value;
 					$result['country_name'] = \dash\utility\location\countres::get_localname($value, true);
+					$result['location_string'][1] = $result['country_name'];
 					break;
 
 
 				case 'province':
 					$result[$key] = $value;
 					$result['province_name'] = \dash\utility\location\provinces::get_localname($value);
+					$result['location_string'][2] = $result['province_name'];
 					break;
 
 				case 'city':
 					$result[$key] = $value;
 					$result['city_name'] = \dash\utility\location\cites::get_localname($value);
+					$result['location_string'][3] = $result['city_name'];
 					break;
 
 				case 'map':
@@ -274,6 +278,9 @@ class address
 					break;
 			}
 		}
+		ksort($result['location_string']);
+		$result['location_string'] = array_filter($result['location_string']);
+		$result['location_string'] = implode(T_(","). " ", $result['location_string']);
 
 		return $result;
 	}
@@ -430,8 +437,8 @@ class address
 		}
 
 		if(!\dash\app::isset_request('title')) unset($args['title']);
-		if(!\dash\app::isset_request('firstname')) unset($args['firstname']);
-		if(!\dash\app::isset_request('lastname')) unset($args['lastname']);
+		if(!\dash\app::isset_request('name')) unset($args['name']);
+
 		if(!\dash\app::isset_request('isdefault')) unset($args['isdefault']);
 		if(!\dash\app::isset_request('company')) unset($args['company']);
 		if(!\dash\app::isset_request('companyname')) unset($args['companyname']);
@@ -447,6 +454,7 @@ class address
 		if(!\dash\app::isset_request('status')) unset($args['status']);
 		if(!\dash\app::isset_request('favorite')) unset($args['favorite']);
 		if(!\dash\app::isset_request('subdomain')) unset($args['subdomain']);
+		if(!\dash\app::isset_request('mobile')) unset($args['mobile']);
 
 		if(!empty($args))
 		{

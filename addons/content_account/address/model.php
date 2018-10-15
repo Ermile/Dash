@@ -16,15 +16,14 @@ class model
 
 		$post                = [];
 		$post['title']       = \dash\request::post('title');
-		$post['firstname']   = \dash\request::post('firstname');
-		$post['lastname']    = \dash\request::post('lastname');
+		$post['name']        = \dash\request::post('name');
 		$post['country']     = \dash\request::post('country');
 		$post['city']        = \dash\request::post('city');
 		$post['postcode']    = \dash\request::post('postcode');
 		$post['phone']       = \dash\request::post('phone');
 		$post['subdomain']   = null;
 		$post['province']    = null;
-		$post['fax']         = \dash\request::post('fax');
+		$post['mobile']      = \dash\request::post('mobile');
 		$post['address']     = \dash\request::post('address');
 		$post['address2']    = \dash\request::post('address2');
 		$post['company']     = \dash\request::post('company');

@@ -65,27 +65,26 @@
   {%if dataTable%}
     <table class="tbl1 v1 cbox fs12">
       <thead>
-        <th colspan="6" class="collapsing">{%trans "Saved address"%}</th>
+        <th colspan="7" class="collapsing">{%trans "Saved address"%}</th>
       </thead>
       <tbody>
       {%for key, value in dataTable%}
         <tr {%if requestGET.id == value.id%} class="negative" {%endif%}>
-          <td class="txtB">
+          <td class="collapsing pRa5">
             {%if value.company%}
               <i class="fs16 mRa5 sf-building"></i>
             {%else%}
               <i class="fs16 mRa5 sf-pin"></i>
             {%endif%}
 
-          <span>{{value.title}}</span>
           </td>
-          <td class="pRa10">{%if value.country%}<i class="flag {{value.country}}"></i>{%endif%}</td>
+          <td class="txtB pRa10">
+
+          <span >{{value.title}}</span>
+          </td>
+          <td class="pRa10">{%if value.country%}<i class="flag {{value.country | lower}}"></i>{%endif%}</td>
           <td class="pRa10">
-            <span title='{%trans "Country"%}'>{{value.country_name}}</span>{%trans ", "%}
-            {%if value.city%}
-            <span title='{%trans "Province"%}'>{{value.province_name}}</span>{%trans ", "%}
-            <span title='{%trans "City"%}' class="txtB">{{value.city_name}}</span>
-            {%endif%}
+            <span >{{value.location_string}}</span>
             <div>
               <span>{{value.address}}</span>
               {%if value.postcode%}
@@ -94,16 +93,16 @@
             </div>
 
           </td>
-          <td class="pRa10">{{value.firstname}} {{value.lastname}}</td>
-          <td>
+          <td class="pRa10">{{value.name}}</td>
+          <td class="collapsing pRa10">
             {%if value.phone%}
               <div title='{%trans "Phone"%}'><i class="sf-phone"></i> {{value.phone | fitNumber(false)}}</div>
             {%endif%}
             {%if value.mobile%}
-              <div title='{%trans "Mobile"%}' class="mT5"><i class="sf-mobile"></i> 1{{value.mobile | fitNumber('mobile')}}</div>
+              <div title='{%trans "Mobile"%}' class="mT5"><i class="sf-mobile"></i> {{value.mobile | fitNumber('mobile')}}</div>
             {%endif%}
           </td>
-          <td>
+          <td class="pRa10">
             <a class="badge light" href="{{url.this}}?id={{value.id}}"><i class="sf-pencil-square-o fs16"></i> {%trans "Edit"%}</a>
           </td>
         </tr>
@@ -127,7 +126,7 @@
 {%block iLastname%}
 <label for="lastname">{%trans "Lastname"%}</label>
 <div class="input">
-  <input type="text" name="lastname" id="lastname" value="{%if dataRow.lastname%}{{dataRow.lastname}}{%else%}{{user.lastname}}{%endif%}" maxlength='40' minlength="1" >
+  <input type="text" name="lastname" id="lastname" value="{%if dataRow.lastname%}{{dataRow.lastname}}{%elseif not dataRow%}{{user.lastname}}{%endif%}" maxlength='40' minlength="1" >
 </div>
 {%endblock%}
 
@@ -135,7 +134,7 @@
 {%block iName%}
 <label for="name">{%trans "Name"%}</label>
 <div class="input">
-  <input type="text" name="name" id="name" value="{%if dataRow.name%}{{dataRow.name}}{%else%}{{user.displayname}}{%endif%}" maxlength='40' minlength="1" placeholder='{%trans "Name of person in this address"%}'>
+  <input type="text" name="name" id="name" value="{%if dataRow.name%}{{dataRow.name}}{%elseif not dataRow%}{{user.displayname}}{%endif%}" maxlength='40' minlength="1" placeholder='{%trans "Name of person in this address"%}'>
 </div>
 {%endblock%}
 
@@ -162,6 +161,8 @@
 
 
 {%block iCity%}
+<div data-response='country' data-response-where='IR' {%if dataRow.country == 'IR' or (not dataRow and lang.current == 'fa') %}{%else%}data-response-hide{%endif%}>
+
 <label for='city'>{%trans "City"%}</label>
 <select name="city" class="ui dropdown select search mB10" id="city">
   <option value="" readonly>{%trans "Select city"%}</option>
@@ -169,6 +170,7 @@
     <option value="{{key}}" {% if dataRow.city == key %} selected {%endif%}>{{value}}</option>
   {%endfor%}
 </select>
+</div>
 {%endblock%}
 
 
@@ -211,7 +213,7 @@
 {%block iMobile%}
 <label for="iMobile">{%trans "Mobile"%}</label>
 <div class="input">
-  <input type="tel" name="mobile" id="iMobile" value="{%if dataRow.mobile%}{{dataRow.mobile}}{%else%}{{user.mobile}}{%endif%}" pattern=".{1,20}">
+  <input type="tel" name="mobile" id="iMobile" value="{%if dataRow.mobile%}{{dataRow.mobile}}{%elseif not dataRow%}{{user.mobile}}{%endif%}" pattern=".{1,20}">
 </div>
 {%endblock%}
 
