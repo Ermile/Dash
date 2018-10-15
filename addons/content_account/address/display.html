@@ -46,11 +46,6 @@
     </div>
 
     {{block('iCompany')}}
-    <div data-response='company' {%if not dataRow.company%} data-response-hide {%endif%}>
-      <div class="f">
-        <div class="c pRa5">{{block('iCompanyname')}}</div>
-      </div>
-    </div>
 
     {%if dataRow%}
       <div class="f">
@@ -68,70 +63,56 @@
 
 {%block bAddressList%}
   {%if dataTable%}
-  <div>
-      <table class="tbl1 v1 cbox fs12">
-        <thead>
-          <th colspan="4" class="collapsing">{%trans "Saved address"%}</th>
+    <table class="tbl1 v1 cbox fs12">
+      <thead>
+        <th colspan="6" class="collapsing">{%trans "Saved address"%}</th>
+      </thead>
+      <tbody>
+      {%for key, value in dataTable%}
+        <tr {%if requestGET.id == value.id%} class="negative" {%endif%}>
+          <td class="txtB">
+            {%if value.company%}
+              <i class="fs16 mRa5 sf-building"></i>
+            {%else%}
+              <i class="fs16 mRa5 sf-pin"></i>
+            {%endif%}
 
-        </thead>
-        <tbody>
-          {%for key, value in dataTable%}
-            <tr {%if requestGET.id == value.id%} class="negative" {%endif%}>
-              <td class="collapsing txtC">
-                {%if requestGET.id == value.id%} {%set editClass = ' fc-red'%} {%else%} {%set editClass = null %} {%endif%}
-                {%if value.company%}
-                  <i class="sf-building fs16{{editClass}}"></i>
+          <span>{{value.title}}</span>
+          </td>
+          <td class="pRa10">{%if value.country%}<i class="flag {{value.country}}"></i>{%endif%}</td>
+          <td class="pRa10">
+            <span title='{%trans "Country"%}'>{{value.country_name}}</span>{%trans ", "%}
+            {%if value.city%}
+            <span title='{%trans "Province"%}'>{{value.province_name}}</span>{%trans ", "%}
+            <span title='{%trans "City"%}' class="txtB">{{value.city_name}}</span>
+            {%endif%}
+            <div>
+              <span>{{value.address}}</span>
+              {%if value.postcode%}
+              <span title='{%trans "Postal code"%}' class="compact">{{value.postcode | fitNumber(false)}}<i class="sf-crosshairs mRL5"></i></span>
+              {%endif%}
+            </div>
+            {%if value.companyname%}
+              <div class="badge primary mT10" title='{%trans "Company name"%}'>{{value.companyname}}</div>
+            {%endif%}
 
-                {%else%}
-                  <i class="sf-pin fs16{{editClass}}"></i>
-                {%endif%}
-
-              </td>
-
-              <td class="pA5">
-                {%if value.title%}<div class="txtB">{{value.title}}</div>{%endif%}
-                {%if value.firstname or value.lastname%}
-                <div class="badge light">{{value.firstname}} {{value.lastname}}</div>
-                {%endif%}
-                {%if value.country%}
-                  <div class="badge primary">{{value.country_name}}</div>
-                  <div class="badge primary">{{value.province_name}}</div>
-                {%endif%}
-
-                {%if value.city%}
-                  <div class="badge info2">{{value.city_name}}</div>
-                {%endif%}
-                <div class="">{{value.address}}</div>
-                {%if value.companyname%}
-                  <div class="badge primary">{{value.companyname}}</div>
-                {%endif%}
-              </td>
-
-              <td>
-                {%if value.postcode%}
-                  <div title='{%trans "Post code"%}'><i class="sf-broadcast"></i> {{value.postcode | fitNumber(false)}}</div>
-                {%endif%}
-                {%if value.phone%}
-                  <br>
-                  <div title='{%trans "Phone"%}'><i class="sf-phone"></i> {{value.phone | fitNumber(false)}}</div>
-                {%endif%}
-                {%if value.fax%}
-                  <br>
-                  <div title='{%trans "Fax"%}'><i class="sf-fax"></i> {{value.fax | fitNumber(false)}}</div>
-                {%endif%}
-              </td>
-
-              <td class="collapsing txtL">
-                <a class="" href="{{url.this}}?id={{value.id}}" title='{%trans "Edit"%}' ><i class="sf-pencil-square-o fs16"></i></a>
-                <br>
-                <a class="mT20" title='{%trans "Remove"%}' href="{{url.pwd}}" data-ajaxify data-method="post" data-data='{"id" : "{{value.id}}", "type": "remove" }' tabindex='-1'><i class="sf-trash fc-red"></i></a>
-
-              </td>
-            </tr>
-          {%endfor%}
-        </tbody>
-      </table>
-  </div>
+          </td>
+          <td class="pRa10">{{value.firstname}} {{value.lastname}}</td>
+          <td>
+            {%if value.phone%}
+              <div title='{%trans "Phone"%}'><i class="sf-phone"></i> {{value.phone | fitNumber(false)}}</div>
+            {%endif%}
+            {%if value.mobile%}
+              <div title='{%trans "Mobile"%}' class="mT5"><i class="sf-mobile"></i> 1{{value.mobile | fitNumber('mobile')}}</div>
+            {%endif%}
+          </td>
+          <td>
+            <a class="badge light" href="{{url.this}}?id={{value.id}}"><i class="sf-pencil-square-o fs16"></i> {%trans "Edit"%}</a>
+          </td>
+        </tr>
+      {%endfor%}
+      </tbody>
+    </table>
   {%endif%}
 {%endblock%}
 
