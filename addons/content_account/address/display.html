@@ -267,6 +267,7 @@
 {%endblock%}
 
 {%block idelete%}
-<button class="btn danger outline block mT20" name="btn" value="delete">{%trans "Delete"%}</button>
+<input type="hidden" name="id" value="{{dataRow.id}}">
+<button class="btn danger outline block mT20" name="btnremove" value="delete">{%trans "Delete"%}</button>
 {%endblock%}
 

@@ -7,10 +7,10 @@ class model
 
 	public static function post()
 	{
-		if(\dash\request::post('type') === 'remove' && \dash\request::post('id'))
+		if(\dash\request::post('btnremove') === 'delete' && \dash\request::post('id'))
 		{
 			\dash\app\address::remove(\dash\request::post('id'));
-			\dash\redirect::pwd();
+			\dash\redirect::to(\dash\url::this());
 			return;
 		}
 
@@ -22,6 +22,7 @@ class model
 		$post['city']        = \dash\request::post('city');
 		$post['postcode']    = \dash\request::post('postcode');
 		$post['phone']       = \dash\request::post('phone');
+		$post['subdomain']   = null;
 		$post['province']    = null;
 		$post['fax']         = \dash\request::post('fax');
 		$post['address']     = \dash\request::post('address');
