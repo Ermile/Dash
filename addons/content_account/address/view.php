@@ -7,8 +7,9 @@ class view
 
 	public static function config()
 	{
-		\dash\data::page_title(T_('Edit your profile'));
-		\dash\data::page_desc(T_('You can edit your profile.'));
+		\dash\data::page_title(T_('Addresses'));
+		\dash\data::page_desc(T_('Manage your addresses.'));
+		\dash\data::page_pictogram('pin');
 
 		\dash\data::badge_link(\dash\url::kingdom(). '/a');
 		\dash\data::badge_text(T_('Back to dashbaord'));
