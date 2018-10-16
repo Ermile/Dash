@@ -533,16 +533,23 @@ class enter
 		$is_mobile = false;
 		$is_email  = false;
 
+		$mobile    = null;
+		$email     = null;
 
 		if($_mobile_or_email)
 		{
 			$mobile = $_mobile_or_email;
 			$email  = $_mobile_or_email;
 		}
-		else
+		elseif(self::user_data('mobile') || self::user_data('email'))
 		{
 			$mobile = self::user_data('mobile');
 			$email  = self::user_data('email');
+		}
+		elseif(\dash\user::detail('mobile') || \dash\user::detail('email'))
+		{
+			$mobile = \dash\user::detail('mobile');
+			$email  = \dash\user::detail('email');
 		}
 
 		if(\dash\utility\filter::mobile($mobile))
