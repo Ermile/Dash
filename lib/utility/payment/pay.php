@@ -34,22 +34,19 @@ class pay
             }
         }
 
-
         if(is_numeric($_amount) && $_amount > 0 && $_amount == round($_amount, 0))
         {
             // no problem to continue!
         }
         else
         {
-            \dash\db\logs::set('pay:irkish:amount:invalid', $_user_id);
             \dash\notif::error(T_("Invalid amount"));
             return false;
         }
 
         $_bank = mb_strtolower($_bank);
-        // if(method_exists("\\dash\\utility\\payment\\pay", $_bank))
 
-        if(is_callable(["\\dash\\utility\\payment\\pay\\". $_bank, $_bank]))
+        if(is_callable(["\\dash\\utility\\payment\\pay\\$_bank", $_bank]))
         {
             \dash\session::set('payment_request_start', true);
             \dash\session::set('payment_verify_amount', null);
@@ -68,22 +65,16 @@ class pay
     /**
      * Gets the callbck url.
      * for example for parsian payment redirect
-     * http://tejarak.com/fa/enter/payment/verify/parsian
      *
      * @param      <type>  $_payment  The payment
      */
     public static function get_callbck_url($_payment)
     {
-        $host = \dash\url::base();
-        $callback_url =  $host;
-        if(\dash\url::lang())
-        {
-            $callback_url .= '/'.\dash\url::lang();
-        }
+        $callback_url =  \dash\url::base();
 
         if($_payment === 'redirect_page')
         {
-            $callback_url .= '/enter/autoredirect';
+            $callback_url .= '/hook/autoredirect';
         }
         else
         {

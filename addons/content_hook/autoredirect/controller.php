@@ -1,5 +1,5 @@
 <?php
-namespace content_enter\autoredirect;
+namespace content_hook\autoredirect;
 
 
 class controller
