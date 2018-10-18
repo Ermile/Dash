@@ -3,19 +3,24 @@
 
 
 {%block body%}
-	<div class="text">
-	 <p>{{autoredirect.title}}</p>
+<div class="f justify-center align-center ">
+	<div class="c3">
+		<div class="text">
+		 <p>{{autoredirect.title}}</p>
+		</div>
+
+		<form method="{{autoredirect.method}}" data-action action="{{autoredirect.url}}" id='autoredirectform'>
+		{%for key, value in autoredirect.args%}
+			<input type="hidden" name="{{key}}" value="{{value}}">
+		{%endfor%}
+
+			<button type="submit" class="btn block primary mT25">
+				{%if autoredirect.button%}{{autoredirect.button}}{%else%}{%trans "Go"%}{%endif%}
+			</button>
+		</form>
 	</div>
 
-	<form method="{{autoredirect.method}}" data-action action="{{autoredirect.url}}" id='autoredirectform'>
-	{%for key, value in autoredirect.args%}
-		<input type="hidden" name="{{key}}" value="{{value}}">
-	{%endfor%}
-
-		<button type="submit" class="btn block primary mT25">
-			{%if autoredirect.button%}{{autoredirect.button}}{%else%}{%trans "Go"%}{%endif%}
-		</button>
-	</form>
+</div>
 
 <script>
 	document.getElementById('autoredirectform').submit();
