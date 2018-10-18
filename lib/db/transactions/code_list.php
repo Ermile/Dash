@@ -10,16 +10,17 @@ trait code_list
 	 */
 	public static function config()
 	{
-		$list    = [];
-		$list[1] = "payment:parsian";
-		$list[2] = "payment:zarinpal";
-		$list[3] = "manually";
-		$list[4] = "repair";
-		$list[5] = "invoice";
-		$list[6] = "payment:irkish";
-		$list[7] = "send:sms";
-		$list[8] = "payment:payir";
-		$list[9] = "payment:asanpardakht";
+		$list     = [];
+		$list[1]  = "payment:parsian";
+		$list[2]  = "payment:zarinpal";
+		$list[3]  = "manually";
+		$list[4]  = "repair";
+		$list[5]  = "invoice";
+		$list[6]  = "payment:irkish";
+		$list[7]  = "send:sms";
+		$list[8]  = "payment:payir";
+		$list[9]  = "payment:asanpardakht";
+		$list[10] = "payment:mellat";
 
 		if($option_list = \dash\option::config('transactions_code'))
 		{

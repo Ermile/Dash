@@ -365,6 +365,11 @@ self::$config['favicon']['version']                    = 1;
 // self::$config['asanpardakht']['MerchantIP']            = null;
 // self::$config['asanpardakht']['MerchantName']          = null;
 
+// self::$config['mellat']['status']       = false;
+// self::$config['mellat']['TerminalId']   = null;
+// self::$config['mellat']['UserName']     = null;
+// self::$config['mellat']['UserPassword'] = null;
+
 
 
 ?>
