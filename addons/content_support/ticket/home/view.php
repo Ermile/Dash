@@ -180,6 +180,7 @@ class view
 		{
 			return;
 		}
+
 		$args               = [];
 		$args_tag           = [];
 
@@ -213,6 +214,17 @@ class view
 		}
 
 		$result               = [];
+
+		$cach_key = json_encode($args). '_';
+		$cach_key .= \dash\data::accessMode();
+		$cach_key = md5($cach_key);
+		$get_cach = \dash\session::get($cach_key, 'support_sidebar');
+
+		if($get_cach)
+		{
+			\dash\data::sidebarDetail($get_cach);
+			return $get_cach;
+		}
 
 		$args['comments.status'] = ["NOT IN ", "('deleted')"];
 		if(\dash\data::accessMode() === 'mine')
@@ -255,6 +267,10 @@ class view
 		$tags = \dash\db\comments::ticket_tag($args_tag);
 		$result['tags'] = array_map(['\dash\app\term', 'ready'], $tags);
 
+		// remove all old session sidebar to create new
+		\dash\session::clean_cat('support_sidebar');
+
+		\dash\session::set($cach_key, $result, 'support_sidebar', (60 * 2));
 
 		\dash\data::sidebarDetail($result);
 		return $result;
