@@ -2,7 +2,7 @@
 namespace dash\utility\payment\pay;
 
 
-trait irkish
+class irkish
 {
 
 
@@ -19,7 +19,7 @@ trait irkish
     {
         $log_meta =
         [
-            'data' => self::$log_data,
+            'data' => \dash\utility\payment\pay::$log_data,
             'meta' =>
             [
                 'input'   => func_get_args(),
@@ -55,7 +55,7 @@ trait irkish
         }
         else
         {
-            $irkish['revertURL'] = self::get_callbck_url('irkish');
+            $irkish['revertURL'] = \dash\utility\payment\pay::get_callbck_url('irkish');
         }
 
         // change rial to toman
@@ -84,7 +84,7 @@ trait irkish
         //START TRANSACTION BY CONDITION REQUEST
         $transaction_id = \dash\utility\payment\transactions::start($transaction_start);
 
-        $log_meta['data'] = self::$log_data = $transaction_id;
+        $log_meta['data'] = \dash\utility\payment\pay::$log_data = $transaction_id;
 
         if(!\dash\engine\process::status() || !$transaction_id)
         {
@@ -103,7 +103,7 @@ trait irkish
 
 
         \dash\utility\payment\payment\irkish::$user_id  = $_user_id;
-        \dash\utility\payment\payment\irkish::$log_data = self::$log_data;
+        \dash\utility\payment\payment\irkish::$log_data = \dash\utility\payment\pay::$log_data;
 
         $token = \dash\utility\payment\payment\irkish::pay($irkish);
 
@@ -124,7 +124,7 @@ trait irkish
             \dash\session::set('redirect_page_title', T_("Redirect to iran kish payment"));
             \dash\session::set('redirect_page_button', T_("Redirect"));
             \dash\notif::direct();
-            \dash\redirect::to(self::get_callbck_url('redirect_page'));
+            \dash\redirect::to(\dash\utility\payment\pay::get_callbck_url('redirect_page'));
             return true;
         }
         else

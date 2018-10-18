@@ -2,7 +2,7 @@
 namespace dash\utility\payment\verify;
 
 
-trait irkish
+class irkish
 {
 
     /**
@@ -12,11 +12,11 @@ trait irkish
      */
     public static function irkish($_args)
     {
-        self::config();
+        \dash\utility\payment\verify::config();
 
         $log_meta =
         [
-            'data' => self::$log_data,
+            'data' => \dash\utility\payment\verify::$log_data,
             'meta' =>
             [
                 'input'   => func_get_args(),
@@ -26,16 +26,16 @@ trait irkish
 
         if(!\dash\option::config('irkish', 'status'))
         {
-            \dash\db\logs::set('pay:irkish:status:false', self::$user_id, $log_meta);
+            \dash\db\logs::set('pay:irkish:status:false', \dash\utility\payment\verify::$user_id, $log_meta);
             \dash\notif::error(T_("The irkish payment on this service is locked"));
-            return self::turn_back();
+            return \dash\utility\payment\verify::turn_back();
         }
 
         if(!\dash\option::config('irkish', 'merchantId'))
         {
-            \dash\db\logs::set('pay:irkish:merchantId:not:set', self::$user_id, $log_meta);
+            \dash\db\logs::set('pay:irkish:merchantId:not:set', \dash\utility\payment\verify::$user_id, $log_meta);
             \dash\notif::error(T_("The irkish payment merchantId not set"));
-            return self::turn_back();
+            return \dash\utility\payment\verify::turn_back();
         }
 
         $token         = isset($_REQUEST['token'])          ? (string) $_REQUEST['token']           : null;
@@ -49,16 +49,16 @@ trait irkish
 
         if(!$token)
         {
-            \dash\db\logs::set('pay:irkish:token:verify:not:found', self::$user_id, $log_meta);
+            \dash\db\logs::set('pay:irkish:token:verify:not:found', \dash\utility\payment\verify::$user_id, $log_meta);
             \dash\notif::error(T_("The irkish payment token not set"));
-            return self::turn_back();
+            return \dash\utility\payment\verify::turn_back();
         }
 
         if(!$resultCode)
         {
-            \dash\db\logs::set('pay:irkish:resultCode:verify:not:found', self::$user_id, $log_meta);
+            \dash\db\logs::set('pay:irkish:resultCode:verify:not:found', \dash\utility\payment\verify::$user_id, $log_meta);
             \dash\notif::error(T_("The irkish payment resultCode not set"));
-            return self::turn_back();
+            return \dash\utility\payment\verify::turn_back();
         }
 
         if(isset($_SESSION['amount']['irkish'][$token]['transaction_id']))
@@ -67,12 +67,12 @@ trait irkish
         }
         else
         {
-            \dash\db\logs::set('pay:irkish:SESSION:transaction_id:not:found', self::$user_id, $log_meta);
+            \dash\db\logs::set('pay:irkish:SESSION:transaction_id:not:found', \dash\utility\payment\verify::$user_id, $log_meta);
             \dash\notif::error(T_("Your session is lost! We can not find your transaction"));
-            return self::turn_back();
+            return \dash\utility\payment\verify::turn_back();
         }
 
-        $log_meta['data'] = self::$log_data = $transaction_id;
+        $log_meta['data'] = \dash\utility\payment\verify::$log_data = $transaction_id;
 
         $irkish                    = [];
         $irkish['merchantId']      = \dash\option::config('irkish', 'merchantId');
@@ -87,16 +87,16 @@ trait irkish
         }
         else
         {
-            \dash\db\logs::set('pay:irkish:SESSION:amount:not:found', self::$user_id, $log_meta);
+            \dash\db\logs::set('pay:irkish:SESSION:amount:not:found', \dash\utility\payment\verify::$user_id, $log_meta);
             \dash\notif::error(T_("Your session is lost! We can not find amount"));
-            return self::turn_back();
+            return \dash\utility\payment\verify::turn_back();
         }
 
         if($amount_SESSION != $amount)
         {
-            \dash\db\logs::set('pay:irkish:amount_SESSION:amount:is:not:equals', self::$user_id, $log_meta);
+            \dash\db\logs::set('pay:irkish:amount_SESSION:amount:is:not:equals', \dash\utility\payment\verify::$user_id, $log_meta);
             \dash\notif::error(T_("Your session is lost! We can not find amount"));
-            return self::turn_back();
+            return \dash\utility\payment\verify::turn_back();
         }
 
         $update =
@@ -108,15 +108,15 @@ trait irkish
 
         \dash\utility\payment\transactions::update($update, $transaction_id);
 
-        \dash\db\logs::set('pay:irkish:pending:request', self::$user_id, $log_meta);
+        \dash\db\logs::set('pay:irkish:pending:request', \dash\utility\payment\verify::$user_id, $log_meta);
 
         // $msg = \dash\utility\payment\payment\irkish::msg($resultCode);
 
         if(intval($resultCode) === 100)
         {
-            \dash\utility\payment\payment\irkish::$user_id = self::$user_id;
+            \dash\utility\payment\payment\irkish::$user_id = \dash\utility\payment\verify::$user_id;
 
-            \dash\utility\payment\payment\irkish::$log_data = self::$log_data;
+            \dash\utility\payment\payment\irkish::$log_data = \dash\utility\payment\verify::$log_data;
 
             $is_ok = \dash\utility\payment\payment\irkish::verify($irkish);
 
@@ -138,14 +138,14 @@ trait irkish
 
                 \dash\utility\payment\transactions::calc_budget($transaction_id, $amount_SESSION / 10, 0, $update);
 
-                \dash\db\logs::set('pay:irkish:ok:request', self::$user_id, $log_meta);
+                \dash\db\logs::set('pay:irkish:ok:request', \dash\utility\payment\verify::$user_id, $log_meta);
 
                 \dash\session::set('payment_verify_status', 'ok');
                 \dash\session::set('payment_verify_amount', $amount_SESSION / 10);
 
                 unset($_SESSION['amount']['irkish'][$token]);
 
-                return self::turn_back($transaction_id);
+                return \dash\utility\payment\verify::turn_back($transaction_id);
             }
             else
             {
@@ -159,8 +159,8 @@ trait irkish
                 \dash\session::set('payment_verify_status', 'verify_error');
 
                 \dash\utility\payment\transactions::update($update, $transaction_id);
-                \dash\db\logs::set('pay:irkish:verify_error:request', self::$user_id, $log_meta);
-                return self::turn_back($transaction_id);
+                \dash\db\logs::set('pay:irkish:verify_error:request', \dash\utility\payment\verify::$user_id, $log_meta);
+                return \dash\utility\payment\verify::turn_back($transaction_id);
             }
         }
         else
@@ -175,8 +175,8 @@ trait irkish
             \dash\session::set('payment_verify_status', 'error');
 
             \dash\utility\payment\transactions::update($update, $transaction_id);
-            \dash\db\logs::set('pay:irkish:error:request', self::$user_id, $log_meta);
-            return self::turn_back($transaction_id);
+            \dash\db\logs::set('pay:irkish:error:request', \dash\utility\payment\verify::$user_id, $log_meta);
+            return \dash\utility\payment\verify::turn_back($transaction_id);
         }
     }
 }

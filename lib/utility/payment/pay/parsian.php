@@ -2,7 +2,7 @@
 namespace dash\utility\payment\pay;
 
 
-trait parsian
+class parsian
 {
 
 
@@ -19,7 +19,7 @@ trait parsian
     {
         $log_meta =
         [
-            'data' => self::$log_data,
+            'data' => \dash\utility\payment\pay::$log_data,
             'meta' =>
             [
                 'input'   => func_get_args(),
@@ -51,7 +51,7 @@ trait parsian
         }
         else
         {
-            $parsian['CallBackUrl'] = self::get_callbck_url('parsian');
+            $parsian['CallBackUrl'] = \dash\utility\payment\pay::get_callbck_url('parsian');
         }
 
         // change rial to toman
@@ -80,7 +80,7 @@ trait parsian
         //START TRANSACTION BY CONDITION REQUEST
         $transaction_id = \dash\utility\payment\transactions::start($transaction_start);
 
-        $log_meta['data'] = self::$log_data = $transaction_id;
+        $log_meta['data'] = \dash\utility\payment\pay::$log_data = $transaction_id;
 
         if(!\dash\engine\process::status() || !$transaction_id)
         {
@@ -96,7 +96,7 @@ trait parsian
         $parsian['OrderId'] = $transaction_id;
 
         \dash\utility\payment\payment\parsian::$user_id = $_user_id;
-        \dash\utility\payment\payment\parsian::$log_data = self::$log_data;
+        \dash\utility\payment\payment\parsian::$log_data = \dash\utility\payment\pay::$log_data;
 
         $redirect = \dash\utility\payment\payment\parsian::pay($parsian);
 

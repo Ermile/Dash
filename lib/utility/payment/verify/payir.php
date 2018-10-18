@@ -2,7 +2,7 @@
 namespace dash\utility\payment\verify;
 
 
-trait payir
+class payir
 {
 
     /**
@@ -12,11 +12,11 @@ trait payir
      */
     public static function payir($_args)
     {
-        self::config();
+        \dash\utility\payment\verify::config();
 
         $log_meta =
         [
-            'data' => self::$log_data,
+            'data' => \dash\utility\payment\verify::$log_data,
             'meta' =>
             [
                 'input'   => func_get_args(),
@@ -26,16 +26,16 @@ trait payir
 
         if(!\dash\option::config('payir', 'status'))
         {
-            \dash\db\logs::set('pay:payir:status:false', self::$user_id, $log_meta);
+            \dash\db\logs::set('pay:payir:status:false', \dash\utility\payment\verify::$user_id, $log_meta);
             \dash\notif::error(T_("The payir payment on this service is locked"));
-            return self::turn_back();
+            return \dash\utility\payment\verify::turn_back();
         }
 
         if(!\dash\option::config('payir', 'api'))
         {
-            \dash\db\logs::set('pay:payir:api:not:set', self::$user_id, $log_meta);
+            \dash\db\logs::set('pay:payir:api:not:set', \dash\utility\payment\verify::$user_id, $log_meta);
             \dash\notif::error(T_("The payir payment api not set"));
-            return self::turn_back();
+            return \dash\utility\payment\verify::turn_back();
         }
 
         $transId      = isset($_REQUEST['transId'])        ? (string) $_REQUEST['transId']         : null;
@@ -48,9 +48,9 @@ trait payir
 
         if(!$transId)
         {
-            \dash\db\logs::set('pay:payir:transId:verify:not:found', self::$user_id, $log_meta);
+            \dash\db\logs::set('pay:payir:transId:verify:not:found', \dash\utility\payment\verify::$user_id, $log_meta);
             \dash\notif::error(T_("The payir payment transId not set"));
-            return self::turn_back();
+            return \dash\utility\payment\verify::turn_back();
         }
 
         if(isset($_SESSION['amount']['payir'][$transId]['transaction_id']))
@@ -59,12 +59,12 @@ trait payir
         }
         else
         {
-            \dash\db\logs::set('pay:payir:SESSION:transaction_id:not:found', self::$user_id, $log_meta);
+            \dash\db\logs::set('pay:payir:SESSION:transaction_id:not:found', \dash\utility\payment\verify::$user_id, $log_meta);
             \dash\notif::error(T_("Your session is lost! We can not find your transaction"));
-            return self::turn_back();
+            return \dash\utility\payment\verify::turn_back();
         }
 
-        $log_meta['data'] = self::$log_data = $transaction_id;
+        $log_meta['data'] = \dash\utility\payment\verify::$log_data = $transaction_id;
 
         $payir            = [];
         $payir['api']     = \dash\option::config('payir', 'api');
@@ -76,9 +76,9 @@ trait payir
         }
         else
         {
-            \dash\db\logs::set('pay:payir:SESSION:amount:not:found', self::$user_id, $log_meta);
+            \dash\db\logs::set('pay:payir:SESSION:amount:not:found', \dash\utility\payment\verify::$user_id, $log_meta);
             \dash\notif::error(T_("Your session is lost! We can not find amount"));
-            return self::turn_back();
+            return \dash\utility\payment\verify::turn_back();
         }
 
         $update =
@@ -90,15 +90,15 @@ trait payir
 
         \dash\utility\payment\transactions::update($update, $transaction_id);
 
-        \dash\db\logs::set('pay:payir:pending:request', self::$user_id, $log_meta);
+        \dash\db\logs::set('pay:payir:pending:request', \dash\utility\payment\verify::$user_id, $log_meta);
 
         // $msg = \dash\utility\payment\payment\payir::msg($status);
 
         if(intval($status) === 1)
         {
-            \dash\utility\payment\payment\payir::$user_id = self::$user_id;
+            \dash\utility\payment\payment\payir::$user_id = \dash\utility\payment\verify::$user_id;
 
-            \dash\utility\payment\payment\payir::$log_data = self::$log_data;
+            \dash\utility\payment\payment\payir::$log_data = \dash\utility\payment\verify::$log_data;
 
             $is_ok = \dash\utility\payment\payment\payir::verify($payir);
 
@@ -122,20 +122,20 @@ trait payir
 
                     \dash\utility\payment\transactions::calc_budget($transaction_id, $amount_SESSION / 10, 0, $update);
 
-                    \dash\db\logs::set('pay:payir:ok:request', self::$user_id, $log_meta);
+                    \dash\db\logs::set('pay:payir:ok:request', \dash\utility\payment\verify::$user_id, $log_meta);
 
                     \dash\session::set('payment_verify_status', 'ok');
                     \dash\session::set('payment_verify_amount', $amount_SESSION / 10);
 
                     unset($_SESSION['amount']['payir'][$transId]);
 
-                    return self::turn_back($transaction_id);
+                    return \dash\utility\payment\verify::turn_back($transaction_id);
                 }
                 else
                 {
-                    \dash\db\logs::set('pay:payir:SESSION:amount:not:found', self::$user_id, $log_meta);
+                    \dash\db\logs::set('pay:payir:SESSION:amount:not:found', \dash\utility\payment\verify::$user_id, $log_meta);
                     \dash\notif::error(T_("Your session is lost! We can not find amount"));
-                    return self::turn_back();
+                    return \dash\utility\payment\verify::turn_back();
                 }
             }
             else
@@ -150,8 +150,8 @@ trait payir
                 \dash\session::set('payment_verify_status', 'verify_error');
 
                 \dash\utility\payment\transactions::update($update, $transaction_id);
-                \dash\db\logs::set('pay:payir:verify_error:request', self::$user_id, $log_meta);
-                return self::turn_back($transaction_id);
+                \dash\db\logs::set('pay:payir:verify_error:request', \dash\utility\payment\verify::$user_id, $log_meta);
+                return \dash\utility\payment\verify::turn_back($transaction_id);
 
             }
         }
@@ -167,8 +167,8 @@ trait payir
             \dash\session::set('payment_verify_status', 'error');
 
             \dash\utility\payment\transactions::update($update, $transaction_id);
-            \dash\db\logs::set('pay:payir:error:request', self::$user_id, $log_meta);
-            return self::turn_back($transaction_id);
+            \dash\db\logs::set('pay:payir:error:request', \dash\utility\payment\verify::$user_id, $log_meta);
+            return \dash\utility\payment\verify::turn_back($transaction_id);
         }
     }
 }

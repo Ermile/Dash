@@ -2,7 +2,7 @@
 namespace dash\utility\payment\verify;
 
 
-trait asanpardakht
+class asanpardakht
 {
 
     /**
@@ -12,10 +12,10 @@ trait asanpardakht
      */
     public static function asanpardakht($_args)
     {
-        self::config();
+        \dash\utility\payment\verify::config();
          $log_meta =
         [
-            'data' => self::$log_data,
+            'data' => \dash\utility\payment\verify::$log_data,
             'meta' =>
             [
                 'input'   => func_get_args(),
@@ -64,12 +64,12 @@ trait asanpardakht
         }
         else
         {
-            \dash\db\logs::set('pay:asanpardakht:SESSION:transaction_id:not:found', self::$user_id, $log_meta);
+            \dash\db\logs::set('pay:asanpardakht:SESSION:transaction_id:not:found', \dash\utility\payment\verify::$user_id, $log_meta);
             \dash\notif::error(T_("Your session is lost! We can not find your transaction"));
-            return self::turn_back();
+            return \dash\utility\payment\verify::turn_back();
         }
 
-        $log_meta['data'] = self::$log_data = $transaction_id;
+        $log_meta['data'] = \dash\utility\payment\verify::$log_data = $transaction_id;
 
         $update =
         [
@@ -79,7 +79,7 @@ trait asanpardakht
         ];
 
         \dash\utility\payment\transactions::update($update, $transaction_id);
-        \dash\db\logs::set('pay:asanpardakht:pending:request', self::$user_id, $log_meta);
+        \dash\db\logs::set('pay:asanpardakht:pending:request', \dash\utility\payment\verify::$user_id, $log_meta);
 
         $asanpardakht                 = [];
 
@@ -90,23 +90,23 @@ trait asanpardakht
         }
         else
         {
-            \dash\db\logs::set('pay:asanpardakht:SESSION:amount:not:found', self::$user_id, $log_meta);
+            \dash\db\logs::set('pay:asanpardakht:SESSION:amount:not:found', \dash\utility\payment\verify::$user_id, $log_meta);
             \dash\notif::error(T_("Your session is lost! We can not find amount"));
-            return self::turn_back();
+            return \dash\utility\payment\verify::turn_back();
         }
 
         if($Amount_SESSION != $Amount)
         {
-            \dash\db\logs::set('pay:asanpardakht:Amount_SESSION:amount:is:not:equals', self::$user_id, $log_meta);
+            \dash\db\logs::set('pay:asanpardakht:Amount_SESSION:amount:is:not:equals', \dash\utility\payment\verify::$user_id, $log_meta);
             \dash\notif::error(T_("Your session is lost! We can not find amount"));
-            return self::turn_back();
+            return \dash\utility\payment\verify::turn_back();
         }
 
 
         if($ResCode == '0' || $ResCode == '00')
         {
-            \dash\utility\payment\payment\asanpardakht::$user_id = self::$user_id;
-            \dash\utility\payment\payment\asanpardakht::$log_data = self::$log_data;
+            \dash\utility\payment\payment\asanpardakht::$user_id = \dash\utility\payment\verify::$user_id;
+            \dash\utility\payment\payment\asanpardakht::$log_data = \dash\utility\payment\verify::$log_data;
 
             $is_ok = \dash\utility\payment\payment\asanpardakht::verify($RetArr);
 
@@ -128,7 +128,7 @@ trait asanpardakht
 
                 \dash\utility\payment\transactions::calc_budget($transaction_id, $Amount_SESSION / 10, 0, $update);
 
-                \dash\db\logs::set('pay:asanpardakht:ok:request', self::$user_id, $log_meta);
+                \dash\db\logs::set('pay:asanpardakht:ok:request', \dash\utility\payment\verify::$user_id, $log_meta);
 
                 \dash\session::set('payment_verify_amount', $Amount_SESSION / 10);
 
@@ -136,7 +136,7 @@ trait asanpardakht
 
                 unset($_SESSION['amount']['asanpardakht'][$Token]);
 
-                return self::turn_back($transaction_id);
+                return \dash\utility\payment\verify::turn_back($transaction_id);
             }
             else
             {
@@ -148,8 +148,8 @@ trait asanpardakht
                 ];
                 \dash\session::set('payment_verify_status', 'verify_error');
                 \dash\utility\payment\transactions::update($update, $transaction_id);
-                \dash\db\logs::set('pay:asanpardakht:verify_error:request', self::$user_id, $log_meta);
-                return self::turn_back($transaction_id);
+                \dash\db\logs::set('pay:asanpardakht:verify_error:request', \dash\utility\payment\verify::$user_id, $log_meta);
+                return \dash\utility\payment\verify::turn_back($transaction_id);
             }
         }
         else
@@ -162,8 +162,8 @@ trait asanpardakht
             ];
             \dash\session::set('payment_verify_status', 'error');
             \dash\utility\payment\transactions::update($update, $transaction_id);
-            \dash\db\logs::set('pay:asanpardakht:error:request', self::$user_id, $log_meta);
-            return self::turn_back($transaction_id);
+            \dash\db\logs::set('pay:asanpardakht:error:request', \dash\utility\payment\verify::$user_id, $log_meta);
+            return \dash\utility\payment\verify::turn_back($transaction_id);
         }
     }
 }

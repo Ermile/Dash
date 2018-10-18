@@ -2,7 +2,7 @@
 namespace dash\utility\payment\pay;
 
 
-trait zarinpal
+class zarinpal
 {
 
      /**
@@ -19,7 +19,7 @@ trait zarinpal
     {
         $log_meta =
         [
-            'data' => self::$log_data,
+            'data' => \dash\utility\payment\pay::$log_data,
             'meta' =>
             [
                 'input'   => func_get_args(),
@@ -55,7 +55,7 @@ trait zarinpal
         }
         else
         {
-            $zarinpal['CallbackURL'] = self::get_callbck_url('zarinpal');
+            $zarinpal['CallbackURL'] = \dash\utility\payment\pay::get_callbck_url('zarinpal');
         }
 
         $zarinpal['Amount'] = $_amount;
@@ -92,7 +92,7 @@ trait zarinpal
         //START TRANSACTION BY CONDITION REQUEST
         $transaction_id = \dash\utility\payment\transactions::start($transaction_start);
 
-        $log_meta['data'] = self::$log_data = $transaction_id;
+        $log_meta['data'] = \dash\utility\payment\pay::$log_data = $transaction_id;
 
         if(!\dash\engine\process::status() || !$transaction_id)
         {
@@ -106,7 +106,7 @@ trait zarinpal
         }
 
         \dash\utility\payment\payment\zarinpal::$user_id  = $_user_id;
-        \dash\utility\payment\payment\zarinpal::$log_data = self::$log_data;
+        \dash\utility\payment\payment\zarinpal::$log_data = \dash\utility\payment\pay::$log_data;
 
         $redirect = \dash\utility\payment\payment\zarinpal::pay($zarinpal);
 

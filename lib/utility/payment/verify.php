@@ -15,7 +15,7 @@ class verify
 	{
 		if(!self::$user_id && \dash\user::id())
 		{
-			self::$user_id = $_SESSION['auth']['id'];
+			self::$user_id = \dash\user::id();
 		}
 	}
 
@@ -99,14 +99,6 @@ class verify
  			return false;
  		}
 	}
-
-
-	use verify\zarinpal;
-	use verify\parsian;
-	use verify\irkish;
-	use verify\payir;
-	use verify\asanpardakht;
-
 
 }
 ?>

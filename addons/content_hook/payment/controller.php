@@ -1,5 +1,5 @@
 <?php
-namespace content_enter\payment;
+namespace content_hook\payment;
 
 
 class controller
@@ -19,10 +19,10 @@ class controller
 		switch ($url_type)
 		{
 			case 'verify':
-				if(method_exists("\\dash\\utility\\payment\\verify", $payment))
+				if(is_callable(["\\dash\\utility\\payment\\verify\\$payment", $payment]))
 				{
 					\dash\log::set('paymentVerifyCall');
-					\dash\utility\payment\verify::$payment($args);
+					("\\dash\\utility\\payment\\verify\\$payment")::$payment($args);
 					return;
 				}
 				break;

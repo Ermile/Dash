@@ -10,17 +10,12 @@ class pay
      *
      * @var        string
      */
-    public static $default_callback_url = 'enter/payment/verify';
+    public static $default_callback_url = 'hook/payment/verify';
 
     public static $user_id = null;
 
     public static $log_data = null;
 
-    use pay\zarinpal;
-    use pay\parsian;
-    use pay\irkish;
-    use pay\payir;
-    use pay\asanpardakht;
 
     /**
     * start pay
@@ -52,16 +47,15 @@ class pay
         }
 
         $_bank = mb_strtolower($_bank);
+        // if(method_exists("\\dash\\utility\\payment\\pay", $_bank))
 
-        if(method_exists("\\dash\\utility\\payment\\pay", $_bank))
+        if(is_callable(["\\dash\\utility\\payment\\pay\\". $_bank, $_bank]))
         {
-
             \dash\session::set('payment_request_start', true);
             \dash\session::set('payment_verify_amount', null);
             \dash\session::set('payment_verify_status', null);
 
-
-            return \dash\utility\payment\pay::$_bank($_user_id, $_amount, $_option);
+            return ("\\dash\\utility\\payment\\pay\\$_bank")::$_bank($_user_id, $_amount, $_option);
         }
         else
         {
@@ -78,7 +72,7 @@ class pay
      *
      * @param      <type>  $_payment  The payment
      */
-    private static function get_callbck_url($_payment)
+    public static function get_callbck_url($_payment)
     {
         $host = \dash\url::base();
         $callback_url =  $host;

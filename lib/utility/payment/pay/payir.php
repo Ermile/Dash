@@ -2,7 +2,7 @@
 namespace dash\utility\payment\pay;
 
 
-trait payir
+class payir
 {
 
 
@@ -19,7 +19,7 @@ trait payir
     {
         $log_meta =
         [
-            'data' => self::$log_data,
+            'data' => \dash\utility\payment\pay::$log_data,
             'meta' =>
             [
                 'input'   => func_get_args(),
@@ -50,7 +50,7 @@ trait payir
         }
         else
         {
-            $payir['redirect'] = self::get_callbck_url('payir');
+            $payir['redirect'] = \dash\utility\payment\pay::get_callbck_url('payir');
         }
 
         // change rial to toman
@@ -79,7 +79,7 @@ trait payir
         //START TRANSACTION BY CONDITION REQUEST
         $transaction_id = \dash\utility\payment\transactions::start($transaction_start);
 
-        $log_meta['data'] = self::$log_data = $transaction_id;
+        $log_meta['data'] = \dash\utility\payment\pay::$log_data = $transaction_id;
 
         if(!\dash\engine\process::status() || !$transaction_id)
         {
@@ -98,7 +98,7 @@ trait payir
         $payir['factorNumber'] = $transaction_id;
 
         \dash\utility\payment\payment\payir::$user_id  = $_user_id;
-        \dash\utility\payment\payment\payir::$log_data = self::$log_data;
+        \dash\utility\payment\payment\payir::$log_data = \dash\utility\payment\pay::$log_data;
 
         $transId = \dash\utility\payment\payment\payir::pay($payir);
 
