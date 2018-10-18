@@ -70,37 +70,22 @@ class mellat
 
             $result = $client->__soapCall('bpPayRequest', [$parameters], [$namespace]);
 
-            if ($client->fault)
+            $return = $result->return;
+
+            $res = explode(',', $return);
+
+            $ResCode = $res[0];
+
+            if ($ResCode == "0")
             {
-                return false;
+               return $res[1];
             }
             else
             {
-                $resultStr  = $result;
-
-                $err = $client->getError();
-
-                if ($err)
-                {
-                    return false;
-                }
-                else
-                {
-
-                    $res = explode(',', $resultStr);
-
-                    $ResCode = $res[0];
-
-                    if ($ResCode == "0")
-                    {
-                       return $res[1];
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
+                \dash\notif::error(self::msg($ResCode));
+                return false;
             }
+
         }
         catch (SoapFault $e)
         {
@@ -112,7 +97,10 @@ class mellat
     }
 
 
-        /**
+
+
+
+    /**
      * { function_description }
      *
      * @param      array  $_args  The arguments
@@ -181,47 +169,58 @@ class mellat
      */
     public static function msg($_status)
     {
-        $msg = null;
-        $T_msg =
-        [
-            '100' => ['en' => 'Successful', 'fa' => 'عملیات موفق می باشد',],
-            '110' => ['en' => 'Transaction canceled', 'fa' => 'تراکنش لغو شد',],
-            '-20' => [ 'en' => "در درخواست کارکتر های غیر مجاز وجو دارد",  'fa' => "در درخواست کارکتر های غیر مجاز وجو دارد",],
-            '-30' => [ 'en' => "تراکنش قبلا برگشت خورده است",  'fa' => "تراکنش قبلا برگشت خورده است",],
-            '-50' => [ 'en' => "طول رشته درخواست غیر مجاز است",  'fa' => "طول رشته درخواست غیر مجاز است",],
-            '-51' => [ 'en' => "در در خواست خطا وجود دارد",  'fa' => "در در خواست خطا وجود دارد",],
-            '-80' => [ 'en' => "تراکنش مورد نظر یافت نشد",  'fa' => "تراکنش مورد نظر یافت نشد",],
-            '-81' => [ 'en' => "خطای داخلی بانک",  'fa' => "خطای داخلی بانک",],
-            '-90' => [ 'en' => "تراکنش قبلا تایید شده است",  'fa' => "تراکنش قبلا تایید شده است",],
-            '120' => [ 'en' => "موجودی کافی نیست",  'fa' => "موجودی کافی نیست",],
-            '130' => [ 'en' => "اطلاعات کارت اشتباه است",  'fa' => "اطلاعات کارت اشتباه است",],
-            '131' => [ 'en' => "اطلاعات کارت اشتباه است",  'fa' => "اطلاعات کارت اشتباه است",],
-            '160' => [ 'en' => "اطلاعات کارت اشتباه است",  'fa' => "اطلاعات کارت اشتباه است",],
-            '132' => [ 'en' => "کارت مسدود یا منقضی می باشد",  'fa' => "کارت مسدود یا منقضی می باشد",],
-            '133' => [ 'en' => "کارت مسدود یا منقضی می باشد",  'fa' => "کارت مسدود یا منقضی می باشد",],
-            '140' => [ 'en' => "زمان مورد نظر به پایان رسیده است",  'fa' => "زمان مورد نظر به پایان رسیده است",],
-            '200' => [ 'en' => "مبلغ بیش از سقف مجاز",  'fa' => "مبلغ بیش از سقف مجاز",],
-            '201' => [ 'en' => "مبلغ بیش از سقف مجاز",  'fa' => "مبلغ بیش از سقف مجاز",],
-            '202' => [ 'en' => "مبلغ بیش از سقف مجاز",  'fa' => "مبلغ بیش از سقف مجاز",],
-            '166' => [ 'en' => "بانک صادر کننده مجوز انجام  تراکنش را صادر نکرده",'fa' => "بانک صادر کننده مجوز انجام  تراکنش را صادر نکرده",],
-        ];
 
-        if(isset($T_msg[$_status]))
+        $msg      = [];
+        $msg[0]   = "Transaction Approved";
+        $msg[11]  = "Invalid Card Number";
+        $msg[12]  = "No Sufficient Funds";
+        $msg[13]  = "Incorrect Pin";
+        $msg[14]  = "Allowable Number Of Pin Tries Exceeded";
+        $msg[15]  = "Card Not Effective";
+        $msg[16]  = "Exceeds Withdrawal Frequency Limit";
+        $msg[17]  = "Customer Cancellation";
+        $msg[18]  = "Expired Card";
+        $msg[19]  = "Exceeds Withdrawal Amount Limit";
+        $msg[111] = "No Such Issuer";
+        $msg[112] = "Card Switch Internal Error";
+        $msg[113] = "Issuer Or Switch Is Inoperative";
+        $msg[114] = "Transaction Not Permitted To Card Holder";
+        $msg[21]  = "Invalid Merchant";
+        $msg[23]  = "Security Violation";
+        $msg[24]  = "Invalid User Or Password";
+        $msg[25]  = "Invalid Amount";
+        $msg[31]  = "Invalid Response";
+        $msg[32]  = "Format Error";
+        $msg[33]  = "No Investment Account";
+        $msg[34]  = "System Internal Error";
+        $msg[35]  = "Invalid Business Date";
+        $msg[41]  = "Duplicate Order Id";
+        $msg[42]  = "Sale Transaction Not Found";
+        $msg[43]  = "Duplicate Verify";
+        $msg[44]  = "Verify Transaction Not Found";
+        $msg[45]  = "Transaction Has Been Settled";
+        $msg[46]  = "Transaction Has Not Been Settled";
+        $msg[47]  = "Settle Transaction Not Found";
+        $msg[48]  = "Transaction Has Been Reversed";
+        $msg[49]  = "Refund Transaction Not Found";
+        $msg[412] = "Bill Digit Incorrect";
+        $msg[413] = "Payment Digit Incorrect";
+        $msg[414] = "Bill Organization Not Valid";
+        $msg[415] = "Session Timeout";
+        $msg[416] = "Data Access Exception";
+        $msg[417] = "Payer Id Is Invalid";
+        $msg[418] = "Customer Not Found";
+        $msg[419] = "Try Count Exceeded";
+        $msg[421] = "Invalid IP";
+        $msg[51]  = "Duplicate Transmission";
+        $msg[54]  = "Original Transaction Not Found";
+        $msg[55]  = "Invalid Transaction";
+        $msg[61]  = "Error In Settle";
+
+
+        if(isset($msg[$_status]))
         {
-            if(\dash\language::current() === 'fa')
-            {
-                if(isset($T_msg[$_status]['fa']))
-                {
-                    return $T_msg[$_status]['fa'];
-                }
-            }
-
-            if(isset($T_msg[$_status]['en']))
-            {
-                return $T_msg[$_status]['en'];
-            }
-
-            return T_("Unkown payment error");
+            return $msg[$_status];
         }
         else
         {
