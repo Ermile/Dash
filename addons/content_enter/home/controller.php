@@ -30,6 +30,8 @@ class controller
 		{
 			$_SESSION['enter_referer'] = \dash\request::get('referer');
 		}
+
+		\dash\utility\hive::set();
 	}
 
 

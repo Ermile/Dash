@@ -2,6 +2,8 @@
 <div class="cbox">
   <form method="post" enctype="multipart/form-data" autocomplete="off" action="{{url.pwd}}">
 
+    {%include display.hive%}
+
 {%if url.child == 'add'%}
     <label for="title">{%trans "Ticket Subject"%}</label>
     <div class="input">

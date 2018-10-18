@@ -46,8 +46,7 @@ class hive
 		$hiveCheck1 = \dash\request::post('hiveCheck1');
 		$hiveCheck2 = \dash\request::post('hiveCheck2');
 		$hiveCheck3 = \dash\request::post('hiveCheck3');
-		// var_dump($hive);
-		// var_dump($hiveCheck1, $hiveCheck2, $hiveCheck3);exit();
+
 		if(!isset($hive['check1']) || (isset($hive['check1']) && $hiveCheck1 != $hive['check1']))
 		{
 			return false;
