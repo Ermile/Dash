@@ -16,6 +16,7 @@ class view
 		\dash\data::display_cpMain("content_cp/layout.html");
 
 		\dash\data::display_pagination("includes/html/inc_pagination.html");
+		\dash\data::display_hive("includes/html/inc_hive.html");
 
 		// return all url detail
 		\dash\data::url(\dash\url::all());
