@@ -451,7 +451,7 @@ class config
 		if($set && $_id && is_numeric($_id))
 		{
 			// make update query
-			$query = "UPDATE $_table SET $set WHERE $_table.id = $_id ";
+			$query = "UPDATE $_table SET $set WHERE $_table.id = $_id LIMIT 1";
 			return \dash\db::query($query, $_db_name);
 		}
 	}

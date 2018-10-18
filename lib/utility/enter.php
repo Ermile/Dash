@@ -551,6 +551,14 @@ class enter
 			$mobile = \dash\user::detail('mobile');
 			$email  = \dash\user::detail('email');
 		}
+		elseif(self::get_session('signup_detail'))
+		{
+			$signup_detail = self::get_session('signup_detail');
+			if(isset($signup_detail['mobile']))
+			{
+				$mobile = $signup_detail['mobile'];
+			}
+		}
 
 		if(\dash\utility\filter::mobile($mobile))
 		{
