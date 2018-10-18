@@ -51,6 +51,12 @@ class model
 			$post['avatar'] = $avatar;
 		}
 
+		if(\dash\request::post('remove') === 'avatar')
+		{
+			$post = [];
+			$post['avatar'] = null;
+		}
+
 		return $post;
 	}
 
