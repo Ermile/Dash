@@ -20,6 +20,7 @@
         <p>{%trans "If your problem is solved or do not need to track, please close this ticket by press below bottom."%} {%trans "You can open it anytime you need."%}</p>
       </div>
       <form method="post">
+            {%include display.hive%}
         <input type="hidden" name="TicketFormType" value="changeStatus">
         <button class="btn block mTB10 secondary" name="status" value="close">{%trans "Close ticket"%}</button>
       </form>
@@ -30,6 +31,7 @@
         <p>{%trans "This ticket is closed."%} {%trans "You can open it anytime you need."%} {%trans "Also you can delete it if you do not need it."%}</p>
       </div>
       <form method="post">
+            {%include display.hive%}
         <input type="hidden" name="TicketFormType" value="changeStatus">
         <button class="btn block sm mTB10 danger outline" name="status" value="deleted">{%trans "Delete ticket"%}</button>
         <button class="btn block lg mTB10 success" name="status" value="awaiting">{%trans "Open it again"%}</button>
@@ -41,6 +43,7 @@
         <p>{%trans "This is deleted ticket."%} {%trans "You can change it to close condition if need to save it in history!"%}</p>
       </div>
       <form method="post">
+            {%include display.hive%}
         <input type="hidden" name="TicketFormType" value="changeStatus">
         <button class="btn block mTB10 secondary" name="status" value="close">{%trans "Close ticket"%}</button>
       </form>
@@ -56,6 +59,7 @@
         <p>{%trans "If your problem is not solved yet, please set this ticket as unsolved"%}</p>
       </div>
       <form method="post">
+            {%include display.hive%}
         <input type="hidden" name="TicketFormSolved" value="solvedForm">
         <button class="btn block mTB10 warn" name="solved" value="0">{%trans "Un Solved ticket"%}</button>
       </form>
@@ -64,6 +68,7 @@
         <p>{%trans "If your problem is solved, please set this ticket as solved"%}</p>
       </div>
       <form method="post">
+            {%include display.hive%}
         <input type="hidden" name="TicketFormSolved" value="solvedForm">
         <button class="btn block mTB10 success" name="solved" value="1">{%trans "Solved ticket"%}</button>
       </form>
@@ -75,6 +80,7 @@
 {%if perm('supportTicketManage') and perm('supportTicketAssignTag') %}
     <div class="cbox">
       <form method="post">
+            {%include display.hive%}
         {{block("iTag")}}
         <button class="btn block mTB10 primary"  name="TicketFormType" value="tag">{%trans "Save tag"%}</button>
       </form>
@@ -316,6 +322,7 @@
 {%if masterTicketDetail.solved%}
 {%if masterTicketDetail.status == 'answered' or masterTicketDetail.status == 'awaiting'%}
   <form method="post">
+        {%include display.hive%}
     <p class="msg info mB0-f">{{solvedMsg | raw}}
       <input type="hidden" name="TicketFormType" value="changeStatus">
       <button class="btn secondary sm floatRa" name="status" value="close">{%trans "Close ticket"%}</button>
