@@ -94,13 +94,13 @@ class view
 				case 'unsolved':
 					\dash\data::page_title(T_("Un solved ticket"));
 					$args['1.1'] = ["= 1.1", " AND (comments.solved = b'0' OR comments.solved IS NULL ) "];
-					$args['comments.status'] = ["NOT IN", "('deleted')"];
+					$args['comments.status'] = ["NOT IN", "('deleted', 'spam')"];
 					break;
 
 				case 'solved':
 					\dash\data::page_title(T_("Solved ticket"));
 					$args['comments.solved'] = 1;
-					$args['comments.status'] = ["NOT IN", "('deleted')"];
+					$args['comments.status'] = ["NOT IN", "('deleted', 'spam')"];
 					break;
 
 				case 'answered':
@@ -121,7 +121,7 @@ class view
 
 				case 'all':
 					\dash\data::page_title(T_("All tickets"));
-					$args['comments.status'] = ["NOT IN", "('deleted')"];
+					$args['comments.status'] = ["NOT IN", "('deleted', 'spam')"];
 					break;
 
 				default:
@@ -135,7 +135,7 @@ class view
 		{
 			$args['order_raw']       = ' IF(comments.datemodified is null, comments.datecreated, comments.datemodified) DESC';
 			unset($args['sort']);
-			$args['comments.status'] = ["NOT IN", "('deleted')"];
+			$args['comments.status'] = ["NOT IN", "('deleted', 'spam')"];
 		}
 
 		$user = \dash\request::get('user');
@@ -226,7 +226,7 @@ class view
 			return $get_cach;
 		}
 
-		$args['comments.status'] = ["NOT IN ", "('deleted')"];
+		$args['comments.status'] = ["NOT IN ", "('deleted' ,'spam')"];
 		if(\dash\data::accessMode() === 'mine')
 		{
 			$args['comments.user_id'] = \dash\user::id();
@@ -256,7 +256,7 @@ class view
 			unset($args['comments.parent']);
 
 			$result['message']       = \dash\db\comments::get_count($args);
-			$args['comments.status'] = ["NOT IN ", "('deleted')"];
+			$args['comments.status'] = ["NOT IN ", "('deleted', 'spam')"];
 			$args['comments.status'] = 'close';
 			$args['comments.parent'] = null;
 			$result['avgfirst']      = \dash\db\comments::ticket_avg_first($args);

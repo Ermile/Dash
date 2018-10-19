@@ -140,6 +140,10 @@ class model
 			case 'deleted':
 				\dash\notif::warn(T_("Ticket was deleted"));
 				break;
+
+			case 'spam':
+				\dash\notif::warn(T_("Ticket set on spam"));
+				break;
 		}
 
 		return true;
