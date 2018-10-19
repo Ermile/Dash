@@ -117,7 +117,7 @@
     <div class="c3 m6 s12">
       <a class="dcard" href="{{url.here}}/ticket?order=firstResponse">
         <div class="statistic sm">
-          <div class="label mB10"><i class="fs20 mRa5 sf-clock-o"></i> {%trans "Avg. First Response"%}</div>
+          <div class="label mB10"><i class="fs20 mRa5 sf-clock-o"></i> {%trans "Avg. First Response"%} <small>{%trans "Last month"%}</small></div>
           <div class="value">{{sidebarDetail.avgfirst |fitNumber}} <small class="fs05">{%trans "Minute"%}</small></div>
         </div>
       </a>
@@ -128,7 +128,7 @@
     <div class="c3 m6 s12">
       <a class="dcard" href="{{url.here}}/ticket?order=avgArchiveTime">
         <div class="statistic sm">
-          <div class="label mB10"><i class="fs20 mRa5 sf-calendar-check-o"></i> {%trans "Avg. Time to Archive"%}</div>
+          <div class="label mB10"><i class="fs20 mRa5 sf-calendar-check-o"></i> {%trans "Avg. Time to Archive"%} <small>{%trans "Last month"%}</small></div>
           <div class="value">{{sidebarDetail.avgarchive |fitNumber}} <small class="fs05">{%trans "Hours"%}</small></div>
         </div>
       </a>
