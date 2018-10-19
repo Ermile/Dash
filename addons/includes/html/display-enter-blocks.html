@@ -1,19 +1,19 @@
 {%block emobile%}
    <div class='flex fix' id='emobile'>
-    <label for='mobile' title='{%trans "Mobile"%}'>
+    <label for='mobile'>
      <i class="sf-mobile"></i>
     </label>
-    <input id='mobile' name="mobile" type='tel' maxlength="15" placeholder='{%trans "Mobile"%}' data-invalid='{%trans "Please enter valid mobile number"%}' value="{{getMobile}}" data-pl-user='{%trans "Mobile"%}' autocomplete="off" {%if lang.current == 'fa'%}pattern=".{10,14}" title='{%trans "Enter correct iranian mobile from 10 to 14 character"%}'{%else%}pattern=".{7,15}" title='{%trans "7 to 15 characters is allowed for mobile"%}'{%endif%} required {%if mobileReadonly%} readonly {%endif%} {%if not mobileReadonly%}autofocus{%endif%}>
+    <input id='mobile' name="mobile" type='tel' maxlength="15" placeholder='{%trans "Mobile"%}' data-invalid='{%trans "Please enter valid mobile number"%}' value="{{getMobile}}" data-pl-user='{%trans "Mobile"%}' autocomplete="off" {%if lang.current == 'fa'%}pattern=".{10,14}" title='{%trans "Enter correct iranian mobile starting with zero like 0935"%}'{%else%}pattern=".{7,15}" title='{%trans "Enter your mobile number"%}'{%endif%} required {%if mobileReadonly%} readonly {%endif%} {%if not mobileReadonly%}autofocus{%endif%}>
    </div>
 {%endblock%}
 
 
 {%block emobilesignup%}
    <div class='flex fix' id='emobile'>
-    <label for='mobile' title='{%trans "Mobile"%}'>
+    <label for='mobile'>
      <i class="sf-mobile"></i>
     </label>
-    <input id='mobile' name="mobile" type='tel' maxlength="15" placeholder='{%trans "Mobile"%}' data-invalid='{%trans "Please enter valid mobile number"%}' value="{{getMobile}}" data-pl-user='{%trans "Mobile"%}' autocomplete="off" {%if lang.current == 'fa'%}pattern=".{10,14}" title='{%trans "Enter correct iranian mobile from 10 to 14 character"%}'{%else%}pattern=".{7,15}" title='{%trans "7 to 15 characters is allowed for mobile"%}'{%endif%} required autofocus>
+    <input id='mobile' name="mobile" type='tel' maxlength="15" placeholder='{%trans "Mobile"%}' data-invalid='{%trans "Please enter valid mobile number"%}' value="{{getMobile}}" data-pl-user='{%trans "Mobile"%}' autocomplete="off" {%if lang.current == 'fa'%}pattern=".{10,14}" title='{%trans "Enter correct iranian mobile starting with zero like 0935"%}'{%else%}pattern=".{7,15}" title='{%trans "Enter your mobile number"%}'{%endif%} required autofocus>
    </div>
 {%endblock%}
 
@@ -21,7 +21,7 @@
 {%block eAllInput%}
    <div class='flex fix'>
     <!-- <label for='usernameormobile' title='{%trans "Username or Mobile or email"%}'></label> -->
-    <input id='usernameormobile' name="usernameormobile" type='text' data-disallowFaNum maxlength="50" placeholder='{%trans "Username or Mobile or Email"%}' data-invalid='{%trans "Please enter valid mobile or username or email number"%}' value="{{getUsernamemobile}}" data-pl-user='{%trans "Username or Mobile or Email"%}' autocomplete="off" title='{%trans "Username or Mobile or email"%}' required {%if mobileReadonly%} readonly {%endif%} {%if not mobileReadonly%}autofocus{%endif%} {%if user.id%}{%else%}pattern=".{5,50}"{%endif%}>
+    <input id='usernameormobile' name="usernameormobile" type='text' data-disallowFaNum maxlength="50" placeholder='{%trans "Mobile"%}' data-invalid='{%trans "Please enter valid mobile or username or email number"%}' value="{{getUsernamemobile}}" data-pl-user='{%trans "Username or Mobile or Email"%}' autocomplete="off" title='{%trans "Username or Mobile or email"%}' required {%if mobileReadonly%} readonly {%endif%} {%if not mobileReadonly%}autofocus{%endif%} {%if user.id%}{%else%}pattern=".{5,50}"{%endif%}>
    </div>
 {%endblock%}
 
@@ -33,14 +33,14 @@
     <label for='ramz' title='{%trans "Password"%}'>
       <i class="sf-lock"></i>
     </label>
-    <input id='ramz' name="ramz" type='password' placeholder='{%trans "Password"%}' autocomplete="off" minlength="6" maxlength="40" pattern=".{6,40}" title='{%trans "Enter a valid password from 6 to 40 character"%}' autofocus required>
+    <input id='ramz' name="ramz" type='password' placeholder='{%trans "Password"%}' autocomplete="off" minlength="6" maxlength="40" pattern=".{6,40}" title='{%trans "Enter a password between 7 and 40 characters"%}' autofocus required>
    </div>
 {%endblock%}
 
 {%block eramzNewSignup%}
    <div class='flex fix' id='eramzNew'>
-    <label for='ramzNew' title='{%trans "New Password"%}'>**</label>
-    <input id='ramzNew' name="ramzNew" type='password' placeholder='{%trans "New Password"%}' autocomplete="off" minlength="6" maxlength="40" pattern=".{6,40}" title='{%trans "Enter a valid password from 6 to 40 character"%}' required>
+    <label for='ramzNew' title='{%trans "Click to see your password"%}'>**</label>
+    <input id='ramzNew' name="ramzNew" type='password' placeholder='{%trans "New Password"%}' autocomplete="off" minlength="6" maxlength="40" pattern=".{6,40}" title='{%trans "Enter a password between 7 and 40 characters"%}{%if lang.current == "fa"%}<br>{%trans "Password is password."%}{%endif%}' required>
    </div>
 {%endblock%}
 
@@ -49,8 +49,8 @@
 
 {%block eramzNew%}
    <div class='flex fix' id='eramzNew'>
-    <label for='ramzNew' title='{%trans "New Password"%}'>**</label>
-    <input id='ramzNew' name="ramzNew" type='password' placeholder='{%trans "New Password"%}' autocomplete="new-password" minlength="6" maxlength="40" pattern=".{6,40}" title='{%trans "Enter a valid password from 6 to 40 character"%}' autofocus required>
+    <label for='ramzNew' title='{%trans "Click to see your password"%}'>**</label>
+    <input id='ramzNew' name="ramzNew" type='password' placeholder='{%trans "New Password"%}' autocomplete="new-password" minlength="6" maxlength="40" pattern=".{6,40}" title='{%trans "Enter a password between 7 and 40 characters"%}{%if lang.current == "fa"%}<br>{%trans "Password is password."%}{%endif%}' autofocus required>
    </div>
 {%endblock%}
 
@@ -89,17 +89,17 @@
 
 {%block eFullname%}
    <div class='flex fix' id='displaynameBox'>
-    <label for='displayname' title='{%trans "Full name"%}'>
+    <label for='displayname'>
       <i class="sf-user-4"></i>
     </label>
-    <input id='displayname' name="displayname" type='text' placeholder='{%trans "Full name"%}' autocomplete="off" maxlength="50" title='' value="{{get_displayname}}" required>
+    <input id='displayname' name="displayname" type='text' placeholder='{%trans "Name"%}' autocomplete="off" maxlength="50" value="{{get_displayname}}" required title='{%trans "We will call you with this name"%}'>
    </div>
 {%endblock%}
 
 {%block edisplayname%}
    <div class='flex fix' id='displaynameBox'>
     <label for='displayname' title='{%trans "Full name"%}'>?</label>
-    <input id='displayname' name="displayname" type='text' placeholder='{%trans "Full name"%}' autocomplete="off" maxlength="50" title='' value="{{get_displayname}}" required>
+    <input id='displayname' name="displayname" type='text' placeholder='{%trans "Full name"%}' autocomplete="off" maxlength="50" value="{{get_displayname}}" required>
    </div>
 {%endblock%}
 
