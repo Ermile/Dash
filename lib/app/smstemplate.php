@@ -83,7 +83,13 @@ class smstemplate
 		}
 
 		$list[$_args['name']] = $_args['text'];
-		$addr                 = root.'/includes/smstemplate/list.json';
+		$addr                 = root.'includes/smstemplate/list.json';
+
+		if(!is_file($addr))
+		{
+			\dash\file::makeDir(str_replace('/list.json', '', $addr), null , true);
+		}
+
 		$list                 = json_encode($list, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 		\dash\log::set('setSmsTemplate');
 		\dash\file::write($addr, $list);
