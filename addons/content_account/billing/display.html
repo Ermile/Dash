@@ -2,7 +2,7 @@
 
 {%block pageContent%}
 
-{%if options.parsian.status or options.zarinpal.status or options.irkish.status or options.payir.status or options.asanpardakht.status %}
+{%if options.parsian.status or options.zarinpal.status or options.irkish.status or options.payir.status or options.asanpardakht.status or options.mellat.status%}
 {% set HaveOnePayment = true%}
 {%endif%}
 <div class="f">
@@ -46,6 +46,13 @@
           <div class="radioGateway">
            <input type="radio" name="bank" value="payir" id="payir">
            <label for='payir' class="spay-64-payir"></label>
+          </div>
+          {%endif%}
+
+          {%if options.mellat.status%}
+          <div class="radioGateway">
+           <input type="radio" name="bank" value="mellat" id="mellat">
+           <label for='mellat' class="spay-64-mellat"></label>
           </div>
           {%endif%}
 
