@@ -47,12 +47,22 @@
         <input type="hidden" name="TicketFormType" value="changeStatus">
         <button class="btn block mTB10 secondary" name="status" value="close">{%trans "Close ticket"%}</button>
       </form>
+      <form method="post">
+            {%include display.hive%}
+        <input type="hidden" name="TicketFormType" value="changeStatus">
+        <button class="btn block mTB10 danger" name="status" value="spam">{%trans "Spam"%}</button>
+      </form>
   {%endif%}
+{%elseif masterTicketDetail.status == 'spam'%}
+      <p class="fs08 msg danger txtC txtB">
+        {%trans "Spam"%}
+      </p>
+
 {%endif%}
     </div>
 
 
-{%if masterTicketDetail.status != 'awaiting' and perm('supportTicketAnswer')%}
+{%if masterTicketDetail.status != 'awaiting' and masterTicketDetail.status != 'spam'  and  masterTicketDetail.status != 'deleted' and perm('supportTicketAnswer')%}
     <div class="cbox">
       {%if masterTicketDetail.solved%}
       <div class="fs08">
@@ -76,15 +86,16 @@
     </div>
 {%endif%}
 
-
-{%if perm('supportTicketManage') and perm('supportTicketAssignTag') %}
-    <div class="cbox">
-      <form method="post">
-            {%include display.hive%}
-        {{block("iTag")}}
-        <button class="btn block mTB10 primary"  name="TicketFormType" value="tag">{%trans "Save tag"%}</button>
-      </form>
-    </div>
+{%if masterTicketDetail.status != 'deleted' and masterTicketDetail.status != 'spam'%}
+  {%if perm('supportTicketManage') and perm('supportTicketAssignTag') %}
+      <div class="cbox">
+        <form method="post">
+              {%include display.hive%}
+          {{block("iTag")}}
+          <button class="btn block mTB10 primary"  name="TicketFormType" value="tag">{%trans "Save tag"%}</button>
+        </form>
+      </div>
+  {%endif%}
 {%endif%}
 
 {%if perm_su()%}

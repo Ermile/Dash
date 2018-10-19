@@ -90,7 +90,7 @@ class model
 
 		$status = $_status;
 
-		if(!in_array($status, ['close','deleted','awaiting']))
+		if(!in_array($status, ['close','deleted','awaiting', 'spam']))
 		{
 			\dash\notif::error(T_("Invalid status"));
 			return false;
@@ -101,24 +101,25 @@ class model
 			switch ($status)
 			{
 				case 'close':
-					$log =
-					[
-						'code' => $_id,
-
-					];
-					\dash\log::set('setCloseTicket', $log);
-
 					\dash\permission::access('supportTicketClose');
+					\dash\log::set('setCloseTicket', ['code' => $_id]);
+
 					break;
 
 				case 'awaiting':
-					\dash\log::set('setAwaitingTicket', ['code' => $_id]);
 					\dash\permission::access('supportTicketReOpen');
+					\dash\log::set('setAwaitingTicket', ['code' => $_id]);
+					break;
+
+
+				case 'spam':
+					\dash\permission::access('supportTicketAnswer');
+					\dash\log::set('setSpamTicket', ['code' => $_id]);
 					break;
 
 				case 'deleted':
-					\dash\log::set('setDeleteTicket', ['code' => $_id]);
 					\dash\permission::access('supportTicketDelete');
+					\dash\log::set('setDeleteTicket', ['code' => $_id]);
 					break;
 
 			}
