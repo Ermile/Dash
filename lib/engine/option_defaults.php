@@ -137,7 +137,7 @@ self::$config['enter']['life_time_code']               = 60 * 5;
 // after signup user redirect to different page
 // self::$config['enter']['signup_redirect']              = null;
 // after signup user redirect to different page
-self::$config['enter']['singup_username']              = true;
+self::$config['enter']['singup_username']              = false;
 // save remember me to login
 self::$config['enter']['remember_me']              = true;
 // after login redirect to what?
