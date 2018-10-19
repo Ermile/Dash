@@ -6,6 +6,12 @@ class hive
 {
 	public static function set()
 	{
+		// if the user is login not check and not set
+		if(\dash\user::id())
+		{
+			return true;
+		}
+
 		$request = \dash\request::is();
 		$request = mb_strtolower($request);
 		if($request === 'get')
