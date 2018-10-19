@@ -118,38 +118,41 @@ class mellat
 
         try
         {
-            $amount = $_args['amount'];
-            unset($_args['amount']);
 
             $soap_meta =
             [
                 'soap_version' => 'SOAP_1_1',
-                // 'cache_wsdl'   => WSDL_CACHE_NONE ,
-                // 'encoding'     => 'UTF-8',
             ];
-            // $client = new \SoapClient('https://ikc.shaparak.ir/TVerify/Verify.svc', $soap_meta);
 
-            $client = new \SoapClient('https://ikc.shaparak.ir/XVerify/Verify.xml', $soap_meta);
+            $client    = new \SoapClient('https://bpm.shaparak.ir/pgwchannel/services/pgw?wsdl', $soap_meta);
 
-            $result = $client->__soapCall("KicccPaymentsVerification", array($_args));
+            $namespace ='http://interfaces.core.sw.bps.com/';
 
-            self::$payment_response =  (array) $result;
+            $parameters =
+            [
+                'terminalId'      => $_args['terminalId'],
+                'userName'        => $_args['userName'],
+                'userPassword'    => $_args['userPassword'],
+                'orderId'         => $_args['orderId'],
+                'saleOrderId'     => $_args['saleOrderId'],
+                'saleReferenceId' => $_args['saleReferenceId'],
+            ];
 
-            if(isset($result->KicccPaymentsVerificationResult))
+            $result = $client->__soapCall('bpVerifyRequest', [$parameters], [$namespace]);
+
+            $return = $result->return;
+
+            $res = explode(',', $return);
+
+            $ResCode = $res[0];
+
+            if ($ResCode == "0")
             {
-                $result = $result->KicccPaymentsVerificationResult;
+               return true;
             }
             else
             {
-                $result = false;
-            }
-
-            if(floatval($result) === floatval($amount))
-            {
-                return true;
-            }
-            else
-            {
+                \dash\notif::error(self::msg($ResCode));
                 return false;
             }
         }
