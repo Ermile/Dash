@@ -18,6 +18,13 @@ class template
 			return;
 		}
 
+		// find support link if exist
+		if(self::support_link())
+		{
+			// redirect
+			return true;
+		}
+
 		// finded the social short link
 		if(self::social_short_link())
 		{
@@ -205,6 +212,23 @@ class template
 			self::$datarow = $data;
 			self::$finded_template = $finded_template;
 		}
+	}
+
+
+	public static function support_link()
+	{
+		$mymodule = \dash\url::module();
+		if(substr($mymodule, 0, 1) === '!')
+		{
+			$supportCode = substr($mymodule, 1);
+			// create url of support
+			$support_link = \dash\url::kingdom(). '/support/ticket/show?id='.$supportCode;
+			// redirect to new address
+			\dash\redirect::to($support_link);
+			return true;
+		}
+
+		return false;
 	}
 
 
