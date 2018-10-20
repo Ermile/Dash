@@ -7,19 +7,7 @@ class ticket
 	public static function answer($_id, $_answer)
 	{
 		// save answer
-
-		// ready to insert comments
-		$args =
-		[
-			'type'    => 'ticket',
-			'content' => $_answer,
-			'user_id' => \dash\user::id(true),
-			'parent'  => $_id,
-
-		];
-
-		$result = \dash\app\ticket::add($args);
-
+		\content_support\ticket\show\model::answer_save($_id, $_answer);
 		return true;
 	}
 }
