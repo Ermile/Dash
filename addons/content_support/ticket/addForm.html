@@ -25,16 +25,15 @@
 
 {%if perm('supportTicketAnswer') and url.child != 'add'%}
   {%if masterTicketDetail.user_id%}
-    <div class="switch1 pLa5">
+    <div class="check1 pLa5">
      <input type="checkbox" name="sendmessage" id="sendmessage" checked>
-     <label for="sendmessage"></label>
-     <label for="sendmessage">{%trans "Send message to user"%}
+     <label for="sendmessage">{%trans "Send notify about your answer to creator of ticket"%}
       {%if masterTicketDetail.mobile %}
-        <i title='{%trans "By sms"%}' class="sf-mobile fs12"></i>
+        <i title='{%trans "Via sms to"%} {{masterTicketDetail.mobile}}' class="sf-mobile fs14"></i>
       {%endif%}
 
       {%if masterTicketDetail.chatid %}
-        <i title='{%trans "By telegram"%}' class="sf-paper-plane fs12"></i>
+        <i title='{%trans "Via telegram"%}' class="sf-paper-plane fs12"></i>
       {%endif%}
      </label>
     </div>
