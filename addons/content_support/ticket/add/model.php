@@ -66,7 +66,7 @@ class model
 				'code'     => $result['id'],
 				'ttitle'   => $args['title'],
 				'tcontent' => \dash\safe::forJson($args['content']),
-				'file'     => $args['file'] ? $args['file'] :"\n",
+				'file'     => $args['file'] ? $args['file'] : null,
 			];
 
 			\dash\log::set('addNewTicket', $log);

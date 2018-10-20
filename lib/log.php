@@ -63,6 +63,7 @@ class log
 				case 'smsdate':
 				case 'emaildate':
 				case 'meta':
+				case 'user_id':
 					$field[$key] = $value;
 					break;
 
@@ -106,7 +107,14 @@ class log
 
 		$_args = array_merge($default_args, $_args);
 
-		$user_id = \dash\user::id();
+		if($_args['user_id'] && is_numeric($_args['user_id']))
+		{
+			$user_id = $_args['user_id'];
+		}
+		else
+		{
+			$user_id = \dash\user::id();
+		}
 
 		if(!$user_id)
 		{

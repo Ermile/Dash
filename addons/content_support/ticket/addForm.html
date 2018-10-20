@@ -18,11 +18,28 @@
       <textarea class="txt mB10" id='icontent' name="content" placeholder='' maxlength='1000' rows="5">{{dataRow.desc}}</textarea>
     {%endif%}
 
-
     <label for="file1">{%trans "Attachment"%} <small class="fc-mute">{%trans "Max size"%} {{maxUploadSize}}</small></label>
     <div class="input">
      <input type="file" name="file" id="file1" data-max="5000">
     </div>
+
+{%if perm('supportTicketAnswer') and url.child != 'add'%}
+  {%if masterTicketDetail.user_id%}
+    <div class="switch1 pLa5">
+     <input type="checkbox" name="sendmessage" id="sendmessage" checked>
+     <label for="sendmessage"></label>
+     <label for="sendmessage">{%trans "Send message to user"%}
+      {%if masterTicketDetail.mobile %}
+        <i title='{%trans "By sms"%}' class="sf-mobile fs12"></i>
+      {%endif%}
+
+      {%if masterTicketDetail.chatid %}
+        <i title='{%trans "By telegram"%}' class="sf-paper-plane fs12"></i>
+      {%endif%}
+     </label>
+    </div>
+{%endif%}
+{%endif%}
 
 {%if url.child == 'add'%}
     <button class="btn primary block mT20">{%trans "Submit a ticket"%}</button>
@@ -39,6 +56,7 @@
 {%else%}
     <button class="btn primary block mT20">{%trans "Send new message"%}</button>
 {%endif%}
+
 {%endif%}
   </form>
 </div>

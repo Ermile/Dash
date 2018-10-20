@@ -90,6 +90,20 @@
       "AnswerTicket"
     ]
   },
+  "answerTicketAlertSend": {
+    "notification": true,
+    "fn": [
+      "\\dash\\app\\log\\msg\\support",
+      "answerTicketAlertSend"
+    ]
+  },
+  "answerTicketAlert": {
+    "notification": true,
+    "fn": [
+      "\\dash\\app\\log\\msg\\support",
+      "answerTicketAlert"
+    ]
+  },
   "AddToTicket": {
     "notification": true,
     "fn": [
@@ -134,6 +148,6 @@
     "title": null
   },
   "ticketAddTag": {
-    "title": null
+    "title": "Add new tag"
   }
 }

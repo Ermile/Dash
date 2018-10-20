@@ -20,6 +20,7 @@ class ticket
 				"
 					comments.*,
 					users.avatar,
+					users.chatid,
 					users.firstname,
 					users.displayname
 				 ";

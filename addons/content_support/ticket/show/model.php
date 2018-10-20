@@ -36,7 +36,7 @@ class model
 			return false;
 		}
 
-		if(self::answer_save($id, \dash\request::post('content') ? $_POST['content'] : null, \dash\request::post('addnote')))
+		if(self::answer_save($id, \dash\request::post('content') ? $_POST['content'] : null, \dash\request::post('addnote'), \dash\request::post('sendmessage')))
 		{
 			\dash\redirect::pwd();
 		}
@@ -173,7 +173,7 @@ class model
 
 	}
 
-	public static function answer_save($_id, $_answer, $_type = 'ticket')
+	public static function answer_save($_id, $_answer, $_type = 'ticket', $_send_message = true)
 	{
 		$file     = self::upload_file('file');
 
@@ -224,7 +224,7 @@ class model
 				[
 					'code'     => $_id,
 					'tcontent' => \dash\safe::forJson($content),
-					'file'     => $file ? $file :"\n",
+					'file'     => $file ? $file : null,
 					'plus'     => $plus,
 				];
 
@@ -274,7 +274,7 @@ class model
 					[
 						'code'     => $_id,
 						'tcontent' => \dash\safe::forJson($content),
-						'file'     => $file ? $file :"\n",
+						'file'     => $file ? $file : null,
 						'plus'     => $update_main['plus'],
 					];
 
@@ -297,11 +297,34 @@ class model
 					[
 						'code'     => $_id,
 						'tcontent' => \dash\safe::forJson($content),
-						'file'     => $file ? $file :"\n",
+						'file'     => $file ? $file : null,
 						'plus'     => $update_main['plus'],
 					];
 
 					\dash\log::set('AnswerTicket', $log);
+
+					if($_send_message)
+					{
+						$log =
+						[
+							'code'          => $_id,
+							'user_id'       => \dash\coding::decode($main['user_id']),
+							'user_idsender' => \dash\user::id(),
+						];
+
+						\dash\log::set('answerTicketAlertSend', $log);
+					}
+					else
+					{
+						$log =
+						[
+							'code'          => $_id,
+							'user_id'       => \dash\coding::decode($main['user_id']),
+							'user_idsender' => \dash\user::id(),
+						];
+
+						\dash\log::set('answerTicketAlert', $log);
+					}
 
 					$update_main['status'] = 'answered';
 					$msg = T_("Your answer was saved");

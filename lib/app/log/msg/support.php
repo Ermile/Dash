@@ -301,5 +301,59 @@ class support
 		return $msg;
 	}
 
+
+	public static function answerTicketAlertSend($_args, $_user)
+	{
+
+		$msg                = [];
+		$msg['title']       = T_("Regards"). "\n". T_("Ticket :val answered", ['val' => 1]);
+		$msg['content']     = T_(":val add new note to ticket", ['val' => self::getDisplayname($_user)]);
+		var_dump($msg);exit();
+
+		$msg['telegram']    = true;
+		// $msg['sms']    = true;
+		$msg['need_answer'] = true;
+
+		$tg_msg = '';
+		$tg_msg .= "🆔#Ticket".(isset($_args['code']) ? $_args['code']: null);
+		$tg_msg .= " 🌒️". $plus;
+		$tg_msg .= "\n🗣 ". self::getDisplayname($_user). " #user". self::getUserCode($_user);
+		$tg_msg .= "\n—————\n";
+
+		if($ttitle)
+		{
+			$tg_msg .= $ttitle . "\n";
+		}
+
+		if($tcontent)
+		{
+			$tcontent = \dash\app\log\msg::myStripTags($tcontent);
+			$tg_msg .= $tcontent . "\n";
+		}
+
+		if($file)
+		{
+			$tg_msg .= $file . "\n";
+		}
+
+		if(isset($_args['datecreated']))
+		{
+			$tg_msg .= "\n⏳ ". \dash\datetime::fit($_args['datecreated'], true);
+		}
+
+		$msg['send_msg']             = [];
+		$msg['send_msg']['telegram'] = $tg_msg;
+
+		$msg['send_to']              = ['supervisor'];
+
+		return $msg;
+	}
+
+	public static function answerTicketAlert($_args, $_user)
+	{
+
+	}
+
+
 }
 ?>
