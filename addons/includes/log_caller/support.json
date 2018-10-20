@@ -1,31 +1,10 @@
 {
   "addNewTicket": {
-    "title": "Add new ticket",
-    "content": ";displayname add new ticket",
-    "T_": {
-      "newtTicket": "New Ticket"
-    },
-    "notification": true,
-    "telegram": true,
-    "send_msg": {
-      "telegram": "🆔#Ticket|code #New \n🗣 ;displayname #user|user_code\n—————\n📬 :ttitle\n:tcontent\n:file\n⏳ |longdatecreated"
-    },
-    "send_to": [
-      "supervisor"
-    ],
-    "need_answer": true,
-    "btn": {
-      "telegram": {
-        "reply_markup": {
-          "keyboard": [
-            [
-              "/TicketAnswer |id"
-            ]
-          ],
-          "one_time_keyboard": true
-        }
-      }
-    }
+    "notification" : true,
+    "fn": [
+      "\\dash\\app\\log\\msg",
+      "addNewTicket"
+    ]
   },
   "setCloseTicket": {
     "title": "The ticket closed",

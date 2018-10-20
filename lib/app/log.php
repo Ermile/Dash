@@ -88,6 +88,24 @@ class log
 			$_data = array_merge($_data, self::caller_detail($_data['caller']));
 		}
 
+		$user_detail = self::detect_user($_data, 'user_id');
+
+		if(isset($_data['fn']))
+		{
+			$fn = $_data['fn'];
+
+			if(is_array($fn) && isset($fn[0]) && isset($fn[1]) && is_callable($fn))
+			{
+				$namespace = $fn[0];
+				$function = $fn[1];
+				$result_fn = $namespace::$function($_data, $user_detail);
+				if(is_array($result_fn))
+				{
+					$_data = array_merge($_data, $result_fn);
+				}
+			}
+		}
+
 		$replace = [];
 		if(isset($_data['data']) && is_string($_data['data']))
 		{
@@ -99,8 +117,6 @@ class log
 			$_data['T_'] = array_map('T_', $_data['T_']);
 			$replace = array_merge($replace, $_data['T_']);
 		}
-
-		$user_detail = self::detect_user($_data, 'user_id');
 
 		foreach ($_data as $key => $value)
 		{
