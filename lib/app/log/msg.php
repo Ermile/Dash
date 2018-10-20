@@ -57,6 +57,11 @@ class msg
 
 		if($tcontent)
 		{
+			$tcontent = str_replace("<br>", "\n", $tcontent);
+			$tcontent = str_replace("<br/>", "\n", $tcontent);
+			$tcontent = preg_replace("/\<\/[\w]\>/", ' ', $tcontent);
+			$tcontent = strip_tags($tcontent);
+			$tcontent = trim($tcontent);
 			$tg_msg .= $tcontent . "\n";
 		}
 
