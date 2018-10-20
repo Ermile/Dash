@@ -1,6 +1,6 @@
 {
   "addNewTicket": {
-    "notification" : true,
+    "notification": true,
     "fn": [
       "\\dash\\app\\log\\msg\\support",
       "addNewTicket"
@@ -84,63 +84,24 @@
     ]
   },
   "AnswerTicket": {
-    "title": "Answer ticket",
-    "content": ";displayname answer ticket",
     "notification": true,
-    "telegram": true,
-    "send_msg": {
-      "telegram": "🆔#Ticket|code 💌:plus \n🗣 ;displayname #user|user_code\n—————\n:tcontent\n:file\n⏳ |longdatecreated"
-    },
-    "send_to": [
-      "supervisor"
-    ],
-    "btn": {
-      "telegram": {
-        "reply_markup": {
-          "keyboard": [
-            [
-              "/TicketAnswer |code"
-            ]
-          ],
-          "one_time_keyboard": true
-        }
-      }
-    }
+    "fn": [
+      "\\dash\\app\\log\\msg\\support",
+      "AnswerTicket"
+    ]
   },
   "AddToTicket": {
-    "title": "Add new message to ticket",
-    "content": ";displayname add new message to ticket",
     "notification": true,
-    "telegram": true,
-    "send_msg": {
-      "telegram": "🆔#Ticket|code ⚔️:plus \n🗣 ;displayname #user|user_code\n—————\n:tcontent\n:file\n⏳ |longdatecreated"
-    },
-    "send_to": [
-      "supervisor"
-    ],
-    "btn": {
-      "telegram": {
-        "reply_markup": {
-          "keyboard": [
-            [
-              "/TicketAnswer |code"
-            ]
-          ],
-          "one_time_keyboard": true
-        }
-      }
-    }
+    "fn": [
+      "\\dash\\app\\log\\msg\\support",
+      "AddToTicket"
+    ]
   },
   "AddNoteTicket": {
-    "title": "Add new note to ticket",
-    "content": ";displayname add new note to ticket",
     "notification": true,
-    "telegram": true,
-    "send_msg": {
-      "telegram": "🆔#Ticket|code 🌒️:plus \n🗣 ;displayname #user|user_code\n—————\n:tcontent\n:file\n⏳ |longdatecreated"
-    },
-    "send_to": [
-      "supervisor"
+    "fn": [
+      "\\dash\\app\\log\\msg\\support",
+      "AddNoteTicket"
     ]
   },
   "seeTicket": {
