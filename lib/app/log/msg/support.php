@@ -12,7 +12,7 @@ class support
 		}
 		else
 		{
-			$displayname = T_("Unknow");
+			$displayname = T_("Unknown");
 		}
 		return $displayname;
 	}
