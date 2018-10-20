@@ -2,8 +2,8 @@
   "addNewTicket": {
     "notification" : true,
     "fn": [
-      "\\dash\\app\\log\\msg",
-      "addNewTicket"
+      "\\dash\\app\\log\\msg\\addNewTicket",
+      "msg"
     ]
   },
   "setCloseTicket": {
