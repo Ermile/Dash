@@ -110,7 +110,7 @@ class send
 
 		if(!empty($send_sms))
 		{
-			if(!\dash\option::social('kavenegar', 'status'))
+			if(!\dash\option::sms('kavenegar', 'status'))
 			{
 				$id_raw = array_column($send_sms, 'id_raw');
 				if(!empty($id_raw))
@@ -145,9 +145,7 @@ class send
 							\dash\utility\sms::send($user_detail['mobile'], $value['send_msg']['sms']);
 
 							// @check need to check the telegram is send this message or not
-							if($myResult)
-							{
-							}
+
 
 							$count_send++;
 
