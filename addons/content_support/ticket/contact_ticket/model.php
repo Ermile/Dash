@@ -96,6 +96,7 @@ class model
 		if($mobile && !\dash\user::login())
 		{
 			// check valid mobile
+			$mobile = \dash\utility\convert::to_en_number($mobile);
 			if($mobile = \dash\utility\filter::mobile($mobile))
 			{
 				// check existing mobile
@@ -114,6 +115,10 @@ class model
 
 					// save log by caller 'user:send:contact:register:by:mobile'
 					\dash\log::set('contactRegisterByMobile');
+				}
+				elseif(isset($exists_user['id']))
+				{
+					$user_id = $exists_user['id'];
 				}
 			}
 		}
