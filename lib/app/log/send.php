@@ -142,7 +142,7 @@ class send
 								return;
 							}
 
-							\dash\utility\sms::send($user_detail['mobile'], $value['send_msg']['sms']);
+							\dash\utility\sms::send($user_detail['mobile'], $value['send_msg']['sms'], $value['send_msg']);
 
 							// @check need to check the telegram is send this message or not
 

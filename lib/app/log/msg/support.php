@@ -323,11 +323,15 @@ class support
 			$tg_msg .= "\n⏳ ". \dash\datetime::fit($_args['datecreated'], true);
 		}
 
-		$sms_msg = $msg['title'];
+		$sms_msg = $msg['title']. "\n" . \dash\url::domain().'/!'. $code;
 
 		$msg['send_msg']             = [];
 		$msg['send_msg']['telegram'] = $tg_msg;
-		$msg['send_msg']['sms'] = $sms_msg;
+
+		// disable footer in sms
+		$msg['send_msg']['footer']   = false;
+
+		$msg['send_msg']['sms']      = $sms_msg;
 
 		return $msg;
 	}
