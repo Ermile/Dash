@@ -54,21 +54,8 @@ class mellat
 
             $namespace ='http://interfaces.core.sw.bps.com/';
 
-            $parameters =
-            [
-                'terminalId'     => $_args['terminalId'],
-                'userName'       => $_args['userName'],
-                'userPassword'   => $_args['userPassword'],
-                'orderId'        => $_args['orderId'],
-                'amount'         => $_args['amount'],
-                'localDate'      => $_args['localDate'],
-                'localTime'      => $_args['localTime'],
-                'additionalData' => $_args['additionalData'],
-                'callBackUrl'    => $_args['callBackUrl'],
-                'payerId'        => $_args['payerId'],
-            ];
-
-            $result = $client->__soapCall('bpPayRequest', [$parameters], [$namespace]);
+            // $result = $client->bpPayRequest($_args);
+            $result = $client->__soapCall('bpPayRequest', array($_args));
 
             $return = $result->return;
 
@@ -82,7 +69,7 @@ class mellat
             }
             else
             {
-                \dash\notif::error(self::msg($ResCode));
+                \dash\notif::error(self::msg($ResCode), $ResCode);
                 return false;
             }
 
@@ -128,17 +115,8 @@ class mellat
 
             $namespace ='http://interfaces.core.sw.bps.com/';
 
-            $parameters =
-            [
-                'terminalId'      => $_args['terminalId'],
-                'userName'        => $_args['userName'],
-                'userPassword'    => $_args['userPassword'],
-                'orderId'         => $_args['orderId'],
-                'saleOrderId'     => $_args['saleOrderId'],
-                'saleReferenceId' => $_args['saleReferenceId'],
-            ];
-
-            $result = $client->__soapCall('bpVerifyRequest', [$parameters], [$namespace]);
+            // $result = $client->bpVerifyRequest($_args);
+            $result = $client->__soapCall('bpVerifyRequest', array($_args));
 
             $return = $result->return;
 
@@ -152,7 +130,7 @@ class mellat
             }
             else
             {
-                \dash\notif::error(self::msg($ResCode));
+                \dash\notif::error(self::msg($ResCode), $ResCode);
                 return false;
             }
         }
