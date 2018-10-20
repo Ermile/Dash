@@ -24,7 +24,7 @@ class view
 		$main = \dash\app\ticket::get(\dash\request::get('id'));
 		if(!$main || !array_key_exists('user_id', $main))
 		{
-			\dash\header::status(403, T_("Ticket not found"));
+			\dash\header::status(404, T_("Ticket not found"));
 		}
 
 		if(isset($main['parent']))
@@ -52,7 +52,7 @@ class view
 
 		if(!$ticket_user_id && !\dash\temp::get('ticketGuest') && !\dash\user::login())
 		{
-			\dash\header::status(403, T_("Ticket not found"));
+			\dash\header::status(404, T_("Ticket not found"));
 		}
 
 		if(!\dash\permission::check('supportTicketManage'))
@@ -65,7 +65,8 @@ class view
 			{
 				if(!\dash\temp::get('ticketGuest'))
 				{
-					\dash\header::status(403, T_("This is not your ticket!"));
+					\dash\redirect::to(\dash\url::kingdom(). '/enter?referer='. \dash\url::pwd());
+					// \dash\header::status(403, T_("This is not your ticket!"));
 				}
 			}
 		}

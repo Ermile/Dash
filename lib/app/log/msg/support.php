@@ -307,7 +307,7 @@ class support
 		$code = isset($_args['code']) ? $_args['code']: null;
 
 		$msg             = [];
-		$msg['title']    = T_("Regards"). "\n". T_("Ticket :val answered", ['val' => $code]);
+		$msg['title']    = T_("Regards"). "\n". T_("Ticket :val answered", ['val' => \dash\utility\human::fitNumber($code)]);
 		$msg['content']  = T_(":val answer your ticket", ['val' => self::getDisplayname($_user)]);
 
 		$msg['telegram'] = true;
