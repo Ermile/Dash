@@ -182,7 +182,7 @@
           <img src="{{record.value.avatar}}" class="avatar mRa10" alt="{{record.value.displayname}}">
           <span class="txtB s0 fs08">{{record.value.displayname}}</span>
 {%if perm('supportTicketShowMobile')%}
-          <div class="txtRa fs08">{{masterTicketDetail.mobile | fitNumber('mobile12')}}</div>
+          <div class="txtRa fs08">{{record.value.mobile | fitNumber('mobile12')}}</div>
 
           <nav class="txtRa">
             {%if perm('supportTicketManage')%}<a href="{{url.this}}?user_id={{record.value.user_id}}" title='{%trans "User tickets"%}'><i class="sf-question-circle"></i></a>{%endif%}
@@ -285,7 +285,7 @@
           <img src="{{value.avatar}}" class="avatar mRa10" alt="{{value.displayname}}">
           <span class="txtB s0 fs08">{{value.displayname}}</span>
 {%if perm('supportTicketShowMobile')%}
-          <div class="txtRa fs08">{{masterTicketDetail.mobile | fitNumber('mobile12')}}</div>
+          <div class="txtRa fs08">{{record.value.mobile | fitNumber('mobile12')}}</div>
 
           <nav class="txtRa">
             {%if perm('supportTicketManage')%}<a href="{{url.this}}?user_id={{value.user_id}}" title='{%trans "User tickets"%}'><i class="sf-question-circle"></i></a>{%endif%}
