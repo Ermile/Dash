@@ -160,7 +160,8 @@ class account
 
 	private static function id()
 	{
-		return \dash\coding::decode(\dash\user::id());
+		return \dash\user::id();
+		// return \dash\coding::decode(\dash\user::id());
 	}
 
 
@@ -173,7 +174,7 @@ class account
 		else
 		{
 			$user_id = $_user_id;
-			$user_id = \dash\coding::encode($user_id);
+			// $user_id = \dash\coding::encode($user_id);
 		}
 
 		\dash\user::destroy();

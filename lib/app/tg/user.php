@@ -6,18 +6,19 @@ class user
 {
 	public static function get($_chat_id)
 	{
-		$get = \dash\app\user::get(['chatid' => $_chat_id, 'limit' => 1]);
+		$get = \dash\db\users::get(['chatid' => $_chat_id, 'limit' => 1]);
 		return $get;
 	}
 
 
 	public static function init($_user_code)
 	{
-		$user_id = \dash\coding::decode($_user_code);
+		// $user_id = \dash\coding::decode($_user_code);
+		$user_id = $_user_code;
 
 		if($user_id)
 		{
-			return \dash\user::init($user_id, true);
+			return \dash\user::init($user_id);
 		}
 	}
 
@@ -84,7 +85,8 @@ class user
 
 	public static function id()
 	{
-		return \dash\coding::decode(\dash\user::id());
+		return \dash\user::id();
+		// return \dash\coding::decode(\dash\user::id());
 	}
 
 
