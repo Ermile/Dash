@@ -1,10 +1,10 @@
 <?php
 namespace dash\app\log\msg;
 
-class addNewTicket
+class support
 {
 
-	public static function msg($_args, $_user)
+	public static function addNewTicket($_args, $_user)
 	{
 		// $tg_msg                      = "🆔#Ticket|code #New \n🗣 ;displayname #user|user_code\n—————\n📬 :ttitle\n:tcontent\n:file\n⏳ |longdatecreated";
 
