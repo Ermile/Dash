@@ -223,7 +223,7 @@ class model
 				$log =
 				[
 					'code'     => $_id,
-					'tcontent' => $content,
+					'tcontent' => \dash\safe::forJson($content),
 					'file'     => $file ? $file :"\n",
 					'plus'     => $plus,
 				];
@@ -273,7 +273,7 @@ class model
 					$log =
 					[
 						'code'     => $_id,
-						'tcontent' => $content,
+						'tcontent' => \dash\safe::forJson($content),
 						'file'     => $file ? $file :"\n",
 						'plus'     => $update_main['plus'],
 					];
@@ -296,7 +296,7 @@ class model
 					$log =
 					[
 						'code'     => $_id,
-						'tcontent' => $content,
+						'tcontent' => \dash\safe::forJson($content),
 						'file'     => $file ? $file :"\n",
 						'plus'     => $update_main['plus'],
 					];

@@ -120,6 +120,18 @@ class safe
 	}
 
 
+	public static function forJson($_string)
+	{
+		$_string = preg_replace("/\<\/[\w]\>/", ' ', $_string);
+		$_string = strip_tags($_string);
+		$_string = trim($_string);
+		$_string = self::remove_2nl($_string);
+		$_string = self::remove_nl($_string);
+		$_string = self::remove_2s($_string);
+		$_string = trim($_string);
+		return $_string;
+	}
+
 	/**
 	 * Nested function for walk array or object
 	 * @param  array or object $_value unpack array or object

@@ -65,7 +65,7 @@ class model
 			[
 				'code'     => $result['id'],
 				'ttitle'   => $args['title'],
-				'tcontent' => \dash\safe::safe($args['content'], 'raw'),
+				'tcontent' => \dash\safe::forJson($args['content']),
 				'file'     => $args['file'] ? $args['file'] :"\n",
 			];
 
