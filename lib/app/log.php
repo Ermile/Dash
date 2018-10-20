@@ -158,12 +158,6 @@ class log
 					}
 					break;
 
-				case 'send_to':
-					$result[$key] = $value;
-					if(\dash\temp::get('logLoadUserDetail'))
-					{
-						$result['user_detail'] = self::detect_user($_data, $key);
-					}
 					break;
 
 				case 'datecreated':
@@ -182,6 +176,10 @@ class log
 			}
 		}
 
+		if(\dash\temp::get('logLoadUserDetail'))
+		{
+			$result['user_detail'] = self::detect_user($_data);
+		}
 
 		foreach ($result as $key => $value)
 		{
@@ -213,7 +211,7 @@ class log
 				break;
 			}
 		}
-
+		// var_dump($result);exit();
 		return $result;
 
 	}
@@ -271,7 +269,7 @@ class log
 	}
 
 
-	private static function detect_user($_detail, $_key)
+	private static function detect_user($_detail, $_key = null)
 	{
 		$all_user_detail = [];
 		if($_key === 'user_id')
@@ -284,45 +282,53 @@ class log
 		}
 		else
 		{
+			$all_user_detail = [];
 
 			$send_to = isset($_detail['send_to']) ? $_detail['send_to'] : null;
 
-			if(!$send_to || !is_array($send_to))
+			if($send_to || is_array($send_to))
 			{
-				return false;
-			}
-
-			$permission_list = [];
-			foreach ($send_to as $key => $value)
-			{
-				if($value === 'supervisor')
+				$permission_list = [];
+				foreach ($send_to as $key => $value)
 				{
-					$permission_list[] = 'supervisor';
-				}
-				elseif($value === 'admin')
-				{
-					$permission_list[] = 'admin';
-				}
-				else
-				{
-					$temp = \dash\permission::who_have($value);
-					unset($temp['admin']);
-					if(!empty($temp))
+					if($value === 'supervisor')
 					{
-						$permission_list = array_merge($permission_list, $temp);
+						$permission_list[] = 'supervisor';
+					}
+					elseif($value === 'admin')
+					{
+						$permission_list[] = 'admin';
+					}
+					else
+					{
+						$temp = \dash\permission::who_have($value);
+						unset($temp['admin']);
+						if(!empty($temp))
+						{
+							$permission_list = array_merge($permission_list, $temp);
+						}
 					}
 				}
+				$permission_list = array_filter($permission_list);
+				$permission_list = array_unique($permission_list);
+				if(!empty($permission_list))
+				{
+					$permission_list = implode("','", $permission_list);
+				}
+
+				$all_user_detail = \dash\db\users::get(['permission' => ["IN", "('$permission_list')"], 'status' => 'active']);
 			}
-			$permission_list = array_filter($permission_list);
-			$permission_list = array_unique($permission_list);
-			if(!empty($permission_list))
+
+			if(isset($_detail['user_id']) && is_numeric($_detail['user_id']))
 			{
-				$permission_list = implode("','", $permission_list);
+				$temp = \dash\db\users::get_by_id($_detail['user_id']);
+				if(is_array($temp))
+				{
+					$all_user_detail[] = $temp;
+				}
 			}
-
-			$all_user_detail = \dash\db\users::get(['permission' => ["IN", "('$permission_list')"], 'status' => 'active']);
-
 		}
+
 
 		if(empty($all_user_detail))
 		{
@@ -331,6 +337,7 @@ class log
 
 		// to remove duplicate if exist
 		$all_user_detail       = array_combine(array_column($all_user_detail, 'id'), $all_user_detail);
+
 		return $all_user_detail;
 	}
 
