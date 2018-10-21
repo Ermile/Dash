@@ -65,9 +65,7 @@
 
 </div>
 
-<div class="cbox">
   {{block("iShowFiles")}}
-</div>
 
 {%endif%}
 
@@ -88,23 +86,27 @@
 
 {%block iShowFiles%}
 {%if oldBackup%}
-
+<div class="cbox ltr">
 {%for key, value in oldBackup%}
-  <div class="msg f" title="{{value.name}}">
+  <div class="msg f align-center" title="{{value.name}}">
     <div class="cauto">
-      <span class="sf-database fs15  pRa25 vlbottom" ></span>
+      <span class="sf-database fs15 mR10" ></span>
     </div>
+    <div class="c">{{value.name}}</div>
     <div class="c">
-      {{value.name}} |
       <div class="badge secondary">{{value.ago | fitNumber}}</div>
       <div class="badge primary">{%trans "Sise"%} {{value.size | fitNumber(false)}} MB</div>
+    </div>
+    <div class="cauto os">
       <div class="badge danger"><a href="{{url.pwd}}" data-ajaxify data-data='{"type" : "remove", "file" : "{{value.name}}"}' data-method='post'>{%trans "Remove"%}</a></div>
       <div class="badge success"><a href="{{url.here}}/backup?download={{value.name}}" >{%trans "Download"%}</a></div>
     </div>
   </div>
 {%endfor%}
+</div>
+
 {%else%}
-<div class="msg danger">{%trans "No backup was found"%}</div>
+<div class="msg danger fs16">{%trans "No backup was found"%}</div>
 {%endif%}
 
 
