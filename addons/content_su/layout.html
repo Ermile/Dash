@@ -29,7 +29,7 @@
     	<ul>
     		<li><a href="{{url.here}}/gitstatus">{% trans "Git status" %}</a></li>
     		<li><a href="{{url.here}}/nano">{% trans "Nano" %}</a></li>
-    		<li><a href="{{url.here}}/update">{% trans "Update" %}</a></li>
+    		<li><a href="{{url.here}}/update" data-shortkey="85+80" data-shortkey-timeout='500'>{% trans "Update" %}<kbd class="floatRa fs08">up</kbd></a></li>
     	</ul>
     </li>
 
@@ -41,6 +41,7 @@
   {%if url.tld == 'local'%}
     		<li><a href="{{url.here}}/translation">{% trans "Translation tools" %}</a></li>
   {%endif%}
+            <li><a href="{{url.here}}/tg" data-shortkey="84+71" data-shortkey-timeout='500'>{% trans "Telegram" %}<kbd class="floatRa fs08">tg</kbd></a></li>
     	</ul>
     </li>
 
