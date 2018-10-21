@@ -60,7 +60,7 @@
   <small>{%trans "If the git password is saved on your server"%}</small>
   <a target='_blank' class="btn block primary mT10" href="{{url.here}}/update?git=all" title='{%trans "Press it if you are sure!"%}'>{%trans "Update All"%}</a>
 
-  <form method="post" class="f mT10">
+  <form method="post" class="f mT10 hide">
     <input type="hidden" name="update" value="all">
     <div class="input c">
       <input type="password" name="gitPass" placeholder='{%trans "Git password"%}'>
@@ -151,10 +151,10 @@
 
 
 {%block iUpdateDb%}
- <form method="post" action="{{url.here}}/db" data-action class="dcard x2 mB50">
+ <form method="post" action="{{url.here}}/db" data-action class="dcard x2 mB50" autocomplete="off">
   <div class="input mB5">
    <span class="addon">{%trans "Username"%}</span>
-   <input type="text" name="username" placeholder="db username">
+   <input type="text" name="username" placeholder="db username" autocomplete="new-password">
   </div>
   <div class="input mB5">
    <span class="addon">{%trans "Password"%}</span>
@@ -162,7 +162,7 @@
   </div>
   <div class="input mB10 f">
    <span class="addon cauto">{%trans "Type"%}</span>
-  <select name="type" class="c input">
+  <select name="type" class="c select">
    <option value="upgrade" selected="selected">{%trans "Upgrade"%}</option>
    <option value="backup" >{%trans "Backup"%}</option>
    <option value="backup_dump" >{%trans "Backup by dump"%}</option>
