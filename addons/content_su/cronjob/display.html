@@ -5,7 +5,7 @@
 
 <div class="f justify-center">
 
-  <div class="c7 mLa5">
+  <div class="c7 m8 s12">
     <div class="cbox">
       <form method="post">
 
@@ -16,25 +16,28 @@
          </label>
         </div>
         <div data-response='active' {%if cronjob%}{%else%}data-response-hide{%endif%}>
-            <p class="msg mT20 primary2 pB50 pT20">
-                <code class="ltr floatL">{{cronjobPHP}}</code>
-            </p>
+            <pre class="ltr msg mB50 pTB20">{{cronjobPHP}}</pre>
 
         {%for key, value in activeList%}
-          <div class="mT20 pB50 msg {%if value.active%} success2 {%endif%}">
-            {%set my_title = value.title%}{%trans my_title%}
-            <small>{%set my_desc = value.desc%}{%trans my_desc%}</small>
-            {%if value.saved_url%} <a href="{{value.saved_url}}" class="badge warn">{{value.saved_url}}</a>{%endif%}
-            <div class="switch1 pB20 floatL">
+          <div class="msg f align-center {%if value.active%} success2 {%endif%}">
+            <div class="c mB5 pRa10">
+                {%set my_title = value.title%}{%trans my_title%}
+                <small>{%set my_desc = value.desc%}{%trans my_desc%}</small>
+                {%if value.saved_url%}
+                <div class="mT10 ltr">
+                    <a href="{{value.saved_url}}" class="badge warn">{{value.saved_url}}</a>
+                </div>
+                {%endif%}
+            </div>
+            <div class="switch1 cauto os">
              <input type="checkbox" name="{{key}}" id="{{key}}" {%if value.active %} checked {%endif%}>
-             <label for="{{key}}"></label>
              <label for="{{key}}"></label>
             </div>
           </div>
         {%endfor%}
         </div>
 
-        <button class="btn primary block mT20 ">{%trans "Save"%}</button>
+        <button class="btn primary block mB20 ">{%trans "Save"%}</button>
     </form>
 
     </div>
