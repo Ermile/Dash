@@ -96,8 +96,8 @@
       <span class="sf-database fs15 mR10"></span>
       <a href="{{url.here}}/backup?download={{value.name}}" title='{%trans "Click to download"%}'>{{value.name}}</a>
     </td>
-    <td class="rtl s0">{{value.ago | fitNumber}}</td>
-    <td class="rtl s0">{%trans "Sise"%} {{value.size | fitNumber(false)}} {%trans "MB"%}</td>
+    <td class="rtl s0">{{value.ago}}</td>
+    <td class="rtl s0">{{value.size | fitNumber(false)}} {%trans "MB"%}</td>
     <td class="pR25-f ">
       <div class="btn xs danger"><a href="{{url.pwd}}" data-ajaxify data-data='{"type" : "remove", "file" : "{{value.name}}"}' data-method='post'>{%trans "Remove"%}</a></div>
     </td>
