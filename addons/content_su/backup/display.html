@@ -92,14 +92,15 @@
     <div class="cauto">
       <span class="sf-database fs15 mR10" ></span>
     </div>
-    <div class="c">{{value.name}}</div>
-    <div class="c">
+    <div class="c"><a href="{{url.here}}/backup?download={{value.name}}" title='{%trans "Click to download"%}'>{{value.name}}</a></div>
+    <div class="c rtl">
       <div class="badge secondary">{{value.ago | fitNumber}}</div>
-      <div class="badge primary">{%trans "Sise"%} {{value.size | fitNumber(false)}} MB</div>
+    </div>
+    <div class="c rtl">
+      <div class="badge primary">{%trans "Sise"%} {{value.size | fitNumber(false)}} {%trans "MB"%}</div>
     </div>
     <div class="cauto os">
-      <div class="badge danger"><a href="{{url.pwd}}" data-ajaxify data-data='{"type" : "remove", "file" : "{{value.name}}"}' data-method='post'>{%trans "Remove"%}</a></div>
-      <div class="badge success"><a href="{{url.here}}/backup?download={{value.name}}" >{%trans "Download"%}</a></div>
+      <div class="btn outline xs danger"><a href="{{url.pwd}}" data-ajaxify data-data='{"type" : "remove", "file" : "{{value.name}}"}' data-method='post'>{%trans "Remove"%}</a></div>s
     </div>
   </div>
 {%endfor%}
