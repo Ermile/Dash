@@ -20,7 +20,7 @@
 
 <div class="f">
 
-  <div class="c">
+  <div class="c s12 pRa10">
     <div class="cbox">
       <h6>{%trans "Database info"%}</h6>
       <div class="msg">
@@ -40,7 +40,7 @@
     </div>
   </div>
 
-  <div class="c mLa5">
+  <div class="c s12">
     <div class="cbox">
       <form method="post">
       <input type="hidden" name="backup" value="schedule">
@@ -96,9 +96,9 @@
       <span class="sf-database fs15 mR10"></span>
       <a href="{{url.here}}/backup?download={{value.name}}" title='{%trans "Click to download"%}'>{{value.name}}</a>
     </td>
-    <td class="rtl">{{value.ago | fitNumber}}</td>
-    <td class="rtl">{%trans "Sise"%} {{value.size | fitNumber(false)}} {%trans "MB"%}</td>
-    <td class="pR25-f">
+    <td class="rtl s0">{{value.ago | fitNumber}}</td>
+    <td class="rtl s0">{%trans "Sise"%} {{value.size | fitNumber(false)}} {%trans "MB"%}</td>
+    <td class="pR25-f ">
       <div class="btn xs danger"><a href="{{url.pwd}}" data-ajaxify data-data='{"type" : "remove", "file" : "{{value.name}}"}' data-method='post'>{%trans "Remove"%}</a></div>
     </td>
   </tr>
