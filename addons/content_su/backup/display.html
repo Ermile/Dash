@@ -86,24 +86,24 @@
 
 {%block iShowFiles%}
 {%if oldBackup%}
-<div class="cbox ltr">
+<div class="ltr">
+
+<table class="tbl1 v3">
+
 {%for key, value in oldBackup%}
-  <div class="msg f align-center" title="{{value.name}}">
-    <div class="cauto">
-      <span class="sf-database fs15 mR10" ></span>
-    </div>
-    <div class="c"><a href="{{url.here}}/backup?download={{value.name}}" title='{%trans "Click to download"%}'>{{value.name}}</a></div>
-    <div class="c rtl">
-      <div class="badge secondary">{{value.ago | fitNumber}}</div>
-    </div>
-    <div class="c rtl">
-      <div class="badge primary">{%trans "Sise"%} {{value.size | fitNumber(false)}} {%trans "MB"%}</div>
-    </div>
-    <div class="cauto os">
-      <div class="btn outline xs danger"><a href="{{url.pwd}}" data-ajaxify data-data='{"type" : "remove", "file" : "{{value.name}}"}' data-method='post'>{%trans "Remove"%}</a></div>s
-    </div>
-  </div>
+  <tr>
+    <td class="txtL">
+      <span class="sf-database fs15 mR10"></span>
+      <a href="{{url.here}}/backup?download={{value.name}}" title='{%trans "Click to download"%}'>{{value.name}}</a>
+    </td>
+    <td class="rtl">{{value.ago | fitNumber}}</td>
+    <td class="rtl">{%trans "Sise"%} {{value.size | fitNumber(false)}} {%trans "MB"%}</td>
+    <td class="pR25-f">
+      <div class="btn xs danger"><a href="{{url.pwd}}" data-ajaxify data-data='{"type" : "remove", "file" : "{{value.name}}"}' data-method='post'>{%trans "Remove"%}</a></div>
+    </td>
+  </tr>
 {%endfor%}
+</table>
 </div>
 
 {%else%}
