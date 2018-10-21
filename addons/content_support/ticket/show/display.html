@@ -185,13 +185,13 @@
           <div class="txtRa fs08">{{record.value.mobile | fitNumber('mobile12')}}</div>
 
           <nav class="txtRa">
-            {%if perm('supportTicketManage')%}<a href="{{url.this}}?user_id={{record.value.user_id}}" title='{%trans "User tickets"%}'><i class="sf-question-circle"></i></a>{%endif%}
+            {%if perm('supportTicketManage')%}<a href="{{url.this}}?user_id={{record.value.user_id}}{{accessGetAnd}}" title='{%trans "User tickets"%}'><i class="sf-question-circle"></i></a>{%endif%}
             {%if perm('cpUsersView')%}<a href="{{url.kingdom}}/cp/users/view?id={{record.value.user_id}}" title='{%trans "User Profile"%}'><i class="sf-user-md"></i></a>{%endif%}
             {%if perm('cpVisitorView')%}
-              <a href="{{url.kingdom}}/cp/visitor?userid={{record.value.user_id}}" title='{%trans "User last visits"%}'><i class="sf-flight"></i></a>
+              <a href="{{url.kingdom}}/cp/visitor/log?userid={{record.value.user_id}}" title='{%trans "User last visits"%}'><i class="sf-flight"></i></a>
             {%endif%}
             {%if perm('cpVisitorView')%}
-              <a href="{{url.kingdom}}/cp/visitor?type=before&userid={{record.value.user_id}}&datetime={{masterTicketDetail.datecreated | url_encode}}" title='{%trans "Before create ticket"%}'><i class="sf-dzone"></i></a>
+              <a href="{{url.kingdom}}/cp/visitor/log?type=before&userid={{record.value.user_id}}&datetime={{masterTicketDetail.datecreated | date('Ymd-His') | url_encode}}" title='{%trans "Before create ticket"%}'><i class="sf-dzone"></i></a>
             {%endif%}
           </nav>
 {%endif%}
