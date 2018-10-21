@@ -17,20 +17,25 @@ class view
 
 
 		$load = \dash\db\telegrams::get(['id' => \dash\request::get('id'), 'limit' => 1]);
-		if(is_array($load))
-		{
-			$new = [];
-			foreach ($load as $key => $value)
-			{
-				if(is_string($value))
-				{
-					if(substr($value, 0, 1) === '{' || substr($value, 0, 1) === '[')
-					{
-						$load[$key] = json_decode($value, true);
-					}
-				}
-			}
-		}
+		// if(is_array($load))
+		// {
+		// 	$new = [];
+		// 	foreach ($load as $key => $value)
+		// 	{
+		// 		var_dump($key);
+		// 		var_dump($value);
+
+		// 		if(is_string($value))
+		// 		{
+		// 			var_dump(111);
+		// 			if(substr($value, 0, 1) === '{' || substr($value, 0, 1) === '[')
+		// 			{
+		// 				$tmp = json_decode($value, true);
+		// 				$load[$key] = \dash\social\telegram::json($tmp);
+		// 			}
+		// 		}
+		// 	}
+		// }
 		\dash\data::dataRow($load);
 
 		// \dash\db\telegrams::get(['key' => 'value', 'key2' => 'value2']);
