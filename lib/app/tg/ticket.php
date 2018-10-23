@@ -10,5 +10,11 @@ class ticket
 		\content_support\ticket\show\model::answer_save($_id, $_answer);
 		return true;
 	}
+
+
+	public static function create($_title, $_content)
+	{
+		\content_support\ticket\add\model::add_new($_title, $_content);
+	}
 }
 ?>

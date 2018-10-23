@@ -24,19 +24,32 @@ class model
 	}
 
 
-	public static function add_new($_args)
+	public static function add_new($_title, $_content, $_file = null)
 	{
+		// ready to insert comments
+		$args =
+		[
+			'author'  => \dash\user::detail('displayname'),
+			'email'   => \dash\user::detail('email'),
+			'type'    => 'ticket',
+			'content' => $_content,
+			'title'   => $_title,
+			'mobile'  => \dash\user::detail("mobile"),
+			'file'    => $_file,
+			'user_id' => \dash\user::id(),
+		];
+
 		// insert comments
-		$result = \dash\app\ticket::add($_args);
+		$result = \dash\app\ticket::add($args);
 
 		if(isset($result['id']))
 		{
 			$log =
 			[
 				'code'     => $result['id'],
-				'ttitle'   => $_args['title'],
-				'tcontent' => \dash\safe::forJson($_args['content']),
-				'file'     => $_args['file'] ? $_args['file'] : null,
+				'ttitle'   => $args['title'],
+				'tcontent' => \dash\safe::forJson($args['content']),
+				'file'     => $args['file'] ? $args['file'] : null,
 			];
 
 			\dash\log::set('addNewTicket', $log);
@@ -57,30 +70,18 @@ class model
 		}
 
 
-		// ready to insert comments
-		$args =
-		[
-			'author'  => \dash\user::detail('displayname'),
-			'email'   => \dash\user::detail('email'),
-			'type'    => 'ticket',
-			// 'content' => \dash\request::post('content') ? $_POST['content'] : null,
-			'title'   => \dash\request::post('title'),
-			'mobile'  => \dash\user::detail("mobile"),
-			'file'    => $file,
-			'user_id' => \dash\user::id(),
-		];
 
 		if(\dash\permission::check('supportTicketSignature'))
 		{
-			$args['content'] = \dash\request::post('content') ? $_POST['content'] : null;
+			$content = \dash\request::post('content') ? $_POST['content'] : null;
 		}
 		else
 		{
-			$args['content'] = \dash\request::post('content');
+			$content = \dash\request::post('content');
 		}
 
 		// insert comments
-		$result = self::add_new($args);
+		$result = self::add_new(\dash\request::post('title'), $content, $file);
 
 		if(isset($result['id']))
 		{
