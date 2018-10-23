@@ -31,5 +31,24 @@ class ticket
 
 		\content_support\ticket\add\model::add_new(T_("Ticket via telegram"), $_content);
 	}
+
+
+	public static function list($_id)
+	{
+		\content_support\ticket\show\view::load_tichet($_id);
+		$dataTable = \dash\data::dataTable();
+
+		$msg = T_("Start"). "\n";
+
+		if(is_array($dataTable))
+		{
+			foreach ($dataTable as $key => $value)
+			{
+				$msg .= @$value['content']. "\n";
+			}
+		}
+
+		return $msg;
+	}
 }
 ?>

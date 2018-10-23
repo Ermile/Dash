@@ -14,8 +14,13 @@ class view
 		\dash\data::badge_text(T_('Back to tickets list'));
 		\dash\data::badge_link(\dash\url::this().\dash\data::accessGet());
 
+		self::load_tichet(\dash\request::get('id'));
+	}
 
-		$parent = \dash\request::get('id');
+	public static function load_tichet($_id)
+	{
+
+		$parent = $_id;
 		if(!$parent || !is_numeric($parent))
 		{
 			\dash\header::status(404, T_("Invalid id"));
