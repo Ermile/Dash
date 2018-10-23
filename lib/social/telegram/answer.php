@@ -46,6 +46,11 @@ class answer extends tg
 				{
 					break;
 				}
+				// if answer generated do not continue
+				if(self::$answerGenerated)
+				{
+					break;
+				}
 			}
 		}
 
