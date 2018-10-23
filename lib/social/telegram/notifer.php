@@ -20,6 +20,31 @@ class notifer
 				{
 					$msgText = $_msg['text'];
 					// send message to show this text
+				}
+				if(isset($_msg['type']))
+				{
+					switch ($_msg['type'])
+					{
+						case 'ok':
+							$msgText = '✅ '. $msgText;
+							break;
+
+						case 'info':
+							$msgText = '💠 '. $msgText;
+							break;
+
+						case 'warn':
+							$msgText = '⚠️ '. $msgText;
+							break;
+
+						case 'error':
+							$msgText = '❗️ '. $msgText;
+							break;
+					}
+
+				}
+				if($msgText)
+				{
 					tg::sendMessage($msgText);
 				}
 			}
