@@ -48,29 +48,7 @@ class step_ticketCreate
 	}
 
 
-	public static function step2($_title)
-	{
-		// after this go to next step
-		step::plus();
-
-		step::set('ticketTitle', $_title);
-
-		// show give contact menu
-		$menu     = self::$menu;
-		$txt_text = T_("Ticket title is saved.")."\n\n";
-		$txt_text .= T_("Please wrote about your problem and describe it.");
-
-		$result =
-		[
-			'text'         => $txt_text,
-			'reply_markup' => $menu,
-		];
-		bot::sendMessage($result);
-		bot::ok();
-	}
-
-
-	public static function step3($_ticketDetail)
+	public static function step2($_ticketDetail)
 	{
 		// after this go to next step
 
@@ -79,8 +57,7 @@ class step_ticketCreate
 
 		// show give contact menu
 		$menu     = self::$menu;
-		$ticketTitle = step::get('ticketTitle');
-		\dash\app\tg\ticket::create($ticketTitle, $_ticketDetail);
+		\dash\app\tg\ticket::create($_ticketDetail);
 
 		$result =
 		[
