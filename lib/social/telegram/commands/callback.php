@@ -33,9 +33,8 @@ class callback
 				$response['show_alert'] = true;
 			}
 			bot::answerCallbackQuery($response);
-
+			bot::ok();
 		}
-		return $response;
 	}
 
 
