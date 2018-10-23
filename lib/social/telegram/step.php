@@ -209,8 +209,7 @@ class step
 					$currentStep = 'step'. self::get('pointer');
 					break;
 			}
-			// save result of step
-			$result         = null;
+
 			$myhookLocation = '\content_hook\tg\\';
 			// create function full name
 			$funcName       = 'step_'. self::get('name'). '::'. $currentStep;
@@ -218,7 +217,7 @@ class step
 			if(is_callable($myhookLocation.$funcName))
 			{
 				// get and return response
-				$result = call_user_func($myhookLocation.$funcName, $_text);
+				call_user_func($myhookLocation.$funcName, $_text);
 			}
 			elseif(self::get('name'))
 			{
@@ -226,7 +225,7 @@ class step
 				if(is_callable($cmdNamespace.$funcName))
 				{
 					// get and return response
-					$result = call_user_func($cmdNamespace.$funcName, $_text);
+					call_user_func($cmdNamespace.$funcName, $_text);
 				}
 			}
 
@@ -237,8 +236,6 @@ class step
 			{
 				self::stop();
 			}
-			// after saving text return result
-			return $result;
 		}
 	}
 }

@@ -45,9 +45,7 @@ class step_feedback
 		];
 
 		bot::sendMessage($result);
-
-		// return menu
-		return $result;
+		bot::ok();
 	}
 
 
@@ -69,9 +67,9 @@ class step_feedback
 			'reply_markup' => step::get('menu'),
 		];
 		bot::sendMessage($result);
+		bot::ok();
 
 		step::stop();
-		return $result;
 	}
 
 
@@ -109,9 +107,7 @@ class step_feedback
 		];
 
 		$result = bot::sendMessage($msg);
-
-
-		return $result;
+		bot::ok();
 	}
 }
 ?>

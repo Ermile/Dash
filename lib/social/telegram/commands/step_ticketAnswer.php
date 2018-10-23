@@ -58,9 +58,7 @@ class step_ticketAnswer
 		];
 
 		bot::sendMessage($result);
-
-		// return menu
-		return $result;
+		bot::ok();
 	}
 
 
@@ -82,8 +80,7 @@ class step_ticketAnswer
 			'reply_markup' => $menu,
 		];
 		bot::sendMessage($result);
-
-		return $result;
+		bot::ok();
 	}
 
 
@@ -108,9 +105,9 @@ class step_ticketAnswer
 			'reply_markup' => $menu,
 		];
 		bot::sendMessage($result);
+		bot::ok();
 
 		step::stop();
-		return $result;
 	}
 
 
@@ -122,8 +119,7 @@ class step_ticketAnswer
 			'reply_markup' => self::$menu,
 		];
 		bot::sendMessage($result);
-
-		return $result;
+		bot::ok();
 	}
 
 }

@@ -16,13 +16,11 @@ class answer
 			return true;
 		}
 
-		$answer  = null;
-
 		// check for step
-		$response = step::check(hook::text());
-		if($response)
+		step::check(hook::text());
+		if(tg::isOkay())
 		{
-			return $response;
+			return true;
 		}
 
 		// try to run classes based on order list
