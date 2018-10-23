@@ -19,6 +19,7 @@ class tg
 		'dash:conversation',
 		'dash:conversationFa',
 	];
+	public static $finish     = null;
 
 
 
@@ -27,7 +28,6 @@ class tg
 	public static $defaultText = 'Undefined';
 	public static $defaultMenu = null;
 	public static $saveDest    = root.'public_html/files/telegram/';
-
 
 
 	/**
@@ -105,6 +105,18 @@ class tg
 			return exec::send($_name, $_args, $jsonResult);
 		}
 		return false;
+	}
+
+
+	public static function ok()
+	{
+		self::$finish = true;
+	}
+
+
+	public static function isOkay()
+	{
+		return self::$finish;
 	}
 }
 ?>

@@ -2,18 +2,16 @@
 namespace dash\social\telegram;
 
 /** telegram generate needle library**/
-class answer extends tg
+class answer
 {
 	/**
 	 * this library generate telegram tools
 	 * v2.0
 	 */
-	private static $answerGenerated = null;
-
 
 	public static function finder()
 	{
-		if(self::$answerGenerated)
+		if(tg::isOkay())
 		{
 			return true;
 		}
@@ -40,21 +38,16 @@ class answer extends tg
 			if(is_callable($funcName))
 			{
 				// call this class main fn
-				$answer = call_user_func($funcName, hook::cmd());
-				// if has response break loop
-				if($answer || is_array($answer))
-				{
-					break;
-				}
+				call_user_func($funcName, hook::cmd());
 				// if answer generated do not continue
-				if(self::$answerGenerated)
+				if(tg::isOkay())
 				{
 					break;
 				}
 			}
 		}
 
-		if(!$answer)
+		if(!tg::isOkay())
 		{
 			if(hook::chat('type') === 'group' || hook::chat('type') === 'supergroup')
 			{
@@ -100,12 +93,6 @@ class answer extends tg
 		$randomAnswer = $myAnswerList[array_rand($myAnswerList)];
 
 		return $randomAnswer;
-	}
-
-
-	public static function ok()
-	{
-		self::$answerGenerated = true;
 	}
 }
 ?>
