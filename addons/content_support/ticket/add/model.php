@@ -23,6 +23,29 @@ class model
 		return null;
 	}
 
+
+	public static function add_new($_args)
+	{
+		// insert comments
+		$result = \dash\app\ticket::add($_args);
+
+		if(isset($result['id']))
+		{
+			$log =
+			[
+				'code'     => $result['id'],
+				'ttitle'   => $_args['title'],
+				'tcontent' => \dash\safe::forJson($_args['content']),
+				'file'     => $_args['file'] ? $_args['file'] : null,
+			];
+
+			\dash\log::set('addNewTicket', $log);
+
+			\dash\notif::ok(T_("Your ticket was sended"));
+		}
+		return $result;
+	}
+
 	public static function post()
 	{
 		$file     = self::upload_file('file');
@@ -57,21 +80,10 @@ class model
 		}
 
 		// insert comments
-		$result = \dash\app\ticket::add($args);
+		$result = self::add_new($args);
 
 		if(isset($result['id']))
 		{
-			$log =
-			[
-				'code'     => $result['id'],
-				'ttitle'   => $args['title'],
-				'tcontent' => \dash\safe::forJson($args['content']),
-				'file'     => $args['file'] ? $args['file'] : null,
-			];
-
-			\dash\log::set('addNewTicket', $log);
-
-			\dash\notif::ok(T_("Your ticket was sended"));
 			if(!\dash\user::login())
 			{
 				if(!isset($_SESSION['guest_ticket']) || (isset($_SESSION['guest_ticket']) && !is_array($_SESSION['guest_ticket'])))
