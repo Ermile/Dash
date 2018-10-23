@@ -194,6 +194,7 @@ class step
 		// if before this message step started
 		if(self::get(false))
 		{
+			$forceCancel = null;
 			// calc current step
 			switch ($_text)
 			{
@@ -201,8 +202,10 @@ class step
 				case '/end':
 				case '/stop':
 				case '/cancel':
+				case T_('cancel'):
 					// if user want to stop current step
 					$currentStep = 'stop';
+					$forceCancel = true;
 					break;
 
 				default:
@@ -235,6 +238,11 @@ class step
 			if($currentStep === 'stop')
 			{
 				self::stop();
+			}
+			if($forceCancel)
+			{
+				tg::sendMessage(T_('Cancel operation.'));
+				tg::ok();
 			}
 		}
 	}
