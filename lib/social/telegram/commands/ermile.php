@@ -93,22 +93,20 @@ class ermile
 				self::help();
 				break;
 
-			case '/feedback':
-			case 'feedback':
-			case 'ثبت بازخورد':
-				\dash\social\telegram\step::set('menu', menu::main(true));
-				step_feedback::start();
-				break;
 
 			case '/ticket':
 			case 'ticket':
+			case T_('/ticket'):
+			case T_('ticket'):
 				\dash\social\telegram\step::set('menu', menu::main(true));
-				step_ticket::start();
-				break;
-
-			case '/TicketAnswer':
-				\dash\social\telegram\step::set('menu', menu::main(true));
-				step_ticketAnswer::start($_cmd);
+				if($_cmd['optional'])
+				{
+					step_ticketAnswer::start($_cmd);
+				}
+				else
+				{
+					step_ticketCreate::start();
+				}
 				break;
 
 			default:

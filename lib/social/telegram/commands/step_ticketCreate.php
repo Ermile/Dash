@@ -5,7 +5,7 @@ use \dash\social\telegram\tg as bot;
 use \dash\social\telegram\step;
 use \dash\social\telegram\hook;
 
-class step_ticket
+class step_ticketCreate
 {
 	private static $menu = ["remove_keyboard" => true];
 
@@ -16,7 +16,7 @@ class step_ticket
 	 */
 	public static function start()
 	{
-		step::start('ticket');
+		step::start('ticketCreate');
 
 		return self::step1();
 	}
@@ -32,8 +32,10 @@ class step_ticket
 		step::plus();
 		// show give contact menu
 		$menu     = self::$menu;
-		$txt_text = T_("We can give your ticket easily in via telegram")."\n\n";
-		$txt_text .= T_("Please enter your ticket title");
+
+		$txt_text = T_("Thank you for choosing us.")."\n\n";
+		$txt_text .= T_("Knowing your valuable comments about bugs and problems and more importantly your precious offers will help us in this way.")."\n\n";
+		$txt_text .= T_("Please enter your ticket title.");
 
 		$result   =
 		[
@@ -46,13 +48,15 @@ class step_ticket
 	}
 
 
-	public static function step2($_feedback)
+	public static function step2($_title)
 	{
 		// after this go to next step
 		step::plus();
 
+		step::set('ticketTitle', $_title);
+
 		$txt_text = T_("Ticket title is saved.")."\n\n";
-		$txt_text .= T_("Please wrote your problem");
+		$txt_text .= T_("Please wrote about your problem and describe it.");
 
 		$result =
 		[
@@ -64,12 +68,15 @@ class step_ticket
 	}
 
 
-	public static function step3($_feedback)
+	public static function step3($_ticketDetail)
 	{
 		// after this go to next step
 
 		$txt_text = T_("Your ticket is successfully saved.")."\n\n";
 		$txt_text .= T_("We try to answer to you as soon as posible.");
+
+		$ticketTitle = step::get('ticketTitle');
+		\dash\app\tg\ticket::save($ticketTitle, $_ticketDetail);
 
 		$result =
 		[
