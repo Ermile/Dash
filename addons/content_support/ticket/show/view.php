@@ -131,11 +131,11 @@ class view
 		}
 		\content_support\ticket\home\view::sidebarDetail(true);
 
-		self::see_ticket($main, $dataTable);
-		self::inline_log($main, $dataTable);
+		self::see_ticket($main, $dataTable, $_id);
+		self::inline_log($main, $dataTable, $_id);
 	}
 
-	public static function inline_log($_main, $_dataTable)
+	public static function inline_log($_main, $_dataTable, $_id)
 	{
 		if(!\dash\permission::supervisor())
 		{
@@ -224,7 +224,7 @@ class view
 
 	}
 
-	public static function see_ticket($_main, $_dataTable)
+	public static function see_ticket($_main, $_dataTable, $_id)
 	{
 		if(!self::is_my_ticket($_main) || !\dash\user::id() || !$_dataTable || !is_array($_dataTable))
 		{
