@@ -63,8 +63,9 @@ class support
 		$msg['telegram']    = true;
 		$msg['need_answer'] = true;
 
+		$code = (isset($_args['code']) ? $_args['code']: null);
 		$tg_msg = '';
-		$tg_msg .= "🆔#Ticket".(isset($_args['code']) ? $_args['code']: null);
+		$tg_msg .= "🆔#Ticket".$code;
 		$tg_msg .= " #New \n🗣 ". self::getDisplayname($_user). " #user". self::getUserCode($_user);
 		$tg_msg .= "\n—————\n📬 ";
 
@@ -101,7 +102,7 @@ class support
 			[
 				'keyboard'           =>
 				[
-					['/TicketAnswer |code'],
+					[T_('Ticket'). ' '. $code],
 				],
 				'one_time_keyboard'  => true,
 			],
@@ -129,8 +130,9 @@ class support
 		$msg['telegram']    = true;
 		$msg['need_answer'] = true;
 
+		$code = (isset($_args['code']) ? $_args['code']: null);
 		$tg_msg = '';
-		$tg_msg .= "🆔#Ticket".(isset($_args['code']) ? $_args['code']: null);
+		$tg_msg .= "🆔#Ticket".$code;
 		$tg_msg .= " 💌". $plus;
 		$tg_msg .= "\n🗣 ". self::getDisplayname($_user). " #user". self::getUserCode($_user);
 		$tg_msg .= "\n—————\n";
@@ -169,7 +171,7 @@ class support
 			[
 				'keyboard'           =>
 				[
-					['/TicketAnswer |code'],
+					[T_('Ticket'). ' '. $code],
 				],
 				'one_time_keyboard'  => true,
 			],
@@ -198,8 +200,9 @@ class support
 		$msg['telegram']    = true;
 		$msg['need_answer'] = true;
 
+		$code = (isset($_args['code']) ? $_args['code']: null);
 		$tg_msg = '';
-		$tg_msg .= "🆔#Ticket".(isset($_args['code']) ? $_args['code']: null);
+		$tg_msg .= "🆔#Ticket".$code;
 		$tg_msg .= " ⚔". $plus;
 		$tg_msg .= "\n🗣 ". self::getDisplayname($_user). " #user". self::getUserCode($_user);
 		$tg_msg .= "\n—————\n";
@@ -237,7 +240,7 @@ class support
 			[
 				'keyboard'           =>
 				[
-					['/TicketAnswer |code'],
+					[T_('Ticket'). ' '. $code],
 				],
 				'one_time_keyboard'  => true,
 			],
@@ -266,8 +269,9 @@ class support
 		$msg['telegram']    = true;
 		$msg['need_answer'] = true;
 
+		$code = (isset($_args['code']) ? $_args['code']: null);
 		$tg_msg = '';
-		$tg_msg .= "🆔#Ticket".(isset($_args['code']) ? $_args['code']: null);
+		$tg_msg .= "🆔#Ticket".$code;
 		$tg_msg .= " 🌒️". $plus;
 		$tg_msg .= "\n🗣 ". self::getDisplayname($_user). " #user". self::getUserCode($_user);
 		$tg_msg .= "\n—————\n";
@@ -313,8 +317,9 @@ class support
 		$msg['telegram'] = true;
 		$msg['sms']      = true;
 
+		$code = (isset($_args['code']) ? $_args['code']: null);
 		$tg_msg = '';
-		$tg_msg .= "🆔#Ticket".(isset($_args['code']) ? $_args['code']: null);
+		$tg_msg .= "🆔#Ticket".$code;
 		$tg_msg .= "\n". T_("Regards"). "\n";
 		$tg_msg .= "\n". T_("Ticket :val answered", ['val' => $code]). "\n";
 
