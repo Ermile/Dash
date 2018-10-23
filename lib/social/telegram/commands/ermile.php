@@ -12,18 +12,17 @@ class ermile
 	 */
 	public static function run($_cmd)
 	{
-		$response = null;
 		switch ($_cmd['command'])
 		{
 			case '/start':
 			case 'start':
 			case 'شروع':
-				$response = self::start();
+				self::start();
 				break;
 
 			case '/language':
 			case '/lang':
-				$response = self::lang();
+				self::lang();
 				break;
 
 			case '/about':
@@ -31,7 +30,7 @@ class ermile
 			case 'درباره':
 			case 'درباره ی':
 			case 'درباره‌ی':
-				$response = self::about();
+				self::about();
 				break;
 
 			case '/me':
@@ -43,7 +42,7 @@ class ermile
 			case 'بگیر':
 			case 'پروفایل':
 			case 'من':
-				$response = self::me();
+				self::me();
 				break;
 
 			case '/contact':
@@ -52,23 +51,23 @@ class ermile
 			case 'آدرس':
 			case 'ادرس':
 			case 'نشانی':
-				$response = self::contact();
+				self::contact();
 				break;
 
 			case '/register':
 			case 'register':
 			case '/signup':
 			case 'signup':
-				$response = self::signup();
+				self::signup();
 
 				break;
 
 			case 'type_contact':
-				$response = self::register('شماره موبایل', $_cmd);
+				self::register('شماره موبایل', $_cmd);
 				break;
 
 			case 'type_location':
-				$response = self::register('آدرس');
+				self::register('آدرس');
 				break;
 
 			case 'type_audio':
@@ -78,7 +77,7 @@ class ermile
 			case 'type_video':
 			case 'type_voice':
 			case 'type_venue':
-				$response = self::register($_cmd['command'], $_cmd);
+				self::register($_cmd['command'], $_cmd);
 				break;
 
 			case '/help':
@@ -91,31 +90,30 @@ class ermile
 			case 'راهنمایی':
 			case '/?':
 			case '/؟':
-				$response = self::help();
+				self::help();
 				break;
 
 			case '/feedback':
 			case 'feedback':
 			case 'ثبت بازخورد':
 				\dash\social\telegram\step::set('menu', menu::main(true));
-				$response = step_feedback::start();
+				step_feedback::start();
 				break;
 
 			case '/ticket':
 			case 'ticket':
 				\dash\social\telegram\step::set('menu', menu::main(true));
-				$response = step_ticket::start();
+				step_ticket::start();
 				break;
 
 			case '/TicketAnswer':
 				\dash\social\telegram\step::set('menu', menu::main(true));
-				$response = step_ticketAnswer::start($_cmd);
+				step_ticketAnswer::start($_cmd);
 				break;
 
 			default:
 				break;
 		}
-		return $response;
 	}
 
 
@@ -136,8 +134,7 @@ class ermile
 		$result['text'] .= "\n". T_('Made by @Ermile');
 
 		bot::sendMessage($result);
-
-		return $result;
+		bot::ok();
 	}
 
 
@@ -153,8 +150,7 @@ class ermile
 		$result['caption'] = T_("Ermile is inteligent");
 
 		bot::sendPhoto($result);
-
-		return $result;
+		bot::ok();
 	}
 
 
@@ -177,8 +173,7 @@ class ermile
 		];
 
 		bot::sendVenue($result);
-
-		return $result;
+		bot::ok();
 	}
 
 
@@ -197,11 +192,10 @@ class ermile
 		// $text .= "/contact contact us\n";
 		$result =
 		[
-			'text'         => $text,
+			'text' => $text,
 		];
 		bot::sendMessage($result);
-
-		return $result;
+		bot::ok();
 	}
 
 
@@ -256,12 +250,11 @@ class ermile
 		}
 		$result =
 		[
-			'text'  => $text,
+			'text' => $text,
 		];
 
 		bot::sendMessage($result);
-
-		return $result;
+		bot::ok();
 	}
 
 
@@ -273,7 +266,7 @@ class ermile
 	{
 		$result =
 		[
-			'method'      => 'getUserProfilePhotos',
+			'method' => 'getUserProfilePhotos',
 		];
 
 		return $result;
@@ -297,8 +290,7 @@ class ermile
 			'one_time_keyboard' => true
 		];
 		bot::sendMessage($result);
-
-		return $result;
+		bot::ok();
 	}
 
 
@@ -342,9 +334,7 @@ class ermile
 		];
 		// send message
 		bot::sendMessage($result);
-		// return result
-		return $result;
+		bot::ok();
 	}
-
 }
 ?>
