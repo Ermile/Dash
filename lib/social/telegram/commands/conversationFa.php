@@ -128,9 +128,8 @@ class conversationFa
 		if($text)
 		{
 			bot::sendMessage($text);
+			bot::ok();
 		}
-		// return response as result
-		return $text;
 	}
 }
 ?>

@@ -87,7 +87,7 @@ class utility
 		if($text)
 		{
 			bot::sendMessage($text);
-			bot::ok(true);
+			bot::ok();
 		}
 	}
 }

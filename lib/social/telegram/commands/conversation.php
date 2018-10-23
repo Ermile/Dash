@@ -20,6 +20,10 @@ class conversation
 				$text = 'hello!';
 				break;
 
+			case 'hi':
+				$text = 'hi dear!';
+				break;
+
 			case 'good':
 			case '/howami':
 			case 'howami':
@@ -56,9 +60,8 @@ class conversation
 		if($text)
 		{
 			bot::sendMessage($text);
+			bot::ok();
 		}
-		// return response as result
-		return $text;
 	}
 }
 ?>
