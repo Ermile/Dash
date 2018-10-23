@@ -69,8 +69,8 @@ class exec
 		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
 		curl_setopt($ch, CURLOPT_HEADER, false);
 		// timeout setting
-		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
-		curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 7);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 7);
 
 		if (!empty($_data))
 		{
