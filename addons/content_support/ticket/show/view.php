@@ -26,7 +26,7 @@ class view
 			\dash\header::status(404, T_("Invalid id"));
 		}
 
-		$main = \dash\app\ticket::get(\dash\request::get('id'));
+		$main = \dash\app\ticket::get($_id);
 		if(!$main || !array_key_exists('user_id', $main))
 		{
 			\dash\header::status(404, T_("Ticket not found"));
@@ -120,7 +120,7 @@ class view
 				'limit' => 5,
 				'pagenation' => false,
 			];
-			$url = \dash\url::this().'/show?id='. \dash\request::get('id');
+			$url = \dash\url::this().'/show?id='. $_id;
 
 			$args['urls.urlmd5'] = md5($url);
 			$args['visitors.user_id'] = $ticket_user_id;
@@ -142,7 +142,7 @@ class view
 			return;
 		}
 
-		$url = \dash\url::this(). '/show?id='. \dash\request::get('id');
+		$url = \dash\url::this(). '/show?id='. $_id;
 
 		$get_visitor =
 		[
@@ -169,7 +169,7 @@ class view
 		$get_log =
 		[
 			'caller'    => ['IN', "('$implode_caller')"],
-			'code'      => \dash\request::get('id'),
+			'code'      => $_id,
 
 		];
 
@@ -247,7 +247,7 @@ class view
 		$get_log =
 		[
 			'caller'      => 'seeTicket',
-			'code'        => \dash\request::get('id'),
+			'code'        => $_id,
 			'user_id'     => \dash\user::id(),
 			'datecreated' => [">=", "'$end_message[datecreated]'"],
 		];
@@ -256,7 +256,7 @@ class view
 
 		if(!$get_log)
 		{
-			\dash\log::set('seeTicket',  ['code' => \dash\request::get('id')]);
+			\dash\log::set('seeTicket',  ['code' => $_id]);
 		}
 
 	}
