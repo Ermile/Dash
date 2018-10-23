@@ -26,6 +26,7 @@ class ticket
 			'file'    => null,
 			'user_id' => \dash\user::id(),
 		];
+		\dash\notif::ok(T_("Your ticket was sended"));
 
 		// insert comments
 		$result = \dash\app\ticket::add($args);
