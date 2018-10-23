@@ -55,6 +55,8 @@ class step_ticketCreate
 
 		step::set('ticketTitle', $_title);
 
+		// show give contact menu
+		$menu     = self::$menu;
 		$txt_text = T_("Ticket title is saved.")."\n\n";
 		$txt_text .= T_("Please wrote about your problem and describe it.");
 
@@ -75,8 +77,10 @@ class step_ticketCreate
 		$txt_text = T_("Your ticket is successfully saved.")."\n\n";
 		$txt_text .= T_("We try to answer to you as soon as posible.");
 
+		// show give contact menu
+		$menu     = self::$menu;
 		$ticketTitle = step::get('ticketTitle');
-		\dash\app\tg\ticket::save($ticketTitle, $_ticketDetail);
+		\dash\app\tg\ticket::create($ticketTitle, $_ticketDetail);
 
 		$result =
 		[
