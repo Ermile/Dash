@@ -58,7 +58,7 @@ class answer extends tg
 
 		if(!$answer)
 		{
-			if(hook::chat('type') === 'group')
+			if(hook::chat('type') === 'group' || hook::chat('type') === 'supergroup')
 			{
 				// if your bot joied to group show thanks message
 				if(hook::new_chat_member('username') === self::$name)
