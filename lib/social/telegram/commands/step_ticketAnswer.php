@@ -66,15 +66,18 @@ class step_ticketAnswer
 	public static function step2($_btn)
 	{
 		// after this go to next step
-		step::plus();
-		$txt_text = 'Ticket Step2';
-		$menu     = self::$menu;
 
 		if($_btn === T_("Answer"))
 		{
+			step::plus();
 			$txt_text = T_("Please wrote your answer");
 		}
+		else
+		{
+			$txt_text = T_("Please choose from defined answer.");
+		}
 
+		$menu     = self::$menu;
 		$result =
 		[
 			'text'         => $txt_text,

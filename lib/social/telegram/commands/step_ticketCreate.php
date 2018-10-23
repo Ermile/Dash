@@ -49,21 +49,7 @@ class step_ticketCreate
 
 	public static function step2($_ticketDetail)
 	{
-		// after this go to next step
-
-		$txt_text = T_("Your ticket is successfully saved.")."\n\n";
-		$txt_text .= T_("We try to answer to you as soon as posible.");
-
-		// show give contact menu
-		$menu     = self::$menu;
 		\dash\app\tg\ticket::create($_ticketDetail);
-
-		$result =
-		[
-			'text'         => $txt_text,
-			'reply_markup' => $menu,
-		];
-		bot::sendMessage($result);
 		bot::ok();
 
 		step::stop();
