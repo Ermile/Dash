@@ -241,10 +241,41 @@ class step
 			}
 			if($forceCancel)
 			{
-				tg::sendMessage(T_('Cancel operation.'));
-				tg::ok();
+				self::cancelStep();
 			}
 		}
+	}
+
+
+	public static function checkFalseTry()
+	{
+		// get current try val
+		$tryCount = intval(self::get('falseTry'));
+		// plus plus try val
+		self::set('falseTry', $tryCount + 1);
+
+		if($tryCount === 0)
+		{
+			tg::sendMessage(T_('Press enter valid value'));
+			tg::ok();
+		}
+		else if($tryCount === 1)
+		{
+			tg::sendMessage(T_('Press another inappropirate key to exit from active process!'));
+			tg::ok();
+		}
+		else
+		{
+			self::set('falseTry', 0);
+			self::cancelStep();
+		}
+	}
+
+	public static function cancelStep()
+	{
+		self::stop();
+		tg::sendMessage(T_('Cancel operation.'));
+		tg::ok();
 	}
 }
 ?>

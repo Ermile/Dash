@@ -78,7 +78,8 @@ class step_ticketAnswer
 		}
 		else
 		{
-			$txt_text = T_("Please choose from defined answer.");
+			step::checkFalseTry();
+			return;
 		}
 
 		$menu     = self::$menu;
