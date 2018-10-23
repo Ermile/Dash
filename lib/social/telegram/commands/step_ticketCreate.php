@@ -3,7 +3,6 @@ namespace dash\social\telegram\commands;
 // use telegram class as bot
 use \dash\social\telegram\tg as bot;
 use \dash\social\telegram\step;
-use \dash\social\telegram\hook;
 
 class step_ticketCreate
 {

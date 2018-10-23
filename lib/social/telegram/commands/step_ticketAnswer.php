@@ -3,7 +3,6 @@ namespace dash\social\telegram\commands;
 // use telegram class as bot
 use \dash\social\telegram\tg as bot;
 use \dash\social\telegram\step;
-use \dash\social\telegram\hook;
 
 class step_ticketAnswer
 {
@@ -42,9 +41,11 @@ class step_ticketAnswer
 
 		// show give contact menu
 		$menu     = self::$menu;
-		$txt_text = T_("What do you want to do?")."\n\n";
+		$ticketNo = step::get('ticketNo');
+		$txt_text = \dash\app\tg\ticket::list($ticketNo);
+		// $txt_text = T_("What do you want to do?")."\n\n";
 		$keyboard = [];
-		$keyboard[] = [ T_("Answer"), T_("View") ];
+		$keyboard[] = [ T_("Answer"), T_("Cancel") ];
 
 
 		$result   =
@@ -62,14 +63,14 @@ class step_ticketAnswer
 	}
 
 
-	public static function step2($_feedback)
+	public static function step2($_btn)
 	{
 		// after this go to next step
 		step::plus();
 		$txt_text = 'Ticket Step2';
 		$menu     = self::$menu;
 
-		if($_feedback === T_("Answer"))
+		if($_btn === T_("Answer"))
 		{
 			$txt_text = T_("Please wrote your answer");
 		}
@@ -84,27 +85,16 @@ class step_ticketAnswer
 	}
 
 
-	public static function step3($_feedback)
+	public static function step3($_answer)
 	{
-		if(!$_feedback)
+		$ticketNo = step::get('ticketNo');
+		\dash\app\tg\ticket::answer($ticketNo, $_answer);
+
+		if(!$_answer)
 		{
 			return false;
 		}
 
-		$ticketNo = step::get('ticketNo');
-		\dash\app\tg\ticket::answer($ticketNo, $_feedback);
-
-		// after this go to next step
-		$menu     = self::$menu;
-		$txt_text = T_("We are save you answer to this ticket.")."\n\n";
-		$txt_text .= T_("Thanks.");
-
-		$result =
-		[
-			'text'         => $txt_text,
-			'reply_markup' => $menu,
-		];
-		bot::sendMessage($result);
 		bot::ok();
 
 		step::stop();
