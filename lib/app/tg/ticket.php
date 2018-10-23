@@ -12,26 +12,24 @@ class ticket
 	}
 
 
-	public static function create($_title, $_content)
+	public static function create($_content)
 	{
-		// ready to insert comments
-		$args =
-		[
-			'author'  => \dash\user::detail('displayname'),
-			'email'   => \dash\user::detail('email'),
-			'type'    => 'ticket',
-			'content' => $_content,
-			'title'   => $_title,
-			'mobile'  => \dash\user::detail("mobile"),
-			'file'    => null,
-			'user_id' => \dash\user::id(),
-		];
-		\dash\notif::ok(T_("Your ticket was sended"));
+		// $args =
+		// [
+		// 	'author'  => \dash\user::detail('displayname'),
+		// 	'email'   => \dash\user::detail('email'),
+		// 	'type'    => 'ticket',
+		// 	'content' => $_content,
+		// 	'title'   => T_("Ticket via telegram"),
+		// 	'mobile'  => \dash\user::detail("mobile"),
+		// 	'file'    => null,
+		// 	'user_id' => \dash\user::id(),
+		// ];
 
-		// insert comments
-		$result = \dash\app\ticket::add($args);
+		// // insert comments
+		// $result = \dash\app\ticket::add($args);
 
-		// \content_support\ticket\add\model::add_new($_title, $_content);
+		\content_support\ticket\add\model::add_new(T_("Ticket via telegram"), $_content);
 	}
 }
 ?>
