@@ -44,7 +44,7 @@ class step_ticketAnswer
 		$ticketNo = step::get('ticketNo');
 		$txt_text = \dash\app\tg\ticket::list($ticketNo);
 
-		// if(!$txt_text)
+		if(!$txt_text)
 		{
 			$txt_text = "Empty!";
 		}
