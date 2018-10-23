@@ -3,7 +3,7 @@ namespace dash\social\telegram\commands;
 // use telegram class as bot
 use \dash\social\telegram\tg as bot;
 
-class utitlity
+class utility
 {
 	/**
 	 * execute user request and return best result
@@ -22,9 +22,10 @@ class utitlity
 			case 'user_id':
 			case '/myid':
 			case 'myid':
-				$text = T_("User id"). ' '. \dash\user::id();
+				$text = T_("User id"). ' <code>'. \dash\user::id(). '</code>';
 				$text .= "\n\n<pre>". json_encode(\dash\social\telegram\hook::from(null), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE). "</pre>";
 				break;
+
 
 			case '/session':
 			case 'session':
@@ -69,17 +70,17 @@ class utitlity
 			case '/say':
 			case 'say':
 			case 'بگو':
-					$response = self::say($_cmd, true);
-					if(isset($ـ_cmd['text']))
+
+					if(isset($_cmd['text']))
 					{
-						$len  = strlen($ـ_cmd['command']);
-						$text = substr($ـ_cmd['text'], $len +1);
+						$len  = strlen($_cmd['command']);
+						$text = substr($_cmd['text'], $len +1);
 					}
 				break;
 
 
 			case 'دبگو':
-				$text = $text;
+				$text = $_cmd['text'];
 				break;
 		}
 
