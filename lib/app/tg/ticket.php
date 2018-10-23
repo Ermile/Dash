@@ -23,7 +23,7 @@ class ticket
 			'content' => $_content,
 			'title'   => $_title,
 			'mobile'  => \dash\user::detail("mobile"),
-			'file'    => $_file,
+			'file'    => null,
 			'user_id' => \dash\user::id(),
 		];
 
