@@ -51,8 +51,6 @@ class answer extends tg
 				{
 					break;
 				}
-				// check notif
-				notifer::check();
 			}
 		}
 

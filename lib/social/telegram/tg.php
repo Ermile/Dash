@@ -45,6 +45,8 @@ class tg
 		self::fisher();
 		// find answer for this message if need to answering
 		answer::finder();
+		// check notif and if exist send it
+		notifer::check();
 		// if we must pass result, we save it on result sending
 		// now we need to save unanswered hook
 		if(true)
