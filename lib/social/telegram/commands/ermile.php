@@ -100,14 +100,32 @@ class ermile
 			case T_('/ticket'):
 			case T_('ticket'):
 				\dash\social\telegram\step::set('menu', menu::main(true));
-				if(isset($_cmd['argument']) && $_cmd['argument'] === 'answer')
+
+				if(isset($_cmd['optional']))
 				{
-					// go to step of answer
-					step_ticketAnswer::start($_cmd);
-				}
-				elseif(isset($_cmd['optional']))
-				{
-					step_ticketAnswer::show($_cmd);
+					if(isset($_cmd['argument']))
+					{
+						if($_cmd['argument'] === 'answer')
+						{
+							// go to step of answer
+							step_ticketAnswer::start($_cmd);
+						}
+						else
+						{
+							// do nothing
+						}
+					}
+					else
+					{
+						if($_cmd['optional'])
+						{
+							step_ticketAnswer::show($_cmd);
+						}
+						else
+						{
+							// do nothing
+						}
+					}
 				}
 				else
 				{
