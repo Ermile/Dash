@@ -11,7 +11,7 @@ class step_ticketAnswer
 		// if we have ticket number continue else return
 		if(isset($_cmd['optional']) && $_cmd['optional'])
 		{
-			step::set('ticketNo', $_cmd['optional']);
+			step::set('ticketNo', \dash\utility\convert::to_en_number($_cmd['optional']));
 			step::start('ticketAnswer');
 
 			return self::step1($_cmd);
