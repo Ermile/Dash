@@ -51,17 +51,15 @@ class step_ticketAnswer
 					'inline_keyboard' =>
 					[
 						[
-							[
-								"text" => T_("Site"),
-								"url" => "http://jibres.com"
-							]
+							'text' => 	T_("Visit in site"),
+							'url'  => \dash\url::base(). '/!'. $ticketNo,
 						],
+					],
+					[
 						[
-							[
-								"text" => T_("Answer"),
-								"callback_data" => "cb_ticket answer 123"
-							]
-						]
+							'text'          => 	T_("Answer"),
+							'callback_data' => 'ticket '. $ticketNo. ' answer',
+						],
 					],
 				]
 			];
