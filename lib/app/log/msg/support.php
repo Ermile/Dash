@@ -104,7 +104,8 @@ class support
 				[
 					[T_('Ticket'). ' '. $code],
 				],
-				'one_time_keyboard'  => true,
+				'one_time_keyboard' => true,
+				'resize_keyboard'   => true,
 			],
 		];
 
@@ -174,6 +175,7 @@ class support
 					[T_('Ticket'). ' '. $code],
 				],
 				'one_time_keyboard'  => true,
+				'resize_keyboard'   => true,
 			],
 		];
 
@@ -243,6 +245,7 @@ class support
 					[T_('Ticket'). ' '. $code],
 				],
 				'one_time_keyboard'  => true,
+				'resize_keyboard'   => true,
 			],
 		];
 
