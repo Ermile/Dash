@@ -603,6 +603,15 @@ class jdate
 
     }
 
+    public static function check_is_date($_date)
+    {
+        $check = strtotime($_date);
+        if($check === false)
+        {
+            $check = preg_match("/^\d{4}(.?)\d{2}(.?)\d{2}$/", $_date);
+        }
+        return $check ? true : false;
+    }
 
     /**
      * change date to gregorian
@@ -616,11 +625,15 @@ class jdate
             $_format = "Y-m-d";
         }
 
-        $year  = (new \DateTime($_date))->format("Y");
-        $month = (new \DateTime($_date))->format("m");
-        $day   = (new \DateTime($_date))->format("d");
-        list($year, $month, $day) = self::toGregorian($year, $month, $day);
-        return date($_format, strtotime("$year-$month-$day"));
+        if(self::check_is_date($_date))
+        {
+            $year  = (new \DateTime($_date))->format("Y");
+            $month = (new \DateTime($_date))->format("m");
+            $day   = (new \DateTime($_date))->format("d");
+            list($year, $month, $day) = self::toGregorian($year, $month, $day);
+            return date($_format, strtotime("$year-$month-$day"));
+        }
+        return false;
     }
 
 
