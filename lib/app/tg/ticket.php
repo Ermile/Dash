@@ -41,24 +41,24 @@ class ticket
 		$masterTicketDetail = \dash\data::masterTicketDetail();
 
 		$msg = '';
-		$msg .= "🆔#Ticket".$_id;
-		$msg .= " #New \n🗣 ". \dash\data::masterTicketDetail_displayname(). " #user". \dash\data::masterTicketDetail_user_id();
-		$msg .= "\n—————\n📬 ";
+		// $msg .= "🆔#Ticket".$_id;
+		// $msg .= " #New \n🗣 ". \dash\data::masterTicketDetail_displayname(). " #user". \dash\data::masterTicketDetail_user_id();
+		// $msg .= "\n—————\n📬 ";
 
-		if(isset($masterTicketDetail['title']))
-		{
-			$msg .= strip_tags($masterTicketDetail['title']). "\n";
-		}
+		// if(isset($masterTicketDetail['title']))
+		// {
+		// 	$msg .= strip_tags($masterTicketDetail['title']). "\n";
+		// }
 
-		if(isset($masterTicketDetail['content']))
-		{
-			$msg .= strip_tags($masterTicketDetail['content']). "\n";
-		}
+		// if(isset($masterTicketDetail['content']))
+		// {
+		// 	$msg .= strip_tags($masterTicketDetail['content']). "\n";
+		// }
 
-		if(isset($masterTicketDetail['datecreated']))
-		{
-			$msg .= "\n⏳ ". \dash\datetime::fit($masterTicketDetail['datecreated'], true);
-		}
+		// if(isset($masterTicketDetail['datecreated']))
+		// {
+		// 	$msg .= "\n⏳ ". \dash\datetime::fit($masterTicketDetail['datecreated'], true);
+		// }
 
 		if(is_array($dataTable))
 		{
