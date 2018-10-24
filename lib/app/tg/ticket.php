@@ -35,10 +35,16 @@ class ticket
 
 	public static function list($_id)
 	{
+		$_id = \dash\utility\convert::to_en_number($_id);
 		\content_support\ticket\show\view::load_tichet($_id);
 
 		$dataTable          = \dash\data::dataTable();
 		$masterTicketDetail = \dash\data::masterTicketDetail();
+
+		if(!$dataTable)
+		{
+			return false;
+		}
 
 		$msg = '';
 		$msg .= "🆔#Ticket".$_id. "\n";
