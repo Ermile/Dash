@@ -45,7 +45,6 @@ self::$config['site']['slogan'] = "Ermile is intelligent ;)";
 
 // the project have help center or no
 self::$config['help_center']         = true;
-self::$config['cronjob']['status'] = true;
 
 
 // ----- language
@@ -87,6 +86,8 @@ self::$config['visitor']                          = false;
 // self::$config['sms']                                   = false;
 // self::$config['account']                               = false;
 
+// cronjob status
+self::$config['cronjob']['status'] = true;
 
 self::$config['allow_post_type'] =
 [

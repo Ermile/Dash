@@ -69,8 +69,13 @@ class model
 
 		\dash\app::variable(['support_tag' => $_tag]);
 		\dash\app\posts::set_post_term($_id, 'support_tag', 'comments');
-		\dash\log::set('ticketAddTag', ['code' => $_id, 'tag' => $_tag]);
-		\dash\notif::ok(T_("Tag was saved"));
+		\dash\log::temp_set('ticketAddTag', ['code' => $_id, 'tag' => $_tag]);
+
+		if(\dash\engine\process::status())
+		{
+			\dash\log::save_temp();
+			\dash\notif::ok(T_("Tag was saved"));
+		}
 		return true;
 	}
 
@@ -102,24 +107,24 @@ class model
 			{
 				case 'close':
 					\dash\permission::access('supportTicketClose');
-					\dash\log::set('setCloseTicket', ['code' => $_id]);
+					\dash\log::temp_set('setCloseTicket', ['code' => $_id]);
 
 					break;
 
 				case 'awaiting':
 					\dash\permission::access('supportTicketReOpen');
-					\dash\log::set('setAwaitingTicket', ['code' => $_id]);
+					\dash\log::temp_set('setAwaitingTicket', ['code' => $_id]);
 					break;
 
 
 				case 'spam':
 					\dash\permission::access('supportTicketAnswer');
-					\dash\log::set('setSpamTicket', ['code' => $_id]);
+					\dash\log::temp_set('setSpamTicket', ['code' => $_id]);
 					break;
 
 				case 'deleted':
 					\dash\permission::access('supportTicketDelete');
-					\dash\log::set('setDeleteTicket', ['code' => $_id]);
+					\dash\log::temp_set('setDeleteTicket', ['code' => $_id]);
 					break;
 
 			}
@@ -146,6 +151,10 @@ class model
 				break;
 		}
 
+		if(\dash\engine\process::status())
+		{
+			\dash\log::save_temp();
+		}
 		return true;
 	}
 
@@ -160,15 +169,19 @@ class model
 		\dash\db\comments::update(['solved' => $solved], $_id);
 		if($solved)
 		{
-			\dash\log::set('setSolvedTicket', ['code' => $_id]);
+			\dash\log::temp_set('setSolvedTicket', ['code' => $_id]);
 			\dash\notif::ok(T_("Ticket set as solved"));
 		}
 		else
 		{
-			\dash\log::set('setUnSolvedTicket', ['code' => $_id]);
+			\dash\log::temp_set('setUnSolvedTicket', ['code' => $_id]);
 			\dash\notif::warn(T_("Ticket set as unsolved"));
 		}
 
+		if(\dash\engine\process::status())
+		{
+			\dash\log::save_temp();
+		}
 		return true;
 
 	}
@@ -228,7 +241,7 @@ class model
 					'plus'     => $plus,
 				];
 
-				\dash\log::set('AddNoteTicket', $log);
+				\dash\log::temp_set('AddNoteTicket', $log);
 
 				$msg         = T_("Your note saved");
 				$notif_fn    = 'warn';
@@ -278,7 +291,7 @@ class model
 						'plus'     => $update_main['plus'],
 					];
 
-					\dash\log::set('AddToTicket', $log);
+					\dash\log::temp_set('AddToTicket', $log);
 				}
 				else
 				{
@@ -301,7 +314,7 @@ class model
 						'plus'     => $update_main['plus'],
 					];
 
-					\dash\log::set('AnswerTicket', $log);
+					\dash\log::temp_set('AnswerTicket', $log);
 
 					if($_send_message)
 					{
@@ -312,7 +325,7 @@ class model
 							'user_idsender' => \dash\user::id(),
 						];
 
-						\dash\log::set('answerTicketAlertSend', $log);
+						\dash\log::temp_set('answerTicketAlertSend', $log);
 					}
 					else
 					{
@@ -323,7 +336,7 @@ class model
 							'user_idsender' => \dash\user::id(),
 						];
 
-						\dash\log::set('answerTicketAlert', $log);
+						\dash\log::temp_set('answerTicketAlert', $log);
 					}
 
 					$update_main['status'] = 'answered';
@@ -355,6 +368,9 @@ class model
 			}
 
 			\dash\notif::$notif_fn($msg);
+
+			\dash\log::save_temp();
+
 			return true;
 		}
 		return false;

@@ -12,6 +12,24 @@ class log
 	// list of dash notification list
 	private static $core_notif_list    = [];
 
+	private static $temp_log = [];
+
+
+	public static function temp_set($_caller, $_args)
+	{
+		self::$temp_log[$_caller] = $_args;
+	}
+
+
+	public static function save_temp()
+	{
+		foreach (self::$temp_log as $key => $value)
+		{
+			self::set($key, $value);
+		}
+		self::$temp_log = [];
+	}
+
 
 	public static function set($_caller, $_args = [])
 	{
