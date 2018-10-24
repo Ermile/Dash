@@ -94,6 +94,7 @@ class ermile
 				break;
 
 
+			case 'cb_ticket':
 			case '/ticket':
 			case 'ticket':
 			case T_('/ticket'):

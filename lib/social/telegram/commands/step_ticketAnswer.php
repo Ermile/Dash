@@ -13,8 +13,17 @@ class step_ticketAnswer
 		{
 			step::set('ticketNo', \dash\utility\convert::to_en_number($_cmd['optional']));
 			step::start('ticketAnswer');
+			if(isset($_cmd['argument']) && $_cmd['argument'] === 'answer')
+			{
+				return self::step2(true);
 
-			return self::step1($_cmd);
+			}
+			else
+			{
+				return self::step1($_cmd);
+			}
+
+
 		}
 		else
 		{
@@ -27,27 +36,38 @@ class step_ticketAnswer
 	{
 		$ticketNo = step::get('ticketNo');
 		$txt_text = \dash\app\tg\ticket::list($ticketNo);
-		$keyboard = [];
 		bot::ok();
 
 		if($txt_text)
 		{
 			// after this go to next step
-			step::plus();
-			$keyboard[] = [ T_("Answer"), T_("Cancel") ];
+			// step::plus();
 
 			$result   =
 			[
 				'text'         => $txt_text,
 				'reply_markup' =>
 				[
-					'keyboard' => $keyboard,
-					'resize_keyboard' => true,
-					'one_time_keyboard' => true
+					'inline_keyboard' =>
+					[
+						[
+							[
+								"text" => T_("Site"),
+								"url" => "http://jibres.com"
+							]
+						],
+						[
+							[
+								"text" => T_("Answer"),
+								"callback_data" => "cb_ticket answer 123"
+							]
+						]
+					],
 				]
 			];
 
 			bot::sendMessage($result);
+			exit();
 		}
 		else
 		{
@@ -61,7 +81,7 @@ class step_ticketAnswer
 	public static function step2($_btn)
 	{
 		// after this go to next step
-		if($_btn === T_("Answer"))
+		if($_btn === T_("Answer") || $_btn === true)
 		{
 			step::plus();
 			$txt_text = T_("Please wrote your answer");
