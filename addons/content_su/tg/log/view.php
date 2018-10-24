@@ -22,7 +22,20 @@ class view
 			$myTitle .= ' | '. T_('Search for :search', ['search' => $search_string]);
 		}
 
+		$allow = ['user','mobile','userid','chatid','user_id','hooktext','hookdate','step','sendmethod','sendtext','senddate','responsedate','status',];
+
 		$args = \dash\request::get();
+
+		if(is_array($args))
+		{
+			foreach ($args as $key => $value)
+			{
+				if(!in_array($key, $allow))
+				{
+					unset($args[$key]);
+				}
+			}
+		}
 
 
 		$args['sort']  = \dash\request::get('sort');
@@ -37,6 +50,10 @@ class view
 		{
 			$args['sort'] = 'telegrams.id';
 		}
+
+		$args['join_user'] = true;
+
+		unset($args['page']);
 
 		$dataTable = \dash\db\telegrams::search(\dash\request::get('q'), $args);
 
