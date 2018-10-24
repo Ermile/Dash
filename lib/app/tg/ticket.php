@@ -64,9 +64,9 @@ class ticket
 		{
 			foreach ($dataTable as $key => $value)
 			{
-				$msg .= "\n—————\n ";
-				$msg .= "\n🗣 ". @$value['displayname']. " #user". @$value['user_id'];
-				$msg .= "📬 ";
+				$key_fit = \dash\utility\human::fitNumber($key + 1);
+				$msg .= "🔄 $key_fit\n🗣 ". @$value['displayname']. " #user". @$value['user_id'];
+				$msg .= "\n📬 ";
 
 				if(isset($value['title']))
 				{
@@ -82,6 +82,7 @@ class ticket
 				{
 					$msg .= "\n⏳ ". \dash\datetime::fit($value['datecreated'], true);
 				}
+				$msg .= "\n—————\n ";
 			}
 		}
 
