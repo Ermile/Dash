@@ -6,18 +6,21 @@ class telegrams
 {
 	public static function insert($_args)
 	{
+		$_args = \dash\safe::safe($_args, 'raw-nottrim');
 		return \dash\db\config::public_insert('telegrams', $_args, \dash\db::get_db_log_name());
 	}
 
 
 	public static function multi_insert($_args)
 	{
+		$_args = \dash\safe::safe($_args, 'raw-nottrim');
 		return \dash\db\config::public_multi_insert('telegrams', $_args, \dash\db::get_db_log_name());
 	}
 
 
 	public static function update($_args, $_id)
 	{
+		$_args = \dash\safe::safe($_args, 'raw-nottrim');
 		return \dash\db\config::public_update('telegrams', $_args, $_id, \dash\db::get_db_log_name());
 	}
 

@@ -55,7 +55,7 @@ class safe
 					break;
 
 				default:
-					// no thing
+					// nothing
 					break;
 			}
 		}
