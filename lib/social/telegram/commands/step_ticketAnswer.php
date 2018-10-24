@@ -6,13 +6,6 @@ use \dash\social\telegram\step;
 
 class step_ticketAnswer
 {
-	private static $menu = ["remove_keyboard" => true];
-
-	/**
-	 * create define menu that allow user to select
-	 * @param  boolean $_onlyMenu [description]
-	 * @return [type]             [description]
-	 */
 	public static function start($_cmd)
 	{
 		// if we have ticket number continue else return
@@ -30,15 +23,8 @@ class step_ticketAnswer
 	}
 
 
-	/**
-	 * show thanks message
-	 * @return [type] [description]
-	 */
 	public static function step1()
 	{
-
-		// show give contact menu
-		$menu     = self::$menu;
 		$ticketNo = step::get('ticketNo');
 		$txt_text = \dash\app\tg\ticket::list($ticketNo);
 		$keyboard = [];
@@ -56,6 +42,7 @@ class step_ticketAnswer
 				'reply_markup' =>
 				[
 					'keyboard' => $keyboard,
+					'resize_keyboard' => true,
 					'one_time_keyboard' => true
 				]
 			];
@@ -74,7 +61,6 @@ class step_ticketAnswer
 	public static function step2($_btn)
 	{
 		// after this go to next step
-
 		if($_btn === T_("Answer"))
 		{
 			step::plus();
@@ -86,11 +72,17 @@ class step_ticketAnswer
 			return;
 		}
 
-		$menu     = self::$menu;
+		// empty keyboard
 		$result =
 		[
 			'text'         => $txt_text,
-			'reply_markup' => $menu,
+			'reply_markup' =>
+			[
+				'keyboard' => [['/cancel']],
+				'resize_keyboard' => true,
+				'one_time_keyboard' => true
+
+			],
 		];
 		bot::sendMessage($result);
 		bot::ok();
@@ -118,7 +110,6 @@ class step_ticketAnswer
 		$result =
 		[
 			'text'         => T_("We need ticket number!")." 🙁",
-			'reply_markup' => self::$menu,
 		];
 		bot::sendMessage($result);
 		bot::ok();
