@@ -36,15 +36,34 @@ class ticket
 	public static function list($_id)
 	{
 		\content_support\ticket\show\view::load_tichet($_id);
-		$dataTable = \dash\data::dataTable();
 
-		$msg = T_("Start"). "\n";
+		$dataTable          = \dash\data::dataTable();
+		$masterTicketDetail = \dash\data::masterTicketDetail();
+
+		$msg = "#Ticket".$_id. "\n";
+
+		if(isset($masterTicketDetail['title']))
+		{
+			$msg .= strip_tags($masterTicketDetail['title']). "-----\n";
+		}
+
+		if(isset($masterTicketDetail['content']))
+		{
+			$msg .= strip_tags($masterTicketDetail['content']). "\n";
+		}
+
+		if(isset($masterTicketDetail['datecreated']))
+		{
+			$msg .= \dash\datetime::fit($masterTicketDetail['datecreated']). "\n------";
+		}
 
 		if(is_array($dataTable))
 		{
 			foreach ($dataTable as $key => $value)
 			{
-				$msg .= @$value['content']. "\n";
+				$msg .= "\n---------------\n";
+				$msg .= @strip_tags($value['content']). "\n";
+				$msg .= @\dash\datetime::fit($value['datecreated']). "\n";
 			}
 		}
 
