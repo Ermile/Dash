@@ -110,8 +110,14 @@ class support
 					],
 					[
 						[
+							'text'          => 	T_("Check ticket"),
+							'callback_data' => 'cb_ticket '. $code,
+						],
+					],
+					[
+						[
 							'text'          => 	T_("Answer"),
-							'callback_data' => 'cb_ticket answer '. $code,
+							'callback_data' => 'cb_ticket '. $code. ' answer',
 						],
 					],
 				],
@@ -189,8 +195,14 @@ class support
 					],
 					[
 						[
+							'text'          => 	T_("Check ticket"),
+							'callback_data' => 'cb_ticket '. $code,
+						],
+					],
+					[
+						[
 							'text'          => 	T_("Answer"),
-							'callback_data' => 'cb_ticket answer '. $code,
+							'callback_data' => 'cb_ticket '. $code. ' answer',
 						],
 					],
 				],
@@ -268,8 +280,14 @@ class support
 					],
 					[
 						[
+							'text'          => 	T_("Check ticket"),
+							'callback_data' => 'cb_ticket '. $code,
+						],
+					],
+					[
+						[
 							'text'          => 	T_("Answer"),
-							'callback_data' => 'cb_ticket answer '. $code,
+							'callback_data' => 'cb_ticket '. $code. ' answer',
 						],
 					],
 				],
