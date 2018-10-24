@@ -75,7 +75,7 @@ class ticket
 
 				if(isset($value['content']))
 				{
-					$msg .= strip_tags($value['content']). "\n";
+					$msg .= "\n". strip_tags($value['content']). "\n";
 				}
 
 				if(isset($value['datecreated']))
