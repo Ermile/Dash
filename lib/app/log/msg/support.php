@@ -103,8 +103,10 @@ class support
 				'inline_keyboard'    =>
 				[
 					[
-						'text' => 	T_('Ticket'). ' '. \dash\utility\human::fitNumber($code, false),
-						'url'  => \dash\url::kingdom(),
+						[
+							'text' => 	T_('Ticket'). ' '. \dash\utility\human::fitNumber($code, false),
+							'url'  => \dash\url::kingdom(),
+						],
 					],
 				],
 				// 'one_time_keyboard' => true,
@@ -176,8 +178,10 @@ class support
 				'inline_keyboard'           =>
 				[
 					[
-						'text' => 	T_('Ticket'). ' '. \dash\utility\human::fitNumber($code, false),
-						'url' => \dash\url::kingdom(),
+						[
+							'text' => 	T_('Ticket'). ' '. \dash\utility\human::fitNumber($code, false),
+							'url' => \dash\url::kingdom(),
+						],
 					],
 				],
 				// 'one_time_keyboard'  => true,
@@ -249,8 +253,10 @@ class support
 				'inline_keyboard'           =>
 				[
 					[
-						'text' => 	T_('Ticket'). ' '. \dash\utility\human::fitNumber($code, false),
-						'url'  => \dash\url::kingdom(),
+						[
+							'text' => 	T_('Ticket'). ' '. \dash\utility\human::fitNumber($code, false),
+							'url'  => \dash\url::kingdom(),
+						],
 					],
 				],
 				// 'one_time_keyboard'  => true,
