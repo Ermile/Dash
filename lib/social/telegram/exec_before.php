@@ -12,7 +12,7 @@ class exec_before
 		}
 		if(isset($_data['text']))
 		{
-			$_data['text'] = strip_tags($_data['text'], '<b><i><a><code><pre>')
+			$_data['text'] = strip_tags($_data['text'], '<b><i><a><code><pre>');
 		}
 
 		// if chat id is not set then set it
