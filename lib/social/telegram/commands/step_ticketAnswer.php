@@ -41,7 +41,7 @@ class step_ticketAnswer
 		if($txt_text)
 		{
 			// after this go to next step
-			// step::plus();
+			step::plus();
 
 			$result   =
 			[
@@ -51,21 +51,22 @@ class step_ticketAnswer
 					'inline_keyboard' =>
 					[
 						[
-							'text' => 	T_("Visit in site"),
-							'url'  => \dash\url::base(). '/!'. $ticketNo,
+							[
+								'text' => 	T_("Visit in site"),
+								'url'  => \dash\url::base(). '/!'. $ticketNo,
+							],
 						],
-					],
-					[
 						[
-							'text'          => 	T_("Answer"),
-							'callback_data' => 'ticket '. $ticketNo. ' answer',
+							[
+								'text'          => 	T_("Answer"),
+								'callback_data' => 'ticket '. $ticketNo. ' answer',
+							],
 						],
-					],
+					]
 				]
 			];
 
 			bot::sendMessage($result);
-			exit();
 		}
 		else
 		{
@@ -81,7 +82,7 @@ class step_ticketAnswer
 		// after this go to next step
 		if($_btn === T_("Answer") || $_btn === true)
 		{
-			step::plus();
+			step::goingto(3);
 			$txt_text = T_("Please wrote your answer");
 		}
 		else
