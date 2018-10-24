@@ -111,13 +111,13 @@ class support
 					[
 						[
 							'text'          => 	T_("Check ticket"),
-							'callback_data' => 'cb_ticket '. $code,
+							'callback_data' => 'ticket '. $code,
 						],
 					],
 					[
 						[
 							'text'          => 	T_("Answer"),
-							'callback_data' => 'cb_ticket '. $code. ' answer',
+							'callback_data' => 'ticket '. $code. ' answer',
 						],
 					],
 				],
@@ -196,13 +196,13 @@ class support
 					[
 						[
 							'text'          => 	T_("Check ticket"),
-							'callback_data' => 'cb_ticket '. $code,
+							'callback_data' => 'ticket '. $code,
 						],
 					],
 					[
 						[
 							'text'          => 	T_("Answer"),
-							'callback_data' => 'cb_ticket '. $code. ' answer',
+							'callback_data' => 'ticket '. $code. ' answer',
 						],
 					],
 				],
@@ -281,13 +281,13 @@ class support
 					[
 						[
 							'text'          => 	T_("Check ticket"),
-							'callback_data' => 'cb_ticket '. $code,
+							'callback_data' => 'ticket '. $code,
 						],
 					],
 					[
 						[
 							'text'          => 	T_("Answer"),
-							'callback_data' => 'cb_ticket '. $code. ' answer',
+							'callback_data' => 'ticket '. $code. ' answer',
 						],
 					],
 				],
