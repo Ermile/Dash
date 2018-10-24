@@ -36,35 +36,38 @@ class step_ticketAnswer
 	 */
 	public static function step1()
 	{
-		// after this go to next step
-		step::plus();
 
 		// show give contact menu
 		$menu     = self::$menu;
 		$ticketNo = step::get('ticketNo');
 		$txt_text = \dash\app\tg\ticket::list($ticketNo);
-
-		if(!$txt_text)
-		{
-			$txt_text = "Empty!";
-		}
-		// $txt_text = T_("What do you want to do?")."\n\n";
 		$keyboard = [];
-		$keyboard[] = [ T_("Answer"), T_("Cancel") ];
-
-
-		$result   =
-		[
-			'text'         => $txt_text,
-			'reply_markup' =>
-			[
-				'keyboard' => $keyboard,
-				'one_time_keyboard' => true
-			]
-		];
-
-		bot::sendMessage($result);
 		bot::ok();
+
+		if($txt_text)
+		{
+			// after this go to next step
+			step::plus();
+			$keyboard[] = [ T_("Answer"), T_("Cancel") ];
+
+			$result   =
+			[
+				'text'         => $txt_text,
+				'reply_markup' =>
+				[
+					'keyboard' => $keyboard,
+					'one_time_keyboard' => true
+				]
+			];
+
+			bot::sendMessage($result);
+		}
+		else
+		{
+			$txt_text = T_("We cant find detail of this ticket!");
+			bot::sendMessage($txt_text);
+			step::stop();
+		}
 	}
 
 
