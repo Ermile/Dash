@@ -41,7 +41,7 @@ class ticket
 		$masterTicketDetail = \dash\data::masterTicketDetail();
 
 		$msg = '';
-		// $msg .= "🆔#Ticket".$_id;
+		$msg .= "🆔#Ticket".$_id. "\n";
 		// $msg .= " #New \n🗣 ". \dash\data::masterTicketDetail_displayname(). " #user". \dash\data::masterTicketDetail_user_id();
 		// $msg .= "\n—————\n📬 ";
 
@@ -66,10 +66,10 @@ class ticket
 			{
 				$key_fit = \dash\utility\human::fitNumber($key + 1);
 				$msg .= "🔄 $key_fit\n🗣 ". @$value['displayname']. " #user". @$value['user_id'];
-				$msg .= "\n📬 ";
 
 				if(isset($value['title']))
 				{
+					$msg .= "\n📬 ";
 					$msg .= strip_tags($value['title']). "\n";
 				}
 
