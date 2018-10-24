@@ -102,7 +102,7 @@ class support
 			[
 				'keyboard'           =>
 				[
-					[T_('Ticket'). ' '. $code],
+					[T_('Ticket'). ' '. \dash\utility\human::fitNumber($code, false)],
 				],
 				'one_time_keyboard' => true,
 				'resize_keyboard'   => true,
@@ -172,7 +172,7 @@ class support
 			[
 				'keyboard'           =>
 				[
-					[T_('Ticket'). ' '. $code],
+					[T_('Ticket'). ' '. \dash\utility\human::fitNumber($code, false)],
 				],
 				'one_time_keyboard'  => true,
 				'resize_keyboard'   => true,
@@ -242,7 +242,7 @@ class support
 			[
 				'keyboard'           =>
 				[
-					[T_('Ticket'). ' '. $code],
+					[T_('Ticket'). ' '. \dash\utility\human::fitNumber($code, false)],
 				],
 				'one_time_keyboard'  => true,
 				'resize_keyboard'   => true,
