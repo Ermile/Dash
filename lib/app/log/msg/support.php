@@ -104,13 +104,17 @@ class support
 				[
 					[
 						[
-							'text' => 	T_('Ticket'). ' '. \dash\utility\human::fitNumber($code, false),
-							'url'  => \dash\url::kingdom(),
+							'text' => 	T_("Visit in site"),
+							'url'  => \dash\url::base(). '/!'. $code,
+						],
+					],
+					[
+						[
+							'text'          => 	T_("Answer"),
+							'callback_data' => 'cb_ticket answer '. $code,
 						],
 					],
 				],
-				// 'one_time_keyboard' => true,
-				// 'resize_keyboard'   => true,
 			],
 		];
 
@@ -179,13 +183,17 @@ class support
 				[
 					[
 						[
-							'text' => 	T_('Ticket'). ' '. \dash\utility\human::fitNumber($code, false),
-							'url' => \dash\url::kingdom(),
+							'text' => 	T_("Visit in site"),
+							'url' => \dash\url::base(). '!'. $code,
+						],
+					],
+					[
+						[
+							'text'          => 	T_("Answer"),
+							'callback_data' => 'cb_ticket answer '. $code,
 						],
 					],
 				],
-				// 'one_time_keyboard'  => true,
-				// 'resize_keyboard'   => true,
 			],
 		];
 
@@ -254,13 +262,17 @@ class support
 				[
 					[
 						[
-							'text' => 	T_('Ticket'). ' '. \dash\utility\human::fitNumber($code, false),
-							'url'  => \dash\url::kingdom(),
+							'text' => 	T_("Visit in site"),
+							'url'  => \dash\url::base(). '!'. $code,
+						],
+					],
+					[
+						[
+							'text'          => 	T_("Answer"),
+							'callback_data' => 'cb_ticket answer '. $code,
 						],
 					],
 				],
-				// 'one_time_keyboard'  => true,
-				// 'resize_keyboard'   => true,
 			],
 		];
 
