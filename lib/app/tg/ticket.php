@@ -40,11 +40,14 @@ class ticket
 		$dataTable          = \dash\data::dataTable();
 		$masterTicketDetail = \dash\data::masterTicketDetail();
 
-		$msg = "#Ticket".$_id. "\n";
+		$msg = '';
+		$msg .= "🆔#Ticket".$_id;
+		$msg .= " #New \n🗣 ". \dash\data::masterTicketDetail_displayname(). " #user". \dash\data::masterTicketDetail_user_id();
+		$msg .= "\n—————\n📬 ";
 
 		if(isset($masterTicketDetail['title']))
 		{
-			$msg .= strip_tags($masterTicketDetail['title']). "-----\n";
+			$msg .= strip_tags($masterTicketDetail['title']). "\n";
 		}
 
 		if(isset($masterTicketDetail['content']))
@@ -54,16 +57,31 @@ class ticket
 
 		if(isset($masterTicketDetail['datecreated']))
 		{
-			$msg .= \dash\datetime::fit($masterTicketDetail['datecreated']). "\n------";
+			$msg .= "\n⏳ ". \dash\datetime::fit($masterTicketDetail['datecreated'], true);
 		}
 
 		if(is_array($dataTable))
 		{
 			foreach ($dataTable as $key => $value)
 			{
-				$msg .= "\n---------------\n";
-				$msg .= @strip_tags($value['content']). "\n";
-				$msg .= @\dash\datetime::fit($value['datecreated']). "\n";
+				$msg .= "\n—————\n ";
+				$msg .= "\n🗣 ". @$value['displayname']. " #user". @$value['user_id'];
+				$msg .= "📬 ";
+
+				if(isset($value['title']))
+				{
+					$msg .= strip_tags($value['title']). "\n";
+				}
+
+				if(isset($value['content']))
+				{
+					$msg .= strip_tags($value['content']). "\n";
+				}
+
+				if(isset($value['datecreated']))
+				{
+					$msg .= "\n⏳ ". \dash\datetime::fit($value['datecreated'], true);
+				}
 			}
 		}
 
