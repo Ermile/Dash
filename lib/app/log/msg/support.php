@@ -100,12 +100,15 @@ class support
 		[
 			'reply_markup'           =>
 			[
-				'keyboard'           =>
+				'inline_keyboard'    =>
 				[
-					[T_('Ticket'). ' '. \dash\utility\human::fitNumber($code, false)],
+					[
+						'text' => 	T_('Ticket'). ' '. \dash\utility\human::fitNumber($code, false),
+						'url'  => \dash\url::kingdom(),
+					],
 				],
-				'one_time_keyboard' => true,
-				'resize_keyboard'   => true,
+				// 'one_time_keyboard' => true,
+				// 'resize_keyboard'   => true,
 			],
 		];
 
@@ -170,12 +173,15 @@ class support
 		[
 			'reply_markup'           =>
 			[
-				'keyboard'           =>
+				'inline_keyboard'           =>
 				[
-					[T_('Ticket'). ' '. \dash\utility\human::fitNumber($code, false)],
+					[
+						'text' => 	T_('Ticket'). ' '. \dash\utility\human::fitNumber($code, false),
+						'url' => \dash\url::kingdom(),
+					],
 				],
-				'one_time_keyboard'  => true,
-				'resize_keyboard'   => true,
+				// 'one_time_keyboard'  => true,
+				// 'resize_keyboard'   => true,
 			],
 		];
 
@@ -240,12 +246,15 @@ class support
 		[
 			'reply_markup'           =>
 			[
-				'keyboard'           =>
+				'inline_keyboard'           =>
 				[
-					[T_('Ticket'). ' '. \dash\utility\human::fitNumber($code, false)],
+					[
+						'text' => 	T_('Ticket'). ' '. \dash\utility\human::fitNumber($code, false),
+						'url'  => \dash\url::kingdom(),
+					],
 				],
-				'one_time_keyboard'  => true,
-				'resize_keyboard'   => true,
+				// 'one_time_keyboard'  => true,
+				// 'resize_keyboard'   => true,
 			],
 		];
 
