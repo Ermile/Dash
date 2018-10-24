@@ -184,7 +184,7 @@ class support
 					[
 						[
 							'text' => 	T_("Visit in site"),
-							'url' => \dash\url::base(). '!'. $code,
+							'url' => \dash\url::base(). '/!'. $code,
 						],
 					],
 					[
@@ -263,7 +263,7 @@ class support
 					[
 						[
 							'text' => 	T_("Visit in site"),
-							'url'  => \dash\url::base(). '!'. $code,
+							'url'  => \dash\url::base(). '/!'. $code,
 						],
 					],
 					[
