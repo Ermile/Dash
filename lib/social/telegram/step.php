@@ -194,6 +194,9 @@ class step
 		// if before this message step started
 		if(self::get(false))
 		{
+			// its okay dont find answer because we are in step
+			bot::ok();
+
 			$forceCancel = null;
 			// calc current step
 			switch ($_text)
