@@ -133,6 +133,15 @@ class step
 		return false;
 	}
 
+	public static function alive()
+	{
+		if(isset($_SESSION['tg']['step']['name']))
+		{
+			return true;
+		}
+		return false;
+	}
+
 
 	/**
 	 * go to next step
@@ -192,7 +201,7 @@ class step
 		// $a = self::sendMessage(['text' => json_encode($_SESSION['tg'], JSON_UNESCAPED_UNICODE)]);
 
 		// if before this message step started
-		if(self::get(false))
+		if(self::alive())
 		{
 			// its okay dont find answer because we are in step
 			tg::ok();
@@ -237,11 +246,8 @@ class step
 
 			// save text afrer reading current step function
 			self::set('text', $_text);
+
 			// if want to stop at the end call stop func
-			if($currentStep === 'stop')
-			{
-				self::stop();
-			}
 			if($forceCancel)
 			{
 				self::cancelStep();

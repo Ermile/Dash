@@ -8,6 +8,9 @@ class step_ticketAnswer
 {
 	public static function start($_cmd)
 	{
+		// its okay on start
+		bot::ok();
+
 		step::set('ticketNo', \dash\utility\convert::to_en_number($_cmd['optional']));
 		step::start('ticketAnswer');
 
@@ -40,11 +43,6 @@ class step_ticketAnswer
 	{
 		$ticketNo = step::get('ticketNo');
 		\dash\app\tg\ticket::answer($ticketNo, $_answer);
-
-		if(!$_answer)
-		{
-			return false;
-		}
 
 		step::stop();
 	}
