@@ -43,7 +43,6 @@ class step_ticketAnswer
 			],
 		];
 		bot::sendMessage($result);
-		bot::ok();
 	}
 
 
@@ -57,7 +56,6 @@ class step_ticketAnswer
 			return false;
 		}
 
-		bot::ok();
 		step::stop();
 	}
 
@@ -78,7 +76,6 @@ class step_ticketAnswer
 	{
 		$ticketNo = \dash\utility\convert::to_en_number($_cmd['optional']);
 		$txt_text = \dash\app\tg\ticket::list($ticketNo);
-		bot::ok();
 
 		if($txt_text)
 		{

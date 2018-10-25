@@ -43,14 +43,12 @@ class step_ticketCreate
 		];
 
 		bot::sendMessage($result);
-		bot::ok();
 	}
 
 
 	public static function step2($_ticketDetail)
 	{
 		\dash\app\tg\ticket::create($_ticketDetail);
-		bot::ok();
 
 		step::stop();
 	}
