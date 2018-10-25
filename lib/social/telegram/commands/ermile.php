@@ -233,33 +233,33 @@ class ermile
 				{
 					if($_cmd['optional'])
 					{
-						$text = 'ما به اطلاعات مخاطب شما نیاز داریم، نه سایر کاربران!';
+						$text = T_("We do not need contact of anothers!"). ' '. T_('You can share your contact by press on /register');
 					}
 					else
 					{
-						$text = 'ما برای ثبت‌نام به شماره موبایل احتیاج داریم!';
+						$text = T_("We need mobile number to complete registeration process.");
 					}
 				}
 				break;
 
 			case 'type_audio':
-					$text = 'من فرصت آهنگ گوش کردن ندارم!';
+					$text = T_("I don't have enough time for listening!"). ' '. T_('Type for me:)');
 				break;
 
 			case 'type_sticker':
-					$text = 'ممنون از ابراز لطف شما';
+					$text = T_("Thanks for your kindness");
 				break;
 
 			case 'type_video':
-					$text = 'حسابی سرم شلوفه، فکر نکنم وقت فیلم دیدن باشه!';
+					$text = T_("I'm busy and i dont think have time to watch video!");
 				break;
 
 			case 'type_voice':
-					$text = 'خیلی مونده تا بخوام صدا رو تشخیص بدم!';
+					$text = T_("A long time until I want to recognize your voice!!");
 				break;
 
 			default:
-					$text = 'من هنوز اونقدر پیشرفته نشدم!';
+					$text = T_("I'm still not advanced enough!");
 				break;
 		}
 		$result =
