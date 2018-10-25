@@ -16,6 +16,7 @@ class tg
 		'dash:callback',
 		'dash:ermile',
 		'dash:utility',
+		'dash:ticket',
 		'dash:conversation',
 		'dash:conversationFa',
 	];

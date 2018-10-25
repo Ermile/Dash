@@ -94,45 +94,6 @@ class ermile
 				break;
 
 
-			case 'cb_ticket':
-			case '/ticket':
-			case 'ticket':
-			case T_('/ticket'):
-			case T_('ticket'):
-				\dash\social\telegram\step::set('menu', menu::main(true));
-
-				if(isset($_cmd['optional']))
-				{
-					if(isset($_cmd['argument']))
-					{
-						if($_cmd['argument'] === 'answer')
-						{
-							// go to step of answer
-							step_ticketAnswer::start($_cmd);
-						}
-						else
-						{
-							// do nothing
-						}
-					}
-					else
-					{
-						if($_cmd['optional'])
-						{
-							step_ticketAnswer::show($_cmd);
-						}
-						else
-						{
-							// do nothing
-						}
-					}
-				}
-				else
-				{
-					step_ticketCreate::start();
-				}
-				break;
-
 			default:
 				break;
 		}
