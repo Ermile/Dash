@@ -12,6 +12,10 @@ class exec_before
 		}
 		if(isset($_data['text']))
 		{
+			if(strpos($_data['text'], '<!DOCTYPE html'))
+			{
+				\dash\notif::error('error');
+			}
 			$_data['text'] = strip_tags($_data['text'], '<b><i><a><code><pre>');
 		}
 
@@ -41,6 +45,14 @@ class exec_before
 					{
 						unset($_data['reply_to_message_id']);
 					}
+				}
+				break;
+
+			case 'answerCallbackQuery':
+				// add callback query id
+				if(hook::callback_query('id'))
+				{
+					$_data['callback_query_id'] = hook::callback_query('id');
 				}
 				break;
 
