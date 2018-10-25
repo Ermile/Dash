@@ -34,7 +34,7 @@ class hook
 	}
 
 
-	public static function message()
+	public static function message($_arg = null)
 	{
 		$myDetection = null;
 		if(isset(tg::$hook['message']))
@@ -44,6 +44,19 @@ class hook
 		elseif(isset(tg::$hook['callback_query']['message']))
 		{
 			$myDetection = tg::$hook['callback_query']['message'];
+		}
+
+		// get only arg
+		if($_arg)
+		{
+			if(isset($myDetection[$_arg]))
+			{
+				$myDetection = $myDetection[$_arg];
+			}
+			else
+			{
+				$myDetection = null;
+			}
 		}
 		return $myDetection;
 	}
