@@ -5,8 +5,8 @@
  <title>(>_<?php echo $_code;?>_<)</title>
  <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/><![endif]-->
  <meta name ="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0 maximum-scale=1.5, minimal-ui"/>
- <link rel="shortcut icon" href="/static/images/favicon-error.png"/>
- <link rel="stylesheet"  href="/static/siftal/css/siftal.css">
+ <link rel="shortcut icon" href="<?php echo(\dash\url::base()); ?>/static/images/favicon-error.png"/>
+ <link rel="stylesheet"  href="<?php echo(\dash\url::base()); ?>/static/siftal/css/siftal.css">
 </head>
 <body class='<?php echo (\dash\language::current('direction')); ?> errorPage s<?php echo(substr($_code,0,2));?>'>
  <div id="nodes"></div>
@@ -21,7 +21,7 @@
     <div class="cauto os s12">
      <a href="<?php echo(\dash\url::kingdom()); ?>" id='ermileBadge' class="f mT10">
       <div class="cauto">
-       <img src="/static/images/logo.png" alt='logo of project with Dash!' class="cauto">
+       <img src="<?php echo(\dash\url::base()); ?>/static/images/logo.png" alt='logo of project with Dash!' class="cauto">
       </div>
 <?php if(\dash\url::domain())
 { ?>
@@ -60,7 +60,7 @@ foreach ($debug_backtrace as $key => $value):?>
  </div>
  <div id="no"><?php echo $_code?></div>
 
- <script src="/static/siftal/js/siftal.min.js"></script>
- <script src="/static/siftal/js/error_page.js"></script>
+ <script src="<?php echo(\dash\url::base()); ?>/static/siftal/js/siftal.min.js"></script>
+ <script src="<?php echo(\dash\url::base()); ?>/static/siftal/js/error_page.js"></script>
 </body>
 </html>
