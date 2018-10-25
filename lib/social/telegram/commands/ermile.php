@@ -154,6 +154,24 @@ class ermile
 			'address'   => $address,
 			'foursquare_id' => '5bd1d8293b8307002bdb5dbb',
 			'text'      => T_("We are happy to see you!"),
+			'reply_markup' =>
+			[
+				'inline_keyboard' =>
+				[
+					[
+						[
+							'text' => T_("Check website"),
+							'url'  => \dash\url::kingdom(),
+						],
+					],
+					[
+						[
+							'text'          => T_("Submit new ticket"),
+							'callback_data' => 'ticket',
+						],
+					]
+				]
+			]
 		];
 
 		bot::sendVenue($result);

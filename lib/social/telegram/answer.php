@@ -57,10 +57,6 @@ class answer
 			{
 				// then if not exist set default text
 				$answer = ['text' => self::randomAnswer()];
-				if(tg::$defaultMenu && is_object(tg::$defaultMenu))
-				{
-					$answer['reply_markup'] = call_user_func(tg::$defaultMenu);
-				}
 				tg::sendMessage($answer);
 			}
 		}
