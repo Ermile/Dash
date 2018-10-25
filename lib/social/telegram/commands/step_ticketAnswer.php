@@ -109,8 +109,13 @@ class step_ticketAnswer
 		}
 		else
 		{
-			$txt_text = T_("We can't find detail of this ticket!");
-			bot::sendMessage($txt_text);
+			$result =
+			[
+				'text' => T_("We can't find detail of this ticket!"),
+				'show_alert' => true,
+			];
+
+			bot::answerCallbackQuery($result);
 		}
 	}
 }

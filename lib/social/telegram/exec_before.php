@@ -12,10 +12,10 @@ class exec_before
 		}
 		if(isset($_data['text']))
 		{
-			if(strpos($_data['text'], '<!DOCTYPE html'))
-			{
-				\dash\notif::error('error');
-			}
+			// if(strpos($_data['text'], '<!DOCTYPE html'))
+			// {
+			// 	\dash\notif::error('error');
+			// }
 			$_data['text'] = strip_tags($_data['text'], '<b><i><a><code><pre>');
 		}
 

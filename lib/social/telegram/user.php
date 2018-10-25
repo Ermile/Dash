@@ -26,7 +26,6 @@ class user
 		if(!$myUser)
 		{
 			// user not detected
-			// var_dump(\dash\notif::get());
 			return null;
 		}
 
