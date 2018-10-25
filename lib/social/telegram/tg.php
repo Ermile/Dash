@@ -6,7 +6,7 @@ class tg
 {
 	/**
 	 * this library get and send telegram messages
-	 * v21.0
+	 * v22.0
 	 */
 	public static $api_token   = null;
 	public static $name        = 'Ermile';
@@ -133,6 +133,7 @@ class tg
 		}
 		return false;
 	}
+
 
 	public static function notLate()
 	{

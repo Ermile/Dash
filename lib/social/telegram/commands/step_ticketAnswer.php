@@ -14,6 +14,16 @@ class step_ticketAnswer
 		step::set('ticketNo', \dash\utility\convert::to_en_number($_cmd['optional']));
 		step::start('ticketAnswer');
 
+		// if start with callback answer callback
+		if(bot::isCallback())
+		{
+			$result =
+			[
+				'text' => T_("Answer to ticket "). $_cmd['optional'],
+			];
+			bot::answerCallbackQuery($result);
+		}
+
 		return self::step1();
 	}
 

@@ -3,7 +3,6 @@ namespace dash\social\telegram;
 
 class exec_before
 {
-
 	public static function check($_method, $_data)
 	{
 		if(!is_array($_data))

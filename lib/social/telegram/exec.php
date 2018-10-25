@@ -6,8 +6,9 @@ class exec
 {
 	/**
 	 * this library send request to telegram servers
-	 * v2.1
+	 * v3.0
 	 */
+	private static $hit = 0;
 
 
 	/**
@@ -43,6 +44,18 @@ class exec
 		// {
 		// 	return T_('User is blocked us!');
 		// }
+
+		// plus plus counter
+		self::$hit++;
+		if(self::$hit > 20)
+		{
+			\dash\log::set('tg:hit20', ["meta" => 'hit'. self::$hit]);
+			return T_('Maybe we have problem!');
+		}
+		else if(self::$hit > 10)
+		{
+			\dash\log::set('tg:hit10', ["meta" => 'hit'. self::$hit]);
+		}
 
 		// check before execute
 		$_data = exec_before::check($_method, $_data);

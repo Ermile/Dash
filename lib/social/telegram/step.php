@@ -6,7 +6,7 @@ class step
 {
 	/**
 	 * this library help create step by step messages
-	 * v3.7
+	 * v4.0
 	 */
 
 	/**
@@ -133,6 +133,7 @@ class step
 		return false;
 	}
 
+
 	public static function alive()
 	{
 		if(isset($_SESSION['tg']['step']['name']))
@@ -167,6 +168,7 @@ class step
 		}
 	}
 
+
 	/**
 	 * goto specefic step directly
 	 * @param  integer $_step [description]
@@ -179,7 +181,6 @@ class step
 	}
 
 
-
 	/**
 	 * [check description]
 	 * @param  [type] $_text [description]
@@ -187,19 +188,6 @@ class step
 	 */
 	public static function check($_text)
 	{
-		// $tmp_text =
-		// "user_id_: ".   tg::$user_id.
-		// "\n id: ".      session_id().
-		// "\n name: ".    session_name().
-		// "\n session: ". json_encode($_SESSION);
-		// // for debug
-		// $tmp =
-		// [
-		// 	'text' => $tmp_text
-		// ];
-		// $a = tg::sendMessage($tmp);
-		// $a = self::sendMessage(['text' => json_encode($_SESSION['tg'], JSON_UNESCAPED_UNICODE)]);
-
 		// if before this message step started
 		if(self::alive())
 		{
@@ -280,6 +268,7 @@ class step
 			self::cancelStep();
 		}
 	}
+
 
 	public static function cancelStep()
 	{

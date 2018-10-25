@@ -6,7 +6,7 @@ class answer
 {
 	/**
 	 * this library generate telegram tools
-	 * v2.0
+	 * v3.0
 	 */
 
 	public static function finder()

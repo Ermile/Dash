@@ -159,6 +159,7 @@ class log
 		return json_encode($_data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 	}
 
+
 	public static function logy($_text)
 	{
 		if(!\dash\option::social('telegram', 'debug'))
@@ -175,11 +176,6 @@ class log
 			echo $_text;
 		}
 	}
-
-
-
-
-
 
 
 

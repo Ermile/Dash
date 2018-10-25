@@ -3,7 +3,6 @@ namespace dash\social\telegram;
 
 class user
 {
-
 	public static function detect()
 	{
 		if(\dash\user::id())
