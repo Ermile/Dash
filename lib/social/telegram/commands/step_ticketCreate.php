@@ -24,11 +24,17 @@ class step_ticketCreate
 
 		$txt_text = T_("Thank you for choosing us.")."\n\n";
 		$txt_text .= T_("Knowing your valuable comments about bugs and problems and more importantly your precious offers will help us in this way.")."\n\n";
-		$txt_text .= T_("Please enter your ticket title.");
+		$txt_text .= T_("Please wrote about your problem and describe it.");
 
 		$result   =
 		[
 			'text'         => $txt_text,
+			'reply_markup' =>
+			[
+				'keyboard' => [[T_('Cancel')]],
+				'resize_keyboard' => true,
+				'one_time_keyboard' => true
+			],
 		];
 
 		bot::sendMessage($result);
@@ -37,6 +43,17 @@ class step_ticketCreate
 
 	public static function step2($_ticketDetail)
 	{
+		if(bot::isCallback())
+		{
+			$result =
+			[
+				'text' => T_("Please wrote about your ticket")." 📝",
+				'show_alert' => true,
+			];
+			bot::answerCallbackQuery($result);
+			return false;
+		}
+
 		\dash\app\tg\ticket::create($_ticketDetail);
 
 		step::stop();

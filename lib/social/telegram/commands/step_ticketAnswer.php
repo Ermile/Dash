@@ -29,7 +29,7 @@ class step_ticketAnswer
 			'text'         => $txt_text,
 			'reply_markup' =>
 			[
-				'keyboard' => [['/cancel']],
+				'keyboard' => [[T_('Cancel')]],
 				'resize_keyboard' => true,
 				'one_time_keyboard' => true
 

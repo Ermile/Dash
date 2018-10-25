@@ -215,6 +215,7 @@ class step
 				case '/stop':
 				case '/cancel':
 				case T_('cancel'):
+				case T_('Cancel'):
 					// if user want to stop current step
 					$currentStep = 'stop';
 					$forceCancel = true;
