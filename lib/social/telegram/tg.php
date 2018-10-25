@@ -46,10 +46,14 @@ class tg
 		\dash\temp::set('force_stop_visitor', true);
 		// session_destroy();
 		self::fisher();
-		// find answer for this message if need to answering
-		answer::finder();
+		if(self::notLate())
+		{
+			// find answer for this message if need to answering
+			answer::finder();
+		}
 		// check notif and if exist send it
 		notifer::check();
+
 		// if we must pass result, we save it on result sending
 		// now we need to save unanswered hook
 		if(true)
@@ -128,6 +132,30 @@ class tg
 			return true;
 		}
 		return false;
+	}
+
+	public static function notLate()
+	{
+		$msgDate = intval(hook::message('date'));
+		// var_dump(date('Y-m-d H:i:s', $msgDate));
+		if(!$msgDate)
+		{
+			// check on future
+			return true;
+		}
+
+		$now      = new \DateTime();
+		$now      = $now->getTimestamp();
+		$dateDiff = intval(($now - $msgDate) / 60);
+		// if message is sended more than 10 min age skip it
+		if($dateDiff > 10)
+		{
+			$logDetail = $msgDate. '-'. $now. '>>'. $dateDiff.'Min';
+			\dash\log::set('tg:outdateHook', ["meta" => $logDetail]);
+			log::logy(T_('We are detect outdated message in hook.'). ' '. $logDetail);
+			return false;
+		}
+		return true;
 	}
 }
 ?>
