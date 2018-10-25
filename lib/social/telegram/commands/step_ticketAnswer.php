@@ -9,7 +9,7 @@ class step_ticketAnswer
 	public static function start($_cmd)
 	{
 		// if we have ticket number continue else return
-		if(isset($_cmd['optional']) && $_cmd['optional'])
+		if(isset($_cmd['optional']) && $_cmd['optional'] && is_numeric($_cmd['optional']))
 		{
 			step::set('ticketNo', \dash\utility\convert::to_en_number($_cmd['optional']));
 			step::start('ticketAnswer');
@@ -67,10 +67,10 @@ class step_ticketAnswer
 	{
 		$result =
 		[
-			'text'         => T_("We need ticket number!")." 🙁",
+			'text' => T_("We need ticket number!")." 🙁",
+			'show_alert' => true,
 		];
-		bot::sendMessage($result);
-		bot::ok();
+		bot::answerCallbackQuery($result);
 	}
 
 
@@ -114,7 +114,6 @@ class step_ticketAnswer
 				'text' => T_("We can't find detail of this ticket!"),
 				'show_alert' => true,
 			];
-
 			bot::answerCallbackQuery($result);
 		}
 	}
