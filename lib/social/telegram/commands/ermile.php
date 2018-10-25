@@ -130,7 +130,7 @@ class ermile
 		$result = [];
 		$result['method']  = "sendPhoto";
 		$result['photo']   = \dash\url::site().'/static/images/logo.png';
-		$result['caption'] = T_("Ermile is inteligent");
+		$result['caption'] = T_(\dash\option::config('site', 'desc'));
 
 		bot::sendPhoto($result);
 		bot::ok();
@@ -150,8 +150,9 @@ class ermile
 			'method'    => "sendVenue",
 			'latitude'  => '34.6500896',
 			'longitude' => '50.8789642',
-			'title'     => T_("Ermile"),
+			'title'     => T_(\dash\option::config('site', 'title')),
 			'address'   => $address,
+			'foursquare_id' => '5bd1d8293b8307002bdb5dbb',
 			'text'      => T_("We are happy to see you!"),
 		];
 
