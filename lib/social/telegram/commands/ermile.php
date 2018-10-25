@@ -15,49 +15,46 @@ class ermile
 		switch ($_cmd['command'])
 		{
 			case '/start':
-			case 'start':
-			case 'شروع':
+			case T_('start'):
 				self::start();
 				break;
 
-			case '/language':
 			case '/lang':
+			case '/language':
+			case T_('language'):
+
 				self::lang();
 				break;
 
 			case '/about':
-			case 'about':
-			case 'درباره':
-			case 'درباره ی':
-			case 'درباره‌ی':
+			case T_('about'):
+			case T_('detail'):
 				self::about();
 				break;
 
 			case '/me':
-			case 'me':
 			case '/whoami':
-			case 'whoami':
-			case 'من کیم':
-			case 'من کیم؟':
-			case 'بگیر':
-			case 'پروفایل':
-			case 'من':
+			case T_('me'):
+			case T_('whoami'):
 				self::me();
 				break;
 
 			case '/contact':
-			case 'contact':
-			case 'تماس':
-			case 'آدرس':
-			case 'ادرس':
-			case 'نشانی':
+			case T_('contact'):
+			case T_('address'):
+			case T_('tel'):
+			case T_('telephone'):
+			case T_('mobile'):
+			case T_('phone'):
+			case T_('website'):
+			case T_('email'):
 				self::contact();
 				break;
 
 			case '/register':
-			case 'register':
 			case '/signup':
-			case 'signup':
+			case T_('register'):
+			case T_('signup'):
 				self::signup();
 
 				break;
@@ -81,15 +78,13 @@ class ermile
 				break;
 
 			case '/help':
-			case 'help':
 			case '/ls':
+			case '/?':
+			case '/؟':
+			case T_('help'):
 			case 'ls':
 			case '؟':
 			case '?':
-			case 'کمک':
-			case 'راهنمایی':
-			case '/?':
-			case '/؟':
 				self::help();
 				break;
 
@@ -129,8 +124,27 @@ class ermile
 	{
 		$result = [];
 		$result['method']  = "sendPhoto";
-		$result['photo']   = \dash\url::site().'/static/images/logo.png';
+		// $result['photo']   = \dash\url::site().'/static/images/logo.png';
+		$result['photo']   = 'https://ermile.com/static/images/logo.png';
 		$result['caption'] = T_(\dash\option::config('site', 'desc'));
+		$result['reply_markup'] =
+		[
+			'inline_keyboard' =>
+			[
+				[
+					[
+						'text' => T_("Check website"),
+						'url'  => \dash\url::kingdom(),
+					],
+				],
+				[
+					[
+						'text' => T_("Read more about us"),
+						'url'  => \dash\url::kingdom(). '/about',
+					],
+				]
+			]
+		];
 
 		bot::sendPhoto($result);
 		bot::ok();
