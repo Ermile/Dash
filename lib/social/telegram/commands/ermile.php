@@ -200,16 +200,28 @@ class ermile
 	 */
 	public static function help()
 	{
-		$text = \dash\url::domain()."\r\n\n";
-		$text .= "You can control me by sending these commands:\r\n\n";
-		$text .= "/start start conversation\n";
-		$text .= "/about about\n";
-		$text .= "/contact contact us\n";
-		$text .= "/menu show main menu\n";
+		$text = T_("You can control me by sending these commands"). "\r\n\n";
+		$text .= "/start ". T_("Start again"). "\n";
+		$text .= "/about ". T_('About'). "\n";
+		$text .= "/contact ". T_("Contact us"). "\n";
+		$text .= "/ticket ". T_("Add new ticket"). "\n";
+		$text .= "/help ". T_("or ?"). ' '. T_("Get help commands"). "\n";
 		// $text .= "/contact contact us\n";
 		$result =
 		[
 			'text' => $text,
+			'reply_markup' =>
+			[
+				'inline_keyboard' =>
+				[
+					[
+						[
+							'text' => T_("Website"),
+							'url'  => \dash\url::kingdom(),
+						],
+					]
+				]
+			]
 		];
 		bot::sendMessage($result);
 		bot::ok();
