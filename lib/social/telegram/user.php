@@ -110,7 +110,7 @@ class user
 			tg::$hook['message']['contact']['fake'] = true;
 			tg::sendMessage(['text' => T_('We dont need another users contact:?)')]);
 
-			answer::ok();
+			tg::ok();
 			return false;
 		}
 		if($from['first_name'] !== $contact['first_name'])
@@ -128,12 +128,12 @@ class user
 		{
 			// if user send contact detail then save all of his/her profile photos
 			tg::sendMessage(['text' => T_('Your phone number registered successfully;)')]);
-			answer::ok();
+			tg::ok();
 		}
 		else
 		{
 			tg::sendMessage(['text' => T_('Registration failed!')]);
-			answer::ok();
+			tg::ok();
 		}
 	}
 
@@ -178,7 +178,7 @@ class user
 			$newLangMsg = T_('Your language was successfully set to :lang.', ['lang' => "<b>". T_($newLang)."</b>"] );
 			tg::sendMessage(['text' => $newLangMsg]);
 
-			answer::ok();
+			tg::ok();
 			return true;
 		}
 		if(\dash\app\tg\user::lang())
