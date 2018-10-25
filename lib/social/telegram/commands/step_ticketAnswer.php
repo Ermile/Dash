@@ -41,6 +41,17 @@ class step_ticketAnswer
 
 	public static function step2($_answer)
 	{
+		if(bot::isCallback())
+		{
+			$result =
+			[
+				'text' => T_("Please wrote your answer")." 📝",
+				'show_alert' => true,
+			];
+			bot::answerCallbackQuery($result);
+			return false;
+		}
+
 		$ticketNo = step::get('ticketNo');
 		\dash\app\tg\ticket::answer($ticketNo, $_answer);
 

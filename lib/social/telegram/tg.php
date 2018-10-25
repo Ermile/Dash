@@ -119,5 +119,15 @@ class tg
 	{
 		return self::$finish;
 	}
+
+
+	public static function isCallback()
+	{
+		if(isset(tg::$hook['callback_query']['data']))
+		{
+			return true;
+		}
+		return false;
+	}
 }
 ?>
