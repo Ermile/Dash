@@ -60,11 +60,12 @@ class ermile
 				break;
 
 			case 'type_contact':
-				self::register('شماره موبایل', $_cmd);
+
+				self::register($_cmd);
 				break;
 
 			case 'type_location':
-				self::register('آدرس');
+				self::register($_cmd);
 				break;
 
 			case 'type_audio':
@@ -74,7 +75,7 @@ class ermile
 			case 'type_video':
 			case 'type_voice':
 			case 'type_venue':
-				self::register($_cmd['command'], $_cmd);
+				self::register($_cmd);
 				break;
 
 			case '/help':
@@ -219,14 +220,11 @@ class ermile
 	 * get phone number from user contact
 	 * @return [type] [description]
 	 */
-	public static function register($_type = null, $_cmd = null)
+	public static function register($_cmd = null)
 	{
-		if(!$_type)
-		{
-			return false;
-		}
 		// output text
-		$text = $_type. ' شما با موفقیت ثبت شد.';
+		$text = '';
+
 		// if is fake return false;
 		switch ($_cmd['command'])
 		{
