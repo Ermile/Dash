@@ -195,7 +195,7 @@ class step
 		if(self::get(false))
 		{
 			// its okay dont find answer because we are in step
-			bot::ok();
+			tg::ok();
 
 			$forceCancel = null;
 			// calc current step

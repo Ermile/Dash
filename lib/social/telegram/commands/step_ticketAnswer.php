@@ -20,6 +20,7 @@ class step_ticketAnswer
 		}
 		else
 		{
+			step::stop();
 			return self::requireCode();
 		}
 	}
@@ -63,12 +64,19 @@ class step_ticketAnswer
 
 	public static function requireCode()
 	{
+		// $result =
+		// [
+		// 	'text' => T_("We need ticket number!")." 🙁",
+		// 	'show_alert' => true,
+		// ];
+		// bot::answerCallbackQuery($result);
+
 		$result =
 		[
 			'text' => T_("We need ticket number!")." 🙁",
-			'show_alert' => true,
 		];
-		bot::answerCallbackQuery($result);
+		bot::sendMessage($result);
+		bot::ok();
 	}
 
 

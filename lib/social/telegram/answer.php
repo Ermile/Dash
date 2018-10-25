@@ -11,11 +11,6 @@ class answer
 
 	public static function finder()
 	{
-		if(tg::isOkay())
-		{
-			return true;
-		}
-
 		// check for step
 		step::check(hook::text());
 		if(tg::isOkay())
