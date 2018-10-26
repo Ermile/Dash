@@ -247,6 +247,11 @@ class step
 
 	public static function checkFalseTry($_text = null)
 	{
+		if($_text === null)
+		{
+			$_text = hook::cmd('command')
+		}
+
 		switch ($_text)
 		{
 			case '/start':

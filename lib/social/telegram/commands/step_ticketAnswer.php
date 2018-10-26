@@ -42,7 +42,6 @@ class step_ticketAnswer
 				'keyboard' => [[T_('Cancel')]],
 				'resize_keyboard' => true,
 				'one_time_keyboard' => true
-
 			],
 		];
 		bot::sendMessage($result);
@@ -61,7 +60,7 @@ class step_ticketAnswer
 			bot::answerCallbackQuery($callbackResult);
 			return false;
 		}
-		elseif(step::checkFalseTry($_answer))
+		elseif(step::checkFalseTry())
 		{
 			return false;
 		}
