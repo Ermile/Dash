@@ -226,6 +226,18 @@ class user
 			[
 				'photo'   => $userLastPhoto,
 				'caption' => $myDetail,
+				'reply_markup' =>
+				[
+					'inline_keyboard' =>
+					[
+						[
+							[
+								'text' => T_("More detail"),
+								'callback_data'  => 'user_id',
+							],
+						]
+					]
+				]
 			];
 			tg::sendPhoto($photoResult);
 		}

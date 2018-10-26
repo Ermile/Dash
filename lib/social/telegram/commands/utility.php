@@ -18,6 +18,7 @@ class utility
 		{
 			case '/userid':
 			case 'userid':
+			case 'cb_userid':
 			case '/user_id':
 			case 'user_id':
 			case '/myid':
