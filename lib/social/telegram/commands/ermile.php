@@ -248,11 +248,11 @@ class ermile
 				{
 					if($_cmd['optional'])
 					{
-						$text = T_("We do not need contact of anothers!"). ' '. T_('You can share your contact by press on /register');
+						$text = T_("We do not need contact of anothers!"). ' '. T_('You can share your contact by press on /register'). ' 😕';
 					}
 					else
 					{
-						$text = T_("We need mobile number to complete registeration process.");
+						$text = T_("We need mobile number to complete registeration process."). ' 🙃';
 					}
 				}
 				break;
@@ -262,19 +262,19 @@ class ermile
 				break;
 
 			case 'type_sticker':
-					$text = T_("Thanks for your kindness");
+					$text = T_("Thanks for your kindness"). ' 😃';
 				break;
 
 			case 'type_video':
-					$text = T_("I'm busy and i dont think have time to watch video!");
+					$text = T_("I'm busy and i dont think have time to watch video!"). ' 😎';
 				break;
 
 			case 'type_voice':
-					$text = T_("A long time until I want to recognize your voice!!");
+					$text = T_("A long time until I want to recognize your voice!!"). ' 😭';
 				break;
 
 			default:
-					$text = T_("I'm still not advanced enough!");
+					$text = T_("I'm still not advanced enough!"). ' 😉';
 				break;
 		}
 		$result =

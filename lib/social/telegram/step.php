@@ -298,12 +298,12 @@ class step
 
 		if($tryCount === 0)
 		{
-			tg::sendMessage(T_('Press enter valid value'));
+			tg::sendMessage('⚠️ '. T_('Press enter valid value'));
 			tg::ok();
 		}
 		else if($tryCount === 1)
 		{
-			tg::sendMessage(T_('Press another inappropirate key to exit from active process!'));
+			tg::sendMessage('⚠️⚠️ '.T_('Press another inappropirate key to exit from active process!'));
 			tg::ok();
 		}
 		else
