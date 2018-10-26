@@ -264,6 +264,7 @@ class step
 			case '/ticket':
 			case '/register':
 			case '/signup':
+			case '/sync':
 			case '/menu':
 			case '/mainmenu':
 			case '/return':
@@ -282,6 +283,7 @@ class step
 			case T_('email'):
 			case T_('register'):
 			case T_('signup'):
+			case T_('sync'):
 			case T_('help'):
 			case T_('menu'):
 			case T_('mainmenu'):
@@ -306,12 +308,32 @@ class step
 
 		if($tryCount === 0)
 		{
-			tg::sendMessage('⚠️ '. T_('Press enter valid value'));
+			$result =
+			[
+				'text'         => '⚠️ '. T_('Press enter valid value'),
+				'reply_markup' =>
+				[
+					'keyboard' => [[T_('Cancel')]],
+					'resize_keyboard' => true,
+					'one_time_keyboard' => true
+				],
+			];
+			tg::sendMessage($result);
 			tg::ok();
 		}
 		else if($tryCount === 1)
 		{
-			tg::sendMessage('⚠️⚠️ '.T_('Press another inappropirate key to exit from active process!'));
+			$result =
+			[
+				'text'         => '⚠️⚠️ '.T_('Press another inappropirate key to exit from active process!'),
+				'reply_markup' =>
+				[
+					'keyboard' => [[T_('Cancel')]],
+					'resize_keyboard' => true,
+					'one_time_keyboard' => true
+				],
+			];
+			tg::sendMessage($result);
 			tg::ok();
 		}
 		else
