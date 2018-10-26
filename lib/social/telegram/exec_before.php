@@ -75,6 +75,11 @@ class exec_before
 				}
 				break;
 
+			case 'getFile':
+				unset($_data['chat_id']);
+				unset($_data['reply_markup']);
+				break;
+
 			case 'sendPhoto':
 			case 'sendAudio':
 			case 'sendDocument':
