@@ -25,6 +25,12 @@ class exec_before
 			$_data['chat_id'] = hook::chat();
 		}
 
+		// add default menu if this message does not contain menu
+		if(!isset($_data['reply_markup']))
+		{
+			$_data['reply_markup'] = commands\ermile::mainmenu();
+		}
+
 		// check needle of each type and try to add something to this method
 		switch ($_method)
 		{
@@ -45,6 +51,7 @@ class exec_before
 						unset($_data['reply_to_message_id']);
 					}
 				}
+
 				break;
 
 			case 'answerCallbackQuery':
@@ -78,6 +85,12 @@ class exec_before
 			case 'sendContact':
 			case 'sendChatAction':
 			default:
+				// add parse_mode
+				if(!isset($_data['parse_mode']))
+				{
+					// require chat id
+					$_data['parse_mode'] = 'html';
+				}
 				break;
 		}
 
