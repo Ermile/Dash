@@ -13,6 +13,16 @@ class step_ticketCreate
 
 		step::start('ticketCreate');
 
+		// if start with callback answer callback
+		if(bot::isCallback())
+		{
+			$result =
+			[
+				'text' => T_("Ask from support")
+			];
+			bot::answerCallbackQuery($result);
+		}
+
 		return self::step1();
 	}
 
