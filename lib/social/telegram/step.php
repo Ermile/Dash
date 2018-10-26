@@ -238,6 +238,10 @@ class step
 						call_user_func($cmdNamespace. $funcName, $_text);
 					}
 				}
+				else
+				{
+					$forceCancel = true;
+				}
 			}
 			else
 			{
