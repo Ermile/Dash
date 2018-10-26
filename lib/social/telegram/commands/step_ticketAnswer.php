@@ -61,6 +61,10 @@ class step_ticketAnswer
 			bot::answerCallbackQuery($result);
 			return false;
 		}
+		elseif(step::checkFalseTry($_ticketDetail))
+		{
+			return false;
+		}
 
 		$ticketNo = step::get('ticketNo');
 		\dash\app\tg\ticket::answer($ticketNo, $_answer);
