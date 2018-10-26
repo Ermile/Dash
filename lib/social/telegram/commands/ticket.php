@@ -99,8 +99,6 @@ class ticket
 				]
 			];
 
-			bot::sendMessage($result);
-
 			// if start with callback answer callback
 			if(bot::isCallback())
 			{
@@ -110,7 +108,12 @@ class ticket
 				];
 				bot::answerCallbackQuery($result);
 			}
+			else
+			{
+				$result['reply_to_message_id'] = true;
+			}
 
+			bot::sendMessage($result);
 		}
 		else
 		{
