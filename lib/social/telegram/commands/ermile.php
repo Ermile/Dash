@@ -55,9 +55,13 @@ class ermile
 			case T_('telephone'):
 			case T_('mobile'):
 			case T_('phone'):
-			case T_('website'):
 			case T_('email'):
 				self::contact();
+				break;
+
+			case '/website':
+			case T_('website'):
+				self::website();
 				break;
 
 			case '/register':
@@ -194,6 +198,38 @@ class ermile
 		];
 
 		bot::sendVenue($result);
+		bot::ok();
+	}
+
+
+	public static function website()
+	{
+		$msg = "<a href='". \dash\url::kingdom(). "'>".T_(\dash\option::config('site', 'title')). "</a>". "\n";
+		$msg .= T_(\dash\option::config('site', 'slogan')). "\n\n";
+		$msg .= T_(\dash\option::config('site', 'desc'));
+
+		$result = [];
+		$result['text'] = $msg;
+		$result['reply_markup'] =
+		[
+			'inline_keyboard' =>
+			[
+				[
+					[
+						'text' => T_("Open :val website", ['val' => T_(\dash\option::config('site', 'title'))]),
+						'url'  => \dash\url::kingdom(),
+					],
+				],
+				[
+					[
+						'text' => T_(":val Telegram bot", ['val' => T_(\dash\option::config('site', 'title'))]),
+						'url'  => 'tg://'. bot::$name,
+					],
+				]
+			]
+		];
+
+		bot::sendMessage($result);
 		bot::ok();
 	}
 
@@ -385,7 +421,7 @@ class ermile
 		// add sync
 		if(\dash\user::detail('mobile'))
 		{
-			$menu['keyboard'][] = [T_("Sync with website"). ' 👤'];
+			$menu['keyboard'][] = [T_("Website"). ' '. T_(\dash\option::config('site', 'title'))];
 		}
 		else
 		{
