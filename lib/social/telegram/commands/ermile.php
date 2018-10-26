@@ -326,7 +326,7 @@ class ermile
 			'keyboard' =>
 			[
 				[ ["text" => T_("Register with mobile"), "request_contact" => true] ],
-				[T_("Help"), T_("Cancel")],
+				[T_("Help"), T_("Return to main menu")],
 			],
 		];
 		bot::sendMessage($result);
