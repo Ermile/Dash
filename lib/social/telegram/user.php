@@ -192,5 +192,38 @@ class user
 			\dash\language::set_language(\dash\app\tg\user::lang());
 		}
 	}
+
+
+
+	public static function preview($_userid = null)
+	{
+		tg::ok();
+
+		// create detail of caption
+		$myDetail = "<code>". hook::from(). "</code>\n";
+		$myDetail .= hook::from('first_name');
+		$myDetail .= ' '. hook::from('last_name'). "\n";
+		$myDetail .= "@". hook::from('username'). "\n";
+		$myDetail .= "#profile";
+
+		$userProfile = tg::getUserProfilePhotos();
+		var_dump($userProfile);
+
+		if($userPhoto)
+		{
+			$photoResult =
+			[
+				'photo'   => $userPhoto,
+				'caption' => $myDetail,
+			];
+			tg::sendPhoto($photoResult);
+		}
+		else
+		{
+			tg::sendMessage(['text' => $myDetail]);
+		}
+
+		return $myDetail;
+	}
 }
 ?>

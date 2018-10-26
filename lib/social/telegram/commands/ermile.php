@@ -45,7 +45,7 @@ class ermile
 			case '/whoami':
 			case T_('me'):
 			case T_('whoami'):
-				self::me();
+				\dash\social\telegram\user::preview();
 				break;
 
 			case '/contact':
@@ -328,21 +328,6 @@ class ermile
 
 		bot::sendMessage($result);
 		bot::ok();
-	}
-
-
-	/**
-	 * show user details!
-	 * @return [type] [description]
-	 */
-	public static function me()
-	{
-		$result =
-		[
-			'method' => 'getUserProfilePhotos',
-		];
-
-		return $result;
 	}
 
 
