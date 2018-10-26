@@ -145,19 +145,19 @@ class user
 		{
 			// try to save en for user lang
 			case '/english':
-			case 'en_US':
+			case 'en_us':
 				$newLang = 'en';
 				break;
 
 			// try to save fa for user lang
 			case '/persian':
 			case '/farsi':
-			case 'fa_IR':
+			case 'fa_ir':
 				$newLang = 'fa';
 				break;
 
 			case '/arabic':
-			case 'ar_IQ':
+			case 'ar_iq':
 				$newLang = 'ar';
 				break;
 
