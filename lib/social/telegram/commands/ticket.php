@@ -17,7 +17,8 @@ class ticket
 
 				if(isset($_cmd['optional']))
 				{
-					if(is_numeric($_cmd['optional']))
+					$ticketNo = \dash\utility\convert::to_en_number($_cmd['optional']);
+					if(is_numeric($ticketNo))
 					{
 						if(isset($_cmd['argument']))
 						{
