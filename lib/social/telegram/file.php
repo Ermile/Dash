@@ -45,7 +45,7 @@ class file
 				if($_saveAllPhoto)
 				{
 					// // save file
-					self::save($photo['file_id']);
+					self::save($photo['file_id'], $_userid);
 				}
 			}
 		}
@@ -55,7 +55,7 @@ class file
 
 
 
-	public static function save($_fileid)
+	public static function save($_fileid, $_prefix = null)
 	{
 		$myFile = tg::getFile(['file_id' => $_fileid]);
 
@@ -79,6 +79,10 @@ class file
 			\dash\file::makeDir($fileDest, 0775, true);
 		}
 		// add file name and ext
+		if($_prefix)
+		{
+			$fileDest .= $_prefix. '-'. $file_id;
+		}
 		$fileDest .= $file_id;
 		if($file_ext)
 		{
