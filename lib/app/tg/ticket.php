@@ -70,13 +70,14 @@ class ticket
 		{
 			foreach ($dataTable as $key => $value)
 			{
-				$key_fit = \dash\utility\human::fitNumber($key + 1);
-				$msg .= "🔄 $key_fit\n🗣 ". @$value['displayname']. " #user". @$value['user_id'];
+				// $key_fit = \dash\utility\human::fitNumber($key + 1);
+				// $msg .= "🔄 $key_fit\n"
+				$msg .= "🗣 ". @$value['displayname']. " #user". @$value['user_id'];
 
 				if(isset($value['title']))
 				{
 					$msg .= "\n📬 ";
-					$msg .= strip_tags($value['title']). "\n";
+					$msg .= "<b>". strip_tags($value['title']). "</b>";
 				}
 
 				if(isset($value['content']))
