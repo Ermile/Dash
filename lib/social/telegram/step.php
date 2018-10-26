@@ -249,7 +249,7 @@ class step
 	{
 		if($_text === null)
 		{
-			$_text = hook::cmd('command')
+			$_text = hook::cmd('command');
 		}
 
 		switch ($_text)
