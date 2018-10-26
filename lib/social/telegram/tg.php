@@ -20,13 +20,9 @@ class tg
 		'dash:conversation',
 		'dash:conversationFa',
 	];
-	public static $finish     = null;
+	private static $finish     = null;
 
 
-
-	public static $language    = 'en_US';
-	public static $fill        = null;
-	public static $defaultText = 'Undefined';
 	public static $defaultMenu = null;
 	public static $saveDest    = root.'public_html/files/telegram/';
 
