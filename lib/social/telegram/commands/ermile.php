@@ -206,10 +206,13 @@ class ermile
 	{
 		$msg = "<a href='". \dash\url::kingdom(). "'>".T_(\dash\option::config('site', 'title')). "</a>". "\n";
 		$msg .= T_(\dash\option::config('site', 'slogan')). "\n\n";
-		$msg .= T_(\dash\option::config('site', 'desc'));
+		$msg .= T_(\dash\option::config('site', 'desc')). "\n";
+		$msg .= \dash\url::kingdom();
 
 		$result = [];
 		$result['text'] = $msg;
+		$result['disable_web_page_preview'] = false;
+
 		$result['reply_markup'] =
 		[
 			'inline_keyboard' =>
