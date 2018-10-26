@@ -195,6 +195,7 @@ class step
 			tg::ok();
 
 			$forceCancel = null;
+			$currentStep = null;
 			// calc current step
 			switch ($_text)
 			{
@@ -210,27 +211,37 @@ class step
 					break;
 
 				default:
-					$currentStep = 'step'. self::get('pointer');
+					if(self::get('pointer'))
+					{
+						$currentStep = 'step'. self::get('pointer');
+					}
 					break;
 			}
 
-			$myhookLocation = '\content_hook\tg\\';
-			// create function full name
-			$funcName       = 'step_'. self::get('name'). '::'. $currentStep;
-			// generate func name
-			if(is_callable($myhookLocation.$funcName))
+			if($currentStep)
 			{
-				// get and return response
-				call_user_func($myhookLocation.$funcName, $_text);
-			}
-			elseif(self::get('name'))
-			{
-				$cmdNamespace = '\\'. __NAMESPACE__. '\commands\\';
-				if(is_callable($cmdNamespace.$funcName))
+				$myhookLocation = '\content_hook\tg\\';
+				// create function full name
+				$funcName       = 'step_'. self::get('name'). '::'. $currentStep;
+				// generate func name
+				if(is_callable($myhookLocation. $funcName))
 				{
 					// get and return response
-					call_user_func($cmdNamespace.$funcName, $_text);
+					call_user_func($myhookLocation. $funcName, $_text);
 				}
+				elseif(self::get('name'))
+				{
+					$cmdNamespace = '\\'. __NAMESPACE__. '\commands\\';
+					if(is_callable($cmdNamespace. $funcName))
+					{
+						// get and return response
+						call_user_func($cmdNamespace. $funcName, $_text);
+					}
+				}
+			}
+			else
+			{
+				$forceCancel = true;
 			}
 
 			// save text afrer reading current step function
