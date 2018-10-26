@@ -32,7 +32,7 @@ class ermile
 			case T_('mainmenu'):
 			case '/return':
 			case T_('return'):
-				self::menu();
+				self::mainmenu();
 				break;
 
 			case '/about':
@@ -66,19 +66,12 @@ class ermile
 			case T_('register'):
 			case T_('signup'):
 			case T_('sync'):
-				self::signup();
+				self::register();
 
 				break;
 
 			case 'type_contact':
-
-				self::register($_cmd);
-				break;
-
 			case 'type_location':
-				self::register($_cmd);
-				break;
-
 			case 'type_audio':
 			case 'type_document':
 			case 'type_photo':
@@ -86,7 +79,7 @@ class ermile
 			case 'type_video':
 			case 'type_voice':
 			case 'type_venue':
-				self::register($_cmd);
+				self::getExtraType($_cmd);
 				break;
 
 			case '/help':
@@ -246,7 +239,7 @@ class ermile
 	 * get phone number from user contact
 	 * @return [type] [description]
 	 */
-	public static function register($_cmd = null)
+	public static function getExtraType($_cmd = null)
 	{
 		// output text
 		$text = '';
@@ -314,7 +307,7 @@ class ermile
 	}
 
 
-	public static function signup()
+	public static function register()
 	{
 		$result['text'] .= "\n". T_('You can connect complete your registeration on :val from telegram by share your mobile number.', ['val' => T_(\dash\option::config('site', 'title'))]);
 		$result['text'] .= "\n\n". T_('By press share contact we get your mobile and after that you can use our website and your account is synced.');
@@ -377,7 +370,7 @@ class ermile
 	}
 
 
-	public static function menu($_onlyMenu = false)
+	public static function mainmenu($_onlyMenu = false)
 	{
 		// define
 		$menu =
