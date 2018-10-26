@@ -6,7 +6,7 @@ class file
 	private static $saveDest = root.'public_html/files/telegram/';
 
 
-	public static function lastProfilePhoto($_userid = null, $_saveAllPhoto = true)
+	public static function lastProfilePhoto($_userid = null, $_saveAllPhoto = false)
 	{
 		if(!$_userid)
 		{
@@ -38,13 +38,14 @@ class file
 				if($lastPhotoUrl === null)
 				{
 					$lastPhotoUrl = $photo['file_id'];
+					user::setAvatar($_userid, $lastPhotoUrl);
 				}
 				// get last photo url
 				$firstPhotoUrl = $photo['file_id'];
 
 				if($_saveAllPhoto)
 				{
-					// // save file
+					// save file
 					self::save($photo['file_id'], $_userid);
 				}
 			}

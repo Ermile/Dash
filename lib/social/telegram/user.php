@@ -194,6 +194,13 @@ class user
 	}
 
 
+	public static function setAvatar($_userid, $_file)
+	{
+		// check if user does not have avatar avatar
+
+		return null;
+	}
+
 
 	public static function preview($_userid = null)
 	{
