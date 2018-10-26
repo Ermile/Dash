@@ -10,6 +10,7 @@ class user
 			// if user blocked, change status to unblock
 			if(\dash\user::detail('tgstatus') === 'block')
 			{
+				\dash\log::set('tg:user:block2Active');
 				self::active();
 			}
 			return \dash\user::id();
@@ -24,6 +25,7 @@ class user
 		// if not exist yet return null
 		if(!$myUser)
 		{
+			\dash\log::set('tg:user:notDetect');
 			// user not detected
 			return null;
 		}
@@ -31,6 +33,7 @@ class user
 		// if user blocked us but send message via hook, change status to active
 		if(isset($myUser['tgstatus']) && $myUser['tgstatus'] === 'block')
 		{
+			\dash\log::set('tg:user:block2Active2');
 			self::active();
 		}
 
@@ -40,6 +43,7 @@ class user
 			return $myUser['id'];
 		}
 
+		\dash\log::set('tg:user:notDetect2');
 		return false;
 	}
 
@@ -60,8 +64,10 @@ class user
 		$result = \dash\app\tg\user::add($newUserDetail);
 		if($result)
 		{
+			\dash\log::set('tg:user:register');
 			return $result;
 		}
+		\dash\log::set('tg:user:register:fail');
 		return false;
 	}
 
