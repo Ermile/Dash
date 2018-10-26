@@ -198,6 +198,10 @@ class user
 	public static function preview($_userid = null)
 	{
 		tg::ok();
+		if(!$_userid)
+		{
+			$_userid = hook::from();
+		}
 
 		// create detail of caption
 		$myDetail = "<code>". hook::from(). "</code>\n";
@@ -206,8 +210,7 @@ class user
 		$myDetail .= "@". hook::from('username'). "\n";
 		$myDetail .= "#profile <code>" . \dash\user::id(). "</code>";
 
-		$userProfile   = tg::getUserProfilePhotos();
-		$userLastPhoto = file::lastProfilePhoto($userProfile);
+		$userLastPhoto = file::lastProfilePhoto($_userid);
 		var_dump($userProfile);
 
 		if($userLastPhoto)

@@ -6,20 +6,25 @@ class file
 	private static $saveDest = root.'public_html/files/telegram/';
 
 
-	public static function lastProfilePhoto($_data)
+	public static function lastProfilePhoto($_userid = null, $_saveAllPhoto = true)
 	{
-		if(!isset($_data['ok']))
+		if(!$_userid)
+		{
+			$_userid = hook::from();
+		}
+		$userDetail = tg::getUserProfilePhotos(['user_id' => $_userid]);
+		if(!isset($userDetail['ok']))
 		{
 			return false;
 		}
 		// if result is not good return false
-		if(!isset($_data['result']['total_count']) || !isset($_data['result']['photos']))
+		if(!isset($userDetail['result']['total_count']) || !isset($userDetail['result']['photos']))
 		{
 			return false;
 		}
 
-		$count  = $_data['result']['total_count'];
-		$photos = $_data['result']['photos'];
+		$count  = $userDetail['result']['total_count'];
+		$photos = $userDetail['result']['photos'];
 
 		$firstPhotoUrl = null;
 		$lastPhotoUrl  = null;
@@ -37,8 +42,11 @@ class file
 				// get last photo url
 				$firstPhotoUrl = $photo['file_id'];
 
-				// // save file
-				self::save($photo['file_id']);
+				if($_saveAllPhoto)
+				{
+					// // save file
+					self::save($photo['file_id']);
+				}
 			}
 		}
 
