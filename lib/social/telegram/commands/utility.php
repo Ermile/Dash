@@ -22,6 +22,8 @@ class utility
 			case 'user_id':
 			case '/myid':
 			case 'myid':
+				\dash\log::set('tg:user:userid');
+
 				$text = T_("User id"). ' <code>'. \dash\user::id(). '</code>';
 				$text .= "\n\n<pre>". json_encode(\dash\social\telegram\hook::from(null), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE). "</pre>";
 				break;
@@ -29,6 +31,8 @@ class utility
 
 			case '/session':
 			case 'session':
+				\dash\log::set('tg:user:session');
+
 				$chatID = \dash\social\telegram\hook::from();
 				if($chatID === 46898544 || $chatID === 344542267 || $chatID === 33263188)
 				{
@@ -45,6 +49,8 @@ class utility
 
 			case '/logout':
 			case 'logout':
+					\dash\log::set('tg:user:logout');
+
 					bot::sendMessage('📴 '.T_("Booom"));
 					\dash\user::destroy();
 					\dash\code::boom();
@@ -53,6 +59,8 @@ class utility
 
 			case '/tgsession':
 			case 'tgsession':
+				\dash\log::set('tg:user:tgsession');
+
 				$chatID = \dash\social\telegram\hook::from();
 				if($chatID === 46898544 || $chatID === 344542267 || $chatID === 33263188)
 				{
@@ -68,8 +76,7 @@ class utility
 
 
 			case '/say':
-			case 'say':
-			case 'بگو':
+			case T_('say'):
 
 					if(isset($_cmd['text']))
 					{
