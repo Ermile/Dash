@@ -87,7 +87,7 @@ class ticket
 
 				if(isset($value['datecreated']))
 				{
-					$msg .= "\n⏳ ". \dash\datetime::fit($value['datecreated'], 'shortDate');
+					$msg .= "\n⏳ ". \dash\datetime::fit($value['datecreated'], true);
 				}
 				$msg .= "\n—————\n ";
 			}
