@@ -213,6 +213,9 @@ class ermile
 	{
 		$text = T_("You can control me by sending these commands"). "\r\n\n";
 		$text .= "/start ". T_("Start again"). "\n";
+		$text .= "/lang ". T_('Change your language'). "\n";
+		$text .= "/menu ". T_('Go to main menu'). "\n";
+		$text .= "/register ". T_('Sync with website'). "\n";
 		$text .= "/about ". T_('About'). "\n";
 		$text .= "/contact ". T_("Contact us"). "\n";
 		$text .= "/ticket ". T_("Add new ticket"). "\n";
@@ -325,7 +328,6 @@ class ermile
 				[ ["text" => T_("Register with mobile"), "request_contact" => true] ],
 				[T_("Help"), T_("Cancel")],
 			],
-			'one_time_keyboard' => true
 		];
 		bot::sendMessage($result);
 		bot::ok();
@@ -367,8 +369,7 @@ class ermile
 
 		$result['reply_markup'] =
 		[
-			'keyboard' => $keyboard,
-			'one_time_keyboard' => true
+			'keyboard' => $keyboard
 		];
 		// send message
 		bot::sendMessage($result);
