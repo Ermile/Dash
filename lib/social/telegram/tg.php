@@ -21,7 +21,6 @@ class tg
 		'dash:conversationFa',
 	];
 	private static $finish     = null;
-	public static $defaultMenu = null;
 
 
 	/**

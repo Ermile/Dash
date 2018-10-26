@@ -22,8 +22,17 @@ class ermile
 			case '/lang':
 			case '/language':
 			case T_('language'):
-
 				self::lang();
+				break;
+
+
+			case '/menu':
+			case T_('menu'):
+			case '/mainmenu':
+			case T_('mainmenu'):
+			case '/return':
+			case T_('return'):
+				self::menu();
 				break;
 
 			case '/about':
@@ -53,8 +62,10 @@ class ermile
 
 			case '/register':
 			case '/signup':
+			case '/sync':
 			case T_('register'):
 			case T_('signup'):
+			case T_('sync'):
 				self::signup();
 
 				break;
@@ -104,7 +115,7 @@ class ermile
 	{
 		$result =
 		[
-			// 'reply_markup' => menu::main(true),
+			'reply_markup' => menu::main(true),
 		];
 
 		$result['text'] = T_('Haloo');
@@ -363,6 +374,46 @@ class ermile
 			'one_time_keyboard' => true
 		];
 		// send message
+		bot::sendMessage($result);
+		bot::ok();
+	}
+
+
+	public static function menu($_onlyMenu = false)
+	{
+		// define
+		$menu =
+		[
+			'keyboard' =>
+			[
+				[T_("About"), T_("Contact")],
+			],
+			'resize_keyboard' => true,
+		];
+
+		// add sync
+		if(\dash\user::detail('mobile'))
+		{
+			$menu['keyboard'][] = [T_("Sync with website"). ' 👤'];
+		}
+		else
+		{
+			$menu['keyboard'][] = [T_("Sync with website")];
+		}
+
+		if($_onlyMenu)
+		{
+			return $menu;
+		}
+
+		$txt_text = T_("Main menu");
+
+		$result =
+		[
+			'text'                => $txt_text,
+			'reply_markup'        => $menu,
+		];
+
 		bot::sendMessage($result);
 		bot::ok();
 	}
