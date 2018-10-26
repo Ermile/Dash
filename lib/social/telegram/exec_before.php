@@ -69,7 +69,10 @@ class exec_before
 				break;
 
 			case 'getUserProfilePhotos':
-				$_data['user_id']    = hook::from();
+				if(!isset($_data['user_id']))
+				{
+					$_data['user_id'] = hook::from();
+				}
 				break;
 
 			case 'sendPhoto':
