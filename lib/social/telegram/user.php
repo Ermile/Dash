@@ -233,7 +233,7 @@ class user
 						[
 							[
 								'text' => T_("More detail"),
-								'callback_data'  => 'user_id',
+								'callback_data'  => 'userid',
 							],
 						]
 					]
