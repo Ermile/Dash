@@ -16,11 +16,11 @@ class step_ticketCreate
 		// if start with callback answer callback
 		if(bot::isCallback())
 		{
-			$result =
+			$callbackResult =
 			[
 				'text' => T_("Ask from support")
 			];
-			bot::answerCallbackQuery($result);
+			bot::answerCallbackQuery($callbackResult);
 		}
 
 		return self::step1();
@@ -55,12 +55,12 @@ class step_ticketCreate
 	{
 		if(bot::isCallback())
 		{
-			$result =
+			$callbackResult =
 			[
 				'text' => T_("Please wrote about your ticket")." 📝",
 				'show_alert' => true,
 			];
-			bot::answerCallbackQuery($result);
+			bot::answerCallbackQuery($callbackResult);
 			return false;
 		}
 		elseif(step::checkFalseTry($_ticketDetail))

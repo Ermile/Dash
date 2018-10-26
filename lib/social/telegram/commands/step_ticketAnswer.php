@@ -17,11 +17,11 @@ class step_ticketAnswer
 		// if start with callback answer callback
 		if(bot::isCallback())
 		{
-			$result =
+			$callbackResult =
 			[
 				'text' => T_("Answer to ticket "). $_cmd['optional'],
 			];
-			bot::answerCallbackQuery($result);
+			bot::answerCallbackQuery($callbackResult);
 		}
 
 		return self::step1();
@@ -53,12 +53,12 @@ class step_ticketAnswer
 	{
 		if(bot::isCallback())
 		{
-			$result =
+			$callbackResult =
 			[
 				'text' => T_("Please wrote your answer")." 📝",
 				'show_alert' => true,
 			];
-			bot::answerCallbackQuery($result);
+			bot::answerCallbackQuery($callbackResult);
 			return false;
 		}
 		elseif(step::checkFalseTry($_ticketDetail))

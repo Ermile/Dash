@@ -103,11 +103,11 @@ class ticket
 			// if start with callback answer callback
 			if(bot::isCallback())
 			{
-				$CallbackResult =
+				$callbackResult =
 				[
 					'text' => T_("Check ticket"). ' '. $ticketNo,
 				];
-				bot::answerCallbackQuery($CallbackResult);
+				bot::answerCallbackQuery($callbackResult);
 			}
 
 			bot::sendMessage($result);
