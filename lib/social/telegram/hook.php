@@ -286,15 +286,15 @@ class hook
 		// if we have parameter 1 save it as command
 		if(isset($text[0]))
 		{
-			$cmd['command'] = strtolower($text[0]);
+			$cmd['command'] = mb_strtolower($text[0]);
 			// if we have parameter 2 save it as optional
 			if(isset($text[1]))
 			{
-				$cmd['optional'] = strtolower($text[1]);
+				$cmd['optional'] = mb_strtolower($text[1]);
 				// if we have parameter 3 save it as argument
 				if(isset($text[2]))
 				{
-					$cmd['argument'] = strtolower($text[2]);
+					$cmd['argument'] = mb_strtolower($text[2]);
 				}
 			}
 		}
