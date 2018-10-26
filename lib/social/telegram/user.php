@@ -204,16 +204,17 @@ class user
 		$myDetail .= hook::from('first_name');
 		$myDetail .= ' '. hook::from('last_name'). "\n";
 		$myDetail .= "@". hook::from('username'). "\n";
-		$myDetail .= "#profile";
+		$myDetail .= "#profile <code>" . \dash\user::id(). "</code>";
 
-		$userProfile = tg::getUserProfilePhotos();
+		$userProfile   = tg::getUserProfilePhotos();
+		$userLastPhoto = file::lastProfilePhoto($userProfile);
 		var_dump($userProfile);
 
-		if($userPhoto)
+		if($userLastPhoto)
 		{
 			$photoResult =
 			[
-				'photo'   => $userPhoto,
+				'photo'   => $userLastPhoto,
 				'caption' => $myDetail,
 			];
 			tg::sendPhoto($photoResult);
