@@ -25,6 +25,16 @@ class utility
 			case 'myid':
 				\dash\log::set('tg:user:userid');
 
+				// if start with callback answer callback
+				if(bot::isCallback())
+				{
+					$callbackResult =
+					[
+						'text' => T_("More and more"),
+					];
+					bot::answerCallbackQuery($callbackResult);
+				}
+
 				$text = T_("User id"). ' <code>'. \dash\user::id(). '</code>';
 				$text .= "\n\n<pre>". json_encode(\dash\social\telegram\hook::from(null), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE). "</pre>";
 				break;
