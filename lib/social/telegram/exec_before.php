@@ -28,7 +28,7 @@ class exec_before
 		// add default menu if this message does not contain menu
 		if(!isset($_data['reply_markup']))
 		{
-			$_data['reply_markup'] = commands\ermile::mainmenu();
+			$_data['reply_markup'] = commands\ermile::mainmenu(true);
 		}
 
 		// check needle of each type and try to add something to this method
