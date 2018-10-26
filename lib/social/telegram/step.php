@@ -264,6 +264,10 @@ class step
 			case '/ticket':
 			case '/register':
 			case '/signup':
+			case '/menu':
+			case '/mainmenu':
+			case '/return':
+
 			case T_('start'):
 			case T_('language'):
 			case T_('about'):
@@ -279,6 +283,10 @@ class step
 			case T_('register'):
 			case T_('signup'):
 			case T_('help'):
+			case T_('menu'):
+			case T_('mainmenu'):
+			case T_('return'):
+
 			case 'ls':
 			case '؟':
 			case '?':

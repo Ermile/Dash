@@ -51,7 +51,7 @@ class step_ticketCreate
 	}
 
 
-	public static function step2($_ticketDetail)
+	public static function step2($_answer)
 	{
 		if(bot::isCallback())
 		{
@@ -63,12 +63,12 @@ class step_ticketCreate
 			bot::answerCallbackQuery($callbackResult);
 			return false;
 		}
-		elseif(step::checkFalseTry($_ticketDetail))
+		elseif(step::checkFalseTry($_answer))
 		{
 			return false;
 		}
 
-		\dash\app\tg\ticket::create($_ticketDetail);
+		\dash\app\tg\ticket::create($_answer);
 
 		step::stop();
 	}

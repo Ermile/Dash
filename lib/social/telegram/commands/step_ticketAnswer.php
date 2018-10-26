@@ -61,7 +61,7 @@ class step_ticketAnswer
 			bot::answerCallbackQuery($callbackResult);
 			return false;
 		}
-		elseif(step::checkFalseTry($_ticketDetail))
+		elseif(step::checkFalseTry($_answer))
 		{
 			return false;
 		}
