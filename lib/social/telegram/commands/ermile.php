@@ -113,10 +113,7 @@ class ermile
 	 */
 	public static function start()
 	{
-		$result =
-		[
-			'reply_markup' => menu::main(true),
-		];
+		$result = [];
 
 		$result['text'] = T_('Haloo');
 		$result['text'] .= "\n". T_('We are so glad to meet you.');
