@@ -280,6 +280,7 @@ class ermile
 		$result =
 		[
 			'text' => $text,
+			'reply_to_message_id' => true,
 		];
 
 		bot::sendMessage($result);
