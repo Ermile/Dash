@@ -20,11 +20,13 @@ class exec
 		// if telegram is off then do not run
 		if(!\dash\option::social('telegram', 'status'))
 		{
+			\dash\log::set('tg:off');
 			return T_('Telegram is off!');
 		}
 		// if method or data is not set return
 		if(!$_method)
 		{
+			\dash\log::set('tg:method:empty');
 			return T_('Method is not set!');
 		}
 
@@ -37,6 +39,7 @@ class exec
 		// if key is not correct return
 		if(strlen(tg::$api_token) < 20)
 		{
+			\dash\log::set('tg:apikey:invalid');
 			return T_('Api key is not correct!');
 		}
 		// check user blocked us
@@ -64,6 +67,7 @@ class exec
 		$ch = curl_init();
 		if ($ch === false)
 		{
+			\dash\log::set('tg:curl:failed');
 			return T_('Curl failed to initialize');
 		}
 
@@ -100,6 +104,7 @@ class exec
 		}
 		if (empty($result) || is_null($result))
 		{
+			\dash\log::set('tg:response:empty');
 			return T_('Empty server response');
 		}
 		curl_close($ch);
@@ -113,10 +118,12 @@ class exec
 			switch ($result['error_code'])
 			{
 				case 403:
+					\dash\log::set('tg:user:block', ['meta' => $result['error_code']]);
 					user::block();
 					break;
 
 				default:
+					\dash\log::set('tg:user:error', ['meta' => $result['error_code']]);
 					break;
 			}
 		}
