@@ -245,8 +245,52 @@ class step
 	}
 
 
-	public static function checkFalseTry()
+	public static function checkFalseTry($_text = null)
 	{
+		switch ($_text)
+		{
+			case '/start':
+			case '/lang':
+			case '/language':
+			case '/me':
+			case '/whoami':
+			case '/contact':
+			case '/about':
+			case '/help':
+			case '/help':
+			case '/ls':
+			case '/?':
+			case '/؟':
+			case '/ticket':
+			case '/register':
+			case '/signup':
+			case T_('start'):
+			case T_('language'):
+			case T_('about'):
+			case T_('me'):
+			case T_('contact'):
+			case T_('address'):
+			case T_('tel'):
+			case T_('telephone'):
+			case T_('mobile'):
+			case T_('phone'):
+			case T_('website'):
+			case T_('email'):
+			case T_('register'):
+			case T_('signup'):
+			case T_('help'):
+			case 'ls':
+			case '؟':
+			case '?':
+				// do nothing, this are common commands
+				// if user press this commands say error message
+				break;
+
+			default:
+				return false;
+				break;
+		}
+
 		// get current try val
 		$tryCount = intval(self::get('falseTry'));
 		// plus plus try val
@@ -267,6 +311,7 @@ class step
 			self::set('falseTry', 0);
 			self::cancelStep();
 		}
+		return true;
 	}
 
 

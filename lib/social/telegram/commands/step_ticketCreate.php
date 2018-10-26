@@ -63,6 +63,10 @@ class step_ticketCreate
 			bot::answerCallbackQuery($result);
 			return false;
 		}
+		elseif(step::checkFalseTry($_ticketDetail))
+		{
+			return false;
+		}
 
 		\dash\app\tg\ticket::create($_ticketDetail);
 
