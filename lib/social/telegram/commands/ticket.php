@@ -105,7 +105,7 @@ class ticket
 			{
 				$result =
 				[
-					'text' => T_("Check ticket "). $ticketNo,
+					'text' => T_("Check ticket"). ' '. $ticketNo,
 				];
 				bot::answerCallbackQuery($result);
 			}
