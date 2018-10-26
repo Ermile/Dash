@@ -21,10 +21,7 @@ class tg
 		'dash:conversationFa',
 	];
 	private static $finish     = null;
-
-
 	public static $defaultMenu = null;
-	public static $saveDest    = root.'public_html/files/telegram/';
 
 
 	/**
