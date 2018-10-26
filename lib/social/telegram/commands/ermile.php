@@ -123,11 +123,14 @@ class ermile
 	 */
 	public static function about()
 	{
+		$msg = "<b>".T_(\dash\option::config('site', 'title')). "</b>\n";
+		$msg .= T_(\dash\option::config('site', 'slogan')). "\n\n";
+		$msg .= T_(\dash\option::config('site', 'desc'));
+
 		$result = [];
 		$result['method']  = "sendPhoto";
-		// $result['photo']   = \dash\url::site().'/static/images/logo.png';
-		$result['photo']   = 'https://ermile.com/static/images/logo.png';
-		$result['caption'] = T_(\dash\option::config('site', 'desc'));
+		$result['photo']   = \dash\url::site().'/static/images/logo.png';
+		$result['caption'] = $msg;
 		$result['reply_markup'] =
 		[
 			'inline_keyboard' =>
