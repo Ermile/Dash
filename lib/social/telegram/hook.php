@@ -158,10 +158,9 @@ class hook
 		{
 			$myDetection = tg::$hook['callback_query']['message']['chat'];
 		}
-		elseif(isset(tg::$hook['callback_query']))
+		elseif(isset(tg::$hook['inline_query']['from']))
 		{
-			// chat does not exist in inline query
-			return false;
+			$myDetection = tg::$hook['inline_query']['from'];
 		}
 		// get only arg
 		if($_arg)
