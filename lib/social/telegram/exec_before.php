@@ -35,6 +35,11 @@ class exec_before
 		switch ($_method)
 		{
 			case 'sendMessage':
+				if(!isset($_data['chat_id']))
+				{
+					return false;
+				}
+
 				// add parse_mode
 				if(!isset($_data['parse_mode']))
 				{
@@ -93,6 +98,10 @@ class exec_before
 			case 'sendContact':
 			case 'sendChatAction':
 			default:
+				if(!isset($_data['chat_id']))
+				{
+					return false;
+				}
 				// add parse_mode
 				if(!isset($_data['parse_mode']))
 				{

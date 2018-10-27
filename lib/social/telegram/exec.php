@@ -62,6 +62,11 @@ class exec
 
 		// check before execute
 		$_data = exec_before::check($_method, $_data);
+		if(!$_data)
+		{
+			\dash\log::set('tg:exec:empty');
+			return T_('Exec empty data');
+		}
 
 		// initialize curl
 		$ch = curl_init();
