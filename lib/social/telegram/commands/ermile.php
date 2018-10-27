@@ -123,7 +123,7 @@ class ermile
 					'input_message_content' =>
 					[
 						'message_text' => 'S123',
-						'parse_mode'   => 'hthml'
+						'parse_mode'   => 'html'
 					],
 				]
 			]
