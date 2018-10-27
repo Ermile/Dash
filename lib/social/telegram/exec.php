@@ -67,6 +67,7 @@ class exec
 			\dash\log::set('tg:exec:empty');
 			return T_('Exec empty data');
 		}
+		$isJson = null;
 		if($_method === 'answerInlineQuery')
 		{
 			$isJson = true;
