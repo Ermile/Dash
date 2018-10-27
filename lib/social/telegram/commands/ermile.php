@@ -59,8 +59,8 @@ class ermile
 				self::contact();
 				break;
 
-			case 'iq_abc':
-				self::abc();
+			case 'iq_about':
+				self::iq_about();
 				break;
 
 			case '/website':
@@ -108,9 +108,12 @@ class ermile
 	}
 
 
-	public static function abc()
+	public static function iq_about()
 	{
 		bot::ok();
+		$msg = "<b>".T_(\dash\option::config('site', 'title')). "</b>\n";
+		$msg .= T_(\dash\option::config('site', 'slogan')). "\n\n";
+		$msg .= T_(\dash\option::config('site', 'desc'));
 
 		$resultInline =
 		[
@@ -119,11 +122,31 @@ class ermile
 				[
 					'type'                  => 'article',
 					'id'                    => 1,
-					'title'                 => 'Salaaaam',
+					'title'                 => T_('About'),
+					'description'           => T_('Read more about us'),
+					'thumb_url'             =>\dash\url::site().'/static/images/logo.png',
 					'input_message_content' =>
 					[
-						'message_text' => 'S123',
+						'message_text' => $msg,
 						'parse_mode'   => 'html'
+					],
+					'reply_markup'          =>
+					[
+						'inline_keyboard' =>
+						[
+							[
+								[
+									'text' => T_("Check website"),
+									'url'  => \dash\url::kingdom(),
+								],
+							],
+							[
+								[
+									'text' => T_("Read more about us"),
+									'url'  => \dash\url::kingdom(). '/about',
+								],
+							]
+						]
 					],
 				]
 			]
