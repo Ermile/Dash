@@ -125,7 +125,7 @@ class ermile
 				]
 			]
 		];
-		bot::answerInlineQuery();
+		bot::answerInlineQuery($resultInline);
 	}
 
 
