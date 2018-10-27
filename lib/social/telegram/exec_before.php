@@ -67,6 +67,17 @@ class exec_before
 				}
 				break;
 
+
+			case 'answerInlineQuery':
+				// add inline query id
+				if(hook::inline_query('id'))
+				{
+					$_data['inline_query_id'] = hook::inline_query('id');
+				}
+				break;
+
+
+
 			case 'editMessageText':
 			case 'editMessageCaption':
 			case 'editMessageReplyMarkup':
