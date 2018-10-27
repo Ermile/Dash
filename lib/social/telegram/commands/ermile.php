@@ -120,8 +120,11 @@ class ermile
 					'type'                  => 'article',
 					'id'                    => 1,
 					'title'                 => 'Salaaaam',
-					'title'                 => 'Salaaaam',
-					'input_message_content' => 'S123',
+					'input_message_content' =>
+					[
+						'message_text' => 'S123',
+						'parse_mode'   => 'hthml'
+					],
 				]
 			]
 		];
