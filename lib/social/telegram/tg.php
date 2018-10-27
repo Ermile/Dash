@@ -128,6 +128,15 @@ class tg
 	}
 
 
+	public static function isInline()
+	{
+		if(isset(tg::$hook['inline_query']))
+		{
+			return true;
+		}
+		return false;
+	}
+
 	public static function notLate()
 	{
 		$msgDate = intval(hook::message('date'));

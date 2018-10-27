@@ -5,13 +5,13 @@ use \dash\social\telegram\tg as bot;
 
 class ermileInline
 {
-	/**
-	 * execute user request and return best result
-	 * @param  [type] $_cmd [description]
-	 * @return [type]       [description]
-	 */
 	public static function run($_cmd)
 	{
+		if(bot::isInline())
+		{
+			bot::ok();
+		}
+
 		switch ($_cmd['command'])
 		{
 			case 'iq_about':
@@ -26,7 +26,6 @@ class ermileInline
 
 	public static function iq_about()
 	{
-		bot::ok();
 		$msg = "<b>".T_(\dash\option::config('site', 'title')). "</b>\n";
 		$msg .= T_(\dash\option::config('site', 'slogan')). "\n\n";
 		$msg .= T_(\dash\option::config('site', 'desc'));
@@ -40,7 +39,7 @@ class ermileInline
 					'id'                    => 1,
 					'title'                 => T_('About'),
 					'description'           => T_('Read more about us'),
-					'thumb_url'             =>\dash\url::site().'/static/images/logo.png',
+					'thumb_url'             =>\dash\url::site().'/static/images/logo.jpg',
 					'input_message_content' =>
 					[
 						'message_text' => $msg,
