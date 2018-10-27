@@ -67,6 +67,10 @@ class exec
 			\dash\log::set('tg:exec:empty');
 			return T_('Exec empty data');
 		}
+		if($_method === 'answerInlineQuery')
+		{
+			$isJson = true;
+		}
 
 		// initialize curl
 		$ch = curl_init();
@@ -96,8 +100,22 @@ class exec
 
 		if (!empty($_data))
 		{
-			curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: multipart/form-data'));
-			curl_setopt($ch, CURLOPT_POSTFIELDS, $_data);
+			if($isJson)
+			{
+				$dataJson       = json_encode($_data);
+				$dataJsonHeader =
+				[
+					'Content-Type: application/json',
+					'Content-Length: ' . strlen($dataJson)
+				];
+				curl_setopt($ch, CURLOPT_POSTFIELDS, $dataJson);
+				curl_setopt($ch, CURLOPT_HTTPHEADER, $dataJsonHeader);
+			}
+			else
+			{
+				curl_setopt( $ch, CURLOPT_POSTFIELDS, $_data);
+				curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: multipart/form-data'));
+			}
 		}
 
 		$result = curl_exec($ch);
