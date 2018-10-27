@@ -65,6 +65,10 @@ class tg
 	{
 		// get hook and save in static variable
 		self::$hook = json_decode(file_get_contents('php://input'), true);
+		if(!self::$hook)
+		{
+			self::ok();
+		}
 		// save hook datetime
 		log::hook();
 		// force set session for this telegram user
