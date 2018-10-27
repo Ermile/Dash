@@ -6,7 +6,7 @@ class tg
 {
 	/**
 	 * this library get and send telegram messages
-	 * v22.0
+	 * v23.0
 	 */
 	public static $api_token   = null;
 	public static $name        = 'Ermile';
