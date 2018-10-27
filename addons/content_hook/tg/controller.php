@@ -10,9 +10,9 @@ class controller
 	 */
 	public static function routing()
 	{
-		$myhook = 'tg/'.\dash\option::social('telegram', 'hookFolder');
+		$myhook = \dash\option::social('telegram', 'hookFolder');
 
-		if(\dash\url::child() === \dash\option::social('telegram', 'hookFolder'))
+		if(\dash\url::child() === $myhook)
 		{
 			// disable log visitors
 			\dash\temp::set('force_stop_visitor', true);
