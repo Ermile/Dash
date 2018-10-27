@@ -59,10 +59,6 @@ class ermile
 				self::contact();
 				break;
 
-			case 'iq_about':
-				self::iq_about();
-				break;
-
 			case '/website':
 			case T_('website'):
 				self::website();
@@ -75,7 +71,6 @@ class ermile
 			case T_('signup'):
 			case T_('sync'):
 				self::register();
-
 				break;
 
 			case 'type_contact':
@@ -105,53 +100,6 @@ class ermile
 			default:
 				break;
 		}
-	}
-
-
-	public static function iq_about()
-	{
-		bot::ok();
-		$msg = "<b>".T_(\dash\option::config('site', 'title')). "</b>\n";
-		$msg .= T_(\dash\option::config('site', 'slogan')). "\n\n";
-		$msg .= T_(\dash\option::config('site', 'desc'));
-
-		$resultInline =
-		[
-			'results' =>
-			[
-				[
-					'type'                  => 'article',
-					'id'                    => 1,
-					'title'                 => T_('About'),
-					'description'           => T_('Read more about us'),
-					'thumb_url'             =>\dash\url::site().'/static/images/logo.png',
-					'input_message_content' =>
-					[
-						'message_text' => $msg,
-						'parse_mode'   => 'html'
-					],
-					'reply_markup'          =>
-					[
-						'inline_keyboard' =>
-						[
-							[
-								[
-									'text' => T_("Check website"),
-									'url'  => \dash\url::kingdom(),
-								],
-							],
-							[
-								[
-									'text' => T_("Read more about us"),
-									'url'  => \dash\url::kingdom(). '/about',
-								],
-							]
-						]
-					],
-				]
-			]
-		];
-		bot::answerInlineQuery($resultInline);
 	}
 
 
