@@ -15,7 +15,10 @@ class ermileInline
 		switch ($_cmd['command'])
 		{
 			case 'iq_about':
+			case 'iq_website':
 			case 'iq_'. T_('about'):
+			case 'iq_'. T_('website'):
+			case 'iq_'. T_('more'):
 			case 'iq_'. T_('detail'):
 				self::iq_about();
 				break;
@@ -45,9 +48,13 @@ class ermileInline
 
 	public static function iq_about()
 	{
-		$msg = "<b>".T_(\dash\option::config('site', 'title')). "</b>\n";
-		$msg .= T_(\dash\option::config('site', 'slogan')). "\n\n";
-		$msg .= T_(\dash\option::config('site', 'desc'));
+		$siteTitle  = T_(\dash\option::config('site', 'title'));
+		$siteSlogan = T_(\dash\option::config('site', 'slogan'));
+
+		$msg = "<a href='". \dash\url::kingdom(). "'>".$siteTitle. "</a>". "\n";
+		$msg .= $siteSlogan. "\n\n";
+		$msg .= T_(\dash\option::config('site', 'desc')). "\n";
+		$msg .= \dash\url::kingdom();
 
 		$resultInline =
 		[
@@ -56,8 +63,8 @@ class ermileInline
 				[
 					'type'                  => 'article',
 					'id'                    => 1,
-					'title'                 => T_('About'),
-					'description'           => T_('Read more about us'),
+					'title'                 => T_('About'). ' '. $siteTitle ,
+					'description'           => $siteSlogan,
 					'thumb_url'             =>\dash\url::site().'/static/images/logo.png',
 					'input_message_content' =>
 					[
@@ -70,14 +77,14 @@ class ermileInline
 						[
 							[
 								[
-									'text' => T_("Check website"),
+									'text' => T_("Open :val website", ['val' => $siteTitle]),
 									'url'  => \dash\url::kingdom(),
 								],
 							],
 							[
 								[
-									'text' => T_("Read more about us"),
-									'url'  => \dash\url::kingdom(). '/about',
+									'text' => T_(":val Telegram bot", ['val' => $siteTitle]),
+									'url'  => 'tg://'. bot::$name,
 								],
 							]
 						]
@@ -114,7 +121,7 @@ class ermileInline
 							[
 								[
 									'text' => T_("Check website"),
-									'url'  => \dash\url::kingdom(),
+									'url'  => \dash\url::kingdom(). '/contact',
 								],
 							]
 						]
