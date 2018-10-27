@@ -4,7 +4,7 @@ namespace dash\social\telegram;
 class hook
 {
 	/**
-	 * v2.0
+	 * v3.0
 	 * this class try to detect all part of hook and return related value
 	 */
 
@@ -30,6 +30,10 @@ class hook
 		{
 			$myDetection = tg::$hook['callback_query']['message']['message_id'];
 		}
+		elseif(isset(tg::$hook['inline_query']['query']['id']))
+		{
+			$myDetection = tg::$hook['inline_query']['query']['id'];
+		}
 		return $myDetection;
 	}
 
@@ -44,6 +48,10 @@ class hook
 		elseif(isset(tg::$hook['callback_query']['message']))
 		{
 			$myDetection = tg::$hook['callback_query']['message'];
+		}
+		elseif(isset(tg::$hook['inline_query']))
+		{
+			$myDetection = tg::$hook['inline_query'];
 		}
 
 		// get only arg
@@ -85,6 +93,29 @@ class hook
 	}
 
 
+	public static function inline_query($_arg = 'id')
+	{
+		$myDetection = null;
+		if(isset(tg::$hook['inline_query']))
+		{
+			$myDetection = tg::$hook['inline_query'];
+		}
+		// get only arg
+		if($_arg)
+		{
+			if(isset($myDetection[$_arg]))
+			{
+				$myDetection = $myDetection[$_arg];
+			}
+			else
+			{
+				$myDetection = null;
+			}
+		}
+		return $myDetection;
+	}
+
+
 	public static function from($_arg = 'id')
 	{
 		$myDetection = null;
@@ -95,6 +126,10 @@ class hook
 		elseif(isset(tg::$hook['callback_query']['from']))
 		{
 			$myDetection = tg::$hook['callback_query']['from'];
+		}
+		elseif(isset(tg::$hook['inline_query']['from']))
+		{
+			$myDetection = tg::$hook['inline_query']['from'];
 		}
 		// get only arg
 		if($_arg)
@@ -122,6 +157,11 @@ class hook
 		elseif(isset(tg::$hook['callback_query']['message']['chat']))
 		{
 			$myDetection = tg::$hook['callback_query']['message']['chat'];
+		}
+		elseif(isset(tg::$hook['callback_query']))
+		{
+			// chat does not exist in inline query
+			return false;
 		}
 		// get only arg
 		if($_arg)
@@ -204,6 +244,10 @@ class hook
 		{
 			$myDetection = 'cb_'.tg::$hook['callback_query']['data'];
 		}
+		elseif(isset(tg::$hook['inline_query']['query']))
+		{
+			$myDetection = 'iq_'.tg::$hook['inline_query']['query'];
+		}
 		elseif(isset(tg::$hook['message']['contact'])
 			&& isset(tg::$hook['message']['contact']['phone_number'])
 		)
@@ -273,16 +317,29 @@ class hook
 	 */
 	public static function cmd($_needle = null)
 	{
+		$userInput = self::text();
+		$text = $userInput;
+		// if use callback or inline detect it and change text
+		if(strpos($userInput , 'cb_') === 0)
+		{
+			$text = substr($userInput, 3);
+		}
+		elseif(strpos($userInput , 'iq_') === 0)
+		{
+			$text = substr($userInput, 3);
+		}
+
 		// define variable
 		$cmd =
 		[
-			'text'     => self::text(),
+			'text'     => $text,
+			'detect'   => $userInput,
 			'command'  => null,
 			'optional' => null,
 			'argument' => null,
 		];
 		// seperate text by space
-		$text = explode(' ', self::text());
+		$text = explode(' ', $text);
 		// if we have parameter 1 save it as command
 		if(isset($text[0]))
 		{
