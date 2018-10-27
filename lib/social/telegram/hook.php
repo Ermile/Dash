@@ -331,14 +331,14 @@ class hook
 		// define variable
 		$cmd =
 		[
-			'text'     => $text,
-			'detect'   => $userInput,
+			'text'     => $userInput,
+			'detect'   => $text,
 			'command'  => null,
 			'optional' => null,
 			'argument' => null,
 		];
 		// seperate text by space
-		$text = explode(' ', $text);
+		$text = explode(' ', $userInput);
 		// if we have parameter 1 save it as command
 		if(isset($text[0]))
 		{
