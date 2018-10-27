@@ -59,6 +59,10 @@ class ermile
 				self::contact();
 				break;
 
+			case 'iq_abc':
+				self::abc();
+				break;
+
 			case '/website':
 			case T_('website'):
 				self::website();
@@ -101,6 +105,27 @@ class ermile
 			default:
 				break;
 		}
+	}
+
+
+	public static function abc()
+	{
+		bot::ok();
+
+		$resultInline =
+		[
+			'results' =>
+			[
+				[
+					'type'                  => 'article',
+					'id'                    => 1,
+					'title'                 => 'Salaaaam',
+					'title'                 => 'Salaaaam',
+					'input_message_content' => 'S123',
+				]
+			]
+		];
+		bot::answerInlineQuery();
 	}
 
 
