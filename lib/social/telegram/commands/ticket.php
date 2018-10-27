@@ -11,9 +11,10 @@ class ticket
 		{
 			case 'cb_ticket':
 			case '/ticket':
+			case '/feedback':
 			case 'ticket':
-			case T_('/ticket'):
 			case T_('ticket'):
+			case T_('feedback'):
 
 				if(isset($_cmd['optional']))
 				{
