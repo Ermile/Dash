@@ -69,6 +69,8 @@ class exec_before
 
 
 			case 'answerInlineQuery':
+				unset($_data['chat_id']);
+				unset($_data['reply_markup']);
 				// add inline query id
 				if(hook::inline_query('id'))
 				{
