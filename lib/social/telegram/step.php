@@ -223,16 +223,15 @@ class step
 				$myhookLocation = '\content_hook\tg\\';
 				// create function full name
 				$funcName       = 'step_'. self::get('name'). '::'. $currentStep;
-				// generate func name
-				if(is_callable($myhookLocation. $funcName))
-				{
-					// get and return response
-					call_user_func($myhookLocation. $funcName, $_text);
-				}
-				elseif(self::get('name'))
+				if(self::get('name'))
 				{
 					$cmdNamespace = '\\'. __NAMESPACE__. '\commands\\';
-					if(is_callable($cmdNamespace. $funcName))
+					if(is_callable('\lib\tg\\'. $funcName))
+					{
+						// check in cuurent project
+						call_user_func('\lib\tg\\'. $funcName, $_text);
+					}
+					elseif(is_callable($cmdNamespace. $funcName))
 					{
 						// get and return response
 						call_user_func($cmdNamespace. $funcName, $_text);
