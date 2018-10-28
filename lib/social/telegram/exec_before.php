@@ -11,10 +11,8 @@ class exec_before
 		}
 		if(isset($_data['text']))
 		{
-			// if(strpos($_data['text'], '<!DOCTYPE html'))
-			// {
-			// 	\dash\notif::error('error');
-			// }
+			$_data['text'] = str_replace('&nbsp;', ' ', $_data['text']);
+			$_data['text'] = str_replace('</p>', "</p>\n", $_data['text']);
 			$_data['text'] = strip_tags($_data['text'], '<b><i><a><code><pre>');
 		}
 
