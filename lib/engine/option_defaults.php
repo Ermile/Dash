@@ -151,9 +151,9 @@ self::$config['enter']['remember_me']              = true;
 // self::$config['enter']['call_template']['en']          = null;
 
 
-// self::$config['enter']['verify_telegram']              = false;
-// self::$config['enter']['verify_sms']                   = false;
-// self::$config['enter']['verify_call']                  = false;
+self::$config['enter']['verify_telegram']              = true;
+self::$config['enter']['verify_sms']                   = true;
+self::$config['enter']['verify_call']                  = true;
 // self::$config['enter']['verify_sendsms']               = false;
 
 

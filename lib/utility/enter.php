@@ -529,10 +529,6 @@ class enter
 	 */
 	public static function list_send_code_way($_mobile_or_email = null)
 	{
-		$i_can     = false;
-		$is_mobile = false;
-		$is_email  = false;
-
 		$mobile    = null;
 		$chatid    = null;
 		$email     = null;
@@ -563,23 +559,9 @@ class enter
 			}
 		}
 
-		if(\dash\utility\filter::mobile($mobile))
-		{
-			$i_can     = true;
-			$is_mobile = true;
-		}
-
-		if(preg_match("/^(.*)\@(.*)\.(.*)$/", $email))
-		{
-			$i_can    = true;
-			$is_email = true;
-		}
-
-
 		$way = [];
 
-
-		if($is_email)
+		if($email)
 		{
 			// load email way
 			// array_push($way, 'email');
@@ -593,26 +575,21 @@ class enter
 			}
 		}
 
-		if($is_mobile)
+		if($mobile && \dash\utility\filter::mobile($mobile))
 		{
-
-			if($mobile && \dash\utility\filter::mobile($mobile))
+			if(\dash\option::config('enter', 'verify_sms'))
 			{
-				if(\dash\option::config('enter', 'verify_sms'))
-				{
-					array_push($way, 'sms');
-				}
+				array_push($way, 'sms');
+			}
 
-				if(\dash\option::config('enter', 'verify_call'))
-				{
-					array_push($way, 'call');
-				}
+			if(\dash\option::config('enter', 'verify_call'))
+			{
+				array_push($way, 'call');
+			}
 
-				if(\dash\option::config('enter', 'verify_sendsms'))
-				{
-					array_push($way, 'sendsms');
-				}
-
+			if(\dash\option::config('enter', 'verify_sendsms'))
+			{
+				array_push($way, 'sendsms');
 			}
 		}
 
@@ -629,7 +606,7 @@ class enter
 			}
 		}
 
-		if(!$i_can || empty($way))
+		if(empty($way))
 		{
 			self::next_step('verify/what');
 			self::open_lock('verify/what');
