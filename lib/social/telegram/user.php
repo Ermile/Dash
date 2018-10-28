@@ -50,6 +50,11 @@ class user
 
 	private static function register()
 	{
+		if(!hook::from())
+		{
+			\dash\log::set('tg:user:idNotFound');
+			return false;
+		}
 		$newUserDetail =
 		[
 			'firstname'   => hook::from('first_name'),
