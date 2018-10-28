@@ -534,6 +534,7 @@ class enter
 		$is_email  = false;
 
 		$mobile    = null;
+		$chatid    = null;
 		$email     = null;
 
 		if($_mobile_or_email)
@@ -541,15 +542,17 @@ class enter
 			$mobile = $_mobile_or_email;
 			$email  = $_mobile_or_email;
 		}
-		elseif(self::user_data('mobile') || self::user_data('email'))
+		elseif(self::user_data('mobile') || self::user_data('email') || self::user_data('chatid'))
 		{
 			$mobile = self::user_data('mobile');
 			$email  = self::user_data('email');
+			$chatid = self::user_data('chatid');
 		}
-		elseif(\dash\user::detail('mobile') || \dash\user::detail('email'))
+		elseif(\dash\user::detail('mobile') || \dash\user::detail('email') || \dash\user::detail('chatid'))
 		{
 			$mobile = \dash\user::detail('mobile');
 			$email  = \dash\user::detail('email');
+			$chatid = \dash\user::detail('chatid');
 		}
 		elseif(self::get_session('signup_detail'))
 		{
@@ -582,15 +585,16 @@ class enter
 			// array_push($way, 'email');
 		}
 
+		if($chatid && \dash\option::social('telegram', 'status'))
+		{
+			if(\dash\option::config('enter', 'verify_telegram'))
+			{
+				array_push($way, 'telegram');
+			}
+		}
+
 		if($is_mobile)
 		{
-			if(self::user_data('chatid') && \dash\option::social('telegram', 'status'))
-			{
-				if(\dash\option::config('enter', 'verify_telegram'))
-				{
-					array_push($way, 'telegram');
-				}
-			}
 
 			if($mobile && \dash\utility\filter::mobile($mobile))
 			{
