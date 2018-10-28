@@ -11,6 +11,10 @@ class ermileInline
 		{
 			bot::ok();
 		}
+		else
+		{
+			return null;
+		}
 
 		switch ($_cmd['command'])
 		{

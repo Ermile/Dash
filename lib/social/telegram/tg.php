@@ -13,9 +13,8 @@ class tg
 	public static $hook        = null;
 	public static $AnswerOrder =
 	[
-		'dash:callback',
-		'dash:ermile',
 		'dash:ermileInline',
+		'dash:ermile',
 		'dash:utility',
 		'dash:ticket',
 		'dash:conversation',
