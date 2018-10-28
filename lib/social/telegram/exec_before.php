@@ -28,6 +28,11 @@ class exec_before
 		{
 			$_data['reply_markup'] = commands\ermile::mainmenu(true);
 		}
+		elseif( $_data['reply_markup'] === false)
+		{
+			// remove reply markup
+			unset($_data['reply_markup']);
+		}
 
 		// check needle of each type and try to add something to this method
 		switch ($_method)
