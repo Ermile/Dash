@@ -13,7 +13,7 @@ class tg
 	public static $hook        = null;
 	public static $AnswerOrder =
 	[
-		'\lib\tg\answer',
+		'\lib\tg\detect',
 		'dash:ermileInline',
 		'dash:ermile',
 		'dash:utility',
