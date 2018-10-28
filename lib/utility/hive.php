@@ -4,7 +4,7 @@ namespace dash\utility;
 
 class hive
 {
-	public static function set()
+	public static function set($_redirect = false)
 	{
 		// if the user is login not check and not set
 		if(\dash\user::id())
@@ -22,7 +22,14 @@ class hive
 		{
 			if(!self::check())
 			{
-				\dash\header::status(400, T_("Reload page to continue!"));
+				if($_redirect)
+				{
+					\dash\redirect::pwd();
+				}
+				else
+				{
+					\dash\header::status(400, T_("Reload page to continue!"));
+				}
 			}
 		}
 		else
