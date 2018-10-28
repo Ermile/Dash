@@ -6,6 +6,10 @@ class user
 {
 	public static function get($_chat_id)
 	{
+		if(!$_chat_id)
+		{
+			return null;
+		}
 		$get = \dash\db\users::get(['chatid' => $_chat_id, 'limit' => 1]);
 		return $get;
 	}
