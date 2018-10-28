@@ -120,6 +120,14 @@ class safe
 	}
 
 
+	public static function forQueryString($_string)
+	{
+		$_string = self::safe($_string, 'get_url-sqlinjection');
+		$_string = mb_ereg_replace('([^ءئآا-ی۰-۹a-z0-9A-Z\.\@\!\#\$\&\^\%\-\=\_])+', ' ', $_string);
+		return $_string;
+	}
+
+
 	public static function forJson($_string)
 	{
 		$_string = preg_replace("/\<\/[\w]\>/", ' ', $_string);
