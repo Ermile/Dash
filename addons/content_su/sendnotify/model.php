@@ -91,7 +91,7 @@ class model
 
 		if($telegram)
 		{
-			\dash\utility\telegram::sendMessage($telegram, $msg);
+			// \dash\utility\telegram::sendMessage($telegram, $msg);
 			\dash\notif::ok("Telegram was sended");
 		}
 	}

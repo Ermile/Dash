@@ -137,7 +137,7 @@ class notifications
 			{
 				$msg = $value->title . ' '. $value->content;
 				$this->compelete($value->id, 'telegram');
-				\dash\utility\telegram::sendMessage($this->get_chat_id($value->user_id), $msg, ['sort' => 1]);
+				// \dash\utility\telegram::sendMessage($this->get_chat_id($value->user_id), $msg, ['sort' => 1]);
 
 			}
 			else
@@ -151,8 +151,8 @@ class notifications
 			}
 		}
 
-		\dash\utility\telegram::sort_send();
-		\dash\utility\telegram::clean_cash();
+		// \dash\utility\telegram::sort_send();
+		// \dash\utility\telegram::clean_cash();
 	}
 
 
