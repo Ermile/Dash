@@ -153,6 +153,16 @@ class ticket
 	{
 		bot::ok();
 
+		// if start with callback answer callback
+		if(bot::isCallback())
+		{
+			$callbackResult =
+			[
+				'text' => T_("Please come into private"). ' 😅',
+			];
+			bot::answerCallbackQuery($callbackResult);
+		}
+
 		$result =
 		[
 			'text' => T_("Please send your feedback in private message not in public!")." 😗",
