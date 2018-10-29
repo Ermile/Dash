@@ -15,7 +15,7 @@ class ticket
 			case 'ticket':
 			case T_('ticket'):
 			case T_('feedback'):
-				if(bot::isPrivate())
+				if(!bot::isPrivate())
 				{
 					self::goToPrivate();
 					return false;
