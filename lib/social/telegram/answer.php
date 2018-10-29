@@ -49,7 +49,7 @@ class answer
 			if(hook::chat('type') === 'group' || hook::chat('type') === 'supergroup')
 			{
 				// if your bot joied to group show thanks message
-				if(hook::new_chat_member('username') === self::$name)
+				if(hook::new_chat_member('username') === tg::$name)
 				{
 					$msg = T_("Thanks for using me!")."\r\n\n";
 					$msg .= T_("I'm Bot.");
