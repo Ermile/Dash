@@ -1,6 +1,6 @@
 <?php
 
-class cronjob
+class run
 {
 	public function _curl($_requests)
 	{
@@ -72,6 +72,6 @@ class cronjob
 	}
 }
 
-(new cronjob)->run();
+(new run)->run();
 
 ?>
