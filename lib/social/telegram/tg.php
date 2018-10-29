@@ -145,11 +145,11 @@ class tg
 
 	public static function notLate()
 	{
-		if(bot::isCallback())
+		if(self::isCallback())
 		{
 			return true;
 		}
-		if(bot::isInline())
+		if(self::isInline())
 		{
 			return true;
 		}
