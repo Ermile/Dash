@@ -76,6 +76,8 @@ class exec_before
 				{
 					$_data['callback_query_id'] = hook::callback_query('id');
 				}
+				unset($_data['chat_id']);
+				unset($_data['reply_markup']);
 				break;
 
 
