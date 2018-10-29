@@ -64,11 +64,7 @@ class answer
 				// if start with callback answer callback
 				if(tg::isCallback())
 				{
-					$callbackResult =
-					[
-						'text' => $answer
-					];
-					tg::answerCallbackQuery($callbackResult);
+					tg::answerCallbackQuery($answer);
 				}
 				else
 				{
