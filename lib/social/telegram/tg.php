@@ -9,7 +9,7 @@ class tg
 	 * v23.0
 	 */
 	public static $api_token   = null;
-	public static $name        = 'Ermile';
+	public static $name        = 'ErmileBot';
 	public static $hook        = null;
 	public static $AnswerOrder =
 	[
@@ -34,6 +34,12 @@ class tg
 		if(!\dash\option::social('telegram', 'status'))
 		{
 			return T_('Telegram is off!');
+		}
+		// set bot name
+		$myName = \dash\option::social('telegram', 'bot');
+		if($myName)
+		{
+			self::$name = $myName;
 		}
 		// disable visitor loger
 		\dash\temp::set('force_stop_visitor', true);
