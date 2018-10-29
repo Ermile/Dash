@@ -51,7 +51,7 @@ class controller
 		$time_left = (time() - $_first_time);
 		if($time_left < $_time)
 		{
-			\dash\code::sleep($time_left);
+			\dash\code::sleep($_time - $time_left);
 			return true;
 		}
 
