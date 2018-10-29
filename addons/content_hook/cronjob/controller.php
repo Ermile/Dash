@@ -46,6 +46,19 @@ class controller
 	}
 
 
+	private static function sleep_until($_first_time, $_time)
+	{
+		$time_left = (time() - $_first_time);
+		if($time_left < $_time)
+		{
+			\dash\code::sleep($time_left);
+			return true;
+		}
+
+		return false;
+	}
+
+
 	private static function cronjob_run()
 	{
 		if(!\dash\option::config('cronjob','status'))
@@ -59,11 +72,16 @@ class controller
 		{
 			case 'notification':
 				$time = time();
+
 				\dash\app\log\send::notification();
-				if((time() - $time) < 20)
+
+				if(self::sleep_until($time, 20))
 				{
-					// run again
-					sleep(20);
+					\dash\app\log\send::notification();
+				}
+
+				if(self::sleep_until($time, 40))
+				{
 					\dash\app\log\send::notification();
 				}
 				break;
