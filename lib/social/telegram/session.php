@@ -5,7 +5,8 @@ class session
 {
 	public static function forceSet()
 	{
-		$newName = 'telegram'. hook::from('id');
+
+		$newName = \dash\url::root().'Telegram'. hook::from('id');
 		self::restart($newName);
 	}
 
