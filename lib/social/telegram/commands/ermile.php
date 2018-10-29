@@ -205,6 +205,17 @@ class ermile
 			]
 		];
 
+		if(\dash\social\telegram\hook::chat('type') !== 'private')
+		{
+			$result['reply_markup']['inline_keyboard'][1] =
+			[
+				[
+					'text' => T_("Send feedback"),
+					'url'  => 'https://t.me/'. bot::$name. '?start=ticket',
+				],
+			];
+		}
+
 		bot::sendVenue($result);
 		bot::ok();
 	}
