@@ -9,8 +9,12 @@ class answer
 	 * v3.0
 	 */
 
-	public static function finder()
+	public static function finder($_cmd = null)
 	{
+		if(!$_cmd)
+		{
+			$_cmd = hook::cmd();
+		}
 		// check for step
 		step::check(hook::text());
 		if(tg::isOkay())
@@ -31,7 +35,7 @@ class answer
 			if(is_callable($funcName))
 			{
 				// call this class main fn
-				call_user_func($funcName, hook::cmd());
+				call_user_func($funcName, $_cmd);
 				// if answer generated do not continue
 				if(tg::isOkay())
 				{

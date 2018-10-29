@@ -314,9 +314,12 @@ class hook
 	 * seperate input text to command
 	 * @return [type]         [description]
 	 */
-	public static function cmd($_needle = null)
+	public static function cmd($_needle = null, $userInput = null)
 	{
-		$userInput = self::text();
+		if($userInput === null)
+		{
+			$userInput = self::text();
+		}
 		$text = $userInput;
 		// if use callback or inline detect it and change text
 		if(strpos($userInput , 'cb_') === 0)
@@ -331,11 +334,14 @@ class hook
 		// define variable
 		$cmd =
 		[
-			'text'     => $userInput,
-			'detect'   => $text,
-			'command'  => null,
-			'optional' => null,
-			'argument' => null,
+			'text'        => $userInput,
+			'detect'      => $text,
+			'commandRaw'  => null,
+			'command'     => null,
+			'optionalRaw' => null,
+			'optional'    => null,
+			'argumentRaw' => null,
+			'argument'    => null,
 		];
 		// seperate text by space
 		$text = explode(' ', $userInput);

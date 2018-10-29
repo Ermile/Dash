@@ -16,7 +16,7 @@ class ermile
 		{
 			case '/start':
 			case T_('start'):
-				self::start();
+				self::start($_cmd);
 				break;
 
 			case '/lang':
@@ -107,8 +107,17 @@ class ermile
 	 * start conversation
 	 * @return [type] [description]
 	 */
-	public static function start()
+	public static function start($_cmd)
 	{
+		if(isset($_cmd['optional']))
+		{
+			$newTxt = substr($_cmd['text'], 7);
+			$newCmd = \dash\social\telegram\hook::cmd(null, $newTxt);
+
+			\dash\social\telegram\answer::finder($newCmd);
+			return;
+		}
+
 		$result = [];
 
 		$result['text'] = T_('Haloo');
