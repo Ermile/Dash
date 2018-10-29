@@ -14,11 +14,8 @@ class controller
 
 		if(\dash\url::child() === $myhook)
 		{
-			// disable log visitors
-			\dash\temp::set('force_stop_visitor', true);
-
 			// fire telegram api
-			$result = \dash\social\telegram\tg::fire();
+			\dash\social\telegram\tg::fire();
 
 			// bobooom :)
 			\dash\code::boom();
