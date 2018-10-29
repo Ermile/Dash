@@ -69,7 +69,12 @@ class send
 					{
 						if(isset($user_detail['chatid']) && isset($value['send_msg']['telegram']))
 						{
-							$myData   = ['chat_id' => $user_detail['chatid'], 'text' => strip_tags($value['send_msg']['telegram'])];
+							$myData =
+							[
+								'text'         => strip_tags($value['send_msg']['telegram']),
+								'reply_markup' => false,
+								'chat_id'      => $user_detail['chatid'],
+							];
 							if(isset($value['btn']['telegram']) && is_array($value['btn']['telegram']))
 							{
 								$myData = array_merge($myData, $value['btn']['telegram']);
