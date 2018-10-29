@@ -225,7 +225,7 @@ class ermile
 				[
 					[
 						'text' => T_(":val Telegram bot", ['val' => T_(\dash\option::config('site', 'title'))]),
-						'url'  => 'tg://'. bot::$name,
+						'url'  => 'https://t.me/'. bot::$name,
 					],
 				]
 			]
