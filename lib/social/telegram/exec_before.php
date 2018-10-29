@@ -26,7 +26,15 @@ class exec_before
 		// add default menu if this message does not contain menu
 		if(!isset($_data['reply_markup']))
 		{
-			$_data['reply_markup'] = commands\ermile::mainmenu(true);
+			// in step dont add keyboard automatically
+			if(step::alive())
+			{
+				unset($_data['reply_markup']);
+			}
+			else
+			{
+				$_data['reply_markup'] = commands\ermile::mainmenu(true);
+			}
 		}
 		elseif( $_data['reply_markup'] === false)
 		{
