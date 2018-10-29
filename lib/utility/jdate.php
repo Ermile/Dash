@@ -603,15 +603,35 @@ class jdate
 
     }
 
+
     public static function check_is_date($_date)
     {
         $check = strtotime($_date);
         if($check === false)
         {
-            $check = preg_match("/^\d{4}(.?)\d{2}(.?)\d{2}$/", $_date);
+            if(PHP_OS == 'Linux')
+            {
+                // if strtotime is false in linux
+                // needless to check again syntax of date
+                // just in windows need to check again
+            }
+            else
+            {
+                $number = preg_replace("/[^\d]/", '', $_date);
+                if(mb_strlen($number) === 10)
+                {
+                    $check = true;
+                }
+                else
+                {
+                    $check = false;
+                }
+            }
         }
+
         return $check ? true : false;
     }
+
 
     /**
      * change date to gregorian

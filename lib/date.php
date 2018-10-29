@@ -64,8 +64,18 @@ class date
 			$birthdate = \dash\utility\jdate::to_gregorian($birthdate);
 		}
 
+		if($birthdate === false)
+		{
+			if($_notif)
+			{
+				\dash\notif::error(T_("Invalid birthdate"), 'birthdate');
+			}
+			return false;
+		}
+
 		try
 		{
+
 			$datetime1 = new \DateTime($birthdate);
 			$datetime2 = new \DateTime(date("Y-m-d"));
 
