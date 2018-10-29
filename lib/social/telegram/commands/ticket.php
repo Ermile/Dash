@@ -15,6 +15,11 @@ class ticket
 			case 'ticket':
 			case T_('ticket'):
 			case T_('feedback'):
+				if(\dash\social\telegram\hook::chat('type') !== 'private')
+				{
+					self::goToPrivate();
+					return false;
+				}
 
 				if(isset($_cmd['optional']))
 				{
@@ -125,7 +130,6 @@ class ticket
 	}
 
 
-
 	public static function requireCode()
 	{
 		bot::ok();
@@ -144,5 +148,28 @@ class ticket
 		bot::sendMessage($result);
 	}
 
+
+	public static function goToPrivate()
+	{
+		bot::ok();
+
+		$result =
+		[
+			'text' => T_("Please send your feedback in private message not in public!")." 😗",
+			'reply_markup' =>
+			[
+				'inline_keyboard' =>
+				[
+					[
+						[
+							'text' => T_("Send feedback"),
+							'url'  => 'https://t.me/'. bot::$name. '?start=ticket',
+						],
+					],
+				]
+			]
+		];
+		bot::sendMessage($result);
+	}
 }
 ?>
