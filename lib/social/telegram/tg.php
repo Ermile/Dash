@@ -145,6 +145,15 @@ class tg
 
 	public static function notLate()
 	{
+		if(bot::isCallback())
+		{
+			return true;
+		}
+		if(bot::isInline())
+		{
+			return true;
+		}
+
 		$msgDate = intval(hook::message('date'));
 		// var_dump(date('Y-m-d H:i:s', $msgDate));
 		if(!$msgDate)
