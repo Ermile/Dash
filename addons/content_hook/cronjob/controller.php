@@ -32,11 +32,16 @@ class controller
 
 			if(isset($check_token['token']) && $check_token['token'] === $token)
 			{
+				// stop visitor save for cronjob
+				\dash\temp::set('force_stop_visitor', true);
+
 				self::cronjob_run();
+
 				return true;
 				// this is ok
 			}
 		}
+
 		\dash\code::boom();
 	}
 
@@ -53,7 +58,14 @@ class controller
 		switch ($url)
 		{
 			case 'notification':
+				$time = time();
 				\dash\app\log\send::notification();
+				if((time() - $time) < 20)
+				{
+					// run again
+					sleep(20);
+					\dash\app\log\send::notification();
+				}
 				break;
 
 			case 'closesolved':
