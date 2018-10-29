@@ -15,7 +15,7 @@ class ticket
 			case 'ticket':
 			case T_('ticket'):
 			case T_('feedback'):
-				if(\dash\social\telegram\hook::chat('type') !== 'private')
+				if(bot::isPrivate())
 				{
 					self::goToPrivate();
 					return false;

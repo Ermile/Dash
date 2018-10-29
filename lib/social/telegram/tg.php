@@ -143,6 +143,17 @@ class tg
 		return false;
 	}
 
+
+	public static function isPrivate()
+	{
+		if(hook::chat('type') === 'private')
+		{
+			return true;
+		}
+		return false;
+	}
+
+
 	public static function notLate()
 	{
 		if(self::isCallback())

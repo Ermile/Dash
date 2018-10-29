@@ -205,7 +205,7 @@ class ermile
 			]
 		];
 
-		if(\dash\social\telegram\hook::chat('type') !== 'private')
+		if(bot::isPrivate())
 		{
 			$result['reply_markup']['inline_keyboard'][1] =
 			[
