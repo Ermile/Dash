@@ -61,7 +61,19 @@ class answer
 			{
 				// then if not exist set default text
 				$answer = ['text' => self::randomAnswer()];
-				tg::sendMessage($answer);
+				// if start with callback answer callback
+				if(tg::isCallback())
+				{
+					$callbackResult =
+					[
+						'text' => $answer
+					];
+					tg::answerCallbackQuery($callbackResult);
+				}
+				else
+				{
+					tg::sendMessage($answer);
+				}
 			}
 		}
 	}
