@@ -57,6 +57,11 @@ class view
 
 		$dataTable = \dash\db\telegrams::search(\dash\request::get('q'), $args);
 
+		if(is_array($dataTable))
+		{
+			$dataTable = array_map(['\dash\app', 'fix_avatar'], $dataTable);
+		}
+
 		\dash\data::dataTable($dataTable);
 
 		$filterArray = $args;
