@@ -274,7 +274,8 @@ class step
 		{
 			$_text = hook::cmd('command');
 		}
-		else if($_text === true)
+
+		if($_text === true)
 		{
 			// its okay, do nothing
 		}
