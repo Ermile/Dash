@@ -207,23 +207,41 @@ class user
 	}
 
 
-	public static function preview($_userid = null)
+	public static function preview($_userid = null, $_args = null)
 	{
 		tg::ok();
+		$myDetail = '';
 		if(!$_userid)
 		{
 			$_userid = hook::from();
+
+			// create detail of caption
+			$myDetail = "<code>". hook::from(). "</code>\n";
+			$myDetail .= hook::from('first_name');
+			$myDetail .= ' '. hook::from('last_name'). "\n";
+			$myDetail .= "@". hook::from('username'). "\n";
+			$myDetail .= "#profile <code>" . \dash\user::id(). "</code>";
+		}
+		else
+		{
+			// create detail of caption
+			$myDetail = "<code>". $_userid. "</code>\n";
+			if($_args['first_name'])
+			{
+				$myDetail .= $_args['first_name'];
+			}
+			if($_args['last_name'])
+			{
+				$myDetail .= ' '. $_args['last_name']. "\n";
+			}
+			if($_args['username'])
+			{
+				$myDetail .= "@". $_args['username']. "\n";
+			}
+			$myDetail .= "#profile";
 		}
 
-		// create detail of caption
-		$myDetail = "<code>". hook::from(). "</code>\n";
-		$myDetail .= hook::from('first_name');
-		$myDetail .= ' '. hook::from('last_name'). "\n";
-		$myDetail .= "@". hook::from('username'). "\n";
-		$myDetail .= "#profile <code>" . \dash\user::id(). "</code>";
-
 		$userLastPhoto = file::lastProfilePhoto($_userid);
-		var_dump($userProfile);
 
 		if($userLastPhoto)
 		{
