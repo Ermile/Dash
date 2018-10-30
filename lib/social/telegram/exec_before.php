@@ -50,6 +50,10 @@ class exec_before
 				{
 					return false;
 				}
+				if(!isset($_data['text']))
+				{
+					return false;
+				}
 
 				// add parse_mode
 				if(!isset($_data['parse_mode']))
