@@ -72,8 +72,9 @@ class answer
 						$welcomeMsg .= "<code>". hook::new_chat_member('first_name') ."</code>". "\n";
 						$welcomeMsg .= "@". hook::new_chat_member('username');
 					}
+					user::preview(hook::new_chat_member('id'), hook::new_chat_member(null));
 					// send welcome message
-					tg::sendMessage($welcomeMsg);
+					// tg::sendMessage($welcomeMsg);
 				}
 				elseif(hook::left_chat_member('username'))
 				{
