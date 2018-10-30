@@ -221,6 +221,34 @@ class user
 			$myDetail .= ' '. hook::from('last_name'). "\n";
 			$myDetail .= "@". hook::from('username'). "\n";
 			$myDetail .= "#profile <code>" . \dash\user::id(). "</code>";
+
+			$userLastPhoto = file::lastProfilePhoto($_userid);
+
+			if($userLastPhoto)
+			{
+				$photoResult =
+				[
+					'photo'   => $userLastPhoto,
+					'caption' => $myDetail,
+					'reply_markup' =>
+					[
+						'inline_keyboard' =>
+						[
+							[
+								[
+									'text' => T_("More detail"),
+									'callback_data'  => 'userid',
+								],
+							]
+						]
+					]
+				];
+				tg::sendPhoto($photoResult);
+			}
+			else
+			{
+				tg::sendMessage(['text' => $myDetail]);
+			}
 		}
 		else
 		{
@@ -244,37 +272,24 @@ class user
 			{
 				$myDetail .= "\n". $_msg;
 			}
-		}
 
-		$userLastPhoto = file::lastProfilePhoto($_userid);
+			$userLastPhoto = file::lastProfilePhoto($_userid);
 
-		if($userLastPhoto)
-		{
-			$photoResult =
-			[
-				'photo'   => $userLastPhoto,
-				'caption' => $myDetail,
-				'reply_markup' =>
+			if($userLastPhoto)
+			{
+				$photoResult =
 				[
-					'inline_keyboard' =>
-					[
-						[
-							[
-								'text' => T_("More detail"),
-								'callback_data'  => 'userid',
-							],
-						]
-					]
-				]
-			];
-			tg::sendPhoto($photoResult);
-		}
-		else
-		{
-			tg::sendMessage(['text' => $myDetail]);
+					'photo'   => $userLastPhoto,
+					'caption' => $myDetail,
+				];
+				tg::sendPhoto($photoResult);
+			}
+			else
+			{
+				tg::sendMessage(['text' => $myDetail]);
+			}
 		}
 
-		return $myDetail;
 	}
 }
 ?>
