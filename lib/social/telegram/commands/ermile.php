@@ -89,6 +89,8 @@ class ermile
 			case T_('register'):
 			case T_('signup'):
 			case T_('sync'):
+			case 'cb_register':
+			case 'cb_sync':
 				self::register();
 				break;
 
