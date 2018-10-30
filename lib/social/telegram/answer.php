@@ -57,32 +57,20 @@ class answer
 					{
 						$welcomeMsg .= T_("Thanks for using me!")."\n";
 						$welcomeMsg .= T_("I'm Bot.");
-						// send this as message
-						tg::sendMessage($welcomeMsg);
 					}
 					elseif(hook::new_chat_member('is_bot') === true)
 					{
 						$welcomeMsg .= T_("Hey Bot!"). "\n";
-						$welcomeMsg .= "<code>". hook::new_chat_member('first_name') ."</code>". "\n";
-						$welcomeMsg .= "@". hook::new_chat_member('username');
 					}
 					else
 					{
 						$welcomeMsg .= T_("How are you?"). "\n";
-						$welcomeMsg .= "<code>". hook::new_chat_member('first_name') ."</code>". "\n";
-						$welcomeMsg .= "@". hook::new_chat_member('username');
 					}
-					user::preview(hook::new_chat_member('id'), hook::new_chat_member(null));
-					// send welcome message
-					// tg::sendMessage($welcomeMsg);
+					user::preview(hook::new_chat_member('id'), hook::new_chat_member(null), $welcomeMsg);
 				}
 				elseif(hook::left_chat_member('username'))
 				{
-					$welcomeMsg = T_("Bye").":/\n";
-					$welcomeMsg .= "<code>". hook::left_chat_member('first_name') ."</code>". "\n";
-					$welcomeMsg .= "@". hook::left_chat_member('username');
-					// send bye message
-					tg::sendMessage($welcomeMsg);
+					user::preview(hook::left_chat_member('id'), hook::left_chat_member(null), T_("Bye"));
 				}
 
 			}

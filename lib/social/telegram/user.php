@@ -207,7 +207,7 @@ class user
 	}
 
 
-	public static function preview($_userid = null, $_args = null)
+	public static function preview($_userid = null, $_args = null, $_msg = null)
 	{
 		tg::ok();
 		$myDetail = '';
@@ -232,13 +232,18 @@ class user
 			}
 			if($_args['last_name'])
 			{
-				$myDetail .= ' '. $_args['last_name']. "\n";
+				$myDetail .= ' '. $_args['last_name'];
 			}
+			$myDetail .= "\n";
 			if($_args['username'])
 			{
 				$myDetail .= "@". $_args['username']. "\n";
 			}
 			$myDetail .= "#profile";
+			if($_msg)
+			{
+				$myDetail .= "\n". $_msg;
+			}
 		}
 
 		$userLastPhoto = file::lastProfilePhoto($_userid);
