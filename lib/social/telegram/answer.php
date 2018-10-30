@@ -77,9 +77,11 @@ class answer
 				}
 				elseif(hook::left_chat_member('username'))
 				{
-					$welcomeMsg = T_("Bye")."!!\n";
+					$welcomeMsg = T_("Bye").":/\n";
 					$welcomeMsg .= "<code>". hook::left_chat_member('first_name') ."</code>". "\n";
 					$welcomeMsg .= "@". hook::left_chat_member('username');
+					// send bye message
+					tg::sendMessage($welcomeMsg);
 				}
 
 			}
