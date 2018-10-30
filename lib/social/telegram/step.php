@@ -196,7 +196,7 @@ class step
 			// clean $_text form botname
 			if(strpos($_text, '@') !== false && strpos($_text, 'bot') !== false)
 			{
-				$_text = strtok($cmd['command'], '@');
+				$_text = strtok($_text, '@');
 			}
 
 			$forceCancel = null;
