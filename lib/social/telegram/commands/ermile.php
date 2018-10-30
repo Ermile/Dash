@@ -12,6 +12,9 @@ class ermile
 	 */
 	public static function run($_cmd)
 	{
+		$siteTitle = \dash\option::config('site', 'title');
+		$domanName = \dash\url::root();
+
 		switch ($_cmd['command'])
 		{
 			case '/start':
@@ -61,6 +64,22 @@ class ermile
 
 			case '/website':
 			case T_('website'):
+			// all type of site title
+			case $siteTitle:
+			case T_($siteTitle):
+			case strtolower($siteTitle):
+			case ucfirst($siteTitle):
+			case '/'. $siteTitle:
+			case '/'. T_($siteTitle):
+			case '/'. strtolower($siteTitle):
+			// all type of domain name
+			case $domanName:
+			case T_($domanName):
+			case strtolower($domanName):
+			case ucfirst($domanName):
+			case '/'. $domanName:
+			case '/'. T_($domanName):
+			case '/'. strtolower($domanName):
 				self::website();
 				break;
 
