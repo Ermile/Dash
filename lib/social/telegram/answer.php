@@ -49,12 +49,31 @@ class answer
 			if(hook::chat('type') === 'group' || hook::chat('type') === 'supergroup')
 			{
 				// if your bot joied to group show thanks message
-				if(hook::new_chat_member('username') === tg::$name)
+				if(hook::new_chat_member('username'))
 				{
-					$msg = T_("Thanks for using me!")."\r\n\n";
-					$msg .= T_("I'm Bot.");
-					// send this as message
-					tg::sendMessage($msg);
+					$welcomeMsg = T_("Hello")."\n\n";
+
+					if(hook::new_chat_member('username') === tg::$name)
+					{
+						$welcomeMsg .= T_("Thanks for using me!")."\n";
+						$welcomeMsg .= T_("I'm Bot.");
+						// send this as message
+						tg::sendMessage($welcomeMsg);
+					}
+					elseif(hook::new_chat_member('is_bot') === true)
+					{
+						$welcomeMsg .= T_("Hey Bot!"). "\n";
+						$welcomeMsg .= "<code>". hook::new_chat_member('first_name') ."</code>". "\n";
+						$welcomeMsg .= "@". hook::new_chat_member('username');
+					}
+					else
+					{
+						$welcomeMsg .= T_("How are you?"). "\n";
+						$welcomeMsg .= "<code>". hook::new_chat_member('first_name') ."</code>". "\n";
+						$welcomeMsg .= "@". hook::new_chat_member('username');
+					}
+					// send welcome message
+					tg::sendMessage($welcomeMsg);
 				}
 			}
 			else
