@@ -350,6 +350,10 @@ class hook
 		{
 			$cmd['commandRaw'] = $text[0];
 			$cmd['command'] = mb_strtolower($text[0]);
+			if(strpos($cmd['command'], '@') !== false && strpos($cmd['command'], 'bot') !== false)
+			{
+				$cmd['command'] = strtok($cmd['command'], '@');
+			}
 			// if we have parameter 2 save it as optional
 			if(isset($text[1]))
 			{
