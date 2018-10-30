@@ -97,7 +97,10 @@ class exec_before
 			case 'editMessageText':
 			case 'editMessageCaption':
 			case 'editMessageReplyMarkup':
-				$_data['message_id'] = hook::message_id();
+				if(!isset($_data['message_id']))
+				{
+					$_data['message_id'] = hook::message_id();
+				}
 
 				// add parse_mode
 				if(!isset($_data['parse_mode']))
