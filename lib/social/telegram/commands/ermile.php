@@ -373,6 +373,13 @@ class ermile
 
 	public static function register()
 	{
+
+		// if start with callback answer callback
+		if(bot::isCallback())
+		{
+			bot::answerCallbackQuery(T_("Sync account"));
+		}
+
 		$result['text'] .= "\n". T_('You can connect complete your registeration on :val from telegram by share your mobile number.', ['val' => T_(\dash\option::config('site', 'title'))]);
 		$result['text'] .= "\n\n". T_('By press share contact we get your mobile and after that you can use our website and your account is synced.');
 		$result['text'] .= "\n\n". T_('Also you can do it anytime you need with /register command.');
