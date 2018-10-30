@@ -70,14 +70,16 @@ class exec_before
 
 				break;
 
+
 			case 'answerCallbackQuery':
+				unset($_data['chat_id']);
+				unset($_data['reply_markup']);
+
 				// add callback query id
 				if(hook::callback_query('id'))
 				{
 					$_data['callback_query_id'] = hook::callback_query('id');
 				}
-				unset($_data['chat_id']);
-				unset($_data['reply_markup']);
 				break;
 
 
@@ -92,12 +94,20 @@ class exec_before
 				break;
 
 
-
 			case 'editMessageText':
 			case 'editMessageCaption':
 			case 'editMessageReplyMarkup':
 				$_data['message_id'] = hook::message_id();
+
+				// add parse_mode
+				if(!isset($_data['parse_mode']))
+				{
+					// require chat id
+					$_data['parse_mode'] = 'html';
+				}
+
 				break;
+
 
 			case 'getUserProfilePhotos':
 				if(!isset($_data['user_id']))
@@ -106,10 +116,12 @@ class exec_before
 				}
 				break;
 
+
 			case 'getFile':
 				unset($_data['chat_id']);
 				unset($_data['reply_markup']);
 				break;
+
 
 			case 'sendPhoto':
 			case 'sendAudio':
