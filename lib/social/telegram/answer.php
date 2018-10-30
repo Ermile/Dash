@@ -51,7 +51,7 @@ class answer
 				// if your bot joied to group show thanks message
 				if(hook::new_chat_member('username'))
 				{
-					$welcomeMsg = T_("Hello")."\n\n";
+					$welcomeMsg = T_("Hello")."!!\n";
 
 					if(hook::new_chat_member('username') === tg::$name)
 					{
@@ -75,6 +75,13 @@ class answer
 					// send welcome message
 					tg::sendMessage($welcomeMsg);
 				}
+				elseif(hook::left_chat_member('username'))
+				{
+					$welcomeMsg = T_("Bye")."!!\n";
+					$welcomeMsg .= "<code>". hook::left_chat_member('first_name') ."</code>". "\n";
+					$welcomeMsg .= "@". hook::left_chat_member('username');
+				}
+
 			}
 			else
 			{

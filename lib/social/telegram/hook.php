@@ -205,6 +205,33 @@ class hook
 	}
 
 
+	public static function left_chat_member($_arg = 'id')
+	{
+		$myDetection = null;
+		if(isset(tg::$hook['message']['left_chat_member']))
+		{
+			$myDetection = tg::$hook['message']['left_chat_member'];
+		}
+		elseif(isset(tg::$hook['callback_query']['message']['left_chat_member']))
+		{
+			$myDetection = tg::$hook['callback_query']['message']['left_chat_member'];
+		}
+		// get only arg
+		if($_arg)
+		{
+			if(isset($myDetection[$_arg]))
+			{
+				$myDetection = $myDetection[$_arg];
+			}
+			else
+			{
+				$myDetection = null;
+			}
+		}
+		return $myDetection;
+	}
+
+
 	public static function new_chat_participant($_arg = 'id')
 	{
 		$myDetection = null;
