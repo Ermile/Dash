@@ -193,6 +193,11 @@ class step
 		{
 			// its okay dont find answer because we are in step
 			tg::ok();
+			// clean $_text form botname
+			if(strpos($_text, '@') !== false && strpos($_text, 'bot') !== false)
+			{
+				$_text = strtok($cmd['command'], '@');
+			}
 
 			$forceCancel = null;
 			$currentStep = null;
