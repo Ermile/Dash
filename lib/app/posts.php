@@ -711,14 +711,14 @@ class posts
 		$preview  = \dash\request::get('preview');
 
 		// load attachments
-		if(substr($url, 0, 6) === 'image/' || substr($url, 0, 6) === 'video/' )
-		{
-			$datarow = \dash\db\posts::get(['url' => $url, 'limit' => 1]);
-		}
-		else
-		{
+		// if(substr($url, 0, 6) === 'image/' || substr($url, 0, 6) === 'video/' )
+		// {
+		// 	$datarow = \dash\db\posts::get(['url' => $url, 'limit' => 1]);
+		// }
+		// else
+		// {
 			$datarow = \dash\db\posts::get(['language' => $language, 'url' => $url, 'limit' => 1]);
-		}
+		// }
 
 		if(isset($datarow['user_id']) && (int) $datarow['user_id'] === (int) \dash\user::id())
 		{
