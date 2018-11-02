@@ -205,6 +205,7 @@ class user
 
 		// send message on each conditions
 		tg::sendMessage($result);
+		\dash\social\telegram\commands\ermile::mainmenu();
 	}
 
 
