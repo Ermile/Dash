@@ -210,8 +210,14 @@ class user
 
 	public static function saveLanguage()
 	{
-		$newLang = null;
 		$inputMsg = hook::cmd('command');
+		// if user in step and send something except command skip
+		if(step::alive() && substr($inputMsg, 0, 1) !== '/')
+		{
+			return null;
+		}
+
+		$newLang = null;
 		if($inputMsg === '/start')
 		{
 			if(hook::from('language_code') === 'en-US')
