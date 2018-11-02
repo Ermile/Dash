@@ -211,7 +211,13 @@ class user
 	public static function saveLanguage()
 	{
 		$newLang = null;
-		switch (hook::cmd('command'))
+		$inputMsg = hook::cmd('command');
+		if( $inputMsg === '/start')
+		{
+			// get from user language_code
+			$inputMsg = mb_strtolower(hook::from('language_code'));
+		}
+		switch ($inputMsg)
 		{
 			// try to save en for user lang
 			case '/english':
