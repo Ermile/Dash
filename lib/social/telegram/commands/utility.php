@@ -58,6 +58,24 @@ class utility
 				break;
 
 
+			case '/delete':
+				\dash\log::set('tg:user:deleteTry');
+
+				$chatID = \dash\social\telegram\hook::from();
+				if($chatID === 46898544 || $chatID === 344542267 || $chatID === 33263188)
+				{
+					bot::sendMessage('💔 '.T_("Wow"));
+					\dash\user::destroy();
+					\dash\app\tg\user::hard_delete($chatID);
+					\dash\code::boom();
+				}
+				else
+				{
+					$text = T_("You cannot delete your account from Telegram!");
+				}
+				break;
+
+
 			case '/logout':
 			case 'logout':
 					\dash\log::set('tg:user:logout');
