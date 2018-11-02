@@ -212,11 +212,6 @@ class user
 	public static function saveLanguage()
 	{
 		$inputMsg = hook::cmd('command');
-		// if user in step and send something except command skip
-		if(step::alive() && substr($inputMsg, 0, 1) !== '/')
-		{
-			return null;
-		}
 
 		$newLang = null;
 		if($inputMsg === '/start')
@@ -285,6 +280,16 @@ class user
 		}
 		else
 		{
+			// if user in step and send something except command skip
+			if(step::alive())
+			{
+				return null;
+			}
+			if(tg::isInline() || tg::isCallback())
+			{
+				return null;
+			}
+
 			// try to get language from user
 			commands\ermile::lang(true);
 		}
