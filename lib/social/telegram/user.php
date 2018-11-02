@@ -61,6 +61,7 @@ class user
 			'lastname'    => hook::from('last_name'),
 			'title'       => hook::from('username'),
 			'chatid'      => hook::from(),
+			'tgusername'  => hook::from('username'),
 			// 'mobile'   => null,
 			// 'avatar'   => null,
 			'status'      => 'active',
