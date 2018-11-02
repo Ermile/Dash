@@ -139,11 +139,11 @@ class user
 			tg::ok();
 			return false;
 		}
-		if($from['first_name'] !== $contact['first_name'])
+		if(isset($from['first_name']) && isset($contact['first_name']) && $from['first_name'] !== $contact['first_name'])
 		{
 			tg::sendMessage(['text' => T_('Why your name is different!')]);
 		}
-		if($from['last_name'] !== $contact['last_name'])
+		if(isset($from['last_name']) && isset($contact['last_name']) && $from['last_name'] !== $contact['last_name'])
 		{
 			tg::sendMessage(['text' => T_('Why your family is different!')]);
 		}
@@ -182,7 +182,7 @@ class user
 		}
 
 		// send message on each conditions
-		tg::sendMessage(['text' => T_('')]);
+		tg::sendMessage($result);
 	}
 
 
