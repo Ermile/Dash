@@ -159,6 +159,11 @@ class exec
 		// Log curl response
 		log::response($result);
 
+		if(!tg::$hook)
+		{
+			// if it's not calling from hook save it
+			log::done();
+		}
 		// return result
 		return $result;
 	}
