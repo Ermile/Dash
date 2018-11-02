@@ -408,7 +408,25 @@ class ermile
 			$msg .= T_('We are so glad to meet you.'). "\n\n";
 		}
 		// generate messaage
-		$msg      .= T_("Please choose your language"). "\n\n";
+		switch (\dash\language::current())
+		{
+			case 'fa':
+				$msg .= '🇮🇷 '. 'لطفا زبان خود را انتخاب کنید'. "\n";
+				$msg .= '🇬🇪 '. "Please choose your language". "\n";
+				break;
+
+			case 'en':
+				$msg .= '🇬🇪 '. "Please choose your language". "\n";
+				$msg .= '🇮🇷 '. 'لطفا زبان خود را انتخاب کنید'. "\n";
+				break;
+
+			default:
+				$msg .= T_("Please choose your language"). "\n";
+				break;
+		}
+		// add extra line
+		$msg .= "\n";
+
 		$keyboard = [];
 		$langList = \dash\language::all();
 		foreach ($langList as $key => $value)
