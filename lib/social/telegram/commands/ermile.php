@@ -399,10 +399,16 @@ class ermile
 
 
 
-	public static function lang()
+	public static function lang($_withStart = null)
 	{
+		$msg = '';
+		if($_withStart)
+		{
+			$msg .= T_('Hello!'). "\n";
+			$msg .= T_('We are so glad to meet you.'). "\n\n";
+		}
 		// generate messaage
-		$msg      = T_("Please choose your language"). "\n\n";
+		$msg      .= T_("Please choose your language"). "\n\n";
 		$keyboard = [];
 		$langList = \dash\language::all();
 		foreach ($langList as $key => $value)
