@@ -58,9 +58,12 @@ class account
 				$update_new_user['lastname'] = substr($_args['last_name'], 0, 90);
 			}
 
+
 			if(isset($_args['username']) && !isset($mobile_exist['username']))
 			{
-				$update_new_user['username'] = substr($_args['username'], 0, 90);
+				$update_new_user['username']   = substr($_args['username'], 0, 40);
+
+				$update_new_user['tgusername'] = substr($_args['username'], 0, 40);
 
 				$check_duplicate_username = \dash\db\users::get(['username' => $update_new_user['username'], 'limit' => 1]);
 				if($check_duplicate_username)
