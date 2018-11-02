@@ -1,0 +1,1 @@
+ALTER TABLE `users` ADD `tgusername` VARCHAR(100) NULL DEFAULT NULL AFTER `tgstatus`;
