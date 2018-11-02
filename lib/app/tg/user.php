@@ -4,6 +4,39 @@ namespace dash\app\tg;
 
 class user
 {
+	public static function hard_delete($_chat_id)
+	{
+		$user_detail = self::get($_chat_id);
+		$result = null;
+		if(isset($user_detail['id']))
+		{
+			$result = \dash\db\users::hard_delete($user_detail['id']);
+			if(!$result)
+			{
+				$set =
+				[
+					'mobile'     => null,
+					'username'   => null,
+					'chatid'     => null,
+					'password'   => null,
+					'email'      => null,
+					'tgstatus'   => null,
+					'tgusername' => null,
+					'title'      => 'deleted by telegram',
+				];
+
+				$where =
+				[
+					'chatid' => $_chat_id;
+				];
+
+				$result = \dash\db\users::update_where($set, $where);
+			}
+		}
+
+		return $result;
+	}
+
 	public static function get($_chat_id)
 	{
 		if(!$_chat_id)

@@ -32,6 +32,12 @@ class users
 	}
 
 
+	public static function update_where($_set, $_where)
+	{
+		return \dash\db\config::public_update_where(...func_get_args());
+	}
+
+
 	/**
 	 * get users data in users table
 	 *
