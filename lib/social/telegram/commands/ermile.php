@@ -443,6 +443,11 @@ class ermile
 
 	public static function mainmenu($_onlyMenu = false)
 	{
+		if(is_callable('\lib\tg\detect::mainmenu'))
+		{
+			return \lib\tg\detect::mainmenu($_onlyMenu);
+		}
+
 		// define
 		$menu =
 		[
