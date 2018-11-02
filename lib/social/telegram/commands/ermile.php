@@ -144,9 +144,9 @@ class ermile
 		$result['text'] = T_('Hello!'). "\n";
 		$result['text'] .= T_('We are so glad to meet you.'). "\n\n";
 
-		$result['text'] .= "<a href='". \dash\url::kingdom(). "'>".T_(\dash\option::config('site', 'title')). "</a>". "\n";
+		$result['text'] .= "<a href='". bot::website(). "'>".T_(\dash\option::config('site', 'title')). "</a>". "\n";
 		$result['text'] .= T_(\dash\option::config('site', 'slogan')). "\n\n";
-		// $result['text'] .= \dash\url::kingdom(). "\n";
+		// $result['text'] .= bot::website(). "\n";
 		$result['text'] .= '/help'. "\n";
 		$result['text'] .= T_('Made by @Ermile');
 
@@ -182,13 +182,13 @@ class ermile
 				[
 					[
 						'text' => T_("Check website"),
-						'url'  => \dash\url::kingdom(),
+						'url'  => bot::website(),
 					],
 				],
 				[
 					[
 						'text' => T_("Read more about us"),
-						'url'  => \dash\url::kingdom(). '/about',
+						'url'  => bot::website(). '/about',
 					],
 				]
 			]
@@ -223,7 +223,7 @@ class ermile
 					[
 						[
 							'text' => T_("Check website"),
-							'url'  => \dash\url::kingdom(),
+							'url'  => bot::website(),
 						],
 					],
 					[
@@ -254,10 +254,10 @@ class ermile
 
 	public static function website()
 	{
-		$msg = "<a href='". \dash\url::kingdom(). "'>".T_(\dash\option::config('site', 'title')). "</a>". "\n";
+		$msg = "<a href='". bot::website(). "'>".T_(\dash\option::config('site', 'title')). "</a>". "\n";
 		$msg .= T_(\dash\option::config('site', 'slogan')). "\n\n";
 		$msg .= T_(\dash\option::config('site', 'desc')). "\n";
-		$msg .= \dash\url::kingdom();
+		$msg .= bot::website();
 
 		$result = [];
 		$result['text'] = $msg;
@@ -270,7 +270,7 @@ class ermile
 				[
 					[
 						'text' => T_("Open :val website", ['val' => T_(\dash\option::config('site', 'title'))]),
-						'url'  => \dash\url::kingdom(),
+						'url'  => bot::website(),
 					],
 				],
 				[
@@ -313,7 +313,7 @@ class ermile
 					[
 						[
 							'text' => T_("Website"),
-							'url'  => \dash\url::kingdom(),
+							'url'  => bot::website(),
 						],
 					]
 				]

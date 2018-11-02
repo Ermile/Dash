@@ -154,9 +154,9 @@ class tg
 	}
 
 
-	public static function link()
+	public static function website()
 	{
-		return dash\url\kingdom(). '/'. \dash\language::current();
+		return \dash\url::kingdom(). '/'. \dash\language::current();
 	}
 
 
