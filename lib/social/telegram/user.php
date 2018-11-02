@@ -7,10 +7,21 @@ class user
 	{
 		if(\dash\user::id())
 		{
+			$userStatus = \dash\user::detail('tgstatus');
 			// if user blocked, change status to unblock
-			if(\dash\user::detail('tgstatus') === 'block')
+			if($userStatus === 'block')
 			{
 				\dash\log::set('tg:user:block2Active');
+				self::active();
+			}
+			elseif($userStatus === 'callback')
+			{
+				\dash\log::set('tg:user:callback2Active');
+				self::active();
+			}
+			elseif($userStatus === 'inline')
+			{
+				\dash\log::set('tg:user:inline2Active');
 				self::active();
 			}
 			return \dash\user::id();
@@ -67,6 +78,16 @@ class user
 			'status'      => 'active',
 			'tgstatus'    => 'active',
 		];
+
+		if(tg::isCallback())
+		{
+			$newUserDetail['tgstatus'] = 'callback';
+		}
+		if(tg::isInline())
+		{
+			$newUserDetail['tgstatus'] = 'inline';
+		}
+
 		$result = \dash\app\tg\user::add($newUserDetail);
 
 		if($result)
