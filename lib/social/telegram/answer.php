@@ -106,6 +106,29 @@ class answer
 			T_("Surprise me!"),
 			T_("How are you?"),
 			T_("How old are you?"),
+
+			T_("A mother is the truest friend we have"),
+			T_("We have a lot of in common"),
+			T_("You heard me"),
+			T_("You were sublime"),
+			T_("You heard me"),
+			T_("A Younger idler, an old beggar"),
+			T_("You can't put the clock back"),
+			T_("Years teach us more than books"),
+			T_("You can't keep a good man down"),
+			T_("As easy as ABC"),
+			T_("You saw nothing, you heard nothing"),
+			T_("You took the words out of my mouth"),
+			T_("You can educate a fool, but you can not make him think"),
+			T_("You can't have your cake and eat it too"),
+			T_("You can't take it with you when you die"),
+			T_("You can not put out a fire with oil"),
+			T_("You must lie on the bed you have made"),
+			T_("You can't mend a broken egg"),
+			T_("You can not get blood out of stone"),
+			T_("You must grin and bear it"),
+			T_("You can't please everyone"),
+
 		];
 
 		$randomAnswer = $myAnswerList[array_rand($myAnswerList)];
