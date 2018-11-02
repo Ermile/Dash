@@ -1,1 +1,2 @@
 ALTER TABLE `users` ADD `tgusername` VARCHAR(100) NULL DEFAULT NULL AFTER `tgstatus`;
+ALTER TABLE `users` CHANGE `tgstatus` `tgstatus` ENUM('active','deactive','spam','bot','block','unreachable','unknown','filter', 'awaiting', 'inline') CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL;
