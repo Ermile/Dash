@@ -205,7 +205,7 @@ class user
 
 		// send message on each conditions
 		tg::sendMessage($result);
-		\dash\social\telegram\commands\ermile::mainmenu();
+		commands\ermile::mainmenu();
 	}
 
 
@@ -283,7 +283,7 @@ class user
 		else
 		{
 			// try to get language from user
-			\dash\social\telegram\commands\ermile::lang(true);
+			commands\ermile::lang(true);
 		}
 	}
 
