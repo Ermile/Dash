@@ -17,7 +17,7 @@ class account
 		if($mobile === \dash\user::detail('mobile'))
 		{
 			// the user register before and needless to run this code again
-			return true;
+			return null;
 		}
 
 		if(!is_numeric($_chat_id))

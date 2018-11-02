@@ -150,16 +150,22 @@ class user
 
 		// finally try to save chat id for this user
 		$registerResult = \dash\app\tg\account::register($contact['user_id'], $mobile, $from);
+		// say okay
+		tg::ok();
+
 		if($registerResult)
 		{
 			// if user send contact detail then save all of his/her profile photos
 			tg::sendMessage(['text' => T_('Your phone number registered successfully;)')]);
-			tg::ok();
+		}
+		else if($registerResult === null)
+		{
+			// user exist before this share contact
+			tg::sendMessage(['text' => T_('We have your mobile before this!') . ' '. T_('Thank you.'). ' 😉']);
 		}
 		else
 		{
 			tg::sendMessage(['text' => T_('Registration failed!')]);
-			tg::ok();
 		}
 	}
 
