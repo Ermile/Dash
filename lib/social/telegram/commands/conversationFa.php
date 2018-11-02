@@ -87,17 +87,16 @@ class conversationFa
 
 			case 'خر':
 			case 'khar':
-				$text = 'خر خودتی'."\r\n";
-				$text .= 'باباته'."\r\n";
-				$text .= 'بی تربیت'."\r\n";
-				$text .= 'نزار چاک دهنم واشه'."\r\n";
+				$text = 'خر خودتی'."\n";
+				$text .= 'بی تربیت'."\n";
+				$text .= 'نزار چاک دهنم واشه'."\n";
 				break;
 
 			case 'سگ تو روحت':
 			case 'sag to rohet':
 			case 'sag to ruhet':
-				$text = 'بله!'."\r\n";
-				$text .= 'من روح ندارم!'."\r\n";
+				$text = 'بله!'."\n";
+				$text .= 'من روح ندارم!'."\n";
 				break;
 
 			case 'نفهم':

@@ -43,6 +43,10 @@ class conversation
 				$text = "YOU ARE A PROGRAMMER🍆";
 				break;
 
+			case '🍆':
+				$text = "🍆🍆 👍";
+				break;
+
 			case 'how are you':
 			case 'how are you?':
 				$text = "I'm fine, thanks";
