@@ -141,10 +141,16 @@ class ermile
 
 		$result = [];
 
-		$result['text'] = T_('Haloo');
-		$result['text'] .= "\n". T_('We are so glad to meet you.');
-		$result['text'] .= "\n\n".  '/help';
-		$result['text'] .= "\n". T_('Made by @Ermile');
+		$result['text'] = T_('Hello!'). "\n";
+		$result['text'] .= T_('We are so glad to meet you.'). "\n\n";
+
+		$result['text'] .= "<a href='". \dash\url::kingdom(). "'>".T_(\dash\option::config('site', 'title')). "</a>". "\n";
+		$result['text'] .= T_(\dash\option::config('site', 'slogan')). "\n\n";
+		// $result['text'] .= \dash\url::kingdom(). "\n";
+		$result['text'] .= '/help'. "\n";
+		$result['text'] .= T_('Made by @Ermile');
+
+		$result['disable_web_page_preview'] = false;
 
 		bot::sendMessage($result);
 		bot::ok();
