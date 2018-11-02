@@ -170,6 +170,10 @@ class ermile
 		$result = [];
 		$result['method']  = "sendPhoto";
 		$result['photo']   = \dash\url::site().'/static/images/logo.png';
+		if(\dash\url::isLocal())
+		{
+			$result['photo']   = \dash\url::protocol(). '://'. \dash\url::root() .'.com/static/images/logo.png';
+		}
 		$result['caption'] = $msg;
 		$result['reply_markup'] =
 		[
