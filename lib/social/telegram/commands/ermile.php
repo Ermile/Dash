@@ -451,12 +451,12 @@ class ermile
 		// define
 		$menu =
 		[
-			'keyboard' =>
-			[
-				[T_("About"), T_("Contact")],
-			],
+			'keyboard' => [],
 			'resize_keyboard' => true,
 		];
+
+		// add about and contact link
+		$menu['keyboard'][] = [T_("About"), T_("Contact")];
 
 		// add sync
 		if(\dash\user::detail('mobile'))
