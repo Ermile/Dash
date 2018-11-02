@@ -106,7 +106,7 @@ class log
 			}
 		}
 
-		log::logy(self::json($_response));
+		log::logy(self::json($_response). "\n");
 	}
 
 

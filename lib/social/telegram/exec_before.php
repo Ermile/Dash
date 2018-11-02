@@ -50,8 +50,6 @@ class exec_before
 			// remove reply markup
 			unset($_data['reply_markup']);
 		}
-var_dump($_method);
-var_dump($_data);
 
 		// check needle of each type and try to add something to this method
 		switch ($_method)
