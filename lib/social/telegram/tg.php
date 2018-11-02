@@ -154,6 +154,12 @@ class tg
 	}
 
 
+	public static function link()
+	{
+		return dash\url\kingdom(). '/'. \dash\language::current();
+	}
+
+
 	public static function notLate()
 	{
 		if(self::isCallback())
