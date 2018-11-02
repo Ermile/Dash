@@ -99,7 +99,7 @@
 {%block footer%}{%endblock%}
 {%endblock%}
 {%if user.permission == 'supervisor'%}
-<a class='superAdmin{%if url.tld != "local"%} public{%endif%}'{%if not include.adminPanel%} data-direct{%endif%} title='{%trans "You are supervisor!"%}' href='{{url.sitelang}}/su' data-tippy-placement='bottom' data-tippy-animation="perspective" data-tippy-arrowtype="round"></a>
+<a class='superAdmin{%if url.tld != "local"%} public{%endif%}' data-direct title='{%trans "You are supervisor!"%}' href='{{url.sitelang}}/su' data-tippy-placement='bottom' data-tippy-animation="perspective" data-tippy-arrowtype="round"></a>
 {%endif%}
 {%block xaccess%}
 {%if perm('contentCp')%}
