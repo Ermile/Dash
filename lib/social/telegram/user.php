@@ -212,23 +212,9 @@ class user
 	public static function saveLanguage()
 	{
 		$inputMsg   = hook::cmd('command');
-
 		$newLang    = null;
 		$autoDetect = null;
-		if($inputMsg === '/start')
-		{
-			if(hook::from('language_code') === 'en-US')
-			{
-				// on english does not give from tg
-				// because many of user use en design
-			}
-			else
-			{
-				// get from user language_code
-				$inputMsg = mb_strtolower(hook::from('language_code'));
-				$autoDetect = true;
-			}
-		}
+
 		switch ($inputMsg)
 		{
 			// try to save en for user lang
@@ -254,50 +240,62 @@ class user
 			case 'ar-iq':
 				$newLang = 'ar';
 				break;
-
-			default:
-				break;
 		}
 
 		if($newLang)
 		{
+			// save for user
 			\dash\app\tg\user::lang($newLang);
 			// try to change laguage to selected
 			\dash\language::set_language($newLang);
+
 			// send success message
+			$newLangTitle = $newLang;
 			if(isset(\dash\language::$data[$newLang]['localname']))
 			{
-				$newLang = \dash\language::$data[$newLang]['localname'];
+				$newLangTitle = \dash\language::$data[$newLang]['localname'];
 			}
-			if(!$autoDetect)
-			{
-				$newLangMsg = T_('Your language was successfully set to :lang.', ['lang' => "<b>". T_($newLang)."</b>"] ). ' /language';
-				tg::sendMessage(['text' => $newLangMsg]);
+			$newLangMsg = T_('Your language was successfully set to :lang.', ['lang' => "<b>". T_($newLangTitle)."</b>"] ). ' /language';
+			tg::sendMessage(['text' => $newLangMsg]);
+			tg::ok();
 
-				tg::ok();
+			return true;
+		}
+
+		// get user current lang
+		$userSavedLang = \dash\app\tg\user::lang();
+		if($userSavedLang)
+		{
+			\dash\language::set_language($userSavedLang);
+			return true;
+		}
+		else
+		{
+			$langCode = hook::from('language_code');
+			if($langCode === 'fa' || $langCode === 'fa-IR')
+			{
+				\dash\language::set_language('fa');
 				return true;
 			}
 		}
 
-		if(\dash\app\tg\user::lang())
+		// if user in step and send something except command skip
+		if(step::alive())
 		{
-			\dash\language::set_language(\dash\app\tg\user::lang());
+			return null;
 		}
-		else
+		if(tg::isInline() || tg::isCallback())
 		{
-			// if user in step and send something except command skip
-			if(step::alive())
-			{
-				return null;
-			}
-			if(tg::isInline() || tg::isCallback())
-			{
-				return null;
-			}
+			return null;
+		}
+		if($inputMsg === '/start' && hook::cmd('optional'))
+		{
+			// if started with speceial char
+			return null;
+		}
 
-			// try to get language from user
-			commands\ermile::lang(true);
-		}
+		// try to get language from user
+		commands\ermile::lang(true);
 	}
 
 
