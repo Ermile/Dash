@@ -212,16 +212,25 @@ class user
 	{
 		$newLang = null;
 		$inputMsg = hook::cmd('command');
-		if( $inputMsg === '/start')
+		if($inputMsg === '/start')
 		{
-			// get from user language_code
-			$inputMsg = mb_strtolower(hook::from('language_code'));
+			if(hook::from('language_code') === 'en-US')
+			{
+				// on english does not give from tg
+				// because many of user use en design
+			}
+			else
+			{
+				// get from user language_code
+				$inputMsg = mb_strtolower(hook::from('language_code'));
+			}
 		}
 		switch ($inputMsg)
 		{
 			// try to save en for user lang
 			case '/english':
 			case 'en_us':
+			case 'en-us':
 				$newLang = 'en';
 				break;
 
@@ -229,11 +238,13 @@ class user
 			case '/persian':
 			case '/farsi':
 			case 'fa_ir':
+			case 'fa-ir':
 				$newLang = 'fa';
 				break;
 
 			case '/arabic':
 			case 'ar_iq':
+			case 'ar-iq':
 				$newLang = 'ar';
 				break;
 
