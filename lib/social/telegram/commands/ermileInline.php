@@ -88,7 +88,7 @@ class ermileInline
 							[
 								[
 									'text' => T_(":val Telegram bot", ['val' => $siteTitle]),
-									'url'  => 'tg://'. bot::$name,
+									'url'  => 'https://t.me/'. bot::$name,
 								],
 							]
 						]
