@@ -76,7 +76,7 @@ trait add
 			if(isset($check_mobile_exist['id']))
 			{
 				\dash\notif::error(T_("Duplicate mobile"), 'mobile');
-				return false;
+				return null;
 			}
 		}
 
