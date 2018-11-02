@@ -262,7 +262,7 @@ class user
 			{
 				$newLang = \dash\language::$data[$newLang]['localname'];
 			}
-			$newLangMsg = T_('Your language was successfully set to :lang.', ['lang' => "<b>". T_($newLang)."</b>"] );
+			$newLangMsg = T_('Your language was successfully set to :lang.', ['lang' => "<b>". T_($newLang)."</b>"] ). ' /language';
 			tg::sendMessage(['text' => $newLangMsg]);
 
 			tg::ok();
