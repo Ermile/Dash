@@ -31,6 +31,10 @@ class exec_before
 			{
 				unset($_data['reply_markup']);
 			}
+			elseif(is_callable('\lib\tg::mainmenu'))
+			{
+				$_data['reply_markup'] = \lib\tg::mainmenu(true);
+			}
 			else
 			{
 				$_data['reply_markup'] = commands\ermile::mainmenu(true);
