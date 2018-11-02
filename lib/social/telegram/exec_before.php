@@ -22,6 +22,11 @@ class exec_before
 			// require chat id
 			$_data['chat_id'] = hook::chat();
 		}
+		elseif(\dash\user::chatid())
+		{
+			// fill chat id from user
+			$_data['chat_id'] = \dash\user::chatid();
+		}
 
 		// add default menu if this message does not contain menu
 		if(!isset($_data['reply_markup']))
@@ -45,6 +50,8 @@ class exec_before
 			// remove reply markup
 			unset($_data['reply_markup']);
 		}
+var_dump($_method);
+var_dump($_data);
 
 		// check needle of each type and try to add something to this method
 		switch ($_method)
@@ -52,10 +59,12 @@ class exec_before
 			case 'sendMessage':
 				if(!isset($_data['chat_id']))
 				{
+					\dash\log::set('tg:chatid:null');
 					return false;
 				}
 				if(!isset($_data['text']))
 				{
+					\dash\log::set('tg:text:null');
 					return false;
 				}
 
@@ -75,7 +84,6 @@ class exec_before
 						unset($_data['reply_to_message_id']);
 					}
 				}
-
 				break;
 
 

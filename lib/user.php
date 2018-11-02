@@ -136,6 +136,18 @@ class user
 	}
 
 
+	public static function chatid()
+	{
+		$chatid = \dash\user::detail('chatid');
+		if($chatid)
+		{
+			return $chatid;
+		}
+
+		return null;
+	}
+
+
 	/**
 	 * get detail of user
 	 *
@@ -188,7 +200,6 @@ class user
 		}
 
 		return null;
-
 	}
 
 	/**
