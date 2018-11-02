@@ -347,7 +347,7 @@ class hook
 		{
 			$userInput = self::text();
 		}
-		$text = $userInput;
+		$text = trim($userInput);
 		// if use callback or inline detect it and change text
 		if(strpos($userInput , 'cb_') === 0)
 		{
@@ -376,7 +376,7 @@ class hook
 		if(isset($text[0]))
 		{
 			$cmd['commandRaw'] = $text[0];
-			$cmd['command'] = mb_strtolower($text[0]);
+			$cmd['command'] = mb_strtolower(trim($text[0]));
 			if(strpos($cmd['command'], '@') !== false && strpos($cmd['command'], 'bot') !== false)
 			{
 				$cmd['command'] = strtok($cmd['command'], '@');
@@ -385,12 +385,12 @@ class hook
 			if(isset($text[1]))
 			{
 				$cmd['optionalRaw'] = $text[1];
-				$cmd['optional'] = mb_strtolower($text[1]);
+				$cmd['optional'] = mb_strtolower(trim($text[1]));
 				// if we have parameter 3 save it as argument
 				if(isset($text[2]))
 				{
 					$cmd['argumentRaw'] = $text[2];
-					$cmd['argument'] = mb_strtolower($text[2]);
+					$cmd['argument'] = mb_strtolower(trim($text[2]));
 				}
 			}
 		}
