@@ -31,9 +31,9 @@ class exec_before
 			{
 				unset($_data['reply_markup']);
 			}
-			elseif(is_callable('\lib\tg::mainmenu'))
+			elseif(is_callable('\lib\tg\detect::mainmenu'))
 			{
-				$_data['reply_markup'] = \lib\tg::mainmenu(true);
+				$_data['reply_markup'] = \lib\tg\detect::mainmenu(true);
 			}
 			else
 			{
