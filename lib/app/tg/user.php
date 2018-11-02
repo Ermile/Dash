@@ -27,7 +27,7 @@ class user
 
 				$where =
 				[
-					'chatid' => $_chat_id;
+					'chatid' => $_chat_id,
 				];
 
 				$result = \dash\db\users::update_where($set, $where);
