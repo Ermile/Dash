@@ -67,13 +67,28 @@ class user
 			'tgstatus'    => 'active',
 		];
 		$result = \dash\app\tg\user::add($newUserDetail);
+
 		if($result)
 		{
-			\dash\log::set('tg:user:register');
-			return $result;
+			\dash\log::set('tg:user:register:ok');
+			// show message of add new user
+			// clean notif messages
+			\dash\notif::clean();
 		}
-		\dash\log::set('tg:user:register:fail');
-		return false;
+		else if($result == false)
+		{
+			\dash\log::set('tg:user:register:fail');
+		}
+		else if($result == null)
+		{
+			\dash\log::set('tg:user:register:exist');
+		}
+		else
+		{
+			\dash\log::set('tg:user:register:unknown');
+		}
+
+		return $result;
 	}
 
 
