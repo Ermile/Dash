@@ -53,7 +53,7 @@ class conversation
 				break;
 
 			case 'test':
-				$text = T_('Test <b>:name</b> bot on :site', ['name' => bot::$name, 'site' => \dash\url::kingdom()]);
+				$text = T_('Test <b>:name</b> bot on :site', ['name' => bot::$name, 'site' => bot::website()]);
 				break;
 
 

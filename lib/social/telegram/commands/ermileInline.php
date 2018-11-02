@@ -55,10 +55,10 @@ class ermileInline
 		$siteTitle  = T_(\dash\option::config('site', 'title'));
 		$siteSlogan = T_(\dash\option::config('site', 'slogan'));
 
-		$msg = "<a href='". \dash\url::kingdom(). "'>".$siteTitle. "</a>". "\n";
+		$msg = "<a href='". bot::website(). "'>".$siteTitle. "</a>". "\n";
 		$msg .= $siteSlogan. "\n\n";
 		$msg .= T_(\dash\option::config('site', 'desc')). "\n";
-		$msg .= \dash\url::kingdom();
+		$msg .= bot::website();
 
 		$resultInline =
 		[
@@ -82,7 +82,7 @@ class ermileInline
 							[
 								[
 									'text' => T_("Open :val website", ['val' => $siteTitle]),
-									'url'  => \dash\url::kingdom(),
+									'url'  => bot::website(),
 								],
 							],
 							[
@@ -125,7 +125,7 @@ class ermileInline
 							[
 								[
 									'text' => T_("Check website"),
-									'url'  => \dash\url::kingdom(). '/contact',
+									'url'  => bot::website(). '/contact',
 								],
 							]
 						]

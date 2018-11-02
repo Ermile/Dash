@@ -183,7 +183,7 @@ class user
 				[
 					[
 						'text' => T_("Enter in :val website", ['val' => T_(\dash\option::config('site', 'title'))]),
-						'url'  => \dash\url::kingdom(). '/enter?autosend=true&mobile='. $mobile,
+						'url'  => tg::website(). '/enter?autosend=true&mobile='. $mobile,
 					]
 				]
 			]
