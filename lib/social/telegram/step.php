@@ -270,6 +270,12 @@ class step
 
 	public static function checkFalseTry($_text = null)
 	{
+		if($_text === 'reset')
+		{
+			self::set('falseTry', 0);
+			return true;
+		}
+
 		if($_text === null)
 		{
 			$_text = hook::cmd('command');
