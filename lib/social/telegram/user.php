@@ -211,9 +211,10 @@ class user
 
 	public static function saveLanguage()
 	{
-		$inputMsg = hook::cmd('command');
+		$inputMsg   = hook::cmd('command');
 
-		$newLang = null;
+		$newLang    = null;
+		$autoDetect = null;
 		if($inputMsg === '/start')
 		{
 			if(hook::from('language_code') === 'en-US')
@@ -225,6 +226,7 @@ class user
 			{
 				// get from user language_code
 				$inputMsg = mb_strtolower(hook::from('language_code'));
+				$autoDetect = true;
 			}
 		}
 		switch ($inputMsg)
@@ -267,11 +269,14 @@ class user
 			{
 				$newLang = \dash\language::$data[$newLang]['localname'];
 			}
-			$newLangMsg = T_('Your language was successfully set to :lang.', ['lang' => "<b>". T_($newLang)."</b>"] ). ' /language';
-			tg::sendMessage(['text' => $newLangMsg]);
+			if(!$autoDetect)
+			{
+				$newLangMsg = T_('Your language was successfully set to :lang.', ['lang' => "<b>". T_($newLang)."</b>"] ). ' /language';
+				tg::sendMessage(['text' => $newLangMsg]);
 
-			tg::ok();
-			return true;
+				tg::ok();
+				return true;
+			}
 		}
 
 		if(\dash\app\tg\user::lang())
