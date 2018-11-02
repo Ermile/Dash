@@ -104,6 +104,7 @@ trait edit
 		if(!\dash\app::isset_request('birthday'))   unset($args['birthday']);
 		if(!\dash\app::isset_request('chatid'))     unset($args['chatid']);
 		if(!\dash\app::isset_request('tgstatus'))   unset($args['tgstatus']);
+		if(!\dash\app::isset_request('tgusername'))   unset($args['tgusername']);
 
 		if(!empty($args))
 		{

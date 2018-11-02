@@ -170,6 +170,13 @@ class user
 			return false;
 		}
 
+		$tgusername = \dash\app::request('tgusername');
+		$tgusername = trim($tgusername);
+		if($tgusername && mb_strlen($tgusername) > 100)
+		{
+			$tgusername = null;
+		}
+
 		$pin = \dash\app::request('pin');
 		if(($pin && mb_strlen($pin) > 4) || ($pin && !is_numeric($pin)))
 		{
@@ -343,6 +350,7 @@ class user
 		$args['lastname']    = $lastname;
 		$args['bio']         = $bio;
 		$args['chatid']      = $chatid;
+		$args['tgusername']  = $tgusername;
 
 		$args['mobile']      = $mobile;
 		$args['displayname'] = $displayname;
