@@ -297,7 +297,7 @@ class ermile
 		$text .= "/about ". T_('About'). "\n";
 		$text .= "/contact ". T_("Contact us"). "\n";
 		$text .= "/ticket ". T_("Add new ticket"). "\n";
-		$text .= "/help ". T_("or ?"). ' '. T_("Get help commands"). "\n";
+		$text .= "/help ". T_("Get help commands"). "\n";
 		// $text .= "/contact contact us\n";
 		$result =
 		[
