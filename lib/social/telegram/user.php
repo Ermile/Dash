@@ -257,9 +257,15 @@ class user
 			tg::ok();
 			return true;
 		}
+
 		if(\dash\app\tg\user::lang())
 		{
 			\dash\language::set_language(\dash\app\tg\user::lang());
+		}
+		else
+		{
+			// try to get language from user
+			\dash\social\telegram\commands\ermile::lang(true);
 		}
 	}
 
