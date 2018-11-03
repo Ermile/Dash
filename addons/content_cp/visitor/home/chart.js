@@ -76,6 +76,19 @@ Highcharts.chart('chartdiv',
       }
     }
   },
+  credits:
+  {
+      text: '{{service.title}}',
+      href: '{{service.url}}',
+      position:
+      {
+          x: -35,
+          y: -7
+      },
+      style: {
+          fontWeight: 'bold'
+      }
+  },
   legend: {
     layout: 'vertical',
     align: 'left',
@@ -105,5 +118,8 @@ Highcharts.chart('chartdiv',
     }
   }
   ]
-});
+}, function(_chart)
+  {
+    _chart.renderer.image('{{service.logo}}', 10, 5, 30, 30).attr({class: 'chartServiceLogo'}).add();
+  });
 }
