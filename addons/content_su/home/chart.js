@@ -132,6 +132,20 @@ function highChart()
         }
       }
     },
+    credits:
+    {
+        text: '{{service.title}}',
+        href: '{{service.url}}',
+        position:
+        {
+            x: -35,
+            y: -7
+        },
+        style: {
+            color: '#eee',
+            fontWeight: 'bold'
+        }
+    },
     legend: {
       layout: 'vertical',
       align: 'left',
@@ -174,6 +188,9 @@ function highChart()
         }
       }
     ]
+  }, function(_chart)
+  {
+    _chart.renderer.image('{{service.logo}}', 10, 5, 30, 30).attr({class: 'chartServiceLogo'}).add();
   });
 
   getServerStat();
