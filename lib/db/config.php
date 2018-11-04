@@ -363,6 +363,7 @@ class config
 			[
 				'public_show_field' => "*",
 				'master_join'       => null,
+				'order'             => null,
 				'table_name'        => null,
 				'db_name'           => true,
 			];
@@ -391,7 +392,7 @@ class config
 			$where = \dash\db\config::make_where($_where, $_options);
 			if($where)
 			{
-				$query = "SELECT $_options[public_show_field] FROM $_table $_options[master_join] WHERE $where $limit";
+				$query = "SELECT $_options[public_show_field] FROM $_table $_options[master_join] WHERE $where $_options[order] $limit";
 				$result = \dash\db::get($query, null, $only_one_value, $_options['db_name']);
 				return $result;
 			}
