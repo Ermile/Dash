@@ -35,6 +35,7 @@ trait add
 			'other_field'    => null,
 			'other_field_id' => null,
 			'force_add'      => false,
+			'check_mobile'   => true,
 		];
 
 		if(!is_array($_option))
@@ -70,7 +71,7 @@ trait add
 			$args['status'] = 'awaiting';
 		}
 
-		if($args['mobile'])
+		if($args['mobile'] && $_option['check_mobile'])
 		{
 			$check_mobile_exist = \dash\db\users::get_by_mobile($args['mobile']);
 			if(isset($check_mobile_exist['id']))
