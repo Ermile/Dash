@@ -483,25 +483,31 @@ class ermile
 			return \lib\tg\detect::mainmenu($_onlyMenu);
 		}
 
-		// define
-		$menu =
-		[
-			'keyboard' => [],
-			'resize_keyboard' => true,
-		];
-
-		// add about and contact link
-		$menu['keyboard'][] = [T_("About"), T_("Contact")];
-
-		// add sync
-		if(\dash\user::detail('mobile'))
+		// remove keyboard on groups
+		$menu = ['remove_keyboard' => true];
+		// on private chat add keyboard
+		if(bot::isPrivate())
 		{
-			$menu['keyboard'][] = [T_("Website"). ' '. T_(\dash\option::config('site', 'title'))];
+			$menu =
+			[
+				'keyboard' => [],
+				'resize_keyboard' => true,
+			];
+
+			// add about and contact link
+			$menu['keyboard'][] = [T_("About"), T_("Contact")];
+
+			// add sync
+			if(\dash\user::detail('mobile'))
+			{
+				$menu['keyboard'][] = [T_("Website"). ' '. T_(\dash\option::config('site', 'title'))];
+			}
+			else
+			{
+				$menu['keyboard'][] = [T_("Sync with website")];
+			}
 		}
-		else
-		{
-			$menu['keyboard'][] = [T_("Sync with website")];
-		}
+		// define keyboard in private message
 
 		if($_onlyMenu)
 		{
