@@ -89,6 +89,7 @@ class ermile
 			case T_('register'):
 			case T_('signup'):
 			case T_('sync'):
+			case T_('connect'):
 			case 'cb_register':
 			case 'cb_sync':
 				self::register();
