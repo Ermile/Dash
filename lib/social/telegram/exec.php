@@ -62,7 +62,7 @@ class exec
 
 		// check before execute
 		$_data = exec_before::check($_method, $_data);
-		if(!$_data && $_method !== 'getWebhookInfo')
+		if(!$_data && !($_method === 'getWebhookInfo' || $_method === 'setWebhookInfo'))
 		{
 			\dash\log::set('tg:exec:empty');
 			return T_('Exec empty data');

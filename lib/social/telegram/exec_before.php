@@ -149,6 +149,7 @@ class exec_before
 
 
 			case 'getWebhookInfo':
+			case 'setWebhookInfo':
 				unset($_data['chat_id']);
 				unset($_data['reply_markup']);
 				break;
