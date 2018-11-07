@@ -57,6 +57,12 @@ class app
 	}
 
 
+	public static function request_set($_args)
+	{
+		self::$REQUEST_APP = $_args;
+	}
+
+
 	/**
 	 * get request
 	 */
