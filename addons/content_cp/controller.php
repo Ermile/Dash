@@ -13,16 +13,8 @@ class controller
 			return;
 		}
 
-		// Check permission and if user can do this operation
-		// allow to do it, else show related message in notify center
-		if(\dash\url::isLocal())
-		{
-			// on tld dev open the cp to upgrade for test
-		}
-		else
-		{
-			\dash\permission::access('contentCp');
-		}
+		\dash\permission::access('contentCp');
+
 	}
 }
 ?>
