@@ -1,40 +1,205 @@
-<div class="ui fluid selection dropdown search">
+<div class="ui fluid selection dropdown search posList">
   <input type="hidden" name="pos">
   <i class="dropdown icon"></i>
   <div class="default text">{%trans "Please choose you pos"%}</div>
   <div class="menu">
-	<div class="item" data-value="saderat"><i class="spay-32-saderat"></i><span class="mLa10 txtB">{%trans "Saderat"%}</span></div>
-	<div class="item" data-value="mellat"><i class="spay-32-mellat"></i><span class="mLa10 txtB">{%trans "Mellat"%}</span></div>
-	<div class="item" data-value="tejarat"><i class="spay-32-tejarat"></i><span class="mLa10 txtB">{%trans "Tejarat"%}</span></div>
-	<div class="item" data-value="melli"><i class="spay-32-melli"></i><span class="mLa10 txtB">{%trans "Melli"%}</span></div>
-	<div class="item" data-value="sepah"><i class="spay-32-sepah"></i><span class="mLa10 txtB">{%trans "Sepah"%}</span></div>
-	<div class="item" data-value="keshavarzi"><i class="spay-32-keshavarzi"></i><span class="mLa10 txtB">{%trans "Keshavarzi"%}</span></div>
-	<div class="item" data-value="parsian"><i class="spay-32-parsian"></i><span class="mLa10 txtB">{%trans "Parsian"%}</span></div>
-	<div class="item" data-value="maskan"><i class="spay-32-maskan"></i><span class="mLa10 txtB">{%trans "Maskan"%}</span></div>
-	<div class="item" data-value="refah"><i class="spay-32-refah"></i><span class="mLa10 txtB">{%trans "Refah"%}</span></div>
-	<div class="item" data-value="novin"><i class="spay-32-novin"></i><span class="mLa10 txtB">{%trans "Novin"%}</span></div>
-	<div class="item" data-value="ansar"><i class="spay-32-ansar"></i><span class="mLa10 txtB">{%trans "Ansar"%}</span></div>
-	<div class="item" data-value="pasargad"><i class="spay-32-pasargad"></i><span class="mLa10 txtB">{%trans "Pasargad"%}</span></div>
-	<div class="item" data-value="saman"><i class="spay-32-saman"></i><span class="mLa10 txtB">{%trans "Saman"%}</span></div>
-	<div class="item" data-value="sina"><i class="spay-32-sina"></i><span class="mLa10 txtB">{%trans "Sina"%}</span></div>
-	<div class="item" data-value="post"><i class="spay-32-post"></i><span class="mLa10 txtB">{%trans "Post"%}</span></div>
-	<div class="item" data-value="ghavamin"><i class="spay-32-ghavamin"></i><span class="mLa10 txtB">{%trans "Ghavamin"%}</span></div>
-	<div class="item" data-value="taavon"><i class="spay-32-taavon"></i><span class="mLa10 txtB">{%trans "Taavon"%}</span></div>
-	<div class="item" data-value="shahr"><i class="spay-32-shahr"></i><span class="mLa10 txtB">{%trans "Shahr"%}</span></div>
-	<div class="item" data-value="ayande"><i class="spay-32-ayande"></i><span class="mLa10 txtB">{%trans "Ayande"%}</span></div>
-	<div class="item" data-value="sarmayeh"><i class="spay-32-sarmayeh"></i><span class="mLa10 txtB">{%trans "Sarmayeh"%}</span></div>
-	<div class="item" data-value="day"><i class="spay-32-day"></i><span class="mLa10 txtB">{%trans "Day bank"%}</span></div>
-	<div class="item" data-value="hekmat"><i class="spay-32-hekmat"></i><span class="mLa10 txtB">{%trans "Hekmat"%}</span></div>
-	<div class="item" data-value="iranzamin"><i class="spay-32-iranzamin"></i><span class="mLa10 txtB">{%trans "Iranzamin"%}</span></div>
-	<div class="item" data-value="karafarin"><i class="spay-32-karafarin"></i><span class="mLa10 txtB">{%trans "Karafarin"%}</span></div>
-	<div class="item" data-value="gardeshgari"><i class="spay-32-gardeshgari"></i><span class="mLa10 txtB">{%trans "Gardeshgari"%}</span></div>
-	<div class="item" data-value="madan"><i class="spay-32-madan"></i><span class="mLa10 txtB">{%trans "Madan"%}</span></div>
-	<div class="item" data-value="tsaderat"><i class="spay-32-tsaderat"></i><span class="mLa10 txtB">{%trans "Tsaderat"%}</span></div>
-	<div class="item" data-value="khavarmiyane"><i class="spay-32-khavarmiyane"></i><span class="mLa10 txtB">{%trans "Khavarmiyane"%}</span></div>
-	<div class="item" data-value="ivbb"><i class="spay-32-ivbb"></i><span class="mLa10 txtB">{%trans "Ivbb"%}</span></div>
-	<div class="item" data-value="irkish"><i class="spay-32-irkish"></i><span class="mLa10 txtB">{%trans "Irkish"%}</span></div>
-	<div class="item" data-value="asanpardakht"><i class="spay-32-asanpardakht"></i><span class="mLa10 txtB">{%trans "Asanpardakht"%}</span></div>
-	<div class="item" data-value="zarinpal"><i class="spay-32-zarinpal"></i><span class="mLa10 txtB">{%trans "Zarinpal"%}</span></div>
-	<div class="item" data-value="payir"><i class="spay-32-payir"></i><span class="mLa10 txtB">{%trans "Payir"%}</span></div>
+	<div class="item" data-value="saderat">
+		<div class="f">
+			<div class="cauto pRa10"><i class="spay-32-saderat"></i></div>
+			<div class="txtB">{%trans "Saderat"%}</div>
+		</div>
+	</div>
+	<div class="item" data-value="mellat">
+		<div class="f">
+			<div class="cauto pRa10"><i class="spay-32-mellat"></i></div>
+			<div class="txtB">{%trans "Mellat"%}</div>
+		</div>
+	</div>
+	<div class="item" data-value="tejarat">
+		<div class="f">
+			<div class="cauto pRa10"><i class="spay-32-tejarat"></i></div>
+			<div class="txtB">{%trans "Tejarat"%}</div>
+		</div>
+	</div>
+	<div class="item" data-value="melli">
+		<div class="f">
+			<div class="cauto pRa10"><i class="spay-32-melli"></i></div>
+			<div class="txtB">{%trans "Melli"%}</div>
+		</div>
+	</div>
+	<div class="item" data-value="sepah">
+		<div class="f">
+			<div class="cauto pRa10"><i class="spay-32-sepah"></i></div>
+			<div class="txtB">{%trans "Sepah"%}</div>
+		</div>
+	</div>
+	<div class="item" data-value="keshavarzi">
+		<div class="f">
+			<div class="cauto pRa10"><i class="spay-32-keshavarzi"></i></div>
+			<div class="txtB">{%trans "Keshavarzi"%}</div>
+		</div>
+	</div>
+	<div class="item" data-value="parsian">
+		<div class="f">
+			<div class="cauto pRa10"><i class="spay-32-parsian"></i></div>
+			<div class="txtB">{%trans "Parsian"%}</div>
+		</div>
+	</div>
+	<div class="item" data-value="maskan">
+		<div class="f">
+			<div class="cauto pRa10"><i class="spay-32-maskan"></i></div>
+			<div class="txtB">{%trans "Maskan"%}</div>
+		</div>
+	</div>
+	<div class="item" data-value="refah">
+		<div class="f">
+			<div class="cauto pRa10"><i class="spay-32-refah"></i></div>
+			<div class="txtB">{%trans "Refah"%}</div>
+		</div>
+	</div>
+	<div class="item" data-value="novin">
+		<div class="f">
+			<div class="cauto pRa10"><i class="spay-32-novin"></i></div>
+			<div class="txtB">{%trans "Novin"%}</div>
+		</div>
+	</div>
+	<div class="item" data-value="ansar">
+		<div class="f">
+			<div class="cauto pRa10"><i class="spay-32-ansar"></i></div>
+			<div class="txtB">{%trans "Ansar"%}</div>
+		</div>
+	</div>
+	<div class="item" data-value="pasargad">
+		<div class="f">
+			<div class="cauto pRa10"><i class="spay-32-pasargad"></i></div>
+			<div class="txtB">{%trans "Pasargad"%}</div>
+		</div>
+	</div>
+	<div class="item" data-value="saman">
+		<div class="f">
+			<div class="cauto pRa10"><i class="spay-32-saman"></i></div>
+			<div class="txtB">{%trans "Saman"%}</div>
+		</div>
+	</div>
+	<div class="item" data-value="sina">
+		<div class="f">
+			<div class="cauto pRa10"><i class="spay-32-sina"></i></div>
+			<div class="txtB">{%trans "Sina"%}</div>
+		</div>
+	</div>
+	<div class="item" data-value="post">
+		<div class="f">
+			<div class="cauto pRa10"><i class="spay-32-post"></i></div>
+			<div class="txtB">{%trans "Post"%}</div>
+		</div>
+	</div>
+	<div class="item" data-value="ghavamin">
+		<div class="f">
+			<div class="cauto pRa10"><i class="spay-32-ghavamin"></i></div>
+			<div class="txtB">{%trans "Ghavamin"%}</div>
+		</div>
+	</div>
+	<div class="item" data-value="taavon">
+		<div class="f">
+			<div class="cauto pRa10"><i class="spay-32-taavon"></i></div>
+			<div class="txtB">{%trans "Taavon"%}</div>
+		</div>
+	</div>
+	<div class="item" data-value="shahr">
+		<div class="f">
+			<div class="cauto pRa10"><i class="spay-32-shahr"></i></div>
+			<div class="txtB">{%trans "Shahr"%}</div>
+		</div>
+	</div>
+	<div class="item" data-value="ayande">
+		<div class="f">
+			<div class="cauto pRa10"><i class="spay-32-ayande"></i></div>
+			<div class="txtB">{%trans "Ayande"%}</div>
+		</div>
+	</div>
+	<div class="item" data-value="sarmayeh">
+		<div class="f">
+			<div class="cauto pRa10"><i class="spay-32-sarmayeh"></i></div>
+			<div class="txtB">{%trans "Sarmayeh"%}</div>
+		</div>
+	</div>
+	<div class="item" data-value="day">
+		<div class="f">
+			<div class="cauto pRa10"><i class="spay-32-day"></i></div>
+			<div class="txtB">{%trans "Day bank"%}</div>
+		</div>
+	</div>
+	<div class="item" data-value="hekmat">
+		<div class="f">
+			<div class="cauto pRa10"><i class="spay-32-hekmat"></i></div>
+			<div class="txtB">{%trans "Hekmat"%}</div>
+		</div>
+	</div>
+	<div class="item" data-value="iranzamin">
+		<div class="f">
+			<div class="cauto pRa10"><i class="spay-32-iranzamin"></i></div>
+			<div class="txtB">{%trans "Iranzamin"%}</div>
+		</div>
+	</div>
+	<div class="item" data-value="karafarin">
+		<div class="f">
+			<div class="cauto pRa10"><i class="spay-32-karafarin"></i></div>
+			<div class="txtB">{%trans "Karafarin"%}</div>
+		</div>
+	</div>
+	<div class="item" data-value="gardeshgari">
+		<div class="f">
+			<div class="cauto pRa10"><i class="spay-32-gardeshgari"></i></div>
+			<div class="txtB">{%trans "Gardeshgari"%}</div>
+		</div>
+	</div>
+	<div class="item" data-value="madan">
+		<div class="f">
+			<div class="cauto pRa10"><i class="spay-32-madan"></i></div>
+			<div class="txtB">{%trans "Madan"%}</div>
+		</div>
+	</div>
+	<div class="item" data-value="tsaderat">
+		<div class="f">
+			<div class="cauto pRa10"><i class="spay-32-tsaderat"></i></div>
+			<div class="txtB">{%trans "Tsaderat"%}</div>
+		</div>
+	</div>
+	<div class="item" data-value="khavarmiyane">
+		<div class="f">
+			<div class="cauto pRa10"><i class="spay-32-khavarmiyane"></i></div>
+			<div class="txtB">{%trans "Khavarmiyane"%}</div>
+		</div>
+	</div>
+	<div class="item" data-value="ivbb">
+		<div class="f">
+			<div class="cauto pRa10"><i class="spay-32-ivbb"></i></div>
+			<div class="txtB">{%trans "Ivbb"%}</div>
+		</div>
+	</div>
+	<div class="item" data-value="irkish">
+		<div class="f">
+			<div class="cauto pRa10"><i class="spay-32-irkish"></i></div>
+			<div class="txtB">{%trans "Irkish"%}</div>
+		</div>
+	</div>
+	<div class="item" data-value="asanpardakht">
+		<div class="f">
+			<div class="cauto pRa10"><i class="spay-32-asanpardakht"></i></div>
+			<div class="txtB">{%trans "Asanpardakht"%}</div>
+		</div>
+	</div>
+	<div class="item" data-value="zarinpal">
+		<div class="f">
+			<div class="cauto pRa10"><i class="spay-32-zarinpal"></i></div>
+			<div class="txtB">{%trans "Zarinpal"%}</div>
+		</div>
+	</div>
+	<div class="item" data-value="payir">
+		<div class="f">
+			<div class="cauto pRa10"><i class="spay-32-payir"></i></div>
+			<div class="txtB">{%trans "Payir"%}</div>
+		</div>
+	</div>
   </div>
 </div>
