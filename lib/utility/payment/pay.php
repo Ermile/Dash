@@ -46,6 +46,9 @@ class pay
 
         $_bank = mb_strtolower($_bank);
 
+        // set default timeout for socket
+        ini_set("default_socket_timeout", 10);
+
         if(is_callable(["\\dash\\utility\\payment\\pay\\$_bank", $_bank]))
         {
             \dash\session::set('payment_request_start', true);

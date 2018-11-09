@@ -21,6 +21,9 @@ class controller
 			case 'verify':
 				if(is_callable(["\\dash\\utility\\payment\\verify\\$payment", $payment]))
 				{
+					// set default timeout for socket
+        			ini_set("default_socket_timeout", 10);
+
 					\dash\log::set('paymentVerifyCall');
 					("\\dash\\utility\\payment\\verify\\$payment")::$payment($args);
 					return;
