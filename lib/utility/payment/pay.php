@@ -46,6 +46,12 @@ class pay
 
         $_bank = mb_strtolower($_bank);
 
+        if(!$_bank)
+        {
+            \dash\notif::error(T_("Please select a bank port"), 'payment');
+            return false;
+        }
+
         // set default timeout for socket
         ini_set("default_socket_timeout", 10);
 
