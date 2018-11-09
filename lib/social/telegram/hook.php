@@ -34,6 +34,11 @@ class hook
 		{
 			$myDetection = tg::$hook['inline_query']['query']['id'];
 		}
+		elseif(isset(tg::$hook['chosen_inline_result']['inline_message_id']))
+		{
+			$myDetection = tg::$hook['chosen_inline_result']['inline_message_id'];
+		}
+
 		return $myDetection;
 	}
 
@@ -53,7 +58,10 @@ class hook
 		{
 			$myDetection = tg::$hook['inline_query'];
 		}
-
+		elseif(isset(tg::$hook['chosen_inline_result']))
+		{
+			$myDetection = tg::$hook['chosen_inline_result'];
+		}
 		// get only arg
 		if($_arg)
 		{
@@ -116,6 +124,28 @@ class hook
 	}
 
 
+	public static function chosen_inline_result($_arg = 'inline_message_id')
+	{
+		$myDetection = null;
+		if(isset(tg::$hook['chosen_inline_result']))
+		{
+			$myDetection = tg::$hook['chosen_inline_result'];
+		}
+		// get only arg
+		if($_arg)
+		{
+			if(isset($myDetection[$_arg]))
+			{
+				$myDetection = $myDetection[$_arg];
+			}
+			else
+			{
+				$myDetection = null;
+			}
+		}
+		return $myDetection;
+	}
+
 	public static function from($_arg = 'id')
 	{
 		$myDetection = null;
@@ -131,6 +161,11 @@ class hook
 		{
 			$myDetection = tg::$hook['inline_query']['from'];
 		}
+		elseif(isset(tg::$hook['chosen_inline_result']['from']))
+		{
+			$myDetection = tg::$hook['chosen_inline_result']['from'];
+		}
+
 		// get only arg
 		if($_arg)
 		{
@@ -161,6 +196,10 @@ class hook
 		elseif(isset(tg::$hook['inline_query']['from']))
 		{
 			$myDetection = tg::$hook['inline_query']['from'];
+		}
+		elseif(isset(tg::$hook['chosen_inline_result']['from']))
+		{
+			$myDetection = tg::$hook['chosen_inline_result']['from'];
 		}
 		// get only arg
 		if($_arg)
@@ -273,6 +312,10 @@ class hook
 		elseif(isset(tg::$hook['inline_query']['query']))
 		{
 			$myDetection = 'iq_'.tg::$hook['inline_query']['query'];
+		}
+		elseif(isset(tg::$hook['chosen_inline_result']['query']))
+		{
+			$myDetection = 'iq_'.tg::$hook['chosen_inline_result']['query'];
 		}
 		elseif(isset(tg::$hook['message']['contact'])
 			&& isset(tg::$hook['message']['contact']['phone_number'])
