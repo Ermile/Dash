@@ -134,7 +134,7 @@ class send
 						}
 
 
-						if($myResult === true)
+						if(isset($myResult['ok']) && $myResult['ok'])
 						{
 							// if can send to the user tg not send in other way
 							self::sended($value['id_raw'], $user_id);
