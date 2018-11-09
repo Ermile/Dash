@@ -143,11 +143,32 @@ class ermile
 	{
 		if(isset($_cmd['optional']))
 		{
-			$newTxt = substr($_cmd['text'], 7);
-			$newCmd = \dash\social\telegram\hook::cmd(null, $newTxt);
+			$extraCmd = substr($_cmd['text'], 7);
+			// check find --lang= and if exist set lang for this user
+			$langExist0 = strpos($extraCmd, '--lang=');
+			if($langExist0 !== false)
+			{
+				$langCmd   = substr($extraCmd, $langExist0, 9);
+				var_dump($langCmd);
+				$langParam = substr($langCmd, 7, 9);
+				var_dump($langParam);
+				if(strlen($langParam) === 2)
+				{
+					// remove lang command from code
+					$extraCmd = str_replace($langCmd, '', $extraCmd);
+					// we have new lang
+					// set it for user and ui
+					\dash\social\telegram\user::setLanguage($langParam);
+				}
+			}
 
-			\dash\social\telegram\answer::finder($newCmd);
-			return;
+			if($extraCmd)
+			{
+				$newCmd = \dash\social\telegram\hook::cmd(null, $extraCmd);
+
+				\dash\social\telegram\answer::finder($newCmd);
+				return;
+			}
 		}
 
 		$result = [];
