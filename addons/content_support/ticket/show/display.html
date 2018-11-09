@@ -404,7 +404,7 @@
        <label for="notifMobile"></label>
        <label for="notifMobile">{%trans "Mobile"%}</label>
 {%if masterTicketDetail.mobile%}
-       <label class="floatRa mT10 ltr"><a href="tel:{{masterTicketDetail.mobile}}">{{masterTicketDetail.mobile | fitNumber('mobile12')}}</a></label>
+       <label class="floatRa mT10 ltr"><a href="tel:00{{masterTicketDetail.mobile}}">{{masterTicketDetail.mobile | fitNumber('mobile12')}}</a></label>
 {%endif%}
       </div>
 
