@@ -160,7 +160,7 @@ class tg
 	}
 
 
-	public static function deepLink($_linkParam)
+	public static function deepLink($_linkParam = null)
 	{
 		$deepLink = 'https://t.me/'. self::$name;
 		$deepLink .= '?start='. $_linkParam;

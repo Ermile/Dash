@@ -273,7 +273,7 @@ class ermile
 			[
 				[
 					'text' => T_("Send feedback"),
-					'url'  => 'https://t.me/'. bot::$name. '?start=ticket--lang='. \dash\app\tg\user::lang(),
+					'url'  => bot::deepLink('ticket'),
 				],
 			];
 		}
@@ -307,7 +307,7 @@ class ermile
 				[
 					[
 						'text' => T_(":val Telegram bot", ['val' => T_(\dash\option::config('site', 'title'))]),
-						'url'  => 'https://t.me/'. bot::$name,
+						'url'  => bot::deepLink()
 					],
 				]
 			]
