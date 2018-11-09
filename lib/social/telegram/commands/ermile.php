@@ -18,11 +18,13 @@ class ermile
 		switch ($_cmd['command'])
 		{
 			case '/start':
+			case 'start':
 			case T_('start'):
 				self::start($_cmd);
 				break;
 
 			case '/lang':
+			case 'lang':
 			case '/language':
 			case T_('language'):
 				self::lang();
@@ -39,12 +41,14 @@ class ermile
 				break;
 
 			case '/about':
+			case 'about':
 			case T_('about'):
 			case T_('detail'):
 				self::about();
 				break;
 
 			case '/me':
+			case 'me':
 			case '/whoami':
 			case T_('me'):
 			case T_('whoami'):
@@ -52,6 +56,7 @@ class ermile
 				break;
 
 			case '/contact':
+			case 'contact':
 			case T_('contact'):
 			case T_('address'):
 			case T_('tel'):
@@ -63,6 +68,7 @@ class ermile
 				break;
 
 			case '/website':
+			case 'website':
 			case T_('website'):
 			// all type of site title
 			case $siteTitle:
@@ -86,6 +92,9 @@ class ermile
 			case '/register':
 			case '/signup':
 			case '/sync':
+			case 'register':
+			case 'signup':
+			case 'sync':
 			case T_('register'):
 			case T_('signup'):
 			case T_('sync'):
@@ -108,6 +117,7 @@ class ermile
 				break;
 
 			case '/help':
+			case 'help':
 			case '/ls':
 			case '/?':
 			case '/؟':
