@@ -274,6 +274,9 @@ class user
 			$langCode = hook::from('language_code');
 			if($langCode === 'fa' || $langCode === 'fa-IR')
 			{
+				// save for user
+				\dash\app\tg\user::lang('fa');
+				// try to change laguage to selected
 				\dash\language::set_language('fa');
 				return true;
 			}
