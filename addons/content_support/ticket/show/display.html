@@ -338,7 +338,7 @@
 {%if masterTicketDetail.status == 'answered' or masterTicketDetail.status == 'awaiting'%}
   <form method="post">
         {%include display.hive%}
-    <p class="msg info mB0-f">{{solvedMsg | raw}}
+    <p class="msg info mB0-f ovh">{{solvedMsg | raw}}
       <input type="hidden" name="TicketFormType" value="changeStatus">
       <button class="btn secondary sm floatRa" name="status" value="close">{%trans "Close ticket"%}</button>
     </p>
