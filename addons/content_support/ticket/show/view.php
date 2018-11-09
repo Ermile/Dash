@@ -17,7 +17,10 @@ class view
 		// set tg account if enable and we have bot
 		if(\dash\option::social('telegram', 'status'))
 		{
-			\dash\data::tgBot(\dash\option::social('telegram', 'bot'));
+			if(\dash\option::social('telegram', 'token'))
+			{
+				\dash\data::tgBot(\dash\option::social('telegram', 'bot'));
+			}
 		}
 
 		self::load_tichet(\dash\request::get('id'));
