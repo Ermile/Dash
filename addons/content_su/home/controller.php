@@ -7,6 +7,7 @@ class controller
 	{
 		if(\dash\request::get('cmd') === 'health')
 		{
+			\dash\temp::set('force_stop_visitor', true);
 			$serverDetail =
 			[
 				'cpu'    => \dash\utility\server::cpu_usage(),
