@@ -128,6 +128,15 @@ class support
 	}
 
 
+	public static function DubleAnswerTicket($_args, $_user)
+	{
+		$msg                       = self::AnswerTicket($_args, $_user);
+		$msg['sms']                = false;
+		$msg['not_send_to_userid'] = true;
+		return $msg;
+	}
+
+
 	public static function AnswerTicket($_args, $_user)
 	{
 		// "🆔#Ticket|code 💌:plus \n🗣 ;displayname #user|user_code\n—————\n:tcontent\n:file\n⏳ |longdatecreated"

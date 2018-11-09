@@ -6,6 +6,13 @@
       "addNewTicket"
     ]
   },
+  "DubleAnswerTicket": {
+    "notification": true,
+    "fn": [
+      "\\dash\\app\\log\\msg\\support",
+      "DubleAnswerTicket"
+    ]
+  },
   "setCloseTicket": {
     "title": "The ticket closed",
     "content": ";displayname close the ticket",

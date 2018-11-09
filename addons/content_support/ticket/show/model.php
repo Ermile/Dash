@@ -314,29 +314,42 @@ class model
 						'plus'     => $update_main['plus'],
 					];
 
-					\dash\log::temp_set('AnswerTicket', $log);
+					$isDubleAnswer = false;
 
-					if($_send_message)
+					if(isset($main['status']) && $main['status'] === 'answered')
 					{
-						$log =
-						[
-							'code'          => $_id,
-							'user_id'       => \dash\coding::decode($main['user_id']),
-							'user_idsender' => \dash\user::id(),
-						];
-
-						\dash\log::temp_set('answerTicketAlertSend', $log);
+						$isDubleAnswer = true;
+						\dash\log::temp_set('DubleAnswerTicket', $log);
 					}
 					else
 					{
-						$log =
-						[
-							'code'          => $_id,
-							'user_id'       => \dash\coding::decode($main['user_id']),
-							'user_idsender' => \dash\user::id(),
-						];
+						\dash\log::temp_set('AnswerTicket', $log);
+					}
 
-						\dash\log::temp_set('answerTicketAlert', $log);
+					if(!$isDubleAnswer)
+					{
+						if($_send_message)
+						{
+							$log =
+							[
+								'code'          => $_id,
+								'user_id'       => \dash\coding::decode($main['user_id']),
+								'user_idsender' => \dash\user::id(),
+							];
+
+							\dash\log::temp_set('answerTicketAlertSend', $log);
+						}
+						else
+						{
+							$log =
+							[
+								'code'          => $_id,
+								'user_id'       => \dash\coding::decode($main['user_id']),
+								'user_idsender' => \dash\user::id(),
+							];
+
+							\dash\log::temp_set('answerTicketAlert', $log);
+						}
 					}
 
 					$update_main['status'] = 'answered';
