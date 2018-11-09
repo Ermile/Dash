@@ -72,7 +72,8 @@ class controller
 			$dashLocation = '../../dash';
 		}
 
-		return "<h1>Dash</h1>". \dash\utility\git::pull($dashLocation);
+		$back = "<h1><a href='".\dash\url::kingdom()."/su/update' >Back to su update</a></h1>";
+		return $back. "<h1>Dash</h1>". \dash\utility\git::pull($dashLocation);
 	}
 
 }

@@ -75,6 +75,12 @@ class controller
 
 				\dash\app\log\send::notification();
 
+				// not sleep code in local
+				if(\dash\url::isLocal())
+				{
+					break;
+				}
+
 				if(self::sleep_until($time, 20))
 				{
 					\dash\app\log\send::notification();

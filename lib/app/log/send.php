@@ -111,6 +111,7 @@ class send
 							'reply_markup' => false,
 							'chat_id'      => $user_detail['chatid'],
 						];
+
 						if(isset($value['btn']['telegram']) && is_array($value['btn']['telegram']))
 						{
 							$myData = array_merge($myData, $value['btn']['telegram']);
@@ -133,6 +134,8 @@ class send
 							$myResult = \dash\social\telegram\tg::sendMessage($myData);
 						}
 
+						// $myResult       = [];
+						// $myResult['ok'] = 1;
 
 						if(isset($myResult['ok']) && $myResult['ok'])
 						{
@@ -200,7 +203,6 @@ class send
 						\dash\utility\sms::send($user_detail['mobile'], $value['send_msg']['sms'], $value['send_msg']);
 
 						// @check need to check the telegram is send this message or not
-						\dash\db\logs::update_temp(['send' => 1], $value['id_raw']);
 
 						$count_send++;
 
