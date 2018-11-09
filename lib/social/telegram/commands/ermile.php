@@ -149,13 +149,12 @@ class ermile
 			if($langExist0 !== false)
 			{
 				$langCmd   = substr($extraCmd, $langExist0, 9);
-				var_dump($langCmd);
 				$langParam = substr($langCmd, 7, 9);
-				var_dump($langParam);
 				if(strlen($langParam) === 2)
 				{
 					// remove lang command from code
 					$extraCmd = str_replace($langCmd, '', $extraCmd);
+					$extraCmd = trim($extraCmd);
 					// we have new lang
 					// set it for user and ui
 					\dash\social\telegram\user::setLanguage($langParam);
