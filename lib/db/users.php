@@ -45,7 +45,17 @@ class users
 	 */
 	public static function get()
 	{
-		return \dash\db\config::public_get('users', ...func_get_args());
+		$get_cache = \dash\db\cache::get_cache('users', func_get_args());
+		if($get_cache)
+		{
+			return $get_cache;
+		}
+		else
+		{
+			$result = \dash\db\config::public_get('users', ...func_get_args());
+			\dash\db\cache::set_cache('users', func_get_args(), $result);
+			return $result;
+		}
 	}
 
 
