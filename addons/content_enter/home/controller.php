@@ -16,7 +16,13 @@ class controller
 		{
 			if(\dash\user::login())
 			{
-				\dash\redirect::to(\dash\url::kingdom());
+				$url = \dash\url::kingdom();
+				if(\dash\option::config('redirect'))
+				{
+					$url .= '/'. \dash\option::config('redirect');
+				}
+
+				\dash\redirect::to($url);
 				return;
 			}
 		}
