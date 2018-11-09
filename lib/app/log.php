@@ -274,6 +274,11 @@ class log
 		$all_user_detail = [];
 		if($_key === 'user_id')
 		{
+			if(isset($_detail['not_send_to_userid']) && $_detail['not_send_to_userid'])
+			{
+				return [];
+			}
+
 			if(isset($_detail['user_id']) && is_numeric($_detail['user_id']))
 			{
 				return \dash\db\users::get_by_id($_detail['user_id']);
@@ -321,10 +326,17 @@ class log
 
 			if(isset($_detail['user_id']) && is_numeric($_detail['user_id']))
 			{
-				$temp = \dash\db\users::get_by_id($_detail['user_id']);
-				if(is_array($temp))
+				if(isset($_detail['not_send_to_userid']) && $_detail['not_send_to_userid'])
 				{
-					$all_user_detail[] = $temp;
+					// not send to user id
+				}
+				else
+				{
+					$temp = \dash\db\users::get_by_id($_detail['user_id']);
+					if(is_array($temp))
+					{
+						$all_user_detail[] = $temp;
+					}
 				}
 			}
 		}

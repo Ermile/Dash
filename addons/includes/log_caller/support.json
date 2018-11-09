@@ -29,6 +29,7 @@
     },
     "notification": true,
     "telegram": true,
+    "not_send_to_userid": true,
     "send_msg": {
       "telegram": "🆔#Ticket|code 🖐\n🗣 ;displayname #user|user_code\n—————\n:awaitingmsg\n⏳ |longdatecreated"
     },
@@ -44,6 +45,7 @@
     },
     "notification": true,
     "telegram": true,
+    "not_send_to_userid": true,
     "send_msg": {
       "telegram": "🆔#Ticket|code 🗑\n🗣 ;displayname #user|user_code\n—————\n:deletemsg\n⏳ |longdatecreated"
     },
@@ -61,6 +63,7 @@
     "gif_url": "https://media.giphy.com/media/3oz8xZGGYXKrJB5I4g/giphy.gif",
     "notification": true,
     "telegram": true,
+    "not_send_to_userid": true,
     "send_msg": {
       "telegram": "🆔#Ticket|code 🎖\n🗣 ;displayname #user|user_code\n—————\n:solvedmsg\n⏳ |longdatecreated"
     },
@@ -76,6 +79,7 @@
     },
     "notification": true,
     "telegram": true,
+    "not_send_to_userid": true,
     "send_msg": {
       "telegram": "🆔#Ticket|code ⚠️\n🗣 ;displayname #user|user_code\n—————\n:unsolvedmsg\n⏳ |longdatecreated"
     },
@@ -124,6 +128,7 @@
     "notification": true,
     "telegram": true,
     "send_gif": true,
+    "not_send_to_userid": true,
     "gif_url": "https://media.giphy.com/media/3oz8xyBP22S5b6gmsw/giphy.gif",
     "send_msg": {
       "telegram": "🆔#Ticket|code 🙄 \n🗣 ;displayname #user|user_code\n⏳ |longdatecreated"
