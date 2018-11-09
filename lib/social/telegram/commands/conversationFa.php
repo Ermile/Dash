@@ -8,6 +8,7 @@ class conversationFa
 	public static function run($_cmd)
 	{
 		$text = null;
+		$userInput = $_cmd['text'];
 		$userInput = str_replace('?', '', $userInput);
 		$userInput = str_replace('!', '', $userInput);
 		$userInput = str_replace('؟', '', $userInput);
@@ -17,7 +18,7 @@ class conversationFa
 		$userInput = str_replace('  ', '', $userInput);
 		$userInput = str_replace('‌', '', $userInput);
 
-		switch ($_cmd['text'])
+		switch ($userInput)
 		{
 			case 'سلام':
 			case 'سلااام':
@@ -74,7 +75,7 @@ class conversationFa
 			case 'ابله':
 				$text = 'لطفا شان خودتون رو حفظ کنید';
 				break;
-				
+
 			case 'اه':
 			case 'اوف':
 				$text = 'از دست چیزی ناراحتی';
@@ -222,7 +223,7 @@ class conversationFa
 			case 'نوکر':
 				$text = 'کلفت';
 				break;
-				
+
 			case 'چاکریم':
 				$text = 'فدایی داری';
 				break;
