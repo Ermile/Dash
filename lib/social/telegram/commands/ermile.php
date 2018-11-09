@@ -273,7 +273,7 @@ class ermile
 			[
 				[
 					'text' => T_("Send feedback"),
-					'url'  => 'https://t.me/'. bot::$name. '?start=ticket',
+					'url'  => 'https://t.me/'. bot::$name. '?start=ticket--lang='. \dash\app\tg\user::lang(),
 				],
 			];
 		}
