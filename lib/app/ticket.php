@@ -21,6 +21,8 @@ class ticket
 					comments.*,
 					users.avatar,
 					users.chatid,
+					users.tgusername,
+					users.tgstatus,
 					users.firstname,
 					users.displayname
 				 ";

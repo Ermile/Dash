@@ -86,6 +86,9 @@
     </div>
 {%endif%}
 
+
+{{block("iContactWay")}}
+
 {%if masterTicketDetail.status != 'deleted' and masterTicketDetail.status != 'spam'%}
   {%if perm('supportTicketManage') and perm('supportTicketAssignTag') %}
       <div class="cbox">
@@ -391,4 +394,42 @@
   </div>
 {%endblock%}
 
+
+{%block iContactWay%}
+  <div class="cbox">
+    <h3>{%trans "Notification procedures"%}</h3>
+    <div>
+      <div class="switch1">
+       <input type="checkbox" disabled id="notifMobile" {%if masterTicketDetail.mobile%}checked{%endif%}>
+       <label for="notifMobile"></label>
+       <label for="notifMobile">{%trans "Mobile"%}</label>
+{%if masterTicketDetail.mobile%}
+       <label class="floatRa mT10 ltr"><a href="tel://{{masterTicketDetail.mobile}}">{{masterTicketDetail.mobile | fitNumber('mobile12')}}</a></label>
+{%endif%}
+      </div>
+
+
+{%if tgBot%}
+      <div class="switch1">
+       <input type="checkbox" disabled id="notifMobile" {%if masterTicketDetail.chatid%}checked{%endif%}>
+       <label for="notifMobile"></label>
+       <label for="notifMobile">{%trans "Telegram"%}</label>
+  {%if masterTicketDetail.chatid%}
+       <label class="floatRa mT10 ltr"><a href="https://t.me/{{masterTicketDetail.tgusername}}" target="_blank">@{{masterTicketDetail.tgusername[:15]}}</a></label>
+  {%else%}
+       <label class="floatRa mT10 ltr"><a href="https://t.me/{{tgBot}}?start=sync" target="_blank">@{{tgBot}}</a></label>
+  {%endif%}
+      </div>
+  {%if not masterTicketDetail.chatid%}
+      <div>
+
+      </div>
+      <p class="msg pA5-f info2 fs08">{%trans "Do you know you can connect your account with our Telegram bot"%} <a href="https://t.me/{{tgBot}}?start=sync" target="_blank">@{{tgBot}}</a>.<br>{%trans "Just need to start bot in Telegram and sync your account via /sync."%}</p>
+  {%endif%}
+
+{%endif%}
+
+    </div>
+  </div>
+{%endblock%}
 

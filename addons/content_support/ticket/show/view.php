@@ -14,6 +14,12 @@ class view
 		\dash\data::badge_text(T_('Back to tickets list'));
 		\dash\data::badge_link(\dash\url::this().\dash\data::accessGet());
 
+		// set tg account if enable and we have bot
+		if(\dash\option::social('telegram', 'status'))
+		{
+			\dash\data::tgBot(\dash\option::social('telegram', 'bot'));
+		}
+
 		self::load_tichet(\dash\request::get('id'));
 	}
 
