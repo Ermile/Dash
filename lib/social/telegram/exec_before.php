@@ -17,15 +17,18 @@ class exec_before
 		}
 
 		// if chat id is not set then set it
-		if(!isset($_data['chat_id']) && hook::chat())
+		if(!isset($_data['chat_id']))
 		{
-			// require chat id
-			$_data['chat_id'] = hook::chat();
-		}
-		elseif(\dash\user::chatid())
-		{
-			// fill chat id from user
-			$_data['chat_id'] = \dash\user::chatid();
+			if(hook::chat())
+			{
+				// require chat id
+				$_data['chat_id'] = hook::chat();
+			}
+			elseif(\dash\user::chatid())
+			{
+				// fill chat id from user
+				$_data['chat_id'] = \dash\user::chatid();
+			}
 		}
 
 		// add default menu if this message does not contain menu
