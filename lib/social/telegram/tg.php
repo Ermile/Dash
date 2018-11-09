@@ -160,6 +160,16 @@ class tg
 	}
 
 
+	public static function deepLink($_linkParam)
+	{
+		$deepLink = 'https://t.me/'. self::$name;
+		$deepLink .= '?start='. $_linkParam;
+		$deepLink .= '--lang='. \dash\app\tg\user::lang();
+
+		return $deepLink;
+	}
+
+
 	public static function notLate()
 	{
 		if(self::isCallback())
