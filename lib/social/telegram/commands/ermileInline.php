@@ -11,6 +11,12 @@ class ermileInline
 		{
 			bot::ok();
 		}
+		if(bot::isChosenInline())
+		{
+			// do nothing on chosen inline happend
+			bot::ok();
+			return null;
+		}
 		else
 		{
 			return null;

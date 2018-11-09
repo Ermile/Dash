@@ -281,7 +281,7 @@ class user
 		{
 			return null;
 		}
-		if(tg::isInline() || tg::isCallback())
+		if(tg::isInline() || tg::isChosenInline() || tg::isCallback())
 		{
 			return null;
 		}

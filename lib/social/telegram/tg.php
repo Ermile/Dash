@@ -144,6 +144,16 @@ class tg
 	}
 
 
+	public static function isChosenInline()
+	{
+		if(isset(tg::$hook['chosen_inline_result']))
+		{
+			return true;
+		}
+		return false;
+	}
+
+
 	public static function isPrivate()
 	{
 		if(hook::chat('type') === 'private')
@@ -177,6 +187,10 @@ class tg
 			return true;
 		}
 		if(self::isInline())
+		{
+			return true;
+		}
+		if(self::isChosenInline())
 		{
 			return true;
 		}
