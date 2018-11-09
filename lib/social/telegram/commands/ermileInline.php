@@ -88,7 +88,7 @@ class ermileInline
 							[
 								[
 									'text' => T_(":val Telegram bot", ['val' => $siteTitle]),
-									'url'  => 'https://t.me/'. bot::$name,
+									'url'  => bot::deepLink()
 								],
 							]
 						]
