@@ -244,10 +244,7 @@ class user
 
 		if($newLang)
 		{
-			// save for user
-			\dash\app\tg\user::lang($newLang);
-			// try to change laguage to selected
-			\dash\language::set_language($newLang);
+			self::setLanguage($newLang);
 
 			// send success message
 			$newLangTitle = $newLang;
@@ -266,7 +263,7 @@ class user
 		$userSavedLang = \dash\app\tg\user::lang();
 		if($userSavedLang)
 		{
-			\dash\language::set_language($userSavedLang);
+			self::setLanguage($userSavedLang, false);
 			return true;
 		}
 		else
@@ -274,10 +271,7 @@ class user
 			$langCode = hook::from('language_code');
 			if($langCode === 'fa' || $langCode === 'fa-IR')
 			{
-				// save for user
-				\dash\app\tg\user::lang('fa');
-				// try to change laguage to selected
-				\dash\language::set_language('fa');
+				self::setLanguage('fa');
 				return true;
 			}
 		}
@@ -299,6 +293,18 @@ class user
 
 		// try to get language from user
 		commands\ermile::lang(true);
+	}
+
+
+	public static function setLanguage($_newLang, $_saveUserDetail = true)
+	{
+		if($_saveUserDetail)
+		{
+			// save for user
+			\dash\app\tg\user::lang($_newLang);
+		}
+		// try to change laguage to selected
+		\dash\language::set_language($_newLang);
 	}
 
 
