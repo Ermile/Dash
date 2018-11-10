@@ -1,0 +1,51 @@
+{%extends display.suMain%}
+
+{%block pageContent%}
+  {{block('iShowFiles')}}
+  {{block('iShowFilesRaw')}}
+{%endblock%}
+
+
+
+
+{%block iShowFilesRaw%}
+{%if rawFile%}
+<div class="ltr">
+  {%for key, value in rawFile%}
+    <div class="cbox">
+      <h5>{{key}}</h5>
+      {{value}}
+    </div>
+  {%endfor%}
+</div>
+{%endif%}
+{%endblock%}
+
+
+
+
+
+{%block iShowFiles%}
+{%if ipFiles%}
+<div class="ltr">
+<table class="tbl1 v3">
+{%for key, value in ipFiles%}
+  <tr>
+    <td class="txtL">
+      <span class="sf-database fs15 mR10"></span>
+      <a href="{{url.here}}/backup?download={{value.name}}" title='{%trans "Click to download"%}'>{{value.name}}</a>
+    </td>
+    <td class="rtl s0">{{value.ago}}</td>
+    <td class="rtl s0">{{value.size | fitNumber(false)}} {%trans "MB"%}</td>
+    <td class="pR25-f ">
+      <div class="btn xs danger"><a href="{{url.pwd}}" data-ajaxify data-data='{"type" : "remove", "file" : "{{value.name}}"}' data-method='post'>{%trans "Remove"%}</a></div>
+    </td>
+  </tr>
+{%endfor%}
+</table>
+</div>
+{%else%}
+<div class="msg danger fs16">{%trans "No backup was found"%}</div>
+{%endif%}
+{%endblock%}
+
