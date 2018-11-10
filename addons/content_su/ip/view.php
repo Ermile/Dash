@@ -15,7 +15,7 @@ class view
 		{
 			foreach ($ipFiles as $key => $value)
 			{
-				$raw_file[basename($value)] = file_get_contents($value);
+				$raw_file[basename($value)] = explode("\n", file_get_contents($value));
 				$ipFiles_files [] =
 				[
 					'name'    => basename($value),

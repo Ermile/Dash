@@ -13,8 +13,24 @@
 <div class="ltr">
   {%for key, value in rawFile%}
     <div class="cbox">
-      <h5>{{key}}</h5>
-      {{value}}
+      <h3>{{key | capitalize}}</h3>
+        <form method="post" autocomplete="off">
+          <div class="input ltr">
+            <label class="addon">{%trans "Add data to this file"%}</label>
+            <input type="text" name="ip">
+            <input type="hidden" name="file" value="{{key}}">
+            <input type="hidden" name="type" value="add">
+            <button type="submit" class="btn primary">{%trans "Add"%}</button>
+          </div>
+        </form>
+        <hr>
+      {%for k, v in value%}
+        {%if v%}
+        {{v}} <div href="{{url.pwd}}" class="badge danger" data-confirm data-data='{"type" : "remove_ip", "file" : "{{key}}", "ip" : "{{v | trim}}"}' >{%trans "Remove"%}</div>
+        <br>
+        {%endif%}
+
+      {%endfor%}
     </div>
   {%endfor%}
 </div>

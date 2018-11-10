@@ -21,7 +21,7 @@ class ip
 
 		if(self::is_local_ip($ip))
 		{
-			return true;
+			// return true;
 		}
 
 		if(self::is_block($ip))
