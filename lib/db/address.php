@@ -28,6 +28,11 @@ class address
 		return \dash\db\config::public_get('address', ...func_get_args());
 	}
 
+	public static function get_count()
+	{
+		return \dash\db\config::public_get_count('address', ...func_get_args());
+	}
+
 
 	public static function search()
 	{

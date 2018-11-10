@@ -11,6 +11,12 @@ class visitors
 		return \dash\db\config::public_get_count('visitors', $_where, \dash\db::get_db_log_name());
 	}
 
+
+	public static function url_get_count($_where = [])
+	{
+		return \dash\db\config::public_get_count('urls', $_where, \dash\db::get_db_log_name());
+	}
+
 	public static function get_url_like($_url, $_where = [])
 	{
 		$where = null;

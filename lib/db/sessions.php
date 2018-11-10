@@ -26,6 +26,12 @@ class sessions
 	}
 
 
+	public static function get_count($_where = [])
+	{
+		return \dash\db\config::public_get_count('sessions', $_where, \dash\db::get_db_log_name());
+	}
+
+
 	/**
 	 * insert sessions on database
 	 *

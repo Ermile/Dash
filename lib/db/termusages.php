@@ -21,6 +21,12 @@ class termusages
 	}
 
 
+	public static function get_count()
+	{
+		return \dash\db\config::public_get_count('termusages', ...func_get_args());
+	}
+
+
 	public static function usage($_related_id, $_type, $_related = 'posts')
 	{
 		if(!$_related_id || !$_type)

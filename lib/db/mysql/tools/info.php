@@ -26,13 +26,55 @@ trait info
 	}
 
 
-	public static function global_status($_link = null)
+	public static function global_status($_link = null, $_get = null)
 	{
 		if($_link === null)
 		{
 			$_link = self::$link;
 		}
-		return self::get("SHOW GLOBAL STATUS;", ['Variable_name', 'Value'], true);
+
+		$result = self::get("SHOW GLOBAL STATUS;", ['Variable_name', 'Value'], true);
+
+		if($_get && is_array($result))
+		{
+			if(array_key_exists($_get, $result))
+			{
+				return $result[$_get];
+			}
+			return null;
+		}
+		else
+		{
+			return $result;
+		}
+	}
+
+
+	public static function get_size($_link = null)
+	{
+		if($_link === null)
+		{
+			$_link = self::$link;
+		}
+
+		if(!defined('db_name'))
+		{
+			return null;
+		}
+
+		$db_name = db_name;
+
+		$query =
+		"
+			SELECT
+				ROUND(SUM(data_length + index_length) / 1024 , 0) AS `dbsize`
+			FROM
+				information_schema.tables
+			WHERE
+				table_schema = '$db_name'
+		";
+		$result = self::get($query, 'dbsize', true);
+		return $result;
 	}
 
 

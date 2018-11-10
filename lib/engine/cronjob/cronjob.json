@@ -7,6 +7,10 @@
     "title": "Check ip is blocked",
     "url": "ipblocker"
   },
+  "dayevent": {
+    "title": "Save day event",
+    "url": "dayevent"
+  },
   "closesolved": {
     "title": "Set ticket close if solved",
     "url": "closesolved"

@@ -25,5 +25,11 @@ class agents
 	{
 		return \dash\db\config::public_get('agents', $_where, ['db_name' => \dash\db::get_db_log_name()]);
 	}
+
+
+	public static function get_count($_where = [])
+	{
+		return \dash\db\config::public_get_count('agents', $_where, \dash\db::get_db_log_name());
+	}
 }
 ?>

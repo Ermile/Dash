@@ -25,6 +25,11 @@ class transactions
 	}
 
 
+	public static function get_count()
+	{
+		return \dash\db\config::public_get_count('transactions', ...func_get_args());
+	}
+
 	/**
 	 * update transactions
 	 *

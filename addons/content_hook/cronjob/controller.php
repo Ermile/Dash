@@ -111,6 +111,13 @@ class controller
 				\dash\utility\ip::check_is_block();
 				break;
 
+			case 'dayevent';
+				if(self::at_00_clock())
+				{
+					\dash\utility\dayevent::save();
+				}
+				break;
+
 			default:
 				// nothing
 				break;
@@ -120,6 +127,18 @@ class controller
 		{
 			\lib\cronjob::run();
 		}
+	}
+
+
+	public static function at_00_clock()
+	{
+		$time_now    = date("H:i");
+		// every 1 hour
+		if((is_string($time_now) && $time_now === '00:00') || \dash\permission::supervisor())
+		{
+			return true;
+		}
+		return false;
 	}
 
 
