@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Dash - Persian\n"
-"POT-Creation-Date: 2018-10-10 20:59+0330\n"
-"PO-Revision-Date: 2018-10-10 21:02+0330\n"
-"Last-Translator: Javad <J.Evazzadeh@gmail.com>\n"
+"POT-Creation-Date: 2018-11-10 19:34+0330\n"
+"PO-Revision-Date: 2018-11-10 19:35+0330\n"
+"Last-Translator: Javad Kakroudi <J.Evazzadeh@gmail.com>\n"
 "Language-Team: Ermile <J.Evazzadeh@gmail.com>\n"
 "Language: fa_IR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.11\n"
+"X-Generator: Poedit 2.1.1\n"
 "X-Poedit-Basepath: ../../../../..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -34,25 +34,14 @@ msgid "Address successfully added"
 msgstr "آدرس با موفقیت اضافه شد"
 
 #: addons/content_account/address/view.php:10
-#: addons/content_account/profile/other/view.php:10
-#: addons/content_account/profile/security/view.php:10
-#: addons/content_account/profile/signature/view.php:10
-#: addons/content_account/profile/social/view.php:10
-#: addons/content_account/profile/view.php:10
-#: addons/includes/languages/trans_dash.php:915
-msgid "Edit your profile"
-msgstr "پروفایل خود را ویرایش کنید"
+msgid "Addresses"
+msgstr "آدرس‌ها"
 
 #: addons/content_account/address/view.php:11
-#: addons/content_account/profile/other/view.php:11
-#: addons/content_account/profile/security/view.php:11
-#: addons/content_account/profile/signature/view.php:11
-#: addons/content_account/profile/social/view.php:11
-#: addons/content_account/profile/view.php:11
-msgid "You can edit your profile."
-msgstr "شما می‌توانید پروفایل خود را ویرایش کنید."
+msgid "Manage your addresses."
+msgstr "مدیریت آدرس‌های شما"
 
-#: addons/content_account/address/view.php:14
+#: addons/content_account/address/view.php:15
 #: addons/content_account/profile/other/view.php:14
 #: addons/content_account/profile/security/view.php:14
 #: addons/content_account/profile/signature/view.php:14
@@ -78,8 +67,7 @@ msgstr "جزئیات میزان استفاده"
 #: addons/content_account/billing/detail/view.php:9
 msgid ""
 "Check your current usage and active user and price for this period of time."
-msgstr ""
-"برای این مدت زمان، کاربر مصرف فعلی و کاربر فعال و قیمت خود را بررسی کنید."
+msgstr "برای این مدت زمان، کاربر مصرف فعلی و کاربر فعال و قیمت خود را بررسی کنید."
 
 #: addons/content_account/billing/invoice/view.php:8
 msgid "Invoice Detail"
@@ -134,16 +122,12 @@ msgstr "اطلاعات مالی"
 #: addons/content_account/billing/view.php:11
 msgid "Check your balance, charge your account, and bill your invoices!"
 msgstr ""
-"بالانس مالی خود را بررسی کنید، حساب خود را بپردازید و صورتحساب خود را "
-"بفروشید!"
+"بالانس مالی خود را بررسی کنید، حساب خود را بپردازید و صورتحساب خود را بفروشید!"
 
-#: addons/content_account/home/view.php:9
-#: addons/content_cp/email/home/view.php:16
+#: addons/content_account/home/view.php:9 addons/content_cp/email/home/view.php:16
 #: addons/content_cp/email/send/view.php:16
-#: addons/content_cp/sms/group/view.php:16
-#: addons/content_cp/sms/home/view.php:16
-#: addons/content_cp/sms/send/view.php:16
-#: addons/content_cp/sms/verify/view.php:15
+#: addons/content_cp/sms/group/view.php:16 addons/content_cp/sms/home/view.php:16
+#: addons/content_cp/sms/send/view.php:16 addons/content_cp/sms/verify/view.php:15
 #: addons/content_cp/visitor/log/view.php:16
 #: addons/includes/languages/trans_dash.php:81
 #: addons/includes/languages/trans_static.php:93
@@ -153,8 +137,24 @@ msgstr "داشبورد"
 #: addons/content_account/home/view.php:10
 msgid ""
 "Account of your user to change profile details or change billing information"
-msgstr ""
-"حساب کاربری شما برای ویرایش اطلاعات پروفایل یا بررسی و افزودن اعتبار مالی"
+msgstr "حساب کاربری شما برای ویرایش اطلاعات پروفایل یا بررسی و افزودن اعتبار مالی"
+
+#: addons/content_account/profile/other/view.php:10
+#: addons/content_account/profile/security/view.php:10
+#: addons/content_account/profile/signature/view.php:10
+#: addons/content_account/profile/social/view.php:10
+#: addons/content_account/profile/view.php:10
+#: addons/includes/languages/trans_dash.php:915
+msgid "Edit your profile"
+msgstr "پروفایل خود را ویرایش کنید"
+
+#: addons/content_account/profile/other/view.php:11
+#: addons/content_account/profile/security/view.php:11
+#: addons/content_account/profile/signature/view.php:11
+#: addons/content_account/profile/social/view.php:11
+#: addons/content_account/profile/view.php:11
+msgid "You can edit your profile."
+msgstr "شما می‌توانید پروفایل خود را ویرایش کنید."
 
 #: addons/content_account/profile/other/view.php:20
 #: addons/content_account/profile/security/view.php:20
@@ -220,14 +220,14 @@ msgstr "داشبورد سیستم مدیریت محتوا"
 #: addons/content_cp/posts/edit/controller.php:12
 #: addons/content_cp/posts/edit/view.php:13
 #: addons/content_support/message/edit/view.php:23
-#: addons/content_support/ticket/show/view.php:21 lib/app/posts.php:119
+#: addons/content_support/ticket/show/view.php:35 lib/app/posts.php:119
 msgid "Invalid id"
 msgstr "شناسه نامعتبر"
 
 #: addons/content_cp/comments/edit/model.php:12
 #: addons/content_cp/contact/edit/model.php:12
-#: addons/content_support/ticket/show/model.php:95 lib/app/address.php:181
-#: lib/app/comment.php:250 lib/app/ticket.php:347
+#: addons/content_support/ticket/show/model.php:100 lib/app/address.php:189
+#: lib/app/comment.php:250 lib/app/ticket.php:350
 msgid "Invalid status"
 msgstr "وضعیت نامعتبر است"
 
@@ -248,8 +248,8 @@ msgstr "شما می‌توانید در صورت نیاز دیدگاه را وی
 #: addons/content_cp/comments/edit/view.php:21
 #: addons/content_cp/contact/edit/view.php:21
 msgid ""
-"This is often useful when you notice that a commenter has made a "
-"typographical error."
+"This is often useful when you notice that a commenter has made a typographical "
+"error."
 msgstr "اغلب برای مواردی که متوجه می‌شوید در یک دیدگاه نویسنده خطای تایپی دارد."
 
 #: addons/content_cp/comments/edit/view.php:24
@@ -264,8 +264,7 @@ msgid "Comments"
 msgstr "دیدگاه‌ها"
 
 #: addons/content_cp/comments/home/view.php:12
-msgid ""
-"Check list of comments and search or filter in them to find your comments."
+msgid "Check list of comments and search or filter in them to find your comments."
 msgstr "بررسی لیست نظرات و جستجو یا فیلتر کردن آنان برای یافتن نظر موردنظر."
 
 #: addons/content_cp/comments/home/view.php:12
@@ -273,17 +272,15 @@ msgid "Also add or edit specefic comments."
 msgstr "همچنین نظر خاص را اضافه یا ویرایش کنید."
 
 #: addons/content_cp/comments/home/view.php:16
-#: addons/content_cp/log/caller/view.php:13
-#: addons/content_cp/log/home/view.php:13
+#: addons/content_cp/log/caller/view.php:13 addons/content_cp/log/home/view.php:13
 #: addons/content_cp/posts/home/view.php:58
-#: addons/content_cp/sms/template/view.php:15
-#: addons/content_cp/terms/view.php:61 addons/content_su/tg/log/view.php:14
+#: addons/content_cp/sms/template/view.php:15 addons/content_cp/terms/view.php:61
+#: addons/content_su/tg/log/view.php:14
 msgid "Back to dashboard"
 msgstr "بازگشت به داشبورد"
 
 #: addons/content_cp/comments/home/view.php:23
-#: addons/content_cp/log/home/view.php:27
-#: addons/content_cp/posts/home/view.php:71
+#: addons/content_cp/log/home/view.php:27 addons/content_cp/posts/home/view.php:71
 #: addons/content_cp/users/home/view.php:23
 #: addons/content_cp/visitor/log/view.php:23
 #: addons/content_su/dbtables/view.php:22 addons/content_su/tg/log/view.php:22
@@ -293,7 +290,7 @@ msgstr "جستجوی :search"
 
 #: addons/content_cp/contact/edit/controller.php:11
 #: addons/content_cp/contact/home/view.php:11
-#: addons/content_support/ticket/contact_ticket/model.php:127
+#: addons/content_support/ticket/contact_ticket/model.php:132
 msgid "Contact Us"
 msgstr "تماس با ما"
 
@@ -305,13 +302,11 @@ msgstr "ویرایش تماس با ما"
 msgid "Back to list of contact"
 msgstr "بازگشت به لیست تماس با ما"
 
-#: addons/content_cp/email/home/view.php:10
-#: addons/content_cp/sms/home/view.php:10
+#: addons/content_cp/email/home/view.php:10 addons/content_cp/sms/home/view.php:10
 msgid "SMS Dashboard"
 msgstr "داشبورد پیامک"
 
-#: addons/content_cp/email/home/view.php:11
-#: addons/content_cp/sms/home/view.php:11
+#: addons/content_cp/email/home/view.php:11 addons/content_cp/sms/home/view.php:11
 msgid "Check your sms setting and balance and quick navigate to every where"
 msgstr "بررسی تنظیمات پیامک و بالانس مالی و دسترسی سریع به بخش‌های مختلف"
 
@@ -323,8 +318,7 @@ msgstr "ارسال ایمیل به کاربر"
 msgid "Send every email to every user"
 msgstr "ارسال هر پیامی به کاربر توسط ایمیل"
 
-#: addons/content_cp/home/view.php:14
-#: addons/includes/languages/trans_dash.php:682
+#: addons/content_cp/home/view.php:14 addons/includes/languages/trans_dash.php:682
 #: addons/includes/languages/trans_static.php:149
 msgid "Control Panel"
 msgstr "کنترل پنل"
@@ -339,25 +333,21 @@ msgstr ""
 "شما می‌توانید تمام بخش‌ها را از مدیریت محتوا و اخبار گرفته تا کاربران و لاگ را "
 "مدیریت کنید."
 
-#: addons/content_cp/log/caller/view.php:9
-#: addons/content_cp/log/home/view.php:9
+#: addons/content_cp/log/caller/view.php:9 addons/content_cp/log/home/view.php:9
 #: addons/includes/languages/trans_dash.php:694
 msgid "Log"
 msgstr "لاگ"
 
-#: addons/content_cp/log/caller/view.php:10
-#: addons/content_cp/log/home/view.php:10
+#: addons/content_cp/log/caller/view.php:10 addons/content_cp/log/home/view.php:10
 msgid "Check list of log and search or filter in them to find your logs."
 msgstr ""
-"بررسی لیست لاگ‌ها و جستجو یا فیلتر کردن بعضی از آنان جهت پیدا کردن لاگ مورد "
-"نظر."
+"بررسی لیست لاگ‌ها و جستجو یا فیلتر کردن بعضی از آنان جهت پیدا کردن لاگ مورد نظر."
 
 #: addons/content_cp/log/home/view.php:20
 msgid "Show log caller"
 msgstr "نمایش عناوین لاگ‌ها"
 
-#: addons/content_cp/mycontact/view.php:9
-#: addons/content_cp/mycontact/view.php:10
+#: addons/content_cp/mycontact/view.php:9 addons/content_cp/mycontact/view.php:10
 msgid "Comment Dashboard"
 msgstr "داشبورد دیدگاه‌ها"
 
@@ -455,11 +445,10 @@ msgid "Edit post"
 msgstr "ویرایش نوشته"
 
 #: addons/content_cp/posts/edit/view.php:35
-msgid ""
-"You can change everything, change url and add gallery or some other change"
+msgid "You can change everything, change url and add gallery or some other change"
 msgstr ""
-"شما می توانید همه چیز را تغییر دهید، تغییر آدرس و اضافه کردن گالری و یا برخی "
-"از تغییرات دیگر"
+"شما می توانید همه چیز را تغییر دهید، تغییر آدرس و اضافه کردن گالری و یا برخی از "
+"تغییرات دیگر"
 
 #: addons/content_cp/posts/edit/view.php:49
 msgid "Edit page"
@@ -522,7 +511,7 @@ msgstr "هم‌چنین افزودن یا ویرایش مقاله خاص."
 msgid "Add new :val"
 msgstr "افزودن :val جدید"
 
-#: addons/content_cp/posts/home/view.php:134
+#: addons/content_cp/posts/home/view.php:141
 #: addons/includes/languages/trans_dash.php:31
 msgid "Status"
 msgstr "وضعیت"
@@ -667,8 +656,7 @@ msgstr "کلیدواژه‌ها"
 #: addons/content_cp/terms/view.php:31 addons/content_cp/terms/view.php:39
 #: addons/content_cp/terms/view.php:48
 msgid "Check tags and add or edit some new tag"
-msgstr ""
-"برچسب ها را بررسی کنید و برخی از برچسب های جدید را اضافه یا ویرایش کنید"
+msgstr "برچسب ها را بررسی کنید و برخی از برچسب های جدید را اضافه یا ویرایش کنید"
 
 #: addons/content_cp/terms/view.php:110
 #: addons/includes/languages/trans_dash.php:257
@@ -712,8 +700,8 @@ msgstr "تکرار کلمه عبور با کلمه عبور برابر نیست"
 
 #: addons/content_cp/users/set/view.php:13
 msgid ""
-"You can add new user and after add with minimal data, we allow you to add "
-"extra detail of user."
+"You can add new user and after add with minimal data, we allow you to add extra "
+"detail of user."
 msgstr ""
 "شما می توانید کاربر جدید را اضافه کنید و پس از اضافه کردن اطلاعات کم، به شما "
 "اجازه می دهیم جزئیات بیشتری از کاربر اضافه کنید."
@@ -723,13 +711,12 @@ msgstr ""
 msgid "Back to list of users"
 msgstr "بازگشت به لیست کاربران"
 
-#: addons/content_cp/users/set/view.php:42
-#: addons/content_enter/home/model.php:45
-#: addons/content_su/sendnotify/model.php:30 lib/app/address.php:301
+#: addons/content_cp/users/set/view.php:42 addons/content_enter/home/model.php:45
+#: addons/content_su/sendnotify/model.php:30 lib/app/address.php:316
 #: lib/app/parent/add.php:50 lib/app/parent/add.php:59
 #: lib/app/parent/delete.php:35 lib/app/parent/delete.php:114
 #: lib/app/parent/get.php:35 lib/app/parent/get.php:44 lib/app/posts/add.php:37
-#: lib/app/term.php:338 lib/app/user/add.php:53
+#: lib/app/term.php:338 lib/app/user/add.php:54
 msgid "User not found"
 msgstr "کاربر یافت نشد"
 
@@ -740,8 +727,7 @@ msgstr "ویرایش پروفایل :val"
 #: addons/content_cp/users/set/view.php:50
 msgid "Edit user detail and change all fields of this user, be careful!"
 msgstr ""
-"ویرایش اطلاعات کاربر و تغییر مقادیر این کاربر، در تغییر دقت لازم را به خرج "
-"دهید!"
+"ویرایش اطلاعات کاربر و تغییر مقادیر این کاربر، در تغییر دقت لازم را به خرج دهید!"
 
 #: addons/content_cp/users/view/view.php:13
 msgid "User detail"
@@ -773,8 +759,7 @@ msgstr "نمودار بازدیدکنندگان"
 #: addons/content_cp/visitor/chart/view.php:10
 #: addons/content_cp/visitor/home/view.php:10
 #: addons/content_cp/visitor/log/view.php:10
-msgid ""
-"Check list of visitor and search or filter in them to find your visitor."
+msgid "Check list of visitor and search or filter in them to find your visitor."
 msgstr ""
 "بررسی لیست بازدیدکنندگان و جستجو یا فیلتر کردن آنان برای یافتن بازدیدکننده "
 "موردنظر."
@@ -789,9 +774,8 @@ msgstr "بازدیدکننده"
 msgid "Alert!"
 msgstr "هشدار!"
 
-#: addons/content_enter/alert/view.php:16
-#: addons/content_enter/verify/model.php:36 lib/utility/enter.php:850
-#: lib/utility/enter.php:861 lib/utility/enter.php:868
+#: addons/content_enter/alert/view.php:16 addons/content_enter/verify/model.php:36
+#: lib/utility/enter.php:846 lib/utility/enter.php:857 lib/utility/enter.php:864
 msgid "What are you doing?"
 msgstr "اینجا چیکار می‌کنی عزیز جان!؟"
 
@@ -800,14 +784,6 @@ msgstr "اینجا چیکار می‌کنی عزیز جان!؟"
 #: addons/includes/languages/trans_static.php:546
 msgid "OK"
 msgstr "تایید"
-
-#: addons/content_enter/autoredirect/view.php:9
-msgid "redirecting..."
-msgstr "در حال انتقال..."
-
-#: addons/content_enter/autoredirect/view.php:10
-msgid "in redirect process..."
-msgstr "در فرآیند انتقال ..."
 
 #: addons/content_enter/ban/view.php:9
 msgid "You are Banned!!"
@@ -871,10 +847,8 @@ msgid "Delete account"
 msgstr "حذف حساب کاربری"
 
 #: addons/content_enter/email/change/google/model.php:17
-msgid ""
-"Please log in with your previous email or ignore your mobile registration."
-msgstr ""
-"لطفا با رایانامه قبلی خود وارد شوید یا ورود با موبایل را نادیده بگیرید."
+msgid "Please log in with your previous email or ignore your mobile registration."
+msgstr "لطفا با رایانامه قبلی خود وارد شوید یا ورود با موبایل را نادیده بگیرید."
 
 #: addons/content_enter/email/change/google/view.php:9
 msgid "Change google mail"
@@ -950,40 +924,6 @@ msgstr "مجددا تلاش کنید!"
 #: addons/content_enter/home/view.php:11
 msgid "Enter to :name"
 msgstr "ورود به :name"
-
-#: addons/content_enter/hook/model.php:19
-#: addons/content_enter/hook/model.php:141
-msgid "Telegram id not found"
-msgstr "آی‌دی تلگرام یافت نشد"
-
-#: addons/content_enter/hook/model.php:25
-#: addons/content_enter/hook/model.php:147
-msgid "Invalid telegram id"
-msgstr "آی‌دی تلگرام نامعتبر است"
-
-#: addons/content_enter/hook/model.php:98
-msgid "Authorization not found"
-msgstr "مجوز یافت نشد"
-
-#: addons/content_enter/hook/model.php:108
-msgid "Invalid Authorization"
-msgstr "کد تایید نامعتبر است"
-
-#: addons/content_enter/hook/model.php:135
-msgid "Mobile is not set"
-msgstr "تلفن همراه تنظیم نشده است"
-
-#: addons/content_enter/hook/model.php:212
-msgid "System error 1"
-msgstr "خطای سیستمی‌۱"
-
-#: addons/content_enter/hook/model.php:236
-msgid "System error 2"
-msgstr "خطای سیستمی‌۲"
-
-#: addons/content_enter/hook/model.php:253
-msgid "System error 3"
-msgstr "خطای سیستمی‌۳"
 
 #: addons/content_enter/mobile/change/model.php:13
 #: addons/content_enter/pass/change/model.php:13
@@ -1099,10 +1039,6 @@ msgstr "تغییر گذرواژه"
 msgid "Please set your old and new password to change it"
 msgstr "لطفا گذرواژه‌ی قبلی و جدید خود را برای تغییر وارد کنید"
 
-#: addons/content_enter/payment/controller.php:31
-msgid "Invalid payment type"
-msgstr "خطای نوع درگاه"
-
 #: addons/content_enter/signup/model.php:25
 msgid "You do not have permission to register for up to ten minutes"
 msgstr "شما مجاز به ثبت نام تا ۱۰ دقیقه نیستید"
@@ -1111,8 +1047,7 @@ msgstr "شما مجاز به ثبت نام تا ۱۰ دقیقه نیستید"
 #: addons/content_enter/username/model.php:11
 msgid "Your browser has sent a saved password. Delete it and continue"
 msgstr ""
-"مرورگر شما گذرواژه ذخیره شده ای را ارسال کرده است. آن را حذف کنید و ادامه "
-"دهید"
+"مرورگر شما گذرواژه ذخیره شده ای را ارسال کرده است. آن را حذف کنید و ادامه دهید"
 
 #: addons/content_enter/signup/model.php:42
 msgid "Pleaes set mobile number"
@@ -1137,8 +1072,7 @@ msgstr "لطفا گذرواژه‌ی معتبری تنظیم کنید"
 #: addons/content_enter/signup/model.php:79
 msgid "Please do not use your username as password. Never Ever!"
 msgstr ""
-"لطفا از نام‌کاربری خود به‌عنوان گذرواژه استفاده نکنید. نه اینجا و نه هیچ‌کجای "
-"دیگر!"
+"لطفا از نام‌کاربری خود به‌عنوان گذرواژه استفاده نکنید. نه اینجا و نه هیچ‌کجای دیگر!"
 
 #: addons/content_enter/signup/model.php:85
 msgid "Please do not use your mobile in password!"
@@ -1155,8 +1089,8 @@ msgstr "این نام‌کاربری پیش از این گرفته شده است
 #: addons/content_enter/signup/model.php:111
 msgid "This mobile is already signuped. You can login by this mobile"
 msgstr ""
-"این شماره موبایل قبلا ثبت نام کرده است. شما می‌توانید با این موبایل وارد "
-"سیستم شود"
+"این شماره موبایل قبلا ثبت نام کرده است. شما می‌توانید با این موبایل وارد سیستم "
+"شود"
 
 #: addons/content_enter/signup/view.php:10
 msgid "Signup in :name"
@@ -1225,7 +1159,7 @@ msgstr "شناسه‌ی کاربری باید بزرگتر از ۵ کاراکت�
 msgid "You must set less than 50 character in username"
 msgstr "شناسه‌ی کاربری باید کمتر از ۵۵ کاراکتر باشد"
 
-#: addons/content_enter/username/set/model.php:41 lib/utility/enter.php:1035
+#: addons/content_enter/username/set/model.php:41 lib/utility/enter.php:1031
 msgid "Your username was set"
 msgstr "نام کاربری شما ثبت شد"
 
@@ -1279,10 +1213,8 @@ msgid "Your login code is :code"
 msgstr "کد ورود شما :code است"
 
 #: addons/content_enter/verify/telegram/model.php:53
-msgid ""
-"This code can be used to log in to your account. Do not give it to anyone!"
-msgstr ""
-"این کد برای ورود به حساب‌کاربری‌تان استفاده می‌شود. آن را به سایرین ندهید!"
+msgid "This code can be used to log in to your account. Do not give it to anyone!"
+msgstr "این کد برای ورود به حساب‌کاربری‌تان استفاده می‌شود. آن را به سایرین ندهید!"
 
 #: addons/content_enter/verify/telegram/model.php:54
 msgid "If you didn't request this code, ignore this message."
@@ -1304,11 +1236,10 @@ msgstr ""
 "ما در حال تلاش برای تماس با شما هستیم و تا لحظاتی دیگر با شما تماس می‌گیریم."
 
 #: addons/content_enter/verify/view.php:45
-msgid ""
-"Your verification code sended to your mobile number via sms. be patient..."
+msgid "Your verification code sended to your mobile number via sms. be patient..."
 msgstr ""
-"کد اعتبارسنجی از طریق پیامک به شماره شما ارسال شده است و بزودی به‌دست شما "
-"خواهد رسید. صبور باشید..."
+"کد اعتبارسنجی از طریق پیامک به شماره شما ارسال شده است و بزودی به‌دست شما خواهد "
+"رسید. صبور باشید..."
 
 #: addons/content_enter/verify/view.php:49
 msgid ""
@@ -1332,8 +1263,7 @@ msgstr "این درخواست برای فعال سازی ورود دو مرحل�
 
 #: addons/content_enter/verify/view.php:85
 msgid "This is request of deactive two-step verification of you account!"
-msgstr ""
-"این درخواست برای غیر فعال سازی ورود دو مرحله‌ای به حساب کاربری شما می‌باشد"
+msgstr "این درخواست برای غیر فعال سازی ورود دو مرحله‌ای به حساب کاربری شما می‌باشد"
 
 #: addons/content_enter/verify/view.php:100
 msgid "This is request of delete account!"
@@ -1363,6 +1293,18 @@ msgstr "اعتبارسنجی با تلگرام"
 #: addons/content_enter/verify/view.php:131
 msgid "verify with SMS"
 msgstr "تایید با پیامک"
+
+#: addons/content_hook/autoredirect/view.php:9
+msgid "redirecting..."
+msgstr "در حال انتقال..."
+
+#: addons/content_hook/autoredirect/view.php:10
+msgid "in redirect process..."
+msgstr "در فرآیند انتقال ..."
+
+#: addons/content_hook/payment/controller.php:34
+msgid "Invalid payment type"
+msgstr "خطای نوع درگاه"
 
 #: addons/content_su/backup/model.php:23
 msgid "Database of logs dose not exists"
@@ -1424,8 +1366,7 @@ msgstr "وضعیت گیت"
 msgid "Check file status on this project"
 msgstr "بررسی وضعیت فایل‌ها در این پروژه"
 
-#: addons/content_su/home/view.php:8
-#: addons/includes/languages/trans_dash.php:681
+#: addons/content_su/home/view.php:8 addons/includes/languages/trans_dash.php:681
 msgid "Supervisor dashboard"
 msgstr "داشبورد مدیر فنی سیستم"
 
@@ -1442,6 +1383,22 @@ msgstr "در ابتدا شما باید ویژگی Com را در ویندوز ف
 #: addons/includes/languages/trans_dash.php:699
 msgid "Read More"
 msgstr "بیشتر بخوانید"
+
+#: addons/content_su/ip/model.php:15
+msgid "Invalid ip syntax"
+msgstr "نوشتار آی‌پی نادرست است"
+
+#: addons/content_su/ip/model.php:21
+msgid "This string is exist in file"
+msgstr "این متن در فایل موجود است"
+
+#: addons/content_su/ip/model.php:27
+msgid "Ip added to this file"
+msgstr "آی‌پی به این فایل اضافه شده است"
+
+#: addons/content_su/ip/model.php:37
+msgid "Ip deleted"
+msgstr "آی‌پی حذف شد"
 
 #: addons/content_su/log/controller.php:145
 msgid "Do you wanna something here!?"
@@ -1463,8 +1420,7 @@ msgstr "فایل با موفقیت به روز رسانی شد"
 msgid "Can not write file"
 msgstr "ناتوان در نوشتن فایل"
 
-#: addons/content_su/nano/view.php:8
-#: addons/includes/languages/trans_dash.php:692
+#: addons/content_su/nano/view.php:8 addons/includes/languages/trans_dash.php:692
 msgid "Nano"
 msgstr "نانو"
 
@@ -1493,10 +1449,8 @@ msgstr "بازگشت به داشبورد مدیر فنی سیستم"
 msgid "Telegram log"
 msgstr "ردپای تلگرام"
 
-#: addons/content_su/tg/log/view.php:10
-#: addons/content_su/tg/logshow/view.php:10
-msgid ""
-"Check list of telegram and search or filter in them to find your telegram."
+#: addons/content_su/tg/log/view.php:10 addons/content_su/tg/logshow/view.php:10
+msgid "Check list of telegram and search or filter in them to find your telegram."
 msgstr "بررسی لیست تلگرام و جستجو و فیلتر در آنان."
 
 #: addons/content_su/tg/logshow/view.php:15
@@ -1617,8 +1571,8 @@ msgid ""
 "Check list of Transactions and search or filter in them to find your "
 "transactions."
 msgstr ""
-"لیست تراکنش‌ها را بررسی کنید و آنها را جستجو کنید یا فیلتر کنید تا پیوست های "
-"خود را پیدا کنید."
+"لیست تراکنش‌ها را بررسی کنید و آنها را جستجو کنید یا فیلتر کنید تا پیوست های خود "
+"را پیدا کنید."
 
 #: addons/content_su/transactions/view.php:11
 msgid "Also add or edit specefic transactions."
@@ -1656,11 +1610,10 @@ msgstr "توکن دسترسی نامعتبر است!"
 msgid "Help center"
 msgstr "مرکز راهنمایی"
 
-#: addons/content_support/home/view.php:10
-#: addons/content_support/tag/view.php:11
+#: addons/content_support/home/view.php:10 addons/content_support/tag/view.php:11
 msgid ""
-"Easily manage your tickets and monitor or track them to get best answer "
-"until fix your problem"
+"Easily manage your tickets and monitor or track them to get best answer until "
+"fix your problem"
 msgstr ""
 "به‌سادگی تیکت‌های خود را مدیریت کنید و با مونیتور و رهگیری آن‌ها به بهترین پاسخ "
 "برای رفع مشکل خود برسید"
@@ -1701,17 +1654,16 @@ msgstr "بازگشت به لیست تیکت‌ها"
 
 #: addons/content_support/message/edit/view.php:29
 #: addons/content_support/message/edit/view.php:41
-#: addons/content_support/ticket/show/model.php:85
-#: addons/content_support/ticket/show/model.php:185
-#: addons/content_support/ticket/show/view.php:27
-#: addons/content_support/ticket/show/view.php:55
-#: addons/content_support/ticket/show/view.php:265
-#: addons/content_support/ticket/show/view.php:272
+#: addons/content_support/ticket/show/model.php:90
+#: addons/content_support/ticket/show/model.php:203
+#: addons/content_support/ticket/show/view.php:41
+#: addons/content_support/ticket/show/view.php:69
+#: addons/content_support/ticket/show/view.php:280
+#: addons/content_support/ticket/show/view.php:287
 msgid "Ticket not found"
 msgstr "تیکتی یافت نشد"
 
 #: addons/content_support/message/edit/view.php:50
-#: addons/content_support/ticket/show/view.php:68
 msgid "This is not your ticket!"
 msgstr "این تیکت شما نیست!"
 
@@ -1721,11 +1673,11 @@ msgstr "سامانه پشتیبانی تیکت"
 
 #: addons/content_support/message/view.php:11
 msgid ""
-"Easily manage your message and monitor or track them to get best answer "
-"until fix your problem"
+"Easily manage your message and monitor or track them to get best answer until "
+"fix your problem"
 msgstr ""
-"به‌سادگی پیام‌های تیکت‌های خود را مدیریت کنید و با مونیتور و رهگیری آن‌ها به "
-"بهترین پاسخ برای رفع مشکل خود برسید"
+"به‌سادگی پیام‌های تیکت‌های خود را مدیریت کنید و با مونیتور و رهگیری آن‌ها به بهترین "
+"پاسخ برای رفع مشکل خود برسید"
 
 #: addons/content_support/tag/controller.php:18
 msgid "Invalid tag"
@@ -1736,13 +1688,14 @@ msgstr "تگ نادرست"
 msgid "Category"
 msgstr "دسته بندی"
 
-#: addons/content_support/ticket/add/model.php:74
-#: addons/content_support/ticket/show/model.php:191
+#: addons/content_support/ticket/add/model.php:58
+#: addons/content_support/ticket/show/model.php:209
 msgid "Your ticket was sended"
 msgstr "تیکت شما ارسال شد"
 
 #: addons/content_support/ticket/add/view.php:9
-#: addons/includes/languages/trans_static.php:1091
+#: addons/includes/languages/trans_static.php:1091 lib/app/log/msg/support.php:60
+#: lib/social/telegram/commands/ermile.php:334
 msgid "Add new ticket"
 msgstr "افزودن تیکت جدید"
 
@@ -1762,18 +1715,18 @@ msgstr "ما اینجاییم تا به سوالات شما پاسخ دهیم."
 msgid "Please try type something!"
 msgstr "لطفا تلاشی برای تایپ داشته باشید!"
 
-#: addons/content_support/ticket/contact_ticket/model.php:140
-#: addons/content_support/ticket/contact_ticket/model.php:155
+#: addons/content_support/ticket/contact_ticket/model.php:145
+#: addons/content_support/ticket/contact_ticket/model.php:161
 msgid "You can check your contacting answer here"
 msgstr "شما می توانید پاسخ تماس خود را در اینجا بررسی کنید"
 
-#: addons/content_support/ticket/contact_ticket/model.php:141
-#: addons/content_support/ticket/contact_ticket/model.php:156
+#: addons/content_support/ticket/contact_ticket/model.php:146
+#: addons/content_support/ticket/contact_ticket/model.php:162
 msgid "Thank You For contacting us"
 msgstr "از تماس شما متشکریم"
 
-#: addons/content_support/ticket/contact_ticket/model.php:147
-#: addons/content_support/ticket/contact_ticket/model.php:163
+#: addons/content_support/ticket/contact_ticket/model.php:153
+#: addons/content_support/ticket/contact_ticket/model.php:169
 msgid "We could'nt save the contact"
 msgstr "مشکلی در ذخیره‌سازی مخاطب پیش آمد"
 
@@ -1827,39 +1780,43 @@ msgstr "همه تیکت‌ها"
 msgid "Please select tag from list"
 msgstr "لطفا تگ را از لیست انتخاب کنید"
 
-#: addons/content_support/ticket/show/model.php:73
+#: addons/content_support/ticket/show/model.php:77
 msgid "Tag was saved"
 msgstr "کلیدواژه ذخیره شد"
 
-#: addons/content_support/ticket/show/model.php:132
+#: addons/content_support/ticket/show/model.php:138
 msgid "Ticket closed"
 msgstr "تیکت بسته شد"
 
-#: addons/content_support/ticket/show/model.php:136
+#: addons/content_support/ticket/show/model.php:142
 msgid "Ticket was open again"
 msgstr "تیکت دوباره باز شد"
 
-#: addons/content_support/ticket/show/model.php:140
+#: addons/content_support/ticket/show/model.php:146
 msgid "Ticket was deleted"
 msgstr "تیکت حذف شد"
 
-#: addons/content_support/ticket/show/model.php:159
+#: addons/content_support/ticket/show/model.php:150
+msgid "Ticket set on spam"
+msgstr "تیکت به‌عنوان جفنگ علامت‌گذاری شد"
+
+#: addons/content_support/ticket/show/model.php:173
 msgid "Ticket set as solved"
 msgstr "مشکل حل شد"
 
-#: addons/content_support/ticket/show/model.php:164
+#: addons/content_support/ticket/show/model.php:178
 msgid "Ticket set as unsolved"
 msgstr "مشکل هنوز حل نشده"
 
-#: addons/content_support/ticket/show/model.php:228
+#: addons/content_support/ticket/show/model.php:246
 msgid "Your note saved"
 msgstr "پیام شما ذخیره شد"
 
-#: addons/content_support/ticket/show/model.php:265
+#: addons/content_support/ticket/show/model.php:283
 msgid "Your message has been added"
 msgstr "پیام شما اضافه شد"
 
-#: addons/content_support/ticket/show/model.php:302
+#: addons/content_support/ticket/show/model.php:356
 msgid "Your answer was saved"
 msgstr "پاسخ شما ذخیره شد"
 
@@ -1875,16 +1832,15 @@ msgstr "بررسی جزئیات تیکت شما."
 msgid "We try to answer to you as soon as posibble."
 msgstr "ما سعی می کنیم تا در اسرع وقت به شما پاسخ دهیم."
 
-#: addons/content_support/ticket/show/view.php:44
+#: addons/content_support/ticket/show/view.php:58
 msgid "This ticket closed automatically on :time because it marked as solved."
 msgstr "این تیکت حل شده و به‌صورت خودکار در :time بسته خواهد شد."
 
-#: addons/content_support/ticket/show/view.php:44
+#: addons/content_support/ticket/show/view.php:58
 msgid "If it's okay you can close it manually."
 msgstr "اگر مشکلی وجود ندارد شما می‌توانید آن را به‌صورت دستی ببندید."
 
-#: addons/content_support/view.php:45
-#: addons/includes/languages/trans_dash.php:82
+#: addons/content_support/view.php:45 addons/includes/languages/trans_dash.php:82
 msgid "Support"
 msgstr "پشتیبانی"
 
@@ -2061,8 +2017,7 @@ msgstr "شارژ حساب کاربری"
 
 #: addons/includes/languages/trans_dash.php:54
 msgid "Choose a gateway and enter an amount to charge your account"
-msgstr ""
-"درگاه پرداخت خود را انتخاب کنید و میزان شارژ حساب کاربری خود را وارد کنید"
+msgstr "درگاه پرداخت خود را انتخاب کنید و میزان شارژ حساب کاربری خود را وارد کنید"
 
 #: addons/includes/languages/trans_dash.php:55
 msgid "Parsian"
@@ -2141,9 +2096,7 @@ msgstr "تعداد"
 
 #: addons/includes/languages/trans_dash.php:77
 #: addons/includes/languages/trans_static.php:102
-#: addons/includes/languages/trans_static.php:385 lib/social/tg
-#: old/commands/menu_profile.php:42 old/commands/menu_profile.php:86 older -
-#: addons/commands/menu_profile.php:42 addons/commands/menu_profile.php:86
+#: addons/includes/languages/trans_static.php:385
 msgid "Profile"
 msgstr "پروفایل"
 
@@ -2200,6 +2153,8 @@ msgid "Default language"
 msgstr "زبان پیشفرض"
 
 #: addons/includes/languages/trans_dash.php:100
+#: lib/social/telegram/commands/ermile.php:346
+#: lib/social/telegram/commands/ermile.php:533
 msgid "Website"
 msgstr "وبسایت"
 
@@ -2486,11 +2441,10 @@ msgstr "دوستان خود را از طریق شبکه‌های اجتماعی 
 
 #: addons/includes/languages/trans_dash.php:182
 msgid ""
-"Share the referral rewards program with friends on Facebook, Twitter, or "
-"Email."
+"Share the referral rewards program with friends on Facebook, Twitter, or Email."
 msgstr ""
-"برنامه معرفی را با دوستان خود در توئیتر، فیس‌بوک، تلگرام یا سایر شبکه‌های "
-"اجتماعی و ایمیل به اشتراک بگذارید."
+"برنامه معرفی را با دوستان خود در توئیتر، فیس‌بوک، تلگرام یا سایر شبکه‌های اجتماعی "
+"و ایمیل به اشتراک بگذارید."
 
 #: addons/includes/languages/trans_dash.php:183
 msgid "When they click on your post, we’ll know it was you who referred them."
@@ -2500,8 +2454,8 @@ msgstr ""
 
 #: addons/includes/languages/trans_dash.php:184
 msgid ""
-"If someone forget to use your link, we allow to set your ref code as promo "
-"code in billing page!"
+"If someone forget to use your link, we allow to set your ref code as promo code "
+"in billing page!"
 msgstr ""
 "اگر هنگام ورود به سایت کسی فراموش کرد که از لینک شما استفاده کند، ما اجازه‌ی "
 "تنظیم کد شما را به عنوان کدتخفیف در صفحه مالی می‌دهیم!"
@@ -2516,12 +2470,12 @@ msgstr "دوستان شما وارد جیبرس شده و ۱۰.۰۰۰ تومان
 
 #: addons/includes/languages/trans_dash.php:187
 msgid ""
-"Anyone you refer to Jibres that enter using your unique referral link or "
-"your promo code will receive $5 in credit."
+"Anyone you refer to Jibres that enter using your unique referral link or your "
+"promo code will receive $5 in credit."
 msgstr ""
-"هرکسی که با کد منحصربفرد شما سایت را مشاده کرده و وارد جیبرس شود و یا کسانی "
-"که از کد تخفیف شما استفاده کنند، ۱۰.۰۰۰ تومان اعتبار هدیه برای کار با جیبرس "
-"دریافت خواهند کرد."
+"هرکسی که با کد منحصربفرد شما سایت را مشاده کرده و وارد جیبرس شود و یا کسانی که "
+"از کد تخفیف شما استفاده کنند، ۱۰.۰۰۰ تومان اعتبار هدیه برای کار با جیبرس دریافت "
+"خواهند کرد."
 
 #: addons/includes/languages/trans_dash.php:188
 msgid "You all get rewarded."
@@ -2537,17 +2491,17 @@ msgid ""
 "Amount of charge is depended on your friend total pay and after automatic "
 "calculation, system set your gift."
 msgstr ""
-"میزان شارژ بسته به مجموع پرداختی دوستان شما متفاوت بوده و پس از محاسبه "
-"خودکار، سیستم هدیه شما را منظور خواهد کرد."
+"میزان شارژ بسته به مجموع پرداختی دوستان شما متفاوت بوده و پس از محاسبه خودکار، "
+"سیستم هدیه شما را منظور خواهد کرد."
 
 #: addons/includes/languages/trans_dash.php:191
 msgid ""
-"We calculate your percentage until 6 month of your friend registration. "
-"Because of that it was your chance to convinced your friend to charge more!"
+"We calculate your percentage until 6 month of your friend registration. Because "
+"of that it was your chance to convinced your friend to charge more!"
 msgstr ""
-"شما ۶ ماه فرصت دارید تا مجموع پرداختی هر دوست معرفی شده را افزایش دهید. "
-"به‌همین دلیل، شما این زمان را خواهید داشت تا پس از اطمینان دوستان از کیفیت "
-"سیستم، آنان را برای شارژ بیشتر متقاعد کنید!"
+"شما ۶ ماه فرصت دارید تا مجموع پرداختی هر دوست معرفی شده را افزایش دهید. به‌همین "
+"دلیل، شما این زمان را خواهید داشت تا پس از اطمینان دوستان از کیفیت سیستم، آنان "
+"را برای شارژ بیشتر متقاعد کنید!"
 
 #: addons/includes/languages/trans_dash.php:192
 msgid "Share your link"
@@ -2555,11 +2509,10 @@ msgstr "لینک خود را به اشتراک بگذارید"
 
 #: addons/includes/languages/trans_dash.php:193
 msgid ""
-"Copy your personal referral link and share it with your friends and "
-"followers."
+"Copy your personal referral link and share it with your friends and followers."
 msgstr ""
-"لینک معرفی شخصی خود را کپی کنید و آن را با دوستان و دنبال‌کنندگان خود به "
-"اشتراک بگذارید."
+"لینک معرفی شخصی خود را کپی کنید و آن را با دوستان و دنبال‌کنندگان خود به اشتراک "
+"بگذارید."
 
 #: addons/includes/languages/trans_dash.php:194
 msgid "Link"
@@ -2877,8 +2830,7 @@ msgstr "برخی از حقوق محفوظ است"
 
 #: addons/includes/languages/trans_dash.php:303
 #: addons/includes/languages/trans_static.php:58
-#: addons/includes/languages/trans_static.php:175 lib/engine/view.php:77
-#: lib/social/telegram/commands/ermile.php:174
+#: addons/includes/languages/trans_static.php:175 lib/engine/view.php:79
 msgid "Ermile"
 msgstr "ارمایل"
 
@@ -2892,7 +2844,7 @@ msgid "User"
 msgstr "کاربر"
 
 #: addons/includes/languages/trans_dash.php:308
-#: lib/social/telegram/commands/conversation.php:226
+#: lib/social/telegram/commands/utility.php:38
 msgid "User id"
 msgstr "کد کاربر"
 
@@ -2966,7 +2918,7 @@ msgid "Deleted"
 msgstr "حذف شده"
 
 #: addons/includes/languages/trans_dash.php:329
-#: lib/social/telegram/commands/menu.php:70
+#: lib/social/telegram/commands/ermile.php:528
 msgid "Contact"
 msgstr "تماس"
 
@@ -2980,11 +2932,10 @@ msgstr "نامک"
 
 #: addons/includes/languages/trans_dash.php:334
 msgid ""
-"The permission name should be unique and contain only alphanameric "
-"characters and underscores"
+"The permission name should be unique and contain only alphanameric characters "
+"and underscores"
 msgstr ""
-"نام سطح دسترسی باید منحصر به فرد باشد و فقط شامل کاراکتر‌های الفبا و زیر خط "
-"باشد"
+"نام سطح دسترسی باید منحصر به فرد باشد و فقط شامل کاراکتر‌های الفبا و زیر خط باشد"
 
 #: addons/includes/languages/trans_dash.php:335
 msgid "Name of your permission"
@@ -3091,8 +3042,8 @@ msgstr "زیرنویس را اینجا وارد کنید"
 #: addons/includes/languages/trans_dash.php:372
 msgid "Subtitle show under title and used on press websites"
 msgstr ""
-"زیرعنوان یا سوتیتر معمولا در زیر عنوان اصلی نمایش داده شده و برای سایت‌های "
-"خبری کاربرد دارد"
+"زیرعنوان یا سوتیتر معمولا در زیر عنوان اصلی نمایش داده شده و برای سایت‌های خبری "
+"کاربرد دارد"
 
 #: addons/includes/languages/trans_dash.php:373
 msgid "Excerpt used for social media and search engines"
@@ -3109,8 +3060,8 @@ msgstr "آدرس این نوشته."
 #: addons/includes/languages/trans_dash.php:376
 msgid "You can change by set slug and category or parent for this post"
 msgstr ""
-"شما می‌توانید با تنظیم نامک بخش آخر آدرس و با تغییر دسته‌بندی در اخبار یا والد "
-"در صفحات آن را برای این صفحه سفارشی کنید"
+"شما می‌توانید با تنظیم نامک بخش آخر آدرس و با تغییر دسته‌بندی در اخبار یا والد در "
+"صفحات آن را برای این صفحه سفارشی کنید"
 
 #: addons/includes/languages/trans_dash.php:377
 msgid "Slug used to create url"
@@ -3162,8 +3113,7 @@ msgstr "لطفا یک گزینه را انتخاب کنید"
 
 #: addons/includes/languages/trans_dash.php:389
 msgid "Choose parent for this page to create related url as tree"
-msgstr ""
-"با انتخاب والد برای این صفحه، آدرس‌های نسبی مانند ساختار درختی ایجاد کنید"
+msgstr "با انتخاب والد برای این صفحه، آدرس‌های نسبی مانند ساختار درختی ایجاد کنید"
 
 #: addons/includes/languages/trans_dash.php:390
 msgid "Choose Parent"
@@ -3175,8 +3125,8 @@ msgstr "بدون والد"
 
 #: addons/includes/languages/trans_dash.php:392
 msgid ""
-"Choose category for posts is fix url of post relative and help people find "
-"it better."
+"Choose category for posts is fix url of post relative and help people find it "
+"better."
 msgstr ""
 "انتخاب دسته‌بندی برای نوشته منجر به تصحیح آدرس نوشته و ساختارمند کردن آن برای "
 "یافتن بهتر می‌گردد."
@@ -3191,8 +3141,7 @@ msgstr "افزودن دسته‌بندی جدید"
 
 #: addons/includes/languages/trans_dash.php:395
 msgid "Click on special tags to use this depending on your website design"
-msgstr ""
-"بسته به طراحی وب‌سایت با کلیک روی کلیدواژه خاص از ویژگی‌های آن استفاده کنید"
+msgstr "بسته به طراحی وب‌سایت با کلیک روی کلیدواژه خاص از ویژگی‌های آن استفاده کنید"
 
 #: addons/includes/languages/trans_dash.php:396
 msgid "Tag"
@@ -3317,7 +3266,10 @@ msgstr "متن الگو"
 
 #: addons/includes/languages/trans_dash.php:438
 #: addons/includes/languages/trans_static.php:90
-#: lib/social/telegram/commands/ermile.php:295
+#: lib/social/telegram/commands/step_ticketAnswer.php:42
+#: lib/social/telegram/commands/step_ticketCreate.php:44
+#: lib/social/telegram/step.php:212 lib/social/telegram/step.php:358
+#: lib/social/telegram/step.php:373
 msgid "Cancel"
 msgstr "انصراف"
 
@@ -3650,6 +3602,7 @@ msgid "If have problem"
 msgstr "در صورت بروز مشکل"
 
 #: addons/includes/languages/trans_dash.php:547
+#: lib/social/telegram/commands/ermile.php:333
 msgid "Contact us"
 msgstr "با ما تماس بگیرید"
 
@@ -3702,8 +3655,7 @@ msgid "Remove my email address"
 msgstr "بازیابی ایمیل"
 
 #: addons/includes/languages/trans_dash.php:572
-msgid ""
-"We found your Google Mail that is different from your current google mail"
+msgid "We found your Google Mail that is different from your current google mail"
 msgstr "رایانامه گوگل وارد شده با رایانامه فعلی شما مطابقت ندارد"
 
 #: addons/includes/languages/trans_dash.php:573
@@ -3861,7 +3813,7 @@ msgstr "روز"
 
 #: addons/includes/languages/trans_dash.php:635
 #: addons/includes/languages/trans_static.php:33 lib/utility/human.php:31
-#: lib/utility/human.php:132
+#: lib/utility/human.php:118
 msgid "hour"
 msgstr "ساعت"
 
@@ -4147,8 +4099,8 @@ msgstr "کد گفتگو یا نام‌کاربری"
 
 #: addons/includes/languages/trans_dash.php:748
 msgid ""
-"Unique identifier for the target chat or username of the target channel (in "
-"the format @channelusername)"
+"Unique identifier for the target chat or username of the target channel (in the "
+"format @channelusername)"
 msgstr "شناسه منحصربه‌فرد برای ارسال پیام به شخص یا کانال در فرمت @نام_کاربری"
 
 #: addons/includes/languages/trans_dash.php:749
@@ -4168,11 +4120,10 @@ msgid "File URL"
 msgstr "آدرس فایل"
 
 #: addons/includes/languages/trans_dash.php:755
-msgid ""
-"pass an HTTP URL as a String for Telegram to get a photo from the Internet"
+msgid "pass an HTTP URL as a String for Telegram to get a photo from the Internet"
 msgstr ""
-"برای دریافت یک عکس از اینترنت یک نشانی اینترنتی HTTP را به عنوان یک رشته "
-"برای تلگرام منتقل کنید"
+"برای دریافت یک عکس از اینترنت یک نشانی اینترنتی HTTP را به عنوان یک رشته برای "
+"تلگرام منتقل کنید"
 
 #: addons/includes/languages/trans_dash.php:756
 msgid "Caption"
@@ -4180,11 +4131,9 @@ msgstr "برچسب"
 
 #: addons/includes/languages/trans_dash.php:759
 msgid ""
-"HTTPS url to send updates to. Use an empty string to remove webhook "
-"integration"
+"HTTPS url to send updates to. Use an empty string to remove webhook integration"
 msgstr ""
-"آدرسی را برای به روزرسانی بفرستید. با فرستادن آدرس خالی وبهوک شما حذف خواهد "
-"شد"
+"آدرسی را برای به روزرسانی بفرستید. با فرستادن آدرس خالی وبهوک شما حذف خواهد شد"
 
 #: addons/includes/languages/trans_dash.php:760
 msgid "Max Connections"
@@ -4471,8 +4420,7 @@ msgid "Open new ticket!"
 msgstr "باز کردن تیکت جدید!"
 
 #: addons/includes/languages/trans_dash.php:858
-msgid ""
-"Please log in if you need to store this ticket and track it in the future"
+msgid "Please log in if you need to store this ticket and track it in the future"
 msgstr "لطفا برای ذخیره و پیگیری‌های بعدی این تیکت وارد سیستم شوید"
 
 #: addons/includes/languages/trans_dash.php:861
@@ -4533,8 +4481,8 @@ msgstr "ساعات"
 
 #: addons/includes/languages/trans_dash.php:879
 msgid ""
-"If your problem is solved or do not need to track, please close this ticket "
-"by press below bottom."
+"If your problem is solved or do not need to track, please close this ticket by "
+"press below bottom."
 msgstr ""
 "اگر مشکل شما حل شده و یا نیازی به رهگیری آن نیست، لطفا تیکت را با فشردن دکمه "
 "زیر ببندید."
@@ -4570,8 +4518,7 @@ msgstr "این تیکت حذف شده است."
 #: addons/includes/languages/trans_dash.php:887
 msgid "You can change it to close condition if need to save it in history!"
 msgstr ""
-"شما می‌توانید برای نگهداری این تیکت در تاریخچه وضعیت آن را به بسته‌شده تغییر "
-"دهید!"
+"شما می‌توانید برای نگهداری این تیکت در تاریخچه وضعیت آن را به بسته‌شده تغییر دهید!"
 
 #: addons/includes/languages/trans_dash.php:888
 msgid "If your problem is not solved yet, please set this ticket as unsolved"
@@ -4666,7 +4613,7 @@ msgstr "آواتار شما"
 msgid "Default Avatar"
 msgstr "تصویر پیشفرض"
 
-#: addons/includes/languages/trans_dash.php:919
+#: addons/includes/languages/trans_dash.php:919 lib/social/telegram/answer.php:54
 msgid "Hello"
 msgstr "سلام"
 
@@ -4774,6 +4721,9 @@ msgstr "نام کامل"
 
 #: addons/includes/languages/trans_dash.php:947
 #: addons/includes/languages/trans_static.php:409
+#: lib/social/telegram/commands/ermile.php:66
+#: lib/social/telegram/commands/ermileInline.php:49
+#: lib/social/telegram/step.php:323
 msgid "email"
 msgstr "رایانامه"
 
@@ -4984,7 +4934,7 @@ msgid "day"
 msgstr "روز"
 
 #: addons/includes/languages/trans_static.php:34 lib/utility/human.php:32
-#: lib/utility/human.php:140
+#: lib/utility/human.php:126
 msgid "minute"
 msgstr "دقیقه"
 
@@ -4996,7 +4946,7 @@ msgstr "ثانیه"
 msgid "ago"
 msgstr "قبل"
 
-#: addons/includes/languages/trans_static.php:37
+#: addons/includes/languages/trans_static.php:37 lib/app/address.php:283
 msgid ","
 msgstr "،"
 
@@ -5073,7 +5023,8 @@ msgid "iran"
 msgstr "ایران"
 
 #: addons/includes/languages/trans_static.php:63
-#: lib/social/telegram/commands/ermile.php:168
+#: lib/social/telegram/commands/ermile.php:240
+#: lib/social/telegram/commands/ermileInline.php:111
 msgid "Qom"
 msgstr "قم"
 
@@ -5103,6 +5054,7 @@ msgid "sign in"
 msgstr "ورود"
 
 #: addons/includes/languages/trans_static.php:70
+#: lib/social/telegram/commands/ermile.php:99 lib/social/telegram/step.php:325
 msgid "signup"
 msgstr "ثبت نام"
 
@@ -5111,6 +5063,7 @@ msgid "sign up"
 msgstr "ثبت نام"
 
 #: addons/includes/languages/trans_static.php:72
+#: lib/social/telegram/commands/ermile.php:98 lib/social/telegram/step.php:324
 msgid "register"
 msgstr "ثبت نام"
 
@@ -5118,7 +5071,7 @@ msgstr "ثبت نام"
 msgid "home"
 msgstr "خانه"
 
-#: addons/includes/languages/trans_static.php:74 lib/engine/twigAddons.php:430
+#: addons/includes/languages/trans_static.php:74 lib/engine/twigAddons.php:356
 msgid "Home"
 msgstr "صفحه نخست"
 
@@ -5126,7 +5079,7 @@ msgstr "صفحه نخست"
 msgid "homepage"
 msgstr "صفحه نخست"
 
-#: addons/includes/languages/trans_static.php:76 lib/engine/twigAddons.php:415
+#: addons/includes/languages/trans_static.php:76 lib/engine/twigAddons.php:341
 msgid "Homepage"
 msgstr "صفحه نخست"
 
@@ -5268,8 +5221,7 @@ msgstr "از دسته‌ها برای تعریف بخش‌های سایت و د�
 
 #: addons/includes/languages/trans_static.php:128
 msgid "Use categories to define sections of your site and group related files"
-msgstr ""
-"از دسته‌بندی برای تعریف بخش‌های مختلف برای گروه‌بندی‌کردن فایل‌ها استفاده کنید"
+msgstr "از دسته‌بندی برای تعریف بخش‌های مختلف برای گروه‌بندی‌کردن فایل‌ها استفاده کنید"
 
 #: addons/includes/languages/trans_static.php:129
 msgid "Use posts to share your news in specefic category"
@@ -5338,7 +5290,6 @@ msgid "upload"
 msgstr "بارگذاری"
 
 #: addons/includes/languages/trans_static.php:146
-#: lib/social/telegram/commands/step_ticketAnswer.php:47
 msgid "View"
 msgstr "نمایش"
 
@@ -5461,13 +5412,11 @@ msgstr "خطا در انتقال فایل"
 msgid "Error"
 msgstr "خطا"
 
-#: addons/includes/languages/trans_static.php:187
-#: lib/utility/upload/check.php:20
+#: addons/includes/languages/trans_static.php:187 lib/utility/upload/check.php:20
 msgid "Invalid parameters"
 msgstr "پارامتر اشتباه"
 
-#: addons/includes/languages/trans_static.php:188
-#: lib/utility/upload/check.php:32
+#: addons/includes/languages/trans_static.php:188 lib/utility/upload/check.php:32
 msgid "No file sent"
 msgstr "فایلی ارسال نشده"
 
@@ -5476,13 +5425,11 @@ msgstr "فایلی ارسال نشده"
 msgid "Exceeded filesize limit"
 msgstr "ظرفیت فایل بیش از حد مجاز"
 
-#: addons/includes/languages/trans_static.php:190
-#: lib/utility/upload/check.php:43
+#: addons/includes/languages/trans_static.php:190 lib/utility/upload/check.php:43
 msgid "Unknown errors"
 msgstr "خطای نامشخص"
 
-#: addons/includes/languages/trans_static.php:191
-#: lib/utility/upload/check.php:106
+#: addons/includes/languages/trans_static.php:191 lib/utility/upload/check.php:106
 msgid "We don't support this type of file"
 msgstr "ما این نوع فایل را پشتیبانی نمیکنیم"
 
@@ -5595,14 +5542,15 @@ msgid "disable"
 msgstr "غیرفعال"
 
 #: addons/includes/languages/trans_static.php:231
+#: lib/social/telegram/commands/ermile.php:124 lib/social/telegram/step.php:327
 msgid "help"
 msgstr "کمک"
 
 #: addons/includes/languages/trans_static.php:232
 msgid "For multilanguage sites enter title in English and translate it"
 msgstr ""
-"برای سایت‌های چندزبانه، این بخش را به انگلیسی وارد نموده و توسط برنامه مترجم "
-"آن را به سایر زبان‌ها ترجمه کنید"
+"برای سایت‌های چندزبانه، این بخش را به انگلیسی وارد نموده و توسط برنامه مترجم آن "
+"را به سایر زبان‌ها ترجمه کنید"
 
 #: addons/includes/languages/trans_static.php:236
 msgid "main URL"
@@ -5969,8 +5917,7 @@ msgid "You can edit this permission"
 msgstr "شما توانایی ویرایش این سطح دسترسی را دارید"
 
 #: addons/includes/languages/trans_static.php:357
-msgid ""
-"Define or edit user permissions to allow or block access to special pages"
+msgid "Define or edit user permissions to allow or block access to special pages"
 msgstr "تعریف یا ویرایش سطوح‌دسترسی برای اجازه یا ممنوع‌کردن دسترسی به صفحات خاص"
 
 #: addons/includes/languages/trans_static.php:358
@@ -6005,53 +5952,37 @@ msgstr "در حال حاضر ما فقط به شماره‌های ایران س�
 msgid "Thanks for using our service"
 msgstr "متشکریم که از سرویس ما استفاده می‌کنید"
 
-#: addons/includes/languages/trans_static.php:374 lib/social/tg
-#: old/commands/step_register.php:45 older -
-#: addons/commands/step_register.php:45
+#: addons/includes/languages/trans_static.php:374
 msgid "Dear user"
 msgstr "کاربر گرامی"
 
-#: addons/includes/languages/trans_static.php:375 lib/social/tg
-#: old/commands/step_register.php:46 older -
-#: addons/commands/step_register.php:46
+#: addons/includes/languages/trans_static.php:375
 msgid "For using this service we need to register your phone number."
 msgstr "برای استفاده از این سرویس ما نیاز به ثبت شماره موبایل شما داریم."
 
-#: addons/includes/languages/trans_static.php:376 lib/social/tg
-#: old/commands/step_register.php:47 older -
-#: addons/commands/step_register.php:47
+#: addons/includes/languages/trans_static.php:376
 msgid "Please send your number with below keyboard to complete registeration."
 msgstr "لطفا شماره خود را از طریق منوی زیر برای تکمیل ثبت‌نام ارسال نمایید."
 
-#: addons/includes/languages/trans_static.php:377 lib/social/tg
-#: old/commands/step_register.php:114 older -
-#: addons/commands/step_register.php:114
+#: addons/includes/languages/trans_static.php:377
 msgid "Dear friend"
 msgstr "دوست عزیز"
 
-#: addons/includes/languages/trans_static.php:378 lib/social/tg
-#: old/commands/step_register.php:115 older -
-#: addons/commands/step_register.php:115
+#: addons/includes/languages/trans_static.php:378
 msgid "We need your phone number to verifying your account."
 msgstr "ما برای اعتبارسنجی اکانت، نیاز به شماره موبایل شما داریم."
 
-#: addons/includes/languages/trans_static.php:379 lib/social/tg
-#: old/commands/step_register.php:116 older -
-#: addons/commands/step_register.php:116
+#: addons/includes/languages/trans_static.php:379
 msgid ""
 "If you dont want share your number, we cant presenting our services to you!"
 msgstr ""
 "اگر شما مایل به ارائه شماره خود نباشید، ما امکان سرویس‌دهی به شما را نداریم!"
 
-#: addons/includes/languages/trans_static.php:380 lib/social/tg
-#: old/commands/step_register.php:122 older -
-#: addons/commands/step_register.php:122
+#: addons/includes/languages/trans_static.php:380
 msgid "Registering user is successful."
 msgstr "ثبت‌نام کاربر با موفقیت به انجام رسید."
 
-#: addons/includes/languages/trans_static.php:381 lib/social/tg
-#: old/commands/step_register.php:134 older -
-#: addons/commands/step_register.php:134
+#: addons/includes/languages/trans_static.php:381
 msgid "Cancel registration and return to main menu"
 msgstr "انصراف از ثبت‌نام و بازگشت به منوی اصلی"
 
@@ -6059,9 +5990,7 @@ msgstr "انصراف از ثبت‌نام و بازگشت به منوی اصلی
 msgid "Please only use below keyboard"
 msgstr "لطفا تنها از منوی زیر استفاده کنید"
 
-#: addons/includes/languages/trans_static.php:383 lib/social/tg
-#: old/commands/step_register.php:143 older -
-#: addons/commands/step_register.php:143
+#: addons/includes/languages/trans_static.php:383
 msgid "We need your contact!"
 msgstr "ما به مخاطب شما نیاز داریم!"
 
@@ -6073,55 +6002,39 @@ msgstr "ثبت کاربر 📱"
 msgid "Register User"
 msgstr "ثبت کاربر"
 
-#: addons/includes/languages/trans_static.php:388 lib/social/tg
-#: old/commands/menu_profile.php:32 old/commands/menu_profile.php:76
-#: old/commands/step_register.php:172 older -
-#: addons/commands/menu_profile.php:32 addons/commands/menu_profile.php:76
-#: addons/commands/step_register.php:172
+#: addons/includes/languages/trans_static.php:388
 msgid "Return"
 msgstr "بازگشت"
 
-#: addons/includes/languages/trans_static.php:389 lib/social/tg
-#: old/commands/menu_profile.php:72 older - addons/commands/menu_profile.php:72
+#: addons/includes/languages/trans_static.php:389
 msgid "Register Mobile Number 📱"
 msgstr "ثبت شماره موبایل 📱"
 
-#: addons/includes/languages/trans_static.php:390 lib/social/tg
-#: old/commands/menu_profile.php:28 older - addons/commands/menu_profile.php:28
+#: addons/includes/languages/trans_static.php:390
 msgid "Register Mobile Number"
 msgstr "ثبت شماره موبایل"
 
-#: addons/includes/languages/trans_static.php:391 lib/social/tg
-#: old/commands/menu_profile.php:24 older - addons/commands/menu_profile.php:24
+#: addons/includes/languages/trans_static.php:391
 msgid "Register Address"
 msgstr "ثبت آدرس"
 
-#: addons/includes/languages/trans_static.php:392 lib/social/tg
-#: old/commands/menu_profile.php:43 old/commands/menu_profile.php:87 older -
-#: addons/commands/menu_profile.php:43 addons/commands/menu_profile.php:87
+#: addons/includes/languages/trans_static.php:392
 msgid "By completing your profile, help us to present better service."
 msgstr "با تکمیل پروفایل خود، به ما در ارائه سرویس بهتر کمک کنید."
 
-#: addons/includes/languages/trans_static.php:393 lib/social/tg
-#: old/commands/menu_profile.php:44 old/commands/menu_profile.php:88 older -
-#: addons/commands/menu_profile.php:44 addons/commands/menu_profile.php:88
+#: addons/includes/languages/trans_static.php:393
 msgid "We will thank you for this."
 msgstr "ما از این اقدام شما تشکر می‌کنیم."
 
 #: addons/includes/languages/trans_static.php:395
-#: lib/social/telegram/user.php:132 lib/social/tg older - addons/log.php:361
 msgid "Your phone number registered successfully;)"
 msgstr "شماره موبایل شما با موفقیت ثبت شد;)"
 
-#: addons/includes/languages/trans_static.php:396
-#: lib/social/telegram/user.php:113 lib/social/tg old/log.php:418 older -
-#: addons/log.php:369
+#: addons/includes/languages/trans_static.php:396 lib/social/telegram/user.php:159
 msgid "We dont need another users contact:?)"
 msgstr "ما به مخاطب سایر کاربران نیاز نداریم:؟)"
 
-#: addons/includes/languages/trans_static.php:397
-#: lib/social/telegram/user.php:104 lib/social/tg old/log.php:426 older -
-#: addons/log.php:377
+#: addons/includes/languages/trans_static.php:397 lib/social/telegram/user.php:150
 msgid "We need mobile number!"
 msgstr "ما به شماره موبایل نیاز داریم!"
 
@@ -6154,6 +6067,9 @@ msgid "password"
 msgstr "گذرواژه"
 
 #: addons/includes/languages/trans_static.php:408
+#: lib/social/telegram/commands/ermile.php:64
+#: lib/social/telegram/commands/ermileInline.php:47
+#: lib/social/telegram/step.php:320
 msgid "mobile"
 msgstr "موبایل"
 
@@ -6206,6 +6122,7 @@ msgid "unit_id"
 msgstr "کد واحد مالی"
 
 #: addons/includes/languages/trans_static.php:423
+#: lib/social/telegram/commands/ermile.php:29 lib/social/telegram/step.php:313
 msgid "language"
 msgstr "زبان"
 
@@ -6214,6 +6131,9 @@ msgid "meta"
 msgstr "متا"
 
 #: addons/includes/languages/trans_static.php:425
+#: lib/social/telegram/commands/ermile.php:72
+#: lib/social/telegram/commands/ermileInline.php:30
+#: lib/social/telegram/step.php:322
 msgid "website"
 msgstr "وب‌سایت"
 
@@ -7767,7 +7687,7 @@ msgstr "جزایر جزر و مدی کوچک"
 
 #: addons/includes/languages/trans_static.php:837
 msgid "uganda"
-msgstr "گوگولا"
+msgstr "اوگاندا"
 
 #: addons/includes/languages/trans_static.php:838
 msgid "ukraine"
@@ -7982,7 +7902,7 @@ msgstr "حذف اضطراری"
 msgid "removeadmin"
 msgstr "حذف توسط مدیریت"
 
-#: addons/includes/languages/trans_static.php:897
+#: addons/includes/languages/trans_static.php:897 lib/social/telegram/step.php:211
 msgid "cancel"
 msgstr "انصراف"
 
@@ -8368,13 +8288,13 @@ msgstr "ما یک ورودی جدید را مشاهده کردیم :displayname"
 #: addons/includes/languages/trans_static.php:1016
 #: addons/includes/languages/trans_static.php:1087
 msgid ""
-"If this was you, you can safely disregard this message. If you didn't do "
-"this, please change your password to help secure your account. Learn more "
-"about keeping your account secure."
+"If this was you, you can safely disregard this message. If you didn't do this, "
+"please change your password to help secure your account. Learn more about "
+"keeping your account secure."
 msgstr ""
 "اگر این شما هستید، می توانید با خیال راحت این پیام را نادیده بگیرید. اگر این "
-"کار را نکردید، لطفا گذرواژه خود را تغییر دهید تا امنیت حسابتان را تضمین "
-"کنید. درباره حفظ امنیت حساب کاربری بیشتر بدانید."
+"کار را نکردید، لطفا گذرواژه خود را تغییر دهید تا امنیت حسابتان را تضمین کنید. "
+"درباره حفظ امنیت حساب کاربری بیشتر بدانید."
 
 #: addons/includes/languages/trans_static.php:1018
 #: addons/includes/languages/trans_static.php:1078
@@ -8620,8 +8540,7 @@ msgstr ""
 #: addons/includes/languages/trans_static.php:1083
 msgid "Add transaction :title whit :plus plus and :minus minus to :user_id"
 msgstr ""
-"افزایش تراکنش دستی با عنوان :title با افزودن :plus و کاهش :minus برای  :"
-"user_id"
+"افزایش تراکنش دستی با عنوان :title با افزودن :plus و کاهش :minus برای  :user_id"
 
 #: addons/includes/languages/trans_static.php:1084
 msgid "The :user content"
@@ -8651,15 +8570,15 @@ msgstr "تیک به وضعیت حل شده تغییر کرد"
 msgid "The ticket set as unsolved ticket"
 msgstr "تیکت به وضعیت حل نشده تغییر کرد"
 
-#: addons/includes/languages/trans_static.php:1097
+#: addons/includes/languages/trans_static.php:1097 lib/app/log/msg/support.php:152
 msgid "Answer ticket"
 msgstr "پاسخ به تیکت"
 
-#: addons/includes/languages/trans_static.php:1098
+#: addons/includes/languages/trans_static.php:1098 lib/app/log/msg/support.php:238
 msgid "Add new message to ticket"
 msgstr "افزودن پیام به تیکت"
 
-#: addons/includes/languages/trans_static.php:1099
+#: addons/includes/languages/trans_static.php:1099 lib/app/log/msg/support.php:323
 msgid "Add new note to ticket"
 msgstr "افزودن یادداشت به تیکت"
 
@@ -8715,99 +8634,107 @@ msgstr "تیکت را باز کرد"
 msgid "Back to unsolved"
 msgstr "بازگشت به حل نشده"
 
+#: addons/includes/languages/trans_static.php:1116
+msgid "Remove temp csv file"
+msgstr "حذف فایل‌های سی‌اس‌وی موقتی"
+
 #: lib/app/address.php:58
 msgid "Please set title less than 100 character"
 msgstr "لطفا عنوان را کمتر از ۱۰۰ حرف وارد کنید"
 
 #: lib/app/address.php:65
-msgid "Please set firstname less than 100 character"
+msgid "Please set name less than 100 character"
 msgstr "لطفا نام را کمتر از ۱۰۰ حرف وارد کنید"
 
-#: lib/app/address.php:72
-msgid "Please set lastname less than 100 character"
-msgstr "لطفا نام خانوادگی را کمتر از ۱۰۰ حرف وارد کنید"
-
-#: lib/app/address.php:83
+#: lib/app/address.php:77
 msgid "Please set companyname less than 100 character"
 msgstr "لطفا نام شرکت را کمتر از ۱۰۰ حرف وارد کنید"
 
-#: lib/app/address.php:90
+#: lib/app/address.php:84
 msgid "Please set jobtitle less than 100 character"
 msgstr "لطفا عنوان شغلی را کمتر از ۱۰۰ حرف وارد کنید"
 
-#: lib/app/address.php:98
+#: lib/app/address.php:92
 msgid "Please set country less than 100 character"
 msgstr "لطفا کشور را کمتر از ۱۰۰ حرف وارد کنید"
 
-#: lib/app/address.php:104
+#: lib/app/address.php:98
 msgid "Invalid country"
 msgstr "کشور نامعتبر"
 
-#: lib/app/address.php:111
+#: lib/app/address.php:105
 msgid "Please set province less than 100 character"
 msgstr "لطفا استان را کمتر از ۱۰۰ حرف وارد کنید"
 
-#: lib/app/address.php:117
+#: lib/app/address.php:111
 msgid "Invalid province"
 msgstr "استان نامعتبر"
 
-#: lib/app/address.php:124
+#: lib/app/address.php:118
 msgid "Please set city less than 100 character"
 msgstr "لطفا شهر را کمتر از ۱۰۰ حرف وارد کنید"
 
-#: lib/app/address.php:140
+#: lib/app/address.php:134
 msgid "Please set address less than 300 character"
 msgstr "لطفا آدرس را کمتر از ۳۰۰ حرف وارد کنید"
 
-#: lib/app/address.php:146
+#: lib/app/address.php:140
 msgid "Please fill the address"
 msgstr "لطفا آدرس را وارد کنید"
 
-#: lib/app/address.php:153
+#: lib/app/address.php:147
 msgid "Please set address2 less than 300 character"
 msgstr "لطفا آدرس را کمتر از ۳۰۰ حرف وارد کنید"
 
-#: lib/app/address.php:160
+#: lib/app/address.php:154
+msgid "Please set subdomain less than 50 character"
+msgstr "لطفا زیردامنه را کمتر از ۵۰ حرف وارد کنید"
+
+#: lib/app/address.php:161
+msgid "Invalid mobile"
+msgstr "شماره‌ی تلفن همراه نامعتبر است"
+
+#: lib/app/address.php:168
 msgid "Please set postcode less than 50 character"
 msgstr "کدپستی باید کمتر از ۵۰ کاراکتر باشد"
 
-#: lib/app/address.php:167
+#: lib/app/address.php:175
 msgid "Please set phone less than 50 character"
 msgstr "تلفن باید کمتر از ۵۰ کاراکتر باشد"
 
-#: lib/app/address.php:174
+#: lib/app/address.php:182
 msgid "Please set fax less than 50 character"
 msgstr "فکس باید کمتر از ۵۰ کاراکتر باشد"
 
-#: lib/app/address.php:331
+#: lib/app/address.php:346
 msgid "No way to insert address"
 msgstr "هیچ راهی برای افزودن آدرس وجود ندارد"
 
-#: lib/app/address.php:407
+#: lib/app/address.php:422
 msgid "Can not access to edit address"
 msgstr "شما دسترسی لازم برای ویرایش این آدرس را ندارید"
 
-#: lib/app/address.php:458 lib/app/address.php:471
+#: lib/app/address.php:475 lib/app/address.php:488
 msgid "Can not access to remove this address"
 msgstr "شما دسترسی لازم برای حذف این آدرس را ندارید"
 
-#: lib/app/address.php:476
+#: lib/app/address.php:493
 msgid "Address removed"
 msgstr "آدرس حذف شد"
 
-#: lib/app/comment.php:79 lib/app/ticket.php:148
+#: lib/app/comment.php:79 lib/app/ticket.php:151
 msgid "This text is duplicate and you are sended something like this before!"
 msgstr "این متن تکراری است و شما قبلا چیزی شبیه این را ارسال کردید!"
 
-#: lib/app/comment.php:96 lib/app/ticket.php:169
+#: lib/app/comment.php:96 lib/app/ticket.php:172
 msgid "No way to add new data"
 msgstr "هیچ راهی برای افزودن اطلاعات وجود ندارد"
 
-#: lib/app/comment.php:120 lib/app/ticket.php:217
+#: lib/app/comment.php:120 lib/app/ticket.php:220
 msgid "Can not access to edit comment"
 msgstr "شما دسترسی لازم را برای ویرایش این نظر ندارید"
 
-#: lib/app/comment.php:213 lib/app/ticket.php:310
+#: lib/app/comment.php:213 lib/app/ticket.php:313
 msgid "Please fill the content box"
 msgstr "لطفا باکس متن را پر کنید"
 
@@ -8820,11 +8747,11 @@ msgstr "شناسه پست اشتباه است"
 msgid "Comment of this post is closed!"
 msgstr "دیدگاه‌های این نوشته بسته است!"
 
-#: lib/app/comment.php:285 lib/app/ticket.php:355
+#: lib/app/comment.php:285 lib/app/ticket.php:358
 msgid "Title is out of range!"
 msgstr "عنوان خارج از محدوده است!"
 
-#: lib/app/comment.php:294 lib/app/term.php:168 lib/app/ticket.php:363
+#: lib/app/comment.php:294 lib/app/term.php:168 lib/app/ticket.php:366
 msgid "Invalid parent"
 msgstr "شناسه والد اشتباه است"
 
@@ -8851,6 +8778,53 @@ msgstr "ناتوان در آپلود، به دلیل نام آپلود انتخ�
 #: lib/app/file.php:103
 msgid "Can not upload file. undefined error"
 msgstr "ناتوان در آپلود فایل. خطای تعریف نشده"
+
+#: lib/app/log/msg/support.php:15 lib/app/visitor.php:112 lib/app/visitor.php:141
+msgid "Unknown"
+msgstr "ناشناس"
+
+#: lib/app/log/msg/support.php:61
+msgid ":val add new ticket"
+msgstr ":val یک تیکت جدید ثبت کرد"
+
+#: lib/app/log/msg/support.php:107 lib/app/log/msg/support.php:201
+#: lib/app/log/msg/support.php:286 lib/social/telegram/commands/ticket.php:95
+msgid "Visit in site"
+msgstr "مشاهده در سایت"
+
+#: lib/app/log/msg/support.php:113 lib/app/log/msg/support.php:207
+#: lib/app/log/msg/support.php:292 lib/social/telegram/commands/ticket.php:114
+msgid "Check ticket"
+msgstr "بررسی تیکت"
+
+#: lib/app/log/msg/support.php:119 lib/app/log/msg/support.php:213
+#: lib/app/log/msg/support.php:298 lib/social/telegram/commands/ticket.php:101
+msgid "Answer"
+msgstr "پاسخ"
+
+#: lib/app/log/msg/support.php:153
+msgid ":val answer ticket"
+msgstr ":val تیکت را جواب داد"
+
+#: lib/app/log/msg/support.php:239
+msgid ":val add new message to ticket"
+msgstr ":val یک پیام جدید به تیکت اضافه کرد"
+
+#: lib/app/log/msg/support.php:324
+msgid ":val add new note to ticket"
+msgstr ":val یک یادداشت جدید به تیکت اضافه کرد"
+
+#: lib/app/log/msg/support.php:371 lib/app/log/msg/support.php:380
+msgid "Regards"
+msgstr "با احترام"
+
+#: lib/app/log/msg/support.php:371 lib/app/log/msg/support.php:381
+msgid "Ticket :val answered"
+msgstr "تیکت :val پاسخ داده شد"
+
+#: lib/app/log/msg/support.php:372
+msgid ":val answer your ticket"
+msgstr ":val تیکت را جواب داد"
 
 #: lib/app/parent/add.php:69
 msgid "Please set the parent mobile"
@@ -8883,8 +8857,8 @@ msgstr "عنوان دلخواه نمی‌تواند بیشتر از ۵۰ کار�
 #: lib/app/parent/add.php:176
 msgid "Your request was sended to user, wait for answer user"
 msgstr ""
-"درخواست شما به کاربر ارسال شده است. منتظر بمانید تا جواب کاربر به درخواست "
-"شما مشخص شود"
+"درخواست شما به کاربر ارسال شده است. منتظر بمانید تا جواب کاربر به درخواست شما "
+"مشخص شود"
 
 #: lib/app/parent/add.php:203
 msgid "Are you :title of this user?"
@@ -9091,7 +9065,7 @@ msgstr "شما باید نام الگو را کمتر از ۵۰ حرف وارد 
 msgid "This name is reserved before, try another"
 msgstr "این نام قبلا رزرو شده است، نام دیگری آزمایش کنید"
 
-#: lib/app/smstemplate.php:77 lib/app/smstemplate.php:100
+#: lib/app/smstemplate.php:77 lib/app/smstemplate.php:106
 msgid "This template is not in your template list!"
 msgstr "این الگو در لیست الگوهای شما وجود ندارد!"
 
@@ -9147,6 +9121,10 @@ msgstr "هیچ راهی برای ثبت ترم وجود ندارد"
 msgid "Can not access to edit term"
 msgstr "دسترسی لازم برای ویرایش ترم وجود ندارد"
 
+#: lib/app/tg/ticket.php:17
+msgid "Ticket via telegram"
+msgstr "تیکت از طریق تلگرام"
+
 #: lib/app/user.php:50
 msgid "Mobile is incorrect"
 msgstr "موبایل اشتباه است"
@@ -9191,67 +9169,67 @@ msgstr "مجوز نادرست است"
 msgid "Username is incorrect"
 msgstr "نام کاربری نادرست است"
 
-#: lib/app/user.php:177
+#: lib/app/user.php:184
 msgid "Pin is incorrect"
 msgstr "پین نادرست است"
 
-#: lib/app/user.php:186
+#: lib/app/user.php:193
 msgid "Ref is incorrect"
 msgstr "مرجع نادرست است"
 
-#: lib/app/user.php:208
+#: lib/app/user.php:215
 msgid "Unit id is incorrect"
 msgstr "کد واحد مالی نادرست است"
 
-#: lib/app/user.php:216
+#: lib/app/user.php:223
 msgid "Language is incorrect"
 msgstr "زبان نادرست است"
 
-#: lib/app/user.php:234
+#: lib/app/user.php:241
 msgid "website is out of range"
 msgstr "وبسایت وارد شده بسیار طولانی است"
 
-#: lib/app/user.php:242
+#: lib/app/user.php:249
 msgid "facebook is out of range"
 msgstr "شناسه فیس‌بوک وارد شده بسیار طولانی است"
 
-#: lib/app/user.php:250
+#: lib/app/user.php:257
 msgid "twitter is out of range"
 msgstr "شناسه تویتر وارد شده بسیار طولانی است"
 
-#: lib/app/user.php:258
+#: lib/app/user.php:265
 msgid "instagram is out of range"
 msgstr "شناسه اینستاگرام وارد شده بسیار طولانی است"
 
-#: lib/app/user.php:266
+#: lib/app/user.php:273
 msgid "linkedin is out of range"
 msgstr "شناسه لینکدین وارد شده بسیار طولانی است"
 
-#: lib/app/user.php:274
+#: lib/app/user.php:281
 msgid "gmail is out of range"
 msgstr "جیمیل وارد شده بسیار طولانی است"
 
-#: lib/app/user.php:290
+#: lib/app/user.php:297
 msgid "firstname is out of range"
 msgstr "نام وارد شده بسیار طولانی است"
 
-#: lib/app/user.php:298
+#: lib/app/user.php:305
 msgid "lastname is out of range"
 msgstr "نام خانوادگی وارد شده بسیار طولانی است"
 
-#: lib/app/user.php:306
+#: lib/app/user.php:313
 msgid "bio is out of range"
 msgstr "زندگی‌نامه وارد شده بسیار طولانی است"
 
-#: lib/app/user/add.php:78 lib/app/user/edit.php:69
+#: lib/app/user/add.php:79 lib/app/user/edit.php:69
 msgid "Duplicate mobile"
 msgstr "تلفن همراه تکراری"
 
-#: lib/app/user/add.php:88
+#: lib/app/user/add.php:89
 msgid "No way to insert user"
 msgstr "هیچ راهی برای ثبت کاربر یافت نشد"
 
-#: lib/app/user/add.php:99
+#: lib/app/user/add.php:100
 msgid "User successfuly added"
 msgstr "کاربر با موفقیت اضافه شد"
 
@@ -9259,7 +9237,7 @@ msgstr "کاربر با موفقیت اضافه شد"
 msgid "Can not access to edit staff"
 msgstr "شما برای ویرایش این کارمند دسترسی ندارد"
 
-#: lib/app/user/edit.php:121
+#: lib/app/user/edit.php:122
 msgid "User successfully updated"
 msgstr "کاربر با موفقیت به روزرسانی شد"
 
@@ -9267,15 +9245,11 @@ msgstr "کاربر با موفقیت به روزرسانی شد"
 msgid "User not found."
 msgstr "کاربر یافت نشد."
 
-#: lib/app/visitor.php:112 lib/app/visitor.php:141
-msgid "Unknown"
-msgstr "ناشناس"
-
-#: lib/date.php:56
+#: lib/date.php:56 lib/date.php:71
 msgid "Invalid birthdate"
 msgstr "تاریخ تولد نامعتبر"
 
-#: lib/date.php:76
+#: lib/date.php:86
 msgid "Invalid birthdate, birthdate can not larger than date now!"
 msgstr "تاریخ تولد اشتباه است. تاریخ تولد نباید بزرگتر از تاریخ امروز باشد!"
 
@@ -9348,43 +9322,43 @@ msgstr "سلام، مستندات را بخوان و پروژه خودتو شر�
 msgid "We can't find the page you're looking for!"
 msgstr "ما صفحه‌ای که به‌دنبال آن هستید را نمی‌یابیم!"
 
-#: lib/engine/view.php:78
+#: lib/engine/view.php:80
 msgid "As easy as ABC is our slogan!"
 msgstr "کاری نداره شعار ماست!"
 
-#: lib/engine/view.php:78
+#: lib/engine/view.php:80
 msgid "If you are not finded a solution for your problem, call us."
 msgstr "اگر راه‌کاری مناسب برای مشکل خود نیافته‌اید، با ما تماس بگیرید."
 
-#: lib/engine/view.php:79
+#: lib/engine/view.php:81
 msgid "Software Solution Designer"
 msgstr "ارائه‌دهنده‌ی راه‌کارهای مدرن نرم‌افزاری"
 
-#: lib/engine/view.php:185
+#: lib/engine/view.php:187
 msgid "Latest news"
 msgstr "آخرین اخبار"
 
-#: lib/engine/view.php:234
+#: lib/engine/view.php:236
 msgid "You are using Internet Explorer."
 msgstr "شما از اینترنت اکسپلورر استفاده می‌کنید."
 
-#: lib/engine/view.php:234
+#: lib/engine/view.php:236
 msgid "Really!!!"
 msgstr "واقعا!!!"
 
-#: lib/engine/view.php:234
+#: lib/engine/view.php:236
 msgid "IE is DIE!"
 msgstr "آی‌ای مرده است!"
 
-#: lib/engine/view.php:238
+#: lib/engine/view.php:240
 msgid "You need to update your :browser to new version."
 msgstr "شما نیازمند ارتقای :browser خود به نسخه جدید هستید."
 
-#: lib/engine/view.php:238
+#: lib/engine/view.php:240
 msgid "The world is changing rapidly!"
 msgstr "دنیا به‌سرعت در حال تغییر است!"
 
-#: lib/engine/view.php:249
+#: lib/engine/view.php:251
 msgid "Please use famous browser to have better experience!"
 msgstr "لطفا برای بهرمندی از تجربه مطلوب‌تر از مرورگرهای مطرح استفاده کنید."
 
@@ -9452,257 +9426,552 @@ msgstr "این گزینه در لیست سطوح دسترسی شما وجود ن
 msgid "Permission saved"
 msgstr "سطح دسترسی ذخیره شد"
 
-#: lib/permission.php:555
+#: lib/permission.php:596
 msgid "Permission denied"
 msgstr "دسترسی غیر مجاز"
 
-#: lib/social/telegram/answer.php:59
+#: lib/social/telegram/answer.php:58
 msgid "Thanks for using me!"
 msgstr "ممنون که از من استفاده می‌کنید!"
 
-#: lib/social/telegram/answer.php:60
+#: lib/social/telegram/answer.php:59
 msgid "I'm Bot."
 msgstr "من بات هستم."
 
-#: lib/social/telegram/answer.php:87
-msgid "Hey 😀"
-msgstr "سلام 😀"
+#: lib/social/telegram/answer.php:63
+msgid "Hey Bot!"
+msgstr "هی بات!"
 
-#: lib/social/telegram/answer.php:88
-msgid "What's up?"
-msgstr "چه‌خبر؟"
-
-#: lib/social/telegram/answer.php:89
-msgid "Tell me a joke!"
-msgstr "یه جوک برام بگو!"
-
-#: lib/social/telegram/answer.php:90
-msgid "Surprise me!"
-msgstr "سورپرایزم کن!"
-
-#: lib/social/telegram/answer.php:91
+#: lib/social/telegram/answer.php:67 lib/social/telegram/answer.php:107
 msgid "How are you?"
 msgstr "حال شما چطوره؟"
 
-#: lib/social/telegram/answer.php:92
+#: lib/social/telegram/answer.php:73
+msgid "Bye"
+msgstr "خدانگهدار"
+
+#: lib/social/telegram/answer.php:103
+msgid "Hey 😀"
+msgstr "سلام 😀"
+
+#: lib/social/telegram/answer.php:104
+msgid "What's up?"
+msgstr "چه‌خبر؟"
+
+#: lib/social/telegram/answer.php:105
+msgid "Tell me a joke!"
+msgstr "یه جوک برام بگو!"
+
+#: lib/social/telegram/answer.php:106
+msgid "Surprise me!"
+msgstr "سورپرایزم کن!"
+
+#: lib/social/telegram/answer.php:108
 msgid "How old are you?"
 msgstr "چند سالتونه؟"
 
-#: lib/social/telegram/commands/conversation.php:217
+#: lib/social/telegram/answer.php:110
+msgid "A mother is the truest friend we have"
+msgstr "رفیق بی‌کلک مادر"
+
+#: lib/social/telegram/answer.php:111
+msgid "We have a lot of in common"
+msgstr "ما باهم تفاهم داریم"
+
+#: lib/social/telegram/answer.php:112 lib/social/telegram/answer.php:114
+msgid "You heard me"
+msgstr "درست شنیدی"
+
+#: lib/social/telegram/answer.php:113
+msgid "You were sublime"
+msgstr "کارت حرف نداشت"
+
+#: lib/social/telegram/answer.php:115
+msgid "A Younger idler, an old beggar"
+msgstr "جوان بیکار امروز، گدای پیر فرداست"
+
+#: lib/social/telegram/answer.php:116
+msgid "You can't put the clock back"
+msgstr "گذشته‌ها گذشته است"
+
+#: lib/social/telegram/answer.php:117
+msgid "Years teach us more than books"
+msgstr "سال‌ها بیشتر از کتابها به ما درس می‌دهند"
+
+#: lib/social/telegram/answer.php:118
+msgid "You can't keep a good man down"
+msgstr "خواستن توانستن است"
+
+#: lib/social/telegram/answer.php:119
+msgid "As easy as ABC"
+msgstr "کاری نداره"
+
+#: lib/social/telegram/answer.php:120
+msgid "You saw nothing, you heard nothing"
+msgstr "شتر دیدی ندیدی"
+
+#: lib/social/telegram/answer.php:121
+msgid "You took the words out of my mouth"
+msgstr "جانا سخن از زبان ما می‌گویی"
+
+#: lib/social/telegram/answer.php:122
+msgid "You can educate a fool, but you can not make him think"
+msgstr "آدم احمق را می‌توان تربیت کرد، اما نمی‌توان به تفکر واداشت"
+
+#: lib/social/telegram/answer.php:123
+msgid "You can't have your cake and eat it too"
+msgstr "هم خدارو می‌خواد هم خرمارو"
+
+#: lib/social/telegram/answer.php:124
+msgid "You can't take it with you when you die"
+msgstr "ثروت را به هنگام مرگ با خود به گور نتوان برد"
+
+#: lib/social/telegram/answer.php:125
+msgid "You can not put out a fire with oil"
+msgstr "آتش را با آتش خاموش نتوان کرد"
+
+#: lib/social/telegram/answer.php:126
+msgid "You must lie on the bed you have made"
+msgstr "خود کرده را تدبیر نیست"
+
+#: lib/social/telegram/answer.php:127
+msgid "You can't mend a broken egg"
+msgstr "آب رفته به جوی بر نمی‌گردد"
+
+#: lib/social/telegram/answer.php:128
+msgid "You can not get blood out of stone"
+msgstr "از آب کره نتوان گرفت"
+
+#: lib/social/telegram/answer.php:129
+msgid "You must grin and bear it"
+msgstr "باید بسوزی و بسازی"
+
+#: lib/social/telegram/answer.php:130
+msgid "You can't please everyone"
+msgstr "همه را نمی‌توان از خود راضی  نگه داشت"
+
+#: lib/social/telegram/commands/conversation.php:56
 msgid "Test <b>:name</b> bot on :site"
 msgstr "تست بات <b>:name</b> در :site"
 
-#: lib/social/telegram/commands/conversation.php:248
-msgid "Booom"
-msgstr "بوووم"
+#: lib/social/telegram/commands/ermile.php:22 lib/social/telegram/step.php:312
+msgid "start"
+msgstr "شروع"
 
-#: lib/social/telegram/commands/ermile.php:133
-#: lib/social/telegram/commands/ermile.php:285
-msgid "Haloo"
-msgstr "سلووو"
+#: lib/social/telegram/commands/ermile.php:35 lib/social/telegram/step.php:328
+msgid "menu"
+msgstr "منو"
 
-#: lib/social/telegram/commands/ermile.php:134
+#: lib/social/telegram/commands/ermile.php:37 lib/social/telegram/step.php:329
+msgid "mainmenu"
+msgstr "منوی اصلی"
+
+#: lib/social/telegram/commands/ermile.php:39 lib/social/telegram/step.php:330
+msgid "return"
+msgstr "بازگشت"
+
+#: lib/social/telegram/commands/ermile.php:45
+#: lib/social/telegram/commands/ermileInline.php:29
+#: lib/social/telegram/step.php:314
+msgid "about"
+msgstr "درباره"
+
+#: lib/social/telegram/commands/ermile.php:46
+#: lib/social/telegram/commands/ermileInline.php:32
+msgid "detail"
+msgstr "جزئیات"
+
+#: lib/social/telegram/commands/ermile.php:53 lib/social/telegram/step.php:315
+msgid "me"
+msgstr "من"
+
+#: lib/social/telegram/commands/ermile.php:54
+msgid "whoami"
+msgstr "کیم"
+
+#: lib/social/telegram/commands/ermile.php:60
+#: lib/social/telegram/commands/ermileInline.php:43
+#: lib/social/telegram/step.php:316
+msgid "contact"
+msgstr "تماس"
+
+#: lib/social/telegram/commands/ermile.php:61
+#: lib/social/telegram/commands/ermileInline.php:44
+#: lib/social/telegram/step.php:317
+msgid "address"
+msgstr "آدرس"
+
+#: lib/social/telegram/commands/ermile.php:62
+#: lib/social/telegram/commands/ermileInline.php:45
+#: lib/social/telegram/step.php:318
+msgid "tel"
+msgstr "تلفن"
+
+#: lib/social/telegram/commands/ermile.php:63
+#: lib/social/telegram/commands/ermileInline.php:46
+#: lib/social/telegram/step.php:319
+msgid "telephone"
+msgstr "تلفن"
+
+#: lib/social/telegram/commands/ermile.php:65
+#: lib/social/telegram/commands/ermileInline.php:48
+#: lib/social/telegram/step.php:321
+msgid "phone"
+msgstr "تلفن"
+
+#: lib/social/telegram/commands/ermile.php:100 lib/social/telegram/step.php:326
+msgid "sync"
+msgstr "همگام‌سازی"
+
+#: lib/social/telegram/commands/ermile.php:101
+msgid "connect"
+msgstr "اتصال"
+
+#: lib/social/telegram/commands/ermile.php:175
+#: lib/social/telegram/commands/ermile.php:448
+msgid "Hello!"
+msgstr "سلام!"
+
+#: lib/social/telegram/commands/ermile.php:176
+#: lib/social/telegram/commands/ermile.php:449
 msgid "We are so glad to meet you."
 msgstr "از ملاقات با شما خوشحالیم."
 
-#: lib/social/telegram/commands/ermile.php:136
+#: lib/social/telegram/commands/ermile.php:182
 msgid "Made by @Ermile"
 msgstr "ساخت ارمایل @Ermile"
 
-#: lib/social/telegram/commands/ermile.php:153
-msgid "Ermile is inteligent"
-msgstr "ارمایل باهوش است"
+#: lib/social/telegram/commands/ermile.php:215
+#: lib/social/telegram/commands/ermile.php:256
+#: lib/social/telegram/commands/ermileInline.php:133
+msgid "Check website"
+msgstr "بررسی وب‌سایت"
 
-#: lib/social/telegram/commands/ermile.php:168
+#: lib/social/telegram/commands/ermile.php:221
+#: lib/social/telegram/commands/ermileInline.php:123
+msgid "Read more about us"
+msgstr "درباره ما بیشتر بخوانید"
+
+#: lib/social/telegram/commands/ermile.php:240
+#: lib/social/telegram/commands/ermileInline.php:111
 msgid "Ermile, Floor2, Yas Building"
 msgstr "ساختمان یاس، طبقه دوم، ارمایل"
 
-#: lib/social/telegram/commands/ermile.php:168
+#: lib/social/telegram/commands/ermile.php:240
+#: lib/social/telegram/commands/ermileInline.php:111
 msgid "1st alley, Haft-e-tir St"
 msgstr "خیابان هفت تیر، کوچه یکم"
 
-#: lib/social/telegram/commands/ermile.php:168
+#: lib/social/telegram/commands/ermile.php:240
+#: lib/social/telegram/commands/ermileInline.php:111
 msgid "IRAN"
 msgstr "ایران"
 
-#: lib/social/telegram/commands/ermile.php:176
+#: lib/social/telegram/commands/ermile.php:249
 msgid "We are happy to see you!"
 msgstr "از دیدنتون خوشحالیم!"
 
-#: lib/social/telegram/commands/ermile.php:286
-msgid "You can connect your telegram with your mobile number in our service."
-msgstr ""
-"شما می‌توانید در سرویس ما تلگرام خود را به حساب کاربری روی شماره موبایل خود "
-"متصل کنید."
+#: lib/social/telegram/commands/ermile.php:262
+msgid "Submit new ticket"
+msgstr "ارسال تیکت جدید"
 
-#: lib/social/telegram/commands/ermile.php:287
-msgid "Also you can do it anytime you need with /register command."
-msgstr ""
-"هم‌چنین هر زمانی که مایل باشید می‌توانید از طریق دستور /register این کار را "
-"انجام دهید."
+#: lib/social/telegram/commands/ermile.php:275
+#: lib/social/telegram/commands/ticket.php:175
+msgid "Send feedback"
+msgstr "ارسال بازخورد"
 
-#: lib/social/telegram/commands/ermile.php:294
-msgid "Register with mobile"
-msgstr "ثبت‌نام با موبایل"
-
-#: lib/social/telegram/commands/ermile.php:295
-msgid "Help"
-msgstr "کمک"
+#: lib/social/telegram/commands/ermile.php:303
+#: lib/social/telegram/commands/ermileInline.php:90
+msgid "Open :val website"
+msgstr "بازکردن وب‌سایت :val"
 
 #: lib/social/telegram/commands/ermile.php:309
-msgid "Please choose your language"
-msgstr "لطفا زبان خود را انتخاب کنید"
+#: lib/social/telegram/commands/ermileInline.php:96
+msgid ":val Telegram bot"
+msgstr "ربات تلگرام :val"
 
-#: lib/social/telegram/commands/menu.php:69
+#: lib/social/telegram/commands/ermile.php:327
+msgid "You can control me by sending these commands"
+msgstr "میتونید من رو با دستورات زیر کنترل کنید"
+
+#: lib/social/telegram/commands/ermile.php:328
+msgid "Start again"
+msgstr "شروع دوباره"
+
+#: lib/social/telegram/commands/ermile.php:329
+msgid "Change your language"
+msgstr "تغییر زبان"
+
+#: lib/social/telegram/commands/ermile.php:330
+msgid "Go to main menu"
+msgstr "برو به منوی اصلی"
+
+#: lib/social/telegram/commands/ermile.php:331
+#: lib/social/telegram/commands/ermile.php:537
+msgid "Sync with website"
+msgstr "همگام‌سازی با وب‌سایت"
+
+#: lib/social/telegram/commands/ermile.php:332
+#: lib/social/telegram/commands/ermile.php:528
+#: lib/social/telegram/commands/ermileInline.php:76
 msgid "About"
 msgstr "درباره"
 
-#: lib/social/telegram/commands/menu.php:70
-msgid "Feedback"
-msgstr "بازخورد"
+#: lib/social/telegram/commands/ermile.php:335
+msgid "Get help commands"
+msgstr "دریافت راهنمایی دستورات"
 
-#: lib/social/telegram/commands/menu.php:79
+#: lib/social/telegram/commands/ermile.php:375
+msgid "We do not need contact of anothers!"
+msgstr "ما به مخاطب سایر کاربران نیاز نداریم!"
+
+#: lib/social/telegram/commands/ermile.php:375
+msgid "You can share your contact by press on /register"
+msgstr "شما می‌توانید مخاطب خود را با فشردن روی /register با من به اشتراک بگذارید"
+
+#: lib/social/telegram/commands/ermile.php:379
+msgid "We need mobile number to complete registeration process."
+msgstr "ما برای تکمیل فرآیند ثبت‌نام نیاز به شماره موبایل شما داریم."
+
+#: lib/social/telegram/commands/ermile.php:385
+msgid "I don't have enough time for listening!"
+msgstr "من به اندازه کافی زمان برای گوش دادن به آهنگ ندارم!"
+
+#: lib/social/telegram/commands/ermile.php:385
+msgid "Type for me:)"
+msgstr "برای من تایپ کنید!"
+
+#: lib/social/telegram/commands/ermile.php:389
+msgid "Thanks for your kindness"
+msgstr "ممنون از محبتتون"
+
+#: lib/social/telegram/commands/ermile.php:393
+msgid "I'm busy and i dont think have time to watch video!"
+msgstr "حسابی سرم شلوفه، فکر نکنم وقت فیلم دیدن باشه!"
+
+#: lib/social/telegram/commands/ermile.php:397
+msgid "A long time until I want to recognize your voice!!"
+msgstr "خیلی مونده تا بخوام صدای شما رو تشخیص بدم!"
+
+#: lib/social/telegram/commands/ermile.php:401
+msgid "I'm still not advanced enough!"
+msgstr "من هنوز اونقدر پیشرفته نشدم!"
+
+#: lib/social/telegram/commands/ermile.php:421
+msgid "Sync account"
+msgstr "همگام‌سازی حساب‌کاربری"
+
+#: lib/social/telegram/commands/ermile.php:424
+msgid ""
+"You can connect complete your registeration on :val from telegram by share your "
+"mobile number."
+msgstr ""
+"شما می‌توانید با به‌اشتراک‌گذاری شماره موبایل خود از طریق تلگرام ثبت‌نام خودتان را "
+"در :val کامل کنید."
+
+#: lib/social/telegram/commands/ermile.php:425
+msgid ""
+"By press share contact we get your mobile and after that you can use our "
+"website and your account is synced."
+msgstr ""
+"با فشردن دکمه به‌اشتراک‌گذاری مخاطب خودتان،‌ تلگرام شماره موبایل شما را پس از کسب "
+"اجازه برای ما ارسال می‌کند و بدین ترتیب ما می‌توانیم حساب کاربری شما را همگام‌سازی "
+"کرده و اتصال آن را با وب‌سایت برقرار کنیم تا شما درآینده بتوانید با موبایل خود در"
+" ‌وب‌سایت هم وارد شوید."
+
+#: lib/social/telegram/commands/ermile.php:426
+msgid "Also you can do it anytime you need with /register command."
+msgstr ""
+"هم‌چنین هر زمانی که مایل باشید می‌توانید از طریق دستور /register این کار را انجام "
+"دهید."
+
+#: lib/social/telegram/commands/ermile.php:433
+msgid "Register with mobile"
+msgstr "ثبت‌نام با موبایل"
+
+#: lib/social/telegram/commands/ermile.php:434
+msgid "Help"
+msgstr "کمک"
+
+#: lib/social/telegram/commands/ermile.php:434
+msgid "Return to main menu"
+msgstr "بازگشت به منوی اصلی"
+
+#: lib/social/telegram/commands/ermile.php:465
+msgid "Please choose your language"
+msgstr "لطفا زبان خود را انتخاب کنید"
+
+#: lib/social/telegram/commands/ermile.php:547
 msgid "Main menu"
 msgstr "منوی اصلی"
 
-#: lib/social/telegram/commands/step_feedback.php:37
+#: lib/social/telegram/commands/ermileInline.php:31
+msgid "more"
+msgstr "بیشتر"
+
+#: lib/social/telegram/commands/step_ticketAnswer.php:22
+msgid "Answer to ticket "
+msgstr "پاسخ به تیکت"
+
+#: lib/social/telegram/commands/step_ticketAnswer.php:34
+#: lib/social/telegram/commands/step_ticketAnswer.php:57
+msgid "Please wrote your answer"
+msgstr "لطفا پیام خود را بنویسید"
+
+#: lib/social/telegram/commands/step_ticketCreate.php:21
+msgid "Ask from support"
+msgstr "از پشتیبانی بپرس"
+
+#: lib/social/telegram/commands/step_ticketCreate.php:35
 msgid "Thank you for choosing us."
 msgstr "از اینکه ما را انتخاب کردید، متشکریم."
 
-#: lib/social/telegram/commands/step_feedback.php:38
+#: lib/social/telegram/commands/step_ticketCreate.php:36
 msgid ""
 "Knowing your valuable comments about bugs and problems and more importantly "
 "your precious offers will help us in this way."
 msgstr ""
-"دانستن نظرات ارزشمند شما درباره‌ی مشکلات و نواقص و صدالبته پیشنهادات "
-"گرانبهایتان از طریق فرم زیر سبب کمک به ما برای این مهم خواهد شد."
+"دانستن نظرات ارزشمند شما درباره‌ی مشکلات و نواقص و صدالبته پیشنهادات گرانبهایتان "
+"از طریق فرم زیر سبب کمک به ما برای این مهم خواهد شد."
 
-#: lib/social/telegram/commands/step_feedback.php:39
-msgid "Please wrote your request, offer, criticism or appreciation"
-msgstr "لطفا درخواست، پیشنهاد، انتقاد یا قدردانی خود را بنویسید"
+#: lib/social/telegram/commands/step_ticketCreate.php:37
+msgid "Please wrote about your problem and describe it."
+msgstr "لطفا درباره مشکل خود نوشته و آن را شرح دهید."
 
-#: lib/social/telegram/commands/step_feedback.php:57
-msgid "Your valuable feedback is saved."
-msgstr "بازخورد ارزشمند شما ثبت شد."
+#: lib/social/telegram/commands/step_ticketCreate.php:60
+msgid "Please wrote about your ticket"
+msgstr "لطفا درباره تیکت خود بنویسید"
 
-#: lib/social/telegram/commands/step_feedback.php:58
-msgid "Thank you;)"
-msgstr "سپاسگزاریم ;)"
+#: lib/social/telegram/commands/ticket.php:16
+msgid "ticket"
+msgstr "تیکت"
 
-#: lib/social/telegram/commands/step_feedback.php:62
-msgid "Thanks"
-msgstr "سپاسگزاریم"
-
-#: lib/social/telegram/commands/step_feedback.php:96
-msgid "New feedback"
+#: lib/social/telegram/commands/ticket.php:17
+msgid "feedback"
 msgstr "بازخورد"
 
-#: lib/social/telegram/commands/step_feedback.php:102
-msgid "User_id"
-msgstr "کد کاربر"
+#: lib/social/telegram/commands/ticket.php:125
+msgid "We can't find detail of this ticket!"
+msgstr "ما نمی‌توانیم جزئیات این تیکت را بیابیم!"
 
-#: lib/social/telegram/commands/step_ticket.php:35
-msgid "We can give your ticket easily in via telegram"
-msgstr "ما می‌توانید به راحتی تیکت شما را از طریق تلگرام دریافت کنیم"
-
-#: lib/social/telegram/commands/step_ticket.php:36
-msgid "Please enter your ticket title"
-msgstr "لطفا عنوان تیکت خود را وارد کنید"
-
-#: lib/social/telegram/commands/step_ticket.php:56
-msgid "Ticket title is saved."
-msgstr "عنوان تیکت ذخیره شد."
-
-#: lib/social/telegram/commands/step_ticket.php:57
-msgid "Please wrote your problem"
-msgstr "لطفا مشکل خود را بنویسید"
-
-#: lib/social/telegram/commands/step_ticket.php:74
-msgid "Your ticket is successfully saved."
-msgstr "تیکت شما با موفقیت ذخیره شد."
-
-#: lib/social/telegram/commands/step_ticket.php:75
-msgid "We try to answer to you as soon as posible."
-msgstr "ما سعی می کنیم تا در اسرع وقت به شما پاسخ دهیم."
-
-#: lib/social/telegram/commands/step_ticketAnswer.php:45
-msgid "What do you want to do?"
-msgstr "می‌خواهید چه کاری انجام بدهید؟"
-
-#: lib/social/telegram/commands/step_ticketAnswer.php:47
-#: lib/social/telegram/commands/step_ticketAnswer.php:74
-msgid "Answer"
-msgstr "پاسخ"
-
-#: lib/social/telegram/commands/step_ticketAnswer.php:76
-msgid "Please wrote your answer"
-msgstr "لطفا پیام خود را بنویسید"
-
-#: lib/social/telegram/commands/step_ticketAnswer.php:102
-msgid "We are save you answer to this ticket."
-msgstr "ما پاسخ شما را به این تیکت ذخیره کردیم."
-
-#: lib/social/telegram/commands/step_ticketAnswer.php:103
-msgid "Thanks."
-msgstr "سپاسگزاریم"
-
-#: lib/social/telegram/commands/step_ticketAnswer.php:121
+#: lib/social/telegram/commands/ticket.php:146
 msgid "We need ticket number!"
 msgstr "ما به شماره تیکت نیاز داریم!"
 
-#: lib/social/telegram/exec.php:22 lib/social/telegram/tg.php:40
+#: lib/social/telegram/commands/ticket.php:161
+msgid "Please come into private"
+msgstr "لطفا بیاین خصوصی"
+
+#: lib/social/telegram/commands/ticket.php:168
+msgid "Please send your feedback in private message not in public!"
+msgstr "لطفا بازخورد خود را به‌صورت خصوصی برای ما بفرستید نه در یک مکان عمومی!"
+
+#: lib/social/telegram/commands/utility.php:33
+msgid "More and more"
+msgstr "بیشتر و بیشتر"
+
+#: lib/social/telegram/commands/utility.php:67
+msgid "Wow"
+msgstr "وای"
+
+#: lib/social/telegram/commands/utility.php:74
+msgid "You cannot delete your account from Telegram!"
+msgstr "شما نمی‌توانید حساب خود را از طریق تلگرام پاک کنید!"
+
+#: lib/social/telegram/commands/utility.php:83
+msgid "Booom"
+msgstr "بوووم"
+
+#: lib/social/telegram/commands/utility.php:108
+msgid "say"
+msgstr "بگو"
+
+#: lib/social/telegram/exec.php:24 lib/social/telegram/tg.php:36
 msgid "Telegram is off!"
 msgstr "تلگراف خاموش است!"
 
-#: lib/social/telegram/exec.php:27
+#: lib/social/telegram/exec.php:30
 msgid "Method is not set!"
 msgstr "روش تنظیم نشده است!"
 
-#: lib/social/telegram/exec.php:39
+#: lib/social/telegram/exec.php:43
 msgid "Api key is not correct!"
 msgstr "کلید رابط برنامه‌نویسی صحیح نیست!"
 
-#: lib/social/telegram/exec.php:54
+#: lib/social/telegram/exec.php:56
+msgid "Maybe we have problem!"
+msgstr "شاید ما مشکلی داریم!"
+
+#: lib/social/telegram/exec.php:68
+msgid "Exec empty data"
+msgstr "داده برای اجرا خالی است"
+
+#: lib/social/telegram/exec.php:81
 msgid "Curl failed to initialize"
 msgstr "سی‌یو‌آر‌ال ناموفق در مقداردهی اولیه"
 
-#: lib/social/telegram/exec.php:90
+#: lib/social/telegram/exec.php:132
 msgid "Empty server response"
 msgstr "پاسخ خالی از سرور"
 
-#: lib/social/telegram/log.php:166
+#: lib/social/telegram/log.php:167
 msgid "debug mode is off!"
 msgstr "حالت اشکال‌زدایی خاموش است!"
 
-#: lib/social/telegram/user.php:120
+#: lib/social/telegram/step.php:355
+msgid "Press enter valid value"
+msgstr "لطفا مقداری معتبر وارد کنید"
+
+#: lib/social/telegram/step.php:370
+msgid "Press another inappropirate key to exit from active process!"
+msgstr "با ورود مقدار نامعتبر دیگری از این فرآیند فعال خارج خواهد شد!"
+
+#: lib/social/telegram/step.php:393
+msgid "Cancel operation."
+msgstr "انصراف از عملیات."
+
+#: lib/social/telegram/tg.php:214
+msgid "We are detect outdated message in hook."
+msgstr "ما پیام تاریخ گذشته در هوک یافتیم."
+
+#: lib/social/telegram/user.php:166
 msgid "Why your name is different!"
 msgstr "چرا نام شما متفاوت است!"
 
-#: lib/social/telegram/user.php:124
+#: lib/social/telegram/user.php:170
 msgid "Why your family is different!"
 msgstr "چرا نام خانوادگی شما متفاوت است!"
 
-#: lib/social/telegram/user.php:137
+#: lib/social/telegram/user.php:185
+msgid "Enter in :val website"
+msgstr "ورود به وب‌سایت :val"
+
+#: lib/social/telegram/user.php:194
+msgid "Your phone number registered successfully"
+msgstr "شماره موبایل شما با موفقیت ثبت شد"
+
+#: lib/social/telegram/user.php:194 lib/social/telegram/user.php:199
+msgid "Thank you."
+msgstr "متشکریم."
+
+#: lib/social/telegram/user.php:199
+msgid "We have your mobile before this!"
+msgstr "ما شماره موبایل شما را پیش از این داشتیم!"
+
+#: lib/social/telegram/user.php:203
 msgid "Registration failed!"
 msgstr "ثبت‌نام ناموفق!"
 
-#: lib/social/telegram/user.php:180
+#: lib/social/telegram/user.php:255
 msgid "Your language was successfully set to :lang."
 msgstr "زبان شما به موفقیت به :lang  تغییر کرد."
 
-#: lib/social/tg old/commands/step_register.php:84 older -
-#: addons/commands/step_register.php:84
-msgid "return"
-msgstr "بازگشت"
-
-#: lib/social/tg old/commands/step_register.php:142 older -
-#: addons/commands/step_register.php:142
-msgid "Please only use below keyboard."
-msgstr "لطفا تنها از منوی زیر استفاده کنید."
+#: lib/social/telegram/user.php:348
+msgid "More detail"
+msgstr "جزئیات بیشتر"
 
 #: lib/utility.php:36
-msgid ""
-"This password is very simple and guessable, please use stronger password!"
+msgid "This password is very simple and guessable, please use stronger password!"
 msgstr ""
 "این رمز عبور بسیار ساده و قابل حدس است، لطفا از رمز عبور قوی استفاده کنید!"
 
@@ -9714,51 +9983,51 @@ msgstr "عملیات کلادفلر از طریق ای‌پی‌آی با موف
 msgid "The api Cloudflare opration faild"
 msgstr "عملیات کلادفلر از طریق ای‌پی‌آی با موفقیت ناموفق بود"
 
-#: lib/utility/enter.php:788
+#: lib/utility/enter.php:784
 msgid "Please fill the verification code"
 msgstr "لطفا کد اعتبارسنجی را وارد کنید"
 
-#: lib/utility/enter.php:797
+#: lib/utility/enter.php:793
 msgid "What happend? the code is number. you try to send string!?"
 msgstr "چی شده؟ کد باید عددی باشد. شما چطوری دارین متن وارد میکنید!؟"
 
-#: lib/utility/enter.php:818
+#: lib/utility/enter.php:814
 msgid "System error, try again"
 msgstr "خطای سیستم، دوباره تلاش کنید"
 
-#: lib/utility/enter.php:842
+#: lib/utility/enter.php:838
 msgid "Your sms not deliver to us!"
 msgstr "پیامک شما بدست ما نرسیده است!"
 
-#: lib/utility/enter.php:886
+#: lib/utility/enter.php:882
 msgid "Invalid code, try again"
 msgstr "کد اشتباه، دوباره تلاش کنید"
 
-#: lib/utility/enter.php:947
+#: lib/utility/enter.php:943
 msgid "Your username was removed"
 msgstr "نام کاربری شما حذف شد"
 
-#: lib/utility/enter.php:1040
+#: lib/utility/enter.php:1036
 msgid "Your username was change"
 msgstr "نام کاربری شما تغییر یافت"
 
-#: lib/utility/enter.php:1103
+#: lib/utility/enter.php:1099
 msgid "Your two-step verification is now active for your account"
 msgstr "ورود دو مرحله ای هم اکنون برای حساب کاربری شما فعال است"
 
-#: lib/utility/enter.php:1129
+#: lib/utility/enter.php:1125
 msgid "Your two-step verification is now deactive for your account"
 msgstr "ورود دو مرحله ای هم اکنون برای حساب کاربری شما غیر فعال است"
 
-#: lib/utility/enter.php:1150
+#: lib/utility/enter.php:1146
 msgid "Your password was changed"
 msgstr "کلمه عبور شما تغییر یافت"
 
-#: lib/utility/enter.php:1315
+#: lib/utility/enter.php:1311
 msgid "You must set 6 character and large in password"
 msgstr "گذرواژه باید حداقل ۶ کاراکتر باشد"
 
-#: lib/utility/enter.php:1325
+#: lib/utility/enter.php:1321
 msgid "You must set less than 99 character in password"
 msgstr "گذرواژه باید کمتر از ۹۹ کاراکتر باشد"
 
@@ -9779,17 +10048,33 @@ msgstr "بدون تغییر!"
 msgid "Invalid access token"
 msgstr "توکن دسترسی نامعتبر است"
 
+#: lib/utility/hive.php:31
+msgid "Reload page to continue!"
+msgstr "برای ادامه، صفحه را مجددا بارگذاری نمایید"
+
+#: lib/utility/hive.php:37
+msgid "You wander in a labyrinth!"
+msgstr "شما در یک دخمه پرپیچ‌وخم سرگردانید!"
+
 #: lib/utility/human.php:42
 msgid "In the future"
 msgstr "در آینده"
 
-#: lib/utility/human.php:135
+#: lib/utility/human.php:121
 msgid ", :min minute"
 msgstr " و :min دقیقه"
 
-#: lib/utility/payment/pay.php:50
+#: lib/utility/ip.php:31
+msgid "Your ip is blocked"
+msgstr "آی‌پی شما بلاک شده است"
+
+#: lib/utility/payment/pay.php:43
 msgid "Invalid amount"
 msgstr "مقدار نامعتبر"
+
+#: lib/utility/payment/pay.php:51
+msgid "Please select a bank port"
+msgstr "لطفا پورت بانک را انتخاب کنید"
 
 #: lib/utility/payment/pay.php:68
 msgid "This payment is not supported in this system"
@@ -9811,17 +10096,15 @@ msgid "Redirect to asanpardakht payment"
 msgstr "در حال انتقال به درگاه آسان پرداخت"
 
 #: lib/utility/payment/pay/asanpardakht.php:136
-#: lib/utility/payment/pay/irkish.php:125
+#: lib/utility/payment/pay/irkish.php:125 lib/utility/payment/pay/mellat.php:134
 msgid "Redirect"
 msgstr "انتقال"
 
-#: lib/utility/payment/pay/irkish.php:33
-#: lib/utility/payment/verify/irkish.php:30
+#: lib/utility/payment/pay/irkish.php:33 lib/utility/payment/verify/irkish.php:30
 msgid "The irkish payment on this service is locked"
 msgstr "درگاه پرداخت ایران کیش در این سیستم تعریف نشده است"
 
-#: lib/utility/payment/pay/irkish.php:40
-#: lib/utility/payment/verify/irkish.php:37
+#: lib/utility/payment/pay/irkish.php:40 lib/utility/payment/verify/irkish.php:37
 msgid "The irkish payment merchantId not set"
 msgstr "شناسه مشتری درگاه پرداخت ایران کیش تنظیم نشده است"
 
@@ -9832,6 +10115,26 @@ msgstr "پرداخت با درگاه پرداخت ایران کیش"
 #: lib/utility/payment/pay/irkish.php:124
 msgid "Redirect to iran kish payment"
 msgstr "در حال انتقال به درگاه پرداخت ایران کیش"
+
+#: lib/utility/payment/pay/mellat.php:33 lib/utility/payment/verify/mellat.php:30
+msgid "The mellat payment on this service is locked"
+msgstr "درگاه پرداخت ملت در این سیستم تعریف نشده است"
+
+#: lib/utility/payment/pay/mellat.php:40 lib/utility/payment/verify/mellat.php:37
+msgid "The mellat payment TerminalId not set"
+msgstr "شناسه ترمینال درگاه پرداخت ملت تنظیم نشده است"
+
+#: lib/utility/payment/pay/mellat.php:47 lib/utility/payment/verify/mellat.php:44
+msgid "The mellat payment UserName not set"
+msgstr "نام کاربری درگاه پرداخت ملت تنظیم نشده است"
+
+#: lib/utility/payment/pay/mellat.php:78
+msgid "Pay by mellat payment"
+msgstr "پرداخت با درگاه بانک ملت"
+
+#: lib/utility/payment/pay/mellat.php:133
+msgid "Redirect to mellat payment"
+msgstr "در حال انتقال به درگاه پرداخت ملت"
 
 #: lib/utility/payment/pay/parsian.php:34
 #: lib/utility/payment/verify/parsian.php:30
@@ -9897,6 +10200,8 @@ msgstr "خطا در درگاه پرداخت - هیچ پاسخی گرفته نش�
 #: lib/utility/payment/payment/asanpardakht.php:111
 #: lib/utility/payment/payment/irkish.php:73
 #: lib/utility/payment/payment/irkish.php:135
+#: lib/utility/payment/payment/mellat.php:82
+#: lib/utility/payment/payment/mellat.php:142
 #: lib/utility/payment/payment/parsian.php:81
 #: lib/utility/payment/payment/parsian.php:145
 #: lib/utility/payment/payment/parsian.php:198
@@ -9915,10 +10220,195 @@ msgstr "خطا در برقراری ارتباط با سرویس دهنده با�
 
 #: lib/utility/payment/payment/irkish.php:188
 #: lib/utility/payment/payment/irkish.php:192
+#: lib/utility/payment/payment/mellat.php:210
 #: lib/utility/payment/payment/parsian.php:324
 #: lib/utility/payment/payment/parsian.php:329
 msgid "Unkown payment error"
 msgstr "خطای ناشناس در پرداخت"
+
+#: lib/utility/payment/payment/mellat.php:42
+msgid "Can not connect to mellat gateway. Install it!"
+msgstr "نمی‌توانیم به درگاه پرداخت ملت متصل شویم. آن را نصب کنید!"
+
+#: lib/utility/payment/payment/mellat.php:157
+msgid "Transaction Approved"
+msgstr "تراکنش تایید شده است"
+
+#: lib/utility/payment/payment/mellat.php:158
+msgid "Invalid Card Number"
+msgstr "شماره کارت نامعتبر است"
+
+#: lib/utility/payment/payment/mellat.php:159
+msgid "No Sufficient Funds"
+msgstr "بدون پول کافی"
+
+#: lib/utility/payment/payment/mellat.php:160
+msgid "Incorrect Pin"
+msgstr "پین نادرست"
+
+#: lib/utility/payment/payment/mellat.php:161
+msgid "Allowable Number Of Pin Tries Exceeded"
+msgstr "تعداد قابل قبولی از پین تلاش می کند بیش از"
+
+#: lib/utility/payment/payment/mellat.php:162
+msgid "Card Not Effective"
+msgstr "کارت موثر نیست"
+
+#: lib/utility/payment/payment/mellat.php:163
+msgid "Exceeds Withdrawal Frequency Limit"
+msgstr "بیش از حد فرکانس خروج"
+
+#: lib/utility/payment/payment/mellat.php:164
+msgid "Customer Cancellation"
+msgstr "لغو مشتری"
+
+#: lib/utility/payment/payment/mellat.php:165
+msgid "Expired Card"
+msgstr "کارت خاتمه یافته"
+
+#: lib/utility/payment/payment/mellat.php:166
+msgid "Exceeds Withdrawal Amount Limit"
+msgstr "حد مجاز بازپرداخت بیشتر است"
+
+#: lib/utility/payment/payment/mellat.php:167
+msgid "No Such Issuer"
+msgstr "چنین صادر کننده ای وجود ندارد"
+
+#: lib/utility/payment/payment/mellat.php:168
+msgid "Card Switch Internal Error"
+msgstr "کارت سوئیچ داخلی خطا"
+
+#: lib/utility/payment/payment/mellat.php:169
+msgid "Issuer Or Switch Is Inoperative"
+msgstr "صادر کننده یا سوئیچ نامناسب است"
+
+#: lib/utility/payment/payment/mellat.php:170
+msgid "Transaction Not Permitted To Card Holder"
+msgstr "تراکنش به دارنده کارت مجاز نمی باشد"
+
+#: lib/utility/payment/payment/mellat.php:171
+msgid "Invalid Merchant"
+msgstr "Merchant نامعتبر است"
+
+#: lib/utility/payment/payment/mellat.php:172
+msgid "Security Violation"
+msgstr "نقض امنیتی"
+
+#: lib/utility/payment/payment/mellat.php:173
+msgid "Invalid User Or Password"
+msgstr "کاربر یا گذرواژه نامعتبر است"
+
+#: lib/utility/payment/payment/mellat.php:174
+msgid "Invalid Amount"
+msgstr "مقدار نامعتبر"
+
+#: lib/utility/payment/payment/mellat.php:175
+msgid "Invalid Response"
+msgstr "پاسخ نامعتبر"
+
+#: lib/utility/payment/payment/mellat.php:176
+msgid "Format Error"
+msgstr "خطای قالب"
+
+#: lib/utility/payment/payment/mellat.php:177
+msgid "No Investment Account"
+msgstr "حساب سرمایه گذاری ندارد"
+
+#: lib/utility/payment/payment/mellat.php:178
+msgid "System Internal Error"
+msgstr "خطای داخلی سیستم"
+
+#: lib/utility/payment/payment/mellat.php:179
+msgid "Invalid Business Date"
+msgstr "تاریخ کسب و کار نامعتبر است"
+
+#: lib/utility/payment/payment/mellat.php:180
+msgid "Duplicate Order Id"
+msgstr "شناسه سفارش تکراری"
+
+#: lib/utility/payment/payment/mellat.php:181
+msgid "Sale Transaction Not Found"
+msgstr "معامله فروش یافت نشد"
+
+#: lib/utility/payment/payment/mellat.php:182
+msgid "Duplicate Verify"
+msgstr "تکثیر تأیید"
+
+#: lib/utility/payment/payment/mellat.php:183
+msgid "Verify Transaction Not Found"
+msgstr "تأیید معامله یافت نشد"
+
+#: lib/utility/payment/payment/mellat.php:184
+msgid "Transaction Has Been Settled"
+msgstr "معامله صورت گرفته است"
+
+#: lib/utility/payment/payment/mellat.php:185
+msgid "Transaction Has Not Been Settled"
+msgstr "معامله انجام نشده است"
+
+#: lib/utility/payment/payment/mellat.php:186
+msgid "Settle Transaction Not Found"
+msgstr "معامله معامله پیدا نشد"
+
+#: lib/utility/payment/payment/mellat.php:187
+msgid "Transaction Has Been Reversed"
+msgstr "معامله معکوس شده است"
+
+#: lib/utility/payment/payment/mellat.php:188
+msgid "Refund Transaction Not Found"
+msgstr "معامله بازپرداخت یافت نشد"
+
+#: lib/utility/payment/payment/mellat.php:189
+msgid "Bill Digit Incorrect"
+msgstr "بیل سیگنال اشتباه است"
+
+#: lib/utility/payment/payment/mellat.php:190
+msgid "Payment Digit Incorrect"
+msgstr "سیگنال پرداخت اشتباه است"
+
+#: lib/utility/payment/payment/mellat.php:191
+msgid "Bill Organization Not Valid"
+msgstr "سازمان بیل معتبر نیست"
+
+#: lib/utility/payment/payment/mellat.php:192
+msgid "Session Timeout"
+msgstr "مدت زمان جلسه"
+
+#: lib/utility/payment/payment/mellat.php:193
+msgid "Data Access Exception"
+msgstr "استثناء دسترسی به داده ها"
+
+#: lib/utility/payment/payment/mellat.php:194
+msgid "Payer Id Is Invalid"
+msgstr "شناسه پرداخت نامعتبر است"
+
+#: lib/utility/payment/payment/mellat.php:195
+msgid "Customer Not Found"
+msgstr "مشتری یافت نشد"
+
+#: lib/utility/payment/payment/mellat.php:196
+msgid "Try Count Exceeded"
+msgstr "سعی کنید تعداد بیش از حد"
+
+#: lib/utility/payment/payment/mellat.php:197
+msgid "Invalid IP"
+msgstr "IP نامعتبر است"
+
+#: lib/utility/payment/payment/mellat.php:198
+msgid "Duplicate Transmission"
+msgstr "انتقال تکراری"
+
+#: lib/utility/payment/payment/mellat.php:199
+msgid "Original Transaction Not Found"
+msgstr "معامله اصلی یافت نشد"
+
+#: lib/utility/payment/payment/mellat.php:200
+msgid "Invalid Transaction"
+msgstr "معامله نامعتبر"
+
+#: lib/utility/payment/payment/mellat.php:201
+msgid "Error In Settle"
+msgstr "خطا در حل و فصل"
 
 #: lib/utility/payment/payment/parsian.php:42
 msgid "Can not connect to parsian gateway. Install it!"
@@ -9937,8 +10427,7 @@ msgid "IP or merchant code of the host is incorrect"
 msgstr "آی پی یا کد مرچنت میزبان اشتباه است"
 
 #: lib/utility/payment/payment/zarinpal.php:132
-msgid ""
-"Due to Shaparak's limitations, It's impossible to pay the specified amount"
+msgid "Due to Shaparak's limitations, It's impossible to pay the specified amount"
 msgstr "به دلیل محدودیت‌های شاپرک، امکان پرداخت این مقدار وجود ندارد"
 
 #: lib/utility/payment/payment/zarinpal.php:133
@@ -9997,6 +10486,7 @@ msgstr "عملیات پرداخت موفقیت آمیز بوده است و تأ�
 
 #: lib/utility/payment/verify/asanpardakht.php:68
 #: lib/utility/payment/verify/irkish.php:71
+#: lib/utility/payment/verify/mellat.php:68
 #: lib/utility/payment/verify/parsian.php:64
 #: lib/utility/payment/verify/payir.php:63
 #: lib/utility/payment/verify/zarinpal.php:60
@@ -10007,6 +10497,7 @@ msgstr "اطلاعات سشن از دست رفته است! ما نمی‌توا�
 #: lib/utility/payment/verify/asanpardakht.php:101
 #: lib/utility/payment/verify/irkish.php:91
 #: lib/utility/payment/verify/irkish.php:98
+#: lib/utility/payment/verify/mellat.php:90
 #: lib/utility/payment/verify/parsian.php:91
 #: lib/utility/payment/verify/parsian.php:98
 #: lib/utility/payment/verify/payir.php:80
@@ -10023,13 +10514,13 @@ msgstr "کد احراز هویت ایران کیش یافت نشد"
 msgid "The irkish payment resultCode not set"
 msgstr "شماره کد احراز هویت ایران کیش یافت نشد"
 
+#: lib/utility/payment/verify/mellat.php:57
+msgid "The mellat payment RefId not set"
+msgstr "ارجاع دهنده درگاه پرداخت ملت تنظیم نشده است"
+
 #: lib/utility/payment/verify/payir.php:52
 msgid "The payir payment transId not set"
 msgstr "خطا در درگاه پرداخت - شناسه تراکنش یافت نشد"
-
-#: lib/utility/telegram.php:213
-msgid "Please install curl on your system"
-msgstr "لطفا سی‌یوآرال را بر روی سیستم نصب کنید"
 
 #: lib/utility/upload.php:262
 msgid "file successful uploaded"
@@ -10070,3 +10561,75 @@ msgstr "نام فایل غیرمجاز"
 #: lib/utility/upload/check.php:91
 msgid "Exceeded file extension limit"
 msgstr "نوع فایل غیرمجاز"
+
+#~ msgid "Telegram id not found"
+#~ msgstr "آی‌دی تلگرام یافت نشد"
+
+#~ msgid "Invalid telegram id"
+#~ msgstr "آی‌دی تلگرام نامعتبر است"
+
+#~ msgid "Authorization not found"
+#~ msgstr "مجوز یافت نشد"
+
+#~ msgid "Invalid Authorization"
+#~ msgstr "کد تایید نامعتبر است"
+
+#~ msgid "Mobile is not set"
+#~ msgstr "تلفن همراه تنظیم نشده است"
+
+#~ msgid "System error 2"
+#~ msgstr "خطای سیستمی‌۲"
+
+#~ msgid "System error 3"
+#~ msgstr "خطای سیستمی‌۳"
+
+#~ msgid "Please set firstname less than 100 character"
+#~ msgstr "لطفا نام را کمتر از ۱۰۰ حرف وارد کنید"
+
+#~ msgid "Haloo"
+#~ msgstr "سلووو"
+
+#~ msgid "Ermile is inteligent"
+#~ msgstr "ارمایل باهوش است"
+
+#~ msgid "Please wrote your request, offer, criticism or appreciation"
+#~ msgstr "لطفا درخواست، پیشنهاد، انتقاد یا قدردانی خود را بنویسید"
+
+#~ msgid "Your valuable feedback is saved."
+#~ msgstr "بازخورد ارزشمند شما ثبت شد."
+
+#~ msgid "Thanks"
+#~ msgstr "سپاسگزاریم"
+
+#~ msgid "User_id"
+#~ msgstr "کد کاربر"
+
+#~ msgid "We can give your ticket easily in via telegram"
+#~ msgstr "ما می‌توانید به راحتی تیکت شما را از طریق تلگرام دریافت کنیم"
+
+#~ msgid "Please enter your ticket title"
+#~ msgstr "لطفا عنوان تیکت خود را وارد کنید"
+
+#~ msgid "Ticket title is saved."
+#~ msgstr "عنوان تیکت ذخیره شد."
+
+#~ msgid "Your ticket is successfully saved."
+#~ msgstr "تیکت شما با موفقیت ذخیره شد."
+
+#~ msgid "We try to answer to you as soon as posible."
+#~ msgstr "ما سعی می کنیم تا در اسرع وقت به شما پاسخ دهیم."
+
+#~ msgid "What do you want to do?"
+#~ msgstr "می‌خواهید چه کاری انجام بدهید؟"
+
+#~ msgid "We are save you answer to this ticket."
+#~ msgstr "ما پاسخ شما را به این تیکت ذخیره کردیم."
+
+#~ msgid "Thanks."
+#~ msgstr "سپاسگزاریم"
+
+#~ msgid "Please only use below keyboard."
+#~ msgstr "لطفا تنها از منوی زیر استفاده کنید."
+
+#~ msgid "Please install curl on your system"
+#~ msgstr "لطفا سی‌یوآرال را بر روی سیستم نصب کنید"
