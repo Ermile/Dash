@@ -485,6 +485,29 @@ class file
 	}
 
 
+	public static function search($_path, $_text)
+	{
+		$matches = [];
+
+		$handle = @fopen($_path, "r");
+
+		if($handle)
+		{
+		    while (!feof($handle))
+		    {
+		        $buffer = fgets($handle);
+
+		        if(strpos($buffer, $_text) !== false)
+		        {
+		            $matches[] = $buffer;
+		        }
+		    }
+		    fclose($handle);
+		}
+
+		return $matches;
+	}
+
 
 	/**
 	 * set permission to file
