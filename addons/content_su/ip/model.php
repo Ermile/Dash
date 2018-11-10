@@ -38,16 +38,7 @@ class model
 			\dash\redirect::pwd();
 
 		}
-		elseif(\dash\request::post('type') === 'remove' && \dash\request::post('file'))
-		{
-			if($addr)
-			{
-				\dash\log::set('ipFileDeleted');
-				\dash\notif::ok(T_("File successfully deleted"));
-				\dash\redirect::pwd();
-				return;
-			}
-		}
+
 	}
 }
 ?>

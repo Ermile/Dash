@@ -52,10 +52,8 @@
       <a href="{{url.site}}/files/ip/{{value.name}}" title='{%trans "Click to download"%}'>{{value.name}}</a>
     </td>
     <td class="rtl s0">{{value.ago}}</td>
-    <td class="rtl s0">{{value.size | fitNumber(false)}} {%trans "MB"%}</td>
-    <td class="pR25-f ">
-      <div class="btn xs danger"><div href="{{url.pwd}}" data-confirm data-data='{"type" : "remove", "file" : "{{value.name}}"}' >{%trans "Remove"%}</div></div>
-    </td>
+    <td class="rtl pR25-f">{{value.size | fitNumber(false)}} {%trans "MB"%}</td>
+
   </tr>
 {%endfor%}
 </table>
