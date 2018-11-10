@@ -3,6 +3,10 @@
     "title": "Send notification",
     "url": "notification"
   },
+  "ipblocker": {
+    "title": "Check ip is blocked",
+    "url": "ipblocker"
+  },
   "closesolved": {
     "title": "Set ticket close if solved",
     "url": "closesolved"

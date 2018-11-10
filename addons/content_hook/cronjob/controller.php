@@ -106,6 +106,11 @@ class controller
 				}
 				break;
 
+				// cehck ip ic block or no
+			case 'ipblocker';
+				\dash\utility\ip::check_is_block();
+				break;
+
 			default:
 				// nothing
 				break;

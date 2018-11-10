@@ -54,6 +54,9 @@ self::$language           =
 	'list'                    => ['fa','en']
 ];
 
+// check ip api key
+// http://botscout.com
+self::$config['botscout'] = null;
 
 // self::$config['crop_size']['wide']     = [1200, 1200];
 // self::$config['crop_size']['verywide'] = [1600, 1800];
