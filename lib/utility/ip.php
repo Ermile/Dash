@@ -23,7 +23,7 @@ class ip
 
 		if(self::is_local_ip($ip))
 		{
-			// return true;
+			return true;
 		}
 
 		if(self::is_block($ip))
@@ -327,7 +327,7 @@ class ip
 			return false;
 		}
 
-		if(self::count_request(true) > 100)
+		if(self::count_request(true) > 1000)
 		{
 			return false;
 		}
