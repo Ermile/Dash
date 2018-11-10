@@ -10,23 +10,26 @@
 
 {%block iShowFilesRaw%}
 {%if rawFile%}
+{%set editable = ['new', 'block', 'unblock']%}
 <div class="ltr">
   {%for key, value in rawFile%}
     <div class="cbox">
       <h3>{{key | capitalize}}</h3>
-        <form method="post" autocomplete="off">
-          <div class="input ltr">
-            <label class="addon">{%trans "Add data to this file"%}</label>
-            <input type="text" name="ip">
-            <input type="hidden" name="file" value="{{key}}">
-            <input type="hidden" name="type" value="add">
-            <button type="submit" class="btn primary">{%trans "Add"%}</button>
-          </div>
-        </form>
-        <hr>
+        {%if key in editable%}
+          <form method="post" autocomplete="off">
+            <div class="input ltr">
+              <label class="addon">{%trans "Add data to this file"%}</label>
+              <input type="text" name="ip">
+              <input type="hidden" name="file" value="{{key}}">
+              <input type="hidden" name="type" value="add">
+              <button type="submit" class="btn primary">{%trans "Add"%}</button>
+            </div>
+          </form>
+          <hr>
+        {%endif%}
       {%for k, v in value%}
         {%if v%}
-        {{v}} <div href="{{url.pwd}}" class="badge danger" data-confirm data-data='{"type" : "remove_ip", "file" : "{{key}}", "ip" : "{{v | trim}}"}' >{%trans "Remove"%}</div>
+        {{v}} {%if key in editable%}<div href="{{url.pwd}}" class="badge danger" data-confirm data-data='{"type" : "remove_ip", "file" : "{{key}}", "ip" : "{{v | trim}}"}' >{%trans "Remove"%}</div>{%endif%}
         <br>
         {%endif%}
 
@@ -49,7 +52,7 @@
   <tr>
     <td class="txtL">
       <span class="sf-database fs15 mR10"></span>
-      <a href="{{url.site}}/files/ip/{{value.name}}" title='{%trans "Click to download"%}'>{{value.name}}</a>
+      <a href="{{url.site}}/files/ip/{{value.name}}" title='{%trans "Click to download"%}'>{{value.name | capitalize}}</a>
     </td>
     <td class="rtl s0">{{value.ago}}</td>
     <td class="rtl pR25-f">{{value.size | fitNumber(false)}} {%trans "MB"%}</td>

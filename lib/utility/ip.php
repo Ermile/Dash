@@ -6,6 +6,8 @@ namespace dash\utility;
 */
 class ip
 {
+	private static $count_request_api = 0;
+
 
 	public static function check($_if_login_is_ok = false)
 	{
@@ -65,8 +67,8 @@ class ip
 		}
 
 		return false;
-
 	}
+
 
 	private static function is_not_block($_ip)
 	{
@@ -117,6 +119,7 @@ class ip
 		return false;
 	}
 
+
 	// run this function from cronjob
 	public static function check_is_block()
 	{
@@ -129,7 +132,7 @@ class ip
 		}
 
 		$get = \dash\file::read($addr);
-		if(!$get)
+		if(!trim($get))
 		{
 			return true;
 		}
@@ -141,7 +144,6 @@ class ip
 		// wrire file to not check exist file in foreach
 		$addr_result = self::files_addr();
 		$addr_result .= 'apiresult';
-
 		if(!is_file($addr_result))
 		{
 			\dash\file::write($addr_result, '');
@@ -149,9 +151,16 @@ class ip
 
 		$is_block     = [];
 		$is_not_block = [];
+		$time         = time();
 
 		foreach ($get as $key => $value)
 		{
+			// try for 45 s
+			if((time() - $time) > 45)
+			{
+				break;
+			}
+
 			if(!$value)
 			{
 				continue;
@@ -197,7 +206,96 @@ class ip
 
 		\dash\file::write($addr. 'new', $get);
 
+		self::count_request();
+
 		return true;
+	}
+
+	private static function count_request($_get_count = false)
+	{
+		$addr = self::files_addr();
+		$addr .= 'history';
+		if(!is_file($addr))
+		{
+			\dash\file::write($addr, '');
+		}
+
+		$get = \dash\file::read($addr);
+		if($_get_count)
+		{
+			if(!$get)
+			{
+				return self::$count_request_api;
+			}
+			else
+			{
+				$explode      = explode("\n", $get);
+
+				foreach ($explode as $key => $value)
+				{
+					if(substr($value, 0, 10) === date("Y-m-d"))
+					{
+						$old_value = explode("|", $value);
+						if(isset($old_value[1]))
+						{
+							$old_value = intval($old_value[1]);
+						}
+						else
+						{
+							$old_value = 0;
+						}
+						return self::$count_request_api + intval($old_value);
+					}
+				}
+				return self::$count_request_api;
+			}
+		}
+		else
+		{
+			if(!$get)
+			{
+				$new_get = date("Y-m-d"). "|". self::$count_request_api;
+			}
+			else
+			{
+				$explode      = explode("\n", $get);
+				$saved_before = false;
+				$old_value    = null;
+
+				foreach ($explode as $key => $value)
+				{
+					if(substr($value, 0, 10) === date("Y-m-d"))
+					{
+						$old_value    = $value;
+						$get          = str_replace($value. "\n", '', $get);
+						\dash\file::write($addr, $get);
+						$saved_before = true;
+						break;
+					}
+				}
+
+				if($saved_before)
+				{
+					$old_value = explode("|", $old_value);
+					if(isset($old_value[1]))
+					{
+						$old_value = intval($old_value[1]);
+					}
+					else
+					{
+						$old_value = 0;
+					}
+				}
+
+				if(!is_numeric($old_value))
+				{
+					$old_value = 0;
+				}
+
+				$new_get = date("Y-m-d"). "|".  (string) (self::$count_request_api + intval($old_value));
+			}
+			\dash\file::append($addr, $new_get. "\n");
+		}
 	}
 
 
@@ -228,6 +326,13 @@ class ip
 		{
 			return false;
 		}
+
+		if(self::count_request(true) > 100)
+		{
+			return false;
+		}
+
+		self::$count_request_api++;
 
 		$url    = "http://botscout.com/test/?ip=$_ip&key=$apiKey";
 		$data   = file_get_contents($url);
