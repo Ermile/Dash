@@ -71,9 +71,9 @@ class model
 
 		if(!empty($update_main))
 		{
-			$result = \dash\db\comments::update($update_main, $_id);
-
+			$result = \dash\app\comment::edit($update_main, \dash\coding::encode($_id));
 		}
+
 		if($result)
 		{
 			\dash\notif::ok(T_("Title of ticket saved"), 'title');
