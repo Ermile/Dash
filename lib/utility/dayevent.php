@@ -70,5 +70,51 @@ class dayevent
 		$result = array_map('intval', $result);
 		return $result;
 	}
+
+
+	public static function chart()
+	{
+		$result = \dash\db\dayevent::get(['1.1' => 1.1]);
+
+		$data       = [];
+		$categories = [];
+
+		foreach ($result as $record)
+		{
+			foreach ($record as $key => $value)
+			{
+				if(in_array($key, ['id','datecreated', 'datemodified']))
+				{
+					continue;
+				}
+
+				if($key === 'date')
+				{
+					array_push($categories, \dash\datetime::fit($value, null, 'date'));
+					continue;
+				}
+
+				$temp = null;
+				if($value)
+				{
+					$temp = floatval($value);
+				}
+
+				if(!isset($data[$key]))
+				{
+					$data[$key] = ['name' => $key, 'data' => []];
+				}
+
+				$data[$key]['data'][] = $temp;
+			}
+		}
+
+		$data                 = array_values($data);
+		$result               = [];
+		$result['categories'] = json_encode($categories, JSON_UNESCAPED_UNICODE);
+		$result['data']       = json_encode($data, JSON_UNESCAPED_UNICODE);
+
+		return $result;
+	}
 }
 ?>
