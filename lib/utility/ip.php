@@ -190,6 +190,7 @@ class ip
 		{
 			foreach ($is_block as $key => $value)
 			{
+				\dash\log::set('blockIPDetected', ['ip' => $value]);
 				$get = str_replace($value. "\n", "", $get);
 				\dash\file::append($addr. 'block', $value. "\n");
 			}
@@ -207,6 +208,8 @@ class ip
 		\dash\file::write($addr. 'new', $get);
 
 		self::count_request();
+
+
 
 		return true;
 	}

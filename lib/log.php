@@ -33,12 +33,47 @@ class log
 
 	public static function set($_caller, $_args = [])
 	{
+		$data  = [];
+		$field = [];
+
+		if(!is_array($_args))
+		{
+			$_args = [$_args];
+		}
 
 		$all_list = self::lists();
 
 		if(!isset($all_list[$_caller]))
 		{
-			return self::db(...func_get_args());
+			foreach ($_args as $key => $value)
+			{
+				switch ($key)
+				{
+					case 'subdomain':
+					case 'status':
+					case 'code':
+					case 'send':
+					case 'notif':
+					case 'user_idsender':
+					case 'readdate':
+					case 'telegramdate':
+					case 'smsdate':
+					case 'emaildate':
+					case 'meta':
+					case 'user_id':
+						$field[$key] = $value;
+						break;
+
+					default:
+						$data[$key] = $value;
+						break;
+				}
+			}
+
+			$new_args         = $field;
+			$new_args['data'] = $data;
+
+			return self::db($_caller, $new_args);
 		}
 
 		$caller_detail = $all_list[$_caller];
@@ -48,9 +83,6 @@ class log
 			$_args = [];
 		}
 
-
-		$data  = [];
-		$field = [];
 
 		foreach ($caller_detail as $key => $value)
 		{

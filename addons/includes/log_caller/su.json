@@ -1,4 +1,19 @@
 {
+  "blockIPDetected": {
+    "title": "A new Block ip detected",
+    "content": "A new Block ip detected",
+    "notification": true,
+    "telegram": true,
+    "send_gif": true,
+    "not_send_to_userid": true,
+    "gif_url": "https://media.giphy.com/media/l3vRnW2LFfCIjvwIw/giphy.gif",
+    "send_msg": {
+      "telegram": "#BlockIP :ip \n⏳ |longdatecreated"
+    },
+    "send_to": [
+      "supervisor"
+    ]
+  },
   "backupDb": {
     "title": null
   },
