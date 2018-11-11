@@ -161,6 +161,17 @@
   </div>
 {%endif%}
 
+ {%if perm('supportTicketAnswer')%}
+ <form method="post">
+    <input type="hidden" name="TicketFormType" value="setTitle">
+    <label for="title">{%trans "Ticket Subject"%}</label>
+    <div class="input">
+      <input type="text" name="title" id="title" placeholder='{%trans "Subject of ticket"%}' value="{{masterTicketDetail.title}}"  maxlength='150' minlength="1" title='{%trans "Set the title to get faster"%}'>
+      <button class="btn addon primary">{%trans "Save"%}</button>
+    </div>
+ </form>
+  {%endif%}
+
 {%if superDataTable%}
 
 {%set lastRecordVisitor = false%}

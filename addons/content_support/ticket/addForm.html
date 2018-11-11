@@ -5,13 +5,19 @@
     {%include display.hive%}
 
 {%if url.child == 'add'%}
+  {%if false%}
     <label for="title">{%trans "Ticket Subject"%}</label>
     <div class="input">
       <input type="text" name="title" id="title" placeholder='{%trans "Subject of your ticket"%}' value="{{dataRow.title}}" autofocus maxlength='150' minlength="1" title='{%trans "Set title will help us answer quickly"%}'>
     </div>
+  {%endif%}
 {%endif%}
 
+{%if url.child == 'add'%}
+    <label for="icontent">{%trans "Please write your message"%} <small class="fc-red">{%trans "Require"%} *</small></label>
+{%else%}
     <label for="icontent">{%trans "Description"%} <small class="fc-red">{%trans "Require"%} *</small></label>
+{%endif%}
     {%if perm('supportTicketSignature')%}
       <textarea class="txt mB10" data-editor id='icontent' name="content"  maxlength='100000' >{%if user.signature%}{{user.signature|raw}}{%endif%}</textarea>
     {%else%}

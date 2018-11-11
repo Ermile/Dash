@@ -36,11 +36,49 @@ class model
 			return false;
 		}
 
+		if(\dash\request::post('TicketFormType') === 'setTitle')
+		{
+			if(self::save_title($id, \dash\request::post('title')))
+			{
+				\dash\redirect::pwd();
+			}
+			return false;
+		}
+
 		if(self::answer_save($id, \dash\request::post('content') ? $_POST['content'] : null, \dash\request::post('addnote'), \dash\request::post('sendmessage')))
 		{
 			\dash\redirect::pwd();
 		}
 
+	}
+
+
+	public static function save_title($_id, $_title)
+	{
+
+		$main = \dash\app\ticket::get($_id);
+
+		if(!$main || !array_key_exists('user_id', $main))
+		{
+			\dash\header::status(403, T_("Ticket not found"));
+		}
+
+		$update_main = [];
+
+		$update_main['title'] = $_title;
+
+		$result = false;
+
+		if(!empty($update_main))
+		{
+			$result = \dash\db\comments::update($update_main, $_id);
+
+		}
+		if($result)
+		{
+			\dash\notif::ok(T_("Title of ticket saved"), 'title');
+		}
+		return $result;
 	}
 
 

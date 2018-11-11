@@ -82,7 +82,7 @@ class model
 		}
 
 		// insert comments
-		$result = self::add_new(\dash\request::post('title'), $content, $file);
+		$result = self::add_new(null, $content, $file);
 
 		if(isset($result['id']))
 		{
