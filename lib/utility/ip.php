@@ -337,7 +337,7 @@ class ip
 		$url    = "http://botscout.com/test/?ip=$_ip&key=$apiKey";
 		$data   = file_get_contents($url);
 
-		\dash\file::append($addr_result, $_ip. "=". $data. "\n");
+		\dash\file::append($addr_result, $_ip. "=". $data. '---'. date("Y-m-d H:i:s"). "\n");
 
 		$explode = explode('|', $data);
 
