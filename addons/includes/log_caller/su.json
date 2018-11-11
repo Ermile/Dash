@@ -8,7 +8,7 @@
     "not_send_to_userid": true,
     "gif_url": "https://media.giphy.com/media/l3vRnW2LFfCIjvwIw/giphy.gif",
     "send_msg": {
-      "telegram": "#BlockIP :ip \n⏳ |longdatecreated"
+      "telegram": "#BlockIP :title \n:ip \n⏳ |longdatecreated"
     },
     "send_to": [
       "supervisor"
