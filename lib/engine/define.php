@@ -78,4 +78,13 @@ else
 	// A config file doesn't exist
 	// echo("<p>There doesn't seem to be a <code>config.php</code> file. I need this before we can get started.</p>");
 }
+
+if(!defined('db_log_name'))
+{
+	if(defined('db_name'))
+	{
+		define('db_log_name', db_name. '_log');
+	}
+}
+
 ?>

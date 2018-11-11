@@ -5,6 +5,24 @@ DROP TABLE IF EXISTS `urls`;
 DROP TABLE IF EXISTS `services`;
 DROP TABLE IF EXISTS `logitems`;
 
+
+CREATE TABLE `agents` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `agent` text NOT NULL,
+  `group` varchar(50) DEFAULT NULL,
+  `name` varchar(50) DEFAULT NULL,
+  `version` varchar(50) DEFAULT NULL,
+  `os` varchar(50) DEFAULT NULL,
+  `osnum` varchar(50) DEFAULT NULL,
+  `robot` bit(1) DEFAULT NULL,
+  `meta` text,
+  `datecreated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `datemodified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `agentmd5` varchar(32) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
 CREATE TABLE `urls` (
 `id`		INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
 `urlmd5`	VARCHAR(32) CHARACTER SET utf8mb4 DEFAULT NULL,

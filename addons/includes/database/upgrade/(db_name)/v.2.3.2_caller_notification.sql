@@ -1,1 +1,0 @@
-ALTER TABLE `notifications` ADD `caller` varchar(200) NULL DEFAULT NULL;

@@ -126,13 +126,22 @@ trait connect
 						// if can connect to mysql database
 						if($link)
 						{
-							$qry = "CREATE DATABASE if not exists ". self::$db_name . " DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;";
+							$qry = "CREATE DATABASE IF NOT EXISTS `". self::$db_name. "` DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_general_ci;";
+
 							// try to create database
 							if(!@mysqli_query($link, $qry))
 							{
 								// if cant create db
 								return false;
 							}
+
+							if(defined('db_log_name'))
+							{
+								$qry = "CREATE DATABASE IF NOT EXISTS `". db_log_name. "` DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_general_ci;";
+								// try to create log database
+								@mysqli_query($link, $qry);
+							}
+
 							// else if can create new database then reset link to dbname
 							$link = @mysqli_connect(self::$db_host, self::$db_user, self::$db_pass, self::$db_name);
 						}
