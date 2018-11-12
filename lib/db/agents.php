@@ -12,7 +12,16 @@ class agents
 	public static function insert($_args)
 	{
 		\dash\db\config::public_insert('agents', $_args, \dash\db::get_db_log_name());
-		return \dash\db::insert_id();
+
+		if(\dash\db::get_db_log_name() === true)
+		{
+			$resutl = \dash\db::insert_id();
+		}
+		elseif(isset(\dash\db::$link_open[\dash\db::get_db_log_name()]))
+		{
+			$resutl = \dash\db::insert_id(\dash\db::$link_open[\dash\db::get_db_log_name()]);
+		}
+		return $resutl;
 	}
 
 
