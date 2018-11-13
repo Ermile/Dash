@@ -25,7 +25,7 @@ class view
 
 			case 'change':
 				\dash\data::page_title(T_('Change to new Password'));
-				\dash\data::page_desc(T_('Please set your old and new password to change it'));
+				\dash\data::page_desc(T_('Please set new password to change it'));
 				break;
 
 			default:

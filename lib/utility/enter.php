@@ -1137,18 +1137,19 @@ class enter
 
 		if(self::get_session('verify_from') === 'password_change' && \dash\user::id() && self::get_session('temp_ramz_hash'))
 		{
+
 			// set off two_step of this user
-			\dash\db\users::update(['password' => self::get_session('temp_ramz_hash')], self::user_data('id'));
+			\dash\db\users::update(['password' => self::get_session('temp_ramz_hash')], \dash\user::id());
 			\dash\db\sessions::change_password(\dash\user::id());
+			\dash\user::refresh();
 			$alert =
 			[
 				'clean_session' => true,
-				'text' => T_("Your password was changed"),
-				'link' => \dash\url::kingdom(),
+				'text'          => T_("Your password was changed"),
+				'link'          => \dash\url::kingdom(). '/account/profile/security',
 			];
 
 			\dash\log::set('passwordChangeOK');
-
 
 			self::set_session('alert', $alert);
 			// open lock of alert page

@@ -189,26 +189,25 @@ class model
 				\dash\utility\enter::enter_set_login(null, true);
 				return ;
 			}
-			else
-			{
-				\dash\log::set('browserSaveInvaliPassword');
-				\dash\utility\enter::try('browser_pass_saved_invalid');
-				$get = \dash\request::get();
-				$get['clean'] = '1';
-				\dash\notif::warn(T_("Maybe your browser saved your password incorrectly."). ' '. T_("Try again!"));
-				\dash\redirect::to(\dash\url::this(). '?'. http_build_query($get));
-				return false;
-			}
+			// else
+			// {
+			// 	\dash\log::set('browserSaveInvaliPassword');
+			// 	\dash\utility\enter::try('browser_pass_saved_invalid');
+			// 	$get = \dash\request::get();
+			// 	$get['clean'] = '1';
+			// 	\dash\notif::warn(T_("Maybe your browser saved your password incorrectly."). ' '. T_("Try again!"));
+			// 	\dash\redirect::to(\dash\url::this(). '?'. http_build_query($get));
+			// 	return false;
+			// }
 		}
-		else
-		{
-			// lock all step and set just this page to load
-			\dash\utility\enter::next_step('pass');
-			// open lock pass/recovery
-			\dash\utility\enter::open_lock('pass/recovery');
-			// go to pass to check password
-			\dash\utility\enter::go_to('pass');
-		}
+
+		// lock all step and set just this page to load
+		\dash\utility\enter::next_step('pass');
+		// open lock pass/recovery
+		\dash\utility\enter::open_lock('pass/recovery');
+		// go to pass to check password
+		\dash\utility\enter::go_to('pass');
+
 
 	}
 }

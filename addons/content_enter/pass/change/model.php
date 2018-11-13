@@ -7,80 +7,73 @@ class model
 
 	public static function post()
 	{
-		// check ramz fill
-		if(!\dash\request::post('ramz'))
+		if(\dash\request::post('ramzNew'))
 		{
-			\dash\notif::error(T_("Please fill the password field"));
-			return false;
-		}
+			$temp_ramz = \dash\request::post('ramzNew');
 
-		// check ramz fill
-		if(!\dash\request::post('ramzNew'))
-		{
-			\dash\notif::error(T_("Please fill the new password field"));
-			return false;
-		}
+			// check new password = old password
+			// needless to change password
+			if(\dash\user::detail('password'))
+			{
+				if(\dash\utility::hasher($temp_ramz, \dash\user::detail('password')))
+				{
+					// old pass = new pass
+					// aletr to user the new pass = old pass
+					// login
+					\dash\log::set('oldPassword=newPasswordInChange');
 
-		// check old pass == new pass?
-		if(\dash\request::post('ramz') == \dash\request::post('ramzNew'))
-		{
-			\dash\notif::error(T_("Please set a different password!"));
-			return false;
-		}
+					$url             = \dash\url::kingdom(). '/account/profile/security';
+					$alert           = [];
+					$alert['text']   = T_("Your new password is your old password");
+					$alert['link']   = $url;
+					$alert['button'] = T_("Ok");
 
-		// check min and max password
-		if(!\dash\utility\enter::check_pass_syntax(\dash\request::post('ramz')))
-		{
-			return false;
-		}
+					\dash\utility\enter::set_session('alert', $alert);
+					// open lock alert page
+					\dash\utility\enter::next_step('alert');
+					// go to alert page
+					\dash\utility\enter::go_to('alert');
+					// done ;)
+					return;
+				}
+			}
 
-		// check min and max password
-		if(!\dash\utility\enter::check_pass_syntax(\dash\request::post('ramzNew')))
-		{
-			return false;
-		}
+			// check min and max of password
+			// if not okay make debug error and return false
+			if(!\dash\utility\enter::check_pass_syntax($temp_ramz))
+			{
+				return false;
+			}
 
-		if(!\dash\user::detail('password'))
-		{
-			\dash\log::set('userNotPassTryToChangeIt!');
-
-			\dash\utility\enter::try('change_pass_have_not_pass');
-			\dash\notif::error(T_("You do not have any password!"). ' '. T_("Please logout and login again."));
-			return false;
-		}
-
-		// check old password is okay
-		if(!\dash\utility::hasher(\dash\request::post('ramz'), \dash\user::detail('password')))
-		{
-			\dash\log::set('invalidOldPassword');
-			\dash\utility\enter::try('change_pass_invalid_old_pass');
-			\dash\code::sleep(3);
-			\dash\notif::error(T_("Invalid old password"));
-			return false;
-		}
-
-		// hesh ramz to find is this ramz is easy or no
-		// creazy password !
-		$temp_ramz_hash = \dash\utility::hasher(\dash\request::post('ramzNew'));
-		// if \dash\notif status continue
-		if(\dash\engine\process::status())
-		{
-			\dash\utility\enter::set_session('temp_ramz', \dash\request::post('ramzNew'));
-			\dash\utility\enter::set_session('temp_ramz_hash', $temp_ramz_hash);
+			// hesh ramz to find is this ramz is easy or no
+			// creazy password !
+			$temp_ramz_hash = \dash\utility::hasher($temp_ramz);
+			// if debug status continue
+			if(\dash\engine\process::status())
+			{
+				\dash\utility\enter::set_session('temp_ramz', $temp_ramz);
+				\dash\utility\enter::set_session('temp_ramz_hash', $temp_ramz_hash);
+			}
+			else
+			{
+				\dash\log::set('creazyPassword');
+				// creazy password
+				return false;
+			}
 		}
 		else
 		{
-			\dash\log::set('creazyPassword');
-			// creazy password
+			\dash\utility\enter::try('pass_recovery_pass_not_set');
+			\dash\code::sleep(3);
+			\dash\notif::error(T_("Invalid Password"));
 			return false;
 		}
 
-		// set session verify_from change
-		\dash\utility\enter::set_session('verify_from', 'password_change');
-		// find send way to send code
-		// and send code
-
 		\dash\log::set('passwordChaneRequest');
+
+		// set session verify_from password_change
+		\dash\utility\enter::set_session('verify_from', 'password_change');
+
 		// send code way
 		\dash\utility\enter::go_to_verify();
 	}

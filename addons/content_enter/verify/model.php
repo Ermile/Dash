@@ -51,6 +51,11 @@ class model
 			return false;
 		}
 
+		if($send_code !== 'later')
+		{
+			\dash\utility\enter::generate_verification_code();
+		}
+
 		if(\dash\url::isLocal() && $send_code !== 'later')
 		{
 			\dash\notif::ok(T_("Verify code in local is :code", ['code' => '<b>11111</b>']));

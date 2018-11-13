@@ -512,7 +512,17 @@ class sessions
 	 */
 	public static function change_password($_user_id)
 	{
-		self::change_status($_user_id, 'changed', true);
+		$code = self::get_cookie();
+
+		$where_code = null;
+
+		if($code)
+		{
+			$where_code = " AND sessions.code != '$code' ";
+		}
+
+		\dash\db::query("UPDATE sessions SET status = 'changed' WHERE user_id = $_user_id $where_code", \dash\db::get_db_log_name());
+
 	}
 
 	/**
