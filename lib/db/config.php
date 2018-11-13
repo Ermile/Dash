@@ -387,7 +387,10 @@ class config
 				$limit = " LIMIT $_where[limit] ";
 			}
 
-			unset($_where['limit']);
+			if(is_array($_where))
+			{
+				unset($_where['limit']);
+			}
 
 			$where = \dash\db\config::make_where($_where, $_options);
 			if($where)
