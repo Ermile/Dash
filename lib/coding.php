@@ -118,6 +118,11 @@ class coding
 	 */
 	public static function is($_string, $_alphabet = null)
 	{
+		if(!is_string($_string) && !is_numeric($_string))
+		{
+			return false;
+		}
+
 		$_alphabet = self::alphabet($_alphabet);
 
 		if(preg_match("/^[". $_alphabet. "]+$/", $_string))
