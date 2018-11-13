@@ -1269,8 +1269,15 @@ class enter
 	 */
 	public static function go_to($_url = null)
 	{
-
 		$host = \dash\url::kingdom();
+
+		if($_url === 'okay')
+		{
+			\dash\notif::ok(null, ['unlock' => false]);
+			\dash\notif::redirect($host. '/enter/okay');
+			return;
+		}
+
 		$url  = null;
 		switch ($_url)
 		{
