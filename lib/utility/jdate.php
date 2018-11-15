@@ -617,8 +617,10 @@ class jdate
             }
             else
             {
-                $number = preg_replace("/[^\d]/", '', $_date);
-                if(mb_strlen($number) === 10)
+                // $number = preg_replace("/[^\d]/", '', $_date);
+                $number = str_replace('/', '', $_date);
+                $number = str_replace('-', '', $_date);
+                if(mb_strlen($number) === 8)
                 {
                     $check = true;
                 }
