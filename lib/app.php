@@ -338,5 +338,47 @@ class app
 		return $result;
 	}
 
+
+	public static function fix_gender($_data)
+	{
+		if(!isset($_data['gender']))
+		{
+			$_data['gender'] = null;
+		}
+
+		$result = [];
+
+		foreach ($_data as $key => $value)
+		{
+			switch ($key)
+			{
+				case 'gender':
+					$result[$key] = $value;
+					if($value === 'male')
+					{
+						$result['gender_string'] = T_("Mr");
+						$result['genderString']  = T_("Mr");
+					}
+					elseif($value === 'female')
+					{
+						$result['gender_string'] = T_("Mrs");
+						$result['genderString']  = T_("Mrs");
+					}
+					else
+					{
+						$result['gender_string'] = null;
+						$result['genderString']  = null;
+					}
+					break;
+
+				default:
+					$result[$key] = $value;
+					break;
+			}
+		}
+
+		return $result;
+	}
+
 }
 ?>
