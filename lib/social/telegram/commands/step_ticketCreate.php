@@ -51,7 +51,7 @@ class step_ticketCreate
 	}
 
 
-	public static function step2($_answer)
+	public static function step2($_desc)
 	{
 		if(bot::isCallback())
 		{
@@ -68,8 +68,54 @@ class step_ticketCreate
 			return false;
 		}
 
-		\dash\app\tg\ticket::create($_answer);
+		// set desc of ticket
+		step::set('ticketDesc', $_desc);
+		// get confirm of create
+		step::plus();
 
+		$txt_text = '🆕 '. T_("This is your new ticket")."\n\n";
+		$txt_text .= "<b>". $_desc . "</b>"."\n\n";
+		$txt_text .= T_("Do you confirm?");
+
+		$result   =
+		[
+			'text'         => $txt_text,
+			'reply_markup' =>
+			[
+				'keyboard' => [[T_('Yes'), T_('Cancel')]],
+				'resize_keyboard' => true,
+				'one_time_keyboard' => true
+			],
+		];
+
+		bot::sendMessage($result);
+
+	}
+
+	public static function step3($_accept)
+	{
+		if(bot::isCallback())
+		{
+			$callbackResult =
+			[
+				'text' => T_("Please use below menu")." 📝",
+				'show_alert' => true,
+			];
+			bot::answerCallbackQuery($callbackResult);
+			return false;
+		}
+		elseif(step::checkFalseTry())
+		{
+			return false;
+		}
+		if($_accept === T_('Yes') || $_accept === 'y')
+		{
+			\dash\app\tg\ticket::create(step::get('ticketDesc'));
+		}
+		else
+		{
+			bot::sendMessage(T_("Cancel operation."));
+		}
 		step::stop();
 	}
 }
