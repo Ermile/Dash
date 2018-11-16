@@ -40,6 +40,50 @@ class ip
 	}
 
 
+	public static function list($_file, $_long = false)
+	{
+		$addr = self::files_addr();
+		$addr .= $_file;
+		if(!is_file($addr))
+		{
+			return null;
+		}
+
+		$get = \dash\file::read($addr);
+
+		switch ($_file)
+		{
+			case 'block':
+			case 'unblock':
+			case 'new':
+				$new = [];
+				$split = explode("\n", $get);
+
+				$split = array_filter($split);
+				$split = array_unique($split);
+
+				foreach ($split as $key => $value)
+				{
+					if(!$value)
+					{
+						continue;
+					}
+					if($_long)
+					{
+						$value = ip2long($value);
+					}
+					$new[] = $value;
+				}
+				return $new;
+				break;
+
+			default:
+				return $get;
+				break;
+		}
+	}
+
+
 	private static function files_addr()
 	{
 		$addr = root. 'public_html/files/ip/';

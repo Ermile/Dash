@@ -109,6 +109,7 @@ class controller
 				// cehck ip ic block or no
 			case 'ipblocker';
 				\dash\utility\ip::check_is_block();
+				\dash\db\comments::spam_by_block_ip();
 				break;
 
 			case 'dayevent';

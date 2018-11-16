@@ -30,6 +30,23 @@ class comments
 
 	public static function close_solved_ticket()
 	{
+		$get_count =
+		"
+			SELECT COUNT(*) AS `count` FROM comments
+			WHERE
+				comments.solved = 1 AND
+				comments.type   = 'ticket' AND
+				comments.parent IS NULL AND
+				comments.status IN ('answered', 'awaiting') AND
+				comments.datemodified < '$yesterday'
+		";
+
+		$count = \dash\db::get($get_count, 'count', true);
+		if($count)
+		{
+			\dash\log::set('AutoCloseSolvedTicket', ['count' => $count]);
+		}
+
 		$yesterday = date("Y-m-d H:i:s", strtotime('-1 days'));
 		$query =
 		"
@@ -43,6 +60,41 @@ class comments
 				comments.datemodified < '$yesterday'
 		";
 		\dash\db::query($query);
+
+	}
+
+	public static function spam_by_block_ip()
+	{
+		$block_ip = \dash\utility\ip::list('block', true);
+		if(is_array($block_ip) && $block_ip)
+		{
+			$ips = implode(',', $block_ip);
+
+			$get_count =
+			"
+				SELECT COUNT(*) AS `count` FROM comments
+				WHERE
+					comments.status NOT IN ('spam') AND
+					comments.ip IN ($ips)
+			";
+
+			$count = \dash\db::get($get_count, 'count', true);
+
+			if($count)
+			{
+				\dash\log::set('AutoSpamTicketByIp', ['count' => $count]);
+			}
+
+			$query =
+			"
+				UPDATE comments
+				SET comments.status = 'spam'
+				WHERE
+					comments.status NOT IN ('spam') AND
+					comments.ip IN ($ips)
+			";
+			\dash\db::query($query);
+		}
 
 	}
 
