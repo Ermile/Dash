@@ -319,7 +319,7 @@ class model
 
 					$update_main['status'] = 'awaiting';
 					$msg = T_("Your message has been added");
-					$notif_fn = 'info';
+					$notif_fn = 'ok';
 
 					$log =
 					[
