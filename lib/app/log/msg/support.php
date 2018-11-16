@@ -159,7 +159,7 @@ class support
 
 		$msg['telegram']             = true;
 		$msg['need_answer']          = true;
-		$msg['send_gif']             = true;
+		$msg['send_gif']             = $_gif_url ? true : false;
 		$msg['not_send_to_userid']   = true;
 		$msg['notification']         = true;
 		$msg['gif_url']              = $_gif_url;
