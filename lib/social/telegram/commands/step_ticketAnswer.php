@@ -65,9 +65,54 @@ class step_ticketAnswer
 			return false;
 		}
 
-		$ticketNo = step::get('ticketNo');
-		\dash\app\tg\ticket::answer($ticketNo, $_answer);
+		// set desc of ticket
+		step::set('ticketTxtAnswer', $_answer);
+		// get confirm of create
+		step::plus();
 
+		$txt_text = '📢 '. T_("This is your answer")."\n\n";
+		$txt_text .= "<b>". $_answer . "</b>"."\n\n";
+		$txt_text .= T_("Do you confirm?");
+
+		$result   =
+		[
+			'text'         => $txt_text,
+			'reply_markup' =>
+			[
+				'keyboard' => [[T_('Yes'), T_('Cancel')]],
+				'resize_keyboard' => true,
+				'one_time_keyboard' => true
+			],
+		];
+		bot::sendMessage($result);
+	}
+
+
+	public static function step3($_accept)
+	{
+		if(bot::isCallback())
+		{
+			$callbackResult =
+			[
+				'text' => T_("Please use below menu")." 📝",
+				'show_alert' => true,
+			];
+			bot::answerCallbackQuery($callbackResult);
+			return false;
+		}
+		elseif(step::checkFalseTry())
+		{
+			return false;
+		}
+
+		if($_accept === T_('Yes') || $_accept === 'y' || $_accept === 'ok')
+		{
+			\dash\app\tg\ticket::answer(step::get('ticketNo'), step::get('ticketTxtAnswer'));
+		}
+		else
+		{
+			bot::sendMessage(T_("Cancel operation."));
+		}
 		step::stop();
 	}
 }

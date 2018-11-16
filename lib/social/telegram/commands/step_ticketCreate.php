@@ -87,10 +87,9 @@ class step_ticketCreate
 				'one_time_keyboard' => true
 			],
 		];
-
 		bot::sendMessage($result);
-
 	}
+
 
 	public static function step3($_accept)
 	{
@@ -108,7 +107,8 @@ class step_ticketCreate
 		{
 			return false;
 		}
-		if($_accept === T_('Yes') || $_accept === 'y')
+
+		if($_accept === T_('Yes') || $_accept === 'y' || $_accept === 'ok')
 		{
 			\dash\app\tg\ticket::create(step::get('ticketDesc'));
 		}
