@@ -290,6 +290,11 @@ class user
 			// if started with speceial char
 			return null;
 		}
+		if(!tg::isPrivate())
+		{
+			// dont check language on public chats
+			return null;
+		}
 
 		// try to get language from user
 		commands\ermile::lang(true);
