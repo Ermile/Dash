@@ -157,6 +157,9 @@ class exec_before
 				unset($_data['reply_markup']);
 				break;
 
+			case 'leaveChat':
+				unset($_data['reply_markup']);
+				break;
 
 			case 'sendPhoto':
 			case 'sendAudio':

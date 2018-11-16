@@ -63,6 +63,11 @@ class answer
 			else
 			{
 				// on public chats
+				if(hook::chat('type') === 'channel')
+				{
+					// left from the channel
+					tg::leaveChat();
+				}
 				if(hook::chat('type') === 'group' || hook::chat('type') === 'supergroup')
 				{
 					// if your bot joied to group show thanks message
