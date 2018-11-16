@@ -149,6 +149,127 @@ class support
 	}
 
 
+	public static function some_in_one($_args, $_user, $_title, $_content, $_gif_url = null, $_tg_msg = null)
+	{
+		$code = (isset($_args['code']) ? $_args['code']: null);
+
+		$msg                         = [];
+		$msg['title']                = $_title;
+		$msg['content']              = $_content;
+
+		$msg['telegram']             = true;
+		$msg['need_answer']          = true;
+		$msg['send_gif']             = true;
+		$msg['not_send_to_userid']   = true;
+		$msg['notification']         = true;
+		$msg['gif_url']              = $_gif_url;
+		$msg['send_msg']             = [];
+		$msg['send_msg']['telegram'] = $_tg_msg;
+		$msg['send_to']              = ['supervisor'];
+
+		$msg['btn']                  = [];
+		$msg['btn']['telegram']      =
+		[
+			'reply_markup'           =>
+			[
+				'inline_keyboard'    =>
+				[
+					[
+						[
+							'text' => 	T_("Visit in site"),
+							'url'  => \dash\url::base(). '/!'. $code,
+						],
+					],
+					[
+						[
+							'text'          => 	T_("Check ticket"),
+							'callback_data' => 'ticket '. $code,
+						],
+					],
+				],
+			],
+		];
+
+		return $msg;
+	}
+
+
+	public static function seeTicket($_args, $_user)
+	{
+		return self::some_in_one(
+			$_args,
+			$_user,
+			T_("See ticket"),
+			T_(":val see ticket", ['val' => self::getDisplayname($_user)]),
+			"https://media.giphy.com/media/3oz8xyBP22S5b6gmsw/giphy.gif"
+		);
+	}
+
+
+	public static function setUnSolvedTicket($_args, $_user)
+	{
+		return self::some_in_one(
+			$_args,
+			$_user,
+			T_("The ticket set as unsolved ticket"),
+			T_(":val set as unsolved the ticket", ['val' => self::getDisplayname($_user)]),
+			null,
+			"🆔#Ticket|code ⚠️\n🗣 ;displayname #user|user_code\n—————\n:unsolvedmsg\n⏳ |longdatecreated"
+		);
+	}
+
+
+
+	public static function setSolvedTicket($_args, $_user)
+	{
+		return self::some_in_one(
+			$_args,
+			$_user,
+			T_("The ticket set as solved ticket"),
+			T_(":val sset as solved the ticket", ['val' => self::getDisplayname($_user)]),
+			"https://media.giphy.com/media/3oz8xZGGYXKrJB5I4g/giphy.gif"
+		);
+	}
+
+	public static function setDeleteTicket($_args, $_user)
+	{
+		return self::some_in_one(
+			$_args,
+			$_user,
+			T_("The ticket delete ticket"),
+			T_(":val delete the ticket", ['val' => self::getDisplayname($_user)]),
+			null,
+			"🆔#Ticket|code 🗑\n🗣 ;displayname #user|user_code\n—————\n:deletemsg\n⏳ |longdatecreated"
+		);
+
+	}
+
+	public static function setAwaitingTicket($_args, $_user)
+	{
+		return self::some_in_one(
+			$_args,
+			$_user,
+			T_("The ticket set as open ticket"),
+			T_(":val re open the ticket", ['val' => self::getDisplayname($_user)]),
+			null,
+			"🆔#Ticket|code 🖐\n🗣 ;displayname #user|user_code\n—————\n:awaitingmsg\n⏳ |longdatecreated"
+		);
+	}
+
+	public static function setCloseTicket($_args, $_user)
+	{
+		return self::some_in_one(
+			$_args,
+			$_user,
+			T_("Close the ticket"),
+			T_(":val close the ticket", ['val' => self::getDisplayname($_user)]),
+			null,
+			"🆔#Ticket|code 💤\n🗣 ;displayname #user|user_code\n—————\n:closemsg\n⏳ |longdatecreated"
+		);
+
+	}
+
+
 	public static function DubleAnswerTicket($_args, $_user)
 	{
 		$msg                       = self::AnswerTicket($_args, $_user);

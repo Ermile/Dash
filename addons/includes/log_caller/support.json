@@ -14,84 +14,38 @@
     ]
   },
   "setCloseTicket": {
-    "title": "The ticket closed",
-    "content": ";displayname close the ticket",
-    "T_": {
-      "closemsg": "Close the ticket"
-    },
     "notification": true,
-    "telegram": true,
-    "send_msg": {
-      "telegram": "🆔#Ticket|code 💤\n🗣 ;displayname #user|user_code\n—————\n:closemsg\n⏳ |longdatecreated"
-    },
-    "send_to": [
-      "supervisor"
+    "fn": [
+      "\\dash\\app\\log\\msg\\support",
+      "setCloseTicket"
     ]
   },
   "setAwaitingTicket": {
-    "title": "The ticket set as open ticket",
-    "content": ";displayname re open the ticket",
-    "T_": {
-      "awaitingmsg": "Open the ticket"
-    },
     "notification": true,
-    "telegram": true,
-    "not_send_to_userid": true,
-    "send_msg": {
-      "telegram": "🆔#Ticket|code 🖐\n🗣 ;displayname #user|user_code\n—————\n:awaitingmsg\n⏳ |longdatecreated"
-    },
-    "send_to": [
-      "supervisor"
+    "fn": [
+      "\\dash\\app\\log\\msg\\support",
+      "setAwaitingTicket"
     ]
   },
   "setDeleteTicket": {
-    "title": "The ticket delete ticket",
-    "content": ";displayname delete the ticket",
-    "T_": {
-      "deletemsg": "Deleted"
-    },
     "notification": true,
-    "telegram": true,
-    "not_send_to_userid": true,
-    "send_msg": {
-      "telegram": "🆔#Ticket|code 🗑\n🗣 ;displayname #user|user_code\n—————\n:deletemsg\n⏳ |longdatecreated"
-    },
-    "send_to": [
-      "supervisor"
+    "fn": [
+      "\\dash\\app\\log\\msg\\support",
+      "setDeleteTicket"
     ]
   },
   "setSolvedTicket": {
-    "title": "The ticket set as solved ticket",
-    "content": ";displayname set as solved the ticket",
-    "T_": {
-      "solvedmsg": "Solved"
-    },
-    "send_gif": true,
-    "gif_url": "https://media.giphy.com/media/3oz8xZGGYXKrJB5I4g/giphy.gif",
     "notification": true,
-    "telegram": true,
-    "not_send_to_userid": true,
-    "send_msg": {
-      "telegram": "🆔#Ticket|code 🎖\n🗣 ;displayname #user|user_code\n—————\n:solvedmsg\n⏳ |longdatecreated"
-    },
-    "send_to": [
-      "supervisor"
+    "fn": [
+      "\\dash\\app\\log\\msg\\support",
+      "setSolvedTicket"
     ]
   },
   "setUnSolvedTicket": {
-    "title": "The ticket set as unsolved ticket",
-    "content": ";displayname set as unsolved the ticket",
-    "T_": {
-      "unsolvedmsg": "Back to unsolved"
-    },
     "notification": true,
-    "telegram": true,
-    "not_send_to_userid": true,
-    "send_msg": {
-      "telegram": "🆔#Ticket|code ⚠️\n🗣 ;displayname #user|user_code\n—————\n:unsolvedmsg\n⏳ |longdatecreated"
-    },
-    "send_to": [
-      "supervisor"
+    "fn": [
+      "\\dash\\app\\log\\msg\\support",
+      "setUnSolvedTicket"
     ]
   },
   "AnswerTicket": {
@@ -130,18 +84,10 @@
     ]
   },
   "seeTicket": {
-    "title": "See ticket",
-    "content": ";displayname see ticket |code",
     "notification": true,
-    "telegram": true,
-    "send_gif": true,
-    "not_send_to_userid": true,
-    "gif_url": "https://media.giphy.com/media/3oz8xyBP22S5b6gmsw/giphy.gif",
-    "send_msg": {
-      "telegram": "🆔#Ticket|code 🙄 \n🗣 ;displayname #user|user_code\n⏳ |longdatecreated"
-    },
-    "send_to": [
-      "supervisor"
+    "fn": [
+      "\\dash\\app\\log\\msg\\support",
+      "seeTicket"
     ]
   },
   "supportMessageEdit": {
