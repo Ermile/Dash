@@ -242,6 +242,28 @@ class sessions
 	}
 
 
+	public static function terminate_all_other($_user_id)
+	{
+		$code = self::get_cookie();
+
+		$where_code = null;
+
+		if($code)
+		{
+			$where_code = " AND sessions.code != '$code' ";
+		}
+
+		$query =
+		"
+			UPDATE sessions SET status = 'terminate'
+			WHERE user_id = $_user_id AND  status = 'active'
+			$where_code
+		";
+		\dash\db::query($query, \dash\db::get_db_log_name());
+
+	}
+
+
 
 	/**
 	 * inset new session in database

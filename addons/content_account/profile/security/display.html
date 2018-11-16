@@ -110,7 +110,7 @@
 
 
 {%block sessionList%}
-<h4>{%trans "Active sessions"%}</h4>
+<h4>{%trans "Active sessions"%} <a class="badge danger xs" href="{{url.pwd}}" data-ajaxify data-method="post" data-data='{"type": "terminateall" }' >{%trans "Terminate all other sessions"%}</a></h4>
 {%for key, row in sessionsList%}
 <div class="msg">
     <div class="badge warn" title='{%trans "Browser"%}'>{{row.browser}} {{row.browserVer | fitNumber}}</div>
