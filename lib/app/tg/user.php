@@ -62,7 +62,7 @@ class user
 
 	public static function add($_args, $_option = [])
 	{
-		return \dash\app\user::add($_args, ['force_add' => true]);
+		return \dash\app\user::add($_args, ['force_add' => true, 'encode' => false]);
 	}
 
 

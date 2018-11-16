@@ -36,6 +36,7 @@ trait add
 			'other_field_id' => null,
 			'force_add'      => false,
 			'check_mobile'   => true,
+			'encode'         => true,
 		];
 
 		if(!is_array($_option))
@@ -90,9 +91,18 @@ trait add
 			return false;
 		}
 
-		$return['id']      = \dash\coding::encode($user_id);
-		$return['user_id'] = \dash\coding::encode($user_id);
-		\dash\log::set('addNewUser', ['data' => $user_id, 'datalink' => $return['user_id']]);
+		if($_option['encode'])
+		{
+			$return['id']      = \dash\coding::encode($user_id);
+			$return['user_id'] = \dash\coding::encode($user_id);
+		}
+		else
+		{
+			$return['id']      = $user_id;
+			$return['user_id'] = $user_id;
+		}
+
+		\dash\log::set('addNewUser', ['code' => $user_id]);
 		// $_option['user_id'] = $user_id;
 
 		if(\dash\engine\process::status())
