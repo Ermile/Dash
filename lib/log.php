@@ -21,11 +21,18 @@ class log
 	}
 
 
-	public static function save_temp()
+	public static function save_temp($_option = [])
 	{
 		foreach (self::$temp_log as $key => $value)
 		{
-			self::set($key, $value);
+			if(isset($_option['replace']) && is_array($_option['replace']))
+			{
+				self::set($key, array_merge($value, $_option['replace']));
+			}
+			else
+			{
+				self::set($key, $value);
+			}
 		}
 		self::$temp_log = [];
 	}

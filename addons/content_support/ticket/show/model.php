@@ -419,8 +419,14 @@ class model
 			}
 
 			\dash\notif::$notif_fn($msg);
-
-			\dash\log::save_temp();
+			if(isset($result['id']))
+			{
+				\dash\log::save_temp(['replace' => ['code' => $result['id']]]);
+			}
+			else
+			{
+				\dash\log::save_temp();
+			}
 
 			return true;
 		}
