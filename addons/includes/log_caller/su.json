@@ -6,9 +6,39 @@
     "telegram": true,
     "send_gif": true,
     "not_send_to_userid": true,
-    "gif_url": "https://media.giphy.com/media/l3vRnW2LFfCIjvwIw/giphy.gif",
+    "gif_url": "https://media.giphy.com/media/RAnjqIezKiIEM/giphy.gif",
     "send_msg": {
       "telegram": "#BlockIP \nA new Block ip detected \n:ip \n⏳ |longdatecreated"
+    },
+    "send_to": [
+      "supervisor"
+    ]
+  },
+  "AutoCloseSolvedTicket": {
+    "title": "Auto close solved ticket",
+    "content": "Auto close solved ticket",
+    "notification": true,
+    "telegram": true,
+    "send_gif": true,
+    "not_send_to_userid": true,
+    "gif_url": "https://media.giphy.com/media/XNrT7uR3GOTOo/giphy.gif",
+    "send_msg": {
+      "telegram": "#BlockIP \nAuto close solved ticket \n:count \n⏳ |longdatecreated"
+    },
+    "send_to": [
+      "supervisor"
+    ]
+  },
+  "AutoSpamTicketByIp": {
+    "title": "Auto spam ticket by block ip",
+    "content": "Auto spam ticket by block ip",
+    "notification": true,
+    "telegram": true,
+    "send_gif": true,
+    "not_send_to_userid": true,
+    "gif_url": "https://media.giphy.com/media/8MNdDaeVdAd32/giphy.gif",
+    "send_msg": {
+      "telegram": "#BlockIP \nAuto spam ticket by block ip \n:count \n⏳ |longdatecreated"
     },
     "send_to": [
       "supervisor"
