@@ -60,7 +60,6 @@ class support
 			{
 				$data['file'] = $get_ticket['file'];
 			}
-
 		}
 
 		return $data;
@@ -69,7 +68,7 @@ class support
 
 	public static function addNewTicket($_args, $_user)
 	{
-		// $tg_msg                      = "🆔#Ticket|code #New \n🗣 ;displayname #user|user_code\n—————\n📬 :title\n:content\n:file\n⏳ |longdatecreated";
+		// $tg_msg                      = "🆔#Ticket|code #New \n🗣 $myDisplayName #user|user_code\n—————\n📬 :title\ncontent\nfile\n⏳ |longdatecreated";
 
 		$data = self::dataArray($_args);
 
@@ -196,25 +195,34 @@ class support
 
 	public static function seeTicket($_args, $_user)
 	{
+		$myDisplayName   = self::getDisplayname($_user);
+		$user_code       = self::getUserCode($_user);
+		$longdatecreated = isset($_args['datecreated']) ? \dash\datetime::fit($_args['datecreated'], true) : null;
+		$code            = isset($_args['code']) ? $_args['code'] : null;
 		return self::some_in_one(
 			$_args,
 			$_user,
 			T_("See ticket"),
-			T_(":val see ticket", ['val' => self::getDisplayname($_user)]),
-			"https://media.giphy.com/media/3oz8xyBP22S5b6gmsw/giphy.gif"
+			T_(":val see ticket", ['val' => $myDisplayName]),
+			"https://media.giphy.com/media/3oz8xyBP22S5b6gmsw/giphy.gif",
+			"🆔#Ticket{$code} \n🗣 $myDisplayName #user|user_code\n—————\nSee the ticket\n⏳ |longdatecreated"
 		);
 	}
 
 
 	public static function setUnSolvedTicket($_args, $_user)
 	{
+		$myDisplayName   = self::getDisplayname($_user);
+		$user_code       = self::getUserCode($_user);
+		$longdatecreated = isset($_args['datecreated']) ? \dash\datetime::fit($_args['datecreated'], true) : null;
+		$code            = isset($_args['code']) ? $_args['code'] : null;
 		return self::some_in_one(
 			$_args,
 			$_user,
 			T_("The ticket set as unsolved ticket"),
-			T_(":val set as unsolved the ticket", ['val' => self::getDisplayname($_user)]),
+			T_(":val set as unsolved the ticket", ['val' => $myDisplayName]),
 			null,
-			"🆔#Ticket|code ⚠️\n🗣 ;displayname #user|user_code\n—————\n:unsolvedmsg\n⏳ |longdatecreated"
+			"🆔#Ticket{$code} ⚠️\n🗣 $myDisplayName #user{$user_code}\n—————\nUnsolved ticket\n⏳ |longdatecreated"
 		);
 	}
 
@@ -222,51 +230,68 @@ class support
 
 	public static function setSolvedTicket($_args, $_user)
 	{
+		$myDisplayName   = self::getDisplayname($_user);
+		$user_code       = self::getUserCode($_user);
+		$longdatecreated = isset($_args['datecreated']) ? \dash\datetime::fit($_args['datecreated'], true) : null;
+		$code            = isset($_args['code']) ? $_args['code'] : null;
 		return self::some_in_one(
 			$_args,
 			$_user,
 			T_("The ticket set as solved ticket"),
-			T_(":val sset as solved the ticket", ['val' => self::getDisplayname($_user)]),
-			"https://media.giphy.com/media/3oz8xZGGYXKrJB5I4g/giphy.gif"
+			T_(":val sset as solved the ticket", ['val' => $myDisplayName]),
+			"https://media.giphy.com/media/3oz8xZGGYXKrJB5I4g/giphy.gif",
+			"🆔#Ticket{$code} \n🗣 $myDisplayName #user{$user_code}\n—————\nSolved ticket\n⏳ {$longdatecreated}"
 		);
 	}
 
 	public static function setDeleteTicket($_args, $_user)
 	{
+		$myDisplayName   = self::getDisplayname($_user);
+		$user_code       = self::getUserCode($_user);
+		$longdatecreated = isset($_args['datecreated']) ? \dash\datetime::fit($_args['datecreated'], true) : null;
+		$code            = isset($_args['code']) ? $_args['code'] : null;
 		return self::some_in_one(
 			$_args,
 			$_user,
 			T_("The ticket delete ticket"),
-			T_(":val delete the ticket", ['val' => self::getDisplayname($_user)]),
+			T_(":val delete the ticket", ['val' => $myDisplayName]),
 			null,
-			"🆔#Ticket|code 🗑\n🗣 ;displayname #user|user_code\n—————\n:deletemsg\n⏳ |longdatecreated"
+			"🆔#Ticket{$code} 🗑\n🗣 $myDisplayName #user{$user_code}\n—————\nDeleted ticket\n⏳ {$longdatecreated}"
+
 		);
 
 	}
 
 	public static function setAwaitingTicket($_args, $_user)
 	{
+		$myDisplayName   = self::getDisplayname($_user);
+		$user_code       = self::getUserCode($_user);
+		$longdatecreated = isset($_args['datecreated']) ? \dash\datetime::fit($_args['datecreated'], true) : null;
+		$code            = isset($_args['code']) ? $_args['code'] : null;
 		return self::some_in_one(
 			$_args,
 			$_user,
 			T_("The ticket set as open ticket"),
-			T_(":val re open the ticket", ['val' => self::getDisplayname($_user)]),
+			T_(":val re open the ticket", ['val' => $myDisplayName]),
 			null,
-			"🆔#Ticket|code 🖐\n🗣 ;displayname #user|user_code\n—————\n:awaitingmsg\n⏳ |longdatecreated"
+			"🆔#Ticket{$code} 🖐\n🗣 $myDisplayName #user{$user_code}\n—————\nAwaiting ticket\n⏳ {$longdatecreated}"
 		);
 	}
 
 	public static function setCloseTicket($_args, $_user)
 	{
+		$myDisplayName   = self::getDisplayname($_user);
+		$user_code       = self::getUserCode($_user);
+		$longdatecreated = isset($_args['datecreated']) ? \dash\datetime::fit($_args['datecreated'], true) : null;
+		$code            = isset($_args['code']) ? $_args['code'] : null;
 		return self::some_in_one(
 			$_args,
 			$_user,
 			T_("Close the ticket"),
-			T_(":val close the ticket", ['val' => self::getDisplayname($_user)]),
+			T_(":val close the ticket", ['val' => $myDisplayName]),
 			null,
-			"🆔#Ticket|code 💤\n🗣 ;displayname #user|user_code\n—————\n:closemsg\n⏳ |longdatecreated"
+			"🆔#Ticket{$code} 💤\n🗣 $myDisplayName #user{$user_code}\n—————\nClose ticket\n⏳ {$longdatecreated}"
 		);
-
 	}
 
 
@@ -281,7 +306,7 @@ class support
 
 	public static function AnswerTicket($_args, $_user)
 	{
-		// "🆔#Ticket|code 💌:plus \n🗣 ;displayname #user|user_code\n—————\n:content\n:file\n⏳ |longdatecreated"
+		// "🆔#Ticket|code 💌:plus \n🗣 $myDisplayName #user|user_code\n—————\ncontent\nfile\n⏳ |longdatecreated"
 
 		$data = self::dataArray($_args);
 
@@ -367,7 +392,7 @@ class support
 	public static function AddToTicket($_args, $_user)
 	{
 
-      	// "telegram": "🆔#Ticket|code ⚔️:plus \n🗣 ;displayname #user|user_code\n—————\n:content\n:file\n⏳ |longdatecreated"
+      	// "telegram": "🆔#Ticket|code ⚔️:plus \n🗣 $myDisplayName #user|user_code\n—————\ncontent\nfile\n⏳ |longdatecreated"
 
 		$data = self::dataArray($_args);
 
@@ -452,7 +477,7 @@ class support
 	public static function AddNoteTicket($_args, $_user)
 	{
 
-      	// "telegram": "🆔#Ticket|code 🌒️️:plus \n🗣 ;displayname #user|user_code\n—————\n:content\n:file\n⏳ |longdatecreated"
+      	// "telegram": "🆔#Ticket|code 🌒️️:plus \n🗣 $myDisplayName #user|user_code\n—————\ncontent\nfile\n⏳ |longdatecreated"
 
 		$data = self::dataArray($_args);
 
