@@ -248,6 +248,7 @@ class view
 
 		$result['archived'] = \dash\db\comments::get_count(array_merge($args,['comments.status' => 'close']));
 		$result['trash']    = \dash\db\comments::get_count(array_merge($args,['comments.status' => 'deleted']));
+		$result['spam']    = \dash\db\comments::get_count(array_merge($args,['comments.status' => 'spam']));
 
 		$args_tag = $args;
 		if($_all)

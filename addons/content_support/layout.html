@@ -56,6 +56,7 @@
 
 {%if perm('supportTicketTrash') and sidebarDetail.trash%}
       <li><a href="{{url.here}}/ticket?status=deleted{{accessGetAnd}}"><span class="floatRa mRa10 fc-mute badge dark">{{sidebarDetail.trash | fitNumber}}</span>{%trans "Trash"%}</a></li>
+      <li><a href="{{url.here}}/ticket?status=spam{{accessGetAnd}}"><span class="floatRa mRa10 fc-mute badge dark">{{sidebarDetail.spam | fitNumber}}</span>{%trans "Spam"%}</a></li>
 {%endif%}
     </ul>
 </li>
