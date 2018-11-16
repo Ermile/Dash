@@ -1,6 +1,10 @@
 {
   "addNewTicket": {
     "notification": true,
+    "send_to": [
+      "supervisor"
+    ],
+    "not_send_to_userid": true,
     "fn": [
       "\\dash\\app\\log\\msg\\support",
       "addNewTicket"
@@ -8,6 +12,10 @@
   },
   "DubleAnswerTicket": {
     "notification": true,
+    "send_to": [
+      "supervisor"
+    ],
+    "not_send_to_userid": true,
     "fn": [
       "\\dash\\app\\log\\msg\\support",
       "DubleAnswerTicket"
@@ -15,6 +23,10 @@
   },
   "setCloseTicket": {
     "notification": true,
+    "send_to": [
+      "supervisor"
+    ],
+    "not_send_to_userid": true,
     "fn": [
       "\\dash\\app\\log\\msg\\support",
       "setCloseTicket"
@@ -22,6 +34,10 @@
   },
   "setAwaitingTicket": {
     "notification": true,
+    "send_to": [
+      "supervisor"
+    ],
+    "not_send_to_userid": true,
     "fn": [
       "\\dash\\app\\log\\msg\\support",
       "setAwaitingTicket"
@@ -29,6 +45,10 @@
   },
   "setDeleteTicket": {
     "notification": true,
+    "send_to": [
+      "supervisor"
+    ],
+    "not_send_to_userid": true,
     "fn": [
       "\\dash\\app\\log\\msg\\support",
       "setDeleteTicket"
@@ -36,6 +56,10 @@
   },
   "setSolvedTicket": {
     "notification": true,
+    "send_to": [
+      "supervisor"
+    ],
+    "not_send_to_userid": true,
     "fn": [
       "\\dash\\app\\log\\msg\\support",
       "setSolvedTicket"
@@ -43,6 +67,10 @@
   },
   "setUnSolvedTicket": {
     "notification": true,
+    "send_to": [
+      "supervisor"
+    ],
+    "not_send_to_userid": true,
     "fn": [
       "\\dash\\app\\log\\msg\\support",
       "setUnSolvedTicket"
@@ -50,6 +78,10 @@
   },
   "AnswerTicket": {
     "notification": true,
+    "send_to": [
+      "supervisor"
+    ],
+    "not_send_to_userid": true,
     "fn": [
       "\\dash\\app\\log\\msg\\support",
       "AnswerTicket"
@@ -71,6 +103,10 @@
   },
   "AddToTicket": {
     "notification": true,
+    "send_to": [
+      "supervisor"
+    ],
+    "not_send_to_userid": true,
     "fn": [
       "\\dash\\app\\log\\msg\\support",
       "AddToTicket"
@@ -78,6 +114,10 @@
   },
   "AddNoteTicket": {
     "notification": true,
+    "send_to": [
+      "supervisor"
+    ],
+    "not_send_to_userid": true,
     "fn": [
       "\\dash\\app\\log\\msg\\support",
       "AddNoteTicket"
@@ -85,6 +125,10 @@
   },
   "seeTicket": {
     "notification": true,
+    "send_to": [
+      "supervisor"
+    ],
+    "not_send_to_userid": true,
     "fn": [
       "\\dash\\app\\log\\msg\\support",
       "seeTicket"
