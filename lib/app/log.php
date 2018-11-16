@@ -90,6 +90,32 @@ class log
 
 		$user_detail = self::detect_user($_data, 'user_id');
 
+		if(\dash\temp::get('logLoadUserDetail'))
+		{
+			$myUserDetail = self::detect_user($_data);
+			$result['user_detail'] = $myUserDetail;
+			if(is_array($myUserDetail))
+			{
+				$allLang     = array_column($myUserDetail, 'language');
+				if(isset($user_detail['language']))
+				{
+					$allLang[] = $user_detail['language'];
+				}
+
+				$allLang = array_filter($allLang);
+				$allLang = array_unique($allLang);
+				// if all msg have one language
+				// if msg must be send to some user by different lang
+				// must be check and make again :|
+				if(count($allLang) === 1 && isset($allLang[0]) && $allLang[0] && strlen($allLang[0]) === 2)
+				{
+					// try to change laguage to selected
+					\dash\language::set_language($allLang[0]);
+				}
+			}
+		}
+
+
 		if(isset($_data['fn']))
 		{
 			$fn = $_data['fn'];
@@ -176,10 +202,6 @@ class log
 			}
 		}
 
-		if(\dash\temp::get('logLoadUserDetail'))
-		{
-			$result['user_detail'] = self::detect_user($_data);
-		}
 
 		foreach ($result as $key => $value)
 		{
