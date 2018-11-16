@@ -38,6 +38,10 @@ class hook
 		{
 			$myDetection = tg::$hook['chosen_inline_result']['inline_message_id'];
 		}
+		elseif(isset(tg::$hook['channel_post']['message_id']))
+		{
+			$myDetection = tg::$hook['channel_post']['message_id'];
+		}
 
 		return $myDetection;
 	}
@@ -61,6 +65,10 @@ class hook
 		elseif(isset(tg::$hook['chosen_inline_result']))
 		{
 			$myDetection = tg::$hook['chosen_inline_result'];
+		}
+		elseif(isset(tg::$hook['channel_post']))
+		{
+			$myDetection = tg::$hook['channel_post'];
 		}
 		// get only arg
 		if($_arg)
@@ -146,6 +154,30 @@ class hook
 		return $myDetection;
 	}
 
+
+	public static function channel_post($_arg = 'message_id')
+	{
+		$myDetection = null;
+		if(isset(tg::$hook['channel_post']))
+		{
+			$myDetection = tg::$hook['channel_post'];
+		}
+		// get only arg
+		if($_arg)
+		{
+			if(isset($myDetection[$_arg]))
+			{
+				$myDetection = $myDetection[$_arg];
+			}
+			else
+			{
+				$myDetection = null;
+			}
+		}
+		return $myDetection;
+	}
+
+
 	public static function from($_arg = 'id')
 	{
 		$myDetection = null;
@@ -164,6 +196,10 @@ class hook
 		elseif(isset(tg::$hook['chosen_inline_result']['from']))
 		{
 			$myDetection = tg::$hook['chosen_inline_result']['from'];
+		}
+		elseif(isset(tg::$hook['channel_post']))
+		{
+			$myDetection = null;
 		}
 
 		// get only arg
@@ -201,6 +237,11 @@ class hook
 		{
 			$myDetection = tg::$hook['chosen_inline_result']['from'];
 		}
+		elseif(isset(tg::$hook['channel_post']['chat']))
+		{
+			$myDetection = tg::$hook['channel_post']['chat'];
+		}
+
 		// get only arg
 		if($_arg)
 		{
@@ -316,6 +357,10 @@ class hook
 		elseif(isset(tg::$hook['chosen_inline_result']['query']))
 		{
 			$myDetection = 'iq_'.tg::$hook['chosen_inline_result']['query'];
+		}
+		elseif(isset(tg::$hook['channel_post']['caption']))
+		{
+			$myDetection = 'iq_'.tg::$hook['channel_post']['caption'];
 		}
 		elseif(isset(tg::$hook['message']['contact'])
 			&& isset(tg::$hook['message']['contact']['phone_number'])
