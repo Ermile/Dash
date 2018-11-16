@@ -108,6 +108,11 @@ class view
 					$args['comments.status'] = "answered";
 					break;
 
+				case 'spam':
+					\dash\data::page_title(T_("Spam tickets"));
+					$args['comments.status'] = "spam";
+					break;
+
 				case 'close':
 				case 'archived':
 					\dash\data::page_title(T_("Archived tickets"));
