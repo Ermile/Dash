@@ -644,24 +644,25 @@ class enter
 		{
 			$code = 11111;
 		}
+
 		// set verification code in session
 		self::set_session('verification_code', $code);
 		$time = date("Y-m-d H:i:s");
 
-		$log_meta =
+		$log_detail =
 		[
-			'data' => $code,
-			// 'desc' => $_way,
-			'time' => $time,
-			'meta' =>
-			[
-				'session' => $_SESSION,
-			],
+			'user_id' => self::user_data('id'),
+			'send'    => 1,
+			'notif'   => 1,
+			'code'    => $code,
+			'mycode'    => $code,
+			'time'    => $time,
 		];
 
+		$log_id = \dash\log::set('envterVerificationCode', $log_detail);
 
 		// save this code in logs table and session
-		$log_id = \dash\db\logs::set('user:verification:code', self::user_data('id'), $log_meta);
+		// $log_id = \dash\db\logs::set('user:verification:code', self::user_data('id'), $log_meta);
 
 		self::set_session('verification_code', $code);
 		self::set_session('verification_code_time', $time);
@@ -704,10 +705,10 @@ class enter
 			{
 				$where =
 				[
-					'caller'     => 'user:verification:code',
-					'user_id'    => self::user_data('id'),
-					'status' => 'enable',
-					'limit'      => 1,
+					'caller'  => 'envterVerificationCode',
+					'user_id' => self::user_data('id'),
+					'status'  => 'enable',
+					'limit'   => 1,
 				];
 				$log_code = \dash\db\logs::get($where);
 
@@ -719,24 +720,16 @@ class enter
 						// need less to create new code
 						$last_code_ok = true;
 						// save data in session
-						if(isset($log_code['data']))
+						if(isset($log_code['code']))
 						{
-							self::set_session('verification_code', $log_code['data']);
+							self::set_session('verification_code', $log_code['code']);
 						}
 						// save log time
 						if(isset($log_code['datecreated']))
 						{
 							self::set_session('verification_code_time', $log_code['datecreated']);
 						}
-						// save log way
-						// if(isset($log_code['desc']))
-						// {
-						// 	self::set_session('verification_code_way', $log_code['desc']);
-						// 	if($prev_way = self::get_last_way())
-						// 	{
-						// 		self::set_session('verification_code_way', $prev_way);
-						// 	}
-						// }
+
 						// save log id
 						if(isset($log_code['id']))
 						{
