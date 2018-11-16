@@ -46,35 +46,7 @@ class answer
 
 		if(!tg::isOkay())
 		{
-			if(hook::chat('type') === 'group' || hook::chat('type') === 'supergroup')
-			{
-				// if your bot joied to group show thanks message
-				if(hook::new_chat_member('username'))
-				{
-					$welcomeMsg = T_("Hello")."!!\n";
-
-					if(hook::new_chat_member('username') === tg::$name)
-					{
-						$welcomeMsg .= T_("Thanks for using me!")."\n";
-						$welcomeMsg .= T_("I'm Bot.");
-					}
-					elseif(hook::new_chat_member('is_bot') === true)
-					{
-						$welcomeMsg .= T_("Hey Bot!"). "\n";
-					}
-					else
-					{
-						$welcomeMsg .= T_("How are you?"). "\n";
-					}
-					user::preview(hook::new_chat_member('id'), hook::new_chat_member(null), $welcomeMsg);
-				}
-				elseif(hook::left_chat_member('username'))
-				{
-					user::preview(hook::left_chat_member('id'), hook::left_chat_member(null), T_("Bye"));
-				}
-
-			}
-			else
+			if(tg::isPrivate())
 			{
 				// then if not exist set default text
 				$answer = ['text' => self::randomAnswer()];
@@ -86,6 +58,37 @@ class answer
 				else
 				{
 					tg::sendMessage($answer);
+				}
+			}
+			else
+			{
+				// on public chats
+				if(hook::chat('type') === 'group' || hook::chat('type') === 'supergroup')
+				{
+					// if your bot joied to group show thanks message
+					if(hook::new_chat_member('username'))
+					{
+						$welcomeMsg = T_("Hello")."!!\n";
+
+						if(hook::new_chat_member('username') === tg::$name)
+						{
+							$welcomeMsg .= T_("Thanks for using me!")."\n";
+							$welcomeMsg .= T_("I'm Bot.");
+						}
+						elseif(hook::new_chat_member('is_bot') === true)
+						{
+							$welcomeMsg .= T_("Hey Bot!"). "\n";
+						}
+						else
+						{
+							$welcomeMsg .= T_("How are you?"). "\n";
+						}
+						user::preview(hook::new_chat_member('id'), hook::new_chat_member(null), $welcomeMsg);
+					}
+					elseif(hook::left_chat_member('username'))
+					{
+						user::preview(hook::left_chat_member('id'), hook::left_chat_member(null), T_("Bye"));
+					}
 				}
 			}
 		}
