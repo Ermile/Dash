@@ -18,6 +18,7 @@ class view
 		}
 
 		$args['notif'] = 1;
+		$args['user_id'] = \dash\user::id();
 
 		$search_string = \dash\request::get('q');
 
