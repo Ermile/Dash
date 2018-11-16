@@ -132,6 +132,26 @@ class ip
 		return false;
 	}
 
+	private static function save_ip_url($_ip)
+	{
+		$addr = self::files_addr();
+		$addr .= 'url';
+
+		if(!is_file($addr))
+		{
+			\dash\file::write($addr, $_ip. "--". \dash\url::this(). "\n");
+			return false;
+		}
+
+		if(\dash\file::search($addr, $_ip))
+		{
+			return true;
+		}
+
+		\dash\file::append($addr, $_ip. "--". \dash\url::this(). "\n");
+		return true;
+	}
+
 
 	private static function new_ip($_ip)
 	{
@@ -140,6 +160,7 @@ class ip
 
 		if(!is_file($addr))
 		{
+			self::save_ip_url($_ip);
 			\dash\file::write($addr, $_ip. "\n");
 			return false;
 		}
@@ -149,6 +170,7 @@ class ip
 			return true;
 		}
 
+		self::save_ip_url($_ip);
 		\dash\file::append($addr, $_ip. "\n");
 		return true;
 	}
