@@ -308,6 +308,15 @@ class step
 				case '/menu':
 				case '/mainmenu':
 				case '/return':
+				case 'type_contact'
+				case 'type_location':
+				case 'type_audio':
+				case 'type_document':
+				case 'type_photo':
+				case 'type_sticker':
+				case 'type_video':
+				case 'type_voice':
+				case 'type_venue':
 
 				case T_('start'):
 				case T_('language'):
