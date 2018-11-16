@@ -8,10 +8,11 @@ class msg
 	{
 		if($_string)
 		{
+			$_string = str_replace('&nbsp;', ' ', $_string);
 			$_string = str_replace("<br>", "\n", $_string);
 			$_string = str_replace("<br/>", "\n", $_string);
-			$_string = preg_replace("/\<\/[\w]\>/", ' ', $_string);
-			$_string = strip_tags($_string);
+			$_string = str_replace('</p>', "</p>\n", $_string);
+			$_string = strip_tags($_string, '<b><i><a><code><pre>');
 			$_string = trim($_string);
 		}
 		return $_string;
