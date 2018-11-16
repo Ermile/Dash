@@ -42,18 +42,39 @@ class support
 			$data = json_decode($data, true);
 		}
 
+		if(isset($_args['code']) && is_numeric($_args['code']))
+		{
+			$get_ticket = \dash\db\comments::get(['id' => $_args['code'], 'limit' => 1]);
+
+			if(isset($get_ticket['title']))
+			{
+				$data['title'] = $get_ticket['title'];
+			}
+
+			if(isset($get_ticket['content']))
+			{
+				$data['content'] = $get_ticket['content'];
+			}
+
+			if(isset($get_ticket['file']))
+			{
+				$data['file'] = $get_ticket['file'];
+			}
+
+		}
+
 		return $data;
 	}
 
 
 	public static function addNewTicket($_args, $_user)
 	{
-		// $tg_msg                      = "🆔#Ticket|code #New \n🗣 ;displayname #user|user_code\n—————\n📬 :ttitle\n:tcontent\n:file\n⏳ |longdatecreated";
+		// $tg_msg                      = "🆔#Ticket|code #New \n🗣 ;displayname #user|user_code\n—————\n📬 :title\n:content\n:file\n⏳ |longdatecreated";
 
 		$data = self::dataArray($_args);
 
-		$ttitle   = isset($data['ttitle']) ? $data['ttitle'] : null;
-		$tcontent = isset($data['tcontent']) ? $data['tcontent'] : null;
+		$title   = isset($data['title']) ? $data['title'] : null;
+		$content = isset($data['content']) ? $data['content'] : null;
 		$file     = isset($data['file']) ? $data['file'] : null;
 
 		$msg                = [];
@@ -69,15 +90,15 @@ class support
 		$tg_msg .= " #New \n🗣 ". self::getDisplayname($_user). " #user". self::getUserCode($_user);
 		$tg_msg .= "\n—————\n📬 ";
 
-		if($ttitle)
+		if($title)
 		{
-			$tg_msg .= $ttitle . "\n";
+			$tg_msg .= $title . "\n";
 		}
 
-		if($tcontent)
+		if($content)
 		{
-			$tcontent = \dash\app\log\msg::myStripTags($tcontent);
-			$tg_msg .= $tcontent . "\n";
+			$content = \dash\app\log\msg::myStripTags($content);
+			$tg_msg .= $content . "\n";
 		}
 
 		if($file)
@@ -139,12 +160,12 @@ class support
 
 	public static function AnswerTicket($_args, $_user)
 	{
-		// "🆔#Ticket|code 💌:plus \n🗣 ;displayname #user|user_code\n—————\n:tcontent\n:file\n⏳ |longdatecreated"
+		// "🆔#Ticket|code 💌:plus \n🗣 ;displayname #user|user_code\n—————\n:content\n:file\n⏳ |longdatecreated"
 
 		$data = self::dataArray($_args);
 
-		$ttitle   = isset($data['ttitle']) ? $data['ttitle'] : null;
-		$tcontent = isset($data['tcontent']) ? $data['tcontent'] : null;
+		$title   = isset($data['title']) ? $data['title'] : null;
+		$content = isset($data['content']) ? $data['content'] : null;
 		$file     = isset($data['file']) ? $data['file'] : null;
 		$plus     = isset($data['plus']) ? $data['plus'] : null;
 
@@ -162,15 +183,15 @@ class support
 		$tg_msg .= "\n🗣 ". self::getDisplayname($_user). " #user". self::getUserCode($_user);
 		$tg_msg .= "\n—————\n";
 
-		if($ttitle)
+		if($title)
 		{
-			$tg_msg .= $ttitle . "\n";
+			$tg_msg .= $title . "\n";
 		}
 
-		if($tcontent)
+		if($content)
 		{
-			$tcontent = \dash\app\log\msg::myStripTags($tcontent);
-			$tg_msg .= $tcontent . "\n";
+			$content = \dash\app\log\msg::myStripTags($content);
+			$tg_msg .= $content . "\n";
 		}
 
 		if($file)
@@ -225,12 +246,12 @@ class support
 	public static function AddToTicket($_args, $_user)
 	{
 
-      	// "telegram": "🆔#Ticket|code ⚔️:plus \n🗣 ;displayname #user|user_code\n—————\n:tcontent\n:file\n⏳ |longdatecreated"
+      	// "telegram": "🆔#Ticket|code ⚔️:plus \n🗣 ;displayname #user|user_code\n—————\n:content\n:file\n⏳ |longdatecreated"
 
 		$data = self::dataArray($_args);
 
-		$ttitle   = isset($data['ttitle']) ? $data['ttitle'] : null;
-		$tcontent = isset($data['tcontent']) ? $data['tcontent'] : null;
+		$title   = isset($data['title']) ? $data['title'] : null;
+		$content = isset($data['content']) ? $data['content'] : null;
 		$file     = isset($data['file']) ? $data['file'] : null;
 		$plus     = isset($data['plus']) ? $data['plus'] : null;
 
@@ -248,15 +269,15 @@ class support
 		$tg_msg .= "\n🗣 ". self::getDisplayname($_user). " #user". self::getUserCode($_user);
 		$tg_msg .= "\n—————\n";
 
-		if($ttitle)
+		if($title)
 		{
-			$tg_msg .= $ttitle . "\n";
+			$tg_msg .= $title . "\n";
 		}
 
-		if($tcontent)
+		if($content)
 		{
-			$tcontent = \dash\app\log\msg::myStripTags($tcontent);
-			$tg_msg .= $tcontent . "\n";
+			$content = \dash\app\log\msg::myStripTags($content);
+			$tg_msg .= $content . "\n";
 		}
 
 		if($file)
@@ -310,12 +331,12 @@ class support
 	public static function AddNoteTicket($_args, $_user)
 	{
 
-      	// "telegram": "🆔#Ticket|code 🌒️️:plus \n🗣 ;displayname #user|user_code\n—————\n:tcontent\n:file\n⏳ |longdatecreated"
+      	// "telegram": "🆔#Ticket|code 🌒️️:plus \n🗣 ;displayname #user|user_code\n—————\n:content\n:file\n⏳ |longdatecreated"
 
 		$data = self::dataArray($_args);
 
-		$ttitle   = isset($data['ttitle']) ? $data['ttitle'] : null;
-		$tcontent = isset($data['tcontent']) ? $data['tcontent'] : null;
+		$title   = isset($data['title']) ? $data['title'] : null;
+		$content = isset($data['content']) ? $data['content'] : null;
 		$file     = isset($data['file']) ? $data['file'] : null;
 		$plus     = isset($data['plus']) ? $data['plus'] : null;
 
@@ -333,15 +354,15 @@ class support
 		$tg_msg .= "\n🗣 ". self::getDisplayname($_user). " #user". self::getUserCode($_user);
 		$tg_msg .= "\n—————\n";
 
-		if($ttitle)
+		if($title)
 		{
-			$tg_msg .= $ttitle . "\n";
+			$tg_msg .= $title . "\n";
 		}
 
-		if($tcontent)
+		if($content)
 		{
-			$tcontent = \dash\app\log\msg::myStripTags($tcontent);
-			$tg_msg .= $tcontent . "\n";
+			$content = \dash\app\log\msg::myStripTags($content);
+			$tg_msg .= $content . "\n";
 		}
 
 		if($file)

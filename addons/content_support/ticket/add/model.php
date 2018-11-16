@@ -48,9 +48,9 @@ class model
 			[
 				'user_id'  => \dash\user::id(),
 				'code'     => $result['id'],
-				'ttitle'   => $args['title'],
-				'tcontent' => \dash\safe::forJson($args['content']),
-				'file'     => $args['file'] ? $args['file'] : null,
+				// 'ttitle'   => $args['title'],
+				// 'tcontent' => \dash\safe::forJson($args['content']),
+				// 'file'     => $args['file'] ? $args['file'] : null,
 			];
 
 			\dash\log::set('addNewTicket', $log);

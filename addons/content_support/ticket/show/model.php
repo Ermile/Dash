@@ -274,8 +274,8 @@ class model
 				$log =
 				[
 					'code'     => $_id,
-					'tcontent' => \dash\safe::forJson($content),
-					'file'     => $file ? $file : null,
+					// 'tcontent' => \dash\safe::forJson($content),
+					// 'file'     => $file ? $file : null,
 					'plus'     => $plus,
 				];
 
@@ -324,8 +324,8 @@ class model
 					$log =
 					[
 						'code'     => $_id,
-						'tcontent' => \dash\safe::forJson($content),
-						'file'     => $file ? $file : null,
+						// 'tcontent' => \dash\safe::forJson($content),
+						// 'file'     => $file ? $file : null,
 						'plus'     => $update_main['plus'],
 					];
 
@@ -347,8 +347,8 @@ class model
 					$log =
 					[
 						'code'     => $_id,
-						'tcontent' => \dash\safe::forJson($content),
-						'file'     => $file ? $file : null,
+						// 'tcontent' => \dash\safe::forJson($content),
+						// 'file'     => $file ? $file : null,
 						'plus'     => $update_main['plus'],
 					];
 
