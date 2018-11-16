@@ -308,7 +308,7 @@ class step
 				case '/menu':
 				case '/mainmenu':
 				case '/return':
-				case 'type_contact'
+				case 'type_contact':
 				case 'type_location':
 				case 'type_audio':
 				case 'type_document':
