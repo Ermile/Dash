@@ -7,7 +7,6 @@ class log
 	public static $sort_field =
 	[
 		'id',
-
 	];
 
 
@@ -58,22 +57,6 @@ class log
 	private static $caller = [];
 
 
-	private static function caller_detail($_caller)
-	{
-		if(empty(self::$caller))
-		{
-			self::$caller = \dash\log::lists();
-		}
-
-
-		if(array_key_exists($_caller, self::$caller))
-		{
-			return self::$caller[$_caller];
-		}
-		return [];
-	}
-
-
 	public static function ready($_data)
 	{
 		if(!is_array($_data))
@@ -83,40 +66,33 @@ class log
 
 		$result = [];
 
-		if(isset($_data['caller']))
+		$project_function = ["\\lib\\app\\log\\caller\\$_caller", 'list'];
+
+		$dash_function    = ["\\dash\\app\\log\\caller\\$_caller", 'list'];
+
+		if(is_callable($project_function))
 		{
-			$_data = array_merge($_data, self::caller_detail($_data['caller']));
-		}
+			$namespace       = $project_function[0];
+			$function        = $project_function[1];
+			$result_function = $namespace::$function($_data);
 
-		$user_detail = self::detect_user($_data, 'user_id');
-
-		if(isset($_data['fn']))
-		{
-			$fn = $_data['fn'];
-
-			if(is_array($fn) && isset($fn[0]) && isset($fn[1]) && is_callable($fn))
+			if(is_array($result_function))
 			{
-				$namespace = $fn[0];
-				$function = $fn[1];
-				$result_fn = $namespace::$function($_data, $user_detail);
-				if(is_array($result_fn))
-				{
-					$_data = array_merge($_data, $result_fn);
-				}
+				$_data = array_merge($_data, $result_function);
+			}
+		}
+		elseif(is_callable($dash_function))
+		{
+			$namespace       = $dash_function[0];
+			$function        = $dash_function[1];
+			$result_function = $namespace::$function($_data);
+
+			if(is_array($result_function))
+			{
+				$_data = array_merge($_data, $result_function);
 			}
 		}
 
-		$replace = [];
-		if(isset($_data['data']) && is_string($_data['data']))
-		{
-			$replace = json_decode($_data['data'], true);
-		}
-
-		if(isset($_data['T_']) && is_array($_data['T_']))
-		{
-			$_data['T_'] = array_map('T_', $_data['T_']);
-			$replace = array_merge($replace, $_data['T_']);
-		}
 
 		foreach ($_data as $key => $value)
 		{
@@ -127,37 +103,11 @@ class log
 					$result['id_raw'] = $value;
 					break;
 
-				case 'caller':
-					$result[$key] = $value;
-					// $result = array_merge($result, self::caller_detail($value));
-					break;
-
 				case 'data':
 					if($value && is_string($value))
 					{
 						$result['data'] = json_decode($value, true);
 					}
-					break;
-
-				case 'title':
-				case 'content':
-					// $value = self::userT_($value, $user_detail);
-					// $value = self::logT_($value, $_data);
-					$result[$key] = T_($value, $replace);
-					break;
-
-				case 'send_msg':
-					if(is_array($value))
-					{
-						foreach ($value as $k => $v)
-						{
-							// $v = self::userT_($v, $user_detail);
-							// $v = self::logT_($v, $_data);
-							$result[$key][$k] = T_($v, $replace);
-						}
-					}
-					break;
-
 					break;
 
 				case 'datecreated':
@@ -176,103 +126,24 @@ class log
 			}
 		}
 
-		if(\dash\temp::get('logLoadUserDetail'))
-		{
-			$result['user_detail'] = self::detect_user($_data);
-		}
-
-		foreach ($result as $key => $value)
-		{
-			switch ($key)
-			{
-				case 'title':
-				case 'content':
-					$value = self::userT_($value, $user_detail);
-					$value = self::logT_($value, $result);
-					$result[$key] = $value;
-					break;
-
-
-				case 'send_msg':
-					if(is_array($value))
-					{
-						foreach ($value as $k => $v)
-						{
-							$v                = self::userT_($v, $user_detail);
-							$v                = self::logT_($v, $result);
-							$result[$key][$k] = $v;
-						}
-					}
-					break;
-
-
-			default:
-				$result[$key] = $value;
-				break;
-			}
-		}
-		// var_dump($result);exit();
 		return $result;
-
-	}
-
-	public static function myT_($_data, $_replace)
-	{
-		if(is_array($_data))
-		{
-			foreach ($_data as $key => $value)
-			{
-				$_data[$key] = self::myT_($value, $_replace);
-			}
-		}
-		else
-		{
-			$_data = self::logT_($_data, $_replace);
-		}
-		return $_data;
 	}
 
 
-	public static function logT_($_string, $_replace)
-	{
-
-		if(strpos($_string, '|') !== false)
-		{
-			if(is_array($_replace))
-			{
-				foreach ($_replace as $key => $value)
-				{
-					if(is_string($value))
-					{
-						$_string = str_replace('|'. $key, $value, $_string);
-					}
-				}
-			}
-		}
-		return $_string;
-	}
-
-	public static function userT_($_string, $_replace)
-	{
-
-		if(strpos($_string, ';') !== false)
-		{
-			if(is_array($_replace))
-			{
-				foreach ($_replace as $key => $value)
-				{
-					$_string = str_replace(';'. $key, $value, $_string);
-				}
-			}
-		}
-		return $_string;
-	}
 
 
 	private static function detect_user($_detail, $_key = null)
 	{
 		$all_user_detail = [];
-		if($_key === 'user_id')
+		if($_key === 'force')
+		{
+			if(isset($_detail['user_id']) && is_numeric($_detail['user_id']))
+			{
+				return \dash\db\users::get_by_id($_detail['user_id']);
+			}
+			return [];
+		}
+		elseif($_key === 'user_id')
 		{
 			if(isset($_detail['not_send_to_userid']) && $_detail['not_send_to_userid'])
 			{
@@ -291,7 +162,7 @@ class log
 
 			$send_to = isset($_detail['send_to']) ? $_detail['send_to'] : null;
 
-			if($send_to || is_array($send_to))
+			if($send_to && is_array($send_to))
 			{
 				$permission_list = [];
 				foreach ($send_to as $key => $value)

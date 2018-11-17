@@ -78,7 +78,7 @@ class logs
 	public static function insert($_args)
 	{
 
-		$set = \dash\db\config::make_set($_args);
+		$set = \dash\db\config::make_set($_args, ['type' => 'insert']);
 		if($set)
 		{
 			$query  ="INSERT INTO logs SET $set ";

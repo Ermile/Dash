@@ -106,7 +106,6 @@
     "send_to": [
       "supervisor"
     ],
-    "not_send_to_userid": true,
     "fn": [
       "\\dash\\app\\log\\msg\\support",
       "AddToTicket"

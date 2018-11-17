@@ -4,14 +4,6 @@ namespace dash;
 
 class log
 {
-
-	// check to not duplicate load notification file
-	private static $load               = false;
-	// list of project notifissin list
-	private static $project_notif_list = [];
-	// list of dash notification list
-	private static $core_notif_list    = [];
-
 	private static $temp_log = [];
 
 
@@ -48,62 +40,33 @@ class log
 			$_args = [$_args];
 		}
 
-		$all_list = self::lists();
+		$project_function = ["\\lib\\app\\log\\caller\\$_caller", 'before_add'];
 
-		if(!isset($all_list[$_caller]))
+		$dash_function    = ["\\dash\\app\\log\\caller\\$_caller", 'before_add'];
+
+		if(is_callable($project_function))
 		{
-			foreach ($_args as $key => $value)
+			$namespace       = $project_function[0];
+			$function        = $project_function[1];
+			$result_function = $namespace::$function($_args);
+
+			if(is_array($result_function))
 			{
-				switch ($key)
-				{
-					case 'subdomain':
-					case 'status':
-					case 'code':
-					case 'send':
-					case 'notif':
-					case 'user_idsender':
-					case 'readdate':
-					case 'telegramdate':
-					case 'smsdate':
-					case 'emaildate':
-					case 'meta':
-					case 'user_id':
-						$field[$key] = $value;
-						break;
-
-					default:
-						$data[$key] = $value;
-						break;
-				}
-			}
-
-			$new_args         = $field;
-			$new_args['data'] = $data;
-
-			return self::db($_caller, $new_args);
-		}
-
-		$caller_detail = $all_list[$_caller];
-
-		if(!is_array($_args))
-		{
-			$_args = [];
-		}
-
-
-		foreach ($caller_detail as $key => $value)
-		{
-			switch ($key)
-			{
-				case 'notification':
-					$field['notif'] = $value;
-					break;
-
-				default:
-
-					break;
+				$_args = array_merge($_args, $result_function);
 			}
 		}
+		elseif(is_callable($dash_function))
+		{
+			$namespace       = $dash_function[0];
+			$function        = $dash_function[1];
+			$result_function = $namespace::$function($_args);
+
+			if(is_array($result_function))
+			{
+				$_args = array_merge($_args, $result_function);
+			}
+		}
+
 
 		foreach ($_args as $key => $value)
 		{
@@ -146,7 +109,7 @@ class log
 			'data'          => null,
 			'code'          => null,
 			'send'          => null,
-			'subdomain'     => \dash\url::subdomain(),
+			'subdomain'     => null,
 			'user_id'       => null,
 			'notif'         => null,
 			'user_idsender' => null,
@@ -236,82 +199,8 @@ class log
 			'meta'          => $_args['meta'],
 		];
 
-		foreach ($insert_log as $key => $value)
-		{
-			if($value === null)
-			{
-				unset($insert_log[$key]);
-			}
-		}
-
-		if(!empty($insert_log))
-		{
-			return \dash\db\logs::insert($insert_log);
-		}
-		return false;
+		$log_id = \dash\db\logs::insert($insert_log);
+		return $log_id;
 	}
-
-
-	// read notification file and json_decode to make an array of it
-	public static function read_file($_addr)
-	{
-		$notif = [];
-
-		if(is_file($_addr))
-		{
-			$notif = \dash\file::read($_addr);
-			$notif = json_decode($notif, true);
-			if(!is_array($notif))
-			{
-				$notif = [];
-			}
-		}
-		return $notif;
-	}
-
-
-	// load all notification file and if exist lib\notification check this list by this function
-	private static function load()
-	{
-		if(!self::$load)
-		{
-			self::$load               = true;
-
-			$list1 = self::read_file(root.'/includes/log_caller/log.json');
-
-			self::$project_notif_list = $list1;
-
-			$dash_log_file_name = ['log', 'login', 'su', 'support', 'cp', 'account', 'hook'];
-
-			foreach ($dash_log_file_name as $key => $value)
-			{
-				$list1 = self::read_file(core.'addons/includes/log_caller/'. $value. '.json');
-				self::$core_notif_list    = array_merge(self::$core_notif_list, $list1);
-			}
-		}
-	}
-
-
-	// show all notification list
-	public static function lists($_project = false)
-	{
-		self::load();
-
-		$all_list = [];
-
-		if($_project)
-		{
-			$all_list = self::$project_notif_list;
-		}
-		else
-		{
-			if(is_array(self::$core_notif_list) && is_array(self::$project_notif_list))
-			{
-				$all_list = array_merge(self::$core_notif_list, self::$project_notif_list);
-			}
-		}
-		return $all_list;
-	}
-
 }
 ?>
