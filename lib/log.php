@@ -30,6 +30,36 @@ class log
 	}
 
 
+	private static function call_fn($_fn, $_args = [], $_namespace = null)
+	{
+		if(!$_namespace)
+		{
+			$_namespace = "\\lib\\app\\log\\caller\\$_fn";
+		}
+
+		$project_function = [$_namespace, $_fn];
+
+		$dash_function    = [$_namespace, $_fn];
+
+		if(is_callable($project_function))
+		{
+			$namespace       = $project_function[0];
+			$function        = $project_function[1];
+			$result_function = $namespace::$function($_args);
+			return $result_function;
+		}
+		elseif(is_callable($dash_function))
+		{
+			$namespace       = $dash_function[0];
+			$function        = $dash_function[1];
+			$result_function = $namespace::$function($_args);
+			return $result_function;
+		}
+
+		return null;
+	}
+
+
 	public static function set($_caller, $_args = [])
 	{
 		$data  = [];
@@ -40,43 +70,24 @@ class log
 			$_args = [$_args];
 		}
 
-		$project_function = ["\\lib\\app\\log\\caller\\$_caller", 'before_add'];
+		$before_add = self::call_fn('before_add', $_args);
 
-		$dash_function    = ["\\dash\\app\\log\\caller\\$_caller", 'before_add'];
-
-		if(is_callable($project_function))
+		if(is_array($before_add))
 		{
-			$namespace       = $project_function[0];
-			$function        = $project_function[1];
-			$result_function = $namespace::$function($_args);
-
-			if(is_array($result_function))
-			{
-				$_args = array_merge($_args, $result_function);
-			}
+			$_args = array_merge($_args, $before_add);
 		}
-		elseif(is_callable($dash_function))
-		{
-			$namespace       = $dash_function[0];
-			$function        = $dash_function[1];
-			$result_function = $namespace::$function($_args);
-
-			if(is_array($result_function))
-			{
-				$_args = array_merge($_args, $result_function);
-			}
-		}
-
 
 		foreach ($_args as $key => $value)
 		{
 			switch ($key)
 			{
+				case 'notif':
+					$field['notif'] = self::call_fn('is_notif');
+					break;
 				case 'subdomain':
 				case 'status':
 				case 'code':
 				case 'send':
-				case 'notif':
 				case 'user_idsender':
 				case 'readdate':
 				case 'telegramdate':

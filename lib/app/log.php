@@ -66,33 +66,41 @@ class log
 
 		$result = [];
 
-		$project_function = ["\\lib\\app\\log\\caller\\$_caller", 'list'];
-
-		$dash_function    = ["\\dash\\app\\log\\caller\\$_caller", 'list'];
-
-		if(is_callable($project_function))
+		$caller = null;
+		if(isset($_data['caller']))
 		{
-			$namespace       = $project_function[0];
-			$function        = $project_function[1];
-			$result_function = $namespace::$function($_data);
-
-			if(is_array($result_function))
-			{
-				$_data = array_merge($_data, $result_function);
-			}
-		}
-		elseif(is_callable($dash_function))
-		{
-			$namespace       = $dash_function[0];
-			$function        = $dash_function[1];
-			$result_function = $namespace::$function($_data);
-
-			if(is_array($result_function))
-			{
-				$_data = array_merge($_data, $result_function);
-			}
+			$caller = $_data['caller'];
 		}
 
+		if($caller)
+		{
+			$project_function = ["\\lib\\app\\log\\caller\\$caller", 'list'];
+
+			$dash_function    = ["\\dash\\app\\log\\caller\\$caller", 'list'];
+
+			if(is_callable($project_function))
+			{
+				$namespace       = $project_function[0];
+				$function        = $project_function[1];
+				$result_function = $namespace::$function($_data);
+
+				if(is_array($result_function))
+				{
+					$_data = array_merge($_data, $result_function);
+				}
+			}
+			elseif(is_callable($dash_function))
+			{
+				$namespace       = $dash_function[0];
+				$function        = $dash_function[1];
+				$result_function = $namespace::$function($_data);
+
+				if(is_array($result_function))
+				{
+					$_data = array_merge($_data, $result_function);
+				}
+			}
+		}
 
 		foreach ($_data as $key => $value)
 		{
