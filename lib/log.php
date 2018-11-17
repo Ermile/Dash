@@ -30,16 +30,10 @@ class log
 	}
 
 
-	private static function call_fn($_fn, $_args = [], $_namespace = null)
+	private static function call_fn($_class, $_fn, $_args = [])
 	{
-		if(!$_namespace)
-		{
-			$_namespace = "\\lib\\app\\log\\caller\\$_fn";
-		}
-
-		$project_function = [$_namespace, $_fn];
-
-		$dash_function    = [$_namespace, $_fn];
+		$project_function = ["\\lib\\app\\log\\caller\\$_class", $_fn];
+		$dash_function    = ["\\dash\\app\\log\\caller\\$_class", $_fn];
 
 		if(is_callable($project_function))
 		{
@@ -70,31 +64,34 @@ class log
 			$_args = [$_args];
 		}
 
-		$before_add = self::call_fn('before_add', $_args);
+		$before_add = self::call_fn($_caller, 'before_add', $_args);
 
 		if(is_array($before_add))
 		{
 			$_args = array_merge($_args, $before_add);
 		}
 
-		foreach ($_args as $key => $value)
+		$field['notif'] = self::call_fn($_caller, 'is_notif');
+
+ 		foreach ($_args as $key => $value)
 		{
 			switch ($key)
 			{
 				case 'notif':
-					$field['notif'] = self::call_fn('is_notif');
-					break;
 				case 'subdomain':
 				case 'status':
 				case 'code':
 				case 'send':
-				case 'user_idsender':
 				case 'readdate':
-				case 'telegramdate':
-				case 'smsdate':
-				case 'emaildate':
+				case 'telegram':
+				case 'sms':
+				case 'email':
 				case 'meta':
-				case 'user_id':
+				case 'from':
+				case 'to':
+				case 'sms':
+				case 'telegram':
+				case 'email':
 					$field[$key] = $value;
 					break;
 
@@ -105,7 +102,11 @@ class log
 		}
 
 		$new_args         = $field;
-		$new_args['data'] = $data;
+		if(!empty($data))
+		{
+			$new_args['data'] = $data;
+		}
+
 
 		return self::db($_caller, $new_args);
 	}
@@ -116,19 +117,20 @@ class log
 	{
 		$default_args =
 		[
-			'status'        => 'enable',
-			'data'          => null,
-			'code'          => null,
-			'send'          => null,
-			'subdomain'     => null,
-			'user_id'       => null,
-			'notif'         => null,
-			'user_idsender' => null,
-			'readdate'      => null,
-			'telegramdate'  => null,
-			'smsdate'       => null,
-			'emaildate'     => null,
-			'meta'          => null,
+			'from'      => null,
+			'to'      => null,
+			'subdomain' => null,
+			'data'      => null,
+			'status'    => 'enable',
+			'code'      => null,
+			'send'      => null,
+			'notif'     => null,
+			'from'      => null,
+			'readdate'  => null,
+			'meta'      => null,
+			'sms'       => null,
+			'telegram'  => null,
+			'email'     => null,
 		];
 
 		if(!is_array($_args))
@@ -138,18 +140,18 @@ class log
 
 		$_args = array_merge($default_args, $_args);
 
-		if($_args['user_id'] && is_numeric($_args['user_id']))
+		if($_args['from'] && is_numeric($_args['from']))
 		{
-			$user_id = $_args['user_id'];
+			$from = $_args['from'];
 		}
 		else
 		{
-			$user_id = \dash\user::id();
+			$from = \dash\user::id();
 		}
 
-		if(!$user_id)
+		if(!$from)
 		{
-			$user_id = null;
+			$from = null;
 		}
 
 		if($_args['data'])
@@ -192,22 +194,23 @@ class log
 
 		$insert_log =
 		[
-			'caller'        => $_caller,
-			'user_id'       => $user_id,
-			'datecreated'   => date("Y-m-d H:i:s"),
-			'subdomain'     => $_args['subdomain'],
-			'visitor_id'    => \dash\utility\visitor::id(),
-			'data'          => $_args['data'],
-			'status'        => $_args['status'],
-			'code'          => $_args['code'],
-			'send'          => $_args['send'],
-			'notif'         => $_args['notif'],
-			'user_idsender' => $_args['user_idsender'],
-			'readdate'      => $_args['readdate'],
-			'telegramdate'  => $_args['telegramdate'],
-			'smsdate'       => $_args['smsdate'],
-			'emaildate'     => $_args['emaildate'],
-			'meta'          => $_args['meta'],
+			'caller'       => $_caller,
+			'from'         => $from,
+			'to'           => $_args['to'],
+			'datecreated'  => date("Y-m-d H:i:s"),
+			'subdomain'    => $_args['subdomain'],
+			'visitor_id'   => \dash\utility\visitor::id(),
+			'data'         => $_args['data'],
+			'status'       => $_args['status'],
+			'code'         => $_args['code'],
+			'send'         => $_args['send'],
+			'notif'        => $_args['notif'],
+			'readdate'     => $_args['readdate'],
+			'meta'         => $_args['meta'],
+			'ip'           => \dash\server::ip(true),
+			'sms'          => $_args['sms'],
+			'telegram'     => $_args['telegram'],
+			'email'        => $_args['email'],
 		];
 
 		$log_id = \dash\db\logs::insert($insert_log);

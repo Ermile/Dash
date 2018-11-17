@@ -14,6 +14,12 @@ class addNewTicket extends \dash\app\log\caller
 	}
 
 
+	public static function is_notif()
+	{
+		return true;
+	}
+
+
 
 	public static function addNewTicket($_args, $_user)
 	{
