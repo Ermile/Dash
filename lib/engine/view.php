@@ -57,6 +57,7 @@ class view
 		{
 			\dash\data::global_id('home');
 		}
+		\dash\data::global_subdomain(\dash\url::subdomain());
 		\dash\data::global_content(\dash\url::content());
 		if(\dash\data::global_content() === null)
 		{
