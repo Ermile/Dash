@@ -117,7 +117,11 @@
 
     <a href="{{url.kingdom}}/account/notification" data-tippy-animation="perspective" title='{%trans "You have no unread notification"%}'><i class="sf-bell"></i></a>
 
-    <div class="profileShow" data-tippy-animation="perspective" title='{%trans "Click to check your profile"%}' data-title='{%trans "Account management"%}' data-desc='{%if user.displayname%}<b>{{user.displayname}}{%endif%}</b><br>{{user.mobile | fitNumber("mobile12")}}' data-footer='<div class="align-center">{%trans "Do you want to go somewhere?"%} <a href="{{url.kingdom}}/logout" data-direct class="btn outline dark sm">{%trans "Logout"%} <i class="sf-out mLa10"></i></a><div>' data-confirmTxt='{%trans "Account"%} <i class="sf-user"></i>' data-confirmLink='{{url.kingdom}}/account' data-cancelTxt='{%trans "Notifications"%} <i class="sf-bell"></i>' data-cancelLink='{{url.kingdom}}/account/notification'>
+    <div class="profileShow" data-tippy-animation="perspective" title='{%trans "Click to check your profile"%}'
+    data-desc='{{userBadge.desc}}'
+    data-footer='{{userBadge.footer}}'
+    data-confirmTxt='{%trans "Account"%} <i class="sf-user"></i>' data-confirmLink='{{url.kingdom}}/account'
+    data-cancelTxt='{%trans "Notifications"%} <i class="sf-bell"></i>' data-cancelLink='{{url.kingdom}}/account/notification'>
 {%if login.avatar%}
      <img src="{{login.avatar}}" alt='{%trans "Avatar of you"%} {{login.displayname}}'>
 {%elseif login%}
@@ -127,7 +131,7 @@
 {%endif%}
     </div>
 {%else%}
-    <a href="{{url.kingdom}}/enter?referer={{url.pwd}}" data-tippy-animation="perspective" title='{%trans "Enter to our have better experience"%}'><i class="sf-hand-stop"></i></a>
+    <a href="{{url.kingdom}}/enter?referer={{url.pwd}}" data-direct data-tippy-animation="perspective" title='{%trans "Enter to our have better experience"%}'><i class="sf-hand-stop"></i></a>
 
 {%endif%}
 {%endblock%}

@@ -258,6 +258,33 @@ class view
 		if(\dash\data::include_adminPanel())
 		{
 			\dash\data::global_siftal(true);
+
+			$txtDesc   = '';
+			if(\dash\data::user_displayname())
+			{
+				$txtDesc .= "<b>". \dash\data::user_displayname(). "</b><br>";
+			}
+			if(\dash\data::user_mobile())
+			{
+				$txtDesc .= \dash\utility\human::fitNumber(\dash\data::user_mobile(), 'mobile12');
+			}
+
+			$txtFooter = '';
+			$txtFooter .= '<div class="align-center">';
+			// notification
+			$txtFooter .= ' <a class="btn outline lg" href="'. \dash\url::kingdom(). '/account/notification" title="'. T_("Notifications"). '">'. '<i class="sf-bell"></i>'. '</a>';
+			// profile
+			$txtFooter .= ' <a class="btn outline lg" href="'. \dash\url::kingdom(). '/account/profile" title="'. T_("Profile"). '">'. '<i class="sf-user"></i>'. '</a>';
+			// billing
+			$txtFooter .= ' <a class="btn outline lg" href="'. \dash\url::kingdom(). '/account/billing" title="'. T_("Billing"). '">'. '<i class="sf-credit-card"></i>'. '</a>';
+			// support
+			$txtFooter .= ' <a class="btn outline lg" href="'. \dash\url::kingdom(). '/support" title="'. T_("Support center"). '">'. '<i class="sf-life-ring"></i>'. '</a>';
+			// ticket
+			$txtFooter .= ' <a class="btn outline lg" href="'. \dash\url::kingdom(). '/support/ticket" title="'. T_("Tickets"). '">'. '<i class="sf-question-circle"></i>'. '</a>';
+			$txtFooter .= '</div>';
+
+			\dash\data::userBadge_desc($txtDesc);
+			\dash\data::userBadge_footer($txtFooter);
 		}
 	}
 
