@@ -121,7 +121,10 @@
     data-desc='{{userBadge.desc}}'
     data-footer='{{userBadge.footer}}'
     data-confirmTxt='{%trans "Account"%} <i class="sf-user"></i>' data-confirmLink='{{url.kingdom}}/account'
-    data-cancelTxt='{%trans "Notifications"%} <i class="sf-bell"></i>' data-cancelLink='{{url.kingdom}}/account/notification'>
+    data-cancelTxt='{%trans "Logout"%} <i class="sf-out mLa10"></i>'
+    data-logoutConfirmTxt='{%trans "Really do you want to go out?"%}'
+    data-logoutTxt='{%trans "We are waiting for you:)"%}'
+    data-logoutUrl='{{url.kingdom}}/logout'>
 {%if login.avatar%}
      <img src="{{login.avatar}}" alt='{%trans "Avatar of you"%} {{login.displayname}}'>
 {%elseif login%}
