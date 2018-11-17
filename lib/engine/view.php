@@ -219,16 +219,18 @@ class view
 	public static function deadbrowserDetection()
 	{
 		$currentBrowser = \dash\data::browser();
-		$browsers = array(
-			"chrome"  => 64.0,
-			"firefox" => 60.0,
-			"gecko"   => 60.0,
-			"crios"   => 67.0,
-			"msie"    => 11.0,
-			"edge"    => 13,
-			"opera"	  => 50.0,
-			"safari"  => 534.57
-		);
+		$browsers =
+		[
+			"chrome"      => 64.0,
+			"firefox"     => 60.0,
+			"gecko"       => 60.0,
+			"crios"       => 67.0,
+			"msie"        => 11.0,
+			"edge"        => 13,
+			"opera"       => 50.0,
+			"safari"      => 534.57,
+			'applewebkit' => 600,
+		];
 
 		if (isset($browsers[$currentBrowser['browser_name']]))
 		{
