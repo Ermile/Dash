@@ -52,10 +52,10 @@ class view
 		\dash\data::global_login(\dash\user::login());
 		\dash\data::global_lang(\dash\language::current());
 		\dash\data::global_direction(\dash\language::current('direction'));
-		\dash\data::global_id(implode('_', \dash\url::dir()));
-		if(!\dash\data::global_id() && \dash\url::module() === null)
+		\dash\data::global_page(implode('_', \dash\url::dir()));
+		if(!\dash\data::global_page() && \dash\url::module() === null)
 		{
-			\dash\data::global_id('home');
+			\dash\data::global_page('home');
 		}
 		\dash\data::global_subdomain(\dash\url::subdomain());
 		\dash\data::global_content(\dash\url::content());
