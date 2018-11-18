@@ -136,6 +136,17 @@ class user
 	}
 
 
+	public static function mobile()
+	{
+		$mobile = \dash\user::detail('mobile');
+		if($mobile)
+		{
+			return $mobile;
+		}
+
+		return null;
+	}
+
 	public static function chatid()
 	{
 		$chatid = \dash\user::detail('chatid');
