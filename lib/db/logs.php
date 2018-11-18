@@ -244,7 +244,7 @@ class logs
 				",
 				"master_join"       =>
 				"
-					LEFT JOIN $db_name.users ON $db_name.users.id = logs.user_id
+					LEFT JOIN $db_name.users ON $db_name.users.id = logs.from
 				",
 				'db_name' => \dash\db::get_db_log_name(),
 			];
@@ -293,7 +293,7 @@ class logs
 			",
 			"master_join"       =>
 			"
-				LEFT JOIN $db_name.users ON $db_name.users.id = logs.user_id
+				LEFT JOIN $db_name.users ON $db_name.users.id = logs.from
 			",
 			'db_name' => \dash\db::get_db_log_name(),
 		];
@@ -307,35 +307,6 @@ class logs
 		$result = \dash\db\config::public_search('logs', $_string, $_options);
 
 		return $result;
-	}
-
-
-	public static function end_log($_condition = [])
-	{
-		$where = [];
-		foreach ($_condition as $key => $value)
-		{
-			if(is_string($value))
-			{
-				$value = "'$value'";
-			}
-			$where[] = "$key = $value";
-		}
-
-		if(!empty($where))
-		{
-			$where = join(" AND " , $where);
-			$where = "WHERE $where";
-		}
-		else
-		{
-			$where = "";
-		}
-		$query = "SELECT logitems.*, logs.* FROM logs
-		INNER JOIN logitems ON logitems.id = logs.logitem_id
-		$where
-		ORDER BY logs.datecreated DESC LIMIT 0,1";
-		return \dash\db::get($query, null, true, \dash\db::get_db_log_name());
 	}
 }
 ?>
