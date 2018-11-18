@@ -4,9 +4,6 @@ namespace dash\app\log;
 
 class send
 {
-	private static $isSended  = [];
-	private static $logUpdate = [];
-
 
 	public static function notification()
 	{
@@ -17,202 +14,62 @@ class send
 			return true;
 		}
 
-		\dash\temp::set('logLoadUserDetail', true);
-
-		$not_send = array_map(['\dash\app\log', 'ready'], $not_send);
-
-		$send_telegram = [];
-		$send_sms      = [];
-		$send_email    = [];
-
+		$start = time();
 		foreach ($not_send as $key => $value)
 		{
-			if(isset($value['telegram']) && $value['telegram'])
+			if(time() - $start > 20)
 			{
-				$send_telegram[] = $value;
+				break;
 			}
 
-			if(isset($value['sms']) && $value['sms'])
+			if(isset($value['telegram']))
 			{
-				$send_sms[] = $value;
+				$telegram = json_decode($value['telegram'], true);
+
+				if($telegram)
+				{
+					self::send_telegram($telegram);
+				}
 			}
 
-			if(isset($value['email']) && $value['email'])
+			if(isset($value['sms']))
 			{
-				$send_email[] = $value;
+				$sms = json_decode($value['sms'], true);
+				if(isset($sms['mobile']) && isset($sms['text']))
+				{
+					self::send_sms($sms['mobile'], $sms['text']);
+				}
 			}
-		}
 
-		if(!empty($send_telegram))
-		{
-			self::send_by_telegram($send_telegram);
-		}
-
-		if(!empty($send_sms))
-		{
-			self::send_by_sms($send_sms);
-		}
-
-		\dash\db\logs::save_temp_update();
-	}
-
-
-	private static function sended($_id, $_user, $_check = false)
-	{
-		if($_check)
-		{
-			return isset(self::$isSended[$_id][$_user]);
-		}
-		else
-		{
-			self::$isSended[$_id][$_user] = true;
+			\dash\db\logs::update(['send' => 1], $value['id']);
 		}
 	}
 
-
-	private static function send_by_telegram($_array)
+	private static function send_telegram($_data)
 	{
 		if(!\dash\option::social('telegram', 'status'))
 		{
-			$id_raw = array_column($_array, 'id_raw');
-			if(!empty($id_raw))
-			{
-				$id_raw = implode(',', $id_raw);
-				\dash\db\logs::update_where(['send' => 0],['id' => ["IN", "($id_raw)"]]);
-			}
+			return false;
 		}
-		else
-		{
-			$start_time = time();
-			$count_send = 0;
-			foreach ($_array as $key => $value)
-			{
-				if(!isset($value['user_detail']) || (isset($value['user_detail']) && !is_array($value['user_detail'])))
-				{
-					\dash\db\logs::update_temp(['send' => 0], $value['id_raw']);
-					continue;
-				}
 
-				$is_sended = false;
-
-				foreach ($value['user_detail'] as $user_id => $user_detail)
-				{
-					if(isset($user_detail['chatid']) && isset($value['send_msg']['telegram']))
-					{
-						// check to not send duplicate msg to one user
-						if(self::sended($value['id_raw'], $user_id, true))
-						{
-							continue;
-						}
-
-						$myData =
-						[
-							'text'         => strip_tags($value['send_msg']['telegram']),
-							'reply_markup' => false,
-							'chat_id'      => $user_detail['chatid'],
-						];
-
-						if(isset($value['btn']['telegram']) && is_array($value['btn']['telegram']))
-						{
-							$myData = array_merge($myData, $value['btn']['telegram']);
-						}
-
-						$myData = \dash\app\log::myT_($myData, $value);
-
-						$myResult = false;
-
-						if(isset($value['send_gif']) && $value['send_gif'] && isset($value['gif_url']))
-						{
-							$myData['caption'] = $myData['text'];
-							unset($myData['text']);
-							$myData['document'] = $value['gif_url'];
-
-							$myResult = \dash\social\telegram\tg::sendDocument($myData);
-						}
-						else
-						{
-							$myResult = \dash\social\telegram\tg::sendMessage($myData);
-						}
-
-						// $myResult       = [];
-						// $myResult['ok'] = 1;
-
-						if(isset($myResult['ok']) && $myResult['ok'])
-						{
-							// if can send to the user tg not send in other way
-							self::sended($value['id_raw'], $user_id);
-							$is_sended = true;
-							\dash\db\logs::update_temp(['send' => 1], $value['id_raw']);
-						}
-
-						$count_send++;
-
-						if((time() - $start_time) > 60 || $count_send > 20)
-						{
-							return false;
-						}
-					}
-				}
-			}
-		}
+		$myResult = \dash\social\telegram\tg::sendMessage($_data);
 	}
 
 
-	private static function send_by_sms($_array)
+	private static function send_sms($_mobile, $_text)
 	{
+		if(\dash\url::isLocal())
+		{
+			return false;
+		}
+
 		if(!\dash\option::sms('kavenegar', 'status'))
 		{
-			$id_raw = array_column($_array, 'id_raw');
-			if(!empty($id_raw))
-			{
-				$id_raw = implode(',', $id_raw);
-				\dash\db\logs::update_where(['send' => 0],['id' => ["IN", "($id_raw)"]]);
-			}
+			return false;
 		}
 		else
 		{
-			$start_time = time();
-			$count_send = 0;
-			$is_sended  = false;
-			foreach ($_array as $key => $value)
-			{
-				if(!isset($value['user_detail']) || (isset($value['user_detail']) && !is_array($value['user_detail'])))
-				{
-					\dash\db\logs::update_temp(['send' => 0], $value['id_raw']);
-					continue;
-				}
-
-				\dash\db\logs::update_temp(['send' => 1], $value['id_raw']);
-
-				foreach ($value['user_detail'] as $user_id => $user_detail)
-				{
-					if(isset($user_detail['mobile']) && isset($value['send_msg']['sms']))
-					{
-						// check to not send duplicate msg to one user
-						if(self::sended($value['id_raw'], $user_id, true))
-						{
-							continue;
-						}
-						self::sended($value['id_raw'], $user_id);
-
-						if(\dash\url::isLocal())
-						{
-							continue;
-						}
-
-						\dash\utility\sms::send($user_detail['mobile'], $value['send_msg']['sms'], $value['send_msg']);
-
-						// @check need to check the telegram is send this message or not
-
-						$count_send++;
-
-						if((time() - $start_time) > 60 || $count_send > 20)
-						{
-							return false;
-						}
-					}
-				}
-			}
+			\dash\utility\sms::send($_mobile, $_text);
 		}
 	}
 }

@@ -3,10 +3,9 @@ namespace dash\app\log\caller;
 
 class addNewTicket
 {
-
-	public static function send_to_creator()
+	public static function text()
 	{
-		return true;
+		return T_("Add new ticket");
 	}
 
 	public static function send_to()
@@ -24,59 +23,19 @@ class addNewTicket
 		return true;
 	}
 
-	public static function sms()
+	public static function telegram_text($_args, $_chat_id)
 	{
-		return true;
-	}
+		$load = \dash\app\log\support_tools::load($_args);
+		$code = isset($_args['code']) ? $_args['code'] : null;
 
-	public static function email()
-	{
-		return true;
-	}
-
-	public static function telegram_text()
-	{
-		return 'telegram_text';
-	}
-
-	public static function sms_text()
-	{
-		return T_('Hi');
-	}
-
-	public static function email_text()
-	{
-		return 'email_text';
-	}
-
-
-
-
-
-
-
-	public static function addNewTicket($_args, $_user)
-	{
-		// $tg_msg                      = "🆔#Ticket|code #New \n🗣 ;displayname #user|user_code\n—————\n📬 :title\ncontent\nfile\n⏳ |longdatecreated";
-
-		$data = self::dataArray($_args);
-
-		$title   = isset($data['title']) ? $data['title'] : null;
-		$content = isset($data['content']) ? $data['content'] : null;
-		$file     = isset($data['file']) ? $data['file'] : null;
-
-		$msg                = [];
-		$msg['title']       = T_("Add new ticket");
-		$msg['content']     = T_(":val add new ticket", ['val' => self::getDisplayname($_user)]);
-
-		$msg['telegram']    = true;
-		$msg['need_answer'] = true;
-
-		$code = (isset($_args['code']) ? $_args['code']: null);
 		$tg_msg = '';
 		$tg_msg .= "🆔#Ticket".$code;
-		$tg_msg .= " #New \n🗣 ". self::getDisplayname($_user). " #user". self::getUserCode($_user);
+		$tg_msg .= " #New \n🗣 ". \dash\log::from_name(). " #user". \dash\log::from_id();
 		$tg_msg .= "\n—————\n📬 ";
+
+		$title   = isset($load['title']) ? $load['title'] : null;
+		$content = isset($load['content']) ? $load['content'] : null;
+		$file    = isset($load['file']) ? $load['file'] : null;
 
 		if($title)
 		{
@@ -94,46 +53,39 @@ class addNewTicket
 			$tg_msg .= $file . "\n";
 		}
 
-		if(isset($_args['datecreated']))
-		{
-			$tg_msg .= "\n⏳ ". \dash\datetime::fit($_args['datecreated'], true);
-		}
+		$tg_msg .= "\n⏳ ". \dash\datetime::fit(date("Y-m-d H:i:s"), true);
 
-		$msg['send_msg']             = [];
-		$msg['send_msg']['telegram'] = $tg_msg;
-
-		$msg['send_to']              = ['supervisor'];
-
-		$msg['btn']                  = [];
-		$msg['btn']['telegram']      =
+		$tg                 = [];
+		$tg['chat_id']      = $_chat_id;
+		$tg['text']         = $tg_msg;
+		$tg['reply_markup'] =
 		[
-			'reply_markup'           =>
+			'inline_keyboard'    =>
 			[
-				'inline_keyboard'    =>
 				[
 					[
-						[
-							'text' => 	T_("Visit in site"),
-							'url'  => \dash\url::base(). '/!'. $code,
-						],
+						'text' => 	T_("Visit in site"),
+						'url'  => \dash\url::base(). '/!'. $code,
 					],
+				],
+				[
 					[
-						[
-							'text'          => 	T_("Check ticket"),
-							'callback_data' => 'ticket '. $code,
-						],
+						'text'          => 	T_("Check ticket"),
+						'callback_data' => 'ticket '. $code,
 					],
+				],
+				[
 					[
-						[
-							'text'          => 	T_("Answer"),
-							'callback_data' => 'ticket '. $code. ' answer',
-						],
+						'text'          => 	T_("Answer"),
+						'callback_data' => 'ticket '. $code. ' answer',
 					],
 				],
 			],
 		];
 
-		return $msg;
+		$tg = json_encode($tg, JSON_UNESCAPED_UNICODE);
+
+		return $tg;
 	}
 }
 ?>

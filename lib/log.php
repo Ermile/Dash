@@ -4,7 +4,8 @@ namespace dash;
 
 class log
 {
-	private static $temp_log = [];
+	private static $temp_log    = [];
+	private static $from_detail = [];
 
 
 	public static function temp_set($_caller, $_args)
@@ -44,6 +45,23 @@ class log
 
 		$field['notif'] = $is_notif;
 
+
+		if(isset($_args['from']) && is_numeric($_args['from']))
+		{
+			$field['from'] = $_args['from'];
+		}
+		else
+		{
+			$field['from'] = \dash\user::id();
+		}
+
+		if(!$field['from'])
+		{
+			$field['from'] = null;
+		}
+
+		self::set_from($field['from']);
+
  		foreach ($_args as $key => $value)
 		{
 			switch ($key)
@@ -58,7 +76,6 @@ class log
 				case 'sms':
 				case 'email':
 				case 'meta':
-				case 'from':
 				case 'to':
 				case 'sms':
 				case 'telegram':
@@ -87,12 +104,58 @@ class log
 		{
 			return self::db($_caller, $new_args);
 		}
+	}
 
+	private static function set_from($_user_id)
+	{
+		if($_user_id)
+		{
+			$detail = [];
+			if(intval($_user_id) === intval(\dash\user::id()))
+			{
+				$detail = \dash\user::detail();
+			}
+			else
+			{
+				$detail = \dash\db\users::get_by_id($_user_id);
 
+			}
+			self::$from_detail = $detail;
+			return true;
+		}
+	}
+
+	public static function from_id()
+	{
+		return self::from_detail('id');
+	}
+
+	public static function from_name()
+	{
+		return self::from_detail('displayname');
+	}
+
+	public static function from_detail($_key = null)
+	{
+		if($_key)
+		{
+			if(array_key_exists($_key, self::$from_detail))
+			{
+				return self::$from_detail[$_key];
+			}
+			else
+			{
+				return null;
+			}
+		}
+		else
+		{
+			return self::$from_detail;
+		}
 	}
 
 
-	private static function call_fn($_class, $_fn, $_args = [])
+	private static function call_fn($_class, $_fn, $_args = [], $_args2 = [])
 	{
 		$project_function = ["\\lib\\app\\log\\caller\\$_class", $_fn];
 		$dash_function    = ["\\dash\\app\\log\\caller\\$_class", $_fn];
@@ -101,14 +164,14 @@ class log
 		{
 			$namespace       = $project_function[0];
 			$function        = $project_function[1];
-			$result_function = $namespace::$function($_args);
+			$result_function = $namespace::$function($_args, $_args2);
 			return $result_function;
 		}
 		elseif(is_callable($dash_function))
 		{
 			$namespace       = $dash_function[0];
 			$function        = $dash_function[1];
-			$result_function = $namespace::$function($_args);
+			$result_function = $namespace::$function($_args, $_args2);
 			return $result_function;
 		}
 
@@ -169,11 +232,11 @@ class log
 						\dash\language::set_language($value['language']);
 					}
 
-					$sms_text = self::call_fn($_caller, 'sms_text');
+					$sms_text = self::call_fn($_caller, 'sms_text', $_args, $value['mobile']);
 					if($sms_text)
 					{
 						$new_args[$key]['to']  = $key;
-						$new_args[$key]['sms'] = json_encode(['mobile' => $value['mobile'], 'text' => $sms_text], JSON_UNESCAPED_UNICODE);
+						$new_args[$key]['sms'] = addslashes($sms_text);
 					}
 				}
 			}
@@ -194,11 +257,11 @@ class log
 						\dash\language::set_language($value['language']);
 					}
 
-					$telegram_text = self::call_fn($_caller, 'telegram_text');
+					$telegram_text = self::call_fn($_caller, 'telegram_text', $_args, $value['chatid']);
 					if($telegram_text)
 					{
 						$new_args[$key]['to']       = $key;
-						$new_args[$key]['telegram'] = $telegram_text;
+						$new_args[$key]['telegram'] = addslashes($telegram_text);
 					}
 				}
 			}
@@ -219,7 +282,7 @@ class log
 						\dash\language::set_language($value['language']);
 					}
 
-					$email_text = self::call_fn($_caller, 'email_text');
+					$email_text = self::call_fn($_caller, 'email_text', $_args, $value['email']);
 					if($email_text)
 					{
 						$new_args[$key]['to']    = $key;
@@ -327,19 +390,6 @@ class log
 
 		$_args = array_merge($default_args, $_args);
 
-		if($_args['from'] && is_numeric($_args['from']))
-		{
-			$from = $_args['from'];
-		}
-		else
-		{
-			$from = \dash\user::id();
-		}
-
-		if(!$from)
-		{
-			$from = null;
-		}
 
 		if($_args['data'])
 		{
@@ -382,7 +432,7 @@ class log
 		$insert_log =
 		[
 			'caller'       => $_caller,
-			'from'         => $from,
+			'from'         => $_args['from'],
 			'to'           => $_args['to'],
 			'datecreated'  => date("Y-m-d H:i:s"),
 			'subdomain'    => $_args['subdomain'],
