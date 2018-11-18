@@ -12,7 +12,7 @@ class controller
 			// logout sample
 			$result =
 			[
-				'ok'        => false,
+				'okay'      => false,
 				'logoutTxt' => T_("Goodbye"),
 				'logoutUrl' => \dash\url::kingdom(). '/logout'
 				// 'logoutUrl' => \dash\url::kingdom(). '/logout?mobile='. \dash\user::mobile()
@@ -22,8 +22,8 @@ class controller
 		{
 			$result =
 			[
-				'ok'        => true,
-				'newNotif'  => (bool)random_int(0, 1),
+				'okay'     => true,
+				'newNotif' => (bool)random_int(0, 1),
 			];
 		}
 
