@@ -1,11 +1,11 @@
 <?php
 namespace dash\app\log\caller;
 
-class addNewTicket
+class AnswerTicket
 {
 	public static function text()
 	{
-		return T_("Add new ticket");
+		return T_("Answer ticket");
 	}
 
 	public static function send_to()
@@ -23,14 +23,17 @@ class addNewTicket
 		return true;
 	}
 
+
 	public static function telegram_text($_args, $_chat_id)
 	{
 		$load = \dash\app\log\support_tools::load($_args);
+		$plus = isset($load['data']['plus']) ? $load['data']['plus'] : null;
 		$code = isset($_args['code']) ? $_args['code'] : null;
 
 		$tg_msg = '';
 		$tg_msg .= "🆔#Ticket".$code;
-		$tg_msg .= " #New \n🗣 ". \dash\log::from_name(). " #user". \dash\log::from_id();
+		$tg_msg .= " 💌". $plus;
+		$tg_msg .= "\n🗣 ". \dash\log::from_name(). " #user". \dash\log::from_id();
 		$tg_msg .= "\n—————\n📬 ";
 
 		$title   = isset($load['title']) ? $load['title'] : null;

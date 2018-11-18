@@ -4,6 +4,8 @@ namespace dash\app\log;
 
 class send
 {
+	// max 30 msg per second
+	// max 1 msg per user
 
 	public static function notification()
 	{
@@ -51,6 +53,7 @@ class send
 		{
 			return false;
 		}
+
 		if(isset($_data['method']))
 		{
 			$method   = $_data['method'];

@@ -257,7 +257,7 @@ class view
 		[
 			'caller'      => 'seeTicket',
 			'code'        => $_id,
-			'user_id'     => \dash\user::id(),
+			'to'          => \dash\user::id(),
 			'datecreated' => [">=", "'$end_message[datecreated]'"],
 		];
 

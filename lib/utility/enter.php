@@ -651,12 +651,12 @@ class enter
 
 		$log_detail =
 		[
-			'user_id' => self::user_data('id'),
-			'send'    => 1,
-			'notif'   => 1,
-			'code'    => $code,
-			'mycode'    => $code,
-			'time'    => $time,
+			'to'     => self::user_data('id'),
+			'send'   => 1,
+			'notif'  => 1,
+			'code'   => $code,
+			'mycode' => $code,
+			'time'   => $time,
 		];
 
 		$log_id = \dash\log::set('envterVerificationCode', $log_detail);
@@ -705,10 +705,10 @@ class enter
 			{
 				$where =
 				[
-					'caller'  => 'envterVerificationCode',
-					'user_id' => self::user_data('id'),
-					'status'  => 'enable',
-					'limit'   => 1,
+					'caller' => 'envterVerificationCode',
+					'to'     => self::user_data('id'),
+					'status' => 'enable',
+					'limit'  => 1,
 				];
 				$log_code = \dash\db\logs::get($where);
 

@@ -1,17 +1,13 @@
 <?php
 namespace dash\app\log\caller;
 
-class addNewTicket
+class answerTicketAlertSend
 {
 	public static function text()
 	{
-		return T_("Add new ticket");
+		return T_("Answer alert");
 	}
 
-	public static function send_to()
-	{
-		return ['supervisor'];
-	}
 
 	public static function is_notif()
 	{
@@ -23,37 +19,25 @@ class addNewTicket
 		return true;
 	}
 
+
+
 	public static function telegram_text($_args, $_chat_id)
 	{
 		$load = \dash\app\log\support_tools::load($_args);
+		$plus = isset($load['data']['plus']) ? $load['data']['plus'] : null;
 		$code = isset($_args['code']) ? $_args['code'] : null;
+
+
+		$title    = T_("Regards"). "\n". T_("Ticket :val answered", ['val' => \dash\utility\human::fitNumber($code, false)]);
+
 
 		$tg_msg = '';
 		$tg_msg .= "🆔#Ticket".$code;
-		$tg_msg .= " #New \n🗣 ". \dash\log::from_name(). " #user". \dash\log::from_id();
-		$tg_msg .= "\n—————\n📬 ";
-
-		$title   = isset($load['title']) ? $load['title'] : null;
-		$content = isset($load['content']) ? $load['content'] : null;
-		$file    = isset($load['file']) ? $load['file'] : null;
-
-		if($title)
-		{
-			$tg_msg .= $title . "\n";
-		}
-
-		if($content)
-		{
-			$content = \dash\app\log\msg::myStripTags($content);
-			$tg_msg .= $content . "\n";
-		}
-
-		if($file)
-		{
-			$tg_msg .= $file . "\n";
-		}
-
+		$tg_msg .= $title;
 		$tg_msg .= "\n⏳ ". \dash\datetime::fit(date("Y-m-d H:i:s"), true);
+
+		// disable footer in sms
+		// $msg['send_msg']['footer']   = false;
 
 		$tg                 = [];
 		$tg['chat_id']      = $_chat_id;

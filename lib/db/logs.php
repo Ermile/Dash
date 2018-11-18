@@ -203,7 +203,7 @@ class logs
 		$insert_log =
 		[
 			'caller'      => $_caller,
-			'user_id'     => $user_id,
+			'from'        => $user_id,
 			'datecreated' => date("Y-m-d H:i:s"),
 			'subdomain'   => \dash\url::subdomain() ? \dash\url::subdomain() : null,
 			'visitor_id'  => $_options['visitor_id'],
