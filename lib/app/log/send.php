@@ -39,7 +39,13 @@ class send
 				$sms = json_decode($value['sms'], true);
 				if(isset($sms['mobile']) && isset($sms['text']))
 				{
-					self::send_sms($sms['mobile'], $sms['text']);
+					$meta = [];
+					if(isset($sms['meta']))
+					{
+						$meta = $sms['meta'];
+					}
+
+					self::send_sms($sms['mobile'], $sms['text'], $meta);
 				}
 			}
 
@@ -68,7 +74,7 @@ class send
 	}
 
 
-	private static function send_sms($_mobile, $_text)
+	private static function send_sms($_mobile, $_text, $_meta = [])
 	{
 		if(\dash\url::isLocal())
 		{
@@ -81,7 +87,7 @@ class send
 		}
 		else
 		{
-			\dash\utility\sms::send($_mobile, $_text);
+			\dash\utility\sms::send($_mobile, $_text, $_meta);
 		}
 	}
 }

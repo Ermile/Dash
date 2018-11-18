@@ -217,31 +217,6 @@ class log
 
 		$master_lang = \dash\language::current();
 
-		$sms      = self::call_fn($_caller, 'sms');
-
-		if($sms)
-		{
-			foreach ($_user_detail as $key => $value)
-			{
-				if(isset($value['mobile']) && \dash\utility\filter::mobile($value['mobile']))
-				{
-					$current_lang = \dash\language::current();
-
-					if(isset($value['language']) && mb_strlen($value['language']) === 2 && $value['language'] !== $current_lang)
-					{
-						\dash\language::set_language($value['language']);
-					}
-
-					$sms_text = self::call_fn($_caller, 'sms_text', $_args, $value['mobile']);
-					if($sms_text)
-					{
-						$new_args[$key]['to']  = $key;
-						$new_args[$key]['sms'] = addslashes($sms_text);
-					}
-				}
-			}
-		}
-
 		$telegram      = self::call_fn($_caller, 'telegram');
 
 		if($telegram)
@@ -267,6 +242,40 @@ class log
 			}
 		}
 
+		$sms      = self::call_fn($_caller, 'sms');
+
+		if($sms)
+		{
+			foreach ($_user_detail as $key => $value)
+			{
+				if(isset($value['mobile']) && \dash\utility\filter::mobile($value['mobile']))
+				{
+					// check if send by tg not send by sms
+					if(isset($new_args[$key]['telegram']))
+					{
+						if(!self::call_fn($_caller, 'force_send_sms'))
+						{
+							continue;
+						}
+					}
+
+					$current_lang = \dash\language::current();
+
+					if(isset($value['language']) && mb_strlen($value['language']) === 2 && $value['language'] !== $current_lang)
+					{
+						\dash\language::set_language($value['language']);
+					}
+
+					$sms_text = self::call_fn($_caller, 'sms_text', $_args, $value['mobile']);
+					if($sms_text)
+					{
+						$new_args[$key]['to']  = $key;
+						$new_args[$key]['sms'] = addslashes($sms_text);
+					}
+				}
+			}
+		}
+
 		$email      = self::call_fn($_caller, 'email');
 
 		if($email)
@@ -275,6 +284,15 @@ class log
 			{
 				if(isset($value['email']))
 				{
+					// check if send by tg not send by sms
+					if(isset($new_args[$key]['telegram']) || isset($new_args[$key]['sms']))
+					{
+						if(!self::call_fn($_caller, 'force_send_email'))
+						{
+							continue;
+						}
+					}
+
 					$current_lang = \dash\language::current();
 
 					if(isset($value['language']) && mb_strlen($value['language']) === 2 && $value['language'] !== $current_lang)
