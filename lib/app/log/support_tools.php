@@ -12,14 +12,6 @@ class support_tools
 			if(isset($_args['code']))
 			{
 				self::$load = \dash\db\comments::get(['id' => $_args['code'], 'limit' => 1]);
-				if(isset(self::$load['data']))
-				{
-					$temp = json_decode(self::$load['data'], true);
-					if($temp)
-					{
-						self::$load['data'] = $temp;
-					}
-				}
 			}
 		}
 
