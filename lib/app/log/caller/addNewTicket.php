@@ -1,23 +1,57 @@
 <?php
 namespace dash\app\log\caller;
 
-class addNewTicket extends \dash\app\log\caller
+class addNewTicket
 {
 
-
-	public static function list($_args = [])
+	public static function send_to_creator()
 	{
-		$arg                = [];
-		$arg['title']       = T_("Add new ticket");
-		$arg['content']     = parent::displayname($_args) . ' '. T_("add new ticket");
-		return $arg;
+		return true;
 	}
 
+	public static function send_to()
+	{
+		return ['supervisor'];
+	}
 
 	public static function is_notif()
 	{
 		return true;
 	}
+
+	public static function telegram()
+	{
+		return true;
+	}
+
+	public static function sms()
+	{
+		return true;
+	}
+
+	public static function email()
+	{
+		return true;
+	}
+
+	public static function telegram_text()
+	{
+		return 'telegram_text';
+	}
+
+	public static function sms_text()
+	{
+		return T_('Hi');
+	}
+
+	public static function email_text()
+	{
+		return 'email_text';
+	}
+
+
+
+
 
 
 

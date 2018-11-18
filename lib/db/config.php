@@ -316,22 +316,37 @@ class config
 			{
 				if(array_key_exists($field_name, $value))
 				{
-					if(is_numeric($value[$field_name]))
+					if((is_string($value[$field_name]) && !$value[$field_name]) || is_null($value[$field_name]))
 					{
-						$values[] = $value[$field_name];
+						$values[] = " NULL";
 					}
-					elseif($value[$field_name] === null || (is_string($value[$field_name]) && (!$value[$field_name] || $value[$field_name] === '' )))
+					elseif(is_string($value[$field_name]))
 					{
-						$values[] = "NULL";
+						$values[] = " '$value[$field_name]'";
+					}
+					elseif(is_numeric($value[$field_name]))
+					{
+						$values[] = " $value[$field_name]";
+					}
+					elseif(is_bool($value[$field_name]))
+					{
+						if($value[$field_name])
+						{
+							$values[] = " 1";
+						}
+						else
+						{
+							$values[] = " NULL";
+						}
 					}
 					else
 					{
-						$values[] = "'" . $value[$field_name] . "'";
+						$values[] = " '$value[$field_name]'";
 					}
 				}
 				else
 				{
-					$values[] = "NULL";
+					$values[] = " NULL";
 				}
 			}
 			$together[] = join($values, ",");

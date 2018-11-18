@@ -30,30 +30,6 @@ class log
 	}
 
 
-	private static function call_fn($_class, $_fn, $_args = [])
-	{
-		$project_function = ["\\lib\\app\\log\\caller\\$_class", $_fn];
-		$dash_function    = ["\\dash\\app\\log\\caller\\$_class", $_fn];
-
-		if(is_callable($project_function))
-		{
-			$namespace       = $project_function[0];
-			$function        = $project_function[1];
-			$result_function = $namespace::$function($_args);
-			return $result_function;
-		}
-		elseif(is_callable($dash_function))
-		{
-			$namespace       = $dash_function[0];
-			$function        = $dash_function[1];
-			$result_function = $namespace::$function($_args);
-			return $result_function;
-		}
-
-		return null;
-	}
-
-
 	public static function set($_caller, $_args = [])
 	{
 		$data  = [];
@@ -64,14 +40,9 @@ class log
 			$_args = [$_args];
 		}
 
-		$before_add = self::call_fn($_caller, 'before_add', $_args);
+		$is_notif = self::call_fn($_caller, 'is_notif');
 
-		if(is_array($before_add))
-		{
-			$_args = array_merge($_args, $before_add);
-		}
-
-		$field['notif'] = self::call_fn($_caller, 'is_notif');
+		$field['notif'] = $is_notif;
 
  		foreach ($_args as $key => $value)
 		{
@@ -102,18 +73,234 @@ class log
 		}
 
 		$new_args         = $field;
+
 		if(!empty($data))
 		{
 			$new_args['data'] = $data;
 		}
 
+		if($is_notif)
+		{
+			return self::notif($_caller, $new_args);
+		}
+		else
+		{
+			return self::db($_caller, $new_args);
+		}
 
-		return self::db($_caller, $new_args);
+
 	}
 
 
+	private static function call_fn($_class, $_fn, $_args = [])
+	{
+		$project_function = ["\\lib\\app\\log\\caller\\$_class", $_fn];
+		$dash_function    = ["\\dash\\app\\log\\caller\\$_class", $_fn];
+
+		if(is_callable($project_function))
+		{
+			$namespace       = $project_function[0];
+			$function        = $project_function[1];
+			$result_function = $namespace::$function($_args);
+			return $result_function;
+		}
+		elseif(is_callable($dash_function))
+		{
+			$namespace       = $dash_function[0];
+			$function        = $dash_function[1];
+			$result_function = $namespace::$function($_args);
+			return $result_function;
+		}
+
+		return null;
+	}
+
+
+	private static function notif($_caller, &$_args)
+	{
+		$send_to         = self::call_fn($_caller, 'send_to');
+		$send_to_creator = self::call_fn($_caller, 'send_to_creator');
+
+		if(!$send_to)
+		{
+			if($send_to_creator)
+			{
+				$_args['to'] = \dash\user::id();
+				$send_args   = self::create_text($_caller, $_args, [\dash\user::id() => \dash\user::detail()]);
+				return self::db($_caller, $_args, $send_args);
+			}
+
+			return self::db($_caller, $_args);
+		}
+		else
+		{
+			$user_detail = self::detect_user($send_to, $send_to_creator);
+			if($user_detail)
+			{
+				$send_args = self::create_text($_caller, $_args, $user_detail);
+				return self::db($_caller, $_args, $send_args);
+			}
+			else
+			{
+				return self::db($_caller, $_args);
+			}
+		}
+	}
+
+
+	private static function create_text($_caller, &$_args, $_user_detail)
+	{
+		$new_args = [];
+
+		$master_lang = \dash\language::current();
+
+		$sms      = self::call_fn($_caller, 'sms');
+
+		if($sms)
+		{
+			foreach ($_user_detail as $key => $value)
+			{
+				if(isset($value['mobile']) && \dash\utility\filter::mobile($value['mobile']))
+				{
+					$current_lang = \dash\language::current();
+
+					if(isset($value['language']) && mb_strlen($value['language']) === 2 && $value['language'] !== $current_lang)
+					{
+						\dash\language::set_language($value['language']);
+					}
+
+					$sms_text = self::call_fn($_caller, 'sms_text');
+					if($sms_text)
+					{
+						$new_args[$key]['to']  = $key;
+						$new_args[$key]['sms'] = json_encode(['mobile' => $value['mobile'], 'text' => $sms_text], JSON_UNESCAPED_UNICODE);
+					}
+				}
+			}
+		}
+
+		$telegram      = self::call_fn($_caller, 'telegram');
+
+		if($telegram)
+		{
+			foreach ($_user_detail as $key => $value)
+			{
+				if(isset($value['chatid']))
+				{
+					$current_lang = \dash\language::current();
+
+					if(isset($value['language']) && mb_strlen($value['language']) === 2 && $value['language'] !== $current_lang)
+					{
+						\dash\language::set_language($value['language']);
+					}
+
+					$telegram_text = self::call_fn($_caller, 'telegram_text');
+					if($telegram_text)
+					{
+						$new_args[$key]['to']       = $key;
+						$new_args[$key]['telegram'] = $telegram_text;
+					}
+				}
+			}
+		}
+
+		$email      = self::call_fn($_caller, 'email');
+
+		if($email)
+		{
+			foreach ($_user_detail as $key => $value)
+			{
+				if(isset($value['email']))
+				{
+					$current_lang = \dash\language::current();
+
+					if(isset($value['language']) && mb_strlen($value['language']) === 2 && $value['language'] !== $current_lang)
+					{
+						\dash\language::set_language($value['language']);
+					}
+
+					$email_text = self::call_fn($_caller, 'email_text');
+					if($email_text)
+					{
+						$new_args[$key]['to']    = $key;
+						$new_args[$key]['email'] = json_encode(['email' => $value['email'], 'text' => $email_text], JSON_UNESCAPED_UNICODE);
+					}
+				}
+			}
+		}
+
+		\dash\language::set_language($master_lang);
+
+		return $new_args;
+	}
+
+
+
+
+
+
+	private static function detect_user($_send_to, $_send_to_creator = false)
+	{
+		$all_user_detail = [];
+
+		if($_send_to_creator)
+		{
+			$all_user_detail[] = \dash\user::detail();
+		}
+
+		if($_send_to && is_array($_send_to))
+		{
+			$permission_list = [];
+			foreach ($_send_to as $key => $value)
+			{
+				if($value === 'supervisor')
+				{
+					$permission_list[] = 'supervisor';
+				}
+				elseif($value === 'admin')
+				{
+					$permission_list[] = 'admin';
+				}
+				else
+				{
+					$temp = \dash\permission::who_have($value);
+					unset($temp['admin']);
+					if(!empty($temp))
+					{
+						$permission_list = array_merge($permission_list, $temp);
+					}
+				}
+			}
+
+			$permission_list = array_filter($permission_list);
+			$permission_list = array_unique($permission_list);
+
+			if(!empty($permission_list))
+			{
+				$permission_list = implode("','", $permission_list);
+			}
+
+			$public_show_field = "users.id, users.mobile, users.chatid, users.displayname, users.email, users.language";
+
+			$temp = \dash\db\users::get(['permission' => ["IN", "('$permission_list')"], 'status' => 'active'], ['public_show_field' => $public_show_field]);
+			$all_user_detail = array_merge($all_user_detail, $temp);
+		}
+
+		if(empty($all_user_detail))
+		{
+			return false;
+		}
+
+		// to remove duplicate if exist
+		$all_user_detail       = array_combine(array_column($all_user_detail, 'id'), $all_user_detail);
+
+		return $all_user_detail;
+	}
+
+
+
 	// save log in database
-	public static function db($_caller, $_args = [])
+	public static function db($_caller, $_args = [], $_multi_send = [])
 	{
 		$default_args =
 		[
@@ -213,8 +400,27 @@ class log
 			'email'        => $_args['email'],
 		];
 
-		$log_id = \dash\db\logs::insert($insert_log);
-		return $log_id;
+		if($_multi_send)
+		{
+			$multi_record = [];
+			foreach ($_multi_send as $key => $value)
+			{
+				$multi_record[] = array_merge($insert_log, $value);
+			}
+
+			if(!empty($multi_record))
+			{
+				$log_id = \dash\db\logs::multi_insert($multi_record);
+				return $log_id;
+			}
+		}
+		else
+		{
+			$log_id = \dash\db\logs::insert($insert_log);
+			return $log_id;
+		}
+
+
 	}
 }
 ?>

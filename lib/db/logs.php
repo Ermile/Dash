@@ -61,7 +61,16 @@ class logs
 
 	public static function multi_insert($_args)
 	{
-		return \dash\db\config::public_multi_insert('logs', $_args, \dash\db::get_db_log_name());
+		$resutl = \dash\db\config::public_multi_insert('logs', $_args, \dash\db::get_db_log_name());
+		if(\dash\db::get_db_log_name() === true)
+		{
+			$resutl = \dash\db::insert_id();
+		}
+		elseif(isset(\dash\db::$link_open[\dash\db::get_db_log_name()]))
+		{
+			$resutl = \dash\db::insert_id(\dash\db::$link_open[\dash\db::get_db_log_name()]);
+		}
+		return $resutl;
 	}
 
 
