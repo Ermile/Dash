@@ -51,8 +51,17 @@ class send
 		{
 			return false;
 		}
+		if(isset($_data['method']))
+		{
+			$method   = $_data['method'];
+			unset($_data['method']);
+			$myResult = \dash\social\telegram\tg::$method($_data);
+		}
+		else
+		{
+			$myResult = \dash\social\telegram\tg::sendMessage($_data);
+		}
 
-		$myResult = \dash\social\telegram\tg::sendMessage($_data);
 	}
 
 
