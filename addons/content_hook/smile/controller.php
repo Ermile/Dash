@@ -26,29 +26,41 @@ class controller
 		// 		'newNotif' => (bool)random_int(0, 1),
 		// 	];
 		// }
-		$myResult =
-		[
-			'okay'     => false,
-		];
+		$myResult = [];
 
 
 		if(\dash\user::id())
 		{
 			$myResult =
 			[
-				'okay'     => true,
-				'newNotif' => (bool)random_int(0, 1),
+				'notifNew'   => (bool)random_int(0, 1),
+				'notifCount' => random_int(1, 10),
 			];
+
+			// if before this notif icon is off
+			if(\dash\request::post('notifOn') === 'true')
+			{
+				// notification icon is pulsing before this
+			}
+			else
+			{
+				// it new message for the first time
+				if($myResult['notifNew'])
+				{
+					\dash\notif::info('You have new message!');
+				}
+			}
 		}
 		else
 		{
 			// logout sample
 			$myResult =
 			[
-				'okay'      => false,
-				'logoutTxt' => T_("Goodbye"),
-				'logoutUrl' => \dash\url::kingdom(). '/logout'
-				// 'logoutUrl' => \dash\url::kingdom(). '/logout?mobile='. \dash\user::mobile()
+				'logout' =>
+				[
+					'txt' => T_("Goodbye"),
+					'url' => \dash\url::kingdom(). '/logout'
+				]
 			];
 		}
 
