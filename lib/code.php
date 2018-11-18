@@ -92,6 +92,21 @@ class code
 	}
 
 
+	/**
+	 * return json and boom
+	 */
+	public static function jsonBoom($_data = null)
+	{
+		if(is_array($_data))
+		{
+			$_data = json_encode($_data, JSON_UNESCAPED_UNICODE);
+		}
+		echo $_data;
+		@header('Content-Type: application/json');
+
+		self::boom();
+	}
+
 
 	/**
 	 * sleep code
