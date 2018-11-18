@@ -14,10 +14,10 @@ class redirect
 	{
 		if(\dash\request::json_accept() || \dash\request::ajax())
 		{
-			self::via_pushstate($_url);
+			self::via_pushstate($_url, $_php);
 		}
 
-		if($_php)
+		if($_php === true)
 		{
 			self::via_php($_url, $_arg);
 		}
@@ -43,8 +43,12 @@ class redirect
 	 * @param  [type] $_loc [description]
 	 * @return [type]       [description]
 	 */
-	private static function via_pushstate($_loc)
+	private static function via_pushstate($_loc, $_type)
 	{
+		if($_type === 'direct')
+		{
+			\dash\notif::direct();
+		}
 		\dash\notif::redirect($_loc);
 		\dash\code::end();
 
