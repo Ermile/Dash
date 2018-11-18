@@ -28,6 +28,12 @@ class controller
 		// }
 		$myResult = [];
 
+		$alertyOpt =
+		[
+			'alerty'            => true,
+			'timeout'           => 2000,
+			'showConfirmButton' => false
+		];
 
 		if(\dash\user::id())
 		{
@@ -47,7 +53,7 @@ class controller
 				// it new message for the first time
 				if($myResult['notifNew'])
 				{
-					\dash\notif::info('You have new message!');
+					\dash\notif::ok('You have new message!', $alertyOpt);
 				}
 			}
 		}
@@ -63,6 +69,8 @@ class controller
 				]
 			];
 		}
+
+		\dash\notif::ok('Salam', $alertyOpt);
 
 
 		// set result into notif
