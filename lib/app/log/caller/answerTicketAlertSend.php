@@ -24,7 +24,7 @@ class answerTicketAlertSend
 	public static function telegram_text($_args, $_chat_id)
 	{
 		$load = \dash\app\log\support_tools::load($_args);
-		$plus = isset($_args['data']['plus']) ? $_args['data']['plus'] : null;
+		$plus = \dash\app\log\support_tools::plus($_args);
 		$code = isset($_args['code']) ? $_args['code'] : null;
 
 

@@ -68,5 +68,17 @@ class support_tools
 			],
 		];
 	}
+
+
+	public static function plus($_args)
+	{
+		$plus = isset($_args['data']['plus']) ? $_args['data']['plus'] : null;
+		if($plus)
+		{
+			\dash\utility\human::fitNumber($plus);
+		}
+
+		return $plus;
+	}
 }
 ?>
