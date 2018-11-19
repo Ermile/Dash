@@ -50,29 +50,55 @@
       <tr>
         <td class="type s0"><i class="sf-heart"></i></td>
         <td class="subject">
-          <div class="txtCut txtB">Spaces now has a built-in CDN!Spaces now has a built-in CDN!Spaces now has a built-in CDN!Spaces now has a built-in CDN!Spaces now has a built-in CDN!</div>
-          <div class="detail">
+          <div class="title">
+            Spaces now has a built-in CDN!Spaces now has a built-in CDN!Spaces now has a built-in CDN!Spaces now has a built-in CDN!Spaces now has a built-in CDN!
+          </div>
+          <div class="detail" data-openable-open>
             <p>
-              <img src="//cloud.digitalocean.com/images/Droplets-Pricing-Configurations.png" style="padding:20px 60px 0;"><br><br>
               Introducing Droplets with more memory, larger SSDs, and several new plans! There is a Droplet for every application. Read about it on our <a href="https://blog.digitalocean.com/new-droplet-plans/">blog post</a> or <a href="https://cloud.digitalocean.com/droplets/new">try a new Droplet now</a>.
             </p>
           </div>
+          <div class="excerpt txtCut" data-openable-close>
+            Introducing Droplets with more memory, larger SSDs, and several new plans! There is a Droplet for every application. Read about it on our
+          </div>
         </td>
-        <td class="date">یک روز پیش</td>
+        <td class="date">
+          <div>یک روز پیش</div>
+          <div class="mT10" data-openable-open>2018-08-12 23:35:12</div>
+{%if perm_su()%}
+          <pre class="mT10 badge txtL ltr" data-openable-open>{%trans "Ip address"%} 192.168.1.100</pre>
+{%endif%}
+        </td>
       </tr>
+
       <tr>
         <td class="type s0"><i class="sf-heart"></i></td>
         <td class="subject">
-          <div class="txtCut txtB">Private networking changing</div>
-          <div class="detail">
-            <p>
-              <img src="https://assets.digitalocean.com/public/vpc-product-notification.png" alt="">
-              Starting April 4th, Droplets in TOR1 and BLR1 will have improved private networking security. Traffic over private IPs in these data centers will be restricted to Droplets within a team or account. Other data centers will follow soon. <a>Learn More</a>
-            </p>
+          <div class="title">Test2</div>
+          <div class="excerpt">
+              Introducing Droplets with more memory, larger SSDs, and several new plans! There is a Droplet for every application. Read about it on our <a href="https://blog.digitalocean.com/new-droplet-plans/">blog post</a> or <a href="https://cloud.digitalocean.com/droplets/new">try a new Droplet now</a>.
           </div>
         </td>
-        <td class="date">یک روز پیش</td>
+        <td class="date">
+          <div>یک روز پیش</div>
+          <div class="mT10" data-openable-open>2018-08-12 23:35:12</div>
+        </td>
       </tr>
+
+      <tr data-open-disable>
+        <td class="type s0"><i class="sf-heart"></i></td>
+        <td class="subject">
+          <div class="title">Test2</div>
+          <div class="detail">
+              Introducing Droplets with more memory, larger SSDs, and several new plans! There is a Droplet for every application. Read about it on our <a href="https://blog.digitalocean.com/new-droplet-plans/">blog post</a> or <a href="https://cloud.digitalocean.com/droplets/new">try a new Droplet now</a>.
+          </div>
+        </td>
+        <td class="date">
+          <div>یک روز پیش</div>
+        </td>
+      </tr>
+
+
 
       {%for key, value in dataTable%}
       <tr {%if value.status=='disable'%} class='negative'{%endif%}>
