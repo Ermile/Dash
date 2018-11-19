@@ -22,6 +22,10 @@ class controller
 				'notifNew'   => (bool)random_int(0, 1),
 				'notifCount' => random_int(1, 10),
 			];
+			// show alert as toast
+			$alertyOpt['toast']    = true;
+			$alertyOpt['position'] = 'top-end';
+
 
 			// if before this notif icon is off
 			if(\dash\request::post('notifOn') === 'true')
@@ -33,7 +37,7 @@ class controller
 				// it new message for the first time
 				if($myResult['notifNew'])
 				{
-					\dash\notif::ok('You have new message!', $alertyOpt);
+					\dash\notif::ok(T_("You have new message!"), $alertyOpt);
 				}
 			}
 		}
