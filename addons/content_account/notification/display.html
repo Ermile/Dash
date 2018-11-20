@@ -41,8 +41,9 @@
   <table class="tbl1 v4 layoutFixed openable fs13">
     <thead class="primary">
       <tr>
-        <th class="type s0">{%trans "Type"%}</th>
+        <th class="type s0"></th>
         <th class="subject">{%trans "Subject"%}</th>
+        <th class="via s0"></th>
         <th class="date">{%trans "Date"%}</th>
       </tr>
     </thead>
@@ -51,7 +52,7 @@
       {%for key, value in dataTable%}
 
       <tr {%if not value.txt or not value.excerpt%}data-open-disable{%endif%}>
-        <td class="type s0"><i class="{%if value.icon%}sf-{{value.icon}}{%else%}sf-heart{%endif%}{%if value.iconClass%} {{value.iconClass}}{%endif%}"></i></td>
+        <td class="type s0" title='{{value.cat}}'><i class="{%if value.icon%}sf-{{value.icon}}{%else%}sf-heart{%endif%}{%if value.iconClass%} {{value.iconClass}}{%endif%}"></i></td>
         <td class="subject">
           <div class="title">{%if not value.title and perm_su()%}{{value.caller}}{%else%}{{value.title}}{%endif%}</div>
 
@@ -67,17 +68,19 @@
           </div>
           {%endif%}
         </td>
-        <td class="date collapsing">
-          <span title="{{value.datecreated | dt(true)}}">{{value.datecreated | dt('human', 'year')}}</span>
-          {%if value.sms or value.telegram or value.email%}
-          <div class="sendVia f">
-            <div class="cauto">
-              {%if value.sms%}<span class="btn sm sf-envelope" title='{%trans "Sended via SMS"%}'></span>{%endif%}
-              {%if value.telegram%}<span class="btn sm sf-paper-plane" title='{%trans "Sended via Telegram"%}'></span>{%endif%}
-            </div>
-          </div>
+        <td class="via s0">
+          {%if value.sms or value.telegram or value.email or 1%}
+            {%if value.sms or 1%}
+              <i class="sf-envelope" title='{%trans "Sended via SMS"%}'></i>
+            {%endif%}
+            {%if value.telegram or 1%}
+              <i class="sf-paper-plane" title='{%trans "Sended via Telegram"%}'></i>
+            {%endif%}
           {%endif%}
         </td>
+        <td class="date collapsing">
+          <span title="{{value.datecreated | dt(true)}}">{{value.datecreated | dt('human', 'year')}}</span>
+        </td>
       </tr>
       {%endfor%}
     </tbody>
@@ -87,86 +90,6 @@
 {%endblock%}
 
 
-{%block htmlTable2%}
-
-  <table class="tbl1 v4 layoutFixed openable fs13">
-    <thead class="primary">
-      <tr>
-        <th class="type s0">{%trans "Type"%}</th>
-        <th class="subject">{%trans "Subject"%}</th>
-        <th class="date">{%trans "Date"%}</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr>
-        <td class="type s0"><i class="sf-heart"></i></td>
-        <td class="subject">
-          <div class="title">Spaces now has a built-in CDN!</div>
-          <div class="detail" data-openable-open>
-            <p>
-              Introducing Droplets with more memory, larger SSDs, and several new plans! There is a Droplet for every application. Read about it on our <a href="https://blog.digitalocean.com/new-droplet-plans/">blog post</a> or <a href="https://cloud.digitalocean.com/droplets/new">try a new Droplet now</a>.
-            </p>
-          </div>
-          <div class="excerpt txtCut" data-openable-close>
-            Introducing Droplets with more memory, larger SSDs, and several new plans! There is a Droplet for every application.
-          </div>
-        </td>
-        <td class="date">
-          <div>یک روز پیش</div>
-          <div class="mT10" data-openable-open>2018-08-12 23:35:12</div>
-{%if perm_su()%}
-          <pre class="mT10 badge txtL ltr" data-openable-open>{%trans "Ip address"%} 192.168.1.100</pre>
-{%endif%}
-        </td>
-      </tr>
-
-      <tr>
-        <td class="type s0"><i class="sf-heart"></i></td>
-        <td class="subject">
-          <div class="title">Test2</div>
-          <div class="excerpt">
-              Introducing Droplets with more memory, larger SSDs, and several new plans! There is a Droplet for every application. Read about it on our <a href="https://blog.digitalocean.com/new-droplet-plans/">blog post</a> or <a href="https://cloud.digitalocean.com/droplets/new">try a new Droplet now</a>.
-          </div>
-        </td>
-        <td class="date">
-          <div>یک روز پیش</div>
-          <div class="mT10" data-openable-open>2018-08-12 23:35:12</div>
-        </td>
-      </tr>
-
-      <tr data-open-disable>
-        <td class="type s0"><i class="sf-heart"></i></td>
-        <td class="subject">
-          <div class="title">Test2</div>
-          <div class="detail">
-              Introducing Droplets with more memory, larger SSDs, and several new plans! There is a Droplet for every application. Read about it on our <a href="https://blog.digitalocean.com/new-droplet-plans/">blog post</a> or <a href="https://cloud.digitalocean.com/droplets/new">try a new Droplet now</a>.
-          </div>
-        </td>
-        <td class="date">
-          <div>یک روز پیش</div>
-          <div class="sendVia f">
-            <div class="cauto">
-              <span class="btn sm sf-envelope" title='{%trans "Sended via SMS"%}'></span>
-              <span class="btn sm sf-paper-plane" title='{%trans "Sended via Telegram"%}'></span>
-            </div>
-          </div>
-        </td>
-      </tr>
-
-
-
-      {%for key, value in dataTable%}
-      <tr {%if value.status=='disable'%} class='negative'{%endif%}>
-        <td>{{value.title}}</td>
-        <td>{{value.content}}</td>
-      </tr>
-      {%endfor%}
-    </tbody>
-  </table>
-  {%include display.pagination%}
-
-{%endblock%}
 
 
 {%block htmlFilter%}
