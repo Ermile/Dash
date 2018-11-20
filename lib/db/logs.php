@@ -20,10 +20,10 @@ class logs
 			FROM
 				logs
 			WHERE
-				logs.to     = $_user_id AND
 				logs.notif  = 1 AND
 				logs.status = 'enable' AND
-				logs.readdate IS NULL
+				logs.readdate IS NULL AND
+				logs.to     = $_user_id
 		";
 		$resutl = \dash\db::get($query, 'count', true, \dash\db::get_db_log_name());
 		return $resutl;
