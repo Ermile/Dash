@@ -41,7 +41,15 @@ class log
 			$_args = [$_args];
 		}
 
+		$before_add = self::call_fn($_caller, 'before_add', $_args);
+
+		if(is_array($before_add))
+		{
+			$_args = array_merge($_args, $before_add);
+		}
+
 		$is_notif = self::call_fn($_caller, 'is_notif');
+
 
 		$field['notif'] = $is_notif;
 

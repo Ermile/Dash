@@ -6,6 +6,29 @@ class logs
 {
 	private static $logUpdate = [];
 
+	public static function my_notif_count($_user_id)
+	{
+		if(!$_user_id || !is_numeric($_user_id))
+		{
+			return false;
+		}
+
+		$query =
+		"
+			SELECT
+				COUNT(*) AS `count`
+			FROM
+				logs
+			WHERE
+				logs.to     = $_user_id AND
+				logs.notif  = 1 AND
+				logs.status = 'enable' AND
+				logs.readdate IS NULL
+		";
+		$resutl = \dash\db::get($query, 'count', true, \dash\db::get_db_log_name());
+		return $resutl;
+	}
+
 	public static function save_temp_update()
 	{
 		if(empty(self::$logUpdate) || !is_array(self::$logUpdate))

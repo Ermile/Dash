@@ -7,6 +7,8 @@ class controller
 
 	public static function routing()
 	{
+		\dash\temp::set('force_stop_visitor', true);
+
 		$myResult  = [];
 		$alertyOpt =
 		[
@@ -17,10 +19,12 @@ class controller
 
 		if(\dash\user::id())
 		{
+			$notifCount = \dash\app\log::my_notif_count();
+
 			$myResult =
 			[
-				'notifNew'   => (bool)random_int(0, 1),
-				'notifCount' => random_int(1, 10),
+				'notifNew'   => $notifCount ? true : false,
+				'notifCount' => $notifCount,
 			];
 			// show alert as toast
 			$alertyOpt['toast']    = true;

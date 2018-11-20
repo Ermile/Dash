@@ -10,6 +10,12 @@ class log
 	];
 
 
+	public static function my_notif_count()
+	{
+		$count = \dash\db\logs::my_notif_count(\dash\user::id());
+		return intval($count);
+	}
+
 	/**
 	 * Gets the course.
 	 *
