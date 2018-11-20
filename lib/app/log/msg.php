@@ -17,5 +17,25 @@ class msg
 		}
 		return $_string;
 	}
+
+	public static function displayname($_args)
+	{
+		$displayname = isset($_args['displayname']) ? $_args['displayname'] : null;
+		return $displayname;
+	}
+
+
+	public static function mobile($_args)
+	{
+		$mobile = isset($_args['mobile']) ? $_args['mobile'] : null;
+		return $mobile;
+	}
+
+
+	public static function avatar($_args)
+	{
+		$avatar = isset($_args['avatar']) ? $_args['avatar'] : null;
+		return $avatar;
+	}
 }
 ?>

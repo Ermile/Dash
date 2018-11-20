@@ -122,7 +122,7 @@ class log
 
 		if($caller)
 		{
-			$result_fn = \dash\log::call_fn($caller, 'text', $result);
+			$result_fn = \dash\log::call_fn($caller, 'site', $result);
 			if($result_fn && !is_array($result_fn))
 			{
 				$result['title'] = $result_fn;

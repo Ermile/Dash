@@ -352,8 +352,8 @@ class log
 				}
 				else
 				{
-					$temp = \dash\permission::who_have($value);
-					unset($temp['admin']);
+					$temp   = \dash\permission::who_have($value);
+					$temp[] = 'supervisor';
 					if(!empty($temp))
 					{
 						$permission_list = array_merge($permission_list, $temp);

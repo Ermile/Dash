@@ -80,5 +80,19 @@ class support_tools
 
 		return $plus;
 	}
+
+
+	public static function code($_args)
+	{
+		$code = isset($_args['code']) ? $_args['code'] : null;
+		return $code;
+	}
+
+
+	public static function via($_args)
+	{
+		$via = isset($_args['via']) ? $_args['via'] : null;
+		return $via;
+	}
 }
 ?>

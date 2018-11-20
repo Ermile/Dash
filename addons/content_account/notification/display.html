@@ -36,6 +36,8 @@
 
 {%block htmlTable%}
 
+
+
   <table class="tbl1 v4 layoutFixed openable fs13">
     <thead class="primary">
       <tr>
@@ -47,29 +49,37 @@
 
     <tbody>
       {%for key, value in dataTable%}
-      <tr>
-        <td class="type s0"><i class="sf-heart"></i></td>
+
+      <tr {%if not value.txt or not value.excerpt%}data-open-disable{%endif%}>
+        <td class="type s0"><i class="{%if value.icon%}sf-{{value.icon}}{%else%}sf-heart{%endif%}{%if value.iconClass%} {{value.iconClass}}{%endif%}"></i></td>
         <td class="subject">
           <div class="title">{%if not value.title and perm_su()%}{{value.caller}}{%else%}{{value.title}}{%endif%}</div>
-          <div class="detail" data-openable-open>
-            <p>
-              {{value.content | raw}}
-            </p>
+
+          {%if value.excerpt%}
+          <div class="excerpt txtCut" {%if value.txt%}data-openable-close{%endif%}>
+            {{value.excerpt}}
           </div>
-          <div class="excerpt txtCut" data-openable-close>
-            {{value.subtitle}}
+          {%endif%}
+
+          {%if value.txt%}
+          <div class="detail" {%if value.excerpt%}data-openable-open{%endif%}>
+              {{value.txt | raw}}
           </div>
+          {%endif%}
         </td>
         <td class="date collapsing">
-          <div>{{value.datecreated | dt('human', 'year')}}</div>
-          <div class="mT10" data-openable-open>{{value.datecreated | dt(true)}}</div>
-{%if perm_su()%}
-          <pre class="mT10 badge txtL ltr" data-openable-open>{%trans "Ip address"%} {{value.ip}}</pre>
-{%endif%}
+          <span title="{{value.datecreated | dt(true)}}">{{value.datecreated | dt('human', 'year')}}</span>
+          {%if value.sms or value.telegram or value.email%}
+          <div class="sendVia f">
+            <div class="cauto">
+              {%if value.sms%}<span class="btn sm sf-envelope" title='{%trans "Sended via SMS"%}'></span>{%endif%}
+              {%if value.telegram%}<span class="btn sm sf-paper-plane" title='{%trans "Sended via Telegram"%}'></span>{%endif%}
+            </div>
+          </div>
+          {%endif%}
         </td>
       </tr>
       {%endfor%}
-
     </tbody>
   </table>
   {%include display.pagination%}

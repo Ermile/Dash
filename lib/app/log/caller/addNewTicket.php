@@ -3,14 +3,36 @@ namespace dash\app\log\caller;
 
 class addNewTicket
 {
-	public static function text()
+	public static function site($_args = [])
 	{
-		return T_("Add new ticket");
+		$code = \dash\app\log\support_tools::code($_args);
+
+		$result              = [];
+		$result['title']     = T_("New ticket");
+		$result['icon']      = 'life-ring';
+		$result['iconClass'] = 'fc-red';
+
+		$excerpt  = \dash\app\log\msg::displayname($_args). ' ';
+		$excerpt .= T_("add new ticket via :val.", ['val' => \dash\app\log\support_tools::via($_args)]);
+		$excerpt .= ' ';
+		$excerpt .=	'<a href="'.\dash\url::kingdom(). '/!'. $code. '">';
+		$excerpt .= T_("Show ticket");
+		$excerpt .= ' ';
+		$excerpt .= \dash\utility\human::fitNumber($code, false);
+		$excerpt .= '</a>';
+
+		$result['txt'] = $excerpt;
+
+		// $text = 'سلام';
+		// $result['txt'] = $text;
+
+		return $result;
 	}
+
 
 	public static function send_to()
 	{
-		return ['supervisor'];
+		return ['notifTicket'];
 	}
 
 	public static function is_notif()
