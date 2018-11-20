@@ -14,7 +14,7 @@ class ticket
 
 	public static function create($_content)
 	{
-		\content_support\ticket\add\model::add_new(T_("Ticket via telegram"), $_content);
+		\content_support\ticket\add\model::add_new('telegram', $_content);
 	}
 
 

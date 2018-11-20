@@ -128,6 +128,7 @@ class model
 			'author'  => $displayname,
 			'email'   => $email,
 			'type'    => 'ticket',
+			'via'     => 'contact',
 			'content' => $content,
 			'title'   => \dash\temp::get('tempTicketTitle') ? \dash\temp::get('tempTicketTitle') : T_("Contact Us"),
 			'mobile'  => $mobile,

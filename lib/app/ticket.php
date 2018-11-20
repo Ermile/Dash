@@ -240,6 +240,7 @@ class ticket
 		if(!\dash\app::isset_request('title')) unset($args['title']);
 		if(!\dash\app::isset_request('file')) unset($args['file']);
 		if(!\dash\app::isset_request('parent')) unset($args['parent']);
+		if(!\dash\app::isset_request('via')) unset($args['via']);
 
 		if(isset($args['status']) && $args['status'] === 'deleted')
 		{
@@ -351,6 +352,13 @@ class ticket
 			return false;
 		}
 
+		$via = \dash\app::request('via');
+		if($via && !in_array($via, ['site', 'telegram', 'sms', 'contact', 'admincontact', 'app']))
+		{
+			\dash\notif::error(T_("Invalid via"), 'via');
+			return false;
+		}
+
 
 		$title = \dash\app::request('title');
 		if($title && mb_strlen($title) > 400)
@@ -378,7 +386,8 @@ class ticket
 		$args['mobile']  = $mobile;
 		$args['title']   = $title;
 		$args['file']    = $file;
-		$args['parent']    = $parent;
+		$args['parent']  = $parent;
+		$args['via']     = $via;
 
 		return $args;
 	}

@@ -12,8 +12,19 @@ class addNewTicket
 		$result['icon']      = 'life-ring';
 		$result['iconClass'] = 'fc-red';
 
-		$excerpt  = \dash\app\log\msg::displayname($_args). ' ';
-		$excerpt .= T_("add new ticket via :val.", ['val' => \dash\app\log\support_tools::via($_args)]);
+		$excerpt  = '<span class="fc-green">'.\dash\app\log\msg::displayname($_args). '</span> ';
+
+		$via = \dash\app\log\support_tools::via($_args);
+
+		if($via)
+		{
+			$excerpt .= T_("add new ticket via :val.", ['val' => '<b>'. T_($via). '</b>']);
+		}
+		else
+		{
+			$excerpt .= T_("add new ticket");
+		}
+
 		$excerpt .= ' ';
 		$excerpt .=	'<a href="'.\dash\url::kingdom(). '/!'. $code. '">';
 		$excerpt .= T_("Show ticket");
@@ -22,9 +33,6 @@ class addNewTicket
 		$excerpt .= '</a>';
 
 		$result['txt'] = $excerpt;
-
-		// $text = 'سلام';
-		// $result['txt'] = $text;
 
 		return $result;
 	}

@@ -24,7 +24,7 @@ class model
 	}
 
 
-	public static function add_new($_title, $_content, $_file = null)
+	public static function add_new($_via, $_content, $_file = null)
 	{
 		// ready to insert comments
 		$args =
@@ -33,7 +33,7 @@ class model
 			'email'   => \dash\user::detail('email'),
 			'type'    => 'ticket',
 			'content' => $_content,
-			'title'   => $_title,
+			'via'     => $_via,
 			'mobile'  => \dash\user::detail("mobile"),
 			'file'    => $_file,
 			'user_id' => \dash\user::id(),
@@ -82,7 +82,7 @@ class model
 		}
 
 		// insert comments
-		$result = self::add_new(null, $content, $file);
+		$result = self::add_new('site', $content, $file);
 
 		if(isset($result['id']))
 		{

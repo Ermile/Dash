@@ -140,6 +140,7 @@ class comment
 		if(!\dash\app::isset_request('title')) unset($args['title']);
 		if(!\dash\app::isset_request('file')) unset($args['file']);
 		if(!\dash\app::isset_request('parent')) unset($args['parent']);
+		if(!\dash\app::isset_request('via')) unset($args['via']);
 
 		if(isset($args['status']) && $args['status'] === 'deleted')
 		{
@@ -244,6 +245,14 @@ class comment
 			$user_id = null;
 		}
 
+
+		$via = \dash\app::request('via');
+		if($via && !in_array($via, ['site', 'telegram', 'sms', 'contact', 'admincontact', 'app']))
+		{
+			\dash\notif::error(T_("Invalid via"), 'via');
+			return false;
+		}
+
 		$status = \dash\app::request('status');
 		if($status && !in_array($status, ['approved','awaiting','unapproved','spam','deleted','filter','close', 'answered']))
 		{
@@ -307,6 +316,7 @@ class comment
 		$args['title']   = $title;
 		$args['file']    = $file;
 		$args['parent']    = $parent;
+		$args['via']    = $via;
 
 		return $args;
 	}
