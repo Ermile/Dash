@@ -34,8 +34,50 @@
 
 
 
-
 {%block htmlTable%}
+
+  <table class="tbl1 v4 layoutFixed openable fs13">
+    <thead class="primary">
+      <tr>
+        <th class="type s0">{%trans "Type"%}</th>
+        <th class="subject">{%trans "Subject"%}</th>
+        <th class="date">{%trans "Date"%}</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {%for key, value in dataTable%}
+      <tr>
+        <td class="type s0"><i class="sf-heart"></i></td>
+        <td class="subject">
+          <div class="title">{%if not value.title and perm_su()%}{{value.caller}}{%else%}{{value.title}}{%endif%}</div>
+          <div class="detail" data-openable-open>
+            <p>
+              {{value.content | raw}}
+            </p>
+          </div>
+          <div class="excerpt txtCut" data-openable-close>
+            {{value.subtitle}}
+          </div>
+        </td>
+        <td class="date collapsing">
+          <div>{{value.datecreated | dt('human', 'year')}}</div>
+          <div class="mT10" data-openable-open>{{value.datecreated | dt(true)}}</div>
+{%if perm_su()%}
+          <pre class="mT10 badge txtL ltr" data-openable-open>{%trans "Ip address"%} {{value.ip}}</pre>
+{%endif%}
+        </td>
+      </tr>
+      {%endfor%}
+
+    </tbody>
+  </table>
+  {%include display.pagination%}
+
+{%endblock%}
+
+
+{%block htmlTable2%}
 
   <table class="tbl1 v4 layoutFixed openable fs13">
     <thead class="primary">

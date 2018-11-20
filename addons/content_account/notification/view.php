@@ -22,12 +22,13 @@ class view
 		}
 
 		$args['notif'] = 1;
-		$args['user_id'] = \dash\user::id();
+		$args['to']    = \dash\user::id();
 
-		$search_string = \dash\request::get('q');
+		$search_string   = \dash\request::get('q');
 
 		$sortLink  = \dash\app\sort::make_sortLink(\dash\app\log::$sort_field, \dash\url::this());
 		$dataTable = \dash\app\log::list($search_string, $args);
+
 
 		\dash\data::sortLink($sortLink);
 		\dash\data::dataTable($dataTable);
@@ -35,6 +36,8 @@ class view
 		$check_empty_datatable = $args;
 		unset($check_empty_datatable['sort']);
 		unset($check_empty_datatable['order']);
+		unset($check_empty_datatable['notif']);
+		unset($check_empty_datatable['to']);
 
 		// set dataFilter
 		$dataFilter = \dash\app\sort::createFilterMsg($search_string, $check_empty_datatable);

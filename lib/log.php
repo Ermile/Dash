@@ -163,7 +163,7 @@ class log
 	}
 
 
-	private static function call_fn($_class, $_fn, $_args = [], $_args2 = [])
+	public static function call_fn($_class, $_fn, $_args = [], $_args2 = [])
 	{
 		$project_function = ["\\lib\\app\\log\\caller\\$_class", $_fn];
 		$dash_function    = ["\\dash\\app\\log\\caller\\$_class", $_fn];
