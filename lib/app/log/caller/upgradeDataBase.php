@@ -3,7 +3,7 @@ namespace dash\app\log\caller;
 
 class upgradeDataBase
 {
-	public static function text()
+	public static function site()
 	{
 		return T_("Upgrade database");
 	}
@@ -33,7 +33,7 @@ class upgradeDataBase
 
 		$tg_msg = '';
 		$tg_msg .= "🛢#DbUpgrade\n👨‍💻 ".\dash\log::from_name()."\n";
-		$tg_msg .= self::text();
+		$tg_msg .= self::site();
 
 		$tg_msg .= "\n⏳ ". \dash\datetime::fit(date("Y-m-d H:i:s"), true);
 

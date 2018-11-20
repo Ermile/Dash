@@ -3,7 +3,7 @@
 
 {%block pageContent%}
 
-{%if dataTable or 1%}
+{%if dataTable%}
  {%if dataFilter%}
 
 
@@ -54,7 +54,11 @@
       <tr {%if not value.txt or not value.excerpt%}data-open-disable{%endif%}>
         <td class="type s0" title='{{value.cat}}'><i class="{%if value.icon%}sf-{{value.icon}}{%else%}sf-heart{%endif%}{%if value.iconClass%} {{value.iconClass}}{%endif%}"></i></td>
         <td class="subject">
-          <div class="title">{%if not value.title and perm_su()%}{{value.caller}}{%else%}{{value.title}}{%endif%}</div>
+
+          <div class="title">
+            {%if not value.title%}{{value.caller}}{%else%}{{value.title}}{%endif%}{%if perm_su()%}<code class="mLa5 floatRa">{{value.caller}}</code>{%endif%}
+            {%if not value.readdate%}<span class="mLa5 badge danger">{%trans "New"%}</span>{%endif%}
+          </div>
 
           {%if value.excerpt%}
           <div class="excerpt txtCut" {%if value.txt%}data-openable-close{%endif%}>
@@ -67,13 +71,14 @@
               {{value.txt | raw}}
           </div>
           {%endif%}
+
         </td>
         <td class="via s0">
-          {%if value.sms or value.telegram or value.email or 1%}
-            {%if value.sms or 1%}
+          {%if value.sms or value.telegram or value.email%}
+            {%if value.sms%}
               <i class="sf-envelope" title='{%trans "Sended via SMS"%}'></i>
             {%endif%}
-            {%if value.telegram or 1%}
+            {%if value.telegram%}
               <i class="sf-paper-plane" title='{%trans "Sended via Telegram"%}'></i>
             {%endif%}
           {%endif%}

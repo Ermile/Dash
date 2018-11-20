@@ -50,7 +50,6 @@ class log
 
 		$is_notif = self::call_fn($_caller, 'is_notif');
 
-
 		$field['notif'] = $is_notif;
 
 
@@ -222,11 +221,15 @@ class log
 	private static function create_text($_caller, &$_args, $_user_detail)
 	{
 		$new_args = [];
+		// set to all user
+		foreach ($_user_detail as $key => $value)
+		{
+			$new_args[$key]['to']       = $key;
+		}
 
 		$master_lang = \dash\language::current();
 
 		$telegram      = self::call_fn($_caller, 'telegram');
-
 		if($telegram)
 		{
 			foreach ($_user_detail as $key => $value)
@@ -243,7 +246,6 @@ class log
 					$telegram_text = self::call_fn($_caller, 'telegram_text', $_args, $value['chatid']);
 					if($telegram_text)
 					{
-						$new_args[$key]['to']       = $key;
 						$new_args[$key]['telegram'] = addslashes($telegram_text);
 					}
 				}
@@ -277,7 +279,6 @@ class log
 					$sms_text = self::call_fn($_caller, 'sms_text', $_args, $value['mobile']);
 					if($sms_text)
 					{
-						$new_args[$key]['to']  = $key;
 						$new_args[$key]['sms'] = addslashes($sms_text);
 					}
 				}
@@ -311,7 +312,6 @@ class log
 					$email_text = self::call_fn($_caller, 'email_text', $_args, $value['email']);
 					if($email_text)
 					{
-						$new_args[$key]['to']    = $key;
 						$new_args[$key]['email'] = json_encode(['email' => $value['email'], 'text' => $email_text], JSON_UNESCAPED_UNICODE);
 					}
 				}
