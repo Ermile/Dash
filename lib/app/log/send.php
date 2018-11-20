@@ -4,11 +4,11 @@ namespace dash\app\log;
 
 class send
 {
-	// max 30 msg per second
-	// max 1 msg per user
+
 
 	public static function notification()
 	{
+
 		$not_send = \dash\db\logs::get(['notif' => 1, 'send' => null]);
 		if(!$not_send || !is_array($not_send))
 		{
@@ -17,9 +17,10 @@ class send
 		}
 
 		$start = time();
+
 		foreach ($not_send as $key => $value)
 		{
-			if(time() - $start > 20)
+			if(!\dash\app\log\protector::cronjob($start))
 			{
 				break;
 			}
@@ -30,6 +31,10 @@ class send
 
 				if($telegram)
 				{
+					if(!\dash\app\log\protector::tg($telegram))
+					{
+						break;
+					}
 					self::send_telegram($telegram);
 				}
 			}
@@ -52,6 +57,7 @@ class send
 			\dash\db\logs::update(['send' => 1], $value['id']);
 		}
 	}
+
 
 	private static function send_telegram($_data)
 	{
