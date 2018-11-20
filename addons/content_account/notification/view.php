@@ -29,6 +29,7 @@ class view
 		$sortLink  = \dash\app\sort::make_sortLink(\dash\app\log::$sort_field, \dash\url::this());
 		$dataTable = \dash\app\log::list($search_string, $args);
 
+		\dash\app\log::set_readdate($dataTable);
 
 		\dash\data::sortLink($sortLink);
 		\dash\data::dataTable($dataTable);
@@ -38,6 +39,7 @@ class view
 		unset($check_empty_datatable['order']);
 		unset($check_empty_datatable['notif']);
 		unset($check_empty_datatable['to']);
+
 
 		// set dataFilter
 		$dataFilter = \dash\app\sort::createFilterMsg($search_string, $check_empty_datatable);

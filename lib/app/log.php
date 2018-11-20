@@ -9,6 +9,27 @@ class log
 		'id',
 	];
 
+	public static function set_readdate($_data)
+	{
+		if(!is_array($_data))
+		{
+			return false;
+		}
+
+		$ids = array_column($_data, 'id_raw');
+		$ids = array_filter($ids);
+		$ids = array_unique($ids);
+
+		if(!$ids)
+		{
+			return false;
+		}
+
+		$ids = implode(',', $ids);
+
+		return \dash\db\logs::set_readdate($ids);
+
+	}
 
 	public static function my_notif_count()
 	{
