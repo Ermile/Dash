@@ -3,7 +3,7 @@ namespace dash\app\log\caller;
 
 class AnswerTicket
 {
-	public static function text()
+	public static function site()
 	{
 		return T_("Answer ticket");
 	}

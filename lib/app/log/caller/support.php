@@ -4,14 +4,6 @@ namespace dash\app\log\msg;
 class support
 {
 
-	public static function DubleAnswerTicket($_args, $_user)
-	{
-		$msg                       = self::AnswerTicket($_args, $_user);
-		$msg['sms']                = false;
-		$msg['not_send_to_userid'] = true;
-		return $msg;
-	}
-
 
 	public static function answerTicketAlertSend($_args, $_user)
 	{

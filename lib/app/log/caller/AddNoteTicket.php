@@ -3,7 +3,7 @@ namespace dash\app\log\caller;
 
 class AddNoteTicket
 {
-	public static function text()
+	public static function site()
 	{
 		return T_("Add to ticket");
 	}

@@ -659,7 +659,7 @@ class enter
 			'time'   => $time,
 		];
 
-		$log_id = \dash\log::set('envterVerificationCode', $log_detail);
+		$log_id = \dash\log::set('enterVerificationCode', $log_detail);
 
 		// save this code in logs table and session
 		// $log_id = \dash\db\logs::set('user:verification:code', self::user_data('id'), $log_meta);
@@ -705,7 +705,7 @@ class enter
 			{
 				$where =
 				[
-					'caller' => 'envterVerificationCode',
+					'caller' => 'enterVerificationCode',
 					'to'     => self::user_data('id'),
 					'status' => 'enable',
 					'limit'  => 1,
