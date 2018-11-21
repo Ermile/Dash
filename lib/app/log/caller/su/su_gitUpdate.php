@@ -33,14 +33,14 @@ class su_gitUpdate
 
 		$tg_msg = '';
 		$tg_msg .= "🛢#GitUpdate\n👨‍💻 ".\dash\log::from_name()."\n";
-		$tg_msg .= self::site();
+		$tg_msg .= T_("Git update");
 
 		$tg_msg .= "\n⏳ ". \dash\datetime::fit(date("Y-m-d H:i:s"), true);
 
 		$tg                 = [];
 		$tg['chat_id']      = $_chat_id;
 		$tg['text']         = $tg_msg;
-		$tg['reply_markup'] = \dash\app\log\support_tools::tg_btn($code);
+		$tg['reply_markup'] = false;
 
 		$tg = json_encode($tg, JSON_UNESCAPED_UNICODE);
 
