@@ -10,7 +10,7 @@ class ticket_addNewTicket
 		$result              = [];
 		$result['title']     = T_("New ticket");
 		$result['icon']      = 'life-ring';
-		$result['cat']      = T_("Support");
+		$result['cat']       = T_("Support");
 		$result['iconClass'] = 'fc-red';
 
 		$excerpt  = '<span class="fc-green">'.\dash\app\log\msg::displayname($_args). '</span> ';

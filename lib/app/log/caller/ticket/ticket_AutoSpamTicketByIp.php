@@ -7,6 +7,5 @@ class ticket_AutoSpamTicketByIp
 	{
 		return T_("Auto spam ticket by block ip");
 	}
-
 }
 ?>

@@ -7,7 +7,5 @@ class ticket_AutoCloseSolvedTicket
 	{
 		return T_("Auto close solved");
 	}
-
-
 }
 ?>

@@ -5,7 +5,28 @@ class ticket_AddNoteTicket
 {
 	public static function site()
 	{
-		return T_("Add to ticket");
+		$code = \dash\app\log\support_tools::code($_args);
+
+		$result              = [];
+		$result['title']     = T_("Add note to ticket");
+		$result['icon']      = 'life-ring';
+		$result['cat']       = T_("Support");
+		$result['iconClass'] = 'fc-red';
+
+		$excerpt  = '<span class="fc-green">'.\dash\app\log\msg::displayname($_args). '</span> ';
+
+		$excerpt .= T_("add new note ticket");
+
+		$excerpt .= ' ';
+		$excerpt .=	'<a href="'.\dash\url::kingdom(). '/!'. $code. '">';
+		$excerpt .= T_("Show ticket");
+		$excerpt .= ' ';
+		$excerpt .= \dash\utility\human::fitNumber($code, false);
+		$excerpt .= '</a>';
+
+		$result['txt'] = $excerpt;
+
+		return $result;
 	}
 
 	public static function send_to()
