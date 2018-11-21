@@ -84,6 +84,7 @@ class log
 				case 'email':
 				case 'meta':
 				case 'to':
+				case 'from':
 				case 'sms':
 				case 'telegram':
 				case 'email':
@@ -202,33 +203,37 @@ class log
 
 	private static function notif($_caller, &$_args)
 	{
-		$send_to         = self::call_fn($_caller, 'send_to');
-		$send_to_creator = self::call_fn($_caller, 'send_to_creator');
+		$send_to             = self::call_fn($_caller, 'send_to');
+		$send_to_creator     = self::call_fn($_caller, 'send_to_creator');
 
-		if(!$send_to)
+		$not_send_supervisor = self::call_fn($_caller, 'not_send_supervisor');
+		$not_send_admin      = self::call_fn($_caller, 'not_send_admin');
+
+
+		$must_send_to = [];
+
+		if(isset($_args['to']) && is_numeric($_args['to']))
 		{
-			if($send_to_creator)
-			{
-				$_args['to'] = \dash\user::id();
-				$send_args   = self::create_text($_caller, $_args, [\dash\user::id() => \dash\user::detail()]);
-				return self::db($_caller, $_args, $send_args);
-			}
-
-			return self::db($_caller, $_args);
+			$must_send_to[$_args['to']] = \dash\db\users::get_by_id($_args['to']);
 		}
-		else
+
+		if($send_to_creator)
 		{
-			$user_detail = self::detect_user($send_to, $send_to_creator);
+			$must_send_to[\dash\user::id()] = \dash\user::detail();
+		}
+
+		if($send_to)
+		{
+			$user_detail = self::detect_user($send_to, $not_send_admin, $not_send_supervisor);
 			if($user_detail)
 			{
-				$send_args = self::create_text($_caller, $_args, $user_detail);
-				return self::db($_caller, $_args, $send_args);
-			}
-			else
-			{
-				return self::db($_caller, $_args);
+				$must_send_to = array_merge($must_send_to, $user_detail);
 			}
 		}
+
+		$send_args = self::create_text($_caller, $_args, $must_send_to);
+
+		return self::db($_caller, $_args, $send_args);
 	}
 
 
@@ -338,18 +343,9 @@ class log
 	}
 
 
-
-
-
-
-	private static function detect_user($_send_to, $_send_to_creator = false)
+	private static function detect_user($_send_to, $_not_send_admin = false, $_not_send_supervisor = false)
 	{
 		$all_user_detail = [];
-
-		if($_send_to_creator)
-		{
-			$all_user_detail[] = \dash\user::detail();
-		}
 
 		if($_send_to && is_array($_send_to))
 		{
@@ -358,16 +354,32 @@ class log
 			{
 				if($value === 'supervisor')
 				{
-					$permission_list[] = 'supervisor';
+					if(!$_not_send_supervisor)
+					{
+						$permission_list[] = 'supervisor';
+					}
 				}
 				elseif($value === 'admin')
 				{
-					$permission_list[] = 'admin';
+					if(!$_not_send_admin)
+					{
+						$permission_list[] = 'admin';
+					}
+
+					if(!$_not_send_supervisor)
+					{
+						$permission_list[] = 'supervisor';
+					}
 				}
 				else
 				{
-					$temp   = \dash\permission::who_have($value);
-					$temp[] = 'supervisor';
+					$temp   = \dash\permission::who_have($value, !$_not_send_admin);
+
+					if(!$_not_send_supervisor)
+					{
+						$temp[] = 'supervisor';
+					}
+
 					if(!empty($temp))
 					{
 						$permission_list = array_merge($permission_list, $temp);

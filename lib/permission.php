@@ -120,9 +120,17 @@ class permission
 	}
 
 
-	public static function who_have($_caller)
+	public static function who_have($_caller, $_admin = true)
 	{
-		$perm_name = ['admin'];
+		if($_admin)
+		{
+			$perm_name = ['admin'];
+		}
+		else
+		{
+			$perm_name = [];
+		}
+
 		$group     = self::groups();
 		foreach ($group as $key => $value)
 		{
