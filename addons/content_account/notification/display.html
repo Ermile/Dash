@@ -56,7 +56,7 @@
         <td class="subject">
 
           <div class="title">
-            {%if not value.title%}{{value.caller}}{%else%}{{value.title}}{%endif%}{%if perm_su()%}<code class="mLa5 floatRa">{{value.caller}}</code>{%endif%}
+            {%if not value.title%}{{value.caller}}{%else%}{{value.title}}{%endif%}{%if perm_su()%}<small><code class="mLa5 floatRa fs09">{{value.caller}}</code></small>{%endif%}
             {%if not value.readdate%}<span class="mLa5 badge danger">{%trans "New"%}</span>{%endif%}
           </div>
 
