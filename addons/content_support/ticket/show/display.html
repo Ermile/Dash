@@ -7,7 +7,9 @@
 <div class="f">
   <div class="c8 s12 pRa10">
     {{block("iChatList")}}
-    {%include 'content_support/ticket/addForm.html'%}
+    {%if perm('supportTicketAnswer') or masterTicketDetail.status == 'spam'%}
+      {%include 'content_support/ticket/addForm.html'%}
+    {%endif%}
   </div>
 
   <div class="c4 s12">
@@ -47,11 +49,15 @@
         <input type="hidden" name="TicketFormType" value="changeStatus">
         <button class="btn block mTB10 secondary" name="status" value="close">{%trans "Close ticket"%}</button>
       </form>
+
+    {%if perm('supportTicketAnswer')%}
       <form method="post">
             {%include display.hive%}
         <input type="hidden" name="TicketFormType" value="changeStatus">
         <button class="btn block mTB10 danger" name="status" value="spam">{%trans "Spam"%}</button>
       </form>
+    {%endif%}
+
   {%endif%}
 {%elseif masterTicketDetail.status == 'spam'%}
       <p class="fs08 msg danger txtC txtB">
