@@ -55,6 +55,7 @@ class model
 
 	public static function save_title($_id, $_title)
 	{
+		\dash\permission::access('supportTicketAnswer');
 
 		$main = \dash\app\ticket::get($_id);
 
@@ -126,6 +127,11 @@ class model
 		if(!$main || !array_key_exists('user_id', $main))
 		{
 			\dash\header::status(403, T_("Ticket not found"));
+		}
+
+		if(isset($main['status']) && $main['status'] === 'spam')
+		{
+			\dash\permission::access('supportTicketReOpen', T_("This ticket is spam!"));
 		}
 
 		// check is my ticket and some permission to load guest , ...
@@ -235,6 +241,12 @@ class model
 		}
 
 		$main = \dash\app\ticket::get($_id);
+
+		if(isset($main['status']) && $main['status'] === 'spam')
+		{
+			\dash\notif::error(T_("This ticket is spam!"));
+			return false;
+		}
 
 		if(!$main || !array_key_exists('user_id', $main))
 		{

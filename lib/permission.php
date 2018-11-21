@@ -595,13 +595,18 @@ class permission
 
 
 	// check access
-	public static function access($_caller)
+	public static function access($_caller, $_msg = null)
 	{
 		$check = self::check($_caller);
 
 		if(!$check)
 		{
-			\dash\header::status(403, T_("Permission denied"));
+			if(!$_msg)
+			{
+				$_msg = T_("Permission denied");
+			}
+
+			\dash\header::status(403, $_msg);
 		}
 		return true;
 	}
