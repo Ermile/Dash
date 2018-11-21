@@ -44,7 +44,7 @@ class comments
 		$count = \dash\db::get($get_count, 'count', true);
 		if($count)
 		{
-			\dash\log::set('AutoCloseSolvedTicket', ['count' => $count]);
+			\dash\log::set('ticket_AutoCloseSolvedTicket', ['count' => $count]);
 		}
 
 		$yesterday = date("Y-m-d H:i:s", strtotime('-1 days'));
@@ -82,7 +82,7 @@ class comments
 
 			if($count)
 			{
-				\dash\log::set('AutoSpamTicketByIp', ['count' => $count]);
+				\dash\log::set('ticket_AutoSpamTicketByIp', ['count' => $count]);
 			}
 
 			$query =

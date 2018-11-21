@@ -1,7 +1,7 @@
 <?php
-namespace dash\app\log\caller;
+namespace dash\app\log\caller\ticket;
 
-class seeTicket
+class ticket_seeTicket
 {
 	public static function site()
 	{

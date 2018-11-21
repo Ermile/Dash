@@ -53,7 +53,7 @@ class model
 				// 'file'     => $args['file'] ? $args['file'] : null,
 			];
 
-			\dash\log::set('addNewTicket', $log);
+			\dash\log::set('ticket_addNewTicket', $log);
 
 			\dash\notif::ok(T_("Your ticket was sended"));
 		}

@@ -1,7 +1,7 @@
 <?php
-namespace dash\app\log\caller;
+namespace dash\app\log\caller\ticket;
 
-class AddNoteTicket
+class ticket_AddToTicket
 {
 	public static function site()
 	{
@@ -28,11 +28,12 @@ class AddNoteTicket
 	{
 		$load = \dash\app\log\support_tools::load($_args);
 		$plus = \dash\app\log\support_tools::plus($_args);
+
 		$code = isset($_args['code']) ? $_args['code'] : null;
 
 		$tg_msg = '';
 		$tg_msg .= "🆔#Ticket".$code;
-		$tg_msg .= " 🌒️". $plus;
+		$tg_msg .= " ⚔". $plus;
 		$tg_msg .= "\n🗣 ". \dash\log::from_name(). " #user". \dash\log::from_id();
 		$tg_msg .= "\n—————\n📬 ";
 

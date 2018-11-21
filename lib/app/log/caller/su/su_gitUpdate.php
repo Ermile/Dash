@@ -1,7 +1,7 @@
 <?php
-namespace dash\app\log\caller;
+namespace dash\app\log\caller\su;
 
-class gitUpdate
+class su_gitUpdate
 {
 	public static function site()
 	{

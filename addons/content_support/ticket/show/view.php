@@ -163,11 +163,11 @@ class view
 		$implode_caller =
 		[
 			'ticketAddTag',
-			'setCloseTicket',
-			'setAwaitingTicket',
-			'setDeleteTicket',
-			'setSolvedTicket',
-			'setUnSolvedTicket',
+			'ticket_setCloseTicket',
+			'ticket_setAwaitingTicket',
+			'ticket_setDeleteTicket',
+			'ticket_setSolvedTicket',
+			'ticket_setUnSolvedTicket',
 			// 'AddNoteTicket',
 			// 'AddToTicket',
 			// 'AnswerTicket',
@@ -255,7 +255,7 @@ class view
 
 		$get_log =
 		[
-			'caller'      => 'seeTicket',
+			'caller'      => 'ticket_seeTicket',
 			'code'        => $_id,
 			'to'          => \dash\user::id(),
 			'datecreated' => [">=", "'$end_message[datecreated]'"],
@@ -265,7 +265,7 @@ class view
 
 		if(!$get_log)
 		{
-			\dash\log::set('seeTicket',  ['code' => $_id]);
+			\dash\log::set('ticket_seeTicket',  ['code' => $_id]);
 		}
 
 	}

@@ -1,11 +1,11 @@
 <?php
-namespace dash\app\log\caller;
+namespace dash\app\log\caller\ticket;
 
-class AnswerTicket
+class ticket_AddNoteTicket
 {
 	public static function site()
 	{
-		return T_("Answer ticket");
+		return T_("Add to ticket");
 	}
 
 	public static function send_to()
@@ -32,7 +32,7 @@ class AnswerTicket
 
 		$tg_msg = '';
 		$tg_msg .= "🆔#Ticket".$code;
-		$tg_msg .= " 💌". $plus;
+		$tg_msg .= " 🌒️". $plus;
 		$tg_msg .= "\n🗣 ". \dash\log::from_name(). " #user". \dash\log::from_id();
 		$tg_msg .= "\n—————\n📬 ";
 

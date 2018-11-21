@@ -164,8 +164,22 @@ class log
 
 	public static function call_fn($_class, $_fn, $_args = [], $_args2 = [])
 	{
-		$project_function = ["\\lib\\app\\log\\caller\\$_class", $_fn];
-		$dash_function    = ["\\dash\\app\\log\\caller\\$_class", $_fn];
+		$folder = null;
+		if(strpos($_class, '_') !== false)
+		{
+			$folder = substr($_class, 0, strpos($_class, '_'));
+		}
+
+		if($folder)
+		{
+			$project_function = ["\\lib\\app\\log\\caller\\$folder\\$_class", $_fn];
+			$dash_function    = ["\\dash\\app\\log\\caller\\$folder\\$_class", $_fn];
+		}
+		else
+		{
+			$project_function = ["\\lib\\app\\log\\caller\\$_class", $_fn];
+			$dash_function    = ["\\dash\\app\\log\\caller\\$_class", $_fn];
+		}
 
 		if(is_callable($project_function))
 		{

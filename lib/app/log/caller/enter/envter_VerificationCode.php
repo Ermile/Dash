@@ -1,7 +1,7 @@
 <?php
-namespace dash\app\log\caller;
+namespace dash\app\log\caller\enter;
 
-class enterVerificationCode
+class enter_VerificationCode
 {
 	public static function text($_args = [])
 	{

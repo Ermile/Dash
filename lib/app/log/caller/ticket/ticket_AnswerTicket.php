@@ -1,46 +1,16 @@
 <?php
-namespace dash\app\log\caller;
+namespace dash\app\log\caller\ticket;
 
-class addNewTicket
+class ticket_AnswerTicket
 {
-	public static function site($_args = [])
+	public static function site()
 	{
-		$code = \dash\app\log\support_tools::code($_args);
-
-		$result              = [];
-		$result['title']     = T_("New ticket");
-		$result['icon']      = 'life-ring';
-		$result['iconClass'] = 'fc-red';
-
-		$excerpt  = '<span class="fc-green">'.\dash\app\log\msg::displayname($_args). '</span> ';
-
-		$via = \dash\app\log\support_tools::via($_args);
-
-		if($via)
-		{
-			$excerpt .= T_("add new ticket via :val.", ['val' => '<b>'. T_($via). '</b>']);
-		}
-		else
-		{
-			$excerpt .= T_("add new ticket");
-		}
-
-		$excerpt .= ' ';
-		$excerpt .=	'<a href="'.\dash\url::kingdom(). '/!'. $code. '">';
-		$excerpt .= T_("Show ticket");
-		$excerpt .= ' ';
-		$excerpt .= \dash\utility\human::fitNumber($code, false);
-		$excerpt .= '</a>';
-
-		$result['txt'] = $excerpt;
-
-		return $result;
+		return T_("Answer ticket");
 	}
-
 
 	public static function send_to()
 	{
-		return ['notifTicket'];
+		return ['supervisor'];
 	}
 
 	public static function is_notif()
@@ -53,14 +23,17 @@ class addNewTicket
 		return true;
 	}
 
+
 	public static function telegram_text($_args, $_chat_id)
 	{
 		$load = \dash\app\log\support_tools::load($_args);
+		$plus = \dash\app\log\support_tools::plus($_args);
 		$code = isset($_args['code']) ? $_args['code'] : null;
 
 		$tg_msg = '';
 		$tg_msg .= "🆔#Ticket".$code;
-		$tg_msg .= " #New \n🗣 ". \dash\log::from_name(). " #user". \dash\log::from_id();
+		$tg_msg .= " 💌". $plus;
+		$tg_msg .= "\n🗣 ". \dash\log::from_name(). " #user". \dash\log::from_id();
 		$tg_msg .= "\n—————\n📬 ";
 
 		$title   = isset($load['title']) ? $load['title'] : null;

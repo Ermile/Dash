@@ -1,7 +1,7 @@
 <?php
-namespace dash\app\log\caller;
+namespace dash\app\log\caller\ticket;
 
-class AutoCloseSolvedTicket
+class ticket_AutoCloseSolvedTicket
 {
 	public static function site()
 	{

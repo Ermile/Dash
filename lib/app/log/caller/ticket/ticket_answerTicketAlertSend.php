@@ -1,7 +1,7 @@
 <?php
-namespace dash\app\log\caller;
+namespace dash\app\log\caller\ticket;
 
-class answerTicketAlertSend
+class ticket_answerTicketAlertSend
 {
 	public static function site()
 	{

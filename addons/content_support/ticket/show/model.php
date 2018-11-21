@@ -145,13 +145,13 @@ class model
 			{
 				case 'close':
 					\dash\permission::access('supportTicketClose');
-					\dash\log::temp_set('setCloseTicket', ['code' => $_id]);
+					\dash\log::temp_set('ticket_setCloseTicket', ['code' => $_id]);
 
 					break;
 
 				case 'awaiting':
 					\dash\permission::access('supportTicketReOpen');
-					\dash\log::temp_set('setAwaitingTicket', ['code' => $_id]);
+					\dash\log::temp_set('ticket_setAwaitingTicket', ['code' => $_id]);
 					break;
 
 
@@ -162,7 +162,7 @@ class model
 
 				case 'deleted':
 					\dash\permission::access('supportTicketDelete');
-					\dash\log::temp_set('setDeleteTicket', ['code' => $_id]);
+					\dash\log::temp_set('ticket_setDeleteTicket', ['code' => $_id]);
 					break;
 
 			}
@@ -207,12 +207,12 @@ class model
 		\dash\db\comments::update(['solved' => $solved], $_id);
 		if($solved)
 		{
-			\dash\log::temp_set('setSolvedTicket', ['code' => $_id]);
+			\dash\log::temp_set('ticket_setSolvedTicket', ['code' => $_id]);
 			\dash\notif::ok(T_("Ticket set as solved"));
 		}
 		else
 		{
-			\dash\log::temp_set('setUnSolvedTicket', ['code' => $_id]);
+			\dash\log::temp_set('ticket_setUnSolvedTicket', ['code' => $_id]);
 			\dash\notif::warn(T_("Ticket set as unsolved"));
 		}
 
@@ -279,7 +279,7 @@ class model
 					'plus'     => $plus,
 				];
 
-				\dash\log::temp_set('AddNoteTicket', $log);
+				\dash\log::temp_set('ticket_AddNoteTicket', $log);
 
 				$msg         = T_("Your note saved");
 				$notif_fn    = 'warn';
@@ -329,7 +329,7 @@ class model
 						'plus'     => $update_main['plus'],
 					];
 
-					\dash\log::temp_set('AddToTicket', $log);
+					\dash\log::temp_set('ticket_AddToTicket', $log);
 				}
 				else
 				{
@@ -357,11 +357,11 @@ class model
 					if(isset($main['status']) && $main['status'] === 'answered')
 					{
 						$isDubleAnswer = true;
-						\dash\log::temp_set('DubleAnswerTicket', $log);
+						\dash\log::temp_set('ticket_DubleAnswerTicket', $log);
 					}
 					else
 					{
-						\dash\log::temp_set('AnswerTicket', $log);
+						\dash\log::temp_set('tichet_AnswerTicket', $log);
 					}
 
 					if(!$isDubleAnswer)
@@ -375,7 +375,7 @@ class model
 								'user_idsender' => \dash\user::id(),
 							];
 
-							\dash\log::temp_set('answerTicketAlertSend', $log);
+							\dash\log::temp_set('ticket_answerTicketAlertSend', $log);
 						}
 						else
 						{

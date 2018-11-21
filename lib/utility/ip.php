@@ -256,7 +256,7 @@ class ip
 		{
 			foreach ($is_block as $key => $value)
 			{
-				\dash\log::set('blockIPDetected', ['ip' => $value]);
+				\dash\log::set('su_blockIPDetected', ['ip' => $value]);
 				$get = str_replace($value. "\n", "", $get);
 				\dash\file::append($addr. 'block', $value. "\n");
 			}

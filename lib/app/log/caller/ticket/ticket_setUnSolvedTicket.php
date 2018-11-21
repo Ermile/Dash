@@ -1,7 +1,7 @@
 <?php
-namespace dash\app\log\caller;
+namespace dash\app\log\caller\ticket;
 
-class setUnSolvedTicket
+class ticket_setUnSolvedTicket
 {
 	public static function site()
 	{

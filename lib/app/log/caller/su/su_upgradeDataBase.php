@@ -1,7 +1,7 @@
 <?php
-namespace dash\app\log\caller;
+namespace dash\app\log\caller\su;
 
-class upgradeDataBase
+class su_upgradeDataBase
 {
 	public static function site()
 	{

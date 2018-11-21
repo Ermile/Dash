@@ -1,7 +1,7 @@
 <?php
-namespace dash\app\log\caller;
+namespace dash\app\log\caller\ticket;
 
-class AutoSpamTicketByIp
+class ticket_AutoSpamTicketByIp
 {
 	public static function site()
 	{
