@@ -3,9 +3,9 @@ namespace dash\app\log\caller\ticket;
 
 class ticket_seeTicket
 {
-	public static function site()
+	public static function site($_args = [])
 	{
-		$code = \dash\app\log\support_tools::code($_args);
+		$code = isset($_args['code']) ? $_args['code'] : null;
 
 		$result              = [];
 		$result['title']     = T_("See ticket");
@@ -27,12 +27,11 @@ class ticket_seeTicket
 		$result['txt'] = $excerpt;
 
 		return $result;
-		return T_("See ticket");
 	}
 
 	public static function send_to()
 	{
-		return ['supervisor'];
+		return ['notifTicket'];
 	}
 
 	public static function is_notif()

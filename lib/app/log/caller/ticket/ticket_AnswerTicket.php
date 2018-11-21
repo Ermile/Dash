@@ -3,7 +3,7 @@ namespace dash\app\log\caller\ticket;
 
 class ticket_AnswerTicket
 {
-	public static function site()
+	public static function site($_args = [])
 	{
 		$code = \dash\app\log\support_tools::code($_args);
 
@@ -32,7 +32,7 @@ class ticket_AnswerTicket
 
 	public static function send_to()
 	{
-		return ['supervisor'];
+		return ['notifTicket'];
 	}
 
 	public static function is_notif()
