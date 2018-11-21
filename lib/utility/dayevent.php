@@ -116,5 +116,48 @@ class dayevent
 
 		return $result;
 	}
+
+
+	public static function day_notif()
+	{
+		$today         = date("Y-m-d", strtotime("-1 days"));
+		$yesterday     = date("Y-m-d", strtotime("-2 days"));
+
+		$get_today     = \dash\db\dayevent::get(['date' => $today, 'limit' => 1]);
+		$get_yesterday = \dash\db\dayevent::get(['date' => $yesterday, 'limit' => 1]);
+
+		if(!is_array($get_today) || !is_array($get_yesterday))
+		{
+			return false;
+		}
+
+		$diff    = [];
+		$sum_diff = 0;
+		foreach ($get_today as $key => $value)
+		{
+			if(in_array($key, ['dbtrafic', 'dbsize', 'id', 'date', 'countcalc']))
+			{
+				continue;
+			}
+
+			$temp_diff = 0;
+			if(array_key_exists($key, $get_yesterday))
+			{
+				$temp_diff = intval($value) - intval($get_yesterday[$key]);
+			}
+
+			if(!$temp_diff || !$value)
+			{
+				continue;
+			}
+
+			$sum_diff += $temp_diff;
+			$diff[$key] = ["now" => intval($value), "daydiff" => $temp_diff];
+		}
+
+		$diff['sum_diff'] = $sum_diff;
+
+		\dash\log::set('su_dayEventReport', ['result' => $diff]);
+	}
 }
 ?>

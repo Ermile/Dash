@@ -66,6 +66,7 @@ class controller
 			return;
 		}
 
+
 		$url = \dash\request::get('type');
 
 		switch ($url)
@@ -113,10 +114,16 @@ class controller
 				break;
 
 			case 'dayevent';
-				if(self::at_00_clock())
+				if(self::at('01:00'))
 				{
 					\dash\utility\dayevent::save();
 				}
+
+				if(self::at('07:07'))
+				{
+					\dash\utility\dayevent::day_notif();
+				}
+
 				break;
 
 			default:
@@ -128,6 +135,18 @@ class controller
 		{
 			\lib\cronjob::run();
 		}
+	}
+
+
+	public static function at($_time)
+	{
+		$time_now    = date("H:i");
+
+		if((is_string($time_now) && $time_now === $_time) || \dash\permission::supervisor())
+		{
+			return true;
+		}
+		return false;
 	}
 
 
