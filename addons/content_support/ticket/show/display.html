@@ -57,11 +57,14 @@
       <p class="fs08 msg danger txtC txtB">
         {%trans "Spam"%}
       </p>
+
+  {%if perm('supportTicketAnswer')%}
         <form method="post">
             {%include display.hive%}
         <input type="hidden" name="TicketFormType" value="changeStatus">
         <button class="btn mTB10 primary xs" name="status" value="deleted">{%trans "Not spam"%}</button>
       </form>
+  {%endif%}
 
 {%endif%}
     </div>
