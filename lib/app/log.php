@@ -9,25 +9,33 @@ class log
 		'id',
 	];
 
-	public static function set_readdate($_data)
+	public static function set_readdate($_data, $_all = false)
 	{
 		if(!is_array($_data))
 		{
 			return false;
 		}
 
-		$ids = array_column($_data, 'id_raw');
-		$ids = array_filter($ids);
-		$ids = array_unique($ids);
-
-		if(!$ids)
+		if($_all)
 		{
-			return false;
+			return \dash\db\logs::set_readdate_user(\dash\user::id());
 		}
+		else
+		{
 
-		$ids = implode(',', $ids);
+			$ids = array_column($_data, 'id_raw');
+			$ids = array_filter($ids);
+			$ids = array_unique($ids);
 
-		return \dash\db\logs::set_readdate($ids);
+			if(!$ids)
+			{
+				return false;
+			}
+
+			$ids = implode(',', $ids);
+
+			return \dash\db\logs::set_readdate($ids);
+		}
 
 	}
 

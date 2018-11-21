@@ -6,6 +6,29 @@ class logs
 {
 	private static $logUpdate = [];
 
+	public static function set_readdate_user($_user_id)
+	{
+		if(!$_user_id || !is_numeric($_user_id))
+		{
+			return false;
+		}
+
+		$date_now = date("Y-m-d H:i:s");
+		$query =
+		"
+			UPDATE
+				logs
+			SET
+				logs.readdate = '$date_now'
+			WHERE
+				logs.to = $_user_id AND
+				logs.readdate IS NULL
+		";
+		$resutl = \dash\db::query($query, \dash\db::get_db_log_name());
+		return $resutl;
+	}
+
+
 	public static function set_readdate($_ids)
 	{
 		$date_now = date("Y-m-d H:i:s");

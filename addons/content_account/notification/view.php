@@ -29,7 +29,7 @@ class view
 		$sortLink  = \dash\app\sort::make_sortLink(\dash\app\log::$sort_field, \dash\url::this());
 		$dataTable = \dash\app\log::list($search_string, $args);
 
-		\dash\app\log::set_readdate($dataTable);
+		\dash\app\log::set_readdate($dataTable, true);
 
 		\dash\data::sortLink($sortLink);
 		\dash\data::dataTable($dataTable);
