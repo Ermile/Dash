@@ -53,6 +53,8 @@ class logs
 			return false;
 		}
 
+		$date_now = date("Y-m-d H:i:s");
+
 		$query =
 		"
 			SELECT
@@ -63,6 +65,7 @@ class logs
 				logs.notif  = 1 AND
 				logs.status = 'enable' AND
 				logs.readdate IS NULL AND
+				(logs.expiredate IS NULL OR logs.expiredate > '$date_now') AND
 				logs.to     = $_user_id
 		";
 		$resutl = \dash\db::get($query, 'count', true, \dash\db::get_db_log_name());

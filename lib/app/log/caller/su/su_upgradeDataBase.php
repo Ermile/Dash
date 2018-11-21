@@ -33,6 +33,10 @@ class su_upgradeDataBase
 		return true;
 	}
 
+	public static function expire()
+	{
+		return date("Y-m-d H:i:s", strtotime("+30 days"));
+	}
 
 	public static function telegram_text($_args, $_chat_id)
 	{

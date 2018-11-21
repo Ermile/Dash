@@ -29,10 +29,17 @@ class ticket_AddToTicket
 		return $result;
 	}
 
+
 	public static function send_to()
 	{
 		return ['notifTicket'];
 	}
+
+	public static function expire()
+	{
+		return date("Y-m-d H:i:s", strtotime("+100 days"));
+	}
+
 
 	public static function is_notif()
 	{

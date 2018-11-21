@@ -27,6 +27,11 @@ class ticket_answerTicketAlertSend
 		return $result;
 	}
 
+	public static function expire()
+	{
+		return date("Y-m-d H:i:s", strtotime("+100 days"));
+	}
+
 
 	public static function is_notif()
 	{

@@ -52,6 +52,18 @@ class log
 
 		$field['notif'] = $is_notif;
 
+		if($is_notif)
+		{
+
+			$expire = self::call_fn($_caller, 'expire');
+
+			if(!$expire)
+			{
+				$expire = date("Y-m-d H:i:s", strtotime("+365 days"));
+			}
+
+			$field['expiredate'] = $expire;
+		}
 
 		if(isset($_args['from']) && is_numeric($_args['from']))
 		{
@@ -83,6 +95,7 @@ class log
 				case 'sms':
 				case 'email':
 				case 'meta':
+				case 'expiredate':
 				case 'to':
 				case 'from':
 				case 'sms':
@@ -428,20 +441,21 @@ class log
 	{
 		$default_args =
 		[
-			'from'      => null,
-			'to'      => null,
-			'subdomain' => null,
-			'data'      => null,
-			'status'    => 'enable',
-			'code'      => null,
-			'send'      => null,
-			'notif'     => null,
-			'from'      => null,
-			'readdate'  => null,
-			'meta'      => null,
-			'sms'       => null,
-			'telegram'  => null,
-			'email'     => null,
+			'from'       => null,
+			'to'         => null,
+			'subdomain'  => null,
+			'data'       => null,
+			'status'     => 'enable',
+			'code'       => null,
+			'send'       => null,
+			'notif'      => null,
+			'expiredate' => null,
+			'from'       => null,
+			'readdate'   => null,
+			'meta'       => null,
+			'sms'        => null,
+			'telegram'   => null,
+			'email'      => null,
 		];
 
 		if(!is_array($_args))
@@ -502,6 +516,7 @@ class log
 			'status'       => $_args['status'],
 			'code'         => $_args['code'],
 			'send'         => $_args['send'],
+			'expiredate'   => $_args['expiredate'],
 			'notif'        => $_args['notif'],
 			'readdate'     => $_args['readdate'],
 			'meta'         => $_args['meta'],

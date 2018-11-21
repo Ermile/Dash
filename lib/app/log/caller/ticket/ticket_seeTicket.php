@@ -34,6 +34,11 @@ class ticket_seeTicket
 		return ['notifTicket'];
 	}
 
+	public static function expire()
+	{
+		return date("Y-m-d H:i:s", strtotime("+100 days"));
+	}
+
 	public static function is_notif()
 	{
 		return true;

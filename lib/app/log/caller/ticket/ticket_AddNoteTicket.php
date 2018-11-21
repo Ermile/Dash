@@ -29,6 +29,12 @@ class ticket_AddNoteTicket
 		return $result;
 	}
 
+	public static function expire()
+	{
+		return date("Y-m-d H:i:s", strtotime("+100 days"));
+	}
+
+
 	public static function send_to()
 	{
 		return ['notifTicket'];
