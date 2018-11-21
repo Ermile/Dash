@@ -46,11 +46,9 @@ class model
 		{
 			$log =
 			[
-				'user_id'  => \dash\user::id(),
-				'code'     => $result['id'],
-				// 'ttitle'   => $args['title'],
-				// 'tcontent' => \dash\safe::forJson($args['content']),
-				// 'file'     => $args['file'] ? $args['file'] : null,
+				'from' => \dash\user::id(),
+				'code' => $result['id'],
+				'via'  => $_via,
 			];
 
 			\dash\log::set('ticket_addNewTicket', $log);

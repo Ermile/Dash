@@ -91,7 +91,7 @@ class support_tools
 
 	public static function via($_args)
 	{
-		$via = isset($_args['via']) ? $_args['via'] : null;
+		$via = isset($_args['data']['via']) ? $_args['data']['via'] : null;
 		return $via;
 	}
 }

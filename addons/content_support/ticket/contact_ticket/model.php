@@ -138,11 +138,24 @@ class model
 
 		$result = \dash\app\ticket::add($args);
 
+		if(isset($result['id']))
+		{
+			$log =
+			[
+				'from' => \dash\user::id(),
+				'code' => $result['id'],
+				'via'  => 'contact',
+			];
+
+			\dash\log::set('ticket_addNewTicket', $log);
+		}
+
 
 		if(\dash\user::login())
 		{
 			if(isset($result['id']))
 			{
+
 				$ticket_link = '<a href="'. \dash\url::site(). '/support/ticket/show?id='. $result['id'].'">'. T_("You can check your contacting answer here") .'</a>';
 				\dash\notif::ok(T_("Thank You For contacting us"). ' '. $ticket_link);
 				\dash\redirect::pwd();
