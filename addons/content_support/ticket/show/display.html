@@ -7,7 +7,7 @@
 <div class="f">
   <div class="c8 s12 pRa10">
     {{block("iChatList")}}
-    {%if perm('supportTicketAnswer') or masterTicketDetail.status == 'spam'%}
+    {%if perm('supportTicketAnswer') or masterTicketDetail.status != 'spam'%}
       {%include 'content_support/ticket/addForm.html'%}
     {%endif%}
   </div>
