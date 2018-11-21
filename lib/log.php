@@ -225,15 +225,24 @@ class log
 		if($send_to)
 		{
 			$user_detail = self::detect_user($send_to, $not_send_admin, $not_send_supervisor);
+
 			if($user_detail)
 			{
 				$must_send_to = array_merge($must_send_to, $user_detail);
 			}
 		}
 
-		$send_args = self::create_text($_caller, $_args, $must_send_to);
+		if(!empty($must_send_to))
+		{
+			$must_send_to = array_combine(array_column($must_send_to, 'id'), $must_send_to);
 
-		return self::db($_caller, $_args, $send_args);
+			$send_args    = self::create_text($_caller, $_args, $must_send_to);
+
+			return self::db($_caller, $_args, $send_args);
+		}
+
+		return self::db($_caller, $_args);
+
 	}
 
 
