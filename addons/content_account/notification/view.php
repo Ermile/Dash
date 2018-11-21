@@ -21,8 +21,21 @@ class view
 			$args['order'] = 'desc';
 		}
 
-		$args['notif'] = 1;
-		$args['to']    = \dash\user::id();
+		$date_now = date("Y-m-d H:i:s");
+
+		$args['to']     = \dash\user::id();
+		$args['notif']  = 1;
+		$args['logs.status'] = 'enable';
+
+		if(\dash\url::child() === 'archive')
+		{
+			// no thing
+		}
+		else
+		{
+			$args['1.1']   = [" = 1.1 AND ", " (logs.expiredate IS NULL OR logs.expiredate > '$date_now')"];
+		}
+
 
 		$search_string   = \dash\request::get('q');
 
@@ -39,6 +52,8 @@ class view
 		unset($check_empty_datatable['order']);
 		unset($check_empty_datatable['notif']);
 		unset($check_empty_datatable['to']);
+		unset($check_empty_datatable['1.1']);
+		unset($check_empty_datatable['logs.status']);
 
 
 		// set dataFilter
