@@ -361,7 +361,7 @@ class model
 					}
 					else
 					{
-						\dash\log::temp_set('tichet_AnswerTicket', $log);
+						\dash\log::temp_set('ticket_AnswerTicket', $log);
 					}
 
 					if(!$isDubleAnswer)
