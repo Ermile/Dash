@@ -69,7 +69,7 @@ class su_dayEventReport
 		$sum_diff = isset($_args['data']['result']['sum_diff']) ? $_args['data']['result']['sum_diff'] : 0;
 
 		$tg_msg  = '';
-		$tg_msg .= "🛢#ReportDaily 📺\n";
+		$tg_msg .= "📺#ReportDaily \n";
 		$tg_msg .= T_("What was yesterday"). "\n";
 		$tg_msg .= \dash\utility\human::fitNumber($sum_diff);;
 		$tg_msg .= ' '. T_("new record!"). "\n";
