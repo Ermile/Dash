@@ -41,10 +41,8 @@ class send
 
 			if(isset($value['sms']))
 			{
-				\dash\code::dump($sms, true);
 				$sms = json_decode($value['sms'], true);
-				\dash\code::dump($sms, true);
-				\dash\code::boom();
+
 				if(isset($sms['mobile']) && isset($sms['text']))
 				{
 					$meta = [];
@@ -90,14 +88,8 @@ class send
 			return false;
 		}
 
-		if(!\dash\option::sms('kavenegar', 'status'))
-		{
-			return false;
-		}
-		else
-		{
-			\dash\utility\sms::send($_mobile, $_text, $_meta);
-		}
+		\dash\utility\sms::send($_mobile, $_text, $_meta);
+
 	}
 }
 ?>
