@@ -162,7 +162,7 @@ class view
 
 		$implode_caller =
 		[
-			'ticketAddTag',
+			'ticket_ticketAddTag',
 			'ticket_setCloseTicket',
 			'ticket_setAwaitingTicket',
 			'ticket_setDeleteTicket',

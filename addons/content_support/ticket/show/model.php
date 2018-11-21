@@ -107,7 +107,7 @@ class model
 
 		\dash\app::variable(['support_tag' => $_tag]);
 		\dash\app\posts::set_post_term($_id, 'support_tag', 'comments');
-		\dash\log::temp_set('ticketAddTag', ['code' => $_id, 'tag' => $_tag]);
+		\dash\log::temp_set('ticket_ticketAddTag', ['code' => $_id, 'tag' => $_tag]);
 
 		if(\dash\engine\process::status())
 		{
@@ -386,7 +386,7 @@ class model
 								'from' => \dash\user::id(),
 							];
 
-							\dash\log::temp_set('answerTicketAlert', $log);
+							\dash\log::temp_set('ticket_answerTicketAlert', $log);
 						}
 					}
 

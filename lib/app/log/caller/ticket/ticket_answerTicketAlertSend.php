@@ -4,9 +4,11 @@ namespace dash\app\log\caller\ticket;
 
 class ticket_answerTicketAlertSend
 {
-	public static function site()
+	public static function site($_args = [])
 	{
-		return T_("Answer alert");
+		$code = isset($_args['code']) ? $_args['code'] : null;
+		$title    = T_("Regards"). "\n". T_("Ticket :val answered", ['val' => \dash\utility\human::fitNumber($code, false)]);
+		return $title;
 	}
 
 
