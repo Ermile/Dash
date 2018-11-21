@@ -370,9 +370,9 @@ class model
 						{
 							$log =
 							[
-								'code'          => $_id,
-								'user_id'       => \dash\coding::decode($main['user_id']),
-								'user_idsender' => \dash\user::id(),
+								'code' => $_id,
+								'to'   => \dash\coding::decode($main['user_id']),
+								'from' => \dash\user::id(),
 							];
 
 							\dash\log::temp_set('ticket_answerTicketAlertSend', $log);
@@ -381,9 +381,9 @@ class model
 						{
 							$log =
 							[
-								'code'          => $_id,
-								'user_id'       => \dash\coding::decode($main['user_id']),
-								'user_idsender' => \dash\user::id(),
+								'code' => $_id,
+								'to'   => \dash\coding::decode($main['user_id']),
+								'from' => \dash\user::id(),
 							];
 
 							\dash\log::temp_set('answerTicketAlert', $log);

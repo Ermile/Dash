@@ -56,16 +56,16 @@ trait get
 		}
 
 		$result = [];
-		$get_notify =
-		[
-			'user_idsender'   => $user_id,
-			'category'        => 9,
-			'status'          => 'enable',
-			'related_id'      => $user_id,
-			'related_foreign' => 'users',
-			'needanswer'      => 1,
-			'answer'          => null,
-		];
+		// $get_notify =
+		// [
+		// 	'user_idsender'   => $user_id,
+		// 	'category'        => 9,
+		// 	'status'          => 'enable',
+		// 	'related_id'      => $user_id,
+		// 	'related_foreign' => 'users',
+		// 	'needanswer'      => 1,
+		// 	'answer'          => null,
+		// ];
 
 		// $notify_list = \dash\db\notifications::get($get_notify);
 		$notify_list = null;

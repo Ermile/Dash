@@ -47,18 +47,18 @@ trait delete
 		}
 
 
-		$get_notify =
-		[
-			'id'              => $notify_id,
-			'user_idsender'   => \dash\user::id(),
-			'category'        => 9,
-			'status'          => 'enable',
-			'related_id'      => \dash\user::id(),
-			'related_foreign' => 'users',
-			'needanswer'      => 1,
-			'answer'          => null,
-			'limit'           => 1,
-		];
+		// $get_notify =
+		// [
+		// 	'id'              => $notify_id,
+		// 	'user_idsender'   => \dash\user::id(),
+		// 	'category'        => 9,
+		// 	'status'          => 'enable',
+		// 	'related_id'      => \dash\user::id(),
+		// 	'related_foreign' => 'users',
+		// 	'needanswer'      => 1,
+		// 	'answer'          => null,
+		// 	'limit'           => 1,
+		// ];
 
 		// $check_ok = \dash\db\notifications::get($get_notify);
 		$check_ok = null;
