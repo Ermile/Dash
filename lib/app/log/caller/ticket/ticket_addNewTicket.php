@@ -19,7 +19,7 @@ class ticket_addNewTicket
 
 		if($via)
 		{
-			$excerpt .= T_("add new ticket via :val.", ['val' => '<b>'. T_($via). '</b>']);
+			$excerpt .= T_("add new ticket via :val.", ['val' => '<b>'. $via. '</b>']);
 		}
 		else
 		{

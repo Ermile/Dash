@@ -62,7 +62,7 @@
 
           {%if value.excerpt%}
           <div class="excerpt txtCut" {%if value.txt%}data-openable-close{%endif%}>
-            {{value.excerpt}}
+            {{value.excerpt | raw}}
           </div>
           {%endif%}
 

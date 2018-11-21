@@ -11,7 +11,7 @@ class ticket_AddNoteTicket
 		$result['title']     = T_("Add note to ticket");
 		$result['icon']      = 'life-ring';
 		$result['cat']       = T_("Support");
-		$result['iconClass'] = 'fc-red';
+		$result['iconClass'] = 'fc-yellow';
 
 		$excerpt  = '<span class="fc-green">'.\dash\app\log\msg::displayname($_args). '</span> ';
 

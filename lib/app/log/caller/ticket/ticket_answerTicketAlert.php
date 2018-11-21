@@ -12,7 +12,7 @@ class ticket_answerTicketAlert
 		$result['title']     = T_("Regards"). "\n". T_("Ticket :val answered", ['val' => \dash\utility\human::fitNumber($code, false)]);;
 		$result['icon']      = 'life-ring';
 		$result['cat']       = T_("Support");
-		$result['iconClass'] = 'fc-red';
+		$result['iconClass'] = 'fc-green';
 
 
 		$excerpt = '';

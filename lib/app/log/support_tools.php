@@ -92,6 +92,39 @@ class support_tools
 	public static function via($_args)
 	{
 		$via = isset($_args['data']['via']) ? $_args['data']['via'] : null;
+
+		switch ($via)
+		{
+			case 'site':
+				$via = T_("website");
+				break;
+
+			case 'telegram':
+				$via = T_("telegram");
+				break;
+
+			case 'sms':
+				$via = T_("sms");
+				break;
+
+			case 'contact':
+				$via = T_("contact us");
+				break;
+
+			case 'admincontact':
+				$via = T_("admin contact");
+				break;
+
+			case 'app':
+				$via = T_("application");
+				break;
+
+			default:
+				$via = null;
+				break;
+
+		}
+
 		return $via;
 	}
 }

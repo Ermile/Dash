@@ -3,9 +3,19 @@ namespace dash\app\log\caller\su;
 
 class su_upgradeDataBase
 {
-	public static function site()
+	public static function site($_args = [])
 	{
-		return T_("Upgrade database");
+		$excerpt  = '<span class="fc-green">'.\dash\app\log\msg::displayname($_args). '</span> ';
+		$excerpt .= ' ';
+		$excerpt .= T_("upgrade database to new version");
+
+		$result              = [];
+		$result['title']     = T_("Upgrade database");
+		$result['icon']      = 'bug';
+		$result['cat']       = T_("System");
+		$result['iconClass'] = 'fc-black';
+		$result['excerpt']   = $excerpt;
+		return $result;
 	}
 
 	public static function send_to()
