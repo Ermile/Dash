@@ -41,7 +41,10 @@ class send
 
 			if(isset($value['sms']))
 			{
+				\dash\code::dump($sms, true);
 				$sms = json_decode($value['sms'], true);
+				\dash\code::dump($sms, true);
+				\dash\code::boom();
 				if(isset($sms['mobile']) && isset($sms['text']))
 				{
 					$meta = [];
