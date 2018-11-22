@@ -159,6 +159,44 @@ class user
 	}
 
 
+	public static function fullName()
+	{
+		$myDetail = \dash\user::detail();
+		if($myDetail)
+		{
+			$myName = '';
+			if(isset($myDetail['firstname']) && isset($myDetail['lastname']))
+			{
+				$myName = $myDetail['firstname']. ' '. $myDetail['lastname'];
+			}
+			elseif(isset($myDetail['displayname']))
+			{
+				$myName = $myDetail['displayname'];
+			}
+			else
+			{
+				$myName = T_("Without name");
+			}
+
+			if(isset($myDetail['gender']))
+			{
+				if($myDetail['gender'] === 'male')
+				{
+					$myName = T_("Mr"). ' '. $myName;
+				}
+				else if($myDetail['gender'] === 'female')
+				{
+					$myName = T_("Ms"). ' '. $myName;
+				}
+			}
+
+			return $myName;
+		}
+
+		return null;
+	}
+
+
 	/**
 	 * get detail of user
 	 *
