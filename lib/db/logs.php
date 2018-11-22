@@ -62,11 +62,11 @@ class logs
 			FROM
 				logs
 			WHERE
-				logs.notif  = 1 AND
+				logs.to     = $_user_id AND
 				logs.status = 'enable' AND
+				logs.notif  = 1 AND
 				logs.readdate IS NULL AND
-				(logs.expiredate IS NULL OR logs.expiredate > '$date_now') AND
-				logs.to     = $_user_id
+				(logs.expiredate IS NULL OR logs.expiredate > '$date_now')
 		";
 		$resutl = \dash\db::get($query, 'count', true, \dash\db::get_db_log_name());
 		return $resutl;
