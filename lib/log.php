@@ -227,10 +227,14 @@ class log
 
 		if(isset($_args['to']) && is_numeric($_args['to']))
 		{
-			$must_send_to[$_args['to']] = \dash\db\users::get_by_id($_args['to']);
+			$to = \dash\db\users::get_by_id($_args['to']);
+			if(is_array($to) && $to)
+			{
+				$must_send_to[$_args['to']] = $to;
+			}
 		}
 
-		if($send_to_creator)
+		if($send_to_creator && \dash\user::id())
 		{
 			$must_send_to[\dash\user::id()] = \dash\user::detail();
 		}
@@ -247,11 +251,14 @@ class log
 
 		if(!empty($must_send_to))
 		{
-			$must_send_to = array_combine(array_column($must_send_to, 'id'), $must_send_to);
+			if(count($must_send_to) === count(array_column($must_send_to, 'id')))
+			{
+				$must_send_to = array_combine(array_column($must_send_to, 'id'), $must_send_to);
 
-			$send_args    = self::create_text($_caller, $_args, $must_send_to);
+				$send_args    = self::create_text($_caller, $_args, $must_send_to);
 
-			return self::db($_caller, $_args, $send_args);
+				return self::db($_caller, $_args, $send_args);
+			}
 		}
 
 		return self::db($_caller, $_args);
@@ -262,6 +269,12 @@ class log
 	private static function create_text($_caller, &$_args, $_user_detail)
 	{
 		$new_args = [];
+
+		if(!is_array($_user_detail))
+		{
+			return [];
+		}
+
 		// set to all user
 		foreach ($_user_detail as $key => $value)
 		{

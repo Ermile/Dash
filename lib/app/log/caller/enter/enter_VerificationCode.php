@@ -40,11 +40,6 @@ class enter_VerificationCode
 		return date("Y-m-d H:i:s", time()+(60*5) ); // 5 min
 	}
 
-	public static function send_to_creator()
-	{
-		return true;
-	}
-
 	public static function is_notif()
 	{
 		return true;
