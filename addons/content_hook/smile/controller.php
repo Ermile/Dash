@@ -47,15 +47,15 @@ class controller
 		}
 		else
 		{
-			// logout sample
-			$myResult =
-			[
-				'logout' =>
-				[
-					'txt' => T_("Goodbye"),
-					'url' => \dash\url::kingdom(). '/logout'
-				]
-			];
+			// // logout sample
+			// $myResult =
+			// [
+			// 	'logout' =>
+			// 	[
+			// 		'txt' => T_("Goodbye"),
+			// 		'url' => \dash\url::kingdom(). '/logout'
+			// 	]
+			// ];
 		}
 
 		// set result into notif
