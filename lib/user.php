@@ -186,7 +186,7 @@ class user
 				}
 				else if($myDetail['gender'] === 'female')
 				{
-					$myName = T_("Ms"). ' '. $myName;
+					$myName = T_("Mrs"). ' '. $myName;
 				}
 			}
 
