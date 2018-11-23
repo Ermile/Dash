@@ -89,16 +89,16 @@ class controller
 					break;
 				}
 
-				if(self::sleep_until($time, 20))
-				{
-					\dash\app\log\send::notification();
-				}
+				// if(self::sleep_until($time, 20))
+				// {
+				// 	\dash\app\log\send::notification();
+				// }
 
-				if(self::sleep_until($time, 40))
-				{
-					\dash\app\log\send::notification();
-				}
-				break;
+				// if(self::sleep_until($time, 40))
+				// {
+				// 	\dash\app\log\send::notification();
+				// }
+				// break;
 
 			case 'closesolved':
 				if(self::every_10_min())
