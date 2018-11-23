@@ -31,9 +31,20 @@ class hafez
 			case '/fal1':
 			case 'cb_hafez_say_something':
 				// if start with callback answer callback
+
 				if(bot::isCallback())
 				{
 					self::fal();
+				}
+				else
+				{
+
+					$falCode = \dash\utility\convert::to_en_number($_cmd['optional']);
+					if($falCode && is_numeric($falCode))
+					{
+						self::fal($falCode);
+					}
+
 				}
 				break;
 
