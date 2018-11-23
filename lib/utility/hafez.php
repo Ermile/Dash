@@ -515,10 +515,29 @@ class hafez
 		if(isset($fal[$_index]))
 		{
 			$my_fal = $fal[$_index];
+
+			$my_fal["code"]   = $_index;
+			$my_fal["file"]   = self::file($_index);
+
+		}
+		return $my_fal;
+
+	}
+
+
+	public static function file($_index)
+	{
+		return "https://sarshomar.com/static/hafez/hafez".str_pad($_index, 3, 0, STR_PAD_LEFT). ".mp3";
+	}
+
+
+	public static function tg($_index = null)
+	{
+		$my_fal = self::fal($_index);
+		if(isset($my_fal['poem']))
+		{
 			$temp   = explode("\n", $my_fal['poem']);
-
 			$new    = [];
-
 			foreach ($temp as $key => $value)
 			{
 				if(($key % 2) != 0)
@@ -533,20 +552,17 @@ class hafez
 				$new[] = $value;
 			}
 
-			$new              = implode("\n", $new);
-			$my_fal['pretty'] = $new;
-			$my_fal["code"]   = $_index;
-			$my_fal["file"]   = self::file($_index);
-
+			$new                  = implode("\n", $new);
+			$my_fal['poemPretty'] = $new;
 		}
+
+		if(isset($my_fal['mean']))
+		{
+			$my_fal['meanPretty'] = trim(str_replace('.', ".\n", $my_fal['mean']));
+		}
+
 		return $my_fal;
 
-	}
-
-
-	public static function file($_index)
-	{
-		return "https://sarshomar.com/static/hafez/hafez".str_pad($_index, 3, 0, STR_PAD_LEFT). ".mp3";
 	}
 }
 ?>
