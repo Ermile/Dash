@@ -1,4 +1,8 @@
 {
+   "system": {
+    "title": "System alert",
+    "url": "system"
+  },
   "notification": {
     "title": "Send notification",
     "url": "notification"

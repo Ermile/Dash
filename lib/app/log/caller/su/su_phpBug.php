@@ -14,7 +14,6 @@ class su_phpBug
 		$result['cat']       = T_("Bug");
 		$result['iconClass'] = 'fc-red';
 		$result['excerpt']   = $excerpt;
-		$result['txt']   = '<code>'. $mymsg. '</code>';
 		return $result;
 	}
 
@@ -47,9 +46,6 @@ class su_phpBug
 
 		$tg_msg = '';
 		$tg_msg .= "❌#PHPBUH\n";
-		$tg_msg .= '<code>';
-		$tg_msg .= $mymsg;
-		$tg_msg .= '</code>';
 
 		$tg_msg .= "\n⏳ ". \dash\datetime::fit(date("Y-m-d H:i:s"), true);
 

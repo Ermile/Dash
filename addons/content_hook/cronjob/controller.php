@@ -71,6 +71,13 @@ class controller
 
 		switch ($url)
 		{
+			case 'system':
+				if(self::every_30_min())
+				{
+					self::check_error_file();
+				}
+				break;
+
 			case 'notification':
 				$time = time();
 
@@ -229,7 +236,22 @@ class controller
 		}
 
 		\dash\code::pretty($list, true);
+	}
 
+
+	private static function check_error_file()
+	{
+		$sqlError = root. 'includes/log/database/error.sql';
+		if(is_file($sqlError))
+		{
+			\dash\log::set('su_sqlError');
+		}
+
+		$phpBug = root. 'includes/log/php/exception.log';
+		if(is_file($phpBug))
+		{
+			\dash\log::set('su_phpBug');
+		}
 	}
 }
 ?>
