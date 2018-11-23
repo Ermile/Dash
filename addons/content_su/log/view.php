@@ -56,9 +56,31 @@ class view
 			$list = [];
 			foreach ($glob as $key => $value)
 			{
+				$name = str_replace(root.'includes/log/', '', $value);
+
+				switch ($name)
+				{
+					case 'php':
+						$icon = 'bug';
+						break;
+
+					case 'database':
+						$icon = 'database';
+						break;
+
+					case 'header':
+						$icon = 'flag-1';
+						break;
+
+					default:
+						$icon = 'bug-2';
+						break;
+				}
+
 				$list[] =
 				[
-					'name' => str_replace(root.'includes/log/', '', $value),
+					'icon' => $icon,
+					'name' => $name,
 				];
 			}
 			\dash\data::logList($list);

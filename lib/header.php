@@ -160,7 +160,7 @@ class header
 
 		$debug_backtrace = ['args' => func_get_args(), 'debug' => debug_backtrace(), 'server' => $_SERVER];
 		$debug_backtrace = json_encode($debug_backtrace, JSON_UNESCAPED_UNICODE);
-		\dash\db::log($debug_backtrace, null, "$_code.header");
+		\dash\log::file($debug_backtrace, "$_code.txt", 'header');
 
 		$status_header = "HTTP/1.1 $_code $desc";
 		// set header

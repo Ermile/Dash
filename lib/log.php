@@ -561,5 +561,35 @@ class log
 
 
 	}
+
+
+	public static function file($_text, $_file_name = null, $_folder = null)
+	{
+		if(!$_file_name)
+		{
+			$_file_name = 'log.txt';
+		}
+
+		$fileAddr = root.'includes/log';
+
+		if($_folder)
+		{
+			$fileAddr .= '/'. $_folder. '/';
+		}
+
+		if(!is_dir($fileAddr))
+		{
+			\dash\file::makeDir($fileAddr, null, true);
+		}
+
+		$fileAddr .= $_file_name;
+
+		$my_text = "#". date("Y-m-d H:i:s"). str_repeat("-", 5). ' '. \dash\url::pwd();
+		$my_text .= " | ";
+		$my_text .= $_text;
+		$my_text .= "\r\n";
+
+		@file_put_contents($fileAddr, $my_text, FILE_APPEND);
+	}
 }
 ?>
