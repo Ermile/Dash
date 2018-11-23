@@ -18,6 +18,7 @@ class tg
 		'dash:ermile',
 		'dash:utility',
 		'dash:ticket',
+		'dash:hafez',
 		'dash:conversation',
 		'dash:conversationFa',
 	];
