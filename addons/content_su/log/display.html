@@ -4,7 +4,7 @@
 {%if logList%}
   <div class="f">
   {%for value in logList%}
-    <div class="c3 s12">
+    <div class="c4 s12">
         <a class="dcard x1 fc-red"  href='{{url.this}}?folder={{value.name}}'>
          <div class="statistic ">
           <div class="value "><i class="sf-{{value.icon}}"></i></div>
@@ -22,18 +22,45 @@
 <a class="btn mB10 outline primary block" href="{{url.this}}">{%trans "Back"%}</a>
 <div class="f">
 {%for value in logFileList%}
+{%if not value.is_old%}
 <div class="c2 mA5 txtC">
-<a   href='{{url.this}}?folder={{requestGET.folder}}&file={{value.name}}'>
-  <div class="msg {%if value.is_old%} secondary2 {%endif%}">
-    <i class="sf-file-1 fs30"></i>
-    <div class="label"><b>{{value.name}}</b></div>
-    <div class=" txtC mT10" title="{{value.mtime | dt(true)}}">{{value.mtime | dt('human')}}</div>
-    <div class="label">{{value.size}} {%trans "MB"%}</div>
-  </div>
-</a>
+  <a href='{{url.this}}?folder={{requestGET.folder}}&file={{value.name}}'>
+    <div class="msg">
+      <i class="sf-file-1 fs30"></i>
+      <div class="label"><b>{{value.name}}</b></div>
+      <div class=" txtC mT10" title="{{value.mtime | dt}}">{{value.mtime | dt('human')}}</div>
+      <div class="label">{{value.size}} {%trans "MB"%}</div>
+    </div>
+  </a>
+</div>
+{%endif%}
+{%endfor%}
 </div>
 
-{%endfor%}
+<div class="check1">
+  <input type="checkbox" id="archived">
+  <label for="archived" class="fc-white">{%trans "Show archived"%}</label>
+</div>
+
+<div data-response='archived' data-response-hide>
+
+  <div class="f">
+    <hr>
+    {%for value in logFileList%}
+      {%if value.is_old%}
+        <div class="c2 mA5 txtC">
+          <a href='{{url.this}}?folder={{requestGET.folder}}&file={{value.name}}'>
+            <div class="msg">
+
+              <b>{{value.name}}</b>
+              <div class=" txtC mT10" title="{{value.mtime | dt}}">{{value.mtime | dt('human')}}</div>
+              {{value.size}} {%trans "MB"%}
+            </div>
+          </a>
+        </div>
+      {%endif%}
+  {%endfor%}
+  </div>
 </div>
 {%endif%}
 {%endblock%}
