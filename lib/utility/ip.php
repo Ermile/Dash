@@ -28,7 +28,7 @@ class ip
 
 		if(self::is_block($ip))
 		{
-			\dash\header::status(423, T_("Your ip is blocked"));
+			\dash\header::status(423, T_("Your ip is blocked"). '. '. T_("Please contact to administrator"). '.');
 		}
 
 		if(self::is_not_block($ip))
