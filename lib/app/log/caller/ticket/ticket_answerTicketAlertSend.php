@@ -50,8 +50,10 @@ class ticket_answerTicketAlertSend
 
 	public static function sms_text($_args, $_mobile)
 	{
-		$code = isset($_args['code']) ? $_args['code'] : null;
-		$title    = T_("Regards"). "\n". T_("Ticket :val answered", ['val' => \dash\utility\human::fitNumber($code, false)]);
+		$code  = isset($_args['code']) ? $_args['code'] : null;
+		$title = T_("Regards"). "\n". T_("Ticket :val answered", ['val' => \dash\utility\human::fitNumber($code, false)]);
+		$title .= "\n";
+		$title .= \dash\url::domain(). '/!'. $code;
 
 		$sms =
 		[
@@ -69,10 +71,9 @@ class ticket_answerTicketAlertSend
 
 	public static function telegram_text($_args, $_chat_id)
 	{
-		$load = \dash\app\log\support_tools::load($_args);
-
-		$code = isset($_args['code']) ? $_args['code'] : null;
-		$title    = T_("Regards"). "\n". T_("Ticket :val answered", ['val' => \dash\utility\human::fitNumber($code, false)]);
+		$load  = \dash\app\log\support_tools::load($_args);
+		$code  = isset($_args['code']) ? $_args['code'] : null;
+		$title = T_("Regards"). "\n". T_("Ticket :val answered", ['val' => \dash\utility\human::fitNumber($code, false)]);
 
 		$tg_msg = '';
 		$tg_msg .= "🆔#Ticket".$code;
@@ -85,7 +86,7 @@ class ticket_answerTicketAlertSend
 		$tg                 = [];
 		$tg['chat_id']      = $_chat_id;
 		$tg['text']         = $tg_msg;
-		$tg['reply_markup'] = \dash\app\log\support_tools::tg_btn($code);
+		$tg['reply_markup'] = \dash\app\log\support_tools::tg_btn2($code);
 
 		$tg = json_encode($tg, JSON_UNESCAPED_UNICODE);
 
