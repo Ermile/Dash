@@ -98,7 +98,7 @@ class controller
 				// {
 				// 	\dash\app\log\send::notification();
 				// }
-				// break;
+				break;
 
 			case 'closesolved':
 				if(self::every_10_min())
