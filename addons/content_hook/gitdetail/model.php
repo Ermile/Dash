@@ -50,21 +50,36 @@ class model
 
 	private static function check_token($_token)
 	{
-		$url            = 'http://ermile.local/git';
+		if(\dash\url::isLocal())
+		{
+			$url            = 'http://ermile.local/git';
+		}
+		else
+		{
+			$url            = 'https://ermile.com/git';
+		}
 
 		$field               = [];
 		$field['checktoken'] = true;
 		$field['token']      = $_token;
 		$field['project']    = \dash\url::domain();
 
-
 		$handle         = curl_init();
 
 		curl_setopt($handle, CURLOPT_URL, $url);
-		// curl_setopt($handle, CURLOPT_HTTPHEADER, json_encode($_requests['header'], JSON_UNESCAPED_UNICODE));
 		curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($handle, CURLOPT_SSL_VERIFYHOST, false);
-		curl_setopt($handle, CURLOPT_SSL_VERIFYPEER, false);
+
+		if(\dash\url::isLocal())
+		{
+			curl_setopt($handle, CURLOPT_SSL_VERIFYHOST, false);
+			curl_setopt($handle, CURLOPT_SSL_VERIFYPEER, false);
+		}
+		else
+		{
+			curl_setopt($handle, CURLOPT_SSL_VERIFYHOST, true);
+			curl_setopt($handle, CURLOPT_SSL_VERIFYPEER, true);
+		}
+
 		curl_setopt($handle, CURLOPT_POST, true);
 
 		curl_setopt($handle, CURLOPT_POSTFIELDS, http_build_query($field));
