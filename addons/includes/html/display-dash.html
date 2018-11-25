@@ -118,8 +118,8 @@
     <a href="{{url.kingdom}}/account/notification" data-tippy-animation="perspective" title='{%trans "Your notifications"%}' class="notification"><i class="sf-bell"></i></a>
 
     <div class="profileShow" data-tippy-animation="perspective" title='{%trans "Click to check your profile"%}'
-    data-desc='{{userBadge.desc}}'
-    data-footer='{{userBadge.footer}}'
+    data-desc='{{userBadge.desc | raw}}'
+    data-footer='{{userBadge.footer | raw}}'
     data-confirmTxt='{%trans "Account"%} <i class="sf-user"></i>' data-confirmLink='{{url.kingdom}}/account'
     data-cancelTxt='{%trans "Logout"%} <i class="sf-out mLa10"></i>'
     data-logoutConfirmTxt='{%trans "You really want to go?"%}'
