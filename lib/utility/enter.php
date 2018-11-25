@@ -892,6 +892,12 @@ class enter
 		// to no check again
 		self::set_session('twostep_is_ok', true);
 
+
+		if(is_numeric(self::user_data('id')) && !self::user_data('verifymobile'))
+		{
+			\dash\db\users::update(['verifymobile' => 1], self::user_data('id'));
+		}
+
 		/**
 		 ***********************************************************
 		 * VERIFY FROM
