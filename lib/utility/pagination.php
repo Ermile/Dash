@@ -119,6 +119,7 @@ class pagination
 		$desc = T_("page :current of :total", ['current' => $page, 'total' => $total_page]);
 		$desc .= ' - ';
 		$desc .= T_("Show record :min to :max of :total", ['min' => $record_from, 'max' => $record_to, 'total' => $_total_rows]);
+		$desc = \dash\utility\human::fitNumber($desc);
 		self::detail('desc', $desc);
 
 		return [$start_limit, $end_limit];
