@@ -15,7 +15,7 @@ class pagination
 	 *
 	 * @return     <type>  ( description_of_the_return_value )
 	 */
-	public static function detail($_key, $_value = null)
+	public static function detail($_key = null, $_value = null)
 	{
 		if(isset($_value))
 		{
@@ -23,14 +23,22 @@ class pagination
 		}
 		else
 		{
-			if(array_key_exists($_key, self::$detail))
+			if($_key)
 			{
-				return self::$detail[$_key];
+				if(array_key_exists($_key, self::$detail))
+				{
+					return self::$detail[$_key];
+				}
+				else
+				{
+					return null;
+				}
 			}
 			else
 			{
-				return null;
+				return self::$detail;
 			}
+
 		}
 	}
 
@@ -94,6 +102,25 @@ class pagination
 		self::detail('total_page', $total_page);
 		self::detail('limit', $limit);
 		self::detail('total_rows', $_total_rows);
+
+		// set from and to
+		$record_from = $start_limit + 1;
+		$record_to = $start_limit + $end_limit;
+		if($record_to > $_total_rows)
+		{
+			$record_to = $_total_rows;
+		}
+
+		self::detail('from', $record_from);
+		self::detail('to', $record_to);
+
+		// create desc of pagination
+		// page 3 of 20 - Show record 21 to 30 from 200
+		$desc = T_("page :current of :total", ['current' => $page, 'total' => $total_page]);
+		$desc .= ' - ';
+		$desc .= T_("Show record :min to :max of :total", ['min' => $record_from, 'max' => $record_to, 'total' => $_total_rows]);
+		self::detail('desc', $desc);
+
 		return [$start_limit, $end_limit];
 	}
 
@@ -324,62 +351,6 @@ class pagination
 			$result[$key]['total_rows'] = self::detail('total_rows');
 		}
 
-		return $result;
-	}
-
-
-	public static function desc()
-	{
-		$myDetail = self::$detail;
-		if(!$myDetail)
-		{
-			return null;
-		}
-		// page 3 of 20 - Show record 21 to 30 from 200
-		$result = '';
-		if(isset($myDetail['page']))
-		{
-			$result .= T_('Page'). ' ';
-			$result .= $myDetail['page'];
-		}
-		$result .= ' ';
-
-		if(isset($myDetail['total_page']))
-		{
-			$result .= T_('of'). ' ';
-			$result .= $myDetail['total_page'];
-		}
-		$result .= ' - ';
-
-		if(isset($myDetail['start_limit']))
-		{
-			$result .= T_('Show record'). ' ';
-			$result .= $myDetail['start_limit'];
-
-			if(isset($myDetail['end_limit']))
-			{
-				$result .= ' '. T_('to'). ' ';
-				$result .= $myDetail['start_limit'] + $myDetail['end_limit'];
-			}
-		}
-
-
-		// from
-		$result .= ' ';
-		if(isset($myDetail['total_page']))
-		{
-			$result .= T_('from'). ' ';
-			$result .= $myDetail['total_rows']. ' ';
-			$result .= T_('record');
-		}
-
-
-
-		var_dump($result);
-		var_dump(self::$detail);
-		// exit();
-
-		// $result .= T_('Total records');
 		return $result;
 	}
 }
