@@ -50,6 +50,7 @@ class twig
 		}
 
 		\dash\data::pagination(\dash\utility\pagination::page_number());
+		\dash\data::paginationDesc(\dash\utility\pagination::desc());
 
 		// twig method
 		require_once core.'addons/lib/Twig/lib/Twig/Autoloader.php';

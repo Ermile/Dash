@@ -326,5 +326,61 @@ class pagination
 
 		return $result;
 	}
+
+
+	public static function desc()
+	{
+		$myDetail = self::$detail;
+		if(!$myDetail)
+		{
+			return null;
+		}
+		// page 3 of 20 - Show record 21 to 30 from 200
+		$result = '';
+		if(isset($myDetail['page']))
+		{
+			$result .= T_('Page'). ' ';
+			$result .= $myDetail['page'];
+		}
+		$result .= ' ';
+
+		if(isset($myDetail['total_page']))
+		{
+			$result .= T_('of'). ' ';
+			$result .= $myDetail['total_page'];
+		}
+		$result .= ' - ';
+
+		if(isset($myDetail['start_limit']))
+		{
+			$result .= T_('Show record'). ' ';
+			$result .= $myDetail['start_limit'];
+
+			if(isset($myDetail['end_limit']))
+			{
+				$result .= ' '. T_('to'). ' ';
+				$result .= $myDetail['start_limit'] + $myDetail['end_limit'];
+			}
+		}
+
+
+		// from
+		$result .= ' ';
+		if(isset($myDetail['total_page']))
+		{
+			$result .= T_('from'). ' ';
+			$result .= $myDetail['total_rows']. ' ';
+			$result .= T_('record');
+		}
+
+
+
+		var_dump($result);
+		var_dump(self::$detail);
+		// exit();
+
+		// $result .= T_('Total records');
+		return $result;
+	}
 }
 ?>
