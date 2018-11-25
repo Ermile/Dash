@@ -37,7 +37,7 @@ class ticket_AddNoteTicket
 
 	public static function send_to()
 	{
-		return ['notifTicket'];
+		return ['supportTicketAddNote'];
 	}
 
 	public static function is_notif()

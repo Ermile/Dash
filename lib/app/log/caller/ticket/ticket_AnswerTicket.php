@@ -37,7 +37,7 @@ class ticket_AnswerTicket
 
 	public static function send_to()
 	{
-		return ['notifTicket'];
+		return ['supportTicketAnswer'];
 	}
 
 	public static function is_notif()

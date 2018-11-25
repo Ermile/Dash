@@ -31,7 +31,7 @@ class ticket_seeTicket
 
 	public static function send_to()
 	{
-		return ['notifTicket'];
+		return ['supportTicketAnswer'];
 	}
 
 	public static function expire()
