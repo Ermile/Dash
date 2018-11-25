@@ -25,6 +25,9 @@ class model
 			{
 				$signup['password'] = \dash\utility\enter::get_session('temp_ramz_hash');
 			}
+
+			$signup['meta'] = '{"verify_later" : true}';
+
 			$user_id = \dash\db\users::signup_quick($signup);
 
 			if(!$user_id)
