@@ -104,7 +104,7 @@ class model
 		$field               = [];
 		$field['checktoken'] = true;
 		$field['token']      = $_token;
-		$field['project']    = \dash\url::domain();
+		$field['project']    = \dash\url::site();
 
 		$handle         = curl_init();
 
