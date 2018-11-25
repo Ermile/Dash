@@ -44,7 +44,49 @@ class model
 				// db upgrade
 				\dash\db::install(true, true);
 			}
+
+			self::save_detail(true);
+
 		}
+	}
+
+	public static function save_detail($_centeral = false)
+	{
+
+		$dashLoc = null;
+		// go to root url
+		if(is_dir(root. 'dash'))
+		{
+			$dashLoc = 'inside';
+		}
+		elseif(is_dir(root. '../dash'))
+		{
+			$dashLoc = 'global';
+		}
+
+		\dash\engine\view::variable();
+
+		$return                       = [];
+		$return['lastUpdateTime']     = time();
+		$return['centeral']           = $_centeral;
+		$return['site']               = \dash\url::site();
+		$return['domain']             = \dash\url::domain();
+		$return['name']               = \dash\data::site_title();
+		$return['desc']               = \dash\data::site_desc();
+		$return['logo']               = \dash\url::site(). '/static/images/logo.png';
+		$return['dashLoc']            = $dashLoc;
+		$return['projectVersion']     = \dash\utility\git::getLastUpdate(false);
+		$return['projectCommitCount'] = \dash\utility\git::getCommitCount(false);
+		$return['version']            = \dash\engine\version::get();
+		$return['lastUpdate']         = \dash\utility\git::getLastUpdate();
+		$return['commitCount']        = \dash\utility\git::getCommitCount();
+		$return['dbVersion']          = \dash\db::db_version();
+		$return['dbVersionDate']      = \dash\db::db_version(true, false, true);
+		$return['dbVersionAddon']     = \dash\db::db_version(true, true);
+		$return['dbVersionAddonDate'] = \dash\db::db_version(true, true, true);
+
+		$file = root. '/gitdetail.me.json';
+		\dash\file::write($file, json_encode($return, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
 	}
 
 

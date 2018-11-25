@@ -19,6 +19,9 @@ class controller
 				echo $value;
 			}
 		}
+
+		\content_hook\gitdetail\model::save_detail(false);
+
 		\dash\code::boom();
 	}
 

@@ -10,6 +10,7 @@ CREATE TABLE `logs` (
 `user_id` int(10) UNSIGNED DEFAULT NULL,
 `notif` bit(1) DEFAULT NULL,
 `user_idsender` int(10) UNSIGNED DEFAULT NULL,
+`ip` INT(10) UNSIGNED NULL DEFAULT NULL,
 `readdate` timestamp NULL DEFAULT NULL,
 `telegramdate` timestamp NULL DEFAULT NULL,
 `smsdate` timestamp NULL DEFAULT NULL,

@@ -51,6 +51,9 @@ class model
 
 		\dash\log::set('su_upgradeDataBase');
 
+		\content_hook\gitdetail\model::save_detail(false);
+
+
 		\dash\code::pretty($result, true);
 		\dash\code::boom();
 
