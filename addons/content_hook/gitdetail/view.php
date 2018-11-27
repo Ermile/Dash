@@ -7,12 +7,13 @@ class view
 	public static function config()
 	{
 		$file = root. '/gitdetail.me.json';
+		$get  = null;
 		if(is_file($file))
 		{
 			$get = \dash\file::read($file);
-			echo $get;
 		}
-		\dash\code::boom();
+		\dash\code::jsonBoom($get);
+
 	}
 }
 ?>
