@@ -76,6 +76,8 @@ class safe
 
 		$_string = self::remove_2nl($_string);
 
+		$_string = self::remove_php_tag($_string);
+
 		if($htmlspecialchars)
 		{
 			$_string = strip_tags($_string);
@@ -95,6 +97,14 @@ class safe
 			$_string = str_replace(['ي', 'ك'], ['ی', 'ک'], $_string);
 			$_string = \dash\utility\convert::ar_to_fa_number($_string);
 		}
+		return $_string;
+	}
+
+
+	public static function remove_php_tag($_string)
+	{
+		$_string = str_replace('<?', '', $_string);
+		$_string = str_replace('?>', '', $_string);
 		return $_string;
 	}
 
