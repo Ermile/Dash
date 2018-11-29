@@ -24,20 +24,18 @@
 {%for value in logFileList%}
 {%if not value.is_old%}
 <div class="c2 mA5 txtC">
-  <a href='{{url.this}}?folder={{requestGET.folder}}&file={{value.name}}'>
-    <div class="msg">
-      <i class="sf-file-1 fs30"></i>
-      <div class="label"><b>{{value.name}}</b></div>
-      <div class=" txtC mT10" title="{{value.mtime | dt}}">{{value.mtime | dt('human')}}</div>
-      <div class="label">{{value.size}} {%trans "MB"%}</div>
-    </div>
+  <a class="msg block" href='{{url.this}}?folder={{requestGET.folder}}&file={{value.name}}'  title="{{value.mtime | dt(true)}}">
+    <i class="sf-file-1 fs30"></i>
+    <div class="label ltr txtB mT5">{{value.name}}</div>
+    <div class=" txtC mT10 ltr">{{value.mtime | dt('human')}}</div>
+    <div class="label txtB">{{value.size | fitNumber(false)}} {%trans "MB"%}</div>
   </a>
 </div>
 {%endif%}
 {%endfor%}
 </div>
 
-<div class="cbox fs12">
+<div class="cbox fs11">
 
   <h3 data-kerkere='.archivedLog' data-kerkere-icon>{%trans "Show archived"%}</h3>
   <div class="archivedLog" data-kerkere-content='hide'>
@@ -45,14 +43,11 @@
     <div class="f">
       {%for value in logFileList%}
         {%if value.is_old%}
-          <div class="c3 mA5 txtC">
-            <a href='{{url.this}}?folder={{requestGET.folder}}&file={{value.name}}'>
-              <div class="msg">
-
-                <b>{{value.name}}</b>
-                <div class=" txtC mT10" title="{{value.mtime | dt}}">{{value.mtime | dt('human')}}</div>
-                {{value.size}} {%trans "MB"%}
-              </div>
+          <div class="c3 pA5 txtC">
+            <a class="msg block" href='{{url.this}}?folder={{requestGET.folder}}&file={{value.name}}' title="{{value.mtime | dt(true)}}">
+                <div class="ltr txtB">{{value.name}}</div>
+                <div class=" txtC mT10 ltr" >{{value.mtime | dt('human')}}</div>
+                {{value.size | fitNumber(false)}} {%trans "MB"%}
             </a>
           </div>
         {%endif%}
