@@ -205,6 +205,49 @@ trait tools
 				}
 			}
 		}
+		elseif(is_string($_data))
+		{
+			if($_field === 'name-localname')
+			{
+				if(isset(self::$data[$_data]['name']))
+				{
+					if($_trans)
+					{
+						$_data = T_(self::$data[$_data]['name']);
+					}
+					else
+					{
+						$_data = self::$data[$_data]['name'];
+					}
+
+					if(isset(self::$data[$_data]['localname']) && self::$data[$_data]['localname'])
+					{
+						if(\dash\utility\filter::slug($_data) != \dash\utility\filter::slug(self::$data[$_data]['localname']))
+						{
+							$_data .= ' - '. self::$data[$_data]['localname'];
+						}
+					}
+				}
+				$result = $_data;
+
+			}
+			else
+			{
+				if(isset(self::$data[$_data][$_field]))
+				{
+					if($_trans)
+					{
+						$_data = T_(self::$data[$_data][$_field]);
+					}
+					else
+					{
+						$_data = self::$data[$_data][$_field];
+					}
+				}
+
+				$result = $_data;
+			}
+		}
 
 		return $result;
 	}
