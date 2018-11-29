@@ -37,26 +37,27 @@
 {%endfor%}
 </div>
 
+<div class="cbox fs12">
 
-<h3 data-kerkere='archivedLog' data-kerkere-icon>{%trans "Show archived"%}</h3>
-<div class="archivedLog" data-kerkere-content='hide'>
+  <h3 data-kerkere='.archivedLog' data-kerkere-icon>{%trans "Show archived"%}</h3>
+  <div class="archivedLog" data-kerkere-content='hide'>
 
-  <div class="f">
-    <hr>
-    {%for value in logFileList%}
-      {%if value.is_old%}
-        <div class="c2 mA5 txtC">
-          <a href='{{url.this}}?folder={{requestGET.folder}}&file={{value.name}}'>
-            <div class="msg">
+    <div class="f">
+      {%for value in logFileList%}
+        {%if value.is_old%}
+          <div class="c3 mA5 txtC">
+            <a href='{{url.this}}?folder={{requestGET.folder}}&file={{value.name}}'>
+              <div class="msg">
 
-              <b>{{value.name}}</b>
-              <div class=" txtC mT10" title="{{value.mtime | dt}}">{{value.mtime | dt('human')}}</div>
-              {{value.size}} {%trans "MB"%}
-            </div>
-          </a>
-        </div>
-      {%endif%}
-  {%endfor%}
+                <b>{{value.name}}</b>
+                <div class=" txtC mT10" title="{{value.mtime | dt}}">{{value.mtime | dt('human')}}</div>
+                {{value.size}} {%trans "MB"%}
+              </div>
+            </a>
+          </div>
+        {%endif%}
+    {%endfor%}
+    </div>
   </div>
 </div>
 {%endif%}
