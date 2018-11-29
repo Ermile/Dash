@@ -129,6 +129,8 @@ class datetime
 		{
 			return null;
 		}
+		// change all number to en number
+		$_datetime = \dash\utility\convert::to_en_number($_datetime);
 		// check number is not zero
 		$checkDate = preg_replace('/\D/', '', $_datetime);
 		$checkDate = intval($checkDate);
