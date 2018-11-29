@@ -129,6 +129,38 @@ class datetime
 		{
 			return null;
 		}
+		// check number is not zero
+		$checkDate = preg_replace('/\D/', '', $_datetime);
+		$checkDate = intval($checkDate);
+		if($checkDate === 0)
+		{
+			return null;
+		}
+		// check if strtotime is valid, on linux say invalid
+		// on windows because of shamsi problem on strtotime check length
+        $isValidDate = strtotime($_datetime);
+        if($isValidDate === false)
+        {
+            if(PHP_OS == 'Linux')
+        	{
+        		return null;
+        	}
+        	else
+        	{
+        		// it's for me on windows
+        		// i am Javad!
+                if(strlen(intval($_datetime)) > 7)
+                {
+                    // do nothing
+                    // maybe it's correct!
+                }
+                else
+                {
+                    return null;
+                }
+        	}
+        }
+
 		if($_format === 'human')
 		{
 			return \dash\utility\human::timing($_datetime, $_type);
