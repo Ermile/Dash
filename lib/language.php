@@ -236,7 +236,7 @@ class language
 				$urlPathCurrent = '';
 				if($key === $currentlang)
 				{
-					$activeClass = " class='active'";
+					$activeClass = ' class="active"';
 				}
 				if($defaultlang === $key)
 				{
@@ -285,7 +285,12 @@ class language
 					}
 				}
 
-				$lang_string .= "<a href='". $href . "'$activeClass hreflang='$key' data-direct>";
+				$lang_string .= '<a href="'. $href . '"'. $activeClass;
+				if($key)
+				{
+					$lang_string .= ' hreflang="'. $key. '"';
+				}
+				$lang_string .= ' data-direct>';
 				$lang_string .= $value;
 				$lang_string .= "</a>";
 			}
@@ -305,10 +310,9 @@ class language
 					$class = ' '. $class;
 				}
 
-				$lang_string = "<nav class='langlist$class' data-xhr='langlist' data-url='$urlPathCurrent'>". $lang_string .'</nav>';
+				$lang_string = '<nav class="langlist'. $class. '" data-xhr="langlist" data-url="'. $urlPathCurrent. '">'. $lang_string .'</nav>';
 			}
 
-			$lang_string = str_replace("'", '"', $lang_string);
 			return $lang_string;
 		}
 		else
