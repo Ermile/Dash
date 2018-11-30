@@ -189,5 +189,133 @@ class language
 			self::set_language(self::primary());
 		}
 	}
+
+
+	public static function langList()
+	{
+		$result       = null;
+		$html         = array_column(func_get_args(), 'html');
+		$all          = array_column(func_get_args(), 'all');
+		$onlyLink     = array_column(func_get_args(), 'onlyLink');
+		$class        = array_column(func_get_args(), 'class');
+		$reset        = array_column(func_get_args(), 'reset');
+		$langList     = \dash\data::get('lang', 'list');
+		$urlBase      = \dash\url::base();
+		$urlContent   = \dash\url::content();
+		$urlPath      = \dash\url::path();
+		$urlDirectory = \dash\url::directory();
+		$currentlang  = \dash\language::current();
+		$defaultlang  = \dash\language::primary();
+		$urlParam     = \dash\url::query();
+		$urlLocation  = '';
+
+		// create location of link
+		if($urlDirectory)
+		{
+			$urlLocation = '/'. $urlDirectory;
+		}
+		if($urlParam)
+		{
+			$urlLocation .= '?'. $urlParam;
+		}
+
+
+		if(!$all)
+		{
+			unset($langList[$currentlang]);
+		}
+
+		if($html)
+		{
+			$lang_string    = '';
+			$urlPathCurrent = '';
+			foreach ($langList as $key => $value)
+			{
+				$href           = $urlBase;
+				$activeClass    = '';
+				$urlPathCurrent = '';
+				if($key === $currentlang)
+				{
+					$activeClass = " class='active'";
+				}
+				if($defaultlang === $key)
+				{
+					$key = "";
+				}
+				if($key)
+				{
+					$href           .= '/'.$key;
+				}
+
+				if($urlContent)
+				{
+					$href           .= '/'. $urlContent;
+					$urlPathCurrent .= '/'. $urlContent;
+				}
+				if($urlLocation)
+				{
+					if(\dash\url::content() === 'support')
+					{
+						if(\dash\url::module() === 'ticket')
+						{
+							// support ticket is the same
+							$href           .= $urlLocation;
+							$urlPathCurrent .= $urlLocation;
+						}
+						else
+						{
+							// do nothing
+							// in support links in not exact in each language
+							// because of that we are not add content
+							// to addr of another language
+						}
+					}
+					elseif(\dash\url::content() === null && \dash\data::datarow())
+					{
+						// do nothing
+						// because we are in main content and datarow is filled
+						// in this condition we dont know to have exact news in another lang
+						// because of that all links related to main content
+					}
+					else
+					{
+						// add if we are not in cms
+						$href           .= $urlLocation;
+						$urlPathCurrent .= $urlLocation;
+					}
+				}
+
+				$lang_string .= "<a href='". $href . "'$activeClass hreflang='$key' data-direct>";
+				$lang_string .= $value;
+				$lang_string .= "</a>";
+			}
+
+			if(!$onlyLink)
+			{
+				if(is_array($class) && isset($class[0]))
+				{
+					$class = $class[0];
+				}
+				if(!is_string($class) || !$class)
+				{
+					$class = '';
+				}
+				else
+				{
+					$class = ' '. $class;
+				}
+
+				$lang_string = "<nav class='langlist$class' data-xhr='langlist' data-url='$urlPathCurrent'>". $lang_string .'</nav>';
+			}
+
+			$lang_string = str_replace("'", '"', $lang_string);
+			return $lang_string;
+		}
+		else
+		{
+			return $langList;
+		}
+	}
+
 }
 ?>
