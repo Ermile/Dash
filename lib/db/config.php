@@ -552,6 +552,7 @@ class config
 			"public_show_field" => null,
 			"master_join"       => null,
 			"db_name"           => true,
+			"group_by"			=> null,
 		];
 
 		// if limit not set and the pagenation is false
@@ -682,6 +683,13 @@ class config
 			$search_field = $_options['search_field'];
 		}
 
+
+		$group_by = null;
+		if($_options['group_by'])
+		{
+			$group_by = $_options['group_by'];
+		}
+
 		$db_name = $_options['db_name'];
 
 		unset($_options['pagenation']);
@@ -697,6 +705,7 @@ class config
 		unset($_options['master_join']);
 		unset($_options['order_raw']);
 		unset($_options['db_name']);
+		unset($_options['group_by']);
 
 		foreach ($_options as $key => $value)
 		{
@@ -758,7 +767,7 @@ class config
 
 		if($pagenation && !$get_count)
 		{
-			$pagenation_query = "SELECT	COUNT(*) AS `count`	FROM `$_table` $master_join	$where $search ";
+			$pagenation_query = "SELECT	COUNT(*) AS `count`	FROM `$_table` $master_join	$where $search $group_by ";
 			$pagenation_query = \dash\db::get($pagenation_query, 'count', true, $db_name);
 
 			list($limit_start, $limit) = \dash\db::pagnation((int) $pagenation_query, $limit);
@@ -779,7 +788,7 @@ class config
 			$limit = null;
 		}
 
-		$query = "SELECT $public_fields $where $search $order $limit";
+		$query = "SELECT $public_fields $where $search $group_by $order $limit";
 
 		if(!$only_one_value)
 		{
