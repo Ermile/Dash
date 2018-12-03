@@ -54,6 +54,7 @@ class controller
 			}
 		}
 
+		// need set parameter, because some project run on subdomain
 		// if(\dash\url::subdomain())
 		// {
 		// 	// remove subdomain
