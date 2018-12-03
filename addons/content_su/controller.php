@@ -54,11 +54,11 @@ class controller
 			}
 		}
 
-		if(\dash\url::subdomain())
-		{
-			// remove subdomain
-			\dash\redirect::to(\dash\url::site(). \dash\url::path());
-		}
+		// if(\dash\url::subdomain())
+		// {
+		// 	// remove subdomain
+		// 	\dash\redirect::to(\dash\url::site(). \dash\url::path());
+		// }
 	}
 }
 ?>
