@@ -29,7 +29,13 @@ class model
 
 		\dash\utility\enter::set_session('sendsms_code', $code);
 
-		$log_id = \dash\db\logs::set('enter:get:sms:from:user', $user_id, ['data' => $code, 'meta' => ['session' => $_SESSION]]);
+		$save_log =
+		[
+			'to'   => $user_id,
+			'code' => $code,
+		];
+
+		$log_id = \dash\log::set('enterGetSmsFromUser', $save_log);
 
 		\dash\utility\enter::set_session('sendsms_code_log_id', $log_id);
 

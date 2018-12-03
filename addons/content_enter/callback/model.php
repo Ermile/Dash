@@ -68,9 +68,9 @@ class model
 
 		$find_log =
 		[
-			'caller'     => 'enter:get:sms:from:user',
-			'user_id'    => $user_id,
-			'data'   => $message,
+			'caller' => 'enterGetSmsFromUser',
+			'to'     => $user_id,
+			'code'   => $message,
 			'status' => 'enable',
 		];
 
