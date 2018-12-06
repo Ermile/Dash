@@ -6,7 +6,9 @@
 
 <li><a href="{{url.kingdom}}/a"><i class='sf-gauge'></i> <span>{% trans "Dashboard" %}</span></a></li>
 <li><a href="{{url.here}}/profile"><i class="sf-user"></i>{%trans "Profile"%}</a></li>
+{%if options.billing_page%}
 <li><a href="{{url.here}}/billing"><i class="sf-credit-card"></i>{%trans "Billing"%}</a></li>
+{%endif%}
 <li><a href="{{url.here}}/address"><i class="sf-pin"></i>{%trans "Address"%}</a></li>
 
 <li class="hr"></li>

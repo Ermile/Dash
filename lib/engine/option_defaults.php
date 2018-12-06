@@ -101,6 +101,10 @@ self::$config['allow_post_type'] =
 	'meeting',
 ];
 
+// load billing page
+// in some project we need to lock this page
+self::$config['billing_page'] = true;
+
 // ----- comming soon page
 self::$config['coming']                                = false;
 

@@ -10,12 +10,13 @@
  </div>
 </a>
 
-
+{%if options.billing_page%}
 <a class="dcard x2" href='{{url.here}}/billing'>
  <div class="statistic">
   <div class="value"><i class="sf-card"></i></div>
   <div class="label">{%trans "Billing"%}</div>
  </div>
 </a>
+{%endif%}
 {%endblock%}
 
