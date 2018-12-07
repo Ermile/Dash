@@ -23,6 +23,8 @@ class controller
 				{
 					// set default timeout for socket
         			ini_set("default_socket_timeout", 10);
+			        ini_set('soap.wsdl_cache_enabled',0);
+			        ini_set('soap.wsdl_cache_ttl',0);
 
 					\dash\log::set('paymentVerifyCall');
 					("\\dash\\utility\\payment\\verify\\$payment")::$payment($args);
