@@ -76,8 +76,9 @@ class model
 
 		if(\dash\engine\process::status())
 		{
-			\dash\log::set('editProfileOther', ['code' => \dash\user::id()]);
 			\dash\user::refresh();
+			\dash\notif::direct(true);
+			\dash\log::set('editProfileOther', ['code' => \dash\user::id()]);
 			\dash\redirect::pwd();
 		}
 	}
