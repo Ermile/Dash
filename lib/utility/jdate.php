@@ -634,6 +634,12 @@ class jdate
         return $check ? true : false;
     }
 
+    private static function substr_month_day($_date)
+    {
+        $date = preg_replace("/\D/", '', $_date);
+        return substr($date, 4);
+    }
+
 
     /**
      * change date to gregorian
@@ -649,9 +655,28 @@ class jdate
 
         if(self::check_is_date($_date))
         {
-            $year  = (new \DateTime($_date))->format("Y");
-            $month = (new \DateTime($_date))->format("m");
-            $day   = (new \DateTime($_date))->format("d");
+            $different_days =
+            [
+                '0229' => '0301',
+                '0230' => '0302',
+                '0231' => '0303',
+                '0431' => '0501',
+                '0631' => '0701',
+            ];
+
+            if(in_array(self::substr_month_day($_date), array_keys($different_days)))
+            {
+                $year  = (new \DateTime($_date))->format("Y");
+                $month = substr(self::substr_month_day($_date), 0, 2);
+                $day   = substr(self::substr_month_day($_date), 2, 2);
+            }
+            else
+            {
+                $year  = (new \DateTime($_date))->format("Y");
+                $month = (new \DateTime($_date))->format("m");
+                $day   = (new \DateTime($_date))->format("d");
+            }
+
             list($year, $month, $day) = self::toGregorian($year, $month, $day);
             return date($_format, strtotime("$year-$month-$day"));
         }
