@@ -6219,7 +6219,7 @@ msgstr "نمایش دسته‌بندی‌ها در کنترل پنل"
 
 #: addons/includes/languages/trans_static.php:450
 msgid "cpTagView"
-msgstr "نایش کلید‌واژه‌ها در کنترل پنل"
+msgstr "نمایش کلید‌واژه‌ها در کنترل پنل"
 
 #: addons/includes/languages/trans_static.php:451
 msgid "cpCategoryEdit"
