@@ -134,7 +134,7 @@ class datetime
 		// check number is not zero
 		$checkDate = preg_replace('/\D/', '', $_datetime);
 		$checkDate = intval($checkDate);
-		if($checkDate === 0)
+		if($_datetime !== "now" && $checkDate === 0)
 		{
 			return null;
 		}
