@@ -1115,6 +1115,10 @@ class TransStatic
 	echo T_("Back to unsolved");
 	echo T_("Remove temp csv file");
 
+	echo T_("contentCrm");
+	echo T_("CRM");
+	echo T_("CP");
+	echo T_("Customer relationship management");
  }
 }
 ?>
