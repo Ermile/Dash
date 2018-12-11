@@ -103,7 +103,11 @@ class permission
 			self::$project_group     = self::read_file(root.'/includes/permission/group.me.json');
 
 			self::$core_perm_list    = self::read_file(core.'addons/includes/permission/list.json');
-			self::$core_group        = self::read_file(core.'addons/includes/permission/group.json');
+
+			if(!self::$project_group)
+			{
+				self::$core_group        = self::read_file(core.'addons/includes/permission/group.json');
+			}
 
 			if(is_callable(['\lib\permission', 'perm_list']))
 			{
