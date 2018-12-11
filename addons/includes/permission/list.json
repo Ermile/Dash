@@ -467,6 +467,22 @@
 
 
 
+ "supportTicketTrash":
+  {
+    "title": "supportTicketTrash",
+    "cat": "Support Panel",
+    "require": []
+  },
+
+"cpSupportTagAdd":
+  {
+    "title": "cpSupportTagAdd",
+    "cat": "Support Panel",
+    "require": []
+  },
+
+
+
 
 
 

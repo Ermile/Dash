@@ -1119,6 +1119,9 @@ class TransStatic
 	echo T_("CRM");
 	echo T_("CP");
 	echo T_("Customer relationship management");
+
+	echo T_("supportTicketTrash");
+	echo T_("cpSupportTagAdd");
  }
 }
 ?>
