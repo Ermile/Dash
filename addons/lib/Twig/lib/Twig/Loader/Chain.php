@@ -22,7 +22,7 @@ class Twig_Loader_Chain implements Twig_LoaderInterface, Twig_ExistsLoaderInterf
     protected $loaders = array();
 
     /**
-     * @param Twig_LoaderInterfacearray() $loaders
+     * @param Twig_LoaderInterface[] $loaders
      */
     public function __construct(array $loaders = array())
     {
@@ -33,7 +33,7 @@ class Twig_Loader_Chain implements Twig_LoaderInterface, Twig_ExistsLoaderInterf
 
     public function addLoader(Twig_LoaderInterface $loader)
     {
-        $this->loadersarray() = $loader;
+        $this->loaders[] = $loader;
         $this->hasSourceCache = array();
     }
 
@@ -50,7 +50,7 @@ class Twig_Loader_Chain implements Twig_LoaderInterface, Twig_ExistsLoaderInterf
             try {
                 return $loader->getSource($name);
             } catch (Twig_Error_Loader $e) {
-                $exceptionsarray() = $e->getMessage();
+                $exceptions[] = $e->getMessage();
             }
         }
 
@@ -72,7 +72,7 @@ class Twig_Loader_Chain implements Twig_LoaderInterface, Twig_ExistsLoaderInterf
 
                 return new Twig_Source($loader->getSource($name), $name);
             } catch (Twig_Error_Loader $e) {
-                $exceptionsarray() = $e->getMessage();
+                $exceptions[] = $e->getMessage();
             }
         }
 
@@ -122,7 +122,7 @@ class Twig_Loader_Chain implements Twig_LoaderInterface, Twig_ExistsLoaderInterf
             try {
                 return $loader->getCacheKey($name);
             } catch (Twig_Error_Loader $e) {
-                $exceptionsarray() = get_class($loader).': '.$e->getMessage();
+                $exceptions[] = get_class($loader).': '.$e->getMessage();
             }
         }
 
@@ -140,7 +140,7 @@ class Twig_Loader_Chain implements Twig_LoaderInterface, Twig_ExistsLoaderInterf
             try {
                 return $loader->isFresh($name, $time);
             } catch (Twig_Error_Loader $e) {
-                $exceptionsarray() = get_class($loader).': '.$e->getMessage();
+                $exceptions[] = get_class($loader).': '.$e->getMessage();
             }
         }
 

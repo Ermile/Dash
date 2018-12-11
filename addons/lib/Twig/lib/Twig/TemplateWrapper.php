@@ -71,7 +71,7 @@ final class Twig_TemplateWrapper
      *
      * @param array $context An array of parameters to pass to the template
      *
-     * @return stringarray() An array of defined template block names
+     * @return string[] An array of defined template block names
      */
     public function getBlockNames($context = array())
     {

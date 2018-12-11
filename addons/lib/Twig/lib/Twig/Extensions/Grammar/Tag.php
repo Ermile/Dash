@@ -14,7 +14,7 @@ class Twig_Extensions_Grammar_Tag extends Twig_Extensions_Grammar
 
     public function __construct()
     {
-        $this->grammar = array();
+        $this->grammar = [];
         foreach (func_get_args() as $grammar) {
             $this->addGrammar($grammar);
         }
@@ -22,9 +22,9 @@ class Twig_Extensions_Grammar_Tag extends Twig_Extensions_Grammar
 
     public function __toString()
     {
-        $repr = array();
+        $repr = [];
         foreach ($this->grammar as $grammar) {
-            $reprarray() = (string) $grammar;
+            $repr[] = (string) $grammar;
         }
 
         return implode(' ', $repr);
@@ -32,12 +32,12 @@ class Twig_Extensions_Grammar_Tag extends Twig_Extensions_Grammar
 
     public function addGrammar(Twig_Extensions_GrammarInterface $grammar)
     {
-        $this->grammararray() = $grammar;
+        $this->grammar[] = $grammar;
     }
 
     public function parse(Twig_Token $token)
     {
-        $elements = array();
+        $elements = [];
         foreach ($this->grammar as $grammar) {
             $grammar->setParser($this->parser);
 

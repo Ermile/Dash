@@ -78,7 +78,7 @@ class Twig_Util_DeprecationCollector
     public function errorHandler($type, $msg)
     {
         if (E_USER_DEPRECATED === $type) {
-            $this->deprecationsarray() = $msg;
+            $this->deprecations[] = $msg;
         }
     }
 }

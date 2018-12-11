@@ -16,11 +16,11 @@
  */
 class Twig_Environment
 {
-    const VERSION = '1.34.3';
-    const VERSION_ID = 13403;
+    const VERSION = '1.35.4';
+    const VERSION_ID = 13504;
     const MAJOR_VERSION = 1;
-    const MINOR_VERSION = 34;
-    const RELEASE_VERSION = 3;
+    const MINOR_VERSION = 35;
+    const RELEASE_VERSION = 4;
     const EXTRA_VERSION = '';
 
     protected $charset;
@@ -58,6 +58,7 @@ class Twig_Environment
     private $runtimeLoaders = array();
     private $runtimes = array();
     private $optionsHash;
+    private $loading = array();
 
     /**
      * Constructor.
@@ -131,14 +132,14 @@ class Twig_Environment
         // For BC
         if (is_string($this->originalCache)) {
             $r = new ReflectionMethod($this, 'writeCacheFile');
-            if ($r->getDeclaringClass()->getName() !== __CLASS__) {
+            if (__CLASS__ !== $r->getDeclaringClass()->getName()) {
                 @trigger_error('The Twig_Environment::writeCacheFile method is deprecated since version 1.22 and will be removed in Twig 2.0.', E_USER_DEPRECATED);
 
                 $this->bcWriteCacheFile = true;
             }
 
             $r = new ReflectionMethod($this, 'getCacheFilename');
-            if ($r->getDeclaringClass()->getName() !== __CLASS__) {
+            if (__CLASS__ !== $r->getDeclaringClass()->getName()) {
                 @trigger_error('The Twig_Environment::getCacheFilename method is deprecated since version 1.22 and will be removed in Twig 2.0.', E_USER_DEPRECATED);
 
                 $this->bcGetCacheFilename = true;
@@ -382,6 +383,10 @@ class Twig_Environment
      *
      * @param string|Twig_TemplateWrapper|Twig_Template $name The template name
      *
+     * @throws Twig_Error_Loader  When the template cannot be found
+     * @throws Twig_Error_Runtime When a previously generated cache is corrupted
+     * @throws Twig_Error_Syntax  When an error occurred during compilation
+     *
      * @return Twig_TemplateWrapper
      */
     public function load($name)
@@ -472,7 +477,22 @@ class Twig_Environment
             $this->initRuntime();
         }
 
-        return $this->loadedTemplates[$cls] = new $cls($this);
+        if (isset($this->loading[$cls])) {
+            throw new Twig_Error_Runtime(sprintf('Circular reference detected for Twig template "%s", path: %s.', $name, implode(' -> ', array_merge($this->loading, array($name)))));
+        }
+
+        $this->loading[$cls] = $name;
+
+        try {
+            $this->loadedTemplates[$cls] = new $cls($this);
+            unset($this->loading[$cls]);
+        } catch (\Exception $e) {
+            unset($this->loading[$cls]);
+
+            throw $e;
+        }
+
+        return $this->loadedTemplates[$cls];
     }
 
     /**
@@ -542,12 +562,12 @@ class Twig_Environment
     /**
      * Tries to load a template consecutively from an array.
      *
-     * Similar to loadTemplate() but it also accepts Twig_TemplateInterface instances and an array
-     * of templates where each is tried to be loaded.
+     * Similar to loadTemplate() but it also accepts instances of Twig_Template and
+     * Twig_TemplateWrapper, and an array of templates where each is tried to be loaded.
      *
-     * @param string|Twig_Template|array $names A template or an array of templates to try consecutively
+     * @param string|Twig_Template|Twig_TemplateWrapper|array $names A template or an array of templates to try consecutively
      *
-     * @return Twig_Template
+     * @return Twig_Template|Twig_TemplateWrapper
      *
      * @throws Twig_Error_Loader When none of the templates can be found
      * @throws Twig_Error_Syntax When an error occurred during compilation
@@ -560,6 +580,10 @@ class Twig_Environment
 
         foreach ($names as $name) {
             if ($name instanceof Twig_Template) {
+                return $name;
+            }
+
+            if ($name instanceof Twig_TemplateWrapper) {
                 return $name;
             }
 
@@ -853,7 +877,7 @@ class Twig_Environment
      */
     public function addRuntimeLoader(Twig_RuntimeLoaderInterface $loader)
     {
-        $this->runtimeLoadersarray() = $loader;
+        $this->runtimeLoaders[] = $loader;
     }
 
     /**
@@ -982,7 +1006,7 @@ class Twig_Environment
     /**
      * Returns all registered extensions.
      *
-     * @return Twig_ExtensionInterfacearray() An array of extensions (keys are for internal usage only and should not be relied on)
+     * @return Twig_ExtensionInterface[] An array of extensions (keys are for internal usage only and should not be relied on)
      */
     public function getExtensions()
     {
@@ -1019,7 +1043,7 @@ class Twig_Environment
      *
      * Be warned that this method cannot return tags defined by Twig_TokenParserBrokerInterface classes.
      *
-     * @return Twig_TokenParserInterfacearray()
+     * @return Twig_TokenParserInterface[]
      *
      * @internal
      */
@@ -1047,7 +1071,7 @@ class Twig_Environment
     /**
      * Gets the registered Node Visitors.
      *
-     * @return Twig_NodeVisitorInterfacearray()
+     * @return Twig_NodeVisitorInterface[]
      *
      * @internal
      */
@@ -1132,7 +1156,7 @@ class Twig_Environment
 
     public function registerUndefinedFilterCallback($callable)
     {
-        $this->filterCallbacksarray() = $callable;
+        $this->filterCallbacks[] = $callable;
     }
 
     /**
@@ -1140,7 +1164,7 @@ class Twig_Environment
      *
      * Be warned that this method cannot return filters defined with registerUndefinedFilterCallback.
      *
-     * @return Twig_FilterInterfacearray()
+     * @return Twig_FilterInterface[]
      *
      * @see registerUndefinedFilterCallback
      *
@@ -1184,7 +1208,7 @@ class Twig_Environment
     /**
      * Gets the registered Tests.
      *
-     * @return Twig_TestInterfacearray()
+     * @return Twig_TestInterface[]
      *
      * @internal
      */
@@ -1291,7 +1315,7 @@ class Twig_Environment
 
     public function registerUndefinedFunctionCallback($callable)
     {
-        $this->functionCallbacksarray() = $callable;
+        $this->functionCallbacks[] = $callable;
     }
 
     /**
@@ -1299,7 +1323,7 @@ class Twig_Environment
      *
      * Be warned that this method cannot return functions defined with registerUndefinedFunctionCallback.
      *
-     * @return Twig_FunctionInterfacearray()
+     * @return Twig_FunctionInterface[]
      *
      * @see registerUndefinedFunctionCallback
      *
@@ -1447,10 +1471,10 @@ class Twig_Environment
                 throw new UnexpectedValueException(sprintf('"%s::getGlobals()" must return an array of globals.', get_class($extension)));
             }
 
-            $globalsarray() = $extGlob;
+            $globals[] = $extGlob;
         }
 
-        $globalsarray() = $this->staging->getGlobals();
+        $globals[] = $this->staging->getGlobals();
 
         return call_user_func_array('array_merge', $globals);
     }
@@ -1533,7 +1557,7 @@ class Twig_Environment
 
         // node visitors
         foreach ($extension->getNodeVisitors() as $visitor) {
-            $this->visitorsarray() = $visitor;
+            $this->visitors[] = $visitor;
         }
 
         // operators

@@ -59,7 +59,7 @@ if (function_exists('mb_get_info')) {
 
     function twig_wordwrap_filter(Twig_Environment $env, $value, $length = 80, $separator = "\n", $preserve = false)
     {
-        $sentences = array();
+        $sentences = [];
 
         $previous = mb_regex_encoding();
         mb_regex_encoding($env->getCharset());
@@ -69,11 +69,11 @@ if (function_exists('mb_get_info')) {
 
         foreach ($pieces as $piece) {
             while(!$preserve && mb_strlen($piece, $env->getCharset()) > $length) {
-                $sentencesarray() = mb_substr($piece, 0, $length, $env->getCharset());
+                $sentences[] = mb_substr($piece, 0, $length, $env->getCharset());
                 $piece = mb_substr($piece, $length, 2048, $env->getCharset());
             }
 
-            $sentencesarray() = $piece;
+            $sentences[] = $piece;
         }
 
         return implode($separator, $sentences);

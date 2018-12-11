@@ -78,7 +78,7 @@ class Twig_Profiler_Profile implements IteratorAggregate, Serializable
 
     public function addProfile(Twig_Profiler_Profile $profile)
     {
-        $this->profilesarray() = $profile;
+        $this->profiles[] = $profile;
     }
 
     /**
@@ -143,6 +143,12 @@ class Twig_Profiler_Profile implements IteratorAggregate, Serializable
             'mu' => memory_get_usage(),
             'pmu' => memory_get_peak_usage(),
         );
+    }
+
+    public function reset()
+    {
+        $this->starts = $this->ends = $this->profiles = array();
+        $this->enter();
     }
 
     public function getIterator()

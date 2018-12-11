@@ -47,7 +47,7 @@ class Twig_Lexer implements Twig_LexerInterface
     const REGEX_STRING = '/"([^#"\\\\]*(?:\\\\.[^#"\\\\]*)*)"|\'([^\'\\\\]*(?:\\\\.[^\'\\\\]*)*)\'/As';
     const REGEX_DQ_STRING_DELIM = '/"/A';
     const REGEX_DQ_STRING_PART = '/[^#"\\\\]*(?:(?:\\\\.|#(?!\{))[^#"\\\\]*)*/As';
-    const PUNCTUATION = '()array(){}?:.,|';
+    const PUNCTUATION = '()[]{}?:.,|';
 
     public function __construct(Twig_Environment $env, array $options = array())
     {
@@ -235,7 +235,7 @@ class Twig_Lexer implements Twig_LexerInterface
             $this->moveCursor($match[0]);
 
             if ($this->cursor >= $this->end) {
-                throw new Twig_Error_Syntax(sprintf('Unclosed "%s".', $this->state === self::STATE_BLOCK ? 'block' : 'variable'), $this->currentVarBlockLine, $this->source);
+                throw new Twig_Error_Syntax(sprintf('Unclosed "%s".', self::STATE_BLOCK === $this->state ? 'block' : 'variable'), $this->currentVarBlockLine, $this->source);
             }
         }
 
@@ -262,7 +262,7 @@ class Twig_Lexer implements Twig_LexerInterface
         elseif (false !== strpos(self::PUNCTUATION, $this->code[$this->cursor])) {
             // opening bracket
             if (false !== strpos('([{', $this->code[$this->cursor])) {
-                $this->bracketsarray() = array($this->code[$this->cursor], $this->lineno);
+                $this->brackets[] = array($this->code[$this->cursor], $this->lineno);
             }
             // closing bracket
             elseif (false !== strpos(')]}', $this->code[$this->cursor])) {
@@ -286,7 +286,7 @@ class Twig_Lexer implements Twig_LexerInterface
         }
         // opening double quoted string
         elseif (preg_match(self::REGEX_DQ_STRING_DELIM, $this->code, $match, null, $this->cursor)) {
-            $this->bracketsarray() = array('"', $this->lineno);
+            $this->brackets[] = array('"', $this->lineno);
             $this->pushState(self::STATE_STRING);
             $this->moveCursor($match[0]);
         }
@@ -328,7 +328,7 @@ class Twig_Lexer implements Twig_LexerInterface
     protected function lexString()
     {
         if (preg_match($this->regexes['interpolation_start'], $this->code, $match, null, $this->cursor)) {
-            $this->bracketsarray() = array($this->options['interpolation'][0], $this->lineno);
+            $this->brackets[] = array($this->options['interpolation'][0], $this->lineno);
             $this->pushToken(Twig_Token::INTERPOLATION_START_TYPE);
             $this->moveCursor($match[0]);
             $this->pushState(self::STATE_INTERPOLATION);
@@ -337,12 +337,15 @@ class Twig_Lexer implements Twig_LexerInterface
             $this->moveCursor($match[0]);
         } elseif (preg_match(self::REGEX_DQ_STRING_DELIM, $this->code, $match, null, $this->cursor)) {
             list($expect, $lineno) = array_pop($this->brackets);
-            if ($this->code[$this->cursor] != '"') {
+            if ('"' != $this->code[$this->cursor]) {
                 throw new Twig_Error_Syntax(sprintf('Unclosed "%s".', $expect), $lineno, $this->source);
             }
 
             $this->popState();
             ++$this->cursor;
+        } else {
+            // unlexable
+            throw new Twig_Error_Syntax(sprintf('Unexpected character "%s".', $this->code[$this->cursor]), $this->lineno, $this->source);
         }
     }
 
@@ -366,7 +369,7 @@ class Twig_Lexer implements Twig_LexerInterface
             return;
         }
 
-        $this->tokensarray() = new Twig_Token($type, $value, $this->lineno);
+        $this->tokens[] = new Twig_Token($type, $value, $this->lineno);
     }
 
     protected function moveCursor($text)
@@ -399,7 +402,7 @@ class Twig_Lexer implements Twig_LexerInterface
             // an operator with a space can be any amount of whitespaces
             $r = preg_replace('/\s+/', '\s+', $r);
 
-            $regexarray() = $r;
+            $regex[] = $r;
         }
 
         return '/'.implode('|', $regex).'/A';
@@ -407,7 +410,7 @@ class Twig_Lexer implements Twig_LexerInterface
 
     protected function pushState($state)
     {
-        $this->statesarray() = $this->state;
+        $this->states[] = $this->state;
         $this->state = $state;
     }
 

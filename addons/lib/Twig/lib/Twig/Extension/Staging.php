@@ -57,7 +57,7 @@ class Twig_Extension_Staging extends Twig_Extension
 
     public function addNodeVisitor(Twig_NodeVisitorInterface $visitor)
     {
-        $this->visitorsarray() = $visitor;
+        $this->visitors[] = $visitor;
     }
 
     public function getNodeVisitors()

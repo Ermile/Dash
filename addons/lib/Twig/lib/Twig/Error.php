@@ -334,7 +334,7 @@ class Twig_Error extends Exception
 
         $exceptions = array($e = $this);
         while (($e instanceof self || method_exists($e, 'getPrevious')) && $e = $e->getPrevious()) {
-            $exceptionsarray() = $e;
+            $exceptions[] = $e;
         }
 
         while ($e = array_pop($exceptions)) {

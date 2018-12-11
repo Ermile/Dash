@@ -25,7 +25,15 @@ abstract class Twig_Test_IntegrationTestCase extends TestCase
     abstract protected function getFixturesDir();
 
     /**
-     * @return Twig_ExtensionInterfacearray()
+     * @return Twig_RuntimeLoaderInterface[]
+     */
+    protected function getRuntimeLoaders()
+    {
+        return array();
+    }
+
+    /**
+     * @return Twig_ExtensionInterface[]
      */
     protected function getExtensions()
     {
@@ -33,7 +41,7 @@ abstract class Twig_Test_IntegrationTestCase extends TestCase
     }
 
     /**
-     * @return Twig_SimpleFilterarray()
+     * @return Twig_SimpleFilter[]
      */
     protected function getTwigFilters()
     {
@@ -41,7 +49,7 @@ abstract class Twig_Test_IntegrationTestCase extends TestCase
     }
 
     /**
-     * @return Twig_SimpleFunctionarray()
+     * @return Twig_SimpleFunction[]
      */
     protected function getTwigFunctions()
     {
@@ -49,7 +57,7 @@ abstract class Twig_Test_IntegrationTestCase extends TestCase
     }
 
     /**
-     * @return Twig_SimpleTestarray()
+     * @return Twig_SimpleTest[]
      */
     protected function getTwigTests()
     {
@@ -105,7 +113,7 @@ abstract class Twig_Test_IntegrationTestCase extends TestCase
                 throw new InvalidArgumentException(sprintf('Test "%s" is not valid.', str_replace($fixturesDir.'/', '', $file)));
             }
 
-            $testsarray() = array(str_replace($fixturesDir.'/', '', $file), $message, $condition, $templates, $exception, $outputs);
+            $tests[] = array(str_replace($fixturesDir.'/', '', $file), $message, $condition, $templates, $exception, $outputs);
         }
 
         if ($legacyTests && empty($tests)) {
@@ -124,7 +132,7 @@ abstract class Twig_Test_IntegrationTestCase extends TestCase
     protected function doIntegrationTest($file, $message, $condition, $templates, $exception, $outputs)
     {
         if (!$outputs) {
-            $this->markTestSkipped('no legacy tests to run');
+            $this->markTestSkipped('no tests to run');
         }
 
         if ($condition) {
@@ -143,6 +151,10 @@ abstract class Twig_Test_IntegrationTestCase extends TestCase
             ), $match[2] ? eval($match[2].';') : array());
             $twig = new Twig_Environment($loader, $config);
             $twig->addGlobal('global', 'global');
+            foreach ($this->getRuntimeLoaders() as $runtimeLoader) {
+                $twig->addRuntimeLoader($runtimeLoader);
+            }
+
             foreach ($this->getExtensions() as $extension) {
                 $twig->addExtension($extension);
             }

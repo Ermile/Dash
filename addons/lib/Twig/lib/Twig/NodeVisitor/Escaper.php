@@ -39,11 +39,11 @@ class Twig_NodeVisitor_Escaper extends Twig_BaseNodeVisitor
             $this->safeVars = array();
             $this->blocks = array();
         } elseif ($node instanceof Twig_Node_AutoEscape) {
-            $this->statusStackarray() = $node->getAttribute('value');
+            $this->statusStack[] = $node->getAttribute('value');
         } elseif ($node instanceof Twig_Node_Block) {
-            $this->statusStackarray() = isset($this->blocks[$node->getAttribute('name')]) ? $this->blocks[$node->getAttribute('name')] : $this->needEscaping($env);
+            $this->statusStack[] = isset($this->blocks[$node->getAttribute('name')]) ? $this->blocks[$node->getAttribute('name')] : $this->needEscaping($env);
         } elseif ($node instanceof Twig_Node_Import) {
-            $this->safeVarsarray() = $node->getNode('var')->getAttribute('name');
+            $this->safeVars[] = $node->getNode('var')->getAttribute('name');
         }
 
         return $node;

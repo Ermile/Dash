@@ -35,7 +35,7 @@ class Twig_NodeVisitor_SafeAnalysis extends Twig_BaseNodeVisitor
             }
 
             if (in_array('html_attr', $bucket['value'])) {
-                $bucket['value']array() = 'html';
+                $bucket['value'][] = 'html';
             }
 
             return $bucket['value'];
@@ -54,7 +54,7 @@ class Twig_NodeVisitor_SafeAnalysis extends Twig_BaseNodeVisitor
                 }
             }
         }
-        $this->data[$hash]array() = array(
+        $this->data[$hash][] = array(
             'key' => $node,
             'value' => $safe,
         );

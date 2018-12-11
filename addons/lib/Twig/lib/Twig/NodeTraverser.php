@@ -25,7 +25,7 @@ class Twig_NodeTraverser
 
     /**
      * @param Twig_Environment            $env
-     * @param Twig_NodeVisitorInterfacearray() $visitors
+     * @param Twig_NodeVisitorInterface[] $visitors
      */
     public function __construct(Twig_Environment $env, array $visitors = array())
     {
@@ -41,7 +41,7 @@ class Twig_NodeTraverser
             $this->visitors[$visitor->getPriority()] = array();
         }
 
-        $this->visitors[$visitor->getPriority()]array() = $visitor;
+        $this->visitors[$visitor->getPriority()][] = $visitor;
     }
 
     /**
@@ -70,8 +70,10 @@ class Twig_NodeTraverser
         $node = $visitor->enterNode($node, $this->env);
 
         foreach ($node as $k => $n) {
-            if (false !== $n = $this->traverseForVisitor($visitor, $n)) {
-                $node->setNode($k, $n);
+            if (false !== $m = $this->traverseForVisitor($visitor, $n)) {
+                if ($m !== $n) {
+                    $node->setNode($k, $m);
+                }
             } else {
                 $node->removeNode($k);
             }

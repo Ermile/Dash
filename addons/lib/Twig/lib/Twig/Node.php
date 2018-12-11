@@ -52,7 +52,7 @@ class Twig_Node implements Twig_NodeInterface
     {
         $attributes = array();
         foreach ($this->attributes as $name => $value) {
-            $attributesarray() = sprintf('%s: %s', $name, str_replace("\n", '', var_export($value, true)));
+            $attributes[] = sprintf('%s: %s', $name, str_replace("\n", '', var_export($value, true)));
         }
 
         $repr = array(get_class($this).'('.implode(', ', $attributes));
@@ -62,13 +62,13 @@ class Twig_Node implements Twig_NodeInterface
                 $len = strlen($name) + 4;
                 $noderepr = array();
                 foreach (explode("\n", (string) $node) as $line) {
-                    $nodereprarray() = str_repeat(' ', $len).$line;
+                    $noderepr[] = str_repeat(' ', $len).$line;
                 }
 
-                $reprarray() = sprintf('  %s: %s', $name, ltrim(implode("\n", $noderepr)));
+                $repr[] = sprintf('  %s: %s', $name, ltrim(implode("\n", $noderepr)));
             }
 
-            $reprarray() = ')';
+            $repr[] = ')';
         } else {
             $repr[0] .= ')';
         }

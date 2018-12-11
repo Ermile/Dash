@@ -31,6 +31,7 @@ class Twig_Parser implements Twig_ParserInterface
     protected $importedSymbols;
     protected $traits;
     protected $embeddedTemplates = array();
+    private $varNameSalt = 0;
 
     public function __construct(Twig_Environment $env)
     {
@@ -49,7 +50,7 @@ class Twig_Parser implements Twig_ParserInterface
 
     public function getVarName()
     {
-        return sprintf('__internal_%s', hash('sha256', uniqid(mt_rand(), true), false));
+        return sprintf('__internal_%s', hash('sha256', __METHOD__.$this->stream->getSourceContext()->getCode().$this->varNameSalt++));
     }
 
     /**
@@ -73,7 +74,7 @@ class Twig_Parser implements Twig_ParserInterface
         }
 
         unset($vars['stack'], $vars['env'], $vars['handlers'], $vars['visitors'], $vars['expressionParser'], $vars['reservedMacroNames']);
-        $this->stackarray() = $vars;
+        $this->stack[] = $vars;
 
         // tag handlers
         if (null === $this->handlers) {
@@ -98,6 +99,7 @@ class Twig_Parser implements Twig_ParserInterface
         $this->blockStack = array();
         $this->importedSymbols = array(array());
         $this->embeddedTemplates = array();
+        $this->varNameSalt = 0;
 
         try {
             $body = $this->subparse($test, $dropNeedle);
@@ -139,21 +141,21 @@ class Twig_Parser implements Twig_ParserInterface
             switch ($this->getCurrentToken()->getType()) {
                 case Twig_Token::TEXT_TYPE:
                     $token = $this->stream->next();
-                    $rvarray() = new Twig_Node_Text($token->getValue(), $token->getLine());
+                    $rv[] = new Twig_Node_Text($token->getValue(), $token->getLine());
                     break;
 
                 case Twig_Token::VAR_START_TYPE:
                     $token = $this->stream->next();
                     $expr = $this->expressionParser->parseExpression();
                     $this->stream->expect(Twig_Token::VAR_END_TYPE);
-                    $rvarray() = new Twig_Node_Print($expr, $token->getLine());
+                    $rv[] = new Twig_Node_Print($expr, $token->getLine());
                     break;
 
                 case Twig_Token::BLOCK_START_TYPE:
                     $this->stream->next();
                     $token = $this->getCurrentToken();
 
-                    if ($token->getType() !== Twig_Token::NAME_TYPE) {
+                    if (Twig_Token::NAME_TYPE !== $token->getType()) {
                         throw new Twig_Error_Syntax('A block must start with a tag name.', $token->getLine(), $this->stream->getSourceContext());
                     }
 
@@ -189,7 +191,7 @@ class Twig_Parser implements Twig_ParserInterface
 
                     $node = $subparser->parse($token);
                     if (null !== $node) {
-                        $rvarray() = $node;
+                        $rv[] = $node;
                     }
                     break;
 
@@ -222,7 +224,7 @@ class Twig_Parser implements Twig_ParserInterface
     {
         @trigger_error('The '.__METHOD__.' method is deprecated since version 1.27 and will be removed in 2.0.', E_USER_DEPRECATED);
 
-        $this->visitorsarray() = $visitor;
+        $this->visitors[] = $visitor;
     }
 
     public function getBlockStack()
@@ -242,7 +244,7 @@ class Twig_Parser implements Twig_ParserInterface
 
     public function pushBlockStack($name)
     {
-        $this->blockStackarray() = $name;
+        $this->blockStack[] = $name;
     }
 
     public function hasBlock($name)
@@ -283,7 +285,7 @@ class Twig_Parser implements Twig_ParserInterface
                 $methodName = strtolower($method->getName());
 
                 if ('get' === substr($methodName, 0, 3) && isset($methodName[3])) {
-                    $this->reservedMacroNamesarray() = substr($methodName, 3);
+                    $this->reservedMacroNames[] = substr($methodName, 3);
                 }
             }
         }
@@ -293,7 +295,7 @@ class Twig_Parser implements Twig_ParserInterface
 
     public function addTrait($trait)
     {
-        $this->traitsarray() = $trait;
+        $this->traits[] = $trait;
     }
 
     public function hasTraits()
@@ -305,7 +307,7 @@ class Twig_Parser implements Twig_ParserInterface
     {
         $template->setIndex(mt_rand());
 
-        $this->embeddedTemplatesarray() = $template;
+        $this->embeddedTemplates[] = $template;
     }
 
     public function addImportedSymbol($type, $alias, $name = null, Twig_Node_Expression $node = null)
@@ -383,7 +385,7 @@ class Twig_Parser implements Twig_ParserInterface
                 throw new Twig_Error_Syntax('A template that extends another one cannot start with a byte order mark (BOM); it must be removed.', $node->getTemplateLine(), $this->stream->getSourceContext());
             }
 
-            throw new Twig_Error_Syntax('A template that extends another one cannot include contents outside Twig blocks. Did you forget to put the contents inside a {% block %} tag?', $node->getTemplateLine(), $this->stream->getSourceContext());
+            throw new Twig_Error_Syntax('A template that extends another one cannot include content outside Twig blocks. Did you forget to put the content inside a {% block %} tag?', $node->getTemplateLine(), $this->stream->getSourceContext());
         }
 
         // bypass nodes that will "capture" the output

@@ -101,7 +101,7 @@ class Twig_Loader_Filesystem implements Twig_LoaderInterface, Twig_ExistsLoaderI
             throw new Twig_Error_Loader(sprintf('The "%s" directory does not exist ("%s").', $path, $checkPath));
         }
 
-        $this->paths[$namespace]array() = rtrim($path, '/\\');
+        $this->paths[$namespace][] = rtrim($path, '/\\');
     }
 
     /**
@@ -125,7 +125,7 @@ class Twig_Loader_Filesystem implements Twig_LoaderInterface, Twig_ExistsLoaderI
         $path = rtrim($path, '/\\');
 
         if (!isset($this->paths[$namespace])) {
-            $this->paths[$namespace]array() = $path;
+            $this->paths[$namespace][] = $path;
         } else {
             array_unshift($this->paths[$namespace], $path);
         }
@@ -175,7 +175,7 @@ class Twig_Loader_Filesystem implements Twig_LoaderInterface, Twig_ExistsLoaderI
 
     public function isFresh($name, $time)
     {
-        return filemtime($this->findTemplate($name)) <= $time;
+        return filemtime($this->findTemplate($name)) < $time;
     }
 
     protected function findTemplate($name)
@@ -279,7 +279,7 @@ class Twig_Loader_Filesystem implements Twig_LoaderInterface, Twig_ExistsLoaderI
     {
         return strspn($file, '/\\', 0, 1)
             || (strlen($file) > 3 && ctype_alpha($file[0])
-                && substr($file, 1, 1) === ':'
+                && ':' === substr($file, 1, 1)
                 && strspn($file, '/\\', 2, 1)
             )
             || null !== parse_url($file, PHP_URL_SCHEME)

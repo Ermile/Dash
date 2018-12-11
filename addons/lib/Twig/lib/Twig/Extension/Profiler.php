@@ -15,7 +15,7 @@ class Twig_Extension_Profiler extends Twig_Extension
 
     public function __construct(Twig_Profiler_Profile $profile)
     {
-        $this->activesarray() = $profile;
+        $this->actives[] = $profile;
     }
 
     public function enter(Twig_Profiler_Profile $profile)

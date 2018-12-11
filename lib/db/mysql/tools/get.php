@@ -31,7 +31,7 @@ trait get
 		// fetch datatable by result
 		$result = self::fetch_all($result, $_column);
 		// if we have only one row of result only return this row
-		if($_onlyOneValue && count($result) === 1)
+		if($_onlyOneValue && is_array($result) && count($result) === 1)
 		{
 			if(isset($result[0]))
 			{

@@ -56,7 +56,7 @@ class Twig_NodeVisitor_Optimizer extends Twig_BaseNodeVisitor
         if (PHP_VERSION_ID < 50400 && self::OPTIMIZE_VAR_ACCESS === (self::OPTIMIZE_VAR_ACCESS & $this->optimizers) && !$env->isStrictVariables() && !$env->hasExtension('Twig_Extension_Sandbox')) {
             if ($this->inABody) {
                 if (!$node instanceof Twig_Node_Expression) {
-                    if (get_class($node) !== 'Twig_Node') {
+                    if ('Twig_Node' !== get_class($node)) {
                         array_unshift($this->prependedNodes, array());
                     }
                 } else {
@@ -88,13 +88,13 @@ class Twig_NodeVisitor_Optimizer extends Twig_BaseNodeVisitor
             if ($node instanceof Twig_Node_Body) {
                 $this->inABody = false;
             } elseif ($this->inABody) {
-                if (!$expression && get_class($node) !== 'Twig_Node' && $prependedNodes = array_shift($this->prependedNodes)) {
+                if (!$expression && 'Twig_Node' !== get_class($node) && $prependedNodes = array_shift($this->prependedNodes)) {
                     $nodes = array();
                     foreach (array_unique($prependedNodes) as $name) {
-                        $nodesarray() = new Twig_Node_SetTemp($name, $node->getTemplateLine());
+                        $nodes[] = new Twig_Node_SetTemp($name, $node->getTemplateLine());
                     }
 
-                    $nodesarray() = $node;
+                    $nodes[] = $node;
                     $node = new Twig_Node($nodes);
                 }
             }
@@ -106,7 +106,7 @@ class Twig_NodeVisitor_Optimizer extends Twig_BaseNodeVisitor
     protected function optimizeVariables(Twig_NodeInterface $node, Twig_Environment $env)
     {
         if ('Twig_Node_Expression_Name' === get_class($node) && $node->isSimple()) {
-            $this->prependedNodes[0]array() = $node->getAttribute('name');
+            $this->prependedNodes[0][] = $node->getAttribute('name');
 
             return new Twig_Node_Expression_TempName($node->getAttribute('name'), $node->getTemplateLine());
         }
