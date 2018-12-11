@@ -1,0 +1,24 @@
+{%extends display.crmMain%}
+
+
+{%block pageContent%}
+
+
+<div class="cbox">
+    <form method="post" autocomplete='off'>
+
+      <div class="input mTB10">
+          <input type="email" name="email" placeholder='{%trans "Email"%}' value="{{requestGET.email}}">
+      </div>
+      <textarea class="txt" name="msg" rows="10" placeholder='{%trans "What do you want to send to this user?"%}' autofocus></textarea>
+      <div class="f">
+        <div class="c"></div>
+        <div class="cauto">
+          <button type="submit" class="btn success mTB10 pLR50" >{%trans "Send"%}</button>
+        </div>
+      </div>
+    </form>
+</div>
+
+
+{%endblock%}

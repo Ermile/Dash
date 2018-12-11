@@ -1,0 +1,55 @@
+{%extends display.crmMain%}
+
+
+{%block pageContent%}
+
+<form method="post">
+
+<div class="cbox mB10">
+  <div class="f">
+
+    <input type="hidden" name="delete" value="{{requestGET.id}}">
+    <div class="c s12 input pRa5">
+      <label>{%trans "Name"%}</label>
+      <input type="text" name="name" title='{%trans "The permission name should be unique and contain only alphanameric characters and underscores"%}' placeholder='{%trans "Name of your permission"%} *' autocomplete="off" class="ltr" {%if perm.load.title%} readonly disabled {%endif%} value="{{requestGET.id}}">
+    </div>
+    <div class="c s12 input">
+      <label>{%trans "Label"%}</label>
+      <input type="text" name="label" title='{%trans "The permission label is used to represent your permission in user management"%}' placeholder='{%trans "Label of your permission"%} *' autocomplete="off" value="{{perm.load.title}}">
+    </div>
+  </div>
+</div>
+<button class="btn danger block xl">{%trans "Remove"%}</button>
+
+
+</form>
+
+{%endblock%}
+
+
+{%block foot_js%}
+<script>
+function pushStateFinal()
+{
+  $('input[type=checkbox]').off('change');
+  $('input[type=checkbox]').on('change', function()
+  {
+    var myRequire = $(this).attr('data-require');
+    if($(this).is(":checked") === true && myRequire)
+    {
+      myRequire = myRequire.split('|');
+      console.log(myRequire);
+
+      $.each(myRequire, function(index, val)
+      {
+        console.log(val)
+        console.log($('#'+ val));
+        $('#'+ val).prop('checked', true);
+      });
+    }
+  });
+}
+</script>
+{%endblock%}
+
+

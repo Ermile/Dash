@@ -1,0 +1,80 @@
+{%extends display.crmMain%}
+
+
+{%block pageContent%}
+
+
+<div class="f justify-center">
+  <div class="cbox c12">
+    <form method="post">
+      {{block ('iName') }}
+      {{block ('iText') }}
+      {%if editMode%}
+        {{block ('iedit')}}
+      {%else%}
+        {{block ('iadd')}}
+      {%endif%}
+    </form>
+  </div>
+</div>
+
+{%if templateList%}
+<div class="f justify-center">
+  <div class="cbox c12">
+    <h2>{%trans "List of template sms"%}</h2>
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th>{%trans "Name"%}</th>
+          <th>{%trans "Template text"%}</th>
+          <th>{%trans "Edit"%}</th>
+          <th>{%trans "Delete"%}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {%for key, value in templateList%}
+          <tr>
+            <td>{{key}}</td>
+            <td>{{value}}</td>
+            <td class="collapsing"><a class="badge primary" href="{{url.this}}/template?name={{key}}">{%trans "Edit"%}</a></td>
+            <td class="collapsing"><a href="{{url.pwd}}" data-ajaxify data-method="post" data-data='{"name": "{{key}}", "type":"delete"}'><button class="btn danger xs">{%trans "Remove"%}</button></a></td>
+          </tr>
+        {%endfor%}
+      </tbody>
+    </table>
+  </div>
+</div>
+{%endif%}
+
+{%endblock%}
+
+
+
+
+{%block iedit%}
+<button class="btn primary block mT25">{%trans "Edit"%}</button>
+{%endblock%}
+
+
+
+{%block iadd%}
+<button class="btn primary block mT25">{%trans "Add"%}</button>
+{%endblock%}
+
+
+{%block iName%}
+<label for='tname'>{%trans "Template name"%}</label>
+<div class="input">
+  <input type="text" name="name" id="tname" value="{{dataRow.name}}" autofocus placeholder='{%trans "Template Name"%}'>
+</div>
+{%endblock%}
+
+
+{%block iText%}
+<label for='text'>{%trans "Template text"%}</label>
+<div class="input">
+  <textarea class="txt" rows="4" name="text" placeholder='{%trans "Template Text"%}'  maxlength='500' minlength="1" pattern=".{1,500}" title='{%trans "Template Text"%}' id='text'>{{dataRow.text}}</textarea>
+</div>
+{%endblock%}
+
+

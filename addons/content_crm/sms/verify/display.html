@@ -1,0 +1,22 @@
+{%extends display.crmMain%}
+
+
+{%block pageContent%}
+<div class="cbox">
+
+      <div class="msg info2">{{sms.msg}}</div>
+      <div class="msg danger2">{{sms.count | fitNumber}} {%trans "User"%}</div>
+
+
+
+    <form method="post">
+      <button type="submit" class=" xl  btn danger block mTB10" >{%trans "Send"%}</button>
+      <button type="submit" class=" xl  btn success block mTB10" >{%trans "Cancel"%}</button>
+    </form>
+</div>
+
+
+{%endblock%}
+
+
+

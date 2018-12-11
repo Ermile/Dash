@@ -1,0 +1,16 @@
+{%extends display.crmMain%}
+
+
+
+{%block pageContent%}
+  <div class="f">
+{%for key, value in dataTable%}
+
+    <div class="c3 fs14 mTB5 mLR5">
+      <div class="badge warn"><a class="link" href="{{url.here}}/log?caller={{key}}">{{key}}</a></div>
+      <div class="badge primary">{{value | fitNumber}}</div>
+    </div>
+
+{%endfor%}
+  </div>
+{%endblock%}

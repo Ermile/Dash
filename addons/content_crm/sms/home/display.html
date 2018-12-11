@@ -1,0 +1,50 @@
+{%extends display.crmMain%}
+
+
+{%block pageContent%}
+
+<div class="f">
+ <div class="c6 s12">{{block ("sBalance")}}</div>
+ <div class="c6 s12">{{block ("sSmsQuick")}}</div>
+ <div class="c6 s12">{{block ("sTemplate")}}</div>
+ <div class="c6 s12">{{block ("sSmsGroup")}}</div>
+</div>
+
+{%endblock%}
+
+{%block sBalance%}
+<div class="dcard x3 txtC" href='{{url.here}}/sms'>
+ <div class="statistic"><div class="value"><i class="sf-card"></i></div></div>
+  <h2>{%trans "Your sms panel balance"%}<br><b>{{((SMSbalance.remaincredit) / 10) | fitNumber}}</b> {%trans "Toman"%}</h2>
+
+</div>
+{%endblock%}
+
+{%block sSmsQuick%}
+<a class="dcard x3" href='{{url.here}}/sms/send'>
+ <div class="statistic">
+  <div class="value"><i class="sf-envelope"></i></div>
+  <div class="label">{%trans "Send quick"%}</div>
+ </div>
+</a>
+{%endblock%}
+
+{%block sSmsGroup%}
+<a class="dcard x2" href='{{url.here}}/sms/group'>
+ <div class="statistic">
+  <div class="value"><i class="sf-users"></i></div>
+  <div class="label">{%trans "Group send"%}</div>
+ </div>
+</a>
+{%endblock%}
+
+
+{%block sTemplate%}
+<a class="dcard x2" href='{{url.here}}/sms/template'>
+ <div class="statistic">
+  <div class="value"><i class="sf-file-text"></i></div>
+  <div class="label">{%trans "Template"%}</div>
+ </div>
+</a>
+{%endblock%}
+

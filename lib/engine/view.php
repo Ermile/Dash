@@ -14,6 +14,7 @@ class view
 		\dash\data::display_main("content/main/layout.html");
 		\dash\data::display_account("content_account/home/layout.html");
 		\dash\data::display_cpMain("content_cp/layout.html");
+		\dash\data::display_crmMain("content_crm/layout.html");
 
 		\dash\data::display_pagination("includes/html/inc_pagination.html");
 		\dash\data::display_hive("includes/html/inc_hive.html");

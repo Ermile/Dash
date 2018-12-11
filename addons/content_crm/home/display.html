@@ -1,13 +1,13 @@
-{%extends display.cpMain%}
+{%extends display.crmMain%}
 
 
 
 
 {%block pageContent%}
-	{{block ("blockCMS")}}
-	{{block ("chartVisitor")}}
-	{{block ("blockHelpCenter")}}
 
+	{{block ("chartVisitor")}}
+
+	{{block ("blockUsers")}}
 {%endblock%}
 
 
@@ -77,7 +77,7 @@
   <div class="c s6">{{block ("dHelpCenterTags")}}</div>
   <div class="c s6">{{block ("dSupportTags")}}</div>
   <div class="c s6">{{block ("dTickets")}}</div>
-
+  <div class="c s6">{{block ("dVisitor")}}</div>
 </div>
 {%endblock%}
 
@@ -196,7 +196,7 @@
 
 {%block foot_js%}
 <script type="text/javascript">
-    {%include 'content_cp/home/chart.js'%}
+    {%include 'content_crm/home/chart.js'%}
   {%if dashboardDetail.chart.categories and dashboardDetail.chart.visitor and dashboardDetail.chart.visit%}
   {%endif%}
 </script>

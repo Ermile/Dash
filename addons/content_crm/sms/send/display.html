@@ -1,0 +1,50 @@
+{%extends display.crmMain%}
+
+
+{%block pageContent%}
+
+
+<div class="cbox">
+    <form method="post">
+      {{block('iTemplate')}}
+
+      <div class="input mTB10">
+          <input type="tel" name="mobile" placeholder='{%trans "Mobile"%}' value="{{requestGET.mobile}}">
+      </div>
+      <textarea class="txt" name="msg" rows="10" placeholder='{%trans "What do you want to send to this user?"%}'>{{templateLoad}}</textarea>
+      <div class="f">
+        <div class="c"></div>
+        <div class="cauto">
+          <button type="submit" class=" xl w300 btn success mTB10" >{%trans "Send"%}</button>
+        </div>
+      </div>
+    </form>
+</div>
+
+
+{%endblock%}
+
+
+
+{%block iTemplate%}
+
+<div class="mT10 mB10">
+
+  <label for="template">{%trans "Template"%}</label>
+  <div class="f">
+    <div class="c">
+      <select name="template" class="ui dropdown search" id="template">
+        <option value="" readonly>{%trans "No template"%}</option>
+        {%for key, value in templateList%}
+          <option value="{{key}}" {%if requestGET.template == key%} selected {%endif%} >{{key}} | {{value}}</option>
+        {%endfor%}
+      </select>
+    </div>
+    <div class="cauto">
+      <button name="changeTemplate" value="1" class="btn primary addon">{%trans "Show"%}</button>
+    </div>
+
+  </div>
+</div>
+
+{%endblock%}

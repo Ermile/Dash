@@ -1,0 +1,193 @@
+{%extends display.crmMain%}
+
+
+
+{%block pageContent%}
+
+
+{%if dataTable%}
+ {%if dataFilter%}
+
+  {{block('htmlSearchBox')}}
+  {{block('htmlTable')}}
+  {{block('htmlFilter')}}
+
+ {%else%}
+
+  {{block('htmlSearchBox')}}
+  {{block('htmlTable')}}
+
+ {%endif%}
+{%else%}
+ {%if dataFilter%}
+
+  {{block('htmlSearchBox')}}
+  {{block('htmlFilterNoResult')}}
+
+ {%else%}
+
+  {{block('htmlStartAddNew')}}
+
+ {%endif%}
+{%endif%}
+
+{%endblock%}
+
+
+
+
+{%block htmlSearchBox%}
+<div class="cbox fs12">
+  <form method="get" action='{{url.this}}' data-action>
+    <div class="input">
+      <input type="search" name="q" placeholder='{%trans "Search"%}' id="q" value="{{requestGET.q}}" autofocus  data-pass='submit' autocomplete='off'>
+      <button class="addon btn ">{%trans "Search" %}</button>
+    </div>
+  </form>
+</div>
+{%endblock%}
+
+
+{%block htmlTable%}
+
+  <table class="tbl1 v1 cbox fs12">
+    <thead>
+      <tr class="fs07">
+        <th data-sort="{{sortLink.username.order}}">
+          <a href='{{sortLink.username.link}}'>{%trans "Username"%}</a>
+        </th>
+        <th data-sort="{{sortLink.displayname.order}}">
+          <a href='{{sortLink.displayname.link}}'>{%trans "Display Name"%}</a>
+        </th>
+        <th data-sort="{{sortLink.mobile.order}}" class="collapsing">
+          <a href='{{sortLink.mobile.link}}'>{%trans "Mobile"%}</a>
+        </th>
+        <th data-sort="{{sortLink.email.order}}" class="collapsing s0 m0">
+          <a href='{{sortLink.email.link}}'>{%trans "Email"%}</a>
+        </th>
+        <th data-sort="{{sortLink.password.order}}" class="collapsing s0">
+          <a href='{{sortLink.password.link}}'>{%trans "Password"%}</a>
+        </th>
+        <th data-sort="{{sortLink.status.order}}" class="collapsing s0">
+          <a href='{{sortLink.status.link}}'>{%trans "Status"%}</a>
+        </th>
+        <th data-sort="{{sortLink.permission.order}}" class="collapsing s0 m0">
+          <a href='{{sortLink.permission.link}}'>{%trans "Permission"%}</a>
+        </th>
+        <th data-sort="{{sortLink.datecreated.order}}" class="collapsing s0 m0">
+          <a href='{{sortLink.datecreated.link}}'>{%trans "Created date"%}</a>
+        </th>
+        <th data-sort="{{sortLink.datemodified.order}}" class="collapsing s0 m0">
+          <a href='{{sortLink.datemodified.link}}'>{%trans "Last Modified"%}</a>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {%for key, value in dataTable%}
+      <tr {%if value.status=='disable' or value.status=='removed' or value.status=='filter' or value.status=='unreachable'%} class='negative' {%elseif value.status=='awaiting'%} class='warning' {%endif%}>
+        <td>
+          <a href="{{url.this}}/view?id={{value.id}}">
+            <img src="{{value.avatar}}" alt='{{value.id}}' width="40" class="pRa5"> {{value.username}}
+          </a>
+        </td>
+        <td>
+          <div class="s0" title='{{value.title}}'>
+            <small>
+              <a href="{{url.this}}?gender={{value.gender}}">{%if value.gender == 'male'%}{%trans "Mr"%} {%elseif value.gender == 'female'%}{%trans "Mrs"%}{%else%}-{%endif%}</a>
+              <a href="{{url.this}}?firstname={{value.firstname | url_encode}}">{{value.firstname}}</a>
+            </small>
+            <a href="{{url.this}}?lastname={{value.lastname | url_encode}}">{{value.lastname}}</a>
+          </div>
+          <div class="mT5">
+            <a href="{{url.this}}/view?id={{value.id}}" class="txtB block"><span class="sf-user"></span> {{value.displayname}}</a>
+          </div>
+        </td>
+        <td class="pRa5">
+          <a href="{{url.this}}/view?id={{value.id}}">{{value.mobile | fitNumber('mobile12')}}</a>
+        </td>
+        <td class="s0 m0 pRa5">
+          <a href="{{url.this}}/view?id={{value.id}}">{{value.email}}</a>
+        </td>
+        <td class="s0">
+          {%if value.password%}<i class="sf-check fc-green" title='{%trans "Password is set"%}'></i>{%else%}<i class="sf-times fc-red" title='{%trans "Password is not set!"%}'></i>{%endif%}
+          {%if value.twostep%}<i class="sf-unlock-alt fc-green" title='{%trans "Two step verification in enabled"%}'></i>{%else%}<i class="sf-unlock fc-mute" title='{%trans "Two step verification in disable"%}'></i>{%endif%}
+        </td>
+        <td class="s0">
+          <a href="{{url.this}}?status={{value.status}}">{%set myStatus = value.status | capitalize %}{%trans myStatus%}</a>
+        </td>
+        <td class="s0 m0">
+          <a href="{{url.this}}?permission={{value.permission}}">{%set myPerm = value.permission | capitalize %}{%trans myPerm%}</a>
+        </td>
+        <td class="s0 m0" title="{{value.datecreated | dt(true)}}"><small class="fc-mute">{%if value.datecreated%}{{value.datecreated | dt("human", 'year')}}{%else%}-{%endif%}</small></td>
+        <td class="s0 m0" title="{{value.datemodified | dt(true)}}"><small class="fc-mute">{%if value.datemodified%}{{value.datemodified | dt("human", 'year')}}{%else%}-{%endif%}</small></td>
+      </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+  {%include display.pagination%}
+
+{%endblock%}
+
+
+{%block htmlFilter%}
+<p class="f fs14 msg info2">
+  <span class="c">{{dataFilter | raw}}</span>
+  <a class="cauto" href="{{url.this}}">{%trans "Clear filters"%}</a>
+</p>
+{%endblock%}
+
+
+{%block htmlFilterNoResult%}
+<p class="f fs14 msg warn2">
+  <span class="c">{%trans "Result not found!"%} {%trans "Search with new keywords."%}</span>
+  <a class="cauto" href="{{url.this}}">{%trans "Clear filters"%}</a>
+</p>
+{%endblock%}
+
+
+{%block htmlStartAddNew%}
+<p class="fs14 msg success2 pTB20">{%trans "Hi!"%} <a href="{{url.this}}/add">{%trans "Try to start with add new user!"%}</a></p>
+{%endblock%}
+
+
+
+
+{%block stAll%}
+<a class="dcard {%if requestGET.type%}{%else%}active{%endif%}" href='{{url.this}}' data-shortkey="49shift">
+ <div class="statistic gray">
+  <div class="value"><i class="sf-users"></i><span>{{dashboardData.customer_count | fitNumber}}</span></div>
+  <div class="label">{%trans "All :Members"%} <kbd>Shift+1</kbd></div>
+ </div>
+</a>
+{%endblock%}
+
+{%block stExpert%}
+<a class="dcard {%if requestGET.type == 'expert'%}active{%endif%}" href='{{url.this}}?type=expert' data-shortkey="50shift">
+ <div class="statistic gray">
+  <div class="value"><i class="sf-user-md"></i><span>{{dashboardData.customer_count | fitNumber}}</span></div>
+  <div class="label">{%trans ":Experts"%} <kbd>Shift+2</kbd></div>
+ </div>
+</a>
+{%endblock%}
+
+
+{%block stTeacher%}
+<a class="dcard {%if requestGET.type == 'teacher'%}active{%endif%}" href='{{url.this}}?type=teacher' data-shortkey="51shift">
+ <div class="statistic orange">
+  <div class="value"><i class="sf-user-5"></i><span>{{dashboardData.staff_count | fitNumber}}</span></div>
+  <div class="label">{%trans ":Teachers"%} <kbd>Shift+3</kbd></div>
+ </div>
+</a>
+{%endblock%}
+
+
+
+{%block stStudent%}
+<a class="dcard {%if requestGET.type == 'student'%}active{%endif%}" href='{{url.this}}?type=student' data-shortkey="52shift">
+ <div class="statistic teal">
+  <div class="value"><i class="sf-user-4"></i><span class="fs08">{{dashboardData.supplier_count | fitNumber}}</span></div>
+  <div class="label">{%trans "Students"%} <kbd>Shift+4</kbd></div>
+ </div>
+</a>
+{%endblock%}
+
