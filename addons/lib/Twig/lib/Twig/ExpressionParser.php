@@ -216,15 +216,15 @@ class Twig_ExpressionParser
     {
         $stream = $this->parser->getStream();
 
-        $nodes = [];
+        $nodes = array();
         // a string cannot be followed by another string in a single expression
         $nextCanBeString = true;
         while (true) {
             if ($nextCanBeString && $token = $stream->nextIf(Twig_Token::STRING_TYPE)) {
-                $nodes[] = new Twig_Node_Expression_Constant($token->getValue(), $token->getLine());
+                $nodesarray() = new Twig_Node_Expression_Constant($token->getValue(), $token->getLine());
                 $nextCanBeString = false;
             } elseif ($stream->nextIf(Twig_Token::INTERPOLATION_START_TYPE)) {
-                $nodes[] = $this->parseExpression();
+                $nodesarray() = $this->parseExpression();
                 $stream->expect(Twig_Token::INTERPOLATION_END_TYPE);
                 $nextCanBeString = true;
             } else {
@@ -504,7 +504,7 @@ class Twig_ExpressionParser
      */
     public function parseArguments($namedArguments = false, $definition = false)
     {
-        $args = [];
+        $args = array();
         $stream = $this->parser->getStream();
 
         $stream->expect(Twig_Token::PUNCTUATION_TYPE, '(', 'A list of arguments must begin with an opening parenthesis');
@@ -546,7 +546,7 @@ class Twig_ExpressionParser
                 $args[$name] = $value;
             } else {
                 if (null === $name) {
-                    $args[] = $value;
+                    $argsarray() = $value;
                 } else {
                     $args[$name] = $value;
                 }
@@ -560,14 +560,14 @@ class Twig_ExpressionParser
     public function parseAssignmentExpression()
     {
         $stream = $this->parser->getStream();
-        $targets = [];
+        $targets = array();
         while (true) {
             $token = $stream->expect(Twig_Token::NAME_TYPE, null, 'Only variables can be assigned to');
             $value = $token->getValue();
             if (in_array(strtolower($value), array('true', 'false', 'none', 'null'))) {
                 throw new Twig_Error_Syntax(sprintf('You cannot assign a value to "%s".', $value), $token->getLine(), $stream->getSourceContext());
             }
-            $targets[] = new Twig_Node_Expression_AssignName($value, $token->getLine());
+            $targetsarray() = new Twig_Node_Expression_AssignName($value, $token->getLine());
 
             if (!$stream->nextIf(Twig_Token::PUNCTUATION_TYPE, ',')) {
                 break;
@@ -579,9 +579,9 @@ class Twig_ExpressionParser
 
     public function parseMultitargetExpression()
     {
-        $targets = [];
+        $targets = array();
         while (true) {
-            $targets[] = $this->parseExpression();
+            $targetsarray() = $this->parseExpression();
             if (!$this->parser->getStream()->nextIf(Twig_Token::PUNCTUATION_TYPE, ',')) {
                 break;
             }

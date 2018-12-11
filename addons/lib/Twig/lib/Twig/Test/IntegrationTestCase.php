@@ -25,35 +25,35 @@ abstract class Twig_Test_IntegrationTestCase extends TestCase
     abstract protected function getFixturesDir();
 
     /**
-     * @return Twig_ExtensionInterface[]
+     * @return Twig_ExtensionInterfacearray()
      */
     protected function getExtensions()
     {
-        return [];
+        return array();
     }
 
     /**
-     * @return Twig_SimpleFilter[]
+     * @return Twig_SimpleFilterarray()
      */
     protected function getTwigFilters()
     {
-        return [];
+        return array();
     }
 
     /**
-     * @return Twig_SimpleFunction[]
+     * @return Twig_SimpleFunctionarray()
      */
     protected function getTwigFunctions()
     {
-        return [];
+        return array();
     }
 
     /**
-     * @return Twig_SimpleTest[]
+     * @return Twig_SimpleTestarray()
      */
     protected function getTwigTests()
     {
-        return [];
+        return array();
     }
 
     /**
@@ -76,7 +76,7 @@ abstract class Twig_Test_IntegrationTestCase extends TestCase
     public function getTests($name, $legacyTests = false)
     {
         $fixturesDir = realpath($this->getFixturesDir());
-        $tests = [];
+        $tests = array();
 
         foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator($fixturesDir), RecursiveIteratorIterator::LEAVES_ONLY) as $file) {
             if (!preg_match('/\.test$/', $file)) {
@@ -105,12 +105,12 @@ abstract class Twig_Test_IntegrationTestCase extends TestCase
                 throw new InvalidArgumentException(sprintf('Test "%s" is not valid.', str_replace($fixturesDir.'/', '', $file)));
             }
 
-            $tests[] = array(str_replace($fixturesDir.'/', '', $file), $message, $condition, $templates, $exception, $outputs);
+            $testsarray() = array(str_replace($fixturesDir.'/', '', $file), $message, $condition, $templates, $exception, $outputs);
         }
 
         if ($legacyTests && empty($tests)) {
             // add a dummy test to avoid a PHPUnit message
-            return array(array('not', '-', '', [], '', []));
+            return array(array('not', '-', '', array(), '', array()));
         }
 
         return $tests;
@@ -140,7 +140,7 @@ abstract class Twig_Test_IntegrationTestCase extends TestCase
             $config = array_merge(array(
                 'cache' => false,
                 'strict_variables' => true,
-            ), $match[2] ? eval($match[2].';') : []);
+            ), $match[2] ? eval($match[2].';') : array());
             $twig = new Twig_Environment($loader, $config);
             $twig->addGlobal('global', 'global');
             foreach ($this->getExtensions() as $extension) {
@@ -224,7 +224,7 @@ abstract class Twig_Test_IntegrationTestCase extends TestCase
 
     protected static function parseTemplates($test)
     {
-        $templates = [];
+        $templates = array();
         preg_match_all('/--TEMPLATE(?:\((.*?)\))?--(.*?)(?=\-\-TEMPLATE|$)/s', $test, $matches, PREG_SET_ORDER);
         foreach ($matches as $match) {
             $templates[($match[1] ? $match[1] : 'index.twig')] = $match[2];

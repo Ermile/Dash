@@ -20,12 +20,12 @@
  */
 class Twig_Extension_Staging extends Twig_Extension
 {
-    protected $functions = [];
-    protected $filters = [];
-    protected $visitors = [];
-    protected $tokenParsers = [];
-    protected $globals = [];
-    protected $tests = [];
+    protected $functions = array();
+    protected $filters = array();
+    protected $visitors = array();
+    protected $tokenParsers = array();
+    protected $globals = array();
+    protected $tests = array();
 
     public function addFunction($name, $function)
     {
@@ -57,7 +57,7 @@ class Twig_Extension_Staging extends Twig_Extension
 
     public function addNodeVisitor(Twig_NodeVisitorInterface $visitor)
     {
-        $this->visitors[] = $visitor;
+        $this->visitorsarray() = $visitor;
     }
 
     public function getNodeVisitors()

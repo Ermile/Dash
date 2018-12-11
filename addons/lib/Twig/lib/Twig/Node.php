@@ -35,7 +35,7 @@ class Twig_Node implements Twig_NodeInterface
      * @param int    $lineno     The line number
      * @param string $tag        The tag name associated with the Node
      */
-    public function __construct(array $nodes = [], array $attributes = [], $lineno = 0, $tag = null)
+    public function __construct(array $nodes = array(), array $attributes = array(), $lineno = 0, $tag = null)
     {
         foreach ($nodes as $name => $node) {
             if (!$node instanceof Twig_NodeInterface) {
@@ -50,9 +50,9 @@ class Twig_Node implements Twig_NodeInterface
 
     public function __toString()
     {
-        $attributes = [];
+        $attributes = array();
         foreach ($this->attributes as $name => $value) {
-            $attributes[] = sprintf('%s: %s', $name, str_replace("\n", '', var_export($value, true)));
+            $attributesarray() = sprintf('%s: %s', $name, str_replace("\n", '', var_export($value, true)));
         }
 
         $repr = array(get_class($this).'('.implode(', ', $attributes));
@@ -60,15 +60,15 @@ class Twig_Node implements Twig_NodeInterface
         if (count($this->nodes)) {
             foreach ($this->nodes as $name => $node) {
                 $len = strlen($name) + 4;
-                $noderepr = [];
+                $noderepr = array();
                 foreach (explode("\n", (string) $node) as $line) {
-                    $noderepr[] = str_repeat(' ', $len).$line;
+                    $nodereprarray() = str_repeat(' ', $len).$line;
                 }
 
-                $repr[] = sprintf('  %s: %s', $name, ltrim(implode("\n", $noderepr)));
+                $reprarray() = sprintf('  %s: %s', $name, ltrim(implode("\n", $noderepr)));
             }
 
-            $repr[] = ')';
+            $reprarray() = ')';
         } else {
             $repr[0] .= ')';
         }

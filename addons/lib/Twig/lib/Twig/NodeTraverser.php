@@ -21,13 +21,13 @@
 class Twig_NodeTraverser
 {
     protected $env;
-    protected $visitors = [];
+    protected $visitors = array();
 
     /**
      * @param Twig_Environment            $env
-     * @param Twig_NodeVisitorInterface[] $visitors
+     * @param Twig_NodeVisitorInterfacearray() $visitors
      */
-    public function __construct(Twig_Environment $env, array $visitors = [])
+    public function __construct(Twig_Environment $env, array $visitors = array())
     {
         $this->env = $env;
         foreach ($visitors as $visitor) {
@@ -38,10 +38,10 @@ class Twig_NodeTraverser
     public function addVisitor(Twig_NodeVisitorInterface $visitor)
     {
         if (!isset($this->visitors[$visitor->getPriority()])) {
-            $this->visitors[$visitor->getPriority()] = [];
+            $this->visitors[$visitor->getPriority()] = array();
         }
 
-        $this->visitors[$visitor->getPriority()][] = $visitor;
+        $this->visitors[$visitor->getPriority()]array() = $visitor;
     }
 
     /**

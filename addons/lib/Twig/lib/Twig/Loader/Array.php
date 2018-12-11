@@ -25,12 +25,12 @@
  */
 class Twig_Loader_Array implements Twig_LoaderInterface, Twig_ExistsLoaderInterface, Twig_SourceContextLoaderInterface
 {
-    protected $templates = [];
+    protected $templates = array();
 
     /**
      * @param array $templates An array of templates (keys are the names, and values are the source code)
      */
-    public function __construct(array $templates = [])
+    public function __construct(array $templates = array())
     {
         $this->templates = $templates;
     }

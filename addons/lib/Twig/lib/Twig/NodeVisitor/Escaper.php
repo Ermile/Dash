@@ -18,12 +18,12 @@
  */
 class Twig_NodeVisitor_Escaper extends Twig_BaseNodeVisitor
 {
-    protected $statusStack = [];
-    protected $blocks = [];
+    protected $statusStack = array();
+    protected $blocks = array();
     protected $safeAnalysis;
     protected $traverser;
     protected $defaultStrategy = false;
-    protected $safeVars = [];
+    protected $safeVars = array();
 
     public function __construct()
     {
@@ -36,14 +36,14 @@ class Twig_NodeVisitor_Escaper extends Twig_BaseNodeVisitor
             if ($env->hasExtension('Twig_Extension_Escaper') && $defaultStrategy = $env->getExtension('Twig_Extension_Escaper')->getDefaultStrategy($node->getTemplateName())) {
                 $this->defaultStrategy = $defaultStrategy;
             }
-            $this->safeVars = [];
-            $this->blocks = [];
+            $this->safeVars = array();
+            $this->blocks = array();
         } elseif ($node instanceof Twig_Node_AutoEscape) {
-            $this->statusStack[] = $node->getAttribute('value');
+            $this->statusStackarray() = $node->getAttribute('value');
         } elseif ($node instanceof Twig_Node_Block) {
-            $this->statusStack[] = isset($this->blocks[$node->getAttribute('name')]) ? $this->blocks[$node->getAttribute('name')] : $this->needEscaping($env);
+            $this->statusStackarray() = isset($this->blocks[$node->getAttribute('name')]) ? $this->blocks[$node->getAttribute('name')] : $this->needEscaping($env);
         } elseif ($node instanceof Twig_Node_Import) {
-            $this->safeVars[] = $node->getNode('var')->getAttribute('name');
+            $this->safeVarsarray() = $node->getNode('var')->getAttribute('name');
         }
 
         return $node;
@@ -53,8 +53,8 @@ class Twig_NodeVisitor_Escaper extends Twig_BaseNodeVisitor
     {
         if ($node instanceof Twig_Node_Module) {
             $this->defaultStrategy = false;
-            $this->safeVars = [];
-            $this->blocks = [];
+            $this->safeVars = array();
+            $this->blocks = array();
         } elseif ($node instanceof Twig_Node_Expression_Filter) {
             return $this->preEscapeFilterNode($node, $env);
         } elseif ($node instanceof Twig_Node_Print) {

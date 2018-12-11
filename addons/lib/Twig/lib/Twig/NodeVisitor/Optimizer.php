@@ -29,10 +29,10 @@ class Twig_NodeVisitor_Optimizer extends Twig_BaseNodeVisitor
     const OPTIMIZE_RAW_FILTER = 4;
     const OPTIMIZE_VAR_ACCESS = 8;
 
-    protected $loops = [];
-    protected $loopsTargets = [];
+    protected $loops = array();
+    protected $loopsTargets = array();
     protected $optimizers;
-    protected $prependedNodes = [];
+    protected $prependedNodes = array();
     protected $inABody = false;
 
     /**
@@ -57,7 +57,7 @@ class Twig_NodeVisitor_Optimizer extends Twig_BaseNodeVisitor
             if ($this->inABody) {
                 if (!$node instanceof Twig_Node_Expression) {
                     if (get_class($node) !== 'Twig_Node') {
-                        array_unshift($this->prependedNodes, []);
+                        array_unshift($this->prependedNodes, array());
                     }
                 } else {
                     $node = $this->optimizeVariables($node, $env);
@@ -89,12 +89,12 @@ class Twig_NodeVisitor_Optimizer extends Twig_BaseNodeVisitor
                 $this->inABody = false;
             } elseif ($this->inABody) {
                 if (!$expression && get_class($node) !== 'Twig_Node' && $prependedNodes = array_shift($this->prependedNodes)) {
-                    $nodes = [];
+                    $nodes = array();
                     foreach (array_unique($prependedNodes) as $name) {
-                        $nodes[] = new Twig_Node_SetTemp($name, $node->getTemplateLine());
+                        $nodesarray() = new Twig_Node_SetTemp($name, $node->getTemplateLine());
                     }
 
-                    $nodes[] = $node;
+                    $nodesarray() = $node;
                     $node = new Twig_Node($nodes);
                 }
             }
@@ -106,7 +106,7 @@ class Twig_NodeVisitor_Optimizer extends Twig_BaseNodeVisitor
     protected function optimizeVariables(Twig_NodeInterface $node, Twig_Environment $env)
     {
         if ('Twig_Node_Expression_Name' === get_class($node) && $node->isSimple()) {
-            $this->prependedNodes[0][] = $node->getAttribute('name');
+            $this->prependedNodes[0]array() = $node->getAttribute('name');
 
             return new Twig_Node_Expression_TempName($node->getAttribute('name'), $node->getTemplateLine());
         }

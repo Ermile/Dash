@@ -26,7 +26,7 @@ class Twig_TokenParser_From extends Twig_TokenParser
         $stream = $this->parser->getStream();
         $stream->expect('import');
 
-        $targets = [];
+        $targets = array();
         do {
             $name = $stream->expect(Twig_Token::NAME_TYPE)->getValue();
 

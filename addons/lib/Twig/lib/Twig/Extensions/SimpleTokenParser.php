@@ -45,7 +45,7 @@ abstract class Twig_Extensions_SimpleTokenParser extends Twig_TokenParser
      */
     abstract protected function getNode(array $values, $line);
 
-    protected function getAttribute($node, $attribute, $arguments = [], $type = Twig_Node_Expression_GetAttr::TYPE_ANY, $line = -1)
+    protected function getAttribute($node, $attribute, $arguments = array(), $type = Twig_Node_Expression_GetAttr::TYPE_ANY, $line = -1)
     {
         return new Twig_Node_Expression_GetAttr(
             $node instanceof Twig_NodeInterface ? $node : new Twig_Node_Expression_Name($node, $line),
@@ -56,7 +56,7 @@ abstract class Twig_Extensions_SimpleTokenParser extends Twig_TokenParser
         );
     }
 
-    protected function call($node, $attribute, $arguments = [], $line = -1)
+    protected function call($node, $attribute, $arguments = array(), $line = -1)
     {
         return $this->getAttribute($node, $attribute, $arguments, Twig_Node_Expression_GetAttr::TYPE_METHOD, $line);
     }
@@ -78,10 +78,10 @@ abstract class Twig_Extensions_SimpleTokenParser extends Twig_TokenParser
 
     protected function getNodeValues(array $values)
     {
-        $nodes = [];
+        $nodes = array();
         foreach ($values as $value) {
             if ($value instanceof Twig_NodeInterface) {
-                $nodes[] = $value;
+                $nodesarray() = $value;
             }
         }
 

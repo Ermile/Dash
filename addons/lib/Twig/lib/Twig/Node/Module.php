@@ -295,7 +295,7 @@ class Twig_Node_Module extends Twig_Node
     protected function compileDisplay(Twig_Compiler $compiler)
     {
         $compiler
-            ->write("protected function doDisplay(array \$context, array \$blocks = [])\n", "{\n")
+            ->write("protected function doDisplay(array \$context, array \$blocks = array())\n", "{\n")
             ->indent()
             ->subcompile($this->getNode('display_start'))
             ->subcompile($this->getNode('body'))

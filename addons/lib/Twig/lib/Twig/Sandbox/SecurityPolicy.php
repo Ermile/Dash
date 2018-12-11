@@ -24,7 +24,7 @@ class Twig_Sandbox_SecurityPolicy implements Twig_Sandbox_SecurityPolicyInterfac
     protected $allowedProperties;
     protected $allowedFunctions;
 
-    public function __construct(array $allowedTags = [], array $allowedFilters = [], array $allowedMethods = [], array $allowedProperties = [], array $allowedFunctions = [])
+    public function __construct(array $allowedTags = array(), array $allowedFilters = array(), array $allowedMethods = array(), array $allowedProperties = array(), array $allowedFunctions = array())
     {
         $this->allowedTags = $allowedTags;
         $this->allowedFilters = $allowedFilters;
@@ -45,7 +45,7 @@ class Twig_Sandbox_SecurityPolicy implements Twig_Sandbox_SecurityPolicyInterfac
 
     public function setAllowedMethods(array $methods)
     {
-        $this->allowedMethods = [];
+        $this->allowedMethods = array();
         foreach ($methods as $class => $m) {
             $this->allowedMethods[$class] = array_map('strtolower', is_array($m) ? $m : array($m));
         }

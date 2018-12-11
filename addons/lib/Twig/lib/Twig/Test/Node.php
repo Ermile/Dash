@@ -22,7 +22,7 @@ class Twig_Test_Node extends Twig_Test
 {
     protected $class;
 
-    public function __construct($class, array $options = [])
+    public function __construct($class, array $options = array())
     {
         parent::__construct($options);
 

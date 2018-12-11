@@ -28,35 +28,35 @@ interface Twig_ExtensionInterface
     /**
      * Returns the token parser instances to add to the existing list.
      *
-     * @return Twig_TokenParserInterface[]
+     * @return Twig_TokenParserInterfacearray()
      */
     public function getTokenParsers();
 
     /**
      * Returns the node visitor instances to add to the existing list.
      *
-     * @return Twig_NodeVisitorInterface[]
+     * @return Twig_NodeVisitorInterfacearray()
      */
     public function getNodeVisitors();
 
     /**
      * Returns a list of filters to add to the existing list.
      *
-     * @return Twig_SimpleFilter[]
+     * @return Twig_SimpleFilterarray()
      */
     public function getFilters();
 
     /**
      * Returns a list of tests to add to the existing list.
      *
-     * @return Twig_SimpleTest[]
+     * @return Twig_SimpleTestarray()
      */
     public function getTests();
 
     /**
      * Returns a list of functions to add to the existing list.
      *
-     * @return Twig_SimpleFunction[]
+     * @return Twig_SimpleFunctionarray()
      */
     public function getFunctions();
 

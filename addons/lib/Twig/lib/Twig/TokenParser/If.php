@@ -49,8 +49,8 @@ class Twig_TokenParser_If extends Twig_TokenParser
                     $expr = $this->parser->getExpressionParser()->parseExpression();
                     $stream->expect(Twig_Token::BLOCK_END_TYPE);
                     $body = $this->parser->subparse(array($this, 'decideIfFork'));
-                    $tests[] = $expr;
-                    $tests[] = $body;
+                    $testsarray() = $expr;
+                    $testsarray() = $body;
                     break;
 
                 case 'endif':

@@ -24,7 +24,7 @@ class Twig_Node_If extends Twig_Node
             $nodes['else'] = $else;
         }
 
-        parent::__construct($nodes, [], $lineno, $tag);
+        parent::__construct($nodes, array(), $lineno, $tag);
     }
 
     public function compile(Twig_Compiler $compiler)

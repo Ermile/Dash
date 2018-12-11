@@ -46,17 +46,17 @@ class Twig_Environment
     protected $unaryOperators;
     protected $binaryOperators;
     protected $templateClassPrefix = '__TwigTemplate_';
-    protected $functionCallbacks = [];
-    protected $filterCallbacks = [];
+    protected $functionCallbacks = array();
+    protected $filterCallbacks = array();
     protected $staging;
 
     private $originalCache;
     private $bcWriteCacheFile = false;
     private $bcGetCacheFilename = false;
     private $lastModifiedExtension = 0;
-    private $extensionsByClass = [];
-    private $runtimeLoaders = [];
-    private $runtimes = [];
+    private $extensionsByClass = array();
+    private $runtimeLoaders = array();
+    private $runtimes = array();
     private $optionsHash;
 
     /**
@@ -97,7 +97,7 @@ class Twig_Environment
      * @param Twig_LoaderInterface $loader
      * @param array                $options An array of options
      */
-    public function __construct(Twig_LoaderInterface $loader = null, $options = [])
+    public function __construct(Twig_LoaderInterface $loader = null, $options = array())
     {
         if (null !== $loader) {
             $this->setLoader($loader);
@@ -357,7 +357,7 @@ class Twig_Environment
      * @throws Twig_Error_Syntax  When an error occurred during compilation
      * @throws Twig_Error_Runtime When an error occurred during rendering
      */
-    public function render($name, array $context = [])
+    public function render($name, array $context = array())
     {
         return $this->loadTemplate($name)->render($context);
     }
@@ -372,7 +372,7 @@ class Twig_Environment
      * @throws Twig_Error_Syntax  When an error occurred during compilation
      * @throws Twig_Error_Runtime When an error occurred during rendering
      */
-    public function display($name, array $context = [])
+    public function display($name, array $context = array())
     {
         $this->loadTemplate($name)->display($context);
     }
@@ -585,7 +585,7 @@ class Twig_Environment
     {
         @trigger_error(sprintf('The %s method is deprecated since version 1.18.3 and will be removed in Twig 2.0.', __METHOD__), E_USER_DEPRECATED);
 
-        $this->loadedTemplates = [];
+        $this->loadedTemplates = array();
     }
 
     /**
@@ -853,7 +853,7 @@ class Twig_Environment
      */
     public function addRuntimeLoader(Twig_RuntimeLoaderInterface $loader)
     {
-        $this->runtimeLoaders[] = $loader;
+        $this->runtimeLoadersarray() = $loader;
     }
 
     /**
@@ -982,7 +982,7 @@ class Twig_Environment
     /**
      * Returns all registered extensions.
      *
-     * @return Twig_ExtensionInterface[] An array of extensions (keys are for internal usage only and should not be relied on)
+     * @return Twig_ExtensionInterfacearray() An array of extensions (keys are for internal usage only and should not be relied on)
      */
     public function getExtensions()
     {
@@ -1019,13 +1019,13 @@ class Twig_Environment
      *
      * Be warned that this method cannot return tags defined by Twig_TokenParserBrokerInterface classes.
      *
-     * @return Twig_TokenParserInterface[]
+     * @return Twig_TokenParserInterfacearray()
      *
      * @internal
      */
     public function getTags()
     {
-        $tags = [];
+        $tags = array();
         foreach ($this->getTokenParsers()->getParsers() as $parser) {
             if ($parser instanceof Twig_TokenParserInterface) {
                 $tags[$parser->getTag()] = $parser;
@@ -1047,7 +1047,7 @@ class Twig_Environment
     /**
      * Gets the registered Node Visitors.
      *
-     * @return Twig_NodeVisitorInterface[]
+     * @return Twig_NodeVisitorInterfacearray()
      *
      * @internal
      */
@@ -1132,7 +1132,7 @@ class Twig_Environment
 
     public function registerUndefinedFilterCallback($callable)
     {
-        $this->filterCallbacks[] = $callable;
+        $this->filterCallbacksarray() = $callable;
     }
 
     /**
@@ -1140,7 +1140,7 @@ class Twig_Environment
      *
      * Be warned that this method cannot return filters defined with registerUndefinedFilterCallback.
      *
-     * @return Twig_FilterInterface[]
+     * @return Twig_FilterInterfacearray()
      *
      * @see registerUndefinedFilterCallback
      *
@@ -1184,7 +1184,7 @@ class Twig_Environment
     /**
      * Gets the registered Tests.
      *
-     * @return Twig_TestInterface[]
+     * @return Twig_TestInterfacearray()
      *
      * @internal
      */
@@ -1291,7 +1291,7 @@ class Twig_Environment
 
     public function registerUndefinedFunctionCallback($callable)
     {
-        $this->functionCallbacks[] = $callable;
+        $this->functionCallbacksarray() = $callable;
     }
 
     /**
@@ -1299,7 +1299,7 @@ class Twig_Environment
      *
      * Be warned that this method cannot return functions defined with registerUndefinedFunctionCallback.
      *
-     * @return Twig_FunctionInterface[]
+     * @return Twig_FunctionInterfacearray()
      *
      * @see registerUndefinedFunctionCallback
      *
@@ -1432,7 +1432,7 @@ class Twig_Environment
      */
     protected function initGlobals()
     {
-        $globals = [];
+        $globals = array();
         foreach ($this->extensions as $name => $extension) {
             if (!$extension instanceof Twig_Extension_GlobalsInterface) {
                 $m = new ReflectionMethod($extension, 'getGlobals');
@@ -1447,10 +1447,10 @@ class Twig_Environment
                 throw new UnexpectedValueException(sprintf('"%s::getGlobals()" must return an array of globals.', get_class($extension)));
             }
 
-            $globals[] = $extGlob;
+            $globalsarray() = $extGlob;
         }
 
-        $globals[] = $this->staging->getGlobals();
+        $globalsarray() = $this->staging->getGlobals();
 
         return call_user_func_array('array_merge', $globals);
     }
@@ -1464,13 +1464,13 @@ class Twig_Environment
             return;
         }
 
-        $this->parsers = new Twig_TokenParserBroker(array(), [], false);
-        $this->filters = [];
-        $this->functions = [];
-        $this->tests = [];
-        $this->visitors = [];
-        $this->unaryOperators = [];
-        $this->binaryOperators = [];
+        $this->parsers = new Twig_TokenParserBroker(array(), array(), false);
+        $this->filters = array();
+        $this->functions = array();
+        $this->tests = array();
+        $this->visitors = array();
+        $this->unaryOperators = array();
+        $this->binaryOperators = array();
 
         foreach ($this->extensions as $extension) {
             $this->initExtension($extension);
@@ -1533,7 +1533,7 @@ class Twig_Environment
 
         // node visitors
         foreach ($extension->getNodeVisitors() as $visitor) {
-            $this->visitors[] = $visitor;
+            $this->visitorsarray() = $visitor;
         }
 
         // operators

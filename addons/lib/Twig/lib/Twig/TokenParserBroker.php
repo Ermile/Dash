@@ -20,15 +20,15 @@
 class Twig_TokenParserBroker implements Twig_TokenParserBrokerInterface
 {
     protected $parser;
-    protected $parsers = [];
-    protected $brokers = [];
+    protected $parsers = array();
+    protected $brokers = array();
 
     /**
      * @param array|Traversable $parsers                 A Traversable of Twig_TokenParserInterface instances
      * @param array|Traversable $brokers                 A Traversable of Twig_TokenParserBrokerInterface instances
      * @param bool              $triggerDeprecationError
      */
-    public function __construct($parsers = [], $brokers = [], $triggerDeprecationError = true)
+    public function __construct($parsers = array(), $brokers = array(), $triggerDeprecationError = true)
     {
         if ($triggerDeprecationError) {
             @trigger_error('The '.__CLASS__.' class is deprecated since version 1.12 and will be removed in 2.0.', E_USER_DEPRECATED);
@@ -44,7 +44,7 @@ class Twig_TokenParserBroker implements Twig_TokenParserBrokerInterface
             if (!$broker instanceof Twig_TokenParserBrokerInterface) {
                 throw new LogicException('$brokers must a an array of Twig_TokenParserBrokerInterface.');
             }
-            $this->brokers[] = $broker;
+            $this->brokersarray() = $broker;
         }
     }
 
@@ -63,7 +63,7 @@ class Twig_TokenParserBroker implements Twig_TokenParserBrokerInterface
 
     public function addTokenParserBroker(Twig_TokenParserBroker $broker)
     {
-        $this->brokers[] = $broker;
+        $this->brokersarray() = $broker;
     }
 
     public function removeTokenParserBroker(Twig_TokenParserBroker $broker)

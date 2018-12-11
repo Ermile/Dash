@@ -24,7 +24,7 @@ class Twig_Filter_Function extends Twig_Filter
 {
     protected $function;
 
-    public function __construct($function, array $options = [])
+    public function __construct($function, array $options = array())
     {
         $options['callable'] = $function;
 
