@@ -4,7 +4,7 @@
 
 {%block sidenav%}
   <li><a href="{{url.here}}"><i class='sf-gauge'></i> <span>{% trans "Dashboard" %}</span></a></li>
-
+  {%if perm('contentCp')%}<li><a href="{{url.kingdom}}/cp">{% trans "CP" %} <i class='floatRa mRa10 fc-mute sf-diamond'></i></a></li>{%endif%}
 
 
 

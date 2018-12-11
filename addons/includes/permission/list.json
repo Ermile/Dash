@@ -1,5 +1,13 @@
 
 {
+  "contentCrm":
+  {
+    "title": "contentCrm",
+    "cat": "Customer relationship management",
+    "breakAfter": true,
+    "require": ["contentCrm"]
+  },
+
   "contentCp":
   {
     "title": "contentCp",
@@ -7,6 +15,8 @@
     "breakAfter": true,
     "require": ["contentCp"]
   },
+
+
 
 
 
@@ -321,39 +331,39 @@
   "cpUsersView":
   {
     "title": "cpUsersView",
-    "cat": "Control Panel Users",
+    "cat": "Customer relationship management",
     "titleBefore": "Users",
-    "require": ["contentCp"]
+    "require": ["contentCrm"]
   },
   "cpUsersAdd":
   {
     "title": "cpUsersAdd",
-    "cat": "Control Panel Users",
-    "require": ["contentCp", "cpUsersView"]
+    "cat": "Customer relationship management",
+    "require": ["contentCrm", "cpUsersView"]
   },
   "cpUsersEdit":
   {
     "title": "cpUsersEdit",
-    "cat": "Control Panel Users",
-    "require": ["contentCp", "cpUsersView"]
+    "cat": "Customer relationship management",
+    "require": ["contentCrm", "cpUsersView"]
   },
   "cpUsersPermission":
   {
     "title": "cpUsersPermission",
-    "cat": "Control Panel Users",
-    "require": ["contentCp", "cpUsersView", "cpUsersEdit"]
+    "cat": "Customer relationship management",
+    "require": ["contentCrm", "cpUsersView", "cpUsersEdit"]
   },
   "cpUsersPasswordChange":
   {
     "title": "cpUsersPasswordChange",
-    "cat": "Control Panel Users",
-    "require": ["contentCp", "cpUsersView", "cpUsersEdit"]
+    "cat": "Customer relationship management",
+    "require": ["contentCrm", "cpUsersView", "cpUsersEdit"]
   },
   "cpUsersDelete":
   {
     "title": "cpUsersDelete",
-    "cat": "Control Panel Users",
-    "require": ["contentCp", "cpUsersView", "cpUsersEdit"]
+    "cat": "Customer relationship management",
+    "require": ["contentCrm", "cpUsersView", "cpUsersEdit"]
   },
 
 
@@ -361,27 +371,27 @@
   "cpPermissionView":
   {
     "title": "cpPermissionView",
-    "cat": "Control Panel Users",
+    "cat": "Customer relationship management",
     "titleBefore": "Permissions",
-    "require": ["contentCp"]
+    "require": ["contentCrm"]
   },
   "cpPermissionAdd":
   {
     "title": "cpPermissionAdd",
-    "cat": "Control Panel Users",
-    "require": ["contentCp", "cpPermissionView"]
+    "cat": "Customer relationship management",
+    "require": ["contentCrm", "cpPermissionView"]
   },
   "cpPermissionEdit":
   {
     "title": "cpPermissionEdit",
-    "cat": "Control Panel Users",
-    "require": ["contentCp", "cpPermissionView"]
+    "cat": "Customer relationship management",
+    "require": ["contentCrm", "cpPermissionView"]
   },
   "cpPermissionDelete":
   {
     "title": "cpPermissionDelete",
-    "cat": "Control Panel Users",
-    "require": ["contentCp", "cpPermissionView", "cpPermissionEdit"]
+    "cat": "Customer relationship management",
+    "require": ["contentCrm", "cpPermissionView", "cpPermissionEdit"]
   },
 
 
@@ -389,39 +399,39 @@
   "cpSMS":
   {
     "title": "cpSMS",
-    "cat": "SMS Panle",
+    "cat": "Customer relationship management",
     "titleBefore": "SMS",
-    "require": ["contentCp"]
+    "require": ["contentCrm"]
   },
   "cpSmsSend":
   {
     "title": "cpSmsSend",
-    "cat": "SMS Panle",
-    "require": ["contentCp", "cpSMS"]
+    "cat": "Customer relationship management",
+    "require": ["contentCrm", "cpSMS"]
   },
   "cpSmsSendGroup":
   {
     "title": "cpSmsSendGroup",
-    "cat": "SMS Panle",
-    "require": ["contentCp", "cpSMS", "cpSmsSend"]
+    "cat": "Customer relationship management",
+    "require": ["contentCrm", "cpSMS", "cpSmsSend"]
   },
   "cpSmsTemplateView":
   {
     "title": "cpSmsTemplateView",
-    "cat": "SMS Panle",
-    "require": ["contentCp", "cpSMS"]
+    "cat": "Customer relationship management",
+    "require": ["contentCrm", "cpSMS"]
   },
   "cpSmsTemplateEdit":
   {
     "title": "cpSmsTemplateEdit",
-    "cat": "SMS Panle",
-    "require": ["contentCp", "cpSMS", "cpSmsTemplateView"]
+    "cat": "Customer relationship management",
+    "require": ["contentCrm", "cpSMS", "cpSmsTemplateView"]
   },
   "cpSmsTemplateDelete":
   {
     "title": "cpSmsTemplateDelete",
-    "cat": "SMS Panle",
-    "require": ["contentCp", "cpSMS", "cpSmsTemplateView", "cpSmsTemplateEdit"]
+    "cat": "Customer relationship management",
+    "require": ["contentCrm", "cpSMS", "cpSmsTemplateView", "cpSmsTemplateEdit"]
   },
 
 
@@ -429,27 +439,27 @@
   "cpEmail":
   {
     "title": "cpEmail",
-    "cat": "Email Panel",
+    "cat": "Customer relationship management",
     "titleBefore": "Email",
-    "require": ["contentCp"]
+    "require": ["contentCrm"]
   },
   "cpEmailSend":
   {
     "title": "cpEmailSend",
-    "cat": "Email Panel",
-    "require": ["contentCp", "cpEmail"]
+    "cat": "Customer relationship management",
+    "require": ["contentCrm", "cpEmail"]
   },
   "cpEmailTemplateView":
   {
     "title": "cpEmailTemplateView",
-    "cat": "Email Panel",
-    "require": ["contentCp", "cpEmail"]
+    "cat": "Customer relationship management",
+    "require": ["contentCrm", "cpEmail"]
   },
   "cpEmailTemplateEdit":
   {
     "title": "cpEmailTemplateEdit",
-    "cat": "Email Panel",
-    "require": ["contentCp", "cpSMS", "cpSmsTemplateView"]
+    "cat": "Customer relationship management",
+    "require": ["contentCrm", "cpSMS", "cpSmsTemplateView"]
   },
 
 

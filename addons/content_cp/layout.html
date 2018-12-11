@@ -4,7 +4,7 @@
 
 {%block sidenav%}
   <li><a href="{{url.here}}"><i class='sf-gauge'></i> <span>{% trans "Dashboard" %}</span></a></li>
-
+  {%if perm('contentCrm')%}<li><a href="{{url.kingdom}}/crm">{% trans "CRM" %} <i class='floatRa mRa10 fc-mute sf-users'></i></a></li>{%endif%}
 
 
 {%if perm('cpPostsView') or perm('cpCategoryView') or perm('cpPageView') or perm('cpTagView')  %}
