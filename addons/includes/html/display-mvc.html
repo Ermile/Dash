@@ -160,6 +160,17 @@
  <script src="{{url.site}}/static/{{'js/script.js' | filemtime(true)}}"></script>
 {%endif%}
 
+
+{%if options.site.googleAnalytics%}
+<script async src="https://www.googletagmanager.com/gtag/js?id={{options.site.googleAnalytics}}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', '{{options.site.googleAnalytics}}');
+</script>
+{%endif%}
+
  <div data-xhr='foot_js' class="foot_js">{%block foot_js%}{%endblock%}</div>
 </body>
 </html>
