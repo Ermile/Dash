@@ -109,6 +109,11 @@ class permission
 				self::$core_group        = self::read_file(core.'addons/includes/permission/group.json');
 			}
 
+			if(empty(self::$core_group))
+			{
+				self::$core_group['admin'] = ["title" => "admin"];
+			}
+
 			if(is_callable(['\lib\permission', 'perm_list']))
 			{
 				self::$project_perm_list = \lib\permission::perm_list(self::$project_perm_list, 'project');
