@@ -232,11 +232,12 @@
 </select>
 
 {%else%}
-<div class="switch1 mT10">
-  <input type="checkbox" name="status" id="switch12" {%if datarow.status == 'enable' or not datarow %} checked {%endif%}>
-  <label for="switch12" data-on='{%trans "Active"%}' data-off='{%trans "Deactive"%}'></label>
-  <label for="switch12">{%trans "Status"%}</label>
- </div>
+<label for="status">{%trans "Status"%}</label>
+<select name="status" class="input select">
+  <option value="">{%trans "Please select one itme"%}</option>
+  <option value="enable" {%if datarow.status == 'enable'%} selected {%endif%}>{%trans "Enable"%}</option>
+  <option value="disable" {%if datarow.status == 'disable'%} selected {%endif%}>{%trans "Disable"%}</option>
+</select>
 {%endif%}
 {%endblock%}
 
