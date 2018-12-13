@@ -138,6 +138,12 @@ class datetime
 		{
 			return null;
 		}
+
+		if($_format === 'humanTime')
+		{
+			return \dash\utility\human::time($_datetime, $_type);
+		}
+
 		// check if strtotime is valid, on linux say invalid
 		// on windows because of shamsi problem on strtotime check length
         $isValidDate = strtotime($_datetime);
@@ -163,14 +169,12 @@ class datetime
         	}
         }
 
+
 		if($_format === 'human')
 		{
 			return \dash\utility\human::timing($_datetime, $_type);
 		}
-		if($_format === 'humanTime')
-		{
-			return \dash\utility\human::time($_datetime, $_type);
-		}
+
 		return self::get($_datetime, $_format, $_type, $_calendar);
 	}
 
