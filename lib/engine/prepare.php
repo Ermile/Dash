@@ -464,7 +464,7 @@ class prepare
 			}
 			elseif(!isset($_COOKIE["preview"]))
 			{
-				\dash\redirect::to(\dash\url::site().'/static/page/coming/', true, 302);
+				\dash\redirect::to(\dash\url::static(). '/page/coming/', true, 302);
 			}
 		}
 	}
@@ -558,7 +558,7 @@ class prepare
 		// favicon
 		if(strpos(\dash\url::path(), '/favicon.ico') !== false)
 		{
-			\dash\redirect::to(\dash\url::site().'/static/images/favicons/favicon.ico');
+			\dash\redirect::to(\dash\url::static(). '/images/favicons/favicon.ico');
 		}
 	}
 

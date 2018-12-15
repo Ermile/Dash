@@ -73,7 +73,7 @@ class model
 		$return['domain']             = \dash\url::domain();
 		$return['name']               = \dash\data::site_title();
 		$return['desc']               = \dash\data::site_desc();
-		$return['logo']               = \dash\url::site(). '/static/images/logo.png';
+		$return['logo']               = \dash\url::static(). '/images/logo.png';
 		$return['dashLoc']            = $dashLoc;
 		$return['projectVersion']     = \dash\utility\git::getLastUpdate(false);
 		$return['projectCommitCount'] = \dash\utility\git::getCommitCount(false);

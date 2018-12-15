@@ -75,7 +75,7 @@ class ermileInline
 					'id'                    => 1,
 					'title'                 => T_('About'). ' '. $siteTitle ,
 					'description'           => $siteSlogan,
-					'thumb_url'             =>\dash\url::site().'/static/images/logo.png',
+					'thumb_url'             =>\dash\url::static(). '/images/logo.png',
 					'input_message_content' =>
 					[
 						'message_text' => $msg,
@@ -123,7 +123,7 @@ class ermileInline
 					'description'           => T_('Read more about us'),
 					'address'               => $msg,
 					'foursquare_id'         => '5bd1d8293b8307002bdb5dbb',
-					'thumb_url'             =>\dash\url::site().'/static/images/logo.png',
+					'thumb_url'             =>\dash\url::static(). '/images/logo.png',
 					'reply_markup' =>
 					[
 						'inline_keyboard' =>

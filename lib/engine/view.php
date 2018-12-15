@@ -70,7 +70,7 @@ class view
 		\dash\data::site_title(T_(\dash\option::config('site', 'title')));
 		\dash\data::site_desc(T_(\dash\option::config('site', 'desc')));
 		\dash\data::site_slogan(T_(\dash\option::config('site', 'slogan')));
-		\dash\data::site_logo(\dash\url::site(). '/static/images/logo.png');
+		\dash\data::site_logo(\dash\url::static(). '/images/logo.png');
 		// set custom logo
 		if(\dash\option::config('site', 'logo'))
 		{
@@ -81,7 +81,7 @@ class view
 		\dash\data::service_title(T_('Ermile'));
 		\dash\data::service_desc(T_('As easy as ABC is our slogan!'). '<br>'. T_('If you are not finded a solution for your problem, call us.'));
 		\dash\data::service_slogan(T_('Software Solution Designer'));
-		\dash\data::service_logo(\dash\url::site(). '/static/siftal/images/logo/ermile.png');
+		\dash\data::service_logo(\dash\url::static(). '/siftal/images/logo/ermile.png');
 		\dash\data::service_url('https://ermile.com');
 
 		// toggle side bar
@@ -97,7 +97,7 @@ class view
 			// create data of share url
 			\dash\data::share_title(\dash\data::get('site', 'title'));
 			\dash\data::share_desc(\dash\data::get('site', 'desc'));
-			\dash\data::share_image(\dash\url::site(). '/static/images/logo.png');
+			\dash\data::share_image(\dash\url::static(). '/images/logo.png');
 			\dash\data::share_twitterCard('summary');
 		}
 
