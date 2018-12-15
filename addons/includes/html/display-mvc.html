@@ -22,7 +22,7 @@
  <meta name     ="twitter:image"           content="{{share.image}}"/>
 {%endif%}
 {%endblock%}
-{%if browser.ua_type == 'mobile' && options.tabColor.value%}
+{%if browser.ua_type == 'mobile' and options.tabColor.value%}
  <!-- Chrome, Firefox OS and Opera -->
  <meta name="theme-color" content="#{{options.tabColor.value}}">
 {%endif%}
