@@ -770,7 +770,11 @@ class twigAddons
 			$result       = '';
 			$lastTime     = null;
 			$complete_url = root.'public_html/';
-			if($_withReturn)
+			if($_withReturn === 'siftal')
+			{
+				$complete_url .= 'static/siftal/';
+			}
+			else if($_withReturn)
 			{
 				$complete_url .= 'static/';
 			}
