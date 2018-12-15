@@ -768,6 +768,7 @@ class twigAddons
 		return new \Twig_SimpleFilter('filemtime', function ($_url, $_withReturn = null)
 		{
 			$result       = '';
+			$lastTime     = null;
 			$complete_url = root.'public_html/';
 			if($_withReturn)
 			{
@@ -776,12 +777,16 @@ class twigAddons
 			$complete_url .= $_url;
 			if($_url && \dash\file::exists($complete_url))
 			{
-				$result = filemtime($complete_url);
+				$lastTime = filemtime($complete_url);
 			}
 
 			if($_withReturn)
 			{
-				$result = $_url. '?'. $result;
+				$result = $_url;
+				if($lastTime)
+				{
+					$result .= '?'. $lastTime;
+				}
 			}
 
 			return $result;
