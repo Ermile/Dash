@@ -12,6 +12,7 @@
  <meta name     ="description"             content="{{page.desc | striptags}}"/>
  <meta name     ="site:root"               content="{{url.kingdom}}"/>
 {%block head_twitter%}
+{%if social.status%}
  <meta name     ="twitter:card"            content="{{share.twitterCard}}"/>
 {%if social.twitter%}
  <meta name     ="twitter:site"            content="@{{social.twitter}}"/>
@@ -19,23 +20,11 @@
  <meta name     ="twitter:title"           content="{{global.title | striptags }}"/>
  <meta name     ="twitter:description"     content="{{page.desc | striptags}}"/>
  <meta name     ="twitter:image"           content="{{share.image}}"/>
+{%endif%}
 {%endblock%}
-{%if browser.ua_type == 'mobile' %}
- {%if browser.browser_name == 'edge' %}
-  {%if options.tabColor.value %}
-   <!-- Windows Phone -->
-   <meta name="msapplication-navbutton-color" content="#{{options.tabColor.value}}">
-  {%endif%}
- {%elseif browser.browser_name == 'safari' %}
-  <!-- iOS Safari -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
- {%else%}
-   {% if options.tabColor.value %}
-   <!-- Chrome, Firefox OS and Opera -->
-   <meta name="theme-color" content="#{{options.tabColor.value}}">
-   {%endif%}
- {%endif%}
+{%if browser.ua_type == 'mobile' && options.tabColor.value%}
+ <!-- Chrome, Firefox OS and Opera -->
+ <meta name="theme-color" content="#{{options.tabColor.value}}">
 {%endif%}
 {%block facebook%}
  <meta property ="og:image"                content="{{url.static}}/images/logo.png"/>
