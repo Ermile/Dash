@@ -772,11 +772,11 @@ class twigAddons
 			$complete_url = root.'public_html/';
 			if($_withReturn === 'siftal')
 			{
-				$complete_url .= 'static/siftal/';
+				$complete_url .= 'static/siftal';
 			}
 			else if($_withReturn)
 			{
-				$complete_url .= 'static/';
+				$complete_url .= 'static';
 			}
 			$complete_url .= $_url;
 			if($_url && \dash\file::exists($complete_url))
