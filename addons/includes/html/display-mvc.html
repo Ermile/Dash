@@ -72,15 +72,11 @@
 {%endfor%}
 
 {%if include.siftal and siftalCSS != 'off' %}
-{%if dev.siftal %}
- <link rel="stylesheet"       href="http://siftal.local/dist/css/siftal.css"/>
-{%else%}
- <link rel="stylesheet"       href="{{url.static}}/{{'siftal/css/siftal.css' | filemtime(true)}}"/>
-{%endif%}
+ <link rel="stylesheet"       href="{{url.siftal}}{{'/css/siftal.css' | filemtime('siftal')}}"/>
 {%endif%}
 {%block head_css         %}{%endblock%}
 {%if include.css %}
- <link rel="stylesheet"       href="{{url.static}}/{{'css/style.css' | filemtime(true)}}"/>
+ <link rel="stylesheet"       href="{{url.static}}{{'/css/style.css' | filemtime(true)}}"/>
 {%endif%}
 {%block head_js          %}{%endblock%}
 {%endblock%}
@@ -113,29 +109,9 @@
 {%endblock%}
 {%block foot_css%}{%endblock%}
 {%if include.siftal and siftalJS != 'off' %}
-{%if dev.siftal %}
- <script src="http://siftal.local/dist/js/siftal.min.js"></script>
+ <script src="{{url.siftal}}{{'/js/siftal.min.js' | filemtime('siftal')}}"></script>
 {%if include.highcharts %}
- <script src="http://siftal.local/dist/js/highcharts/highcharts.min.js"></script>
-{%endif%}
-{%if include.chart %}
- <script src="http://siftal.local/dist/js/amcharts4.min.js"></script>
-{%endif%}
-{%if include.chart3 %}
- <script src="http://siftal.local/dist/js/amcharts3.min.js"></script>
-{%endif%}
-{%else%}
-
- <script src="{{url.static}}/{{'siftal/js/siftal.min.js' | filemtime(true)}}"></script>
-{%if include.highcharts %}
- <script src="{{url.static}}/{{'siftal/js/highcharts/highcharts.min.js' | filemtime(true)}}"></script>
-{%endif%}
-{%if include.chart %}
- <script src="{{url.static}}/{{'siftal/js/amcharts4.min.js' | filemtime(true)}}"></script>
-{%endif%}
-{%if include.chart3 %}
- <script src="{{url.static}}/{{'siftal/js/amcharts3.min.js' | filemtime(true)}}"></script>
-{%endif%}
+ <script src="{{url.siftal}}{{'/js/highcharts/highcharts.min.js' | filemtime('siftal')}}"></script>
 {%endif%}
 {%endif%}
 {%if user.id%}
@@ -153,11 +129,11 @@
 {%endif%}
 {%block js%}{%endblock%}
 {%if include.editor%}
- <script src="{{url.static}}/{{'siftal/js/medium-editor.min.js' | filemtime(true)}}"></script>
- <link  href="{{url.static}}/{{'siftal/css/medium-editor.css' | filemtime(true)}}" rel="stylesheet" media="screen"/>
+ <script src="{{url.siftal}}{{'/js/medium-editor.min.js' | filemtime('siftal')}}"></script>
+ <link  href="{{url.siftal}}{{'/css/medium-editor.css' | filemtime('siftal')}}" rel="stylesheet" media="screen"/>
 {%endif%}
 {%if include.js%}
- <script src="{{url.static}}/{{'js/script.js' | filemtime(true)}}"></script>
+ <script src="{{url.static}}{{'/js/script.js' | filemtime(true)}}"></script>
 {%endif%}
 
 
