@@ -76,6 +76,7 @@ class url
 		self::$url['site']      = self::_site();
 		self::$url['base']      = self::_base();
 		self::$url['static']    = self::_static();
+		self::$url['siftal']    = self::_siftal();
 
 		// generate with path
 		self::$url['path']      = self::_path();
@@ -383,6 +384,34 @@ class url
 			$staticAddr = self::_site(). $staticAddr;
 		}
 		return $staticAddr;
+	}
+
+
+	/**
+	 * get url base of static folder
+	 * @return sting of static folder
+	 */
+	private static function _siftal()
+	{
+		$siftalAddr = '';
+		$useDevMode = \dash\option::config('dev', 'siftal');
+
+		if($useDevMode)
+		{
+			if(self::isLocal())
+			{
+				$siftalAddr = 'http://siftal.local/dist';
+			}
+			else
+			{
+				$siftalAddr = 'https://siftal.ir/dist';
+			}
+		}
+		else
+		{
+			$siftalAddr = self::_static(). '/siftal';
+		}
+		return $siftalAddr;
 	}
 
 
