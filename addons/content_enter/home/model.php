@@ -63,6 +63,8 @@ class model
 				$_SESSION['main_account'] = $main_account;
 				$_SESSION['main_mobile']  = $main_mobile;
 
+				\dash\session::clean_all();
+
 				// set login session
 				$redirect_url = \dash\utility\enter::enter_set_login(null, true);
 				return true;
