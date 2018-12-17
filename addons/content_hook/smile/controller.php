@@ -9,6 +9,12 @@ class controller
 	{
 		\dash\temp::set('force_stop_visitor', true);
 
+		// in developer mode
+		if(\dash\option::config('killSmile'))
+		{
+			return;
+		}
+
 		$myResult  = [];
 		$alertyOpt =
 		[
