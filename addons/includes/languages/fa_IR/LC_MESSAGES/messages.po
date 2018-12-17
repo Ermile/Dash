@@ -897,7 +897,7 @@ msgstr "موبایل یافت نشد"
 #: addons/content_enter/home/model.php:111
 #: addons/content_support/ticket/contact_ticket/model.php:26
 msgid "You hit our maximum try limit."
-msgstr "شما حد اکثر تلاش خود را انجام دادید."
+msgstr "شما حداکثر تلاش خود را انجام دادید."
 
 #: addons/content_enter/home/model.php:111
 #: addons/content_support/ticket/contact_ticket/model.php:26
@@ -3093,7 +3093,7 @@ msgstr "برای اضافه کردن فایل گالری عکس در اینجا 
 
 #: addons/includes/languages/trans_dash.php:384
 msgid "Maximum file size"
-msgstr "حد اکثر اندازه فایل"
+msgstr "حداکثر اندازه فایل"
 
 #: addons/includes/languages/trans_dash.php:385
 msgid "Publish"
@@ -8535,7 +8535,7 @@ msgid ""
 " whit max connetcion :max_connections"
 msgstr ""
 ":url \n"
-" به همراه حد اکثر کانکشن :max_connections"
+" به همراه حداکثر کانکشن :max_connections"
 
 #: addons/includes/languages/trans_static.php:1083
 msgid "Add transaction :title whit :plus plus and :minus minus to :user_id"
