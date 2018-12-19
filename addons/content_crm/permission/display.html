@@ -18,6 +18,18 @@
     </thead>
 
     <tbody>
+       <tr>
+        <td>{%trans "Count of user in permission"%}</td>
+        {%for slug, count in perm.usercount%}
+        <td  class="txtC">
+            {%if not count%}
+              <div class="badge danger" title='{%trans "Remove this permission if not need"%}'><a href="{{url.this}}/delete?id={{slug}}">{%trans "No user"%}</a></div>
+            {%else%}
+              <div class="badge success" title='{%trans "Click to show list of user by this permission"%}'><a href="{{url.here}}/users?permission={{slug}}">{{count | fitNumber}} {%trans "User"%}</a></div>
+            {%endif%}
+        </td>
+        {%endfor%}
+      </tr>
 {%for content, allPerms in perm.list%}
 
       {%for cat, permList in allPerms%}
