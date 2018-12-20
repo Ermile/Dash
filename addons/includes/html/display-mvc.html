@@ -126,7 +126,7 @@
 {%endif%}
 
 
-{%if options.site.googleAnalytics%}
+{%if options.site.googleAnalytics and url.tld != "local" %}
 <script async src="https://www.googletagmanager.com/gtag/js?id={{options.site.googleAnalytics}}"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
