@@ -12,6 +12,7 @@ class controller
 		// in developer mode
 		if(\dash\option::config('killSmile'))
 		{
+			\dash\code::boom();
 			return;
 		}
 
