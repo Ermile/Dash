@@ -47,11 +47,16 @@ class mellat
 
         $RefId           = isset($_REQUEST['RefId'])              ? (string) $_REQUEST['RefId']               : null;
         $ResCode         = isset($_REQUEST['ResCode'])            ? (string) $_REQUEST['ResCode']             : null;
-        $saleOrderId     = isset($_REQUEST['saleOrderId'])        ? (string) $_REQUEST['saleOrderId']         : null;
+        $SaleOrderId     = isset($_REQUEST['SaleOrderId'])        ? (string) $_REQUEST['SaleOrderId']         : null;
         $SaleReferenceId = isset($_REQUEST['SaleReferenceId'])    ? (string) $_REQUEST['SaleReferenceId']     : null;
-        // SaleReferenceId: 144242045106
-        // CardHolderInfo: F2C3434ACBA9FD4F1B9922033050A872E2373E67D720631EC1BE79D06EEB29DE
-        // CardHolderPan: 603799******8757
+        // RefId: 123
+        // ResCode: 123
+        // SaleOrderId: 123
+        // SaleReferenceId: 123
+        // CardHolderInfo: 123
+        // CardHolderPan: 123
+        // CardHolderInfo: 123
+        // CardHolderPan: 123
 
 
         if(!$RefId)
@@ -77,9 +82,10 @@ class mellat
         $mellat['terminalId']      = \dash\option::config('mellat', 'TerminalId');
         $mellat['userName']        = \dash\option::config('mellat', 'UserName');
         $mellat['userPassword']    = \dash\option::config('mellat', 'UserPassword');
-        $mellat['saleOrderId']     = $saleOrderId;
-        $mellat['saleReferenceId'] = $SaleReferenceId;
+        $mellat['SaleOrderId']     = $SaleOrderId;
+        $mellat['SaleReferenceId'] = $SaleReferenceId;
         $mellat['orderId']         = $transaction_id;
+
 
         $log_meta['data'] = \dash\utility\payment\verify::$log_data = $transaction_id;
 
