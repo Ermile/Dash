@@ -82,8 +82,8 @@ class mellat
         $mellat['terminalId']      = \dash\option::config('mellat', 'TerminalId');
         $mellat['userName']        = \dash\option::config('mellat', 'UserName');
         $mellat['userPassword']    = \dash\option::config('mellat', 'UserPassword');
-        $mellat['SaleOrderId']     = $SaleOrderId;
-        $mellat['SaleReferenceId'] = $SaleReferenceId;
+        $mellat['saleOrderId']     = $SaleOrderId;
+        $mellat['saleReferenceId'] = $SaleReferenceId;
         $mellat['orderId']         = $transaction_id;
 
 
