@@ -57,7 +57,7 @@ class mellat
             // $result = $client->bpPayRequest($_args);
             $result = $client->__soapCall('bpPayRequest', array($_args));
 
-            // \dash\code::dump($result);\dash\code::boom();
+            \dash\code::dump($result);\dash\code::boom();
 
             $return = $result->return;
 
