@@ -118,8 +118,8 @@ class mellat
 
             $namespace ='http://interfaces.core.sw.bps.com/';
 
-            // $result = $client->bpVerifyRequest($_args);
-            $result = $client->__soapCall('bpVerifyRequest', array($_args));
+            $result = $client->bpVerifyRequest($_args);
+            // $result = $client->__soapCall('bpVerifyRequest', array($_args));
 
             $return = $result->return;
 

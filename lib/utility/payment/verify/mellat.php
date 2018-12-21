@@ -49,6 +49,9 @@ class mellat
         $ResCode         = isset($_REQUEST['ResCode'])            ? (string) $_REQUEST['ResCode']             : null;
         $saleOrderId     = isset($_REQUEST['saleOrderId'])        ? (string) $_REQUEST['saleOrderId']         : null;
         $SaleReferenceId = isset($_REQUEST['SaleReferenceId'])    ? (string) $_REQUEST['SaleReferenceId']     : null;
+        // SaleReferenceId: 144242045106
+        // CardHolderInfo: F2C3434ACBA9FD4F1B9922033050A872E2373E67D720631EC1BE79D06EEB29DE
+        // CardHolderPan: 603799******8757
 
 
         if(!$RefId)
@@ -93,7 +96,7 @@ class mellat
 
         $update =
         [
-            'amount_end'       => $amount / 10,
+            'amount_end'       => $amount_SESSION / 10,
             'condition'        => 'pending',
             'payment_response' => json_encode((array) $_args, JSON_UNESCAPED_UNICODE),
         ];
