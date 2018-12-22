@@ -20,7 +20,7 @@ class controller
 		}
 		else
 		{
-			\dash\log::set('autoRedirect', ['to' => $autoredirect['url']]);
+			\dash\log::set('autoRedirect', ['tourl' => $autoredirect['url']]);
 			\dash\temp::set('autoredirect', $autoredirect);
 		}
 	}
