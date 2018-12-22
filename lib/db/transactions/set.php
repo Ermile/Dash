@@ -25,6 +25,7 @@ trait set
 			'minus'       => null,
 			'plus'        => null,
 			'type'        => null,
+			'payment'     => null,
 			'other_field' => [],
 
 		];
@@ -68,6 +69,7 @@ trait set
 
 		$insert = array_merge($other_field, $_args);
 
+		$insert['payment'] = $_args['payment'];
 
 		// check and make error on user_id
 		$insert['user_id'] = $_args['user_id'];
@@ -85,6 +87,7 @@ trait set
 			}
 			return false;
 		}
+
 
 		$insert['code'] = self::get_code($caller);
 		// check and make error on code
