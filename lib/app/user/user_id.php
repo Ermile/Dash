@@ -26,7 +26,7 @@ trait user_id
 			if(!$new_mobile)
 			{
 				$user_id = \dash\db\users::signup($_args);
-				\dash\log::set('userSignupByOther', ['data' => $user_id, 'datalink' => \dash\coding::encode($user_id)]);
+				\dash\log::set('userSignupByOther', ['code' => $user_id, 'datalink' => \dash\coding::encode($user_id)]);
 			}
 			else
 			{
@@ -38,7 +38,7 @@ trait user_id
 				else
 				{
 					$user_id = \dash\db\users::signup($_args);
-					\dash\log::set('userSignupByOther', ['data' => $user_id, 'datalink' => \dash\coding::encode($user_id)]);
+					\dash\log::set('userSignupByOther', ['code' => $user_id, 'datalink' => \dash\coding::encode($user_id)]);
 				}
 			}
 		}
@@ -76,7 +76,7 @@ trait user_id
 						else
 						{
 							$user_id = \dash\db\users::signup($_args);
-							\dash\log::set('userSignupByOther', ['data' => $user_id, 'datalink' => \dash\coding::encode($user_id)]);
+							\dash\log::set('userSignupByOther', ['code' => $user_id, 'datalink' => \dash\coding::encode($user_id)]);
 						}
 					}
 				}
@@ -102,7 +102,7 @@ trait user_id
 				if($old_mobile)
 				{
 					$user_id = \dash\db\users::signup($_args);
-					\dash\log::set('userSignupByOther', ['data' => $user_id, 'datalink' => \dash\coding::encode($user_id)]);
+					\dash\log::set('userSignupByOther', ['code' => $user_id, 'datalink' => \dash\coding::encode($user_id)]);
 				}
 				else
 				{

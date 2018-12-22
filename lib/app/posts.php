@@ -75,7 +75,7 @@ class posts
 		}
 
 		$meta = json_encode($meta, JSON_UNESCAPED_UNICODE);
-		\dash\log::set('addPostGallery', ['data' => $post_id, 'datalink' => \dash\coding::encode($post_id)]);
+		\dash\log::set('addPostGallery', ['code' => $post_id, 'datalink' => \dash\coding::encode($post_id)]);
 		\dash\db\posts::update(['meta' => $meta], $post_id);
 		return true;
 
@@ -666,7 +666,7 @@ class posts
 
 			$must_remove = implode(',', $must_remove);
 
-			\dash\log::set('removePostTerm', ['data' => $_type, 'datalink' => \dash\coding::encode($_post_id)]);
+			\dash\log::set('removePostTerm', ['code' => $_type, 'datalink' => \dash\coding::encode($_post_id)]);
 			\dash\db\termusages::hard_delete(['related_id' => $_post_id, 'related' => $_related, 'term_id' => ["IN", "($must_remove)"]]);
 		}
 
@@ -680,7 +680,7 @@ class posts
 
 		if($have_term_to_save_log)
 		{
-			\dash\log::set('setPostTerm', ['data' => $_type, 'datalink' => \dash\coding::encode($_post_id)]);
+			\dash\log::set('setPostTerm', ['code' => $_type, 'datalink' => \dash\coding::encode($_post_id)]);
 		}
 
 		return $new_url;

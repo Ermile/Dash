@@ -246,7 +246,7 @@ class ticket
 		{
 			\dash\permission::check('cpCommentsDelete');
 		}
-		\dash\log::set('editComment', ['data' => $_id, 'datalink' => \dash\coding::encode($_id)]);
+		\dash\log::set('editComment', ['code' => $_id, 'datalink' => \dash\coding::encode($_id)]);
 		return \dash\db\comments::update($args, $_id);
 	}
 

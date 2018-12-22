@@ -108,7 +108,7 @@ trait edit
 
 		if(!empty($args))
 		{
-			\dash\log::set('editUser', ['data' => $id, 'datalink' => \dash\coding::encode($id)]);
+			\dash\log::set('editUser', ['code' => $id, 'datalink' => \dash\coding::encode($id)]);
 			\dash\db\users::update($args, $id);
 		}
 

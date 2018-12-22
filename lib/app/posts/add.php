@@ -115,7 +115,7 @@ trait add
 		}
 
 		$return['post_id'] = \dash\coding::encode($post_id);
-		\dash\log::set('addNewPost', ['data' => $post_id, 'datalink' => $return['post_id']]);
+		\dash\log::set('addNewPost', ['code' => $post_id, 'datalink' => $return['post_id']]);
 
 		if(\dash\engine\process::status())
 		{

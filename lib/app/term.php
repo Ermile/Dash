@@ -363,7 +363,7 @@ class term
 			return false;
 		}
 
-		\dash\log::set('addTerm', ['data' => $term_id, 'datalink' => \dash\coding::encode($term_id)]);
+		\dash\log::set('addTerm', ['code' => $term_id, 'datalink' => \dash\coding::encode($term_id)]);
 
 		return $return;
 	}
@@ -463,7 +463,7 @@ class term
 
 		\dash\db\terms::update($args, $id);
 
-		\dash\log::set('editTerm', ['data' => $id, 'datalink' => \dash\coding::encode($id)]);
+		\dash\log::set('editTerm', ['code' => $id, 'datalink' => \dash\coding::encode($id)]);
 
 		return true;
 	}
