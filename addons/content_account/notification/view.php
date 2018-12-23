@@ -24,16 +24,14 @@ class view
 		$date_now = date("Y-m-d H:i:s");
 
 		$args['to']     = \dash\user::id();
-		$args['notif']  = 1;
-		$args['logs.status'] = 'enable';
 
 		if(\dash\url::child() === 'archive')
 		{
-			// no thing
+			$args['logs.notif'] = 1;
 		}
 		else
 		{
-			$args['1.1']   = [" = 1.1 AND ", " (logs.expiredate IS NULL OR logs.expiredate > '$date_now')"];
+			$args['logs.status'] = ['IN', "('notif', 'notifread')"];
 		}
 
 
@@ -52,7 +50,7 @@ class view
 		unset($check_empty_datatable['order']);
 		unset($check_empty_datatable['notif']);
 		unset($check_empty_datatable['to']);
-		unset($check_empty_datatable['1.1']);
+		unset($check_empty_datatable['logs.notif']);
 		unset($check_empty_datatable['logs.status']);
 
 

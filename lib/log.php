@@ -216,6 +216,10 @@ class log
 
 	private static function notif($_caller, &$_args)
 	{
+		// notifread
+		// notifexpire
+		$_args['status'] = 'notif';
+
 		$send_to             = self::call_fn($_caller, 'send_to');
 		$send_to_creator     = self::call_fn($_caller, 'send_to_creator');
 

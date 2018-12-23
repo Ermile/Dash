@@ -72,6 +72,12 @@ class controller
 		switch ($url)
 		{
 			case 'system':
+
+				if(self::every_10_min())
+				{
+					self::expire_notif();
+				}
+
 				if(self::every_30_min())
 				{
 					self::check_error_file();
@@ -204,6 +210,10 @@ class controller
 		return false;
 	}
 
+	private static function expire_notif()
+	{
+		\dash\db\logs::expire_notif();
+	}
 
 	private static function removetempfile()
 	{

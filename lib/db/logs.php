@@ -6,6 +6,26 @@ class logs
 {
 	private static $logUpdate = [];
 
+	public static function expire_notif()
+	{
+		$date_now = date("Y-m-d H:i:s");
+		$query =
+		"
+			UPDATE
+				logs
+			SET
+				logs.status   = 'notifexpire'
+			WHERE
+				logs.status != 'notifexpire' AND
+				logs.notif  = 1 AND
+				logs.expiredate < '$date_now'
+		";
+
+		$resutl = \dash\db::query($query, \dash\db::get_db_log_name());
+		return $resutl;
+
+	}
+
 	public static function set_readdate_user($_user_id)
 	{
 		if(!$_user_id || !is_numeric($_user_id))
@@ -19,10 +39,11 @@ class logs
 			UPDATE
 				logs
 			SET
-				logs.readdate = '$date_now'
+				logs.readdate = IF(logs.readdate IS NULL ,'$date_now', logs.readdate),
+				logs.status   = 'notifread'
 			WHERE
 				logs.to = $_user_id AND
-				logs.readdate IS NULL
+				logs.status   = 'notif'
 		";
 		$resutl = \dash\db::query($query, \dash\db::get_db_log_name());
 		return $resutl;
@@ -37,7 +58,8 @@ class logs
 			UPDATE
 				logs
 			SET
-				logs.readdate = '$date_now'
+				logs.readdate = '$date_now',
+				logs.status   = 'notifread'
 			WHERE
 				logs.id IN ($_ids) AND
 				logs.readdate IS NULL
@@ -53,8 +75,6 @@ class logs
 			return false;
 		}
 
-		$date_now = date("Y-m-d H:i:s");
-
 		$query =
 		"
 			SELECT
@@ -63,10 +83,7 @@ class logs
 				logs
 			WHERE
 				logs.to     = $_user_id AND
-				logs.status = 'enable' AND
-				logs.notif  = 1 AND
-				logs.readdate IS NULL AND
-				(logs.expiredate IS NULL OR logs.expiredate > '$date_now')
+				logs.status = 'notif'
 		";
 		$resutl = \dash\db::get($query, 'count', true, \dash\db::get_db_log_name());
 		return $resutl;
