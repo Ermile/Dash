@@ -48,9 +48,11 @@ class irkish
             $soap_meta =
             [
                 'soap_version' => 'SOAP_1_1',
+                'exceptions'   => true,
+
             ];
 
-            $client = new \SoapClient('https://ikc.shaparak.ir/XToken/Tokens.xml', $soap_meta);
+            $client = @new \SoapClient('https://ikc.shaparak.ir/XToken/Tokens.xml', $soap_meta);
 
 
             $result = $client->__soapCall("MakeToken", array($_args));
@@ -67,7 +69,7 @@ class irkish
                 return false;
             }
         }
-        catch (SoapFault $e)
+        catch (\Exception $e)
         {
             \dash\db\logs::set('payment:irkish:error:load:web:services', self::$user_id, $log_meta);
             \dash\notif::error(T_("Error in load web services"));
@@ -100,12 +102,12 @@ class irkish
             $soap_meta =
             [
                 'soap_version' => 'SOAP_1_1',
+                'exceptions'   => true,
                 // 'cache_wsdl'   => WSDL_CACHE_NONE ,
                 // 'encoding'     => 'UTF-8',
             ];
-            // $client = new \SoapClient('https://ikc.shaparak.ir/TVerify/Verify.svc', $soap_meta);
 
-            $client = new \SoapClient('https://ikc.shaparak.ir/XVerify/Verify.xml', $soap_meta);
+            $client = @new \SoapClient('https://ikc.shaparak.ir/XVerify/Verify.xml', $soap_meta);
 
             $result = $client->__soapCall("KicccPaymentsVerification", array($_args));
 
@@ -129,7 +131,7 @@ class irkish
                 return false;
             }
         }
-        catch(Exception $e)
+        catch(\Exception $e)
         {
             \dash\db\logs::set('payment:irkish:error:load:web:services:verify', self::$user_id, $log_meta);
             \dash\notif::error(T_("Error in load web services"));

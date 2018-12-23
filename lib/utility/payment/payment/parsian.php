@@ -50,9 +50,10 @@ class parsian
                 'soap_version' => 'SOAP_1_1',
                 'cache_wsdl'   => WSDL_CACHE_NONE ,
                 'encoding'     => 'UTF-8',
+                'exceptions'   => true,
             ];
 
-            $client = new \SoapClient('https://pec.shaparak.ir/NewIPGServices/Sale/SaleService.asmx?WSDL',$soap_meta);
+            $client = @new \SoapClient('https://pec.shaparak.ir/NewIPGServices/Sale/SaleService.asmx?WSDL',$soap_meta);
 
             $result = $client->SalePaymentRequest(["requestData" => $_args]);
 
@@ -75,7 +76,7 @@ class parsian
                 return false;
             }
         }
-        catch (SoapFault $e)
+        catch (\Exception $e)
         {
             \dash\db\logs::set('payment:parsian:error:load:web:services', self::$user_id, $log_meta);
             \dash\notif::error(T_("Error in load web services"));

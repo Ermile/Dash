@@ -48,21 +48,16 @@ class mellat
             $soap_meta =
             [
                 'soap_version' => 'SOAP_1_1',
+                'exceptions'   => true,
             ];
 
-            $client    = new \SoapClient('https://bpm.shaparak.ir/pgwchannel/services/pgw?wsdl', $soap_meta);
+            $client = @new \SoapClient('https://bpm.shaparak.ir/pgwchannel/services/pgw?wsdl', $soap_meta);
 
-            $namespace ='http://interfaces.core.sw.bps.com/';
-
-            // $result = $client->bpPayRequest($_args);
             $result = $client->__soapCall('bpPayRequest', array($_args));
-
-            // object(stdClass)#7 (1) { ["return"]=> string(18) "0,871AD2AE2B759D9B" }
-            // \dash\code::dump($result);\dash\code::boom();
 
             $return = $result->return;
 
-            $res = explode(',', $return);
+            $res    = explode(',', $return);
 
             $ResCode = $res[0];
 
@@ -77,7 +72,7 @@ class mellat
             }
 
         }
-        catch (SoapFault $e)
+        catch (\Exception $e)
         {
             \dash\db\logs::set('payment:mellat:error:load:web:services', self::$user_id, $log_meta);
             \dash\notif::error(T_("Error in load web services"));
@@ -112,14 +107,12 @@ class mellat
             $soap_meta =
             [
                 'soap_version' => 'SOAP_1_1',
+                'exceptions'   => true,
             ];
 
-            $client    = new \SoapClient('https://bpm.shaparak.ir/pgwchannel/services/pgw?wsdl', $soap_meta);
-
-            $namespace ='http://interfaces.core.sw.bps.com/';
+            $client    = @new \SoapClient('https://bpm.shaparak.ir/pgwchannel/services/pgw?wsdl', $soap_meta);
 
             $result = $client->bpVerifyRequest($_args);
-            // $result = $client->__soapCall('bpVerifyRequest', array($_args));
 
             $return = $result->return;
 

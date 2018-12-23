@@ -34,7 +34,7 @@ class zarinpal
 
         try
         {
-            $client = @new \soapclient('https://de.zarinpal.com/pg/services/WebGate/wsdl');
+            $client = @new \soapclient('https://de.zarinpal.com/pg/services/WebGate/wsdl', ['exceptions'   => true,]);
 
             $result                 = $client->PaymentRequest($_args);
             self::$payment_response = $result;
@@ -57,7 +57,7 @@ class zarinpal
                 return false;
             }
         }
-        catch (SoapFault $e)
+        catch (\Exception $e)
         {
             \dash\db\logs::set('payment:zarinpal:error:load:web:services', self::$user_id, $log_meta);
             \dash\notif::error(T_("Error in load web services"));
@@ -85,7 +85,7 @@ class zarinpal
 
         try
         {
-            $client = @new \soapclient('https://de.zarinpal.com/pg/services/WebGate/wsdl');
+            $client = @new \soapclient('https://de.zarinpal.com/pg/services/WebGate/wsdl', ['exceptions' => true]);
 
             $result                         = $client->PaymentVerification($_args);
             self::$payment_response         = $result;
@@ -107,10 +107,11 @@ class zarinpal
                 return false;
             }
         }
-        catch (SoapFault $e)
+        catch (\Exception $e)
         {
             \dash\db\logs::set('payment:zarinpal:verify:error:load:web:services', self::$user_id, $log_meta);
-            return \dash\notif::error(T_("Error in load web services"));
+            \dash\notif::error(T_("Error in load web services"));
+            return false;
         }
     }
 

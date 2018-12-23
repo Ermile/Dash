@@ -69,7 +69,7 @@ class asanpardakht
             ];
 
 
-            $params = ['stream_context' => stream_context_create($options)];
+            $params = ['stream_context' => stream_context_create($options), 'exceptions' => true];
             $client = @new \SoapClient("https://services.asanpardakht.net/paygate/merchantservices.asmx?WSDL", $params);
 
             $result_param =
@@ -105,7 +105,7 @@ class asanpardakht
                 return false;
             }
         }
-        catch (SoapFault $E)
+        catch (\Exception $E)
         {
             \dash\db\logs::set('payment:asanpardakht:error:load:web:services', self::$user_id, $log_meta);
             \dash\notif::error(T_("Error in load web services"));
@@ -143,7 +143,7 @@ class asanpardakht
                 ]
             ];
 
-            $params = ['stream_context' => stream_context_create($options)];
+            $params = ['stream_context' => stream_context_create($options), 'exceptions'   => true,];
             $client = @new \SoapClient("https://services.asanpardakht.net/paygate/merchantservices.asmx?WSDL", $params);
 
             $username = \dash\option::config('asanpardakht', 'Username');
@@ -178,7 +178,7 @@ class asanpardakht
                 return false;
             }
         }
-        catch (SoapFault $E)
+        catch (\Exception $E)
         {
             return false;
         }
@@ -221,7 +221,7 @@ class asanpardakht
             ];
 
 
-            $params = ['stream_context' => stream_context_create($options)];
+            $params = ['stream_context' => stream_context_create($options), 'exceptions'   => true,];
 
             $client = @new \SoapClient("https://services.asanpardakht.net/paygate/internalutils.asmx?WSDL", $params);
 
@@ -240,7 +240,7 @@ class asanpardakht
             }
             return false;
         }
-        catch (SoapFault $E)
+        catch (\Exception $E)
         {
             return false;
         }
@@ -308,11 +308,11 @@ class asanpardakht
                 ]
             ];
 
-            $params = ['stream_context' => stream_context_create($options)];
+            $params = ['stream_context' => stream_context_create($options), 'exceptions'   => true,];
 
             $client = @new \SoapClient("https://services.asanpardakht.net/paygate/internalutils.asmx?WSDL", $params);
         }
-        catch (SoapFault $E)
+        catch (\Exception $E)
         {
             return false;
         }
