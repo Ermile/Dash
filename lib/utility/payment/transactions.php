@@ -39,7 +39,7 @@ class transactions
 	public static function start($_args)
 	{
 		$_args['condition'] = 'request';
-		$fn = self::transaction_table_name('start');
+		$fn = self::transaction_table_name('set');
 		return $fn::set($_args);
 	}
 
