@@ -108,7 +108,7 @@ trait budget
 					transactions.type    = '$_options[type]' AND
 					transactions.verify  = 1
 					$unit
-				ORDER BY transactions.dateverify DESC
+				ORDER BY transactions.dateverify DESC, transactions.id DESC
 				LIMIT 1
 			";
 		}
@@ -142,7 +142,7 @@ trait budget
 			WHERE
 				transactions.user_id = $_user_id AND
 				transactions.verify  = 1
-			ORDER BY transactions.dateverify DESC
+			ORDER BY transactions.dateverify DESC, transactions.id DESC
 			LIMIT 1
 		";
 		return floatval(\dash\db::get($query, 'budget', true));
@@ -233,7 +233,7 @@ trait budget
 					transactions.type    = '$_options[type]' AND
 					transactions.verify  = 1
 					$unit
-				ORDER BY transactions.dateverify DESC
+				ORDER BY transactions.dateverify DESC, transactions.id DESC
 				LIMIT 1
 			";
 		}
@@ -250,7 +250,7 @@ trait budget
 					transactions.type    = 'gift' AND
 					transactions.verify  = 1
 					$unit
-				ORDER BY transactions.dateverify DESC
+				ORDER BY transactions.dateverify DESC, transactions.id DESC
 				LIMIT 1
 			)
 			UNION ALL
@@ -262,7 +262,7 @@ trait budget
 					transactions.type    = 'promo' AND
 					transactions.verify  = 1
 					$unit
-				ORDER BY transactions.dateverify DESC
+				ORDER BY transactions.dateverify DESC, transactions.id DESC
 				LIMIT 1
 			)
 			UNION ALL
@@ -274,7 +274,7 @@ trait budget
 					transactions.type    = 'prize' AND
 					transactions.verify  = 1
 					$unit
-				ORDER BY transactions.dateverify DESC
+				ORDER BY transactions.dateverify DESC, transactions.id DESC
 				LIMIT 1
 			)
 			UNION ALL
@@ -286,7 +286,7 @@ trait budget
 					transactions.type    = 'transfer' AND
 					transactions.verify  = 1
 					$unit
-				ORDER BY transactions.dateverify DESC
+				ORDER BY transactions.dateverify DESC, transactions.id DESC
 				LIMIT 1
 			)
 			UNION ALL
@@ -298,7 +298,7 @@ trait budget
 					transactions.type    = 'money' AND
 					transactions.verify  = 1
 					$unit
-				ORDER BY transactions.dateverify DESC
+				ORDER BY transactions.dateverify DESC, transactions.id DESC
 				LIMIT 1
 			)
 			";
