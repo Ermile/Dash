@@ -23,7 +23,6 @@ class zarinpal
             'meta' =>
             [
                 'input'   => func_get_args(),
-                'session' => $_SESSION,
             ]
         ];
 

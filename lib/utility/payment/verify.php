@@ -4,6 +4,10 @@ namespace dash\utility\payment;
 
 class verify
 {
+
+	public static $final_verify         = false;
+	public static $final_transaction_id = null;
+
 	public static $user_id = null;
 
 	public static $log_data = null;
@@ -19,6 +23,15 @@ class verify
 		}
 	}
 
+	// in some project need to set verified transction in other table
+	private static function final_verify()
+	{
+		if(self::$final_verify && self::$final_transaction_id)
+		{
+			\dash\utility\payment\transactions::final_verify(self::$final_transaction_id);
+		}
+	}
+
 
 	/**
 	 * after complete pay operation
@@ -28,6 +41,8 @@ class verify
 	 */
 	public static function turn_back($_transaction_id = null)
 	{
+		self::final_verify();
+
 		$turn_back = null;
 		if($_transaction_id && isset($_SESSION['turn_back'][$_transaction_id]))
 		{

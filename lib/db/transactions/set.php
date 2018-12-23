@@ -60,7 +60,6 @@ trait set
 			'meta' =>
 			[
 				'args'    => func_get_args(),
-				'session' => $_SESSION,
 			]
 		];
 

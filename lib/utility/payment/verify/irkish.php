@@ -20,7 +20,6 @@ class irkish
             'meta' =>
             [
                 'input'   => func_get_args(),
-                'session' => $_SESSION,
             ]
         ];
 
@@ -135,6 +134,10 @@ class irkish
                     'verify'           => 1,
                     'payment_response' => $payment_response,
                 ];
+
+                \dash\utility\payment\verify::$final_verify         = true;
+                \dash\utility\payment\verify::$final_transaction_id = $transaction_id;
+
 
                 \dash\utility\payment\transactions::calc_budget($transaction_id, $amount_SESSION / 10, 0, $update);
 

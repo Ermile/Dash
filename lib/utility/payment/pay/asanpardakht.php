@@ -23,7 +23,6 @@ class asanpardakht
             'meta' =>
             [
                 'input'   => func_get_args(),
-                'session' => $_SESSION,
             ]
         ];
 

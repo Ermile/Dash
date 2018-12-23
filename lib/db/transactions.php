@@ -11,6 +11,14 @@ class transactions
 	use \dash\db\transactions\total_paid;
 
 
+	public static function final_verify($_transaction_id)
+	{
+		// not need in DASH!
+		// this function run in some project
+		// to set the verified transactio in other table
+		return true;
+	}
+
 	/**
 	 * insert new record of transactions
 	 *
