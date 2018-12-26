@@ -1,4 +1,4 @@
-{%extends display.donateMember%}
+{%extends 'content_crm/member/layout.html'%}
 
 
 {%block pageContent%}
@@ -24,13 +24,7 @@
 		 <div class="c s12 pRa5">{{block("ipassportdate")}}</div>
 		</div>
 
-		<h4 class="pT15">{%trans "Birth Detail"%}</h4>
-		<div class="f">
-		 <div class="c s12 pRa5">{{block("iissueplace")}}</div>
-		 <div class="c s12 pRa5">{{block("ibirthplace")}}</div>
-		</div>
 
-		{%if ElectronicDocumentArchive%}
 
 			<h4 class="pT15">{%trans "Thumb"%}</h4>
 			<label for="file1">{%trans "ID card image"%}</label>
@@ -47,7 +41,6 @@
 
 		    {%if dataRow.file2%}<a href="{{dataRow.file2}}" target="_blank"><img class="size-we200 block mLRa" src="{{dataRow.file2}}"></a>{%endif%}
 
-		 {%endif%}
 
 
 		{{block("isave")}}

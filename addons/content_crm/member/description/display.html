@@ -1,10 +1,8 @@
-{%extends display.donateMember%}
+{%extends 'content_crm/member/layout.html'%}
 
-
-{%block pageContent%}
-
-
+{%block pageContent2%}
 {{block('pageSteps')}}
+
 <div class="f">
  <div class="cauto s12 pA5">
 {{block("psidebar")}}
@@ -15,6 +13,50 @@
 		<textarea name="desc" class="txt" rows="15" placeholder='{%trans "Description"%}'>{{dataRow.desc}}</textarea>
 		{{block("isave")}}
 	</form>
+ </div>
+</div>
+{%endblock%}
+
+
+
+{%block pageContent%}
+{{block('pageSteps')}}
+
+<div class="f">
+ <div class="cauto s12 pA5">
+{{block("psidebar")}}
+ </div>
+ <div class="c s12 pA5">
+	<div class="cbox" method="post"  autocomplete="off">
+			<section class="sTimeline">
+
+		  <div class="event" >
+		    <div class="box">
+		      <form method="post" autocomplete="off" >
+		        <h2>{%trans "Add note"%}</h2>
+		        <input type="hidden" name="redirecturl" value="{{url.pwd}}">
+		        <textarea class="txt " name="note" rows="3" autofocus placeholder='{%trans "Write your note about user."%} {%trans "Something like calls, favorites, hobbits, special approach or something else."%}'></textarea>
+		        <button class="btn secondary block mT5">{%trans "Add new note"%}</button>
+		      </form>
+		    </div>
+		  </div>
+		  {%for key, value in dataTable%}
+
+		  <div class="event" data-done>
+		    <div class="box">
+
+		      <div class="detail f">
+		          <div class="cauto"><i class="sf-certificate"></i>{{value.firstname}} <b>{{value.lastname}}</b></div>
+		          <div class="cauto os"><i class="sf-calendar-o pRa5"></i>{{value.datecreated | dt(true)}}</div>
+		        </div>
+		      <p>{{value.text | raw}}</p>
+		    </div>
+		  </div>
+		  {%endfor%}
+
+		</section>
+	</div>
+	{%include display.pagination%}
  </div>
 </div>
 {%endblock%}
