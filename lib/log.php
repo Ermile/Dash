@@ -237,6 +237,26 @@ class log
 				$must_send_to[$_args['to']] = $to;
 			}
 		}
+		elseif(isset($_args['to']) && is_array($_args['to']))
+		{
+			$to = $_args['to'];
+			$to = array_map('intval', $to);
+			$to = array_filter($to);
+			$to = array_unique($to);
+			if($to)
+			{
+				$to = implode(',', $to);
+				$to = \dash\db\users::get(['id' => ["IN", "($to)"]]);
+				if($to && is_array($to))
+				{
+					foreach ($to as $key => $value)
+					{
+						$must_send_to[$value['id']] = $value;
+					}
+				}
+
+			}
+		}
 
 		if($send_to_creator && \dash\user::id())
 		{
