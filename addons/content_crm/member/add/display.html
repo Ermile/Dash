@@ -1,0 +1,51 @@
+{%extends display.donateMember%}
+
+{%block pageContent%}
+<form method="post" enctype="multipart/form-data" autocomplete="off">
+<div class="f justify-center">
+  <div class="c6 s12">
+    <div class="cbox">
+
+      <div class="f">
+        <div class="c6 s12 pRa5">{{block("iname")}}</div>
+        <div class="c6 s12">{{block("ifamily")}}</div>
+      </div>
+
+      <div class="f">
+        <div class="c6 s12 pRa5">{{block("ifather")}}</div>
+        <div class="c6 s12">{{block("ibirthday")}}</div>
+      </div>
+
+{{block("imobile")}}
+
+{{block("nationalityAndDetail")}}
+
+{{block("igender")}}
+
+
+{%if requestGET.type%}
+{%else%}
+{{block("iMemType")}}
+{%endif%}
+
+{%if requestGET.type == 'expert' %}
+  {{block("iAllowGender")}}
+{%endif%}
+
+
+{{block("iadd")}}
+
+    </div>
+  </div>
+</div>
+</form>
+{%endblock%}
+
+
+
+
+
+
+
+
+

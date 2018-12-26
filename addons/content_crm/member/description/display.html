@@ -1,0 +1,21 @@
+{%extends display.donateMember%}
+
+
+{%block pageContent%}
+
+
+{{block('pageSteps')}}
+<div class="f">
+ <div class="cauto s12 pA5">
+{{block("psidebar")}}
+ </div>
+ <div class="c s12 pA5">
+	<form class="cbox" method="post"  autocomplete="off">
+		<label>{%trans "Description"%}</label>
+		<textarea name="desc" class="txt" rows="15" placeholder='{%trans "Description"%}'>{{dataRow.desc}}</textarea>
+		{{block("isave")}}
+	</form>
+ </div>
+</div>
+{%endblock%}
+

@@ -1,0 +1,27 @@
+{%extends display.donateMember%}
+
+
+{%block pageContent%}
+
+
+{{block('pageSteps')}}
+<div class="f">
+ <div class="cauto s12 pA5">
+{{block("psidebar")}}
+ </div>
+ <div class="c s12 pA5">
+
+	<form class="cbox" method="post" autocomplete="off">
+	<h2>{%trans "Education detail"%}</h2>
+	<div class="f mT10">
+		<div class="c pRa5">{{block("iEducation")}}</div>
+		<div class="c pRa5">{{block("iEducation2")}}</div>
+		<div class="c pRa5">{{block("iEducationcourse")}}</div>
+	</div>
+
+	{{block("isave")}}
+
+	</form>
+ </div>
+</div>
+{%endblock%}
