@@ -653,6 +653,7 @@ class user
 					break;
 
 				case 'avatar':
+					$result['avatar_raw'] = $value;
 					if($_id)
 					{
 						$result['avatar'] = $value;

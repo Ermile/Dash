@@ -38,30 +38,36 @@ class model
 	 */
 	public static function post()
 	{
-		\dash\permission::access('aMemberEdit');
-
-		$file_url     = self::upload_avatar();
-
-		// we have an error in upload avatar
-		if($file_url === false)
-		{
-			return false;
-		}
-
-		if($file_url === null)
-		{
-			\dash\notif::warn(T_("To change the image, please re-open the new file"),'avatar');
-			return false;
-		}
-
 		$request           = [];
-		$request['avatar'] = $file_url;
+		if(\dash\request::post('btn') === 'remove')
+		{
+			$request['avatar'] = null;
+		}
+		else
+		{
+
+			$file_url     = self::upload_avatar();
+
+			// we have an error in upload avatar
+			if($file_url === false)
+			{
+				return false;
+			}
+
+			if($file_url === null)
+			{
+				\dash\notif::warn(T_("To change the image, please re-open the new file"),'avatar');
+				return false;
+			}
+
+			$request['avatar'] = $file_url;
+		}
 
 		\dash\db\users::update($request, \dash\coding::decode(\dash\request::get('id')));
 
 		if(\dash\engine\process::status())
 		{
-			\dash\notif::ok(T_("Avatar successfully updated"));
+			\dash\notif::ok(T_("User successfully updated"));
 			\dash\redirect::pwd();
 		}
 	}

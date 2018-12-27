@@ -12,7 +12,17 @@
  <div class="c s12 pA5">
 	<form class="cbox" method="post" enctype="multipart/form-data" autocomplete="off">
 		{{block("iAvatar")}}
-		{{block("isave")}}
+		{%if dataRowMember.avatar_raw%}
+			<div class="f">
+				<div class="c">{{block("isave")}}</div>
+				<div class="cauto mLa5">
+					<button class="btn mT20 danger block" name="btn" value="remove">{%trans "Remove"%}</button>
+				</div>
+			</div>
+
+		{%else%}
+			{{block("isave")}}
+		{%endif%}
 	</form>
  </div>
 </div>
