@@ -84,6 +84,7 @@ class model
 		{
 			\dash\log::set('editProfileAbout', ['code' => \dash\user::id()]);
 			\dash\user::refresh();
+			\dash\notif::direct();
 			\dash\redirect::pwd();
 		}
 	}
