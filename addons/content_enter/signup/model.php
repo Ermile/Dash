@@ -130,23 +130,6 @@ class model
 
 		\dash\utility\enter::go_to_verify();
 
-		// if(!\dash\engine\process::status())
-		// {
-		// 	return false;
-		// }
-
-		// $user_id = \dash\db\users::signup_quick($signup);
-
-		// if(!$user_id)
-		// {
-		// 	\dash\log::set('userCanNotSignupDB');
-		// 	\dash\notif::error(T_("We can not signup you"));
-		// 	return false;
-		// }
-		// \dash\log::set('userSignup');
-
-		// \dash\utility\enter::load_user_data($user_id, 'user_id');
-		// \dash\utility\enter::enter_set_login(null, true);
 	}
 }
 ?>

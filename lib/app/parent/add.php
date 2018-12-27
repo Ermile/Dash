@@ -91,7 +91,7 @@ trait add
 
 		if(!isset($get_parent_data['id']))
 		{
-			$parent_id = \dash\db\users::signup_quick(['mobile' => $mobile]);
+			$parent_id = \dash\db\users::signup(['mobile' => $mobile]);
 			$get_parent_data['mobile'] = $mobile;
 		}
 		else

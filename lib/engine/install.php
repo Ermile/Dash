@@ -33,7 +33,7 @@ if(isset($_POST['username']) && isset($_POST['password']))
 
 				if(!$check_exist)
 				{
-					$insert = \dash\db\users::insert($add_user);
+					$insert = \dash\db\users::signup($add_user);
 				}
 			}
 		}

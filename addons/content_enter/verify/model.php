@@ -72,7 +72,7 @@ class model
 				return false;
 			}
 
-			$user_id = \dash\db\users::signup_quick($signup);
+			$user_id = \dash\db\users::signup($signup);
 
 			if(!$user_id)
 			{
