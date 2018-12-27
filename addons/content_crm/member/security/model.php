@@ -13,6 +13,9 @@ class model
 			'twostep'       => \dash\request::post('twostep'),
 			'forceremember' => \dash\request::post('forceremember'),
 			'status'        => \dash\request::post('status'),
+			'language' => \dash\request::post('language'),
+			'username' => \dash\request::post('username'),
+
 		];
 
 		return $post;

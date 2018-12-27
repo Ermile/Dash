@@ -18,6 +18,9 @@ class model
 			'gender'      => \dash\request::post('gender'),
 			'shcode'      => \dash\request::post('shcode'),
 			'nationality' => \dash\request::post('nationality'),
+			'title'       => \dash\request::post('title'),
+			'bio'         => \dash\request::post('bio'),
+			'displayname' => \dash\request::post('displayname'),
 			'permission'  => \dash\request::post('permission') == '0' ? null : \dash\request::post('permission'),
 			// 'status'      => \dash\request::post('status'),
 		];

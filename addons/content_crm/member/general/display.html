@@ -19,6 +19,17 @@
 
 	 <div class="f">
 	   <div class="c pRa5">
+			{{block("iDisplayName")}}
+	   </div>
+	   <div class="c">
+			{{block("iTitle")}}
+	   </div>
+	 </div>
+
+
+
+	 <div class="f">
+	   <div class="c pRa5">
 			{{block("iname")}}
 	   </div>
 	   <div class="c">
@@ -50,6 +61,8 @@
 
 	{{block("iPermission")}}
 
+	{{block("iBio")}}
+
 
 	 <div class="f pA5 pT20">
 		{{block("isave")}}
@@ -59,6 +72,33 @@
 </div>
 {%endblock%}
 
+
+
+
+{%block iTitle%}
+<label for="title">{%trans "Nick name"%}</label>
+<div class="input">
+  <input type="text" name="title" id="title"  value="{{dataRowMember.title}}" maxlength='40' minlength="1" pattern=".{1,40}"  >
+</div>
+{%endblock%}
+
+
+
+
+
+{%block iBio%}
+<label for="bio">{%trans "Bio"%}</label>
+<textarea class="txt " name="bio" maxlength='300' rows="3">{{dataRowMember.bio}}</textarea>
+{%endblock%}
+
+
+
+{%block iDisplayName%}
+<label for="displayname">{%trans "Display name"%}</label>
+<div class="input">
+  <input type="text" name="displayname" id="displayname"  value="{{dataRowMember.displayname}}" maxlength='40' minlength="1" pattern=".{1,40}">
+</div>
+{%endblock%}
 
 
 {%block iPermission%}

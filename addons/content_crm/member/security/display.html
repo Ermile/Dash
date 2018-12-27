@@ -13,6 +13,8 @@
 
   <form class="cbox" method="post" autocomplete="off">
     <h3 class="txtC">{%trans "Security and Enter"%}</h3>
+    {{block("iLanguage")}}
+    {{block("iUsername")}}
     {{block("iTwoStep")}}
     {{block("iRememberme")}}
     {{block("iSidebar")}}
@@ -31,7 +33,28 @@
 </div>
 {%endblock%}
 
+{%block iLanguage%}
+<div class="mTB10">
+  <label for="language">{%trans "Default language"%}</label>
+  <select name="language" class="ui dropdown" id="language">
+    <option value="" readonly>{%trans "Select one item"%}</option>
+    {%for key, lang in lang.list%}
+      <option value="{{key}}" {%if dataRowMember.language == key%} selected {%endif%} >{{lang}}</option>
+    {%endfor%}
+  </select>
+</div>
+{%endblock%}
 
+
+
+
+
+{%block iUsername%}
+<label for="username">{%trans "Username"%}</label>
+<div class="input ltr">
+  <input type="text" name="username" id="username" placeholder='{%trans "Username"%}' value="{{dataRowMember.username}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid username from 3 to 40 character"%}' autofocus>
+</div>
+{%endblock%}
 
 
 {%block iPassword%}

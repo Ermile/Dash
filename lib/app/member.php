@@ -297,7 +297,11 @@ class member
 		if(!\dash\app::isset_request('twitter')) 		unset($args['twitter']);
 
 		if(!\dash\app::isset_request('twostep')) 		unset($args['twostep']);
-		if(!\dash\app::isset_request('forceremember')) 		unset($args['forceremember']);
+		if(!\dash\app::isset_request('forceremember')) 	unset($args['forceremember']);
+		if(!\dash\app::isset_request('title')) 			unset($args['title']);
+		if(!\dash\app::isset_request('bio')) 			unset($args['bio']);
+		if(!\dash\app::isset_request('displayname')) 	unset($args['displayname']);
+		if(!\dash\app::isset_request('language')) 		unset($args['language']);
 
 
 
@@ -746,28 +750,105 @@ class member
 			}
 		}
 
-		$args['mobile']       = $mobile;
-		$args['nationalcode'] = $nationalcode;
-		$args['pasportcode']  = $pasportcode;
-		$args['firstname']    = $firstname;
-		$args['lastname']     = $lastname;
-		$args['father']       = $father;
-		$args['birthday']     = $birthdate;
-		$args['pasportdate']  = $pasportdate;
-		$args['gender']       = $gender;
-		$args['marital']      = $marital;
-		$args['avatar']       = $avatar;
-		$args['nationality']  = $nationality;
-		$args['phone']        = $phone;
-		$args['status']       = $status;
-		$args['desc']         = $desc;
-		$args['website']      = $website;
-		$args['instagram']    = $instagram;
-		$args['linkedin']     = $linkedin;
-		$args['facebook']     = $facebook;
-		$args['twitter']      = $twitter;
-		$args['twostep']      = $twostep;
-		$args['forceremember']      = $forceremember;
+		$title = \dash\app::request('title');
+		if($title && mb_strlen($title) > 100)
+		{
+			\dash\notif::error(T_("Plase set title less than 100 character"), 'title');
+			return false;
+		}
+
+		$bio = \dash\app::request('bio');
+		if($bio && mb_strlen($bio) > 100)
+		{
+			\dash\notif::error(T_("Plase set bio less than 100 character"), 'bio');
+			return false;
+		}
+
+		$displayname = \dash\app::request('displayname');
+		if($displayname && mb_strlen($displayname) > 100)
+		{
+			\dash\notif::error(T_("Plase set displayname less than 100 character"), 'displayname');
+			return false;
+		}
+
+
+		$language = \dash\app::request('language');
+		if($language && !\dash\language::check($language))
+		{
+			\dash\notif::error(T_("Language is incorrect"), 'language');
+			return false;
+		}
+
+		$username = \dash\app::request('username');
+		if($username)
+		{
+			if(mb_strlen($username) < 4)
+			{
+				\dash\notif::error(T_("Please set the username larger than 4 character"), 'username');
+				return false;
+			}
+
+			if(mb_strlen($username) > 50)
+			{
+				\dash\notif::error(T_("Please set the username less than 50 character"), 'username');
+				return false;
+			}
+
+			if($username && !preg_match("/^[A-Za-z0-9]+$/", $username))
+			{
+				\dash\notif::error(T_("Only [A-Za-z0-9] can use in username"), 'username');
+				return false;
+			}
+
+			$check_duplicate_username = \dash\db\users::get(['username' => $username, 'limit' => 1]);
+			if(isset($check_duplicate_username['id']))
+			{
+				if(intval($check_duplicate_username['id']) === intval($_id))
+				{
+
+				}
+				else
+				{
+					\dash\notif::error(T_("Duplicate username"), 'username');
+					return false;
+				}
+				$args['username'] = $username;
+			}
+		}
+
+		if(\dash\app::isset_request('username') && !$username)
+		{
+			$args['username'] = null;
+		}
+
+
+		$args['username']      = $username;
+		$args['language']      = $language;
+		$args['title']         = $title;
+		$args['bio']           = $bio;
+		$args['displayname']   = $displayname;
+		$args['mobile']        = $mobile;
+		$args['nationalcode']  = $nationalcode;
+		$args['pasportcode']   = $pasportcode;
+		$args['firstname']     = $firstname;
+		$args['lastname']      = $lastname;
+		$args['father']        = $father;
+		$args['birthday']      = $birthdate;
+		$args['pasportdate']   = $pasportdate;
+		$args['gender']        = $gender;
+		$args['marital']       = $marital;
+		$args['avatar']        = $avatar;
+		$args['nationality']   = $nationality;
+		$args['phone']         = $phone;
+		$args['status']        = $status;
+		$args['desc']          = $desc;
+		$args['website']       = $website;
+		$args['instagram']     = $instagram;
+		$args['linkedin']      = $linkedin;
+		$args['facebook']      = $facebook;
+		$args['twitter']       = $twitter;
+		$args['twostep']       = $twostep;
+		$args['forceremember'] = $forceremember;
 		return $args;
 	}
 
