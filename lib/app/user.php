@@ -358,7 +358,7 @@ class user
 		if(\dash\app::isset_request('permission'))
 		{
 			$permission = \dash\app::request('permission');
-			if(\dash\permission::check("aMemberPermissionChange"))
+			if(\dash\permission::check("cpUsersPermission"))
 			{
 				if($permission && !in_array($permission, array_keys(\dash\permission::groups())))
 				{

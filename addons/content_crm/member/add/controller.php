@@ -7,7 +7,7 @@ class controller
 
 	public static function routing()
 	{
-		\dash\permission::access('aMemberAdd');
+		\dash\permission::access('cpUsersAdd');
 	}
 }
 ?>

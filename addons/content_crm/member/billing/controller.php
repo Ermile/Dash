@@ -6,7 +6,7 @@ class controller
 {
 	public static function routing()
 	{
-		\dash\permission::access('aMemberView');
+		\dash\permission::access('cpUsersEdit');
 		$id = \dash\request::get('addressid');
 		if($id)
 		{

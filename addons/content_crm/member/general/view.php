@@ -14,7 +14,7 @@ class view
 
 		\content_crm\member\main\view::static_var();
 
-		if(\dash\permission::check("aMemberPermissionChange"))
+		if(\dash\permission::check("cpUsersPermission"))
 		{
 			$perm_list = \dash\permission::groups();
 			\dash\data::permGroup($perm_list);
