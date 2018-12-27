@@ -144,9 +144,34 @@ class sessions
 	 *
 	 * @param      <type>  $_code  The code
 	 */
-	public static function terminate_cookie()
+	public static function terminate_cookie($_check_cause = true)
 	{
+		$code = self::get_cookie();
+
 		\dash\utility\cookie::delete("remember_me_");
+
+		if($_check_cause)
+		{
+
+			$get_cookie =
+			[
+				'status'   => 'active',
+				'code'     => addslashes($code),
+			];
+
+			$get  = self::get($get_cookie);
+
+			if(isset($get['ip']) && intval($get['ip']) !== intval(\dash\server::ip(true)))
+			{
+				\dash\log::set('ipChangeRememberExpire');
+			}
+
+			if(isset($get['agent_id']) && intval($get['agent_id']) !== intval(\dash\agent::get(true)))
+			{
+				\dash\log::set('agentChangeRememberExpire');
+			}
+		}
+
 	}
 
 
@@ -207,7 +232,7 @@ class sessions
 	 *
 	 * @return     <type>  The user identifier.
 	 */
-	public static function get_user_id()
+	public static function get_user_id_from_cookie()
 	{
 		$code = self::get_cookie();
 
@@ -531,7 +556,7 @@ class sessions
 	public static function logout($_user_id)
 	{
 		self::change_status($_user_id, 'logout');
-		self::terminate_cookie();
+		self::terminate_cookie(false);
 	}
 
 

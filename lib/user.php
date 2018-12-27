@@ -272,7 +272,7 @@ class user
 				return;
 			}
 
-			$user_id = \dash\db\sessions::get_user_id();
+			$user_id = \dash\db\sessions::get_user_id_from_cookie();
 
 			if($user_id && is_numeric($user_id))
 			{
