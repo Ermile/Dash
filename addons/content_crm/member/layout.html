@@ -191,56 +191,66 @@
 {%endif%}
 
   <div class="f">
+
    <div class="c s6">
-    <a class="dcard {%if url.child == 'general' or url.child == 'avatar' or url.child == 'social' or url.child == 'contact' or url.child == 'identification' or url.child == 'education'%}active{%endif%}" href='{{url.this}}/general?id={{requestGET.id}}' data-shortkey="49ctrlshift">
+    <a class="dcard {%if url.child == 'glance' %}active{%endif%}" href='{{url.this}}/glance?id={{requestGET.id}}' data-shortkey="49ctrlshift">
+     <div class="statistic">
+      <div class="value"><i class="sf-rocket"></i></div>
+      <div class="label">{%trans "Glance"%} <kbd class=" hide mT5">Shift+1</kbd></div>
+     </div>
+    </a>
+   </div>
+
+   <div class="c s6">
+    <a class="dcard {%if url.child == 'general' or url.child == 'avatar' or url.child == 'social' or url.child == 'contact' or url.child == 'identification' or url.child == 'education'%}active{%endif%}" href='{{url.this}}/general?id={{requestGET.id}}' data-shortkey="50ctrlshift">
      <div class="statistic">
       <div class="value"><i class="sf-user fc-blue"></i></div>
-      <div class="label">{%trans "Profile"%} <kbd class=" hide mT5">Shift+1</kbd></div>
+      <div class="label">{%trans "Profile"%} <kbd class=" hide mT5">Shift+2</kbd></div>
      </div>
     </a>
    </div>
 
    <div class="c s6">
-    <a class="dcard {%if url.child == 'billing'%}active{%endif%}" href='{{url.this}}/billing?id={{requestGET.id}}&action=list' data-shortkey="50ctrlshift" >
+    <a class="dcard {%if url.child == 'billing'%}active{%endif%}" href='{{url.this}}/billing?id={{requestGET.id}}&action=list' data-shortkey="51ctrlshift" >
      <div class="statistic">
       <div class="value"><i class="sf-credit-card fc-orange"></i></div>
-      <div class="label">{%trans "Billing"%} <kbd class=" hide mT5">Shift+2</kbd></div>
+      <div class="label">{%trans "Billing"%} <kbd class=" hide mT5">Shift+3</kbd></div>
      </div>
     </a>
    </div>
 
    <div class="c s6">
-    <a class="dcard {%if url.child == 'ticket'%}active{%endif%}" href='{{url.this}}/ticket?id={{requestGET.id}}' data-shortkey="51ctrlshift" >
+    <a class="dcard {%if url.child == 'ticket'%}active{%endif%}" href='{{url.this}}/ticket?id={{requestGET.id}}' data-shortkey="52ctrlshift" >
      <div class="statistic">
       <div class="value"><i class="sf-life-ring fc-green"></i></div>
-      <div class="label">{%trans "Ticket"%} <kbd class=" hide mT5">Shift+3</kbd></div>
+      <div class="label">{%trans "Ticket"%} <kbd class=" hide mT5">Shift+4</kbd></div>
      </div>
     </a>
    </div>
 
    <div class="c s6">
-    <a class="dcard {%if url.child == 'security'%}active{%endif%}" href='{{url.this}}/security?id={{requestGET.id}}' data-shortkey="52ctrlshift" >
+    <a class="dcard {%if url.child == 'security'%}active{%endif%}" href='{{url.this}}/security?id={{requestGET.id}}' data-shortkey="53ctrlshift" >
      <div class="statistic tail">
       <div class="value"><i class="sf-lock fc-red"></i></div>
-      <div class="label">{%trans "Security"%} <kbd class=" hide mT5">Shift+4</kbd></div>
+      <div class="label">{%trans "Security"%} <kbd class=" hide mT5">Shift+5</kbd></div>
      </div>
     </a>
    </div>
 
       <div class="c s6">
-    <a class="dcard {%if url.child == 'address'%}active{%endif%}" href='{{url.this}}/address?id={{requestGET.id}}' data-shortkey="52ctrlshift" >
+    <a class="dcard {%if url.child == 'address'%}active{%endif%}" href='{{url.this}}/address?id={{requestGET.id}}' data-shortkey="54ctrlshift" >
      <div class="statistic tail">
       <div class="value"><i class="sf-pin"></i></div>
-      <div class="label">{%trans "Address"%} <kbd class=" hide mT5">Shift+4</kbd></div>
+      <div class="label">{%trans "Address"%} <kbd class=" hide mT5">Shift+6</kbd></div>
      </div>
     </a>
    </div>
 
    <div class="c s6">
-    <a class="dcard {%if url.child == 'description'%}active{%endif%}" href='{{url.this}}/description?id={{requestGET.id}}' data-shortkey="52ctrlshift" >
+    <a class="dcard {%if url.child == 'description'%}active{%endif%}" href='{{url.this}}/description?id={{requestGET.id}}' data-shortkey="55ctrlshift" >
      <div class="statistic tail">
       <div class="value"><i class="sf-list"></i></div>
-      <div class="label">{%trans "Description"%} <kbd class=" hide mT5">Shift+4</kbd></div>
+      <div class="label">{%trans "Description"%} <kbd class=" hide mT5">Shift+7</kbd></div>
      </div>
     </a>
    </div>
