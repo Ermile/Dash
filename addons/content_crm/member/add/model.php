@@ -25,9 +25,9 @@ class model
 
 		if(\dash\engine\process::status())
 		{
-			if(isset($result['member_id']))
+			if(isset($result['user_id']))
 			{
-				\dash\redirect::to(\dash\url::here(). '/member/general?id='. $result['member_id']);
+				\dash\redirect::to(\dash\url::here(). '/member/general?id='. $result['user_id']);
 			}
 			else
 			{

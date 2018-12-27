@@ -12,11 +12,11 @@
 {%if perm('cpUsersView') or perm('cpUsersAdd') or perm('cpPermissionView') %}
     <li>
       {%if perm('cpUsersView') %}
-        <a href="{{url.here}}/users"><i class='sf-users'></i> <span>{% trans "Users" %}</span></a>
+        <a href="{{url.here}}/member"><i class='sf-users'></i> <span>{% trans "Users" %}</span></a>
       {%endif%}
         <ul>
           {%if perm('cpUsersAdd') %}
-            <li><a href="{{url.here}}/users/set">{% trans "Add new user" %} <i class='floatRa mRa10 fc-mute sf-user-plus'></i></a></li>
+            <li><a href="{{url.here}}/member/add">{% trans "Add new user" %} <i class='floatRa mRa10 fc-mute sf-user-plus'></i></a></li>
           {%endif%}
           {%if perm('cpPermissionView') %}
             <li><a href="{{url.here}}/permission">{% trans "Permissions" %} <i class='floatRa mRa10 fc-mute sf-lock'></i></a></li>
