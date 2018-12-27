@@ -726,6 +726,26 @@ class member
 		$twostep       = \dash\app::request('twostep') ? 1 : null;
 		$forceremember = \dash\app::request('forceremember') ? 1 : null;
 
+		$password = \dash\app::request('password');
+
+		if(\dash\permission::check("cpUsersPasswordChange"))
+		{
+			if($password)
+			{
+				if(mb_strlen($password) < 6)
+				{
+					\dash\notif::error(T_("Plase set password larger than 6 character"), ['element' => ['password', 'repassword']]);
+					return false;
+				}
+
+				$args['password'] = \dash\utility::hasher($password, null, false);
+				if(!\dash\engine\process::status())
+				{
+					return false;
+				}
+			}
+		}
+
 		$args['mobile']       = $mobile;
 		$args['nationalcode'] = $nationalcode;
 		$args['pasportcode']  = $pasportcode;

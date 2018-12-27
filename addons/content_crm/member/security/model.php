@@ -40,7 +40,27 @@ class model
 			}
 		}
 
-		$request = self::getPost();
+		$request    = self::getPost();
+		$password   = \dash\request::post('password');
+		$repassword = \dash\request::post('repassword');
+
+		if($password)
+		{
+			if(!$repassword)
+			{
+				\dash\notif::error(T_("Please set repassword"), 'repassword');
+				return false;
+			}
+
+			if($password !== $repassword)
+			{
+				\dash\notif::error(T_("Password not match whit repassword"), ['element' => ['password', 'repassword']]);
+				return false;
+			}
+
+			$request['password'] = $password;
+
+		}
 
 		$result = \dash\app\member::edit($request, \dash\request::get('id'));
 

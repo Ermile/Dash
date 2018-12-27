@@ -15,7 +15,15 @@
     <h3 class="txtC">{%trans "Security and Enter"%}</h3>
     {{block("iTwoStep")}}
     {{block("iRememberme")}}
+    {{block("iSidebar")}}
+
     {{block("iStatus")}}
+
+    {%if perm('cpUsersPasswordChange')%}
+      {{block('iPassword')}}
+      {{block('irePassword')}}
+    {%endif%}
+
     {{block("iSave")}}
   </form>
   {{block('sessionList')}}
@@ -26,6 +34,31 @@
 
 
 
+{%block iPassword%}
+<label for="password">{%trans "Password"%} <small>{%trans "Enter to change pass"%}</small></label>
+<div class="input">
+  <input type="password" name="password" id="password" placeholder='{%if dataRowMember.password%}{%trans "Password was set, enter to change it!"%}{%else%}{%trans "Password not set, enter  to set it!"%}{%endif%}' maxlength='50' data-response-realtime autocomplete="new-password">
+</div>
+{%endblock%}
+
+
+{%block irePassword%}
+<div data-response='password' data-response-hide data-response-effect='slide'>
+  <label for="repassword">{%trans "Confirm password"%} <small class="fc-red">* {%trans "Require to change current password"%}</small></label>
+  <div class="input">
+  <input type="password" name="repassword" id="repassword" placeholder='{%if dataRowMember.password%}{%trans "Password was set, enter to change it!"%}{%else%}{%trans "Password not set, enter  to set it!"%}{%endif%}'  maxlength='50'>
+</div>
+</div>
+{%endblock%}
+
+
+{%block iSidebar%}
+<div class="switch1 mTB0">
+  <input type="checkbox" name="sidebar" id="xsidebar" {%if dataRowMember.sidebar %}checked{%endif%}>
+  <label for="xsidebar"></label>
+  <label for="xsidebar">{%trans "Show sidebar"%}</label>
+</div>
+{%endblock%}
 
 {%block iStatus%}
 <div class="mT10">
