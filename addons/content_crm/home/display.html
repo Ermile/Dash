@@ -12,57 +12,6 @@
 
 
 
-{%block blockCMS%}
-<div class="f">
-  <div class="c s6">{{block ("dNews")}}</div>
-  <div class="c s6">{{block ("dCats")}}</div>
-  <div class="c s6">{{block ("dTags")}}</div>
-  <div class="c s6">{{block ("dPages")}}</div>
-</div>
-{%endblock%}
-
-
-{%block dNews%}
-<a class="dcard" href="{{url.here}}/posts">
- <div class="statistic sm">
-  <div class="label mB10"><i class="fs20 mRa5 sf-pinboard"></i> {%trans "News"%}</div>
-  <div class="value">{{dashboardDetail.news | fitNumber}}</div>
- </div>
-</a>
-{%endblock%}
-
-
-{%block dCats%}
-<a class="dcard" href="{{url.here}}/terms?type=cat">
- <div class="statistic sm">
-  <div class="label mB10"><i class="fs20 mRa5 sf-grid"></i> {%trans "Category"%}</div>
-  <div class="value">{{dashboardDetail.cats | fitNumber()}}</div>
- </div>
-</a>
-{%endblock%}
-
-
-{%block dTags%}
-<a class="dcard" href="{{url.here}}/terms?type=tag">
- <div class="statistic sm">
-  <div class="label mB10"><i class="fs20 mRa5 sf-tags"></i> {%trans "Tags"%}</div>
-  <div class="value">{{dashboardDetail.tags | fitNumber}}</div>
- </div>
-</a>
-{%endblock%}
-
-
-{%block dPages%}
-<a class="dcard" href="{{url.here}}/posts?type=page">
- <div class="statistic sm">
-  <div class="label mB10"><i class="fs20 mRa5 sf-files-o"></i> {%trans "Pages"%}</div>
-  <div class="value">{{dashboardDetail.pages | fitNumber}}</div>
- </div>
-</a>
-{%endblock%}
-
-
-
 {%block chartVisitor%}
 <a class="cbox pA0">
  <div class="chart x4" id="chartdiv" data-type='bar' data-vals='{{visitor.chart}}'></div>
@@ -149,7 +98,7 @@
 
 
 {%block dUsers%}
-<a class="dcard" href="{{url.here}}/users">
+<a class="dcard" href="{{url.here}}/member">
  <div class="statistic sm teal">
   <div class="label mB10"><i class="fs20 mRa5 sf-users"></i> {%trans "Users"%}</div>
   <div class="value counter" data-value={{dashboardDetail.users}}>{{dashboardDetail.users | fitNumber}}</div>

@@ -1,10 +1,6 @@
 {%extends display.crmMain%}
 
-
-
-
-{%block psidebar%}
-<div class="cbox normal">
+{%block sideBarAvatar%}
 
  <div class="vcard">
   <a href='{{url.this}}/avatar?id={{requestGET.id}}'>
@@ -21,10 +17,15 @@
     <div class="desc"><i class="sf-mobile fs2"></i><a href="{{url.this}}/contact?id={{requestGET.id}}">{{dataRow.mobile|fitNumber('mobile')}}</a></div>
     {%endif%}
   </div>
-  {%if dataRow.code%}
-  <div class="footer txtB" title='{%trans "Code"%}'><a href="{{url.this}}/general?id={{requestGET.id}}">{{dataRow.code|fitNumber(false)}}</a></div>
-  {%endif%}
+
  </div>
+{%endblock%}
+
+
+{%block psidebar%}
+<div class="cbox normal">
+
+  {{block('sideBarAvatar')}}
 
  <a class="btn block mTB10" href='{{url.this}}/general?id={{requestGET.id}}'>{%trans "General Detail"%}</a>
 
@@ -41,7 +42,7 @@
 {%block iname%}
 <label for="name">{%trans "Name"%}{%if firstnameRequired%} <small class="fc-red">* {%trans "Require"%}</small>{%endif%}</label>
 <div class="input">
-  <input type="text" name="name" id="name" placeholder='{%trans "Name"%} {%if firstnameRequired%}*{%endif%}' value="{{dataRow.firstname}}" autofocus maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid name from 3 to 40 character"%}' {%if firstnameRequired%}required{%endif%}>
+  <input type="text" name="name" id="name" placeholder='{%trans "Name"%} {%if firstnameRequired%}*{%endif%}' value="{{dataRow.firstname}}" autofocus maxlength='40' minlength="1" pattern=".{1,40}"  {%if firstnameRequired%}required{%endif%}>
 </div>
 {%endblock%}
 
@@ -395,7 +396,7 @@
 
 
 {%block icreateDate%}
- <div class="msg" title='{%trans "Last update"%} {{dataRow.datemodified | dt(true)}}'>{%trans "Joined to serivce on"%} <span class="txtB">{{dataRow.datecreated | dt(true)}}</span></div>
+ <div class="msg" {%if dataRow.datemodified%} title='{%trans "Last update"%} {{dataRow.datemodified | dt(true)}}' {%endif%}>{%trans "Joined to serivce on"%} <span class="txtB">{{dataRow.datecreated | dt(true)}}</span></div>
 {%endblock%}
 
 
@@ -427,7 +428,7 @@
    <div class="c s6">
     <a class="dcard {%if url.child == 'general' or url.child == 'avatar' or url.child == 'contact' or url.child == 'identification' or url.child == 'address'%}active{%endif%}" href='{{url.this}}/general?id={{requestGET.id}}' data-shortkey="49ctrlshift">
      <div class="statistic">
-      <div class="value"><i class="sf-user"></i></div>
+      <div class="value"><i class="sf-user fc-blue"></i></div>
       <div class="label">{%trans "Profile"%} <kbd class=" hide mT5">Shift+1</kbd></div>
      </div>
     </a>
@@ -436,38 +437,50 @@
    <div class="c s6">
     <a class="dcard {%if url.child == 'billing'%}active{%endif%}" href='{{url.this}}/billing?id={{requestGET.id}}&action=list' data-shortkey="50ctrlshift" >
      <div class="statistic">
-      <div class="value"><i class="sf-credit-card"></i></div>
+      <div class="value"><i class="sf-credit-card fc-orange"></i></div>
       <div class="label">{%trans "Billing"%} <kbd class=" hide mT5">Shift+2</kbd></div>
      </div>
     </a>
    </div>
 
    <div class="c s6">
-    <a class="dcard {%if url.child == 'takenunit'%}active{%endif%}" href='{{url.this}}/takenunit?id={{requestGET.id}}' data-shortkey="51ctrlshift" >
+    <a class="dcard {%if url.child == 'ticket'%}active{%endif%}" href='{{url.this}}/ticket?id={{requestGET.id}}' data-shortkey="51ctrlshift" >
      <div class="statistic">
-      <div class="value"><i class="sf-plug"></i></div>
-      <div class="label">{%trans "Lesson Taked"%} <kbd class=" hide mT5">Shift+3</kbd></div>
+      <div class="value"><i class="sf-life-ring fc-green"></i></div>
+      <div class="label">{%trans "Ticket"%} <kbd class=" hide mT5">Shift+3</kbd></div>
      </div>
     </a>
    </div>
 
    <div class="c s6">
-    <a class="dcard {%if url.child == 'equivalent'%}active{%endif%}" href='{{url.this}}/equivalent?id={{requestGET.id}}' data-shortkey="52ctrlshift" >
+    <a class="dcard {%if url.child == 'security'%}active{%endif%}" href='{{url.this}}/security?id={{requestGET.id}}' data-shortkey="52ctrlshift" >
      <div class="statistic tail">
-      <div class="value"><i class="sf-balance-scale"></i></div>
-      <div class="label">{%trans "Evaluation"%} <kbd class=" hide mT5">Shift+4</kbd></div>
+      <div class="value"><i class="sf-lock fc-red"></i></div>
+      <div class="label">{%trans "Security"%} <kbd class=" hide mT5">Shift+4</kbd></div>
      </div>
     </a>
    </div>
 
    <div class="c s6">
-    <a class="dcard {%if url.child == 'certification'%}active{%endif%}" href='{{url.this}}/certification?id={{requestGET.id}}' data-shortkey="52ctrlshift" >
+    <a class="dcard {%if url.child == 'social'%}active{%endif%}" href='{{url.this}}/social?id={{requestGET.id}}' data-shortkey="52ctrlshift" >
      <div class="statistic tail">
-      <div class="value"><i class="sf-graduation-cap"></i></div>
-      <div class="label">{%trans "Certification"%} <kbd class=" hide mT5">Shift+4</kbd></div>
+      <div class="value"><i class="sf-network"></i></div>
+      <div class="label">{%trans "Social network"%} <kbd class=" hide mT5">Shift+4</kbd></div>
      </div>
     </a>
    </div>
+
+
+   <div class="c s6">
+    <a class="dcard {%if url.child == 'signator'%}active{%endif%}" href='{{url.this}}/signator?id={{requestGET.id}}' data-shortkey="52ctrlshift" >
+     <div class="statistic tail">
+      <div class="value"><i class="sf-user-3"></i></div>
+      <div class="label">{%trans "Signator"%} <kbd class=" hide mT5">Shift+4</kbd></div>
+     </div>
+    </a>
+   </div>
+
+
 
 
   </div>
