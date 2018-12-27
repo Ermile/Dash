@@ -65,7 +65,7 @@
       </div>
     {%endif%}
 
-
+    {%if options.billing_promo %}
        <div class="cbox">
         <h2>{%trans "Promo code"%}</h2>
         <p>{%trans "If you have a promo code, please enter it below to receive your credit."%}</p>
@@ -79,6 +79,7 @@
         </form>
 
        </div>
+       {%endif%}
 
     </div>
 
