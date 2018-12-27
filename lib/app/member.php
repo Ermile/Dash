@@ -296,6 +296,11 @@ class member
 		if(!\dash\app::isset_request('facebook')) 		unset($args['facebook']);
 		if(!\dash\app::isset_request('twitter')) 		unset($args['twitter']);
 
+		if(!\dash\app::isset_request('twostep')) 		unset($args['twostep']);
+		if(!\dash\app::isset_request('forceremember')) 		unset($args['forceremember']);
+
+
+
 		// if(!\dash\app::isset_request('shcode'))         unset($args['shcode']);
 		// if(!\dash\app::isset_request('birthcity'))      unset($args['birthcity']);
 		// if(!\dash\app::isset_request('zipcode'))        unset($args['zipcode']);
@@ -718,6 +723,9 @@ class member
 			$args['detail'] = json_encode($detail, JSON_UNESCAPED_UNICODE);
 		}
 
+		$twostep       = \dash\app::request('twostep') ? 1 : null;
+		$forceremember = \dash\app::request('forceremember') ? 1 : null;
+
 		$args['mobile']       = $mobile;
 		$args['nationalcode'] = $nationalcode;
 		$args['pasportcode']  = $pasportcode;
@@ -738,6 +746,8 @@ class member
 		$args['linkedin']     = $linkedin;
 		$args['facebook']     = $facebook;
 		$args['twitter']      = $twitter;
+		$args['twostep']      = $twostep;
+		$args['forceremember']      = $forceremember;
 		return $args;
 	}
 
