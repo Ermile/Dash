@@ -7,7 +7,7 @@ class controller
 
 	public static function routing()
 	{
-		$id = \dash\request::get('id');
+		$id = \dash\request::get('addressid');
 		if($id)
 		{
 			$dataRow = \dash\app\address::get($id);

@@ -4,17 +4,17 @@
 
  <div class="vcard">
   <a href='{{url.this}}/avatar?id={{requestGET.id}}'>
-  {%if dataRow.avatar%}
-    <img src="{{dataRow.avatar}}">
+  {%if dataRowMember.avatar%}
+    <img src="{{dataRowMember.avatar}}">
   {%else%}
     <img src="{{url.static}}/siftal/images/useful/user1.png">
   {%endif%}
   </a>
   <div class="content">
-    <div class="header">{{dataRow.firstname}} <b>{{dataRow.lastname}}</b></div>
-    <div class="meta"><span>{{dataRow.father }}</span></div>
-    {%if dataRow.mobile%}
-    <div class="desc"><i class="sf-mobile fs2"></i><a href="{{url.this}}/contact?id={{requestGET.id}}">{{dataRow.mobile|fitNumber('mobile')}}</a></div>
+    <div class="header">{{dataRowMember.firstname}} <b>{{dataRowMember.lastname}}</b></div>
+    <div class="meta"><span>{{dataRowMember.father }}</span></div>
+    {%if dataRowMember.mobile%}
+    <div class="desc"><i class="sf-mobile fs2"></i><a href="{{url.this}}/contact?id={{requestGET.id}}">{{dataRowMember.mobile|fitNumber('mobile')}}</a></div>
     {%endif%}
   </div>
 
@@ -39,7 +39,7 @@
 {%block iname%}
 <label for="name">{%trans "Name"%}</label>
 <div class="input">
-  <input type="text" name="name" id="name" placeholder='{%trans "Name"%}' value="{{dataRow.firstname}}" autofocus maxlength='40' minlength="1" pattern=".{1,40}" >
+  <input type="text" name="name" id="name" placeholder='{%trans "Name"%}' value="{{dataRowMember.firstname}}" autofocus maxlength='40' minlength="1" pattern=".{1,40}" >
 </div>
 {%endblock%}
 
@@ -47,7 +47,7 @@
 {%block ifamily%}
 <label for="lastName">{%trans "Last name"%}</label>
 <div class="input">
-  <input type="text" name="lastName" id="lastName" placeholder='{%trans "Last name"%}' value="{{dataRow.lastname}}" maxlength='60'>
+  <input type="text" name="lastName" id="lastName" placeholder='{%trans "Last name"%}' value="{{dataRowMember.lastname}}" maxlength='60'>
 </div>
 {%endblock%}
 
@@ -56,7 +56,7 @@
 {%block imobile%}
 <label for="mobile">{%trans "Mobile"%}</label>
 <div class="input">
-  <input type="tel" name="mobile" id="mobile" placeholder='{%trans "Like 09120123456"%}' value="{{dataRow.mobile}}" maxlength='30'>
+  <input type="tel" name="mobile" id="mobile" placeholder='{%trans "Like 09120123456"%}' value="{{dataRowMember.mobile}}" maxlength='30'>
 </div>
 {%endblock%}
 
@@ -67,7 +67,7 @@
 {%block iemail2%}
 <label for="email">{%trans "Email"%}</label>
 <div class="input">
-  <input type="text" name="email" id="email" placeholder='{%trans "Like abc@example.com"%}' value="{{dataRow.detail.email}}" maxlength='30'>
+  <input type="text" name="email" id="email" placeholder='{%trans "Like abc@example.com"%}' value="{{dataRowMember.detail.email}}" maxlength='30'>
 </div>
 {%endblock%}
 
@@ -77,7 +77,7 @@
 {%block ifather%}
 <label for="father">{%trans "Father name"%}</label>
 <div class="input">
-  <input type="text" name="father" id="father" placeholder='{%trans "Father name"%}' value="{{dataRow.father}}" maxlength='50'>
+  <input type="text" name="father" id="father" placeholder='{%trans "Father name"%}' value="{{dataRowMember.father}}" maxlength='50'>
 </div>
 {%endblock%}
 
@@ -85,7 +85,7 @@
 {%block ibirthday%}
 <label for="birthdate">{%trans "Birthday"%}</label>
 <div class="input ltr">
-  <input class="datepicker" type="text" name="birthdate" id="birthdate" placeholder='{{"1369/04/15" | fitNumber}}' value="{{dataRow.birthday}}" data-view="year" autocomplete='off'>
+  <input class="datepicker" type="text" name="birthdate" id="birthdate" placeholder='{{"1369/04/15" | fitNumber}}' value="{{dataRowMember.birthday}}" data-view="year" autocomplete='off'>
 </div>
 {%endblock%}
 
@@ -96,8 +96,8 @@
   <label for="gender">{%trans "Gender"%}</label>
   <select name="gender" class="ui dropdown select">
     <option value="" readonly>{%trans "Please select one itme"%}</option>
-    <option value="male" {%if dataRow.gender == 'male' or ( not dataRow.gender and defaultDenderExpert == 'male') %}selected {%endif%}>{%trans "Male"%}</option>
-    <option value="female" {%if dataRow.gender == 'female' or ( not dataRow.gender and defaultDenderExpert == 'female') %}selected{%endif%}>{%trans "Female"%}</option>
+    <option value="male" {%if dataRowMember.gender == 'male' or ( not dataRowMember.gender and defaultDenderExpert == 'male') %}selected {%endif%}>{%trans "Male"%}</option>
+    <option value="female" {%if dataRowMember.gender == 'female' or ( not dataRowMember.gender and defaultDenderExpert == 'female') %}selected{%endif%}>{%trans "Female"%}</option>
   </select>
 </div>
 {%endblock%}
@@ -108,8 +108,8 @@
   <label for="marital">{%trans "Marital"%}</label>
   <select name="marital" class="ui dropdown select">
     <option value="" readonly>{%trans "Please select one itme"%}</option>
-    <option value="single" {%if dataRow.marital == 'single' %}selected {%endif%}>{%trans "Single"%}</option>
-    <option value="married" {%if dataRow.marital == 'married' %}selected{%endif%}>{%trans "Married"%}</option>
+    <option value="single" {%if dataRowMember.marital == 'single' %}selected {%endif%}>{%trans "Single"%}</option>
+    <option value="married" {%if dataRowMember.marital == 'married' %}selected{%endif%}>{%trans "Married"%}</option>
   </select>
 </div>
 {%endblock%}
@@ -119,11 +119,11 @@
 
 {%block nationalityAndDetail%}
   {{block("icountry_nationality")}}
-  <div class="f" data-response='nationality' data-response-where='IR' data-response-effect='slide' {%if dataRow.nationality is not empty and dataRow.nationality != "IR"%}data-response-hide{%endif%}>
+  <div class="f" data-response='nationality' data-response-where='IR' data-response-effect='slide' {%if dataRowMember.nationality is not empty and dataRowMember.nationality != "IR"%}data-response-hide{%endif%}>
    <div class="c s12 pRa5">{{block("iid")}}</div>
    <div class="c s12 pRa5">{{block("inationalcode")}}</div>
   </div>
-  <div class="f" data-response='nationality' data-response-where-not='IR' data-response-effect='slide' {%if dataRow.nationality is empty or dataRow.nationality == "IR"%}data-response-hide{%endif%}>
+  <div class="f" data-response='nationality' data-response-where-not='IR' data-response-effect='slide' {%if dataRowMember.nationality is empty or dataRowMember.nationality == "IR"%}data-response-hide{%endif%}>
    <div class="c s12 pRa5">{{block("ipassport")}}</div>
    <div class="c s12 pRa5">{{block("ipassportdate")}}</div>
   </div>
@@ -134,7 +134,7 @@
 <div class="mB10">
   <label for='nationality'>{%trans "Nationality"%}</label>
   <div class="ui fluid search selection dropdown">
-    <input type="hidden" name="nationality" value="{%if dataRow.nationality%}{{dataRow.nationality}}{%else%}IR{%endif%}">
+    <input type="hidden" name="nationality" value="{%if dataRowMember.nationality%}{{dataRowMember.nationality}}{%else%}IR{%endif%}">
     <i class="dropdown icon"></i>
     <div class="default text">{%trans "Choose your nationality"%}</div>
     <div class="menu">
@@ -157,7 +157,7 @@
 {%block ipassport%}
 <label for='passport'>{%trans "Passport id"%} <small class="fc-red">* {%trans "Require"%}</small></label>
 <div class="input ltr">
- <input name='pasportcode' id='passport' value="{{dataRow.pasportcode}}" placeholder='{%trans "Passport id"%} *'   />
+ <input name='pasportcode' id='passport' value="{{dataRowMember.pasportcode}}" placeholder='{%trans "Passport id"%} *'   />
 </div>
 {%endblock%}
 
@@ -170,7 +170,7 @@
 {%block ipassportdate%}
 <label for='passportdate'>{%trans "Passport expire date"%} <small class="fc-red">* {%trans "Require"%}</small></label>
 <div class="input ltr">
-   <input class="datepicker" type="text" name="passportdate" id="passportdate" placeholder='{{"1369/04/15" | fitNumber}} *' value="{{dataRow.pasportdate}}" maxlength='20' autocomplete='off' >
+   <input class="datepicker" type="text" name="passportdate" id="passportdate" placeholder='{{"1369/04/15" | fitNumber}} *' value="{{dataRowMember.pasportdate}}" maxlength='20' autocomplete='off' >
 </div>
 
 {%endblock%}
@@ -179,7 +179,7 @@
 {%block iid%}
 <label for='id'>{%trans "Id number"%}</label>
 <div class="input">
- <input type="tel" name='shcode' id='id' value="{{dataRow.detail.shcode}}" placeholder='{%trans "Id number"%}' />
+ <input type="tel" name='shcode' id='id' value="{{dataRowMember.detail.shcode}}" placeholder='{%trans "Id number"%}' />
 </div>
 {%endblock%}
 
@@ -187,7 +187,7 @@
 {%block inationalcode%}
 <label for='nationalcode'>{%trans "National Id"%}</label>
 <div class="input">
- <input type="tel" name='nationalcode' id='nationalcode' value="{{dataRow.nationalcode}}" placeholder='{%trans "10 digit national code"%}'  />
+ <input type="tel" name='nationalcode' id='nationalcode' value="{{dataRowMember.nationalcode}}" placeholder='{%trans "10 digit national code"%}'  />
 </div>
 {%endblock%}
 
@@ -202,7 +202,7 @@
 {%block iPhone%}
 <label for="phone">{%trans "Phone"%}</label>
 <div class="input">
-  <input type="tel" name="phone" id="phone" placeholder='{%trans "Like"%} 02536505281' value="{{dataRow.phone}}" maxlength='50'>
+  <input type="tel" name="phone" id="phone" placeholder='{%trans "Like"%} 02536505281' value="{{dataRowMember.phone}}" maxlength='50'>
 </div>
 {%endblock%}
 
@@ -212,7 +212,7 @@
 {%block iEducation%}
 <label for="education">{%trans "Education"%}</label>
 <div class="input">
-  <input type="education" name="education" id="education" placeholder='{%trans "Education"%}' value="{{dataRow.detail.education}}" maxlength='50'>
+  <input type="education" name="education" id="education" placeholder='{%trans "Education"%}' value="{{dataRowMember.detail.education}}" maxlength='50'>
 </div>
 {%endblock%}
 
@@ -221,7 +221,7 @@
 {%block iEducationcourse%}
 <label for="educationcourse">{%trans "Education Course"%}</label>
 <div class="input">
-  <input type="educationcourse" name="educationcourse" id="educationcourse" placeholder='{%trans "Education Course"%}' value="{{dataRow.detail.educationcourse}}" maxlength='50'>
+  <input type="educationcourse" name="educationcourse" id="educationcourse" placeholder='{%trans "Education Course"%}' value="{{dataRowMember.detail.educationcourse}}" maxlength='50'>
 </div>
 {%endblock%}
 
@@ -232,7 +232,7 @@
 <div class="input preview">
  <input type="file" accept="image/gif, image/jpeg, image/png" name="avatar" id="avatar1" data-preview data-max="500">
  <label for="avatar1" title='{%trans "Set your avatar"%}'>
-    {%if dataRow.avatar%}<img src="{{dataRow.avatar}}">{%endif%}
+    {%if dataRowMember.avatar%}<img src="{{dataRowMember.avatar}}">{%endif%}
  </label>
 </div>
 {%endblock%}
@@ -240,7 +240,7 @@
 
 
 {%block icreateDate%}
- <div class="msg" {%if dataRow.datemodified%} title='{%trans "Last update"%} {{dataRow.datemodified | dt(true)}}' {%endif%}>{%trans "Joined to serivce on"%} <span class="txtB">{{dataRow.datecreated | dt(true)}}</span></div>
+ <div class="msg" {%if dataRowMember.datemodified%} title='{%trans "Last update"%} {{dataRowMember.datemodified | dt(true)}}' {%endif%}>{%trans "Joined to serivce on"%} <span class="txtB">{{dataRowMember.datecreated | dt(true)}}</span></div>
 {%endblock%}
 
 
@@ -262,9 +262,9 @@
 
 
 {%block pageSteps%}
-{%if dataRow.status == 'filter'%}
+{%if dataRowMember.status == 'filter'%}
 <div class="msg warn txtC txtB fs14">{%trans "The user was blocked"%}</div>
-{%elseif dataRow.status == 'removed'%}
+{%elseif dataRowMember.status == 'removed'%}
 <div class="msg danger txtC txtB fs14">{%trans "The user was removed"%}</div>
 {%endif%}
 

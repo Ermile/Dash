@@ -11,6 +11,8 @@ class view
 		\dash\data::page_desc(T_('Manage your addresses.'));
 		\dash\data::page_pictogram('pin');
 
+		\dash\data::myUrlAddress(\dash\url::this());
+
 		\dash\data::badge_link(\dash\url::kingdom(). '/a');
 		\dash\data::badge_text(T_('Back to dashbaord'));
 

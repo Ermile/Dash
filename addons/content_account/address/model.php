@@ -7,9 +7,9 @@ class model
 
 	public static function post()
 	{
-		if(\dash\request::post('btnremove') === 'delete' && \dash\request::post('id'))
+		if(\dash\request::post('btnremove') === 'delete' && \dash\request::post('addressid'))
 		{
-			\dash\app\address::remove(\dash\request::post('id'));
+			\dash\app\address::remove(\dash\request::post('addressid'));
 			\dash\redirect::to(\dash\url::this());
 			return;
 		}
@@ -30,9 +30,9 @@ class model
 		$post['companyname'] = \dash\request::post('companyname');
 		$post['jobtitle']    = \dash\request::post('jobtitle');
 
-		if(\dash\request::get('id'))
+		if(\dash\request::get('addressid'))
 		{
-			$result = \dash\app\address::edit($post, \dash\request::get('id'));
+			$result = \dash\app\address::edit($post, \dash\request::get('addressid'));
 			if(\dash\engine\process::status())
 			{
 				\dash\notif::ok(T_("Address successfully edited"));

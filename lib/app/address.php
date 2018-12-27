@@ -192,7 +192,15 @@ class address
 
 		$favorite = \dash\app::request('favorite') ? 1 : null;
 
+		$user_id = \dash\app::request('user_id');
+		if($user_id && !is_numeric($user_id))
+		{
+			\dash\notif::error(T_("Invalid user id"));
+			return false;
+		}
+
 		$args                = [];
+		$args['user_id']       = $user_id;
 		$args['title']       = $title;
 		$args['name']        = $name;
 		$args['mobile']      = $mobile;
@@ -331,7 +339,11 @@ class address
 		{
 			$args['status'] = 'enable';
 		}
-		$args['user_id'] = \dash\user::id();
+
+		if(!$args['user_id'])
+		{
+			$args['user_id'] = \dash\user::id();
+		}
 
 		// if(\dash\url::subdomain())
 		// {
@@ -438,7 +450,7 @@ class address
 
 		if(!\dash\app::isset_request('title')) unset($args['title']);
 		if(!\dash\app::isset_request('name')) unset($args['name']);
-
+		if(!\dash\app::isset_request('user_id')) unset($args['user_id']);
 		if(!\dash\app::isset_request('isdefault')) unset($args['isdefault']);
 		if(!\dash\app::isset_request('company')) unset($args['company']);
 		if(!\dash\app::isset_request('companyname')) unset($args['companyname']);
@@ -482,6 +494,35 @@ class address
 		}
 
 		$check = ['user_id' => \dash\user::id(), 'id' => $id, 'limit' => 1];
+		$check = \dash\db\address::get($check);
+		if(!isset($check['id']))
+		{
+			\dash\notif::error(T_("Can not access to remove this address"));
+			return false;
+		}
+
+		\dash\db\address::update(['status' => 'delete'], $id);
+		\dash\notif::warn(T_("Address removed"));
+		return true;
+	}
+
+
+	public static function remove_admin($_id)
+	{
+		$id = \dash\coding::decode($_id);
+
+		if(!$id)
+		{
+			\dash\notif::error(T_("Can not access to remove this address"));
+			return false;
+		}
+
+		if(!\dash\user::id())
+		{
+			return false;
+		}
+
+		$check = ['id' => $id, 'limit' => 1];
 		$check = \dash\db\address::get($check);
 		if(!isset($check['id']))
 		{

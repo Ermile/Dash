@@ -6,7 +6,7 @@ class view
 {
 	public static function config()
 	{
-		\content_crm\member\main\view::dataRow();
+		\content_crm\member\main\view::dataRowMember();
 
 		\content_crm\member\main\view::static_var();
 

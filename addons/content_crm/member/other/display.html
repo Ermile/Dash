@@ -45,7 +45,7 @@
   <select name="language" class="ui dropdown" id="language">
     <option value="" readonly>{%trans "Select one item"%}</option>
     {%for key, lang in lang.list%}
-      <option value="{{key}}" {%if dataRow.language == key%} selected {%endif%} >{{lang}}</option>
+      <option value="{{key}}" {%if dataRowMember.language == key%} selected {%endif%} >{{lang}}</option>
     {%endfor%}
   </select>
 </div>
@@ -55,7 +55,7 @@
 {%block ibirthday%}
 <label for="birthday">{%trans "Birthday"%}  <small class="fc-red">* {%trans "Require"%}</small></label>
 <div class="input">
-  <input class="datepicker" type="text" name="birthday" id="birthday" placeholder='{{"1369/04/15" | fitNumber}} *' value="{{dataRow.birthday}}" data-view="year" autocomplete='off'>
+  <input class="datepicker" type="text" name="birthday" id="birthday" placeholder='{{"1369/04/15" | fitNumber}} *' value="{{dataRowMember.birthday}}" data-view="year" autocomplete='off'>
 </div>
 {%endblock%}
 
@@ -67,12 +67,12 @@
   <label for="gender">{%trans "Gender"%} <small class="fc-red">* {%trans "Require"%}</small></label>
   <div class="f">
    <div class="radio1 green">
-    <input type="radio" id="r-male" name="gender" value="male" {%if dataRow.gender == 'male' %}checked{%endif%}>
+    <input type="radio" id="r-male" name="gender" value="male" {%if dataRowMember.gender == 'male' %}checked{%endif%}>
     <label for="r-male">{%trans "Male"%}</label>
    </div>
 
    <div class="radio1 green">
-    <input type="radio" id="r-female" name="gender" value="female" {%if dataRow.gender == 'female' %}checked{%endif%}>
+    <input type="radio" id="r-female" name="gender" value="female" {%if dataRowMember.gender == 'female' %}checked{%endif%}>
     <label for="r-female">{%trans "Female"%}</label>
    </div>
   </div>
@@ -83,7 +83,7 @@
 <div class="input preview">
  <input type="file" accept="image/gif, image/jpeg, image/png" name="avatar" id="avatar1" data-preview data-max="500">
  <label for="avatar1" title="Simple Title">
-    {%if dataRow.avatar%}<img src="{{dataRow.avatar}}">{%endif%}
+    {%if dataRowMember.avatar%}<img src="{{dataRowMember.avatar}}">{%endif%}
  </label>
 </div>
 <a class="badge danger floatL" href="{{url.pwd}}" data-ajaxify data-method='post' data-data='{"remove" : "avatar"}'>{%trans "Remove"%} {%trans "Your avatar"%}</a>

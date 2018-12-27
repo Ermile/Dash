@@ -34,7 +34,7 @@
 {%block iTwostep%}
 <div class="f">
 
-{%if dataRow.twostep%}
+{%if dataRowMember.twostep%}
 <p class="c10 msg success2 txtC">
   {%trans "Two step verification for your account is active"%}
   <br>
@@ -59,7 +59,7 @@
 
 {%block iRememberme%}
 <div class="switch1 mT20">
- <input type="checkbox" name="forceremember" id="forceremember" {%if dataRow.forceremember  %}checked{%endif%}>
+ <input type="checkbox" name="forceremember" id="forceremember" {%if dataRowMember.forceremember  %}checked{%endif%}>
  <label for="forceremember"></label>
  <label for="forceremember">{%trans "Save remember session"%}</label>
 </div>
@@ -72,7 +72,7 @@
 {%block imobile%}
 <label for="mobile">{%trans "Mobile"%} <small class="fc-red">* {%trans "Require"%}</small></label>
 <div class="input">
-  <input type="text" name="mobile" id="mobile" placeholder='{%trans "Like 09120123456"%} *' value="{{dataRow.mobile}}" maxlength='30' required {%if dataRow.mobile%} readonly{%endif%}>
+  <input type="text" name="mobile" id="mobile" placeholder='{%trans "Like 09120123456"%} *' value="{{dataRowMember.mobile}}" maxlength='30' required {%if dataRowMember.mobile%} readonly{%endif%}>
 </div>
 {%endblock%}
 
@@ -92,7 +92,7 @@
 <div data-response='password' data-response-hide data-response-effect='slide'>
   <label for="repassword">{%trans "Confirm password"%} <small class="fc-red">* {%trans "Require to change current password"%}</small></label>
   <div class="input">
-  <input type="password" name="repassword" id="repassword" placeholder='{%if dataRow.password%}{%trans "Password was set, enter to change it!"%}{%else%}{%trans "Password not set, enter to set it!"%}{%endif%}'  maxlength='50'>
+  <input type="password" name="repassword" id="repassword" placeholder='{%if dataRowMember.password%}{%trans "Password was set, enter to change it!"%}{%else%}{%trans "Password not set, enter to set it!"%}{%endif%}'  maxlength='50'>
 </div>
 </div>
 {%endblock%}

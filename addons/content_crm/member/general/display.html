@@ -71,7 +71,7 @@
 	    <option value="" readonly>{%trans "No permission"%}</option>
 	    <option value="0" readonly>{%trans "No permission"%}</option>
 	    {%for key, value in permGroup%}
-	      <option value="{{key}}" {%if dataRow.permission == key%} selected {%endif%} >{%set myValue = value.title%}{%trans myValue%}</option>
+	      <option value="{{key}}" {%if dataRowMember.permission == key%} selected {%endif%} >{%set myValue = value.title%}{%trans myValue%}</option>
 	    {%endfor%}
 	  </select>
 	</div>

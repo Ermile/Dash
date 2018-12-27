@@ -7,7 +7,7 @@ class view
 	/**
 	 * load user data
 	 */
-	public static function dataRow()
+	public static function dataRowMember()
 	{
 		$result = null;
 
@@ -25,7 +25,7 @@ class view
 			\dash\header::status(404, T_("Invalid user id"));
 		}
 
-		\dash\data::dataRow($result);
+		\dash\data::dataRowMember($result);
 
 		// add back level to summary link
 		\dash\data::badge_link(\dash\url::this());

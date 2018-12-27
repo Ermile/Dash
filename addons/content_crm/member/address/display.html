@@ -1,7 +1,12 @@
 {%extends 'content_crm/member/layout.html'%}
+{%use 'content_account/address.html'%}
+
+
+
 
 
 {%block pageContent%}
+
 
 {{block('pageSteps')}}
 <div class="f">
@@ -9,25 +14,20 @@
 {{block("psidebar")}}
  </div>
  <div class="c s12 pA5">
-	<form class="cbox" method="post" autocomplete="off">
 
-	<h2>{%trans "Residence address"%}</h2>
-	<div class="f">
-	 <div class="c12 s12 pRa5">{{block("icountry")}}</div>
+	{{block('bAddressList')}}
 
-	 <div class="c s12">{{block("icity")}}</div>
-	</div>
-	<div class="f">
-	 <div class="c8 s12 pRa5">{{block("iaddress")}}</div>
-	 <div class="c4 s12">{{block("izipcode")}}</div>
-	</div>
-
-
-	{{block("isave")}}
-
+	<form method="post" enctype="multipart/form-data" autocomplete="off">
+	  <div class="f justify-center">
+	    <div class="x5 c6 m8 s10">
+	{{block('bAddressAdd')}}
+	    </div>
+	  </div>
 	</form>
+
  </div>
 </div>
 {%endblock%}
+
 
 
