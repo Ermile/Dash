@@ -25,3 +25,24 @@
  </div>
 </div>
 {%endblock%}
+
+
+
+
+
+
+{%block iEducation%}
+<label for="education">{%trans "Education"%}</label>
+<div class="input">
+  <input type="education" name="education" id="education" placeholder='{%trans "Education"%}' value="{{dataRowMember.detail.education}}" maxlength='50'>
+</div>
+{%endblock%}
+
+
+
+{%block iEducationcourse%}
+<label for="educationcourse">{%trans "Education Course"%}</label>
+<div class="input">
+  <input type="educationcourse" name="educationcourse" id="educationcourse" placeholder='{%trans "Education Course"%}' value="{{dataRowMember.detail.educationcourse}}" maxlength='50'>
+</div>
+{%endblock%}

@@ -29,25 +29,9 @@
    <a class="btn block mTB10" href='{{url.this}}/identification?id={{requestGET.id}}'>{%trans "Identification detail"%}</a>
    <a class="btn block mTB10" href='{{url.this}}/contact?id={{requestGET.id}}'>{%trans "Contact information"%}</a>
    <a class="btn block mTB10" href='{{url.this}}/education?id={{requestGET.id}}'>{%trans "Education"%}</a>
-   <a class="btn block mTB10" href='{{url.this}}/address?id={{requestGET.id}}'>{%trans "Location and address"%}</a>
-   <a class="btn block mTB10" href='{{url.this}}/description?id={{requestGET.id}}'>{%trans "Description"%}</a>
-</div>
-{%endblock%}
+   <a class="btn block mTB10" href='{{url.this}}/social?id={{requestGET.id}}'>{%trans "Social network"%}</a>
+   <a class="btn block mTB10" href='{{url.this}}/signator?id={{requestGET.id}}'>{%trans "Signator"%}</a>
 
-
-
-{%block iname%}
-<label for="name">{%trans "Name"%}</label>
-<div class="input">
-  <input type="text" name="name" id="name" placeholder='{%trans "Name"%}' value="{{dataRowMember.firstname}}" autofocus maxlength='40' minlength="1" pattern=".{1,40}" >
-</div>
-{%endblock%}
-
-
-{%block ifamily%}
-<label for="lastName">{%trans "Last name"%}</label>
-<div class="input">
-  <input type="text" name="lastName" id="lastName" placeholder='{%trans "Last name"%}' value="{{dataRowMember.lastname}}" maxlength='60'>
 </div>
 {%endblock%}
 
@@ -71,48 +55,6 @@
 </div>
 {%endblock%}
 
-
-
-
-{%block ifather%}
-<label for="father">{%trans "Father name"%}</label>
-<div class="input">
-  <input type="text" name="father" id="father" placeholder='{%trans "Father name"%}' value="{{dataRowMember.father}}" maxlength='50'>
-</div>
-{%endblock%}
-
-
-{%block ibirthday%}
-<label for="birthdate">{%trans "Birthday"%}</label>
-<div class="input ltr">
-  <input class="datepicker" type="text" name="birthdate" id="birthdate" placeholder='{{"1369/04/15" | fitNumber}}' value="{{dataRowMember.birthday}}" data-view="year" autocomplete='off'>
-</div>
-{%endblock%}
-
-
-
-{%block igender%}
-<div class="mT10">
-  <label for="gender">{%trans "Gender"%}</label>
-  <select name="gender" class="ui dropdown select">
-    <option value="" readonly>{%trans "Please select one itme"%}</option>
-    <option value="male" {%if dataRowMember.gender == 'male' or ( not dataRowMember.gender and defaultDenderExpert == 'male') %}selected {%endif%}>{%trans "Male"%}</option>
-    <option value="female" {%if dataRowMember.gender == 'female' or ( not dataRowMember.gender and defaultDenderExpert == 'female') %}selected{%endif%}>{%trans "Female"%}</option>
-  </select>
-</div>
-{%endblock%}
-
-
-{%block iMarital%}
-<div class="mT10">
-  <label for="marital">{%trans "Marital"%}</label>
-  <select name="marital" class="ui dropdown select">
-    <option value="" readonly>{%trans "Please select one itme"%}</option>
-    <option value="single" {%if dataRowMember.marital == 'single' %}selected {%endif%}>{%trans "Single"%}</option>
-    <option value="married" {%if dataRowMember.marital == 'married' %}selected{%endif%}>{%trans "Married"%}</option>
-  </select>
-</div>
-{%endblock%}
 
 
 
@@ -209,36 +151,6 @@
 
 
 
-{%block iEducation%}
-<label for="education">{%trans "Education"%}</label>
-<div class="input">
-  <input type="education" name="education" id="education" placeholder='{%trans "Education"%}' value="{{dataRowMember.detail.education}}" maxlength='50'>
-</div>
-{%endblock%}
-
-
-
-{%block iEducationcourse%}
-<label for="educationcourse">{%trans "Education Course"%}</label>
-<div class="input">
-  <input type="educationcourse" name="educationcourse" id="educationcourse" placeholder='{%trans "Education Course"%}' value="{{dataRowMember.detail.educationcourse}}" maxlength='50'>
-</div>
-{%endblock%}
-
-
-
-
-{%block iAvatar%}
-<div class="input preview">
- <input type="file" accept="image/gif, image/jpeg, image/png" name="avatar" id="avatar1" data-preview data-max="500">
- <label for="avatar1" title='{%trans "Set your avatar"%}'>
-    {%if dataRowMember.avatar%}<img src="{{dataRowMember.avatar}}">{%endif%}
- </label>
-</div>
-{%endblock%}
-
-
-
 {%block icreateDate%}
  <div class="msg" {%if dataRowMember.datemodified%} title='{%trans "Last update"%} {{dataRowMember.datemodified | dt(true)}}' {%endif%}>{%trans "Joined to serivce on"%} <span class="txtB">{{dataRowMember.datecreated | dt(true)}}</span></div>
 {%endblock%}
@@ -305,21 +217,20 @@
     </a>
    </div>
 
-   <div class="c s6">
-    <a class="dcard {%if url.child == 'social'%}active{%endif%}" href='{{url.this}}/social?id={{requestGET.id}}' data-shortkey="52ctrlshift" >
+      <div class="c s6">
+    <a class="dcard {%if url.child == 'address'%}active{%endif%}" href='{{url.this}}/address?id={{requestGET.id}}' data-shortkey="52ctrlshift" >
      <div class="statistic tail">
-      <div class="value"><i class="sf-network"></i></div>
-      <div class="label">{%trans "Social network"%} <kbd class=" hide mT5">Shift+4</kbd></div>
+      <div class="value"><i class="sf-pin"></i></div>
+      <div class="label">{%trans "Address"%} <kbd class=" hide mT5">Shift+4</kbd></div>
      </div>
     </a>
    </div>
 
-
    <div class="c s6">
-    <a class="dcard {%if url.child == 'signator'%}active{%endif%}" href='{{url.this}}/signator?id={{requestGET.id}}' data-shortkey="52ctrlshift" >
+    <a class="dcard {%if url.child == 'description'%}active{%endif%}" href='{{url.this}}/description?id={{requestGET.id}}' data-shortkey="52ctrlshift" >
      <div class="statistic tail">
-      <div class="value"><i class="sf-user-3"></i></div>
-      <div class="label">{%trans "Signator"%} <kbd class=" hide mT5">Shift+4</kbd></div>
+      <div class="value"><i class="sf-list"></i></div>
+      <div class="label">{%trans "Description"%} <kbd class=" hide mT5">Shift+4</kbd></div>
      </div>
     </a>
    </div>
