@@ -36,6 +36,16 @@
 {%endblock%}
 
 
+{%block psidebarTicket%}
+<div class="cbox normal">
+  {{block('sideBarAvatar')}}
+   <a class="btn block mTB10" href='{{url.this}}/ticket?id={{requestGET.id}}'>{%trans "Tickets"%}</a>
+   <a class="btn block mTB10" href='{{url.this}}/ticket?id={{requestGET.id}}&type=message'>{%trans "Message"%}</a>
+</div>
+
+{%endblock%}
+
+
 
 {%block imobile%}
 <label for="mobile">{%trans "Mobile"%}</label>

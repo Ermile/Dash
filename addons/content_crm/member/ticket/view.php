@@ -1,5 +1,5 @@
 <?php
-namespace content_crm\member\address;
+namespace content_crm\member\ticket;
 
 
 class view
@@ -8,12 +8,20 @@ class view
 	{
 		\content_crm\member\main\view::dataRowMember();
 
-		$args               = [];
-		$args['user_id']    = \dash\coding::decode(\dash\request::get('id'));
-		$args['pagenation'] = false;
-		$args['status']     = 'enable';
-		$args['subdomain']  = null;
-		$dataTable          = \dash\app\address::list(null, $args);
+		$args            = [];
+		$args['user_id'] = \dash\coding::decode(\dash\request::get('id'));
+		$args['type']    = 'ticket';
+		if(\dash\request::get('type') === 'message')
+		{
+
+		}
+		else
+		{
+			$args['parent']  = null;
+		}
+
+		$dataTable          = \dash\app\ticket::list(null, $args);
+
 		\dash\data::dataTable($dataTable);
 
 		\dash\data::myUrlAddress(\dash\url::this(). '/address');
