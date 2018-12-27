@@ -122,21 +122,6 @@ class view
 				$all_tag = array_map(['\dash\app\term', 'ready'], $all_tag);
 			}
 			\dash\data::tagList($all_tag);
-			$args =
-			[
-				'sort'  => 'visitors.id',
-				'order' => 'desc',
-				'limit' => 5,
-				'pagenation' => false,
-			];
-			$url = \dash\url::this().'/show?id='. $_id;
-
-			$args['urls.urlmd5'] = md5($url);
-			$args['visitors.user_id'] = $ticket_user_id;
-
-			$lastSeen = \dash\db\visitors::search(\dash\request::get('q'), $args);
-			\dash\data::lastSeen($lastSeen);
-
 		}
 		\content_support\ticket\home\view::sidebarDetail(true);
 
@@ -152,13 +137,6 @@ class view
 		}
 
 		$url = \dash\url::this(). '/show?id='. $_id;
-
-		$get_visitor =
-		[
-			// some where
-		];
-
-		$get_visitor = \dash\db\visitors::get_url_like("$url%", $get_visitor);
 
 		$implode_caller =
 		[
@@ -197,20 +175,6 @@ class view
 				$date[$value['datecreated']][] = ['xtype' => 'ticket', 'value' => $value];
 			}
 		}
-
-		foreach ($get_visitor as $key => $value)
-		{
-			if(isset($value['date']))
-			{
-				if(!isset($date[$value['date']]))
-				{
-					$date[$value['date']] = [];
-				}
-
-				$date[$value['date']][] = ['xtype' => 'visitor', 'value' => $value];
-			}
-		}
-
 
 		foreach ($get_log as $key => $value)
 		{

@@ -115,16 +115,7 @@
   {%endif%}
 {%endif%}
 
-{%if perm_su()%}
-<div class="cbox">
-   <div class="switch1">
-     <input type="checkbox" name="showlog" id="showlog">
-     <label for="showlog"></label>
-     <label for="showlog">{%trans "Show log"%}
-     </label>
-    </div>
-</div>
-{%endif%}
+
 
   {%if perm('supportTicketShowLastVisitor')%}
     {%if lastSeen%}
@@ -215,13 +206,6 @@
           <nav class="txtRa">
             {%if perm('supportTicketManage')%}<a href="{{url.this}}?user_id={{record.value.user_id}}{{accessGetAnd}}" title='{%trans "User tickets"%}'><i class="sf-question-circle"></i></a>{%endif%}
             {%if perm('cpUsersView')%}<a href="{{url.kingdom}}/crm/member/glance?id={{record.value.user_id}}" title='{%trans "User Profile"%}'><i class="sf-user-md"></i></a>{%endif%}
-            {%if perm('cpVisitorView')%}
-              <a href="{{url.kingdom}}/cp/visitor/log?id={{record.value.visitor_id}}" title='{%trans "This visit detail"%}'><i class="sf-user-close-information"></i></a>
-              <a href="{{url.kingdom}}/cp/visitor/log?userid={{record.value.user_id}}" title='{%trans "User last visits"%}'><i class="sf-flight"></i></a>
-            {%endif%}
-            {%if perm('cpVisitorView')%}
-              <a href="{{url.kingdom}}/cp/visitor/log?type=before&userid={{record.value.user_id}}&datetime={{masterTicketDetail.datecreated | date('Ymd-His') | url_encode}}" title='{%trans "Before create ticket"%}'><i class="sf-dzone"></i></a>
-            {%endif%}
           </nav>
 {%endif%}
         </td>
@@ -247,17 +231,7 @@
           </div>
         </td>
       </tr>
-{%elseif record.xtype == 'visitor'%}
-  {%if not lastRecordVisitor%}
-  {%set lastRecordVisitor = true%}
-  <tr data-response='showlog' data-response-hide>
-    <td colspan="2" char="pRa10">
-      <div class="f">
-  {%endif%}
-    {%set masterUserId = masterTicketDetail.user_id | coding('decode')%}
-      <span class="c badge mRa10 mT5{%if record.value.user_id != masterUserId%} light{%else%} info2{%endif%} ">
-        <a href="{{url.kingdom}}/cp/visitor/log?id={{record.value.id}}">{{record.value.date |dt(true)}}</a>
-      </span>
+
 
 {%elseif record.xtype == 'log'%}
 
@@ -278,8 +252,7 @@
       <nav class="txtRa">
         <a href="{{url.this}}?user_id={{record.value.user_id}}" title='{%trans "User tickets"%}'><i class="sf-question-circle"></i></a>
         <a href="{{url.kingdom}}/crm/member/glance?id={{record.value.user_id}}" title='{%trans "User Profile"%}'><i class="sf-user-md"></i></a>
-        <a href="{{url.kingdom}}/cp/visitor?userid={{record.value.user_id}}" title='{%trans "User last visits"%}'><i class="sf-flight"></i></a>
-        <a href="{{url.kingdom}}/cp/visitor?type=before&userid={{record.value.user_id}}&datetime={{record.value.datecreated | url_encode}}" title='{%trans "Before create ticket"%}'><i class="sf-dzone"></i></a>
+
       </nav>
   </td>
   <td class="mLa10">
@@ -319,12 +292,7 @@
           <nav class="txtRa">
             {%if perm('supportTicketManage')%}<a href="{{url.this}}?user_id={{value.user_id}}" title='{%trans "User tickets"%}'><i class="sf-question-circle"></i></a>{%endif%}
             {%if perm('cpUsersView')%}<a href="{{url.kingdom}}/crm/member/glance?id={{value.user_id}}" title='{%trans "User Profile"%}'><i class="sf-user-md"></i></a>{%endif%}
-            {%if perm('cpVisitorView')%}
-              <a href="{{url.kingdom}}/cp/visitor?userid={{value.user_id}}" title='{%trans "User last visits"%}'><i class="sf-flight"></i></a>
-            {%endif%}
-            {%if perm('cpVisitorView')%}
-              <a href="{{url.kingdom}}/cp/visitor?type=before&userid={{value.user_id}}&datetime={{masterTicketDetail.datecreated | url_encode}}" title='{%trans "Before create ticket"%}'><i class="sf-dzone"></i></a>
-            {%endif%}
+
           </nav>
 {%endif%}
         </td>
