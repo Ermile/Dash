@@ -8,4 +8,6 @@ desktop.ini
 /public_html/sitemap
 /lib/engine/cronjob/crontab.txt
 *sftp-config.json
+*crontab.txt
+
 
