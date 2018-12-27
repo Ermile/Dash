@@ -274,7 +274,7 @@ class member
 
 		if(!\dash\app::isset_request('mobile'))         unset($args['mobile']);
 		if(!\dash\app::isset_request('email'))          unset($args['email']);
-		// if(!\dash\app::isset_request('shfrom'))         unset($args['shfrom']);
+		// if(!\dash\app::isset_request('shfrom'))      unset($args['shfrom']);
 		if(!\dash\app::isset_request('firstname'))      unset($args['firstname']);
 		if(!\dash\app::isset_request('lastname'))       unset($args['lastname']);
 		if(!\dash\app::isset_request('father'))         unset($args['father']);
@@ -290,6 +290,11 @@ class member
 		if(!\dash\app::isset_request('desc'))           unset($args['desc']);
 		if(!\dash\app::isset_request('foreign'))        unset($args['foreign']);
 		if(!\dash\app::isset_request('nationality'))    unset($args['nationality']);
+		if(!\dash\app::isset_request('website')) 		unset($args['website']);
+		if(!\dash\app::isset_request('instagram')) 		unset($args['instagram']);
+		if(!\dash\app::isset_request('linkedin')) 		unset($args['linkedin']);
+		if(!\dash\app::isset_request('facebook')) 		unset($args['facebook']);
+		if(!\dash\app::isset_request('twitter')) 		unset($args['twitter']);
 
 		// if(!\dash\app::isset_request('shcode'))         unset($args['shcode']);
 		// if(!\dash\app::isset_request('birthcity'))      unset($args['birthcity']);
@@ -481,6 +486,42 @@ class member
 			// 	return false;
 			// }
 		}
+
+		$website = \dash\app::request('website');
+		if($website && mb_strlen($website) > 100)
+		{
+			\dash\notif::error(T_("Please set website less than 100 character"), 'website');
+			return false;
+		}
+
+		$instagram = \dash\app::request('instagram');
+		if($instagram && mb_strlen($instagram) > 100)
+		{
+			\dash\notif::error(T_("Please set instagram less than 100 character"), 'instagram');
+			return false;
+		}
+
+		$linkedin = \dash\app::request('linkedin');
+		if($linkedin && mb_strlen($linkedin) > 100)
+		{
+			\dash\notif::error(T_("Please set linkedin less than 100 character"), 'linkedin');
+			return false;
+		}
+
+		$facebook = \dash\app::request('facebook');
+		if($facebook && mb_strlen($facebook) > 100)
+		{
+			\dash\notif::error(T_("Please set facebook less than 100 character"), 'facebook');
+			return false;
+		}
+
+		$twitter = \dash\app::request('twitter');
+		if($twitter && mb_strlen($twitter) > 100)
+		{
+			\dash\notif::error(T_("Please set twitter less than 100 character"), 'twitter');
+			return false;
+		}
+
 
 		if($gender && !in_array($gender, ['male', 'female']))
 		{
@@ -677,21 +718,26 @@ class member
 			$args['detail'] = json_encode($detail, JSON_UNESCAPED_UNICODE);
 		}
 
-		$args['mobile']          = $mobile;
-		$args['nationalcode']    = $nationalcode;
-		$args['pasportcode']     = $pasportcode;
-		$args['firstname']       = $firstname;
-		$args['lastname']        = $lastname;
-		$args['father']          = $father;
-		$args['birthday']       = $birthdate;
-		$args['pasportdate']     = $pasportdate;
-		$args['gender']          = $gender;
-		$args['marital']         = $marital;
-		$args['avatar']          = $avatar;
-		$args['nationality']     = $nationality;
-		$args['phone']           = $phone;
-		$args['status']          = $status;
-		$args['desc']            = $desc;
+		$args['mobile']       = $mobile;
+		$args['nationalcode'] = $nationalcode;
+		$args['pasportcode']  = $pasportcode;
+		$args['firstname']    = $firstname;
+		$args['lastname']     = $lastname;
+		$args['father']       = $father;
+		$args['birthday']     = $birthdate;
+		$args['pasportdate']  = $pasportdate;
+		$args['gender']       = $gender;
+		$args['marital']      = $marital;
+		$args['avatar']       = $avatar;
+		$args['nationality']  = $nationality;
+		$args['phone']        = $phone;
+		$args['status']       = $status;
+		$args['desc']         = $desc;
+		$args['website']      = $website;
+		$args['instagram']    = $instagram;
+		$args['linkedin']     = $linkedin;
+		$args['facebook']     = $facebook;
+		$args['twitter']      = $twitter;
 		return $args;
 	}
 

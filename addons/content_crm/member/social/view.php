@@ -1,33 +1,16 @@
 <?php
-namespace content_account\profile\social;
+namespace content_crm\member\social;
 
 
 class view
 {
-
 	public static function config()
 	{
-		\dash\data::page_title(T_('Edit your profile'));
-		\dash\data::page_desc(T_('You can edit your profile.'));
+		\content_crm\member\main\view::dataRowMember();
 
-		\dash\data::badge_link(\dash\url::kingdom(). '/a');
-		\dash\data::badge_text(T_('Back to dashbaord'));
-
-		$id = \dash\user::id();
-
-		if(!$id)
-		{
-			\dash\header::status(404, T_("Invalid user id"));
-		}
-
-		$user_detail = \dash\db\users::get_by_id($id);
-
-		if(!$user_detail)
-		{
-			\dash\header::status(404, T_("User id not found"));
-		}
-
-		\dash\data::dataRowMember(\dash\app\user::ready($user_detail, true));
+		\dash\data::page_title(T_('Member social netword detail'));
+		\dash\data::page_desc(T_('set social network detail and some other detail'));
+		\dash\data::page_pictogram('network');
 	}
 }
 ?>
