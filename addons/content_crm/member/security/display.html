@@ -1,61 +1,30 @@
-{%extends display.admin%}
-{%use 'content_account/profile/pagestep.html'%}
+{%extends 'content_crm/member/layout.html'%}
 
 
 {%block pageContent%}
+
+
 {{block('pageSteps')}}
-
-<form method="post" enctype="multipart/form-data" autocomplete="off">
-  <div class="f justify-center">
-    <div class="c8 s12">
-      <div class="cbox">
-        <h3 class="txtC">{%trans "Security and Enter"%}</h3>
-          {{block("imobile")}}
-          {{block("iPasswordLink")}}
-          {{block("DeleteAccount")}}
-          {{block("iTwostep")}}
-          {{block("iRememberme")}}
-          {{block("iSave")}}
-      </div>
-    </div>
-  </div>
-</form>
-
-<div class="f justify-center">
-  <div class="c8 s12">
-    <div class="cbox">
-      {{block('sessionList')}}
-    </div>
-  </div>
-</div>
-{%endblock%}
-
-
-{%block iTwostep%}
 <div class="f">
+ <div class="cauto s12 pA5">
+{{block("psidebar")}}
+ </div>
+ <div class="c s12 pA5">
 
-{%if dataRowMember.twostep%}
-<p class="c10 msg success2 txtC">
-  {%trans "Two step verification for your account is active"%}
-  <br>
-  <small>
-    {%trans "To deactive it"%}
-    <a href="{{url.kingdom}}/enter/twostep" data-direct target="_blank">{%trans "Click here"%}</a>
-  </small>
-</p>
-
-{%else%}
-<p class="c10 msg warn txtC">
-  {%trans "Two step verification for your account is not active!"%}
-  <br>
-  {%trans "To active it"%}
-  <a href="{{url.kingdom}}/enter/twostep" data-direct target="_blank">{%trans "Click here"%}</a>
-</p>
-
-{%endif%}
+  <form class="cbox" method="post" autocomplete="off">
+    <h3 class="txtC">{%trans "Security and Enter"%}</h3>
+    {{block("iTwoStep")}}
+    {{block("iRememberme")}}
+    {{block("iSave")}}
+  </form>
+  {{block('sessionList')}}
+ </div>
 </div>
-
 {%endblock%}
+
+
+
+
 
 {%block iRememberme%}
 <div class="switch1 mT20">
@@ -66,36 +35,14 @@
 {%endblock%}
 
 
-
-
-
-{%block imobile%}
-<label for="mobile">{%trans "Mobile"%} <small class="fc-red">* {%trans "Require"%}</small></label>
-<div class="input">
-  <input type="text" name="mobile" id="mobile" placeholder='{%trans "Like 09120123456"%} *' value="{{dataRowMember.mobile}}" maxlength='30' required {%if dataRowMember.mobile%} readonly{%endif%}>
+{%block iTwoStep%}
+<div class="switch1 mT20">
+ <input type="checkbox" name="twostep" id="twostep" {%if dataRowMember.twostep  %}checked{%endif%}>
+ <label for="twostep"></label>
+ <label for="twostep">{%trans "Save remember session"%}</label>
 </div>
 {%endblock%}
 
-
-{%block iPasswordLink%}
-<p class="msg txtC">{%trans "To change your password"%} <a href="{{url.kingdom}}/enter/pass/change" data-direct target="_blank">{%trans "Click here"%}</a></p>
-{%endblock%}
-
-{%block DeleteAccount%}
-<div>
-  <a class="btn danger outline floatRa sm" href="{{url.kingdom}}/enter/delete" data-direct target="_blank">{%trans "Delete your account"%}</a>
-</div>
-
-{%endblock%}
-
-{%block irePassword%}
-<div data-response='password' data-response-hide data-response-effect='slide'>
-  <label for="repassword">{%trans "Confirm password"%} <small class="fc-red">* {%trans "Require to change current password"%}</small></label>
-  <div class="input">
-  <input type="password" name="repassword" id="repassword" placeholder='{%if dataRowMember.password%}{%trans "Password was set, enter to change it!"%}{%else%}{%trans "Password not set, enter to set it!"%}{%endif%}'  maxlength='50'>
-</div>
-</div>
-{%endblock%}
 
 
 
@@ -107,23 +54,23 @@
 
 
 
-
-
 {%block sessionList%}
-<h4>{%trans "Active sessions"%} <a class="badge danger xs" href="{{url.pwd}}" data-ajaxify data-method="post" data-data='{"type": "terminateall" }' >{%trans "Terminate all other sessions"%}</a></h4>
-{%for key, row in sessionsList%}
-<div class="msg">
-    <div class="badge warn" title='{%trans "Browser"%}'>{{row.browser}} {{row.browserVer | fitNumber}}</div>
-    <div class="badge" title='{%trans "Operation System"%}'>{{row.os}} {{row.osVer | fitNumber}}</div>
-    <div class="badge" title='{%trans "IP"%}'>{{row.ip}}</div>
-    <div class="badge primary" title='{%trans "Date login"%}'>{{row.last | dt('human')}}</div>
-    {%if row.code == currentCookie %}
-    <div class="badge success">{%trans "Current session"%}</div>
-    {%endif%}
-    <a class="badge floatL danger" href="{{url.pwd}}" data-ajaxify data-method="post" data-data='{"id" : "{{row.id}}", "type": "terminate" }' tabindex='-1'>{%trans "Terminate"%}</a>
+<div class="cbox">
 
-</div>
+  <h4>{%trans "Active sessions"%} </h4>
+  {%for key, row in sessionsList%}
+  <div class="msg">
+      <div class="badge warn" title='{%trans "Browser"%}'>{{row.browser}} {{row.browserVer | fitNumber}}</div>
+      <div class="badge" title='{%trans "Operation System"%}'>{{row.os}} {{row.osVer | fitNumber}}</div>
+      <div class="badge" title='{%trans "IP"%}'>{{row.ip}}</div>
+      <div class="badge primary" title='{%trans "Date login"%}'>{{row.last | dt('human')}}</div>
+      {%if row.code == currentCookie %}
+      <div class="badge success">{%trans "Current session"%}</div>
+      {%endif%}
+      <a class="badge floatL danger" href="{{url.pwd}}" data-ajaxify data-method="post" data-data='{"id" : "{{row.id}}", "type": "terminate" }' tabindex='-1'>{%trans "Terminate"%}</a>
+  </div>
 
 {%endfor%}
+</div>
 
 {%endblock%}
