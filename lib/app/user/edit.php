@@ -37,13 +37,6 @@ trait edit
 			]
 		];
 
-		// check args
-		$args = self::check($_option);
-
-		if($args === false || !\dash\engine\process::status())
-		{
-			return false;
-		}
 
 		$id = \dash\app::request('id');
 		$id = \dash\coding::decode($id);
@@ -51,6 +44,13 @@ trait edit
 		if(!$id)
 		{
 			\dash\notif::error(T_("Can not access to edit staff"), 'staff');
+			return false;
+		}
+		// check args
+		$args = self::check($id, $_option);
+
+		if($args === false || !\dash\engine\process::status())
+		{
 			return false;
 		}
 
@@ -70,6 +70,37 @@ trait edit
 				return false;
 			}
 		}
+
+		if(\dash\app::isset_request('nationalcode') || \dash\app::isset_request('pasportcode'))
+		{
+			if($args['nationalcode'] || $args['pasportcode'])
+			{
+				$check_duplicate_nationalcode = self::check_duplicate($args['nationalcode'], $args['pasportcode']);
+
+				if(isset($check_duplicate_nationalcode['id']) && intval($check_duplicate_nationalcode['id']) === intval($id))
+				{
+					// no problem to edit yourself
+				}
+				elseif($check_duplicate_nationalcode)
+				{
+					if($args['nationalcode'])
+					{
+						$nationalcode_q = $args['nationalcode'];
+					}
+					else
+					{
+						$nationalcode_q = $args['pasportcode'];
+					}
+
+					$msg = T_("Duplicate nationalcode or pasportcode in your user list");
+					$msg = "<a href='". \dash\url::kingdom(). '/crm/member?q='. $nationalcode_q. "'>$msg</a>";
+					\dash\notif::error($msg, ['nationalcode', 'pasportcode']);
+					return false;
+
+				}
+			}
+		}
+
 
 
 		if(!\dash\app::isset_request('mobile'))     unset($args['mobile']);
@@ -105,6 +136,15 @@ trait edit
 		if(!\dash\app::isset_request('chatid'))     unset($args['chatid']);
 		if(!\dash\app::isset_request('tgstatus'))   unset($args['tgstatus']);
 		if(!\dash\app::isset_request('tgusername'))   unset($args['tgusername']);
+		if(!\dash\app::isset_request('father'))         unset($args['father']);
+		if(!\dash\app::isset_request('nationalcode'))   unset($args['nationalcode']);
+		if(!\dash\app::isset_request('marital'))        unset($args['marital']);
+		if(!\dash\app::isset_request('pasportcode'))    unset($args['pasportcode']);
+		if(!\dash\app::isset_request('pasportdate'))    unset($args['pasportdate']);
+		if(!\dash\app::isset_request('phone'))          unset($args['phone']);
+		if(!\dash\app::isset_request('foreign'))        unset($args['foreign']);
+		if(!\dash\app::isset_request('nationality'))    unset($args['nationality']);
+
 
 		if(!empty($args))
 		{

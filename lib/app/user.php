@@ -12,25 +12,36 @@ class user
 	use \dash\app\user\user_id;
 
 
+
+	public static function check_duplicate($_national_code, $_passport_code)
+	{
+		$result = false;
+		if($_national_code)
+		{
+			// check not duplicate nationalcode only
+			$result = \dash\db\users::get(['nationalcode' => "$_national_code",  'limit' => 1]);
+		}
+		else
+		{
+			// check pasportcode only
+			$result = \dash\db\users::get(['pasportcode' => "$_passport_code", 'limit' => 1]);
+		}
+
+		return $result;
+
+	}
+
 	/**
 	 * check args
 	 *
 	 * @return     array|boolean  ( description_of_the_return_value )
 	 */
-	public static function check($_option = [])
+	public static function check($_id = null, $_option = [])
 	{
-		$log_meta =
-		[
-			'data' => null,
-			'meta' =>
-			[
-				'input' => \dash\app::request(),
-			]
-		];
+		$args                    = [];
 
 		$default_option =
 		[
-			'save_log' => true,
 			'debug'    => true,
 		];
 
@@ -41,137 +52,471 @@ class user
 
 		$_option = array_merge($default_option, $_option);
 
-		// get mobile
-		$mobile = \dash\app::request("mobile");
-		$mobile = trim($mobile);
-		if($mobile && !($mobile = \dash\utility\filter::mobile($mobile)))
+		$debug = $_option['debug'];
+
+
+		// if the force_add is true
+		// we not check some of requirement arguments
+		// just the supervisor can set this arguments
+		$force_add = false;
+		if(\dash\app::request('force_add'))
 		{
-			// if($_option['save_log']) \dash\app::log('addon:api:user:mobile:invalid', \dash\user::id(), $log_meta);
-			if($_option['debug']) \dash\notif::error(T_("Mobile is incorrect"), 'mobile');
+			$force_add = true;
+		}
+
+		$mobile = \dash\app::request('mobile');
+		if(\dash\app::isset_request('mobile'))
+		{
+			if(!$mobile && !$force_add)
+			{
+				if($debug) \dash\notif::error(T_("Mobile is required"), 'mobile');
+				return false;
+			}
+		}
+
+		if($mobile && !\dash\utility\filter::mobile($mobile))
+		{
+			if($debug) \dash\notif::error(T_("Invalid mobile"), 'mobile');
 			return false;
 		}
 
-		// get displayname
-		$displayname = \dash\app::request("displayname");
-		$displayname = trim($displayname);
-		if($displayname && mb_strlen($displayname) > 50)
+		if($mobile)
 		{
-			// if($_option['save_log']) \dash\app::log('addon:api:user:displayname:max:length', \dash\user::id(), $log_meta);
-			if($_option['debug']) \dash\notif::error(T_("You can set the displayname less than 50 character"), 'displayname');
+			$mobile = \dash\utility\filter::mobile($mobile);
+		}
+
+		$firstname = \dash\app::request('firstname');
+		if($firstname && mb_strlen($firstname) > 100)
+		{
+			if($debug) \dash\notif::error(T_("Plese set firstname less than 100 character"), 'firstname');
 			return false;
 		}
 
-		// get title
-		$title = \dash\app::request("title");
-		$title = trim($title);
-		if($title && mb_strlen($title) > 50)
+		$lastname = \dash\app::request('lastname');
+		if($lastname && mb_strlen($lastname) > 100)
 		{
-			// if($_option['save_log']) \dash\app::log('addon:api:user:title:max:length', \dash\user::id(), $log_meta);
-			if($_option['debug']) \dash\notif::error(T_("You can set the title less than 50 character"), 'title');
+			if($debug) \dash\notif::error(T_("Plese set firstname less than 100 character"), 'lastname');
 			return false;
 		}
 
-		// get avatar
-		$avatar = \dash\app::request('avatar');
-		$avatar = trim($avatar);
-		if($avatar && !is_string($avatar))
+		$father = \dash\app::request('father');
+		if($father && mb_strlen($father) > 100)
 		{
-			// if($_option['save_log']) \dash\app::log('addon:api:user:avatar:not:string', \dash\user::id(), $log_meta);
-			if($_option['debug']) \dash\notif::error(T_("Invalid parameter avatar"), 'avatar');
+			if($debug) \dash\notif::error(T_("Invalid father"), 'father');
 			return false;
 		}
 
-		$tgstatus = \dash\app::request('tgstatus');
-		if($tgstatus && !in_array($tgstatus, ['active','deactive','spam','bot','block','unreachable','unknown','filter', 'awaiting', 'inline', 'callback']))
+		$nationality = \dash\app::request('nationality');
+		if($nationality && !\dash\utility\location\countres::check($nationality))
 		{
-			if($_option['debug']) \dash\notif::error(T_("Invalid parameter tgstatus"), 'tgstatus');
+			if($debug) \dash\notif::error(T_("Invalid nationality"), 'nationality');
+			return false;
+		}
+
+		$nationalcode = \dash\app::request('nationalcode');
+		if($nationalcode && !\dash\utility\filter::nationalcode($nationalcode))
+		{
+			if($debug) \dash\notif::error(T_("Invalid nationalcode syntax"), 'nationalcode');
 			return false;
 		}
 
 
-		// get status
-		$status = \dash\app::request('status');
-		if($status && !in_array($status, ['active','awaiting','deactive','removed','filter','unreachable']))
+		$pasportcode = \dash\app::request('pasportcode');
+		$pasportcode = mb_strtolower($pasportcode);
+		$pasportcode = \dash\utility\convert::to_en_number($pasportcode);
+		if($pasportcode && mb_strlen($pasportcode) > 30 )
 		{
-			// if($_option['save_log']) \dash\app::log('addon:api:user:status:invalid', \dash\user::id(), $log_meta);
-			if($_option['debug']) \dash\notif::error(T_("Invalid parameter status"), 'status');
+			if($debug) \dash\notif::error(T_("Invalid pasportcode"), 'pasportcode');
 			return false;
 		}
 
+
+		$birthdate = null;
+		if(\dash\app::isset_request('birthdate'))
+		{
+			$birthdate = \dash\app::request('birthdate');
+			if($birthdate)
+			{
+				$birthdate = \dash\date::db($birthdate);
+				$birthdate = \dash\date::birthdate($birthdate, true);
+
+				if(!$birthdate)
+				{
+					return false;
+				}
+			}
+		}
+
+		$pasportdate = \dash\app::request('pasportdate');
+		$pasportdate = \dash\date::db($pasportdate);
+		if($pasportdate === false)
+		{
+			if($debug) \dash\notif::error(T_("Invalid pasportdate"), 'pasportdate');
+			return false;
+		}
+
+		if($pasportdate)
+		{
+			if(\dash\utility\jdate::is_jalali($pasportdate))
+			{
+				$pasportdate = \dash\utility\jdate::to_gregorian($pasportdate);
+			}
+		}
 
 		$gender = \dash\app::request('gender');
 		if($gender && !in_array($gender, ['male', 'female']))
 		{
-			// if($_option['save_log']) \dash\app::log('addon:api:user:gender:invalid', \dash\user::id(), $log_meta);
-			if($_option['debug']) \dash\notif::error(T_("Invalid gender field"), 'gender');
+			if($debug) \dash\notif::error(T_("Invalid gender"), 'gender');
 			return false;
 		}
 
-		$type = \dash\app::request('type');
-		$type = trim($type);
-		if($type && mb_strlen($type) > 50)
+		$marital = \dash\app::request('marital');
+		if($marital && !in_array($marital, ['single', 'married']))
 		{
-			// if($_option['save_log']) \dash\app::log('addon:api:user:type:max:length', \dash\user::id(), $log_meta);
-			if($_option['debug']) \dash\notif::error(T_("You must set the type less than 50 character"), 'type');
+			if($debug) \dash\notif::error(T_("Invalid marital"), 'marital');
 			return false;
 		}
 
-		// we never get password password
-		// the password only get in enter
+		$website = \dash\app::request('website');
+		if($website && mb_strlen($website) > 100)
+		{
+			if($debug) \dash\notif::error(T_("Please set website less than 100 character"), 'website');
+			return false;
+		}
+
+		$instagram = \dash\app::request('instagram');
+		if($instagram && mb_strlen($instagram) > 100)
+		{
+			if($debug) \dash\notif::error(T_("Please set instagram less than 100 character"), 'instagram');
+			return false;
+		}
+
+		$linkedin = \dash\app::request('linkedin');
+		if($linkedin && mb_strlen($linkedin) > 100)
+		{
+			if($debug) \dash\notif::error(T_("Please set linkedin less than 100 character"), 'linkedin');
+			return false;
+		}
+
+		$facebook = \dash\app::request('facebook');
+		if($facebook && mb_strlen($facebook) > 100)
+		{
+			if($debug) \dash\notif::error(T_("Please set facebook less than 100 character"), 'facebook');
+			return false;
+		}
+
+		$twitter = \dash\app::request('twitter');
+		if($twitter && mb_strlen($twitter) > 100)
+		{
+			if($debug) \dash\notif::error(T_("Please set twitter less than 100 character"), 'twitter');
+			return false;
+		}
+
+
+		$detail = [];
+
+		if($_id)
+		{
+			$load = \dash\db\users::get_by_id($_id);
+			if(isset($load['detail']))
+			{
+				$detail = json_decode($load['detail'], true);
+			}
+		}
+
+		if(!$detail || !is_array($detail))
+		{
+			$detail = [];
+		}
+
+		$shcode = \dash\app::request('shcode');
+		$shcode = \dash\utility\convert::to_en_number($shcode);
+		if($shcode && !is_numeric($shcode))
+		{
+			if($debug) \dash\notif::error(T_("Invalid shcode"), 'shcode');
+			return false;
+		}
+
+		if($shcode && intval($shcode) > 1E+10)
+		{
+			if($debug) \dash\notif::error(T_("Invalid shcode"), 'shcode');
+			return false;
+		}
+
+		if(\dash\app::isset_request('shcode'))
+		{
+			$detail['shcode'] = $shcode;
+		}
+
+
+		$birthcity = \dash\app::request('birthcity');
+		if($birthcity && mb_strlen($birthcity) > 50)
+		{
+			if($debug) \dash\notif::error(T_("Invalid birthcity"), 'birthcity');
+			return false;
+		}
+
+		if(\dash\app::isset_request('birthcity'))
+		{
+			$detail['birthcity'] = $birthcity;
+		}
+
+
+		$religion = \dash\app::request('religion');
+		if($religion && mb_strlen($religion) > 50)
+		{
+			if($debug) \dash\notif::error(T_("Invalid religion"), 'religion');
+			return false;
+		}
+
+		if(\dash\app::isset_request('religion'))
+		{
+			$detail['religion'] = $religion;
+		}
+
+
+		$avatar = \dash\app::request('avatar');
+		if($avatar && mb_strlen($avatar) > 2000)
+		{
+			if($debug) \dash\notif::error(T_("Invalid avatar"), 'avatar');
+			return false;
+		}
+
+		$education = \dash\app::request('education');
+		if($education && mb_strlen($education) > 100)
+		{
+			if($debug) \dash\notif::error(T_("Invalid education"), 'education');
+			return false;
+		}
+
+		if(\dash\app::isset_request('education'))
+		{
+			$detail['education'] = $education;
+		}
+
+
+		$educationcourse = \dash\app::request('educationcourse');
+		if($educationcourse && mb_strlen($educationcourse) > 100)
+		{
+			if($debug) \dash\notif::error(T_("Invalid educationcourse"), 'educationcourse');
+			return false;
+		}
+
+		if(\dash\app::isset_request('educationcourse'))
+		{
+			$detail['educationcourse'] = $educationcourse;
+		}
+
+		$shfrom = \dash\app::request('shfrom');
+		if ($shfrom && mb_strlen($shfrom) > 200)
+		{
+			if($debug) \dash\notif::error(T_("Invalid issue place"), 'shfrom');
+			return false;
+		}
+
+		if(\dash\app::isset_request('shfrom'))
+		{
+			$detail['shfrom'] = $shfrom;
+		}
+
+		if(\dash\app::isset_request('file1'))
+		{
+			$detail['file1'] = \dash\app::request('file1');
+		}
+
+		if(\dash\app::isset_request('file2'))
+		{
+			$detail['file2'] = \dash\app::request('file2');
+		}
+
 
 		$email = \dash\app::request('email');
-		$email = trim($email);
-		if($email && mb_strlen($email) > 50)
+		if ($email && mb_strlen($email) > 150)
 		{
-			// if($_option['save_log']) \dash\app::log('addon:api:user:email:max:lenght', \dash\user::id(), $log_meta);
-			if($_option['debug']) \dash\notif::error(T_("Email is incorrect"), 'email');
+			if($debug) \dash\notif::error(T_("Invalid email"), 'email');
 			return false;
 		}
+
+		if(\dash\app::isset_request('email'))
+		{
+			$detail['email'] = $email;
+		}
+
+		$phone = \dash\app::request('phone');
+		if($phone && mb_strlen($phone) > 50)
+		{
+			if($debug) \dash\notif::error(T_("Invalid phone"), 'phone');
+			return false;
+		}
+
+		$status = \dash\app::request('status');
+		if($status && !in_array($status, ['active','awaiting','deactive','removed','filter','unreachable']))
+		{
+			if($debug) \dash\notif::error(T_("Invalid status"), 'status');
+			return false;
+		}
+
+
+		if(\dash\app::isset_request('permission'))
+		{
+			$permission = \dash\app::request('permission');
+			if(\dash\permission::check("aMemberPermissionChange"))
+			{
+				if($permission && !in_array($permission, array_keys(\dash\permission::groups())))
+				{
+					if($permission === 'supervisor')
+					{
+						if(!\dash\permission::supervisor())
+						{
+							if($debug) \dash\notif::error("Permission is incorrect", 'permission');
+							return false;
+						}
+						else
+						{
+							// no problem
+							// supervisor make a new supervisor
+						}
+					}
+					else
+					{
+						if($debug) \dash\notif::error(T_("Permission is incorrect"), 'permission');
+						return false;
+					}
+				}
+			}
+
+			$args['permission']          = $permission;
+		}
+
+
+		if(!empty($detail))
+		{
+			$args['detail'] = json_encode($detail, JSON_UNESCAPED_UNICODE);
+		}
+
+		$twostep       = \dash\app::request('twostep') ? 1 : null;
+		$forceremember = \dash\app::request('forceremember') ? 1 : null;
+
+		$password = \dash\app::request('password');
+
+		if(\dash\permission::check("cpUsersPasswordChange"))
+		{
+			if($password)
+			{
+				if(mb_strlen($password) < 6)
+				{
+					if($debug) \dash\notif::error(T_("Plase set password larger than 6 character"), ['element' => ['password', 'repassword']]);
+					return false;
+				}
+
+				$args['password'] = \dash\utility::hasher($password, null, false);
+				if(!\dash\engine\process::status())
+				{
+					return false;
+				}
+			}
+		}
+
+		$title = \dash\app::request('title');
+		if($title && mb_strlen($title) > 100)
+		{
+			if($debug) \dash\notif::error(T_("Plase set title less than 100 character"), 'title');
+			return false;
+		}
+
+		$bio = \dash\app::request('bio');
+		if($bio && mb_strlen($bio) > 100)
+		{
+			if($debug) \dash\notif::error(T_("Plase set bio less than 100 character"), 'bio');
+			return false;
+		}
+
+		$displayname = \dash\app::request('displayname');
+		if($displayname && mb_strlen($displayname) > 100)
+		{
+			if($debug) \dash\notif::error(T_("Plase set displayname less than 100 character"), 'displayname');
+			return false;
+		}
+
+
+		$language = \dash\app::request('language');
+		if($language && !\dash\language::check($language))
+		{
+			if($debug) \dash\notif::error(T_("Language is incorrect"), 'language');
+			return false;
+		}
+
+		$username = \dash\app::request('username');
+		if($username)
+		{
+			if(mb_strlen($username) < 4)
+			{
+				if($debug) \dash\notif::error(T_("Please set the username larger than 4 character"), 'username');
+				return false;
+			}
+
+			if(mb_strlen($username) > 50)
+			{
+				if($debug) \dash\notif::error(T_("Please set the username less than 50 character"), 'username');
+				return false;
+			}
+
+			if($username && !preg_match("/^[A-Za-z0-9]+$/", $username))
+			{
+				if($debug) \dash\notif::error(T_("Only [A-Za-z0-9] can use in username"), 'username');
+				return false;
+			}
+
+			$check_duplicate_username = \dash\db\users::get(['username' => $username, 'limit' => 1]);
+			if(isset($check_duplicate_username['id']))
+			{
+				if(intval($check_duplicate_username['id']) === intval($_id))
+				{
+
+				}
+				else
+				{
+					if($debug) \dash\notif::error(T_("Duplicate username"), 'username');
+					return false;
+				}
+				$args['username'] = $username;
+			}
+		}
+
+		if(\dash\app::isset_request('username') && !$username)
+		{
+			$args['username'] = null;
+		}
+
+
+
+		$tgstatus = \dash\app::request('tgstatus');
+		if($tgstatus && !in_array($tgstatus, ['active','deactive','spam','bot','block','unreachable','unknown','filter', 'awaiting', 'inline', 'callback']))
+		{
+			if($_option['debug']) if($debug) \dash\notif::error(T_("Invalid parameter tgstatus"), 'tgstatus');
+			return false;
+		}
+
+
+		$type = \dash\app::request('type');
+		if($type && mb_strlen($type) > 50)
+		{
+			if($_option['debug']) if($debug) \dash\notif::error(T_("You must set the type less than 50 character"), 'type');
+			return false;
+		}
+
 
 		$parent = \dash\app::request('parent');
 		$parent = \dash\coding::decode($parent);
 		if(!$parent && \dash\app::request('parent'))
 		{
-			// if($_option['save_log']) \dash\app::log('addon:api:user:parent:max:lenght', \dash\user::id(), $log_meta);
-			if($_option['debug']) \dash\notif::error(T_("Parent is incorrect"), 'parent');
+			if($_option['debug']) if($debug) \dash\notif::error(T_("Parent is incorrect"), 'parent');
 			return false;
 		}
 
-		$permission = \dash\app::request('permission');
-		if($permission && !in_array($permission, array_keys(\dash\permission::groups())))
-		{
-			if($permission === 'supervisor')
-			{
-				if(!\dash\url::isLocal() && !\dash\permission::supervisor())
-				{
-					\dash\notif::error("Permission is incorrect", 'permission');
-					return false;
-				}
-				else
-				{
-					// no problem
-					// supervisor make a new supervisor
-				}
-			}
-			else
-			{
-				// if($_option['save_log']) \dash\app::log('addon:api:user:permission:max:lenght', \dash\user::id(), $log_meta);
-				if($_option['debug']) \dash\notif::error(T_("Permission is incorrect"), 'permission');
-				return false;
-			}
-		}
 
-		$username = \dash\app::request('username');
-		$username = trim($username);
-		if($username && mb_strlen($username) > 50)
-		{
-			// if($_option['save_log']) \dash\app::log('addon:api:user:username:max:lenght', \dash\user::id(), $log_meta);
-			if($_option['debug']) \dash\notif::error(T_("Username is incorrect"), 'username');
-			return false;
-		}
 
 		$tgusername = \dash\app::request('tgusername');
-		$tgusername = trim($tgusername);
 		if($tgusername && mb_strlen($tgusername) > 100)
 		{
 			$tgusername = null;
@@ -180,8 +525,7 @@ class user
 		$pin = \dash\app::request('pin');
 		if(($pin && mb_strlen($pin) > 4) || ($pin && !is_numeric($pin)))
 		{
-			// if($_option['save_log']) \dash\app::log('addon:api:user:pin:max:lenght', \dash\user::id(), $log_meta);
-			if($_option['debug']) \dash\notif::error(T_("Pin is incorrect"), 'pin');
+			if($_option['debug']) if($debug) \dash\notif::error(T_("Pin is incorrect"), 'pin');
 			return false;
 		}
 
@@ -189,186 +533,23 @@ class user
 		$ref = \dash\coding::decode($ref);
 		if(!$ref && \dash\app::request('ref'))
 		{
-			// if($_option['save_log']) \dash\app::log('addon:api:user:ref:max:lenght', \dash\user::id(), $log_meta);
-			if($_option['debug']) \dash\notif::error(T_("Ref is incorrect"), 'ref');
+			if($_option['debug']) if($debug) \dash\notif::error(T_("Ref is incorrect"), 'ref');
 			return false;
 		}
 
-		$twostep = null;
-		if(\dash\app::isset_request('twostep'))
-		{
-			$twostep = \dash\app::request('twostep');
-			$twostep = $twostep ? 1 : 0;
-		}
-
-		$forceremember = null;
-		if(\dash\app::isset_request('forceremember'))
-		{
-			$forceremember = \dash\app::request('forceremember');
-			$forceremember = $forceremember ? 1 : 0;
-		}
 
 		$unit_id = \dash\app::request('unit_id');
 		if($unit_id && !is_numeric($unit_id))
 		{
-			// if($_option['save_log']) \dash\app::log('addon:api:user:unit_id:max:lenght', \dash\user::id(), $log_meta);
-			if($_option['debug']) \dash\notif::error(T_("Unit id is incorrect"), 'unit_id');
+			if($_option['debug']) if($debug) \dash\notif::error(T_("Unit id is incorrect"), 'unit_id');
 			return false;
 		}
 
-		$language = \dash\app::request('language');
-		if($language && !\dash\language::check($language))
-		{
-			// if($_option['save_log']) \dash\app::log('addon:api:user:language:max:lenght', \dash\user::id(), $log_meta);
-			if($_option['debug']) \dash\notif::error(T_("Language is incorrect"), 'language');
-			return false;
-		}
-
-		$password = \dash\app::request('password');
-
-		if(\dash\permission::check("cpUsersPasswordChange"))
-		{
-			if($password)
-			{
-				$args['password'] = \dash\utility::hasher($password);
-			}
-		}
-
-		$website = \dash\app::request('website');
-		$website = trim($website);
-		if($website && mb_strlen($website) > 200)
-		{
-			\dash\notif::error(T_("website is out of range"), 'website');
-			return false;
-		}
-
-		$facebook = \dash\app::request('facebook');
-		$facebook = trim($facebook);
-		if($facebook && mb_strlen($facebook) > 200)
-		{
-			\dash\notif::error(T_("facebook is out of range"), 'facebook');
-			return false;
-		}
-
-		$twitter = \dash\app::request('twitter');
-		$twitter = trim($twitter);
-		if($twitter && mb_strlen($twitter) > 200)
-		{
-			\dash\notif::error(T_("twitter is out of range"), 'twitter');
-			return false;
-		}
-
-		$instagram = \dash\app::request('instagram');
-		$instagram = trim($instagram);
-		if($instagram && mb_strlen($instagram) > 200)
-		{
-			\dash\notif::error(T_("instagram is out of range"), 'instagram');
-			return false;
-		}
-
-		$linkedin = \dash\app::request('linkedin');
-		$linkedin = trim($linkedin);
-		if($linkedin && mb_strlen($linkedin) > 200)
-		{
-			\dash\notif::error(T_("linkedin is out of range"), 'linkedin');
-			return false;
-		}
-
-		$gmail = \dash\app::request('gmail');
-		$gmail = trim($gmail);
-		if($gmail && mb_strlen($gmail) > 200)
-		{
-			\dash\notif::error(T_("gmail is out of range"), 'gmail');
-			return false;
-		}
-
-		$sidebar = null;
-		if(\dash\app::isset_request('sidebar'))
-		{
-			$sidebar = \dash\app::request('sidebar');
-			$sidebar = trim($sidebar);
-			$sidebar = $sidebar ? 1 : 0;
-		}
-
-		$firstname = \dash\app::request('firstname');
-		$firstname = trim($firstname);
-		if($firstname && mb_strlen($firstname) > 100)
-		{
-			\dash\notif::error(T_("firstname is out of range"), 'firstname');
-			return false;
-		}
-
-		$lastname = \dash\app::request('lastname');
-		$lastname = trim($lastname);
-		if($lastname && mb_strlen($lastname) > 100)
-		{
-			\dash\notif::error(T_("lastname is out of range"), 'lastname');
-			return false;
-		}
-
-		$bio = \dash\app::request('bio');
-		$bio = trim($bio);
-		if($bio && mb_strlen($bio) > 50000)
-		{
-			\dash\notif::error(T_("bio is out of range"), 'bio');
-			return false;
-		}
 
 		$chatid = \dash\app::request('chatid');
 
-
-		$birthday = \dash\app::request('birthday');
-		$birthday = \dash\date::birthdate($birthday, true);
-		if($birthday === false)
-		{
-			return false;
-		}
-
-
-		if(!$displayname)
-		{
-			if($firstname || $lastname)
-			{
-				$displayname = trim($firstname . ' '. $lastname);
-			}
-		}
-
 		$signature = \dash\app::request('signature');
 
-		$args['signature']    = $signature;
-
-		$args['birthday']    = $birthday;
-		$args['tgstatus']    = $tgstatus;
-		$args['website']     = $website;
-		$args['facebook']    = $facebook;
-		$args['twitter']     = $twitter;
-		$args['instagram']   = $instagram;
-		$args['linkedin']    = $linkedin;
-		$args['gmail']       = $gmail;
-		$args['sidebar']     = $sidebar;
-		$args['firstname']   = $firstname;
-		$args['lastname']    = $lastname;
-		$args['bio']         = $bio;
-		$args['chatid']      = $chatid;
-		$args['tgusername']  = $tgusername;
-
-		$args['mobile']      = $mobile;
-		$args['displayname'] = $displayname;
-		$args['title']       = $title;
-		$args['avatar']      = $avatar;
-		$args['status']      = $status;
-		$args['gender']      = $gender;
-		$args['type']        = $type;
-		$args['email']       = $email;
-		$args['parent']      = $parent;
-		$args['permission']  = $permission;
-		$args['username']    = $username;
-		$args['pin']         = $pin;
-		$args['ref']         = $ref;
-		$args['twostep']     = $twostep;
-		$args['forceremember']     = $forceremember;
-		$args['unit_id']     = $unit_id;
-		$args['language']    = $language;
 
 		if($args['permission'] === 'supervisor')
 		{
@@ -380,15 +561,52 @@ class user
 			unset($args['permission']);
 		}
 
-		$id = \dash\app::request('id');
-		if($id && $id = \dash\coding::decode($id))
+		if($_id && isset($load['permission']))
 		{
-			$load_old_user = \dash\db\users::get(['id' => $id, 'limit' => 1]);
-			if(isset($load_old_user['permission']) && $load_old_user['permission'] === 'supervisor')
+			if($load['permission'] === 'supervisor')
 			{
 				unset($args['permission']);
 			}
 		}
+
+
+		$args['username']      = $username;
+		$args['language']      = $language;
+		$args['title']         = $title;
+		$args['bio']           = $bio;
+		$args['displayname']   = $displayname;
+		$args['mobile']        = $mobile;
+		$args['nationalcode']  = $nationalcode;
+		$args['pasportcode']   = $pasportcode;
+		$args['firstname']     = $firstname;
+		$args['lastname']      = $lastname;
+		$args['father']        = $father;
+		$args['birthday']      = $birthdate;
+		$args['pasportdate']   = $pasportdate;
+		$args['gender']        = $gender;
+		$args['marital']       = $marital;
+		$args['avatar']        = $avatar;
+		$args['nationality']   = $nationality;
+		$args['phone']         = $phone;
+		$args['status']        = $status;
+		$args['desc']          = $desc;
+		$args['website']       = $website;
+		$args['instagram']     = $instagram;
+		$args['linkedin']      = $linkedin;
+		$args['facebook']      = $facebook;
+		$args['twitter']       = $twitter;
+		$args['twostep']       = $twostep;
+		$args['forceremember'] = $forceremember;
+		$args['signature']     = $signature;
+		$args['type']          = $type;
+		$args['parent']        = $parent;
+		$args['pin']           = $pin;
+		$args['ref']           = $ref;
+		$args['unit_id']       = $unit_id;
+		$args['chatid']        = $chatid;
+		$args['tgstatus']      = $tgstatus;
+
+
 
 		return $args;
 	}

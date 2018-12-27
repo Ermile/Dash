@@ -58,7 +58,7 @@ trait add
 		}
 
 		// check args
-		$args = self::check($_option);
+		$args = self::check(null, $_option);
 
 		if($args === false || !\dash\engine\process::status())
 		{
@@ -79,6 +79,31 @@ trait add
 			{
 				\dash\notif::error(T_("Duplicate mobile"), 'mobile');
 				return null;
+			}
+		}
+
+		if(\dash\app::isset_request('nationalcode') || \dash\app::isset_request('pasportcode'))
+		{
+			if($args['nationalcode'] || $args['pasportcode'])
+			{
+				$check_duplicate_nationalcode = self::check_duplicate($args['nationalcode'], $args['pasportcode']);
+
+				if($check_duplicate_nationalcode)
+				{
+					if($args['nationalcode'])
+					{
+						$nationalcode_q = $args['nationalcode'];
+					}
+					else
+					{
+						$nationalcode_q = $args['pasportcode'];
+					}
+
+					$msg = T_("Duplicate nationalcode or pasportcode in your user list");
+					$msg = "<a href='". \dash\url::kingdom(). '/crm/member?q='. $nationalcode_q. "'>$msg</a>";
+					\dash\notif::error($msg, ['nationalcode', 'pasportcode']);
+					return false;
+				}
 			}
 		}
 
