@@ -384,6 +384,12 @@ class user
 			}
 
 			$args['permission']          = $permission;
+
+			if(isset($_load_user['permission']) && $_load_user['permission'] && $_load_user['permission'] !== $permission)
+			{
+				// when user change permission logout everyvere
+				\dash\db\sessions::terminate_all($_id);
+			}
 		}
 
 

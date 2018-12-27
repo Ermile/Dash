@@ -263,6 +263,16 @@ class sessions
 
 	}
 
+	public static function terminate_all($_user_id)
+	{
+		$query =
+		"
+			UPDATE sessions SET status = 'terminate'
+			WHERE user_id = $_user_id AND  status = 'active'
+		";
+		\dash\db::query($query, \dash\db::get_db_log_name());
+	}
+
 
 
 	/**
