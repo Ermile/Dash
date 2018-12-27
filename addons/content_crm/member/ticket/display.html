@@ -1,0 +1,33 @@
+{%extends 'content_crm/member/layout.html'%}
+{%use 'content_account/address.html'%}
+
+
+
+
+
+{%block pageContent%}
+
+
+{{block('pageSteps')}}
+<div class="f">
+ <div class="cauto s12 pA5">
+{{block("psidebar")}}
+ </div>
+ <div class="c s12 pA5">
+
+	{{block('bAddressList')}}
+
+	<form method="post" enctype="multipart/form-data" autocomplete="off">
+	  <div class="f justify-center">
+	    <div class="x5 c6 m8 s10">
+	{{block('bAddressAdd')}}
+	    </div>
+	  </div>
+	</form>
+
+ </div>
+</div>
+{%endblock%}
+
+
+

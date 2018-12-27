@@ -1,0 +1,79 @@
+{%extends 'content_crm/member/layout.html'%}
+{%use 'content_account/address.html'%}
+
+
+
+
+
+{%block pageContent%}
+
+
+{{block('pageSteps')}}
+<div class="f">
+ <div class="cauto s12 pA5">
+{{block("psidebar")}}
+ </div>
+ <div class="c s12 pA5">
+
+	{{block('billingHistory')}}
+
+
+ </div>
+</div>
+{%endblock%}
+
+
+
+{%block billingHistory%}
+
+{%if history%}
+
+    <h3 id="billing-history" class="pA10">{%trans "Billing History"%}</h3>
+    <table class="tbl1 v6 fs12">
+      <thead class="primary">
+        <tr>
+          <th class="s0">{%trans "Title" %}</th>
+          <th>{%trans "Date" %}</th>
+          <th>{%trans "Value" %}</th>
+          <th>{%trans "Budget After" %}</th>
+          <th>{%trans "Invoice" %}</th>
+        </tr>
+      </thead>
+      <tbody>
+
+{% for key, value in history %}
+{%set my_unit = value.unit%}
+{%set my_title = value.title%}
+
+         <tr>
+          <td class="s0">{%trans my_title%}</td>
+
+  <td title='{{value.date | dt(true)}}'>{{value.date|dt('human', 'month')}}</td>
+
+
+          <td>
+{%if value.plus%}
++ {{value.plus|number_format|fitNumber}}
+{%else%}
+- {{value.minus|number_format|fitNumber}}
+{%endif%}{%trans my_unit%}
+          </td>
+          <td>{{value.budget|number_format|fitNumber}} {%trans my_unit%}</td>
+          <td>
+{%if value.invoice_id%}
+            <a href="{{url.here}}/billing/invoice?id={{value.invoice_id}}"><i class="sf-file-text"></i></a>
+{%else%}
+            <i>-</i>
+{%endif%}
+          </td>
+         </tr>
+{%endfor%}
+
+      </tbody>
+    </table>
+    {%include display.pagination%}
+
+{%else%}
+<p class="msg info2 txtC fs14">{%trans "The user have not payment history yet!"%}</p>
+{%endif%}
+{%endblock%}
