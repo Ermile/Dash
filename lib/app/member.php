@@ -33,25 +33,28 @@ class member
 			$args['status']  = 'awaiting';
 		}
 
-		if($args['nationalcode'] || $args['pasportcode'])
+		if(\dash\app::isset_request('nationalcode') || \dash\app::isset_request('pasportcode'))
 		{
-			$check_duplicate_nationalcode = self::check_duplicate($args['nationalcode'], $args['pasportcode']);
-
-			if($check_duplicate_nationalcode)
+			if($args['nationalcode'] || $args['pasportcode'])
 			{
-				if($args['nationalcode'])
-				{
-					$nationalcode_q = $args['nationalcode'];
-				}
-				else
-				{
-					$nationalcode_q = $args['pasportcode'];
-				}
+				$check_duplicate_nationalcode = self::check_duplicate($args['nationalcode'], $args['pasportcode']);
 
-				$msg = T_("Duplicate nationalcode or pasportcode in your user list");
-				$msg = "<a href='". \dash\url::kingdom(). '/a/member?q='. $nationalcode_q. "'>$msg</a>";
-				\dash\notif::error($msg, ['nationalcode', 'pasportcode']);
-				return false;
+				if($check_duplicate_nationalcode)
+				{
+					if($args['nationalcode'])
+					{
+						$nationalcode_q = $args['nationalcode'];
+					}
+					else
+					{
+						$nationalcode_q = $args['pasportcode'];
+					}
+
+					$msg = T_("Duplicate nationalcode or pasportcode in your user list");
+					$msg = "<a href='". \dash\url::kingdom(). '/crm/member?q='. $nationalcode_q. "'>$msg</a>";
+					\dash\notif::error($msg, ['nationalcode', 'pasportcode']);
+					return false;
+				}
 			}
 		}
 
@@ -79,7 +82,7 @@ class member
 			return false;
 		}
 
-		\dash\log::set('addNewMember', ['code' => $user_id]);
+		\dash\log::set('CRMaddNewMember', ['code' => $user_id]);
 
 		$return['member_id'] = \dash\coding::encode($user_id);
 
@@ -103,16 +106,8 @@ class member
 		}
 		else
 		{
-			if($_passport_code)
-			{
-				// check pasportcode only
-				$result = \dash\db\users::get(['pasportcode' => "$_passport_code", 'limit' => 1]);
-			}
-			else
-			{
-				\dash\notif::error(T_("Nationalcode or pasportcode is required"), ['nationalcode', 'passportcode']);
-				return true;
-			}
+			// check pasportcode only
+			$result = \dash\db\users::get(['pasportcode' => "$_passport_code", 'limit' => 1]);
 		}
 
 		return $result;
@@ -164,38 +159,9 @@ class member
 			$_args['sort'] = null;
 		}
 
-		if(isset($_args['step_export']))
-		{
-			\dash\log::set('memberExportCsvFile');
-			set_time_limit(60 * 10);
-			ini_set('memory_limit', '-1');
-			ini_set("max_execution_time", "-1");
 
-			$_args['pagenation'] = false;
-			$_args['limit']      = 1000;
-			$my_limit            = 1000;
-			$link                = null;
-			$result            = \dash\db\users::search($_string, $_args);
-			while ($result)
-			{
-				$result = array_map(['self', 'ready'], $result);
-				$link = \lib\app\member\export::csv($result);
-				$_args['start_limit'] = $my_limit;
-				$_args['end_limit']   = 1000;
-				$result               = \dash\db\users::search($_string, $_args);
-				$my_limit             = $my_limit + 1000;
-			}
+		$result            = \dash\db\users::search($_string, $_args);
 
-			$msg = T_("Create export file completed");
-			$msg .= '<a href="'. $link. '" download > <b>'. T_("To download it click here"). '</b> </a>';
-			$msg .= '<br>'. T_("This file will be automatically deleted for a few minutes");
-			\dash\notif::ok($msg, ['timeout' => 999999]);
-			return true;
-		}
-		else
-		{
-			$result            = \dash\db\users::search($_string, $_args);
-		}
 
 		if(!is_array($result) && isset($_args['get_count']))
 		{
@@ -266,7 +232,7 @@ class member
 					}
 
 					$msg = T_("Duplicate nationalcode or pasportcode in your user list");
-					$msg = "<a href='". \dash\url::kingdom(). '/a/member?q='. $nationalcode_q. "'>$msg</a>";
+					$msg = "<a href='". \dash\url::kingdom(). '/crm/member?q='. $nationalcode_q. "'>$msg</a>";
 					\dash\notif::error($msg, ['nationalcode', 'pasportcode']);
 					return false;
 
@@ -308,42 +274,43 @@ class member
 
 		if(!\dash\app::isset_request('mobile'))         unset($args['mobile']);
 		if(!\dash\app::isset_request('email'))          unset($args['email']);
-		if(!\dash\app::isset_request('shfrom'))         unset($args['shfrom']);
+		// if(!\dash\app::isset_request('shfrom'))         unset($args['shfrom']);
 		if(!\dash\app::isset_request('firstname'))      unset($args['firstname']);
 		if(!\dash\app::isset_request('lastname'))       unset($args['lastname']);
 		if(!\dash\app::isset_request('father'))         unset($args['father']);
 		if(!\dash\app::isset_request('nationalcode'))   unset($args['nationalcode']);
 		if(!\dash\app::isset_request('pasportcode'))    unset($args['pasportcode']);
-		if(!\dash\app::isset_request('birthdate'))      unset($args['birthdate']);
+		if(!\dash\app::isset_request('birthdate'))      unset($args['birthday']);
 		if(!\dash\app::isset_request('pasportdate'))    unset($args['pasportdate']);
 		if(!\dash\app::isset_request('gender'))         unset($args['gender']);
 		if(!\dash\app::isset_request('marital'))        unset($args['marital']);
-		if(!\dash\app::isset_request('shcode'))         unset($args['shcode']);
-		if(!\dash\app::isset_request('birthcity'))      unset($args['birthcity']);
-		if(!\dash\app::isset_request('zipcode'))        unset($args['zipcode']);
-		if(!\dash\app::isset_request('religion'))       unset($args['religion']);
 		if(!\dash\app::isset_request('avatar'))         unset($args['avatar']);
-		if(!\dash\app::isset_request('education'))      unset($args['education']);
-		if(!\dash\app::isset_request('education2'))     unset($args['education2']);
-		if(!\dash\app::isset_request('educationcourse')) unset($args['educationcourse']);
-		if(!\dash\app::isset_request('city'))           unset($args['city']);
-		if(!\dash\app::isset_request('province'))       unset($args['province']);
-		if(!\dash\app::isset_request('country'))        unset($args['country']);
-		if(!\dash\app::isset_request('address'))        unset($args['address']);
 		if(!\dash\app::isset_request('phone'))          unset($args['phone']);
-		if(!\dash\app::isset_request('mobile2'))        unset($args['mobile2']);
-		if(!\dash\app::isset_request('fathermobile'))   unset($args['fathermobile']);
-		if(!\dash\app::isset_request('mothermobile'))   unset($args['mothermobile']);
 		if(!\dash\app::isset_request('status'))         unset($args['status']);
 		if(!\dash\app::isset_request('desc'))           unset($args['desc']);
 		if(!\dash\app::isset_request('foreign'))        unset($args['foreign']);
 		if(!\dash\app::isset_request('nationality'))    unset($args['nationality']);
 
+		// if(!\dash\app::isset_request('shcode'))         unset($args['shcode']);
+		// if(!\dash\app::isset_request('birthcity'))      unset($args['birthcity']);
+		// if(!\dash\app::isset_request('zipcode'))        unset($args['zipcode']);
+		// if(!\dash\app::isset_request('religion'))       unset($args['religion']);
+		// if(!\dash\app::isset_request('education'))      unset($args['education']);
+		// if(!\dash\app::isset_request('education2'))     unset($args['education2']);
+		// if(!\dash\app::isset_request('educationcourse')) unset($args['educationcourse']);
+		// if(!\dash\app::isset_request('city'))           unset($args['city']);
+		// if(!\dash\app::isset_request('province'))       unset($args['province']);
+		// if(!\dash\app::isset_request('country'))        unset($args['country']);
+		// if(!\dash\app::isset_request('address'))        unset($args['address']);
+		// if(!\dash\app::isset_request('mobile2'))        unset($args['mobile2']);
+		// if(!\dash\app::isset_request('fathermobile'))   unset($args['fathermobile']);
+		// if(!\dash\app::isset_request('mothermobile'))   unset($args['mothermobile']);
+
 
 		if(!empty($args))
 		{
 			$update = \dash\db\users::update($args, $id);
-			\dash\log::set('editMember', ['code' => $id]);
+			\dash\log::set('CRMeditMember', ['code' => $id]);
 
 			if(\dash\engine\process::status())
 			{
@@ -395,11 +362,6 @@ class member
 			$force_add = true;
 		}
 
-		if(\dash\permission::check('aMemberSkipRequiredField'))
-		{
-			$force_add = true;
-		}
-
 		$mobile = \dash\app::request('mobile');
 		if(\dash\app::isset_request('mobile'))
 		{
@@ -439,8 +401,8 @@ class member
 		{
 			if(!$firstname && !$lastname && !$force_add)
 			{
-				\dash\notif::error(T_("Firstname or lastname is required"), 'firstname');
-				return false;
+				// \dash\notif::error(T_("Firstname or lastname is required"), 'firstname');
+				// return false;
 			}
 		}
 
@@ -477,41 +439,21 @@ class member
 		}
 
 
-		// if(\dash\app::isset_request('nationalcode') || \dash\app::isset_request('pasportcode'))
-		// {
-		// 	if(!$nationalcode && !$pasportcode && !$force_add)
-		// 	{
-		// 		if($nationality === 'IR')
-		// 		{
-		// 			\dash\notif::error(T_("National code or pasportcode is required"), ['element' => ['nationalcode']]);
-		// 		}
-		// 		else
-		// 		{
-		// 			\dash\notif::error(T_("National code or pasportcode is required"), ['element' => ['pasportcode']]);
-		// 		}
-		// 		return false;
-		// 	}
-		// }
-
-		if($nationality && $nationality !== 'IR' && \dash\app::isset_request('nationalcode') && $nationalcode)
-		{
-			\dash\notif::error(T_("Please remove the nationalcode"), ['element' => ['nationalcode']]);
-			return false;
-		}
-
 		$birthdate = null;
 
 		if(\dash\app::isset_request('birthdate'))
 		{
 			$birthdate = \dash\app::request('birthdate');
-			$birthdate = \dash\date::db($birthdate);
-			$birthdate = \dash\date::birthdate($birthdate, true);
+			if($birthdate)
+			{
+				$birthdate = \dash\date::db($birthdate);
+				$birthdate = \dash\date::birthdate($birthdate, true);
 
-			// if(!$birthdate && !$force_add)
-			// {
-			// 	\dash\notif::error(T_("Birthdate is required"), 'birthdate');
-			// 	return false;
-			// }
+				if(!$birthdate)
+				{
+					return false;
+				}
+			}
 		}
 
 		$pasportdate = \dash\app::request('pasportdate');
@@ -533,11 +475,11 @@ class member
 		$gender = \dash\app::request('gender');
 		if(\dash\app::isset_request('gender'))
 		{
-			if(!$gender && !$force_add)
-			{
-				\dash\notif::error(T_('Gender is required'), 'gender');
-				return false;
-			}
+			// if(!$gender && !$force_add)
+			// {
+			// 	\dash\notif::error(T_('Gender is required'), 'gender');
+			// 	return false;
+			// }
 		}
 
 		if($gender && !in_array($gender, ['male', 'female']))
@@ -551,6 +493,22 @@ class member
 		{
 			\dash\notif::error(T_("Invalid marital"), 'marital');
 			return false;
+		}
+
+		$detail = [];
+
+		if($_id)
+		{
+			$load = \dash\db\users::get_by_id($_id);
+			if(isset($load['detail']))
+			{
+				$detail = json_decode($load['detail'], true);
+			}
+		}
+
+		if(!$detail || !is_array($detail))
+		{
+			$detail = [];
 		}
 
 		$shcode = \dash\app::request('shcode');
@@ -567,6 +525,12 @@ class member
 			return false;
 		}
 
+		if(\dash\app::isset_request('shcode'))
+		{
+			$detail['shcode'] = $shcode;
+		}
+
+
 		$birthcity = \dash\app::request('birthcity');
 		if($birthcity && mb_strlen($birthcity) > 50)
 		{
@@ -574,19 +538,11 @@ class member
 			return false;
 		}
 
-		$zipcode = \dash\app::request('zipcode');
-		$zipcode = \dash\utility\convert::to_en_number($zipcode);
-		if($zipcode && !is_numeric($zipcode))
+		if(\dash\app::isset_request('birthcity'))
 		{
-			\dash\notif::error(T_("Invalid zipcode"), 'zipcode');
-			return false;
+			$detail['birthcity'] = $birthcity;
 		}
 
-		if($zipcode && !intval($zipcode) > 1E+10)
-		{
-			\dash\notif::error(T_("Invalid zipcode"), 'zipcode');
-			return false;
-		}
 
 		$religion = \dash\app::request('religion');
 		if($religion && mb_strlen($religion) > 50)
@@ -594,6 +550,12 @@ class member
 			\dash\notif::error(T_("Invalid religion"), 'religion');
 			return false;
 		}
+
+		if(\dash\app::isset_request('religion'))
+		{
+			$detail['religion'] = $religion;
+		}
+
 
 		$avatar = \dash\app::request('avatar');
 		if($avatar && mb_strlen($avatar) > 2000)
@@ -609,18 +571,22 @@ class member
 			return false;
 		}
 
-		$education2 = \dash\app::request('education2');
-		if($education2 && mb_strlen($education2) > 100)
+		if(\dash\app::isset_request('education'))
 		{
-			\dash\notif::error(T_("Invalid education2"), 'education2');
-			return false;
+			$detail['education'] = $education;
 		}
+
 
 		$educationcourse = \dash\app::request('educationcourse');
 		if($educationcourse && mb_strlen($educationcourse) > 100)
 		{
 			\dash\notif::error(T_("Invalid educationcourse"), 'educationcourse');
 			return false;
+		}
+
+		if(\dash\app::isset_request('educationcourse'))
+		{
+			$detail['educationcourse'] = $educationcourse;
 		}
 
 		$shfrom = \dash\app::request('shfrom');
@@ -630,6 +596,22 @@ class member
 			return false;
 		}
 
+		if(\dash\app::isset_request('shfrom'))
+		{
+			$detail['shfrom'] = $shfrom;
+		}
+
+		if(\dash\app::isset_request('file1'))
+		{
+			$detail['file1'] = \dash\app::request('file1');
+		}
+
+		if(\dash\app::isset_request('file2'))
+		{
+			$detail['file2'] = \dash\app::request('file2');
+		}
+
+
 		$email = \dash\app::request('email');
 		if ($email && mb_strlen($email) > 150)
 		{
@@ -637,68 +619,15 @@ class member
 			return false;
 		}
 
-		$city = \dash\app::request('city');
-		if($city && !\dash\utility\location\cites::check($city))
+		if(\dash\app::isset_request('email'))
 		{
-			\dash\notif::error(T_("Invalid city"), 'city');
-			return false;
-		}
-
-		$province = \dash\app::request('province');
-		if($province && !\dash\utility\location\provinces::check($province))
-		{
-			\dash\notif::error(T_("Invalid province"), 'province');
-			return false;
-		}
-
-		if(!$province && $city)
-		{
-			$province = \dash\utility\location\cites::get($city, 'province', 'province');
-			if(!\dash\utility\location\provinces::check($province))
-			{
-				$province = null;
-			}
-		}
-
-		$country = \dash\app::request('country');
-		if($country && !\dash\utility\location\countres::check($country))
-		{
-			\dash\notif::error(T_("Invalid country"), 'country');
-			return false;
-		}
-
-		$address = \dash\app::request('address');
-		if($address && mb_strlen($address) > 500)
-		{
-			\dash\notif::error(T_("Invalid address"), 'address');
-			return false;
+			$detail['email'] = $email;
 		}
 
 		$phone = \dash\app::request('phone');
 		if($phone && mb_strlen($phone) > 50)
 		{
 			\dash\notif::error(T_("Invalid phone"), 'phone');
-			return false;
-		}
-
-		$mobile2 = \dash\app::request('mobile2');
-		if($mobile2 && !\dash\utility\filter::mobile($mobile2))
-		{
-			\dash\notif::error(T_("Invalid mobile2"), 'mobile2');
-			return false;
-		}
-
-		$fathermobile = \dash\app::request('fathermobile');
-		if($fathermobile && !\dash\utility\filter::mobile($fathermobile))
-		{
-			\dash\notif::error(T_("Invalid fathermobile"), 'fathermobile');
-			return false;
-		}
-
-		$mothermobile = \dash\app::request('mothermobile');
-		if($mothermobile && !\dash\utility\filter::mobile($mothermobile))
-		{
-			\dash\notif::error(T_("Invalid mothermobile"), 'mothermobile');
 			return false;
 		}
 
@@ -711,97 +640,44 @@ class member
 
 		$desc = \dash\app::request('desc');
 
-		$bank = \dash\app::request('bank');
-		if($bank && mb_strlen($bank) > 200)
+		if(\dash\app::isset_request('permission'))
 		{
-			\dash\notif::error(T_("Bank name is too large"), 'bank');
-			return false;
-		}
-
-		$accountnumber = \dash\app::request('accountnumber');
-		if($accountnumber && mb_strlen($accountnumber) > 200)
-		{
-			\dash\notif::error(T_("Account number is too large"), 'accountnumber');
-			return false;
-		}
-
-		if($accountnumber && !is_numeric($accountnumber))
-		{
-			\dash\notif::error(T_("Account number must be a number"), 'accountnumber');
-			return false;
-		}
-
-		$shaba = \dash\app::request('shaba');
-		if($shaba && mb_strlen($shaba) > 200)
-		{
-			\dash\notif::error(T_("Shaba number is too large"), 'shaba');
-			return false;
-		}
-
-		if($shaba && !is_numeric($shaba))
-		{
-			\dash\notif::error(T_("Shaba number must be a number"), 'shaba');
-			return false;
-		}
-
-		$cardnumber = \dash\app::request('cardnumber');
-		if($cardnumber && mb_strlen($cardnumber) > 200)
-		{
-			\dash\notif::error(T_("Shaba number is too large"), 'cardnumber');
-			return false;
-		}
-
-		if($cardnumber && !is_numeric($cardnumber))
-		{
-			\dash\notif::error(T_("Shaba number must be a number"), 'cardnumber');
-			return false;
-		}
-
-		$tablerows = \dash\app::request('tablerows');
-		if($tablerows && !is_numeric($tablerows))
-		{
-			\dash\notif::error(T_("Please set the table rows as a number"), 'tablerows');
-			return false;
-		}
-
-
-
-
-		$permission = \dash\app::request('permission');
-		if(\dash\permission::check("aMemberPermissionChange"))
-		{
-			if($permission && !in_array($permission, array_keys(\dash\permission::groups())))
+			$permission = \dash\app::request('permission');
+			if(\dash\permission::check("aMemberPermissionChange"))
 			{
-				if($permission === 'supervisor')
+				if($permission && !in_array($permission, array_keys(\dash\permission::groups())))
 				{
-					if(!\dash\url::isLocal() && !\dash\permission::supervisor())
+					if($permission === 'supervisor')
 					{
-						\dash\notif::error("Permission is incorrect", 'permission');
-						return false;
+						if(!\dash\permission::supervisor())
+						{
+							\dash\notif::error("Permission is incorrect", 'permission');
+							return false;
+						}
+						else
+						{
+							// no problem
+							// supervisor make a new supervisor
+						}
 					}
 					else
 					{
-						// no problem
-						// supervisor make a new supervisor
+						\dash\notif::error(T_("Permission is incorrect"), 'permission');
+						return false;
 					}
 				}
-				else
-				{
-					\dash\app::log('addon:api:user:permission:max:lenght', \dash\user::id(), $log_meta);
-					\dash\notif::error(T_("Permission is incorrect"), 'permission');
-					return false;
-				}
 			}
+
+			$args['permission']          = $permission;
 		}
 
 
-
-
+		if(!empty($detail))
+		{
+			$args['detail'] = json_encode($detail, JSON_UNESCAPED_UNICODE);
+		}
 
 		$args['mobile']          = $mobile;
-
-		$args['email']           = $email;
-		$args['shfrom']          = $shfrom;
 		$args['nationalcode']    = $nationalcode;
 		$args['pasportcode']     = $pasportcode;
 		$args['firstname']       = $firstname;
@@ -811,31 +687,11 @@ class member
 		$args['pasportdate']     = $pasportdate;
 		$args['gender']          = $gender;
 		$args['marital']         = $marital;
-		$args['shcode']          = $shcode;
-		$args['birthcity']       = $birthcity;
-		$args['zipcode']         = $zipcode;
-		$args['religion']        = $religion;
 		$args['avatar']          = $avatar;
-		$args['education']       = $education;
-		$args['education2']      = $education2;
-		$args['educationcourse'] = $educationcourse;
-		$args['city']            = $city;
-		$args['province']        = $province;
 		$args['nationality']     = $nationality;
-		$args['country']         = $country;
-		$args['address']         = $address;
 		$args['phone']           = $phone;
-		$args['mobile2']         = $mobile2;
-		$args['fathermobile']    = $fathermobile;
-		$args['mothermobile']    = $mothermobile;
 		$args['status']          = $status;
 		$args['desc']            = $desc;
-
-
-
-		$args['permission']          = $permission;
-
-
 		return $args;
 	}
 
@@ -855,9 +711,6 @@ class member
 			switch ($key)
 			{
 				case 'id':
-
-				case 'user_id':
-				case 'creator':
 					if(isset($value))
 					{
 						$result[$key] = \dash\coding::encode($value);
@@ -888,7 +741,16 @@ class member
 						$result[$key] = null;
 					}
 				break;
-
+				case 'detail':
+					if($value)
+					{
+						$result[$key] = json_decode($value, true);
+					}
+					else
+					{
+						$result[$key] = $value;
+					}
+					break;
 				case 'avatar':
 					if($value)
 					{

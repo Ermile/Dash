@@ -24,99 +24,76 @@
 
 {%block psidebar%}
 <div class="cbox normal">
-
   {{block('sideBarAvatar')}}
-
- <a class="btn block mTB10" href='{{url.this}}/general?id={{requestGET.id}}'>{%trans "General Detail"%}</a>
-
- <a class="btn block mTB10" href='{{url.this}}/identification?id={{requestGET.id}}'>{%trans "Identification detail"%}</a>
- <a class="btn block mTB10" href='{{url.this}}/contact?id={{requestGET.id}}'>{%trans "Contact information"%}</a>
- <a class="btn block mTB10" href='{{url.this}}/education?id={{requestGET.id}}'>{%trans "Education"%}</a>
- <a class="btn block mTB10" href='{{url.this}}/address?id={{requestGET.id}}'>{%trans "Location and address"%}</a>
- <a class="btn block mTB10" href='{{url.this}}/description?id={{requestGET.id}}'>{%trans "Description"%}</a>
+   <a class="btn block mTB10" href='{{url.this}}/general?id={{requestGET.id}}'>{%trans "General Detail"%}</a>
+   <a class="btn block mTB10" href='{{url.this}}/identification?id={{requestGET.id}}'>{%trans "Identification detail"%}</a>
+   <a class="btn block mTB10" href='{{url.this}}/contact?id={{requestGET.id}}'>{%trans "Contact information"%}</a>
+   <a class="btn block mTB10" href='{{url.this}}/education?id={{requestGET.id}}'>{%trans "Education"%}</a>
+   <a class="btn block mTB10" href='{{url.this}}/address?id={{requestGET.id}}'>{%trans "Location and address"%}</a>
+   <a class="btn block mTB10" href='{{url.this}}/description?id={{requestGET.id}}'>{%trans "Description"%}</a>
 </div>
 {%endblock%}
 
 
 
 {%block iname%}
-<label for="name">{%trans "Name"%}{%if firstnameRequired%} <small class="fc-red">* {%trans "Require"%}</small>{%endif%}</label>
+<label for="name">{%trans "Name"%}</label>
 <div class="input">
-  <input type="text" name="name" id="name" placeholder='{%trans "Name"%} {%if firstnameRequired%}*{%endif%}' value="{{dataRow.firstname}}" autofocus maxlength='40' minlength="1" pattern=".{1,40}"  {%if firstnameRequired%}required{%endif%}>
+  <input type="text" name="name" id="name" placeholder='{%trans "Name"%}' value="{{dataRow.firstname}}" autofocus maxlength='40' minlength="1" pattern=".{1,40}" >
 </div>
 {%endblock%}
 
 
 {%block ifamily%}
-<label for="lastName">{%trans "Last name"%}{%if lastnameRequired%} <small class="fc-red">* {%trans "Require"%}</small>{%endif%}</label>
+<label for="lastName">{%trans "Last name"%}</label>
 <div class="input">
-  <input type="text" name="lastName" id="lastName" placeholder='{%trans "Last name"%} {%if lastnameRequired%}*{%endif%}' value="{{dataRow.lastname}}" maxlength='60' {%if lastnameRequired%}required{%endif%}>
+  <input type="text" name="lastName" id="lastName" placeholder='{%trans "Last name"%}' value="{{dataRow.lastname}}" maxlength='60'>
 </div>
 {%endblock%}
 
 
 
 {%block imobile%}
-<label for="mobile">{%trans "Mobile"%}{%if mobileRequired%} <small class="fc-red">* {%trans "Require"%}</small>{%endif%}</label>
+<label for="mobile">{%trans "Mobile"%}</label>
 <div class="input">
-  <input type="tel" name="mobile" id="mobile" placeholder='{%trans "Like 09120123456"%} {%if mobileRequired%}*{%endif%}' value="{{dataRow.mobile}}" maxlength='30' {%if mobileRequired%}required{%endif%}>
+  <input type="tel" name="mobile" id="mobile" placeholder='{%trans "Like 09120123456"%}' value="{{dataRow.mobile}}" maxlength='30'>
 </div>
 {%endblock%}
 
 
-
-{%block imobile2%}
-<label for="mobile2">{%trans "Mobile 2"%}</label>
-<div class="input">
-  <input type="tel" name="mobile2" id="mobile2" placeholder='{%trans "Like 09120123456"%} *' value="{{dataRow.mobile2}}" maxlength='30'>
-</div>
-{%endblock%}
 
 
 
 {%block iemail2%}
 <label for="email">{%trans "Email"%}</label>
 <div class="input">
-  <input type="text" name="email" id="email" placeholder='{%trans "Like abc@example.com"%}' value="{{dataRow.email}}" maxlength='30'>
+  <input type="text" name="email" id="email" placeholder='{%trans "Like abc@example.com"%}' value="{{dataRow.detail.email}}" maxlength='30'>
 </div>
 {%endblock%}
 
 
-{%block incode%}
-<label for="nationalcode">{%trans "National code OR Passport code"%}{%if nationalcodeRequired%} <small class="fc-red">* {%trans "Require"%}</small>{%endif%}</label>
-<div class="input">
-  <input type="number" name="nationalcode" id="nationalcode" placeholder='{%trans "10 digit national code OR passport code"%} {%if nationalcodeRequired%}*{%endif%}' value="{{dataRow.nationalcode}}" min=0 max=9999999999 {%if nationalcodeRequired%}required{%endif%}>
-</div>
-{%endblock%}
 
 
 {%block ifather%}
-<label for="father">{%trans "Father name"%}{%if fatherRequired%} <small class="fc-red">* {%trans "Require"%}</small>{%endif%}</label>
+<label for="father">{%trans "Father name"%}</label>
 <div class="input">
-  <input type="text" name="father" id="father" placeholder='{%trans "Father name"%} {%if fatherRequired%}*{%endif%}' value="{{dataRow.father}}" maxlength='50' {%if fatherRequired%}required{%endif%}>
+  <input type="text" name="father" id="father" placeholder='{%trans "Father name"%}' value="{{dataRow.father}}" maxlength='50'>
 </div>
 {%endblock%}
 
 
 {%block ibirthday%}
-<label for="birthdate">{%trans "Birthday"%}{%if birthdateRequired%} <small class="fc-red">* {%trans "Require"%}</small>{%endif%}</label>
+<label for="birthdate">{%trans "Birthday"%}</label>
 <div class="input ltr">
-  <input class="datepicker" type="text" name="birthdate" id="birthdate" placeholder='{{"1369/04/15" | fitNumber}} {%if birthdateRequired%}*{%endif%}' value="{{dataRow.birthday}}" data-view="year" autocomplete='off'>
+  <input class="datepicker" type="text" name="birthdate" id="birthdate" placeholder='{{"1369/04/15" | fitNumber}}' value="{{dataRow.birthday}}" data-view="year" autocomplete='off'>
 </div>
 {%endblock%}
 
 
-{%block iForeign%}
-<label for="foreign">{%trans "Foreign"%}</label>
-<div class="switch1 mTB0">
- <input type="checkbox" name="foreign" id="foreign" {%if dataRow.foreign == true %}checked{%endif%}>
- <label for="foreign"></label>
-</div>
-{%endblock%}
 
 {%block igender%}
 <div class="mT10">
-  <label for="gender">{%trans "Gender"%}{%if genderRequired%} <small class="fc-red">* {%trans "Require"%}</small>{%endif%}</label>
+  <label for="gender">{%trans "Gender"%}</label>
   <select name="gender" class="ui dropdown select">
     <option value="" readonly>{%trans "Please select one itme"%}</option>
     <option value="male" {%if dataRow.gender == 'male' or ( not dataRow.gender and defaultDenderExpert == 'male') %}selected {%endif%}>{%trans "Male"%}</option>
@@ -138,15 +115,6 @@
 {%endblock%}
 
 
-
-{%block ibirthcity%}
-<label for="birthcity">{%trans "Birth city"%}</label>
-<div class="input">
-  <input type='text' class="autoList" name="birthcity" id="birthcity" placeholder='{%trans "Birth city"%}' value="{{dataRow.birthcity}}" maxlength='50' data-minchars="1" data-autofirst data-list="{{cityList}}"/>
-
-</div>
-
-{%endblock%}
 
 
 {%block nationalityAndDetail%}
@@ -181,80 +149,9 @@
 {%endblock%}
 
 
-{%block icountry%}
-<label for='country'>{%trans "Country"%}</label>
- <div class="ui fluid search selection dropdown mB10">
-      <input type="hidden" name="country" value="{%if dataRow.country%}{{dataRow.country}}{%else%}IR{%endif%}">
-      <i class="dropdown icon"></i>
-      <div class="default text">{%trans "Choose Country"%}</div>
-      <div class="menu">
-    {%for key, value in countryList%}
-      <div class="item" data-value="{{key}}">
-        <i class="{{value.iso2 | lower }} flag"></i>{%set myCountry = value.name%} {%trans myCountry%}
-        <small class="description">{{value.name | capitalize}}</small>
-    </div>
-    {%endfor%}
-  </div>
-</div>
-{%endblock%}
 
 
-{%block iprovince%}
-<label for='province'>{%trans "Province"%}</label>
-<select name="province" class="ui dropdown select search mB10" id="province">
-  <option value="" readonly>{%trans "Select province"%}</option>
-  {%for key, value in proviceList%}
-    <option value="{{key}}" {% if dataRow.province == key %} selected {%endif%}>{{value}}</option>
-  {%endfor%}
-</select>
-{%endblock%}
 
-
-{%block icity%}
-<label for='city'>{%trans "City"%}</label>
-<select name="city" class="ui dropdown select search mB10" id="city">
-  <option value="" readonly>{%trans "Select city"%}</option>
-  {%for key, value in cityList%}
-    <option value="{{key}}" {% if dataRow.city == key %} selected {%endif%}>{{value}}</option>
-  {%endfor%}
-</select>
-{%endblock%}
-
-
-{%block izipcode%}
-<label for='zipcode'>{%trans "Zip code"%}</label>
-<div class="input">
- <input type='number' name='zipcode' id='zipcode' min="0" value="{{dataRow.zipcode}}"/>
-</div>
-{%endblock%}
-
-
-{%block ireligion%}
-<label for='religion'>{%trans "Religion"%}</label>
-<div class="input">
- <input type='text' class="autoList" name='religion' id='religion' data-minchars="1" data-autofirst data-list="Islam"/>
-</div>
-{%endblock%}
-
-
-{%block ibirthplace%}
-<label for='birthplace'>{%trans "Birth place"%}</label>
-<div class="input">
- <input type='text' class="autoList" name='birthplace' id='birthplace' data-minchars="1" data-autofirst data-list="{{cityList}}" value="{{dataRow.birthcity}}" />
-</div>
-{%endblock%}
-
-
-{%block iissueplace%}
-<label for='shfrom'>{%trans "Issue Place"%}</label>
-<select name="shfrom" class="ui dropdown select search mB10" id="shfrom">
-  <option value="" readonly>{%trans "Select city"%}</option>
-  {%for key, value in cityList%}
-    <option value="{{key}}" {% if dataRow.shfrom == key %} selected {%endif%}>{{value}}</option>
-  {%endfor%}
-</select>
-
-{%endblock%}
 
 
 {%block ipassport%}
@@ -262,8 +159,6 @@
 <div class="input ltr">
  <input name='pasportcode' id='passport' value="{{dataRow.pasportcode}}" placeholder='{%trans "Passport id"%} *'   />
 </div>
-
-
 {%endblock%}
 
 
@@ -284,15 +179,15 @@
 {%block iid%}
 <label for='id'>{%trans "Id number"%}</label>
 <div class="input">
- <input type="tel" name='shcode' id='id' value="{{dataRow.shcode}}" placeholder='{%trans "Id number"%}' />
+ <input type="tel" name='shcode' id='id' value="{{dataRow.detail.shcode}}" placeholder='{%trans "Id number"%}' />
 </div>
 {%endblock%}
 
 
 {%block inationalcode%}
-<label for='nationalcode'>{%trans "National Id"%}{%if nationalcodeRequired%} <small class="fc-red">* {%trans "Require"%}</small>{%endif%}</label>
+<label for='nationalcode'>{%trans "National Id"%}</label>
 <div class="input">
- <input type="tel" name='nationalcode' id='nationalcode' value="{{dataRow.nationalcode}}" placeholder='{%trans "10 digit national code"%} {%if nationalcodeRequired%}*{%endif%}'  />
+ <input type="tel" name='nationalcode' id='nationalcode' value="{{dataRow.nationalcode}}" placeholder='{%trans "10 digit national code"%}'  />
 </div>
 {%endblock%}
 
@@ -302,12 +197,6 @@
 
 
 
-{%block iMemberMobile%}
-<label for="member-mobile">{%trans "Mobile of Member"%}</label>
-<div class="input">
-  <input type="tel" name="member-mobile" id="member-mobile" placeholder='{%trans "Like"%} 09120123456' value="{{dataRow.mobile2}}" maxlength='50'>
-</div>
-{%endblock%}
 
 
 {%block iPhone%}
@@ -319,69 +208,24 @@
 
 
 
-{%block iFatherMobile%}
-<label for="father-mobile">{%trans "Mobile of father"%}</label>
-<div class="input">
-  <input type="tel" name="father-mobile" id="father-mobile" placeholder='{%trans "Like"%} 09121112222' value="{{dataRow.fathermobile}}" maxlength='50'>
-</div>
-{%endblock%}
-
-
-
-{%block iMotherMobile%}
-<label for="mother-mobile">{%trans "Mobile of mother"%}</label>
-<div class="input">
-  <input type="tel" name="mother-mobile" id="mother-mobile" placeholder='{%trans "Like"%} 09121112222' value="{{dataRow.mothermobile}}" maxlength='50'>
-</div>
-{%endblock%}
-
-
-{%block iPostcode%}
-<label for="postcode">{%trans "Post code"%}</label>
-<div class="input">
-  <input type="number" name="postcode" id="postcode" placeholder='{%trans "Post code"%}' value="{{dataRow.meta.contact.postcode}}" maxlength='50'>
-</div>
-{%endblock%}
-
-
-{%block iaddress%}
-<label for="address">{%trans "Address"%}</label>
-<div class="input">
-  <input type="text" name="address" id="address" placeholder='{%trans "Address"%}' value="{{dataRow.address}}" maxlength='500'>
-</div>
-{%endblock%}
-
 
 {%block iEducation%}
 <label for="education">{%trans "Education"%}</label>
 <div class="input">
-  <input type="education" name="education" id="education" placeholder='{%trans "Education"%}' value="{{dataRow.education}}" maxlength='50'>
+  <input type="education" name="education" id="education" placeholder='{%trans "Education"%}' value="{{dataRow.detail.education}}" maxlength='50'>
 </div>
 {%endblock%}
 
-
-
-{%block iEducation2%}
-<label for="education2">{%trans "Education2"%}</label>
-<div class="input">
-  <input type="education2" name="education2" id="education2" placeholder='{%trans "Education2"%}' value="{{dataRow.education2}}" maxlength='50'>
-</div>
-{%endblock%}
 
 
 {%block iEducationcourse%}
 <label for="educationcourse">{%trans "Education Course"%}</label>
 <div class="input">
-  <input type="educationcourse" name="educationcourse" id="educationcourse" placeholder='{%trans "Education Course"%}' value="{{dataRow.educationcourse}}" maxlength='50'>
+  <input type="educationcourse" name="educationcourse" id="educationcourse" placeholder='{%trans "Education Course"%}' value="{{dataRow.detail.educationcourse}}" maxlength='50'>
 </div>
 {%endblock%}
 
-{%block iEmail%}
-<label for="email">{%trans "Email"%}</label>
-<div class="input">
-  <input type="email" name="email" id="email" placeholder='{%trans "Like"%} abc@example.com' value="{{dataRow.email}}" maxlength='50'>
-</div>
-{%endblock%}
+
 
 
 {%block iAvatar%}

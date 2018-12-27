@@ -39,8 +39,6 @@ class model
 	 */
 	public static function post()
 	{
-		\dash\permission::access('aMemberEdit');
-
 
 		$file1     = self::upload_file('file1');
 
@@ -58,29 +56,17 @@ class model
 			return false;
 		}
 
-		if($file2 === null && $file1 === null)
-		{
-			// \dash\notif::warn(T_("To change the image, please re-open the new file"),['element' => ['file2', 'file1']]);
-			// return false;
-		}
-		else
-		{
-			$request           = [];
-			if($file1)
-			{
-				$request['file1'] = $file1;
-			}
-
-			if($file2)
-			{
-				$request['file2'] = $file2;
-			}
-
-			\lib\db\users::update($request, \dash\coding::decode(\dash\request::get('id')));
-		}
-
-
 		$post                 = [];
+		if($file1)
+		{
+			$post['file1'] = $file1;
+		}
+
+		if($file2)
+		{
+			$post['file2'] = $file2;
+		}
+
 		$post['nationality']  = \dash\request::post('nationality');
 		$post['birthcity']    = \dash\request::post('birthplace');
 		$post['issueplace']   = \dash\request::post('issueplace');
@@ -89,7 +75,6 @@ class model
 		$post['pasportdate']  = \dash\request::post('passportdate');
 		$post['nationalcode'] = \dash\request::post('nationalcode');
 		$post['shfrom']       = \dash\request::post('shfrom');
-
 
 		\dash\app\member::edit($post, \dash\request::get('id'));
 
