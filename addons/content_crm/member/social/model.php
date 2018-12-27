@@ -32,7 +32,7 @@ class model
 
 		$request = self::getPost();
 
-		$result = \dash\app\member::edit($request, \dash\request::get('id'));
+		$result = \dash\app\user::edit($request, \dash\request::get('id'));
 
 		if(\dash\engine\process::status())
 		{

@@ -4,19 +4,15 @@ namespace dash\app\user;
 
 trait get
 {
-
-
-	/**
-	 * Gets the user.
-	 *
-	 * @param      <type>  $_args  The arguments
-	 *
-	 * @return     <type>  The user.
-	 */
-	public static function get($_args, $_options = [])
+	public static function get($_id)
 	{
+		$_id = \dash\coding::decode($_id);
+		if(!$_id)
+		{
+			return false;
+		}
 
-		$result = \dash\db\users::get($_args);
+		$result = \dash\db\users::get_by_id($_id);
 
 		if(is_array($result))
 		{

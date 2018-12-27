@@ -13,7 +13,7 @@ class model
 		$post['education']       = \dash\request::post('education');
 		$post['educationcourse'] = \dash\request::post('educationcourse');
 
-		\dash\app\member::edit($post, \dash\request::get('id'));
+		\dash\app\user::edit($post, \dash\request::get('id'));
 
 		if(\dash\engine\process::status())
 		{

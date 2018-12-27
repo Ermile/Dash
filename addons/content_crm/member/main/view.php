@@ -18,7 +18,7 @@ class view
 			\dash\header::status(404, T_("Invalid user id"));
 		}
 
-		$result = \dash\app\member::get($id);
+		$result = \dash\app\user::get($id);
 
 		if(!$result)
 		{

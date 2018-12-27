@@ -43,8 +43,8 @@ class view
 			$args['permission'] = \dash\request::get('permission');
 		}
 
-		$sortLink = \dash\app\sort::make_sortLink(\dash\app\member::$sort_field, \dash\url::this());
-		$dataTable = \dash\app\member::list(\dash\request::get('q'), $args);
+		$sortLink = \dash\app\sort::make_sortLink(\dash\app\user::$sort_field, \dash\url::this());
+		$dataTable = \dash\app\user::list(\dash\request::get('q'), $args);
 
 		if(!is_array($dataTable))
 		{

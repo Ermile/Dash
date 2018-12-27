@@ -17,9 +17,9 @@ class model
 		$request              = [];
 		$request['signature'] = \dash\request::post('signature') ? $_POST['signature'] : null;
 
-		$request['id']        = \dash\coding::encode(\dash\user::id());
+		$id  = \dash\coding::encode(\dash\user::id());
 
-		$result = \dash\app\user::edit($request);
+		$result = \dash\app\user::edit($request, $id);
 
 		if(\dash\engine\process::status())
 		{

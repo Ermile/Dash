@@ -125,8 +125,8 @@ class model
 		{
 			\dash\permission::access('cpUsersEdit');
 
-			$request['id'] = \dash\request::get('id');
-			$result = \dash\app\user::edit($request);
+			$id = \dash\request::get('id');
+			$result = \dash\app\user::edit($request, $id);
 
 			if(intval(\dash\coding::decode($request['id'])) === intval(\dash\user::id()))
 			{

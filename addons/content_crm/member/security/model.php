@@ -10,11 +10,12 @@ class model
 	{
 		$post =
 		[
+			'sidebar'       => \dash\request::post('sidebar'),
 			'twostep'       => \dash\request::post('twostep'),
 			'forceremember' => \dash\request::post('forceremember'),
 			'status'        => \dash\request::post('status'),
-			'language' => \dash\request::post('language'),
-			'username' => \dash\request::post('username'),
+			'language'      => \dash\request::post('language'),
+			'username'      => \dash\request::post('username'),
 
 		];
 
@@ -65,7 +66,7 @@ class model
 
 		}
 
-		$result = \dash\app\member::edit($request, \dash\request::get('id'));
+		$result = \dash\app\user::edit($request, \dash\request::get('id'));
 
 		if(\dash\engine\process::status())
 		{

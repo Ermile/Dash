@@ -21,7 +21,7 @@ class model
 		// ready request
 		$request = self::getPost();
 
-		$result = \dash\app\member::add($request);
+		$result = \dash\app\user::add($request);
 
 		if(\dash\engine\process::status())
 		{

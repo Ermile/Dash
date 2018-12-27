@@ -36,7 +36,7 @@ class user
 	 *
 	 * @return     array|boolean  ( description_of_the_return_value )
 	 */
-	public static function check($_id = null, $_option = [])
+	public static function check($_id = null, $_option = [], $_load_user = [])
 	{
 		$args                    = [];
 
@@ -217,10 +217,9 @@ class user
 
 		if($_id)
 		{
-			$load = \dash\db\users::get_by_id($_id);
-			if(isset($load['detail']))
+			if(isset($_load_user['detail']))
 			{
-				$detail = json_decode($load['detail'], true);
+				$detail = json_decode($_load_user['detail'], true);
 			}
 		}
 
@@ -247,7 +246,6 @@ class user
 		{
 			$detail['shcode'] = $shcode;
 		}
-
 
 		$birthcity = \dash\app::request('birthcity');
 		if($birthcity && mb_strlen($birthcity) > 50)
@@ -395,7 +393,13 @@ class user
 		}
 
 		$twostep       = \dash\app::request('twostep') ? 1 : null;
-		$forceremember = \dash\app::request('forceremember') ? 1 : null;
+		$forceremember = \dash\app::request('forceremember') ? 1 : 0;
+
+		if(\dash\app::isset_request('sidebar'))
+		{
+			$sidebar         = \dash\app::request('sidebar') ? 1 : 0;
+			$args['sidebar'] = $sidebar;
+		}
 
 		$password = \dash\app::request('password');
 
@@ -551,22 +555,22 @@ class user
 		$signature = \dash\app::request('signature');
 
 
-		if($args['permission'] === 'supervisor')
-		{
-			unset($args['permission']);
-		}
-
 		if(!\dash\permission::check("cpUsersPermission"))
 		{
 			unset($args['permission']);
 		}
 
-		if($_id && isset($load['permission']))
+		if($_id && isset($_load_user['permission']))
 		{
-			if($load['permission'] === 'supervisor')
+			if($_load_user['permission'] === 'supervisor')
 			{
 				unset($args['permission']);
 			}
+		}
+
+		if(isset($args['permission']) && $args['permission'] === 'supervisor')
+		{
+			unset($args['permission']);
 		}
 
 
@@ -589,7 +593,6 @@ class user
 		$args['nationality']   = $nationality;
 		$args['phone']         = $phone;
 		$args['status']        = $status;
-		$args['desc']          = $desc;
 		$args['website']       = $website;
 		$args['instagram']     = $instagram;
 		$args['linkedin']      = $linkedin;
@@ -613,7 +616,7 @@ class user
 
 
 	/**
-	 * ready data of user to load in api
+	 * ready data of user to _load_user in api
 	 *
 	 * @param      <type>  $_data  The data
 	 */
@@ -685,6 +688,16 @@ class user
 						$result[$key] = false;
 					}
 
+					break;
+				case 'detail':
+					if($value)
+					{
+						$result[$key] = json_decode($value, true);
+					}
+					else
+					{
+						$result[$key] = $value;
+					}
 					break;
 
 				case 'forceremember':
