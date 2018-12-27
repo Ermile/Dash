@@ -15,6 +15,7 @@
     <h3 class="txtC">{%trans "Security and Enter"%}</h3>
     {{block("iTwoStep")}}
     {{block("iRememberme")}}
+    {{block("iStatus")}}
     {{block("iSave")}}
   </form>
   {{block('sessionList')}}
@@ -24,6 +25,22 @@
 
 
 
+
+
+{%block iStatus%}
+<div class="mT10">
+  <label for="status">{%trans "Status"%}</label>
+  <select name="status" class="ui dropdown" id="status">
+    <option value="" readonly>{%trans "Select one item"%} *</option>
+    <option value="active" {% if dataRowMember.status == 'active' %} selected {%endif%}>{%trans "Active"%}</option>
+    <option value="awaiting" {% if dataRowMember.status == 'awaiting' %} selected {%endif%}>{%trans "Awaiting"%}</option>
+    <option value="deactive" {% if dataRowMember.status == 'deactive' %} selected {%endif%}>{%trans "Deactive"%}</option>
+    <option value="removed" {% if dataRowMember.status == 'removed' %} selected {%endif%}>{%trans "Removed"%}</option>
+    <option value="filter" {% if dataRowMember.status == 'filter' %} selected {%endif%}>{%trans "Filter"%}</option>
+    <option value="unreachable" {% if dataRowMember.status == 'unreachable' %} selected {%endif%}>{%trans "Unreachable"%}</option>
+  </select>
+</div>
+{%endblock%}
 
 
 {%block iRememberme%}
