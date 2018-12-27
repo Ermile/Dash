@@ -60,6 +60,17 @@ class model
 
 	public static function post()
 	{
+		$ticket_load_page_time = \dash\session::get('ticket_load_page_time');
+
+		if($ticket_load_page_time)
+		{
+			if(time() - $ticket_load_page_time < 5)
+			{
+				\dash\session::set('ticket_load_page_time', time());
+				\dash\header::status(422, T_("It was very fast!"));
+			}
+		}
+
 		$file     = self::upload_file('file');
 
 		// we have an error in upload file1
