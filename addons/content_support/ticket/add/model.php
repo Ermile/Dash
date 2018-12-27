@@ -76,6 +76,8 @@ class model
 			\dash\notif::warn(T_("Your cookies may have been blocked"). ' '. T_("You need to enable cookie for usign this service"));
 			return false;
 		}
+
+
 		$file     = self::upload_file('file');
 
 		// we have an error in upload file1
@@ -99,6 +101,12 @@ class model
 			$content = \dash\request::post('content');
 		}
 
+		$count_http  = substr_count($content, 'http://');
+		$count_https = substr_count($content, 'https://');
+		if($count_https + $count_http >= 2)
+		{
+			\dash\header::status(422, T_("Can not set 2 link in one message!"));
+		}
 
 		// insert comments
 		$result = self::add_new('site', $content, $file);
