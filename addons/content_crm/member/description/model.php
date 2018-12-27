@@ -6,15 +6,32 @@ class model
 {
 	public static function post()
 	{
-		\dash\permission::access('aMemberEdit');
 
-		$request           = [];
-		$request['desc'] = \dash\request::post('desc');
+		$user_id            = \dash\coding::decode(\dash\request::get('id'));
+		$request            = [];
+		$request['text']    = \dash\request::post('note');
+		$request['user_id'] = $user_id;
+		$request['creator'] = \dash\user::id();
+		$request['status']  = 'enable';
 
-		\dash\app\member::edit($request, \dash\request::get('id'));
+		if(!trim($request['text']))
+		{
+			\dash\notif::error(T_("Please fill the box"), 'note');
+			return false;
+		}
+
+		$check_duplicate = \dash\db\userdetail::get(['user_id' => $user_id, 'text' => $request['text'], 'limit' => 1]);
+		if($check_duplicate)
+		{
+			\dash\notif::error(T_("Duplicate note for user founded"), 'note');
+			return false;
+		}
+
+		\dash\db\userdetail::insert($request);
 
 		if(\dash\engine\process::status())
 		{
+			\dash\notif::ok(T_("Note saved"));
 			\dash\redirect::pwd();
 		}
 	}
