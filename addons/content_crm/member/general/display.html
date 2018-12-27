@@ -6,34 +6,38 @@
 {{block('pageSteps')}}
 
 <div class="f">
+
  <div class="cauto s12 pA5">
-{{block("psidebar")}}
+	{{block("psidebar")}}
  </div>
+
  <div class="c s12 pA5">
+
 	<form class="cbox" method="post" autocomplete="off">
 
 	{{block("icreateDate")}}
+
 	 <div class="f">
 	   <div class="c pRa5">
-	{{block("iname")}}
+			{{block("iname")}}
 	   </div>
 	   <div class="c">
-	{{block("ifamily")}}
+			{{block("ifamily")}}
 	   </div>
 	 </div>
 
 	 <div class="f">
 	   <div class="c pRa5">
-	{{block("ifather")}}
+			{{block("ifather")}}
 	   </div>
 	   <div class="c">
-	{{block("ibirthday")}}
+			{{block("ibirthday")}}
 	   </div>
 	 </div>
+
 	{{block("imobile")}}
 
 	{{block("nationalityAndDetail")}}
-
 
 	<div class="f">
 		<div class="c mRa10">
@@ -44,14 +48,11 @@
 		</div>
 	</div>
 
-	{%if dataRow.expert %}
-		{{block("iPermission")}}
-	{%endif%}
-
+	{{block("iPermission")}}
 
 
 	 <div class="f pA5 pT20">
-	{{block("isave")}}
+		{{block("isave")}}
 	 </div>
 	</form>
  </div>
@@ -61,8 +62,9 @@
 
 
 {%block iPermission%}
+
 {%if permGroup%}
-<div data-response='expert' data-response-effect='slide' {%if dataRow.expert %}{%else%} data-response-hide {%endif%}>
+
 	<div class="mT10">
 	  <label for="permission">{%trans "Permission"%}</label>
 	  <select name="permission" class="ui dropdown" id="permission">
@@ -73,6 +75,7 @@
 	    {%endfor%}
 	  </select>
 	</div>
-</div>
+
 {%endif%}
+
 {%endblock%}

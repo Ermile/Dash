@@ -7,8 +7,6 @@ class model
 
 	public static function post()
 	{
-		\dash\permission::access('aMemberEdit');
-
 		$post =
 		[
 			'mobile'      => \dash\request::post('mobile'),
@@ -21,17 +19,8 @@ class model
 			'shcode'      => \dash\request::post('shcode'),
 			'nationality' => \dash\request::post('nationality'),
 			'permission'  => \dash\request::post('permission') == '0' ? null : \dash\request::post('permission'),
-			'status'      => 'active',
-			'student'     => \dash\request::post('student') ? 1 : null,
-			'teacher'     => \dash\request::post('teacher') ? 1 : null,
-			'expert'      => \dash\request::post('expert')  ? 1 : null,
+			// 'status'      => \dash\request::post('status'),
 		];
-
-		if(!\dash\request::post('nationality') && !\dash\permission::check('aMemberSkipRequiredField'))
-		{
-			\dash\notif::error(T_("Plese set nationality"), 'nationality');
-			return false;
-		}
 
 		if(\dash\request::post('nationality') === 'IR')
 		{

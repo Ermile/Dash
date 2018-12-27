@@ -24,6 +24,7 @@ class view
 		{
 			\dash\header::status(404, T_("Invalid user id"));
 		}
+
 		\dash\data::dataRow($result);
 
 		// add back level to summary link

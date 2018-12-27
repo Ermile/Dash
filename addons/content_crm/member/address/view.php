@@ -12,7 +12,6 @@ class view
 		\dash\data::page_desc(T_('set current location and full address'));
 		\dash\data::page_pictogram('map-marker');
 
-		\content_crm\member\main\view::static_var();
 	}
 }
 ?>

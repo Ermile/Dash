@@ -9,10 +9,9 @@ class model
 	{
 		\dash\permission::access('aMemberEdit');
 
-		$post                 = [];
-		$post['education']    = \dash\request::post('education');
-		$post['education2']   = \dash\request::post('education2');
-		$post['educationcourse']       = \dash\request::post('educationcourse');
+		$post                    = [];
+		$post['education']       = \dash\request::post('education');
+		$post['educationcourse'] = \dash\request::post('educationcourse');
 
 		\dash\app\member::edit($post, \dash\request::get('id'));
 
