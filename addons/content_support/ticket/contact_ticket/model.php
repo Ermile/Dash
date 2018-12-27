@@ -40,6 +40,22 @@ class model
 			return false;
 		}
 
+		$ticket_load_page_time = \dash\session::get('ticket_load_page_time');
+
+		if($ticket_load_page_time)
+		{
+			if(time() - $ticket_load_page_time < 5)
+			{
+				\dash\session::set('ticket_load_page_time', time());
+				\dash\header::status(422, T_("It was very fast!"));
+			}
+		}
+		else
+		{
+			\dash\notif::warn(T_("Your cookies may have been blocked"). ' '. T_("You need to enable cookie for usign this service"));
+			return false;
+		}
+
 		// get the content
 		$content = \dash\request::post("content");
 
@@ -48,6 +64,12 @@ class model
 		{
 			\dash\notif::error(T_("Please try type something!"), "content");
 			return false;
+		}
+
+		if(strip_tags($_POST['content']) != $_POST['content'])
+		{
+			\dash\session::set('ticket_load_page_time', time());
+			\dash\header::status(422, T_("You try to add some html code!"));
 		}
 
 

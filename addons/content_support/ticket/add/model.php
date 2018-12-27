@@ -60,6 +60,7 @@ class model
 
 	public static function post()
 	{
+
 		$ticket_load_page_time = \dash\session::get('ticket_load_page_time');
 
 		if($ticket_load_page_time)
@@ -70,7 +71,11 @@ class model
 				\dash\header::status(422, T_("It was very fast!"));
 			}
 		}
-
+		else
+		{
+			\dash\notif::warn(T_("Your cookies may have been blocked"). ' '. T_("You need to enable cookie for usign this service"));
+			return false;
+		}
 		$file     = self::upload_file('file');
 
 		// we have an error in upload file1
@@ -79,16 +84,21 @@ class model
 			return false;
 		}
 
-
-
 		if(\dash\permission::check('supportTicketSignature'))
 		{
 			$content = \dash\request::post('content') ? $_POST['content'] : null;
 		}
 		else
 		{
+			if(strip_tags($_POST['content']) != $_POST['content'])
+			{
+				\dash\session::set('ticket_load_page_time', time());
+				\dash\header::status(422, T_("You try to send some html code!"));
+			}
+
 			$content = \dash\request::post('content');
 		}
+
 
 		// insert comments
 		$result = self::add_new('site', $content, $file);
