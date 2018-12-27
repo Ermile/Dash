@@ -30,7 +30,7 @@
    <a class="btn block mTB10" href='{{url.this}}/contact?id={{requestGET.id}}'>{%trans "Contact information"%}</a>
    <a class="btn block mTB10" href='{{url.this}}/education?id={{requestGET.id}}'>{%trans "Education"%}</a>
    <a class="btn block mTB10" href='{{url.this}}/social?id={{requestGET.id}}'>{%trans "Social network"%}</a>
-   <a class="btn block mTB10" href='{{url.this}}/signator?id={{requestGET.id}}'>{%trans "Signator"%}</a>
+
 
 </div>
 {%endblock%}
@@ -192,7 +192,7 @@
 
   <div class="f">
    <div class="c s6">
-    <a class="dcard {%if url.child == 'general' or url.child == 'signator' or url.child == 'avatar' or url.child == 'social' or url.child == 'contact' or url.child == 'identification' or url.child == 'education'%}active{%endif%}" href='{{url.this}}/general?id={{requestGET.id}}' data-shortkey="49ctrlshift">
+    <a class="dcard {%if url.child == 'general' or url.child == 'avatar' or url.child == 'social' or url.child == 'contact' or url.child == 'identification' or url.child == 'education'%}active{%endif%}" href='{{url.this}}/general?id={{requestGET.id}}' data-shortkey="49ctrlshift">
      <div class="statistic">
       <div class="value"><i class="sf-user fc-blue"></i></div>
       <div class="label">{%trans "Profile"%} <kbd class=" hide mT5">Shift+1</kbd></div>
