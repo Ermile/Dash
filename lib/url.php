@@ -341,12 +341,22 @@ class url
 	 */
 	private static function _sitelang()
 	{
-		$my_sitelang = self::$url['site'];
+		$myAddr = '';
+		$isFree = \dash\option::url('freeSubdomain');
+		if($isFree)
+		{
+			$myAddr = self::_base();
+		}
+		else
+		{
+			$myAddr = self::_site();
+		}
+
 		if(isset(self::$url['lang']))
 		{
-			$my_sitelang .= '/'. self::$url['lang'];
+			$myAddr .= '/'. self::$url['lang'];
 		}
-		return $my_sitelang;
+		return $myAddr;
 	}
 
 

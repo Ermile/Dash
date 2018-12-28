@@ -89,7 +89,7 @@
 {%block xaccess%}
 {%if perm('contentCp')%}
   <div id="xaccess">
-    <a class='siteAdmin{%if url.tld != "local"%} public{%endif%}'{%if not include.adminPanel%} data-direct{%endif%} href='{{url.kingdom}}/cp' title='{%trans "Control Panel"%}' data-tippy-placement='right' data-tippy-animation="shift-away" data-tippy-inertia="true"><span class="sf-gauge"></span></a>
+    <a class='siteAdmin{%if url.tld != "local"%} public{%endif%}'{%if not include.adminPanel%} data-direct{%endif%} href='{{url.sitelang}}/cp' title='{%trans "Control Panel"%}' data-tippy-placement='right' data-tippy-animation="shift-away" data-tippy-inertia="true"><span class="sf-gauge"></span></a>
 {%if main_account or perm_su() %}
     <a href="{{url.sitelang}}/enter?mobile={{main_mobile}}&referer={{url.pwd}}" data-direct title='{%trans "Enter with another user"%}' data-tippy-placement='right' data-tippy-animation="shift-away" data-tippy-inertia="true"><span class="sf-enter"></span></a>
 {%endif%}
