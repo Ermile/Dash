@@ -7,7 +7,7 @@ class model
 
 	public static function post()
 	{
-		\dash\permission::access('aMemberEdit');
+		\dash\permission::access('cpUsersEdit');
 		$post =
 		[
 			'phone'        => \dash\request::post('phone'),
