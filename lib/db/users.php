@@ -225,11 +225,33 @@ class users
 
 			$check = self::get_by_mobile($mobile);
 
-			if($check)
+			if(isset($check['id']))
 			{
 				return false;
 			}
 		}
+
+
+		if(isset($_args['chatid']) && $_args['chatid'])
+		{
+			$check_chatid = self::get(['chatid' => $chatid, 'limit' => 1]);
+
+			if(isset($check_chatid['id']))
+			{
+				return false;
+			}
+		}
+
+		if(isset($_args['email']) && $_args['email'])
+		{
+			$check_email = self::get(['email' => $email, 'limit' => 1]);
+
+			if(isset($check_email['id']))
+			{
+				return false;
+			}
+		}
+
 
 		if($_args['password'])
 		{
