@@ -279,6 +279,20 @@ class permission
 	}
 
 
+	public static function list_raw_project()
+	{
+		self::load();
+		return self::$project_perm_list;
+	}
+
+
+	public static function list_raw_dash()
+	{
+		self::load();
+		return self::$core_perm_list;
+	}
+
+
 	// make an array to draw permission list in quick view
 	public static function categorize_list()
 	{

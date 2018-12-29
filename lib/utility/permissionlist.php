@@ -75,17 +75,46 @@ class permissionlist
 
 		$mypath            = realpath(core).DIRECTORY_SEPARATOR;
 		$permission_caller = self::find($mypath);
-		// \dash\permission::write_file($permission_caller, 'dash');
+
+		$list_raw_dash = \dash\permission::list_raw_dash();
+
+		$new_dash = [];
+
+		foreach ($permission_caller as $key => $value)
+		{
+			if(!array_key_exists($value, $list_raw_dash))
+			{
+				$new_dash[] = $value;
+			}
+		}
+
 		$dash_caller = $permission_caller;
 
 		$mypath            = realpath(root).DIRECTORY_SEPARATOR;
 		$permission_caller = self::find($mypath);
-		// \dash\permission::write_file($permission_caller, 'project');
+		$list_raw_project = \dash\permission::list_raw_project();
+
+		$new_project = [];
+		foreach ($permission_caller as $key => $value)
+		{
+			if(!array_key_exists($value, $list_raw_project))
+			{
+				$new_project[] = $value;
+			}
+		}
+
 
 		echo '<h1>EXTRACT PERMISSION CALLERS ('.self::$count.' callers founded | used in: '.self::$count_use.' place)</h1><hr><h3>DASH</h3>';
+		echo '<hr><h3>New in dash</h3>';
+		\dash\code::pretty($new_dash, true);
+		echo '<h3>New in project</h3>';
+		\dash\code::pretty($new_project, true);
+
+		echo '<hr><h3>All Dash</h3>';
 		\dash\code::pretty($dash_caller, true);
 
 		echo '<hr><h3>PROJECT</h3>';
+		echo '<hr><h3>All project</h3>';
 		\dash\code::pretty($permission_caller, true);
 	}
 }
