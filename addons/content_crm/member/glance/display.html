@@ -18,7 +18,7 @@
         <tbody>
           {%for key, value in dataRowMember%}
 {%if value%}
-            {%if key in ['password', 'unit_id', 'detail'] %}
+            {%if key in ['password', 'unit_id', 'detail', 'avatar_raw'] %}
             {%elseif key == 'id'%}
                 <tr>
                   <th>{%trans key%}</th>

@@ -16,8 +16,19 @@ class model
 			'status'        => \dash\request::post('status'),
 			'language'      => \dash\request::post('language'),
 			'username'      => \dash\request::post('username'),
+			'permission'    => \dash\request::post('permission') == '0' ? null : \dash\request::post('permission'),
 
 		];
+
+		if(intval(\dash\coding::decode(\dash\request::get('id'))) === \dash\user::id())
+		{
+			if(isset($post['permission']) && $post['permission'] !== 'admin' && \dash\user::detail('permission') === 'admin' )
+			{
+				\dash\notif::warn(T_("You can not set your permission less than admin!"));
+				$post['permission'] = 'admin';
+			}
+		}
+
 
 		return $post;
 	}
@@ -31,6 +42,12 @@ class model
 
 		$user_id = \dash\coding::decode(\dash\request::get('id'));
 
+		if(\dash\request::post('removechatid') === 'removechatid' && \dash\permission::supervisor())
+		{
+			\dash\db\users::update(['chatid' => null], $user_id);
+			\dash\notif::ok(T_("Chatid removed"));
+			return false;
+		}
 
 		if(\dash\request::post('type') === 'terminate' && \dash\request::post('id') && is_numeric(\dash\request::post('id')))
 		{

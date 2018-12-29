@@ -12,7 +12,9 @@
  <div class="c s12 pA5">
 
   <form class="cbox" method="post" autocomplete="off">
-    <h3 class="txtC">{%trans "Security and Enter"%}</h3>
+
+    {{block("iPermission")}}
+
     {{block("iLanguage")}}
     {{block("iUsername")}}
     {{block("iTwoStep")}}
@@ -24,6 +26,16 @@
     {%if perm('cpUsersPasswordChange')%}
       {{block('iPassword')}}
       {{block('irePassword')}}
+    {%endif%}
+
+    {%if perm_su()%}
+    {%if dataRowMember.chatid%}
+      <div class="msg success2">
+        {%trans "User have chatid"%}
+        {{dataRowMember.chatid}}
+        <span data-confirm data-data='{"removechatid" : "removechatid"}' class="badge danger floatL">{%trans "Remove chatid"%}</span>
+      </div>
+    {%endif%}
     {%endif%}
 
     {{block("iSave")}}
@@ -45,6 +57,27 @@
 </div>
 {%endblock%}
 
+
+
+
+{%block iPermission%}
+
+{%if permGroup%}
+
+  <div class="mT10">
+    <label for="permission">{%trans "Permission"%}</label>
+    <select name="permission" class="ui dropdown" id="permission">
+      <option value="" readonly>{%trans "No permission"%}</option>
+      <option value="0" readonly>{%trans "No permission"%}</option>
+      {%for key, value in permGroup%}
+        <option value="{{key}}" {%if dataRowMember.permission == key%} selected {%endif%} >{%set myValue = value.title%}{%trans myValue%}</option>
+      {%endfor%}
+    </select>
+  </div>
+
+{%endif%}
+
+{%endblock%}
 
 
 

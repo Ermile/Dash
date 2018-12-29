@@ -59,7 +59,6 @@
 		</div>
 	</div>
 
-	{{block("iPermission")}}
 
 	{{block("iBio")}}
 
@@ -100,25 +99,6 @@
 </div>
 {%endblock%}
 
-
-{%block iPermission%}
-
-{%if permGroup%}
-
-	<div class="mT10">
-	  <label for="permission">{%trans "Permission"%}</label>
-	  <select name="permission" class="ui dropdown" id="permission">
-	    <option value="" readonly>{%trans "No permission"%}</option>
-	    <option value="0" readonly>{%trans "No permission"%}</option>
-	    {%for key, value in permGroup%}
-	      <option value="{{key}}" {%if dataRowMember.permission == key%} selected {%endif%} >{%set myValue = value.title%}{%trans myValue%}</option>
-	    {%endfor%}
-	  </select>
-	</div>
-
-{%endif%}
-
-{%endblock%}
 
 
 

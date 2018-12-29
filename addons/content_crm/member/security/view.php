@@ -15,6 +15,11 @@ class view
 		\dash\data::badge_link(\dash\url::kingdom(). '/a');
 		\dash\data::badge_text(T_('Back to dashbaord'));
 
+		if(\dash\permission::check("cpUsersPermission"))
+		{
+			$perm_list = \dash\permission::groups();
+			\dash\data::permGroup($perm_list);
+		}
 
 		self::session_list();
 	}
