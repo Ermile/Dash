@@ -144,7 +144,7 @@ class zarinpal
             case -54:  $msg = T_("The request is archived"); break;
             case 100:  $msg = T_("Operation was successfully done"); break;
             case 101:  $msg = T_("Payment operation was successfull and PatmentVerification of the transaction has already done"); break;
-            default:   $msg = T("The error code is :code", ['code' => $result->Status]); break;
+            default:   $msg = T_("The error code is :code", ['code' => $result->Status]); break;
         }
         return $msg;
     }
