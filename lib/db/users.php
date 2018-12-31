@@ -234,7 +234,7 @@ class users
 
 		if(isset($_args['chatid']) && $_args['chatid'])
 		{
-			$check_chatid = self::get(['chatid' => $chatid, 'limit' => 1]);
+			$check_chatid = self::get(['chatid' => $_args['chatid'], 'limit' => 1]);
 
 			if(isset($check_chatid['id']))
 			{
