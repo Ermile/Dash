@@ -21,6 +21,7 @@ trait code_list
 		$list[8]  = "payment:payir";
 		$list[9]  = "payment:asanpardakht";
 		$list[10] = "payment:mellat";
+		$list[11] = "payment";
 
 		if($option_list = \dash\option::config('transactions_code'))
 		{

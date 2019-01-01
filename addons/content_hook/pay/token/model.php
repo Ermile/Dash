@@ -6,13 +6,7 @@ class model
 {
 	public static function post()
 	{
-		$default =
-		[
-			'get_token' => false,
-			'price'     => 0,
-			'bank'      => null,
-		];
-
+		\dash\utility\pay\start::token(\dash\request::post());
 	}
 }
 ?>
