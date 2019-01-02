@@ -5,15 +5,6 @@ namespace dash\utility\payment\payment;
 class asanpardakht
 {
 
-	/**
-     * auto save logs
-     *
-     * @var        boolean
-     */
-    public static $save_log         = false;
-    // to save log for this user
-    public static $user_id          = null;
-    public static $log_data         = null;
     public static $payment_response = [];
 
     public static $KEY             = null;
@@ -35,22 +26,13 @@ class asanpardakht
     public static function pay($_args = [])
     {
         self::set_key_iv();
-        $log_meta =
-        [
-            'data' => self::$log_data,
-            'meta' =>
-            [
-                'args' => func_get_args(),
-            ],
-        ];
+
 
         // if soap is not exist return false
         if(!class_exists("soapclient"))
         {
-            if(self::$save_log)
-            {
-                \dash\db\logs::set('payment:asanpardakht:soapclient:not:install', self::$user_id, $log_meta);
-            }
+
+            \dash\db\logs::set('payment:asanpardakht:soapclient:not:install');
             \dash\notif::error(T_("Can not connect to asanpardakht gateway. Install it!"));
             return false;
         }
@@ -86,13 +68,13 @@ class asanpardakht
 
                 if ($result{0} == '0')
                 {
-                    \dash\db\logs::set('payment:asanpardakht:redirect', self::$user_id, $log_meta);
+                    \dash\db\logs::set('payment:asanpardakht:redirect');
                     $token = substr($result,2);
                     return $token;
                 }
                 else
                 {
-                    \dash\db\logs::set('payment:asanpardakht:error1', self::$user_id, $log_meta);
+                    \dash\db\logs::set('payment:asanpardakht:error1');
                     \dash\notif::error(T_("Error in payment code :result", ['result' => (string) $result]));
                     return false;
                 }
@@ -100,14 +82,14 @@ class asanpardakht
             }
             else
             {
-                \dash\db\logs::set('payment:asanpardakht:error2', self::$user_id, $log_meta);
+                \dash\db\logs::set('payment:asanpardakht:error2');
                 \dash\notif::error(T_("Error in payment (have not result)"));
                 return false;
             }
         }
         catch (\Exception $E)
         {
-            \dash\db\logs::set('payment:asanpardakht:error:load:web:services', self::$user_id, $log_meta);
+            \dash\db\logs::set('payment:asanpardakht:error:load:web:services');
             \dash\notif::error(T_("Error in load web services"));
             return false;
         }

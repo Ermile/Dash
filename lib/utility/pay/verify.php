@@ -15,5 +15,22 @@ class verify
 		}
 	}
 
+
+	public static function bank_ok($_amount, $_transaction_id)
+	{
+		\dash\utility\pay\setting::set_condition('ok');
+
+        \dash\utility\pay\setting::set_amount_end($_amount);
+
+        \dash\utility\pay\setting::set_verify(1);
+
+        \dash\utility\pay\setting::set_budget_field();
+
+        \dash\utility\pay\setting::save();
+
+        \dash\utility\pay\transactions::final_verify($_transaction_id);
+
+	}
+
 }
 ?>

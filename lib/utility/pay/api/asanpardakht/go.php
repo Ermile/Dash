@@ -64,7 +64,7 @@ class go
 
         $RefId = \dash\utility\pay\api\asanpardakht\bank::pay($asanpardakht_args);
 
-        \dash\utility\pay\setting::set_payment_detail1(\dash\utility\pay\api\asanpardakht\bank::$payment_response);
+        \dash\utility\pay\setting::set_payment_response1(\dash\utility\pay\api\asanpardakht\bank::$payment_response);
 
         if($RefId)
         {
@@ -91,6 +91,5 @@ class go
             return false;
         }
     }
-
 }
 ?>

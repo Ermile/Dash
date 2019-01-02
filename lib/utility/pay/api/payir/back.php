@@ -85,17 +85,8 @@ class back
             {
                 if(isset($is_ok['amount']) && intval($is_ok['amount']) === intval($amount))
                 {
-                    \dash\utility\pay\setting::set_condition('ok');
 
-                    \dash\utility\pay\setting::set_amount_end($amount / 10);
-
-                    \dash\utility\pay\setting::set_verify(1);
-
-                    \dash\utility\pay\setting::set_budget_field();
-
-                    \dash\utility\pay\setting::save();
-
-                    \dash\utility\pay\transactions::final_verify($transaction_id);
+                    \dash\utility\pay\verify::bank_ok($amount /10, $transaction_id);
 
                     return \dash\utility\pay\setting::turn_back();
                 }
