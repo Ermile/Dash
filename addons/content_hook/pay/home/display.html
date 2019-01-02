@@ -12,8 +12,40 @@
 			<div class="msg" >{{payDetail.msg_go}}</div>
 			{%endif%}
 
-			<div class="msg">{{dataRow.plus| fitNumber}}</div>
-			<div class="msg">{{dataRow.displayname}}</div>
+			{%if dataRow.displayname%}
+				<div class="teal statistic fs06">
+		           <div class="value">{{dataRow.displayname}}</div>
+		        </div>
+			{%endif%}
+
+			{%if dataRow.banktoken%}
+				{%if dataRow.condition == 'ok'%}
+		          <div class="green statistic">
+		            <div class="value">{{dataRow.plus | fitNumber}}</div>
+		            <div class="label">{%trans "Toman"%}</div>
+		          </div>
+		          <div class="msg success txtC txtB">{%trans "Payed"%}</div>
+				{%elseif dataRow.condition == 'error' or dataRow.condition == 'verify_error'%}
+					<div class="red statistic">
+			           <div class="value">{{dataRow.plus | fitNumber}}</div>
+			           <div class="label">{%trans "Toman"%}</div>
+			        </div>
+		          	<div class="msg danger txtC txtB">{%trans "Canceled"%}</div>
+				{%else%}
+					<div class="yellow statistic">
+			           <div class="value">{{dataRow.plus | fitNumber}}</div>
+			           <div class="label">{%trans "Toman"%}</div>
+			        </div>
+		          	<div class="msg warn txtC txtB">{%trans "Canceled"%}</div>
+				{%endif%}
+			{%else%}
+				<div class="green statistic">
+		            <div class="value">{{dataRow.plus | fitNumber}}</div>
+		            <div class="label">{%trans "Toman"%}</div>
+	            </div>
+			{%endif%}
+
+
 
 			<form method="post">
 
