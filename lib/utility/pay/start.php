@@ -17,6 +17,8 @@ class start
 			$_args = [];
 		}
 
+		$_args = array_merge($default, $_args);
+
 		$token = $_args['token'];
 		if(!$token)
 		{
@@ -26,17 +28,33 @@ class start
 
         \dash\utility\pay\setting::load_token($token);
 
-        $bank = \dash\utility\pay\setting::get_bank();
+        $bank = $_args['bank'];
+
         if(!$bank)
 		{
 			\dash\notif::error(T_("Invalid bank"));
 			return self::theend();
 		}
 
-		$_args = array_merge($default, $_args);
+		$bank_status = \dash\option::config($bank, 'status');
+		if(!$bank_status)
+		{
+			\dash\notif::error(T_("Invalid bank is disabled on this service"));
+			return self::theend();
+		}
+
+		$banktoken = \dash\utility\pay\setting::get_banktoken();
+		if($banktoken)
+		{
+			\dash\notif::error(T_("This record is go to bank"));
+			return self::theend();
+		}
 
         if(is_callable(["\\dash\\utility\\pay\\api\\$bank\\go", "bank"]))
         {
+        	\dash\utility\pay\setting::set_payment($bank);
+        	\dash\utility\pay\setting::set_title(T_("Pay whit :bank", ['bank' => T_(ucfirst($bank))]));
+
             ("\\dash\\utility\\pay\\api\\$bank\\go")::bank();
         }
         else
@@ -116,31 +134,9 @@ class start
             return self::theend($_args);
         }
 
-        $bank = mb_strtolower($_args['bank']);
-
-        if(!$bank)
-        {
-        	if(!$_args['get_token'] || $_args['auto_go'])
-        	{
-	            \dash\notif::error(T_("Please select a bank port"), 'payment');
-	            return self::theend($_args);
-        	}
-        }
-
-        if($bank)
-        {
-	        if(is_callable(["\\dash\\utility\\payment\\pay\\$bank", $bank]))
-	        {
-	            return self::generate_token($_args);
-	        }
-	        else
-	        {
-	            \dash\notif::error(T_("This payment is not supported in this system"));
-	            return self::theend($_args);
-	        }
-        }
-
+	    return self::generate_token($_args);
 	}
+
 
 	private static function theend($_args = [])
 	{

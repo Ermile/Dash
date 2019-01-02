@@ -37,7 +37,7 @@ class go
         // change rial to toman
         // but the plus is toman
         // need less to *10 the plus
-        $payir['amount'] = (string) \dash\utility\pay\setting::get_price() * 10;
+        $payir['amount'] = (string) floatval(\dash\utility\pay\setting::get_plus()) * 10;
 
         //START TRANSACTION BY CONDITION REQUEST
         $transaction_id = \dash\utility\pay\setting::get_id();

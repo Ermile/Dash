@@ -9,9 +9,10 @@ class model
 
 		if(\dash\request::post('ok') == '1')
 		{
-			$args            = [];
-			$args['token']   = \dash\url::child();
-			// $args['bank'] = null;
+			$args          = [];
+			$args['token'] = \dash\url::child();
+			$args['bank']  = \dash\request::post('bank');
+
 			\dash\utility\pay\start::bank($args);
 		}
 

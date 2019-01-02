@@ -56,24 +56,15 @@ class model
 			}
 		}
 
-		$meta = ['turn_back' => \dash\url::pwd()];
+		$meta =
+		[
+			'turn_back' => \dash\url::pwd(),
+			'user_id'   => \dash\user::id(),
+			'amount'    => \dash\request::post('amount'),
+		];
 
-		if(\dash\url::isLocal())
-		{
-			$meta =
-			[
-				'turn_back' => \dash\url::pwd(),
-				'user_id'   => \dash\user::id(),
-				'bank'      => \dash\request::post('bank'),
-				'amount'    => \dash\request::post('amount'),
-			];
+		\dash\utility\pay\start::site($meta);
 
-			\dash\utility\pay\start::site($meta);
-		}
-		else
-		{
-			\dash\utility\payment\pay::start(\dash\user::id(), \dash\request::post('bank'), \dash\request::post('amount'), $meta);
-		}
 	}
 
 

@@ -80,74 +80,21 @@ class setting
 	}
 
 
-	public static function get_id()
+	public static function __callStatic($_fn, $_arg)
 	{
-		return self::get_field('id');
+		if(substr($_fn, 0, 4) === 'get_')
+		{
+			$field = substr($_fn, 4);
+			return self::get_field($field);
+		}
+		elseif(substr($_fn, 0, 4) === 'set_')
+		{
+			$field = substr($_fn, 4);
+			return self::set_field($field, ...$_arg);
+		}
+
 	}
 
-
-	public static function get_price()
-	{
-		return self::get_field('plus');
-	}
-
-	public static function get_bank()
-	{
-		return self::get_field('payment');
-	}
-
-
-	public static function set_amount_end($_data)
-	{
-		return self::set_field('amount_end', $_data);
-	}
-
-	public static function set_payment_response($_data)
-	{
-		return self::set_field('payment_response', $_data);
-	}
-
-
-	public static function set_payment_response1($_data)
-	{
-		return self::set_field('payment_response1', $_data);
-	}
-
-
-	public static function set_payment_response2($_data)
-	{
-		return self::set_field('payment_response2', $_data);
-	}
-
-
-	public static function set_payment_response3($_data)
-	{
-		return self::set_field('payment_response3', $_data);
-	}
-
-
-	public static function set_payment_response4($_data)
-	{
-		return self::set_field('payment_response4', $_data);
-	}
-
-
-	public static function set_condition($_data)
-	{
-		return self::set_field('condition', $_data);
-	}
-
-
-	public static function set_banktoken($_data)
-	{
-		return self::set_field('banktoken', $_data);
-	}
-
-
-	public static function set_verify($_data)
-	{
-		return self::set_field('verify', $_data);
-	}
 
 	public static function set_budget_field()
 	{

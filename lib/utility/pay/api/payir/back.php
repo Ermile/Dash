@@ -54,9 +54,9 @@ class back
         $payir['api']     = \dash\option::config('payir', 'api');
         $payir['transId'] = $transId;
 
-        if(\dash\utility\pay\setting::get_price())
+        if(\dash\utility\pay\setting::get_plus())
         {
-            $amount  = floatval(\dash\utility\pay\setting::get_price()) * 10;
+            $amount  = floatval(\dash\utility\pay\setting::get_plus()) * 10;
         }
         else
         {

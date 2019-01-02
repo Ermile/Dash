@@ -5,20 +5,63 @@
 {%block body%}
 
 <div class="f justify-center align-center mT100">
-	<div class="c3 s12">
+	<div class="c4 s12">
 		<div class="cbox">
 
 			{%if payDetail.msg_go%}
 			<div class="msg" >{{payDetail.msg_go}}</div>
 			{%endif%}
 
-			<div class="msg">{{dataRow.title}}</div>
-			<div class="msg"><i class="spay-128-{{dataRow.payment}}"></i>{{dataRow.payment}}</div>
 			<div class="msg">{{dataRow.plus| fitNumber}}</div>
-			<div class="msg">{{dataRow.date}}</div>
 			<div class="msg">{{dataRow.displayname}}</div>
 
 			<form method="post">
+
+			  <p>{%trans "Choose a gateway and enter an amount to charge your account"%}</p>
+	          {%if options.parsian.status%}
+	          <div class="radioGateway" title='{%trans "Parsian"%}'>
+	           <input type="radio" name="bank" value="parsian" id="parsian" checked>
+	           <label for='parsian' class="spay-64-parsian"></label>
+	          </div>
+	          {%endif%}
+
+	          {%if options.asanpardakht.status%}
+	          <div class="radioGateway">
+	           <input type="radio" name="bank" value="asanpardakht" id="asanpardakht">
+	           <label for='asanpardakht' class="spay-64-asanpardakht"></label>
+	          </div>
+	          {%endif%}
+
+	          {%if options.irkish.status%}
+	           <div class="radioGateway">
+	           <input type="radio" name="bank" value="irKish" id="irKish">
+	           <label for='irKish' class="spay-64-irkish"></label>
+	          </div>
+	          {%endif%}
+
+	          {%if options.zarinpal.status%}
+	          <div class="radioGateway">
+	           <input type="radio" name="bank" value="ZarinPal" id="ZarinPal">
+	           <label for='ZarinPal' class="spay-64-zarinpal"></label>
+	          </div>
+	          {%endif%}
+
+	          {%if options.payir.status%}
+	          <div class="radioGateway">
+	           <input type="radio" name="bank" value="payir" id="payir">
+	           <label for='payir' class="spay-64-payir"></label>
+	          </div>
+	          {%endif%}
+
+	          {%if options.mellat.status%}
+	          <div class="radioGateway">
+	           <input type="radio" name="bank" value="mellat" id="mellat">
+	           <label for='mellat' class="spay-64-mellat"></label>
+	          </div>
+	          {%endif%}
+
+
+
 				<input type="hidden" name="ok" value="1">
 				<button class="btn primary block">{%trans "Pay"%}</button>
 			</form>
@@ -34,7 +77,7 @@
 
 {%if perm_su()%}
 <div class="f">
-	<div class="c3 s12">
+	<div class="c s12">
 		<div class="cbox">
 			<h3>Payment detail</h3>
 			{%for key, value in dataRow.payment_response%}
@@ -43,7 +86,7 @@
 		</div>
 	</div>
 
-	<div class="c3 s12">
+	<div class="c s12">
 		<div class="cbox">
 			<h3>Payment response1</h3>
 			{%for key, value in dataRow.payment_response1%}
@@ -52,7 +95,7 @@
 		</div>
 	</div>
 
-	<div class="c3 s12">
+	<div class="c s12">
 		<div class="cbox">
 			<h3>Payment response2</h3>
 			{%for key, value in dataRow.payment_response2%}
@@ -61,11 +104,22 @@
 		</div>
 	</div>
 
-	<div class="c3 s12">
+	<div class="c s12">
 		<div class="cbox">
 			<h3>Payment response3</h3>
 			{%for key, value in dataRow.payment_response3%}
 				<div class="msg"><code>{{key}}</code> <kbd class="floatL">{{value}}</kbd></div>
+			{%endfor%}
+		</div>
+	</div>
+
+	<div class="c s12">
+		<div class="cbox">
+			<h3>Payment record</h3>
+			{%for key, value in dataRow%}
+			{% if key not in ['payment_response','payment_response1','payment_response2','payment_response3']%}
+				<div class="msg"><code>{{key}}</code> <kbd class="floatL">{{value}}</kbd></div>
+			{%endif%}
 			{%endfor%}
 		</div>
 	</div>

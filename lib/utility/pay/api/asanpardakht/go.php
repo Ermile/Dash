@@ -43,8 +43,8 @@ class go
             return false;
         }
 
-        $price = \dash\utility\pay\setting::get_price();
-        $price = $price * 10;
+        $price = \dash\utility\pay\setting::get_plus();
+        $price = floatval($price) * 10;
 
         $orderId        = $transaction_id;
         $localDate      = date("Ymd His");

@@ -11,50 +11,10 @@
     {%if HaveOnePayment %}
       <div class="cbox">
         <h2>{%trans "Charge your account"%}</h2>
-        <p>{%trans "Choose a gateway and enter an amount to charge your account"%}</p>
+        <p>{%trans "Enter an amount to charge your account"%}</p>
 
         <form method="post" autocomplete="off">
-          {%if options.parsian.status%}
-          <div class="radioGateway" title='{%trans "Parsian"%}'>
-           <input type="radio" name="bank" value="parsian" id="parsian" checked>
-           <label for='parsian' class="spay-64-parsian"></label>
-          </div>
-          {%endif%}
 
-          {%if options.asanpardakht.status%}
-          <div class="radioGateway">
-           <input type="radio" name="bank" value="asanpardakht" id="asanpardakht">
-           <label for='asanpardakht' class="spay-64-asanpardakht"></label>
-          </div>
-          {%endif%}
-
-          {%if options.irkish.status%}
-           <div class="radioGateway">
-           <input type="radio" name="bank" value="irKish" id="irKish">
-           <label for='irKish' class="spay-64-irkish"></label>
-          </div>
-          {%endif%}
-
-          {%if options.zarinpal.status%}
-          <div class="radioGateway">
-           <input type="radio" name="bank" value="ZarinPal" id="ZarinPal">
-           <label for='ZarinPal' class="spay-64-zarinpal"></label>
-          </div>
-          {%endif%}
-
-          {%if options.payir.status%}
-          <div class="radioGateway">
-           <input type="radio" name="bank" value="payir" id="payir">
-           <label for='payir' class="spay-64-payir"></label>
-          </div>
-          {%endif%}
-
-          {%if options.mellat.status%}
-          <div class="radioGateway">
-           <input type="radio" name="bank" value="mellat" id="mellat">
-           <label for='mellat' class="spay-64-mellat"></label>
-          </div>
-          {%endif%}
 
          <div class="input pA5">
           <label class="addon" for="amount-number">{%trans userUnit%}</label>
