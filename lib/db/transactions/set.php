@@ -201,7 +201,7 @@ trait set
 
 		$insert_id = self::insert($insert);
 
-		\dash\db\logs::set('transactions:insert', $_args['user_id'], $log_meta);
+		// \dash\db\logs::set('transactions:insert', $_args['user_id'], $log_meta);
 		return $insert_id;
 	}
 

@@ -56,6 +56,18 @@ class transactions
 		return $fn::calc_budget(...func_get_args());
 	}
 
+	public static function load()
+	{
+		$fn = self::transaction_table_name('load');
+		return $fn::load(...func_get_args());
+	}
+
+	public static function load_banktoken()
+	{
+		$fn = self::transaction_table_name('load_banktoken');
+		return $fn::load_banktoken(...func_get_args());
+	}
+
 
 	public static function final_verify($_transaction_id)
 	{
@@ -74,7 +86,8 @@ class transactions
 			$function  = $dash_fn[1];
 			return $namespace::$function($_transaction_id);
 		}
-
 	}
+
+
 }
 ?>

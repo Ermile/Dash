@@ -5,24 +5,18 @@ namespace dash\db\transactions;
 trait budget
 {
 
-	public static function calc_budget($_transaction_id, $_plus, $_minus, $_meta = [])
+	public static function calc_budget($_detail)
 	{
-		if(!$_transaction_id || !is_numeric($_transaction_id))
+		if(!isset($_detail['id']))
 		{
 			return false;
 		}
 
-		$transaction_detail = self::get(['id' => $_transaction_id, 'limit' => 1]);
-
-		if(!isset($transaction_detail['id']))
-		{
-			return false;
-		}
 		$user_as_unverify = false;
 
-		if(array_key_exists('user_id', $transaction_detail))
+		if(array_key_exists('user_id', $_detail))
 		{
-			if($transaction_detail['user_id'])
+			if($_detail['user_id'])
 			{
 				// no problem to continue;
 			}
@@ -38,7 +32,7 @@ trait budget
 			return false;
 		}
 
-		if(isset($transaction_detail['type']) && isset($transaction_detail['unit']))
+		if(isset($_detail['type']) && isset($_detail['unit_id']))
 		{
 			// no problem to continue;
 		}
@@ -49,23 +43,24 @@ trait budget
 
 		if($user_as_unverify)
 		{
-			$budget_before           = self::budget_unverify(['type' => $transaction_detail['type'], 'unit' => $transaction_detail['unit_id']]);
+			$budget_before = self::budget_unverify(['type' => $_detail['type'], 'unit' => $_detail['unit_id']]);
 		}
 		else
 		{
-			$budget_before           = self::budget($transaction_detail['user_id'], ['type' => $transaction_detail['type'], 'unit' => $transaction_detail['unit_id']]);
+			$budget_before = self::budget($_detail['user_id'], ['type' => $_detail['type'], 'unit' => $_detail['unit_id']]);
 		}
 
 		$budget_before           = floatval($budget_before);
 
-		$budget                  = $budget_before + (floatval($_plus) - floatval($_minus));
+		$budget                  = $budget_before + (floatval($_detail['plus']) - floatval($_detail['minus']));
 
-		$update                  = $_meta;
+		$update                  = [];
 		$update['dateverify']    = time();
 		$update['budget_before'] = $budget_before;
 		$update['budget']        = $budget;
 
-		\dash\db\transactions::update($update, $_transaction_id);
+		return $update;
+
 
 	}
 	/**

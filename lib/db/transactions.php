@@ -50,6 +50,58 @@ class transactions
 	}
 
 
+	public static function load($_token)
+	{
+		if(!$_token)
+		{
+			return false;
+		}
+
+		$query =
+		"
+			SELECT
+				transactions.*,
+				users.displayname AS `displayname`
+			FROM
+				transactions
+			LEFT JOIN users ON users.id = transactions.user_id
+			WHERE
+				transactions.token = '$_token'
+			LIMIT 1
+		";
+
+		$result = \dash\db::get($query, null, true);
+		return $result;
+	}
+
+
+	public static function load_banktoken($_token, $_bank)
+	{
+		if(!$_token || !$_bank)
+		{
+			return false;
+		}
+
+		$query =
+		"
+			SELECT
+				transactions.*,
+				users.displayname AS `displayname`
+			FROM
+				transactions
+			LEFT JOIN users ON users.id = transactions.user_id
+			WHERE
+				transactions.banktoken = '$_token' AND
+				transactions.payment = '$_bank'
+			LIMIT 1
+		";
+
+		$result = \dash\db::get($query, null, true);
+		return $result;
+	}
+
+
+
 	/**
 	 * get the transaction record
 	 *

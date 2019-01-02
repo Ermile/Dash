@@ -17,8 +17,14 @@ class model
 
 		$meta            = [];
 		$meta['user_id'] = \dash\user::id();
-		$meta['verify']  = 1;
+
+		if(!\dash\permission::supervisor())
+		{
+			$meta['verify']  = 1;
+		}
+
 		$billing_history = \dash\db\transactions::search(null, $meta);
+
 		return $billing_history;
 	}
 
@@ -52,7 +58,22 @@ class model
 
 		$meta = ['turn_back' => \dash\url::pwd()];
 
-		\dash\utility\payment\pay::start(\dash\user::id(), \dash\request::post('bank'), \dash\request::post('amount'), $meta);
+		if(\dash\url::isLocal())
+		{
+			$meta =
+			[
+				'turn_back' => \dash\url::pwd(),
+				'user_id'   => \dash\user::id(),
+				'bank'      => \dash\request::post('bank'),
+				'amount'    => \dash\request::post('amount'),
+			];
+
+			\dash\utility\pay\start::site($meta);
+		}
+		else
+		{
+			\dash\utility\payment\pay::start(\dash\user::id(), \dash\request::post('bank'), \dash\request::post('amount'), $meta);
+		}
 	}
 
 

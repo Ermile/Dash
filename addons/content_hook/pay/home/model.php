@@ -1,17 +1,19 @@
 <?php
-namespace content_hook\pay\token;
+namespace content_hook\pay\home;
 
 
 class model
 {
 	public static function post()
 	{
-		$default =
-		[
-			'get_token' => false,
-			'price'     => 0,
-			'bank'      => null,
-		];
+
+		if(\dash\request::post('ok') == '1')
+		{
+			$args            = [];
+			$args['token']   = \dash\url::child();
+			// $args['bank'] = null;
+			\dash\utility\pay\start::bank($args);
+		}
 
 	}
 }

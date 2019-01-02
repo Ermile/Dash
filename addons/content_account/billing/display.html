@@ -100,9 +100,9 @@
 
 
 {%if history%}
-<div class="cbox">
+
     <h3 id="billing-history" class="pA10">{%trans "Billing History"%}</h3>
-    <table class="tbl">
+    <table class="tbl1 v6 fs14">
       <thead class="primary">
         <tr>
           <th class="s0">{%trans "Title" %}</th>
@@ -110,6 +110,10 @@
           <th>{%trans "Value" %}</th>
           <th>{%trans "Budget After" %}</th>
           <th>{%trans "Invoice" %}</th>
+          {%if perm_su()%}
+            <th>{%trans "Verify" %}</th>
+            <th>{%trans "Detail" %}</th>
+          {%endif%}
         </tr>
       </thead>
       <tbody>
@@ -139,13 +143,17 @@
             <i>-</i>
 {%endif%}
           </td>
+          {%if perm_su()%}
+            <td>{%if value.verify%}<i class="sf-check fc-green"></i>{%else%}<i class="sf-times fc-red"></i>{%endif%}</td>
+            <td><a class="btn xs warn" href="{{url.kingdom}}/hook/pay/{{value.token}}">{%trans "Detail"%}</a></td>
+          {%endif%}
          </tr>
 {%endfor%}
 
       </tbody>
     </table>
     {%include display.pagination%}
-</div>
+
 {%else%}
 <p class="msg info2 txtC fs14">{%trans "You are not have payment history yet!"%}</p>
 {%endif%}

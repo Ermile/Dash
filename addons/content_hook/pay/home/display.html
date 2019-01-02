@@ -3,23 +3,28 @@
 
 
 {%block body%}
+
 <div class="f justify-center align-center mT100">
-	<div class="c3">
+	<div class="c3 s12">
 		<div class="cbox">
 
-			<div class="text">
-			 <p>{{autoredirect.title}}</p>
-			</div>
+			{%if payDetail.msg_go%}
+			<div class="msg" >{{payDetail.msg_go}}</div>
+			{%endif%}
 
-			<form method="{{autoredirect.method}}" data-action action="{{autoredirect.url}}" id='autoredirectform'>
-			{%for key, value in autoredirect.args%}
-				<input type="hidden" name="{{key}}" value="{{value}}">
-			{%endfor%}
+			<div class="msg">{{dataRow.title}}</div>
+			<div class="msg"><i class="spay-128-{{dataRow.payment}}"></i>{{dataRow.payment}}</div>
+			<div class="msg">{{dataRow.plus| fitNumber}}</div>
+			<div class="msg">{{dataRow.date}}</div>
+			<div class="msg">{{dataRow.displayname}}</div>
 
-				<button type="submit" class="btn block primary mT25">
-					{%if autoredirect.button%}{{autoredirect.button}}{%else%}{%trans "Go"%}{%endif%}
-				</button>
+			<form method="post">
+				<input type="hidden" name="ok" value="1">
+				<button class="btn primary block">{%trans "Pay"%}</button>
 			</form>
+			{%if payDetail.turn_back%}
+			<a class="btn success block mT10" href="{{payDetail.turn_back}}">{%trans "Back"%}</a>
+			{%endif%}
 
 		</div>
 
@@ -27,5 +32,44 @@
 
 </div>
 
+{%if perm_su()%}
+<div class="f">
+	<div class="c3 s12">
+		<div class="cbox">
+			<h3>Payment detail</h3>
+			{%for key, value in dataRow.payment_response%}
+				<div class="msg"><code>{{key}}</code> <kbd class="floatL">{{value}}</kbd></div>
+			{%endfor%}
+		</div>
+	</div>
+
+	<div class="c3 s12">
+		<div class="cbox">
+			<h3>Payment response1</h3>
+			{%for key, value in dataRow.payment_response1%}
+				<div class="msg"><code>{{key}}</code> <kbd class="floatL">{{value}}</kbd></div>
+			{%endfor%}
+		</div>
+	</div>
+
+	<div class="c3 s12">
+		<div class="cbox">
+			<h3>Payment response2</h3>
+			{%for key, value in dataRow.payment_response2%}
+				<div class="msg"><code>{{key}}</code> <kbd class="floatL">{{value}}</kbd></div>
+			{%endfor%}
+		</div>
+	</div>
+
+	<div class="c3 s12">
+		<div class="cbox">
+			<h3>Payment response3</h3>
+			{%for key, value in dataRow.payment_response3%}
+				<div class="msg"><code>{{key}}</code> <kbd class="floatL">{{value}}</kbd></div>
+			{%endfor%}
+		</div>
+	</div>
+</div>
+{%endif%}
 
 {%endblock%}

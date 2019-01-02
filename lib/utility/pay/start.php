@@ -4,6 +4,65 @@ namespace dash\utility\pay;
 
 class start
 {
+	public static function bank($_args)
+	{
+		$default =
+		[
+			'bank'  => null,
+			'token' => null,
+		];
+
+		if(!is_array($_args))
+		{
+			$_args = [];
+		}
+
+		$token = $_args['token'];
+		if(!$token)
+		{
+			\dash\notif::error(T_("Invalid token"));
+			return self::theend();
+		}
+
+        \dash\utility\pay\setting::load_token($token);
+
+        $bank = \dash\utility\pay\setting::get_bank();
+        if(!$bank)
+		{
+			\dash\notif::error(T_("Invalid bank"));
+			return self::theend();
+		}
+
+		$_args = array_merge($default, $_args);
+
+        if(is_callable(["\\dash\\utility\\pay\\api\\$bank\\go", "bank"]))
+        {
+            ("\\dash\\utility\\pay\\api\\$bank\\go")::bank();
+        }
+        else
+        {
+            \dash\notif::error(T_("This payment is not supported in this system"));
+        }
+
+        return self::theend();
+	}
+
+
+	public static function site($_args)
+	{
+		if(!is_array($_args))
+		{
+			$_args = [];
+		}
+
+		if(!array_key_exists('get_token', $_args))
+		{
+			$_args['get_token'] = false;
+		}
+
+		return self::token($_args);
+	}
+
 	public static function token($_args)
 	{
 		$default =
@@ -18,10 +77,9 @@ class start
 			'msg_go'          => null,
 			'msg_back_ok'     => null,
 			'msg_back_failed' => null,
-			'auto_bakc'       => false,
 			'auto_go'         => false,
+			'auto_back'       => false,
 			'user_id'         => null,
-			'mobile'          => null,
 			'get_token'       => false,
 			'other_field'     => [],
 		];
@@ -44,7 +102,7 @@ class start
             else
             {
             	\dash\notif::error(T_("Invalid user"));
-                return self::return_false($_args);
+                return self::theend($_args);
             }
         }
 
@@ -55,35 +113,38 @@ class start
         else
         {
             \dash\notif::error(T_("Invalid amount"));
-            return self::return_false($_args);
+            return self::theend($_args);
         }
 
         $bank = mb_strtolower($_args['bank']);
 
         if(!$bank)
         {
-        	if(!$_args['get_token'])
+        	if(!$_args['get_token'] || $_args['auto_go'])
         	{
 	            \dash\notif::error(T_("Please select a bank port"), 'payment');
-	            return self::return_false($_args);
+	            return self::theend($_args);
         	}
         }
 
+        if($bank)
+        {
+	        if(is_callable(["\\dash\\utility\\payment\\pay\\$bank", $bank]))
+	        {
+	            return self::generate_token($_args);
+	        }
+	        else
+	        {
+	            \dash\notif::error(T_("This payment is not supported in this system"));
+	            return self::theend($_args);
+	        }
+        }
 
-        if(true or is_callable(["\\dash\\utility\\payment\\pay\\$bank", $bank]))
-        {
-            return self::generate_token($_args);
-        }
-        else
-        {
-            \dash\notif::error(T_("This payment is not supported in this system"));
-            return self::return_false($_args);
-        }
 	}
 
-	private static function return_false($_args)
+	private static function theend($_args = [])
 	{
-		if($_args['get_token'])
+		if(isset($_args['get_token']) && $_args['get_token'])
 		{
 			\dash\code::jsonBoom(\dash\notif::get());
 		}
@@ -103,7 +164,7 @@ class start
 			'msg_go'          => $_args['msg_go'],
 			'msg_back_ok'     => $_args['msg_back_ok'],
 			'msg_back_failed' => $_args['msg_back_failed'],
-			'auto_bakc'       => $_args['auto_bakc'],
+			'auto_back'       => $_args['auto_back'],
 			'auto_go'         => $_args['auto_go'],
 			'get_token'       => $_args['get_token'],
 		];
@@ -138,7 +199,7 @@ class start
 
 		if(!$result)
 		{
-			return self::return_false($_args);
+			return self::theend($_args);
 		}
 
 		$url = \dash\url::kingdom(). '/hook/pay/'. $token;
