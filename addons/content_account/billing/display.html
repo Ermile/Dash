@@ -71,6 +71,7 @@
           <th>{%trans "Budget After" %}</th>
           <th>{%trans "Invoice" %}</th>
           {%if perm_su()%}
+            <th>{%trans "Date" %}</th>
             <th>{%trans "Verify" %}</th>
             <th>{%trans "Detail" %}</th>
           {%endif%}
@@ -104,8 +105,9 @@
 {%endif%}
           </td>
           {%if perm_su()%}
+            <td title="{{value.datecreated | dt(true)}}">{{value.datecreated | dt('human', 'year')}}</td>
             <td>{%if value.verify%}<i class="sf-check fc-green"></i>{%else%}<i class="sf-times fc-red"></i>{%endif%}</td>
-            <td><a class="btn xs warn" href="{{url.kingdom}}/hook/pay/{{value.token}}">{%trans "Detail"%}</a></td>
+            <td><a title="{{value.token}}" class="btn xs warn" href="{{url.kingdom}}/hook/pay/{{value.token}}">{%trans "Detail"%}</a></td>
           {%endif%}
          </tr>
 {%endfor%}

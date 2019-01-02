@@ -44,10 +44,20 @@ class start
 		}
 
 		$banktoken = \dash\utility\pay\setting::get_banktoken();
+
 		if($banktoken)
 		{
-			\dash\notif::error(T_("This record is go to bank"));
-			return self::theend();
+			$duplicate_record =self::duplicate_record();
+
+			if(!$duplicate_record)
+			{
+				\dash\notif::error(T_("This record is go to bank"));
+				return self::theend();
+			}
+			else
+			{
+        		\dash\utility\pay\setting::load_token($duplicate_record, true);
+			}
 		}
 
         if(is_callable(["\\dash\\utility\\pay\\api\\$bank\\go", "bank"]))
@@ -66,6 +76,30 @@ class start
 	}
 
 
+	private static function duplicate_record()
+	{
+		$detail    = \dash\utility\pay\setting::get_all();
+
+		$payment_response = [];
+
+		if(isset($detail['payment_response']))
+		{
+			$payment_response = json_decode($detail['payment_response'], true);
+		}
+
+		if(isset($payment_response['raw']) && is_array($payment_response['raw']))
+		{
+			$payment_response['raw']['get_token'] = true;
+			$token = self::token($payment_response['raw'], true);
+			return $token;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+
 	public static function site($_args)
 	{
 		if(!is_array($_args))
@@ -81,7 +115,7 @@ class start
 		return self::token($_args);
 	}
 
-	public static function token($_args)
+	public static function token($_args, $_return = false)
 	{
 		$default =
 		[
@@ -134,7 +168,7 @@ class start
             return self::theend($_args);
         }
 
-	    return self::generate_token($_args);
+	    return self::generate_token($_args, $_return);
 	}
 
 
@@ -151,18 +185,19 @@ class start
 	}
 
 
-	private static function generate_token($_args)
+	private static function generate_token($_args, $_return)
 	{
 		$payment_response =
 		[
-			'fromurl'         => $_args['fromurl'],
-			'turn_back'       => $_args['turn_back'],
-			'msg_go'          => $_args['msg_go'],
-			'msg_back_ok'     => $_args['msg_back_ok'],
-			'msg_back_failed' => $_args['msg_back_failed'],
-			'auto_back'       => $_args['auto_back'],
-			'auto_go'         => $_args['auto_go'],
-			'get_token'       => $_args['get_token'],
+			'fromurl'           => $_args['fromurl'],
+			'turn_back'         => $_args['turn_back'],
+			'msg_go'            => $_args['msg_go'],
+			'msg_back_ok'       => $_args['msg_back_ok'],
+			'msg_back_failed'   => $_args['msg_back_failed'],
+			'auto_back'         => $_args['auto_back'],
+			'auto_go'           => $_args['auto_go'],
+			'get_token'         => $_args['get_token'],
+			'raw' => $_args,
 		];
 
 		$payment_response = json_encode($payment_response, JSON_UNESCAPED_UNICODE);
@@ -208,8 +243,15 @@ class start
 				'url'   => $url,
 			];
 
-			\dash\notif::result($detail);
-			\dash\code::jsonBoom(\dash\notif::get());
+			if($_return)
+			{
+				return $token;
+			}
+			else
+			{
+				\dash\notif::result($detail);
+				\dash\code::jsonBoom(\dash\notif::get());
+			}
 		}
 		else
 		{

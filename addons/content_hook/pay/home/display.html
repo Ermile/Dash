@@ -81,7 +81,9 @@
 		<div class="cbox">
 			<h3>Payment detail</h3>
 			{%for key, value in dataRow.payment_response%}
+			{% if key not in ['raw']%}
 				<div class="msg"><code>{{key}}</code> <kbd class="floatL">{{value}}</kbd></div>
+			{%endif%}
 			{%endfor%}
 		</div>
 	</div>

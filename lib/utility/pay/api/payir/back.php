@@ -85,7 +85,6 @@ class back
             {
                 if(isset($is_ok['amount']) && intval($is_ok['amount']) === intval($amount))
                 {
-
                     \dash\utility\pay\setting::set_condition('ok');
 
                     \dash\utility\pay\setting::set_amount_end($amount / 10);
@@ -102,7 +101,7 @@ class back
                 }
                 else
                 {
-                    \dash\db\logs::set('pay:payir:amount:not:found:verify');
+                    \dash\log::set('pay:payir:amount:not:found:verify', ['amount' => $amount, 'bankAmount' => $is_ok['amount']]);
                     \dash\notif::error(T_("Your session is lost! We can not find amount"));
                     return \dash\utility\pay\setting::turn_back();
                 }

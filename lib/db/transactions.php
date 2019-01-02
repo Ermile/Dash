@@ -93,6 +93,7 @@ class transactions
 			WHERE
 				transactions.banktoken = '$_token' AND
 				transactions.payment = '$_bank'
+			ORDER BY transactions.id DESC
 			LIMIT 1
 		";
 

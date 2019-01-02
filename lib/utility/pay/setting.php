@@ -39,9 +39,9 @@ class setting
     }
 
 
-    public static function load_token($_token)
+    public static function load_token($_token, $_force = false)
 	{
-		if(!self::$load)
+		if(!self::$load || $_force)
 		{
 			self::$load = true;
 			self::$transaction_detail = \dash\utility\pay\transactions::load($_token);
