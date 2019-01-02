@@ -1,19 +1,10 @@
 <?php
-namespace dash\utility\payment\payment;
+namespace dash\utility\pay\api\irkish;
 
 
-class irkish
+class bank
 {
 
-	/**
-     * auto save logs
-     *
-     * @var        boolean
-     */
-    public static $save_log = false;
-    // to save log for this user
-    public static $user_id  = null;
-    public static $log_data = null;
     public static $payment_response = [];
 
     /**
@@ -23,22 +14,11 @@ class irkish
      */
     public static function pay($_args = [])
     {
-        $log_meta =
-        [
-            'data' => self::$log_data,
-            'meta' =>
-            [
-                'args' => func_get_args()
-            ],
-        ];
 
         // if soap is not exist return false
         if(!class_exists("soapclient"))
         {
-            if(self::$save_log)
-            {
-                \dash\db\logs::set('payment:irkish:soapclient:not:install', self::$user_id, $log_meta);
-            }
+            \dash\db\logs::set('payment:irkish:soapclient:not:install');
             \dash\notif::error(T_("Can not connect to irkish gateway. Install it!"));
             return false;
         }
@@ -54,24 +34,26 @@ class irkish
 
             $client = @new \SoapClient('https://ikc.shaparak.ir/XToken/Tokens.xml', $soap_meta);
 
-
             $result = $client->__soapCall("MakeToken", array($_args));
+
+            self::$payment_response = (array) $result;
+
             if(isset($result->MakeTokenResult->result) && $result->MakeTokenResult->result === true && isset($result->MakeTokenResult->token))
             {
                 $token = $result->MakeTokenResult->token;
-                \dash\db\logs::set('payment:irkish:redirect', self::$user_id, $log_meta);
+                \dash\db\logs::set('payment:irkish:redirect');
                 return $token;
             }
             else
             {
-                \dash\db\logs::set('payment:irkish:error', self::$user_id, $log_meta);
+                \dash\db\logs::set('payment:irkish:error');
                 \dash\notif::error(T_("Error in connecting to bank service"));
                 return false;
             }
         }
         catch (\Exception $e)
         {
-            \dash\db\logs::set('payment:irkish:error:load:web:services', self::$user_id, $log_meta);
+            \dash\db\logs::set('payment:irkish:error:load:web:services');
             \dash\notif::error(T_("Error in load web services"));
             return false;
         }
@@ -85,15 +67,6 @@ class irkish
      */
     public static function verify($_args = [])
     {
-        $log_meta =
-        [
-            'data' => self::$log_data,
-            'meta' =>
-            [
-                'args' => func_get_args()
-            ],
-        ];
-
         try
         {
             $amount = $_args['amount'];
@@ -133,7 +106,7 @@ class irkish
         }
         catch(\Exception $e)
         {
-            \dash\db\logs::set('payment:irkish:error:load:web:services:verify', self::$user_id, $log_meta);
+            \dash\db\logs::set('payment:irkish:error:load:web:services:verify');
             \dash\notif::error(T_("Error in load web services"));
             return false;
         }

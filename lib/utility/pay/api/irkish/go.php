@@ -1,41 +1,22 @@
 <?php
-namespace dash\utility\payment\pay;
+namespace dash\utility\pay\api\irkish;
 
 
-class irkish
+class go
 {
 
-
-    /**
-     * pay by irkish payment
-     * check config of irkish
-     * save transaction by conditon request
-     * redirect to payment url
-     * @param      <type>  $_user_id  The user identifier
-     * @param      <type>  $_amount   The amount
-     * @param      array   $_options  The options
-     */
-    public static function irkish($_user_id, $_amount, $_options = [])
+    public static function bank()
     {
-        $log_meta =
-        [
-            'data' => \dash\utility\payment\pay::$log_data,
-            'meta' =>
-            [
-                'input'   => func_get_args(),
-            ]
-        ];
-
         if(!\dash\option::config('irkish', 'status'))
         {
-            \dash\db\logs::set('pay:irkish:status:false', $_user_id, $log_meta);
+            \dash\db\logs::set('pay:irkish:status:false');
             \dash\notif::error(T_("The irkish payment on this service is locked"));
             return false;
         }
 
         if(!\dash\option::config('irkish', 'merchantId'))
         {
-            \dash\db\logs::set('pay:irkish:merchantId:not:set', $_user_id, $log_meta);
+            \dash\db\logs::set('pay:irkish:merchantId:not:set');
             \dash\notif::error(T_("The irkish payment merchantId not set"));
             return false;
         }
@@ -60,61 +41,30 @@ class irkish
         // change rial to toman
         // but the plus is toman
         // need less to *10 the plus
-        $irkish['amount'] = (string) floatval($_amount) * 10;
+        $irkish['amount'] = (string) (floatval(\dash\utility\pay\setting::get_plus()) * 10);
 
-        $transaction_start =
-        [
-            'caller'         => 'payment:irkish',
-            'title'          => T_("Pay by irkish payment"),
-            'user_id'        => $_user_id,
-            'plus'           => $_amount,
-            'payment'        => 'irkish',
-            'type'           => 'money',
-            'unit'           => 'toman',
-            'date'           => date("Y-m-d H:i:s"),
-            'amount_request' => $_amount,
-        ];
+        $transaction_id = \dash\utility\pay\setting::get_id();
 
-        if(isset($_options['other_field']) && is_array($_options['other_field']))
-        {
-            $transaction_start['other_field'] = $_options['other_field'];
-        }
-
-        //START TRANSACTION BY CONDITION REQUEST
-        $transaction_id = \dash\utility\payment\transactions::start($transaction_start);
-
-        $log_meta['data'] = \dash\utility\payment\pay::$log_data = $transaction_id;
-
-        if(!\dash\engine\process::status() || !$transaction_id)
+        if(!$transaction_id)
         {
             return false;
         }
-
-        if(isset($_options['turn_back']))
-        {
-            // save turn back url to redirect user to this url after coplete pay
-            $_SESSION['turn_back'][$transaction_id] = $_options['turn_back'];
-        }
-
         // set in this step and check in other step
         // $irkish['specialPaymentId'] = $transaction_id;
         $irkish['invoiceNo'] = $transaction_id;
 
+        $token = \dash\utility\pay\api\irkish\bank::pay($irkish);
 
-        \dash\utility\payment\payment\irkish::$user_id  = $_user_id;
-        \dash\utility\payment\payment\irkish::$log_data = \dash\utility\payment\pay::$log_data;
-
-        $token = \dash\utility\payment\payment\irkish::pay($irkish);
+        \dash\utility\pay\setting::set_payment_response1(\dash\utility\pay\api\irkish\bank::$payment_response);
 
         if($token)
         {
-            // save amount and autority in session to get when verifying
-            $_SESSION['amount']['irkish'][$token]                   = [];
-            $_SESSION['amount']['irkish'][$token]['amount']         = floatval($_amount) * 10;
-            $_SESSION['amount']['irkish'][$token]['transaction_id'] = $transaction_id;
 
-            $payment_response = json_encode((array) [], JSON_UNESCAPED_UNICODE);
-            \dash\utility\payment\transactions::update(['condition' => 'redirect', 'payment_response' => $payment_response], $transaction_id);
+
+            \dash\utility\pay\setting::set_condition('redirect');
+            \dash\utility\pay\setting::set_banktoken($token);
+
+            \dash\utility\pay\setting::save();
 
             // redirect to enter/redirect
             \dash\session::set('redirect_page_url', 'https://ikc.shaparak.ir/TPayment/Payment/index');
@@ -123,7 +73,7 @@ class irkish
             \dash\session::set('redirect_page_title', T_("Redirect to iran kish payment"));
             \dash\session::set('redirect_page_button', T_("Redirect"));
             \dash\notif::direct();
-            \dash\redirect::to(\dash\utility\payment\pay::get_callbck_url('redirect_page'));
+            \dash\redirect::to(\dash\utility\pay\setting::get_callbck_url('redirect_page'));
             return true;
         }
         else
