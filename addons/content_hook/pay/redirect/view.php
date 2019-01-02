@@ -1,5 +1,5 @@
 <?php
-namespace content_hook\pay;
+namespace content_hook\pay\redirect;
 
 
 class view
