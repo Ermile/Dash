@@ -1,44 +1,19 @@
 <?php
-namespace dash\utility\payment\payment;
+namespace dash\utility\pay\api\parsian;
 
 
-class parsian
+class bank
 {
 
-	/**
-     * auto save logs
-     *
-     * @var        boolean
-     */
-    public static $save_log = false;
-    // to save log for this user
-    public static $user_id  = null;
-    public static $log_data = null;
     public static $payment_response = [];
 
-    /**
-     * pay price
-     *
-     * @param      array  $_args  The arguments
-     */
     public static function pay($_args = [])
     {
-        $log_meta =
-        [
-            'data' => self::$log_data,
-            'meta' =>
-            [
-                'args' => func_get_args()
-            ],
-        ];
-
-        // if soap is not exist return false
+          // if soap is not exist return false
         if(!class_exists("soapclient"))
         {
-            if(self::$save_log)
-            {
-                \dash\db\logs::set('payment:parsian:soapclient:not:install', self::$user_id, $log_meta);
-            }
+
+            \dash\db\logs::set('payment:parsian:soapclient:not:install');
             \dash\notif::error(T_("Can not connect to parsian gateway. Install it!"));
             return false;
         }
@@ -65,20 +40,20 @@ class parsian
 
             if ($status === 0 && $token > 0)
             {
-                \dash\db\logs::set('payment:parsian:redirect', self::$user_id, $log_meta);
+                \dash\db\logs::set('payment:parsian:redirect');
                 $url = "https://pec.shaparak.ir/NewIPG/?Token=" . $token;
                 return $url;
             }
             else
             {
-                \dash\db\logs::set('payment:parsian:error', self::$user_id, $log_meta);
+                \dash\db\logs::set('payment:parsian:error');
                 \dash\notif::error($msg);
                 return false;
             }
         }
         catch (\Exception $e)
         {
-            \dash\db\logs::set('payment:parsian:error:load:web:services', self::$user_id, $log_meta);
+            \dash\db\logs::set('payment:parsian:error:load:web:services');
             \dash\notif::error(T_("Error in load web services"));
             return false;
         }
@@ -116,6 +91,8 @@ class parsian
 
             $result = $client->ConfirmPayment(["requestData" => $_args]);
 
+            self::$payment_response = $result;
+
             $Status = $result->ConfirmPaymentResult->Status;
 
             $RRN = isset($result->ConfirmPaymentResult->RRN) ? $result->ConfirmPaymentResult->RRN : null;
@@ -130,19 +107,19 @@ class parsian
 
             if($Status === 0)
             {
-                \dash\db\logs::set('payment:parsian:transaction:ok', self::$user_id, $log_meta);
+                \dash\db\logs::set('payment:parsian:transaction:ok');
                 return true;
             }
             else
             {
-                \dash\db\logs::set('payment:parsian:error:verify', self::$user_id, $log_meta);
+                \dash\db\logs::set('payment:parsian:error:verify');
                 \dash\notif::error(self::msg($Status));
                 return false;
             }
         }
         catch(Exception $e)
         {
-            \dash\db\logs::set('payment:parsian:error:load:web:services:verify', self::$user_id, $log_meta);
+            \dash\db\logs::set('payment:parsian:error:load:web:services:verify');
             \dash\notif::error(T_("Error in load web services"));
             return false;
         }
@@ -156,15 +133,6 @@ class parsian
      */
     public static function reverse($_args)
     {
-         $log_meta =
-        [
-            'data' => self::$log_data,
-            'meta' =>
-            [
-                'args' => func_get_args()
-            ],
-        ];
-
         try
         {
             $soap_meta =
@@ -183,19 +151,19 @@ class parsian
 
             if($Status === 0)
             {
-                \dash\db\logs::set('payment:parsian:transaction:ok', self::$user_id, $log_meta);
+                \dash\db\logs::set('payment:parsian:transaction:ok');
                 return true;
             }
             else
             {
-                \dash\db\logs::set('payment:parsian:error:verify', self::$user_id, $log_meta);
+                \dash\db\logs::set('payment:parsian:error:verify');
                 \dash\notif::error(self::msg($Status));
                 return false;
             }
         }
         catch(Exception $e)
         {
-            \dash\db\logs::set('payment:parsian:error:load:web:services:verify', self::$user_id, $log_meta);
+            \dash\db\logs::set('payment:parsian:error:load:web:services:verify');
             \dash\notif::error(T_("Error in load web services"));
             return false;
         }

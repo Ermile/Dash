@@ -1,33 +1,21 @@
 <?php
-namespace dash\utility\payment\payment;
+namespace dash\utility\pay\api\zarinpal;
 
 
-class zarinpal
+class bank
 {
 
-    public static $user_id  = null;
-    public static $log_data = null;
     public static $payment_response = [];
-    /**
-     * pay price
-     *
-     * @param      array  $_args  The arguments
-     */
+
+
     public static function pay($_args = [])
     {
-        $log_meta =
-        [
-            'data' => self::$log_data,
-            'meta' =>
-            [
-                'args' => func_get_args()
-            ],
-        ];
+
 
         // if soap is not exist return false
         if(!class_exists("soapclient"))
         {
-            \dash\db\logs::set('payment:zarinpal:soapclient:not:install', self::$user_id);
+            \dash\db\logs::set('payment:zarinpal:soapclient:not:install');
             \dash\notif::error(T_("Can not connect to zarinpal gateway. Install it!"));
             return false;
         }
@@ -45,21 +33,21 @@ class zarinpal
 
             if ($result->Status == 100)
             {
-                \dash\db\logs::set('payment:zarinpal:redirect', self::$user_id, $log_meta);
+                \dash\db\logs::set('payment:zarinpal:redirect');
 
                 $url = "https://www.zarinpal.com/pg/StartPay/" . $result->Authority;
                 return $url;
             }
             else
             {
-                \dash\db\logs::set('payment:zarinpal:error', self::$user_id, $log_meta);
+                \dash\db\logs::set('payment:zarinpal:error');
                 \dash\notif::error($msg);
                 return false;
             }
         }
         catch (\Exception $e)
         {
-            \dash\db\logs::set('payment:zarinpal:error:load:web:services', self::$user_id, $log_meta);
+            \dash\db\logs::set('payment:zarinpal:error:load:web:services');
             \dash\notif::error(T_("Error in load web services"));
             return false;
         }
@@ -102,14 +90,14 @@ class zarinpal
             }
             else
             {
-                \dash\db\logs::set('payment:zarinpal:verify:error', self::$user_id, $log_meta);
+                \dash\db\logs::set('payment:zarinpal:verify:error');
                 \dash\notif::error($msg);
                 return false;
             }
         }
         catch (\Exception $e)
         {
-            \dash\db\logs::set('payment:zarinpal:verify:error:load:web:services', self::$user_id, $log_meta);
+            \dash\db\logs::set('payment:zarinpal:verify:error:load:web:services');
             \dash\notif::error(T_("Error in load web services"));
             return false;
         }
