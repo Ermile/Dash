@@ -5,41 +5,25 @@ namespace dash\utility\payment\verify;
 class mellat
 {
 
-    /**
-     * { function_description }
-     *
-     * @param      <type>  $_args  The arguments
-     */
-    public static function mellat($_args)
+    public static function mellat($_token)
     {
-        \dash\utility\payment\verify::config();
-
-        $log_meta =
-        [
-            'data' => \dash\utility\payment\verify::$log_data,
-            'meta' =>
-            [
-                'input'   => func_get_args(),
-            ]
-        ];
-
         if(!\dash\option::config('mellat', 'status'))
         {
-            \dash\db\logs::set('pay:mellat:status:false', $_user_id, $log_meta);
+            \dash\db\logs::set('pay:mellat:status:false');
             \dash\notif::error(T_("The mellat payment on this service is locked"));
             return false;
         }
 
         if(!\dash\option::config('mellat', 'TerminalId'))
         {
-            \dash\db\logs::set('pay:mellat:TerminalId:null', $_user_id, $log_meta);
+            \dash\db\logs::set('pay:mellat:TerminalId:null');
             \dash\notif::error(T_("The mellat payment TerminalId not set"));
             return false;
         }
 
         if(!\dash\option::config('mellat', 'UserName'))
         {
-            \dash\db\logs::set('pay:mellat:UserName:null', $_user_id, $log_meta);
+            \dash\db\logs::set('pay:mellat:UserName:null');
             \dash\notif::error(T_("The mellat payment UserName not set"));
             return false;
         }
@@ -60,20 +44,20 @@ class mellat
 
         if(!$RefId)
         {
-            \dash\db\logs::set('pay:mellat:RefId:verify:not:found', \dash\utility\payment\verify::$user_id, $log_meta);
+            \dash\db\logs::set('pay:mellat:RefId:verify:not:found');
             \dash\notif::error(T_("The mellat payment RefId not set"));
-            return \dash\utility\payment\verify::turn_back();
+            return \dash\utility\pay\setting::turn_back();
         }
 
-        if(isset($_SESSION['amount']['mellat'][$RefId]['transaction_id']))
+        \dash\utility\pay\setting::load_banktoken($_token, $RefId, 'mellat');
+
+        $transaction_id  = \dash\utility\pay\setting::get_id();
+
+        if(!$transaction_id)
         {
-            $transaction_id  = $_SESSION['amount']['mellat'][$RefId]['transaction_id'];
-        }
-        else
-        {
-            \dash\db\logs::set('pay:mellat:SESSION:transaction_id:not:found', \dash\utility\payment\verify::$user_id, $log_meta);
+            \dash\db\logs::set('pay:mellat:SESSION:transaction_id:not:found');
             \dash\notif::error(T_("Your session is lost! We can not find your transaction"));
-            return \dash\utility\payment\verify::turn_back();
+            return \dash\utility\pay\setting::turn_back();
         }
 
 
@@ -86,100 +70,44 @@ class mellat
         $mellat['orderId']         = $transaction_id;
 
 
-        $log_meta['data'] = \dash\utility\payment\verify::$log_data = $transaction_id;
+        $amount_SESSION  = floatval(\dash\utility\pay\setting::get_plus());
 
-        if(isset($_SESSION['amount']['mellat'][$RefId]['amount']))
+        if(!$amount_SESSION)
         {
-            $amount_SESSION  = floatval($_SESSION['amount']['mellat'][$RefId]['amount']);
-        }
-        else
-        {
-            \dash\db\logs::set('pay:mellat:SESSION:amount:not:found', \dash\utility\payment\verify::$user_id, $log_meta);
+            \dash\db\logs::set('pay:mellat:SESSION:amount:not:found');
             \dash\notif::error(T_("Your session is lost! We can not find amount"));
-            return \dash\utility\payment\verify::turn_back();
+            return \dash\utility\pay\setting::turn_back();
         }
 
-        $update =
-        [
-            'amount_end'       => $amount_SESSION / 10,
-            'condition'        => 'pending',
-            'payment_response' => json_encode((array) $_args, JSON_UNESCAPED_UNICODE),
-        ];
 
-        \dash\utility\payment\transactions::update($update, $transaction_id);
+        \dash\utility\pay\setting::set_condition('pending');
+        \dash\utility\pay\setting::set_payment_response2($_REQUEST);
+        \dash\utility\pay\setting::save();
 
-        \dash\db\logs::set('pay:mellat:pending:request', \dash\utility\payment\verify::$user_id, $log_meta);
-
-        // $msg = \dash\utility\payment\payment\mellat::msg($ResCode);
 
         if(intval($ResCode) === 0)
         {
-            \dash\utility\payment\payment\mellat::$user_id = \dash\utility\payment\verify::$user_id;
-
-            \dash\utility\payment\payment\mellat::$log_data = \dash\utility\payment\verify::$log_data;
 
             $is_ok = \dash\utility\payment\payment\mellat::verify($mellat);
 
-            $payment_response = \dash\utility\payment\payment\mellat::$payment_response;
+            $payment_response = \dash\utility\pay\api\mellat\bank::$payment_response;
 
-            $log_meta['meta']['payment_response'] = (array) $payment_response;
-
-            $payment_response = json_encode((array) $payment_response, JSON_UNESCAPED_UNICODE);
+            \dash\utility\pay\setting::set_payment_response3($payment_response);
 
             if($is_ok)
             {
-                $update =
-                [
-                    'amount_end'       => $amount_SESSION / 10,
-                    'condition'        => 'ok',
-                    'verify'           => 1,
-                    'payment_response' => $payment_response,
-                ];
+                \dash\utility\pay\verify::bank_ok($amount_SESSION, $transaction_id);
 
-                \dash\utility\payment\verify::$final_verify         = true;
-                \dash\utility\payment\verify::$final_transaction_id = $transaction_id;
-
-                \dash\utility\payment\transactions::calc_budget($transaction_id, $amount_SESSION / 10, 0, $update);
-
-                \dash\db\logs::set('pay:mellat:ok:request', \dash\utility\payment\verify::$user_id, $log_meta);
-
-                \dash\session::set('payment_verify_status', 'ok');
-                \dash\session::set('payment_verify_amount', $amount_SESSION / 10);
-
-                unset($_SESSION['amount']['mellat'][$RefId]);
-
-                return \dash\utility\payment\verify::turn_back($transaction_id);
+                return \dash\utility\pay\setting::turn_back();
             }
             else
             {
-                $update =
-                [
-                    'amount_end'       => $amount_SESSION / 10,
-                    'condition'        => 'verify_error',
-                    'payment_response' => $payment_response,
-                ];
-
-                \dash\session::set('payment_verify_status', 'verify_error');
-
-                \dash\utility\payment\transactions::update($update, $transaction_id);
-                \dash\db\logs::set('pay:mellat:verify_error:request', \dash\utility\payment\verify::$user_id, $log_meta);
-                return \dash\utility\payment\verify::turn_back($transaction_id);
+                return \dash\utility\pay\verify::bank_error('verify_error');
             }
         }
         else
         {
-            $update =
-            [
-                'amount_end'       => $amount_SESSION / 10,
-                'condition'        => 'error',
-                'payment_response' => json_encode((array) $_args, JSON_UNESCAPED_UNICODE),
-            ];
-
-            \dash\session::set('payment_verify_status', 'error');
-
-            \dash\utility\payment\transactions::update($update, $transaction_id);
-            \dash\db\logs::set('pay:mellat:error:request', \dash\utility\payment\verify::$user_id, $log_meta);
-            return \dash\utility\payment\verify::turn_back($transaction_id);
+            return \dash\utility\pay\verify::bank_error('error');
         }
     }
 }

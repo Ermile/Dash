@@ -5,40 +5,16 @@ namespace dash\utility\payment\payment;
 class mellat
 {
 
-	/**
-     * auto save logs
-     *
-     * @var        boolean
-     */
-    public static $save_log = false;
-    // to save log for this user
-    public static $user_id  = null;
-    public static $log_data = null;
     public static $payment_response = [];
 
-    /**
-     * pay price
-     *
-     * @param      array  $_args  The arguments
-     */
+
     public static function pay($_args = [])
     {
-        $log_meta =
-        [
-            'data' => self::$log_data,
-            'meta' =>
-            [
-                'args' => func_get_args()
-            ],
-        ];
 
         // if soap is not exist return false
         if(!class_exists("soapclient"))
         {
-            if(self::$save_log)
-            {
-                \dash\db\logs::set('payment:mellat:soapclient:not:install', self::$user_id, $log_meta);
-            }
+            \dash\db\logs::set('payment:mellat:soapclient:not:install');
             \dash\notif::error(T_("Can not connect to mellat gateway. Install it!"));
             return false;
         }
@@ -54,6 +30,8 @@ class mellat
             $client = @new \SoapClient('https://bpm.shaparak.ir/pgwchannel/services/pgw?wsdl', $soap_meta);
 
             $result = $client->__soapCall('bpPayRequest', array($_args));
+
+            self::$payment_response = $result;
 
             $return = $result->return;
 
@@ -74,7 +52,7 @@ class mellat
         }
         catch (\Exception $e)
         {
-            \dash\db\logs::set('payment:mellat:error:load:web:services', self::$user_id, $log_meta);
+            \dash\db\logs::set('payment:mellat:error:load:web:services');
             \dash\notif::error(T_("Error in load web services"));
             return false;
         }
@@ -114,6 +92,8 @@ class mellat
 
             $result = $client->bpVerifyRequest($_args);
 
+            self::$payment_response = $result;
+
             $return = $result->return;
 
             $res = explode(',', $return);
@@ -132,7 +112,7 @@ class mellat
         }
         catch(Exception $e)
         {
-            \dash\db\logs::set('payment:mellat:error:load:web:services:verify', self::$user_id, $log_meta);
+            \dash\db\logs::set('payment:mellat:error:load:web:services:verify');
             \dash\notif::error(T_("Error in load web services"));
             return false;
         }
