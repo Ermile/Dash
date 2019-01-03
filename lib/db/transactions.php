@@ -75,7 +75,7 @@ class transactions
 	}
 
 
-	public static function load_banktoken($_token, $_bank)
+	public static function load_banktoken($_token, $_banktoken, $_bank)
 	{
 		if(!$_token || !$_bank)
 		{
@@ -91,9 +91,9 @@ class transactions
 				transactions
 			LEFT JOIN users ON users.id = transactions.user_id
 			WHERE
-				transactions.banktoken = '$_token' AND
-				transactions.payment = '$_bank'
-			ORDER BY transactions.id DESC
+				transactions.token     = '$_token' AND
+				transactions.banktoken = '$_banktoken' AND
+				transactions.payment   = '$_bank'
 			LIMIT 1
 		";
 

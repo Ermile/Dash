@@ -5,7 +5,7 @@ namespace dash\utility\pay\api\payir;
 class back
 {
 
-    public static function verify()
+    public static function verify($_token)
     {
         if(!\dash\option::config('payir', 'status'))
         {
@@ -37,7 +37,7 @@ class back
             return \dash\utility\pay\setting::turn_back();
         }
 
-        \dash\utility\pay\setting::load_banktoken($transId, 'payir');
+        \dash\utility\pay\setting::load_banktoken($_token, $transId, 'payir');
 
         if(\dash\utility\pay\setting::get_id())
         {
@@ -99,25 +99,12 @@ class back
             }
             else
             {
-
-                \dash\utility\pay\setting::set_condition('verify_error');
-
-                \dash\utility\pay\setting::set_verify(0);
-
-                \dash\utility\pay\setting::save();
-
-                return \dash\utility\pay\setting::turn_back();
+                return \dash\utility\pay\verify::bank_error('verify_error');
             }
         }
         else
         {
-            \dash\utility\pay\setting::set_condition('error');
-
-            \dash\utility\pay\setting::set_verify(0);
-
-            \dash\utility\pay\setting::save();
-
-            return \dash\utility\pay\setting::turn_back();
+            return \dash\utility\pay\verify::bank_error('error');
         }
     }
 }

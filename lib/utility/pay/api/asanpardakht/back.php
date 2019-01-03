@@ -10,7 +10,7 @@ class back
      *
      * @param      <type>  $_args  The arguments
      */
-    public static function verify()
+    public static function verify($_token)
     {
 
         if(!\dash\option::config('asanpardakht', 'status'))
@@ -45,6 +45,8 @@ class back
         $PayGateTranID      = isset($RetArr[5]) ? $RetArr[5] : null;
         $RRN                = isset($RetArr[6]) ? $RetArr[6] : null;
         $LastFourDigitOfPAN = isset($RetArr[7]) ? $RetArr[7] : null;
+
+        \dash\utility\pay\setting::load_banktoken($_token, $RefId, 'payir');
 
         $transaction_id  = \dash\utility\pay\setting::get_id();
 
@@ -91,25 +93,12 @@ class back
             }
             else
             {
-                \dash\utility\pay\setting::set_condition('verify_error');
-
-                \dash\utility\pay\setting::set_verify(0);
-
-                \dash\utility\pay\setting::save();
-
-                return \dash\utility\pay\setting::turn_back();
-
+                return \dash\utility\pay\verify::bank_error('verify_error');
             }
         }
         else
         {
-            \dash\utility\pay\setting::set_condition('error');
-
-            \dash\utility\pay\setting::set_verify(0);
-
-            \dash\utility\pay\setting::save();
-
-            return \dash\utility\pay\setting::turn_back();
+            return \dash\utility\pay\verify::bank_error('error');
         }
     }
 }

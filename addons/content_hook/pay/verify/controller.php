@@ -7,14 +7,11 @@ class controller
 	public static function routing()
 	{
 		$bank = \dash\url::subchild();
-		if($bank)
-		{
-			$args            = [];
-			$args['get']     = \dash\request::get();
-			$args['post']    = \dash\request::post();
-			$args['request'] = \dash\safe::safe($_REQUEST);
+		$token = \dash\url::dir(3);
 
-			\dash\utility\pay\verify::verify($bank, $args);
+		if($bank && $token && mb_strlen($token) === 32)
+		{
+			\dash\utility\pay\verify::verify($bank, $token);
 		}
 	}
 }

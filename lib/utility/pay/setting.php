@@ -33,6 +33,7 @@ class setting
         {
             $callback_url .= '/'. self::$default_callback_url;
             $callback_url .= '/'. $_payment;
+            $callback_url .= '/'. self::get_token();
         }
 
         return $callback_url;

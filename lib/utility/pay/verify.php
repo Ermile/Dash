@@ -4,13 +4,13 @@ namespace dash\utility\pay;
 
 class verify
 {
-	public static function verify($_bank, $_args)
+	public static function verify($_bank, $_token)
 	{
 		\dash\utility\pay\setting::set();
 
 		if(is_callable(["\\dash\\utility\\pay\\api\\$_bank\\back", 'verify']))
 		{
-			("\\dash\\utility\\pay\\api\\$_bank\\back")::verify($_args);
+			("\\dash\\utility\\pay\\api\\$_bank\\back")::verify($_token);
 			return;
 		}
 	}
@@ -30,6 +30,17 @@ class verify
 
         \dash\utility\pay\transactions::final_verify($_transaction_id);
 
+	}
+
+	public static function bank_error($_condition)
+	{
+	    \dash\utility\pay\setting::set_condition($_condition);
+
+        \dash\utility\pay\setting::set_verify(0);
+
+        \dash\utility\pay\setting::save();
+
+        return \dash\utility\pay\setting::turn_back();
 	}
 
 }
