@@ -28,8 +28,7 @@ class start
 
         \dash\utility\pay\setting::load_token($token);
 
-        $bank = $_args['bank'];
-
+        $bank = mb_strtolower($_args['bank']);
         if(!$bank)
 		{
 			\dash\notif::error(T_("Invalid bank"));
