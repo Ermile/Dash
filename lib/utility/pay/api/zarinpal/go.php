@@ -38,7 +38,7 @@ class go
             $zarinpal['CallbackURL'] = \dash\utility\pay\setting::get_callbck_url('zarinpal');
         }
 
-        $zarinpal['Amount'] = $_amount;
+        $zarinpal['Amount'] = \dash\utility\pay\setting::get_plus();
 
         if(isset($_options['mobile']))
         {
