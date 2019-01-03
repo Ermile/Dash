@@ -32,9 +32,9 @@ class back
 
         $ReturningParams    = isset($_REQUEST['ReturningParams']) ? (string) $_REQUEST['ReturningParams'] : null;
 
-        \dash\utility\payment\payment\asanpardakht::set_key_iv();
+        \dash\utility\pay\api\asanpardakht\bank::set_key_iv();
 
-        $ReturningParams    = \dash\utility\payment\payment\asanpardakht::decrypt($ReturningParams);
+        $ReturningParams    = \dash\utility\pay\api\asanpardakht\bank::decrypt($ReturningParams);
 
         $RetArr             = explode(",", $ReturningParams);
         $Amount             = isset($RetArr[0]) ? $RetArr[0] : null;
@@ -81,9 +81,9 @@ class back
 
         if($ResCode == '0' || $ResCode == '00')
         {
-            $is_ok = \dash\utility\payment\payment\asanpardakht::verify($RetArr);
+            $is_ok = \dash\utility\pay\api\asanpardakht\bank::verify($RetArr);
 
-            $payment_response = \dash\utility\payment\payment\asanpardakht::$payment_response;
+            $payment_response = \dash\utility\pay\api\asanpardakht\bank::$payment_response;
             \dash\utility\pay\setting::set_payment_response3($payment_response);
 
             if($is_ok)

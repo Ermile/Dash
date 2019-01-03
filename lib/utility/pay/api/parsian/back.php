@@ -75,7 +75,7 @@ class back
 
         if($status === '0' && intval($Token) > 0)
         {
-            $is_ok = \dash\utility\payment\payment\parsian::verify($parsian);
+            $is_ok = \dash\utility\pay\api\parsian\bank::verify($parsian);
 
             $payment_response = \dash\utility\pay\api\parsian\bank::$payment_response;
 

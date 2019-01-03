@@ -86,9 +86,9 @@ class back
         if(intval($resultCode) === 100)
         {
 
-            $is_ok = \dash\utility\payment\payment\irkish::verify($irkish);
+            $is_ok = \dash\utility\pay\api\irkish\bank::verify($irkish);
 
-            $payment_response = \dash\utility\payment\payment\irkish::$payment_response;
+            $payment_response = \dash\utility\pay\api\irkish\bank::$payment_response;
 
             \dash\utility\pay\setting::set_payment_response3($payment_response);
 

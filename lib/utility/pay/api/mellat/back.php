@@ -88,7 +88,7 @@ class back
         if(intval($ResCode) === 0)
         {
 
-            $is_ok = \dash\utility\payment\payment\mellat::verify($mellat);
+            $is_ok = \dash\utility\pay\api\mellat\bank::verify($mellat);
 
             $payment_response = \dash\utility\pay\api\mellat\bank::$payment_response;
 

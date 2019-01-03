@@ -35,7 +35,7 @@ class go
         }
         else
         {
-            $irkish['revertURL'] = \dash\utility\payment\pay::get_callbck_url('irkish');
+            $irkish['revertURL'] = \dash\utility\pay\setting::get_callbck_url('irkish');
         }
 
         // change rial to toman

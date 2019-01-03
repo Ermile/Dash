@@ -35,7 +35,7 @@ class go
         }
         else
         {
-            $zarinpal['CallbackURL'] = \dash\utility\payment\pay::get_callbck_url('zarinpal');
+            $zarinpal['CallbackURL'] = \dash\utility\pay\setting::get_callbck_url('zarinpal');
         }
 
         $zarinpal['Amount'] = $_amount;
@@ -60,7 +60,7 @@ class go
             return \dash\utility\pay\setting::turn_back();
         }
 
-        $redirect = \dash\utility\payment\payment\zarinpal::pay($zarinpal);
+        $redirect = \dash\utility\pay\api\zarinpal\bank::pay($zarinpal);
 
         $payment_response = \dash\utility\pay\api\zarinpal\bank::$payment_response;
         \dash\utility\pay\setting::set_payment_response1($payment_response);

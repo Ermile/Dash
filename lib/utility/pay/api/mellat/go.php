@@ -68,7 +68,7 @@ class go
         // $mellat['specialPaymentId'] = $transaction_id;
         $mellat['orderId'] = $transaction_id;
 
-        $RefId = \dash\utility\payment\payment\mellat::pay($mellat);
+        $RefId = \dash\utility\pay\api\mellat\bank::pay($mellat);
 
         \dash\utility\pay\setting::set_payment_response1(\dash\utility\pay\api\mellat\bank::$payment_response);
 

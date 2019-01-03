@@ -55,7 +55,7 @@ class back
         }
         else
         {
-            $is_ok = \dash\utility\payment\payment\zarinpal::verify($zarinpal);
+            $is_ok = \dash\utility\pay\api\zarinpal\bank::verify($zarinpal);
 
             $payment_response = \dash\utility\pay\api\zarinpal\bank::$payment_response;
 
