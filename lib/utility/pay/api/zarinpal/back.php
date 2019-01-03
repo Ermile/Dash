@@ -44,7 +44,7 @@ class back
 
         \dash\utility\pay\setting::set_condition('pending');
         \dash\utility\pay\setting::set_payment_response2($_REQUEST);
-        \dash\utility\pay\setting::save();
+        \dash\utility\pay\setting::save(true);
 
 
         $zarinpal['Amount']  = \dash\utility\pay\setting::get_plus();

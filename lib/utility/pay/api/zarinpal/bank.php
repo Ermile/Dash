@@ -61,16 +61,6 @@ class bank
      */
     public static function verify($_args = [])
     {
-
-        $log_meta =
-        [
-            'data' => self::$log_data,
-            'meta' =>
-            [
-                'args' => func_get_args()
-            ],
-        ];
-
         try
         {
             $client = @new \soapclient('https://de.zarinpal.com/pg/services/WebGate/wsdl', ['exceptions' => true]);

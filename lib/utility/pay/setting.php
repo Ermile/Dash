@@ -117,13 +117,21 @@ class setting
 	}
 
 
-	public static function save()
+	public static function save($_reload = false)
 	{
 		if(!empty(self::$transaction_update) && self::get_id())
 		{
-
 			$result                   = \dash\utility\pay\transactions::update(self::$transaction_update, self::get_id());
+
+			$token = self::get_token();
+
 			self::$transaction_update = [];
+
+			if($_reload)
+			{
+				self::load_token($token);
+			}
+
 			return $result;
 		}
 		return null;

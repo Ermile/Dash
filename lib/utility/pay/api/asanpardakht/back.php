@@ -60,7 +60,7 @@ class back
         \dash\utility\pay\setting::set_amount_end($Amount / 10);
         \dash\utility\pay\setting::set_condition('pending');
         \dash\utility\pay\setting::set_payment_response2($_REQUEST);
-        \dash\utility\pay\setting::save();
+        \dash\utility\pay\setting::save(true);
 
         $Amount_Record  = floatval(\dash\utility\pay\setting::get_plus());
 
