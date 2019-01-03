@@ -215,6 +215,11 @@ class start
 			'payment_response' => $payment_response,
 		];
 
+		if(isset($_args['other_field']) && is_array($_args['other_field']))
+        {
+            $insert_transaction['other_field'] = $_args['other_field'];
+        }
+
 		$token = json_encode($insert_transaction);
 		$token .= (string) time();
 		$token .= (string) rand(1,9999);
