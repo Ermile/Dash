@@ -11,14 +11,14 @@ class go
         {
             \dash\log::set('pay:zarinpal:status:false');
             \dash\notif::error(T_("The zarinpal payment on this service is locked"));
-            return false;
+            return \dash\utility\pay\setting::turn_back();
         }
 
         if(!\dash\option::config('zarinpal', 'MerchantID'))
         {
             \dash\log::set('pay:zarinpal:MerchantID:not:set');
             \dash\notif::error(T_("The zarinpal payment MerchantID not set"));
-            return false;
+            return \dash\utility\pay\setting::turn_back();
         }
 
         $zarinpal = [];
@@ -57,7 +57,7 @@ class go
 
         if(!$transaction_id)
         {
-            return false;
+            return \dash\utility\pay\setting::turn_back();
         }
 
         $redirect = \dash\utility\payment\payment\zarinpal::pay($zarinpal);
@@ -83,12 +83,12 @@ class go
             {
                 \dash\log::set('pay:zarinpal:Authority:not:set');
                 \dash\notif::error(T_("Zarinpal payment Authority not found"));
-                return false;
+                return \dash\utility\pay\setting::turn_back();
             }
         }
         else
         {
-            return false;
+            return \dash\utility\pay\setting::turn_back();
         }
     }
 

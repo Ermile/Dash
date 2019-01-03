@@ -17,14 +17,14 @@ class back
         {
             \dash\log::set('pay:asanpardakht:status:false');
             \dash\notif::error(T_("The asanpardakht payment on this service is locked"));
-            return false;
+            return \dash\utility\pay\setting::turn_back();
         }
 
         if(!\dash\option::config('asanpardakht', 'MerchantID'))
         {
             \dash\log::set('pay:asanpardakht:MerchantID:false');
             \dash\notif::error(T_("The asanpardakht payment on this service is locked"));
-            return false;
+            return \dash\utility\pay\setting::turn_back();
         }
 
         $username = \dash\option::config('asanpardakht', 'Username');

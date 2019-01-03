@@ -11,21 +11,21 @@ class go
         {
             \dash\log::set('pay:mellat:status:false');
             \dash\notif::error(T_("The mellat payment on this service is locked"));
-            return false;
+            return \dash\utility\pay\setting::turn_back();
         }
 
         if(!\dash\option::config('mellat', 'TerminalId'))
         {
             \dash\log::set('pay:mellat:TerminalId:null');
             \dash\notif::error(T_("The mellat payment TerminalId not set"));
-            return false;
+            return \dash\utility\pay\setting::turn_back();
         }
 
         if(!\dash\option::config('mellat', 'UserName'))
         {
             \dash\log::set('pay:mellat:UserName:null');
             \dash\notif::error(T_("The mellat payment UserName not set"));
-            return false;
+            return \dash\utility\pay\setting::turn_back();
         }
 
         $mellat                   = [];
@@ -61,7 +61,7 @@ class go
 
         if(!$transaction_id)
         {
-            return false;
+            return \dash\utility\pay\setting::turn_back();
         }
 
         // set in this step and check in other step
@@ -94,7 +94,7 @@ class go
         else
         {
             \dash\utility\pay\setting::save();
-            return false;
+            return \dash\utility\pay\setting::turn_back();
         }
     }
 }

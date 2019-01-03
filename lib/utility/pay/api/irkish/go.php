@@ -11,14 +11,14 @@ class go
         {
             \dash\log::set('pay:irkish:status:false');
             \dash\notif::error(T_("The irkish payment on this service is locked"));
-            return false;
+            return \dash\utility\pay\setting::turn_back();
         }
 
         if(!\dash\option::config('irkish', 'merchantId'))
         {
             \dash\log::set('pay:irkish:merchantId:not:set');
             \dash\notif::error(T_("The irkish payment merchantId not set"));
-            return false;
+            return \dash\utility\pay\setting::turn_back();
         }
 
         $irkish = [];
@@ -47,7 +47,7 @@ class go
 
         if(!$transaction_id)
         {
-            return false;
+            return \dash\utility\pay\setting::turn_back();
         }
         // set in this step and check in other step
         // $irkish['specialPaymentId'] = $transaction_id;
@@ -78,7 +78,7 @@ class go
         }
         else
         {
-            return false;
+            return \dash\utility\pay\setting::turn_back();
         }
     }
 }

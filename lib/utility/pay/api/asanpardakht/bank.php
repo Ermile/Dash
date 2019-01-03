@@ -27,11 +27,9 @@ class bank
     {
         self::set_key_iv();
 
-
         // if soap is not exist return false
         if(!class_exists("soapclient"))
         {
-
             \dash\log::set('payment:asanpardakht:soapclient:not:install');
             \dash\notif::error(T_("Can not connect to asanpardakht gateway. Install it!"));
             return false;
@@ -68,7 +66,6 @@ class bank
 
                 if ($result{0} == '0')
                 {
-                    \dash\log::set('payment:asanpardakht:redirect');
                     $token = substr($result,2);
                     return $token;
                 }
@@ -104,6 +101,7 @@ class bank
     public static function verify($_args = [])
     {
         self::set_key_iv();
+
         $RetArr             = $_args;
         $Amount             = isset($RetArr[0]) ? $RetArr[0] : null;
         $SaleOrderId        = isset($RetArr[1]) ? $RetArr[1] : null;

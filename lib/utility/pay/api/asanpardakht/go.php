@@ -11,14 +11,14 @@ class go
         {
             \dash\log::set('pay:asanpardakht:status:false');
             \dash\notif::error(T_("The asanpardakht payment on this service is locked"));
-            return false;
+            return \dash\utility\pay\setting::turn_back();
         }
 
         if(!\dash\option::config('asanpardakht', 'MerchantID'))
         {
             \dash\log::set('pay:asanpardakht:MerchantID:false');
             \dash\notif::error(T_("The asanpardakht payment on this service is locked"));
-            return false;
+            return \dash\utility\pay\setting::turn_back();
         }
 
         $username = \dash\option::config('asanpardakht', 'Username');
@@ -40,7 +40,7 @@ class go
 
         if(!$transaction_id)
         {
-            return false;
+            return \dash\utility\pay\setting::turn_back();
         }
 
         $price = \dash\utility\pay\setting::get_plus();
@@ -61,7 +61,6 @@ class go
             'req'            => $req,
         ];
 
-
         $RefId = \dash\utility\pay\api\asanpardakht\bank::pay($asanpardakht_args);
 
         \dash\utility\pay\setting::set_payment_response1(\dash\utility\pay\api\asanpardakht\bank::$payment_response);
@@ -70,9 +69,7 @@ class go
         {
             \dash\utility\pay\setting::set_condition('redirect');
             \dash\utility\pay\setting::set_banktoken($RefId);
-
             \dash\utility\pay\setting::save();
-
 
             // redirect to enter/redirect
             \dash\session::set('redirect_page_url', 'https://asan.shaparak.ir/');
@@ -88,7 +85,7 @@ class go
         else
         {
             \dash\utility\pay\setting::save();
-            return false;
+            return \dash\utility\pay\setting::turn_back();
         }
     }
 }

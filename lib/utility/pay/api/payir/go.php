@@ -11,14 +11,14 @@ class go
         {
             \dash\log::set('pay:payir:status:false');
             \dash\notif::error(T_("The payir payment on this service is locked"));
-            return false;
+            return \dash\utility\pay\setting::turn_back();
         }
 
         if(!\dash\option::config('payir', 'api'))
         {
             \dash\log::set('pay:payir:api:not:set');
             \dash\notif::error(T_("The payir payment api not set"));
-            return false;
+            return \dash\utility\pay\setting::turn_back();
         }
 
         $payir = [];
@@ -44,7 +44,7 @@ class go
 
         if(!$transaction_id)
         {
-            return false;
+            return \dash\utility\pay\setting::turn_back();
         }
 
         // set in this step and check in other step
@@ -69,7 +69,7 @@ class go
         else
         {
             \dash\utility\pay\setting::save();
-            return false;
+            return \dash\utility\pay\setting::turn_back();
         }
     }
 }
