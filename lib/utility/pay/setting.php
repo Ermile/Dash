@@ -51,12 +51,12 @@ class setting
 	}
 
 
-	public static function load_banktoken($_token, $_bank)
+	public static function load_banktoken($_token, $_banktoken, $_bank)
 	{
 		if(!self::$load)
 		{
 			self::$load = true;
-			self::$transaction_detail = \dash\utility\pay\transactions::load_banktoken($_token, $_bank);
+			self::$transaction_detail = \dash\utility\pay\transactions::load_banktoken($_token, $_banktoken, $_bank);
 		}
 		return self::$transaction_detail;
 	}
