@@ -14,7 +14,7 @@ class bank
         // if soap is not exist return false
         if(!class_exists("soapclient"))
         {
-            \dash\db\logs::set('payment:mellat:soapclient:not:install');
+            \dash\log::set('payment:mellat:soapclient:not:install');
             \dash\notif::error(T_("Can not connect to mellat gateway. Install it!"));
             return false;
         }
@@ -52,7 +52,7 @@ class bank
         }
         catch (\Exception $e)
         {
-            \dash\db\logs::set('payment:mellat:error:load:web:services');
+            \dash\log::set('payment:mellat:error:load:web:services');
             \dash\notif::error(T_("Error in load web services"));
             return false;
         }
@@ -112,7 +112,7 @@ class bank
         }
         catch(Exception $e)
         {
-            \dash\db\logs::set('payment:mellat:error:load:web:services:verify');
+            \dash\log::set('payment:mellat:error:load:web:services:verify');
             \dash\notif::error(T_("Error in load web services"));
             return false;
         }

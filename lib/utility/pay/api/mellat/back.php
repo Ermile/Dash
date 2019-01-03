@@ -9,21 +9,21 @@ class back
     {
         if(!\dash\option::config('mellat', 'status'))
         {
-            \dash\db\logs::set('pay:mellat:status:false');
+            \dash\log::set('pay:mellat:status:false');
             \dash\notif::error(T_("The mellat payment on this service is locked"));
             return false;
         }
 
         if(!\dash\option::config('mellat', 'TerminalId'))
         {
-            \dash\db\logs::set('pay:mellat:TerminalId:null');
+            \dash\log::set('pay:mellat:TerminalId:null');
             \dash\notif::error(T_("The mellat payment TerminalId not set"));
             return false;
         }
 
         if(!\dash\option::config('mellat', 'UserName'))
         {
-            \dash\db\logs::set('pay:mellat:UserName:null');
+            \dash\log::set('pay:mellat:UserName:null');
             \dash\notif::error(T_("The mellat payment UserName not set"));
             return false;
         }
@@ -44,7 +44,7 @@ class back
 
         if(!$RefId)
         {
-            \dash\db\logs::set('pay:mellat:RefId:verify:not:found');
+            \dash\log::set('pay:mellat:RefId:verify:not:found');
             \dash\notif::error(T_("The mellat payment RefId not set"));
             return \dash\utility\pay\setting::turn_back();
         }
@@ -55,7 +55,7 @@ class back
 
         if(!$transaction_id)
         {
-            \dash\db\logs::set('pay:mellat:SESSION:transaction_id:not:found');
+            \dash\log::set('pay:mellat:SESSION:transaction_id:not:found');
             \dash\notif::error(T_("Your session is lost! We can not find your transaction"));
             return \dash\utility\pay\setting::turn_back();
         }
@@ -74,7 +74,7 @@ class back
 
         if(!$amount_SESSION)
         {
-            \dash\db\logs::set('pay:mellat:SESSION:amount:not:found');
+            \dash\log::set('pay:mellat:SESSION:amount:not:found');
             \dash\notif::error(T_("Your session is lost! We can not find amount"));
             return \dash\utility\pay\setting::turn_back();
         }

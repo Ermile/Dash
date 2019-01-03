@@ -15,7 +15,7 @@ class bank
         // if soap is not exist return false
         if(!class_exists("soapclient"))
         {
-            \dash\db\logs::set('payment:zarinpal:soapclient:not:install');
+            \dash\log::set('payment:zarinpal:soapclient:not:install');
             \dash\notif::error(T_("Can not connect to zarinpal gateway. Install it!"));
             return false;
         }
@@ -33,21 +33,21 @@ class bank
 
             if ($result->Status == 100)
             {
-                \dash\db\logs::set('payment:zarinpal:redirect');
+                \dash\log::set('payment:zarinpal:redirect');
 
                 $url = "https://www.zarinpal.com/pg/StartPay/" . $result->Authority;
                 return $url;
             }
             else
             {
-                \dash\db\logs::set('payment:zarinpal:error');
+                \dash\log::set('payment:zarinpal:error');
                 \dash\notif::error($msg);
                 return false;
             }
         }
         catch (\Exception $e)
         {
-            \dash\db\logs::set('payment:zarinpal:error:load:web:services');
+            \dash\log::set('payment:zarinpal:error:load:web:services');
             \dash\notif::error(T_("Error in load web services"));
             return false;
         }
@@ -90,14 +90,14 @@ class bank
             }
             else
             {
-                \dash\db\logs::set('payment:zarinpal:verify:error');
+                \dash\log::set('payment:zarinpal:verify:error');
                 \dash\notif::error($msg);
                 return false;
             }
         }
         catch (\Exception $e)
         {
-            \dash\db\logs::set('payment:zarinpal:verify:error:load:web:services');
+            \dash\log::set('payment:zarinpal:verify:error:load:web:services');
             \dash\notif::error(T_("Error in load web services"));
             return false;
         }

@@ -9,14 +9,14 @@ class back
     {
         if(!\dash\option::config('irkish', 'status'))
         {
-            \dash\db\logs::set('pay:irkish:status:false');
+            \dash\log::set('pay:irkish:status:false');
             \dash\notif::error(T_("The irkish payment on this service is locked"));
             return \dash\utility\pay\setting::turn_back();
         }
 
         if(!\dash\option::config('irkish', 'merchantId'))
         {
-            \dash\db\logs::set('pay:irkish:merchantId:not:set');
+            \dash\log::set('pay:irkish:merchantId:not:set');
             \dash\notif::error(T_("The irkish payment merchantId not set"));
             return \dash\utility\pay\setting::turn_back();
         }
@@ -32,14 +32,14 @@ class back
 
         if(!$token)
         {
-            \dash\db\logs::set('pay:irkish:token:verify:not:found');
+            \dash\log::set('pay:irkish:token:verify:not:found');
             \dash\notif::error(T_("The irkish payment token not set"));
             return \dash\utility\pay\setting::turn_back();
         }
 
         if(!$resultCode)
         {
-            \dash\db\logs::set('pay:irkish:resultCode:verify:not:found');
+            \dash\log::set('pay:irkish:resultCode:verify:not:found');
             \dash\notif::error(T_("The irkish payment resultCode not set"));
             return \dash\utility\pay\setting::turn_back();
         }
@@ -50,7 +50,7 @@ class back
 
         if(!$transaction_id)
         {
-            \dash\db\logs::set('pay:irkish:SESSION:transaction_id:not:found');
+            \dash\log::set('pay:irkish:SESSION:transaction_id:not:found');
             \dash\notif::error(T_("Your session is lost! We can not find your transaction"));
             return \dash\utility\pay\setting::turn_back();
         }
@@ -66,14 +66,14 @@ class back
 
         if(!$amount_SESSION)
         {
-            \dash\db\logs::set('pay:irkish:SESSION:amount:not:found');
+            \dash\log::set('pay:irkish:SESSION:amount:not:found');
             \dash\notif::error(T_("Your session is lost! We can not find amount"));
             return \dash\utility\pay\setting::turn_back();
         }
 
         if($amount_SESSION != ($amount / 10))
         {
-            \dash\db\logs::set('pay:irkish:amount_SESSION:amount:is:not:equals');
+            \dash\log::set('pay:irkish:amount_SESSION:amount:is:not:equals');
             \dash\notif::error(T_("Your session is lost! We can not find amount"));
             return \dash\utility\pay\setting::turn_back();
         }

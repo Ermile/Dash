@@ -32,7 +32,7 @@ class bank
         if(!class_exists("soapclient"))
         {
 
-            \dash\db\logs::set('payment:asanpardakht:soapclient:not:install');
+            \dash\log::set('payment:asanpardakht:soapclient:not:install');
             \dash\notif::error(T_("Can not connect to asanpardakht gateway. Install it!"));
             return false;
         }
@@ -68,13 +68,13 @@ class bank
 
                 if ($result{0} == '0')
                 {
-                    \dash\db\logs::set('payment:asanpardakht:redirect');
+                    \dash\log::set('payment:asanpardakht:redirect');
                     $token = substr($result,2);
                     return $token;
                 }
                 else
                 {
-                    \dash\db\logs::set('payment:asanpardakht:error1');
+                    \dash\log::set('payment:asanpardakht:error1');
                     \dash\notif::error(T_("Error in payment code :result", ['result' => (string) $result]));
                     return false;
                 }
@@ -82,14 +82,14 @@ class bank
             }
             else
             {
-                \dash\db\logs::set('payment:asanpardakht:error2');
+                \dash\log::set('payment:asanpardakht:error2');
                 \dash\notif::error(T_("Error in payment (have not result)"));
                 return false;
             }
         }
         catch (\Exception $E)
         {
-            \dash\db\logs::set('payment:asanpardakht:error:load:web:services');
+            \dash\log::set('payment:asanpardakht:error:load:web:services');
             \dash\notif::error(T_("Error in load web services"));
             return false;
         }

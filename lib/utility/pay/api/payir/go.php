@@ -9,14 +9,14 @@ class go
     {
         if(!\dash\option::config('payir', 'status'))
         {
-            \dash\db\logs::set('pay:payir:status:false');
+            \dash\log::set('pay:payir:status:false');
             \dash\notif::error(T_("The payir payment on this service is locked"));
             return false;
         }
 
         if(!\dash\option::config('payir', 'api'))
         {
-            \dash\db\logs::set('pay:payir:api:not:set');
+            \dash\log::set('pay:payir:api:not:set');
             \dash\notif::error(T_("The payir payment api not set"));
             return false;
         }

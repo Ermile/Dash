@@ -9,14 +9,14 @@ class go
     {
         if(!\dash\option::config('asanpardakht', 'status'))
         {
-            \dash\db\logs::set('pay:asanpardakht:status:false');
+            \dash\log::set('pay:asanpardakht:status:false');
             \dash\notif::error(T_("The asanpardakht payment on this service is locked"));
             return false;
         }
 
         if(!\dash\option::config('asanpardakht', 'MerchantID'))
         {
-            \dash\db\logs::set('pay:asanpardakht:MerchantID:false');
+            \dash\log::set('pay:asanpardakht:MerchantID:false');
             \dash\notif::error(T_("The asanpardakht payment on this service is locked"));
             return false;
         }

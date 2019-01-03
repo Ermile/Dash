@@ -18,7 +18,7 @@ class bank
         // if soap is not exist return false
         if(!class_exists("soapclient"))
         {
-            \dash\db\logs::set('payment:irkish:soapclient:not:install');
+            \dash\log::set('payment:irkish:soapclient:not:install');
             \dash\notif::error(T_("Can not connect to irkish gateway. Install it!"));
             return false;
         }
@@ -41,19 +41,19 @@ class bank
             if(isset($result->MakeTokenResult->result) && $result->MakeTokenResult->result === true && isset($result->MakeTokenResult->token))
             {
                 $token = $result->MakeTokenResult->token;
-                \dash\db\logs::set('payment:irkish:redirect');
+                \dash\log::set('payment:irkish:redirect');
                 return $token;
             }
             else
             {
-                \dash\db\logs::set('payment:irkish:error');
+                \dash\log::set('payment:irkish:error');
                 \dash\notif::error(T_("Error in connecting to bank service"));
                 return false;
             }
         }
         catch (\Exception $e)
         {
-            \dash\db\logs::set('payment:irkish:error:load:web:services');
+            \dash\log::set('payment:irkish:error:load:web:services');
             \dash\notif::error(T_("Error in load web services"));
             return false;
         }
@@ -106,7 +106,7 @@ class bank
         }
         catch(\Exception $e)
         {
-            \dash\db\logs::set('payment:irkish:error:load:web:services:verify');
+            \dash\log::set('payment:irkish:error:load:web:services:verify');
             \dash\notif::error(T_("Error in load web services"));
             return false;
         }

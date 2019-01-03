@@ -9,11 +9,10 @@ class bank
 
     public static function pay($_args = [])
     {
-          // if soap is not exist return false
+        // if soap is not exist return false
         if(!class_exists("soapclient"))
         {
-
-            \dash\db\logs::set('payment:parsian:soapclient:not:install');
+            \dash\log::set('payment:parsian:soapclient:not:install');
             \dash\notif::error(T_("Can not connect to parsian gateway. Install it!"));
             return false;
         }
@@ -40,20 +39,19 @@ class bank
 
             if ($status === 0 && $token > 0)
             {
-                \dash\db\logs::set('payment:parsian:redirect');
                 $url = "https://pec.shaparak.ir/NewIPG/?Token=" . $token;
                 return $url;
             }
             else
             {
-                \dash\db\logs::set('payment:parsian:error');
+                \dash\log::set('payment:parsian:error');
                 \dash\notif::error($msg);
                 return false;
             }
         }
         catch (\Exception $e)
         {
-            \dash\db\logs::set('payment:parsian:error:load:web:services');
+            \dash\log::set('payment:parsian:error:load:web:services');
             \dash\notif::error(T_("Error in load web services"));
             return false;
         }
@@ -67,16 +65,6 @@ class bank
      */
     public static function verify($_args = [])
     {
-
-        $log_meta =
-        [
-            'data' => self::$log_data,
-            'meta' =>
-            [
-                'args' => func_get_args()
-            ],
-        ];
-
         try
         {
             $soap_meta =
@@ -95,31 +83,20 @@ class bank
 
             $Status = $result->ConfirmPaymentResult->Status;
 
-            $RRN = isset($result->ConfirmPaymentResult->RRN) ? $result->ConfirmPaymentResult->RRN : null;
-
-            $CardNumberMasked = isset($result->ConfirmPaymentResult->CardNumberMasked) ? $result->ConfirmPaymentResult->CardNumberMasked : null;
-
-            $log_meta['meta']['client']           = $client;
-            $log_meta['meta']['result']           = $result;
-            $log_meta['meta']['Status']           = $Status;
-            $log_meta['meta']['RRN']              = $RRN;
-            $log_meta['meta']['CardNumberMasked'] = $CardNumberMasked;
-
             if($Status === 0)
             {
-                \dash\db\logs::set('payment:parsian:transaction:ok');
                 return true;
             }
             else
             {
-                \dash\db\logs::set('payment:parsian:error:verify');
+                \dash\log::set('payment:parsian:error:verify');
                 \dash\notif::error(self::msg($Status));
                 return false;
             }
         }
         catch(Exception $e)
         {
-            \dash\db\logs::set('payment:parsian:error:load:web:services:verify');
+            \dash\log::set('payment:parsian:error:load:web:services:verify');
             \dash\notif::error(T_("Error in load web services"));
             return false;
         }
@@ -151,19 +128,18 @@ class bank
 
             if($Status === 0)
             {
-                \dash\db\logs::set('payment:parsian:transaction:ok');
                 return true;
             }
             else
             {
-                \dash\db\logs::set('payment:parsian:error:verify');
+                \dash\log::set('payment:parsian:error:verify');
                 \dash\notif::error(self::msg($Status));
                 return false;
             }
         }
         catch(Exception $e)
         {
-            \dash\db\logs::set('payment:parsian:error:load:web:services:verify');
+            \dash\log::set('payment:parsian:error:load:web:services:verify');
             \dash\notif::error(T_("Error in load web services"));
             return false;
         }

@@ -9,14 +9,14 @@ class back
     {
         if(!\dash\option::config('payir', 'status'))
         {
-            \dash\db\logs::set('pay:payir:status:false');
+            \dash\log::set('pay:payir:status:false');
             \dash\notif::error(T_("The payir payment on this service is locked"));
             return \dash\utility\pay\setting::turn_back();
         }
 
         if(!\dash\option::config('payir', 'api'))
         {
-            \dash\db\logs::set('pay:payir:api:not:set');
+            \dash\log::set('pay:payir:api:not:set');
             \dash\notif::error(T_("The payir payment api not set"));
             return \dash\utility\pay\setting::turn_back();
         }
@@ -32,7 +32,7 @@ class back
 
         if(!$transId)
         {
-            \dash\db\logs::set('pay:payir:transId:verify:not:found');
+            \dash\log::set('pay:payir:transId:verify:not:found');
             \dash\notif::error(T_("The payir payment transId not set"));
             return \dash\utility\pay\setting::turn_back();
         }
@@ -45,7 +45,7 @@ class back
         }
         else
         {
-            \dash\db\logs::set('pay:payir:transaction_id:not:found:verify');
+            \dash\log::set('pay:payir:transaction_id:not:found:verify');
             \dash\notif::error(T_("Your session is lost! We can not find your transaction"));
             return \dash\utility\pay\setting::turn_back();
         }

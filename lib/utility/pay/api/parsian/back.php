@@ -9,14 +9,14 @@ class back
     {
         if(!\dash\option::config('parsian', 'status'))
         {
-            \dash\db\logs::set('pay:parsian:status:false');
+            \dash\log::set('pay:parsian:status:false');
             \dash\notif::error(T_("The parsian payment on this service is locked"));
             return \dash\utility\pay\setting::turn_back();
         }
 
         if(!\dash\option::config('parsian', 'LoginAccount'))
         {
-            \dash\db\logs::set('pay:parsian:LoginAccount:not:set');
+            \dash\log::set('pay:parsian:LoginAccount:not:set');
             \dash\notif::error(T_("The parsian payment LoginAccount not set"));
             return \dash\utility\pay\setting::turn_back();
         }
@@ -33,7 +33,7 @@ class back
 
         if(!$Token)
         {
-            \dash\db\logs::set('pay:parsian:Token:verify:not:found');
+            \dash\log::set('pay:parsian:Token:verify:not:found');
             \dash\notif::error(T_("The parsian payment Token not set"));
             return \dash\utility\pay\setting::turn_back();
         }
@@ -44,7 +44,7 @@ class back
 
         if(!$transaction_id)
         {
-            \dash\db\logs::set('pay:parsian:SESSION:transaction_id:not:found');
+            \dash\log::set('pay:parsian:SESSION:transaction_id:not:found');
             \dash\notif::error(T_("Your session is lost! We can not find your transaction"));
             return \dash\utility\pay\setting::turn_back();
         }
@@ -61,14 +61,14 @@ class back
 
         if(!$Amount_SESSION)
         {
-            \dash\db\logs::set('pay:parsian:SESSION:amount:not:found');
+            \dash\log::set('pay:parsian:SESSION:amount:not:found');
             \dash\notif::error(T_("Your session is lost! We can not find amount"));
             return \dash\utility\pay\setting::turn_back();
         }
 
         if($Amount_SESSION != (floatval($Amount) / 10))
         {
-            \dash\db\logs::set('pay:parsian:Amount_SESSION:amount:is:not:equals');
+            \dash\log::set('pay:parsian:Amount_SESSION:amount:is:not:equals');
             \dash\notif::error(T_("Your session is lost! We can not find amount"));
             return \dash\utility\pay\setting::turn_back();
         }

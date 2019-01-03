@@ -9,14 +9,14 @@ class go
     {
         if(!\dash\option::config('zarinpal', 'status'))
         {
-            \dash\db\logs::set('pay:zarinpal:status:false');
+            \dash\log::set('pay:zarinpal:status:false');
             \dash\notif::error(T_("The zarinpal payment on this service is locked"));
             return false;
         }
 
         if(!\dash\option::config('zarinpal', 'MerchantID'))
         {
-            \dash\db\logs::set('pay:zarinpal:MerchantID:not:set');
+            \dash\log::set('pay:zarinpal:MerchantID:not:set');
             \dash\notif::error(T_("The zarinpal payment MerchantID not set"));
             return false;
         }
@@ -81,7 +81,7 @@ class go
             }
             else
             {
-                \dash\db\logs::set('pay:zarinpal:Authority:not:set');
+                \dash\log::set('pay:zarinpal:Authority:not:set');
                 \dash\notif::error(T_("Zarinpal payment Authority not found"));
                 return false;
             }

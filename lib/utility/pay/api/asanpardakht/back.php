@@ -15,14 +15,14 @@ class back
 
         if(!\dash\option::config('asanpardakht', 'status'))
         {
-            \dash\db\logs::set('pay:asanpardakht:status:false');
+            \dash\log::set('pay:asanpardakht:status:false');
             \dash\notif::error(T_("The asanpardakht payment on this service is locked"));
             return false;
         }
 
         if(!\dash\option::config('asanpardakht', 'MerchantID'))
         {
-            \dash\db\logs::set('pay:asanpardakht:MerchantID:false');
+            \dash\log::set('pay:asanpardakht:MerchantID:false');
             \dash\notif::error(T_("The asanpardakht payment on this service is locked"));
             return false;
         }
@@ -52,7 +52,7 @@ class back
 
         if(!$transaction_id)
         {
-            \dash\db\logs::set('pay:asanpardakht:transaction_id:not:found:verify');
+            \dash\log::set('pay:asanpardakht:transaction_id:not:found:verify');
             \dash\notif::error(T_("Your session is lost! We can not find your transaction"));
             return \dash\utility\pay\setting::turn_back();
         }
@@ -66,14 +66,14 @@ class back
 
         if(!$Amount_Record)
         {
-            \dash\db\logs::set('pay:asanpardakht:amount:not:found:verify');
+            \dash\log::set('pay:asanpardakht:amount:not:found:verify');
             \dash\notif::error(T_("Your session is lost! We can not find amount"));
             return \dash\utility\pay\setting::turn_back();
         }
 
         if($Amount_Record != ($Amount / 10))
         {
-            \dash\db\logs::set('pay:asanpardakht:Amount_Record:amount:is:not:equals');
+            \dash\log::set('pay:asanpardakht:Amount_Record:amount:is:not:equals');
             \dash\notif::error(T_("Your session is lost! We can not find amount"));
             return \dash\utility\pay\setting::turn_back();
         }

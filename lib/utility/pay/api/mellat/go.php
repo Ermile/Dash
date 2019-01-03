@@ -9,21 +9,21 @@ class go
     {
         if(!\dash\option::config('mellat', 'status'))
         {
-            \dash\db\logs::set('pay:mellat:status:false');
+            \dash\log::set('pay:mellat:status:false');
             \dash\notif::error(T_("The mellat payment on this service is locked"));
             return false;
         }
 
         if(!\dash\option::config('mellat', 'TerminalId'))
         {
-            \dash\db\logs::set('pay:mellat:TerminalId:null');
+            \dash\log::set('pay:mellat:TerminalId:null');
             \dash\notif::error(T_("The mellat payment TerminalId not set"));
             return false;
         }
 
         if(!\dash\option::config('mellat', 'UserName'))
         {
-            \dash\db\logs::set('pay:mellat:UserName:null');
+            \dash\log::set('pay:mellat:UserName:null');
             \dash\notif::error(T_("The mellat payment UserName not set"));
             return false;
         }

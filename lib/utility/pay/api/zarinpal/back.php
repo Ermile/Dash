@@ -14,14 +14,14 @@ class back
 
         if(!\dash\option::config('zarinpal', 'status'))
         {
-            \dash\db\logs::set('pay:zarinpal:status:false');
+            \dash\log::set('pay:zarinpal:status:false');
             \dash\notif::error(T_("The zarinpal payment on this service is locked"));
             return \dash\utility\pay\setting::turn_back();
         }
 
         if(!\dash\option::config('zarinpal', 'MerchantID'))
         {
-            \dash\db\logs::set('pay:zarinpal:MerchantID:not:set');
+            \dash\log::set('pay:zarinpal:MerchantID:not:set');
             \dash\notif::error(T_("The zarinpal payment MerchantID not set"));
             return \dash\utility\pay\setting::turn_back();
         }
@@ -36,7 +36,7 @@ class back
 
         if(!$transaction_id)
         {
-            \dash\db\logs::set('pay:zarinpal:SESSION:transaction_id:not:found');
+            \dash\log::set('pay:zarinpal:SESSION:transaction_id:not:found');
             \dash\notif::error(T_("Your session is lost! We can not find your transaction"));
             return \dash\utility\pay\setting::turn_back();
         }

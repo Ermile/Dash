@@ -9,14 +9,14 @@ class go
     {
         if(!\dash\option::config('irkish', 'status'))
         {
-            \dash\db\logs::set('pay:irkish:status:false');
+            \dash\log::set('pay:irkish:status:false');
             \dash\notif::error(T_("The irkish payment on this service is locked"));
             return false;
         }
 
         if(!\dash\option::config('irkish', 'merchantId'))
         {
-            \dash\db\logs::set('pay:irkish:merchantId:not:set');
+            \dash\log::set('pay:irkish:merchantId:not:set');
             \dash\notif::error(T_("The irkish payment merchantId not set"));
             return false;
         }
