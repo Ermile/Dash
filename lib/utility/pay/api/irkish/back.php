@@ -1,7 +1,6 @@
 <?php
 namespace dash\utility\pay\api\irkish;
 
-use \dash\utility\pay as here;
 
 class back
 {

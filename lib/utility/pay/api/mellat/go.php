@@ -1,11 +1,11 @@
 <?php
-namespace dash\utility\payment\pay;
+namespace dash\utility\pay\api\mellat;
 
 
-class mellat
+class go
 {
 
-    public static function mellat($_token)
+    public static function bank($_token)
     {
         if(!\dash\option::config('mellat', 'status'))
         {

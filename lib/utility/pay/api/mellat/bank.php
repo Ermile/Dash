@@ -1,8 +1,8 @@
 <?php
-namespace dash\utility\payment\payment;
+namespace dash\utility\pay\api\mellat;
 
 
-class mellat
+class bank
 {
 
     public static $payment_response = [];

@@ -1,8 +1,8 @@
 <?php
-namespace dash\utility\payment\payment;
+namespace dash\utility\pay\api\asanpardakht;
 
 
-class asanpardakht
+class bank
 {
 
     public static $payment_response = [];

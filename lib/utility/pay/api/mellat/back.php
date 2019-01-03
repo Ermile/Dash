@@ -1,11 +1,11 @@
 <?php
-namespace dash\utility\payment\verify;
+namespace dash\utility\pay\api\mellat;
 
 
-class mellat
+class back
 {
 
-    public static function mellat($_token)
+    public static function verify($_token)
     {
         if(!\dash\option::config('mellat', 'status'))
         {
