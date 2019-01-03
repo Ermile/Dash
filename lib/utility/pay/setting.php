@@ -64,6 +64,11 @@ class setting
 
 	public static function turn_back()
 	{
+		if(!\dash\engine\process::status())
+		{
+			return false;
+		}
+
 		$paymentDetail = self::get_field('payment_response');
 		if(is_string($paymentDetail))
 		{

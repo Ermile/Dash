@@ -5,7 +5,7 @@ namespace dash\utility\pay\api\mellat;
 class go
 {
 
-    public static function bank($_token)
+    public static function bank()
     {
         if(!\dash\option::config('mellat', 'status'))
         {

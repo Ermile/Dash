@@ -23,7 +23,7 @@ class start
 		if(!$token)
 		{
 			\dash\notif::error(T_("Invalid token"));
-			return self::theend();
+			return self::endCompile();
 		}
 
         \dash\utility\pay\setting::load_token($token);
@@ -33,14 +33,14 @@ class start
         if(!$bank)
 		{
 			\dash\notif::error(T_("Invalid bank"));
-			return self::theend();
+			return self::endCompile();
 		}
 
 		$bank_status = \dash\option::config($bank, 'status');
 		if(!$bank_status)
 		{
 			\dash\notif::error(T_("Invalid bank is disabled on this service"));
-			return self::theend();
+			return self::endCompile();
 		}
 
 		$banktoken = \dash\utility\pay\setting::get_banktoken();
@@ -52,7 +52,7 @@ class start
 			if(!$duplicate_record)
 			{
 				\dash\notif::error(T_("This record is go to bank"));
-				return self::theend();
+				return self::endCompile();
 			}
 			else
 			{
@@ -72,7 +72,7 @@ class start
             \dash\notif::error(T_("This payment is not supported in this system"));
         }
 
-        return self::theend();
+        return self::endCompile();
 	}
 
 
@@ -154,7 +154,7 @@ class start
             else
             {
             	\dash\notif::error(T_("Invalid user"));
-                return self::theend($_args);
+                return self::endCompile($_args);
             }
         }
 
@@ -165,14 +165,14 @@ class start
         else
         {
             \dash\notif::error(T_("Invalid amount"));
-            return self::theend($_args);
+            return self::endCompile($_args);
         }
 
 	    return self::generate_token($_args, $_return);
 	}
 
 
-	private static function theend($_args = [])
+	private static function endCompile($_args = [])
 	{
 		if(isset($_args['get_token']) && $_args['get_token'])
 		{
@@ -230,7 +230,7 @@ class start
 
 		if(!$result)
 		{
-			return self::theend($_args);
+			return self::endCompile($_args);
 		}
 
 		$url = \dash\url::kingdom(). '/hook/pay/'. $token;
