@@ -55,8 +55,14 @@ class setting
 	{
 		if(!self::$load)
 		{
-			self::$load = true;
-			self::$transaction_detail = \dash\utility\pay\transactions::load_banktoken($_token, $_banktoken, $_bank);
+			self::$load         = true;
+
+			$transaction_detail = \dash\utility\pay\transactions::load_banktoken($_token, $_banktoken, $_bank);
+
+			if(isset($transaction_detail['condition']) && $transaction_detail['condition'] === 'redirect')
+			{
+				self::$transaction_detail = $transaction_detail;
+			}
 		}
 		return self::$transaction_detail;
 	}
@@ -129,7 +135,7 @@ class setting
 
 			if($_reload)
 			{
-				self::load_token($token);
+				self::load_token($token, true);
 			}
 
 			return $result;
