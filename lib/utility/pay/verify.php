@@ -30,6 +30,8 @@ class verify
 
 	        \dash\utility\pay\setting::save();
 
+	        self::call_final_fn();
+
 	        \dash\utility\pay\transactions::final_verify($_transaction_id);
 		}
 		else
@@ -39,6 +41,35 @@ class verify
 		}
 
 	}
+
+
+	private static function call_final_fn()
+	{
+		$detail = \dash\utility\pay\setting::get_payment_response();
+
+		if(is_string($detail))
+		{
+			$detail = json_decode($detail, true);
+		}
+
+		if(isset($detail['final_fn']) && is_array($detail['final_fn']))
+		{
+			if(is_callable($detail['final_fn']))
+			{
+				$namespace = $detail['final_fn'][0];
+				$fn        = $detail['final_fn'][1];
+				if(isset($detail['final_fn_args']))
+				{
+					$namespace::$fn($detail['final_fn_args']);
+				}
+				else
+				{
+					$namespace::$fn(\dash\utility\pay\setting::get_all());
+				}
+			}
+		}
+	}
+
 
 	public static function bank_error($_condition)
 	{

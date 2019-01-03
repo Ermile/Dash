@@ -131,6 +131,7 @@ class start
 			'auto_go'         => false,
 			'auto_back'       => false,
 			'final_fn'        => null,
+			'final_fn_args'   => null,
 			'user_id'         => null,
 			'get_token'       => false,
 			'other_field'     => [],
@@ -189,16 +190,17 @@ class start
 	{
 		$payment_response =
 		[
-			'fromurl'           => $_args['fromurl'],
-			'turn_back'         => $_args['turn_back'],
-			'msg_go'            => $_args['msg_go'],
-			'msg_back_ok'       => $_args['msg_back_ok'],
-			'msg_back_failed'   => $_args['msg_back_failed'],
-			'auto_back'         => $_args['auto_back'],
-			'final_fn'          => $_args['final_fn'],
-			'auto_go'           => $_args['auto_go'],
-			'get_token'         => $_args['get_token'],
-			'raw' => $_args,
+			'fromurl'         => $_args['fromurl'],
+			'turn_back'       => $_args['turn_back'],
+			'msg_go'          => $_args['msg_go'],
+			'msg_back_ok'     => $_args['msg_back_ok'],
+			'msg_back_failed' => $_args['msg_back_failed'],
+			'auto_back'       => $_args['auto_back'],
+			'final_fn'        => $_args['final_fn'],
+			'final_fn_args'   => $_args['final_fn_args'],
+			'auto_go'         => $_args['auto_go'],
+			'get_token'       => $_args['get_token'],
+			'raw'             => $_args,
 		];
 
 		$payment_response = json_encode($payment_response, JSON_UNESCAPED_UNICODE);
