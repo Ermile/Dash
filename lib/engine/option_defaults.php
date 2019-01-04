@@ -46,6 +46,7 @@ self::$config['site']['slogan'] = "Ermile is intelligent ;)";
 // the project have help center or no
 self::$config['help_center']         = true;
 
+// self::$config['default_payment'] = "[paymentName]";
 
 // ----- language
 self::$language           =

@@ -52,51 +52,54 @@
 			  <p>{%trans "Choose a gateway"%}</p>
 	          {%if options.parsian.status%}
 	          <div class="radioGateway" title='{%trans "Parsian"%}'>
-	           <input type="radio" name="bank" value="parsian" id="parsian" checked>
+	           <input type="radio" name="bank" value="parsian" id="parsian"  {%if options.default_payment == 'parsian'%} checked {%endif%}>
 	           <label for='parsian' class="spay-64-parsian"></label>
 	          </div>
 	          {%endif%}
 
 	          {%if options.asanpardakht.status%}
 	          <div class="radioGateway">
-	           <input type="radio" name="bank" value="asanpardakht" id="asanpardakht">
+	           <input type="radio" name="bank" value="asanpardakht" id="asanpardakht" {%if options.default_payment == 'asanpardakht'%} checked {%endif%}>
 	           <label for='asanpardakht' class="spay-64-asanpardakht"></label>
 	          </div>
 	          {%endif%}
 
 	          {%if options.irkish.status%}
 	           <div class="radioGateway">
-	           <input type="radio" name="bank" value="irKish" id="irKish">
+	           <input type="radio" name="bank" value="irKish" id="irKish" {%if options.default_payment == 'irkish'%} checked {%endif%}>
 	           <label for='irKish' class="spay-64-irkish"></label>
 	          </div>
 	          {%endif%}
 
 	          {%if options.zarinpal.status%}
 	          <div class="radioGateway">
-	           <input type="radio" name="bank" value="ZarinPal" id="ZarinPal">
+	           <input type="radio" name="bank" value="ZarinPal" id="ZarinPal" {%if options.default_payment == 'zarinpal'%} checked {%endif%}>
 	           <label for='ZarinPal' class="spay-64-zarinpal"></label>
 	          </div>
 	          {%endif%}
 
 	          {%if options.payir.status%}
 	          <div class="radioGateway">
-	           <input type="radio" name="bank" value="payir" id="payir">
+	           <input type="radio" name="bank" value="payir" id="payir" {%if options.default_payment == 'payir'%} checked {%endif%}>
 	           <label for='payir' class="spay-64-payir"></label>
 	          </div>
 	          {%endif%}
 
 	          {%if options.mellat.status%}
 	          <div class="radioGateway">
-	           <input type="radio" name="bank" value="mellat" id="mellat">
+	           <input type="radio" name="bank" value="mellat" id="mellat" {%if options.default_payment == 'mellat'%} checked {%endif%}>
 	           <label for='mellat' class="spay-64-mellat"></label>
 	          </div>
 	          {%endif%}
 
 
-
+			{%if dataRow.condition == 'request' or dataRow.condition == 'redirect'%}
 				<input type="hidden" name="ok" value="1">
 				<button class="btn primary block">{%trans "Pay"%}</button>
+			{%endif%}
+
 			</form>
+
 			{%if payDetail.turn_back%}
 			<a class="btn success block mT10" href="{{payDetail.turn_back}}">{%trans "Back"%}</a>
 			{%endif%}

@@ -263,9 +263,25 @@ class start
 		}
 		else
 		{
-			\dash\redirect::to($url);
+			if(isset($_args['auto_go']) && $_args['auto_go'])
+			{
+				return self::bank(['token' => $token, 'bank' => self::default_bank()]);
+			}
+			else
+			{
+				\dash\redirect::to($url);
+			}
 		}
 
+	}
+
+
+	private static function default_bank()
+	{
+		if(\dash\option::config('default_payment'))
+		{
+			return \dash\option::config('default_payment');
+		}
 	}
 
 }
