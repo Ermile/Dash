@@ -108,7 +108,24 @@
 </div>
 
 {%if perm_su()%}
-<div class="f">
+<h3 data-kerkere='.iDetailKerkere'>{%trans "Detail"%}</h3>
+<div class="iDetailKerkere" data-kerkere-content='hide'>
+	<div class="f">
+		{{block('iPaymentDetail')}}
+		{{block('iPaymentDetail1')}}
+		{{block('iPaymentDetail2')}}
+		{{block('iPaymentDetail3')}}
+		{{block('iTransactionRecord')}}
+	</div>
+</div>
+{%endif%}
+
+{%endblock%}
+
+
+
+
+{%block iPaymentDetail%}
 	<div class="c s12">
 		<div class="cbox">
 			<h3>Payment detail</h3>
@@ -122,7 +139,9 @@
 			{%endfor%}
 		</div>
 	</div>
+{%endblock%}
 
+{%block iPaymentDetail1%}
 	<div class="c s12">
 		<div class="cbox">
 			<h3>Payment response1</h3>
@@ -131,7 +150,9 @@
 			{%endfor%}
 		</div>
 	</div>
+{%endblock%}
 
+{%block iPaymentDetail2%}
 	<div class="c s12">
 		<div class="cbox">
 			<h3>Payment response2</h3>
@@ -140,7 +161,9 @@
 			{%endfor%}
 		</div>
 	</div>
+{%endblock%}
 
+{%block iPaymentDetail3%}
 	<div class="c s12">
 		<div class="cbox">
 			<h3>Payment response3</h3>
@@ -149,7 +172,9 @@
 			{%endfor%}
 		</div>
 	</div>
+{%endblock%}
 
+{%block iTransactionRecord%}
 	<div class="c s12">
 		<div class="cbox">
 			<h3>Payment record</h3>
@@ -160,7 +185,4 @@
 			{%endfor%}
 		</div>
 	</div>
-</div>
-{%endif%}
-
 {%endblock%}
