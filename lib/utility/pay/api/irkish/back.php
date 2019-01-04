@@ -21,6 +21,7 @@ class back
             return \dash\utility\pay\setting::turn_back();
         }
 
+
         $token         = isset($_REQUEST['token'])          ? (string) $_REQUEST['token']           : null;
         $merchantId    = isset($_REQUEST['merchantId'])     ? (string) $_REQUEST['merchantId']      : null;
         $resultCode    = isset($_REQUEST['resultCode'])     ? (string) $_REQUEST['resultCode']      : null;
@@ -44,7 +45,7 @@ class back
             return \dash\utility\pay\setting::turn_back();
         }
 
-        \dash\utility\pay\setting::load_banktoken($_token, $token, 'payir');
+        \dash\utility\pay\setting::load_banktoken($_token, $token, 'irkish');
 
         $transaction_id = \dash\utility\pay\setting::get_id();
 
@@ -70,13 +71,6 @@ class back
             \dash\notif::error(T_("Your session is lost! We can not find amount"));
             return \dash\utility\pay\setting::turn_back();
         }
-
-        // if($amount_SESSION != ($amount / 10))
-        // {
-        //     \dash\log::set('pay:irkish:amount_SESSION:amount:is:not:equals');
-        //     \dash\notif::error(T_("Your session is lost! We can not find amount"));
-        //     return \dash\utility\pay\setting::turn_back();
-        // }
 
         \dash\utility\pay\setting::set_condition('pending');
         \dash\utility\pay\setting::set_amount_end($amount / 10);
