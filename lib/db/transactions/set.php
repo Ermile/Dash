@@ -92,12 +92,13 @@ trait set
 		// check and make error on code
 		if(!$insert['code'])
 		{
-			if($debug)
-			{
-				\dash\db\logs::set('transactions:set:code:is:null', null, $log_meta);
-				\dash\notif::error(T_("Transaction caller can not be null"));
-			}
-			return false;
+			$insert['code'] = 251;
+			// if($debug)
+			// {
+			// 	\dash\db\logs::set('transactions:set:code:is:null', null, $log_meta);
+			// 	\dash\notif::error(T_("Transaction caller can not be null"));
+			// }
+			// return false;
 		}
 		// check and make error on title
 		$insert['title'] = $_args['title'];
