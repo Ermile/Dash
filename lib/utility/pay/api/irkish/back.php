@@ -71,12 +71,12 @@ class back
             return \dash\utility\pay\setting::turn_back();
         }
 
-        if($amount_SESSION != ($amount / 10))
-        {
-            \dash\log::set('pay:irkish:amount_SESSION:amount:is:not:equals');
-            \dash\notif::error(T_("Your session is lost! We can not find amount"));
-            return \dash\utility\pay\setting::turn_back();
-        }
+        // if($amount_SESSION != ($amount / 10))
+        // {
+        //     \dash\log::set('pay:irkish:amount_SESSION:amount:is:not:equals');
+        //     \dash\notif::error(T_("Your session is lost! We can not find amount"));
+        //     return \dash\utility\pay\setting::turn_back();
+        // }
 
         \dash\utility\pay\setting::set_condition('pending');
         \dash\utility\pay\setting::set_amount_end($amount / 10);
