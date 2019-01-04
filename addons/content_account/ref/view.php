@@ -5,6 +5,8 @@ class view
 {
 	public static function config()
 	{
+		// Referral Program
+		// Nobody can tell the Jibres story better than our customers.
 		$result = self::get_ref();
 		if(is_array($result))
 		{
