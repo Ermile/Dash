@@ -40,6 +40,29 @@ class setting
     }
 
 
+    public static function final_msg($_token)
+    {
+
+    	if(!$_token || mb_strlen($_token) !== 32)
+    	{
+    		return false;
+    	}
+
+    	$load = \dash\utility\pay\transactions::load($_token);
+    	if(isset($load['finalmsg']) && $load['finalmsg'])
+    	{
+    		return false;
+    	}
+
+    	if(isset($load['id']))
+    	{
+    		\dash\utility\pay\transactions::update(['finalmsg' => 1], $load['id']);
+    	}
+
+    	return $load;
+    }
+
+
     public static function load_token($_token, $_force = false)
 	{
 		if(!self::$load || $_force)
@@ -68,9 +91,9 @@ class setting
 	}
 
 
-	public static function turn_back()
+	public static function turn_back($_raw = false)
 	{
-		if(!\dash\engine\process::status())
+		if($_raw && !\dash\engine\process::status())
 		{
 			return false;
 		}
@@ -88,6 +111,21 @@ class setting
 			$back_url = $paymentDetail['turn_back'];
 		}
 
+		if(isset($paymentDetail['final_msg']) && $paymentDetail['final_msg'])
+		{
+			$token = self::get_token();
+			if($token)
+			{
+				if(strpos($back_url, '?') === false)
+				{
+					$back_url = $back_url. '?token='. $token;
+				}
+				else
+				{
+					$back_url = $back_url. '&token='. $token;
+				}
+			}
+		}
 		\dash\redirect::to($back_url);
 	}
 
