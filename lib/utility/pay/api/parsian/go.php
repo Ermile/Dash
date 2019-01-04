@@ -34,10 +34,6 @@ class go
             $parsian['CallBackUrl'] = \dash\utility\pay\setting::get_callbck_url('parsian');
         }
 
-        // change rial to toman
-        // but the plus is toman
-        // need less to *10 the plus
-        $parsian['Amount'] = floatval(\dash\utility\pay\setting::get_plus()) * 10;
 
         //START TRANSACTION BY CONDITION REQUEST
         $transaction_id = \dash\utility\pay\setting::get_id();
@@ -47,20 +43,25 @@ class go
             return \dash\utility\pay\setting::turn_back();
         }
 
+        // change rial to toman
+        // but the plus is toman
+        // need less to *10 the plus
+        $parsian['Amount'] = floatval(\dash\utility\pay\setting::get_plus()) * 10;
+
         $parsian['OrderId'] = $transaction_id;
 
         $redirect = \dash\utility\pay\api\parsian\bank::pay($parsian);
 
         if($redirect)
         {
+            $payment_response = \dash\utility\pay\api\parsian\bank::$payment_response;
+            \dash\utility\pay\setting::set_payment_response1($payment_response);
+
             $Token = null;
             if(isset($payment_response->SalePaymentRequestResult->Token))
             {
                 $Token = $payment_response->SalePaymentRequestResult->Token;
             }
-
-            $payment_response = \dash\utility\pay\api\parsian\bank::$payment_response;
-            \dash\utility\pay\setting::set_payment_response1($payment_response);
 
             if($Token)
             {
