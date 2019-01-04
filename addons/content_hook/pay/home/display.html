@@ -133,11 +133,10 @@
 		<div class="cbox">
 			<h3>Payment detail</h3>
 			{%for key, value in dataRow.payment_response%}
-			{% if key not in ['raw', 'final_fn']%}
-				<div class="msg"><code>{{key}}</code> <kbd class="floatL">{{value}}</kbd></div>
-			{%else%}
+			{% if value is iterable%}
 				<div class="msg"><code>{{key}}</code> <pre class="floatL">{{value | dump}}</pre></div>
-
+			{%else%}
+				<div class="msg"><code>{{key}}</code> <kbd class="floatL">{{value}}</kbd></div>
 			{%endif%}
 			{%endfor%}
 		</div>
@@ -182,7 +181,9 @@
 		<div class="cbox">
 			<h3>Payment record</h3>
 			{%for key, value in dataRow%}
-			{% if key not in ['payment_response','payment_response1','payment_response2','payment_response3']%}
+			{% if value is iterable%}
+				<div class="msg"><code>{{key}}</code> <pre class="floatL">{{value | dump}}</pre></div>
+			{%else%}
 				<div class="msg"><code>{{key}}</code> <kbd class="floatL">{{value}}</kbd></div>
 			{%endif%}
 			{%endfor%}
