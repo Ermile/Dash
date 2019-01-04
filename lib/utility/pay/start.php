@@ -38,7 +38,7 @@ class start
 		$bank_status = \dash\option::config($bank, 'status');
 		if(!$bank_status)
 		{
-			\dash\notif::error(T_("Invalid bank is disabled on this service"));
+			\dash\notif::error(T_("This bank is disabled on this service"));
 			return self::endCompile();
 		}
 
