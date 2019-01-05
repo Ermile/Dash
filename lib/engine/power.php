@@ -10,11 +10,11 @@ class power
 	{
 		\dash\engine\prepare::requirements();
 
-		// block baby to not allow to harm yourself :/
-		\dash\engine\baby::block();
-
 		// detect url and start work with them as first lib used by another one
 		\dash\url::initialize();
+
+		// block baby to not allow to harm yourself :/
+		\dash\engine\baby::block();
 
 		// detect language and if need set the new language
 		\dash\language::detect_language();

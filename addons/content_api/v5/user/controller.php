@@ -9,7 +9,14 @@ class controller
 		switch (\dash\url::subchild())
 		{
 			case 'add':
-				\content_api\v5\user\add\controller::routing();
+				if(\dash\request::is('get'))
+				{
+
+				}
+				elseif(\dash\request::is('post'))
+				{
+					\content_api\v5\user\user_add::add();
+				}
 				break;
 
 			default:
