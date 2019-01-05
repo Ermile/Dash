@@ -8,7 +8,7 @@ class code
 	// echo json of notif
 	public static function compile()
 	{
-		if(\dash\request::json_accept() || \dash\request::ajax())
+		if(\dash\request::json_accept() || \dash\request::ajax() || \dash\url::content() === 'api')
 		{
 			@header('Content-Type: application/json');
 			echo \dash\notif::json();

@@ -166,7 +166,7 @@ class header
 		// set header
 		@header($status_header, true, $_code);
 
-		if(\dash\request::json_accept() || \dash\request::ajax())
+		if(\dash\request::json_accept() || \dash\request::ajax() || \dash\url::content() === 'api')
 		{
 			$translatedDesc .= ' '. \dash\utility\human::fitNumber($_code);
 			// depending on title if exist or not
