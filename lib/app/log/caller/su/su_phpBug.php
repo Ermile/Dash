@@ -45,7 +45,7 @@ class su_phpBug
 		$mymsg = isset($_args['data']['mymsg']) ? $_args['data']['mymsg'] : null;
 
 		$tg_msg = '';
-		$tg_msg .= "❌#PHPBUH\n";
+		$tg_msg .= "❌#PHPBUG\n";
 
 		$tg_msg .= "\n⏳ ". \dash\datetime::fit(date("Y-m-d H:i:s"), true);
 

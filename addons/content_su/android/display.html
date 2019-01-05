@@ -1,0 +1,18 @@
+{%extends display.suMain%}
+
+{%block pageContent%}
+
+<form class="cbox" method="post" autocomplete="off">
+  <div class="input ltr mB10">
+
+    <label for="token">{%trans "Token"%}</label>
+    <input type="token" name="token" id="token"  value="{{androidDetail.token}}">
+  </div>
+  <div data-confirm data-data='{"makeToken" : 1}' class="btn danger block">{%trans "Revoke"%}</div>
+
+
+
+</form>
+
+
+{%endblock%}
