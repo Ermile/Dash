@@ -1,0 +1,259 @@
+
+{%block iTitle %}
+<div class="input mB10">
+  <input type="text" name="title" id="title" placeholder='{%trans "Enter title here"%} *' value="{{dataRow.title}}" autofocus required maxlength='200' minlength="1" pattern=".{1,200}" title='{%trans "Recommended being more than 40 character and appear at the beginning of page content"%}'>
+</div>
+{% endblock %}
+
+
+{%block iSubtitle %}
+{%if dataRow.type == 'post'%}
+<div class="input mB10">
+  <input type="text" name="subtitle" id="subtitle" placeholder='{%trans "Enter subtitle here"%}' value="{{dataRow.subtitle}}" maxlength='300' minlength="1" pattern=".{1,300}" title='{%trans "Subtitle show under title and used on press websites"%}'>
+</div>
+{%endif%}
+{% endblock %}
+
+
+{%block iExcerpt %}
+<textarea class="txt mB10" name="excerpt" id="excerpt" placeholder='{%trans "Excerpt used for social media and search engines"%} *' maxlength='300' minlength="1" title='{%trans "If leave it empty we are generate it automatically"%}' rows='3'>{{dataRow.excerpt}}</textarea>
+{% endblock %}
+
+
+{%block iUrl %}
+{%if dataRow.type == 'help'%}
+  {%set myFirstURL = 'support/'%}
+{%endif%}
+<a href="{{url.kingdom}}/{{myFirstURL}}{{dataRow.url}}" class="msg block ltr" target="_blank" title='{%trans "Url of this post."%} {%trans "You can change by set slug and category or parent for this post"%}'><i class="sf-share floatLa"></i> <small>{{url.kingdom}}/{{myFirstURL}}</small>{{dataRow.url}}</a>
+{% endblock %}
+
+
+{%block iSlug %}
+<div class="input ltr mB10">
+  <input type="text" name="slug" id="slug" placeholder='{%trans "Slug"%}' value="{{dataRow.slug_raw}}" maxlength='100' minlength="1" pattern=".{1,100}" title='{%trans "Slug used to create url"%}'>
+</div>
+{% endblock %}
+
+
+{%block iContent%}
+<textarea class="txt mB10" data-editor id='descInput' name="content" placeholder='{%trans "Write post "%}' maxlength='100000' rows="15">{{dataRow.content}}</textarea>
+{%endblock%}
+
+
+{%block iPublishdate %}
+<div title='{%trans "Allow change default publish date"%}'>
+  <label for="publishdate">{%trans "Publish date"%}</label>
+  <div class="input ltr">
+    <input class="datepicker" type="text" name="publishdate" id="publishdate" placeholder='{%trans "Default is now"%}' value="{{dataRow.publishdate}}" maxlength='15' data-format="YYYY/MM/DD" data-initialValue='false' data-view="year">
+  </div>
+</div>
+{% endblock %}
+
+{%block iPublishtime%}
+<label for="publishtime">{%trans "Publish time"%}</label>
+<div class="input clockpicker ltr">
+  <input type="text" name="publishtime" id="publishtime" placeholder='{%trans "Publish time"%}' autocomplete="off" {%if dataRow.publishdate %} value="{{dataRow.publishdate | date('H:i')}}" {%endif%}>
+</div>
+{%endblock%}
+
+{%block galleryImporter %}
+<div class="dropzone">
+  <h4>{%trans "Add to gallery"%}</h4>
+  <label for='gallery' class="btn light">{%trans "To add image gallery drop file here or"%}</label>
+  <input id="gallery" type="file" name="gallery" multiple>
+  <div class="progress shadow" data-percent='30'>
+    <div class="bar"></div>
+    <div class="detail"></div>
+  </div>
+  <small>{%trans "Maximum file size"%} <b>{{maxUploadSize}}</b></small>
+</div>
+{% endblock %}
+
+
+{%block iadd%}
+<button class="btn primary block mT20">{%trans "Save"%}</button>
+{%endblock%}
+
+{%block isave%}
+<button class="btn primary block mT20">{%trans "Save"%}</button>
+{%endblock%}
+
+
+
+{%block iStatus%}
+
+<div class="mT15">
+ <label >{%trans "Status"%}</label>
+
+ <div class="radio1 green">
+  <input type="radio" id="r-publish" name="status" value="publish" {%if dataRow.status == 'publish' or not dataRow.status %} checked{%endif%}>
+  <label for="r-publish">{%trans "Publish"%}</label>
+ </div>
+
+ <div class="radio1 black">
+  <input type="radio" id="r-draft" name="status" value="draft" {%if dataRow.status == 'draft'%} checked{%endif%} >
+  <label for="r-draft">{%trans "Draft"%}</label>
+ </div>
+
+ <div class="radio1 red mB25">
+  <input type="radio" id="r-deleted" name="status" value="deleted" {%if dataRow.status == 'deleted'  %} checked{%endif%}>
+  <label for="r-deleted">{%trans "Deleted"%}</label>
+ </div>
+
+</div>
+{%endblock%}
+
+
+{%block iComment%}
+<div class="switch1">
+ <input type="checkbox" name="comment" id="comment" {%if dataRow.comment == 'open' %} checked {%endif%}>
+ <label for="comment">{%trans "Comment"%}</label>
+ <label for="comment">{%trans "Comment"%}</label>
+</div>
+{%endblock%}
+
+
+{%block iLanguage%}
+<div class="mB10" title='{%trans "You can publish in another language"%}'>
+  <label for="language">{%trans "Language"%}</label>
+  <select name="language" class="ui dropdown select">
+    <option value=""><i>{%trans "Please select one item"%}</i></option>
+    {%for key, value in lang.list%}
+      {%if key | length == 2%}
+      <option value="{{key}}" {%if dataRow.language == key or (not dataRow.lang and lang.current == key)  %} selected {%endif%}>{{value}}</option>
+      {%endif%}
+    {%endfor%}
+  </select>
+</div>
+{%endblock%}
+
+
+
+{%block iParent%}
+<div title='{%trans "Choose parent for this page to create related url as tree"%}'>
+  <label for="parent">{%trans "Parent"%}</label>
+  <select name="parent" class="select ui dropdown search">
+    <option value=""><i>{%trans "Choose Parent"%}</i></option>
+    <option value="0"><i>{%trans "Without Parent"%}</i></option>
+{%for key, value in pageList%}
+{%if value.id == dataRow.id%}
+{%else%}
+      <option value="{{value.id}}" {%if dataRow.parent == value.id %} selected {%endif%}>{{value.title | slice(0, 50)}}</option>
+{%endif%}
+{%endfor%}
+  </select>
+</div>
+{%endblock%}
+
+
+
+{%block iCat%}
+
+{%if listCats%}
+<div title='{%trans "Choose category for posts is fix url of post relative and help people find it better."%}'>
+{%set postCat = category({"post_id" : dataRow.id, "id" : true, "type" : "cat" })%}
+  <div title='{%trans "Choose category of post"%}'>
+{%for key, value in listCats%}
+    <div class="check1">
+      <input type="checkbox" name="cat_{{value.id}}" value="{{value.title}}" id="cat_{{value.id}}" {%if value.id in postCat %} checked {%endif%}>
+      <label for="cat_{{value.id}}">{{value.title}}</label>
+    </div>
+{%endfor%}
+  </div>
+</div>
+{%else%}
+<div class="msg warn2"><a href="{{url.here}}/terms?type={%if myDataType == 'help'%}help{%else%}cat{%endif%}">{%trans "Add new category"%}</a></div>
+{%endif%}
+{%endblock%}
+
+
+
+{%block iTag%}
+<div class="tagDetector">
+{%if requestGET.type == 'help' or dataRow.type == 'help'%}
+  {%set myTagType = 'help_tag'%}
+{%else%}
+  {%set myTagType = 'tag'%}
+{%endif%}
+
+{%set postTag = tags({"post_id" : requestGET.id , "title" : true, "format" : 'csv', "type" : myTagType}) %}
+
+{%if not requestGET.type or requestGET.type == 'post' %}
+{%if options.tagSpecial%}
+  <div class="specialTags mB5" title='{%trans "Click on special tags to use this depending on your website design"%}'>
+    {%for key, value in options.tagSpecial%}
+      <span class="badge {%if key in postTag%} success{%endif%}" href="#" title="{%trans value%}" data-val='{{key}}'>{%if key in postTag%}<i class="sf-check compact"></i> {%endif%}{{key}}</span>
+    {%endfor%}
+  </div>
+{%endif%}
+{%endif%}
+
+  <div class="input mB10 hide">
+    <input type="text" class="input tagVals" name="tag" value="{{postTag}}" id="tagValues" placeholder='{%trans "Tag"%}'>
+  </div>
+
+  <div class="input" title='{%trans "Add tag manually to link articles togethers"%}'>
+    <input type="text" class="tagInput" placeholder='{%trans "Tag keywords..."%}'>
+    <button class="addon tagAdd">{%trans "Add tag"%}</button>
+  </div>
+  <div class="tagBox"></div>
+</div>
+{%endblock%}
+
+
+{%block iThumb%}
+<label for="fthumb" class="block txtC">{%trans "Featured Image"%}</label>
+<div class="input preview">
+ <input type="file" accept="image/gif, image/jpeg, image/png" name="thumb" id="fthumb" data-preview data-max="1000">
+ <label for="fthumb" title='{%trans "allowed extentions jpg, png. Max 1000Kb"%}'>
+{%if dataRow.meta.thumb%}
+  <img src="{{dataRow.meta.thumb}}" alt="{{dataRow.title}}" id="logoPreview">
+{%endif%}
+ </label>
+</div>
+{%endblock%}
+
+
+
+
+{%block iGalleryShow%}
+
+{%if dataRow.meta.gallery%}
+<div class="cbox">
+  <h2>{%trans "Gallery"%}</h2>
+  <div class="normal f">
+
+    {% for key, myUrl in dataRow.meta.gallery%}
+      <div class="vcard mA10">
+
+        {%if myUrl ends with '.jpg' or myUrl ends with '.png' or myUrl ends with '.gif'%}
+        <img src="{{myUrl}}">
+        <div class="content"></div>
+        {%elseif myUrl ends with '.mp4' %}
+        <video>
+          <source src="{{myUrl}}" type="video/mp4">
+        </video>
+        <div class="content"><a href="{{myUrl}}" title='{%trans "Click to download"%}'>{%trans "Video"%}</a></div>
+        <div class="content"></div>
+        {%elseif myUrl ends with '.mp3' %}
+        <audio controls>
+          <source src="{{myUrl}}" type="audio/mpeg">
+        </audio>
+        <div class="content"><a href="{{myUrl}}" title='{%trans "Click to download"%}'>{%trans "MP3"%}</a></div>
+        {%elseif myUrl ends with '.pdf' %}
+          <div class="content title"><a href="{{myUrl}}" title='{%trans "Click to download"%}'>{%trans "PDF"%}</a></div>
+        {%else%}
+        <div class="content title"><a href="{{myUrl}}" title='{%trans "Click to download"%}'>{%trans "Without preview"%}</a></div>
+        {%endif%}
+        <div class="footer f">
+          <button class="btn block secondary" data-ajaxify data-data='{"type" : "remove_gallery", "id": "{{key}}"}' data-method='post'>{%trans "Remove"%}</button>
+        </div>
+      </div>
+    {%endfor%}
+  </div>
+</div>
+{%endif%}
+
+{%endblock%}
+
+

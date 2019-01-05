@@ -5,6 +5,7 @@
 <div class="f">
  {%if perm('cpPostsView') %}<div class="c4 s12">{{block ("iPost")}}</div>{%endif%}
  {%if perm('cpPageView') %}<div class="c4 s12">{{block ("iPage")}}</div>{%endif%}
+ {%if perm('cpPostsView') %}<div class="c4 s12">{{block ("iAttachment")}}</div>{%endif%}
  {%if perm('cpHelpCenterView') %}<div class="c4 s12">{{block ("iHelp")}}</div>{%endif%}
  {%if perm('cpCategoryView') %}<div class="c4 s12">{{block ("iTermCat")}}</div>{%endif%}
  {%if perm('cpTagView') %}<div class="c4 s12">{{block ("iTermTag")}}</div>{%endif%}
@@ -12,6 +13,16 @@
 </div>
 {%endblock%}
 
+
+
+{%block iAttachment%}
+<a class="dcard x1" href='{{url.here}}/attachment'>
+ <div class="statistic">
+  <div class="value"><i class="sf-file-o"></i></div>
+  <div class="label">{%trans "Attachment"%}</div>
+ </div>
+</a>
+{%endblock%}
 
 
 
