@@ -20,7 +20,7 @@ class controller
 			}
 		}
 
-		\content_hook\gitdetail\model::save_detail(false);
+		\content_api\v5\git\model::save_detail(false);
 
 		\dash\code::boom();
 	}
