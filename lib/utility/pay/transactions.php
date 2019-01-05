@@ -69,24 +69,24 @@ class transactions
 	}
 
 
-	public static function final_verify($_transaction_id)
-	{
-		$project_fn = ["\\lib\\db\\transactions", "final_verify"];
-		$dash_fn    = ["\\dash\\db\\transactions", "final_verify"];
+	// public static function final_verify($_transaction_id)
+	// {
+	// 	$project_fn = ["\\lib\\db\\transactions", "final_verify"];
+	// 	$dash_fn    = ["\\dash\\db\\transactions", "final_verify"];
 
-		if(is_callable($project_fn))
-		{
-			$namespace = $project_fn[0];
-			$function  = $project_fn[1];
-			return $namespace::$function($_transaction_id);
-		}
-		else
-		{
-			$namespace = $dash_fn[0];
-			$function  = $dash_fn[1];
-			return $namespace::$function($_transaction_id);
-		}
-	}
+	// 	if(is_callable($project_fn))
+	// 	{
+	// 		$namespace = $project_fn[0];
+	// 		$function  = $project_fn[1];
+	// 		return $namespace::$function($_transaction_id);
+	// 	}
+	// 	else
+	// 	{
+	// 		$namespace = $dash_fn[0];
+	// 		$function  = $dash_fn[1];
+	// 		return $namespace::$function($_transaction_id);
+	// 	}
+	// }
 
 
 }

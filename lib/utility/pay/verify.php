@@ -32,7 +32,7 @@ class verify
 
 	        self::call_final_fn();
 
-	        \dash\utility\pay\transactions::final_verify($_transaction_id);
+	        // \dash\utility\pay\transactions::final_verify($_transaction_id);
 		}
 		else
 		{
