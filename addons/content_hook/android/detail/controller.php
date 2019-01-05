@@ -1,5 +1,5 @@
 <?php
-namespace content_hook\app\android;
+namespace content_hook\android\detail;
 
 
 class controller
