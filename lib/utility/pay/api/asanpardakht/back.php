@@ -46,7 +46,7 @@ class back
         $RRN                = isset($RetArr[6]) ? $RetArr[6] : null;
         $LastFourDigitOfPAN = isset($RetArr[7]) ? $RetArr[7] : null;
 
-        \dash\utility\pay\setting::load_banktoken($_token, $RefId, 'payir');
+        \dash\utility\pay\setting::load_banktoken($_token, $RefId, 'asanpardakht');
 
         $transaction_id  = \dash\utility\pay\setting::get_id();
 
