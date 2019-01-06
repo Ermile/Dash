@@ -776,9 +776,16 @@ class config
 
 		if($pagenation && !$get_count)
 		{
-			$pagenation_query = "SELECT	COUNT(*) AS `count`	FROM `$_table` $master_join	$where $search $group_by";
-			$pagenation_query = \dash\db::get($pagenation_query, 'count', true, $db_name);
+			if($sql_having)
+			{
+				$pagenation_query = "SELECT COUNT(*) AS `count` FROM (SELECT $public_fields $where $search $group_by $sql_having $order) AS `myCountTable` ";
+			}
+			else
+			{
+				$pagenation_query = "SELECT	COUNT(*) AS `count`	FROM `$_table` $master_join	$where $search $group_by";
+			}
 
+			$pagenation_query = \dash\db::get($pagenation_query, 'count', true, $db_name);
 			list($limit_start, $limit) = \dash\db::pagnation((int) $pagenation_query, $limit);
 			$limit = " LIMIT $limit_start, $limit ";
 		}
