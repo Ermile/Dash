@@ -432,7 +432,8 @@ class posts
 		$publishtime = \dash\utility\convert::to_en_number($publishtime);
 		if($publishtime)
 		{
-			if(\dash\data::make_time($publishtime) === false)
+			$publishtime = \dash\date::make_time($publishtime);
+			if($publishtime === false)
 			{
 				\dash\notif::error(T_("Invalid publish time"), 'publishtime');
 				return false;
