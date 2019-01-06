@@ -132,10 +132,10 @@ class controller
 					\dash\utility\dayevent::save();
 				}
 
-				if(self::at('07:07'))
-				{
-					\dash\utility\dayevent::day_notif();
-				}
+				// if(self::at('07:07'))
+				// {
+				// 	\dash\utility\dayevent::day_notif();
+				// }
 
 				break;
 
