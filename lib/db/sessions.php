@@ -182,7 +182,14 @@ class sessions
 	 */
 	public static function set_cookie($_code)
 	{
-		$cookie_domain = '.'. \dash\url::domain();
+		if(\dash\option::config('free_subdomain'))
+		{
+			$cookie_domain = \dash\url::subdomain(). '.'. \dash\url::domain();
+		}
+		else
+		{
+			$cookie_domain = '.'. \dash\url::domain();
+		}
 		setcookie("remember_me_", $_code, time() + (60*60*24*30), '/', $cookie_domain);
 	}
 
