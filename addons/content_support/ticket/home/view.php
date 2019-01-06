@@ -154,11 +154,16 @@ class view
 			}
 		}
 
+
+
 		$subdomain = \dash\request::get('subdomain');
 
-		if($subdomain && \dash\permission::check('supportTicketManageSubdomain'))
+		if(!\dash\option::config('no_subdomain'))
 		{
-			$args['comments.subdomain'] = $subdomain;
+			if($subdomain && \dash\permission::check('supportTicketManageSubdomain'))
+			{
+				$args['comments.subdomain'] = $subdomain;
+			}
 		}
 
 
@@ -304,15 +309,18 @@ class view
 			case 'manage':
 				\dash\permission::access('supportTicketManage');
 
-				\dash\data::haveSubdomain(false);
+				if(!\dash\option::config('no_subdomain'))
+				{
+					\dash\data::haveSubdomain(false);
 
-				if(\dash\url::subdomain())
-				{
-					$args['comments.subdomain']    = \dash\url::subdomain();
-				}
-				else
-				{
-					$args['comments.subdomain']    = null;
+					if(\dash\url::subdomain())
+					{
+						$args['comments.subdomain']    = \dash\url::subdomain();
+					}
+					else
+					{
+						$args['comments.subdomain']    = null;
+					}
 				}
 				break;
 

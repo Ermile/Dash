@@ -18,6 +18,7 @@
     </a>
   </div>
   {%endif%}
+  {%if not options.no_subdomain%}
   {%if perm('supportTicketManageSubdomain')%}
   <div class="c">
     <a class="dcard {%if accessMode == 'all'%} active{%endif%}" href='{{url.this}}?access=all'>
@@ -27,6 +28,7 @@
      </div>
     </a>
   </div>
+  {%endif%}
   {%endif%}
 </div>
 {%endif%}
