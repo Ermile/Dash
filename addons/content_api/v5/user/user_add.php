@@ -62,6 +62,7 @@ class user_add
 			}
 		}
 
+		$add_user[self::$x_app_request. '_lastupdate'] = date("Y-m-d H:i:s");
 
 		$token  = 'APP_';
 		$token .= $add_user[self::$x_app_request. '_model'];
@@ -91,7 +92,7 @@ class user_add
 			else
 			{
 				$add_user[self::$x_app_request. '_uniquecode'] = $token;
-				self::user_add($token, $add_user);
+				self::user_add($add_user);
 			}
 		}
 		else
@@ -103,7 +104,7 @@ class user_add
 			else
 			{
 				$add_user[self::$x_app_request. '_uniquecode'] = $token;
-				self::user_add($token, $add_user);
+				self::user_add($add_user);
 			}
 		}
 
