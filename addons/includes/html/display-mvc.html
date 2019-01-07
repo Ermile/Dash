@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{global.lang|replace({'_': '-'}) }}" dir="{{global.direction}}" prefix="og: http://ogp.me/ns#"{%if url.tld == 'local'%} data-develop{%endif%}{%if perm_su()%} data-debugger{%endif%}>
+<html lang="{{global.lang|replace({'_': '-'}) }}" dir="{{global.direction}}" prefix="og: http://ogp.me/ns#"{%if url.tld == 'local'%} data-develop{%endif%}{%if perm_su()%} data-debugger{%endif%}{%if xAppRequest%} data-app="{{xAppRequest}}"{%endif%}>
 <head>
 {%block head_def%}
  <meta charset="UTF-8"/>

@@ -48,6 +48,13 @@ class view
 		\dash\data::browser(\dash\utility\browserDetection::browser_detection('full_assoc'));
 		\dash\data::visitor('not ready!');
 
+		$x_app_request = \dash\header::get('x-app-request');
+
+		if(in_array($x_app_request, ['android', 'ios']))
+		{
+			\dash\data::xAppRequest($x_app_request);
+		}
+
 		// define default value for global
 		\dash\data::global_title(null);
 		\dash\data::global_login(\dash\user::login());
