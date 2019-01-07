@@ -198,6 +198,15 @@ trait set
 
 			$insert['budget_before'] = $budget_before;
 			$insert['budget']        = $budget;
+
+			if(!isset($_args['dateverify']))
+			{
+				$insert['dateverify'] = time();
+			}
+			else
+			{
+				$insert['dateverify'] = intval($_args['dateverify']);
+			}
 		}
 
 		$insert_id = self::insert($insert);
