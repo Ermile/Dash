@@ -35,9 +35,14 @@ class user_add
 		{
 			// check to not save a lot of detail!
 			$i++;
-			if($i > 100)
+			if($i > 50)
 			{
 				break;
+			}
+
+			if(mb_strlen($value) >= 200)
+			{
+				$value = substr($value, 0, 199);
 			}
 
 			$myField = mb_strtolower($key);
