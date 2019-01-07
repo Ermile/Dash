@@ -13,8 +13,10 @@
 	    {%else%}
       	  <textarea class="txt" id="content" name="content" rows=5>{{masterTicketDetail.content}}</textarea>
 	    {%endif%}
-
       <button class="btn block mTB10 primary" >{%trans "Save"%}</button>
+      {%if perm_su()%}
+        <div data-confirm data-data='{"removeMessage": 1, "parent" : "{{masterTicketDetail.parent}}"}' class="floatL btn mTB10 mB10 danger">{%trans "Remove"%}</div>
+      {%endif%}
     </form>
   </div>
 </div>

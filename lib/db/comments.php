@@ -326,12 +326,21 @@ class comments
 	public static function delete($_id)
 	{
 		// get id
-		$query = "
-				UPDATE comments
-				SET comments.status = 'deleted'
-				WHERE comments.id = $_id
-				";
+		$query =
+		"
+			UPDATE comments
+			SET comments.status = 'deleted'
+			WHERE comments.id = $_id
+			LIMIT 1
+		";
 
+		return \dash\db::query($query);
+	}
+
+
+	public static function hard_delete($_id)
+	{
+		$query = "DELETE FROM comments WHERE comments.id = $_id LIMIT 1";
 		return \dash\db::query($query);
 	}
 

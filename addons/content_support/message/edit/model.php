@@ -11,6 +11,19 @@ class model
 	{
 		\dash\permission::check('supportEditMessage');
 
+		if(\dash\permission::supervisor() && \dash\request::post('removeMessage'))
+		{
+			\dash\db\comments::hard_delete(\dash\request::get('id'));
+			if(\dash\request::post('parent'))
+			{
+				\dash\redirect::to(\dash\url::here().'/ticket/show?id='. \dash\request::post('parent'));
+			}
+			else
+			{
+				\dash\redirect::to(\dash\url::here().'/ticket');
+			}
+		}
+
 		// ready to insert comments
 		$content = \dash\request::post('content') ? $_POST['content'] : null;
 		if(!trim($content))
