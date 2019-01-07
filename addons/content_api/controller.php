@@ -9,20 +9,10 @@ class controller
 	public static function routing()
 	{
 
-		switch (\dash\url::module())
-		{
-			case 'v5':
-				self::check_authorization_v5();
-				break;
-
-			default:
-				\dash\header::status(404);
-				break;
-		}
 	}
 
 
-	private static function check_authorization_v5()
+	public static function check_authorization_v5()
 	{
 		$authorization = \dash\header::get('authorization');
 
