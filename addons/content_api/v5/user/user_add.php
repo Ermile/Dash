@@ -77,7 +77,7 @@ class user_add
 
 		$token = md5($token);
 
-		$meta = json_encode($meta, JSON_UNESCAPED_UNICODE);
+		$meta = json_encode($meta, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 
 		$add_user[self::$x_app_request. '_meta']   = $meta;
 
