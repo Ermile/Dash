@@ -13,6 +13,7 @@ class model
 
 		if(\dash\permission::supervisor() && \dash\request::post('removeMessage'))
 		{
+			\dash\log::set('supportMessageDELETED', ['code' => \dash\request::post('parent'), 'message_id' => \dash\request::get('id')]);
 			\dash\db\comments::hard_delete(\dash\request::get('id'));
 			if(\dash\request::post('parent'))
 			{
