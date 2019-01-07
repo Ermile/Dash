@@ -13,18 +13,15 @@ class header
 		if(!self::$HEADER)
 		{
 			$my_header = null;
-			// get apache headers
-			if(function_exists('apache_request_headers'))
-			{
-				$my_header = apache_request_headers();
-			}
-			else
+
+			if(isset($_SERVER) && is_array($_SERVER))
 			{
 				$out = null;
 				foreach($_SERVER as $key => $value)
 		        {
 		            if (substr($key,0,5)=="HTTP_")
 		            {
+		                $out[$key] = $value;
 		                $key = str_replace(" ","-", strtolower(str_replace("_"," ",substr($key,5))));
 		                $out[$key] = $value;
 		            }
@@ -35,6 +32,7 @@ class header
 		    	}
 		    	$my_header = $out;
 			}
+
 
 			self::$HEADER = \dash\safe::safe($my_header);
 		}
