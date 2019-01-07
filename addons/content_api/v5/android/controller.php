@@ -1,5 +1,5 @@
 <?php
-namespace content_api\v5\detail;
+namespace content_api\v5\android;
 
 
 class controller
