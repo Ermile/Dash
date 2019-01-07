@@ -330,6 +330,7 @@ class model
 				{
 
 					$update_main['status'] = 'awaiting';
+					$update_main['solved'] = null;
 					$msg = T_("Your message has been added");
 					$notif_fn = 'ok';
 
