@@ -1,6 +1,17 @@
 {%extends display.suMain%}
 
 {%block pageContent%}
+
+{%if ipDetail%}
+<div class="cbox">
+  <div class="f">
+  {%for key, value in ipDetail%}
+    <div class="msg c3 mL5">{{key}} <span class="floatL">{{value}}</span></div>
+  {%endfor%}
+  </div>
+</div>
+{%endif%}
+
   {{block('iShowFiles')}}
   {{block('iShowFilesRaw')}}
 {%endblock%}

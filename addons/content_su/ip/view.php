@@ -35,6 +35,10 @@ class view
 		{
 			\dash\data::databaseLog(true);
 		}
+
+		$ip = $_SERVER['REMOTE_ADDR'];
+		$details = json_decode(@file_get_contents("http://ipinfo.io/{$ip}/json"), true);
+		\dash\data::ipDetail($details);
 	}
 }
 ?>
