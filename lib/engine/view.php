@@ -48,7 +48,18 @@ class view
 		\dash\data::browser(\dash\utility\browserDetection::browser_detection('full_assoc'));
 		\dash\data::visitor('not ready!');
 
-		\dash\data::xAppRequest(\dash\request::is_app());
+		$is_app = \dash\request::is_app();
+		\dash\data::xAppRequest($is_app);
+
+		if($is_app === 'android')
+		{
+			\dash\data::isAndroid(true);
+		}
+
+		if($is_app === 'ios')
+		{
+			\dash\data::isIos(true);
+		}
 
 		// define default value for global
 		\dash\data::global_title(null);
