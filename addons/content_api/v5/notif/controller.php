@@ -1,31 +1,120 @@
 <?php
-namespace content_hook\android\notif;
+namespace content_api\v5\notif;
 
 
 class controller
 {
 	public static function routing()
 	{
-		$detail = self::detail();
+		\content_api\controller::check_authorization_v5();
 
-		\dash\code::jsonBoom($detail);
+		$notif = self::notif();
+
+		\dash\code::jsonBoom($notif);
 	}
 
-	private static function detail()
-	{
-		$detail            = [];
-		$detail['version'] = '1.1.1';
 
-		if(is_callable(["\\lib\\app\\android", "detail"]))
+	private static function notif()
+	{
+		$notif     = [];
+
+		$user_code = \dash\request::post('user_code');
+		if(!$user_code)
 		{
-			$my_detail = \lib\app\android::detail();
-			if(is_array($my_detail))
+			return false;
+		}
+
+		$user_id = \dash\coding::decode($user_code);
+
+		if(!$user_id)
+		{
+			return false;
+		}
+
+
+		$args =
+		[
+			'sort'  => 'logs.id',
+			'order' => 'desc',
+		];
+
+		$date_now = date("Y-m-d H:i:s");
+		$args['logs.status'] = ['IN', "('notif', 'notifread')"];
+
+		$search_string   = null;
+
+		$dataTable_raw = $dataTable = \dash\app\log::list($search_string, $args);
+
+		$dataTable = self::ready_api($dataTable);
+
+		if(is_array($dataTable))
+		{
+			$readdate = array_column($dataTable, 'readdate');
+			if(count(array_filter($readdate)) !== count($readdate))
 			{
-				$detail = array_merge($detail, $my_detail);
+				\dash\app\log::set_readdate($dataTable_raw, true, $user_id);
 			}
 		}
 
-		return $detail;
+		return $dataTable;
+	}
+
+	private static function ready_api($_data)
+	{
+		if(!$_data || !is_array($_data))
+		{
+			return false;
+		}
+
+		$new = [];
+
+		foreach ($_data as $index => $notif)
+		{
+			foreach ($notif as $key => $value)
+			{
+				switch ($key)
+				{
+					case "readdate":
+					case "title":
+					case "icon":
+					case "cat":
+					case "iconClass":
+					case "api_title":
+					case "excerpt":
+						$new[$index][$key] = $value;
+						break;
+
+					case "id":
+					case "id_raw":
+					case "caller":
+					case "subdomain":
+					case "code":
+					case "send":
+					case "to":
+					case "notif":
+					case "from":
+					case "status":
+					case "datecreated":
+					case "datemodified":
+					case "visitor_id":
+					case "meta":
+					case "ip":
+					case "sms":
+					case "telegram":
+					case "email":
+					case "expiredate":
+					case "displayname":
+					case "mobile":
+					case "avatar":
+					case 'caller':
+					default:
+						// $new[$key] = $value;
+						break;
+				}
+			}
+		}
+
+		return $new;
 	}
 }
 ?>

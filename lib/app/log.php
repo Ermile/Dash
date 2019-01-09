@@ -9,16 +9,21 @@ class log
 		'id',
 	];
 
-	public static function set_readdate($_data, $_all = false)
+	public static function set_readdate($_data, $_all = false, $_user_id = null)
 	{
 		if(!is_array($_data))
 		{
 			return false;
 		}
 
+		if(!$_user_id)
+		{
+			$_user_id = \dash\user::id();
+		}
+
 		if($_all)
 		{
-			return \dash\db\logs::set_readdate_user(\dash\user::id());
+			return \dash\db\logs::set_readdate_user($_user_id);
 		}
 		else
 		{
