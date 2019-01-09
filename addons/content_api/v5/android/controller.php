@@ -16,6 +16,8 @@ class controller
 		$detail            = [];
 		$detail['version'] = '1.1.1';
 
+		$detail['lang_list'] = \dash\language::all();
+
 		if(is_callable(["\\lib\\app\\android", "detail"]))
 		{
 			$my_detail = \lib\app\android::detail();
