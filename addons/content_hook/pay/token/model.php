@@ -6,7 +6,10 @@ class model
 {
 	public static function post()
 	{
-		\dash\utility\pay\start::token(\dash\request::post());
+		if(\dash\user::login())
+		{
+			\dash\utility\pay\start::token(\dash\request::post());
+		}
 	}
 }
 ?>
