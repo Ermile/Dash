@@ -9,7 +9,7 @@ class view
 	{
 		\dash\data::include_css(false);
 		\dash\data::include_js(false);
-		\dash\data::bodyclass('unselectable enter');
+		\dash\data::bodyclass('enter');
 		\dash\data::bodyclass(\dash\data::bodyclass(). ' bg'. date('g'));
 
 		// get mobile number to show in mobile input
