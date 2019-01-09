@@ -104,7 +104,21 @@ class setting
 			$paymentDetail = json_decode($paymentDetail, true);
 		}
 
+		if(!is_array($paymentDetail))
+		{
+			$paymentDetail = [];
+		}
+
 		$back_url = \dash\url::kingdom();
+
+		if(array_key_exists('auto_back', $paymentDetail))
+		{
+			if(!$paymentDetail['auto_back'])
+			{
+				\dash\redirect::to($back_url. '/hook/pay/'. self::get_token())		;
+			}
+		}
+
 
 		if(isset($paymentDetail['turn_back']))
 		{
@@ -217,10 +231,5 @@ class setting
 
 		self::$transaction_update[$_field] = $_data;
 	}
-
-
-
-
-
 }
 ?>
