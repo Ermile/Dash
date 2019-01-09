@@ -186,5 +186,44 @@ class request
 		return false;
 	}
 
+
+	public static function is_app($_app_model = null)
+	{
+		$x_app_request = \dash\header::get('x-app-request');
+
+		if($_app_model)
+		{
+			if($x_app_request === $_app_model)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		else
+		{
+			if(in_array($x_app_request, ['android', 'ios']))
+			{
+				return $x_app_request;
+			}
+		}
+
+		return false;
+	}
+
+
+	public static function is_android()
+	{
+		return self::is_app('android');
+	}
+
+
+	public static function is_ios()
+	{
+		return self::is_app('ios');
+	}
+
 }
 ?>
