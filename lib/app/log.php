@@ -39,9 +39,20 @@ class log
 
 	}
 
-	public static function my_notif_count()
+
+	public static function my_notif_count($_user_id = null)
 	{
-		$count = \dash\db\logs::my_notif_count(\dash\user::id());
+		if(!$_user_id || !is_numeric($_user_id))
+		{
+			$_user_id = \dash\user::id();
+		}
+
+		$count = null;
+
+		if($_user_id)
+		{
+			$count = \dash\db\logs::my_notif_count($_user_id);
+		}
 		return intval($count);
 	}
 

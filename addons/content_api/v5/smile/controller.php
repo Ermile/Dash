@@ -1,31 +1,47 @@
 <?php
-namespace content_hook\android\smile;
+namespace content_api\v5\smile;
 
 
 class controller
 {
 	public static function routing()
 	{
-		$detail = self::detail();
+		\content_api\controller::check_authorization_v5();
 
-		\dash\code::jsonBoom($detail);
+		$smile = self::smile();
+
+		\dash\code::jsonBoom($smile);
 	}
 
-	private static function detail()
-	{
-		$detail            = [];
-		$detail['version'] = '1.1.1';
 
-		if(is_callable(["\\lib\\app\\android", "detail"]))
+	private static function smile()
+	{
+		$smile     = [];
+
+		$user_code = \dash\request::post('user_code');
+
+
+		if(!$user_code)
 		{
-			$my_detail = \lib\app\android::detail();
-			if(is_array($my_detail))
-			{
-				$detail = array_merge($detail, $my_detail);
-			}
+			return false;
 		}
 
-		return $detail;
+		$id = \dash\coding::decode($user_code);
+
+		if(!$id)
+		{
+			return false;
+		}
+
+		$notif_count = \dash\app\log::my_notif_count($id);
+
+		$smile =
+		[
+			'notif_new'   => $notif_count ? true : false,
+			'notif_count' => $notif_count,
+		];
+
+		return $smile;
 	}
 }
 ?>

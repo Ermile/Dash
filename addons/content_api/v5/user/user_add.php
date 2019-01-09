@@ -4,8 +4,12 @@ namespace content_api\v5\user;
 
 class user_add
 {
-	private static $load_user = [];
+	private static $load_user     = [];
+	private static $response      = [];
+	private static $user_id       = null;
 	private static $x_app_request = null;
+
+
 	public static function add()
 	{
 		$post     = \dash\request::post();
@@ -113,7 +117,9 @@ class user_add
 			}
 		}
 
-		\dash\notif::result(['usertoken' => $token]);
+		self::$response['user_token'] = $token;
+
+		\dash\notif::result(self::$response);
 		\dash\code::end();
 
 	}
@@ -132,6 +138,7 @@ class user_add
 
 		if(isset($load['id']))
 		{
+			self::$response['user_code'] = \dash\coding::encode($load['id']);
 			self::$load_user = $load;
 			return $load;
 		}
@@ -151,6 +158,9 @@ class user_add
 	private static function user_add($_detail)
 	{
 		$user_id = \dash\db\users::signup($_detail);
+
+		self::$response['user_code'] = \dash\coding::encode($user_id);
+
 		\dash\log::set('ApiApplicationAddUser', ['code' => $user_id]);
 	}
 }
