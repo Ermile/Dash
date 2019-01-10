@@ -102,7 +102,7 @@ class code
 			$_data = json_encode($_data, JSON_UNESCAPED_UNICODE);
 		}
 		echo $_data;
-		@header('Content-Type: application/json');
+		@header("Content-Type: application/json; charset=utf-8");
 
 		self::boom();
 	}
