@@ -1,0 +1,24 @@
+{%extends display.dash%}
+
+
+
+{%block sidenav%}
+  <li><a href="{{url.here}}"><i class='sf-gauge'></i> <span>{% trans "Dashboard" %}</span></a></li>
+
+
+
+
+
+
+<li class="hr"></li>
+
+{%if perm('contentCp')%}
+<li><a href="{{url.kingdom}}/cp"><i class='sf-diamond'></i>{% trans "CP" %}</a></li>
+{%endif%}
+
+<li><a href="{{url.kingdom}}/support" data-shortkey="112" data-shortkey-prevent data-shortkey-timeout='1000'><i class='sf-life-ring'></i> <span>{% trans "Support" %}</span><kbd class="floatRa fs08">F1</kbd></a></li>
+
+
+{%endblock%}
+
+
