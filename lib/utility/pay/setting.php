@@ -9,7 +9,7 @@ class setting
 	private  static $transaction_detail = [];
 	private  static $transaction_update = [];
 
-	public static $default_callback_url = 'hook/pay/verify';
+	public static $default_callback_url = 'pay/verify';
 
 
     public static function set()
@@ -27,7 +27,7 @@ class setting
 
         if($_payment === 'redirect_page')
         {
-            $callback_url .= '/hook/pay/redirect';
+            $callback_url .= '/pay/redirect';
         }
         else
         {
@@ -115,7 +115,7 @@ class setting
 		{
 			if(!$paymentDetail['auto_back'])
 			{
-				\dash\redirect::to($back_url. '/hook/pay/'. self::get_token())		;
+				\dash\redirect::to($back_url. '/pay/'. self::get_token())		;
 			}
 		}
 

@@ -243,7 +243,7 @@ class start
 			return self::endCompile($_args);
 		}
 
-		$url = \dash\url::kingdom(). '/hook/pay/'. $token;
+		$url = \dash\url::kingdom(). '/pay/'. $token;
 
 		if($_args['get_token'])
 		{
