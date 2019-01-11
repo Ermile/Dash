@@ -20,18 +20,21 @@ class controller
 
 		if(!\dash\user::login())
 		{
-			\dash\redirect::to(\dash\url::kingdom(). '/enter', 'direct');
-			return ;
-		}
-
-		// Check permission and if user can do this operation
-		// allow to do it, else show related message in notify center
-		if(\dash\url::isLocal() && false)
-		{
-			// on tld dev open the su to upgrade for test
+			if(\dash\url::isLocal() && \dash\url::module() === 'translation')
+			{
+				// on tld local open the su to upgrade for test
+			}
+			else
+			{
+				\dash\redirect::to(\dash\url::kingdom(). '/enter', 'direct');
+				return ;
+			}
 		}
 		else
 		{
+			// Check permission and if user can do this operation
+			// allow to do it, else show related message in notify center
+
 			if(\dash\request::get('server') === 'status')
 			{
 				if(!\dash\permission::supervisor())
