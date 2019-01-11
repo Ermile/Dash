@@ -1,5 +1,5 @@
 <?php
-namespace content_hook\pay\token;
+namespace content_pay\token;
 
 
 class model

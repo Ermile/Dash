@@ -1,5 +1,5 @@
 <?php
-namespace content_hook\pay\redirect;
+namespace content_pay\redirect;
 
 
 class controller

@@ -1,13 +1,13 @@
 <?php
-namespace content_hook\pay\verify;
+namespace content_pay\verify;
 
 
 class controller
 {
 	public static function routing()
 	{
-		$bank = \dash\url::subchild();
-		$token = \dash\url::dir(3);
+		$bank = \dash\url::child();
+		$token = \dash\url::subchild();
 
 		if($bank && $token && mb_strlen($token) === 32)
 		{

@@ -1,5 +1,5 @@
 <?php
-namespace content_hook\pay\home;
+namespace content_pay\home;
 
 
 class view

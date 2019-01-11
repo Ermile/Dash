@@ -1,12 +1,12 @@
 <?php
-namespace content_hook\pay\home;
+namespace content_pay\home;
 
 
 class controller
 {
 	public static function routing()
 	{
-		$token = \dash\url::child();
+		$token = \dash\url::module();
 		if($token && mb_strlen($token) === 32)
 		{
 			$load = \dash\utility\pay\setting::load_token($token);
