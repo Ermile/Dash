@@ -8,7 +8,9 @@ class view
 	{
 		\dash\data::page_title(T_('Pay detail'));
 		\dash\data::page_desc(T_('Pay'));
-		\dash\data::page_special(true);
+		// \dash\data::page_special(true);
+
+
 		$result = \dash\data::dataRow();
 		if(isset($result['payment_response']))
 		{

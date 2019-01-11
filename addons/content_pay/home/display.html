@@ -4,7 +4,32 @@
 
 {%block pageContent%}
 
-<div class="f justify-center align-center mT10">
+<div class="animatedBgBox">
+    <div class="bgImage"></div>
+</div>
+
+<div class="f justify-center">
+	<div class="c6 s12">
+		<div class="payBox">
+			<div class="f fix topBox">
+				<div class="c8">
+					<div class="priceBox">
+						<span class="price">{{dataRow.plus | fitNumber}}</span>
+						<span class="unit">{%trans "Toman"%}</span>
+					</div>
+				</div>
+				<div class="c4">
+					<div class="rip"></div>
+					123
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<hr>
+
+<div class="f justify-center">
 	<div class="c4 s12">
 		<div class="cbox">
 
@@ -195,8 +220,6 @@
 
 {%block head_css%}
 <style>
-body{
-	background-color: #eee;
-}
+
 </style>
 {%endblock%}
