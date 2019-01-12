@@ -117,22 +117,26 @@
 
 
 {%block ipayTable%}
+
+{%if dataRow.banktoken%}
 <table class="tbl1 txtC">
 	<tbody>
 		<tr>
-			<th>Key</th>
-			<td>Val</td>
+			<th>{%trans "Track id"%}</th>
+			<td>{{dataRow.id | coding('encode')}}</td>
 		</tr>
 		<tr>
-			<th>Key</th>
-			<td>Val</td>
+			<th>{%trans "Date"%}</th>
+			<td>{{value.dateverify | date | dt(true)}}</td>
 		</tr>
 		<tr>
-			<th>Key</th>
-			<td>Val</td>
+			<th>{%trans "Payment"%}</th>
+			<td>{%set myPaymeny = dataRow.payment | capitalize%}{%trans myPaymeny%}</td>
 		</tr>
 	</tbody>
 </table>
+{%endif%}
+
 {%endblock%}
 
 
