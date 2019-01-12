@@ -13,8 +13,6 @@
 <div class="f hide justify-center">
 	<div class="c4 s12">
 		<div class="cbox">
-
-
 			{%if dataRow.displayname%}
 				<div class="teal statistic fs06">
 		           <div class="value">{{dataRow.displayname}}</div>
@@ -57,7 +55,7 @@
 
 
 {%block bPayTicket%}
-<div class="payTicket">
+<div class="payTicket active positive negative warning">
 	<div class="f fix topBox">
 		<div class="c8">
 			<div class="priceBox">
@@ -69,7 +67,8 @@
 			<div class="breakLine"><i></i></div>
 		</div>
 		<div class="c status">
-			<span class="myStatus sf-check"></span>
+			<span class="myStatus sf-plus-circle sf-check-circle sf-times-circle sf-info-circle"></span>
+			<abbr class="statusDesc">Checked</abbr>
 		</div>
 	</div>
 </div>
@@ -244,6 +243,7 @@
 	</div>
 {%endblock%}
 
+
 {%block iPaymentDetail1%}
 	<div class="c s12">
 		<div class="cbox">
@@ -254,6 +254,7 @@
 		</div>
 	</div>
 {%endblock%}
+
 
 {%block iPaymentDetail2%}
 	<div class="c s12">
@@ -266,6 +267,7 @@
 	</div>
 {%endblock%}
 
+
 {%block iPaymentDetail3%}
 	<div class="c s12">
 		<div class="cbox">
@@ -276,6 +278,7 @@
 		</div>
 	</div>
 {%endblock%}
+
 
 {%block iTransactionRecord%}
 	<div class="c s12">
@@ -292,10 +295,3 @@
 	</div>
 {%endblock%}
 
-
-
-{%block foot_js%}
-<script>
-$(".payTicket .price").shrink(100);
-</script>
-{%endblock%}
