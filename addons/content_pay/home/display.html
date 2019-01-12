@@ -1,54 +1,14 @@
 {%extends display.payMain%}
 
 
-
 {%block pageContent%}
-
-<div class="animatedBgBox">
-    <div class="bgImage"></div>
-</div>
 
 <div class="f justify-center">
 	<div class="c6 s12">
-		{{block('ipayTicket')}}
-
-		<div class="cbox">
-
-			{%if payDetail.msg_go%}
-				<div class="msg info2">{{payDetail.msg_go}}</div>
-			{%endif%}
-
-			{{block('ipayTable')}}
-
-			<form method="post">
-
-				<p>{%trans "Choose a gateway"%}</p>
-
-				{{block('ipayBank')}}
-
-		    	{%if dataRow.condition == 'request' or dataRow.condition == 'redirect'%}
-					<input type="hidden" name="ok" value="1">
-
-					<button class="btn primary block">{%trans "Pay"%}</button>
-
-					{%if payDetail.turn_back%}
-					<div class="f mT5">
-						<a href="{{payDetail.turn_back}}" class="cauto os btn outline sm">{%trans "Cancel"%}</a>
-					</div>
-					{%endif%}
-
-				{%else%}
-
-					{%if payDetail.turn_back%}
-					<a class="btn success block mT10" href="{{payDetail.turn_back}}">{%trans "Back"%}</a>
-					{%endif%}
-
-				{%endif%}
-			</form>
-		</div>
+		{{block('bPayTicket')}}
+		{{block('bPayTicketDetail')}}
 	</div>
 </div>
-
 
 <div class="f hide justify-center">
 	<div class="c4 s12">
@@ -88,24 +48,18 @@
 	            </div>
 			{%endif%}
 
-
-
-
-
 		</div>
-
 	</div>
-
 </div>
-
 {%endblock%}
 
 
 
-{%block ipayTicket%}
+
+{%block bPayTicket%}
 <div class="payTicket">
 	<div class="f fix topBox">
-		<div class="c">
+		<div class="c8">
 			<div class="priceBox">
 				<span class="price">{{dataRow.plus | fitNumber}}</span>
 				<abbr class="unit">{%trans "Toman"%}</abbr>
@@ -114,12 +68,52 @@
 		<div class="cauto">
 			<div class="breakLine"><i></i></div>
 		</div>
-		<div class="c4 status">
+		<div class="c status">
 			<span class="myStatus sf-check"></span>
 		</div>
 	</div>
 </div>
 {%endblock%}
+
+
+{%block bPayTicketDetail%}
+		<div class="payTicketDetail">
+
+			{%if payDetail.msg_go%}
+				<div class="msg info2">{{payDetail.msg_go}}</div>
+			{%endif%}
+
+			{{block('ipayTable')}}
+
+			<form method="post">
+
+				<p>{%trans "Choose a gateway"%}</p>
+
+				{{block('ipayBank')}}
+
+		    	{%if dataRow.condition == 'request' or dataRow.condition == 'redirect'%}
+					<input type="hidden" name="ok" value="1">
+
+					<button class="btn primary block">{%trans "Pay"%}</button>
+
+					{%if payDetail.turn_back%}
+					<div class="f mT5">
+						<a href="{{payDetail.turn_back}}" class="cauto os btn outline sm">{%trans "Cancel"%}</a>
+					</div>
+					{%endif%}
+
+				{%else%}
+
+					{%if payDetail.turn_back%}
+					<a class="btn success block mT10" href="{{payDetail.turn_back}}">{%trans "Back"%}</a>
+					{%endif%}
+
+				{%endif%}
+			</form>
+		</div>
+{%endblock%}
+
+
 
 
 {%block ipayTable%}
@@ -144,47 +138,47 @@
 
 {%block ipayBank%}
 
-{%if options.parsian.status%}
-<div class="radioGateway" title='{%trans "Parsian"%}'>
-<input type="radio" name="bank" value="parsian" id="parsian"  {%if options.default_payment == 'parsian'%} checked {%endif%}>
-<label for='parsian' class="spay-64-parsian"></label>
-</div>
-{%endif%}
+	{%if options.parsian.status%}
+	<div class="radioGateway" title='{%trans "Parsian"%}'>
+	<input type="radio" name="bank" value="parsian" id="parsian"  {%if options.default_payment == 'parsian'%} checked {%endif%}>
+	<label for='parsian' class="spay-64-parsian"></label>
+	</div>
+	{%endif%}
 
-{%if options.asanpardakht.status%}
-<div class="radioGateway">
-<input type="radio" name="bank" value="asanpardakht" id="asanpardakht" {%if options.default_payment == 'asanpardakht'%} checked {%endif%}>
-<label for='asanpardakht' class="spay-64-asanpardakht"></label>
-</div>
-{%endif%}
+	{%if options.asanpardakht.status%}
+	<div class="radioGateway">
+	<input type="radio" name="bank" value="asanpardakht" id="asanpardakht" {%if options.default_payment == 'asanpardakht'%} checked {%endif%}>
+	<label for='asanpardakht' class="spay-64-asanpardakht"></label>
+	</div>
+	{%endif%}
 
-{%if options.irkish.status%}
-<div class="radioGateway">
-<input type="radio" name="bank" value="irKish" id="irKish" {%if options.default_payment == 'irkish'%} checked {%endif%}>
-<label for='irKish' class="spay-64-irkish"></label>
-</div>
-{%endif%}
+	{%if options.irkish.status%}
+	<div class="radioGateway">
+	<input type="radio" name="bank" value="irKish" id="irKish" {%if options.default_payment == 'irkish'%} checked {%endif%}>
+	<label for='irKish' class="spay-64-irkish"></label>
+	</div>
+	{%endif%}
 
-{%if options.zarinpal.status%}
-<div class="radioGateway">
-<input type="radio" name="bank" value="ZarinPal" id="ZarinPal" {%if options.default_payment == 'zarinpal'%} checked {%endif%}>
-<label for='ZarinPal' class="spay-64-zarinpal"></label>
-</div>
-{%endif%}
+	{%if options.zarinpal.status%}
+	<div class="radioGateway">
+	<input type="radio" name="bank" value="ZarinPal" id="ZarinPal" {%if options.default_payment == 'zarinpal'%} checked {%endif%}>
+	<label for='ZarinPal' class="spay-64-zarinpal"></label>
+	</div>
+	{%endif%}
 
-{%if options.payir.status%}
-<div class="radioGateway">
-<input type="radio" name="bank" value="payir" id="payir" {%if options.default_payment == 'payir'%} checked {%endif%}>
-<label for='payir' class="spay-64-payir"></label>
-</div>
-{%endif%}
+	{%if options.payir.status%}
+	<div class="radioGateway">
+	<input type="radio" name="bank" value="payir" id="payir" {%if options.default_payment == 'payir'%} checked {%endif%}>
+	<label for='payir' class="spay-64-payir"></label>
+	</div>
+	{%endif%}
 
-{%if options.mellat.status%}
-<div class="radioGateway">
-<input type="radio" name="bank" value="mellat" id="mellat" {%if options.default_payment == 'mellat'%} checked {%endif%}>
-<label for='mellat' class="spay-64-mellat"></label>
-</div>
-{%endif%}
+	{%if options.mellat.status%}
+	<div class="radioGateway">
+	<input type="radio" name="bank" value="mellat" id="mellat" {%if options.default_payment == 'mellat'%} checked {%endif%}>
+	<label for='mellat' class="spay-64-mellat"></label>
+	</div>
+	{%endif%}
 
 {%endblock%}
 
@@ -298,6 +292,6 @@
 
 {%block foot_js%}
 <script>
-$(".payTicket .price").shrink(60)
+$(".payTicket .price").shrink(100);
 </script>
 {%endblock%}
