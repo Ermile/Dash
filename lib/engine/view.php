@@ -183,6 +183,9 @@ class view
 		else
 		{
 			\dash\data::global_title(T_(\dash\data::site_title()));
+			// if this page does not have title use site title
+			\dash\data::page_title(T_(\dash\data::site_title()));
+			\dash\data::page_special(true);
 		}
 
 		\dash\data::global_short_title(substr(\dash\data::global_title(), 0, strrpos(substr(\dash\data::global_title(), 0, 120), ' ')). '...');
