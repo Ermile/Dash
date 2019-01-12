@@ -10,119 +10,50 @@
 
 <div class="f justify-center">
 	<div class="c6 s12">
-		<div class="payTicket">
-			<div class="f fix topBox">
-				<div class="c">
-					<div class="priceBox">
-						<span class="price">{{dataRow.plus | fitNumber}}</span>
-						<abbr class="unit">{%trans "Toman"%}</abbr>
-					</div>
-				</div>
-				<div class="cauto">
-					<div class="breakLine"><i></i></div>
-				</div>
-				<div class="c4 status">
-					<span class="myStatus sf-check"></span>
-				</div>
-			</div>
-		</div>
+		{{block('ipayTicket')}}
 
-		<div class="cbox">
-			<div class="msg info2">Salam</div>
-			<table class="tbl1 txtC">
-				<tbody>
-					<tr>
-						<th>Key</th>
-						<td>Val</td>
-					</tr>
-					<tr>
-						<th>Key</th>
-						<td>Val</td>
-					</tr>
-					<tr>
-						<th>Key</th>
-						<td>Val</td>
-					</tr>
-				</tbody>
-			</table>
-
-
-			<form method="post">
-
-			  <p>{%trans "Choose a gateway"%}</p>
-
-          {%if options.parsian.status%}
-          <div class="radioGateway" title='{%trans "Parsian"%}'>
-           <input type="radio" name="bank" value="parsian" id="parsian"  {%if options.default_payment == 'parsian'%} checked {%endif%}>
-           <label for='parsian' class="spay-64-parsian"></label>
-          </div>
-          {%endif%}
-
-          {%if options.asanpardakht.status%}
-          <div class="radioGateway">
-           <input type="radio" name="bank" value="asanpardakht" id="asanpardakht" {%if options.default_payment == 'asanpardakht'%} checked {%endif%}>
-           <label for='asanpardakht' class="spay-64-asanpardakht"></label>
-          </div>
-          {%endif%}
-
-          {%if options.irkish.status%}
-           <div class="radioGateway">
-           <input type="radio" name="bank" value="irKish" id="irKish" {%if options.default_payment == 'irkish'%} checked {%endif%}>
-           <label for='irKish' class="spay-64-irkish"></label>
-          </div>
-          {%endif%}
-
-          {%if options.zarinpal.status%}
-          <div class="radioGateway">
-           <input type="radio" name="bank" value="ZarinPal" id="ZarinPal" {%if options.default_payment == 'zarinpal'%} checked {%endif%}>
-           <label for='ZarinPal' class="spay-64-zarinpal"></label>
-          </div>
-          {%endif%}
-
-          {%if options.payir.status%}
-          <div class="radioGateway">
-           <input type="radio" name="bank" value="payir" id="payir" {%if options.default_payment == 'payir'%} checked {%endif%}>
-           <label for='payir' class="spay-64-payir"></label>
-          </div>
-          {%endif%}
-
-          {%if options.mellat.status%}
-          <div class="radioGateway">
-           <input type="radio" name="bank" value="mellat" id="mellat" {%if options.default_payment == 'mellat'%} checked {%endif%}>
-           <label for='mellat' class="spay-64-mellat"></label>
-          </div>
-          {%endif%}
-
-
-			{%if dataRow.condition == 'request' or dataRow.condition == 'redirect'%}
-				<input type="hidden" name="ok" value="1">
-				<button class="btn primary block">{%trans "Pay"%}</button>
-				<div class="f mT5">
-					<a href="#" class="cauto os btn outline sm">{%trans "Cancel"%}</a>
-				</div>
-			{%endif%}
-
-			</form>
-
-			{%if payDetail.turn_back%}
-			<a class="btn success block mT10" href="{{payDetail.turn_back}}">{%trans "Back"%}</a>
-			{%endif%}
-
-
-		</div>
-
-	</div>
-</div>
-
-<hr>
-
-<div class="f justify-center">
-	<div class="c4 s12">
 		<div class="cbox">
 
 			{%if payDetail.msg_go%}
-			<div class="msg" >{{payDetail.msg_go}}</div>
+				<div class="msg info2">{{payDetail.msg_go}}</div>
 			{%endif%}
+
+			{{block('ipayTable')}}
+
+			<form method="post">
+
+				<p>{%trans "Choose a gateway"%}</p>
+
+				{{block('ipayBank')}}
+
+		    	{%if dataRow.condition == 'request' or dataRow.condition == 'redirect'%}
+					<input type="hidden" name="ok" value="1">
+
+					<button class="btn primary block">{%trans "Pay"%}</button>
+
+					{%if payDetail.turn_back%}
+					<div class="f mT5">
+						<a href="{{payDetail.turn_back}}" class="cauto os btn outline sm">{%trans "Cancel"%}</a>
+					</div>
+					{%endif%}
+
+				{%else%}
+
+					{%if payDetail.turn_back%}
+					<a class="btn success block mT10" href="{{payDetail.turn_back}}">{%trans "Back"%}</a>
+					{%endif%}
+
+				{%endif%}
+			</form>
+		</div>
+	</div>
+</div>
+
+
+<div class="f hide justify-center">
+	<div class="c4 s12">
+		<div class="cbox">
+
 
 			{%if dataRow.displayname%}
 				<div class="teal statistic fs06">
@@ -167,6 +98,121 @@
 
 </div>
 
+{%endblock%}
+
+
+
+{%block ipayTicket%}
+<div class="payTicket">
+	<div class="f fix topBox">
+		<div class="c">
+			<div class="priceBox">
+				<span class="price">{{dataRow.plus | fitNumber}}</span>
+				<abbr class="unit">{%trans "Toman"%}</abbr>
+			</div>
+		</div>
+		<div class="cauto">
+			<div class="breakLine"><i></i></div>
+		</div>
+		<div class="c4 status">
+			<span class="myStatus sf-check"></span>
+		</div>
+	</div>
+</div>
+{%endblock%}
+
+
+{%block ipayTable%}
+<table class="tbl1 txtC">
+	<tbody>
+		<tr>
+			<th>Key</th>
+			<td>Val</td>
+		</tr>
+		<tr>
+			<th>Key</th>
+			<td>Val</td>
+		</tr>
+		<tr>
+			<th>Key</th>
+			<td>Val</td>
+		</tr>
+	</tbody>
+</table>
+{%endblock%}
+
+
+{%block ipayBank%}
+
+{%if options.parsian.status%}
+<div class="radioGateway" title='{%trans "Parsian"%}'>
+<input type="radio" name="bank" value="parsian" id="parsian"  {%if options.default_payment == 'parsian'%} checked {%endif%}>
+<label for='parsian' class="spay-64-parsian"></label>
+</div>
+{%endif%}
+
+{%if options.asanpardakht.status%}
+<div class="radioGateway">
+<input type="radio" name="bank" value="asanpardakht" id="asanpardakht" {%if options.default_payment == 'asanpardakht'%} checked {%endif%}>
+<label for='asanpardakht' class="spay-64-asanpardakht"></label>
+</div>
+{%endif%}
+
+{%if options.irkish.status%}
+<div class="radioGateway">
+<input type="radio" name="bank" value="irKish" id="irKish" {%if options.default_payment == 'irkish'%} checked {%endif%}>
+<label for='irKish' class="spay-64-irkish"></label>
+</div>
+{%endif%}
+
+{%if options.zarinpal.status%}
+<div class="radioGateway">
+<input type="radio" name="bank" value="ZarinPal" id="ZarinPal" {%if options.default_payment == 'zarinpal'%} checked {%endif%}>
+<label for='ZarinPal' class="spay-64-zarinpal"></label>
+</div>
+{%endif%}
+
+{%if options.payir.status%}
+<div class="radioGateway">
+<input type="radio" name="bank" value="payir" id="payir" {%if options.default_payment == 'payir'%} checked {%endif%}>
+<label for='payir' class="spay-64-payir"></label>
+</div>
+{%endif%}
+
+{%if options.mellat.status%}
+<div class="radioGateway">
+<input type="radio" name="bank" value="mellat" id="mellat" {%if options.default_payment == 'mellat'%} checked {%endif%}>
+<label for='mellat' class="spay-64-mellat"></label>
+</div>
+{%endif%}
+
+{%endblock%}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{%block suDetail%}
 {%if perm_su() and 0%}
 <h3 data-kerkere='.iDetailKerkere'>{%trans "Detail"%}</h3>
 <div class="iDetailKerkere" data-kerkere-content='hide'>
