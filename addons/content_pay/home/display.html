@@ -77,6 +77,13 @@
 
 
 {%block bPayTicketDetail%}
+
+{%set myTurnBackUrl = payDetail.turn_back%}
+
+{%if payDetail.final_msg%}
+	{%set myTurnBackUrl = payDetail.turn_back ~ '?token=' ~ dataRow.token%}
+{%endif%}
+
 		<div class="payTicketDetail">
 			{%if dataRow.banktoken%}
 
@@ -102,14 +109,14 @@
 
 					{%if payDetail.turn_back%}
 					<div class="f mT5">
-						<a href="{{payDetail.turn_back}}" class="cauto os btn outline sm">{%trans "Cancel"%}</a>
+						<a data-direct href="{{myTurnBackUrl}}" class="cauto os btn outline sm">{%trans "Cancel"%}</a>
 					</div>
 					{%endif%}
 
 				{%else%}
 
 					{%if payDetail.turn_back%}
-					<a class="btn success block mT10" href="{{payDetail.turn_back}}">{%trans "Back"%}</a>
+					<a data-direct class="btn success block mT10" href="{{myTurnBackUrl}}">{%trans "Back"%}</a>
 					{%endif%}
 
 				{%endif%}
