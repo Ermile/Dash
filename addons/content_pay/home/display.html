@@ -10,52 +10,53 @@
 	</div>
 </div>
 
-<div class="f hide justify-center">
-	<div class="c4 s12">
-		<div class="cbox">
-			{%if dataRow.displayname%}
-				<div class="teal statistic fs06">
-		           <div class="value">{{dataRow.displayname}}</div>
-		        </div>
-			{%endif%}
-
-			{%if dataRow.banktoken%}
-				{%if dataRow.condition == 'ok'%}
-		          <div class="green statistic">
-		            <div class="value">{{dataRow.plus | fitNumber}}</div>
-		            <div class="label">{%trans "Toman"%}</div>
-		          </div>
-		          <div class="msg success txtC txtB">{%trans "Payed"%}</div>
-				{%elseif dataRow.condition == 'error' or dataRow.condition == 'verify_error'%}
-					<div class="red statistic">
-			           <div class="value">{{dataRow.plus | fitNumber}}</div>
-			           <div class="label">{%trans "Toman"%}</div>
-			        </div>
-		          	<div class="msg danger txtC txtB">{%trans "Canceled"%}</div>
-				{%else%}
-					<div class="yellow statistic">
-			           <div class="value">{{dataRow.plus | fitNumber}}</div>
-			           <div class="label">{%trans "Toman"%}</div>
-			        </div>
-		          	<div class="msg warn txtC txtB">{%trans "Canceled"%}</div>
-				{%endif%}
-			{%else%}
-				<div class="green statistic">
-		            <div class="value">{{dataRow.plus | fitNumber}}</div>
-		            <div class="label">{%trans "Toman"%}</div>
-	            </div>
-			{%endif%}
-
-		</div>
-	</div>
-</div>
 {%endblock%}
 
 
 
 
 {%block bPayTicket%}
-<div class="payTicket active positive negative warning">
+
+
+{%set ticketClass = 'active'%}
+{%set ticketIcon  = 'sf-plus-circle'%}
+{%set ticekMsg    = 'Pay'%}
+
+{%if dataRow.banktoken%}
+
+	{%if dataRow.condition == 'ok'%}
+
+		{%set ticketClass = 'positive'%}
+		{%set ticketIcon  = 'sf-check-circle'%}
+		{%set ticekMsg    = 'Successfull'%}
+
+	{%elseif dataRow.condition == 'error' or dataRow.condition == 'verify_error'%}
+
+		{%set ticketClass = 'negative'%}
+		{%set ticketIcon  = 'sf-times-circle'%}
+		{%set ticekMsg    = 'Error'%}
+
+	{%else%}
+
+		{%set ticketClass = 'warning'%}
+		{%set ticketIcon  = 'sf-info-circle'%}
+
+		{%if dataRow.condition == 'cancel'%}
+
+			{%set ticekMsg    = 'Cancel'%}
+
+		{%else%}
+
+			{%set ticekMsg    = ''%}
+
+		{%endif%}
+
+	{%endif%}
+
+{%endif%}
+
+
+<div class="payTicket {{ticketClass}}">
 	<div class="f fix topBox">
 		<div class="c8">
 			<div class="priceBox">
@@ -67,8 +68,8 @@
 			<div class="breakLine"><i></i></div>
 		</div>
 		<div class="c status">
-			<span class="myStatus sf-plus-circle sf-check-circle sf-times-circle sf-info-circle"></span>
-			<abbr class="statusDesc">Checked</abbr>
+			<span class="myStatus {{ticketIcon}}"></span>
+			<abbr class="statusDesc">{%trans ticekMsg%}</abbr>
 		</div>
 	</div>
 </div>
@@ -77,20 +78,24 @@
 
 {%block bPayTicketDetail%}
 		<div class="payTicketDetail">
+			{%if dataRow.banktoken%}
 
-			{%if payDetail.msg_go%}
-				<div class="msg info2">{{payDetail.msg_go}}</div>
+			{%else%}
+				{%if payDetail.msg_go%}
+					<div class="msg info2">{{payDetail.msg_go}}</div>
+				{%endif%}
 			{%endif%}
 
 			{{block('ipayTable')}}
 
 			<form method="post">
 
-				<p>{%trans "Choose a gateway"%}</p>
-
-				{{block('ipayBank')}}
-
 		    	{%if dataRow.condition == 'request' or dataRow.condition == 'redirect'%}
+
+					<p>{%trans "Choose a gateway"%}</p>
+
+					{{block('ipayBank')}}
+
 					<input type="hidden" name="ok" value="1">
 
 					<button class="btn primary block">{%trans "Pay"%}</button>
