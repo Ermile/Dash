@@ -221,8 +221,9 @@ class view
 		[
 			'caller'      => 'ticket_seeTicket',
 			'code'        => $_id,
-			'to'          => \dash\user::id(),
+			// 'to'       => \dash\user::id(),
 			'datecreated' => [">=", "'$end_message[datecreated]'"],
+			'limit'       => 1,
 		];
 
 		$get_log = \dash\db\logs::get($get_log);
