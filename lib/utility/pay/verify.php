@@ -52,12 +52,15 @@ class verify
 			$detail = json_decode($detail, true);
 		}
 
-		if(isset($detail['final_fn']) && is_array($detail['final_fn']))
+		if(isset($detail['final_fn']) && is_array($detail['final_fn']) && isset($detail['final_fn'][0]) && isset($detail['final_fn'][1]))
 		{
-			if(is_callable($detail['final_fn']))
+			$namespace = $detail['final_fn'][0];
+			$namespace = str_replace('/', '\\', $namespace);
+
+			$fn        = $detail['final_fn'][1];
+
+			if(is_callable([$namespace, $fn]))
 			{
-				$namespace = $detail['final_fn'][0];
-				$fn        = $detail['final_fn'][1];
 				if(isset($detail['final_fn_args']))
 				{
 					$namespace::$fn($detail['final_fn_args']);
