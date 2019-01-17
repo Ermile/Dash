@@ -16,7 +16,7 @@ class controller
 				\dash\header::status(404, T_("Invalid address id"));
 			}
 
-			\dash\data::dataRow($dataRow);
+			\dash\data::dataRowAddress($dataRow);
 
 		}
 	}

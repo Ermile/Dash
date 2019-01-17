@@ -4,8 +4,8 @@
 {%block bAddressAdd%}
   <div class="cbox">
     <h3 class="txtC">
-    {%if dataRow%}
-        {%trans "Edit address"%} <span class="txtB fc-blue">{{dataRow.title}}</span>
+    {%if dataRowAddress%}
+        {%trans "Edit address"%} <span class="txtB fc-blue">{{dataRowAddress.title}}</span>
         <a class="badge secondary" href="{{myUrlAddress}}{%if requestGET.id%}?id={{requestGET.id}}{%endif%}">{%trans "Cancel"%}</a>
     {%else%}
       {%trans "Add new address"%}
@@ -27,7 +27,7 @@
 
     {{block('iCompany')}}
 
-    {%if dataRow%}
+    {%if dataRowAddress%}
       <div class="f">
         <div class="c pRa5">{{block('isave')}}</div>
         <div class="cauto os">{{block('idelete')}}</div>
@@ -97,7 +97,7 @@
 {%block iFirstname%}
 <label for="firstname">{%trans "Firstname"%}</label>
 <div class="input">
-  <input type="text" name="firstname" id="firstname" value="{%if dataRow.firstname%}{{dataRow.firstname}}{%elseif dataRowMember%}{{dataRowMember.firstname}}{%else%}{{user.firstname}}{%endif%}" maxlength='40' minlength="1">
+  <input type="text" name="firstname" id="firstname" value="{%if dataRowAddress.firstname%}{{dataRowAddress.firstname}}{%elseif dataRowMember%}{{dataRowMember.firstname}}{%else%}{{user.firstname}}{%endif%}" maxlength='40' minlength="1">
 </div>
 {%endblock%}
 
@@ -106,7 +106,7 @@
 {%block iLastname%}
 <label for="lastname">{%trans "Lastname"%}</label>
 <div class="input">
-  <input type="text" name="lastname" id="lastname" value="{%if dataRow.lastname%}{{dataRow.lastname}}{%elseif dataRowMember%}{{dataRowMember.lastname}}{%elseif not dataRow%}{{user.lastname}}{%endif%}" maxlength='40' minlength="1" >
+  <input type="text" name="lastname" id="lastname" value="{%if dataRowAddress.lastname%}{{dataRowAddress.lastname}}{%elseif dataRowMember%}{{dataRowMember.lastname}}{%elseif not dataRowAddress%}{{user.lastname}}{%endif%}" maxlength='40' minlength="1" >
 </div>
 {%endblock%}
 
@@ -114,7 +114,7 @@
 {%block iName%}
 <label for="name">{%trans "Name"%}</label>
 <div class="input">
-  <input type="text" name="name" id="name" value="{%if dataRow.name%}{{dataRow.name}}{%elseif dataRowMember%}{{dataRowMember.displayname}}{%elseif not dataRow%}{{user.displayname}}{%endif%}" maxlength='40' minlength="1" placeholder='{%trans "Name of person in this address"%}'>
+  <input type="text" name="name" id="name" value="{%if dataRowAddress.name%}{{dataRowAddress.name}}{%elseif dataRowMember%}{{dataRowMember.displayname}}{%elseif not dataRowAddress%}{{user.displayname}}{%endif%}" maxlength='40' minlength="1" placeholder='{%trans "Name of person in this address"%}'>
 </div>
 {%endblock%}
 
@@ -124,7 +124,7 @@
 <div class="mB10">
   <label for='country'>{%trans "Country"%}</label>
   <div class="ui fluid search selection dropdown">
-    <input type="hidden" name="country" value="{%if dataRow.country%}{{dataRow.country}}{%elseif lang.current == 'fa'%}IR{%endif%}">
+    <input type="hidden" name="country" value="{%if dataRowAddress.country%}{{dataRowAddress.country}}{%elseif lang.current == 'fa'%}IR{%endif%}">
     <i class="dropdown icon"></i>
     <div class="default text">{%trans "Choose your country"%}</div>
     <div class="menu">
@@ -141,13 +141,13 @@
 
 
 {%block iCity%}
-<div data-response='country' data-response-where='IR' {%if dataRow.country == 'IR' or (not dataRow and lang.current == 'fa') %}{%else%}data-response-hide{%endif%}>
+<div data-response='country' data-response-where='IR' {%if dataRowAddress.country == 'IR' or (not dataRowAddress and lang.current == 'fa') %}{%else%}data-response-hide{%endif%}>
 
 <label for='city'>{%trans "City"%}</label>
 <select name="city" class="ui dropdown select search mB10" id="city">
   <option value="" readonly>{%trans "Select city"%}</option>
   {%for key, value in cityList%}
-    <option value="{{key}}" {% if dataRow.city == key %} selected {%endif%}>{{value}}</option>
+    <option value="{{key}}" {% if dataRowAddress.city == key %} selected {%endif%}>{{value}}</option>
   {%endfor%}
 </select>
 </div>
@@ -159,7 +159,7 @@
 {%block iPostcode%}
 <label for="postcode">{%trans "Post code"%}</label>
 <div class="input ltr">
-  <input type="text" name="postcode" id="postcode" value="{{dataRow.postcode}}" maxlength='40' minlength="1" pattern=".{1,40}" >
+  <input type="text" name="postcode" id="postcode" value="{{dataRowAddress.postcode}}" maxlength='40' minlength="1" pattern=".{1,40}" >
 </div>
 {%endblock%}
 
@@ -168,7 +168,7 @@
 {%block iTitle%}
 <label for="title">{%trans "Title of address"%}</label>
 <div class="input">
-  <input type="text" name="title" id="title" value="{{dataRow.title}}" maxlength='40' minlength="1">
+  <input type="text" name="title" id="title" value="{{dataRowAddress.title}}" maxlength='40' minlength="1">
 </div>
 {%endblock%}
 
@@ -177,7 +177,7 @@
 {%block iPhone%}
 <label for="iphone">{%trans "Phone"%}</label>
 <div class="input">
-  <input type="tel" name="phone" id="iphone" value="{{dataRow.phone}}" pattern=".{1,20}">
+  <input type="tel" name="phone" id="iphone" value="{{dataRowAddress.phone}}" pattern=".{1,20}">
 </div>
 {%endblock%}
 
@@ -185,7 +185,7 @@
 {%block iFax%}
 <label for="ifax">{%trans "Fax"%}</label>
 <div class="input">
-  <input type="tel" name="fax" id="ifax" value="{{dataRow.fax}}" pattern=".{1,20}">
+  <input type="tel" name="fax" id="ifax" value="{{dataRowAddress.fax}}" pattern=".{1,20}">
 </div>
 {%endblock%}
 
@@ -193,7 +193,7 @@
 {%block iMobile%}
 <label for="iMobile">{%trans "Mobile"%}</label>
 <div class="input">
-  <input type="tel" name="mobile" id="iMobile" value="{%if dataRow.mobile%}{{dataRow.mobile}}{%elseif dataRowMember%}{{dataRowMember.mobile}}{%elseif not dataRow%}{{user.mobile}}{%endif%}" pattern=".{1,20}">
+  <input type="tel" name="mobile" id="iMobile" value="{%if dataRowAddress.mobile%}{{dataRowAddress.mobile}}{%elseif dataRowMember%}{{dataRowMember.mobile}}{%elseif not dataRowAddress%}{{user.mobile}}{%endif%}" pattern=".{1,20}">
 </div>
 {%endblock%}
 
@@ -202,13 +202,13 @@
 
 {%block iAddress%}
 <label for="address">{%trans "Address"%} <small class="fc-red">{%trans "Require"%}</small></label>
-<textarea class="txt mB10 pB25" name="address" required maxlength='300' rows="2">{{dataRow.address}}</textarea>
+<textarea class="txt mB10 pB25" name="address" required maxlength='300' rows="2">{{dataRowAddress.address}}</textarea>
 {%endblock%}
 
 
 {%block iCompany%}
 <div class="switch1 mB20 mT20">
- <input type="checkbox" name="company" id="company" {%if dataRow.company  %}checked{%endif%}>
+ <input type="checkbox" name="company" id="company" {%if dataRowAddress.company  %}checked{%endif%}>
  <label for="company" data-on='{%trans "Yes"%}' data-off='{%trans "No"%}'></label>
  <label for="company" >{%trans "Is this a company's address?"%}</label>
 </div>
@@ -219,7 +219,7 @@
 {%block iCompanyname%}
 <label for="companyname">{%trans "Company name"%}</label>
 <div class="input">
-  <input type="text" name="companyname" id="companyname" value="{{dataRow.companyname}}" maxlength='40' minlength="1" >
+  <input type="text" name="companyname" id="companyname" value="{{dataRowAddress.companyname}}" maxlength='40' minlength="1" >
 </div>
 {%endblock%}
 
@@ -231,9 +231,9 @@
   <label for="status">{%trans "Status"%}</label>
   <select name="status" class="ui dropdown" id="status">
     <option value="" readonly>{%trans "Select one item"%} *</option>
-    <option value="enable" {% if dataRow.status == 'enable' %} selected {%endif%}>{%trans "Enable"%}</option>
-    <option value="disable" {% if dataRow.status == 'disable' %} selected {%endif%}>{%trans "Disable"%}</option>
-    <option value="delete" {% if dataRow.status == 'delete' %} selected {%endif%}>{%trans "Removed"%}</option>
+    <option value="enable" {% if dataRowAddress.status == 'enable' %} selected {%endif%}>{%trans "Enable"%}</option>
+    <option value="disable" {% if dataRowAddress.status == 'disable' %} selected {%endif%}>{%trans "Disable"%}</option>
+    <option value="delete" {% if dataRowAddress.status == 'delete' %} selected {%endif%}>{%trans "Removed"%}</option>
   </select>
 </div>
 {%endblock%}
@@ -249,7 +249,7 @@
 {%endblock%}
 
 {%block idelete%}
-<input type="hidden" name="addressid" value="{{dataRow.id}}">
+<input type="hidden" name="addressid" value="{{dataRowAddress.id}}">
 <button class="btn danger outline block mT20" name="btnremove" value="delete">{%trans "Delete"%}</button>
 {%endblock%}
 

@@ -21,7 +21,7 @@ class controller
 				\dash\header::status(403, T_("This is not your address!"));
 			}
 
-			\dash\data::dataRow($dataRow);
+			\dash\data::dataRowAddress($dataRow);
 
 		}
 	}
