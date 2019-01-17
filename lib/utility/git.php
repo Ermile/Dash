@@ -114,7 +114,7 @@ class git
 			}
 			else
 			{
-				$command  = 'git pull origin master 2>&1';
+				$command  = 'yes | git pull origin master 2>&1';
 			}
 
 
