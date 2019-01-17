@@ -502,7 +502,7 @@ class address
 		}
 
 		\dash\db\address::update(['status' => 'delete'], $id);
-		\dash\notif::warn(T_("Address removed"));
+		\dash\notif::ok(T_("Address removed"));
 		return true;
 	}
 
@@ -531,7 +531,7 @@ class address
 		}
 
 		\dash\db\address::update(['status' => 'delete'], $id);
-		\dash\notif::warn(T_("Address removed"));
+		\dash\notif::ok(T_("Address removed"));
 		return true;
 	}
 }
