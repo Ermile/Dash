@@ -7,12 +7,13 @@ class model
 	public static function post()
 	{
 
-		$user_id            = \dash\coding::decode(\dash\request::get('id'));
-		$request            = [];
-		$request['text']    = \dash\request::post('note');
-		$request['user_id'] = $user_id;
-		$request['creator'] = \dash\user::id();
-		$request['status']  = 'enable';
+		$user_id              = \dash\coding::decode(\dash\request::get('id'));
+		$request              = [];
+		$request['text']      = \dash\request::post('note');
+		$request['user_id']   = $user_id;
+		$request['creator']   = \dash\user::id();
+		$request['status']    = 'enable';
+		$request['subdomain'] = null;
 
 		if(!trim($request['text']))
 		{

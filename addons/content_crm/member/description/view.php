@@ -12,9 +12,10 @@ class view
 		\dash\data::page_desc(T_('Allow to set and change description of user'));
 		\dash\data::page_pictogram('file-text-o');
 
-		$args            = [];
-		$args['user_id'] = \dash\coding::decode(\dash\request::get('id'));
-		$dataTable       = \dash\db\userdetail::search(null, $args);
+		$args              = [];
+		$args['user_id']   = \dash\coding::decode(\dash\request::get('id'));
+		$args['subdomain'] = null;
+		$dataTable         = \dash\db\userdetail::search(null, $args);
 
 		\dash\data::dataTable($dataTable);
 	}
