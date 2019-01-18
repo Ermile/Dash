@@ -100,7 +100,7 @@ class exec
 		if($isTunnel)
 		{
 			$apiURL = "https://tunnel.ermile.com";
-			$apiURL = "https://tunnel.ermile.ir";
+			// $apiURL = "https://tunnel.ermile.ir";
 			$apiURL .= "?method=". $_method;
 		}
 
