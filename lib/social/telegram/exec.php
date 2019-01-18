@@ -116,37 +116,35 @@ class exec
 		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 7);
 		curl_setopt($ch, CURLOPT_TIMEOUT, 7);
 
+		$customHeader = [];
+		// set token for tunner if exist
+		if($isTunnel)
+		{
+			if(strlen(tg::$api_token) > 20)
+			{
+				array_push($customHeader, 'X-TG-TOKEN: '. tg::$api_token);
+			}
+		}
 		if (!empty($_data))
 		{
-			$customHeader = [];
-			// set token for tunner if exist
-			if($isTunnel)
-			{
-				if(strlen(tg::$api_token) > 20)
-				{
-					array_push($customHeader, 'X-TG-TOKEN: '. tg::$api_token);
-				}
-			}
-
-
 			if($isJson)
 			{
-				$dataJson       = json_encode($_data);
+				$dataJson = json_encode($_data);
 				// set some extra header
 				array_push($customHeader, 'Content-Type: application/json');
 				array_push($customHeader, 'Content-Length: ' . strlen($dataJson));
 
 				curl_setopt($ch, CURLOPT_POSTFIELDS, $dataJson);
-				curl_setopt($ch, CURLOPT_HTTPHEADER, $customHeader);
 			}
 			else
 			{
 				curl_setopt( $ch, CURLOPT_POSTFIELDS, $_data);
 				// set some extra header
 				array_push($customHeader, 'Content-Type: multipart/form-data');
-				curl_setopt($ch, CURLOPT_HTTPHEADER, $customHeader);
 			}
 		}
+		// set custom header on all conditions
+		curl_setopt($ch, CURLOPT_HTTPHEADER, $customHeader);
 
 		$result = curl_exec($ch);
 		$mycode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
