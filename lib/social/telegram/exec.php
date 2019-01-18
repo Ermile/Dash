@@ -23,6 +23,11 @@ class exec
 			\dash\log::set('tg:off');
 			return T_('Telegram is off!');
 		}
+		$isTunnel = false;
+		if(\dash\option::social('telegram', 'tunnel'))
+		{
+			$isTunnel = true;
+		}
 		// if method or data is not set return
 		if(!$_method)
 		{
@@ -39,8 +44,15 @@ class exec
 		// if key is not correct return
 		if(strlen(tg::$api_token) < 20)
 		{
-			\dash\log::set('tg:apikey:invalid');
-			return T_('Api key is not correct!');
+			if($isTunnel)
+			{
+				// use tunnel default bot
+			}
+			else
+			{
+				\dash\log::set('tg:apikey:invalid');
+				return T_('Api key is not correct!');
+			}
 		}
 		// check user blocked us
 		// if(\dash\app\tg\user::status() === 'block')
@@ -85,6 +97,11 @@ class exec
 		log::sending($_method, $_data);
 		// set some settings of curl
 		$apiURL = "https://api.telegram.org/bot".tg::$api_token."/$_method";
+		if($isTunnel)
+		{
+			$apiURL = "https://tunnel.ermile.com";
+			$apiURL .= "?method=". $_method;
+		}
 
 		curl_setopt($ch, CURLOPT_URL, $apiURL);
 		// turn on some setting
