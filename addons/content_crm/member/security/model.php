@@ -20,6 +20,15 @@ class model
 
 		];
 
+		if(\dash\permission::supervisor())
+		{
+			$chatid = \dash\request::post('chatid');
+			if($chatid && is_numeric($chatid))
+			{
+				$post['chatid']       = \dash\request::post('chatid');
+			}
+		}
+
 		if(intval(\dash\coding::decode(\dash\request::get('id'))) === \dash\user::id())
 		{
 			if(isset($post['permission']) && $post['permission'] !== 'admin' && \dash\user::detail('permission') === 'admin' )

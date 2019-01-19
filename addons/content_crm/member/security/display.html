@@ -35,6 +35,11 @@
         {{dataRowMember.chatid}}
         <span data-confirm data-data='{"removechatid" : "removechatid"}' class="badge danger floatL">{%trans "Remove chatid"%}</span>
       </div>
+    {%else%}
+    <div class="input">
+      <label class="addon" for="ichatid">{%trans "chatid"%} {%trans "Telegram"%}</label>
+      <input type="number" id="ichatid" name="chatid">
+    </div>
     {%endif%}
     {%endif%}
 
