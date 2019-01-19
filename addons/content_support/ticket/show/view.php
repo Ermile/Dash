@@ -19,7 +19,14 @@ class view
 		{
 			if(\dash\option::social('telegram', 'token'))
 			{
-				\dash\data::tgBot(\dash\option::social('telegram', 'bot'));
+				if(\dash\option::social('telegram', 'hidden'))
+				{
+					// hide telegram
+				}
+				else
+				{
+					\dash\data::tgBot(\dash\option::social('telegram', 'bot'));
+				}
 			}
 		}
 
