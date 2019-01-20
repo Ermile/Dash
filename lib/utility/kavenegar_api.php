@@ -161,7 +161,7 @@ class kavenegar_api
 	 *
 	 * @return     <type>  ( description_of_the_return_value )
 	 */
-	public function send($_mobile, $_msg, $_type = 1, $_data = 0, $_LocalMessageid = null)
+	public function send($_mobile, $_msg, $_type = 1, $_date = 0, $_LocalMessageid = null)
 	{
 		$path 		= $this->get_path(__FUNCTION__);
 
@@ -171,9 +171,14 @@ class kavenegar_api
 			"sender"         => $this->linenumber,
 			"message"        => $_msg,
 			"type"           => $_type,
-			"date"           => $_data,
+			// "date"           => $_date,
 			"LocalMessageid" => $_LocalMessageid,
 		];
+
+		if($_date)
+		{
+			$params['date'] = $_date;
+		}
 
 		$json = $this->execute($path, $params);
 
