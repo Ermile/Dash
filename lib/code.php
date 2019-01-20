@@ -95,11 +95,19 @@ class code
 	/**
 	 * return json and boom
 	 */
-	public static function jsonBoom($_data = null)
+	public static function jsonBoom($_data = null, $_pretty = null)
 	{
 		if(is_array($_data))
 		{
-			$_data = json_encode($_data, JSON_UNESCAPED_UNICODE);
+			if($_pretty)
+			{
+				$_data = json_encode($_data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+
+			}
+			else
+			{
+				$_data = json_encode($_data, JSON_UNESCAPED_UNICODE);
+			}
 		}
 		echo $_data;
 		@header("Content-Type: application/json; charset=utf-8");
