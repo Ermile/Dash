@@ -101,7 +101,7 @@ class code
 		{
 			if($_pretty)
 			{
-				$_data = json_encode($_data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+				$_data = json_encode($_data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
 
 			}
 			else
