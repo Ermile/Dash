@@ -137,59 +137,6 @@
 
 
 
-{%block blockUsers%}
-<div class="f mB20">
-  <div class="c s6">{{block ("dUsers")}}</div>
-  <div class="c s6">{{block ("dUserPerms")}}</div>
-  <div class="c s6">{{block ("dLogs")}}</div>
-  <div class="c s6">{{block ("dComments")}}</div>
-  <!-- <div class="c s6">{{block ("dComments")}}</div> -->
-</div>
-{%endblock%}
-
-
-{%block dUsers%}
-<a class="dcard" href="{{url.here}}/users">
- <div class="statistic sm teal">
-  <div class="label mB10"><i class="fs20 mRa5 sf-users"></i> {%trans "Users"%}</div>
-  <div class="value counter" data-value={{dashboardDetail.users}}>{{dashboardDetail.users | fitNumber}}</div>
- </div>
-</a>
-{%endblock%}
-
-
-
-{%block dUserPerms%}
-<a class="dcard" href="{{url.here}}/permission">
- <div class="statistic sm red">
-  <div class="label mB10"><i class="fs20 mRa5 sf-lock"></i> {%trans "Permissions"%}</div>
-  <div class="value">{{dashboardDetail.permissions | fitNumber()}}</div>
- </div>
-</a>
-{%endblock%}
-
-
-{%block dLogs%}
-<a class="dcard" href="{{url.here}}/log">
- <div class="statistic sm">
-  <div class="label mB10"><i class="fs20 mRa5 sf-crosshairs"></i> {%trans "Logs"%}</div>
-  <div class="value">{{dashboardDetail.logs | fitNumber()}}</div>
- </div>
-</a>
-{%endblock%}
-
-
-{%block dComments%}
-<a class="dcard" href="{{url.here}}/comments">
- <div class="statistic sm">
-  <div class="label mB10"><i class="fs20 mRa5 sf-comments"></i> {%trans "Comments"%}</div>
-  <div class="value">{{dashboardDetail.comments | fitNumber()}}</div>
- </div>
-</a>
-{%endblock%}
-
-
-
 
 
 
