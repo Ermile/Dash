@@ -20,6 +20,7 @@ trait log
 		// set file address
 		$fileAddr .= $_name;
 		$my_text = "\n#". $date_now->format("Y-m-d H:i:s");
+		$my_text .= " @". \dash\user::id();
 		if($_time)
 		{
 			// $my_text .= "--- ". $_time. " s";

@@ -608,8 +608,10 @@ class log
 
 		$fileAddr .= $_file_name;
 
-		$my_text = "#". date("Y-m-d H:i:s"). str_repeat("-", 5). ' '. \dash\url::pwd();
-		$my_text .= " | ";
+		$my_text = "#". date("Y-m-d H:i:s"). ' '. str_repeat("-", 5);
+		$my_text .= '@'. \dash\user::id(). ' | ';
+		$my_text .= \dash\url::pwd();
+		$my_text .= "\n";
 		$my_text .= $_text;
 		$my_text .= "\r\n";
 
