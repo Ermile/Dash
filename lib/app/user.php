@@ -493,9 +493,9 @@ class user
 		$username = \dash\app::request('username');
 		if($username)
 		{
-			if(mb_strlen($username) < 4)
+			if(mb_strlen($username) < 5)
 			{
-				if($debug) \dash\notif::error(T_("Please set the username larger than 4 character"), 'username');
+				if($debug) \dash\notif::error(T_("Username must have at least 5 character"), 'username');
 				return false;
 			}
 
@@ -505,7 +505,13 @@ class user
 				return false;
 			}
 
-			if($username && !preg_match("/^[A-Za-z0-9]+$/", $username))
+			if(!preg_match("/^[A-Za-z0-9]+$/", $username))
+			{
+				if($debug) \dash\notif::error(T_("Only [A-Za-z0-9] can use in username"), 'username');
+				return false;
+			}
+
+			if(!preg_match("/^[A-Za-z]+$/", $username))
 			{
 				if($debug) \dash\notif::error(T_("Only [A-Za-z0-9] can use in username"), 'username');
 				return false;
@@ -516,7 +522,7 @@ class user
 			{
 				if(intval($check_duplicate_username['id']) === intval($_id))
 				{
-
+					// noproblem
 				}
 				else
 				{
