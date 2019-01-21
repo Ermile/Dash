@@ -513,7 +513,7 @@ class user
 
 			if(!preg_match("/^[A-Za-z]+$/", $username))
 			{
-				if($debug) \dash\notif::error(T_("Only [A-Za-z0-9] can use in username"), 'username');
+				if($debug) \dash\notif::error(T_("You must use a one character from [A-Za-z] in the username"), 'username');
 				return false;
 			}
 
