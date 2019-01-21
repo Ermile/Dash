@@ -298,26 +298,39 @@ class users
 
 	public static function find_user_to_login($_find)
 	{
-		if(!$_find)
+		if(!trim($_find))
 		{
 			return false;
 		}
 
-		$query_mobile = null;
-		if($temp_mobile = \dash\utility\filter::mobile($_find))
+		// if email search only in email
+		if(\dash\utility\filter::mobile($_find))
 		{
-			$query_mobile = " OR users.mobile = '$temp_mobile' ";
+			// mobile in mobile
+			$fix_mobile = \dash\utility\filter::mobile($_find);
+			$query      = "SELECT * FROM users WHERE users.mobile = '$fix_mobile' LIMIT 1";
+		}
+		elseif(filter_var($_find, FILTER_VALIDATE_EMAIL))
+		{
+			$query 		= "SELECT * FROM users WHERE users.email = '$_find' LIMIT 1";
+		}
+		elseif(preg_match("/^[A-Za-z0-9]+$/", $_find) && preg_match("/^[A-Za-z]+$/", $_find))
+		{
+			// a-z0-9 in username
+			$query 		= "SELECT * FROM users WHERE  users.username = '$_find' LIMIT 1";
+		}
+		else
+		{
+			return false;
 		}
 
-		$query = "SELECT * FROM users WHERE users.email = '$_find' OR users.username = '$_find' $query_mobile LIMIT 1";
+		$find_user = \dash\db::get($query, null, true);
 
-		$is_in_users = \dash\db::get($query, null, true);
-		if($is_in_users)
+		if($find_user)
 		{
-			return $is_in_users;
+			return $find_user;
 		}
 
-		// must be load contact info to find user and if not found:
 		return false;
 	}
 }
