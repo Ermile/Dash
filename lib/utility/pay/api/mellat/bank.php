@@ -102,7 +102,7 @@ class bank
                 return false;
             }
         }
-        catch(Exception $e)
+        catch(\Exception $e)
         {
             \dash\log::set('payment:mellat:error:load:web:services:verify');
             \dash\notif::error(T_("Error in load web services"));
