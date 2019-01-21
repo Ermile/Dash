@@ -43,7 +43,15 @@ class view
 			$args['permission'] = \dash\request::get('permission');
 		}
 
+		self::advance_filter($args);
+
 		$sortLink = \dash\app\sort::make_sortLink(\dash\app\user::$sort_field, \dash\url::this());
+
+		if(\dash\permission::supervisor() && in_array(\dash\request::get('duplicate'), ['mobile', 'email', 'username']))
+		{
+			$args['check_duplicate'] = \dash\request::get('duplicate');
+		}
+
 		$dataTable = \dash\app\user::list(\dash\request::get('q'), $args);
 
 		if(!is_array($dataTable))
@@ -63,6 +71,37 @@ class view
 		$dataFilter = \dash\app\sort::createFilterMsg($search_string, $check_empty_datatable);
 		\dash\data::dataFilter($dataFilter);
 
+	}
+
+
+	private static function advance_filter(&$args)
+	{
+		$allow_filter =
+		[
+			'username',
+			'avatar',
+			'displayname',
+			'mobile',
+			'email',
+			'password',
+			'twostep',
+			'permission',
+			'chatid',
+			'language',
+			'android_uniquecode',
+		];
+
+		foreach ($allow_filter as $key => $value)
+		{
+			if(\dash\request::get($value) === 'yes')
+			{
+				$args[$value] = [" IS ", " NOT NULL "];
+			}
+			elseif(\dash\request::get($value) === 'no')
+			{
+				$args[$value] = [" IS ", " NULL "];
+			}
+		}
 	}
 }
 ?>

@@ -57,8 +57,9 @@ trait datalist
 
 		$default_args =
 		[
-			'sort'  => null,
-			'order' => null,
+			'sort'            => null,
+			'order'           => null,
+			'check_duplicate' => null,
 		];
 
 		$_args = array_merge($default_args, $_args);
@@ -72,6 +73,21 @@ trait datalist
 		{
 			$_args['permission'] = ["!=", " 'supervisor' OR `permission` IS NULL OR `permission` = '' "];
 		}
+
+		if($_args['check_duplicate'])
+		{
+			$_args['search_field']      = '';
+			$_args['public_show_field'] = " max(users.id) AS `id`, users.". $_args['check_duplicate'];
+			$_args['group_by']          = " GROUP BY users.". $_args['check_duplicate'];
+			$_args['order']             = null;
+			$_args['sql_having']        = " HAVING COUNT(*) >= 2";
+			$_args['order_raw']         = "COUNT(*)";
+			$_args['sort']              = null;
+
+		}
+
+		unset($_args['check_duplicate']);
+
 
 		$meta            = $_args;
 		$result          = \dash\db\users::search($_string, $meta);

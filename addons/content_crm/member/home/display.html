@@ -35,12 +35,15 @@
 
 
 {%block htmlSearchBox%}
+
 <div class="cbox fs12">
   <form method="get" action='{{url.this}}' data-action>
     <div class="input">
+      <label for="q" data-kerkere=".ShowFilterResult" data-kerkere-icon class="addon">{%trans "Advance result"%}</label>
       <input type="search" name="q" placeholder='{%trans "Search"%}' id="q" value="{{requestGET.q}}" autofocus  data-pass='submit' autocomplete='off'>
       <button class="addon btn ">{%trans "Search" %}</button>
     </div>
+    {{block('iKerkere')}}
   </form>
 </div>
 {%endblock%}
@@ -146,4 +149,346 @@
 {%block htmlStartAddNew%}
 <p class="fs14 msg success2 pTB20">{%trans "Hi!"%} <a href="{{url.this}}/add">{%trans "Try to start with add new user!"%}</a></p>
 {%endblock%}
+
+
+
+
+
+
+
+{%block iKerkere%}
+
+
+
+<div class="ShowFilterResult"
+{%if
+  not requestGET.username      and
+  not requestGET.avatar        and
+  not requestGET.displayname   and
+  not requestGET.mobile        and
+  not requestGET.email         and
+  not requestGET.password      and
+  not requestGET.twostep       and
+  not requestGET.permission    and
+  not requestGET.chatid        and
+  not requestGET.language      and
+  not requestGET.duplicate     and
+  not requestGET.android_uniquecode
+%}  data-kerkere-content='hide' {%endif%}>
+
+  <form method="get" action="{{url.this}}" data-action autocomplete="off">
+
+    <h6 data-kerkere=".showFilterByUsername" data-kerkere-icon>{%trans "Filter by username"%}</h6>
+    <div class="showFilterByUsername" {%if not requestGET.username%} data-kerkere-content='hide' {%endif%}>
+      {{block('iFilterUsername')}}
+    </div>
+
+    <h6 data-kerkere=".showFilterByavatar" data-kerkere-icon>{%trans "Filter by avatar"%}</h6>
+    <div class="showFilterByavatar" {%if not requestGET.avatar%} data-kerkere-content='hide' {%endif%}>
+      {{block('iFilteravatar')}}
+    </div>
+
+    <h6 data-kerkere=".showFilterBydisplayname" data-kerkere-icon>{%trans "Filter by displayname"%}</h6>
+    <div class="showFilterBydisplayname" {%if not requestGET.displayname%} data-kerkere-content='hide' {%endif%}>
+      {{block('iFilterdisplayname')}}
+    </div>
+
+    <h6 data-kerkere=".showFilterBymobile" data-kerkere-icon>{%trans "Filter by mobile"%}</h6>
+    <div class="showFilterBymobile" {%if not requestGET.mobile%} data-kerkere-content='hide' {%endif%}>
+      {{block('iFiltermobile')}}
+    </div>
+
+    <h6 data-kerkere=".showFilterByemail" data-kerkere-icon>{%trans "Filter by email"%}</h6>
+    <div class="showFilterByemail" {%if not requestGET.email%} data-kerkere-content='hide' {%endif%}>
+      {{block('iFilteremail')}}
+    </div>
+
+    <h6 data-kerkere=".showFilterBypassword" data-kerkere-icon>{%trans "Filter by password"%}</h6>
+    <div class="showFilterBypassword" {%if not requestGET.password%} data-kerkere-content='hide' {%endif%}>
+      {{block('iFilterpassword')}}
+    </div>
+
+    <h6 data-kerkere=".showFilterBytwostep" data-kerkere-icon>{%trans "Filter by twostep"%}</h6>
+    <div class="showFilterBytwostep" {%if not requestGET.twostep%} data-kerkere-content='hide' {%endif%}>
+      {{block('iFiltertwostep')}}
+    </div>
+
+    <h6 data-kerkere=".showFilterBypermission" data-kerkere-icon>{%trans "Filter by permission"%}</h6>
+    <div class="showFilterBypermission" {%if not requestGET.permission%} data-kerkere-content='hide' {%endif%}>
+      {{block('iFilterpermission')}}
+    </div>
+
+    <h6 data-kerkere=".showFilterBychatid" data-kerkere-icon>{%trans "Filter by chatid"%}</h6>
+    <div class="showFilterBychatid" {%if not requestGET.chatid%} data-kerkere-content='hide' {%endif%}>
+      {{block('iFilterchatid')}}
+    </div>
+
+    <h6 data-kerkere=".showFilterBylanguage" data-kerkere-icon>{%trans "Filter by language"%}</h6>
+    <div class="showFilterBylanguage" {%if not requestGET.language%} data-kerkere-content='hide' {%endif%}>
+      {{block('iFilterlanguage')}}
+    </div>
+
+    <h6 data-kerkere=".showFilterByandroid_uniquecode" data-kerkere-icon>{%trans "Filter by android_uniquecode"%}</h6>
+    <div class="showFilterByandroid_uniquecode" {%if not requestGET.android_uniquecode%} data-kerkere-content='hide' {%endif%}>
+      {{block('iFilterandroid_uniquecode')}}
+    </div>
+
+    {%if perm_su()%}
+    <h6 data-kerkere=".showFilterByduplicate" data-kerkere-icon>{%trans "Filter by duplicate"%}</h6>
+    <div class="showFilterByduplicate" {%if not requestGET.duplicate%} data-kerkere-content='hide' {%endif%}>
+      {{block('iFilterduplicate')}}
+    </div>
+    {%endif%}
+
+
+
+    <div class="mT10">
+      <a href="{{url.this}}" class="btn ">{%trans "Clear filter"%}</a>
+      <button class="btn primary">{%trans "Apply"%}</button>
+    </div>
+  </form>
+</div>
+
+{%endblock%}
+
+{% block iFilterduplicate %}
+{%if perm_su()%}
+<div class="f">
+  <div class="c">
+    <div class="radio3">
+      <input type="radio" name="duplicate" value="mobile" id="duplicateyes" {%if requestGET.duplicate == 'mobile'  %} checked {%endif%}>
+      <label for="duplicateyes">{%trans "Have duplicate mobile"%}</label>
+    </div>
+  </div>
+
+  <div class="c">
+    <div class="radio3">
+      <input type="radio" name="duplicate" value="email" id="duplicateno" {%if requestGET.duplicate == 'email' %} checked {%endif%}>
+      <label for="duplicateno">{%trans "Have duplicate email"%}</label>
+    </div>
+  </div>
+
+  <div class="c">
+    <div class="radio3">
+      <input type="radio" name="duplicate" value="username" id="duplicateusername" {%if requestGET.duplicate == 'username' %} checked {%endif%}>
+      <label for="duplicateusername">{%trans "Have duplicate username"%}</label>
+    </div>
+  </div>
+
+</div>
+{%endif%}
+{% endblock %}
+
+
+{% block iFilterandroid_uniquecode %}
+<div class="f">
+  <div class="c">
+    <div class="radio3">
+      <input type="radio" name="android_uniquecode" value="yes" id="android_uniquecodeyes" {%if requestGET.android_uniquecode == 'yes'  %} checked {%endif%}>
+      <label for="android_uniquecodeyes">{%trans "Have android_uniquecode"%}</label>
+    </div>
+  </div>
+
+  <div class="c">
+    <div class="radio3">
+      <input type="radio" name="android_uniquecode" value="no" id="android_uniquecodeno" {%if requestGET.android_uniquecode == 'no' %} checked {%endif%}>
+      <label for="android_uniquecodeno">{%trans "Have not android_uniquecode"%}</label>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block iFilterlanguage %}
+<div class="f">
+  <div class="c">
+    <div class="radio3">
+      <input type="radio" name="language" value="yes" id="languageyes" {%if requestGET.language == 'yes'  %} checked {%endif%}>
+      <label for="languageyes">{%trans "Have language"%}</label>
+    </div>
+  </div>
+
+  <div class="c">
+    <div class="radio3">
+      <input type="radio" name="language" value="no" id="languageno" {%if requestGET.language == 'no' %} checked {%endif%}>
+      <label for="languageno">{%trans "Have not language"%}</label>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block iFilterchatid %}
+<div class="f">
+  <div class="c">
+    <div class="radio3">
+      <input type="radio" name="chatid" value="yes" id="chatidyes" {%if requestGET.chatid == 'yes'  %} checked {%endif%}>
+      <label for="chatidyes">{%trans "Have chatid"%}</label>
+    </div>
+  </div>
+
+  <div class="c">
+    <div class="radio3">
+      <input type="radio" name="chatid" value="no" id="chatidno" {%if requestGET.chatid == 'no' %} checked {%endif%}>
+      <label for="chatidno">{%trans "Have not chatid"%}</label>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block iFilterpermission %}
+<div class="f">
+  <div class="c">
+    <div class="radio3">
+      <input type="radio" name="permission" value="yes" id="permissionyes" {%if requestGET.permission == 'yes'  %} checked {%endif%}>
+      <label for="permissionyes">{%trans "Have permission"%}</label>
+    </div>
+  </div>
+
+  <div class="c">
+    <div class="radio3">
+      <input type="radio" name="permission" value="no" id="permissionno" {%if requestGET.permission == 'no' %} checked {%endif%}>
+      <label for="permissionno">{%trans "Have not permission"%}</label>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block iFiltertwostep %}
+<div class="f">
+  <div class="c">
+    <div class="radio3">
+      <input type="radio" name="twostep" value="yes" id="twostepyes" {%if requestGET.twostep == 'yes'  %} checked {%endif%}>
+      <label for="twostepyes">{%trans "Have twostep"%}</label>
+    </div>
+  </div>
+
+  <div class="c">
+    <div class="radio3">
+      <input type="radio" name="twostep" value="no" id="twostepno" {%if requestGET.twostep == 'no' %} checked {%endif%}>
+      <label for="twostepno">{%trans "Have not twostep"%}</label>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
+
+{% block iFilterpassword %}
+<div class="f">
+  <div class="c">
+    <div class="radio3">
+      <input type="radio" name="password" value="yes" id="passwordyes" {%if requestGET.password == 'yes'  %} checked {%endif%}>
+      <label for="passwordyes">{%trans "Have password"%}</label>
+    </div>
+  </div>
+
+  <div class="c">
+    <div class="radio3">
+      <input type="radio" name="password" value="no" id="passwordno" {%if requestGET.password == 'no' %} checked {%endif%}>
+      <label for="passwordno">{%trans "Have not password"%}</label>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
+
+{% block iFilteremail %}
+<div class="f">
+  <div class="c">
+    <div class="radio3">
+      <input type="radio" name="email" value="yes" id="emailyes" {%if requestGET.email == 'yes'  %} checked {%endif%}>
+      <label for="emailyes">{%trans "Have email"%}</label>
+    </div>
+  </div>
+
+  <div class="c">
+    <div class="radio3">
+      <input type="radio" name="email" value="no" id="emailno" {%if requestGET.email == 'no' %} checked {%endif%}>
+      <label for="emailno">{%trans "Have not email"%}</label>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
+
+{% block iFiltermobile %}
+<div class="f">
+  <div class="c">
+    <div class="radio3">
+      <input type="radio" name="mobile" value="yes" id="mobileyes" {%if requestGET.mobile == 'yes'  %} checked {%endif%}>
+      <label for="mobileyes">{%trans "Have mobile"%}</label>
+    </div>
+  </div>
+
+  <div class="c">
+    <div class="radio3">
+      <input type="radio" name="mobile" value="no" id="mobileno" {%if requestGET.mobile == 'no' %} checked {%endif%}>
+      <label for="mobileno">{%trans "Have not mobile"%}</label>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block iFilterdisplayname %}
+<div class="f">
+  <div class="c">
+    <div class="radio3">
+      <input type="radio" name="displayname" value="yes" id="displaynameyes" {%if requestGET.displayname == 'yes'  %} checked {%endif%}>
+      <label for="displaynameyes">{%trans "Have displayname"%}</label>
+    </div>
+  </div>
+
+  <div class="c">
+    <div class="radio3">
+      <input type="radio" name="displayname" value="no" id="displaynameno" {%if requestGET.displayname == 'no' %} checked {%endif%}>
+      <label for="displaynameno">{%trans "Have not displayname"%}</label>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block iFilteravatar %}
+<div class="f">
+  <div class="c">
+    <div class="radio3">
+      <input type="radio" name="avatar" value="yes" id="avataryes" {%if requestGET.avatar == 'yes'  %} checked {%endif%}>
+      <label for="avataryes">{%trans "Have avatar"%}</label>
+    </div>
+  </div>
+
+  <div class="c">
+    <div class="radio3">
+      <input type="radio" name="avatar" value="no" id="avatarno" {%if requestGET.avatar == 'no' %} checked {%endif%}>
+      <label for="avatarno">{%trans "Have not avatar"%}</label>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
+
+
+{% block iFilterUsername %}
+<div class="f">
+  <div class="c">
+    <div class="radio3">
+      <input type="radio" name="username" value="yes" id="usernameyes" {%if requestGET.username == 'yes'  %} checked {%endif%}>
+      <label for="usernameyes">{%trans "Have username"%}</label>
+    </div>
+  </div>
+
+  <div class="c">
+    <div class="radio3">
+      <input type="radio" name="username" value="no" id="usernameno" {%if requestGET.username == 'no' %} checked {%endif%}>
+      <label for="usernameno">{%trans "Have not username"%}</label>
+    </div>
+  </div>
+</div>
+{% endblock %}
 
