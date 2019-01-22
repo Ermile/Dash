@@ -40,6 +40,13 @@ class view
 			$myMobile = \dash\utility\filter::mobile($get_mobile);
 		}
 
+		if(\dash\request::get('userid') && \dash\permission::supervisor())
+		{
+			$myMobile   = \dash\request::get('userid');
+			$get_mobile = true;
+		}
+
+
 		// if mobile not set but the user was login
 		// for example in pass/change page
 		// get the user mobile from login.mobile
