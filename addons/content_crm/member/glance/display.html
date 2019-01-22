@@ -105,7 +105,7 @@
       {%set myCountI = 0%}
       {%for key, value in showUserLog%}
       {%set myCountI = myCountI + value%}
-      <div class="msg"><span>{%trans key%}</span> <span class="floatL txtB">{{value | fitNumber}}</span></div>
+      <div class="msg"><span>{%set myKey = key | capitalize%}{%trans myKey%}</span> <span class="floatL txtB">{{value | fitNumber}}</span></div>
       {%endfor%}
       {%if not myCountI%}
         <div class="msg danger">
