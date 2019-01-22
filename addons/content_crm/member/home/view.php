@@ -40,19 +40,19 @@ class view
 
 		if(\dash\permission::supervisor())
 		{
-			if(\dash\request::get('username'))
+			if(\dash\request::get('findusername'))
 			{
-				$args['username'] = \dash\request::get('username');
+				$args['username'] = \dash\request::get('findusername');
 			}
 
-			if(\dash\request::get('mobile'))
+			if(\dash\request::get('findmobile'))
 			{
-				$args['mobile'] = \dash\request::get('mobile');
+				$args['mobile'] = \dash\request::get('findmobile');
 			}
 
-			if(\dash\request::get('email'))
+			if(\dash\request::get('findemail'))
 			{
-				$args['email'] = \dash\request::get('email');
+				$args['email'] = \dash\request::get('findemail');
 			}
 
 			if(\dash\request::get('android_uniquecode'))
@@ -67,6 +67,7 @@ class view
 		}
 
 		self::advance_filter($args);
+
 
 		$sortLink = \dash\app\sort::make_sortLink(\dash\app\user::$sort_field, \dash\url::this());
 

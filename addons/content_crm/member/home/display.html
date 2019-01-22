@@ -64,7 +64,7 @@
       <tr>
         <td>{{value[requestGET.duplicate]}}</td>
         <td>{{value.count | fitNumber}}</td>
-        <td><a href="{{url.this}}?{{requestGET.duplicate}}={{value[requestGET.duplicate]}}&showlog=1" class="badge warn">{%trans "Detail"%}</a></td>
+        <td><a href="{{url.this}}?find{{requestGET.duplicate}}={{value[requestGET.duplicate]}}&showlog=1" class="badge warn">{%trans "Detail"%}</a></td>
       </tr>
       {%endfor%}
     </tbody>
@@ -331,6 +331,14 @@
       <label for="android_uniquecodeno">{%trans "Have not android_uniquecode"%}</label>
     </div>
   </div>
+
+  <div class="c">
+    <div class="radio3">
+      <input type="radio" name="android_uniquecode" value="non" id="android_uniquecodenon" {%if requestGET.android_uniquecode == 'non'  %} checked {%endif%}>
+      <label for="android_uniquecodenon">{%trans "Non"%}</label>
+    </div>
+  </div>
+
 </div>
 {% endblock %}
 
@@ -347,6 +355,13 @@
     <div class="radio3">
       <input type="radio" name="language" value="no" id="languageno" {%if requestGET.language == 'no' %} checked {%endif%}>
       <label for="languageno">{%trans "Have not language"%}</label>
+    </div>
+  </div>
+
+    <div class="c">
+    <div class="radio3">
+      <input type="radio" name="language" value="non" id="languagenon" {%if requestGET.language == 'non'  %} checked {%endif%}>
+      <label for="languagenon">{%trans "Non"%}</label>
     </div>
   </div>
 </div>
@@ -368,6 +383,13 @@
       <label for="chatidno">{%trans "Have not chatid"%}</label>
     </div>
   </div>
+
+    <div class="c">
+    <div class="radio3">
+      <input type="radio" name="chatid" value="non" id="chatidnon" {%if requestGET.chatid == 'non'  %} checked {%endif%}>
+      <label for="chatidnon">{%trans "Non"%}</label>
+    </div>
+  </div>
 </div>
 {% endblock %}
 
@@ -387,6 +409,13 @@
       <label for="permissionno">{%trans "Have not permission"%}</label>
     </div>
   </div>
+
+    <div class="c">
+    <div class="radio3">
+      <input type="radio" name="permission" value="non" id="permissionnon" {%if requestGET.permission == 'non'  %} checked {%endif%}>
+      <label for="permissionnon">{%trans "Non"%}</label>
+    </div>
+  </div>
 </div>
 {% endblock %}
 
@@ -404,6 +433,13 @@
     <div class="radio3">
       <input type="radio" name="twostep" value="no" id="twostepno" {%if requestGET.twostep == 'no' %} checked {%endif%}>
       <label for="twostepno">{%trans "Have not twostep"%}</label>
+    </div>
+  </div>
+
+    <div class="c">
+    <div class="radio3">
+      <input type="radio" name="twostep" value="non" id="twostepnon" {%if requestGET.twostep == 'non'  %} checked {%endif%}>
+      <label for="twostepnon">{%trans "Non"%}</label>
     </div>
   </div>
 </div>
@@ -426,6 +462,13 @@
       <label for="passwordno">{%trans "Have not password"%}</label>
     </div>
   </div>
+
+    <div class="c">
+    <div class="radio3">
+      <input type="radio" name="password" value="non" id="passwordnon" {%if requestGET.password == 'non'  %} checked {%endif%}>
+      <label for="passwordnon">{%trans "Non"%}</label>
+    </div>
+  </div>
 </div>
 {% endblock %}
 
@@ -444,6 +487,13 @@
     <div class="radio3">
       <input type="radio" name="email" value="no" id="emailno" {%if requestGET.email == 'no' %} checked {%endif%}>
       <label for="emailno">{%trans "Have not email"%}</label>
+    </div>
+  </div>
+
+    <div class="c">
+    <div class="radio3">
+      <input type="radio" name="email" value="non" id="emailnon" {%if requestGET.email == 'non'  %} checked {%endif%}>
+      <label for="emailnon">{%trans "Non"%}</label>
     </div>
   </div>
 </div>
@@ -466,6 +516,13 @@
       <label for="mobileno">{%trans "Have not mobile"%}</label>
     </div>
   </div>
+
+    <div class="c">
+    <div class="radio3">
+      <input type="radio" name="mobile" value="non" id="mobilenon" {%if requestGET.mobile == 'non'  %} checked {%endif%}>
+      <label for="mobilenon">{%trans "Non"%}</label>
+    </div>
+  </div>
 </div>
 {% endblock %}
 
@@ -483,6 +540,13 @@
     <div class="radio3">
       <input type="radio" name="displayname" value="no" id="displaynameno" {%if requestGET.displayname == 'no' %} checked {%endif%}>
       <label for="displaynameno">{%trans "Have not displayname"%}</label>
+    </div>
+  </div>
+
+    <div class="c">
+    <div class="radio3">
+      <input type="radio" name="displayname" value="non" id="displaynamenon" {%if requestGET.displayname == 'non'  %} checked {%endif%}>
+      <label for="displaynamenon">{%trans "Non"%}</label>
     </div>
   </div>
 </div>
@@ -504,6 +568,13 @@
       <label for="avatarno">{%trans "Have not avatar"%}</label>
     </div>
   </div>
+
+    <div class="c">
+    <div class="radio3">
+      <input type="radio" name="avatar" value="non" id="avatarnon" {%if requestGET.avatar == 'non'  %} checked {%endif%}>
+      <label for="avatarnon">{%trans "Non"%}</label>
+    </div>
+  </div>
 </div>
 {% endblock %}
 
@@ -523,6 +594,13 @@
     <div class="radio3">
       <input type="radio" name="username" value="no" id="usernameno" {%if requestGET.username == 'no' %} checked {%endif%}>
       <label for="usernameno">{%trans "Have not username"%}</label>
+    </div>
+  </div>
+
+    <div class="c">
+    <div class="radio3">
+      <input type="radio" name="username" value="non" id="usernamenon" {%if requestGET.username == 'non'  %} checked {%endif%}>
+      <label for="usernamenon">{%trans "Non"%}</label>
     </div>
   </div>
 </div>
