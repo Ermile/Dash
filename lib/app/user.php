@@ -621,11 +621,14 @@ class user
 
 
 		$args['username']      = $username;
+		$args['chatid']        = $chatid;
+		$args['mobile']        = $mobile;
+		$args['email']         = $email;
+
 		$args['language']      = $language;
 		$args['title']         = $title;
 		$args['bio']           = $bio;
 		$args['displayname']   = $displayname;
-		$args['mobile']        = $mobile;
 		$args['nationalcode']  = $nationalcode;
 		$args['pasportcode']   = $pasportcode;
 		$args['firstname']     = $firstname;
@@ -652,7 +655,6 @@ class user
 		$args['pin']           = $pin;
 		$args['ref']           = $ref;
 		$args['unit_id']       = $unit_id;
-		$args['chatid']        = $chatid;
 		$args['tgstatus']      = $tgstatus;
 
 

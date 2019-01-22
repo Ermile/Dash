@@ -198,7 +198,6 @@
   not requestGET.android_uniquecode
 %}  data-kerkere-content='hide' {%endif%}>
 
-  <form method="get" action="{{url.this}}" data-action autocomplete="off">
 
     <h6 data-kerkere=".showFilterByUsername" data-kerkere-icon>{%trans "Filter by username"%}</h6>
     <div class="showFilterByUsername" {%if not requestGET.username%} data-kerkere-content='hide' {%endif%}>
@@ -268,7 +267,7 @@
       <a href="{{url.this}}" class="btn ">{%trans "Clear filter"%}</a>
       <button class="btn primary">{%trans "Apply"%}</button>
     </div>
-  </form>
+
 </div>
 
 {%endblock%}
@@ -294,6 +293,13 @@
     <div class="radio3">
       <input type="radio" name="duplicate" value="username" id="duplicateusername" {%if requestGET.duplicate == 'username' %} checked {%endif%}>
       <label for="duplicateusername">{%trans "Have duplicate username"%}</label>
+    </div>
+  </div>
+
+  <div class="c">
+    <div class="radio3">
+      <input type="radio" name="duplicate" value="chatid" id="duplicatechatid" {%if requestGET.duplicate == 'chatid' %} checked {%endif%}>
+      <label for="duplicatechatid">{%trans "Have duplicate chatid"%}</label>
     </div>
   </div>
 

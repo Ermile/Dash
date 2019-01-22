@@ -55,6 +55,7 @@ class model
 		{
 			\dash\db\users::update(['chatid' => null], $user_id);
 			\dash\notif::ok(T_("Chatid removed"));
+			\dash\redirect::pwd();
 			return false;
 		}
 

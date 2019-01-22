@@ -32,7 +32,7 @@
     {%if dataRowMember.chatid%}
       <div class="msg success2">
         {%trans "User have chatid"%}
-        {{dataRowMember.chatid}}
+        <b>{{dataRowMember.chatid | fitNumber(false)}}</b>
         <span data-confirm data-data='{"removechatid" : "removechatid"}' class="badge danger floatL">{%trans "Remove chatid"%}</span>
       </div>
     {%else%}

@@ -73,6 +73,26 @@ trait edit
 			}
 		}
 
+		if($args['email'])
+		{
+			$check_email_exist = \dash\db\users::get(['email' => $args['email'], 'limit' => 1]);
+			if(isset($check_email_exist['id']) && intval($check_email_exist['id']) !== intval($id))
+			{
+				\dash\notif::error(T_("Duplicate email"), 'email');
+				return false;
+			}
+		}
+
+		if($args['chatid'])
+		{
+			$check_chatid_exist = \dash\db\users::get(['chatid' => $args['chatid'], 'limit' => 1]);
+			if(isset($check_chatid_exist['id']) && intval($check_chatid_exist['id']) !== intval($id))
+			{
+				\dash\notif::error(T_("Duplicate chatid"), 'chatid');
+				return false;
+			}
+		}
+
 		if(\dash\app::isset_request('nationalcode') || \dash\app::isset_request('pasportcode'))
 		{
 			if($args['nationalcode'] || $args['pasportcode'])
