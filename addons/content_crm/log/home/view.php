@@ -58,9 +58,14 @@ class view
 			$args['caller'] = $_GET['caller'];
 		}
 
-		if(\dash\request::get('user_id'))
+		if(\dash\request::get('from'))
 		{
-			$args['user_id'] = \dash\request::get('user_id');
+			$args['from'] = \dash\request::get('from');
+		}
+
+		if(\dash\request::get('to'))
+		{
+			$args['to'] = \dash\request::get('to');
 		}
 
 		if(\dash\request::get('data'))

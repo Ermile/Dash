@@ -106,7 +106,15 @@
       {%set myCountI = 0%}
       {%for key, value in showUserLog%}
       {%set myCountI = myCountI + value%}
-      <div class="msg"><span>{%set myKey = key | capitalize%}{%trans myKey%}</span> <span class="floatL txtB">{{value | fitNumber}}</span></div>
+      <div class="msg"><span>{%set myKey = key | capitalize%}{%trans myKey%}</span>
+        {%if key == 'logs'%}
+          <a href="{{url.here}}/log?from={{requestGET.id | coding('decode')}}"><span class="floatL badge txtB">{{value | fitNumber}}</span></a>
+        {%elseif key == 'logs_to'%}
+          <a href="{{url.here}}/log?to={{requestGET.id | coding('decode')}}"><span class="floatL badge txtB">{{value | fitNumber}}</span></a>
+        {%else%}
+        <span class="floatL txtB">{{value | fitNumber}}</span>
+        {%endif%}
+      </div>
       {%endfor%}
       {%if not myCountI%}
         <div class="msg danger">
