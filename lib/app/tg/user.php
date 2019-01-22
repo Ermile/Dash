@@ -121,6 +121,32 @@ class user
 	}
 
 
+	public static function tgusername($_username = null)
+	{
+		if(!$_username)
+		{
+			return \dash\user::detail('tgusername');
+		}
+		else
+		{
+			if(self::id())
+			{
+				$update = \dash\db\users::update(['tgusername' => $_username], self::id());
+				if($update)
+				{
+					// \dash\app\tg\account::relogin();
+					return true;
+				}
+				else
+				{
+					return false;
+				}
+			}
+		}
+		return false;
+	}
+
+
 	public static function id()
 	{
 		return \dash\user::id();

@@ -24,6 +24,26 @@ class user
 				\dash\log::set('tg:user:inline2Active');
 				self::active();
 			}
+			elseif($userStatus === null)
+			{
+				self::active();
+			}
+			// set username if not exist
+			if(\dash\user::detail('tgusername') === null)
+			{
+				// set username
+				self::setTgUserName();
+			}
+			// change username if changed
+			if(\dash\user::detail('tgusername') !== hook::from('username'))
+			{
+				\dash\log::set('tg:username:changed');
+				self::setTgUserName();
+			}
+
+			// update last active time
+			self::setTgLastUpdate();
+
 			return \dash\user::id();
 		}
 
@@ -121,6 +141,19 @@ class user
 
 
 	public static function active()
+	{
+		\dash\app\tg\user::status("active");
+	}
+
+
+	public static function setTgUserName()
+	{
+
+		\dash\app\tg\user::tgusername(hook::from('username'));
+	}
+
+
+	public static function setTgLastUpdate()
 	{
 		\dash\app\tg\user::status("active");
 	}
