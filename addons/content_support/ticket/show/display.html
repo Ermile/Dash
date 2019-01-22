@@ -420,6 +420,11 @@
       <p class="msg pA5-f info2 fs08">{%trans "Do you know you can connect your account with our Telegram bot"%} <a href="https://t.me/{{tgBot}}?start=sync" target="_blank">@{{tgBot}}</a>.<br>{%trans "Just need to start bot in Telegram and sync your account via /sync."%}</p>
   {%endif%}
 
+      <div class="input" title='{%trans "Short link"%}'>
+        <input type="text" id="shortLink" class="ltr" value="{{url.base}}/!{{masterTicketDetail.id}}" readonly>
+        <div class="addon btn" data-copy='#shortLink'><span class="sf-link pRa5"></span> {%trans "Short link"%}</div>
+      </div>
+
 {%endif%}
 
     </div>
