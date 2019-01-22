@@ -71,6 +71,12 @@ class invoices
 	}
 
 
+	public static function get_count()
+	{
+		return \dash\db\config::public_get_count('invoices', ...func_get_args());
+	}
+
+
 	/**
 	 * insert the new invoice
 	 *

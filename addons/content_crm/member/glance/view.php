@@ -12,6 +12,13 @@ class view
 		\dash\data::page_desc(' ');
 		\dash\data::page_pictogram('user');
 
+		if(\dash\permission::supervisor() && \dash\request::get('showlog'))
+		{
+			$user_code = \dash\data::dataRowMember_id();
+			$user_id   = \dash\coding::decode($user_code);
+
+			\dash\data::showUserLog(\dash\app\user::user_in_all_table($user_id));
+		}
 	}
 }
 ?>

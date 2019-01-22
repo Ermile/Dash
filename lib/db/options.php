@@ -70,6 +70,12 @@ class options
 	}
 
 
+	public static function get_count()
+	{
+		return \dash\db\config::public_get_count('options', ...func_get_args());
+	}
+
+
 	/**
 	 * we can not delete a record from database
 	 * we just update field status to 'deleted' or 'disable' or set this record to black list

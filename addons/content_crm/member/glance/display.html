@@ -6,7 +6,19 @@
   <div class="c6 s12">
     <div class="cbox">
       {%if perm('cpUsersEdit') %}
-        <a class="btn danger outline block mB20" href="{{url.this}}/general?id={{requestGET.id}}">{%trans "Edit"%}</a>
+        <div class="f">
+          <div class="c">
+              <a class="btn danger outline block mB20" href="{{url.this}}/general?id={{requestGET.id}}">{%trans "Edit"%}</a>
+          </div>
+
+        {%if perm_su() %}
+          <div class="cauto">
+            <a class="btn mLa5 danger  mB20" href="{{url.this}}/glance?id={{requestGET.id}}&showlog=1">{%trans "Log"%}</a>
+          </div>
+        {%endif%}
+
+        </div>
+
       {%endif%}
       <table class="tbl">
         <thead>
@@ -85,6 +97,17 @@
       </table>
     </div>
   </div>
+  {%if perm_su()%}
+  {%if requestGET.showlog%}
+  <div class="c3">
+    <div class="cbox mLa5">
+      {%for key, value in showUserLog%}
+      <div class="msg"><span>{%trans key%}</span> <span class="floatL txtB">{{value | fitNumber}}</span></div>
+      {%endfor%}
+    </div>
+  </div>
+  {%endif%}
+  {%endif%}
 </div>
 {%endblock%}
 

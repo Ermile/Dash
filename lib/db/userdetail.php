@@ -36,6 +36,12 @@ class userdetail
 	}
 
 
+	public static function get_count()
+	{
+		return \dash\db\config::public_get_count('userdetail', ...func_get_args());
+	}
+
+
 	public static function search($_string = null, $_option = [])
 	{
 		$defalut =
