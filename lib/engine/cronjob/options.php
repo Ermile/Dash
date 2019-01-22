@@ -9,6 +9,21 @@ class options
 		return '* * * * * php '. __DIR__ . '/cronjob.php';
 	}
 
+	public static function unixcrontab()
+	{
+		return shell_exec('crontab -l');
+	}
+
+	public static function jsoncrontab()
+	{
+		$addr = root. 'list.crontab.txt';
+		if(is_file($addr))
+		{
+			return \dash\file::read($addr);
+		}
+		return null;
+	}
+
 
 	private static function set_cronjob($_active)
 	{

@@ -10,6 +10,14 @@ class view
 		\dash\data::cronjobPHP(\dash\engine\cronjob\options::current_cronjob_path());
 		$list = \dash\engine\cronjob\options::list();
 		\dash\data::activeList($list);
+
+		$unixcrontab = \dash\engine\cronjob\options::unixcrontab();
+		\dash\data::unixcrontab($unixcrontab);
+
+		$jsoncrontab = \dash\engine\cronjob\options::jsoncrontab();
+		\dash\data::jsoncrontab($jsoncrontab);
+
+
 	}
 }
 ?>
