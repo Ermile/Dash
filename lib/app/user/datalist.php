@@ -76,13 +76,14 @@ trait datalist
 
 		if($_args['check_duplicate'])
 		{
-			$_args['search_field']      = '';
-			$_args['public_show_field'] = " COUNT(*) AS `count`, users.". $_args['check_duplicate'];
-			$_args['group_by']          = " GROUP BY users.". $_args['check_duplicate'];
-			$_args['order']             = null;
-			$_args['sql_having']        = " HAVING COUNT(*) >= 2";
-			$_args['order_raw']         = "COUNT(*) DESC";
-			$_args['sort']              = null;
+			$_args['search_field']                      = '';
+			$_args['public_show_field']                 = " COUNT(*) AS `count`, users.". $_args['check_duplicate'];
+			$_args['users.'. $_args['check_duplicate']] = [ "IS NOT", " NULL "];
+			$_args['group_by']                          = " GROUP BY users.". $_args['check_duplicate'];
+			$_args['order']                             = null;
+			$_args['sql_having']                        = " HAVING COUNT(*) >= 2";
+			$_args['order_raw']                         = "COUNT(*) DESC";
+			$_args['sort']                              = null;
 
 		}
 

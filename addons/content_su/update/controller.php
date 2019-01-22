@@ -28,7 +28,7 @@ class controller
 
 	public static function gitUpdate($_name, $_password = null)
 	{
-		\dash\log::set('su_gitUpdate');
+		\dash\log::set('su_gitUpdateStart');
 		$result   = [];
 		// switch by name of repository
 		switch ($_name)
@@ -57,6 +57,7 @@ class controller
 				// return;
 				break;
 		}
+		\dash\log::set('su_gitUpdate');
 		return $result;
 	}
 
