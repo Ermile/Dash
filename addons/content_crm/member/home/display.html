@@ -102,6 +102,9 @@
         <th data-sort="{{sortLink.datemodified.order}}" class="collapsing s0 m0">
           <a href='{{sortLink.datemodified.link}}'>{%trans "Last Modified"%}</a>
         </th>
+        <th>
+          {%trans "Edit"%}
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -130,10 +133,19 @@
         <td class="s0 m0 pRa5">
           <a href="{{url.this}}/glance?id={{value.id}}{%if requestGET.showlog%}&showlog=1{%endif%}">{{value.email}}</a>
         </td>
-        <td class="s0">
+        <td class="s0 collapsing">
           {%if value.password%}<i class="sf-check fc-green" title='{%trans "Password is set"%}'></i>{%else%}<i class="sf-times fc-red" title='{%trans "Password is not set!"%}'></i>{%endif%}
           {%if value.twostep%}<i class="sf-unlock-alt fc-green" title='{%trans "Two step verification in enabled"%}'></i>{%else%}<i class="sf-unlock fc-mute" title='{%trans "Two step verification in disable"%}'></i>{%endif%}
-          {%if value.chatid%}<i class="sf-paper-plane fc-blue" title='{%trans "Have telegram id"%}'></i>{%endif%}
+          {%if value.chatid%}<a href="{{url.this}}?chatid=yes"><i class="sf-paper-plane fc-blue" title='{%trans "Have chatid"%}'></i></a>{%else%}<a href="{{url.this}}?chatid=no"><i class="sf-paper-plane fc-mute" title='{%trans "Have not chatid"%}'></i></a>{%endif%}
+          {%if value.email%}
+            <a href="{{url.this}}?email=yes">
+              <i class="sf-at fc-blue" title='{%trans "Have email"%}'></i>
+            </a>
+          {%else%}
+            <a href="{{url.this}}?email=no">
+              <i class="sf-at fc-mute" title='{%trans "Have not email"%}'></i>
+            </a>
+          {%endif%}
         </td>
         <td class="s0">
           <a href="{{url.this}}?status={{value.status}}">{%set myStatus = value.status | capitalize %}{%trans myStatus%}</a>
@@ -143,6 +155,7 @@
         </td>
         <td class="s0 m0" title="{{value.datecreated | dt(true)}}"><small class="fc-mute">{%if value.datecreated%}{{value.datecreated | dt("human", 'year')}}{%else%}-{%endif%}</small></td>
         <td class="s0 m0" title="{{value.datemodified | dt(true)}}"><small class="fc-mute">{%if value.datemodified%}{{value.datemodified | dt("human", 'year')}}{%else%}-{%endif%}</small></td>
+        <td class="collapsing"><a href="{{url.this}}/glance?id={{value.id}}{%if requestGET.showlog%}&showlog=1{%endif%}"><i class="sf-edit fc-blue"></i></a></td>
       </tr>
       {%endfor%}
     </tbody>
