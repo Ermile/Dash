@@ -81,7 +81,7 @@ trait datalist
 			$_args['group_by']          = " GROUP BY users.". $_args['check_duplicate'];
 			$_args['order']             = null;
 			$_args['sql_having']        = " HAVING COUNT(*) >= 2";
-			$_args['order_raw']         = "COUNT(*)";
+			$_args['order_raw']         = "COUNT(*) DESC";
 			$_args['sort']              = null;
 
 		}

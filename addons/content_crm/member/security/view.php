@@ -12,7 +12,7 @@ class view
 		\dash\data::page_title(T_('Edit user security'));
 		\dash\data::page_desc(T_('You can edit user security.'));
 
-		\dash\data::badge_link(\dash\url::kingdom(). '/a');
+		\dash\data::badge_link(\dash\url::this());
 		\dash\data::badge_text(T_('Back to dashbaord'));
 
 		if(\dash\permission::check("cpUsersPermission"))

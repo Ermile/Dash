@@ -51,6 +51,17 @@ class model
 
 		$user_id = \dash\coding::decode(\dash\request::get('id'));
 
+		if(\dash\request::post('deleteuser') === 'DeleteUserYN' && \dash\permission::supervisor())
+		{
+			$removed = \dash\app\user::delete_user($user_id);
+			if($removed)
+			{
+				\dash\notif::ok(T_("User removed"));
+				\dash\redirect::pwd();
+			}
+			return false;
+		}
+
 		if(\dash\request::post('removechatid') === 'removechatid' && \dash\permission::supervisor())
 		{
 			\dash\db\users::update(['chatid' => null], $user_id);

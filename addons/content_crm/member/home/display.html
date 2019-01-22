@@ -64,7 +64,7 @@
       <tr>
         <td>{{value[requestGET.duplicate]}}</td>
         <td>{{value.count | fitNumber}}</td>
-        <td><a href="{{url.this}}?{{requestGET.duplicate}}={{value[requestGET.duplicate]}}" class="badge warn">{%trans "Detail"%}</a></td>
+        <td><a href="{{url.this}}?{{requestGET.duplicate}}={{value[requestGET.duplicate]}}&showlog=1" class="badge warn">{%trans "Detail"%}</a></td>
       </tr>
       {%endfor%}
     </tbody>
@@ -107,7 +107,7 @@
       {%for key, value in dataTable%}
       <tr {%if value.status=='disable' or value.status=='removed' or value.status=='filter' or value.status=='unreachable'%} class='negative' {%elseif value.status=='awaiting'%} class='warning' {%endif%}>
         <td>
-          <a href="{{url.this}}/glance?id={{value.id}}">
+          <a href="{{url.this}}/glance?id={{value.id}}{%if requestGET.showlog%}&showlog=1{%endif%}">
             <img src="{{value.avatar}}" alt='{{value.id}}' width="40" class="pRa5"> {{value.username}}
           </a>
         </td>
@@ -120,14 +120,14 @@
             <a href="{{url.this}}?lastname={{value.lastname | url_encode}}">{{value.lastname}}</a>
           </div>
           <div class="mT5">
-            <a href="{{url.this}}/glance?id={{value.id}}" class="txtB block"><span class="sf-user"></span> {{value.displayname}}</a>
+            <a href="{{url.this}}/glance?id={{value.id}}{%if requestGET.showlog%}&showlog=1{%endif%}" class="txtB block"><span class="sf-user"></span> {{value.displayname}}</a>
           </div>
         </td>
         <td class="pRa5">
-          <a href="{{url.this}}/glance?id={{value.id}}">{{value.mobile | fitNumber('mobile12')}}</a>
+          <a href="{{url.this}}/glance?id={{value.id}}{%if requestGET.showlog%}&showlog=1{%endif%}">{{value.mobile | fitNumber('mobile12')}}</a>
         </td>
         <td class="s0 m0 pRa5">
-          <a href="{{url.this}}/glance?id={{value.id}}">{{value.email}}</a>
+          <a href="{{url.this}}/glance?id={{value.id}}{%if requestGET.showlog%}&showlog=1{%endif%}">{{value.email}}</a>
         </td>
         <td class="s0">
           {%if value.password%}<i class="sf-check fc-green" title='{%trans "Password is set"%}'></i>{%else%}<i class="sf-times fc-red" title='{%trans "Password is not set!"%}'></i>{%endif%}

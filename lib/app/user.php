@@ -812,5 +812,64 @@ class user
 
 	}
 
+
+	public static function delete_user($_user_id)
+	{
+		if(!$_user_id || !is_numeric($_user_id))
+		{
+			return false;
+		}
+
+		$deletedetail               = [];
+		$deletedetail['remover']    = \dash\user::id();
+		$deletedetail['deletedate'] = date("Y-m-d H:i:s");
+		$loadAll                    = \dash\db\users::get(['id' => $_user_id, 'limit' => 1]);
+		if(!is_array($loadAll))
+		{
+			$loadAll = [];
+		}
+
+		if(isset($loadAll['permission']) && $loadAll['permission'])
+		{
+			\dash\notif::error(T_("Can not remove user by permission"));
+			return false;
+		}
+
+		if(isset($loadAll['status']) && $loadAll['status'] === 'removed')
+		{
+			\dash\notif::error(T_("This user was removed"));
+			return false;
+		}
+
+		$deletedetail = array_merge($deletedetail, $loadAll);
+		$deletedetail = json_encode($deletedetail, JSON_UNESCAPED_UNICODE);
+
+		$update_old                         = [];
+
+		$update_old['mobile']               = null;
+		$update_old['email']                = null;
+		$update_old['chatid']               = null;
+		$update_old['username']             = null;
+		$update_old['android_uniquecode']   = null;
+		$update_old['permission']           = null;
+
+		$update_old['status']               = 'removed';
+
+		$update_old['nationalcode']         = null;
+		$update_old['pasportcode']          = null;
+		$update_old['android_version']      = null;
+		$update_old['android_serial']       = null;
+		$update_old['android_model']        = null;
+		$update_old['android_manufacturer'] = null;
+		$update_old['android_meta']         = null;
+		$update_old['meta']                 = $deletedetail;
+
+		\dash\db\users::update($update_old, $_user_id);
+
+		\dash\log::set('crmMemberRemoved', ['code' => $_user_id]);
+		return true;
+
+	}
+
 }
 ?>

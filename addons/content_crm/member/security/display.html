@@ -29,7 +29,10 @@
     {%endif%}
 
     {%if perm_su()%}
+
+
     {%if dataRowMember.chatid%}
+      <br>
       <div class="msg success2">
         {%trans "User have chatid"%}
         <b>{{dataRowMember.chatid | fitNumber(false)}}</b>
@@ -44,6 +47,16 @@
     {%endif%}
 
     {{block("iSave")}}
+
+    {%if perm_su()%}
+      <div class="badge mT10 mB10 danger" data-kerkere-icon data-kerkere='.DeleteUserYN'>{%trans "Delete user"%}</div>
+      <div class="DeleteUserYN" data-kerkere-content="hide">
+        <div class="msg danger">
+          {%trans "Are you sure to delete this user?"%}
+          <span data-confirm data-data='{"deleteuser" : "DeleteUserYN"}' class="badge warn floatL">{%trans "Delete"%}</span>
+        </div>
+      </div>
+    {%endif%}
   </form>
   {{block('sessionList')}}
  </div>
