@@ -147,6 +147,32 @@ class user
 	}
 
 
+	public static function tgUpdateActivityTime($_set = null)
+	{
+		if(!$_set)
+		{
+			return \dash\user::detail('tg_lastupdate');
+		}
+		else
+		{
+			if(self::id())
+			{
+				$update = \dash\db\users::update(['tg_lastupdate' => date("Y-m-d H:i:s")], self::id());
+				if($update)
+				{
+					// \dash\app\tg\account::relogin();
+					return true;
+				}
+				else
+				{
+					return false;
+				}
+			}
+		}
+		return false;
+	}
+
+
 	public static function id()
 	{
 		return \dash\user::id();

@@ -155,7 +155,7 @@ class user
 
 	public static function setTgLastUpdate()
 	{
-		\dash\app\tg\user::status("active");
+		\dash\app\tg\user::tgUpdateActivityTime(true);
 	}
 
 
