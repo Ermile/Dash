@@ -65,7 +65,13 @@
                 {%endif%}
                 <td>{%set myValue = value | capitalize | fitNumber(false)%}
                 {%if key == 'birthday' or 'date' in key %}
+                  {%if key in ['datecreated', 'datemodified']%}
+                  <a href="{{url.here}}/log?datecreated={{value}}">
+                    <span class="block ltr" title="{{value}}"><i class="sf-calendar"></i> {{value | dt(true)}}</span>
+                  </a>
+                  {%else%}
                   <span class="block ltr" title="{{value}}"><i class="sf-calendar"></i> {{value | dt(true)}}</span>
+                  {%endif%}
                 {%elseif 'code' in key or 'id' in key or key == 'phone'%}
                   <span class="block ltr">{{myValue}}</span>
                 {%elseif key == 'website'%}

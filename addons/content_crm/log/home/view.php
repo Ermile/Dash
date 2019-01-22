@@ -73,6 +73,11 @@ class view
 			$args['data'] = \dash\request::get('data');
 		}
 
+		if(\dash\request::get('datecreated'))
+		{
+			$args['logs.datecreated'] = \dash\request::get('datecreated');
+		}
+
 		if(!$args['order'])
 		{
 			$args['order'] = 'DESC';
