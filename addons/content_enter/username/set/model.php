@@ -36,7 +36,7 @@ class model
 			\dash\log::set('usernameSet', ['data' => $username]);
 
 
-			\dash\db\users::update(['username' => $username], \dash\user::id());
+			// \dash\db\users::update(['username' => $username], \dash\user::id());
 			// set the alert message
 			\dash\utility\enter::set_session('alert' , ['text' => T_("Your username was set")]);
 			// open lock of alert page
