@@ -232,6 +232,16 @@ class users
 		}
 
 
+		if(isset($_args['username']) && $_args['username'])
+		{
+			$check_username = self::get(['username' => $_args['username'], 'limit' => 1]);
+
+			if(isset($check_username['id']))
+			{
+				return false;
+			}
+		}
+
 		if(isset($_args['chatid']) && $_args['chatid'])
 		{
 			$check_chatid = self::get(['chatid' => $_args['chatid'], 'limit' => 1]);
