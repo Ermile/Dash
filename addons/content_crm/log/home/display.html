@@ -68,21 +68,21 @@
       {%for key, value in dataTable%}
       <tr class="">
         <td class="collapsing txtRa">
-          {%if value.user_id%}
-          <a href="{{url.this}}/datalist?user={{value.user_id}}">
+          {%if value.from%}
+          <a href="{{url.this}}/datalist?user={{value.from}}">
             <img src="{%if value.avatar%}{{value.avatar}}{%else%}{{url.static}}/siftal/images/default/avatar.png{%endif%}" class="avatar mRa5" alt="{{value.displayname}}">
             <span class="txtB s0 fs08">{{value.displayname}}</span>
           </a>
           <div class="txtRa fs08">
             <a title='{%trans "Mobile"%}'>{{value.mobile | fitNumber('mobile12')}}</a>
-            <a href="{{url.this}}/datalist?userid={{value.user_id}}" class="badge" title='{%trans "User id"%}'>{{value.user_id | fitNumber(false)}}</a>
+            <a href="{{url.this}}/datalist?userid={{value.from}}" class="badge" title='{%trans "User id"%}'>{{value.from | fitNumber(false)}}</a>
           </div>
 
           <span class="badge floatR">{{value.id | fitNumber(false)}}</span>
 
           <nav class="txtRa">
-            <a href="{{url.this}}/datalist?user_id={{value.user_id}}" title='{%trans "User logs"%}'><i class="sf-briefcase"></i></a>
-            <a href="{{url.kingdom}}/crm/member/glance?id={{value.user_id}}" title='{%trans "User Profile"%}'><i class="sf-user-md"></i></a>
+            <a href="{{url.this}}/datalist?user_id={{value.from}}" title='{%trans "User logs"%}'><i class="sf-briefcase"></i></a>
+            <a href="{{url.kingdom}}/crm/member/glance?id={{value.from}}" title='{%trans "User Profile"%}'><i class="sf-user-md"></i></a>
             <a title='{%trans "Search by user session id"%}' href="{{url.this}}/datalist?session_id={{value.session_id}}"><i class="sf-user-secret"></i></a>
           </nav>
         {%else%}
