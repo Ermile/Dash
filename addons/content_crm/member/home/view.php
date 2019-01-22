@@ -38,6 +38,29 @@ class view
 			$args['status'] = \dash\request::get('status');
 		}
 
+		if(\dash\permission::supervisor())
+		{
+			if(\dash\request::get('username'))
+			{
+				$args['username'] = \dash\request::get('username');
+			}
+
+			if(\dash\request::get('mobile'))
+			{
+				$args['mobile'] = \dash\request::get('mobile');
+			}
+
+			if(\dash\request::get('email'))
+			{
+				$args['email'] = \dash\request::get('email');
+			}
+
+			if(\dash\request::get('android_uniquecode'))
+			{
+				$args['android_uniquecode'] = \dash\request::get('android_uniquecode');
+			}
+		}
+
 		if(\dash\request::get('permission'))
 		{
 			$args['permission'] = \dash\request::get('permission');
@@ -47,7 +70,7 @@ class view
 
 		$sortLink = \dash\app\sort::make_sortLink(\dash\app\user::$sort_field, \dash\url::this());
 
-		if(\dash\permission::supervisor() && in_array(\dash\request::get('duplicate'), ['mobile', 'email', 'username']))
+		if(\dash\permission::supervisor() && in_array(\dash\request::get('duplicate'), ['mobile', 'email', 'username','android_uniquecode']))
 		{
 			$args['check_duplicate'] = \dash\request::get('duplicate');
 		}

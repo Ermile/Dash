@@ -50,8 +50,28 @@
 
 
 {%block htmlTable%}
-
+{%if perm_su() and requestGET.duplicate%}
   <table class="tbl1 v1 cbox fs12">
+    <thead>
+      <tr>
+        <th>{{requestGET.duplicate}}</th>
+        <th>{%trans "Count"%}</th>
+        <th>{%trans "Show"%}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {%for key, value in dataTable%}
+      <tr>
+        <td>{{value[requestGET.duplicate]}}</td>
+        <td>{{value.count | fitNumber}}</td>
+        <td><a href="{{url.this}}?{{requestGET.duplicate}}={{value[requestGET.duplicate]}}" class="badge warn">{%trans "Detail"%}</a></td>
+      </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+
+{%else%}
+<table class="tbl1 v1 cbox fs12">
     <thead>
       <tr class="fs07">
         <th data-sort="{{sortLink.username.order}}">
@@ -126,6 +146,8 @@
     </tbody>
   </table>
   {%include display.pagination%}
+{%endif%}
+
 
 {%endblock%}
 
@@ -272,6 +294,13 @@
     <div class="radio3">
       <input type="radio" name="duplicate" value="username" id="duplicateusername" {%if requestGET.duplicate == 'username' %} checked {%endif%}>
       <label for="duplicateusername">{%trans "Have duplicate username"%}</label>
+    </div>
+  </div>
+
+  <div class="c">
+    <div class="radio3">
+      <input type="radio" name="duplicate" value="android_uniquecode" id="duplicateandroid_uniquecode" {%if requestGET.duplicate == 'android_uniquecode' %} checked {%endif%}>
+      <label for="duplicateandroid_uniquecode">{%trans "Have duplicate android_uniquecode"%}</label>
     </div>
   </div>
 
