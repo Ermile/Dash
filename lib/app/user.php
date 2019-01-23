@@ -862,6 +862,27 @@ class user
 			'encode' => false,
 		];
 
+		$result['academies']     =
+		[
+			'count'  => \lib\db\academies::get_count(['creator' => $_user_id]),
+			'link'   => null,
+			'encode' => false,
+		];
+
+		$result['useracademies'] =
+		[
+			'count'  => \lib\db\useracademies::get_count(['user_id' => $_user_id]),
+			'link'   => null,
+			'encode' => false,
+		];
+
+		$result['learn_cards']   =
+		[
+			'count'  => \lib\db\learn_cards::get_count(['user_id' => $_user_id]),
+			'link'   => null,
+			'encode' => false,
+		];
+
 
 		if(is_callable(['\\lib\\user', 'user_in_all_table']))
 		{
