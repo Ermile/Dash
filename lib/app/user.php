@@ -788,16 +788,17 @@ class user
 			return false;
 		}
 
-		$result               = [];
-		$result['address']    = \dash\db\address::get_count(['user_id' => $_user_id]);
-		$result['comments']   = \dash\db\comments::get_count(['user_id' => $_user_id]);
-		$result['invoices']   = \dash\db\invoices::get_count(['user_id' => $_user_id]);
-		$result['options']    = \dash\db\options::get_count(['user_id' => $_user_id]);
-		$result['posts']      = \dash\db\posts::get_count(['user_id' => $_user_id]);
-		$result['userdetail'] = \dash\db\userdetail::get_count(['user_id' => $_user_id]);
-		$result['logs']       = \dash\db\logs::get_count(['from' => $_user_id]);
-		$result['logs_to']    = \dash\db\logs::get_count(['to' => $_user_id]);
-		$result['sessions']   = \dash\db\sessions::get_count(['user_id' => $_user_id]);
+		$result                 = [];
+		$result['address']      = \dash\db\address::get_count(['user_id' => $_user_id]);
+		$result['comments']     = \dash\db\comments::get_count(['user_id' => $_user_id]);
+		$result['invoices']     = \dash\db\invoices::get_count(['user_id' => $_user_id]);
+		$result['options']      = \dash\db\options::get_count(['user_id' => $_user_id]);
+		$result['posts']        = \dash\db\posts::get_count(['user_id' => $_user_id]);
+		$result['userdetail']   = \dash\db\userdetail::get_count(['user_id' => $_user_id]);
+		$result['logs']         = \dash\db\logs::get_count(['from' => $_user_id]);
+		$result['logs_to']      = \dash\db\logs::get_count(['to' => $_user_id]);
+		$result['sessions']     = \dash\db\sessions::get_count(['user_id' => $_user_id]);
+		$result['transactions'] = \dash\db\transactions::get_count(['user_id' => $_user_id]);
 
 		if(is_callable(['\\lib\\user', 'user_in_all_table']))
 		{
