@@ -103,8 +103,12 @@ class user
 		{
 			if(!$mobile && !$force_add)
 			{
-				if($debug) \dash\notif::error(T_("Mobile is required"), 'mobile');
-				return false;
+				// in crm content the mobile is not required
+				if(\dash\url::content() !== 'crm')
+				{
+					if($debug) \dash\notif::error(T_("Mobile is required"), 'mobile');
+					return false;
+				}
 			}
 		}
 
