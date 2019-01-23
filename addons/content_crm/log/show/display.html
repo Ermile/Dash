@@ -1,0 +1,16 @@
+{%extends display.crmMain%}
+
+
+
+{%block pageContent%}
+  <div class="f">
+{%for key, value in dataRow%}
+
+    <div class="c5 fs14 mTB5 mLR5">
+      <div class="badge warn">{{key}}</a></div>
+      <div class="badge primary">{{value}}</div>
+    </div>
+
+{%endfor%}
+  </div>
+{%endblock%}
