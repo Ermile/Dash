@@ -505,17 +505,20 @@ class user
 				return false;
 			}
 
-			if(!preg_match("/^[A-Za-z0-9]+$/", $username))
+			if(!preg_match("/^[A-Za-z0-9_\-]+$/", $username))
 			{
-				if($debug) \dash\notif::error(T_("Only [A-Za-z0-9] can use in username"), 'username');
+				if($debug) \dash\notif::error(T_("Only [A-Za-z0-9_-] can use in username"), 'username');
 				return false;
 			}
 
-			if(!preg_match("/^[A-Za-z]+$/", $username))
+			if(!preg_match("/[A-Za-z]+/", $username))
 			{
 				if($debug) \dash\notif::error(T_("You must use a one character from [A-Za-z] in the username"), 'username');
 				return false;
 			}
+
+			$username = preg_replace("/\_{2,}/", "_", $username);
+			$username = preg_replace("/\-{2,}/", "-", $username);
 
 			$check_duplicate_username = \dash\db\users::get(['username' => $username, 'limit' => 1]);
 			if(isset($check_duplicate_username['id']))
