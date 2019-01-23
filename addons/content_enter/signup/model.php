@@ -59,6 +59,10 @@ class model
 				return false;
 			}
 		}
+		else
+		{
+			$username = null;
+		}
 
 		if(\dash\option::config('enter', 'singup_username') && !preg_match("/[A-Za-z0-9\_]/", $username))
 		{
@@ -98,7 +102,7 @@ class model
 			$check_username = \dash\db\users::get_by_username($username);
 			if($check_username)
 			{
-				\dash\log::set('usernameTaken', ['data' => $username]);
+				\dash\log::set('usernameTaken', ['username' => $username]);
 				\dash\notif::error(T_("This username is already taken."), 'username');
 				return false;
 			}
