@@ -38,7 +38,7 @@
                     {{value}}
                     {%if perm_su()%}
                       <div title='{%trans "Decode"%}' class="badge mLR10">{{value | coding("decode") | fitNumber(false)}}</div>
-                      <a class="btn" href="{{url.kingdom}}/enter?userid={{value}}" data-direct><i class="sf-user"></i> {%trans "Enter"%}</a>
+                      <a class="btn" href="{{url.kingdom}}/enter?userid={{value| coding('decode')}}" data-direct><i class="sf-user"></i> {%trans "Enter"%}</a>
                     {%endif%}
                   </td>
                 </tr>
