@@ -850,6 +850,45 @@ class user
 		$update_old['email']                = null;
 		$update_old['chatid']               = null;
 		$update_old['username']             = null;
+
+
+		$update_old['displayname']          = null;
+		$update_old['gender']               = null;
+		$update_old['title']                = null;
+		$update_old['password']             = null;
+		$update_old['verifymobile']         = null;
+		$update_old['verifyemail']          = null;
+		$update_old['avatar']               = null;
+		$update_old['parent']               = null;
+		$update_old['type']                 = null;
+		$update_old['pin']                  = null;
+		$update_old['ref']                  = null;
+		$update_old['twostep']              = null;
+		$update_old['birthday']             = null;
+		$update_old['unit_id']              = null;
+		$update_old['language']             = null;
+		$update_old['website']              = null;
+		$update_old['facebook']             = null;
+		$update_old['twitter']              = null;
+		$update_old['instagram']            = null;
+		$update_old['linkedin']             = null;
+		$update_old['gmail']                = null;
+		$update_old['sidebar']              = null;
+		$update_old['firstname']            = null;
+		$update_old['lastname']             = null;
+		$update_old['bio']                  = null;
+		$update_old['tgstatus']             = null;
+		$update_old['tgusername']           = null;
+		$update_old['forceremember']        = null;
+		$update_old['signature']            = null;
+		$update_old['father']               = null;
+		$update_old['nationality']          = null;
+		$update_old['pasportdate']          = null;
+		$update_old['marital']              = null;
+		$update_old['foreign']              = null;
+		$update_old['phone']                = null;
+		$update_old['detail']               = null;
+
 		$update_old['android_uniquecode']   = null;
 		$update_old['permission']           = null;
 
