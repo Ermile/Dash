@@ -378,6 +378,7 @@ class logs
 			"
 				LEFT JOIN $db_name.users ON $db_name.users.id = logs.from
 			",
+			"search_field" => " ( logs.caller = '__string__') ",
 			'db_name' => \dash\db::get_db_log_name(),
 		];
 
