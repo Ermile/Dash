@@ -7,7 +7,7 @@ class cites
 	public static $data =
 	[
 	'tehran'                  => ['country' => 'IR', 'province' => 'IR-07', 'name' => 'tehran', 'localname' => 'تهران', 'population' => 8293140, 'width' => '35°696111', 'length' => '51°423056', 'province_phone_code' => 21,],
-	'mashahd'                 => ['country' => 'IR', 'province' => 'IR-30', 'name' => 'mashahd', 'localname' => 'خراسان رضوی', 'population' => 3069941, 'width' => '36°2604623', 'length' => '59°6167549', 'province_phone_code' => 51,],
+	'mashahd'                 => ['country' => 'IR', 'province' => 'IR-30', 'name' => 'mashahd', 'localname' => 'مشهد', 'population' => 3069941, 'width' => '36°2604623', 'length' => '59°6167549', 'province_phone_code' => 51,],
 	'isfahan'                 => ['country' => 'IR', 'province' => 'IR-04', 'name' => 'isfahan', 'localname' => 'اصفهان', 'population' => 2174172, 'width' => '32°6546275', 'length' => '51°6679826', 'province_phone_code' => 31,],
 	'karaj'                   => ['country' => 'IR', 'province' => 'IR-32', 'name' => 'karaj', 'localname' => 'کرج', 'population' => 2024765, 'width' => '35°8400188', 'length' => '50°9390906', 'province_phone_code' => 26,],
 	'shiraz'                  => ['country' => 'IR', 'province' => 'IR-14', 'name' => 'shiraz', 'localname' => 'شیراز', 'population' => '1٬700٬687', 'width' => '29°5917677', 'length' => '52°5836982', 'province_phone_code' => 71,],
