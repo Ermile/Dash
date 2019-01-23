@@ -45,10 +45,11 @@ class view
 				$args['username'] = \dash\request::get('findusername');
 			}
 
-			if(\dash\request::get('findmobile'))
+			if(\dash\request::get('findmobile') || \dash\request::get('findmobile') == "0")
 			{
 				$args['mobile'] = \dash\request::get('findmobile');
 			}
+
 
 			if(\dash\request::get('findemail'))
 			{
