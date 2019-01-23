@@ -789,16 +789,76 @@ class user
 		}
 
 		$result                 = [];
-		$result['address']      = \dash\db\address::get_count(['user_id' => $_user_id]);
-		$result['comments']     = \dash\db\comments::get_count(['user_id' => $_user_id]);
-		$result['invoices']     = \dash\db\invoices::get_count(['user_id' => $_user_id]);
-		$result['options']      = \dash\db\options::get_count(['user_id' => $_user_id]);
-		$result['posts']        = \dash\db\posts::get_count(['user_id' => $_user_id]);
-		$result['userdetail']   = \dash\db\userdetail::get_count(['user_id' => $_user_id]);
-		$result['logs']         = \dash\db\logs::get_count(['from' => $_user_id]);
-		$result['logs_to']      = \dash\db\logs::get_count(['to' => $_user_id]);
-		$result['sessions']     = \dash\db\sessions::get_count(['user_id' => $_user_id]);
-		$result['transactions'] = \dash\db\transactions::get_count(['user_id' => $_user_id]);
+		$result['address']      =
+		[
+			'count'  => \dash\db\address::get_count(['user_id' => $_user_id]),
+			'link'   => null,
+			'encode' => false,
+		];
+
+		$result['comments']     =
+		[
+			'count'  => \dash\db\comments::get_count(['user_id' => $_user_id]),
+			'link'   => null,
+			'encode' => false,
+		];
+
+		$result['invoices']     =
+		[
+			'count'  => \dash\db\invoices::get_count(['user_id' => $_user_id]),
+			'link'   => null,
+			'encode' => false,
+		];
+
+		$result['options']      =
+		[
+			'count'  => \dash\db\options::get_count(['user_id' => $_user_id]),
+			'link'   => null,
+			'encode' => false,
+		];
+
+		$result['posts']        =
+		[
+			'count'  => \dash\db\posts::get_count(['user_id' => $_user_id]),
+			'link'   => null,
+			'encode' => false,
+		];
+
+		$result['userdetail']   =
+		[
+			'count'  => \dash\db\userdetail::get_count(['user_id' => $_user_id]),
+			'link'   => null,
+			'encode' => false,
+		];
+
+		$result['logs']         =
+		[
+			'count'  => \dash\db\logs::get_count(['from' => $_user_id]),
+			'link'   => \dash\url::kingdom(). '/crm/log?from=',
+			'encode' => false,
+		];
+
+		$result['logs_to']      =
+		[
+			'count'  => \dash\db\logs::get_count(['to' => $_user_id]),
+			'link'   => \dash\url::kingdom(). '/crm/log?to=',
+			'encode' => false,
+		];
+
+		$result['sessions']     =
+		[
+			'count'  => \dash\db\sessions::get_count(['user_id' => $_user_id]),
+			'link'   => null,
+			'encode' => false,
+		];
+
+		$result['transactions'] =
+		[
+			'count'  => \dash\db\transactions::get_count(['user_id' => $_user_id]),
+			'link'   => null,
+			'encode' => false,
+		];
+
 
 		if(is_callable(['\\lib\\user', 'user_in_all_table']))
 		{

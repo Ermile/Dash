@@ -111,17 +111,23 @@
       <a class="btn danger2 block mB10" href="{{url.this}}/security?id={{requestGET.id}}">{%trans "Security"%}</a>
       {%set myCountI = 0%}
       {%for key, value in showUserLog%}
-      {%set myCountI = myCountI + value%}
-      <div class="msg"><span>{%set myKey = key | capitalize%}{%trans myKey%}</span>
-        {%if key == 'logs'%}
-          <a href="{{url.here}}/log?from={{requestGET.id | coding('decode')}}"><span class="floatL badge txtB">{{value | fitNumber}}</span></a>
-        {%elseif key == 'logs_to'%}
-          <a href="{{url.here}}/log?to={{requestGET.id | coding('decode')}}"><span class="floatL badge txtB">{{value | fitNumber}}</span></a>
-        {%else%}
-        <span class="floatL txtB">{{value | fitNumber}}</span>
-        {%endif%}
-      </div>
+      {%set myCountI = myCountI + value.count%}
+
+      {%if value.link%}
+        <a href="{{value.link}}{%if value.encode%}{{requestGET.id}}{%else%}{{requestGET.id | coding('decode')}}{%endif%}">
+      {%endif%}
+
+        <div class="msg {%if value.link%} primary outline {%endif%}">
+          <span>{%set myKey = key | capitalize%}{%trans myKey%}</span>
+          <span class="floatL txtB">{{value.count | fitNumber}}</span>
+        </div>
+
+      {%if value.link%}
+      </a>
+      {%endif%}
+
       {%endfor%}
+
       {%if not myCountI%}
         <div class="msg danger">
           {%trans "Are you sure to delete this user?"%}
