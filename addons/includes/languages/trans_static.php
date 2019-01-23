@@ -1122,6 +1122,11 @@ class TransStatic
 
 	echo T_("supportTicketTrash");
 	echo T_("cpSupportTagAdd");
+
+	echo T_("Invoices");
+	echo T_("Userdetail");
+	echo T_("Sessions");
+
  }
 }
 ?>
