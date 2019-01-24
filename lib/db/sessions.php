@@ -389,7 +389,7 @@ class sessions
 
 		if($_raw)
 		{
-			$query = "SELECT * FROM  sessions WHERE `user_id` = '$_user_id' ";
+			$query = "SELECT * FROM  sessions WHERE `user_id` = '$_user_id' ORDER BY sessions.id DESC";
 		}
 		else
 		{
@@ -406,6 +406,7 @@ class sessions
 				WHERE
 					user_id = $_user_id AND
 					status = 'active'
+				ORDER BY sessions.id DESC
 			";
 		}
 
