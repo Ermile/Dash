@@ -22,10 +22,10 @@
         </div>
 {%endif%}
       </td>
-{%if accessMode != 'all'%}
+
       <td class="s0 m0 pRa10"><a href="{{url.here}}/ticket/show?id={{value.id}}{{accessGetAnd}}{%if not login.id %}&guest={{value.code}}{%endif%}">{{value.content | slice(0, 60) | striptags}}</a>
       </td>
-{%endif%}
+
 {%if haveSubdomain%}
     <td class="collapsing fs08 s0 ltr">
 {%if value.subdomain%}
