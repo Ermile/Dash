@@ -36,13 +36,13 @@ class model
 	{
 		$post =
 		[
-
-			'sidebar'     => \dash\request::post('sidebar') ? true : false,
-			'language'    => \dash\request::post('language'),
-			'birthday'    => \dash\request::post('birthday'),
-			'gender'      => \dash\request::post('gender'),
-
+			'sidebar'   => \dash\request::post('sidebar') ? true : false,
+			'language'  => \dash\request::post('language'),
+			'birthday'  => \dash\request::post('birthday'),
+			'birthdate' => \dash\request::post('birthday'),
+			'gender'    => \dash\request::post('gender'),
 		];
+
 
 		$avatar = self::upload_avatar();
 
