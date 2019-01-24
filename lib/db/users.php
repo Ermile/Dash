@@ -68,42 +68,36 @@ class users
 
 	public static function get_by_mobile($_mobile)
 	{
-		$args =
-		[
-			'mobile' => $_mobile,
-			'limit'  => 1
-		];
-		$result = self::get($args);
-		return $result;
+		$query = "SELECT * FROM users WHERE users.mobile = '$_mobile' ORDER BY users.id ASC LIMIT 1";
+		return \dash\db::get($query, null, true);
 	}
 
 
 	public static function get_by_id($_user_id)
 	{
-		$args =
-		[
-			'id'    => $_user_id,
-			'limit' => 1
-		];
-		return self::get($args);
+		$query = "SELECT * FROM users WHERE users.id = '$_user_id' LIMIT 1";
+		return \dash\db::get($query, null, true);
 	}
 
 
-	public static function get_by_email($_email, $_field = false)
+	public static function get_by_email($_email)
 	{
-		$query = "SELECT * FROM users WHERE users.email = '$_email' AND users.status != 'removed' ORDER BY users.id DESC LIMIT 1 ";
+		$query = "SELECT * FROM users WHERE users.email = '$_email' ORDER BY users.id ASC LIMIT 1 ";
+		return \dash\db::get($query, null, true);
+	}
+
+
+	public static function get_by_chatid($_chatid)
+	{
+		$query = "SELECT * FROM users WHERE users.chatid = '$_chatid' ORDER BY users.id ASC LIMIT 1 ";
 		return \dash\db::get($query, null, true);
 	}
 
 
 	public static function get_by_username($_username)
 	{
-		$args =
-		[
-			'username' => $_username,
-			'limit'         => 1
-		];
-		return self::get($args);
+		$query = "SELECT * FROM users WHERE users.username = '$_username' ORDER BY users.id ASC LIMIT 1";
+		return \dash\db::get($query, null, true);
 	}
 
 	public static function search($_string = null, $_options = [])
@@ -134,9 +128,70 @@ class users
 	}
 
 
-	public static function update()
+	public static function update($_args, $_id)
 	{
-		return \dash\db\config::public_update('users', ...func_get_args());
+		if(isset($_args['mobile']) && $_args['mobile'])
+		{
+			// check not duplicate mobile
+			$check_mobile = self::get_by_mobile($_args['mobile']);
+			if($check_mobile && isset($check_mobile['id']))
+			{
+				if(intval($check_mobile['id']) !== intval($_id))
+				{
+					// this mobile exist for another person
+					\dash\log::set('TryDuplicateUserMobile');
+					return false;
+				}
+			}
+		}
+
+		if(isset($_args['email']) && $_args['email'])
+		{
+			// check not duplicate email
+			$check_email = self::get_by_email($_args['email']);
+			if($check_email && isset($check_email['id']))
+			{
+				if(intval($check_email['id']) !== intval($_id))
+				{
+					// this email exist for another person
+					\dash\log::set('TryDuplicateUserEmail');
+					return false;
+				}
+			}
+		}
+
+
+		if(isset($_args['chatid']) && $_args['chatid'])
+		{
+			// check not duplicate chatid
+			$check_chatid = self::get_by_chatid($_args['chatid']);
+			if($check_chatid && isset($check_chatid['id']))
+			{
+				if(intval($check_chatid['id']) !== intval($_id))
+				{
+					// this chatid exist for another person
+					\dash\log::set('TryDuplicateUserChatid');
+					return false;
+				}
+			}
+		}
+
+		if(isset($_args['username']) && $_args['username'])
+		{
+			// check not duplicate username
+			$check_username = self::get_by_username($_args['username']);
+			if($check_username && isset($check_username['id']))
+			{
+				if(intval($check_username['id']) !== intval($_id))
+				{
+					// this username exist for another person
+					\dash\log::set('TryDuplicateUserUsername');
+					return false;
+				}
+			}
+		}
+
+		return \dash\db\config::public_update('users', $_args, $_id);
 	}
 
 
@@ -318,16 +373,16 @@ class users
 		{
 			// mobile in mobile
 			$fix_mobile = \dash\utility\filter::mobile($_find);
-			$query      = "SELECT * FROM users WHERE users.mobile = '$fix_mobile' LIMIT 1";
+			$query      = "SELECT * FROM users WHERE users.mobile = '$fix_mobile' ORDER BY users.id ASC LIMIT 1";
 		}
 		elseif(filter_var($_find, FILTER_VALIDATE_EMAIL))
 		{
-			$query 		= "SELECT * FROM users WHERE users.email = '$_find' LIMIT 1";
+			$query 		= "SELECT * FROM users WHERE users.email = '$_find' ORDER BY users.id ASC LIMIT 1";
 		}
-		elseif(preg_match("/^[A-Za-z0-9]+$/", $_find) && preg_match("/^[A-Za-z]+$/", $_find))
+		elseif(preg_match("/^[A-Za-z0-9]+$/", $_find) && preg_match("/[A-Za-z]+/", $_find))
 		{
 			// a-z0-9 in username
-			$query 		= "SELECT * FROM users WHERE  users.username = '$_find' LIMIT 1";
+			$query 		= "SELECT * FROM users WHERE  users.username = '$_find' ORDER BY users.id ASC LIMIT 1";
 		}
 		else
 		{
