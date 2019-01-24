@@ -107,6 +107,10 @@ class enter
 		return null;
 	}
 
+	public static function user_id()
+	{
+		return self::user_data('id');
+	}
 
 	/**
 	 * Loads an user data.

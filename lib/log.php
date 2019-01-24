@@ -69,9 +69,14 @@ class log
 		{
 			$field['from'] = $_args['from'];
 		}
-		else
+		elseif(\dash\user::id())
 		{
 			$field['from'] = \dash\user::id();
+		}
+		elseif(\dash\utility\enter::user_id())
+		{
+			// user not login but loaded detail
+			$field['from'] = \dash\utility\enter::user_id();
 		}
 
 		if(!$field['from'])
