@@ -653,15 +653,27 @@ class enter
 		self::set_session('verification_code', $code);
 		$time = date("Y-m-d H:i:s");
 
+		$user_id = self::user_data('id');
+		if(!$user_id && \dash\user::id())
+		{
+			$user_id = \dash\user::id();
+		}
+
 		$log_detail =
 		[
-			'to'     => self::user_data('id'),
+			'to'     => $user_id,
 			'send'   => 1,
 			'notif'  => 1,
 			'code'   => $code,
 			'mycode' => $code,
 			'time'   => $time,
 		];
+
+		if(in_array(self::get_session('verify_from'), ['two_step_set', 'two_step_unset', 'password_change']))
+		{
+			$log_detail['secret'] = true;
+		}
+
 
 		$log_id = \dash\log::set('enter_VerificationCode', $log_detail);
 
@@ -707,11 +719,12 @@ class enter
 		{
 			if(self::user_data('id'))
 			{
+				// 'enable','disable','expire','deliver','awaiting','deleted','cancel','block','notif','notifread','notifexpire'
 				$where =
 				[
 					'caller' => 'enter_VerificationCode',
 					'to'     => self::user_data('id'),
-					'status' => 'enable',
+					'status' => ["IN", "('enable', 'notif', 'notifread')"],
 					'limit'  => 1,
 				];
 				$log_code = \dash\db\logs::get($where);

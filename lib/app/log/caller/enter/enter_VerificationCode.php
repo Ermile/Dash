@@ -7,6 +7,8 @@ class enter_VerificationCode
 	public static function site($_args = [])
 	{
 		$code = isset($_args['data']['mycode']) ? $_args['data']['mycode'] : null;
+		$secret = isset($_args['data']['secret']) ? $_args['data']['secret'] : null;
+
 		$code = \dash\utility\human::fitNumber($code, false);
 		$result              = [];
 		$result['title']     = T_("Verification code");
@@ -14,7 +16,15 @@ class enter_VerificationCode
 		$result['cat']      = T_("Enter");
 		$result['iconClass'] = 'fc-green';
 
-		$excerpt = T_("Your verification code is :mycode", ['mycode' => '<code>'. $code. '</code>']);
+		if($secret)
+		{
+			$excerpt = T_("The verification code has been sent to you");
+		}
+		else
+		{
+			$excerpt = T_("Your verification code is :mycode", ['mycode' => '<code>'. $code. '</code>']);
+		}
+
 		$result['excerpt'] = $excerpt;
 
 		$txt = '';
