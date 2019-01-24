@@ -113,7 +113,8 @@ trait connect
 			{
 				// Access denied for user 'user'@'hostname' (using password: YES)
 				case 1045:
-					\dash\header::status(503, T_("We can't connect to database service!"). " ". T_("Please contact administrator!"));
+					\dash\notif::error(T_("We can't connect to database service!"). " ". T_("Please contact administrator!"));
+					// \dash\header::status(503, T_("We can't connect to database service!"). " ". T_("Please contact administrator!"));
 					break;
 
 				// ERROR 1049 (42000): Unknown database
@@ -157,7 +158,8 @@ trait connect
 					// else only show related message
 					else
 					{
-						\dash\header::status(501, T_("We can't connect to correct database!"). " ". T_("Please contact administrator!"));
+						\dash\notif::error(T_("We can't connect to correct database!"). " ". T_("Please contact administrator!"));
+						// \dash\header::status(501, T_("We can't connect to correct database!"). " ". T_("Please contact administrator!"));
 					}
 					break;
 
