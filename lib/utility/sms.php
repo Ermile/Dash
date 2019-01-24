@@ -223,7 +223,7 @@ class sms
 		$result  = [];
 		$message = self::make_message($_message, $_options);
 		$api     = new \dash\utility\kavenegar_api($api_key, $_options['line']);
-		\dash\log::set('smsSendArray', ['data' => count($accepted_mobile)]);
+		\dash\log::set('smsSendArray', ['count_send' => count($accepted_mobile)]);
 		$chunk   = array_chunk($accepted_mobile, 200);
 		foreach ($chunk as $key => $last_200_mobile)
 		{

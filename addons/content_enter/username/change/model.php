@@ -55,7 +55,7 @@ class model
 
 		if(!empty($check_exist_name))
 		{
-			\dash\log::set('usernameTaken', ['data' => \dash\request::post('usernameNew')]);
+			\dash\log::set('usernameTaken', ['username' => \dash\request::post('usernameNew')]);
 			\dash\notif::error(T_("This username alreay taked!"));
 			return false;
 		}

@@ -66,7 +66,7 @@ class model
 
 		if(\dash\option::config('enter', 'singup_username') && !preg_match("/[A-Za-z0-9\_]/", $username))
 		{
-			\dash\log::set('usernameInvalidSyntax', ['data' => $username]);
+			\dash\log::set('usernameInvalidSyntax', ['code' => $username]);
 			\dash\notif::error(T_("Username must in [A-Za-z0-9]"), 'username');
 			return false;
 		}

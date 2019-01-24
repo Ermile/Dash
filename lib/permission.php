@@ -192,7 +192,7 @@ class permission
 			\dash\file::write(root.'/includes/permission/group.me.json', $new);
 		}
 
-		\dash\log::set('permissionDelete', ['data' => $_id]);
+		\dash\log::set('permissionDelete', ['code' => $_id]);
 		\dash\notif::warn(T_("Permission removed"));
 		return true;
 	}
@@ -435,7 +435,7 @@ class permission
 			\dash\file::write(root.'/includes/permission/group.me.json', $new);
 		}
 
-		\dash\log::set('permissionAddNew', ['data' => $_name]);
+		\dash\log::set('permissionAddNew', ['code' => $_name]);
 
 		\dash\notif::ok(T_("Permission saved"));
 		return true;

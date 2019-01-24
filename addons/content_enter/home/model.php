@@ -47,7 +47,7 @@ class model
 				}
 
 				// clean existing session
-				\dash\log::set('supervisorLoginByAnother', ['data' => $user_id]);
+				\dash\log::set('supervisorLoginByAnother', ['code' => $user_id]);
 
 				\dash\utility\enter::clean_session();
 
