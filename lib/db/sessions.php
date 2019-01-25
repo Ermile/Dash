@@ -210,6 +210,7 @@ class sessions
 
 				if(isset($get['ip']) && intval($get['ip']) !== intval(\dash\server::ip(true)))
 				{
+					\dash\log::set('sessionIPupdated', ['code' => isset($get['id']) ? $get['id'] : null]);
 					$update_current['ip'] = \dash\server::ip(true);
 				}
 
