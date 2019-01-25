@@ -88,20 +88,7 @@ class redirect
 	 */
 	private static function via_html($_loc, $_txt = null)
 	{
-		echo '<html><head>';
-		echo '<meta http-equiv="refresh" content="2; URL='.$_loc.'">';
-		echo '<meta charset="utf-8">';
-		echo '<style type="text/css">body{background-color:#ffffff;background-attachment:fixed;background-repeat:repeat;font-size:12px;font-family:lato;text-align:center;line-height:14px;text-transform:none;color:#E0E0E0;}#main{position:fixed;height:494px;width:650px;top:50%;margin-top:-100px;left:50%;margin-left:-325px;font-size:50px;line-height:59px;}a{display:block;text-decoration:none;color:#a3a3a3;-webkit-transition:all 0.4s linear;-moz-transition:all 0.4s linear;transition:all 0.4s linear;}a:link,a:active,a:visited{color:#a3a3a3;padding-bottom:5px;border-bottom:2px solid #a3a3a3;}a:hover{color:#a3a3a3;}.smaller{font-size:20px;text-transform:lowercase;}</style>';
-		echo '</head></body>';
-		echo ' <div id="main">';
-		echo '  <a href="'.$_loc.'">REDIRECTING YOU</a>';
-		echo '  <span class="smaller">'. strtok($_loc, '?') .'</span><br>';
-		if($_txt)
-		{
-			echo '  <span class="smaller">'. $_txt .'</span><br>';
-		}
-		echo ' </div>';
-		echo '</body></html>';
+		require_once(lib."redirect_html.php");
 	}
 }
 ?>
