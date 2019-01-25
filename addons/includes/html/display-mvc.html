@@ -72,7 +72,7 @@
 {%block head             %}{%endblock%}
 </head>
 
-<body{%if global.subdomain%} data-subdomain='{{global.subdomain}}'{%endif%} data-in='{{global.content}}' data-page='{{global.page}}' class='{{global.direction}}{%if include.adminPanel%} siftal{%endif%} {{bodyclass}}'{%if userToggleSidebar %}{%else%} data-clean{%endif%}{%if bodyel%}{{bodyel|raw}}{%endif%}>
+<body{%if global.subdomain%} data-subdomain='{{global.subdomain}}'{%endif%} data-in='{{global.content}}' data-page='{{global.page}}' class='{{global.direction}}{%if include.adminPanel%} siftal{%endif%} {{bodyclass}}'{%if userToggleSidebar %}{%else%} data-clean{%endif%}{%if bodyel%}{{bodyel|raw}}{%endif%}{%if user.id%} data-user='{{user.id | coding("encode")}}'{%endif%}>
 {%block body%}
 {%block header%}{%endblock%}
 {%block content%}
