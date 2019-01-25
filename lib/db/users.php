@@ -379,7 +379,7 @@ class users
 		{
 			$query 		= "SELECT * FROM users WHERE users.email = '$_find' ORDER BY users.id ASC LIMIT 1";
 		}
-		elseif(preg_match("/^[A-Za-z0-9]+$/", $_find) && preg_match("/[A-Za-z]+/", $_find))
+		elseif(preg_match("/^[A-Za-z0-9\_\-]+$/", $_find) && preg_match("/[A-Za-z]+/", $_find))
 		{
 			// a-z0-9 in username
 			$query 		= "SELECT * FROM users WHERE  users.username = '$_find' ORDER BY users.id ASC LIMIT 1";

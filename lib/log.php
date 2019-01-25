@@ -79,7 +79,7 @@ class log
 			$field['from'] = \dash\utility\enter::user_id();
 		}
 
-		if(!$field['from'])
+		if(!isset($field['from']) || (isset($field['from']) && !$field['from']))
 		{
 			$field['from'] = null;
 		}
