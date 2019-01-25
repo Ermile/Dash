@@ -354,7 +354,11 @@ class prepare
 		}
 
 		$target_url = $target_host;
-		if(\dash\url::lang() === \dash\language::primary())
+		if(\dash\url::content() === 'hook' || \dash\url::content() === 'api')
+		{
+			$target_url .= \dash\url::path();
+		}
+		else if(\dash\url::lang() === \dash\language::primary())
 		{
 			// try to remove lang from url
 			if(\dash\url::content())
