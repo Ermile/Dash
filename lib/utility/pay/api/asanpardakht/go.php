@@ -85,7 +85,8 @@ class go
         else
         {
             \dash\utility\pay\setting::save();
-            return \dash\utility\pay\setting::turn_back();
+            // return \dash\utility\pay\setting::turn_back();
+            return false;
         }
     }
 }

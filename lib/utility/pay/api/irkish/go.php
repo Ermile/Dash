@@ -78,7 +78,9 @@ class go
         }
         else
         {
-            return \dash\utility\pay\setting::turn_back();
+            \dash\utility\pay\setting::save();
+            // \dash\utility\pay\setting::turn_back();
+            return false;
         }
     }
 }
