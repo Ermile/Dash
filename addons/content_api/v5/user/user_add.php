@@ -82,6 +82,12 @@ class user_add
 		$token .= '_';
 		$token .= $add_user[self::$x_app_request. '_version'];
 
+		if($token === 'APP____')
+		{
+			\dash\log::set('emptyAndroidDetail');
+			return false;
+		}
+
 		$meta[self::$x_app_request. '_user_token_raw'] = $token;
 
 		$token = md5($token);
