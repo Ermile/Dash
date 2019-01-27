@@ -36,10 +36,10 @@ class controller
 		[
 			'sort'  => 'logs.id',
 			'order' => 'desc',
+			'to'    => $user_id,
 		];
 
-		$date_now = date("Y-m-d H:i:s");
-		$args['logs.status'] = ['IN', "('notif')"];
+		$args['logs.status'] = "notif";
 
 		$search_string   = null;
 
@@ -81,18 +81,19 @@ class controller
 					case "iconClass":
 					case "api_title":
 					case "excerpt":
+					case "caller":
+					case "subdomain":
+					case "code":
+					case "data":
+					case "send":
+					case "to":
+					case "notif":
+					case "from":
 						$new[$index][$key] = $value;
 						break;
 
 					case "id":
 					case "id_raw":
-					case "caller":
-					case "subdomain":
-					case "code":
-					case "send":
-					case "to":
-					case "notif":
-					case "from":
 					case "status":
 					case "datecreated":
 					case "datemodified":
