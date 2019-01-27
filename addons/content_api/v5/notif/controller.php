@@ -39,7 +39,7 @@ class controller
 		];
 
 		$date_now = date("Y-m-d H:i:s");
-		$args['logs.status'] = ['IN', "('notif', 'notifread')"];
+		$args['logs.status'] = ['IN', "('notif')"];
 
 		$search_string   = null;
 
