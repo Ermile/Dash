@@ -106,13 +106,18 @@ class users
 		{
 			$_options = [];
 		}
-		$default_options['search_field'] =
-		"
-			(
-				users.mobile LIKE '%__string__%' OR
-				users.displayname LIKE '%__string__%'
-			)
-		";
+		$default_options = [];
+
+		if($_string)
+		{
+			$default_options['search_field'] =
+			"
+				(
+					users.mobile LIKE '%__string__%' OR
+					users.displayname LIKE '%__string__%'
+				)
+			";
+		}
 
 		$_options = array_merge($default_options, $_options);
 
