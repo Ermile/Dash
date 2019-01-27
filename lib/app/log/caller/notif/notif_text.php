@@ -11,14 +11,14 @@ class notif_text
 		$cat       = isset($_args['data']['mycat']) ? $_args['data']['mycat'] : T_("Notification");
 		$iconClass = isset($_args['data']['iconClass']) ? $_args['data']['iconClass'] : 'fc-green';
 		$icon      = isset($_args['data']['icon']) ? $_args['data']['icon'] : 'bullhorn';
-		// $excerpt   = isset($_args['data']['myexcerpt']) ? $_args['data']['myexcerpt'] : 'bullhorn';
+		$excerpt   = isset($_args['data']['myexcerpt']) ? $_args['data']['myexcerpt'] : null;
 
 		$result              = [];
 		$result['title']     = $title;
 		$result['icon']      = $icon;
 		$result['cat']       = $cat;
 		$result['iconClass'] = $iconClass;
-		// $result['excerpt']   = $excerpt;
+		$result['excerpt']   = $excerpt;
 		$result['txt']       = $text;
 
 		return $result;
