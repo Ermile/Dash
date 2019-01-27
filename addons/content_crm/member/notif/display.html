@@ -1,0 +1,20 @@
+{%extends 'content_crm/member/layout.html'%}
+
+{%block pageContent%}
+{{block('pageSteps')}}
+
+<div class="f">
+ <div class="cauto s12 pA5">
+{{block("psidebar")}}
+ </div>
+ <div class="c s12 pA5">
+	<form class="cbox" method="post"  autocomplete="off">
+		<label>{%trans "Notification"%}</label>
+		<textarea name="notif" class="txt" rows="5" placeholder='{%trans "Notification"%}'></textarea>
+		{{block("isave")}}
+	</form>
+ </div>
+</div>
+{%endblock%}
+
+
