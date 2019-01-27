@@ -81,10 +81,10 @@ class controller
 					case "iconClass":
 					case "api_title":
 					case "excerpt":
+					case "text":
 					case "caller":
 					case "subdomain":
 					case "code":
-					case "data":
 					case "send":
 					case "to":
 					case "notif":
@@ -92,6 +92,7 @@ class controller
 						$new[$index][$key] = $value;
 						break;
 
+					case "data":
 					case "id":
 					case "id_raw":
 					case "status":

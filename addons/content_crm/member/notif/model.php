@@ -9,11 +9,10 @@ class model
 
 		$user_id              = \dash\coding::decode(\dash\request::get('id'));
 		$request              = [];
-		$request['mytext']    = \dash\request::post('notif');
+		// $request['mytext']    = \dash\request::post('notif');
 		$request['myexcerpt'] = \dash\request::post('notif');
+		$request['mytitle']   = \dash\request::post('title');
 		$request['to']        = $user_id;
-
-		$request['mytitle']   = '';
 		$request['mycat']     = '';
 		$request['iconClass'] = '';
 		$request['icon']      = '';

@@ -9,8 +9,13 @@
  </div>
  <div class="c s12 pA5">
 	<form class="cbox" method="post"  autocomplete="off">
-		<label>{%trans "Notification"%}</label>
-		<textarea name="notif" class="txt" rows="5" placeholder='{%trans "Notification"%}'></textarea>
+		<label>{%trans "Title"%}</label>
+		<div class="input">
+			<input name="title" type="text" >
+		</div>
+
+		<label>{%trans "Excerpt"%}</label>
+		<textarea name="notif" class="txt" rows="5" placeholder='{%trans "Excerpt"%}'></textarea>
 		{{block("isave")}}
 	</form>
  </div>
