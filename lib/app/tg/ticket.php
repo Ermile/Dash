@@ -31,7 +31,7 @@ class ticket
 			return false;
 		}
 
-		\content_support\ticket\show\view::see_ticket($masterTicketDetail, $dataTable, $_id)
+		\content_support\ticket\show\view::see_ticket($masterTicketDetail, $dataTable, $_id);
 
 		$msg = '';
 		$msg .= "🆔#Ticket".$_id. "\n";
