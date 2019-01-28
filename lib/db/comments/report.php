@@ -87,7 +87,7 @@ class report
 		$query =
 		"
 			SELECT
-				AVG(comments.answertime) AS `count`,
+				(AVG(comments.answertime) / 60) AS `count`,
 				DATE(comments.datecreated) AS `date`
 			FROM
 				comments
@@ -101,6 +101,7 @@ class report
 			ORDER BY DATE(comments.datecreated) ASC
 		";
 		$result = \dash\db::get($query);
+
 		return $result;
 	}
 
