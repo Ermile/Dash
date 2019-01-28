@@ -1127,6 +1127,9 @@ class TransStatic
 	echo T_("Userdetail");
 	echo T_("Sessions");
 
+	echo T_("Panel");
+	echo T_("panel");
+
  }
 }
 ?>

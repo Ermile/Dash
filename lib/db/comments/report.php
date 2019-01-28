@@ -68,7 +68,6 @@ class report
 				comments
 			WHERE
 				comments.type = 'ticket' AND
-				comments.parent IS NOT NULL AND
 				comments.datecreated <= '$start' AND
 				comments.datecreated >= '$end'
 			GROUP BY
