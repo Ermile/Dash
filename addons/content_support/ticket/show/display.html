@@ -362,7 +362,7 @@
   {%set postTag = tags({"post_id" : myID , "title" : true, "format" : 'csv', "type" : "support_tag", "related" : "comments"}) %}
 
     <div class="input mB10 hide">
-      <input type="text" class="input tagVals" name="tag"  value="{{postTag}}" id="tagValues" placeholder='{%trans "Tag"%}'>
+      <input type="text" class="input tagVals" name="tag" value="{{postTag}}" id="tagValues" placeholder='{%trans "Tag"%}'>
     </div>
 
     <datalist id="taglist">
@@ -396,21 +396,25 @@
   <div class="cbox">
     <h3>{%trans "Notification procedures"%}</h3>
     <div>
+
       <div class="switch1">
        <input type="checkbox" disabled id="notifMobile" {%if masterTicketDetail.mobile%}checked{%endif%}>
        <label for="notifMobile"></label>
        <label for="notifMobile">{%trans "Mobile"%}</label>
 {%if masterTicketDetail.mobile%}
        <label class="floatRa mT10 ltr"><a href="tel:00{{masterTicketDetail.mobile}}">{{masterTicketDetail.mobile | fitNumber('mobile12')}}</a></label>
+{%else%}
+        <label>-</label>
 {%endif%}
       </div>
 
 
+
 {%if tgBot%}
       <div class="switch1">
-       <input type="checkbox" disabled id="notifMobile" {%if masterTicketDetail.chatid%}checked{%endif%}>
-       <label for="notifMobile"></label>
-       <label for="notifMobile">{%trans "Telegram"%}</label>
+       <input type="checkbox" disabled id="notifTg" {%if masterTicketDetail.chatid%}checked{%endif%}>
+       <label for="notifTg"></label>
+       <label for="notifTg">{%trans "Telegram"%}</label>
   {%if masterTicketDetail.chatid%}
        <label class="floatRa mT10 ltr"><a href="https://t.me/{{masterTicketDetail.tgusername}}" target="_blank">@{{masterTicketDetail.tgusername[:15]}}</a></label>
   {%else%}
@@ -418,18 +422,16 @@
   {%endif%}
       </div>
   {%if not masterTicketDetail.chatid%}
-      <div>
 
-      </div>
       <p class="msg pA5-f info2 fs08">{%trans "Do you know you can connect your account with our Telegram bot"%} <a href="https://t.me/{{tgBot}}?start=sync" target="_blank">@{{tgBot}}</a>.<br>{%trans "Just need to start bot in Telegram and sync your account via /sync."%}</p>
   {%endif%}
 
-      <div class="input" title='{%trans "Short link"%}'>
+{%endif%}
+
+      <div class="input fs08" title='{%trans "Short link"%}'>
         <input type="text" id="shortLink" class="ltr" value="{{url.base}}/!{{masterTicketDetail.id}}" readonly>
         <div class="addon btn" data-copy='#shortLink'><span class="sf-link pRa5"></span> {%trans "Short link"%}</div>
       </div>
-
-{%endif%}
 
     </div>
   </div>
