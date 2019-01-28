@@ -73,8 +73,8 @@
           <span class="txtB s0 fs08">{{value.displayname}}</span>
         </a>
         <div class="txtRa fs08">
-          <a href="{{url.that}}?mobile={{value.mobile}}" title='{%trans "Mobile"%}'>{{value.mobile | fitNumber('mobile12')}}</a>
-          <a href="{{url.that}}?userid={{value.user_id}}" class="badge" title='{%trans "User id"%}'>{{value.user_id | fitNumber(false)}}</a>
+          <a  title='{%trans "Mobile"%}'>{{value.mobile | fitNumber('mobile12')}}</a>
+          <a href="{{url.that}}?user_id={{value.user_id}}" class="badge" title='{%trans "User id"%}'>{{value.user_id | fitNumber(false)}}</a>
         </div>
         <div class="txtRa fs08" data-tippy-placement='left' title='{%trans "Telegram chatid"%}'>
           <a href="{{url.that}}?chatid={{value.chatid}}">{{value.chatid | fitNumber(false)}}</a>
