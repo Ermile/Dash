@@ -89,11 +89,11 @@
     <li class="hr"></li>
 
 {%if perm('contentCp')%}
-    <li><a href="{{url.kingdom}}/cp" data-shortkey="67+80" data-shortkey-prevent data-shortkey-timeout='1000'><i class='sf-diamond'></i> {% trans "CP" %}<kbd class="floatRa fs08">cp</kbd></a></li>
+    <li><a href="{{url.kingdom}}/cp" data-shortkey="67+80" data-shortkey-prevent data-shortkey-timeout='1000'><i class='sf-tree-1'></i> {% trans "CP" %}<kbd class="floatRa fs08">cp</kbd></a></li>
 {%endif%}
 
 {%if perm('contentCrm')%}
-    <li><a href="{{url.kingdom}}/crm" data-shortkey="77+85" data-shortkey-prevent data-shortkey-timeout='1000'><i class='sf-users'></i> {% trans "CRM" %}<kbd class="floatRa fs08">mu</kbd></a></li>
+    <li><a href="{{url.kingdom}}/crm" data-shortkey="77+85" data-shortkey-prevent data-shortkey-timeout='1000'><i class='sf-group-full'></i> {% trans "CRM" %}<kbd class="floatRa fs08">mu</kbd></a></li>
 {%endif%}
 
 {%if perm_su()%}
