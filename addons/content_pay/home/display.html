@@ -99,9 +99,10 @@
 
 		    	{%if dataRow.condition == 'request' or dataRow.condition == 'redirect'%}
 
-					<p>{%trans "Choose a gateway"%}</p>
-
-					{{block('ipayBank')}}
+					<div class="msg pTB5">{%trans "Choose a gateway"%}</div>
+					<div class="msg pA5">
+						{{block('ipayBank')}}
+					</div>
 
 					<input type="hidden" name="ok" value="1">
 
@@ -225,19 +226,19 @@
 
 {%block suDetail%}
 {%if perm_su() %}
-<h3 data-kerkere='.iDetailKerkere'>{%trans "Detail"%}</h3>
+<h3 data-kerkere='.iDetailKerkere' class="msg" data-kerkere-icon='close'>{%trans "Detail"%}</h3>
 <div class="iDetailKerkere ltr" data-kerkere-content='hide'>
 	<div class="cbox">
 		<div class="f">
-			<h3 data-kerkere='.kerkereDetail1'>Payment response <small>Setting</small></h3>
+			<h3 data-kerkere-icon='close' data-kerkere='.kerkereDetail1'>Payment response <small>Setting</small></h3>
 			{{block('iPaymentDetail')}}
-			<h3 data-kerkere='.kerkereDetail2'>Payment response1 <small>Bank token</small></h3>
+			<h3 data-kerkere-icon='close' data-kerkere='.kerkereDetail2'>Payment response1 <small>Bank token</small></h3>
 			{{block('iPaymentDetail1')}}
-			<h3 data-kerkere='.kerkereDetail3'>Payment response2 <small>Bank back</small></h3>
+			<h3 data-kerkere-icon='close' data-kerkere='.kerkereDetail3'>Payment response2 <small>Bank back</small></h3>
 			{{block('iPaymentDetail2')}}
-			<h3 data-kerkere='.kerkereDetail4'>Payment response3 <small>Bank verify</small></h3>
+			<h3 data-kerkere-icon='close' data-kerkere='.kerkereDetail4'>Payment response3 <small>Bank verify</small></h3>
 			{{block('iPaymentDetail3')}}
-			<h3 data-kerkere='.kerkereDetail5'>Payment record <small>DB</small></h3>
+			<h3 data-kerkere-icon='close' data-kerkere='.kerkereDetail5'>Payment record <small>DB</small></h3>
 			{{block('iTransactionRecord')}}
 		</div>
 	</div>
@@ -255,7 +256,7 @@
 			{% if value is iterable%}
 				<div class="msg"><code>{{key}}</code> <pre class="floatR">{{value | json_encode()}}</pre></div>
 			{%else%}
-				<div class="msg"><code>{{key}}</code> <kbd class="floatR">{{value}}</kbd></div>
+				<div class="msg"><code>{{key}}</code> <code class="floatR">{{value}}</code></div>
 			{%endif%}
 			{%endfor%}
 	</div>
@@ -267,7 +268,7 @@
 
 
 			{%for key, value in dataRow.payment_response1%}
-				<div class="msg"><code>{{key}}</code> <kbd class="floatR">{{value}}</kbd></div>
+				<div class="msg"><code>{{key}}</code> <code class="floatR">{{value}}</code></div>
 			{%endfor%}
 	</div>
 {%endblock%}
@@ -278,7 +279,7 @@
 
 
 			{%for key, value in dataRow.payment_response2%}
-				<div class="msg"><code>{{key}}</code> <kbd class="floatR">{{value}}</kbd></div>
+				<div class="msg"><code>{{key}}</code> <code class="floatR">{{value}}</code></div>
 			{%endfor%}
 	</div>
 {%endblock%}
@@ -289,7 +290,7 @@
 
 
 			{%for key, value in dataRow.payment_response3%}
-				<div class="msg"><code>{{key}}</code> <kbd class="floatR">{{value}}</kbd></div>
+				<div class="msg"><code>{{key}}</code> <code class="floatR">{{value}}</code></div>
 			{%endfor%}
 	</div>
 {%endblock%}
@@ -303,7 +304,7 @@
 			{% if value is iterable%}
 				<div class="msg"><code>{{key}}</code> <pre class="floatR">{{value | json_encode()}}</pre></div>
 			{%else%}
-				<div class="msg"><code>{{key}}</code> <kbd class="floatR">{{value}}</kbd></div>
+				<div class="msg"><code>{{key}}</code> <code class="floatR">{{value}}</code></div>
 			{%endif%}
 			{%endfor%}
 	</div>
