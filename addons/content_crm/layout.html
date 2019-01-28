@@ -3,44 +3,37 @@
 
 
 {%block sidenav%}
-  <li><a href="{{url.here}}"><i class='sf-gauge'></i> <span>{% trans "Dashboard" %}</span></a></li>
-  {%if perm('contentCp')%}<li><a href="{{url.kingdom}}/cp">{% trans "CP" %} <i class='floatRa mRa10 fc-mute sf-diamond'></i></a></li>{%endif%}
+  <li><a href="{{url.here}}"><i class='sf-group-full'></i> <span>{% trans "CRM" %}</span></a></li>
 
 
-
-
-{%if perm('cpUsersView') or perm('cpUsersAdd') or perm('cpPermissionView') %}
-    <li>
-      {%if perm('cpUsersView') %}
-        <a href="{{url.here}}/member"><i class='sf-users'></i> <span>{% trans "Users" %}</span></a>
-      {%endif%}
-        <ul>
-          {%if perm('cpUsersAdd') %}
-            <li><a href="{{url.here}}/member/add">{% trans "Add new user" %} <i class='floatRa mRa10 fc-mute sf-user-plus'></i></a></li>
-          {%endif%}
-          {%if perm('cpPermissionView') %}
-            <li><a href="{{url.here}}/permission">{% trans "Permissions" %} <i class='floatRa mRa10 fc-mute sf-lock'></i></a></li>
-          {%endif%}
-        </ul>
-    </li>
-{%endif%}
-
-{%if perm('cpSMS') or perm('cpSmsSend') or perm('cpSmsSendGroup') or perm('cpTemplateSmsView') %}
-    <li>
-        {%if perm('cpSMS') %}
-        <a href="{{url.here}}/sms"><i class='sf-envelope'></i> <span>{% trans "SMS" %}</span></a>
+  {%if perm('cpUsersView') or perm('cpUsersAdd') %}
+      <li>
+        {%if perm('cpUsersView') %}
+          <a href="{{url.here}}/member"><i class='sf-users'></i> <span>{% trans "Users" %}</span></a>
         {%endif%}
-        <ul>
-          {%if perm('cpSmsSend') %}
-            <li><a href="{{url.here}}/sms/send">{% trans "Quick send" %} <i class='floatRa mRa10 fc-mute sf-paper-plane'></i></a></li>
+          <ul>
+            {%if perm('cpUsersAdd') %}
+              <li><a href="{{url.here}}/member/add">{% trans "Add new user" %} <i class='floatRa mRa10 fc-mute sf-user-plus'></i></a></li>
+            {%endif%}
+          </ul>
+      </li>
+  {%endif%}
+    {%if perm('cpPermissionView') %}
+      <li><a href="{{url.here}}/permission"><i class='sf-lock'></i> {% trans "Permissions" %}</a></li>
+    {%endif%}
+
+  {%if perm('cpSMS') or perm('cpSmsSend') or perm('cpSmsSendGroup') or perm('cpTemplateSmsView') %}
+      <li>
+          {%if perm('cpSMS') %}
+          <a href="{{url.here}}/sms"><i class='sf-envelope'></i> <span>{% trans "SMS" %}</span></a>
           {%endif%}
-        </ul>
-    </li>
-{%endif%}
-
-<li class="hr"></li>
-<li><a href="{{url.kingdom}}/support" data-shortkey="112" data-shortkey-prevent data-shortkey-timeout='1000'><i class='sf-life-ring'></i> <span>{% trans "Support" %}</span><kbd class="floatRa fs08">F1</kbd></a></li>
-
+          <ul>
+            {%if perm('cpSmsSend') %}
+              <li><a href="{{url.here}}/sms/send">{% trans "Quick send" %} <i class='floatRa mRa10 fc-mute sf-paper-plane'></i></a></li>
+            {%endif%}
+          </ul>
+      </li>
+  {%endif%}
 
 {%endblock%}
 

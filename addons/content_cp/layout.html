@@ -3,8 +3,7 @@
 
 
 {%block sidenav%}
-  <li><a href="{{url.here}}"><i class='sf-gauge'></i> <span>{% trans "Dashboard" %}</span></a></li>
-  {%if perm('contentCrm')%}<li><a href="{{url.kingdom}}/crm">{% trans "CRM" %} <i class='floatRa mRa10 fc-mute sf-users'></i></a></li>{%endif%}
+  <li><a href="{{url.here}}"><i class='sf-gauge'></i> <span>{% trans "Control Panel" %}</span></a></li>
 
 
 {%if perm('cpPostsView') or perm('cpCategoryView') or perm('cpPageView') or perm('cpTagView')  %}
@@ -53,13 +52,6 @@
       </ul>
     </li>
 {%endif%}
-
-
-
-
-<li class="hr"></li>
-<li><a href="{{url.kingdom}}/support" data-shortkey="112" data-shortkey-prevent data-shortkey-timeout='1000'><i class='sf-life-ring'></i> <span>{% trans "Support" %}</span><kbd class="floatRa fs08">F1</kbd></a></li>
-
 
 {%endblock%}
 

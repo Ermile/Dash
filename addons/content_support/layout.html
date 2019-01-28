@@ -4,11 +4,8 @@
 
 {%block sidenav%}
 
-{%if login%}
-<li><a href="{{url.kingdom}}/a"><i class='sf-gauge'></i> <span>{% trans "Dashboard" %} {{site.title}}</span></a></li>
-{%endif%}
 
-<li><a href="{{url.here}}{{accessGet}}" data-shortkey="112" data-shortkey-prevent><i class='sf-life-ring'></i> <span>{% trans "Support Dashboard" %}</span><kbd class="floatRa fs08">F1</kbd></a></li>
+<li><a href="{{url.here}}{{accessGet}}"><i class='sf-life-ring'></i> <span>{% trans "Support Dashboard" %}</span></a></li>
 
 <li>
   <a href="{{url.here}}/ticket{{accessGet}}"><i class="sf-question-circle"></i>{%trans "Tickets"%}</a>
