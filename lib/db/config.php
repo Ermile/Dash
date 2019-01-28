@@ -776,7 +776,7 @@ class config
 
 		if($pagenation && !$get_count)
 		{
-			if($sql_having)
+			if($sql_having || $group_by)
 			{
 				$pagenation_query = "SELECT COUNT(*) AS `count` FROM (SELECT $public_fields $where $search $group_by $sql_having $order) AS `myCountTable` ";
 			}

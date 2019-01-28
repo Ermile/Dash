@@ -1,5 +1,5 @@
 <?php
-namespace content_su\tg\log;
+namespace content_su\tg\users;
 
 
 class view
@@ -34,11 +34,6 @@ class view
 				{
 					unset($args[$key]);
 				}
-				else
-				{
-					$args['telegrams.'. $key] = $value;
-					unset($args[$key]);
-				}
 			}
 		}
 
@@ -56,7 +51,7 @@ class view
 			$args['sort'] = 'telegrams.id';
 		}
 
-		$args['join_user'] = true;
+		$args['group_by_chatid'] = true;
 
 		unset($args['page']);
 
@@ -64,7 +59,29 @@ class view
 
 		if(is_array($dataTable))
 		{
-			$dataTable = array_map(['\dash\app', 'fix_avatar'], $dataTable);
+			$dataTable = array_combine(array_column($dataTable, 'chatid'), $dataTable);
+
+			$load      = array_column($dataTable, 'chatid');
+			$load      = array_unique($load);
+			$load      = array_filter($load);
+
+			if($load)
+			{
+				$load = implode(',', $load);
+				$load = \dash\db\users::get(['chatid' => ["IN", "($load)"]]);
+
+				foreach ($load as $key => $value)
+				{
+					if(isset($value['chatid']))
+					{
+						if(isset($dataTable[$value['chatid']]))
+						{
+							$dataTable[$value['chatid']] = array_merge($value, $dataTable[$value['chatid']]);
+						}
+					}
+				}
+			}
+
 		}
 
 		\dash\data::dataTable($dataTable);

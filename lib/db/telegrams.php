@@ -33,41 +33,47 @@ class telegrams
 
 	public static function search($_string = null, $_option = [])
 	{
+		$default =
+		[
+			'db_name' => \dash\db::get_db_log_name(),
+		];
+
 		if(isset($_option['join_user']))
 		{
-
 			$db_name = db_name;
 
-			$default =
-			[
+			$default['public_show_field'] =
+			"
+				telegrams.*,
+				$db_name.users.displayname,
+				$db_name.users.mobile,
+				$db_name.users.avatar
+			";
 
-				"public_show_field" =>
-				"
-					telegrams.*,
-
-					$db_name.users.displayname,
-					$db_name.users.mobile,
-					$db_name.users.avatar
-
-				",
-				"master_join"       =>
-				"
-					LEFT JOIN $db_name.users ON $db_name.users.id = telegrams.user_id
-				",
-				'db_name' => \dash\db::get_db_log_name(),
-			];
-
+			$default['master_join'] =
+			"
+				LEFT JOIN $db_name.users ON $db_name.users.id = telegrams.user_id
+			";
 
 		}
-		else
+		elseif(isset($_option['group_by_chatid']))
 		{
-			$default =
-			[
-				'db_name' => \dash\db::get_db_log_name(),
-			];
+
+			$default['public_show_field'] =
+			"
+				COUNT(*) AS `count`,
+				telegrams.chatid AS `chatid`,
+				MIN(telegrams.user_id) AS `user_id`
+			";
+			$default['group_by'] =
+			"
+				GROUP BY telegrams.chatid
+			";
+			$default['order_raw'] = " `count` DESC";
 
 		}
 
+		unset($_option['group_by_chatid']);
 		unset($_option['join_user']);
 
 		if(!is_array($_option))

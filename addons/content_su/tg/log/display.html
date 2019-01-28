@@ -81,8 +81,8 @@
         </div>
         <nav class="txtRa">
           <a href="{{url.that}}?user_id={{value.user_id}}" title='{%trans "User logs"%}'><i class="sf-briefcase"></i></a>
-          <a href="{{url.kingdom}}/crm/member/glance?id={{value.user_id}}" title='{%trans "User Profile"%}'><i class="sf-user-md"></i></a>
-          <a href="{{url.kingdom}}/cp/visitor?userid={{value.user_id}}" title='{%trans "User last visits"%}'><i class="sf-flight"></i></a>
+          <a href="{{url.kingdom}}/crm/member/glance?id={{value.user_id | coding('encode')}}" title='{%trans "User Profile"%}'><i class="sf-user-md"></i></a>
+
         </nav>
       </td>
 
