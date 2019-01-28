@@ -1,0 +1,124 @@
+{%extends display.suMain%}
+
+
+
+{%block pageContent%}
+
+{%if dataTable%}
+ {%if dataFilter%}
+
+  {{block('htmlSearchBox')}}
+  {{block('htmlTable')}}
+  {{block('htmlFilter')}}
+
+ {%else%}
+
+  {{block('htmlSearchBox')}}
+  {{block('htmlTable')}}
+
+ {%endif%}
+{%else%}
+ {%if dataFilter%}
+
+  {{block('htmlSearchBox')}}
+  {{block('htmlFilterNoResult')}}
+
+ {%else%}
+
+  {{block('htmlStartAddNew')}}
+
+ {%endif%}
+{%endif%}
+
+{%endblock%}
+
+
+
+
+{%block htmlSearchBox%}
+<div class="cbox fs12">
+  <form method="get" action='{{url.this}}' data-action>
+    <div class="input">
+      <input type="search" name="q" placeholder='{%trans "Search"%}' id="q" value="{{requestGET.q}}" autofocus autocomplete='off'>
+      {%if requestGET.type%}
+      <input type="hidden" name="type" value="{{requestGET.type}}">
+      {%endif%}
+      <button class="addon btn ">{%trans "Search" %}</button>
+    </div>
+  </form>
+</div>
+{%endblock%}
+
+
+{%block htmlTable%}
+
+
+<table class="tbl1 v3 cbox fs12">
+  <thead>
+    <tr>
+      <th>{%trans "User"%}</th>
+      <th>{%trans "Chatid"%}</th>
+
+      <th>{%trans "Count"%}</th>
+
+    </tr>
+  </thead>
+  <tbody>
+{%for key, value in dataTable%}
+    <tr>
+      <td class="collapsing">
+        <a href="{{url.that}}?user_id={{value.user_id}}">
+          <img src="{{value.avatar}}" class="avatar mRa5" alt="{{value.displayname}}">
+          <span class="txtB s0 fs08">{{value.displayname}}</span>
+        </a>
+        <div class="txtRa fs08">
+          <a href="{{url.that}}?mobile={{value.mobile}}" title='{%trans "Mobile"%}'>{{value.mobile | fitNumber('mobile12')}}</a>
+          <a href="{{url.that}}?userid={{value.user_id}}" class="badge" title='{%trans "User id"%}'>{{value.user_id | fitNumber(false)}}</a>
+        </div>
+        <div class="txtRa fs08" data-tippy-placement='left' title='{%trans "Telegram chatid"%}'>
+          <a href="{{url.that}}?chatid={{value.chatid}}">{{value.chatid | fitNumber(false)}}</a>
+        </div>
+        <nav class="txtRa">
+          <a href="{{url.that}}?user_id={{value.user_id}}" title='{%trans "User logs"%}'><i class="sf-briefcase"></i></a>
+          <a href="{{url.kingdom}}/crm/member/glance?id={{value.user_id | coding('encode')}}" title='{%trans "User Profile"%}'><i class="sf-user-md"></i></a>
+
+        </nav>
+      </td>
+      <td class="">
+        <a href="{{url.this}}/log?chatid={{value.chatid}}">
+          {{value.chatid | fitNumber(false)}}
+        </a>
+      </td>
+
+      <td class="">
+          {{value.count | fitNumber}}
+      </td>
+
+    </tr>
+{%endfor%}
+  </tbody>
+</table>
+  {%include display.pagination%}
+{%endblock%}
+
+
+{%block htmlFilter%}
+<p class="f fs14 msg info2">
+  <span class="c">{{dataFilter | raw}}</span>
+  <a class="cauto" href="{{url.that}}">{%trans "Clear filters"%}</a>
+</p>
+{%endblock%}
+
+
+{%block htmlFilterNoResult%}
+<p class="f fs14 msg warn2">
+  <span class="c">{%trans "Result not found!"%} {%trans "Search with new keywords."%}</span>
+  <a class="cauto" href="{{url.that}}">{%trans "Clear filters"%}</a>
+</p>
+{%endblock%}
+
+
+{%block htmlStartAddNew%}
+<p class="fs14 msg dark2 pTB20">{%trans "Hi!"%} {%trans "You are not starting yet!"%}</p>
+{%endblock%}
+

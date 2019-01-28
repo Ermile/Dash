@@ -1,5 +1,5 @@
 <?php
-namespace content_su\tg\users;
+namespace content_su\tg\system;
 
 
 class view
@@ -51,7 +51,8 @@ class view
 			$args['sort'] = 'telegrams.id';
 		}
 
-		$args['telegrams.user_id'] = [" IS NOT ", " NULL "];
+		$args['telegrams.user_id'] = null;
+
 		$args['group_by_chatid'] = true;
 
 		unset($args['page']);
