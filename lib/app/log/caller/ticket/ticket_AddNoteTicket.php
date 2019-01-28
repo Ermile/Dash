@@ -13,9 +13,16 @@ class ticket_AddNoteTicket
 		$result['cat']       = T_("Support");
 		$result['iconClass'] = 'fc-yellow';
 
-		$excerpt  = '<span class="fc-green">'.\dash\app\log\msg::displayname($_args). '</span> ';
-
-		$excerpt .= T_("add new note ticket");
+		$is_me = \dash\app\log\msg::is_me($_args);
+		if(!$is_me)
+		{
+			$excerpt  = '<span class="fc-green">'.\dash\app\log\msg::displayname($_args). '</span> ';
+			$excerpt .= T_("added new note ticket");
+		}
+		else
+		{
+			$excerpt = T_("You added new note ticket");
+		}
 
 		$excerpt .= ' ';
 		$excerpt .=	'<a href="'.\dash\url::kingdom(). '/!'. $code. '">';

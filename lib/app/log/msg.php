@@ -18,6 +18,18 @@ class msg
 		return $_string;
 	}
 
+
+	public static function is_me($_args)
+	{
+		if(isset($_args['to']) && isset($_args['from']) && \dash\user::id() && intval($_args['from']) === intval($_args['to']) && intval($_args['from']) === intval(\dash\user::id()))
+		{
+			return true;
+		}
+
+		return  false;
+	}
+
+
 	public static function displayname($_args)
 	{
 		$displayname = isset($_args['displayname']) ? $_args['displayname'] : null;

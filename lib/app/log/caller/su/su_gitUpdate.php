@@ -5,9 +5,18 @@ class su_gitUpdate
 {
 	public static function site($_args = [])
 	{
-		$excerpt  = '<span class="fc-green">'.\dash\app\log\msg::displayname($_args). '</span> ';
-		$excerpt .= ' ';
-		$excerpt .= T_("update git repository");
+		$is_me = \dash\app\log\msg::is_me($_args);
+		if(!$is_me)
+		{
+			$excerpt  = '<span class="fc-green">'.\dash\app\log\msg::displayname($_args). '</span> ';
+			$excerpt .= ' ';
+			$excerpt .= T_("update git repository");
+		}
+		else
+		{
+			$excerpt = T_("You updated git repository");
+		}
+
 
 		$result              = [];
 		$result['title']     = T_("Git update");

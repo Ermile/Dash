@@ -5,9 +5,18 @@ class su_upgradeDataBase
 {
 	public static function site($_args = [])
 	{
-		$excerpt  = '<span class="fc-green">'.\dash\app\log\msg::displayname($_args). '</span> ';
-		$excerpt .= ' ';
-		$excerpt .= T_("upgrade database to new version");
+
+		$is_me = \dash\app\log\msg::is_me($_args);
+		if(!$is_me)
+		{
+			$excerpt  = '<span class="fc-green">'.\dash\app\log\msg::displayname($_args). '</span> ';
+			$excerpt .= ' ';
+			$excerpt .= T_("upgrade database to new version");
+		}
+		else
+		{
+			$excerpt = T_("You upgraded database to new version");
+		}
 
 		$result              = [];
 		$result['title']     = T_("Upgrade database");

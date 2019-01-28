@@ -13,18 +13,37 @@ class ticket_addNewTicket
 		$result['cat']       = T_("Support");
 		$result['iconClass'] = 'fc-red';
 
-		$excerpt  = '<span class="fc-green">'.\dash\app\log\msg::displayname($_args). '</span> ';
-
 		$via = \dash\app\log\support_tools::via($_args);
 
-		if($via)
+		$is_me   = \dash\app\log\msg::is_me($_args);
+
+		$excerpt = '';
+
+		if(!$is_me)
 		{
-			$excerpt .= T_("add new ticket via :val.", ['val' => '<b>'. $via. '</b>']);
+			$excerpt  = '<span class="fc-green">'.\dash\app\log\msg::displayname($_args). '</span> ';
+
+			if($via)
+			{
+				$excerpt .= T_("added new ticket via :val.", ['val' => '<b>'. $via. '</b>']);
+			}
+			else
+			{
+				$excerpt .= T_("added new ticket");
+			}
 		}
 		else
 		{
-			$excerpt .= T_("add new ticket");
+			if($via)
+			{
+				$excerpt .= T_("You added new ticket via :val.", ['val' => '<b>'. $via. '</b>']);
+			}
+			else
+			{
+				$excerpt .= T_("You added new ticket");
+			}
 		}
+
 
 		$excerpt .= ' ';
 		$excerpt .=	'<a href="'.\dash\url::kingdom(). '/!'. $code. '">';
