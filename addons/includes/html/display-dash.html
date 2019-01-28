@@ -82,7 +82,30 @@
 {%block sidenav%}
     <li><a href="{{url.here}}"><i class='sf-tachometer'></i> <span>{% trans "Dashboard" %}</span></a></li>
 {%endblock%}
+
    </ul>
+{%block sidebarService%}
+   <ul class="sidenavService">
+    <li class="hr"></li>
+
+{%if perm('contentCp')%}
+    <li><a href="{{url.kingdom}}/cp" data-shortkey="67+80" data-shortkey-prevent data-shortkey-timeout='1000'><i class='sf-diamond'></i> {% trans "CP" %}<kbd class="floatRa fs08">cp</kbd></a></li>
+{%endif%}
+
+{%if perm('contentCrm')%}
+    <li><a href="{{url.kingdom}}/crm" data-shortkey="77+85" data-shortkey-prevent data-shortkey-timeout='1000'><i class='sf-users'></i> {% trans "CRM" %}<kbd class="floatRa fs08">mu</kbd></a></li>
+{%endif%}
+
+{%if perm_su()%}
+    <li><a href="{{url.kingdom}}/su" data-shortkey="83+85" data-shortkey-prevent data-shortkey-timeout='1000'><i class='sf-heartbeat'></i> <span>{% trans "Supervisor dashboard" %}</span><kbd class="floatRa fs08">su</kbd></a></li>
+{%endif%}
+
+    <li><a href="{{url.kingdom}}/account" data-shortkey="77+69" data-shortkey-prevent data-shortkey-timeout='1000'><i class='sf-user'></i> <span>{% trans "Account" %}</span><kbd class="floatRa fs08">me</kbd></a></li>
+
+    <li><a href="{{url.kingdom}}/support" data-shortkey="112" data-shortkey-prevent data-shortkey-timeout='1000'><i class='sf-life-ring'></i> <span>{% trans "Support" %}</span><kbd class="floatRa fs08">F1</kbd></a></li>
+
+   </ul>
+{%endblock%}
   </div>
  </div>
   <abbr class="toggleClean" title='{%trans "Click to toggle sidebar status"%}'><span class="sf-arrows-out"></span></abbr>
@@ -149,3 +172,4 @@
 {%block copyright%}{%endblock%}
    </div>
 {%endblock%}
+
