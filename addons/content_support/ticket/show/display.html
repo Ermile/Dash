@@ -13,7 +13,7 @@
   </div>
 
   <div class="c4 s12">
-    <div class="cbox">
+    <div class="cbox ovh">
 
       {{block("iDatetime")}}
 {%if masterTicketDetail.status == 'awaiting' or masterTicketDetail.status == 'answered'%}
@@ -25,6 +25,10 @@
             {%include display.hive%}
         <input type="hidden" name="TicketFormType" value="changeStatus">
         <button class="btn block mTB10 secondary" name="status" value="close">{%trans "Close ticket"%}</button>
+
+        {%if perm_su()%}
+        <button class="btn floatRa danger xs" name="status" value="spam">{%trans "Spam"%}</button>
+        {%endif%}
       </form>
   {%endif%}
 {%elseif masterTicketDetail.status == 'close'%}
