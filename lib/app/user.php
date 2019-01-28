@@ -626,6 +626,11 @@ class user
 			unset($args['permission']);
 		}
 
+		if(!$displayname && ($firstname || $lastname))
+		{
+			$displayname = trim($firstname. ' '. $lastname);
+		}
+
 
 		$args['username']      = $username;
 		$args['chatid']        = $chatid;
