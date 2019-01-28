@@ -1,0 +1,24 @@
+{%extends display.admin%}
+
+
+{%block pageContent%}
+
+<div class="cbox">
+<div id="chartdiv" class="chartdiv"></div>
+</div>
+{%endblock%}
+
+
+
+
+{%block foot_js%}
+<script type="text/javascript">
+  {% include 'content_support/ticket/report/data.js' %}
+</script>
+<script type="text/javascript">
+	{% include 'content_support/ticket/report/chart.js' %}
+</script>
+{%endblock%}
+
+
+

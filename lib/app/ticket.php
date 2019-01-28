@@ -83,6 +83,144 @@ class ticket
 		return $_ticket_detail;
 	}
 
+	private static function chart_ticket_day()
+	{
+		$day = [];
+		for ($i=1; $i <= 365 ; $i++)
+		{
+			$day[] = \dash\datetime::fit(date("Y-m-d", strtotime("-$i days")), false, "date");
+		}
+		return $day;
+	}
+
+	private static function count_ticket($_type)
+	{
+		$result = [];
+		if($_type === 'ticket')
+		{
+			$count = \dash\db\comments\report::count_ticket();
+		}
+		elseif($_type === 'message')
+		{
+			$count = \dash\db\comments\report::count_message();
+		}
+		else
+		{
+			$count = \dash\db\comments\report::avg_time();
+		}
+
+		$count = array_combine(array_column($count, 'date'), array_column($count, 'count'));
+
+		if(is_array($count))
+		{
+			$last_date = date("Y-m-d", strtotime("-365 days"));
+
+			$i = 0;
+
+			foreach ($count as $date => $count)
+			{
+
+				$date1 = date_create($last_date);
+				$date2 = date_create($date);
+				$diff  = date_diff($date2, $date1);
+				$days  = 0;
+
+				if(isset($diff->days))
+				{
+					$days = $diff->days;
+				}
+
+				if($days)
+				{
+					while ($days)
+					{
+						$days--;
+
+						if($days)
+						{
+							$newDate = date("Y-m-d", strtotime($last_date) + ($days * (60*60*24)));
+							$result[$newDate] = 0;
+						}
+					}
+
+					$result[$date] = intval($count);
+				}
+				else
+				{
+					$result[$date] = intval($count);
+				}
+
+				$last_date = $date;
+			}
+		}
+
+
+		ksort($result);
+
+
+		return array_values($result);
+
+	}
+
+
+
+	public static function chart_ticket()
+	{
+		$result               = [];
+		$result['xData']      = self::chart_ticket_day();
+		$result['datasets']   = [];
+		$result['datasets'][] =
+		[
+			"name"          => T_("Count ticket"),
+			"data"          => self::count_ticket('ticket'),
+			"unit"          => T_("Ticket"),
+			"type"          => "line",
+			"valueDecimals" => 0
+		];
+
+		$result['datasets'][] =
+		[
+			"name"          => T_("Count message"),
+			"data"          => self::count_ticket('message'),
+			"unit"          => T_("Message"),
+			"type"          => "area",
+			"valueDecimals" => 0
+		];
+
+		$result['datasets'][] =
+		[
+			"name"          => T_("Answer time"),
+			"data"          => self::count_ticket('avg_time'),
+			"unit"          => T_("Minutes"),
+			"type"          => "area",
+			"valueDecimals" => 0
+		];
+
+		$result = json_encode($result, JSON_UNESCAPED_UNICODE);
+		return $result;
+		j($result);exit();
+	}
+
+	public static function last_month_count()
+	{
+		$result = \dash\db\comments\report::last_month_count();
+
+		if(!is_array($result))
+		{
+			$result = [];
+		}
+
+		$day   = array_column($result, 'day');
+		$value = array_column($result, 'count');
+		$value = array_map('intval', $value);
+
+		$hi_chart               = [];
+		$hi_chart['categories'] = json_encode($day, JSON_UNESCAPED_UNICODE);
+		$hi_chart['value']      = json_encode($value, JSON_UNESCAPED_UNICODE);
+		return $hi_chart;
+	}
+
+
 	public static function get($_id)
 	{
 
