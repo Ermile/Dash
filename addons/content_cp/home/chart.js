@@ -17,7 +17,7 @@ Highcharts.chart('chartdiv',
     }
   },
   title: {
-    text: '{%trans "Website analytics"%}'
+    text: '{%trans "Count post"%}'
   },
   xAxis: [{
     categories: {{dashboardDetail.chart.categories | raw}},
@@ -100,23 +100,15 @@ Highcharts.chart('chartdiv',
   },
   series: [
   {
-    name: '{%trans "Page view"%}',
+    name: '{%trans "Post"%}',
     type: 'column',
-    data: {{dashboardDetail.chart.visit | raw}},
+    data: {{dashboardDetail.chart.value | raw}},
     tooltip: {
-      valueSuffix: ' {%trans "page"%}'
+      valueSuffix: ' {%trans "Count"%}'
     }
 
-  },
-  {
-    name: '{%trans "Visitor"%}',
-    type: 'spline',
-    yAxis: 1,
-    data: {{dashboardDetail.chart.visitor | raw}},
-    tooltip: {
-      valueSuffix: ' {%trans "person"%}'
-    }
   }
+
   ]
 }, function(_chart)
   {

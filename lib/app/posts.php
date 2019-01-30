@@ -11,6 +11,40 @@ class posts
 
 	public static $datarow = null;
 
+	public static function home_chart($_args)
+	{
+
+		$home_chart = \dash\db\posts::home_chart();
+
+		if(!is_array($home_chart))
+		{
+			$home_chart = [];
+		}
+
+		$categories = [];
+		$values     = [];
+		$hi_chart   = [];
+
+		foreach ($home_chart as $key => $value)
+		{
+			if(array_key_exists('type', $value))
+			{
+				$categories[] = T_(ucfirst($value['type']));
+			}
+
+			if(array_key_exists('count', $value))
+			{
+				$values[] = intval($value['count']);
+			}
+		}
+
+		$hi_chart['categories'] = json_encode($categories, JSON_UNESCAPED_UNICODE);
+		$hi_chart['value']      = json_encode($values, JSON_UNESCAPED_UNICODE);
+
+		return $hi_chart;
+
+	}
+
 
 	public static function post_gallery($_post_id, $_file_index, $_type = 'add')
 	{

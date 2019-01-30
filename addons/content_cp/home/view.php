@@ -35,15 +35,14 @@ class view
 			$dashboard_detail['comments']       = \dash\db\comments::get_count(['type' => 'comments']);
 			$dashboard_detail['visit']          = \dash\db\visitors::get_count();
 
-			$get_chart =
-			[
-				'period'    => 'month',
-			];
+			$get_chart = [];
+
 			if(\dash\url::subdomain())
 			{
 				$get_chart['subdomain'] = \dash\url::subdomain();
 			}
-			$chart = \dash\app\visitor::chart_visitorchart($get_chart);
+
+			$chart = \dash\app\posts::home_chart($get_chart);
 			$dashboard_detail['chart'] = $chart;
 
 			\dash\session::set('cpDashboardCache', $dashboard_detail, null, (60*1));

@@ -43,6 +43,23 @@ class posts
 	}
 
 
+	public static function home_chart()
+	{
+		$query =
+		"
+			SELECT
+				COUNT(*) AS `count`,
+				posts.type AS `type`
+			FROM
+				posts
+			GROUP BY posts.type
+		";
+
+		$result = \dash\db::get($query);
+		return $result;
+	}
+
+
 	/**
 	 * we can not delete a record from database
 	 * we just update field status to 'deleted' or 'deleted' or set this record to black list
