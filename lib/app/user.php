@@ -11,6 +11,123 @@ class user
 	use \dash\app\user\get;
 	use \dash\app\user\user_id;
 
+	public static function chart_gender()
+	{
+		$result     = \dash\db\users::get_gender_chart();
+		$hi_chart   = [];
+
+		if(!is_array($result))
+		{
+			$result = [];
+		}
+
+		foreach ($result as $key => $value)
+		{
+			$name  = null;
+			$count = 0;
+
+			if(array_key_exists('gender', $value))
+			{
+				$name = $value['gender'] ? T_($value['gender']) : T_("Unknown");
+			}
+
+			if(array_key_exists('count', $value))
+			{
+				$count = intval($value['count']);
+			}
+
+			$hi_chart[] = ['name' => $name, 'y' => $count];
+		}
+
+		$hi_chart      = json_encode($hi_chart, JSON_UNESCAPED_UNICODE);
+
+		return $hi_chart;
+
+	}
+
+	public static function chart_status()
+	{
+		$result = \dash\db\users::get_status_chart();
+			$hi_chart   = [];
+
+		if(!is_array($result))
+		{
+			$result = [];
+		}
+
+		foreach ($result as $key => $value)
+		{
+			$name  = null;
+			$count = 0;
+
+			if(array_key_exists('status', $value))
+			{
+				$name = $value['status'] ? T_($value['status']) : T_("Unknown");
+			}
+
+			if(array_key_exists('count', $value))
+			{
+				$count = intval($value['count']);
+			}
+
+			$hi_chart[] = ['name' => $name, 'y' => $count];
+		}
+
+		$hi_chart      = json_encode($hi_chart, JSON_UNESCAPED_UNICODE);
+
+		return $hi_chart;
+
+
+	}
+
+
+	public static function chart_identify()
+	{
+
+		$result = \dash\db\users::get_identify_chart();
+
+		$hi_chart   = [];
+		$categories = [];
+		$values     = [];
+
+		if(!is_array($result))
+		{
+			$result = [];
+		}
+
+		// $all = \dash\db\users::get_count();
+		// $all = intval($all);
+		// if($all === 0)
+		// {
+		// 	$all = 1;
+		// }
+
+		foreach ($result as $key => $value)
+		{
+			if(array_key_exists('type', $value))
+			{
+				$categories[] = $value['type'] ? T_($value['type']) : T_("Unknown");
+			}
+
+			if(array_key_exists('count', $value))
+			{
+				$temp = intval($value['count']);
+				// $temp = ($temp * 100) / $all;
+				$values[] = intval($temp);
+			}
+		}
+
+		$hi_chart['categories'] = json_encode($categories, JSON_UNESCAPED_UNICODE);
+		$hi_chart['value']      = json_encode($values, JSON_UNESCAPED_UNICODE);
+
+		return $hi_chart;
+
+	}
+
+
+
+
+
 	public static function get_full_name($_user_id, $_get_gender = false)
 	{
 		if(!$_user_id || !is_numeric($_user_id))

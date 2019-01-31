@@ -4,17 +4,40 @@
 
 
 {%block pageContent%}
+  <div class="f">
+    <div class="c4 m12 s12 pRa5">
+	     {{block ("chartGender")}}
+    </div>
 
-	{{block ("chartVisitor")}}
+    <div class="c4 m12 s12 pRa5">
+       {{block ("chartStatus")}}
+    </div>
+
+    <div class="c4 m12 s12 pRa5">
+       {{block ("chartIdentify")}}
+    </div>
+  </div>
 
 	{{block ("blockUsers")}}
 {%endblock%}
 
 
 
-{%block chartVisitor%}
+{%block chartGender%}
 <a class="cbox pA0">
- <div class="chart x4" id="chartdiv" data-type='bar' data-vals='{{visitor.chart}}'></div>
+ <div class="chart x4" id="genderchart" ></div>
+</a>
+{%endblock%}
+
+{%block chartStatus%}
+<a class="cbox pA0">
+ <div class="chart x4" id="statuschart" ></div>
+</a>
+{%endblock%}
+
+{%block chartIdentify%}
+<a class="cbox pA0">
+ <div class="chart x4" id="chartdiv" ></div>
 </a>
 {%endblock%}
 

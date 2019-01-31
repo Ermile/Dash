@@ -1,6 +1,9 @@
 function chartDrawer()
 {
   if($("#chartdiv").length == 1){highChart();}
+  if($("#genderchart").length == 1){gender_chart();}
+  if($("#statuschart").length == 1){status_chart();}
+
 }
 
 
@@ -17,10 +20,10 @@ Highcharts.chart('chartdiv',
     }
   },
   title: {
-    text: '{%trans "Website analytics"%}'
+    text: '{%trans "Users group by identify"%}'
   },
   xAxis: [{
-    categories: {{dashboardDetail.chart.categories | raw}},
+    categories: {{dashboardDetail.chart.identify.categories | raw}},
     crosshair: true
   }],
   yAxis: [{ // Primary yAxis
@@ -31,7 +34,7 @@ Highcharts.chart('chartdiv',
       }
     },
     title: {
-      text: '{%trans "Page"%}',
+      text: '{%trans "Person"%}',
       useHTML: Highcharts.hasBidiBug,
       style: {
         color: Highcharts.getOptions().colors[0]
@@ -100,26 +103,123 @@ Highcharts.chart('chartdiv',
   },
   series: [
   {
-    name: '{%trans "Page view"%}',
+    name: '{%trans "Count"%}',
     type: 'column',
-    data: {{dashboardDetail.chart.visit | raw}},
+    data: {{dashboardDetail.chart.identify.value | raw}},
     tooltip: {
-      valueSuffix: ' {%trans "page"%}'
+      valueSuffix: ' {%trans "Person"%}'
     }
 
-  },
-  {
-    name: '{%trans "Visitor"%}',
-    type: 'spline',
-    yAxis: 1,
-    data: {{dashboardDetail.chart.visitor | raw}},
-    tooltip: {
-      valueSuffix: ' {%trans "person"%}'
-    }
   }
   ]
 }, function(_chart)
   {
     _chart.renderer.image('{{service.logo}}', 10, 5, 30, 30).attr({class: 'chartServiceLogo'}).add();
   });
+}
+
+
+
+
+
+
+
+function gender_chart()
+{
+
+Highcharts.chart('genderchart', {
+  chart: {
+
+    style: {
+      fontFamily: 'IRANSans, Tahoma, sans-serif'
+    },
+    plotBackgroundColor: null,
+    plotBorderWidth: null,
+    plotShadow: false,
+    type: 'pie'
+  },
+  title: {
+    text: '{%trans "Users group by gender"%}'
+  },
+  tooltip: {
+    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+  },
+  plotOptions: {
+    pie: {
+      allowPointSelect: true,
+      cursor: 'pointer',
+      dataLabels: {
+        enabled: true,
+        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+        style: {
+          color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+        }
+      }
+    }
+  },
+  series: [{
+    name: '{%trans "Gender"%}',
+    // useHTML: Highcharts.hasBidiBug,
+    colorByPoint: true,
+    data: {{dashboardDetail.chart.gender | raw}}
+  }]
+}, function(_chart)
+  {
+    _chart.renderer.image('{{service.logo}}', 10, 5, 30, 30).attr({class: 'chartServiceLogo'}).add();
+  });
+
+}
+
+
+
+
+
+function status_chart()
+{
+
+
+Highcharts.chart('statuschart', {
+  chart: {
+    plotBackgroundColor: null,
+    plotBorderWidth: 0,
+    plotShadow: false
+  },
+  title: {
+    text: '{%trans "Users group by"%}<br>{%trans "Status"%}<br>',
+    align: 'center',
+    verticalAlign: 'middle',
+    y: 40
+  },
+  tooltip: {
+    pointFormat: '{series.name}: {point.percentage:.1f}%'
+  },
+  plotOptions: {
+    pie: {
+      dataLabels: {
+        enabled: true,
+        distance: -50,
+        style: {
+          fontWeight: 'bold',
+          color: 'white'
+        }
+      },
+      startAngle: -90,
+      endAngle: 90,
+      center: ['50%', '75%'],
+      size: '110%'
+    }
+  },
+  series: [{
+    type: 'pie',
+    name: 'Browser share',
+    innerSize: '50%',
+    data: {{dashboardDetail.chart.status | raw}}
+  }]
+}, function(_chart)
+  {
+    _chart.renderer.image('{{service.logo}}', 10, 5, 30, 30).attr({class: 'chartServiceLogo'}).add();
+  });
+
+
+
 }

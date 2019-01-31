@@ -365,6 +365,61 @@ class users
 	}
 
 
+	public static function get_gender_chart()
+	{
+		$query =
+		"
+			SELECT
+				COUNT(*) AS `count`,
+				users.gender AS `gender`
+			FROM
+				users
+			GROUP BY users.gender
+		";
+		$result = \dash\db::get($query, null, true);
+		return $result;
+	}
+
+
+	public static function get_status_chart()
+	{
+		$query =
+		"
+			SELECT
+				COUNT(*) AS `count`,
+				users.status AS `status`
+			FROM
+				users
+			GROUP BY users.status
+		";
+		$result = \dash\db::get($query, null, true);
+		return $result;
+	}
+
+
+	public static function get_identify_chart()
+	{
+		$query =
+		"
+				SELECT COUNT(*) AS `count`, 'mobile' 	AS `type`	FROM users WHERE users.mobile 	IS NOT NULL
+			UNION
+				SELECT COUNT(*) AS `count`, 'nomobile' 	AS `type`	FROM users WHERE users.mobile 	IS NULL
+			UNION
+				SELECT COUNT(*) AS `count`, 'email' 	AS `type`	FROM users WHERE users.email 	IS NOT NULL
+			UNION
+				SELECT COUNT(*) AS `count`, 'username' 	AS `type`	FROM users WHERE users.username IS NOT NULL
+			UNION
+				SELECT COUNT(*) AS `count`, 'chatid' 	AS `type`	FROM users WHERE users.chatid IS NOT NULL
+			UNION
+				SELECT COUNT(*) AS `count`, 'android' 	AS `type`	FROM users WHERE users.android_uniquecode IS NOT NULL
+		";
+
+		$result = \dash\db::get($query, null, true);
+		return $result;
+	}
+
+
+
 
 	public static function find_user_to_login($_find)
 	{
