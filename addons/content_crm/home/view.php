@@ -14,7 +14,7 @@ class view
 		\dash\data::page_pictogram('gauge');
 		\dash\data::page_special(true);
 
-		$cache = \dash\session::get('cpDashboardCache');
+		$cache = \dash\session::get('crmDashboardCache');
 		if(!$cache)
 		{
 
@@ -47,11 +47,11 @@ class view
 
 			$dashboard_detail['chart'] = $chart;
 
-			\dash\session::set('cpDashboardCache', $dashboard_detail, null, (60*1));
+			\dash\session::set('crmDashboardCache', $dashboard_detail, null, (60*1));
 		}
 		else
 		{
-			$dashboard_detail = \dash\session::get('cpDashboardCache');
+			$dashboard_detail = \dash\session::get('crmDashboardCache');
 		}
 		// var_dump($dashboard_detail);exit();
 
