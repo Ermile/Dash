@@ -38,29 +38,27 @@ class view
 			$args['status'] = \dash\request::get('status');
 		}
 
-		if(\dash\permission::supervisor())
+		if(\dash\request::get('findusername'))
 		{
-			if(\dash\request::get('findusername'))
-			{
-				$args['username'] = \dash\request::get('findusername');
-			}
-
-			if(\dash\request::get('findmobile') || \dash\request::get('findmobile') == "0")
-			{
-				$args['mobile'] = \dash\request::get('findmobile');
-			}
-
-
-			if(\dash\request::get('findemail'))
-			{
-				$args['email'] = \dash\request::get('findemail');
-			}
-
-			if(\dash\request::get('android_uniquecode'))
-			{
-				$args['android_uniquecode'] = \dash\request::get('android_uniquecode');
-			}
+			$args['username'] = \dash\request::get('findusername');
 		}
+
+		if(\dash\request::get('findmobile') || \dash\request::get('findmobile') == "0")
+		{
+			$args['mobile'] = \dash\request::get('findmobile');
+		}
+
+
+		if(\dash\request::get('findemail'))
+		{
+			$args['email'] = \dash\request::get('findemail');
+		}
+
+		if(\dash\request::get('android_uniquecode'))
+		{
+			$args['android_uniquecode'] = \dash\request::get('android_uniquecode');
+		}
+
 
 		if(\dash\request::get('permission'))
 		{

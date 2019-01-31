@@ -69,9 +69,9 @@ trait datalist
 			$_args['sort'] = null;
 		}
 
-		if(!\dash\url::isLocal() && !\dash\permission::supervisor())
+		if(!\dash\permission::supervisor())
 		{
-			$_args['permission'] = ["!=", " 'supervisor' OR `permission` IS NULL OR `permission` = '' "];
+			$_args['3.14'] = ["= 3.14", " AND ( users.permission != 'supervisor'  OR `permission` IS NULL OR `permission` = '' ) "];
 		}
 
 		if($_args['check_duplicate'])
