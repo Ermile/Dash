@@ -16,3 +16,4 @@ ALTER TABLE `dayevent` ADD `user_removed` int(10) UNSIGNED NULL DEFAULT NULL;
 ALTER TABLE `dayevent` ADD `user_filter` int(10) UNSIGNED NULL DEFAULT NULL;
 ALTER TABLE `dayevent` ADD `user_unreachabl` int(10) UNSIGNED NULL DEFAULT NULL;
 ALTER TABLE `dayevent` ADD `user_permission` int(10) UNSIGNED NULL DEFAULT NULL;
+ALTER TABLE `dayevent` ADD `ticket_message` int(10) UNSIGNED NULL DEFAULT NULL;

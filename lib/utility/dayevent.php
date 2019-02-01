@@ -37,27 +37,51 @@ class dayevent
 
 	public static function calc()
 	{
-		$result = [];
+		$result                    = [];
 
-		$result['dbtrafic']     = round(((intval(\dash\db::global_status(null, 'Bytes_sent')) + intval(\dash\db::global_status(null, 'Bytes_received'))) / 1024));
-		$result['dbsize']       = \dash\db::get_size();
-		$result['user']         = \dash\db\users::get_count();
-		$result['activeuser']   = \dash\db\users::get_count(['status' => 'active']);
-		$result['deactiveuser'] = \dash\db\users::get_count(['status' => ['<>', "'active'"]]);
-		$result['log']          = \dash\db\logs::get_count();
-		$result['visitor']      = \dash\db\visitors::get_count();
-		$result['agent']        = \dash\db\agents::get_count();
-		$result['session']      = \dash\db\sessions::get_count();
-		$result['urls']         = \dash\db\visitors::url_get_count();
-		$result['ticket']       = \dash\db\comments::get_count(['type' => 'ticket', 'parent' => null]);
-		$result['comment']      = \dash\db\comments::get_count(['type' => ['<>', "'ticket'"]]);
-		$result['address']      = \dash\db\address::get_count();;
-		$result['news']         = \dash\db\posts::get_count(['type' => 'post']);
-		$result['page']         = \dash\db\posts::get_count(['type' => 'page']);
-		$result['post']         = \dash\db\posts::get_count(['type' => ['NOT IN ',"('post', 'page')"]]);
-		$result['transaction']  = \dash\db\transactions::get_count();
-		$result['term']         = \dash\db\terms::get_count();
-		$result['termusages']   = \dash\db\termusages::get_count();
+		$result['dbtrafic']        = round(((intval(\dash\db::global_status(null, 'Bytes_sent')) + intval(\dash\db::global_status(null, 'Bytes_received'))) / 1024));
+		$result['dbsize']          = \dash\db::get_size();
+		$result['user']            = \dash\db\users::get_count();
+		$result['activeuser']      = \dash\db\users::get_count(['status' => 'active']);
+		$result['deactiveuser']    = \dash\db\users::get_count(['status' => 'deactive']);
+		$result['user_awaiting']   = \dash\db\users::get_count(['status' => 'awaiting']);
+		$result['user_removed']    = \dash\db\users::get_count(['status' => 'removed']);
+		$result['user_filter']     = \dash\db\users::get_count(['status' => 'filter']);
+		$result['user_unreachabl'] = \dash\db\users::get_count(['status' => 'unreachabl']);
+
+		$result['log']             = \dash\db\logs::get_count();
+		$result['visitor']         = \dash\db\visitors::get_count();
+		$result['agent']           = \dash\db\agents::get_count();
+		$result['session']         = \dash\db\sessions::get_count();
+		$result['urls']            = \dash\db\visitors::url_get_count();
+		$result['ticket']          = \dash\db\comments::get_count(['type' => 'ticket', 'parent' => null]);
+		$result['ticket_message']          = \dash\db\comments::get_count(['type' => 'ticket', 'parent' => ['IS NOT', 'NULL']]);
+		$result['comment']         = \dash\db\comments::get_count(['type' => ['<>', "'ticket'"]]);
+		$result['address']         = \dash\db\address::get_count();
+
+		$result['news']            = \dash\db\posts::get_count(['type' => 'post']);
+		$result['page']            = \dash\db\posts::get_count(['type' => 'page']);
+		$result['help']            = \dash\db\posts::get_count(['type' => 'help']);
+		$result['attachment']      = \dash\db\posts::get_count(['type' => 'attachment']);
+		$result['post']            = \dash\db\posts::get_count(['type' => ['NOT IN ',"('post', 'page', 'help', 'attachment')"]]);
+
+		$result['transaction']     = \dash\db\transactions::get_count();
+
+		$result['term']            = \dash\db\terms::get_count();
+		$result['tag']             = \dash\db\terms::get_count(['type' => 'tag']);
+		$result['cat']             = \dash\db\terms::get_count(['type' => 'cat']);
+		$result['support_tag']     = \dash\db\terms::get_count(['type' => 'support_tag']);
+		$result['help_tag']        = \dash\db\terms::get_count(['type' => 'help_tag']);
+
+		$result['termusages']      = \dash\db\termusages::get_count();
+
+		$result['user_mobile']     = \dash\db\users::get_count(['mobile' => ['IS NOT', 'NULL']]);
+		$result['user_email']      = \dash\db\users::get_count(['email' => ['IS NOT', 'NULL']]);
+		$result['user_chatid']     = \dash\db\users::get_count(['chatid' => ['IS NOT', 'NULL']]);
+		$result['user_username']   = \dash\db\users::get_count(['username' => ['IS NOT', 'NULL']]);
+		$result['user_android']    = \dash\db\users::get_count(['android_uniquecode' => ['IS NOT', 'NULL']]);
+
+		$result['user_permission'] = \dash\db\users::get_count(['permission' => ['IS NOT', 'NULL']]);
 
 		if(is_callable(['\\lib\\dayevent', 'calc']))
 		{
@@ -68,6 +92,7 @@ class dayevent
 			}
 		}
 		$result = array_map('intval', $result);
+
 		return $result;
 	}
 
