@@ -40,5 +40,16 @@ class user_telegram
 		return $result;
 	}
 
+
+	public static function hard_delete($_id)
+	{
+		if(!$_id || !is_numeric($_id))
+		{
+			return false;
+		}
+
+		$query = "DELETE FROM user_telegram WHERE user_telegram.id = $_id LIMIT 1";
+		return \dash\db::query($query);
+	}
 }
 ?>
