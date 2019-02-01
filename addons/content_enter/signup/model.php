@@ -36,6 +36,10 @@ class model
 			return false;
 		}
 
+		// clean existing session
+		\dash\utility\enter::clean_session();
+
+
 		$mobile = \dash\request::post('mobile');
 		if(!$mobile)
 		{

@@ -131,19 +131,31 @@ class enter
 				break;
 
 			case 'mobile':
-				$data = \dash\db\users::get_by_mobile($_user_aut_key);
+				if(\dash\utility\filter::mobile($_user_aut_key))
+				{
+					$data = \dash\db\users::get_by_mobile($_user_aut_key);
+				}
 				break;
 
 			case 'username':
-				$data = \dash\db\users::get_by_username($_user_aut_key);
+				if(preg_match("/^[A-Za-z0-9\_\-]+$/", $_user_aut_key) && preg_match("/[A-Za-z]+/", $_user_aut_key))
+				{
+					$data = \dash\db\users::get_by_username($_user_aut_key);
+				}
 				break;
 
 			case 'user_id':
-				$data = \dash\db\users::get_by_id($_user_aut_key);
+				if(ctype_digit($_user_aut_key) && is_numeric($_user_aut_key))
+				{
+					$data = \dash\db\users::get_by_id($_user_aut_key);
+				}
 				break;
 
 			case 'email':
-				$data = \dash\db\users::get_by_email($_user_aut_key);
+				if(filter_var($_user_aut_key, FILTER_VALIDATE_EMAIL))
+				{
+					$data = \dash\db\users::get_by_email($_user_aut_key);
+				}
 				break;
 
 			case 'loaded':

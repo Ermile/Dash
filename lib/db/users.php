@@ -287,7 +287,7 @@ class users
 
 			if(isset($check['id']))
 			{
-				return false;
+				return $check['id'];
 			}
 		}
 
@@ -298,7 +298,7 @@ class users
 
 			if(isset($check_username['id']))
 			{
-				return false;
+				return $check_username['id'];
 			}
 		}
 
@@ -308,7 +308,7 @@ class users
 
 			if(isset($check_chatid['id']))
 			{
-				return false;
+				return $check_chatid['id'];
 			}
 		}
 
@@ -318,7 +318,7 @@ class users
 
 			if(isset($check_email['id']))
 			{
-				return false;
+				return $check_email['id'];
 			}
 		}
 
