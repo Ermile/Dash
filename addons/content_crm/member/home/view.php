@@ -30,7 +30,7 @@ class view
 
 		if(!$args['order'])
 		{
-			$args['order'] = 'asc';
+			$args['order'] = 'desc';
 		}
 
 		if(\dash\request::get('status'))
