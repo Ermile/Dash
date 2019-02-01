@@ -22,6 +22,11 @@ class user_telegram
 		return \dash\db\config::public_update('user_telegram', ...func_get_args());
 	}
 
+	public static function update_where()
+	{
+		return \dash\db\config::public_update_where('user_telegram', ...func_get_args());
+	}
+
 
 	public static function get()
 	{
