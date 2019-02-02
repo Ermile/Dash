@@ -165,11 +165,11 @@ class model
 
 		$msg    = T_("Your register was complete");
 
-		$kavenegar_send_result = \dash\utility\sms::send($mobile, $msg);
+		// $kavenegar_send_result = \dash\utility\sms::send($mobile, $msg);
 
-		$log_meta['meta']['register_sms_result'] = $kavenegar_send_result;
+		// $log_meta['meta']['register_sms_result'] = $kavenegar_send_result;
 
-		\dash\db\logs::set('enter:callback:sms:registe:reasult', $user_id, $log_meta);
+		// \dash\db\logs::set('enter:callback:sms:registe:reasult', $user_id, $log_meta);
 
 		\dash\notif::ok(T_("User signup by sms"));
 
