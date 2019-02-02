@@ -2,7 +2,7 @@
 <html lang="<?php echo (\dash\language::current()); ?>" dir="ltr">
 <head>
  <meta charset="UTF-8"/>
- <title><?php echo 'Redirect';?> >>></title>
+ <title><?php echo T_('Redirect');?> >>></title>
  <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/><![endif]-->
  <meta name ="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0 maximum-scale=1.5, minimal-ui"/>
  <link rel="shortcut icon" href="<?php echo(\dash\url::static()); ?>/images/favicon-error.png"/>
@@ -31,7 +31,7 @@
   </div>
   <div class="detail">
     <h1><?php echo T_('REDIRECTING ...') ?></h1>
-    <?php echo '  <h2>'. strtok($_loc, '?') .'</h2>';
+    <?php echo '  <h2><a href='. $_loc. '>'. strtok($_loc, '?') .'</a></h2>';
     if($_txt)
     {
       echo '  <br><p>'. $_txt .'</p>';
