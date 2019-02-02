@@ -62,16 +62,16 @@ class user
 		}
 
 		// if user blocked us but send message via hook, change status to active
-		if(isset($myUser['tgstatus']) && $myUser['tgstatus'] === 'block')
+		if(isset($myUser['status']) && $myUser['status'] === 'block')
 		{
 			\dash\log::set('tg:user:block2Active2');
 			self::active();
 		}
 
-		if(isset($myUser['id']))
+		if(isset($myUser['user_id']))
 		{
-			\dash\app\tg\user::init($myUser['id']);
-			return $myUser['id'];
+			\dash\app\tg\user::init($myUser['user_id']);
+			return $myUser['user_id'];
 		}
 
 		\dash\log::set('tg:user:notDetect2');
@@ -88,11 +88,11 @@ class user
 		}
 		$newUserDetail =
 		[
-			'firstname'   => hook::from('first_name'),
-			'lastname'    => hook::from('last_name'),
-			'title'       => hook::from('username'),
-			'chatid'      => hook::from(),
-			'tgusername'  => hook::from('username'),
+			'firstname' => hook::from('first_name'),
+			'lastname'  => hook::from('last_name'),
+			'title'     => hook::from('username'),
+			'chatid'    => hook::from(),
+			'username'  => hook::from('username'),
 			// 'mobile'   => null,
 			// 'avatar'   => null,
 			'status'      => 'active',

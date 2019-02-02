@@ -71,18 +71,26 @@ class user
 	{
 		$_args['force_add'] = true;
 
-		$myStatus = 'active';
+		$myStatus           = 'active';
+		$myUsername         = null;
 
 		if(isset($_args['status']))
 		{
 			$myStatus = $_args['status'];
 		}
 
+		if(isset($_args['username']))
+		{
+			$myUsername = $_args['username'];
+		}
+
 		unset($_args['status']);
+		unset($_args['username']);
 
 		$result             = \dash\app\user::add($_args, ['force_add' => true, 'encode' => false]);
 
-		$_args['status'] = $myStatus;
+		$_args['status']   = $myStatus;
+		$_args['username'] = $myUsername;
 
 		if(isset($result['user_id']))
 		{
