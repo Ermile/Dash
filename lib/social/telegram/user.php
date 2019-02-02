@@ -7,7 +7,7 @@ class user
 	{
 		if(\dash\user::id())
 		{
-			$userStatus = \dash\user::detail('tgstatus');
+			$userStatus = \dash\app\tg\user::detail('status');
 			// if user blocked, change status to unblock
 			if($userStatus === 'block')
 			{
@@ -29,13 +29,13 @@ class user
 				self::active();
 			}
 			// set username if not exist
-			if(\dash\user::detail('tgusername') === null)
+			if(\dash\app\tg\user::detail('username') === null)
 			{
 				// set username
 				self::setTgUserName();
 			}
 			// change username if changed
-			if(\dash\user::detail('tgusername') !== hook::from('username'))
+			if(\dash\app\tg\user::detail('username') !== hook::from('username'))
 			{
 				\dash\log::set('tg:username:changed');
 				self::setTgUserName();
@@ -96,16 +96,15 @@ class user
 			// 'mobile'   => null,
 			// 'avatar'   => null,
 			'status'      => 'active',
-			'tgstatus'    => 'active',
 		];
 
 		if(tg::isCallback())
 		{
-			$newUserDetail['tgstatus'] = 'callback';
+			$newUserDetail['status'] = 'callback';
 		}
 		if(tg::isInline())
 		{
-			$newUserDetail['tgstatus'] = 'inline';
+			$newUserDetail['status'] = 'inline';
 		}
 
 		$result = \dash\app\tg\user::add($newUserDetail);
@@ -148,8 +147,7 @@ class user
 
 	public static function setTgUserName()
 	{
-
-		\dash\app\tg\user::tgusername(hook::from('username'));
+		\dash\app\tg\user::username(hook::from('username'));
 	}
 
 

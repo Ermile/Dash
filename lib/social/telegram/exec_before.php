@@ -24,7 +24,7 @@ class exec_before
 				// require chat id
 				$_data['chat_id'] = hook::chat();
 			}
-			elseif(\dash\user::chatid())
+			elseif(\dash\app\tg\user::chatid())
 			{
 				// fill chat id from user
 				$_data['chat_id'] = \dash\user::chatid();

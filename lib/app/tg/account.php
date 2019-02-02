@@ -30,7 +30,7 @@ class account
 
 		if(!$mobile_exist || !isset($mobile_exist['id']))
 		{
-			\dash\db\users::update(['mobile' => $mobile], self::id());
+			\dash\db\users::update(['mobile' => $mobile], \dash\user::id());
 			// to loadmobile and some other field
 			self::relogin();
 
@@ -44,19 +44,27 @@ class account
 			// disable current user and remove  chatid and mobile
 			// relogin user
 
-			$update_new_user             = [];
-			$update_new_user['chatid']   = $_chat_id;
-			$update_new_user['tgstatus'] = 'active';
+			// update user_id in user_telegram
+
+			$update_new_user                = [];
+			$update_user_telegram           = [];
+			$update_new_user['chatid']      = $_chat_id;
+			$update_new_user['tgstatus']    = 'active';
+			$update_user_telegram['status'] = 'active';
 
 			if(isset($_args['first_name']) && !isset($mobile_exist['firstname']))
 			{
 				$update_new_user['firstname'] = substr($_args['first_name'], 0, 90);
 			}
 
+			$update_user_telegram['firstname'] = $_args['first_name'];
+
 			if(isset($_args['last_name']) && !isset($mobile_exist['lastname']))
 			{
 				$update_new_user['lastname'] = substr($_args['last_name'], 0, 90);
 			}
+
+			$update_user_telegram['lastname'] = $_args['last_name'];
 
 
 			if(isset($_args['username']) && !isset($mobile_exist['username']))
@@ -79,6 +87,8 @@ class account
 				}
 			}
 
+			$update_user_telegram['username'] = $_args['username'];
+
 			if(!isset($mobile_exist['displayname']) && isset($_args['first_name']) && isset($_args['last_name']))
 			{
 				$update_new_user['displayname'] = substr($_args['first_name']. ' '. $_args['last_name'], 0, 90);
@@ -91,6 +101,7 @@ class account
 			{
 				$update_new_user['language'] = \dash\user::detail('language');
 			}
+
 
 			if(isset($mobile_exist['chatid']))
 			{
@@ -152,19 +163,13 @@ class account
 				}
 			}
 
-			\dash\db\users::update($update_current_user, self::id());
+			\dash\app\tg\user::update($update_user_telegram);
+			\dash\db\users::update($update_current_user, \dash\user::id());
 			\dash\db\users::update($update_new_user, $mobile_exist['id']);
 
 			self::relogin($mobile_exist['id']);
 			return true;
 		}
-	}
-
-
-	private static function id()
-	{
-		return \dash\user::id();
-		// return \dash\coding::decode(\dash\user::id());
 	}
 
 
@@ -177,7 +182,6 @@ class account
 		else
 		{
 			$user_id = $_user_id;
-			// $user_id = \dash\coding::encode($user_id);
 		}
 
 		\dash\user::destroy();
