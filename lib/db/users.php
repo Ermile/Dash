@@ -108,15 +108,46 @@ class users
 		}
 		$default_options = [];
 
+
 		if($_string)
 		{
-			$default_options['search_field'] =
+			$search_field =
 			"
 				(
-					users.mobile LIKE '%__string__%' OR
-					users.displayname LIKE '%__string__%'
+					users.nationalcode = '__string__' OR
+					users.phone = '__string__' OR
+					users.firstname LIKE '__string__%' OR
+					users.lastname LIKE '__string__%' OR
+					users.displayname = '__string__%'
 				)
 			";
+
+			$mobile = \dash\utility\filter::mobile($_string);
+			if($mobile || is_numeric($_string))
+			{
+				$search_field =
+				"
+					(
+						users.mobile = '$mobile' OR
+						users.nationalcode = '__string__' OR
+						users.phone = '__string__'
+					)
+				";
+			}
+			else
+			{
+				$search_field =
+				"
+					(
+						users.firstname LIKE '__string__%' OR
+						users.lastname LIKE '__string__%' OR
+						users.displayname = '__string__%'
+					)
+				";
+			}
+
+			$default_options['search_field'] = $search_field;
+
 		}
 
 		$_options = array_merge($default_options, $_options);
