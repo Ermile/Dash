@@ -164,7 +164,7 @@ class account
 				}
 			}
 
-			\dash\app\tg\user::update($update_user_telegram);
+			\dash\db\user_telegram::update_where($update_user_telegram, ['chatid' => $_chat_id]);
 			\dash\db\users::update($update_current_user, \dash\user::id());
 			\dash\db\users::update($update_new_user, $mobile_exist['id']);
 
