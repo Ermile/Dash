@@ -121,17 +121,17 @@ class model
 
 			if($mobile)
 			{
-				$content_temp = T_("Mobile"). ": ". $mobile. "\n";
+				$content_temp = T_("Mobile"). " ". $mobile. "\n";
 			}
 
 			if($email)
 			{
-				$content_temp .= T_("Email"). ": ". $email. "\n";
+				$content_temp .= T_("Email"). " ". $email. "\n";
 			}
 
 			if($displayname)
 			{
-				$content_temp .= T_("Name"). ": ". $displayname. "\n";
+				$content_temp .= T_("Name"). " ". $displayname. "\n";
 			}
 
 			$content = $content_temp. $content;
