@@ -112,8 +112,6 @@ class user
 
 			\dash\app\user_telegram::add($_args);
 
-			$myData   = ['text' => json_encode([$result,\dash\notif::get(), $_args], JSON_UNESCAPED_UNICODE)];
-			$myResult = \dash\social\telegram\tg::json_sendMessage($myData);
 		}
 
 		return $result;
@@ -131,6 +129,10 @@ class user
 	{
 		$chatid  = self::chatid();
 		$user_id = \dash\user::id();
+
+		$myData   = ['text' => json_encode([$chatid, $user_id,\dash\notif::get()], JSON_UNESCAPED_UNICODE)];
+		$myResult = \dash\social\telegram\tg::json_sendMessage($myData);
+
 		if($chatid && $user_id && empty(self::$user_detail))
 		{
 			$load = \dash\db\user_telegram::get(['chatid' => $chatid, 'user_id' => $user_id, 'limit' => 1]);
