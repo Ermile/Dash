@@ -116,6 +116,25 @@ class model
 			$displayname = \dash\request::post("name");
 			$email       = \dash\request::post("email");
 			$mobile      = \dash\request::post("mobile");
+
+			$content_temp = null;
+
+			if($mobile)
+			{
+				$content_temp = T_("Mobile"). ": ". $mobile. "\n";
+			}
+
+			if($email)
+			{
+				$content_temp .= T_("Email"). ": ". $email. "\n";
+			}
+
+			if($displayname)
+			{
+				$content_temp .= T_("Name"). ": ". $displayname. "\n";
+			}
+
+			$content = $content_temp. $content;
 		}
 
 		/**
