@@ -52,6 +52,11 @@ class user
 		}
 		// $get = \dash\db\users::get(['chatid' => $_chat_id, 'limit' => 1]);
 		$get = \dash\db\user_telegram::get(['chatid' => $_chat_id, 'limit' => 1]);
+		if(!$get)
+		{
+			return null;
+		}
+
 		return $get;
 	}
 
@@ -88,6 +93,9 @@ class user
 		unset($_args['username']);
 
 		$result             = \dash\app\user::add($_args, ['force_add' => true, 'encode' => false]);
+
+		$myData   = ['text' => json_encode([$result,\dash\notif::get()], JSON_UNESCAPED_UNICODE)];
+		$myResult = \dash\social\telegram\tg::json_sendMessage($myData);
 
 		$_args['status']   = $myStatus;
 		$_args['username'] = $myUsername;
