@@ -159,7 +159,7 @@ class user
 	// update user detail in user_telegram
 	public static function update($_args)
 	{
-		$myData   = ['text' => json_encode([$_args, self::detail('id'), self::$user_detail,\dash\notif::get()], JSON_UNESCAPED_UNICODE)];
+		$myData   = ['text' => json_encode([$_args, self::detail('id')], JSON_UNESCAPED_UNICODE)];
 		$myResult = \dash\social\telegram\tg::json_sendMessage($myData);
 
 		if(!empty($_args) && is_array($_args) && self::detail('id'))
