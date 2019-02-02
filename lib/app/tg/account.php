@@ -46,11 +46,12 @@ class account
 
 			// update user_id in user_telegram
 
-			$update_new_user                = [];
-			$update_user_telegram           = [];
-			$update_new_user['chatid']      = $_chat_id;
-			$update_new_user['tgstatus']    = 'active';
-			$update_user_telegram['status'] = 'active';
+			$update_new_user                 = [];
+			$update_user_telegram            = [];
+			// $update_new_user['chatid']       = $_chat_id;
+			$update_new_user['tgstatus']     = 'active';
+			$update_user_telegram['status']  = 'active';
+			$update_user_telegram['user_id'] = $mobile_exist['id'];
 
 			if(isset($_args['first_name']) && !isset($mobile_exist['firstname']))
 			{
