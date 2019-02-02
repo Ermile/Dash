@@ -158,13 +158,6 @@ class user_telegram
 
 		$_option = array_merge($default_option, $_option);
 
-
-		if(!\dash\user::id())
-		{
-			\dash\notif::error(T_("User not found"), 'user');
-			return false;
-		}
-
 		// check args
 		$args = self::check();
 
