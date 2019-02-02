@@ -94,9 +94,6 @@ class user
 
 		$result             = \dash\app\user::add($_args, ['force_add' => true, 'encode' => false]);
 
-		$myData   = ['text' => json_encode([$result,\dash\notif::get()], JSON_UNESCAPED_UNICODE)];
-		$myResult = \dash\social\telegram\tg::json_sendMessage($myData);
-
 		$_args['status']   = $myStatus;
 		$_args['username'] = $myUsername;
 
@@ -104,7 +101,11 @@ class user
 		{
 			$_args['user_id'] = $result['user_id'];
 
+
 			\dash\app\user_telegram::add($_args);
+
+			$myData   = ['text' => json_encode([$result,\dash\notif::get(), $_args], JSON_UNESCAPED_UNICODE)];
+			$myResult = \dash\social\telegram\tg::json_sendMessage($myData);
 		}
 
 		return $result;
