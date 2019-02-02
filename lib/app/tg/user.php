@@ -76,8 +76,9 @@ class user
 	{
 		$_args['force_add'] = true;
 
-		$myStatus           = 'active';
-		$myUsername         = null;
+		$myStatus   = 'active';
+		$myUsername = null;
+		$myChatid   = null;
 
 		if(isset($_args['status']))
 		{
@@ -89,13 +90,20 @@ class user
 			$myUsername = $_args['username'];
 		}
 
+		if(isset($_args['chatid']))
+		{
+			$myChatid = $_args['chatid'];
+		}
+
 		unset($_args['status']);
 		unset($_args['username']);
+		unset($_args['chatid']);
 
 		$result             = \dash\app\user::add($_args, ['force_add' => true, 'encode' => false]);
 
 		$_args['status']   = $myStatus;
 		$_args['username'] = $myUsername;
+		$_args['chatid']   = $myChatid;
 
 		if(isset($result['user_id']))
 		{
