@@ -157,6 +157,7 @@ class cites
 	'naqadeh'                 => ['country' => 'IR', 'province' => 'IR-02', 'name' => 'naqadeh', 'localname' => 'نقده', 'population' => 121602, 'width' => '36°955278', 'length' => '45°388056', 'province_phone_code' => 44,],
 	'firuzabad'               => ['country' => 'IR', 'province' => 'IR-14', 'name' => 'firuzabad', 'localname' => 'فیروزآباد', 'population' => 119721, 'width' => '28°843889', 'length' => '52°570833', 'province_phone_code' => 71,],
 	'gachsaran'               => ['country' => 'IR', 'province' => 'IR-18', 'name' => 'gachsaran', 'localname' => 'گچساران', 'population' => 119217, 'width' => '30°35', 'length' => '50°8', 'province_phone_code' => 74,],
+	'dehdasht'                => ['country' => 'IR', 'province' => 'IR-18', 'name' => 'dehdasht', 'localname' => 'دهدشت', 'population' => 119217, 'width' => '30°35', 'length' => '50°8', 'province_phone_code' => 74,],
 	'borujen'                 => ['country' => 'IR', 'province' => 'IR-08', 'name' => 'borujen', 'localname' => 'بروجن', 'population' => 118681, 'width' => '31°965278', 'length' => '51°287222', 'province_phone_code' => 38,],
 	'rudan'                   => ['country' => 'IR', 'province' => 'IR-23', 'name' => 'rudan', 'localname' => 'رودان', 'population' => 118547, 'width' => '27°27', 'length' => '57°11', 'province_phone_code' => 76,],
 	'qeshm'                   => ['country' => 'IR', 'province' => 'IR-23', 'name' => 'qeshm', 'localname' => 'قشم', 'population' => 117774, 'width' => '26°8118673', 'length' => '55°8913207', 'province_phone_code' => 76,],
