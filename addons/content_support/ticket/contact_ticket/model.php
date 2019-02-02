@@ -189,7 +189,7 @@ class model
 		{
 			$log =
 			[
-				'from' => \dash\user::id(),
+				'from' => \dash\user::id() ? \dash\user::id() : $user_id,
 				'code' => $result['id'],
 				'via'  => 'contact',
 			];
