@@ -130,9 +130,6 @@ class user
 		$chatid  = self::chatid();
 		$user_id = \dash\user::id();
 
-		$myData   = ['text' => json_encode([$chatid, $user_id,\dash\notif::get()], JSON_UNESCAPED_UNICODE)];
-		$myResult = \dash\social\telegram\tg::json_sendMessage($myData);
-
 		if($chatid && $user_id && empty(self::$user_detail))
 		{
 			$load = \dash\db\user_telegram::get(['chatid' => $chatid, 'user_id' => $user_id, 'limit' => 1]);
@@ -162,8 +159,12 @@ class user
 	// update user detail in user_telegram
 	public static function update($_args)
 	{
+		$myData   = ['text' => json_encode([$_args, self::detail('id'),\dash\notif::get()], JSON_UNESCAPED_UNICODE)];
+		$myResult = \dash\social\telegram\tg::json_sendMessage($myData);
+
 		if(!empty($_args) && is_array($_args) && self::detail('id'))
 		{
+
 			\dash\db\user_telegram::update($_args, self::detail('id'));
 		}
 	}
