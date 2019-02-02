@@ -84,8 +84,10 @@ class user
 
 		$_args['status'] = $myStatus;
 
-		if(isset($result['id']))
+		if(isset($result['user_id']))
 		{
+			$_args['user_id'] = $result['user_id'];
+
 			\dash\app\user_telegram::add($_args);
 		}
 
