@@ -10,7 +10,7 @@ class user
 			// user exist and user_telegram not exist
 			if(!\dash\app\tg\user::get(hook::from()))
 			{
-				\dash\app\tg\user::set(hook::from())
+				\dash\app\tg\user::set(hook::from());
 			}
 
 			$userStatus = \dash\app\tg\user::detail('status');
