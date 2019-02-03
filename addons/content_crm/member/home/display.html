@@ -207,7 +207,6 @@
   not requestGET.password      and
   not requestGET.twostep       and
   not requestGET.permission    and
-  not requestGET.chatid        and
   not requestGET.language      and
   not requestGET.duplicate
 %}  data-kerkere-content='hide' {%endif%}>
@@ -253,20 +252,11 @@
       {{block('iFilterpermission')}}
     </div>
 
-   <!--  <h6 data-kerkere=".showFilterBychatid" data-kerkere-icon>{%trans "Filter by chatid"%}</h6>
-    <div class="showFilterBychatid" {%if not requestGET.chatid%} data-kerkere-content='hide' {%endif%}>
-      {{block('iFilterchatid')}}
-    </div> -->
-
     <h6 data-kerkere=".showFilterBylanguage" data-kerkere-icon>{%trans "Filter by language"%}</h6>
     <div class="showFilterBylanguage" {%if not requestGET.language%} data-kerkere-content='hide' {%endif%}>
       {{block('iFilterlanguage')}}
     </div>
 
-    <h6 data-kerkere=".showFilterByandroid_uniquecode" data-kerkere-icon>{%trans "Filter by android_uniquecode"%}</h6>
-    <div class="showFilterByandroid_uniquecode" {%if not requestGET.android_uniquecode%} data-kerkere-content='hide' {%endif%}>
-      {{block('iFilterandroid_uniquecode')}}
-    </div>
 
     {%if perm_su()%}
     <h6 data-kerkere=".showFilterByduplicate" data-kerkere-icon>{%trans "Filter by duplicate"%}</h6>
@@ -307,20 +297,6 @@
     <div class="radio3">
       <input type="radio" name="duplicate" value="username" id="duplicateusername" {%if requestGET.duplicate == 'username' %} checked {%endif%}>
       <label for="duplicateusername">{%trans "Have duplicate username"%}</label>
-    </div>
-  </div>
-
-  <div class="c">
-    <div class="radio3">
-      <input type="radio" name="duplicate" value="chatid" id="duplicatechatid" {%if requestGET.duplicate == 'chatid' %} checked {%endif%}>
-      <label for="duplicatechatid">{%trans "Have duplicate chatid"%}</label>
-    </div>
-  </div>
-
-  <div class="c">
-    <div class="radio3">
-      <input type="radio" name="duplicate" value="android_uniquecode" id="duplicateandroid_uniquecode" {%if requestGET.duplicate == 'android_uniquecode' %} checked {%endif%}>
-      <label for="duplicateandroid_uniquecode">{%trans "Have duplicate android_uniquecode"%}</label>
     </div>
   </div>
 
