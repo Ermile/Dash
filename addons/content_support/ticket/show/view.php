@@ -31,6 +31,11 @@ class view
 		}
 
 		self::load_tichet(\dash\request::get('id'));
+
+		$uaseTelegram = \dash\db\user_telegram::get(['user_id' => \dash\coding::decode(\dash\data::masterTicketDetail_user_id()), 'limit' => 1]);
+
+		\dash\data::uaseTelegram($uaseTelegram);
+
 	}
 
 	public static function load_tichet($_id)
