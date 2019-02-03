@@ -27,13 +27,14 @@ class user_add
 
 		if(!in_array(self::$x_app_request, ['android']))
 		{
+			\dash\log::set('invalidXAppRequestAPI');
 			\dash\header::status(400);
 		}
 
-		$add_user[self::$x_app_request. '_model']        = null;
-		$add_user[self::$x_app_request. '_serial']       = null;
-		$add_user[self::$x_app_request. '_manufacturer'] = null;
-		$add_user[self::$x_app_request. '_version']      = null;
+		$add_user['model']        = null;
+		$add_user['serial']       = null;
+		$add_user['manufacturer'] = null;
+		$add_user['version']      = null;
 
 		foreach ($post as $key => $value)
 		{
@@ -55,13 +56,13 @@ class user_add
 			{
 				case 'model':
 				case 'manufacturer':
-					$add_user[self::$x_app_request. '_'. $myField] = mb_strtolower($value);
+					$add_user[$myField] = mb_strtolower($value);
 					$meta[$myField] = $value;
 					break;
 
 				case 'serial':
 				case 'version':
-					$add_user[self::$x_app_request. '_'. $myField] = $value;
+					$add_user[$myField] = $value;
 					$meta[$myField] = $value;
 					break;
 
@@ -71,16 +72,16 @@ class user_add
 			}
 		}
 
-		$add_user[self::$x_app_request. '_lastupdate'] = date("Y-m-d H:i:s");
+		$add_user['lastupdate'] = date("Y-m-d H:i:s");
 
 		$token  = 'APP_';
-		$token .= $add_user[self::$x_app_request. '_model'];
+		$token .= $add_user['model'];
 		$token .= '_';
-		$token .= $add_user[self::$x_app_request. '_serial'];
+		$token .= $add_user['serial'];
 		$token .= '_';
-		$token .= $add_user[self::$x_app_request. '_manufacturer'];
+		$token .= $add_user['manufacturer'];
 		$token .= '_';
-		$token .= $add_user[self::$x_app_request. '_version'];
+		$token .= $add_user['version'];
 
 		if($token === 'APP____')
 		{
@@ -88,13 +89,13 @@ class user_add
 			return false;
 		}
 
-		$meta[self::$x_app_request. '_user_token_raw'] = $token;
+		$meta['user_token_raw'] = $token;
 
 		$token = md5($token);
 
-		$meta = json_encode($meta, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+		$meta = json_encode($meta, JSON_UNESCAPED_UNICODE);
 
-		$add_user[self::$x_app_request. '_meta']   = $meta;
+		$add_user['meta']   = $meta;
 
 		$sended_token = self::sended_token();
 
@@ -106,7 +107,7 @@ class user_add
 			}
 			else
 			{
-				$add_user[self::$x_app_request. '_uniquecode'] = $token;
+				$add_user['uniquecode'] = $token;
 				self::user_add($add_user);
 			}
 		}
@@ -118,7 +119,7 @@ class user_add
 			}
 			else
 			{
-				$add_user[self::$x_app_request. '_uniquecode'] = $token;
+				$add_user['uniquecode'] = $token;
 				self::user_add($add_user);
 			}
 		}
@@ -140,11 +141,11 @@ class user_add
 
 	private static function user_exist($_token)
 	{
-		$load = \dash\db\users::get([self::$x_app_request. '_uniquecode' => $_token, 'limit' => 1]);
+		$load = \dash\db\user_android::get(['uniquecode' => $_token, 'limit' => 1]);
 
-		if(isset($load['id']))
+		if(isset($load['user_id']))
 		{
-			self::$response['user_code'] = \dash\coding::encode($load['id']);
+			self::$response['user_code'] = \dash\coding::encode($load['user_id']);
 			self::$load_user = $load;
 			return $load;
 		}
@@ -156,14 +157,19 @@ class user_add
 	{
 		if(isset(self::$load_user['id']))
 		{
-			\dash\db\users::update($_detail, self::$load_user['id']);
+			\dash\db\user_android::update($_detail, self::$load_user['id']);
 		}
 	}
 
 
 	private static function user_add($_detail)
 	{
-		$user_id = \dash\db\users::signup($_detail);
+		$user_id = \dash\db\users::signup();
+		if($user_id)
+		{
+			$_detail['user_id'] = $user_id;
+			\dash\db\user_android::insert($_detail);
+		}
 
 		self::$response['user_code'] = \dash\coding::encode($user_id);
 
