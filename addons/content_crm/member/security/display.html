@@ -67,8 +67,22 @@
             </div>
           </div>
         </form>
+
+
+    {%if androidList%}
+      <div class="cbox">
+        <form method="post">
+            <div class="msg success2">
+              {%trans "User have android"%}
+              {%for key, value in androidList%}
+                <span class="badge mLR20">{{(key + 1) | fitNumber}}</span><b>{{value | dump}}</b>
+              {%endfor%}
+            </div>
+          </div>
+        </form>
     {%endif%}
 
+    {%endif%}
 
   {{block('sessionList')}}
  </div>

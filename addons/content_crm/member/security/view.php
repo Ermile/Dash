@@ -25,6 +25,11 @@ class view
 
 		\dash\data::chatIdList($chatid_list);
 
+
+		$androidList = \dash\db\user_android::get(['user_id' => \dash\coding::decode(\dash\request::get('id'))]);
+
+		\dash\data::androidList($androidList);
+
 		self::session_list();
 	}
 
