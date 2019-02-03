@@ -201,7 +201,7 @@ class user_telegram
 
 		$check_duplicate =
 		[
-			'user_id' => $args['user_id'],
+			// 'user_id' => $args['user_id'],
 			'chatid'  => $args['chatid'],
 			'limit'   => 1,
 		];
@@ -210,7 +210,7 @@ class user_telegram
 		if(isset($check_duplicate['id']))
 		{
 			\dash\log::set('tryToInsertDuplicateUserTelegram');
-			\dash\notif::error(T_("Duplicate chatid and users"));
+			\dash\notif::error(T_("Duplicate chatid"));
 			return false;
 		}
 
