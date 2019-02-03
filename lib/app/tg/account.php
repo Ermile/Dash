@@ -7,9 +7,6 @@ class account
 
 	public static function register($_chat_id, $_mobile, $_args = [])
 	{
-		$myData   = ['text' => json_encode([func_get_args(), $_SESSION], JSON_UNESCAPED_UNICODE)];
-		$myResult = \dash\social\telegram\tg::json_sendMessage($myData);
-
 		$mobile = \dash\utility\filter::mobile($_mobile);
 		if(!$mobile)
 		{
@@ -36,6 +33,7 @@ class account
 			if(!\dash\user::detail('mobile'))
 			{
 				\dash\db\users::update(['mobile' => $mobile], \dash\user::id());
+				\dash\db\user_telegram::update_where(['user_id' => \dash\user::id()], ['chatid' => $_chat_id]);
 				self::relogin();
 			}
 			else
@@ -51,7 +49,8 @@ class account
 					'displayname' => trim($first_name. ' '. $last_name),
 				];
 
-				$new_user_id = \dash\db\users::signup();
+				$new_user_id = \dash\db\users::signup($new_signup);
+				\dash\db\user_telegram::update_where(['user_id' => $new_user_id], ['chatid' => $_chat_id]);
 				// to loadmobile and some other field
 				self::relogin($new_user_id);
 			}
