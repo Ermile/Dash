@@ -88,7 +88,7 @@ class ticket_answerTicketAlertSend
 		$tg['text']         = $tg_msg;
 		$tg['reply_markup'] = \dash\app\log\support_tools::tg_btn2($code);
 
-		$tg = json_encode($tg, JSON_UNESCAPED_UNICODE);
+		// $tg = json_encode($tg, JSON_UNESCAPED_UNICODE);
 
 		return $tg;
 	}

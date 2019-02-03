@@ -67,15 +67,18 @@ class send
 			return false;
 		}
 
-		if(isset($_data['method']))
+		foreach ($_data as $key => $value)
 		{
-			$method   = $_data['method'];
-			unset($_data['method']);
-			$myResult = \dash\social\telegram\tg::$method($_data);
-		}
-		else
-		{
-			$myResult = \dash\social\telegram\tg::sendMessage($_data);
+			if(isset($value['method']))
+			{
+				$method   = $value['method'];
+				unset($value['method']);
+				$myResult = \dash\social\telegram\tg::$method($value);
+			}
+			else
+			{
+				$myResult = \dash\social\telegram\tg::sendMessage($value);
+			}
 		}
 
 	}

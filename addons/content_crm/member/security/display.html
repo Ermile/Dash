@@ -28,23 +28,6 @@
       {{block('irePassword')}}
     {%endif%}
 
-    {%if perm_su()%}
-
-
-    {%if dataRowMember.chatid%}
-      <br>
-      <div class="msg success2">
-        {%trans "User have chatid"%}
-        <b>{{dataRowMember.chatid | fitNumber(false)}}</b>
-        <span data-confirm data-data='{"removechatid" : "removechatid"}' class="badge danger floatL">{%trans "Remove chatid"%}</span>
-      </div>
-    {%else%}
-    <div class="input">
-      <label class="addon" for="ichatid">{%trans "chatid"%} {%trans "Telegram"%}</label>
-      <input type="number" id="ichatid" name="chatid">
-    </div>
-    {%endif%}
-    {%endif%}
 
     {{block("iSave")}}
 
@@ -58,6 +41,35 @@
       </div>
     {%endif%}
   </form>
+
+
+    {%if perm_su()%}
+      <div class="cbox">
+        <form method="post">
+
+            {%if chatIdList%}
+              <div class="msg success2">
+                {%trans "User have chatid"%}
+              {%for key, value in chatIdList%}
+                <br>
+                <span class="badge mLR20">{{(key + 1) | fitNumber}}</span><b>{{value.chatid | fitNumber(false)}}</b>
+                <span data-confirm data-data='{"removechatid" : "removechatid", "chatid" : "{{value.chatid}}"}' class="badge danger floatL">{%trans "Remove chatid"%}</span>
+              {%endfor%}
+              </div>
+
+            {%endif%}
+
+            <input type="hidden" name="setChatid" value="1">
+            <div class="input">
+              <label class="addon" for="ichatid">{%trans "chatid"%} {%trans "Telegram"%}</label>
+              <input type="number" id="ichatid" name="chatid">
+              <button class="btn addon primary">{%trans "Add"%}</button>
+            </div>
+          </div>
+        </form>
+    {%endif%}
+
+
   {{block('sessionList')}}
  </div>
 </div>

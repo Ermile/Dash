@@ -134,6 +134,37 @@ class user_telegram
 	}
 
 
+	public static function remove($_chat_id, $_user_id)
+	{
+		if(!$_chat_id || !$_user_id || !is_numeric($_chat_id) || !is_numeric($_user_id))
+		{
+			return false;
+		}
+
+		$check_duplicate =
+		[
+			'user_id' => $_user_id,
+			'chatid'  => $_chat_id,
+			'limit'   => 1,
+		];
+
+		$check_duplicate = \dash\db\user_telegram::get($check_duplicate);
+		if(isset($check_duplicate['id']))
+		{
+			\dash\log::set('removeUserTelegram', ['oldrecord' => $check_duplicate]);
+			\dash\db\user_telegram::hard_delete($check_duplicate['id']);
+			return true;
+		}
+		else
+		{
+			\dash\notif::error(T_("This user have not this chatid"));
+			return false;
+		}
+
+
+	}
+
+
 	/**
 	 * add new user
 	 *
@@ -179,6 +210,7 @@ class user_telegram
 		if(isset($check_duplicate['id']))
 		{
 			\dash\log::set('tryToInsertDuplicateUserTelegram');
+			\dash\notif::error(T_("Duplicate chatid and users"));
 			return false;
 		}
 

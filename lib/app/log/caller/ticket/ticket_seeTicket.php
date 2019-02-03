@@ -65,7 +65,7 @@ class ticket_seeTicket
 		$tg['document']     = "https://media.giphy.com/media/3oz8xyBP22S5b6gmsw/giphy.gif";
 		$tg['reply_markup'] = \dash\app\log\support_tools::tg_btn2($code);
 
-		$tg = json_encode($tg, JSON_UNESCAPED_UNICODE);
+		// $tg = json_encode($tg, JSON_UNESCAPED_UNICODE);
 
 		return $tg;
 	}

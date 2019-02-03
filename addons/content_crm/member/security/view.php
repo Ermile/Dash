@@ -21,6 +21,10 @@ class view
 			\dash\data::permGroup($perm_list);
 		}
 
+		$chatid_list = \dash\db\user_telegram::get(['user_id' => \dash\coding::decode(\dash\request::get('id'))]);
+
+		\dash\data::chatIdList($chatid_list);
+
 		self::session_list();
 	}
 

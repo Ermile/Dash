@@ -324,19 +324,36 @@ class log
 		{
 			foreach ($_user_detail as $key => $value)
 			{
-				if(isset($value['chatid']))
-				{
-					$current_lang = \dash\language::current();
+				// find user chatid
+				$user_chatid = \dash\db\user_telegram::get(['user_id' => $key]);
 
-					if(isset($value['language']) && mb_strlen($value['language']) === 2 && $value['language'] !== $current_lang)
+				if($user_chatid && is_array($user_chatid))
+				{
+					$telegram_text_temp = [];
+
+					foreach ($user_chatid as $index_user_chatid => $user_telegram_value)
 					{
-						\dash\language::set_language($value['language']);
+						if(isset($user_telegram_value['chatid']))
+						{
+							$current_lang = \dash\language::current();
+
+							if(isset($user_telegram_value['language']) && mb_strlen($user_telegram_value['language']) === 2 && $user_telegram_value['language'] !== $current_lang)
+							{
+								\dash\language::set_language($user_telegram_value['language']);
+							}
+
+							$temp_tg_text = self::call_fn($_caller, 'telegram_text', $_args, $user_telegram_value['chatid']);
+
+							if($temp_tg_text)
+							{
+								$telegram_text_temp[] = $temp_tg_text;
+							}
+						}
 					}
 
-					$telegram_text = self::call_fn($_caller, 'telegram_text', $_args, $value['chatid']);
-					if($telegram_text)
+					if($telegram_text_temp)
 					{
-						$new_args[$key]['telegram'] = addslashes($telegram_text);
+						$new_args[$key]['telegram'] = addslashes(json_encode($telegram_text_temp, JSON_UNESCAPED_UNICODE));
 					}
 				}
 			}

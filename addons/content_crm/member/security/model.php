@@ -51,6 +51,18 @@ class model
 
 		$user_id = \dash\coding::decode(\dash\request::get('id'));
 
+		if(\dash\request::post('setChatid') && \dash\request::post('chatid') && \dash\permission::supervisor())
+		{
+			\dash\app\user_telegram::add(['chatid' => \dash\request::post('chatid'), 'user_id' => $user_id]);
+
+			if(\dash\engine\process::status())
+			{
+				\dash\notif::ok(T_("Chatid save"));
+				\dash\redirect::pwd();
+			}
+			return true;
+		}
+
 		if(\dash\request::post('deleteuser') === 'DeleteUserYN' && \dash\permission::supervisor())
 		{
 			$removed = \dash\app\user::delete_user($user_id);
@@ -62,13 +74,17 @@ class model
 			return false;
 		}
 
-		// if(\dash\request::post('removechatid') === 'removechatid' && \dash\permission::supervisor())
-		// {
-		// 	\dash\db\users::update(['chatid' => null], $user_id);
-		// 	\dash\notif::ok(T_("Chatid removed"));
-		// 	\dash\redirect::pwd();
-		// 	return false;
-		// }
+		if(\dash\request::post('removechatid') === 'removechatid' && \dash\permission::supervisor())
+		{
+			\dash\app\user_telegram::remove(\dash\request::post('chatid'), $user_id);
+
+			if(\dash\engine\process::status())
+			{
+				\dash\notif::ok(T_("Chatid removed"));
+				\dash\redirect::pwd();
+			}
+			return false;
+		}
 
 		if(\dash\request::post('type') === 'terminate' && \dash\request::post('id') && is_numeric(\dash\request::post('id')))
 		{

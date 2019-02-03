@@ -54,7 +54,7 @@ class su_phpBug
 		$tg['text']         = $tg_msg;
 		$tg['reply_markup'] = false;
 
-		$tg = json_encode($tg, JSON_UNESCAPED_UNICODE);
+		// $tg = json_encode($tg, JSON_UNESCAPED_UNICODE);
 
 		return $tg;
 	}
