@@ -21,6 +21,13 @@ class user
 		return $result;
 	}
 
+	public static function set($_chat_id)
+	{
+		if(\dash\user::id() && $_chat_id)
+		{
+			\dash\app\user_telegram::add(['user_id' => \dash\user::id(), 'chatid' => $_chat_id]);
+		}
+	}
 
 	// get user detail by chatid in user_telegram
 	public static function get($_chat_id)

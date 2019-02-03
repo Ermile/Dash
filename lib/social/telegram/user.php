@@ -7,6 +7,12 @@ class user
 	{
 		if(\dash\user::id())
 		{
+			// user exist and user_telegram not exist
+			if(!\dash\app\tg\user::get(hook::from()))
+			{
+				\dash\app\tg\user::set(hook::from())
+			}
+
 			$userStatus = \dash\app\tg\user::detail('status');
 			// if user blocked, change status to unblock
 			if($userStatus === 'block')
