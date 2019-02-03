@@ -7,6 +7,9 @@ class account
 
 	public static function register($_chat_id, $_mobile, $_args = [])
 	{
+		$myData   = ['text' => json_encode([func_get_args(), $_SESSION], JSON_UNESCAPED_UNICODE)];
+		$myResult = \dash\social\telegram\tg::json_sendMessage($myData);
+
 		$mobile = \dash\utility\filter::mobile($_mobile);
 		if(!$mobile)
 		{
