@@ -205,6 +205,7 @@
   not requestGET.displayname   and
   not requestGET.mobile        and
   not requestGET.chatid        and
+  not requestGET.android_uniquecode       and
   not requestGET.email         and
   not requestGET.password      and
   not requestGET.twostep       and
@@ -231,6 +232,11 @@
     <h6 data-kerkere=".showFilterBychatid" data-kerkere-icon>{%trans "Filter by chatid"%}</h6>
     <div class="showFilterBychatid" {%if not requestGET.chatid%} data-kerkere-content='hide' {%endif%}>
       {{block('iFilterchatid')}}
+    </div>
+
+    <h6 data-kerkere=".showFilterByandroid" data-kerkere-icon>{%trans "Filter by android_uniquecode"%}</h6>
+    <div class="showFilterByandroid" {%if not requestGET.android_uniquecode%} data-kerkere-content='hide' {%endif%}>
+      {{block('iFilterandroid')}}
     </div>
 
     <h6 data-kerkere=".showFilterByavatar" data-kerkere-icon>{%trans "Filter by avatar"%}</h6>
@@ -311,19 +317,12 @@
 {% endblock %}
 
 
-{% block iFilterandroid_uniquecode %}
+{% block iFilterandroid %}
 <div class="f">
   <div class="c">
     <div class="radio3">
       <input type="radio" name="android_uniquecode" value="yes" id="android_uniquecodeyes" {%if requestGET.android_uniquecode == 'yes'  %} checked {%endif%}>
       <label for="android_uniquecodeyes">{%trans "Have android_uniquecode"%}</label>
-    </div>
-  </div>
-
-  <div class="c">
-    <div class="radio3">
-      <input type="radio" name="android_uniquecode" value="no" id="android_uniquecodeno" {%if requestGET.android_uniquecode == 'no' %} checked {%endif%}>
-      <label for="android_uniquecodeno">{%trans "Have not android_uniquecode"%}</label>
     </div>
   </div>
 
@@ -372,12 +371,6 @@
     </div>
   </div>
 
-  <div class="c">
-    <div class="radio3">
-      <input type="radio" name="chatid" value="no" id="chatidno" {%if requestGET.chatid == 'no' %} checked {%endif%}>
-      <label for="chatidno">{%trans "Have not chatid"%}</label>
-    </div>
-  </div>
 
     <div class="c">
     <div class="radio3">

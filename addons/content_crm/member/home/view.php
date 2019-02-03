@@ -69,9 +69,16 @@ class view
 			$args['email'] = \dash\request::get('findemail');
 		}
 
-		if(\dash\request::get('chatid'))
+		if(\dash\request::get('chatid') && \dash\request::get('chatid') !== 'non')
 		{
 			$args['join_user_telegram'] = true;
+			unset($args['users.status']);
+		}
+
+		if(\dash\request::get('android_uniquecode') && \dash\request::get('android_uniquecode') !== 'non')
+		{
+			$args['join_user_android'] = true;
+			unset($args['users.status']);
 		}
 
 
@@ -79,6 +86,7 @@ class view
 		{
 			$args['permission'] = \dash\request::get('permission');
 		}
+
 
 		self::advance_filter($args);
 
@@ -88,6 +96,7 @@ class view
 		{
 			$args['check_duplicate'] = \dash\request::get('duplicate');
 		}
+
 
 		$dataTable = \dash\app\user::list(\dash\request::get('q'), $args);
 

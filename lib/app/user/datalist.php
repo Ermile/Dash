@@ -91,8 +91,15 @@ trait datalist
 			$_args['master_join'] = "INNER JOIN user_telegram ON user_telegram.user_id = users.id";
 		}
 
+		if(isset($_args['join_user_android']) && $_args['join_user_android'])
+		{
+			$_args['master_join'] = "INNER JOIN user_android ON user_android.user_id = users.id";
+		}
+
+
 		unset($_args['check_duplicate']);
 		unset($_args['join_user_telegram']);
+		unset($_args['join_user_android']);
 
 		$meta            = $_args;
 		$result          = \dash\db\users::search($_string, $meta);
