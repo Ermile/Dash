@@ -54,10 +54,10 @@ class view
 			$args['email'] = \dash\request::get('findemail');
 		}
 
-		// if(\dash\request::get('android_uniquecode'))
-		// {
-		// 	$args['android_uniquecode'] = \dash\request::get('android_uniquecode');
-		// }
+		if(\dash\request::get('chatid'))
+		{
+			$args['join_user_telegram'] = true;
+		}
 
 
 		if(\dash\request::get('permission'))
@@ -70,7 +70,7 @@ class view
 
 		$sortLink = \dash\app\sort::make_sortLink(\dash\app\user::$sort_field, \dash\url::this());
 
-		if(\dash\permission::supervisor() && in_array(\dash\request::get('duplicate'), ['mobile', 'chatid', 'email', 'username','android_uniquecode']))
+		if(\dash\permission::supervisor() && in_array(\dash\request::get('duplicate'), ['mobile', 'email', 'username']))
 		{
 			$args['check_duplicate'] = \dash\request::get('duplicate');
 		}
