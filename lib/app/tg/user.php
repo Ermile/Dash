@@ -16,27 +16,6 @@ class user
 		if(isset($user_detail['id']))
 		{
 			$result = \dash\db\user_telegram::hard_delete($user_detail['id']);
-			// if(!$result)
-			// {
-			// 	$set =
-			// 	[
-			// 		'mobile'     => null,
-			// 		'username'   => null,
-			// 		'chatid'     => null,
-			// 		'password'   => null,
-			// 		'email'      => null,
-			// 		'tgstatus'   => null,
-			// 		'tgusername' => null,
-			// 		'title'      => 'deleted by telegram',
-			// 	];
-
-			// 	$where =
-			// 	[
-			// 		'chatid' => $_chat_id,
-			// 	];
-
-			// 	$result = \dash\db\user_telegram::update_where($set, $where);
-			// }
 		}
 
 		return $result;
@@ -51,8 +30,8 @@ class user
 			return null;
 		}
 
-		// $get = \dash\db\users::get(['chatid' => $_chat_id, 'limit' => 1]);
 		$get = \dash\db\user_telegram::get(['chatid' => $_chat_id, 'limit' => 1]);
+
 		if(!$get)
 		{
 			return null;
@@ -109,10 +88,11 @@ class user
 		if(isset($result['user_id']))
 		{
 			$_args['user_id'] = $result['user_id'];
-
-
 			\dash\app\user_telegram::add($_args);
-
+		}
+		else
+		{
+			\dash\log::set('usersSignupUserTelegramErrorSignup');
 		}
 
 		return $result;
@@ -124,6 +104,7 @@ class user
 		$chatid = \dash\social\telegram\hook::from();
 		return $chatid;
 	}
+
 
 	// get detail of user in user_telegram
 	public static function detail($_key = null)
@@ -177,7 +158,7 @@ class user
 		else
 		{
 
-			if(self::id() && mb_strlen($_lang) === 2)
+			if(mb_strlen($_lang) === 2)
 			{
 				$update = self::update(['language' => $_lang]);
 
@@ -205,18 +186,15 @@ class user
 		}
 		else
 		{
-			if(self::id())
+			$update = self::update(['status' => $_status]);
+			if($update)
 			{
-				$update = self::update(['status' => $_status]);
-				if($update)
-				{
-					\dash\app\tg\account::relogin();
-					return true;
-				}
-				else
-				{
-					return false;
-				}
+				\dash\app\tg\account::relogin();
+				return true;
+			}
+			else
+			{
+				return false;
 			}
 		}
 		return false;
@@ -231,18 +209,15 @@ class user
 		}
 		else
 		{
-			if(self::id())
+			$update = self::update(['username' => $_username]);
+			if($update)
 			{
-				$update = self::update(['username' => $_username]);
-				if($update)
-				{
-					// \dash\app\tg\account::relogin();
-					return true;
-				}
-				else
-				{
-					return false;
-				}
+				\dash\app\tg\account::relogin();
+				return true;
+			}
+			else
+			{
+				return false;
 			}
 		}
 		return false;
@@ -258,22 +233,20 @@ class user
 		}
 		else
 		{
-			if(self::id())
+			$update = self::update(['lastupdate' => date("Y-m-d H:i:s")]);
+			if($update)
 			{
-				$update = self::update(['lastupdate' => date("Y-m-d H:i:s")]);
-				if($update)
-				{
-					// \dash\app\tg\account::relogin();
-					return true;
-				}
-				else
-				{
-					return false;
-				}
+				// \dash\app\tg\account::relogin();
+				return true;
+			}
+			else
+			{
+				return false;
 			}
 		}
 		return false;
 	}
+
 
 	// return user_id
 	public static function id()
