@@ -33,14 +33,29 @@ class view
 			$args['order'] = 'desc';
 		}
 
+		if($args['sort'])
+		{
+			$args['sort'] = 'users.'. $args['sort'];
+		}
+
 		if(\dash\request::get('status'))
 		{
-			$args['status'] = \dash\request::get('status');
+			$args['users.status'] = \dash\request::get('status');
+		}
+
+		if(!isset($args['users.status']))
+		{
+			$args['users.status'] = 'active';
+		}
+
+		if(isset($args['users.status']) && $args['users.status'] === 'all')
+		{
+			unset($args['users.status']);
 		}
 
 		if(\dash\request::get('findusername'))
 		{
-			$args['username'] = \dash\request::get('findusername');
+			$args['users.username'] = \dash\request::get('findusername');
 		}
 
 		if(\dash\request::get('findmobile') || \dash\request::get('findmobile') == "0")
@@ -66,7 +81,6 @@ class view
 		}
 
 		self::advance_filter($args);
-
 
 		$sortLink = \dash\app\sort::make_sortLink(\dash\app\user::$sort_field, \dash\url::this());
 
