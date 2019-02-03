@@ -20,8 +20,6 @@ class ticket
 				"
 					comments.*,
 					users.avatar,
-					users.tgusername,
-					users.tgstatus,
 					users.firstname,
 					users.displayname
 				 ";

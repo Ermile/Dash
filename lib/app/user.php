@@ -664,12 +664,12 @@ class user
 
 
 
-		$tgstatus = \dash\app::request('tgstatus');
-		if($tgstatus && !in_array($tgstatus, ['active','deactive','spam','bot','block','unreachable','unknown','filter', 'awaiting', 'inline', 'callback']))
-		{
-			if($_option['debug']) if($debug) \dash\notif::error(T_("Invalid parameter tgstatus"), 'tgstatus');
-			return false;
-		}
+		// $tgstatus = \dash\app::request('tgstatus');
+		// if($tgstatus && !in_array($tgstatus, ['active','deactive','spam','bot','block','unreachable','unknown','filter', 'awaiting', 'inline', 'callback']))
+		// {
+		// 	if($_option['debug']) if($debug) \dash\notif::error(T_("Invalid parameter tgstatus"), 'tgstatus');
+		// 	return false;
+		// }
 
 
 		$type = \dash\app::request('type');
@@ -690,11 +690,11 @@ class user
 
 
 
-		$tgusername = \dash\app::request('tgusername');
-		if($tgusername && mb_strlen($tgusername) > 100)
-		{
-			$tgusername = null;
-		}
+		// $tgusername = \dash\app::request('tgusername');
+		// if($tgusername && mb_strlen($tgusername) > 100)
+		// {
+		// 	$tgusername = null;
+		// }
 
 		$pin = \dash\app::request('pin');
 		if(($pin && mb_strlen($pin) > 4) || ($pin && !is_numeric($pin)))
@@ -750,7 +750,7 @@ class user
 
 
 		$args['username']      = $username;
-		$args['chatid']        = $chatid;
+		// $args['chatid']        = $chatid;
 		$args['mobile']        = $mobile;
 		$args['email']         = $email;
 
@@ -784,7 +784,7 @@ class user
 		$args['pin']           = $pin;
 		$args['ref']           = $ref;
 		$args['unit_id']       = $unit_id;
-		$args['tgstatus']      = $tgstatus;
+		// $args['tgstatus']      = $tgstatus;
 
 
 
@@ -1068,8 +1068,8 @@ class user
 		$update_old['firstname']            = null;
 		$update_old['lastname']             = null;
 		$update_old['bio']                  = null;
-		$update_old['tgstatus']             = null;
-		$update_old['tgusername']           = null;
+		// $update_old['tgstatus']             = null;
+		// $update_old['tgusername']           = null;
 		$update_old['forceremember']        = null;
 		$update_old['signature']            = null;
 		$update_old['father']               = null;

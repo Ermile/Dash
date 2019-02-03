@@ -13,7 +13,6 @@ trait datalist
 		'password' ,
 		'mobile' ,
 		'email' ,
-		'chatid' ,
 		'status' ,
 		'avatar' ,
 		'parent' ,
