@@ -22,7 +22,7 @@ class view
 			$myTitle .= ' | '. T_('Search for :search', ['search' => $search_string]);
 		}
 
-		$allow = ['user','mobile','userid','chatid','user_id','hooktext','hookdate','step','sendmethod','sendtext','senddate','responsedate','status',];
+		$allow = ['user','mobile','userid','user_id','hooktext','hookdate','step','sendmethod','sendtext','senddate','responsedate','status',];
 
 		$args = \dash\request::get();
 
@@ -58,32 +58,32 @@ class view
 
 		$dataTable = \dash\db\telegrams::search(\dash\request::get('q'), $args);
 
-		if(is_array($dataTable))
-		{
-			$dataTable = array_combine(array_column($dataTable, 'chatid'), $dataTable);
+		// if(is_array($dataTable))
+		// {
+		// 	$dataTable = array_combine(array_column($dataTable, 'chatid'), $dataTable);
 
-			$load      = array_column($dataTable, 'chatid');
-			$load      = array_unique($load);
-			$load      = array_filter($load);
+		// 	$load      = array_column($dataTable, 'chatid');
+		// 	$load      = array_unique($load);
+		// 	$load      = array_filter($load);
 
-			if($load)
-			{
-				$load = implode(',', $load);
-				$load = \dash\db\users::get(['chatid' => ["IN", "($load)"]]);
+		// 	if($load)
+		// 	{
+		// 		$load = implode(',', $load);
+		// 		$load = \dash\db\users::get(['chatid' => ["IN", "($load)"]]);
 
-				foreach ($load as $key => $value)
-				{
-					if(isset($value['chatid']))
-					{
-						if(isset($dataTable[$value['chatid']]))
-						{
-							$dataTable[$value['chatid']] = array_merge($value, $dataTable[$value['chatid']]);
-						}
-					}
-				}
-			}
+		// 		foreach ($load as $key => $value)
+		// 		{
+		// 			if(isset($value['chatid']))
+		// 			{
+		// 				if(isset($dataTable[$value['chatid']]))
+		// 				{
+		// 					$dataTable[$value['chatid']] = array_merge($value, $dataTable[$value['chatid']]);
+		// 				}
+		// 			}
+		// 		}
+		// 	}
 
-		}
+		// }
 
 		\dash\data::dataTable($dataTable);
 

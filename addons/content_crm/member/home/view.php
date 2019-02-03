@@ -54,10 +54,10 @@ class view
 			$args['email'] = \dash\request::get('findemail');
 		}
 
-		if(\dash\request::get('android_uniquecode'))
-		{
-			$args['android_uniquecode'] = \dash\request::get('android_uniquecode');
-		}
+		// if(\dash\request::get('android_uniquecode'))
+		// {
+		// 	$args['android_uniquecode'] = \dash\request::get('android_uniquecode');
+		// }
 
 
 		if(\dash\request::get('permission'))
@@ -110,7 +110,7 @@ class view
 			'twostep',
 			'permission',
 			'language',
-			'android_uniquecode',
+
 		];
 
 		foreach ($allow_filter as $key => $value)

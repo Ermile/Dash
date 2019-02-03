@@ -1080,7 +1080,7 @@ class user
 		$update_old['phone']                = null;
 		$update_old['detail']               = null;
 
-		$update_old['android_uniquecode']   = null;
+		// $update_old['android_uniquecode']   = null;
 		$update_old['permission']           = null;
 
 		$update_old['status']               = 'removed';

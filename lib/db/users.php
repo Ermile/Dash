@@ -439,8 +439,6 @@ class users
 				SELECT COUNT(*) AS `count`, 'email' 	AS `type`	FROM users WHERE users.email 	IS NOT NULL
 			UNION
 				SELECT COUNT(*) AS `count`, 'username' 	AS `type`	FROM users WHERE users.username IS NOT NULL
-			UNION
-				SELECT COUNT(*) AS `count`, 'android' 	AS `type`	FROM users WHERE users.android_uniquecode IS NOT NULL
 		";
 
 		$result = \dash\db::get($query, null, true);
