@@ -62,13 +62,13 @@ class model
 			return false;
 		}
 
-		if(\dash\request::post('removechatid') === 'removechatid' && \dash\permission::supervisor())
-		{
-			\dash\db\users::update(['chatid' => null], $user_id);
-			\dash\notif::ok(T_("Chatid removed"));
-			\dash\redirect::pwd();
-			return false;
-		}
+		// if(\dash\request::post('removechatid') === 'removechatid' && \dash\permission::supervisor())
+		// {
+		// 	\dash\db\users::update(['chatid' => null], $user_id);
+		// 	\dash\notif::ok(T_("Chatid removed"));
+		// 	\dash\redirect::pwd();
+		// 	return false;
+		// }
 
 		if(\dash\request::post('type') === 'terminate' && \dash\request::post('id') && is_numeric(\dash\request::post('id')))
 		{

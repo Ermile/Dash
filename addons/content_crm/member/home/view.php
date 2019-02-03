@@ -109,7 +109,6 @@ class view
 			'password',
 			'twostep',
 			'permission',
-			'chatid',
 			'language',
 			'android_uniquecode',
 		];

@@ -22,7 +22,7 @@ class view
 			$myTitle .= ' | '. T_('Search for :search', ['search' => $search_string]);
 		}
 
-		$allow = ['user','mobile','userid','chatid','user_id','hooktext','hookdate','step','sendmethod','sendtext','senddate','responsedate','status',];
+		$allow = ['user','mobile','userid','user_id','hooktext','hookdate','step','sendmethod','sendtext','senddate','responsedate','status',];
 
 		$args = \dash\request::get();
 

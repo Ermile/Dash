@@ -87,11 +87,11 @@ class users
 	}
 
 
-	public static function get_by_chatid($_chatid)
-	{
-		$query = "SELECT * FROM users WHERE users.chatid = '$_chatid' ORDER BY users.id ASC LIMIT 1 ";
-		return \dash\db::get($query, null, true);
-	}
+	// public static function get_by_chatid($_chatid)
+	// {
+	// 	$query = "SELECT * FROM users WHERE users.chatid = '$_chatid' ORDER BY users.id ASC LIMIT 1 ";
+	// 	return \dash\db::get($query, null, true);
+	// }
 
 
 	public static function get_by_username($_username)
@@ -197,20 +197,20 @@ class users
 		}
 
 
-		if(isset($_args['chatid']) && $_args['chatid'])
-		{
-			// check not duplicate chatid
-			$check_chatid = self::get_by_chatid($_args['chatid']);
-			if($check_chatid && isset($check_chatid['id']))
-			{
-				if(intval($check_chatid['id']) !== intval($_id))
-				{
-					// this chatid exist for another person
-					\dash\log::set('TryDuplicateUserChatid');
-					return false;
-				}
-			}
-		}
+		// if(isset($_args['chatid']) && $_args['chatid'])
+		// {
+		// 	// check not duplicate chatid
+		// 	$check_chatid = self::get_by_chatid($_args['chatid']);
+		// 	if($check_chatid && isset($check_chatid['id']))
+		// 	{
+		// 		if(intval($check_chatid['id']) !== intval($_id))
+		// 		{
+		// 			// this chatid exist for another person
+		// 			\dash\log::set('TryDuplicateUserChatid');
+		// 			return false;
+		// 		}
+		// 	}
+		// }
 
 		if(isset($_args['username']) && $_args['username'])
 		{
@@ -439,8 +439,6 @@ class users
 				SELECT COUNT(*) AS `count`, 'email' 	AS `type`	FROM users WHERE users.email 	IS NOT NULL
 			UNION
 				SELECT COUNT(*) AS `count`, 'username' 	AS `type`	FROM users WHERE users.username IS NOT NULL
-			UNION
-				SELECT COUNT(*) AS `count`, 'chatid' 	AS `type`	FROM users WHERE users.chatid IS NOT NULL
 			UNION
 				SELECT COUNT(*) AS `count`, 'android' 	AS `type`	FROM users WHERE users.android_uniquecode IS NOT NULL
 		";

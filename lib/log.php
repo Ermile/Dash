@@ -466,7 +466,7 @@ class log
 				$permission_list = implode("','", $permission_list);
 			}
 
-			$public_show_field = "users.id, users.mobile, users.chatid, users.displayname, users.email, users.language";
+			$public_show_field = "users.id, users.mobile, users.displayname, users.email, users.language";
 
 			$temp = \dash\db\users::get(['permission' => ["IN", "('$permission_list')"], 'status' => 'active'], ['public_show_field' => $public_show_field]);
 			$all_user_detail = array_merge($all_user_detail, $temp);

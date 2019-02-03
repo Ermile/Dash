@@ -151,7 +151,6 @@ class comments
 				"
 					comments.*,
 					users.avatar,
-					users.chatid,
 					users.firstname,
 					users.displayname,
 					(
@@ -183,7 +182,6 @@ class comments
 
 					) AS `user_in_ticket`,
 					users.avatar,
-					users.chatid,
 					users.firstname,
 					users.displayname
 				";
