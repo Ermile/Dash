@@ -16,27 +16,27 @@ class user
 		if(isset($user_detail['id']))
 		{
 			$result = \dash\db\user_telegram::hard_delete($user_detail['id']);
-			if(!$result)
-			{
-				$set =
-				[
-					'mobile'     => null,
-					'username'   => null,
-					'chatid'     => null,
-					'password'   => null,
-					'email'      => null,
-					'tgstatus'   => null,
-					'tgusername' => null,
-					'title'      => 'deleted by telegram',
-				];
+			// if(!$result)
+			// {
+			// 	$set =
+			// 	[
+			// 		'mobile'     => null,
+			// 		'username'   => null,
+			// 		'chatid'     => null,
+			// 		'password'   => null,
+			// 		'email'      => null,
+			// 		'tgstatus'   => null,
+			// 		'tgusername' => null,
+			// 		'title'      => 'deleted by telegram',
+			// 	];
 
-				$where =
-				[
-					'chatid' => $_chat_id,
-				];
+			// 	$where =
+			// 	[
+			// 		'chatid' => $_chat_id,
+			// 	];
 
-				$result = \dash\db\user_telegram::update_where($set, $where);
-			}
+			// 	$result = \dash\db\user_telegram::update_where($set, $where);
+			// }
 		}
 
 		return $result;
@@ -50,6 +50,7 @@ class user
 		{
 			return null;
 		}
+
 		// $get = \dash\db\users::get(['chatid' => $_chat_id, 'limit' => 1]);
 		$get = \dash\db\user_telegram::get(['chatid' => $_chat_id, 'limit' => 1]);
 		if(!$get)
@@ -161,7 +162,6 @@ class user
 	{
 		if(!empty($_args) && is_array($_args) && self::detail('id'))
 		{
-
 			\dash\db\user_telegram::update($_args, self::detail('id'));
 		}
 	}

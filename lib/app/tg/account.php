@@ -49,7 +49,7 @@ class account
 			$update_new_user                 = [];
 			$update_user_telegram            = [];
 			// $update_new_user['chatid']       = $_chat_id;
-			$update_new_user['tgstatus']     = 'active';
+			// $update_new_user['tgstatus']     = 'active';
 			$update_user_telegram['status']  = 'active';
 			$update_user_telegram['user_id'] = $mobile_exist['id'];
 
@@ -72,7 +72,7 @@ class account
 			{
 				$update_new_user['username']   = substr($_args['username'], 0, 40);
 
-				$update_new_user['tgusername'] = substr($_args['username'], 0, 40);
+				// $update_new_user['tgusername'] = substr($_args['username'], 0, 40);
 
 				$check_duplicate_username = \dash\db\users::get(['username' => $update_new_user['username'], 'limit' => 1]);
 				if($check_duplicate_username)
@@ -104,65 +104,65 @@ class account
 			}
 
 
-			if(isset($mobile_exist['chatid']))
-			{
-				$meta = isset($mobile_exist['meta']) ? $mobile_exist['meta'] : null;
-				if(is_string($meta))
-				{
-					$meta = json_decode($meta, true);
-				}
+			// if(isset($mobile_exist['chatid']))
+			// {
+			// 	$meta = isset($mobile_exist['meta']) ? $mobile_exist['meta'] : null;
+			// 	if(is_string($meta))
+			// 	{
+			// 		$meta = json_decode($meta, true);
+			// 	}
 
-				if(!is_array($meta))
-				{
-					$meta = [];
-				}
+			// 	if(!is_array($meta))
+			// 	{
+			// 		$meta = [];
+			// 	}
 
-				if(\dash\user::detail('chatid'))
-				{
-					$meta['old_chatid'] = \dash\user::detail('chatid');
-				}
+			// 	if(\dash\user::detail('chatid'))
+			// 	{
+			// 		$meta['old_chatid'] = \dash\user::detail('chatid');
+			// 	}
 
-				if(!empty($meta))
-				{
-					$update_new_user['meta']  = json_encode($meta, JSON_UNESCAPED_UNICODE);
-				}
-			}
+			// 	if(!empty($meta))
+			// 	{
+			// 		$update_new_user['meta']  = json_encode($meta, JSON_UNESCAPED_UNICODE);
+			// 	}
+			// }
 
 
 			$update_current_user             = [];
-			$update_current_user['chatid']   = null;
-			$update_current_user['mobile']   = null;
+			// $update_current_user['chatid']   = null;
+			// $update_current_user['mobile']   = null;
 			$update_current_user['status']   = 'unreachable';
-			$update_current_user['tgstatus'] = 'unreachable';
+			// $update_current_user['tgstatus'] = 'unreachable';
 
-			if(\dash\user::detail('chatid'))
-			{
-				$meta = \dash\user::detail('meta');
-				if(is_string($meta))
-				{
-					$meta = json_decode($meta, true);
-				}
+			// if(\dash\user::detail('chatid'))
+			// {
+			// 	$meta = \dash\user::detail('meta');
+			// 	if(is_string($meta))
+			// 	{
+			// 		$meta = json_decode($meta, true);
+			// 	}
 
-				if(!is_array($meta))
-				{
-					$meta = [];
-				}
+			// 	if(!is_array($meta))
+			// 	{
+			// 		$meta = [];
+			// 	}
 
-				if(\dash\user::detail('chatid'))
-				{
-					$meta['removed_chatid'] = \dash\user::detail('chatid');
-				}
+			// 	if(\dash\user::detail('chatid'))
+			// 	{
+			// 		$meta['removed_chatid'] = \dash\user::detail('chatid');
+			// 	}
 
-				if(\dash\user::detail('moible'))
-				{
-					$meta['removed_mobile'] = \dash\user::detail('moible');
-				}
+			// 	if(\dash\user::detail('moible'))
+			// 	{
+			// 		$meta['removed_mobile'] = \dash\user::detail('moible');
+			// 	}
 
-				if(!empty($meta))
-				{
-					$update_current_user['meta'] = json_encode($meta, JSON_UNESCAPED_UNICODE);
-				}
-			}
+			// 	if(!empty($meta))
+			// 	{
+			// 		$update_current_user['meta'] = json_encode($meta, JSON_UNESCAPED_UNICODE);
+			// 	}
+			// }
 
 			\dash\db\user_telegram::update_where($update_user_telegram, ['chatid' => $_chat_id]);
 			\dash\db\users::update($update_current_user, \dash\user::id());
