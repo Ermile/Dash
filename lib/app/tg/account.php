@@ -30,9 +30,28 @@ class account
 
 		if(!$mobile_exist || !isset($mobile_exist['id']))
 		{
-			\dash\db\users::update(['mobile' => $mobile], \dash\user::id());
-			// to loadmobile and some other field
-			self::relogin();
+			if(!\dash\user::detail('mobile'))
+			{
+				\dash\db\users::update(['mobile' => $mobile], \dash\user::id());
+				self::relogin();
+			}
+			else
+			{
+				$first_name = isset($_args['first_name']) ? substr($_args['first_name'], 0, 40) : null;
+				$last_name  = isset($_args['last_name']) ? substr($_args['last_name'], 0, 40) : null;
+
+				$new_signup =
+				[
+					'mobile'      => $mobile,
+					'firstname'   => $first_name,
+					'lastname'    => $last_name,
+					'displayname' => trim($first_name. ' '. $last_name),
+				];
+
+				$new_user_id = \dash\db\users::signup();
+				// to loadmobile and some other field
+				self::relogin($new_user_id);
+			}
 
 			return true;
 		}
