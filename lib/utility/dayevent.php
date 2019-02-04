@@ -77,9 +77,9 @@ class dayevent
 
 		$result['user_mobile']     = \dash\db\users::get_count(['mobile' => ['IS NOT', 'NULL']]);
 		$result['user_email']      = \dash\db\users::get_count(['email' => ['IS NOT', 'NULL']]);
-		$result['user_chatid']     = \dash\db\users::get_count(['chatid' => ['IS NOT', 'NULL']]);
 		$result['user_username']   = \dash\db\users::get_count(['username' => ['IS NOT', 'NULL']]);
-		// $result['user_android']    = \dash\db\users::get_count(['android_uniquecode' => ['IS NOT', 'NULL']]);
+		$result['user_chatid']     = \dash\db\user_telegram::get_count();
+		$result['user_android']    = \dash\db\user_android::get_count();
 
 		$result['user_permission'] = \dash\db\users::get_count(['permission' => ['IS NOT', 'NULL']]);
 
