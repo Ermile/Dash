@@ -192,7 +192,8 @@ class controller
 		}
 		else
 		{
-			if(isset($check_log['status']) && $check_log['status'] === 'enable')
+			// 'enable','disable','expire','deliver','awaiting','deleted','cancel','block','notif','notifread','notifexpire'
+			if(isset($check_log['status']) && in_array($check_log['status'], ['enable', 'notif', 'notifread']))
 			{
 				if(isset($check_log['datecreated']))
 				{
