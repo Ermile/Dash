@@ -536,6 +536,26 @@ class enter
 
 	}
 
+
+	private static function load_chat_id($_id)
+	{
+		$get =
+		[
+			'user_id' => $_id,
+			'limit'   => 1,
+		];
+
+		$result = \dash\db\user_telegram::get($get);
+
+		if(isset($result['chatid']))
+		{
+			return $result['chatid'];
+		}
+
+		return null;
+	}
+
+
 	/**
 	 * return list of way we can send code to the user
 	 *
@@ -554,17 +574,23 @@ class enter
 			$mobile = $_mobile_or_email;
 			$email  = $_mobile_or_email;
 		}
-		elseif(self::user_data('mobile') || self::user_data('email') || self::user_data('chatid'))
+		elseif(self::user_data('mobile') || self::user_data('email'))
 		{
 			$mobile = self::user_data('mobile');
 			$email  = self::user_data('email');
-			$chatid = self::user_data('chatid');
+			if(self::user_data('id'))
+			{
+				$chatid = self::load_chat_id(self::user_data('id'));
+			}
 		}
-		elseif(\dash\user::detail('mobile') || \dash\user::detail('email') || \dash\user::detail('chatid'))
+		elseif(\dash\user::detail('mobile') || \dash\user::detail('email'))
 		{
 			$mobile = \dash\user::detail('mobile');
 			$email  = \dash\user::detail('email');
-			$chatid = \dash\user::detail('chatid');
+			if(\dash\user::id())
+			{
+				$chatid = self::load_chat_id(\dash\user::id());
+			}
 		}
 		elseif(self::get_session('signup_detail'))
 		{
