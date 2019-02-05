@@ -26,8 +26,8 @@ class view
 	public static function verifyPageTitle()
 	{
 
-		\dash\data::rememberLink(true);
-		\dash\data::startNewMobile(true);
+		\dash\data::rememberLink(false);
+		\dash\data::startNewMobile(false);
 		// the verify msg
 		$myDesc  = T_('Please verify yourself.'). ' ';
 
@@ -102,6 +102,8 @@ class view
 
 			// user from recovery go to this page
 			case 'recovery':
+				\dash\data::rememberLink(true);
+				\dash\data::startNewMobile(true);
 				$myDesc .= ' '. T_("This is request of account recovery.");
 				break;
 

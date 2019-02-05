@@ -22,7 +22,7 @@ class view
 		\dash\data::mobileReadonly(false);
 
 		$main_account = false;
-		if(isset($_SESSION['main_account']))
+		if(isset($_SESSION['main_account']) && $_SESSION['main_account'])
 		{
 			$main_account = true;
 		}
