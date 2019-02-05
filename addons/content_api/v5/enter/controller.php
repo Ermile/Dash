@@ -83,7 +83,7 @@ class controller
 		}
 		else
 		{
-			if(isset($check_log['status']) && $check_log['status'] === 'enable')
+			if(isset($check_log['status']) && in_array($check_log['status'], ['enable', 'notif', 'notifread']))
 			{
 				if(isset($check_log['datecreated']))
 				{
