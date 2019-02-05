@@ -67,7 +67,7 @@ class controller
 
 		$check_log =
 		[
-			'caller' => 'api_verificationcode',
+			'caller' => 'enter_apiverificationcode',
 			'to'     => $user_id,
 			'limit'  => 1,
 		];
@@ -177,7 +177,7 @@ class controller
 
 		$check_log =
 		[
-			'caller' => 'api_verificationcode',
+			'caller' => 'enter_apiverificationcode',
 			'to'     => $user_id,
 			'limit'  => 1,
 		];
@@ -213,15 +213,19 @@ class controller
 			}
 		}
 
+
 		if($generate_new_code)
 		{
+			$myCode = rand(10000, 99999);
+
 			$log =
 			[
-				'to'   => $user_id,
-				'code' => rand(10000, 99999),
+				'to'     => $user_id,
+				'code'   => $myCode,
+				'mycode' => $myCode,
 			];
 
-			\dash\log::set('api_verificationcode', $log);
+			\dash\log::set('enter_apiverificationcode', $log);
 			\dash\notif::ok(T_("The verification code sended to phone number"));
 			return true;
 		}
