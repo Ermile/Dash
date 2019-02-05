@@ -309,6 +309,11 @@ class enter
 			$host = $_SESSION['enter_referer'];
 			unset($_SESSION['enter_referer']);
 		}
+		elseif(self::get_session('app_mode'))
+		{
+			$host .= '/enter/app';
+			self::set_session('app_mode', false);
+		}
 		elseif(self::get_session('first_signup'))
 		{
 			// if first signup

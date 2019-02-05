@@ -7,6 +7,14 @@ class model
 
 	public static function post()
 	{
+		$logout = \dash\request::post('logoutapp');
+		if(\dash\user::id() && $logout)
+		{
+			\dash\utility\enter::set_logout(\dash\user::id(), false);
+			\dash\redirect::pwd();
+			return;
+		}
+
 		$mobile = \dash\request::post('usernameormobile');
 		$mobile = \dash\utility\convert::to_en_number($mobile);
 		$mobile = \dash\utility\filter::mobile($mobile);
@@ -70,6 +78,8 @@ class model
 			\dash\utility\enter::go_to('block');
 			return;
 		}
+
+		\dash\utility\enter::set_session('app_mode', true);
 
 		// lock all step and set just this page to load
 		\dash\utility\enter::next_step('verify');

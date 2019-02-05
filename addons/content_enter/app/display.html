@@ -16,7 +16,7 @@
 		</div>
 	{%endif%}
 
-<a class="btn warn block" href="{{url.kingdom}}/logout">{%trans "Logout"%}</a>
+<div class="btn warn block" data-confirm data-data='{"logoutapp": 1}' >{%trans "Logout"%}</div>
 {%else%}
 
 	{%include display.hive%}
