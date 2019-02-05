@@ -542,7 +542,7 @@ class enter
 	}
 
 
-	private static function load_chat_id($_id)
+	public static function load_chat_id($_id)
 	{
 		$get =
 		[

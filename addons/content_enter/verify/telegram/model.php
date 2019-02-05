@@ -29,9 +29,10 @@ class model
 
 		$my_chat_id = null;
 
-		if(\dash\utility\enter::user_data('chatid'))
+
+		if(\dash\utility\enter::user_data('id'))
 		{
-			$my_chat_id = \dash\utility\enter::user_data('chatid');
+			$my_chat_id = \dash\utility\enter::load_chat_id(\dash\utility\enter::user_data('id'));
 		}
 		elseif(\dash\utility\enter::get_session('temp_chat_id'))
 		{
