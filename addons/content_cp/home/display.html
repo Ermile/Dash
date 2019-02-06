@@ -5,7 +5,7 @@
 
 {%block pageContent%}
 	{{block ("blockCMS")}}
-	{{block ("chartVisitor")}}
+	{{block ("chartPost")}}
 	{{block ("blockHelpCenter")}}
 
 {%endblock%}
@@ -63,11 +63,15 @@
 
 
 
-{%block chartVisitor%}
+
+
+{%block chartPost%}
 <a class="cbox pA0">
- <div class="chart x4" id="chartdiv" data-type='bar' data-vals='{{visitor.chart}}'></div>
+ <div class="chart x4" id="postchart"></div>
 </a>
 {%endblock%}
+
+
 
 
 

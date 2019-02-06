@@ -17,7 +17,7 @@ class view
 		\dash\data::page_special(true);
 
 		$cache = \dash\session::get('cpDashboardCache');
-		if(!$cache)
+		if(!$cache || true)
 		{
 
 			$dashboard_detail                   = [];
@@ -29,20 +29,17 @@ class view
 			$dashboard_detail['helpcentertags'] = \dash\db\terms::get_count(['type' => 'help_tag']);
 			$dashboard_detail['supporttags']    = \dash\db\terms::get_count(['type' => 'support_tag']);
 			$dashboard_detail['tickets']        = \dash\db\comments::get_count(['type' => 'ticket', 'parent' => null]);
-			$dashboard_detail['users']          = \dash\db\users::get_count();
-			$dashboard_detail['permissions']    = count(\dash\permission::groups());
-			$dashboard_detail['logs']           = \dash\db\logs::get_count();
-			$dashboard_detail['comments']       = \dash\db\comments::get_count(['type' => 'comments']);
-			$dashboard_detail['visit']          = \dash\db\visitors::get_count();
 
-			$get_chart = [];
+
+			$get_chart                 = [];
 
 			if(\dash\url::subdomain())
 			{
-				$get_chart['subdomain'] = \dash\url::subdomain();
+				$get_chart['subdomain']    = \dash\url::subdomain();
 			}
 
-			$chart = \dash\app\posts::home_chart($get_chart);
+			$chart                     = [];
+			$chart['post']             = \dash\utility\dayevent::chart(['field' => ['news', 'page', 'help', 'attachment']]);
 			$dashboard_detail['chart'] = $chart;
 
 			\dash\session::set('cpDashboardCache', $dashboard_detail, null, (60*1));
@@ -51,13 +48,9 @@ class view
 		{
 			$dashboard_detail = \dash\session::get('cpDashboardCache');
 		}
-		// var_dump($dashboard_detail);exit();
 
 		\dash\data::dashboardDetail($dashboard_detail);
-		// $this->data->page['title']       = T_(ucfirst( str_replace('/', ' ', \dash\url::directory()) ));
 
-		// $this->data->dir['right']     = $this->global->direction == 'rtl'? 'left':  'right';
-		// $this->data->dir['left']      = $this->global->direction == 'rtl'? 'right': 'left';
 	}
 }
 ?>

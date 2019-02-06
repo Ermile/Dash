@@ -1,116 +1,88 @@
 function chartDrawer()
 {
-  if($("#chartdiv").length == 1){highChart();}
+
+  if($("#postchart").length == 1){post_chart();}
 }
 
 
 
-function highChart()
-{
 
-Highcharts.chart('chartdiv',
+
+function post_chart()
 {
-  chart: {
-    zoomType: 'x',
-    style: {
-      fontFamily: 'IRANSans, Tahoma, sans-serif'
-    }
-  },
-  title: {
-    text: '{%trans "Count post"%}'
-  },
-  xAxis: [{
-    categories: {{dashboardDetail.chart.categories | raw}},
-    crosshair: true
-  }],
-  yAxis: [{ // Primary yAxis
-    labels: {
-      format: '{value}',
+  Highcharts.chart('postchart',
+  {
+    chart: {
+      type: 'area',
+      zoomType: 'x',
       style: {
-        color: Highcharts.getOptions().colors[0]
+        fontFamily: 'IRANSans, Tahoma, sans-serif'
       }
     },
     title: {
-      text: '{%trans "Page"%}',
-      useHTML: Highcharts.hasBidiBug,
-      style: {
-        color: Highcharts.getOptions().colors[0]
-      }
-    }
-  },
-  { // Secondary yAxis
-    title: {
-      text: '{%trans "Person"%}',
-      useHTML: Highcharts.hasBidiBug,
-      style: {
-        color: Highcharts.getOptions().colors[1]
+      text: '{%trans "Post count"%}'
+    },
+    xAxis: {
+      categories: {{dashboardDetail.chart.post.categories | raw}},
+      tickmarkPlacement: 'on',
+      title: {
+        enabled: false
       }
     },
-    labels: {
-      format: '{value}',
-      style: {
-        color: Highcharts.getOptions().colors[1]
-      }
-    },
-    opposite: true
-  }],
-  tooltip: {
-    useHTML: true,
-    borderWidth: 0,
-    shared: true
-  },
-  exporting:
-  {
-    buttons:
-    {
-      contextButton:
-      {
-        menuItems:
-        [
-         'printChart',
-         'separator',
-         'downloadPNG',
-         'downloadJPEG',
-         'downloadSVG'
-        ]
-      }
-    }
-  },
-  credits:
-  {
-      text: '{{service.title}}',
-      href: '{{service.url}}',
-      position:
-      {
-          x: -35,
-          y: -7
+    yAxis: {
+      title: {
+        text: '{%trans "Post"%}'
       },
-      style: {
-          fontWeight: 'bold'
+      labels: {
+        formatter: function () {
+          return this.value / 1000;
+        }
       }
-  },
-  legend: {
-    layout: 'vertical',
-    align: 'left',
-    x: 120,
-    verticalAlign: 'top',
-    y: 100,
-    floating: true,
-    backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || 'rgba(255,255,255,0.25)'
-  },
-  series: [
-  {
-    name: '{%trans "Post"%}',
-    data: {{dashboardDetail.chart.value | raw}},
+    },
     tooltip: {
-      valueSuffix: ' {%trans "Count"%}'
+      useHTML: true,
+      borderWidth: 0,
+      shared: true,
+      valueSuffix: ' {%trans "post"%}'
+    },
+    plotOptions: {
+      area: {
+        stacking: 'normal',
+        lineColor: '#666666',
+        lineWidth: 1,
+        marker: {
+          lineWidth: 1,
+          lineColor: '#666666'
+        }
+      }
+    },
+    legend: {
+      layout: 'vertical',
+      align: 'right',
+      verticalAlign: 'middle'
+    },
+    exporting:
+    {
+      enabled: false
+    },
+    credits:
+    {
+        text: '{{service.title}}',
+        href: '{{service.url}}',
+        position:
+        {
+            x: -35,
+            y: -7
+        },
+        style: {
+            fontWeight: 'bold'
+        }
+    },
+    series: {{dashboardDetail.chart.post.data | raw}}
+  }, function(_chart)
+    {
+      _chart.renderer.image('{{service.logo}}', 10, 5, 30, 30).attr({class: 'chartServiceLogo'}).add();
     }
-
-  }
-
-  ]
-}, function(_chart)
-  {
-    _chart.renderer.image('{{service.logo}}', 10, 5, 30, 30).attr({class: 'chartServiceLogo'}).add();
-  });
+  );
 }
+
