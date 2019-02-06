@@ -45,6 +45,7 @@ class view
 			$chart['status']   = \dash\app\user::chart_status($get_chart);
 			$chart['identify'] = \dash\app\user::chart_identify($get_chart);
 
+
 			$dashboard_detail['chart'] = $chart;
 
 			\dash\session::set('crmDashboardCache', $dashboard_detail, null, (60*1));

@@ -35,11 +35,15 @@ class user
 			{
 				$count = intval($value['count']);
 			}
-
-			$hi_chart[] = ['name' => $name, 'y' => $count];
+			$newValue = ['name' => $name, 'y' => $count];
+			if(!$value['gender'])
+			{
+				$newValue['visible'] = false;
+			}
+			$hi_chart[] = $newValue;
 		}
 
-		$hi_chart      = json_encode($hi_chart, JSON_UNESCAPED_UNICODE);
+		$hi_chart = json_encode($hi_chart, JSON_UNESCAPED_UNICODE);
 
 		return $hi_chart;
 

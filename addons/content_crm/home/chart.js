@@ -114,11 +114,10 @@ function identifyChart()
 
 function gender_chart()
 {
-
   Highcharts.chart('genderchart',
   {
     chart: {
-
+      zoomType: 'x',
       style: {
         fontFamily: 'IRANSans, Tahoma, sans-serif'
       },
@@ -128,10 +127,13 @@ function gender_chart()
       type: 'pie'
     },
     title: {
-      text: '{%trans "Users group by gender"%}'
+      text: '{%trans "Users group by"%} {%trans "Status"%}'
     },
     tooltip: {
-      pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+      useHTML: true,
+      borderWidth: 0,
+      shared: true,
+      pointFormat: '{series.name} <b>{point.percentage:.1f}%</b>'
     },
     plotOptions: {
       pie: {
@@ -139,34 +141,51 @@ function gender_chart()
         cursor: 'pointer',
         dataLabels: {
           enabled: true,
-          format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+          // format: '<b>{point.name}</b><br> {point.percentage:.1f} %',
+          useHTML: true,
           style: {
             color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
           }
         }
       }
     },
-    series: [{
-      name: '{%trans "Gender"%}',
-      // useHTML: Highcharts.hasBidiBug,
-      colorByPoint: true,
-      data: {{dashboardDetail.chart.gender | raw}}
+    exporting:
+    {
+      enabled: false
+    },
+    credits:
+    {
+        text: '{{service.title}}',
+        href: '{{service.url}}',
+        position:
+        {
+            x: -35,
+            y: -7
+        },
+        style: {
+            fontWeight: 'bold'
+        }
+    },
+    series:
+    [
+    {
+      name: '{%trans "User Status"%}',
+      allowPointSelect: true,
+      data: {{dashboardDetail.chart.gender | raw}},
+      tooltip: {
+        valueSuffix: ' {%trans "Person"%}'
+      },
+      showInLegend: true
     }]
   }, function(_chart)
-    {
-      _chart.renderer.image('{{service.logo}}', 10, 5, 30, 30).attr({class: 'chartServiceLogo'}).add();
-    }
-  );
-
+  {
+    _chart.renderer.image('{{service.logo}}', 10, 5, 30, 30).attr({class: 'chartServiceLogo'}).add();
+  });
 }
-
-
-
 
 
 function status_chart()
 {
-
   Highcharts.chart('statuschart',
   {
     chart: {
