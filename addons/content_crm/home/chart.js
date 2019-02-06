@@ -499,6 +499,7 @@ function users_guage()
     tooltip: {
       borderWidth: 0,
       backgroundColor: 'none',
+      useHTML: true,
       shadow: false,
       style: {
         fontSize: '12px'
@@ -511,7 +512,6 @@ function users_guage()
         };
       }
     },
-
     pane: {
       startAngle: 0,
       endAngle: 360,
@@ -556,7 +556,22 @@ function users_guage()
         rounded: true
       }
     },
-
+ credits:
+    {
+        text: '{{service.title}}',
+        href: '{{service.url}}',
+        position:
+        {
+            x: -35,
+            y: -7
+        },
+        style: {
+            fontWeight: 'bold'
+        }
+    },
+    series: [{
+      name: 'Asia',
+      data: [502
     series: [{
       name: 'Mobile',
       data: [{
@@ -582,7 +597,11 @@ function users_guage()
         y: 5
       }]
     }]
-  });
+  }, function(_chart)
+    {
+      _chart.renderer.image('{{service.logo}}', 10, 5, 30, 30).attr({class: 'chartServiceLogo'}).add();
+    }
+  );
 
 
 
