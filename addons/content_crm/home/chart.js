@@ -137,7 +137,7 @@ function gender_chart()
       useHTML: true,
       borderWidth: 0,
       shared: true,
-      pointFormat: '{series.name} <b>{point.percentage:.1f}%</b>'
+      pointFormat: '{point.y}<br><b>{point.percentage:.1f}%</b>'
     },
     plotOptions: {
       pie: {
@@ -209,7 +209,7 @@ function status_chart()
       useHTML: true,
       borderWidth: 0,
       shared: true,
-      pointFormat: '{series.name} <b>{point.percentage:.1f}%</b>'
+      pointFormat: '{point.y}<br><b>{point.percentage:.1f}%</b>'
     },
     plotOptions: {
       pie: {
