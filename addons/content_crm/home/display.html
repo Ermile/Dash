@@ -37,72 +37,6 @@
 
 
 
-{%block blockHelpCenter%}
-<div class="f">
-  <div class="c s6">{{block ("dHelpCenter")}}</div>
-  <div class="c s6">{{block ("dHelpCenterTags")}}</div>
-  <div class="c s6">{{block ("dSupportTags")}}</div>
-  <div class="c s6">{{block ("dTickets")}}</div>
-  <div class="c s6">{{block ("dVisitor")}}</div>
-</div>
-{%endblock%}
-
-
-{%block dHelpCenter%}
-<a class="dcard" href="{{url.here}}/posts?type=help">
- <div class="statistic sm">
-  <div class="label mB10"><i class="fs20 mRa5 sf-info-circle"></i> {%trans "Help Center Article"%}</div>
-  <div class="value">{{dashboardDetail.helpcenter | fitNumber}}</div>
- </div>
-</a>
-{%endblock%}
-
-
-
-{%block dHelpCenterTags%}
-<a class="dcard" href="{{url.here}}/terms?type=help_tag">
- <div class="statistic sm">
-  <div class="label mB10"><i class="fs20 mRa5 sf-clone"></i> {%trans "Help tags"%}</div>
-  <div class="value">{{dashboardDetail.helpcentertags | fitNumber()}}</div>
- </div>
-</a>
-{%endblock%}
-
-
-{%block dSupportTags%}
-<a class="dcard" href="{{url.here}}/terms?type=support_tag">
- <div class="statistic sm">
-  <div class="label mB10"><i class="fs20 mRa5 sf-bug"></i> {%trans "Support tags"%}</div>
-  <div class="value">{{dashboardDetail.supporttags | fitNumber()}}</div>
- </div>
-</a>
-{%endblock%}
-
-
-{%block dTickets%}
-<a class="dcard" href="{{url.kingdom}}/support/ticket">
- <div class="statistic sm">
-  <div class="label mB10"><i class="fs20 mRa5 sf-life-ring"></i> {%trans "Tickets"%}</div>
-  <div class="value">{{dashboardDetail.tickets | fitNumber}}</div>
- </div>
-</a>
-{%endblock%}
-
-
-
-{%block dVisitor%}
-<a class="dcard" href="{{url.kingdom}}/cp/visitor">
- <div class="statistic sm">
-  <div class="label mB10"><i class="fs20 mRa5 sf-life-ring"></i> {%trans "Visitor"%}</div>
-  <div class="value">{{dashboardDetail.visit | fitNumber}}</div>
- </div>
-</a>
-{%endblock%}
-
-
-
-
-
 {%block blockUsers%}
 <div class="f mB5">
   <div class="c s6">{{block ("dUsers")}}</div>
@@ -127,7 +61,7 @@
 <a class="dcard" href="{{url.here}}/member">
  <div class="statistic sm green">
   <div class="label mB10"><i class="fs20 mRa5 sf-user-5"></i> {%trans "Active Users"%}</div>
-  <div class="value">{{dashboardDetail.comments | fitNumber()}}</div>
+  <div class="value">{{dashboardDetail.activeUser | fitNumber()}}</div>
  </div>
 </a>
 {%endblock%}
@@ -157,14 +91,13 @@
 {%block l10Log%}
 <div class="cbox fs11">
   <h2>{%trans "Latest logs"%}</h2>
-  <a class="msg f" href="#">
-    <div>lorem</div>
-    <div class="cauto">{{"now" | dt }}</div>
-  </a>
-  <a class="msg f" href="#">lorem</a>
-  <a class="msg f" href="#">lorem</a>
-  <a class="msg f" href="#">lorem</a>
-  <a class="msg f" href="#">lorem</a>
+  {%for key, value in dashboardDetail.latestLogs%}
+    <a class="msg f" href="{{url.this}}/log">
+      <div>{%if value.displayname%}{{value.displayname}}{%else%}{%trans "Unknow"%}{%endif%}</div>
+      <div>{%if value.title%}{{value.title}}{%else%}{{value.caller}}{%endif%}</div>
+      <div class="cauto">{{value.datecreated | dt('human', 'year') }}</div>
+    </a>
+  {%endfor%}
 </div>
 {%endblock%}
 
@@ -172,11 +105,12 @@
 {%block l10Member%}
 <div class="cbox fs11 mB10">
   <h2>{%trans "Latest Members"%}</h2>
-  <a class="msg f" href="#">lorem</a>
-  <a class="msg f" href="#">lorem</a>
-  <a class="msg f" href="#">lorem</a>
-  <a class="msg f" href="#">lorem</a>
-  <a class="msg f" href="#">lorem</a>
+  {%for key, value in dashboardDetail.latestMember%}
+    <a class="msg f" href="{{url.here}}/member/glance?id={{value.id}}">
+      <div>{%if value.displayname%}{{value.displayname}}{%else%}{%trans "Unknow"%}{%endif%}</div>
+      <div class="cauto">{{value.datecreated | dt('human', 'year') }}</div>
+    </a>
+  {%endfor%}
 </div>
 {%endblock%}
 

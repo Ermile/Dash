@@ -25,7 +25,7 @@ class view
 			$dashboard_detail['logs']         = \dash\db\logs::get_count();
 			$dashboard_detail['latestLogs']   = \dash\app\log::lates_log(['caller' => 'userLogin']);
 			$dashboard_detail['latestMember'] = \dash\app\user::lates_user();
-			$dashboard_detail['latestTicket'] = \dash\app\ticket::lates_ticket();
+
 
 			$get_chart                        = [];
 
