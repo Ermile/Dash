@@ -108,7 +108,11 @@ Highcharts.ajax({
         chart: {
           marginLeft: 40, // Keep all charts left aligned
           spacingTop: 20,
-          spacingBottom: 20
+          spacingBottom: 20,
+          zoomType: 'x',
+          style: {
+            fontFamily: 'IRANSans, Tahoma, sans-serif'
+          }
         },
         title: {
           text: dataset.name,
@@ -117,6 +121,9 @@ Highcharts.ajax({
           x: 30
         },
         credits: {
+          enabled: false
+        },
+        exporting: {
           enabled: false
         },
         legend: {
