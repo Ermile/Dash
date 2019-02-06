@@ -46,7 +46,7 @@
 
 {%block chartSynced%}
 <a class="cbox pA0 mB10">
- <div class="chart x4" id="syncedChart"></div>
+ <div class="chart2" id="syncedChart"></div>
 </a>
 {%endblock%}
 
@@ -120,25 +120,33 @@
 
 
 {%block blockUsers%}
-<div class="f mB10">
+<div class="f mB5">
   <div class="c s6">{{block ("dUsers")}}</div>
+  <div class="c s6">{{block ("dUsersActive")}}</div>
   <div class="c s6">{{block ("dUserPerms")}}</div>
   <div class="c s6">{{block ("dLogs")}}</div>
-  <div class="c s6">{{block ("dComments")}}</div>
-  <!-- <div class="c s6">{{block ("dComments")}}</div> -->
 </div>
 {%endblock%}
 
 
 {%block dUsers%}
-<a class="dcard" href="{{url.here}}/member">
- <div class="statistic sm teal">
-  <div class="label mB10"><i class="fs20 mRa5 sf-users"></i> {%trans "Users"%}</div>
+<a class="dcard" href="{{url.here}}/member?status=all">
+ <div class="statistic sm">
+  <div class="label mB10"><i class="fs20 mRa5 sf-group-full"></i> {%trans "Total Users"%}</div>
   <div class="value counter" data-value={{dashboardDetail.users}}>{{dashboardDetail.users | fitNumber}}</div>
  </div>
 </a>
 {%endblock%}
 
+
+{%block dUsersActive%}
+<a class="dcard" href="{{url.here}}/member">
+ <div class="statistic sm green">
+  <div class="label mB10"><i class="fs20 mRa5 sf-user-5"></i> {%trans "Active Users"%}</div>
+  <div class="value">{{dashboardDetail.comments | fitNumber()}}</div>
+ </div>
+</a>
+{%endblock%}
 
 
 {%block dUserPerms%}
@@ -160,15 +168,6 @@
 </a>
 {%endblock%}
 
-
-{%block dComments%}
-<a class="dcard" href="{{url.here}}/comments">
- <div class="statistic sm">
-  <div class="label mB10"><i class="fs20 mRa5 sf-comments"></i> {%trans "Comments"%}</div>
-  <div class="value">{{dashboardDetail.comments | fitNumber()}}</div>
- </div>
-</a>
-{%endblock%}
 
 
 
