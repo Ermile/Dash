@@ -31,6 +31,10 @@ class view
 
 			$dashboard_detail['tickets']        = \dash\db\comments::get_count(['type' => 'ticket', 'parent' => null]);
 
+			$dashboard_detail['latesPost']      = \dash\app\posts::lates_post(['type' => 'post']);
+			$dashboard_detail['latesHelp']      = \dash\app\posts::lates_post(['type' => 'help']);
+			$dashboard_detail['latesTag']      = \dash\app\term::lates_term(['type' => 'tag']);
+
 
 			$get_chart                 = [];
 

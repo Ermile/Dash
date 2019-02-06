@@ -8,6 +8,65 @@
 	{{block ("chartPost")}}
 	{{block ("blockHelpCenter")}}
   {{block ("wordcloudChart")}}
+  <div class="f">
+    <div class="c s12">
+      <div class="pRa5">{{block ("l10News")}}</div>
+    </div>
+
+    <div class="c s12">
+      <div class="pRa5">{{block ("l10Help")}}</div>
+    </div>
+
+    <div class="c s12">
+      <div class="pRa5">{{block ("l10Tag")}}</div>
+    </div>
+
+  </div>
+
+
+{%endblock%}
+
+
+{%block l10News%}
+<div class="cbox fs11 mB10">
+  <h2>{%trans "Latest News"%}</h2>
+  {%for key, value in dashboardDetail.latesPost%}
+    <a class="msg f" href="{{url.kingdom}}/{{value.url}}">
+      <div>{%if value.title%}{{value.title}}{%else%}{%trans "Without title"%}{%endif%}</div>
+      <div class="cauto">{{value.datecreated | dt('human', 'year') }}</div>
+    </a>
+  {%endfor%}
+</div>
+
+{%endblock%}
+
+
+{%block l10Help%}
+<div class="cbox fs11 mB10">
+  <h2>{%trans "Latest Help center"%}</h2>
+  {%for key, value in dashboardDetail.latesHelp%}
+    <a class="msg f">
+      <div>{%if value.title%}{{value.title}}{%else%}{%trans "Without title"%}{%endif%}</div>
+      <div class="cauto">{{value.datecreated | dt('human', 'year') }}</div>
+    </a>
+  {%endfor%}
+</div>
+
+
+{%endblock%}
+
+
+
+{%block l10Tag%}
+<div class="cbox fs11 mB10">
+  <h2>{%trans "Latest tag"%}</h2>
+  {%for key, value in dashboardDetail.latesTag%}
+    <a class="msg f">
+      <div>{%if value.title%}{{value.title}}{%else%}{%trans "Without title"%}{%endif%}</div>
+      <div class="cauto">{{value.datecreated | dt('human', 'year') }}</div>
+    </a>
+  {%endfor%}
+</div>
 
 {%endblock%}
 

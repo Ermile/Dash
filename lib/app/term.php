@@ -15,6 +15,25 @@ class term
 		'status',
 	];
 
+
+	public static function lates_term($_args = [])
+	{
+		if(!isset($_args['limit']))
+		{
+			$_args['limit'] = 5;
+		}
+
+		$_args['order_raw'] = 'terms.id DESC';
+		$_args['pagenation'] = false;
+
+
+		$list = \dash\db\terms::search(null, $_args);
+
+
+
+		return $list;
+	}
+
 	public static function cat_list($_type = 'cat')
 	{
 		$result = \dash\db\terms::get(['type' => $_type, 'language' => \dash\language::current(), 'status' => 'enable']);

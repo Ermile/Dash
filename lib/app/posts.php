@@ -11,6 +11,30 @@ class posts
 
 	public static $datarow = null;
 
+
+	public static function lates_post($_args = [])
+	{
+		if(!isset($_args['limit']))
+		{
+			$_args['limit'] = 5;
+			$_args['end_limit'] = 5;
+		}
+
+		$_args['order_raw'] = 'posts.id DESC';
+		$_args['pagenation'] = false;
+		$_args['status'] = 'publish';
+
+		$list = \dash\db\posts::search(null, $_args);
+
+		if(is_array($list))
+		{
+			$list = array_map(['\\dash\\app\\posts', 'ready'], $list);
+		}
+
+		return $list;
+	}
+
+
 	public static function all_word_cloud()
 	{
 
