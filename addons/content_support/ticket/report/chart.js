@@ -139,6 +139,7 @@ Highcharts.ajax({
           }
         },
         yAxis: {
+          allowDecimals: false,
           title: {
             text: null
           }
