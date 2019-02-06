@@ -434,7 +434,7 @@ class users
 		"
 				SELECT COUNT(*) AS `count`, 'mobile' 	AS `type`	FROM users WHERE users.mobile 	IS NOT NULL
 			UNION
-				SELECT COUNT(*) AS `count`, 'nomobile' 	AS `type`	FROM users WHERE users.mobile 	IS NULL
+				SELECT COUNT(*) AS `count`, 'Without mobile' 	AS `type`	FROM users WHERE users.mobile 	IS NULL
 			UNION
 				SELECT COUNT(*) AS `count`, 'email' 	AS `type`	FROM users WHERE users.email 	IS NOT NULL
 			UNION

@@ -21,9 +21,17 @@ class logs
 				logs.expiredate < '$date_now'
 		";
 
-		$resutl = \dash\db::query($query, \dash\db::get_db_log_name());
-		return $resutl;
+		$result = \dash\db::query($query, \dash\db::get_db_log_name());
+		return $result;
 
+	}
+
+	public static function get_chart_date()
+	{
+		$lastYear = date("Y-m-d", strtotime("-365 days"));
+		$query = "SELECT count(*) AS `count`, DATE(logs.datecreated) AS `date` FROM logs WHERE DATE(logs.datecreated) > DATE('$lastYear') GROUP BY DATE(logs.datecreated) ";
+		$result = \dash\db::get($query, null, false, \dash\db::get_db_log_name());
+		return $result;
 	}
 
 	public static function set_readdate_user($_user_id)
@@ -45,8 +53,8 @@ class logs
 				logs.to = $_user_id AND
 				logs.status   = 'notif'
 		";
-		$resutl = \dash\db::query($query, \dash\db::get_db_log_name());
-		return $resutl;
+		$result = \dash\db::query($query, \dash\db::get_db_log_name());
+		return $result;
 	}
 
 
@@ -64,8 +72,8 @@ class logs
 				logs.id IN ($_ids) AND
 				logs.readdate IS NULL
 		";
-		$resutl = \dash\db::query($query, \dash\db::get_db_log_name());
-		return $resutl;
+		$result = \dash\db::query($query, \dash\db::get_db_log_name());
+		return $result;
 	}
 
 	public static function my_notif_count($_user_id)
@@ -85,8 +93,8 @@ class logs
 				logs.to     = $_user_id AND
 				logs.status = 'notif'
 		";
-		$resutl = \dash\db::get($query, 'count', true, \dash\db::get_db_log_name());
-		return $resutl;
+		$result = \dash\db::get($query, 'count', true, \dash\db::get_db_log_name());
+		return $result;
 	}
 
 	public static function save_temp_update()
@@ -131,8 +139,8 @@ class logs
 	public static function get_caller_group()
 	{
 		$query = "SELECT count(*) AS `count`, logs.caller AS `caller` FROM logs GROUP BY logs.caller ORDER BY count(*) DESC";
-		$resutl = \dash\db::get($query, ['caller', 'count'], false, \dash\db::get_db_log_name());
-		return $resutl;
+		$result = \dash\db::get($query, ['caller', 'count'], false, \dash\db::get_db_log_name());
+		return $result;
 	}
 	/**
 	 * this library work with logs table
@@ -144,16 +152,16 @@ class logs
 
 	public static function multi_insert($_args)
 	{
-		$resutl = \dash\db\config::public_multi_insert('logs', $_args, \dash\db::get_db_log_name());
+		$result = \dash\db\config::public_multi_insert('logs', $_args, \dash\db::get_db_log_name());
 		if(\dash\db::get_db_log_name() === true)
 		{
-			$resutl = \dash\db::insert_id();
+			$result = \dash\db::insert_id();
 		}
 		elseif(isset(\dash\db::$link_open[\dash\db::get_db_log_name()]))
 		{
-			$resutl = \dash\db::insert_id(\dash\db::$link_open[\dash\db::get_db_log_name()]);
+			$result = \dash\db::insert_id(\dash\db::$link_open[\dash\db::get_db_log_name()]);
 		}
-		return $resutl;
+		return $result;
 	}
 
 
@@ -175,17 +183,17 @@ class logs
 		{
 			$query  ="INSERT INTO logs SET $set ";
 
-			$resutl = \dash\db::query($query, \dash\db::get_db_log_name());
+			$result = \dash\db::query($query, \dash\db::get_db_log_name());
 			// get the link
 			if(\dash\db::get_db_log_name() === true)
 			{
-				$resutl = \dash\db::insert_id();
+				$result = \dash\db::insert_id();
 			}
 			elseif(isset(\dash\db::$link_open[\dash\db::get_db_log_name()]))
 			{
-				$resutl = \dash\db::insert_id(\dash\db::$link_open[\dash\db::get_db_log_name()]);
+				$result = \dash\db::insert_id(\dash\db::$link_open[\dash\db::get_db_log_name()]);
 			}
-			return $resutl;
+			return $result;
 		}
 	}
 

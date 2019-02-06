@@ -30,6 +30,50 @@ class log
 		return $list;
 	}
 
+
+	public static function chart_log_date($_args = [])
+	{
+
+		$result = \dash\db\logs::get_chart_date();
+
+		$hi_chart   = [];
+		$categories = [];
+		$values     = [];
+
+
+		if(!is_array($result))
+		{
+			$result = [];
+		}
+
+
+		foreach ($result as $key => $value)
+		{
+			$temp     = 0;
+			$date     = null;
+
+			if(array_key_exists('date', $value))
+			{
+				$date = $value['date'] ? \dash\datetime::fit($value['date'], null, 'date') : null;
+				$categories[] = $date;
+
+			}
+
+			if(array_key_exists('count', $value))
+			{
+				$temp = intval($value['count']);
+				$values[] = intval($temp);
+			}
+
+		}
+
+		$hi_chart['categories'] = json_encode($categories, JSON_UNESCAPED_UNICODE);
+		$hi_chart['value']      = json_encode($values, JSON_UNESCAPED_UNICODE);
+
+		return $hi_chart;
+
+	}
+
 	public static function set_readdate($_data, $_all = false, $_user_id = null)
 	{
 		if(!is_array($_data))

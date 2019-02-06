@@ -275,6 +275,13 @@ function log_chart()
     title: {
       text: '{%trans "User logs group by date"%}'
     },
+    xAxis: {
+      categories: {{dashboardDetail.chart.log.categories|raw}},
+      tickmarkPlacement: 'on',
+      title: {
+        enabled: false
+      }
+    },
     yAxis: {
       title: {
         text: '{%trans "Records"%}'
@@ -312,8 +319,8 @@ function log_chart()
       }
     },
     series: [{
-      name: 'John',
-      data: [3, 4, 3, 5, 4, 10, 12]
+      name: '{%trans "Count"%}',
+      data: {{dashboardDetail.chart.log.value |raw}}
     }]
   }, function(_chart)
     {
