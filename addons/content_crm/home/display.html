@@ -6,53 +6,19 @@
 {%block pageContent%}
 	{{block ("blockUsers")}}
 
-  {{block ("chartSynced")}}
-
   <div class="f">
-    <div class="c6 s12 pRa5">
-       {{block ("chartGender")}}
+    <div class="c6 s12 mB10 pRa5">
+      <div class="chart x3" id="genderchart"></div>
     </div>
-    <div class="c6 s12">
-       {{block ("chartStatus")}}
+    <div class="c6 s12 mB10 pLa5">
+      <div class="chart x3" id="statuschart"></div>
     </div>
   </div>
 
-  <div class="f">
-    <div class="c8 s12">
-       {{block ("chartIdentify")}}
-    </div>
-
-  </div>
+  <div class="chart2" id="syncedChart"></div>
+  <div class="chart x3" id="identifyChart"></div>
 
 {%endblock%}
-
-
-
-{%block chartGender%}
-<a class="cbox pA0">
- <div class="chart x3" id="genderchart"></div>
-</a>
-{%endblock%}
-
-{%block chartStatus%}
-<a class="cbox pA0">
- <div class="chart x3" id="statuschart"></div>
-</a>
-{%endblock%}
-
-{%block chartIdentify%}
-<a class="cbox pA0">
- <div class="chart x4" id="identifyChart"></div>
-</a>
-{%endblock%}
-
-
-{%block chartSynced%}
-<a class="cbox pA0 mB10">
- <div class="chart2" id="syncedChart"></div>
-</a>
-{%endblock%}
-
 
 
 
