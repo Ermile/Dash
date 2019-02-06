@@ -4,7 +4,7 @@ function chartDrawer()
   if($("#genderchart").length == 1){gender_chart();}
   if($("#statuschart").length == 1){status_chart();}
   if($("#logChart").length == 1){log_chart();}
-
+  if($("#UsersChart").length == 1){users_chart();}
 }
 
 
@@ -270,11 +270,11 @@ function log_chart()
       }
     },
     title: {
-      text: 'Logs group by date'
+      text: '{%trans "User logs group by date"%}'
     },
     yAxis: {
       title: {
-        text: 'Record'
+        text: '{%trans "Records"%}'
       }
     },
     tooltip: {
@@ -319,5 +319,97 @@ function log_chart()
   );
 }
 
+function users_chart()
+{
+  Highcharts.chart('UsersChart',
+  {
+    chart: {
+      type: 'area',
+      zoomType: 'x',
+      style: {
+        fontFamily: 'IRANSans, Tahoma, sans-serif'
+      }
+    },
+    title: {
+      text: 'Historic and Estimated Worldwide Population Growth by Region'
+    },
+    xAxis: {
+      categories: ['1750', '1800', '1850', '1900', '1950', '1999', '2050'],
+      tickmarkPlacement: 'on',
+      title: {
+        enabled: false
+      }
+    },
+    yAxis: {
+      title: {
+        text: '{%trans "Members"%}'
+      },
+      labels: {
+        formatter: function () {
+          return this.value / 1000;
+        }
+      }
+    },
+    tooltip: {
+      useHTML: true,
+      borderWidth: 0,
+      shared: true,
+      valueSuffix: ' {%trans "member"%}'
+    },
+    plotOptions: {
+      area: {
+        stacking: 'normal',
+        lineColor: '#666666',
+        lineWidth: 1,
+        marker: {
+          lineWidth: 1,
+          lineColor: '#666666'
+        }
+      }
+    },
+    legend: {
+      layout: 'vertical',
+      align: 'right',
+      verticalAlign: 'middle'
+    },
+    exporting:
+    {
+      enabled: false
+    },
+    credits:
+    {
+        text: '{{service.title}}',
+        href: '{{service.url}}',
+        position:
+        {
+            x: -35,
+            y: -7
+        },
+        style: {
+            fontWeight: 'bold'
+        }
+    },
+    series: [{
+      name: 'Asia',
+      data: [502, 635, 809, 947, 1402, 3634, 5268]
+    }, {
+      name: 'Africa',
+      data: [106, 107, 111, 133, 221, 767, 1766]
+    }, {
+      name: 'Europe',
+      data: [163, 203, 276, 408, 547, 729, 628]
+    }, {
+      name: 'America',
+      data: [18, 31, 54, 156, 339, 818, 1201]
+    }, {
+      name: 'Oceania',
+      data: [2, 2, 2, 6, 13, 30, 46]
+    }]
+  }, function(_chart)
+    {
+      _chart.renderer.image('{{service.logo}}', 10, 5, 30, 30).attr({class: 'chartServiceLogo'}).add();
+    }
+  );
+}
 
 
