@@ -6,6 +6,8 @@
 {%block pageContent%}
 	{{block ("blockUsers")}}
 
+  {{block ("chartSynced")}}
+
   <div class="f">
     <div class="c4 s12 pRa5">
        {{block ("chartGender")}}
@@ -16,9 +18,6 @@
 
     <div class="c4 s12 pRa5">
        {{block ("chartStatus")}}
-    </div>
-
-    <div class="c4 s12 pRa5">
     </div>
   </div>
 
@@ -43,6 +42,14 @@
  <div class="chart x4" id="chartdiv" ></div>
 </a>
 {%endblock%}
+
+
+{%block chartSynced%}
+<a class="cbox pA0 mB10">
+ <div class="chart x4" id="syncedChart"></div>
+</a>
+{%endblock%}
+
 
 
 
@@ -170,6 +177,9 @@
 
 
 {%block foot_js%}
+<script type="text/javascript">
+  {% include 'content_support/ticket/report/data.js' %}
+</script>
 <script type="text/javascript">
     {%include 'content_crm/home/chart.js'%}
   {%if dashboardDetail.chart.categories and dashboardDetail.chart.visitor and dashboardDetail.chart.visit%}
