@@ -499,16 +499,15 @@ function users_guage()
     tooltip: {
       borderWidth: 0,
       backgroundColor: 'none',
-      useHTML: true,
       shadow: false,
       style: {
-        fontSize: '12px'
+        fontSize: '13px'
       },
-      pointFormat: '{series.name}<br><span style="font-size:2em; color: {point.color}; font-weight: bold">{point.y}%</span>',
+      pointFormat: '{series.name}<br><span style="font-size:2rem; color: {point.color}; font-weight: bold">{point.y}%</span>',
       positioner: function (labelWidth) {
         return {
-          x: (this.chart.chartWidth - labelWidth) / 2,
-          y: (this.chart.plotHeight / 2) + 15
+          x: (this.chart.chartWidth - 75) / 2,
+          y: (this.chart.plotHeight / 2) + 20
         };
       }
     },
@@ -556,7 +555,11 @@ function users_guage()
         rounded: true
       }
     },
- credits:
+    exporting:
+    {
+      enabled: false
+    },
+    credits:
     {
         text: '{{service.title}}',
         href: '{{service.url}}',
@@ -569,9 +572,6 @@ function users_guage()
             fontWeight: 'bold'
         }
     },
-    series: [{
-      name: 'Asia',
-      data: [502
     series: [{
       name: 'Mobile',
       data: [{
