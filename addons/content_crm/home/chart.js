@@ -64,20 +64,7 @@ Highcharts.chart('chartdiv',
   },
   exporting:
   {
-    buttons:
-    {
-      contextButton:
-      {
-        menuItems:
-        [
-         'printChart',
-         'separator',
-         'downloadPNG',
-         'downloadJPEG',
-         'downloadSVG'
-        ]
-      }
-    }
+    enabled: false
   },
   credits:
   {

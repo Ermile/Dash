@@ -1,6 +1,6 @@
 function chartDrawer()
 {
-  if($("#chartdiv").length == 1){highChart();}
+  if($("#syncedChart").length == 1){syncedChart();}
 }
 
 /**
@@ -27,7 +27,7 @@ function syncExtremes(e) {
 }
 
 
-function highChart()
+function syncedChart()
 {
 /*
 The purpose of this demo is to demonstrate how multiple charts on the same page
@@ -43,7 +43,7 @@ mouse/touch event handler to bind the charts together.
  * built-in events with handlers defined on the parent element.
  */
 ['mousemove', 'touchmove', 'touchstart'].forEach(function (eventType) {
-  document.getElementById('chartdiv').addEventListener(
+  document.getElementById('syncedChart').addEventListener(
     eventType,
     function (e) {
       var chart,
@@ -100,11 +100,11 @@ Highcharts.ajax({
         return [activity.xData[j], val];
       });
 
-      var chartDiv = document.createElement('div');
-      chartDiv.className = 'chart';
-      document.getElementById('chartdiv').appendChild(chartDiv);
+      var syncedChart = document.createElement('div');
+      syncedChart.className = 'chart';
+      document.getElementById('syncedChart').appendChild(syncedChart);
 
-      Highcharts.chart(chartDiv, {
+      Highcharts.chart(syncedChart, {
         chart: {
           marginLeft: 40, // Keep all charts left aligned
           spacingTop: 20,

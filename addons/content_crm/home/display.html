@@ -4,21 +4,24 @@
 
 
 {%block pageContent%}
+	{{block ("blockUsers")}}
+
   <div class="f">
-    <div class="c4 m12 s12 pRa5">
-	     {{block ("chartGender")}}
+    <div class="c4 s12 pRa5">
+       {{block ("chartGender")}}
+    </div>
+    <div class="c8 s12">
+       {{block ("chartIdentify")}}
     </div>
 
-    <div class="c4 m12 s12 pRa5">
+    <div class="c4 s12 pRa5">
        {{block ("chartStatus")}}
     </div>
 
-    <div class="c4 m12 s12 pRa5">
-       {{block ("chartIdentify")}}
+    <div class="c4 s12 pRa5">
     </div>
   </div>
 
-	{{block ("blockUsers")}}
 {%endblock%}
 
 
@@ -110,7 +113,7 @@
 
 
 {%block blockUsers%}
-<div class="f mB20">
+<div class="f mB10">
   <div class="c s6">{{block ("dUsers")}}</div>
   <div class="c s6">{{block ("dUserPerms")}}</div>
   <div class="c s6">{{block ("dLogs")}}</div>
