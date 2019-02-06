@@ -9,6 +9,27 @@ class log
 		'id',
 	];
 
+
+	public static function lates_log($_args = [])
+	{
+		if(!isset($_args['limit']))
+		{
+			$_args['limit'] = 5;
+		}
+
+		$_args['order_raw'] = 'logs.id DESC';
+		$_args['pagenation'] = false;
+
+		$list = \dash\db\logs::search(null, $_args);
+
+		if(is_array($list))
+		{
+			$list = array_map(['\\dash\\app\\log', 'ready'], $list);
+		}
+
+		return $list;
+	}
+
 	public static function set_readdate($_data, $_all = false, $_user_id = null)
 	{
 		if(!is_array($_data))

@@ -11,6 +11,27 @@ class user
 	use \dash\app\user\get;
 	use \dash\app\user\user_id;
 
+
+	public static function lates_user($_args = [])
+	{
+		if(!isset($_args['limit']))
+		{
+			$_args['limit'] = 5;
+		}
+
+		$_args['order_raw'] = 'users.id DESC';
+		$_args['pagenation'] = false;
+
+		$list = \dash\db\users::search(null, $_args);
+
+		if(is_array($list))
+		{
+			$list = array_map(['\\dash\\app\\user', 'ready'], $list);
+		}
+
+		return $list;
+	}
+
 	public static function chart_gender()
 	{
 		$result     = \dash\db\users::get_gender_chart();

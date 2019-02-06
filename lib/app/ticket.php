@@ -26,6 +26,27 @@ class ticket
 	public static $master_join = "LEFT JOIN users ON users.id = comments.user_id ";
 
 
+	public static function lates_ticket($_args = [])
+	{
+		if(!isset($_args['limit']))
+		{
+			$_args['limit'] = 5;
+		}
+
+		$_args['order_raw'] = 'comments.id DESC';
+		$_args['pagenation'] = false;
+		$_args['parent'] = null;
+
+		$list = \dash\db\comments::search(null, $_args);
+
+		if(is_array($list))
+		{
+			$list = array_map(['\\dash\\app\\ticket', 'ready'], $list);
+		}
+
+		return $list;
+	}
+
 	public static function get_user_in_ticket($_ticket_detail)
 	{
 		if(!is_array($_ticket_detail))
