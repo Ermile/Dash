@@ -101,7 +101,6 @@ Highcharts.chart('chartdiv',
   series: [
   {
     name: '{%trans "Post"%}',
-    type: 'column',
     data: {{dashboardDetail.chart.value | raw}},
     tooltip: {
       valueSuffix: ' {%trans "Count"%}'
