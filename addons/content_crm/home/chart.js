@@ -183,7 +183,7 @@ function status_chart()
       useHTML: true,
       borderWidth: 0,
       shared: true,
-      pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+      pointFormat: '{series.name} <b>{point.percentage:.1f}%</b>'
     },
     plotOptions: {
       pie: {
@@ -191,7 +191,8 @@ function status_chart()
         cursor: 'pointer',
         dataLabels: {
           enabled: true,
-          format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+          // format: '<b>{point.name}</b><br> {point.percentage:.1f} %',
+          useHTML: true,
           style: {
             color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
           }
@@ -218,9 +219,12 @@ function status_chart()
     series:
     [
     {
-      name: '{%trans "Person"%}',
+      name: '{%trans "User Status"%}',
       allowPointSelect: true,
       data: {{dashboardDetail.chart.status | raw}},
+      tooltip: {
+        valueSuffix: ' {%trans "Person"%}'
+      },
       showInLegend: true
     }]
   }, function(_chart)
