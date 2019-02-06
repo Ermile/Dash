@@ -109,6 +109,7 @@ Highcharts.ajax({
           marginLeft: 40, // Keep all charts left aligned
           spacingTop: 20,
           spacingBottom: 20,
+          height: 220,
           zoomType: 'x',
           style: {
             fontFamily: 'IRANSans, Tahoma, sans-serif'
