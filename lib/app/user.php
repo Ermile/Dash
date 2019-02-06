@@ -106,7 +106,7 @@ class user
 	}
 
 
-	public static function chart_identify()
+	public static function chart_identify($_args = [], $_get_raw = false)
 	{
 
 		$result = \dash\db\users::get_identify_chart();
@@ -114,38 +114,50 @@ class user
 		$hi_chart   = [];
 		$categories = [];
 		$values     = [];
+		$raw        = [];
 
 		if(!is_array($result))
 		{
 			$result = [];
 		}
 
-		// $all = \dash\db\users::get_count();
-		// $all = intval($all);
-		// if($all === 0)
-		// {
-		// 	$all = 1;
-		// }
+		$all = \dash\db\users::get_count();
+		$all = intval($all);
+		if($all === 0)
+		{
+			$all = 1;
+		}
+
 
 		foreach ($result as $key => $value)
 		{
+			$temp     = 0;
+			$type     = null;
+			$type_raw = null;
+
 			if(array_key_exists('type', $value))
 			{
-				$categories[] = $value['type'] ? T_($value['type']) : T_("Unknown");
+				$type = $value['type'] ? T_($value['type']) : T_("Unknown");
+				$categories[] = $type;
+				$type_raw = $value['type'];
 			}
 
 			if(array_key_exists('count', $value))
 			{
 				$temp = intval($value['count']);
-				// $temp = ($temp * 100) / $all;
 				$values[] = intval($temp);
 			}
+
+			$raw[$type_raw] = round(($temp * 100) / $all, 1);
 		}
 
 		$hi_chart['categories'] = json_encode($categories, JSON_UNESCAPED_UNICODE);
 		$hi_chart['value']      = json_encode($values, JSON_UNESCAPED_UNICODE);
 
-		return $hi_chart;
+		$return                 = [];
+		$return['chart']        = $hi_chart;
+		$return['raw']          = $raw;
+		return $return;
 
 	}
 

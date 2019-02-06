@@ -578,7 +578,7 @@ function users_guage()
         color: Highcharts.getOptions().colors[0],
         radius: '112%',
         innerRadius: '88%',
-        y: 90
+        y: {{dashboardDetail.identifyNumber.mobile | raw}}
       }]
     }, {
       name: 'Telegram',
@@ -586,7 +586,7 @@ function users_guage()
         color: Highcharts.getOptions().colors[1],
         radius: '87%',
         innerRadius: '63%',
-        y: 25
+        y: {{dashboardDetail.identifyNumber.chatid | raw}}
       }]
     }, {
       name: 'Android',
@@ -594,7 +594,7 @@ function users_guage()
         color: Highcharts.getOptions().colors[2],
         radius: '62%',
         innerRadius: '38%',
-        y: 5
+        y: {{dashboardDetail.identifyNumber.android | raw}}
       }]
     }]
   }, function(_chart)
