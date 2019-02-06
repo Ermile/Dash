@@ -164,6 +164,75 @@ Highcharts.chart('genderchart', {
 function status_chart()
 {
 
+  Highcharts.chart('statuschart',
+  {
+    chart: {
+      zoomType: 'x',
+      style: {
+        fontFamily: 'IRANSans, Tahoma, sans-serif'
+      },
+      plotBackgroundColor: null,
+      plotBorderWidth: null,
+      plotShadow: false,
+      type: 'pie'
+    },
+    title: {
+      text: '{%trans "Users group by"%} {%trans "Status"%}'
+    },
+    tooltip: {
+      useHTML: true,
+      borderWidth: 0,
+      shared: true,
+      pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions: {
+      pie: {
+        allowPointSelect: true,
+        cursor: 'pointer',
+        dataLabels: {
+          enabled: true,
+          format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+          style: {
+            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+          }
+        }
+      }
+    },
+    exporting:
+    {
+      enabled: false
+    },
+    credits:
+    {
+        text: '{{service.title}}',
+        href: '{{service.url}}',
+        position:
+        {
+            x: -35,
+            y: -7
+        },
+        style: {
+            fontWeight: 'bold'
+        }
+    },
+    series:
+    [
+    {
+      name: '{%trans "Person"%}',
+      allowPointSelect: true,
+      data: {{dashboardDetail.chart.status | raw}},
+      showInLegend: true
+    }]
+  }, function(_chart)
+  {
+    _chart.renderer.image('{{service.logo}}', 10, 5, 30, 30).attr({class: 'chartServiceLogo'}).add();
+  });
+}
+
+
+function status_chart2()
+{
+
 
 Highcharts.chart('statuschart', {
   chart: {
