@@ -20,14 +20,14 @@
 
 
   <div class="f">
-    <div class="c pRa10">
-      {{block ("l10Log")}}
-    </div>
-    <div class="c pRa10">
+    <div class="c s12 pRa10">
       {{block ("l10Member")}}
     </div>
-    <div class="c">
-      {{block ("l10Ticket")}}
+    <div class="c s12 pRa10">
+      <div class="chart x3 mB10" id="userGuage"></div>
+    </div>
+    <div class="c s12">
+      {{block ("l10Log")}}
     </div>
   </div>
 
@@ -201,6 +201,9 @@
 
 
 {%block foot_js%}
+<script type="text/javascript">
+    {%include 'content_crm/home/solid-gauge.js'%}
+</script>
 <script type="text/javascript">
     {%include 'content_crm/home/chart.js'%}
 </script>
