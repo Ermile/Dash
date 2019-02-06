@@ -15,8 +15,21 @@
     </div>
   </div>
 
-  <div class="chart2" id="syncedChart"></div>
-  <div class="chart x3" id="identifyChart"></div>
+  <div class="chart2 mB10" id="syncedChart"></div>
+  <div class="chart x3 mB10" id="identifyChart"></div>
+
+  <div class="f">
+    <div class="c pRa10">
+      {{block ("l10Log")}}
+    </div>
+    <div class="c pRa10">
+      {{block ("l10Member")}}
+    </div>
+    <div class="c">
+      {{block ("l10Ticket")}}
+    </div>
+  </div>
+
 
 {%endblock%}
 
@@ -136,6 +149,47 @@
  </div>
 </a>
 {%endblock%}
+
+
+
+{%block l10Log%}
+<div class="cbox fs11">
+  <h2>{%trans "Latest logs"%}</h2>
+  <a class="msg f" href="#">
+    <div>lorem</div>
+    <div class="cauto">{{"now" | dt }}</div>
+  </a>
+  <a class="msg f" href="#">lorem</a>
+  <a class="msg f" href="#">lorem</a>
+  <a class="msg f" href="#">lorem</a>
+  <a class="msg f" href="#">lorem</a>
+</div>
+{%endblock%}
+
+
+{%block l10Member%}
+<div class="cbox fs11">
+  <h2>{%trans "Latest Members"%}</h2>
+  <a class="msg f" href="#">lorem</a>
+  <a class="msg f" href="#">lorem</a>
+  <a class="msg f" href="#">lorem</a>
+  <a class="msg f" href="#">lorem</a>
+  <a class="msg f" href="#">lorem</a>
+</div>
+{%endblock%}
+
+
+{%block l10Ticket%}
+<div class="cbox fs11">
+  <h2>{%trans "Latest Tickets"%}</h2>
+  <a class="msg f" href="#">lorem</a>
+  <a class="msg f" href="#">lorem</a>
+  <a class="msg f" href="#">lorem</a>
+  <a class="msg f" href="#">lorem</a>
+  <a class="msg f" href="#">lorem</a>
+</div>
+{%endblock%}
+
 
 
 
