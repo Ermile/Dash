@@ -17,7 +17,7 @@ class view
 		\dash\data::page_special(true);
 
 		$cache = \dash\session::get('cpDashboardCache');
-		if(!$cache || true)
+		if(!$cache)
 		{
 
 			$dashboard_detail                   = [];
