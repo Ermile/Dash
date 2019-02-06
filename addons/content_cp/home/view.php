@@ -28,6 +28,7 @@ class view
 			$dashboard_detail['helpcenter']     = \dash\db\posts::get_count(['type' => 'help']);
 			$dashboard_detail['helpcentertags'] = \dash\db\terms::get_count(['type' => 'help_tag']);
 			$dashboard_detail['supporttags']    = \dash\db\terms::get_count(['type' => 'support_tag']);
+
 			$dashboard_detail['tickets']        = \dash\db\comments::get_count(['type' => 'ticket', 'parent' => null]);
 
 
@@ -50,6 +51,7 @@ class view
 		}
 
 		\dash\data::dashboardDetail($dashboard_detail);
+		\dash\data::allWordCloud(\dash\app\posts::all_word_cloud());
 
 	}
 }

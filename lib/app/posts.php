@@ -11,6 +11,79 @@ class posts
 
 	public static $datarow = null;
 
+	public static function all_word_cloud()
+	{
+
+		$word         = [];
+		$allPost = \dash\db\posts::get(['type' => ["IN", "('page', 'post', 'help')"]]);
+
+		if(is_array($allPost))
+		{
+			foreach ($allPost as $key => $value)
+			{
+				if(is_array($value))
+				{
+					foreach ($value as $k => $v)
+					{
+						if(in_array($k, ['title', 'desc']))
+						{
+							$word[] = self::remove_2_char($v);
+						}
+					}
+				}
+			}
+		}
+
+		$word = implode(' ', $word);
+
+		return $word;
+
+	}
+
+	private static function remove_2_char($_text)
+	{
+		$word = [];
+		$_text = strip_tags($_text);
+		$_text = str_replace('[', ' ', $_text);
+		$_text = str_replace(']', ' ', $_text);
+		$_text = str_replace('{', ' ', $_text);
+		$_text = str_replace('}', ' ', $_text);
+		$_text = str_replace('"', ' ', $_text);
+		$_text = str_replace('؛', ' ', $_text);
+		$_text = str_replace("'", ' ', $_text);
+		$_text = str_replace('(', ' ', $_text);
+		$_text = str_replace(')', ' ', $_text);
+		$_text = str_replace(':', ' ', $_text);
+		$_text = str_replace(',', ' ', $_text);
+		$_text = str_replace('،', ' ', $_text);
+		$_text = str_replace('-', ' ', $_text);
+		$_text = str_replace('_', ' ', $_text);
+		$_text = str_replace('?', ' ', $_text);
+		$_text = str_replace('؟', ' ', $_text);
+		$_text = str_replace('.', ' ', $_text);
+		$_text = str_replace('=', ' ', $_text);
+		$_text = str_replace('
+', ' ', $_text);
+
+		$_text = str_replace("\n", ' ', $_text);
+		$_text = str_replace('!', ' ', $_text);
+		$_text = str_replace('&nbsp;', ' ', $_text);
+
+		$split = explode(" ", $_text);
+
+		foreach ($split as $key => $value)
+		{
+			$value = trim($value);
+			if(mb_strlen($value) > 2 && !is_numeric($value))
+			{
+				$word[] = $value;
+			}
+		}
+
+		$word = implode(' ', $word);
+		$word = trim($word);
+		return $word;
+	}
 	public static function home_chart($_args)
 	{
 

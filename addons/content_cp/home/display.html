@@ -7,6 +7,7 @@
 	{{block ("blockCMS")}}
 	{{block ("chartPost")}}
 	{{block ("blockHelpCenter")}}
+  {{block ("wordcloudChart")}}
 
 {%endblock%}
 
@@ -62,6 +63,16 @@
 {%endblock%}
 
 
+
+
+
+
+
+{%block wordcloudChart%}
+<a class="cbox pA0">
+ <div class="chart x4" id="wordcloud"></div>
+</a>
+{%endblock%}
 
 
 
@@ -147,9 +158,11 @@
 
 {%block foot_js%}
 <script type="text/javascript">
+  {%include 'content_cp/home/wordcloud.js'%}
+</script>
+
+<script type="text/javascript">
     {%include 'content_cp/home/chart.js'%}
-  {%if dashboardDetail.chart.categories and dashboardDetail.chart.visitor and dashboardDetail.chart.visit%}
-  {%endif%}
 </script>
 {%endblock%}
 
