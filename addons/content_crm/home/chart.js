@@ -341,10 +341,10 @@ function users_chart()
       }
     },
     title: {
-      text: 'Historic and Estimated Worldwide Population Growth by Region'
+      text: '{%trans "Users group by date"%}'
     },
     xAxis: {
-      categories: ['1750', '1800', '1850', '1900', '1950', '1999', '2050'],
+      categories: {{dashboardDetail.chart.dayevent.categories | raw}},
       tickmarkPlacement: 'on',
       title: {
         enabled: false
@@ -399,22 +399,7 @@ function users_chart()
             fontWeight: 'bold'
         }
     },
-    series: [{
-      name: 'Asia',
-      data: [502, 635, 809, 947, 1402, 3634, 5268]
-    }, {
-      name: 'Africa',
-      data: [106, 107, 111, 133, 221, 767, 1766]
-    }, {
-      name: 'Europe',
-      data: [163, 203, 276, 408, 547, 729, 628]
-    }, {
-      name: 'America',
-      data: [18, 31, 54, 156, 339, 818, 1201]
-    }, {
-      name: 'Oceania',
-      data: [2, 2, 2, 6, 13, 30, 46]
-    }]
+    series: {{dashboardDetail.chart.dayevent.data | raw}}
   }, function(_chart)
     {
       _chart.renderer.image('{{service.logo}}', 10, 5, 30, 30).attr({class: 'chartServiceLogo'}).add();

@@ -97,8 +97,14 @@ class dayevent
 	}
 
 
-	public static function chart()
+	public static function chart($_option = [])
 	{
+		$fields = [];
+		if(isset($_option['field']) && is_array($_option['field']))
+		{
+			$fields = $_option['field'];
+		}
+
 		$result = \dash\db\dayevent::get(['1.1' => 1.1]);
 
 		$data       = [];
@@ -109,6 +115,11 @@ class dayevent
 			foreach ($record as $key => $value)
 			{
 				if(in_array($key, ['id','datecreated', 'datemodified']))
+				{
+					continue;
+				}
+
+				if($fields && !in_array($key, $fields))
 				{
 					continue;
 				}

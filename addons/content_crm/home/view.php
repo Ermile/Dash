@@ -33,6 +33,8 @@ class view
 			$chart['gender']                  = \dash\app\user::chart_gender($get_chart);
 			$chart['status']                  = \dash\app\user::chart_status($get_chart);
 			$chart['log']                     = \dash\app\log::chart_log_date($get_chart);
+			$chart['dayevent']                = \dash\utility\dayevent::chart(['field' => ['activeuser', 'deactiveuser', 'user_awaiting', 'user_removed', 'user_filter']]);
+
 
 			$identify                         = \dash\app\user::chart_identify($get_chart, true);
 			$chart['identify']                = $identify['chart'];
