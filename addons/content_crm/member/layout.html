@@ -255,12 +255,20 @@
     </a>
    </div>
 
+  <div class="c s6">
+    <a class="dcard {%if url.child == 'log'%}active{%endif%}" href='{{url.this}}/log?id={{requestGET.id}}' data-shortkey="56ctrlshift" >
+     <div class="statistic tail">
+      <div class="value"><i class="sf-camera-surveillance-1"></i></div>
+      <div class="label">{%trans "Log"%} <kbd class=" hide mT5">Shift+8</kbd></div>
+     </div>
+    </a>
+   </div>
 
    <div class="c s6">
-    <a class="dcard {%if url.child == 'notif'%}active{%endif%}" href='{{url.this}}/notif?id={{requestGET.id}}' data-shortkey="56ctrlshift" >
+    <a class="dcard {%if url.child == 'notif'%}active{%endif%}" href='{{url.this}}/notif?id={{requestGET.id}}' data-shortkey="57ctrlshift" >
      <div class="statistic tail">
       <div class="value"><i class="sf-bullhorn"></i></div>
-      <div class="label">{%trans "Notification"%} <kbd class=" hide mT5">Shift+8</kbd></div>
+      <div class="label">{%trans "Notification"%} <kbd class=" hide mT5">Shift+9</kbd></div>
      </div>
     </a>
    </div>

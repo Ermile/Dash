@@ -85,6 +85,7 @@
     {%endif%}
 
   {{block('sessionList')}}
+  {{block('logList')}}
  </div>
 </div>
 {%endblock%}
@@ -222,5 +223,26 @@
 
 {%endfor%}
 </div>
+
+{%endblock%}
+
+
+
+
+{%use 'content_crm/log/home/logTable.html'%}
+
+
+
+{%block logList%}
+
+{%if dataTable%}
+
+  {{block('htmlTable')}}
+  {%if dataFilter%}
+    {{block('htmlFilter')}}
+  {%endif%}
+
+{%endif%}
+
 
 {%endblock%}

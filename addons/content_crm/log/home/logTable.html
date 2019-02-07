@@ -1,0 +1,132 @@
+
+{%block htmlTable%}
+
+
+  <table class="tbl1 v1 cbox fs12">
+    <thead class="fs09">
+      <tr>
+        <th>{%trans "User"%}</th>
+        <th>{%trans "Detail"%}</th>
+        <th>{%trans "Description"%}</th>
+        <th>{%trans "Date"%}</th>
+
+      </tr>
+    </thead>
+
+    <tbody>
+      {%for key, value in dataTable%}
+      <tr class="">
+        <td class="collapsing txtRa">
+          {%if value.from | coding('encode')%}
+          <a href="{{url.this}}?user={{value.from | coding('encode')}}">
+            <img src="{%if value.avatar%}{{value.avatar}}{%else%}{{url.static}}/siftal/images/default/avatar.png{%endif%}" class="avatar mRa5" alt="{{value.displayname}}">
+            <span class="txtB s0 fs08">{{value.displayname}}</span>
+          </a>
+          <div class="txtRa fs08">
+            <a title='{%trans "Mobile"%}'>{{value.mobile | fitNumber('mobile12')}}</a>
+            <a href="{{url.this}}?userid={{value.from | coding('encode')}}" class="badge" title='{%trans "User id"%}'>{{value.from | coding('encode') | fitNumber(false)}}</a>
+          </div>
+
+          <span class="badge light floatR"><a href="{{url.this}}/show?id={{value.id}}">{{value.id | fitNumber(false)}}</a></span>
+
+
+          <nav class="txtRa">
+            <a href="{{url.this}}?user_id={{value.from | coding('encode')}}" title='{%trans "User logs"%}'><i class="sf-briefcase"></i></a>
+            <a href="{{url.kingdom}}/crm/member/glance?id={{value.from | coding('encode')}}" title='{%trans "User Profile"%}'><i class="sf-user-md"></i></a>
+            <a title='{%trans "Search by user session id"%}' href="{{url.this}}?session_id={{value.session_id}}"><i class="sf-user-secret"></i></a>
+          </nav>
+        {%else%}
+          <a href="{{url.this}}?session_id={{value.session_id}}">
+            <img src="{{url.static}}/siftal/images/default/avatar.png" class="avatar mRa5" alt='{%trans "Guest"%}'>
+            <span class="txtB s0 fs08">{%trans "Guest"%}</span>
+          </a><br>
+          <span class="badge light floatR"><a href="{{url.this}}/show?id={{value.id}}">{{value.id | fitNumber(false)}}</a></span>
+        {%endif%}
+        </td>
+
+
+        <td class="collapsing txtRa">
+          <span class="badge warn"><a href="{{url.this}}?caller={{value.caller}}">{{value.caller}}</a></span>
+
+          {%if value.subdomain%}
+          <br>
+            <span class="badge pain" title='{%trans "Subdomain"%}'><a href="{{url.this}}?subdomain={{value.subdomain}}">{{value.subdomain}}</a></span>
+          {%endif%}
+          {%if value.visitor_id%}
+          <span class="badge success2"><a href="{{url.here}}/visitor/log?id={{value.visitor_id}}">{{value.visitor_id | fitNumber(false)}}</a></span>
+          {%endif%}
+          <br>
+          {%if value.notification %}<i class="sf-bell" title='{%trans "Notification"%}'></i>{%endif%}
+          {%if value.telegram %}<i class="sf-paper-plane" title='{%trans "Telegram"%}'></i>{%endif%}
+          {%if value.sms %}<i class="sf-mobile" title='{%trans "SMS"%}'></i>{%endif%}
+          {%if value.email %}<i class="sf-at" title='{%trans "Email"%}'></i>{%endif%}
+          {%if value.url %}<a href="{{value.url}}"><i class="sf-share" title='{%trans "Url"%}'></i></a>{%endif%}
+          {%if value.life_time %}<span class="badge success2">{{value.life_time}}</span>{%endif%}
+          {%if value.need_answer %}<span class="sf-check"></span>{%endif%}
+          {%if value.auto_expire %}<br><span class="badge warn2">{{value.auto_expire}}</span>{%endif%}
+          {%if value.send_to%}<br><a href="#" class="badge" title='{%trans "Send to"%}'>{{value.send_to | join(',')}}</a>{%endif%}
+          {%set myStatus = value.status | capitalize%}
+          <br>
+          <a class="badge info" href="{{url.this}}?status={{value.status}}">{%trans myStatus%}</a>
+
+        </td>
+
+
+        <td class="">
+          <span class="txtB">{{value.title}}</span>
+          <br>
+          {{value.content}}
+
+
+          <span class="">{%if value.data is iterable%}{{value.data | dump}} {%else%} {{value.data}} {%endif%}</span>
+
+         </td>
+
+        <td class="collapsing">
+          <a href="{{url.this}}?datecreated={{value.datecreated}}" title='{%trans "Date created"%}'>
+            {{value.datecreated | dt(true)}}
+          </a>
+        <br>{{value.datecreated | dt("human", "ultimate")}}
+        {%if value.datemodified%}
+        <br>
+        <span class="badge danger2" title='{%trans "Date modified"%}'>
+          <a href="{{url.this}}?datecreated={{value.datemodified}}">
+            {{value.datemodified | dt(true)}}
+          </a>
+        </span>
+        {%endif%}
+
+        </td>
+
+
+
+
+
+      </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+  {%include display.pagination%}
+
+{%endblock%}
+
+
+{%block htmlFilter%}
+<p class="f fs14 msg info2">
+  <span class="c">{{dataFilter | raw}}</span>
+  <a class="cauto" href="{{url.here}}/log{{moduleType}}">{%trans "Clear filters"%}</a>
+</p>
+{%endblock%}
+
+
+{%block htmlFilterNoResult%}
+<p class="f fs14 msg warn2">
+  <span class="c">{%trans "Result not found!"%} {%trans "Search with new keywords."%}</span>
+  <a class="cauto" href="{{url.here}}/log{{moduleType}}">{%trans "Clear filters"%}</a>
+</p>
+{%endblock%}
+
+
+{%block htmlStartAddNew%}
+<p class="fs14 msg success2 pTB20">{%trans "Hi!"%} <a href="{{url.here}}/log/add{{moduleType}}">{%trans "Try to start with add new record!"%}</a></p>
+{%endblock%}

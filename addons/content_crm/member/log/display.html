@@ -1,0 +1,37 @@
+{%extends 'content_crm/member/layout.html'%}
+
+
+{%block pageContent%}
+
+
+{{block('pageSteps')}}
+<div class="f">
+ <div class="cauto s12 pA5">
+{{block("psidebar")}}
+ </div>
+ <div class="c s12 pA5">
+
+  {{block('logList')}}
+ </div>
+</div>
+{%endblock%}
+
+
+
+{%use 'content_crm/log/home/logTable.html'%}
+
+
+
+{%block logList%}
+
+{%if dataTable%}
+
+  {{block('htmlTable')}}
+  {%if dataFilter%}
+    {{block('htmlFilter')}}
+  {%endif%}
+
+{%endif%}
+
+
+{%endblock%}

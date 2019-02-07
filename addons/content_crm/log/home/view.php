@@ -21,6 +21,13 @@ class view
 
 		\dash\data::page_pictogram('pinboard');
 
+		self::search_log();
+
+	}
+
+	public static function search_log($_args = [])
+	{
+
 		$search_string = \dash\request::get('q');
 		if($search_string)
 		{
@@ -32,6 +39,11 @@ class view
 			'sort'  => \dash\request::get('sort'),
 			'order' => \dash\request::get('order'),
 		];
+
+		if($_args && is_array($_args))
+		{
+			$args = array_merge($args, $_args);
+		}
 
 		if(!$args['sort'])
 		{
