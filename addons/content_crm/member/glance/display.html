@@ -110,6 +110,7 @@
         </tbody>
       </table>
     </div>
+      {{block('telegramAndroidDetail')}}
   </div>
   {%if perm_su()%}
   {%if requestGET.showlog%}
@@ -149,10 +150,56 @@
 {%endblock%}
 
 
+{%block telegramAndroidDetail %}
+{%if userTelegram%}
+<table class="tbl1 v6 fs12">
+  <thead>
+    <tr>
+      <th>{%trans "Telegrams"%}</th>
+      <th>{%trans "Username"%}</th>
+      <th>{%trans "Join at"%}</th>
+    </tr>
+  </thead>
+  <tbody>
+    {%for key, value in userTelegram%}
+      <tr>
+        <td><a href="{{url.this}}/security?id={{requestGET.id}}">{{value.chatid | fitNumber(false)}}</a></td>
+        <td>{{value.username}}</td>
+        <td>{{value.datecreated | dt('human', 'year')}}</td>
+      </tr>
+    {%endfor%}
+  </tbody>
+</table>
+{%endif%}
+
+{%if userAndroid%}
+<table class="tbl1 v6 fs12">
+  <thead>
+    <tr>
+      <th>{%trans "Android"%}</th>
+      <th>{%trans "Version"%}</th>
+      <th>{%trans "Manufactorer"%}</th>
+      <th>{%trans "Serial"%}</th>
+      <th>{%trans "Join at"%}</th>
+    </tr>
+  </thead>
+  <tbody>
+    {%for key, value in userAndroid%}
+      <tr>
+        <td><a href="{{url.this}}/security?id={{requestGET.id}}">{{value.model}}</a></td>
+        <td>{{value.version}}</td>
+        <td>{{value.manufacturer}}</td>
+        <td>{{value.serial}}</td>
+        <td>{{value.datecreated | dt('human', 'year')}}</td>
+      </tr>
+    {%endfor%}
+  </tbody>
+</table>
+{%endif%}
 
 
 
-
+{%endblock%}
 
 
 
