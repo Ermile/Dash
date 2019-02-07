@@ -1130,6 +1130,13 @@ class TransStatic
 	echo T_("Panel");
 	echo T_("panel");
 
+	echo T_("activeuser");
+	echo T_("deactiveuser");
+	echo T_("user_awaiting");
+	echo T_("user_removed");
+	echo T_("user_filter");
+	echo T_("news");
+
  }
 }
 ?>

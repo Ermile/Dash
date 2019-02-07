@@ -138,7 +138,7 @@ class dayevent
 
 				if(!isset($data[$key]))
 				{
-					$data[$key] = ['name' => $key, 'data' => []];
+					$data[$key] = ['name' => T_($key), 'data' => []];
 				}
 
 				$data[$key]['data'][] = $temp;
@@ -152,6 +152,7 @@ class dayevent
 
 		return $result;
 	}
+
 
 
 	public static function day_notif()
