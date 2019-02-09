@@ -11,6 +11,8 @@
 {%include display.hive%}
 
 {{block('eramzNewSignup')}}
+
+  <div class="agreement">{{termOfService | raw}}</div>
 {{block('esignup')}}
 
 {{block('eMethods')}}
