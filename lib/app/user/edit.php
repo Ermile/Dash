@@ -83,15 +83,6 @@ trait edit
 			}
 		}
 
-		if($args['chatid'])
-		{
-			$check_chatid_exist = \dash\db\users::get(['chatid' => $args['chatid'], 'limit' => 1]);
-			if(isset($check_chatid_exist['id']) && intval($check_chatid_exist['id']) !== intval($id))
-			{
-				\dash\notif::error(T_("Duplicate chatid"), 'chatid');
-				return false;
-			}
-		}
 
 		if(\dash\app::isset_request('nationalcode') || \dash\app::isset_request('pasportcode'))
 		{
