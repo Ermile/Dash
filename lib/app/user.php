@@ -651,32 +651,67 @@ class user
 		$username = \dash\app::request('username');
 		if($username)
 		{
+			$username = \dash\utility\convert::to_en_number($username);
+
+			$username = preg_replace("/\_{2,}/", "_", $username);
+			$username = preg_replace("/\-{2,}/", "-", $username);
+
 			if(mb_strlen($username) < 5)
 			{
-				if($debug) \dash\notif::error(T_("Username must have at least 5 character"), 'username');
+				\dash\notif::error(T_("Slug must have at least 5 character"), 'username');
 				return false;
 			}
 
 			if(mb_strlen($username) > 50)
 			{
-				if($debug) \dash\notif::error(T_("Please set the username less than 50 character"), 'username');
+				\dash\notif::error(T_("Please set the username less than 50 character"), 'username');
 				return false;
 			}
 
 			if(!preg_match("/^[A-Za-z0-9_\-]+$/", $username))
 			{
-				if($debug) \dash\notif::error(T_("Only [A-Za-z0-9_-] can use in username"), 'username');
+				\dash\notif::error(T_("Only [A-Za-z0-9_-] can use in username"), 'username');
 				return false;
 			}
 
 			if(!preg_match("/[A-Za-z]+/", $username))
 			{
-				if($debug) \dash\notif::error(T_("You must use a one character from [A-Za-z] in the username"), 'username');
+				\dash\notif::error(T_("You must use a one character from [A-Za-z] in the username"), 'username');
 				return false;
 			}
 
-			$username = preg_replace("/\_{2,}/", "_", $username);
-			$username = preg_replace("/\-{2,}/", "-", $username);
+			if(is_numeric($username))
+			{
+				\dash\notif::error(T_("Slug should contain a Latin letter"),'username');
+				return false;
+			}
+
+			if(is_numeric(substr($username, 0, 1)))
+			{
+				\dash\notif::error(T_("The username must begin with latin letters"),'username');
+				return false;
+			}
+
+			if(!preg_match("/^[A-Za-z0-9]+$/", $username))
+			{
+				\dash\notif::error(T_("Only [A-Za-z0-9] can use in username"), 'username', 'arguments');
+				return false;
+			}
+
+			// check username
+			if(mb_strlen($username) >= 50)
+			{
+				\dash\notif::error(T_("Username must be less than 50 character"), 'username', 'arguments');
+				return false;
+			}
+
+			$username = mb_strtolower($username);
+
+			if(in_array($username, []))
+			{
+				\dash\notif::error(T_("You can not choose this username"), 'username', 'arguments');
+				return false;
+			}
 
 			$check_duplicate_username = \dash\db\users::get(['username' => $username, 'limit' => 1]);
 			if(isset($check_duplicate_username['id']))
