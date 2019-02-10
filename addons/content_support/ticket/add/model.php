@@ -24,11 +24,12 @@ class model
 	}
 
 
-	public static function add_new($_via, $_content, $_file = null)
+	public static function add_new($_via, $_content, $_file = null, $_title = null)
 	{
 		// ready to insert comments
 		$args =
 		[
+			'title'   => $_title,
 			'author'  => \dash\user::detail('displayname'),
 			'email'   => \dash\user::detail('email'),
 			'type'    => 'ticket',
@@ -108,8 +109,15 @@ class model
 			\dash\header::status(422, T_("Can not set 2 link in one message!"));
 		}
 
+		$title = null;
+		if(\dash\request::get('title'))
+		{
+			$title = \dash\request::get('title');
+			$title = substr($title, 0, 20);
+		}
+
 		// insert comments
-		$result = self::add_new('site', $content, $file);
+		$result = self::add_new('site', $content, $file, $title);
 
 		if(isset($result['id']))
 		{
