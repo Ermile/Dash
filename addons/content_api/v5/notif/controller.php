@@ -10,7 +10,9 @@ class controller
 
 		$notif = self::notif();
 
-		\dash\code::jsonBoom($notif);
+		\dash\notif::result($notif);
+
+		\dash\code::jsonBoom(\dash\notif::get());
 	}
 
 
