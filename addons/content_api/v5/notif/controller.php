@@ -91,6 +91,7 @@ class controller
 					case "to":
 					case "notif":
 					case "from":
+					default:
 						$new[$index][$key] = $value;
 						break;
 
@@ -111,7 +112,8 @@ class controller
 					case "mobile":
 					case "avatar":
 					case 'caller':
-					default:
+						continue;
+
 						// $new[$key] = $value;
 						break;
 				}
