@@ -7,15 +7,83 @@
  <div class="cauto s12 pA5">
 {{block("psidebar")}}
  </div>
+
  <div class="c s12 pA5">
 	<form class="cbox" method="post"  autocomplete="off">
+
+
 		<label>{%trans "Title"%}</label>
 		<div class="input">
 			<input name="title" type="text" >
 		</div>
 
-		<label>{%trans "Excerpt"%}</label>
-		<textarea name="notif" class="txt" rows="5" placeholder='{%trans "Excerpt"%}'></textarea>
+		<label>{%trans "Small"%}</label>
+		<textarea name="small" class="txt" rows="5"></textarea>
+
+		<label>{%trans "Big"%}</label>
+		<textarea name="big" class="txt" rows="5"></textarea>
+
+		<label>{%trans "Sub text"%}</label>
+		<textarea name="sub_text" class="txt" rows="5"></textarea>
+
+		<label>{%trans "Group"%}</label>
+		<div class="input">
+			<input name="group" type="text" >
+		</div>
+
+		<label>{%trans "Sender"%}</label>
+		<div class="input">
+			<input name="sender" type="text" >
+		</div>
+
+		<label>{%trans "Large icon"%}</label>
+		<div class="input">
+			<input name="large_icon" type="text" >
+		</div>
+
+		<div class="mT10">
+		  <label for="icon">{%trans "Icon"%}</label>
+		  <select name="icon" class="ui dropdown" id="icon">
+		    <option value="" readonly>{%trans "Select one item"%}</option>
+			<option value="home">home</option>
+			<option value="hert">hert</option>
+			<option value="setting">setting</option>
+			<option value="about">about</option>
+			<option value="contact">contact</option>
+			<option value="vision">vision</option>
+			<option value="mission">mission</option>
+			<option value="website">website</option>
+			<option value="net-setting">net-setting</option>
+			<option value="chake">chake</option>
+			<option value="close">close</option>
+		  </select>
+		</div>
+
+		<div class="mT10">
+		  <label for="icon">{%trans "On click"%}</label>
+		  <select name="icon" class="ui dropdown" id="icon">
+		    <option value="" readonly>{%trans "Select one item"%}</option>
+			<option value="home">home</option>
+			<option value="about">about</option>
+			<option value="call">call</option>
+			<option value="vision">vision</option>
+			<option value="mission">mission</option>
+			<option value="website">website</option>
+			<option value="other_website">other_website</option>
+			<option value="close">close</option>
+		  </select>
+		</div>
+
+		<label>{%trans "Link"%}</label>
+		<div class="input">
+			<input name="link" type="text" >
+		</div>
+
+		<div class="switch1 mT20">
+		 <input type="checkbox" name="external" id="external" >
+		 <label for="external"></label>
+		 <label for="external">{%trans "External"%}</label>
+		</div>
 		{{block("isave")}}
 	</form>
  </div>
