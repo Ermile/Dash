@@ -1,0 +1,240 @@
+{%extends display.crmMain%}
+
+{%block pageContent%}
+
+{%if dataTable%}
+ {%if dataFilter%}
+
+  {{block('htmlSearchBox')}}
+  {{block('htmlTable')}}
+  {{block('htmlFilter')}}
+
+ {%else%}
+
+  {{block('htmlSearchBox')}}
+  {{block('htmlTable')}}
+
+ {%endif%}
+{%else%}
+ {%if dataFilter%}
+
+  {{block('htmlSearchBox')}}
+  {{block('htmlFilterNoResult')}}
+
+ {%else%}
+
+  {{block('htmlStartAddNew')}}
+
+ {%endif%}
+{%endif%}
+
+{%endblock%}
+
+
+
+
+{%block htmlSearchBox%}
+
+<div class="cbox fs12">
+  <form method="get" action='{{url.this}}' data-action>
+    <div class="input">
+      <label for="q" data-kerkere=".ShowFilterResult" data-kerkere-icon class="addon">{%trans "Advance result"%}</label>
+      <input type="search" name="q" placeholder='{%trans "Search"%}' id="q" value="{{requestGET.q}}" autofocus  data-pass='submit' autocomplete='off'>
+      <button class="addon btn ">{%trans "Search" %}</button>
+    </div>
+    {{block('iKerkere')}}
+  </form>
+</div>
+{%endblock%}
+
+
+{%block htmlTable%}
+{%if perm_su() and requestGET.duplicate%}
+  <table class="tbl1 v1 cbox fs12">
+    <thead>
+      <tr>
+        <th>{{requestGET.duplicate}}</th>
+        <th>{%trans "Count"%}</th>
+        <th>{%trans "Show"%}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {%for key, value in dataTable%}
+      <tr>
+        <td>{{value[requestGET.duplicate]}}</td>
+        <td>{{value.count | fitNumber}}</td>
+        <td><a href="{{url.this}}?find{{requestGET.duplicate}}={{value[requestGET.duplicate]}}&showlog=1" class="badge warn">{%trans "Detail"%}</a></td>
+      </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+  {%include display.pagination%}
+
+{%else%}
+<table class="tbl1 v1 cbox fs12">
+    <thead>
+      <tr class="fs07">
+      <th data-sort="{{sortLink.id.order}}"><a href="{{sortLink.id.link}}">#</a></th>
+      <th data-sort="{{sortLink.user_id.order}}"><a href="{{sortLink.user_id.link}}">{%trans "User"%}</a></th>
+      <th data-sort="{{sortLink.osversion.order}}"><a href="{{sortLink.osversion.link}}">osversion</a></th>
+      <th data-sort="{{sortLink.version.order}}"><a href="{{sortLink.version.link}}">version</a></th>
+      <th data-sort="{{sortLink.serial.order}}"><a href="{{sortLink.serial.link}}">serial</a></th>
+      <th data-sort="{{sortLink.model.order}}"><a href="{{sortLink.model.link}}">model</a></th>
+      <th data-sort="{{sortLink.manufacturer.order}}"><a href="{{sortLink.manufacturer.link}}">manufacturer</a></th>
+      <th data-sort="{{sortLink.language.order}}"><a href="{{sortLink.language.link}}">language</a></th>
+      <th data-sort="{{sortLink.status.order}}"><a href="{{sortLink.status.link}}">status</a></th>
+      <th>meta</th>
+      <th data-sort="{{sortLink.lastupdate.order}}"><a href="{{sortLink.lastupdate.link}}">lastupdate</a></th>
+      <th data-sort="{{sortLink.datecreated.order}}"><a href="{{sortLink.datecreated.link}}">datecreated</a></th>
+
+      </tr>
+    </thead>
+    <tbody>
+      {%for key, value in dataTable%}
+      <tr>
+
+        <td class="collapsing">{{value.id}}</td>
+        <td><a href="{{url.here}}/member/glance?id={{value.user_id | coding('encode')}}">{{value.user_id | coding('encode')}}</a></td>
+
+        <td>{{value.osversion}}</td>
+        <td>{{value.version}}</td>
+        <td>{{value.serial}}</td>
+        <td>{{value.model}}</td>
+        <td>{{value.manufacturer}}</td>
+        <td>{{value.language}}</td>
+        <td>{{value.status}}</td>
+        <td>
+          <span class="badge light">uniquecode {{value.uniquecode}}</span>
+          {%for k,v in value.meta%}
+          <span class="badge light">{{k}} {{v}}</span>
+          {%endfor%}
+        </td>
+        <td>{{value.lastupdate |dt(true)}}</td>
+        <td>{{value.datecreated |dt(true)}}</td>
+
+      </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+  {%include display.pagination%}
+{%endif%}
+
+
+{%endblock%}
+
+
+{%block htmlFilter%}
+<p class="f fs14 msg info2">
+  <span class="c">{{dataFilter | raw}}</span>
+  <a class="cauto" href="{{url.this}}">{%trans "Clear filters"%}</a>
+</p>
+{%endblock%}
+
+
+{%block htmlFilterNoResult%}
+<p class="f fs14 msg warn2">
+  <span class="c">{%trans "Result not found!"%} {%trans "Search with new keywords."%}</span>
+  <a class="cauto" href="{{url.this}}">{%trans "Clear filters"%}</a>
+</p>
+{%endblock%}
+
+
+{%block htmlStartAddNew%}
+<p class="fs14 msg success2 pTB20">{%trans "Hi!"%} <a href="{{url.this}}/add">{%trans "Try to start with add new user!"%}</a></p>
+{%endblock%}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{%block pageStepsList%}
+
+
+  <div class="f">
+
+   <div class="c s6">
+    <a class="dcard {%if not requestGET.status or requestGET.status == 'active' %}active{%endif%}" href='{{url.this}}?status=active' data-shortkey="49ctrlshift">
+     <div class="statistic green">
+      <div class="value"><i class="sf-user-5"></i></div>
+      <div class="label">{%trans "Active"%} <kbd class=" hide mT5">Shift+1</kbd></div>
+     </div>
+    </a>
+   </div>
+
+
+   <div class="c s6">
+    <a class="dcard {%if requestGET.status == 'awaiting' %}active{%endif%}" href='{{url.this}}?status=awaiting' data-shortkey="50ctrlshift">
+     <div class="statistic blue">
+      <div class="value"><i class="sf-person-stalker"></i></div>
+      <div class="label">{%trans "Awaiting"%} <kbd class=" hide mT5">Shift+1</kbd></div>
+     </div>
+    </a>
+   </div>
+
+
+    <div class="c s6">
+      <a class="dcard {%if requestGET.status == 'deactive' %}active{%endif%}" href='{{url.this}}?status=deactive' data-shortkey="51ctrlshift">
+       <div class="statistic">
+        <div class="value"><i class="sf-user-close-security"></i></div>
+        <div class="label">{%trans "Deactive"%} <kbd class=" hide mT5">Shift+1</kbd></div>
+       </div>
+      </a>
+    </div>
+
+    <div class="c s6">
+      <a class="dcard {%if requestGET.status == 'removed' %}active{%endif%}" href='{{url.this}}?status=removed' data-shortkey="52ctrlshift">
+       <div class="statistic">
+        <div class="value"><i class="sf-trash-can"></i></div>
+        <div class="label">{%trans "Removed"%} <kbd class=" hide mT5">Shift+1</kbd></div>
+       </div>
+      </a>
+    </div>
+
+
+    <div class="c s6">
+      <a class="dcard {%if requestGET.status == 'filter' %}active{%endif%}" href='{{url.this}}?status=filter' data-shortkey="53ctrlshift">
+       <div class="statistic">
+        <div class="value"><i class="sf-group-full-security"></i></div>
+        <div class="label">{%trans "Filter"%} <kbd class=" hide mT5">Shift+1</kbd></div>
+       </div>
+      </a>
+    </div>
+
+
+     <div class="c s6">
+      <a class="dcard {%if requestGET.status == 'unreachable' %}active{%endif%}" href='{{url.this}}?status=unreachable' data-shortkey="54ctrlshift">
+       <div class="statistic">
+        <div class="value"><i class="sf-exclamation-circle"></i></div>
+        <div class="label">{%trans "Unreachable"%} <kbd class=" hide mT5">Shift+1</kbd></div>
+       </div>
+      </a>
+    </div>
+
+
+     <div class="c s6">
+      <a class="dcard {%if requestGET.status == 'all' %}active{%endif%}" href='{{url.this}}?status=all' data-shortkey="54ctrlshift">
+       <div class="statistic">
+        <div class="value"><i class="sf-group-full"></i></div>
+        <div class="label">{%trans "All"%} <kbd class=" hide mT5">Shift+1</kbd></div>
+       </div>
+      </a>
+    </div>
+
+
+
+
+  </div>
+{%endblock%}
