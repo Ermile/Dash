@@ -1,0 +1,63 @@
+{%extends display.main%}
+{%block body%}
+
+<div class="f justify-center">
+	<div class="c7">
+		<div class="cbox">
+			{{block('data')}}
+		</div>
+	</div>
+
+</div>
+{%endblock%}
+
+{%block data%}
+<h3>مستندات اتصال به وب‌سرویس</h3>
+<p>برای اتصال به سامانه و انجام هر گونه عملیات باید از فیلتر اعتبار سنجی عبور کنید</p>
+<p>فرایند اعتبار سنجی به صورت خلاصه این‌گونه است.</p>
+<p>شما توکن ثابتی را در اختیار دارید،‌ آن را به سرور ارسال می‌کنید و درخواست توکن موقف خواهید کرد،‌ سیستم به شما توکن موقت یکبارمصرف تحویل می‌دهد،‌حال با آن توکن جدید عملیات خودتون رو ادامه می‌دهید.</p>
+<p>بیایید این فرایند را به صورت کامل بررسی کنیم:</p>
+<p><b>مرحل اول: ارسال توکن ثابت</b></p>
+<p>کافیت به آدرس زیر توکن ثابت خود را ارسال کنید</p>
+<blockquote class="ltr">
+	<code class="badge primary">POST</code>
+	<a>https://azvir.com/api/v5/token</a>
+</blockquote>
+<hr>
+<blockquote class="ltr">
+Header
+<pre>
+'authorization: YourStaticApiKey'
+'x-app-request: android'
+</pre>
+</blockquote>
+
+<blockquote class="ltr mT10">
+<code class="badge">SERVER RESULT</code>
+
+<pre>
+{
+  "ok": true,
+  "result": [
+    {
+      "token": "Token test 2"
+    }
+  ]
+}
+</pre>
+
+</blockquote>
+
+<pre class="msg secondary sm">
+curl -X POST \
+  https://azvir.com/api/v5/notif \
+  -H 'authorization: YourStaticApiKey' \
+  -H 'x-app-request: android'
+</pre>
+
+<p class="msg warn">
+	خطا های احتمالی
+</p>
+
+
+{%endblock%}
