@@ -14,31 +14,31 @@
 
 		<label>{%trans "Title"%}</label>
 		<div class="input">
-			<input name="title" type="text" >
+			<input name="title" type="text" value="Test Title">
 		</div>
 
 		<label>{%trans "Small"%}</label>
-		<textarea name="small" class="txt" rows="5"></textarea>
+		<textarea name="small" class="txt" rows="5">Test small</textarea>
 
 		<label>{%trans "Big"%}</label>
-		<textarea name="big" class="txt" rows="5"></textarea>
+		<textarea name="big" class="txt" rows="5">Test big</textarea>
 
 		<label>{%trans "Sub text"%}</label>
-		<textarea name="sub_text" class="txt" rows="5"></textarea>
+		<textarea name="sub_text" class="txt" rows="5">Test sub text</textarea>
 
 		<label>{%trans "Group"%}</label>
 		<div class="input">
-			<input name="group" type="text" >
+			<input name="group" type="text" value="Test Group">
 		</div>
 
 		<label>{%trans "Sender"%}</label>
 		<div class="input">
-			<input name="sender" type="text" >
+			<input name="sender" type="text" value="Test sender">
 		</div>
 
 		<label>{%trans "Large icon"%}</label>
 		<div class="input">
-			<input name="large_icon" type="text" >
+			<input name="large_icon" type="text" value="{{site.logo}}">
 		</div>
 
 		<div class="mT10">
@@ -46,7 +46,7 @@
 		  <select name="icon" class="ui dropdown" id="icon">
 		    <option value="" readonly>{%trans "Select one item"%}</option>
 			<option value="home">home</option>
-			<option value="hert">hert</option>
+			<option value="hert" selected>hert</option>
 			<option value="setting">setting</option>
 			<option value="about">about</option>
 			<option value="contact">contact</option>
@@ -64,7 +64,7 @@
 		  <select name="icon" class="ui dropdown" id="icon">
 		    <option value="" readonly>{%trans "Select one item"%}</option>
 			<option value="home">home</option>
-			<option value="about">about</option>
+			<option value="about" selected>about</option>
 			<option value="call">call</option>
 			<option value="vision">vision</option>
 			<option value="mission">mission</option>
@@ -76,7 +76,7 @@
 
 		<label>{%trans "Link"%}</label>
 		<div class="input">
-			<input name="link" type="text" >
+			<input name="link" type="text"  value="{{url.kingdom}}">
 		</div>
 
 		<div class="switch1 mT20">
