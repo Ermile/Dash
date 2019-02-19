@@ -11,6 +11,10 @@ class controller
 
 	}
 
+	public static function end_api_v5()
+	{
+		\dash\code::jsonBoom(\dash\notif::get());
+	}
 
 	public static function check_authorization_v5()
 	{

@@ -37,12 +37,11 @@ Header
 
 <pre>
 {
-  "ok": true,
-  "result": [
-    {
-      "token": "Token test 2"
+    "ok": true,
+    "result": {
+        "auth": "ec8e69c19ebb7c202ae1097aa40484e0",
+        "date": "2019-02-19 14:04:32"
     }
-  ]
 }
 </pre>
 
@@ -58,6 +57,38 @@ curl -X POST \
 <p class="msg warn">
 	خطا های احتمالی
 </p>
+<p>
+	اگر آدرس اشتباهی را فراخوانی کنید خطای 404 ظاهر خواهد شد
+</p>
+
+<pre class="secondary">
+{
+	"ok": false,
+	"msg": [
+	    {
+	        "type": "error",
+	        "text": "We can't find the page you're looking for!",
+	        "meta": {
+	            "title": "Not Found 404"
+	        }
+	    }
+	]
+}
+</pre>
+<p>
+اگر هر کدام از پارامتر های هدر را نا‌معتبر وارد کنید خطای زیر رخ خواهد داد
+</p>
+<pre class="secondary">
+{
+    "ok": false,
+    "msg": [
+        {
+            "type": "error",
+            "text": "Unauthorized 401"
+        }
+    ]
+}
+</pre>
 
 
 {%endblock%}
