@@ -24,7 +24,7 @@
 <p>کافیت به آدرس زیر توکن ثابت خود را ارسال کنید</p>
 <blockquote class="ltr">
 	<code class="badge primary">POST</code>
-	<a>https://azvir.com/api/v5/token</a>
+	<a>https://example.com/api/v5/token</a>
 </blockquote>
 <hr>
 <blockquote class="ltr">
@@ -52,7 +52,7 @@ Header
 
 <pre class="msg secondary sm">
 curl -X POST \
-  https://azvir.com/api/v5/notif \
+  https://example.com/api/v5/token \
   -H 'authorization: YourStaticApiKey' \
   -H 'x-app-request: android'
 </pre>
@@ -92,6 +92,50 @@ curl -X POST \
     ]
 }
 </pre>
+<div class="mT50"></div>
+<h3>ثبت‌نام کاربر</h3>
+<p>
+	برای ثبت‌نام کاربر باید با در دست داشتن توکن موقت مقادیر لازم را به سرور ارسال کنید
+</p>
+<blockquote class="ltr">
+	<code class="badge primary">POST</code>
+	<a>https://example.com/api/v5/user/add</a>
+</blockquote>
+<hr>
+<blockquote class="ltr">
+Header
+<pre>
+'authorization: YourStaticApiKey'
+'x-app-request: android'
+'auth2: ec8e69c19ebb7c202ae1097aa40484e0'
+</pre>
+</blockquote>
+
+<blockquote class="ltr mT10">
+<code class="badge">SERVER RESULT</code>
+
+<pre>
+{
+    "ok": true,
+    "result": {
+        "user_code": "3N5B",
+        "user_token": "470ff9db20270d8f2a586d8ebcddea20"
+    }
+}
+</pre>
+
+</blockquote>
+
+<pre class="msg secondary sm">
+curl -X POST \
+  https://example.com/api/v5/user/add \
+  -H 'authorization: $2y$07$J5lyhNSfVCEVxPZvEmrXhemZpzwekNKJRPHC1kwth3yPw6U6cUBPC' \
+  -H 'auth2: ec8e69c19ebb7c202ae1097aa40484e0' \
+  -H 'x-app-request: android' \
+  -F 'model=model name' \
+  -F 'serial=serial number'
+</pre>
+
 
 
 {%endblock%}
