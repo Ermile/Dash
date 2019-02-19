@@ -95,6 +95,9 @@ class controller
 			\dash\db\user_auth::update(['status' => 'expire'], $get['id']);
 			\dash\header::status(401, T_("Auth2 is expire"));
 		}
+
+		\dash\db\user_auth::update(['status' => 'used'], $get['id']);
+
 	}
 
 
