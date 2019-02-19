@@ -136,7 +136,40 @@ curl -X POST \
   -F 'model=model name' \
   -F 'serial=serial number'
 </pre>
-
+<p>
+  توکن موقت یک بارمصرف است یعنی اگر یک بار آن را به سمت سرور ارسال کنید دیگر قابل استفاده نیست
+</p>
+<pre class="secondary">
+{
+    "ok": false,
+    "msg": [
+        {
+            "type": "error",
+            "text": "Invalid auth2",
+            "meta": {
+                "title": "Unauthorized 401"
+            }
+        }
+    ]
+}
+</pre>
+<p>
+  اگر مقادیر الزامی در ثبت‌نام را اسال نکنید سیستم خطای خالی بودن مقادیر را نمایش می‌دهد
+</p>
+<pre class="secondary">
+{
+    "ok": false,
+    "msg": [
+        {
+            "type": "error",
+            "text": "Empty input values",
+            "meta": {
+                "title": "Bad Request 400"
+            }
+        }
+    ]
+}
+</pre>
 
 
 {%endblock%}
