@@ -18,7 +18,7 @@ class controller
 	{
 		$notif     = [];
 
-		$usercode = \dash\request::post('usercode');
+		$usercode = \dash\header::get('usercode');
 		if(!$usercode)
 		{
 			return false;
@@ -82,18 +82,18 @@ class controller
 					case "api_title":
 					case "excerpt":
 					case "text":
-					case "caller":
 					case "subdomain":
 					case "code":
-					case "send":
 					case "to":
 					case "notif":
-					case "from":
 					default:
 						$new[$index][$key] = $value;
 						break;
 
 					case "data":
+					case "send":
+					case "from":
+					case "caller":
 					case "id":
 					case "id_raw":
 					case "status":
