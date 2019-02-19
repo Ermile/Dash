@@ -25,13 +25,13 @@ class controller
 		if(!$subchild)
 		{
 			self::login();
-			\dash\code::end();
 		}
 		elseif($subchild === 'verify')
 		{
 			self::verify();
-			\dash\code::end();
 		}
+
+		\content_api\controller::end_api_v5();
 
 	}
 

@@ -10,7 +10,7 @@ class controller
 
 		$smile = self::smile();
 
-		\dash\code::jsonBoom($smile);
+		\content_api\controller::end_api_v5($smile);
 	}
 
 

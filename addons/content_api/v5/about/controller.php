@@ -8,7 +8,7 @@ class controller
 	{
 		$about = self::about();
 
-		\dash\code::jsonBoom($about);
+		\content_api\controller::end_api_v5($about);
 	}
 
 

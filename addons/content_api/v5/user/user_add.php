@@ -126,9 +126,7 @@ class user_add
 
 		self::$response['user_token'] = $token;
 
-		\dash\notif::result(self::$response);
-		\dash\code::end();
-
+		\content_api\controller::end_api_v5(self::$response);
 	}
 
 

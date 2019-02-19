@@ -8,7 +8,7 @@ class controller
 	{
 		$contact = self::contact();
 
-		\dash\code::jsonBoom($contact);
+		\content_api\controller::end_api_v5($contact);
 	}
 
 

@@ -8,7 +8,7 @@ class controller
 	{
 		$vision = self::vision();
 
-		\dash\code::jsonBoom($vision);
+		\content_api\controller::end_api_v5($vision);
 	}
 
 

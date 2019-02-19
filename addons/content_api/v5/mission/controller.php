@@ -8,7 +8,7 @@ class controller
 	{
 		$mission = self::mission();
 
-		\dash\code::jsonBoom($mission);
+		\content_api\controller::end_api_v5($mission);
 	}
 
 

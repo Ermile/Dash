@@ -8,7 +8,7 @@ class controller
 	{
 		$detail = self::detail();
 
-		\dash\code::jsonBoom($detail);
+		\content_api\controller::end_api_v5($detail);
 	}
 
 	private static function detail()
