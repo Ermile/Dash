@@ -6,14 +6,14 @@ class controller
 {
 	public static function routing()
 	{
-		\content_api\controller::check_authorization_v5();
+		\content_api\controller::check_authorization2_v5();
 
 		switch (\dash\url::subchild())
 		{
 			case 'add':
 				if(\dash\request::is('get'))
 				{
-
+					\dash\header::status(400);
 				}
 				elseif(\dash\request::is('post'))
 				{

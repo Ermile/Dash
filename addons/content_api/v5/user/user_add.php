@@ -27,8 +27,8 @@ class user_add
 
 		if(!in_array(self::$x_app_request, ['android']))
 		{
-			\dash\log::set('invalidXAppRequestAPI');
-			\dash\header::status(400);
+			// \dash\log::set('invalidXAppRequestAPI');
+			\dash\header::status(400, T_("Invalid x-app-request"));
 		}
 
 		$add_user['model']        = null;
@@ -83,10 +83,11 @@ class user_add
 		$token .= '_';
 		$token .= $add_user['version'];
 
+		// empty args
 		if($token === 'APP____')
 		{
-			\dash\log::set('emptyAndroidDetail');
-			return false;
+			// \dash\log::set('emptyAndroidDetail');
+			\dash\header::status(400, T_("Empty input values"));
 		}
 
 		$meta['user_token_raw'] = $token;
@@ -126,7 +127,7 @@ class user_add
 
 		self::$response['user_token'] = $token;
 
-		\content_api\controller::end_api_v5(self::$response);
+		\content_api\controller::end5(self::$response);
 	}
 
 

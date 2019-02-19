@@ -6,11 +6,11 @@ class controller
 {
 	public static function routing()
 	{
-		\content_api\controller::check_authorization_v5();
+		\content_api\controller::check_authorization3_v5();
 
 		$notif = self::notif();
 
-		\content_api\controller::end_api_v5($notif);
+		\content_api\controller::end5($notif);
 	}
 
 

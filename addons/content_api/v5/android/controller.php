@@ -8,7 +8,7 @@ class controller
 	{
 		$detail = self::detail();
 
-		\content_api\controller::end_api_v5($detail);
+		\content_api\controller::end5($detail);
 	}
 
 	private static function detail()

@@ -12,7 +12,7 @@ class controller
 
 		\dash\notif::result($result);
 
-		\content_api\controller::end_api_v5();
+		\content_api\controller::end5();
 	}
 }
 ?>

@@ -8,7 +8,7 @@ class controller
 	{
 		$mission = self::mission();
 
-		\content_api\controller::end_api_v5($mission);
+		\content_api\controller::end5($mission);
 	}
 
 
