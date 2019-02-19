@@ -22,7 +22,7 @@ class user_auth
 		return $string;
 	}
 
-	public static function make()
+	public static function make($_args = [])
 	{
 		$auth                  = self::generate_auth();
 		$date_now              = date("Y-m-d H:i:s");
@@ -44,6 +44,47 @@ class user_auth
 		}
 		return false;
 
+	}
+
+	public static function make_user_auth($_user_id, $_gateway = null)
+	{
+		$check =
+		[
+			'user_id' => $_user_id,
+			'type'    => 'member',
+			'status'  => 'enable',
+			'gateway' => $_gateway,
+			'limit'   => 1,
+		];
+
+		$check = \dash\db\user_auth::get($check);
+		if(isset($check['auth']))
+		{
+			return $check['auth'];
+		}
+		else
+		{
+			$auth = self::generate_auth($_user_id);
+
+			$insert =
+			[
+				'user_id'     => $_user_id,
+				'type'        => 'member',
+				'status'      => 'enable',
+				'gateway'     => $_gateway,
+				'datecreated' => date("Y-m-d H:i:s"),
+				'auth'        => $auth,
+			];
+
+			$insert = \dash\db\user_auth::insert($insert);
+
+			if($insert)
+			{
+				return $auth;
+			}
+
+			return false;
+		}
 	}
 }
 ?>

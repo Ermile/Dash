@@ -125,6 +125,13 @@ class user_add
 			}
 		}
 
+		if(self::$user_id)
+		{
+			$user_auth = \dash\app\user_auth::make_user_auth(self::$user_id, self::$x_app_request);
+			self::$response['auth3'] = $user_auth;
+
+		}
+
 		self::$response['user_token'] = $token;
 
 		\content_api\controller::end5(self::$response);
@@ -156,6 +163,8 @@ class user_add
 	{
 		if(isset(self::$load_user['id']))
 		{
+			self::$user_id = self::$load_user['id'];
+
 			\dash\db\user_android::update($_detail, self::$load_user['id']);
 		}
 	}
@@ -166,6 +175,7 @@ class user_add
 		$user_id = \dash\db\users::signup();
 		if($user_id)
 		{
+			self::$user_id = $user_id;
 			$_detail['user_id'] = $user_id;
 			\dash\db\user_android::insert($_detail);
 		}
