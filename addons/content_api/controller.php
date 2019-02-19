@@ -11,6 +11,10 @@ class controller
 
 	}
 
+	public static function old_end5($_result = [])
+	{
+		\dash\code::jsonBoom($_result);
+	}
 
 	public static function end5($_result = [])
 	{

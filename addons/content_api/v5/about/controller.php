@@ -8,7 +8,7 @@ class controller
 	{
 		$about = self::about();
 
-		\content_api\controller::end5($about);
+		\content_api\controller::old_end5($about);
 	}
 
 

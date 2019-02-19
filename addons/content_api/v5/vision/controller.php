@@ -8,7 +8,7 @@ class controller
 	{
 		$vision = self::vision();
 
-		\content_api\controller::end5($vision);
+		\content_api\controller::old_end5($vision);
 	}
 
 
