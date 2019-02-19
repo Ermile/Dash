@@ -151,7 +151,10 @@ class user_add
 
 		if(isset($load['user_id']))
 		{
+			self::$user_id = $load['user_id'];
+
 			self::$response['user_code'] = \dash\coding::encode($load['user_id']);
+
 			self::$load_user = $load;
 			return $load;
 		}
@@ -163,8 +166,6 @@ class user_add
 	{
 		if(isset(self::$load_user['id']))
 		{
-			self::$user_id = self::$load_user['id'];
-
 			\dash\db\user_android::update($_detail, self::$load_user['id']);
 		}
 	}
