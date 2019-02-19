@@ -18,13 +18,13 @@ class controller
 	{
 		$notif     = [];
 
-		$user_code = \dash\request::post('user_code');
-		if(!$user_code)
+		$usercode = \dash\request::post('usercode');
+		if(!$usercode)
 		{
 			return false;
 		}
 
-		$user_id = \dash\coding::decode($user_code);
+		$user_id = \dash\coding::decode($usercode);
 
 		if(!$user_id)
 		{

@@ -4,8 +4,8 @@ namespace content_api\v5\enter;
 
 class controller
 {
-	private static $user_code;
-	private static $user_token;
+	private static $usercode;
+	private static $usertoken;
 	private static $mobile;
 	private static $verify_code;
 	private static $x_app_request;
@@ -133,17 +133,17 @@ class controller
 	private static function user_login_true()
 	{
 		$result               = [];
-		$result['user_token'] = self::$user_token;
+		$result['usertoken'] = self::$usertoken;
 
 
 		if(intval(self::$user_id) === intval(self::$mobile_user_id))
 		{
-			$result['user_code'] = self::$user_code;
+			$result['usercode'] = self::$usercode;
 		}
 		else
 		{
-			\dash\db\user_android::update_where(['user_id' => self::$mobile_user_id], ['uniquecode' => self::$user_token, 'user_id' => self::$user_id]);
-			$result['user_code'] = \dash\coding::encode(self::$mobile_user_id);
+			\dash\db\user_android::update_where(['user_id' => self::$mobile_user_id], ['uniquecode' => self::$usertoken, 'user_id' => self::$user_id]);
+			$result['usercode'] = \dash\coding::encode(self::$mobile_user_id);
 		}
 
 		\dash\notif::result($result);
@@ -245,7 +245,7 @@ class controller
 			$get =
 			[
 				'user_id'    => self::$user_id,
-				'uniquecode' => self::$user_token,
+				'uniquecode' => self::$usertoken,
 				'limit'      => 1,
 			];
 
@@ -260,7 +260,7 @@ class controller
 			else
 			{
 				\dash\log::set('API-InvalidUserCodeAndToken');
-				\dash\notif::error(T_("Invalid user_code and user_token"), ['element' => ['user_code', 'user_token']]);
+				\dash\notif::error(T_("Invalid usercode and usertoken"), ['element' => ['usercode', 'usertoken']]);
 				return false;
 			}
 		}
@@ -332,31 +332,31 @@ class controller
 			return false;
 		}
 
-		$user_code = \dash\request::post('user_code');
-		if(!$user_code)
+		$usercode = \dash\request::post('usercode');
+		if(!$usercode)
 		{
-			\dash\notif::error(T_("User code not set"), 'user_code');
+			\dash\notif::error(T_("User code not set"), 'usercode');
 			return false;
 		}
 
-		$user_id = \dash\coding::decode($user_code);
+		$user_id = \dash\coding::decode($usercode);
 		if(!$user_id)
 		{
-			\dash\notif::error(T_("Invalid user_code"), 'user_code');
+			\dash\notif::error(T_("Invalid usercode"), 'usercode');
 			return false;
 		}
 
 
-		$user_token = \dash\request::post('user_token');
-		if(!$user_token)
+		$usertoken = \dash\request::post('usertoken');
+		if(!$usertoken)
 		{
-			\dash\notif::error(T_("User token not set"), 'user_token');
+			\dash\notif::error(T_("User token not set"), 'usertoken');
 			return false;
 		}
 
-		if(mb_strlen($user_token) !== 32)
+		if(mb_strlen($usertoken) !== 32)
 		{
-			\dash\notif::error(T_("Invalid user_token"), 'user_token');
+			\dash\notif::error(T_("Invalid usertoken"), 'usertoken');
 			return false;
 		}
 
@@ -381,9 +381,9 @@ class controller
 
 		self::$x_app_request = $x_app_request;
 		self::$mobile        = $mobile;
-		self::$user_code     = $user_code;
+		self::$usercode     = $usercode;
 		self::$user_id       = $user_id;
-		self::$user_token    = $user_token;
+		self::$usertoken    = $usertoken;
 		self::$verify_code   = $verify_code;
 
 

@@ -18,15 +18,15 @@ class controller
 	{
 		$smile     = [];
 
-		$user_code = \dash\request::post('user_code');
+		$usercode = \dash\request::post('usercode');
 
 
-		if(!$user_code)
+		if(!$usercode)
 		{
 			return false;
 		}
 
-		$id = \dash\coding::decode($user_code);
+		$id = \dash\coding::decode($usercode);
 
 		if(!$id)
 		{

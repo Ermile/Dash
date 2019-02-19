@@ -90,7 +90,7 @@ class user_add
 			\dash\header::status(400, T_("Empty input values"));
 		}
 
-		$meta['user_token_raw'] = $token;
+		$meta['usertoken_raw'] = $token;
 
 		$token = md5($token);
 
@@ -132,7 +132,7 @@ class user_add
 
 		}
 
-		self::$response['user_token'] = $token;
+		self::$response['usertoken'] = $token;
 
 		\content_api\controller::end5(self::$response);
 	}
@@ -153,7 +153,7 @@ class user_add
 		{
 			self::$user_id = $load['user_id'];
 
-			self::$response['user_code'] = \dash\coding::encode($load['user_id']);
+			self::$response['usercode'] = \dash\coding::encode($load['user_id']);
 
 			self::$load_user = $load;
 			return $load;
@@ -181,7 +181,7 @@ class user_add
 			\dash\db\user_android::insert($_detail);
 		}
 
-		self::$response['user_code'] = \dash\coding::encode($user_id);
+		self::$response['usercode'] = \dash\coding::encode($user_id);
 
 		\dash\log::set('ApiApplicationAddUser', ['code' => $user_id]);
 	}

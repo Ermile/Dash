@@ -22,6 +22,14 @@ class controller
 		{
 			\dash\notif::result($_result);
 		}
+
+		$notif = \dash\notif::get();
+
+		if(!$notif)
+		{
+			\dash\notif::info(T_("No result"));
+		}
+
 		\dash\code::jsonBoom(\dash\notif::get());
 	}
 
@@ -108,6 +116,69 @@ class controller
 	public static function check_authorization3_v5()
 	{
 		self::check_authorization_v5();
+
+		$auth3 = \dash\header::get('auth3');
+
+		if(!$auth3 || mb_strlen($auth3) !== 32)
+		{
+			\dash\header::status(401, T_("Invalid auth3"));
+		}
+
+		$usertoken = \dash\header::get('usertoken');
+		if(!$usertoken || mb_strlen($usertoken) !== 32)
+		{
+			\dash\header::status(401, T_("Invalid usertoken"));
+		}
+
+		$user_code = \dash\header::get('usercode');
+		$user_code = \dash\coding::decode($user_code);
+		if(!$user_code)
+		{
+			\dash\header::status(400, T_("Invaid user_code"));
+		}
+
+
+		$get =
+		[
+			'status'  => 'enable',
+			'user_id' => $user_code,
+			'type'    => 'member',
+			'auth'    => $auth3,
+			'limit'   => 1,
+		];
+
+		$get = \dash\db\user_auth::get($get);
+
+		if(!isset($get['id']) || !isset($get['datecreated']))
+		{
+			\dash\header::status(401, T_("Invalid auth3"));
+		}
+
+		if(isset(self::$v5['x_app_request']) && self::$v5['x_app_request'] === 'android')
+		{
+			$get =
+			[
+				'user_id'    => $user_code,
+				'uniquecode' => $usertoken,
+				'limit'      => 1,
+			];
+
+			$load               = \dash\db\user_android::get($get);
+
+			if(isset($load['id']))
+			{
+				return true;
+			}
+			else
+			{
+				\dash\header::status(400, T_("Invalid user_code and usertoken"));
+			}
+		}
+		else
+		{
+			\dash\header::status(400, T_("This method was not supported"));
+		}
+
 
 	}
 
