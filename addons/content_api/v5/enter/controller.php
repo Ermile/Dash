@@ -7,7 +7,7 @@ class controller
 	private static $usercode;
 	private static $usertoken;
 	private static $mobile;
-	private static $verify_code;
+	private static $verifycode;
 	private static $x_app_request;
 	private static $user_id;
 	private static $user_android;
@@ -18,7 +18,7 @@ class controller
 
 	public static function routing()
 	{
-		\content_api\controller::check_authorization_v5();
+		\content_api\controller::check_authorization3_v5();
 
 		$subchild = \dash\url::subchild();
 
@@ -43,9 +43,9 @@ class controller
 			return false;
 		}
 
-		if(!self::$verify_code)
+		if(!self::$verifycode)
 		{
-			\dash\notif::error(T_("Verification code not set"), 'verify_code');
+			\dash\notif::error(T_("Verification code not set"), 'verifycode');
 			return false;
 		}
 
@@ -92,7 +92,7 @@ class controller
 					{
 						if(isset($check_log['code']))
 						{
-							if(intval($check_log['code']) === intval(self::$verify_code))
+							if(intval($check_log['code']) === intval(self::$verifycode))
 							{
 								\dash\db\logs::update(['status' => 'expire'], $check_log['id']);
 								self::user_login_true();
@@ -135,15 +135,17 @@ class controller
 		$result               = [];
 		$result['usertoken'] = self::$usertoken;
 
-
 		if(intval(self::$user_id) === intval(self::$mobile_user_id))
 		{
 			$result['usercode'] = self::$usercode;
+			$result['auth3'] = \dash\header::get('auth3');
 		}
 		else
 		{
 			\dash\db\user_android::update_where(['user_id' => self::$mobile_user_id], ['uniquecode' => self::$usertoken, 'user_id' => self::$user_id]);
 			$result['usercode'] = \dash\coding::encode(self::$mobile_user_id);
+			$user_auth          = \dash\app\user_auth::make_user_auth(self::$mobile_user_id, self::$x_app_request);
+			$result['auth3']    = $user_auth;
 		}
 
 		\dash\notif::result($result);
@@ -332,7 +334,7 @@ class controller
 			return false;
 		}
 
-		$usercode = \dash\request::post('usercode');
+		$usercode = \dash\header::get('usercode');
 		if(!$usercode)
 		{
 			\dash\notif::error(T_("User code not set"), 'usercode');
@@ -347,7 +349,7 @@ class controller
 		}
 
 
-		$usertoken = \dash\request::post('usertoken');
+		$usertoken = \dash\header::get('usertoken');
 		if(!$usertoken)
 		{
 			\dash\notif::error(T_("User token not set"), 'usertoken');
@@ -360,20 +362,20 @@ class controller
 			return false;
 		}
 
-		$verify_code = \dash\request::post('verify_code');
-		if($verify_code)
+		$verifycode = \dash\request::post('verifycode');
+		if($verifycode)
 		{
-			if(!is_numeric($verify_code))
+			if(!is_numeric($verifycode))
 			{
-				\dash\notif::error(T_("Invalid verify_code"), 'verify_code');
+				\dash\notif::error(T_("Invalid verifycode"), 'verifycode');
 				return false;
 			}
 
-			$verify_code = intval($verify_code);
+			$verifycode = intval($verifycode);
 
-			if($verify_code < 10000 || $verify_code > 99999)
+			if($verifycode < 10000 || $verifycode > 99999)
 			{
-				\dash\notif::error(T_("Verification code is out of range"), 'verify_code');
+				\dash\notif::error(T_("Verification code is out of range"), 'verifycode');
 				return false;
 			}
 
@@ -381,10 +383,10 @@ class controller
 
 		self::$x_app_request = $x_app_request;
 		self::$mobile        = $mobile;
-		self::$usercode     = $usercode;
+		self::$usercode      = $usercode;
 		self::$user_id       = $user_id;
-		self::$usertoken    = $usertoken;
-		self::$verify_code   = $verify_code;
+		self::$usertoken     = $usertoken;
+		self::$verifycode   = $verifycode;
 
 
 		return true;
