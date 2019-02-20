@@ -18,7 +18,7 @@ class controller
 	{
 		$smile     = [];
 
-		$usercode = \dash\request::post('usercode');
+		$usercode = \dash\header::get('usercode');
 
 
 		if(!$usercode)

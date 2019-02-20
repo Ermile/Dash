@@ -40,11 +40,11 @@ Header
 
 <pre>
 {
-    "ok": true,
-    "result": {
-        "auth": "ec8e69c19ebb7c202ae1097aa40484e0",
-        "date": "2019-02-19 14:04:32"
-    }
+  "ok": true,
+  "result": {
+    "auth": "ec8e69c19ebb7c202ae1097aa40484e0",
+    "date": "2019-02-19 14:04:32"
+  }
 }
 </pre>
 
@@ -68,13 +68,13 @@ curl -X POST \
 {
 	"ok": false,
 	"msg": [
-	    {
-	        "type": "error",
-	        "text": "We can't find the page you're looking for!",
-	        "meta": {
-	            "title": "Not Found 404"
-	        }
-	    }
+    {
+      "type": "error",
+      "text": "We can't find the page you're looking for!",
+      "meta": {
+          "title": "Not Found 404"
+      }
+    }
 	]
 }
 </pre>
@@ -92,6 +92,7 @@ curl -X POST \
     ]
 }
 </pre>
+<!-- --------------------------------------------------------------- -->
 <div class="mT50"></div>
 <h3>ثبت‌نام کاربر</h3>
 <p>
@@ -116,12 +117,12 @@ Header
 
 <pre>
 {
-    "ok": true,
-    "result": {
-        "usercode": "3N5C",
-        "auth3": "87923bd0d04b30aa5f66b699c2698e3b",
-        "usertoken": "49115f9b1b05430e4c00910a04c470be"
-    }
+  "ok": true,
+  "result": {
+    "usercode": "3N5C",
+    "auth3": "87923bd0d04b30aa5f66b699c2698e3b",
+    "usertoken": "49115f9b1b05430e4c00910a04c470be"
+  }
 }
 </pre>
 
@@ -141,16 +142,16 @@ curl -X POST \
 </p>
 <pre class="secondary">
 {
-    "ok": false,
-    "msg": [
-        {
-            "type": "error",
-            "text": "Invalid auth2",
-            "meta": {
-                "title": "Unauthorized 401"
-            }
-        }
-    ]
+  "ok": false,
+  "msg": [
+    {
+      "type": "error",
+      "text": "Invalid auth2",
+      "meta": {
+        "title": "Unauthorized 401"
+      }
+    }
+  ]
 }
 </pre>
 <p>
@@ -158,18 +159,202 @@ curl -X POST \
 </p>
 <pre class="secondary">
 {
-    "ok": false,
-    "msg": [
-        {
-            "type": "error",
-            "text": "Empty input values",
-            "meta": {
-                "title": "Bad Request 400"
-            }
-        }
-    ]
+  "ok": false,
+  "msg": [
+    {
+      "type": "error",
+      "text": "Empty input values",
+      "meta": {
+        "title": "Bad Request 400"
+      }
+    }
+  ]
 }
 </pre>
 
+
+
+<!-- --------------------------------------------------------------- -->
+<div class="mT50"></div>
+<h3>دریافت تعداد ناتیف های کاربر</h3>
+<p>
+  برای دریافت تعداد ناتیف‌های یک کاربر باید با استفاده از توکن سوم از طریق آدرس زیر نتایج را دریافت کنید
+</p>
+<blockquote class="ltr">
+  <code class="badge primary">POST</code>
+  <a>https://example.com/api/v5/smile</a>
+</blockquote>
+<hr>
+<blockquote class="ltr">
+Header
+<pre>
+'auth3: 87923bd0d04b30aa5f66b699c2698e3b'
+'authorization: YourStaticApiKey'
+'usercode: 3N5C'
+'usertoken: 49115f9b1b05430e4c00910a04c470be'
+'x-app-request: android'
+</pre>
+</blockquote>
+
+<blockquote class="ltr mT10">
+<code class="badge">SERVER RESULT</code>
+<p class="msg">
+  در صورتی که هیچ تاتیفی برای شخص ثبت نشده باشد
+</p>
+<pre class="secondary">
+{
+  "ok": true,
+  "msg": [
+    {
+      "type": "info",
+      "text": "No result"
+    }
+  ]
+}
+</pre>
+<p class="msg">
+  در صورتی که شخص دارای ناتیف خوانده نشده باشد
+</p>
+<pre class="secondary">
+{
+  "ok": true,
+  "result": {
+      "notif_new": true,
+      "notif_count": 3
+  }
+}
+</pre>
+</blockquote>
+
+<pre class="msg secondary sm">
+curl -X POST \
+  http://example.com/en/api/v5/smile \
+  -H 'auth3: 87923bd0d04b30aa5f66b699c2698e3b' \
+  -H 'authorization: YourStaticApiKey' \
+  -H 'usercode: 3N5C' \
+  -H 'usertoken: 49115f9b1b05430e4c00910a04c470be' \
+  -H 'x-app-request: android'
+</pre>
+
+
+<!-- --------------------------------------------------------------- -->
+<div class="mT50"></div>
+<h3>دریافت ناتیفیکیشن‌های شخص</h3>
+<p>
+  در صورتی که تعداد ناتیف‌های خوانده نشده شخص بزرگتر از ۱ بود با فراخوانی درخواست زیر ناتیفیکیشن‌های شخص را دریاف خواهید کرد
+</p>
+<blockquote class="ltr">
+  <code class="badge primary">POST</code>
+  <a>https://example.com/api/v5/notif</a>
+</blockquote>
+<hr>
+<blockquote class="ltr">
+Header
+<pre>
+'auth3: 87923bd0d04b30aa5f66b699c2698e3b'
+'authorization: YourStaticApiKey'
+'usercode: 3N5C'
+'usertoken: 49115f9b1b05430e4c00910a04c470be'
+'x-app-request: android'
+</pre>
+</blockquote>
+
+<blockquote class="ltr mT10">
+<code class="badge">SERVER RESULT</code>
+<p class="msg">
+  در صورتی که هیچ تاتیفی برای شخص ثبت نشده باشد
+</p>
+<pre class="secondary">
+{
+  "ok": true,
+  "msg": [
+    {
+      "type": "info",
+      "text": "No result"
+    }
+  ]
+}
+</pre>
+<p class="msg">
+  در صورتی که شخص دارای ناتیف خوانده نشده باشد
+</p>
+<pre class="secondary">
+{
+  "ok": true,
+  "result": [
+    {
+      "subdomain": null,
+      "code": null,
+      "notif": "1",
+      "readdate": null,
+      "title": "Test Title",
+      "small": "Test small",
+      "big": "Test big",
+      "sub_text": "Test sub text",
+      "group": "Test Group",
+      "sender": null,
+      "large_icon": "http://khadije.local/static/images/logo.png",
+      "icon": "about",
+      "link": "http://khadije.local",
+      "external": false,
+      "excerpt": "Test small",
+      "cat": "Test Group",
+      "iconClass": "fc-blue",
+      "txt": "Test big"
+    },
+    {
+      "subdomain": null,
+      "code": null,
+      "notif": "1",
+      "readdate": null,
+      "title": "Test Title",
+      "small": "Test small",
+      "big": "Test big",
+      "sub_text": "Test sub text",
+      "group": "Test Group",
+      "sender": null,
+      "large_icon": "http://khadije.local/static/images/logo.png",
+      "icon": "about",
+      "link": "http://khadije.local",
+      "external": false,
+      "excerpt": "Test small",
+      "cat": "Test Group",
+      "iconClass": "fc-blue",
+      "txt": "Test big"
+    },
+    {
+      "subdomain": null,
+      "code": null,
+      "notif": "1",
+      "readdate": null,
+      "title": "Test Title",
+      "small": "Test small",
+      "big": "Test big",
+      "sub_text": "Test sub text",
+      "group": "Test Group",
+      "sender": null,
+      "large_icon": "http://khadije.local/static/images/logo.png",
+      "icon": "about",
+      "link": "http://khadije.local",
+      "external": false,
+      "excerpt": "Test small",
+      "cat": "Test Group",
+      "iconClass": "fc-blue",
+      "txt": "Test big"
+    }
+  ]
+}
+</pre>
+</blockquote>
+
+<pre class="msg secondary sm">
+curl -X POST \
+  http://example.com/en/api/v5/notif \
+  -H 'auth3: 87923bd0d04b30aa5f66b699c2698e3b' \
+  -H 'authorization: YourStaticApiKey' \
+  -H 'usercode: 3N5C' \
+  -H 'usertoken: 49115f9b1b05430e4c00910a04c470be' \
+  -H 'x-app-request: android'
+</pre>
 
 {%endblock%}
