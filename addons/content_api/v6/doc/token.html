@@ -1,0 +1,76 @@
+<h3>مستندات اتصال به وب‌سرویس</h3>
+<p>برای اتصال به سامانه و انجام هر گونه عملیات باید از فیلتر اعتبار سنجی عبور کنید</p>
+<p>فرایند اعتبار سنجی به صورت خلاصه این‌گونه است.</p>
+<p>شما توکن ثابتی را در اختیار دارید،‌ آن را به سرور ارسال می‌کنید و درخواست توکن موقف خواهید کرد،‌ سیستم به شما توکن موقت یکبارمصرف تحویل می‌دهد،‌حال با آن توکن جدید عملیات خودتون رو ادامه می‌دهید.</p>
+<p>بیایید این فرایند را به صورت کامل بررسی کنیم:</p>
+<p><b>ارسال توکن ثابت و دریافت توکن موقت</b></p>
+<p>
+  با توکن موقت فقط قادر به ثبت‌نام کاربر خواهید بود
+</p>
+<p>کافیت به آدرس زیر توکن ثابت خود را ارسال کنید</p>
+
+
+<blockquote class="ltr">
+  <code class="badge primary">POST</code>
+  <a>https://example.com/api/v6/token</a>
+</blockquote>
+<hr>
+<blockquote class="ltr">
+Header
+<pre>
+'appkey: YourAppKey'
+</pre>
+</blockquote>
+
+<blockquote class="ltr mT10">
+<code class="badge">SERVER RESULT</code>
+
+<pre>
+{
+  "ok": true,
+  "result": {
+    "token": "ec8e69c19ebb7c202ae1097aa40484e0",
+    "create": "2019-02-19 14:04:32",
+    "expire": "2019-02-19 14:07:32"
+  }
+}
+</pre>
+
+</blockquote>
+
+<pre class="msg secondary sm">
+curl -X POST {{url.site}}/api/v6/token -H 'appkey: YourAppKey'
+</pre>
+
+<p class="msg warn">
+  خطا های احتمالی
+</p>
+<p>
+  اگر آدرس اشتباهی را فراخوانی کنید خطای 404 ظاهر خواهد شد
+</p>
+
+<pre class="secondary">
+{
+  "ok": false,
+  "msg": [
+    {
+      "type": "error",
+      "text": "We can't find the page you're looking for!"
+    }
+  ]
+}
+</pre>
+<p>
+اگر هر کدام از پارامتر های هدر را نا‌معتبر وارد کنید خطای زیر رخ خواهد داد
+</p>
+<pre class="secondary">
+{
+    "ok": false,
+    "msg": [
+        {
+            "type": "error",
+            "text": "Unauthorized 401"
+        }
+    ]
+}
+</pre>
