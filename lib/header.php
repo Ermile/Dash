@@ -149,20 +149,20 @@ class header
 		{
 			return false;
 		}
+
+		$status_header = "HTTP/1.1 $_code $desc";
+		@header($status_header, true, $_code);
+
+		$debug_backtrace = ['args' => func_get_args(), 'debug' => debug_backtrace(), 'server' => $_SERVER];
+		$debug_backtrace = json_encode($debug_backtrace, JSON_UNESCAPED_UNICODE);
+		\dash\log::file($debug_backtrace, "$_code.txt", 'header');
+
 		// translate desc of header if in this level T_ fn is defined!
 		$translatedDesc = $desc;
 		if(function_exists("T_"))
 		{
 			$translatedDesc = T_($desc);
 		}
-
-		$debug_backtrace = ['args' => func_get_args(), 'debug' => debug_backtrace(), 'server' => $_SERVER];
-		$debug_backtrace = json_encode($debug_backtrace, JSON_UNESCAPED_UNICODE);
-		\dash\log::file($debug_backtrace, "$_code.txt", 'header');
-
-		$status_header = "HTTP/1.1 $_code $desc";
-		// set header
-		@header($status_header, true, $_code);
 
 		if(\dash\request::json_accept() || \dash\request::ajax() || \dash\url::content() === 'api')
 		{
@@ -191,6 +191,15 @@ class header
 		}
 
 		\dash\code::boom();
+	}
+
+
+	public static function set($_code)
+	{
+		$desc          = self::desc($_code);
+		$status_header = trim("HTTP/1.1 $_code $desc");
+		// set header
+		@header($status_header, true, $_code);
 	}
 }
 ?>
