@@ -5,33 +5,42 @@
     <div>{%trans "Get Access Token"%}</div>
   </h2>
   <div id="token-detail">
+    <p>{%trans "Get access token of new connection from server"%}</p>
+    <div class="msg url">
+      <i class="method">POST</i>
+      <span>{{apiURL}}<b>token</b></span>
+    </div>
 
+    <div class="tblBox">
+      <h3>{%trans "Required parameters"%}</h3>
+      <table class="tbl1 v3">
+        <thead>
+          <tr>
+            <th>{%trans "Name"%} <small>{%trans "type"%}</small></th>
+            <th>{%trans "Description"%} <small>{%trans "example"%}</small></th>
+            <th>{%trans "Constraints"%}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="txtB">token</div>
+              <i>string</i>
+            </td>
+            <td>
+              <div>{%trans "APP key generated on the user panel"%}</div>
+              <code>ec8e69c19ebb7c202ae1097aa40484e0</code>
+            </td>
+            <td>{%trans "length"%} 32</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
+    <h3>{%trans "cURL"%} <small>{%trans "example"%}</small></h3>
+    <pre>curl -X POST {{url.site}}/api/v6/token -H 'appkey: YourAppKey'</pre>
 
-  </div>
-</div>
-
-<hr>
-<hr>
-<hr>
-<hr>
-<hr>
-<hr>
-<hr>
-
-<div class="ltr">
-
-</div>
-  <code class="badge primary">POST</code>
-  <a>https://example.com/api/v6/token</a>
-<hr>
-Header
-<pre>
-'appkey: YourAppKey'
-</pre>
-
-<code class="badge">SERVER RESULT</code>
-
+    <h3>{%trans "Response"%} <small>{%trans "example"%}</small></h3>
 <pre>
 {
   "ok": true,
@@ -43,40 +52,5 @@ Header
 }
 </pre>
 
-
-<pre class="msg secondary sm">
-curl -X POST {{url.site}}/api/v6/token -H 'appkey: YourAppKey'
-</pre>
-
-<p class="msg warn">
-  خطا های احتمالی
-</p>
-<p>
-  اگر آدرس اشتباهی را فراخوانی کنید خطای 404 ظاهر خواهد شد
-</p>
-
-<pre class="secondary">
-{
-  "ok": false,
-  "msg": [
-    {
-      "type": "error",
-      "text": "We can't find the page you're looking for!"
-    }
-  ]
-}
-</pre>
-<p>
-اگر هر کدام از پارامتر های هدر را نا‌معتبر وارد کنید خطای زیر رخ خواهد داد
-</p>
-<pre class="secondary">
-{
-    "ok": false,
-    "msg": [
-        {
-            "type": "error",
-            "text": "Unauthorized 401"
-        }
-    ]
-}
-</pre>
+  </div>
+</div>

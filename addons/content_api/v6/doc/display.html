@@ -1,6 +1,8 @@
 {%extends display.dash%}
 {%block pageContent%}
 
+{%set apiURL%}{{url.site}}/api/v6/{%endset%}
+
 {%include "content_api/v6/doc/intro.html"%}
 {%include "content_api/v6/doc/token.html"%}
 
@@ -14,6 +16,22 @@
 <style>
   body{
     background-color: #eee;
+  }
+  pre{
+    background-color: #333;
+    color: #eee;
+    padding: 1em;
+    user-select: text;
+  }
+  .tbl1{
+    user-select: none;
+  }
+  .msg.url{
+    direction: ltr;
+    font-family: monospace, sans-serif;
+  }
+  .msg.url span{
+    user-select: text;
   }
 </style>
 {%endblock%}
