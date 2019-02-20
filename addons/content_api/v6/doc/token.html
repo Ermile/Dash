@@ -1,28 +1,35 @@
-<h3>مستندات اتصال به وب‌سرویس</h3>
-<p>برای اتصال به سامانه و انجام هر گونه عملیات باید از فیلتر اعتبار سنجی عبور کنید</p>
-<p>فرایند اعتبار سنجی به صورت خلاصه این‌گونه است.</p>
-<p>شما توکن ثابتی را در اختیار دارید،‌ آن را به سرور ارسال می‌کنید و درخواست توکن موقف خواهید کرد،‌ سیستم به شما توکن موقت یکبارمصرف تحویل می‌دهد،‌حال با آن توکن جدید عملیات خودتون رو ادامه می‌دهید.</p>
-<p>بیایید این فرایند را به صورت کامل بررسی کنیم:</p>
-<p><b>ارسال توکن ثابت و دریافت توکن موقت</b></p>
-<p>
-  با توکن موقت فقط قادر به ثبت‌نام کاربر خواهید بود
-</p>
-<p>کافیت به آدرس زیر توکن ثابت خود را ارسال کنید</p>
+<div class="cbox">
+
+  <h2 class="f fix" id='token' data-kerkere='#token-detail' data-kerkere-icon='open'>
+    <div class="cauto pRa10"><span class="badge primary">POST</span></div>
+    <div>{%trans "Get Access Token"%}</div>
+  </h2>
+  <div id="token-detail">
 
 
-<blockquote class="ltr">
+
+  </div>
+</div>
+
+<hr>
+<hr>
+<hr>
+<hr>
+<hr>
+<hr>
+<hr>
+
+<div class="ltr">
+
+</div>
   <code class="badge primary">POST</code>
   <a>https://example.com/api/v6/token</a>
-</blockquote>
 <hr>
-<blockquote class="ltr">
 Header
 <pre>
 'appkey: YourAppKey'
 </pre>
-</blockquote>
 
-<blockquote class="ltr mT10">
 <code class="badge">SERVER RESULT</code>
 
 <pre>
@@ -36,7 +43,6 @@ Header
 }
 </pre>
 
-</blockquote>
 
 <pre class="msg secondary sm">
 curl -X POST {{url.site}}/api/v6/token -H 'appkey: YourAppKey'

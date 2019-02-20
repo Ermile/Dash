@@ -1,19 +1,26 @@
-{%extends display.main%}
-{%block body%}
+{%extends display.dash%}
+{%block pageContent%}
 
-<div class="f justify-center">
-  <div class="c7">
-    <div class="cbox">
-      {{block('data')}}
-    </div>
-  </div>
+{%include "content_api/v6/doc/intro.html"%}
+{%include "content_api/v6/doc/token.html"%}
 
+<div class="cbox">
+  {{block('data')}}
 </div>
+
 {%endblock%}
+
+{%block head_css%}
+<style>
+  body{
+    background-color: #eee;
+  }
+</style>
+{%endblock%}
+
 
 {%block data%}
 
-{%include "content_api/v6/doc/token.html"%}
 
 
 <!-- --------------------------------------------------------------- -->
