@@ -92,6 +92,7 @@ curl -X POST \
     ]
 }
 </pre>
+
 <!-- --------------------------------------------------------------- -->
 <div class="mT50"></div>
 <h3>ثبت‌نام کاربر</h3>
@@ -293,9 +294,9 @@ Header
       "sub_text": "Test sub text",
       "group": "Test Group",
       "sender": null,
-      "large_icon": "http://khadije.local/static/images/logo.png",
+      "large_icon": "http://example.com/static/images/logo.png",
       "icon": "about",
-      "link": "http://khadije.local",
+      "link": "http://example.com",
       "external": false,
       "excerpt": "Test small",
       "cat": "Test Group",
@@ -313,9 +314,9 @@ Header
       "sub_text": "Test sub text",
       "group": "Test Group",
       "sender": null,
-      "large_icon": "http://khadije.local/static/images/logo.png",
+      "large_icon": "http://example.com/static/images/logo.png",
       "icon": "about",
-      "link": "http://khadije.local",
+      "link": "http://example.com",
       "external": false,
       "excerpt": "Test small",
       "cat": "Test Group",
@@ -333,9 +334,9 @@ Header
       "sub_text": "Test sub text",
       "group": "Test Group",
       "sender": null,
-      "large_icon": "http://khadije.local/static/images/logo.png",
+      "large_icon": "http://example.com/static/images/logo.png",
       "icon": "about",
-      "link": "http://khadije.local",
+      "link": "http://example.com",
       "external": false,
       "excerpt": "Test small",
       "cat": "Test Group",
@@ -355,6 +356,158 @@ curl -X POST \
   -H 'usercode: 3N5C' \
   -H 'usertoken: 49115f9b1b05430e4c00910a04c470be' \
   -H 'x-app-request: android'
+</pre>
+
+
+
+<!-- --------------------------------------------------------------- -->
+<div class="mT50"></div>
+<h3>فرایند ورود</h3>
+<p>
+  برای ورود کاربر با موبایل ابتدا باید با استفاده از توکن شماره ۳ ابتدا موبایل را ارسال می‌کنید
+</p>
+<blockquote class="ltr">
+  <code class="badge primary">POST</code>
+  <a>https://example.com/api/v5/enter</a>
+</blockquote>
+<hr>
+<blockquote class="ltr">
+Header
+<pre>
+'auth3: 87923bd0d04b30aa5f66b699c2698e3b'
+'authorization: YourStaticApiKey'
+'usercode: 3N5C'
+'usertoken: 49115f9b1b05430e4c00910a04c470be'
+'x-app-request: android'
+</pre>
+
+Body
+<pre>
+'mobile: 09121234567'
+</pre>
+</blockquote>
+
+<blockquote class="ltr mT10">
+<code class="badge">SERVER RESULT</code>
+<p class="msg">
+در صورتی که مشکلی در شماره وجود نداشته باشد سیستم کد اعتبار سنجی برای آن شماره ارسال خواهد کرد
+</p>
+<pre class="secondary">
+{
+  "ok": true,
+  "msg": [
+    {
+      "type": "ok",
+      "text": "The verification code sended to phone number"
+    }
+  ]
+}
+</pre>
+<p class="msg">
+در صورتی که قبلا کد اعتبار سنجی ارسال شده باشد و آن کد اعتبار سنجی هنوز اعتبار داشته باشد و استفاده نشده باشد سیستم خطای زیر را می‌دهد</p>
+<pre class="secondary">
+{
+  "ok": false,
+  "msg": [
+    {
+      "type": "error",
+      "text": "A verification code was sended to user"
+    }
+  ]
+}
+</pre>
+</blockquote>
+
+<pre class="msg secondary sm">
+curl -X POST \
+  http:///en/api/v5/enter \
+  -H 'auth3: 87923bd0d04b30aa5f66b699c2698e3b' \
+  -H 'authorization: YourStaticApiKey' \
+  -H 'usercode: 3N5C' \
+  -H 'usertoken: 49115f9b1b05430e4c00910a04c470be' \
+  -H 'x-app-request: android' \
+  -F mobile=09121234567
+</pre>
+
+
+
+
+<!-- --------------------------------------------------------------- -->
+<div class="mT50"></div>
+<h3>فرایند تایید ورود</h3>
+<p>
+  در صورتی که کد اعتبار سنجی به موبایل ارسال شده باشد شما آن کد را به همراه مبوایل
+</p>
+<blockquote class="ltr">
+  <code class="badge primary">POST</code>
+  <a>https://example.com/api/v5/enter/verify</a>
+</blockquote>
+<hr>
+<blockquote class="ltr">
+Header
+<pre>
+'auth3: 87923bd0d04b30aa5f66b699c2698e3b'
+'authorization: YourStaticApiKey'
+'usercode: 3N5C'
+'usertoken: 49115f9b1b05430e4c00910a04c470be'
+'x-app-request: android'
+</pre>
+
+Body
+<pre>
+'mobile: 09121234567'
+'verifycode: 12345'
+</pre>
+</blockquote>
+
+<blockquote class="ltr mT10">
+<code class="badge">SERVER RESULT</code>
+<p class="msg">
+در صورتی که مشکلی در شماره وجود نداشته باشد سیستم کد اعتبار سنجی برای آن شماره ارسال خواهد کرد
+</p>
+<pre class="secondary">
+{
+  "ok": true,
+  "result": {
+    "usertoken": "49115f9b1b05430e4c00910a04c470be",
+    "usercode": "9",
+    "auth3": "863b5a78da5d1a0abaefad39c4cd9b01"
+  },
+  "msg": [
+   {
+      "type": "ok",
+      "text": "Code ok"
+    }
+  ]
+}
+</pre>
+<p class="msg">
+در صورت خطا پیام زیر به نمایش در خواهد آمد
+خطاهایی مانند منقضی شدن کد اعتبار سنجی یا اشتباه بودن آن
+</p>
+<pre class="secondary">
+{
+  "ok": false,
+  "msg": [
+    {
+      "type": "error",
+      "text": "Verification code was expired"
+    }
+  ]
+}
+</pre>
+</blockquote>
+
+<pre class="msg secondary sm">
+curl -X POST \
+  http:///en/api/v5/enter \
+  -H 'auth3: 87923bd0d04b30aa5f66b699c2698e3b' \
+  -H 'authorization: YourStaticApiKey' \
+  -H 'usercode: 3N5C' \
+  -H 'usertoken: 49115f9b1b05430e4c00910a04c470be' \
+  -H 'x-app-request: android' \
+  -F mobile=09121234567
+  -F verifycode=12345
 </pre>
 
 {%endblock%}
