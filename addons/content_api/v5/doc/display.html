@@ -2,11 +2,11 @@
 {%block body%}
 
 <div class="f justify-center">
-	<div class="c7">
-		<div class="cbox">
-			{{block('data')}}
-		</div>
-	</div>
+  <div class="c7">
+    <div class="cbox">
+      {{block('data')}}
+    </div>
+  </div>
 
 </div>
 {%endblock%}
@@ -19,19 +19,18 @@
 <p>بیایید این فرایند را به صورت کامل بررسی کنیم:</p>
 <p><b>ارسال توکن ثابت و دریافت توکن موقت</b></p>
 <p>
-	با توکن موقت فقط قادر به ثبت‌نام کاربر خواهید بود
+  با توکن موقت فقط قادر به ثبت‌نام کاربر خواهید بود
 </p>
 <p>کافیت به آدرس زیر توکن ثابت خود را ارسال کنید</p>
 <blockquote class="ltr">
-	<code class="badge primary">POST</code>
-	<a>https://example.com/api/v5/token</a>
+  <code class="badge primary">POST</code>
+  <a>https://example.com/api/v6/token</a>
 </blockquote>
 <hr>
 <blockquote class="ltr">
 Header
 <pre>
-'authorization: YourStaticApiKey'
-'x-app-request: android'
+'appkey: YourAppKey'
 </pre>
 </blockquote>
 
@@ -42,8 +41,9 @@ Header
 {
   "ok": true,
   "result": {
-    "auth": "ec8e69c19ebb7c202ae1097aa40484e0",
-    "date": "2019-02-19 14:04:32"
+    "token": "ec8e69c19ebb7c202ae1097aa40484e0",
+    "create": "2019-02-19 14:04:32",
+    "expire": "2019-02-19 14:07:32"
   }
 }
 </pre>
@@ -51,31 +51,25 @@ Header
 </blockquote>
 
 <pre class="msg secondary sm">
-curl -X POST \
-  https://example.com/api/v5/token \
-  -H 'authorization: YourStaticApiKey' \
-  -H 'x-app-request: android'
+curl -X POST {{url.site}}/api/v6/token -H 'appkey: YourAppKey'
 </pre>
 
 <p class="msg warn">
-	خطا های احتمالی
+  خطا های احتمالی
 </p>
 <p>
-	اگر آدرس اشتباهی را فراخوانی کنید خطای 404 ظاهر خواهد شد
+  اگر آدرس اشتباهی را فراخوانی کنید خطای 404 ظاهر خواهد شد
 </p>
 
 <pre class="secondary">
 {
-	"ok": false,
-	"msg": [
+  "ok": false,
+  "msg": [
     {
       "type": "error",
-      "text": "We can't find the page you're looking for!",
-      "meta": {
-          "title": "Not Found 404"
-      }
+      "text": "We can't find the page you're looking for!"
     }
-	]
+  ]
 }
 </pre>
 <p>
@@ -97,11 +91,11 @@ curl -X POST \
 <div class="mT50"></div>
 <h3>ثبت‌نام کاربر</h3>
 <p>
-	برای ثبت‌نام کاربر باید با در دست داشتن توکن موقت مقادیر لازم را به سرور ارسال کنید
+  برای ثبت‌نام کاربر باید با در دست داشتن توکن موقت مقادیر لازم را به سرور ارسال کنید
 </p>
 <blockquote class="ltr">
-	<code class="badge primary">POST</code>
-	<a>https://example.com/api/v5/user/add</a>
+  <code class="badge primary">POST</code>
+  <a>https://example.com/api/v6/user/add</a>
 </blockquote>
 <hr>
 <blockquote class="ltr">
@@ -131,7 +125,7 @@ Header
 
 <pre class="msg secondary sm">
 curl -X POST \
-  https://example.com/api/v5/user/add \
+  https://example.com/api/v6/user/add \
   -H 'authorization: $2y$07$J5lyhNSfVCEVxPZvEmrXhemZpzwekNKJRPHC1kwth3yPw6U6cUBPC' \
   -H 'auth2: ec8e69c19ebb7c202ae1097aa40484e0' \
   -H 'x-app-request: android' \
@@ -183,7 +177,7 @@ curl -X POST \
 </p>
 <blockquote class="ltr">
   <code class="badge primary">POST</code>
-  <a>https://example.com/api/v5/smile</a>
+  <a>https://example.com/api/v6/smile</a>
 </blockquote>
 <hr>
 <blockquote class="ltr">
@@ -229,7 +223,7 @@ Header
 
 <pre class="msg secondary sm">
 curl -X POST \
-  http://example.com/en/api/v5/smile \
+  http://example.com/en/api/v6/smile \
   -H 'auth3: 87923bd0d04b30aa5f66b699c2698e3b' \
   -H 'authorization: YourStaticApiKey' \
   -H 'usercode: 3N5C' \
@@ -246,7 +240,7 @@ curl -X POST \
 </p>
 <blockquote class="ltr">
   <code class="badge primary">POST</code>
-  <a>https://example.com/api/v5/notif</a>
+  <a>https://example.com/api/v6/notif</a>
 </blockquote>
 <hr>
 <blockquote class="ltr">
@@ -350,7 +344,7 @@ Header
 
 <pre class="msg secondary sm">
 curl -X POST \
-  http://example.com/en/api/v5/notif \
+  http://example.com/en/api/v6/notif \
   -H 'auth3: 87923bd0d04b30aa5f66b699c2698e3b' \
   -H 'authorization: YourStaticApiKey' \
   -H 'usercode: 3N5C' \
@@ -368,7 +362,7 @@ curl -X POST \
 </p>
 <blockquote class="ltr">
   <code class="badge primary">POST</code>
-  <a>https://example.com/api/v5/enter</a>
+  <a>https://example.com/api/v6/enter</a>
 </blockquote>
 <hr>
 <blockquote class="ltr">
@@ -420,7 +414,7 @@ Body
 
 <pre class="msg secondary sm">
 curl -X POST \
-  http:///en/api/v5/enter \
+  http:///en/api/v6/enter \
   -H 'auth3: 87923bd0d04b30aa5f66b699c2698e3b' \
   -H 'authorization: YourStaticApiKey' \
   -H 'usercode: 3N5C' \
@@ -440,7 +434,7 @@ curl -X POST \
 </p>
 <blockquote class="ltr">
   <code class="badge primary">POST</code>
-  <a>https://example.com/api/v5/enter/verify</a>
+  <a>https://example.com/api/v6/enter/verify</a>
 </blockquote>
 <hr>
 <blockquote class="ltr">
@@ -500,7 +494,7 @@ Body
 
 <pre class="msg secondary sm">
 curl -X POST \
-  http:///en/api/v5/enter \
+  http:///en/api/v6/enter \
   -H 'auth3: 87923bd0d04b30aa5f66b699c2698e3b' \
   -H 'authorization: YourStaticApiKey' \
   -H 'usercode: 3N5C' \
