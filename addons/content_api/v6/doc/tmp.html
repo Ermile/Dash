@@ -1,0 +1,436 @@
+
+
+
+
+<div class="cbox">
+  <h3>مستندات اتصال به وب‌سرویس</h3>
+  <p>برای اتصال به سامانه و انجام هر گونه عملیات باید از فیلتر اعتبار سنجی عبور کنید</p>
+  <p>فرایند اعتبار سنجی به صورت خلاصه این‌گونه است.</p>
+  <p>شما توکن ثابتی را در اختیار دارید،‌ آن را به سرور ارسال می‌کنید و درخواست توکن موقف خواهید کرد،‌ سیستم به شما توکن موقت یکبارمصرف تحویل می‌دهد،‌حال با آن توکن جدید عملیات خودتون رو ادامه می‌دهید.</p>
+  <p>بیایید این فرایند را به صورت کامل بررسی کنیم:</p>
+  <p><b>ارسال توکن ثابت و دریافت توکن موقت</b></p>
+  <p>
+    با توکن موقت فقط قادر به ثبت‌نام کاربر خواهید بود
+  </p>
+  <p>کافیت به آدرس زیر توکن ثابت خود را ارسال کنید</p>
+
+</div>
+
+
+
+<!-- --------------------------------------------------------------- -->
+<div class="mT50"></div>
+<h3>ثبت‌نام کاربر</h3>
+<p>
+  برای ثبت‌نام کاربر باید با در دست داشتن توکن موقت مقادیر لازم را به سرور ارسال کنید
+</p>
+<blockquote class="ltr">
+  <code class="badge primary">POST</code>
+  <a>https://example.com/api/v6/user/add</a>
+</blockquote>
+<hr>
+<blockquote class="ltr">
+Header
+<pre>
+'authorization: YourStaticApiKey'
+'x-app-request: android'
+'auth2: ec8e69c19ebb7c202ae1097aa40484e0'
+</pre>
+</blockquote>
+
+<blockquote class="ltr mT10">
+<code class="badge">SERVER RESULT</code>
+
+<pre>
+{
+  "ok": true,
+  "result": {
+    "usercode": "3N5C",
+    "auth3": "87923bd0d04b30aa5f66b699c2698e3b",
+    "usertoken": "49115f9b1b05430e4c00910a04c470be"
+  }
+}
+</pre>
+
+</blockquote>
+
+<pre class="msg secondary sm">
+curl -X POST \
+  https://example.com/api/v6/user/add \
+  -H 'authorization: $2y$07$J5lyhNSfVCEVxPZvEmrXhemZpzwekNKJRPHC1kwth3yPw6U6cUBPC' \
+  -H 'auth2: ec8e69c19ebb7c202ae1097aa40484e0' \
+  -H 'x-app-request: android' \
+  -F 'model=model name' \
+  -F 'serial=serial number'
+</pre>
+<p>
+  توکن موقت یک بارمصرف است یعنی اگر یک بار آن را به سمت سرور ارسال کنید دیگر قابل استفاده نیست
+</p>
+<pre class="secondary">
+{
+  "ok": false,
+  "msg": [
+    {
+      "type": "error",
+      "text": "Invalid auth2",
+      "meta": {
+        "title": "Unauthorized 401"
+      }
+    }
+  ]
+}
+</pre>
+<p>
+  اگر مقادیر الزامی در ثبت‌نام را اسال نکنید سیستم خطای خالی بودن مقادیر را نمایش می‌دهد
+</p>
+<pre class="secondary">
+{
+  "ok": false,
+  "msg": [
+    {
+      "type": "error",
+      "text": "Empty input values",
+      "meta": {
+        "title": "Bad Request 400"
+      }
+    }
+  ]
+}
+</pre>
+
+
+
+<!-- --------------------------------------------------------------- -->
+<div class="mT50"></div>
+<h3>دریافت تعداد ناتیف های کاربر</h3>
+<p>
+  برای دریافت تعداد ناتیف‌های یک کاربر باید با استفاده از توکن سوم از طریق آدرس زیر نتایج را دریافت کنید
+</p>
+<blockquote class="ltr">
+  <code class="badge primary">POST</code>
+  <a>https://example.com/api/v6/smile</a>
+</blockquote>
+<hr>
+<blockquote class="ltr">
+Header
+<pre>
+'auth3: 87923bd0d04b30aa5f66b699c2698e3b'
+'authorization: YourStaticApiKey'
+'usercode: 3N5C'
+'usertoken: 49115f9b1b05430e4c00910a04c470be'
+'x-app-request: android'
+</pre>
+</blockquote>
+
+<blockquote class="ltr mT10">
+<code class="badge">SERVER RESULT</code>
+<p class="msg">
+  در صورتی که هیچ تاتیفی برای شخص ثبت نشده باشد
+</p>
+<pre class="secondary">
+{
+  "ok": true,
+  "msg": [
+    {
+      "type": "info",
+      "text": "No result"
+    }
+  ]
+}
+</pre>
+<p class="msg">
+  در صورتی که شخص دارای ناتیف خوانده نشده باشد
+</p>
+<pre class="secondary">
+{
+  "ok": true,
+  "result": {
+      "notif_new": true,
+      "notif_count": 3
+  }
+}
+</pre>
+</blockquote>
+
+<pre class="msg secondary sm">
+curl -X POST \
+  http://example.com/en/api/v6/smile \
+  -H 'auth3: 87923bd0d04b30aa5f66b699c2698e3b' \
+  -H 'authorization: YourStaticApiKey' \
+  -H 'usercode: 3N5C' \
+  -H 'usertoken: 49115f9b1b05430e4c00910a04c470be' \
+  -H 'x-app-request: android'
+</pre>
+
+
+<!-- --------------------------------------------------------------- -->
+<div class="mT50"></div>
+<h3>دریافت ناتیفیکیشن‌های شخص</h3>
+<p>
+  در صورتی که تعداد ناتیف‌های خوانده نشده شخص بزرگتر از ۱ بود با فراخوانی درخواست زیر ناتیفیکیشن‌های شخص را دریاف خواهید کرد
+</p>
+<blockquote class="ltr">
+  <code class="badge primary">POST</code>
+  <a>https://example.com/api/v6/notif</a>
+</blockquote>
+<hr>
+<blockquote class="ltr">
+Header
+<pre>
+'auth3: 87923bd0d04b30aa5f66b699c2698e3b'
+'authorization: YourStaticApiKey'
+'usercode: 3N5C'
+'usertoken: 49115f9b1b05430e4c00910a04c470be'
+'x-app-request: android'
+</pre>
+</blockquote>
+
+<blockquote class="ltr mT10">
+<code class="badge">SERVER RESULT</code>
+<p class="msg">
+  در صورتی که هیچ تاتیفی برای شخص ثبت نشده باشد
+</p>
+<pre class="secondary">
+{
+  "ok": true,
+  "msg": [
+    {
+      "type": "info",
+      "text": "No result"
+    }
+  ]
+}
+</pre>
+<p class="msg">
+  در صورتی که شخص دارای ناتیف خوانده نشده باشد
+</p>
+<pre class="secondary">
+{
+  "ok": true,
+  "result": [
+    {
+      "subdomain": null,
+      "code": null,
+      "notif": "1",
+      "readdate": null,
+      "title": "Test Title",
+      "small": "Test small",
+      "big": "Test big",
+      "sub_text": "Test sub text",
+      "group": "Test Group",
+      "sender": null,
+      "large_icon": "http://example.com/static/images/logo.png",
+      "icon": "about",
+      "link": "http://example.com",
+      "external": false,
+      "excerpt": "Test small",
+      "cat": "Test Group",
+      "iconClass": "fc-blue",
+      "txt": "Test big"
+    },
+    {
+      "subdomain": null,
+      "code": null,
+      "notif": "1",
+      "readdate": null,
+      "title": "Test Title",
+      "small": "Test small",
+      "big": "Test big",
+      "sub_text": "Test sub text",
+      "group": "Test Group",
+      "sender": null,
+      "large_icon": "http://example.com/static/images/logo.png",
+      "icon": "about",
+      "link": "http://example.com",
+      "external": false,
+      "excerpt": "Test small",
+      "cat": "Test Group",
+      "iconClass": "fc-blue",
+      "txt": "Test big"
+    },
+    {
+      "subdomain": null,
+      "code": null,
+      "notif": "1",
+      "readdate": null,
+      "title": "Test Title",
+      "small": "Test small",
+      "big": "Test big",
+      "sub_text": "Test sub text",
+      "group": "Test Group",
+      "sender": null,
+      "large_icon": "http://example.com/static/images/logo.png",
+      "icon": "about",
+      "link": "http://example.com",
+      "external": false,
+      "excerpt": "Test small",
+      "cat": "Test Group",
+      "iconClass": "fc-blue",
+      "txt": "Test big"
+    }
+  ]
+}
+</pre>
+</blockquote>
+
+<pre class="msg secondary sm">
+curl -X POST \
+  http://example.com/en/api/v6/notif \
+  -H 'auth3: 87923bd0d04b30aa5f66b699c2698e3b' \
+  -H 'authorization: YourStaticApiKey' \
+  -H 'usercode: 3N5C' \
+  -H 'usertoken: 49115f9b1b05430e4c00910a04c470be' \
+  -H 'x-app-request: android'
+</pre>
+
+
+
+<!-- --------------------------------------------------------------- -->
+<div class="mT50"></div>
+<h3>فرایند ورود</h3>
+<p>
+  برای ورود کاربر با موبایل ابتدا باید با استفاده از توکن شماره ۳ ابتدا موبایل را ارسال می‌کنید
+</p>
+<blockquote class="ltr">
+  <code class="badge primary">POST</code>
+  <a>https://example.com/api/v6/enter</a>
+</blockquote>
+<hr>
+<blockquote class="ltr">
+Header
+<pre>
+'auth3: 87923bd0d04b30aa5f66b699c2698e3b'
+'authorization: YourStaticApiKey'
+'usercode: 3N5C'
+'usertoken: 49115f9b1b05430e4c00910a04c470be'
+'x-app-request: android'
+</pre>
+
+Body
+<pre>
+'mobile: 09121234567'
+</pre>
+</blockquote>
+
+<blockquote class="ltr mT10">
+<code class="badge">SERVER RESULT</code>
+<p class="msg">
+در صورتی که مشکلی در شماره وجود نداشته باشد سیستم کد اعتبار سنجی برای آن شماره ارسال خواهد کرد
+</p>
+<pre class="secondary">
+{
+  "ok": true,
+  "msg": [
+    {
+      "type": "ok",
+      "text": "The verification code sended to phone number"
+    }
+  ]
+}
+</pre>
+<p class="msg">
+در صورتی که قبلا کد اعتبار سنجی ارسال شده باشد و آن کد اعتبار سنجی هنوز اعتبار داشته باشد و استفاده نشده باشد سیستم خطای زیر را می‌دهد</p>
+<pre class="secondary">
+{
+  "ok": false,
+  "msg": [
+    {
+      "type": "error",
+      "text": "A verification code was sended to user"
+    }
+  ]
+}
+</pre>
+</blockquote>
+
+<pre class="msg secondary sm">
+curl -X POST \
+  http:///en/api/v6/enter \
+  -H 'auth3: 87923bd0d04b30aa5f66b699c2698e3b' \
+  -H 'authorization: YourStaticApiKey' \
+  -H 'usercode: 3N5C' \
+  -H 'usertoken: 49115f9b1b05430e4c00910a04c470be' \
+  -H 'x-app-request: android' \
+  -F mobile=09121234567
+</pre>
+
+
+
+
+<!-- --------------------------------------------------------------- -->
+<div class="mT50"></div>
+<h3>فرایند تایید ورود</h3>
+<p>
+  در صورتی که کد اعتبار سنجی به موبایل ارسال شده باشد شما آن کد را به همراه مبوایل
+</p>
+<blockquote class="ltr">
+  <code class="badge primary">POST</code>
+  <a>https://example.com/api/v6/enter/verify</a>
+</blockquote>
+<hr>
+<blockquote class="ltr">
+Header
+<pre>
+'auth3: 87923bd0d04b30aa5f66b699c2698e3b'
+'authorization: YourStaticApiKey'
+'usercode: 3N5C'
+'usertoken: 49115f9b1b05430e4c00910a04c470be'
+'x-app-request: android'
+</pre>
+
+Body
+<pre>
+'mobile: 09121234567'
+'verifycode: 12345'
+</pre>
+</blockquote>
+
+<blockquote class="ltr mT10">
+<code class="badge">SERVER RESULT</code>
+<p class="msg">
+در صورتی که مشکلی در شماره وجود نداشته باشد سیستم کد اعتبار سنجی برای آن شماره ارسال خواهد کرد
+</p>
+<pre class="secondary">
+{
+  "ok": true,
+  "result": {
+    "usertoken": "49115f9b1b05430e4c00910a04c470be",
+    "usercode": "9",
+    "auth3": "863b5a78da5d1a0abaefad39c4cd9b01"
+  },
+  "msg": [
+   {
+      "type": "ok",
+      "text": "Code ok"
+    }
+  ]
+}
+</pre>
+<p class="msg">
+در صورت خطا پیام زیر به نمایش در خواهد آمد
+خطاهایی مانند منقضی شدن کد اعتبار سنجی یا اشتباه بودن آن
+</p>
+<pre class="secondary">
+{
+  "ok": false,
+  "msg": [
+    {
+      "type": "error",
+      "text": "Verification code was expired"
+    }
+  ]
+}
+</pre>
+</blockquote>
+
+<pre class="msg secondary sm">
+curl -X POST \
+  http:///en/api/v6/enter \
+  -H 'auth3: 87923bd0d04b30aa5f66b699c2698e3b' \
+  -H 'authorization: YourStaticApiKey' \
+  -H 'usercode: 3N5C' \
+  -H 'usertoken: 49115f9b1b05430e4c00910a04c470be' \
+  -H 'x-app-request: android' \
+  -F mobile=09121234567
+  -F verifycode=12345
+</pre>
