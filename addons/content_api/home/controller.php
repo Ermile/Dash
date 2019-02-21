@@ -28,8 +28,7 @@ class controller
 			],
 
 		];
-		\dash\notif::result($result);
-		\dash\code::jsonBoom(\dash\notif::get());
+		\dash\notif::api($result);
 	}
 }
 ?>

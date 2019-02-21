@@ -100,6 +100,13 @@ class notif
 	}
 
 
+	public static function api($_data)
+	{
+		self::result($_data);
+		\dash\code::jsonBoom(self::$notif, true);
+	}
+
+
 	public static function json()
 	{
 		return json_encode(self::$notif);
