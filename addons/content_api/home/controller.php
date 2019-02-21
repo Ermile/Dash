@@ -6,7 +6,6 @@ class controller
 {
 	public static function routing()
 	{
-		// \dash\notif::info(T_("No result"));
 		$result =
 		[
 			'website' => \dash\url::kingdom(),
@@ -28,6 +27,7 @@ class controller
 			],
 
 		];
+
 		\dash\notif::api($result);
 	}
 }
