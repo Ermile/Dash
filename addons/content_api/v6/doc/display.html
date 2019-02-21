@@ -1,4 +1,6 @@
 {%extends display.dash%}
+
+
 {%block pageContent%}
 
 {%set apiURL%}{{url.site}}/api/v6/{%endset%}
@@ -50,3 +52,29 @@
 </style>
 {%endblock%}
 
+
+
+{%block sidenav%}
+
+  <li>
+    <a href="{{url.that}}"><i class='sf-campfire'></i> <span>{{site.title}} {%trans "API"%}</span></a>
+    <ul>
+      <li><a href="{{url.that}}#intro"><i class='sf-tree-1'></i> <span>{%trans "Introduction"%}</span></a></li>
+
+      <li><a href="{{url.that}}#endpoints"><i class='sf-terminal'></i> <span>{%trans "Endpoints"%}</span></a></li>
+
+      <li><a href="{{url.that}}#requests"><i class='sf-upload'></i> <span>{%trans "Requests"%}</span></a></li>
+
+      <li><a href="{{url.that}}#responses"><i class='sf-download'></i> <span>{%trans "Responses"%}</span></a></li>
+
+      <li><a href="{{url.that}}#token"><i class='sf-unlock-alt'></i> <span>{%trans "Token"%}</span></a></li>
+
+      <li><a href="{{url.that}}#user-add"><i class='sf-plus-circle'></i> <span>{%trans "Sign Up User"%}</span></a></li>
+
+    </ul>
+  </li>
+
+
+
+
+{%endblock%}
