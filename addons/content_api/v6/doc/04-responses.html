@@ -1,0 +1,52 @@
+
+<div class="cbox fs15">
+  <h2 class="f fix" id='responses' data-kerkere='#responses-detail' data-kerkere-icon='open'>{%trans "Responses"%}</h2>
+  <div id="responses-detail">
+
+    <p>{%trans "Each response is a JSON object."%}
+      <ul class="list">
+        <li>{%trans "The data requested is wrapped in the <code>result</code> tag."%}</li>
+        <li>{%trans "If you have a response, it will always be within the <code>result</code> field."%}</li>
+        <li>{%trans "We also include a <code>ok</code> flag and an array of <code>msg</code> in the response."%}</li>
+        <li>{%trans "Some responses can have additional pagination info wrapped in the <code>meta</code>"%}</li>
+        <li>{%trans "An msg object will contain a <code>type</code> field and a <code>text</code>"%}</li>
+      </ul>
+    </p>
+
+    <h3>{%trans "Success Response"%} <small>{%trans "example"%}</small></h3>
+<pre>
+{
+  "ok": true,
+  "result":
+  {
+      "abc": 123,
+      "def": 456
+  }
+  "msg":
+  [
+    {
+      "type": "info",
+      "text": "How are you!"
+    }
+  ]
+}
+</pre>
+
+    <h3>{%trans "Error  Response"%} <small>{%trans "example"%}</small></h3>
+<pre>
+{
+  "ok": false,
+  "msg":
+  [
+    {
+      "type": "error",
+      "text": "A verification code was sended to user"
+    }
+  ]
+}
+</pre>
+
+
+
+  </div>
+</div>

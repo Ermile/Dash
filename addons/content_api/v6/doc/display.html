@@ -3,10 +3,10 @@
 
 {%set apiURL%}{{url.site}}/api/v6/{%endset%}
 
-{%include "content_api/v6/doc/1-intro.html"%}
-{%include "content_api/v6/doc/2-endpoint.html"%}
-{%include "content_api/v6/doc/3-requests.html"%}
-{%include "content_api/v6/doc/4-responses.html"%}
+{%include "content_api/v6/doc/01-intro.html"%}
+{%include "content_api/v6/doc/02-endpoint.html"%}
+{%include "content_api/v6/doc/03-requests.html"%}
+{%include "content_api/v6/doc/04-responses.html"%}
 
 {%include "content_api/v6/doc/10-token.html"%}
 {%include "content_api/v6/doc/20-user-add.html"%}
@@ -31,6 +31,11 @@
     padding: 1em;
     user-select: text;
     margin-bottom:1em;
+  }
+  code{
+    background-color: rgba(0,0,0,0.4);
+    color: #fff;
+    padding: 0 0.5em;
   }
   .msg.url{
     direction: ltr;
