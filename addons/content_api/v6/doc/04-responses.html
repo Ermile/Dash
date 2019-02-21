@@ -13,6 +13,7 @@
       </ul>
     </p>
 
+
     <h3>{%trans "Success Response"%} <small>{%trans "example"%}</small></h3>
 <pre>
 {
@@ -32,7 +33,8 @@
 }
 </pre>
 
-    <h3>{%trans "Error  Response"%} <small>{%trans "example"%}</small></h3>
+
+    <h3>{%trans "Error Response"%} <small>{%trans "example"%}</small></h3>
 <pre>
 {
   "ok": false,
@@ -47,6 +49,69 @@
 </pre>
 
 
+    <h3>{%trans "HTTP response codes"%}</h3>
+    <p>{%trans "The status of a response can be determined from the HTTP status code."%}</p>
+    <div class="tblBox">
+      <table class="tbl1 v6">
+        <thead>
+          <tr>
+            <th>{%trans "Code"%}</th>
+            <th>{%trans "Status"%}</th>
+            <th>{%trans "Description"%}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>200</th>
+            <td>OK</td>
+            <td>{%trans "request successful"%}</td>
+          </tr>
+
+          <tr>
+            <th>304</th>
+            <td>Not Modified  </td>
+            <td>{%trans "request successful"%}</td>
+          </tr>
+
+          <tr>
+            <th>400</th>
+            <td>Bad Request </td>
+            <td>{%trans "request was invalid"%}</td>
+          </tr>
+
+          <tr>
+            <th>401</th>
+            <td>Unauthorized</td>
+            <td>{%trans "user does not have permission"%}</td>
+          </tr>
+
+          <tr>
+            <th>403</th>
+            <td>Forbidden</td>
+            <td>{%trans "request not authenticated"%}</td>
+          </tr>
+
+          <tr>
+            <th>429</th>
+            <td>Too many requests</td>
+            <td>{%trans "client is rate limited"%}</td>
+          </tr>
+
+          <tr>
+            <th>405</th>
+            <td>Method Not Allowed</td>
+            <td>{%trans "incorrect HTTP method provided"%}</td>
+          </tr>
+
+          <tr>
+            <th>415</th>
+            <td>Unsupported Media Type</td>
+            <td>{%trans "response is not valid JSON"%}</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
 
   </div>
 </div>
