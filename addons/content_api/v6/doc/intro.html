@@ -35,10 +35,89 @@
     <p>{%trans "The stable base URL for all Version 4 HTTPS endpoints is"%}</p>
     <pre>{{url.here}}</pre>
 
+  </div>
+</div>
+
+
+<div class="cbox fs15">
+  <h2 class="f fix" id='requests' data-kerkere='#requests-detail' data-kerkere-icon='open'>{%trans "Requests"%}</h2>
+  <div id="requests-detail">
+
     <p>{%trans "Any tool that is fluent in HTTP can communicate with the API simply by requesting the correct URI."%} {%trans "Requests should be made using the HTTPS protocol so that traffic is encrypted."%} {%trans "The interface responds to different methods depending on the action required."%}</p>
 
+    <div class="tblBox">
+      <table class="tbl1 v6">
+        <thead>
+          <tr>
+            <th>{%trans "Method"%}</th>
+            <th>{%trans "Usage"%}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>GET</th>
+            <td>
+              <p>{%trans "For simple retrieval of information about your something you should use the GET method."%} {%trans "The information you request will be returned to you as a JSON object."%}</p>
 
-    <h3>{%trans "Requests"%}</h3>
+              <p>{%trans "The attributes defined by the JSON object can be used to form additional requests."%} {%trans "Any request using the GET method is read-only and will not affect any of the objects you are querying."%}</p>
+            </td>
+          </tr>
+
+          <tr>
+            <th>POST</th>
+            <td>
+              <p>{%trans "To create a new object, your request should specify the POST method."%}</p>
+
+              <p>{%trans "The POST request includes all of the attributes necessary to create a new object."%} {%trans "When you wish to create a new object, send a POST request to the target endpoint."%}</p>
+            </td>
+          </tr>
+
+          <tr>
+            <th>DELETE</th>
+            <td>
+              <p>{%trans "To destroy a resource and remove it from your account and environment, the DELETE method should be used."%} {%trans "This will remove the specified object if it is found."%} {%trans "If it is not found, the operation will return a response indicating that the object was not found."%}</p>
+
+              <p>{%trans "This idempotency means that you do not have to check for a resource's availability prior to issuing a delete command, the final state will be the same regardless of its existence."%}</p>
+            </td>
+          </tr>
+
+          <tr>
+            <th>PUT</th>
+            <td>
+              <p>{%trans "To update the information about a resource in your account, the PUT method is available."%}</p>
+
+              <p>{%trans "Like the DELETE Method, the PUT method is idempotent."%} {%trans "It sets the state of the target using the provided values, regardless of their current values."%} {%trans "Requests using the PUT method do not need to check the current attributes of the object."%}</p>
+            </td>
+          </tr>
+
+          <tr>
+            <th>HEAD</th>
+            <td>
+              <p>{%trans "Finally, to retrieve metadata information, you should use the HEAD method to get the headers."%} {%trans "This returns only the header of what would be returned with an associated GET request."%}</p>
+
+              <p>{%trans "Response headers contain some useful information about your API access and the results that are available for your request."%}</p>
+
+              <p>{%trans "For instance, the headers contain your current rate-limit value and the amount of time available until the limit resets."%} {%trans "It also contains metrics about the total number of objects found, pagination information, and the total content length."%}</p>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="cbox fs15">
+  <h2 class="f fix" id='responses' data-kerkere='#responses-detail' data-kerkere-icon='open'>{%trans "Responses"%}</h2>
+  <div id="responses-detail">
+    <p>{%trans "Each response is a JSON object."%}</p>
+
+  </div>
+</div>
+
+
 
 
 
@@ -47,8 +126,6 @@
 
 
     <p>{%trans ""%}</p>
-  </div>
-</div>
 
 
 <div class="cbox">
