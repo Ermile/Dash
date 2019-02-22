@@ -462,7 +462,7 @@ class prepare
 			{
 				setcookie('preview','yes',time() + 30*24*60*60,'/','.'.\dash\url::domain());
 			}
-			elseif(\dash\url::dir(0) === 'hook')
+			elseif(\dash\url::content() === 'hook')
 			{
 				// allow telegram to commiunate on coming soon
 			}
