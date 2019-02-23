@@ -11,6 +11,8 @@ class controller
 			\content_api\v6::no(404);
 		}
 
+		\content_api\v6::check_apikey();
+
 		$notif = self::notif();
 
 		\content_api\v6::bye($notif);
@@ -21,19 +23,12 @@ class controller
 	{
 		$notif     = [];
 
-		$usercode = \dash\header::get('usercode');
-		if(!$usercode)
-		{
-			return false;
-		}
-
-		$user_id = \dash\coding::decode($usercode);
+		$user_id = \dash\user::id();
 
 		if(!$user_id)
 		{
 			return false;
 		}
-
 
 		$args =
 		[

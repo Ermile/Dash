@@ -11,6 +11,8 @@ class controller
 			\content_api\v6::no(404);
 		}
 
+		\content_api\v6::check_apikey();
+
 		$smile = self::smile();
 
 		\content_api\v6::bye($smile);
@@ -21,15 +23,8 @@ class controller
 	{
 		$smile     = [];
 
-		$usercode = \dash\header::get('usercode');
 
-
-		if(!$usercode)
-		{
-			return false;
-		}
-
-		$id = \dash\coding::decode($usercode);
+		$id = \dash\user::id();
 
 		if(!$id)
 		{

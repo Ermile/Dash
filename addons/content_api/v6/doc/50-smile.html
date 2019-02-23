@@ -1,0 +1,65 @@
+<div class="cbox" id='smile'>
+
+  <h2 class="f" data-kerkere='#smile-detail' data-kerkere-icon='open'>
+    <div class="cauto pRa10"><span class="badge primary">POST</span></div>
+    <div>{%trans "Get notification count"%}</div>
+  </h2>
+  <div id="smile-detail">
+    <p>{%trans "To get this user have notification or no"%}</p>
+    <div class="msg url">
+      <i class="method">POST</i>
+      <span>{{apiURL}}<b>smile</b></span>
+    </div>
+
+    <div class="tblBox">
+      <h3>{%trans "Required parameters"%} {%trans "on header"%}</h3>
+      <table class="tbl1 v3">
+        <thead>
+          <tr>
+            <th>{%trans "Name"%} <small>{%trans "type"%}</small></th>
+            <th>{%trans "Description"%} <small>{%trans "example"%}</small></th>
+            <th>{%trans "Constraints"%}</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr>
+            <td>
+              <div class="txtB">apikey</div>
+              <i>string</i>
+            </td>
+            <td>
+              <div>{%trans "Your temporary apikey"%}</div>
+              <code>87923bd0d04b30aa5f66b699c2698e3b</code>
+            </td>
+            <td>
+              <div class="fc-red"><i>{%trans "Required"%}</i></div>
+              {%trans "length"%} {{32 | fitNumber}}
+              <div>{%trans "Get from your account or signup user"%} <a href="{{url.that}}#user-add"><small>{%trans "Read more"%}</small></a></div>
+          </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+    <h3>{%trans "cURL"%} <small>{%trans "example"%}</small></h3>
+<pre>
+curl -X POST \
+  {{apiURL}}smile \
+  -H 'apikey: 87923bd0d04b30aa5f66b699c2698e3b' \
+</pre>
+
+<h3>{%trans "Response"%} <small>{%trans "example"%}</small></h3>
+<pre>
+{
+  "ok": true,
+  "result": {
+    "notif_new": true,
+    "notif_count": 1
+  }
+}
+</pre>
+
+  </div>
+</div>
