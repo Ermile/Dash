@@ -38,6 +38,11 @@ class v6
 	{
 		\dash\header::set($_code);
 
+		if(in_array(intval($_code), [400,401,403,404,429,405,415])  && \dash\engine\process::status())
+		{
+			\dash\engine\process::stop();
+		}
+
 		if($_msg)
 		{
 			\dash\notif::error($_msg);
