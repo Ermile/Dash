@@ -1,0 +1,134 @@
+<div class="cbox" id='user-login-verify'>
+
+  <h2 class="f" data-kerkere='#user-login-verify-detail' data-kerkere-icon='open'>
+    <div class="cauto pRa10"><span class="badge primary">POST</span></div>
+    <div>{%trans "Verify user"%}</div>
+  </h2>
+  <div id="user-login-verify-detail">
+    <p>{%trans "After send verification code to user you must verify it"%}</p>
+    <div class="msg url">
+      <i class="method">POST</i>
+      <span>{{apiURL}}<b>enter/verify</b></span>
+    </div>
+
+    <div class="tblBox">
+      <h3>{%trans "Required parameters"%} {%trans "on header"%}</h3>
+      <table class="tbl1 v3">
+        <thead>
+          <tr>
+            <th>{%trans "Name"%} <small>{%trans "type"%}</small></th>
+            <th>{%trans "Description"%} <small>{%trans "example"%}</small></th>
+            <th>{%trans "Constraints"%}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="txtB">token</div>
+              <i>string</i>
+            </td>
+            <td>
+              <div>{%trans "Your temporary token"%}</div>
+              <code>ec8e69c19ebb7c202ae1097aa40484e0</code>
+            </td>
+            <td>
+              <div class="fc-red"><i>{%trans "Required"%}</i></div>
+              {%trans "length"%} {{32 | fitNumber}}
+              <div>{%trans "To get this token see"%} <a href="{{url.that}}#token"><small>{%trans "Read more"%}</small></a></div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="txtB">apikey</div>
+              <i>string</i>
+            </td>
+            <td>
+              <div>{%trans "Your temporary apikey"%}</div>
+              <code>87923bd0d04b30aa5f66b699c2698e3b</code>
+            </td>
+            <td>
+              <div class="fc-red"><i>{%trans "Required"%}</i></div>
+              {%trans "length"%} {{32 | fitNumber}}
+              <div>{%trans "Get from your account or signup user"%} <a href="{{url.that}}#user-add"><small>{%trans "Read more"%}</small></a></div>
+          </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+    <div class="tblBox">
+      <h3>{%trans "Required parameters"%}</h3>
+      <table class="tbl1 v3">
+        <thead>
+          <tr>
+            <th>{%trans "Name"%} <small>{%trans "type"%}</small></th>
+            <th>{%trans "Description"%} <small>{%trans "example"%}</small></th>
+            <th>{%trans "Constraints"%}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="txtB">mobile</div>
+              <i>number</i>
+            </td>
+            <td>
+              <div class="fc-mute">{%trans "example"%}</div>
+              <code>989121234567</code>
+            </td>
+            <td>
+              <div class="fc-red"><i>{%trans "Required"%}</i></div>
+              {%trans "Max length"%} {{12 | fitNumber}}
+              {%trans "Min length"%} {{7 | fitNumber}}
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="txtB">verifycode</div>
+              <i>int</i>
+            </td>
+            <td>
+              <div class="fc-mute">{%trans "example"%}</div>
+              <code>12345</code>
+            </td>
+            <td>
+              <div class="fc-red"><i>{%trans "Required"%}</i></div>
+              {%trans "length"%} {{5 | fitNumber}}
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>{%trans "cURL"%} <small>{%trans "example"%}</small></h3>
+<pre>
+curl -X POST \
+  {{apiURL}}enter \
+  -H 'token: ec8e69c19ebb7c202ae1097aa40484e0' \
+  -H 'apikey: 87923bd0d04b30aa5f66b699c2698e3b' \
+  -F 'mobile=989121234567'
+  -F 'verifycode=12345'
+</pre>
+
+    <h3>{%trans "Response"%} <small>{%trans "example"%}</small></h3>
+<pre>
+{
+  "ok": true,
+  "msg": [
+    {
+      "type": "ok",
+      "text": "Code is ok"
+    }
+  ],
+  "result": {
+    "apikey": "891920636c6cd1993baf0ab5eaac48ce"
+  }
+}
+</pre>
+
+  </div>
+</div>
