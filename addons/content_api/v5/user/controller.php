@@ -6,7 +6,7 @@ class controller
 {
 	public static function routing()
 	{
-		\content_api\controller::check_authorization2_v5();
+		\content_api\v5::check_authorization2_v5();
 
 		switch (\dash\url::subchild())
 		{

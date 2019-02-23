@@ -18,7 +18,7 @@ class user_add
 		$meta     = [];
 		$i        = 0;
 
-		$v5 = \content_api\controller::$v5;
+		$v5 = \content_api\v5::$v5;
 
 		if(isset($v5['x_app_request']))
 		{
@@ -134,7 +134,7 @@ class user_add
 
 		self::$response['usertoken'] = $token;
 
-		\content_api\controller::end5(self::$response);
+		\content_api\v5::end5(self::$response);
 	}
 
 

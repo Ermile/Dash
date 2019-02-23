@@ -6,11 +6,11 @@ class controller
 {
 	public static function routing()
 	{
-		\content_api\controller::check_authorization3_v5();
+		\content_api\v5::check_authorization3_v5();
 
 		$smile = self::smile();
 
-		\content_api\controller::end5($smile);
+		\content_api\v5::end5($smile);
 	}
 
 

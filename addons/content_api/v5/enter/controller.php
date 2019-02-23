@@ -18,7 +18,7 @@ class controller
 
 	public static function routing()
 	{
-		\content_api\controller::check_authorization3_v5();
+		\content_api\v5::check_authorization3_v5();
 
 		$subchild = \dash\url::subchild();
 
@@ -31,7 +31,7 @@ class controller
 			self::verify();
 		}
 
-		\content_api\controller::end5();
+		\content_api\v5::end5();
 
 	}
 
@@ -304,7 +304,7 @@ class controller
 	private static function check_input()
 	{
 
-		$v5 = \content_api\controller::$v5;
+		$v5 = \content_api\v5::$v5;
 
 		if(!isset($v5['x_app_request']))
 		{

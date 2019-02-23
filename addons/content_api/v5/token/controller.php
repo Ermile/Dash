@@ -6,9 +6,9 @@ class controller
 {
 	public static function routing()
 	{
-		\content_api\controller::check_authorization_v5();
+		\content_api\v5::check_authorization_v5();
 
-		$x_app_request = \content_api\controller::$v5;
+		$x_app_request = \content_api\v5::$v5;
 
 		if(isset($x_app_request['x_app_request']))
 		{
@@ -23,7 +23,7 @@ class controller
 
 		\dash\notif::result($result);
 
-		\content_api\controller::end5();
+		\content_api\v5::end5();
 	}
 }
 ?>
