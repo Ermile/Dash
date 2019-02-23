@@ -31,7 +31,10 @@
               <div>{%trans "Your temporary token"%}</div>
               <code>ec8e69c19ebb7c202ae1097aa40484e0</code>
             </td>
-            <td>{%trans "length"%} 32</td>
+            <td>
+              <div class="fc-red"><i>{%trans "Required"%}</i></div>
+              {%trans "length"%} {{32 | fitNumber}}
+            </td>
           </tr>
         </tbody>
       </table>

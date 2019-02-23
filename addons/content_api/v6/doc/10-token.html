@@ -31,7 +31,10 @@
               <div>{%trans "APP key generated on the user panel"%}</div>
               <code>1234ec8e69c19ebb7c202ae1097aa4041234ec8e69c19ebb7c202ae1097aa404</code>
             </td>
-            <td>{%trans "length"%} 64</td>
+            <td>
+              <div class="fc-red"><i>{%trans "Required"%}</i></div>
+              {%trans "length"%} {{64 | fitNumber}}
+            </td>
           </tr>
         </tbody>
       </table>
