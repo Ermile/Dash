@@ -35,6 +35,8 @@ class add
 
 		$token = md5($token);
 
+		$user_add['meta'] = json_encode($user_add['meta'], JSON_UNESCAPED_UNICODE);
+
 		if(self::user_exist($token))
 		{
 			self::user_update($add_user);
@@ -45,15 +47,13 @@ class add
 			self::user_add($add_user);
 		}
 
-
 		if(self::$user_id)
 		{
 			$apikey = \dash\app\user_auth::make_user_auth(self::$user_id);
 			self::$response['apikey'] = $apikey;
-
 		}
 
-		self::$response['zoneid'] = \dash\coding::encod(self::$zoneid);
+		self::$response['zoneid'] = 'android-'. \dash\coding::encode(self::$zoneid);
 
 		\content_api\v6::bye(self::$response);
 	}
@@ -171,19 +171,20 @@ class add
 			return false;
 		}
 
-		$add_user                 = [];
-		$add_user['model']        = $model;
-		$add_user['serial']       = $serial;
-		$add_user['manufacturer'] = $manufacturer;
-		$add_user['version']      = $version;
+		$add_user                     = [];
+		$add_user['model']            = $model;
+		$add_user['serial']           = $serial;
+		$add_user['manufacturer']     = $manufacturer;
+		$add_user['version']          = $version;
 
-		$add_user['hardware']     = $hardware;
-		$add_user['type']         = $type;
-		$add_user['board']        = $board;
-		$add_user['id']           = $id;
-		$add_user['product']      = $product;
-		$add_user['device']       = $device;
-		$add_user['brand']        = $brand;
+		$add_user['meta']             = [];
+		$add_user['meta']['hardware'] = $hardware;
+		$add_user['meta']['type']     = $type;
+		$add_user['meta']['board']    = $board;
+		$add_user['meta']['id']       = $id;
+		$add_user['meta']['product']  = $product;
+		$add_user['meta']['device']   = $device;
+		$add_user['meta']['brand']    = $brand;
 
 		return $add_user;
 	}
