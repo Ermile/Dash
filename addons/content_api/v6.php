@@ -33,12 +33,52 @@ class v6
 		}
 	}
 
+	public static function check_token()
+	{
+		$token = \dash\header::get('token');
+
+		if(!$token || mb_strlen($token) !== 32)
+		{
+			self::no(401, T_("Invalid token"));
+		}
+
+		$get =
+		[
+			'status'  => 'enable',
+			'user_id' => null,
+			'type'    => 'guest',
+			'auth'    => $token,
+			'limit'   => 1,
+		];
+
+		$get = \dash\db\user_auth::get($get);
+
+		if(!isset($get['id']) || !isset($get['datecreated']))
+		{
+			self::no(401, T_("Invalid token"));
+		}
+
+		$time_left = time() - strtotime($get['datecreated']);
+
+		$life_time = 60 * 3;
+
+		if($time_left > $life_time)
+		{
+			\dash\db\user_auth::update(['status' => 'expire'], $get['id']);
+			self::no(401, T_("Token is expire"));
+		}
+
+		\dash\db\user_auth::update(['status' => 'used'], $get['id']);
+
+		return true;
+	}
+
 
 	public static function no($_code, $_msg = null, $_result = null)
 	{
 		\dash\header::set($_code);
 
-		if(in_array(intval($_code), [400,401,403,404,429,405,415])  && \dash\engine\process::status())
+		if(in_array(intval($_code), [400,401,403,404,429,405,415]) && \dash\engine\process::status())
 		{
 			\dash\engine\process::stop();
 		}

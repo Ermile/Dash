@@ -4,60 +4,23 @@ namespace content_api\v6\android\user;
 
 class add
 {
-	private static $load_user     = [];
-	private static $response      = [];
-	private static $user_id       = null;
-	private static $x_app_request = null;
+	private static $load_user = [];
+	private static $response  = [];
+	private static $user_id   = null;
+	private static $zoneid    = null;
 
 
 	public static function add()
 	{
-		$post     = \dash\request::post();
+		\content_api\v6::check_token();
 
-		$add_user = [];
-		$meta     = [];
-		$i        = 0;
+		$add_user = self::check_input();
 
-		$add_user['model']        = null;
-		$add_user['serial']       = null;
-		$add_user['manufacturer'] = null;
-		$add_user['version']      = null;
-
-		foreach ($post as $key => $value)
+		if(!$add_user || !is_array($add_user))
 		{
-			// check to not save a lot of detail!
-			$i++;
-			if($i > 50)
-			{
-				break;
-			}
-
-			if(mb_strlen($value) >= 200)
-			{
-				$value = substr($value, 0, 199);
-			}
-
-			$myField = mb_strtolower($key);
-
-			switch ($myField)
-			{
-				case 'model':
-				case 'manufacturer':
-					$add_user[$myField] = mb_strtolower($value);
-					$meta[$myField] = $value;
-					break;
-
-				case 'serial':
-				case 'version':
-					$add_user[$myField] = $value;
-					$meta[$myField] = $value;
-					break;
-
-				default:
-					$meta[$myField] = $value;
-					break;
-			}
+			\content_api\v6::no(400);
 		}
+
 
 		$add_user['lastupdate'] = date("Y-m-d H:i:s");
 
@@ -70,65 +33,159 @@ class add
 		$token .= '_';
 		$token .= $add_user['version'];
 
-		// empty args
-		if($token === 'APP____')
-		{
-			// \dash\log::set('emptyAndroidDetail');
-			\dash\header::status(400, T_("Empty input values"));
-		}
-
-		$meta['usertoken_raw'] = $token;
-
 		$token = md5($token);
 
-		$meta = json_encode($meta, JSON_UNESCAPED_UNICODE);
-
-		$add_user['meta']   = $meta;
-
-		$sended_token = self::sended_token();
-
-		if($sended_token)
+		if(self::user_exist($token))
 		{
-			if(self::user_exist($sended_token))
-			{
-				self::user_update($token, $add_user);
-			}
-			else
-			{
-				$add_user['uniquecode'] = $token;
-				self::user_add($add_user);
-			}
+			self::user_update($add_user);
 		}
 		else
 		{
-			if(self::user_exist($token))
-			{
-				self::user_update($token, $add_user);
-			}
-			else
-			{
-				$add_user['uniquecode'] = $token;
-				self::user_add($add_user);
-			}
+			$add_user['uniquecode'] = $token;
+			self::user_add($add_user);
 		}
+
 
 		if(self::$user_id)
 		{
-			$user_auth = \dash\app\user_auth::make_user_auth(self::$user_id, self::$x_app_request);
-			self::$response['auth3'] = $user_auth;
+			$apikey = \dash\app\user_auth::make_user_auth(self::$user_id);
+			self::$response['apikey'] = $apikey;
 
 		}
 
-		self::$response['usertoken'] = $token;
+		self::$response['zoneid'] = \dash\coding::encod(self::$zoneid);
 
-		\content_api\v6::end5(self::$response);
+		\content_api\v6::bye(self::$response);
 	}
 
-
-	private static function sended_token()
+	private static function check_input()
 	{
-		$sended_token = \dash\request::post('app_token');
-		return $sended_token;
+		$model = \dash\request::post('model');
+
+		if(!$model)
+		{
+			\dash\notif::error(T_("Model"). ' '. T_("not set"));
+			return false;
+		}
+
+		$model = mb_strtolower($model);
+
+		if(mb_strlen($model) > 100)
+		{
+			\dash\notif::error(T_("model"). ' '. T_("is out of range"));
+			return false;
+		}
+
+		$serial = \dash\request::post('serial');
+
+		if(!$serial)
+		{
+			\dash\notif::error(T_("Serial"). ' '. T_("not set"));
+			return false;
+		}
+
+		$serial = mb_strtolower($serial);
+
+		if(mb_strlen($serial) > 100)
+		{
+			\dash\notif::error(T_("serial"). ' '. T_("is out of range"));
+			return false;
+		}
+
+		$manufacturer = \dash\request::post('manufacturer');
+
+		if(!$manufacturer)
+		{
+			\dash\notif::error(T_("Manufacturer"). ' '. T_("not set"));
+			return false;
+		}
+
+		$manufacturer = mb_strtolower($manufacturer);
+
+		if(mb_strlen($manufacturer) > 100)
+		{
+			\dash\notif::error(T_("manufacturer"). ' '. T_("is out of range"));
+			return false;
+		}
+
+		$version = \dash\request::post('version');
+		if(!$version)
+		{
+			\dash\notif::error(T_("Version"). ' '. T_("not set"));
+			return false;
+		}
+
+		$version = mb_strtolower($version);
+		if(mb_strlen($version) > 20)
+		{
+			\dash\notif::error(T_("version"). ' '. T_("is out of range"));
+			return false;
+		}
+
+		$hardware = \dash\request::post('hardware');
+		if(mb_strlen($hardware) > 50)
+		{
+			\dash\notif::error(T_("hardware"). ' '. T_("is out of range"));
+			return false;
+		}
+
+		$type = \dash\request::post('type');
+		if(mb_strlen($type) > 50)
+		{
+			\dash\notif::error(T_("type"). ' '. T_("is out of range"));
+			return false;
+		}
+
+		$board = \dash\request::post('board');
+		if(mb_strlen($board) > 100)
+		{
+			\dash\notif::error(T_("board"). ' '. T_("is out of range"));
+			return false;
+		}
+
+		$id = \dash\request::post('id');
+		if(mb_strlen($id) > 100)
+		{
+			\dash\notif::error(T_("id"). ' '. T_("is out of range"));
+			return false;
+		}
+
+		$product = \dash\request::post('product');
+		if(mb_strlen($product) > 100)
+		{
+			\dash\notif::error(T_("product"). ' '. T_("is out of range"));
+			return false;
+		}
+
+		$device = \dash\request::post('device');
+		if(mb_strlen($device) > 100)
+		{
+			\dash\notif::error(T_("device"). ' '. T_("is out of range"));
+			return false;
+		}
+
+		$brand = \dash\request::post('brand');
+		if(mb_strlen($brand) > 100)
+		{
+			\dash\notif::error(T_("brand"). ' '. T_("is out of range"));
+			return false;
+		}
+
+		$add_user                 = [];
+		$add_user['model']        = $model;
+		$add_user['serial']       = $serial;
+		$add_user['manufacturer'] = $manufacturer;
+		$add_user['version']      = $version;
+
+		$add_user['hardware']     = $hardware;
+		$add_user['type']         = $type;
+		$add_user['board']        = $board;
+		$add_user['id']           = $id;
+		$add_user['product']      = $product;
+		$add_user['device']       = $device;
+		$add_user['brand']        = $brand;
+
+		return $add_user;
 	}
 
 
@@ -138,18 +195,24 @@ class add
 
 		if(isset($load['user_id']))
 		{
+			if(isset($load['id']))
+			{
+				self::$zoneid = $load['id'];
+			}
+
 			self::$user_id = $load['user_id'];
 
 			self::$response['usercode'] = \dash\coding::encode($load['user_id']);
 
 			self::$load_user = $load;
+
 			return $load;
 		}
 		return false;
 	}
 
 
-	private static function user_update($_token, $_detail)
+	private static function user_update($_detail)
 	{
 		if(isset(self::$load_user['id']))
 		{
@@ -165,7 +228,7 @@ class add
 		{
 			self::$user_id = $user_id;
 			$_detail['user_id'] = $user_id;
-			\dash\db\user_android::insert($_detail);
+			self::$zoneid = \dash\db\user_android::insert($_detail);
 		}
 
 		self::$response['usercode'] = \dash\coding::encode($user_id);
