@@ -35,7 +35,7 @@ class add
 
 		$token = md5($token);
 
-		$user_add['meta'] = json_encode($user_add['meta'], JSON_UNESCAPED_UNICODE);
+		$add_user['meta'] = json_encode($add_user['meta'], JSON_UNESCAPED_UNICODE);
 
 		if(self::user_exist($token))
 		{
@@ -229,7 +229,8 @@ class add
 		{
 			self::$user_id = $user_id;
 			$_detail['user_id'] = $user_id;
-			self::$zoneid = \dash\db\user_android::insert($_detail);
+			\dash\db\user_android::insert($_detail);
+			self::$zoneid = \dash\db::insert_id();
 		}
 
 		self::$response['usercode'] = \dash\coding::encode($user_id);
