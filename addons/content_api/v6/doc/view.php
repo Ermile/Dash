@@ -13,6 +13,8 @@ class view
 		\dash\data::page_desc(T_('Last modified'). ' '. \dash\datetime::fit('2019-02-21 17:30', 'human', 'year'));
 		\dash\data::page_pictogram('campfire');
 
+		\dash\data::apiURL(\dash\url::site(). '/'. \dash\language::current(). '/api/v6/');
+
 	}
 }
 ?>

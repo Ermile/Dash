@@ -1,0 +1,33 @@
+<div class="cbox" id='about'>
+
+  <h2 class="f" data-kerkere='#about-detail' data-kerkere-icon='open'>
+    <div class="cauto pRa10"><span class="badge primary">GET</span></div>
+    <div>{%trans "Get about text"%}</div>
+  </h2>
+
+  <div id="about-detail">
+
+    <div class="msg url">
+      <i class="method">GET</i>
+      <span>{{apiURL}}<b>about</b></span>
+    </div>
+
+    <h3>{%trans "cURL"%} <small>{%trans "example"%}</small></h3>
+    <pre>curl -X GET {{apiURL}}about</pre>
+
+    <h3>{%trans "Response"%} <small>{%trans "example"%}</small></h3>
+<pre>
+{
+  "ok": true,
+  "result": {
+    "language": "en",
+    "title": "about",
+    "slug": "about",
+    "url": "{{apiURL}}about",
+    "content": "Your about text"
+  }
+}
+</pre>
+
+  </div>
+</div>
