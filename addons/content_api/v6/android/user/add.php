@@ -49,7 +49,7 @@ class add
 
 		if(self::$user_id)
 		{
-			$apikey = \dash\app\user_auth::make_user_auth(self::$user_id);
+			$apikey = \dash\app\user_auth::make_user_auth(self::$user_id, 'android', self::$zoneid);
 			self::$response['apikey'] = $apikey;
 		}
 

@@ -44,21 +44,23 @@ class user_auth
 			return $result;
 		}
 		return false;
-
 	}
 
-	public static function make_user_auth($_user_id, $_gateway = null)
+
+	public static function make_user_auth($_user_id, $_gateway = null, $_gateway_id = null)
 	{
 		$check =
 		[
-			'user_id' => $_user_id,
-			'type'    => 'member',
-			'status'  => 'enable',
-			'gateway' => $_gateway,
-			'limit'   => 1,
+			'user_id'    => $_user_id,
+			'type'       => 'member',
+			'status'     => 'enable',
+			'gateway'    => $_gateway,
+			'gateway_id' => $_gateway_id,
+			'limit'      => 1,
 		];
 
 		$check = \dash\db\user_auth::get($check);
+
 		if(isset($check['auth']))
 		{
 			return $check['auth'];
@@ -73,6 +75,7 @@ class user_auth
 				'type'        => 'member',
 				'status'      => 'enable',
 				'gateway'     => $_gateway,
+				'gateway_id'  => $_gateway_id,
 				'datecreated' => date("Y-m-d H:i:s"),
 				'auth'        => $auth,
 			];

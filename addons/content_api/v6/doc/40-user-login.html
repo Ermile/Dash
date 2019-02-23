@@ -84,9 +84,6 @@
               {%trans "Min length"%} {{7 | fitNumber}}
             </td>
           </tr>
-
-
-
         </tbody>
       </table>
     </div>
@@ -96,6 +93,7 @@
 curl -X POST \
   {{apiURL}}enter \
   -H 'token: ec8e69c19ebb7c202ae1097aa40484e0' \
+  -H 'apikey: 87923bd0d04b30aa5f66b699c2698e3b' \
   -F 'mobile=989121234567'
 </pre>
 
@@ -103,11 +101,13 @@ curl -X POST \
 <pre>
 {
   "ok": true,
-  "result": {
-    "usercode": "3N5C",
-    "zoneid": "android-ZW3N"
-    "apikey": "87923bd0d04b30aa5f66b699c2698e3b",
-  }
+  "msg": [
+    {
+      "type": "ok",
+      "text": "The verification code sended to phone number"
+    }
+  ],
+  "result": null
 }
 </pre>
 

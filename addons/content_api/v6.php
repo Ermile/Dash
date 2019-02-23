@@ -37,6 +37,11 @@ class v6
 	{
 		$token = \dash\header::get('token');
 
+		if(!$token)
+		{
+			self::no(401, T_("token not set"));
+		}
+
 		if(!$token || mb_strlen($token) !== 32)
 		{
 			self::no(401, T_("Invalid token"));
@@ -71,6 +76,61 @@ class v6
 		\dash\db\user_auth::update(['status' => 'used'], $get['id']);
 
 		return true;
+	}
+
+
+	public static function check_apikey()
+	{
+		$apikey = \dash\header::get('apikey');
+
+
+		if(!$apikey)
+		{
+			self::no(401, T_("apikey not set"));
+		}
+
+		if(mb_strlen($apikey) !== 32)
+		{
+			self::no(401, T_("Invalid apikey"));
+		}
+
+		$get =
+		[
+			'status'  => 'enable',
+			'user_id' => [" IS ", " NOT NULL "],
+			'type'    => 'member',
+			'auth'    => $apikey,
+			'limit'   => 1,
+		];
+
+		$get = \dash\db\user_auth::get($get);
+
+		if(!isset($get['id']) || !isset($get['datecreated']) || !isset($get['user_id']))
+		{
+			self::no(401, T_("Invalid apikey"));
+		}
+
+		self::api_user_login($get['id']);
+		\dash\user::init($get['user_id']);
+
+		return true;
+	}
+
+
+	private static function api_user_login($_id)
+	{
+		$session_id = \dash\url::root(). 'API'. $_id;
+
+		// if a session is currently opened, close it
+		if(session_id() != '')
+		{
+			session_write_close();
+		}
+
+		// use new id
+		session_id($session_id);
+		// start new session
+		session_start();
 	}
 
 
