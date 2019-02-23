@@ -15,10 +15,13 @@ class controller
 
 	private static $life_time = 60 * 5;
 
+	use \content_api\v6\enter\login;
+	use \content_api\v6\enter\verify;
+
 
 	public static function routing()
 	{
-		\content_api\v6::check_authorization3_v6();
+		\content_api\v6::check_token();
 
 		$subchild = \dash\url::subchild();
 
@@ -30,213 +33,11 @@ class controller
 		{
 			self::verify();
 		}
-
-		\content_api\v6::end5();
-
-	}
-
-	private static function verify()
-	{
-		$check_input = self::check_input();
-		if(!$check_input)
-		{
-			return false;
-		}
-
-		if(!self::$verifycode)
-		{
-			\dash\notif::error(T_("Verification code not set"), 'verifycode');
-			return false;
-		}
-
-		$check_true = self::check_true_user();
-		if(!$check_true)
-		{
-			return false;
-		}
-
-		$user_id = \dash\db\users::signup(['mobile' => self::$mobile]);
-		if(!$user_id)
-		{
-			\dash\log::set('API-canNotSignupUserEnterVerify');
-			\dash\notif::error(T_("Can not signup this mobile"));
-			return false;
-		}
-
-		self::$mobile_user_id = $user_id;
-
-		$check_log =
-		[
-			'caller' => 'enter_apiverificationcode',
-			'to'     => $user_id,
-			'limit'  => 1,
-		];
-
-		$check_log = \dash\db\logs::get($check_log, ['order' => 'ORDER BY logs.id DESC']);
-
-		$generate_new_code = false;
-
-		if(!isset($check_log['id']))
-		{
-			\dash\notif::error(T_("No verifycation code sended to this phone number"));
-			return false;
-		}
 		else
 		{
-			if(isset($check_log['status']) && in_array($check_log['status'], ['enable', 'notif', 'notifread']))
-			{
-				if(isset($check_log['datecreated']))
-				{
-					$old_time = strtotime($check_log['datecreated']);
-					if((time() - $old_time) < self::$life_time)
-					{
-						if(isset($check_log['code']))
-						{
-							if(intval($check_log['code']) === intval(self::$verifycode))
-							{
-								\dash\db\logs::update(['status' => 'expire'], $check_log['id']);
-								self::user_login_true();
-								return true;
-							}
-							else
-							{
-								\dash\notif::error(T_("Invalid code"));
-								return false;
-							}
-						}
-						else
-						{
-							\dash\notif::error(T_("Verification code not set"));
-							return false;
-						}
-					}
-					else
-					{
-						\dash\notif::error(T_("Verification code was expired"));
-						return false;
-					}
-				}
-				else
-				{
-					\dash\notif::error(T_("Verification code not found"));
-					return false;
-				}
-			}
-			else
-			{
-				\dash\notif::error(T_("Verification code not found"));
-				return false;
-			}
-		}
-	}
-
-	private static function user_login_true()
-	{
-		$result               = [];
-		$result['usertoken'] = self::$usertoken;
-
-		if(intval(self::$user_id) === intval(self::$mobile_user_id))
-		{
-			$result['usercode'] = self::$usercode;
-			$result['auth3'] = \dash\header::get('auth3');
-		}
-		else
-		{
-			\dash\db\user_android::update_where(['user_id' => self::$mobile_user_id], ['uniquecode' => self::$usertoken, 'user_id' => self::$user_id]);
-			$result['usercode'] = \dash\coding::encode(self::$mobile_user_id);
-			$user_auth          = \dash\app\user_auth::make_user_auth(self::$mobile_user_id, self::$x_app_request);
-			$result['auth3']    = $user_auth;
+			\content_api\v6::no(404);
 		}
 
-		\dash\notif::result($result);
-		\dash\notif::ok(T_("Code ok"));
-	}
-
-
-	private static function login()
-	{
-		$check_input = self::check_input();
-		if(!$check_input)
-		{
-			return false;
-		}
-
-		$check_true = self::check_true_user();
-		if(!$check_true)
-		{
-			return false;
-		}
-
-		$user_id = \dash\db\users::signup(['mobile' => self::$mobile]);
-		if(!$user_id)
-		{
-			\dash\log::set('API-canNotSignupUserEnter');
-			\dash\notif::error(T_("Can not signup this mobile"));
-			return false;
-		}
-
-		self::$mobile_user_id = $user_id;
-
-		$check_log =
-		[
-			'caller' => 'enter_apiverificationcode',
-			'to'     => $user_id,
-			'limit'  => 1,
-		];
-
-		$check_log = \dash\db\logs::get($check_log, ['order' => 'ORDER BY logs.id DESC']);
-
-		$generate_new_code = false;
-
-		if(!isset($check_log['id']))
-		{
-			$generate_new_code = true;
-		}
-		else
-		{
-			// 'enable','disable','expire','deliver','awaiting','deleted','cancel','block','notif','notifread','notifexpire'
-			if(isset($check_log['status']) && in_array($check_log['status'], ['enable', 'notif', 'notifread']))
-			{
-				if(isset($check_log['datecreated']))
-				{
-					$old_time = strtotime($check_log['datecreated']);
-					if((time() - $old_time) > self::$life_time)
-					{
-						$generate_new_code = true;
-					}
-				}
-				else
-				{
-					$generate_new_code = true;
-				}
-			}
-			else
-			{
-				$generate_new_code = true;
-			}
-		}
-
-
-		if($generate_new_code)
-		{
-			$myCode = rand(10000, 99999);
-
-			$log =
-			[
-				'to'     => $user_id,
-				'code'   => $myCode,
-				'mycode' => $myCode,
-			];
-
-			\dash\log::set('enter_apiverificationcode', $log);
-			\dash\notif::ok(T_("The verification code sended to phone number"));
-			return true;
-		}
-		else
-		{
-			\dash\notif::error(T_("A verification code was sended to user"));
-			return false;
-		}
 	}
 
 
@@ -303,23 +104,6 @@ class controller
 
 	private static function check_input()
 	{
-
-		$v6 = \content_api\v6::$v6;
-
-		if(!isset($v6['x_app_request']))
-		{
-			\dash\notif::error("x_app_request not set", 'header');
-			return false;
-		}
-
-		if(!in_array($v6['x_app_request'], ['android']))
-		{
-			\dash\notif::error("invalid x_app_request", 'header');
-			return false;
-		}
-
-		$x_app_request = $v6['x_app_request'];
-
 		$mobile = \dash\request::post('mobile');
 		if(!$mobile)
 		{

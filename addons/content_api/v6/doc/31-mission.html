@@ -1,0 +1,33 @@
+<div class="cbox" id='mission'>
+
+  <h2 class="f" data-kerkere='#mission-detail' data-kerkere-icon='open'>
+    <div class="cauto pRa10"><span class="badge primary">GET</span></div>
+    <div>{%trans "Get mission text"%}</div>
+  </h2>
+
+  <div id="mission-detail">
+
+    <div class="msg url">
+      <i class="method">GET</i>
+      <span>{{apiURL}}<b>mission</b></span>
+    </div>
+
+    <h3>{%trans "cURL"%} <small>{%trans "example"%}</small></h3>
+    <pre>curl -X GET {{apiURL}}mission</pre>
+
+    <h3>{%trans "Response"%} <small>{%trans "example"%}</small></h3>
+<pre>
+{
+  "ok": true,
+  "result": {
+    "language": "en",
+    "title": "mission",
+    "slug": "mission",
+    "url": "{{apiURL}}mission",
+    "content": "Your mission text"
+  }
+}
+</pre>
+
+  </div>
+</div>
