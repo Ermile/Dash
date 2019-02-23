@@ -37,9 +37,10 @@ class user_auth
 		$insert = \dash\db\user_auth::insert($insert);
 		if($insert)
 		{
-			$result = [];
-			$result['auth'] = $auth;
-			$result['date'] = $date_now;
+			$result           = [];
+			$result['auth']   = $auth;
+			$result['create'] = $date_now;
+			$result['expire'] = date("Y-m-d H:i:s", (time() + (60*3)));
 			return $result;
 		}
 		return false;
