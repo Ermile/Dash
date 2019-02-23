@@ -1,8 +1,8 @@
 <?php
-namespace content_api\v6\user;
+namespace content_api\v6\android\user;
 
 
-class user_add
+class add
 {
 	private static $load_user     = [];
 	private static $response      = [];
@@ -17,19 +17,6 @@ class user_add
 		$add_user = [];
 		$meta     = [];
 		$i        = 0;
-
-		$v6 = \content_api\v6::$v6;
-
-		if(isset($v6['x_app_request']))
-		{
-			self::$x_app_request = $v6['x_app_request'];
-		}
-
-		if(!in_array(self::$x_app_request, ['android']))
-		{
-			// \dash\log::set('invalidXAppRequestAPI');
-			\dash\header::status(400, T_("Invalid x-app-request"));
-		}
 
 		$add_user['model']        = null;
 		$add_user['serial']       = null;

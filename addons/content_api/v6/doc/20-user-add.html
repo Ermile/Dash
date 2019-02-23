@@ -51,25 +51,14 @@
         <tbody>
           <tr>
             <td>
-              <div class="txtB">manufactor</div>
-              <i>string</i>
-            </td>
-            <td>
-              <div>{%trans "Your mobile manufactor"%}</div>
-              <code>lg</code>
-            </td>
-            <td>{%trans "max length"%} 20</td>
-          </tr>
-          <tr>
-            <td>
               <div class="txtB">model</div>
               <i>string</i>
             </td>
             <td>
-              <div>{%trans "Your phone model"%}</div>
-              <code>k430</code>
+              <div class="fc-mute">{%trans "example"%}</div>
+              <code>HUAWEI Y560-U02</code>
             </td>
-            <td>{%trans "max length"%} 30</td>
+            <td>{%trans "Max length"%} {{100 | fitNumber}}</td>
           </tr>
           <tr>
             <td>
@@ -77,10 +66,21 @@
               <i>string</i>
             </td>
             <td>
-              <div>{%trans "Your mobile serial number"%}</div>
-              <code>1234567</code>
+              <div class="fc-mute">{%trans "example"%}</div>
+              <code>60D15B27D1259123456</code>
             </td>
-            <td>{%trans "max length"%} 32</td>
+            <td>{%trans "Max length"%} {{100 | fitNumber}}</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="txtB">manufacturer</div>
+              <i>string</i>
+            </td>
+            <td>
+              <div class="fc-mute">{%trans "example"%}</div>
+              <code>HUAWEI</code>
+            </td>
+            <td>{%trans "Max length"%} {{100 | fitNumber}}</td>
           </tr>
           <tr>
             <td>
@@ -88,11 +88,95 @@
               <i>string</i>
             </td>
             <td>
-              <div>{%trans "Your mobile os version"%}</div>
-              <code>12</code>
+              <div class="fc-mute">{%trans "example"%}</div>
+              <code>19</code>
             </td>
-            <td>{%trans "max length"%} 10</td>
+            <td>{%trans "Max length"%} {{100 | fitNumber}}</td>
           </tr>
+          <tr>
+            <td>
+              <div class="txtB">hardware</div>
+              <i>string</i>
+            </td>
+            <td>
+              <div class="fc-mute">{%trans "example"%}</div>
+              <code>sc8830</code>
+            </td>
+            <td>{%trans "Max length"%} {{100 | fitNumber}}</td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="txtB">type</div>
+              <i>string</i>
+            </td>
+            <td>
+              <div class="fc-mute">{%trans "example"%}</div>
+              <code>user</code>
+            </td>
+            <td>{%trans "Max length"%} {{100 | fitNumber}}</td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="txtB">board</div>
+              <i>string</i>
+            </td>
+            <td>
+              <div class="fc-mute">{%trans "example"%}</div>
+              <code>HUAWEI</code>
+            </td>
+            <td>{%trans "Max length"%} {{100 | fitNumber}}</td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="txtB">id</div>
+              <i>string</i>
+            </td>
+            <td>
+              <div class="fc-mute">{%trans "example"%}</div>
+              <code>HUAWEIY560-U02</code>
+            </td>
+            <td>{%trans "Max length"%} {{100 | fitNumber}}</td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="txtB">product</div>
+              <i>string</i>
+            </td>
+            <td>
+              <div class="fc-mute">{%trans "example"%}</div>
+              <code>Y560-U02</code>
+            </td>
+            <td>{%trans "Max length"%} {{100 | fitNumber}}</td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="txtB">device</div>
+              <i>string</i>
+            </td>
+            <td>
+              <div class="fc-mute">{%trans "example"%}</div>
+              <code>HWY560-U</code>
+            </td>
+            <td>{%trans "Max length"%} {{100 | fitNumber}}</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="txtB">brand</div>
+              <i>string</i>
+            </td>
+            <td>
+              <div class="fc-mute">{%trans "example"%}</div>
+              <code>HUAWEI</code>
+            </td>
+            <td>{%trans "Max length"%} {{100 | fitNumber}}</td>
+          </tr>
+
+
         </tbody>
       </table>
     </div>
@@ -100,14 +184,19 @@
     <h3>{%trans "cURL"%} <small>{%trans "example"%}</small></h3>
 <pre>
 curl -X POST \
-  https://example.com/api/v6/android/user/add \
+  {{apiURL}}android/user/add \
   -H 'token: ec8e69c19ebb7c202ae1097aa40484e0' \
-  -F 'model=model name' \
-  -F 'serial=serial number'
-  -F 'serial=serial number'
-  -F 'serial=serial number'
-  -F 'serial=serial number'
-  -F 'serial=serial number'
+  -F 'model=HUAWEI Y560-U02' \
+  -F 'serial=60D15B27D1259123456' \
+  -F 'manufacturer=HUAWEI' \
+  -F 'version=19' \
+  -F 'hardware=sc8830' \
+  -F 'type=user' \
+  -F 'board=HUAWEI' \
+  -F 'id=>HUAWEIY560-U02' \
+  -F 'product=Y560-U02' \
+  -F 'device=HWY560-U' \
+  -F 'brand=HUAWEI'
 </pre>
 
     <h3>{%trans "Response"%} <small>{%trans "example"%}</small></h3>

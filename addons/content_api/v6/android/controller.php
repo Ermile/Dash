@@ -6,7 +6,11 @@ class controller
 {
 	public static function routing()
 	{
-		if(\dash\url::subchild())
+		if(\dash\url::directory() === 'v6/android/user/add' && \dash\request::is('post'))
+		{
+			\content_api\v6\android\user\add::add();
+		}
+		elseif(\dash\url::subchild())
 		{
 			\content_api\v6::no(404);
 		}
