@@ -42,10 +42,29 @@ class static_page
 		{
 			foreach ($result_raw as $key => $value)
 			{
-				if(in_array($key, ['content', 'title', 'slug', 'language', 'url']))
+				switch ($key)
 				{
-					$result[$key] = $value;
+					case 'content':
+						$result[$key] = $value;
+
+						break;
+
+					case 'title':
+					case 'slug':
+					case 'language':
+						$result[$key] = $value;
+						break;
+
+					case 'url':
+						$result[$key] = \dash\url::kingdom(). '/'. $value;
+						break;
+
+					default:
+						# code...
+						break;
 				}
+
+
 			}
 		}
 
