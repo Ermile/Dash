@@ -1,0 +1,14 @@
+{%extends display.admin%}
+
+{%block pageContent%}
+<div class="cbox">
+  <form method="post">
+    <input type="hidden" name="add" value="apikey">
+    <div class="input">
+      <label>{%trans "YOUR API KEY"%}</label>
+      <input type="text" name="apikey" value="{{apikey.auth}}" readonly  class="txtC" placeholder='{%trans "GENERATE NEW API KEY"%}'>
+    </div>
+    <button data-confirm data-data='{"add" : "apikey"}' class="btn primary mT5 block">{%trans "Get new API KEY"%}</button>
+  </form>
+</div>
+{%endblock%}

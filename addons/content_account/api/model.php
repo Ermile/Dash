@@ -1,5 +1,5 @@
 <?php
-namespace content_account\appkey;
+namespace content_account\api;
 
 
 class model
@@ -11,9 +11,9 @@ class model
 			return;
 		}
 
-		if(\dash\request::post('add') === 'appkey')
+		if(\dash\request::post('add') === 'apikey')
 		{
-			$check = \dash\utility\appkey::create_app_key(\dash\user::id());
+			$check = \dash\app\user_auth::make_user_auth(\dash\user::id(), 'api');
 			if($check)
 			{
 				\dash\log::set('createNewApiKey');
