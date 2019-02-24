@@ -67,6 +67,17 @@ class user_auth
 		return null;
 	}
 
+	public static function disable_api_key()
+	{
+		$get = self::get_apikey(...func_get_args());
+		if(isset($get['id']))
+		{
+			\dash\db\user_auth::update(['status' => 'disable'], $get['id']);
+			return true;
+		}
+		return false;
+	}
+
 	public static function make_user_auth($_user_id, $_gateway = null, $_gateway_id = null)
 	{
 		$check =

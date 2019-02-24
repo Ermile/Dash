@@ -8,7 +8,15 @@
       <label>{%trans "YOUR API KEY"%}</label>
       <input type="text" name="apikey" value="{{apikey.auth}}" readonly  class="txtC" placeholder='{%trans "GENERATE NEW API KEY"%}'>
     </div>
-    <button data-confirm data-data='{"add" : "apikey"}' class="btn primary mT5 block">{%trans "Get new API KEY"%}</button>
+
+	{%if apikey.auth%}
+		<button data-confirm data-data='{"remove" : "apikey"}' class="btn warn mT5 block">{%trans "Remove"%}</button>
+	{%else%}
+		<button data-confirm data-data='{"add" : "apikey"}' class="btn primary mT5 block">{%trans "Get new API KEY"%}</button>
+	{%endif%}
+
+
+    </div>
   </form>
 </div>
 {%endblock%}
