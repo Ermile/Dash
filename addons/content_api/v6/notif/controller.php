@@ -45,12 +45,15 @@ class controller
 
 		$dataTable = self::ready_api($dataTable);
 
-		if(is_array($dataTable))
+		if(\dash\request::post('read'))
 		{
-			$readdate = array_column($dataTable, 'readdate');
-			if(count(array_filter($readdate)) !== count($readdate))
+			if(is_array($dataTable))
 			{
-				\dash\app\log::set_readdate($dataTable_raw, true, $user_id);
+				$readdate = array_column($dataTable, 'readdate');
+				if(count(array_filter($readdate)) !== count($readdate))
+				{
+					\dash\app\log::set_readdate($dataTable_raw, true, $user_id);
+				}
 			}
 		}
 
@@ -72,19 +75,20 @@ class controller
 			{
 				switch ($key)
 				{
+					case "id":
+						$new[$index][$key] = \dash\coding::encode($value);
+
+						break;
 					case "readdate":
 					case "title":
+					case "excerpt":
+					case "text":
 					case "icon":
 					case "cat":
 					case "iconClass":
-					case "api_title":
-					case "excerpt":
-					case "text":
-					case "subdomain":
-					case "code":
-					case "to":
-					case "notif":
-					default:
+					case "image":
+					case "footer":
+					case "url":
 						$new[$index][$key] = $value;
 						break;
 
@@ -92,7 +96,6 @@ class controller
 					case "send":
 					case "from":
 					case "caller":
-					case "id":
 					case "id_raw":
 					case "status":
 					case "datecreated":
@@ -108,6 +111,7 @@ class controller
 					case "mobile":
 					case "avatar":
 					case 'caller':
+					default:
 						// $new[$key] = $value;
 						break;
 				}

@@ -29,7 +29,7 @@
               <i>string</i>
             </td>
             <td>
-              <div>{%trans "Your temporary apikey"%}</div>
+              <div>{%trans "Your apikey"%}</div>
               <code>87923bd0d04b30aa5f66b699c2698e3b</code>
             </td>
             <td>
@@ -38,6 +38,39 @@
               <div>{%trans "Get from your account profile"%} <a href="{{url.that}}#intro"><small>{%trans "Read more"%}</small></a></div>
           </td>
           </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+    <div class="tblBox">
+      <h3>{%trans "Required parameters"%}</h3>
+      <table class="tbl1 v3">
+        <thead>
+          <tr>
+            <th>{%trans "Name"%} <small>{%trans "type"%}</small></th>
+            <th>{%trans "Description"%} <small>{%trans "example"%}</small></th>
+            <th>{%trans "Constraints"%}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="txtB">read</div>
+              <i>boolian</i>
+            </td>
+            <td>
+              <div class="fc-mute">{%trans "example"%}</div>
+              <code>true</code>
+            </td>
+            <td>
+              <div class="fc-mute"><i>{%trans "Optional"%}</i></div>
+              <p>
+                {%trans "If you want to set all notif of this user as read notif set this parameters as true"%}
+              </p>
+            </td>
+          </tr>
+
         </tbody>
       </table>
     </div>
