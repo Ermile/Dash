@@ -44,7 +44,7 @@
 
 
     <div class="tblBox">
-      <h3>{%trans "Required parameters"%}</h3>
+      <h3>{%trans "Parameters"%}</h3>
       <table class="tbl1 v3">
         <thead>
           <tr>
@@ -62,12 +62,132 @@
             <td>
               <div class="fc-mute">{%trans "example"%}</div>
               <code>true</code>
-            </td>
-            <td>
-              <div class="fc-mute"><i>{%trans "Optional"%}</i></div>
               <p>
                 {%trans "If you want to set all notif of this user as read notif set this parameters as true"%}
               </p>
+            </td>
+            <td>
+              <div class="fc-mute"><i>{%trans "Optional"%}</i></div>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+
+    <div class="tblBox">
+      <h3>{%trans "Response"%}</h3>
+      <table class="tbl1 v3">
+        <thead>
+          <tr>
+            <th>{%trans "Name"%} <small>{%trans "type"%}</small></th>
+            <th>{%trans "Description"%} <small>{%trans "example"%}</small></th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="txtB">id</div>
+              <i>String</i>
+            </td>
+            <td>
+              <div>{%trans "example"%}</div>
+              <code>3NW</code>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="txtB">readdate</div>
+              <i>Date time</i>
+            </td>
+            <td>
+              {%trans "If user not read this notif, this response is null else see read date of this notif"%}
+              <div>{%trans "example"%}</div>
+              <code>2019-02-10 08:14:12</code>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="txtB">title</div>
+              <i>String</i>
+            </td>
+            <td>
+              <div>{%trans "example"%}</div>
+              <code>Notif title</code>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="txtB">icon</div>
+              <i>String</i>
+            </td>
+            <td>
+              <div>{%trans "example"%}</div>
+              <code>home</code>
+              <a href="http://siftal.ir/examples/icon" target="_blank" data-direct>{%trans "Read more"%}</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="txtB">cat</div>
+              <i>String</i>
+            </td>
+            <td>
+              <div>{%trans "example"%}</div>
+              <code>Notif category</code>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="txtB">excerpt</div>
+              <i>String</i>
+            </td>
+            <td>
+              <div>{%trans "example"%}</div>
+              <code>Notif excerpt</code>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="txtB">text</div>
+              <i>String</i>
+            </td>
+            <td>
+              <div>{%trans "example"%}</div>
+              <code>Notif text</code>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="txtB">image</div>
+              <i>URL</i>
+            </td>
+            <td>
+              <div>{%trans "example"%}</div>
+              <code>{{url.static}}/images/logo.png</code>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="txtB">footer</div>
+              <i>String</i>
+            </td>
+            <td>
+              <div>{%trans "example"%}</div>
+              <code>Notif Footer</code>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="txtB">url</div>
+              <i>URL</i>
+            </td>
+            <td>
+               <div>{%trans "example"%}</div>
+              <code>{{url.site}}</code>
             </td>
           </tr>
 
@@ -89,16 +209,16 @@ curl -X POST \
   "ok": true,
   "result": [
     {
-      "subdomain": null,
-      "code": "12345",
-      "to": "12",
-      "notif": "1",
+      "id": "36v",
       "readdate": null,
-      "title": "Verification code",
-      "icon": "log-in",
-      "cat": "Enter",
-      "iconClass": "fc-blue",
-      "excerpt": "Your verification code is <code>12345</code>"
+      "title": "Notif title",
+      "icon": "test icon",
+      "cat": "category of notif",
+      "excerpt": "Notif excerpt"
+      "text" : "Notif text",
+      "image" : "{{url.static}}/images/logo.png",
+      "footer" : "Notif footer",
+      "url" : "{{url.static}}"
     }
   ]
 }

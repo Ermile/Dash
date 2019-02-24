@@ -85,7 +85,7 @@ class controller
 					case "text":
 					case "icon":
 					case "cat":
-					case "iconClass":
+
 					case "image":
 					case "footer":
 					case "url":
