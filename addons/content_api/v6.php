@@ -111,7 +111,11 @@ class v6
 		}
 
 		self::api_user_login($get['id']);
-		\dash\user::init($get['user_id']);
+
+		if(!\dash\user::id())
+		{
+			\dash\user::init($get['user_id']);
+		}
 
 		return true;
 	}
