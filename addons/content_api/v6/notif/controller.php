@@ -108,8 +108,6 @@ class controller
 					case "mobile":
 					case "avatar":
 					case 'caller':
-						continue;
-
 						// $new[$key] = $value;
 						break;
 				}
