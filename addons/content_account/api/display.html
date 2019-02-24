@@ -1,22 +1,29 @@
 {%extends display.admin%}
 
 {%block pageContent%}
-<div class="cbox">
-  <form method="post">
-    <input type="hidden" name="add" value="apikey">
-    <div class="input">
-      <label>{%trans "YOUR API KEY"%}</label>
-      <input type="text" name="apikey" value="{{apikey.auth}}" readonly  class="txtC" placeholder='{%trans "GENERATE NEW API KEY"%}'>
+<div class="f justify-center">
+  <div class="c4 s12">
+    <div class="cbox">
+      <a href="{{url.kingdom}}/api/doc" class="btn block outline">{{myTitle}}</a>
+      <form method="post">
+        <input type="hidden" name="add" value="apikey">
+        <div class="input">
+          <label>{%trans "YOUR API KEY"%}</label>
+          <input type="text" name="apikey" value="{{apikey.auth}}" readonly  class="txtC" placeholder='{%trans "GENERATE NEW API KEY"%}'>
+        </div>
+
+    	{%if apikey.auth%}
+    		<button data-confirm data-data='{"remove" : "apikey"}' class="btn warn mT5 block">{%trans "Remove"%}</button>
+    	{%else%}
+    		<button data-confirm data-data='{"add" : "apikey"}' class="btn primary mT5 block">{%trans "Get new API KEY"%}</button>
+    	{%endif%}
+
+
+        </div>
+      </form>
     </div>
 
-	{%if apikey.auth%}
-		<button data-confirm data-data='{"remove" : "apikey"}' class="btn warn mT5 block">{%trans "Remove"%}</button>
-	{%else%}
-		<button data-confirm data-data='{"add" : "apikey"}' class="btn primary mT5 block">{%trans "Get new API KEY"%}</button>
-	{%endif%}
+  </div>
 
-
-    </div>
-  </form>
 </div>
 {%endblock%}
