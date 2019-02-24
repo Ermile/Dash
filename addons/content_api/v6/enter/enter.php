@@ -35,6 +35,11 @@ class enter
 			\content_api\v6::no(404);
 		}
 
+		if(!\dash\engine\process::status())
+		{
+			\dash\header::set(400);
+		}
+
 		\content_api\v6::bye(self::$response);
 
 	}
