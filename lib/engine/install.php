@@ -3,14 +3,14 @@ $result  = null;
 $install = true;
 $log     = null;
 
-if(isset($_POST['username']) && isset($_POST['password']))
+if(isset($_POST['nu']) && isset($_POST['np']))
 {
 	$install = false;
 
-	if($_POST['username'])
+	if($_POST['nu'])
 	{
-		\dash\db::$db_user = $_POST['username'];
-		\dash\db::$db_pass = $_POST['password'];
+		\dash\db::$db_user = $_POST['nu'];
+		\dash\db::$db_pass = $_POST['np'];
 	}
 
 	$result = \dash\db::install();
@@ -18,9 +18,9 @@ if(isset($_POST['username']) && isset($_POST['password']))
 	if($result)
 	{
 		// insert the admin mobile and set her permission as admin
-		if(isset($_POST['mobile']))
+		if(isset($_POST['mob']))
 		{
-			$mobile = \dash\utility\filter::mobile($_POST['mobile']);
+			$mobile = \dash\utility\filter::mobile($_POST['mob']);
 			if($mobile)
 			{
 				$add_user =
@@ -81,11 +81,11 @@ if(isset($_POST['username']) && isset($_POST['password']))
 
 <?php if($install) { ?>
   <form method="post" autocomplete="off">
-   <input type="text" name="username" placeholder='Username of db admin'>
-   <input type="password" name="password" placeholder='Password' autocomplete="new-password">
+   <input type="text" name="nu" placeholder='Username of db admin'>
+   <input type="password" name="np" placeholder='Password' autocomplete="new-password">
    <br>
    <p>Supervisor mobile number</p>
-   <input type="tel" name="mobile" placeholder='mobile of supervisor' style=" background: #eee" value="<?php echo isset($_GET['mobile']) ? $_GET['mobile'] : null; ?>">
+   <input type="tel" name="mob" placeholder='mobile of supervisor' style=" background: #eee" value="<?php echo isset($_GET['mobile']) ? $_GET['mobile'] : null; ?>" autocomplete="new-password">
 
    <input type="submit" value="Install">
 
