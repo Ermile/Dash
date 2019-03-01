@@ -29,11 +29,11 @@
             </td>
             <td>
               <div>{%trans "APP key generated on the user panel"%}</div>
-              <code>1234ec8e69c19ebb7c202ae1097aa4041234ec8e69c19ebb7c202ae1097aa404</code>
+              <code>1234ec8e69c19ebb7c202ae1097aa404</code>
             </td>
             <td>
               <div class="fc-red"><i>{%trans "Required"%}</i></div>
-              {%trans "length"%} {{64 | fitNumber}}
+              {%trans "length"%} {{32 | fitNumber}}
             </td>
           </tr>
         </tbody>
@@ -41,7 +41,7 @@
     </div>
 
     <h3>{%trans "cURL"%} <small>{%trans "example"%}</small></h3>
-    <pre>curl -X POST {{apiURL}}token -H 'appkey: YourAppKey'</pre>
+    <pre>curl -X POST {{apiURL}}token -H 'appkey: 1234ec8e69c19ebb7c202ae1097aa404'</pre>
 
     <h3>{%trans "Response"%} <small>{%trans "example"%}</small></h3>
 <pre>

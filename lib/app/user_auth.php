@@ -39,7 +39,7 @@ class user_auth
 		if($insert)
 		{
 			$result           = [];
-			$result['auth']   = $auth;
+			$result['token']  = $auth;
 			$result['create'] = $date_now;
 			$result['expire'] = date("Y-m-d H:i:s", (time() + (60*3)));
 			return $result;
