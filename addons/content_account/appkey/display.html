@@ -1,0 +1,34 @@
+{%extends display.admin%}
+
+{%block pageContent%}
+<div class="f justify-center">
+  <div class="c4 s12">
+    <div class="cbox">
+      {%if not user.verifymobile or 1%}
+      <div class="msg warn txtB txtC">{%trans "To make your appkey you must verify your mobile"%}</div>
+      {%endif%}
+
+      <a href="{{url.kingdom}}/api/doc" class="btn block outline">{{myTitle}}</a>
+      <form method="post">
+        <input type="hidden" name="add" value="appkey">
+        <div class="input">
+          <label>{%trans "YOUR APPKEY"%}</label>
+          <input type="text" name="appkey" value="{{appkey.auth}}" readonly  class="txtC" placeholder='{%trans "GENERATE YOUR APPKEY"%}'>
+        </div>
+
+    	{%if appkey.auth%}
+
+
+      {%else%}
+        <button data-confirm data-data='{"add" : "appkey"}' class="btn primary mT5 block">{%trans "Make appkey"%}</button>
+    	{%endif%}
+
+
+        </div>
+      </form>
+    </div>
+
+  </div>
+
+</div>
+{%endblock%}

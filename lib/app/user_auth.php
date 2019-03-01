@@ -31,6 +31,7 @@ class user_auth
 		$insert['user_id']     = null;
 		$insert['status']      = 'enable';
 		$insert['gateway']     = isset($_args['gateway']) ? $_args['gateway'] : null;
+		$insert['parent']      = isset($_args['parent']) ? $_args['parent'] : null;
 		$insert['type']        = 'guest';
 		$insert['datecreated'] = $date_now;
 
@@ -66,6 +67,95 @@ class user_auth
 		}
 		return null;
 	}
+
+	public static function get_appkey($_user_id)
+	{
+		$check =
+		[
+			'user_id'    => $_user_id,
+			'type'       => 'appkey',
+			'status'     => 'enable',
+			'gateway'    => null,
+			'gateway_id' => null,
+			'limit'      => 1,
+		];
+
+		$check = \dash\db\user_auth::get($check);
+
+		if(isset($check['auth']))
+		{
+			return $check;
+		}
+		return null;
+	}
+
+
+	public static function check_appkey($_appkey)
+	{
+		$check =
+		[
+			'auth'       => $_appkey,
+			'type'       => 'appkey',
+			'status'     => 'enable',
+			'gateway'    => null,
+			'gateway_id' => null,
+			'limit'      => 1,
+		];
+
+		$check = \dash\db\user_auth::get($check);
+
+		if(isset($check['auth']))
+		{
+			return $check;
+		}
+		return false;
+	}
+
+
+	public static function make_appkey($_user_id)
+	{
+		$check =
+		[
+			'user_id'    => $_user_id,
+			'type'       => 'appkey',
+			'status'     => 'enable',
+			'gateway'    => null,
+			'gateway_id' => null,
+			'limit'      => 1,
+		];
+
+		$check = \dash\db\user_auth::get($check);
+
+		if(isset($check['auth']))
+		{
+			return $check['auth'];
+		}
+		else
+		{
+			$auth = self::generate_auth($_user_id);
+
+			$insert =
+			[
+				'user_id'     => $_user_id,
+				'type'        => 'appkey',
+				'status'      => 'enable',
+				'gateway'     => null,
+				'gateway_id'  => null,
+				'datecreated' => date("Y-m-d H:i:s"),
+				'auth'        => $auth,
+			];
+
+			$insert = \dash\db\user_auth::insert($insert);
+
+			if($insert)
+			{
+				return $auth;
+			}
+
+			return false;
+		}
+	}
+
 
 	public static function disable_api_key()
 	{

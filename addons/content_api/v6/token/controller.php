@@ -13,7 +13,13 @@ class controller
 
 		\content_api\v6::check_appkey();
 
-		$result = \dash\app\user_auth::make();
+		$parent = null;
+		if(isset(\content_api\v6::$v6['appkey_detail']['id']))
+		{
+			$parent = \content_api\v6::$v6['appkey_detail']['id'];
+		}
+
+		$result = \dash\app\user_auth::make(['parent' => $parent]);
 
 		\content_api\v6::bye($result);
 	}

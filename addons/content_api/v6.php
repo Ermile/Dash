@@ -15,22 +15,19 @@ class v6
 			self::no(400, T_("Appkey not set"));
 		}
 
-		$all_app_key = \dash\option::config('api_v6', 'appkey');
-		if($all_app_key && is_array($all_app_key))
+		$appkey_is_ok              = \dash\app\user_auth::check_appkey($appkey);
+
+		self::$v6['appkey_detail'] = $appkey_is_ok;
+
+		if($appkey_is_ok)
 		{
-			if(in_array($appkey, $all_app_key))
-			{
-				return true;
-			}
-			else
-			{
-				self::no(400, T_("Invalid app key"));
-			}
+			return true;
 		}
 		else
 		{
-			self::no(400, T_("App key not installed"));
+			self::no(400, T_("Invalid app key"));
 		}
+
 	}
 
 	public static function check_token()
