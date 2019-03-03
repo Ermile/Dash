@@ -13,6 +13,7 @@
 {%include "content_api/v6/doc/20-user-add.html"%}
 {%include "content_api/v6/doc/40-user-login.html"%}
 {%include "content_api/v6/doc/41-user-login-verify.html"%}
+{%include "content_api/v6/doc/42-language.html"%}
 {%include "content_api/v6/doc/30-about.html"%}
 {%include "content_api/v6/doc/31-mission.html"%}
 {%include "content_api/v6/doc/32-vision.html"%}
@@ -53,6 +54,8 @@
 
       <li><a href="{{url.that}}#user-login-verify"><i class='sf-check'></i> <span>{%trans "Verify user"%}</span></a></li>
 
+      <li><a href="{{url.that}}#language"><i class='sf-language'></i> <span>{%trans "Get language list"%}</span></a></li>
+
       <li><a href="{{url.that}}#about"><i class='sf-code'></i> <span>{%trans "Get about"%}</span></a></li>
 
       <li><a href="{{url.that}}#mission"><i class='sf-code'></i> <span>{%trans "Get mission"%}</span></a></li>
@@ -66,6 +69,7 @@
       <li><a href="{{url.that}}#notif"><i class='sf-code'></i> <span>{%trans "Get notification list"%}</span></a></li>
 
       <li><a href="{{url.that}}#android"><i class='sf-code'></i> <span>{%trans "Get android detail"%}</span></a></li>
+
 
     </ul>
     {%if projectSidebar %}

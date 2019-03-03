@@ -1,0 +1,47 @@
+<div class="cbox" id='language'>
+
+  <h2 class="f" data-kerkere='#language-detail' data-kerkere-icon='open'>
+    <div class="cauto pRa10"><span class="badge primary">GET</span></div>
+    <div>{%trans "Get language list"%}</div>
+  </h2>
+
+  <div id="language-detail">
+
+    <div class="msg url">
+      <i class="method">GET</i>
+      <span>{{apiURL}}<b>language</b></span>
+    </div>
+
+    <h3>{%trans "cURL"%} <small>{%trans "example"%}</small></h3>
+    <pre>curl -X GET {{apiURL}}language</pre>
+
+    <h3>{%trans "Response"%} <small>{%trans "example"%}</small></h3>
+<pre>
+{
+  "ok": true,
+  "result": {
+    "fa": {
+      "name": "fa",
+      "direction": "rtl",
+      "iso": "fa_IR",
+      "localname": "فارسی",
+      "country": [
+          "Iran"
+      ]
+    },
+    "en": {
+      "name": "en",
+      "direction": "ltr",
+      "iso": "en_US",
+      "localname": "English",
+      "country": [
+          "United Kingdom",
+          "United States"
+      ]
+    }
+  }
+}
+</pre>
+
+  </div>
+</div>
