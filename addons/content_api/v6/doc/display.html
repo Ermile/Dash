@@ -21,6 +21,14 @@
 {%include "content_api/v6/doc/55-notif.html"%}
 {%include "content_api/v6/doc/60-android.html"%}
 
+
+{%if projectDoc %}
+  {%for key, value in projectDoc%}
+    {%include value%}
+  {%endfor%}
+{%endif%}
+
+
 {%endblock%}
 
 
@@ -60,6 +68,9 @@
       <li><a href="{{url.that}}#android"><i class='sf-code'></i> <span>{%trans "Get android detail"%}</span></a></li>
 
     </ul>
+    {%if projectSidebar %}
+     {%include projectSidebar%}
+    {%endif%}
   </li>
 
 

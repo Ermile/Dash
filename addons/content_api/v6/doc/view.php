@@ -15,6 +15,39 @@ class view
 
 		\dash\data::apiURL(\dash\url::site(). '/'. \dash\language::current(). '/api/v6/');
 
+
+		self::load_project_api_doc();
+	}
+
+
+	private static function load_project_api_doc()
+	{
+		$projectDoc     = [];
+		$projectSidebar = null;
+
+		$addr           = \autoload::fix_os_path(root. 'content_api/v6/doc');
+
+		if(is_dir($addr))
+		{
+			$list = glob($addr . '/*');
+			if($list && is_array($list))
+			{
+				foreach ($list as $key => $value)
+				{
+					if(basename($value) === 'sidebar.html')
+					{
+						$projectSidebar = str_replace(root, '', $value);
+					}
+					else
+					{
+						$projectDoc[] = str_replace(root, '', $value);
+					}
+				}
+			}
+		}
+
+		\dash\data::projectDoc($projectDoc);
+		\dash\data::projectSidebar($projectSidebar);
 	}
 }
 ?>
