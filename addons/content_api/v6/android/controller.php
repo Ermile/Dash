@@ -27,9 +27,9 @@ class controller
 
 		$detail['lang_list'] = \dash\language::all();
 
-		if(is_callable(["\\lib\\app\\android", "detail"]))
+		if(is_callable(["\\lib\\app\\android", "detail_v6"]))
 		{
-			$my_detail = \lib\app\android::detail();
+			$my_detail = \lib\app\android::detail_v6();
 			if(is_array($my_detail))
 			{
 				$detail = array_merge($detail, $my_detail);
