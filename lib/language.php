@@ -14,9 +14,9 @@ class language
 	 */
 	public static $data =
 	[
-		'en' => ['name' => 'en', 'direction' => 'ltr', 'iso' => 'en_US', 'localname' => 'English', 'country' => ['United Kingdom', 'United States']],
-		'fa' => ['name' => 'fa', 'direction' => 'rtl', 'iso' => 'fa_IR', 'localname' => 'فارسی', 'country' => ['Iran']],
-		'ar' => ['name' => 'ar', 'direction' => 'rtl', 'iso' => 'ar_IQ', 'localname' => 'العربية', 'country' => ['Saudi Arabia']],
+		'en' => ['name' => 'en', 'direction' => 'ltr', 'iso' => 'en_US', 'localname' => 'English'],
+		'fa' => ['name' => 'fa', 'direction' => 'rtl', 'iso' => 'fa_IR', 'localname' => 'فارسی'],
+		'ar' => ['name' => 'ar', 'direction' => 'rtl', 'iso' => 'ar_IQ', 'localname' => 'العربية'],
 	];
 
 
