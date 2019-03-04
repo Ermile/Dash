@@ -44,8 +44,8 @@ class controller
 		$dataTable_raw = $dataTable = \dash\app\log::list($search_string, $args);
 
 		$dataTable = self::ready_api($dataTable);
-
-		if(\dash\request::post('read'))
+		// in this version needless to send read method
+		if(\dash\request::post('read') ||‌ true)
 		{
 			if(is_array($dataTable))
 			{
