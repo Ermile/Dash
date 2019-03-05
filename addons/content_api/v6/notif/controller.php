@@ -68,7 +68,6 @@ class controller
 		}
 
 		$new = [];
-
 		foreach ($_data as $index => $notif)
 		{
 			foreach ($notif as $key => $value)
@@ -91,8 +90,29 @@ class controller
 					case "url":
 						$new[$index][$key] = $value;
 						break;
+					case 'data':
+						if(is_array($value))
+						{
+							foreach ($value as $k => $v)
+							{
+								switch ($k)
+								{
+									case 'notif_title':
+									case 'notif_small':
+									case 'notif_big':
+									case 'notif_sub_text':
+									case 'notif_group':
+									case 'notif_large_icon':
+									case 'notif_icon':
+									case 'notif_link':
+									case 'notif_external':
+										$new[$index][substr($k, 6)] = $v;
+									break;
+								}
+							}
+						}
+						break;
 
-					case "data":
 					case "send":
 					case "from":
 					case "caller":
