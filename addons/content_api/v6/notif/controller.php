@@ -45,7 +45,7 @@ class controller
 
 		$dataTable = self::ready_api($dataTable);
 		// in this version needless to send read method
-		if(\dash\request::post('read') ||‌ true)
+		if(\dash\request::post('read') || true)
 		{
 			if(is_array($dataTable))
 			{
