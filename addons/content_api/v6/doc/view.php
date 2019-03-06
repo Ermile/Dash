@@ -25,7 +25,7 @@ class view
 		$projectDoc     = [];
 		$projectSidebar = null;
 
-		$addr           = \autoload::fix_os_path(root. 'content_api/v6/doc');
+		$addr           = root. 'content_api/v6/doc';
 
 		if(is_dir($addr))
 		{
@@ -45,6 +45,7 @@ class view
 				}
 			}
 		}
+
 
 		\dash\data::projectDoc($projectDoc);
 		\dash\data::projectSidebar($projectSidebar);
