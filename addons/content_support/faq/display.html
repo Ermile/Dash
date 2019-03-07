@@ -1,0 +1,41 @@
+{%extends display.admin%}
+
+
+
+{%block pageContent%}
+
+
+
+  {{block('postCategory')}}
+
+{%endblock%}
+
+
+
+
+
+{%block postCategory%}
+
+{%if postTag%}
+<div class="cbox">
+
+  {%if categoryDetail%}
+    <h2>{%trans "Category"%} <b>{{categoryDetail.title}}</b></h2>
+  {%endif%}
+
+  <div>
+    {%for key, value in postTag %}
+    <div class="msg">
+      <span class="sf-info mRa10"></span>
+      <a href="{{url.kingdom}}/support/{{value.url}}">{{value.title}}</a>
+      <a href="{{url.kingdom}}/support/{{value.url}}" class="floatRa">{{value.type}}</a>
+    </div>
+    {%endfor%}
+  </div>
+</div>
+{%endif%}
+{%endblock%}
+
+
+
+
