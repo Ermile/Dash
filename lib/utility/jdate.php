@@ -711,6 +711,11 @@ class jdate
             '12' => 29
         ];
 
+        if(intval($_month) < 10)
+        {
+            $_month = '0'. (string) intval($_month);
+        }
+
         $start_day  = 1;
         $end_day    = $j_days_in_month[$_month];
 
