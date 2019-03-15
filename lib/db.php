@@ -75,7 +75,7 @@ class db
 		{
 			self::close();
 
-			$temp_error = "#". date("Y-m-d H:i:s") . "\n$_qry\n/* ERROR\tMYSQL ERROR\n". mysqli_error(self::$link)." */";
+			$temp_error = "#". date("Y-m-d H:i:s") . "\n$_qry\n/* ERROR\tMYSQL ERROR\n". @mysqli_error(self::$link)." */";
 
 			self::log($temp_error, $qry_exec_time, 'gone-away.sql');
 
@@ -83,7 +83,7 @@ class db
 
 			if(!@mysqli_ping(self::$link))
 			{
-				$temp_error = "#". date("Y-m-d H:i:s") . "/* AFTER CONNECTION AGAIN! \n ERROR\tMYSQL ERROR\n". mysqli_error(self::$link)." */";
+				$temp_error = "#". date("Y-m-d H:i:s") . "/* AFTER CONNECTION AGAIN! \n ERROR\tMYSQL ERROR\n". @mysqli_error(self::$link)." */";
 				self::log($temp_error, $qry_exec_time, 'gone-away.sql');
 				return false;
 			}
@@ -93,22 +93,25 @@ class db
 		 */
 		if($_options['multi_query'] === true)
 		{
-			$result = mysqli_multi_query(self::$link, $_qry);
-			do
+			$result = @mysqli_multi_query(self::$link, $_qry);
+			if($result)
 			{
-				if ($r = mysqli_use_result(self::$link))
+				do
 				{
-					$r->close();
-				}
+					if ($r = mysqli_use_result(self::$link))
+					{
+						$r->close();
+					}
 
-				if (!mysqli_more_results(self::$link))
-				{
-					break;
-				}
+					if (!mysqli_more_results(self::$link))
+					{
+						break;
+					}
 
-				mysqli_more_results(self::$link);
+					mysqli_more_results(self::$link);
+				}
+				while (mysqli_next_result(self::$link));
 			}
-			while (mysqli_next_result(self::$link));
 		}
 		else
 		{
