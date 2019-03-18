@@ -258,7 +258,8 @@ class view
 			}
 			elseif ($currentBrowser['browser_math_number'] < $browsers[$currentBrowser['browser_name']])
 			{
-				$msg = T_("You need to update your :browser to new version.", ['browser' => $currentBrowser['browser_name']]). ' '. T_('The world is changing rapidly!');
+
+				$msg = T_("You need to update your :browser to new version.", ['browser' => $currentBrowser['browser_name']. ' '. $currentBrowser['browser_math_number']]). ' '. T_('The world is changing rapidly!');
 
 				\dash\data::youAreDead($msg);
 			}
