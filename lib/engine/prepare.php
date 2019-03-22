@@ -104,14 +104,23 @@ class prepare
 		{
 			$default_site_language = \dash\language::primary();
 
-			$redirect_lang         = 'en';
+			$redirect_lang = 'en';
+			$ipCountry     = null;
 
-			if(!isset($_SERVER['HTTP_CF_IPCOUNTRY']))
+			if(isset($_SERVER['HTTP_CF_IPCOUNTRY']))
+			{
+				$ipCountry = mb_strtoupper($_SERVER['HTTP_CF_IPCOUNTRY']);
+			}
+			elseif(isset($_SERVER['HTTP_AR_REAL_COUNTRY']))
+			{
+				$ipCountry = mb_strtoupper($_SERVER['HTTP_AR_REAL_COUNTRY']);
+			}
+			else
 			{
 				return;
 			}
 
-			if(mb_strtoupper($_SERVER['HTTP_CF_IPCOUNTRY']) === 'IR')
+			if($ipCountry === 'IR')
 			{
 				$redirect_lang = 'fa';
 			}
