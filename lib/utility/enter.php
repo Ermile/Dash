@@ -29,7 +29,7 @@ class enter
 			case 'change_pass_have_not_pass':
 				if($count_try > 10)
 				{
-					\dash\log::set('userBaned');
+					\dash\log::set('userBanedIn_'. $_module);
 					// ban user for 2 min
 					\dash\session::set('enter_baned_user', true, null, (60 * 2));
 				}
@@ -107,10 +107,14 @@ class enter
 		return null;
 	}
 
+
+	// user in \lib\log to set log of this user
+	// this user not login yet but detail is loaded
 	public static function user_id()
 	{
 		return self::user_data('id');
 	}
+
 
 	/**
 	 * Loads an user data.
@@ -181,7 +185,7 @@ class enter
 	{
 		if(!isset($_SESSION['enter']['user_data']))
 		{
-			self::load_user_data(self::get_session('usernameormobile'), 'mobile');
+			self::load_user_data(self::get_session('usernameormobile'), 'usernameormobile');
 		}
 
 		if($_key)
@@ -221,8 +225,6 @@ class enter
 			$_args = array_merge($default_args, $_args);
 		}
 
-		self::set_session('first_signup', true);
-
 		// save ref in users table
 		if(isset($_SESSION['ref']) && !isset($_args['ref']))
 		{
@@ -244,7 +246,20 @@ class enter
 			{
 				self::load_user_data($user_id, 'user_id');
 			}
+			else
+			{
+				\dash\log::set('enterCanNotSignupInDb');
+				return false;
+			}
+
+			self::set_session('first_signup', true);
+
 			return $user_id;
+		}
+		else
+		{
+			\dash\log::set('enterCanNotSignup');
+			return false;
 		}
 	}
 
@@ -293,11 +308,13 @@ class enter
 	 */
 	public static function find_redirect_url($_url = null)
 	{
-		$host = \dash\url::kingdom();
 		if($_url)
 		{
 			return $_url;
 		}
+
+		$host = \dash\url::kingdom();
+
 		// get url language
 		// if have referer redirect to referer
 		if(\dash\request::get('referer'))
@@ -345,8 +362,11 @@ class enter
 
 		if(!$user_id)
 		{
+			\dash\log::set('loginNoUserIdWasFounded');
+			\dash\log::warn(T_("User id not found to save your session"));
 			return;
 		}
+
 
 		if(self::user_data('twostep'))
 		{
@@ -581,6 +601,7 @@ class enter
 		}
 		elseif(self::user_data('mobile') || self::user_data('email'))
 		{
+			// check detail from user data: new user loaded data in this session
 			$mobile = self::user_data('mobile');
 			$email  = self::user_data('email');
 			if(self::user_data('id'))
@@ -590,6 +611,7 @@ class enter
 		}
 		elseif(\dash\user::detail('mobile') || \dash\user::detail('email'))
 		{
+			// check detail from user session: user logined and data is saved in session
 			$mobile = \dash\user::detail('mobile');
 			$email  = \dash\user::detail('email');
 			if(\dash\user::id())
