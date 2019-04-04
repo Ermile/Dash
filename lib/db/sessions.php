@@ -148,7 +148,7 @@ class sessions
 	{
 		$code = self::get_cookie();
 
-		\dash\utility\cookie::delete("remember_me_");
+		\dash\utility\cookie::delete("remember_me_", '/', self::cookie_domain());
 
 		if($_check_cause)
 		{
@@ -174,13 +174,32 @@ class sessions
 
 	}
 
+	// change status of cookie to disable
+	// by search in code and user id
+	public static function disable_cookie($_code, $_user_id)
+	{
+		$get =
+		[
+			'user_id' => $_user_id,
+			'code'    => addslashes($_code),
+			'limit'   => 1,
+		];
 
-	/**
-	 * Sets the cookie.
-	 *
-	 * @param      <type>  $_code  The code
-	 */
-	public static function set_cookie($_code)
+		$get = self::get($get);
+
+		if(isset($get['id']))
+		{
+			self::update(['status' => 'disable'], $get['id']);
+			\dash\log::set('invalidCookieAutoDisable');
+		}
+		else
+		{
+			\dash\log::set('notCookieFoundToDisalbe');
+		}
+	}
+
+
+	private static function cookie_domain()
 	{
 		if(\dash\option::config('free_subdomain'))
 		{
@@ -190,9 +209,20 @@ class sessions
 		{
 			$cookie_domain = '.'. \dash\url::domain();
 		}
-		setcookie("remember_me_", $_code, time() + (60*60*24*30), '/', $cookie_domain);
+		return $cookie_domain;
 	}
 
+
+	/**
+	 * Sets the cookie.
+	 *
+	 * @param      <type>  $_code  The code
+	 */
+	public static function set_cookie($_code)
+	{
+
+		setcookie("remember_me_", $_code, time() + (60*60*24*30), '/', self::cookie_domain());
+	}
 
 
 	public static function is_active($_code, $_user_id)

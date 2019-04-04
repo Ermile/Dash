@@ -82,9 +82,15 @@ class cookie
 	 *
 	 * @param string $name	Name of the cookie
 	 */
-	public static function delete($name)
+	public static function delete($name, $path = null, $domain = null)
 	{
-		setcookie($name, null, time()-3600*30);
+		if(!$path)
+		{
+			$path = self::PATH;
+		}
+
+		setcookie($name, null, time()-3600*30, $path, $domain);
+
 		unset($_COOKIE[$name]);
 	}
 

@@ -381,6 +381,9 @@ class user
 
 				if($status === false)
 				{
+
+					\dash\db\sessions::disale_cookie($cookie, \dash\user::id());
+
 					\dash\db\sessions::terminate_cookie();
 
 					\dash\log::set('userForceLogoutAuto');
