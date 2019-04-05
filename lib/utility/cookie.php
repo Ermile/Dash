@@ -25,15 +25,16 @@ class cookie
 	/**
 	 * Reads a cookie and returns its value
 	 *
-	 * @param string $name	Name of the cookie
+	 * @param string $_name	Name of the cookie
 	 * @return mixed	Value of the cookie
 	 */
-	public static function read($name)
+	public static function read($_name)
 	{
-		if(isset($_COOKIE[$name]))
+		if(is_array($_COOKIE) && array_key_exists($_name, $_COOKIE))
 		{
-			return $_COOKIE[$name];
+			return $_COOKIE[$_name];
 		}
+
 		return null;
 	}
 
@@ -41,57 +42,61 @@ class cookie
 	/**
 	 * Creates or modify a cookie
 	 *
-	 * @param string $name		Name of the cookie
-	 * @param string $value		Value of the cookie. Destroy the cookie if omitted or null
-	 * @param int $duration 	Life time of the cookie. Uses default value if omitted or null
-	 * @param string $domain	Domain that the cookie is available. Uses default value if omitted or null
-	 * @param string $path		Path in which the cookie will be available. Uses default value if omitted or null
-	 * @param bool $secure		If true, the cookie should only be transmitted over a secure HTTPS connection from the client. Uses default value if omitted or null
-	 * @param bool $httponly	If true, the cookie will be made accessible only through the HTTP protocol. Uses default value if omitted or null
+	 * @param string $_name		Name of the cookie
+	 * @param string $_value		Value of the cookie. Destroy the cookie if omitted or null
+	 * @param int $_duration 	Life time of the cookie. Uses default value if omitted or null
+	 * @param string $_domain	Domain that the cookie is available. Uses default value if omitted or null
+	 * @param string $_path		Path in which the cookie will be available. Uses default value if omitted or null
+	 * @param bool $_secure		If true, the cookie should only be transmitted over a secure HTTPS connection from the client. Uses default value if omitted or null
+	 * @param bool $_httponly	If true, the cookie will be made accessible only through the HTTP protocol. Uses default value if omitted or null
 	 */
-	public static function write($name, $value = null, $duration = null, $domain = null, $path = null, $secure = null, $httponly = null)
+	public static function write($_name, $_value = null, $_duration = null, $_domain = null, $_path = null, $_secure = null, $_httponly = null)
 	{
-		if(!isset($value))		return self::delete($name);
-		if(!isset($duration))	$duration = self::DURATION;
-		if(!isset($path))		$path     = self::PATH;
-		if(!isset($domain))		$domain   = self::DOMAIN;
-		if(!isset($secure))		$secure   = self::SECURE;
-		if(!isset($httponly))	$httponly = self::HTTPONLY;
+		if(!isset($_value))
+		{
+			return self::delete($_name, $_path, $_domain);
+		}
+
+		if(!isset($_duration))	$_duration = self::DURATION;
+		if(!isset($_path))		$_path     = self::PATH;
+		if(!isset($_domain))	$_domain   = self::DOMAIN;
+		if(!isset($_secure))	$_secure   = self::SECURE;
+		if(!isset($_httponly))	$_httponly = self::HTTPONLY;
 
 		// Expiration date from the life time in seconds
-		if($duration==0)
+		if($_duration == 0)
 		{
 			$expire = 0;
 		}
 		else
 		{
-			$expire = time()+((int) $duration);
+			$expire = time()+((int) $_duration);
 		}
 
 		// The value must be a string
-		$value = (string) $value;
+		$_value = (string) $_value;
 
 		// Writes the cookie
-		setcookie($name, $value, $expire, $path, $domain, $secure, $httponly);
-		$_COOKIE[$name] = $value;
+		setcookie($_name, $_value, $expire, $_path, $_domain, $_secure, $_httponly);
+		$_COOKIE[$_name] = $_value;
 	}
 
 
 	/**
 	 * Deletes a cookie
 	 *
-	 * @param string $name	Name of the cookie
+	 * @param string $_name	Name of the cookie
 	 */
-	public static function delete($name, $path = null, $domain = null)
+	public static function delete($_name, $_path = null, $_domain = null)
 	{
-		if(!$path)
+		if(!$_path)
 		{
-			$path = self::PATH;
+			$_path = self::PATH;
 		}
 
-		setcookie($name, null, time()-3600*30, $path, $domain);
+		setcookie($_name, null, time()-3600*30, $_path, $_domain);
 
-		unset($_COOKIE[$name]);
+		unset($_COOKIE[$_name]);
 	}
 
 }
