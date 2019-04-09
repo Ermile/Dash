@@ -58,7 +58,7 @@ class bank
                 'encryptedRequest'        => $encryptedRequest,
             ];
 
-            $result = $client->RequestOperation($result_param);
+            $result = @$client->RequestOperation($result_param);
 
             if(isset($result->RequestOperationResult))
             {
@@ -138,7 +138,7 @@ class bank
                 'payGateTranID'           => $PayGateTranID,
             ];
 
-            $result = $client->RequestVerification($params_result);
+            $result = @$client->RequestVerification($params_result);
 
             if(isset($result->RequestVerificationResult))
             {
@@ -212,7 +212,7 @@ class bank
                 'toBeEncrypted' => $string,
             ];
 
-            $result = $client->EncryptInAES($params);
+            $result = @$client->EncryptInAES($params);
 
             if(isset($result->EncryptInAESResult))
             {
@@ -304,7 +304,7 @@ class bank
             'toBeDecrypted' => $string
         ];
 
-        $result = $client->DecryptInAES($params);
+        $result = @$client->DecryptInAES($params);
         if(isset($result->DecryptInAESResult))
         {
             return $result->DecryptInAESResult;
