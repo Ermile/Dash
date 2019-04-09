@@ -182,7 +182,6 @@ class sessions
 		[
 			'user_id' => $_user_id,
 			'code'    => addslashes($_code),
-			'limit'   => 1,
 		];
 
 		$get = self::get($get);
