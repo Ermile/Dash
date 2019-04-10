@@ -97,6 +97,28 @@ class human
 	}
 
 
+	public static function humanFileSize($_size, $_unit = "")
+	{
+		if ((!$_unit && $_size >= 1 << 30) || $_unit == "GB")
+		{
+			return number_format($_size / (1 << 30), 2) . " GB";
+		}
+
+		if ((!$_unit && $_size >= 1 << 20) || $_unit == "MB")
+		{
+			return number_format($_size / (1 << 20), 2) . " MB";
+		}
+
+		if ((!$_unit && $_size >= 1 << 10) || $_unit == "KB")
+		{
+			return number_format($_size / (1 << 10), 2) . " KB";
+		}
+
+		return number_format($_size) . " bytes";
+	}
+
+
+
 	/**
 	 * [time description]
 	 * @param  [type] $_time [description]
