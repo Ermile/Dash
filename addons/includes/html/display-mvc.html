@@ -115,7 +115,8 @@
 {%endif%}
 {%block js%}{%endblock%}
 {%if include.editor%}
- <script src="{{url.siftal}}{{'/js/ckeditor5.min.js' | filemtime('siftal')}}"></script>
+ <script src="{{url.siftal}}{{'/js/medium-editor.min.js' | filemtime('siftal')}}"></script>
+ <link  href="{{url.siftal}}{{'/css/medium-editor.css' | filemtime('siftal')}}" rel="stylesheet" media="screen"/>
 {%endif%}
 {%if include.js%}
  <script src="{{url.static}}{{'/js/script.js' | filemtime(true)}}"></script>
