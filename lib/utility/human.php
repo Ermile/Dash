@@ -99,22 +99,27 @@ class human
 
 	public static function humanFileSize($_size, $_unit = "")
 	{
+		$bytes = T_("bytes");
+		$KB    = T_("KB");
+		$MB    = T_("MB");
+		$GB    = T_("GB");
+
 		if ((!$_unit && $_size >= 1 << 30) || $_unit == "GB")
 		{
-			return number_format($_size / (1 << 30), 2) . " GB";
+			return number_format($_size / (1 << 30), 2) . " ". $GB;
 		}
 
 		if ((!$_unit && $_size >= 1 << 20) || $_unit == "MB")
 		{
-			return number_format($_size / (1 << 20), 2) . " MB";
+			return number_format($_size / (1 << 20), 2) . " ". $MB;
 		}
 
 		if ((!$_unit && $_size >= 1 << 10) || $_unit == "KB")
 		{
-			return number_format($_size / (1 << 10), 2) . " KB";
+			return number_format($_size / (1 << 10), 2) . " ". $KB;
 		}
 
-		return number_format($_size) . " bytes";
+		return number_format($_size) . " ". $bytes;
 	}
 
 
