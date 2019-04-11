@@ -23,6 +23,8 @@
 {%block iUrl %}
 {%if dataRow.type == 'help'%}
   {%set myFirstURL = 'support/'%}
+{%elseif dataRow.type == 'mag'%}
+  {%set myFirstURL = 'mag/'%}
 {%endif%}
 <a href="{{url.kingdom}}/{{myFirstURL}}{{dataRow.url}}" class="msg block ltr" target="_blank" title='{%trans "Url of this post."%} {%trans "You can change by set slug and category or parent for this post"%}'><i class="sf-share floatLa"></i> <small>{{url.kingdom}}/{{myFirstURL}}</small>{{dataRow.url}}</a>
 {% endblock %}
