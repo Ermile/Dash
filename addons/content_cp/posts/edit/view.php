@@ -67,6 +67,19 @@ class view
 
 					break;
 
+				case 'mag':
+					\dash\permission::access('cpMagEdit');
+					$myTitle     = T_('Edit magazine');
+					$myBadgeText = T_('Back to list of magazine');
+					$myDesc      = T_("Magazine can contain keyword and category with title and descriptions.");
+					\dash\data::listCats(\dash\app\term::cat_list('mag'));
+					$pageList = \dash\db\posts::get(['type' => 'mag', 'language' => \dash\language::current(), 'status' => ["NOT IN", "('deleted')"]]);
+					$pageList = array_map(['\dash\app\posts', 'ready'], $pageList);
+					\dash\data::pageList($pageList);
+
+					break;
+
+
 				case 'post':
 				default:
 					\dash\permission::access('cpPostsEdit');

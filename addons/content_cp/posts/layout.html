@@ -172,6 +172,8 @@
 <div class="tagDetector">
 {%if requestGET.type == 'help' or dataRow.type == 'help'%}
   {%set myTagType = 'help_tag'%}
+{%elseif requestGET.type == 'mag' or dataRow.type == 'mag'%}
+  {%set myTagType = 'mag_tag'%}
 {%else%}
   {%set myTagType = 'tag'%}
 {%endif%}

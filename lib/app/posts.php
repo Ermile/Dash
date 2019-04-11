@@ -39,7 +39,7 @@ class posts
 	{
 
 		$word         = [];
-		$allPost = \dash\db\posts::get(['type' => ["IN", "('page', 'post', 'help')"]]);
+		$allPost = \dash\db\posts::get(['type' => ["IN", "('page', 'post', 'help', 'mag')"]]);
 
 		if(is_array($allPost))
 		{
@@ -263,6 +263,14 @@ class posts
 						}
 						break;
 
+					case 'mag':
+						if(!\dash\permission::check('cpMagEditPublished'))
+						{
+							\dash\notif::error(T_("This magazine is published. And you can not edit it!"));
+							return false;
+						}
+						break;
+
 					case 'post':
 					case 'page':
 					default:
@@ -285,6 +293,14 @@ class posts
 						if(!\dash\permission::check('cpHelpCenterEditForOthers'))
 						{
 							\dash\notif::error(T_("This is not your post. And you can not edit it!"));
+							return false;
+						}
+						break;
+
+					case 'mag':
+						if(!\dash\permission::check('cpMagEditForOthers'))
+						{
+							\dash\notif::error(T_("This is not your magazine. And you can not edit it!"));
 							return false;
 						}
 						break;
@@ -427,6 +443,14 @@ class posts
 					}
 					break;
 
+				case 'mag':
+					if(!\dash\permission::check('cpMagDelete'))
+					{
+						\dash\notif::error(T_("You can not delete magazine"));
+						return false;
+					}
+					break;
+
 				case 'page':
 					if(!\dash\permission::check('cpPageDelete'))
 					{
@@ -454,6 +478,14 @@ class posts
 						if(!\dash\permission::check('cpHelpCenterDeleteForOthers'))
 						{
 							\dash\notif::error(T_("This is not your help center. And you can not delete it!"));
+							return false;
+						}
+						break;
+
+					case 'mag':
+						if(!\dash\permission::check('cpMagDeleteForOthers'))
+						{
+							\dash\notif::error(T_("This is not your magazine. And you can not delete it!"));
 							return false;
 						}
 						break;
@@ -591,7 +623,7 @@ class posts
 			$type = $current_post_detail['type'];
 		}
 
-		if(in_array($type, ['post']))
+		if(in_array($type, ['post', 'mag']))
 		{
 			$cat = \dash\app::request('cat');
 			if(!$cat)
@@ -644,6 +676,13 @@ class posts
 		{
 			case 'help':
 				if(!\dash\permission::access('cpHelpCenterEditStatus'))
+				{
+					unset($args['status']);
+				}
+				break;
+
+			case 'mag':
+				if(!\dash\permission::access('cpMagEditStatus'))
 				{
 					unset($args['status']);
 				}

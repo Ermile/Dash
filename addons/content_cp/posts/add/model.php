@@ -17,6 +17,10 @@ class model
 				\dash\permission::access('cpHelpCenterAdd');
 				break;
 
+			case 'mag':
+				\dash\permission::access('cpMagAdd');
+				break;
+
 			case 'post':
 			default:
 				\dash\permission::access('cpPostsAdd');

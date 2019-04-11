@@ -43,6 +43,14 @@ class view
 					\dash\data::page_pictogram('life-ring');
 					break;
 
+				case 'mag':
+					\dash\permission::access('cpMagView');
+					$myTitle = T_('Magazine');
+					$myDesc  = T_('Check list of article in magazine.'). ' '. T_('Also add or edit specefic article.');
+					$myBadgeText = T_('Back to list of magazines');
+					\dash\data::page_pictogram('book');
+					break;
+
 				case 'post':
 				default:
 					\dash\permission::access('cpPostsView');

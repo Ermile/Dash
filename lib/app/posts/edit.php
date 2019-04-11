@@ -90,13 +90,20 @@ trait edit
 			$args['excerpt'] = substr($args['excerpt'], 0, 300);
 		}
 
-		if($args['type'] === 'post' || $args['type'] === 'help' )
+		if(in_array($args['type'], ['post', 'help', 'mag']))
 		{
 			if($args['type'] === 'help')
 			{
 				if(\dash\permission::check('cpTagHelpAdd'))
 				{
 					self::set_post_term($id, 'help_tag', 'posts', \dash\app::request('tag'));
+				}
+			}
+			elseif($args['type'] === 'mag')
+			{
+				if(\dash\permission::check('cpMagAdd'))
+				{
+					self::set_post_term($id, 'mag_tag', 'posts', \dash\app::request('tag'));
 				}
 			}
 			else
