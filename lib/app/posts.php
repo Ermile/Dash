@@ -647,7 +647,15 @@ class posts
 			return false;
 		}
 
-		if($type && !in_array($type, \dash\option::config('allow_post_type')))
+		$allow_post_type   = ['post', 'page', 'help', 'mag', 'attachment'];
+		$config_allow_post = \dash\option::config('allow_post_type');
+
+		if($config_allow_post && is_array($config_allow_post))
+		{
+			$allow_post_type = array_merge($config_allow_post, $allow_post_type);
+		}
+
+		if($type && !in_array($type, $allow_post_type))
 		{
 			\dash\notif::error(T_("Invalid type"));
 			return false;
