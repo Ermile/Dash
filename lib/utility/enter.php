@@ -358,12 +358,19 @@ class enter
 	 */
 	public static function enter_set_login($_url = null, $_auto_redirect = false)
 	{
-		$user_id = self::user_data('id');
+		if(\dash\user::id())
+		{
+			$user_id = \dash\user::id();
+		}
+		else
+		{
+			$user_id = self::user_data('id');
+		}
 
 		if(!$user_id)
 		{
 			\dash\log::set('loginNoUserIdWasFounded');
-			\dash\log::warn(T_("User id not found to save your session"));
+			\dash\notif::warn(T_("User id not found to save your session"));
 			return;
 		}
 
@@ -978,6 +985,11 @@ class enter
 		if(is_numeric(self::user_data('id')) && !self::user_data('verifymobile'))
 		{
 			\dash\db\users::update(['verifymobile' => 1], self::user_data('id'));
+		}
+
+		if(is_numeric(\dash\user::id()) && !\dash\user::detail('verifymobile'))
+		{
+			\dash\db\users::update(['verifymobile' => 1], \dash\user::id());
 		}
 
 		/**

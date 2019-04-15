@@ -30,12 +30,6 @@ class controller
 		// save all param-* | param_* in $_GET | $_POST
 		self::save_param();
 
-		// save referer
-		// to redirect the user ofter login or signup on the referered address
-		if(\dash\request::get('referer') && \dash\request::get('referer') != '')
-		{
-			$_SESSION['enter_referer'] = \dash\request::get('referer');
-		}
 
 		\dash\utility\hive::set(true);
 	}

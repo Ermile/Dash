@@ -7,12 +7,20 @@ class controller
 
 	public static function routing()
 	{
+
 		self::check_block_cookie();
 
 		self::check_unlock_page();
 		self::if_login_route();
 		self::if_login_not_route();
 		self::check_baned_user();
+
+		// save referer
+		// to redirect the user ofter login or signup on the referered address
+		if(\dash\request::get('referer') && \dash\request::get('referer') != '')
+		{
+			$_SESSION['enter_referer'] = \dash\request::get('referer');
+		}
 	}
 
 	public static function check_block_cookie()
@@ -85,7 +93,21 @@ class controller
 				}
 				else
 				{
-					\dash\header::status(403, $check_unlock);
+					if(substr($check_unlock, 0,6) === 'verify')
+					{
+						if(\dash\user::id() && !\dash\user::detail('verifymobile'))
+						{
+							// no problem to load this page
+						}
+						else
+						{
+							\dash\header::status(403, $check_unlock);
+						}
+					}
+					else
+					{
+						\dash\header::status(403, $check_unlock);
+					}
 				}
 			}
 		}
