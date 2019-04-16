@@ -75,7 +75,7 @@
           </a>
           <abbr class="compact mLa10" title="{{value.meta.url}}">{{value.title}}</abbr>
         </td>
-        <td class="ltr txtL collapsing">{{value.meta.mime}}</td>
+        <td class="ltr txtL collapsing"><i class="sf-file-{{value.meta.type}}-o fs16 mR5"></i> {{value.meta.mime}}</td>
         <td>{{value.meta.size | readableSize }}</td>
         <td class="ltr txtL collapsing"><div>{{value.datecreated | dt(false, "date")}}</div><div>{{value.datecreated | dt(false, "time")}}</div></td>
       </tr>
