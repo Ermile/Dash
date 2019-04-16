@@ -69,8 +69,9 @@
           <a href="{{url.site}}/{{value.meta.url}}" target="_blank">
 {%if value.meta.type == "image"%}
             <img src="{{url.site}}/{{value.meta.url}}" alt="{{value.title}}">
-{%endif%}
+{%else%}
             <div><span>.{{value.meta.ext}}</span></div>
+{%endif%}
           </a>
           <abbr class="compact mLa10" title="{{value.meta.url}}">{{value.title}}</abbr>
         </td>
