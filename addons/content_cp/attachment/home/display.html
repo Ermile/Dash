@@ -56,8 +56,8 @@
     <thead>
       <tr>
         <th data-sort="{{sortLink.title.order}}"><a href='{{sortLink.title.link}}'>{%trans "File Name"%}</a></th>
-        <th class="max-w200" data-sort="{{sortLink.size.order}}"><a href='{{sortLink.size.link}}'>{%trans "Size"%}</a></th>
         <th class="max-w200" data-sort="{{sortLink.type.order}}"><a href='{{sortLink.type.link}}'>{%trans "Type"%}</a></th>
+        <th class="max-w200" data-sort="{{sortLink.size.order}}"><a href='{{sortLink.size.link}}'>{%trans "Size"%}</a></th>
         <th class="max-w200" data-sort="{{sortLink.date.order}}"><a href='{{sortLink.date.link}}'>{%trans "Date"%}</a></th>
       </tr>
     </thead>
@@ -72,11 +72,11 @@
 {%endif%}
             <div><span>.{{value.meta.ext}}</span></div>
           </a>
-          <abbr title="{{value.meta.url}}">{{value.title}}</abbr>
+          <abbr class="compact mLa10" title="{{value.meta.url}}">{{value.title}}</abbr>
         </td>
-        <td>{{value.meta.size}} Kb</td>
-        <td>{%set myType = value.meta.type%} {%trans myType%}</td>
-        <td class="ltr txtL"><div>{{value.datecreated | dt(false, "date")}}</div><div>{{value.datecreated | dt(false, "time")}}</div></td>
+        <td class="ltr txtL collapsing">{{value.meta.mime}}</td>
+        <td>{{value.meta.size | readableSize }}</td>
+        <td class="ltr txtL collapsing"><div>{{value.datecreated | dt(false, "date")}}</div><div>{{value.datecreated | dt(false, "time")}}</div></td>
       </tr>
       {%endfor%}
     </tbody>
