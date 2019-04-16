@@ -52,27 +52,31 @@
 
 
 {%block htmlTable%}
-  <table class="tbl1 v1 fs11">
+  <table class="tbl1 v1 fs11 tblFiles">
     <thead>
       <tr>
-        <th data-sort="{{sortLink.title.order}}"><a href='{{sortLink.title.link}}'>{%trans "Title"%}</a></th>
-        <th class="max-w200" data-sort="{{sortLink.slug.order}}"><a href='{{sortLink.slug.link}}'>{%trans "Slug"%}</a></th>
-
-
+        <th data-sort="{{sortLink.title.order}}"><a href='{{sortLink.title.link}}'>{%trans "File Name"%}</a></th>
+        <th class="max-w200" data-sort="{{sortLink.size.order}}"><a href='{{sortLink.size.link}}'>{%trans "Size"%}</a></th>
+        <th class="max-w200" data-sort="{{sortLink.type.order}}"><a href='{{sortLink.type.link}}'>{%trans "Type"%}</a></th>
+        <th class="max-w200" data-sort="{{sortLink.date.order}}"><a href='{{sortLink.date.link}}'>{%trans "Date"%}</a></th>
       </tr>
     </thead>
 
     <tbody>
       {%for key, value in dataTable%}
       <tr class="{%if value.status=='deleted'%}negative{%elseif value.status=='draft'%}warning{%endif%}">
-        <td>{{value.title}}</td>
-
-        <td class="s0 m0 fs09 ltr txtL pRa10" >
-
-          <a href="{{url.site}}/{{value.meta.url}}" target="_blank"><span class="sf-share"></span>{{url.site}}/{{value.meta.url}}</a>
-
+        <td>
+          <a href="{{url.site}}/{{value.meta.url}}" target="_blank">
+{%if value.meta.type == "image"%}
+            <img src="{{url.site}}/{{value.meta.url}}" alt="{{value.title}}">
+{%endif%}
+            <div><span>.{{value.meta.ext}}</span></div>
+          </a>
+          <abbr title="{{value.meta.url}}">{{value.title}}</abbr>
         </td>
-
+        <td>{{value.meta.size}} Kb</td>
+        <td>{%set myType = value.meta.type%} {%trans myType%}</td>
+        <td class="ltr txtL"><div>{{value.datecreated | dt(false, "date")}}</div><div>{{value.datecreated | dt(false, "time")}}</div></td>
       </tr>
       {%endfor%}
     </tbody>
