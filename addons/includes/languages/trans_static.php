@@ -1137,6 +1137,18 @@ class TransStatic
 	echo T_("user_filter");
 	echo T_("news");
 
+
+	echo T_("cpMagAdd");
+	echo T_("cpMagEditPublished");
+	echo T_("cpMagEditForOthers");
+	echo T_("cpMagDelete");
+	echo T_("cpMagDeleteForOthers");
+	echo T_("cpMagEditStatus");
+	echo T_("cpDayEvent");
+	echo T_("cpContactView");
+	echo T_("cpMagView");
+	echo T_("cpMagEdit");
+
  }
 }
 ?>

@@ -6,7 +6,6 @@ class controller
 
 	public static function routing()
 	{
-		\dash\permission::access('cpContactChangeStatus');
 
 		\dash\redirect::to(\dash\url::kingdom(). '/support/ticket?access=all&status=all&q='. T_("Contact Us"));
 		return;
