@@ -4,7 +4,7 @@
 			<a class="cauto s0" title='{{paginationDetail.desc}}'>{%trans "Total"%} <span class="txtB">{{pagination[0]["total_rows"] | fitNumber}}</span></a>
 			<div class="c flex justify-center">
 		{%for key, value in pagination%}
-				<a {%if value.link%} href="{{value.link}}" {%endif%} title="{{value.title}}" class="{{value.class}}">{{value.text | raw}}</a>
+				<a {%if value.link%} href="{{value.link}}" {%endif%}  {%if value.title%} title="{{value.title}}" {%endif%} {%if value.class%} class="{{value.class}}" {%endif%}>{{value.text | raw}}</a>
 		{%endfor%}
 			</div>
 		</nav>
