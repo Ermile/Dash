@@ -88,29 +88,32 @@
 {%block sidebarService%}
    <ul class="sidenavService" data-xhr='sidenavService'>
     <li class="hr"></li>
-    {%block sidebarServiceTop%}{%endblock%}
-
+    <li class="title" data-kerkere="[data-sidebarService]" data-kerkere-icon>{%trans "Quick Access"%}</li>
+    <ul data-sidebarService data-kerkere-content='hide'>
+{%block sidebarServiceTop%}{%endblock%}
 {%if login%}
-    <li><a href="{{url.kingdom}}/a" {%if url.content == "a"%} class="activeContent"{%endif%}><i class='sf-gauge'></i> <span>{% trans "Panel"%} <small>{{site.title}}</small></span></a></li>
-{%endif%}
+      <li><a href="{{url.kingdom}}/a" {%if url.content == "a"%} class="activeContent"{%endif%}><i class='sf-gauge'></i> <span>{% trans "Panel"%} <small>{{site.title}}</small></span></a></li>
+  {%endif%}
 
 {%if perm('contentCp')%}
-    <li><a href="{{url.kingdom}}/cp" {%if url.content == "cp"%} class="activeContent"{%endif%} data-shortkey="67+80" data-shortkey-prevent data-shortkey-timeout='1000'><i class='sf-tree-1'></i> {% trans "Control Panel" %}<kbd class="floatRa fs08">cp</kbd></a></li>
+      <li><a href="{{url.kingdom}}/cp" {%if url.content == "cp"%} class="activeContent"{%endif%} data-shortkey="67+80" data-shortkey-prevent data-shortkey-timeout='1000'><i class='sf-tree-1'></i> {% trans "Control Panel" %}<kbd class="floatRa fs08">cp</kbd></a></li>
 {%endif%}
 
 {%if perm('contentCrm')%}
-    <li><a href="{{url.kingdom}}/crm" {%if url.content == "crm"%} class="activeContent"{%endif%} data-shortkey="77+85" data-shortkey-prevent data-shortkey-timeout='1000'><i class='sf-group-full'></i> {% trans "CRM Panel" %}<kbd class="floatRa fs08">mu</kbd></a></li>
+      <li><a href="{{url.kingdom}}/crm" {%if url.content == "crm"%} class="activeContent"{%endif%} data-shortkey="77+85" data-shortkey-prevent data-shortkey-timeout='1000'><i class='sf-group-full'></i> {% trans "CRM Panel" %}<kbd class="floatRa fs08">mu</kbd></a></li>
 {%endif%}
 
 {%if perm_su()%}
-    <li><a href="{{url.kingdom}}/su" {%if url.content == "su"%} class="activeContent"{%endif%} data-shortkey="83+85" data-shortkey-prevent data-shortkey-timeout='1000'><i class='sf-heartbeat'></i> <span>{% trans "Supervisor Panel" %}</span><kbd class="floatRa fs08">su</kbd></a></li>
+      <li><a href="{{url.kingdom}}/su" {%if url.content == "su"%} class="activeContent"{%endif%} data-shortkey="83+85" data-shortkey-prevent data-shortkey-timeout='1000'><i class='sf-heartbeat'></i> <span>{% trans "Supervisor Panel" %}</span><kbd class="floatRa fs08">su</kbd></a></li>
 {%endif%}
 
 {%if login%}
-    <li><a href="{{url.kingdom}}/account/profile" {%if url.content == "account"%} class="activeContent"{%endif%} data-shortkey="77+69" data-shortkey-prevent data-shortkey-timeout='1000'><i class='sf-user'></i> <span>{% trans "My Account" %}</span><kbd class="floatRa fs08">me</kbd></a></li>
+      <li><a href="{{url.kingdom}}/account/profile" {%if url.content == "account"%} class="activeContent"{%endif%} data-shortkey="77+69" data-shortkey-prevent data-shortkey-timeout='1000'><i class='sf-user'></i> <span>{% trans "My Account" %}</span><kbd class="floatRa fs08">me</kbd></a></li>
 {%endif%}
 
-    <li><a href="{{url.kingdom}}/support" {%if url.content == "support"%} class="activeContent"{%endif%} data-shortkey="112" data-shortkey-prevent data-shortkey-timeout='1000'><i class='sf-life-ring'></i> <span>{% trans "Help Center" %}</span><kbd class="floatRa fs08">F1</kbd></a></li>
+      <li><a href="{{url.kingdom}}/support" {%if url.content == "support"%} class="activeContent"{%endif%} data-shortkey="112" data-shortkey-prevent data-shortkey-timeout='1000'><i class='sf-life-ring'></i> <span>{% trans "Help Center" %}</span><kbd class="floatRa fs08">F1</kbd></a></li>
+
+    </ul>
 
    </ul>
 {%endblock%}
