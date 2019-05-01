@@ -69,7 +69,8 @@ class enter_apiverificationcode
 	public static function sms_text($_args, $_mobile)
 	{
 		$code = isset($_args['data']['mycode']) ? $_args['data']['mycode'] : null;
-		$msg  = T_("Your verification code is :code ", ['code' => $code]);
+		$msg  = "code ". $code;
+
 		$sms  =
 		[
 			'mobile' => $_mobile,

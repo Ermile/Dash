@@ -48,7 +48,7 @@ class model
 			]
 		];
 
-		$msg = T_("Your verification code is :code ", ['code' => $code]);
+		$msg = "code ". $code;
 
 		if(\dash\url::isLocal())
 		{
