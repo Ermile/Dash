@@ -91,6 +91,9 @@
     <li class="title" data-kerkere="[data-sidebarService]" data-kerkere-icon>{%trans "Quick Access"%}</li>
     <ul data-sidebarService data-kerkere-content='hide'>
 {%block sidebarServiceTop%}{%endblock%}
+
+{%include 'includes/html/sidebarServiceTop.html' ignore missing %}
+
 {%if login%}
       <li><a href="{{url.kingdom}}/a" {%if url.content == "a"%} class="activeContent"{%endif%}><i class='sf-gauge'></i> <span>{% trans "Panel"%} <small>{{site.title}}</small></span></a></li>
   {%endif%}
