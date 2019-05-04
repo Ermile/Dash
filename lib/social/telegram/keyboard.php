@@ -15,7 +15,7 @@ class keyboard
 	 * @param  boolean $_onlyArray [description]
 	 * @return [type]              [description]
 	 */
-	public static function draw($_list = null, $_onlyArray = null, $_type = 'keyboard', $_key ='id', $_val = 'title')
+	public static function draw($_list = null, $_onlyArray = null, $_type = 'keyboard')
 	{
 		if(!$_list)
 		{
@@ -86,19 +86,19 @@ class keyboard
 			// calc row number
 			$row = floor($i/ $inEachRow);
 			// add to specefic row
-			if(isset($value[$_val]))
+			if(isset($value['text']))
 			{
-				if(isset($value[$_key]))
+				if(isset($value['callback_data']))
 				{
 					$menu[$_type][$row][] =
 					[
-						'text'          => $value[$_val],
-						'callback_data' => $value[$_key]
+						'text'          => $value['text'],
+						'callback_data' => $value['callback_data']
 					];
 				}
 				else
 				{
-					$menu[$_type][$row][] = $value[$_val];
+					$menu[$_type][$row][] = $value['text'];
 
 				}
 			}
