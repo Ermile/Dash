@@ -6,52 +6,69 @@
   <li><a href="{{url.here}}"><i class='sf-gauge'></i> <span>{% trans "Control Panel" %}</span></a></li>
 
 
-{%if perm('cpPostsView') or perm('cpCategoryView') or perm('cpPageView') or perm('cpTagView')  %}
-    <li>
-        <a href="{{url.here}}/cms"><i class='sf-diamond'></i> <span>{% trans "CMS" %}</span></a>
-        <ul>
-            {%if perm('cpPostsView') %}
-              <li><a href="{{url.here}}/posts">{% trans "News" %} <i class='floatRa mRa10 fc-mute sf-pinboard'></i></a></li>
-            {%endif%}
-
-            {%if perm('cpCategoryView') %}
-              <li><a href="{{url.here}}/terms?type=cat">{% trans "Categries" %} <i class='floatRa mRa10 fc-mute sf-grid'></i></a></li>
-            {%endif%}
-
-            {%if perm('cpTagView') %}
-              <li><a href="{{url.here}}/terms?type=tag">{% trans "Tags" %} <i class='floatRa mRa10 fc-mute sf-tags'></i></a></li>
-            {%endif%}
-
-            {%if perm('cpPageView') %}
-              <li><a href="{{url.here}}/posts?type=page">{% trans "Pages" %} <i class='floatRa mRa10 fc-mute sf-files-o'></i></a></li>
-            {%endif%}
-
-            {%if perm('cpHelpCenterView') %}
-              <li><a href="{{url.here}}/posts?type=help">{% trans "Help center" %} <i class='floatRa mRa10 fc-mute sf-info-circle'></i></a></li>
-            {%endif%}
-
-            {%if perm('cpTagHelpAdd') or perm('cpTagHelpEdit')%}
-              <li><a href="{{url.here}}/terms?type=help_tag">{% trans "Help tags" %} <i class='floatRa mRa10 fc-mute sf-clone'></i></a></li>
-            {%endif%}
-
-            {%if perm('cpTagSupportAdd') or perm('cpTagSupportEdit')%}
-              <li><a href="{{url.here}}/terms?type=support_tag">{% trans "Support tags" %} <i class='floatRa mRa10 fc-mute sf-bug'></i></a></li>
-            {%endif%}
-
-        </ul>
-    </li>
-{%endif%}
-
-{%if perm('cpContactView') or perm('cpCommentsView')%}
-
-    <li>
+{%if perm('cpPostsView') or perm('cpCategoryView') or perm('cpTagView') or perm('cpPageView') or perm('cpCommentsView')  %}
+    <li class="title" data-kerkere='[data-sidebar-contentLinks]'>{%trans "Content"%}</li>
+    <li data-kerkere-content='hide' data-sidebar-contentLinks>
       <ul>
+        {%if perm('cpPostsView') %}
+          <li><a href="{{url.here}}/posts"><i class='fc-mute sf-pinboard'></i> {% trans "News" %}</a></li>
+        {%endif%}
+
+        {%if perm('cpCategoryView') %}
+          <li><a href="{{url.here}}/terms?type=cat"><i class='fc-mute sf-grid'></i> {% trans "Categories" %}</a></li>
+        {%endif%}
+
+        {%if perm('cpTagView') %}
+          <li><a href="{{url.here}}/terms?type=tag"><i class='fc-mute sf-tags'></i> {% trans "Tags" %}</a></li>
+        {%endif%}
+
+        {%if perm('cpPageView') %}
+          <li><a href="{{url.here}}/posts?type=page"><i class='fc-mute sf-files-o'></i> {% trans "Pages" %}</a></li>
+        {%endif%}
+
         {%if perm('cpCommentsView')%}
-          <li><a href="{{url.here}}/comments">{% trans "Comments" %} <i class='floatRa mRa10 fc-mute sf-comments'></i></a></li>
+          <li><a href="{{url.here}}/comments"><i class='fc-mute sf-comments'></i> {% trans "Comments" %}</a></li>
         {%endif%}
       </ul>
     </li>
 {%endif%}
+
+
+{%if perm('cpHelpCenterView') or perm('cpTagHelpAdd') or perm('cpTagHelpEdit') or perm('cpTagSupportAdd') or perm('cpTagSupportEdit')  %}
+    <li class="title" data-kerkere='[data-sidebar-supportLinks]'>{%trans "Support"%}</li>
+    <li data-kerkere-content='hide' data-sidebar-supportLinks>
+      <ul>
+        {%if perm('cpHelpCenterView') %}
+          <li><a href="{{url.here}}/posts?type=help"><i class='fc-mute sf-info-circle'></i> {% trans "Help center" %}</a></li>
+        {%endif%}
+
+        {%if perm('cpTagHelpAdd') or perm('cpTagHelpEdit')%}
+          <li><a href="{{url.here}}/terms?type=help_tag"><i class='fc-mute sf-clone'></i> {% trans "Help tags" %}</a></li>
+        {%endif%}
+
+        {%if perm('cpTagSupportAdd') or perm('cpTagSupportEdit')%}
+          <li><a href="{{url.here}}/terms?type=support_tag"><i class='fc-mute sf-bug'></i> {% trans "Support tags" %}</a></li>
+        {%endif%}
+      </ul>
+    </li>
+{%endif%}
+
+
+
+{%if perm('cpPostsView') %}
+    <li class="title" data-kerkere='[data-sidebar-filesLinks]'>{%trans "Files"%}</li>
+    <li data-kerkere-content='hide' data-sidebar-filesLinks>
+      <ul>
+        {%if perm('cpPostsView') %}
+          <li><a href="{{url.here}}/attachment"><i class='fc-mute sf-file-o'></i> {% trans "Library" %}</a></li>
+        {%endif%}
+        {%if perm('cpPostsView') %}
+          <li><a href="{{url.here}}/attachment/add"><i class='fc-mute sf-plus'></i> {% trans "Add new file" %}</a></li>
+        {%endif%}
+      </ul>
+    </li>
+{%endif%}
+
 
 {%endblock%}
 
