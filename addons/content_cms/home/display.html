@@ -1,0 +1,227 @@
+{%extends display.cpMain%}
+
+
+
+
+{%block pageContent%}
+	{{block ("blockCMS")}}
+	{{block ("chartPost")}}
+	{{block ("blockHelpCenter")}}
+  {{block ("wordcloudChart")}}
+  <div class="f">
+    <div class="c s12">
+      <div class="pRa5">{{block ("l10News")}}</div>
+    </div>
+
+    <div class="c s12">
+      <div class="pRa5">{{block ("l10Help")}}</div>
+    </div>
+
+    <div class="c s12">
+      <div class="pRa5">{{block ("l10Tag")}}</div>
+    </div>
+
+  </div>
+
+
+{%endblock%}
+
+
+{%block l10News%}
+<div class="cbox fs11 mB10">
+  <h2>{%trans "Latest News"%}</h2>
+  {%for key, value in dashboardDetail.latesPost%}
+    <a class="msg f" href="{{url.kingdom}}/{{value.url}}">
+      <div>{%if value.title%}{{value.title}}{%else%}{%trans "Without title"%}{%endif%}</div>
+      <div class="cauto">{{value.datecreated | dt('human', 'year') }}</div>
+    </a>
+  {%endfor%}
+</div>
+
+{%endblock%}
+
+
+{%block l10Help%}
+<div class="cbox fs11 mB10">
+  <h2>{%trans "Latest Help center"%}</h2>
+  {%for key, value in dashboardDetail.latesHelp%}
+    <a class="msg f">
+      <div>{%if value.title%}{{value.title}}{%else%}{%trans "Without title"%}{%endif%}</div>
+      <div class="cauto">{{value.datecreated | dt('human', 'year') }}</div>
+    </a>
+  {%endfor%}
+</div>
+
+
+{%endblock%}
+
+
+
+{%block l10Tag%}
+<div class="cbox fs11 mB10">
+  <h2>{%trans "Latest tag"%}</h2>
+  {%for key, value in dashboardDetail.latesTag%}
+    <a class="msg f">
+      <div>{%if value.title%}{{value.title}}{%else%}{%trans "Without title"%}{%endif%}</div>
+      <div class="cauto">{{value.datecreated | dt('human', 'year') }}</div>
+    </a>
+  {%endfor%}
+</div>
+
+{%endblock%}
+
+
+
+{%block blockCMS%}
+<div class="f">
+  <div class="c s6">{{block ("dNews")}}</div>
+  <div class="c s6">{{block ("dCats")}}</div>
+  <div class="c s6">{{block ("dTags")}}</div>
+  <div class="c s6">{{block ("dPages")}}</div>
+</div>
+{%endblock%}
+
+
+{%block dNews%}
+<a class="dcard" href="{{url.here}}/posts">
+ <div class="statistic sm">
+  <div class="label mB10"><i class="fs20 mRa5 sf-pinboard"></i> {%trans "News"%}</div>
+  <div class="value">{{dashboardDetail.news | fitNumber}}</div>
+ </div>
+</a>
+{%endblock%}
+
+
+{%block dCats%}
+<a class="dcard" href="{{url.here}}/terms?type=cat">
+ <div class="statistic sm">
+  <div class="label mB10"><i class="fs20 mRa5 sf-grid"></i> {%trans "Category"%}</div>
+  <div class="value">{{dashboardDetail.cats | fitNumber()}}</div>
+ </div>
+</a>
+{%endblock%}
+
+
+{%block dTags%}
+<a class="dcard" href="{{url.here}}/terms?type=tag">
+ <div class="statistic sm">
+  <div class="label mB10"><i class="fs20 mRa5 sf-tags"></i> {%trans "Tags"%}</div>
+  <div class="value">{{dashboardDetail.tags | fitNumber}}</div>
+ </div>
+</a>
+{%endblock%}
+
+
+{%block dPages%}
+<a class="dcard" href="{{url.here}}/posts?type=page">
+ <div class="statistic sm">
+  <div class="label mB10"><i class="fs20 mRa5 sf-files-o"></i> {%trans "Pages"%}</div>
+  <div class="value">{{dashboardDetail.pages | fitNumber}}</div>
+ </div>
+</a>
+{%endblock%}
+
+
+
+
+
+
+
+{%block wordcloudChart%}
+<a class="cbox pA0">
+ <div class="chart x4" id="wordcloud"></div>
+</a>
+{%endblock%}
+
+
+
+{%block chartPost%}
+<a class="cbox pA0">
+ <div class="chart x4" id="postchart"></div>
+</a>
+{%endblock%}
+
+
+
+
+
+{%block blockHelpCenter%}
+<div class="f">
+  <div class="c s6">{{block ("dHelpCenter")}}</div>
+  <div class="c s6">{{block ("dHelpCenterTags")}}</div>
+  <div class="c s6">{{block ("dSupportTags")}}</div>
+  <div class="c s6">{{block ("dTickets")}}</div>
+
+</div>
+{%endblock%}
+
+
+{%block dHelpCenter%}
+<a class="dcard" href="{{url.here}}/posts?type=help">
+ <div class="statistic sm">
+  <div class="label mB10"><i class="fs20 mRa5 sf-info-circle"></i> {%trans "Help Center Article"%}</div>
+  <div class="value">{{dashboardDetail.helpcenter | fitNumber}}</div>
+ </div>
+</a>
+{%endblock%}
+
+
+
+{%block dHelpCenterTags%}
+<a class="dcard" href="{{url.here}}/terms?type=help_tag">
+ <div class="statistic sm">
+  <div class="label mB10"><i class="fs20 mRa5 sf-clone"></i> {%trans "Help tags"%}</div>
+  <div class="value">{{dashboardDetail.helpcentertags | fitNumber()}}</div>
+ </div>
+</a>
+{%endblock%}
+
+
+{%block dSupportTags%}
+<a class="dcard" href="{{url.here}}/terms?type=support_tag">
+ <div class="statistic sm">
+  <div class="label mB10"><i class="fs20 mRa5 sf-bug"></i> {%trans "Support tags"%}</div>
+  <div class="value">{{dashboardDetail.supporttags | fitNumber()}}</div>
+ </div>
+</a>
+{%endblock%}
+
+
+{%block dTickets%}
+<a class="dcard" href="{{url.kingdom}}/support/ticket">
+ <div class="statistic sm">
+  <div class="label mB10"><i class="fs20 mRa5 sf-life-ring"></i> {%trans "Tickets"%}</div>
+  <div class="value">{{dashboardDetail.tickets | fitNumber}}</div>
+ </div>
+</a>
+{%endblock%}
+
+
+
+{%block dVisitor%}
+<a class="dcard" href="{{url.kingdom}}/cp/visitor">
+ <div class="statistic sm">
+  <div class="label mB10"><i class="fs20 mRa5 sf-life-ring"></i> {%trans "Visitor"%}</div>
+  <div class="value">{{dashboardDetail.visit | fitNumber}}</div>
+ </div>
+</a>
+{%endblock%}
+
+
+
+
+
+
+
+
+
+{%block foot_js%}
+<script type="text/javascript">
+  {%include 'content_cms/home/wordcloud.js'%}
+</script>
+
+<script type="text/javascript">
+    {%include 'content_cms/home/chart.js'%}
+</script>
+{%endblock%}
+
