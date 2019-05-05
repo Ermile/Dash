@@ -5,16 +5,16 @@
 {%block sidenav%}
     <li><a href="{{url.here}}"><i class='sf-heartbeat'></i> <span>{% trans "Supervisor dashboard" %}</span></a></li>
 
-    <li class="title"><i class='sf-database floatRa fc-mute'></i><span>{% trans "Database" %}</span></li>
-    <li>
+    <li class="title" data-kerkere='[data-sidebar-dbLinks]'><i class='sf-database floatRa fc-mute'></i><span>{% trans "Database" %}</span></li>
+    <li data-kerkere-content='hide' data-sidebar-dbLinks>
     	<ul>
     		<li><a href="{{url.here}}/backup">{% trans "Backup" %}</a></li>
     		<li><a href="{{url.here}}/dbtables">{% trans "Raw table" %}</a></li>
     	</ul>
     </li>
 
-    <li class="title"><i class='sf-server floatRa fc-mute'></i><span>{% trans "Server" %}</span></li>
-    <li>
+    <li class="title" data-kerkere='[data-sidebar-serverLinks]'><i class='sf-server floatRa fc-mute'></i><span>{% trans "Server" %}</span></li>
+    <li  data-kerkere-content='hide' data-sidebar-serverLinks>
     	<ul>
     		<li><a href="{{url.here}}/time">{% trans "Date and time" %}</a></li>
     		<li><a href="{{url.here}}/info">{% trans "Server information" %}</a></li>
@@ -23,8 +23,8 @@
     	</ul>
     </li>
 
-    <li class="title"><i class='sf-git floatRa fc-mute'></i><span>{% trans "Git" %}</span></li>
-    <li>
+    <li class="title"  data-kerkere='[data-sidebar-gitLinks]'><i class='sf-git floatRa fc-mute'></i><span>{% trans "Git" %}</span></li>
+    <li  data-kerkere-content='hide' data-sidebar-gitLinks>
     	<ul>
     		<li><a href="{{url.here}}/gitstatus">{% trans "Git status" %}</a></li>
     		<li><a href="{{url.here}}/nano">{% trans "Nano" %}</a></li>
@@ -32,8 +32,8 @@
     	</ul>
     </li>
 
-    <li class="title"><i class='sf-wrench floatRa fc-mute'></i><span>{% trans "Tools" %}</span></li>
-    <li>
+    <li class="title"  data-kerkere='[data-sidebar-toolsLinks]'><i class='sf-wrench floatRa fc-mute'></i><span>{% trans "Tools" %}</span></li>
+    <li  data-kerkere-content='hide' data-sidebar-toolsLinks>
     	<ul>
             <li><a href="{{url.here}}/log">{% trans "Log" %}</a></li>
   {%if url.tld == 'local'%}
