@@ -35,16 +35,18 @@
   </div>
 
 
-<ul class="sidenav" data-xhr='sidenav'>{%block sidenav%}{%endblock%}</ul>
+   <ul class="sidenav" data-xhr='sidenav'>
+{%block sidenav%}
+    <li><a href="{{url.here}}"><i class='sf-tachometer'></i> <span>{% trans "Dashboard" %}</span></a></li>
+{%endblock%}
+
+    <li class="hr"></li>
+    <li class="title" data-kerkere="[data-sidebarService]" data-kerkere-icon>{%trans "Quick Access"%}</li>
+   </ul>
 
 
 {%block sidebarService%}
-   <ul class="sidenavService" data-xhr='sidenavService'>
-    <li class="hr"></li>
-    <li class="title" data-kerkere="[data-sidebarService]" data-kerkere-icon>{%trans "Quick Access"%}
-    </li>
-    <li class="serviceLinks" data-sidebarService data-kerkere-content='hide'>
-      <ul>
+   <ul class="sidenavService" data-xhr='sidenavService' data-sidebarService data-kerkere-content='hide'>
 {%block sidebarServiceTop%}{%endblock%}
 
 {%include 'includes/html/sidebarServiceTop.html' ignore missing %}
@@ -72,10 +74,6 @@
         <li><a href="{{url.kingdom}}/support" {%if url.content == "support"%} class="activeContent"{%endif%} data-shortkey="112" data-shortkey-prevent data-shortkey-timeout='1000' title='{%trans "Shortkey"%} f1' data-tippy-placement='right'><i class='sf-life-ring'></i> <span>{% trans "Help Center" %}</span></a></li>
 
         <li class="hr"></li>
-
-      </ul>
-    </li>
-
    </ul>
 {%endblock%}
 
