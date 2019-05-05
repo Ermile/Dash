@@ -22,7 +22,7 @@ class content
 		[
 			'enter',
 			'su',
-			'cp',
+			'cms',
 			'account',
 			'api',
 			'n',
