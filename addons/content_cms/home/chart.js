@@ -43,6 +43,17 @@ function wordcloud()
       data: data,
       name: '{%trans "Count"%}'
     }],
+    plotOptions: {
+        wordcloud: {
+            style : {
+              fontFamily: "IRANSans"
+            }
+        }
+    },
+    tooltip: {
+      useHTML: true,
+      borderWidth: 0
+    },
     credits:
     {
         text: '{{service.title}}',
