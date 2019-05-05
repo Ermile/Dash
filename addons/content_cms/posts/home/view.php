@@ -63,14 +63,15 @@ class view
 		}
 
 		// add back level to summary link
-		$product_list_link =  '<a href="'. \dash\url::here() .'" data-shortkey="121">'. T_('Back to dashboard'). '</a>';
-		$myDesc .= ' | '. $product_list_link;
 
 		\dash\data::page_title($myTitle);
 		\dash\data::page_desc($myDesc);
 
 		\dash\data::badge_text(T_('Add new :val', ['val' => $myType]));
 		\dash\data::badge_link(\dash\url::this(). '/add'. $moduleType);
+
+		\dash\data::badge2_text(T_('Back to dashboard'));
+		\dash\data::badge2_link(\dash\url::here());
 
 
 		$search_string = \dash\request::get('q');

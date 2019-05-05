@@ -8,8 +8,7 @@
 {%block pageHeader%}
 {%if page.title or page.desc%}
 <div class="tbox{%if page.pictogram%} pictogram{%endif%}">
-  <h2>{{page.title | raw}}{%if badge.text%} <a{%if badge.link%} href="{{badge.link}}"{%endif%} class="badge primary" {%if badge.shortkey%} data-shortkey="{{badge.shortkey}}"{%endif%}>{{badge.text}} {%if badge.shortkey == 120%}<kbd>f9</kbd>{%endif%}</a>{%endif%}</h2>
-  <p>{{page.desc | raw}} {%if badge2.text and badge2.link and badge2.shortkey%} <a href="{{badge2.link}}" class="badge light" data-shortkey="{{badge2.shortkey}}">{{badge2.text}} {%if badge2.shortkey == 121%}<kbd>f10</kbd>{%endif%}</a>{%endif%}</p>
+  <h2>{{page.title | raw}}{%if page.desc%}<i class="compact sf-question-circle mLR5" title='{{page.desc | raw}}'></i>{%endif%}{%if badge.text%} <a{%if badge.link%} href="{{badge.link}}"{%endif%} class="badge primary" {%if badge.shortkey%} data-shortkey="{{badge.shortkey}}"{%endif%}>{{badge.text}} {%if badge.shortkey == 120%}<kbd>f9</kbd>{%endif%}</a>{%endif%}{%if badge2.text and badge2.link and badge2.shortkey%} <a href="{{badge2.link}}" class="badge light floatRa" data-shortkey="{{badge2.shortkey}}">{{badge2.text}} {%if badge2.shortkey == 121%}<kbd>f10</kbd>{%endif%}</a>{%endif%}</h2>
 {%if page.breadcrumb%}
   <nav class="breadcrumb">
 {%for key, value in page.breadcrumb%}
