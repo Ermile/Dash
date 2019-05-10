@@ -251,8 +251,8 @@ class prepare
 	{
 		switch (\dash\url::directory())
 		{
-			case 'mainfest.json':
-			case 'mainfest.webmanifest':
+			case 'manifest.json':
+			case 'manifest.webmanifest':
 				\dash\engine\pwa::manifest();
 				break;
 
