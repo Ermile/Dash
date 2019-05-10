@@ -8,6 +8,8 @@ class pwa
 	public static function manifest()
 	{
 		$siteTitle = \dash\option::config('site', 'title');
+		$siteTitle = mb_strtolower($siteTitle);
+
 		$manifest  =
 		[
 			'name'             => T_($siteTitle). ' | '. T_(\dash\option::config('site', 'slogan')),
