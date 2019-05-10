@@ -251,12 +251,11 @@ class prepare
 	{
 		switch (\dash\url::directory())
 		{
-			case 'manifest.json':
 			case 'manifest.webmanifest':
 				\dash\engine\pwa::manifest();
 				break;
 
-			case 'serviceWorker.js':
+			case 'serviceWorker':
 				\dash\engine\pwa::service_worker();
 				break;
 
