@@ -260,6 +260,10 @@ class prepare
 				\dash\engine\pwa::service_worker();
 				break;
 
+			case 'offline.html':
+				\dash\engine\pwa::offline();
+				break;
+
 			case 'robots.txt':
 				break;
 		}

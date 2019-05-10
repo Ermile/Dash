@@ -102,19 +102,42 @@ class pwa
 	public static function service_worker()
 	{
 		$worker = "
-		self.addEventListener('install', function() {
-		  console.log('Install!');
-		});
-		self.addEventListener('activate', event => {
-		  console.log('Activate!');
-		});
-		self.addEventListener('fetch', function(event) {
-		  console.log('Fetch!', event.request);
-		});
+self.addEventListener('install', function() {
+  console.log('Install!');
+});
+
+self.addEventListener('activate', event => {
+  console.log('Activate!');
+});
+
+self.addEventListener('fetch', function(event) {
+  console.log('Fetch!', event.request);
+});
+
+
+const FILES_TO_CACHE = [
+  '/offline.html',
+];
+
+evt.waitUntil(
+    caches.open(CACHE_NAME).then((cache) => {
+      console.log('[ServiceWorker] Pre-caching offline page');
+      return cache.addAll(FILES_TO_CACHE);
+    })
+);
+
 		";
 
 
-		\dash\code::jsonBoom($worker, true, 'manifest');
+		\dash\code::jsonBoom($worker, true, 'js');
+	}
+
+	public static function offline()
+	{
+		$off = "You are offline!";
+
+
+		\dash\code::jsonBoom($off, true, 'js');
 	}
 }
 ?>
