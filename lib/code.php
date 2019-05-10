@@ -95,7 +95,7 @@ class code
 	/**
 	 * return json and boom
 	 */
-	public static function jsonBoom($_data = null, $_pretty = null)
+	public static function jsonBoom($_data = null, $_pretty = null, $_customHeader = null)
 	{
 		if(is_array($_data))
 		{
@@ -110,7 +110,14 @@ class code
 			}
 		}
 		echo $_data;
-		@header("Content-Type: application/json; charset=utf-8");
+		if(!$_customHeader)
+		{
+			@header("Content-Type: application/json; charset=utf-8");
+		}
+		elseif($_customHeader === 'manifest')
+		{
+			@header("Content-Type: application/manifest+json; charset=utf-8");
+		}
 
 		self::boom();
 	}
