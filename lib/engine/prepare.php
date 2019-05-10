@@ -36,6 +36,8 @@ class prepare
 		// check need redirect for lang or www or https or main domain
 		self::fix_url_host();
 		self::account_urls();
+		// generate static files
+		self::static_files();
 
 		// start session
 		self::session_start();
@@ -237,6 +239,23 @@ class prepare
 			case 'account/signout':
 				$url = \dash\url::kingdom(). '/enter/logout'. $param;
 				\dash\redirect::to($url);
+				break;
+		}
+	}
+
+	/**
+	 * generate some static files automatically
+	 * @return [type] [description]
+	 */
+	private static function static_files()
+	{
+		switch (\dash\url::directory())
+		{
+			case 'mainfest.json':
+				\dash\engine\pwa::manifest();
+				break;
+
+			case 'robots.txt':
 				break;
 		}
 	}
