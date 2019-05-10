@@ -110,13 +110,14 @@ class code
 			}
 		}
 		echo $_data;
-		if(!$_customHeader)
-		{
-			@header("Content-Type: application/json; charset=utf-8");
-		}
-		elseif($_customHeader === 'manifest')
+		// set header
+		if($_customHeader === 'manifest')
 		{
 			@header("Content-Type: application/manifest+json; charset=utf-8");
+		}
+		else
+		{
+			@header("Content-Type: application/json; charset=utf-8");
 		}
 
 		self::boom();
