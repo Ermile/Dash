@@ -256,6 +256,10 @@ class prepare
 				\dash\engine\pwa::manifest();
 				break;
 
+			case 'serviceWorker.js':
+				\dash\engine\pwa::service_worker();
+				break;
+
 			case 'robots.txt':
 				break;
 		}

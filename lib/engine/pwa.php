@@ -97,5 +97,24 @@ class pwa
 
 		\dash\code::jsonBoom($manifest, true, 'manifest');
 	}
+
+
+	public static function service_worker()
+	{
+		$worker = "
+		self.addEventListener('install', function() {
+		  console.log('Install!');
+		});
+		self.addEventListener('activate', event => {
+		  console.log('Activate!');
+		});
+		self.addEventListener('fetch', function(event) {
+		  console.log('Fetch!', event.request);
+		});
+		";
+
+
+		\dash\code::jsonBoom($worker, true, 'manifest');
+	}
 }
 ?>
