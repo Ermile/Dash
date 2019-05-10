@@ -103,15 +103,15 @@ class pwa
 	{
 		$worker = "
 self.addEventListener('install', function() {
-  logy('Install!');
+  console.log('Install!');
 });
 
 self.addEventListener('activate', event => {
-  logy('Activate!');
+  console.log('Activate!');
 });
 
 self.addEventListener('fetch', function(event) {
-  logy('Fetch!', event.request);
+  console.log('Fetch!', event.request);
 });
 
 		";
