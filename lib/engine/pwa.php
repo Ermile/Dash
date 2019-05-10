@@ -162,7 +162,7 @@ evt.respondWith(
 		$off = "You are offline!";
 
 
-		\dash\code::jsonBoom($off, true, 'js');
+		\dash\code::jsonBoom($off, true, 'html');
 	}
 }
 ?>

@@ -115,6 +115,14 @@ class code
 		{
 			@header("Content-Type: application/manifest+json; charset=utf-8");
 		}
+		elseif($_customHeader === 'js')
+		{
+			@header("Content-Type: application/javascript; charset=utf-8");
+		}
+		elseif($_customHeader === 'html')
+		{
+			@header("Content-Type: text/html; charset=utf-8");
+		}
 		else
 		{
 			@header("Content-Type: application/json; charset=utf-8");
