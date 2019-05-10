@@ -75,7 +75,6 @@ class pwa
 			];
 		}
 
-
 		// check default logo
 		$iconDefault = '/images/logo/'. $siteTitle. '.png';
 		if(file_exists(root. 'public_html/static'. $iconDefault))
