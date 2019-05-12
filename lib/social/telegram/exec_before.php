@@ -110,12 +110,14 @@ class exec_before
 				}
 
 				// clean html tag from desc
-				$desc = $_data['results'][0]['description'];
-				$desc = str_replace('&nbsp;', ' ', $desc);
-				$desc = str_replace('</p>', "</p>\n", $desc);
-				$desc = strip_tags($desc);
-				$_data['results'][0]['description'] = $desc;
-
+				if(isset($_data['results'][0]['description']))
+				{
+					$desc = $_data['results'][0]['description'];
+					$desc = str_replace('&nbsp;', ' ', $desc);
+					$desc = str_replace('</p>', "</p>\n", $desc);
+					$desc = strip_tags($desc);
+					$_data['results'][0]['description'] = $desc;
+				}
 				break;
 
 
