@@ -15,7 +15,7 @@ class apilog
 		self::$apilog['zoneid']         = null; // 100
 		self::$apilog['url']            = substr(\dash\url::pwd(), 0, 2000);
 		self::$apilog['method']         = substr(\dash\request::is(), 0, 200);
-		self::$apilog['header']         = $headerjson = json_encode(getallheaders());
+		self::$apilog['header']         = $headerjson = json_encode(\dash\header::get());
 		self::$apilog['headerlen']      = mb_strlen($headerjson);
 		self::$apilog['body']           = $body = json_encode(\dash\request::post());
 		self::$apilog['bodylen']        = mb_strlen($body);
