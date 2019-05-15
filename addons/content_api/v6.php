@@ -154,6 +154,7 @@ class v6
 
 	public static function bye($_result = null)
 	{
+		\dash\app\apilog::save($_result);
 		\dash\notif::api($_result);
 	}
 
