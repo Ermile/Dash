@@ -18,10 +18,10 @@ class controller
 		}
 
 		$token = \dash\request::post('token');
-
 		if(!$token)
 		{
-			\dash\code::boom();
+			\dash\notif::error("Token!");
+			\dash\code::jsonBoom(\dash\notif::get());
 		}
 
 		$read_file = root. 'includes/cronjob/token.me.json';
@@ -37,13 +37,17 @@ class controller
 
 				self::cronjob_run();
 
+				\dash\notif::error("Ok ;)");
 				return true;
 				// this is ok
 			}
 		}
 
-		\dash\code::boom();
+		\dash\notif::error("Token :/");
+		\dash\code::jsonBoom(\dash\notif::get());
+
 	}
+
 
 
 	private static function sleep_until($_first_time, $_time)
