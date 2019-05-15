@@ -37,9 +37,10 @@ class controller
 
 				self::cronjob_run();
 
-				\dash\notif::error("Ok ;)");
-				return true;
 				// this is ok
+				\dash\notif::error("Ok ;)");
+				\dash\code::jsonBoom(\dash\notif::get());
+
 			}
 		}
 
