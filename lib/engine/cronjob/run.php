@@ -33,27 +33,53 @@ class run
 	 */
 	public function requests()
 	{
-		$file = __DIR__. '/list.crontab.txt';
-		$list = [];
+		$cronjob_dir = __DIR__. '/includes/cronjob/';
 
-		if(is_file($file))
+		if(!is_dir($cronjob_dir))
 		{
-			$list = file_get_contents($file);
-			$list = json_decode($list, true);
-			if(!is_array($list))
+			@mkdir($cronjob_dir, 0775, true);
+		}
+
+		$execlist_file = $cronjob_dir. 'execlist.me.json';
+
+		if(is_file($execlist_file))
+		{
+			$execlist = file_get_contents($execlist_file);
+			$execlist = json_decode($execlist, true);
+			if(!is_array($execlist))
 			{
-				$list = [];
+				return false;
+			}
+		}
+		else
+		{
+			return false;
+		}
+
+		$token_file = $cronjob_dir .'token.me.json';
+
+		$token_json = [];
+
+		if(is_file($token_file))
+		{
+			$token_json = file_get_contents($token_file);
+			$token_json = json_decode($token_json, true);
+			if(!is_array($token_json))
+			{
+				$token_json = [];
 			}
 		}
 
 		$token         = time(). '_Ermile_cronjob_'. (string) rand(1,999999). '_'. (string) rand(1,999999). '_'. (string) rand(1,999999);
 		$token         = md5($token);
-		$list['token'] = $token;
 
-		file_put_contents($file, json_encode($list, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+		$token_json['token'] = $token;
+		$token_json['date']  = date("Y-m-d H:i:s");
+
+		file_put_contents($token_file, json_encode($token_json, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
 
 		$requests   = [];
-		foreach ($list as $key => $value)
+		foreach ($execlist as $key => $value)
 		{
 			if(isset($value['url']))
 			{
@@ -63,15 +89,22 @@ class run
 		return $requests;
 	}
 
-	public function run()
+
+	public function exec()
 	{
-		foreach ($this->requests() as $key => $value)
+		$requests = $this->requests();
+		if(is_array($requests))
 		{
-			$this->_curl($value);
+			foreach ($requests as $key => $value)
+			{
+				$this->_curl($value);
+			}
 		}
 	}
 }
 
-(new run)->run();
+$cronjob = new \run;
+$cronjob->exec();
+
 
 ?>
