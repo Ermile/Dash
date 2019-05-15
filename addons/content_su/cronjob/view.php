@@ -17,6 +17,9 @@ class view
 		$jsoncrontab = \dash\engine\cronjob\options::jsoncrontab();
 		\dash\data::jsoncrontab($jsoncrontab);
 
+		$tokenjson = \dash\engine\cronjob\options::tokenjson();
+		\dash\data::tokenjson($tokenjson);
+
 
 	}
 }

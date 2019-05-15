@@ -30,6 +30,18 @@ class options
 	}
 
 
+	public static function tokenjson()
+	{
+		$addr = self::cronjob_folder('token.me.json');
+
+		if(is_file($addr))
+		{
+			return \dash\file::read($addr);
+		}
+		return null;
+	}
+
+
 	public static function jsoncrontab()
 	{
 		$addr = self::cronjob_folder('execlist.me.json');
