@@ -30,6 +30,7 @@ class comments
 
 	public static function close_solved_ticket()
 	{
+		$yesterday = date("Y-m-d H:i:s", strtotime('-1 days'));
 		$get_count =
 		"
 			SELECT COUNT(*) AS `count` FROM comments
@@ -47,7 +48,6 @@ class comments
 			\dash\log::set('ticket_AutoCloseSolvedTicket', ['count' => $count]);
 		}
 
-		$yesterday = date("Y-m-d H:i:s", strtotime('-1 days'));
 		$query =
 		"
 			UPDATE comments

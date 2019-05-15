@@ -24,7 +24,7 @@ class controller
 			\dash\code::boom();
 		}
 
-		$read_file = root. 'list.crontab.txt';
+		$read_file = root. 'includes/cronjob/token.me.json';
 		if(is_file($read_file))
 		{
 			$check_token = file_get_contents($read_file);

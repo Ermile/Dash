@@ -3,20 +3,37 @@ namespace dash\engine\cronjob;
 
 class options
 {
+	public static $cronjob_folder = 'includes/cronjob';
+
+
+	private static function cronjob_folder($_file_name)
+	{
+		$addr = root. self::$cronjob_folder;
+		if(!is_dir($addr))
+		{
+			\dash\file::makeDir($addr);
+		}
+		$addr .= '/'. $_file_name;
+		return $addr;
+	}
+
 
 	public static function current_cronjob_path()
 	{
 		return '* * * * * php '. __DIR__ . '/cronjob.php';
 	}
 
+
 	public static function unixcrontab()
 	{
 		return shell_exec('crontab -l');
 	}
 
+
 	public static function jsoncrontab()
 	{
-		$addr = root. 'list.crontab.txt';
+		$addr = self::cronjob_folder('execlist.me.json');
+
 		if(is_file($addr))
 		{
 			return \dash\file::read($addr);
@@ -51,8 +68,8 @@ class options
 			$new_crontab_txt = str_replace(self::current_cronjob_path(). PHP_EOL, '', $new_crontab_txt);
 		}
 
-		file_put_contents(__DIR__.'/crontab.txt', $new_crontab_txt);
-		exec('crontab '. __DIR__.'/crontab.txt', $result, $return_val);
+		\dash\file::write(__DIR__.'/crontab.json', $new_crontab_txt);
+		exec('crontab '. __DIR__.'/crontab.json', $result, $return_val);
 		if($return_val === 0)
 		{
 			return true;
@@ -114,8 +131,8 @@ class options
 	public static function list()
 	{
 		$dash_list    = self::load_list_file(__DIR__. '/cronjob.json');
-		$project_list = self::load_list_file(root. 'includes/cronjob/list.json');
-		$saved_list   = self::load_list_file(root. 'list.crontab.txt');
+		$project_list = self::load_list_file(self::cronjob_folder('list.json'));
+		$saved_list   = self::load_list_file(self::cronjob_folder('execlist.me.json'));
 
 		$list = array_merge($dash_list, $project_list);
 
@@ -162,7 +179,7 @@ class options
 		}
 
 		$save = json_encode($save, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-		file_put_contents(root. 'list.crontab.txt', $save);
+		\dash\file::write(self::cronjob_folder('execlist.me.json'), $save);
 		return true;
 	}
 }
