@@ -1,0 +1,103 @@
+
+{%block htmlTable%}
+
+<div class="tblbox">
+
+  <table class="tbl1 v4 cbox fs12">
+    <thead class="fs09">
+      <tr>
+        <th>Auth</th>
+
+        <th>url</th>
+        <th>method</th>
+        <th>header</th>
+        <th>headerlen</th>
+        <th>body</th>
+        <th>bodylen</th>
+        <th>datesend</th>
+        <th>pagestatus</th>
+        <th>resultstatus</th>
+        <th>responseheader</th>
+        <th>responsebody</th>
+        <th>dateresponse</th>
+
+      </tr>
+    </thead>
+
+    <tbody>
+      {%for key, value in dataTable%}
+      <tr class="">
+
+      <td>
+      {{value.user_id}}
+      <span class="badge">{{value.token}}</span>
+      <span class="badge">{{value.apikey}}</span>
+      <span class="badge">{{value.appkey}}</span>
+      <span class="badge">{{value.zoneid}}</span>
+      </td>
+      <td>{{value.url}}</td>
+      <td>{{value.method}}</td>
+      <td>
+        <span data-kerkere='.showHeader{{value.id}}'><i class="sf-plus"></i></span>
+        <div class="showHeader{{value.id}}" data-kerkere-content='hide'>
+          {{value.header}}
+        </div>
+      </td>
+      <td>{{value.headerlen}}</td>
+      <td>
+        <span data-kerkere='.showBody{{value.id}}'><i class="sf-plus"></i></span>
+        <div class="showBody{{value.id}}" data-kerkere-content='hide'>
+          {{value.body}}
+        </div>
+      </td>
+      <td>{{value.bodylen}}</td>
+      <td>
+          {{value.datesend | dt(true)}}
+        <br>
+          {{value.datesend | dt('human', 'year')}}
+      </td>
+      <td>{{value.pagestatus}}</td>
+      <td>{{value.resultstatus}}</td>
+      <td>{{value.responseheader}}</td>
+      <td>
+        <span data-kerkere='.showResponseBody{{value.id}}'><i class="sf-plus"></i></span>
+        <div class="showResponseBody{{value.id}}" data-kerkere-content='hide'>
+          {{value.responsebody}}
+        </div>
+      </td>
+      <td>
+        {{value.dateresponse | dt(true)}}
+        <br>
+        {{value.dateresponse | dt('human', 'year')}}
+      </td>
+
+
+      </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+</div>
+  {%include display.pagination%}
+
+{%endblock%}
+
+
+{%block htmlFilter%}
+<p class="f fs14 msg info2">
+  <span class="c">{{dataFilter | raw}}</span>
+  <a class="cauto" href="{{url.here}}/log{{moduleType}}">{%trans "Clear filters"%}</a>
+</p>
+{%endblock%}
+
+
+{%block htmlFilterNoResult%}
+<p class="f fs14 msg warn2">
+  <span class="c">{%trans "Result not found!"%} {%trans "Search with new keywords."%}</span>
+  <a class="cauto" href="{{url.here}}/log{{moduleType}}">{%trans "Clear filters"%}</a>
+</p>
+{%endblock%}
+
+
+{%block htmlStartAddNew%}
+<p class="fs14 msg success2 pTB20">{%trans "Hi!"%} <a href="{{url.here}}/log/add{{moduleType}}">{%trans "Try to start with add new record!"%}</a></p>
+{%endblock%}

@@ -1,0 +1,91 @@
+{%extends display.crmMain%}
+{%use 'content_su/apilog/home/logTable.html'%}
+
+
+
+{%block pageContent%}
+
+{%if dataTable%}
+ {%if dataFilter%}
+
+  {{block('htmlSearchBox')}}
+  {{block('htmlTable')}}
+  {{block('htmlFilter')}}
+
+ {%else%}
+
+  {{block('htmlSearchBox')}}
+  {{block('htmlTable')}}
+
+ {%endif%}
+{%else%}
+ {%if dataFilter%}
+
+  {{block('htmlSearchBox')}}
+  {{block('htmlFilterNoResult')}}
+
+ {%else%}
+
+  {{block('htmlStartAddNew')}}
+
+ {%endif%}
+{%endif%}
+
+{%endblock%}
+
+
+
+
+{%block htmlSearchBox%}
+<div class="cbox fs12">
+  <form method="get" action='{{url.this}}{{moduleType}}' data-action>
+    <div class="input">
+      <input type="search" name="q" placeholder='{%trans "Search"%}' id="q" value="{{requestGET.q}}" autofocus autocomplete='off'>
+      {%if requestGET.type%}
+      <input type="hidden" name="type" value="{{requestGET.type}}">
+      {%endif%}
+      <button class="addon btn ">{%trans "Search" %}</button>
+    </div>
+  </form>
+</div>
+{%endblock%}
+
+
+
+
+
+
+{%block pageSteps%}
+  <div class="f">
+
+   <div class="c">
+    <a class="dcard {%if requestGET.status == 'publishde' or not requestGET.status %}active{%endif%}" href='{{url.this}}{%if requestGET.type%}?type={{requestGET.type}}{%endif%}' data-shortkey="49ctrlshift" title='{%trans "All publish log"%}'>
+     <div class="statistic">
+      <div class="value"><i class="sf-publish"></i></div>
+      <div class="label">{%trans "Published"%} <kbd class=" hide mT5">Shift+1</kbd></div>
+     </div>
+    </a>
+   </div>
+
+   <div class="c">
+    <a class="dcard {%if requestGET.status == 'draft' %}active{%endif%}" href='{{url.this}}?status=draft{%if requestGET.type%}&type={{requestGET.type}}{%endif%}' data-shortkey="50ctrlshift" title='{%trans "All draft log"%}'>
+     <div class="statistic">
+      <div class="value"><i class="sf-edit"></i></div>
+      <div class="label">{%trans "Draft"%} <kbd class=" hide mT5">Shift+2</kbd></div>
+     </div>
+    </a>
+   </div>
+
+   <div class="c">
+    <a class="dcard {%if requestGET.status == 'deleted' %}active{%endif%}" href='{{url.this}}?status=deleted{%if requestGET.type%}&type={{requestGET.type}}{%endif%}' data-shortkey="51ctrlshift" title='{%trans "All trash log"%}'>
+     <div class="statistic">
+      <div class="value"><i class="sf-trash"></i></div>
+      <div class="label">{%trans "Deleted"%} <kbd class=" hide mT5">Shift+2</kbd></div>
+     </div>
+    </a>
+   </div>
+
+
+
+  </div>
+{%endblock%}
