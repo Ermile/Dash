@@ -10,6 +10,8 @@ class v6
 	{
 		$appkey = \dash\header::get('appkey');
 
+		\dash\app\apilog::static_var('appkey', $appkey);
+
 		if(!trim($appkey))
 		{
 			self::no(400, T_("Appkey not set"));
@@ -33,6 +35,8 @@ class v6
 	public static function check_token()
 	{
 		$token = \dash\header::get('token');
+
+		\dash\app\apilog::static_var('token', $token);
 
 		if(!$token)
 		{
@@ -80,6 +84,7 @@ class v6
 	{
 		$apikey = \dash\header::get('apikey');
 
+		\dash\app\apilog::static_var('apikey', $apikey);
 
 		if(!$apikey)
 		{
