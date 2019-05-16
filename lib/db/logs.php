@@ -41,20 +41,38 @@ class logs
 			return false;
 		}
 
-		$date_now = date("Y-m-d H:i:s");
 		$query =
 		"
-			UPDATE
+			SELECT
+				logs.id
+			FROM
 				logs
-			SET
-				logs.readdate = IF(logs.readdate IS NULL ,'$date_now', logs.readdate),
-				logs.status   = 'notifread'
 			WHERE
 				logs.to = $_user_id AND
-				logs.status   = 'notif'
+				logs.status   = 'notif' AND
+				logs.readdate = logs.readdate IS NULL
 		";
-		$result = \dash\db::query($query, \dash\db::get_db_log_name());
-		return $result;
+
+		$get_result = \dash\db::get($query, 'id', false, \dash\db::get_db_log_name());
+		if($get_result)
+		{
+
+			$id = implode(',', $get_result);
+			$date_now = date("Y-m-d H:i:s");
+			$query =
+			"
+				UPDATE
+					logs
+				SET
+					logs.readdate = IF(logs.readdate IS NULL ,'$date_now', logs.readdate),
+					logs.status   = 'notifread'
+				WHERE
+					logs.id IN ($id)
+			";
+			$result = \dash\db::query($query, \dash\db::get_db_log_name());
+			return $result;
+		}
+
 	}
 
 
