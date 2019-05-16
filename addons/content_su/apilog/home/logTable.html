@@ -112,7 +112,7 @@
 {%block htmlFilter%}
 <p class="f fs14 msg info2">
   <span class="c">{{dataFilter | raw}}</span>
-  <a class="cauto" href="{{url.here}}/log{{moduleType}}">{%trans "Clear filters"%}</a>
+  <a class="cauto" href="{{url.this}}">{%trans "Clear filters"%}</a>
 </p>
 {%endblock%}
 
@@ -120,11 +120,11 @@
 {%block htmlFilterNoResult%}
 <p class="f fs14 msg warn2">
   <span class="c">{%trans "Result not found!"%} {%trans "Search with new keywords."%}</span>
-  <a class="cauto" href="{{url.here}}/log{{moduleType}}">{%trans "Clear filters"%}</a>
+  <a class="cauto" href="{{url.this}}">{%trans "Clear filters"%}</a>
 </p>
 {%endblock%}
 
 
 {%block htmlStartAddNew%}
-<p class="fs14 msg success2 pTB20">{%trans "Hi!"%} <a href="{{url.here}}/log/add{{moduleType}}">{%trans "Try to start with add new record!"%}</a></p>
+<p class="fs14 msg success2 pTB20">{%trans "Hi!"%}</p>
 {%endblock%}
