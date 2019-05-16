@@ -53,9 +53,9 @@ class view
 			$args['order'] = 'desc';
 		}
 
-		if(\dash\request::get('status'))
+		if(\dash\request::get('method'))
 		{
-			$args['status'] = \dash\request::get('status');
+			$args['method'] = \dash\request::get('method');
 		}
 
 		if(\dash\request::get('subdomain'))

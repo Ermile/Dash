@@ -26,12 +26,18 @@ class apilog
 		self::$apilog['responseheader'] = null;
 		self::$apilog['responsebody']   = null;
 		self::$apilog['dateresponse']   = null;
+
+		self::$apilog['notif']          = null;
+		self::$apilog['responselen']    = null;
+		self::$apilog['version']        = substr(\dash\url::module(), 0, 100);
+		self::$apilog['subdomain']      = \dash\url::subdomain();
+		self::$apilog['urlmd5']         = md5(\dash\url::current());
 	}
 
 
 	public static function save($_result = null)
 	{
-		if(is_array($_result) || is_object($_result))
+		if($_result && is_array($_result) || is_object($_result))
 		{
 			$_result = json_encode($_result);
 		}
@@ -41,10 +47,12 @@ class apilog
 		self::$apilog['apikey']         = self::static_var('apikey'); // 100
 		self::$apilog['appkey']         = self::static_var('appkey'); // 100
 		self::$apilog['zoneid']         = self::static_var('zoneid'); // 100
-		self::$apilog['pagestatus']     = null; // 100
+		self::$apilog['pagestatus']     = \http_response_code();  // 100
 		self::$apilog['resultstatus']   = \dash\engine\process::status() ? 'true' : 'false'; // 100
-		self::$apilog['responseheader'] = null;
+		self::$apilog['responseheader'] = json_encode(\headers_list());
 		self::$apilog['responsebody']   = $_result;
+		self::$apilog['notif']          = \dash\notif::json();
+		self::$apilog['responselen']    = mb_strlen($_result);
 		self::$apilog['dateresponse']   = date("Y-m-d H:i:s");
 
 		self::save_db();
@@ -72,6 +80,7 @@ class apilog
 		if(self::$apilog)
 		{
 			\dash\db\apilog::insert(self::$apilog);
+			self::$apilog = [];
 		}
 	}
 }
