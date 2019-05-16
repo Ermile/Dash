@@ -8,6 +8,8 @@ class v5
 
 	public static function old_end5($_result = [])
 	{
+		\dash\app\apilog::save($_result);
+
 		\dash\code::jsonBoom($_result);
 	}
 
@@ -24,6 +26,7 @@ class v5
 		{
 			\dash\notif::info(T_("No result"));
 		}
+		\dash\app\apilog::save($_result);
 
 		\dash\code::jsonBoom(\dash\notif::get());
 	}
@@ -50,6 +53,9 @@ class v5
 		self::$v5['x_app_request'] = $x_app_request;
 
 		$token = \dash\option::config('app_token', $x_app_request);
+
+		\dash\app\apilog::static_var('token', $token);
+
 
 		if(!$token)
 		{
