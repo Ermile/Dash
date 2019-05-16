@@ -7,7 +7,13 @@ class apilog
 
 	public static function insert($_args)
 	{
-		return \dash\db\config::public_insert('apilog', $_args, \dash\db::get_db_log_name());
+		$set = \dash\db\config::make_set($_args, ['type' => 'insert']);
+		if($set)
+		{
+			$query = " INSERT IGNORE INTO `apilog` SET $set ";
+			return \dash\db::query($query, \dash\db::get_db_log_name());
+		}
+
 	}
 
 
