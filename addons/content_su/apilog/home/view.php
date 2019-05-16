@@ -53,40 +53,37 @@ class view
 			$args['order'] = 'desc';
 		}
 
-		if(\dash\request::get('method'))
+
+		$where =
+		[
+			'user_id',
+			'token',
+			'apikey',
+			'appkey',
+			'zoneid',
+			'subdomain',
+			'version',
+			'urlmd5',
+			'method',
+			'headerlen',
+			'bodylen',
+			'datesend',
+			'pagestatus',
+			'resultstatus',
+			'dateresponse',
+			'notif',
+			'responselen',
+		];
+
+		foreach ($where as $key => $value)
 		{
-			$args['method'] = \dash\request::get('method');
+			if(\dash\request::get($value))
+			{
+				$args[$value] = \dash\request::get($value);
+			}
+
 		}
 
-		if(\dash\request::get('subdomain'))
-		{
-			$args['subdomain'] = \dash\request::get('subdomain');
-		}
-
-		if(\dash\request::get('caller'))
-		{
-			$args['caller'] = $_GET['caller'];
-		}
-
-		if(\dash\request::get('from'))
-		{
-			$args['from'] = \dash\request::get('from');
-		}
-
-		if(\dash\request::get('to'))
-		{
-			$args['to'] = \dash\request::get('to');
-		}
-
-		if(\dash\request::get('data'))
-		{
-			$args['data'] = \dash\request::get('data');
-		}
-
-		if(\dash\request::get('datecreated'))
-		{
-			$args['logs.datecreated'] = \dash\request::get('datecreated');
-		}
 
 		if(!$args['order'])
 		{

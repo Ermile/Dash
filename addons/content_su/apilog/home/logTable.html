@@ -30,26 +30,26 @@
 
     <tbody>
       {%for key, value in dataTable%}
-      <tr class="">
+      <tr {%if value.pagestatus | slice(0,1) == '2' %} class="positive" {%elseif value.pagestatus | slice(0,1) == '5'  %} class="negative" {%endif%}>
 
       <td>
-      {{value.user_id}}
-      <span class="badge">token: <b>{{value.token}}</b></span>
-      <span class="badge">apikey: <b>{{value.apikey}}</b></span>
-      <span class="badge">appkey: <b>{{value.appkey}}</b></span>
-      <span class="badge">zoneid: <b>{{value.zoneid}}</b></span>
+      <a href="{{url.this}}?user_id={{value.user_id}}">{{value.user_id}}</a>
+      <span class="badge">token: <b><a href="{{url.this}}?token={{value.token}}">{{value.token}}</a></b></span>
+      <span class="badge">apikey: <b><a href="{{url.this}}?apikey={{value.apikey}}">{{value.apikey}}</a></b></span>
+      <span class="badge">appkey: <b><a href="{{url.this}}?appkey={{value.appkey}}">{{value.appkey}}</a></b></span>
+      <span class="badge">zoneid: <b><a href="{{url.this}}?zoneid={{value.zoneid}}">{{value.zoneid}}</a></b></span>
       </td>
 
-      <td>{{value.subdomain}}</td>
+      <td><a href="{{url.this}}?subdomain={{value.subdomain}}">{{value.subdomain}}</a></td>
 
-      <td>{{value.version}}</td>
+      <td><a href="{{url.this}}?version={{value.version}}">{{value.version}}</a></td>
 
       <td>
         {{value.url}}
-        <span>{{value.urlmd5}}</span>
+        <span><a href="{{url.this}}?urlmd5={{value.urlmd5}}">{{value.urlmd5}}</a></span>
       </td>
       <td>
-        <b>{{value.method}}</b>
+        <b><a href="{{url.this}}?method={{value.method}}">{{value.method}}</a></b>
       </td>
       <td>
         <span data-kerkere='.showHeader{{value.id}}'><i class="sf-plus"></i></span>
@@ -70,8 +70,8 @@
         <br>
           {{value.datesend | dt('human', 'year')}}
       </td>
-      <td>{{value.pagestatus | fitNumber}}</td>
-      <td>{{value.resultstatus}}</td>
+      <td><a href="{{url.this}}?pagestatus={{value.pagestatus}}">{{value.pagestatus | fitNumber}}</a></td>
+      <td><a href="{{url.this}}?resultstatus={{value.resultstatus}}">{{value.resultstatus}}</a></td>
       <td>
         <span data-kerkere='.showResponseHeader{{value.id}}'><i class="sf-plus"></i></span>
         <div class="showResponseHeader{{value.id}}" data-kerkere-content='hide'>
