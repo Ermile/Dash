@@ -6,6 +6,7 @@
   <table class="tbl1 v3 cbox fs12">
     <thead class="fs09">
       <tr>
+        <th>{%trans "Show"%}</th>
         <th>{%trans "Auth"%}</th>
 
         <th>{%trans "Subdomain"%}</th>
@@ -31,7 +32,10 @@
     <tbody>
       {%for key, value in dataTable%}
       <tr {%if value.pagestatus | slice(0,1) == '2' %} class="positive" {%elseif value.pagestatus | slice(0,1) == '5'  %} class="negative" {%endif%}>
+        <td>
+          <a class="badge danger" href="{{url.this}}/view?id={{value.id}}">{%trans "Detail"%}</a>
 
+        </td>
       <td>
       <a href="{{url.this}}?user_id={{value.user_id}}">{{value.user_id}}</a>
       <span class="badge">token: <b><a href="{{url.this}}?token={{value.token}}">{{value.token}}</a></b></span>

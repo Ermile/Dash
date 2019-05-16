@@ -1,0 +1,25 @@
+{%extends display.suMain%}
+
+
+
+{%block pageContent%}
+
+<table class="tbl1 v3 ltr fs12">
+ <tbody>
+{%for key, value in dataRow%}
+  <tr id="r-{{key}}">
+   <th class="">{{key}}</th>
+   <td class="txtL">
+   	{%if value%}
+   	<pre>{{value}}</pre>
+   	{%else%}
+   	-
+   	{%endif%}
+   </td>
+  </tr>
+{%endfor%}
+ </tbody>
+</table>
+
+{%endblock%}
+
