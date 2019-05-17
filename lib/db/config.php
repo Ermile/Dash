@@ -175,10 +175,10 @@ class config
 			}
 			elseif(is_string($value))
 			{
-				if(\dash\db::$link)
-				{
-					$value = \mysqli_real_escape_string(\dash\db::$link, $value);
-				}
+				// if(\dash\db::$link)
+				// {
+				// 	$value = \mysqli_real_escape_string(\dash\db::$link, $value);
+				// }
 				$where[] = " $my_field = '$value' ";
 			}
 			elseif(is_numeric($value))
@@ -246,10 +246,10 @@ class config
 			}
 			elseif(is_string($value))
 			{
-				if(\dash\db::$link)
-				{
-					$value = \mysqli_real_escape_string(\dash\db::$link, $value);
-				}
+				// if(\dash\db::$link)
+				// {
+				// 	$value = \mysqli_real_escape_string(\dash\db::$link, $value);
+				// }
 				$set[] = " `$key` = '$value' ";
 			}
 			elseif(is_numeric($value))
