@@ -85,6 +85,7 @@ class controller
 					case "icon":
 					case "cat":
 
+					case "datecreated":
 					case "image":
 					case "footer":
 					case "url":
@@ -118,7 +119,6 @@ class controller
 					case "caller":
 					case "id_raw":
 					case "status":
-					case "datecreated":
 					case "datemodified":
 					case "visitor_id":
 					case "meta":
