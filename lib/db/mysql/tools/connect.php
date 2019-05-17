@@ -17,7 +17,7 @@ trait connect
 	public static $db_charset   = 'utf8mb4'; //'utf8';
 	public static $db_lang      = 'fa_IR';
 	public static $debug_error  = false;
-
+	private static $load_error  = [];
 
 	public static function close($_link = null)
 	{
@@ -113,7 +113,12 @@ trait connect
 			{
 				// Access denied for user 'user'@'hostname' (using password: YES)
 				case 1045:
-					\dash\notif::error(T_("We can't connect to database service!"). " ". T_("Please contact administrator!"));
+					// to not make some error
+					if(!isset(self::$load_error[1045]))
+					{
+						self::$load_error[1045] = true;
+						\dash\notif::error(T_("We can't connect to database service!"). " ". T_("Please contact administrator!"));
+					}
 					// \dash\header::status(503, T_("We can't connect to database service!"). " ". T_("Please contact administrator!"));
 					break;
 
@@ -158,8 +163,13 @@ trait connect
 					// else only show related message
 					else
 					{
-						\dash\notif::error(T_("We can't connect to correct database!"). " ". T_("Please contact administrator!"));
-						// \dash\header::status(501, T_("We can't connect to correct database!"). " ". T_("Please contact administrator!"));
+						// to not make some error
+						if(!isset(self::$load_error['database']))
+						{
+							self::$load_error['database'] = true;
+							\dash\notif::error(T_("We can't connect to correct database!"). " ". T_("Please contact administrator!"));
+							// \dash\header::status(501, T_("We can't connect to correct database!"). " ". T_("Please contact administrator!"));
+						}
 					}
 					break;
 
