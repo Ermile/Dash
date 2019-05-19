@@ -32,6 +32,12 @@ class notif
 
 			if(is_array($_meta))
 			{
+				if(array_key_exists('code', $_meta))
+				{
+					self::code($_meta['code']);
+					unset($_meta['code']);
+				}
+
 				// if(!array_key_exists('image', $_meta))
 				// {
 				// 	if(\dash\option::config('notif', 'image'))
