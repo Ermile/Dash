@@ -42,6 +42,51 @@ class pagination
 		}
 	}
 
+	public static function api_detail()
+	{
+		if(!self::detail('total_rows'))
+		{
+			return null;
+		}
+
+		$detail = self::detail();
+		if(!$detail)
+		{
+			return null;
+		}
+
+
+		$result = [];
+
+		if(isset($detail['desc']))
+		{
+			$result['desc'] = $detail['desc'];
+		}
+
+        if(isset($detail['page']))
+        {
+        	$result['page'] = $detail['page'];
+        }
+
+        if(isset($detail['total_page']))
+        {
+        	$result['total_page'] = $detail['total_page'];
+        }
+
+        if(isset($detail['limit']))
+        {
+        	$result['limit'] = $detail['limit'];
+        }
+
+        if(isset($detail['total_rows']))
+        {
+        	$result['total_rows'] = $detail['total_rows'];
+        }
+
+
+		return $result;
+	}
+
 
 	private static function destroy()
 	{

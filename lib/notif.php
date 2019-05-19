@@ -102,8 +102,25 @@ class notif
 
 	public static function api($_data)
 	{
+		self::pagination();
 		self::result($_data);
 		\dash\code::jsonBoom(self::$notif, true);
+	}
+
+
+	public static function code($_code)
+	{
+		self::add_detail('code', $_code);
+	}
+
+
+	private static function pagination()
+	{
+		$pagination = \dash\utility\pagination::api_detail();
+		if($pagination)
+		{
+			self::add_detail('pagination', $pagination);
+		}
 	}
 
 
