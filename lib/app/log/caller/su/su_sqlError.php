@@ -14,6 +14,13 @@ class su_sqlError
 		$result['icon']      = 'bug-2';
 		$result['cat']       = T_("Bug");
 		$result['iconClass'] = 'fc-red';
+
+		$excerpt .= ' ';
+		$excerpt .=	'<a class="badge warn" href="'.\dash\url::kingdom(). '/su/log">';
+		$excerpt .= T_("Show");
+		$excerpt .= '</a>';
+
+
 		$result['excerpt']   = $excerpt;
 
 		return $result;

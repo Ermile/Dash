@@ -6,6 +6,14 @@ class apilog
 	private static $apilog     = [];
 	private static $static_var = [];
 
+	private static $save_detail = true;
+
+	public static function save_detail($_status)
+	{
+		self::$save_detail = $_status;
+	}
+
+
 	public static function start()
 	{
 		self::$apilog['user_id']        = null;
@@ -50,7 +58,7 @@ class apilog
 		self::$apilog['pagestatus']     = \http_response_code();  // 100
 		self::$apilog['resultstatus']   = \dash\engine\process::status() ? 'true' : 'false'; // 100
 		self::$apilog['responseheader'] = json_encode(\headers_list());
-		self::$apilog['responsebody']   = $_result;
+		self::$apilog['responsebody']   = self::$save_detail ? $_result : null;
 		self::$apilog['notif']          = json_encode(\dash\notif::get());
 		self::$apilog['responselen']    = mb_strlen($_result);
 		self::$apilog['dateresponse']   = date("Y-m-d H:i:s");
