@@ -50,7 +50,7 @@ trait total_paid
 				transactions
 			WHERE
 				transactions.verify = 1 AND
-				DATE(transactions.datemodified) = DATE('$_date')
+				DATE(transactions.datecreated) = DATE('$_date')
 				$where
 
 		";

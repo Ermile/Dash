@@ -759,7 +759,7 @@ class config
 
 		$where = join($where, " AND ");
 		$search = null;
-		if($_string !== null && $search_field && !is_array($_string))
+		if($_string && $search_field && !is_array($_string))
 		{
 
 			$_string = trim($_string);
