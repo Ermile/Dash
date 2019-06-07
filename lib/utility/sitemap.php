@@ -4,7 +4,7 @@ namespace dash\utility;
 
 class sitemap
 {
-	private static $show_result = [];
+	private static $show_result      = [];
 	private static $current_language = null;
 	private static $default_language = null;
 
@@ -49,8 +49,9 @@ class sitemap
 
 	}
 
-
-	private static function show_result($_key, $_count)
+	// can call from current project to show result
+	// \lib\sitemap::create();
+	public static function show_result($_key, $_count)
 	{
 		self::$show_result[$_key] = $_count;
 	}
@@ -277,11 +278,10 @@ class sitemap
 
 	private static function current_project(&$sitemap)
 	{
-
+		if(is_callable(['\\lib\\sitemap', 'create']))
+		{
+			\lib\sitemap::create($sitemap);
+		}
 	}
-
-
-
-
 }
 ?>
