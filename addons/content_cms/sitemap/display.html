@@ -4,9 +4,21 @@
 
  <div class="cbox">
   <h2>{%trans "Create sitemap automatically by click on this page"%}</h2>
-   <a class="btn" target="_blank" href="{{url.base}}/sitemap.xml">{%trans "Base Sitemap"%}</a>
+
+  {%if siteMapFile.base%}
+  	 <a class="btn" target="_blank" href="{{url.base}}/sitemap.xml">{%trans "Base Sitemap"%}</a>
+  {%endif%}
+
+  {%if siteMapFile.sitemap%}
    <a class="btn" target="_blank" href="{{url.base}}/sitemap/sitemap.xml">{%trans "Sitemap Detail"%}</a>
-   <a class="btn floatRa" href="{{url.this}}?run=yes">{%trans "Create it Again"%}</a>
+  {%endif%}
+
+  {%if not siteMapFile.sitemap and not siteMapFile.base%}
+   <a class="btn txtC xl success" href="{{url.this}}?run=yes">{%trans "Create sitemap now!"%} </a>
+  {%else%}
+   <a class="btn floatRa secondary" href="{{url.this}}?run=yes">{%trans "Create it Again"%}</a>
+  {%endif%}
+
  </div>
 
 
@@ -15,7 +27,7 @@
 	<div class="c6 s12">
 		 <div class="cbox">
 		  <div class="in">
-		   <h3>{%trans "Create Sitemap Result"%}</h3>
+		   <h3>{%trans "Sitemap Result"%}</h3>
 		   {%for key, value in sitemapData%}
 		   <div class="msg">{{key}} <span class="floatL txtB txtC">{{value | fitNumber}} <small>{%trans "Item"%}</small></span></div>
 		   {%endfor%}

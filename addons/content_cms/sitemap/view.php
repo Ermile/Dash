@@ -11,6 +11,16 @@ class view
 		{
 			\dash\data::sitemapData(\dash\utility\sitemap::create());
 		}
+
+		if(is_file(root. '/public_html/sitemap/sitemap.xml'))
+		{
+			\dash\data::siteMapFile_sitemap(true);
+		}
+
+		if(is_file(root. '/public_html/sitemap.xml'))
+		{
+			\dash\data::siteMapFile_base(true);
+		}
 	}
 }
 ?>
