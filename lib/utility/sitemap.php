@@ -1,275 +1,215 @@
 <?php
 namespace dash\utility;
 
-/** generating Sitemap files **/
+
 class sitemap
 {
-	/**
-	 * Sitemap
-	 *
-	 * This class used for generating Google Sitemap files
-	 *
-	 * @package    Sitemap
-	 * @author     Osman Üngür <osmanungur@gmail.com>
-	 * @author     Javad Evazzadeh <J.Evazzadeh@gmail.com>
-	 * @copyright  2009-2015 Osman Üngür
-	 * @license    http://opensource.org/licenses/MIT MIT License
-	 * @link       http://github.com/o/sitemap-php
-	 */
 
-
-	/**
-	 *
-	 * @var XMLWriter
-	 */
-	private $writer;
-	private $domain;
-	private $root;
-	private $path;
-	private $filename = 'sitemap';
-	private $current_item = 0;
-	private $current_sitemap = 0;
-
-	const EXT = '.xml';
-	const SCHEMA = 'http://www.sitemaps.org/schemas/sitemap/0.9';
-	const DEFAULT_PRIORITY = 0.5;
-	const ITEM_PER_SITEMAP = 50000;
-	const SEPERATOR = '-';
-	const INDEX_SUFFIX = 'index';
-
-	/**
-	 *
-	 * @param string $domain
-	 */
-	public function __construct($_domain, $_root = null, $_path = null)
+	public static function create()
 	{
-		$this->setDomain($_domain);
-		$this->root = $_root;
-		$this->setPath($this->root.$_path.'/');
+		\dash\log::set('sitemapGenerate');
+		// create sitemap for each language
+		$result   = '';
 
-		$folder = $this->getPath();
-		if(!is_dir($folder))
-			mkdir($folder, 0775, true);
-	}
+		$site_url = \dash\url::site().'/';
 
-	/**
-	 * Sets root path of the website, starting with http:// or https://
-	 *
-	 * @param string $domain
-	 */
-	public function setDomain($domain) {
-		$this->domain = $domain;
-		return $this;
-	}
+		$result   .= "<pre>";
+		$result   .= $site_url.'<br/>';
+		$sitemap  = new \dash\utility\sitemap_generator($site_url , root.'public_html/', 'sitemap' );
 
-	/**
-	 * Returns root path of the website
-	 *
-	 * @return string
-	 */
-	private function getDomain() {
-		return $this->domain;
-	}
+		$counter  =
+		[
+			'pages'       => 0,
+			'polls'       => 0,
+			'posts'       => 0,
+			'helps'       => 0,
+			'attachments' => 0,
+			'otherTypes'  => 0,
+			'terms'       => 0,
+			'cats'        => 0,
+			'tags'        => 0,
+			// 'otherTerms'  => 0,
+		];
 
-	/**
-	 * Returns XMLWriter object instance
-	 *
-	 * @return XMLWriter
-	 */
-	private function getWriter() {
-		return $this->writer;
-	}
+		// --------------------------------------------- Static pages
 
-	/**
-	 * Assigns XMLWriter object instance
-	 *
-	 * @param XMLWriter $writer
-	 */
-	private function setWriter(\XMLWriter $writer) {
-		$this->writer = $writer;
-	}
+		// add list of static pages
+		$sitemap->addItem('', '1', 'daily');
 
-	/**
-	 * Returns path of sitemaps
-	 *
-	 * @return string
-	 */
-	private function getPath($_all = true)
-	{
-		if($_all)
-			return $this->path;
-		else
-			return $this->root;
-	}
 
-	/**
-	 * Sets paths of sitemaps
-	 *
-	 * @param string $path
-	 * @return Sitemap
-	 */
-	public function setPath($path) {
-		$this->path = $path;
-		return $this;
-	}
+		$sitemap->addItem('about', '0.6', 'weekly');
+		$sitemap->addItem('social-responsibility', '0.6', 'weekly');
+		$sitemap->addItem('help', '0.4', 'daily');
+		$sitemap->addItem('help/faq', '0.6', 'daily');
 
-	/**
-	 * Returns filename of sitemap file
-	 *
-	 * @return string
-	 */
-	private function getFilename() {
-		return $this->filename;
-	}
+		$sitemap->addItem('benefits', '0.6', 'weekly');
+		$sitemap->addItem('pricing', '0.6', 'weekly');
+		$sitemap->addItem('terms', '0.4', 'weekly');
+		$sitemap->addItem('privacy', '0.4', 'weekly');
+		$sitemap->addItem('changelog', '0.5', 'daily');
+		$sitemap->addItem('contact', '0.6', 'weekly');
+		$sitemap->addItem('logo', '0.8', 'monthly');
+		$sitemap->addItem('for/school', '0.8', 'monthly');
 
-	/**
-	 * Sets filename of sitemap file
-	 *
-	 * @param string $filename
-	 * @return Sitemap
-	 */
-	public function setFilename($filename) {
-		$this->filename = $filename;
-		return $this;
-	}
-
-	/**
-	 * Returns current item count
-	 *
-	 * @return int
-	 */
-	private function getCurrentItem() {
-		return $this->current_item;
-	}
-
-	/**
-	 * Increases item counter
-	 *
-	 */
-	private function incCurrentItem() {
-		$this->current_item = $this->current_item + 1;
-	}
-
-	/**
-	 * Returns current sitemap file count
-	 *
-	 * @return int
-	 */
-	private function getCurrentSitemap() {
-		return $this->current_sitemap;
-	}
-
-	/**
-	 * Increases sitemap file count
-	 *
-	 */
-	private function incCurrentSitemap() {
-		$this->current_sitemap = $this->current_sitemap + 1;
-	}
-
-	/**
-	 * Prepares sitemap XML document
-	 *
-	 */
-	private function startSitemap() {
-		$this->setWriter(new \XMLWriter());
-		if ($this->getCurrentSitemap()) {
-			$this->getWriter()->openURI($this->getPath() . $this->getFilename() . self::SEPERATOR . $this->getCurrentSitemap() . self::EXT);
-		} else {
-			$this->getWriter()->openURI($this->getPath() . $this->getFilename() . self::EXT);
-		}
-		$this->getWriter()->startDocument('1.0', 'UTF-8');
-		$this->getWriter()->setIndent(true);
-		$this->getWriter()->startElement('urlset');
-		$this->getWriter()->writeAttribute('xmlns', self::SCHEMA);
-	}
-
-	/**
-	 * Adds an item to sitemap
-	 *
-	 * @param string $loc URL of the page. This value must be less than 2,048 characters.
-	 * @param string $priority The priority of this URL relative to other URLs on your site. Valid values range from 0.0 to 1.0.
-	 * @param string $changefreq How frequently the page is likely to change. Valid values are always, hourly, daily, weekly, monthly, yearly and never.
-	 * @param string|int $lastmod The date of last modification of url. Unix timestamp or any English textual datetime description.
-	 * @return Sitemap
-	 */
-	public function addItem($loc, $priority = self::DEFAULT_PRIORITY, $changefreq = NULL, $lastmod = NULL) {
-		if (($this->getCurrentItem() % self::ITEM_PER_SITEMAP) == 0) {
-			if ($this->getWriter() instanceof \XMLWriter) {
-				$this->endSitemap();
-			}
-			$this->startSitemap();
-			$this->incCurrentSitemap();
-		}
-		$this->incCurrentItem();
-		$this->getWriter()->startElement('url');
-		$this->getWriter()->writeElement('loc', $this->getDomain() . $loc);
-		$this->getWriter()->writeElement('priority', $priority);
-		if ($changefreq)
-			$this->getWriter()->writeElement('changefreq', $changefreq);
-		if ($lastmod)
-			$this->getWriter()->writeElement('lastmod', $this->getLastModifiedDate($lastmod));
-		$this->getWriter()->endElement();
-		return $this;
-	}
-
-	/**
-	 * Prepares given date for sitemap
-	 *
-	 * @param string $date Unix timestamp or any English textual datetime description
-	 * @return string Year-Month-Day formatted date.
-	 */
-	private function getLastModifiedDate($date) {
-		if (ctype_digit($date)) {
-			return date('Y-m-d', $date);
-		} else {
-			$date = strtotime($date);
-			return date('Y-m-d', $date);
-		}
-	}
-
-	/**
-	 * Finalizes tags of sitemap XML document.
-	 *
-	 */
-	private function endSitemap() {
-		if (!$this->getWriter()) {
-			$this->startSitemap();
-		}
-		$this->getWriter()->endElement();
-		$this->getWriter()->endDocument();
-	}
-
-	/**
-	 * Writes Google sitemap index for generated sitemap files
-	 *
-	 * @param string $loc Accessible URL path of sitemaps
-	 * @param string|int $lastmod The date of last modification of sitemap. Unix timestamp or any English textual datetime description.
-	 */
-	public function createSitemapIndex($loc = null, $lastmod = 'Today')
-	{
-		if(!$loc)
-			$loc = $this->getDomain().'sitemap/';
-
-		$this->endSitemap();
-		$indexwriter = new \XMLWriter();
-		$indexwriter->openURI($this->getPath(false) . $this->getFilename() . self::EXT);
-		$indexwriter->startDocument('1.0', 'UTF-8');
-		$indexwriter->setIndent(true);
-		$indexwriter->startElement('sitemapindex');
-		$indexwriter->writeAttribute('xmlns', self::SCHEMA);
-
-		$current_sitemap = $this->getCurrentSitemap();
-
-		for ($index = 0; $index < $current_sitemap; $index++)
+		// PERSIAN
+		// add all language static page automatically
+		// we must detect pages automatically and list static pages here
+		$lang_data = \dash\option::$language;
+		if(isset($lang_data['list']))
 		{
-			$indexwriter->startElement('sitemap');
-			$indexwriter->writeElement('loc', $loc . $this->getFilename() . ($index ? self::SEPERATOR . $index : '') . self::EXT);
-			$indexwriter->writeElement('lastmod', $this->getLastModifiedDate($lastmod));
-			$indexwriter->endElement();
+			foreach ($lang_data['list'] as $key => $myLang)
+			{
+				if(isset($lang_data['default']) && $myLang === $lang_data['default'])
+				{
+					// do nothing
+				}
+				else
+				{
+					$sitemap->addItem( $myLang, '1', 'daily');
+					// add static pages of persian
+					$sitemap->addItem( $myLang. '/about', '0.8', 'weekly');
+					$sitemap->addItem( $myLang. '/social-responsibility', '0.8', 'weekly');
+					$sitemap->addItem( $myLang. '/help', '0.6', 'daily');
+					$sitemap->addItem( $myLang. '/help/faq', '0.8', 'daily');
+
+					$sitemap->addItem( $myLang. '/benefits', '0.8', 'weekly');
+					$sitemap->addItem( $myLang. '/pricing', '0.8', 'weekly');
+					$sitemap->addItem( $myLang. '/terms', '0.6', 'weekly');
+					$sitemap->addItem( $myLang. '/privacy', '0.6', 'weekly');
+					$sitemap->addItem( $myLang. '/changelog', '0.7', 'daily');
+					$sitemap->addItem( $myLang. '/contact', '0.8', 'weekly');
+					$sitemap->addItem( $myLang. '/logo', '0.8', 'monthly');
+					$sitemap->addItem( $myLang. '/for/school', '0.8', 'monthly');
+				}
+			}
 		}
-		$indexwriter->endElement();
-		$indexwriter->endDocument();
+
+
+		// add posts
+		foreach (self::sitemap('posts', 'post') as $row)
+		{
+			$myUrl = $row['url'];
+			if($row['language'] && $row['language'] !== 'en')
+			{
+				$myUrl = $row['language'].'/'. $myUrl;
+			}
+
+			$sitemap->addItem($myUrl, '0.8', 'daily', $row['publishdate']);
+			$counter['posts'] += 1;
+		}
+
+		// add pages
+		foreach (self::sitemap('posts', 'page') as $row)
+		{
+			$myUrl = $row['url'];
+			if($row['language'] && $row['language'] !== 'en')
+			{
+				$myUrl = $row['language'].'/'. $myUrl;
+			}
+
+			$sitemap->addItem($myUrl, '0.6', 'weekly', $row['publishdate']);
+			$counter['pages'] += 1;
+		}
+
+		// add helps
+		foreach (self::sitemap('posts', 'helps') as $row)
+		{
+			$myUrl = $row['url'];
+			if($row['language'] && $row['language'] !== 'en')
+			{
+				$myUrl = $row['language'].'/'. $myUrl;
+			}
+
+			$sitemap->addItem($myUrl, '0.3', 'monthly', $row['publishdate']);
+			$counter['helps'] += 1;
+		}
+
+		// // add attachments
+		// foreach (self::sitemap('posts', 'attachment') as $row)
+		// {
+		// 	$myUrl = $row['url'];
+		// 	if($row['language'] && $row['language'] !== 'en')
+		// 	{
+		// 		$myUrl = $row['language'].'/'. $myUrl;
+		// 	}
+
+		// 	$sitemap->addItem($myUrl, '0.2', 'weekly', $row['publishdate']);
+		// 	$counter['attachments'] += 1;
+		// }
+
+		// add other type of post
+		foreach (self::sitemap('posts', false) as $row)
+		{
+			$myUrl = $row['url'];
+			if($row['language'] && $row['language'] !== 'en')
+			{
+				$myUrl = $row['language'].'/'. $myUrl;
+			}
+
+			$sitemap->addItem($myUrl, '0.5', 'weekly', $row['publishdate']);
+			$counter['otherTypes'] += 1;
+		}
+
+		// add cats and tags
+		foreach (self::sitemap('terms') as $row)
+		{
+			$myUrl = $row['url'];
+			if($row['language'])
+			{
+				$myUrl = $row['language'].'/'. $myUrl;
+			}
+			if(isset($row['datemodified']))
+			{
+				$datemodified = $row['datemodified'];
+			}
+			elseif(isset($row['date_modified']))
+			{
+				$datemodified = $row['date_modified'];
+			}
+			else
+			{
+				continue;
+			}
+
+			$sitemap->addItem($myUrl, '0.4', 'weekly', $datemodified);
+			$counter['terms'] += 1;
+		}
+
+		$sitemap->createSitemapIndex();
+		$result .= "</pre>";
+		$result .= "<p class='msg success2'>". T_('Create sitemap Successfully!')."</p>";
+
+		foreach ($counter as $key => $value)
+		{
+			$result .= "<br/>";
+			$result .= T_($key). " <b>". $value."</b>";
+		}
+
+		return $result;
+	}
+
+
+
+	public static function sitemap($_table = 'posts', $_type = null)
+	{
+		$prefix = substr($_table, 0, -1);
+		$status = $_table === 'posts'? 'publish': 'enable';
+		$date   = $_table === 'posts'? 'publishdate': 'datemodified';
+		$lang   = $_table === 'posts'? 'language': 'language';
+
+		$qry    = "SELECT * FROM $_table WHERE status = '$status' ";
+		if($_type)
+		{
+			$qry .= "AND type = '$_type' ";
+		}
+		elseif($_type === false && $_table === 'posts')
+		{
+			$qry .= "AND type NOT IN ('post', 'page', 'help', 'attachment') ";
+		}
+
+		$qry .= " ORDER BY id DESC ";
+
+		return \dash\db::get($qry);
 	}
 }
 ?>
