@@ -20,27 +20,24 @@ class sitemap
 		self::$current_language = \dash\language::current();
 		self::$default_language = \dash\language::primary();
 
-
 		// create sitemap for each language
+		self::static_page();
+
+		self::add_sitemap_item('posts', 		\dash\db\sitemap::posts(), 		'0.8', 'daily', 	'publishdate');
+		self::add_sitemap_item('pages', 		\dash\db\sitemap::pages(), 		'0.8', 'daily', 	'publishdate');
+		self::add_sitemap_item('mags',  		\dash\db\sitemap::mags(), 		'0.8', 'daily', 	'publishdate');
+		self::add_sitemap_item('attachments',  	\dash\db\sitemap::attachments(),'0.2', 'weekly', 	'publishdate');
+		self::add_sitemap_item('help_center',  	\dash\db\sitemap::help_center(),'0.3', 'monthly', 	'publishdate');
+		self::add_sitemap_item('other',  		\dash\db\sitemap::other(), 		'0.5', 'weekly', 	'publishdate');
+		self::add_sitemap_item('mag_tag',  		\dash\db\sitemap::mag_tag(), 	'0.5', 'weekly', 	'datecreated');
+		self::add_sitemap_item('help_tag',  	\dash\db\sitemap::help_tag(), 	'0.5', 'weekly', 	'datecreated');
+		self::add_sitemap_item('mag_cat',  		\dash\db\sitemap::mag_cat(), 	'0.5', 'weekly', 	'datecreated');
+		self::add_sitemap_item('cats',  		\dash\db\sitemap::cats(), 		'0.5', 'weekly', 	'datecreated');
+		self::add_sitemap_item('tags',  		\dash\db\sitemap::tags(), 		'0.5', 'weekly', 	'datecreated');
+
 		$site_url = \dash\url::site().'/';
 		$sitemap  = new \dash\utility\sitemap_generator($site_url , root.'public_html/', 'sitemap' );
-
-		self::static_page($sitemap);
-
-		self::add_sitemap_item('posts', 		$sitemap, \dash\db\sitemap::posts(), 		'0.8', 'daily', 	'publishdate');
-		self::add_sitemap_item('pages', 		$sitemap, \dash\db\sitemap::pages(), 		'0.8', 'daily', 	'publishdate');
-		self::add_sitemap_item('mags',  		$sitemap, \dash\db\sitemap::mags(), 		'0.8', 'daily', 	'publishdate');
-		self::add_sitemap_item('attachments',  	$sitemap, \dash\db\sitemap::attachments(), 	'0.2', 'weekly', 	'publishdate');
-		self::add_sitemap_item('help_center',  	$sitemap, \dash\db\sitemap::help_center(), 	'0.3', 'monthly', 	'publishdate');
-		self::add_sitemap_item('other',  		$sitemap, \dash\db\sitemap::other(), 		'0.5', 'weekly', 	'publishdate');
-		self::add_sitemap_item('mag_tag',  		$sitemap, \dash\db\sitemap::mag_tag(), 		'0.5', 'weekly', 	'datecreated');
-		self::add_sitemap_item('help_tag',  	$sitemap, \dash\db\sitemap::help_tag(), 	'0.5', 'weekly', 	'datecreated');
-		self::add_sitemap_item('mag_cat',  		$sitemap, \dash\db\sitemap::mag_cat(), 		'0.5', 'weekly', 	'datecreated');
-		self::add_sitemap_item('cats',  		$sitemap, \dash\db\sitemap::cats(), 		'0.5', 'weekly', 	'datecreated');
-		self::add_sitemap_item('tags',  		$sitemap, \dash\db\sitemap::tags(), 		'0.5', 'weekly', 	'datecreated');
-
 		self::current_project($sitemap);
-
 		$sitemap->createSitemapIndex();
 
 		return self::$show_result;
@@ -55,8 +52,12 @@ class sitemap
 	}
 
 
-	private static function static_page(&$sitemap)
+	private static function static_page()
 	{
+		$site_url = \dash\url::site().'/';
+		$sitemap  = new \dash\utility\sitemap_generator($site_url , root.'public_html/', 'sitemap' );
+		$sitemap->setFilename('static_page');
+
 		$static_page =
 		[
 			'about'     =>  ['0.6', 'weekly'],
@@ -94,16 +95,25 @@ class sitemap
 				}
 			}
 		}
+
+		self::show_result('static_page', count($static_page));
+
+		$sitemap->createSitemapIndex();
 	}
 
 
-	private static function add_sitemap_item($_typem, &$sitemap, $_array, $_priority, $_changefreq, $_lastmod_field)
+	private static function add_sitemap_item($_type, $_array, $_priority, $_changefreq, $_lastmod_field)
 	{
 		if(!is_array($_array) || !$_array)
 		{
-			self::show_result($_typem, 0);
+			self::show_result($_type, 0);
 			return;
 		}
+
+		$site_url = \dash\url::site().'/';
+		$sitemap  = new \dash\utility\sitemap_generator($site_url , root.'public_html/', 'sitemap' );
+
+		$sitemap->setFilename($_type);
 
 		foreach ($_array as $row)
 		{
@@ -116,7 +126,10 @@ class sitemap
 			$sitemap->addItem($myUrl, $_priority, $_changefreq, $row[$_lastmod_field]);
 		}
 
-		self::show_result($_typem, count($_array));
+
+		$sitemap->createSitemapIndex();
+
+		self::show_result($_type, count($_array));
 	}
 
 
