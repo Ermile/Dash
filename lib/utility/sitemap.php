@@ -4,7 +4,7 @@ namespace dash\utility;
 
 class sitemap
 {
-	private static $show_result      = [];
+	private static $set_result      = [];
 	private static $current_language = null;
 	private static $default_language = null;
 
@@ -14,8 +14,8 @@ class sitemap
 		// set log to create new sitemap
 		\dash\log::set('sitemapGenerate');
 
-		// make new show_result
-		self::$show_result = [];
+		// make new set_result
+		self::$set_result = [];
 
 		self::$current_language = \dash\language::current();
 		self::$default_language = \dash\language::primary();
@@ -37,17 +37,30 @@ class sitemap
 
 		self::current_project();
 
-		return self::$show_result;
+		self::sitemapIndex();
+
+		return self::$set_result;
 
 	}
 
 	// can call from current project to show result
 	// \lib\sitemap::create();
-	public static function show_result($_key, $_count)
+	public static function set_result($_key, $_count)
 	{
-		self::$show_result[$_key] = $_count;
+		self::$set_result[$_key] = $_count;
+
 	}
 
+	private static function sitemapIndex()
+	{
+		if(!empty(self::$set_result))
+		{
+			$site_url = \dash\url::site().'/';
+			$sitemap  = new \dash\utility\sitemap_generator($site_url , root.'public_html/', 'sitemap' );
+			$sitemap->makeSitemapIndex(array_keys(self::$set_result));
+
+		}
+	}
 
 	private static function static_page()
 	{
@@ -93,9 +106,9 @@ class sitemap
 			}
 		}
 
-		self::show_result('static_page', count($static_page));
+		self::set_result('static_page', count($static_page));
 
-		$sitemap->createSitemapIndex();
+		$sitemap->endSitemap();
 	}
 
 
@@ -103,7 +116,7 @@ class sitemap
 	{
 		if(!is_array($_array) || !$_array)
 		{
-			self::show_result($_type, 0);
+			self::set_result($_type, 0);
 			return;
 		}
 
@@ -124,9 +137,9 @@ class sitemap
 		}
 
 
-		$sitemap->createSitemapIndex();
+		$sitemap->endSitemap();
 
-		self::show_result($_type, count($_array));
+		self::set_result($_type, count($_array));
 	}
 
 

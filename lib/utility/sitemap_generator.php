@@ -232,7 +232,7 @@ class sitemap_generator
 	 * Finalizes tags of sitemap XML document.
 	 *
 	 */
-	private function endSitemap() {
+	public function endSitemap() {
 		if (!$this->getWriter()) {
 			$this->startSitemap();
 		}
@@ -268,6 +268,36 @@ class sitemap_generator
 			$indexwriter->writeElement('lastmod', $this->getLastModifiedDate($lastmod));
 			$indexwriter->endElement();
 		}
+		$indexwriter->endElement();
+		$indexwriter->endDocument();
+	}
+
+
+	// make some sitemapindex in one file
+	public function makeSitemapIndex($urls, $loc = null, $lastmod = 'Today')
+	{
+		if(!$loc)
+		{
+			$loc = $this->getDomain().'sitemap/';
+		}
+
+		$indexwriter = new \XMLWriter();
+		$indexwriter->openURI($this->getPath(false) . $this->getFilename() . self::EXT);
+		$indexwriter->startDocument('1.0', 'UTF-8');
+		$indexwriter->setIndent(true);
+		$indexwriter->startElement('sitemapindex');
+		$indexwriter->writeAttribute('xmlns', self::SCHEMA);
+
+		$current_sitemap = $this->getCurrentSitemap();
+
+		foreach ($urls as $myUrl)
+		{
+			$indexwriter->startElement('sitemap');
+			$indexwriter->writeElement('loc', $loc. $myUrl . self::EXT);
+			$indexwriter->writeElement('lastmod', $this->getLastModifiedDate($lastmod));
+			$indexwriter->endElement();
+		}
+
 		$indexwriter->endElement();
 		$indexwriter->endDocument();
 	}
