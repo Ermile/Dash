@@ -31,6 +31,12 @@ class sitemap
 
 		self::pages($sitemap);
 
+		self::mags($sitemap);
+
+		self::mag_tag($sitemap);
+
+		self::mag_cat($sitemap);
+
 		self::help_center($sitemap);
 
 		self::attachments($sitemap);
@@ -38,6 +44,8 @@ class sitemap
 		self::cats($sitemap);
 
 		self::tags($sitemap);
+
+		self::help_tag($sitemap);
 
 		self::other($sitemap);
 
@@ -124,6 +132,79 @@ class sitemap
 		}
 	}
 
+	private static function mags(&$sitemap)
+	{
+		// add mags
+		$mag = \dash\db\sitemap::mags();
+
+		if(!is_array($mag))
+		{
+			return;
+		}
+
+		self::show_result(__FUNCTION__, count($mag));
+
+		foreach ($mag as $row)
+		{
+			$myUrl = $row['url'];
+			if($row['language'] && $row['language'] !== self::$default_language)
+			{
+				$myUrl = $row['language'].'/'. $myUrl;
+			}
+
+			$sitemap->addItem($myUrl, '0.8', 'daily', $row['publishdate']);
+		}
+	}
+
+	private static function mag_tag(&$sitemap)
+	{
+		// add mag_tag
+		$mag_tag = \dash\db\sitemap::mag_tag();
+
+		if(!is_array($mag_tag))
+		{
+			return;
+		}
+
+		self::show_result(__FUNCTION__, count($mag_tag));
+
+		foreach ($mag_tag as $row)
+		{
+			$myUrl = $row['url'];
+			if($row['language'] && $row['language'] !== self::$default_language)
+			{
+				$myUrl = $row['language'].'/'. $myUrl;
+			}
+
+			$sitemap->addItem($myUrl, '0.5', 'weekly', $row['datecreated']);
+		}
+	}
+
+
+	private static function mag_cat(&$sitemap)
+	{
+		// add mag_cat
+		$mag_cat = \dash\db\sitemap::mag_cat();
+
+		if(!is_array($mag_cat))
+		{
+			return;
+		}
+
+		self::show_result(__FUNCTION__, count($mag_cat));
+
+		foreach ($mag_cat as $row)
+		{
+			$myUrl = $row['url'];
+			if($row['language'] && $row['language'] !== self::$default_language)
+			{
+				$myUrl = $row['language'].'/'. $myUrl;
+			}
+
+			$sitemap->addItem($myUrl, '0.5', 'weekly', $row['datecreated']);
+		}
+	}
+
 
 	private static function pages(&$sitemap)
 	{
@@ -172,6 +253,30 @@ class sitemap
 			}
 
 			$sitemap->addItem($myUrl, '0.3', 'monthly', $row['publishdate']);
+		}
+	}
+
+	private static function help_tag(&$sitemap)
+	{
+		// add help_tag
+		$help_tag = \dash\db\sitemap::help_tag();
+
+		if(!is_array($help_tag))
+		{
+			return;
+		}
+
+		self::show_result(__FUNCTION__, count($help_tag));
+
+		foreach ($help_tag as $row)
+		{
+			$myUrl = $row['url'];
+			if($row['language'] && $row['language'] !== self::$default_language)
+			{
+				$myUrl = $row['language'].'/'. $myUrl;
+			}
+
+			$sitemap->addItem($myUrl, '0.5', 'weekly', $row['datecreated']);
 		}
 	}
 

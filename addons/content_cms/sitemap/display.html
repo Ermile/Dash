@@ -26,13 +26,20 @@
 <div class="f justify-center">
 	<div class="c6 s12">
 		 <div class="cbox">
-		  <div class="in">
+
 		   <h3>{%trans "Sitemap Result"%}</h3>
 		   {%for key, value in sitemapData%}
-		   <div class="msg">{{key}} <span class="floatL txtB txtC">{{value | fitNumber}} <small>{%trans "Item"%}</small></span></div>
+		   <div class="msg">
+        <div class="f">
+          <div class="c">{{key}}</div>
+          <div class="c">
+            <span class="floatL txtB txtC">{{value | fitNumber}} <small>{%trans "Item"%}</small></span>
+          </div>
+        </div>
+        </div>
 		   {%endfor%}
 
-		  </div>
+
 		 </div>
 	</div>
 </div>
