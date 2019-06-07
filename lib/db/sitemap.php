@@ -85,7 +85,7 @@ class sitemap
 
 	public static function other()
 	{
-		$query  = "SELECT posts.url, posts.language, posts.publishdate FROM posts WHERE posts.type NOT IN ('attachment','page','post', 'help') AND posts.status = 'publish' ORDER BY posts.id DESC ";
+		$query  = "SELECT posts.url, posts.language, posts.publishdate FROM posts WHERE posts.type NOT IN ('attachment','page','post', 'help', 'mag') AND posts.status = 'publish' ORDER BY posts.id DESC ";
 		$result = \dash\db::get($query);
 		return $result;
 	}

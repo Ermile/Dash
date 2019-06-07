@@ -35,10 +35,7 @@ class sitemap
 		self::add_sitemap_item('cats',  		\dash\db\sitemap::cats(), 		'0.5', 'weekly', 	'datecreated');
 		self::add_sitemap_item('tags',  		\dash\db\sitemap::tags(), 		'0.5', 'weekly', 	'datecreated');
 
-		$site_url = \dash\url::site().'/';
-		$sitemap  = new \dash\utility\sitemap_generator($site_url , root.'public_html/', 'sitemap' );
-		self::current_project($sitemap);
-		$sitemap->createSitemapIndex();
+		self::current_project();
 
 		return self::$show_result;
 
@@ -133,11 +130,11 @@ class sitemap
 	}
 
 
-	private static function current_project(&$sitemap)
+	private static function current_project()
 	{
 		if(is_callable(['\\lib\\sitemap', 'create']))
 		{
-			\lib\sitemap::create($sitemap);
+			\lib\sitemap::create();
 		}
 	}
 }
