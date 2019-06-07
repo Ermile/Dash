@@ -27,27 +27,17 @@ class sitemap
 
 		self::static_page($sitemap);
 
-		self::posts($sitemap);
-
-		self::pages($sitemap);
-
-		self::mags($sitemap);
-
-		self::mag_tag($sitemap);
-
-		self::mag_cat($sitemap);
-
-		self::help_center($sitemap);
-
-		self::attachments($sitemap);
-
-		self::cats($sitemap);
-
-		self::tags($sitemap);
-
-		self::help_tag($sitemap);
-
-		self::other($sitemap);
+		self::add_sitemap_item('posts', 		$sitemap, \dash\db\sitemap::posts(), 		'0.8', 'daily', 	'publishdate');
+		self::add_sitemap_item('pages', 		$sitemap, \dash\db\sitemap::pages(), 		'0.8', 'daily', 	'publishdate');
+		self::add_sitemap_item('mags',  		$sitemap, \dash\db\sitemap::mags(), 		'0.8', 'daily', 	'publishdate');
+		self::add_sitemap_item('attachments',  	$sitemap, \dash\db\sitemap::attachments(), 	'0.2', 'weekly', 	'publishdate');
+		self::add_sitemap_item('help_center',  	$sitemap, \dash\db\sitemap::help_center(), 	'0.3', 'monthly', 	'publishdate');
+		self::add_sitemap_item('other',  		$sitemap, \dash\db\sitemap::other(), 		'0.5', 'weekly', 	'publishdate');
+		self::add_sitemap_item('mag_tag',  		$sitemap, \dash\db\sitemap::mag_tag(), 		'0.5', 'weekly', 	'datecreated');
+		self::add_sitemap_item('help_tag',  	$sitemap, \dash\db\sitemap::help_tag(), 	'0.5', 'weekly', 	'datecreated');
+		self::add_sitemap_item('mag_cat',  		$sitemap, \dash\db\sitemap::mag_cat(), 		'0.5', 'weekly', 	'datecreated');
+		self::add_sitemap_item('cats',  		$sitemap, \dash\db\sitemap::cats(), 		'0.5', 'weekly', 	'datecreated');
+		self::add_sitemap_item('tags',  		$sitemap, \dash\db\sitemap::tags(), 		'0.5', 'weekly', 	'datecreated');
 
 		self::current_project($sitemap);
 
@@ -104,23 +94,18 @@ class sitemap
 				}
 			}
 		}
-
 	}
 
 
-	private static function posts(&$sitemap)
+	private static function add_sitemap_item($_typem, &$sitemap, $_array, $_priority, $_changefreq, $_lastmod_field)
 	{
-		// add posts
-		$post = \dash\db\sitemap::posts();
-
-		if(!is_array($post))
+		if(!is_array($_array) || !$_array)
 		{
+			self::show_result($_typem, 0);
 			return;
 		}
 
-		self::show_result(__FUNCTION__, count($post));
-
-		foreach ($post as $row)
+		foreach ($_array as $row)
 		{
 			$myUrl = $row['url'];
 			if($row['language'] && $row['language'] !== self::$default_language)
@@ -128,256 +113,10 @@ class sitemap
 				$myUrl = $row['language'].'/'. $myUrl;
 			}
 
-			$sitemap->addItem($myUrl, '0.8', 'daily', $row['publishdate']);
-		}
-	}
-
-	private static function mags(&$sitemap)
-	{
-		// add mags
-		$mag = \dash\db\sitemap::mags();
-
-		if(!is_array($mag))
-		{
-			return;
+			$sitemap->addItem($myUrl, $_priority, $_changefreq, $row[$_lastmod_field]);
 		}
 
-		self::show_result(__FUNCTION__, count($mag));
-
-		foreach ($mag as $row)
-		{
-			$myUrl = $row['url'];
-			if($row['language'] && $row['language'] !== self::$default_language)
-			{
-				$myUrl = $row['language'].'/'. $myUrl;
-			}
-
-			$sitemap->addItem($myUrl, '0.8', 'daily', $row['publishdate']);
-		}
-	}
-
-	private static function mag_tag(&$sitemap)
-	{
-		// add mag_tag
-		$mag_tag = \dash\db\sitemap::mag_tag();
-
-		if(!is_array($mag_tag))
-		{
-			return;
-		}
-
-		self::show_result(__FUNCTION__, count($mag_tag));
-
-		foreach ($mag_tag as $row)
-		{
-			$myUrl = $row['url'];
-			if($row['language'] && $row['language'] !== self::$default_language)
-			{
-				$myUrl = $row['language'].'/'. $myUrl;
-			}
-
-			$sitemap->addItem($myUrl, '0.5', 'weekly', $row['datecreated']);
-		}
-	}
-
-
-	private static function mag_cat(&$sitemap)
-	{
-		// add mag_cat
-		$mag_cat = \dash\db\sitemap::mag_cat();
-
-		if(!is_array($mag_cat))
-		{
-			return;
-		}
-
-		self::show_result(__FUNCTION__, count($mag_cat));
-
-		foreach ($mag_cat as $row)
-		{
-			$myUrl = $row['url'];
-			if($row['language'] && $row['language'] !== self::$default_language)
-			{
-				$myUrl = $row['language'].'/'. $myUrl;
-			}
-
-			$sitemap->addItem($myUrl, '0.5', 'weekly', $row['datecreated']);
-		}
-	}
-
-
-	private static function pages(&$sitemap)
-	{
-		// add pages
-		$page = \dash\db\sitemap::pages();
-
-		if(!is_array($page))
-		{
-			return;
-		}
-
-		self::show_result(__FUNCTION__, count($page));
-
-		foreach ($page as $row)
-		{
-			$myUrl = $row['url'];
-			if($row['language'] && $row['language'] !== self::$default_language)
-			{
-				$myUrl = $row['language'].'/'. $myUrl;
-			}
-
-			$sitemap->addItem($myUrl, '0.6', 'weekly', $row['publishdate']);
-		}
-	}
-
-
-
-	private static function help_center(&$sitemap)
-	{
-		// add helps
-		$help = \dash\db\sitemap::help_center();
-
-		if(!is_array($help))
-		{
-			return;
-		}
-
-		self::show_result(__FUNCTION__, count($help));
-
-		foreach ($help as $row)
-		{
-			$myUrl = $row['url'];
-			if($row['language'] && $row['language'] !== self::$default_language)
-			{
-				$myUrl = $row['language'].'/'. $myUrl;
-			}
-
-			$sitemap->addItem($myUrl, '0.3', 'monthly', $row['publishdate']);
-		}
-	}
-
-	private static function help_tag(&$sitemap)
-	{
-		// add help_tag
-		$help_tag = \dash\db\sitemap::help_tag();
-
-		if(!is_array($help_tag))
-		{
-			return;
-		}
-
-		self::show_result(__FUNCTION__, count($help_tag));
-
-		foreach ($help_tag as $row)
-		{
-			$myUrl = $row['url'];
-			if($row['language'] && $row['language'] !== self::$default_language)
-			{
-				$myUrl = $row['language'].'/'. $myUrl;
-			}
-
-			$sitemap->addItem($myUrl, '0.5', 'weekly', $row['datecreated']);
-		}
-	}
-
-
-	private static function attachments(&$sitemap)
-	{
-		// add attachments
-		$attachments = \dash\db\sitemap::attachments();
-
-		if(!is_array($attachments))
-		{
-			return;
-		}
-
-		self::show_result(__FUNCTION__, count($attachments));
-
-		foreach ($attachments as $row)
-		{
-			$myUrl = $row['url'];
-			if($row['language'] && $row['language'] !== self::$default_language)
-			{
-				$myUrl = $row['language'].'/'. $myUrl;
-			}
-
-			$sitemap->addItem($myUrl, '0.2', 'weekly', $row['publishdate']);
-		}
-	}
-
-
-	private static function cats(&$sitemap)
-	{
-		// add cats
-		$cats = \dash\db\sitemap::cats();
-
-		if(!is_array($cats))
-		{
-			return;
-		}
-
-		self::show_result(__FUNCTION__, count($cats));
-
-		foreach ($cats as $row)
-		{
-			$myUrl = $row['url'];
-			if($row['language'] && $row['language'] !== self::$default_language)
-			{
-				$myUrl = $row['language'].'/'. $myUrl;
-			}
-
-			$sitemap->addItem($myUrl, '0.5', 'weekly', $row['datecreated']);
-		}
-	}
-
-
-	private static function tags(&$sitemap)
-	{
-		// add tags
-		$tags = \dash\db\sitemap::tags();
-
-		if(!is_array($tags))
-		{
-			return;
-		}
-
-		self::show_result(__FUNCTION__, count($tags));
-
-		foreach ($tags as $row)
-		{
-			$myUrl = $row['url'];
-			if($row['language'] && $row['language'] !== self::$default_language)
-			{
-				$myUrl = $row['language'].'/'. $myUrl;
-			}
-
-			$sitemap->addItem($myUrl, '0.5', 'weekly', $row['datecreated']);
-		}
-	}
-
-
-	private static function other(&$sitemap)
-	{
-		// add other
-		$other = \dash\db\sitemap::other();
-
-		if(!is_array($other))
-		{
-			return;
-		}
-
-		self::show_result(__FUNCTION__, count($other));
-
-		foreach ($other as $row)
-		{
-			$myUrl = $row['url'];
-			if($row['language'] && $row['language'] !== self::$default_language)
-			{
-				$myUrl = $row['language'].'/'. $myUrl;
-			}
-
-			$sitemap->addItem($myUrl, '0.5', 'weekly', $row['publishdate']);
-		}
+		self::show_result($_typem, count($_array));
 	}
 
 
