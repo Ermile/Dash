@@ -11,12 +11,19 @@
 
 
 {%if sitemapData%}
- <div class="cbox">
-  <div class="in">
-   <h3>{%trans "Create Sitemap Result"%}</h3>
-   {{sitemapData | raw}}
-  </div>
- </div>
+<div class="f justify-center">
+	<div class="c6 s12">
+		 <div class="cbox">
+		  <div class="in">
+		   <h3>{%trans "Create Sitemap Result"%}</h3>
+		   {%for key, value in sitemapData%}
+		   <div class="msg">{{key}} <span class="floatL txtB txtC">{{value | fitNumber}} <small>{%trans "Item"%}</small></span></div>
+		   {%endfor%}
+
+		  </div>
+		 </div>
+	</div>
+</div>
 {%endif%}
 
 {%endblock%}
