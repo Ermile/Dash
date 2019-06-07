@@ -29,6 +29,7 @@
 
 		   <h3>{%trans "Sitemap Result"%}</h3>
 		   {%for key, value in sitemapData%}
+       {%if value%}
 		   <div class="msg">
         <div class="f">
           <div class="c">{{key}}</div>
@@ -37,7 +38,21 @@
           </div>
         </div>
         </div>
+        {%endif%}
 		   {%endfor%}
+
+       {%for key, value in sitemapData%}
+       {%if not value%}
+       <div class="badge">
+        <div class="f">
+          <div class="c">{{key}}</div>
+          <div class="c mLa10">
+            <span class="floatL txtB txtC">{{value | fitNumber}} <small>{%trans "Item"%}</small></span>
+          </div>
+        </div>
+        </div>
+        {%endif%}
+       {%endfor%}
 
 
 		 </div>
