@@ -194,6 +194,9 @@ class sitemap_generator
 	 * @return Sitemap
 	 */
 	public function addItem($loc, $priority = self::DEFAULT_PRIORITY, $changefreq = NULL, $lastmod = NULL) {
+		// plus count of link added
+		\dash\utility\sitemap::plus_count_all();
+
 		if (($this->getCurrentItem() % self::ITEM_PER_SITEMAP) == 0) {
 			if ($this->getWriter() instanceof \XMLWriter) {
 				$this->endSitemap();

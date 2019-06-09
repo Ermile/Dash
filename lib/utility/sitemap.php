@@ -7,7 +7,7 @@ class sitemap
 	private static $set_result      = [];
 	private static $current_language = null;
 	private static $default_language = null;
-
+	private static $count_all = 0;
 
 	public static function addr()
 	{
@@ -66,6 +66,11 @@ class sitemap
 		return true;
 	}
 
+	public static function plus_count_all()
+	{
+		self::$count_all++;
+	}
+
 
 	public static function create()
 	{
@@ -96,6 +101,8 @@ class sitemap
 		self::current_project();
 
 		self::sitemapIndex();
+
+		\dash\notif::info(\dash\utility\human::fitNumber(self::$count_all). ' '. T_("Link created"));
 
 		return self::$set_result;
 
