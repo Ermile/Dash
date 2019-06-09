@@ -193,14 +193,15 @@ class sitemap
 		foreach ($_array as $row)
 		{
 			$myUrl = $row['url'];
-			if($row['language'] && $row['language'] !== self::$default_language)
-			{
-				$myUrl = $row['language'].'/'. $myUrl;
-			}
 
 			if($_url_word)
 			{
 				$myUrl = $_url_word. '/'. $myUrl;
+			}
+
+			if($row['language'] && $row['language'] !== self::$default_language)
+			{
+				$myUrl = $row['language'].'/'. $myUrl;
 			}
 
 			$sitemap->addItem($myUrl, $_priority, $_changefreq, $row[$_lastmod_field]);
