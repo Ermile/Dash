@@ -9,6 +9,34 @@ class sitemap
 	private static $default_language = null;
 
 
+	public static function addr()
+	{
+		return root. 'public_html/';
+	}
+
+	public static function folder_name()
+	{
+		return 'sitemap';
+	}
+
+	public static function folder_addr()
+	{
+		return root. 'public_html/sitemap/';
+	}
+
+	public static function file_addr()
+	{
+		return root. 'public_html/sitemap.xml';
+	}
+
+	public static function new_sitemap()
+	{
+		$site_url = \dash\url::site().'/';
+		return new \dash\utility\sitemap_generator($site_url , \dash\utility\sitemap::addr(), \dash\utility\sitemap::folder_name());
+	}
+
+
+
 	public static function create()
 	{
 		// set log to create new sitemap
@@ -29,11 +57,11 @@ class sitemap
 		self::add_sitemap_item('attachments',  	\dash\db\sitemap::attachments(),'0.2', 'weekly', 	'publishdate');
 		self::add_sitemap_item('help_center',  	\dash\db\sitemap::help_center(),'0.3', 'monthly', 	'publishdate');
 		self::add_sitemap_item('other',  		\dash\db\sitemap::other(), 		'0.5', 'weekly', 	'publishdate');
-		self::add_sitemap_item('mag_tag',  		\dash\db\sitemap::mag_tag(), 	'0.5', 'weekly', 	'datecreated');
-		self::add_sitemap_item('help_tag',  	\dash\db\sitemap::help_tag(), 	'0.5', 'weekly', 	'datecreated');
-		self::add_sitemap_item('mag_cat',  		\dash\db\sitemap::mag_cat(), 	'0.5', 'weekly', 	'datecreated');
-		self::add_sitemap_item('cats',  		\dash\db\sitemap::cats(), 		'0.5', 'weekly', 	'datecreated');
-		self::add_sitemap_item('tags',  		\dash\db\sitemap::tags(), 		'0.5', 'weekly', 	'datecreated');
+		self::add_sitemap_item('mag_tag',  		\dash\db\sitemap::mag_tag(), 	'0.5', 'weekly', 	'datecreated', 'tag');
+		self::add_sitemap_item('help_tag',  	\dash\db\sitemap::help_tag(), 	'0.5', 'weekly', 	'datecreated', 'tag');
+		self::add_sitemap_item('mag_cat',  		\dash\db\sitemap::mag_cat(), 	'0.5', 'weekly', 	'datecreated', 'cat');
+		self::add_sitemap_item('cats',  		\dash\db\sitemap::cats(), 		'0.5', 'weekly', 	'datecreated', 'cat');
+		self::add_sitemap_item('tags',  		\dash\db\sitemap::tags(), 		'0.5', 'weekly', 	'datecreated', 'tag');
 
 		self::current_project();
 
@@ -56,7 +84,7 @@ class sitemap
 		if(!empty(self::$set_result))
 		{
 			$site_url = \dash\url::site().'/';
-			$sitemap  = new \dash\utility\sitemap_generator($site_url , root.'public_html/', 'sitemap' );
+			$sitemap  = new \dash\utility\sitemap_generator($site_url , self::addr(), 'sitemap' );
 			$sitemap->makeSitemapIndex(array_keys(self::$set_result));
 
 		}
@@ -65,7 +93,7 @@ class sitemap
 	private static function static_page()
 	{
 		$site_url = \dash\url::site().'/';
-		$sitemap  = new \dash\utility\sitemap_generator($site_url , root.'public_html/', 'sitemap' );
+		$sitemap  = new \dash\utility\sitemap_generator($site_url , self::addr(), 'sitemap' );
 		$sitemap->setFilename('static_page');
 
 		$static_page =
@@ -112,7 +140,7 @@ class sitemap
 	}
 
 
-	private static function add_sitemap_item($_type, $_array, $_priority, $_changefreq, $_lastmod_field)
+	private static function add_sitemap_item($_type, $_array, $_priority, $_changefreq, $_lastmod_field, $_url_word = null)
 	{
 		if(!is_array($_array) || !$_array)
 		{
@@ -121,7 +149,7 @@ class sitemap
 		}
 
 		$site_url = \dash\url::site().'/';
-		$sitemap  = new \dash\utility\sitemap_generator($site_url , root.'public_html/', 'sitemap' );
+		$sitemap  = new \dash\utility\sitemap_generator($site_url , self::addr(), 'sitemap' );
 
 		$sitemap->setFilename($_type);
 
@@ -131,6 +159,11 @@ class sitemap
 			if($row['language'] && $row['language'] !== self::$default_language)
 			{
 				$myUrl = $row['language'].'/'. $myUrl;
+			}
+
+			if($_url_word)
+			{
+				$myUrl = $_url_word. '/'. $myUrl;
 			}
 
 			$sitemap->addItem($myUrl, $_priority, $_changefreq, $row[$_lastmod_field]);

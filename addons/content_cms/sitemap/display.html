@@ -10,13 +10,18 @@
   {%endif%}
 
   {%if siteMapFile.sitemap%}
-   <a class="btn" target="_blank" href="{{url.base}}/sitemap/sitemap.xml">{%trans "Sitemap Detail"%}</a>
+   <a class="btn" target="_blank" href="{{url.base}}/sitemap">{%trans "Sitemap Directory"%}</a>
   {%endif%}
 
   {%if not siteMapFile.sitemap and not siteMapFile.base%}
    <a class="btn txtC xl success" href="{{url.this}}?run=yes">{%trans "Create sitemap now!"%} </a>
   {%else%}
-   <a class="btn floatRa secondary" href="{{url.this}}?run=yes">{%trans "Create it Again"%}</a>
+   <div data-confirm data-data='{"run" : "yes"}' class="btn floatRa secondary" >{%trans "Create it Again"%}</div>
+   <p data-kerkere='.removeSiteMapFile' class="mT10 fc-red fs08">{%trans "Remove all  sitemap files"%}</p>
+
+   <div data-kerkere-content='hide' class="removeSiteMapFile">
+    <div class="btn danger" data-confirm data-data='{"remove": "remove"}'>{%trans "Remove all  sitemap files"%}</div>
+   </div>
   {%endif%}
 
  </div>

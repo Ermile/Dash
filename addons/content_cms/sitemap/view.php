@@ -7,12 +7,10 @@ class view
 	{
 		\dash\data::page_title(T_('Sitemap'));
 
-		if(\dash\request::get('run') === 'yes')
-		{
-			\dash\data::sitemapData(\dash\utility\sitemap::create());
-		}
+		$result = \dash\session::get('result_create_sitemap');
+		\dash\data::sitemapData($result);
 
-		if(is_file(root. '/public_html/sitemap/sitemap.xml'))
+		if(is_dir(root. '/public_html/sitemap'))
 		{
 			\dash\data::siteMapFile_sitemap(true);
 		}
