@@ -40,7 +40,9 @@ class model
 				$count++;
 			}
 
+			\dash\session::set('result_create_sitemap' , null);
 			\dash\notif::ok(\dash\utility\human::fitNumber($count). ' '. T_("File removed"));
+			\dash\redirect::pwd();
 
 		}
 	}
