@@ -17,8 +17,10 @@
    <a class="btn txtC xl success" href="{{url.this}}?run=yes">{%trans "Create sitemap now!"%} </a>
   {%else%}
    <div data-confirm data-data='{"run" : "yes"}' class="btn floatRa secondary" >{%trans "Create it Again"%}</div>
-   <p data-kerkere='.removeSiteMapFile' class="mT10 fc-red fs08">{%trans "Remove all  sitemap files"%}</p>
+  {%endif%}
 
+  {%if siteMapFile.base%}
+   <p data-kerkere='.removeSiteMapFile' class="mT10 fc-red fs08">{%trans "Remove all  sitemap files"%}</p>
    <div data-kerkere-content='hide' class="removeSiteMapFile">
     <div class="btn danger" data-confirm data-data='{"remove": "remove"}'>{%trans "Remove all  sitemap files"%}</div>
    </div>

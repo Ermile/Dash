@@ -17,31 +17,7 @@ class model
 
 		if(\dash\request::post('remove') === 'remove')
 		{
-			$count = 0;
-			$dir = \dash\utility\sitemap::folder_addr();
-			if(is_dir($dir))
-			{
-				$files = glob($dir. '*');
-				if(is_array($files))
-				{
-					foreach ($files as $key => $value)
-					{
-						\dash\file::delete($value);
-						$count++;
-					}
-				}
-
-			}
-
-			$file = \dash\utility\sitemap::file_addr();
-			if(is_file($file))
-			{
-				\dash\file::delete($file);
-				$count++;
-			}
-
-			\dash\session::set('result_create_sitemap' , null);
-			\dash\notif::ok(\dash\utility\human::fitNumber($count). ' '. T_("File removed"));
+			\dash\utility\sitemap::delete();
 			\dash\redirect::pwd();
 
 		}

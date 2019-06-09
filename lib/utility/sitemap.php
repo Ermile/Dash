@@ -36,6 +36,36 @@ class sitemap
 	}
 
 
+	public static function delete()
+	{
+		$count = 0;
+		$dir = \dash\utility\sitemap::folder_addr();
+		if(is_dir($dir))
+		{
+			$files = glob($dir. '*');
+			if(is_array($files))
+			{
+				foreach ($files as $key => $value)
+				{
+					\dash\file::delete($value);
+					$count++;
+				}
+			}
+
+		}
+
+		$file = \dash\utility\sitemap::file_addr();
+		if(is_file($file))
+		{
+			\dash\file::delete($file);
+			$count++;
+		}
+
+		\dash\session::set('result_create_sitemap' , null);
+		\dash\notif::ok(\dash\utility\human::fitNumber($count). ' '. T_("File removed"));
+		return true;
+	}
+
 
 	public static function create()
 	{
@@ -84,7 +114,7 @@ class sitemap
 		if(!empty(self::$set_result))
 		{
 			$site_url = \dash\url::site().'/';
-			$sitemap  = new \dash\utility\sitemap_generator($site_url , self::addr(), 'sitemap' );
+			$sitemap  = self::new_sitemap();
 			$sitemap->makeSitemapIndex(array_keys(self::$set_result));
 
 		}
@@ -93,7 +123,7 @@ class sitemap
 	private static function static_page()
 	{
 		$site_url = \dash\url::site().'/';
-		$sitemap  = new \dash\utility\sitemap_generator($site_url , self::addr(), 'sitemap' );
+		$sitemap  = self::new_sitemap();
 		$sitemap->setFilename('static_page');
 
 		$static_page =
@@ -149,7 +179,7 @@ class sitemap
 		}
 
 		$site_url = \dash\url::site().'/';
-		$sitemap  = new \dash\utility\sitemap_generator($site_url , self::addr(), 'sitemap' );
+		$sitemap  = self::new_sitemap();
 
 		$sitemap->setFilename($_type);
 
