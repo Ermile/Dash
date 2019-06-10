@@ -12,6 +12,7 @@ class sitemap_generator
 	 * @package    Sitemap
 	 * @author     Osman Üngür <osmanungur@gmail.com>
 	 * @author     Javad Evazzadeh <J.Evazzadeh@gmail.com>
+	 * @author     Reza Mohiti <Rm.Biqarar@gmail.com>
 	 * @copyright  2009-2015 Osman Üngür
 	 * @license    http://opensource.org/licenses/MIT MIT License
 	 * @link       http://github.com/o/sitemap-php
@@ -26,16 +27,18 @@ class sitemap_generator
 	private $domain;
 	private $root;
 	private $path;
-	private $filename = 'sitemap';
-	private $current_item = 0;
+	private $filename        = 'sitemap';
+	private $current_item    = 0;
 	private $current_sitemap = 0;
 
-	const EXT = '.xml';
-	const SCHEMA = 'http://www.sitemaps.org/schemas/sitemap/0.9';
-	const DEFAULT_PRIORITY = 0.5;
-	const ITEM_PER_SITEMAP = 50000;
-	const SEPERATOR = '-';
-	const INDEX_SUFFIX = 'index';
+	const EXT                = '.xml';
+	const SCHEMA             = 'http://www.sitemaps.org/schemas/sitemap/0.9';
+	const DEFAULT_PRIORITY   = 0.5;
+	const ITEM_PER_SITEMAP   = 50000;
+	const SEPERATOR          = '-';
+	const INDEX_SUFFIX       = 'index';
+
+
 
 	/**
 	 *
@@ -45,11 +48,13 @@ class sitemap_generator
 	{
 		$this->setDomain($_domain);
 		$this->root = $_root;
-		$this->setPath($this->root.$_path.'/');
+		$this->setPath($this->root. $_path.'/');
 
 		$folder = $this->getPath();
 		if(!is_dir($folder))
-			mkdir($folder, 0775, true);
+		{
+			@mkdir($folder, 0775, true);
+		}
 	}
 
 	/**
@@ -57,7 +62,8 @@ class sitemap_generator
 	 *
 	 * @param string $domain
 	 */
-	public function setDomain($domain) {
+	public function setDomain($domain)
+	{
 		$this->domain = $domain;
 		return $this;
 	}
@@ -67,7 +73,8 @@ class sitemap_generator
 	 *
 	 * @return string
 	 */
-	private function getDomain() {
+	private function getDomain()
+	{
 		return $this->domain;
 	}
 
@@ -76,7 +83,8 @@ class sitemap_generator
 	 *
 	 * @return XMLWriter
 	 */
-	private function getWriter() {
+	private function getWriter()
+	{
 		return $this->writer;
 	}
 
@@ -85,7 +93,8 @@ class sitemap_generator
 	 *
 	 * @param XMLWriter $writer
 	 */
-	private function setWriter(\XMLWriter $writer) {
+	private function setWriter(\XMLWriter $writer)
+	{
 		$this->writer = $writer;
 	}
 
@@ -97,9 +106,13 @@ class sitemap_generator
 	private function getPath($_all = true)
 	{
 		if($_all)
+		{
 			return $this->path;
+		}
 		else
+		{
 			return $this->root;
+		}
 	}
 
 	/**
@@ -108,7 +121,8 @@ class sitemap_generator
 	 * @param string $path
 	 * @return Sitemap
 	 */
-	public function setPath($path) {
+	public function setPath($path)
+	{
 		$this->path = $path;
 		return $this;
 	}
@@ -118,7 +132,8 @@ class sitemap_generator
 	 *
 	 * @return string
 	 */
-	private function getFilename() {
+	private function getFilename()
+	{
 		return $this->filename;
 	}
 
@@ -128,7 +143,8 @@ class sitemap_generator
 	 * @param string $filename
 	 * @return Sitemap
 	 */
-	public function setFilename($filename) {
+	public function setFilename($filename)
+	{
 		$this->filename = $filename;
 		return $this;
 	}
@@ -138,7 +154,8 @@ class sitemap_generator
 	 *
 	 * @return int
 	 */
-	private function getCurrentItem() {
+	private function getCurrentItem()
+	{
 		return $this->current_item;
 	}
 
@@ -146,7 +163,8 @@ class sitemap_generator
 	 * Increases item counter
 	 *
 	 */
-	private function incCurrentItem() {
+	private function incCurrentItem()
+	{
 		$this->current_item = $this->current_item + 1;
 	}
 
@@ -155,7 +173,8 @@ class sitemap_generator
 	 *
 	 * @return int
 	 */
-	private function getCurrentSitemap() {
+	private function getCurrentSitemap()
+	{
 		return $this->current_sitemap;
 	}
 
@@ -163,7 +182,8 @@ class sitemap_generator
 	 * Increases sitemap file count
 	 *
 	 */
-	private function incCurrentSitemap() {
+	private function incCurrentSitemap()
+	{
 		$this->current_sitemap = $this->current_sitemap + 1;
 	}
 
@@ -171,13 +191,19 @@ class sitemap_generator
 	 * Prepares sitemap XML document
 	 *
 	 */
-	private function startSitemap() {
+	private function startSitemap()
+	{
 		$this->setWriter(new \XMLWriter());
-		if ($this->getCurrentSitemap()) {
+
+		if($this->getCurrentSitemap())
+		{
 			$this->getWriter()->openURI($this->getPath() . $this->getFilename() . self::SEPERATOR . $this->getCurrentSitemap() . self::EXT);
-		} else {
+		}
+		else
+		{
 			$this->getWriter()->openURI($this->getPath() . $this->getFilename() . self::EXT);
 		}
+
 		$this->getWriter()->startDocument('1.0', 'UTF-8');
 		$this->getWriter()->setIndent(true);
 		$this->getWriter()->startElement('urlset');
@@ -193,25 +219,35 @@ class sitemap_generator
 	 * @param string|int $lastmod The date of last modification of url. Unix timestamp or any English textual datetime description.
 	 * @return Sitemap
 	 */
-	public function addItem($loc, $priority = self::DEFAULT_PRIORITY, $changefreq = NULL, $lastmod = NULL) {
+	public function addItem($loc, $priority = self::DEFAULT_PRIORITY, $changefreq = NULL, $lastmod = NULL)
+	{
 		// plus count of link added
 		\dash\utility\sitemap::plus_count_all();
 
-		if (($this->getCurrentItem() % self::ITEM_PER_SITEMAP) == 0) {
-			if ($this->getWriter() instanceof \XMLWriter) {
+		if (($this->getCurrentItem() % self::ITEM_PER_SITEMAP) == 0)
+		{
+			if ($this->getWriter() instanceof \XMLWriter)
+			{
 				$this->endSitemap();
 			}
 			$this->startSitemap();
 			$this->incCurrentSitemap();
 		}
+
 		$this->incCurrentItem();
 		$this->getWriter()->startElement('url');
 		$this->getWriter()->writeElement('loc', $this->getDomain() . $loc);
 		$this->getWriter()->writeElement('priority', $priority);
 		if ($changefreq)
+		{
 			$this->getWriter()->writeElement('changefreq', $changefreq);
-		if ($lastmod)
+		}
+
+		if($lastmod)
+		{
 			$this->getWriter()->writeElement('lastmod', $this->getLastModifiedDate($lastmod));
+		}
+
 		$this->getWriter()->endElement();
 		return $this;
 	}
@@ -222,10 +258,14 @@ class sitemap_generator
 	 * @param string $date Unix timestamp or any English textual datetime description
 	 * @return string Year-Month-Day formatted date.
 	 */
-	private function getLastModifiedDate($date) {
-		if (ctype_digit($date)) {
+	private function getLastModifiedDate($date)
+	{
+		if (ctype_digit($date))
+		{
 			return date('Y-m-d', $date);
-		} else {
+		}
+		else
+		{
 			$date = strtotime($date);
 			return date('Y-m-d', $date);
 		}
@@ -235,12 +275,17 @@ class sitemap_generator
 	 * Finalizes tags of sitemap XML document.
 	 *
 	 */
-	public function endSitemap() {
-		if (!$this->getWriter()) {
+	public function endSitemap()
+	{
+		if (!$this->getWriter())
+		{
 			$this->startSitemap();
 		}
+
 		$this->getWriter()->endElement();
 		$this->getWriter()->endDocument();
+
+		$this->getWriter()->flush();
 	}
 
 	/**
@@ -252,7 +297,9 @@ class sitemap_generator
 	public function createSitemapIndex($loc = null, $lastmod = 'Today')
 	{
 		if(!$loc)
+		{
 			$loc = $this->getDomain().'sitemap/';
+		}
 
 		$this->endSitemap();
 		$indexwriter = new \XMLWriter();
@@ -273,6 +320,7 @@ class sitemap_generator
 		}
 		$indexwriter->endElement();
 		$indexwriter->endDocument();
+		$indexwriter->flush();
 	}
 
 
