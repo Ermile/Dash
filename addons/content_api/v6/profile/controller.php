@@ -40,6 +40,11 @@ class controller
 	{
 
 		$request = self::getPost($_get_avatar);
+		if(!array_filter($request))
+		{
+			\dash\notif::error(T_("No field sended"));
+			return false;
+		}
 
 		// ready request
 		$id = \dash\coding::encode(\dash\user::id());
