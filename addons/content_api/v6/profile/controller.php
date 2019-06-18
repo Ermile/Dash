@@ -19,6 +19,10 @@ class controller
 		{
 			$profile = self::update_profile();
 		}
+		elseif(\dash\request::is('post'))
+		{
+			$profile = self::update_profile(true);
+		}
 		elseif(\dash\request::is('get'))
 		{
 			$profile = self::get_profile();
@@ -32,10 +36,10 @@ class controller
 	}
 
 
-	private static function update_profile()
+	private static function update_profile($_get_avatar = false)
 	{
 
-		$request = self::getPost();
+		$request = self::getPost($_get_avatar);
 
 		// ready request
 		$id = \dash\coding::encode(\dash\user::id());
@@ -99,7 +103,7 @@ class controller
 
 
 
-	private static function getPost()
+	private static function getPost($_get_avatar = false)
 	{
 		$post = [];
 
@@ -193,11 +197,14 @@ class controller
 			$post['email']       = \dash\request::post('email');
 		}
 
-		$avatar = \dash\app\file::upload_quick('avatar');
-
-		if($avatar)
+		if($_get_avatar)
 		{
-			$post['avatar'] = $avatar;
+			$avatar = \dash\app\file::upload_quick('avatar');
+
+			if($avatar)
+			{
+				$post['avatar'] = $avatar;
+			}
 		}
 
 		return $post;
