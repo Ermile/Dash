@@ -1,0 +1,278 @@
+<div class="cbox" id='update-profile'>
+
+  <h2 class="f" data-kerkere='#update-profile-detail' data-kerkere-icon='open'>
+    <div class="cauto pRa10"><span class="badge primary">PATCH</span></div>
+    <div>{%trans "Update your profile"%}</div>
+  </h2>
+  <div id="update-profile-detail">
+    <p>{%trans "Update profile detail"%}</p>
+    <div class="msg url">
+      <i class="method">PATCH</i>
+      <span>{{apiURL}}<b>profile</b></span>
+    </div>
+
+    <div class="tblBox">
+      <h3>{%trans "Required parameters"%} {%trans "on header"%}</h3>
+      <table class="tbl1 v3">
+        <thead>
+          <tr>
+            <th>{%trans "Name"%} <small>{%trans "type"%}</small></th>
+            <th>{%trans "Description"%} <small>{%trans "example"%}</small></th>
+            <th>{%trans "Constraints"%}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="txtB">apikey</div>
+              <i>string</i>
+            </td>
+            <td>
+              <div>{%trans "Your apikey"%}</div>
+              <code>87923bd0d04b30aa5f66b699c2698e3b</code>
+            </td>
+            <td>
+              <div class="fc-red"><i>{%trans "Required"%}</i></div>
+              {%trans "length"%} {{32 | fitNumber}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+    <div class="tblBox">
+      <h3>{%trans "Parameters"%}</h3>
+      <table class="tbl1 v3">
+        <thead>
+          <tr>
+            <th>{%trans "Name"%} <small>{%trans "type"%}</small></th>
+            <th>{%trans "Description"%} <small>{%trans "example"%}</small></th>
+            <th>{%trans "Constraints"%}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="txtB">displayname</div>
+              <i>string</i>
+            </td>
+            <td>
+              <div class="fc-mute">{%trans "Example"%}</div>
+              <i>Reza Mohiti</i>
+            </td>
+            <td>
+              <div class="fc-green"><i>{%trans "Optional"%}</i></div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="txtB">firstname</div>
+              <i>string</i>
+            </td>
+            <td>
+              <div class="fc-mute">{%trans "Example"%}</div>
+              <i>Reza</i>
+            </td>
+            <td>
+              <div class="fc-green"><i>{%trans "Optional"%}</i></div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="txtB">lastname</div>
+              <i>string</i>
+            </td>
+            <td>
+              <div class="fc-mute">{%trans "Example"%}</div>
+              <i>Mohiti</i>
+            </td>
+            <td>
+              <div class="fc-green"><i>{%trans "Optional"%}</i></div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="txtB">username</div>
+              <i>string</i>
+            </td>
+            <td>
+              <div class="fc-mute">{%trans "Example"%}</div>
+              <i>Biqarar</i>
+            </td>
+            <td>
+              <div class="fc-green"><i>{%trans "Optional"%}</i></div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="txtB">language</div>
+              <i>string</i>
+            </td>
+            <td>
+              <div class="fc-mute">{%trans "Example"%}</div>
+              <i>fa</i>
+            </td>
+            <td>
+              <div class="fc-green"><i>{%trans "Optional"%}</i></div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="txtB">birthday</div>
+              <i>string</i>
+            </td>
+            <td>
+              <div class="fc-mute">{%trans "Example"%}</div>
+              <i>1990-01-16</i>
+            </td>
+            <td>
+              <div class="fc-green"><i>{%trans "Optional"%}</i></div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="txtB">gender</div>
+              <i>string</i>
+            </td>
+            <td>
+              <div class="fc-mute">{%trans "Example"%}</div>
+              <i>male</i> {%trans "Or"%} <i>female</i>
+            </td>
+            <td>
+              <div class="fc-green"><i>{%trans "Optional"%}</i></div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="txtB">email</div>
+              <i>string</i>
+            </td>
+            <td>
+              <div class="fc-mute">{%trans "Example"%}</div>
+              <i>name@domain.com</i>
+            </td>
+            <td>
+              <div class="fc-green"><i>{%trans "Optional"%}</i></div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="txtB">website</div>
+              <i>string</i>
+            </td>
+            <td>
+              <div class="fc-mute">{%trans "Example"%}</div>
+              <i>http://yourwebsite.tld</i>
+            </td>
+            <td>
+              <div class="fc-green"><i>{%trans "Optional"%}</i></div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="txtB">instagram</div>
+              <i>string</i>
+            </td>
+            <td>
+              <div class="fc-mute">{%trans "Your account username in"%} {%trans "instagram"%}</div>
+            </td>
+            <td>
+              <div class="fc-green"><i>{%trans "Optional"%}</i></div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="txtB">linkedin</div>
+              <i>string</i>
+            </td>
+            <td>
+              <div class="fc-mute">{%trans "Your account username in"%} {%trans "linkedin"%}</div>
+            </td>
+            <td>
+              <div class="fc-green"><i>{%trans "Optional"%}</i></div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="txtB">facebook</div>
+              <i>string</i>
+            </td>
+            <td>
+              <div class="fc-mute">{%trans "Your account username in"%} {%trans "facebook"%}</div>
+            </td>
+            <td>
+              <div class="fc-green"><i>{%trans "Optional"%}</i></div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="txtB">twitter</div>
+              <i>string</i>
+            </td>
+            <td>
+              <div class="fc-mute">{%trans "Your account username in"%} {%trans "twitter"%}</div>
+            </td>
+            <td>
+              <div class="fc-green"><i>{%trans "Optional"%}</i></div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="txtB">title</div>
+              <i>string</i>
+            </td>
+            <td>
+              <div class="fc-mute">{%trans "Example"%}</div>
+              <i>Programer</i>
+            </td>
+            <td>
+              <div class="fc-green"><i>{%trans "Optional"%}</i></div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="txtB">bio</div>
+              <i>string</i>
+            </td>
+            <td>
+              <div class="fc-mute">{%trans "Example"%}</div>
+              <i>your bio text</i>
+            </td>
+            <td>
+              <div class="fc-green"><i>{%trans "Optional"%}</i></div>
+            </td>
+          </tr>
+
+
+
+        </tbody>
+      </table>
+    </div>
+
+    <h3>{%trans "cURL"%} <small>{%trans "example"%}</small></h3>
+<pre>
+curl -X PATCH \
+  {{apiURL}}profile \
+  -H 'apikey: 87923bd0d04b30aa5f66b699c2698e3b' \
+  -F 'username=biqarar'\
+  -F 'bio=programing is my life'
+</pre>
+
+    <h3>{%trans "Response"%} <small>{%trans "example"%}</small></h3>
+<pre>
+{
+  "ok": true,
+  "msg": [
+    {
+      "type": "ok",
+      "text": "User successfully updated"
+    }
+  ],
+  "result": null
+}
+</pre>
+
+  </div>
+</div>
