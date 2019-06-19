@@ -42,7 +42,6 @@ class controller
 	}
 
 
-
 	private static function detail_v6(&$detail)
 	{
 		self::lang($detail);
@@ -64,10 +63,7 @@ class controller
 		self::theme_default($detail);
 
 		self::theme_night($detail);
-
-
 	}
-
 
 
 	private static function lang(&$detail)
@@ -82,6 +78,7 @@ class controller
 		$detail['url']['kingdom'] = \dash\url::kingdom();
 		$detail['url']['domain']  = \dash\url::domain();
 		$detail['url']['root']    = \dash\url::root();
+		$detail['url']['update']  = \dash\url::kingdom(). '/app';
 	}
 
 
@@ -96,14 +93,13 @@ class controller
 
 	private static function version(&$detail)
 	{
-		$detail['version']                 = [];
-		$detail['version']['last']         = '19.4';
-		$detail['version']['deprecated']   = '14.0.1';
-		$detail['version']['title']        = T_("This version is deprecated");
-		$detail['version']['desc']         = T_("To download new version of this app click blow link");
-		$detail['version']['btn']          = [];
-		$detail['version']['btn']['title'] = T_("Site");
-		$detail['version']['btn']['url']   = \dash\url::kingdom(). '/app';
+		$detail['version']                     = [];
+		$detail['version']['last']             = '19.4';
+		$detail['version']['deprecated']       = '14.0.1';
+		$detail['version']['deprecated_title'] = T_("This version is deprecated");
+		$detail['version']['deprecated_desc']  = T_("To download new version of this app click blow link");
+		$detail['version']['update_title']     = T_("New version is released");
+		$detail['version']['update_desc']      = T_("To download new version of this app click blow link");
 	}
 
 
@@ -122,25 +118,41 @@ class controller
 	}
 
 
-
-
 	private static function menu(&$detail)
 	{
 		$menu = [];
 		// type enum(defile, url, api, menu, tel, email)
 		$menu[] =
 		[
-			'icon'  => null,
+			'icon'  => 'info',
 			'type'  => 'menu',
 			'title' => T_("About"),
-			'link'   => \dash\url::kingdom(). '/api/v6/about',
+			'link'  => null,
 			'child' =>
 			[
 				[
-					'icon'  => null,
+					'icon'  => 'android',
+					'type'  => 'define',
+					'title' => T_("About this version"),
+					'link'  => null,
+				],
+				[
+					'icon'  => 'info',
+					'type'  => 'api',
+					'title' => T_("About us"),
+					'link'  => \dash\url::kingdom(). '/api/v6/about',
+				],
+				[
+					'icon'  => 'lock',
 					'type'  => 'api',
 					'title' => T_("Privacy"),
-					'link'  => \dash\url::kingdom(). '/api/v6/privacy'
+					'link'  => \dash\url::kingdom(). '/api/v6/privacy',
+				],
+				[
+					'icon'  => 'list',
+					'type'  => 'api',
+					'title' => T_("Terms"),
+					'link'  => \dash\url::kingdom(). '/api/v6/terms',
 				],
 			],
 		];
@@ -151,7 +163,7 @@ class controller
 			'type'  => 'api',
 			'title' => T_("Contact"),
 			'link'  => \dash\url::kingdom(). '/api/v6/contact',
-			'child' => [],
+			'child' => null,
 		];
 
 		$menu[] =
@@ -160,7 +172,7 @@ class controller
 			'type'  => 'api',
 			'title' => T_("Vision"),
 			'link'  => \dash\url::kingdom(). '/api/v6/vision',
-			'child' => [],
+			'child' => null,
 		];
 
 		$menu[] =
@@ -169,7 +181,7 @@ class controller
 			'type'  => 'api',
 			'title' => T_("Mission"),
 			'link'  => \dash\url::kingdom(). '/api/v6/mission',
-			'child' => [],
+			'child' => null,
 		];
 
 		$menu[] =
@@ -178,7 +190,7 @@ class controller
 			'type'  => 'url',
 			'title' => T_("Website"),
 			'link'  => \dash\url::kingdom(),
-			'child' => [],
+			'child' => null,
 		];
 
 
@@ -193,13 +205,27 @@ class controller
 		// type enum(defile, url, api, navigation, tel, email)
 		$navigation[] =
 		[
-			'icon'  => null,
-			'type'  => 'navigation',
-			'title' => T_("About"),
-			'link'   => \dash\url::kingdom(). '/api/v6/about',
-
+			'icon'  => 'setting',
+			'type'  => 'define',
+			'title' => T_("Setting"),
+			'link'  => null,
 		];
 
+		$navigation[] =
+		[
+			'icon'  => 'more',
+			'type'  => 'define',
+			'title' => T_("More"),
+			'link'  => null,
+		];
+
+		$navigation[] =
+		[
+			'icon'  => 'home',
+			'type'  => 'url',
+			'title' => T_("Home"),
+			'link'  => \dash\url::kingdom(). '/app',
+		];
 
 		$detail['navigation']   = $navigation;
 
@@ -213,17 +239,17 @@ class controller
 		$intro   = [];
 		$intro[] =
 		[
-			'title'       => T_('Travel to Karbala'),
-			'desc'        => T_('Executor of first pilgrimage to the Ahl al-Bayt | Karbala - Mashhad - Qom'),
-			'bg_from'  => '#ffffff',
-			'bg_to'  => '#ffffff',
+			'title'       => T_(\dash\option::config('site','title')),
+			'desc'        => T_(\dash\option::config('site','desc')),
+			'bg_from'     => '#ffffff',
+			'bg_to'       => '#ffffff',
 			'title_color' => '#000000',
 			'desc_color'  => '#000000',
-			'image'       => 'https://khadije.com/files/1/92-fd6f59d2284353db98bdf32e2d6796c8.png',
-			'btn' =>
+			'image'       => \dash\url::static(). '/images/logo.png',
+			'btn'         =>
 			[
 				[
-					'title' => T_("Next"),
+					'title'  => T_("Next"),
 					'action' => 'next',
 				],
 			],
@@ -231,21 +257,21 @@ class controller
 
 		$intro[] =
 		[
-			'title'       => T_('Travel to Qom'),
-			'desc'        => T_('Executor of first pilgrimage to the Ahl al-Bayt | Karbala - Mashhad - Qom'),
-			'bg_from'  => '#ffffff',
-			'bg_to'  => '#ffffff',
+			'title'       => T_('Easy'),
+			'desc'        => T_('Easy to use'),
+			'bg_from'     => '#ffffff',
+			'bg_to'       => '#ffffff',
 			'title_color' => '#000000',
 			'desc_color'  => '#000000',
-			'image'       => 'https://khadije.com/files/1/90-7de485580f96aefb3e1c70f445565028.png',
-			'btn' =>
+			'image'       => \dash\url::static(). '/images/logo.png',
+			'btn'         =>
 			[
 				[
-					'title' => T_("Prev"),
+					'title'  => T_("Prev"),
 					'action' => 'prev',
 				],
 				[
-					'title' => T_("Next"),
+					'title'  => T_("Next"),
 					'action' => 'next',
 				],
 			],
@@ -253,21 +279,21 @@ class controller
 
 		$intro[] =
 		[
-			'title'       => T_('Travel to Mashhad'),
-			'desc'        => T_('Executor of first pilgrimage to the Ahl al-Bayt | Karbala - Mashhad - Qom'),
-			'bg_from'  => '#ffffff',
-			'bg_to'  => '#ffffff',
+			'title'       => T_('Powerful'),
+			'desc'        => T_('Best application'),
+			'bg_from'     => '#ffffff',
+			'bg_to'       => '#ffffff',
 			'title_color' => '#000000',
 			'desc_color'  => '#000000',
-			'image'       => 'https://khadije.com/files/1/91-b688f1d8b2ba6f076558b8d97bbc615e.png',
-			'btn' =>
+			'image'       => \dash\url::static(). '/images/logo.png',
+			'btn'         =>
 			[
 				[
-					'title' => T_("Prev"),
+					'title'  => T_("Prev"),
 					'action' => 'prev',
 				],
 				[
-					'title' => T_("Next"),
+					'title'  => T_("Next"),
 					'action' => 'next',
 				],
 			],
@@ -275,17 +301,17 @@ class controller
 
 		$intro[] =
 		[
-			'title'       => T_('Khadije Charity'),
-			'desc'        => T_('Executor of first pilgrimage to the Ahl al-Bayt | Karbala - Mashhad - Qom'),
-			'bg_from'  => '#ffffff',
-			'bg_to'  => '#ffffff',
+			'title'       => T_('Enjoy'),
+			'desc'        => T_('Welcome to our collection'),
+			'bg_from'     => '#ffffff',
+			'bg_to'       => '#ffffff',
 			'title_color' => '#000000',
 			'desc_color'  => '#000000',
-			'image'       => 'https://khadije.com/files/1/431-22327c753b4d65d22873fc545e2dd7c1.png',
+			'image'       => \dash\url::static(). '/images/logo.png',
 			'btn' =>
 			[
 				[
-					'title' => T_("Start"),
+					'title'  => T_("Start"),
 					'action' => 'start',
 				],
 			],
@@ -301,72 +327,72 @@ class controller
 		$theme_default           = [];
 		$theme_default['splash'] =
 		[
-			'bg_from' => '#eee',
-			'bg_to'   => '#eee',
-			'color'   => '#fff',
+			'bg_from' => '#ffffff',
+			'bg_to'   => '#ffffff',
+			'color'   => '#000000',
 		];
 
 		$theme_default['global'] =
 		[
-			'bg_from'   => '#eee',
-			'bg_to'     => '#eee',
-			'color'     => '#fff',
-			'btn_from'  => '#eee',
-			'btn_to'    => '#eee',
-			'btn_color' => '#fff',
+			'bg_from'   => '#ffffff',
+			'bg_to'     => '#ffffff',
+			'color'     => '#000000',
+			'btn_from'  => '#ffffff',
+			'btn_to'    => '#ffffff',
+			'btn_color' => '#000000',
 		];
 
 		$theme_default['intro'] =
 		[
-			'bg_from'      => '#eee',
-			'bg_to'        => '#eee',
-			'color'        => '#fff',
-			'header_from'  => '#eee',
-			'header_to'    => '#eee',
-			'header_color' => '#fff',
-			'footer_from'  => '#eee',
-			'footer_to'    => '#eee',
-			'footer_color' => '#fff',
+			'bg_from'      => '#ffffff',
+			'bg_to'        => '#ffffff',
+			'color'        => '#000000',
+			'header_from'  => '#ffffff',
+			'header_to'    => '#ffffff',
+			'header_color' => '#000000',
+			'footer_from'  => '#ffffff',
+			'footer_to'    => '#ffffff',
+			'footer_color' => '#000000',
 		];
 
 		$theme_default['share'] =
 		[
-			'bg_from'      => '#eee',
-			'bg_to'        => '#eee',
-			'color'        => '#fff',
-			'header_from'  => '#eee',
-			'header_to'    => '#eee',
-			'header_color' => '#fff',
-			'footer_from'  => '#eee',
-			'footer_to'    => '#eee',
-			'footer_color' => '#fff',
+			'bg_from'      => '#ffffff',
+			'bg_to'        => '#ffffff',
+			'color'        => '#000000',
+			'header_from'  => '#ffffff',
+			'header_to'    => '#ffffff',
+			'header_color' => '#000000',
+			'footer_from'  => '#ffffff',
+			'footer_to'    => '#ffffff',
+			'footer_color' => '#000000',
 		];
 
 		$theme_default['btn'] =
 		[
 			"success" =>
 			[
-				'bg_from' => '#eee',
-				'bg_to'   => '#eee',
-				'color'   => '#fff',
+				'bg_from' => '#ffffff',
+				'bg_to'   => '#ffffff',
+				'color'   => '#000000',
 			],
 			"danger" =>
 			[
-				'bg_from' => '#eee',
-				'bg_to'   => '#eee',
-				'color'   => '#fff',
+				'bg_from' => '#ffffff',
+				'bg_to'   => '#ffffff',
+				'color'   => '#000000',
 			],
 			"warn" =>
 			[
-				'bg_from' => '#eee',
-				'bg_to'   => '#eee',
-				'color'   => '#fff',
+				'bg_from' => '#ffffff',
+				'bg_to'   => '#ffffff',
+				'color'   => '#000000',
 			],
 			"info" =>
 			[
-				'bg_from' => '#eee',
-				'bg_to'   => '#eee',
-				'color'   => '#fff',
+				'bg_from' => '#ffffff',
+				'bg_to'   => '#ffffff',
+				'color'   => '#000000',
 			],
 		];
 
@@ -379,72 +405,72 @@ class controller
 		$theme_default           = [];
 		$theme_default['splash'] =
 		[
-			'bg_from' => '#eee',
-			'bg_to'   => '#eee',
-			'color'   => '#fff',
+			'bg_from' => '#ffffff',
+			'bg_to'   => '#ffffff',
+			'color'   => '#000000',
 		];
 
 		$theme_default['global'] =
 		[
-			'bg_from'   => '#eee',
-			'bg_to'     => '#eee',
-			'color'     => '#fff',
-			'btn_from'  => '#eee',
-			'btn_to'    => '#eee',
-			'btn_color' => '#fff',
+			'bg_from'   => '#ffffff',
+			'bg_to'     => '#ffffff',
+			'color'     => '#000000',
+			'btn_from'  => '#ffffff',
+			'btn_to'    => '#ffffff',
+			'btn_color' => '#000000',
 		];
 
 		$theme_default['intro'] =
 		[
-			'bg_from'      => '#eee',
-			'bg_to'        => '#eee',
-			'color'        => '#fff',
-			'header_from'  => '#eee',
-			'header_to'    => '#eee',
-			'header_color' => '#fff',
-			'footer_from'  => '#eee',
-			'footer_to'    => '#eee',
-			'footer_color' => '#fff',
+			'bg_from'      => '#ffffff',
+			'bg_to'        => '#ffffff',
+			'color'        => '#000000',
+			'header_from'  => '#ffffff',
+			'header_to'    => '#ffffff',
+			'header_color' => '#000000',
+			'footer_from'  => '#ffffff',
+			'footer_to'    => '#ffffff',
+			'footer_color' => '#000000',
 		];
 
 		$theme_default['share'] =
 		[
-			'bg_from'      => '#eee',
-			'bg_to'        => '#eee',
-			'color'        => '#fff',
-			'header_from'  => '#eee',
-			'header_to'    => '#eee',
-			'header_color' => '#fff',
-			'footer_from'  => '#eee',
-			'footer_to'    => '#eee',
-			'footer_color' => '#fff',
+			'bg_from'      => '#ffffff',
+			'bg_to'        => '#ffffff',
+			'color'        => '#000000',
+			'header_from'  => '#ffffff',
+			'header_to'    => '#ffffff',
+			'header_color' => '#000000',
+			'footer_from'  => '#ffffff',
+			'footer_to'    => '#ffffff',
+			'footer_color' => '#000000',
 		];
 
 		$theme_default['btn'] =
 		[
 			"success" =>
 			[
-				'bg_from' => '#eee',
-				'bg_to'   => '#eee',
-				'color'   => '#fff',
+				'bg_from' => '#ffffff',
+				'bg_to'   => '#ffffff',
+				'color'   => '#000000',
 			],
 			"danger" =>
 			[
-				'bg_from' => '#eee',
-				'bg_to'   => '#eee',
-				'color'   => '#fff',
+				'bg_from' => '#ffffff',
+				'bg_to'   => '#ffffff',
+				'color'   => '#000000',
 			],
 			"warn" =>
 			[
-				'bg_from' => '#eee',
-				'bg_to'   => '#eee',
-				'color'   => '#fff',
+				'bg_from' => '#ffffff',
+				'bg_to'   => '#ffffff',
+				'color'   => '#000000',
 			],
 			"info" =>
 			[
-				'bg_from' => '#eee',
-				'bg_to'   => '#eee',
-				'color'   => '#fff',
+				'bg_from' => '#ffffff',
+				'bg_to'   => '#ffffff',
+				'color'   => '#000000',
 			],
 		];
 
