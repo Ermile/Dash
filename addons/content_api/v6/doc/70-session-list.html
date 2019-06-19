@@ -14,6 +14,37 @@
       <span>{{apiURL}}<b>session</b></span>
     </div>
 
+      <div class="tblBox">
+      <h3>{%trans "Required parameters"%} {%trans "on header"%}</h3>
+      <table class="tbl1 v3">
+        <thead>
+          <tr>
+            <th>{%trans "Name"%} <small>{%trans "type"%}</small></th>
+            <th>{%trans "Description"%} <small>{%trans "example"%}</small></th>
+            <th>{%trans "Constraints"%}</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr>
+            <td>
+              <div class="txtB">apikey</div>
+              <i>string</i>
+            </td>
+            <td>
+              <div>{%trans "Your apikey"%}</div>
+              <code>87923bd0d04b30aa5f66b699c2698e3b</code>
+            </td>
+            <td>
+              <div class="fc-red"><i>{%trans "Required"%}</i></div>
+              {%trans "length"%} {{32 | fitNumber}}
+              <div>{%trans "Get from your account profile"%}</div>
+          </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
     <h3>{%trans "cURL"%} <small>{%trans "example"%}</small></h3>
     <pre>curl -X GET {{apiURL}}session</pre>
 

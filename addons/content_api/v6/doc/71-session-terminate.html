@@ -1,0 +1,112 @@
+<div class="cbox" id='session-terminate'>
+
+  <h2 class="f" data-kerkere='#session-terminate-detail' data-kerkere-icon='open'>
+    <div class="cauto pRa10"><span class="badge primary">POST</span></div>
+    <div>{%trans "Terminate session"%}</div>
+  </h2>
+  <div id="session-terminate-detail">
+    <p>{%trans "Terminate one session or all session"%}</p>
+    <div class="msg url">
+      <i class="method">POST</i>
+      <span>{{apiURL}}<b>session</b></span>
+    </div>
+
+    <div class="tblBox">
+      <h3>{%trans "Required parameters"%} {%trans "on header"%}</h3>
+      <table class="tbl1 v3">
+        <thead>
+          <tr>
+            <th>{%trans "Name"%} <small>{%trans "type"%}</small></th>
+            <th>{%trans "Description"%} <small>{%trans "example"%}</small></th>
+            <th>{%trans "Constraints"%}</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr>
+            <td>
+              <div class="txtB">apikey</div>
+              <i>string</i>
+            </td>
+            <td>
+              <div>{%trans "Your apikey"%}</div>
+              <code>87923bd0d04b30aa5f66b699c2698e3b</code>
+            </td>
+            <td>
+              <div class="fc-red"><i>{%trans "Required"%}</i></div>
+              {%trans "length"%} {{32 | fitNumber}}
+              <div>{%trans "Get from your account profile"%}</div>
+          </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+
+
+    <div class="tblBox">
+      <h3>{%trans "Parameters"%}</h3>
+      <table class="tbl1 v3">
+        <thead>
+          <tr>
+            <th>{%trans "Name"%} <small>{%trans "type"%}</small></th>
+            <th>{%trans "Description"%} <small>{%trans "example"%}</small></th>
+
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr>
+            <td>
+              <div class="txtB">type</div>
+              <i>String</i>
+            </td>
+            <td>
+              <code>terminate</code> {%trans "Or"%} <code>terminateall</code>
+
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="txtB">id</div>
+              <i>String</i>
+            </td>
+            <td>
+              <div>{%trans "example"%}</div>
+              <code>3N</code>
+              <div>{%trans "If type is `terminate` the id is require"%}</div>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+
+    <h3>{%trans "cURL"%} <small>{%trans "example"%}</small></h3>
+<pre>
+curl -X POST \
+  {{apiURL}}session \
+  -H 'apikey: 87923bd0d04b30aa5f66b699c2698e3b' \
+  -F 'type=terminate' \
+  -F 'id=3N'
+</pre>
+
+<h3>{%trans "Response"%} <small>{%trans "example"%}</small></h3>
+<pre>
+{
+  "ok": true,
+  "msg": [
+    {
+      "type": "ok",
+      "text": "This Session was terminated"
+    }
+  ],
+  "result": true
+}
+</pre>
+
+  </div>
+</div>
