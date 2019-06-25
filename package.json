@@ -9,6 +9,6 @@
   },
   "homepage": "https://dash.ermile.com",
   "dependencies": {
-    "siftal": "Ermile/siftal"
+    "siftal": ">=4.2"
   }
 }
