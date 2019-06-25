@@ -9,6 +9,6 @@
   },
   "homepage": "https://dash.ermile.com",
   "dependencies": {
-    "siftal": "^4.2.0"
+    "siftal": "^6.9.0"
   }
 }
