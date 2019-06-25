@@ -4,6 +4,8 @@ desktop.ini
 *Thumbs.db
 *.me.*
 /public_html/files
+node_modules
+package-lock.json
 /public_html/data
 /public_html/sitemap
 /lib/engine/cronjob/crontab.txt
