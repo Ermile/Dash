@@ -34,6 +34,8 @@ trait ext
 			'wav'      => [ 'type' => 'audio',      'mime' => 'audio/x-wav'],
 			'ogg'      => [ 'type' => 'audio',      'mime' => 'audio/ogg'],
 			'wma'      => [ 'type' => 'audio',      'mime' => 'audio/x-ms-wma'],
+			'm4a'      => [ 'type' => 'audio',      'mime' => 'audio/x-m4a'],
+			'aac'      => [ 'type' => 'audio',      'mime' => 'audio/aac'],
 
 			// image
 			'bmp'      => [ 'type' => 'image',      'mime' => 'image/bmp'],

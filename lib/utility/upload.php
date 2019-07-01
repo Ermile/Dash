@@ -25,10 +25,11 @@ class upload
 	public static $extentionsDisallow = ['php', 'php5', 'htaccess', 'exe', 'bat', 'bin'];
 	public static $extentions         =
 	[
-		'png', 'jpeg', 	'jpg', 	'zip', 	'rar', 'mp3',
-		'mp4', 'pdf', 	'doc', 	'docx', 'apk', 'chm',
-		'jar', 'txt', 	'css', 	'js', 	'htm', 'html', 'csv',
-		'swf', 'xml', 	'xlsx', 'pptx', 'ogg', 'mov', 'wma'
+		'png', 'jpeg','jpg',  'zip',  'rar',
+		'mp4', 'pdf', 'doc',  'docx', 'apk', 'chm',
+		'jar', 'txt', 'css',  'js',   'htm', 'html', 'csv',
+		'mp3', 'm4a', 'aac',  'wav',  'wma', 'ogg',
+		'swf', 'xml', 'xlsx', 'pptx', 'mov',
 	];
 	/**
 	 * default set the file name as md5
