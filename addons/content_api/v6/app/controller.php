@@ -44,6 +44,7 @@ class controller
 
 	private static function detail_v6(&$detail)
 	{
+
 		self::lang($detail);
 
 		self::url($detail);
@@ -63,12 +64,35 @@ class controller
 		self::theme_default($detail);
 
 		self::theme_night($detail);
+
+		self::ad($detail);
+	}
+
+
+	private static function ad(&$detail)
+	{
+		$detail['ad']           = [];
+		$detail['ad']['top']    =
+		[
+			'content' => null,
+			'link'    => null,
+		];
+		$detail['ad']['bottom'] = [];
 	}
 
 
 	private static function lang(&$detail)
 	{
-		$detail['lang_list'] = \dash\language::all();
+		$lang_list = \dash\language::all();
+		if(is_array($lang_list))
+		{
+			foreach ($lang_list as $key => $value)
+			{
+				$lang_list[$key]['api_url'] = \dash\url::base().'/'. $key .'/api/v6';
+			}
+		}
+		$detail['lang_list'] = $lang_list;
+
 	}
 
 

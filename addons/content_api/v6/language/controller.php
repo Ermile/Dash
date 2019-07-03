@@ -11,9 +11,17 @@ class controller
 			\content_api\v6::no(404);
 		}
 
-		$result = \dash\language::all();
 
-		\content_api\v6::bye($result);
+		$lang_list = \dash\language::all();
+		if(is_array($lang_list))
+		{
+			foreach ($lang_list as $key => $value)
+			{
+				$lang_list[$key]['api_url'] = \dash\url::base().'/'. $key .'/api/'. \dash\url::module();
+			}
+		}
+
+		\content_api\v6::bye($lang_list);
 	}
 }
 ?>
