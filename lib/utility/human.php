@@ -131,6 +131,10 @@ class human
 	 */
 	public static function time($_time, $_long = null)
 	{
+		if(!is_numeric($_time))
+		{
+			return null;
+		}
 		// change from sec to min
 		$_time = floor($_time / 60);
 		$result = '';

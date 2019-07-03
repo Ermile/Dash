@@ -75,7 +75,7 @@ class datetime
 
 
 	public static function get(
-		$_datetime,
+		$_datetime = null,
 		$_format = null,
 		$_type = 'datetime',
 		$_lang = null,
@@ -83,6 +83,14 @@ class datetime
 	)
 	{
 		// step1 - check datetime
+		if($_datetime === null)
+		{
+			$_datetime = date("Y-m-d H:i:s");
+		}
+		if(!$_datetime)
+		{
+			return null;
+		}
 
 		// step2 - get new format
 		$myFormat   = self::format($_format, $_type);
@@ -123,12 +131,17 @@ class datetime
 	}
 
 
-	public static function fit($_datetime, $_format = null, $_type = null, $_calendar = null)
+	public static function fit($_datetime = null, $_format = null, $_type = null, $_calendar = null)
 	{
+		if($_datetime === null)
+		{
+			$_datetime = date("Y-m-d H:i:s");
+		}
 		if(!$_datetime)
 		{
 			return null;
 		}
+
 		// change all number to en number
 		$_datetime = \dash\utility\convert::to_en_number($_datetime);
 		// check number is not zero
