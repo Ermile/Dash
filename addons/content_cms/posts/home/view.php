@@ -29,45 +29,59 @@ class view
 			switch ($myType)
 			{
 				case 'page':
-					\dash\permission::access('cpPageView');
 					$myTitle = T_('Pages');
 					$myDesc  = T_('Check list of pages and to find your pages.'). ' '. T_('Also add or edit specefic static page.');
 					\dash\data::page_pictogram('files-o');
+					\dash\data::badge_text(T_('Add new page'));
 					break;
 
 				case 'help':
-					\dash\permission::access('cpHelpCenterView');
-					$myTitle = T_('Help Center');
-					$myDesc  = T_('Check list of article in help center.'). ' '. T_('Also add or edit specefic article.');
+					$myTitle     = T_('Help Center');
+					$myDesc      = T_('Check list of article in help center.'). ' '. T_('Also add or edit specefic article.');
 					$myBadgeText = T_('Back to list of helps');
 					\dash\data::page_pictogram('life-ring');
+					\dash\data::badge_text(T_('Add new help center article'));
 					break;
 
 				case 'mag':
-					\dash\permission::access('cpMagView');
 					$myTitle = T_('Magazine');
 					$myDesc  = T_('Check list of article in magazine.'). ' '. T_('Also add or edit specefic article.');
 					$myBadgeText = T_('Back to list of magazines');
 					\dash\data::page_pictogram('book');
+					\dash\data::badge_text(T_('Add new magazine'));
 					break;
 
 				case 'post':
+					\dash\data::badge_text(T_('Add new post'));
+					break;
+
 				default:
-					\dash\permission::access('cpPostsView');
+					$allowPostType = \dash\option::config('allow_post_type');
+					if($allowPostType && is_array($allowPostType))
+					{
+						if(in_array($myType, $allowPostType))
+						{
+							// no problem
+						}
+						else
+						{
+							\dash\header::status(404);
+						}
+					}
+					else
+					{
+						\dash\header::status(404);
+					}
 					break;
 			}
 		}
-		else
-		{
-			\dash\permission::access('cpPostsView');
-		}
+
 
 		// add back level to summary link
 
 		\dash\data::page_title($myTitle);
 		\dash\data::page_desc($myDesc);
 
-		\dash\data::badge_text(T_('Add new :val', ['val' => $myType]));
 		\dash\data::badge_link(\dash\url::this(). '/add'. $moduleType);
 
 		\dash\data::badge2_text(T_('Back to dashboard'));
