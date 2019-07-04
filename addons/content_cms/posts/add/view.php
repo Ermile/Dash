@@ -31,54 +31,39 @@ class view
 			switch ($myType)
 			{
 				case 'page':
-
-					\dash\permission::access('cpPageAdd');
-
 					$myTitle = T_('Add new page');
 					$myDesc  = T_("Add new static page like about or honors");
-
 					$myBadgeText = T_('Back to list of pages');
-
 					$pageList = \dash\db\posts::get(['type' => 'page', 'language' => \dash\language::current(), 'status' => ["NOT IN", "('deleted')"]]);
 					$pageList = array_map(['\dash\app\posts', 'ready'], $pageList);
 					\dash\data::pageList($pageList);
 					break;
 
 				case 'help':
-					\dash\permission::access('cpHelpCenterAdd');
 					$myTitle     = T_('Add new help');
 					$myDesc      = T_("Add new article to help center or new faq.");
 					$myBadgeText = T_('Back to list of helps');
-
 					$pageList    = \dash\db\posts::get(['type' => 'help', 'language' => \dash\language::current(), 'status' => ["NOT IN", "('deleted')"]]);
 					$pageList    = array_map(['\dash\app\posts', 'ready'], $pageList);
-
 					\dash\data::pageList($pageList);
 					break;
 
 				case 'mag':
-					\dash\permission::access('cpMagAdd');
 					$myTitle     = T_('Add new maganize');
 					$myDesc      = T_("Add new article maganize.");
 					$myBadgeText = T_('Back to list of maganizes');
-
 					$pageList    = \dash\db\posts::get(['type' => 'mag', 'language' => \dash\language::current(), 'status' => ["NOT IN", "('deleted')"]]);
 					$pageList    = array_map(['\dash\app\posts', 'ready'], $pageList);
-
 					\dash\data::pageList($pageList);
 					break;
 
 				case 'post':
 				default:
-					\dash\permission::access('cpPostsAdd');
 					\dash\data::listCats(\dash\app\term::cat_list());
 					break;
 			}
 		}
-		else
-		{
-			\dash\permission::access('cpPostsAdd');
-		}
+
 
 		\dash\data::page_title($myTitle);
 		\dash\data::page_desc($myDesc);
