@@ -164,7 +164,7 @@
   </div>
 </div>
 {%else%}
-<div class="msg warn2"><a href="{{url.here}}/terms?type={%if myDataType == 'help'%}help{%else%}cat{%endif%}">{%trans "Add new category"%}</a></div>
+<div class="msg warn2"><a href="{{url.here}}/terms?type={%if myDataType == 'help'%}help{%elseif myDataType == 'mag'%}mag{%else%}cat{%endif%}">{%trans "Add new category"%}</a></div>
 {%endif%}
 {%endblock%}
 
