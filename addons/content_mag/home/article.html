@@ -1,0 +1,186 @@
+{%extends display.dash%}
+
+
+{%block pageContent%}
+<div class="f justify-center">
+ <div class="c8 s12">
+
+
+  <div class="cms cbox">
+    {{block('posts')}}
+  </div>
+
+  {{block('postChilds')}}
+ </div>
+</div>
+
+{%endblock%}
+
+
+
+{%block postChilds%}
+{%if subchildPost%}
+  <div class="cms cbox">
+    <h4>{%trans "In this section"%}</h4>
+{%for key, value in subchildPost%}
+    <div class="msg">
+{%if value.meta.icon%}
+      <span class="sf-{{value.meta.icon}} mRa10"></span>
+{%endif%}
+      <a href="{{url.here}}/{{value.slug}}">{{value.title}}</a>
+      <a href="#" class="floatRa">{{value.cat}}</a>
+    </div>
+{%endfor%}
+  </div>
+{%endif%}
+{%endblock%}
+
+
+
+{%block posts%}
+  <div class="show {{datarow.type}}">
+    <h2 class="txtB txtC mB10"><a href="{{url.pwd}}">{{datarow.title}}</a></h2>
+    <div class="ovh">
+{%if datarow.meta.thumb%}
+      <img src="{{datarow.meta.thumb}}" alt="{{datarow.title}}" class="wide">
+{%endif%}
+    {{datarow.content | raw}}
+    </div>
+{{block('imagegallery')}}
+{{tags({"format" : 'html', "container": "tagBox msg"})}}
+
+{%if datarow.datemodified%}
+    <div class='msg f mT20 fs08'>
+      <div class="c"><time datetime="{{datarow.datemodified}}">{{datarow.publishdate | dt(true, 'date')}}</time></div>
+      <div class="cauto os">{{category({"format" : 'html', "class": "badge mRa5"})}} <a href="{{url.base}}/n/{{datarow.id}}" data-direct title='{%trans "For share via social networks"%}'>{%trans "Short link"%} <span class="txtB">{{datarow.id}}</span></a></div>
+    </div>
+{%endif%}
+
+{{block('commentBox')}}
+  </div>
+{%endblock%}
+
+
+{%block imagegallery%}
+  {%if datarow.meta.gallery%}
+    <div class="gallery">
+      {%for key, myUrl in datarow.meta.gallery%}
+        {%if myUrl ends with '.jpg' or myUrl ends with '.png' or myUrl ends with '.gif'%}
+          <a data-action href="{{myUrl}}"><img src="{{myUrl}}" alt="{{datarow.title | raw}}"></a>
+        {%endif%}
+      {%endfor%}
+    </div>
+  {%endif%}
+
+{%for key, myUrl in datarow.meta.gallery%}
+        {%if myUrl ends with '.mp4' %}
+    <div class="galleryMedia">
+        <video controls>
+            <source src="{{myUrl}}" type="video/mp4">
+        </video>
+    </div>
+        {%elseif myUrl ends with '.mp3' %}
+    <div class="galleryMedia">
+        <audio controls><source src="{{myUrl}}" type="audio/mpeg"></audio>
+    </div>
+        {%elseif myUrl ends with '.pdf' %}
+    <div class="galleryMedia">
+        <a href="{{myUrl}}" class="btn lg mT25 primary">{%trans "Download"%} {%trans "PDF"%}</a>
+    </div>
+        {%else%}
+        {%endif%}
+{%endfor%}
+
+{%endblock%}
+
+
+
+{%block terms%}
+{%if datarow.type == 'cat'%}
+  {%set myPostByThisCat = posts({"cat" : datarow.slug})%}
+{%elseif datarow.type == 'tag' %}
+  {%set myPostByThisCat = posts({"tag" : datarow.slug})%}
+{%endif%}
+
+{%if myPostByThisCat %}
+<article class="postListPreview">
+  {%for key, value in myPostByThisCat%}
+    <section class="f">
+{%if value.meta.thumb%}
+      <div class="cauto s12 pRa10 txtC">
+        <a href="{{value.url}}"><img src="{{value.meta.thumb}}" alt="{{value.title}}" width="150px"></a>
+      </div>
+{%endif%}
+      <div class="c s12">
+        <h3><a href="{{value.url}}">{{value.title}}</a></h3>
+        <p>{{value.excerpt}}</p>
+      </div>
+    </section>
+  {%endfor%}
+</article>
+{%endif%}
+{%endblock%}
+
+
+
+
+
+
+{%block commentBox%}
+{%if datarow.comment == 'open'%}
+<h2>{%trans "Comment"%}</h2>
+<div class="f justify-center">
+
+<form class="c5" method="post" data-clear autocomplete="off" action="{{url.base}}/comment">
+
+  <input type="hidden" name="post_id" class="hide" value="{{datarow.id}}">
+{%if login.id %}
+{%else%}
+    <div class="f">
+      <div class="c pRa5">
+
+        <div class="input">
+         <label class="addon" for="name">{%trans "Name"%}</label>
+         <input type="text" name="name" id="name" placeholder='{%trans "Full Name"%}' maxlength='40' value="{{user.displayname}}">
+        </div>
+
+      </div>
+      <div class="c">
+        <div class="input">
+         <label class="addon" for="mobile">{%trans "Mobile"%}</label>
+         <input type="tel" name="mobile" id="mobile" placeholder='{%trans "Mobile"%}' maxlength="13" autocomplete="off" data-validity='{%trans "Please enter valid mobile number. `:val` is incorrect"%}' value="{{user.mobile}}">
+        </div>
+      </div>
+
+      <input type="text" name="username" class="hide" value="">
+    </div>
+{%endif%}
+    <div class="f">
+      <div class="c">
+         <textarea class="c txt mT5" name="content" placeholder='{%trans "Your Message"%}' rows="8" minlength="5" maxlength="1000" data-resizable></textarea>
+      </div>
+    </div>
+    <div class="f">
+      <div class="c">
+        <div class="input mTB10">
+         <button type="submit" name="submit-contact" class="btn block primary">{%trans "Send"%}</button>
+        </div>
+      </div>
+    </div>
+  </form>
+
+
+
+</div>
+
+{%set commentList = comments({"limit" : 60}) %}
+{%if commentList%}
+  {%for key, value in commentList%}
+  <div class="msg">
+    <p>{{value.content}}</p>
+  </div>
+  {%endfor%}
+{%endif%}
+
+{%endif%}
+{%endblock%}

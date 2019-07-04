@@ -1,0 +1,133 @@
+{%extends display.dash%}
+
+
+
+{%block pageContent%}
+
+  {{block('htmlSearchBox')}}
+  {{block('searchResult')}}
+  {{block('helpcats')}}
+
+  <div class="f">
+    {%if randomFAQ%}
+      <div class="{%if not randomArticles%}c12{%else%}c6{%endif%} s12 pRa10">
+        {{block('faqRandom')}}
+      </div>
+    {%endif%}
+
+    {%if randomArticles%}
+      <div class="{%if not randomFAQ%}c12{%else%}c6{%endif%} s12">
+        {{block('helpRandom')}}
+      </div>
+    {%endif%}
+  </div>
+{{block('addTicket')}}
+{%endblock%}
+
+
+
+
+{%block searchResult%}
+{%if dataTable%}
+<div class="cbox fs12">
+  <h2>{%trans "Search result"%}</h2>
+  <div>
+    {%for key, value in dataTable %}
+    <div class="msg">
+      <span class="sf-info mRa10"></span>
+      <a href="{{url.this}}/{{value.slug}}">{{value.title}} <small>{{value.excerpt}}</small></a>
+      {%if value.parent_detail.title%}<a href="{{url.here}}/{{value.url}}" class="floatRa">{{value.parent_detail.title}}</a>{%endif%}
+    </div>
+    {%endfor%}
+  </div>
+
+</div>
+{%elseif requestGET.q%}
+<div class="cbox">
+  <div class="mgs txtB txtC">{%trans "No result found!"%}</div>
+</div>
+{%endif%}
+
+{%endblock%}
+
+{%block htmlSearchBox%}
+{%if  listCats or randomFAQ or randomArticles%}
+<div class="cbox fs12">
+  <form method="get" action='{{url.this}}' data-action>
+    <div class="input">
+      {%for key, value in requestGET%}
+        <input type="hidden" name="{{key}}" value="{{value}}">
+      {%endfor%}
+      <input type="search" name="q" placeholder='{%trans "Search our knowledge base..."%}' id="q" value="{{requestGET.q}}" autofocus autocomplete='off'>
+      <button class="addon btn ">{%trans "Search" %}</button>
+    </div>
+  </form>
+</div>
+{%endif%}
+{%endblock%}
+
+
+{%block helpcats%}
+  {%if listCats%}
+<div class="cbox">
+    <div class="f">
+      {%for key, value in listCats%}
+      <div class="c4 m6 s12 pRa10 mB10">
+        <span class="{%if value.meta.icon%}sf-{{value.meta.icon}}{%else%}sf-info{%endif%} fs20 mRa10 mT10 floatLa"></span>
+        <h2 class="simple"><a href="{{url.this}}/{{value.slug}}">{{value.title}}</a></h2>
+        <p>{{value.excerpt}}</p>
+      </div>
+      {%endfor%}
+    </div>
+</div>
+  {%endif%}
+{%endblock%}
+
+{%block faqRandom%}
+{%if randomFAQ%}
+<div class="cbox fs12">
+  <h2>{%trans "Frequently Asked Questions"%}</h2>
+  <div>
+    {%for key, value in randomFAQ%}
+    <div class="msg">
+      <span class="{%if value.meta.icon%}sf-{{value.meta.icon}}{%else%}sf-info{%endif%} mRa10"></span>
+      <a href="{{url.this}}/{{value.slug}}">{{value.title}}</a>
+      <a href="#" class="floatRa">{{value.cat}}</a>
+    </div>
+    {%endfor%}
+  </div>
+</div>
+{%endif%}
+
+
+{%endblock%}
+
+{%block helpRandom%}
+{%if randomArticles%}
+<div class="cbox fs12">
+  <h2>{%trans "Random Articles"%}</h2>
+  <div>
+    {%for key, value in randomArticles %}
+    <div class="msg">
+      <span class="{%if value.meta.icon%}sf-{{value.meta.icon}}{%else%}sf-info{%endif%} mRa10"></span>
+      <a href="{{url.this}}/{{value.slug}}">{{value.title}}</a>
+      {%if value.parent_detail.title%}<a href="{{url.here}}/{{value.url}}" class="floatRa">{{value.parent_detail.title}}</a>{%endif%}
+    </div>
+    {%endfor%}
+  </div>
+
+</div>
+{%endif%}
+{%endblock%}
+
+
+{%block addTicket%}
+<div class="msg txtC info2 pTB50 fs20">
+  <h3 class="txtB">{%trans "Can't find what you're looking for?"%}</h3>
+  <div class="mT10"><a class="btn primary hauto" href="{{url.this}}/ticket">{%trans "Contact the legendary support team right now."%}</a></div>
+</div>
+
+
+{%endblock%}
+
+
