@@ -8,10 +8,14 @@
 
 {%if perm('cpPostsView') or perm('cpCategoryView') or perm('cpTagView') or perm('cpPageView') or perm('cpCommentsView')  %}
     <li class="title" data-kerkere='[data-sidebar-contentLinks]'>{%trans "Content"%}</li>
-    <li data-kerkere-content='hide' data-sidebar-contentLinks>
+    <li {%if ( url.module == 'posts' and not requestGET.type or requestGET.type in ['mag', 'page'] ) or ( url.module == 'terms' and requestGET.type in ['tag','cat'] ) or (url.module == 'comments') %} {%else%} data-kerkere-content='hide' {%endif%} data-sidebar-contentLinks>
       <ul>
         {%if perm('cpPostsView') %}
           <li><a href="{{url.here}}/posts"><i class='fc-mute sf-pinboard'></i> {% trans "News" %}</a></li>
+        {%endif%}
+
+        {%if perm('cpMagView') and options.mag %}
+          <li><a href="{{url.here}}/posts?type=mag"><i class='fc-mute sf-book'></i> {% trans "Magazine" %}</a></li>
         {%endif%}
 
         {%if perm('cpCategoryView') %}
@@ -36,7 +40,7 @@
 
 {%if perm('cpHelpCenterView') or perm('cpTagHelpAdd') or perm('cpTagHelpEdit') or perm('cpTagSupportAdd') or perm('cpTagSupportEdit')  %}
     <li class="title" data-kerkere='[data-sidebar-supportLinks]'>{%trans "Support"%}</li>
-    <li data-kerkere-content='hide' data-sidebar-supportLinks>
+    <li {%if ( url.module == 'posts' and requestGET.type == 'help' ) or ( url.module == 'terms' and requestGET.type in ['help_tag','support_tag'] )%} {%else%} data-kerkere-content='hide' {%endif%} data-sidebar-supportLinks>
       <ul>
         {%if perm('cpHelpCenterView') %}
           <li><a href="{{url.here}}/posts?type=help"><i class='fc-mute sf-info-circle'></i> {% trans "Help center" %}</a></li>
@@ -57,7 +61,7 @@
 
 {%if perm('cpPostsView') %}
     <li class="title" data-kerkere='[data-sidebar-filesLinks]'>{%trans "Files"%}</li>
-    <li data-kerkere-content='hide' data-sidebar-filesLinks>
+    <li {%if ( url.module == 'attachment' )%} {%else%} data-kerkere-content='hide' {%endif%}  data-sidebar-filesLinks>
       <ul>
         {%if perm('cpPostsView') %}
           <li><a href="{{url.here}}/attachment"><i class='fc-mute sf-file-o'></i> {% trans "Library" %}</a></li>
