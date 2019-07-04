@@ -205,7 +205,8 @@
 {%endblock%}
 
 
-{%block iThumb%}
+{%block iThumb2%}
+
 <label for="fthumb" class="block txtC">{%trans "Featured Image"%}</label>
 <div class="input preview">
  <input type="file" accept="image/gif, image/jpeg, image/png" name="thumb" id="fthumb" data-preview data-max="1000">
@@ -215,6 +216,25 @@
 {%endif%}
  </label>
 </div>
+{%endblock%}
+
+
+{%block iThumb%}
+{%if dataRow.meta.thumb%}
+ <div class="mB20">
+  <div class="mediaBox">
+    <img src="{{dataRow.meta.thumb}}" alt="{{dataRow.title}}">
+  </div>
+  <div class="floatRa badge danger mT5" data-confirm data-data='{"deleteThumb": 1}'>{%trans "Remove"%}</div>
+ </div>
+{%endif%}
+
+<label for="fthumb" class="block">{%trans "Featured Image"%}</label>
+<div class="input" >
+ <input type="file" accept="image/gif, image/jpeg, image/png" name="thumb" id="fthumb" data-max="1000">
+ </label>
+</div>
+
 {%endblock%}
 
 

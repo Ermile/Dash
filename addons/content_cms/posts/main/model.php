@@ -41,8 +41,25 @@ class model
 
 		\dash\app\posts::post_gallery(\dash\request::get('id'), $id, 'remove');
 		\dash\redirect::pwd();
-
 	}
+
+
+	private static function remove_thumb()
+	{
+		if(\dash\request::post('deleteThumb'))
+		{
+			$id = \dash\request::get('id');
+
+			\dash\app\posts::remove_thumb(\dash\request::get('id'));
+
+			\dash\redirect::pwd();
+
+			return true;
+		}
+
+		return false;
+	}
+
 
 	public static function getPost()
 	{
@@ -54,6 +71,11 @@ class model
 		if(\dash\request::post('type') === 'remove_gallery')
 		{
 			self::remove_gallery();
+			return false;
+		}
+
+		if(self::remove_thumb())
+		{
 			return false;
 		}
 

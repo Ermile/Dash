@@ -1050,5 +1050,41 @@ class posts
 
 		return $result;
 	}
+
+
+	public static function remove_thumb($_id)
+	{
+		$detail = \dash\app\posts::get($_id);
+		if(!$detail)
+		{
+			\dash\notif::error(T_("Post not found"));
+			return false;
+		}
+
+		if(isset($detail['meta']))
+		{
+			$meta = $detail['meta'];
+		}
+		else
+		{
+			$meta = null;
+		}
+
+
+		if(is_array($meta))
+		{
+			unset($meta['thumb']);
+			$meta = json_encode($meta, JSON_UNESCAPED_UNICODE);
+		}
+		else
+		{
+			$meta = null;
+		}
+
+		\dash\db\posts::update(['meta' => $meta], \dash\coding::decode($_id));
+		\dash\notif::ok(T_("The Featured Image removed"));
+		return true;
+
+	}
 }
 ?>
