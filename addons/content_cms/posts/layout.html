@@ -153,7 +153,11 @@
 
 {%if listCats%}
 <div title='{%trans "Choose category for posts is fix url of post relative and help people find it better."%}'>
-{%set postCat = category({"post_id" : dataRow.id, "id" : true, "type" : "cat" })%}
+  {%if dataRow.type == 'mag'%}
+    {%set postCat = category({"post_id" : dataRow.id, "id" : true, "type" : "mag" })%}
+  {%else%}
+    {%set postCat = category({"post_id" : dataRow.id, "id" : true, "type" : "cat" })%}
+  {%endif%}
   <div title='{%trans "Choose category of post"%}'>
 {%for key, value in listCats%}
     <div class="check1">

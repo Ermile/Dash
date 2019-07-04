@@ -114,7 +114,14 @@ trait edit
 				}
 			}
 
-			$post_url = self::set_post_term($id, 'cat');
+			if($args['type'] === 'mag')
+			{
+				$post_url = self::set_post_term($id, 'mag', null, \dash\app::request('cat'));
+			}
+			else
+			{
+				$post_url = self::set_post_term($id, 'cat');
+			}
 
 			if($post_url !== false)
 			{

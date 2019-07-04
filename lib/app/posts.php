@@ -713,6 +713,12 @@ class posts
 	{
 		$have_term_to_save_log = false;
 
+		// set default
+		if($_related === null)
+		{
+			$_related = 'posts';
+		}
+
 		$category = \dash\app::request($_type);
 		if(!$category && $_data)
 		{

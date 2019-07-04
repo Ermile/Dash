@@ -105,7 +105,16 @@ trait add
 				}
 			}
 
-			$post_url = self::set_post_term($post_id, 'cat');
+
+			if($args['type'] === 'mag')
+			{
+				$post_url = self::set_post_term($post_id, 'mag', null, \dash\app::request('cat'));
+			}
+			else
+			{
+				$post_url = self::set_post_term($post_id, 'cat');
+			}
+
 
 			if($post_url !== false)
 			{
