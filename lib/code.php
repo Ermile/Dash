@@ -123,6 +123,10 @@ class code
 		{
 			@header("Content-Type: text/html; charset=utf-8");
 		}
+		elseif($_customHeader === 'text')
+		{
+			@header("Content-Type: text/plain; charset=utf-8");
+		}
 		else
 		{
 			@header("Content-Type: application/json; charset=utf-8");
