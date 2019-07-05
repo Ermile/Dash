@@ -52,7 +52,7 @@
 {%if false%}
  <link rel="alternate"        href="{{url.kingdom}}/feed" title="{{site.title}} RSS feed" type="application/rss+xml"/>
 {%endif%}
- <link rel="author"           href="{{url.static}}/humans.txt"/>
+ <link rel="author"           href="{{url.kingdom}}/humans.txt"/>
 {%for key, lang in lang.list if lang.list|length > 1 and not url.subdomain and lang.current != key|slice(0, 2)%}
 {%set myLangUrl%}
 {{url.base}}{%if lang.default != key|slice(0, 2) %}/{{key|slice(0, 2)}}{%endif%}{%if url.content%}/{{url.content}}{%endif%}{%if url.path%}/{{url.path}}{%endif%}

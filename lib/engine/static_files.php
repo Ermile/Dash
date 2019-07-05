@@ -9,52 +9,52 @@ class static_files
 	{
 		$contributors = "";
 		// general detail
-		$contributors .= "/** In The name of Allah **/" . "\n\n\n";
+		$contributors .= '/** '. T_("In The name of Allah"). ' **/' . "\n\n\n";
 
-		$contributors .= "Proudly made in IRAN, powered by Dash.". "\n";
+		$contributors .= T_("Proudly made in IRAN, powered by Dash."). "\n";
 		$contributors .= "https://github.com/Ermile/dash". "\n\n";
 
-		$contributors .= "Ermile is built by a creative team of engineers, designers, researchers and others in many different sites across the globe. It is updated continuously, and built with more tools and technologies than we can shake a stick at. If you'd like to help us out, see ermile.com/careers.\n";
+		$contributors .= T_("Ermile is built by a creative team of engineers, designers, researchers and others in many different sites across the globe. It is updated continuously, and built with more tools and technologies than we can shake a stick at. If you'd like to help us out, see ermile.com/careers."). "\n";
 
 
 		// teams member
-		$contributors .= "\n\n". "/* TEAM */";
+		$contributors .= "\n\n". "/* ". T_('TEAM'). "*/";
 
 		// Javad Evazzadeh Kakroudi
-		$contributors .= "\n\t". "Javad Evazzadeh Kakroudi";
-		$contributors .= "\n\t". "Site: https://evazzadeh.com";
-		$contributors .= "\n\t". "Contact: J.Evazzadeh [at] live.com";
-		$contributors .= "\n\t". "Twitter: @evazzadeh";
-		$contributors .= "\n\t". "Github: @evazzadeh";
-		$contributors .= "\n\t". "Location: Iran";
+		$contributors .= "\n\t". T_("Javad Evazzadeh Kakroudi");
+		$contributors .= "\n\t". T_('Website'). ": https://evazzadeh.com";
+		$contributors .= "\n\t". T_('Contact'). ": J.Evazzadeh [at] live.com";
+		$contributors .= "\n\t". T_('Twitter'). ": @evazzadeh";
+		$contributors .= "\n\t". T_('Github'). ": @evazzadeh";
+		$contributors .= "\n\t". T_('Location'). ": Iran";
 		$contributors .= "\n";
 
 		// Reza Mohiti
-		$contributors .= "\n\t". "Reza Mohiti";
-		$contributors .= "\n\t". "Site: http://rezamohiti.ir";
-		$contributors .= "\n\t". "Contact: rm.biqarar [at] gmail.com";
-		$contributors .= "\n\t". "Twitter: @rmbiqarar";
-		$contributors .= "\n\t". "Location: Qom, Iran";
+		$contributors .= "\n\t". T_("Reza Mohiti");
+		$contributors .= "\n\t". T_('Website'). ": http://rezamohiti.ir";
+		$contributors .= "\n\t". T_('Contact'). ": rm.biqarar [at] gmail.com";
+		$contributors .= "\n\t". T_('Twitter'). ": @rmbiqarar";
+		$contributors .= "\n\t". T_('Location'). ": Qom, Iran";
 
 
 		// special thanks to
-		$contributors .= "\n\n\n". "/* THANKS */";
+		$contributors .= "\n\n\n". "/* ". T_('THANKS'). "*/";
 
 		// Mohammad Hasan Salehi HajiAbadi
-		$contributors .= "\n\t". "Mohammad Hasan Salehi HajiAbadi";
-		$contributors .= "\n\t". "Contact: itb.Baravak [at] gmail.com";
-		$contributors .= "\n\t". "Twitter: @baravak";
-		$contributors .= "\n\t". "Location: Qom, Iran";
+		$contributors .= "\n\t". T_("Mohammad Hasan Salehi HajiAbadi");
+		$contributors .= "\n\t". T_('Contact'). ": itb.Baravak [at] gmail.com";
+		$contributors .= "\n\t". T_('Twitter'). ": @baravak";
+		$contributors .= "\n\t". T_('Location'). ": Qom, Iran";
 		$contributors .= "\n";
 
-		// Samam Soltani
-		$contributors .= "\n\t". "Samam Soltani";
-		$contributors .= "\n\t". "Contact: sam.soltani [at] gmail.com";
-		$contributors .= "\n\t". "Location: Germany";
+		// Saman Soltani
+		$contributors .= "\n\t". T_("Saman Soltani");
+		$contributors .= "\n\t". T_('Contact'). ': '. "sam.soltani [at] gmail.com";
+		$contributors .= "\n\t". T_('Location'). ": Germany";
 
 
 		// site
-		$contributors .= "\n\n\n". "/* SITE */";
+		$contributors .= "\n\n\n". "/* ". T_('SITE'). "*/";
 		$contributors .= "\n\t". "Last update: 05/07/2019";
 		$contributors .= "\n\t". "Version: 2.0.0";
 		$contributors .= "\n\t". "Language: Farsi / English";
