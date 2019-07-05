@@ -256,6 +256,8 @@ class prepare
 				break;
 
 			case 'serviceWorker':
+			case 'serviceWorker/v2':
+			case 'serviceWorker/v3':
 				\dash\engine\pwa::service_worker();
 				break;
 
