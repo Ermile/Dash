@@ -266,6 +266,13 @@ class prepare
 				break;
 
 			case 'robots.txt':
+				\dash\engine\static_files::robots();
+				break;
+
+			case 'static/humans.txt':
+			case 'humans.txt':
+			case 'contributors':
+				\dash\engine\static_files::human();
 				break;
 		}
 	}
