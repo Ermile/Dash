@@ -7,35 +7,10 @@
  <div class="c9 s12 pRa20">
   <div class="cbox mB10">
    {{block('iTitle')}}
-   {{block('iSubtitle')}}
    {{block('iContent')}}
-  </div>
 
-  <div class="cbox mB10">
-   {{block('iTag')}}
-  </div>
- </div>
- <div class="c3 s12">
-  <div class="cbox mB10">
-   {{block('iSlug')}}
-   {{block('iLanguage')}}
-   <button class="btn primary block mT20" title='{%trans "First save as draft and do all checks, then publish."%}'>{%trans "Save as draft"%}</button>
-  </div>
-
-{%if not requestGET.type or requestGET.type == 'post' %}
-  <div class="cbox mB10">
-   {{block('iCat')}}
-  </div>
-{%endif%}
-
-{%if requestGET.type == 'page' or dataRow.type == 'help' or requestGET.type == 'help'%}
-  <div class="cbox mB10">
-   {{block('iParent')}}
-  </div>
-{%endif%}
-
-  <div class="cbox mB10">
-   {{block('iThumb')}}
+   <div class="msg">{%trans "First type main text and  save as draft, then complete and publish it."%}</div>
+   <button class="btn primary block mT20">{%trans "Save as draft"%}</button>
   </div>
 
  </div>
