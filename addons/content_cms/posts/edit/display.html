@@ -13,46 +13,51 @@
    {{block('iSEO')}}
 
   <div class="cbox">
-   {{block('iTag')}}
-  </div>
-  <div class="cbox">
    {{block('galleryImporter')}}
   </div>
  </div>
  <div class="c3 s12">
-  <div class="cbox minimal">
-   {{block('iPublishdate')}}
-   {{block('iPublishtime')}}
-   {{block('iLanguage')}}
-
-   {%if perm('cpPostsEditStatus')%}
-    {{block('iStatus')}}
-   {%endif%}
-
-   {{block('iadd')}}
-  </div>
-
-{%if dataRow.type == 'post' or dataRow.type == 'mag'%}
-
-  <div class="cbox minimal">
-   {{block('iCat')}}
-  </div>
-
-  <div class="cbox minimal">
-   {{block('iComment')}}
-  </div>
-{%endif%}
-
-{%if dataRow.type == 'page' or dataRow.type == 'help' or dataRow.type == 'mag'  %}
-  <div class="cbox minimal">
-   {{block('iParent')}}
-   {{block('iIcon')}}
-  </div>
-{%endif%}
 
   <div class="cbox minimal">
    {{block('iThumb')}}
   </div>
+
+  <div class="cbox minimal">
+    <h4 data-kerkere='.publishDetail' data-kerkere-icon='close'>{%trans "Publish Detail"%}</h4>
+    <div class="publishDetail" data-kerkere-content='hide'>
+     {{block('iPublishdate')}}
+     {{block('iPublishtime')}}
+     {{block('iLanguage')}}
+
+     {%if perm('cpPostsEditStatus')%}
+      {{block('iStatus')}}
+     {%endif%}
+
+    </div>
+   {{block('iadd')}}
+  </div>
+
+{%if dataRow.type == 'post' or dataRow.type == 'mag'%}
+  <div class="cbox minimal">
+   {{block('iCat')}}
+  </div>
+{%endif%}
+  <div class="cbox minimal">
+   {{block('iTag')}}
+  </div>
+
+
+
+  <div class="cbox minimal">
+    <h4 data-kerkere='.extraDetail' data-kerkere-icon='close'>{%trans "Extra Detail"%}</h4>
+    <div class="extraDetail" data-kerkere-content='hide'>
+   {{block('iComment')}}
+{%if dataRow.type == 'page' or dataRow.type == 'help' or dataRow.type == 'mag'  %}
+   {{block('iIcon')}}
+{%endif%}
+    </div>
+  </div>
+
 
  </div>
 </form>
