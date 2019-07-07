@@ -20,16 +20,6 @@
 {% endblock %}
 
 
-{%block iUrl %}
-{%if dataRow.type == 'help'%}
-  {%set myFirstURL = 'support/'%}
-{%elseif dataRow.type == 'mag'%}
-  {%set myFirstURL = 'mag/'%}
-{%endif%}
-<a href="{{url.kingdom}}/{{myFirstURL}}{{dataRow.url}}" class="msg block ltr" target="_blank" title='{%trans "Url of this post."%} {%trans "You can change by set slug and category or parent for this post"%}'><i class="sf-share floatLa"></i> <small>{{url.kingdom}}/{{myFirstURL}}</small>{{dataRow.url}}</a>
-{% endblock %}
-
-
 {%block iSlug %}
 <div class="input ltr mB10">
   <input type="text" name="slug" id="slug" placeholder='{%trans "Slug"%}' value="{{dataRow.slug_raw}}" maxlength='100' minlength="1" pattern=".{1,100}" title='{%trans "Slug used to create url"%}'>
@@ -239,6 +229,26 @@
  </label>
 </div>
 
+{%endblock%}
+
+
+{%block iSEO%}
+{%if dataRow.type == 'help'%}
+  {%set myFirstURL = 'support/'%}
+{%elseif dataRow.type == 'mag'%}
+  {%set myFirstURL = 'mag/'%}
+{%endif%}
+  <section class="cbox">
+    <div class="seoPreview">
+      <a target="_blank" href="{{url.kingdom}}/{{myFirstURL}}{{dataRow.url}}">
+        <h3>{{dataRow.title}}</h3>
+        <cite><span>{{url.kingdom}}/{{myFirstURL}}</span>{{dataRow.url}}</cite>
+      </a>
+      <p>{{dataRow.excerpt}}</p>
+      <img src="{{url.siftal}}/images/logo/google.png" alt='{%trans "Google"%}'>
+    </div>
+
+  </section>
 {%endblock%}
 
 
