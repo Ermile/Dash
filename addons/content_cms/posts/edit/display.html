@@ -21,7 +21,6 @@
  </div>
  <div class="c3 s12">
   <div class="cbox">
-   {{block('iSlug')}}
    {{block('iPublishdate')}}
    {{block('iPublishtime')}}
    {{block('iLanguage')}}
@@ -33,7 +32,7 @@
    {{block('iadd')}}
   </div>
 
-{%if dataRow.type == 'post'  or dataRow.type == 'mag'%}
+{%if dataRow.type == 'post' or dataRow.type == 'mag'%}
 
   <div class="cbox">
    {{block('iCat')}}

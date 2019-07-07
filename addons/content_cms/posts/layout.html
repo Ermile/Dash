@@ -15,12 +15,6 @@
 {% endblock %}
 
 
-{%block iSlug %}
-<div class="input ltr mB10">
-  <input type="text" name="slug" id="slug" placeholder='{%trans "Slug"%}' value="{{dataRow.slug_raw}}" maxlength='100' minlength="1" pattern=".{1,100}" title='{%trans "Slug used to create url"%}'>
-</div>
-{% endblock %}
-
 
 {%block iContent%}
 <textarea class="txt mB10" data-editor id='descInput' name="content" placeholder='{%trans "Write post "%}' maxlength='100000' rows="15">{{dataRow.content}}</textarea>
@@ -239,22 +233,37 @@
         <h3>{{dataRow.title}}</h3>
         <cite><span>{{url.kingdom}}/{{myFirstURL}}</span>{{dataRow.url}}</cite>
       </a>
-      <div class="desc" data-kerkere='.seoData'>
-        <time class="publishdate" datetime="{{dataRow.publishdate}}">{{dataRow.publishdate | dt('d M Y')}}</time> -
-        <p>{{dataRow.excerpt}}</p>
+      <div class="f">
+        <div class="c s12">
+          <div class="desc">
+            <time class="publishdate" datetime="{{dataRow.publishdate}}">{{dataRow.publishdate | dt('d M Y')}}</time> -
+            <p>{{dataRow.excerpt}}</p>
+          </div>
+        </div>
+        <div class="cauto os s12">
+          <img src="{{url.siftal}}/images/logo/google.png" alt='{%trans "Google"%}'>
+        </div>
       </div>
-      <img src="{{url.siftal}}/images/logo/google.png" alt='{%trans "Google"%}'>
+    </div>
+    <div class="txtL">
+      <div class="btn white" data-kerkere='.seoData'>{%trans "Customize for SEO"%}</div>
     </div>
 
     <div class="seoData" data-kerkere-content='hide'>
+      <div class="msg mT10">
+        <label for='seoTitle'>{%trans "SEO Title"%} <small>{%trans "Recommended being more than 40 character and appear at the beginning of page content"%}</small></label>
+        <div class="input">
+          <input type="text" name="seotitle" id="seoTitle" placeholder='{%trans "Enter title here"%} *' value="{{dataRow.title}}" autofocus required maxlength='200' minlength="1" pattern=".{1,200}">
+        </div>
 
-      <div class="input">
-        <label class="mT10">{%trans "SEO Title"%}</label>
-        <input type="text" name="title" id="title" placeholder='{%trans "Enter title here"%} *' value="{{dataRow.title}}" autofocus required maxlength='200' minlength="1" pattern=".{1,200}" title='{%trans "Recommended being more than 40 character and appear at the beginning of page content"%}'>
+        <label for="seoSlug">{%trans "Slug"%} <small>{%trans "End part of your post url."%}</small></label>
+        <div class="input ltr mB10">
+          <input type="text" name="slug" id="seoSlug" placeholder='{%trans "Slug"%}' value="{{dataRow.slug_raw}}" maxlength='100' minlength="1" pattern=".{1,100}">
+        </div>
+
+        <label for='seoDesc'>{%trans "SEO Description"%} <small>{%trans "If leave it empty we are generate it automatically"%}</small></label>
+        <textarea class="txt mB10" name="excerpt" id="seoDesc" placeholder='{%trans "Excerpt used for social media and search engines"%} *' maxlength='300' minlength="1" rows='3'>{{dataRow.excerpt}}</textarea>
       </div>
-
-      <label>{%trans "Meta Description"%}</label>
-      <textarea class="txt mB10" name="excerpt" id="excerpt" placeholder='{%trans "Excerpt used for social media and search engines"%} *' maxlength='300' minlength="1" title='{%trans "If leave it empty we are generate it automatically"%}' rows='3'>{{dataRow.excerpt}}</textarea>
     </div>
 
   </section>
