@@ -20,7 +20,7 @@
   </div>
  </div>
  <div class="c3 s12">
-  <div class="cbox">
+  <div class="cbox minimal">
    {{block('iPublishdate')}}
    {{block('iPublishtime')}}
    {{block('iLanguage')}}
@@ -34,23 +34,23 @@
 
 {%if dataRow.type == 'post' or dataRow.type == 'mag'%}
 
-  <div class="cbox">
+  <div class="cbox minimal">
    {{block('iCat')}}
   </div>
 
-  <div class="cbox">
+  <div class="cbox minimal">
    {{block('iComment')}}
   </div>
 {%endif%}
 
 {%if dataRow.type == 'page' or dataRow.type == 'help' or dataRow.type == 'mag'  %}
-  <div class="cbox">
+  <div class="cbox minimal">
    {{block('iParent')}}
    {{block('iIcon')}}
   </div>
 {%endif%}
 
-  <div class="cbox">
+  <div class="cbox minimal">
    {{block('iThumb')}}
   </div>
 

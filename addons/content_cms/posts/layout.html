@@ -147,7 +147,7 @@
   </div>
 </div>
 {%else%}
-<div class="msg warn2"><a href="{{url.here}}/terms?type={%if myDataType == 'help'%}help{%elseif myDataType == 'mag'%}mag{%else%}cat{%endif%}">{%trans "Add new category"%}</a></div>
+<div class="msg warn2 mB0"><a href="{{url.here}}/terms?type={%if myDataType == 'help'%}help{%elseif myDataType == 'mag'%}mag{%else%}cat{%endif%}">{%trans "Add new category"%}</a></div>
 {%endif%}
 {%endblock%}
 
@@ -250,7 +250,7 @@
     </div>
 
     <div class="seoData" data-kerkere-content='hide'>
-      <div class="msg mT10">
+      <div class="msg minimal mT10">
         <label for='seoTitle'>{%trans "SEO Title"%} <small>{%trans "Recommended being more than 40 character and appear at the beginning of page content"%}</small></label>
         <div class="input">
           <input type="text" name="seotitle" id="seoTitle" placeholder='{%trans "Enter title here"%} *' value="{{dataRow.title}}" autofocus required maxlength='200' minlength="1" pattern=".{1,200}">
