@@ -141,6 +141,7 @@
 
 
 {%block iPublishdate %}
+{%if dataRow.type == 'post' or dataRow.type == 'mag'%}
 <section class="pbox">
   <header data-kerkere='.publishDatePanel' data-kerkere-icon='close'>{%trans "Publish Date"%}</header>
   <div class="body publishDatePanel" data-kerkere-content='hide'>
@@ -158,6 +159,7 @@
     </div>
   </div>
 </section>
+{%endif%}
 {% endblock %}
 
 
