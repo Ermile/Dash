@@ -16,13 +16,21 @@
    {{block('galleryImporter')}}
   </div>
  </div>
+
  <div class="c3 s12">
 
-  <div class="cbox minimal">
    {{block('iThumb')}}
-  </div>
+   {{block('iCat')}}
+   {{block('iTag')}}
 
-  <div class="cbox minimal">
+
+
+
+
+
+
+
+  <div class="cbox minimal mT50">
     <h4 data-kerkere='.publishDetail' data-kerkere-icon='close'>{%trans "Publish Detail"%}</h4>
     <div class="publishDetail" data-kerkere-content='hide'>
      {{block('iPublishdate')}}
@@ -36,16 +44,6 @@
     </div>
    {{block('iadd')}}
   </div>
-
-{%if dataRow.type == 'post' or dataRow.type == 'mag'%}
-  <div class="cbox minimal">
-   {{block('iCat')}}
-  </div>
-{%endif%}
-  <div class="cbox minimal">
-   {{block('iTag')}}
-  </div>
-
 
 
   <div class="cbox minimal">

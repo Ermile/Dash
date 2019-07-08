@@ -21,6 +21,124 @@
 {%endblock%}
 
 
+
+
+
+
+{%block iThumb%}
+<section class="pbox">
+  <header data-kerkere='.thumbPanel' data-kerkere-icon='close'>{%trans "Featured Image"%}</header>
+  <div class="body thumbPanel" data-kerkere-content='hide'>
+{%if dataRow.meta.thumb%}
+   <div class="mB20">
+    <div class="mediaBox">
+      <img src="{{dataRow.meta.thumb}}" alt="{{dataRow.title}}">
+    </div>
+    <div class="floatRa badge danger mT5" data-confirm data-data='{"deleteThumb": 1}'>{%trans "Remove"%}</div>
+   </div>
+{%endif%}
+
+  <div>
+    <label for="fthumb" class="block">{%trans "Featured Image"%}</label>
+    <div class="input" >
+     <input type="file" accept="image/gif, image/jpeg, image/png" name="thumb" id="fthumb" data-max="1000">
+     </label>
+    </div>
+  </div>
+
+  </div>
+</section>
+{%endblock%}
+
+
+
+{%block iCat%}
+{%if dataRow.type == 'post' or dataRow.type == 'mag'%}
+  <section class="pbox">
+
+    <header data-kerkere='.catPanel' data-kerkere-icon='close'>{%trans "Category"%}</header>
+    <div class="body catPanel" data-kerkere-content='hide'>
+      {%if listCats%}
+      <div title='{%trans "Choose category for posts is fix url of post relative and help people find it better."%}'>
+        {%if dataRow.type == 'mag'%}
+          {%set postCat = category({"post_id" : dataRow.id, "id" : true, "type" : "mag" })%}
+        {%else%}
+          {%set postCat = category({"post_id" : dataRow.id, "id" : true, "type" : "cat" })%}
+        {%endif%}
+        <div title='{%trans "Choose category of post"%}'>
+      {%for key, value in listCats%}
+          <div class="check1">
+            <input type="checkbox" name="cat_{{value.id}}" value="{{value.title}}" id="cat_{{value.id}}" {%if value.id in postCat %} checked {%endif%}>
+            <label for="cat_{{value.id}}">{{value.title}}</label>
+          </div>
+      {%endfor%}
+        </div>
+      </div>
+      {%else%}
+      <div class="msg warn2 mB0"><a href="{{url.here}}/terms?type={%if myDataType == 'help'%}help{%elseif myDataType == 'mag'%}mag{%else%}cat{%endif%}">{%trans "Add new category"%}</a></div>
+      {%endif%}
+    </div>
+
+  </section>
+{%endif%}
+{%endblock%}
+
+
+
+
+{%block iTag%}
+<section class="pbox">
+  <header data-kerkere='.tagPanel' data-kerkere-icon='close'>{%trans "Keywords"%}</header>
+  <div class="body tagPanel" data-kerkere-content='hide'>
+    <div class="tagDetector">
+    {%if requestGET.type == 'help' or dataRow.type == 'help'%}
+      {%set myTagType = 'help_tag'%}
+    {%elseif requestGET.type == 'mag' or dataRow.type == 'mag'%}
+      {%set myTagType = 'mag_tag'%}
+    {%else%}
+      {%set myTagType = 'tag'%}
+    {%endif%}
+
+    {%set postTag = tags({"post_id" : requestGET.id , "title" : true, "format" : 'csv', "type" : myTagType}) %}
+
+    {%if not requestGET.type or requestGET.type == 'post' %}
+    {%if options.tagSpecial%}
+      <div class="specialTags mB5" title='{%trans "Click on special tags to use this depending on your website design"%}'>
+        {%for key, value in options.tagSpecial%}
+          <span class="badge {%if key in postTag%} success{%endif%}" href="#" title="{%trans value%}" data-val='{{key}}'>{%if key in postTag%}<i class="sf-check compact"></i> {%endif%}{{key}}</span>
+        {%endfor%}
+      </div>
+    {%endif%}
+    {%endif%}
+
+      <div class="input mB10 hide">
+        <input type="text" class="input tagVals" name="tag" value="{{postTag}}" id="tagValues" placeholder='{%trans "Tag"%}'>
+      </div>
+      <label>{%trans "Add tag to link articles"%}</label>
+      <div class="input">
+        <input type="text" class="tagInput" placeholder='{%trans "Keywords"%}...'>
+        <button class="addon tagAdd">{%trans "Add"%}</button>
+      </div>
+      <div class="tagBox"></div>
+    </div>
+  </div>
+
+</section>
+{%endblock%}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {%block iPublishdate %}
 <div title='{%trans "Allow change default publish date"%}'>
   <label for="publishdate">{%trans "Publish date"%}</label>
@@ -109,65 +227,6 @@
 {%endblock%}
 
 
-{%block iCat%}
-
-{%if listCats%}
-<div title='{%trans "Choose category for posts is fix url of post relative and help people find it better."%}'>
-  {%if dataRow.type == 'mag'%}
-    {%set postCat = category({"post_id" : dataRow.id, "id" : true, "type" : "mag" })%}
-  {%else%}
-    {%set postCat = category({"post_id" : dataRow.id, "id" : true, "type" : "cat" })%}
-  {%endif%}
-  <div title='{%trans "Choose category of post"%}'>
-{%for key, value in listCats%}
-    <div class="check1">
-      <input type="checkbox" name="cat_{{value.id}}" value="{{value.title}}" id="cat_{{value.id}}" {%if value.id in postCat %} checked {%endif%}>
-      <label for="cat_{{value.id}}">{{value.title}}</label>
-    </div>
-{%endfor%}
-  </div>
-</div>
-{%else%}
-<div class="msg warn2 mB0"><a href="{{url.here}}/terms?type={%if myDataType == 'help'%}help{%elseif myDataType == 'mag'%}mag{%else%}cat{%endif%}">{%trans "Add new category"%}</a></div>
-{%endif%}
-{%endblock%}
-
-
-
-{%block iTag%}
-<div class="tagDetector">
-{%if requestGET.type == 'help' or dataRow.type == 'help'%}
-  {%set myTagType = 'help_tag'%}
-{%elseif requestGET.type == 'mag' or dataRow.type == 'mag'%}
-  {%set myTagType = 'mag_tag'%}
-{%else%}
-  {%set myTagType = 'tag'%}
-{%endif%}
-
-{%set postTag = tags({"post_id" : requestGET.id , "title" : true, "format" : 'csv', "type" : myTagType}) %}
-
-{%if not requestGET.type or requestGET.type == 'post' %}
-{%if options.tagSpecial%}
-  <div class="specialTags mB5" title='{%trans "Click on special tags to use this depending on your website design"%}'>
-    {%for key, value in options.tagSpecial%}
-      <span class="badge {%if key in postTag%} success{%endif%}" href="#" title="{%trans value%}" data-val='{{key}}'>{%if key in postTag%}<i class="sf-check compact"></i> {%endif%}{{key}}</span>
-    {%endfor%}
-  </div>
-{%endif%}
-{%endif%}
-
-  <div class="input mB10 hide">
-    <input type="text" class="input tagVals" name="tag" value="{{postTag}}" id="tagValues" placeholder='{%trans "Tag"%}'>
-  </div>
-  <label>{%trans "Add tag to link articles"%}</label>
-  <div class="input">
-    <input type="text" class="tagInput" placeholder='{%trans "Keywords"%}...'>
-    <button class="addon tagAdd">{%trans "Add"%}</button>
-  </div>
-  <div class="tagBox"></div>
-</div>
-{%endblock%}
-
 
 {%block iThumb2%}
 
@@ -182,24 +241,6 @@
 </div>
 {%endblock%}
 
-
-{%block iThumb%}
-{%if dataRow.meta.thumb%}
- <div class="mB20">
-  <div class="mediaBox">
-    <img src="{{dataRow.meta.thumb}}" alt="{{dataRow.title}}">
-  </div>
-  <div class="floatRa badge danger mT5" data-confirm data-data='{"deleteThumb": 1}'>{%trans "Remove"%}</div>
- </div>
-{%endif%}
-
-<label for="fthumb" class="block">{%trans "Featured Image"%}</label>
-<div class="input" >
- <input type="file" accept="image/gif, image/jpeg, image/png" name="thumb" id="fthumb" data-max="1000">
- </label>
-</div>
-
-{%endblock%}
 
 
 {%block iSEO%}
