@@ -15,7 +15,16 @@
 
  <div class="c3 s12 mB10">
   <div class="cbox minimal mB10">
-    <button class="btn primary block">{%trans "Save"%}</button>
+    <div class="f">
+      <div class="c">
+        <button class="btn success block">{%trans "Save as draft"%}</button>
+      </div>
+{%if dataRow.status == 'draft' and false%}
+      <div class="cauto pLa5">
+        <button class="btn primary block">{%trans "Publish"%}</button>
+      </div>
+{%endif%}
+    </div>
   </div>
 
   {{block('iThumb')}}
