@@ -292,23 +292,24 @@ class view
 			}
 
 			$txtFooter = '';
-			$txtFooter .= '<div class="align-center txtC">';
-			$txtFooter .= ' <div>';
+			// $txtFooter .= '<div class="align-center txtC">';
+			// $txtFooter .= ' <div>';
 			// notification
-			$txtFooter .= '  <a class="btn outline lg" href="'. \dash\url::kingdom(). '/account/notification" title="'. T_("Notifications"). '">'. '<i class="sf-bell"></i>'. '</a>';
+			// $txtFooter .= '  <a class="btn outline lg" href="'. \dash\url::kingdom(). '/account/notification" title="'. T_("Notifications"). '">'. '<i class="sf-bell"></i>'. '</a>';
 			// profile
-			$txtFooter .= '  <a class="btn outline lg" href="'. \dash\url::kingdom(). '/account/profile" title="'. T_("Profile"). '">'. '<i class="sf-user"></i>'. '</a>';
+			// $txtFooter .= '  <a class="btn outline lg" href="'. \dash\url::kingdom(). '/account/profile" title="'. T_("Profile"). '">'. '<i class="sf-user"></i>'. '</a>';
 			// billing
 			// $txtFooter .= '  <a class="btn outline lg" href="'. \dash\url::kingdom(). '/account/billing" title="'. T_("Billing"). '">'. '<i class="sf-credit-card"></i>'. '</a>';
 			// support
-			$txtFooter .= '  <a class="btn outline lg" href="'. \dash\url::kingdom(). '/support" title="'. T_("Support center"). '">'. '<i class="sf-life-ring"></i>'. '</a>';
+			// $txtFooter .= '  <a class="btn outline lg" href="'. \dash\url::kingdom(). '/support" title="'. T_("Support center"). '">'. '<i class="sf-life-ring"></i>'. '</a>';
 			// ticket
-			$txtFooter .= '  <a class="btn outline lg" href="'. \dash\url::kingdom(). '/support/ticket" title="'. T_("Tickets"). '">'. '<i class="sf-question-circle"></i>'. '</a>';
-			$txtFooter .= ' </div>';
+			// $txtFooter .= '  <a class="btn outline lg" href="'. \dash\url::kingdom(). '/support/ticket" title="'. T_("Tickets"). '">'. '<i class="sf-question-circle"></i>'. '</a>';
+			// $txtFooter .= ' </div>';
+
+			// $txtFooter .= '</div>';
 
 			// add language bar
 			$txtFooter .= \dash\language::langList(['html' => true, 'all' => true, 'class' => 'f']);
-			$txtFooter .= '</div>';
 
 			\dash\data::userBadge_desc($txtDesc);
 			\dash\data::userBadge_footer($txtFooter);
