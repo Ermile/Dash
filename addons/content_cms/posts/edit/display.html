@@ -18,43 +18,21 @@
  </div>
 
  <div class="c3 s12">
-
-   {{block('iThumb')}}
-   {{block('iCat')}}
-   {{block('iTag')}}
-
-
-
-
-
-
-
-
-  <div class="cbox minimal mT50">
-    <h4 data-kerkere='.publishDetail' data-kerkere-icon='close'>{%trans "Publish Detail"%}</h4>
-    <div class="publishDetail" data-kerkere-content='hide'>
-     {{block('iPublishdate')}}
-     {{block('iPublishtime')}}
-     {{block('iLanguage')}}
-
-     {%if perm('cpPostsEditStatus')%}
-      {{block('iStatus')}}
-     {%endif%}
-
-    </div>
-   {{block('iadd')}}
+  <div class="cbox minimal mB10">
+    <button class="btn primary block">{%trans "Save"%}</button>
   </div>
 
+  {{block('iThumb')}}
+  {{block('iCat')}}
+  {{block('iTag')}}
+  {{block('iComment')}}
+  {{block('iPublishdate')}}
+  {{block('iStatus')}}
+  {{block('iLanguage')}}
 
-  <div class="cbox minimal">
-    <h4 data-kerkere='.extraDetail' data-kerkere-icon='close'>{%trans "Extra Detail"%}</h4>
-    <div class="extraDetail" data-kerkere-content='hide'>
-   {{block('iComment')}}
 {%if dataRow.type == 'page' or dataRow.type == 'help' or dataRow.type == 'mag'  %}
-   {{block('iIcon')}}
+  {{block('iIcon')}}
 {%endif%}
-    </div>
-  </div>
 
 
  </div>
@@ -68,518 +46,525 @@
 
 {%block iIcon%}
 {%if requestGET.type == 'help' or dataRow.type == 'help' or perm_su()%}
-<label class="mT10">{%trans "Icon"%}</label>
-<div class="ui fluid selection dropdown mB10 search">
-  <input type="hidden" name="icon" value="{{dataRow.meta.icon}}">
-  <i class="dropdown icon"></i>
-  <div class="default text">{%trans "Choose icon"%}</div>
-  <div class="menu">
-    <div class="item" data-value="angle-down"><i class="sf-angle-down"></i> <code class="fc-mute floatRa">angle-down</code></div>
-    <div class="item" data-value="angle-left"><i class="sf-angle-left"></i> <code class="fc-mute floatRa">angle-left</code></div>
-    <div class="item" data-value="angle-right"><i class="sf-angle-right"></i> <code class="fc-mute floatRa">angle-right</code></div>
-    <div class="item" data-value="angle-up"><i class="sf-angle-up"></i> <code class="fc-mute floatRa">angle-up</code></div>
-    <div class="item" data-value="bell"><i class="sf-bell"></i> <code class="fc-mute floatRa">bell</code></div>
-    <div class="item" data-value="bell-o"><i class="sf-bell-o"></i> <code class="fc-mute floatRa">bell-o</code></div>
-    <div class="item" data-value="bell-slash"><i class="sf-bell-slash"></i> <code class="fc-mute floatRa">bell-slash</code></div>
-    <div class="item" data-value="bell-slash-o"><i class="sf-bell-slash-o"></i> <code class="fc-mute floatRa">bell-slash-o</code></div>
-    <div class="item" data-value="bug"><i class="sf-bug"></i> <code class="fc-mute floatRa">bug</code></div>
-    <div class="item" data-value="bolt"><i class="sf-bolt"></i> <code class="fc-mute floatRa">bolt</code></div>
-    <div class="item" data-value="check"><i class="sf-check"></i> <code class="fc-mute floatRa">check</code></div>
-    <div class="item" data-value="chain-broken"><i class="sf-chain-broken"></i> <code class="fc-mute floatRa">chain-broken</code></div>
-    <div class="item" data-value="cc-paypal"><i class="sf-cc-paypal"></i> <code class="fc-mute floatRa">cc-paypal</code></div>
-    <div class="item" data-value="cc-visa"><i class="sf-cc-visa"></i> <code class="fc-mute floatRa">cc-visa</code></div>
-    <div class="item" data-value="cloud-download"><i class="sf-cloud-download"></i> <code class="fc-mute floatRa">cloud-download</code></div>
-    <div class="item" data-value="cloud-upload"><i class="sf-cloud-upload"></i> <code class="fc-mute floatRa">cloud-upload</code></div>
-    <div class="item" data-value="cloud"><i class="sf-cloud"></i> <code class="fc-mute floatRa">cloud</code></div>
-    <div class="item" data-value="comment"><i class="sf-comment"></i> <code class="fc-mute floatRa">comment</code></div>
-    <div class="item" data-value="comment-o"><i class="sf-comment-o"></i> <code class="fc-mute floatRa">comment-o</code></div>
-    <div class="item" data-value="commenting"><i class="sf-commenting"></i> <code class="fc-mute floatRa">commenting</code></div>
-    <div class="item" data-value="clone"><i class="sf-clone"></i> <code class="fc-mute floatRa">clone</code></div>
-    <div class="item" data-value="commenting-o"><i class="sf-commenting-o"></i> <code class="fc-mute floatRa">commenting-o</code></div>
-    <div class="item" data-value="comments"><i class="sf-comments"></i> <code class="fc-mute floatRa">comments</code></div>
-    <div class="item" data-value="comments-o"><i class="sf-comments-o"></i> <code class="fc-mute floatRa">comments-o</code></div>
-    <div class="item" data-value="cog"><i class="sf-cog"></i> <code class="fc-mute floatRa">cog</code></div>
-    <div class="item" data-value="desktop"><i class="sf-desktop"></i> <code class="fc-mute floatRa">desktop</code></div>
-    <div class="item" data-value="envelope-o"><i class="sf-envelope-o"></i> <code class="fc-mute floatRa">envelope-o</code></div>
-    <div class="item" data-value="envelope"><i class="sf-envelope"></i> <code class="fc-mute floatRa">envelope</code></div>
-    <div class="item" data-value="ellipsis-v"><i class="sf-ellipsis-v"></i> <code class="fc-mute floatRa">ellipsis-v</code></div>
-    <div class="item" data-value="ellipsis-h"><i class="sf-ellipsis-h"></i> <code class="fc-mute floatRa">ellipsis-h</code></div>
-    <div class="item" data-value="crop"><i class="sf-crop"></i> <code class="fc-mute floatRa">crop</code></div>
-    <div class="item" data-value="crosshairs"><i class="sf-crosshairs"></i> <code class="fc-mute floatRa">crosshairs</code></div>
-    <div class="item" data-value="bar-chart"><i class="sf-bar-chart"></i> <code class="fc-mute floatRa">bar-chart</code></div>
-    <div class="item" data-value="balance-scale"><i class="sf-balance-scale"></i> <code class="fc-mute floatRa">balance-scale</code></div>
-    <div class="item" data-value="arrows-h"><i class="sf-arrows-h"></i> <code class="fc-mute floatRa">arrows-h</code></div>
-    <div class="item" data-value="arrows-v"><i class="sf-arrows-v"></i> <code class="fc-mute floatRa">arrows-v</code></div>
-    <div class="item" data-value="arrows-alt"><i class="sf-arrows-alt"></i> <code class="fc-mute floatRa">arrows-alt</code></div>
-    <div class="item" data-value="arrows"><i class="sf-arrows"></i> <code class="fc-mute floatRa">arrows</code></div>
-    <div class="item" data-value="android"><i class="sf-android"></i> <code class="fc-mute floatRa">android</code></div>
-    <div class="item" data-value="align-right"><i class="sf-align-right"></i> <code class="fc-mute floatRa">align-right</code></div>
-    <div class="item" data-value="align-left"><i class="sf-align-left"></i> <code class="fc-mute floatRa">align-left</code></div>
-    <div class="item" data-value="align-justify"><i class="sf-align-justify"></i> <code class="fc-mute floatRa">align-justify</code></div>
-    <div class="item" data-value="align-center"><i class="sf-align-center"></i> <code class="fc-mute floatRa">align-center</code></div>
-    <div class="item" data-value="bullhorn"><i class="sf-bullhorn"></i> <code class="fc-mute floatRa">bullhorn</code></div>
-    <div class="item" data-value="asterisk"><i class="sf-asterisk"></i> <code class="fc-mute floatRa">asterisk</code></div>
-    <div class="item" data-value="bookmark-o"><i class="sf-bookmark-o"></i> <code class="fc-mute floatRa">bookmark-o</code></div>
-    <div class="item" data-value="bookmark"><i class="sf-bookmark"></i> <code class="fc-mute floatRa">bookmark</code></div>
-    <div class="item" data-value="caret-right"><i class="sf-caret-right"></i> <code class="fc-mute floatRa">caret-right</code></div>
-    <div class="item" data-value="caret-left"><i class="sf-caret-left"></i> <code class="fc-mute floatRa">caret-left</code></div>
-    <div class="item" data-value="caret-down"><i class="sf-caret-down"></i> <code class="fc-mute floatRa">caret-down</code></div>
-    <div class="item" data-value="caret-up"><i class="sf-caret-up"></i> <code class="fc-mute floatRa">caret-up</code></div>
-    <div class="item" data-value="file-code-o"><i class="sf-file-code-o"></i> <code class="fc-mute floatRa">file-code-o</code></div>
-    <div class="item" data-value="file-audio-o"><i class="sf-file-audio-o"></i> <code class="fc-mute floatRa">file-audio-o</code></div>
-    <div class="item" data-value="file-archive-o"><i class="sf-file-archive-o"></i> <code class="fc-mute floatRa">file-archive-o</code></div>
-    <div class="item" data-value="file-excel-o"><i class="sf-file-excel-o"></i> <code class="fc-mute floatRa">file-excel-o</code></div>
-    <div class="item" data-value="file"><i class="sf-file"></i> <code class="fc-mute floatRa">file</code></div>
-    <div class="item" data-value="file-pdf-o"><i class="sf-file-pdf-o"></i> <code class="fc-mute floatRa">file-pdf-o</code></div>
-    <div class="item" data-value="file-powerpoint-o"><i class="sf-file-powerpoint-o"></i> <code class="fc-mute floatRa">file-powerpoint-o</code></div>
-    <div class="item" data-value="file-text"><i class="sf-file-text"></i> <code class="fc-mute floatRa">file-text</code></div>
-    <div class="item" data-value="file-text-o"><i class="sf-file-text-o"></i> <code class="fc-mute floatRa">file-text-o</code></div>
-    <div class="item" data-value="file-word-o"><i class="sf-file-word-o"></i> <code class="fc-mute floatRa">file-word-o</code></div>
-    <div class="item" data-value="files-o"><i class="sf-files-o"></i> <code class="fc-mute floatRa">files-o</code></div>
-    <div class="item" data-value="film"><i class="sf-film"></i> <code class="fc-mute floatRa">film</code></div>
-    <div class="item" data-value="file-video-o"><i class="sf-file-video-o"></i> <code class="fc-mute floatRa">file-video-o</code></div>
-    <div class="item" data-value="floppy-o"><i class="sf-floppy-o"></i> <code class="fc-mute floatRa">floppy-o</code></div>
-    <div class="item" data-value="file-image-o"><i class="sf-file-image-o"></i> <code class="fc-mute floatRa">file-image-o</code></div>
-    <div class="item" data-value="file-o"><i class="sf-file-o"></i> <code class="fc-mute floatRa">file-o</code></div>
-    <div class="item" data-value="flag"><i class="sf-flag"></i> <code class="fc-mute floatRa">flag</code></div>
-    <div class="item" data-value="flag-checkered"><i class="sf-flag-checkered"></i> <code class="fc-mute floatRa">flag-checkered</code></div>
-    <div class="item" data-value="flag-o"><i class="sf-flag-o"></i> <code class="fc-mute floatRa">flag-o</code></div>
-    <div class="item" data-value="gavel"><i class="sf-gavel"></i> <code class="fc-mute floatRa">gavel</code></div>
-    <div class="item" data-value="heart"><i class="sf-heart"></i> <code class="fc-mute floatRa">heart</code></div>
-    <div class="item" data-value="heart-o"><i class="sf-heart-o"></i> <code class="fc-mute floatRa">heart-o</code></div>
-    <div class="item" data-value="history"><i class="sf-history"></i> <code class="fc-mute floatRa">history</code></div>
-    <div class="item" data-value="home"><i class="sf-home"></i> <code class="fc-mute floatRa">home</code></div>
-    <div class="item" data-value="hourglass"><i class="sf-hourglass"></i> <code class="fc-mute floatRa">hourglass</code></div>
-    <div class="item" data-value="hourglass-end"><i class="sf-hourglass-end"></i> <code class="fc-mute floatRa">hourglass-end</code></div>
-    <div class="item" data-value="hourglass-half"><i class="sf-hourglass-half"></i> <code class="fc-mute floatRa">hourglass-half</code></div>
-    <div class="item" data-value="hourglass-o"><i class="sf-hourglass-o"></i> <code class="fc-mute floatRa">hourglass-o</code></div>
-    <div class="item" data-value="info"><i class="sf-info"></i> <code class="fc-mute floatRa">info</code></div>
-    <div class="item" data-value="industry"><i class="sf-industry"></i> <code class="fc-mute floatRa">industry</code></div>
-    <div class="item" data-value="graduation-cap"><i class="sf-graduation-cap"></i> <code class="fc-mute floatRa">graduation-cap</code></div>
-    <div class="item" data-value="globe"><i class="sf-globe"></i> <code class="fc-mute floatRa">globe</code></div>
-    <div class="item" data-value="glass"><i class="sf-glass"></i> <code class="fc-mute floatRa">glass</code></div>
-    <div class="item" data-value="line-chart"><i class="sf-line-chart"></i> <code class="fc-mute floatRa">line-chart</code></div>
-    <div class="item" data-value="github-square"><i class="sf-github-square"></i> <code class="fc-mute floatRa">github-square</code></div>
-    <div class="item" data-value="github-alt"><i class="sf-github-alt"></i> <code class="fc-mute floatRa">github-alt</code></div>
-    <div class="item" data-value="github"><i class="sf-github"></i> <code class="fc-mute floatRa">github</code></div>
-    <div class="item" data-value="language"><i class="sf-language"></i> <code class="fc-mute floatRa">language</code></div>
-    <div class="item" data-value="laptop"><i class="sf-laptop"></i> <code class="fc-mute floatRa">laptop</code></div>
-    <div class="item" data-value="quote-left"><i class="sf-quote-left"></i> <code class="fc-mute floatRa">quote-left</code></div>
-    <div class="item" data-value="quote-right"><i class="sf-quote-right"></i> <code class="fc-mute floatRa">quote-right</code></div>
-    <div class="item" data-value="spinner"><i class="sf-spinner"></i> <code class="fc-mute floatRa">spinner</code></div>
-    <div class="item" data-value="star"><i class="sf-star"></i> <code class="fc-mute floatRa">star</code></div>
-    <div class="item" data-value="star-half"><i class="sf-star-half"></i> <code class="fc-mute floatRa">star-half</code></div>
-    <div class="item" data-value="star-half-o"><i class="sf-star-half-o"></i> <code class="fc-mute floatRa">star-half-o</code></div>
-    <div class="item" data-value="star-o"><i class="sf-star-o"></i> <code class="fc-mute floatRa">star-o</code></div>
-    <div class="item" data-value="sort-amount-asc"><i class="sf-sort-amount-asc"></i> <code class="fc-mute floatRa">sort-amount-asc</code></div>
-    <div class="item" data-value="sort-alpha-desc"><i class="sf-sort-alpha-desc"></i> <code class="fc-mute floatRa">sort-alpha-desc</code></div>
-    <div class="item" data-value="sort-alpha-asc"><i class="sf-sort-alpha-asc"></i> <code class="fc-mute floatRa">sort-alpha-asc</code></div>
-    <div class="item" data-value="sort-amount-desc"><i class="sf-sort-amount-desc"></i> <code class="fc-mute floatRa">sort-amount-desc</code></div>
-    <div class="item" data-value="sort-numeric-desc"><i class="sf-sort-numeric-desc"></i> <code class="fc-mute floatRa">sort-numeric-desc</code></div>
-    <div class="item" data-value="sort-numeric-asc"><i class="sf-sort-numeric-asc"></i> <code class="fc-mute floatRa">sort-numeric-asc</code></div>
-    <div class="item" data-value="rss"><i class="sf-rss"></i> <code class="fc-mute floatRa">rss</code></div>
-    <div class="item" data-value="windows"><i class="sf-windows"></i> <code class="fc-mute floatRa">windows</code></div>
-    <div class="item" data-value="unlock"><i class="sf-unlock"></i> <code class="fc-mute floatRa">unlock</code></div>
-    <div class="item" data-value="unlock-alt"><i class="sf-unlock-alt"></i> <code class="fc-mute floatRa">unlock-alt</code></div>
-    <div class="item" data-value="youtube-play"><i class="sf-youtube-play"></i> <code class="fc-mute floatRa">youtube-play</code></div>
-    <div class="item" data-value="user-plus"><i class="sf-user-plus"></i> <code class="fc-mute floatRa">user-plus</code></div>
-    <div class="item" data-value="user"><i class="sf-user"></i> <code class="fc-mute floatRa">user</code></div>
-    <div class="item" data-value="user-md"><i class="sf-user-md"></i> <code class="fc-mute floatRa">user-md</code></div>
-    <div class="item" data-value="user-secret"><i class="sf-user-secret"></i> <code class="fc-mute floatRa">user-secret</code></div>
-    <div class="item" data-value="users"><i class="sf-users"></i> <code class="fc-mute floatRa">users</code></div>
-    <div class="item" data-value="user-times"><i class="sf-user-times"></i> <code class="fc-mute floatRa">user-times</code></div>
-    <div class="item" data-value="volume-up"><i class="sf-volume-up"></i> <code class="fc-mute floatRa">volume-up</code></div>
-    <div class="item" data-value="volume-off"><i class="sf-volume-off"></i> <code class="fc-mute floatRa">volume-off</code></div>
-    <div class="item" data-value="volume-down"><i class="sf-volume-down"></i> <code class="fc-mute floatRa">volume-down</code></div>
-    <div class="item" data-value="wrench"><i class="sf-wrench"></i> <code class="fc-mute floatRa">wrench</code></div>
-    <div class="item" data-value="thumbs-down"><i class="sf-thumbs-down"></i> <code class="fc-mute floatRa">thumbs-down</code></div>
-    <div class="item" data-value="thumbs-o-down"><i class="sf-thumbs-o-down"></i> <code class="fc-mute floatRa">thumbs-o-down</code></div>
-    <div class="item" data-value="thumbs-o-up"><i class="sf-thumbs-o-up"></i> <code class="fc-mute floatRa">thumbs-o-up</code></div>
-    <div class="item" data-value="thumbs-up"><i class="sf-thumbs-up"></i> <code class="fc-mute floatRa">thumbs-up</code></div>
-    <div class="item" data-value="thumb-tack"><i class="sf-thumb-tack"></i> <code class="fc-mute floatRa">thumb-tack</code></div>
-    <div class="item" data-value="trello"><i class="sf-trello"></i> <code class="fc-mute floatRa">trello</code></div>
-    <div class="item" data-value="tachometer"><i class="sf-tachometer"></i> <code class="fc-mute floatRa">tachometer</code></div>
-    <div class="item" data-value="recycle"><i class="sf-recycle"></i> <code class="fc-mute floatRa">recycle</code></div>
-    <div class="item" data-value="graph-bar"><i class="sf-graph-bar"></i> <code class="fc-mute floatRa">graph-bar</code></div>
-    <div class="item" data-value="graph-horizontal"><i class="sf-graph-horizontal"></i> <code class="fc-mute floatRa">graph-horizontal</code></div>
-    <div class="item" data-value="check-1"><i class="sf-check-1"></i> <code class="fc-mute floatRa">check-1</code></div>
-    <div class="item" data-value="monitor"><i class="sf-monitor"></i> <code class="fc-mute floatRa">monitor</code></div>
-    <div class="item" data-value="wrench-1"><i class="sf-wrench-1"></i> <code class="fc-mute floatRa">wrench-1</code></div>
-    <div class="item" data-value="widget"><i class="sf-widget"></i> <code class="fc-mute floatRa">widget</code></div>
-    <div class="item" data-value="thumbnails"><i class="sf-thumbnails"></i> <code class="fc-mute floatRa">thumbnails</code></div>
-    <div class="item" data-value="save"><i class="sf-save"></i> <code class="fc-mute floatRa">save</code></div>
-    <div class="item" data-value="chart-pie"><i class="sf-chart-pie"></i> <code class="fc-mute floatRa">chart-pie</code></div>
-    <div class="item" data-value="chart-line"><i class="sf-chart-line"></i> <code class="fc-mute floatRa">chart-line</code></div>
-    <div class="item" data-value="chart-bar"><i class="sf-chart-bar"></i> <code class="fc-mute floatRa">chart-bar</code></div>
-    <div class="item" data-value="chart-area"><i class="sf-chart-area"></i> <code class="fc-mute floatRa">chart-area</code></div>
-    <div class="item" data-value="chat"><i class="sf-chat"></i> <code class="fc-mute floatRa">chat</code></div>
-    <div class="item" data-value="flow-tree"><i class="sf-flow-tree"></i> <code class="fc-mute floatRa">flow-tree</code></div>
-    <div class="item" data-value="gauge"><i class="sf-gauge"></i> <code class="fc-mute floatRa">gauge</code></div>
-    <div class="item" data-value="flight"><i class="sf-flight"></i> <code class="fc-mute floatRa">flight</code></div>
-    <div class="item" data-value="graph"><i class="sf-graph"></i> <code class="fc-mute floatRa">graph</code></div>
-    <div class="item" data-value="grid"><i class="sf-grid"></i> <code class="fc-mute floatRa">grid</code></div>
-    <div class="item" data-value="dzone"><i class="sf-dzone"></i> <code class="fc-mute floatRa">dzone</code></div>
-    <div class="item" data-value="enter"><i class="sf-enter"></i> <code class="fc-mute floatRa">enter</code></div>
-    <div class="item" data-value="pinboard"><i class="sf-pinboard"></i> <code class="fc-mute floatRa">pinboard</code></div>
-    <div class="item" data-value="share"><i class="sf-share"></i> <code class="fc-mute floatRa">share</code></div>
-    <div class="item" data-value="out"><i class="sf-out"></i> <code class="fc-mute floatRa">out</code></div>
-    <div class="item" data-value="signout"><i class="sf-signout"></i> <code class="fc-mute floatRa">signout</code></div>
-    <div class="item" data-value="sign-out"><i class="sf-sign-out"></i> <code class="fc-mute floatRa">sign-out</code></div>
-    <div class="item" data-value="lock"><i class="sf-lock"></i> <code class="fc-mute floatRa">lock</code></div>
-    <div class="item" data-value="info-circle"><i class="sf-info-circle"></i> <code class="fc-mute floatRa">info-circle</code></div>
-    <div class="item" data-value="question"><i class="sf-question"></i> <code class="fc-mute floatRa">question</code></div>
-    <div class="item" data-value="question-circle"><i class="sf-question-circle"></i> <code class="fc-mute floatRa">question-circle</code></div>
-    <div class="item" data-value="plus-circle"><i class="sf-plus-circle"></i> <code class="fc-mute floatRa">plus-circle</code></div>
-    <div class="item" data-value="plus"><i class="sf-plus"></i> <code class="fc-mute floatRa">plus</code></div>
-    <div class="item" data-value="search"><i class="sf-search"></i> <code class="fc-mute floatRa">search</code></div>
-    <div class="item" data-value="times-circle"><i class="sf-times-circle"></i> <code class="fc-mute floatRa">times-circle</code></div>
-    <div class="item" data-value="times"><i class="sf-times"></i> <code class="fc-mute floatRa">times</code></div>
-    <div class="item" data-value="filter"><i class="sf-filter"></i> <code class="fc-mute floatRa">filter</code></div>
-    <div class="item" data-value="clipboard"><i class="sf-clipboard"></i> <code class="fc-mute floatRa">clipboard</code></div>
-    <div class="item" data-value="at"><i class="sf-at"></i> <code class="fc-mute floatRa">at</code></div>
-    <div class="item" data-value="instagram"><i class="sf-instagram"></i> <code class="fc-mute floatRa">instagram</code></div>
-    <div class="item" data-value="archive"><i class="sf-archive"></i> <code class="fc-mute floatRa">archive</code></div>
-    <div class="item" data-value="print"><i class="sf-print"></i> <code class="fc-mute floatRa">print</code></div>
-    <div class="item" data-value="tags"><i class="sf-tags"></i> <code class="fc-mute floatRa">tags</code></div>
-    <div class="item" data-value="tag"><i class="sf-tag"></i> <code class="fc-mute floatRa">tag</code></div>
-    <div class="item" data-value="bars"><i class="sf-bars"></i> <code class="fc-mute floatRa">bars</code></div>
-    <div class="item" data-value="cogs"><i class="sf-cogs"></i> <code class="fc-mute floatRa">cogs</code></div>
-    <div class="item" data-value="tasks"><i class="sf-tasks"></i> <code class="fc-mute floatRa">tasks</code></div>
-    <div class="item" data-value="analytics-chart-graph"><i class="sf-analytics-chart-graph"></i> <code class="fc-mute floatRa">analytics-chart-graph</code></div>
-    <div class="item" data-value="chart"><i class="sf-chart"></i> <code class="fc-mute floatRa">chart</code></div>
-    <div class="item" data-value="database"><i class="sf-database"></i> <code class="fc-mute floatRa">database</code></div>
-    <div class="item" data-value="whatsapp"><i class="sf-whatsapp"></i> <code class="fc-mute floatRa">whatsapp</code></div>
-    <div class="item" data-value="linkedin-square"><i class="sf-linkedin-square"></i> <code class="fc-mute floatRa">linkedin-square</code></div>
-    <div class="item" data-value="linkedin"><i class="sf-linkedin"></i> <code class="fc-mute floatRa">linkedin</code></div>
-    <div class="item" data-value="twitter-square"><i class="sf-twitter-square"></i> <code class="fc-mute floatRa">twitter-square</code></div>
-    <div class="item" data-value="twitter"><i class="sf-twitter"></i> <code class="fc-mute floatRa">twitter</code></div>
-    <div class="item" data-value="retweet"><i class="sf-retweet"></i> <code class="fc-mute floatRa">retweet</code></div>
-    <div class="item" data-value="refresh"><i class="sf-refresh"></i> <code class="fc-mute floatRa">refresh</code></div>
-    <div class="item" data-value="load-c"><i class="sf-load-c"></i> <code class="fc-mute floatRa">load-c</code></div>
-    <div class="item" data-value="trophy"><i class="sf-trophy"></i> <code class="fc-mute floatRa">trophy</code></div>
-    <div class="item" data-value="ribbon-b"><i class="sf-ribbon-b"></i> <code class="fc-mute floatRa">ribbon-b</code></div>
-    <div class="item" data-value="ribbon-a"><i class="sf-ribbon-a"></i> <code class="fc-mute floatRa">ribbon-a</code></div>
-    <div class="item" data-value="edit-write"><i class="sf-edit-write"></i> <code class="fc-mute floatRa">edit-write</code></div>
-    <div class="item" data-value="building"><i class="sf-building"></i> <code class="fc-mute floatRa">building</code></div>
-    <div class="item" data-value="pencil-square-o"><i class="sf-pencil-square-o"></i> <code class="fc-mute floatRa">pencil-square-o</code></div>
-    <div class="item" data-value="pencil-square"><i class="sf-pencil-square"></i> <code class="fc-mute floatRa">pencil-square</code></div>
-    <div class="item" data-value="pencil"><i class="sf-pencil"></i> <code class="fc-mute floatRa">pencil</code></div>
-    <div class="item" data-value="bold"><i class="sf-bold"></i> <code class="fc-mute floatRa">bold</code></div>
-    <div class="item" data-value="crop-1"><i class="sf-crop-1"></i> <code class="fc-mute floatRa">crop-1</code></div>
-    <div class="item" data-value="align-center-1"><i class="sf-align-center-1"></i> <code class="fc-mute floatRa">align-center-1</code></div>
-    <div class="item" data-value="align-justify-1"><i class="sf-align-justify-1"></i> <code class="fc-mute floatRa">align-justify-1</code></div>
-    <div class="item" data-value="align-left-1"><i class="sf-align-left-1"></i> <code class="fc-mute floatRa">align-left-1</code></div>
-    <div class="item" data-value="indent"><i class="sf-indent"></i> <code class="fc-mute floatRa">indent</code></div>
-    <div class="item" data-value="outdent"><i class="sf-outdent"></i> <code class="fc-mute floatRa">outdent</code></div>
-    <div class="item" data-value="superscript"><i class="sf-superscript"></i> <code class="fc-mute floatRa">superscript</code></div>
-    <div class="item" data-value="subscript"><i class="sf-subscript"></i> <code class="fc-mute floatRa">subscript</code></div>
-    <div class="item" data-value="align-right-1"><i class="sf-align-right-1"></i> <code class="fc-mute floatRa">align-right-1</code></div>
-    <div class="item" data-value="font"><i class="sf-font"></i> <code class="fc-mute floatRa">font</code></div>
-    <div class="item" data-value="list"><i class="sf-list"></i> <code class="fc-mute floatRa">list</code></div>
-    <div class="item" data-value="pencil-square-1"><i class="sf-pencil-square-1"></i> <code class="fc-mute floatRa">pencil-square-1</code></div>
-    <div class="item" data-value="text-height"><i class="sf-text-height"></i> <code class="fc-mute floatRa">text-height</code></div>
-    <div class="item" data-value="trash"><i class="sf-trash"></i> <code class="fc-mute floatRa">trash</code></div>
-    <div class="item" data-value="trash-o"><i class="sf-trash-o"></i> <code class="fc-mute floatRa">trash-o</code></div>
-    <div class="item" data-value="ban"><i class="sf-ban"></i> <code class="fc-mute floatRa">ban</code></div>
-    <div class="item" data-value="minus-circle"><i class="sf-minus-circle"></i> <code class="fc-mute floatRa">minus-circle</code></div>
-    <div class="item" data-value="minus-square"><i class="sf-minus-square"></i> <code class="fc-mute floatRa">minus-square</code></div>
-    <div class="item" data-value="link"><i class="sf-link"></i> <code class="fc-mute floatRa">link</code></div>
-    <div class="item" data-value="link-external"><i class="sf-link-external"></i> <code class="fc-mute floatRa">link-external</code></div>
-    <div class="item" data-value="tools"><i class="sf-tools"></i> <code class="fc-mute floatRa">tools</code></div>
-    <div class="item" data-value="wrench-2"><i class="sf-wrench-2"></i> <code class="fc-mute floatRa">wrench-2</code></div>
-    <div class="item" data-value="power-off"><i class="sf-power-off"></i> <code class="fc-mute floatRa">power-off</code></div>
-    <div class="item" data-value="credit-card"><i class="sf-credit-card"></i> <code class="fc-mute floatRa">credit-card</code></div>
-    <div class="item" data-value="user-7"><i class="sf-user-7"></i> <code class="fc-mute floatRa">user-7</code></div>
-    <div class="item" data-value="user-6"><i class="sf-user-6"></i> <code class="fc-mute floatRa">user-6</code></div>
-    <div class="item" data-value="user-4"><i class="sf-user-4"></i> <code class="fc-mute floatRa">user-4</code></div>
-    <div class="item" data-value="user-3"><i class="sf-user-3"></i> <code class="fc-mute floatRa">user-3</code></div>
-    <div class="item" data-value="user-5"><i class="sf-user-5"></i> <code class="fc-mute floatRa">user-5</code></div>
-    <div class="item" data-value="forum-user"><i class="sf-forum-user"></i> <code class="fc-mute floatRa">forum-user</code></div>
-    <div class="item" data-value="file-1"><i class="sf-file-1"></i> <code class="fc-mute floatRa">file-1</code></div>
-    <div class="item" data-value="folder"><i class="sf-folder"></i> <code class="fc-mute floatRa">folder</code></div>
-    <div class="item" data-value="folder-1"><i class="sf-folder-1"></i> <code class="fc-mute floatRa">folder-1</code></div>
-    <div class="item" data-value="medal"><i class="sf-medal"></i> <code class="fc-mute floatRa">medal</code></div>
-    <div class="item" data-value="network"><i class="sf-network"></i> <code class="fc-mute floatRa">network</code></div>
-    <div class="item" data-value="save-1"><i class="sf-save-1"></i> <code class="fc-mute floatRa">save-1</code></div>
-    <div class="item" data-value="star-1"><i class="sf-star-1"></i> <code class="fc-mute floatRa">star-1</code></div>
-    <div class="item" data-value="display"><i class="sf-display"></i> <code class="fc-mute floatRa">display</code></div>
-    <div class="item" data-value="dollar"><i class="sf-dollar"></i> <code class="fc-mute floatRa">dollar</code></div>
-    <div class="item" data-value="euro"><i class="sf-euro"></i> <code class="fc-mute floatRa">euro</code></div>
-    <div class="item" data-value="pound"><i class="sf-pound"></i> <code class="fc-mute floatRa">pound</code></div>
-    <div class="item" data-value="money-banknote"><i class="sf-money-banknote"></i> <code class="fc-mute floatRa">money-banknote</code></div>
-    <div class="item" data-value="male-rounded-1"><i class="sf-male-rounded-1"></i> <code class="fc-mute floatRa">male-rounded-1</code></div>
-    <div class="item" data-value="female-rounded-1"><i class="sf-female-rounded-1"></i> <code class="fc-mute floatRa">female-rounded-1</code></div>
-    <div class="item" data-value="female"><i class="sf-female"></i> <code class="fc-mute floatRa">female</code></div>
-    <div class="item" data-value="male"><i class="sf-male"></i> <code class="fc-mute floatRa">male</code></div>
-    <div class="item" data-value="arrows-out"><i class="sf-arrows-out"></i> <code class="fc-mute floatRa">arrows-out</code></div>
-    <div class="item" data-value="print-1"><i class="sf-print-1"></i> <code class="fc-mute floatRa">print-1</code></div>
-    <div class="item" data-value="zoom-out"><i class="sf-zoom-out"></i> <code class="fc-mute floatRa">zoom-out</code></div>
-    <div class="item" data-value="earth"><i class="sf-earth"></i> <code class="fc-mute floatRa">earth</code></div>
-    <div class="item" data-value="building-o"><i class="sf-building-o"></i> <code class="fc-mute floatRa">building-o</code></div>
-    <div class="item" data-value="briefcase"><i class="sf-briefcase"></i> <code class="fc-mute floatRa">briefcase</code></div>
-    <div class="item" data-value="interface-windows"><i class="sf-interface-windows"></i> <code class="fc-mute floatRa">interface-windows</code></div>
-    <div class="item" data-value="angle-double-down"><i class="sf-angle-double-down"></i> <code class="fc-mute floatRa">angle-double-down</code></div>
-    <div class="item" data-value="angle-double-left"><i class="sf-angle-double-left"></i> <code class="fc-mute floatRa">angle-double-left</code></div>
-    <div class="item" data-value="angle-double-right"><i class="sf-angle-double-right"></i> <code class="fc-mute floatRa">angle-double-right</code></div>
-    <div class="item" data-value="angle-double-up"><i class="sf-angle-double-up"></i> <code class="fc-mute floatRa">angle-double-up</code></div>
-    <div class="item" data-value="arrow-circle-down"><i class="sf-arrow-circle-down"></i> <code class="fc-mute floatRa">arrow-circle-down</code></div>
-    <div class="item" data-value="arrow-circle-left"><i class="sf-arrow-circle-left"></i> <code class="fc-mute floatRa">arrow-circle-left</code></div>
-    <div class="item" data-value="arrow-circle-o-down"><i class="sf-arrow-circle-o-down"></i> <code class="fc-mute floatRa">arrow-circle-o-down</code></div>
-    <div class="item" data-value="area-chart"><i class="sf-area-chart"></i> <code class="fc-mute floatRa">area-chart</code></div>
-    <div class="item" data-value="arrow-circle-o-left"><i class="sf-arrow-circle-o-left"></i> <code class="fc-mute floatRa">arrow-circle-o-left</code></div>
-    <div class="item" data-value="arrow-circle-o-right"><i class="sf-arrow-circle-o-right"></i> <code class="fc-mute floatRa">arrow-circle-o-right</code></div>
-    <div class="item" data-value="arrow-circle-o-up"><i class="sf-arrow-circle-o-up"></i> <code class="fc-mute floatRa">arrow-circle-o-up</code></div>
-    <div class="item" data-value="arrow-circle-right"><i class="sf-arrow-circle-right"></i> <code class="fc-mute floatRa">arrow-circle-right</code></div>
-    <div class="item" data-value="arrow-circle-up"><i class="sf-arrow-circle-up"></i> <code class="fc-mute floatRa">arrow-circle-up</code></div>
-    <div class="item" data-value="arrow-down"><i class="sf-arrow-down"></i> <code class="fc-mute floatRa">arrow-down</code></div>
-    <div class="item" data-value="arrow-left"><i class="sf-arrow-left"></i> <code class="fc-mute floatRa">arrow-left</code></div>
-    <div class="item" data-value="arrow-right"><i class="sf-arrow-right"></i> <code class="fc-mute floatRa">arrow-right</code></div>
-    <div class="item" data-value="arrow-up"><i class="sf-arrow-up"></i> <code class="fc-mute floatRa">arrow-up</code></div>
-    <div class="item" data-value="battery-empty"><i class="sf-battery-empty"></i> <code class="fc-mute floatRa">battery-empty</code></div>
-    <div class="item" data-value="battery-full"><i class="sf-battery-full"></i> <code class="fc-mute floatRa">battery-full</code></div>
-    <div class="item" data-value="battery-half"><i class="sf-battery-half"></i> <code class="fc-mute floatRa">battery-half</code></div>
-    <div class="item" data-value="battery-quarter"><i class="sf-battery-quarter"></i> <code class="fc-mute floatRa">battery-quarter</code></div>
-    <div class="item" data-value="battery-three-quarters"><i class="sf-battery-three-quarters"></i> <code class="fc-mute floatRa">battery-three-quarters</code></div>
-    <div class="item" data-value="barcode"><i class="sf-barcode"></i> <code class="fc-mute floatRa">barcode</code></div>
-    <div class="item" data-value="at-1"><i class="sf-at-1"></i> <code class="fc-mute floatRa">at-1</code></div>
-    <div class="item" data-value="bed"><i class="sf-bed"></i> <code class="fc-mute floatRa">bed</code></div>
-    <div class="item" data-value="binoculars"><i class="sf-binoculars"></i> <code class="fc-mute floatRa">binoculars</code></div>
-    <div class="item" data-value="bold-1"><i class="sf-bold-1"></i> <code class="fc-mute floatRa">bold-1</code></div>
-    <div class="item" data-value="book"><i class="sf-book"></i> <code class="fc-mute floatRa">book</code></div>
-    <div class="item" data-value="bus"><i class="sf-bus"></i> <code class="fc-mute floatRa">bus</code></div>
-    <div class="item" data-value="calculator"><i class="sf-calculator"></i> <code class="fc-mute floatRa">calculator</code></div>
-    <div class="item" data-value="calendar"><i class="sf-calendar"></i> <code class="fc-mute floatRa">calendar</code></div>
-    <div class="item" data-value="calendar-check-o"><i class="sf-calendar-check-o"></i> <code class="fc-mute floatRa">calendar-check-o</code></div>
-    <div class="item" data-value="calendar-minus-o"><i class="sf-calendar-minus-o"></i> <code class="fc-mute floatRa">calendar-minus-o</code></div>
-    <div class="item" data-value="camera"><i class="sf-camera"></i> <code class="fc-mute floatRa">camera</code></div>
-    <div class="item" data-value="camera-retro"><i class="sf-camera-retro"></i> <code class="fc-mute floatRa">camera-retro</code></div>
-    <div class="item" data-value="car"><i class="sf-car"></i> <code class="fc-mute floatRa">car</code></div>
-    <div class="item" data-value="cart-plus"><i class="sf-cart-plus"></i> <code class="fc-mute floatRa">cart-plus</code></div>
-    <div class="item" data-value="cc-mastercard"><i class="sf-cc-mastercard"></i> <code class="fc-mute floatRa">cc-mastercard</code></div>
-    <div class="item" data-value="check-circle"><i class="sf-check-circle"></i> <code class="fc-mute floatRa">check-circle</code></div>
-    <div class="item" data-value="check-circle-o"><i class="sf-check-circle-o"></i> <code class="fc-mute floatRa">check-circle-o</code></div>
-    <div class="item" data-value="check-square"><i class="sf-check-square"></i> <code class="fc-mute floatRa">check-square</code></div>
-    <div class="item" data-value="check-square-o"><i class="sf-check-square-o"></i> <code class="fc-mute floatRa">check-square-o</code></div>
-    <div class="item" data-value="chevron-down"><i class="sf-chevron-down"></i> <code class="fc-mute floatRa">chevron-down</code></div>
-    <div class="item" data-value="chevron-left"><i class="sf-chevron-left"></i> <code class="fc-mute floatRa">chevron-left</code></div>
-    <div class="item" data-value="chevron-right"><i class="sf-chevron-right"></i> <code class="fc-mute floatRa">chevron-right</code></div>
-    <div class="item" data-value="chevron-up"><i class="sf-chevron-up"></i> <code class="fc-mute floatRa">chevron-up</code></div>
-    <div class="item" data-value="child"><i class="sf-child"></i> <code class="fc-mute floatRa">child</code></div>
-    <div class="item" data-value="chrome"><i class="sf-chrome"></i> <code class="fc-mute floatRa">chrome</code></div>
-    <div class="item" data-value="circle-o-notch"><i class="sf-circle-o-notch"></i> <code class="fc-mute floatRa">circle-o-notch</code></div>
-    <div class="item" data-value="code"><i class="sf-code"></i> <code class="fc-mute floatRa">code</code></div>
-    <div class="item" data-value="code-fork"><i class="sf-code-fork"></i> <code class="fc-mute floatRa">code-fork</code></div>
-    <div class="item" data-value="coffee"><i class="sf-coffee"></i> <code class="fc-mute floatRa">coffee</code></div>
-    <div class="item" data-value="compress"><i class="sf-compress"></i> <code class="fc-mute floatRa">compress</code></div>
-    <div class="item" data-value="copyright"><i class="sf-copyright"></i> <code class="fc-mute floatRa">copyright</code></div>
-    <div class="item" data-value="css3"><i class="sf-css3"></i> <code class="fc-mute floatRa">css3</code></div>
-    <div class="item" data-value="diamond"><i class="sf-diamond"></i> <code class="fc-mute floatRa">diamond</code></div>
-    <div class="item" data-value="eject"><i class="sf-eject"></i> <code class="fc-mute floatRa">eject</code></div>
-    <div class="item" data-value="exchange"><i class="sf-exchange"></i> <code class="fc-mute floatRa">exchange</code></div>
-    <div class="item" data-value="eur"><i class="sf-eur"></i> <code class="fc-mute floatRa">eur</code></div>
-    <div class="item" data-value="exclamation"><i class="sf-exclamation"></i> <code class="fc-mute floatRa">exclamation</code></div>
-    <div class="item" data-value="exclamation-circle"><i class="sf-exclamation-circle"></i> <code class="fc-mute floatRa">exclamation-circle</code></div>
-    <div class="item" data-value="exclamation-triangle"><i class="sf-exclamation-triangle"></i> <code class="fc-mute floatRa">exclamation-triangle</code></div>
-    <div class="item" data-value="expand"><i class="sf-expand"></i> <code class="fc-mute floatRa">expand</code></div>
-    <div class="item" data-value="expeditedssl"><i class="sf-expeditedssl"></i> <code class="fc-mute floatRa">expeditedssl</code></div>
-    <div class="item" data-value="external-link"><i class="sf-external-link"></i> <code class="fc-mute floatRa">external-link</code></div>
-    <div class="item" data-value="eyedropper"><i class="sf-eyedropper"></i> <code class="fc-mute floatRa">eyedropper</code></div>
-    <div class="item" data-value="fast-backward"><i class="sf-fast-backward"></i> <code class="fc-mute floatRa">fast-backward</code></div>
-    <div class="item" data-value="fast-forward"><i class="sf-fast-forward"></i> <code class="fc-mute floatRa">fast-forward</code></div>
-    <div class="item" data-value="fax"><i class="sf-fax"></i> <code class="fc-mute floatRa">fax</code></div>
-    <div class="item" data-value="firefox"><i class="sf-firefox"></i> <code class="fc-mute floatRa">firefox</code></div>
-    <div class="item" data-value="flask"><i class="sf-flask"></i> <code class="fc-mute floatRa">flask</code></div>
-    <div class="item" data-value="folder-o"><i class="sf-folder-o"></i> <code class="fc-mute floatRa">folder-o</code></div>
-    <div class="item" data-value="folder-2"><i class="sf-folder-2"></i> <code class="fc-mute floatRa">folder-2</code></div>
-    <div class="item" data-value="folder-open"><i class="sf-folder-open"></i> <code class="fc-mute floatRa">folder-open</code></div>
-    <div class="item" data-value="folder-open-o"><i class="sf-folder-open-o"></i> <code class="fc-mute floatRa">folder-open-o</code></div>
-    <div class="item" data-value="font-1"><i class="sf-font-1"></i> <code class="fc-mute floatRa">font-1</code></div>
-    <div class="item" data-value="frown-o"><i class="sf-frown-o"></i> <code class="fc-mute floatRa">frown-o</code></div>
-    <div class="item" data-value="gift"><i class="sf-gift"></i> <code class="fc-mute floatRa">gift</code></div>
-    <div class="item" data-value="gratipay"><i class="sf-gratipay"></i> <code class="fc-mute floatRa">gratipay</code></div>
-    <div class="item" data-value="google-plus"><i class="sf-google-plus"></i> <code class="fc-mute floatRa">google-plus</code></div>
-    <div class="item" data-value="google"><i class="sf-google"></i> <code class="fc-mute floatRa">google</code></div>
-    <div class="item" data-value="git-square"><i class="sf-git-square"></i> <code class="fc-mute floatRa">git-square</code></div>
-    <div class="item" data-value="git"><i class="sf-git"></i> <code class="fc-mute floatRa">git</code></div>
-    <div class="item" data-value="hand-peace-o"><i class="sf-hand-peace-o"></i> <code class="fc-mute floatRa">hand-peace-o</code></div>
-    <div class="item" data-value="header"><i class="sf-header"></i> <code class="fc-mute floatRa">header</code></div>
-    <div class="item" data-value="headphones"><i class="sf-headphones"></i> <code class="fc-mute floatRa">headphones</code></div>
-    <div class="item" data-value="heartbeat"><i class="sf-heartbeat"></i> <code class="fc-mute floatRa">heartbeat</code></div>
-    <div class="item" data-value="hourglass-start"><i class="sf-hourglass-start"></i> <code class="fc-mute floatRa">hourglass-start</code></div>
-    <div class="item" data-value="html5"><i class="sf-html5"></i> <code class="fc-mute floatRa">html5</code></div>
-    <div class="item" data-value="indent-1"><i class="sf-indent-1"></i> <code class="fc-mute floatRa">indent-1</code></div>
-    <div class="item" data-value="inbox"><i class="sf-inbox"></i> <code class="fc-mute floatRa">inbox</code></div>
-    <div class="item" data-value="internet-explorer"><i class="sf-internet-explorer"></i> <code class="fc-mute floatRa">internet-explorer</code></div>
-    <div class="item" data-value="italic"><i class="sf-italic"></i> <code class="fc-mute floatRa">italic</code></div>
-    <div class="item" data-value="linux"><i class="sf-linux"></i> <code class="fc-mute floatRa">linux</code></div>
-    <div class="item" data-value="lightbulb-o"><i class="sf-lightbulb-o"></i> <code class="fc-mute floatRa">lightbulb-o</code></div>
-    <div class="item" data-value="life-ring"><i class="sf-life-ring"></i> <code class="fc-mute floatRa">life-ring</code></div>
-    <div class="item" data-value="level-down"><i class="sf-level-down"></i> <code class="fc-mute floatRa">level-down</code></div>
-    <div class="item" data-value="level-up"><i class="sf-level-up"></i> <code class="fc-mute floatRa">level-up</code></div>
-    <div class="item" data-value="list-ol"><i class="sf-list-ol"></i> <code class="fc-mute floatRa">list-ol</code></div>
-    <div class="item" data-value="list-ul"><i class="sf-list-ul"></i> <code class="fc-mute floatRa">list-ul</code></div>
-    <div class="item" data-value="location-arrow"><i class="sf-location-arrow"></i> <code class="fc-mute floatRa">location-arrow</code></div>
-    <div class="item" data-value="magic"><i class="sf-magic"></i> <code class="fc-mute floatRa">magic</code></div>
-    <div class="item" data-value="map-marker"><i class="sf-map-marker"></i> <code class="fc-mute floatRa">map-marker</code></div>
-    <div class="item" data-value="map"><i class="sf-map"></i> <code class="fc-mute floatRa">map</code></div>
-    <div class="item" data-value="meh-o"><i class="sf-meh-o"></i> <code class="fc-mute floatRa">meh-o</code></div>
-    <div class="item" data-value="map-pin"><i class="sf-map-pin"></i> <code class="fc-mute floatRa">map-pin</code></div>
-    <div class="item" data-value="mars"><i class="sf-mars"></i> <code class="fc-mute floatRa">mars</code></div>
-    <div class="item" data-value="microphone"><i class="sf-microphone"></i> <code class="fc-mute floatRa">microphone</code></div>
-    <div class="item" data-value="microphone-slash"><i class="sf-microphone-slash"></i> <code class="fc-mute floatRa">microphone-slash</code></div>
-    <div class="item" data-value="mobile"><i class="sf-mobile"></i> <code class="fc-mute floatRa">mobile</code></div>
-    <div class="item" data-value="money"><i class="sf-money"></i> <code class="fc-mute floatRa">money</code></div>
-    <div class="item" data-value="moon-o"><i class="sf-moon-o"></i> <code class="fc-mute floatRa">moon-o</code></div>
-    <div class="item" data-value="motorcycle"><i class="sf-motorcycle"></i> <code class="fc-mute floatRa">motorcycle</code></div>
-    <div class="item" data-value="mouse-pointer"><i class="sf-mouse-pointer"></i> <code class="fc-mute floatRa">mouse-pointer</code></div>
-    <div class="item" data-value="music"><i class="sf-music"></i> <code class="fc-mute floatRa">music</code></div>
-    <div class="item" data-value="paint-brush"><i class="sf-paint-brush"></i> <code class="fc-mute floatRa">paint-brush</code></div>
-    <div class="item" data-value="picture-o"><i class="sf-picture-o"></i> <code class="fc-mute floatRa">picture-o</code></div>
-    <div class="item" data-value="phone-square"><i class="sf-phone-square"></i> <code class="fc-mute floatRa">phone-square</code></div>
-    <div class="item" data-value="phone"><i class="sf-phone"></i> <code class="fc-mute floatRa">phone</code></div>
-    <div class="item" data-value="paper-plane"><i class="sf-paper-plane"></i> <code class="fc-mute floatRa">paper-plane</code></div>
-    <div class="item" data-value="paper-plane-o"><i class="sf-paper-plane-o"></i> <code class="fc-mute floatRa">paper-plane-o</code></div>
-    <div class="item" data-value="pie-chart"><i class="sf-pie-chart"></i> <code class="fc-mute floatRa">pie-chart</code></div>
-    <div class="item" data-value="play"><i class="sf-play"></i> <code class="fc-mute floatRa">play</code></div>
-    <div class="item" data-value="play-circle-o"><i class="sf-play-circle-o"></i> <code class="fc-mute floatRa">play-circle-o</code></div>
-    <div class="item" data-value="plug"><i class="sf-plug"></i> <code class="fc-mute floatRa">plug</code></div>
-    <div class="item" data-value="plus-square"><i class="sf-plus-square"></i> <code class="fc-mute floatRa">plus-square</code></div>
-    <div class="item" data-value="plus-square-o"><i class="sf-plus-square-o"></i> <code class="fc-mute floatRa">plus-square-o</code></div>
-    <div class="item" data-value="power-off-1"><i class="sf-power-off-1"></i> <code class="fc-mute floatRa">power-off-1</code></div>
-    <div class="item" data-value="registered"><i class="sf-registered"></i> <code class="fc-mute floatRa">registered</code></div>
-    <div class="item" data-value="repeat"><i class="sf-repeat"></i> <code class="fc-mute floatRa">repeat</code></div>
-    <div class="item" data-value="rocket"><i class="sf-rocket"></i> <code class="fc-mute floatRa">rocket</code></div>
-    <div class="item" data-value="rss-square"><i class="sf-rss-square"></i> <code class="fc-mute floatRa">rss-square</code></div>
-    <div class="item" data-value="scissors"><i class="sf-scissors"></i> <code class="fc-mute floatRa">scissors</code></div>
-    <div class="item" data-value="safari"><i class="sf-safari"></i> <code class="fc-mute floatRa">safari</code></div>
-    <div class="item" data-value="search-plus"><i class="sf-search-plus"></i> <code class="fc-mute floatRa">search-plus</code></div>
-    <div class="item" data-value="search-minus"><i class="sf-search-minus"></i> <code class="fc-mute floatRa">search-minus</code></div>
-    <div class="item" data-value="sellsy"><i class="sf-sellsy"></i> <code class="fc-mute floatRa">sellsy</code></div>
-    <div class="item" data-value="server"><i class="sf-server"></i> <code class="fc-mute floatRa">server</code></div>
-    <div class="item" data-value="share-alt"><i class="sf-share-alt"></i> <code class="fc-mute floatRa">share-alt</code></div>
-    <div class="item" data-value="share-alt-square"><i class="sf-share-alt-square"></i> <code class="fc-mute floatRa">share-alt-square</code></div>
-    <div class="item" data-value="share-square"><i class="sf-share-square"></i> <code class="fc-mute floatRa">share-square</code></div>
-    <div class="item" data-value="share-square-o"><i class="sf-share-square-o"></i> <code class="fc-mute floatRa">share-square-o</code></div>
-    <div class="item" data-value="shield"><i class="sf-shield"></i> <code class="fc-mute floatRa">shield</code></div>
-    <div class="item" data-value="shopping-cart"><i class="sf-shopping-cart"></i> <code class="fc-mute floatRa">shopping-cart</code></div>
-    <div class="item" data-value="sign-in"><i class="sf-sign-in"></i> <code class="fc-mute floatRa">sign-in</code></div>
-    <div class="item" data-value="signal"><i class="sf-signal"></i> <code class="fc-mute floatRa">signal</code></div>
-    <div class="item" data-value="sitemap"><i class="sf-sitemap"></i> <code class="fc-mute floatRa">sitemap</code></div>
-    <div class="item" data-value="slack"><i class="sf-slack"></i> <code class="fc-mute floatRa">slack</code></div>
-    <div class="item" data-value="sliders"><i class="sf-sliders"></i> <code class="fc-mute floatRa">sliders</code></div>
-    <div class="item" data-value="sort"><i class="sf-sort"></i> <code class="fc-mute floatRa">sort</code></div>
-    <div class="item" data-value="smile-o"><i class="sf-smile-o"></i> <code class="fc-mute floatRa">smile-o</code></div>
-    <div class="item" data-value="sort-asc"><i class="sf-sort-asc"></i> <code class="fc-mute floatRa">sort-asc</code></div>
-    <div class="item" data-value="sort-desc"><i class="sf-sort-desc"></i> <code class="fc-mute floatRa">sort-desc</code></div>
-    <div class="item" data-value="soundcloud"><i class="sf-soundcloud"></i> <code class="fc-mute floatRa">soundcloud</code></div>
-    <div class="item" data-value="space-shuttle"><i class="sf-space-shuttle"></i> <code class="fc-mute floatRa">space-shuttle</code></div>
-    <div class="item" data-value="stack-overflow"><i class="sf-stack-overflow"></i> <code class="fc-mute floatRa">stack-overflow</code></div>
-    <div class="item" data-value="sun-o"><i class="sf-sun-o"></i> <code class="fc-mute floatRa">sun-o</code></div>
-    <div class="item" data-value="superscript-1"><i class="sf-superscript-1"></i> <code class="fc-mute floatRa">superscript-1</code></div>
-    <div class="item" data-value="table"><i class="sf-table"></i> <code class="fc-mute floatRa">table</code></div>
-    <div class="item" data-value="tablet"><i class="sf-tablet"></i> <code class="fc-mute floatRa">tablet</code></div>
-    <div class="item" data-value="taxi"><i class="sf-taxi"></i> <code class="fc-mute floatRa">taxi</code></div>
-    <div class="item" data-value="television"><i class="sf-television"></i> <code class="fc-mute floatRa">television</code></div>
-    <div class="item" data-value="terminal"><i class="sf-terminal"></i> <code class="fc-mute floatRa">terminal</code></div>
-    <div class="item" data-value="text-height-1"><i class="sf-text-height-1"></i> <code class="fc-mute floatRa">text-height-1</code></div>
-    <div class="item" data-value="text-width"><i class="sf-text-width"></i> <code class="fc-mute floatRa">text-width</code></div>
-    <div class="item" data-value="th"><i class="sf-th"></i> <code class="fc-mute floatRa">th</code></div>
-    <div class="item" data-value="th-large"><i class="sf-th-large"></i> <code class="fc-mute floatRa">th-large</code></div>
-    <div class="item" data-value="th-list"><i class="sf-th-list"></i> <code class="fc-mute floatRa">th-list</code></div>
-    <div class="item" data-value="trademark"><i class="sf-trademark"></i> <code class="fc-mute floatRa">trademark</code></div>
-    <div class="item" data-value="tree"><i class="sf-tree"></i> <code class="fc-mute floatRa">tree</code></div>
-    <div class="item" data-value="undo"><i class="sf-undo"></i> <code class="fc-mute floatRa">undo</code></div>
-    <div class="item" data-value="underline"><i class="sf-underline"></i> <code class="fc-mute floatRa">underline</code></div>
-    <div class="item" data-value="umbrella"><i class="sf-umbrella"></i> <code class="fc-mute floatRa">umbrella</code></div>
-    <div class="item" data-value="tty"><i class="sf-tty"></i> <code class="fc-mute floatRa">tty</code></div>
-    <div class="item" data-value="trophy-1"><i class="sf-trophy-1"></i> <code class="fc-mute floatRa">trophy-1</code></div>
-    <div class="item" data-value="upload"><i class="sf-upload"></i> <code class="fc-mute floatRa">upload</code></div>
-    <div class="item" data-value="usd"><i class="sf-usd"></i> <code class="fc-mute floatRa">usd</code></div>
-    <div class="item" data-value="venus"><i class="sf-venus"></i> <code class="fc-mute floatRa">venus</code></div>
-    <div class="item" data-value="wheelchair"><i class="sf-wheelchair"></i> <code class="fc-mute floatRa">wheelchair</code></div>
-    <div class="item" data-value="weixin"><i class="sf-weixin"></i> <code class="fc-mute floatRa">weixin</code></div>
-    <div class="item" data-value="video-camera"><i class="sf-video-camera"></i> <code class="fc-mute floatRa">video-camera</code></div>
-    <div class="item" data-value="wifi"><i class="sf-wifi"></i> <code class="fc-mute floatRa">wifi</code></div>
-    <div class="item" data-value="wordpress"><i class="sf-wordpress"></i> <code class="fc-mute floatRa">wordpress</code></div>
-    <div class="item" data-value="youtube"><i class="sf-youtube"></i> <code class="fc-mute floatRa">youtube</code></div>
-    <div class="item" data-value="pin"><i class="sf-pin"></i> <code class="fc-mute floatRa">pin</code></div>
-    <div class="item" data-value="anchor"><i class="sf-anchor"></i> <code class="fc-mute floatRa">anchor</code></div>
-    <div class="item" data-value="alarm"><i class="sf-alarm"></i> <code class="fc-mute floatRa">alarm</code></div>
-    <div class="item" data-value="instagram-1"><i class="sf-instagram-1"></i> <code class="fc-mute floatRa">instagram-1</code></div>
-    <div class="item" data-value="heart-1"><i class="sf-heart-1"></i> <code class="fc-mute floatRa">heart-1</code></div>
-    <div class="item" data-value="task"><i class="sf-task"></i> <code class="fc-mute floatRa">task</code></div>
-    <div class="item" data-value="broadcast"><i class="sf-broadcast"></i> <code class="fc-mute floatRa">broadcast</code></div>
-    <div class="item" data-value="bug-1"><i class="sf-bug-1"></i> <code class="fc-mute floatRa">bug-1</code></div>
-    <div class="item" data-value="star-2"><i class="sf-star-2"></i> <code class="fc-mute floatRa">star-2</code></div>
-    <div class="item" data-value="mark-github"><i class="sf-mark-github"></i> <code class="fc-mute floatRa">mark-github</code></div>
-    <div class="item" data-value="flag-1"><i class="sf-flag-1"></i> <code class="fc-mute floatRa">flag-1</code></div>
-    <div class="item" data-value="bug-2"><i class="sf-bug-2"></i> <code class="fc-mute floatRa">bug-2</code></div>
-    <div class="item" data-value="android-1"><i class="sf-android-1"></i> <code class="fc-mute floatRa">android-1</code></div>
-    <div class="item" data-value="bluetooth"><i class="sf-bluetooth"></i> <code class="fc-mute floatRa">bluetooth</code></div>
-    <div class="item" data-value="heart-2"><i class="sf-heart-2"></i> <code class="fc-mute floatRa">heart-2</code></div>
-    <div class="item" data-value="hashtag"><i class="sf-hashtag"></i> <code class="fc-mute floatRa">hashtag</code></div>
-    <div class="item" data-value="windows-1"><i class="sf-windows-1"></i> <code class="fc-mute floatRa">windows-1</code></div>
-    <div class="item" data-value="barcode-1"><i class="sf-barcode-1"></i> <code class="fc-mute floatRa">barcode-1</code></div>
-    <div class="item" data-value="glass-1"><i class="sf-glass-1"></i> <code class="fc-mute floatRa">glass-1</code></div>
-    <div class="item" data-value="tags-1"><i class="sf-tags-1"></i> <code class="fc-mute floatRa">tags-1</code></div>
-    <div class="item" data-value="tag-1"><i class="sf-tag-1"></i> <code class="fc-mute floatRa">tag-1</code></div>
-    <div class="item" data-value="skype"><i class="sf-skype"></i> <code class="fc-mute floatRa">skype</code></div>
-    <div class="item" data-value="yang-ying"><i class="sf-yang-ying"></i> <code class="fc-mute floatRa">yang-ying</code></div>
-    <div class="item" data-value="address-book"><i class="sf-address-book"></i> <code class="fc-mute floatRa">address-book</code></div>
-    <div class="item" data-value="alert"><i class="sf-alert"></i> <code class="fc-mute floatRa">alert</code></div>
-    <div class="item" data-value="adjust"><i class="sf-adjust"></i> <code class="fc-mute floatRa">adjust</code></div>
-    <div class="item" data-value="code-1"><i class="sf-code-1"></i> <code class="fc-mute floatRa">code-1</code></div>
-    <div class="item" data-value="basket"><i class="sf-basket"></i> <code class="fc-mute floatRa">basket</code></div>
-    <div class="item" data-value="attach"><i class="sf-attach"></i> <code class="fc-mute floatRa">attach</code></div>
-    <div class="item" data-value="globe-1"><i class="sf-globe-1"></i> <code class="fc-mute floatRa">globe-1</code></div>
-    <div class="item" data-value="lamp"><i class="sf-lamp"></i> <code class="fc-mute floatRa">lamp</code></div>
-    <div class="item" data-value="left-quote"><i class="sf-left-quote"></i> <code class="fc-mute floatRa">left-quote</code></div>
-    <div class="item" data-value="headphones-1"><i class="sf-headphones-1"></i> <code class="fc-mute floatRa">headphones-1</code></div>
-    <div class="item" data-value="moon-stroke"><i class="sf-moon-stroke"></i> <code class="fc-mute floatRa">moon-stroke</code></div>
-    <div class="item" data-value="moon-fill"><i class="sf-moon-fill"></i> <code class="fc-mute floatRa">moon-fill</code></div>
-    <div class="item" data-value="mic"><i class="sf-mic"></i> <code class="fc-mute floatRa">mic</code></div>
-    <div class="item" data-value="home-1"><i class="sf-home-1"></i> <code class="fc-mute floatRa">home-1</code></div>
-    <div class="item" data-value="chat-alt-fill"><i class="sf-chat-alt-fill"></i> <code class="fc-mute floatRa">chat-alt-fill</code></div>
-    <div class="item" data-value="bolt-1"><i class="sf-bolt-1"></i> <code class="fc-mute floatRa">bolt-1</code></div>
-    <div class="item" data-value="right-quote"><i class="sf-right-quote"></i> <code class="fc-mute floatRa">right-quote</code></div>
-    <div class="item" data-value="right-quote-alt"><i class="sf-right-quote-alt"></i> <code class="fc-mute floatRa">right-quote-alt</code></div>
-    <div class="item" data-value="pin-1"><i class="sf-pin-1"></i> <code class="fc-mute floatRa">pin-1</code></div>
-    <div class="item" data-value="atom"><i class="sf-atom"></i> <code class="fc-mute floatRa">atom</code></div>
-    <div class="item" data-value="celcius"><i class="sf-celcius"></i> <code class="fc-mute floatRa">celcius</code></div>
-    <div class="item" data-value="thermometer"><i class="sf-thermometer"></i> <code class="fc-mute floatRa">thermometer</code></div>
-    <div class="item" data-value="sun-black"><i class="sf-sun-black"></i> <code class="fc-mute floatRa">sun-black</code></div>
-    <div class="item" data-value="sun"><i class="sf-sun"></i> <code class="fc-mute floatRa">sun</code></div>
-    <div class="item" data-value="card"><i class="sf-card"></i> <code class="fc-mute floatRa">card</code></div>
-    <div class="item" data-value="edit"><i class="sf-edit"></i> <code class="fc-mute floatRa">edit</code></div>
-    <div class="item" data-value="pencil-1"><i class="sf-pencil-1"></i> <code class="fc-mute floatRa">pencil-1</code></div>
-    <div class="item" data-value="plane"><i class="sf-plane"></i> <code class="fc-mute floatRa">plane</code></div>
-    <div class="item" data-value="bag"><i class="sf-bag"></i> <code class="fc-mute floatRa">bag</code></div>
-    <div class="item" data-value="new-sign"><i class="sf-new-sign"></i> <code class="fc-mute floatRa">new-sign</code></div>
-    <div class="item" data-value="sell-sign"><i class="sf-sell-sign"></i> <code class="fc-mute floatRa">sell-sign</code></div>
-    <div class="item" data-value="load-a"><i class="sf-load-a"></i> <code class="fc-mute floatRa">load-a</code></div>
-    <div class="item" data-value="load-d"><i class="sf-load-d"></i> <code class="fc-mute floatRa">load-d</code></div>
-    <div class="item" data-value="load-b"><i class="sf-load-b"></i> <code class="fc-mute floatRa">load-b</code></div>
-    <div class="item" data-value="spin-alt"><i class="sf-spin-alt"></i> <code class="fc-mute floatRa">spin-alt</code></div>
-    <div class="item" data-value="pull-request"><i class="sf-pull-request"></i> <code class="fc-mute floatRa">pull-request</code></div>
-    <div class="item" data-value="network-1"><i class="sf-network-1"></i> <code class="fc-mute floatRa">network-1</code></div>
-    <div class="item" data-value="merge"><i class="sf-merge"></i> <code class="fc-mute floatRa">merge</code></div>
-    <div class="item" data-value="fork-repo"><i class="sf-fork-repo"></i> <code class="fc-mute floatRa">fork-repo</code></div>
-    <div class="item" data-value="publish"><i class="sf-publish"></i> <code class="fc-mute floatRa">publish</code></div>
-    <div class="item" data-value="facebook-square"><i class="sf-facebook-square"></i> <code class="fc-mute floatRa">facebook-square</code></div>
-    <div class="item" data-value="facebook-official"><i class="sf-facebook-official"></i> <code class="fc-mute floatRa">facebook-official</code></div>
-    <div class="item" data-value="pinterest-square"><i class="sf-pinterest-square"></i> <code class="fc-mute floatRa">pinterest-square</code></div>
-    <div class="item" data-value="pinterest-p"><i class="sf-pinterest-p"></i> <code class="fc-mute floatRa">pinterest-p</code></div>
-    <div class="item" data-value="skype-1"><i class="sf-skype-1"></i> <code class="fc-mute floatRa">skype-1</code></div>
-    <div class="item" data-value="model-s"><i class="sf-model-s"></i> <code class="fc-mute floatRa">model-s</code></div>
-    <div class="item" data-value="vcard"><i class="sf-vcard"></i> <code class="fc-mute floatRa">vcard</code></div>
-    <div class="item" data-value="clock-o"><i class="sf-clock-o"></i> <code class="fc-mute floatRa">clock-o</code></div>
-    <div class="item" data-value="calendar-o"><i class="sf-calendar-o"></i> <code class="fc-mute floatRa">calendar-o</code></div>
-    <div class="item" data-value="arrow-vertical"><i class="sf-arrow-vertical"></i> <code class="fc-mute floatRa">arrow-vertical</code></div>
-    <div class="item" data-value="arrow-horizontal"><i class="sf-arrow-horizontal"></i> <code class="fc-mute floatRa">arrow-horizontal</code></div>
+<section class="pbox">
+  <header data-kerkere='.iconPanel' data-kerkere-icon='close'>{%trans "Icon"%}</header>
+  <div class="body iconPanel" data-kerkere-content='hide'>
+
+<div class="ui fluid selection dropdown search fs12">
+<input type="hidden" name="icon" value="{{dataRow.meta.icon}}">
+<i class="dropdown icon"></i>
+<div class="default text">{%trans "Choose icon"%}</div>
+<div class="menu">
+<div class="item" data-value="angle-down"><i class="floatRa sf-angle-down"></i><code>angle-down</code></div>
+<div class="item" data-value="angle-left"><i class="floatRa sf-angle-left"></i><code>angle-left</code></div>
+<div class="item" data-value="angle-right"><i class="floatRa sf-angle-right"></i><code>angle-right</code></div>
+<div class="item" data-value="angle-up"><i class="floatRa sf-angle-up"></i><code>angle-up</code></div>
+<div class="item" data-value="bell"><i class="floatRa sf-bell"></i><code>bell</code></div>
+<div class="item" data-value="bell-o"><i class="floatRa sf-bell-o"></i><code>bell-o</code></div>
+<div class="item" data-value="bell-slash"><i class="floatRa sf-bell-slash"></i><code>bell-slash</code></div>
+<div class="item" data-value="bell-slash-o"><i class="floatRa sf-bell-slash-o"></i><code>bell-slash-o</code></div>
+<div class="item" data-value="bug"><i class="floatRa sf-bug"></i><code>bug</code></div>
+<div class="item" data-value="bolt"><i class="floatRa sf-bolt"></i><code>bolt</code></div>
+<div class="item" data-value="check"><i class="floatRa sf-check"></i><code>check</code></div>
+<div class="item" data-value="chain-broken"><i class="floatRa sf-chain-broken"></i><code>chain-broken</code></div>
+<div class="item" data-value="cc-paypal"><i class="floatRa sf-cc-paypal"></i><code>cc-paypal</code></div>
+<div class="item" data-value="cc-visa"><i class="floatRa sf-cc-visa"></i><code>cc-visa</code></div>
+<div class="item" data-value="cloud-download"><i class="floatRa sf-cloud-download"></i><code>cloud-download</code></div>
+<div class="item" data-value="cloud-upload"><i class="floatRa sf-cloud-upload"></i><code>cloud-upload</code></div>
+<div class="item" data-value="cloud"><i class="floatRa sf-cloud"></i><code>cloud</code></div>
+<div class="item" data-value="comment"><i class="floatRa sf-comment"></i><code>comment</code></div>
+<div class="item" data-value="comment-o"><i class="floatRa sf-comment-o"></i><code>comment-o</code></div>
+<div class="item" data-value="commenting"><i class="floatRa sf-commenting"></i><code>commenting</code></div>
+<div class="item" data-value="clone"><i class="floatRa sf-clone"></i><code>clone</code></div>
+<div class="item" data-value="commenting-o"><i class="floatRa sf-commenting-o"></i><code>commenting-o</code></div>
+<div class="item" data-value="comments"><i class="floatRa sf-comments"></i><code>comments</code></div>
+<div class="item" data-value="comments-o"><i class="floatRa sf-comments-o"></i><code>comments-o</code></div>
+<div class="item" data-value="cog"><i class="floatRa sf-cog"></i><code>cog</code></div>
+<div class="item" data-value="desktop"><i class="floatRa sf-desktop"></i><code>desktop</code></div>
+<div class="item" data-value="envelope-o"><i class="floatRa sf-envelope-o"></i><code>envelope-o</code></div>
+<div class="item" data-value="envelope"><i class="floatRa sf-envelope"></i><code>envelope</code></div>
+<div class="item" data-value="ellipsis-v"><i class="floatRa sf-ellipsis-v"></i><code>ellipsis-v</code></div>
+<div class="item" data-value="ellipsis-h"><i class="floatRa sf-ellipsis-h"></i><code>ellipsis-h</code></div>
+<div class="item" data-value="crop"><i class="floatRa sf-crop"></i><code>crop</code></div>
+<div class="item" data-value="crosshairs"><i class="floatRa sf-crosshairs"></i><code>crosshairs</code></div>
+<div class="item" data-value="bar-chart"><i class="floatRa sf-bar-chart"></i><code>bar-chart</code></div>
+<div class="item" data-value="balance-scale"><i class="floatRa sf-balance-scale"></i><code>balance-scale</code></div>
+<div class="item" data-value="arrows-h"><i class="floatRa sf-arrows-h"></i><code>arrows-h</code></div>
+<div class="item" data-value="arrows-v"><i class="floatRa sf-arrows-v"></i><code>arrows-v</code></div>
+<div class="item" data-value="arrows-alt"><i class="floatRa sf-arrows-alt"></i><code>arrows-alt</code></div>
+<div class="item" data-value="arrows"><i class="floatRa sf-arrows"></i><code>arrows</code></div>
+<div class="item" data-value="android"><i class="floatRa sf-android"></i><code>android</code></div>
+<div class="item" data-value="align-right"><i class="floatRa sf-align-right"></i><code>align-right</code></div>
+<div class="item" data-value="align-left"><i class="floatRa sf-align-left"></i><code>align-left</code></div>
+<div class="item" data-value="align-justify"><i class="floatRa sf-align-justify"></i><code>align-justify</code></div>
+<div class="item" data-value="align-center"><i class="floatRa sf-align-center"></i><code>align-center</code></div>
+<div class="item" data-value="bullhorn"><i class="floatRa sf-bullhorn"></i><code>bullhorn</code></div>
+<div class="item" data-value="asterisk"><i class="floatRa sf-asterisk"></i><code>asterisk</code></div>
+<div class="item" data-value="bookmark-o"><i class="floatRa sf-bookmark-o"></i><code>bookmark-o</code></div>
+<div class="item" data-value="bookmark"><i class="floatRa sf-bookmark"></i><code>bookmark</code></div>
+<div class="item" data-value="caret-right"><i class="floatRa sf-caret-right"></i><code>caret-right</code></div>
+<div class="item" data-value="caret-left"><i class="floatRa sf-caret-left"></i><code>caret-left</code></div>
+<div class="item" data-value="caret-down"><i class="floatRa sf-caret-down"></i><code>caret-down</code></div>
+<div class="item" data-value="caret-up"><i class="floatRa sf-caret-up"></i><code>caret-up</code></div>
+<div class="item" data-value="file-code-o"><i class="floatRa sf-file-code-o"></i><code>file-code-o</code></div>
+<div class="item" data-value="file-audio-o"><i class="floatRa sf-file-audio-o"></i><code>file-audio-o</code></div>
+<div class="item" data-value="file-archive-o"><i class="floatRa sf-file-archive-o"></i><code>file-archive-o</code></div>
+<div class="item" data-value="file-excel-o"><i class="floatRa sf-file-excel-o"></i><code>file-excel-o</code></div>
+<div class="item" data-value="file"><i class="floatRa sf-file"></i><code>file</code></div>
+<div class="item" data-value="file-pdf-o"><i class="floatRa sf-file-pdf-o"></i><code>file-pdf-o</code></div>
+<div class="item" data-value="file-powerpoint-o"><i class="floatRa sf-file-powerpoint-o"></i><code>file-powerpoint-o</code></div>
+<div class="item" data-value="file-text"><i class="floatRa sf-file-text"></i><code>file-text</code></div>
+<div class="item" data-value="file-text-o"><i class="floatRa sf-file-text-o"></i><code>file-text-o</code></div>
+<div class="item" data-value="file-word-o"><i class="floatRa sf-file-word-o"></i><code>file-word-o</code></div>
+<div class="item" data-value="files-o"><i class="floatRa sf-files-o"></i><code>files-o</code></div>
+<div class="item" data-value="film"><i class="floatRa sf-film"></i><code>film</code></div>
+<div class="item" data-value="file-video-o"><i class="floatRa sf-file-video-o"></i><code>file-video-o</code></div>
+<div class="item" data-value="floppy-o"><i class="floatRa sf-floppy-o"></i><code>floppy-o</code></div>
+<div class="item" data-value="file-image-o"><i class="floatRa sf-file-image-o"></i><code>file-image-o</code></div>
+<div class="item" data-value="file-o"><i class="floatRa sf-file-o"></i><code>file-o</code></div>
+<div class="item" data-value="flag"><i class="floatRa sf-flag"></i><code>flag</code></div>
+<div class="item" data-value="flag-checkered"><i class="floatRa sf-flag-checkered"></i><code>flag-checkered</code></div>
+<div class="item" data-value="flag-o"><i class="floatRa sf-flag-o"></i><code>flag-o</code></div>
+<div class="item" data-value="gavel"><i class="floatRa sf-gavel"></i><code>gavel</code></div>
+<div class="item" data-value="heart"><i class="floatRa sf-heart"></i><code>heart</code></div>
+<div class="item" data-value="heart-o"><i class="floatRa sf-heart-o"></i><code>heart-o</code></div>
+<div class="item" data-value="history"><i class="floatRa sf-history"></i><code>history</code></div>
+<div class="item" data-value="home"><i class="floatRa sf-home"></i><code>home</code></div>
+<div class="item" data-value="hourglass"><i class="floatRa sf-hourglass"></i><code>hourglass</code></div>
+<div class="item" data-value="hourglass-end"><i class="floatRa sf-hourglass-end"></i><code>hourglass-end</code></div>
+<div class="item" data-value="hourglass-half"><i class="floatRa sf-hourglass-half"></i><code>hourglass-half</code></div>
+<div class="item" data-value="hourglass-o"><i class="floatRa sf-hourglass-o"></i><code>hourglass-o</code></div>
+<div class="item" data-value="info"><i class="floatRa sf-info"></i><code>info</code></div>
+<div class="item" data-value="industry"><i class="floatRa sf-industry"></i><code>industry</code></div>
+<div class="item" data-value="graduation-cap"><i class="floatRa sf-graduation-cap"></i><code>graduation-cap</code></div>
+<div class="item" data-value="globe"><i class="floatRa sf-globe"></i><code>globe</code></div>
+<div class="item" data-value="glass"><i class="floatRa sf-glass"></i><code>glass</code></div>
+<div class="item" data-value="line-chart"><i class="floatRa sf-line-chart"></i><code>line-chart</code></div>
+<div class="item" data-value="github-square"><i class="floatRa sf-github-square"></i><code>github-square</code></div>
+<div class="item" data-value="github-alt"><i class="floatRa sf-github-alt"></i><code>github-alt</code></div>
+<div class="item" data-value="github"><i class="floatRa sf-github"></i><code>github</code></div>
+<div class="item" data-value="language"><i class="floatRa sf-language"></i><code>language</code></div>
+<div class="item" data-value="laptop"><i class="floatRa sf-laptop"></i><code>laptop</code></div>
+<div class="item" data-value="quote-left"><i class="floatRa sf-quote-left"></i><code>quote-left</code></div>
+<div class="item" data-value="quote-right"><i class="floatRa sf-quote-right"></i><code>quote-right</code></div>
+<div class="item" data-value="spinner"><i class="floatRa sf-spinner"></i><code>spinner</code></div>
+<div class="item" data-value="star"><i class="floatRa sf-star"></i><code>star</code></div>
+<div class="item" data-value="star-half"><i class="floatRa sf-star-half"></i><code>star-half</code></div>
+<div class="item" data-value="star-half-o"><i class="floatRa sf-star-half-o"></i><code>star-half-o</code></div>
+<div class="item" data-value="star-o"><i class="floatRa sf-star-o"></i><code>star-o</code></div>
+<div class="item" data-value="sort-amount-asc"><i class="floatRa sf-sort-amount-asc"></i><code>sort-amount-asc</code></div>
+<div class="item" data-value="sort-alpha-desc"><i class="floatRa sf-sort-alpha-desc"></i><code>sort-alpha-desc</code></div>
+<div class="item" data-value="sort-alpha-asc"><i class="floatRa sf-sort-alpha-asc"></i><code>sort-alpha-asc</code></div>
+<div class="item" data-value="sort-amount-desc"><i class="floatRa sf-sort-amount-desc"></i><code>sort-amount-desc</code></div>
+<div class="item" data-value="sort-numeric-desc"><i class="floatRa sf-sort-numeric-desc"></i><code>sort-numeric-desc</code></div>
+<div class="item" data-value="sort-numeric-asc"><i class="floatRa sf-sort-numeric-asc"></i><code>sort-numeric-asc</code></div>
+<div class="item" data-value="rss"><i class="floatRa sf-rss"></i><code>rss</code></div>
+<div class="item" data-value="windows"><i class="floatRa sf-windows"></i><code>windows</code></div>
+<div class="item" data-value="unlock"><i class="floatRa sf-unlock"></i><code>unlock</code></div>
+<div class="item" data-value="unlock-alt"><i class="floatRa sf-unlock-alt"></i><code>unlock-alt</code></div>
+<div class="item" data-value="youtube-play"><i class="floatRa sf-youtube-play"></i><code>youtube-play</code></div>
+<div class="item" data-value="user-plus"><i class="floatRa sf-user-plus"></i><code>user-plus</code></div>
+<div class="item" data-value="user"><i class="floatRa sf-user"></i><code>user</code></div>
+<div class="item" data-value="user-md"><i class="floatRa sf-user-md"></i><code>user-md</code></div>
+<div class="item" data-value="user-secret"><i class="floatRa sf-user-secret"></i><code>user-secret</code></div>
+<div class="item" data-value="users"><i class="floatRa sf-users"></i><code>users</code></div>
+<div class="item" data-value="user-times"><i class="floatRa sf-user-times"></i><code>user-times</code></div>
+<div class="item" data-value="volume-up"><i class="floatRa sf-volume-up"></i><code>volume-up</code></div>
+<div class="item" data-value="volume-off"><i class="floatRa sf-volume-off"></i><code>volume-off</code></div>
+<div class="item" data-value="volume-down"><i class="floatRa sf-volume-down"></i><code>volume-down</code></div>
+<div class="item" data-value="wrench"><i class="floatRa sf-wrench"></i><code>wrench</code></div>
+<div class="item" data-value="thumbs-down"><i class="floatRa sf-thumbs-down"></i><code>thumbs-down</code></div>
+<div class="item" data-value="thumbs-o-down"><i class="floatRa sf-thumbs-o-down"></i><code>thumbs-o-down</code></div>
+<div class="item" data-value="thumbs-o-up"><i class="floatRa sf-thumbs-o-up"></i><code>thumbs-o-up</code></div>
+<div class="item" data-value="thumbs-up"><i class="floatRa sf-thumbs-up"></i><code>thumbs-up</code></div>
+<div class="item" data-value="thumb-tack"><i class="floatRa sf-thumb-tack"></i><code>thumb-tack</code></div>
+<div class="item" data-value="trello"><i class="floatRa sf-trello"></i><code>trello</code></div>
+<div class="item" data-value="tachometer"><i class="floatRa sf-tachometer"></i><code>tachometer</code></div>
+<div class="item" data-value="recycle"><i class="floatRa sf-recycle"></i><code>recycle</code></div>
+<div class="item" data-value="graph-bar"><i class="floatRa sf-graph-bar"></i><code>graph-bar</code></div>
+<div class="item" data-value="graph-horizontal"><i class="floatRa sf-graph-horizontal"></i><code>graph-horizontal</code></div>
+<div class="item" data-value="check-1"><i class="floatRa sf-check-1"></i><code>check-1</code></div>
+<div class="item" data-value="monitor"><i class="floatRa sf-monitor"></i><code>monitor</code></div>
+<div class="item" data-value="wrench-1"><i class="floatRa sf-wrench-1"></i><code>wrench-1</code></div>
+<div class="item" data-value="widget"><i class="floatRa sf-widget"></i><code>widget</code></div>
+<div class="item" data-value="thumbnails"><i class="floatRa sf-thumbnails"></i><code>thumbnails</code></div>
+<div class="item" data-value="save"><i class="floatRa sf-save"></i><code>save</code></div>
+<div class="item" data-value="chart-pie"><i class="floatRa sf-chart-pie"></i><code>chart-pie</code></div>
+<div class="item" data-value="chart-line"><i class="floatRa sf-chart-line"></i><code>chart-line</code></div>
+<div class="item" data-value="chart-bar"><i class="floatRa sf-chart-bar"></i><code>chart-bar</code></div>
+<div class="item" data-value="chart-area"><i class="floatRa sf-chart-area"></i><code>chart-area</code></div>
+<div class="item" data-value="chat"><i class="floatRa sf-chat"></i><code>chat</code></div>
+<div class="item" data-value="flow-tree"><i class="floatRa sf-flow-tree"></i><code>flow-tree</code></div>
+<div class="item" data-value="gauge"><i class="floatRa sf-gauge"></i><code>gauge</code></div>
+<div class="item" data-value="flight"><i class="floatRa sf-flight"></i><code>flight</code></div>
+<div class="item" data-value="graph"><i class="floatRa sf-graph"></i><code>graph</code></div>
+<div class="item" data-value="grid"><i class="floatRa sf-grid"></i><code>grid</code></div>
+<div class="item" data-value="dzone"><i class="floatRa sf-dzone"></i><code>dzone</code></div>
+<div class="item" data-value="enter"><i class="floatRa sf-enter"></i><code>enter</code></div>
+<div class="item" data-value="pinboard"><i class="floatRa sf-pinboard"></i><code>pinboard</code></div>
+<div class="item" data-value="share"><i class="floatRa sf-share"></i><code>share</code></div>
+<div class="item" data-value="out"><i class="floatRa sf-out"></i><code>out</code></div>
+<div class="item" data-value="signout"><i class="floatRa sf-signout"></i><code>signout</code></div>
+<div class="item" data-value="sign-out"><i class="floatRa sf-sign-out"></i><code>sign-out</code></div>
+<div class="item" data-value="lock"><i class="floatRa sf-lock"></i><code>lock</code></div>
+<div class="item" data-value="info-circle"><i class="floatRa sf-info-circle"></i><code>info-circle</code></div>
+<div class="item" data-value="question"><i class="floatRa sf-question"></i><code>question</code></div>
+<div class="item" data-value="question-circle"><i class="floatRa sf-question-circle"></i><code>question-circle</code></div>
+<div class="item" data-value="plus-circle"><i class="floatRa sf-plus-circle"></i><code>plus-circle</code></div>
+<div class="item" data-value="plus"><i class="floatRa sf-plus"></i><code>plus</code></div>
+<div class="item" data-value="search"><i class="floatRa sf-search"></i><code>search</code></div>
+<div class="item" data-value="times-circle"><i class="floatRa sf-times-circle"></i><code>times-circle</code></div>
+<div class="item" data-value="times"><i class="floatRa sf-times"></i><code>times</code></div>
+<div class="item" data-value="filter"><i class="floatRa sf-filter"></i><code>filter</code></div>
+<div class="item" data-value="clipboard"><i class="floatRa sf-clipboard"></i><code>clipboard</code></div>
+<div class="item" data-value="at"><i class="floatRa sf-at"></i><code>at</code></div>
+<div class="item" data-value="instagram"><i class="floatRa sf-instagram"></i><code>instagram</code></div>
+<div class="item" data-value="archive"><i class="floatRa sf-archive"></i><code>archive</code></div>
+<div class="item" data-value="print"><i class="floatRa sf-print"></i><code>print</code></div>
+<div class="item" data-value="tags"><i class="floatRa sf-tags"></i><code>tags</code></div>
+<div class="item" data-value="tag"><i class="floatRa sf-tag"></i><code>tag</code></div>
+<div class="item" data-value="bars"><i class="floatRa sf-bars"></i><code>bars</code></div>
+<div class="item" data-value="cogs"><i class="floatRa sf-cogs"></i><code>cogs</code></div>
+<div class="item" data-value="tasks"><i class="floatRa sf-tasks"></i><code>tasks</code></div>
+<div class="item" data-value="analytics-chart-graph"><i class="floatRa sf-analytics-chart-graph"></i><code>analytics-chart-graph</code></div>
+<div class="item" data-value="chart"><i class="floatRa sf-chart"></i><code>chart</code></div>
+<div class="item" data-value="database"><i class="floatRa sf-database"></i><code>database</code></div>
+<div class="item" data-value="whatsapp"><i class="floatRa sf-whatsapp"></i><code>whatsapp</code></div>
+<div class="item" data-value="linkedin-square"><i class="floatRa sf-linkedin-square"></i><code>linkedin-square</code></div>
+<div class="item" data-value="linkedin"><i class="floatRa sf-linkedin"></i><code>linkedin</code></div>
+<div class="item" data-value="twitter-square"><i class="floatRa sf-twitter-square"></i><code>twitter-square</code></div>
+<div class="item" data-value="twitter"><i class="floatRa sf-twitter"></i><code>twitter</code></div>
+<div class="item" data-value="retweet"><i class="floatRa sf-retweet"></i><code>retweet</code></div>
+<div class="item" data-value="refresh"><i class="floatRa sf-refresh"></i><code>refresh</code></div>
+<div class="item" data-value="load-c"><i class="floatRa sf-load-c"></i><code>load-c</code></div>
+<div class="item" data-value="trophy"><i class="floatRa sf-trophy"></i><code>trophy</code></div>
+<div class="item" data-value="ribbon-b"><i class="floatRa sf-ribbon-b"></i><code>ribbon-b</code></div>
+<div class="item" data-value="ribbon-a"><i class="floatRa sf-ribbon-a"></i><code>ribbon-a</code></div>
+<div class="item" data-value="edit-write"><i class="floatRa sf-edit-write"></i><code>edit-write</code></div>
+<div class="item" data-value="building"><i class="floatRa sf-building"></i><code>building</code></div>
+<div class="item" data-value="pencil-square-o"><i class="floatRa sf-pencil-square-o"></i><code>pencil-square-o</code></div>
+<div class="item" data-value="pencil-square"><i class="floatRa sf-pencil-square"></i><code>pencil-square</code></div>
+<div class="item" data-value="pencil"><i class="floatRa sf-pencil"></i><code>pencil</code></div>
+<div class="item" data-value="bold"><i class="floatRa sf-bold"></i><code>bold</code></div>
+<div class="item" data-value="crop-1"><i class="floatRa sf-crop-1"></i><code>crop-1</code></div>
+<div class="item" data-value="align-center-1"><i class="floatRa sf-align-center-1"></i><code>align-center-1</code></div>
+<div class="item" data-value="align-justify-1"><i class="floatRa sf-align-justify-1"></i><code>align-justify-1</code></div>
+<div class="item" data-value="align-left-1"><i class="floatRa sf-align-left-1"></i><code>align-left-1</code></div>
+<div class="item" data-value="indent"><i class="floatRa sf-indent"></i><code>indent</code></div>
+<div class="item" data-value="outdent"><i class="floatRa sf-outdent"></i><code>outdent</code></div>
+<div class="item" data-value="superscript"><i class="floatRa sf-superscript"></i><code>superscript</code></div>
+<div class="item" data-value="subscript"><i class="floatRa sf-subscript"></i><code>subscript</code></div>
+<div class="item" data-value="align-right-1"><i class="floatRa sf-align-right-1"></i><code>align-right-1</code></div>
+<div class="item" data-value="font"><i class="floatRa sf-font"></i><code>font</code></div>
+<div class="item" data-value="list"><i class="floatRa sf-list"></i><code>list</code></div>
+<div class="item" data-value="pencil-square-1"><i class="floatRa sf-pencil-square-1"></i><code>pencil-square-1</code></div>
+<div class="item" data-value="text-height"><i class="floatRa sf-text-height"></i><code>text-height</code></div>
+<div class="item" data-value="trash"><i class="floatRa sf-trash"></i><code>trash</code></div>
+<div class="item" data-value="trash-o"><i class="floatRa sf-trash-o"></i><code>trash-o</code></div>
+<div class="item" data-value="ban"><i class="floatRa sf-ban"></i><code>ban</code></div>
+<div class="item" data-value="minus-circle"><i class="floatRa sf-minus-circle"></i><code>minus-circle</code></div>
+<div class="item" data-value="minus-square"><i class="floatRa sf-minus-square"></i><code>minus-square</code></div>
+<div class="item" data-value="link"><i class="floatRa sf-link"></i><code>link</code></div>
+<div class="item" data-value="link-external"><i class="floatRa sf-link-external"></i><code>link-external</code></div>
+<div class="item" data-value="tools"><i class="floatRa sf-tools"></i><code>tools</code></div>
+<div class="item" data-value="wrench-2"><i class="floatRa sf-wrench-2"></i><code>wrench-2</code></div>
+<div class="item" data-value="power-off"><i class="floatRa sf-power-off"></i><code>power-off</code></div>
+<div class="item" data-value="credit-card"><i class="floatRa sf-credit-card"></i><code>credit-card</code></div>
+<div class="item" data-value="user-7"><i class="floatRa sf-user-7"></i><code>user-7</code></div>
+<div class="item" data-value="user-6"><i class="floatRa sf-user-6"></i><code>user-6</code></div>
+<div class="item" data-value="user-4"><i class="floatRa sf-user-4"></i><code>user-4</code></div>
+<div class="item" data-value="user-3"><i class="floatRa sf-user-3"></i><code>user-3</code></div>
+<div class="item" data-value="user-5"><i class="floatRa sf-user-5"></i><code>user-5</code></div>
+<div class="item" data-value="forum-user"><i class="floatRa sf-forum-user"></i><code>forum-user</code></div>
+<div class="item" data-value="file-1"><i class="floatRa sf-file-1"></i><code>file-1</code></div>
+<div class="item" data-value="folder"><i class="floatRa sf-folder"></i><code>folder</code></div>
+<div class="item" data-value="folder-1"><i class="floatRa sf-folder-1"></i><code>folder-1</code></div>
+<div class="item" data-value="medal"><i class="floatRa sf-medal"></i><code>medal</code></div>
+<div class="item" data-value="network"><i class="floatRa sf-network"></i><code>network</code></div>
+<div class="item" data-value="save-1"><i class="floatRa sf-save-1"></i><code>save-1</code></div>
+<div class="item" data-value="star-1"><i class="floatRa sf-star-1"></i><code>star-1</code></div>
+<div class="item" data-value="display"><i class="floatRa sf-display"></i><code>display</code></div>
+<div class="item" data-value="dollar"><i class="floatRa sf-dollar"></i><code>dollar</code></div>
+<div class="item" data-value="euro"><i class="floatRa sf-euro"></i><code>euro</code></div>
+<div class="item" data-value="pound"><i class="floatRa sf-pound"></i><code>pound</code></div>
+<div class="item" data-value="money-banknote"><i class="floatRa sf-money-banknote"></i><code>money-banknote</code></div>
+<div class="item" data-value="male-rounded-1"><i class="floatRa sf-male-rounded-1"></i><code>male-rounded-1</code></div>
+<div class="item" data-value="female-rounded-1"><i class="floatRa sf-female-rounded-1"></i><code>female-rounded-1</code></div>
+<div class="item" data-value="female"><i class="floatRa sf-female"></i><code>female</code></div>
+<div class="item" data-value="male"><i class="floatRa sf-male"></i><code>male</code></div>
+<div class="item" data-value="arrows-out"><i class="floatRa sf-arrows-out"></i><code>arrows-out</code></div>
+<div class="item" data-value="print-1"><i class="floatRa sf-print-1"></i><code>print-1</code></div>
+<div class="item" data-value="zoom-out"><i class="floatRa sf-zoom-out"></i><code>zoom-out</code></div>
+<div class="item" data-value="earth"><i class="floatRa sf-earth"></i><code>earth</code></div>
+<div class="item" data-value="building-o"><i class="floatRa sf-building-o"></i><code>building-o</code></div>
+<div class="item" data-value="briefcase"><i class="floatRa sf-briefcase"></i><code>briefcase</code></div>
+<div class="item" data-value="interface-windows"><i class="floatRa sf-interface-windows"></i><code>interface-windows</code></div>
+<div class="item" data-value="angle-double-down"><i class="floatRa sf-angle-double-down"></i><code>angle-double-down</code></div>
+<div class="item" data-value="angle-double-left"><i class="floatRa sf-angle-double-left"></i><code>angle-double-left</code></div>
+<div class="item" data-value="angle-double-right"><i class="floatRa sf-angle-double-right"></i><code>angle-double-right</code></div>
+<div class="item" data-value="angle-double-up"><i class="floatRa sf-angle-double-up"></i><code>angle-double-up</code></div>
+<div class="item" data-value="arrow-circle-down"><i class="floatRa sf-arrow-circle-down"></i><code>arrow-circle-down</code></div>
+<div class="item" data-value="arrow-circle-left"><i class="floatRa sf-arrow-circle-left"></i><code>arrow-circle-left</code></div>
+<div class="item" data-value="arrow-circle-o-down"><i class="floatRa sf-arrow-circle-o-down"></i><code>arrow-circle-o-down</code></div>
+<div class="item" data-value="area-chart"><i class="floatRa sf-area-chart"></i><code>area-chart</code></div>
+<div class="item" data-value="arrow-circle-o-left"><i class="floatRa sf-arrow-circle-o-left"></i><code>arrow-circle-o-left</code></div>
+<div class="item" data-value="arrow-circle-o-right"><i class="floatRa sf-arrow-circle-o-right"></i><code>arrow-circle-o-right</code></div>
+<div class="item" data-value="arrow-circle-o-up"><i class="floatRa sf-arrow-circle-o-up"></i><code>arrow-circle-o-up</code></div>
+<div class="item" data-value="arrow-circle-right"><i class="floatRa sf-arrow-circle-right"></i><code>arrow-circle-right</code></div>
+<div class="item" data-value="arrow-circle-up"><i class="floatRa sf-arrow-circle-up"></i><code>arrow-circle-up</code></div>
+<div class="item" data-value="arrow-down"><i class="floatRa sf-arrow-down"></i><code>arrow-down</code></div>
+<div class="item" data-value="arrow-left"><i class="floatRa sf-arrow-left"></i><code>arrow-left</code></div>
+<div class="item" data-value="arrow-right"><i class="floatRa sf-arrow-right"></i><code>arrow-right</code></div>
+<div class="item" data-value="arrow-up"><i class="floatRa sf-arrow-up"></i><code>arrow-up</code></div>
+<div class="item" data-value="battery-empty"><i class="floatRa sf-battery-empty"></i><code>battery-empty</code></div>
+<div class="item" data-value="battery-full"><i class="floatRa sf-battery-full"></i><code>battery-full</code></div>
+<div class="item" data-value="battery-half"><i class="floatRa sf-battery-half"></i><code>battery-half</code></div>
+<div class="item" data-value="battery-quarter"><i class="floatRa sf-battery-quarter"></i><code>battery-quarter</code></div>
+<div class="item" data-value="battery-three-quarters"><i class="floatRa sf-battery-three-quarters"></i><code>battery-three-quarters</code></div>
+<div class="item" data-value="barcode"><i class="floatRa sf-barcode"></i><code>barcode</code></div>
+<div class="item" data-value="at-1"><i class="floatRa sf-at-1"></i><code>at-1</code></div>
+<div class="item" data-value="bed"><i class="floatRa sf-bed"></i><code>bed</code></div>
+<div class="item" data-value="binoculars"><i class="floatRa sf-binoculars"></i><code>binoculars</code></div>
+<div class="item" data-value="bold-1"><i class="floatRa sf-bold-1"></i><code>bold-1</code></div>
+<div class="item" data-value="book"><i class="floatRa sf-book"></i><code>book</code></div>
+<div class="item" data-value="bus"><i class="floatRa sf-bus"></i><code>bus</code></div>
+<div class="item" data-value="calculator"><i class="floatRa sf-calculator"></i><code>calculator</code></div>
+<div class="item" data-value="calendar"><i class="floatRa sf-calendar"></i><code>calendar</code></div>
+<div class="item" data-value="calendar-check-o"><i class="floatRa sf-calendar-check-o"></i><code>calendar-check-o</code></div>
+<div class="item" data-value="calendar-minus-o"><i class="floatRa sf-calendar-minus-o"></i><code>calendar-minus-o</code></div>
+<div class="item" data-value="camera"><i class="floatRa sf-camera"></i><code>camera</code></div>
+<div class="item" data-value="camera-retro"><i class="floatRa sf-camera-retro"></i><code>camera-retro</code></div>
+<div class="item" data-value="car"><i class="floatRa sf-car"></i><code>car</code></div>
+<div class="item" data-value="cart-plus"><i class="floatRa sf-cart-plus"></i><code>cart-plus</code></div>
+<div class="item" data-value="cc-mastercard"><i class="floatRa sf-cc-mastercard"></i><code>cc-mastercard</code></div>
+<div class="item" data-value="check-circle"><i class="floatRa sf-check-circle"></i><code>check-circle</code></div>
+<div class="item" data-value="check-circle-o"><i class="floatRa sf-check-circle-o"></i><code>check-circle-o</code></div>
+<div class="item" data-value="check-square"><i class="floatRa sf-check-square"></i><code>check-square</code></div>
+<div class="item" data-value="check-square-o"><i class="floatRa sf-check-square-o"></i><code>check-square-o</code></div>
+<div class="item" data-value="chevron-down"><i class="floatRa sf-chevron-down"></i><code>chevron-down</code></div>
+<div class="item" data-value="chevron-left"><i class="floatRa sf-chevron-left"></i><code>chevron-left</code></div>
+<div class="item" data-value="chevron-right"><i class="floatRa sf-chevron-right"></i><code>chevron-right</code></div>
+<div class="item" data-value="chevron-up"><i class="floatRa sf-chevron-up"></i><code>chevron-up</code></div>
+<div class="item" data-value="child"><i class="floatRa sf-child"></i><code>child</code></div>
+<div class="item" data-value="chrome"><i class="floatRa sf-chrome"></i><code>chrome</code></div>
+<div class="item" data-value="circle-o-notch"><i class="floatRa sf-circle-o-notch"></i><code>circle-o-notch</code></div>
+<div class="item" data-value="code"><i class="floatRa sf-code"></i><code>code</code></div>
+<div class="item" data-value="code-fork"><i class="floatRa sf-code-fork"></i><code>code-fork</code></div>
+<div class="item" data-value="coffee"><i class="floatRa sf-coffee"></i><code>coffee</code></div>
+<div class="item" data-value="compress"><i class="floatRa sf-compress"></i><code>compress</code></div>
+<div class="item" data-value="copyright"><i class="floatRa sf-copyright"></i><code>copyright</code></div>
+<div class="item" data-value="css3"><i class="floatRa sf-css3"></i><code>css3</code></div>
+<div class="item" data-value="diamond"><i class="floatRa sf-diamond"></i><code>diamond</code></div>
+<div class="item" data-value="eject"><i class="floatRa sf-eject"></i><code>eject</code></div>
+<div class="item" data-value="exchange"><i class="floatRa sf-exchange"></i><code>exchange</code></div>
+<div class="item" data-value="eur"><i class="floatRa sf-eur"></i><code>eur</code></div>
+<div class="item" data-value="exclamation"><i class="floatRa sf-exclamation"></i><code>exclamation</code></div>
+<div class="item" data-value="exclamation-circle"><i class="floatRa sf-exclamation-circle"></i><code>exclamation-circle</code></div>
+<div class="item" data-value="exclamation-triangle"><i class="floatRa sf-exclamation-triangle"></i><code>exclamation-triangle</code></div>
+<div class="item" data-value="expand"><i class="floatRa sf-expand"></i><code>expand</code></div>
+<div class="item" data-value="expeditedssl"><i class="floatRa sf-expeditedssl"></i><code>expeditedssl</code></div>
+<div class="item" data-value="external-link"><i class="floatRa sf-external-link"></i><code>external-link</code></div>
+<div class="item" data-value="eyedropper"><i class="floatRa sf-eyedropper"></i><code>eyedropper</code></div>
+<div class="item" data-value="fast-backward"><i class="floatRa sf-fast-backward"></i><code>fast-backward</code></div>
+<div class="item" data-value="fast-forward"><i class="floatRa sf-fast-forward"></i><code>fast-forward</code></div>
+<div class="item" data-value="fax"><i class="floatRa sf-fax"></i><code>fax</code></div>
+<div class="item" data-value="firefox"><i class="floatRa sf-firefox"></i><code>firefox</code></div>
+<div class="item" data-value="flask"><i class="floatRa sf-flask"></i><code>flask</code></div>
+<div class="item" data-value="folder-o"><i class="floatRa sf-folder-o"></i><code>folder-o</code></div>
+<div class="item" data-value="folder-2"><i class="floatRa sf-folder-2"></i><code>folder-2</code></div>
+<div class="item" data-value="folder-open"><i class="floatRa sf-folder-open"></i><code>folder-open</code></div>
+<div class="item" data-value="folder-open-o"><i class="floatRa sf-folder-open-o"></i><code>folder-open-o</code></div>
+<div class="item" data-value="font-1"><i class="floatRa sf-font-1"></i><code>font-1</code></div>
+<div class="item" data-value="frown-o"><i class="floatRa sf-frown-o"></i><code>frown-o</code></div>
+<div class="item" data-value="gift"><i class="floatRa sf-gift"></i><code>gift</code></div>
+<div class="item" data-value="gratipay"><i class="floatRa sf-gratipay"></i><code>gratipay</code></div>
+<div class="item" data-value="google-plus"><i class="floatRa sf-google-plus"></i><code>google-plus</code></div>
+<div class="item" data-value="google"><i class="floatRa sf-google"></i><code>google</code></div>
+<div class="item" data-value="git-square"><i class="floatRa sf-git-square"></i><code>git-square</code></div>
+<div class="item" data-value="git"><i class="floatRa sf-git"></i><code>git</code></div>
+<div class="item" data-value="hand-peace-o"><i class="floatRa sf-hand-peace-o"></i><code>hand-peace-o</code></div>
+<div class="item" data-value="header"><i class="floatRa sf-header"></i><code>header</code></div>
+<div class="item" data-value="headphones"><i class="floatRa sf-headphones"></i><code>headphones</code></div>
+<div class="item" data-value="heartbeat"><i class="floatRa sf-heartbeat"></i><code>heartbeat</code></div>
+<div class="item" data-value="hourglass-start"><i class="floatRa sf-hourglass-start"></i><code>hourglass-start</code></div>
+<div class="item" data-value="html5"><i class="floatRa sf-html5"></i><code>html5</code></div>
+<div class="item" data-value="indent-1"><i class="floatRa sf-indent-1"></i><code>indent-1</code></div>
+<div class="item" data-value="inbox"><i class="floatRa sf-inbox"></i><code>inbox</code></div>
+<div class="item" data-value="internet-explorer"><i class="floatRa sf-internet-explorer"></i><code>internet-explorer</code></div>
+<div class="item" data-value="italic"><i class="floatRa sf-italic"></i><code>italic</code></div>
+<div class="item" data-value="linux"><i class="floatRa sf-linux"></i><code>linux</code></div>
+<div class="item" data-value="lightbulb-o"><i class="floatRa sf-lightbulb-o"></i><code>lightbulb-o</code></div>
+<div class="item" data-value="life-ring"><i class="floatRa sf-life-ring"></i><code>life-ring</code></div>
+<div class="item" data-value="level-down"><i class="floatRa sf-level-down"></i><code>level-down</code></div>
+<div class="item" data-value="level-up"><i class="floatRa sf-level-up"></i><code>level-up</code></div>
+<div class="item" data-value="list-ol"><i class="floatRa sf-list-ol"></i><code>list-ol</code></div>
+<div class="item" data-value="list-ul"><i class="floatRa sf-list-ul"></i><code>list-ul</code></div>
+<div class="item" data-value="location-arrow"><i class="floatRa sf-location-arrow"></i><code>location-arrow</code></div>
+<div class="item" data-value="magic"><i class="floatRa sf-magic"></i><code>magic</code></div>
+<div class="item" data-value="map-marker"><i class="floatRa sf-map-marker"></i><code>map-marker</code></div>
+<div class="item" data-value="map"><i class="floatRa sf-map"></i><code>map</code></div>
+<div class="item" data-value="meh-o"><i class="floatRa sf-meh-o"></i><code>meh-o</code></div>
+<div class="item" data-value="map-pin"><i class="floatRa sf-map-pin"></i><code>map-pin</code></div>
+<div class="item" data-value="mars"><i class="floatRa sf-mars"></i><code>mars</code></div>
+<div class="item" data-value="microphone"><i class="floatRa sf-microphone"></i><code>microphone</code></div>
+<div class="item" data-value="microphone-slash"><i class="floatRa sf-microphone-slash"></i><code>microphone-slash</code></div>
+<div class="item" data-value="mobile"><i class="floatRa sf-mobile"></i><code>mobile</code></div>
+<div class="item" data-value="money"><i class="floatRa sf-money"></i><code>money</code></div>
+<div class="item" data-value="moon-o"><i class="floatRa sf-moon-o"></i><code>moon-o</code></div>
+<div class="item" data-value="motorcycle"><i class="floatRa sf-motorcycle"></i><code>motorcycle</code></div>
+<div class="item" data-value="mouse-pointer"><i class="floatRa sf-mouse-pointer"></i><code>mouse-pointer</code></div>
+<div class="item" data-value="music"><i class="floatRa sf-music"></i><code>music</code></div>
+<div class="item" data-value="paint-brush"><i class="floatRa sf-paint-brush"></i><code>paint-brush</code></div>
+<div class="item" data-value="picture-o"><i class="floatRa sf-picture-o"></i><code>picture-o</code></div>
+<div class="item" data-value="phone-square"><i class="floatRa sf-phone-square"></i><code>phone-square</code></div>
+<div class="item" data-value="phone"><i class="floatRa sf-phone"></i><code>phone</code></div>
+<div class="item" data-value="paper-plane"><i class="floatRa sf-paper-plane"></i><code>paper-plane</code></div>
+<div class="item" data-value="paper-plane-o"><i class="floatRa sf-paper-plane-o"></i><code>paper-plane-o</code></div>
+<div class="item" data-value="pie-chart"><i class="floatRa sf-pie-chart"></i><code>pie-chart</code></div>
+<div class="item" data-value="play"><i class="floatRa sf-play"></i><code>play</code></div>
+<div class="item" data-value="play-circle-o"><i class="floatRa sf-play-circle-o"></i><code>play-circle-o</code></div>
+<div class="item" data-value="plug"><i class="floatRa sf-plug"></i><code>plug</code></div>
+<div class="item" data-value="plus-square"><i class="floatRa sf-plus-square"></i><code>plus-square</code></div>
+<div class="item" data-value="plus-square-o"><i class="floatRa sf-plus-square-o"></i><code>plus-square-o</code></div>
+<div class="item" data-value="power-off-1"><i class="floatRa sf-power-off-1"></i><code>power-off-1</code></div>
+<div class="item" data-value="registered"><i class="floatRa sf-registered"></i><code>registered</code></div>
+<div class="item" data-value="repeat"><i class="floatRa sf-repeat"></i><code>repeat</code></div>
+<div class="item" data-value="rocket"><i class="floatRa sf-rocket"></i><code>rocket</code></div>
+<div class="item" data-value="rss-square"><i class="floatRa sf-rss-square"></i><code>rss-square</code></div>
+<div class="item" data-value="scissors"><i class="floatRa sf-scissors"></i><code>scissors</code></div>
+<div class="item" data-value="safari"><i class="floatRa sf-safari"></i><code>safari</code></div>
+<div class="item" data-value="search-plus"><i class="floatRa sf-search-plus"></i><code>search-plus</code></div>
+<div class="item" data-value="search-minus"><i class="floatRa sf-search-minus"></i><code>search-minus</code></div>
+<div class="item" data-value="sellsy"><i class="floatRa sf-sellsy"></i><code>sellsy</code></div>
+<div class="item" data-value="server"><i class="floatRa sf-server"></i><code>server</code></div>
+<div class="item" data-value="share-alt"><i class="floatRa sf-share-alt"></i><code>share-alt</code></div>
+<div class="item" data-value="share-alt-square"><i class="floatRa sf-share-alt-square"></i><code>share-alt-square</code></div>
+<div class="item" data-value="share-square"><i class="floatRa sf-share-square"></i><code>share-square</code></div>
+<div class="item" data-value="share-square-o"><i class="floatRa sf-share-square-o"></i><code>share-square-o</code></div>
+<div class="item" data-value="shield"><i class="floatRa sf-shield"></i><code>shield</code></div>
+<div class="item" data-value="shopping-cart"><i class="floatRa sf-shopping-cart"></i><code>shopping-cart</code></div>
+<div class="item" data-value="sign-in"><i class="floatRa sf-sign-in"></i><code>sign-in</code></div>
+<div class="item" data-value="signal"><i class="floatRa sf-signal"></i><code>signal</code></div>
+<div class="item" data-value="sitemap"><i class="floatRa sf-sitemap"></i><code>sitemap</code></div>
+<div class="item" data-value="slack"><i class="floatRa sf-slack"></i><code>slack</code></div>
+<div class="item" data-value="sliders"><i class="floatRa sf-sliders"></i><code>sliders</code></div>
+<div class="item" data-value="sort"><i class="floatRa sf-sort"></i><code>sort</code></div>
+<div class="item" data-value="smile-o"><i class="floatRa sf-smile-o"></i><code>smile-o</code></div>
+<div class="item" data-value="sort-asc"><i class="floatRa sf-sort-asc"></i><code>sort-asc</code></div>
+<div class="item" data-value="sort-desc"><i class="floatRa sf-sort-desc"></i><code>sort-desc</code></div>
+<div class="item" data-value="soundcloud"><i class="floatRa sf-soundcloud"></i><code>soundcloud</code></div>
+<div class="item" data-value="space-shuttle"><i class="floatRa sf-space-shuttle"></i><code>space-shuttle</code></div>
+<div class="item" data-value="stack-overflow"><i class="floatRa sf-stack-overflow"></i><code>stack-overflow</code></div>
+<div class="item" data-value="sun-o"><i class="floatRa sf-sun-o"></i><code>sun-o</code></div>
+<div class="item" data-value="superscript-1"><i class="floatRa sf-superscript-1"></i><code>superscript-1</code></div>
+<div class="item" data-value="table"><i class="floatRa sf-table"></i><code>table</code></div>
+<div class="item" data-value="tablet"><i class="floatRa sf-tablet"></i><code>tablet</code></div>
+<div class="item" data-value="taxi"><i class="floatRa sf-taxi"></i><code>taxi</code></div>
+<div class="item" data-value="television"><i class="floatRa sf-television"></i><code>television</code></div>
+<div class="item" data-value="terminal"><i class="floatRa sf-terminal"></i><code>terminal</code></div>
+<div class="item" data-value="text-height-1"><i class="floatRa sf-text-height-1"></i><code>text-height-1</code></div>
+<div class="item" data-value="text-width"><i class="floatRa sf-text-width"></i><code>text-width</code></div>
+<div class="item" data-value="th"><i class="floatRa sf-th"></i><code>th</code></div>
+<div class="item" data-value="th-large"><i class="floatRa sf-th-large"></i><code>th-large</code></div>
+<div class="item" data-value="th-list"><i class="floatRa sf-th-list"></i><code>th-list</code></div>
+<div class="item" data-value="trademark"><i class="floatRa sf-trademark"></i><code>trademark</code></div>
+<div class="item" data-value="tree"><i class="floatRa sf-tree"></i><code>tree</code></div>
+<div class="item" data-value="undo"><i class="floatRa sf-undo"></i><code>undo</code></div>
+<div class="item" data-value="underline"><i class="floatRa sf-underline"></i><code>underline</code></div>
+<div class="item" data-value="umbrella"><i class="floatRa sf-umbrella"></i><code>umbrella</code></div>
+<div class="item" data-value="tty"><i class="floatRa sf-tty"></i><code>tty</code></div>
+<div class="item" data-value="trophy-1"><i class="floatRa sf-trophy-1"></i><code>trophy-1</code></div>
+<div class="item" data-value="upload"><i class="floatRa sf-upload"></i><code>upload</code></div>
+<div class="item" data-value="usd"><i class="floatRa sf-usd"></i><code>usd</code></div>
+<div class="item" data-value="venus"><i class="floatRa sf-venus"></i><code>venus</code></div>
+<div class="item" data-value="wheelchair"><i class="floatRa sf-wheelchair"></i><code>wheelchair</code></div>
+<div class="item" data-value="weixin"><i class="floatRa sf-weixin"></i><code>weixin</code></div>
+<div class="item" data-value="video-camera"><i class="floatRa sf-video-camera"></i><code>video-camera</code></div>
+<div class="item" data-value="wifi"><i class="floatRa sf-wifi"></i><code>wifi</code></div>
+<div class="item" data-value="wordpress"><i class="floatRa sf-wordpress"></i><code>wordpress</code></div>
+<div class="item" data-value="youtube"><i class="floatRa sf-youtube"></i><code>youtube</code></div>
+<div class="item" data-value="pin"><i class="floatRa sf-pin"></i><code>pin</code></div>
+<div class="item" data-value="anchor"><i class="floatRa sf-anchor"></i><code>anchor</code></div>
+<div class="item" data-value="alarm"><i class="floatRa sf-alarm"></i><code>alarm</code></div>
+<div class="item" data-value="instagram-1"><i class="floatRa sf-instagram-1"></i><code>instagram-1</code></div>
+<div class="item" data-value="heart-1"><i class="floatRa sf-heart-1"></i><code>heart-1</code></div>
+<div class="item" data-value="task"><i class="floatRa sf-task"></i><code>task</code></div>
+<div class="item" data-value="broadcast"><i class="floatRa sf-broadcast"></i><code>broadcast</code></div>
+<div class="item" data-value="bug-1"><i class="floatRa sf-bug-1"></i><code>bug-1</code></div>
+<div class="item" data-value="star-2"><i class="floatRa sf-star-2"></i><code>star-2</code></div>
+<div class="item" data-value="mark-github"><i class="floatRa sf-mark-github"></i><code>mark-github</code></div>
+<div class="item" data-value="flag-1"><i class="floatRa sf-flag-1"></i><code>flag-1</code></div>
+<div class="item" data-value="bug-2"><i class="floatRa sf-bug-2"></i><code>bug-2</code></div>
+<div class="item" data-value="android-1"><i class="floatRa sf-android-1"></i><code>android-1</code></div>
+<div class="item" data-value="bluetooth"><i class="floatRa sf-bluetooth"></i><code>bluetooth</code></div>
+<div class="item" data-value="heart-2"><i class="floatRa sf-heart-2"></i><code>heart-2</code></div>
+<div class="item" data-value="hashtag"><i class="floatRa sf-hashtag"></i><code>hashtag</code></div>
+<div class="item" data-value="windows-1"><i class="floatRa sf-windows-1"></i><code>windows-1</code></div>
+<div class="item" data-value="barcode-1"><i class="floatRa sf-barcode-1"></i><code>barcode-1</code></div>
+<div class="item" data-value="glass-1"><i class="floatRa sf-glass-1"></i><code>glass-1</code></div>
+<div class="item" data-value="tags-1"><i class="floatRa sf-tags-1"></i><code>tags-1</code></div>
+<div class="item" data-value="tag-1"><i class="floatRa sf-tag-1"></i><code>tag-1</code></div>
+<div class="item" data-value="skype"><i class="floatRa sf-skype"></i><code>skype</code></div>
+<div class="item" data-value="yang-ying"><i class="floatRa sf-yang-ying"></i><code>yang-ying</code></div>
+<div class="item" data-value="address-book"><i class="floatRa sf-address-book"></i><code>address-book</code></div>
+<div class="item" data-value="alert"><i class="floatRa sf-alert"></i><code>alert</code></div>
+<div class="item" data-value="adjust"><i class="floatRa sf-adjust"></i><code>adjust</code></div>
+<div class="item" data-value="code-1"><i class="floatRa sf-code-1"></i><code>code-1</code></div>
+<div class="item" data-value="basket"><i class="floatRa sf-basket"></i><code>basket</code></div>
+<div class="item" data-value="attach"><i class="floatRa sf-attach"></i><code>attach</code></div>
+<div class="item" data-value="globe-1"><i class="floatRa sf-globe-1"></i><code>globe-1</code></div>
+<div class="item" data-value="lamp"><i class="floatRa sf-lamp"></i><code>lamp</code></div>
+<div class="item" data-value="left-quote"><i class="floatRa sf-left-quote"></i><code>left-quote</code></div>
+<div class="item" data-value="headphones-1"><i class="floatRa sf-headphones-1"></i><code>headphones-1</code></div>
+<div class="item" data-value="moon-stroke"><i class="floatRa sf-moon-stroke"></i><code>moon-stroke</code></div>
+<div class="item" data-value="moon-fill"><i class="floatRa sf-moon-fill"></i><code>moon-fill</code></div>
+<div class="item" data-value="mic"><i class="floatRa sf-mic"></i><code>mic</code></div>
+<div class="item" data-value="home-1"><i class="floatRa sf-home-1"></i><code>home-1</code></div>
+<div class="item" data-value="chat-alt-fill"><i class="floatRa sf-chat-alt-fill"></i><code>chat-alt-fill</code></div>
+<div class="item" data-value="bolt-1"><i class="floatRa sf-bolt-1"></i><code>bolt-1</code></div>
+<div class="item" data-value="right-quote"><i class="floatRa sf-right-quote"></i><code>right-quote</code></div>
+<div class="item" data-value="right-quote-alt"><i class="floatRa sf-right-quote-alt"></i><code>right-quote-alt</code></div>
+<div class="item" data-value="pin-1"><i class="floatRa sf-pin-1"></i><code>pin-1</code></div>
+<div class="item" data-value="atom"><i class="floatRa sf-atom"></i><code>atom</code></div>
+<div class="item" data-value="celcius"><i class="floatRa sf-celcius"></i><code>celcius</code></div>
+<div class="item" data-value="thermometer"><i class="floatRa sf-thermometer"></i><code>thermometer</code></div>
+<div class="item" data-value="sun-black"><i class="floatRa sf-sun-black"></i><code>sun-black</code></div>
+<div class="item" data-value="sun"><i class="floatRa sf-sun"></i><code>sun</code></div>
+<div class="item" data-value="card"><i class="floatRa sf-card"></i><code>card</code></div>
+<div class="item" data-value="edit"><i class="floatRa sf-edit"></i><code>edit</code></div>
+<div class="item" data-value="pencil-1"><i class="floatRa sf-pencil-1"></i><code>pencil-1</code></div>
+<div class="item" data-value="plane"><i class="floatRa sf-plane"></i><code>plane</code></div>
+<div class="item" data-value="bag"><i class="floatRa sf-bag"></i><code>bag</code></div>
+<div class="item" data-value="new-sign"><i class="floatRa sf-new-sign"></i><code>new-sign</code></div>
+<div class="item" data-value="sell-sign"><i class="floatRa sf-sell-sign"></i><code>sell-sign</code></div>
+<div class="item" data-value="load-a"><i class="floatRa sf-load-a"></i><code>load-a</code></div>
+<div class="item" data-value="load-d"><i class="floatRa sf-load-d"></i><code>load-d</code></div>
+<div class="item" data-value="load-b"><i class="floatRa sf-load-b"></i><code>load-b</code></div>
+<div class="item" data-value="spin-alt"><i class="floatRa sf-spin-alt"></i><code>spin-alt</code></div>
+<div class="item" data-value="pull-request"><i class="floatRa sf-pull-request"></i><code>pull-request</code></div>
+<div class="item" data-value="network-1"><i class="floatRa sf-network-1"></i><code>network-1</code></div>
+<div class="item" data-value="merge"><i class="floatRa sf-merge"></i><code>merge</code></div>
+<div class="item" data-value="fork-repo"><i class="floatRa sf-fork-repo"></i><code>fork-repo</code></div>
+<div class="item" data-value="publish"><i class="floatRa sf-publish"></i><code>publish</code></div>
+<div class="item" data-value="facebook-square"><i class="floatRa sf-facebook-square"></i><code>facebook-square</code></div>
+<div class="item" data-value="facebook-official"><i class="floatRa sf-facebook-official"></i><code>facebook-official</code></div>
+<div class="item" data-value="pinterest-square"><i class="floatRa sf-pinterest-square"></i><code>pinterest-square</code></div>
+<div class="item" data-value="pinterest-p"><i class="floatRa sf-pinterest-p"></i><code>pinterest-p</code></div>
+<div class="item" data-value="skype-1"><i class="floatRa sf-skype-1"></i><code>skype-1</code></div>
+<div class="item" data-value="model-s"><i class="floatRa sf-model-s"></i><code>model-s</code></div>
+<div class="item" data-value="vcard"><i class="floatRa sf-vcard"></i><code>vcard</code></div>
+<div class="item" data-value="clock-o"><i class="floatRa sf-clock-o"></i><code>clock-o</code></div>
+<div class="item" data-value="calendar-o"><i class="floatRa sf-calendar-o"></i><code>calendar-o</code></div>
+<div class="item" data-value="arrow-vertical"><i class="floatRa sf-arrow-vertical"></i><code>arrow-vertical</code></div>
+<div class="item" data-value="arrow-horizontal"><i class="floatRa sf-arrow-horizontal"></i><code>arrow-horizontal</code></div>
 
 
   </div>
 </div>
+
+
+  </div>
+</section>
 {%endif%}
 {%endblock%}
 

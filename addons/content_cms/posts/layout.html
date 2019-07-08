@@ -6,6 +6,7 @@
 {% endblock %}
 
 
+
 {%block iSubtitle %}
 {%if dataRow.type == 'post'%}
 <div class="input mB10">
@@ -19,9 +20,6 @@
 {%block iContent%}
 <textarea class="txt mB10" data-editor id='descInput' name="content" placeholder='{%trans "Write post "%}' maxlength='100000' rows="15">{{dataRow.content}}</textarea>
 {%endblock%}
-
-
-
 
 
 
@@ -85,7 +83,6 @@
 
 
 
-
 {%block iTag%}
 <section class="pbox">
   <header data-kerkere='.tagPanel' data-kerkere-icon='close'>{%trans "Keywords"%}</header>
@@ -128,32 +125,94 @@
 
 
 
-
-
-
-
-
-
-
-
+{%block iComment%}
+<section class="pbox">
+  <header data-kerkere='.commentPanel' data-kerkere-icon='close'>{%trans "Comments"%}</header>
+  <div class="body commentPanel" data-kerkere-content='hide'>
+    <div class="switch1">
+     <input type="checkbox" name="comment" id="comment" {%if dataRow.comment == 'open' %} checked {%endif%}>
+     <label for="comment"></label>
+     <label for="comment">{%trans "Allow Comments"%}</label>
+    </div>
+  </div>
+</section>
+{%endblock%}
 
 
 
 {%block iPublishdate %}
-<div title='{%trans "Allow change default publish date"%}'>
-  <label for="publishdate">{%trans "Publish date"%}</label>
-  <div class="input ltr">
-    <input class="datepicker" type="text" name="publishdate" id="publishdate" placeholder='{%trans "Default is now"%}' value="{{dataRow.publishdate}}" maxlength='15' data-format="YYYY/MM/DD" data-initialValue='false' data-view="year">
+<section class="pbox">
+  <header data-kerkere='.publishDatePanel' data-kerkere-icon='close'>{%trans "Publish Date"%}</header>
+  <div class="body publishDatePanel" data-kerkere-content='hide'>
+    <div title='{%trans "Allow change default publish date"%}'>
+      <label for="publishdate">{%trans "Publish date"%}</label>
+      <div class="input ltr">
+        <input class="datepicker" type="text" name="publishdate" id="publishdate" placeholder='{%trans "Default is now"%}' value="{{dataRow.publishdate}}" maxlength='15' data-format="YYYY/MM/DD" data-initialValue='false' data-view="year">
+      </div>
+    </div>
+    <div>
+      <label for="publishtime">{%trans "Publish time"%}</label>
+      <div class="input clockpicker ltr">
+        <input type="text" name="publishtime" id="publishtime" placeholder='{%trans "Publish time"%}' autocomplete="off" {%if dataRow.publishdate %} value="{{dataRow.publishdate | date('H:i')}}" {%endif%}>
+      </div>
+    </div>
   </div>
-</div>
+</section>
 {% endblock %}
 
-{%block iPublishtime%}
-<label for="publishtime">{%trans "Publish time"%}</label>
-<div class="input clockpicker ltr">
-  <input type="text" name="publishtime" id="publishtime" placeholder='{%trans "Publish time"%}' autocomplete="off" {%if dataRow.publishdate %} value="{{dataRow.publishdate | date('H:i')}}" {%endif%}>
-</div>
+
+
+{%block iStatus%}
+{%if perm('cpPostsEditStatus')%}
+<section class="pbox">
+  <header data-kerkere='.statusPanel' data-kerkere-icon='close'>{%trans "Status"%}</header>
+  <div class="body statusPanel" data-kerkere-content='hide'>
+    <div class="radio1 green">
+      <input type="radio" id="r-publish" name="status" value="publish" {%if dataRow.status == 'publish' or not dataRow.status %} checked{%endif%}>
+      <label for="r-publish">{%trans "Publish"%}</label>
+    </div>
+
+    <div class="radio1 black">
+      <input type="radio" id="r-draft" name="status" value="draft" {%if dataRow.status == 'draft'%} checked{%endif%} >
+      <label for="r-draft">{%trans "Draft"%}</label>
+    </div>
+
+    <div class="radio1 red">
+      <input type="radio" id="r-deleted" name="status" value="deleted" {%if dataRow.status == 'deleted'  %} checked{%endif%}>
+      <label for="r-deleted">{%trans "Deleted"%}</label>
+    </div>
+
+  </div>
+</section>
+{%endif%}
 {%endblock%}
+
+
+
+{%block iLanguage%}
+<section class="pbox">
+  <header data-kerkere='.languagePanel' data-kerkere-icon='close'>{%trans "Language"%}</header>
+  <div class="body languagePanel" data-kerkere-content='hide'>
+    <label for="language">{%trans "You can publish in another language"%}</label>
+    <select name="language" class="ui dropdown select">
+      <option value=""><i>{%trans "Please select one item"%}</i></option>
+      {%for key, value in lang.list%}
+        {%if key | length == 2%}
+        <option value="{{key}}" {%if dataRow.language == key or (not dataRow.lang and lang.current == key)  %} selected {%endif%}>{{value}}</option>
+        {%endif%}
+      {%endfor%}
+    </select>
+  </div>
+</section>
+{%endblock%}
+
+
+
+
+
+
+
+
 
 {%block galleryImporter %}
 <div class="dropzone">
@@ -168,63 +227,6 @@
 </div>
 {% endblock %}
 
-
-{%block iadd%}
-<button class="btn primary block mT20">{%trans "Save"%}</button>
-{%endblock%}
-
-{%block isave%}
-<button class="btn primary block mT20">{%trans "Save"%}</button>
-{%endblock%}
-
-
-
-{%block iStatus%}
-
-<div class="mT15">
- <label >{%trans "Status"%}</label>
-
- <div class="radio1 green">
-  <input type="radio" id="r-publish" name="status" value="publish" {%if dataRow.status == 'publish' or not dataRow.status %} checked{%endif%}>
-  <label for="r-publish">{%trans "Publish"%}</label>
- </div>
-
- <div class="radio1 black">
-  <input type="radio" id="r-draft" name="status" value="draft" {%if dataRow.status == 'draft'%} checked{%endif%} >
-  <label for="r-draft">{%trans "Draft"%}</label>
- </div>
-
- <div class="radio1 red mB25">
-  <input type="radio" id="r-deleted" name="status" value="deleted" {%if dataRow.status == 'deleted'  %} checked{%endif%}>
-  <label for="r-deleted">{%trans "Deleted"%}</label>
- </div>
-
-</div>
-{%endblock%}
-
-
-{%block iComment%}
-<div class="switch1">
- <input type="checkbox" name="comment" id="comment" {%if dataRow.comment == 'open' %} checked {%endif%}>
- <label for="comment">{%trans "Comment"%}</label>
- <label for="comment">{%trans "Comment"%}</label>
-</div>
-{%endblock%}
-
-
-{%block iLanguage%}
-<div class="mB10" title='{%trans "You can publish in another language"%}'>
-  <label for="language">{%trans "Language"%}</label>
-  <select name="language" class="ui dropdown select">
-    <option value=""><i>{%trans "Please select one item"%}</i></option>
-    {%for key, value in lang.list%}
-      {%if key | length == 2%}
-      <option value="{{key}}" {%if dataRow.language == key or (not dataRow.lang and lang.current == key)  %} selected {%endif%}>{{value}}</option>
-      {%endif%}
-    {%endfor%}
-  </select>
-</div>
-{%endblock%}
 
 
 
