@@ -124,6 +124,7 @@
 
 
 {%block iComment%}
+{%if dataRow.type != 'page'%}
 <section class="pbox">
   <header data-kerkere='.commentPanel' data-kerkere-icon='close'>{%trans "Comments"%}</header>
   <div class="body commentPanel" data-kerkere-content='hide'>
@@ -134,6 +135,7 @@
     </div>
   </div>
 </section>
+{%endif%}
 {%endblock%}
 
 
