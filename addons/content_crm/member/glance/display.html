@@ -50,9 +50,15 @@
                   <div class="hide">
                     <input type="text" id="copymobile" class="ltr" value="{{value}}" readonly>
                   </div>
-
-                  <a href="tel:{{value}}"><i class="sf-mobile"></i> {{value | fitNumber('mobile12')}} <span title='{%trans "Copy mobile"%}' data-copy='#copymobile' class="sf-link pRa5"></span></a>
                   {%endif%}
+
+                  <a href="tel:{{value}}">
+                    <i class="sf-mobile"></i>
+                    {{value | fitNumber('mobile12')}}
+                  {%if false%}
+                    <span title='{%trans "Copy mobile"%}' data-copy='#copymobile' class="sf-link pRa5"></span>
+                  {%endif%}
+                  </a>
 
       {%if perm('cpSmsSend') %}
                   <br>
