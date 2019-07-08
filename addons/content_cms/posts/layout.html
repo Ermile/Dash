@@ -25,8 +25,8 @@
 
 {%block iThumb%}
 <section class="pbox">
-  <header data-kerkere='.thumbPanel' data-kerkere-icon='close'>{%trans "Featured Image"%}</header>
-  <div class="body thumbPanel" data-kerkere-content='hide'>
+  <header data-kerkere='.thumbPanel' data-kerkere-icon='open'>{%trans "Featured Image"%}</header>
+  <div class="body thumbPanel" data-kerkere-content='show'>
 {%if dataRow.meta.thumb%}
    <div class="mB20">
     <div class="mediaBox">
@@ -53,8 +53,8 @@
 {%block iCat%}
 {%if dataRow.type == 'post' or dataRow.type == 'mag'%}
   <section class="pbox">
-    <header data-kerkere='.catPanel' data-kerkere-icon='close'>{%trans "Category"%}</header>
-    <div class="body catPanel" data-kerkere-content='hide'>
+    <header data-kerkere='.catPanel' data-kerkere-icon='open'>{%trans "Category"%}</header>
+    <div class="body catPanel" data-kerkere-content='show'>
       {%if listCats%}
       <div title='{%trans "Choose category for posts is fix url of post relative and help people find it better."%}'>
         {%if dataRow.type == 'mag'%}
@@ -83,13 +83,15 @@
 
 
 {%block iTag%}
+{%if dataRow.type == 'page'%}
+{%else%}
 <section class="pbox">
-  <header data-kerkere='.tagPanel' data-kerkere-icon='close'>{%trans "Keywords"%}</header>
-  <div class="body tagPanel" data-kerkere-content='hide'>
+  <header data-kerkere='.tagPanel' data-kerkere-icon='open'>{%trans "Keywords"%}</header>
+  <div class="body tagPanel" data-kerkere-content='show'>
     <div class="tagDetector">
-    {%if requestGET.type == 'help' or dataRow.type == 'help'%}
+    {%if dataRow.type == 'help'%}
       {%set myTagType = 'help_tag'%}
-    {%elseif requestGET.type == 'mag' or dataRow.type == 'mag'%}
+    {%elseif dataRow.type == 'mag'%}
       {%set myTagType = 'mag_tag'%}
     {%else%}
       {%set myTagType = 'tag'%}
@@ -97,14 +99,12 @@
 
     {%set postTag = tags({"post_id" : requestGET.id , "title" : true, "format" : 'csv', "type" : myTagType}) %}
 
-    {%if not requestGET.type or requestGET.type == 'post' %}
-    {%if options.tagSpecial%}
+    {%if options.tagSpecial and  requestGET.type == 'post' %}
       <div class="specialTags mB5" title='{%trans "Click on special tags to use this depending on your website design"%}'>
         {%for key, value in options.tagSpecial%}
           <span class="badge {%if key in postTag%} success{%endif%}" href="#" title="{%trans value%}" data-val='{{key}}'>{%if key in postTag%}<i class="sf-check compact"></i> {%endif%}{{key}}</span>
         {%endfor%}
       </div>
-    {%endif%}
     {%endif%}
 
       <div class="input mB10 hide">
@@ -120,6 +120,7 @@
   </div>
 
 </section>
+{%endif%}
 {%endblock%}
 
 
