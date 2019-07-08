@@ -53,7 +53,6 @@
 {%block iCat%}
 {%if dataRow.type == 'post' or dataRow.type == 'mag'%}
   <section class="pbox">
-
     <header data-kerkere='.catPanel' data-kerkere-icon='close'>{%trans "Category"%}</header>
     <div class="body catPanel" data-kerkere-content='hide'>
       {%if listCats%}
@@ -208,40 +207,26 @@
 
 
 
-
-
-
-
-
-
 {%block galleryImporter %}
-<div class="dropzone">
-  <h4>{%trans "Add to gallery"%}</h4>
-  <label for='gallery' class="btn light">{%trans "To add image gallery drop file here or"%}</label>
-  <input id="gallery" type="file" name="gallery" multiple>
-  <div class="progress shadow" data-percent='30'>
-    <div class="bar"></div>
-    <div class="detail"></div>
+<section class="pbox">
+  <header data-kerkere='.addGalleryPanel' data-kerkere-icon='close'>{%trans "Gallery"%}</header>
+  <div class="body addGalleryPanel" data-kerkere-content='hide'>
+    <div class="dropzone">
+      <h4>{%trans "Add to gallery"%}</h4>
+      <label for='gallery' class="btn light">{%trans "Choose or Drop file here"%}</label>
+      <input id="gallery" type="file" name="gallery" multiple>
+      <div class="progress shadow" data-percent='30'>
+        <div class="bar"></div>
+        <div class="detail"></div>
+      </div>
+      <small>{%trans "Maximum file size"%} <b>{{maxUploadSize}}</b></small>
+    </div>
+
   </div>
-  <small>{%trans "Maximum file size"%} <b>{{maxUploadSize}}</b></small>
-</div>
+</section>
 {% endblock %}
 
 
-
-
-{%block iThumb2%}
-
-<label for="fthumb" class="block txtC">{%trans "Featured Image"%}</label>
-<div class="input preview">
- <input type="file" accept="image/gif, image/jpeg, image/png" name="thumb" id="fthumb" data-preview data-max="1000">
- <label for="fthumb" title='{%trans "allowed extentions jpg, png. Max 1000Kb"%}'>
-{%if dataRow.meta.thumb%}
-  <img src="{{dataRow.meta.thumb}}" alt="{{dataRow.title}}" id="logoPreview">
-{%endif%}
- </label>
-</div>
-{%endblock%}
 
 
 
