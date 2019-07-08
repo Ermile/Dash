@@ -60,7 +60,7 @@
   {%set postCat = category({"post_id" : dataRow.id, "id" : true, "type" : "cat" })%}
 {%endif%}
   <section class="pbox">
-    <header data-kerkere='.catPanel' data-kerkere-icon='close'>{%trans "Category"%}<span class="badge floatRa">{{postCat | length}}</span></header>
+    <header data-kerkere='.catPanel' data-kerkere-icon='close'>{%trans "Category"%}<span class="badge floatRa">{{postCat | length | fitNumber}}</span></header>
     <div class="body catPanel" data-kerkere-content='hide'>
       <label>{%trans "Choose category for posts is fix url of post relative and help people find it better."%}</label>
       {%if listCats%}
@@ -97,8 +97,12 @@
   {%endif%}
 
   {%set postTag = tags({"post_id" : requestGET.id , "title" : true, "format" : 'csv', "type" : myTagType}) %}
+  {%set tagCount = postTag |split(',') | length%}
+  {%if postTag == ','%}
+  {%set tagCount = 0%}
+  {%endif%}
 <section class="pbox">
-  <header data-kerkere='.tagPanel' data-kerkere-icon='close'>{%trans "Keywords"%}<span class="badge floatRa">{{postTag |split(',') | length}}</span></header>
+  <header data-kerkere='.tagPanel' data-kerkere-icon='close'>{%trans "Keywords"%}<span class="badge floatRa">{{tagCount | fitNumber}}</span></header>
   <div class="body tagPanel" data-kerkere-content='hide'>
     <div class="tagDetector">
 
