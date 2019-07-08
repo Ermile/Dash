@@ -21,7 +21,7 @@
 {%block eAllInput%}
    <div class='flex fix'>
     <!-- <label for='usernameormobile' title='{%trans "Username or Mobile or email"%}'></label> -->
-    <input id='usernameormobile' name="usernameormobile" type='text' data-disallowFaNum maxlength="50" placeholder='{%trans "Mobile"%}' data-invalid='{%trans "Please enter valid mobile or username or email number"%}' value="{{getUsernamemobile}}" data-pl-user='{%trans "Username or Mobile or Email"%}' autocomplete="off" title='{%trans "Username or Mobile or email"%}' required {%if mobileReadonly%} readonly {%endif%} {%if not mobileReadonly%}autofocus{%endif%} {%if user.id%}{%else%}pattern=".{5,50}"{%endif%}>
+    <input id='usernameormobile' name="usernameormobile" type='text' data-disallowFaNum maxlength="50" placeholder='{%trans "Mobile"%}' data-invalid='{%trans "Please enter valid mobile or username or email number"%}' value="{{getUsernamemobile}}" data-pl-user='{%trans "Username or Mobile or Email"%}' autocomplete="off" required {%if mobileReadonly%} readonly {%endif%} {%if not mobileReadonly%}autofocus title='{%trans "Username or Mobile or email"%}'{%endif%} {%if user.id%}{%else%}pattern=".{5,50}"{%endif%}>
    </div>
 {%endblock%}
 
@@ -33,7 +33,7 @@
     <label for='ramz' title='{%trans "Password"%}'>
       <i class="sf-lock"></i>
     </label>
-    <input id='ramz' name="ramz" type='password' placeholder='{%trans "Password"%}' autocomplete="off" minlength="6" maxlength="40" pattern=".{6,40}" title='{%trans "Enter a password between 7 and 40 characters"%}' autofocus required>
+    <input id='ramz' name="ramz" type='password' placeholder='{%trans "Password"%}' autocomplete="off" minlength="6" maxlength="40" pattern=".{6,40}" autofocus required>
    </div>
 {%endblock%}
 
