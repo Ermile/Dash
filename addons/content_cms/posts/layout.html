@@ -57,11 +57,7 @@
     <div class="body catPanel" data-kerkere-content='show'>
       {%if listCats%}
       <div title='{%trans "Choose category for posts is fix url of post relative and help people find it better."%}'>
-        {%if dataRow.type == 'mag'%}
-          {%set postCat = category({"post_id" : dataRow.id, "id" : true, "type" : "mag" })%}
-        {%else%}
-          {%set postCat = category({"post_id" : dataRow.id, "id" : true, "type" : "cat" })%}
-        {%endif%}
+        {%set postCat = category({"post_id" : dataRow.id, "id" : true, "type" : dataRow.type })%}
         <div title='{%trans "Choose category of post"%}'>
       {%for key, value in listCats%}
           <div class="check1">
