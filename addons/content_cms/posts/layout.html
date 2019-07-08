@@ -27,7 +27,7 @@
 
 {%block iThumb%}
 <section class="pbox">
-  <header data-kerkere='.thumbPanel' data-kerkere-icon='open'>{%trans "Featured Image"%}</header>
+  <header data-kerkere='.thumbPanel' data-kerkere-icon='open' data-kerkere-status="open">{%trans "Featured Image"%}{%if dataRow.meta.thumb%}<span class="floatRa sf-check fc-green"></span>{%endif%}</header>
   <div class="body thumbPanel" data-kerkere-content='show'>
 {%if dataRow.meta.thumb%}
    <div class="mB20">
@@ -54,17 +54,18 @@
 
 {%block iCat%}
 {%if dataRow.type == 'post' or dataRow.type == 'mag'%}
-  <section class="pbox">
-    <header data-kerkere='.catPanel' data-kerkere-icon='open'>{%trans "Category"%}</header>
-    <div class="body catPanel" data-kerkere-content='show'>
-      {%if listCats%}
-      <div title='{%trans "Choose category for posts is fix url of post relative and help people find it better."%}'>
 {%if dataRow.type == 'mag'%}
   {%set postCat = category({"post_id" : dataRow.id, "id" : true, "type" : "mag" })%}
 {%else%}
   {%set postCat = category({"post_id" : dataRow.id, "id" : true, "type" : "cat" })%}
 {%endif%}
-        <div title='{%trans "Choose category of post"%}'>
+  <section class="pbox">
+    <header data-kerkere='.catPanel' data-kerkere-icon='close'>{%trans "Category"%}<span class="badge floatRa">{{postCat | length}}</span></header>
+    <div class="body catPanel" data-kerkere-content='hide'>
+      <label>{%trans "Choose category for posts is fix url of post relative and help people find it better."%}</label>
+      {%if listCats%}
+      <div>
+        <div>
       {%for key, value in listCats%}
           <div class="check1">
             <input type="checkbox" name="cat_{{value.id}}" value="{{value.title}}" id="cat_{{value.id}}" {%if value.id in postCat %} checked {%endif%}>
@@ -97,12 +98,13 @@
 
   {%set postTag = tags({"post_id" : requestGET.id , "title" : true, "format" : 'csv', "type" : myTagType}) %}
 <section class="pbox">
-  <header data-kerkere='.tagPanel' data-kerkere-icon='open'>{%trans "Keywords"%}<span class="badge floatRa">{{postTag |split(',') | length}}</span></header>
-  <div class="body tagPanel" data-kerkere-content='show'>
+  <header data-kerkere='.tagPanel' data-kerkere-icon='close'>{%trans "Keywords"%}<span class="badge floatRa">{{postTag |split(',') | length}}</span></header>
+  <div class="body tagPanel" data-kerkere-content='hide'>
     <div class="tagDetector">
 
     {%if options.tagSpecial and requestGET.type == 'post' %}
-      <div class="specialTags mB5" title='{%trans "Click on special tags to use this depending on your website design"%}'>
+      <label>{%trans "Click on special tags to use this depending on your website design"%}</label>
+      <div class="specialTags mB5">
         {%for key, value in options.tagSpecial%}
           <span class="badge {%if key in postTag%} success{%endif%}" href="#" title="{%trans value%}" data-val='{{key}}'>{%if key in postTag%}<i class="sf-check compact"></i> {%endif%}{{key}}</span>
         {%endfor%}
@@ -149,7 +151,7 @@
 <section class="pbox">
   <header data-kerkere='.publishDatePanel' data-kerkere-icon='close'>{%trans "Publish Date"%}</header>
   <div class="body publishDatePanel" data-kerkere-content='hide'>
-    <div title='{%trans "Allow change default publish date"%}'>
+    <div>
       <label for="publishdate">{%trans "Publish date"%}</label>
       <div class="input ltr">
         <input class="datepicker" type="text" name="publishdate" id="publishdate" placeholder='{%trans "Default is now"%}' value="{{dataRow.publishdate}}" maxlength='15' data-format="YYYY/MM/DD" data-initialValue='false' data-view="year">
