@@ -13,10 +13,10 @@
       <li><a href="{{url.here}}/posts"><i class='fc-mute sf-pinboard'></i> {% trans "News" %}</a></li>
 {%endif%}
 {%if perm('cpCategoryView') %}
-      <li><a href="{{url.here}}/terms?type=cat"><i class='fc-mute sf-grid'></i> {% trans "News Categories" %}</a></li>
+      <li><a href="{{url.here}}/terms?type=cat"><i class='fc-mute sf-grid'></i> {% trans "Categories" %}</a></li>
 {%endif%}
 {%if perm('cpTagView') %}
-      <li><a href="{{url.here}}/terms?type=tag"><i class='fc-mute sf-tags'></i> {% trans "News Keywords" %}</a></li>
+      <li><a href="{{url.here}}/terms?type=tag"><i class='fc-mute sf-tags'></i> {% trans "Keywords" %}</a></li>
 {%endif%}
 {%if perm('cpPageView') %}
       <li><a href="{{url.here}}/posts?type=page"><i class='fc-mute sf-files-o'></i> {% trans "Static Pages" %}</a></li>
@@ -26,25 +26,6 @@
 {%endif%}
 
 
-
-{%if options.mag%}
-{%if perm('cpMagView') or perm('cpCategoryView') or perm('cpTagView')%}
-  <li class="title" data-kerkere='.magLinks'>{%trans "Magazine"%}</li>
-  <li class="magLinks" {%if ( url.module == 'posts' and not requestGET.type or requestGET.type in ['mag', 'page'] ) or ( url.module == 'terms' and requestGET.type in ['tag','cat'] ) or (url.module == 'comments') %} {%else%} data-kerkere-content='hide' {%endif%}>
-    <ul>
-{%if perm('cpMagView')%}
-      <li><a href="{{url.here}}/posts?type=mag"><i class='fc-mute sf-book'></i> {% trans "Articles" %}</a></li>
-{%endif%}
-{%if perm('cpCategoryView') %}
-      <li><a href="{{url.here}}/terms?type=cat"><i class='fc-mute sf-grid'></i> {% trans "Magazine Categories" %}</a></li>
-{%endif%}
-{%if perm('cpTagView') %}
-      <li><a href="{{url.here}}/terms?type=tag"><i class='fc-mute sf-tags'></i> {% trans "Magazine Keywords" %}</a></li>
-{%endif%}
-    </ul>
-  </li>
-{%endif%}
-{%endif%}
 
 
 
