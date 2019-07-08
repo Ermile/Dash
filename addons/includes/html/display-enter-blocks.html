@@ -68,7 +68,7 @@
 {%block ecode%}
    <div class='flex fix' id='ecode'>
     <label for='code'>Code</label>
-    <input id='code' name="code" type='number' placeholder='{%trans "Verify Code"%}' autocomplete="off" inputmode="numeric" min="10000" max="99999" pattern="[0-9]*" title='{%trans "Enter a valid code!"%}' autofocus required>
+    <input id='code' name="code" type='number' placeholder='{%trans "Verify Code"%}' autocomplete="off" inputmode="numeric" min="10000" max="99999" pattern="\d*" autofocus required>
    </div>
 {%endblock%}
 
@@ -163,7 +163,7 @@
 
 
 {%block everifyback%}
-  <a href="{{url.here}}/verify" class="link c">{%trans "Go back"%}</a>
+  <a class="link cauto" href="{{url.here}}/verify">{%trans "Go back"%}</a>
 {%endblock%}
 
 

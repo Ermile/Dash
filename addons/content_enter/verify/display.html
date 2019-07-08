@@ -4,17 +4,18 @@
 
 {%block contentForm%}
 {{block('eAllInput')}}
+  <div class="fs08">
 
 {%if 'telegram' in sendWayCod%}
 	<div class="radio1">
-		<input type="radio" name="sendCod" value="telegram" id="sRd3" checked>
+		<input type="radio" name="sendCod" value="telegram" id="sRd3" checked autofocus>
 		<label for="sRd3">{%trans "Send code in your Telegram"%}</label>
 	</div>
 {%endif%}
 
 {%if 'sms' in sendWayCod%}
 	<div class="radio1">
-		<input type="radio" name="sendCod" value="sms" id="sRd1" {%if 'telegram' in sendWayCod%}{%else%}checked{%endif%}>
+		<input type="radio" name="sendCod" value="sms" id="sRd1" {%if 'telegram' in sendWayCod%}{%else%}checked autofocus{%endif%}>
 		<label for="sRd1">{%trans "Send code as sms to your phone"%}</label>
 	</div>
 {%endif%}
@@ -49,6 +50,7 @@
 		<label for="sRd5">{%trans "Verify later"%}</label>
 	</div>
 {%endif%}
+  </div>
 
 
 {{block('ego')}}
