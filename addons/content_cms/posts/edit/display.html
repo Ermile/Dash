@@ -30,11 +30,7 @@
   {{block('iStatus')}}
   {{block('iLanguage')}}
 
-{%if dataRow.type == 'page' or dataRow.type == 'help' or dataRow.type == 'mag'  %}
   {{block('iIcon')}}
-{%endif%}
-
-
  </div>
 </form>
    {{block('iGalleryShow')}}
@@ -45,7 +41,7 @@
 
 
 {%block iIcon%}
-{%if requestGET.type == 'help' or dataRow.type == 'help' or perm_su()%}
+{%if dataRow.type == 'help'%}
 <section class="pbox">
   <header data-kerkere='.iconPanel' data-kerkere-icon='close'>{%trans "Icon"%}</header>
   <div class="body iconPanel" data-kerkere-content='hide'>
