@@ -248,7 +248,9 @@
       <div class="f">
         <div class="c s12">
           <div class="desc">
+            {%if dataRow.type == 'post' or dataRow.type == 'mag'%}
             <time class="publishdate" datetime="{{dataRow.publishdate}}">{{dataRow.publishdate | dt('d M Y')}}</time> -
+            {%endif%}
             <p>{{dataRow.excerpt}}</p>
           </div>
         </div>
