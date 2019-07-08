@@ -5,57 +5,84 @@
 {%block sidenav%}
   <li><a href="{{url.here}}"><i class='sf-gauge'></i> <span>{% trans "CMS Dashboard" %}</span></a></li>
 
-
-{%if perm('cpPostsView') or perm('cpCategoryView') or perm('cpTagView') or perm('cpPageView') or perm('cpCommentsView')  %}
-    <li class="title" data-kerkere='[data-sidebar-contentLinks]'>{%trans "Content"%}</li>
-    <li {%if ( url.module == 'posts' and not requestGET.type or requestGET.type in ['mag', 'page'] ) or ( url.module == 'terms' and requestGET.type in ['tag','cat'] ) or (url.module == 'comments') %} {%else%} data-kerkere-content='hide' {%endif%} data-sidebar-contentLinks>
-      <ul>
-        {%if perm('cpPostsView') %}
-          <li><a href="{{url.here}}/posts"><i class='fc-mute sf-pinboard'></i> {% trans "News" %}</a></li>
-        {%endif%}
-
-        {%if perm('cpMagView') and options.mag %}
-          <li><a href="{{url.here}}/posts?type=mag"><i class='fc-mute sf-book'></i> {% trans "Magazine" %}</a></li>
-        {%endif%}
-
-        {%if perm('cpCategoryView') %}
-          <li><a href="{{url.here}}/terms?type=cat"><i class='fc-mute sf-grid'></i> {% trans "Categories" %}</a></li>
-        {%endif%}
-
-        {%if perm('cpTagView') %}
-          <li><a href="{{url.here}}/terms?type=tag"><i class='fc-mute sf-tags'></i> {% trans "Tags" %}</a></li>
-        {%endif%}
-
-        {%if perm('cpPageView') %}
-          <li><a href="{{url.here}}/posts?type=page"><i class='fc-mute sf-files-o'></i> {% trans "Pages" %}</a></li>
-        {%endif%}
-
-        {%if perm('cpCommentsView')%}
-          <li><a href="{{url.here}}/comments"><i class='fc-mute sf-comments'></i> {% trans "Comments" %}</a></li>
-        {%endif%}
-      </ul>
-    </li>
+{%if perm('cpPostsView') or perm('cpCategoryView') or perm('cpTagView') or perm('cpPageView')%}
+  <li class="title" data-kerkere='.websiteLinks'>{%trans "Website Contents"%}</li>
+  <li class="websiteLinks" {%if ( url.module == 'posts' and not requestGET.type or requestGET.type in ['mag', 'page'] ) or ( url.module == 'terms' and requestGET.type in ['tag','cat'] ) or (url.module == 'comments') %} {%else%} data-kerkere-content='hide' {%endif%}>
+    <ul>
+{%if perm('cpPostsView') %}
+      <li><a href="{{url.here}}/posts"><i class='fc-mute sf-pinboard'></i> {% trans "News" %}</a></li>
 {%endif%}
+{%if perm('cpCategoryView') %}
+      <li><a href="{{url.here}}/terms?type=cat"><i class='fc-mute sf-grid'></i> {% trans "News Categories" %}</a></li>
+{%endif%}
+{%if perm('cpTagView') %}
+      <li><a href="{{url.here}}/terms?type=tag"><i class='fc-mute sf-tags'></i> {% trans "News Keywords" %}</a></li>
+{%endif%}
+{%if perm('cpPageView') %}
+      <li><a href="{{url.here}}/posts?type=page"><i class='fc-mute sf-files-o'></i> {% trans "Static Pages" %}</a></li>
+{%endif%}
+    </ul>
+  </li>
+{%endif%}
+
+
+
+{%if options.mag%}
+{%if perm('cpMagView') or perm('cpCategoryView') or perm('cpTagView')%}
+  <li class="title" data-kerkere='.magLinks'>{%trans "Magazine"%}</li>
+  <li class="magLinks" {%if ( url.module == 'posts' and not requestGET.type or requestGET.type in ['mag', 'page'] ) or ( url.module == 'terms' and requestGET.type in ['tag','cat'] ) or (url.module == 'comments') %} {%else%} data-kerkere-content='hide' {%endif%}>
+    <ul>
+{%if perm('cpMagView')%}
+      <li><a href="{{url.here}}/posts?type=mag"><i class='fc-mute sf-book'></i> {% trans "Articles" %}</a></li>
+{%endif%}
+{%if perm('cpCategoryView') %}
+      <li><a href="{{url.here}}/terms?type=cat"><i class='fc-mute sf-grid'></i> {% trans "Magazine Categories" %}</a></li>
+{%endif%}
+{%if perm('cpTagView') %}
+      <li><a href="{{url.here}}/terms?type=tag"><i class='fc-mute sf-tags'></i> {% trans "Magazine Keywords" %}</a></li>
+{%endif%}
+    </ul>
+  </li>
+{%endif%}
+{%endif%}
+
 
 
 {%if perm('cpHelpCenterView') or perm('cpTagHelpAdd') or perm('cpTagHelpEdit') or perm('cpTagSupportAdd') or perm('cpTagSupportEdit')  %}
-    <li class="title" data-kerkere='[data-sidebar-supportLinks]'>{%trans "Support"%}</li>
-    <li {%if ( url.module == 'posts' and requestGET.type == 'help' ) or ( url.module == 'terms' and requestGET.type in ['help_tag','support_tag'] )%} {%else%} data-kerkere-content='hide' {%endif%} data-sidebar-supportLinks>
-      <ul>
-        {%if perm('cpHelpCenterView') %}
-          <li><a href="{{url.here}}/posts?type=help"><i class='fc-mute sf-info-circle'></i> {% trans "Help center" %}</a></li>
-        {%endif%}
-
-        {%if perm('cpTagHelpAdd') or perm('cpTagHelpEdit')%}
-          <li><a href="{{url.here}}/terms?type=help_tag"><i class='fc-mute sf-clone'></i> {% trans "Help tags" %}</a></li>
-        {%endif%}
-
-        {%if perm('cpTagSupportAdd') or perm('cpTagSupportEdit')%}
-          <li><a href="{{url.here}}/terms?type=support_tag"><i class='fc-mute sf-bug'></i> {% trans "Support tags" %}</a></li>
-        {%endif%}
+  <li class="title" data-kerkere='.supportLinks'>{%trans "Support"%}</li>
+  <li class="supportLinks" {%if ( url.module == 'posts' and requestGET.type == 'help' ) or ( url.module == 'terms' and requestGET.type in ['help_tag','support_tag'] )%} {%else%} data-kerkere-content='hide' {%endif%}>
+    <ul>
+{%if perm('cpHelpCenterView') %}
+      <li><a href="{{url.here}}/posts?type=help"><i class='fc-mute sf-info-circle'></i> {% trans "Help Center" %}</a></li>
+{%endif%}
+{%if perm('cpTagHelpAdd') or perm('cpTagHelpEdit')%}
+      <li><a href="{{url.here}}/terms?type=help_tag"><i class='fc-mute sf-clone'></i> {% trans "Help Center Keywords" %}</a></li>
+{%endif%}
+{%if perm('cpTagSupportAdd') or perm('cpTagSupportEdit')%}
+      <li><a href="{{url.here}}/terms?type=support_tag"><i class='fc-mute sf-bug'></i> {% trans "Ticket Topics" %}</a></li>
+{%endif%}
       </ul>
     </li>
 {%endif%}
+
+
+
+{%if perm('cpCommentsView')%}
+  <li class="title" data-kerkere='.commentLinks'>{%trans "Comments"%}</li>
+  <li class="commentLinks" {%if url.module == 'comments' %} {%else%} data-kerkere-content='hide' {%endif%}>
+    <ul>
+
+{%if perm('cpCommentsView')%}
+      <li><a href="{{url.here}}/comments"><i class='fc-mute sf-comments'></i> {% trans "All Comments" %}</a></li>
+      <li><a href="{{url.here}}/comments?status=awaiting"><i class='fc-mute sf-comments'></i> {% trans "Awaiting" %}</a></li>
+      <li><a href="{{url.here}}/comments?status=approved"><i class='fc-mute sf-comments'></i> {% trans "Approved" %}</a></li>
+      <li><a href="{{url.here}}/comments?status=spam"><i class='fc-mute sf-comments'></i> {% trans "Spam" %}</a></li>
+{%endif%}
+    </ul>
+  </li>
+{%endif%}
+
+
 
 
 
