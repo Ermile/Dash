@@ -2,15 +2,17 @@
 {%block iTitle %}
 <div class="input mB10">
   <input type="text" name="title" id="title" placeholder='{%trans "Enter title here"%} *' value="{{dataRow.title}}" autofocus required maxlength='200' minlength="1" pattern=".{1,200}">
+{%if dataRow.type == 'post' or dataRow.type == 'mag'%}
+  <span class="addon" data-kerkere='.subTitle'>{%trans "Subtitle"%}</span>
+{%endif%}
 </div>
-{% endblock %}
 
-
-
-{%block iSubtitle %}
-{%if dataRow.type == 'post'%}
-<div class="input mB10">
-  <input type="text" name="subtitle" id="subtitle" placeholder='{%trans "Enter subtitle here"%}' value="{{dataRow.subtitle}}" maxlength='300' minlength="1" pattern=".{1,300}" title='{%trans "Subtitle show under title and used on press websites"%}'>
+{%if dataRow.type == 'post' or dataRow.type == 'mag'%}
+<div class="subTitle" data-kerkere-content='{%if dataRow.subtitle%}show{%else%}hide{%endif%}'>
+  <label>{%trans "Subtitle"%} <small>{%trans "Subtitle show under title and used on press websites"%}</small></label>
+  <div class="input">
+    <input type="text" name="subtitle" id="subtitle" placeholder='{%trans "Enter subtitle here"%}' value="{{dataRow.subtitle}}" maxlength='300' minlength="1" pattern=".{1,300}">
+  </div>
 </div>
 {%endif%}
 {% endblock %}
