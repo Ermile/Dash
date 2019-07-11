@@ -193,6 +193,36 @@ class posts
 	}
 
 
+	public static function get_special_post($_options = [])
+	{
+		$limit = "LIMIT $_options[limit]";
+
+		$lang = \dash\language::current();
+
+		if(isset($_options['lang']))
+		{
+			$lang = $_options['lang'];
+		}
+
+		$query =
+		"
+			SELECT
+				*
+			FROM
+				posts
+			WHERE
+				posts.status   = 'publish' AND
+				posts.type     = 'post' AND
+				posts.language = '$lang' AND
+				posts.special  = '$_options[special]'
+
+			ORDER BY posts.publishdate DESC
+			$limit
+		";
+		return \dash\db::get($query);
+	}
+
+
 	public static function get_last_posts($_options = [])
 	{
 		$time = time();

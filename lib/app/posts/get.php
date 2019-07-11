@@ -83,6 +83,7 @@ trait get
 			'tag'        => null,
 			'term'       => null,
 			'pagenation' => false,
+			'special'    => false,
 		];
 
 		if(!is_array($_options))
@@ -104,6 +105,10 @@ trait get
 		{
 			$_options['term'] = \dash\coding::decode($_options['term']);
 			$get_last_posts   = \dash\db\posts::get_posts_term($_options, 'term');
+		}
+		elseif($_options['special'])
+		{
+			$get_last_posts = \dash\db\posts::get_special_post($_options);
 		}
 		else
 		{
