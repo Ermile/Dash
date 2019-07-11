@@ -41,12 +41,37 @@
 <div class="cbox fs12">
   <form method="get" action='{{url.this}}{{moduleType}}' data-action>
     <div class="input">
+      {%if listSpecial%}
+
+      {%if requestGET.special%}
+        {%set openKerkere = true %}
+      {%endif%}
+
+      <label class="addon" data-kerkere='.showFilterSearch' data-kerkere-icon>{%trans "Advance search"%}</label>
+      {%endif%}
       <input type="search" name="q" placeholder='{%trans "Search"%}' id="q" value="{{requestGET.q}}" autofocus autocomplete='off'>
       {%if requestGET.type%}
       <input type="hidden" name="type" value="{{requestGET.type}}">
       {%endif%}
       <button class="addon btn ">{%trans "Search" %}</button>
     </div>
+      {%if listSpecial%}
+        <div class="showFilterSearch" {%if openKerkere%} {%else%} data-kerkere-content='hide' {%endif%}>
+           <label for="special">{%trans "Use Special mode"%}</label>
+
+          <select name="special" class="ui dropdown select">
+            <option value=""><i>{%trans "Please select one item"%}</i></option>
+
+            {%for key, value in listSpecial%}
+              <option value="{{key}}" {%if requestGET.special == key %} selected {%endif%}>{{value}}</option>
+            {%endfor%}
+
+          </select>
+            <a href="{{url.this}}" class="btn ">{%trans "Clear filter"%}</a>
+            <button class="btn primary">{%trans "Apply"%}</button>
+
+        </div>
+      {%endif%}
   </form>
 </div>
 {%endblock%}

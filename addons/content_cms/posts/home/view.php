@@ -74,7 +74,7 @@ class view
 			\dash\data::badge_text(T_('Add new post'));
 		}
 
-
+		\dash\data::listSpecial(\dash\app\posts\special::list());
 		// add back level to summary link
 
 		\dash\data::page_title($myTitle);
@@ -136,6 +136,12 @@ class view
 		if(!\dash\permission::check('cpPostsViewAll'))
 		{
 			$args['user_id'] = \dash\user::id();
+		}
+
+
+		if(\dash\request::get('special'))
+		{
+			$args['special'] = \dash\request::get('special');
 		}
 
 		if($myType === 'attachment')
