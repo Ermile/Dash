@@ -30,7 +30,6 @@ class content
 			'hook',
 			'pay',
 			'crm',
-			'mag',
 		];
 
 
