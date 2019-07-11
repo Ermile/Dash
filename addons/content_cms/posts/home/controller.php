@@ -22,14 +22,6 @@ class controller
 					\dash\permission::access('cpHelpCenterView');
 					break;
 
-				case 'mag':
-					if(!\dash\option::config('mag'))
-					{
-						\dash\header::status(403, T_("The magazine manager for this system is not enable"));
-					}
-					\dash\permission::access('cpMagView');
-					break;
-
 				case 'post':
 					\dash\permission::access('cpPostsView');
 					break;

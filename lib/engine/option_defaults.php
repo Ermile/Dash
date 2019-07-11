@@ -45,8 +45,7 @@ self::$config['site']['slogan'] = "Ermile is intelligent ;)";
 
 // the project have help center or no
 self::$config['help_center']         = true;
-// enable magazine
-// self::$config['mag']         = false;
+
 
 // self::$config['default_payment'] = "[paymentName]";
 

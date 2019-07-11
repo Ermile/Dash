@@ -48,20 +48,15 @@ class view
 					\dash\data::pageList($pageList);
 					break;
 
-				case 'mag':
-					$myTitle     = T_('Add new maganize');
-					$myDesc      = T_("Add new article maganize.");
-					$myBadgeText = T_('Back to list of maganizes');
-					$pageList    = \dash\db\posts::get(['type' => 'mag', 'language' => \dash\language::current(), 'status' => ["NOT IN", "('deleted')"]]);
-					$pageList    = array_map(['\dash\app\posts', 'ready'], $pageList);
-					\dash\data::pageList($pageList);
-					break;
-
 				case 'post':
 				default:
 					\dash\data::listCats(\dash\app\term::cat_list());
 					break;
 			}
+		}
+		else
+		{
+			\dash\data::listCats(\dash\app\term::cat_list());
 		}
 
 

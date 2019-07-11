@@ -2,12 +2,12 @@
 {%block iTitle %}
 <div class="input mB10">
   <input type="text" name="title" id="title" placeholder='{%trans "Enter title here"%} *' value="{{dataRow.title}}" autofocus required maxlength='200' minlength="1" pattern=".{1,200}">
-{%if dataRow.type == 'post' or dataRow.type == 'mag'%}
+{%if dataRow.type == 'post'%}
   <span class="addon" data-kerkere='.subTitle'>{%trans "Subtitle"%}</span>
 {%endif%}
 </div>
 
-{%if dataRow.type == 'post' or dataRow.type == 'mag'%}
+{%if dataRow.type == 'post'%}
 <div class="subTitle" data-kerkere-content='{%if dataRow.subtitle%}show{%else%}hide{%endif%}'>
   <label>{%trans "Subtitle"%} <small>{%trans "Subtitle show under title and used on press websites"%}</small></label>
   <div class="input">
@@ -53,12 +53,10 @@
 
 
 {%block iCat%}
-{%if dataRow.type == 'post' or dataRow.type == 'mag'%}
-{%if dataRow.type == 'mag'%}
-  {%set postCat = category({"post_id" : dataRow.id, "id" : true, "type" : "mag" })%}
-{%else%}
-  {%set postCat = category({"post_id" : dataRow.id, "id" : true, "type" : "cat" })%}
-{%endif%}
+{%if dataRow.type == 'post'%}
+
+{%set postCat = category({"post_id" : dataRow.id, "id" : true, "type" : "cat" })%}
+
   <section class="pbox">
     <header data-kerkere='.catPanel' data-kerkere-icon='close'>{%trans "Category"%}<span class="badge floatRa">{{postCat | length | fitNumber}}</span></header>
     <div class="body catPanel" data-kerkere-content='hide'>
@@ -75,7 +73,7 @@
         </div>
       </div>
       {%else%}
-      <div class="msg warn2 mB0"><a href="{{url.here}}/terms?type={%if myDataType == 'help'%}help{%elseif myDataType == 'mag'%}mag{%else%}cat{%endif%}">{%trans "Add new category"%}</a></div>
+      <div class="msg warn2 mB0"><a href="{{url.here}}/terms?type={%if myDataType == 'help'%}help{%else%}cat{%endif%}">{%trans "Add new category"%}</a></div>
       {%endif%}
     </div>
 
@@ -90,8 +88,6 @@
 {%else%}
   {%if dataRow.type == 'help'%}
     {%set myTagType = 'help_tag'%}
-  {%elseif dataRow.type == 'mag'%}
-    {%set myTagType = 'mag_tag'%}
   {%else%}
     {%set myTagType = 'tag'%}
   {%endif%}
@@ -151,7 +147,7 @@
 
 
 {%block iPublishdate %}
-{%if dataRow.type == 'post' or dataRow.type == 'mag'%}
+{%if dataRow.type == 'post'%}
 <section class="pbox">
   <header data-kerkere='.publishDatePanel' data-kerkere-icon='close'>{%trans "Publish Date"%}</header>
   <div class="body publishDatePanel" data-kerkere-content='hide'>
@@ -246,8 +242,6 @@
 {%block iSEO%}
 {%if dataRow.type == 'help'%}
   {%set myFirstURL = 'support/'%}
-{%elseif dataRow.type == 'mag'%}
-  {%set myFirstURL = 'mag/'%}
 {%endif%}
   <section class="cbox">
     <div class="seoPreview">
@@ -258,7 +252,7 @@
       <div class="f">
         <div class="c s12">
           <div class="desc">
-            {%if dataRow.type == 'post' or dataRow.type == 'mag'%}
+            {%if dataRow.type == 'post'%}
             <time class="publishdate" datetime="{{dataRow.publishdate}}">{{dataRow.publishdate | dt('d M Y')}}</time> -
             {%endif%}
             <p>{{dataRow.excerpt}}</p>

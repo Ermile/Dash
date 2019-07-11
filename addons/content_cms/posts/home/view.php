@@ -43,14 +43,6 @@ class view
 					\dash\data::badge_text(T_('Add new help center article'));
 					break;
 
-				case 'mag':
-					$myTitle = T_('Magazine');
-					$myDesc  = T_('Check list of article in magazine.'). ' '. T_('Also add or edit specefic article.');
-					$myBadgeText = T_('Back to list of magazines');
-					\dash\data::page_pictogram('book');
-					\dash\data::badge_text(T_('Add new magazine'));
-					break;
-
 				case 'post':
 					\dash\data::badge_text(T_('Add new post'));
 					\dash\data::badge_text(T_('Add new post'));
