@@ -432,6 +432,18 @@ class posts
 		$count = \dash\app::request('count');
 		$order = \dash\app::request('order');
 
+
+
+		$special = \dash\app::request('special');
+
+		if($special && !\dash\app\posts\special::check($special))
+		{
+			\dash\notif::error(T_("Invalid parameter special"), 'special');
+			return false;
+		}
+
+
+
 		$status = \dash\app::request('status');
 		if($status && !in_array($status, ['publish','draft','schedule','deleted','expire']))
 		{
@@ -684,7 +696,8 @@ class posts
 		$args['status']      = $status;
 		$args['excerpt']     = $excerpt;
 		$args['subtitle']    = $subtitle;
-		$args['parent']   = $parent;
+		$args['parent']      = $parent;
+		$args['special']     = $special;
 		$args['publishdate'] = $publishdate. ' '. $publishtime ;
 
 		// check status

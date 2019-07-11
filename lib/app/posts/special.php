@@ -22,5 +22,18 @@ class special
 
 		return $list;
 	}
+
+	public static function check($_special)
+	{
+		$list = self::list();
+		if(array_key_exists($_special, $list))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 }
 ?>

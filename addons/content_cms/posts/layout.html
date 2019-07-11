@@ -52,6 +52,32 @@
 
 
 
+{%block iSpecialList%}
+{%if listSpecial%}
+<section class="pbox">
+    <header data-kerkere='.specialPanel' data-kerkere-icon='close'>{%trans "Special"%}<span class="badge floatRa">{{postCat | length | fitNumber}}</span></header>
+    <div class="body specialPanel" data-kerkere-content='hide'>
+      <label for="special">{%trans "Special mode"%}</label>
+
+      <select name="special" class="ui dropdown select">
+        <option value=""><i>{%trans "Please select one item"%}</i></option>
+
+        {%if dataRow.special%}
+          <option value="{{0}}" >{%trans "Non"%}</option>
+        {%endif%}
+
+        {%for key, value in listSpecial%}
+          <option value="{{key}}" {%if dataRow.special == key %} selected {%endif%}>{{value}}</option>
+        {%endfor%}
+
+      </select>
+    </div>
+  </section>
+{%endif%}
+{%endblock%}
+
+
+
 {%block iCat%}
 {%if dataRow.type == 'post'%}
 

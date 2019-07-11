@@ -69,8 +69,12 @@ class view
 
 				case 'post':
 				default:
+
 					\dash\permission::access('cpPostsEdit');
 					\dash\data::listCats(\dash\app\term::cat_list());
+
+					\dash\data::listSpecial(\dash\app\posts\special::list());
+
 					$myTitle = T_('Edit post');
 					$myBadgeText = T_('Back to list of posts');
 					break;

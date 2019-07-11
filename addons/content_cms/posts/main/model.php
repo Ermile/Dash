@@ -94,6 +94,7 @@ class model
 			'comment'     => \dash\request::post('comment'),
 			'language'    => \dash\request::post('language'),
 			'parent'      => \dash\request::post('parent'),
+			'special'     => \dash\request::post('special'),
 		];
 
 
