@@ -3,7 +3,7 @@
 <div class="input mB10">
   <input type="text" name="title" id="title" placeholder='{%trans "Enter title here"%} *' value="{{dataRow.title}}" autofocus required maxlength='200' minlength="1" pattern=".{1,200}">
 {%if dataRow.type == 'post'%}
-  <span class="addon" data-kerkere='.subTitle'>{%trans "Subtitle"%}</span>
+  <span class="addon" data-kerkere='.subTitle' {%if dataRow.subtitle%}data-kerkere-icon='open' {%else%} data-kerkere-icon {%endif%}>{%trans "Add Subtitle"%}</span>
 {%endif%}
 </div>
 
