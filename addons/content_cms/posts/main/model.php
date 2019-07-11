@@ -104,6 +104,11 @@ class model
 			$post['status'] = 'draft';
 		}
 
+		if(\dash\request::post('publishBtn') === 'publish')
+		{
+			$post['status'] = 'publish';
+		}
+
 		// if(!\dash\permission::check('cpPostsEditStatus'))
 		// {
 		// 	unset($post['status']);

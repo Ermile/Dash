@@ -15,15 +15,16 @@
  <div class="c3 x2 s12 mB10">
   <div class="cbox minimal mB10">
     <div class="f">
-      <div class="c">
-        <button class="btn secondary block">{%trans "Save"%}</button>
-      </div>
-{%if dataRow.status == 'draft' and false%}
+{%if dataRow.status == 'draft'%}
       <div class="c">
         <button class="btn success block">{%trans "Save as draft"%}</button>
       </div>
       <div class="cauto pLa5">
-        <button class="btn primary block">{%trans "Publish"%}</button>
+        <button class="btn primary block" name="publishBtn" value="publish">{%trans "Publish"%}</button>
+      </div>
+{%else%}
+      <div class="c">
+        <button class="btn secondary block">{%trans "Save"%}</button>
       </div>
 {%endif%}
     </div>
