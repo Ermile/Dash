@@ -12,6 +12,14 @@ class posts
 	public static $datarow = null;
 
 
+	public static  function get_post_counter($_type)
+	{
+		$args['type'] = $_type;
+		$post_counter = \dash\db\posts::get_post_counter($args);
+		return $post_counter;
+	}
+
+
 	public static function lates_post($_args = [])
 	{
 		if(!isset($_args['limit']))

@@ -7,10 +7,32 @@ class posts
 
 	use \dash\db\posts\search;
 
-	/**
-	 * this library work with posts
-	 * v1.0
-	 */
+
+	public static function get_post_counter($_args)
+	{
+		$where       = \dash\db\config::make_where($_args);
+		$query_where = null;
+
+		if($where)
+		{
+			$query_where = "WHERE ". $where;
+		}
+
+		$query =
+		"
+			SELECT
+				COUNT(*) AS `count`,
+				posts.status
+			FROM
+				posts
+				$query_where
+			GROUP BY posts.status
+		";
+
+		$result = \dash\db::get($query, ['status', 'count'], true);
+		return $result;
+
+	}
 
 
 	public static function get_count()

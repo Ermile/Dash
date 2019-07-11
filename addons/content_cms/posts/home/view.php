@@ -53,6 +53,7 @@ class view
 
 				case 'post':
 					\dash\data::badge_text(T_('Add new post'));
+					\dash\data::badge_text(T_('Add new post'));
 					break;
 
 				default:
@@ -74,6 +75,11 @@ class view
 					}
 					break;
 			}
+		}
+		else
+		{
+			\dash\data::badge_text(T_('Add new post'));
+			\dash\data::badge_text(T_('Add new post'));
 		}
 
 
@@ -169,6 +175,10 @@ class view
 		// set dataFilter
 		$dataFilter = \dash\app\sort::createFilterMsg($search_string, $filterArray);
 		\dash\data::dataFilter($dataFilter);
+
+		// get post count group by status
+		$postCounter = \dash\app\posts::get_post_counter($myType ? $myType : 'post');
+		\dash\data::postCounter($postCounter);
 	}
 }
 ?>

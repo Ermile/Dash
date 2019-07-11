@@ -125,8 +125,8 @@
    <div class="c">
     <a class="dcard {%if requestGET.status == 'publishde' or not requestGET.status %}active{%endif%}" href='{{url.this}}{%if requestGET.type%}?type={{requestGET.type}}{%endif%}' data-shortkey="49ctrlshift" title='{%trans "All publish posts"%}'>
      <div class="statistic">
-      <div class="value"><i class="sf-publish"></i></div>
-      <div class="label">{%trans "Published"%} <kbd class=" hide mT5">Shift+1</kbd></div>
+      <div class="value">{{postCounter.publish | fitNumber}}</div>
+      <div class="label"><i class="sf-publish"></i> {%trans "Published"%} </div>
      </div>
     </a>
    </div>
@@ -134,8 +134,8 @@
    <div class="c">
     <a class="dcard {%if requestGET.status == 'draft' %}active{%endif%}" href='{{url.this}}?status=draft{%if requestGET.type%}&type={{requestGET.type}}{%endif%}' data-shortkey="50ctrlshift" title='{%trans "All draft posts"%}'>
      <div class="statistic">
-      <div class="value"><i class="sf-edit"></i></div>
-      <div class="label">{%trans "Draft"%} <kbd class=" hide mT5">Shift+2</kbd></div>
+      <div class="value">{{postCounter.draft | fitNumber}}</div>
+      <div class="label"><i class="sf-edit"></i> {%trans "Draft"%}</div>
      </div>
     </a>
    </div>
@@ -143,8 +143,8 @@
    <div class="c">
     <a class="dcard {%if requestGET.status == 'deleted' %}active{%endif%}" href='{{url.this}}?status=deleted{%if requestGET.type%}&type={{requestGET.type}}{%endif%}' data-shortkey="51ctrlshift" title='{%trans "All trash posts"%}'>
      <div class="statistic">
-      <div class="value"><i class="sf-trash"></i></div>
-      <div class="label">{%trans "Deleted"%} <kbd class=" hide mT5">Shift+2</kbd></div>
+      <div class="value">{{postCounter.deleted | fitNumber}}</div>
+      <div class="label"><i class="sf-trash"></i> {%trans "Deleted"%}</div>
      </div>
     </a>
    </div>
