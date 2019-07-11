@@ -3,6 +3,7 @@ namespace dash\app;
 
 class posts
 {
+	private static $raw_field = ['content'];
 
 	use \dash\app\posts\add;
 	use \dash\app\posts\datalist;

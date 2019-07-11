@@ -81,10 +81,15 @@ class excerpt
 			$_fulltext = str_replace(array("\n", "\r", "\t"), ' ', $_fulltext);
 			$_fulltext = preg_replace('/\s+/', ' ', $_fulltext);
 		}
-
 		$textlength = mb_strlen($_fulltext);
-		if($textlength <= $_rellength) {
+		if($textlength <= $_rellength)
+		{
 			return $_fulltext;
+		}
+
+		if(!$_words)
+		{
+			$_words = [];
 		}
 
 		$locations = self::_extractLocations($_words, $_fulltext);
@@ -103,9 +108,12 @@ class excerpt
 		}
 
 		// If we trimmed from the front add ...
-		if($startpos != 0) {
+		if($startpos != 0)
+		{
 			$reltext = $_indicator.substr($reltext, strpos($reltext, " ") + 1); // remove first word
 		}
+
+		$reltext = str_replace('&nbsp;', '', $reltext);
 
 		return $reltext;
 	}

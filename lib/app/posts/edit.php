@@ -4,19 +4,11 @@ namespace dash\app\posts;
 
 trait edit
 {
-	/**
-	 * edit a user
-	 *
-	 * @param      <type>   $_args  The arguments
-	 *
-	 * @return     boolean  ( description_of_the_return_value )
-	 */
+
 	public static function edit($_args, $_option = [])
 	{
-		$content = isset($_args['content']) ? $_args['content'] : null;
-		$content = \dash\safe::safe($content, 'raw');
 
-		\dash\app::variable($_args);
+		\dash\app::variable($_args, ['raw_field' => self::$raw_field]);
 
 		$default_option =
 		[
@@ -75,19 +67,14 @@ trait edit
 			return false;
 		}
 
-		if(array_key_exists('content', $args))
-		{
-			$args['content'] = $content;
-		}
-
 		if(!$args['excerpt'])
 		{
-			$args['excerpt'] = \dash\utility\excerpt::extractRelevant($content);
+			$args['excerpt'] = \dash\utility\excerpt::extractRelevant($args['content']);
 		}
 
-		if(mb_strlen($args['excerpt']) > 300)
+		if(mb_strlen($args['excerpt']) >= 300)
 		{
-			$args['excerpt'] = substr($args['excerpt'], 0, 300);
+			$args['excerpt'] = substr($args['excerpt'], 0, 299);
 		}
 
 		if(in_array($args['type'], ['post', 'help', 'mag']))

@@ -83,6 +83,7 @@ class model
 		[
 			'id'          => \dash\request::get('id'),
 			'subtitle'    => \dash\request::post('subtitle'),
+			// 'excerpt'     => isset($_POST['excerpt']) ? $_POST['excerpt'] : null,
 			'excerpt'     => \dash\request::post('excerpt'),
 			'title'       => \dash\request::post('title'),
 			'tag'         => \dash\request::post('tag'),

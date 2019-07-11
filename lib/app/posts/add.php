@@ -13,10 +13,8 @@ trait add
 	 */
 	public static function add($_args, $_option = [])
 	{
-		$content = isset($_args['content']) ? $_args['content'] : null;
-		$content = \dash\safe::safe($content, 'raw');
 
-		\dash\app::variable($_args);
+		\dash\app::variable($_args, ['raw_field' => self::$raw_field]);
 
 		$default_option =
 		[
@@ -48,11 +46,6 @@ trait add
 			return false;
 		}
 
-		if(array_key_exists('content', $args))
-		{
-			$args['content'] = $content;
-		}
-
 		if(!array_key_exists('status', $args))
 		{
 			$args['status'] = 'draft';
@@ -60,7 +53,7 @@ trait add
 
 		if(!$args['excerpt'])
 		{
-			$args['excerpt'] = \dash\utility\excerpt::extractRelevant($content);
+			$args['excerpt'] = \dash\utility\excerpt::extractRelevant($args['content']);
 		}
 
 		if(mb_strlen($args['excerpt']) > 300)
