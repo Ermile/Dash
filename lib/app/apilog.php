@@ -14,6 +14,14 @@ class apilog
 	}
 
 
+	private static function jsonEncode($_array)
+	{
+		$result = json_encode($_array, JSON_UNESCAPED_UNICODE);
+		$result = addslashes($result);
+		return $result;
+	}
+
+
 	public static function start()
 	{
 		self::$apilog['user_id']        = null;
@@ -23,9 +31,9 @@ class apilog
 		self::$apilog['zoneid']         = null; // 100
 		self::$apilog['url']            = substr(\dash\url::pwd(), 0, 2000);
 		self::$apilog['method']         = substr(\dash\request::is(), 0, 200);
-		self::$apilog['header']         = $headerjson = json_encode(\dash\header::get());
+		self::$apilog['header']         = $headerjson = self::jsonEncode(\dash\header::get());
 		self::$apilog['headerlen']      = mb_strlen($headerjson);
-		self::$apilog['body']           = $body = json_encode(\dash\request::post());
+		self::$apilog['body']           = $body = self::jsonEncode(\dash\request::post());
 		self::$apilog['bodylen']        = mb_strlen($body);
 		self::$apilog['datesend']       = date("Y-m-d H:i:s");
 
@@ -45,9 +53,9 @@ class apilog
 
 	public static function save($_result = null)
 	{
-		if($_result && is_array($_result) || is_object($_result))
+		if((is_array($_result) || is_object($_result)))
 		{
-			$_result = json_encode($_result);
+			$_result = self::jsonEncode($_result);
 		}
 
 		self::$apilog['user_id']        = \dash\user::id();
@@ -57,9 +65,9 @@ class apilog
 		self::$apilog['zoneid']         = self::static_var('zoneid'); // 100
 		self::$apilog['pagestatus']     = \http_response_code();  // 100
 		self::$apilog['resultstatus']   = \dash\engine\process::status() ? 'true' : 'false'; // 100
-		self::$apilog['responseheader'] = json_encode(\headers_list());
+		self::$apilog['responseheader'] = self::jsonEncode(\headers_list());
 		self::$apilog['responsebody']   = self::$save_detail ? $_result : null;
-		self::$apilog['notif']          = json_encode(\dash\notif::get());
+		self::$apilog['notif']          = self::jsonEncode(\dash\notif::get());
 		self::$apilog['responselen']    = mb_strlen($_result);
 		self::$apilog['dateresponse']   = date("Y-m-d H:i:s");
 

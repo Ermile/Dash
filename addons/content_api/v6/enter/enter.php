@@ -6,7 +6,7 @@ class enter
 {
 
 
-	private static $life_time      = 60 * 5;
+	private static $life_time      = 60 * 2;
 	private static $verifycode     = null;
 	private static $mobile         = null;
 	private static $user_id        = null;
