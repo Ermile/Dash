@@ -7,6 +7,19 @@ class posts
 
 	use \dash\db\posts\search;
 
+	public static function get_words_chart($_where = [])
+	{
+		$where = null;
+		if($_where)
+		{
+			$where = " WHERE ". \dash\db\config::make_where($_where);
+		}
+
+		$query = "SELECT posts.title, posts.content FROM posts $where";
+		$result = \dash\db::get($query);
+		return $result;
+	}
+
 
 	public static function get_post_counter($_args)
 	{

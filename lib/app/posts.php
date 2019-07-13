@@ -48,7 +48,9 @@ class posts
 	{
 
 		$word         = [];
-		$allPost = \dash\db\posts::get(['type' => ["IN", "('page', 'post', 'help', 'mag')"]]);
+		$args = [];
+		$args['language'] = \dash\language::current();
+		$allPost = \dash\db\posts::get_words_chart($args);
 
 		if(is_array($allPost))
 		{
