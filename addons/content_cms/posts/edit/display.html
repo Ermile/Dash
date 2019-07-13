@@ -39,9 +39,11 @@
   {%endif%}
 
 {%else%}
+  {%if (myDataType == 'help' and perm('cpHelpCenterEditPublished') ) or perm('cpPostsEditPublished')%}
       <div class="c">
         <button class="btn secondary block">{%trans "Save"%}</button>
       </div>
+  {%endif%}
 {%endif%}
     </div>
   </div>

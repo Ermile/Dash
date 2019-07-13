@@ -242,10 +242,16 @@
       <label for="r-draft">{%trans "Draft"%}</label>
     </div>
 
+    {%if
+      (myDataType == 'post' and perm('cpPostsDelete')) or
+      (myDataType == 'help' and perm('cpHelpCenterDelete')) or
+      (myDataType == 'page' and perm('cpPageDelete'))
+    %}
     <div class="radio1 red">
       <input type="radio" id="r-deleted" name="status" value="deleted" {%if dataRow.status == 'deleted'  %} checked{%endif%}>
       <label for="r-deleted">{%trans "Deleted"%}</label>
     </div>
+    {%endif%}
 
   </div>
 </section>
