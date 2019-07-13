@@ -45,7 +45,7 @@
 <div class="cbox fs11 mB10">
   <h2>{%trans "Latest Help center"%}</h2>
   {%for key, value in dashboardDetail.latesHelp%}
-    <a class="msg f">
+    <a class="msg f" href="{{url.kingdom}}/support/{{value.url}}">
       <div>{%if value.title%}{{value.title}}{%else%}{%trans "Without title"%}{%endif%}</div>
       <div class="cauto">{{value.datecreated | dt('human', 'year') }}</div>
     </a>
@@ -74,10 +74,10 @@
 
 {%block blockCMS%}
 <div class="f">
-  <div class="c s6">{{block ("dNews")}}</div>
-  <div class="c s6">{{block ("dCats")}}</div>
-  <div class="c s6">{{block ("dTags")}}</div>
-  <div class="c s6">{{block ("dPages")}}</div>
+  {%if perm('cpPostsView')%}<div class="c s6">{{block ("dNews")}}</div>{%endif%}
+  {%if perm('cpCategoryView')%}<div class="c s6">{{block ("dCats")}}</div>{%endif%}
+  {%if perm('cpTagView')%}<div class="c s6">{{block ("dTags")}}</div>{%endif%}
+  {%if perm('cpPageView')%}<div class="c s6">{{block ("dPages")}}</div>{%endif%}
 </div>
 {%endblock%}
 
@@ -146,11 +146,17 @@
 
 
 {%block blockHelpCenter%}
+
+
+
+
+
+
 <div class="f">
-  <div class="c s6">{{block ("dHelpCenter")}}</div>
-  <div class="c s6">{{block ("dHelpCenterTags")}}</div>
-  <div class="c s6">{{block ("dSupportTags")}}</div>
-  <div class="c s6">{{block ("dTickets")}}</div>
+  {%if perm('cpHelpCenterView')%}<div class="c s6">{{block ("dHelpCenter")}}</div>{%endif%}
+  {%if perm('cpTagHelpAdd', 'cpTagHelpEdit')%}<div class="c s6">{{block ("dHelpCenterTags")}}</div>{%endif%}
+  {%if perm('cpTagSupportAdd', 'cpTagSupportEdit')%}<div class="c s6">{{block ("dSupportTags")}}</div>{%endif%}
+  {%if perm('supportTicketManage')%}<div class="c s6">{{block ("dTickets")}}</div>{%endif%}
 
 </div>
 {%endblock%}
