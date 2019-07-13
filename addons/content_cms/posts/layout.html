@@ -219,7 +219,16 @@
 
 
 {%block iStatus%}
-{%if perm('cpPostsEditStatus')%}
+{%set canEditPostStatus = true %}
+
+{%if myDataType == 'post'%}
+  {%set canEditPostStatus = perm('cpPostsEditStatus')%}
+{%elseif myDataType == 'help' %}
+  {%set canEditPostStatus = perm('cpHelpCenterEditStatus')%}
+{%endif%}
+
+
+{%if canEditPostStatus%}
 <section class="pbox">
   <header data-kerkere='.statusPanel' data-kerkere-icon='close'>{%trans "Status"%}{%if dataRow.status == 'publish'%}<span class="floatRa sf-publish fc-green"></span>{%elseif dataRow.status == 'draft'%}<span class="floatRa sf-edit fc-orange"></span>{%elseif dataRow.status == 'deleted'%}<span class="floatRa sf-trash fc-red"></span>{%endif%}</header>
   <div class="body statusPanel" data-kerkere-content='hide'>

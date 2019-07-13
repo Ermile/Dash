@@ -79,67 +79,19 @@
   },
 
 
-
-  "cpMagAdd":
-  {
-    "title" : "cpMagAdd",
-    "cat" :"Magazine",
-    "require" : ["contentCp"]
-  },
-  "cpMagEditPublished":
-  {
-    "title" : "cpMagEditPublished",
-    "cat" :"Magazine",
-    "require" : ["contentCp"]
-  },
-  "cpMagEditForOthers":
-  {
-    "title" : "cpMagEditForOthers",
-    "cat" :"Magazine",
-    "require" : ["contentCp"]
-  },
-  "cpMagDelete":
-  {
-    "title" : "cpMagDelete",
-    "cat" :"Magazine",
-    "require" : ["contentCp"]
-  },
-  "cpMagDeleteForOthers":
-  {
-    "title" : "cpMagDeleteForOthers",
-    "cat" :"Magazine",
-    "require" : ["contentCp"]
-  },
-  "cpMagEditStatus":
-  {
-    "title" : "cpMagEditStatus",
-    "cat" :"Magazine",
-    "require" : ["contentCp"]
-  },
   "cpDayEvent":
   {
     "title" : "cpDayEvent",
-    "cat" :"Magazine",
+    "cat" :"Report",
     "require" : ["contentCp"]
   },
   "cpContactView":
   {
     "title" : "cpContactView",
-    "cat" :"Magazine",
+    "cat" :"Contact",
     "require" : ["contentCp"]
   },
-  "cpMagView":
-  {
-    "title" : "cpMagView",
-    "cat" :"Magazine",
-    "require" : ["contentCp"]
-  },
-  "cpMagEdit":
-  {
-    "title" : "cpMagEdit",
-    "cat" :"Magazine",
-    "require" : ["contentCp"]
-  },
+
 
   "cpTagView":
   {

@@ -16,12 +16,28 @@
   <div class="cbox mB10 pA0-f">
     <div class="f">
 {%if dataRow.status == 'draft'%}
-      <div class="c7 pA5">
-        <button class="btn success block">{%trans "Save as draft"%}</button>
-      </div>
-      <div class="c5 pA5">
-        <button class="btn primary block" name="publishBtn" value="publish">{%trans "Publish"%}</button>
-      </div>
+  {%set canEditPostStatus = true %}
+
+  {%if myDataType == 'post'%}
+    {%set canEditPostStatus = perm('cpPostsEditStatus')%}
+  {%elseif myDataType == 'help' %}
+    {%set canEditPostStatus = perm('cpHelpCenterEditStatus')%}
+  {%endif%}
+  {%if canEditPostStatus%}
+        <div class="c7 pA5">
+          <button class="btn success block">{%trans "Save as draft"%}</button>
+        </div>
+
+        <div class="c5 pA5">
+          <button class="btn primary block" name="publishBtn" value="publish">{%trans "Publish"%}</button>
+        </div>
+  {%else%}
+      <div class="c12 pA5">
+          <button class="btn success block">{%trans "Save as draft"%}</button>
+        </div>
+
+  {%endif%}
+
 {%else%}
       <div class="c">
         <button class="btn secondary block">{%trans "Save"%}</button>

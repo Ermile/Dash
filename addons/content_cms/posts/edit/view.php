@@ -80,7 +80,6 @@ class view
 
 		\dash\data::badge_text($myBadgeText);
 		\dash\data::badge_link($myBadgeLink);
-
 	}
 }
 ?>
