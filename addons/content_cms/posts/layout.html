@@ -119,10 +119,13 @@
   {%endif%}
 
   {%set postTag = tags({"post_id" : requestGET.id , "title" : true, "format" : 'csv', "type" : myTagType}) %}
-  {%set tagCount = postTag |split(',') | length%}
-  {%if postTag == ','%}
+
   {%set tagCount = 0%}
+
+  {%if postTag %}
+    {%set tagCount = postTag |split(',') | length%}
   {%endif%}
+
 <section class="pbox">
   <header data-kerkere='.tagPanel' data-kerkere-icon='close'>{%trans "Keywords"%}<span class="badge floatRa">{{tagCount | fitNumber}}</span></header>
   <div class="body tagPanel" data-kerkere-content='hide'>
