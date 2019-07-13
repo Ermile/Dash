@@ -85,7 +85,7 @@
 {%block dNews%}
 <a class="dcard" href="{{url.here}}/posts">
  <div class="statistic sm">
-  <div class="label mB10"><i class="fs20 mRa5 sf-pinboard"></i> {%trans "News"%}</div>
+  <div class="label mB10"><i class="fs20 mRa5 sf-pinboard"></i> {%trans "News"%} <span title='{%trans "Item in all language"%}'>{{dashboardDetailNoLang.news | fitNumber}}</span></div>
   <div class="value">{{dashboardDetail.news | fitNumber}}</div>
  </div>
 </a>
@@ -95,7 +95,7 @@
 {%block dCats%}
 <a class="dcard" href="{{url.here}}/terms?type=cat">
  <div class="statistic sm">
-  <div class="label mB10"><i class="fs20 mRa5 sf-grid"></i> {%trans "Category"%}</div>
+  <div class="label mB10"><i class="fs20 mRa5 sf-grid"></i> {%trans "Category"%} <span title='{%trans "Item in all language"%}'>{{dashboardDetailNoLang.cats | fitNumber}}</span></div>
   <div class="value">{{dashboardDetail.cats | fitNumber()}}</div>
  </div>
 </a>
@@ -105,7 +105,7 @@
 {%block dTags%}
 <a class="dcard" href="{{url.here}}/terms?type=tag">
  <div class="statistic sm">
-  <div class="label mB10"><i class="fs20 mRa5 sf-tags"></i> {%trans "Tags"%}</div>
+  <div class="label mB10"><i class="fs20 mRa5 sf-tags"></i> {%trans "Tags"%} <span title='{%trans "Item in all language"%}'>{{dashboardDetailNoLang.tags | fitNumber}}</span></div>
   <div class="value">{{dashboardDetail.tags | fitNumber}}</div>
  </div>
 </a>
@@ -115,7 +115,7 @@
 {%block dPages%}
 <a class="dcard" href="{{url.here}}/posts?type=page">
  <div class="statistic sm">
-  <div class="label mB10"><i class="fs20 mRa5 sf-files-o"></i> {%trans "Pages"%}</div>
+  <div class="label mB10"><i class="fs20 mRa5 sf-files-o"></i> {%trans "Pages"%} <span title='{%trans "Item in all language"%}'>{{dashboardDetailNoLang.pages | fitNumber}}</span></div>
   <div class="value">{{dashboardDetail.pages | fitNumber}}</div>
  </div>
 </a>
@@ -159,7 +159,7 @@
 {%block dHelpCenter%}
 <a class="dcard" href="{{url.here}}/posts?type=help">
  <div class="statistic sm">
-  <div class="label mB10"><i class="fs20 mRa5 sf-info-circle"></i> {%trans "Help Center Article"%}</div>
+  <div class="label mB10"><i class="fs20 mRa5 sf-info-circle"></i> {%trans "Help Center Article"%} <span title='{%trans "Item in all language"%}'>{{dashboardDetailNoLang.helpcenter | fitNumber}}</span></div>
   <div class="value">{{dashboardDetail.helpcenter | fitNumber}}</div>
  </div>
 </a>
@@ -170,7 +170,7 @@
 {%block dHelpCenterTags%}
 <a class="dcard" href="{{url.here}}/terms?type=help_tag">
  <div class="statistic sm">
-  <div class="label mB10"><i class="fs20 mRa5 sf-clone"></i> {%trans "Help tags"%}</div>
+  <div class="label mB10"><i class="fs20 mRa5 sf-clone"></i> {%trans "Help tags"%} <span title='{%trans "Item in all language"%}'>{{dashboardDetailNoLang.helpcentertags | fitNumber}}</span></div>
   <div class="value">{{dashboardDetail.helpcentertags | fitNumber()}}</div>
  </div>
 </a>
@@ -180,7 +180,7 @@
 {%block dSupportTags%}
 <a class="dcard" href="{{url.here}}/terms?type=support_tag">
  <div class="statistic sm">
-  <div class="label mB10"><i class="fs20 mRa5 sf-bug"></i> {%trans "Support tags"%}</div>
+  <div class="label mB10"><i class="fs20 mRa5 sf-bug"></i> {%trans "Support tags"%} <span title='{%trans "Item in all language"%}'>{{dashboardDetailNoLang.supporttags | fitNumber}}</span></div>
   <div class="value">{{dashboardDetail.supporttags | fitNumber()}}</div>
  </div>
 </a>
@@ -190,7 +190,7 @@
 {%block dTickets%}
 <a class="dcard" href="{{url.kingdom}}/support/ticket">
  <div class="statistic sm">
-  <div class="label mB10"><i class="fs20 mRa5 sf-life-ring"></i> {%trans "Tickets"%}</div>
+  <div class="label mB10"><i class="fs20 mRa5 sf-life-ring"></i> {%trans "Tickets"%} <span title='{%trans "Item in all language"%}'>{{dashboardDetailNoLang.tickets | fitNumber}}</span></div>
   <div class="value">{{dashboardDetail.tickets | fitNumber}}</div>
  </div>
 </a>
@@ -201,7 +201,7 @@
 {%block dVisitor%}
 <a class="dcard" href="{{url.kingdom}}/cp/visitor">
  <div class="statistic sm">
-  <div class="label mB10"><i class="fs20 mRa5 sf-life-ring"></i> {%trans "Visitor"%}</div>
+  <div class="label mB10"><i class="fs20 mRa5 sf-life-ring"></i> {%trans "Visitor"%} <span title='{%trans "Item in all language"%}'>{{dashboardDetailNoLang.visit | fitNumber}}</span></div>
   <div class="value">{{dashboardDetail.visit | fitNumber}}</div>
  </div>
 </a>
