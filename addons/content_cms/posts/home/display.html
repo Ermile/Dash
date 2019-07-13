@@ -147,8 +147,17 @@
 {%block pageSteps%}
   <div class="f">
 
+    <div class="c">
+    <a class="dcard {%if not requestGET.status %}active{%endif%}" href='{{url.this}}{%if requestGET.type%}?type={{requestGET.type}}{%endif%}' data-shortkey="49ctrlshift" title='{%trans "All publish posts"%}'>
+     <div class="statistic">
+      <div class="value">{{postCounter.all | fitNumber}}</div>
+      <div class="label"><i class="sf-all"></i> {%trans "All"%} </div>
+     </div>
+    </a>
+   </div>
+
    <div class="c">
-    <a class="dcard {%if requestGET.status == 'publishde' or not requestGET.status %}active{%endif%}" href='{{url.this}}{%if requestGET.type%}?type={{requestGET.type}}{%endif%}' data-shortkey="49ctrlshift" title='{%trans "All publish posts"%}'>
+    <a class="dcard {%if requestGET.status == 'publish' %}active{%endif%}" href='{{url.this}}?status=publish{%if requestGET.type%}&type={{requestGET.type}}{%endif%}' data-shortkey="49ctrlshift" title='{%trans "All publish posts"%}'>
      <div class="statistic">
       <div class="value">{{postCounter.publish | fitNumber}}</div>
       <div class="label"><i class="sf-publish"></i> {%trans "Published"%} </div>

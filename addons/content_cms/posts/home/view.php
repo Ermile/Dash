@@ -108,10 +108,10 @@ class view
 			$args['term'] = \dash\request::get('term');
 		}
 
-		if(!isset($args['status']))
-		{
-			$args['status'] = ["NOT IN", "('draft', 'deleted')"];
-		}
+		// if(!isset($args['status']))
+		// {
+		// 	$args['status'] = ["NOT IN", "('draft', 'deleted')"];
+		// }
 
 		if(\dash\request::get('type'))
 		{

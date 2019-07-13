@@ -7,7 +7,7 @@
 
 {%if perm('cpPostsView') or perm('cpCategoryView') or perm('cpTagView') or perm('cpPageView')%}
   <li class="title" data-kerkere='.websiteLinks'>{%trans "Website Contents"%}</li>
-  <li class="websiteLinks" {%if ( url.module == 'posts' and not requestGET.type or requestGET.type in ['mag', 'page'] ) or ( url.module == 'terms' and requestGET.type in ['tag','cat'] ) or (url.module == 'comments') %} {%else%} data-kerkere-content='hide' {%endif%}>
+  <li class="websiteLinks" {%if ( url.module == 'posts' and not requestGET.type or requestGET.type in ['page', 'post'] ) or ( url.module == 'terms' and requestGET.type in ['tag','category', 'cat'] ) or (url.module == 'comments') %} {%else%} data-kerkere-content='hide' {%endif%}>
     <ul>
 {%if perm('cpPostsView') %}
       <li><a href="{{url.here}}/posts"><i class='fc-mute sf-pinboard'></i> {% trans "News" %}</a></li>
