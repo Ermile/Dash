@@ -177,18 +177,37 @@
 <section class="pbox">
   <header data-kerkere='.publishDatePanel' data-kerkere-icon='close'>{%trans "Publish Date"%}</header>
   <div class="body publishDatePanel" data-kerkere-content='hide'>
-    <div>
-      <label for="publishdate">{%trans "Publish date"%}</label>
-      <div class="input ltr">
-        <input class="datepicker" type="text" name="publishdate" id="publishdate" placeholder='{%trans "Default is now"%}' value="{{dataRow.publishdate}}" maxlength='15' data-format="YYYY/MM/DD" data-initialValue='false' data-view="year">
+
+    {%if not dataRow.publishdate %}
+
+      <div class="radio3 mB5">
+        <input type="radio" name="publishdatetype" value="now" id="publishdatetypenow" {%if not dataRow.publishdate %} checked {%endif%}>
+        <label for="publishdatetypenow">{%trans "When published"%}</label>
+      </div>
+
+      <div class="radio3 mB5">
+        <input type="radio" name="publishdatetype" value="bydate" id="publishdatetypebydate" {%if dataRow.publishdate %} checked {%endif%}>
+        <label for="publishdatetypebydate">{%trans "At special date"%}</label>
+      </div>
+
+    {%endif%}
+
+    <div data-response='publishdatetype' data-response-where='bydate'  {%if dataRow.publishdate %} {%else%} data-response-hide {%endif%} data-response-effect='slide'>
+
+      <div>
+        <label for="publishdate">{%trans "Publish date"%}</label>
+        <div class="input ltr">
+          <input class="datepicker" type="text" name="publishdate" id="publishdate" placeholder='{%trans "Default is now"%}' value="{{dataRow.publishdate}}" maxlength='15' data-format="YYYY/MM/DD" data-initialValue='false' data-view="year">
+        </div>
+      </div>
+      <div>
+        <label for="publishtime">{%trans "Publish time"%}</label>
+        <div class="input clockpicker ltr">
+          <input type="text" name="publishtime" id="publishtime" placeholder='{%trans "Publish time"%}' autocomplete="off" {%if dataRow.publishdate %} value="{{dataRow.publishdate | date('H:i')}}" {%endif%}>
+        </div>
       </div>
     </div>
-    <div>
-      <label for="publishtime">{%trans "Publish time"%}</label>
-      <div class="input clockpicker ltr">
-        <input type="text" name="publishtime" id="publishtime" placeholder='{%trans "Publish time"%}' autocomplete="off" {%if dataRow.publishdate %} value="{{dataRow.publishdate | date('H:i')}}" {%endif%}>
-      </div>
-    </div>
+
   </div>
 </section>
 {%endif%}

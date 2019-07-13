@@ -610,7 +610,7 @@ class posts
 			$publishdate  = \dash\utility\jdate::to_gregorian($publishdate);
 		}
 
-		if(\dash\app::isset_request('publishdate') && !$publishdate)
+		if(\dash\app::isset_request('publishdate') && !$publishdate && $status === 'publish')
 		{
 			$publishdate = date("Y-m-d");
 		}
@@ -630,7 +630,7 @@ class posts
 				$publishtime = date("H:i");
 			}
 		}
-		else
+		elseif($status === 'publish')
 		{
 			$publishtime = date("H:i");
 		}
@@ -702,7 +702,7 @@ class posts
 		$args['subtitle']    = $subtitle;
 		$args['parent']      = $parent;
 		$args['special']     = $special;
-		$args['publishdate'] = $publishdate. ' '. $publishtime ;
+		$args['publishdate'] = $publishdate ? $publishdate. ' '. $publishtime  : null;
 
 		// check status
 		switch ($current_post_detail['type'])
