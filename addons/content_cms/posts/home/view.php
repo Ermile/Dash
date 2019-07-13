@@ -6,7 +6,6 @@ class view
 {
 	public static function config()
 	{
-
 		$moduleTypeTxt = \dash\request::get('type');
 		$moduleType    = '';
 
@@ -32,7 +31,13 @@ class view
 					$myTitle = T_('Pages');
 					$myDesc  = T_('Check list of pages and to find your pages.'). ' '. T_('Also add or edit specefic static page.');
 					\dash\data::page_pictogram('files-o');
-					\dash\data::badge_text(T_('Add new page'));
+
+					if(\dash\permission::check('cpPageAdd'))
+					{
+						\dash\data::badge_text(T_('Add new page'));
+						\dash\data::badge_link(\dash\url::this(). '/add'. $moduleType);
+					}
+
 					break;
 
 				case 'help':
@@ -40,12 +45,20 @@ class view
 					$myDesc      = T_('Check list of article in help center.'). ' '. T_('Also add or edit specefic article.');
 					$myBadgeText = T_('Back to list of helps');
 					\dash\data::page_pictogram('life-ring');
-					\dash\data::badge_text(T_('Add new help center article'));
+
+					if(\dash\permission::check('cpHelpCenterAdd'))
+					{
+						\dash\data::badge_text(T_('Add new help center article'));
+						\dash\data::badge_link(\dash\url::this(). '/add'. $moduleType);
+					}
 					break;
 
 				case 'post':
-					\dash\data::badge_text(T_('Add new post'));
-					\dash\data::badge_text(T_('Add new post'));
+					if(\dash\permission::check('cpPostsAdd'))
+					{
+						\dash\data::badge_text(T_('Add new post'));
+						\dash\data::badge_link(\dash\url::this(). '/add'. $moduleType);
+					}
 					break;
 
 				default:
@@ -65,13 +78,18 @@ class view
 					{
 						\dash\header::status(404);
 					}
+					\dash\data::badge_text(T_('Add new post'));
+					\dash\data::badge_link(\dash\url::this(). '/add'. $moduleType);
 					break;
 			}
 		}
 		else
 		{
-			\dash\data::badge_text(T_('Add new post'));
-			\dash\data::badge_text(T_('Add new post'));
+			if(\dash\permission::check('cpPostsAdd'))
+			{
+				\dash\data::badge_text(T_('Add new post'));
+				\dash\data::badge_link(\dash\url::this(). '/add'. $moduleType);
+			}
 		}
 
 		\dash\data::listSpecial(\dash\app\posts\special::list());
@@ -80,7 +98,6 @@ class view
 		\dash\data::page_title($myTitle);
 		\dash\data::page_desc($myDesc);
 
-		\dash\data::badge_link(\dash\url::this(). '/add'. $moduleType);
 
 		\dash\data::badge2_text(T_('Back to dashboard'));
 		\dash\data::badge2_link(\dash\url::here());
@@ -175,7 +192,7 @@ class view
 		\dash\data::dataFilter($dataFilter);
 
 		// get post count group by status
-		$postCounter = \dash\app\posts::get_post_counter($myType ? $myType : 'post');
+		$postCounter = \dash\app\posts::get_post_counter($args);
 		\dash\data::postCounter($postCounter);
 	}
 }
