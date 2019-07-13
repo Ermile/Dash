@@ -282,14 +282,6 @@ class posts
 						}
 						break;
 
-					case 'mag':
-						if(!\dash\permission::check('cpMagEditPublished'))
-						{
-							\dash\notif::error(T_("This magazine is published. And you can not edit it!"));
-							return false;
-						}
-						break;
-
 					case 'post':
 					case 'page':
 					default:
@@ -316,14 +308,6 @@ class posts
 						}
 						break;
 
-					case 'mag':
-						if(!\dash\permission::check('cpMagEditForOthers'))
-						{
-							\dash\notif::error(T_("This is not your magazine. And you can not edit it!"));
-							return false;
-						}
-						break;
-
 					case 'post':
 					case 'page':
 					default:
@@ -336,6 +320,7 @@ class posts
 				}
 			}
 		}
+
 
 		$language = \dash\app::request('language');
 		if($language && mb_strlen($language) !== 2)
@@ -474,14 +459,6 @@ class posts
 					}
 					break;
 
-				case 'mag':
-					if(!\dash\permission::check('cpMagDelete'))
-					{
-						\dash\notif::error(T_("You can not delete magazine"));
-						return false;
-					}
-					break;
-
 				case 'page':
 					if(!\dash\permission::check('cpPageDelete'))
 					{
@@ -499,7 +476,6 @@ class posts
 					}
 					break;
 			}
-
 
 			if(intval($current_post_detail['user_id']) !== intval(\dash\user::id()))
 			{
@@ -534,7 +510,6 @@ class posts
 			}
 
 		}
-
 		$parent_url  = null;
 		$parent_slug = null;
 
@@ -692,7 +667,6 @@ class posts
 			return false;
 		}
 
-
 		$args                = [];
 		$args['language']    = $language;
 		$args['title']       = $title;
@@ -715,21 +689,14 @@ class posts
 		switch ($current_post_detail['type'])
 		{
 			case 'help':
-				if(!\dash\permission::access('cpHelpCenterEditStatus'))
-				{
-					unset($args['status']);
-				}
-				break;
-
-			case 'mag':
-				if(!\dash\permission::access('cpMagEditStatus'))
+				if(!\dash\permission::check('cpHelpCenterEditStatus'))
 				{
 					unset($args['status']);
 				}
 				break;
 
 			default:
-				if(!\dash\permission::access('cpPostsEditStatus'))
+				if(!\dash\permission::check('cpPostsEditStatus'))
 				{
 					unset($args['status']);
 				}

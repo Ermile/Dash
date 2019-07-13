@@ -4,13 +4,18 @@ namespace content_cms\posts\edit;
 class controller
 {
 
-	public static function ready()
+	public static function routing()
 	{
+
 		$id = \dash\request::get('id');
-		if(!$id || !\dash\coding::is($id))
+		$detail = \dash\app\posts::load_post($id);
+		if(!$detail)
 		{
-			\dash\header::status(404, T_("Invalid id"));
+			\dash\header::status(403, T_("Invalid id"));
 		}
+
+		\dash\data::dataRow($detail);
+
 	}
 }
 ?>

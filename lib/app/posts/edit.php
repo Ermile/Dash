@@ -86,13 +86,6 @@ trait edit
 					self::set_post_term($id, 'help_tag', 'posts', \dash\app::request('tag'));
 				}
 			}
-			elseif($args['type'] === 'mag')
-			{
-				if(\dash\permission::check('cpMagAdd'))
-				{
-					self::set_post_term($id, 'mag_tag', 'posts', \dash\app::request('tag'));
-				}
-			}
 			else
 			{
 				if(\dash\permission::check('cpTagAdd'))
@@ -101,14 +94,7 @@ trait edit
 				}
 			}
 
-			if($args['type'] === 'mag')
-			{
-				$post_url = self::set_post_term($id, 'mag', null, \dash\app::request('cat'));
-			}
-			else
-			{
-				$post_url = self::set_post_term($id, 'cat');
-			}
+			$post_url = self::set_post_term($id, 'cat');
 
 			if($post_url !== false)
 			{

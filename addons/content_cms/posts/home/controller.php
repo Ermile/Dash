@@ -6,7 +6,6 @@ class controller
 {
 	public static function routing()
 	{
-
 		$myType = \dash\request::get('type');
 
 		if($myType)

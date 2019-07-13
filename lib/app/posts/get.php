@@ -74,6 +74,53 @@ trait get
 	}
 
 
+	public static function load_post($_id)
+	{
+		$id = \dash\coding::decode($_id);
+		if(!$id || !is_numeric($id))
+		{
+			return false;
+		}
+
+		$load = \dash\db\posts::load_one_post($id);
+
+		if(!$load || !isset($load['user_id']) || !isset($load['type']))
+		{
+			return false;
+		}
+
+		$myPost = false;
+		if(intval($load['user_id']) === intval(\dash\user::id()))
+		{
+			$myPost = true;
+		}
+
+		if(!$myPost)
+		{
+			switch ($load['type'])
+			{
+				case 'help':
+					if(!\dash\permission::check('cpHelpCenterViewAll'))
+					{
+						return false;
+					}
+					break;
+
+				case 'post':
+					if(!\dash\permission::check('cpPostsViewAll'))
+					{
+						return false;
+					}
+					break;
+			}
+		}
+
+		$load = self::ready($load);
+
+		return $load;
+	}
+
+
 	public static function get_post_list($_options = [])
 	{
 		$default_options =

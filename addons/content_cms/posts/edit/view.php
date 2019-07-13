@@ -5,16 +5,6 @@ class view
 {
 	public static function config()
 	{
-		$id = \dash\request::get('id');
-
-		$detail = \dash\app\posts::get($id);
-		if(!$detail)
-		{
-			\dash\header::status(403, T_("Invalid id"));
-		}
-
-		\dash\data::dataRow($detail);
-
 		\content_cms\posts\main\view::myDataType();
 
 		$moduleTypeTxt = \dash\data::myDataType();
