@@ -109,26 +109,26 @@ class view
 			$myTitle .= ' | '. T_('Search for :search', ['search' => $search_string]);
 		}
 
+		$get_post_counter_args = [];
+		$filterArray           = [];
 		$args =
 		[
 			'sort'  => \dash\request::get('sort'),
 			'order' => \dash\request::get('order'),
 		];
 
+
 		if(\dash\request::get('status'))
 		{
 			$args['status'] = \dash\request::get('status');
+			$filterArray['status'] = $args['status'];
 		}
 
 		if(\dash\request::get('term'))
 		{
 			$args['term'] = \dash\request::get('term');
+			$filterArray[T_("Category")] = $args['term'];
 		}
-
-		// if(!isset($args['status']))
-		// {
-		// 	$args['status'] = ["NOT IN", "('draft', 'deleted')"];
-		// }
 
 		if(\dash\request::get('type'))
 		{
@@ -138,6 +138,8 @@ class view
 		{
 			$args['type'] = 'post';
 		}
+
+		$get_post_counter_args['type'] = $args['type'];
 
 		if(!$args['order'])
 		{
@@ -153,12 +155,15 @@ class view
 		if(!\dash\permission::check('cpPostsViewAll'))
 		{
 			$args['user_id'] = \dash\user::id();
+			$get_post_counter_args['user_id'] = $args['user_id'];
 		}
 
 
 		if(\dash\request::get('special'))
 		{
 			$args['special'] = \dash\request::get('special');
+			$filterArray[T_("Special mode")] = T_(ucfirst($args['special']));
+
 		}
 
 		if($myType === 'attachment')
@@ -168,31 +173,18 @@ class view
 		else
 		{
 			$args['language'] = \dash\language::current();
+			$get_post_counter_args['language'] = $args['language'];
 		}
 
 		\dash\data::sortLink(\content_cms\view::make_sort_link(\dash\app\posts::$sort_field, \dash\url::this()) );
 		\dash\data::dataTable(\dash\app\posts::list(\dash\request::get('q'), $args) );
-
-		$filterArray = $args;
-		unset($filterArray['language']);
-		unset($filterArray['type']);
-		unset($filterArray['user_id']);
-
-		if(isset($filterArray['status']))
-		{
-			if(is_string($filterArray['status']))
-			{
-				$filterArray[T_("Status")] = $filterArray['status'];
-			}
-			unset($filterArray['status']);
-		}
 
 		// set dataFilter
 		$dataFilter = \dash\app\sort::createFilterMsg($search_string, $filterArray);
 		\dash\data::dataFilter($dataFilter);
 
 		// get post count group by status
-		$postCounter = \dash\app\posts::get_post_counter($args);
+		$postCounter = \dash\app\posts::get_post_counter($get_post_counter_args);
 		\dash\data::postCounter($postCounter);
 	}
 }

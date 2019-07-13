@@ -15,10 +15,6 @@ class posts
 
 	public static  function get_post_counter($_args)
 	{
-		unset($_args['sort']);
-		unset($_args['order']);
-		unset($_args['status']);
-
 		$post_counter     = \dash\db\posts::get_post_counter($_args);
 		if(is_array($post_counter))
 		{
