@@ -65,7 +65,18 @@ class view
 
 		\dash\data::dashboardDetail($dashboard_detail);
 		\dash\data::dashboardDetailNoLang($dashboard_detail_no_lang);
-		\dash\data::allWordCloud(\dash\app\posts::all_word_cloud());
+
+
+
+		$allWordCloud = \dash\utility\catch_file::get('cpWordCload_'. \dash\url::subdomain(), false);
+		if(!$allWordCloud)
+		{
+			$allWordCloud = \dash\app\posts::all_word_cloud();
+			\dash\utility\catch_file::set('cpWordCload_'. \dash\url::subdomain(), $allWordCloud, 60*2);
+		}
+
+
+		\dash\data::allWordCloud($allWordCloud);
 
 	}
 }
