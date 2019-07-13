@@ -395,6 +395,37 @@ class users
 		return \dash\db::get($query, ['permission', 'count']);
 	}
 
+	public static function get_by_permission($_permission)
+	{
+		$permission_query = null;
+		if(is_array($_permission))
+		{
+			$permission_query = " IN ('". implode("','", $_permission). "') ";
+		}
+		else
+		{
+			$permission_query = " = '$_permission' ";
+		}
+
+		$query =
+		"
+			SELECT
+				users.id,
+				users.permission,
+				users.mobile,
+				users.avatar,
+				users.gender,
+				users.displayname
+			FROM
+				users
+			WHERE
+				users.permission $permission_query
+		";
+
+		$result = \dash\db::get($query);
+		return $result;
+	}
+
 
 	public static function get_gender_chart()
 	{

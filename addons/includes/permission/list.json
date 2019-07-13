@@ -291,6 +291,12 @@
     "require": ["contentCp", "cpPageView", "cpPageEdit"]
   },
 
+  "cpChangePostCreator":
+  {
+    "title" : "cpChangePostCreator",
+    "cat" : "Control Panel CMS",
+    "require" : ["contentCp"]
+  },
 
   "cpAttachmentView":
   {

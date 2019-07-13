@@ -1149,6 +1149,7 @@ class TransStatic
 	echo T_("cpMagView");
 	echo T_("cpMagEdit");
 
+	echo T_("cpChangePostCreator");
  }
 }
 ?>

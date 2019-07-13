@@ -4,13 +4,41 @@ namespace dash\app;
 class posts
 {
 	private static $raw_field = ['content'];
+	public static $datarow = null;
 
 	use \dash\app\posts\add;
 	use \dash\app\posts\datalist;
 	use \dash\app\posts\edit;
 	use \dash\app\posts\get;
 
-	public static $datarow = null;
+	public static function get_user_can_write_post($_type)
+	{
+		switch ($_type)
+		{
+			case 'page':
+				$permission = 'cpPageAdd';
+				break;
+
+			case 'help':
+				$permission = 'cpHelpCenterAdd';
+				break;
+
+			case 'post':
+			default:
+				$permission = 'cpPostsAdd';
+				break;
+		}
+
+		$who_have = \dash\permission::who_have($permission);
+
+		$load_user = \dash\db\users::get_by_permission($who_have);
+		if(is_array($load_user))
+		{
+			$load_user = array_map(['\\dash\\app\\user', 'ready'], $load_user);
+		}
+
+		return $load_user;
+	}
 
 
 	public static  function get_post_counter($_args)
@@ -664,6 +692,27 @@ class posts
 		}
 
 		$args                = [];
+
+		if(\dash\permission::check('cpChangePostCreator'))
+		{
+			$creator = \dash\app::request('creator');
+
+			if($creator && isset($current_post_detail['type']))
+			{
+				$can_change = self::get_user_can_write_post($current_post_detail['type']);
+				if(is_array($can_change))
+				{
+					$can_change = array_column($can_change, 'id');
+					if(!in_array($creator, $can_change))
+					{
+						\dash\notif::error(T_("Invalid user"));
+						return false;
+					}
+					$args['user_id'] = \dash\coding::decode($creator);
+				}
+			}
+		}
+
 		$args['language']    = $language;
 		$args['title']       = $title;
 		$args['slug']        = $slug;

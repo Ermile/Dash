@@ -81,6 +81,13 @@ class view
 		\dash\data::badge_text($myBadgeText);
 		\dash\data::badge_link($myBadgeLink);
 
+
+		if(\dash\permission::check('cpChangePostCreator'))
+		{
+			$user_list = \dash\app\posts::get_user_can_write_post(\dash\data::myDataType());
+			\dash\data::postAdder($user_list);
+
+		}
 	}
 }
 ?>

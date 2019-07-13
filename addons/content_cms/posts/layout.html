@@ -78,6 +78,33 @@
 
 
 
+{%block iCreator%}
+{%if perm('cpChangePostCreator')%}
+<section class="pbox">
+    <header data-kerkere='.creatorPanel' data-kerkere-icon='close'>{%trans "Writer"%}</header>
+    <div class="body creatorPanel" data-kerkere-content='hide'>
+      <label>{%trans "Change post writer"%}</label>
+      <div class="ui fluid selection dropdown">
+        <div class="default text">{%trans "Choose new post writer"%}</div>
+        <input type="hidden" name="creator" value="{{dataRow.user_id}}">
+        <i class="dropdown icon"></i>
+        <div class="menu">
+          {%for key, value in postAdder%}
+            <div class="item {%if dataRow.user_id == value.id%} active selected {%endif%}" data-value="{{value.id}}">
+              <img class="ui mini avatar image" src="{{value.avatar}}">
+              {{value.displayname}}
+            </div>
+          {%endfor%}
+        </div>
+      </div>
+    </div>
+  </section>
+{%endif%}
+
+{%endblock%}
+
+
+
 {%block iCat%}
 {%if dataRow.type == 'post'%}
 

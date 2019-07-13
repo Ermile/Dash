@@ -4,7 +4,6 @@ namespace dash\app\posts;
 
 trait get
 {
-
 	public static function get_category_tag($_post_id, $_type, $_related = 'posts')
 	{
 		$post_id = \dash\coding::decode($_post_id);

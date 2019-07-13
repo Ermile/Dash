@@ -95,6 +95,7 @@ class model
 			'language'    => \dash\request::post('language'),
 			'parent'      => \dash\request::post('parent'),
 			'special'     => \dash\request::post('special'),
+			'creator'     => \dash\request::post('creator'),
 		];
 
 
