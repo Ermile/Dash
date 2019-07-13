@@ -15,9 +15,9 @@ class posts
 
 	public static  function get_post_counter($_type)
 	{
-		$args['type'] = $_type;
+		$args['type']     = $_type;
 		$args['language'] = \dash\language::current();
-		$post_counter = \dash\db\posts::get_post_counter($args);
+		$post_counter     = \dash\db\posts::get_post_counter($args);
 		return $post_counter;
 	}
 
