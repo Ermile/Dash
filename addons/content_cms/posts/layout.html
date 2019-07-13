@@ -161,7 +161,7 @@
 {%block iComment%}
 {%if dataRow.type != 'page'%}
 <section class="pbox">
-  <header data-kerkere='.commentPanel' data-kerkere-icon='close'>{%trans "Comments"%}</header>
+  <header data-kerkere='.commentPanel' data-kerkere-icon='close'>{%trans "Comments"%}{%if dataRow.comment == 'open' %}<span class="floatRa sf-check fc-green"></span>{%endif%}</header>
   <div class="body commentPanel" data-kerkere-content='hide'>
     <div class="switch1">
      <input type="checkbox" name="comment" id="comment" {%if dataRow.comment == 'open' %} checked {%endif%}>
