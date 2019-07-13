@@ -20,13 +20,20 @@ class model
 			return false;
 		}
 
-		if(\dash\file::write($addr, $fileContent))
+		if(\content_su\nano\view::can_edit_file(\dash\request::get('file')))
 		{
-			\dash\notif::ok(T_("File successfuly update"));
+			if(\dash\file::write($addr, $fileContent))
+			{
+				\dash\notif::ok(T_("File successfuly update"));
+			}
+			else
+			{
+				\dash\notif::error(T_("Can not write file"));
+			}
 		}
 		else
 		{
-			\dash\notif::error(T_("Can not write file"));
+			\dash\notif::error(T_('Can not edit this file!'));
 		}
 	}
 

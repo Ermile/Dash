@@ -19,6 +19,29 @@ class view
 
 	}
 
+
+	public static function can_edit_file($_name)
+	{
+		$return = false;
+		switch ($_name)
+		{
+			case 'gitconfig':
+				$return = true;
+				break;
+
+			case 'optionme':
+				$return = false;
+				break;
+
+			default:
+				$return = false;
+				break;
+		}
+		return $return;
+	}
+
+
+
 	public static function get_addr_file($_name)
 	{
 		$addr = null;
@@ -27,6 +50,11 @@ class view
 			case 'gitconfig':
 				\dash\log::set('nanoGitConfig');
 				$addr = root. '.git/config';
+				break;
+
+			case 'optionme':
+				\dash\log::set('nanoOptionMe');
+				$addr = root. 'includes/option/option.me.php';
 				break;
 
 			default:
