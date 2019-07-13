@@ -18,12 +18,11 @@ class posts
 		$args['type']     = $_type;
 		$args['language'] = \dash\language::current();
 		$post_counter     = \dash\db\posts::get_post_counter($args);
-
 		if(is_array($post_counter))
 		{
 			$post_counter['all'] = array_sum($post_counter);
 		}
-		
+
 		return $post_counter;
 	}
 

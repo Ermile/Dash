@@ -42,7 +42,7 @@ class posts
 			GROUP BY posts.status
 		";
 
-		$result = \dash\db::get($query, ['status', 'count'], true);
+		$result = \dash\db::get($query, ['status', 'count']);
 		return $result;
 
 	}
