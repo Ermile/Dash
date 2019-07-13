@@ -11,6 +11,14 @@ class dayevent
 	}
 
 
+	public static function get_all()
+	{
+		$query = "SELECT * FROM dayevent";
+		$resutl = \dash\db::get($query, null, false, \dash\db::get_db_log_name());
+		return $resutl;
+	}
+
+
 	public static function insert($_args)
 	{
 

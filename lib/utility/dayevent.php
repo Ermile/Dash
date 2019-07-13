@@ -105,7 +105,7 @@ class dayevent
 			$fields = $_option['field'];
 		}
 
-		$result = \dash\db\dayevent::get(['1.1' => 1.1]);
+		$result = \dash\db\dayevent::get_all();
 
 		$data       = [];
 		$categories = [];
