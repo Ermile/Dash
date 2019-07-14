@@ -1150,6 +1150,7 @@ class TransStatic
 	echo T_("cpMagEdit");
 
 	echo T_("cpChangePostCreator");
+	echo T_("Contributor");
  }
 }
 ?>
