@@ -22,59 +22,6 @@ class permission
 	private static $core_group              = [];
 
 
-	// write permission file
-	// not use!
-	public static function write_file($_caller, $_postion)
-	{
-		self::load();
-
-		$check_list = [];
-
-		if($_postion === 'dash')
-		{
-			$check_list = self::$core_perm_list;
-			$addr       = core.'addons/includes/permission/list.json';
-		}
-		elseif($_postion === 'project')
-		{
-			$check_list = self::$project_perm_list;
-			$addr       = root.'/includes/permission/list.json';
-		}
-		else
-		{
-			return;
-		}
-
-
-		foreach ($check_list as $key => $value)
-		{
-			if(!in_array($key, $_caller))
-			{
-				unset($check_list[$key]);
-			}
-		}
-
-		foreach ($_caller as $key => $value)
-		{
-			if(!array_key_exists($value, $check_list))
-			{
-				$check_list[$value] =
-				[
-					'title'   => T_($value),
-					'cat'     => null,
-					// 'check'   => false,
-					// 'verify'  => false,
-					// 'require' => [],
-				];
-			}
-		}
-
-		$check_list = json_encode($check_list, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-		\dash\log::set('permissionWrite');
-		\dash\file::write($addr, $check_list);
-
-	}
-
 	// read permission file and json_decode to make an array of it
 	public static function read_file($_addr)
 	{
@@ -416,23 +363,30 @@ class permission
 			}
 		}
 
-
-		$new = self::$project_group;
+		// $new = self::$project_group;
+		$new = self::groups();
 		$new = array_merge($new, [$_name => ['title' => $_lable, 'contain' => $_contain]]);
+
+		$saveInFile = false;
 
 		if(is_callable(['\lib\permission', 'save_permission']))
 		{
 			$result = \lib\permission::save_permission($new);
 			if($result === null)
 			{
-				$new = json_encode($new, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-				\dash\file::write(root.'/includes/permission/group.me.json', $new);
+				$saveInFile = true;
 			}
 		}
 		else
 		{
+			$saveInFile = true;
+		}
+
+		if($saveInFile)
+		{
+			$jsonMeAddr = root.'/includes/permission/group.me.json';
 			$new = json_encode($new, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-			\dash\file::write(root.'/includes/permission/group.me.json', $new);
+			\dash\file::write($jsonMeAddr, $new);
 		}
 
 		\dash\log::set('permissionAddNew', ['code' => $_name]);
