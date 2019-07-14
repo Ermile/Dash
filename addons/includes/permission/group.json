@@ -1,14 +1,13 @@
 {
-  "admin":
-  {
+  "admin": {
     "title": "Admin",
     "contain": []
   },
-  "editor":
-  {
+  "editor": {
     "title": "Editor",
-    "contain":
-    [
+    "contain": [
+      "contentCrm",
+      "cpUsersView",
       "contentCp",
       "cpPostsView",
       "cpPostsViewAll",
@@ -19,60 +18,47 @@
       "cpPostsEditForOthers",
       "cpPostsDelete",
       "cpPostsDeleteForOthers",
-      "cpCategoryView",
-      "cpCategoryAdd",
-      "cpCategoryEdit",
-      "cpCategoryDelete",
       "cpTagView",
       "cpTagAdd",
       "cpTagEdit",
       "cpTagDelete",
+      "cpCategoryView",
+      "cpCategoryAdd",
+      "cpCategoryEdit",
       "cpPageView",
       "cpPageAdd",
       "cpPageEdit",
       "cpPageDelete",
+      "cpChangePostCreator",
       "cpAttachmentView",
       "cpAttachmentAdd",
       "cpAttachmentEdit",
-      "cpAttachmentDelete",
       "cpCommentsView",
       "cpCommentsEdit",
       "cpCommentsDelete"
     ]
   },
-  "author":
-  {
+  "author": {
     "title": "Author",
-    "contain":
-    [
+    "contain": [
       "contentCp",
       "cpPostsView",
       "cpPostsAdd",
       "cpPostsEdit",
       "cpPostsEditStatus",
-      "cpPostsDelete",
-      "cpCategoryView",
-      "cpCategoryAdd",
-      "cpTagView",
       "cpTagAdd",
-      "cpAttachmentView",
       "cpAttachmentAdd",
-      "cpAttachmentEdit"
+      "cpCommentsView"
     ]
   },
-  "contributor":
-  {
+  "contributor": {
     "title": "Contributor",
-    "contain":
-    [
+    "contain": [
       "contentCp",
       "cpPostsView",
       "cpPostsAdd",
       "cpPostsEdit",
-      "cpPostsDelete",
-      "cpTagAdd",
-      "cpAttachmentAdd",
-      "cpAttachmentEdit"
+      "cpTagAdd"
     ]
   }
 }
