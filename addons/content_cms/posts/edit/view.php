@@ -86,8 +86,22 @@ class view
 		{
 			$user_list = \dash\app\posts::get_user_can_write_post(\dash\data::myDataType());
 			\dash\data::postAdder($user_list);
-
+			if(is_array($user_list))
+			{
+				$allUserAuthorId = array_column($user_list, 'id');
+				\dash\data::allUserAuthorId($allUserAuthorId);
+			}
 		}
+
+		$creator = \dash\data::dataRow_user_id();
+		$creator = \dash\coding::decode($creator);
+		if($creator)
+		{
+			$user_detail = \dash\db\users::get_by_id($creator);
+			$user_detail = \dash\app\user::ready($user_detail);
+			\dash\data::userAuthorPost($user_detail);
+		}
+
 	}
 }
 ?>

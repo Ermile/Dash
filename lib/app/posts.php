@@ -43,6 +43,10 @@ class posts
 		}
 
 		$who_have = \dash\permission::who_have($permission);
+		if(\dash\permission::supervisor())
+		{
+			$who_have[] = 'supervisor';
+		}
 
 		$load_user = \dash\db\users::get_by_permission($who_have);
 		if(is_array($load_user))

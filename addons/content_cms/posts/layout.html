@@ -83,6 +83,12 @@
 <section class="pbox">
     <header data-kerkere='.creatorPanel' data-kerkere-icon='close'>{%trans "Writer"%}</header>
     <div class="body creatorPanel" data-kerkere-content='hide'>
+        {%if userAuthorPost.id not in allUserAuthorId%}
+        <div>
+          <img class="ui mini avatar image" src="{{userAuthorPost.avatar}}">
+          {{userAuthorPost.displayname}}
+        </div>
+      {%endif%}
       <label>{%trans "Change post writer"%}</label>
       <div class="ui fluid selection dropdown">
         <div class="default text">{%trans "Choose new post writer"%}</div>
@@ -96,6 +102,16 @@
             </div>
           {%endfor%}
         </div>
+      </div>
+    </div>
+  </section>
+{%else%}
+<section class="pbox">
+    <header data-kerkere='.creatorPanel' data-kerkere-icon='close'>{%trans "Writer"%}</header>
+    <div class="body creatorPanel" data-kerkere-content='hide'>
+      <div>
+        <img class="ui mini avatar image" src="{{userAuthorPost.displayname}}">
+        {{userAuthorPost.displayname}}
       </div>
     </div>
   </section>
