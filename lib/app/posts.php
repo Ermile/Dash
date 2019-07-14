@@ -78,11 +78,26 @@ class posts
 
 	public static function all_word_cloud()
 	{
-
-		$word         = [];
-		$args = [];
+		$word             = [];
+		$myCount          = [];
+		$args             = [];
 		$args['language'] = \dash\language::current();
-		$allPost = \dash\db\posts::get_words_chart($args);
+		$allPost          = \dash\db\posts::get_words_chart($args);
+
+		$countAllPost     = count($allPost);
+
+		if($countAllPost < 10)
+		{
+			$maxCountWord = 2;
+		}
+		elseif($countAllPost < 200)
+		{
+			$maxCountWord = 10;
+		}
+		else
+		{
+			$maxCountWord = 50;
+		}
 
 		if(is_array($allPost))
 		{
@@ -92,20 +107,39 @@ class posts
 				{
 					foreach ($value as $k => $v)
 					{
-						if(in_array($k, ['title', 'desc']))
+						$temp      = self::remove_2_char($v);
+						$word[]    = $temp;
+						$myCountTemp = array_count_values(explode(' ', $temp));
+						foreach ($myCountTemp as $myWord => $myCountWord)
 						{
-							$word[] = self::remove_2_char($v);
+							if($myCountWord > $maxCountWord)
+							{
+								if(isset($myCount[$myWord]))
+								{
+									$myCount[$myWord] = $myCount[$myWord] + $myCountWord;
+								}
+								else
+								{
+									$myCount[$myWord] = $myCountWord;
+								}
+							}
 						}
 					}
 				}
 			}
 		}
 
-		$word = implode(' ', $word);
+		$result = [];
+		foreach ($myCount as $key => $value)
+		{
+			$result[] = ['name' => $key, 'weight' => intval($value)];
+		}
 
-		return $word;
+		$result = json_encode($result, JSON_UNESCAPED_UNICODE);
 
+		return $result;
 	}
+
 
 	private static function remove_2_char($_text)
 	{

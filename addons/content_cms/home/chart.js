@@ -10,23 +10,7 @@ function chartDrawer()
 
 function wordcloud()
 {
-  var text = '{{allWordCloud}}';
-  var lines = text.split(/[,. ]+/g),
-    data = Highcharts.reduce(lines, function (arr, word) {
-      var obj = Highcharts.find(arr, function (obj) {
-        return obj.name === word;
-      });
-      if (obj) {
-        obj.weight += 1;
-      } else {
-        obj = {
-          name: word,
-          weight: 1
-        };
-        arr.push(obj);
-      }
-      return arr;
-    }, []);
+
 
   Highcharts.chart('wordcloud',
   {
@@ -40,10 +24,13 @@ function wordcloud()
     },
     series: [{
       type: 'wordcloud',
-      data: data,
+      data: {{allWordCloud | raw}},
       name: '{%trans "Count"%}'
     }],
     plotOptions: {
+      series : {
+        // turboThreshold: 1000
+      },
         wordcloud: {
             style : {
               fontFamily: "IRANSans"
