@@ -16,7 +16,15 @@ class view
 		\dash\data::page_pictogram('gauge');
 		\dash\data::page_special(true);
 
-		$dashboard_detail = \dash\session::get('cpDashboardCache');
+		self::dashboard_detail();
+		self::dashboard_detail_no_lang();
+		self::all_word_cloud();
+	}
+
+
+	private static function dashboard_detail()
+	{
+		$dashboard_detail = \dash\session::get('cpDashboardCache_'. \dash\language::current());
 		if(!$dashboard_detail)
 		{
 			$dashboard_detail                   = [];
@@ -43,10 +51,17 @@ class view
 			$chart['post']             = \dash\utility\dayevent::chart(['field' => ['news', 'page', 'help', 'attachment']]);
 			$dashboard_detail['chart'] = $chart;
 
-			\dash\session::set('cpDashboardCache', $dashboard_detail, null, (60*1));
+			\dash\session::set('cpDashboardCache_'. \dash\language::current(), $dashboard_detail, null, (60*1));
 		}
 
-		$dashboard_detail_no_lang = \dash\session::get('cpDashboardCacheNoLang');
+		\dash\data::dashboardDetail($dashboard_detail);
+	}
+
+
+	private static function dashboard_detail_no_lang()
+	{
+
+		$dashboard_detail_no_lang = \dash\session::get('cpDashboardCacheNoLang_'. \dash\language::current());
 		if(!$dashboard_detail_no_lang)
 		{
 			$dashboard_detail_no_lang                   = [];
@@ -60,14 +75,15 @@ class view
 			$dashboard_detail_no_lang['latesPost']      = \dash\app\posts::lates_post(['type' => 'post']);
 			$dashboard_detail_no_lang['latesHelp']      = \dash\app\posts::lates_post(['type' => 'help']);
 			$dashboard_detail_no_lang['latesTag']      = \dash\app\term::lates_term(['type' => 'tag']);
-			\dash\session::set('cpDashboardCacheNoLang', $dashboard_detail_no_lang, null, (60*1));
+			\dash\session::set('cpDashboardCacheNoLang_'. \dash\language::current(), $dashboard_detail_no_lang, null, (60*1));
 		}
 
-		\dash\data::dashboardDetail($dashboard_detail);
 		\dash\data::dashboardDetailNoLang($dashboard_detail_no_lang);
+	}
 
 
-
+	private static function all_word_cloud()
+	{
 		$allWordCloud = \dash\utility\catch_file::get('cpWordCload_'. \dash\url::subdomain(), false);
 		if(!$allWordCloud)
 		{
@@ -75,9 +91,7 @@ class view
 			\dash\utility\catch_file::set('cpWordCload_'. \dash\url::subdomain(), $allWordCloud, 60*2);
 		}
 
-
 		\dash\data::allWordCloud($allWordCloud);
-
 	}
 }
 ?>
