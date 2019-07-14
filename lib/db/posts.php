@@ -7,6 +7,20 @@ class posts
 
 	use \dash\db\posts\search;
 
+	public static function all_post_title($_where)
+	{
+		$where = null;
+		if($_where)
+		{
+			$where = " WHERE ". \dash\db\config::make_where($_where);
+		}
+
+		$query = "SELECT posts.title, posts.id FROM posts $where";
+		$result = \dash\db::get($query);
+		return $result;
+	}
+
+
 	public static function get_words_chart($_where = [])
 	{
 		$where = null;

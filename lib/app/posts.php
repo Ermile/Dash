@@ -11,6 +11,19 @@ class posts
 	use \dash\app\posts\edit;
 	use \dash\app\posts\get;
 
+
+	public static function all_post_title($_args)
+	{
+		$list = \dash\db\posts::all_post_title($_args);
+		if(is_array($list))
+		{
+			$list = array_map(['self', 'ready'], $list);
+		}
+
+		return $list;
+	}
+
+
 	public static function get_user_can_write_post($_type)
 	{
 		switch ($_type)
