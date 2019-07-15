@@ -4,7 +4,6 @@ namespace dash\utility;
 /** PHP Upload Management **/
 class upload
 {
-	use upload\sql;
 	use upload\ext;
 	use upload\check;
 
@@ -356,6 +355,8 @@ class upload
 
 		];
 
+		// insert detail of this file to database
+
 		$_options = array_merge($default_options, $_options);
 
 		// check upload name
@@ -378,6 +379,10 @@ class upload
 			\dash\notif::error(T_("user id not set"));
 			return false;
 		}
+
+		if(isset($_options['user_id']))
+		{
+					}
 
 		// get the protocol
 		$protocol = null;
@@ -433,6 +438,7 @@ class upload
 			return false;
 		}
 
+
 		// save file as tmp in tmp_path
 		if($_options['save_as_tmp'] === true)
 		{
@@ -441,10 +447,12 @@ class upload
 
 		// 2. Generate file_id, folder_id and url
 
-		$qry_count     = self::attachment_count();
+
+		$qry_count     = \dash\db\files::attachment_count();
 
 		$folder_prefix = $_options['folder_prefix'];
 		$folder_id     = ceil(((int) $qry_count + 1) / $_options['folder_size']);
+
 
 		$folder_loc    = $folder_prefix . $folder_id;
 
@@ -464,10 +472,12 @@ class upload
 			$new_file_name = self::$fileFullName;
 		}
 
+
 		$url_full      = "$folder_loc/$file_id-" . $new_file_name;
 
+
 		// 3. Check for record exist in db or not
-		$duplicate = self::duplicate(self::$fileMd5);
+		$duplicate = \dash\db\files::duplicate(self::$fileMd5);
 
 		if($duplicate)
 		{
@@ -505,6 +515,8 @@ class upload
 		}
 
 		$file_ext   = self::$fileExt;
+
+
 		$url_thumb  = null;
 		$url_normal = null;
 
@@ -516,6 +528,7 @@ class upload
 		$file_meta['size'] = self::$fileSize;
 		$file_meta['ext']  = $file_ext;
 		$file_meta['url']  = $url_full;
+
 
 		switch ($file_ext)
 		{
@@ -573,20 +586,54 @@ class upload
 		$file_meta = json_encode($file_meta, JSON_UNESCAPED_UNICODE);
 
 		// 6. add uploaded file record to db
-		$insert_attachment =
-		[
-			'title'       => self::$fileName ? addslashes(self::$fileName) : rand(1,999),
-			'slug'        => self::$fileMd5,
-			'meta'        => $file_meta,
-			'type'        => 'attachment',
-			'url'         => $page_url,
-			'user_id'     => $_options['user_id'],
-			'status'      => $_options['status'],
-			'parent'      => $_options['parent'],
-			'publishdate' => date('Y-m-d H:i:s')
-		];
+		// $insert_attachment =
+		// [
+		// 	'title'       => self::$fileName ? addslashes(self::$fileName) : rand(1,999),
+		// 	'slug'        => self::$fileMd5,
+		// 	'meta'        => $file_meta,
+		// 	'type'        => 'attachment',
+		// 	'url'         => $page_url,
+		// 	'user_id'     => $_options['user_id'],
+		// 	'status'      => $_options['status'],
+		// 	'parent'      => $_options['parent'],
+		// 	'publishdate' => date('Y-m-d H:i:s')
+		// ];
+		// $new_id = \dash\db\posts::insert($insert_attachment);
 
-		$new_id = \dash\db\posts::insert($insert_attachment);
+		$inset_files_record                = [];
+		$inset_files_record['user_id']     = $_options['user_id'];
+		$inset_files_record['md5']         = self::$fileMd5;
+		$inset_files_record['filename']    = self::$fileName ? addslashes(self::$fileName) : rand(1,999);
+		$inset_files_record['title']       = null;
+		$inset_files_record['desc']        = null;
+		$inset_files_record['useage']      = null;
+		$inset_files_record['type']        = self::$fileType;
+		$inset_files_record['mime']        = self::$fileMime;
+		$inset_files_record['ext']         = self::$fileExt;
+		$inset_files_record['folder']      = $folder_id;
+		$inset_files_record['path']        = $url_full;
+
+		if(\dash\option::config('upload_subdomain'))
+		{
+			$master_file_url  = '';
+			$master_file_url .= \dash\url::protocol(). '://';
+			$master_file_url .= \dash\option::config('upload_subdomain'). '.';
+			$master_file_url .= \dash\url::domain(). '/';
+			$master_file_url .= $url_full;
+		}
+		else
+		{
+			$master_file_url = \dash\url::site(). '/'. $url_full;
+		}
+
+		$inset_files_record['url']         = $master_file_url;
+		$inset_files_record['size']        = intval(self::$fileSize);
+		$inset_files_record['status']      = $_options['status'];
+		$inset_files_record['datecreated'] = date("Y-m-d H:i:s");
+
+		$new_id = \dash\db\files::insert($inset_files_record);
+
+		$inset_files_record['id'] = $new_id;
 
 		$url = \dash\temp::get('upload');
 
@@ -603,7 +650,8 @@ class upload
 		{
 			\dash\notif::ok("File successful uploaded");
 		}
-		return;
+
+		return $inset_files_record;
 	}
 
 

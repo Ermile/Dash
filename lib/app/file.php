@@ -73,11 +73,7 @@ class file
 			$ready_upload['upload_name'] = $_options['upload_name'];
 		}
 
-		$ready_upload['status'] = 'publish';
-
-		// $ready_upload['user_size_remaining'] = self::remaining(\dash\user::id());
-
-		// upload::$extentions = ['png', 'jpeg', 'jpg'];
+		$ready_upload['status'] = null;
 
 		$upload      = \dash\utility\upload::upload($ready_upload);
 
@@ -86,21 +82,16 @@ class file
 			return false;
 		}
 
-		$file_detail = \dash\temp::get('upload');
 		$file_id     = null;
 
-		// if(isset($file_detail['size']))
-		// {
-		// 	self::user_size_plus(\dash\user::id(), $file_detail['size']);
-		// }
-
-		if(isset($file_detail['id']) && is_numeric($file_detail['id']))
+		if(isset($upload['id']) && is_numeric($upload['id']))
 		{
-			$file_id = $file_detail['id'];
+			$file_id = $upload['id'];
 		}
 		else
 		{
-			return \dash\notif::error(T_("Can not upload file. undefined error"));
+			\dash\notif::error(T_("Can not upload file. undefined error"));
+			return false;
 		}
 
 		$file_id_code = null;
@@ -112,25 +103,11 @@ class file
 
 		$url = null;
 
-		if(isset($file_detail['url']))
-		{
-			if(\dash\option::config('upload_subdomain'))
-			{
-				$url  = '';
-				$url .= \dash\url::protocol(). '://';
-				$url .= \dash\option::config('upload_subdomain'). '.';
-				$url .= \dash\url::domain(). '/';
-				$url .= $file_detail['url'];
-			}
-			else
-			{
-				$url = \dash\url::site(). '/'. $file_detail['url'];
-			}
-		}
-
 		\dash\log::set('uploadFile', ['code' => $file_id_code, 'datalink' => $url]);
 
-		return ['code' => $file_id_code, 'url' => $url];
+		$result = array_merge($upload, ['code' => $file_id_code]);
+
+		return $result;
 	}
 }
 
