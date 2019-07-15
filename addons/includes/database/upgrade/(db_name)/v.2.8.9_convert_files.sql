@@ -30,7 +30,7 @@ SELECT
 	TRIM(BOTH '"' FROM JSON_EXTRACT(posts.meta, '$.url')),
 	TRIM(BOTH '"' FROM JSON_EXTRACT(posts.meta, '$.url')),
 	TRIM(BOTH '"' FROM JSON_EXTRACT(posts.meta, '$.size')),
-	posts.status,
+	'draft',
 	posts.datecreated
 FROM
 	posts

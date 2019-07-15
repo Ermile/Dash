@@ -36,5 +36,12 @@ class files
 		}
 		return false;
 	}
+
+
+	public static function search()
+	{
+		$result = \dash\db\config::public_search('files', ...func_get_args());
+		return $result;
+	}
 }
 ?>
