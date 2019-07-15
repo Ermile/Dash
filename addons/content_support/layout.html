@@ -7,6 +7,7 @@
 
 <li><a href="{{url.here}}{{accessGet}}"><i class='sf-life-ring'></i> <span>{% trans "Support Dashboard" %}</span></a></li>
 
+
 <li>
   <a href="{{url.here}}/ticket{{accessGet}}"><i class="sf-question-circle"></i>{%trans "Tickets"%}</a>
 
@@ -56,10 +57,15 @@
       <li><a href="{{url.here}}/ticket?status=spam{{accessGetAnd}}"><span class="floatRa mRa10 fc-mute badge dark">{{sidebarDetail.spam | fitNumber}}</span>{%trans "Spam"%}</a></li>
 {%endif%}
     </ul>
+
 </li>
 
 
 
+
+{%if perm('cpTagSupportEdit')%}
+  <li><a href="{{url.here}}/ticket/tags"><i class='fc-mute sf-bug'></i> {% trans "Ticket Topics" %}</a></li>
+{%endif%}
 {%if sidebarDetail.tags%}
 <li class="hr"></li>
 <li>

@@ -39,9 +39,7 @@
 {%if perm('cpTagHelpAdd') or perm('cpTagHelpEdit')%}
       <li><a href="{{url.here}}/terms?type=help_tag"><i class='fc-mute sf-clone'></i> {% trans "Help Center Keywords" %}</a></li>
 {%endif%}
-{%if perm('cpTagSupportAdd') or perm('cpTagSupportEdit')%}
-      <li><a href="{{url.here}}/terms?type=support_tag"><i class='fc-mute sf-bug'></i> {% trans "Ticket Topics" %}</a></li>
-{%endif%}
+
       </ul>
     </li>
 {%endif%}
