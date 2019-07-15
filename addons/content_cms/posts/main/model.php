@@ -96,6 +96,7 @@ class model
 			'parent'      => \dash\request::post('parent'),
 			'special'     => \dash\request::post('special'),
 			'creator'     => \dash\request::post('creator'),
+			'seotitle'    => \dash\request::post('seotitle'),
 		];
 
 

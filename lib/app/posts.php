@@ -423,6 +423,18 @@ class posts
 			return false;
 		}
 
+		$seotitle = \dash\app::request('seotitle');
+		if($seotitle && mb_strlen($seotitle) > 100)
+		{
+			\dash\notif::error(T_("Please set the seotitle less than 100 character"), 'seotitle');
+			return false;
+		}
+
+		if(!$seotitle)
+		{
+			$seotitle = $title . ' | '. T_(\dash\option::config('site', 'title'));
+		}
+
 		$excerpt = \dash\app::request('excerpt');
 		if($excerpt && mb_strlen($excerpt) > 300)
 		{
@@ -779,6 +791,7 @@ class posts
 		$args['subtitle']    = $subtitle;
 		$args['parent']      = $parent;
 		$args['special']     = $special;
+		$args['seotitle']    = $seotitle;
 		$args['publishdate'] = $publishdate ? $publishdate. ' '. $publishtime  : null;
 
 		// check status
