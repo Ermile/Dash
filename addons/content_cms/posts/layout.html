@@ -352,7 +352,7 @@
   <section class="cbox">
     <div class="seoPreview">
       <a target="_blank" href="{{url.kingdom}}/{{myFirstURL}}{{dataRow.url}}">
-        <h3>{{dataRow.seotitle}}</h3>
+        <h3>{%if dataRow.seotitle%}{{dataRow.seotitle}}{%else%}{{dataRow.title}}{%endif%} | {{site.title}}</h3>
         <cite><span>{{url.kingdom}}/{{myFirstURL}}</span>{{dataRow.url}}</cite>
       </a>
       <div class="f">
@@ -378,7 +378,8 @@
         <div>
           <label for='seoTitle'>{%trans "SEO Title"%} <small>{%trans "Recommended being more than 40 character and appear at the beginning of page content"%}</small></label>
           <div class="input">
-            <input type="text" name="seotitle" id="seoTitle" placeholder='{%trans "Enter title here"%} *' value="{{dataRow.seotitle}}"  maxlength='200' minlength="1" pattern=".{1,200}">
+            <input type="text" name="seotitle" id="seoTitle" placeholder='{%if not dataRow.seotitle%}{{dataRow.title}}{%endif%}' value="{{dataRow.seotitle}}"  maxlength='200' minlength="1" pattern=".{1,200}">
+            <label class="addon"> | {{site.title}}</label>
           </div>
         </div>
 
