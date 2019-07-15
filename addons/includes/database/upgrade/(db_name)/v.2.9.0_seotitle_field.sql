@@ -1,0 +1,1 @@
+ALTER TABLE `posts` ADD `seotitle` varchar(500) NULL DEFAULT NULL AFTER `title`;
