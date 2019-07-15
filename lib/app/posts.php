@@ -430,10 +430,10 @@ class posts
 			return false;
 		}
 
-		if(!$seotitle)
-		{
-			$seotitle = $title . ' | '. T_(\dash\option::config('site', 'title'));
-		}
+		// if(!$seotitle)
+		// {
+		// 	$seotitle = $title . ' | '. T_(\dash\option::config('site', 'title'));
+		// }
 
 		$excerpt = \dash\app::request('excerpt');
 		if($excerpt && mb_strlen($excerpt) > 300)
@@ -760,18 +760,21 @@ class posts
 		{
 			$creator = \dash\app::request('creator');
 
-			if($creator && isset($current_post_detail['type']))
+			if($creator && isset($current_post_detail['type']) && isset($current_post_detail['user_id']))
 			{
-				$can_change = self::get_user_can_write_post($current_post_detail['type']);
-				if(is_array($can_change))
+				if(intval(\dash\coding::decode($creator)) !== intval($current_post_detail['user_id']))
 				{
-					$can_change = array_column($can_change, 'id');
-					if(!in_array($creator, $can_change))
+					$can_change = self::get_user_can_write_post($current_post_detail['type']);
+					if(is_array($can_change))
 					{
-						\dash\notif::error(T_("Invalid user"));
-						return false;
+						$can_change = array_column($can_change, 'id');
+						if(!in_array($creator, $can_change))
+						{
+							\dash\notif::error(T_("Invalid user"));
+							return false;
+						}
+						$args['user_id'] = \dash\coding::decode($creator);
 					}
-					$args['user_id'] = \dash\coding::decode($creator);
 				}
 			}
 		}
