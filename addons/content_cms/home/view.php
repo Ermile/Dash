@@ -3,8 +3,44 @@ namespace content_cms\home;
 
 class view
 {
+
+	private static function fix_file_table()
+	{
+		if(\dash\request::get('fixfile'))
+		{
+			$query = "SELECT * FROM files WHERE files.status = 'draft' ";
+			$result = \dash\db::get($query);
+			if(is_array($result) && $result)
+			{
+				$multi_query = [];
+				foreach ($result as $key => $value)
+				{
+					$temp           = [];
+					$myUrl = preg_match("/^files\/(\d+)\/.*$/", $value['url'], $c);
+					if($myUrl && isset($c[1]))
+					{
+						$temp['folder'] = $c[1];
+					}
+					$temp['url']    = \dash\url::site(). '/'. $value['path'];
+					$temp['status'] = null;
+					$set = \dash\db\config::make_set($temp);
+					$multi_query[] = " UPDATE files SET $set WHERE files.id = $value[id] LIMIT 1 ";
+				}
+
+				if(!empty($multi_query))
+				{
+					$multi_query = implode(';', $multi_query);
+					$result = \dash\db::query($multi_query, true, ['multi_query' => true]);
+				}
+			}
+		}
+	}
+
+
 	public static function config()
 	{
+		self::fix_file_table();
+
 		\dash\data::display_cp_posts("content_cms/posts/layout.html");
 		\dash\data::display_cpSample("content_cms/sample/layout.html");
 

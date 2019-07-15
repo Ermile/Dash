@@ -9,10 +9,8 @@ class view
 
 		\dash\data::page_title(T_("Attachments"));
 
-
 		\dash\data::badge_text(T_('Add new attachment'));
 		\dash\data::badge_link(\dash\url::this(). '/add');
-
 
 		$search_string = \dash\request::get('q');
 		if($search_string)
@@ -44,7 +42,9 @@ class view
 		}
 
 		\dash\data::sortLink(\content_cms\view::make_sort_link(\dash\app\file::$sort_field, \dash\url::this()) );
-		\dash\data::dataTable(\dash\app\file::list(\dash\request::get('q'), $args) );
+		$dataTable = \dash\app\file::list(\dash\request::get('q'), $args);
+
+		\dash\data::dataTable($dataTable );
 
 		// set dataFilter
 		// $dataFilter = \dash\app\sort::createFilterMsg($search_string, $filterArray);
