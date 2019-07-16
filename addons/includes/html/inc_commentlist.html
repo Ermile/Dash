@@ -1,0 +1,8 @@
+{%set commentList = comments({"limit" : 60}) %}
+{%if commentList%}
+  {%for key, value in commentList%}
+  <div class="msg">
+    <p>{{value.content}}</p>
+  </div>
+  {%endfor%}
+{%endif%}

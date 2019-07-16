@@ -21,6 +21,9 @@ class view
 		\dash\data::display_hive("includes/html/inc_hive.html");
 		\dash\data::display_spay("includes/html/inc_spay.html");
 
+		\dash\data::display_commentadd("includes/html/inc_commentadd.html");
+		\dash\data::display_commentlist("includes/html/inc_commentlist.html");
+
 		// return all url detail
 		\dash\data::url(\dash\url::all());
 

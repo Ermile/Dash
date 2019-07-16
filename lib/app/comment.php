@@ -246,6 +246,15 @@ class comment
 		}
 
 
+		if(!$user_id && \dash\utility\filter::mobile($mobile))
+		{
+			$get_user = \dash\db\users::get_by_mobile(\dash\utility\filter::mobile($mobile));
+			if(isset($get_user['id']))
+			{
+				$user_id = $get_user['id'];
+			}
+		}
+
 		$via = \dash\app::request('via');
 		if($via && !in_array($via, ['site', 'telegram', 'sms', 'contact', 'admincontact', 'app']))
 		{
@@ -315,8 +324,8 @@ class comment
 		$args['mobile']  = $mobile;
 		$args['title']   = $title;
 		$args['file']    = $file;
-		$args['parent']    = $parent;
-		$args['via']    = $via;
+		$args['parent']  = $parent;
+		$args['via']     = $via;
 
 		return $args;
 	}
