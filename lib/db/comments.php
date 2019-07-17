@@ -540,9 +540,15 @@ class comments
 		"
 		(
 			SELECT
-				*
+				comments.id AS `id`,
+				comments.content,
+				comments.datecreated,
+				comments.star,
+				users.displayname,
+				users.avatar
 			FROM
 				comments
+			LEFT JOIN users ON users.id = comments.user_id
 			WHERE
 				comments.post_id        = $_post_id AND
 				comments.status = 'approved' AND
@@ -557,9 +563,15 @@ class comments
 			"
 			UNION ALL (
 			SELECT
-				*
+				comments.id AS `id`,
+				comments.content,
+				comments.datecreated,
+				comments.star,
+				users.displayname,
+				users.avatar
 			FROM
 				comments
+			LEFT JOIN users ON users.id = comments.user_id
 			WHERE
 				comments.post_id      = $_post_id AND
 				comments.user_id      = $_user_id AND
@@ -575,9 +587,14 @@ class comments
 
 		if(is_array($result))
 		{
+			$result = array_map(['\\dash\\app\\comment', 'ready'], $result);
+
 			foreach ($result as $key => $value)
 			{
-				$temp[$value['id']] = $value;
+				if(isset($value['id']))
+				{
+					$temp[$value['id']] = $value;
+				}
 			}
 			$temp = array_values($temp);
 		}

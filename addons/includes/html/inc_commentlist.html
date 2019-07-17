@@ -1,8 +1,24 @@
 {%set commentList = comments({"limit" : 60}) %}
 {%if commentList%}
   {%for key, value in commentList%}
-  <div class="msg">
-    <p>{{value.content}}</p>
+  <div class="msg mT10	">
+  	<div class="f">
+  		<div class="c s12">
+		  	<img src="{{value.avatar}}" class="avatar">
+		  	{%if value.displayname%}<span class="badge">{{value.displayname}}</span>{%endif%}
+		  	{%if value.star%}
+		  		{%for i in 1..value.star%}
+		  			<i class="sf-star fc-yellow"></i>
+		  		{%endfor%}
+		  	{%endif%}
+  		</div>
+  		<div class="c s12">
+    		<p>{{value.content}}</p>
+  		</div>
+  		<div class="c s12">
+    		<span>{{value.datecreated |dt('human', 'year')}}</span>
+  		</div>
+  	</div>
   </div>
   {%endfor%}
 {%endif%}
