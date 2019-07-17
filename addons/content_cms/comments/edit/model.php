@@ -19,12 +19,10 @@ class model
 			'author'  => \dash\request::post('author'),
 			'email'   => \dash\request::post('email'),
 			'status'  => \dash\request::post('status'),
+			'mobile'  => \dash\request::post('mobile'),
+			'url'     => \dash\request::post('website'),
 		];
 
-		if($update['content'])
-		{
-			$update['content'] = $_POST['content'];
-		}
 
 		$post_detail = \dash\app\comment::edit($update, \dash\request::get('id'));
 

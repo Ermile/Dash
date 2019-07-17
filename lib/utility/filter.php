@@ -10,6 +10,12 @@ class filter
 	}
 
 
+	public static function url($_url)
+	{
+		return filter_var($_url, FILTER_VALIDATE_URL);
+	}
+
+
 	public static function nationalcode($_national_code)
 	{
 		$check = false;

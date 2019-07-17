@@ -43,7 +43,9 @@ class view
 			}
 		}
 
-		$args['type'] = 'comment';
+		$args['type']                     = 'comment';
+		$get_comment_counter_args         = [];
+		$get_comment_counter_args['type'] = 'comment';
 
 		if(!$args['order'])
 		{
@@ -69,6 +71,10 @@ class view
 		// set dataFilter
 		$dataFilter = \dash\app\sort::createFilterMsg($search_string, $filterArray);
 		\dash\data::dataFilter($dataFilter);
+
+		// get post count group by status
+		$postCounter = \dash\app\comment::get_comment_counter($get_comment_counter_args);
+		\dash\data::commentCounter($postCounter);
 
 	}
 }

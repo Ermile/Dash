@@ -119,6 +119,33 @@ class comments
 	}
 
 
+
+	public static function get_comment_counter($_args)
+	{
+		$where       = \dash\db\config::make_where($_args);
+		$query_where = null;
+
+		if($where)
+		{
+			$query_where = "WHERE ". $where;
+		}
+
+		$query =
+		"
+			SELECT
+				COUNT(*) AS `count`,
+				comments.status
+			FROM
+				comments
+				$query_where
+			GROUP BY comments.status
+		";
+
+		$result = \dash\db::get($query, ['status', 'count']);
+		return $result;
+
+	}
+
 	/**
 	 * Searches for the first match.
 	 *

@@ -5,22 +5,22 @@ class model
 {
 	public static function post()
 	{
-		// $action = \dash\request::post('action');
-		// $id     = \dash\request::post('id');
+		$status = \dash\request::post('status');
+		$id     = \dash\request::post('id');
 
-		// if(!$action || !$id)
-		// {
-		// 	\dash\notif::warn(T_("Invalid detail"));
-		// 	return false;
-		// }
+		if(!$status || !$id)
+		{
+			\dash\notif::warn(T_("Invalid detail"));
+			return false;
+		}
 
-		// $post_detail = \dash\app\comment::edit(['status' => $action], $id);
+		$post_detail = \dash\app\comment::edit(['status' => $status], $id);
 
-		// if(\dash\engine\process::status())
-		// {
-		// 	\dash\notif::ok(T_("Comment successfully updated"));
-		// 	\dash\redirect::pwd();
-		// }
+		if(\dash\engine\process::status())
+		{
+			\dash\notif::ok(T_("Comment successfully updated"));
+			\dash\redirect::pwd();
+		}
 	}
 }
 ?>

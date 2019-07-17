@@ -17,6 +17,17 @@ class comment
 	];
 
 
+	public static  function get_comment_counter($_args)
+	{
+		$comment_counter     = \dash\db\comments::get_comment_counter($_args);
+		if(is_array($comment_counter))
+		{
+			$comment_counter['all'] = array_sum($comment_counter);
+		}
+
+		return $comment_counter;
+	}
+
 	public static function get($_id)
 	{
 		$id = \dash\coding::decode($_id);
@@ -142,6 +153,9 @@ class comment
 		if(!\dash\app::isset_request('parent')) unset($args['parent']);
 		if(!\dash\app::isset_request('via')) unset($args['via']);
 		if(!\dash\app::isset_request('star')) unset($args['star']);
+		if(!\dash\app::isset_request('url')) unset($args['url']);
+		if(!\dash\app::isset_request('email')) unset($args['email']);
+
 
 		if(isset($args['status']) && $args['status'] === 'deleted')
 		{
@@ -328,6 +342,20 @@ class comment
 			return false;
 		}
 
+		$email = \dash\app::request('email');
+		if($email && !\dash\utility\filter::email($email))
+		{
+			\dash\notif::error(T_("Invalid email address"), 'email');
+			return false;
+		}
+
+		$url = \dash\app::request('url');
+		if($url && !\dash\utility\filter::url($url))
+		{
+			\dash\notif::error(T_("Invalid url address"), 'url');
+			return false;
+		}
+
 
 		$args            = [];
 		$args['status']  = $status ? $status : 'awaiting';
@@ -343,6 +371,8 @@ class comment
 		$args['via']     = $via;
 		$args['star']    = $star;
 		$args['content'] = $content;
+		$args['url']     = $url;
+		$args['email']   = $email;
 
 		return $args;
 	}
