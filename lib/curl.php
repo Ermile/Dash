@@ -11,10 +11,10 @@ class curl
 		curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($handle, CURLOPT_SSL_VERIFYHOST, false);
 		curl_setopt($handle, CURLOPT_SSL_VERIFYPEER, false);
-		curl_setopt($handle, CURLOPT_POST, true);
 
 		if($_header)
 		{
+			curl_setopt($handle, CURLOPT_POST, true);
 			curl_setopt($handle, CURLOPT_POSTFIELDS, http_build_query($_header));
 		}
 		curl_setopt($handle, CURLOPT_CONNECTTIMEOUT, 20);
@@ -34,6 +34,9 @@ class curl
 		{
 			$response = json_decode($response, true);
 		}
+		var_dump(55);
+		var_dump($mycode);
+		var_dump($response);
 		return $response;
 	}
 }
