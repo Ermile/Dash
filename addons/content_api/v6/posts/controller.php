@@ -26,7 +26,16 @@ class controller
 
 	private static function posts()
 	{
-		$posts  = \dash\app\posts::get_post_list();
+		$args = [];
+
+		$limit = \dash\request::get('limit');
+
+		if($limit && is_numeric($limit) && intval($limit) > 1 && intval($limit) < 100)
+		{
+			$args['limit'] = intval($limit);
+		}
+
+		$posts  = \dash\app\posts::get_post_list($args);
 		$result = [];
 		if(is_array($posts))
 		{
@@ -42,7 +51,6 @@ class controller
 						case 'seotitle':
 						case 'slug':
 						case 'parent_url':
-						case 'url':
 						case 'excerpt':
 						case 'subtitle':
 						case 'content':
@@ -50,6 +58,11 @@ class controller
 						case 'publishdate':
 						case 'datecreated':
 							$result[$index][$field] = $value;
+							break;
+
+						case 'url':
+							$result[$index][$field] = $value;
+							$result[$index]['link'] = \dash\url::kingdom(). '/'. $value;
 							break;
 					}
 				}
