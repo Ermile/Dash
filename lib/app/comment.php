@@ -395,6 +395,7 @@ class comment
 				case 'user_id':
 				case 'parent':
 				case 'term_id':
+				case 'post_id':
 					if(isset($value))
 					{
 						$result[$key] = \dash\coding::encode($value);

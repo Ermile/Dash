@@ -35,6 +35,9 @@
      <div class="msg{%if dataRow.status == 'approved'%} success2{%elseif dataRow.status == 'spam' or dataRow.status == 'deleted' %} danger2{%elseif dataRow.status == 'unapproved' %} warn2{%endif%}">
       {%set myStatus = dataRow.status | capitalize%}{%trans "Current status"%} <b>{%trans myStatus%}</b>
      </div>
+     {%if dataRow.post_id%}
+     <div class="msg"><a href="{{url.kingdom}}/n/{{dataRow.post_id}}">{%trans "Post"%} {{dataRow.post_id}}</a></div>
+     {%endif%}
 
      <div>
        <label>{%trans "Status"%}</label>
