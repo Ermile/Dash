@@ -34,7 +34,7 @@ class news
 		$apiResponse = \dash\curl::go($apiUrl);
 
 		$msg = '';
-		$msg .= T_('latest News'). ' '. $siteTitle. "\n\n";
+		$msg .= T_('Latest News'). ' '. $siteTitle. "\n\n";
 
 
 		if(isset($apiResponse['result']) && is_array($apiResponse['result']))
@@ -43,7 +43,7 @@ class news
 			{
 				if(isset($myPosts['title']) && isset($myPosts['link']))
 				{
-					$msg .= $myPosts['title']. "\n";
+					$msg .= '❇️ '. $myPosts['title']. "\n";
 					$msg .= $myPosts['link']. "\n\n";
 				}
 			}
