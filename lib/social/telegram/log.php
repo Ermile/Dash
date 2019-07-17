@@ -67,8 +67,8 @@ class log
 			}
 		}
 
-		log::logy($_method. "\n");
-		log::logy(self::json($_sendData)."\n");
+		// log::logy($_method. "\n");
+		// log::logy(self::json($_sendData)."\n");
 	}
 
 
@@ -106,7 +106,7 @@ class log
 			}
 		}
 
-		log::logy(self::json($_response). "\n");
+		// log::logy(self::json($_response). "\n");
 	}
 
 
@@ -142,6 +142,11 @@ class log
 		$myDetail = array_merge($myDetail, self::$logData);
 		// save log into database
 		\dash\db\telegrams::insert($myDetail);
+
+		if(\dash\url::isLocal() || $chatID === 46898544 || $chatID === 344542267 || $chatID === 33263188)
+		{
+			\dash\code::jsonBoom(self::$logData, true);
+		}
 	}
 
 
