@@ -36,14 +36,14 @@ class view
 
 		if(\dash\request::get('post_id'))
 		{
-			$args['post_id'] = \dash\coding::decode(\dash\request::get('post_id'));
-			if(!$args['post_id'])
+			$args['comments.post_id'] = \dash\coding::decode(\dash\request::get('post_id'));
+			if(!$args['comments.post_id'])
 			{
 				unset($args['post_id']);
 			}
 		}
 
-		$args['type']                     = 'comment';
+
 		$get_comment_counter_args         = [];
 		$get_comment_counter_args['type'] = 'comment';
 

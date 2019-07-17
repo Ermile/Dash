@@ -36,7 +36,7 @@
       {%set myStatus = dataRow.status | capitalize%}{%trans "Current status"%} <b>{%trans myStatus%}</b>
      </div>
      {%if dataRow.post_id%}
-     <div class="msg"><a href="{{url.kingdom}}/n/{{dataRow.post_id}}">{%trans "Post"%} {{dataRow.post_id}}</a></div>
+     <div class="msg"><a href="{{url.kingdom}}/n/{{dataRow.post_id}}">{{dataRowPost.title}}</a></div>
      {%endif%}
 
      <div>

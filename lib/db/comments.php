@@ -146,6 +146,59 @@ class comments
 
 	}
 
+
+	public static function search_full($_string = null, $_options = null)
+	{
+		$q = null;
+
+		if($_options)
+		{
+			$q = \dash\db\config::make_where($_options);
+		}
+
+		if(isset($_string))
+		{
+			$_string = \dash\db\safe::value($_string);
+			$q       .= "AND comments.content LIKE '%$_string%' ";
+		}
+
+		$pagination_query =
+		"
+			SELECT
+				COUNT(*) AS `count`
+			FROM
+				comments
+			WHERE
+				$q
+		";
+
+		$limit = \dash\db::pagination_query($pagination_query);
+
+		$query =
+		"
+			SELECT
+
+				comments.*,
+				users.avatar,
+				users.displayname,
+				users.gender,
+				posts.title AS `post_title`
+			FROM
+				comments
+			LEFT JOIN users ON users.id = comments.user_id
+			LEFT JOIN posts ON posts.id = comments.post_id
+			WHERE
+				$q
+			ORDER BY
+				comments.datecreated DESC
+			$limit
+		";
+		$result = \dash\db::get($query);
+
+		return $result;
+	}
+
+
 	/**
 	 * Searches for the first match.
 	 *

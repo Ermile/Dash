@@ -189,7 +189,12 @@ class comment
 			$_args['sort'] = null;
 		}
 
-		$result            = \dash\db\comments::search($_string, $_args);
+		unset($_args['order']);
+		unset($_args['sort']);
+
+		$_args['comments.type'] = 'comment';
+
+		$result            = \dash\db\comments::search_full($_string, $_args);
 		$temp              = [];
 
 		foreach ($result as $key => $value)
@@ -385,6 +390,7 @@ class comment
 	 */
 	public static function ready($_data)
 	{
+		$_data = \dash\app::fix_avatar($_data);
 		$result = [];
 		foreach ($_data as $key => $value)
 		{

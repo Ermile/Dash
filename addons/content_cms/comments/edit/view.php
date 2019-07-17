@@ -23,6 +23,12 @@ class view
 		\dash\data::badge_text(T_('Back to list of comments'));
 
 		\dash\data::page_pictogram('commenting');
+
+		if(\dash\data::dataRow_post_id())
+		{
+			$post_detail = \dash\app\posts::get(\dash\data::dataRow_post_id());
+			\dash\data::dataRowPost($post_detail);
+		}
 	}
 }
 ?>

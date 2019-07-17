@@ -71,6 +71,9 @@
 {%endset%}
       <tr class="{{statusClass}} {{value.status}}">
         <td class="collapsing sauto">
+          {%if value.avatar%}
+          <img src="{{value.avatar}}" class="avatar">
+          {%endif%}
 {%if value.user_id%}
           <a href="{{url.kingdom}}/crm/member/glance?id={{value.user_id}}">
             <span class="sf-user fc-mute"></span>
@@ -90,13 +93,16 @@
 {%endif%}
         </td>
         <td class="collapsing s0">
-          {%if value.meta.mobile%}<a class="sf-phone-square" href='tel:{{value.meta.mobile}}' title='{{value.meta.mobile}}'></a>
-            <a class="sf-mobile" href='{{url.here}}/sms/send?mobile={{value.meta.mobile}}' title='{{value.meta.mobile}}'></a>{%endif%}
+          {%if value.mobile%}<a class="sf-phone-square" href='tel:{{value.mobile}}' title='{{value.mobile}}'></a>
+            <a class="sf-mobile" href='{{url.here}}/sms/send?mobile={{value.mobile}}' title='{{value.mobile}}'></a>{%endif%}
           {%if value.url%}<a class="sf-globe" href='{{value.url}}' title='{{value.url}}'></a>{%endif%}
           {%if value.email%}<a class="sf-envelope" href='mailto:{{value.email}}' title='{{value.email}}'></a>{%endif%}
           {%if value.visitor_id%}<a class="sf-info-circle" href='{{url.here}}/visitor?id={{value.visitor_id}}' title='{%trans "Visitor detail"%}'></a>{%endif%}
         </td>
         <td>
+          {%if value.post_title%}
+          <div class="badge light"><a href="{{url.kingdom}}/n/{{value.post_id}}">{{value.post_title}}</a></div>
+          {%endif%}
           <p>{{value.content}}</p>
           <div class="rowAction floatRa">
             <a class="mRa5 fc-green" href="{{url.pwd}}" data-ajaxify data-method='post' data-data='{"id":"{{value.id}}", "status":"approved"}'>{%trans "Approve"%}</a>
