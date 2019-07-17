@@ -32,7 +32,6 @@ class twigAddons
 		$functions[] = self::function_tags();
 		$functions[] = self::function_category();
 		$functions[] = self::function_comments();
-		$functions[] = self::function_similar_post();
 		$functions[] = self::function_attachment();
 		$functions[] = self::function_post_search();
 		$functions[] = self::function_perm();
@@ -663,82 +662,6 @@ class twigAddons
 		});
 	}
 
-
-	/**
-	 * [function_posts description]
-	 * @return [type] [description]
-	 */
-	private static function function_similar_post()
-	{
-		return new \Twig_SimpleFunction('similar_post', function()
-		{
-			$similar_post = [];
-			$args = func_get_args();
-
-			if(isset($args[0]))
-			{
-				$args = $args[0];
-			}
-			// get post id
-			if(!isset($args['post_id']))
-			{
-				if(\dash\data::datarow_id())
-				{
-					$args['post_id'] = \dash\data::datarow_id();
-				}
-			}
-
-			$options = [];
-
-			// count of show similar
-			$options['limit'] = 5;
-			if(isset($args['limit']) && is_numeric($args['limit']))
-			{
-				$options['limit'] = $args['limit'];
-			}
-
-			if(isset($args['term_type']) && is_string($args['term_type']))
-			{
-				$options['term_type'] = $args['term_type'];
-			}
-
-
-			if(isset($args['post_privacy']) && is_string($args['post_privacy']))
-			{
-				$options['post_privacy'] = $args['post_privacy'];
-			}
-
-
-			if(isset($args['post_status']) && is_string($args['post_status']))
-			{
-				$options['post_status'] = $args['post_status'];
-			}
-
-			if(isset($args['termusage_foreign']) && is_string($args['termusage_foreign']))
-			{
-				$options['termusage_foreign'] = $args['termusage_foreign'];
-			}
-
-			if(isset($args['post_id']))
-			{
-				$similar_post = \dash\db\tags::get_post_similar($args['post_id'], $options);
-			}
-
-			if(isset($args['html']))
-			{
-				$html = '';
-				foreach ($similar_post as $key => $value) {
-					$html .= "<a href=\"$value[url]\">$value[title]</a>";
-				}
-				echo $html;
-			}
-			else
-			{
-				return $similar_post;
-			}
-
-		});
-	}
 
 
 	/**
