@@ -452,6 +452,7 @@ class twigAddons
 						if(is_array($tags) && $tags)
 						{
 							$baset_url = \dash\url::base();
+
 							if($container)
 							{
 								$html = "<div class='$container'>";
@@ -459,6 +460,11 @@ class twigAddons
 
 							foreach ($tags as $key => $value)
 							{
+								if($value['language'] !== \dash\language::primary())
+								{
+									$baset_url .= '/'. $value['language'];
+								}
+
 								if(array_key_exists('url', $value) && array_key_exists('slug', $value) && isset($value['title']))
 								{
 									if($outputFormat === 'html2')
