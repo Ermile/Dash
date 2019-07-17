@@ -1,0 +1,43 @@
+<div class="cbox" id='news'>
+
+  <h2 class="f" data-kerkere='#news-detail' data-kerkere-icon='open'>
+    <div class="cauto pRa10"><span class="badge primary">GET</span></div>
+    <div>{%trans "Get last news"%}</div>
+  </h2>
+
+  <div id="news-detail">
+
+    <div class="msg url">
+      <i class="method">GET</i>
+      <span>{{apiURL}}<b>news</b></span>
+    </div>
+
+    <h3>{%trans "cURL"%} <small>{%trans "example"%}</small></h3>
+    <pre>curl -X GET {{apiURL}}news</pre>
+
+    <h3>{%trans "Response"%} <small>{%trans "example"%}</small></h3>
+<pre>
+{
+  "ok": true,
+  "result": [
+    {
+      "id": "3Y",
+      "language": "en",
+      "title": "test",
+      "seotitle": null,
+      "slug": "test",
+      "parent_url": [],
+      "url": "test",
+      "excerpt": "test",
+      "subtitle": null,
+      "content": "test content",
+      "status": "publish",
+      "publishdate": "2019-07-15 11:43:00",
+      "datecreated": "2019-07-15 11:42:48"
+    }
+  ]
+}
+</pre>
+
+  </div>
+</div>
