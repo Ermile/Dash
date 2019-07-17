@@ -3,7 +3,7 @@ namespace dash;
 
 class curl
 {
-	public static function go($_url, $_header = null)
+	public static function go($_url, $_header = null, $_json = true)
 	{
 		$handle   = curl_init();
 		curl_setopt($handle, CURLOPT_URL, $_url);
@@ -30,6 +30,10 @@ class curl
 
 		curl_close ($handle);
 
+		if($response && $_json === true)
+		{
+			$response = json_decode($response, true);
+		}
 		return $response;
 	}
 }
