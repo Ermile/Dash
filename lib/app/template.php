@@ -45,7 +45,7 @@ class template
 		}
 
 		// this project needless to find database template
-		if(!\dash\option::config('db_template'))
+		if(!\dash\option::config('cms'))
 		{
 			return false;
 		}
@@ -381,7 +381,6 @@ class template
 	public static function find_tag()
 	{
 		$myUrl = self::get_my_url();
-
 		if(substr($myUrl, 0, 4) === 'tag/')
 		{
 			$cat_data = \dash\db\terms::get(['url' => substr($myUrl, 4), 'type' => 'tag', 'language' => \dash\language::current(), 'limit' => 1]);

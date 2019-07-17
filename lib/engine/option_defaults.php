@@ -82,7 +82,7 @@ self::$config['botscout'] = null;
 
 // try to find database template module
 // for example posts, tags, term , ...
-self::$config['db_template'] = true;
+self::$config['cms'] = true;
 
 // redirect to this path after login
 self::$config['redirect']    = null;
