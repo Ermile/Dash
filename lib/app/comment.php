@@ -35,11 +35,11 @@ class comment
 
 	public static function add($_args)
 	{
-		$content = null;
-		if(isset($_args['content']))
-		{
-			$content = \dash\safe::safe($_args['content'], 'sqlinjection');
-		}
+		// $content = null;
+		// if(isset($_args['content']))
+		// {
+		// 	$content = \dash\safe::safe($_args['content'], 'sqlinjection');
+		// }
 
 		\dash\app::variable($_args);
 
@@ -51,7 +51,7 @@ class comment
 			return false;
 		}
 
-		$args['content']    = $content;
+		// $args['content']    = $content;
 
 		if(isset($args['user_id']) && is_numeric($args['user_id']))
 		{
@@ -81,7 +81,7 @@ class comment
 			}
 		}
 
-		$args['visitor_id'] = \dash\utility\visitor::id();
+		// $args['visitor_id'] = \dash\utility\visitor::id();
 		$args['ip']         = \dash\server::ip(true);
 
 		if(\dash\url::subdomain())
@@ -141,6 +141,7 @@ class comment
 		if(!\dash\app::isset_request('file')) unset($args['file']);
 		if(!\dash\app::isset_request('parent')) unset($args['parent']);
 		if(!\dash\app::isset_request('via')) unset($args['via']);
+		if(!\dash\app::isset_request('star')) unset($args['star']);
 
 		if(isset($args['status']) && $args['status'] === 'deleted')
 		{
@@ -269,6 +270,20 @@ class comment
 			return false;
 		}
 
+		$star = \dash\app::request('star');
+		$star = \dash\utility\convert::to_en_number($star);
+		if($star && !is_numeric($star))
+		{
+			\dash\notif::error(T_("Invalid parameter star, Star must be a number"), 'star');
+			return false;
+		}
+
+		if($star && !in_array(intval($star), [1,2,3,4,5]))
+		{
+			\dash\notif::error(T_("Invalid star, Star number must be between 1 and 5"), 'star');
+			return false;
+		}
+
 		$post_id = \dash\app::request('post_id');
 		if($post_id)
 		{
@@ -326,6 +341,8 @@ class comment
 		$args['file']    = $file;
 		$args['parent']  = $parent;
 		$args['via']     = $via;
+		$args['star']    = $star;
+		$args['content'] = $content;
 
 		return $args;
 	}
