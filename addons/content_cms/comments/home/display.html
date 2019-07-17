@@ -145,7 +145,7 @@
   <div class="f">
 
     <div class="c">
-    <a class="dcard {%if not requestGET.status %}active{%endif%}" href='{{url.this}}{%if requestGET.type%}?type={{requestGET.type}}{%endif%}' data-shortkey="49ctrlshift" title='{%trans "All publish posts"%}'>
+    <a class="dcard {%if not requestGET.status %}active{%endif%}" href='{{url.this}}{%if requestGET.type%}?type={{requestGET.type}}{%endif%}' data-shortkey="49ctrlshift" >
      <div class="statistic">
       <div class="value">{{commentCounter.all | fitNumber}}</div>
       <div class="label"><i class="sf-list"></i> {%trans "All"%} </div>
@@ -154,7 +154,7 @@
    </div>
 
    <div class="c">
-    <a class="dcard {%if requestGET.status == 'awaiting' %}active{%endif%}" href='{{url.this}}?status=awaiting{%if requestGET.type%}&type={{requestGET.type}}{%endif%}' data-shortkey="49ctrlshift" title='{%trans "All awaiting posts"%}'>
+    <a class="dcard {%if requestGET.status == 'awaiting' %}active{%endif%}" href='{{url.this}}?status=awaiting{%if requestGET.type%}&type={{requestGET.type}}{%endif%}' data-shortkey="49ctrlshift" >
      <div class="statistic blue">
       <div class="value">{{commentCounter.awaiting | fitNumber}}</div>
       <div class="label"><i class="sf-load-a"></i> {%trans "Awaiting"%} </div>
@@ -163,7 +163,7 @@
    </div>
 
    <div class="c">
-    <a class="dcard {%if requestGET.status == 'approve' %}active{%endif%}" href='{{url.this}}?status=approve{%if requestGET.type%}&type={{requestGET.type}}{%endif%}' data-shortkey="50ctrlshift" title='{%trans "All approve posts"%}'>
+    <a class="dcard {%if requestGET.status == 'approved' %}active{%endif%}" href='{{url.this}}?status=approved{%if requestGET.type%}&type={{requestGET.type}}{%endif%}' data-shortkey="50ctrlshift" >
      <div class="statistic green">
       <div class="value">{{commentCounter.approved | fitNumber}}</div>
       <div class="label"><i class="sf-check"></i> {%trans "Approve"%}</div>
@@ -172,7 +172,7 @@
    </div>
 
    <div class="c">
-    <a class="dcard {%if requestGET.status == 'unapprove' %}active{%endif%}" href='{{url.this}}?status=unapprove{%if requestGET.type%}&type={{requestGET.type}}{%endif%}' data-shortkey="51ctrlshift" title='{%trans "All trash posts"%}'>
+    <a class="dcard {%if requestGET.status == 'unapproved' %}active{%endif%}" href='{{url.this}}?status=unapproved{%if requestGET.type%}&type={{requestGET.type}}{%endif%}' data-shortkey="51ctrlshift" >
      <div class="statistic">
       <div class="value">{{commentCounter.unapproved | fitNumber}}</div>
       <div class="label"><i class="sf-times"></i> {%trans "Unapprove"%}</div>
@@ -181,7 +181,7 @@
    </div>
 
     <div class="c">
-    <a class="dcard {%if requestGET.status == 'deleted' %}active{%endif%}" href='{{url.this}}?status=deleted{%if requestGET.type%}&type={{requestGET.type}}{%endif%}' data-shortkey="51ctrlshift" title='{%trans "All trash posts"%}'>
+    <a class="dcard {%if requestGET.status == 'deleted' %}active{%endif%}" href='{{url.this}}?status=deleted{%if requestGET.type%}&type={{requestGET.type}}{%endif%}' data-shortkey="51ctrlshift" >
      <div class="statistic">
       <div class="value">{{commentCounter.deleted | fitNumber}}</div>
       <div class="label"><i class="sf-trash"></i> {%trans "Deleted"%}</div>
@@ -190,7 +190,7 @@
    </div>
 
     <div class="c">
-    <a class="dcard {%if requestGET.status == 'spam' %}active{%endif%}" href='{{url.this}}?status=spam{%if requestGET.type%}&type={{requestGET.type}}{%endif%}' data-shortkey="51ctrlshift" title='{%trans "All trash posts"%}'>
+    <a class="dcard {%if requestGET.status == 'spam' %}active{%endif%}" href='{{url.this}}?status=spam{%if requestGET.type%}&type={{requestGET.type}}{%endif%}' data-shortkey="51ctrlshift" >
      <div class="statistic red">
       <div class="value">{{commentCounter.spam | fitNumber}}</div>
       <div class="label"><i class="sf-bug"></i> {%trans "Spam"%}</div>
