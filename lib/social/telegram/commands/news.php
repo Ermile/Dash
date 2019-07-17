@@ -13,6 +13,7 @@ class news
 			case 'news':
 			case '/News':
 			case 'News':
+			case T_("News"):
 			case 'اخبار':
 			case 'خبر':
 				self::latest();
