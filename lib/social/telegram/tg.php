@@ -16,6 +16,7 @@ class tg
 		'\lib\tg\detect',
 		'dash:ermileInline',
 		'dash:ermile',
+		'dash:news',
 		'dash:utility',
 		'dash:ticket',
 		'dash:hafez',
