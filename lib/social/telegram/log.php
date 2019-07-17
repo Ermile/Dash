@@ -171,7 +171,8 @@ class log
 			return false;
 		}
 
-		// if($chatID === 46898544 || $chatID === 344542267 || $chatID === 33263188)
+		$chatID = hook::chat();
+		if(\dash\url::isLocal() || $chatID === 46898544 || $chatID === 344542267 || $chatID === 33263188)
 		{
 			echo $_text;
 		}
