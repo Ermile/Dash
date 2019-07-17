@@ -101,8 +101,24 @@ class code
 		{
 			if($_pretty)
 			{
+				foreach ($_data as $key1 => $layer1)
+				{
+					if(substr($layer1, 0, 1) === '{')
+					{
+						$_data[$key1] = json_decode($layer1, true);
+						if(is_array($_data[$key1]))
+						{
+							foreach ($_data[$key1] as $key2 => $layer2)
+							{
+								if(substr($layer2, 0, 1) === '{')
+								{
+									$_data[$key1][$key2] = json_decode($layer2, true);
+								}
+							}
+						}
+					}
+				}
 				$_data = json_encode($_data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
-
 			}
 			else
 			{
