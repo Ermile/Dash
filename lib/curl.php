@@ -34,9 +34,6 @@ class curl
 		{
 			$response = json_decode($response, true);
 		}
-		var_dump(55);
-		var_dump($mycode);
-		var_dump($response);
 		return $response;
 	}
 }

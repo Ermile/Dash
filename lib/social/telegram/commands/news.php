@@ -28,13 +28,11 @@ class news
 	private static function latest()
 	{
 		bot::ok();
-		$args  =
-		[
-			'limit' => 10
-		];
+
 		$siteTitle   = T_(\dash\option::config('site', 'title'));
-		$apiUrl      = bot::website(). '/api/v6/posts';
-		$apiResponse = \dash\curl::go($apiUrl, $args);
+		$apiUrl      = bot::website(). '/api/v6/posts?limit=10';
+		$apiResponse = \dash\curl::go($apiUrl);
+
 		$msg = '';
 		$msg .= T_('latest News'). ' '. $siteTitle. "\n\n";
 
