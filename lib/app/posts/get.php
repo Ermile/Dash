@@ -134,7 +134,10 @@ trait get
 			'term'       => null,
 			'pagenation' => false,
 			'special'    => false,
+			'mode'       => null,
+			'post_id'    => null,
 		];
+
 
 		if(!is_array($_options))
 		{
@@ -143,7 +146,16 @@ trait get
 
 		$_options = array_merge($default_options, $_options);
 
-		if($_options['cat'])
+		$get_last_posts = [];
+
+		if($_options['mode'] === 'similar')
+		{
+			if(isset($_options['post_id']))
+			{
+				$get_last_posts = \dash\db\posts::get_post_similar(\dash\coding::decode($_options['post_id']), \dash\language::current());
+			}
+		}
+		elseif($_options['cat'])
 		{
 			$get_last_posts = \dash\db\posts::get_posts_term($_options, 'cat');
 		}

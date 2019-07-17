@@ -419,5 +419,62 @@ class posts
 		$result = \dash\db::get($query);
 		return $result;
 	}
+
+
+	public static function get_post_similar($_post_id, $_lang)
+	{
+		if(!$_post_id || !is_numeric($_post_id))
+		{
+			return false;
+		}
+
+		$load_post_term =
+		"
+			SELECT
+				terms.id AS `id`
+			FROM
+				posts
+			INNER JOIN termusages ON termusages.related_id = posts.id AND termusages.related = 'posts'
+			INNER JOIN terms ON terms.id = termusages.term_id
+			WHERE
+				posts.id = $_post_id
+		";
+
+		$post_term = \dash\db::get($load_post_term, 'id');
+		if(empty($post_term))
+		{
+			return null;
+		}
+
+		$post_term = implode(',', $post_term);
+		$time      = time();
+
+		$query =
+		"
+			SELECT
+				posts.title,
+				posts.url,
+				posts.id
+			FROM
+				posts
+			INNER JOIN termusages ON termusages.related_id = posts.id AND termusages.related = 'posts'
+			INNER JOIN terms ON terms.id = termusages.term_id
+			WHERE
+				termusages.related_id             != $_post_id AND
+				termusages.term_id IN ($post_term) AND
+				termusages.related                = 'posts' AND
+				posts.status                      = 'publish' AND
+				posts.type                        = 'post' AND
+				posts.language                    = '$_lang' AND
+				UNIX_TIMESTAMP(posts.publishdate) <= $time
+			GROUP BY posts.title, posts.url, posts.id
+			ORDER BY posts.id DESC
+			LIMIT 5
+		";
+
+		$result = \dash\db::get($query);
+		return $result;
+
+	}
 }
 ?>
