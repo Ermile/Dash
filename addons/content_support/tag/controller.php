@@ -7,6 +7,7 @@ class controller
 	public static function routing()
 	{
 		$child = \dash\url::child();
+		$child = urldecode($child);
 		if(!$child)
 		{
 			\dash\redirect::to(\dash\url::here());
@@ -17,6 +18,7 @@ class controller
 		{
 			\dash\header::status(404, T_("Invalid tag"));
 		}
+
 		\dash\data::categoryDetail($check);
 
 		\dash\open::get();

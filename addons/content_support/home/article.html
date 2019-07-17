@@ -47,7 +47,18 @@
     {{datarow.content | raw}}
     </div>
 {{block('imagegallery')}}
-{{tags({"format" : 'html', "container": "tagBox msg"})}}
+
+{% set helpTagList  = tags({"type" : "help_tag"})%}
+
+{%if helpTagList%}
+<div class="tagBox msg">
+{%for index, myTag in helpTagList%}
+ <a href="{{url.kingdom}}/support/tag/{{myTag.slug}}">{{myTag.title}}</a>
+{%endfor%}
+</div>
+
+{%endif%}
+<div class="tagBox msg simple"></div>
 
 {%if datarow.datemodified%}
     <div class='msg f mT20 fs08'>

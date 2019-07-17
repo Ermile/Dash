@@ -37,7 +37,8 @@ trait get
 	{
 		$default_options =
 		[
-			'debug'          => true,
+			'debug'       => true,
+			'check_login' => true,
 		];
 
 		if(!is_array($_options))
@@ -47,9 +48,12 @@ trait get
 
 		$_options = array_merge($default_options, $_options);
 
-		if(!\dash\user::id())
+		if($_options['check_login'])
 		{
-			return false;
+			if(!\dash\user::id())
+			{
+				return false;
+			}
 		}
 
 		$id = \dash\coding::decode($_id);

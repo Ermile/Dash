@@ -14,7 +14,7 @@ class view
 		\dash\data::badge_text(T_('Tickets'));
 		\dash\data::badge_link(\dash\url::here(). '/ticket'. \dash\data::accessGet());
 
-		$postTag = \dash\db\posts::get_posts_term(['type' => 'help', 'limit' => 100, 'tag' => \dash\url::child()], 'help_tag');
+		$postTag = \dash\db\posts::get_posts_term(['type' => 'help', 'limit' => 100, 'tag' => urldecode(\dash\url::child())], 'help_tag');
 
 		\dash\data::postTag($postTag);
 
