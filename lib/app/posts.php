@@ -1158,6 +1158,10 @@ class posts
 					$result['parent_url'] = $my_parent_url;
 					break;
 
+				case 'url':
+					$result[$key] = $value;
+					$result['link'] = \dash\url::kingdom(). '/'. $value;
+					break;
 
 				default:
 					$result[$key] = $value;
