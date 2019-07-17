@@ -33,7 +33,7 @@ class news
 			'limit' => 10
 		];
 		$siteTitle   = T_(\dash\option::config('site', 'title'));
-		$apiUrl      = 'https://salamquran.com/'. \dash\language::current(). '/api/v6/posts';
+		$apiUrl      = bot::website(). '/api/v6/posts';
 		$apiResponse = \dash\curl::go($apiUrl, $args);
 		$msg = '';
 		$msg .= T_('latest News'). ' '. $siteTitle. "\n\n";
