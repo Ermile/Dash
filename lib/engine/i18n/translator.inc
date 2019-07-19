@@ -34,7 +34,8 @@ LC_ALL          6
 
 // LC_MESSAGES is not available if php-gettext is not loaded
 // while the other constants are already available from session extension.
-if (!defined('LC_MESSAGES')) {
+if (!defined('LC_MESSAGES'))
+{
 	define('LC_MESSAGES', 5);
 }
 
@@ -47,12 +48,22 @@ require('gettext.php');
 global $text_domains, $default_domain, $LC_CATEGORIES, $EMULATEGETTEXT, $CURRENTLOCALE;
 $text_domains = [];
 $default_domain = 'messages';
-$LC_CATEGORIES = array('LC_CTYPE', 'LC_NUMERIC', 'LC_TIME', 'LC_COLLATE', 'LC_MONETARY', 'LC_MESSAGES', 'LC_ALL');
+$LC_CATEGORIES =
+[
+	'LC_CTYPE',
+	'LC_NUMERIC',
+	'LC_TIME',
+	'LC_COLLATE',
+	'LC_MONETARY',
+	'LC_MESSAGES',
+	'LC_ALL'
+];
 $EMULATEGETTEXT = 0;
 $CURRENTLOCALE = '';
 
 /* Class to hold a single domain included in $text_domains. */
-class domain {
+class domain
+{
 	var $l10n;
 	var $path;
 	var $codeset;
@@ -199,37 +210,55 @@ function _get_default_locale($locale) {
 /**
  * Sets a requested locale, if needed emulates it.
  */
-function _setlocale($category, $locale) {
+function _setlocale($category, $locale)
+{
 	global $CURRENTLOCALE, $EMULATEGETTEXT;
-	if ($locale === 0) { // use === to differentiate between string "0"
+	if ($locale === 0)
+	{
+		// use === to differentiate between string "0"
 		if ($CURRENTLOCALE != '')
+		{
 			return $CURRENTLOCALE;
+		}
 		else
+		{
 			// obey LANG variable, maybe extend to support all of LC_* vars
 			// even if we tried to read locale without setting it first
 			return _setlocale($category, $CURRENTLOCALE);
-	} else {
-		if (function_exists('setlocale')) {
+		}
+	}
+	else
+	{
+		if (function_exists('setlocale'))
+		{
 			$ret = setlocale($category, $locale);
 			if (($locale == '' and !$ret) or // failed setting it by env
-				($locale != '' and $ret != $locale)) { // failed setting it
-			// Failed setting it according to environment.
-			$CURRENTLOCALE = _get_default_locale($locale);
-			$EMULATEGETTEXT = 1;
-			} else {
-			$CURRENTLOCALE = $ret;
-			$EMULATEGETTEXT = 0;
+				($locale != '' and $ret != $locale))
+			{
+				// failed setting it
+				// Failed setting it according to environment.
+				$CURRENTLOCALE = _get_default_locale($locale);
+				$EMULATEGETTEXT = 1;
 			}
-		} else {
+			else
+			{
+				$CURRENTLOCALE = $ret;
+				$EMULATEGETTEXT = 0;
+			}
+		}
+		else
+		{
 			// No function setlocale(), emulate it all.
 			$CURRENTLOCALE = _get_default_locale($locale);
 			$EMULATEGETTEXT = 1;
 		}
 		// Allow locale to be changed on the go for one translation domain.
 		global $text_domains, $default_domain;
-		if (array_key_exists($default_domain, $text_domains)) {
+		if (array_key_exists($default_domain, $text_domains))
+		{
 			unset($text_domains[$default_domain]->l10n);
 		}
+
 		return $CURRENTLOCALE;
 	}
 }
@@ -397,39 +426,45 @@ function T_textdomain($domain) {
 	if (_check_locale_and_function()) return textdomain($domain);
 	else return _textdomain($domain);
 }
-function T_gettext($msgid) {
-	if (_check_locale_and_function()) return gettext($msgid);
-	else return _gettext($msgid);
+function T_gettext($msgid)
+{
+	if (_check_locale_and_function())
+	{
+		return gettext($msgid);
+	}
+	else
+	{
+		return _gettext($msgid);
+	}
 }
 
 
 /**
  * translate text to another language
- * @param [type] $msgid [description]
+ * @param [type] $_msgid [description]
  */
-function T_($msgid, $_replace = null)
+function T_($_msgid, $_replace = null)
 {
 	$result = null;
-	if(is_string($msgid) && $msgid)
+	if(is_string($_msgid) && $_msgid)
 	{
 		if(_check_locale_and_function())
 		{
-			$result = _($msgid);
+			$result = _($_msgid);
 		}
 		else
 		{
-			$result = __($msgid);
+			$result = __($_msgid);
 		}
 	}
-	elseif(is_array($msgid))
+	elseif(is_array($_msgid))
 	{
-		$result = $msgid;
+		$result = $_msgid;
 	}
-	elseif(is_numeric($msgid))
+	elseif(is_numeric($_msgid))
 	{
-		$result = $msgid;
+		$result = $_msgid;
 	}
-
 	// do replacement only on strings with replace condition, not for all
 	if($_replace !== false && !is_array($result) && strpos($result, ':') !== false)
 	{
@@ -551,10 +586,12 @@ if (!function_exists('gettext')) {
 	function textdomain($domain) {
 		return _textdomain($domain);
 	}
-	function gettext($msgid) {
+	function gettext($msgid)
+	{
 		return _gettext($msgid);
 	}
-	function _($msgid) {
+	function _($msgid)
+	{
 		return __($msgid);
 	}
 	function ngettext($singular, $plural, $number) {
