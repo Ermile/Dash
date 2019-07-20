@@ -27,9 +27,20 @@
  <meta name="theme-color" content="#{{options.tabColor.value}}">
 {%endif%}
 {%block facebook%}
- <meta property ="og:image"                content="{{url.static}}/images/logo.png"/>
+ <meta property ="og:title"                content="{{global.title}}"/>
+ <meta property ="og:description"          content="{{page.desc}}"/>
  <meta property ="og:url"                  content="{{url.pwd}}"/>
+ <meta property ="og:type"                 content="website"/>
  <meta property ='og:locale'               content='{{global.lang}}'/>
+{%block facebookImages%}
+ <meta property ="og:image"                content="{{url.static}}/images/share/og-wide-{{lang.current}}.png"/>
+ <meta property ="og:image:width"          content="525"/>
+ <meta property ="og:image:height"         content="275"/>
+ <meta property ="og:image"                content="{{url.static}}/images/share/og-square.png"/>
+ <meta property ="og:image:width"          content="512"/>
+ <meta property ="og:image:height"         content="512"/>
+{%endblock%}
+
 {%endblock%}
  <meta name     ="application-name"        content="{{site.title | striptags }}"/>
  <meta name     ="viewport"                content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, {%if url.content%}maximum-scale=1.0{%else%}maximum-scale=1.1{%endif%}, user-scalable=0"/>
