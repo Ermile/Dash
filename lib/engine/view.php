@@ -39,6 +39,7 @@ class view
 		\dash\data::options(\dash\option::config());
 
 		\dash\data::page_title(null);
+		\dash\data::page_seotitle(null);
 		\dash\data::page_desc(null);
 		\dash\data::page_special(null);
 
@@ -144,50 +145,31 @@ class view
 			{
 				$page_title = ucwords(str_replace('-', ' ', $page_title));
 			}
-			// for child page set the
-			if(\dash\url::child() && \dash\url::subdomain() === 'cp')
-			{
-				$myModule = \dash\url::module();
-				if(substr($myModule, -3) === 'ies')
-				{
-					$moduleName = substr($myModule, 0, -3).'y';
-				}
-				elseif(substr($myModule, -1) === 's')
-				{
-					$moduleName = substr($myModule, 0, -1);
-				}
-				else
-				{
-					$moduleName = $myModule;
-				}
-
-				$childName = \dash\url::child();
-				if($childName)
-				{
-					$page_title = T_($childName).' '.T_($moduleName);
-				}
-			}
 
 			// translate all title at last step
 			$page_title = T_($page_title);
-			$page_title_strip = strip_tags($page_title);
 
 			\dash\data::page_title($page_title);
+			// fill page title into seo title
+			if(!\dash\data::page_seotitle())
+			{
+				\dash\data::page_seotitle($page_title);
+			}
 
 			if(\dash\data::page_special())
 			{
-				\dash\data::global_title($page_title_strip);
+				\dash\data::global_title(\dash\data::page_seotitle());
 			}
 			else
 			{
-				\dash\data::global_title($page_title_strip.' | '.T_(\dash\data::site_title()));
+				\dash\data::global_title(\dash\data::page_seotitle(). ' | '. \dash\data::site_title());
 			}
 		}
 		else
 		{
-			\dash\data::global_title(T_(\dash\data::site_title()));
+			\dash\data::global_title(\dash\data::site_title());
 			// if this page does not have title use site title
-			\dash\data::page_title(T_(\dash\data::site_title()));
+			\dash\data::page_title(\dash\data::site_title());
 			\dash\data::page_special(true);
 		}
 
@@ -216,6 +198,11 @@ class view
 		if(\dash\data::datarow_title())
 		{
 			\dash\data::page_title(\dash\data::datarow_title());
+		}
+		// set seo title
+		if(\dash\data::datarow_seotitle())
+		{
+			\dash\data::page_seotitle(\dash\data::datarow_seotitle());
 		}
 
 		// set desc
