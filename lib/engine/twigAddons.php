@@ -451,7 +451,6 @@ class twigAddons
 						$html = '';
 						if(is_array($tags) && $tags)
 						{
-							$baset_url = \dash\url::base();
 
 							if($container)
 							{
@@ -460,6 +459,8 @@ class twigAddons
 
 							foreach ($tags as $key => $value)
 							{
+								$baset_url = \dash\url::base();
+
 								if($value['language'] !== \dash\language::primary())
 								{
 									$baset_url .= '/'. $value['language'];
