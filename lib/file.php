@@ -49,7 +49,11 @@ class file
 	 */
 	public static function read( $filepath )
 	{
-		return file_get_contents( $filepath );
+		if(file_exists($filepath))
+		{
+			return file_get_contents( $filepath );
+		}
+		return null;
 	}
 
 
