@@ -200,7 +200,7 @@ class url
 		$my_path = trim(strtok($_path, '?'), '/');
 
 		// if we are in root, return empty path result
-		if(!$my_path)
+		if($my_path === "")
 		{
 			return $path_result;
 		}

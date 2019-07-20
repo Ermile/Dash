@@ -40,7 +40,7 @@ class mvc
 		$my_child      = '\\'. \dash\url::child();
 		$my_controller = null;
 
-		if(\dash\url::child())
+		if(\dash\url::child() !== null)
 		{
 			// something like \content_su\tools\test\controller.php
 			$my_controller = self::checking($my_repo. $my_module. $my_child);
@@ -51,7 +51,7 @@ class mvc
 			}
 		}
 
-		if(\dash\url::module())
+		if(\dash\url::module() !== null)
 		{
 			// something like \content_su\tools\home\controller.php
 			$my_controller = self::checking($my_repo. $my_module. '\home');
@@ -196,7 +196,7 @@ class mvc
 
 		// generate real address of current page
 		$real_address = trim(\dash\url::content(). '/'. \dash\url::directory(), '/');
-		if(!$real_address)
+		if($real_address === '')
 		{
 			$real_address = null;
 		}
