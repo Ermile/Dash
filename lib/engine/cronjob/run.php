@@ -13,8 +13,8 @@ class run
 		curl_setopt($handle, CURLOPT_POST, true);
 
 		curl_setopt($handle, CURLOPT_POSTFIELDS, http_build_query($_requests['header']));
-		curl_setopt($handle, CURLOPT_CONNECTTIMEOUT, 20);
-		curl_setopt($handle, CURLOPT_TIMEOUT, 20);
+		curl_setopt($handle, CURLOPT_CONNECTTIMEOUT, 2);
+		curl_setopt($handle, CURLOPT_TIMEOUT, 2);
 
 		if(defined('CURLOPT_IPRESOLVE') && defined('CURL_IPRESOLVE_V4'))
 		{
