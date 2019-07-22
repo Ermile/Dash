@@ -95,8 +95,13 @@ class twigAddons
 	{
 		return new \Twig_SimpleFilter('dt', function ($_string, $_format = null, $_type = null, $_calendar = null)
 		{
+			if(!$_string)
+			{
+				return null;
+			}
+
 			return \dash\datetime::fit($_string, $_format, $_type, $_calendar);
-			return $result;
+
 		});
 	}
 
