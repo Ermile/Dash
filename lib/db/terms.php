@@ -175,7 +175,7 @@ class terms
 	}
 
 
-	public static function category_count()
+	public static function category_count($_lang)
 	{
 		$query =
 		"
@@ -187,6 +187,7 @@ class terms
 			INNER JOIN termusages ON termusages.term_id = terms.id
 			INNER JOIN posts ON posts.id = termusages.related_id
 			WHERE
+				terms.language     = '$_lang' AND
 				terms.type         = 'cat' AND
 				termusages.related = 'posts' AND
 				posts.status       = 'publish' AND

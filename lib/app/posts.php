@@ -14,7 +14,8 @@ class posts
 
 	public static function category_count()
 	{
-		$list = \dash\db\terms::category_count();
+		$lang = \dash\language::current();
+		$list = \dash\db\terms::category_count($lang);
 
 		if(is_array($list))
 		{
