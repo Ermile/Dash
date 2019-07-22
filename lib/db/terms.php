@@ -173,5 +173,30 @@ class terms
 		$query = "DELETE FROM terms WHERE terms.id = $_term_id LIMIT 1";
 		return \dash\db::query($query);
 	}
+
+
+	public static function category_count()
+	{
+		$query =
+		"
+			SELECT
+				COUNT(*) AS `count`,
+				terms.title,
+				terms.url
+			FROM terms
+			INNER JOIN termusages ON termusages.term_id = terms.id
+			INNER JOIN posts ON posts.id = termusages.related_id
+			WHERE
+				terms.type         = 'cat' AND
+				termusages.related = 'posts' AND
+				posts.status       = 'publish' AND
+				posts.type         = 'post'
+			GROUP BY
+				terms.id
+		";
+		$result = \dash\db::get($query);
+
+		return $result;
+	}
 }
 ?>

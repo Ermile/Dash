@@ -12,6 +12,20 @@ class posts
 	use \dash\app\posts\get;
 
 
+	public static function category_count()
+	{
+		$list = \dash\db\terms::category_count();
+
+		if(is_array($list))
+		{
+			foreach ($list as $key => $value)
+			{
+				$list[$key]['link'] = \dash\url::kingdom(). '/category/'. $value['url'];
+			}
+		}
+		return $list;
+	}
+
 	public static function all_post_title($_args)
 	{
 		$list = \dash\db\posts::all_post_title($_args);
