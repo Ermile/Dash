@@ -1,59 +1,50 @@
 {%if datarow.comment == 'open'%}
-<div class="f justify-center">
-  <div class="c5 s12">
-  <form  method="post" data-clear autocomplete="off" action="{{url.kingdom}}/api/comment/add">
+<form  method="post" data-clear autocomplete="off" action="{{url.kingdom}}/api/comment/add">
 
-      <input type="hidden" name="post_id" class="hide" value="{{datarow.id}}">
-      {%if login.id %}
-      {%else%}
-          <div class="f">
-            <div class="c pRa5">
+  <input type="hidden" name="post_id" class="hide" value="{{datarow.id}}">
+  {%if login.id %}
+  {%else%}
+      <div class="f">
+        <div class="c pRa5">
 
-              <div class="input">
-               <label class="addon" for="name">{%trans "Name"%}</label>
-               <input type="text" name="name" id="name" placeholder='{%trans "Full Name"%}' maxlength='40' value="{{user.displayname}}">
-              </div>
-
-            </div>
-            <div class="c">
-              <div class="input">
-               <label class="addon" for="mobile">{%trans "Mobile"%}</label>
-               <input type="tel" name="mobile" id="mobile" placeholder='{%trans "Mobile"%}' maxlength="13" autocomplete="off" data-validity='{%trans "Please enter valid mobile number. `:val` is incorrect"%}' value="{{user.mobile}}">
-              </div>
-            </div>
-
-            <input type="text" name="username" class="hide" value="">
+          <div class="input">
+           <label class="addon" for="name">{%trans "Name"%}</label>
+           <input type="text" name="name" id="name" placeholder='{%trans "Full Name"%}' maxlength='40' value="{{user.displayname}}">
           </div>
-      {%endif%}
 
-      <label>{%trans "Your rate"%}</label>
-      <div class="radioRating togglable">
-        <div class="rateBox">
-          <input type="radio" name="star" id="star-1" value="1">
-          <label for="star-1"></label>
-          <input type="radio" name="star" id="star-2" value="2">
-          <label for="star-2"></label>
-          <input type="radio" name="star" id="star-3" value="3">
-          <label for="star-3"></label>
-          <input type="radio" name="star" id="star-4" value="4">
-          <label for="star-4"></label>
-          <input type="radio" name="star" id="star-5" value="5">
-          <label for="star-5"></label>
         </div>
-      </div>
+        <div class="c">
+          <div class="input">
+           <label class="addon" for="mobile">{%trans "Mobile"%}</label>
+           <input type="tel" name="mobile" id="mobile" placeholder='{%trans "Mobile"%}' maxlength="13" autocomplete="off" data-validity='{%trans "Please enter valid mobile number. `:val` is incorrect"%}' value="{{user.mobile}}">
+          </div>
+        </div>
 
-      <div class="input">
-        <textarea name="content" class="txt" rows="5" placeholder='{%trans "Write your comment..."%}'></textarea>
+        <input type="text" name="username" class="hide" value="">
       </div>
+  {%endif%}
 
-      <button class="btn primary block mT20">{%trans "Send"%}</button>
-    </form>
+  <label>{%trans "Your rate"%}</label>
+  <div class="radioRating togglable">
+    <div class="rateBox">
+      <input type="radio" name="star" id="star-1" value="1">
+      <label for="star-1"></label>
+      <input type="radio" name="star" id="star-2" value="2">
+      <label for="star-2"></label>
+      <input type="radio" name="star" id="star-3" value="3">
+      <label for="star-3"></label>
+      <input type="radio" name="star" id="star-4" value="4">
+      <label for="star-4"></label>
+      <input type="radio" name="star" id="star-5" value="5">
+      <label for="star-5"></label>
+    </div>
   </div>
-</div>
 
+  <div class="input">
+    <textarea name="content" class="txt" rows="5" placeholder='{%trans "Write your comment..."%}'></textarea>
+  </div>
+
+  <button class="btn primary block mT20">{%trans "Send"%}</button>
+</form>
 {%endif%}
-
-
-
-
 
