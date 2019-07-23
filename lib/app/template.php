@@ -91,6 +91,12 @@ class template
 			{
 				return false;
 			}
+
+
+			if(is_callable(['\\lib\\app\\posts\\template', 'find']))
+			{
+				\lib\app\posts\template::find($data);
+			}
 		}
 		elseif ($data = self::find_term())
 		{
