@@ -192,7 +192,7 @@ class comment
 		unset($_args['order']);
 		unset($_args['sort']);
 
-		// $_args['comments.type'] = 'comment';
+		$_args['comments.type'] = 'comment';
 
 		$result            = \dash\db\comments::search_full($_string, $_args);
 		$temp              = [];
