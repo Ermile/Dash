@@ -35,6 +35,8 @@ class controller
 				// stop visitor save for cronjob
 				\dash\temp::set('force_stop_visitor', true);
 
+				\dash\log::set('CronjobMasterOK');
+
 				self::cronjob_run();
 
 				// this is ok
@@ -43,7 +45,7 @@ class controller
 
 			}
 		}
-
+		\dash\log::set('CronjobTokenNotSet');
 		\dash\notif::error("Token :/");
 		\dash\code::jsonBoom(\dash\notif::get());
 
@@ -151,6 +153,7 @@ class controller
 
 		if(is_callable(['\lib\cronjob', 'run']))
 		{
+			\dash\log::set('CronjobProjectRun');
 			\lib\cronjob::run();
 		}
 	}
