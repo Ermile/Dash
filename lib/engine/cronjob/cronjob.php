@@ -1,4 +1,5 @@
 <?php
+require_once('cronjob_log.php');
 require_once('backup.php');
 
 class cronjob
@@ -9,8 +10,10 @@ class cronjob
 		$dir = str_replace('dash/lib/engine/cronjob', '', $dir);
 		$dir .= 'cronjob.php';
 
+		cronjob_log::save($dir);
 		if(is_file($dir))
 		{
+			cronjob_log::save('Try to php '. $dir. ' ...');
 			exec("php $dir");
 		}
 	}
