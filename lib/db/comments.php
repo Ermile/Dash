@@ -149,6 +149,14 @@ class comments
 
 	public static function search_full($_string = null, $_options = null)
 	{
+		$limit = null;
+		if(isset($_options['limit']))
+		{
+			$limit = intval($_options['limit']);
+		}
+
+		unset($_options['limit']);
+
 		$q = null;
 
 		if($_options)
@@ -172,7 +180,7 @@ class comments
 				$q
 		";
 
-		$limit = \dash\db::pagination_query($pagination_query);
+		$limit = \dash\db::pagination_query($pagination_query, $limit);
 
 		$query =
 		"
@@ -206,6 +214,7 @@ class comments
 	 */
 	public static function search($_string = null, $_options = [])
 	{
+
 		$default_options =
 		[
 			"search_field"        =>
