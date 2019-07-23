@@ -86,11 +86,7 @@ class exec
 		}
 
 		// initialize curl
-		if(!function_exists('curl_init'))
-		{
-			return false;
-		}
-		$ch = curl_init();
+		$ch = \curl_init();
 		if ($ch === false)
 		{
 			\dash\log::set('tg:curl:failed');
