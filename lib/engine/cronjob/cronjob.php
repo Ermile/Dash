@@ -10,10 +10,10 @@ class cronjob
 		$dir = str_replace('dash/lib/engine/cronjob', '', $dir);
 		$dir .= 'cronjob.php';
 
-		cronjob_log::save($dir);
+		// cronjob_log::save($dir);
 		if(is_file($dir))
 		{
-			cronjob_log::save('Try to php '. $dir. ' ...');
+			cronjob_log::save(date("Y-m-d H:i:s"). ' --- Try to php '. $dir. ' ...');
 			exec("php $dir");
 		}
 	}
