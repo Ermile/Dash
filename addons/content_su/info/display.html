@@ -9,10 +9,16 @@
    	<a class="btn" target='_blank' href="{{url.here}}/info/php">{%trans "Show PHP info"%}</a>
  </div>
 
- <div class="cbox ltr">
- 	{%for key, value in phpIniInfo%}
- 	<div class="msg block"><code>{{key}} = {{value}}</code></div>
- 	{%endfor%}
- </div>
+<div class="tblBox fs14">
+	<table class="tbl1 v3">
+	 	{%for key, value in phpIniInfo%}
+		<tr class="{%if value%}positive2{%else%}negative{%endif%}">
+			<th>{{key}}</th>
+			<td><code>{{value}}</code></td>
+			<td><span class="{%if value%}sf-check fc-green{%else%}sf-times fc-red{%endif%}"></span></td>
+		</tr>
+	 	{%endfor%}
+	</table>
+</div>
 
 {%endblock%}
