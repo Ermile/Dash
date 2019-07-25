@@ -3,38 +3,91 @@ namespace dash;
 
 class curl
 {
-	public static function go($_url, $_header = null, $_json = true)
+	public static function go($_url, $_data = null, $_dataType = null, $_header = null, $_fullResponse = false)
 	{
-		$handle   = curl_init();
-		curl_setopt($handle, CURLOPT_URL, $_url);
-		// curl_setopt($handle, CURLOPT_HTTPHEADER, json_encode($_header, JSON_UNESCAPED_UNICODE));
-		curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($handle, CURLOPT_SSL_VERIFYHOST, false);
-		curl_setopt($handle, CURLOPT_SSL_VERIFYPEER, false);
+		$ch       = curl_init();
+		$customHeader = [];
+		curl_setopt($ch, CURLOPT_URL, $_url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		// set timeout to connect
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 2);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 2);
 
-		if($_header)
+		if($_data)
 		{
-			curl_setopt($handle, CURLOPT_POST, true);
-			curl_setopt($handle, CURLOPT_POSTFIELDS, http_build_query($_header));
+			$postFields = null;
+			// fill based on input data
+			switch ($_dataType)
+			{
+				case 'json':
+					$postFields = json_encode($_data, JSON_UNESCAPED_UNICODE);
+					// add json to haeder
+					array_push($customHeader, 'Content-Type: application/json');
+					break;
+
+				case 'post':
+					$postFields = http_build_query($_data);
+					curl_setopt($ch, CURLOPT_POST, true);
+					break;
+
+				case 'form-data':
+				default:
+					// simple get
+					// do nothing
+					break;
+			}
+
+			// set postFields if exist
+			if($postFields)
+			{
+				curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+			}
 		}
-		curl_setopt($handle, CURLOPT_CONNECTTIMEOUT, 20);
-		curl_setopt($handle, CURLOPT_TIMEOUT, 20);
+
+		// combine custom headers
+		if(is_array($_header))
+		{
+			// merge 2 array
+			$customHeader = array_merge($customHeader, $_header);
+			// remove duplicates
+			$customHeader = array_unique($customHeader);
+		}
+		if(is_array($customHeader) && count($customHeader) > 0 )
+		{
+			// set cusotm header
+			curl_setopt($ch, CURLOPT_HTTPHEADER, $customHeader);
+		}
 
 		if(defined('CURLOPT_IPRESOLVE') && defined('CURL_IPRESOLVE_V4'))
 		{
- 			curl_setopt($handle, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
+ 			curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
 		}
 
-		$response = curl_exec($handle);
-		$mycode   = curl_getinfo($handle, CURLINFO_HTTP_CODE);
+		// execute curl and get response
+		$finalResult  = curl_exec($ch);
 
-		curl_close ($handle);
-
-		if($response && $_json === true)
+		if($finalResult)
 		{
-			$response = json_decode($response, true);
+			$finalResult = json_decode($finalResult, true);
 		}
-		return $response;
+
+		if($_fullResponse)
+		{
+			$finalResult =
+			[
+				'response' => $finalResult,
+				'code'     => curl_getinfo($ch, CURLINFO_HTTP_CODE),
+				'header'   => curl_getinfo($ch, CURLINFO_HEADER_OUT),
+				'info'     => curl_getinfo($ch),
+			];
+		}
+		// close connection
+		curl_close($ch);
+
+		// return final result
+		return $finalResult;
 	}
 }
 ?>
