@@ -66,9 +66,19 @@ class curl
 		}
 
 		// execute curl and get response
-		$finalResult  = curl_exec($ch);
+		$curlResult  = curl_exec($ch);
 
-		if($finalResult)
+		if($curlResult === false)
+		{
+			// we have error
+			$finalResult = curl_error($ch);
+		}
+		else
+		{
+			$finalResult = $curlResult;
+		}
+
+		if($finalResult && substr($finalResult, 0, 1) === "{")
 		{
 			$finalResult = json_decode($finalResult, true);
 		}
