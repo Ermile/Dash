@@ -78,7 +78,9 @@ class curl
 			$finalResult = $curlResult;
 		}
 
-		if($finalResult && substr($finalResult, 0, 1) === "{")
+		// get first char of result
+		$resultFirstChar = substr($finalResult, 0, 1);
+		if($finalResult && ($resultFirstChar === "{" || $resultFirstChar === "["))
 		{
 			$finalResult = json_decode($finalResult, true);
 		}
