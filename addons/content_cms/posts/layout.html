@@ -359,7 +359,7 @@
         <div class="c s12">
           <div class="desc">
             {%if dataRow.type == 'post'%}
-            <time class="publishdate" datetime="{{dataRow.publishdate}}">{{dataRow.publishdate | dt('d M Y')}}</time> -
+            <time class="publishdate" datetime="{{dataRow.publishdate}}">{{dataRow.publishdate | dt('d F Y')}}</time> -
             {%endif%}
             <p>{{dataRow.excerpt}}</p>
           </div>
