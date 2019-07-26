@@ -86,7 +86,7 @@
         {%if userAuthorPost.id not in allUserAuthorId%}
         <div>
           <img class="ui mini avatar image" src="{{userAuthorPost.avatar}}">
-          {{userAuthorPost.displayname}}
+          {{userAuthorPost.displayname}} <small>{{userAuthorPost.mobile}}</small>
         </div>
       {%endif%}
       <label>{%trans "Change post writer"%}</label>
@@ -98,7 +98,7 @@
           {%for key, value in postAdder%}
             <div class="item {%if dataRow.user_id == value.id%} active selected {%endif%}" data-value="{{value.id}}">
               <img class="ui mini avatar image" src="{{value.avatar}}">
-              {{value.displayname}}
+              {{value.displayname}} <small class="floatRa">{{value.mobile}}</small>
             </div>
           {%endfor%}
         </div>
