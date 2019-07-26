@@ -32,7 +32,7 @@ class files
 		if($qry_count && !empty($qry_count))
 		{
 			\dash\temp::set('upload', ["id" =>  $qry_count['id'], 'url' => $qry_count['path'], 'size' => $qry_count['size']]);
-			return true;
+			return $qry_count;
 		}
 		return false;
 	}

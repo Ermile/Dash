@@ -486,7 +486,8 @@ class upload
 			{
 				\dash\notif::ok(T_("File successful uploaded"));
 			}
-			return;
+
+			return $duplicate;
 		}
 
 		// 4. transfer file to project folder with new name
