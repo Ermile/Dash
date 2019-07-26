@@ -25,23 +25,32 @@
   {%endif%}
   {%if canEditPostStatus%}
         <div class="c7 pA5">
-          <button class="btn success block">{%trans "Save as draft"%}</button>
+          <button class="btn primary block">{%trans "Save as draft"%}</button>
         </div>
 
         <div class="c5 pA5">
-          <button class="btn primary block" name="publishBtn" value="publish">{%trans "Publish"%}</button>
-        </div>
-  {%else%}
-      <div class="c12 pA5">
-          <button class="btn success block">{%trans "Save as draft"%}</button>
+          <button class="btn success block" name="publishBtn" value="publish">{%trans "Publish"%}</button>
         </div>
 
+      <div class="c12 pA5">
+        <a class="btn secondary block outline" href="{{url.kingdom}}/{{myFirstURL}}{{dataRow.url}}" target="_blank">{%trans "Preview"%}</a>
+      </div>
+  {%else%}
+      <div class="c12 pA5">
+          <button class="btn primary block">{%trans "Save as draft"%}</button>
+      </div>
+      <div class="c6 pA5">
+        <a class="btn secondary block outline" href="{{url.kingdom}}/{{myFirstURL}}{{dataRow.url}}" target="_blank">{%trans "Preview"%}</a>
+      </div>
   {%endif%}
 
 {%else%}
   {%if (myDataType == 'help' and perm('cpHelpCenterEditPublished') ) or perm('cpPostsEditPublished')%}
-      <div class="c">
-        <button class="btn secondary block">{%trans "Save"%}</button>
+      <div class="c6 pA5">
+        <button class="btn primary block">{%trans "Save"%}</button>
+      </div>
+      <div class="c6 pA5">
+        <a class="btn secondary block outline" href="{{url.kingdom}}/{{myFirstURL}}{{dataRow.url}}" target="_blank">{%trans "Preview"%}</a>
       </div>
   {%endif%}
 {%endif%}
