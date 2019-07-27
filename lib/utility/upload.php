@@ -7,8 +7,8 @@ class upload
 	use upload\ext;
 	use upload\check;
 
-	// default max size is 10MB
-	public static $max_size = 10000000;
+	// default max size is 20MB
+	public static $max_size = 20 * 1024 * 1024;
 	public static $fieldName;
 	public static $fileName;
 	public static $fileExt;
