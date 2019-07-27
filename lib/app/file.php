@@ -153,6 +153,7 @@ class file
 			'upload_name' => \dash\app::request('upload_name'),
 			'url'         => null,
 			'debug'       => true,
+			'max_upload'  => null,
 		];
 
 		if(!is_array($_options))
@@ -179,9 +180,10 @@ class file
 			return false;
 		}
 
-		$ready_upload            = [];
-		$ready_upload['user_id'] = \dash\user::id();
-		$ready_upload['debug']   = $_options['debug'];
+		$ready_upload               = [];
+		$ready_upload['user_id']    = \dash\user::id();
+		$ready_upload['debug']      = $_options['debug'];
+		$ready_upload['max_upload'] = $_options['max_upload'];
 
 		if($file_path)
 		{

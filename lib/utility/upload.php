@@ -350,7 +350,7 @@ class upload
 			// the tmp_path
 			'tmp_path'            => implode(DIRECTORY_SEPARATOR, ['files','tmp']). DIRECTORY_SEPARATOR,
 			// use max size remaining
-			'user_size_remaining' => self::max_file_upload_size(),
+			'max_upload' => self::max_file_upload_size(),
 			'debug'               => true,
 
 		];
@@ -374,15 +374,15 @@ class upload
 		}
 
 		// check user id
-		if((!$_options['user_id'] || !is_numeric($_options['user_id'])) && $_options['save_as_tmp'] === false)
-		{
-			\dash\notif::error(T_("user id not set"));
-			return false;
-		}
+		// if((!$_options['user_id'] || !is_numeric($_options['user_id'])) && $_options['save_as_tmp'] === false)
+		// {
+		// 	\dash\notif::error(T_("user id not set"));
+		// 	return false;
+		// }
 
 		if(isset($_options['user_id']))
 		{
-					}
+		}
 
 		// get the protocol
 		$protocol = null;
@@ -411,7 +411,7 @@ class upload
 				case 'https':
 				case 'ftp':
 				case 'sftp':
-					$file_path = \dash\file::open($_options['file_path'], ['max_size' => $_options['user_size_remaining']]);
+					$file_path = \dash\file::open($_options['file_path'], ['max_size' => $_options['max_upload']]);
 					break;
 
 				default:
@@ -432,7 +432,7 @@ class upload
 			return false;
 		}
 
-		if(self::$fileSize > $_options['user_size_remaining'])
+		if(self::$fileSize > $_options['max_upload'])
 		{
 			\dash\notif::error(T_("The size of file is larger than the upload space you have"), 'file', 'size');
 			return false;

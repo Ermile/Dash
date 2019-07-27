@@ -457,7 +457,7 @@ class model
 	{
 		if(\dash\request::files($_name))
 		{
-			$uploaded_file = \dash\app\file::upload(['debug' => false, 'upload_name' => $_name]);
+			$uploaded_file = \dash\app\file::upload(['debug' => false, 'upload_name' => $_name, 'max_upload' => 5*1024*1024]);
 
 			if(isset($uploaded_file['url']))
 			{
