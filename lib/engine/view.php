@@ -112,9 +112,10 @@ class view
 		if(\dash\option::social('status'))
 		{
 			\dash\data::social(\dash\option::social('list'));
+			\dash\data::social_status(\dash\option::social('status'));
 			// create data of share url
-			\dash\data::share_title(\dash\data::get('site', 'title'));
-			\dash\data::share_desc(\dash\data::get('site', 'desc'));
+			\dash\data::share_title(\dash\data::site_title());
+			\dash\data::share_desc(\dash\data::site_desc());
 			\dash\data::share_image(\dash\url::static(). '/images/logo.png');
 			\dash\data::share_twitterCard('summary');
 		}
