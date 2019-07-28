@@ -359,6 +359,11 @@ class upload
 
 		$_options = array_merge($default_options, $_options);
 
+		if(is_null($_options['max_upload']))
+		{
+			$_options['max_upload'] = self::max_file_upload_size();
+		}
+
 		// check upload name
 		if(!$_options['upload_name'])
 		{
