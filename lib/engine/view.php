@@ -210,6 +210,13 @@ class view
 			\dash\data::page_desc(\dash\utility\excerpt::extractRelevant(\dash\data::datarow_desc()));
 		}
 
+		// set page cover
+		$meta = \dash\data::datarow_meta();
+		if(isset($meta['thumb']))
+		{
+			\dash\data::page_cover($meta['thumb']);
+		}
+
 		// set new title
 		self::set_title();
 	}
