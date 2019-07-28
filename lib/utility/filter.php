@@ -180,9 +180,19 @@ class filter
 		}
 		elseif($_rules === 'persian')
 		{
+			// remove some unused char
+			$_string = str_replace('!', '', $_string);
+			$_string = str_replace('?', '', $_string);
+			$_string = str_replace('/', '', $_string);
+			$_string = str_replace('\\', '', $_string);
+			$_string = str_replace('`', '', $_string);
+			$_string = str_replace('"', '', $_string);
+			$_string = str_replace("'", '', $_string);
+
 			$_string = mb_strtolower($_string);
 			$_string = mb_ereg_replace('([^ءئآا-ی۰-۹a-z0-9]|-)+', '-', $_string);
 			$_string = mb_strtolower($_string);
+
 			return $_string;
 		}
 		else
