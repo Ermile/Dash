@@ -108,18 +108,6 @@ class view
 			\dash\data::userToggleSidebar(true);
 		}
 
-		// if allow to use social then get social network account list
-		if(\dash\option::social('status'))
-		{
-			\dash\data::social(\dash\option::social('list'));
-			\dash\data::social_status(\dash\option::social('status'));
-			// create data of share url
-			\dash\data::share_title(\dash\data::site_title());
-			\dash\data::share_desc(\dash\data::site_desc());
-			\dash\data::share_image(\dash\url::static(). '/images/logo.png');
-			\dash\data::share_twitterCard('summary');
-		}
-
 		// define default value for include
 		\dash\data::include_siftal(true);
 		\dash\data::include_css(true);
@@ -180,6 +168,8 @@ class view
 		{
 			\dash\data::page_desc(\dash\data::site_desc());
 		}
+
+		self::setSocialTitle();
 	}
 
 
@@ -222,6 +212,33 @@ class view
 
 		// set new title
 		self::set_title();
+	}
+
+	public static function setSocialTitle()
+	{
+		// if allow to use social then get social network account list
+		if(\dash\option::social('status'))
+		{
+			\dash\data::social(\dash\option::social('list'));
+			\dash\data::social_status(\dash\option::social('status'));
+
+		}
+
+		// if we dont have page image, use site image
+		if(\dash\data::page_cover())
+		{
+			\dash\data::page_twitterCard('summary_large_image');
+		}
+		elseif(\dash\data::page_video())
+		{
+			\dash\data::page_twitterCard('player');
+		}
+		else
+		{
+
+			\dash\data::page_cover(\dash\data::site_logo());
+			\dash\data::page_twitterCard('summary');
+		}
 	}
 
 

@@ -4,24 +4,22 @@
 {%block head_def%}
  <meta charset="UTF-8"/>
  <base href="{{url.base}}"/>
- <title>{{global.title | striptags }}</title>
+ <title>{{global.title }}</title>
  <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/><![endif]-->
 {%if url.root != 'deadbrowser'%}
  <!--[if lte IE 9]><script>document.location = 'https://deadbrowser.com/{{lang.current}}';</script><![endif]-->
 {%endif%}
- <meta name     ="description"             content="{{page.desc | striptags}}"/>
+ <meta name     ="description"             content="{{page.desc}}"/>
  <meta name     ="site:root"               content="{{url.kingdom}}"/>
 {%block head_twitter%}
-{%if social.status%}
- <meta name     ="twitter:card"            content="{{share.twitterCard}}"/>
+ <meta name     ="twitter:card"            content="{{page.twitterCard}}"/>
 {%if social.twitter%}
  <meta name     ="twitter:site"            content="@{{social.twitter}}"/>
 {%endif%}
- <meta name     ="twitter:title"           content="{{global.title | striptags }}"/>
- <meta name     ="twitter:description"     content="{{page.desc | striptags}}"/>
+ <meta name     ="twitter:title"           content="{{global.title}}"/>
+ <meta name     ="twitter:description"     content="{{page.desc}}"/>
  <meta name     ="twitter:url"             content="{{url.pwd}}"/>
- <meta name     ="twitter:image"           content="{{share.image}}"/>
-{%endif%}
+ <meta name     ="twitter:image"           content="{{page.cover}}"/>
 {%endblock%}
 {%if browser.ua_type == 'mobile' and options.tabColor.value%}
  <!-- Chrome, Firefox OS and Opera -->
@@ -34,7 +32,7 @@
  <meta property ="og:type"                 content="website"/>
  <meta property ='og:locale'               content='{{global.lang}}'/>
 {%block facebookImages%}
- <meta property ="og:image"                content="{{url.static}}/images/logo/{{url.root}}-logo.png"/>
+ <meta property ="og:image"                content="{{page.cover}}"/>
 {%endblock%}
 {%endblock%}
  <meta name     ="viewport"                content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, {%if url.content%}maximum-scale=1.0{%else%}maximum-scale=1.1{%endif%}, user-scalable=0"/>
