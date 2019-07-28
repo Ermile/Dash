@@ -180,17 +180,9 @@ class filter
 		}
 		elseif($_rules === 'persian')
 		{
-			// remove some unused char
-			$_string = str_replace('!', '', $_string);
-			$_string = str_replace('?', '', $_string);
-			$_string = str_replace('/', '', $_string);
-			$_string = str_replace('\\', '', $_string);
-			$_string = str_replace('`', '', $_string);
-			$_string = str_replace('"', '', $_string);
-			$_string = str_replace("'", '', $_string);
-
 			$_string = mb_strtolower($_string);
 			$_string = mb_ereg_replace('([^ءئآا-ی۰-۹a-z0-9]|-)+', '-', $_string);
+			$_string = trim($_string);
 			$_string = mb_strtolower($_string);
 
 			return $_string;
@@ -199,10 +191,15 @@ class filter
 		{
 			$slugify = new \dash\utility\slugify();
 		}
+
 		if($_splitor)
+		{
 			return $slugify->slugify($_string, $_splitor);
+		}
 		else
+		{
 			return $slugify->slugify($_string);
+		}
 	}
 
 
