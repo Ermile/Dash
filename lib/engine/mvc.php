@@ -249,12 +249,14 @@ class mvc
 			}
 
 			// combine two type of set title into one
-			\dash\engine\view::set_title();
-
 			if(\dash\url::content() === null)
 			{
 				\dash\data::datarow(\dash\app\template::$datarow);
 				\dash\engine\view::set_cms_titles();
+			}
+			else
+			{
+				\dash\engine\view::set_title();
 			}
 
 			\dash\engine\view::lastChanges();
