@@ -414,6 +414,9 @@ class prepare
 			{
 				$target_url .= '/'. \dash\url::directory();
 			}
+
+			// set cookie of language to fix false detection after redirect
+			\dash\utility\cookie::write('language', \dash\url::lang(), (60*60*1), '.'. \dash\url::domain());
 		}
 		else
 		{
