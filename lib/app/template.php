@@ -104,6 +104,7 @@ class template
 			$type  = 'cat';
 			$table = 'terms';
 			$url   = null;
+			$lang  = null;
 
 			if(isset($data['url']))
 			{
@@ -120,7 +121,12 @@ class template
 				$type = 'category';
 			}
 
-			$new_url = \dash\url::base(). '/'. $type. '/'. $url;
+			if(isset($data['language']))
+			{
+				$lang = '/'. $data['language'];
+			}
+
+			$new_url = \dash\url::base(). $lang. '/'. $type. '/'. $url;
 
 			\dash\redirect::to($new_url);
 			return;
