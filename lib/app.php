@@ -244,6 +244,14 @@ class app
 					}
 					break;
 
+				case 'displayname':
+					if(!$value && $value != '0')
+					{
+						$value = T_("Whitout name");
+					}
+					$result[$key] = $value;
+					break;
+
 				case 'logo':
 					if($value)
 					{
