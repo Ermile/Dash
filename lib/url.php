@@ -410,7 +410,14 @@ class url
 		{
 			if(self::isLocal())
 			{
-				$siftalAddr = 'http://siftal.local/dist';
+				if(self::$url['protocol'] === 'https')
+				{
+					$siftalAddr = 'https://siftal.local/dist';
+				}
+				else
+				{
+					$siftalAddr = 'http://siftal.local/dist';
+				}
 			}
 			else
 			{
