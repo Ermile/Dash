@@ -51,6 +51,19 @@ class pwa
 		// set icons if exist
 		$iconsArr = [];
 
+		// check icon144
+		$icon144 = '/images/logo/png/'. $siteTitle. '-logo-192.png';
+		if(file_exists(root. 'public_html/static'. $icon144))
+		{
+			$icon144 = \dash\url::static(). $icon144;
+			$iconsArr[] =
+			[
+				'type' => 'image/png',
+				'sizes' => '144x144',
+				'src' => $icon144,
+			];
+		}
+
 		// check icon192
 		$icon192 = '/images/logo/png/'. $siteTitle. '-logo-192.png';
 		if(file_exists(root. 'public_html/static'. $icon192))
