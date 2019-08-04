@@ -103,20 +103,10 @@ class pwa
 	public static function service_worker()
 	{
 		$worker = "";
-// 		$worker = "
-// self.addEventListener('install', function() {
-//   console.log('Install!');
-// });
+		$worker .= "self.addEventListener('install', function() { console.log('Install SW!');});". "\n";
+		$worker .= "self.addEventListener('activate', event => { console.log('Activate SW!'); });". "\n";
+		// $worker .= "self.addEventListener('fetch', function(event) { console.log('Fetch!', event.request); });";
 
-// self.addEventListener('activate', event => {
-//   console.log('Activate!');
-// });
-
-// self.addEventListener('fetch', function(event) {
-//   console.log('Fetch!', event.request);
-// });
-
-// 		";
 		@header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 		@header("Cache-Control: post-check=0, pre-check=0", false);
 		@header("Pragma: no-cache");
