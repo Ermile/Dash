@@ -83,13 +83,7 @@ trait add
 					self::set_post_term($post_id, 'help_tag', 'posts', \dash\app::request('tag'));
 				}
 			}
-			elseif($args['type'] === 'mag')
-			{
-				if(\dash\permission::check('cpMagAdd'))
-				{
-					self::set_post_term($post_id, 'mag_tag', 'posts', \dash\app::request('tag'));
-				}
-			}
+
 			else
 			{
 				if(\dash\permission::check('cpTagAdd'))

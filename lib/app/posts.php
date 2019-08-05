@@ -591,14 +591,6 @@ class posts
 						}
 						break;
 
-					case 'mag':
-						if(!\dash\permission::check('cpMagDeleteForOthers'))
-						{
-							\dash\notif::error(T_("This is not your magazine. And you can not delete it!"));
-							return false;
-						}
-						break;
-
 					case 'post':
 					case 'page':
 					default:
