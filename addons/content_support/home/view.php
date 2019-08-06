@@ -80,6 +80,25 @@ class view
 			'language' => \dash\language::current(),
 		];
 
+		$random_post_arg =
+		[
+			'type' => 'help',
+			'limit' => 5,
+			'status' =>
+			'publish',
+			'parent' => ["IS", "NOT NULL"]
+		];
+
+		$random_faq_args = ['type' => 'help', 'limit' => 5, 'tag' => 'faq', 'random' => true];
+
+
+		if(\dash\url::subdomain() && !\dash\option::config('no_subdomain'))
+		{
+			$get_posts_term['subdomain']  = \dash\url::subdomain();
+			$random_post_arg['subdomain'] = \dash\url::subdomain();
+			$random_faq_args['subdomain'] = \dash\url::subdomain();
+		}
+
 		if(\dash\permission::check('cpHelpCenterEditForOthers'))
 		{
 			$get_posts_term['status']   = ["NOT IN", "('deleted')"];
@@ -105,11 +124,11 @@ class view
 
 		\dash\data::listCats($pageList);
 
-		$randomArticles = \dash\app\posts::random_post(['type' => 'help', 'limit' => 5, 'status' => 'publish', 'parent' => ["IS", "NOT NULL"]]);
+		$randomArticles = \dash\app\posts::random_post($random_post_arg);
 
 		\dash\data::randomArticles($randomArticles);
 
-		$randomFAQ = \dash\db\posts::get_posts_term(['type' => 'help', 'limit' => 5, 'tag' => 'faq', 'random' => true], 'help_tag');
+		$randomFAQ = \dash\db\posts::get_posts_term($random_faq_args, 'help_tag');
 		\dash\data::randomFAQ($randomFAQ);
 
 	}
