@@ -177,14 +177,38 @@ trait set
 		$minus = null;
 		if($_args['minus'])
 		{
-			$minus = (float) $_args['minus'];
+			if(!is_numeric($_args['minus']))
+			{
+				\dash\notif::error(T_("Amount must be a number"));
+				return false;
+			}
+
+			if(!\dash\utility\filter::max_number($_args['minus'], 9999999999999))
+			{
+				\dash\notif::error(T_("Amount is out of range"));
+				return false;
+			}
+			$minus = floatval($_args['minus']);
 		}
 
 		$plus = null;
 		if($_args['plus'])
 		{
-			$plus = (float) $_args['plus'];
+			if(!is_numeric($_args['plus']))
+			{
+				\dash\notif::error(T_("Amount must be a number"));
+				return false;
+			}
+
+			if(!\dash\utility\filter::max_number($_args['plus'], 9999999999999))
+			{
+				\dash\notif::error(T_("Amount is out of range"));
+				return false;
+			}
+			$plus = floatval($_args['plus']);
 		}
+
+
 
 		$insert['minus']         = $minus;
 		$insert['plus']          = $plus;
