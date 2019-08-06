@@ -28,8 +28,15 @@ class controller
 
 	public static function gitUpdate($_name, $_password = null)
 	{
-		\dash\log::set('su_gitUpdateStart');
 		$result   = [];
+		if(!self::ping())
+		{
+			$result[] = "<h1>We have not any response from https://ermile.com!</h1>";
+
+			return $result;
+		}
+
+		\dash\log::set('su_gitUpdateStart');
 		// switch by name of repository
 		switch ($_name)
 		{
@@ -78,6 +85,33 @@ class controller
 
 		$back = "<h1><a href='".\dash\url::kingdom()."/su/update' >Back to su update</a></h1>";
 		return $back. "<h1>Dash</h1>". \dash\utility\git::pull($dashLocation);
+	}
+
+
+
+	private static function ping($_url = null)
+	{
+	    if($_url === null)
+	    {
+	    	$_url = 'https://ermile.com/fa';
+	    }
+
+	    $ch = curl_init($_url);
+	    curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+	    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+	    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	    $data = curl_exec($ch);
+	    $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+	    curl_close($ch);
+
+	    if($httpcode >= 200 && $httpcode <= 301)
+	    {
+	        return true;
+	    }
+	    else
+	    {
+	        return false;
+	    }
 	}
 
 }
