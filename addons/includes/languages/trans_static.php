@@ -24,6 +24,7 @@ class TransStatic
 	echo T_("Transaction Error");
 
 	// -------------------------------------------------------- Common Words
+	echo T_("Without mobile");
 
 	// -------------------------------------- date
 	echo T_("year");
