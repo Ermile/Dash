@@ -23,6 +23,13 @@ class controller
 		{
 			\dash\header::status(404);
 		}
+
+
+		if(is_callable(['\\lib\\payment', 'config']))
+		{
+			\lib\payment::config();
+		}
+
 	}
 }
 ?>
