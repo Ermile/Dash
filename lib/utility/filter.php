@@ -4,6 +4,39 @@ namespace dash\utility;
 /** Filter of values : mobile ...etc **/
 class filter
 {
+
+	public static function max_number($_number, $_max)
+	{
+		if(!is_numeric($_max))
+		{
+			return false;
+		}
+
+		if(!is_numeric($_number))
+		{
+			return false;
+		}
+
+		$len_number = strlen($_number);
+		$len_max    = strlen($_max);
+
+		if($len_number > $len_max)
+		{
+			return false;
+		}
+		elseif($len_number == $len_max)
+		{
+			// need to check
+			// @reza check every characters
+			return true;
+		}
+		elseif($len_number < $len_max)
+		{
+			return true;
+		}
+	}
+
+
 	public static function email($_email)
 	{
 		return filter_var($_email, FILTER_VALIDATE_EMAIL);
