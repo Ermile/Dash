@@ -207,6 +207,12 @@ class start
 
 		$payment_response = json_encode($payment_response, JSON_UNESCAPED_UNICODE);
 
+		if(!\dash\utility\filter::max_number($_args['amount'], 999999999999999999))
+		{
+			\dash\notif::error(T_("Amount is out of range"), 'amount');
+			return false;
+		}
+
 		$insert_transaction =
 		[
 			'caller'           => 'payment',
