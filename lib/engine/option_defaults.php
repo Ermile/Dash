@@ -115,7 +115,7 @@ self::$config['allow_post_type'] =
 
 // load billing page
 // in some project we need to lock this page
-self::$config['billing_page'] = true;
+self::$config['billing_page'] = false;
 self::$config['billing_promo'] = false;
 
 // ----- comming soon page
