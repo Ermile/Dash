@@ -786,7 +786,9 @@ class posts
 			}
 		}
 
+
 		$args['language']    = $language;
+		$args['subdomain']   = \dash\app::request('subdomain');
 		$args['title']       = $title;
 		$args['slug']        = $slug;
 		$args['url']         = $url;

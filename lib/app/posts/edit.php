@@ -67,6 +67,9 @@ trait edit
 			return false;
 		}
 
+		if(!\dash\app::isset_request('subdomain')) unset($args['subdomain']);
+
+
 		if(!$args['excerpt'])
 		{
 			$args['excerpt'] = \dash\utility\excerpt::extractRelevant($args['content']);

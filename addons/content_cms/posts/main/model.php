@@ -63,6 +63,8 @@ class model
 
 	public static function getPost()
 	{
+		// check subdomain
+
 		if(self::upload_gallery())
 		{
 			return false;
@@ -92,12 +94,17 @@ class model
 			'publishtime' => \dash\request::post('publishtime'),
 			'status'      => \dash\request::post('status'),
 			'comment'     => \dash\request::post('comment'),
-			'language'    => \dash\request::post('language'),
+			'language'    => \dash\request::post('language') ? \dash\request::post('language') : \dash\language::current(),
 			'parent'      => \dash\request::post('parent'),
 			'special'     => \dash\request::post('special'),
 			'creator'     => \dash\request::post('creator'),
 			'seotitle'    => \dash\request::post('seotitle'),
 		];
+
+		if(\dash\url::subdomain())
+		{
+			$post['subdomain'] = \dash\url::subdomain();
+		}
 
 
 		if(!$post['status'])
