@@ -19,6 +19,7 @@ trait datalist
 		'payment',
 		'plus',
 		'minus',
+		'datecreated',
 	];
 
 
@@ -70,7 +71,10 @@ trait datalist
 		unset($option['in']);
 
 		$result = \dash\db\transactions::search($_string, $option, $field);
-
+		if(is_array($result))
+		{
+			$result = array_map(['\\dash\\app', 'ready'], $result);
+		}
 		return $result;
 	}
 

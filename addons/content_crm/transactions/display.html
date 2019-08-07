@@ -1,0 +1,157 @@
+{%extends display.crmMain%}
+
+
+{%block pageContent%}
+
+{%if dataTable%}
+ {%if dataFilter%}
+
+  {{block('htmlSearchBox')}}
+  {{block('htmlTable')}}
+  {{block('htmlFilter')}}
+
+ {%else%}
+
+  {{block('htmlSearchBox')}}
+  {{block('htmlTable')}}
+
+ {%endif%}
+{%else%}
+ {%if dataFilter%}
+
+  {{block('htmlSearchBox')}}
+  {{block('htmlFilterNoResult')}}
+
+ {%else%}
+
+  {{block('htmlStartAddNew')}}
+
+ {%endif%}
+{%endif%}
+
+{%endblock%}
+
+
+
+
+{%block htmlSearchBox%}
+<div class="cbox fs12">
+  <form method="get" action='{{url.here}}/transactions' data-action>
+    <div class="input">
+      <input type="search" name="q" placeholder='{%trans "Search in :transactionss"%}' id="q" value="{{requestGET.q}}" autofocus  data-pass='submit' autocomplete='off'>
+      <button class="addon btn ">{%trans "Search" %}</button>
+    </div>
+  </form>
+</div>
+{%endblock%}
+
+
+{%block htmlTable%}
+ <div class="tblBbox">
+  <table class="tbl1 v1">
+    <thead>
+      <tr>
+      	<th data-sort={{sortLink.user_id.order}}><a href="{{sortLink.user_id.link}}">{%trans "User"%}</a></th>
+      	<th data-sort={{sortLink.title.order}}><a href="{{sortLink.title.link}}">{%trans "Title"%}</a></th>
+      	<th data-sort={{sortLink.plus.order}}><a href="{{sortLink.plus.link}}"><i class="sf-plus-circle"></i></a></th>
+      	<th data-sort={{sortLink.minus.order}}><a href="{{sortLink.minus.link}}"><i class="sf-minus-circle"></i></a></th>
+      	<th data-sort={{sortLink.budget.order}}><a href="{{sortLink.budget.link}}">{%trans "Budget"%}</a></th>
+      	<th data-sort={{sortLink.condition.order}}><a href="{{sortLink.condition.link}}">{%trans "Condition"%}</a></th>
+      	<th data-sort={{sortLink.verify.order}}><a href="{{sortLink.verify.link}}">{%trans "Verify"%}</a></th>
+      	<th data-sort={{sortLink.datecreated.order}}><a href="{{sortLink.datecreated.link}}">{%trans "Date"%}</a></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {%for key, value in dataTable%}
+      <tr {%if value.verify%} class="positive" {%endif%}>
+		<td>
+			<div>
+				<img src="{{value.avatar}}" class="avatar">
+				{%if value.displayname%}{{value.displayname}}{%endif%}
+			</div>
+			{%if value.user_id%}<a href="{{url.here}}/member/glance?id={{value.user_id}}">{{value.mobile | fitNumber('mobile')}}</a>{%else%}<small class="hidden">{%trans "Anonymous"%}</small>{%endif%}
+		</td>
+
+		<td title="{{value.code}}">{{value.title}}</td>
+
+		<td>{%if value.plus%}<b>+{{value.plus | fitNumber}}</b>{%endif%}</td>
+		<td>{%if value.minus%}<b>-{{value.minus | fitNumber}}</b>{%endif%}</td>
+
+		<td title='{%trans "Budget before"%} {{value.budget_before | fitNumber}}'>{%if value.budget%}{{value.budget | fitNumber}}{%endif%}</td>
+
+		<td>{%set my_condition = value.condition | capitalize%}<a href="{{url.here}}/transactions?condition={{value.condition}}">{%trans my_condition%}</a></td>
+		<td>{%if value.verify%}<i class="sf-check-1 fc-green"></i>{%else%}<i class="sf-times fc-red"></i>{%endif%}</td>
+		<td title="{{value.datecreated}}">
+			{{value.datecreated | dt}}
+			<div>{{value.datecreated | dt('human', 'year')}}</div>
+		</td>
+      </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+  {%include display.pagination%}
+ </div>
+{%endblock%}
+
+
+{%block htmlFilter%}
+<p class="f fs14 msg info2">
+  <span class="c">{{dataFilter | raw}}</span>
+  <a class="cauto" href="{{url.here}}/transactions">{%trans "Clear filters"%}</a>
+</p>
+{%endblock%}
+
+
+{%block htmlFilterNoResult%}
+<p class="f fs14 msg warn2">
+  <span class="c">{%trans "Result not found!"%} {%trans "Search with new keywords."%}</span>
+  <a class="cauto" href="{{url.here}}/transactions">{%trans "Clear filters"%}</a>
+</p>
+{%endblock%}
+
+
+{%block htmlStartAddNew%}
+<p class="fs14 msg success2 pTB20">{%trans "Hi!"%} <a href="{{url.here}}/transactions/add">{%trans "Try to start with add new :transactions!"%}</a></p>
+{%endblock%}
+
+
+{%block hidden_all_field%}
+		'id'               => string '1' (length=1)
+		'user_id'          => null
+		'code'             => string 'payment:zarinpal' (length=16)
+		'title'            => string 'پرداخت با زرین‌پال' (length=35)
+		'caller'           => null
+		'type'             => string 'money' (length=5)
+		'unit_id'          => string '1' (length=1)
+		'amount_request'   => string '50000' (length=5)
+		'amount_end'       => string '50000' (length=5)
+		'plus'             => string '50000' (length=5)
+		'minus'            => null
+		'budget_before'    => null
+		'budget'           => null
+		'status'           => string 'enable' (length=6)
+		'condition'        => string 'cancel' (length=6)
+		'verify'           => string '0' (length=1)
+		'parent_id'        => null
+		'related_user_id'  => null
+		'related_foreign'  => null
+		'related_id'       => null
+		'payment'          => string 'zarinpal' (length=8)
+		'payment_response' => string '{"get":{"Authority":"000000000000000000000000000062516238","Status":"NOK"},"post":[],"request":{"Authority":"000000000000000000000000000062516238","Status":"NOK"}}' (length=163)
+		'meta'             => null
+		'desc'             => null
+		'dateverify'       => null
+		'datecreated'      => string '2018-01-03 11:25:34' (length=19)
+		'datemodified'     => string '2018-01-09 09:07:17' (length=19)
+		'invoice_id'       => null
+		'date'             => string '2018-01-03 11:25:34' (length=19)
+		'niyat'            => null
+		'hazinekard'       => null
+		'fullname'         => null
+		'donate'           => string 'cash' (length=4)
+		'doners'           => string '0' (length=1)
+		'mobile'           => null
+		'displayname'      => null
+		'unit'             => string 'toman' (length=5)
+{%endblock%}

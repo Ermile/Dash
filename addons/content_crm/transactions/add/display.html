@@ -1,0 +1,58 @@
+{%extends display.crmMain%}
+
+
+{%block pageContent%}
+<div class="f justify-center">
+
+	<div class="cbox justify-center c6">
+
+	 <form method="post"  autocomplete="off">
+		<div class="input">
+			<label for="title" >{%trans "Title"%}</label>
+			<input type="text" name="title"  id="title" placeholder='{%trans "Title"%} *' required >
+		</div>
+
+		<div class="input">
+			<label for="type" >{%trans "type"%}</label>
+			<select name="type"  id="type" class="select">
+				<option value="">{%trans "Please select one item"%}</option>
+				<option value="money">{%trans "Money"%}</option>
+				<option value="gift">{%trans "Gift"%}</option>
+				<option value="transfer">{%trans "Transfer"%}</option>
+				<option value="prize">{%trans "Prize"%}</option>
+			</select>
+		</div>
+		<div class="input">
+			<label for="unit" >{%trans "Unit"%}</label>
+			<select name="unit"  id="unit" class="select">
+				<option value="">{%trans "Please select one item"%}</option>
+				<option value="toman" selected="">{%trans "Toman"%}</option>
+				<option value="dollar">{%trans "$"%}</option>
+			</select>
+		</div>
+
+		<div class="input">
+			<label for="mobile" >{%trans "Mobile"%}</label>
+			<input type="text" name="mobile"  id="mobile" placeholder='{%trans "Mobile"%} *' required value="{{requestGET.mobile}}">
+		</div>
+
+		<div class="input">
+			<label for="minus" >{%trans "Minus"%}</label>
+			<input type="number" name="minus"  id="minus" placeholder='{%trans "Minus"%}' min="1" max="99999999999999">
+		</div>
+
+		<div class="input">
+			<label for="plus" >{%trans "Plus"%}</label>
+			<input type="number" name="plus"  id="plus" placeholder='{%trans "Plus"%}' min="1" max="99999999999999">
+		</div>
+
+		<div class="input">
+			<label for="desc" >{%trans "Description"%}</label>
+			<input type="text" name="desc"  id="desc" placeholder='{%trans "Description"%}'>
+		</div>
+		<button type="submit"  class="btn primary mT15 block">{%trans "Add"%}</button>
+	</form>
+
+	</div>
+</div>
+{%endblock%}

@@ -35,5 +35,18 @@
       </li>
   {%endif%}
 
+  {%if perm('cpTransaction') or perm('cpTransactionAdd') %}
+      <li>
+          {%if perm('cpSMS') %}
+          <a href="{{url.here}}/transactions"><i class='sf-card'></i> <span>{% trans "Transactions" %}</span></a>
+          {%endif%}
+          <ul>
+            {%if perm('cpTransactionAdd') %}
+              <li><a href="{{url.here}}/transactions/add">{% trans "Add new transaction" %} <i class='floatRa mRa10 fc-mute sf-plus'></i></a></li>
+            {%endif%}
+          </ul>
+      </li>
+  {%endif%}
+
 {%endblock%}
 

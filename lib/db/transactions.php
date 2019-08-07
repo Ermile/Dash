@@ -147,7 +147,8 @@ class transactions
 				"
 					transactions.*,
 					users.mobile      AS `mobile`,
-					users.displayname AS `displayname`
+					users.displayname AS `displayname`,
+					users.avatar AS `avatar`
 				",
 			'master_join'         => " LEFT JOIN users ON users.id = transactions.user_id ",
 		];
