@@ -39,6 +39,11 @@
 
 <div class="cbox fs12">
   <form method="get" action='{{url.this}}' data-action>
+    {%if allNeedSearch%}
+    {%for key, value in allNeedSearch%}
+      <input type="hidden" name="{{key}}" value="{{value}}">
+    {%endfor%}
+    {%endif%}
     <div class="input">
       <label for="q" data-kerkere=".ShowFilterResult" data-kerkere-icon class="addon">{%trans "Advance result"%}</label>
       <input type="search" name="q" placeholder='{%trans "Search"%}' id="q" value="{{requestGET.q}}" autofocus  data-pass='submit' autocomplete='off'>
@@ -117,12 +122,12 @@
           </a>
         </td>
         <td>
-          <div class="s0" title='{{value.title}}'>
+          <div class="s0">
             <small>
-              <a href="{{url.this}}?gender={{value.gender}}">{%if value.gender == 'male'%}{%trans "Mr"%} {%elseif value.gender == 'female'%}{%trans "Mrs"%}{%else%}-{%endif%}</a>
-              <a href="{{url.this}}?firstname={{value.firstname | url_encode}}">{{value.firstname}}</a>
+              <a href="{{url.this}}?gender={{value.gender}}{%if requestGET.status%}&status={{requestGET.status}}{%endif%}">{%if value.gender == 'male'%}{%trans "Mr"%} {%elseif value.gender == 'female'%}{%trans "Mrs"%}{%else%}-{%endif%}</a>
+              <a href="{{url.this}}?firstname={{value.firstname | url_encode}}{%if requestGET.status%}&status={{requestGET.status}}{%endif%}">{{value.firstname}}</a>
             </small>
-            <a href="{{url.this}}?lastname={{value.lastname | url_encode}}">{{value.lastname}}</a>
+            <a href="{{url.this}}?lastname={{value.lastname | url_encode}}{%if requestGET.status%}&status={{requestGET.status}}{%endif%}">{{value.lastname}}</a>
           </div>
           <div class="mT5">
             <a href="{{url.this}}/glance?id={{value.id}}{%if requestGET.showlog%}&showlog=1{%endif%}" class="txtB block"><span class="sf-user"></span> {{value.displayname}}</a>
@@ -136,14 +141,17 @@
         </td>
         <td class="s0 collapsing">
           {%if value.password%}<i class="sf-check fc-green" title='{%trans "Password is set"%}'></i>{%else%}<i class="sf-times fc-red" title='{%trans "Password is not set!"%}'></i>{%endif%}
-          {%if value.twostep%}<i class="sf-unlock-alt fc-green" title='{%trans "Two step verification in enabled"%}'></i>{%else%}<i class="sf-unlock fc-mute" title='{%trans "Two step verification in disable"%}'></i>{%endif%}
-          {%if value.chatid%}<a href="{{url.this}}?chatid=yes"><i class="sf-paper-plane fc-blue" title='{%trans "Have chatid"%}'></i></a>{%else%}<a href="{{url.this}}?chatid=no"><i class="sf-paper-plane fc-mute" title='{%trans "Have not chatid"%}'></i></a>{%endif%}
+          {%if value.twostep%}<a href="{{url.this}}?twostep=yes{%if requestGET.status%}&status={{requestGET.status}}{%endif%}"><i class="sf-unlock-alt fc-green" title='{%trans "Two step verification in enabled"%}'></i></a>{%else%}<i class="sf-unlock fc-mute" title='{%trans "Two step verification in disable"%}'></i>{%endif%}
+          {%if value.chatid%}<a href="{{url.this}}?chatid=yes{%if requestGET.status%}&status={{requestGET.status}}{%endif%}"><i class="sf-paper-plane fc-blue" title='{%trans "Have chatid"%}'></i></a>{%else%}<a href="{{url.this}}?chatid=no{%if requestGET.status%}&status={{requestGET.status}}{%endif%}"><i class="sf-paper-plane fc-mute" title='{%trans "Have not chatid"%}'></i></a>{%endif%}
+
+          {%if value.android_uniquecode%}<a href="{{url.this}}?android_uniquecode=yes{%if requestGET.status%}&status={{requestGET.status}}{%endif%}"><i class="sf-android fc-blue" title='{%trans "Have android_uniquecode"%}'></i></a>{%else%}<a href="{{url.this}}?android_uniquecode=no{%if requestGET.status%}&status={{requestGET.status}}{%endif%}"><i class="sf-android fc-mute" title='{%trans "Have not android uniquecode"%}'></i></a>{%endif%}
+
           {%if value.email%}
-            <a href="{{url.this}}?email=yes">
+            <a href="{{url.this}}?email=yes{%if requestGET.status%}&status={{requestGET.status}}{%endif%}">
               <i class="sf-at fc-blue" title='{%trans "Have email"%}'></i>
             </a>
           {%else%}
-            <a href="{{url.this}}?email=no">
+            <a href="{{url.this}}?email=no{%if requestGET.status%}&status={{requestGET.status}}{%endif%}">
               <i class="sf-at fc-mute" title='{%trans "Have not email"%}'></i>
             </a>
           {%endif%}
@@ -152,7 +160,7 @@
           <a href="{{url.this}}?status={{value.status}}">{%set myStatus = value.status | capitalize %}{%trans myStatus%}</a>
         </td>
         <td class="s0 m0">
-          <a href="{{url.this}}?permission={{value.permission}}">{%set myPerm = value.permission | capitalize %}{%trans myPerm%}</a>
+          <a href="{{url.this}}?permission={{value.permission}}{%if requestGET.status%}&status={{requestGET.status}}{%endif%}">{%set myPerm = value.permission | capitalize %}{%trans myPerm%}</a>
         </td>
         <td class="s0 m0" title="{{value.datecreated | dt(true)}}"><small class="fc-mute">{%if value.datecreated%}{{value.datecreated | dt("human", 'year')}}{%else%}-{%endif%}</small></td>
         <td class="s0 m0" title="{{value.datemodified | dt(true)}}"><small class="fc-mute">{%if value.datemodified%}{{value.datemodified | dt("human", 'year')}}{%else%}-{%endif%}</small></td>
@@ -171,7 +179,7 @@
 {%block htmlFilter%}
 <p class="f fs14 msg info2">
   <span class="c">{{dataFilter | raw}}</span>
-  <a class="cauto" href="{{url.this}}">{%trans "Clear filters"%}</a>
+  <a class="cauto" href="{{url.this}}{%if requestGET.status%}?status={{requestGET.status}}{%endif%}">{%trans "Clear filters"%}</a>
 </p>
 {%endblock%}
 
@@ -179,7 +187,7 @@
 {%block htmlFilterNoResult%}
 <p class="f fs14 msg warn2">
   <span class="c">{%trans "Result not found!"%} {%trans "Search with new keywords."%}</span>
-  <a class="cauto" href="{{url.this}}">{%trans "Clear filters"%}</a>
+  <a class="cauto" href="{{url.this}}{%if requestGET.status%}?status={{requestGET.status}}{%endif%}">{%trans "Clear filters"%}</a>
 </p>
 {%endblock%}
 

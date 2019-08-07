@@ -12,6 +12,11 @@ class view
 		\dash\data::page_desc(\dash\data::page_desc(). ' '. T_('Also add or edit specefic user.'));
 		\dash\data::page_pictogram('users');
 
+		$allNeedSearch = \dash\request::get();
+		unset($allNeedSearch['page']);
+		unset($allNeedSearch['q']);
+		\dash\data::allNeedSearch($allNeedSearch);
+
 		$args =
 		[
 			'sort'  => \dash\request::get('sort'),

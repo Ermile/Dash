@@ -88,13 +88,13 @@ trait datalist
 
 		if(isset($_args['join_user_telegram']) && $_args['join_user_telegram'])
 		{
-			$_args['public_show_field'] = "users.*";
+			$_args['public_show_field'] = "users.*, user_telegram.chatid";
 			$_args['master_join'] = "INNER JOIN user_telegram ON user_telegram.user_id = users.id";
 		}
 
 		if(isset($_args['join_user_android']) && $_args['join_user_android'])
 		{
-			$_args['public_show_field'] = "users.*";
+			$_args['public_show_field'] = "users.*, user_android.id as `android_uniquecode`";
 			$_args['master_join'] = "INNER JOIN user_android ON user_android.user_id = users.id";
 		}
 
