@@ -128,6 +128,18 @@ class sms
 		// send sms
 		$api    = new \dash\utility\kavenegar_api($api_key, $_options['line']);
 		$result = $api->send($mobile, $message, $_options['type'], $_options['date'], $_options['LocalMessageid']);
+
+		// success result
+		// {
+		// 	"messageid": 753233381,
+		// 	"message": "sms text",
+		// 	"status": 5,
+		// 	"statustext": "ارسال به مخابرات",
+		// 	"sender": "10006660066600",
+		// 	"receptor": "09109610612",
+		// 	"date": 1565518264,
+		// 	"cost": 180
+		// }
 		return $result;
 
 	}
