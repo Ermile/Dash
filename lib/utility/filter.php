@@ -177,6 +177,29 @@ class filter
 		return $mymobile;
 	}
 
+
+	public static function ir_mobile($_number)
+	{
+		$_number = self::mobile($_number);
+		if(!$_number)
+		{
+			return $_number;
+		}
+
+		if(mb_strlen($_number) !== 12)
+		{
+			return false;
+		}
+
+		if(substr($_number, 0, 3) !== '989')
+		{
+			return false;
+		}
+
+		return $_number;
+	}
+
+
 	/**
 	 * filter birthdate value
 	 * @param  [str] $_date raw date for filtering in function
