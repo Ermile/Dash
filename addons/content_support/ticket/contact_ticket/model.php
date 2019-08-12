@@ -56,8 +56,22 @@ class model
 			return false;
 		}
 
+		$post_content = null;
+		$fn_args = func_get_args();
+		if(isset($fn_args[0]) && is_string($fn_args[0]) && $fn_args[0])
+		{
+			$post_content = $fn_args[0];
+		}
+
 		// get the content
-		$content = \dash\request::post("content");
+		if($post_content)
+		{
+			$content = $post_content;
+		}
+		else
+		{
+			$content = \dash\request::post("content");
+		}
 
 		// check content
 		if($content == '' || !trim($content))
