@@ -14,6 +14,14 @@ class enter
 
 		switch ($_module)
 		{
+			case 'enter_invalid_force_code':
+				if($count_try >= 1)
+				{
+					\dash\log::set('userBanedIn_'. $_module);
+					// ban user for 2 min
+					\dash\session::set('enter_baned_user', true, null, (60 * 2));
+				}
+				break;
 			case 'invalid_password':
 			case 'verify_invalid_code':
 			case 'diffrent_mobile':

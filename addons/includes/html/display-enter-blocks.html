@@ -73,6 +73,15 @@
 {%endblock%}
 
 
+
+{%block ecode_force%}
+   <div class='flex fix' id='ecode'>
+    <label for='code'>Code</label>
+    <input id='code' name="code" type='password' placeholder='{%trans "Verify Code"%}' autocomplete="off"  autofocus required>
+   </div>
+{%endblock%}
+
+
 {%block ecodeSend%}
    <div class='flex fix' id='ecodeSend'>
     <label for='code'>Code</label>

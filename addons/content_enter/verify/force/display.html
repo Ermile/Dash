@@ -1,0 +1,20 @@
+{%extends display.enter%}
+
+
+{%block contentForm%}
+{{block(mobile_username)}}
+{{block('ecode_force')}}
+{{block('ego')}}
+
+{%endblock%}
+
+
+
+{%block contentFooter%}
+   <footer class='f'>
+{%if startNewMobile%}
+	{{block('ereset')}}
+{%endif%}
+{{block('everifyback')}}
+   </footer>
+{%endblock%}
