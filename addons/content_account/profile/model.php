@@ -47,7 +47,7 @@ class model
 			'firstname'   => \dash\request::post('firstname'),
 			'lastname'    => \dash\request::post('lastname'),
 			'username'    => \dash\request::post('username'),
-			'title'       => \dash\request::post('title'),
+			// 'title'       => \dash\request::post('title'),
 			'bio'         => \dash\request::post('bio'),
 			'displayname' => \dash\request::post('displayname'),
 			// 'birthday'    => \dash\request::post('birthday'),
