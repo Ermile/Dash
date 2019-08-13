@@ -961,7 +961,7 @@ class enter
 			\dash\log::set('invalidCode');
 			self::try('verify_invalid_code');
 			\dash\code::sleep(3);
-			\dash\notif::error(T_("Invalid code, try again"), 'code');
+			\dash\notif::error(T_("Wrong code entered, Please enter the 5 digit code sent to your mobile phone"), 'code');
 			return false;
 		}
 
