@@ -1,0 +1,99 @@
+{%extends display.crmMain%}
+
+
+
+
+{%block pageSteps%}
+<div class="f">
+
+   <div class="c6">
+    <a class="dcard {%if url.child == 'add' %}active{%endif%}" href='{{url.this}}/add'>
+     <div class="statistic sm">
+      <div class="value"><i class="sf-plus-circle fc-green"></i></div>
+      <div class="label">{%trans "Plus charge account"%}</div>
+     </div>
+    </a>
+   </div>
+
+   <div class="c6">
+    <a class="dcard {%if url.child == 'minus' %}active{%endif%}" href='{{url.this}}/minus'>
+     <div class="statistic sm">
+      <div class="value"><i class="sf-minus-circle fc-red"></i></div>
+      <div class="label">{%trans "Minus charge account"%}</div>
+     </div>
+    </a>
+   </div>
+
+</div>
+{%endblock%}
+
+
+{%block ititle%}
+<div class="input">
+	<label for="title" >{%trans "Title"%}</label>
+	<input type="text" name="title"  id="title" placeholder='{%trans "Title"%} *' required >
+</div>
+{%endblock%}
+
+
+
+{%block itype%}
+<div class="input">
+	<label for="type" >{%trans "type"%}</label>
+	<select name="type"  id="type" class="select">
+		<option value="">{%trans "Please select one item"%}</option>
+		<option value="money">{%trans "Money"%}</option>
+		<option value="gift">{%trans "Gift"%}</option>
+		<option value="transfer">{%trans "Transfer"%}</option>
+		<option value="prize">{%trans "Prize"%}</option>
+	</select>
+</div>
+{%endblock%}
+
+
+{%block iunit%}
+<div class="input">
+	<label for="unit" >{%trans "Unit"%}</label>
+	<select name="unit"  id="unit" class="select">
+		<option value="">{%trans "Please select one item"%}</option>
+		<option value="toman" selected="">{%trans "Toman"%}</option>
+		<option value="dollar">{%trans "$"%}</option>
+	</select>
+</div>
+
+{%endblock%}
+
+{%block imobile%}
+<div class="input">
+	<label for="mobile" >{%trans "Mobile"%}</label>
+	<input type="text" name="mobile"  id="mobile" placeholder='{%trans "Mobile"%} *' required value="{{requestGET.mobile}}">
+</div>
+{%endblock%}
+
+
+
+
+{%block iamount %}
+<label for="amount">{%trans "Price"%} <small class="fc-red">* {%trans "Require"%}</small></label>
+<div class="input">
+  <input type="number" name="amount" id="amount" placeholder='{%trans "Price of transaction"%} | {%trans "Toman"%} * ' autofocus  required max='999999999' min="0" pattern=".{1,150}" title='{%trans "Enter a valid amount"%}' data-response-realtime>
+</div>
+{%if lang.current == 'fa'%}
+<div class="msg info2 txtB" data-response='amount' data-response-call='wordifyResponse'></div>
+{%endif%}
+{%endblock%}
+
+
+
+
+
+{%block idesc%}
+<div class="input">
+	<label for="desc" >{%trans "Description"%}</label>
+	<input type="text" name="desc"  id="desc" placeholder='{%trans "Description"%}'>
+</div>
+{%endblock%}
+
+{%block isubmit%}
+<button type="submit"  class="btn success mT15 block">{%trans "Add"%}</button>
+{%endblock%}

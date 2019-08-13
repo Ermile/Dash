@@ -1,5 +1,5 @@
 <?php
-namespace content_crm\transactions\add;
+namespace content_crm\transactions\minus;
 
 
 class model
@@ -20,8 +20,8 @@ class model
 		$title  = \dash\request::post('title');
 		$unit   = \dash\request::post('unit');
 		$mobile = \dash\request::post('mobile');
+		$minus  = \dash\request::post('amount');
 
-		$plus   = \dash\request::post('amount');
 		$desc   = \dash\request::post('desc');
 		$type   = \dash\request::post('type');
 
@@ -65,18 +65,13 @@ class model
 			return false;
 		}
 
-		if(!$plus)
+
+
+		if($minus && !is_numeric($minus))
 		{
-			\dash\notif::error(T_("Please fill the minus or plus field"));
+			\dash\notif::error(T_("Invalid minus field"));
 			return false;
 		}
-
-		if($plus && !is_numeric($plus))
-		{
-			\dash\notif::error(T_("Invalid plus field"));
-			return false;
-		}
-
 
 		$user_id = \dash\db\users::get_by_mobile(\dash\utility\filter::mobile($mobile));
 		if(isset($user_id['id']))
@@ -96,13 +91,14 @@ class model
 		}
 
 
+
 		$insert =
 		[
 			'caller'    => 'manually',
 			'title'     => $title,
 			'user_id'   => $user_id,
-			'plus'      => $plus,
-			'minus'     => null,
+			'plus'      => null,
+			'minus'     => $minus,
 			'payment'   => null,
 			'type'      => $type,
 			'unit'      => $unit,
@@ -116,7 +112,7 @@ class model
 
 		if(\dash\engine\process::status())
 		{
-			\dash\log::set('addTransactionManualy', ['title' => $title, 'plus' => $plus, 'user_id' => $user_id]);
+			\dash\log::set('MinusTransactionManualy', ['title' => $title,  'minus' => $minus, 'user_id' => $user_id]);
 			\dash\notif::ok(T_("Transaction inserted"));
 			\dash\redirect::to(\dash\url::here(). '/transactions');
 		}

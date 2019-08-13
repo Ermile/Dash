@@ -42,7 +42,8 @@
           {%endif%}
           <ul>
             {%if perm('cpTransactionAdd') %}
-              <li><a href="{{url.here}}/transactions/add">{% trans "Add new transaction" %} <i class='floatRa mRa10 fc-mute sf-plus'></i></a></li>
+              <li><a href="{{url.here}}/transactions/add">{% trans "Plus charge account" %} <i class='floatRa mRa10 fc-mute sf-plus-circle'></i></a></li>
+              <li><a href="{{url.here}}/transactions/minus">{% trans "Minus charge account" %} <i class='floatRa mRa10 fc-mute sf-minus-circle'></i></a></li>
             {%endif%}
           </ul>
       </li>

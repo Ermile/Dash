@@ -7,17 +7,17 @@
 <div class="f justify-center">
 
 	<div class="cbox justify-center c6">
-		<h2>{%trans "Plus charge account"%}</h2>
+		<h2>{%trans "Minus charge account"%}</h2>
+	 	<form method="post"  autocomplete="off">
 
-		 <form method="post"  autocomplete="off">
 			{{block('ititle')}}
 			{{block('itype')}}
 			{{block('iunit')}}
 			{{block('imobile')}}
 			{{block('iamount')}}
 			{{block('idesc')}}
-			<button type="submit"  class="btn success mT15 block">{%trans "Plus"%}</button>
 
+			<button type="submit"  class="btn danger mT15 block">{%trans "Minus"%}</button>
 		</form>
 
 	</div>
