@@ -7,13 +7,18 @@ class model
 
 	public static function post()
 	{
-		if(!\dash\request::post('ramz'))
+
+		$ramz = \dash\request::post('ramz');
+		if(isset($_POST['ramz']))
+		{
+			$ramz = $_POST['ramz'];
+		}
+
+		if(!$ramz)
 		{
 			\dash\notif::error(T_("Please enter your password"));
 			return false;
 		}
-
-		$ramz = \dash\request::post('ramz');
 
 		if(\dash\utility\enter::user_data('password'))
 		{

@@ -76,6 +76,11 @@ class model
 		}
 
 		$ramz = \dash\request::post('ramzNew');
+		if(isset($_POST['ramzNew']))
+		{
+			$ramz = $_POST['ramzNew'];
+		}
+
 		if(!$ramz || mb_strlen($ramz) < 5 || mb_strlen($ramz) > 50)
 		{
 			\dash\notif::error(T_("Pleaes set a valid password"), 'ramzNew');

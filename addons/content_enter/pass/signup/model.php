@@ -10,6 +10,12 @@ class model
 		{
 			$temp_ramz = \dash\request::post('ramzNew');
 
+			if(isset($_POST['ramzNew']))
+			{
+				$temp_ramz = $_POST['ramzNew'];
+			}
+
+
 			// check min and max of password and make error
 			if(!\dash\utility\enter::check_pass_syntax($temp_ramz))
 			{

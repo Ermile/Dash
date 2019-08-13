@@ -11,6 +11,11 @@ class model
 		{
 			$temp_ramz = \dash\request::post('ramzNew');
 
+			if(isset($_POST['ramzNew']))
+			{
+				$temp_ramz = $_POST['ramzNew'];
+			}
+
 			// check new password = old password
 			// needless to change password
 			if(\dash\utility\enter::user_data('password'))
