@@ -206,17 +206,21 @@ class view
 			}
 		}
 
-		if(!\dash\data::haveSubdomain())
+		if(!\dash\option::config('no_subdomain'))
 		{
-			if(\dash\data::subdomain())
+			if(!\dash\data::haveSubdomain())
 			{
-				$args['tickets.subdomain']    = \dash\url::subdomain();
-			}
-			else
-			{
-				$args['tickets.subdomain']    = null;
+				if(\dash\data::subdomain())
+				{
+					$args['tickets.subdomain']    = \dash\url::subdomain();
+				}
+				else
+				{
+					$args['tickets.subdomain']    = null;
+				}
 			}
 		}
+
 
 		if(\dash\data::accessMode() === 'all')
 		{
