@@ -607,6 +607,18 @@
     "require": []
   },
 
+  "cpTransaction" :
+  {
+    "title" : "cpTransaction",
+    "cat" : "Customer relationship management",
+    "require" : []
+  },
+  "cpTransactionAdd" :
+  {
+    "title" : "cpTransactionAdd",
+    "cat" : "Customer relationship management",
+    "require" : []
+  },
 
   "cpVisitorView":
   {
