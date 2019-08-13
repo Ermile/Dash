@@ -726,7 +726,7 @@ class posts
 		if(in_array($type, ['post', 'mag']))
 		{
 			$cat = \dash\app::request('cat');
-			if(!$cat)
+			if(!$cat && \dash\app::isset_request('cat'))
 			{
 				\dash\notif::warn(T_("Category setting for better access is suggested"));
 			}
