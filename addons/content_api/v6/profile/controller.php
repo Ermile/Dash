@@ -187,10 +187,6 @@ class controller
 			$post['birthday']    = \dash\request::post('birthday');
 		}
 
-		if(array_key_exists('fullname', $_POST))
-		{
-			$post['fullname']    = \dash\request::post('fullname');
-		}
 
 		if(array_key_exists('gender', $_POST))
 		{
