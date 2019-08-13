@@ -625,5 +625,12 @@
     "title": "cpVisitorView",
     "cat": "Visitors",
     "require": []
+  },
+  "EnterByAnother":
+  {
+    "title" : "EnterByAnother",
+    "cat" : "Enter",
+    "require" : []
   }
+
 }

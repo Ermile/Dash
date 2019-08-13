@@ -35,12 +35,12 @@ class view
 			$myMobile = \dash\utility\filter::mobile($get_mobile);
 		}
 
-		if($get_mobile && \dash\utility\filter::mobile($get_mobile) && \dash\permission::supervisor())
+		if($get_mobile && \dash\utility\filter::mobile($get_mobile) && \dash\permission::check('EnterByAnother'))
 		{
 			$myMobile = \dash\utility\filter::mobile($get_mobile);
 		}
 
-		if(\dash\request::get('userid') && \dash\permission::supervisor())
+		if(\dash\request::get('userid') && \dash\permission::check('EnterByAnother'))
 		{
 			$myMobile   = \dash\request::get('userid');
 			$get_mobile = true;
@@ -56,7 +56,7 @@ class view
 
 		if(!\dash\url::module())
 		{
-			if(\dash\permission::supervisor())
+			if(\dash\permission::check('EnterByAnother'))
 			{
 				if(!$get_mobile)
 				{

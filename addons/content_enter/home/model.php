@@ -6,7 +6,7 @@ class model
 {
 	public static function login_another_session()
 	{
-		if(\dash\permission::supervisor(false))
+		if(\dash\permission::check('EnterByAnother'))
 		{
 			$user_id = null;
 
@@ -25,7 +25,7 @@ class model
 				else
 				{
 					\dash\notif::error(T_("Mobile not found"), 'usernameormobile');
-					return false;
+					return true;
 				}
 			}
 
@@ -40,10 +40,54 @@ class model
 				$main_account = \dash\user::id();
 				$main_mobile  = \dash\user::login('mobile');
 
-				if(!\dash\db\users::get_by_id($user_id))
+				$user_detail = \dash\db\users::get_by_id($user_id);
+				if(!$user_detail)
 				{
 					\dash\notif::error(T_("User not found"));
-					return false;
+					return true;
+				}
+
+				if(\dash\user::detail('permission') === 'supervisor')
+				{
+					// nothing
+					// supervisor can login by anyone
+				}
+				else
+				{
+					if(isset($user_detail['permission']) && $user_detail['permission'])
+					{
+						if($user_detail['permission'] === 'admin')
+						{
+							if(\dash\user::detail('permission') === 'admin')
+							{
+								// no problem
+								// admin can login by another admin
+							}
+							else
+							{
+								// this user is not admin and try to login by admin!
+								\dash\notif::error(T_("Can not login by this user"));
+								return true;
+							}
+						}
+						elseif($user_detail['permission'] === 'supervisor')
+						{
+							// no user can login by supervisor
+							// just supervisor can login by another supervisor
+							\dash\notif::error(T_("Can not login by this user"));
+							return true;
+						}
+						else
+						{
+							// the user have permission
+							// but no problem to login by this user
+						}
+					}
+					else
+					{
+						// this user have no permission
+						// no problem to login by this user
+					}
 				}
 
 				// clean existing session
@@ -106,7 +150,7 @@ class model
 			\dash\session::set('count_try_to_login', 1, 'enter', 60 * 3);
 		}
 
-		$anotherPerm = \dash\permission::supervisor();
+		$anotherPerm = \dash\permission::check('EnterByAnother');
 		if($count >= 3 && !$anotherPerm)
 		{
 			\dash\log::set('try3>in60s');

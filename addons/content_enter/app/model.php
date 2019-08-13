@@ -34,7 +34,7 @@ class model
 			\dash\session::set('count_try_to_login_app', 1, 'enter', 60 * 3);
 		}
 
-		$anotherPerm = \dash\permission::supervisor();
+		$anotherPerm = \dash\permission::check('EnterByAnother');
 		if($count >= 3 && !$anotherPerm)
 		{
 			\dash\log::set('try3>in60sAppMode');
