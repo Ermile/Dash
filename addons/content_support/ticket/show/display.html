@@ -159,7 +159,7 @@
   </div>
 
 {%set myID = requestGET.id | coding('encode')%}
-{%set myTag = tags({"post_id" : myID ,  "format" : 'array', "type" : "support_tag", "related" : "comments"}) %}
+{%set myTag = tags({"post_id" : myID ,  "format" : 'array', "type" : "support_tag", "related" : "tickets"}) %}
 {%if myTag%}
   <div class="tagBox">
   {%for key, value in myTag%}
@@ -359,7 +359,7 @@
   <div class="tagDetector">
 
   {%set myID = requestGET.id | coding('encode')%}
-  {%set postTag = tags({"post_id" : myID , "title" : true, "format" : 'csv', "type" : "support_tag", "related" : "comments"}) %}
+  {%set postTag = tags({"post_id" : myID , "title" : true, "format" : 'csv', "type" : "support_tag", "related" : "tickets"}) %}
 
     <div class="input mB10 hide">
       <input type="text" class="input tagVals" name="tag" value="{{postTag}}" id="tagValues" placeholder='{%trans "Tag"%}'>

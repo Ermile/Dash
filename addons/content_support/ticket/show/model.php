@@ -72,7 +72,7 @@ class model
 
 		if(!empty($update_main))
 		{
-			$result = \dash\app\comment::edit($update_main, \dash\coding::encode($_id));
+			$result = \dash\app\ticket::edit($update_main, \dash\coding::encode($_id));
 		}
 
 		if($result)
@@ -107,7 +107,7 @@ class model
 		}
 
 		\dash\app::variable(['support_tag' => $_tag]);
-		\dash\app\posts::set_post_term($_id, 'support_tag', 'comments');
+		\dash\app\posts::set_post_term($_id, 'support_tag', 'tickets');
 		\dash\log::temp_set('ticket_ticketAddTag', ['code' => $_id, 'tag' => $_tag]);
 
 		if(\dash\engine\process::status())
@@ -174,7 +174,7 @@ class model
 			}
 		}
 
-		\dash\db\comments::update(['status' => $status], $_id);
+		\dash\db\tickets::update(['status' => $status], $_id);
 
 		switch ($status)
 		{
@@ -210,7 +210,7 @@ class model
 
 		$solved = $_solved ? 1 : null;
 
-		\dash\db\comments::update(['solved' => $solved], $_id);
+		\dash\db\tickets::update(['solved' => $solved], $_id);
 		if($solved)
 		{
 			\dash\log::temp_set('ticket_setSolvedTicket', ['code' => $_id]);
@@ -275,7 +275,7 @@ class model
 			$content = \dash\safe::safe($content);
 		}
 
-		$plus = \dash\db\comments::get_count(['type' => 'ticket', 'parent' => $_id]);
+		$plus = \dash\db\tickets::get_count(['type' => 'ticket', 'parent' => $_id]);
 
 		$ticket_type = 'ticket';
 
@@ -300,7 +300,7 @@ class model
 		}
 
 
-		// ready to insert comments
+		// ready to insert tickets
 		$args =
 		[
 			'author'  => \dash\user::detail('displayname'),
@@ -428,7 +428,7 @@ class model
 		{
 			if(!empty($update_main))
 			{
-				\dash\db\comments::update($update_main, $_id);
+				\dash\db\tickets::update($update_main, $_id);
 			}
 
 			\dash\notif::$notif_fn($msg);

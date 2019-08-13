@@ -1,5 +1,5 @@
 <?php
-namespace dash\db\comments;
+namespace dash\db\tickets;
 
 
 class report
@@ -13,15 +13,15 @@ class report
 		"
 			SELECT
 				COUNT(*) AS `count`,
-				DATE(comments.datecreated) AS `date`
+				DATE(tickets.datecreated) AS `date`
 			FROM
-				comments
+				tickets
 			WHERE
-				comments.type = 'ticket' AND
-				comments.datecreated <= '$start' AND
-				comments.datecreated >= '$end'
+				tickets.type = 'ticket' AND
+				tickets.datecreated <= '$start' AND
+				tickets.datecreated >= '$end'
 			GROUP BY
-				DATE(comments.datecreated)
+				DATE(tickets.datecreated)
 		";
 		$result = \dash\db::get($query);
 		return $result;
@@ -38,17 +38,17 @@ class report
 		"
 			SELECT
 				COUNT(*) AS `count`,
-				DATE(comments.datecreated) AS `date`
+				DATE(tickets.datecreated) AS `date`
 			FROM
-				comments
+				tickets
 			WHERE
-				comments.type = 'ticket' AND
-				comments.parent IS NULL AND
-				comments.datecreated <= '$start' AND
-				comments.datecreated >= '$end'
+				tickets.type = 'ticket' AND
+				tickets.parent IS NULL AND
+				tickets.datecreated <= '$start' AND
+				tickets.datecreated >= '$end'
 			GROUP BY
-				DATE(comments.datecreated)
-			ORDER BY DATE(comments.datecreated) ASC
+				DATE(tickets.datecreated)
+			ORDER BY DATE(tickets.datecreated) ASC
 		";
 		$result = \dash\db::get($query);
 		return $result;
@@ -63,16 +63,16 @@ class report
 		"
 			SELECT
 				COUNT(*) AS `count`,
-				DATE(comments.datecreated) AS `date`
+				DATE(tickets.datecreated) AS `date`
 			FROM
-				comments
+				tickets
 			WHERE
-				comments.type = 'ticket' AND
-				comments.datecreated <= '$start' AND
-				comments.datecreated >= '$end'
+				tickets.type = 'ticket' AND
+				tickets.datecreated <= '$start' AND
+				tickets.datecreated >= '$end'
 			GROUP BY
-				DATE(comments.datecreated)
-			ORDER BY DATE(comments.datecreated) ASC
+				DATE(tickets.datecreated)
+			ORDER BY DATE(tickets.datecreated) ASC
 		";
 		$result = \dash\db::get($query);
 		return $result;
@@ -86,18 +86,18 @@ class report
 		$query =
 		"
 			SELECT
-				(AVG(comments.answertime) / 60) AS `count`,
-				DATE(comments.datecreated) AS `date`
+				(AVG(tickets.answertime) / 60) AS `count`,
+				DATE(tickets.datecreated) AS `date`
 			FROM
-				comments
+				tickets
 			WHERE
-				comments.type = 'ticket' AND
-				comments.parent IS NULL AND
-				comments.datecreated <= '$start' AND
-				comments.datecreated >= '$end'
+				tickets.type = 'ticket' AND
+				tickets.parent IS NULL AND
+				tickets.datecreated <= '$start' AND
+				tickets.datecreated >= '$end'
 			GROUP BY
-				DATE(comments.datecreated)
-			ORDER BY DATE(comments.datecreated) ASC
+				DATE(tickets.datecreated)
+			ORDER BY DATE(tickets.datecreated) ASC
 		";
 		$result = \dash\db::get($query);
 

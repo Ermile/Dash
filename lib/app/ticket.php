@@ -18,12 +18,12 @@ class ticket
 
 	public static $public_show_field =
 				"
-					comments.*,
+					tickets.*,
 					users.avatar,
 					users.firstname,
 					users.displayname
 				 ";
-	public static $master_join = "LEFT JOIN users ON users.id = comments.user_id ";
+	public static $master_join = "LEFT JOIN users ON users.id = tickets.user_id ";
 
 
 	public static function lates_ticket($_args = [])
@@ -33,11 +33,11 @@ class ticket
 			$_args['limit'] = 5;
 		}
 
-		$_args['order_raw'] = 'comments.id DESC';
+		$_args['order_raw'] = 'tickets.id DESC';
 		$_args['pagenation'] = false;
 		$_args['parent'] = null;
 
-		$list = \dash\db\comments::search(null, $_args);
+		$list = \dash\db\tickets::search(null, $_args);
 
 		if(is_array($list))
 		{
@@ -68,7 +68,7 @@ class ticket
 		}
 
 		$ids         = implode(',', $ids);
-		$user_detail = \dash\db\comments::get_user_in_ticket($ids);
+		$user_detail = \dash\db\tickets::get_user_in_ticket($ids);
 
 		if(is_array($user_detail))
 		{
@@ -116,15 +116,15 @@ class ticket
 		$result = [];
 		if($_type === 'ticket')
 		{
-			$count = \dash\db\comments\report::count_ticket();
+			$count = \dash\db\tickets\report::count_ticket();
 		}
 		elseif($_type === 'message')
 		{
-			$count = \dash\db\comments\report::count_message();
+			$count = \dash\db\tickets\report::count_message();
 		}
 		else
 		{
-			$count = \dash\db\comments\report::avg_time();
+			$count = \dash\db\tickets\report::avg_time();
 		}
 
 		$count = array_combine(array_column($count, 'date'), array_column($count, 'count'));
@@ -221,7 +221,7 @@ class ticket
 
 	public static function last_month_count()
 	{
-		$result = \dash\db\comments\report::last_month_count();
+		$result = \dash\db\tickets\report::last_month_count();
 
 		if(!is_array($result))
 		{
@@ -251,7 +251,7 @@ class ticket
 
 		$_options['master_join'] = self::$master_join;
 
-		$get = \dash\db\comments::get(['comments.id' => $_id, 'limit' => 1], $_options);
+		$get = \dash\db\tickets::get(['tickets.id' => $_id, 'limit' => 1], $_options);
 
 		if(is_array($get))
 		{
@@ -300,7 +300,7 @@ class ticket
 				$check_duplicate['parent'] = $args['parent'];
 			}
 
-			$check_duplicate = \dash\db\comments::get($check_duplicate);
+			$check_duplicate = \dash\db\tickets::get($check_duplicate);
 
 			if(isset($check_duplicate['id']))
 			{
@@ -321,9 +321,9 @@ class ticket
 			$args['subdomain'] = \dash\url::subdomain();
 		}
 
-		$comment_id = \dash\db\comments::insert($args);
+		$ticket_id = \dash\db\tickets::insert($args);
 
-		if(!$comment_id)
+		if(!$ticket_id)
 		{
 			\dash\notif::error(T_("No way to add new data"));
 			return false;
@@ -332,8 +332,8 @@ class ticket
 		// $replace =
 		// [
 		// 	'displayname'   => \dash\user::detail('displayname'),
-		// 	'link'          => \dash\url::this(). '/show?id='. $comment_id,
-		// 	'code'          => $comment_id,
+		// 	'link'          => \dash\url::this(). '/show?id='. $ticket_id,
+		// 	'code'          => $ticket_id,
 		// 	'ticketContent' => strip_tags($args['content']),
 		// 	'ticketTitle'   => isset($args['title']) ? $args['title'] : null,
 		// ];
@@ -352,9 +352,9 @@ class ticket
 
 
 		$return            = [];
-		$return['id']      = $comment_id;
+		$return['id']      = $ticket_id;
 		$return['date']    = $dateNow;
-		$return['code']    = md5((string) $comment_id. '^_^-*_*'. $dateNow);
+		$return['code']    = md5((string) $ticket_id. '^_^-*_*'. $dateNow);
 		$return['codeurl'] = \dash\url::kingdom(). '/support/ticket/show?id='. $return['id']. '&guest='. $return['code'];
 		return $return;
 	}
@@ -373,7 +373,7 @@ class ticket
 
 		if(!$_id || !is_numeric($_id))
 		{
-			\dash\notif::error(T_("Can not access to edit comment"));
+			\dash\notif::error(T_("Can not access to edit ticket"));
 			return false;
 		}
 
@@ -403,7 +403,7 @@ class ticket
 			\dash\permission::check('cpCommentsDelete');
 		}
 		\dash\log::set('editComment', ['code' => $_id, 'datalink' => \dash\coding::encode($_id)]);
-		return \dash\db\comments::update($args, $_id);
+		return \dash\db\tickets::update($args, $_id);
 	}
 
 
@@ -430,7 +430,7 @@ class ticket
 			$_args['sort'] = null;
 		}
 
-		$result            = \dash\db\comments::search($_string, $_args);
+		$result            = \dash\db\tickets::search($_string, $_args);
 		$temp              = [];
 
 		foreach ($result as $key => $value)

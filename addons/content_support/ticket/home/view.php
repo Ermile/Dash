@@ -41,13 +41,13 @@ class view
 
 				$args['sort']            = 'datecreated';
 				$args['order']           = 'desc';
-				$args['comments.type']   = 'ticket';
-				$args['comments.id']     = ["IN", "($guest_ticket_id)"];
+				$args['tickets.type']   = 'ticket';
+				$args['tickets.id']     = ["IN", "($guest_ticket_id)"];
 
 				$args['limit']           = 10;
 				$args['join_user']       = true;
 				$args['get_tag']         = true;
-				$args['comments.status'] = ["NOT IN", "('deleted')"];
+				$args['tickets.status'] = ["NOT IN", "('deleted')"];
 
 				self::dataList($args);
 
@@ -63,11 +63,11 @@ class view
 
 
 		// 'approved','awaiting','unapproved','spam','deleted','filter','close','answered'
-		// $args['order_raw']       = ' FIELD(comments.status, "answered", "awaiting") DESC, comments.status, IF(comments.datemodified is null, comments.datecreated, comments.datemodified) DESC';
+		// $args['order_raw']       = ' FIELD(tickets.status, "answered", "awaiting") DESC, tickets.status, IF(tickets.datemodified is null, tickets.datecreated, tickets.datemodified) DESC';
 		$args['sort']            = 'id';
 		$args['order']           = 'desc';
-		$args['comments.type']   = 'ticket';
-		$args['comments.parent'] = null;
+		$args['tickets.type']   = 'ticket';
+		$args['tickets.parent'] = null;
 
 		$args['limit']           = 10;
 		$args['join_user']       = true;
@@ -83,64 +83,64 @@ class view
 			{
 				case 'open':
 					\dash\data::page_title(T_("Open tickets"));
-					$args['comments.status'] = ["IN", "('awaiting', 'answered')"];
+					$args['tickets.status'] = ["IN", "('awaiting', 'answered')"];
 					break;
 
 				case 'awaiting':
 					\dash\data::page_title(T_("Tickets waiting for the answer"));
-					$args['comments.status'] = "awaiting";
+					$args['tickets.status'] = "awaiting";
 					break;
 
 				case 'unsolved':
 					\dash\data::page_title(T_("Un solved ticket"));
-					$args['1.1'] = ["= 1.1", " AND (comments.solved = b'0' OR comments.solved IS NULL ) "];
-					$args['comments.status'] = ["NOT IN", "('deleted', 'spam')"];
+					$args['1.1'] = ["= 1.1", " AND (tickets.solved = b'0' OR tickets.solved IS NULL ) "];
+					$args['tickets.status'] = ["NOT IN", "('deleted', 'spam')"];
 					break;
 
 				case 'solved':
 					\dash\data::page_title(T_("Solved ticket"));
-					$args['comments.solved'] = 1;
-					$args['comments.status'] = ["NOT IN", "('deleted', 'spam')"];
+					$args['tickets.solved'] = 1;
+					$args['tickets.status'] = ["NOT IN", "('deleted', 'spam')"];
 					break;
 
 				case 'answered':
 					\dash\data::page_title(T_("Answered tickets"));
-					$args['comments.status'] = "answered";
+					$args['tickets.status'] = "answered";
 					break;
 
 				case 'spam':
 					\dash\data::page_title(T_("Spam tickets"));
-					$args['comments.status'] = "spam";
+					$args['tickets.status'] = "spam";
 					break;
 
 				case 'close':
 				case 'archived':
 					\dash\data::page_title(T_("Archived tickets"));
-					$args['comments.status'] = "close";
+					$args['tickets.status'] = "close";
 					break;
 
 				case 'deleted':
 					\dash\data::page_title(T_("Deleted tickets"));
-					$args['comments.status'] = "deleted";
+					$args['tickets.status'] = "deleted";
 					break;
 
 				case 'all':
 					\dash\data::page_title(T_("All tickets"));
-					$args['comments.status'] = ["NOT IN", "('deleted', 'spam')"];
+					$args['tickets.status'] = ["NOT IN", "('deleted', 'spam')"];
 					break;
 
 				default:
-					$args['order_raw']       = ' IF(comments.datemodified is null, comments.datecreated, comments.datemodified) DESC';
+					$args['order_raw']       = ' IF(tickets.datemodified is null, tickets.datecreated, tickets.datemodified) DESC';
 					unset($args['sort']);
-					// $args['comments.status'] = ["NOT IN", "('deleted')"];
+					// $args['tickets.status'] = ["NOT IN", "('deleted')"];
 					break;
 			}
 		}
 		else
 		{
-			$args['order_raw']       = ' IF(comments.datemodified is null, comments.datecreated, comments.datemodified) DESC';
+			$args['order_raw']       = ' IF(tickets.datemodified is null, tickets.datecreated, tickets.datemodified) DESC';
 			unset($args['sort']);
-			$args['comments.status'] = ["NOT IN", "('deleted', 'spam')"];
+			$args['tickets.status'] = ["NOT IN", "('deleted', 'spam')"];
 		}
 
 		$user = \dash\request::get('user');
@@ -150,7 +150,7 @@ class view
 			$user = \dash\coding::decode($user);
 			if($user && \dash\permission::check('supportTicketManage'))
 			{
-				$args['comments.user_id'] = $user;
+				$args['tickets.user_id'] = $user;
 			}
 		}
 
@@ -162,7 +162,7 @@ class view
 		{
 			if($subdomain && \dash\permission::check('supportTicketManageSubdomain'))
 			{
-				$args['comments.subdomain'] = $subdomain;
+				$args['tickets.subdomain'] = $subdomain;
 			}
 		}
 
@@ -194,15 +194,15 @@ class view
 		$args               = [];
 		$args_tag           = [];
 
-		$args['comments.type']   = 'ticket';
-		$args['comments.parent'] = null;
+		$args['tickets.type']   = 'ticket';
+		$args['tickets.parent'] = null;
 
 		if(\dash\request::get('user'))
 		{
 			$user = \dash\coding::decode(\dash\request::get('user'));
 			if($user && \dash\permission::check('supportTicketManage'))
 			{
-				$args['comments.user_id'] = $user;
+				$args['tickets.user_id'] = $user;
 			}
 		}
 
@@ -210,17 +210,17 @@ class view
 		{
 			if(\dash\data::subdomain())
 			{
-				$args['comments.subdomain']    = \dash\url::subdomain();
+				$args['tickets.subdomain']    = \dash\url::subdomain();
 			}
 			else
 			{
-				$args['comments.subdomain']    = null;
+				$args['tickets.subdomain']    = null;
 			}
 		}
 
 		if(\dash\data::accessMode() === 'all')
 		{
-			unset($args['comments.subdomain']);
+			unset($args['tickets.subdomain']);
 		}
 
 		$result               = [];
@@ -236,46 +236,46 @@ class view
 			return $get_cach;
 		}
 
-		$args['comments.status'] = ["NOT IN ", "('deleted' ,'spam')"];
+		$args['tickets.status'] = ["NOT IN ", "('deleted' ,'spam')"];
 		if(\dash\data::accessMode() === 'mine')
 		{
-			$args['comments.user_id'] = \dash\user::id();
-			$result['all']   = $result['mine']  = \dash\db\comments::get_count(array_merge($args,[]));
+			$args['tickets.user_id'] = \dash\user::id();
+			$result['all']   = $result['mine']  = \dash\db\tickets::get_count(array_merge($args,[]));
 		}
 		else
 		{
-			$result['all']      = \dash\db\comments::get_count(array_merge($args, []));
+			$result['all']      = \dash\db\tickets::get_count(array_merge($args, []));
 		}
-		// unset($args['comments.status']);
+		// unset($args['tickets.status']);
 
-		$result['unsolved']   = \dash\db\comments::get_count(array_merge($args,['1.1' => ["= 1.1", " AND (comments.solved = b'0' OR comments.solved IS NULL ) "]]));
+		$result['unsolved']   = \dash\db\tickets::get_count(array_merge($args,['1.1' => ["= 1.1", " AND (tickets.solved = b'0' OR tickets.solved IS NULL ) "]]));
 
-		$result['solved']   = \dash\db\comments::get_count(array_merge($args,['solved' => 1]));
+		$result['solved']   = \dash\db\tickets::get_count(array_merge($args,['solved' => 1]));
 
-		$result['answered'] = \dash\db\comments::get_count(array_merge($args,['comments.status' => 'answered']));
-		$result['awaiting'] = \dash\db\comments::get_count(array_merge($args, ['comments.status' => 'awaiting']));
+		$result['answered'] = \dash\db\tickets::get_count(array_merge($args,['tickets.status' => 'answered']));
+		$result['awaiting'] = \dash\db\tickets::get_count(array_merge($args, ['tickets.status' => 'awaiting']));
 		$result['open']     = intval($result['answered']) + intval($result['awaiting']);
 
-		$result['archived'] = \dash\db\comments::get_count(array_merge($args,['comments.status' => 'close']));
-		$result['trash']    = \dash\db\comments::get_count(array_merge($args,['comments.status' => 'deleted']));
-		$result['spam']    = \dash\db\comments::get_count(array_merge($args,['comments.status' => 'spam']));
+		$result['archived'] = \dash\db\tickets::get_count(array_merge($args,['tickets.status' => 'close']));
+		$result['trash']    = \dash\db\tickets::get_count(array_merge($args,['tickets.status' => 'deleted']));
+		$result['spam']    = \dash\db\tickets::get_count(array_merge($args,['tickets.status' => 'spam']));
 
 		$args_tag = $args;
 		if($_all)
 		{
 
-			unset($args['comments.parent']);
+			unset($args['tickets.parent']);
 
-			$result['message']       = \dash\db\comments::get_count($args);
-			$args['comments.status'] = ["NOT IN ", "('deleted', 'spam')"];
-			$args['comments.status'] = 'close';
-			$args['comments.parent'] = null;
-			$result['avgfirst']      = \dash\db\comments::ticket_avg_first($args);
-			$result['avgarchive']    = \dash\db\comments::ticket_avg_archive($args);
+			$result['message']       = \dash\db\tickets::get_count($args);
+			$args['tickets.status'] = ["NOT IN ", "('deleted', 'spam')"];
+			$args['tickets.status'] = 'close';
+			$args['tickets.parent'] = null;
+			$result['avgfirst']      = \dash\db\tickets::ticket_avg_first($args);
+			$result['avgarchive']    = \dash\db\tickets::ticket_avg_archive($args);
 
 		}
 
-		$tags = \dash\db\comments::ticket_tag($args_tag);
+		$tags = \dash\db\tickets::ticket_tag($args_tag);
 		$result['tags'] = array_map(['\dash\app\term', 'ready'], $tags);
 
 		// remove all old session sidebar to create new
@@ -299,7 +299,7 @@ class view
 		switch (\dash\data::accessMode())
 		{
 			case 'mine':
-				$args['comments.user_id'] = \dash\user::id();
+				$args['tickets.user_id'] = \dash\user::id();
 				break;
 
 			case 'all':
@@ -315,11 +315,11 @@ class view
 
 					if(\dash\url::subdomain())
 					{
-						$args['comments.subdomain']    = \dash\url::subdomain();
+						$args['tickets.subdomain']    = \dash\url::subdomain();
 					}
 					else
 					{
-						$args['comments.subdomain']    = null;
+						$args['tickets.subdomain']    = null;
 					}
 				}
 				break;

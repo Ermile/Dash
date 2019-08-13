@@ -18,17 +18,17 @@ class view
 
 		if(\dash\permission::check('supportTicketAddNote'))
 		{
-			$args['comments.type']   = ["IN", "('ticket', 'ticket_note')"];
+			$args['tickets.type']   = ["IN", "('ticket', 'ticket_note')"];
 		}
 		else
 		{
-			$args['comments.type']   = 'ticket';
+			$args['tickets.type']   = 'ticket';
 		}
 
 		$args['limit']           = 50;
 		$args['join_user']       = true;
 		$args['get_tag']         = true;
-		$args['comments.status'] = ["NOT IN", "('deleted')"];
+		$args['tickets.status'] = ["NOT IN", "('deleted')"];
 
 		\content_support\ticket\home\view::dataList($args);
 

@@ -14,7 +14,7 @@ class model
 		if(\dash\permission::supervisor() && \dash\request::post('removeMessage'))
 		{
 			\dash\log::set('supportMessageDELETED', ['code' => \dash\request::post('parent'), 'message_id' => \dash\request::get('id')]);
-			\dash\db\comments::hard_delete(\dash\request::get('id'));
+			\dash\db\tickets::hard_delete(\dash\request::get('id'));
 			if(\dash\request::post('parent'))
 			{
 				\dash\redirect::to(\dash\url::here().'/ticket/show?id='. \dash\request::post('parent'));
@@ -25,7 +25,7 @@ class model
 			}
 		}
 
-		// ready to insert comments
+		// ready to insert tickets
 		$content = \dash\request::post('content') ? $_POST['content'] : null;
 		if(!trim($content))
 		{
@@ -40,7 +40,7 @@ class model
 
 		\content_support\message\edit\view::config();
 
-		\dash\db\comments::update($args, \dash\request::get('id'));
+		\dash\db\tickets::update($args, \dash\request::get('id'));
 
 		\dash\log::set('supportMessageEdit', ['code' => \dash\request::get('id')]);
 

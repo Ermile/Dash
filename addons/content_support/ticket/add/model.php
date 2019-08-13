@@ -26,7 +26,7 @@ class model
 
 	public static function add_new($_via, $_content, $_file = null, $_title = null)
 	{
-		// ready to insert comments
+		// ready to insert tickets
 		$args =
 		[
 			'title'   => $_title,
@@ -40,7 +40,7 @@ class model
 			'user_id' => \dash\user::id(),
 		];
 
-		// insert comments
+		// insert tickets
 		$result = \dash\app\ticket::add($args);
 
 		if(isset($result['id']))
@@ -116,7 +116,7 @@ class model
 			$title = substr($title, 0, 20);
 		}
 
-		// insert comments
+		// insert tickets
 		$result = self::add_new('site', $content, $file, $title);
 
 		if(isset($result['id']))
