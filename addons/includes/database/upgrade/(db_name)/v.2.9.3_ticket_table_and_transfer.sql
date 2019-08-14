@@ -57,3 +57,6 @@ UPDATE termusages SET termusages.related = 'tickets' WHERE termusages.related = 
 
 
 INSERT INTO tickets SELECT * FROM comments WHERE comments.type IN('ticket', 'ticket_note');
+
+
+ALTER TABLE `tickets` ADD `see` bit(1) NULL DEFAULT NULL;

@@ -218,10 +218,12 @@ class view
 
 		$end_message = end($_dataTable);
 
+
 		if(!isset($end_message['user_id']) || !isset($end_message['type']) || !isset($end_message['datecreated']))
 		{
 			return;
 		}
+
 		$end_message['user_id'] = \dash\coding::decode($end_message['user_id']);
 
 		if(intval($end_message['user_id']) === intval(\dash\user::id()))
@@ -229,21 +231,31 @@ class view
 			return;
 		}
 
-		$get_log =
-		[
-			'caller'      => 'ticket_seeTicket',
-			'code'        => $_id,
-			// 'to'       => \dash\user::id(),
-			'datecreated' => [">=", "'$end_message[datecreated]'"],
-			'limit'       => 1,
-		];
-
-		$get_log = \dash\db\logs::get($get_log);
-
-		if(!$get_log)
+		// this message seen before
+		if(isset($end_message['see']) && $end_message['see'])
 		{
-			\dash\log::set('ticket_seeTicket',  ['code' => $_id]);
+			return;
 		}
+
+		\dash\db\tickets::update(['see' => 1], $end_message['id']);
+
+		\dash\log::set('ticket_seeTicket',  ['code' => $_id]);
+
+		// $get_log =
+		// [
+		// 	'caller'      => 'ticket_seeTicket',
+		// 	'code'        => $_id,
+		// 	// 'to'       => \dash\user::id(),
+		// 	'datecreated' => [">=", "'$end_message[datecreated]'"],
+		// 	'limit'       => 1,
+		// ];
+
+		// $get_log = \dash\db\logs::get($get_log);
+
+		// if(!$get_log)
+		// {
+		// 	\dash\log::set('ticket_seeTicket',  ['code' => $_id]);
+		// }
 
 	}
 
