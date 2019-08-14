@@ -46,14 +46,14 @@
       <td class="collapsing fs08 txtRa s0">
         <a href="{{url.here}}/ticket?user={{value.user_id}}{{accessGetAnd}}">
         <span class="txtB s0">{{value.displayname}}</span>
-        <img src="{{value.avatar}}" class="avatar mLa10" alt="{{value.displayname}}">
+        <img src="{{value.avatar}}" class="avatar mLa10" alt="{{value.displayname}}" {%if value.displayname %} title="{{value.displayname}}" {%endif%}>
         </a>
       </td>
 {%endif%}
 
-    <td class="collapsing fs08 s0" title='{%trans "Active in this ticket"%}'>
+    <td class="collapsing fs08 s0" title2='{%trans "Active in this ticket"%}'>
       {%for mykey, myvalue in value.user_in_ticket_detail%}
-          <img src="{{myvalue.avatar}}" class="avatar mRa5" alt="{{myvalue.displayname}}">
+          <img src="{{myvalue.avatar}}" class="avatar mRa5" alt="{{myvalue.displayname}}" {%if myvalue.displayname %} title="{{myvalue.displayname}}" {%endif%}>
         {%endfor%}
       </td>
     </tr>
