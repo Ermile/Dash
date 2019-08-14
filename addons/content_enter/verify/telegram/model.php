@@ -50,7 +50,8 @@ class model
 		$code = \dash\utility\enter::get_session('verification_code');
 		// make text
 		$text = '';
-		$text .= T_("Your login code is :code", ['code' => \dash\utility\human::number($code)]);
+		// $text .= T_("Your login code is :code", ['code' => \dash\utility\human::number($code)]);
+		$text .= T_("Your login code is :code", ['code' => '<code>'. $code. '</code>']);
 		$text .= "\n\n". T_("This code can be used to log in to your account. Do not give it to anyone!");
 		$text .= "\n" . T_("If you didn't request this code, ignore this message.");
 
