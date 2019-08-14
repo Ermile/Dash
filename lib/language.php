@@ -22,7 +22,15 @@ class language
 
 	public static function primary()
 	{
+		// for ir domain default lang is fa
+		if(\dash\url::tld() === 'ir')
+		{
+			return 'fa';
+		}
+
+		// get default lang
 		$default = \dash\option::language('default');
+		// if default is not exist, set en as default
 		if(!$default)
 		{
 			$default = 'en';

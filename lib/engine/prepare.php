@@ -391,7 +391,7 @@ class prepare
 			switch (\dash\url::tld())
 			{
 				case 'ir':
-					$target_host .= '/fa';
+					// $target_host .= '/fa';
 					break;
 
 				default:
