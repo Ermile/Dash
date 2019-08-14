@@ -97,7 +97,8 @@ class content
 		}
 		else
 		{
-			self::$addr = root. $_name;
+			// fix addr of enterprise mode
+			self::$addr = root. str_replace('\\', '/', $_name);
 		}
 		self::$addr = rtrim(self::$addr,'/').'/';
 
