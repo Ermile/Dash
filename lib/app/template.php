@@ -188,8 +188,12 @@ class template
 		{
 			self::$display_name	= $myurl['table'].self::$file_ext;
 		}
-
 		// elseif default template exist show it else use homepage!
+		elseif( is_file($contentAddr. 'template/default'. self::$file_ext) )
+		{
+			self::$display_name	= 'default'. self::$file_ext;
+		}
+		// below line is depreacted and remove on next release!
 		elseif( is_file($contentAddr. 'template/dafault'. self::$file_ext) )
 		{
 			self::$display_name	= 'dafault'. self::$file_ext;
