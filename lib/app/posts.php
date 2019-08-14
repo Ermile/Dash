@@ -1002,7 +1002,7 @@ class posts
 			return false;
 		}
 
-		if(file_exists(root. "/content/template/static/$url.html"))
+		if(file_exists(\dash\engine\content::get_addr(). "template/static/$url.html"))
 		{
 			return false;
 		}
