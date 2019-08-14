@@ -412,16 +412,16 @@
 
 {%if tgBot%}
       <div class="switch1">
-       <input type="checkbox" disabled id="notifTg" {%if uaseTelegram%}checked{%endif%}>
+       <input type="checkbox" disabled id="notifTg" {%if uaseTelegram.username%}checked{%endif%}>
        <label for="notifTg"></label>
        <label for="notifTg">{%trans "Telegram"%}</label>
-  {%if uaseTelegram%}
+  {%if uaseTelegram.username%}
        <label class="floatRa mT10 ltr"><a href="https://t.me/{{uaseTelegram.username}}" target="_blank">@{{uaseTelegram.username[:15]}}</a></label>
   {%else%}
        <label class="floatRa mT10 ltr"><a href="https://t.me/{{tgBot}}?start=sync" target="_blank">@{{tgBot}}</a></label>
   {%endif%}
       </div>
-  {%if not uaseTelegram%}
+  {%if not uaseTelegram.username%}
 
       <p class="msg pA5-f info2 fs08">{%trans "Do you know you can connect your account with our Telegram bot"%} <a href="https://t.me/{{tgBot}}?start=sync" target="_blank">@{{tgBot}}</a>.<br>{%trans "Just need to start bot in Telegram and sync your account via /sync."%}</p>
   {%endif%}
