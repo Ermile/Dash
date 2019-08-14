@@ -17,7 +17,7 @@
 
       {{block("iDatetime")}}
 {%if masterTicketDetail.status == 'awaiting' or masterTicketDetail.status == 'answered'%}
-  {%if isMyTicket or perm('supportTicketClose')%}
+  {%if perm('supportTicketClose')%}
       <div class="fs08">
         <p>{%trans "If your problem is solved or do not need to track, please close this ticket by press below bottom."%} {%trans "You can open it anytime you need."%}</p>
       </div>
@@ -32,7 +32,7 @@
       </form>
   {%endif%}
 {%elseif masterTicketDetail.status == 'close'%}
-  {%if isMyTicket or perm('supportTicketDelete')%}
+  {%if perm('supportTicketDelete')%}
       <div class="fs08">
         <p>{%trans "This ticket is closed."%} {%trans "You can open it anytime you need."%} {%trans "Also you can delete it if you do not need it."%}</p>
       </div>
@@ -44,7 +44,7 @@
       </form>
   {%endif%}
 {%elseif masterTicketDetail.status == 'deleted'%}
-  {%if isMyTicket or perm('supportTicketReOpen')%}
+  {%if perm('supportTicketReOpen')%}
       <div class="fs08">
         <p>{%trans "This is deleted ticket."%} {%trans "You can change it to close condition if need to save it in history!"%}</p>
       </div>
