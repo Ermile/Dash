@@ -3,11 +3,11 @@ namespace dash\app;
 
 class template
 {
-	public static $display_name     = null;
+	public static $display_name    = null;
 	public static $finded_template = null;
-	public static $datarow          = null;
-	public static $file_ext         = '.html';
-	public static $display_prefix   = 'content\template\\';
+	public static $datarow         = null;
+	public static $file_ext        = '.html';
+	public static $display_prefix  = true;
 
 
 	public static function find()
@@ -164,8 +164,8 @@ class template
 		// elseif template type with name of table exist in module folder then show it
 		elseif( is_file($contentAddr. $type.'/'.$table.self::$file_ext) )
 		{
-			self::$display_name = $type.'/'.$table.self::$file_ext;
-			self::$display_prefix     = 'content\\';
+			self::$display_name   = $type.'/'.$table.self::$file_ext;
+			self::$display_prefix = null;
 		}
 		// elseif template type with name of table exist show it
 		elseif( is_file($contentAddr. 'template/'.$type.'-'.$table.self::$file_ext) )
@@ -347,8 +347,16 @@ class template
 
 	private static function checkLangTemplate()
 	{
-		self::$display_name    = self::$display_prefix. self::$display_name;
-		$current_lang          = \dash\language::current('name');
+		if(self::$display_prefix === true)
+		{
+			self::$display_name = \dash\engine\content::get(). '\template\\'. self::$display_name;
+		}
+		else if(self::$display_prefix === null)
+		{
+			self::$display_name = \dash\engine\content::get(). '\\'. self::$display_name;
+		}
+
+		$current_lang = \dash\language::current('name');
 
 		$current_lang_template = substr(self::$display_name, 0, -(strlen(self::$file_ext)));
 		$current_lang_template .= '-'.$current_lang . self::$file_ext;
@@ -360,7 +368,6 @@ class template
 		{
 			self::$display_name	= $current_lang_template;
 		}
-
 	}
 
 
