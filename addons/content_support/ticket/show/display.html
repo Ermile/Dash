@@ -185,7 +185,7 @@
 
 {%set lastRecordVisitor = false%}
 
-  <table class="tbl1 v5">
+  <table class="tbl1 v5 responsive">
     <tbody>
 {%for xdate, xlist in superDataTable%}
 
@@ -283,7 +283,7 @@
 
 {%else%}
 
-  <table class="tbl1 v5">
+  <table class="tbl1 v5 responsive">
     <tbody>
 {%for key, value in dataTable%}
       <tr class="{{value.rowColor}} {%if value.type == 'ticket_note'%} disabled {%endif%}" id='msg{{value.id}}'>
