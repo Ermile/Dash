@@ -198,20 +198,8 @@ class template
 		// then if template for current lang is exist, set it
 		if(self::$display_name)
 		{
+			self::checkLangTemplate();
 
-			self::$display_name    = self::$display_prefix. self::$display_name;
-			$current_lang          = \dash\language::current('name');
-
-			$current_lang_template = substr(self::$display_name, 0, -(strlen(self::$file_ext)));
-			$current_lang_template .= '-'.$current_lang . self::$file_ext;
-
-			$current_lang_template = str_replace("\\", DIRECTORY_SEPARATOR, $current_lang_template);
-			$current_lang_template = str_replace("/", DIRECTORY_SEPARATOR, $current_lang_template);
-
-			if(is_file(root.$current_lang_template))
-			{
-				self::$display_name	= $current_lang_template;
-			}
 			$finded_template = true;
 		}
 
@@ -346,24 +334,32 @@ class template
 
 		if(self::$display_name)
 		{
+			self::checkLangTemplate();
 
-			self::$display_name    = self::$display_prefix. self::$display_name;
-			$current_lang          = \dash\language::current('name');
-
-			$current_lang_template = substr(self::$display_name, 0, -(strlen(self::$file_ext)));
-			$current_lang_template .= '-'.$current_lang . self::$file_ext;
-
-			$current_lang_template = str_replace("\\", DIRECTORY_SEPARATOR, $current_lang_template);
-			$current_lang_template = str_replace("/", DIRECTORY_SEPARATOR, $current_lang_template);
-
-			if(is_file(root.$current_lang_template))
-			{
-				self::$display_name	= $current_lang_template;
-			}
 			return true;
 		}
 
 		return false;
+
+	}
+
+
+
+	private static function checkLangTemplate()
+	{
+		self::$display_name    = self::$display_prefix. self::$display_name;
+		$current_lang          = \dash\language::current('name');
+
+		$current_lang_template = substr(self::$display_name, 0, -(strlen(self::$file_ext)));
+		$current_lang_template .= '-'.$current_lang . self::$file_ext;
+
+		$current_lang_template = str_replace("\\", DIRECTORY_SEPARATOR, $current_lang_template);
+		$current_lang_template = str_replace("/", DIRECTORY_SEPARATOR, $current_lang_template);
+
+		if(is_file(root.$current_lang_template))
+		{
+			self::$display_name	= $current_lang_template;
+		}
 
 	}
 
