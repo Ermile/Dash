@@ -154,42 +154,43 @@ class template
 	public static function set_display_name($data, $type, $slug, $table)
 	{
 		$finded_template = false;
+		$contentAddr = \dash\engine\content::get_addr();
 
 		// elseif template type with specefic slug exist show it
-		if( is_file(root.'content/template/'.$type.'-'. $slug. self::$file_ext) )
+		if( is_file($contentAddr. 'template/'.$type.'-'. $slug. self::$file_ext) )
 		{
 			self::$display_name	= $type.'-'.$slug. self::$file_ext;
 		}
 		// elseif template type with name of table exist in module folder then show it
-		elseif( is_file(root.'content/'.$type.'/'.$table.self::$file_ext) )
+		elseif( is_file($contentAddr. $type.'/'.$table.self::$file_ext) )
 		{
 			self::$display_name = $type.'/'.$table.self::$file_ext;
 			self::$display_prefix     = 'content\\';
 		}
 		// elseif template type with name of table exist show it
-		elseif( is_file(root.'content/template/'.$type.'-'.$table.self::$file_ext) )
+		elseif( is_file($contentAddr. 'template/'.$type.'-'.$table.self::$file_ext) )
 		{
 			self::$display_name	= $type.'-'.$table.self::$file_ext;
 		}
 		// elseif template type exist show it like posts or terms
-		elseif( is_file(root.'content/template/'.$type.self::$file_ext) )
+		elseif( is_file($contentAddr. 'template/'.$type.self::$file_ext) )
 		{
 			self::$display_name	= $type.self::$file_ext;
 		}
 		// elseif template cat exist show it
-		// elseif( is_file(root.'content/template/'.$post_cat.self::$file_ext) )
+		// elseif( is_file($contentAddr. 'template/'.$post_cat.self::$file_ext) )
 		// {
 		// 	self::$display_name	= $post_cat.self::$file_ext;
 		// }
 
 		// elseif template type exist show it
-		elseif( is_file(root.'content/template/'.$table.self::$file_ext) )
+		elseif( is_file($contentAddr. 'template/'.$table.self::$file_ext) )
 		{
 			self::$display_name	= $myurl['table'].self::$file_ext;
 		}
 
 		// elseif default template exist show it else use homepage!
-		elseif( is_file(root.'content/template/dafault'. self::$file_ext) )
+		elseif( is_file($contentAddr. 'template/dafault'. self::$file_ext) )
 		{
 			self::$display_name	= 'dafault'. self::$file_ext;
 		}
@@ -304,6 +305,7 @@ class template
 	public static function fake_static_page()
 	{
 		$mymodule    = \dash\url::module();
+		$contentAddr = \dash\engine\content::get_addr();
 
 		// if user entered url contain one of our site language
 		$current_path = \dash\url::dir();
@@ -313,12 +315,12 @@ class template
 		}
 
 		// if custom template exist show this template
-		if( is_file(root.'content/template/static_'. $current_path. self::$file_ext) )
+		if( is_file($contentAddr. 'template/static_'. $current_path. self::$file_ext) )
 		{
 			self::$display_name = 'static_'. $current_path. self::$file_ext;
 
 		}
-		elseif( is_file(root.'content/template/static/'. $current_path. self::$file_ext) )
+		elseif( is_file($contentAddr. 'template/static/'. $current_path. self::$file_ext) )
 		{
 			self::$display_name = 'static\\'. $current_path. self::$file_ext;
 
@@ -335,7 +337,7 @@ class template
 				$my_special_url = 'home';
 			}
 			$my_special_url = $mymodule. '/'. $my_special_url;
-			if(is_file(root.'content/template/static/'. $my_special_url. self::$file_ext))
+			if(is_file($contentAddr. 'template/static/'. $my_special_url. self::$file_ext))
 			{
 				self::$display_name = 'static\\'. $my_special_url. self::$file_ext;
 
