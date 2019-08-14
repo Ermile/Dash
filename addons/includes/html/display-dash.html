@@ -153,9 +153,9 @@
    </div>
    <div class='hm right flex cauto os'>
 {%block headerRight%}
+    <a href="{{url.kingdom}}/support" data-tippy-animation="perspective" title='{%trans "Help Center"%}' class="support s0"><i class="sf-life-ring"></i></a>
 
 {%if user.id%}
-
     <a href="{{url.kingdom}}/account/notification" data-tippy-animation="perspective" title='{%trans "Your notifications"%}' class="notification"><i class="sf-bell"></i></a>
 
     <div class="profileShow" data-tippy-animation="perspective" title='{%trans "Click to check your profile"%}'
