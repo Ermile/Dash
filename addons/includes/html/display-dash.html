@@ -19,7 +19,7 @@
 {%block content%}
 
 {%block pageHeader%}
-{%if page.title or page.desc%}
+{%if page.tbox is null and (page.title or page.desc)%}
 <div class="tbox{%if page.pictogram%} pictogram{%endif%}">
   <div class="f align-center">
     <div class="c">
