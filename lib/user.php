@@ -39,8 +39,11 @@ class user
 
 		if(is_array($detail))
 		{
+			$detail = \dash\app::fix_avatar($detail);
+			$detail['fullname'] = self::fullName($detail);
 			foreach ($detail as $key => $value)
 			{
+
 				if($value === null)
 				{
 					// nothing
@@ -172,9 +175,17 @@ class user
 	}
 
 
-	public static function fullName()
+	public static function fullName($_detail = null)
 	{
-		$myDetail = \dash\user::detail();
+		if(!$_detail || !is_array($_detail))
+		{
+			$myDetail = \dash\user::detail();
+		}
+		else
+		{
+			$myDetail = $_detail;
+		}
+
 		if($myDetail)
 		{
 			$myName = '';
