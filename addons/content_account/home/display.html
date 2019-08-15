@@ -3,12 +3,47 @@
 
 {%block pageContent%}
 
-<a class="dcard x2" href='{{url.here}}/profile'>
- <div class="statistic">
-  <div class="value"><i class="sf-user"></i></div>
-  <div class="label">{%trans "Profile"%}</div>
- </div>
-</a>
+<div class="txtC fs15 mB25">
+  <div class="avatar">
+    <a href="{{url.here}}/profile" class="compact">
+{%if login.avatar%}
+      <img class="box100 circle" src="{{login.avatar}}" alt='{%trans "Avatar of you"%} {{login.displayname}}'>
+{%elseif login%}
+      <img class="box100 circle" src="{{url.static}}/siftal/images/default/avatar.png" alt='{%trans "Default Avatar"%}'>
+{%endif%}
+    </a>
+  </div>
+  <h2>{%trans "Welcome"%}{%trans ","%} {{user.firstname}} {{user.lastname}}</h2>
+  <p>{%trans "Manage your info, privacy, and security to make us work better for you"%}</p>
+</div>
+
+<div class="f fs14">
+  <div class="c6 x4 s12 pA10">
+    {{block ('personalization')}}
+  </div>
+  <div class="c6 x4 s12 pA10">
+    {{block ('security')}}
+  </div>
+
+  <div class="c6 x4 s12 pA10">
+    {{block ('support')}}
+  </div>
+
+  <div class="c6 x4 s12 pA10">
+    {{block ('profile')}}
+  </div>
+
+</div>
+
+
+<div class="txtC fs14 mT25">
+  <p class="msg">{%trans "Only you can see your settings."%} {%trans "We are committed to protecting your privacy and security."%} <a href="{{url.kingdom}}/support">{%trans "Learn more"%}</a></p>
+</div>
+
+
+<br>
+<br>
+
 
 {%if options.billing_page%}
 <a class="dcard x2" href='{{url.here}}/billing'>
@@ -20,3 +55,79 @@
 {%endif%}
 {%endblock%}
 
+
+
+{%block personalization%}
+<div class="panel">
+  <div class="body pad f">
+    <div class="c9">
+      <h3>{%trans "Personalization"%}</h3>
+      <p>{%trans "See the data in your account and choose what activity is saved to personalize your experience"%}</p>
+    </div>
+    <div class="c3 s12">
+      <img class="box100" src="{{url.siftal}}/images/account/personalization.png" alt='{%trans "Personalization"%}'>
+    </div>
+  </div>
+  <hr>
+  <footer>
+    <a class="pad" href="{{url.here}}/personalization">{%trans "Manage your data & personalization"%}</a>
+  </footer>
+</div>
+{%endblock%}
+
+
+{%block security%}
+<div class="panel">
+  <div class="body pad f">
+    <div class="c9">
+      <h3>{%trans "Security"%}</h3>
+      <p>{%trans "Settings and recommendations to help you keep your account secure"%}</p>
+    </div>
+    <div class="c3 s12">
+      <img class="box100" src="{{url.siftal}}/images/account/security.png" alt='{%trans "Security"%}'>
+    </div>
+  </div>
+  <hr>
+  <footer>
+    <a class="pad" href="{{url.here}}/security">{%trans "Keep your account protected"%}</a>
+  </footer>
+</div>
+{%endblock%}
+
+
+{%block profile%}
+<div class="panel">
+  <div class="body pad f">
+    <div class="c9">
+      <h3>{%trans "Personal info"%}</h3>
+      <p>{%trans "Basic info, like your name and photo, that you use on our services"%}</p>
+    </div>
+    <div class="c3 s12">
+      <img class="box100" src="{{url.siftal}}/images/account/profile.png" alt='{%trans "profile"%}'>
+    </div>
+  </div>
+  <hr>
+  <footer>
+    <a class="pad" href="{{url.here}}/profile">{%trans "Manage profile"%}</a>
+  </footer>
+</div>
+{%endblock%}
+
+
+{%block support%}
+<div class="panel">
+  <div class="body pad f">
+    <div class="c9">
+      <h3>{%trans "Support"%}</h3>
+      <p>{%trans "Settings and recommendations to help you keep your account secure"%}</p>
+    </div>
+    <div class="c3 s12">
+      <img class="box100" src="{{url.siftal}}/images/account/security.png" alt='{%trans "Security"%}'>
+    </div>
+  </div>
+  <hr>
+  <footer>
+    <a class="pad" href="{{url.kingdom}}/support">{%trans "Keep your account protected"%}</a>
+  </footer>
+</div>
+{%endblock%}
