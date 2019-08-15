@@ -5,6 +5,14 @@ namespace dash\db;
 class user_android
 {
 
+	public static function get_dataTable($_ids)
+	{
+		$query  = "SELECT user_android.user_id, MAX(user_android.uniquecode) AS `uniquecode` FROM user_android WHERE user_android.user_id IN ($_ids)  GROUP BY user_android.user_id";
+		$result = \dash\db::get($query);
+		return $result;
+	}
+
+
 	public static function insert()
 	{
 		return \dash\db\config::public_insert('user_android', ...func_get_args());

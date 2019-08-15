@@ -110,6 +110,9 @@ class view
 			$dataTable = [];
 		}
 
+		\dash\app\user_telegram::dataTableList($dataTable);
+		\dash\app\user_android::dataTableList($dataTable);
+
 		\dash\data::sortLink($sortLink);
 		\dash\data::dataTable($dataTable);
 
@@ -123,6 +126,8 @@ class view
 		\dash\data::dataFilter($dataFilter);
 
 	}
+
+
 
 
 	private static function advance_filter(&$args)

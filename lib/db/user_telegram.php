@@ -5,6 +5,14 @@ namespace dash\db;
 class user_telegram
 {
 
+	public static function get_dataTable($_ids)
+	{
+		$query  = "SELECT user_telegram.user_id, MAX(user_telegram.chatid) AS `chatid` FROM user_telegram WHERE user_telegram.user_id IN ($_ids)  GROUP BY user_telegram.user_id";
+		$result = \dash\db::get($query);
+		return $result;
+	}
+
+
 	public static function insert()
 	{
 		return \dash\db\config::public_insert('user_telegram', ...func_get_args());

@@ -23,6 +23,29 @@ class user_android
 		'datecreated',
 	];
 
+	public static function dataTableList(&$dataTable)
+	{
+		$id = array_column($dataTable, 'id');
+		$id = array_map(['\\dash\\coding', 'decode'], $id);
+		$load = \dash\db\user_android::get_dataTable(implode(',', $id));
+		if(!is_array($load))
+		{
+			return;
+		}
+
+		$load = array_combine(array_column($load, 'user_id'), $load);
+
+		foreach ($dataTable as $key => $value)
+		{
+			$myId = \dash\coding::decode($value['id']);
+			if(isset($load[$myId]))
+			{
+				$dataTable[$key]['android_uniquecode'] = $load[$myId]['uniquecode'];
+			}
+		}
+	}
+
+
 
 	public static function get($_id)
 	{

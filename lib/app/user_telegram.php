@@ -21,6 +21,29 @@ class user_telegram
 	];
 
 
+	public static function dataTableList(&$dataTable)
+	{
+		$id = array_column($dataTable, 'id');
+		$id = array_map(['\\dash\\coding', 'decode'], $id);
+		$load = \dash\db\user_telegram::get_dataTable(implode(',', $id));
+		if(!is_array($load))
+		{
+			return;
+		}
+
+		$load = array_combine(array_column($load, 'user_id'), $load);
+
+		foreach ($dataTable as $key => $value)
+		{
+			$myId = \dash\coding::decode($value['id']);
+			if(isset($load[$myId]))
+			{
+				$dataTable[$key]['chatid'] = $load[$myId]['chatid'];
+			}
+		}
+	}
+
+
 	public static function get($_id)
 	{
 		$id = \dash\coding::decode($_id);
