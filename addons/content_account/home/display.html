@@ -19,13 +19,13 @@
 
 <div class="f fs14">
   <div class="c6 x4 s12 pA10">
+    {{block ('profile')}}
+  </div>
+  <div class="c6 x4 s12 pA10">
     {{block ('personalization')}}
   </div>
   <div class="c6 x4 s12 pA10">
     {{block ('security')}}
-  </div>
-  <div class="c6 x4 s12 pA10">
-    {{block ('profile')}}
   </div>
   <div class="c6 x4 s12 pA10">
     {{block ('notification')}}
@@ -98,7 +98,7 @@
   </div>
   <hr>
   <footer>
-    <a class="special pad" href="{{url.here}}/profile">{%trans "Manage profile"%}</a>
+    <a class="special pad" href="{{url.here}}/my">{%trans "Manage profile"%}</a>
   </footer>
 </div>
 {%endblock%}
