@@ -70,7 +70,7 @@
 {%endif%}
 
 {%if login%}
-        <li><a href="{{url.kingdom}}/account/profile" {%if url.content == "account"%} class="activeContent"{%endif%} data-shortkey="77+69" data-shortkey-prevent data-shortkey-timeout='1000' title='{%trans "Shortkey"%} me' data-tippy-placement='right'><i class='sf-user'></i> <span>{% trans "My Account" %}</span></a></li>
+        <li><a href="{{url.kingdom}}/account" {%if url.content == "account"%} class="activeContent"{%endif%} data-shortkey="77+69" data-shortkey-prevent data-shortkey-timeout='1000' title='{%trans "Shortkey"%} me' data-tippy-placement='right'><i class='sf-user'></i> <span>{% trans "My Account" %}</span></a></li>
 {%endif%}
 
         <li><a href="{{url.kingdom}}/support" {%if url.content == "support"%} class="activeContent"{%endif%} data-shortkey="112" data-shortkey-prevent data-shortkey-timeout='1000' title='{%trans "Shortkey"%} f1' data-tippy-placement='right'><i class='sf-life-ring'></i> <span>{% trans "Help Center" %}</span></a></li>
