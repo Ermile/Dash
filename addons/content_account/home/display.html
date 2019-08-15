@@ -3,7 +3,7 @@
 
 {%block pageContent%}
 
-<div class="txtC fs15 mB25">
+<div class="txtC fs14 mB10">
   <div class="avatar">
     <a href="{{url.here}}/profile" class="compact">
 {%if login.avatar%}
@@ -24,22 +24,22 @@
   <div class="c6 x4 s12 pA10">
     {{block ('security')}}
   </div>
-
   <div class="c6 x4 s12 pA10">
     {{block ('profile')}}
   </div>
-
   <div class="c6 x4 s12 pA10">
-    {{block ('billing')}}
+    {{block ('notification')}}
   </div>
-
   <div class="c6 x4 s12 pA10">
     {{block ('support')}}
   </div>
+  <div class="c6 x4 s12 pA10">
+    {{block ('billing')}}
+  </div>
 </div>
 
-<div class="txtC fs14 mT25">
-  <p class="msg">{%trans "Only you can see your settings."%} {%trans "We are committed to protecting your privacy and security."%} <a href="{{url.kingdom}}/privacy" target="_blank">{%trans "Learn more"%}</a></p>
+<div class="txtC fs14 mT5 pLR10">
+  <div class="msg mB0">{%trans "Only you can see your settings."%} {%trans "We are committed to protecting your privacy and security."%} <a href="{{url.kingdom}}/privacy" target="_blank">{%trans "Learn more"%}</a></div>
 </div>
 {%endblock%}
 
@@ -140,3 +140,22 @@
 </div>
 {%endblock%}
 
+
+
+{%block notification%}
+<div class="panel">
+  <div class="body pad f">
+    <div class="c9">
+      <h3>{%trans "Notifications"%}</h3>
+      <p>{%trans "Check your last messages."%} {%trans "Maybe some messages need your action!"%}</p>
+    </div>
+    <div class="c3 s12">
+      <img class="box100" src="{{url.siftal}}/images/account/notification.png" alt='{%trans "Notifications"%}'>
+    </div>
+  </div>
+  <hr>
+  <footer>
+    <a class="pad" href="{{url.here}}/notification">{%trans "Check"%}</a>
+  </footer>
+</div>
+{%endblock%}
