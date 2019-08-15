@@ -1,5 +1,5 @@
 <?php
-namespace content_account\profile;
+namespace content_account\profile\edit;
 
 
 class model
@@ -47,21 +47,21 @@ class model
 			'firstname'   => \dash\request::post('firstname'),
 			'lastname'    => \dash\request::post('lastname'),
 			'username'    => \dash\request::post('username'),
-			// 'title'       => \dash\request::post('title'),
 			'bio'         => \dash\request::post('bio'),
 			'displayname' => \dash\request::post('displayname'),
-			// 'birthday'    => \dash\request::post('birthday'),
+			'birthday'    => \dash\request::post('birthday'),
+			'gender'      => \dash\request::post('gender'),
+			// 'title'       => \dash\request::post('title'),
 			// 'fullname'    => \dash\request::post('fullname'),
-			// 'gender'      => \dash\request::post('gender'),
 			// 'email'       => \dash\request::post('email'),
 		];
 
-		$avatar = self::upload_avatar();
+		// $avatar = self::upload_avatar();
 
-		if($avatar)
-		{
-			$post['avatar'] = $avatar;
-		}
+		// if($avatar)
+		// {
+		// 	$post['avatar'] = $avatar;
+		// }
 
 		return $post;
 	}
@@ -82,9 +82,11 @@ class model
 
 		if(\dash\engine\process::status())
 		{
+			\dash\notif::clean();
+			\dash\notif::ok(T_("Your profile successfully updated"));
 			\dash\log::set('editProfileAbout', ['code' => \dash\user::id()]);
 			\dash\user::refresh();
-			\dash\notif::direct();
+			// \dash\notif::direct();
 			\dash\redirect::pwd();
 		}
 	}
