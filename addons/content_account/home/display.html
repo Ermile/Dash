@@ -26,33 +26,21 @@
   </div>
 
   <div class="c6 x4 s12 pA10">
-    {{block ('support')}}
-  </div>
-
-  <div class="c6 x4 s12 pA10">
     {{block ('profile')}}
   </div>
 
-</div>
+  <div class="c6 x4 s12 pA10">
+    {{block ('billing')}}
+  </div>
 
+  <div class="c6 x4 s12 pA10">
+    {{block ('support')}}
+  </div>
+</div>
 
 <div class="txtC fs14 mT25">
-  <p class="msg">{%trans "Only you can see your settings."%} {%trans "We are committed to protecting your privacy and security."%} <a href="{{url.kingdom}}/support">{%trans "Learn more"%}</a></p>
+  <p class="msg">{%trans "Only you can see your settings."%} {%trans "We are committed to protecting your privacy and security."%} <a href="{{url.kingdom}}/privacy" target="_blank">{%trans "Learn more"%}</a></p>
 </div>
-
-
-<br>
-<br>
-
-
-{%if options.billing_page%}
-<a class="dcard x2" href='{{url.here}}/billing'>
- <div class="statistic">
-  <div class="value"><i class="sf-card"></i></div>
-  <div class="label">{%trans "Billing"%}</div>
- </div>
-</a>
-{%endif%}
 {%endblock%}
 
 
@@ -119,15 +107,36 @@
   <div class="body pad f">
     <div class="c9">
       <h3>{%trans "Support"%}</h3>
-      <p>{%trans "Settings and recommendations to help you keep your account secure"%}</p>
+      <p>{%trans "Get expert answers and advice on our service"%}</p>
     </div>
     <div class="c3 s12">
-      <img class="box100" src="{{url.siftal}}/images/account/security.png" alt='{%trans "Security"%}'>
+      <img class="box100" src="{{url.siftal}}/images/account/support.png" alt='{%trans "Support"%}'>
     </div>
   </div>
   <hr>
   <footer>
-    <a class="pad" href="{{url.kingdom}}/support">{%trans "Keep your account protected"%}</a>
+    <a class="pad" href="{{url.kingdom}}/support">{%trans "Get help"%}</a>
   </footer>
 </div>
 {%endblock%}
+
+
+
+{%block billing%}
+<div class="panel">
+  <div class="body pad f">
+    <div class="c9">
+      <h3>{%trans "Billing"%}</h3>
+      <p>{%trans "Check your balance, charge your account, and bill your invoices!"%}</p>
+    </div>
+    <div class="c3 s12">
+      <img class="box100" src="{{url.siftal}}/images/account/billing.png" alt='{%trans "Billing"%}'>
+    </div>
+  </div>
+  <hr>
+  <footer>
+    <a class="pad" href="{{url.here}}/billing">{%trans "Check"%}</a>
+  </footer>
+</div>
+{%endblock%}
+
