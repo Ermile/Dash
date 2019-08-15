@@ -1,5 +1,5 @@
 <?php
-namespace content_account\profile\social;
+namespace content_account\my\other;
 
 
 class model
@@ -36,22 +36,25 @@ class model
 	{
 		$post =
 		[
-
-			'website'     => \dash\request::post('website'),
-			'instagram'   => \dash\request::post('instagram'),
-			'linkedin'    => \dash\request::post('linkedin'),
-			'facebook'    => \dash\request::post('facebook'),
-			'twitter'     => \dash\request::post('twitter'),
-			'email'       => \dash\request::post('email'),
-
-
+			'sidebar'   => \dash\request::post('sidebar') ? true : false,
+			'language'  => \dash\request::post('language'),
+			'birthday'  => \dash\request::post('birthday'),
+			'birthdate' => \dash\request::post('birthday'),
+			'gender'    => \dash\request::post('gender'),
 		];
+
 
 		$avatar = self::upload_avatar();
 
 		if($avatar)
 		{
 			$post['avatar'] = $avatar;
+		}
+
+		if(\dash\request::post('remove') === 'avatar')
+		{
+			$post = [];
+			$post['avatar'] = null;
 		}
 
 		return $post;
@@ -73,8 +76,9 @@ class model
 
 		if(\dash\engine\process::status())
 		{
-			\dash\log::set('editProfileSocial', ['code' => \dash\user::id()]);
 			\dash\user::refresh();
+			\dash\notif::direct(true);
+			\dash\log::set('editProfileOther', ['code' => \dash\user::id()]);
 			\dash\redirect::pwd();
 		}
 	}

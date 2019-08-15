@@ -323,16 +323,16 @@ class user
 		}
 
 
-		$birthdate = null;
-		if(\dash\app::isset_request('birthdate'))
+		$birthday = null;
+		if(\dash\app::isset_request('birthday'))
 		{
-			$birthdate = \dash\app::request('birthdate');
-			if($birthdate)
+			$birthday = \dash\app::request('birthday');
+			if($birthday)
 			{
-				$birthdate = \dash\date::db($birthdate);
-				$birthdate = \dash\date::birthdate($birthdate, true);
+				$birthday = \dash\date::db($birthday);
+				$birthday = \dash\date::birthdate($birthday, true);
 
-				if(!$birthdate)
+				if(!$birthday)
 				{
 					return false;
 				}
@@ -835,7 +835,7 @@ class user
 		$args['firstname']     = $firstname;
 		$args['lastname']      = $lastname;
 		$args['father']        = $father;
-		$args['birthday']      = $birthdate;
+		$args['birthday']      = $birthday;
 		$args['pasportdate']   = $pasportdate;
 		$args['gender']        = $gender;
 		$args['marital']       = $marital;

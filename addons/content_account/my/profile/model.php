@@ -1,5 +1,5 @@
 <?php
-namespace content_account\profile\edit;
+namespace content_account\my\profile;
 
 
 class model

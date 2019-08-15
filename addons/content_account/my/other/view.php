@@ -1,5 +1,5 @@
 <?php
-namespace content_account\profile\edit;
+namespace content_account\my\other;
 
 
 class view
@@ -7,11 +7,11 @@ class view
 
 	public static function config()
 	{
-		\dash\data::page_title(T_('Personal info'));
-		\dash\data::page_desc(T_('Basic info, like your name and photo, that you use on our services'));
+		\dash\data::page_title(T_('Edit your profile'));
+		\dash\data::page_desc(T_('You can edit your profile.'));
 
-		\dash\data::badge_link(\dash\url::here());
-		\dash\data::badge_text(T_('Back to Account'));
+		\dash\data::badge_link(\dash\url::kingdom(). '/a');
+		\dash\data::badge_text(T_('Back to dashbaord'));
 
 		$id = \dash\user::id();
 
@@ -28,8 +28,6 @@ class view
 		}
 
 		\dash\data::dataRow(\dash\app\user::ready($user_detail, true));
-
-		\dash\data::isLtr(\dash\language::current('direction') === 'ltr' ? true : false);
 	}
 }
 ?>

@@ -1,5 +1,5 @@
 <?php
-namespace content_account\profile\signature;
+namespace content_account\my\signature;
 
 
 class model

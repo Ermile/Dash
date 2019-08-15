@@ -1,0 +1,111 @@
+{%extends display.admin%}
+
+
+
+
+
+
+
+{%block pageContent%}
+
+
+<div class="f justify-center">
+  <div class="c6 m8 x5 s12">
+    <div class="cbox">
+      <form method="post" autocomplete="off">
+        {{block('iusername')}}
+        {{block('ifirstname')}}
+        {{block('ilastname')}}
+        {{block('ibirthday')}}
+        {{block('idisplayname')}}
+        {{block('igender')}}
+        {{block('ibio')}}
+
+        <div class="txtRa">
+          <button class="btn success">{%trans "Save"%}</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+{%endblock%}
+
+
+
+
+
+
+
+
+
+{%block ifirstname%}
+<label for="firstname">{%trans "First name"%}</label>
+<div class="input">
+  <input type="text" name="firstname" id="firstname" placeholder='{%trans "Firstname"%}' value="{{dataRow.firstname}}" maxlength='40' minlength="1" pattern=".{1,40}" title2='{%trans "Enter a valid firstname from 3 to 40 character"%}' >
+</div>
+{%endblock%}
+
+
+
+{%block ilastname%}
+<label for="lastname">{%trans "Last name"%}</label>
+<div class="input">
+  <input type="text" name="lastname" id="lastname" placeholder='{%trans "Lastname"%}' value="{{dataRow.lastname}}" maxlength='40' minlength="1" pattern=".{1,40}" title2='{%trans "Enter a valid lastname from 3 to 40 character"%}' >
+</div>
+{%endblock%}
+
+
+
+{%block iusername%}
+<label for="username">{%trans "Username"%}</label>
+<div class="input ltr">
+  <input type="text" name="username" id="username" placeholder='{%trans "Username"%}' value="{{dataRow.username}}" maxlength='40' minlength="1" pattern=".{1,40}" title2='{%trans "Enter a valid username from 3 to 40 character"%}' autofocus>
+</div>
+{%endblock%}
+
+
+
+
+{%block ibirthday%}
+<label for="birthday">{%trans "Birthday"%}</label>
+<div class="input">
+  <input class="datepicker" type="text" name="birthday" id="birthday" placeholder='{{"1369/04/15" | fitNumber}} *' value="{{dataRow.birthday}}" data-view="year" autocomplete='off'>
+</div>
+{%endblock%}
+
+
+
+
+{%block ibio%}
+<label for="bio" class="mT10">{%trans "Bio"%}</label>
+<textarea class="txt mB20 pB25" name="bio" id="bio" placeholder='{%trans "Bio"%}' maxlength='300' rows="3">{{dataRow.bio}}</textarea>
+{%endblock%}
+
+
+
+{%block idisplayname%}
+<label for="displayname">{%trans "Display name"%}</label>
+<div class="input">
+  <input type="text" name="displayname" id="displayname" placeholder='{%trans "Display name"%}' value="{{dataRow.displayname}}" maxlength='40' minlength="1" pattern=".{1,40}" title2='{%trans "Enter a valid displayname from 3 to 40 character"%}' >
+</div>
+{%endblock%}
+
+
+
+
+
+{%block igender%}
+<label for="gender">{%trans "Gender"%}</label>
+<select name="gender" class="select ui dropdown" id="gender">
+  <option value="" readonly>{%trans "Please select one item"%} *</option>
+    <option value="male" {%if dataRow.gender == 'male' %} selected {%endif%}>{%trans "Male"%}</option>
+    <option value="female" {%if dataRow.gender == 'female' %} selected {%endif%}>{%trans "Female"%}</option>
+</select>
+
+{%endblock%}

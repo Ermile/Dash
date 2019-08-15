@@ -1,5 +1,5 @@
 <?php
-namespace content_account\profile\other;
+namespace content_account\my\signature;
 
 
 class view

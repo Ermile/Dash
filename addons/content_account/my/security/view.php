@@ -1,5 +1,5 @@
 <?php
-namespace content_account\profile\security;
+namespace content_account\my\security;
 
 
 class view
