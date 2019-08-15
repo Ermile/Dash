@@ -3,6 +3,32 @@
 
 
 {%block pageContent%}
+
+
+<div class="txtC fs14 mB10">
+  <img class="box300 mB20-f" src="{{url.siftal}}/images/account/profile-cover.png" alt='{%trans "Personal info"%}'>
+  <h2>{%trans "Personal info"%}</h2>
+  <p>{%trans "Basic info, like your name and photo, that you use on our services"%}</p>
+</div>
+
+
+<div class="fs14">
+{{block('profile')}}
+</div>
+
+
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 {{block('pageSteps')}}
 
 <form method="post" enctype="multipart/form-data" autocomplete="off">
@@ -340,4 +366,53 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{%block profile%}
+<div class="panel">
+  <div class="body pad">
+    <div class="f">
+      <h3>{%trans "Profile"%}</h3>
+      <p>{%trans "Some info may be visible to other people using our service."%} <a href="{{url.kingdom}}/privacy" target="_blank">{%trans "Learn more"%}</a></p>
+    </div>
+  </div>
+
+  <table class="tbl1">
+    <tr>
+      <th>Name</th>
+      <td>123</td>
+    </tr>
+  </table>
+
+  <hr>
+  <a class="block pad" href="{{url.here}}/notification">{%trans "Check"%}</a>
+
+  <hr>
+  <a class="block pad" href="{{url.here}}/notification">{%trans "Check"%}</a>
+
+  <hr>
+  <a class="block pad" href="{{url.here}}/notification">{%trans "Check"%}</a>
+
+</div>
+{%endblock%}
 
