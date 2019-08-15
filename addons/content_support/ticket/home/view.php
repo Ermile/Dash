@@ -130,8 +130,8 @@ class view
 					break;
 
 				default:
-					// $args['order_raw']       = ' IF(tickets.datemodified is null, tickets.datecreated, tickets.datemodified) DESC';
-					$args['order_raw']       = ' tickets.datecreated DESC';
+					$args['order_raw']       = ' IF(tickets.datemodified is null, tickets.datecreated, tickets.datemodified) DESC';
+					// $args['order_raw']       = ' tickets.datecreated DESC';
 					unset($args['sort']);
 					// $args['tickets.status'] = ["NOT IN", "('deleted')"];
 					break;
@@ -139,8 +139,8 @@ class view
 		}
 		else
 		{
-			// $args['order_raw']       = ' IF(tickets.datemodified is null, tickets.datecreated, tickets.datemodified) DESC';
-			$args['order_raw']       = ' tickets.datecreated DESC';
+			$args['order_raw']       = ' IF(tickets.datemodified is null, tickets.datecreated, tickets.datemodified) DESC';
+			// $args['order_raw']       = ' tickets.datecreated DESC';
 			unset($args['sort']);
 			$args['tickets.status'] = ["NOT IN", "('deleted', 'spam')"];
 		}
