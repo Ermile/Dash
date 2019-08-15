@@ -44,8 +44,8 @@
   <table class="tbl1 v4">
     <tr>
       <th>{%trans "Avatar"%}</th>
-      <td>{%trans "A photo helps personalize your account"%}</td>
-      <td class="collapsing txtRa"><img src="{{dataRow.avatar}}" class="avatar fs25"></td>
+      <td>{%trans "A photo helps personalize your account"%} <img src="{{dataRow.avatar}}" alt='{%trans "Avatar"%}' class="avatar fs25 floatRa"></td>
+      <td class="collapsing txtRa"><a href="{{url.this}}/profile" class="block sf-chevron-{%if isLtr%}right{%else%}left{%endif%}"></a></td>
     </tr>
 
     <tr>
@@ -90,8 +90,7 @@
 <div class="panel">
   <div class="body pad">
     <div class="f">
-      <h3>{%trans "Social network"%}</h3>
-      <p>{%trans "Some info may be visible to other people using our service."%} <a href="{{url.kingdom}}/privacy" target="_blank">{%trans "Learn more"%}</a></p>
+      <h3>{%trans "Social networks"%}</h3>
     </div>
   </div>
 
