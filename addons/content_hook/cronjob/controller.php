@@ -35,7 +35,7 @@ class controller
 				// stop visitor save for cronjob
 				\dash\temp::set('force_stop_visitor', true);
 
-				\dash\log::set('CronjobMasterOK');
+				// \dash\log::set('CronjobMasterOK');
 
 				self::cronjob_run();
 
