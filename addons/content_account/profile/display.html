@@ -2,6 +2,12 @@
 {%use 'content_account/profile/pagestep.html'%}
 
 
+
+
+
+
+
+
 {%block pageContent%}
 
 
@@ -18,81 +24,136 @@
 
 
 
+<div class="fs14 mT20">
+{{block('socials')}}
+</div>
 
 
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-{{block('pageSteps')}}
-
-<form method="post" enctype="multipart/form-data" autocomplete="off">
-  <div class="f justify-center">
-    <div class="c8 s12">
-
-      <div class="cbox">
-        <h3 class="txtC">{%trans "Name and Global Details"%}</h3>
-{{block("iUsername")}}
-        <div class="f">
-          <div class="c6 pRa5">{{block("iFirstname")}}</div>
-          <div class="c6">{{block("iLastname")}}</div>
-        </div>
-
-{{block("iDisplayName")}}
-{{block("iBio")}}
-{{block("isave")}}
-      </div>
+{%endblock%}
 
 
 
 
-{%if false%}
-
-
-
-      <div class="cbox">
-        <h3 class="txtC">{%trans "Email and Social Networks"%}</h3>
-{{block("iWebsite")}}
-{{block("iEmail")}}
-{{block("iGmail")}}
-{{block("iInstagram")}}
-{{block("iFacebook")}}
-{{block("iTwitter")}}
-{{block("iLinkedin")}}
-{{block("iSaveAll")}}
-      </div>
-
-      <div class="cbox">
-        <h3 class="txtC">{%trans "Security and Enter"%}</h3>
-{{block("imobile")}}
-{{block("iPasswordLink")}}
-{{block("DeleteAccount")}}
-{{block("iTwostep")}}
-{{block("iSaveAll")}}
-      </div>
-      <div class="cbox">
-        <h3 class="txtC">{%trans "Improve User Experience"%}</h3>
-{{block("iAvatar")}}
-{{block("iLanguage")}}
-{{block("ibirthday")}}
-{{block("igender")}}
-{{block("iSidebar")}}
-{{block("iSaveAll")}}
-      </div>
-
-
-{%endif%}
-
-
+{%block profile%}
+<div class="panel">
+  <div class="body pad">
+    <div class="f">
+      <h3>{%trans "Profile"%}</h3>
+      <p>{%trans "Some info may be visible to other people using our service."%} <a href="{{url.kingdom}}/privacy" target="_blank">{%trans "Learn more"%}</a></p>
     </div>
   </div>
-</form>
+
+
+  <table class="tbl1 v4">
+    <tr>
+      <th>{%trans "Avatr"%}</th>
+      <td>{%trans "Your avatar"%}</td>
+      <td class="collapsing"><img src="{{dataRow.avatar}}" class="avatar"></td>
+    </tr>
+
+    <tr>
+      <th>{%trans "Username"%}</th>
+      <td>{{dataRow.username}}</td>
+      <td class="collapsing"><span class="sf-chevron-{%if isLtr%}right{%else%}left{%endif%}"></span></td>
+    </tr>
+    <tr>
+      <th>{%trans "First name"%}</th>
+      <td>{{dataRow.firstname}}</td>
+      <td class="collapsing"><span class="sf-chevron-{%if isLtr%}right{%else%}left{%endif%}"></span></td>
+    </tr>
+    <tr>
+      <th>{%trans "Last name"%}</th>
+      <td>{{dataRow.lastname}}</td>
+      <td class="collapsing"><span class="sf-chevron-{%if isLtr%}right{%else%}left{%endif%}"></span></td>
+    </tr>
+
+    <tr>
+      <th>{%trans "Display name"%}</th>
+      <td>{{dataRow.displayname}}</td>
+      <td class="collapsing"><span class="sf-chevron-{%if isLtr%}right{%else%}left{%endif%}"></span></td>
+    </tr>
+
+    <tr>
+      <th>{%trans "Bio"%}</th>
+      <td>{{dataRow.bio}}</td>
+      <td class="collapsing"><span class="sf-chevron-{%if isLtr%}right{%else%}left{%endif%}"></span></td>
+    </tr>
+
+  </table>
+</div>
 {%endblock%}
+
+
+
+
+
+
+
+{%block socials%}
+<div class="panel">
+  <div class="body pad">
+    <div class="f">
+      <h3>{%trans "Social network"%}</h3>
+      <p>{%trans "Some info may be visible to other people using our service."%} <a href="{{url.kingdom}}/privacy" target="_blank">{%trans "Learn more"%}</a></p>
+    </div>
+  </div>
+
+
+  <table class="tbl1 v4">
+
+
+    <tr>
+      <th>{%trans "Website"%}</th>
+      <td>{{dataRow.website}}</td>
+      <td class="collapsing"><span class="sf-chevron-{%if isLtr%}right{%else%}left{%endif%}"></span></td>
+    </tr>
+    <tr>
+      <th>{%trans "Email"%}</th>
+      <td>{{dataRow.email}}</td>
+      <td class="collapsing"><span class="sf-chevron-{%if isLtr%}right{%else%}left{%endif%}"></span></td>
+    </tr>
+    <tr>
+      <th>{%trans "Instagram"%}</th>
+      <td>{{dataRow.instagram}}</td>
+      <td class="collapsing"><span class="sf-chevron-{%if isLtr%}right{%else%}left{%endif%}"></span></td>
+    </tr>
+
+    <tr>
+      <th>{%trans "Facebook"%}</th>
+      <td>{{dataRow.facebook}}</td>
+      <td class="collapsing"><span class="sf-chevron-{%if isLtr%}right{%else%}left{%endif%}"></span></td>
+    </tr>
+
+    <tr>
+      <th>{%trans "Twitter"%}</th>
+      <td>{{dataRow.twitter}}</td>
+      <td class="collapsing"><span class="sf-chevron-{%if isLtr%}right{%else%}left{%endif%}"></span></td>
+    </tr>
+
+      <tr>
+      <th>{%trans "Linkedin"%}</th>
+      <td>{{dataRow.linkedin}}</td>
+      <td class="collapsing"><span class="sf-chevron-{%if isLtr%}right{%else%}left{%endif%}"></span></td>
+    </tr>
+
+  </table>
+</div>
+{%endblock%}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 {%block iTwostep%}
@@ -382,38 +443,4 @@
 
 
 
-
-
-
-
-
-
-{%block profile%}
-<div class="panel">
-  <div class="body pad">
-    <div class="f">
-      <h3>{%trans "Profile"%}</h3>
-      <p>{%trans "Some info may be visible to other people using our service."%} <a href="{{url.kingdom}}/privacy" target="_blank">{%trans "Learn more"%}</a></p>
-    </div>
-  </div>
-
-  <table class="tbl1 v4">
-    <tr>
-      <th>Name</th>
-      <td>123</td>
-      <td class="collapsing"><span class="sf-chevron-{%if lang.dir == 'fa'%}left{%else%}right{%endif%}"></span></td>
-    </tr>
-    <tr>
-      <th>Name</th>
-      <td>123</td>
-      <td class="collapsing"><span class="sf-chevron-{%if lang.dir == 'fa'%}left{%else%}right{%endif%}"></span></td>
-    </tr>
-    <tr>
-      <th>Name</th>
-      <td>123</td>
-      <td class="collapsing"><span class="sf-chevron-{%if lang.dir == 'fa'%}left{%else%}right{%endif%}"></span></td>
-    </tr>
-  </table>
-</div>
-{%endblock%}
 

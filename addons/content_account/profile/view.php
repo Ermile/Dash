@@ -28,6 +28,8 @@ class view
 		}
 
 		\dash\data::dataRow(\dash\app\user::ready($user_detail, true));
+
+		\dash\data::isLtr(\dash\language::current('direction') === 'ltr' ? true : false);
 	}
 }
 ?>
