@@ -33,9 +33,11 @@
   <div class="c6 x4 s12 pA10">
     {{block ('support')}}
   </div>
+{%if options.billing_page%}
   <div class="c6 x4 s12 pA10">
     {{block ('billing')}}
   </div>
+{%endif%}
 </div>
 
 <div class="txtC fs14 mT5 pLR10">
