@@ -23,6 +23,14 @@
 {%endif%}
 
 <li><a href="{{url.here}}/security"><i class="sf-lock"></i>{%trans "Security"%}</a></li>
+{%if url.module == "security"%}
+<li>
+	<ul>
+		<li><a href="{{url.here}}/security/sessions"><i class="sf-campfire"></i>{%trans "Active Sessions"%}</a></li>
+	</ul>
+</li>
+{%endif%}
+
 <li><a href="{{url.here}}/personalization"><i class="sf-toggle-filled"></i>{%trans "Personalization"%}</a></li>
 
 {%if options.billing_page%}
