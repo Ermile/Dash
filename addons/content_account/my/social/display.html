@@ -10,14 +10,15 @@
 
 
       <div class="cbox">
-        <h3 class="txtC">{%trans "Email and Social Networks"%}</h3>
+        <h3 class="txtC mB20">{{page.title}}</h3>
           {{block("iWebsite")}}
           {{block("iEmail")}}
           {{block("iGmail")}}
-          {{block("iInstagram")}}
+          <hr>
           {{block("iFacebook")}}
           {{block("iTwitter")}}
           {{block("iLinkedin")}}
+          {{block("iInstagram")}}
           {{block("isave")}}
       </div>
 
@@ -32,7 +33,8 @@
 {%block iWebsite%}
 <label for="website">{%trans "Website"%}</label>
 <div class="input ltr">
-  <input type="url" name="website" id="website" placeholder='{%trans "Website"%} {%trans "like"%} https://ermile.com' value="{{dataRow.website}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid website from 3 to 40 character"%}' >
+  <input type="url" name="website" id="website" placeholder='{%trans "like"%} https://ermile.com' value="{{dataRow.website}}" maxlength='40' minlength="1" pattern=".{1,40}">
+  <span class="addon"><i class="sf-earth"></i></span>
 </div>
 {%endblock%}
 
@@ -41,16 +43,18 @@
 {%block iInstagram%}
 <label for="instagram">{%trans "Instagram"%}</label>
 <div class="input ltr">
-  <span class="addon"><i class="sf-instagram"></i> instagram.com/</span>
-  <input type="text" name="instagram" id="instagram" placeholder='{%trans "Instagram"%}' value="{{dataRow.instagram}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid instagram from 3 to 40 character"%}' >
+  <span class="addon">instagram.com/</span>
+  <input type="text" name="instagram" id="instagram" placeholder='{%trans "Instagram"%}' value="{{dataRow.instagram}}" maxlength='30' minlength="1">
+  <span class="addon"><i class="sf-instagram"></i></span>
 </div>
 {%endblock%}
 
 {%block iFacebook%}
 <label for="facebook">{%trans "Facebook"%}</label>
 <div class="input ltr">
-  <span class="addon"><i class="sf-facebook-official"></i> facebook.com/</span>
-  <input type="text" name="facebook" id="facebook" placeholder='{%trans "Facebook"%}' value="{{dataRow.facebook}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid facebook from 3 to 40 character"%}' >
+  <span class="addon">facebook.com/</span>
+  <input type="text" name="facebook" id="facebook" placeholder='{%trans "Facebook"%}' value="{{dataRow.facebook}}" maxlength='30' minlength="1">
+  <span class="addon"><i class="sf-facebook-official"></i></span>
 </div>
 {%endblock%}
 
@@ -58,8 +62,9 @@
 {%block iTwitter%}
 <label for="twitter">{%trans "Twitter"%}</label>
 <div class="input ltr">
-  <span class="addon"><i class="sf-twitter"></i> twitter.com/</span>
-  <input type="text" name="twitter" id="twitter" placeholder='{%trans "Twitter"%}' value="{{dataRow.twitter}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid twitter from 3 to 40 character"%}' >
+  <span class="addon">twitter.com/</span>
+  <input type="text" name="twitter" id="twitter" placeholder='{%trans "Twitter"%}' value="{{dataRow.twitter}}" maxlength='30' minlength="1">
+  <span class="addon"><i class="sf-twitter"></i></span>
 </div>
 {%endblock%}
 
@@ -67,8 +72,9 @@
 {%block iLinkedin%}
 <label for="linkedin">{%trans "Linkedin"%}</label>
 <div class="input ltr">
-  <span class="addon"><i class="sf-linkedin"></i> linkedin.com/</span>
-  <input type="text" name="linkedin" id="linkedin" placeholder='{%trans "Linkedin"%}' value="{{dataRow.linkedin}}" maxlength='40' minlength="1" pattern=".{1,40}" title='{%trans "Enter a valid linkedin from 3 to 40 character"%}' >
+  <span class="addon">linkedin.com/</span>
+  <input type="text" name="linkedin" id="linkedin" placeholder='{%trans "Linkedin"%}' value="{{dataRow.linkedin}}" maxlength='30' minlength="1">
+  <span class="addon"><i class="sf-linkedin"></i></span>
 </div>
 {%endblock%}
 
@@ -78,7 +84,8 @@
 {%if value.gmail %}
 <label for="gmail">{%trans "Gmail"%}</label>
 <div class="input ltr">
-  <input type="email" name="gmail" id="gmail" placeholder='{%trans "Like"%} your-mail' value="{{dataRow.gmail}}" maxlength='50' readonly disabled>
+  <input type="email" name="gmail" id="gmail" placeholder='{%trans "Like"%} abc@gmail.com' value="{{dataRow.gmail}}" maxlength='50' readonly disabled>
+  <span class="addon"><i class="sf-google"></i></span>
 </div>
 {%endif%}
 {%endblock%}
@@ -89,15 +96,16 @@
 {%block iEmail%}
 <label for="email">{%trans "Email"%}</label>
 <div class="input">
-  <input type="email" name="email" id="email" placeholder='{%trans "Like"%} abc@example.com' value="{{dataRow.email}}" maxlength='50'>
+  <input type="email" name="email" id="email" placeholder='{%trans "like"%} abc@example.com' value="{{dataRow.email}}" maxlength='50'>
+  <span class="addon"><i class="sf-mail"></i></span>
 </div>
 {%endblock%}
 
 
 
 {%block isave%}
-<div class="txtRa">
-  <button class="btn primary  mT20">{%trans "Save"%}</button>
+<div class="txtRa pT10">
+  <button class="btn success">{%trans "Save"%}</button>
 </div>
 {%endblock%}
 

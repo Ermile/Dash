@@ -7,8 +7,7 @@ class view
 
 	public static function config()
 	{
-		\dash\data::page_title(T_('Edit your avatar'));
-		\dash\data::page_desc(T_('You can edit your avatar.'));
+		\dash\data::page_title(T_('Set Avatar'));
 
 
 		\dash\data::badge_link(\dash\url::this());
