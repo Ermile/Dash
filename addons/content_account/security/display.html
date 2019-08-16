@@ -5,7 +5,7 @@
 {%block pageContent%}
 
 <div class="txtC fs14 mTB25">
-  <img class="box300 mB20-f" src="{{url.siftal}}/images/account/security-cover.png" alt='{%trans "Personal info"%}'>
+  <img class="box700 mB20-f" src="{{url.siftal}}/images/account/security-cover.png" alt='{%trans "Personal info"%}'>
   <h2>{{page.title}}</h2>
   <p>{%trans "Settings and recommendations to help you keep your account secure"%}</p>
 </div>
@@ -17,6 +17,10 @@
 
   <section class="mB20">
   {{block('signingin')}}
+  </section>
+
+  <section class="mB20">
+  {{block('sessions')}}
   </section>
 
   <section class="mB20">
@@ -96,6 +100,23 @@
 </div>
 {%endblock%}
 
+
+
+{%block sessions%}
+<div class="panel">
+  <div class="body pad">
+    <div class="f">
+      <div class="c">
+        <h3>{%trans "Active Sessions"%}</h3>
+        <p>{%trans "No activity in the last month."%} {%trans "You'll be notified if unusual security activity is detected, like a sign-in from a new device or if a sensitive setting is changed in your account."%}</p>
+      </div>
+      <div class="cauto os">
+        <img class="box300" src="{{url.siftal}}/images/account/privacy-checkup.png" alt='{%trans "Sessions"%}'>
+      </div>
+    </div>
+  </div>
+</div>
+{%endblock%}
 
 
 {%block recent%}
