@@ -10,6 +10,10 @@ class view
 		\dash\data::page_desc(T_("Check your last messages."). ' '. T_("Maybe some messages need your action!"));
 		\dash\data::page_pictogram('bell');
 
+		\dash\data::badge_link(\dash\url::here());
+		\dash\data::badge_text(T_('Back to account'));
+
+
 		$args =
 		[
 			'sort'  => \dash\request::get('sort'),
