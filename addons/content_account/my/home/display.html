@@ -44,7 +44,7 @@
       <p>{%trans "You can enter to your account with username and mobile."%}</p>
     </div>
   </div>
-  <table class="tbl1 v4 mB0">
+  <table class="tbl1 v4 responsive mB0">
     <tr>
       <th>{%trans "Username"%}</th>
       <td>{{dataRow.username}}</td>
@@ -75,10 +75,15 @@
       <p>{%trans "Some info may be visible to other people using our service."%} <a href="{{url.kingdom}}/privacy" target="_blank">{%trans "Learn more"%}</a></p>
     </div>
   </div>
-  <table class="tbl1 v4 mB0">
+  <table class="tbl1 v4 responsive mB0">
     <tr>
       <th>{%trans "Avatar"%}</th>
-      <td>{%trans "A photo helps personalize your account"%} <img src="{{dataRow.avatar}}" alt='{%trans "Avatar"%}' class="avatar fs25 floatRa"></td>
+      <td>
+        <div class="f align-center">
+          <div class="c">{%trans "A photo helps personalize your account"%}</div>
+          <div class="cauto"><img src="{{dataRow.avatar}}" alt='{%trans "Avatar"%}' class="avatar fs25 floatRa"></div>
+        </div>
+      </td>
       <td class="collapsing txtRa"><a href="{{url.this}}/avatar" class="block {{arrow}}"></a></td>
     </tr>
     <tr>
@@ -124,7 +129,7 @@
       <h3>{%trans "Social networks"%}</h3>
     </div>
   </div>
-  <table class="tbl1 v4 mB0">
+  <table class="tbl1 v4 responsive mB0">
     <tr>
       <th>{%trans "Website"%}</th>
       <td>{{dataRow.website}}</td>
