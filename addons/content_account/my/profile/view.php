@@ -10,8 +10,8 @@ class view
 		\dash\data::page_title(T_('Personal info'));
 		\dash\data::page_desc(T_('Basic info, like your name and photo, that you use on our services'));
 
-		\dash\data::badge_link(\dash\url::here());
-		\dash\data::badge_text(T_('Back to Account'));
+		\dash\data::badge_link(\dash\url::this());
+		\dash\data::badge_text(T_('Back'));
 
 		\content_account\my\view::load_me();
 

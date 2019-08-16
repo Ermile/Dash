@@ -5,33 +5,6 @@ namespace content_account\my\social;
 class model
 {
 
-	/**
-	 * UploAads an avatar.
-	 *
-	 * @return     boolean  ( description_of_the_return_value )
-	 */
-	public static function upload_avatar()
-	{
-		if(\dash\request::files('avatar'))
-		{
-			$uploaded_file = \dash\app\file::upload(['debug' => false, 'upload_name' => 'avatar']);
-
-			if(isset($uploaded_file['url']))
-			{
-				\dash\notif::direct();
-
-				return $uploaded_file['url'];
-			}
-			// if in upload have error return
-			if(!\dash\engine\process::status())
-			{
-				return false;
-			}
-		}
-		return null;
-	}
-
-
 	public static function getPost()
 	{
 		$post =
@@ -46,13 +19,6 @@ class model
 
 
 		];
-
-		$avatar = self::upload_avatar();
-
-		if($avatar)
-		{
-			$post['avatar'] = $avatar;
-		}
 
 		return $post;
 	}
@@ -73,6 +39,8 @@ class model
 
 		if(\dash\engine\process::status())
 		{
+			\dash\notif::clean();
+			\dash\notif::ok(T_("Your profile successfully updated"));
 			\dash\log::set('editProfileSocial', ['code' => \dash\user::id()]);
 			\dash\user::refresh();
 			\dash\redirect::pwd();
