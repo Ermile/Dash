@@ -34,11 +34,11 @@
             <div class="badge success">{%trans "This device"%}</div>
             {%endif%}
           </div>
-          <div class="pA5 c s8 fs08">
+          <div class="pA5 c s12 fs08">
             <div class="mB10"><b>{{row.browser}}</b> {{row.browserVer | fitNumber}}</div>
             <div>{{row.last | dt('human')}}</div>
           </div>
-          <div class="pA5 cauto s4">
+          <div class="pA5 c3 s12">
             <div class="mB5">
               <a target="_blank" href="https://ipgeolocation.io/ip-location/{{row.ip}}" title='{%trans "Check ip address"%}'>{{row.ip}}</a>
             </div>
@@ -46,6 +46,9 @@
               <a class="badge danger" href="{{url.pwd}}" data-ajaxify data-method="post" data-confirm data-data='{"id" : "{{row.id}}", "type": "terminate" }'>{%trans "Terminate"%}</a>
             </div>
           </div>
+          {%if perm_su()%}
+          <div class="c12 fs05 pA5 ovh">{{row.agent | e('html') | raw }}</div>
+          {%endif%}
         </div>
       </div>
 {%endfor%}

@@ -63,7 +63,10 @@ class view
 			@$mySessionData[$key]['browser']    = T_(ucfirst($row['agent_name']));
 			@$mySessionData[$key]['browserVer'] = $row['agent_version'];
 			@$mySessionData[$key]['os']         = $row['agent_os'];
+			@$mySessionData[$key]['osName']     = T_($row['agent_os']);
 			@$mySessionData[$key]['osVer']      = T_($row['agent_osnum']);
+			@$mySessionData[$key]['agent']      = $row['agent_agent'];
+
 
 			if(isset($row['agent_os']))
 			{
