@@ -13,7 +13,7 @@ class view
 		\dash\data::badge_link(\dash\url::kingdom(). '/a');
 		\dash\data::badge_text(T_('Back to dashbaord'));
 
-		\content_account\my\view::load_me();
+		\content_account\my\home\view::load_me();
 	}
 }
 ?>

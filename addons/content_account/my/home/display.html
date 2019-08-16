@@ -8,7 +8,7 @@
 {%block pageContent%}
 
 
-<div class="txtC fs14 mB10">
+<div class="txtC fs14 mB25">
   <img class="box300 mB20-f" src="{{url.siftal}}/images/account/profile-cover.png" alt='{%trans "Personal info"%}'>
   <h2>{%trans "Personal info"%}</h2>
   <p>{%trans "Basic info, like your name and photo, that you use on our services"%}</p>
@@ -16,19 +16,55 @@
 
 
 <div class="fs14">
-{{block('profile')}}
+  <section class="mB20">
+  {{block('account')}}
+  </section>
+
+  <section class="mB20">
+  {{block('profile')}}
+  </section>
+
+  <section class="mB20">
+  {{block('socials')}}
+  </section>
 </div>
-
-
-
-<div class="fs14 mT20">
-{{block('socials')}}
-</div>
-
-
 {%endblock%}
 
 
+{%set arrow%}sf-chevron-{%if isLtr%}right{%else%}left{%endif%}{%endset%}
+
+
+
+
+{%block account%}
+<div class="panel">
+  <div class="body pad">
+    <div class="f">
+      <h3>{%trans "Account"%}</h3>
+      <p>{%trans "You can enter to your account with username and mobile."%}</p>
+    </div>
+  </div>
+  <table class="tbl1 v4 mB0">
+    <tr>
+      <th>{%trans "Username"%}</th>
+      <td>{{dataRow.username}}</td>
+      <td class="collapsing txtRa"><a href="{{url.this}}/profile" class="block {{arrow}}"></a></td>
+    </tr>
+    <tr>
+      <th>{%trans "Mobile"%}</th>
+      <td>{{dataRow.mobile}}</td>
+      <td class="collapsing txtRa"><a href="{{url.this}}/profile" class="block {{arrow}}"></a></td>
+    </tr>
+{%if dataRow.permission%}
+    <tr>
+      <th>{%trans "Permission"%}</th>
+      <td>{{dataRow.permission | capitalize}}</td>
+      <td class="collapsing txtRa"></td>
+    </tr>
+{%endif%}
+  </table>
+</div>
+{%endblock%}
 
 
 {%block profile%}
@@ -39,50 +75,45 @@
       <p>{%trans "Some info may be visible to other people using our service."%} <a href="{{url.kingdom}}/privacy" target="_blank">{%trans "Learn more"%}</a></p>
     </div>
   </div>
-
-
-  <table class="tbl1 v4">
+  <table class="tbl1 v4 mB0">
     <tr>
       <th>{%trans "Avatar"%}</th>
       <td>{%trans "A photo helps personalize your account"%} <img src="{{dataRow.avatar}}" alt='{%trans "Avatar"%}' class="avatar fs25 floatRa"></td>
-      <td class="collapsing txtRa"><a href="{{url.this}}/avatar" class="block sf-chevron-{%if isLtr%}right{%else%}left{%endif%}"></a></td>
-    </tr>
-
-    <tr>
-      <th>{%trans "Username"%}</th>
-      <td>{{dataRow.username}}</td>
-      <td class="collapsing txtRa"><a href="{{url.this}}/profile" class="block sf-chevron-{%if isLtr%}right{%else%}left{%endif%}"></a></td>
+      <td class="collapsing txtRa"><a href="{{url.this}}/avatar" class="block {{arrow}}"></a></td>
     </tr>
     <tr>
       <th>{%trans "First name"%}</th>
       <td>{{dataRow.firstname}}</td>
-      <td class="collapsing txtRa"><a href="{{url.this}}/profile" class="block sf-chevron-{%if isLtr%}right{%else%}left{%endif%}"></a></td>
+      <td class="collapsing txtRa"><a href="{{url.this}}/profile" class="block {{arrow}}"></a></td>
     </tr>
     <tr>
       <th>{%trans "Last name"%}</th>
       <td>{{dataRow.lastname}}</td>
-      <td class="collapsing txtRa"><a href="{{url.this}}/profile" class="block sf-chevron-{%if isLtr%}right{%else%}left{%endif%}"></a></td>
+      <td class="collapsing txtRa"><a href="{{url.this}}/profile" class="block {{arrow}}"></a></td>
     </tr>
-
+    <tr>
+      <th>{%trans "Gender"%}</th>
+      <td>{{dataRow.gender | capitalize}}</td>
+      <td class="collapsing txtRa"><a href="{{url.this}}/profile" class="block {{arrow}}"></a></td>
+    </tr>
+    <tr>
+      <th>{%trans "BirthDate"%}</th>
+      <td>{{dataRow.birthday | dt(true)}}</td>
+      <td class="collapsing txtRa"><a href="{{url.this}}/profile" class="block {{arrow}}"></a></td>
+    </tr>
     <tr>
       <th>{%trans "Display name"%}</th>
       <td>{{dataRow.displayname}}</td>
-      <td class="collapsing txtRa"><a href="{{url.this}}/profile" class="block sf-chevron-{%if isLtr%}right{%else%}left{%endif%}"></a></td>
+      <td class="collapsing txtRa"><a href="{{url.this}}/profile" class="block {{arrow}}"></a></td>
     </tr>
-
     <tr>
       <th>{%trans "Bio"%}</th>
-      <td>{{dataRow.bio}}</td>
-      <td class="collapsing txtRa"><a href="{{url.this}}/profile" class="block sf-chevron-{%if isLtr%}right{%else%}left{%endif%}"></a></td>
+      <td>{{dataRow.bio | nl2br}}</td>
+      <td class="collapsing txtRa"><a href="{{url.this}}/profile" class="block {{arrow}}"></a></td>
     </tr>
-
   </table>
 </div>
 {%endblock%}
-
-
-
-
 
 
 
@@ -93,45 +124,37 @@
       <h3>{%trans "Social networks"%}</h3>
     </div>
   </div>
-
-
-  <table class="tbl1 v4">
-
-
+  <table class="tbl1 v4 mB0">
     <tr>
       <th>{%trans "Website"%}</th>
       <td>{{dataRow.website}}</td>
-      <td class="collapsing txtRa"><a href="{{url.this}}/social" class="block sf-chevron-{%if isLtr%}right{%else%}left{%endif%}"></a></td>
+      <td class="collapsing txtRa"><a href="{{url.this}}/social" class="block {{arrow}}"></a></td>
     </tr>
     <tr>
       <th>{%trans "Email"%}</th>
       <td>{{dataRow.email}}</td>
-      <td class="collapsing txtRa"><a href="{{url.this}}/social" class="block sf-chevron-{%if isLtr%}right{%else%}left{%endif%}"></a></td>
+      <td class="collapsing txtRa"><a href="{{url.this}}/social" class="block {{arrow}}"></a></td>
     </tr>
     <tr>
       <th>{%trans "Instagram"%}</th>
       <td>{{dataRow.instagram}}</td>
-      <td class="collapsing txtRa"><a href="{{url.this}}/social" class="block sf-chevron-{%if isLtr%}right{%else%}left{%endif%}"></a></td>
+      <td class="collapsing txtRa"><a href="{{url.this}}/social" class="block {{arrow}}"></a></td>
     </tr>
-
     <tr>
       <th>{%trans "Facebook"%}</th>
       <td>{{dataRow.facebook}}</td>
-      <td class="collapsing txtRa"><a href="{{url.this}}/social" class="block sf-chevron-{%if isLtr%}right{%else%}left{%endif%}"></a></td>
+      <td class="collapsing txtRa"><a href="{{url.this}}/social" class="block {{arrow}}"></a></td>
     </tr>
-
     <tr>
       <th>{%trans "Twitter"%}</th>
       <td>{{dataRow.twitter}}</td>
-      <td class="collapsing txtRa"><a href="{{url.this}}/social" class="block sf-chevron-{%if isLtr%}right{%else%}left{%endif%}"></a></td>
+      <td class="collapsing txtRa"><a href="{{url.this}}/social" class="block {{arrow}}"></a></td>
     </tr>
-
       <tr>
       <th>{%trans "Linkedin"%}</th>
       <td>{{dataRow.linkedin}}</td>
-      <td class="collapsing txtRa"><a href="{{url.this}}/social" class="block sf-chevron-{%if isLtr%}right{%else%}left{%endif%}"></a></td>
+      <td class="collapsing txtRa"><a href="{{url.this}}/social" class="block {{arrow}}"></a></td>
     </tr>
-
   </table>
 </div>
 {%endblock%}
