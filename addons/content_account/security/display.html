@@ -23,6 +23,11 @@
   {{block('recent')}}
   </section>
 
+  <section class="mB20">
+  {{block('deleteAccountPanel')}}
+  </section>
+
+
 </div>
 
 
@@ -42,10 +47,6 @@
     <div class="c8 s12">
       <div class="cbox">
         <h3 class="txtC">{%trans "Security and Enter"%}</h3>
-          {{block("imobile")}}
-          {{block("iPasswordLink")}}
-          {{block("DeleteAccount")}}
-          {{block("iTwostep")}}
           {{block("iRememberme")}}
           {{block("iSave")}}
       </div>
@@ -63,32 +64,6 @@
 {%endblock%}
 
 
-{%block iTwostep%}
-<div class="f">
-
-{%if dataRow.twostep%}
-<p class="c10 msg success2 txtC">
-  {%trans "Two step verification for your account is active"%}
-  <br>
-  <small>
-    {%trans "To deactive it"%}
-    <a href="{{url.kingdom}}/enter/twostep" data-direct target="_blank">{%trans "Click here"%}</a>
-  </small>
-</p>
-
-{%else%}
-<p class="c10 msg warn txtC">
-  {%trans "Two step verification for your account is not active!"%}
-  <br>
-  {%trans "To active it"%}
-  <a href="{{url.kingdom}}/enter/twostep" data-direct target="_blank">{%trans "Click here"%}</a>
-</p>
-
-{%endif%}
-</div>
-
-{%endblock%}
-
 {%block iRememberme%}
 <div class="switch1 mT20">
  <input type="checkbox" name="forceremember" id="forceremember" {%if dataRow.forceremember  %}checked{%endif%}>
@@ -99,26 +74,6 @@
 
 
 
-
-
-{%block imobile%}
-<label for="mobile">{%trans "Mobile"%} <small class="fc-red">* {%trans "Require"%}</small></label>
-<div class="input">
-  <input type="text" name="mobile" id="mobile" placeholder='{%trans "Like 09120123456"%} *' value="{{dataRow.mobile}}" maxlength='30' required {%if dataRow.mobile%} readonly{%endif%}>
-</div>
-{%endblock%}
-
-
-{%block iPasswordLink%}
-<p class="msg txtC">{%trans "To change your password"%} <a href="{{url.kingdom}}/enter/pass/change" data-direct target="_blank">{%trans "Click here"%}</a></p>
-{%endblock%}
-
-{%block DeleteAccount%}
-<div>
-  <a class="btn danger outline floatRa sm" href="{{url.kingdom}}/enter/delete" data-direct target="_blank">{%trans "Delete your account"%}</a>
-</div>
-
-{%endblock%}
 
 {%block irePassword%}
 <div data-response='password' data-response-hide data-response-effect='slide'>
@@ -227,12 +182,14 @@
     <tr>
       <th>{%trans "Password"%}</th>
       <td></td>
-      <td class="collapsing txtRa"><a href="{{url.this}}/profile" class="block {{arrow}}"></a></td>
+      <td class="collapsing txtRa"><a href="{{url.kingdom}}/enter/pass/change" target="_blank" class="block {{arrow}}"></a></td>
     </tr>
     <tr>
       <th>{%trans "2-Step Verification"%}</th>
       <td>{%if dataRow.twostep%}<span class="badge fs11 success"><i class="sf-check vltop"></i> {%trans "On"%}</span>{%else%}<span class="badge fs11 danger"><i class="sf-times vltop"></i> {%trans "Off"%}</span>{%endif%}</td>
-      <td class="collapsing txtRa"><a href="{{url.this}}/profile" class="block {{arrow}}"></a></td>
+      <td class="collapsing txtRa">
+        <a href="{{url.kingdom}}/enter/twostep" target="_blank" class="block {{arrow}}"></a>
+      </td>
     </tr>
   </table>
 </div>
@@ -255,4 +212,26 @@
   </div>
 </div>
 {%endblock%}
+
+
+
+
+
+{%block deleteAccountPanel%}
+<div class="panel">
+  <div class="body pad">
+    <div class="f">
+      <div class="c">
+        <h3>{%trans "Delete Account"%}</h3>
+        <p>{%trans "You can permanently delete your Account and all your data."%}</p>
+        <a class="btn danger outline sm" href="{{url.kingdom}}/enter/delete" data-direct target="_blank">{%trans "Delete my Account"%}</a>
+      </div>
+      <div class="cauto os">
+        <img class="box100" src="{{url.siftal}}/images/account/account-delete.png" alt='{%trans "Security Event"%}'>
+      </div>
+    </div>
+  </div>
+</div>
+{%endblock%}
+
 
