@@ -38,52 +38,50 @@
 
 
 
-  <table class="tbl1 v4 layoutFixed openable fs13">
-    <thead class="primary">
-      <tr>
-        <th class="type s0"></th>
-        <th class="subject">{%trans "Subject"%}</th>
-        <th class="via s0"></th>
-        <th class="date">{%trans "Date"%}</th>
-      </tr>
-    </thead>
-
+  <table class="tbl1 v1 fs13 responsive">
     <tbody>
       {%for key, value in dataTable%}
 
-      <tr {%if not value.txt or not value.excerpt%}data-open-disable{%endif%}>
-        <td class="type s0" title='{{value.cat}}'><i class="{%if value.icon%}sf-{{value.icon}}{%else%}sf-heart{%endif%}{%if value.iconClass%} {{value.iconClass}}{%endif%}"></i></td>
+      <tr>
+        <td class="collapsing type"><i class="{%if value.icon%}sf-{{value.icon}}{%else%}sf-heart{%endif%}{%if value.iconClass%} {{value.iconClass}}{%endif%} style1" title='{{value.cat}}'></i></td>
         <td class="subject">
+          <div class="f">
+            <div class="c s12">
+              <div class="title">
+                {%if not value.title%}{{value.caller}}{%else%}{{value.title}}{%endif%}
+                {%if not value.readdate%}<span class="mLa5 badge danger">{%trans "New"%}</span>{%endif%}
+              </div>
 
-          <div class="title">
-            {%if not value.title%}{{value.caller}}{%else%}{{value.title}}{%endif%}{%if perm_su()%}<small><code class="mLa5 floatRa fs09">{{value.caller}}</code></small>{%endif%}
-            {%if not value.readdate%}<span class="mLa5 badge danger">{%trans "New"%}</span>{%endif%}
+              {%if value.excerpt%}
+              <div class="excerpt txtCut">
+                {{value.excerpt | raw}}
+              </div>
+              {%endif%}
+
+              {%if value.txt%}
+              <div class="detail">
+                  {{value.txt | raw}}
+              </div>
+              {%endif%}
+            </div>
+            <div class="cauto s12">
+              {%if perm_su()%}<pre class="mT10 badge light fs08 floatRa">{{value.caller}}</pre>{%endif%}
+            </div>
           </div>
 
-          {%if value.excerpt%}
-          <div class="excerpt txtCut" {%if value.txt%}data-openable-close{%endif%}>
-            {{value.excerpt | raw}}
-          </div>
-          {%endif%}
-
-          {%if value.txt%}
-          <div class="detail" {%if value.excerpt%}data-openable-open{%endif%}>
-              {{value.txt | raw}}
-          </div>
-          {%endif%}
 
         </td>
-        <td class="via s0">
+        <td class="collapsing via txtC">
           {%if value.sms or value.telegram or value.email%}
             {%if value.sms%}
-              <i class="sf-envelope" title='{%trans "Sended via SMS"%}'></i>
+              <i class="sf-envelope style2" title='{%trans "Sended via SMS"%}'></i>
             {%endif%}
             {%if value.telegram%}
-              <i class="sf-paper-plane" title='{%trans "Sended via Telegram"%}'></i>
+              <i class="sf-paper-plane style2" title='{%trans "Sended via Telegram"%}'></i>
             {%endif%}
           {%endif%}
         </td>
-        <td class="date collapsing">
+        <td class="collapsing date txtRa">
           <span title="{{value.datecreated | dt(true)}}">{{value.datecreated | dt('human', 'year')}}</span>
         </td>
       </tr>
