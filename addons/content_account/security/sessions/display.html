@@ -12,23 +12,43 @@
 
 
 <div class="f justify-center">
-  <div class="c8 s12">
-    <div class="cbox">
-      <h4>{%trans "Active sessions"%} <a class="badge danger xs" href="{{url.pwd}}" data-ajaxify data-method="post" data-data='{"type": "terminateall" }' >{%trans "Terminate all other sessions"%}</a></h4>
-      {%for key, row in sessionsList%}
-      <div class="msg">
-          <div class="badge warn" title='{%trans "Browser"%}'>{{row.browser}} {{row.browserVer | fitNumber}}</div>
-          <div class="badge" title='{%trans "Operation System"%}'>{{row.os}} {{row.osVer | fitNumber}}</div>
-          <div class="badge" title='{%trans "IP"%}'>{{row.ip}}</div>
-          <div class="badge primary" title='{%trans "Date login"%}'>{{row.last | dt('human')}}</div>
-          {%if row.code == currentCookie %}
-          <div class="badge success">{%trans "Current session"%}</div>
-          {%endif%}
-          <a class="badge floatL danger" href="{{url.pwd}}" data-ajaxify data-method="post" data-data='{"id" : "{{row.id}}", "type": "terminate" }' tabindex='-1'>{%trans "Terminate"%}</a>
+  <div class="c9 m11 s12">
+    <div class="fs16">
 
+      <div class="msg f align-center fs08">
+        <div class="c">{%trans "Don't recognize a device?"%}</div>
+        <div class="cauto os">
+          <a class="btn danger outline" href="{{url.pwd}}" data-ajaxify data-method="post" data-data='{"type": "terminateall" }' >{%trans "Terminate all other sessions"%}</a>
+        </div>
       </div>
 
-      {%endfor%}
+{%for key, row in sessionsList%}
+      <div class="panel">
+        <div class="f align-center pad">
+          <div class="cauto s5 pRa10">
+            <div class="device72" data-device='{{row.os | lower}}'></div>
+          </div>
+          <div class="pA5 c s7">
+            <div class="mB5"><b>{{row.os}}</b> {{row.osVer | fitNumber}}</div>
+            {%if row.code == currentCookie%}
+            <div class="badge success">{%trans "This device"%}</div>
+            {%endif%}
+          </div>
+          <div class="pA5 c s8 fs08">
+            <div class="mB10"><b>{{row.browser}}</b> {{row.browserVer | fitNumber}}</div>
+            <div>{{row.last | dt('human')}}</div>
+          </div>
+          <div class="pA5 cauto s4">
+            <div class="mB5">
+              <a target="_blank" href="https://ipgeolocation.io/ip-location/{{row.ip}}" title='{%trans "Check ip address"%}'>{{row.ip}}</a>
+            </div>
+            <div>
+              <a class="badge danger" href="{{url.pwd}}" data-ajaxify data-method="post" data-confirm data-data='{"id" : "{{row.id}}", "type": "terminate" }'>{%trans "Terminate"%}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+{%endfor%}
     </div>
   </div>
 </div>
