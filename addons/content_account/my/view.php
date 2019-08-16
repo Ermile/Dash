@@ -13,6 +13,15 @@ class view
 		\dash\data::badge_link(\dash\url::here());
 		\dash\data::badge_text(T_('Back to Account'));
 
+		\content_account\my\view::load_me();
+
+		\dash\data::isLtr(\dash\language::current('direction') === 'ltr' ? true : false);
+	}
+
+
+	public static function load_me()
+	{
+
 		$id = \dash\user::id();
 
 		if(!$id)
@@ -28,8 +37,6 @@ class view
 		}
 
 		\dash\data::dataRow(\dash\app\user::ready($user_detail, true));
-
-		\dash\data::isLtr(\dash\language::current('direction') === 'ltr' ? true : false);
 	}
 }
 ?>

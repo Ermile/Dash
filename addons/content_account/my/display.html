@@ -45,7 +45,7 @@
     <tr>
       <th>{%trans "Avatar"%}</th>
       <td>{%trans "A photo helps personalize your account"%} <img src="{{dataRow.avatar}}" alt='{%trans "Avatar"%}' class="avatar fs25 floatRa"></td>
-      <td class="collapsing txtRa"><a href="{{url.this}}/profile" class="block sf-chevron-{%if isLtr%}right{%else%}left{%endif%}"></a></td>
+      <td class="collapsing txtRa"><a href="{{url.this}}/avatar" class="block sf-chevron-{%if isLtr%}right{%else%}left{%endif%}"></a></td>
     </tr>
 
     <tr>
@@ -396,7 +396,7 @@
 {%block iAvatar%}
 <div class="input preview">
  <input type="file" accept="image/gif, image/jpeg, image/png" name="avatar" id="avatar1" data-preview data-max="500">
- <label for="avatar1" title="Simple Title">
+ <label for="avatar1" content_account\my>
     {%if dataRow.avatar%}<img src="{{dataRow.avatar}}">{%endif%}
  </label>
 </div>

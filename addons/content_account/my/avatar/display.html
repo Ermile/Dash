@@ -1,0 +1,49 @@
+{%extends display.admin%}
+
+
+{%block pageContent%}
+
+<form method="post" enctype="multipart/form-data" autocomplete="off">
+  <div class="f justify-center txtC">
+    <div class="c6 m8 x5 s12">
+
+
+
+      <div class="cbox">
+        <h3 class="txtC">{%trans "Avatar"%}</h3>
+
+        {%if dataRow.avatar%}<img src="{{dataRow.avatar}}" class="avatar fs50">{%endif%}
+        {{block("iAvatar")}}
+        <div class="f">
+          {%if dataRow.avatar%}
+          <div class="cauto">
+            <div class="btn danger xs"  data-confirm data-method='post' data-data='{"remove" : "avatar"}'>{%trans "Remove"%} {%trans "Your avatar"%}</div>
+          </div>
+          {%endif%}
+          <div class="c"></div>
+          <div class="cauto">
+            <button class="btn success">{%trans "Save"%}</button>
+          </div>
+        </div>
+
+      </div>
+
+
+    </div>
+  </div>
+</form>
+{%endblock%}
+
+
+
+
+{%block iAvatar%}
+<div class="input mT10">
+ <input type="file" accept="image/gif, image/jpeg, image/png" name="avatar" id="avatar1"  data-max="500">
+ <label for="avatar1" content_account\my>
+ </label>
+</div>
+
+{%endblock%}
+
+
