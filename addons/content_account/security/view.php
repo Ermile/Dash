@@ -13,6 +13,8 @@ class view
 		\dash\data::badge_link(\dash\url::here());
 		\dash\data::badge_text(T_('Back to Account'));
 
+		\dash\data::isLtr(\dash\language::current('direction') === 'ltr' ? true : false);
+
 		$id = \dash\user::id();
 
 		if(!$id)

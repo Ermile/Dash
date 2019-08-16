@@ -1,5 +1,6 @@
 {%extends display.admin%}
 
+{%set arrow%}sf-chevron-{%if isLtr%}right{%else%}left{%endif%}{%endset%}
 
 {%block pageContent%}
 
@@ -9,10 +10,29 @@
   <p>{%trans "Settings and recommendations to help you keep your account secure"%}</p>
 </div>
 
+<div class="fs14">
+  <section class="mB20">
+  {{block('account')}}
+  </section>
+
+  <section class="mB20">
+  {{block('signingin')}}
+  </section>
+
+  <section class="mB20">
+  {{block('recent')}}
+  </section>
+
+</div>
 
 
 
 
+<br>
+<br>
+<br>
+<br>
+<br>
 
 
 
@@ -139,3 +159,100 @@
 {%endfor%}
 
 {%endblock%}
+
+
+
+
+
+
+
+
+
+
+
+
+
+{%block signingin%}
+<div class="panel">
+  <div class="body pad">
+    <div class="f">
+      <div class="c">
+        <h3>{%trans "Ways we can verify it's you"%}</h3>
+        <p>{%trans "These can be used to make sure it's really you signing in or to reach you if there's suspicious activity in your account"%}</p>
+      </div>
+      <div class="cauto os">
+        <img class="box300" src="{{url.siftal}}/images/account/security-recovery.png" alt='{%trans "Recovery Acount"%}'>
+      </div>
+    </div>
+  </div>
+  <table class="tbl1 v4 responsive mB0">
+    <tr>
+      <th>{%trans "Recovery Email"%}</th>
+      <td>{{dataRow.username}}</td>
+      <td class="collapsing txtRa"><a href="{{url.this}}/profile" class="block {{arrow}}"></a></td>
+    </tr>
+    <tr>
+      <th>{%trans "Recovery phone"%}</th>
+      <td>{{dataRow.mobile}}</td>
+      <td class="collapsing txtRa"><a href="{{url.this}}/profile" class="block {{arrow}}"></a></td>
+    </tr>
+{%if dataRow.permission%}
+    <tr>
+      <th>{%trans "Permission"%}</th>
+      <td>{{dataRow.permission | capitalize}}</td>
+      <td class="collapsing txtRa"></td>
+    </tr>
+{%endif%}
+  </table>
+</div>
+{%endblock%}
+
+
+
+
+
+{%block account%}
+<div class="panel">
+  <div class="body pad">
+    <div class="f">
+      <div class="c">
+        <h3>{%trans "Signing in to"%} {{site.title}}</h3>
+      </div>
+      <div class="cauto os">
+        <img class="box300" src="{{url.siftal}}/images/account/security-signin.png" alt='{%trans "Signing to account"%}'>
+      </div>
+    </div>
+  </div>
+  <table class="tbl1 v4 responsive mB0">
+    <tr>
+      <th>{%trans "Password"%}</th>
+      <td></td>
+      <td class="collapsing txtRa"><a href="{{url.this}}/profile" class="block {{arrow}}"></a></td>
+    </tr>
+    <tr>
+      <th>{%trans "2-Step Verification"%}</th>
+      <td>{%if dataRow.twostep%}<span class="badge fs11 success"><i class="sf-check vltop"></i> {%trans "On"%}</span>{%else%}<span class="badge fs11 danger"><i class="sf-times vltop"></i> {%trans "Off"%}</span>{%endif%}</td>
+      <td class="collapsing txtRa"><a href="{{url.this}}/profile" class="block {{arrow}}"></a></td>
+    </tr>
+  </table>
+</div>
+{%endblock%}
+
+
+
+{%block recent%}
+<div class="panel">
+  <div class="body pad">
+    <div class="f">
+      <div class="c">
+        <h3>{%trans "Recent security events"%}</h3>
+        <p>{%trans "No activity in the last month."%} {%trans "You'll be notified if unusual security activity is detected, like a sign-in from a new device or if a sensitive setting is changed in your account."%}</p>
+      </div>
+      <div class="cauto os">
+        <img class="box300" src="{{url.siftal}}/images/account/security-event.svg" alt='{%trans "Security Event"%}'>
+      </div>
+    </div>
+  </div>
+</div>
+{%endblock%}
+
