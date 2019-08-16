@@ -1,0 +1,23 @@
+{%extends display.admin%}
+
+
+{%block pageContent%}
+<form method="post" enctype="multipart/form-data" autocomplete="off">
+  <div class="f justify-center">
+    <div class="c8 s12">
+      <div class="cbox">
+          <div class="switch1 mT20">
+           <input type="checkbox" name="forceremember" id="forceremember" {%if dataRow.forceremember  %}checked{%endif%}>
+           <label for="forceremember"></label>
+           <label for="forceremember">{%trans "Save remember session"%}</label>
+          </div>
+
+          <div class="txtRa mT20">
+            <button class="btn success">{%trans "Save"%}</button>
+          </div>
+      </div>
+    </div>
+  </div>
+</form>
+{%endblock%}
+
