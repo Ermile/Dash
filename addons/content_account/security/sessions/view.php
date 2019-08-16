@@ -70,11 +70,13 @@ class view
 				switch ($row['agent_os'])
 				{
 					case 'nt':
-						$mySessionData[$key]['os'] = T_('Windows');
+						$mySessionData[$key]['os'] = 'Windows';
+						$mySessionData[$key]['osName'] = T_('Windows');
 						break;
 
 					case 'lin':
-						$mySessionData[$key]['os'] = T_('Linux');
+						$mySessionData[$key]['os'] = 'Linux';
+						$mySessionData[$key]['osName'] = T_('Linux');
 						break;
 
 					default:

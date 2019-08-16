@@ -29,7 +29,7 @@
             <div class="device72" data-device='{{row.os | lower}}'></div>
           </div>
           <div class="pA5 c s7">
-            <div class="mB5"><b>{{row.os}}</b> {{row.osVer | fitNumber}}</div>
+            <div class="mB5"><b>{{row.osName}}</b> {{row.osVer | fitNumber}}</div>
             {%if row.code == currentCookie%}
             <div class="badge success">{%trans "This device"%}</div>
             {%endif%}
