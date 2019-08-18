@@ -82,6 +82,17 @@ class view
 		{
 			\dash\data::global_content('site');
 		}
+		// set theme null on start
+		\dash\data::global_theme(null);
+		// enable night theme on su
+		if(\dash\url::content() === 'su')
+		{
+			\dash\data::global_theme('night');
+		}
+		elseif(\dash\url::content() === 'account')
+		{
+			\dash\data::global_theme('light');
+		}
 
 		\dash\data::dev(\dash\option::config('dev'));
 
