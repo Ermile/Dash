@@ -38,8 +38,8 @@
     </tr>
     <tr>
       <th>{%trans "Sidebar"%}</th>
-      <td>{{dataRow.sidebar}}</td>
-      <td class="collapsing txtRa"><a href="{{url.this}}/theme" class="block {{arrow}}"></a></td>
+      <td>{%if userToggleSidebar%}<span class="badge fs11 success"><i class="sf-check vltop"></i> {%trans "Show"%}</span>{%else%}<span class="badge fs11 danger"><i class="sf-times vltop"></i> {%trans "Hide"%}</span>{%endif%}</td>
+      <td class="collapsing txtRa"><a href="{{url.this}}/sidebar" class="block {{arrow}}"></a></td>
     </tr>
     <tr>
       <th>{%trans "Theme"%}</th>
