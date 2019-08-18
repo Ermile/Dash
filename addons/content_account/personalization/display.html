@@ -1,0 +1,52 @@
+{%extends display.admin%}
+
+{%set arrow%}sf-chevron-{%if isLtr%}right{%else%}left{%endif%}{%endset%}
+
+{%block pageContent%}
+
+<div class="txtC fs14 mTB25">
+  <img class="box700 mB20-f" src="{{url.siftal}}/images/account/personalization-cover.png" alt='{{page.title}}'>
+  <h2>{{page.title}}</h2>
+  <p>{{page.desc}}</p>
+</div>
+
+<div class="fs14">
+  <section class="mB20">
+  {{block('preferences')}}
+  </section>
+</div>
+{%endblock%}
+
+
+
+
+{%block preferences%}
+<div class="panel">
+  <div class="body pad">
+    <div class="f">
+      <div class="c">
+        <h3>{%trans "General preferences for the web"%}</h3>
+        <p>{%trans "Manage settings for yourself"%}</p>
+      </div>
+    </div>
+  </div>
+  <table class="tbl1 v4 responsive mB0">
+    <tr>
+      <th>{%trans "Language"%}</th>
+      <td>{{dataRow.language}}</td>
+      <td class="collapsing txtRa"><a href="{{url.this}}/language" class="block {{arrow}}"></a></td>
+    </tr>
+    <tr>
+      <th>{%trans "Sidebar"%}</th>
+      <td>{{dataRow.sidebar}}</td>
+      <td class="collapsing txtRa"><a href="{{url.this}}/theme" class="block {{arrow}}"></a></td>
+    </tr>
+    <tr>
+      <th>{%trans "Theme"%}</th>
+      <td>{{dataRow.theme}}</td>
+      <td class="collapsing txtRa"><a href="{{url.this}}/theme" class="block {{arrow}}"></a></td>
+    </tr>
+  </table>
+</div>
+{%endblock%}
+

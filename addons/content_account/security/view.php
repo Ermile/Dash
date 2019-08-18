@@ -8,6 +8,7 @@ class view
 	public static function config()
 	{
 		\dash\data::page_title(T_('Security'));
+		\dash\data::page_desc(T_('Settings and recommendations to help you keep your account secure'));
 		\dash\data::page_tbox(false);
 
 		\dash\data::badge_link(\dash\url::here());
