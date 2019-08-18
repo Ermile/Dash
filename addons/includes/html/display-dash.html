@@ -145,7 +145,7 @@
 {%block header%}
    <div class="sidenavHandler c0 sauto mauto"><i class="sf-ellipsis-v"></i></div>
 
-   {%block headerTitle%}<h1 class='cauto' data-tippy-animation="perspective" title='{%trans "View website"%} {{site.title}}'><a href="{{url.kingdom}}" data-direct class='flex'><img src="{{site.logo}}" alt='{{site.title}}'><span>{{site.title}}</span></a></h1>{%endblock%}
+   {%block headerTitle%}<h1 class='cauto'><a href="{{url.kingdom}}" data-direct class='flex'><img src="{{site.logo}}" alt='{{site.title}}'><span>{{site.title}}</span></a></h1>{%endblock%}
 
    <div class='hm flex cauto'>
 {%block headerMenu%}
@@ -156,9 +156,9 @@
     <a href="{{url.kingdom}}/support" data-tippy-animation="perspective" title='{%trans "Help Center"%}' class="support s0"><i class="sf-life-ring"></i></a>
 
 {%if user.id%}
-    <a href="{{url.kingdom}}/account/notification" data-tippy-animation="perspective" title='{%trans "Your notifications"%}' class="notification"><i class="sf-bell"></i></a>
+    <a href="{{url.kingdom}}/account/notification" data-tippy-animation="perspective" title='{%trans "Notifications"%}' class="notification"><i class="sf-bell"></i></a>
 
-    <div class="profileShow" data-tippy-animation="perspective" title='{%trans "Click to check your profile"%}'
+    <div class="profileShow" data-tippy-animation="perspective" title='{{site.title}}<br>{{userBadge.desc | raw}}'
     data-desc='{{userBadge.desc | raw}}'
     data-footer='{{userBadge.footer | raw}}'
     data-confirmTxt='{%trans "Account"%} <i class="sf-user"></i>' data-confirmLink='{{url.kingdom}}/account'
