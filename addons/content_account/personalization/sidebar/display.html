@@ -1,0 +1,35 @@
+{%extends display.admin%}
+
+
+
+{%block pageContent%}
+<div class="f justify-center">
+  <div class="c6 m8 x5 s12">
+    <div class="cbox">
+
+      <form method="post" autocomplete="off">
+        {{block('iSidebar')}}
+        <div class="txtRa">
+          <button class="btn success">{%trans "Save"%}</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+{%endblock%}
+
+
+
+
+
+
+
+
+{%block iSidebar%}
+ <div class="switch1 mT20">
+   <input type="checkbox" name="sidebar" id="isidebar" {%if dataRow.sidebar  %}checked{%endif%}>
+   <label for="isidebar"></label>
+   <label for="isidebar">{%trans "Show sidebar"%}</label>
+  </div>
+{%endblock%}

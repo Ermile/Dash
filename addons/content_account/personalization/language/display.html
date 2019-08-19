@@ -1,0 +1,38 @@
+{%extends display.admin%}
+
+
+
+{%block pageContent%}
+<div class="f justify-center">
+  <div class="c6 m8 x5 s12">
+    <div class="cbox">
+
+      <form method="post" autocomplete="off">
+        {{block('iLanguage')}}
+        <div class="txtRa">
+          <button class="btn success">{%trans "Save"%}</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+{%endblock%}
+
+
+
+
+
+
+
+
+{%block iLanguage%}
+<label for="language">{%trans "Language"%}</label>
+<select name="language" class="select ui dropdown" id="language">
+  <option value="" readonly>{%trans "Please select one language"%} *</option>
+  {%for key, value in langList%}
+    <option value="{{value.name}}" {%if dataRow.language == value.name %} selected {%endif%}>{{value.localname}}</option>
+  {%endfor%}
+</select>
+
+{%endblock%}

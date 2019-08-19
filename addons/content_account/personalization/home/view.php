@@ -1,5 +1,5 @@
 <?php
-namespace content_account\personalization;
+namespace content_account\personalization\home;
 
 
 class view
@@ -13,7 +13,14 @@ class view
 		\dash\data::badge_link(\dash\url::here());
 		\dash\data::badge_text(T_('Back to Account'));
 
+		\content_account\load::me();
+
 		\dash\data::isLtr(\dash\language::current('direction') === 'ltr' ? true : false);
+
+		if(\dash\data::dataRow_language())
+		{
+			\dash\data::LnagName(\dash\language::get(\dash\data::dataRow_language(), 'localname'));
+		}
 	}
 }
 ?>
