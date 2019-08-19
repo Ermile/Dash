@@ -15,9 +15,6 @@ class model
 			'linkedin'    => \dash\request::post('linkedin'),
 			'facebook'    => \dash\request::post('facebook'),
 			'twitter'     => \dash\request::post('twitter'),
-			// 'email'       => \dash\request::post('email'),
-
-
 		];
 
 		return $post;

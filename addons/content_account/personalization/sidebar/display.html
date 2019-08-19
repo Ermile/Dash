@@ -6,7 +6,15 @@
 <div class="f justify-center">
   <div class="c6 m8 x5 s12">
     <div class="cbox">
-
+      <div class="msg f">
+       <div class="cauto">
+        <span class="{%if login.sidebar %}sf-monitor{%else%}sf-display{%endif%} fs40 pA10 pRa25 vlbottom"></span>
+       </div>
+        <div class="c">
+         <h3>{%trans "Toggle side bar"%}</h3>
+         <p>{%trans "You can save side bar status"%}</p>
+       </div>
+      </div>
       <form method="post" autocomplete="off">
         {{block('iSidebar')}}
         <div class="txtRa">
@@ -30,6 +38,6 @@
  <div class="switch1 mT20">
    <input type="checkbox" name="sidebar" id="isidebar" {%if dataRow.sidebar  %}checked{%endif%}>
    <label for="isidebar"></label>
-   <label for="isidebar">{%trans "Show sidebar"%}</label>
+   <label for="isidebar">{%trans "Are your need side bar?"%}</label>
   </div>
 {%endblock%}

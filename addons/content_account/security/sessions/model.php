@@ -5,62 +5,8 @@ namespace content_account\security\sessions;
 class model
 {
 
-	/**
-	 * UploAads an avatar.
-	 *
-	 * @return     boolean  ( description_of_the_return_value )
-	 */
-	public static function upload_avatar()
-	{
-		if(\dash\request::files('avatar'))
-		{
-			$uploaded_file = \dash\app\file::upload(['debug' => false, 'upload_name' => 'avatar']);
-
-			if(isset($uploaded_file['url']))
-			{
-				\dash\notif::direct();
-
-				return $uploaded_file['url'];
-			}
-			// if in upload have error return
-			if(!\dash\engine\process::status())
-			{
-				return false;
-			}
-		}
-		return null;
-	}
-
-
-	public static function getPost()
-	{
-		$post =
-		[
-			// 'twostep'       => \dash\request::post('twostep'),
-			'forceremember' => \dash\request::post('forceremember'),
-
-		];
-
-		$avatar = self::upload_avatar();
-
-		if($avatar)
-		{
-			$post['avatar'] = $avatar;
-		}
-
-		return $post;
-	}
-
-
-	/**
-	 * Posts a user add.
-	 */
 	public static function post()
 	{
-		if(!\dash\user::id())
-		{
-			return false;
-		}
 
 		if(\dash\request::post('type') === 'terminateall')
 		{
@@ -81,20 +27,6 @@ class model
 				\dash\redirect::pwd();
 				return true;
 			}
-		}
-
-		$request = self::getPost();
-
-		// ready request
-		$id = \dash\coding::encode(\dash\user::id());
-
-		$result = \dash\app\user::edit($request, $id);
-
-		if(\dash\engine\process::status())
-		{
-			\dash\log::set('editProfileSecurity', ['code' => \dash\user::id()]);
-			\dash\user::refresh();
-			\dash\redirect::pwd();
 		}
 	}
 }

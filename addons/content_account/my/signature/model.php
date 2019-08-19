@@ -4,10 +4,6 @@ namespace content_account\my\signature;
 
 class model
 {
-
-
-
-
 	/**
 	 * Posts a user add.
 	 */

@@ -34,7 +34,7 @@ class model
 		{
 			\dash\notif::clean();
 			\dash\notif::ok(T_("Your email was changed"));
-			\dash\log::set('editProfileUsername', ['newemail' => \dash\request::post('email'), 'code' => \dash\user::id()]);
+			\dash\log::set('editProfileEmail', ['newemail' => \dash\request::post('email'), 'code' => \dash\user::id()]);
 			\dash\user::refresh();
 			// \dash\notif::direct();
 			\dash\redirect::pwd();

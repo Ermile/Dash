@@ -5,71 +5,24 @@ namespace content_account\my\profile;
 class model
 {
 
-	/**
-	 * UploAads an avatar.
-	 *
-	 * @return     boolean  ( description_of_the_return_value )
-	 */
-	public static function upload_avatar()
-	{
-		if(\dash\request::files('avatar'))
-		{
-			$uploaded_file = \dash\app\file::upload(['debug' => false, 'upload_name' => 'avatar']);
-
-			if(isset($uploaded_file['url']))
-			{
-				\dash\notif::direct();
-
-				return $uploaded_file['url'];
-			}
-			// if in upload have error return
-			if(!\dash\engine\process::status())
-			{
-				return false;
-			}
-		}
-		return null;
-	}
-
-
 	public static function getPost()
 	{
 		$post =
 		[
-			// 'twostep'     => \dash\request::post('twostep'),
-			// 'sidebar'     => \dash\request::post('sidebar') ? true : false,
-			// 'language'    => \dash\request::post('language'),
-			// 'website'     => \dash\request::post('website'),
-			// 'instagram'   => \dash\request::post('instagram'),
-			// 'linkedin'    => \dash\request::post('linkedin'),
-			// 'facebook'    => \dash\request::post('facebook'),
-			// 'twitter'     => \dash\request::post('twitter'),
 			'firstname'   => \dash\request::post('firstname'),
 			'lastname'    => \dash\request::post('lastname'),
-			// 'username'    => \dash\request::post('username'),
 			'bio'         => \dash\request::post('bio'),
 			'displayname' => \dash\request::post('displayname'),
 			'birthday'    => \dash\request::post('birthday'),
 			'gender'      => \dash\request::post('gender'),
-			// 'title'       => \dash\request::post('title'),
-			// 'fullname'    => \dash\request::post('fullname'),
-			// 'email'       => \dash\request::post('email'),
+
 		];
-
-		// $avatar = self::upload_avatar();
-
-		// if($avatar)
-		// {
-		// 	$post['avatar'] = $avatar;
-		// }
 
 		return $post;
 	}
 
 
-	/**
-	 * Posts a user add.
-	 */
+
 	public static function post()
 	{
 
@@ -84,9 +37,8 @@ class model
 		{
 			\dash\notif::clean();
 			\dash\notif::ok(T_("Your profile successfully updated"));
-			\dash\log::set('editProfileAbout', ['code' => \dash\user::id()]);
+			\dash\log::set('editProfile', ['code' => \dash\user::id()]);
 			\dash\user::refresh();
-			// \dash\notif::direct();
 			\dash\redirect::pwd();
 		}
 	}

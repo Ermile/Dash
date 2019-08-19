@@ -85,7 +85,7 @@ class model
 		{
 			\dash\user::refresh();
 			\dash\notif::direct(true);
-			\dash\log::set('editProfileOther', ['code' => \dash\user::id()]);
+			\dash\log::set('editProfileAvatar', ['code' => \dash\user::id()]);
 			\dash\redirect::pwd();
 		}
 	}

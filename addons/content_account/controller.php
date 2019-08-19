@@ -14,6 +14,8 @@ class controller
 			return;
 		}
 
+		\content_account\load::me();
+
 	}
 }
 ?>

@@ -13,7 +13,7 @@ class view
 		\dash\data::badge_link(\dash\url::here());
 		\dash\data::badge_text(T_('Back to Account'));
 
-		\content_account\load::me();
+
 
 		\dash\data::isLtr(\dash\language::current('direction') === 'ltr' ? true : false);
 
