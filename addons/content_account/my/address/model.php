@@ -10,7 +10,7 @@ class model
 		if(\dash\request::post('btnremove') === 'delete' && \dash\request::post('addressid'))
 		{
 			\dash\app\address::remove(\dash\request::post('addressid'));
-			\dash\redirect::to(\dash\url::this());
+			\dash\redirect::to(\dash\url::that());
 			return;
 		}
 
@@ -36,7 +36,7 @@ class model
 			if(\dash\engine\process::status())
 			{
 				\dash\notif::ok(T_("Address successfully edited"));
-				\dash\redirect::to(\dash\url::this());
+				\dash\redirect::to(\dash\url::that());
 			}
 		}
 		else
