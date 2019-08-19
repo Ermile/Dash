@@ -1198,7 +1198,7 @@ class enter
 			[
 				'clean_session' => true,
 				'text' => T_("Your two-step verification is now active for your account"),
-				'link' => \dash\url::kingdom(). '/account/profile/security',
+				'link' => \dash\url::kingdom(). '/account/security',
 			];
 
 			\dash\log::set('twoStepActive');
@@ -1224,7 +1224,7 @@ class enter
 			[
 				'clean_session' => true,
 				'text' => T_("Your two-step verification is now deactive for your account"),
-				'link' => \dash\url::kingdom(). '/account/profile/security',
+				'link' => \dash\url::kingdom(). '/account/security',
 			];
 
 			\dash\log::set('twoStepDeactive');
@@ -1247,7 +1247,7 @@ class enter
 			[
 				'clean_session' => true,
 				'text'          => T_("Your password was changed"),
-				'link'          => \dash\url::kingdom(). '/account/profile/security',
+				'link'          => \dash\url::kingdom(). '/account/security',
 			];
 
 			\dash\log::set('passwordChangeOK');

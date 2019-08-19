@@ -27,7 +27,7 @@ class model
 					// login
 					\dash\log::set('oldPassword=newPasswordInChange');
 
-					$url             = \dash\url::kingdom(). '/account/profile/security';
+					$url             = \dash\url::kingdom(). '/account/security';
 					$alert           = [];
 					$alert['text']   = T_("Your new password is your old password");
 					$alert['link']   = $url;
