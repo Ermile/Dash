@@ -355,8 +355,9 @@ class user
 			}
 		}
 
+
 		$gender = \dash\app::request('gender');
-		if($gender && !in_array($gender, ['male', 'female']))
+		if($gender && !in_array($gender, ['male','female', 'company', 'rather not say']))
 		{
 			if($debug) \dash\notif::error(T_("Invalid gender"), 'gender');
 			return false;

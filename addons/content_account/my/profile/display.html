@@ -93,11 +93,14 @@
 
 
 {%block igender%}
+
 <label for="gender">{%trans "Gender"%}</label>
 <select name="gender" class="select ui dropdown" id="gender">
   <option value="" readonly>{%trans "Please select one item"%} *</option>
     <option value="male" {%if dataRow.gender == 'male' %} selected {%endif%}>{%trans "Male"%}</option>
     <option value="female" {%if dataRow.gender == 'female' %} selected {%endif%}>{%trans "Female"%}</option>
+    <option value="company" {%if dataRow.gender == 'company' %} selected {%endif%}>{%trans "Company"%}</option>
+    <option value="rather not say" {%if dataRow.gender == 'rather not say' %} selected {%endif%}>{%trans "Rather not say"%}</option>
 </select>
 
 {%endblock%}
