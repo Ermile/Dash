@@ -145,7 +145,7 @@ trait edit
 		if(!\dash\app::isset_request('lastname'))   	unset($args['lastname']);
 		if(!\dash\app::isset_request('bio'))        	unset($args['bio']);
 		if(!\dash\app::isset_request('birthday'))   	unset($args['birthday']);
-		// if(!\dash\app::isset_request('chatid'))     	unset($args['chatid']);
+		if(!\dash\app::isset_request('theme'))        	unset($args['theme']);
 		// if(!\dash\app::isset_request('tgstatus'))   	unset($args['tgstatus']);
 		// if(!\dash\app::isset_request('tgusername'))   	unset($args['tgusername']);
 		if(!\dash\app::isset_request('father'))         unset($args['father']);

@@ -1,0 +1,1 @@
+ALTER TABLE `users` ADD `theme` varchar(100) NULL DEFAULT NULL AFTER `sidebar`;

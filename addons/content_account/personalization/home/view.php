@@ -21,6 +21,12 @@ class view
 		{
 			\dash\data::LnagName(\dash\language::get(\dash\data::dataRow_language(), 'localname'));
 		}
+
+		if(\dash\data::dataRow_theme())
+		{
+			$myKey = \dash\data::dataRow_theme();
+			\dash\data::ThemeName(\dash\utility\theme::get($myKey, 'name'));
+		}
 	}
 }
 ?>

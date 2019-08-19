@@ -821,8 +821,16 @@ class user
 		}
 
 
+		$theme = \dash\app::request('theme');
+		if($theme && !\dash\utility\theme::check($theme))
+		{
+			\dash\notif::error(T_("Invalid theme id!"));
+			return false;
+		}
+
+
 		$args['username']      = $username;
-		// $args['chatid']        = $chatid;
+		$args['theme']         = $theme;
 		$args['mobile']        = $mobile;
 		$args['email']         = $email;
 

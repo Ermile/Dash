@@ -1,0 +1,38 @@
+{%extends display.admin%}
+
+
+
+{%block pageContent%}
+<div class="f justify-center">
+  <div class="c6 m8 x5 s12">
+    <div class="cbox">
+
+      <form method="post" autocomplete="off">
+        {{block('itheme')}}
+        <div class="txtRa">
+          <button class="btn success">{%trans "Save"%}</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+{%endblock%}
+
+
+
+
+
+
+
+
+{%block itheme%}
+<label for="theme">{%trans "Theme"%}</label>
+<select name="theme" class="select ui dropdown" id="theme">
+  <option value="" readonly>{%trans "Please select one theme"%} *</option>
+  {%for key, value in themeList%}
+    <option value="{{key}}" {%if dataRow.theme == key %} selected {%endif%} {%if not dataRow.theme and key == 'default' %} selected {%endif%}>{{value.name}}</option>
+  {%endfor%}
+</select>
+
+{%endblock%}
