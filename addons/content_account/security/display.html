@@ -52,13 +52,13 @@
   <table class="tbl1 v4 responsive mB0">
     <tr>
       <th>{%trans "Recovery email"%}</th>
-      <td>{{dataRow.username}}</td>
-      <td class="collapsing txtRa"><a href="{{url.this}}/profile" class="block {{arrow}}"></a></td>
+      <td>{{dataRow.email}}</td>
+      <td class="collapsing txtRa"><a href="{{url.here}}/my/email" class="block {{arrow}}"></a></td>
     </tr>
     <tr>
       <th>{%trans "Recovery phone"%}</th>
-      <td>{{dataRow.mobile}}</td>
-      <td class="collapsing txtRa"><a href="{{url.this}}/profile" class="block {{arrow}}"></a></td>
+      <td>{{dataRow.mobile | fitNumber('mobile')}}</td>
+      <td></td>
     </tr>
   </table>
 </div>
