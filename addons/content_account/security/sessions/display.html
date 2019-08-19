@@ -6,7 +6,7 @@
 
 <div class="txtC fs14 mTB25">
   <img class="box700 mB20-f" src="{{url.siftal}}/images/account/privacy-checkup.png" alt='{%trans "Sessions"%}'>
-  <h2>{{page.title}} <span class="badge">{{sessionsList | length}}</span></h2>
+  <h2>{{page.title}} <span class="badge">{{sessionsList | length | fitNumber}}</span></h2>
   <p>{%trans "Devices that have been active on your account in the last month, or are currently signed in."%}</p>
 </div>
 
@@ -14,13 +14,19 @@
 <div class="f justify-center">
   <div class="c9 m11 s12">
     <div class="fs16">
-
-      <div class="msg f align-center fs08">
-        <div class="c s12">{%trans "Don't recognize a device?"%}</div>
-        <div class="cauto os">
-          <a class="btn danger outline" href="{{url.pwd}}" data-ajaxify data-method="post" data-data='{"type": "terminateall" }' >{%trans "Terminate all other sessions"%}</a>
+      {%if sessionsList%}
+        <div class="msg f align-center fs08">
+          <div class="c s12">{%trans "Don't recognize a device?"%}</div>
+          <div class="cauto os">
+            <a class="btn danger outline" href="{{url.pwd}}" data-confirm  data-data='{"type": "terminateall" }' >{%trans "Terminate all other sessions"%}</a>
+          </div>
         </div>
-      </div>
+      {%else%}
+      <div class="msg f align-center fs08">
+          <div class="c s12">{%trans "No active session found"%}</div>
+
+        </div>
+      {%endif%}
 
 {%for key, row in sessionsList%}
       <div class="panel mB10">
@@ -43,7 +49,7 @@
               <a target="_blank" href="https://ipgeolocation.io/ip-location/{{row.ip}}" title='{%trans "Check ip address"%}'>{{row.ip}}</a>
             </div>
             <div>
-              <a class="badge danger" href="{{url.pwd}}" data-ajaxify data-method="post" data-confirm data-data='{"id" : "{{row.id}}", "type": "terminate" }'>{%trans "Terminate"%}</a>
+              <a class="badge danger" href="{{url.pwd}}" data-confirm data-data='{"id" : "{{row.id}}", "type": "terminate" }'>{%trans "Terminate"%}</a>
             </div>
           </div>
           {%if perm_su()%}
