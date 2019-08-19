@@ -13,7 +13,7 @@ class view
 		\dash\data::badge_link(\dash\url::this());
 		\dash\data::badge_text(T_('Back to personal info'));
 
-		\content_account\my\home\view::load_me();
+		\content_account\load::me();
 	}
 }
 ?>
