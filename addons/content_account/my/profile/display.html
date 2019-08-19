@@ -13,7 +13,7 @@
   <div class="c6 m8 x5 s12">
     <div class="cbox">
       <form method="post" autocomplete="off">
-        {{block('iusername')}}
+
         {{block('ifirstname')}}
         {{block('ilastname')}}
         {{block('ibirthday')}}
@@ -60,14 +60,6 @@
 </div>
 {%endblock%}
 
-
-
-{%block iusername%}
-<label for="username">{%trans "Username"%}</label>
-<div class="input ltr">
-  <input type="text" name="username" id="username" placeholder='{%trans "Username"%}' value="{{dataRow.username}}" maxlength='40' minlength="1" pattern=".{1,40}" title2='{%trans "Enter a valid username from 3 to 40 character"%}' autofocus>
-</div>
-{%endblock%}
 
 
 

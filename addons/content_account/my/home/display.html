@@ -57,13 +57,20 @@
     </tr>
     <tr>
       <th>{%trans "Mobile"%}</th>
-      <td>{{dataRow.mobile}}</td>
-      <td class="collapsing txtRa"><a href="{{url.this}}/profile" class="block {{arrow}}"></a></td>
+      <td>{{dataRow.mobile | fitNumber(false)}}</td>
+      <td></td>
     </tr>
+
+     <tr>
+      <th>{%trans "Email"%}</th>
+      <td>{{dataRow.email}}</td>
+      <td class="collapsing txtRa"><a href="{{url.this}}/email" class="block {{arrow}}"></a></td>
+    </tr>
+
 {%if dataRow.permission%}
     <tr>
       <th>{%trans "Permission"%}</th>
-      <td>{{dataRow.permission | capitalize}}</td>
+      <td>{{permName}}</td>
       <td class="collapsing txtRa"></td>
     </tr>
 {%endif%}
@@ -105,7 +112,7 @@
     </tr>
     <tr>
       <th>{%trans "Gender"%}</th>
-      <td>{{dataRow.gender | capitalize}}</td>
+      <td>{%set myGender = dataRow.gender | capitalize%}{%trans myGender%}</td>
       <td class="collapsing txtRa"><a href="{{url.this}}/profile" class="block {{arrow}}"></a></td>
     </tr>
     <tr>
@@ -148,11 +155,7 @@
       <td>{{dataRow.website}}</td>
       <td class="collapsing txtRa"><a href="{{url.this}}/social" class="block {{arrow}}"></a></td>
     </tr>
-    <tr>
-      <th>{%trans "Email"%}</th>
-      <td>{{dataRow.email}}</td>
-      <td class="collapsing txtRa"><a href="{{url.this}}/social" class="block {{arrow}}"></a></td>
-    </tr>
+
     <tr>
       <th>{%trans "Instagram"%}</th>
       <td>{{dataRow.instagram}}</td>

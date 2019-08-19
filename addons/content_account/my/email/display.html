@@ -1,0 +1,32 @@
+{%extends display.admin%}
+
+
+
+{%block pageContent%}
+<div class="f justify-center">
+  <div class="c6 m8 x5 s12">
+    <div class="cbox">
+
+      <form method="post" autocomplete="off">
+        {{block('iEmail')}}
+        <div class="txtRa">
+          <button class="btn success">{%trans "Save"%}</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+{%endblock%}
+
+
+
+
+
+{%block iEmail%}
+<label for="email">{%trans "Email"%}</label>
+<div class="input">
+  <input type="email" name="email" id="email" placeholder='{%trans "like"%} abc@example.com' value="{{dataRow.email}}" maxlength='50'>
+  <span class="addon"><i class="sf-mail"></i></span>
+</div>
+{%endblock%}

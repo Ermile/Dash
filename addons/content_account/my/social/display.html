@@ -12,7 +12,7 @@
       <div class="cbox">
         <h3 class="txtC mB20">{{page.title}}</h3>
           {{block("iWebsite")}}
-          {{block("iEmail")}}
+
           {{block("iGmail")}}
           <hr>
           {{block("iFacebook")}}
@@ -90,16 +90,6 @@
 {%endif%}
 {%endblock%}
 
-
-
-
-{%block iEmail%}
-<label for="email">{%trans "Email"%}</label>
-<div class="input">
-  <input type="email" name="email" id="email" placeholder='{%trans "like"%} abc@example.com' value="{{dataRow.email}}" maxlength='50'>
-  <span class="addon"><i class="sf-mail"></i></span>
-</div>
-{%endblock%}
 
 
 

@@ -17,6 +17,20 @@ class view
 		self::load_me();
 
 		\dash\data::isLtr(\dash\language::current('direction') === 'ltr' ? true : false);
+
+		if(\dash\data::dataRow_permission())
+		{
+			$myPermName = \dash\data::dataRow_permission();
+			$perm_list = \dash\permission::groups();
+			if(isset($perm_list[$myPermName]['title']))
+			{
+				\dash\data::permName(T_($perm_list[$myPermName]['title']));
+			}
+			else
+			{
+				\dash\data::permName(T_(ucfirst($myPermName)));
+			}
+		}
 	}
 
 

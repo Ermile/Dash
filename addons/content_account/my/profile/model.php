@@ -46,7 +46,7 @@ class model
 			// 'twitter'     => \dash\request::post('twitter'),
 			'firstname'   => \dash\request::post('firstname'),
 			'lastname'    => \dash\request::post('lastname'),
-			'username'    => \dash\request::post('username'),
+			// 'username'    => \dash\request::post('username'),
 			'bio'         => \dash\request::post('bio'),
 			'displayname' => \dash\request::post('displayname'),
 			'birthday'    => \dash\request::post('birthday'),
