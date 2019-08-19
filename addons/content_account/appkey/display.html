@@ -4,11 +4,18 @@
 <div class="f justify-center">
   <div class="c4 s12">
     <div class="cbox">
-      {%if not user.verifymobile or 1%}
+
+      <a href="{{url.kingdom}}/api/doc" class="btn block outline">{{myTitle}}</a>
+
+      {%if not user.verifymobile%}
       <div class="msg warn txtB txtC">{%trans "To make your appkey you must verify your mobile"%}</div>
       {%endif%}
 
-      <a href="{{url.kingdom}}/api/doc" class="btn block outline">{{myTitle}}</a>
+      <div class="msg warn2 mT20">
+        <div>{%trans "Protect this key like a password!"%}</div>
+        <div>{%trans "By this code you can build new application to manage your account and manage other customer"%}</div>
+      </div>
+
       <form method="post">
         <input type="hidden" name="add" value="appkey">
         <div class="input">
@@ -17,7 +24,9 @@
         </div>
 
     	{%if appkey.auth%}
-
+        <div class="msg info2 mT20">
+          <div>{%trans "If you want to revoke or remove this appkey"%} <a href="{{url.kingdom}}/support/ticket/add?title=remove appkey">{%trans "Contact us"%}</a></div>
+        </div>
 
       {%else%}
         <button data-confirm data-data='{"add" : "appkey"}' class="btn primary mT5 block">{%trans "Make appkey"%}</button>

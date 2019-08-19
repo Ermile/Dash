@@ -28,6 +28,11 @@
   </section>
 
   <section class="mB20">
+  {{block('appandapikey')}}
+  </section>
+
+
+  <section class="mB20">
   {{block('deleteAccountPanel')}}
   </section>
 </div>
@@ -119,6 +124,29 @@
   </div>
 </div>
 {%endblock%}
+
+
+
+{%block appandapikey%}
+<div class="panel">
+  <div class="body pad">
+    <div class="f">
+      <div class="c">
+        <h3>{%trans "API key and Application key"%}</h3>
+        <p>{%trans "Protect this key like a password!"%}</p>
+        <p>{%trans "Keys used to access APIs in"%} {{site.title}}</p>
+        <a href="{{url.here}}/api" class="btn primary outline">{%trans "API key"%}</a>
+        <a href="{{url.here}}/appkey" class="btn primary outline">{%trans "Application key"%}</a>
+      </div>
+      <div class="cauto os">
+        <img class="box300" src="{{url.siftal}}/images/account/data-collected.svg" alt='{%trans "Sessions"%}'>
+      </div>
+    </div>
+  </div>
+</div>
+{%endblock%}
+
+
 
 
 {%block recent%}
