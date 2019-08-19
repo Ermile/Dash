@@ -30,8 +30,9 @@
 <label for="theme">{%trans "Theme"%}</label>
 <select name="theme" class="select ui dropdown" id="theme">
   <option value="" readonly>{%trans "Please select one theme"%} *</option>
+    <option value="0" {%if not dataRow.theme %} selected {%endif%}>{%trans "Sensitive to content"%}</option>
   {%for key, value in themeList%}
-    <option value="{{key}}" {%if dataRow.theme == key %} selected {%endif%} {%if not dataRow.theme and key == 'default' %} selected {%endif%}>{{value.name}}</option>
+    <option value="{{key}}" {%if dataRow.theme == key %} selected {%endif%}>{{value.name}}</option>
   {%endfor%}
 </select>
 

@@ -9,8 +9,8 @@ class theme
 	{
 		$all            = [];
 		$all['default'] = ['name' => T_("Default"), 'image' => null, 'icon' => 'theme'];
-		$all['black']   = ['name' => T_("Black"), 'image' => null, 'icon' => 'theme'];
-		$all['white']   = ['name' => T_("White"), 'image' => null, 'icon' => 'theme'];
+		$all['night']   = ['name' => T_("Night"), 'image' => null, 'icon' => 'theme'];
+		$all['light']   = ['name' => T_("Light"), 'image' => null, 'icon' => 'theme'];
 		return $all;
 	}
 

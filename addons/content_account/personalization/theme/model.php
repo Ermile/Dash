@@ -13,6 +13,11 @@ class model
 			'theme'    => \dash\request::post('theme'),
 		];
 
+		if($post['theme'] === '0')
+		{
+			$post['theme'] = null;
+		}
+
 		return $post;
 	}
 
