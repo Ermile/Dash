@@ -1,0 +1,34 @@
+{%extends display.admin%}
+
+
+
+{%block pageContent%}
+<div class="f justify-center">
+  <div class="c6 m8 x5 s12">
+    <div class="cbox">
+      <div class="msg">
+        <div>{%trans "You can choose a username"%}</div>
+        <div>{%trans "You can use a-z, 0-9 and underscores."%}</div>
+        <div>{%trans "Minimum length is 5 characters."%}</div>
+      </div>
+      <form method="post" autocomplete="off">
+        {{block('iusername')}}
+        <div class="txtRa">
+          <button class="btn success">{%trans "Save"%}</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+{%endblock%}
+
+
+
+
+{%block iusername%}
+<label for="username">{%trans "Username"%}</label>
+<div class="input ltr">
+  <input type="text" name="username" id="username" placeholder='{%trans "Username"%}' value="{{dataRow.username}}" maxlength='40' minlength="5"  autofocus>
+</div>
+{%endblock%}
