@@ -495,5 +495,160 @@ class kavenegar_api
 
 		return $json;
 	}
+
+
+	public function client_add($_data)
+	{
+		$path = $this->get_path('add','client');
+		$json = $this->execute($path, $_data);
+
+		if(!is_array($json))
+		{
+			return $this->status;
+		}
+
+		return $json;
+	}
+
+
+	public function client_update($_data)
+	{
+		$path = $this->get_path('update','client');
+		$json = $this->execute($path, $_data);
+
+		if(!is_array($json))
+		{
+			return $this->status;
+		}
+
+		return $json;
+	}
+
+
+	public function client_fetch($_data)
+	{
+		$path = $this->get_path('fetch','client');
+		$json = $this->execute($path, $_data);
+
+		if(!is_array($json))
+		{
+			return $this->status;
+		}
+
+		return $json;
+	}
+
+
+	public function client_fetchbylocalid($_data)
+	{
+		$path = $this->get_path('fetchbylocalid','client');
+		$json = $this->execute($path, $_data);
+
+		if(!is_array($json))
+		{
+			return $this->status;
+		}
+
+		return $json;
+	}
+
+
+	public function client_fchargecredit($_data)
+	{
+		$path = $this->get_path('fchargecredit','client');
+		$json = $this->execute($path, $_data);
+
+		if(!is_array($json))
+		{
+			return $this->status;
+		}
+
+		return $json;
+	}
+
+
+	public function client_chargecredit($_data)
+	{
+		$path = $this->get_path('chargecredit','client');
+		$json = $this->execute($path, $_data);
+
+		if(!is_array($json))
+		{
+			return $this->status;
+		}
+
+		return $json;
+	}
+
+
+	public function client_setstatus($_data)
+	{
+		$path = $this->get_path('setstatus','client');
+		$json = $this->execute($path, $_data);
+
+		if(!is_array($json))
+		{
+			return $this->status;
+		}
+
+		return $json;
+	}
+
+
+	public function client_renewkey($_data)
+	{
+		$path = $this->get_path('renewkey','client');
+		$json = $this->execute($path, $_data);
+
+		if(!is_array($json))
+		{
+			return $this->status;
+		}
+
+		return $json;
+	}
+
+
+	public function client_list($_data)
+	{
+		$path = $this->get_path('list','client');
+		$json = $this->execute($path, $_data);
+
+		if(!is_array($json))
+		{
+			return $this->status;
+		}
+
+		return $json;
+	}
+
+
+	public function msg($_code)
+	{
+		$msg = null;
+		switch ($_code)
+		{
+			case 200: $msg = 'درخواست تایید شد'; break;
+			case 400: $msg = 'پارامترها ناقص هستند'; break;
+			case 401: $msg = 'حساب کاربری غیرفعال شده است'; break;
+			case 402: $msg = 'عملیات ناموفق بود'; break;
+			case 403: $msg = 'کد شناسائی ( API KEY ) یا اطلاعات ورود (نام کاربری و رمز عبور ) معتبر نمی‌باشد.'; break;
+			case 409: $msg = 'سرور قادر به پاسخگوئی نیست بعدا تلاش کنید'; break;
+			case 411: $msg = 'دریافت کننده نامعتبر است'; break;
+			case 412: $msg = 'ارسال کننده نامعتبر است'; break;
+			case 413: $msg = 'پیام خالی است و یا طول پیام بیش از حد مجاز می‌باشد. لاتین 612 ﻛﺎراﻛﺘﺮ و ﻓﺎرﺳﻲ 268 ﻛﺎراﻛﺘﺮ'; break;
+			case 414: $msg = 'تعداد رکورد ها بیشتر از حد مجاز است . در هر فراخوانی حداکثر 200 رکورد .'; break;
+			case 417: $msg = 'تاریخ معتبر نمی‌باشد. مقدار 0 به معنای زمانی فعلی است و در غیر اینصورت فرمتUNIXTIME'; break;
+			case 418: $msg = 'اعتبار حساب شما کافی نیست. لطفا برای شارژ حساب اقدام نمائید.'; break;
+			case 419: $msg = 'طول آرایه متن و گیرنده ها و فرستنده ها هم اندازه نیست .'; break;
+			case 502: $msg = 'نام کاربری انتخاب شده تکراری می‌باشد.'; break;
+			case 503: $msg = 'شناسه داخلی انتخاب شده تکراری است (localid)'; break;
+			case 504: $msg = 'تعرفه ارسال پیامک ارزان تر از تعرفه والد می‌باشد.'; break;
+			case 505: $msg = 'سرویس والد منقضی شده است.(در صورتی مدت سرویس ویژه شما به اتمام رسیده باشد با این خطا روبرو خواهید شد)'; break;
+			case 506: $msg = 'تغییر تعرفه در صورتی مانده اعتبار کمتر از 1000 ریال باشد امکان پذیر است.'; break;
+		}
+
+		return $msg;
+	}
 }
 ?>
