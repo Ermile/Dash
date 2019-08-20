@@ -80,7 +80,7 @@ class kavenegar_api
 	 *
 	 * @return     integer  ( description_of_the_return_value )
 	 */
-	private function execute($_url, $_data)
+	private function execute($_url, $_data, $_long_time_out = false)
 	{
 		$headers = array (
 			'Accept: application/json',
@@ -97,7 +97,17 @@ class kavenegar_api
 			rtrim($fields_string, '&');
 		}
 		// for debug you can uncomment below line to see the send parameters
+		if($_long_time_out)
+		{
+			$CONNECTTIMEOUT = 30;
+			$TIMEOUT        = 40;
 
+		}
+		else
+		{
+			$CONNECTTIMEOUT = 3;
+			$TIMEOUT        = 2;
+		}
 
 		//======================================================================================//
 		if(function_exists('curl_init'))
@@ -111,8 +121,8 @@ class kavenegar_api
 			curl_setopt($handle, CURLOPT_POST, true);
 			curl_setopt($handle, CURLOPT_POSTFIELDS, $fields_string);
 			// add timer to ajax request
-			curl_setopt($handle, CURLOPT_CONNECTTIMEOUT, 3);
-			curl_setopt($handle, CURLOPT_TIMEOUT, 2 );
+			curl_setopt($handle, CURLOPT_CONNECTTIMEOUT, $CONNECTTIMEOUT);
+			curl_setopt($handle, CURLOPT_TIMEOUT, $TIMEOUT);
 
 			$response = curl_exec($handle);
 			$mycode   = curl_getinfo($handle, CURLINFO_HTTP_CODE);
@@ -366,7 +376,7 @@ class kavenegar_api
 		$id     = is_array($_id)? join(",", $_id) : $_id;
 		$path   = $this->get_path(__FUNCTION__);
 		$params = array( "messageid" => $id);
-		$json   = $this->execute($path, $params);
+		$json   = $this->execute($path, $params, true);
 
 		if(!is_array($json))
 		{
@@ -451,7 +461,7 @@ class kavenegar_api
 	public function account_info()
 	{
 		$path = $this->get_path('info','account');
-		$json = $this->execute($path, null);
+		$json = $this->execute($path, null, true);
 
 		if(!is_array($json))
 		{
@@ -500,7 +510,7 @@ class kavenegar_api
 	public function client_add($_data)
 	{
 		$path = $this->get_path('add','client');
-		$json = $this->execute($path, $_data);
+		$json = $this->execute($path, $_data, true);
 
 		if(!is_array($json))
 		{
@@ -514,7 +524,7 @@ class kavenegar_api
 	public function client_update($_data)
 	{
 		$path = $this->get_path('update','client');
-		$json = $this->execute($path, $_data);
+		$json = $this->execute($path, $_data, true);
 
 		if(!is_array($json))
 		{
@@ -528,7 +538,7 @@ class kavenegar_api
 	public function client_fetch($_data)
 	{
 		$path = $this->get_path('fetch','client');
-		$json = $this->execute($path, $_data);
+		$json = $this->execute($path, $_data, true);
 
 		if(!is_array($json))
 		{
@@ -542,7 +552,7 @@ class kavenegar_api
 	public function client_fetchbylocalid($_data)
 	{
 		$path = $this->get_path('fetchbylocalid','client');
-		$json = $this->execute($path, $_data);
+		$json = $this->execute($path, $_data, true);
 
 		if(!is_array($json))
 		{
@@ -556,7 +566,7 @@ class kavenegar_api
 	public function client_fchargecredit($_data)
 	{
 		$path = $this->get_path('fchargecredit','client');
-		$json = $this->execute($path, $_data);
+		$json = $this->execute($path, $_data, true);
 
 		if(!is_array($json))
 		{
@@ -570,7 +580,7 @@ class kavenegar_api
 	public function client_chargecredit($_data)
 	{
 		$path = $this->get_path('chargecredit','client');
-		$json = $this->execute($path, $_data);
+		$json = $this->execute($path, $_data, true);
 
 		if(!is_array($json))
 		{
@@ -584,7 +594,7 @@ class kavenegar_api
 	public function client_setstatus($_data)
 	{
 		$path = $this->get_path('setstatus','client');
-		$json = $this->execute($path, $_data);
+		$json = $this->execute($path, $_data, true);
 
 		if(!is_array($json))
 		{
@@ -598,7 +608,7 @@ class kavenegar_api
 	public function client_renewkey($_data)
 	{
 		$path = $this->get_path('renewkey','client');
-		$json = $this->execute($path, $_data);
+		$json = $this->execute($path, $_data, true);
 
 		if(!is_array($json))
 		{
@@ -609,10 +619,10 @@ class kavenegar_api
 	}
 
 
-	public function client_list($_data)
+	public function client_list()
 	{
 		$path = $this->get_path('list','client');
-		$json = $this->execute($path, $_data);
+		$json = $this->execute($path, null, true);
 
 		if(!is_array($json))
 		{
