@@ -70,6 +70,13 @@ class passwords
 		{
 			return true;
 		}
+
+		// every password have 123456 is crazy
+		if(strpos($_password, '123456') !== false)
+		{
+			return true;
+		}
+
 		return false;
 	}
 }
