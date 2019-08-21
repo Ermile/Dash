@@ -19,7 +19,7 @@ class view
 		$result = $api->client_list();
 		if(!is_array($result))
 		{
-			\dash\notif::error(T_("Unavalible list"));
+			\dash\notif::error(T_("Unavailable list"));
 			return false;
 		}
 

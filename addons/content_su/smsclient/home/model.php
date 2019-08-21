@@ -52,7 +52,7 @@ class model
 		// send sms
 		if(!is_array($result))
 		{
-			\dash\notif::error(T_("Unavalible error"));
+			\dash\notif::error(T_("Unknown error"));
 			return false;
 		}
 
