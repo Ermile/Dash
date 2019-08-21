@@ -217,6 +217,139 @@
 {%endblock%}
 
 
+{%block iSubType%}
+{%if dataRow.type == 'post'%}
+{%if dataRow.subtype == 'image'%}
+  {%set subtypIcon = 'picture-o' %}
+{%elseif dataRow.subtype == 'gallery'%}
+  {%set subtypIcon = 'picture' %}
+{%elseif dataRow.subtype == 'video'%}
+  {%set subtypIcon = 'movie' %}
+{%elseif dataRow.subtype == 'audio'%}
+  {%set subtypIcon = 'volume-up' %}
+{%else%}
+  {%set subtypIcon = 'list' %}
+{%endif%}
+
+<section class="pbox">
+  <header data-kerkere='.subTypeBlock' data-kerkere-icon='close'>{%trans "Theme"%} <span class="floatRa"><i class="sf-{{subtypIcon}}"></i></span></header>
+  <div class="body subTypeBlock" data-kerkere-content='hide'>
+
+    <label>{%trans "Adjust the display style of your post"%}</label>
+    <div class="ui fluid selection dropdown">
+      <input type="hidden" name="subtype" value="{{dataRow.subtype}}">
+      <i class="dropdown icon"></i>
+      <div class="default text">{%trans "Select one item"%}</div>
+      <div class="menu">
+        <div class="item" data-value=""><i class="sf-list"></i> {%trans "Standard" %}</div>
+        <div class="item" data-value="image"><i class="sf-picture-o"></i> {%trans "Image"%}</div>
+        <div class="item" data-value="gallery"><i class="sf-picture"></i> {%trans "Gallery"%}</div>
+        <div class="item" data-value="video"><i class="sf-movie"></i> {%trans "Video"%}</div>
+        <div class="item" data-value="audio"><i class="sf-volume-up"></i> {%trans "Audio"%}</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+{%endif%}
+{%endblock%}
+
+
+
+
+{%block iDownload%}
+{%if dataRow.type == 'post'%}
+<section class="pbox">
+  <header data-kerkere='.downloadBlock' data-kerkere-icon='close'>{%trans "Download"%}
+    {%if dataRow.meta.download%}
+    <span class="floatRa">
+      <a {%if dataRow.meta.download.title%} title="{{dataRow.meta.download.title}}" {%endif%} href="{{dataRow.meta.download.url | raw}}" class="badge {{dataRow.meta.download.color}}" {%if dataRow.meta.download.target%} target="_blank" {%endif%} >
+        <i class="sf-ellipsis-h"></i></a>
+    </span>
+    {%endif%}
+  </header>
+  <div class="body downloadBlock" data-kerkere-content='hide'>
+
+    <label for="ibtntitle">{%trans "Button title"%}</label>
+    <div class="input">
+      <input type="text" name="btntitle" maxlength="5000" id="ibtntitle" value="{{dataRow.meta.download.title}}">
+    </div>
+
+    <label for="ibtnurl">{%trans "URL"%}</label>
+    <div class="input">
+      <input type="url" name="btnurl" maxlength="5000" id="ibtnurl" value="{{dataRow.meta.download.url | raw}}">
+    </div>
+
+    <div class="check1">
+       <input type="checkbox" name="btntarget" id="ibtntarget" {%if dataRow.meta.download.target %} checked {%endif%}>
+      <label for="ibtntarget">{%trans "Open in new tab"%}</label>
+    </div>
+
+    <label>{%trans "Button color"%}</label>
+    <div class="ui fluid selection dropdown">
+      <input type="hidden" name="btncolor" value="{{dataRow.meta.download.color}}">
+      <i class="dropdown icon"></i>
+      <div class="default text">{%trans "Select button color"%}</div>
+      <div class="menu">
+
+        <div class="item" data-value="primary"><span class="mA3 badge rounded primary">&nbsp;</span> {%trans "Primary" %}</div>
+        <div class="item" data-value="primary2"><span class="mA3 badge rounded primary2">&nbsp;</span> {%trans "Primary" %} {{2 | fitNumber}}</div>
+        <div class="item" data-value="secondary"><span class="mA3 badge rounded secondary">&nbsp;</span> {%trans "Secondary" %}</div>
+        <div class="item" data-value="secondary2"><span class="mA3 badge rounded secondary2">&nbsp;</span> {%trans "Secondary" %} {{2 | fitNumber}}</div>
+        <div class="item" data-value="success"><span class="mA3 badge rounded success">&nbsp;</span> {%trans "Success" %}</div>
+        <div class="item" data-value="success2"><span class="mA3 badge rounded success2">&nbsp;</span> {%trans "Success" %} {{2 | fitNumber}}</div>
+        <div class="item" data-value="danger"><span class="mA3 badge rounded danger">&nbsp;</span> {%trans "Danger" %}</div>
+        <div class="item" data-value="danger2"><span class="mA3 badge rounded danger2">&nbsp;</span> {%trans "Danger" %} {{2 | fitNumber}}</div>
+        <div class="item" data-value="warning"><span class="mA3 badge rounded warning">&nbsp;</span> {%trans "Warning" %}</div>
+        <div class="item" data-value="warning2"><span class="mA3 badge rounded warning2">&nbsp;</span> {%trans "Warning" %} {{2 | fitNumber}}</div>
+        <div class="item" data-value="info"><span class="mA3 badge rounded info">&nbsp;</span> {%trans "Info" %}</div>
+        <div class="item" data-value="info2"><span class="mA3 badge rounded info2">&nbsp;</span> {%trans "Info" %} {{2 | fitNumber}}</div>
+        <div class="item" data-value="light"><span class="mA3 badge rounded light">&nbsp;</span> {%trans "Light" %}</div>
+        <div class="item" data-value="dark"><span class="mA3 badge rounded dark">&nbsp;</span> {%trans "Dark" %}</div>
+        <div class="item" data-value="pain"><span class="mA3 badge rounded pain">&nbsp;</span> {%trans "Pain" %}</div>
+      </div>
+    </div>
+
+
+  </div>
+</section>
+{%endif%}
+{%endblock%}
+
+
+
+
+{%block iSource%}
+{%if dataRow.type == 'post'%}
+<section class="pbox">
+  <header data-kerkere='.sourceBlock' data-kerkere-icon='close'>{%trans "Sourse"%}
+    {%if dataRow.meta.source%}
+    <span class="floatRa">
+      <a {%if dataRow.meta.source.title%} title="{{dataRow.meta.source.title}}"  {%endif%} target="_blank" href="{{dataRow.meta.source.url | raw}}" class="badge primary">
+        <i class="sf-check"></i></a>
+    </span>
+    {%endif%}
+  </header>
+  <div class="body sourceBlock" data-kerkere-content='hide'>
+
+     <label for="isrctitle">{%trans "Sourse title"%}</label>
+    <div class="input">
+      <input type="text" name="srctitle" maxlength="5000" id="isrctitle" value="{{dataRow.meta.source.title}}">
+    </div>
+
+    <label for="isrcurl">{%trans "Sourse URL"%}</label>
+    <div class="input">
+      <input type="url" name="srcurl" maxlength="5000" id="isrcurl" value="{{dataRow.meta.source.url | raw}}">
+    </div>
+
+  </div>
+</section>
+{%endif%}
+{%endblock%}
+
+
+
+
 
 {%block iPublishdate %}
 {%if dataRow.type == 'post'%}

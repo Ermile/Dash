@@ -335,7 +335,8 @@ class posts
 
 		$default_option =
 		[
-			'meta' => [],
+			'meta'     => [],
+			'raw_args' => [],
 		];
 
 		if(!is_array($_option))
@@ -739,6 +740,71 @@ class posts
 		}
 
 
+		$btntitle = \dash\app::request('btntitle');
+		if($btntitle && mb_strlen($btntitle) > 100)
+		{
+			\dash\notif::error(T_("Button title is out of range"), 'btntitle');
+			return false;
+		}
+
+
+		$btnurl = \dash\app::request('btnurl');
+		if($btnurl && mb_strlen($btnurl) > 1000)
+		{
+			\dash\notif::error(T_("Button url is out of range"), 'btnurl');
+			return false;
+		}
+
+		if($btnurl && isset($_option['raw_args']['btnurl']))
+		{
+			$btnurl = \dash\safe::safe($_option['raw_args']['btnurl'], 'get_url');
+		}
+
+		$btntarget = \dash\app::request('btntarget') ? true : false;
+
+		$btncolor = \dash\app::request('btncolor');
+		if($btncolor && !in_array($btncolor, ['primary','primary2','secondary','secondary2','success','success2','danger','danger2','warning','warning2','info','info2','light','dark','pain']))
+		{
+			\dash\notif::error(T_("Invalid button color"), 'btncolor');
+			return false;
+		}
+
+
+		$srctitle = \dash\app::request('srctitle');
+		if($srctitle && mb_strlen($srctitle) > 200)
+		{
+			\dash\notif::error(T_("Sourse title is out of range"), 'srctitle');
+			return false;
+		}
+
+
+		$srcurl = \dash\app::request('srcurl');
+		if($srcurl && mb_strlen($srcurl) > 1000)
+		{
+			\dash\notif::error(T_("Sourse url is out of range"), 'srcurl');
+			return false;
+		}
+
+
+		if($srcurl && isset($_option['raw_args']['srcurl']))
+		{
+			$srcurl = \dash\safe::safe($_option['raw_args']['srcurl'], 'get_url');
+		}
+
+		$meta['download'] =
+		[
+			'title'  => $btntitle,
+			'url'    => $btnurl,
+			'target' => $btntarget,
+			'color'  => $btncolor,
+		];
+
+		$meta['source'] =
+		[
+			'title' => $srctitle,
+			'url'   => $srcurl,
+		];
+
 		$meta = json_encode($meta, JSON_UNESCAPED_UNICODE);
 
 		if(!$slug)
@@ -787,7 +853,16 @@ class posts
 		}
 
 
+		$subtype = \dash\app::request('subtype');
+		if($subtype && !in_array($subtype, ['image', 'gallery', 'video', 'audio']))
+		{
+			\dash\notif::error(T_("Invalid type"), 'subtype');
+			return false;
+		}
+
+
 		$args['language']    = $language;
+		$args['subtype']    = $subtype;
 		$args['subdomain']   = \dash\app::request('subdomain');
 		$args['title']       = $title;
 		$args['slug']        = $slug;

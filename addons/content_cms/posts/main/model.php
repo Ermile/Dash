@@ -99,7 +99,16 @@ class model
 			'special'     => \dash\request::post('special'),
 			'creator'     => \dash\request::post('creator'),
 			'seotitle'    => \dash\request::post('seotitle'),
+			'subtype'     => \dash\request::post('subtype'),
+			'btntitle'    => \dash\request::post('btntitle'),
+			'btnurl'      => \dash\request::post('btnurl') ? $_POST['btnurl'] : null,
+			'btntarget'   => \dash\request::post('btntarget'),
+			'btncolor'    => \dash\request::post('btncolor'),
+			'srctitle'    => \dash\request::post('srctitle'),
+			'srcurl'      => \dash\request::post('srcurl') ? $_POST['srcurl'] : null,
 		];
+
+
 
 		if(\dash\url::subdomain())
 		{

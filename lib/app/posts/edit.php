@@ -59,6 +59,8 @@ trait edit
 			$_option['meta'] = $load_posts['meta'];
 		}
 
+		$_option['raw_args'] = $_args;
+
 		// check args
 		$args = self::check($id, $_option);
 
