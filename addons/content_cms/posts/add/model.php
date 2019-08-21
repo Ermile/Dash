@@ -18,6 +18,10 @@ class model
 			$post['subdomain'] = \dash\url::subdomain();
 		}
 
+		if(\dash\request::get('type'))
+		{
+			$post['type'] = \dash\request::get('type');
+		}
 
 		$post_detail = \dash\app\posts::add($post);
 
