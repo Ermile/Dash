@@ -8,18 +8,15 @@
   <table class="tbl1 v1 fs12">
     <thead>
       <tr class="fs08">
-		<th>{%trans "Remain credit"%}</th>
-		<th>{%trans "Expire date"%}</th>
 		<th>{%trans "Fullname"%}</th>
-		<th>{%trans "Username"%}</th>
-		<th>{%trans "Pricing name"%}</th>
-		<th>{%trans "Sms Farsi cost"%}</th>
-		<th>{%trans "Sms english cost"%}</th>
-		<th>{%trans "Call local cost"%}</th>
-		<th>{%trans "Last login date"%}</th>
-		<th>{%trans "Mininum allowed credit"%}</th>
+		<th>{%trans "Credit"%}</th>
+
 		<th>{%trans "Status"%}</th>
-		<th>{%trans "Mobile"%}</th>
+		<th>{%trans "Last login date"%}</th>
+
+
+		<th>{%trans "Pricing"%}</th>
+
       </tr>
     </thead>
 
@@ -27,18 +24,25 @@
       {%for key, value in dataTable%}
       <tr {%if value.status=='Removed'%} class='negative'{%endif%}>
 
-		<td>{{value.remaincredit | fitNumber}}</td>
-		<td>{{value.expiredate | date | dt}}</td>
-		<td>{{value.fullname}}</td>
-		<td>{{value.username}}</td>
-		<td>{{value.pricingname}}</td>
-		<td>{{value.smsfarsicost | fitNumber}}</td>
-		<td>{{value.smsenglishcost | fitNumber}}</td>
-		<td>{{value.calllocalcost | fitNumber}}</td>
+		<td>
+			<div>{{value.fullname}}</div>
+			<div class="badge light">{{value.username}}</div>
+			<div class="badge light">{{value.mobile | fitNumber('mobile')}}</div>
+		</td>
+		<td class="txtB">
+			<div>{{value.remaincredit | fitNumber}}</div>
+			<div class="badge light"> {%trans "Minimum allow credit"%} {{value.mininumallowedcredit | fitNumber}}</div>
+		</td>
+
+		<td>{%set myStatus = value.status%}{%trans myStatus%}</td>
 		<td>{{value.lastlogindate | date | dt}}</td>
-		<td>{{value.mininumallowedcredit | fitNumber}}</td>
-		<td>{{value.status}}</td>
-		<td>{{value.mobile | fitNumber('mobile')}}</td>
+
+		<td>
+			<span class="badge light">{%trans "pricingname"%} {{value.pricingname}}</span>
+			<span class="badge light">{%trans "smsfarsicost"%} {{value.smsfarsicost | fitNumber}}</span>
+			<span class="badge light">{%trans "smsenglishcost"%} {{value.smsenglishcost | fitNumber}}</span>
+			<span class="badge light">{%trans "calllocalcost"%} {{value.calllocalcost | fitNumber}}</span>
+		</td>
       </tr>
       {%endfor%}
     </tbody>
