@@ -1,0 +1,63 @@
+{%extends "content_a/layout.html"%}
+
+
+{%block pageContent%}
+
+<div class="tblBox">
+
+  <table class="tbl1 v4 fs12">
+    <thead>
+      <tr class="fs08">
+		<th>{%trans "Customer"%}</th>
+		<th class="txtC">{%trans "Credit"%}</th>
+		<th>{%trans "Status"%}</th>
+		<th>{%trans "Last login date"%}</th>
+		<th>{%trans "Pricing"%}</th>
+		<th class="collapsing">{%trans "Action"%}</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {%for key, value in dataTable%}
+      <tr {%if value.status=='Removed'%} class='negative' {%elseif value.status=='Disabled'%} class="warning" {%else%}  class="active" {%endif%}>
+		<td>
+			<div class="txtB fs14">{{value.fullname}}</div>
+			<div class="badge light">{{value.username}}</div>
+			<div class="badge light">{{value.mobile | fitNumber('mobile')}}</div>
+		</td>
+
+		<td class="txtB txtC">
+			<div>{{value.remaincredit | fitNumber}}</div>
+			<div class="badge light"> {%trans "Minimum allow credit"%} {{value.mininumallowedcredit | fitNumber}}</div>
+		</td>
+
+		<td>{%set myStatus = value.status%}{%trans myStatus%}</td>
+		<td>{{value.lastlogindate | date | dt}}</td>
+
+		<td>
+			<span class="badge light">{%trans "Pricing name"%} {{value.pricingname}}</span>
+			<span class="badge light">{%trans "Sms Farsi cost"%} {{value.smsfarsicost | fitNumber}}</span>
+			<span class="badge light">{%trans "Sms English cost"%} {{value.smsenglishcost | fitNumber}}</span>
+			<span class="badge light">{%trans "Call local cost"%} {{value.calllocalcost | fitNumber}}</span>
+		</td>
+		<td class="collapsing">
+			<a class="btn xs" href="{{url.this}}/edit?apikey={{value.apikey}}">{%trans "Detail"%}</a>
+  			{%if false%}
+  			<div class="btn danger xs" data-confirm data-data='{"type": "empty_credit", "apikey" : "{{value.apikey}}"}'>{%trans "Empty credit"%}</div>
+  			<div class="btn success xs" data-confirm data-data='{"type": "setstatus", "status": "1", "apikey" : "{{value.apikey}}"}'>{%trans "Enable"%}</div>
+  			<div class="btn warn xs" data-confirm data-data='{"type": "setstatus", "status": "2", "apikey" : "{{value.apikey}}"}'>{%trans "Disable login"%}</div>
+  			<div class="btn danger xs" data-confirm data-data='{"type": "setstatus", "status": "0", "apikey" : "{{value.apikey}}"}'>{%trans "Disable"%}</div>
+  			{%endif%}
+      	</td>
+      </tr>
+
+
+      {%endfor%}
+    </tbody>
+  </table>
+  {%include display.pagination%}
+ </div>
+
+
+{%endblock%}
+

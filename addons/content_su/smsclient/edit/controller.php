@@ -1,5 +1,5 @@
 <?php
-namespace content_su\smsclient;
+namespace content_su\smsclient\home;
 
 class controller
 {
