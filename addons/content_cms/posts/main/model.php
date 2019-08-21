@@ -106,6 +106,8 @@ class model
 			'btncolor'    => \dash\request::post('btncolor'),
 			'srctitle'    => \dash\request::post('srctitle'),
 			'srcurl'      => \dash\request::post('srcurl') ? $_POST['srcurl'] : null,
+			'redirecturl' => \dash\request::post('redirecturl') ? $_POST['redirecturl'] : null,
+
 		];
 
 

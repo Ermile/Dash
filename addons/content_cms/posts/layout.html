@@ -81,7 +81,7 @@
 {%block iCreator%}
 {%if perm('cpChangePostCreator')%}
 <section class="pbox">
-    <header data-kerkere='.creatorPanel' data-kerkere-icon='close'>{%trans "Writer"%}</header>
+    <header data-kerkere='.creatorPanel' data-kerkere-icon='close'>{%trans "Writer"%} <span class="floatRa"><img title="{{userAuthorPost.displayname}}" class="avatar fs08" src="{{userAuthorPost.avatar}}"></span></header>
     <div class="body creatorPanel" data-kerkere-content='hide'>
         {%if userAuthorPost.id not in allUserAuthorId%}
         <div>
@@ -261,9 +261,9 @@
 {%if dataRow.type == 'post'%}
 <section class="pbox">
   <header data-kerkere='.downloadBlock' data-kerkere-icon='close'>{%trans "Download"%}
-    {%if dataRow.meta.download%}
+    {%if dataRow.meta.download.url%}
     <span class="floatRa">
-      <a {%if dataRow.meta.download.title%} title="{{dataRow.meta.download.title}}" {%endif%} href="{{dataRow.meta.download.url | raw}}" class="badge {{dataRow.meta.download.color}}" {%if dataRow.meta.download.target%} target="_blank" {%endif%} >
+      <a {%if dataRow.meta.download.title%} title="{{dataRow.meta.download.title}}" {%endif%} href="{{dataRow.meta.download.url | raw}}" class="badge {{dataRow.meta.download.color}}"  target="_blank" >
         <i class="sf-ellipsis-h"></i></a>
     </span>
     {%endif%}
@@ -292,6 +292,7 @@
       <div class="default text">{%trans "Select button color"%}</div>
       <div class="menu">
 
+        <div class="item" data-value="">{%trans "Non"%}</div>
         <div class="item" data-value="primary"><span class="mA3 badge rounded primary">&nbsp;</span> {%trans "Primary" %}</div>
         <div class="item" data-value="primary2"><span class="mA3 badge rounded primary2">&nbsp;</span> {%trans "Primary" %} {{2 | fitNumber}}</div>
         <div class="item" data-value="secondary"><span class="mA3 badge rounded secondary">&nbsp;</span> {%trans "Secondary" %}</div>
@@ -323,7 +324,7 @@
 {%if dataRow.type == 'post'%}
 <section class="pbox">
   <header data-kerkere='.sourceBlock' data-kerkere-icon='close'>{%trans "Sourse"%}
-    {%if dataRow.meta.source%}
+    {%if dataRow.meta.source.url%}
     <span class="floatRa">
       <a {%if dataRow.meta.source.title%} title="{{dataRow.meta.source.title}}"  {%endif%} target="_blank" href="{{dataRow.meta.source.url | raw}}" class="badge primary">
         <i class="sf-check"></i></a>
@@ -341,6 +342,31 @@
     <div class="input">
       <input type="url" name="srcurl" maxlength="5000" id="isrcurl" value="{{dataRow.meta.source.url | raw}}">
     </div>
+
+  </div>
+</section>
+{%endif%}
+{%endblock%}
+
+
+
+{%block iRedirect%}
+{%if dataRow.type == 'post'%}
+<section class="pbox">
+  <header data-kerkere='.redirectorBlock' data-kerkere-icon='close'>{%trans "Redirect"%}
+    {%if dataRow.meta.redirect%}
+    <span class="floatRa">
+        <i class="sf-check"></i>
+    </span>
+    {%endif%}
+  </header>
+  <div class="body redirectorBlock" data-kerkere-content='hide'>
+
+     <label for="iredirecturl">{%trans "Set post redirect"%}</label>
+    <div class="input">
+      <input type="url" name="redirecturl" maxlength="5000" id="iredirecturl" value="{{dataRow.meta.redirect | raw}}">
+    </div>
+
 
   </div>
 </section>

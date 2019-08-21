@@ -791,6 +791,20 @@ class posts
 			$srcurl = \dash\safe::safe($_option['raw_args']['srcurl'], 'get_url');
 		}
 
+
+		$redirecturl = \dash\app::request('redirecturl');
+		if($redirecturl && mb_strlen($redirecturl) > 1000)
+		{
+			\dash\notif::error(T_("Sourse url is out of range"), 'redirecturl');
+			return false;
+		}
+
+
+		if($redirecturl && isset($_option['raw_args']['redirecturl']))
+		{
+			$redirecturl = \dash\safe::safe($_option['raw_args']['redirecturl'], 'get_url');
+		}
+
 		$meta['download'] =
 		[
 			'title'  => $btntitle,
@@ -804,6 +818,10 @@ class posts
 			'title' => $srctitle,
 			'url'   => $srcurl,
 		];
+
+		$meta['redirect'] = $redirecturl;
+
+
 
 		$meta = json_encode($meta, JSON_UNESCAPED_UNICODE);
 
