@@ -1,9 +1,10 @@
 {%extends display.admin%}
 
 {%block pageContent%}
-
-{%if options.parsian.status or options.zarinpal.status or options.irkish.status or options.payir.status or options.asanpardakht.status or options.mellat.status%}
-{% set HaveOnePayment = true%}
+{%if options.billing_charge%}
+  {%if options.parsian.status or options.zarinpal.status or options.irkish.status or options.payir.status or options.asanpardakht.status or options.mellat.status%}
+    {% set HaveOnePayment = true%}
+  {%endif%}
 {%endif%}
 <div class="f">
 
@@ -107,7 +108,7 @@
           {%if perm_su()%}
             <td title="{{value.datecreated | dt(true)}}">{{value.datecreated | dt('human', 'year')}}</td>
             <td>{%if value.verify%}<i class="sf-check fc-green"></i>{%else%}<i class="sf-times fc-red"></i>{%endif%}</td>
-            <td><a title="{{value.token}}" class="btn xs warn" href="{{url.kingdom}}/hook/pay/{{value.token}}">{%trans "Detail"%}</a></td>
+            <td><a title="{{value.token}}" class="btn xs warn" href="{{url.kingdom}}/pay/{{value.token}}">{%trans "Detail"%}</a></td>
           {%endif%}
          </tr>
 {%endfor%}
