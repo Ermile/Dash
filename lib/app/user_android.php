@@ -27,6 +27,10 @@ class user_android
 	{
 		$id = array_column($dataTable, 'id');
 		$id = array_map(['\\dash\\coding', 'decode'], $id);
+		if(!$id)
+		{
+			return;
+		}
 		$load = \dash\db\user_android::get_dataTable(implode(',', $id));
 		if(!is_array($load))
 		{

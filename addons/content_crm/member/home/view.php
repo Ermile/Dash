@@ -110,8 +110,11 @@ class view
 			$dataTable = [];
 		}
 
-		\dash\app\user_telegram::dataTableList($dataTable);
-		\dash\app\user_android::dataTableList($dataTable);
+		if($dataTable && is_array($dataTable))
+		{
+			\dash\app\user_telegram::dataTableList($dataTable);
+			\dash\app\user_android::dataTableList($dataTable);
+		}
 
 		\dash\data::sortLink($sortLink);
 		\dash\data::dataTable($dataTable);
