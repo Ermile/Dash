@@ -26,8 +26,8 @@ class controller
 			}
 			else
 			{
-				\dash\redirect::to(\dash\url::kingdom(). '/enter', 'direct');
-				return ;
+				\dash\redirect::to(\dash\url::kingdom(). '/enter?referer='. \dash\url::pwd(), 'direct');
+				return;
 			}
 		}
 		else
