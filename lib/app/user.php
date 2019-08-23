@@ -47,17 +47,17 @@ class user
 			$name  = null;
 			$count = 0;
 
-			if(array_key_exists('gender', $value))
+			if(is_array($value) && array_key_exists('gender', $value))
 			{
 				$name = $value['gender'] ? T_($value['gender']) : T_("Unknown");
 			}
 
-			if(array_key_exists('count', $value))
+			if(is_array($value) && array_key_exists('count', $value))
 			{
 				$count = intval($value['count']);
 			}
 			$newValue = ['name' => $name, 'y' => $count];
-			if(!$value['gender'])
+			if(is_array($value) && array_key_exists('gender', $value) && !$value['gender'])
 			{
 				$newValue['visible'] = false;
 			}
