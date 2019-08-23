@@ -74,7 +74,19 @@ class view
 		[
 			'order' => \dash\request::get('order'),
 			'sort'  => \dash\request::get('sort'),
+
 		];
+		if(!\dash\option::config('no_subdomain'))
+		{
+			if(\dash\url::subdomain())
+			{
+				$args['subdomain'] = \dash\url::subdomain();
+			}
+			else
+			{
+				$args['subdomain'] = null;
+			}
+		}
 
 		if(!$args['order'])
 		{
@@ -115,19 +127,20 @@ class view
 		\dash\data::sortLink(\content_cms\view::make_sort_link(\dash\app\term::$sort_field, \dash\url::this()));
 		\dash\data::dataTable($dataTable);
 
-		if(\dash\request::get('edit'))
-		{
-			\dash\data::editMode(true);
+		// set from controller
+		// if(\dash\request::get('edit'))
+		// {
+		// 	\dash\data::editMode(true);
 
-			$id = \dash\request::get('edit');
-			$datarow = \dash\app\term::get($id);
-			\dash\data::datarow($datarow);
+		// 	$id = \dash\request::get('edit');
+		// 	$datarow = \dash\app\term::get($id);
+		// 	\dash\data::datarow($datarow);
 
-			if(!$datarow)
-			{
-				\dash\header::status(404, T_("Id not found"));
-			}
-		}
+		// 	if(!$datarow)
+		// 	{
+		// 		\dash\header::status(404, T_("Id not found"));
+		// 	}
+		// }
 	}
 }
 ?>

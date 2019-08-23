@@ -16,7 +16,22 @@ class model
 				return false;
 			}
 
-			$load_term = \dash\db\terms::get(['id' => $term_id, 'limit' => 1]);
+			$remove_args = ['id' => $term_id, 'limit' => 1];
+			if(!\dash\option::config('no_subdomain'))
+			{
+				if(\dash\url::subdomain())
+				{
+					$remove_args['subdomain'] = \dash\url::subdomain();
+				}
+				else
+				{
+					$remove_args['subdomain'] = null;
+				}
+			}
+
+
+			$load_term = \dash\db\terms::get($remove_args);
+
 			if(!isset($load_term['type']))
 			{
 				\dash\notif::error(T_("Term id not found"));
@@ -158,6 +173,15 @@ class model
 			{
 				\dash\permission::access('cpTagAdd');
 			}
+
+			if(!\dash\option::config('no_subdomain'))
+			{
+				if(\dash\url::subdomain())
+				{
+					$post['subdomain'] = \dash\url::subdomain();
+				}
+			}
+
 
 			\dash\app\term::add($post);
 		}

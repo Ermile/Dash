@@ -57,7 +57,22 @@ class term
 			return false;
 		}
 
-		$result = \dash\db\terms::get(['id' => $id, 'limit' => 1]);
+		$args = ['id' => $id, 'limit' => 1];
+
+		if(!\dash\option::config('no_subdomain'))
+		{
+			if(\dash\url::subdomain())
+			{
+				$args['subdomain'] = \dash\url::subdomain();
+			}
+			else
+			{
+				$args['subdomain'] = null;
+			}
+		}
+
+
+		$result = \dash\db\terms::get($args);
 		$temp = [];
 		if(is_array($result))
 		{
@@ -248,9 +263,12 @@ class term
 			$args['meta'] = $meta;
 		}
 
+		$subdomain = \dash\url::subdomain();
+
 		$args['title']    = $title;
 		$args['parent']   = $parent;
 		$args['desc']     = $desc;
+		$args['subdomain']= $subdomain;
 		$args['status']   = $status;
 		$args['slug']     = $slug;
 		$args['url']      = $url;
@@ -484,6 +502,8 @@ class term
 
 		// check args
 		$args = self::check($id);
+
+		if(!\dash\app::isset_request('subdomain')) unset($args['subdomain']);
 
 		if($args === false || !\dash\engine\process::status())
 		{
