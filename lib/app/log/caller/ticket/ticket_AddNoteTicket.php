@@ -5,7 +5,7 @@ class ticket_AddNoteTicket
 {
 	public static function site($_args = [])
 	{
-		$code = \dash\app\log\support_tools::code($_args);
+		$code =  \dash\app\log\support_tools::masterid($_args);
 
 		$result              = [];
 		$result['title']     = T_("Add note to ticket");
@@ -62,7 +62,7 @@ class ticket_AddNoteTicket
 	{
 		$load = \dash\app\log\support_tools::load($_args);
 		$plus = \dash\app\log\support_tools::plus($_args);
-		$masterid = isset($_args['masterid']) ? $_args['masterid'] : null;
+		$masterid =  \dash\app\log\support_tools::masterid($_args);
 
 		$tg_msg = '';
 		$tg_msg .= "🆔#Ticket".$masterid;

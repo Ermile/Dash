@@ -6,7 +6,7 @@ class ticket_answerTicketAlert
 {
 	public static function site($_args = [])
 	{
-		$masterid = isset($_args['masterid']) ? $_args['masterid'] : null;
+		$masterid =  \dash\app\log\support_tools::masterid($_args);
 
 		$result              = [];
 		$result['title']     = T_("Regards"). "\n". T_("Ticket :val answered", ['val' => \dash\utility\human::fitNumber($masterid, false)]);;

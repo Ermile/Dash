@@ -5,7 +5,7 @@ class ticket_seeTicket
 {
 	public static function site($_args = [])
 	{
-		$masterid = isset($_args['masterid']) ? $_args['masterid'] : null;
+		$masterid =  \dash\app\log\support_tools::masterid($_args);
 
 		$result              = [];
 		$result['title']     = T_("See ticket");
@@ -51,7 +51,7 @@ class ticket_seeTicket
 
 	public static function telegram_text($_args, $_chat_id)
 	{
-		$masterid = isset($_args['masterid']) ? $_args['masterid'] : null;
+		$masterid =  \dash\app\log\support_tools::masterid($_args);
 
 		$tg_msg = '';
 		$tg_msg .= "🆔#Ticket".$masterid;

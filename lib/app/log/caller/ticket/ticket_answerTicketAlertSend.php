@@ -6,7 +6,7 @@ class ticket_answerTicketAlertSend
 {
 	public static function site($_args = [])
 	{
-		$masterid = isset($_args['masterid']) ? $_args['masterid'] : null;
+		$masterid =  \dash\app\log\support_tools::masterid($_args);
 
 		$result              = [];
 		$result['title']     = T_("Regards"). "\n". T_("Ticket :val answered", ['val' => \dash\utility\human::fitNumber($masterid, false)]);;
@@ -50,7 +50,7 @@ class ticket_answerTicketAlertSend
 
 	public static function sms_text($_args, $_mobile)
 	{
-		$masterid  = isset($_args['masterid']) ? $_args['masterid'] : null;
+		$masterid  =  \dash\app\log\support_tools::masterid($_args);
 		$title = T_("Regards"). "\n". T_("Ticket :val answered", ['val' => \dash\utility\human::fitNumber($masterid, false)]);
 		$title .= "\n";
 		$title .= \dash\url::domain(). '/!'. $masterid;
