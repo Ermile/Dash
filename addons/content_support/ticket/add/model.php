@@ -47,9 +47,10 @@ class model
 		{
 			$log =
 			[
-				'from' => \dash\user::id(),
-				'code' => $result['id'],
-				'via'  => $_via,
+				'from'     => \dash\user::id(),
+				'code'     => $result['id'],
+				'masterid' => $result['id'],
+				'via'      => $_via,
 			];
 
 			\dash\log::set('ticket_addNewTicket', $log);

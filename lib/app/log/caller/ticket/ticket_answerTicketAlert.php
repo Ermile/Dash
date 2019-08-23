@@ -6,20 +6,20 @@ class ticket_answerTicketAlert
 {
 	public static function site($_args = [])
 	{
-		$code = isset($_args['code']) ? $_args['code'] : null;
+		$masterid = isset($_args['masterid']) ? $_args['masterid'] : null;
 
 		$result              = [];
-		$result['title']     = T_("Regards"). "\n". T_("Ticket :val answered", ['val' => \dash\utility\human::fitNumber($code, false)]);;
+		$result['title']     = T_("Regards"). "\n". T_("Ticket :val answered", ['val' => \dash\utility\human::fitNumber($masterid, false)]);;
 		$result['icon']      = 'life-ring';
 		$result['cat']       = T_("Support");
 		$result['iconClass'] = 'fc-green';
 
 
 		$excerpt = '';
-		$excerpt .=	'<a href="'.\dash\url::kingdom(). '/!'. $code. '">';
+		$excerpt .=	'<a href="'.\dash\url::kingdom(). '/!'. $masterid. '">';
 		$excerpt .= T_("Show ticket");
 		$excerpt .= ' ';
-		$excerpt .= \dash\utility\human::fitNumber($code, false);
+		$excerpt .= \dash\utility\human::fitNumber($masterid, false);
 		$excerpt .= '</a>';
 
 		$result['txt'] = $excerpt;

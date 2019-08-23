@@ -5,7 +5,7 @@ class ticket_seeTicket
 {
 	public static function site($_args = [])
 	{
-		$code = isset($_args['code']) ? $_args['code'] : null;
+		$masterid = isset($_args['masterid']) ? $_args['masterid'] : null;
 
 		$result              = [];
 		$result['title']     = T_("See ticket");
@@ -18,10 +18,10 @@ class ticket_seeTicket
 		$excerpt .= T_("see ticket");
 
 		$excerpt .= ' ';
-		$excerpt .=	'<a href="'.\dash\url::kingdom(). '/!'. $code. '">';
+		$excerpt .=	'<a href="'.\dash\url::kingdom(). '/!'. $masterid. '">';
 		$excerpt .= T_("Show ticket");
 		$excerpt .= ' ';
-		$excerpt .= \dash\utility\human::fitNumber($code, false);
+		$excerpt .= \dash\utility\human::fitNumber($masterid, false);
 		$excerpt .= '</a>';
 
 		$result['txt'] = $excerpt;
@@ -51,10 +51,10 @@ class ticket_seeTicket
 
 	public static function telegram_text($_args, $_chat_id)
 	{
-		$code = isset($_args['code']) ? $_args['code'] : null;
+		$masterid = isset($_args['masterid']) ? $_args['masterid'] : null;
 
 		$tg_msg = '';
-		$tg_msg .= "🆔#Ticket".$code;
+		$tg_msg .= "🆔#Ticket".$masterid;
 		$tg_msg .= "\n🙄 ". \dash\log::from_name(). " #user". \dash\log::from_id();
 		$tg_msg .= "\n⏳ ". \dash\datetime::fit(date("Y-m-d H:i:s"), true);
 
@@ -63,7 +63,7 @@ class ticket_seeTicket
 		$tg['caption']      = $tg_msg;
 		$tg['method']       = 'sendDocument';
 		$tg['document']     = "https://media.giphy.com/media/3oz8xyBP22S5b6gmsw/giphy.gif";
-		$tg['reply_markup'] = \dash\app\log\support_tools::tg_btn2($code);
+		$tg['reply_markup'] = \dash\app\log\support_tools::tg_btn2($masterid);
 
 		// $tg = json_encode($tg, JSON_UNESCAPED_UNICODE);
 

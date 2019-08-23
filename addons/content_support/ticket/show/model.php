@@ -434,7 +434,8 @@ class model
 			\dash\notif::$notif_fn($msg);
 			if(isset($result['id']))
 			{
-				\dash\log::save_temp(['replace' => ['messageid' => $result['id']]]);
+
+				\dash\log::save_temp(['replace' => ['code' => $result['id'], 'masterid' => $_id]]);
 			}
 			else
 			{

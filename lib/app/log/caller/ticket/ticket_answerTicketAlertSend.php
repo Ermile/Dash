@@ -6,20 +6,20 @@ class ticket_answerTicketAlertSend
 {
 	public static function site($_args = [])
 	{
-		$code = isset($_args['code']) ? $_args['code'] : null;
+		$masterid = isset($_args['masterid']) ? $_args['masterid'] : null;
 
 		$result              = [];
-		$result['title']     = T_("Regards"). "\n". T_("Ticket :val answered", ['val' => \dash\utility\human::fitNumber($code, false)]);;
+		$result['title']     = T_("Regards"). "\n". T_("Ticket :val answered", ['val' => \dash\utility\human::fitNumber($masterid, false)]);;
 		$result['icon']      = 'life-ring';
 		$result['cat']       = T_("Support");
 		$result['iconClass'] = 'fc-green';
 
 
 		$excerpt = '';
-		$excerpt .=	'<a href="'.\dash\url::kingdom(). '/!'. $code. '">';
+		$excerpt .=	'<a href="'.\dash\url::kingdom(). '/!'. $masterid. '">';
 		$excerpt .= T_("Show ticket");
 		$excerpt .= ' ';
-		$excerpt .= \dash\utility\human::fitNumber($code, false);
+		$excerpt .= \dash\utility\human::fitNumber($masterid, false);
 		$excerpt .= '</a>';
 
 		$result['txt'] = $excerpt;
@@ -50,10 +50,10 @@ class ticket_answerTicketAlertSend
 
 	public static function sms_text($_args, $_mobile)
 	{
-		$code  = isset($_args['code']) ? $_args['code'] : null;
-		$title = T_("Regards"). "\n". T_("Ticket :val answered", ['val' => \dash\utility\human::fitNumber($code, false)]);
+		$masterid  = isset($_args['masterid']) ? $_args['masterid'] : null;
+		$title = T_("Regards"). "\n". T_("Ticket :val answered", ['val' => \dash\utility\human::fitNumber($masterid, false)]);
 		$title .= "\n";
-		$title .= \dash\url::domain(). '/!'. $code;
+		$title .= \dash\url::domain(). '/!'. $masterid;
 
 		$sms =
 		[
@@ -72,11 +72,11 @@ class ticket_answerTicketAlertSend
 	public static function telegram_text($_args, $_chat_id)
 	{
 		$load  = \dash\app\log\support_tools::load($_args);
-		$code  = isset($_args['code']) ? $_args['code'] : null;
-		$title = T_("Regards"). "\n". T_("Ticket :val answered", ['val' => \dash\utility\human::fitNumber($code, false)]);
+		$masterid  = isset($_args['masterid']) ? $_args['masterid'] : null;
+		$title = T_("Regards"). "\n". T_("Ticket :val answered", ['val' => \dash\utility\human::fitNumber($masterid, false)]);
 
 		$tg_msg = '';
-		$tg_msg .= "🆔#Ticket".$code;
+		$tg_msg .= "🆔#Ticket".$masterid;
 		$tg_msg .= $title;
 		$tg_msg .= "\n⏳ ". \dash\datetime::fit(date("Y-m-d H:i:s"), true);
 
@@ -86,7 +86,7 @@ class ticket_answerTicketAlertSend
 		$tg                 = [];
 		$tg['chat_id']      = $_chat_id;
 		$tg['text']         = $tg_msg;
-		$tg['reply_markup'] = \dash\app\log\support_tools::tg_btn2($code);
+		$tg['reply_markup'] = \dash\app\log\support_tools::tg_btn2($masterid);
 
 		// $tg = json_encode($tg, JSON_UNESCAPED_UNICODE);
 

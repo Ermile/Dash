@@ -62,10 +62,10 @@ class ticket_AddNoteTicket
 	{
 		$load = \dash\app\log\support_tools::load($_args);
 		$plus = \dash\app\log\support_tools::plus($_args);
-		$code = isset($_args['code']) ? $_args['code'] : null;
+		$masterid = isset($_args['masterid']) ? $_args['masterid'] : null;
 
 		$tg_msg = '';
-		$tg_msg .= "🆔#Ticket".$code;
+		$tg_msg .= "🆔#Ticket".$masterid;
 		$tg_msg .= " 🌒️". $plus;
 		$tg_msg .= "\n🗣 ". \dash\log::from_name(). " #user". \dash\log::from_id();
 		$tg_msg .= "\n—————\n📬 ";
@@ -95,7 +95,7 @@ class ticket_AddNoteTicket
 		$tg                 = [];
 		$tg['chat_id']      = $_chat_id;
 		$tg['text']         = $tg_msg;
-		$tg['reply_markup'] = \dash\app\log\support_tools::tg_btn($code);
+		$tg['reply_markup'] = \dash\app\log\support_tools::tg_btn($masterid);
 
 		// $tg = json_encode($tg, JSON_UNESCAPED_UNICODE);
 

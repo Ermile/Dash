@@ -11,7 +11,7 @@ class support_tools
 		{
 			if(isset($_args['code']))
 			{
-				self::$load = \dash\db\comments::get(['id' => $_args['code'], 'limit' => 1]);
+				self::$load = \dash\db\tickets::get(['id' => $_args['code'], 'limit' => 1]);
 			}
 		}
 
@@ -84,8 +84,8 @@ class support_tools
 
 	public static function code($_args)
 	{
-		$code = isset($_args['code']) ? $_args['code'] : null;
-		return $code;
+		$masterid = isset($_args['masterid']) ? $_args['masterid'] : null;
+		return $masterid;
 	}
 
 
