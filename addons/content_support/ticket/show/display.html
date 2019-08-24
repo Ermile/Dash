@@ -419,6 +419,8 @@
        <label class="floatRa mT10 ltr"><a href="https://t.me/{{uaseTelegram.username}}" target="_blank">@{{uaseTelegram.username[:15]}}</a></label>
   {%elseif uaseTelegram.firstname%}
        <label class="floatRa mT10 ltr" title='{%trans "First name"%}'>{{uaseTelegram.firstname[:15]}}</label>
+  {%elseif uaseTelegram.chatid%}
+       <label class="floatRa mT10 ltr"><small class="fc-mute">{%trans "Without name"%}</small></label>
   {%else%}
        <label class="floatRa mT10 ltr"><a href="https://t.me/{{tgBot}}?start=sync" target="_blank">@{{tgBot}}</a></label>
   {%endif%}
