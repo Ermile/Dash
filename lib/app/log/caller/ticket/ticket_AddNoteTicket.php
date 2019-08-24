@@ -67,7 +67,7 @@ class ticket_AddNoteTicket
 		$tg_msg = '';
 		$tg_msg .= "🆔#Ticket".$masterid;
 		$tg_msg .= " 🌒️". $plus;
-		$tg_msg .= "\n🗣 ". \dash\log::from_name(). " #user". \dash\log::from_id();
+		$tg_msg .= "\n🗣 ". \dash\log::from_name(). " #user". \dash\log::from_id(true);
 		$tg_msg .= "\n—————\n📬 ";
 
 		$title   = isset($load['title']) ? $load['title'] : null;

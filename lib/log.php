@@ -151,9 +151,14 @@ class log
 		}
 	}
 
-	public static function from_id()
+	public static function from_id($_encode = false)
 	{
-		return self::from_detail('id');
+		$id = self::from_detail('id');
+		if($_encode && $id)
+		{
+			$id = \dash\coding::encode($id);
+		}
+		return $id;
 	}
 
 	public static function from_name()
