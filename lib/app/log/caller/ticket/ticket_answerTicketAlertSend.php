@@ -77,7 +77,7 @@ class ticket_answerTicketAlertSend
 
 		$tg_msg = '';
 		$tg_msg .= "🆔#Ticket".$masterid;
-		$tg_msg .= $title;
+		$tg_msg .= "\n". $title;
 		$tg_msg .= "\n⏳ ". \dash\datetime::fit(date("Y-m-d H:i:s"), true);
 
 		// disable footer in sms
