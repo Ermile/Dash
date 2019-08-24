@@ -14,12 +14,26 @@ class controller
 		}
 		else
 		{
+
 			$check_arg =
 			[
 				'type'   => 'help',
 				'slug'   => urldecode(\dash\url::directory()),
 				'limit'  => 1
 			];
+
+			if(!\dash\option::config('no_subdomain'))
+			{
+				$subdomain = \dash\url::subdomain();
+				if($subdomain)
+				{
+					$check_arg['subdomain'] = $subdomain;
+				}
+				else
+				{
+					$check_arg['subdomain'] = null;
+				}
+			}
 
 			if(\dash\permission::check('cpHelpCenterEditForOthers'))
 			{
