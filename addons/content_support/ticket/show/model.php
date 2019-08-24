@@ -108,7 +108,7 @@ class model
 
 		\dash\app::variable(['support_tag' => $_tag]);
 		\dash\app\posts::set_post_term($_id, 'support_tag', 'tickets');
-		\dash\log::temp_set('ticket_ticketAddTag', ['code' => $_id, 'tag' => $_tag]);
+		\dash\log::temp_set('ticket_ticketAddTag', ['code' => $_id, 'tag' => $_tag, 'masterid' => $_id,]);
 
 		if(\dash\engine\process::status())
 		{
@@ -151,24 +151,24 @@ class model
 			{
 				case 'close':
 					\dash\permission::access('supportTicketClose');
-					\dash\log::temp_set('ticket_setCloseTicket', ['code' => $_id]);
+					\dash\log::temp_set('ticket_setCloseTicket', ['code' => $_id, 'masterid' => $_id,]);
 
 					break;
 
 				case 'awaiting':
 					\dash\permission::access('supportTicketReOpen');
-					\dash\log::temp_set('ticket_setAwaitingTicket', ['code' => $_id]);
+					\dash\log::temp_set('ticket_setAwaitingTicket', ['code' => $_id, 'masterid' => $_id,]);
 					break;
 
 
 				case 'spam':
 					\dash\permission::access('supportTicketAnswer');
-					\dash\log::temp_set('setSpamTicket', ['code' => $_id]);
+					\dash\log::temp_set('setSpamTicket', ['code' => $_id, 'masterid' => $_id,]);
 					break;
 
 				case 'deleted':
 					\dash\permission::access('supportTicketDelete');
-					\dash\log::temp_set('ticket_setDeleteTicket', ['code' => $_id]);
+					\dash\log::temp_set('ticket_setDeleteTicket', ['code' => $_id, 'masterid' => $_id,]);
 					break;
 
 			}
@@ -213,12 +213,12 @@ class model
 		\dash\db\tickets::update(['solved' => $solved], $_id);
 		if($solved)
 		{
-			\dash\log::temp_set('ticket_setSolvedTicket', ['code' => $_id]);
+			\dash\log::temp_set('ticket_setSolvedTicket', ['code' => $_id, 'masterid' => $_id,]);
 			\dash\notif::ok(T_("Ticket set as solved"));
 		}
 		else
 		{
-			\dash\log::temp_set('ticket_setUnSolvedTicket', ['code' => $_id]);
+			\dash\log::temp_set('ticket_setUnSolvedTicket', ['code' => $_id, 'masterid' => $_id,]);
 			\dash\notif::warn(T_("Ticket set as unsolved"));
 		}
 
@@ -285,6 +285,7 @@ class model
 			{
 				$log =
 				[
+					'masterid' => $_id,
 					'code'     => $_id,
 					// 'tcontent' => \dash\safe::forJson($content),
 					// 'file'     => $file ? $file : null,
@@ -336,6 +337,7 @@ class model
 
 					$log =
 					[
+						'masterid' => $_id,
 						'code'     => $_id,
 						// 'tcontent' => \dash\safe::forJson($content),
 						// 'file'     => $file ? $file : null,
@@ -359,6 +361,7 @@ class model
 
 					$log =
 					[
+						'masterid' => $_id,
 						'code'     => $_id,
 						// 'tcontent' => \dash\safe::forJson($content),
 						// 'file'     => $file ? $file : null,
@@ -383,9 +386,10 @@ class model
 						{
 							$log =
 							[
-								'code' => $_id,
-								'to'   => \dash\coding::decode($main['user_id']),
-								'from' => \dash\user::id(),
+								'code'     => $_id,
+								'masterid' => $_id,
+								'to'       => \dash\coding::decode($main['user_id']),
+								'from'     => \dash\user::id(),
 							];
 
 							\dash\log::temp_set('ticket_answerTicketAlertSend', $log);
@@ -395,6 +399,7 @@ class model
 							$log =
 							[
 								'code' => $_id,
+								'masterid' => $_id,
 								'to'   => \dash\coding::decode($main['user_id']),
 								'from' => \dash\user::id(),
 							];
