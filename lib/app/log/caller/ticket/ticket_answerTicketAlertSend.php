@@ -72,7 +72,7 @@ class ticket_answerTicketAlertSend
 	public static function telegram_text($_args, $_chat_id)
 	{
 		$load  = \dash\app\log\support_tools::load($_args);
-		$masterid  = isset($_args['masterid']) ? $_args['masterid'] : null;
+		$masterid  = \dash\app\log\support_tools::masterid($_args);
 		$title = T_("Regards"). "\n". T_("Ticket :val answered", ['val' => \dash\utility\human::fitNumber($masterid, false)]);
 
 		$tg_msg = '';
