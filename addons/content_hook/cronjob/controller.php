@@ -153,7 +153,6 @@ class controller
 
 		if(is_callable(['\lib\cronjob', 'run']))
 		{
-			\dash\log::set('CronjobProjectRun');
 			\lib\cronjob::run();
 		}
 	}
