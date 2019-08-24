@@ -412,11 +412,13 @@
 
 {%if tgBot%}
       <div class="switch1">
-       <input type="checkbox" disabled id="notifTg" {%if uaseTelegram.username%}checked{%endif%}>
+       <input type="checkbox" disabled id="notifTg" {%if uaseTelegram.chatid%}checked{%endif%}>
        <label for="notifTg"></label>
        <label for="notifTg">{%trans "Telegram"%}</label>
   {%if uaseTelegram.username%}
        <label class="floatRa mT10 ltr"><a href="https://t.me/{{uaseTelegram.username}}" target="_blank">@{{uaseTelegram.username[:15]}}</a></label>
+  {%elseif uaseTelegram.firstname%}
+       <label class="floatRa mT10 ltr" title='{%trans "First name"%}'>{{uaseTelegram.firstname[:15]}}</label>
   {%else%}
        <label class="floatRa mT10 ltr"><a href="https://t.me/{{tgBot}}?start=sync" target="_blank">@{{tgBot}}</a></label>
   {%endif%}
