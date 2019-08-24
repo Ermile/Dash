@@ -239,7 +239,7 @@ class view
 
 		\dash\db\tickets::update(['see' => 1], $end_message['id']);
 
-		\dash\log::set('ticket_seeTicket',  ['code' => $_id]);
+		\dash\log::set('ticket_seeTicket',  ['code' => $_id, 'masterid' => $_id]);
 
 		// $get_log =
 		// [
