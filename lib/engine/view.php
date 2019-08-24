@@ -110,6 +110,20 @@ class view
 		}
 
 
+		// make xaccess link
+		$xaccessLink = [];
+		if(!\dash\option::config('no_subdomain'))
+		{
+			$xaccessLink['cms'] = \dash\url::kingdom(). '/cms';
+		}
+		else
+		{
+			$xaccessLink['cms'] = \dash\url::sitelang(). '/cms';
+		}
+
+		\dash\data::xaccessLink($xaccessLink);
+
+
 		\dash\data::dev(\dash\option::config('dev'));
 
 		\dash\data::site_title(T_(\dash\option::config('site', 'title')));

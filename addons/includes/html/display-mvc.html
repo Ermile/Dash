@@ -93,7 +93,7 @@
 {%block xaccess%}
 {%if perm('contentCp')%}
   <div id="xaccess">
-    <a class='siteAdmin{%if url.tld != "local"%} public{%endif%}'{%if not include.adminPanel%} data-direct{%endif%} href='{{url.sitelang}}/cms' title='{%trans "Control Panel"%}' data-tippy-placement='right' data-tippy-animation="shift-away" data-tippy-inertia="true"><span class="sf-gauge"></span></a>
+    <a class='siteAdmin{%if url.tld != "local"%} public{%endif%}'{%if not include.adminPanel%} data-direct{%endif%} href='{{xaccessLink.cms}}' title='{%trans "Control Panel"%}' data-tippy-placement='right' data-tippy-animation="shift-away" data-tippy-inertia="true"><span class="sf-gauge"></span></a>
   </div>
 {%endif%}
 {%endblock%}
