@@ -58,30 +58,44 @@ class view
 	}
 
 
+	private static function makeDashboardArgs($_args)
+	{
+		if(!\dash\option::config('no_subdomain'))
+		{
+			$subdomain = \dash\url::subdomain();
+			if($subdomain)
+			{
+				$_args['subdomain'] = $subdomain;
+			}
+			else
+			{
+				$_args['subdomain'] = null;
+			}
+		}
+
+		return $_args;
+	}
+
+
+
 	private static function dashboard_detail()
 	{
 		$dashboard_detail = \dash\session::get('cpDashboardCache_'. \dash\language::current());
 		if(!$dashboard_detail)
 		{
 			$dashboard_detail                   = [];
-			$dashboard_detail['news']           = \dash\db\posts::get_count(['language' => \dash\language::current(), 'type' => 'post']);
-			$dashboard_detail['pages']          = \dash\db\posts::get_count(['language' => \dash\language::current(), 'type' => 'page']);
-			$dashboard_detail['cats']           = \dash\db\terms::get_count(['language' => \dash\language::current(), 'type' => 'cat']);
-			$dashboard_detail['tags']           = \dash\db\terms::get_count(['language' => \dash\language::current(), 'type' => 'tag']);
-			$dashboard_detail['helpcenter']     = \dash\db\posts::get_count(['language' => \dash\language::current(), 'type' => 'help']);
-			$dashboard_detail['helpcentertags'] = \dash\db\terms::get_count(['language' => \dash\language::current(), 'type' => 'help_tag']);
-			$dashboard_detail['supporttags']    = \dash\db\terms::get_count(['language' => \dash\language::current(), 'type' => 'support_tag']);
-			$dashboard_detail['tickets']        = \dash\db\comments::get_count(['type' => 'ticket', 'parent' => null]);
-			$dashboard_detail['latesPost']      = \dash\app\posts::lates_post(['language' => \dash\language::current(), 'type' => 'post']);
-			$dashboard_detail['latesHelp']      = \dash\app\posts::lates_post(['language' => \dash\language::current(), 'type' => 'help']);
-			$dashboard_detail['latesTag']      = \dash\app\term::lates_term(['language' => \dash\language::current(), 'type' => 'tag']);
+			$dashboard_detail['news']           = \dash\db\posts::get_count(self::makeDashboardArgs(['language' => \dash\language::current(), 'type' => 'post']));
+			$dashboard_detail['pages']          = \dash\db\posts::get_count(self::makeDashboardArgs(['language' => \dash\language::current(), 'type' => 'page']));
+			$dashboard_detail['cats']           = \dash\db\terms::get_count(self::makeDashboardArgs(['language' => \dash\language::current(), 'type' => 'cat']));
+			$dashboard_detail['tags']           = \dash\db\terms::get_count(self::makeDashboardArgs(['language' => \dash\language::current(), 'type' => 'tag']));
+			$dashboard_detail['helpcenter']     = \dash\db\posts::get_count(self::makeDashboardArgs(['language' => \dash\language::current(), 'type' => 'help']));
+			$dashboard_detail['helpcentertags'] = \dash\db\terms::get_count(self::makeDashboardArgs(['language' => \dash\language::current(), 'type' => 'help_tag']));
+			$dashboard_detail['supporttags']    = \dash\db\terms::get_count(self::makeDashboardArgs(['language' => \dash\language::current(), 'type' => 'support_tag']));
+			$dashboard_detail['tickets']        = \dash\db\comments::get_count(self::makeDashboardArgs(['type' => 'ticket', 'parent' => null]));
+			$dashboard_detail['latesPost']      = \dash\app\posts::lates_post(self::makeDashboardArgs(['language' => \dash\language::current(), 'type' => 'post']));
+			$dashboard_detail['latesHelp']      = \dash\app\posts::lates_post(self::makeDashboardArgs(['language' => \dash\language::current(), 'type' => 'help']));
+			$dashboard_detail['latesTag']      = \dash\app\term::lates_term(self::makeDashboardArgs(['language' => \dash\language::current(), 'type' => 'tag']));
 
-			$get_chart                 = [];
-
-			if(\dash\url::subdomain())
-			{
-				$get_chart['subdomain']    = \dash\url::subdomain();
-			}
 
 			$chart                     = [];
 			$chart['post']             = \dash\utility\dayevent::chart(['field' => ['news', 'page', 'help', 'attachment']]);
@@ -101,16 +115,16 @@ class view
 		if(!$dashboard_detail_no_lang)
 		{
 			$dashboard_detail_no_lang                   = [];
-			$dashboard_detail_no_lang['news']           = \dash\db\posts::get_count(['type' => 'post']);
-			$dashboard_detail_no_lang['pages']          = \dash\db\posts::get_count(['type' => 'page']);
-			$dashboard_detail_no_lang['cats']           = \dash\db\terms::get_count(['type' => 'cat']);
-			$dashboard_detail_no_lang['tags']           = \dash\db\terms::get_count(['type' => 'tag']);
-			$dashboard_detail_no_lang['helpcenter']     = \dash\db\posts::get_count(['type' => 'help']);
-			$dashboard_detail_no_lang['helpcentertags'] = \dash\db\terms::get_count(['type' => 'help_tag']);
-			$dashboard_detail_no_lang['supporttags']    = \dash\db\terms::get_count(['type' => 'support_tag']);
-			$dashboard_detail_no_lang['latesPost']      = \dash\app\posts::lates_post(['type' => 'post']);
-			$dashboard_detail_no_lang['latesHelp']      = \dash\app\posts::lates_post(['type' => 'help']);
-			$dashboard_detail_no_lang['latesTag']      = \dash\app\term::lates_term(['type' => 'tag']);
+			$dashboard_detail_no_lang['news']           = \dash\db\posts::get_count(self::makeDashboardArgs(['type' => 'post']));
+			$dashboard_detail_no_lang['pages']          = \dash\db\posts::get_count(self::makeDashboardArgs(['type' => 'page']));
+			$dashboard_detail_no_lang['cats']           = \dash\db\terms::get_count(self::makeDashboardArgs(['type' => 'cat']));
+			$dashboard_detail_no_lang['tags']           = \dash\db\terms::get_count(self::makeDashboardArgs(['type' => 'tag']));
+			$dashboard_detail_no_lang['helpcenter']     = \dash\db\posts::get_count(self::makeDashboardArgs(['type' => 'help']));
+			$dashboard_detail_no_lang['helpcentertags'] = \dash\db\terms::get_count(self::makeDashboardArgs(['type' => 'help_tag']));
+			$dashboard_detail_no_lang['supporttags']    = \dash\db\terms::get_count(self::makeDashboardArgs(['type' => 'support_tag']));
+			$dashboard_detail_no_lang['latesPost']      = \dash\app\posts::lates_post(self::makeDashboardArgs(['type' => 'post']));
+			$dashboard_detail_no_lang['latesHelp']      = \dash\app\posts::lates_post(self::makeDashboardArgs(['type' => 'help']));
+			$dashboard_detail_no_lang['latesTag']      = \dash\app\term::lates_term(self::makeDashboardArgs(['type' => 'tag']));
 			\dash\session::set('cpDashboardCacheNoLang_'. \dash\language::current(), $dashboard_detail_no_lang, null, (60*1));
 		}
 
@@ -120,10 +134,14 @@ class view
 
 	private static function all_word_cloud()
 	{
+		$args             = [];
+		$args['language'] = \dash\language::current();
+		$args             = self::makeDashboardArgs($args);
+
 		$allWordCloud = \dash\utility\catch_file::get('cpWordCload_'. \dash\url::subdomain(), false);
 		if(!$allWordCloud)
 		{
-			$allWordCloud = \dash\app\posts::all_word_cloud();
+			$allWordCloud = \dash\app\posts::all_word_cloud($args);
 			\dash\utility\catch_file::set('cpWordCload_'. \dash\url::subdomain(), $allWordCloud, 60*2);
 		}
 

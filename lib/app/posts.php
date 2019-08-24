@@ -108,13 +108,12 @@ class posts
 	}
 
 
-	public static function all_word_cloud()
+	public static function all_word_cloud($_args = [])
 	{
 		$word             = [];
 		$myCount          = [];
-		$args             = [];
-		$args['language'] = \dash\language::current();
-		$allPost          = \dash\db\posts::get_words_chart($args);
+
+		$allPost          = \dash\db\posts::get_words_chart($_args);
 
 		$countAllPost     = count($allPost);
 

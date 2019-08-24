@@ -912,7 +912,7 @@ class user
 
 				case 'avatar':
 					$result['avatar_raw'] = $value;
-					if($_id)
+					if($value)
 					{
 						$result['avatar'] = $value;
 					}
