@@ -36,7 +36,22 @@ class term
 
 	public static function cat_list($_type = 'cat')
 	{
-		$result = \dash\db\terms::get(['type' => $_type, 'language' => \dash\language::current(), 'status' => 'enable']);
+		$check_arg = ['type' => $_type, 'language' => \dash\language::current(), 'status' => 'enable'];
+
+		if(!\dash\option::config('no_subdomain'))
+		{
+			$subdomain = \dash\url::subdomain();
+			if($subdomain)
+			{
+				$check_arg['subdomain'] = $subdomain;
+			}
+			else
+			{
+				$check_arg['subdomain'] = null;
+			}
+		}
+
+		$result = \dash\db\terms::get($check_arg);
 		$temp   = [];
 
 		if(is_array($result))
