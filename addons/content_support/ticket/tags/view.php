@@ -19,15 +19,17 @@ class view
 			$args['order'] = 'DESC';
 		}
 
-
 		$args['language'] = \dash\language::current();
 		$args['type'] = 'support_tag';
-
-		if(isset($args['type']) && $args['type'] === 'cat')
+		if(!\dash\option::config('no_subdomain'))
 		{
-			if(!\dash\permission::check('cpCategoryView'))
+			if(\dash\url::subdomain())
 			{
-				// @check
+				$args['subdomain'] = \dash\url::subdomain();
+			}
+			else
+			{
+				$args['subdomain'] = null;
 			}
 		}
 
@@ -37,7 +39,6 @@ class view
 		{
 			$myTitle = T_('Search'). ' '.  $search_string;
 		}
-
 
 		$dataTable = \dash\app\term::list($search_string, $args);
 		\dash\data::sortLink(\content_cms\view::make_sort_link(\dash\app\term::$sort_field, \dash\url::this()));

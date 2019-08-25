@@ -931,6 +931,13 @@ class posts
 			$_related = 'posts';
 		}
 
+		$check_subdomain = false;
+
+		if(!\dash\option::config('no_subdomain'))
+		{
+			$check_subdomain = \dash\url::subdomain();
+		}
+
 		$category = \dash\app::request($_type);
 		if(!$category && $_data)
 		{
@@ -946,7 +953,7 @@ class posts
 			$tag = array_filter($tag);
 			$tag = array_unique($tag);
 
-			$check_exist_tag = \dash\db\terms::get_mulit_term_title($tag, $_type);
+			$check_exist_tag = \dash\db\terms::get_mulit_term_title($tag, $_type, $check_subdomain);
 
 			$all_tags_id = [];
 
@@ -983,13 +990,14 @@ class posts
 
 					$multi_insert_tag[] =
 					[
-						'type'     => $_type,
-						'status'   => 'enable',
-						'title'    => $value,
-						'slug'     => $slug,
-						'url'      => $slug,
-						'user_id'  => \dash\user::id(),
-						'language' => \dash\language::current(),
+						'type'      => $_type,
+						'status'    => 'enable',
+						'title'     => $value,
+						'slug'      => $slug,
+						'url'       => $slug,
+						'user_id'   => \dash\user::id(),
+						'language'  => \dash\language::current(),
+						'subdomain' => \dash\url::subdomain(),
 					];
 				}
 				$have_term_to_save_log = true;
@@ -1009,7 +1017,7 @@ class posts
 				$category_id = array_filter($category_id);
 				$category_id = array_unique($category_id);
 
-				$check_all_is_cat = \dash\db\terms::check_multi_id($category_id, $_type);
+				$check_all_is_cat = \dash\db\terms::check_multi_id($category_id, $_type, $check_subdomain);
 
 				if(count($check_all_is_cat) !== count($category_id))
 				{

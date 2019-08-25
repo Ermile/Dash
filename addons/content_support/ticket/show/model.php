@@ -49,7 +49,13 @@ class model
 		{
 			\dash\redirect::pwd();
 		}
+	}
 
+
+	private static function loadTicketDetail($_id)
+	{
+		$main = \dash\data::loadTicketDetail();
+		return $main;
 	}
 
 
@@ -57,12 +63,8 @@ class model
 	{
 		\dash\permission::access('supportTicketAnswer');
 
-		$main = \dash\app\ticket::get($_id);
+		$main = self::loadTicketDetail($_id);
 
-		if(!$main || !array_key_exists('user_id', $main))
-		{
-			\dash\header::status(403, T_("Ticket not found"));
-		}
 
 		$update_main = [];
 
@@ -89,7 +91,22 @@ class model
 
 		if(!\dash\permission::check('cpTagSupportAdd'))
 		{
-			$current_tag = \dash\db\terms::get(['type' => 'support_tag']);
+			$getTagArgs = ['type' => 'support_tag'];
+			if(!\dash\option::config('no_subdomain'))
+			{
+				$subdomain = \dash\url::subdomain();
+				if($subdomain)
+				{
+					$getTagArgs['subdomain'] = $subdomain;
+				}
+				else
+				{
+					$getTagArgs['subdomain'] = null;
+				}
+			}
+
+			$current_tag = \dash\db\terms::get($getTagArgs);
+
 			if(is_array($current_tag))
 			{
 				$tag_titles = array_column($current_tag, 'title');
@@ -122,12 +139,8 @@ class model
 
 	public static function change_status($_id, $_status)
 	{
-		$main = \dash\app\ticket::get($_id);
+		$main = self::loadTicketDetail($_id);
 
-		if(!$main || !array_key_exists('user_id', $main))
-		{
-			\dash\header::status(403, T_("Ticket not found"));
-		}
 
 		if(isset($main['status']) && $main['status'] === 'spam')
 		{
@@ -240,7 +253,7 @@ class model
 			return false;
 		}
 
-		$main = \dash\app\ticket::get($_id);
+		$main = self::loadTicketDetail($_id);
 
 		if(isset($main['status']) && $main['status'] === 'spam')
 		{
@@ -248,10 +261,6 @@ class model
 			return false;
 		}
 
-		if(!$main || !array_key_exists('user_id', $main))
-		{
-			\dash\header::status(403, T_("Ticket not found"));
-		}
 
 		// check is my ticket and some permission to load guest , ...
 		$is_my_ticket = \content_support\ticket\show\view::is_my_ticket($main);

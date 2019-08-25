@@ -128,7 +128,21 @@ class view
 
 		if(\dash\permission::supervisor())
 		{
-			$all_tag = \dash\db\terms::get(['type' => 'support_tag']);
+			$getTagArgs = ['type' => 'support_tag'];
+			if(!\dash\option::config('no_subdomain'))
+			{
+				$subdomain = \dash\url::subdomain();
+				if($subdomain)
+				{
+					$getTagArgs['subdomain'] = $subdomain;
+				}
+				else
+				{
+					$getTagArgs['subdomain'] = null;
+				}
+			}
+
+			$all_tag = \dash\db\terms::get($getTagArgs);
 			if(is_array($all_tag))
 			{
 				$all_tag = array_map(['\dash\app\term', 'ready'], $all_tag);

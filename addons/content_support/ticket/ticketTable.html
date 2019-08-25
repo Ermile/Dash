@@ -1,7 +1,7 @@
 
 <div class="msg pain special f align-center fs14">
   <div class="c"><span class="txtB">{%if url.module == "ticket"%}{{page.title}}{%else%}{%trans "Last active tickets"%}{%endif%}</span> <span class="badge rounded pA5-f mLa5">{%if requestGET.status%}{{attribute(sidebarDetail, requestGET.status) | fitNumber}}{%else%}{{sidebarDetail.all | fitNumber}}{%endif%}</span></div>
-  <div class="cauto os"><a href="{{url.here}}/ticket{{accessGet}}" class="btn dark sm">{%trans "All Tickets"%}</a></div>
+  <div class="cauto os"><a {%if value.openNewTab%} target="_blank" data-direct {%endif%} href="{{value.myTicketUrl}}{{accessGet}}" class="btn dark sm">{%trans "All Tickets"%}</a></div>
 </div>
 
 <table class="tbl1 v1 cbox fs12" data-scroll>
@@ -10,26 +10,26 @@
     <tr class="{{value.rowColor}}">
       <td class="collapsing txtB">
         {%if value.parent%}
-        <a data-direct href="{{url.here}}/ticket/show?id={{value.parent}}{{accessGetAnd}}#{{value.id}}{%if not login.id %}&guest={{value.code}}{%endif%}"><span class="badge light mRa5">{{value.parent | fitNumber(false)}}</span> </a>
+        <a data-direct {%if value.openNewTab%} target="_blank" data-direct {%endif%} href="{{value.myTicketUrl}}/show?id={{value.parent}}{{accessGetAnd}}#{{value.id}}{%if not login.id %}&guest={{value.code}}{%endif%}"><span class="badge light mRa5">{{value.parent | fitNumber(false)}}</span> </a>
         {%else%}
-        <a href="{{url.here}}/ticket/show?id={{value.id}}{{accessGetAnd}}{%if not login.id %}&guest={{value.code}}{%endif%}"><span class="badge light mRa5">{{value.id | fitNumber(false)}}</span> {{value.title | slice(0, 40)}}</a>
+        <a {%if value.openNewTab%} target="_blank" data-direct {%endif%} href="{{value.myTicketUrl}}/show?id={{value.id}}{{accessGetAnd}}{%if not login.id %}&guest={{value.code}}{%endif%}"><span class="badge light mRa5">{{value.id | fitNumber(false)}}</span> {{value.title | slice(0, 40)}}</a>
         {%endif%}
 {%if value.tag%}
         <div class="mT5 fs12">
 {%for Tkey, Tvalue in value.tag%}
-          <a class="badge" href="{{url.here}}/ticket?tag={{Tvalue | url_encode}}">{{Tvalue}}</a>
+          <a class="badge" {%if value.openNewTab%} target="_blank" data-direct {%endif%} href="{{value.myTicketUrl}}?tag={{Tvalue | url_encode}}">{{Tvalue}}</a>
 {%endfor%}
         </div>
 {%endif%}
       </td>
 
-      <td class="s0 m0 pRa10"><a href="{{url.here}}/ticket/show?id={{value.id}}{{accessGetAnd}}{%if not login.id %}&guest={{value.code}}{%endif%}">{{value.content | slice(0, 60) | striptags}}</a>
+      <td class="s0 m0 pRa10"><a {%if value.openNewTab%} target="_blank" data-direct {%endif%} href="{{value.myTicketUrl}}/show?id={{value.id}}{{accessGetAnd}}{%if not login.id %}&guest={{value.code}}{%endif%}">{{value.content | slice(0, 60) | striptags}}</a>
       </td>
 
 {%if haveSubdomain%}
     <td class="collapsing fs08 s0 ltr">
 {%if value.subdomain%}
-      <a href="{{url.here}}/ticket?access=all&subdomain={{value.subdomain}}">{{value.subdomain | capitalize}}</a>
+      <a {%if value.openNewTab%} target="_blank" data-direct {%endif%} href="{{value.myTicketUrl}}?access=all&subdomain={{value.subdomain}}">{{value.subdomain | capitalize}}</a>
 {%endif%}
     </td>
 {%endif%}
@@ -44,7 +44,7 @@
 
 {%if accessMode != 'mine'%}
       <td class="collapsing fs08 txtRa s0">
-        <a href="{{url.here}}/ticket?user={{value.user_id}}{{accessGetAnd}}">
+        <a {%if value.openNewTab%} target="_blank" data-direct {%endif%} href="{{value.myTicketUrl}}?user={{value.user_id}}{{accessGetAnd}}">
         <span class="txtB s0">{{value.displayname}}</span>
         <img src="{{value.avatar}}" class="avatar mLa10" alt="{{value.displayname}}" {%if value.displayname %} title="{{value.displayname}}" {%endif%}>
         </a>

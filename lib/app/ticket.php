@@ -561,6 +561,38 @@ class ticket
 		{
 			switch ($key)
 			{
+				case 'subdomain':
+					$openNewTab = false;
+					if(!\dash\option::config('no_subdomain'))
+					{
+						if($value != \dash\url::subdomain())
+						{
+							$openNewTab = true;
+						}
+
+						$mySubdomain = null;
+						if($value)
+						{
+							$mySubdomain = $value. '.';
+						}
+
+						$lnag = null;
+						if(\dash\url::lnag())
+						{
+							$lnag = '/'.\dash\url::lnag();
+						}
+
+						$link = \dash\url::protocol(). '://'. $mySubdomain. \dash\url::domain(). $lnag. '/support/ticket';
+					}
+					else
+					{
+						$link = \dash\url::this();
+					}
+
+					$result['openNewTab']  = $openNewTab;
+					$result['myTicketUrl'] = $link;
+					$result[$key]          = $value;
+					break;
 				case 'status':
 					$color       = null;
 					$color_class = null;

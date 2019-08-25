@@ -16,7 +16,22 @@ class model
 				return false;
 			}
 
-			$load_term = \dash\db\terms::get(['id' => $term_id, 'limit' => 1]);
+			$remove_args = ['id' => $term_id, 'limit' => 1];
+			if(!\dash\option::config('no_subdomain'))
+			{
+				if(\dash\url::subdomain())
+				{
+					$remove_args['subdomain'] = \dash\url::subdomain();
+				}
+				else
+				{
+					$remove_args['subdomain'] = null;
+				}
+			}
+
+
+			$load_term = \dash\db\terms::get($remove_args);
+
 			if(!isset($load_term['type']))
 			{
 				\dash\notif::error(T_("Term id not found"));
@@ -46,15 +61,16 @@ class model
 			return;
 		}
 
-		$post             = [];
-		$post['title']    = \dash\request::post('title');
-		$post['desc']     = \dash\request::post('desc');
-		$post['excerpt']  = \dash\request::post('excerpt');
-		$post['parent']   = \dash\request::post('parent');
-		$post['language'] = \dash\request::post('language');;
-		$post['slug']     = \dash\request::post('slug');
-		$post['type']     = 'support_tag';
-		$post['status']   = \dash\request::post('status');
+		$post              = [];
+		$post['title']     = \dash\request::post('title');
+		$post['desc']      = \dash\request::post('desc');
+		$post['excerpt']   = \dash\request::post('excerpt');
+		$post['parent']    = \dash\request::post('parent');
+		$post['language']  = \dash\request::post('language');;
+		$post['slug']      = \dash\request::post('slug');
+		$post['type']      = 'support_tag';
+		$post['status']    = \dash\request::post('status');
+		$post['subdomain'] = \dash\url::subdomain();
 
 
 		if(\dash\request::post('color') && (\dash\request::get('type') === 'support_tag' || \dash\permission::supervisor() ))
@@ -147,12 +163,12 @@ class model
 		{
 			if(\dash\request::get('edit'))
 			{
-				\dash\redirect::pwd();
-				\dash\notif::ok(T_("Term successfully edited"));
+				\dash\notif::ok(T_("Tag successfully edited"));
+				\dash\redirect::to(\dash\url::that());
 			}
 			else
 			{
-				\dash\notif::ok(T_("Term successfully added"));
+				\dash\notif::ok(T_("Tag successfully added"));
 				\dash\redirect::pwd();
 			}
 		}
