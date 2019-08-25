@@ -51,6 +51,49 @@ class sessions
 	}
 
 
+	public static function remove_old_expire()
+	{
+		$date = date("Y-m-d H:i:s", strtotime("-30 days"));
+
+		$query =
+		"
+			SELECT
+				sessions.id AS `id`
+			FROM
+				sessions
+			WHERE
+				sessions.status = 'active' AND
+				sessions.datecreated < '$date'
+		";
+
+		$get_list = \dash\db::get($query, 'id', false, \dash\db::get_db_log_name());
+		if(!$get_list || !is_array($get_list) || empty($get_list))
+		{
+			return true;
+		}
+
+		$id = implode($get_list, ',');
+
+		$query =
+		"
+			UPDATE
+				sessions
+			SET
+				sessions.status = 'expire'
+			WHERE
+				sessions.id IN ($id)
+
+		";
+
+		$ok = \dash\db::query($query, \dash\db::get_db_log_name());
+		if($ok)
+		{
+			\dash\log::set('AutoExpireSession', ['countsession' => count($get_list)]);
+		}
+
+	}
+
+
 	/**
 	* check session id is matched by user id
 	*/

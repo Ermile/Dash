@@ -73,6 +73,8 @@ class controller
 			return;
 		}
 
+		// this cronjob must be run every time
+		self::master_cronjob();
 
 		$url = \dash\request::get('type');
 
@@ -154,6 +156,16 @@ class controller
 		if(is_callable(['\lib\cronjob', 'run']))
 		{
 			\lib\cronjob::run();
+		}
+	}
+
+
+	private static function master_cronjob()
+	{
+		// remove all expire session
+		if(self::at('01:10'))
+		{
+			\dash\db\sessions::remove_old_expire();
 		}
 	}
 
