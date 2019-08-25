@@ -196,10 +196,23 @@ class term
 			return false;
 		}
 
+		$check_duplicate_args = ['type' => $type, 'slug' => $slug, 'language' => $language, 'limit' => 1];
+		if(!\dash\option::config('no_subdomain'))
+		{
+			$subdomain = \dash\url::subdomain();
+			if($subdomain)
+			{
+				$check_duplicate_args['subdomain'] = $subdomain;
+			}
+			else
+			{
+				$check_duplicate_args['subdomain'] = null;
+			}
+		}
 
 		// check duplicate
 		// type+lang+slug
-		$check_duplicate = \dash\db\terms::get(['type' => $type, 'slug' => $slug, 'language' => $language, 'limit' => 1]);
+		$check_duplicate = \dash\db\terms::get($check_duplicate_args);
 
 		if(isset($check_duplicate['id']))
 		{
