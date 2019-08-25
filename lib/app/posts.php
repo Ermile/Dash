@@ -480,7 +480,23 @@ class posts
 
 		$slug = \dash\utility\filter::slug($slug, null, 'persian');
 
-		$check_duplicate_slug = \dash\db\posts::get(['slug' => $slug, 'language' => $language, 'limit' => 1]);
+
+		$check_duplicate_args = ['slug' => $slug, 'language' => $language, 'limit' => 1];
+
+		if(!\dash\option::config('no_subdomain'))
+		{
+			$subdomain = \dash\url::subdomain();
+			if($subdomain)
+			{
+				$check_duplicate_args['subdomain'] = $subdomain;
+			}
+			else
+			{
+				$check_duplicate_args['subdomain'] = null;
+			}
+		}
+
+		$check_duplicate_slug = \dash\db\posts::get($check_duplicate_args);
 		if(isset($check_duplicate_slug['id']))
 		{
 			if(intval($check_duplicate_slug['id']) === intval($_id))
