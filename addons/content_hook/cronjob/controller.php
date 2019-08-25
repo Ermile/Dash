@@ -4,6 +4,10 @@ namespace content_hook\cronjob;
 
 class controller
 {
+	use \content_hook\cronjob\times;
+	use \content_hook\cronjob\fn;
+
+
 	public static function routing()
 	{
 		if(\dash\permission::supervisor())
@@ -51,19 +55,6 @@ class controller
 
 	}
 
-
-
-	private static function sleep_until($_first_time, $_time)
-	{
-		$time_left = (time() - $_first_time);
-		if($time_left < $_time)
-		{
-			\dash\code::sleep($_time - $time_left);
-			return true;
-		}
-
-		return false;
-	}
 
 
 	private static function cronjob_run()
@@ -159,128 +150,5 @@ class controller
 		}
 	}
 
-
-	private static function master_cronjob()
-	{
-		// remove all expire session
-		if(self::at('01:10'))
-		{
-			\dash\db\sessions::remove_old_expire();
-		}
-	}
-
-
-	public static function at($_time)
-	{
-		$time_now    = date("H:i");
-
-		if((is_string($time_now) && $time_now === $_time) || \dash\permission::supervisor())
-		{
-			return true;
-		}
-		return false;
-	}
-
-
-	public static function at_00_clock()
-	{
-		$time_now    = date("H:i");
-		// every 1 hour
-		if((is_string($time_now) && $time_now === '00:00') || \dash\permission::supervisor())
-		{
-			return true;
-		}
-		return false;
-	}
-
-
-	public static function every_hour()
-	{
-		$time_now    = date("i");
-		// every 1 hour
-		if((is_string($time_now) && mb_strlen($time_now) === 2 && in_array($time_now, ['00'])) || \dash\permission::supervisor())
-		{
-			return true;
-		}
-		return false;
-	}
-
-
-	public static function every_30_min()
-	{
-		$time_now    = date("i");
-		// every 30 minuts
-		if((is_string($time_now) && mb_strlen($time_now) === 2 && in_array($time_now, ['00', '30'])) || \dash\permission::supervisor())
-		{
-			return true;
-		}
-		return false;
-	}
-
-
-	public static function every_10_min()
-	{
-		$time_now    = date("i");
-		// every 10 minuts
-		if((is_string($time_now) && mb_strlen($time_now) === 2 && $time_now{1} == '0') || \dash\permission::supervisor())
-		{
-			return true;
-		}
-		return false;
-	}
-
-	private static function expire_notif()
-	{
-		\dash\db\logs::expire_notif();
-	}
-
-	private static function removetempfile()
-	{
-		$addr = root. 'public_html/files/temp/';
-		if(!\dash\file::exists($addr))
-		{
-			return;
-		}
-
-		$addr = \autoload::fix_os_path($addr);
-
-		$glob = glob($addr. '*');
-
-		$list = [];
-		foreach ($glob as $key => $value)
-		{
-			if((time() - filemtime($value)) > (60*30))
-			{
-				\dash\file::delete($value);
-				continue;
-			}
-
-			$list[] =
-			[
-				'download'  => \dash\url::site(). '/files/temp/'. basename($value),
-				'name'      => basename($value),
-				'remove_in' => (60*30) - (time() - filemtime($value)),
-				'size'      => round((filesize($value)) / 1024, 2).  ' KB',
-			];
-		}
-
-		\dash\code::pretty($list, true);
-	}
-
-
-	private static function check_error_file()
-	{
-		$sqlError = root. 'includes/log/database/error.sql';
-		if(is_file($sqlError))
-		{
-			\dash\log::set('su_sqlError');
-		}
-
-		$phpBug = root. 'includes/log/php/exception.log';
-		if(is_file($phpBug))
-		{
-			\dash\log::set('su_phpBug');
-		}
-	}
 }
 ?>
