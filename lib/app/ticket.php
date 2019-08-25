@@ -216,7 +216,6 @@ class ticket
 
 		$result = json_encode($result, JSON_UNESCAPED_UNICODE);
 		return $result;
-		j($result);exit();
 	}
 
 	public static function last_month_count()
@@ -561,6 +560,13 @@ class ticket
 		{
 			switch ($key)
 			{
+				case 'ip':
+					if($value)
+					{
+						$result['prettyip'] = \dash\utility\human::fitNumber(long2ip($value));
+					}
+					$result[$key] = $value;
+					break;
 				case 'subdomain':
 					$openNewTab = false;
 					if(!\dash\option::config('no_subdomain'))
