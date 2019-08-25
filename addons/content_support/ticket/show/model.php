@@ -89,6 +89,8 @@ class model
 	{
 		\dash\permission::access('supportTicketAssignTag');
 
+		$main = self::loadTicketDetail($_id);
+
 		if(!\dash\permission::check('cpTagSupportAdd'))
 		{
 			$getTagArgs = ['type' => 'support_tag'];
@@ -140,7 +142,6 @@ class model
 	public static function change_status($_id, $_status)
 	{
 		$main = self::loadTicketDetail($_id);
-
 
 		if(isset($main['status']) && $main['status'] === 'spam')
 		{
@@ -220,6 +221,8 @@ class model
 	{
 
 		\dash\permission::access('supportTicketAnswer');
+
+		$main = self::loadTicketDetail($_id);
 
 		$solved = $_solved ? 1 : null;
 

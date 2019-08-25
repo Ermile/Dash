@@ -34,7 +34,7 @@ class controller
 				$subdomain = \dash\url::subdomain();
 				if(is_array($main) && array_key_exists('subdomain', $main) && $main['subdomain'] != $subdomain)
 				{
-					\dash\header::status(403, T_("This subdomain"));
+					\dash\header::status(403, T_("Invalid Subdomain"));
 				}
 			}
 		}
