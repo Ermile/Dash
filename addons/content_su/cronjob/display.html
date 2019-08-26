@@ -15,6 +15,7 @@
          <label for="active">{%trans "Run cronjob for this service"%}
          </label>
         </div>
+        {%if false%}
         <div data-response='active' {%if cronjob%}{%else%}data-response-hide{%endif%}>
             <pre class="ltr msg mB50 pTB20">{{cronjobPHP}}</pre>
 
@@ -36,6 +37,7 @@
           </div>
         {%endfor%}
         </div>
+        {%endif%}
 
         <button class="btn primary block">{%trans "Save"%}</button>
     </form>
@@ -55,11 +57,6 @@
       <h3><code>UNIX crontab</code></h3>
         {{unixcrontab | nl2br | raw}}
 
-      <hr>
-      <h3><code>JSON crontab</code></h3>
-        {{jsoncrontab | nl2br | raw}}
-      <h3><code>Token Json</code></h3>
-        {{tokenjson | nl2br | raw}}
     </div>
   </div>
 
