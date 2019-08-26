@@ -16,6 +16,11 @@ class controller
 			return;
 		}
 
+		if(\dash\url::child() !== 'exec')
+		{
+			\dash\header::status(404);
+		}
+
 		if(mb_strtoupper(\dash\request::is()) !== 'POST')
 		{
 			\dash\header::status(416);
@@ -28,7 +33,13 @@ class controller
 			\dash\code::jsonBoom(\dash\notif::get());
 		}
 
-		$read_file = root. 'includes/cronjob/token.me.json';
+		if(!\dash\option::config('cronjob','status'))
+		{
+			\dash\header::status(403, 'Cronjob is off');
+		}
+
+		$read_file = core. 'lib/engine/cronjob/token.me.json';
+
 		if(is_file($read_file))
 		{
 			$check_token = file_get_contents($read_file);
@@ -59,90 +70,31 @@ class controller
 
 	private static function cronjob_run()
 	{
-		if(!\dash\option::config('cronjob','status'))
-		{
-			return;
-		}
-
 		// this cronjob must be run every time
 		self::master_cronjob();
 
-		$url = \dash\request::get('type');
-
-		switch ($url)
+		if(self::every_10_min())
 		{
-			case 'system':
-
-				if(self::every_10_min())
-				{
-					self::expire_notif();
-				}
-
-				if(self::every_30_min())
-				{
-					self::check_error_file();
-				}
-				break;
-
-			case 'notification':
-				$time = time();
-
-				\dash\app\log\send::notification();
-
-				// not sleep code in local
-				if(\dash\url::isLocal())
-				{
-					break;
-				}
-
-				// if(self::sleep_until($time, 20))
-				// {
-				// 	\dash\app\log\send::notification();
-				// }
-
-				// if(self::sleep_until($time, 40))
-				// {
-				// 	\dash\app\log\send::notification();
-				// }
-				break;
-
-			case 'closesolved':
-				if(self::every_10_min())
-				{
-					\dash\db\comments::close_solved_ticket();
-				}
-				break;
-
-			case 'removetempfile':
-				if(self::every_30_min())
-				{
-					self::removetempfile();
-				}
-				break;
-
-				// cehck ip ic block or no
-			case 'ipblocker';
-				\dash\utility\ip::check_is_block();
-				\dash\db\comments::spam_by_block_ip();
-				break;
-
-			case 'dayevent';
-				if(self::at('01:00'))
-				{
-					\dash\utility\dayevent::save();
-				}
-
-				// if(self::at('07:07'))
-				// {
-				// 	\dash\utility\dayevent::day_notif();
-				// }
-
-				break;
-
-			default:
-				// nothing
-				break;
+			self::expire_notif();
+			\dash\db\comments::close_solved_ticket();
 		}
+
+		if(self::every_30_min())
+		{
+			self::check_error_file();
+			self::removetempfile();
+		}
+
+		\dash\app\log\send::notification();
+
+		\dash\utility\ip::check_is_block();
+		\dash\db\comments::spam_by_block_ip();
+
+		if(self::at('01:00'))
+		{
+			\dash\utility\dayevent::save();
+		}
+
 
 		if(is_callable(['\lib\cronjob', 'run']))
 		{

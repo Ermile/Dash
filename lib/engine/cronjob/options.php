@@ -56,16 +56,19 @@ class options
 
 	private static function set_cronjob($_active)
 	{
-		$output = shell_exec('crontab -l');
+		$output          = shell_exec('crontab -l');
 		$new_crontab_txt = $output;
+		$set_active      = false;
 
 		if($_active)
 		{
 			if(self::status())
 			{
-				// need to active again
+				// needless to active again
 				return true;
 			}
+
+			$set_active = true;
 
 			$new_crontab_txt .= self::current_cronjob_path(). PHP_EOL;
 		}
@@ -73,7 +76,7 @@ class options
 		{
 			if(!self::status())
 			{
-				// need to deactive again
+				// needless to deactive again
 				return true;
 			}
 
@@ -82,8 +85,14 @@ class options
 
 		\dash\file::write(__DIR__.'/crontab.json', $new_crontab_txt);
 		exec('crontab '. __DIR__.'/crontab.json', $result, $return_val);
+
 		if($return_val === 0)
 		{
+			if($set_active)
+			{
+				$masterurl = \dash\url::site(). '/hook/cronjob/exec';
+				\dash\file::write(__DIR__. '/masterurl.me.txt', $masterurl);
+			}
 			return true;
 		}
 		else

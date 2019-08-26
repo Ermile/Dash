@@ -1,0 +1,3 @@
+* * * * * php /home/reza/projects/azvir/dash/lib/engine/cronjob/cronjob.php
+* * * * * php /home/reza/projects/khadije/dash/lib/engine/cronjob/cronjob.php
+* * * * * php /home/reza/projects/dash/lib/engine/cronjob/cronjob.php
