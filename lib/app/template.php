@@ -97,6 +97,12 @@ class template
 			{
 				\lib\app\posts\template::find($data);
 			}
+
+			if(isset($data['meta']['redirect']) && $data['meta']['redirect'])
+			{
+				\dash\redirect::to($data['meta']['redirect'], true, 302);
+			}
+
 		}
 		elseif ($data = self::find_term())
 		{
