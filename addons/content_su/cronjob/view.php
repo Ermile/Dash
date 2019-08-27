@@ -14,11 +14,8 @@ class view
 		$unixcrontab = \dash\engine\cronjob\options::unixcrontab();
 		\dash\data::unixcrontab($unixcrontab);
 
-		$jsoncrontab = \dash\engine\cronjob\options::jsoncrontab();
-		\dash\data::jsoncrontab($jsoncrontab);
-
-		$tokenjson = \dash\engine\cronjob\options::tokenjson();
-		\dash\data::tokenjson($tokenjson);
+		$masterurl = \dash\engine\cronjob\options::masterurl();
+		\dash\data::masterurl($masterurl);
 
 
 	}

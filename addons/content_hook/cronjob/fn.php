@@ -51,7 +51,7 @@ trait fn
 			];
 		}
 
-		\dash\code::pretty($list, true);
+		// \dash\code::pretty($list, true);
 	}
 
 

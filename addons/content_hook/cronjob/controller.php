@@ -70,6 +70,7 @@ class controller
 
 	private static function cronjob_run()
 	{
+		\dash\open::get();
 		// this cronjob must be run every time
 		self::master_cronjob();
 

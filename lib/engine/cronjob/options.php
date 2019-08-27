@@ -42,9 +42,9 @@ class options
 	}
 
 
-	public static function jsoncrontab()
+	public static function masterurl()
 	{
-		$addr = self::cronjob_folder('execlist.me.json');
+		$addr = __DIR__. '/masterurl.me.txt';
 
 		if(is_file($addr))
 		{
