@@ -91,6 +91,10 @@ class support_tools
 	public static function masterid($_args)
 	{
 		$masterid = isset($_args['data']['masterid']) ? $_args['data']['masterid'] : null;
+		if(!$masterid && isset($_args['code']))
+		{
+			$masterid = $_args['code'];
+		}
 		return $masterid;
 	}
 
