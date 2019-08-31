@@ -11,5 +11,6 @@ package-lock.json
 /lib/engine/cronjob/crontab.txt
 *sftp-config.json
 *crontab.txt
+*crontab.json
 
 
