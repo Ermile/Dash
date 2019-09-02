@@ -90,5 +90,26 @@ class redirect
 	{
 		require_once(lib."redirect_html.php");
 	}
+
+
+	public static function remove_subdomain()
+	{
+		// need to check some option subdomain
+		if(\dash\url::subdomain())
+		{
+			// remove subdomain
+			\dash\redirect::to(\dash\url::site(). \dash\url::path());
+		}
+	}
+
+
+	public static function to_login()
+	{
+		if(!\dash\user::login())
+		{
+			\dash\redirect::to(\dash\url::kingdom(). '/enter?referer='. \dash\url::pwd(), 'direct');
+		}
+
+	}
 }
 ?>

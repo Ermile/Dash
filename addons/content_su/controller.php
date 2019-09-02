@@ -57,12 +57,7 @@ class controller
 			}
 		}
 
-		// need set parameter, because some project run on subdomain
-		// if(\dash\url::subdomain())
-		// {
-		// 	// remove subdomain
-		// 	\dash\redirect::to(\dash\url::site(). \dash\url::path());
-		// }
+		\dash\redirect::remove_subdomain();
 	}
 }
 ?>
