@@ -16,6 +16,12 @@ class controller
 			return;
 		}
 
+		// In local mode it should not be run
+		if(\dash\url::isLocal())
+		{
+			return false;
+		}
+
 		if(\dash\url::child() !== 'exec')
 		{
 			\dash\header::status(404);
