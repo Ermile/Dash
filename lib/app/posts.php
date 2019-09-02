@@ -1260,7 +1260,14 @@ class posts
 					elseif(is_string($value))
 					{
 						$result['meta'] = json_decode($value, true);
+						if(!is_array($result['meta']))
+						{
+							$result['meta'] = [];
+						}
 					}
+
+					$result['file'] = self::makeFileAddr($result['meta']);
+
 					break;
 
 				case 'slug':
@@ -1295,6 +1302,31 @@ class posts
 		}
 
 		return $result;
+	}
+
+	private static function makeFileAddr($_meta)
+	{
+		if(!isset($_meta['thumb']))
+		{
+			return null;
+		}
+
+		$thumb = $_meta['thumb'];
+		if(!$thumb)
+		{
+			return null;
+		}
+
+		$file_addr = substr($thumb, 0, strrpos($thumb, '.'));
+		$ext       = str_replace($file_addr, '', $thumb);
+		$files =
+		[
+			'main'   => $thumb,
+			'large'  => $file_addr. '-large'. $ext,
+			'normal' => $file_addr. '-normal'. $ext,
+			'thumb'  => $file_addr. '-thumb'. $ext,
+		];
+		return $files;
 	}
 
 
