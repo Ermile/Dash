@@ -548,13 +548,21 @@ class upload
 					$url_file   = substr($url_full, 0, -$extlen-1);
 					$url_thumb  = $url_file.'-thumb.'.self::$fileExt;
 					$url_normal = $url_file.'-normal.'.self::$fileExt;
+					$url_large = $url_file.'-large.'.self::$fileExt;
 
 					\dash\utility\image::load($real_url_full);
 
+					// large image
+					\dash\utility\image::thumb(900, 600);
+					\dash\utility\image::save($url_large);
+					$file_meta['large'] = $url_large;
+
+					// normal image
 					\dash\utility\image::thumb(600, 400);
 					\dash\utility\image::save($url_normal);
 					$file_meta['normal'] = $url_normal;
 
+					// thumb image
 					\dash\utility\image::thumb(150, 150);
 					\dash\utility\image::save($url_thumb);
 					$file_meta['thumb']  = $url_thumb;
@@ -618,6 +626,7 @@ class upload
 		$inset_files_record['ext']         = self::$fileExt;
 		$inset_files_record['folder']      = $folder_id;
 		$inset_files_record['path']        = $url_full;
+		$inset_files_record['meta']        = $file_meta;
 
 		if(\dash\option::config('upload_subdomain'))
 		{
