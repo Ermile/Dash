@@ -1253,6 +1253,7 @@ class posts
 					break;
 
 				case 'meta':
+					$result['meta'] = null;
 					if(is_array($value))
 					{
 						$result['meta'] = $value;
