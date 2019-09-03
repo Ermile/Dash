@@ -258,8 +258,7 @@ class posts
 			WHERE
 				posts.status   = 'publish' AND
 				posts.type     = 'post' AND
-				posts.language = '$lang' AND
-				posts.special  = '$_options[special]'
+				posts.language = '$lang'
 				$where
 
 			ORDER BY posts.publishdate DESC
