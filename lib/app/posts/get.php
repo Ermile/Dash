@@ -136,6 +136,7 @@ trait get
 			'special'    => false,
 			'mode'       => null,
 			'post_id'    => null,
+			'subtype'    => null,
 		];
 
 
@@ -157,6 +158,11 @@ trait get
 			{
 				$_options['where']['subdomain'] = null;
 			}
+		}
+
+		if($_options['subtype'])
+		{
+			$_options['where']['subtype'] = $_options['subtype'];
 		}
 
 		$get_last_posts = [];
