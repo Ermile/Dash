@@ -626,7 +626,7 @@ class upload
 		$inset_files_record['ext']         = self::$fileExt;
 		$inset_files_record['folder']      = $folder_id;
 		$inset_files_record['path']        = $url_full;
-		$inset_files_record['meta']        = $file_meta;
+		// $inset_files_record['meta']        = $file_meta;
 
 		if(\dash\option::config('upload_subdomain'))
 		{

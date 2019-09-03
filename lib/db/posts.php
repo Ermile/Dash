@@ -245,7 +245,7 @@ class posts
 			$make_where = \dash\db\config::make_where($_options['where']);
 			if($make_where)
 			{
-				$where = $make_where. " AND ";
+				$where = " AND ". $make_where;
 			}
 		}
 
@@ -287,7 +287,7 @@ class posts
 			$make_where = \dash\db\config::make_where($_options['where']);
 			if($make_where)
 			{
-				$where = $make_where. " AND ";
+				$where = " AND ". $make_where;
 			}
 		}
 
@@ -407,7 +407,7 @@ class posts
 			$make_where = \dash\db\config::make_where($_options['where']);
 			if($make_where)
 			{
-				$where = $make_where. " AND ";
+				$where = " AND ". $make_where;
 			}
 		}
 
@@ -452,15 +452,18 @@ class posts
 		}
 
 		$where = null;
+		$wherePost = null;
 		if($_subdomain !== false)
 		{
 			if($_subdomain)
 			{
 				$where = " AND terms.subdomain = '$_subdomain' ";
+				$wherePost = " AND posts.subdomain = '$_subdomain' ";
 			}
 			else
 			{
 				$where = " AND terms.subdomain IS NULL ";
+				$wherePost = " AND posts.subdomain IS NULL ";
 			}
 		}
 
@@ -505,6 +508,7 @@ class posts
 				posts.type                        = 'post' AND
 				posts.language                    = '$_lang' AND
 				UNIX_TIMESTAMP(posts.publishdate) <= $time
+				$wherePost
 			GROUP BY posts.title, posts.url, posts.id
 			ORDER BY posts.id DESC
 			LIMIT 5
