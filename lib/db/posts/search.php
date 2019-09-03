@@ -148,18 +148,24 @@ trait search
 		unset($_options['term']);
 		unset($_options['order_raw']);
 
-		foreach ($_options as $key => $value)
+		$makeWhere = \dash\db\config::make_where($_options);
+		if($makeWhere)
 		{
-			if(is_array($value))
-			{
-				// for similar "posts.`field` LIKE '%valud%'"
-				$where[] = " posts.`$key` $value[0] $value[1] ";
-			}
-			else
-			{
-				$where[] = " posts.`$key` = '$value' ";
-			}
+			$where[] = $makeWhere;
 		}
+
+		// foreach ($_options as $key => $value)
+		// {
+		// 	if(is_array($value))
+		// 	{
+		// 		// for similar "posts.`field` LIKE '%valud%'"
+		// 		$where[] = " posts.`$key` $value[0] $value[1] ";
+		// 	}
+		// 	else
+		// 	{
+		// 		$where[] = " posts.`$key` = '$value' ";
+		// 	}
+		// }
 
 		$where = join($where, " AND ");
 

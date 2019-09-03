@@ -146,6 +146,19 @@ trait get
 
 		$_options = array_merge($default_options, $_options);
 
+		if(!\dash\option::config('no_subdomain'))
+		{
+			$subdomain = \dash\url::subdomain();
+			if($subdomain)
+			{
+				$_options['where']['subdomain'] = $subdomain;
+			}
+			else
+			{
+				$_options['where']['subdomain'] = null;
+			}
+		}
+
 		$get_last_posts = [];
 
 		if($_options['mode'] === 'similar')

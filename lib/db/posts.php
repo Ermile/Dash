@@ -239,6 +239,16 @@ class posts
 			$lang = $_options['lang'];
 		}
 
+		$where = null;
+		if($_options['where'])
+		{
+			$make_where = \dash\db\config::make_where($_options['where']);
+			if($make_where)
+			{
+				$where = $make_where. " AND ";
+			}
+		}
+
 		$query =
 		"
 			SELECT
@@ -250,6 +260,7 @@ class posts
 				posts.type     = 'post' AND
 				posts.language = '$lang' AND
 				posts.special  = '$_options[special]'
+				$where
 
 			ORDER BY posts.publishdate DESC
 			$limit
@@ -270,6 +281,16 @@ class posts
 			$lang = $_options['lang'];
 		}
 
+		$where = null;
+		if($_options['where'])
+		{
+			$make_where = \dash\db\config::make_where($_options['where']);
+			if($make_where)
+			{
+				$where = $make_where. " AND ";
+			}
+		}
+
 		if($_options['pagenation'])
 		{
 			$pagenation_query =
@@ -283,6 +304,7 @@ class posts
 					posts.type              = 'post' AND
 					posts.language          = '$lang' AND
 					UNIX_TIMESTAMP(posts.publishdate) <= $time
+					$where
 			";
 
 			$pagenation_query = \dash\db::get($pagenation_query, 'count', true);
@@ -301,6 +323,7 @@ class posts
 				posts.type              = 'post' AND
 				posts.language          = '$lang' AND
 				UNIX_TIMESTAMP(posts.publishdate) <= $time
+				$where
 			ORDER BY posts.publishdate DESC
 			$limit
 		";
@@ -421,12 +444,26 @@ class posts
 	}
 
 
-	public static function get_post_similar($_post_id, $_lang)
+	public static function get_post_similar($_post_id, $_lang, $_subdomain = false)
 	{
 		if(!$_post_id || !is_numeric($_post_id))
 		{
 			return false;
 		}
+
+		$where = null;
+		if($_subdomain !== false)
+		{
+			if($_subdomain)
+			{
+				$where = " AND terms.subdomain = '$_subdomain' ";
+			}
+			else
+			{
+				$where = " AND terms.subdomain IS NULL ";
+			}
+		}
+
 
 		$load_post_term =
 		"
@@ -438,6 +475,7 @@ class posts
 			INNER JOIN terms ON terms.id = termusages.term_id
 			WHERE
 				posts.id = $_post_id
+				$where
 		";
 
 		$post_term = \dash\db::get($load_post_term, 'id');
