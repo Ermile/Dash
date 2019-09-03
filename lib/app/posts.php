@@ -887,10 +887,15 @@ class posts
 
 
 		$subtype = \dash\app::request('subtype');
-		if($subtype && !in_array($subtype, ['image', 'gallery', 'video', 'audio']))
+		if($subtype && !in_array($subtype, ['standard','image', 'gallery', 'video', 'audio']))
 		{
 			\dash\notif::error(T_("Invalid type"), 'subtype');
 			return false;
+		}
+
+		if(!$subtype)
+		{
+			$subtype = 'standard';
 		}
 
 
