@@ -240,7 +240,7 @@ class posts
 		}
 
 		$where = null;
-		if($_options['where'])
+		if(isset($_options['where']))
 		{
 			$make_where = \dash\db\config::make_where($_options['where']);
 			if($make_where)
@@ -282,7 +282,7 @@ class posts
 		}
 
 		$where = null;
-		if($_options['where'])
+		if(isset($_options['where']))
 		{
 			$make_where = \dash\db\config::make_where($_options['where']);
 			if($make_where)
@@ -402,7 +402,7 @@ class posts
 		}
 
 		$where = null;
-		if($_options['where'])
+		if(isset($_options['where']))
 		{
 			$make_where = \dash\db\config::make_where($_options['where']);
 			if($make_where)
