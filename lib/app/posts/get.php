@@ -189,7 +189,7 @@ trait get
 		}
 		elseif($_options['special'] !== false)
 		{
-			$_options['where'] = $_options['special'];
+			$_options['where']['special'] = $_options['special'];
 			$get_last_posts = \dash\db\posts::get_special_post($_options);
 		}
 		else
