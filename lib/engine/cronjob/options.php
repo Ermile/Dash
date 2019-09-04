@@ -83,8 +83,8 @@ class options
 			$new_crontab_txt = str_replace(self::current_cronjob_path(). PHP_EOL, '', $new_crontab_txt);
 		}
 
-		\dash\file::write(__DIR__.'/crontab.json', $new_crontab_txt);
-		exec('crontab '. __DIR__.'/crontab.json', $result, $return_val);
+		\dash\file::write(__DIR__.'/crontab.txt', $new_crontab_txt);
+		exec('crontab '. __DIR__.'/crontab.txt', $result, $return_val);
 
 		if($return_val === 0)
 		{
