@@ -33,7 +33,7 @@ class apilog
 		self::$apilog['method']         = substr(\dash\request::is(), 0, 200);
 		self::$apilog['header']         = $headerjson = self::jsonEncode(\dash\header::get());
 		self::$apilog['headerlen']      = mb_strlen($headerjson);
-		self::$apilog['body']           = $body = self::jsonEncode(\dash\request::post());
+		self::$apilog['body']           = $body = self::getBody();
 		self::$apilog['bodylen']        = mb_strlen($body);
 		self::$apilog['datesend']       = date("Y-m-d H:i:s");
 
@@ -72,6 +72,42 @@ class apilog
 		self::$apilog['dateresponse']   = date("Y-m-d H:i:s");
 
 		self::save_db();
+	}
+
+
+	private static function getBody()
+	{
+		$request = $_REQUEST;
+		$myBody  = null;
+
+		if($request)
+		{
+			$myBody = $request;
+		}
+		else
+		{
+			$rawInput = @file_get_contents('php://input');
+			if($rawInput)
+			{
+				$myBody = $rawInput;
+			}
+		}
+
+		if($myBody)
+		{
+			if(is_string($myBody))
+			{
+				return $myBody;
+			}
+			else
+			{
+				return self::jsonEncode($myBody);
+			}
+		}
+		else
+		{
+			return null;
+		}
 	}
 
 
