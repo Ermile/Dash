@@ -63,7 +63,7 @@ class verify
 			{
 				if(isset($detail['final_fn_args']))
 				{
-					$namespace::$fn($detail['final_fn_args']);
+					$namespace::$fn($detail['final_fn_args'], \dash\utility\pay\setting::get_all());
 				}
 				else
 				{
