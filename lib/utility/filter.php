@@ -4,6 +4,72 @@ namespace dash\utility;
 /** Filter of values : mobile ...etc **/
 class filter
 {
+	public static function username($_username)
+	{
+		$_username = \dash\utility\convert::to_en_number($_username);
+
+		$_username = preg_replace("/\_{2,}/", "_", $_username);
+		$_username = preg_replace("/\-{2,}/", "-", $_username);
+
+		if(mb_strlen($_username) < 5)
+		{
+			\dash\notif::error(T_("Slug must have at least 5 character"), 'username');
+			return false;
+		}
+
+		if(mb_strlen($_username) > 50)
+		{
+			\dash\notif::error(T_("Please set the slug less than 50 character"), 'username');
+			return false;
+		}
+
+		if(!preg_match("/^[A-Za-z0-9_\-]+$/", $_username))
+		{
+			\dash\notif::error(T_("Only [A-Za-z0-9_-] can use in slug"), 'username');
+			return false;
+		}
+
+		if(!preg_match("/[A-Za-z]+/", $_username))
+		{
+			\dash\notif::error(T_("You must use a one character from [A-Za-z] in the slug"), 'username');
+			return false;
+		}
+
+		if(is_numeric($_username))
+		{
+			\dash\notif::error(T_("Slug should contain a Latin letter"),'username');
+			return false;
+		}
+
+		if(is_numeric(substr($_username, 0, 1)))
+		{
+			\dash\notif::error(T_("The slug must begin with latin letters"),'username');
+			return false;
+		}
+
+		// if(!preg_match("/^[A-Za-z0-9]+$/", $_username))
+		// {
+		// 	\dash\notif::error(T_("Only [A-Za-z0-9] can use in slug"), 'username');
+		// 	return false;
+		// }
+
+		// check slug
+		if(mb_strlen($_username) >= 50)
+		{
+			\dash\notif::error(T_("Username must be less than 50 character"), 'username');
+			return false;
+		}
+
+		$_username = mb_strtolower($_username);
+
+		if(in_array($_username, []))
+		{
+			\dash\notif::error(T_("You can not choose this slug"), 'username');
+			return false;
+		}
+
+		return $_username;
+	}
 
 	public static function max_number($_number, $_max)
 	{
