@@ -31,7 +31,7 @@ class options
 	 */
 	public static function insert_multi()
 	{
-		return \dash\db\config::public_insert_multi('options', ...func_get_args());
+		return \dash\db\config::public_multi_insert('options', ...func_get_args());
 	}
 
 
