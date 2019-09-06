@@ -1,14 +1,32 @@
 {
   "name": "Dash",
-  "version": "15.3.2",
+  "version": "20.0.0",
   "description": "The simple framework for php programmers ;)",
   "license": "MIT",
-  "repository": "github:Ermile/dash",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ermile/dash.git"
+  },
   "bugs": {
     "url": "https://github.com/Ermile/dash/issues"
   },
   "homepage": "https://dash.ermile.com",
   "dependencies": {
     "siftal": "^6.9.0"
-  }
+  },
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "lib": "lib"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "php",
+    "framework",
+    "ermile"
+  ],
+  "author": "Ermile"
 }
