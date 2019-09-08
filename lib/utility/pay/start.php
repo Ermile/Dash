@@ -31,7 +31,7 @@ class start
         $bank = mb_strtolower($_args['bank']);
         if(!$bank)
 		{
-			\dash\notif::error(T_("Invalid bank"));
+			\dash\notif::error(T_("Please select one of the available ports"));
 			return self::endCompile();
 		}
 
