@@ -198,6 +198,13 @@
 	</div>
 	{%endif%}
 
+	{%if options.sep.status%}
+	<div class="radioGateway">
+	<input type="radio" name="bank" value="sep" id="sep" {%if options.default_payment == 'sep'%} checked {%endif%}>
+	<label for='sep' class="spay-64-sepah"></label>
+	</div>
+	{%endif%}
+
 {%endblock%}
 
 

@@ -395,4 +395,10 @@ self::$config['favicon']['version']                    = 1;
 
 
 
+// self::$config['sep']['status']   = false;
+// self::$config['sep']['MID']      = null;
+// self::$config['sep']['Password'] = null;
+
+
+
 ?>
