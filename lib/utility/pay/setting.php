@@ -73,6 +73,24 @@ class setting
 		return self::$transaction_detail;
 	}
 
+	// load bank token by transaction id
+	// in sep payment :|
+	public static function load_banktoken_transaction_id($_token, $_banktoken_transaction_id, $_bank)
+	{
+		if(!self::$load)
+		{
+			self::$load         = true;
+
+			$transaction_detail = \dash\utility\pay\transactions::load_banktoken_transaction_id($_token, $_banktoken_transaction_id, $_bank);
+
+			if(isset($transaction_detail['condition']) && $transaction_detail['condition'] === 'redirect')
+			{
+				self::$transaction_detail = $transaction_detail;
+			}
+		}
+		return self::$transaction_detail;
+	}
+
 
 	public static function load_banktoken($_token, $_banktoken, $_bank)
 	{

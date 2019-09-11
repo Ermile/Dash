@@ -75,6 +75,33 @@ class transactions
 	}
 
 
+	public static function load_banktoken_transaction_id($_token, $_banktoken_transaction_id, $_bank)
+	{
+		if(!$_token || !$_bank)
+		{
+			return false;
+		}
+
+		$query =
+		"
+			SELECT
+				transactions.*,
+				users.displayname AS `displayname`
+			FROM
+				transactions
+			LEFT JOIN users ON users.id = transactions.user_id
+			WHERE
+				transactions.token   = '$_token' AND
+				transactions.id      = '$_banktoken_transaction_id' AND
+				transactions.payment = '$_bank'
+			LIMIT 1
+		";
+
+		$result = \dash\db::get($query, null, true);
+		return $result;
+	}
+
+
 	public static function load_banktoken($_token, $_banktoken, $_bank)
 	{
 		if(!$_token || !$_bank)
