@@ -31,6 +31,8 @@ class bank
             //RequestToken(MID, ResNum, Amount,RedirectURL,SegAmount1, SegAmount2,SegAmount3, SegAmount4, SegAmount5, SegAmount6, AdditionalData1,AdditionalData2, Wage)
             $result = $client->RequestToken($_args['MID'], $_args['ResNum'], $_args['Amount'], $_args['RedirectURL']);
 
+            self::$payment_response = $result;
+
             if(intval($result) < 0)
             {
                 \dash\notif::error(self::msg($result));
@@ -72,6 +74,8 @@ class bank
 
             $result = $client->VerifyTransaction($_args['RefNum'], $_args['MID']);
 
+            self::$payment_response = $result;
+
             if (intval($result) === intval($_args['Amount']))
             {
                return true;
@@ -110,6 +114,8 @@ class bank
             $client    = @new \SoapClient('https://sep.shaparak.ir/payments/referencepayment.asmx?WSDL', $soap_meta);
 
             $result = $client->reverseTransaction($_args['RefNum'], $_args['MID'], $_args['Username'], $_args['Password']);
+
+            self::$payment_response = $result;
 
             if (intval($result) === 1)
             {
