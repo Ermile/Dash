@@ -51,8 +51,7 @@ class back
         }
 
 
-
-        $amount_SESSION  = floatval(\dash\utility\pay\setting::get_plus());
+        $amount_SESSION  = floatval(\dash\utility\pay\setting::get_plus()) * 10;
 
         if(!$amount_SESSION)
         {
