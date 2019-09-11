@@ -50,8 +50,7 @@ class back
             return \dash\utility\pay\setting::turn_back();
         }
 
-        // * 12 for test reverse function
-        $amount_SESSION  = floatval(\dash\utility\pay\setting::get_plus()) * 12;
+        $amount_SESSION  = floatval(\dash\utility\pay\setting::get_plus()) * 10;
 
         if(!$amount_SESSION)
         {
