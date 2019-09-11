@@ -68,6 +68,11 @@ class transactions
 		return $fn::load_banktoken(...func_get_args());
 	}
 
+	public static function load_banktoken_transaction_id()
+	{
+		$fn = self::transaction_table_name('load_banktoken_transaction_id');
+		return $fn::load_banktoken_transaction_id(...func_get_args());
+	}
 
 	// public static function final_verify($_transaction_id)
 	// {
