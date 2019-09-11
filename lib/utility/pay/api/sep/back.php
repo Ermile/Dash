@@ -90,6 +90,10 @@ class back
             else
             {
                 $is_reverse = \dash\utility\pay\api\sep\bank::reverse($sep);
+
+                $payment_response = \dash\utility\pay\api\sep\bank::$payment_response;
+                \dash\utility\pay\setting::set_payment_response4($payment_response);
+
                 if($is_reverse)
                 {
                     return \dash\utility\pay\verify::bank_error('verify_error');
