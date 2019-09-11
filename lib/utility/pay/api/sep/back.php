@@ -38,8 +38,8 @@ class back
             return \dash\utility\pay\setting::turn_back();
         }
 
-//
-        \dash\utility\pay\setting::load_banktoken($_token, $ResNum, 'sep');
+
+        \dash\utility\pay\setting::load_banktoken_transaction_id($_token, $ResNum, 'sep');
 
         $transaction_id  = \dash\utility\pay\setting::get_id();
 
