@@ -30,7 +30,7 @@ class bank
             $client = @new \SoapClient('https://sep.shaparak.ir/payments/initpayment.asmx?wsdl', $soap_meta);
             //RequestToken(MID, ResNum, Amount,RedirectURL,SegAmount1, SegAmount2,SegAmount3, SegAmount4, SegAmount5, SegAmount6, AdditionalData1,AdditionalData2, Wage)
             $result = $client->RequestToken($_args['MID'], $_args['ResNum'], $_args['Amount'], $_args['RedirectURL']);
-
+            var_dump($result);exit();
             if(intval($result) > 0)
             {
                return $result;
@@ -129,7 +129,7 @@ class bank
         {
             return T_("Unkown payment error");
         }
-        return $msg;
+
     }
 }
 ?>
