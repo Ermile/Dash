@@ -50,8 +50,8 @@ class back
             return \dash\utility\pay\setting::turn_back();
         }
 
-
-        $amount_SESSION  = floatval(\dash\utility\pay\setting::get_plus()) * 10;
+        // * 12 for test reverse function
+        $amount_SESSION  = floatval(\dash\utility\pay\setting::get_plus()) * 12;
 
         if(!$amount_SESSION)
         {
@@ -60,10 +60,13 @@ class back
             return \dash\utility\pay\setting::turn_back();
         }
 
-        $sep           = [];
-        $sep['RefNum'] = $RefNum;
-        $sep['Amount'] = $amount_SESSION;
-        $sep['MID']    = \dash\option::config('sep', 'MID');
+        $sep             = [];
+        $sep['RefNum']   = $RefNum;
+        $sep['Amount']   = $amount_SESSION;
+
+        $sep['MID']      = \dash\option::config('sep', 'MID');
+        $sep['Username'] = \dash\option::config('sep', 'MID');
+        $sep['Password'] = \dash\option::config('sep', 'Password');
 
         \dash\utility\pay\setting::set_condition('pending');
         \dash\utility\pay\setting::set_payment_response2($_REQUEST);
@@ -87,7 +90,16 @@ class back
             }
             else
             {
-                return \dash\utility\pay\verify::bank_error('verify_error');
+                $is_reverse = \dash\utility\pay\api\sep\bank::reverse($sep);
+                if($is_reverse)
+                {
+                    return \dash\utility\pay\verify::bank_error('verify_error');
+                }
+                else
+                {
+                    \dash\log::set('sepBankBadBug');
+                    return \dash\utility\pay\verify::bank_error('verify_error');
+                }
             }
         }
         else

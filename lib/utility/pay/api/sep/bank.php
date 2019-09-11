@@ -52,9 +52,6 @@ class bank
     }
 
 
-
-
-
     /**
      * { function_description }
      *
@@ -71,7 +68,7 @@ class bank
                 'exceptions'   => true,
             ];
 
-            $client    = @new \SoapClient('https://verify.sep.ir/Payments/ReferencePayment.asmx?WSDL', $soap_meta);
+            $client    = @new \SoapClient('https://sep.shaparak.ir/payments/referencepayment.asmx?WSDL', $soap_meta);
 
             $result = $client->VerifyTransaction($_args['RefNum'], $_args['MID']);
 
@@ -82,6 +79,44 @@ class bank
             else
             {
                 \dash\notif::error(self::msg($result), $result);
+                return false;
+            }
+        }
+        catch(\Exception $e)
+        {
+            \dash\log::set('payment:sep:error:load:web:services:verify');
+            \dash\notif::error(T_("Error in load web services"));
+            return false;
+        }
+    }
+
+
+   /**
+     * { function_description }
+     *
+     * @param      array  $_args  The arguments
+     */
+    public static function reverse($_args = [])
+    {
+        try
+        {
+
+            $soap_meta =
+            [
+                'soap_version' => 'SOAP_1_1',
+                'exceptions'   => true,
+            ];
+
+            $client    = @new \SoapClient('https://sep.shaparak.ir/payments/referencepayment.asmx?WSDL', $soap_meta);
+
+            $result = $client->reverseTransaction($_args['RefNum'], $_args['MID'], $_args['Username'], $_args['Password']);
+
+            if (intval($result) === 1)
+            {
+               return true;
+            }
+            else
+            {
                 return false;
             }
         }
