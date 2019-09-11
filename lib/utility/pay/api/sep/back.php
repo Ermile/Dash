@@ -22,14 +22,14 @@ class back
         }
 
 
-        $State     = isset($_POST['State'])      ? (string) $_POST['State']       : null;
-        $StateCode = isset($_POST['StateCode'])  ? (string) $_POST['StateCode']   : null;
-        $ResNum    = isset($_POST['ResNum'])     ? (string) $_POST['ResNum']      : null;
-        $MID       = isset($_POST['MID'])        ? (string) $_POST['MID']         : null;
-        $RefNum    = isset($_POST['RefNum'])     ? (string) $_POST['RefNum']      : null;
-        $CID       = isset($_POST['CID'])        ? (string) $_POST['CID']         : null;
-        $TRACENO   = isset($_POST['TRACENO'])    ? (string) $_POST['TRACENO']     : null;
-        $SecurePan = isset($_POST['SecurePan'])  ? (string) $_POST['SecurePan']   : null;
+        $State     = isset($_REQUEST['State'])      ? (string) $_REQUEST['State']       : null;
+        $StateCode = isset($_REQUEST['StateCode'])  ? (string) $_REQUEST['StateCode']   : null;
+        $ResNum    = isset($_REQUEST['ResNum'])     ? (string) $_REQUEST['ResNum']      : null;
+        $MID       = isset($_REQUEST['MID'])        ? (string) $_REQUEST['MID']         : null;
+        $RefNum    = isset($_REQUEST['RefNum'])     ? (string) $_REQUEST['RefNum']      : null;
+        $CID       = isset($_REQUEST['CID'])        ? (string) $_REQUEST['CID']         : null;
+        $TRACENO   = isset($_REQUEST['TRACENO'])    ? (string) $_REQUEST['TRACENO']     : null;
+        $SecurePan = isset($_REQUEST['SecurePan'])  ? (string) $_REQUEST['SecurePan']   : null;
 
         if(!$ResNum)
         {
@@ -38,6 +38,7 @@ class back
             return \dash\utility\pay\setting::turn_back();
         }
 
+//
         \dash\utility\pay\setting::load_banktoken($_token, $ResNum, 'sep');
 
         $transaction_id  = \dash\utility\pay\setting::get_id();
