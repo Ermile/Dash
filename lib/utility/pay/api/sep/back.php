@@ -72,7 +72,7 @@ class back
         \dash\utility\pay\setting::save(true);
 
 
-        if(intval($State) == "OK")
+        if($State == "OK")
         {
 
             $is_ok = \dash\utility\pay\api\sep\bank::verify($sep);
@@ -100,7 +100,7 @@ class back
                 }
                 else
                 {
-                    \dash\log::set('sepBankBadBug');
+                    \dash\log::set('sepBankBadBug', ['code' => $transaction_id]);
                     return \dash\utility\pay\verify::bank_error('verify_error');
                 }
             }
