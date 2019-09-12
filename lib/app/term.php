@@ -291,6 +291,15 @@ class term
 			$args['meta'] = $meta;
 		}
 
+
+		if($url)
+		{
+			if(!\dash\app\url::check($url))
+			{
+				return false;
+			}
+		}
+
 		$subdomain = \dash\url::subdomain();
 
 		$args['title']    = $title;

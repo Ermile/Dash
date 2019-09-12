@@ -6,7 +6,7 @@ namespace dash\engine;
 class version
 {
 	// @var dash engine current version
-	const version = '20.0.0';
+	const version = '20.0.1';
 
 	/**
 	 * return current version

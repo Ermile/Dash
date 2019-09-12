@@ -9,15 +9,9 @@ class content
 	private static $name = null;
 	private static $addr = null;
 
-	/**
-	 * check specefic name for content is exist or not
-	 * @param  [type] $_content_name [description]
-	 * @return [type]                [description]
-	 */
-	public static function load($_content_name)
+
+	public static function content_list()
 	{
-		// list of addons exist in dash,
-		$myrep       = 'content_'.$_content_name;
 		$dash_addons =
 		[
 			'enter',
@@ -31,6 +25,21 @@ class content
 			'pay',
 			'crm',
 		];
+
+		return $dash_addons;
+	}
+
+
+	/**
+	 * check specefic name for content is exist or not
+	 * @param  [type] $_content_name [description]
+	 * @return [type]                [description]
+	 */
+	public static function load($_content_name)
+	{
+		// list of addons exist in dash,
+		$myrep       = 'content_'.$_content_name;
+		$dash_addons = self::content_list();
 
 
 		// check content_aaa folder is exist in project or dash addons folder

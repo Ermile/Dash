@@ -899,6 +899,15 @@ class posts
 		}
 
 
+		if($url)
+		{
+			if(!\dash\app\url::check($url))
+			{
+				return false;
+			}
+		}
+
+
 		$args['language']    = $language;
 		$args['subtype']    = $subtype;
 		$args['subdomain']   = \dash\app::request('subdomain');
