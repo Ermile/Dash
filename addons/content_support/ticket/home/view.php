@@ -73,6 +73,12 @@ class view
 		$args['join_user']       = true;
 		$args['get_tag']         = true;
 
+		$export_list = \dash\request::get('export');
+
+		if($export_list)
+		{
+			$args['pagenation'] = false;
+		}
 
 		$status = \dash\request::get('status');
 
@@ -178,9 +184,70 @@ class view
 
 		$all_list       = self::dataList($args);
 
+		if($export_list)
+		{
+			\dash\utility\export::csv(['name' => 'export_support', 'data' => self::ready_for_export($all_list)]);
+		}
+
 		$all_list = \dash\app\ticket::get_user_in_ticket($all_list);
+
 		\dash\data::dataTable($all_list);
 
+	}
+
+
+	private static function ready_for_export($_data)
+	{
+		$result = [];
+		if(!is_array($_data))
+		{
+			return null;
+		}
+
+		foreach ($_data as $key => $value)
+		{
+			$temp['id']                = isset($value['id']) ? $value['id'] : null;
+			// $temp['code']           = isset($value['code']) ? $value['code'] : null;
+			// $temp['post_id']        = isset($value['post_id']) ? $value['post_id'] : null;
+			$temp['author']            = isset($value['author']) ? $value['author'] : null;
+			$temp['email']             = isset($value['email']) ? $value['email'] : null;
+			// $temp['url']            = isset($value['url']) ? $value['url'] : null;
+			$temp['content']           = isset($value['content']) ? $value['content'] : null;
+			// $temp['meta']           = isset($value['meta']) ? $value['meta'] : null;
+			// $temp['rowColor']       = isset($value['rowColor']) ? $value['rowColor'] : null;
+			// $temp['colorClass']     = isset($value['colorClass']) ? $value['colorClass'] : null;
+			$temp['status']            = isset($value['status']) ? $value['status'] : null;
+			$temp['parent']            = isset($value['parent']) ? $value['parent'] : null;
+			$temp['user_id']           = isset($value['user_id']) ? $value['user_id'] : null;
+			// $temp['minus']          = isset($value['minus']) ? $value['minus'] : null;
+			// $temp['plus']           = isset($value['plus']) ? $value['plus'] : null;
+			// $temp['star']           = isset($value['star']) ? $value['star'] : null;
+			// $temp['type']           = isset($value['type']) ? $value['type'] : null;
+			// $temp['visitor_id']     = isset($value['visitor_id']) ? $value['visitor_id'] : null;
+			$temp['datemodified']      = isset($value['datemodified']) ? $value['datemodified'] : null;
+			$temp['datecreated']       = isset($value['datecreated']) ? $value['datecreated'] : null;
+			// $temp['prettyip']       = isset($value['prettyip']) ? $value['prettyip'] : null;
+			// $temp['ip']             = isset($value['ip']) ? $value['ip'] : null;
+			$temp['mobile']            = isset($value['mobile']) ? $value['mobile'] : null;
+			$temp['title']             = isset($value['title']) ? $value['title'] : null;
+			$temp['file']              = isset($value['file']) ? $value['file'] : null;
+			// $temp['answertime']     = isset($value['answertime']) ? $value['answertime'] : null;
+			// $temp['openNewTab']     = isset($value['openNewTab']) ? $value['openNewTab'] : null;
+			// $temp['myTicketUrl']    = isset($value['myTicketUrl']) ? $value['myTicketUrl'] : null;
+			$temp['subdomain']         = isset($value['subdomain']) ? $value['subdomain'] : null;
+			$temp['solved']            = isset($value['solved']) ? $value['solved'] : null;
+			$temp['via']               = isset($value['via']) ? $value['via'] : null;
+			$temp['see']               = isset($value['see']) ? $value['see'] : null;
+			$temp['avatar']            = isset($value['avatar']) ? $value['avatar'] : null;
+			$temp['firstname']         = isset($value['firstname']) ? $value['firstname'] : null;
+			$temp['displayname']       = isset($value['displayname']) ? $value['displayname'] : null;
+			// $temp['user_in_ticket'] = isset($value['user_in_ticket']) ? $value['user_in_ticket'] : null;
+			// $temp['tag']            = isset($value['tag']) ? $value['tag'] : null;
+			// $temp['user_in_ticket'] = isset($value['user_in_ticket']) ? $value['user_in_ticket'] : null;
+			$result[] = $temp;
+		}
+
+		return $result;
 	}
 
 
