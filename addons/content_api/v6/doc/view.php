@@ -16,7 +16,38 @@ class view
 		\dash\data::apiURL(\dash\url::site(). '/'. \dash\language::current(). '/api/v6/');
 
 
+		self::dash_doc();
+
 		self::load_project_api_doc();
+	}
+
+	private static function dash_doc()
+	{
+		$dashAPIDoc = [];
+		$addr       = __DIR__;
+
+		if(is_dir($addr))
+		{
+			$list = glob($addr . '/*');
+
+			if($list && is_array($list))
+			{
+				foreach ($list as $key => $value)
+				{
+					if(in_array(basename($value), ['display.html', 'view.php']))
+					{
+						continue;
+					}
+					else
+					{
+						$dashAPIDoc[] = str_replace(addons, '', $value);
+					}
+				}
+			}
+		}
+
+		\dash\data::dashAPIDoc($dashAPIDoc);
+
 	}
 
 

@@ -4,31 +4,11 @@
 {%block pageContent%}
 
 
-{%include "content_api/v6/doc/01-intro.html"%}
-{%include "content_api/v6/doc/02-endpoint.html"%}
-{%include "content_api/v6/doc/03-requests.html"%}
-{%include "content_api/v6/doc/04-responses.html"%}
-
-{%include "content_api/v6/doc/10-token.html"%}
-{%include "content_api/v6/doc/20-user-add.html"%}
-{%include "content_api/v6/doc/21-get-profile.html"%}
-{%include "content_api/v6/doc/22-upload-profile.html"%}
-{%include "content_api/v6/doc/23-update-profile.html"%}
-{%include "content_api/v6/doc/40-user-login.html"%}
-{%include "content_api/v6/doc/41-user-login-verify.html"%}
-{%include "content_api/v6/doc/42-language.html"%}
-{%include "content_api/v6/doc/30-about.html"%}
-{%include "content_api/v6/doc/31-mission.html"%}
-{%include "content_api/v6/doc/32-vision.html"%}
-{%include "content_api/v6/doc/33-contact.html"%}
-{%include "content_api/v6/doc/34-posts.html"%}
-{%include "content_api/v6/doc/50-smile.html"%}
-{%include "content_api/v6/doc/55-notif.html"%}
-{%include "content_api/v6/doc/60-android.html"%}
-{%include "content_api/v6/doc/61-app-detail.html"%}
-{%include "content_api/v6/doc/70-session-list.html"%}
-{%include "content_api/v6/doc/71-session-terminate.html"%}
-
+{%if dashAPIDoc %}
+  {%for key, value in dashAPIDoc%}
+    {%include value%}
+  {%endfor%}
+{%endif%}
 
 {%if projectDoc %}
   {%for key, value in projectDoc%}
@@ -46,54 +26,29 @@
     <a href="{{url.that}}"><i class='sf-campfire'></i> <span>{{site.title}} {%trans "API"%}</span></a>
     <ul>
       <li><a href="{{url.that}}#intro"><i class='sf-tree-1'></i> <span>{%trans "Introduction"%}</span></a></li>
-
       <li><a href="{{url.that}}#endpoints"><i class='sf-terminal'></i> <span>{%trans "Endpoints"%}</span></a></li>
-
       <li><a href="{{url.that}}#requests"><i class='sf-upload'></i> <span>{%trans "Requests"%}</span></a></li>
-
       <li><a href="{{url.that}}#responses"><i class='sf-download'></i> <span>{%trans "Responses"%}</span></a></li>
-
       <li><a href="{{url.that}}#token"><i class='sf-unlock-alt'></i> <span>{%trans "Token"%}</span></a></li>
-
       <li><a href="{{url.that}}#user-add"><i class='sf-plus-circle'></i> <span>{%trans "Sign Up User"%}</span></a></li>
-
       <li><a href="{{url.that}}#get-profile"><i class='sf-user'></i> <span>{%trans "Get profile detail"%}</span></a></li>
-
       <li><a href="{{url.that}}#upload-avatar"><i class='sf-user'></i> <span>{%trans "Upload avatar"%}</span></a></li>
-
       <li><a href="{{url.that}}#update-profile"><i class='sf-user'></i> <span>{%trans "Update profile"%}</span></a></li>
-
-      <li><a href="{{url.that}}#user-login"><i class='sf-log-in'></i> <span>{%trans "Login user"%}</span></a></li>
-
-      <li><a href="{{url.that}}#user-login-verify"><i class='sf-check'></i> <span>{%trans "Verify user"%}</span></a></li>
-
-      <li><a href="{{url.that}}#language"><i class='sf-language'></i> <span>{%trans "Get language list"%}</span></a></li>
-
       <li><a href="{{url.that}}#about"><i class='sf-code'></i> <span>{%trans "Get about"%}</span></a></li>
-
       <li><a href="{{url.that}}#mission"><i class='sf-code'></i> <span>{%trans "Get mission"%}</span></a></li>
-
       <li><a href="{{url.that}}#vision"><i class='sf-code'></i> <span>{%trans "Get vision"%}</span></a></li>
-
       <li><a href="{{url.that}}#contact"><i class='sf-code'></i> <span>{%trans "Get contact"%}</span></a></li>
-
       <li><a href="{{url.that}}#posts"><i class='sf-code'></i> <span>{%trans "Get posts"%}</span></a></li>
-
-      <!-- <li><a href="{{url.that}}#get-post"><i class='sf-code'></i> <span>{%trans "Get post detail"%}</span></a></li> -->
-
+      <li><a href="{{url.that}}#get-post"><i class='sf-code'></i> <span>{%trans "Get post detail"%}</span></a></li>
+      <li><a href="{{url.that}}#user-login"><i class='sf-log-in'></i> <span>{%trans "Login user"%}</span></a></li>
+      <li><a href="{{url.that}}#user-login-verify"><i class='sf-check'></i> <span>{%trans "Verify user"%}</span></a></li>
+      <li><a href="{{url.that}}#language"><i class='sf-language'></i> <span>{%trans "Get language list"%}</span></a></li>
       <li><a href="{{url.that}}#smile"><i class='sf-code'></i> <span>{%trans "Check new notification"%}</span></a></li>
-
       <li><a href="{{url.that}}#notif"><i class='sf-code'></i> <span>{%trans "Get notification list"%}</span></a></li>
-
       <li><a href="{{url.that}}#android"><i class='sf-code'></i> <span>{%trans "Get android detail"%}</span></a></li>
-
       <li><a href="{{url.that}}#app-detail"><i class='sf-code'></i> <span>{%trans "Get app detail"%}</span></a></li>
-
       <li><a href="{{url.that}}#session-list"><i class='sf-code'></i> <span>{%trans "Session list"%}</span></a></li>
-
       <li><a href="{{url.that}}#session-terminate"><i class='sf-code'></i> <span>{%trans "Terminate session"%}</span></a></li>
-
-
     </ul>
     {%if projectSidebar %}
      {%include projectSidebar%}
