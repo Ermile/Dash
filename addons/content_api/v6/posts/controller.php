@@ -6,7 +6,8 @@ class controller
 {
 	public static function routing()
 	{
-		if(\dash\url::subchild())
+
+		if(count(\dash\url::dir()) > 3 || \dash\url::subchild() !== 'get')
 		{
 			\content_api\v6::no(404);
 		}
@@ -16,12 +17,32 @@ class controller
 			\content_api\v6::no(400);
 		}
 
+		if(\dash\url::subchild() === 'get')
+		{
+			$id = \dash\request::get('id');
 
-		$detail = self::posts();
+			if(!$id || !\dash\coding::decode($id))
+			{
+				\content_api\v6::no(400);
+			}
+
+			$detail = self::load_post($id);
+
+		}
+		else
+		{
+			$detail = self::posts();
+		}
 
 		\content_api\v6::bye($detail);
 	}
 
+
+	private static function load_post($_id)
+	{
+		$load_post = \dash\app\posts::get($_id, ['check_login' => false]);
+		return $load_post;
+	}
 
 
 	private static function posts()
