@@ -77,6 +77,7 @@ class view
 
 		if($export_list)
 		{
+			unset($args['limit']);
 			$args['pagenation'] = false;
 		}
 
@@ -400,6 +401,7 @@ class view
 			default:
 				break;
 		}
+
 
 		$dataTable = \dash\app\ticket::list(\dash\request::get('q'), $args);
 		$dataTable = array_map(['self', 'tagDetect'], $dataTable);
