@@ -6,8 +6,7 @@ class controller
 {
 	public static function routing()
 	{
-
-		if(count(\dash\url::dir()) > 3 || \dash\url::subchild() !== 'get')
+		if(count(\dash\url::dir()) > 3 && \dash\url::subchild() !== 'get')
 		{
 			\content_api\v6::no(404);
 		}
