@@ -56,40 +56,8 @@ class controller
 		}
 
 		$posts  = \dash\app\posts::get_post_list($args);
-		$result = [];
-		if(is_array($posts))
-		{
-			foreach ($posts as $index => $myPost)
-			{
-				foreach ($myPost as $field => $value)
-				{
-					switch ($field)
-					{
-						case 'id':
-						case 'language':
-						case 'title':
-						case 'seotitle':
-						case 'slug':
-						case 'parent_url':
-						case 'excerpt':
-						case 'subtitle':
-						case 'content':
-						case 'status':
-						case 'publishdate':
-						case 'datecreated':
-							$result[$index][$field] = $value;
-							break;
 
-						case 'url':
-							$result[$index][$field] = $value;
-							$result[$index]['link'] = \dash\url::kingdom(). '/'. $value;
-							break;
-					}
-				}
-			}
-		}
-
-		return $result;
+		return $posts;
 
 	}
 
