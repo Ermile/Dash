@@ -102,7 +102,7 @@ class controller
 		$detail['url']['kingdom'] = \dash\url::kingdom();
 		$detail['url']['domain']  = \dash\url::domain();
 		$detail['url']['root']    = \dash\url::root();
-		$detail['url']['update']  = \dash\url::kingdom(). '/app';
+		$detail['url']['update']  = \dash\url::kingdom(). '/app/update';
 	}
 
 
