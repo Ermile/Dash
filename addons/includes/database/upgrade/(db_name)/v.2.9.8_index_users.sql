@@ -1,0 +1,1 @@
+ALTER TABLE `users` ADD INDEX `index_search_displayname` (`displayname`);

@@ -115,9 +115,7 @@ class users
 			"
 				(
 					users.nationalcode = '__string__' OR
-					users.firstname LIKE '__string__%' OR
-					users.lastname LIKE '__string__%' OR
-					users.displayname = '__string__%'
+					users.displayname LIKE '__string__%'
 				)
 			";
 
@@ -137,9 +135,7 @@ class users
 				$search_field =
 				"
 					(
-						users.firstname LIKE '__string__%' OR
-						users.lastname LIKE '__string__%' OR
-						users.displayname = '__string__%'
+						users.displayname LIKE '__string__%'
 					)
 				";
 			}
