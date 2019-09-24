@@ -118,12 +118,12 @@ class controller
 	private static function version(&$detail)
 	{
 		$detail['version']                     = [];
-		$detail['version']['last']             = 35;
-		$detail['version']['deprecated']       = 34;
-		$detail['version']['deprecated_title'] = T_("This version is deprecated");
-		$detail['version']['deprecated_desc']  = T_("To download new version of this app click blow link");
-		$detail['version']['update_title']     = T_("New version is released");
-		$detail['version']['update_desc']      = T_("To download new version of this app click blow link");
+		$detail['version']['last']             = null;
+		$detail['version']['deprecated']       = null;
+		$detail['version']['deprecated_title'] = null;
+		$detail['version']['deprecated_desc']  = null;
+		$detail['version']['update_title']     = null;
+		$detail['version']['update_desc']      = null;
 	}
 
 
