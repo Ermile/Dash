@@ -115,7 +115,6 @@ class users
 			"
 				(
 					users.nationalcode = '__string__' OR
-					users.phone = '__string__' OR
 					users.firstname LIKE '__string__%' OR
 					users.lastname LIKE '__string__%' OR
 					users.displayname = '__string__%'
@@ -129,8 +128,7 @@ class users
 				"
 					(
 						users.mobile = '$mobile' OR
-						users.nationalcode = '__string__' OR
-						users.phone = '__string__'
+						users.nationalcode = '__string__'
 					)
 				";
 			}
