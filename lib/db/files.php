@@ -43,5 +43,11 @@ class files
 		$result = \dash\db\config::public_search('files', ...func_get_args());
 		return $result;
 	}
+
+	public static function get()
+	{
+		$result = \dash\db\config::public_get('files', ...func_get_args());
+		return $result;
+	}
 }
 ?>
