@@ -63,7 +63,6 @@ class controller
 				// this is ok
 				\dash\notif::ok("Ok ;)");
 				\dash\code::jsonBoom(\dash\notif::get());
-
 			}
 		}
 		\dash\log::set('CronjobTokenNotSet');
@@ -77,6 +76,7 @@ class controller
 	private static function cronjob_run()
 	{
 		\dash\open::get();
+		\dash\open::post();
 		// this cronjob must be run every time
 		self::master_cronjob();
 
@@ -84,6 +84,8 @@ class controller
 		{
 			self::expire_notif();
 			\dash\db\comments::close_solved_ticket();
+			\dash\utility\ip::check_is_block();
+			\dash\db\comments::spam_by_block_ip();
 		}
 
 		if(self::every_30_min())
@@ -94,14 +96,10 @@ class controller
 
 		\dash\app\log\send::notification();
 
-		\dash\utility\ip::check_is_block();
-		\dash\db\comments::spam_by_block_ip();
-
 		if(self::at('01:00'))
 		{
 			\dash\utility\dayevent::save();
 		}
-
 
 		if(is_callable(['\lib\cronjob', 'run']))
 		{

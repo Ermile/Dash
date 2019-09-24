@@ -4,7 +4,7 @@ namespace dash\app\log;
 
 class protector
 {
-	private static $max_exec_cronjob_time = 50;
+	private static $max_exec_cronjob_time = 30;
 	private static $max_tg_per_sec        = 10;
 
 	private static $tg_sec                = [];
