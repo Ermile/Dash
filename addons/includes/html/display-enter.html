@@ -8,7 +8,7 @@
 {%block card%}
 
 {%block header%}
-  <h1 class='logo'><a href='{{url.kingdom}}' tabindex='1' data-direct>
+  <h1 class='logo'><a href='{%if xAppRequest%}{{url.kingdom}}/enter{%else%}{{url.kingdom}}{%endif%}' tabindex='1' data-direct>
 {%if options.enterprise%}
     <img src='{{url.site}}/enterprise/{{options.enterprise}}/images/logo.png' alt='{{site.title}}'>
 {%else%}
