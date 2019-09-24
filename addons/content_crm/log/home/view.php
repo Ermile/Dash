@@ -80,6 +80,11 @@ class view
 			$args['to'] = \dash\request::get('to');
 		}
 
+		if(\dash\request::get('code'))
+		{
+			$args['code'] = \dash\request::get('code');
+		}
+
 		if(\dash\request::get('data'))
 		{
 			$args['data'] = \dash\request::get('data');
