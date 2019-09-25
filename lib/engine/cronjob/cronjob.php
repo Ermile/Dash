@@ -37,8 +37,8 @@ class cronjob
 		curl_setopt($handle, CURLOPT_URL, $_masterurl);
 		// curl_setopt($handle, CURLOPT_HTTPHEADER, json_encode($_requests['header'], JSON_UNESCAPED_UNICODE));
 		curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($handle, CURLOPT_SSL_VERIFYHOST, true);
-		curl_setopt($handle, CURLOPT_SSL_VERIFYPEER, true);
+		curl_setopt($handle, CURLOPT_SSL_VERIFYHOST, false);
+		curl_setopt($handle, CURLOPT_SSL_VERIFYPEER, false);
 		curl_setopt($handle, CURLOPT_POST, true);
 
 		curl_setopt($handle, CURLOPT_POSTFIELDS, http_build_query($token_json));
@@ -53,6 +53,12 @@ class cronjob
 		$response = curl_exec($handle);
 		$mycode   = curl_getinfo($handle, CURLINFO_HTTP_CODE);
 		curl_close ($handle);
+		echo $_masterurl;
+		echo '|';
+		echo $mycode;
+		echo '|';
+		var_dump($response);
+
 	}
 }
 
