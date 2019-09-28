@@ -58,7 +58,7 @@
       {%for key, value in requestGET%}
         <input type="hidden" name="{{key}}" value="{{value}}">
       {%endfor%}
-      <input type="search" name="q" placeholder='{%trans "Search our knowledge base..."%}' id="q" value="{{requestGET.q}}" autofocus autocomplete='off'>
+      <input type="search" name="q" placeholder='{%trans "Search our knowledge base..."%}' id="q" value="{{requestGET.q}}" autocomplete='off'>
       <button class="addon btn ">{%trans "Search" %}</button>
     </div>
   </form>
@@ -111,7 +111,7 @@
     <div class="msg">
       <span class="{%if value.meta.icon%}sf-{{value.meta.icon}}{%else%}sf-info{%endif%} mRa10"></span>
       <a href="{{url.this}}/{{value.slug}}">{{value.title}}</a>
-      {%if value.parent_detail.title%}<a href="{{url.here}}/{{value.url}}" class="floatRa">{{value.parent_detail.title}}</a>{%endif%}
+      {%if value.parent_detail.title%}<a href="{{url.here}}/{{value.url}}" class="floatRa s0">{{value.parent_detail.title}}</a>{%endif%}
     </div>
     {%endfor%}
   </div>
