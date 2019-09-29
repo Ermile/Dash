@@ -17,7 +17,7 @@ class controller
 			}
 		}
 
-		\dash\file::write($addr, json_encode($load, JSON_UNESCAPED_UNICODE));
+		\dash\file::write($addr, json_encode($load, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
 		\dash\file::download($addr);
 		\dash\code::bye();
 
