@@ -34,6 +34,7 @@
       <tr {%if value.pagestatus | slice(0,1) == '2' %} class="positive" {%elseif value.pagestatus | slice(0,1) == '5'  %} class="negative" {%endif%}>
         <td>
           <a class="badge danger" href="{{url.this}}/view?id={{value.id}}">{%trans "Detail"%}</a>
+          <a class="badge primary" target="_blank" href="{{url.this}}/download?id={{value.id}}">{%trans "Download"%}</a>
 
         </td>
       <td>
