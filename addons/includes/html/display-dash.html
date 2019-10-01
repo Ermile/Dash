@@ -25,7 +25,7 @@
 <div class="tbox2">
   <div class="f align-center">
 {%if page.backText and page.backLink%}
-    <div class="cauto s2 pRa10">
+    <div class="cauto pRa10">
       <a class="btn master back" href="{{page.backLink}}"><i class="pRa5 sf-chevron-{%if global.direction == 'rtl'%}right{%else%}left{%endif%}"></i><span class="s0">{{page.backText}}</span></a>
     </div>
 {%endif%}
@@ -210,7 +210,7 @@
 {%block header%}
    <div class="sidenavHandler c0 sauto mauto"><i class="sf-ellipsis-v"></i></div>
 
-   {%block headerTitle%}<h1 class='cauto'><a href="{{url.kingdom}}" data-direct class='flex'><img src="{{site.logo}}" alt='{{site.title}}'><span>{{site.title}}</span></a></h1>{%endblock%}
+   {%block headerTitle%}<h1 class='c'><a href="{{url.kingdom}}" data-direct class='flex'><img src="{{site.logo}}" alt='{{site.title}}'><span>{{site.title}}</span></a></h1>{%endblock%}
 
    <div class='hm flex cauto'>
 {%block headerMenu%}
