@@ -71,16 +71,17 @@ class filter
 		return $_username;
 	}
 
-	public static function max_number($_number, $_max)
+
+	public static function is_larger($_number, $_max)
 	{
 		if(!is_numeric($_max))
 		{
-			return false;
+			return null;
 		}
 
 		if(!is_numeric($_number))
 		{
-			return false;
+			return null;
 		}
 
 		$len_number = strlen($_number);
@@ -88,19 +89,29 @@ class filter
 
 		if($len_number > $len_max)
 		{
-			return false;
-		}
-		elseif($len_number == $len_max)
-		{
-			// need to check
-			// @reza check every characters
 			return true;
+		}
+		elseif($len_number === $len_max)
+		{
+			for ($i = 0; $i < $len_number; $i++)
+			{
+				$n = substr($_number, $i, 1);
+				$m = substr($_max, $i, 1);
+
+				if(intval($n) > intval($m))
+				{
+					return true;
+				}
+			}
+
+			return false;
 		}
 		elseif($len_number < $len_max)
 		{
-			return true;
+			return false;
 		}
 	}
+
 
 
 	public static function email($_email)

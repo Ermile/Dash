@@ -183,7 +183,7 @@ trait set
 				return false;
 			}
 
-			if(!\dash\utility\filter::max_number($_args['minus'], 9999999999999))
+			if(\dash\utility\filter::is_larger($_args['minus'], 9999999999999))
 			{
 				\dash\notif::error(T_("Amount is out of range"));
 				return false;
@@ -200,7 +200,7 @@ trait set
 				return false;
 			}
 
-			if(!\dash\utility\filter::max_number($_args['plus'], 9999999999999))
+			if(\dash\utility\filter::is_larger($_args['plus'], 9999999999999))
 			{
 				\dash\notif::error(T_("Amount is out of range"));
 				return false;
