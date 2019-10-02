@@ -5,15 +5,70 @@
   <div id='content' class='scr' data-xhr='content'>
 {%block content%}
 
+
 {%block pageHeader%}
-{%if page.tbox is null and (page.title or page.desc)%}
+{%if page.titleBox%}
+<div class="titleBox">
+  <div class="f align-center">
+{%if page.backText and page.backLink%}
+    <div class="cauto pRa10">
+      <a class="btn master back" href="{{page.backLink}}"><i class="pRa5 sf-chevron-{%if global.direction == 'rtl'%}right{%else%}left{%endif%}"></i><span class="s0">{{page.backText}}</span></a>
+    </div>
+{%endif%}
+
+    <div class="c s10 pRa10 pageTitle">
+      <h2>{{page.title | raw}}</h2>
+    </div>
+    <nav class="cauto actions">
+{%if page.import%}
+      <a class="btn light" href="{{page.import}}"><i class="pRa5 compact sf-in"></i><span>{%trans "Import"%}</span></a>
+{%endif%}
+{%if page.export%}
+      <a class="btn light" href="{{page.export}}"><i class="pRa5 compact sf-out"></i><span>{%trans "Export"%}</span></a>
+{%endif%}
+{%if page.duplicate%}
+      <a class="btn light" href="{{page.duplicate}}"><i class="pRa5 compact sf-files-o"></i><span>{%trans "Duplicate"%}</span></a>
+{%endif%}
+{%if page.view%}
+      <a class="btn light" href="{{page.view}}" target="_blank"><i class="pRa5 compact sf-eye"></i><span>{%trans "View"%}</span></a>
+{%endif%}
+{%if page.help%}
+      <a class="btn light" href="{{page.help}}" target="_blank"><i class="pRa5 compact sf-question-circle"></i><span>{%trans "Help"%}</span></a>
+{%endif%}
+    </nav>
+
+{%if page.prev or page.next%}
+    <nav class="cauto os pLa10 nav">
+       <a class="btn{%if page.prev == 'disabled'%} disabled{%endif%}" {%if page.prev == 'disabled'%}{%else%}href="{{page.prev}}"{%endif%} title='{%trans "Previous item"%}'><i class="sf-arrow-{%if global.direction == 'rtl'%}right{%else%}left{%endif%}"></i></a>
+       <a class="btn{%if page.next == 'disabled'%} disabled{%endif%}" {%if page.next == 'disabled'%}{%else%}href="{{page.next}}"{%endif%} title='{%trans "Next item"%}'><i class="sf-arrow-{%if global.direction == 'rtl'%}left{%else%}right{%endif%}"></i></a>
+    </nav>
+{%endif%}
+
+{%if page.btnText and page.btnLink%}
+    <nav class="cauto os pLa10">
+       <a class="btn master" href="{{page.btnLink}}" data-shortkey="120"><span>{{page.btnText}}</span> <kbd>F9</kbd></a>
+    </nav>
+{%endif%}
+  </div>
+
+{%if page.breadcrumb%}
+  <nav class="breadcrumb">
+{%for key, value in page.breadcrumb%}
+   <a{%if value.link%} href="{{value.link}}"{%endif%}{%if value.title%} title="{{value.title}}"{%endif%}{%if value.attr%} {{value.attr}}{%endif%}>{%if value.icon%}<span class="sf-{{value.icon}} mRa5"></span>{%endif%}{{value.text}}</a>
+{%endfor%}
+  </nav>
+{%endif%}
+</div>
+
+
+{%elseif page.tbox is null and (page.title or page.desc)%}
 <div class="tbox{%if page.pictogram%} pictogram{%endif%}">
   <div class="f align-center">
     <div class="c">
       <h2>{{page.title | raw}} {%if page.desc%}<i class="compact sf-info-circle mLR5" title='{{page.desc | raw}}'></i>{%endif%}</h2>
       {%if badge.text%} <a {%if badge.link%} href="{{badge.link}}"{%endif%} class="badge primary" {%if badge.shortkey%} data-shortkey="{{badge.shortkey}}"{%endif%}>{{badge.text}} {%if badge.shortkey == 120%}<kbd>f9</kbd>{%endif%}</a>{%endif%}
     </div>
-    <div class="cauto os">{%if badge2.text and badge2.link and badge2.shortkey%} <a href="{{badge2.link}}" class="badge light" data-shortkey="{{badge2.shortkey}}">{{badge2.text}} {%if badge2.shortkey == 121%}<kbd>f10</kbd>{%endif%}</a>{%endif%}</h2></div>
+    <div class="cauto os">{%if badge2.text and badge2.link and badge2.shortkey%} <a href="{{badge2.link}}" class="badge light" data-shortkey="{{badge2.shortkey}}">{{badge2.text}} {%if badge2.shortkey == 121%}<kbd>f10</kbd>{%endif%}</a>{%endif%}</div>
   </div>
 
 {%if page.breadcrumb%}

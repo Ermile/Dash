@@ -20,8 +20,6 @@
 
 {%block pageHeader%}
 {%if page.titleBox%}
-
-
 <div class="titleBox">
   <div class="f align-center">
 {%if page.backText and page.backLink%}
@@ -51,7 +49,6 @@
 {%endif%}
     </nav>
 
-
 {%if page.prev or page.next%}
     <nav class="cauto os pLa10 nav">
        <a class="btn{%if page.prev == 'disabled'%} disabled{%endif%}" {%if page.prev == 'disabled'%}{%else%}href="{{page.prev}}"{%endif%} title='{%trans "Previous item"%}'><i class="sf-arrow-{%if global.direction == 'rtl'%}right{%else%}left{%endif%}"></i></a>
@@ -64,9 +61,6 @@
        <a class="btn master" href="{{page.btnLink}}" data-shortkey="120"><span>{{page.btnText}}</span> <kbd>F9</kbd></a>
     </nav>
 {%endif%}
-
-
-
   </div>
 
 {%if page.breadcrumb%}
@@ -77,11 +71,6 @@
   </nav>
 {%endif%}
 </div>
-
-
-
-
-
 
 
 {%elseif page.tbox is null and (page.title or page.desc)%}
