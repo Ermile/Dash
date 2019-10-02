@@ -25,6 +25,39 @@ class file
 		'datemodified',
 	];
 
+	public static function get_inline($_id)
+	{
+		$id = $_id;
+		$id = \dash\coding::decode($id);
+		if(!$id)
+		{
+			\dash\notif::error(T_("Id not set"));
+			return false;
+		}
+
+		$result = \dash\db\files::get(['id' => $id, 'limit' => 1]);
+
+		if(!$result)
+		{
+			\dash\notif::error(T_("Invalid id"));
+			return false;
+		}
+
+		return $result;
+	}
+
+
+	public static function get($_id)
+	{
+		$result = self::get_inline($_get);
+
+		if($result)
+		{
+			$result = self::ready($result);
+		}
+
+		return $result;
+	}
 
 
 	public static function list($_string = null, $_args = [])
