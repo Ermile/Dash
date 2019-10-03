@@ -38,6 +38,14 @@ class files
 	}
 
 
+	public static function get_by_ids($_ids)
+	{
+		$query = "SELECT * FROM files WHERE files.id IN ($_ids) ";
+		$result = \dash\db::get($query);
+		return $result;
+	}
+
+
 	public static function search()
 	{
 		$result = \dash\db\config::public_search('files', ...func_get_args());
