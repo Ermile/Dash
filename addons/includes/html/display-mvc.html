@@ -4,7 +4,7 @@
 {%block head_def%}
  <meta charset="UTF-8"/>
  <base href="{{url.base}}"/>
- <title>{{global.title }}</title>
+ <title>{{global.title | striptags }}</title>
  <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/><![endif]-->
 {%if url.root != 'deadbrowser'%}
  <!--[if lte IE 9]><script>document.location = 'https://deadbrowser.com/{{lang.current}}';</script><![endif]-->
