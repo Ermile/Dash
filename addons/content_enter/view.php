@@ -9,8 +9,8 @@ class view
 	{
 		\dash\data::include_css(false);
 		\dash\data::include_js(false);
-		\dash\data::bodyclass('enter');
-		\dash\data::bodyclass(\dash\data::bodyclass(). ' bg'. date('g'));
+
+		\dash\data::bodyclass(' enter bg'. date('g'));
 
 		// get mobile number to show in mobile input
 		$session_mobile = \dash\utility\enter::get_session('usernameormobile');
