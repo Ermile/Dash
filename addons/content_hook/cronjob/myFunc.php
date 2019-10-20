@@ -2,7 +2,7 @@
 namespace content_hook\cronjob;
 
 
-trait my_fn
+trait myFunc
 {
 
 	private static function master_cronjob()
