@@ -9,6 +9,7 @@ package-lock.json
 /public_html/data
 /public_html/sitemap
 /lib/engine/cronjob/crontab.txt
+lib/engine/cronjob/crontab.json
 *sftp-config.json
 *crontab.txt
 *crontab.json
