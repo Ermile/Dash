@@ -5,7 +5,7 @@ namespace content_hook\cronjob;
 class controller
 {
 	use \content_hook\cronjob\times;
-	use \content_hook\cronjob\fn;
+	use \content_hook\cronjob\my_fn;
 
 
 	public static function routing()
