@@ -17,7 +17,7 @@ class error
 	public static function handle_fatal()
 	{
 		$error = error_get_last();
-		if ($error["type"] == E_ERROR)
+		if (isset($error['type']) && $error["type"] == E_ERROR)
 		{
 			self::handle_error($error["type"], $error["message"], $error["file"], $error["line"]);
 		}
