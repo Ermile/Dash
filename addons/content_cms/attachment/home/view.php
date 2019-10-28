@@ -41,14 +41,19 @@ class view
 			$args['sort'] = 'id';
 		}
 
+		if(\dash\request::get('mime'))
+		{
+			$args['mime'] = \dash\request::get('mime');
+		}
+
 		\dash\data::sortLink(\content_cms\view::make_sort_link(\dash\app\file::$sort_field, \dash\url::this()) );
 		$dataTable = \dash\app\file::list(\dash\request::get('q'), $args);
 
 		\dash\data::dataTable($dataTable );
 
 		// set dataFilter
-		// $dataFilter = \dash\app\sort::createFilterMsg($search_string, $filterArray);
-		// \dash\data::dataFilter($dataFilter);
+		$dataFilter = \dash\app\sort::createFilterMsg($search_string, $args);
+		\dash\data::dataFilter($dataFilter);
 	}
 }
 ?>

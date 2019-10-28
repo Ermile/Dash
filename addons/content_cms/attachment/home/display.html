@@ -81,13 +81,10 @@
               <div class="c">
                 <a class="badge primary" href="{{value.url}}" target="_blank">{%trans "View"%}</a>
               </div>
-              <div class="cauto os">
-                <a class="badge warn s0" href="" data-confirm>{%trans "Delete"%}</a>
-                <a class="badge danger" href="" data-confirm>{%trans "Block"%}</a>
-              </div>
+
             </div>
         </td>
-        <td class="s0 m0 ltr txtL collapsing"><i class="sf-file-{{value.type}}-o fs16 mR5"></i> {{value.mime}}</td>
+        <td class="s0 m0 ltr  collapsing"><i class="sf-file-{{value.type}}-o fs16 mR5"></i> <a href="{{url.this}}?mime={{value.mime}}">{{value.mime}}</a></td>
         <td>{{value.size | readableSize }}</td>
         <td class="s0 ltr txtL collapsing"><div>{{value.datecreated | dt(false, "date")}}</div><div>{{value.datecreated | dt(false, "time")}}</div></td>
       </tr>
