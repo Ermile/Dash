@@ -158,22 +158,22 @@
 {%include 'includes/html/sidebarServiceTop.html' ignore missing %}
 
 {%if perm('contentCp')%}
-        <li><a href="{{url.kingdom}}/cms" {%if url.content == "cms"%} class="activeContent"{%endif%} data-shortkey="67+77" data-shortkey-prevent data-shortkey-timeout='1000' title='{%trans "Shortkey"%} cm' data-tippy-placement='right'><i class='sf-align-left'></i> {% trans "CMS" %}</a></li>
+        <li><a href="{{url.kingdom}}/cms" data-direct {%if url.content == "cms"%} class="activeContent"{%endif%} data-shortkey="67+77" data-shortkey-prevent data-shortkey-timeout='1000' title='{%trans "Shortkey"%} cm' data-tippy-placement='right'><i class='sf-align-left'></i> {% trans "CMS" %}</a></li>
 {%endif%}
 
 {%if perm('contentCrm')%}
-        <li><a href="{{url.kingdom}}/crm" {%if url.content == "crm"%} class="activeContent"{%endif%} data-shortkey="77+85" data-shortkey-prevent data-shortkey-timeout='1000' title='{%trans "Shortkey"%} mu' data-tippy-placement='right'><i class='sf-group-full'></i> {% trans "CRM Panel" %}</a></li>
+        <li><a href="{{url.kingdom}}/crm" data-direct {%if url.content == "crm"%} class="activeContent"{%endif%} data-shortkey="77+85" data-shortkey-prevent data-shortkey-timeout='1000' title='{%trans "Shortkey"%} mu' data-tippy-placement='right'><i class='sf-group-full'></i> {% trans "CRM Panel" %}</a></li>
 {%endif%}
 
 {%if perm_su()%}
-        <li><a href="{{url.kingdom}}/su" {%if url.content == "su"%} class="activeContent"{%endif%} data-shortkey="83+85" data-shortkey-prevent data-shortkey-timeout='1000' title='{%trans "Shortkey"%} su' data-tippy-placement='right'><i class='sf-heartbeat'></i> <span>{% trans "Supervisor Panel" %}</span></a></li>
+        <li><a href="{{url.kingdom}}/su" data-direct {%if url.content == "su"%} class="activeContent"{%endif%} data-shortkey="83+85" data-shortkey-prevent data-shortkey-timeout='1000' title='{%trans "Shortkey"%} su' data-tippy-placement='right'><i class='sf-heartbeat'></i> <span>{% trans "Supervisor Panel" %}</span></a></li>
 {%endif%}
 
 {%if login%}
-        <li><a href="{{url.kingdom}}/account" {%if url.content == "account"%} class="activeContent"{%endif%} data-shortkey="77+69" data-shortkey-prevent data-shortkey-timeout='1000' title='{%trans "Shortkey"%} me' data-tippy-placement='right'><i class='sf-user'></i> <span>{% trans "My Account" %}</span></a></li>
+        <li><a href="{{url.kingdom}}/account" data-direct {%if url.content == "account"%} class="activeContent"{%endif%} data-shortkey="77+69" data-shortkey-prevent data-shortkey-timeout='1000' title='{%trans "Shortkey"%} me' data-tippy-placement='right'><i class='sf-user'></i> <span>{% trans "My Account" %}</span></a></li>
 {%endif%}
 
-        <li><a href="{{url.kingdom}}/support" {%if url.content == "support"%} class="activeContent"{%endif%} data-shortkey="112" data-shortkey-prevent data-shortkey-timeout='1000' title='{%trans "Shortkey"%} f1' data-tippy-placement='right'><i class='sf-life-ring'></i> <span>{% trans "Help Center" %}</span></a></li>
+        <li><a href="{{url.kingdom}}/support" target="_blank" {%if url.content == "support"%} class="activeContent"{%endif%} data-shortkey="112" data-shortkey-prevent data-shortkey-timeout='1000' title='{%trans "Shortkey"%} f1' data-tippy-placement='right'><i class='sf-life-ring'></i> <span>{% trans "Help Center" %}</span></a></li>
 
         <li class="hr"></li>
    </ul>
@@ -210,7 +210,7 @@
     <a href="{{url.kingdom}}/support" data-tippy-animation="perspective" title='{%trans "Help Center"%}' class="support s0"><i class="sf-life-ring"></i></a>
 
 {%if user.id%}
-    <a href="{{url.kingdom}}/account/notification" data-tippy-animation="perspective" title='{%trans "Notifications"%}' class="notification"><i class="sf-bell"></i></a>
+    <a href="{{url.kingdom}}/account/notification" target="_blank" data-tippy-animation="perspective" title='{%trans "Notifications"%}' class="notification"><i class="sf-bell"></i></a>
 
     <div class="profileShow" data-tippy-animation="perspective" title='{{site.title}}<br>{{userBadge.desc | raw}}'
     data-desc='{{userBadge.desc | raw}}'
