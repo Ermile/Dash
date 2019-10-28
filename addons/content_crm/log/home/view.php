@@ -57,37 +57,37 @@ class view
 
 		if(\dash\request::get('status'))
 		{
-			$args['status'] = \dash\request::get('status');
+			$args['logs.status'] = \dash\request::get('status');
 		}
 
 		if(\dash\request::get('subdomain'))
 		{
-			$args['subdomain'] = \dash\request::get('subdomain');
+			$args['logs.subdomain'] = \dash\request::get('subdomain');
 		}
 
 		if(\dash\request::get('caller'))
 		{
-			$args['caller'] = $_GET['caller'];
+			$args['logs.caller'] = $_GET['caller'];
 		}
 
 		if(\dash\request::get('from'))
 		{
-			$args['from'] = \dash\request::get('from');
+			$args['logs.from'] = \dash\request::get('from');
 		}
 
 		if(\dash\request::get('to'))
 		{
-			$args['to'] = \dash\request::get('to');
+			$args['logs.to'] = \dash\request::get('to');
 		}
 
 		if(\dash\request::get('code'))
 		{
-			$args['code'] = \dash\request::get('code');
+			$args['logs.code'] = \dash\request::get('code');
 		}
 
 		if(\dash\request::get('data'))
 		{
-			$args['data'] = \dash\request::get('data');
+			$args['logs.data'] = \dash\request::get('data');
 		}
 
 		if(\dash\request::get('datecreated'))
