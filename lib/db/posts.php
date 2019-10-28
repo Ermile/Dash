@@ -429,11 +429,11 @@ class posts
 						$my_query
 						termusages.related_id = posts.id
 				) AND
-				$where
 				posts.status            = 'publish' AND
 				posts.type              = '$_options[type]' AND
 				posts.language          = '$lang' AND
 				UNIX_TIMESTAMP(posts.publishdate) <= $time
+				$where
 			ORDER BY $order
 			LIMIT $_options[limit]
 		";
