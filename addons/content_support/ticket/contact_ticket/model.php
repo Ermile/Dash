@@ -90,7 +90,14 @@ class model
 		$count_https = substr_count($content, 'https://');
 		if($count_https + $count_http >= 2)
 		{
-			\dash\header::status(422, T_("Can not set 2 link in one message!"));
+			if(\dash\temp::get('allowTicket2Link'))
+			{
+				// allow set 2 link in ticket
+			}
+			else
+			{
+				\dash\header::status(422, T_("Can not set 2 link in one message!"));
+			}
 		}
 
 		// check login
