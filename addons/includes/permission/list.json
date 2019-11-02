@@ -78,6 +78,13 @@
     "require": ["contentCp", "cpPostsView", "cpPostsViewAll", "cpPostsEdit", "cpPostsEditForOthers", "cpPostsDelete"]
   },
 
+  "themeSetting":
+  {
+    "title": "themeSetting",
+    "cat": "Control Panel CMS",
+    "require": ["contentCp"]
+  },
+
 
   "cpDayEvent":
   {
