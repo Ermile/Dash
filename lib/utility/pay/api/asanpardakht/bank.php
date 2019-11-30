@@ -13,6 +13,9 @@ class bank
 
     public static function set_key_iv()
     {
+        ini_set('soap.wsdl_cache_enabled',0);
+        ini_set('soap.wsdl_cache_ttl',0);
+
         self::$KEY = \dash\option::config('asanpardakht', 'EncryptionKey');
         self::$IV  = \dash\option::config('asanpardakht', 'EncryptionVector');
     }
