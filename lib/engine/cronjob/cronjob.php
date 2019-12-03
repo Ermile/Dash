@@ -48,7 +48,7 @@ class cronjob
 
 		curl_setopt($handle, CURLOPT_POSTFIELDS, http_build_query($token_json));
 		curl_setopt($handle, CURLOPT_CONNECTTIMEOUT, 20);
-		curl_setopt($handle, CURLOPT_TIMEOUT, 30);
+		curl_setopt($handle, CURLOPT_TIMEOUT, 40);
 
 		if(defined('CURLOPT_IPRESOLVE') && defined('CURL_IPRESOLVE_V4'))
 		{
