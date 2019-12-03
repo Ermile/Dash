@@ -33,6 +33,11 @@ class cronjob
 
 		file_put_contents(__DIR__. '/token.me.json', json_encode($token_json, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
 
+		if(!function_exists('curl_init'))
+		{
+			echo "curl_init is not exist!";
+			return false;
+		}
 		$handle   = curl_init();
 		curl_setopt($handle, CURLOPT_URL, $_masterurl);
 		// curl_setopt($handle, CURLOPT_HTTPHEADER, json_encode($_requests['header'], JSON_UNESCAPED_UNICODE));
