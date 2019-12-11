@@ -310,7 +310,11 @@ class posts
 				}
 				unset($meta['gallery'][$_file_index]);
 			}
+		}
 
+		if(is_array($meta['gallery']))
+		{
+			$meta['gallery'] = array_values($meta['gallery']);
 		}
 
 		$meta = json_encode($meta, JSON_UNESCAPED_UNICODE);
