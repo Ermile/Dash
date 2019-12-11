@@ -33,7 +33,7 @@ class enter_VerificationCode
 		$txt .= T_("Be careful! if you did not request this code");
 		$txt .= "<br>";
 		$txt .= T_("Perhaps someone has entered your password correctly and intends to login to your account!");
-		$link = '<a href="'. \dash\url::kingdom(). '/account/profile/security">'. T_("here"). '</a>';
+		$link = '<a href="'. \dash\url::kingdom(). '/account/security/sessions">'. T_("here"). '</a>';
 		$txt .= "<br>";
 		$txt .= T_("You can see your active sessions :val", ['val' => $link]);
 		$txt .= "<br>";
