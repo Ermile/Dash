@@ -506,6 +506,31 @@ class kavenegar_api
 		return $json;
 	}
 
+	public function tts($_mobile, $_message)
+	{
+
+		$path = $this->get_path('maketts','call');
+		$parameters =
+		[
+			'receptor' => $_mobile,
+			'message'  => $_message,
+			'date'     => null,
+			'localid'  => null,
+			'repeat'   => null,
+
+		];
+
+
+		$json = $this->execute($path, $parameters);
+
+		if(!is_array($json))
+		{
+			return $this->status;
+		}
+
+		return $json;
+	}
+
 
 	public function client_add($_data)
 	{

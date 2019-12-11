@@ -68,5 +68,45 @@ class call
 		$result = $api->verify($mobile, $_token, $_options['token2'], $_options['token3'], $_template, $_options['type']);
 		return $result;
 	}
+
+
+	public static function send_tts($_mobile, $_message)
+	{
+		if(!$_mobile || !$_message)
+		{
+			return null;
+		}
+
+		// disable status
+		// sms sevice is locked
+		if(!\dash\option::sms('kavenegar', 'status'))
+		{
+			return false;
+		}
+
+
+		// cehck api key
+		$api_key = \dash\option::sms('kavenegar','apikey');
+		if(!$api_key)
+		{
+			return false;
+		}
+
+		$mobile = \dash\utility\filter::mobile($_mobile);
+		if(!$mobile)
+		{
+			return false;
+		}
+
+		if(\dash\option::sms('kavenegar', 'iran') && substr($mobile, 0, 2) !== '98')
+		{
+			return false;
+		}
+
+		// function verify($_mobile, $_token, $_token2 = null, $_token3 = null, $_text = null, $_type = 'sms')
+		$api    = new \dash\utility\kavenegar_api($api_key, \dash\option::sms('kavenegar', 'line'));
+		$result = $api->tts($mobile, $_message);
+		return $result;
+	}
 }
 ?>

@@ -72,7 +72,17 @@ class model
 		{
 			\dash\log::set('call');
 
-			$kavenegar_send_result = \dash\utility\call::send($my_mobile, $template, $code);
+			if(\dash\language::current() === 'fa')
+			{
+				$message = "با تشکر از همراهیتان با ارمایل؛ کد فعال‌سازی شما $code";
+			}
+			else
+			{
+				$message = "Your verification code is $code";
+
+			}
+
+			$kavenegar_send_result = \dash\utility\call::send_tts($my_mobile, $message, $code);
 		}
 
 		if($kavenegar_send_result === 411 && substr($my_mobile, 0, 2) === '98')
