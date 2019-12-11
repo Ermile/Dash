@@ -31,6 +31,10 @@ class model
 		{
 			$my_mobile = \dash\utility\enter::get_session('temp_mobile');
 		}
+		elseif(\dash\user::detail('mobile'))
+		{
+			$my_mobile = \dash\user::detail('mobile');
+		}
 
 		if(!$my_mobile)
 		{
@@ -38,17 +42,6 @@ class model
 		}
 
 		if(!\dash\option::config('enter', 'call'))
-		{
-			return false;
-		}
-
-		$language     = \dash\language::current();
-		// find template to call by it
-		if(\dash\option::config('enter', "call_template_$language"))
-		{
-			$template   = \dash\option::config('enter', "call_template_$language");
-		}
-		else
 		{
 			return false;
 		}

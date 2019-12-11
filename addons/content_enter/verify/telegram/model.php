@@ -38,6 +38,10 @@ class model
 		{
 			$my_chat_id = \dash\utility\enter::get_session('temp_chat_id');
 		}
+		elseif(\dash\user::id())
+		{
+			$my_chat_id = \dash\utility\enter::load_chat_id(\dash\user::id());
+		}
 
 		if(!$my_chat_id)
 		{

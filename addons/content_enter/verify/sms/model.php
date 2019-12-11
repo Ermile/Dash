@@ -26,6 +26,10 @@ class model
 		{
 			$my_mobile = \dash\utility\enter::get_session('temp_mobile');
 		}
+		elseif(\dash\user::detail('mobile'))
+		{
+			$my_mobile = \dash\user::detail('mobile');
+		}
 
 		if(!$my_mobile)
 		{
