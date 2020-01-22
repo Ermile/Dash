@@ -10,6 +10,7 @@ class model
 		$post =
 		[
 			'title'       => \dash\request::post('title'),
+			'language'    => \dash\language::current(),
 			'content'     => isset($_POST['content']) ? $_POST['content'] : null,
 		];
 
