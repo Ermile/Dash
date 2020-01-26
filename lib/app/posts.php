@@ -484,6 +484,7 @@ class posts
 
 		$slug = \dash\utility\filter::slug($slug, null, 'persian');
 
+		$slug = trim($slug, '-');
 
 		$check_duplicate_args = ['slug' => $slug, 'language' => $language, 'limit' => 1];
 
