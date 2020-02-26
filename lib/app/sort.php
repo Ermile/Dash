@@ -33,16 +33,16 @@ class sort
 
 			if($field === $get['sort'])
 			{
-				$temp_link['order'] = 'asc';
-				if($get['order'] === 'asc')
+				$temp_link['order'] = 'desc';
+				if($get['order'] === 'desc')
 				{
-					$temp_link['order'] = 'desc';
+					$temp_link['order'] = 'asc';
 				}
 				$link[$field]['order'] = $temp_link['order'] === 'asc' ? 'desc' : 'asc';
 			}
 			else
 			{
-				$temp_link['order']    = 'asc';
+				$temp_link['order']    = 'desc';
 				$link[$field]['order'] = null;
 			}
 

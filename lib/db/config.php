@@ -757,7 +757,7 @@ class config
 			}
 		}
 
-		$where = join($where, " AND ");
+		$where = implode(' AND ', $where);
 		$search = null;
 		if($_string && $search_field && !is_array($_string))
 		{
