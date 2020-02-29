@@ -23,12 +23,12 @@ trait ext
 		$mimes =
 		[
 			// archive
-			'gtar'     => [ 'type' => 'archive',    'mime' => 'application/x-gtar'],
-			'tar'      => [ 'type' => 'archive',    'mime' => 'application/x-tar'],
-			'tgz'      => [ 'type' => 'archive',    'mime' => 'application/x-tar'],
+			// 'gtar'     => [ 'type' => 'archive',    'mime' => 'application/x-gtar'],
+			// 'tar'      => [ 'type' => 'archive',    'mime' => 'application/x-tar'],
+			// 'tgz'      => [ 'type' => 'archive',    'mime' => 'application/x-tar'],
 			'zip'      => [ 'type' => 'archive',    'mime' => 'application/zip'],
-			'7z'       => [ 'type' => 'archive',    'mime' => 'application/x-7z-compressed'],
-			'rar'      => [ 'type' => 'archive',    'mime' => 'application/x-rar-compressed'],
+			// '7z'       => [ 'type' => 'archive',    'mime' => 'application/x-7z-compressed'],
+			// 'rar'      => [ 'type' => 'archive',    'mime' => 'application/x-rar-compressed'],
 			// audio
 			'mp3'      => [ 'type' => 'audio',      'mime' => 'audio/mpeg'],
 			'wav'      => [ 'type' => 'audio',      'mime' => 'audio/x-wav'],
@@ -65,35 +65,35 @@ trait ext
 			'pptx'     => [ 'type' => 'powerpoint', 'mime' => 'application/vnd.openxmlformats-officedocument.presentationml.presentation'],
 			'ppsx'     => [ 'type' => 'powerpoint', 'mime' => 'application/vnd.openxmlformats-officedocument.presentationml.slideshow'],
 			// code
-			'js'       => [ 'type' => 'code',       'mime' => 'application/x-javascript'],
-			'dll'      => [ 'type' => 'code',       'mime' => 'application/octet-stream'],
+			// 'js'       => [ 'type' => 'code',       'mime' => 'application/x-javascript'],
+			// 'dll'      => [ 'type' => 'code',       'mime' => 'application/octet-stream'],
 			// diallow file list
-			'php'      => [ 'type' => 'code',       'mime' => 'application/x-httpd-php'],
-			'php5'     => [ 'type' => 'code',       'mime' => 'application/x-httpd-php'],
-			'exe'      => [ 'type' => 'code',       'mime' => 'application/octet-stream'],
-			'bat'      => [ 'type' => 'code',       'mime' => 'application/x-bat'],
-			'bin'      => [ 'type' => 'code',       'mime' => 'application/macbinary'],
-			'htaccess' => [ 'type' => 'code',       'mime' => 'application/x-jar'],
+			// 'php'      => [ 'type' => 'code',       'mime' => 'application/x-httpd-php'],
+			// 'php5'     => [ 'type' => 'code',       'mime' => 'application/x-httpd-php'],
+			// 'exe'      => [ 'type' => 'code',       'mime' => 'application/octet-stream'],
+			// 'bat'      => [ 'type' => 'code',       'mime' => 'application/x-bat'],
+			// 'bin'      => [ 'type' => 'code',       'mime' => 'application/macbinary'],
+			// 'htaccess' => [ 'type' => 'code',       'mime' => 'application/x-jar'],
 			// text
-			'rtx'      => [ 'type' => 'text',       'mime' => 'text/richtext'],
-			'rtf'      => [ 'type' => 'text',       'mime' => 'text/rtf'],
-			'log'      => [ 'type' => 'text',       'mime' => 'text/plain'],
-			'text'     => [ 'type' => 'text',       'mime' => 'text/plain'],
+			// 'rtx'      => [ 'type' => 'text',       'mime' => 'text/richtext'],
+			// 'rtf'      => [ 'type' => 'text',       'mime' => 'text/rtf'],
+			// 'log'      => [ 'type' => 'text',       'mime' => 'text/plain'],
+			// 'text'     => [ 'type' => 'text',       'mime' => 'text/plain'],
 			'txt'      => [ 'type' => 'text',       'mime' => 'text/plain'],
-			'xml'      => [ 'type' => 'text',       'mime' => 'text/xml'],
-			'xsl'      => [ 'type' => 'text',       'mime' => 'text/xml'],
-			'css'      => [ 'type' => 'text',       'mime' => 'text/css'],
-			'htm'      => [ 'type' => 'text',       'mime' => 'text/html'],
-			'html'     => [ 'type' => 'text',       'mime' => 'text/html'],
-			'shtml'    => [ 'type' => 'text',       'mime' => 'text/html'],
-			'xht'      => [ 'type' => 'text',       'mime' => 'application/xhtml+xml'],
-			'xhtml'    => [ 'type' => 'text',       'mime' => 'application/xhtml+xml'],
+			// 'xml'      => [ 'type' => 'text',       'mime' => 'text/xml'],
+			// 'xsl'      => [ 'type' => 'text',       'mime' => 'text/xml'],
+			// 'css'      => [ 'type' => 'text',       'mime' => 'text/css'],
+			// 'htm'      => [ 'type' => 'text',       'mime' => 'text/html'],
+			// 'html'     => [ 'type' => 'text',       'mime' => 'text/html'],
+			// 'shtml'    => [ 'type' => 'text',       'mime' => 'text/html'],
+			// 'xht'      => [ 'type' => 'text',       'mime' => 'application/xhtml+xml'],
+			// 'xhtml'    => [ 'type' => 'text',       'mime' => 'application/xhtml+xml'],
 			// file
-			'psd'      => [ 'type' => 'file',       'mime' => 'application/octet-stream'],
-			'eps'      => [ 'type' => 'file',       'mime' => 'application/postscript'],
-			'apk'      => [ 'type' => 'file',       'mime' => 'application/vnd.android.package-archive'],
-			'chm'      => [ 'type' => 'file',       'mime' => 'application/vnd.ms-htmlhelp'],
-			'jar'      => [ 'type' => 'file',       'mime' => 'application/x-jar'],
+			// 'psd'      => [ 'type' => 'file',       'mime' => 'application/octet-stream'],
+			// 'eps'      => [ 'type' => 'file',       'mime' => 'application/postscript'],
+			// 'apk'      => [ 'type' => 'file',       'mime' => 'application/vnd.android.package-archive'],
+			// 'chm'      => [ 'type' => 'file',       'mime' => 'application/vnd.ms-htmlhelp'],
+			// 'jar'      => [ 'type' => 'file',       'mime' => 'application/x-jar'],
 		];
 
 		// if exist in list return it
@@ -104,6 +104,7 @@ trait ext
 		else
 		{
 			$myResult = ['type' => 'file', 'mime' => 'application/octet-stream'];
+			$myResult['disallow'] = true;
 		}
 
 		$myResult['disallow'] = null;

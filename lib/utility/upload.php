@@ -25,10 +25,9 @@ class upload
 	public static $extentions         =
 	[
 		'png', 'jpeg','jpg',  'zip',  'rar',
-		'mp4', 'pdf', 'doc',  'docx', 'apk', 'chm',
-		'jar', 'txt', 'css',  'js',   'htm', 'html', 'csv',
+		'mp4', 'pdf', 'doc',  'docx', 'txt', 'csv',
 		'mp3', 'm4a', 'aac',  'wav',  'wma', 'ogg',
-		'swf', 'xml', 'xlsx', 'pptx', 'mov',
+		'xlsx', 'pptx', 'mov',
 	];
 	/**
 	 * default set the file name as md5
