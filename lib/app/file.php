@@ -157,11 +157,25 @@ class file
 	}
 
 
-	public static function upload_quick($_upload_name)
+	public static function upload_quick($_upload_name, $_meta = [])
 	{
 		if(\dash\request::files($_upload_name))
 		{
-			$uploaded_file = self::upload(['debug' => false, 'upload_name' => $_upload_name]);
+			$default_meta =
+			[
+				'debug' => false,
+				'upload_name' => $_upload_name,
+			];
+
+
+			if(!is_array($_meta))
+			{
+				$_meta = [];
+			}
+
+			$meta = array_merge($default_meta, $_meta);
+
+			$uploaded_file = self::upload($meta);
 
 			if(isset($uploaded_file['url']))
 			{
