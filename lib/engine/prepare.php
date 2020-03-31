@@ -164,7 +164,7 @@ class prepare
 		}
 
 		// set session cookie params
-		session_set_cookie_params(0, '/', '.'.\dash\url::domain(), false, true);
+		session_set_cookie_params(0, '/', '.'.\dash\url::domain(), true, true);
 
 		// start sessions
 		session_start();
