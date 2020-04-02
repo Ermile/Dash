@@ -9,6 +9,8 @@ class prepare
 		self::hi_developers();
 		self::minimum_requirement();
 
+		self::xframe_option();
+
 		self::error_handler();
 		self::debug();
 
@@ -624,5 +626,24 @@ class prepare
 		@header("X-Made-In: Ermile!");
 		@header("X-Powered-By: Dash!");
 	}
+
+
+
+	private static function xframe_option()
+	{
+		if(isset($_SERVER['HTTP_REFERER']))
+		{
+			$enamad = 'https://trustseal.enamad.ir/';
+
+			if(strpos($_SERVER['HTTP_REFERER'], $enamad) !== false)
+			{
+				@header('X-Frame-Options: *');
+				return;
+			}
+
+		}
+		@header('X-Frame-Options: DENY');
+	}
+
 }
 ?>
