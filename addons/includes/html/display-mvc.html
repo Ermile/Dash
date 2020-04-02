@@ -18,7 +18,7 @@
 {%endif%}
  <meta name     ="twitter:title"           content="{{global.title}}"/>
  <meta name     ="twitter:description"     content="{{page.desc}}"/>
- <meta name     ="twitter:url"             content="{{url.pwd}}"/>
+ <meta name     ="twitter:url"             content="{{url.current}}"/>
  <meta name     ="twitter:image"           content="{{page.cover}}"/>
 {%endblock%}
 {%if browser.ua_type == 'mobile' and options.tabColor.value%}
@@ -28,7 +28,7 @@
 {%block facebook%}
  <meta property ="og:title"                content="{{global.title}}"/>
  <meta property ="og:description"          content="{{page.desc}}"/>
- <meta property ="og:url"                  content="{{url.pwd}}"/>
+ <meta property ="og:url"                  content="{{url.current}}"/>
  <meta property ="og:type"                 content="website"/>
  <meta property ='og:locale'               content='{{global.lang}}'/>
 {%block facebookImages%}
