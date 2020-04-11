@@ -33,7 +33,7 @@ class baby
 			{
 				self::pacifier(10, 414);
 			}
-			if(mb_strlen($value) > 2000)
+			if(mb_strlen($value) > 10000)
 			{
 				self::pacifier(11, 414);
 			}
