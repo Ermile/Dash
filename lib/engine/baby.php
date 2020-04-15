@@ -22,14 +22,13 @@ class baby
 
 		// check duble slash in url
 		self::dbl_slash();
-
 		// check request uri
 		self::check($_SERVER['REQUEST_URI'], true);
 
 		// check for requests
 		foreach ($_REQUEST as $key => $value)
 		{
-			if(mb_strlen($key) > 20)
+			if(mb_strlen($key) > 40)
 			{
 				self::pacifier(10, 414);
 			}
