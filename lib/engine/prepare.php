@@ -641,6 +641,11 @@ class prepare
 				return;
 			}
 
+			if(\dash\url::root() === 'tejarak')
+			{
+				@header('X-Frame-Options: *');
+				return;
+			}
 		}
 		@header('X-Frame-Options: DENY');
 	}
