@@ -165,8 +165,15 @@ class prepare
 			session_name(\dash\url::root());
 		}
 
-		// set session cookie params
-		session_set_cookie_params(0, '/', '.'.\dash\url::domain(), true, true);
+		if(\dash\url::isLocal())
+		{
+			session_set_cookie_params(0, '/', '.'.\dash\url::domain(), false, true);
+		}
+		else
+		{
+			// set session cookie params
+			session_set_cookie_params(0, '/', '.'.\dash\url::domain(), true, true);
+		}
 
 		// start sessions
 		session_start();
