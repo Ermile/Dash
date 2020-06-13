@@ -57,7 +57,11 @@ class controller
 			}
 		}
 
-		\dash\redirect::remove_subdomain();
+		if(\dash\option::config('no_subdomain'))
+		{
+			\dash\redirect::remove_subdomain();
+		}
+
 	}
 }
 ?>
