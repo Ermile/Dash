@@ -149,21 +149,35 @@ class upload
 	 */
 	public static function max_file_upload_size($_prety = false)
 	{
-
+		$min = [];
 		//select maximum upload size
 		$max_upload   = self::sp_fileSizeByte(ini_get('upload_max_filesize'));
+		if($max_upload && is_numeric($max_upload) && $max_upload > 0)
+		{
+			$min[] = $max_upload;
+		}
 		//select post limit
 		$max_post     = self::sp_fileSizeByte(ini_get('post_max_size'));
+
+		if($max_post && is_numeric($max_post) && $max_post > 0)
+		{
+			$min[] = $max_post;
+		}
+
 		//select memory limit
 		$memory_limit = self::sp_fileSizeByte(ini_get('memory_limit'));
+		$min[] = $memory_limit;
 
 		if(\dash\option::config('max_upload') && is_numeric($max_upload))
 		{
 			self::$max_size = intval(\dash\option::config('max_upload'));
+			$min[] = self::$max_size;
 		}
 
 		// find the smallest of them, this defines the real limit
-		$min = min($max_upload, $max_post, $memory_limit, self::$max_size);
+		// $min = min($max_upload, $max_post, $memory_limit, self::$max_size);
+		$min = min($min);
+
 
 		if($_prety)
 		{
