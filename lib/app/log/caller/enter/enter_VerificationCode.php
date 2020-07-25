@@ -16,14 +16,7 @@ class enter_VerificationCode
 		$result['cat']      = T_("Enter");
 		$result['iconClass'] = 'fc-green';
 
-		if($secret)
-		{
-			$excerpt = T_("The verification code has been sent to you");
-		}
-		else
-		{
-			$excerpt = T_("Your verification code is :mycode", ['mycode' => '<code>'. $code. '</code>']);
-		}
+		$excerpt = T_("The verification code has been sent to you");
 
 		$result['excerpt'] = $excerpt;
 
