@@ -141,6 +141,7 @@ class answer
 
 		$randomAnswer = $myAnswerList[array_rand($myAnswerList)];
 
+		return null;
 		return "Invalid Command";
 		return T_("Randowm Answer"). ' - '. $randomAnswer;
 	}
