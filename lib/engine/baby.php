@@ -32,10 +32,15 @@ class baby
 			{
 				self::pacifier(10, 414);
 			}
-			if(mb_strlen($value) > 30000)
+
+			if(is_string($value))
 			{
-				self::pacifier(11, 414);
+				if(mb_strlen($value) > 30000)
+				{
+					self::pacifier(11, 414);
+				}
 			}
+
 			// check key is not using invalid chars
 			self::check($key, true);
 
