@@ -12,6 +12,7 @@ class twigAddons
 		$filters[] = self::filter_dt();
 		$filters[] = self::filter_readableSize();
 		$filters[] = self::filter_fitNumber();
+		$filters[] = self::filter_fitDecimal();
 		$filters[] = self::filter_exist();
 		$filters[] = self::filter_decode();
 		$filters[] = self::filter_coding();
@@ -128,6 +129,14 @@ class twigAddons
 		return new \Twig_SimpleFilter('fitNumber', function ($_number, $_autoFormat = true)
 		{
 			return \dash\utility\human::fitNumber($_number, $_autoFormat);
+		});
+	}
+
+	private static function filter_fitDecimal()
+	{
+		return new \Twig_SimpleFilter('fitDecimal', function ($_number, $_autoFormat = true)
+		{
+			return \dash\fit::number_decimal($_number, $_autoFormat);
 		});
 	}
 
