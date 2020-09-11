@@ -159,14 +159,14 @@ trait backup
 			mkdir($dest_dir, 0755, true);
 		}
 
-		$cmd  = "mysqldump --single-transaction --add-drop-table";
+		$cmd  = "mysqldump --ssl-mode=DISABLED --single-transaction --add-drop-table";
 
 		if(!$_options['lock_tables'])
 		{
 			$cmd  .= " --skip-lock-tables ";
 		}
 
-		$cmd .= " --host='$db_host' ";
+		$cmd .= " --host='$db_host' --set-charset='$db_charset'";
 		$cmd .= " --user='".\dash\db::$db_user."'";
 		$cmd .= " --password='".\dash\db::$db_pass."' '". $db_name."'";
 		$cmd .= " | bzip2 -c > $dest_dir$dest_file";
