@@ -373,6 +373,23 @@ trait tools
 		return $name;
 	}
 
+	public static function get_name($_key, $_trans = false)
+	{
+		$name = null;
+
+		if(isset(self::$data[$_key]['name']))
+		{
+			$name = self::$data[$_key]['name'];
+		}
+
+		if($name && $_trans)
+		{
+			return T_($name);
+		}
+
+		return $name;
+	}
+
 
 	// search in field and return the key
 	public static function get_key($_value, $_field = 'localname')
