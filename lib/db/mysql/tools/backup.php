@@ -178,7 +178,7 @@ trait backup
 		$return_var = NULL;
 		$output     = NULL;
 		$result     = exec($cmd, $output, $return_var);
-		var_dump($cmd, $output, $return_var);exit();
+		var_dump($cmd, $output, $return_var, $result);exit();
 
 		if($return_var === 0)
 		{
