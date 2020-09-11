@@ -171,11 +171,14 @@ trait backup
 		$cmd .= " --password='".\dash\db::$db_pass."' '". $db_name."'";
 		$cmd .= " | bzip2 -c > $dest_dir$dest_file";
 
+
+
 		// to import this file
 		// bunzip2 < filename.sql.bz2 | mysql -u root -p db_name
 		$return_var = NULL;
 		$output     = NULL;
 		$result     = exec($cmd, $output, $return_var);
+		var_dump($cmd, $output, $return_var);exit();
 
 		if($return_var === 0)
 		{
