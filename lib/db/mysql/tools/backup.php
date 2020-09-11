@@ -142,7 +142,7 @@ trait backup
 
 		$db_host    = \dash\db::$db_host;
 		$db_charset = \dash\db::$db_charset;
-		$dest_file  = $db_name.'_'. date('Y-m-d_H-i-s'). '.sql';
+		$dest_file  = $db_name.'_'. date('Y-m-d_H-i-s'). '.sql.bz2';
 
 		if(!$_options['dir'])
 		{
@@ -166,10 +166,10 @@ trait backup
 			$cmd  .= " --skip-lock-tables ";
 		}
 
-		$cmd .= " --host='$db_host' --set-charset='$db_charset'";
+		$cmd .= " --host='$db_host' ";
 		$cmd .= " --user='".\dash\db::$db_user."'";
 		$cmd .= " --password='".\dash\db::$db_pass."' '". $db_name."'";
-		$cmd .= " > $dest_dir$dest_file";
+		$cmd .= " | bzip2 -c > $dest_dir$dest_file";
 
 
 
