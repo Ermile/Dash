@@ -90,7 +90,7 @@ class options
 		{
 			if($set_active)
 			{
-				$masterurl = \dash\url::site(). '/hook/cronjob/exec';
+				$masterurl = \dash\url::kingdom(). '/hook/cronjob/exec';
 				\dash\file::write(__DIR__. '/masterurl.me.txt', $masterurl);
 			}
 			return true;
