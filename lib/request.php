@@ -70,6 +70,22 @@ class request
 	}
 
 
+	public static function fix_get($_args)
+	{
+		$get = self::get();
+		if(!is_array($_args))
+		{
+			$_args = [];
+		}
+
+		// remove pagination
+		unset($get['page']);
+
+		$get = array_merge($get, $_args);
+
+		return http_build_query($get);
+	}
+
 	/**
 	 * get files
 	 *
