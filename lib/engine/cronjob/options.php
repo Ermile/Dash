@@ -53,6 +53,14 @@ class options
 		return null;
 	}
 
+	public static function save_master_url($_master_url)
+	{
+		if(is_string($_master_url))
+		{
+			\dash\file::write(__DIR__. '/masterurl.me.txt', $_master_url);
+			\dash\notif::ok(T_("Saved"));
+		}
+	}
 
 	private static function set_cronjob($_active)
 	{

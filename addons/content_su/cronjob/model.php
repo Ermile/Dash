@@ -5,6 +5,13 @@ class model
 {
 	public static function post()
 	{
+		if(\dash\request::post('setmasterurl') === 'setmasterurl')
+		{
+
+			\dash\engine\cronjob\options::save_master_url(\dash\request::post('masterurl'));
+			\dash\redirect::pwd();
+			return;
+		}
 		$post = \dash\request::post();
 
 		\dash\engine\cronjob\options::save_list($post);
