@@ -13,7 +13,7 @@
     <label for='mobile'>
      <i class="sf-mobile"></i>
     </label>
-    <input id='mobile' name="mobile" type='tel' maxlength="15" placeholder='{%trans "Mobile"%}' data-invalid='{%trans "Please enter valid mobile number"%}' value="{{getMobile}}" data-pl-user='{%trans "Mobile"%}' autocomplete="off" {%if lang.current == 'fa'%}pattern=".{10,14}" title='{%trans "Enter correct iranian mobile starting with zero like 0935"%}'{%else%}pattern=".{7,15}" title='{%trans "Enter your mobile number"%}'{%endif%} required autofocus>
+    <input id='mobile' name="mobile" type='tel' data-format='mobile-enter' maxlength="15" placeholder='{%trans "Mobile"%}' data-invalid='{%trans "Please enter valid mobile number"%}' value="{{getMobile}}" data-pl-user='{%trans "Mobile"%}' autocomplete="off" {%if lang.current == 'fa'%}pattern=".{10,14}" title='{%trans "Enter correct iranian mobile starting with zero like 0935"%}'{%else%}pattern=".{7,15}" title='{%trans "Enter your mobile number"%}'{%endif%} required autofocus>
    </div>
 {%endblock%}
 
@@ -21,7 +21,7 @@
 {%block eAllInput%}
    <div class='flex fix'>
     <!-- <label for='usernameormobile' title='{%trans "Username or Mobile or email"%}'></label> -->
-    <input id='usernameormobile' name="usernameormobile" type='text' data-disallowFaNum maxlength="50" placeholder='{%trans "Mobile"%}' data-invalid='{%trans "Please enter valid mobile or username or email number"%}' value="{{getUsernamemobile}}" data-pl-user='{%trans "Username or Mobile or Email"%}' autocomplete="off" required {%if mobileReadonly%} readonly {%endif%} {%if not mobileReadonly%}autofocus title='{%trans "Username or Mobile or email"%}'{%endif%} {%if user.id%}{%else%}pattern=".{5,50}"{%endif%}>
+    <input id='usernameormobile' name="usernameormobile" data-format='mobile-enter' type='text' data-disallowFaNum maxlength="50" placeholder='{%trans "Mobile"%}' data-invalid='{%trans "Please enter valid mobile or username or email number"%}' value="{{getUsernamemobile}}" data-pl-user='{%trans "Username or Mobile or Email"%}' autocomplete="off" required {%if mobileReadonly%} readonly {%endif%} {%if not mobileReadonly%}autofocus title='{%trans "Username or Mobile or email"%}'{%endif%} {%if user.id%}{%else%}pattern=".{5,50}"{%endif%}>
    </div>
 {%endblock%}
 
