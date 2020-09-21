@@ -19,6 +19,12 @@ class export
 
         $type     = isset($_args['type']) ? $_args['type'] : 'csv';
         $filename = isset($_args['name']) ? $_args['name'] : 'Untitled';
+        $translate = false;
+        if(isset($_args['T_']) && $_args['T_'])
+        {
+            $translate = true;
+        }
+
 
         if(isset($_args['data']) && is_array($_args['data']))
         {
@@ -57,7 +63,10 @@ class export
             if(is_array(reset($data)))
             {
                 $keys = array_keys(reset($data));
-                // $keys = array_map('T_', $keys);
+                if($translate)
+                {
+                    $keys = array_map('T_', $keys);
+                }
 
                 fputcsv($df, $keys);
             }
