@@ -62,7 +62,7 @@ class cronjob
 		echo '|';
 		echo $mycode;
 		echo '|';
-		var_dump($response);
+		print_r($response);
 
 	}
 }
