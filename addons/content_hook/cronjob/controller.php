@@ -12,35 +12,42 @@ class controller
 	{
 		if(\dash\permission::supervisor())
 		{
+			\dash\log::set('cronjob_debug__'. __LINE__);
 			self::cronjob_run();
 			return;
 		}
+		\dash\log::set('cronjob_debug__'. __LINE__);
 
 		// In local mode it should not be run
 		if(\dash\url::isLocal())
 		{
+			\dash\log::set('cronjob_debug__'. __LINE__);
 			return false;
 		}
 
 		if(\dash\url::child() !== 'exec')
 		{
+			\dash\log::set('cronjob_debug__'. __LINE__);
 			\dash\header::status(404);
 		}
 
 		if(mb_strtoupper(\dash\request::is()) !== 'POST')
 		{
+			\dash\log::set('cronjob_debug__'. __LINE__);
 			\dash\header::status(416);
 		}
 
 		$token = \dash\request::post('token');
 		if(!$token)
 		{
+			\dash\log::set('cronjob_debug__'. __LINE__);
 			\dash\notif::error("Token!");
 			\dash\code::jsonBoom(\dash\notif::get());
 		}
 
 		if(!\dash\option::config('cronjob','status'))
 		{
+			\dash\log::set('cronjob_debug__'. __LINE__);
 			\dash\header::status(403, 'Cronjob is off');
 		}
 
@@ -48,11 +55,13 @@ class controller
 
 		if(is_file($read_file))
 		{
+			\dash\log::set('cronjob_debug__'. __LINE__);
 			$check_token = file_get_contents($read_file);
 			$check_token = json_decode($check_token, true);
 
 			if(isset($check_token['token']) && $check_token['token'] === $token)
 			{
+				\dash\log::set('cronjob_debug__'. __LINE__);
 				// stop visitor save for cronjob
 				\dash\temp::set('force_stop_visitor', true);
 
@@ -65,6 +74,7 @@ class controller
 				\dash\code::jsonBoom(\dash\notif::get());
 			}
 		}
+		\dash\log::set('cronjob_debug__'. __LINE__);
 		\dash\log::set('CronjobTokenNotSet');
 		\dash\notif::error("Token :/");
 		\dash\code::jsonBoom(\dash\notif::get());
