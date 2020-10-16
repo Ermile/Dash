@@ -113,6 +113,12 @@ class pagination
 		$url_get_length   = \dash\request::get('length');
 
 		$page             = $page && ctype_digit($page) ? $page : 1;
+
+		if(mb_strlen($page) > 12)
+		{
+			$page = 1;
+		}
+
 		$page             = intval($page) > 0 ? intval($page) : 1;
 		$_total_rows      = intval($_total_rows);
 
