@@ -278,6 +278,12 @@ class view
 	{
 		$main = $_main;
 
+		if(\dash\temp::get('ticketFromTelegram'))
+		{
+			// in telegram not check login !!!!!!!!!!! @todo
+			return true;
+		}
+
 		if(!$main || !array_key_exists('user_id', $main))
 		{
 			\dash\header::status(403, T_("Ticket not found"));
