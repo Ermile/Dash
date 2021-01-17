@@ -536,6 +536,7 @@ class config
 
 		$default_options =
 		[
+			'join_remove_on_pagination' => false,
 			// just return the count record
 			"get_count"         => false,
 			// enable|disable paignation,
@@ -790,7 +791,14 @@ class config
 			}
 			else
 			{
-				$pagenation_query = "SELECT	COUNT(*) AS `count`	FROM `$_table` $master_join	$where $search $group_by";
+				if(isset($_options['join_remove_on_pagination']) && $_options['join_remove_on_pagination'])
+				{
+					$pagenation_query = "SELECT	COUNT(*) AS `count`	FROM `$_table`	$where $search $group_by";
+				}
+				else
+				{
+					$pagenation_query = "SELECT	COUNT(*) AS `count`	FROM `$_table` $master_join	$where $search $group_by";
+				}
 			}
 
 			$pagenation_query = \dash\db::get($pagenation_query, 'count', true, $db_name);

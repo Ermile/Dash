@@ -178,6 +178,7 @@ class transactions
 					users.avatar AS `avatar`
 				",
 			'master_join'         => " LEFT JOIN users ON users.id = transactions.user_id ",
+			'join_remove_on_pagination' => true,
 		];
 
 		$_options = array_merge($default_option, $_options);
