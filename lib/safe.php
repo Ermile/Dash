@@ -70,8 +70,6 @@ class safe
 		if($trim)
 		{
 			$_string = trim($_string);
-
-			$_string = self::remove_2s($_string);
 		}
 
 		$_string = self::remove_2nl($_string);
@@ -123,11 +121,6 @@ class safe
 	}
 
 
-	public static function remove_2s($_string)
-	{
-		$_string = preg_replace("/\h+/", " ", $_string);
-		return $_string;
-	}
 
 
 	public static function forQueryString($_string)
@@ -145,7 +138,6 @@ class safe
 		$_string = trim($_string);
 		$_string = self::remove_2nl($_string);
 		$_string = self::remove_nl($_string);
-		$_string = self::remove_2s($_string);
 		$_string = trim($_string);
 		return $_string;
 	}
