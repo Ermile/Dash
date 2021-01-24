@@ -157,6 +157,12 @@ class transactions
 
 		$en_number = \dash\utility\convert::to_en_number($_string);
 
+		$join_remove_on_pagination = true;
+		if($_string)
+		{
+			$join_remove_on_pagination = false;
+		}
+
 		$default_option =
 		[
 			'search_field' =>
@@ -164,6 +170,7 @@ class transactions
 				(
 					users.mobile LIKE '%__string__%' OR
 					users.email LIKE '%__string__%' OR
+					users.displayname LIKE '%__string__%' OR
 					transactions.plus LIKE '%$en_number%' OR
 					transactions.minus LIKE '%$en_number%' OR
 					transactions.title LIKE '%__string__%'
@@ -178,7 +185,7 @@ class transactions
 					users.avatar AS `avatar`
 				",
 			'master_join'         => " LEFT JOIN users ON users.id = transactions.user_id ",
-			'join_remove_on_pagination' => true,
+			'join_remove_on_pagination' => $join_remove_on_pagination,
 		];
 
 		$_options = array_merge($default_option, $_options);
