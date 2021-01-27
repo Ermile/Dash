@@ -649,7 +649,100 @@ class log
 		$my_text .= $_text;
 		$my_text .= "\r\n";
 
-		@file_put_contents($fileAddr, $my_text, FILE_APPEND);
+		self::append_file($fileAddr, $my_text);
+
+	}
+
+
+
+	public static function append_file($_addr, $_text)
+	{
+		@file_put_contents($_addr, $_text, FILE_APPEND);
+
+		// check size
+		$filesize = filesize($_addr);
+
+		// check on 1 MB
+		if(floatval($filesize) > (1 * 1024 * 1024))
+		{
+			self::archive_log($_addr);
+		}
+	}
+
+
+	private static function archive_log($_addr)
+	{
+		$pathinfo  = pathinfo($_addr);
+
+		if(isset($pathinfo['basename']))
+		{
+			$basename = $pathinfo['basename'];
+		}
+		else
+		{
+			$basename = basename($_addr);
+		}
+
+		$extension = 'log';
+
+		if(isset($pathinfo['extension']))
+		{
+			$extension = $pathinfo['extension'];
+		}
+
+		if(isset($pathinfo['filename']))
+		{
+			$filename = $pathinfo['filename'];
+		}
+		else
+		{
+			$filename = str_replace('.'. $extension, '', $basename);
+		}
+
+		if(isset($pathinfo['dirname']))
+		{
+			$dirname = $pathinfo['dirname'];
+			$dirname .= DIRECTORY_SEPARATOR;
+		}
+		else
+		{
+			$dirname = str_replace($basename, '', $_addr);
+		}
+
+		$new_name = $filename. '_'. date("YmdHis"). '.'. $extension;
+
+		$new_name = str_replace($basename, $new_name, $_addr);
+
+		// archive old file
+		rename($_addr, $new_name);
+
+		$list = glob($dirname. '*.{log,txt,sql}', GLOB_BRACE);
+
+		if(is_array($list) && $list)
+		{
+			$zip = [];
+
+			foreach ($list as $file)
+			{
+				if(time() - filemtime($file) > (60*60*24*30))
+				{
+					$zip[] = $file;
+				}
+			}
+
+			if(!empty($zip))
+			{
+				$zip_addr = $dirname. 'archive_'.date("YmdHis"). '.zip';
+
+				\dash\utility\zip::multi_file($zip_addr, $zip);
+
+				foreach ($zip as $file)
+				{
+					unlink($file);
+				}
+			}
+		}
+
 	}
 }
 ?>
