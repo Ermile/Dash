@@ -9,6 +9,8 @@ class controller
 		\dash\redirect::remove_subdomain();
 		// save api log
 		\dash\app\apilog::start();
+
+		@header('Access-Control-Allow-Origin: *', true);
 	}
 }
 ?>
