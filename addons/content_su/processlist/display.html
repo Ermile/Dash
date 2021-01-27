@@ -1,0 +1,41 @@
+
+{%extends display.suMain%}
+
+
+{%block content%}
+<div class="cbox">
+	<div class="tblBox">
+		<table class="tbl1 v3">
+			<thead>
+				<tr>
+					<th class="collapsing">Id</th>
+					<th class="collapsing">User</th>
+					<th class="collapsing">Host</th>
+					<th class="collapsing">db</th>
+					<th class="collapsing">Command</th>
+					<th class="collapsing">Time</th>
+					<th class="collapsing">State</th>
+					<th>Info</th>
+				</tr>
+			</thead>
+			<tbody>
+				{%for key, value in processlist%}
+					<tr>
+						<td class="collapsing">{{value.Id}}</td>
+						<td class="collapsing">{{value.User}}</td>
+						<td class="collapsing">{{value.Host}}</td>
+						<td class="collapsing">{{value.db}}</td>
+						<td class="collapsing">{{value.Command}}</td>
+						<td class="collapsing">{{value.Time}}</td>
+						<td class="collapsing">{{value.State}}</td>
+						<td>{{value.Info}}</td>
+
+					</tr>
+				{%endfor%}
+			</tbody>
+		</table>
+	</div>
+<pre>{{fullprocesslist | dump}}</pre>
+</div>
+
+{%endblock%}
