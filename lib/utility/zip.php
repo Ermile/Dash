@@ -25,6 +25,32 @@ class zip
 	}
 
 
+
+	public static function multi_file($_zipAddr, $_file)
+	{
+		$zip = new \ZipArchive();
+
+		if ($zip->open($_zipAddr, \ZIPARCHIVE::OVERWRITE) !== true)
+		{
+			// if file not exist, add to existing file
+			if ($zip->open($_zipAddr, \ZipArchive::CREATE) !== true)
+			{
+				return("cannot open <$_zipAddr>\n");
+			}
+		}
+
+		foreach ($_file as $value)
+		{
+			// add file to zip archive
+			$zip->addFile($value, basename($value));
+		}
+
+		$zip->close();
+
+		return true;
+	}
+
+
 	/**
 	 * [download_on_fly description]
 	 * @param  [type] $_addr [description]
