@@ -400,9 +400,9 @@
     <div data-response='publishdatetype' data-response-where='bydate'  {%if dataRow.publishdate %} {%else%} data-response-hide {%endif%} data-response-effect='slide'>
 
       <div>
-        <label for="publishdate">{%trans "Publish date"%}</label>
+        <label for="ipublishdate">{%trans "Publish date"%}</label>
         <div class="input ltr">
-          <input class="datepicker" type="text" name="publishdate" id="publishdate" placeholder='{%trans "Default is now"%}' value="{{dataRow.publishdate}}" maxlength='15' data-format="YYYY/MM/DD" data-initialValue='false' data-view="year">
+          <input class="datepicker2" type="text" name="publishdate" id="ipublishdate" value="{{dataRow.publishdate |date('Y/m/d') | dt(null, 'date')}}" placeholder='{%trans "Default is now"%}'    maxlength='15'  data-view="year">
         </div>
       </div>
       <div>
