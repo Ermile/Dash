@@ -608,7 +608,7 @@ class twigTransTerms
 	echo T_("External");                                                              // Line 85
 
 	//-----------------------------------addons/content_crm/member/glance/display.html
-	echo T_("Log");                                                                   // Line 38
+	echo T_("Log");                                                                   // Line 39
 	echo T_("Field");                                                                 // Line 26
 	echo T_("Decode");                                                                // Line 26
 	echo T_("Copy mobile");                                                           // Line 59
@@ -627,7 +627,7 @@ class twigTransTerms
 
 	//-------------------------------------addons/content_crm/member/home/display.html
 	echo T_("Display Name");                                                          // Line 88
-	echo T_("Permission");                                                            // Line 42
+	echo T_("Permission");                                                            // Line 43
 	echo T_("Created date");                                                          // Line 106
 	echo T_("Last Modified");                                                         // Line 109
 	echo T_("Mr");                                                                    // Line 127
@@ -1338,7 +1338,7 @@ class twigTransTerms
 	echo T_("Git status");                                                            // Line 29
 	echo T_("Nano");                                                                  // Line 30
 	echo T_("Tools");                                                                 // Line 35
-	echo T_("Translation tools");                                                     // Line 43
+	echo T_("Translation tools");                                                     // Line 44
 
 	//---------------------------------------------addons/content_su/nano/display.html
 
@@ -1477,8 +1477,9 @@ class twigTransTerms
 
 	//---------------------------------------------------addons/content_su/layout.html
 	echo T_("Supervisor dashboard");                                                  // Line 6
-	echo T_("Api Log");                                                               // Line 39
-	echo T_("Sms client");                                                            // Line 40
+	echo T_("Mysql Process list");                                                    // Line 38
+	echo T_("Api Log");                                                               // Line 40
+	echo T_("Sms client");                                                            // Line 41
 
 	//---------------------------------------------addons/content_su/time/display.html
 	echo T_("Time zone");                                                             // Line 4
