@@ -13,17 +13,12 @@
         <th>{%trans "Version"%}</th>
         <th>{%trans "Url"%}</th>
         <th>{%trans "Method"%}</th>
-        <th>{%trans "Header"%}</th>
         <th>{%trans "Header len"%}</th>
-        <th>{%trans "Body"%}</th>
         <th>{%trans "Bodylen"%}</th>
         <th>{%trans "Date send"%}</th>
         <th>{%trans "Page status"%}</th>
         <th>{%trans "Result status"%}</th>
-        <th>{%trans "Response header"%}</th>
-        <th>{%trans "Response body"%}</th>
         <th>{%trans "Datere sponse"%}</th>
-        <th>{%trans "Notif"%}</th>
         <th>{%trans "Response len"%}</th>
 
       </tr>
@@ -56,53 +51,17 @@
       <td>
         <b><a href="{{url.this}}?method={{value.method}}">{{value.method}}</a></b>
       </td>
-      <td>
-        <span data-kerkere='.showHeader{{value.id}}'><i class="sf-plus"></i></span>
-        <div class="showHeader{{value.id}}" data-kerkere-content='hide'>
-          {{value.header |raw | nl2br}}
-        </div>
-      </td>
       <td>{{value.headerlen | fitNumber}}</td>
-      <td>
-        <span data-kerkere='.showBody{{value.id}}'><i class="sf-plus"></i></span>
-        <div class="showBody{{value.id}}" data-kerkere-content='hide'>
-          {{value.body}}
-        </div>
-      </td>
       <td>{{value.bodylen | fitNumber}}</td>
       <td>
           {{value.datesend | dt(true)}}
-        <br>
-          {{value.datesend | dt('human', 'year')}}
       </td>
       <td><a href="{{url.this}}?pagestatus={{value.pagestatus}}">{{value.pagestatus | fitNumber}}</a></td>
       <td><a href="{{url.this}}?resultstatus={{value.resultstatus}}">{{value.resultstatus}}</a></td>
       <td>
-        <span data-kerkere='.showResponseHeader{{value.id}}'><i class="sf-plus"></i></span>
-        <div class="showResponseHeader{{value.id}}" data-kerkere-content='hide'>
-          {{value.responseheader | raw | nl2br}}
-
-        </div>
-      </td>
-      <td>
-        <span data-kerkere='.showResponseBody{{value.id}}'><i class="sf-plus"></i></span>
-        <div class="showResponseBody{{value.id}}" data-kerkere-content='hide'>
-          {{value.responsebody | raw | nl2br}}
-        </div>
-      </td>
-      <td>
         {{value.dateresponse | dt(true)}}
-        <br>
-        {{value.dateresponse | dt('human', 'year')}}
       </td>
-      <td>
-        <span data-kerkere='.showNotif{{value.id}}'><i class="sf-plus"></i></span>
-        <div class="showNotif{{value.id}}" data-kerkere-content='hide'>
-          {{value.notif | raw | nl2br}}
-        </div>
-    </td>
       <td>{{value.responselen | fitNumber}}</td>
-
 
       </tr>
       {%endfor%}
