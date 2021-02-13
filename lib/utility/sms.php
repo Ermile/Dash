@@ -95,12 +95,12 @@ class sms
 
 		$default_option =
 		[
-			'line'           => \dash\option::sms('kavenegar', 'line'),
-			'type'           => 1,
-			'date'           => 0,
-			'LocalMessageid' => null,
-			'header'         => true,
-			'footer'         => true,
+			'line'    => \dash\option::sms('kavenegar', 'line'),
+			'type'    => 1,
+			'date'    => 0,
+			'localid' => null,
+			'header'  => true,
+			'footer'  => true,
 		];
 
 		if(!is_array($_options))
@@ -127,7 +127,7 @@ class sms
 
 		// send sms
 		$api    = new \dash\utility\kavenegar_api($api_key, $_options['line']);
-		$result = $api->send($mobile, $message, $_options['type'], $_options['date'], $_options['LocalMessageid']);
+		$result = $api->send($mobile, $message, $_options['type'], $_options['date'], $_options['localid']);
 
 		// success result
 		// {

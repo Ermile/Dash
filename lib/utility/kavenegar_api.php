@@ -171,7 +171,7 @@ class kavenegar_api
 	 *
 	 * @return     <type>  ( description_of_the_return_value )
 	 */
-	public function send($_mobile, $_msg, $_type = 1, $_date = 0, $_LocalMessageid = null)
+	public function send($_mobile, $_msg, $_type = 1, $_date = 0, $_localid = null)
 	{
 		$path 		= $this->get_path(__FUNCTION__);
 
@@ -182,7 +182,7 @@ class kavenegar_api
 			"message"        => $_msg,
 			"type"           => $_type,
 			// "date"           => $_date,
-			"LocalMessageid" => $_LocalMessageid,
+			"localid" => $_localid,
 		];
 
 		if($_date)
