@@ -43,7 +43,7 @@ class safe
 					break;
 
 				case 'sqlinjection':
-					$remove_inject = ["'", '"', '\\\\\\', '`', '\*', ';'];
+					$remove_inject = ["'", '"', '\\\\\\', '`', ';'];
 					break;
 
 				case 'raw':
